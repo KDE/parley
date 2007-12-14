@@ -85,6 +85,7 @@ void ParleyApp::initActions()
     fileGHNS->setStatusTip(fileGHNS->whatsThis());
 
     m_recentFilesAction = KStandardAction::openRecent(m_document, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
+    m_recentFilesAction->loadEntries(KGlobal::config()->group("Recent Files"));
 
     KAction* fileMerge = new KAction(this);
     actionCollection()->addAction("file_merge", fileMerge);
@@ -174,11 +175,12 @@ void ParleyApp::initActions()
     actionCollection()->addAction("edit_append", editAppend);
     editAppend->setIcon(KIcon("list-add-card"));
     editAppend->setText(i18n("&Add New Entry"));
-//     connect(editAppend, SIGNAL(triggered(bool)), m_vocabularyView, SLOT(appendEntry()));
+    connect(editAppend, SIGNAL(triggered(bool)), m_vocabularyView, SLOT(appendEntry()));
     editAppend->setShortcut(QKeySequence(Qt::Key_Insert));
     editAppend->setWhatsThis(i18n("Append a new row to the vocabulary"));
     editAppend->setToolTip(editAppend->whatsThis());
     editAppend->setStatusTip(editAppend->whatsThis());
+    m_vocabularyView->addAction(editAppend);
 
     m_deleteEntriesAction = new KAction(this);
     actionCollection()->addAction("edit_remove_selected_area", m_deleteEntriesAction);
@@ -189,16 +191,7 @@ void ParleyApp::initActions()
     m_deleteEntriesAction->setWhatsThis(i18n("Delete the selected rows"));
     m_deleteEntriesAction->setToolTip(m_deleteEntriesAction->whatsThis());
     m_deleteEntriesAction->setStatusTip(m_deleteEntriesAction->whatsThis());
-
-    KAction* editEditEntry = new KAction(this);
-    actionCollection()->addAction("edit_edit_selected_area", editEditEntry);
-    editEditEntry->setIcon(KIcon("document-properties-card"));
-    editEditEntry->setText(i18n("&Edit Entry..."));
-    connect(editEditEntry, SIGNAL(triggered(bool)), this, SLOT(slotEditEntry()));
-    editEditEntry->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Return));
-    editEditEntry->setWhatsThis(i18n("Edit the entries in the selected rows"));
-    editEditEntry->setToolTip(editEditEntry->whatsThis());
-    editEditEntry->setStatusTip(editEditEntry->whatsThis());
+    m_vocabularyView->addAction(m_deleteEntriesAction);
 
 //     KAction* editSaveSelectedArea = new KAction(this);
 //      actionCollection()->addAction("edit_save_selected_area", editSaveSelectedArea);
@@ -267,6 +260,33 @@ void ParleyApp::initActions()
     actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
     actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
 
+    connect(actionNewLesson, SIGNAL(triggered()), 
+        m_lessonView, SLOT(slotCreateNewLesson()));
+    connect(actionRenameLesson, SIGNAL(triggered()), 
+        m_lessonView, SLOT(slotRenameLesson()));
+    connect(actionDeleteLesson, SIGNAL(triggered()), 
+        m_lessonView, SLOT(slotDeleteLesson()));
+    connect(actionCheckAllLessons, SIGNAL(triggered()), 
+        m_lessonView, SLOT(slotCheckAllLessons()));
+    connect(actionCheckNoLessons, SIGNAL(triggered()), 
+        m_lessonView, SLOT(slotCheckNoLessons()));
+    connect(actionSplitLesson, SIGNAL(triggered()), 
+        m_lessonView, SLOT(slotSplitLesson()));
+
+    // right cick menu for the lesson view:
+    m_lessonView->addAction(actionNewLesson);
+    m_lessonView->addAction(actionRenameLesson);
+    m_lessonView->addAction(actionDeleteLesson);
+    QAction* separator = new QAction(this);
+    separator->setSeparator(true);
+    m_lessonView->addAction(separator);
+    m_lessonView->addAction(actionCheckAllLessons);
+    m_lessonView->addAction(actionCheckNoLessons);
+    separator = new QAction(this);
+    separator->setSeparator(true);
+    m_lessonView->addAction(separator);
+    m_lessonView->addAction(actionSplitLesson);
+
 // -- VOCABULARY --------------------------------------------------
 
     KAction* vocabCleanUp = new KAction(this);
@@ -327,6 +347,7 @@ void ParleyApp::initActions()
     m_vocabShowSearchBarAction->setWhatsThis(i18n("Toggle display of the search bar"));
     m_vocabShowSearchBarAction->setToolTip(m_vocabShowSearchBarAction->whatsThis());
     m_vocabShowSearchBarAction->setStatusTip(m_vocabShowSearchBarAction->whatsThis());
+    m_vocabShowSearchBarAction->setChecked(Prefs::showSearch());
 
     KAction *actionShowLessonColumn = new KAction(this);
     actionCollection()->addAction("config_show_lesson_column", actionShowLessonColumn);
@@ -340,13 +361,12 @@ void ParleyApp::initActions()
     actionShowActiveColumn->setCheckable((true));
     actionShowActiveColumn->setChecked(Prefs::tableActiveColumnVisible());
 
-    m_vocabularyColumnsActionMenu = new KActionMenu(this);
     actionCollection()->addAction("show_vocabulary_columns_menu", m_vocabularyColumnsActionMenu);
     m_vocabularyColumnsActionMenu->setText(i18n("Vocabulary Columns"));
     m_vocabularyColumnsActionMenu->setWhatsThis(i18n("Toggle display of individual vocabulary columns"));
     m_vocabularyColumnsActionMenu->setToolTip(m_vocabularyColumnsActionMenu->whatsThis());
     m_vocabularyColumnsActionMenu->setStatusTip(m_vocabularyColumnsActionMenu->whatsThis());
-
+    m_vocabularyView->horizontalHeader()->addAction(m_vocabularyColumnsActionMenu);
 
 // -- ONLY ON RIGHT CLICK - HEADER SO FAR -------------------------------------
     KAction *actionRestoreNativeOrder = new KAction(this);
@@ -427,16 +447,11 @@ void ParleyApp::initView()
     rightLayout->setMargin(0);
     rightLayout->addWidget(m_searchWidget);
     m_searchWidget->setVisible(Prefs::showSearch());
-    m_vocabShowSearchBarAction->setChecked(Prefs::showSearch());
 
     /* the new table */
     m_vocabularyView = new VocabularyView(m_vocabularyColumnsActionMenu, centralWidget());
     m_vocabularyView->setFrameStyle(QFrame::NoFrame);
     m_vocabularyView->setAlternatingRowColors(true);
-
-    m_vocabularyView->addAction(actionCollection()->action("edit_append"));
-    m_vocabularyView->addAction(actionCollection()->action("edit_edit_selected_area"));
-    m_vocabularyView->addAction(actionCollection()->action("edit_remove_selected_area"));
 
     VocabularyDelegate *vocabularyDelegate = new VocabularyDelegate;
     m_vocabularyView->setItemDelegate(vocabularyDelegate);
@@ -446,7 +461,5 @@ void ParleyApp::initView()
     /* end the new table */
 
     topLayout->addLayout(rightLayout);
-
-    m_vocabularyView->horizontalHeader()->addAction(m_vocabularyColumnsActionMenu);
 }
 

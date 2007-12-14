@@ -29,7 +29,7 @@ VocabularyModel::VocabularyModel(QObject *parent)
  : QAbstractTableModel(parent)
 {
     m_document = 0;
-    m_lesson = 0;
+    m_container = 0;
 
     qRegisterMetaType<KEduVocTranslation*>("KEduVocTranslationStar");
 }
@@ -42,36 +42,53 @@ VocabularyModel::~VocabularyModel()
 void VocabularyModel::setDocument(KEduVocDocument * doc)
 {
     m_document = doc;
+    m_container = 0;
     m_lesson = 0;
+    m_wordType = 0;
 
+
+    /// @todo does this make sense?
     if ( m_document ) {
-        setContainer(m_document->lesson());
+        showContainer(m_document->lesson());
     }
     reset();
 }
 
 
-void VocabularyModel::setContainer(KEduVocContainer * container)
+void VocabularyModel::showContainer(KEduVocContainer * container)
 {
     // use remove and insert rows. using reset resets all table headers too.
     if (rowCount(QModelIndex()) > 0) {
         beginRemoveRows(QModelIndex(), 0, rowCount(QModelIndex())-1);
         endRemoveRows();
     }
-    m_lesson = container;
+    m_container = container;
     if (container && container->entryCount() > 0) {
-        beginInsertRows(QModelIndex(), 0, m_lesson->entryCount()-1);
+        beginInsertRows(QModelIndex(), 0, m_container->entryCount()-1);
         endInsertRows();
     }
 }
 
 
+
+void VocabularyModel::setLesson(KEduVocLesson * lessonContainer)
+{
+    m_lesson = lessonContainer;
+}
+
+void VocabularyModel::setWordType(KEduVocWordType * wordTypeContainer)
+{
+    m_wordType = wordTypeContainer;
+}
+
+
+
 int VocabularyModel::rowCount(const QModelIndex &) const
 {
-    if ( !m_lesson ) {
+    if ( !m_container ) {
         return 0;
     }
-    return m_lesson->entryCount();
+    return m_container->entryCount();
 }
 
 int VocabularyModel::columnCount(const QModelIndex &) const
@@ -84,7 +101,7 @@ int VocabularyModel::columnCount(const QModelIndex &) const
 
 QVariant VocabularyModel::data(const QModelIndex & index, int role) const
 {
-    if ( !m_document || !m_lesson ) {
+    if ( !m_document || !m_container ) {
         return QVariant();
     }
 
@@ -95,22 +112,22 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
     case Qt::DisplayRole:
         switch (entryColumn) {
         case Translation:
-            return QVariant(m_lesson->entry(index.row())->translation(translationId)->text());
+            return QVariant(m_container->entry(index.row())->translation(translationId)->text());
         case Pronunciation:
-            return QVariant(m_lesson->entry(index.row())->translation(translationId)->pronunciation());
+            return QVariant(m_container->entry(index.row())->translation(translationId)->pronunciation());
         case WordType:
             // if no word type is set, we get a null pointer
-            if(m_lesson->entry(index.row())->translation(translationId)->wordType()) {
-                return QVariant(m_lesson->entry(index.row())->translation(translationId)->wordType()->name());
+            if(m_container->entry(index.row())->translation(translationId)->wordType()) {
+                return QVariant(m_container->entry(index.row())->translation(translationId)->wordType()->name());
             }
             return QVariant();
         case Synonym:
-            return QVariant(m_lesson->entry(index.row())->translation(translationId)->synonym());
+            return QVariant(m_container->entry(index.row())->translation(translationId)->synonym());
         case Antonym:
-            return QVariant(m_lesson->entry(index.row())->translation(translationId)->antonym());
+            return QVariant(m_container->entry(index.row())->translation(translationId)->antonym());
         case Example: {
-            QString example = m_lesson->entry(index.row())->translation(translationId)->example();
-            /*QString word = m_lesson->entry(index.row())->translation(translationId)->text();
+            QString example = m_container->entry(index.row())->translation(translationId)->example();
+            /*QString word = m_container->entry(index.row())->translation(translationId)->text();
             int pos = 0;
             QString start = "<font color=\"#FF0000\"><b>";
             QString end = "</b></font>";
@@ -122,9 +139,9 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
             return QVariant(example);
         }
         case Comment:
-            return QVariant(m_lesson->entry(index.row())->translation(translationId)->comment());
+            return QVariant(m_container->entry(index.row())->translation(translationId)->comment());
         case Paraphrase:
-            return QVariant(m_lesson->entry(index.row())->translation(translationId)->paraphrase());
+            return QVariant(m_container->entry(index.row())->translation(translationId)->paraphrase());
 //         case Audio:
 //         case Image:
         default:
@@ -134,13 +151,13 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
 //     case Qt::DecorationRole: {
 //         switch (entryColumn) {
 //         case Audio:
-//             if ( !m_lesson->entry(index.row())->translation(translationId)->soundUrl().isEmpty() ) {
+//             if ( !m_container->entry(index.row())->translation(translationId)->soundUrl().isEmpty() ) {
 //                 return KIcon("media-playback-start");
 //             }
 //             return QVariant();
 //         case Image:
-//             if ( !m_lesson->entry(index.row())->translation(translationId)->imageUrl().isEmpty() ) {
-//                 return QPixmap(m_lesson->entry(index.row())->translation(translationId)->imageUrl().toLocalFile()).scaled(QSize(30,30));
+//             if ( !m_container->entry(index.row())->translation(translationId)->imageUrl().isEmpty() ) {
+//                 return QPixmap(m_container->entry(index.row())->translation(translationId)->imageUrl().toLocalFile()).scaled(QSize(30,30));
 //             }
 //             return QVariant();
 //         default:
@@ -157,7 +174,7 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
 
     case EntryRole: {
         QVariant v;
-        v.setValue(m_lesson->entry(index.row()));
+        v.setValue(m_container->entry(index.row()));
         return v;
         }
     }
@@ -177,28 +194,28 @@ bool VocabularyModel::setData(const QModelIndex &index, const QVariant &value, i
 
     switch (column) {
     case Translation:
-        m_lesson->entry(index.row())->translation(translationId)->setText(value.toString());
+        m_container->entry(index.row())->translation(translationId)->setText(value.toString());
         break;
     case Pronunciation:
-        m_lesson->entry(index.row())->translation(translationId)->setPronunciation(value.toString());
+        m_container->entry(index.row())->translation(translationId)->setPronunciation(value.toString());
         break;
     case WordType:
-//             m_lesson->entry(index.row())->translation(translationId)->type();
+//             m_container->entry(index.row())->translation(translationId)->type();
         break;
     case Synonym:
-        m_lesson->entry(index.row())->translation(translationId)->setSynonym(value.toString());
+        m_container->entry(index.row())->translation(translationId)->setSynonym(value.toString());
         break;
     case Antonym:
-        m_lesson->entry(index.row())->translation(translationId)->setAntonym(value.toString());
+        m_container->entry(index.row())->translation(translationId)->setAntonym(value.toString());
         break;
     case Example:
-        m_lesson->entry(index.row())->translation(translationId)->setExample(value.toString());
+        m_container->entry(index.row())->translation(translationId)->setExample(value.toString());
         break;
     case Comment:
-        m_lesson->entry(index.row())->translation(translationId)->setComment(value.toString());
+        m_container->entry(index.row())->translation(translationId)->setComment(value.toString());
         break;
     case Paraphrase:
-        m_lesson->entry(index.row())->translation(translationId)->setParaphrase(value.toString());
+        m_container->entry(index.row())->translation(translationId)->setParaphrase(value.toString());
         break;
 //     case Audio:
 //     case Image:
@@ -281,9 +298,20 @@ int VocabularyModel::columnType(int column)
 
 QModelIndex VocabularyModel::appendEntry()
 {
+kDebug() << "appendEntry";
+    if(!m_lesson) {
+        return QModelIndex();
+    }
+
     beginInsertRows(QModelIndex(), rowCount(QModelIndex()), rowCount(QModelIndex()));
-//     m_lesson
+    KEduVocExpression* entry = new KEduVocExpression;
+    m_lesson->addEntry(entry);
     endInsertRows();
+kDebug() << "appendEntry done";
+    // the last row will be the new entry
+    return index(rowCount(QModelIndex()) - 1, 0, QModelIndex());
 }
+
+
 
 #include "vocabularymodel.moc"

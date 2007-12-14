@@ -162,13 +162,33 @@ void LessonView::currentChanged(const QModelIndex & current, const QModelIndex &
 {
     kDebug()<< "current changed";
 
-    Q_UNUSED(previous);
-
-    KEduVocContainer *lesson = 0;
-    lesson = static_cast<KEduVocContainer*>(current.internalPointer());
-    emit signalSelectedContainerChanged(lesson);
+    KEduVocContainer *container = 0;
+    container = static_cast<KEduVocContainer*>(current.internalPointer());
+    if (container->containerType() == KEduVocContainer::LessonContainer) {
+        emit selectedLessonChanged(static_cast<KEduVocLesson*>(container));
+    } else {
+        emit selectedWordTypeChanged(static_cast<KEduVocWordType*>(container));
+    }
+    emit signalShowContainer(container);
 
     QTreeView::currentChanged(current, previous);
+}
+
+void LessonView::selectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
+{
+    if(selected.count() == 0) {
+        return;
+    }
+
+    KEduVocContainer *container = 0;
+    container = static_cast<KEduVocContainer*>(selected.indexes().value(0).internalPointer());
+    if (container->containerType() == KEduVocContainer::LessonContainer) {
+        emit selectedLessonChanged(static_cast<KEduVocLesson*>(container));
+    } else {
+        emit selectedWordTypeChanged(static_cast<KEduVocWordType*>(container));
+    }
+
+    QTreeView::selectionChanged(selected, deselected);
 }
 
 

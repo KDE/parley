@@ -63,6 +63,7 @@
 #include <kinputdialog.h>
 #include <kapplication.h>
 #include <KActionCollection>
+#include <KActionMenu>
 #include <KMessageBox>
 
 #include <QFile>
@@ -95,21 +96,21 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
     m_entryDlg = 0;
 
     initStatusBar();
-    initActions();
-
-    m_recentFilesAction->loadEntries(KGlobal::config()->group("Recent Files"));
 
     setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
     setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
     setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
     setCorner(Qt::BottomRightCorner, Qt::RightDockWidgetArea);
 
+    // these actions have to be initialized by the VocabularyView
+    m_vocabularyColumnsActionMenu = new KActionMenu(this);
 
     initView();
     initModel();
 
     initDockWidgets();
 
+    initActions();
 
     // these connects need the model to exist
     // selection changes (the entry dialog needs these)
@@ -122,19 +123,6 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
 //     QAction * actionRestoreNativeOrder = actionCollection()->action("restore_native_order");
 //     m_tableView->horizontalHeader()->addAction(actionRestoreNativeOrder);
 //     connect(actionRestoreNativeOrder, SIGNAL(triggered()), m_sortFilterModel, SLOT(restoreNativeOrder()));
-
-//     QDockWidget *editMultipleChoiceDock = new QDockWidget(i18n("Multiple Choice"), this);
-//     editMultipleChoiceDock->setObjectName("editMultipleChoiceDock");
-//     addDockWidget(Qt::BottomDockWidgetArea, editMultipleChoiceDock);
-//     editMultipleChoiceDock->setWidget(new MCEntryPage(m_document->document(), editMultipleChoiceDock));
-
-
-//     QDockWidget *editEntryDock = new QDockWidget(i18n("General Properties"), this);
-//     editEntryDock->setObjectName("EditEntryDock");
-//     addDockWidget(Qt::RightDockWidgetArea, editEntryDock);
-//     editEntryDock->setWidget(new CommonEntryPage(m_document->document(), editEntryDock));
-
-//     m_deleteEntriesAction->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 
 kDebug() << "Parley - will open doc";
 
@@ -681,29 +669,12 @@ void ParleyApp::initDockWidgets()
             "With the checkboxes you can select which lessons you want to practice. \n"
             "Only checked lessons [x] will be asked in the tests!"));
 
+    connect(m_lessonView, SIGNAL(selectedLessonChanged(KEduVocLesson*)), 
+        m_vocabularyModel, SLOT(setLesson(KEduVocLesson*)));
 
-///   @todo make these actions members
-    connect(actionCollection()->action("new_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotCreateNewLesson()));
-    connect(actionCollection()->action("rename_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotRenameLesson()));
-    connect(actionCollection()->action("delete_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotDeleteLesson()));
-    connect(actionCollection()->action("check_all_lessons"), SIGNAL(triggered()), m_lessonView, SLOT(slotCheckAllLessons()));
-    connect(actionCollection()->action("check_no_lessons"), SIGNAL(triggered()), m_lessonView, SLOT(slotCheckNoLessons()));
-    connect(actionCollection()->action("split_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotSplitLesson()));
+    connect(m_lessonView, SIGNAL(signalShowContainer(KEduVocContainer*)), 
+        m_vocabularyModel, SLOT(showContainer(KEduVocContainer*)));
 
-    m_lessonView->addAction(actionCollection()->action("new_lesson"));
-    m_lessonView->addAction(actionCollection()->action("rename_lesson"));  m_lessonView->addAction(actionCollection()->action("delete_lesson"));
-
-    QAction* separator = new QAction(this);
-    separator->setSeparator(true);
-    m_lessonView->addAction(separator);
-    m_lessonView->addAction(actionCollection()->action("check_all_lessons")); m_lessonView->addAction(actionCollection()->action("check_no_lessons"));
-    separator = new QAction(this);
-    separator->setSeparator(true);
-    m_lessonView->addAction(separator);
-    m_lessonView->addAction(actionCollection()->action("split_lesson"));
-
-    connect(m_lessonView, SIGNAL(signalSelectedContainerChanged(KEduVocContainer*)),
-        m_vocabularyModel, SLOT(setContainer(KEduVocContainer*)));
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         m_lessonView, SLOT(setTranslation(KEduVocExpression*, int)));
 
@@ -717,7 +688,13 @@ void ParleyApp::initDockWidgets()
 
     m_wordTypeModel = new LessonModel(KEduVocContainer::WordTypeContainer, this);
     m_wordTypeView->setModel(m_wordTypeModel);
-    connect(m_wordTypeView, SIGNAL(signalSelectedContainerChanged(KEduVocContainer*)), m_vocabularyModel, SLOT(setContainer(KEduVocContainer*)));
+
+    connect(m_wordTypeView, SIGNAL(selectedWordTypeChanged(KEduVocWordType*)), 
+        m_vocabularyModel, SLOT(setWordType(KEduVocWordType*)));
+
+    connect(m_wordTypeView, SIGNAL(signalShowContainer(KEduVocContainer*)), 
+        m_vocabularyModel, SLOT(showContainer(KEduVocContainer*)));
+
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         m_wordTypeView, SLOT(setTranslation(KEduVocExpression*, int)));
 

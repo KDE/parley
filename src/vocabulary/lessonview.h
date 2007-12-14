@@ -20,7 +20,11 @@
 
 class LessonModel;
 class KEduVocContainer;
+class KEduVocLesson;
+class KEduVocWordType;
 class KEduVocExpression;
+
+
 /**
  * View for the lesson list.
  * Actually a QTreeView because QListView cannot have checkboxes.
@@ -59,12 +63,20 @@ public slots:
      * @todo Let the user select if entries are taken by random or order.
      */
     void slotSplitLesson();
+
 signals:
-    /** Emitted when a new lesson is selected. Indicates the selected lesson. */
-    void signalSelectedContainerChanged(KEduVocContainer* selected);
+    /** Emitted when a new container is selected. Indicates the selected container. */
+    void signalShowContainer(KEduVocContainer* selected);
 
     /** Emitted when any of the checkboxes for the query change. */
     void lessonsInPracticeChanged();
+
+    void selectedLessonChanged(KEduVocLesson* lesson);
+
+    void selectedWordTypeChanged(KEduVocWordType* wordType);
+
+protected slots:
+    void selectionChanged ( const QItemSelection & selected, const QItemSelection & deselected );
 
 private:
     /** The KVTLessonModel for this view. */

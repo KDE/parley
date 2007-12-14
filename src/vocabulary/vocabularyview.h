@@ -80,6 +80,8 @@ private:
     QMap <KAction*, int> m_columnActionMap;
     KActionMenu * m_vocabularyColumnsActionMenu;
 
+    VocabularyModel* m_model;
+
 };
 
 #endif

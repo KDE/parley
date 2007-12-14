@@ -41,7 +41,9 @@
 VocabularyView::VocabularyView(KActionMenu * vocabularyColumnsActionMenu, QWidget * parent)
     : QTableView(parent)
 {
-     horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    m_model = 0;
+
+    horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 //     setSelectionMode(QAbstractItemView::ExtendedSelection);
 //     setSelectionBehavior(QAbstractItemView::SelectRows);
     setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
@@ -66,6 +68,7 @@ VocabularyView::VocabularyView(KActionMenu * vocabularyColumnsActionMenu, QWidge
 void VocabularyView::setModel(VocabularyModel * model)
 {
     QTableView::setModel(model);
+    m_model = model;
 //     setCurrentIndex(model->index(0, 0));
 //     scrollTo(currentIndex());
 //     connect(verticalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(verticalHeaderResized(int, int, int)));
@@ -312,7 +315,6 @@ void VocabularyView::reset()
                 this, SLOT(slotToggleColumn(bool)));
             setColumnHidden(i, true);
         }
-kDebug() << "add " << i << columnAction->text();
         m_columnActionMap[columnAction] = i;
     }
 
@@ -331,7 +333,9 @@ void VocabularyView::slotToggleColumn(bool show)
 
 void VocabularyView::appendEntry()
 {
-//     QModelIndex newIndex = m_model->appendEntry();
+    QModelIndex newIndex = m_model->appendEntry();
+    scrollTo(newIndex);
+    edit(newIndex);
 }
 
 

@@ -70,10 +70,29 @@ public:
 public slots:
     void setDocument(KEduVocDocument *doc);
 
-    void setContainer(KEduVocContainer *container);
+    /**
+     * Whatever the contents, the model will now display it.
+     * @param container 
+     */
+    void showContainer(KEduVocContainer *container);
+    
+    /**
+     * 
+     * @param lessonContainer 
+     */
+    void setLesson(KEduVocLesson *lessonContainer);
+
+
+    /**
+     * 
+     * @param wordTypeContainer 
+     */
+    void setWordType(KEduVocWordType *wordTypeContainer);
 
 private:
-    KEduVocContainer *m_lesson;
+    KEduVocContainer *m_container;
+    KEduVocLesson *m_lesson;
+    KEduVocWordType *m_wordType;
 
     KEduVocDocument *m_document;
 };
