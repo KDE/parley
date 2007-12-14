@@ -57,6 +57,7 @@ void LessonView::setModel(LessonModel *model)
 void LessonView::slotCheckAllLessons()
 {
 //     m_model->setAllLessonsInPractice();
+    
 }
 
 void LessonView::slotCheckNoLessons()
@@ -91,15 +92,6 @@ void LessonView::slotDeleteLesson()
          KMessageBox::warningYesNo(this, i18np("There is %1 word left in this lesson. Do you want to delete them?", "There are %1 words left in this lesson. Do you want to delete them?", count)) == KMessageBox::Yes) {
         m_model->deleteLesson(selectedIndex);
     }
-
-//     int currentIndex = indexOfCurrentLesson();
-//     // Delete right away, if the lesson is empty, otherwise ask
-//     if (m_model->deleteLesson(currentIndex, KEduVocDocument::DeleteEmptyLesson))
-//         return; // lesson was empty - done.
-//     int exit = KMessageBox::warningYesNo(this, i18n("There are vocabularies left in this lesson. Do you want to delete them? You will loose your entries! You have been warned!")); ///@todo maybe a better message here...
-//     if (exit == KMessageBox::Yes) {
-//         m_model->deleteLesson(currentIndex, KEduVocDocument::DeleteEntriesAndLesson);
-//     }
 }
 
 

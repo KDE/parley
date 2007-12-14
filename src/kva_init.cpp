@@ -429,17 +429,15 @@ void ParleyApp::initView()
     m_searchWidget->setVisible(Prefs::showSearch());
     m_vocabShowSearchBarAction->setChecked(Prefs::showSearch());
 
-    // Table view
-//     m_tableView = new KVTTableView(centralWidget());
-//     m_tableView->setFrameStyle(QFrame::NoFrame);
-//     m_tableView->setAlternatingRowColors(true);
-//     rightLayout->addWidget(m_tableView, 1, 0);
-
-
     /* the new table */
     m_vocabularyView = new VocabularyView(m_vocabularyColumnsActionMenu, centralWidget());
     m_vocabularyView->setFrameStyle(QFrame::NoFrame);
     m_vocabularyView->setAlternatingRowColors(true);
+
+    m_vocabularyView->addAction(actionCollection()->action("edit_append"));
+    m_vocabularyView->addAction(actionCollection()->action("edit_edit_selected_area"));
+    m_vocabularyView->addAction(actionCollection()->action("edit_remove_selected_area"));
+
 
     VocabularyDelegate *vocabularyDelegate = new VocabularyDelegate;
     m_vocabularyView->setItemDelegate(vocabularyDelegate);
@@ -450,10 +448,7 @@ void ParleyApp::initView()
 
     topLayout->addLayout(rightLayout);
 
-//     m_tableView->addAction(actionCollection()->action("edit_append"));
-//     m_tableView->addAction(actionCollection()->action("edit_edit_selected_area"));
-//     m_tableView->addAction(actionCollection()->action("edit_remove_selected_area"));
-// 
+
 
     m_vocabularyView->horizontalHeader()->addAction(m_vocabularyColumnsActionMenu);
 

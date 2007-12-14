@@ -34,7 +34,6 @@ public:
         Translation,
         Pronunciation,
         WordType,
-        SubWordType,
         Synonym,
         Antonym,
         Example,

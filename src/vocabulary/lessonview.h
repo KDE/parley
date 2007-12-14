@@ -37,12 +37,7 @@ public:
     /** Set the model for the view.
      * @param model the model */
     void setModel(LessonModel *model);
-    /** Select the current lesson from the document.*/
-    // /** Append an action to the right click menu.
-    // * @param appendAction */
-    //void appendAction(QAction *appendAction);
 
-    KEduVocContainer * currentContainer();
 
 public slots:
     /** Append a lesson to the model and automatically set an edit up so the user can change "New lesson" into something meaningfull.*/

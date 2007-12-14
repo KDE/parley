@@ -104,8 +104,6 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
                 return QVariant(m_lesson->entry(index.row())->translation(translationId)->wordType()->name());
             }
             return QVariant();
-        case SubWordType:
-            return QVariant("bad idea");
         case Synonym:
             return QVariant(m_lesson->entry(index.row())->translation(translationId)->synonym());
         case Antonym:
@@ -186,9 +184,6 @@ bool VocabularyModel::setData(const QModelIndex &index, const QVariant &value, i
         break;
     case WordType:
 //             m_lesson->entry(index.row())->translation(translationId)->type();
-            break;
-    case SubWordType:
-//             m_lesson->entry(index.row())->translation(translationId)->subType();
         break;
     case Synonym:
         m_lesson->entry(index.row())->translation(translationId)->setSynonym(value.toString());
@@ -242,9 +237,7 @@ QVariant VocabularyModel::headerData(int section, Qt::Orientation orientation, i
             case Pronunciation:
                 return i18n("Pronunciation");
             case WordType:
-                return i18n("Word type");
-            case SubWordType:
-                return i18n("Sub word type");
+                return i18n("Word Type");
             case Synonym:
                 return i18n("Synonym");
             case Antonym:

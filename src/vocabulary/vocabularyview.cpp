@@ -44,14 +44,16 @@ VocabularyView::VocabularyView(KActionMenu * vocabularyColumnsActionMenu, QWidge
      horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 //     setSelectionMode(QAbstractItemView::ExtendedSelection);
 //     setSelectionBehavior(QAbstractItemView::SelectRows);
-//     setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
-//     setTabKeyNavigation(false);
+    setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
+
     setSortingEnabled(true);
-// 
+
+
 //     connect(horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(horizontalHeaderResized(int, int, int)));
 //     m_delegate = new KVTTableDelegate(this);
 //     setItemDelegate(m_delegate);
-// 
+
+
     // Enable context menus
      setContextMenuPolicy(Qt::ActionsContextMenu);
      horizontalHeader()->setContextMenuPolicy(Qt::ActionsContextMenu);
