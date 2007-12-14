@@ -448,17 +448,6 @@ void ParleyApp::initView()
 
     topLayout->addLayout(rightLayout);
 
-
-
     m_vocabularyView->horizontalHeader()->addAction(m_vocabularyColumnsActionMenu);
-
-
-//     QAction *actionShowLessonColumn = actionCollection()->action("config_show_lesson_column");
-//     m_tableView->horizontalHeader()->addAction(actionShowLessonColumn);
-//     connect(actionShowLessonColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowLessonColumn(bool)));
-// 
-//     QAction *actionShowActiveColumn = actionCollection()->action("config_show_active_column");
-//     m_tableView->horizontalHeader()->addAction(actionShowActiveColumn);
-//     connect(actionShowActiveColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowActiveColumn(bool)));
 }
 

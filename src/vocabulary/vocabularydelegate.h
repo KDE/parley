@@ -32,9 +32,8 @@ public:
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
     void setCurrentIndex(const QModelIndex &index);
 
-    void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const;
 protected:
-    void drawDisplay(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect, const QString &text) const;
+//     void drawDisplay(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect, const QString &text) const;
 
 private slots:
     void commitAndCloseEditor();
