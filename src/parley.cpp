@@ -45,7 +45,7 @@
 #include "configure-practice/configurepracticedialog.h"
 #include "prefs.h"
 
-// #include "marble/MarbleWidget.h"
+// #include "lib/MarbleWidget.h"
 
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>
@@ -312,27 +312,6 @@ void ParleyApp::slotDeleteEntry()
 //         }
 //     }
 //     m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
-}
-
-
-void ParleyApp::slotNewEntry()
-{
-//     m_tableModel->appendEntry();
-
-///@todo
-//     m_vocabularyModel->appendEntry();
-
-
-    // the delete action should be enabled if we have >0 entries in the big table (should be the case now)
-//     m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
-
-//     QModelIndex currentIndex = m_sortFilterModel->index(
-//             m_sortFilterModel->rowCount(QModelIndex()) - 1, KV_COL_TRANS);
-
-//     m_tableView->selectionModel()->setCurrentIndex(
-//         currentIndex, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
-// 
-//     m_tableView->edit(currentIndex);
 }
 
 

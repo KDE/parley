@@ -174,7 +174,7 @@ void ParleyApp::initActions()
     actionCollection()->addAction("edit_append", editAppend);
     editAppend->setIcon(KIcon("list-add-card"));
     editAppend->setText(i18n("&Add New Entry"));
-    connect(editAppend, SIGNAL(triggered(bool)), this, SLOT(slotNewEntry()));
+//     connect(editAppend, SIGNAL(triggered(bool)), m_vocabularyView, SLOT(appendEntry()));
     editAppend->setShortcut(QKeySequence(Qt::Key_Insert));
     editAppend->setWhatsThis(i18n("Append a new row to the vocabulary"));
     editAppend->setToolTip(editAppend->whatsThis());
@@ -437,7 +437,6 @@ void ParleyApp::initView()
     m_vocabularyView->addAction(actionCollection()->action("edit_append"));
     m_vocabularyView->addAction(actionCollection()->action("edit_edit_selected_area"));
     m_vocabularyView->addAction(actionCollection()->action("edit_remove_selected_area"));
-
 
     VocabularyDelegate *vocabularyDelegate = new VocabularyDelegate;
     m_vocabularyView->setItemDelegate(vocabularyDelegate);

@@ -48,8 +48,6 @@ VocabularyView::VocabularyView(KActionMenu * vocabularyColumnsActionMenu, QWidge
 
     setSortingEnabled(true);
 
-
-//     connect(horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(horizontalHeaderResized(int, int, int)));
 //     m_delegate = new KVTTableDelegate(this);
 //     setItemDelegate(m_delegate);
 
@@ -75,35 +73,14 @@ void VocabularyView::setModel(VocabularyModel * model)
     connect(selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
 }
 
-// void VocabularyView::horizontalHeaderResized(int logicalIndex, int oldSize, int newSize)
-// {
-//     Q_UNUSED(oldSize);
-//     //kDebug() << "Column resized\n";
-//     model()->setHeaderData(logicalIndex, Qt::Horizontal, QSize(newSize, 25), Qt::SizeHintRole);
-// }
-
-
 // void VocabularyView::slotCurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous)
 // {
 //     Q_UNUSED(previous);
 //     m_delegate->setCurrentIndex(current);
 //     reset();
 // }
-// 
-// void VocabularyView::slotShowLessonColumn(bool show)
-// {
-//     Prefs::setTableLessonColumnVisible(show);
-//     setColumnHidden(KV_COL_LESS, !show);
-//     resizeEvent(0);
-// }
-// 
-// void VocabularyView::slotShowActiveColumn(bool show)
-// {
-//     Prefs::setTableActiveColumnVisible(show);
-//     setColumnHidden(KV_COL_MARK, !show);
-//     resizeEvent(0);
-// }
-// 
+
+
 // void VocabularyView::print(QPrinter * pPrinter)
 // {
 //     ///@todo revisit and check before release
@@ -291,36 +268,7 @@ void VocabularyView::setModel(VocabularyModel * model)
 //     QResizeEvent rsEvent(size(), size());
 //     resizeEvent(&rsEvent);
 // }
-// 
-// void VocabularyView::adjustContent()
-// {
-//     QResizeEvent rsEvent(size(), size());
-//     resizeEvent(&rsEvent);
-// }
-// 
-// void VocabularyView::keyPressEvent(QKeyEvent * e)
-// {
-//     /// @todo: behave more like other apps
-//     if (e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter) {
-//         e->accept();
-//         // Should we be in the last row, will we autoappend a new entry?
-//         if ( currentIndex().row() == model()->rowCount() - 1 ) {
-//             if ( currentIndex().column() == model()->columnCount(QModelIndex()) - 1 ) {
-//                 if( Prefs::smartAppend() ) {
-//                     emit(appendEntry());
-//                 }
-//             }
-//         }
-//         // move to the next language entry. for the last language this means first of next row.
-//         if ( currentIndex().column() == model()->columnCount(QModelIndex()) - 1 ) {
-//             setCurrentIndex(model()->index( currentIndex().row() + 1, KV_COL_TRANS ) );
-//         } else {
-//             setCurrentIndex(QTableView::moveCursor(QAbstractItemView::MoveNext, 0));
-//         }
-//         return;
-//     }
-//     QTableView::keyPressEvent(e);
-// }
+
 
 void VocabularyView::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous)
 {
@@ -378,6 +326,12 @@ kDebug() << "add " << i << columnAction->text();
 void VocabularyView::slotToggleColumn(bool show)
 {
     setColumnHidden(m_columnActionMap[(KAction*)sender()], !show);
+}
+
+
+void VocabularyView::appendEntry()
+{
+//     QModelIndex newIndex = m_model->appendEntry();
 }
 
 

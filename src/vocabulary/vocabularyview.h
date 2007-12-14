@@ -43,6 +43,7 @@ public:
 
 public slots:
     void reset();
+    void appendEntry();
 
 signals:
     void translationChanged(KEduVocExpression*, int);

@@ -279,4 +279,11 @@ int VocabularyModel::columnType(int column)
     return column % EntryColumnsMAX;
 }
 
+QModelIndex VocabularyModel::appendEntry()
+{
+    beginInsertRows(QModelIndex(), rowCount(QModelIndex()), rowCount(QModelIndex()));
+//     m_lesson
+    endInsertRows();
+}
+
 #include "vocabularymodel.moc"

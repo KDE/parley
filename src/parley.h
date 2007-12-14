@@ -120,15 +120,11 @@ public slots:
     /** put the marked text/object into the clipboard*/
     void slotEditCopy();
 
-    /** Create a new entry */
-    void slotNewEntry();
-
     /** Cut an entry */
     void slotCutEntry();
 
     /** Delete an entry */
     void slotDeleteEntry();
-
 
     /** paste the clipboard into the document*/
     void slotEditPaste();

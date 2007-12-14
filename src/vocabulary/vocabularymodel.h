@@ -65,6 +65,8 @@ public:
     static int translation(int column);
     static int columnType(int column);
 
+    QModelIndex appendEntry();
+
 public slots:
     void setDocument(KEduVocDocument *doc);
 
