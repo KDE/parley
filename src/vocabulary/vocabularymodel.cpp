@@ -19,6 +19,8 @@
 #include <keduvoclesson.h>
 #include <keduvocwordtype.h>
 
+#include "vocabularymimedata.h"
+
 #include <keduvocexpression.h>
 #include <KIcon>
 #include <KLocalizedString>
@@ -229,10 +231,14 @@ bool VocabularyModel::setData(const QModelIndex &index, const QVariant &value, i
 Qt::ItemFlags VocabularyModel::flags(const QModelIndex & index) const
 {
     if (!index.isValid()) {
-        return Qt::ItemIsEnabled;
+        return Qt::ItemIsEnabled | Qt::ItemIsDropEnabled;
     }
 
-    return QAbstractItemModel::flags(index) | Qt::ItemIsEditable;
+    if(columnType(index.column()) == Translation) {
+        return QAbstractItemModel::flags(index) | Qt::ItemIsEditable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;
+    } else {
+        return QAbstractItemModel::flags(index) | Qt::ItemIsEditable | Qt::ItemIsDropEnabled;
+    }
 }
 
 QVariant VocabularyModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -310,6 +316,23 @@ kDebug() << "appendEntry";
 kDebug() << "appendEntry done";
     // the last row will be the new entry
     return index(rowCount(QModelIndex()) - 1, 0, QModelIndex());
+}
+
+QStringList VocabularyModel::mimeTypes() const
+{
+    return QStringList() << "text/plain";
+}
+
+QMimeData * VocabularyModel::mimeData(const QModelIndexList & indexes) const
+{
+    VocabularyMimeData *mimeData = new VocabularyMimeData();
+
+    foreach (QModelIndex index, indexes) {
+        mimeData->addTranslation(m_container->entry(index.row())->translation(translation(index.column())));
+    }
+    mimeData->setText("Parley vocabulary entry");
+
+    return mimeData;
 }
 
 

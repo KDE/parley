@@ -62,6 +62,8 @@ VocabularyView::VocabularyView(KActionMenu * vocabularyColumnsActionMenu, QWidge
     m_vocabularyColumnsActionMenu = vocabularyColumnsActionMenu;
 
     setWordWrap(true);
+
+    setDragEnabled(true);
 }
 
 

@@ -16,6 +16,7 @@
 #include "containermodel.h"
 
 #include "containermimedata.h"
+#include "vocabularymimedata.h"
 
 #include <QItemSelection>
 
@@ -481,7 +482,7 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
                 return false;
             }
 
-            if (action == Qt::MoveAction) {
+            if (action == Qt::MoveAction || action == Qt::CopyAction) {
 //                 container->parent();
                 kDebug() << "Move container: " << container->name();
                 KEduVocContainer* parentContainer;
@@ -506,12 +507,28 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
                 parentContainer->insertChildContainer(row, container);
                 endInsertRows();
 
-//                 removeRows();
-
                 return true;
             }
         }
     }
+
+
+    // if it's a translation, get the pointers
+    const VocabularyMimeData * translationData =
+             qobject_cast<const VocabularyMimeData *>(data);
+
+    if (translationData) {
+        if(!parent.isValid()) {
+            return false;
+        }
+        if (containerType() == KEduVocContainer::Lesson) {
+            foreach (KEduVocTranslation* translation, translationData->translationList()) {
+                static_cast<KEduVocLesson*>(parent.internalPointer())->addEntry(translation->entry());
+            }
+        }
+        return false;
+    }
+
 
     kDebug() << data->formats();
 /*
@@ -547,8 +564,6 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
 //     endRemoveRows();
 //     return true;
 // }
-
-
 
 
 #include "containermodel.moc"

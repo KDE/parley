@@ -50,7 +50,7 @@ ContainerView::ContainerView(QWidget *parent) : QTreeView(parent)
     setDragEnabled(true);
     setAcceptDrops(true);
     setDropIndicatorShown(true);
-    setDragDropMode(QAbstractItemView::InternalMove);
+    setDragDropMode(QAbstractItemView::DragDrop);
 }
 
 void ContainerView::setModel(ContainerModel *model)
