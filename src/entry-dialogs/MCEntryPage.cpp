@@ -89,7 +89,6 @@ void MCEntryPage::slotAddChoiceButton()
 bool MCEntryPage::eventFilter(QObject * obj, QEvent * event)
 {
     if (obj == multipleChoiceListView) {
-kDebug() << " event filter caught multipleChoiceListView";
         if (event->type() == QEvent::DragEnter) {
             QDragEnterEvent *dragEnterEvent = static_cast<QDragEnterEvent *>(event);
             kDebug() << "DragEnter mime format: " << dragEnterEvent->format();
