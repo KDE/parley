@@ -234,9 +234,12 @@ Qt::ItemFlags VocabularyModel::flags(const QModelIndex & index) const
         return Qt::ItemIsEnabled | Qt::ItemIsDropEnabled;
     }
 
-    if(columnType(index.column()) == Translation) {
+    switch (columnType(index.column())) {
+    case Translation:
         return QAbstractItemModel::flags(index) | Qt::ItemIsEditable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;
-    } else {
+    case WordType:
+        return QAbstractItemModel::flags(index) | Qt::ItemIsDropEnabled;
+    default:
         return QAbstractItemModel::flags(index) | Qt::ItemIsEditable | Qt::ItemIsDropEnabled;
     }
 }
