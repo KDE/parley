@@ -44,6 +44,9 @@ public:
 public slots:
     void setTranslation(KEduVocExpression* entry, int translation);
 
+protected:
+    bool eventFilter(QObject *obj, QEvent *event);
+
 private slots:
     void slotDataChanged( const QModelIndex & topLeft, const QModelIndex & bottomRight );
     void slotAddChoiceButton();

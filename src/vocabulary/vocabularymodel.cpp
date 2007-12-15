@@ -333,7 +333,6 @@ QMimeData * VocabularyModel::mimeData(const QModelIndexList & indexes) const
     foreach (QModelIndex index, indexes) {
         mimeData->addTranslation(m_container->entry(index.row())->translation(translation(index.column())));
     }
-    mimeData->setText("Parley vocabulary entry");
 
     return mimeData;
 }

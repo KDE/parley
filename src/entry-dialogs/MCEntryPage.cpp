@@ -27,8 +27,10 @@
 
 #include <keduvoctranslation.h>
 #include <keduvocexpression.h>
-#include <QStringListModel>
 #include <KDebug>
+
+#include <QStringListModel>
+#include <QDragEnterEvent>
 
 MCEntryPage::MCEntryPage(QWidget *parent) : QWidget(parent)
 {
@@ -41,6 +43,9 @@ MCEntryPage::MCEntryPage(QWidget *parent) : QWidget(parent)
     multipleChoiceListView->setModel(m_choicesModel);
 
     connect(m_choicesModel, SIGNAL(dataChanged ( const QModelIndex &, const QModelIndex & )), SLOT(slotDataChanged( const QModelIndex &, const QModelIndex & )));
+
+    multipleChoiceListView->setAcceptDrops(true);
+    multipleChoiceListView->installEventFilter(this);
 
     setEnabled(false);
 }
@@ -81,4 +86,40 @@ void MCEntryPage::slotAddChoiceButton()
 }
 
 
+bool MCEntryPage::eventFilter(QObject * obj, QEvent * event)
+{
+    if (obj == multipleChoiceListView) {
+kDebug() << " event filter caught multipleChoiceListView";
+        if (event->type() == QEvent::DragEnter) {
+            QDragEnterEvent *dragEnterEvent = static_cast<QDragEnterEvent *>(event);
+            kDebug() << "DragEnter mime format: " << dragEnterEvent->format();
+            if (dragEnterEvent->mimeData()->hasText()) {
+                event->accept();
+            }
+            return true;
+        }
+
+        if (event->type() == QEvent::DragMove) {
+            event->accept();
+            return true;
+        }
+
+        if (event->type() == QEvent::Drop) {
+            QDropEvent *dropEvent = static_cast<QDropEvent *>(event);
+            kDebug() << "You dropped onto me: " << dropEvent->mimeData()->text();
+
+            QStringList choices = dropEvent->mimeData()->text().split('\n');
+            foreach(QString choice, choices) {
+                m_choicesModel->insertRow(multipleChoiceListView->model()->rowCount());
+                m_choicesModel->setData(m_choicesModel->index(multipleChoiceListView->model()->rowCount()-1), choice);
+            }
+            return true;
+        }
+
+        return QObject::eventFilter(obj, event);
+    }
+}
+
+
 #include "MCEntryPage.moc"
+

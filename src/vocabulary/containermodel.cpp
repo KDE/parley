@@ -76,8 +76,6 @@ QModelIndex ContainerModel::index(int row, int column, const QModelIndex &parent
 
     KEduVocContainer *childLesson = parentLesson->childContainer(row);
 
-kDebug() << "index for " << parentLesson->name() << "," << row << ":" << childLesson->name();
-
     if (childLesson) {
         return createIndex(row, column, childLesson);
     } else {

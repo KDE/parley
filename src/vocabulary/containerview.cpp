@@ -154,8 +154,6 @@ void ContainerView::currentChanged(const QModelIndex & current, const QModelInde
 {
     QTreeView::currentChanged(current, previous);
 
-    kDebug()<< "current changed" << current.row();
-
     KEduVocContainer *container = 0;
     container = static_cast<KEduVocContainer*>(current.internalPointer());
     if (container->containerType() == KEduVocContainer::Lesson) {
