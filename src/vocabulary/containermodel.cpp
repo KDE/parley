@@ -15,8 +15,9 @@
 
 #include "containermodel.h"
 
+#include "containermimedata.h"
+
 #include <QItemSelection>
-#include <QMimeData>
 
 #include <kdebug.h>
 #include <klocale.h>
@@ -31,20 +32,6 @@
   * Implementation of ContainerModel.
   * Functions to create the model from the lessons of the vocabulary document.
   */
-
-
-
-void ContainerMimeData::addContainer(KEduVocContainer * container)
-{
-    m_containers.append(container);
-}
-
-QList<KEduVocContainer *> ContainerMimeData::containerList() const
-{
-    return m_containers;
-}
-
-
 
 ContainerModel::ContainerModel(KEduVocLesson::EnumContainerType type, QObject * parent) : QAbstractItemModel(parent)
 {

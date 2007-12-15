@@ -30,6 +30,7 @@ set(vocabulary_SRCS
     vocabulary/vocabularydelegate.cpp
     vocabulary/containermodel.cpp
     vocabulary/containerview.cpp
+    vocabulary/containermimedata.cpp
 )
 
 set(practice_SRCS
