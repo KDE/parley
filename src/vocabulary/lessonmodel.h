@@ -38,6 +38,12 @@ class LessonModel : public QAbstractItemModel
     Q_OBJECT
 
 public:
+    /** When splitting a lesson into smaller ones - how to sort the entries into lessons.*/
+    enum SplitLessonOrder {
+        Sorted,    /**< The order of the entries in the document */
+        Random /**< Randomized */
+    };
+
 
     LessonModel(KEduVocLesson::EnumContainerType type, QObject *parent = 0);
 //     ~LessonModel(); no need for cleanup - the doc will do that
@@ -57,25 +63,13 @@ public:
 
     KEduVocContainer::EnumContainerType containerType();
 
-
-public slots:
-    /** Set the new source kvtml file
-     * @param doc the new file */
-    void setDocument(KEduVocDocument *doc);
-
-signals:
-    /**
-     * emitted when the inPractice state or name of a lesson changed.
-     */
-    void documentModified();
+    Qt::DropActions supportedDropActions () const;
+    QStringList mimeTypes() const;
+    QMimeData * mimeData(const QModelIndexList &indexes) const;
+    bool dropMimeData(const QMimeData *data, Qt::DropAction action,
+        int row, int column, const QModelIndex &parent);
 
 
-public:
-    /** When splitting a lesson into smaller ones - how to sort the entries into lessons.*/
-    enum SplitLessonOrder {
-        Sorted,    /**< The order of the entries in the document */
-        Random /**< Randomized */
-    };
 
     /** Change the name or checkbox of a lesson.
      * @param index which lesson
@@ -92,8 +86,14 @@ public:
     // returns whether it was possible to delete
     void deleteLesson(const QModelIndex& lessonIndex);
 
-//     bool removeRows(int row, int count, const QModelIndex &parent);
-//     bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent);
+    /**
+     * Used for drag and drop, does not delete the lessons!
+     * @param row 
+     * @param count 
+     * @param parent 
+     * @return 
+     */
+    bool removeRows(int row, int count, const QModelIndex &parent);
 
 
     /**
@@ -105,9 +105,35 @@ public:
      */
     void splitLesson(const QModelIndex& containerIndex, int entriesPerLesson, SplitLessonOrder order);
 
+public slots:
+    /** Set the new source kvtml file
+     * @param doc the new file */
+    void setDocument(KEduVocDocument *doc);
+
+signals:
+    /**
+     * emitted when the inPractice state or name of a lesson changed.
+     */
+    void documentModified();
+
+
 private:
-    KEduVocContainer * m_vocabularyContainer;
+    KEduVocContainer * m_container;
     KEduVocLesson::EnumContainerType m_type;
 };
+
+
+#include <QMimeData>
+
+class ContainerMimeData :public QMimeData {
+    Q_OBJECT
+public:
+    void addContainer(KEduVocContainer* container);
+    QList<KEduVocContainer*> containerList() const;
+
+private:
+    QList<KEduVocContainer*> m_containers;
+};
+
 
 #endif

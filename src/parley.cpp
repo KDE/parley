@@ -662,7 +662,7 @@ void ParleyApp::initDockWidgets()
     addDockWidget(Qt::LeftDockWidgetArea, lessonDockWidget);
     actionCollection()->addAction("show_lesson_dock", lessonDockWidget->toggleViewAction());
 
-    m_lessonModel = new LessonModel(KEduVocLesson::LessonContainer, this);
+    m_lessonModel = new LessonModel(KEduVocLesson::Lesson, this);
 
     m_lessonView->setModel(m_lessonModel);
     m_lessonView->setToolTip(i18n("Right click to add, delete, or rename lessons. \n"
@@ -686,7 +686,7 @@ void ParleyApp::initDockWidgets()
     wordTypeDockWidget->setWidget(m_wordTypeView);
     addDockWidget( Qt::LeftDockWidgetArea, wordTypeDockWidget );
 
-    m_wordTypeModel = new LessonModel(KEduVocContainer::WordTypeContainer, this);
+    m_wordTypeModel = new LessonModel(KEduVocContainer::WordType, this);
     m_wordTypeView->setModel(m_wordTypeModel);
 
     connect(m_wordTypeView, SIGNAL(selectedWordTypeChanged(KEduVocWordType*)), 

@@ -306,8 +306,12 @@ void VocabularyView::reset()
         if(VocabularyModel::columnType(i) == VocabularyModel::Translation) {
             currentTranslationAction = new KActionMenu(
                 model()->headerData(i, Qt::Horizontal).toString(), this);
+            currentTranslationAction->setCheckable(true);
             columnAction = currentTranslationAction;
             m_vocabularyColumnsActionMenu->addAction(currentTranslationAction);
+            connect (columnAction, SIGNAL(triggered(bool)),
+                this, SLOT(slotToggleColumn(bool)));
+            columnAction->setChecked(true);
         } else {
             columnAction = new KToggleAction(model()->headerData(i, Qt::Horizontal).toString(), this);
             currentTranslationAction->addAction(columnAction);

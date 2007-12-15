@@ -34,24 +34,38 @@
 
 
 
+void ContainerMimeData::addContainer(KEduVocContainer * container)
+{
+    m_containers.append(container);
+}
+
+QList<KEduVocContainer *> ContainerMimeData::containerList() const
+{
+    return m_containers;
+}
+
+
+
 LessonModel::LessonModel(KEduVocLesson::EnumContainerType type, QObject * parent) : QAbstractItemModel(parent)
 {
     m_type = type;
-    m_vocabularyContainer = 0;
+    m_container = 0;
+
+    setSupportedDragActions(Qt::CopyAction | Qt::MoveAction);
 }
 
 
 void LessonModel::setDocument(KEduVocDocument * doc)
 {
     switch(m_type){
-    case KEduVocLesson::LessonContainer:
-        m_vocabularyContainer = doc->lesson();
+    case KEduVocLesson::Lesson:
+        m_container = doc->lesson();
         break;
-    case KEduVocLesson::WordTypeContainer:
-        m_vocabularyContainer = doc->wordTypeContainer();
+    case KEduVocLesson::WordType:
+        m_container = doc->wordTypeContainer();
         break;
-    case KEduVocLesson::LeitnerContainer:
-        m_vocabularyContainer = doc->leitnerContainer();
+    case KEduVocLesson::Leitner:
+        m_container = doc->leitnerContainer();
         break;
     default:
         break;
@@ -67,7 +81,7 @@ QModelIndex LessonModel::index(int row, int column, const QModelIndex &parent) c
     KEduVocContainer *parentLesson;
 
     if (!parent.isValid()) {
-        parentLesson = m_vocabularyContainer;
+        parentLesson = m_container;
     } else {
         parentLesson = static_cast<KEduVocContainer*>(parent.internalPointer());
     }
@@ -89,7 +103,7 @@ QModelIndex LessonModel::parent(const QModelIndex &index) const
     KEduVocContainer *childItem = static_cast<KEduVocContainer*>(index.internalPointer());
     KEduVocContainer *parentItem = childItem->parent();
 
-    if (parentItem == m_vocabularyContainer)
+    if (parentItem == m_container)
         return QModelIndex();
 
     return createIndex(parentItem->row(), 0, parentItem);
@@ -104,7 +118,7 @@ int LessonModel::rowCount(const QModelIndex &parent) const
     }
 
     if (!parent.isValid()) {
-        parentItem = m_vocabularyContainer;
+        parentItem = m_container;
     } else {
         parentItem = static_cast<KEduVocContainer*>(parent.internalPointer());
     }
@@ -117,12 +131,12 @@ QModelIndex LessonModel::appendLesson(const QModelIndex& parent, const QString &
     kDebug() << " parent ";
 
 
-    if (m_vocabularyContainer->containerType() == KEduVocContainer::LessonContainer) {
+    if (m_container->containerType() == KEduVocContainer::Lesson) {
         KEduVocLesson* parentLesson;
         if (parent.isValid()) {
             parentLesson = static_cast<KEduVocLesson*>(parent.internalPointer());
         } else {
-            parentLesson = static_cast<KEduVocLesson*>(m_vocabularyContainer);
+            parentLesson = static_cast<KEduVocLesson*>(m_container);
         }
 
 
@@ -220,7 +234,7 @@ void LessonModel::splitLesson(const QModelIndex& containerIndex, int entriesPerL
         return;
     }
 
-    if (!static_cast<KEduVocContainer*>(containerIndex.internalPointer())->containerType() == KEduVocContainer::LessonContainer) {
+    if (!static_cast<KEduVocContainer*>(containerIndex.internalPointer())->containerType() == KEduVocContainer::Lesson) {
         return;
     }
 
@@ -340,20 +354,11 @@ Qt::ItemFlags LessonModel::flags(const QModelIndex &index) const
 {
     if (index.isValid()) {
         if ( index.column() == 0 ) {
-            if(index.parent().isValid()) {
-                return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsUserCheckable);
-            } else {
-                // root elements
-//                 if(index.row() == 0) {
-                    return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsUserCheckable);
-//                 } else {
-//                     return (Qt::ItemIsEnabled);
-//                 }
-            }
+            return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable
+                    | Qt::ItemIsUserCheckable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled );
         }
-        return (Qt::ItemIsEnabled);
     }
-    return  Qt::ItemIsEnabled;
+    return  Qt::ItemIsDropEnabled | Qt::ItemIsEnabled;
 }
 
 
@@ -382,7 +387,7 @@ QVariant LessonModel::headerData(int section, Qt::Orientation orientation, int r
 
 int LessonModel::columnCount(const QModelIndex & parent) const
 {
-    if(!m_vocabularyContainer) {
+    if(!m_container) {
         return 0;
     }
 
@@ -400,7 +405,7 @@ void LessonModel::deleteLesson(const QModelIndex & lessonIndex)
     KEduVocContainer* parent = lesson->parent();
 
     beginRemoveRows(lessonIndex.parent(), lessonIndex.row(), lessonIndex.row());
-    parent->removeChildContainer(lesson->row());
+    parent->deleteChildContainer(lesson->row());
     endRemoveRows();
 }
 
@@ -411,7 +416,7 @@ QModelIndex LessonModel::index(KEduVocContainer * container) const
         return QModelIndex();
     }
 
-    if(container == m_vocabularyContainer) {
+    if(container == m_container) {
         return QModelIndex();
     }
 
@@ -422,12 +427,126 @@ QModelIndex LessonModel::index(KEduVocContainer * container) const
 
 KEduVocContainer::EnumContainerType LessonModel::containerType()
 {
-    if (m_vocabularyContainer) {
-        return m_vocabularyContainer->containerType();
+    if (m_container) {
+        return m_container->containerType();
     }
     return KEduVocContainer::Container;
 }
 
+Qt::DropActions LessonModel::supportedDropActions() const
+{
+    return Qt::MoveAction | Qt::CopyAction;
+}
+
+QStringList LessonModel::mimeTypes() const
+{
+    return QStringList() << "text/plain";
+}
+
+
+ QMimeData * LessonModel::mimeData(const QModelIndexList &indexes) const
+ {
+     ContainerMimeData *mimeData = new ContainerMimeData();
+//      QByteArray encodedData;
+
+    foreach (QModelIndex index, indexes) {
+        mimeData->addContainer(static_cast<KEduVocContainer*>(index.internalPointer()));
+    }
+    mimeData->setText("Parley lesson");
+
+//      QDataStream stream(&encodedData, QIODevice::WriteOnly);
+// stream << "Parley lesson";
+//      foreach (QModelIndex index, indexes) {
+//          if (index.isValid()) {
+//              QString text = data(index, Qt::DisplayRole).toString();
+//              stream << text;
+//          }
+//      }
+// // kDebug() << "mimeData:" << encodedData;
+//      mimeData->setData("text/plain", encodedData);
+     return mimeData;
+ }
+
+
+bool LessonModel::dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent)
+{
+    if (action == Qt::IgnoreAction) {
+         return true;
+    }
+
+    // if it's internal, get the pointers
+    const ContainerMimeData * lessonData =
+             qobject_cast<const ContainerMimeData *>(data);
+
+
+    if (lessonData) {
+        foreach (KEduVocContainer* container, lessonData->containerList()) {
+            // no way to move a word type to a lesson for now
+            if (container->containerType() != m_container->containerType()) {
+                return false;
+            }
+
+            if (action == Qt::MoveAction) {
+//                 container->parent();
+                kDebug() << "Move container: " << container->name();
+                KEduVocContainer* parentContainer;
+
+                if (parent.isValid()) {
+                    parentContainer = static_cast<KEduVocContainer*>(parent.internalPointer());
+                } else {
+                    parentContainer = m_container;
+                }
+
+                beginInsertRows(parent, row, row);
+                parentContainer->insertChildContainer(row, container);
+//                 container->setParent(parentContainer);
+                endInsertRows();
+                return true;
+            }
+        }
+    }
+
+    kDebug() << data->formats();
+
+    if (data->hasText()) {
+        if (action == Qt::CopyAction | action == Qt::MoveAction) {
+            QString name;
+            name = data->text();
+            kDebug() << "Copy lesson " << name;
+
+            appendLesson(parent, name);
+            
+            return true;
+        }
+    }
+
+    
+
+    kDebug() << data->formats();
+    return false;
+}
+
+bool LessonModel::removeRows(int row, int count, const QModelIndex & parent)
+{
+    KEduVocContainer* parentContainer;
+    if (!parent.internalPointer()) {
+        parentContainer = m_container;
+    } else {
+        parentContainer = static_cast<KEduVocContainer*>(parent.internalPointer());
+    }
+
+    beginRemoveRows ( parent, row, row+count );
+    
+    for (int i = 0; i<count; i++) {
+        parentContainer->removeChildContainer(row);
+    }
+    endRemoveRows();
+    return true;
+}
+
+
+
 
 #include "lessonmodel.moc"
+
 

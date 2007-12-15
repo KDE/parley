@@ -46,6 +46,11 @@ LessonView::LessonView(QWidget *parent) : QTreeView(parent)
     setSelectionMode(QAbstractItemView::SingleSelection);
     // setSelectionBehavior(QAbstractItemView::SelectRows);
 
+
+    setDragEnabled(true);
+    setAcceptDrops(true);
+    setDropIndicatorShown(true);
+    setDragDropMode(QAbstractItemView::InternalMove);
 }
 
 void LessonView::setModel(LessonModel *model)
@@ -134,14 +139,11 @@ void LessonView::setTranslation(KEduVocExpression * entry, int translation)
     QModelIndex modelIndex;
 
     // who am I
-    if(m_model->containerType() == KEduVocContainer::LessonContainer) {
+    if(m_model->containerType() == KEduVocContainer::Lesson) {
             modelIndex = m_model->index(entry->lessons().value(0));
     }
 
-    // if it's not one of the others, it has to be some sort of word type container.
-    if(m_model->containerType() != KEduVocContainer::Container
-        && m_model->containerType() != KEduVocContainer::LessonContainer
-        && m_model->containerType() != KEduVocContainer::LeitnerContainer ) {
+    if(m_model->containerType() != KEduVocContainer::WordType) {
 
         modelIndex = m_model->index(entry->translation(translation)->wordType());
     }
@@ -164,7 +166,7 @@ void LessonView::currentChanged(const QModelIndex & current, const QModelIndex &
 
     KEduVocContainer *container = 0;
     container = static_cast<KEduVocContainer*>(current.internalPointer());
-    if (container->containerType() == KEduVocContainer::LessonContainer) {
+    if (container->containerType() == KEduVocContainer::Lesson) {
         emit selectedLessonChanged(static_cast<KEduVocLesson*>(container));
     } else {
         emit selectedWordTypeChanged(static_cast<KEduVocWordType*>(container));
@@ -182,7 +184,7 @@ void LessonView::selectionChanged(const QItemSelection & selected, const QItemSe
 
     KEduVocContainer *container = 0;
     container = static_cast<KEduVocContainer*>(selected.indexes().value(0).internalPointer());
-    if (container->containerType() == KEduVocContainer::LessonContainer) {
+    if (container->containerType() == KEduVocContainer::Lesson) {
         emit selectedLessonChanged(static_cast<KEduVocLesson*>(container));
     } else {
         emit selectedWordTypeChanged(static_cast<KEduVocWordType*>(container));
