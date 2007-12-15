@@ -87,6 +87,9 @@ QModelIndex LessonModel::index(int row, int column, const QModelIndex &parent) c
     }
 
     KEduVocContainer *childLesson = parentLesson->childContainer(row);
+
+kDebug() << "index for " << parentLesson->name() << "," << row << ":" << childLesson->name();
+
     if (childLesson) {
         return createIndex(row, column, childLesson);
     } else {
@@ -95,18 +98,39 @@ QModelIndex LessonModel::index(int row, int column, const QModelIndex &parent) c
 }
 
 
+QModelIndex LessonModel::index(KEduVocContainer * container) const
+{
+    if(!container) {
+        return QModelIndex();
+    }
+
+    if(container == m_container) {
+        return QModelIndex();
+    }
+
+    QModelIndex currentIndex = index(container->row(), 0, index(container->parent()));
+    Q_ASSERT(container == currentIndex.internalPointer());
+
+    return currentIndex;
+}
+
+
 QModelIndex LessonModel::parent(const QModelIndex &index) const
 {
+
     if (!index.isValid())
         return QModelIndex();
 
     KEduVocContainer *childItem = static_cast<KEduVocContainer*>(index.internalPointer());
     KEduVocContainer *parentItem = childItem->parent();
 
-    if (parentItem == m_container)
+    if (parentItem == m_container) {
         return QModelIndex();
+    }
 
-    return createIndex(parentItem->row(), 0, parentItem);
+    QModelIndex parentIndex = createIndex(parentItem->row(), 0, parentItem);
+    Q_ASSERT(parentIndex.internalPointer() == parentItem);
+    return parentIndex;
 }
 
 
@@ -126,6 +150,7 @@ int LessonModel::rowCount(const QModelIndex &parent) const
     return parentItem->childContainerCount();
 }
 
+
 QModelIndex LessonModel::appendLesson(const QModelIndex& parent, const QString & lessonName)
 {
     kDebug() << " parent ";
@@ -138,8 +163,6 @@ QModelIndex LessonModel::appendLesson(const QModelIndex& parent, const QString &
         } else {
             parentLesson = static_cast<KEduVocLesson*>(m_container);
         }
-
-
 
 kDebug() << " lesson container " << parentLesson->name();
 
@@ -297,23 +320,23 @@ QVariant LessonModel::data(const QModelIndex & index, int role) const
          return QVariant();
     }
 
-    KEduVocLesson *lesson = static_cast<KEduVocLesson*>(index.internalPointer());
+    KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
 
     switch (index.column()){
     case 0:
         if (role == Qt::DisplayRole || role == Qt::EditRole) {
-            return lesson->name();
+            return container->name();
         }
         // checkboxes
         if (role == Qt::CheckStateRole) {
-            if (lesson->inPractice())
+            if (container->inPractice())
                 return Qt::Checked;
             else
                 return Qt::Unchecked;
         }
     case 1:
         if (role == Qt::DisplayRole) {
-            return lesson->entriesRecursive().count();
+            return container->entriesRecursive().count();
         }
     }
 
@@ -327,20 +350,20 @@ bool LessonModel::setData(const QModelIndex &index, const QVariant &value, int r
         return false;
 
     if ( index.column() == 0 ) {
-        KEduVocLesson *lesson = static_cast<KEduVocLesson*>(index.internalPointer());
+        KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
         // rename a lesson
         if (role == Qt::EditRole) {
-            lesson->setName(value.toString());
+            container->setName(value.toString());
             emit documentModified();
             return true;
         }
 
         // checkboxes
         if (role == Qt::CheckStateRole) {
-            if (!lesson->inPractice()) {
-                lesson->setInPractice(true);
+            if (!container->inPractice()) {
+                container->setInPractice(true);
             } else {
-                lesson->setInPractice(false);
+                container->setInPractice(false);
             }
             emit documentModified();
             return true;
@@ -407,21 +430,6 @@ void LessonModel::deleteLesson(const QModelIndex & lessonIndex)
     beginRemoveRows(lessonIndex.parent(), lessonIndex.row(), lessonIndex.row());
     parent->deleteChildContainer(lesson->row());
     endRemoveRows();
-}
-
-
-QModelIndex LessonModel::index(KEduVocContainer * container) const
-{
-    if(!container) {
-        return QModelIndex();
-    }
-
-    if(container == m_container) {
-        return QModelIndex();
-    }
-
-    QModelIndex currentIndex = index(container->row(), 0, index(container->parent()));
-    return currentIndex;
 }
 
 
@@ -497,17 +505,29 @@ bool LessonModel::dropMimeData(const QMimeData * data, Qt::DropAction action, in
                     parentContainer = m_container;
                 }
 
+                QModelIndex oldParent = index(container->parent());
+                beginRemoveRows(oldParent, row, row);
+                container->parent()->removeChildContainer(container->row());
+                endRemoveRows();
+
+                // if we get to choose, append seems sane.
+                if (row < 0) {
+                    row = parentContainer->childContainerCount();
+                }
+
                 beginInsertRows(parent, row, row);
                 parentContainer->insertChildContainer(row, container);
-//                 container->setParent(parentContainer);
                 endInsertRows();
+
+//                 removeRows();
+
                 return true;
             }
         }
     }
 
     kDebug() << data->formats();
-
+/*
     if (data->hasText()) {
         if (action == Qt::CopyAction | action == Qt::MoveAction) {
             QString name;
@@ -518,31 +538,28 @@ bool LessonModel::dropMimeData(const QMimeData * data, Qt::DropAction action, in
             
             return true;
         }
-    }
+    }*/
 
-    
-
-    kDebug() << data->formats();
     return false;
 }
 
-bool LessonModel::removeRows(int row, int count, const QModelIndex & parent)
-{
-    KEduVocContainer* parentContainer;
-    if (!parent.internalPointer()) {
-        parentContainer = m_container;
-    } else {
-        parentContainer = static_cast<KEduVocContainer*>(parent.internalPointer());
-    }
-
-    beginRemoveRows ( parent, row, row+count );
-    
-    for (int i = 0; i<count; i++) {
-        parentContainer->removeChildContainer(row);
-    }
-    endRemoveRows();
-    return true;
-}
+// bool LessonModel::removeRows(int row, int count, const QModelIndex & parent)
+// {
+//     KEduVocContainer* parentContainer;
+//     if (!parent.internalPointer()) {
+//         parentContainer = m_container;
+//     } else {
+//         parentContainer = static_cast<KEduVocContainer*>(parent.internalPointer());
+//     }
+// kDebug() << "removeRows from " << parentContainer->name() << " row " << row << "count" << count;
+// 
+//     beginRemoveRows ( parent, row, row+count );
+//     for (int i = 0; i<count; i++) {
+//         parentContainer->removeChildContainer(row);
+//     }
+//     endRemoveRows();
+//     return true;
+// }
 
 
 

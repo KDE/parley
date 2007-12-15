@@ -157,12 +157,12 @@ void LessonView::setTranslation(KEduVocExpression * entry, int translation)
 
     scrollTo(modelIndex);
     selectionModel()->select(modelIndex, QItemSelectionModel::ClearAndSelect);
-
 }
+
 
 void LessonView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
 {
-    kDebug()<< "current changed";
+    kDebug()<< "current changed" << current.row();
 
     KEduVocContainer *container = 0;
     container = static_cast<KEduVocContainer*>(current.internalPointer());
