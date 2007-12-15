@@ -13,7 +13,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "lessonmodel.h"
+#include "containermodel.h"
 
 #include <QItemSelection>
 #include <QMimeData>
@@ -28,7 +28,7 @@
 #include <krandom.h>
 
 /** @file
-  * Implementation of LessonModel.
+  * Implementation of ContainerModel.
   * Functions to create the model from the lessons of the vocabulary document.
   */
 
@@ -46,7 +46,7 @@ QList<KEduVocContainer *> ContainerMimeData::containerList() const
 
 
 
-LessonModel::LessonModel(KEduVocLesson::EnumContainerType type, QObject * parent) : QAbstractItemModel(parent)
+ContainerModel::ContainerModel(KEduVocLesson::EnumContainerType type, QObject * parent) : QAbstractItemModel(parent)
 {
     m_type = type;
     m_container = 0;
@@ -55,7 +55,7 @@ LessonModel::LessonModel(KEduVocLesson::EnumContainerType type, QObject * parent
 }
 
 
-void LessonModel::setDocument(KEduVocDocument * doc)
+void ContainerModel::setDocument(KEduVocDocument * doc)
 {
     switch(m_type){
     case KEduVocLesson::Lesson:
@@ -73,7 +73,7 @@ void LessonModel::setDocument(KEduVocDocument * doc)
     reset();
 }
 
-QModelIndex LessonModel::index(int row, int column, const QModelIndex &parent) const
+QModelIndex ContainerModel::index(int row, int column, const QModelIndex &parent) const
 {
     if (!hasIndex(row, column, parent))
         return QModelIndex();
@@ -98,7 +98,7 @@ kDebug() << "index for " << parentLesson->name() << "," << row << ":" << childLe
 }
 
 
-QModelIndex LessonModel::index(KEduVocContainer * container) const
+QModelIndex ContainerModel::index(KEduVocContainer * container) const
 {
     if(!container) {
         return QModelIndex();
@@ -115,7 +115,7 @@ QModelIndex LessonModel::index(KEduVocContainer * container) const
 }
 
 
-QModelIndex LessonModel::parent(const QModelIndex &index) const
+QModelIndex ContainerModel::parent(const QModelIndex &index) const
 {
 
     if (!index.isValid())
@@ -134,7 +134,7 @@ QModelIndex LessonModel::parent(const QModelIndex &index) const
 }
 
 
-int LessonModel::rowCount(const QModelIndex &parent) const
+int ContainerModel::rowCount(const QModelIndex &parent) const
 {
     KEduVocContainer *parentItem;
     if (parent.column() > 0) {
@@ -151,7 +151,7 @@ int LessonModel::rowCount(const QModelIndex &parent) const
 }
 
 
-QModelIndex LessonModel::appendLesson(const QModelIndex& parent, const QString & lessonName)
+QModelIndex ContainerModel::appendLesson(const QModelIndex& parent, const QString & lessonName)
 {
     kDebug() << " parent ";
 
@@ -177,7 +177,7 @@ kDebug() << " lesson container " << parentLesson->name();
     return QModelIndex();
 }
 
-// Qt::DropActions LessonModel::supportedDropActions() const
+// Qt::DropActions ContainerModel::supportedDropActions() const
 // {
 //     //return Qt::CopyAction | Qt::MoveAction;
 //     return Qt::MoveAction;
@@ -185,7 +185,7 @@ kDebug() << " lesson container " << parentLesson->name();
 
 
 // 
-// void LessonModel::setAllLessonsInPractice()
+// void ContainerModel::setAllLessonsInPractice()
 // {
 //     for (int lesson = 0; lesson < m_doc->lessonCount(); lesson++) {
 //         m_doc->lesson(lesson).setInPractice(true);
@@ -197,7 +197,7 @@ kDebug() << " lesson container " << parentLesson->name();
 // }
 
 
-// void LessonModel::setNoLessonsInPractice()
+// void ContainerModel::setNoLessonsInPractice()
 // {
 //     for (int lesson = 0; lesson < m_doc->lessonCount(); lesson++) {
 //         m_doc->lesson(lesson).setInPractice(false);
@@ -211,7 +211,7 @@ kDebug() << " lesson container " << parentLesson->name();
 
 
 
-// int LessonModel::addLesson(const QString &lessonName)
+// int ContainerModel::addLesson(const QString &lessonName)
 // {
 //     beginInsertRows(QModelIndex(), m_doc->lessonCount(), m_doc->lessonCount());
 //     int newLessonIndex;
@@ -228,7 +228,7 @@ kDebug() << " lesson container " << parentLesson->name();
 //     return newLessonIndex;
 // }
 // 
-// bool LessonModel::deleteLesson(int lessonIndex, KEduVocDocument::LessonDeletion mode)
+// bool ContainerModel::deleteLesson(int lessonIndex, KEduVocDocument::LessonDeletion mode)
 // {
 //     bool couldDelete = m_doc->removeLesson(lessonIndex, mode);
 //     if (couldDelete) {
@@ -238,7 +238,7 @@ kDebug() << " lesson container " << parentLesson->name();
 //     return couldDelete;
 // }
 // 
-// bool LessonModel::removeRows(int row, int count, const QModelIndex &parent)
+// bool ContainerModel::removeRows(int row, int count, const QModelIndex &parent)
 // {
 //     Q_UNUSED(parent);
 //     /// @todo either really use this or remove it
@@ -251,7 +251,7 @@ kDebug() << " lesson container " << parentLesson->name();
 // }
 
 
-void LessonModel::splitLesson(const QModelIndex& containerIndex, int entriesPerLesson, SplitLessonOrder order)
+void ContainerModel::splitLesson(const QModelIndex& containerIndex, int entriesPerLesson, SplitLessonOrder order)
 {
     if (!containerIndex.isValid()) {
         return;
@@ -292,7 +292,7 @@ void LessonModel::splitLesson(const QModelIndex& containerIndex, int entriesPerL
 
 
 
-// bool LessonModel::dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent)
+// bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent)
 // {
 //     Q_UNUSED(parent);
 //     Q_UNUSED(column);
@@ -314,7 +314,7 @@ void LessonModel::splitLesson(const QModelIndex& containerIndex, int entriesPerL
 
 
 
-QVariant LessonModel::data(const QModelIndex & index, int role) const
+QVariant ContainerModel::data(const QModelIndex & index, int role) const
 {
     if (!index.isValid()) {
          return QVariant();
@@ -344,7 +344,7 @@ QVariant LessonModel::data(const QModelIndex & index, int role) const
 }
 
 
-bool LessonModel::setData(const QModelIndex &index, const QVariant &value, int role)
+bool ContainerModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (!index.isValid())
         return false;
@@ -373,7 +373,7 @@ bool LessonModel::setData(const QModelIndex &index, const QVariant &value, int r
 }
 
 
-Qt::ItemFlags LessonModel::flags(const QModelIndex &index) const
+Qt::ItemFlags ContainerModel::flags(const QModelIndex &index) const
 {
     if (index.isValid()) {
         if ( index.column() == 0 ) {
@@ -385,7 +385,7 @@ Qt::ItemFlags LessonModel::flags(const QModelIndex &index) const
 }
 
 
-QVariant LessonModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant ContainerModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     // statically two columns for now
     if (orientation == Qt::Horizontal) {
@@ -408,7 +408,7 @@ QVariant LessonModel::headerData(int section, Qt::Orientation orientation, int r
 }
 
 
-int LessonModel::columnCount(const QModelIndex & parent) const
+int ContainerModel::columnCount(const QModelIndex & parent) const
 {
     if(!m_container) {
         return 0;
@@ -422,7 +422,7 @@ int LessonModel::columnCount(const QModelIndex & parent) const
     return 2;
 }
 
-void LessonModel::deleteLesson(const QModelIndex & lessonIndex)
+void ContainerModel::deleteLesson(const QModelIndex & lessonIndex)
 {
     KEduVocContainer* lesson = static_cast<KEduVocContainer*>(lessonIndex.internalPointer());
     KEduVocContainer* parent = lesson->parent();
@@ -433,7 +433,7 @@ void LessonModel::deleteLesson(const QModelIndex & lessonIndex)
 }
 
 
-KEduVocContainer::EnumContainerType LessonModel::containerType()
+KEduVocContainer::EnumContainerType ContainerModel::containerType()
 {
     if (m_container) {
         return m_container->containerType();
@@ -441,18 +441,18 @@ KEduVocContainer::EnumContainerType LessonModel::containerType()
     return KEduVocContainer::Container;
 }
 
-Qt::DropActions LessonModel::supportedDropActions() const
+Qt::DropActions ContainerModel::supportedDropActions() const
 {
     return Qt::MoveAction | Qt::CopyAction;
 }
 
-QStringList LessonModel::mimeTypes() const
+QStringList ContainerModel::mimeTypes() const
 {
     return QStringList() << "text/plain";
 }
 
 
- QMimeData * LessonModel::mimeData(const QModelIndexList &indexes) const
+ QMimeData * ContainerModel::mimeData(const QModelIndexList &indexes) const
  {
      ContainerMimeData *mimeData = new ContainerMimeData();
 //      QByteArray encodedData;
@@ -476,7 +476,7 @@ QStringList LessonModel::mimeTypes() const
  }
 
 
-bool LessonModel::dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent)
+bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent)
 {
     if (action == Qt::IgnoreAction) {
          return true;
@@ -543,7 +543,7 @@ bool LessonModel::dropMimeData(const QMimeData * data, Qt::DropAction action, in
     return false;
 }
 
-// bool LessonModel::removeRows(int row, int count, const QModelIndex & parent)
+// bool ContainerModel::removeRows(int row, int count, const QModelIndex & parent)
 // {
 //     KEduVocContainer* parentContainer;
 //     if (!parent.internalPointer()) {
@@ -564,6 +564,6 @@ bool LessonModel::dropMimeData(const QMimeData * data, Qt::DropAction action, in
 
 
 
-#include "lessonmodel.moc"
+#include "containermodel.moc"
 
 

@@ -28,8 +28,8 @@ set(vocabulary_SRCS
     vocabulary/vocabularymodel.cpp
     vocabulary/vocabularyview.cpp
     vocabulary/vocabularydelegate.cpp
-    vocabulary/lessonmodel.cpp
-    vocabulary/lessonview.cpp
+    vocabulary/containermodel.cpp
+    vocabulary/containerview.cpp
 )
 
 set(practice_SRCS

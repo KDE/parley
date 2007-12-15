@@ -13,10 +13,10 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "lessonview.h"
+#include "containerview.h"
 
 #include "prefs.h"
-#include "lessonmodel.h"
+#include "containermodel.h"
 
 #include <QTreeView>
 #include <QHeaderView>
@@ -35,7 +35,7 @@
 #include <keduvocwordtype.h>
 #include <keduvocexpression.h>
 
-LessonView::LessonView(QWidget *parent) : QTreeView(parent)
+ContainerView::ContainerView(QWidget *parent) : QTreeView(parent)
 {
     header()->setResizeMode(QHeaderView::ResizeToContents);
     header()->setVisible(false);
@@ -53,24 +53,24 @@ LessonView::LessonView(QWidget *parent) : QTreeView(parent)
     setDragDropMode(QAbstractItemView::InternalMove);
 }
 
-void LessonView::setModel(LessonModel *model)
+void ContainerView::setModel(ContainerModel *model)
 {
     QTreeView::setModel(model);
     m_model = model;
 }
 
-void LessonView::slotCheckAllLessons()
+void ContainerView::slotCheckAllLessons()
 {
 //     m_model->setAllLessonsInPractice();
     
 }
 
-void LessonView::slotCheckNoLessons()
+void ContainerView::slotCheckNoLessons()
 {
 //     m_model->setNoLessonsInPractice();
 }
 
-void LessonView::slotCreateNewLesson()
+void ContainerView::slotCreateNewLesson()
 {
     QModelIndex selectedIndex = selectionModel()->currentIndex();
     QModelIndex modelIndex = m_model->appendLesson(selectedIndex);
@@ -80,12 +80,12 @@ void LessonView::slotCreateNewLesson()
     edit(modelIndex);    // let the user type a new name for the lesson
 }
 
-void LessonView::slotRenameLesson()
+void ContainerView::slotRenameLesson()
 {
     edit(selectionModel()->currentIndex());
 }
 
-void LessonView::slotDeleteLesson()
+void ContainerView::slotDeleteLesson()
 {
     QModelIndex selectedIndex = selectionModel()->currentIndex();
 
@@ -100,7 +100,7 @@ void LessonView::slotDeleteLesson()
 }
 
 
-void LessonView::slotSplitLesson()
+void ContainerView::slotSplitLesson()
 {
     if (!selectionModel()->currentIndex().isValid()) {
         return;
@@ -114,11 +114,11 @@ void LessonView::slotSplitLesson()
         return;
     }
     Prefs::setEntriesPerLesson(numEntries);
-    m_model->splitLesson(selectionModel()->currentIndex(), numEntries, LessonModel::Random);
+    m_model->splitLesson(selectionModel()->currentIndex(), numEntries, ContainerModel::Random);
     setExpanded(selectionModel()->currentIndex(), true);
 }
 
-void LessonView::setTranslation(KEduVocExpression * entry, int translation)
+void ContainerView::setTranslation(KEduVocExpression * entry, int translation)
 {
     if (entry == 0) {
         return;
@@ -160,7 +160,7 @@ void LessonView::setTranslation(KEduVocExpression * entry, int translation)
 }
 
 
-void LessonView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
+void ContainerView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
 {
     kDebug()<< "current changed" << current.row();
 
@@ -176,7 +176,7 @@ void LessonView::currentChanged(const QModelIndex & current, const QModelIndex &
     QTreeView::currentChanged(current, previous);
 }
 
-void LessonView::selectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
+void ContainerView::selectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
 {
     if(selected.count() == 0) {
         return;
@@ -194,6 +194,6 @@ void LessonView::selectionChanged(const QItemSelection & selected, const QItemSe
 }
 
 
-#include "lessonview.moc"
+#include "containerview.moc"
 
 

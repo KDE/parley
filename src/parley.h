@@ -52,8 +52,8 @@ class QSplitter;
 class QLabel;
 class VocabularyView;
 class VocabularyModel;
-class LessonView;
-class LessonModel;
+class ContainerView;
+class ContainerModel;
 
 /**
   * This Class is the base class for your application. It sets up the main
@@ -195,11 +195,11 @@ private:
     ParleyDocument   *m_document;
 
     /// dock widgets to display lessons, word types, ...
-    LessonView *m_lessonView;
-    LessonModel *m_lessonModel;
+    ContainerView *m_lessonView;
+    ContainerModel *m_lessonModel;
 
-    LessonView *m_wordTypeView;
-    LessonModel *m_wordTypeModel;
+    ContainerView *m_wordTypeView;
+    ContainerModel *m_wordTypeModel;
 
     /** The models to represent the data of m_doc */
 //     KVTTableModel       *m_tableModel;

@@ -32,7 +32,7 @@
 #include "vocabulary/vocabularymodel.h"
 #include "vocabulary/vocabularyview.h"
 #include "vocabulary/vocabularydelegate.h"
-#include "vocabulary/lessonview.h"
+#include "vocabulary/containerview.h"
 
 #include "entry-dialogs/EntryDlg.h"
 #include "entry-dialogs/wordtypewidget.h"

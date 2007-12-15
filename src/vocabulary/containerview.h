@@ -13,12 +13,12 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef LESSONVIEW_H
-#define LESSONVIEW_H
+#ifndef CONTAINERVIEW_H
+#define CONTAINERVIEW_H
 
 #include <QTreeView>
 
-class LessonModel;
+class ContainerModel;
 class KEduVocContainer;
 class KEduVocLesson;
 class KEduVocWordType;
@@ -30,17 +30,17 @@ class KEduVocExpression;
  * Actually a QTreeView because QListView cannot have checkboxes.
  * @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
  */
-class LessonView : public QTreeView
+class ContainerView : public QTreeView
 {
     Q_OBJECT
 public:
     /** Set up the lesson list widget.
      * Also creates the menu to manipulate the lessons.
      * @param parent parent widget */
-    LessonView(QWidget *parent = 0);
+    ContainerView(QWidget *parent = 0);
     /** Set the model for the view.
      * @param model the model */
-    void setModel(LessonModel *model);
+    void setModel(ContainerModel *model);
 
 
 public slots:
@@ -79,8 +79,8 @@ protected slots:
     void selectionChanged ( const QItemSelection & selected, const QItemSelection & deselected );
 
 private:
-    /** The KVTLessonModel for this view. */
-    LessonModel *m_model;
+    /** The KVTContainerModel for this view. */
+    ContainerModel *m_model;
     /** The context menu for the lesson list. */
     QMenu *m_lessonMenu;
 };

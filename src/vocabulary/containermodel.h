@@ -19,8 +19,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef LESSONMODEL_H
-#define LESSONMODEL_H
+#ifndef CONTAINERMODEL_H
+#define CONTAINERMODEL_H
 
 #include <QAbstractItemModel>
 #include <QModelIndex>
@@ -33,7 +33,7 @@
 /**
   * Model for the tree of lessons.
   */
-class LessonModel : public QAbstractItemModel
+class ContainerModel : public QAbstractItemModel
 {
     Q_OBJECT
 
@@ -45,8 +45,8 @@ public:
     };
 
 
-    LessonModel(KEduVocLesson::EnumContainerType type, QObject *parent = 0);
-//     ~LessonModel(); no need for cleanup - the doc will do that
+    ContainerModel(KEduVocLesson::EnumContainerType type, QObject *parent = 0);
+//     ~ContainerModel(); no need for cleanup - the doc will do that
 
     QVariant data(const QModelIndex &index, int role) const;
     Qt::ItemFlags flags(const QModelIndex &index) const;

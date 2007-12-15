@@ -27,8 +27,8 @@
 #include "practice/testentrymanager.h"
 #include "vocabulary/vocabularymodel.h"
 #include "vocabulary/vocabularyview.h"
-#include "vocabulary/lessonview.h"
-#include "vocabulary/lessonmodel.h"
+#include "vocabulary/containerview.h"
+#include "vocabulary/containermodel.h"
 
 #include "entry-dialogs/EntryDlg.h"
 #include "entry-dialogs/wordtypewidget.h"
@@ -657,12 +657,12 @@ void ParleyApp::initDockWidgets()
 // Lesson dock
     QDockWidget *lessonDockWidget = new QDockWidget(i18n("Lessons"), this);
     lessonDockWidget->setObjectName("LessonDock");
-    m_lessonView = new LessonView(this);
+    m_lessonView = new ContainerView(this);
     lessonDockWidget->setWidget(m_lessonView);
     addDockWidget(Qt::LeftDockWidgetArea, lessonDockWidget);
     actionCollection()->addAction("show_lesson_dock", lessonDockWidget->toggleViewAction());
 
-    m_lessonModel = new LessonModel(KEduVocLesson::Lesson, this);
+    m_lessonModel = new ContainerModel(KEduVocLesson::Lesson, this);
 
     m_lessonView->setModel(m_lessonModel);
     m_lessonView->setToolTip(i18n("Right click to add, delete, or rename lessons. \n"
@@ -682,11 +682,11 @@ void ParleyApp::initDockWidgets()
 // Word types dock
     QDockWidget* wordTypeDockWidget = new QDockWidget(i18n("Word Types"), this);
     wordTypeDockWidget->setObjectName( "WordTypeDock" );
-    m_wordTypeView = new LessonView(this);
+    m_wordTypeView = new ContainerView(this);
     wordTypeDockWidget->setWidget(m_wordTypeView);
     addDockWidget( Qt::LeftDockWidgetArea, wordTypeDockWidget );
 
-    m_wordTypeModel = new LessonModel(KEduVocContainer::WordType, this);
+    m_wordTypeModel = new ContainerModel(KEduVocContainer::WordType, this);
     m_wordTypeView->setModel(m_wordTypeModel);
 
     connect(m_wordTypeView, SIGNAL(selectedWordTypeChanged(KEduVocWordType*)), 
