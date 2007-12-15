@@ -46,7 +46,6 @@ ContainerView::ContainerView(QWidget *parent) : QTreeView(parent)
     setSelectionMode(QAbstractItemView::SingleSelection);
     // setSelectionBehavior(QAbstractItemView::SelectRows);
 
-
     setDragEnabled(true);
     setAcceptDrops(true);
     setDropIndicatorShown(true);
@@ -124,44 +123,37 @@ void ContainerView::setTranslation(KEduVocExpression * entry, int translation)
         return;
     }
 
-    QModelIndex selectedIndex = selectionModel()->currentIndex();
-    KEduVocContainer* container;
-
-    // if it's the right container selected anyway, we don't worry
-    if (selectedIndex.isValid()) {
-        container = static_cast<KEduVocContainer*>(selectedIndex.internalPointer());
-        if (container->entries().contains(entry)) {
-            return;
-        }
-    }
-
-    // attempt to find the container to select
-    QModelIndex modelIndex;
-
     // who am I
     if(m_model->containerType() == KEduVocContainer::Lesson) {
-            modelIndex = m_model->index(entry->lessons().value(0));
-    }
-
-    if(m_model->containerType() != KEduVocContainer::WordType) {
-
-        modelIndex = m_model->index(entry->translation(translation)->wordType());
-    }
-// leitner as well?
-
-    if(!modelIndex.isValid()) {
-        scrollTo(QModelIndex());
         selectionModel()->clearSelection();
+        bool first = true;
+        foreach(KEduVocLesson* lesson, entry->lessons()) {
+            QModelIndex current = m_model->index(lesson);
+            selectionModel()->select(current, QItemSelectionModel::Select);
+            scrollTo(current);
+        }
         return;
     }
 
-    scrollTo(modelIndex);
-    selectionModel()->select(modelIndex, QItemSelectionModel::ClearAndSelect);
+    if(m_model->containerType() == KEduVocContainer::WordType) {    
+    // attempt to find the container to select
+        QModelIndex modelIndex;
+        modelIndex = m_model->index(entry->translation(translation)->wordType());
+        scrollTo(modelIndex);
+        selectionModel()->select(modelIndex, QItemSelectionModel::ClearAndSelect);
+        return;
+    }
+// leitner as well?
+
+    selectionModel()->clearSelection();
+    return;
 }
 
 
 void ContainerView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
 {
+    QTreeView::currentChanged(current, previous);
+
     kDebug()<< "current changed" << current.row();
 
     KEduVocContainer *container = 0;
@@ -172,12 +164,11 @@ void ContainerView::currentChanged(const QModelIndex & current, const QModelInde
         emit selectedWordTypeChanged(static_cast<KEduVocWordType*>(container));
     }
     emit signalShowContainer(container);
-
-    QTreeView::currentChanged(current, previous);
 }
 
 void ContainerView::selectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
 {
+    QTreeView::selectionChanged(selected, deselected);
     if(selected.count() == 0) {
         return;
     }
@@ -189,8 +180,6 @@ void ContainerView::selectionChanged(const QItemSelection & selected, const QIte
     } else {
         emit selectedWordTypeChanged(static_cast<KEduVocWordType*>(container));
     }
-
-    QTreeView::selectionChanged(selected, deselected);
 }
 
 
