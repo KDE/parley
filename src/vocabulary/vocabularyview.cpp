@@ -341,6 +341,8 @@ void VocabularyView::appendEntry()
 {
     QModelIndex newIndex = m_model->appendEntry();
     scrollTo(newIndex);
+    selectionModel()->select(newIndex, QItemSelectionModel::ClearAndSelect);
+    selectionModel()->setCurrentIndex(newIndex, QItemSelectionModel::ClearAndSelect);
     edit(newIndex);
 }
 
