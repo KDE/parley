@@ -526,6 +526,13 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
                 static_cast<KEduVocLesson*>(parent.internalPointer())->addEntry(translation->entry());
             }
         }
+
+        if (containerType() == KEduVocContainer::WordType) {
+            foreach (KEduVocTranslation* translation, translationData->translationList()) {
+                translation->setWordType(
+                    static_cast<KEduVocWordType*>(parent.internalPointer()));
+            }
+        }
         return false;
     }
 
