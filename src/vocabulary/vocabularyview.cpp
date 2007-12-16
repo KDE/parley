@@ -55,8 +55,8 @@ VocabularyView::VocabularyView(KActionMenu * vocabularyColumnsActionMenu, QWidge
 //     setItemDelegate(m_delegate);
 
     // Enable context menus
-     setContextMenuPolicy(Qt::ActionsContextMenu);
-     horizontalHeader()->setContextMenuPolicy(Qt::ActionsContextMenu);
+    setContextMenuPolicy(Qt::ActionsContextMenu);
+    horizontalHeader()->setContextMenuPolicy(Qt::ActionsContextMenu);
 
     //horizontalHeader()->setStretchLastSection(true);
     m_vocabularyColumnsActionMenu = vocabularyColumnsActionMenu;
