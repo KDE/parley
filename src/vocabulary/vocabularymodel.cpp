@@ -231,7 +231,7 @@ bool VocabularyModel::setData(const QModelIndex &index, const QVariant &value, i
 Qt::ItemFlags VocabularyModel::flags(const QModelIndex & index) const
 {
     if (!index.isValid()) {
-        return Qt::ItemIsEnabled | Qt::ItemIsDropEnabled;
+        return Qt::ItemIsDropEnabled;
     }
 
     switch (columnType(index.column())) {
