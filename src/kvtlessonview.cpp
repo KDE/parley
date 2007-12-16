@@ -105,7 +105,7 @@ void KVTLessonView::slotDeleteLesson()
 
 void KVTLessonView::selectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
 {
-    Q_UNUSED(deselected);
+    QTreeView::selectionChanged(selected, deselected);
     slotSelectLesson(selected.indexes().at(0).row());
 }
 
