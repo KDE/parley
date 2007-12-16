@@ -46,7 +46,7 @@ public:
 
 
     ContainerModel(KEduVocLesson::EnumContainerType type, QObject *parent = 0);
-//     ~ContainerModel(); no need for cleanup - the doc will do that
+    ~ContainerModel(); // no need for cleanup - the doc will do that
 
     QVariant data(const QModelIndex &index, int role) const;
     Qt::ItemFlags flags(const QModelIndex &index) const;
@@ -68,8 +68,6 @@ public:
     QMimeData * mimeData(const QModelIndexList &indexes) const;
     bool dropMimeData(const QMimeData *data, Qt::DropAction action,
         int row, int column, const QModelIndex &parent);
-
-
 
     /** Change the name or checkbox of a lesson.
      * @param index which lesson
@@ -93,8 +91,8 @@ public:
      * @param parent 
      * @return 
      */
-//     bool removeRows(int row, int count, const QModelIndex &parent);
-
+    bool removeRows(int row, int count, const QModelIndex &parent);
+    bool insertRows ( int row, int count, const QModelIndex & parent = QModelIndex() );
 
     /**
      * Divide a lesson into smaller ones.
