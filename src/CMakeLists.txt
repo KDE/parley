@@ -28,6 +28,7 @@ set(vocabulary_SRCS
     vocabulary/vocabularymodel.cpp
     vocabulary/vocabularyview.cpp
     vocabulary/vocabularydelegate.cpp
+    vocabulary/vocabularyfilter.cpp
     vocabulary/vocabularymimedata.cpp
     vocabulary/containermodel.cpp
     vocabulary/containerview.cpp

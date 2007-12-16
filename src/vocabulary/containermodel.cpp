@@ -18,16 +18,17 @@
 #include "containermimedata.h"
 #include "vocabularymimedata.h"
 
-#include <QItemSelection>
-
-#include <kdebug.h>
-#include <klocale.h>
-
 #include <keduvocdocument.h>
 #include <keduvoclesson.h>
 #include <keduvocwordtype.h>
 #include <keduvocexpression.h>
-#include <krandom.h>
+
+#include <KRandom>
+#include <KIcon>
+#include <kdebug.h>
+#include <klocale.h>
+#include <QItemSelection>
+
 
 /** @file
   * Implementation of ContainerModel.
@@ -324,6 +325,9 @@ QVariant ContainerModel::data(const QModelIndex & index, int role) const
             else
                 return Qt::Unchecked;
         }
+//         if (role == Qt::DecorationRole) {
+//             return KIcon("favorites");
+//         }
     case 1:
         if (role == Qt::DisplayRole) {
             return container->entriesRecursive().count();

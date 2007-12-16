@@ -24,7 +24,7 @@
 
 #include <QMap>
 
-class VocabularyModel;
+class VocabularyFilter;
 class KEduVocExpression;
 
 class KActionMenu;
@@ -37,7 +37,7 @@ class VocabularyView : public QTableView
 public:
     VocabularyView(KActionMenu* vocabularyColumnsActionMenu, QWidget *parent = 0);
 
-    void setModel(VocabularyModel * model);
+    void setModel(VocabularyFilter * model);
 
 //     void adjustContent();
 
@@ -80,8 +80,7 @@ private:
     QMap <KAction*, int> m_columnActionMap;
     KActionMenu * m_vocabularyColumnsActionMenu;
 
-    VocabularyModel* m_model;
-
+    VocabularyFilter* m_model;
 };
 
 #endif

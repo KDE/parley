@@ -31,6 +31,7 @@
 #include "kvttableview.h"
 #include "vocabulary/vocabularymodel.h"
 #include "vocabulary/vocabularyview.h"
+#include "vocabulary/vocabularyfilter.h"
 #include "vocabulary/vocabularydelegate.h"
 #include "vocabulary/containerview.h"
 
@@ -402,10 +403,11 @@ void ParleyApp::initModel()
 //     connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_sortFilterModel, SLOT(slotSearch(const QString&)));
 
     m_vocabularyModel = new VocabularyModel(this);
-    m_vocabularyView->setModel(m_vocabularyModel);
+    m_vocabularyFilter = new VocabularyFilter(this);
+    m_vocabularyFilter->setSourceModel(m_vocabularyModel);
+    m_vocabularyView->setModel(m_vocabularyFilter);
 
     connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyModel, SLOT(setDocument(KEduVocDocument*)));
-
 
 }
 

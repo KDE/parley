@@ -17,6 +17,7 @@
 #include "vocabularyview.h"
 
 #include "vocabularymodel.h"
+#include "vocabularyfilter.h"
 
 #include <keduvoctranslation.h>
 #include <keduvocexpression.h>
@@ -50,9 +51,8 @@ VocabularyView::VocabularyView(KActionMenu * vocabularyColumnsActionMenu, QWidge
 
     setSortingEnabled(true);
 
-//     m_delegate = new KVTTableDelegate(this);
+//     m_delegate = new VocabularyDelegate(this);
 //     setItemDelegate(m_delegate);
-
 
     // Enable context menus
      setContextMenuPolicy(Qt::ActionsContextMenu);
@@ -67,7 +67,7 @@ VocabularyView::VocabularyView(KActionMenu * vocabularyColumnsActionMenu, QWidge
 }
 
 
-void VocabularyView::setModel(VocabularyModel * model)
+void VocabularyView::setModel(VocabularyFilter * model)
 {
     QTableView::setModel(model);
     m_model = model;

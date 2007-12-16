@@ -52,6 +52,7 @@ class QSplitter;
 class QLabel;
 class VocabularyView;
 class VocabularyModel;
+class VocabularyFilter;
 class ContainerView;
 class ContainerModel;
 
@@ -188,6 +189,7 @@ private:
 
     VocabularyModel *m_vocabularyModel;
     VocabularyView *m_vocabularyView;
+    VocabularyFilter *m_vocabularyFilter;
 
     QWidget *m_searchWidget;
 
