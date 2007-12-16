@@ -400,7 +400,7 @@ void ParleyApp::initModel()
 //     m_sortFilterModel->setSourceModel(m_tableModel);
 //     m_tableView->setModel(m_sortFilterModel);
 
-//     connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_sortFilterModel, SLOT(slotSearch(const QString&)));
+
 
     m_vocabularyModel = new VocabularyModel(this);
     m_vocabularyFilter = new VocabularyFilter(this);
@@ -408,6 +408,8 @@ void ParleyApp::initModel()
     m_vocabularyView->setModel(m_vocabularyFilter);
 
     connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyModel, SLOT(setDocument(KEduVocDocument*)));
+
+    connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_vocabularyFilter, SLOT(setSearchString(const QString&)));
 
 }
 
