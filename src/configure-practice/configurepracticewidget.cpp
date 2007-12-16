@@ -49,6 +49,9 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
         LanguageSettings currentSettings(m_doc->identifier(i).locale());
         currentSettings.readConfig();
         QString icon = currentSettings.icon();
+        if (icon.isEmpty()) {
+            icon = QString("preferences-desktop-locale");
+        }
         LanguageFromList->addItem( new QListWidgetItem( KIcon(icon), m_doc->identifier(i).name() ) );
     }
 
@@ -141,6 +144,9 @@ void ConfigurePracticeWidget::fromLanguageSelected(int identifierFromIndex)
             LanguageSettings currentSettings(m_doc->identifier(i).locale());
             currentSettings.readConfig();
             QString icon = currentSettings.icon();
+            if (icon.isEmpty()) {
+                icon = QString("preferences-desktop-locale");
+            }
             LanguageToList->addItem( new QListWidgetItem( KIcon(icon), m_doc->identifier(i).name() ) );
 
             LanguageToList->item(LanguageToList->count()-1)->setData(Qt::UserRole, i);
