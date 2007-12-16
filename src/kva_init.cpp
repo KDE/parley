@@ -452,11 +452,6 @@ void ParleyApp::initView()
 
     /* the new table */
     m_vocabularyView = new VocabularyView(m_vocabularyColumnsActionMenu, centralWidget());
-    m_vocabularyView->setFrameStyle(QFrame::NoFrame);
-    m_vocabularyView->setAlternatingRowColors(true);
-
-    VocabularyDelegate *vocabularyDelegate = new VocabularyDelegate;
-    m_vocabularyView->setItemDelegate(vocabularyDelegate);
 
     rightLayout->addWidget(m_vocabularyView, 1, 0);
 

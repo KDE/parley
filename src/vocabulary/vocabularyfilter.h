@@ -33,6 +33,12 @@ public:
 
     QModelIndex appendEntry();
 
+    bool filterAcceptsRow(int sourceRow,
+        const QModelIndex &sourceParent) const;
+
+public slots:
+    void setSearchString(const QString& expression);
+
 private:
     VocabularyModel * m_model;
 };
