@@ -308,6 +308,9 @@ QVariant ContainerModel::data(const QModelIndex & index, int role) const
     }
 
     KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
+    if (!container) {
+        return QVariant();
+    }
 
     switch (index.column()){
     case 0:
