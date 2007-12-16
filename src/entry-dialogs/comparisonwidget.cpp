@@ -56,8 +56,8 @@ void ComparisonWidget::setTranslation(KEduVocExpression * entry, int translation
         setEnabled(true);
 
         if(m_translation->wordType()) {
-            if(m_translation->wordType()->containerType() == KEduVocWordType::Adjective
-                || m_translation->wordType()->containerType() == KEduVocWordType::Adverb) {
+            if(m_translation->wordType()->wordType() == KEduVocWordType::Adjective
+                || m_translation->wordType()->wordType() == KEduVocWordType::Adverb) {
                 comparativeLineEdit->setEnabled(true);
                 superlativeLineEdit->setEnabled(true);
 

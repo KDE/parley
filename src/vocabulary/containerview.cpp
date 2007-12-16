@@ -155,13 +155,17 @@ void ContainerView::currentChanged(const QModelIndex & current, const QModelInde
     QTreeView::currentChanged(current, previous);
 
     KEduVocContainer *container = 0;
-    container = static_cast<KEduVocContainer*>(current.internalPointer());
-    if (container->containerType() == KEduVocContainer::Lesson) {
-        emit selectedLessonChanged(static_cast<KEduVocLesson*>(container));
-    } else {
-        emit selectedWordTypeChanged(static_cast<KEduVocWordType*>(container));
+    if (current.isValid()) {
+        container = static_cast<KEduVocContainer*>(current.internalPointer());
     }
-    emit signalShowContainer(container);
+    if (container) {
+        if (container->containerType() == KEduVocContainer::Lesson) {
+            emit selectedLessonChanged(static_cast<KEduVocLesson*>(container));
+        } else {
+            emit selectedWordTypeChanged(static_cast<KEduVocWordType*>(container));
+        }
+        emit signalShowContainer(container);
+    }
 }
 
 void ContainerView::selectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
@@ -171,12 +175,15 @@ void ContainerView::selectionChanged(const QItemSelection & selected, const QIte
         return;
     }
 
-    KEduVocContainer *container = 0;
+    KEduVocContainer *container;
     container = static_cast<KEduVocContainer*>(selected.indexes().value(0).internalPointer());
-    if (container->containerType() == KEduVocContainer::Lesson) {
-        emit selectedLessonChanged(static_cast<KEduVocLesson*>(container));
-    } else {
-        emit selectedWordTypeChanged(static_cast<KEduVocWordType*>(container));
+    if (container) {
+        if (container->containerType() == KEduVocContainer::Lesson) {
+            emit selectedLessonChanged(static_cast<KEduVocLesson*>(container));
+        }
+        if (container->containerType() == KEduVocContainer::WordType) {
+            emit selectedWordTypeChanged(static_cast<KEduVocWordType*>(container));
+        }
     }
 }
 

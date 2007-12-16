@@ -152,7 +152,8 @@ QModelIndex ContainerModel::appendLesson(const QModelIndex& parent, const QStrin
 
 kDebug() << " lesson container " << parentLesson->name();
 
-        beginInsertRows(parent, parentLesson->childContainerCount()  , parentLesson->childContainerCount() );
+        beginInsertRows(parent, parentLesson->childContainerCount(), 
+            parentLesson->childContainerCount() );
 
         parentLesson->appendChildContainer(new KEduVocLesson(lessonName, parentLesson));
         endInsertRows();
