@@ -303,6 +303,9 @@ void WrittenPracticeDialog::showMoreClicked()
     int length = 1;
     while ( mw->answerLineEdit->text().startsWith( solution.left(length) ) ) {
         length++;
+        if(length >= solution.length()) {
+            break;
+        }
     }
     if (length >= solution.length()) {
         setWidgetStyle(mw->answerLineEdit, PositiveResult);
