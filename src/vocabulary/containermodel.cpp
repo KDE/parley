@@ -328,9 +328,15 @@ QVariant ContainerModel::data(const QModelIndex & index, int role) const
 //         if (role == Qt::DecorationRole) {
 //             return KIcon("favorites");
 //         }
+        if (role == Qt::TextAlignmentRole) {
+            return Qt::AlignLeft;
+        }
     case 1:
         if (role == Qt::DisplayRole) {
             return container->entriesRecursive().count();
+        }
+        if (role == Qt::TextAlignmentRole) {
+            return Qt::AlignRight;
         }
     }
 

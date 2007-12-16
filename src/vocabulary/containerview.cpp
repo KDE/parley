@@ -18,10 +18,6 @@
 #include "prefs.h"
 #include "containermodel.h"
 
-#include <QTreeView>
-#include <QHeaderView>
-#include <QMenu>
-#include <QContextMenuEvent>
 #include <KAction>
 #include <KMessageBox>
 #include <KInputDialog>
@@ -34,11 +30,22 @@
 #include <keduvoclesson.h>
 #include <keduvocwordtype.h>
 #include <keduvocexpression.h>
+#include <QTreeView>
+#include <QHeaderView>
+#include <QMenu>
+#include <QContextMenuEvent>
 
 ContainerView::ContainerView(QWidget *parent) : QTreeView(parent)
 {
     header()->setResizeMode(QHeaderView::ResizeToContents);
+// seems like a qt bug, fixed in 4.4 hopefully
+    header()->setStretchLastSection(false);
+//     header()->setResizeMode(0, QHeaderView::Stretch);
+//     header()->setResizeMode(1, QHeaderView::ResizeToContents);
+
+
     header()->setVisible(false);
+
     setAlternatingRowColors(true);
 
     // show the actions added by addAction() as right click menu.
