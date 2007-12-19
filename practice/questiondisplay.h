@@ -13,26 +13,29 @@
  *                                                                         *
  ***************************************************************************/
 
+#ifndef QUESTIONDISPLAY_H
+#define QUESTIONDISPLAY_H
 
-#ifndef PARLEYPRACTICEMAINWINDOW_H
-#define PARLEYPRACTICEMAINWINDOW_H
+#include <QObject>
+#include <QGraphicsItem>
 
-#include <KXmlGuiWindow>
+class QString;
+class QGraphicsItem;
 
-#include <QGraphicsView>
-
-class ParleyPracticeMainWindow : public KXmlGuiWindow
+/**
+	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+*/
+class QuestionDisplay :public QObject, public QGraphicsItem
 {
 Q_OBJECT
 public:
-    ParleyPracticeMainWindow(QWidget *parent = 0);
+    QuestionDisplay();
 
-    ~ParleyPracticeMainWindow();
+    ~QuestionDisplay();
 
-private:
-    QGraphicsView* m_view;
+public slots:
+    virtual void setText(const QString& text) = 0;
 
-    bool eventFilter(QObject *obj, QEvent *event);
 
 };
 

@@ -13,27 +13,37 @@
  *                                                                         *
  ***************************************************************************/
 
+#ifndef VOCABULARYCARD_H
+#define VOCABULARYCARD_H
 
-#ifndef PARLEYPRACTICEMAINWINDOW_H
-#define PARLEYPRACTICEMAINWINDOW_H
+#include "questiondisplay.h"
 
-#include <KXmlGuiWindow>
+#include <QGraphicsItem>
 
-#include <QGraphicsView>
+class QGraphicsSvgItem;
+class QGraphicsTextItem;
 
-class ParleyPracticeMainWindow : public KXmlGuiWindow
+/**
+	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+*/
+class VocabularyCard : public QuestionDisplay
 {
 Q_OBJECT
 public:
-    ParleyPracticeMainWindow(QWidget *parent = 0);
+    VocabularyCard();
 
-    ~ParleyPracticeMainWindow();
+    ~VocabularyCard();
+
+    QRectF boundingRect() const;
+//     QPainterPath shape() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
+public slots:
+    void setText(const QString& text);
 
 private:
-    QGraphicsView* m_view;
-
-    bool eventFilter(QObject *obj, QEvent *event);
-
+    QGraphicsSvgItem* m_card;
+    QGraphicsTextItem* m_text;
 };
 
 #endif

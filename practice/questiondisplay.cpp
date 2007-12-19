@@ -13,27 +13,17 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "questiondisplay.h"
 
-#ifndef PARLEYPRACTICEMAINWINDOW_H
-#define PARLEYPRACTICEMAINWINDOW_H
-
-#include <KXmlGuiWindow>
-
-#include <QGraphicsView>
-
-class ParleyPracticeMainWindow : public KXmlGuiWindow
+QuestionDisplay::QuestionDisplay()
+ : QGraphicsItem()
 {
-Q_OBJECT
-public:
-    ParleyPracticeMainWindow(QWidget *parent = 0);
+}
 
-    ~ParleyPracticeMainWindow();
 
-private:
-    QGraphicsView* m_view;
+QuestionDisplay::~QuestionDisplay()
+{
+}
 
-    bool eventFilter(QObject *obj, QEvent *event);
 
-};
-
-#endif
+#include "questiondisplay.moc"
