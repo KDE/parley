@@ -40,9 +40,9 @@ SimpleQueryDlg::SimpleQueryDlg(KEduVocDocument *doc, QWidget *parent) : Practice
     mw = new Ui::SimpleQueryDlgForm();
     mw->setupUi(mainWidget());
 
-    mw->stopPracticeButton->setIcon( KIcon("list-remove") );
-    mw->editEntryButton->setIcon( KIcon("object-edit") );
-    mw->verify->setIcon(KIcon("ok"));
+    mw->stopPracticeButton->setIcon( KIcon("process-stop") );
+    mw->editEntryButton->setIcon( KIcon("document-properties") );
+    mw->verify->setIcon(KIcon("dialog-ok"));
     mw->know_it->setIcon(KIcon("go-next"));
     mw->dont_know->setIcon(KIcon("go-next"));
 

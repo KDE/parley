@@ -38,8 +38,8 @@ ArtQueryDlg::ArtQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog
     mw = new Ui::ArtQueryDlgForm();
     mw->setupUi(mainWidget());
 
-    mw->stopPracticeButton->setIcon( KIcon("list-remove") );
-    mw->editEntryButton->setIcon( KIcon("object-edit") );
+    mw->stopPracticeButton->setIcon( KIcon("process-stop") );
+    mw->editEntryButton->setIcon( KIcon("document-properties") );
     mw->know_it->setIcon(KIcon("go-next"));
     mw->dont_know->setIcon(KIcon("go-next"));
 
