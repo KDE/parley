@@ -31,7 +31,7 @@ MixedLetterPracticeDialog::MixedLetterPracticeDialog(KEduVocDocument *doc, QWidg
     setupUi(mainWidget());
 
     stopPracticeButton->setIcon( KIcon("list-remove") );
-    verifySolutionButton->setIcon(KIcon("ok"));
+    verifySolutionButton->setIcon(KIcon("dialog-ok"));
 
     connect(stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
 
@@ -42,7 +42,7 @@ MixedLetterPracticeDialog::MixedLetterPracticeDialog(KEduVocDocument *doc, QWidg
     countbar->setFormat("%v/%m");
     timeProgressBar->setFormat("%v");
 
-    verifySolutionButton->setIcon( KIcon("ok") );
+    verifySolutionButton->setIcon( KIcon("dialog-ok") );
 
     mixedLettersGraphicsView->setScene(new QGraphicsScene(mixedLettersGraphicsView));
     imageGraphicsView->setVisible(false);
