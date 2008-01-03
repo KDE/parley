@@ -334,17 +334,19 @@ bool ContainerModel::setData(const QModelIndex &index, const QVariant &value, in
         // rename a lesson
         if (role == Qt::EditRole) {
             container->setName(value.toString());
+            emit dataChanged(index, index);
             emit documentModified();
             return true;
         }
 
         // checkboxes
         if (role == Qt::CheckStateRole) {
-            if (!container->inPractice()) {
-                container->setInPractice(true);
-            } else {
-                container->setInPractice(false);
+            bool newState = value.toBool();
+            for (int i = 0; i < rowCount(index); i++) {
+                setData(index.child(i, 0), newState, Qt::CheckStateRole);
             }
+            container->setInPractice(newState);
+            emit dataChanged(index, index);
             emit documentModified();
             return true;
         }
