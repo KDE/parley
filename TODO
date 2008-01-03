@@ -19,6 +19,7 @@ Things to improve in parley
  * Implement Leitner method
  * Update word type and lesson when selecting an entry (?) (Leitner as well?)
  * What about editing multiple entries at the same time? does that work? does it help with the new design?
+ * The statistics page is broken. At least reset does not work and there is no tree view for it.
 
  * Drag and drop for several things:
    - Reorder lessons
