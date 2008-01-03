@@ -640,6 +640,7 @@ void ParleyApp::initDockWidgets()
     actionCollection()->addAction("show_lesson_dock", lessonDockWidget->toggleViewAction());
 
     m_lessonModel = new ContainerModel(KEduVocLesson::Lesson, this);
+///@todo remove before release
     new ModelTest(m_lessonModel, this);
 
     m_lessonView->setModel(m_lessonModel);
@@ -667,7 +668,8 @@ void ParleyApp::initDockWidgets()
     m_wordTypeModel = new ContainerModel(KEduVocContainer::WordType, this);
 
 ///@todo test, should be fixed with the lesson one though
-//     new ModelTest(m_wordTypeModel, this);
+///@todo remove before release
+    new ModelTest(m_wordTypeModel, this);
 
     m_wordTypeView->setModel(m_wordTypeModel);
 

@@ -259,6 +259,9 @@ QVariant VocabularyModel::headerData(int section, Qt::Orientation orientation, i
 
             switch (entryColumn){
             case Translation:
+                if (m_document->identifierCount() < translationId) {
+                    return QVariant();
+                }
                 return m_document->identifier(translationId).name();
             case Pronunciation:
                 return i18n("Pronunciation");
