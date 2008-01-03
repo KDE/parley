@@ -356,6 +356,12 @@ bool ContainerModel::setData(const QModelIndex &index, const QVariant &value, in
 Qt::ItemFlags ContainerModel::flags(const QModelIndex &index) const
 {
     if (index.isValid()) {
+        // the root element, not editable for now
+        if (index.parent() == QModelIndex()) {
+            return (Qt::ItemIsEnabled | Qt::ItemIsSelectable
+                        | Qt::ItemIsUserCheckable);
+        }
+        // every other element
         if ( index.column() == 0 ) {
             return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable
                     | Qt::ItemIsUserCheckable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled );
