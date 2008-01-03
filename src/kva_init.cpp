@@ -49,6 +49,11 @@
 #include <KDialog>
 #include <knewstuff2/ui/knewstuffaction.h>
 
+
+// qt model test http://labs.trolltech.com/page/Projects/Itemview/Modeltest
+#include "modeltest/modeltest.h"
+
+
 #include <QClipboard>
 #include <QTimer>
 #include <QLabel>
@@ -403,6 +408,10 @@ void ParleyApp::initModel()
 
 
     m_vocabularyModel = new VocabularyModel(this);
+
+///@todo test the model
+//     new ModelTest(m_vocabularyModel, this);
+
     m_vocabularyFilter = new VocabularyFilter(this);
     m_vocabularyFilter->setSourceModel(m_vocabularyModel);
     m_vocabularyView->setModel(m_vocabularyFilter);

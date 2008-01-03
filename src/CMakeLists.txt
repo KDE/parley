@@ -168,6 +168,9 @@ set(parley_SRCS
     parley.cpp
     main.cpp
     kva_init.cpp
+
+
+    modeltest/modeltest.cpp
 )
 
 set(parley_icons

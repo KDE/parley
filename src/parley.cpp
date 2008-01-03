@@ -79,6 +79,8 @@
 #include <QtGui/QPrinter>
 #include <QtGui/QPrintDialog>
 
+#include "modeltest/modeltest.h"
+
 
 ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWindow(0)
 {
@@ -638,6 +640,7 @@ void ParleyApp::initDockWidgets()
     actionCollection()->addAction("show_lesson_dock", lessonDockWidget->toggleViewAction());
 
     m_lessonModel = new ContainerModel(KEduVocLesson::Lesson, this);
+    new ModelTest(m_lessonModel, this);
 
     m_lessonView->setModel(m_lessonModel);
     m_lessonView->setToolTip(i18n("Right click to add, delete, or rename lessons. \n"
@@ -662,6 +665,10 @@ void ParleyApp::initDockWidgets()
     addDockWidget( Qt::LeftDockWidgetArea, wordTypeDockWidget );
 
     m_wordTypeModel = new ContainerModel(KEduVocContainer::WordType, this);
+
+///@todo test, should be fixed with the lesson one though
+//     new ModelTest(m_wordTypeModel, this);
+
     m_wordTypeView->setModel(m_wordTypeModel);
 
     connect(m_wordTypeView, SIGNAL(selectedWordTypeChanged(KEduVocWordType*)), 
