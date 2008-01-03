@@ -65,17 +65,6 @@ void ContainerView::setModel(ContainerModel *model)
     m_model = model;
 }
 
-void ContainerView::slotCheckAllLessons()
-{
-//     m_model->setAllLessonsInPractice();
-    
-}
-
-void ContainerView::slotCheckNoLessons()
-{
-//     m_model->setNoLessonsInPractice();
-}
-
 void ContainerView::slotCreateNewLesson()
 {
     QModelIndex selectedIndex = selectionModel()->currentIndex();

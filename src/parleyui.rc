@@ -29,9 +29,6 @@
    <Action name="rename_lesson" />
    <Action name="delete_lesson" />
    <Separator/>
-   <Action name="check_all_lessons" />
-   <Action name="check_no_lessons" />
-   <Separator/>
    <Action name="split_lesson" />
   </Menu>
   <Menu name="learning" >

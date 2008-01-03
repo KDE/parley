@@ -239,24 +239,6 @@ void ParleyApp::initActions()
     actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
     actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
 
-    KAction *actionCheckAllLessons = new KAction(this);
-    actionCollection()->addAction("check_all_lessons", actionCheckAllLessons);
-    actionCheckAllLessons->setText(i18n("Select All Lessons"));
-    actionCheckAllLessons->setIcon(KIcon("edit-select-all"));
-    actionCheckAllLessons->setWhatsThis(i18n("Select all lessons for the test."));
-    actionCheckAllLessons->setToolTip(actionCheckAllLessons->whatsThis());
-    actionCheckAllLessons->setStatusTip(actionCheckAllLessons->whatsThis());
-    actionCheckAllLessons->setStatusTip(actionCheckAllLessons->whatsThis());
-
-    KAction *actionCheckNoLessons = new KAction(this);
-    actionCollection()->addAction("check_no_lessons", actionCheckNoLessons);
-    actionCheckNoLessons->setText(i18n("Deselect All Lessons"));
-    actionCheckNoLessons->setIcon(KIcon("edit-clear"));
-    actionCheckNoLessons->setWhatsThis(i18n("Remove all lessons from the test."));
-    actionCheckNoLessons->setToolTip(actionCheckNoLessons->whatsThis());
-    actionCheckNoLessons->setStatusTip(actionCheckNoLessons->whatsThis());
-    actionCheckNoLessons->setStatusTip(actionCheckNoLessons->whatsThis());
-
     KAction *actionSplitLesson = new KAction(this);
     actionCollection()->addAction("split_lesson", actionSplitLesson);
     actionSplitLesson->setText(i18n("Split Lesson into Smaller Lessons"));
@@ -272,10 +254,6 @@ void ParleyApp::initActions()
         m_lessonView, SLOT(slotRenameLesson()));
     connect(actionDeleteLesson, SIGNAL(triggered()), 
         m_lessonView, SLOT(slotDeleteLesson()));
-    connect(actionCheckAllLessons, SIGNAL(triggered()), 
-        m_lessonView, SLOT(slotCheckAllLessons()));
-    connect(actionCheckNoLessons, SIGNAL(triggered()), 
-        m_lessonView, SLOT(slotCheckNoLessons()));
     connect(actionSplitLesson, SIGNAL(triggered()), 
         m_lessonView, SLOT(slotSplitLesson()));
 
@@ -286,8 +264,6 @@ void ParleyApp::initActions()
     QAction* separator = new QAction(this);
     separator->setSeparator(true);
     m_lessonView->addAction(separator);
-    m_lessonView->addAction(actionCheckAllLessons);
-    m_lessonView->addAction(actionCheckNoLessons);
     separator = new QAction(this);
     separator->setSeparator(true);
     m_lessonView->addAction(separator);

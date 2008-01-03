@@ -55,10 +55,6 @@ public slots:
 
     void currentChanged( const QModelIndex & current, const QModelIndex & previous );
 
-    /** Add all lessons to query. Activated from menu, passes to m_model. */
-    void slotCheckAllLessons();
-    /** Remove all lessons from query. Activated from menu, passes to m_model. */
-    void slotCheckNoLessons();
     /** Creates many small lessons with the contents of the original lesson.
      * @todo Let the user select if entries are taken by random or order.
      */
