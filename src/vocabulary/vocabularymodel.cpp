@@ -41,6 +41,7 @@ VocabularyModel::~VocabularyModel()
 {
 }
 
+
 void VocabularyModel::setDocument(KEduVocDocument * doc)
 {
     m_document = doc;
@@ -48,12 +49,15 @@ void VocabularyModel::setDocument(KEduVocDocument * doc)
     m_lesson = 0;
     m_wordType = 0;
 
+    // to get the headers right
+    // (better get rid of the reset)
+    reset();
 
-    /// @todo does this make sense?
     if ( m_document ) {
         showContainer(m_document->lesson());
+    } else {
+        showContainer(0);
     }
-    reset();
 }
 
 
@@ -62,15 +66,16 @@ void VocabularyModel::showContainer(KEduVocContainer * container)
     // use remove and insert rows. using reset resets all table headers too.
     if (rowCount(QModelIndex()) > 0) {
         beginRemoveRows(QModelIndex(), 0, rowCount(QModelIndex())-1);
+        m_container = 0;
         endRemoveRows();
     }
-    m_container = container;
+// m_container = container;
     if (container && container->entryCount() > 0) {
-        beginInsertRows(QModelIndex(), 0, m_container->entryCount()-1);
+        beginInsertRows(QModelIndex(), 0, container->entryCount()-1);
+        m_container = container;
         endInsertRows();
     }
 }
-
 
 
 void VocabularyModel::setLesson(KEduVocLesson * lessonContainer)
@@ -78,11 +83,11 @@ void VocabularyModel::setLesson(KEduVocLesson * lessonContainer)
     m_lesson = lessonContainer;
 }
 
+
 void VocabularyModel::setWordType(KEduVocWordType * wordTypeContainer)
 {
     m_wordType = wordTypeContainer;
 }
-
 
 
 int VocabularyModel::rowCount(const QModelIndex &index) const
