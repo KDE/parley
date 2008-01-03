@@ -259,7 +259,7 @@ QVariant VocabularyModel::headerData(int section, Qt::Orientation orientation, i
 
             switch (entryColumn){
             case Translation:
-                if (m_document->identifierCount() < translationId) {
+                if (m_document->identifierCount() - 1 < translationId) {
                     return QVariant();
                 }
                 return m_document->identifier(translationId).name();

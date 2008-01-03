@@ -400,13 +400,6 @@ void ParleyApp::initStatusBar()
 
 void ParleyApp::initModel()
 {
-//     m_tableModel = new KVTTableModel(this);
-//     m_sortFilterModel= new KVTSortFilterModel(this);
-//     m_sortFilterModel->setSourceModel(m_tableModel);
-//     m_tableView->setModel(m_sortFilterModel);
-
-
-
     m_vocabularyModel = new VocabularyModel(this);
 
 ///@todo test the model
