@@ -141,7 +141,7 @@
          </sizepolicy>
         </property>
         <property name="toolTip" >
-         <string>The base for of the adjectiv or adverb (fast)</string>
+         <string>The base form of the adjective or adverb (fast)</string>
         </property>
         <property name="text" >
          <string>&amp;1. Absolute:</string>

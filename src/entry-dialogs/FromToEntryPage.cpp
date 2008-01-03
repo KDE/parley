@@ -226,6 +226,8 @@ void FromToEntryPage::slotResetGrades()
     m_practiceDateChanged=true;
     m_totalCountChanged=true;
     m_wrongCountChanged=true;
+
+//     emit sigModified();
 }
 
 

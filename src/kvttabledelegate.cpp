@@ -110,8 +110,8 @@ void KVTTableDelegate::setEditorData(QWidget * editor, const QModelIndex & index
 
     case 1: {
         KComboBox *statebox = static_cast<KComboBox*>(editor);
-        statebox->addItem(KIcon("no"), i18nc("state of a row", "Inactive"));
-        statebox->addItem(KIcon("ok"), i18nc("state of a row", "Active"));
+        statebox->addItem(KIcon("process-stop"), i18nc("state of a row", "Inactive"));
+        statebox->addItem(KIcon("dialog-ok"), i18nc("state of a row", "Active"));
         statebox->setCurrentIndex(index.model()->data(index, KVTTableModel::StateRole).toInt());
     }
     break;
@@ -206,9 +206,9 @@ void KVTTableDelegate::drawDisplay(QPainter * painter, const QStyleOptionViewIte
     }
 
     if (text == "@inactive@") {
-        painter->drawPixmap((rect.width() / 2) + rect.left() - 8, (rect.height() / 2) + rect.top() - 8, 16, 16, SmallIcon("no"));
+        painter->drawPixmap((rect.width() / 2) + rect.left() - 8, (rect.height() / 2) + rect.top() - 8, 16, 16, SmallIcon("process-stop"));
     } else if (text == "@active@") {
-        painter->drawPixmap((rect.width() / 2) + rect.left() - 8, (rect.height() / 2) + rect.top() - 8, 16, 16, SmallIcon("ok"));
+        painter->drawPixmap((rect.width() / 2) + rect.left() - 8, (rect.height() / 2) + rect.top() - 8, 16, 16, SmallIcon("dialog-ok"));
     } else {
         QFont font = painter->font();
         painter->setFont(option.font);

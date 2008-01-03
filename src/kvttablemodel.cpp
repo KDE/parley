@@ -133,10 +133,10 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
                 return "lesson";
             } else if (index.column() == 1) {
                 if (m_doc->entry(index.row())->isActive()) {
-//                     return KIcon("ok");
+//                     return KIcon("dialog-ok");
                     return "@active@";
                 } else
-//                     return KIcon("no");
+//                     return KIcon("process-stop");
                     return "@inactive@";
             } else {
                 result = m_doc->entry(index.row())->translation(index.column() - KV_COL_TRANS).text();

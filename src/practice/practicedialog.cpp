@@ -227,7 +227,7 @@ void PracticeDialog::audioPlayFile(const KUrl & soundFile)
 
     if (!m_player) {
         m_player = new Phonon::MediaObject(this);
-        Phonon::AudioOutput *audioOutput = new Phonon::AudioOutput(Phonon::NotificationCategory, this);
+        Phonon::AudioOutput *audioOutput = new Phonon::AudioOutput(Phonon::NoCategory, this);
         createPath(m_player, audioOutput);
     } else {
         m_player->stop();

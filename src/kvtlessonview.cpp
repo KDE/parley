@@ -97,7 +97,7 @@ void KVTLessonView::slotDeleteLesson()
     // Delete right away, if the lesson is empty, otherwise ask
     if (m_model->deleteLesson(currentIndex, KEduVocDocument::DeleteEmptyLesson))
         return; // lesson was empty - done.
-    int exit = KMessageBox::warningYesNo(this, i18n("There are vocabularies left in this lesson. Do you want to delete them? You will loose your entries! You have been warned!")); ///@todo maybe a better message here...
+    int exit = KMessageBox::warningYesNo(this, i18n("There are vocabularies left in this lesson. Do you want to delete them? You will lose your entries! You have been warned!")); ///@todo maybe a better message here...
     if (exit == KMessageBox::Yes) {
         m_model->deleteLesson(currentIndex, KEduVocDocument::DeleteEntriesAndLesson);
     }
@@ -105,7 +105,7 @@ void KVTLessonView::slotDeleteLesson()
 
 void KVTLessonView::selectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
 {
-    Q_UNUSED(deselected);
+    QTreeView::selectionChanged(selected, deselected);
     slotSelectLesson(selected.indexes().at(0).row());
 }
 

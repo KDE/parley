@@ -357,7 +357,7 @@ Qt::ItemFlags ContainerModel::flags(const QModelIndex &index) const
 {
     if (index.isValid()) {
         // the root element, not editable for now
-        if (index.parent() == QModelIndex()) {
+        if ( index.column() == 0 && index.parent() == QModelIndex()) {
             return (Qt::ItemIsEnabled | Qt::ItemIsSelectable
                         | Qt::ItemIsUserCheckable);
         }

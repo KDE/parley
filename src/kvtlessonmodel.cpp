@@ -185,17 +185,13 @@ bool KVTLessonModel::removeRows(int row, int count, const QModelIndex &parent)
 void KVTLessonModel::splitLesson(int lessonIndex, int entriesPerLesson, SplitLessonOrder order)
 {
     // list of entries in the lesson
-    QList<KEduVocExpression*> entryList;
-    for (int i = 0; i < m_doc->entryCount(); i++) {
-        KEduVocExpression *expr = m_doc->entry(i);
-        if (expr->lesson() == lessonIndex)
-            entryList.append(expr);
-    }
+    QList<int> entryList = m_doc->lesson(lessonIndex).entries();
 
     QString originalLessonName = m_doc->lesson(lessonIndex).name();
     int numNewLessons = entryList.count()/entriesPerLesson;
-    if (entryList.count()%entriesPerLesson) // modulo - fraction lesson if not 0 we need one more
+    if (entryList.count()%entriesPerLesson) { // modulo - fraction lesson if not 0 we need one more
         numNewLessons++;
+    }
 
     // create the empty lessons
     int first = addLesson(originalLessonName + QString(" %1").arg(1));
@@ -215,7 +211,8 @@ void KVTLessonModel::splitLesson(int lessonIndex, int entriesPerLesson, SplitLes
 
         if (order == random)
             nextEntry = KRandom::random() % entryList.count(); /// @todo random from 0 to entryList.count() -1;
-        entryList.at(nextEntry)->setLesson(lessonToFill);
+        m_doc->entry(entryList.at(nextEntry))->setLesson(lessonToFill);
+        m_doc->lesson(lessonIndex).removeEntry(entryList.at(nextEntry));
         entryList.removeAt(nextEntry);
         entries++;
     }

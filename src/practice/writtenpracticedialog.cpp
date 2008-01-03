@@ -50,16 +50,16 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
     mw = new Ui::WrittenPracticeDialog();
     mw->setupUi(mainWidget());
 
-    mw->continueButton->setIcon(KIcon("ok"));
+    mw->continueButton->setIcon(KIcon("dialog-ok"));
     connect(mw->continueButton, SIGNAL(clicked()),  SLOT(continueButtonClicked()));
 
-    mw->stopPracticeButton->setIcon( KIcon("list-remove") );
-    mw->editEntryButton->setIcon( KIcon("object-edit") );
-    mw->verify->setIcon(KIcon("ok"));
+    mw->stopPracticeButton->setIcon( KIcon("process-stop") );
+    mw->editEntryButton->setIcon( KIcon("document-properties") );
+    mw->verify->setIcon(KIcon("dialog-ok"));
     mw->know_it->setIcon(KIcon("go-next"));
     mw->dont_know->setIcon(KIcon("go-next"));
 
-    mw->show_more->setIcon(KIcon("games-hint"));
+    mw->show_more->setIcon(KIcon("help-hint"));
     mw->show_all->setIcon(KIcon("games-solve"));
 
     connect(mw->stopPracticeButton, SIGNAL(clicked()), SLOT(close()));

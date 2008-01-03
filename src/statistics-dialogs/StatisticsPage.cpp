@@ -309,9 +309,15 @@ void StatisticsPage::slotCurrentItemChanged(QTreeWidgetItem * current, QTreeWidg
 
 void StatisticsPage::resetStatistics()
 {
-    for (int i = 0; i < StatListView->topLevelItemCount(); i++)
-        if (StatListView->topLevelItem(i)->checkState(TB_RESET) == Qt::Checked)
-//             m_doc->resetEntry(-1, StatListView->topLevelItem(i)->data(TB_LESSON, Qt::UserRole).toInt());
+kDebug() << "resetStatistics";
+//     for (int i = 0; i < StatListView->topLevelItemCount(); i++) {
+//         if (StatListView->topLevelItem(i)->checkState(TB_RESET) == Qt::Checked) {
+// kDebug() << "Reset: " << StatListView->topLevelItem(i)->data(TB_LESSON, Qt::UserRole).toInt();
+// kDebug() << "Reset: " << m_doc->lesson(StatListView->topLevelItem(i)->data(TB_LESSON, Qt::UserRole).toInt()).name();
+// 
+// //             m_doc->resetEntry(-1, StatListView->topLevelItem(i)->data(TB_LESSON, Qt::UserRole).toInt());
+//         }
+//     }
 
     setupData();
 }
