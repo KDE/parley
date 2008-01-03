@@ -85,12 +85,17 @@ void VocabularyModel::setWordType(KEduVocWordType * wordTypeContainer)
 
 
 
-int VocabularyModel::rowCount(const QModelIndex &) const
+int VocabularyModel::rowCount(const QModelIndex &index) const
 {
+    // no lesson set - zarro rows
     if ( !m_container ) {
         return 0;
     }
-    return m_container->entryCount();
+    // only the root index has children because we have no hierachical model.
+    if (index == QModelIndex()) {
+        return m_container->entryCount();
+    }
+    return 0;
 }
 
 int VocabularyModel::columnCount(const QModelIndex &) const
