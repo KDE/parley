@@ -597,11 +597,9 @@ void ParleyApp::updateDocument()
 
     setCaption(m_document->document()->url().fileName(), false);
 
-//     m_tableView->adjustContent();
-//     m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
-//     m_tableView->setColumnHidden(KV_COL_MARK, !Prefs::tableActiveColumnVisible());
 
-//     slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
+///@todo remove this!
+//     new ModelTest(m_vocabularyModel, this);
 }
 
 
