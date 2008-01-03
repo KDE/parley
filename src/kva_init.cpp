@@ -402,9 +402,6 @@ void ParleyApp::initModel()
 {
     m_vocabularyModel = new VocabularyModel(this);
 
-///@todo test the model
-    new ModelTest(m_vocabularyModel, this);
-
     m_vocabularyFilter = new VocabularyFilter(this);
     m_vocabularyFilter->setSourceModel(m_vocabularyModel);
     m_vocabularyView->setModel(m_vocabularyFilter);

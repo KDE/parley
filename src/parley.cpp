@@ -599,7 +599,8 @@ void ParleyApp::updateDocument()
 
 
 ///@todo remove this!
-//     new ModelTest(m_vocabularyModel, this);
+// at the moment creates a new test every time a model is created. this is good because we get the basic sanity check then.
+    new ModelTest(m_vocabularyModel, this);
 }
 
 
