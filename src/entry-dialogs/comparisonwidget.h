@@ -66,4 +66,4 @@ private:
     KEduVocDocument* m_doc;
 };
 
-#endif // ComparisonWidget_included
+#endif
