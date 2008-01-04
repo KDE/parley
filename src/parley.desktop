@@ -1,6 +1,8 @@
 [Desktop Entry]
 Name=Parley
 Name[hi]=पारले
+Name[km]=ការ​ចរចា
+Name[ne]=पार्ली
 Name[sl]=Parely
 Name[x-test]=xxParleyxx
 MimeType=application/x-kvtml;
@@ -17,6 +19,7 @@ GenericName[bg]=Речникови тренировки
 GenericName[bn]=শব্দভাণ্ডার সমৃদ্ধকারী
 GenericName[ca]=Entrenador de vocabulari
 GenericName[cs]=Procvičování slovní zásoby
+GenericName[csb]=Cwiczenczi ze słowiznë
 GenericName[cy]=Hyfforddwr Geirfa
 GenericName[da]=Ordforrådsøvelser
 GenericName[de]=Vokabeltrainer
