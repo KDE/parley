@@ -54,10 +54,10 @@ MCEntryPage::MCEntryPage(QWidget *parent) : QWidget(parent)
 void MCEntryPage::slotDataChanged( const QModelIndex & topLeft, const QModelIndex & bottomRight )
 {
     m_translation->multipleChoice() = m_choicesModel->stringList();
+    removeChoiceButton->setEnabled(m_translation && m_translation->multipleChoice().count() > 0);
 }
 
 
-// also starting with 0 might be nicer. crashes though.
 void MCEntryPage::setTranslation(KEduVocExpression * entry, int translation)
 {
     if (entry) {
@@ -69,20 +69,35 @@ void MCEntryPage::setTranslation(KEduVocExpression * entry, int translation)
     if (m_translation) {
         setEnabled(true);
         m_choicesModel->setStringList(m_translation->multipleChoice());
+        removeChoiceButton->setEnabled(m_translation->multipleChoice().count() > 0);
     } else {
         setEnabled(false);
     }
+    removeChoiceButton->setEnabled(m_translation && m_translation->multipleChoice().count() > 0);
 }
 
 
 void MCEntryPage::slotAddChoiceButton()
 {
-    kDebug() << "add choice";
-    if (m_choicesModel) {
-        m_choicesModel->insertRow(multipleChoiceListView->model()->rowCount());
+    m_choicesModel->insertRow(m_choicesModel->rowCount());
+    QModelIndex index(m_choicesModel->index(m_choicesModel->rowCount() - 1));
+    m_choicesModel->setData(index, "");
+    multipleChoiceListView->scrollTo(index);
+    multipleChoiceListView->setCurrentIndex(index);
+    multipleChoiceListView->edit(index);
+}
 
-        multipleChoiceListView->edit(m_choicesModel->index(multipleChoiceListView->model()->rowCount()-1));
+
+void MCEntryPage::slotRemoveChoiceButton()
+{
+    QModelIndex index = multipleChoiceListView->selectionModel()->currentIndex();
+    if (index.isValid()) {
+        m_choicesModel->removeRows(index.row(), 1, QModelIndex());
+    } else {
+        m_choicesModel->removeRows(m_choicesModel->rowCount(QModelIndex()) - 1, 1, QModelIndex());
     }
+    m_translation->multipleChoice() = m_choicesModel->stringList();
+    removeChoiceButton->setEnabled(m_translation && m_translation->multipleChoice().count() > 0);
 }
 
 

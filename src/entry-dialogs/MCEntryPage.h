@@ -50,6 +50,8 @@ protected:
 private slots:
     void slotDataChanged( const QModelIndex & topLeft, const QModelIndex & bottomRight );
     void slotAddChoiceButton();
+    void slotRemoveChoiceButton();
+
 private:
     KEduVocTranslation* m_translation;
     QStringListModel * m_choicesModel;
