@@ -1,16 +1,8 @@
 /***************************************************************************
 
-              dialog page for multiple choice suggestions
-
-    -----------------------------------------------------------------------
-
-    begin         : Mon Oct 29 18:09:29 1999
-
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
                     (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
-
-    -----------------------------------------------------------------------
 
  ***************************************************************************/
 
@@ -23,7 +15,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "MCEntryPage.h"
+#include "multiplechoicewidget.h"
 
 #include <keduvoctranslation.h>
 #include <keduvocexpression.h>
@@ -32,7 +24,7 @@
 #include <QStringListModel>
 #include <QDragEnterEvent>
 
-MCEntryPage::MCEntryPage(QWidget *parent) : QWidget(parent)
+MultipleChoiceWidget::MultipleChoiceWidget(QWidget *parent) : QWidget(parent)
 {
     setupUi(this);
 
@@ -51,14 +43,14 @@ MCEntryPage::MCEntryPage(QWidget *parent) : QWidget(parent)
 }
 
 
-void MCEntryPage::slotDataChanged( const QModelIndex & topLeft, const QModelIndex & bottomRight )
+void MultipleChoiceWidget::slotDataChanged( const QModelIndex & topLeft, const QModelIndex & bottomRight )
 {
     m_translation->multipleChoice() = m_choicesModel->stringList();
     removeChoiceButton->setEnabled(m_translation && m_translation->multipleChoice().count() > 0);
 }
 
 
-void MCEntryPage::setTranslation(KEduVocExpression * entry, int translation)
+void MultipleChoiceWidget::setTranslation(KEduVocExpression * entry, int translation)
 {
     if (entry) {
         m_translation = entry->translation(translation);
@@ -77,7 +69,7 @@ void MCEntryPage::setTranslation(KEduVocExpression * entry, int translation)
 }
 
 
-void MCEntryPage::slotAddChoiceButton()
+void MultipleChoiceWidget::slotAddChoiceButton()
 {
     m_choicesModel->insertRow(m_choicesModel->rowCount());
     QModelIndex index(m_choicesModel->index(m_choicesModel->rowCount() - 1));
@@ -88,7 +80,7 @@ void MCEntryPage::slotAddChoiceButton()
 }
 
 
-void MCEntryPage::slotRemoveChoiceButton()
+void MultipleChoiceWidget::slotRemoveChoiceButton()
 {
     QModelIndex index = multipleChoiceListView->selectionModel()->currentIndex();
     if (index.isValid()) {
@@ -101,7 +93,7 @@ void MCEntryPage::slotRemoveChoiceButton()
 }
 
 
-bool MCEntryPage::eventFilter(QObject * obj, QEvent * event)
+bool MultipleChoiceWidget::eventFilter(QObject * obj, QEvent * event)
 {
     if (obj == multipleChoiceListView) {
         if (event->type() == QEvent::DragEnter) {
@@ -134,5 +126,5 @@ bool MCEntryPage::eventFilter(QObject * obj, QEvent * event)
 }
 
 
-#include "MCEntryPage.moc"
+#include "multiplechoicewidget.moc"
 

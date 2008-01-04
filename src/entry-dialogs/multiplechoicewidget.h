@@ -23,8 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef MCEntryPage_included
-#define MCEntryPage_included
+#ifndef MULTIPLECHOICEWIDGET_H
+#define MULTIPLECHOICEWIDGET_H
 
 #include "ui_multiplechoicewidget.h"
 
@@ -34,12 +34,12 @@ class KEduVocExpression;
 class KEduVocTranslation;
 class QStringListModel;
 
-class MCEntryPage : public QWidget, public Ui::multipleChoiceWidget
+class MultipleChoiceWidget : public QWidget, public Ui::multipleChoiceWidget
 {
     Q_OBJECT
 
 public:
-    explicit MCEntryPage(QWidget *parent = 0);
+    explicit MultipleChoiceWidget(QWidget *parent = 0);
 
 public slots:
     void setTranslation(KEduVocExpression* entry, int translation);
@@ -57,4 +57,4 @@ private:
     QStringListModel * m_choicesModel;
 };
 
-#endif // MCEntryPage_included
+#endif

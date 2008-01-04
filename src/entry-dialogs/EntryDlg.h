@@ -36,7 +36,7 @@
 #include "additionaleditpage.h"
 #include "TenseEntryPage.h"
 #include "AdjEntryPage.h"
-#include "MCEntryPage.h"
+#include "multiplechoicewidget.h"
 
 class QTabWidget;
 class KXmlGuiWindow;
@@ -92,7 +92,7 @@ private:
     AdditionalEditPage *additionalPage;
     TenseEntryPage   *conjugationPage;
     AdjEntryPage     *comparisonPage;
-    MCEntryPage      *mc_page;
+    MultipleChoiceWidget      *mc_page;
 
     /// Container for KPageDialog
     KPageWidgetItem  *commonPageWidget;

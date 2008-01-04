@@ -102,7 +102,7 @@ set(entrydialogs_SRCS
   #  entry-dialogs/CommonEntryPage.cpp
   #  entry-dialogs/EntryDlg.cpp
   #  entry-dialogs/FromToEntryPage.cpp
-    entry-dialogs/MCEntryPage.cpp
+    entry-dialogs/multiplechoicewidget.cpp
   #  entry-dialogs/PhoneticEntryPage.cpp
   #  entry-dialogs/TenseEntryPage.cpp
   #  entry-dialogs/wordtypewidget.cpp
@@ -116,7 +116,6 @@ kde4_add_ui_files(entrydialogs_SRCS
     entry-dialogs/additionaleditpage.ui
     entry-dialogs/CommonEntryPageForm.ui
     entry-dialogs/FromToEntryPageForm.ui
-#     entry-dialogs/MCEntryPageForm.ui
     entry-dialogs/TenseEntryPageForm.ui
     entry-dialogs/wordtypewidget.ui
     entry-dialogs/multiplechoicewidget.ui

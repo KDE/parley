@@ -33,7 +33,7 @@
 
 #include "entry-dialogs/EntryDlg.h"
 #include "entry-dialogs/wordtypewidget.h"
-#include "entry-dialogs/MCEntryPage.h"
+#include "entry-dialogs/multiplechoicewidget.h"
 #include "entry-dialogs/comparisonwidget.h"
 #include "entry-dialogs/imagechooserwidget.h"
 #include "entry-dialogs/audiowidget.h"
@@ -728,7 +728,7 @@ void ParleyApp::initDockWidgets()
 // Multiple choice
     QDockWidget *multipleChoiceDock = new QDockWidget(i18n("Multiple Choice"), this);
     multipleChoiceDock->setObjectName("MultipleChoiceDock");
-    MCEntryPage *multipleChoiceWidget = new MCEntryPage(this);
+    MultipleChoiceWidget *multipleChoiceWidget = new MultipleChoiceWidget(this);
     multipleChoiceDock->setWidget(multipleChoiceWidget);
     addDockWidget(Qt::RightDockWidgetArea, multipleChoiceDock);
     actionCollection()->addAction("show_multiplechoice_dock", multipleChoiceDock->toggleViewAction());
