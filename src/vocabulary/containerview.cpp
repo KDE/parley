@@ -37,13 +37,7 @@
 
 ContainerView::ContainerView(QWidget *parent) : QTreeView(parent)
 {
-    header()->setResizeMode(QHeaderView::ResizeToContents);
-// seems like a qt bug, fixed in 4.4 hopefully
     header()->setStretchLastSection(false);
-//     header()->setResizeMode(0, QHeaderView::Stretch);
-//     header()->setResizeMode(1, QHeaderView::ResizeToContents);
-
-
     header()->setVisible(false);
 
     setAlternatingRowColors(true);
@@ -63,6 +57,8 @@ void ContainerView::setModel(ContainerModel *model)
 {
     QTreeView::setModel(model);
     m_model = model;
+    header()->setResizeMode(0, QHeaderView::Stretch);
+    header()->setResizeMode(1, QHeaderView::ResizeToContents);
 }
 
 void ContainerView::slotCreateNewLesson()
