@@ -4,8 +4,8 @@ Things to improve in parley
 **In this branch: **
  * Make all dock widget work
  * Add the docks to the menu bar
-   - figure out how to make sure that one translation has only one word type
    - what about special types that have extra attributes like conjugations etc?
+     - create a context menu to set a word type to contain nouns etc
  * KOffice has fancy hide docker buttons in their docker titles, steal them ;)
  * Add the ability to record sound files with phonon to a dock if possible.
  * Save columns hide state, enable hiding of main columns with their children maybe
