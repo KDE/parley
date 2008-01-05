@@ -78,9 +78,9 @@ void ComparisonWidget::slotMakeAdjectiveButton()
     }
 
     // find an adjective container
-    KEduVocContainer* container = m_doc->wordTypeContainer()->childOfType(KEduVocWordType::Adjective);
+    KEduVocWordType* container = m_doc->wordTypeContainer()->childOfType(KEduVocWordType::Adjective);
     if (container) {
-        m_translation->setWordType(static_cast<KEduVocWordType*>(container));
+        m_translation->setWordType(container);
         comparativeLineEdit->setEnabled(true);
         superlativeLineEdit->setEnabled(true);
         comparativeLineEdit->setFocus();
@@ -96,16 +96,16 @@ void ComparisonWidget::slotMakeAdverbButton()
         return;
     }
 
-    // find an adjective container
-    KEduVocContainer* container = m_doc->wordTypeContainer()->childOfType(KEduVocWordType::Adverb);
+    // find an adverb container
+    KEduVocWordType* container = m_doc->wordTypeContainer()->childOfType(KEduVocWordType::Adverb);
     if (container) {
-        m_translation->setWordType(static_cast<KEduVocWordType*>(container));
+        m_translation->setWordType(container);
         comparativeLineEdit->setEnabled(true);
         superlativeLineEdit->setEnabled(true);
         comparativeLineEdit->setFocus();
     } else {
         ///@todo better message
-        KMessageBox::information(this, i18n("Could not determine word type of adjectives"));
+        KMessageBox::information(this, i18n("Could not determine word type of adverbs"));
     }
 }
 
