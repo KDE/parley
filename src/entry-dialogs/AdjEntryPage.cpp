@@ -56,16 +56,16 @@ bool AdjEntryPage::isModified()
         return false;
     }
 
-    KEduVocExpression *expr = m_doc->entry(m_currentRow);
-    if ( expr->translation(m_currentTranslation).comparison().l1() != lev1Field->text() ) {
-        return true;
-    }
-    if ( expr->translation(m_currentTranslation).comparison().l2() != lev2Field->text() ) {
-        return true;
-    }
-    if ( expr->translation(m_currentTranslation).comparison().l3() != lev3Field->text() ) {
-        return true;
-    }
+//     KEduVocExpression *expr = m_doc->entry(m_currentRow);
+//     if ( expr->translation(m_currentTranslation).comparison().l1() != lev1Field->text() ) {
+//         return true;
+//     }
+//     if ( expr->translation(m_currentTranslation).comparison().l2() != lev2Field->text() ) {
+//         return true;
+//     }
+//     if ( expr->translation(m_currentTranslation).comparison().l3() != lev3Field->text() ) {
+//         return true;
+//     }
     return false;
 }
 
@@ -74,20 +74,20 @@ void AdjEntryPage::setData(int row, int col)
 {
     m_currentRow = row;
     m_currentTranslation = col;
-    KEduVocExpression *expr = m_doc->entry(m_currentRow);
-    lev1Field->setText(expr->translation(m_currentTranslation).comparison().l1());
-    lev2Field->setText(expr->translation(m_currentTranslation).comparison().l2());
-    lev3Field->setText(expr->translation(m_currentTranslation).comparison().l3());
+//     KEduVocExpression *expr = m_doc->entry(m_currentRow);
+//     lev1Field->setText(expr->translation(m_currentTranslation).comparison().l1());
+//     lev2Field->setText(expr->translation(m_currentTranslation).comparison().l2());
+//     lev3Field->setText(expr->translation(m_currentTranslation).comparison().l3());
 }
 
 void AdjEntryPage::commitData()
 {
-    KEduVocComparison comp;
-    comp.setL1(lev1Field->text());
-    comp.setL2(lev2Field->text());
-    comp.setL3(lev3Field->text());
-
-    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setComparison( comp );
+//     KEduVocComparison comp;
+//     comp.setL1(lev1Field->text());
+//     comp.setL2(lev2Field->text());
+//     comp.setL3(lev3Field->text());
+// 
+//     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setComparison( comp );
 }
 
 void AdjEntryPage::clear()

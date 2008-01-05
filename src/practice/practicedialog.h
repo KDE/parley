@@ -146,7 +146,7 @@ protected:
     void audioPlayFile(const KUrl& soundFile);
 
     void imageShowFile(QGraphicsView* view, const QString& url);
-    void imageShowFromEntry(QGraphicsView* view, const TestEntry* entry);
+    void imageShowFromEntry(QGraphicsView* view);
 
     /** compare two strings with simplified applied first (pretty smart huh?) */
     bool smartCompare(const QString&, const QString&) const;

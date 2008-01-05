@@ -55,7 +55,5 @@ private slots:
 
 private:
     Ui::AdjQueryDlgForm * mw;
-
-    KEduVocComparison comp;
 };
 #endif // AdjQueryDlg_included

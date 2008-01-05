@@ -39,14 +39,14 @@ GrammarDialog::GrammarDialog(KEduVocDocument *doc, QWidget *parent) : KPageDialo
 
     setFaceType(KPageDialog::List);
 
-    typeOptPage = new WordTypeOptionPage(doc, this);
-    addPage(typeOptPage, i18nc("word types","Types"));
+//     typeOptPage = new WordTypeOptionPage(doc, this);
+//     addPage(typeOptPage, i18nc("word types","Types"));
 
     tenseOptPage = new TenseOptPage(doc, 0);
     addPage(tenseOptPage, i18n("Tenses"));
 
-    useOptPage = new UsageOptPage(doc, 0);
-    addPage(useOptPage, i18nc("usage (area) of an expression", "Usage"));
+//     useOptPage = new UsageOptPage(doc, 0);
+//     addPage(useOptPage, i18nc("usage (area) of an expression", "Usage"));
 
     // add the language specific pages
     LangPropPage *lpp;
@@ -76,7 +76,7 @@ GrammarDialog::~GrammarDialog()
 {
     KConfigGroup cg(KGlobal::config(), "GrammarDialog");
     KDialog::saveDialogSize(cg);
-    useOptPage->deleteLater();
+//     useOptPage->deleteLater();
     typeOptPage->deleteLater();
     tenseOptPage->deleteLater();
 }
@@ -84,8 +84,8 @@ GrammarDialog::~GrammarDialog()
 
 void GrammarDialog::accept()
 {
-    useOptPage->accept();
-    typeOptPage->accept();
+//     useOptPage->accept();
+//     typeOptPage->accept();
     tenseOptPage->accept();
 
     foreach ( LangPropPage* langPage, langPages ) {

@@ -4,17 +4,44 @@ Things to improve in parley
  * update the dtd and validate some documents
  * write more unit tests
  * add image tag to lesson class
- * adverbs/adjectives: base form is there already, no need to enter it again!
 
-**BUGS**
- * When sorting columns the entry numbers sometimes are not updated. Either hide the number column (do we need it anyways? or fix that)
+ * Make all dock widgets work
+ * Add the docks to the menu bar
+   - what about special types that have extra attributes like conjugations etc?
+     - create a context menu to set a word type to contain nouns etc
+   - creating a new doc does not create any word types
+ * KOffice has fancy hide docker buttons in their docker titles, steal them ;)
+ * Add the ability to record sound files with phonon to a dock if possible.
+ * Save columns hide state, enable hiding of main columns with their children maybe
+ * Saving crashes right now
+ * Save changes in the multiple choice dock
+ * activate all readers/writers
+ * Finish porting the word types to use the lesson class and rename the lesson class to container
+ * Use the same for the leitner implementation
+ * Implement searching again
+ * Find a way to select all vocabulary - do we need a root lesson again?
+ * Implement Leitner method
+ * Update word type and lesson when selecting an entry (?) (Leitner as well?)
+ * What about editing multiple entries at the same time? does that work? does it help with the new design?
+ * The statistics page is broken. At least reset does not work and there is no tree view for it.
+ * Hide most docks upon first start
+
+ * Drag and drop for several things:
+   - Reorder lessons
+   - Move lessons to be child lessons of others
+   - Drag entries into lessons/word types/leitner boxes
+   - Drag lessons/word types into leitner boxes
+   - Drop images from outside
+   - Sound
+
+ * Give containers an image tag and display images in the lesson view
+ * Check for mem leaks - I bet I introduced some in the lib.
 
 Gui
  * shortcut keys are badly assigned, they do not respect the focus
  * Image file open dialog: filter and preview. Maybe restrict to image files?
  * Sound file open dialog: filter and preview
  * Editing of vocabulary should be made easier
- * Default windows size bigger (eg 800x525)
  * Navigation (editing vocabulary).
    act as usual spreadsheet application. (especially useful if trying to edit more than 2 columns).
      Enter       -> move down.
@@ -40,7 +67,6 @@ General
    application window, and keep "current" document opened?
  * Warn about overwriting kvtml-1 files
 
-Grammar
  * declination support
    - a class is there
    - reader and writer
@@ -58,5 +84,4 @@ Pronunciation
  * research how entering that could be made easier
  * option to display it along in the practice dialogs
  * is a pronunciation practice desireable? maybe together with sound (write after listening) also very much for chinese I'm told.
-
 

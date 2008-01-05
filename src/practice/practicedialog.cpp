@@ -61,15 +61,12 @@ PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QW
     m_validator = new AnswerValidator(m_doc);
     m_validator->setLanguage(Prefs::solutionLanguage());
 
-    /// @todo: uncomment as soon as new strings may be added
-    /*
     if ( !m_validator->spellcheckerAvailable() ) {
         KPassivePopup* pop = new KPassivePopup(this);
         pop->setTimeout(10000);
         pop->setView(i18nc("@popupmessage", "Either the language set up is incorrect or no spellchecker was installed for %1 (%2).", m_doc->identifier(Prefs::solutionLanguage()).name(), m_doc->identifier(Prefs::solutionLanguage()).locale()), i18nc("@title of a popup", "No Spell Checker Available"));
         pop->show();
     }
-    */
 }
 
 
@@ -162,21 +159,22 @@ void PracticeDialog::setEntry(TestEntry * entry)
 
 void PracticeDialog::editEntry()
 {
-    if (m_answerTimer != 0) {
-        m_answerTimer->stop();
-    }
-
-    EntryDlg* entryDlg = new EntryDlg(0 , m_doc);
-
-    QList<int> entry;
-    entry.append(m_entry->m_index);
-    entryDlg->setData(entry, Prefs::solutionLanguage());
-    entryDlg->exec();
-
-    // punish with a don't know
-    kDebug() << "Edit entry. For now count this attempt as wrong!";
-    signalResult(TestEntryManager::Wrong);
-    continueButtonClicked();
+///@todo hide the test and show the big table with the entry selected.
+//     if (m_answerTimer != 0) {
+//         m_answerTimer->stop();
+//     }
+// 
+//     EntryDlg* entryDlg = new EntryDlg(0 , m_doc);
+// 
+//     QList<KEduVocExpression*> entryList;
+//     entryList.append(m_entry);
+//     entryDlg->setData(entryList, Prefs::solutionLanguage());
+//     entryDlg->exec();
+// 
+//     // punish with a don't know
+//     kDebug() << "Edit entry. For now count this attempt as wrong!";
+//     signalResult(TestEntryManager::Wrong);
+//     continueButtonClicked();
 }
 
 void PracticeDialog::skipKnown()
@@ -209,7 +207,7 @@ void PracticeDialog::resultWrong()
 
 void PracticeDialog::audioPlayFromIdentifier()
 {
-    KUrl file = m_entry->exp->translation(Prefs::questionLanguage()).soundUrl();
+    KUrl file = m_entry->entry()->translation(Prefs::questionLanguage())->soundUrl();
     if ( !file.isEmpty() ) {
         audioPlayFile(file);
     }
@@ -217,7 +215,7 @@ void PracticeDialog::audioPlayFromIdentifier()
 
 void PracticeDialog::audioPlayToIdentifier()
 {
-    KUrl file = m_entry->exp->translation(Prefs::solutionLanguage()).soundUrl();
+    KUrl file = m_entry->entry()->translation(Prefs::solutionLanguage())->soundUrl();
     if ( !file.isEmpty() ) {
         audioPlayFile(file);
     }
@@ -262,12 +260,12 @@ void PracticeDialog::imageShowFile(QGraphicsView * view, const QString & url)
     view->scene()->addItem(pixmapItem);
 }
 
-void PracticeDialog::imageShowFromEntry(QGraphicsView * view, const TestEntry * entry)
+void PracticeDialog::imageShowFromEntry(QGraphicsView * view)
 {
     if ( Prefs::practiceImagesEnabled() ) {
-        QString url = entry->exp->translation(Prefs::questionLanguage()).imageUrl().toLocalFile();
+        QString url = m_entry->entry()->translation(Prefs::questionLanguage())->imageUrl().toLocalFile();
         if ( url.isEmpty() ) {
-            url = entry->exp->translation(Prefs::solutionLanguage()).imageUrl().toLocalFile();
+            url = m_entry->entry()->translation(Prefs::solutionLanguage())->imageUrl().toLocalFile();
         }
         if ( url.isEmpty() ) {
             view->setVisible(false);

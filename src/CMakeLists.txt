@@ -1,7 +1,10 @@
 
 add_subdirectory( settings )
 
-include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/)
+include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/
+#    ${CMAKE_SOURCE_DIR}/marble/src/
+#    ${CMAKE_SOURCE_DIR}/marble/src/lib/
+)
 
 ########### next target ###############
 kde4_add_kcfg_files( libcommondlg_SKEL_SRCS
@@ -19,6 +22,17 @@ set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
 kde4_add_ui_files( libcommondlg_SRCS
     settings/viewoptionsbase.ui
     settings/generaloptionsbase.ui
+)
+
+set(vocabulary_SRCS
+    vocabulary/vocabularymodel.cpp
+    vocabulary/vocabularyview.cpp
+    vocabulary/vocabularydelegate.cpp
+    vocabulary/vocabularyfilter.cpp
+    vocabulary/vocabularymimedata.cpp
+    vocabulary/containermodel.cpp
+    vocabulary/containerview.cpp
+    vocabulary/containermimedata.cpp
 )
 
 set(practice_SRCS
@@ -71,8 +85,8 @@ set(docprop_SRCS
     docprop-dialogs/LangPropPage.cpp
     docprop-dialogs/TenseOptPage.cpp
     docprop-dialogs/TitlePage.cpp
-    docprop-dialogs/TypeOptPage.cpp
-    docprop-dialogs/UsageOptPage.cpp
+#     docprop-dialogs/TypeOptPage.cpp
+   # docprop-dialogs/UsageOptPage.cpp
 )
 
 kde4_add_ui_files(docprop_SRCS
@@ -84,13 +98,17 @@ kde4_add_ui_files(docprop_SRCS
 
 set(entrydialogs_SRCS
     entry-dialogs/AdjEntryPage.cpp
-    entry-dialogs/additionaleditpage.cpp
-    entry-dialogs/CommonEntryPage.cpp
-    entry-dialogs/EntryDlg.cpp
-    entry-dialogs/FromToEntryPage.cpp
-    entry-dialogs/MCEntryPage.cpp
-    entry-dialogs/PhoneticEntryPage.cpp
-    entry-dialogs/TenseEntryPage.cpp
+  #  entry-dialogs/additionaleditpage.cpp
+  #  entry-dialogs/CommonEntryPage.cpp
+  #  entry-dialogs/EntryDlg.cpp
+  #  entry-dialogs/FromToEntryPage.cpp
+    entry-dialogs/multiplechoicewidget.cpp
+  #  entry-dialogs/PhoneticEntryPage.cpp
+  #  entry-dialogs/TenseEntryPage.cpp
+  #  entry-dialogs/wordtypewidget.cpp
+    entry-dialogs/comparisonwidget.cpp
+    entry-dialogs/imagechooserwidget.cpp
+    entry-dialogs/audiowidget.cpp
 )
 
 kde4_add_ui_files(entrydialogs_SRCS
@@ -98,8 +116,12 @@ kde4_add_ui_files(entrydialogs_SRCS
     entry-dialogs/additionaleditpage.ui
     entry-dialogs/CommonEntryPageForm.ui
     entry-dialogs/FromToEntryPageForm.ui
-    entry-dialogs/MCEntryPageForm.ui
     entry-dialogs/TenseEntryPageForm.ui
+    entry-dialogs/wordtypewidget.ui
+    entry-dialogs/multiplechoicewidget.ui
+    entry-dialogs/comparisonwidget.ui
+    entry-dialogs/imagechooserwidget.ui
+    entry-dialogs/audiowidget.ui
 )
 
 set(statisticsdialogs_SRCS
@@ -136,20 +158,18 @@ kde4_add_ui_files(languagedialogs_SRCS
     language-dialogs/languagepage.ui
 )
 
-set(parley_SRCS ${libcommondlg_SRCS} ${practice_SRCS}
+set(parley_SRCS
+    ${vocabulary_SRCS} ${libcommondlg_SRCS} ${practice_SRCS}
     ${configure-practice_SRCS} ${docprop_SRCS}
     ${entrydialogs_SRCS} ${statisticsdialogs_SRCS}
     ${languagedialogs_SRCS} ${newdocument-wizard_SRCS}
-    kva_io.cpp
+    parleydocument.cpp
     parley.cpp
     main.cpp
     kva_init.cpp
-    kvttabledelegate.cpp
-    kvttablemodel.cpp
-    kvttableview.cpp
-    kvtlessonmodel.cpp
-    kvtlessonview.cpp
-    kvtsortfiltermodel.cpp
+
+
+    modeltest/modeltest.cpp
 )
 
 kde4_add_app_icon(parley_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/ox*-app-parley.png")
@@ -157,7 +177,13 @@ kde4_add_app_icon(parley_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/ox*-app-parley.png")
 kde4_add_executable(parley ${parley_SRCS})
 kde4_install_icons( ${ICON_INSTALL_DIR} )
 
-target_link_libraries(parley  keduvocdocument ${KDE4_KNEWSTUFF2_LIBS}  ${KDE4_PHONON_LIBS})
+target_link_libraries(
+    parley
+    keduvocdocument
+#    marblewidget
+    ${KDE4_KNEWSTUFF2_LIBS}
+    ${KDE4_PHONON_LIBS}
+)
 
 install(TARGETS parley  DESTINATION ${BIN_INSTALL_DIR} )
 

@@ -23,36 +23,38 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef MCEntryPage_included
-#define MCEntryPage_included
+#ifndef MULTIPLECHOICEWIDGET_H
+#define MULTIPLECHOICEWIDGET_H
 
-#include "ui_MCEntryPageForm.h"
-#include <keduvocmultiplechoice.h>
-#include <keduvocdocument.h>
+#include "ui_multiplechoicewidget.h"
 
-class MCEntryPage : public QWidget, public Ui::MCEntryPageForm
+#include <QModelIndex>
+
+class KEduVocExpression;
+class KEduVocTranslation;
+class QStringListModel;
+
+class MultipleChoiceWidget : public QWidget, public Ui::multipleChoiceWidget
 {
     Q_OBJECT
 
 public:
-    explicit MCEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
+    explicit MultipleChoiceWidget(QWidget *parent = 0);
 
-    void setData(int row, int col);
-    void commitData();
-    void clear();
+public slots:
+    void setTranslation(KEduVocExpression* entry, int translation);
 
-    bool isModified();
-
-signals:
-    void sigModified();
+protected:
+    bool eventFilter(QObject *obj, QEvent *event);
 
 private slots:
-    void slotDataChanged(const QString&);
+    void slotDataChanged( const QModelIndex & topLeft, const QModelIndex & bottomRight );
+    void slotAddChoiceButton();
+    void slotRemoveChoiceButton();
 
 private:
-    KEduVocDocument     *m_doc;
-    int m_currentRow;
-    int m_currentTranslation;
+    KEduVocTranslation* m_translation;
+    QStringListModel * m_choicesModel;
 };
 
-#endif // MCEntryPage_included
+#endif

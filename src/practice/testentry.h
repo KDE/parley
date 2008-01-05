@@ -32,17 +32,17 @@ public:
         Synonym               =  0x40, /** < a synonym (may be correct) */
         Empty                 =  0x80, /** < empty answer string */
         UnrelatedWord         = 0x100, /** < a valid word but no connection to the solution */
-        Correct               = 0x200, /** < no error, solution was right */
-        UnknownMistake        = 0x400  /** < no idea */
+        Incomplete            = 0x200, /** < the part that was entered is right, but not complete */
+        Correct               = 0x400, /** < no error, solution was right */
+        UnknownMistake        = 0x800  /** < no idea */
     };
 
     Q_DECLARE_FLAGS(ErrorTypes, ErrorType)
 
 
-    TestEntry(KEduVocExpression *_exp, int _nr)
+    TestEntry(KEduVocExpression *entry)
     {
-        exp = _exp;
-        m_index = _nr;
+        m_entry = entry;
         m_answeredCorrectInSequence = 0;
         m_statisticCount = 0;
         m_statisticGoodCount = 0;
@@ -78,14 +78,13 @@ public:
 
     int totalEntries();
 
-    ///@todo make these two members private
-    KEduVocExpression *exp;
-    int m_index;
 
     static void setGradeFrom(int from);
     static void setGradeTo(int to);
     static int gradeFrom();
     static int gradeTo();
+
+    KEduVocExpression *entry();
 
 private:
     void update();
@@ -109,6 +108,9 @@ private:
 
     static int m_gradeTo;
     static int m_gradeFrom;
+
+    /// the entry itself
+    KEduVocExpression *m_entry;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(TestEntry::ErrorTypes)

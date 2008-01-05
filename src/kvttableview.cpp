@@ -195,7 +195,6 @@ void KVTTableView::newPage(QPainter & painter, int res, int startCol, int endCol
     QRect w = painter.window();
     painter.resetMatrix();
     painter.setFont(KGlobalSettings::generalFont());
-    /// @todo improve i18n("KVocTrain - %1", m_doc->title())
     painter.drawText(marg, marg - 20, KGlobal::caption());
     painter.translate(marg, marg);
     painter.drawLine(0 , 0, 0, hh);
@@ -226,6 +225,10 @@ void KVTTableView::resizeEvent(QResizeEvent * event)
 //         return;
 //     }
 
+    if ( !model() || (model()->columnCount() < 3) ) {
+        return;
+    }
+
     QHeaderView * header = horizontalHeader();
     int colCount =  model()->columnCount(QModelIndex());
     int oldWidth = 0;
@@ -245,7 +248,9 @@ void KVTTableView::resizeEvent(QResizeEvent * event)
                 header->resizeSection(KV_COL_MARK, KV_COLWIDTH_MARK);
             }
 
+
             int columnsHalfWidth = 0;
+
             if ( Prefs::tableLessonColumnVisible() ) {
                 // total width / ((total number of columns - active column) * 2 -1 lesson only half) 
                 columnsHalfWidth = newWidth / ((colCount - 1) * 2 -1);

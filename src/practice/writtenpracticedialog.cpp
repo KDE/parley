@@ -27,6 +27,7 @@
 
 #include "kvttablemodel.h"
 #include <keduvocdocument.h>
+#include <keduvocwordtype.h>
 
 #include <KComboBox>
 #include <KLineEdit>
@@ -108,7 +109,7 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
     PracticeDialog::setEntry(entry);
     showContinueButton(false);
 
-//     QString trans = entry->exp->translation( Prefs::solutionLanguage() ).text();
+//     QString trans = entry->entry()->translation( Prefs::solutionLanguage() ).text();
 //     if (Prefs::split())
 //         translations = extractTranslations(trans);
 //     else
@@ -123,7 +124,7 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
 
     mw->verify->setEnabled(true);
     mw->orgField->setFont(Prefs::tableFont());
-    mw->orgField->setText(entry->exp->translation( Prefs::questionLanguage() ).text());
+    mw->orgField->setText(entry->entry()->translation(Prefs::questionLanguage())->text());
     mw->show_all->setDefault(true);
 
     mw->progCount->setText( QString::number(entry->statisticCount()) );
@@ -149,14 +150,14 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
     mw->answerLineEdit->setFocus();
 
     mw->audioPlayQuestionButton->setVisible( Prefs::practiceSoundEnabled() &&
-        !entry->exp->translation( Prefs::questionLanguage() ).soundUrl().isEmpty());
+        !entry->entry()->translation(Prefs::questionLanguage())->soundUrl().isEmpty());
 
     mw->audioPlaySolutionButton->setVisible( Prefs::practiceSoundEnabled() &&
-        !entry->exp->translation( Prefs::solutionLanguage()).soundUrl().isEmpty());
+        !entry->entry()->translation(Prefs::solutionLanguage())->soundUrl().isEmpty());
 
     mw->correctionLabel->setText(QString());
 
-    imageShowFromEntry( mw->imageGraphicsView, entry );
+    imageShowFromEntry( mw->imageGraphicsView );
 }
 
 
@@ -289,7 +290,7 @@ void WrittenPracticeDialog::verifyClicked()
 
 void WrittenPracticeDialog::showMoreClicked()
 {
-    QString solution = m_entry->exp->translation(Prefs::solutionLanguage()).text();
+    QString solution = m_entry->entry()->translation(Prefs::solutionLanguage())->text();
     double result = verifyAnswer(mw->answerLineEdit->text());
     if ( result == 1.0 ) {
         resultCorrect();
@@ -384,15 +385,15 @@ void WrittenPracticeDialog::slotAnswerChanged(const QString&)
 void WrittenPracticeDialog::setHintFields()
 {
     bool hasComment =
-        !m_entry->exp->translation(Prefs::questionLanguage()).comment().isEmpty();
+        !m_entry->entry()->translation(Prefs::questionLanguage())->comment().isEmpty();
     mw->commentLabel->setVisible(hasComment);
     mw->commentCheckBox->setVisible(hasComment);
 
-    bool hasFalseFriend = !m_entry->exp->translation(Prefs::questionLanguage()).falseFriend(Prefs::solutionLanguage()).isEmpty();
+    bool hasFalseFriend = !m_entry->entry()->translation(Prefs::questionLanguage())->falseFriend(Prefs::solutionLanguage()).isEmpty();
     mw->falseFriendLabel->setVisible(hasFalseFriend);
     mw->falsefriendCheckBox->setVisible(hasFalseFriend);
 
-    bool hasType = !m_entry->exp->translation(Prefs::questionLanguage()).type().isEmpty();
+    bool hasType = !m_entry->entry()->translation(Prefs::questionLanguage())->wordType()->name().isEmpty();
     mw->typeLabel->setVisible(hasType);
     mw->typeCheckBox->setVisible(hasType);
 
@@ -404,7 +405,7 @@ void WrittenPracticeDialog::setHintFields()
 void WrittenPracticeDialog::slotFalseFriendClicked(bool show)
 {
     if ( show ) {
-        mw->falseFriendLabel->setText(m_entry->exp->translation(Prefs::questionLanguage()).falseFriend(Prefs::solutionLanguage()));
+        mw->falseFriendLabel->setText(m_entry->entry()->translation(Prefs::questionLanguage())->falseFriend(Prefs::solutionLanguage()));
     } else {
         mw->falseFriendLabel->setText(QString());
     }
@@ -413,7 +414,7 @@ void WrittenPracticeDialog::slotFalseFriendClicked(bool show)
 void WrittenPracticeDialog::slotRemClicked(bool show)
 {
     if ( show ) {
-        mw->commentLabel->setText(m_entry->exp->translation(Prefs::questionLanguage()).comment());
+        mw->commentLabel->setText(m_entry->entry()->translation(Prefs::questionLanguage())->comment());
     } else {
         mw->commentLabel->setText(QString());
     }
@@ -422,7 +423,7 @@ void WrittenPracticeDialog::slotRemClicked(bool show)
 void WrittenPracticeDialog::slotTypeClicked(bool show)
 {
     if ( show ) {
-        mw->typeLabel->setText(m_entry->exp->translation(Prefs::questionLanguage()).type());
+        mw->typeLabel->setText(m_entry->entry()->translation(Prefs::questionLanguage())->wordType()->name());
     } else {
         mw->typeLabel->setText(QString());
     }
@@ -486,7 +487,7 @@ void WrittenPracticeDialog::showContinueButton(bool show)
 
     if ( show ) {
         stopAnswerTimer();
-        mw->answerLineEdit->setText(m_entry->exp->translation(Prefs::solutionLanguage()).text());
+        mw->answerLineEdit->setText(m_entry->entry()->translation(Prefs::solutionLanguage())->text());
         mw->continueButton->setDefault(true);
         setWidgetStyle(mw->answerLineEdit, PositiveResult);
         mw->answerLineEdit->setReadOnly(true);

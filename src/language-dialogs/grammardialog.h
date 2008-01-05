@@ -36,7 +36,7 @@ public:
     void accept();
 
 private:
-    UsageOptPage          *useOptPage;
+//     UsageOptPage          *useOptPage;
     WordTypeOptionPage    *typeOptPage;
     TenseOptPage          *tenseOptPage;
     QList<LangPropPage *> langPages;

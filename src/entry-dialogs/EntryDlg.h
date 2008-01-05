@@ -36,7 +36,7 @@
 #include "additionaleditpage.h"
 #include "TenseEntryPage.h"
 #include "AdjEntryPage.h"
-#include "MCEntryPage.h"
+#include "multiplechoicewidget.h"
 
 class QTabWidget;
 class KXmlGuiWindow;
@@ -51,10 +51,12 @@ public:
     ~EntryDlg();
 
     bool isModified();
-    void setData(const QList<int>& entries, int currentTranslation);
 
     /// saves the changes to m_doc
     void commitData(bool force);
+
+public slots:
+    void setData(const QList<int>& entries, int currentTranslation);
 
 signals:
     /**
@@ -90,7 +92,7 @@ private:
     AdditionalEditPage *additionalPage;
     TenseEntryPage   *conjugationPage;
     AdjEntryPage     *comparisonPage;
-    MCEntryPage      *mc_page;
+    MultipleChoiceWidget      *mc_page;
 
     /// Container for KPageDialog
     KPageWidgetItem  *commonPageWidget;

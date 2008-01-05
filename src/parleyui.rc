@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="parley"  version="0.1">
+<gui name="parley"  version="0.2">
  <MenuBar>
   <Menu name="file" >
    <Action append="open_merge" name="file_open_example" />
@@ -29,9 +29,6 @@
    <Action name="rename_lesson" />
    <Action name="delete_lesson" />
    <Separator/>
-   <Action name="check_all_lessons" />
-   <Action name="check_no_lessons" />
-   <Separator/>
    <Action name="split_lesson" />
   </Menu>
   <Menu name="learning" >
@@ -42,9 +39,21 @@
    <Action name="show_statistics" />
   </Menu>
   <Menu name="settings" >
-    <Action name="config_show_search" />
-    <Action name="config_show_active_column" />
-    <Action name="config_show_lesson_column" />
+   <Menu name="tools" >
+   <text>Tools</text>
+    <Action name="show_lesson_dock"/>
+    <Action name="show_wordtype_dock"/>
+    <Action name="show_image_dock"/>
+    <Action name="show_audio_dock"/>
+    <Action name="show_comparison_dock"/>
+    <Action name="show_conjugation_dock"/>
+    <Action name="show_declination_dock"/>
+    <Action name="show_pronunciation_dock"/>
+    <Action name="show_leitner_dock"/>
+    <Action name="show_multiplechoice_dock"/>
+   </Menu>
+   <Action name="config_show_search" />
+   <Action name="show_vocabulary_columns_menu" />
   </Menu>
  </MenuBar>
 

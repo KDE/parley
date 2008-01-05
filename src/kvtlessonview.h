@@ -19,12 +19,13 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef KVTLESSONVIEW_H
-#define KVTLESSONVIEW_H
+#ifndef LESSONVIEW_H
+#define LESSONVIEW_H
 
 #include <QTreeView>
 
-class KVTLessonModel;
+class LessonModel;
+class KEduVocLesson;
 
 /**
  * View for the lesson list.
@@ -39,14 +40,20 @@ public:
      * Also creates the menu to manipulate the lessons.
      * @param parent parent widget */
     KVTLessonView(QWidget *parent = 0);
+
     /** Set the model for the view.
      * @param model the model */
-    void setModel(KVTLessonModel *model);
+    void setModel(LessonModel *model);
+
     /** Select the current lesson from the document.*/
     void initializeSelection();
+
     // /** Append an action to the right click menu.
     // * @param appendAction */
     //void appendAction(QAction *appendAction);
+
+    KEduVocLesson * currentLesson();
+
 public slots:
     /** The model was reset, we need to update the selection using initializeSelection. */
     void slotModelReset();
@@ -86,7 +93,7 @@ private:
     int indexOfCurrentLesson();
     void dropEvent(QDropEvent * event);
     /** The KVTLessonModel for this view. */
-    KVTLessonModel *m_model;
+    LessonModel *m_model;
     /** The context menu for the lesson list. */
     QMenu *m_lessonMenu;
 };

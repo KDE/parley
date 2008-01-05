@@ -101,7 +101,6 @@ private slots:
     void setNextEntry();
 
 private:
-    void createPracticeDialog();
 
     /**
      * Check if @p expr is valid for the current query settings.

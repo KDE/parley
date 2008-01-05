@@ -26,6 +26,8 @@
 #ifndef PARLEY_H
 #define PARLEY_H
 
+#include "parleydocument.h"
+
 #include <KXmlGuiWindow>
 #include <KUrl>
 #include <QItemSelection>
@@ -33,14 +35,10 @@
 
 #define IDS_DEFAULT I18N_NOOP("Ready.")
 
-class KVTTableModel;
-class KVTSortFilterModel;
-class KVTTableView;
-class KVTLessonModel;
-class KVTLessonView;
 class PracticeManager;
 class EntryDlg;
-class KVTNewStuff;
+class LessonDockWidget;
+class WordTypeDockWidget;
 
 class KEduVocDocument;
 class KLineEdit;
@@ -48,9 +46,15 @@ class KComboBox;
 class KMessageBox;
 class KRecentFilesAction;
 class KAction;
+class KActionMenu;
 class QProgressBar;
 class QSplitter;
 class QLabel;
+class VocabularyView;
+class VocabularyModel;
+class VocabularyFilter;
+class ContainerView;
+class ContainerModel;
 
 /**
   * This Class is the base class for your application. It sets up the main
@@ -63,60 +67,38 @@ class ParleyApp : public KXmlGuiWindow
     Q_OBJECT
 
 public:
-    /** construtor */
-    ParleyApp(const QString& appName, QWidget *parent = 0);
+    /** construtor with appName (executable name) and filename to open */
+    ParleyApp(const QString& appName, const KUrl &filename = KUrl());
+
     /** destructor */
     ~ParleyApp();
     void initActions();
 
     /** setup the statusbar */
     void initStatusBar();
-    /** setup the main document*/
-    void initDoc();
     /** setup the main model*/
     void initModel();
-    /** setup the lesson list and its buttons */
-    QWidget* initLessonList(QWidget *parent);
+
     /** setup the main view*/
     void initView();
+
+    void initDockWidgets();
+
     /** save the app-specific options on slotAppExit or by an Options dialog */
     void saveOptions();
 
     /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
     void updateTableFilter();
-    /** Make sure, the lesson is visible - if combo is set to
-      1. all, no problem
-      2. in query -> if current not in query change combo?
-      3. current -> make the lesson current */
-    void makeLessonVisibleInTable(int lessonIndex);
 
-    /** saves the window properties for each open window during session end to the session config file, including saving the currently
-    * opened file by a temporary filename provided by KApplication.
-    * @see KXmlGuiWindow#saveProperties
-    */
-    virtual void saveProperties(KConfigGroup &);
-    /** reads the session config file and restores the application's state including the last opened files and documents by reading the
-    * temporary files saved by saveProperties()
-    * @see KXmlGuiWindow#readProperties
-    */
-    virtual void readProperties(const KConfigGroup &);
-
-    void removeProgressBar();
-    void prepareProgressBar();
-
-signals:
-    void progressChanged(KEduVocDocument *, int curr_percent);
 
 public slots:
     void slotUpdateWindowCaption();
 
     /** select an entry */
-    void slotSaveSelection();
     void slotCancelSelection();
     void slotSelectAll();
-    void slotProgress(KEduVocDocument*,int);
 
-    void slotCleanVocabulary();
+//     void slotCleanVocabulary();
 
     /** append language to vocabulary - creates a new column */
     void slotEditLanguages();
@@ -134,41 +116,16 @@ public slots:
     void startPractice();
     void configurePractice();
 
-    void slotTimeOutBackup();
-
-    /** open a new application window */
-    void slotFileNew();
-    /** open a document */
-    void slotFileOpen();
-    /** opens a file from the recent files menu */
-    void slotFileOpenRecent(const KUrl& url);
-    /** open a sample document */
-    void slotFileOpenExample();
-    /** download new vocabularies */
-    void slotGHNS();
-    void loadFileFromPath(const KUrl &, bool addRecent = true);
-    /** merge a document */
-    void slotFileMerge();
-    /** save a document */
-    void slotFileSave();
-    /** save a document under a different filename*/
-    void slotFileSaveAs();
-    void slotFilePrint();
     void slotFileQuit();
-
 
     /** put the marked text/object into the clipboard*/
     void slotEditCopy();
-
-    /** Create a new entry */
-    void slotNewEntry();
 
     /** Cut an entry */
     void slotCutEntry();
 
     /** Delete an entry */
     void slotDeleteEntry();
-
 
     /** paste the clipboard into the document*/
     void slotEditPaste();
@@ -184,6 +141,9 @@ public slots:
      * Close the entry dialog
      */
     void removeEntryDlg();
+
+signals:
+    void signalSetData( const QList<int>& entries, int currentTranslation);
 
 private slots:
     /**
@@ -202,68 +162,60 @@ private slots:
     /**
      * To update e.g. context menu entries when the table view changed
      */
-    void slotCurrentLessonChanged();
+    void slotCurrentLessonChanged(int newLesson);
 
     /** edit an entry */
     void slotEditEntry();
 
 private:
-    /**
-     * Start the wizard to help set up the doc.
-     */
-    void newDocumentWizard();
-    /**
-     * Add some pre defined types and usages.
-     */
-    void initializeDefaultGrammar();
-    /**
-     * When starting the first time, create some entries to get started.
-     */
-    void createExampleEntries();
 
-    ///@todo these are referred to somewhere. should probably be avoidable.
+    /**
+     * Set the current doc (after creating a new one or opening a file)
+     */
+    void updateDocument();
+
+    /**
+     * When the selection changes, the editors need to be notified
+     */
+    void updateEditWidgets();
+
     // KAction pointers to enable/disable actions
-    KRecentFilesAction* fileOpenRecent;
-    KAction* editDelete;
-    KAction* vocabShowSearchBar;
+    KRecentFilesAction* m_recentFilesAction;
+    KAction* m_deleteEntriesAction;
+    KAction* m_vocabShowSearchBarAction;
+    KActionMenu* m_vocabularyColumnsActionMenu;
 
     QString lastPixName;
 
-    /** m_editCombo selects which lessons to display in m_tableView (the main table) */
-    KComboBox *m_lessonSelectionCombo;
-
-    /** m_tableView is the main widget which is the table that represents your working area. */
-    KVTTableView *m_tableView;
-
-    /** m_lessonView is the lesson list at the left side. */
-    KVTLessonView *m_lessonView;
-
-    /** Divides the main window to have the lessons and the table. */
-    QSplitter *m_mainSplitter;
+    VocabularyModel *m_vocabularyModel;
+    VocabularyView *m_vocabularyView;
+    VocabularyFilter *m_vocabularyFilter;
 
     QWidget *m_searchWidget;
 
-    /** m_doc represents your vocabulary document. It keeps
-      * information such as filename and does the serialization of your files.
-      */
-    KEduVocDocument *m_doc;
+    /** m_document is the current vocabulary document. */
+    ParleyDocument   *m_document;
+
+    /// dock widgets to display lessons, word types, ...
+    ContainerView *m_lessonView;
+    ContainerModel *m_lessonModel;
+
+    ContainerView *m_wordTypeView;
+    ContainerModel *m_wordTypeModel;
 
     /** The models to represent the data of m_doc */
-    KVTTableModel       *m_tableModel;
-    KVTLessonModel      *m_lessonModel;
-    KVTSortFilterModel  *m_sortFilterModel;
-
-    QString              m_textToFind;
+//     KVTTableModel       *m_tableModel;
+//     KVTSortFilterModel  *m_sortFilterModel;
 
     KLineEdit           *m_searchLine;
 
-    EntryDlg            *entryDlg;
+    EntryDlg            *m_entryDlg;
 
-    QProgressBar        *pbar;
     QLabel              *m_pronunciationStatusBarLabel;
     QLabel              *m_remarkStatusBarLabel;
     QLabel              *m_typeStatusBarLabel;
-    KVTNewStuff         *m_newStuff;
+
+    friend class ParleyDocument;
 
     // the name of the executable
     QString m_appName;

@@ -100,32 +100,36 @@ int main(int argc, char* argv[])
     KCmdLineOptions options;
     options.add(I18N_NOOP("+[file]"), ki18n("Document file to open"));
     KCmdLineArgs::addCmdLineOptions(options);
+
     KApplication app;
 
-    ParleyApp *parleyApp = 0;
-    if (app.isSessionRestored()) {
-        int n = 1;
-        while (KXmlGuiWindow::canBeRestored(n)) {
-            parleyApp = new ParleyApp(KCmdLineArgs::appName());
-            parleyApp->restore(n);
-            parleyApp->show();
-            n++;
-        }
-    } else {
-        KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-
-        parleyApp = new ParleyApp(KCmdLineArgs::appName());
-        if (args && args->count() == 1) {
-            parleyApp->loadFileFromPath(args->url(0), true);
-            args->clear();
-        }
-        parleyApp->show();
-    }
     // for i18n of the lib strings
     KGlobal::locale()->insertCatalog("libkdeedu");
 
-    int ret = app.exec();
-//     delete parleyApp;
-    return  ret;
+    ParleyApp *parleyApp = 0;
+
+    if (app.isSessionRestored()) {
+//         kRestoreMainWindows< ParleyApp >();
+        int n = 1;
+        while (KMainWindow::canBeRestored(n)){
+            (new ParleyApp(KCmdLineArgs::appName()))->restore(n);
+            n++;
+        }
+        return app.exec();
+    } else {
+        ParleyApp *parleyApp;
+
+        KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+
+        if (args && args->count() == 1) {
+            parleyApp = new ParleyApp(KCmdLineArgs::appName(), args->url(0));
+            args->clear();
+        } else {
+            parleyApp = new ParleyApp(KCmdLineArgs::appName());
+        }
+        args->clear();
+        parleyApp->show();
+        return app.exec();
+    }
 }
 

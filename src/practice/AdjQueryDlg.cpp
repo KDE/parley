@@ -84,8 +84,6 @@ void AdjQueryDlg::setEntry(TestEntry* entry)
 
     ///@todo set adjective/adverb hint!
 
-    comp = entry->exp->translation(Prefs::solutionLanguage()).comparison();
-
     mw->timebar->setVisible(Prefs::practiceTimeout());
     mw->timelabel->setVisible(Prefs::practiceTimeout());
     mw->show_all->setDefault(true);
@@ -101,38 +99,36 @@ void AdjQueryDlg::setEntry(TestEntry* entry)
     int sel = rs.getLong(3);
     switch (sel) {
     case 0:
-        mw->lev1Field->setText(comp.l1());
+        mw->lev1Field->setText(m_entry->entry()->translation(Prefs::solutionLanguage())->text());
         break;
 
     case 1:
-        mw->lev2Field->setText(comp.l2());
+        mw->lev2Field->setText(m_entry->entry()->translation(Prefs::solutionLanguage())->comparative());
         break;
 
     case 2:
-        mw->lev3Field->setText(comp.l3());
+        mw->lev3Field->setText(m_entry->entry()->translation(Prefs::solutionLanguage())->superlative());
         break;
     }
 
-    mw->lev1Field->setEnabled(!comp.l1().isEmpty());
-    mw->lev2Field->setEnabled(!comp.l2().isEmpty());
-    mw->lev3Field->setEnabled(!comp.l3().isEmpty());
+    mw->lev1Field->setEnabled(!m_entry->entry()->translation(Prefs::solutionLanguage())->text().isEmpty());
+    mw->lev2Field->setEnabled(!m_entry->entry()->translation(Prefs::solutionLanguage())->comparative().isEmpty());
+    mw->lev3Field->setEnabled(!m_entry->entry()->translation(Prefs::solutionLanguage())->superlative().isEmpty());
 
     resetAllFields();
 
     mw->lev1Field->setFocus();
 
-    imageShowFromEntry( mw->imageGraphicsView, entry );
+    imageShowFromEntry( mw->imageGraphicsView );
 }
 
 
 void AdjQueryDlg::showSolution()
 {
     resetAllFields();
-    mw->lev1Field->setText(comp.l1());
-    mw->lev2Field->setText(comp.l2());
-    mw->lev3Field->setText(comp.l3());
-
-
+    mw->lev1Field->setText(m_entry->entry()->translation(Prefs::solutionLanguage())->text());
+    mw->lev2Field->setText(m_entry->entry()->translation(Prefs::solutionLanguage())->comparative());
+    mw->lev3Field->setText(m_entry->entry()->translation(Prefs::solutionLanguage())->superlative());
 
     mw->dont_know->setDefault(true);
     setAnswerTainted();
@@ -143,7 +139,7 @@ void AdjQueryDlg::verifyClicked()
 {
     bool all_known = true;
 
-    double result = verifyAnswer(mw->lev1Field->text(), comp.l1());
+    double result = verifyAnswer(mw->lev1Field->text(), m_entry->entry()->translation(Prefs::solutionLanguage())->text());
     if ( result == 1.0 ) {
         setWidgetStyle( mw->lev1Field, PositiveResult );
     } else {
@@ -151,7 +147,7 @@ void AdjQueryDlg::verifyClicked()
         all_known = false;
     }
 
-    result = verifyAnswer(mw->lev2Field->text(), comp.l2());
+    result = verifyAnswer(mw->lev2Field->text(), m_entry->entry()->translation(Prefs::solutionLanguage())->comparative());
     if ( result == 1.0 ) {
         setWidgetStyle( mw->lev2Field, PositiveResult );
     } else {
@@ -159,7 +155,7 @@ void AdjQueryDlg::verifyClicked()
         all_known = false;
     }
 
-    result = verifyAnswer(mw->lev3Field->text(), comp.l3());
+    result = verifyAnswer(mw->lev3Field->text(), m_entry->entry()->translation(Prefs::solutionLanguage())->superlative());
     if ( result == 1.0 ) {
         setWidgetStyle( mw->lev3Field, PositiveResult );
     } else {

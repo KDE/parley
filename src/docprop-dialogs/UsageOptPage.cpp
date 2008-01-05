@@ -51,8 +51,6 @@ UsageOptPage::UsageOptPage(KEduVocDocument *doc, QWidget *parent) : QWidget(pare
     /// @todo get rid of the old clean up button in the ui
     cleanUpButton->setEnabled(false);
 
-    optionsList->addItems(m_doc->usages());
-
 //     int i = 1;
 //     foreach(const QString &usageName, doc->usages()) {
 //         optionsList->addItem(QString("%1").arg(i++, 2).append(USAGE_TAG).append(usageName));

@@ -27,6 +27,7 @@
 #include <QLabel>
 
 #include <keduvocdocument.h>
+#include <keduvoclesson.h>
 
 GenStatPage::GenStatPage(KEduVocDocument *doc, QWidget* parent): QWidget(parent)
 {
@@ -35,11 +36,12 @@ GenStatPage::GenStatPage(KEduVocDocument *doc, QWidget* parent): QWidget(parent)
     l_title->setText(doc->title());
     l_author->setText(doc->author());
     QString s;
-    s.setNum(doc->entryCount());
+    s.setNum(doc->lesson()->entriesRecursive().count());
     kcfg_entriesPerLesson->setText(s);
-    QStringList lesson = doc->lessonNames();
-    s.setNum(lesson.size());
-    l_lessons->setText(s);
+
+//     QStringList lesson = doc->lessonNames();
+//     s.setNum(lesson.size());
+//     l_lessons->setText(s);
 }
 
 #include "GenStatPage.moc"

@@ -29,11 +29,17 @@
 #include "kvttablemodel.h"
 #include "kvtsortfiltermodel.h"
 #include "kvttableview.h"
-#include "kvtlessonmodel.h"
-#include "kvtlessonview.h"
+#include "vocabulary/vocabularymodel.h"
+#include "vocabulary/vocabularyview.h"
+#include "vocabulary/vocabularyfilter.h"
+#include "vocabulary/vocabularydelegate.h"
+#include "vocabulary/containerview.h"
 
-#include <KTabWidget>
+#include "entry-dialogs/EntryDlg.h"
+#include "entry-dialogs/wordtypewidget.h"
+
 #include <KActionCollection>
+#include <KActionMenu>
 #include <KLineEdit>
 #include <KComboBox>
 #include <KRecentFilesAction>
@@ -43,63 +49,28 @@
 #include <KDialog>
 #include <knewstuff2/ui/knewstuffaction.h>
 
+
+// qt model test http://labs.trolltech.com/page/Projects/Itemview/Modeltest
+#include "modeltest/modeltest.h"
+
+
 #include <QClipboard>
 #include <QTimer>
 #include <QLabel>
 #include <QHeaderView>
 #include <QSplitter>
-#include <QTreeView>
-#include <QAbstractItemModel>
 #include <QVBoxLayout>
-
-ParleyApp::ParleyApp(const QString& appName, QWidget *parent) : KXmlGuiWindow(parent)
-{
-    m_appName = appName;
-    m_doc = 0;
-    m_tableView = 0;
-    m_tableModel = 0;
-    m_lessonModel = 0;
-    m_lessonView = 0;
-    m_sortFilterModel = 0;
-    m_lessonSelectionCombo = 0;
-    m_searchLine = 0;
-    m_mainSplitter = 0;
-    m_searchWidget = 0;
-    m_newStuff = 0;
-    m_pronunciationStatusBarLabel = 0;
-    m_remarkStatusBarLabel = 0;
-    m_typeStatusBarLabel = 0;
-
-    pbar = 0;
-
-    entryDlg = 0;
-
-    initStatusBar();
-    initActions();
-
-    fileOpenRecent->loadEntries(KGlobal::config()->group("Recent Files"));
-
-    initModel();
-    initDoc();
-    initView();
-
-    editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
-
-    if (Prefs::autoBackup()) {
-        QTimer::singleShot(Prefs::backupTime() * 60 * 1000, this, SLOT(slotTimeOutBackup()));
-    }
-}
-
+#include <QDockWidget>
 
 void ParleyApp::initActions()
 {
 // -- FILE --------------------------------------------------
-    KAction* fileNew = KStandardAction::openNew(this, SLOT(slotFileNew()), actionCollection());
+    KAction* fileNew = KStandardAction::openNew(m_document, SLOT(slotFileNew()), actionCollection());
     fileNew->setWhatsThis(i18n("Creates a new blank vocabulary document"));
     fileNew->setToolTip(fileNew->whatsThis());
     fileNew->setStatusTip(fileNew->whatsThis());
 
-    KAction* fileOpen = KStandardAction::open(this, SLOT(slotFileOpen()), actionCollection());
+    KAction* fileOpen = KStandardAction::open(m_document, SLOT(slotFileOpen()), actionCollection());
     fileOpen->setWhatsThis(i18n("Opens an existing vocabulary document"));
     fileOpen->setToolTip(fileOpen->whatsThis());
     fileOpen->setStatusTip(fileOpen->whatsThis());
@@ -108,40 +79,41 @@ void ParleyApp::initActions()
     actionCollection()->addAction("file_open_example", fileOpenExample);
     fileOpenExample->setIcon(KIcon("document-open"));
     fileOpenExample->setText(i18n("Open &Example..."));
-    connect(fileOpenExample, SIGNAL(triggered(bool)), this, SLOT(slotFileOpenExample()));
+    connect(fileOpenExample, SIGNAL(triggered(bool)), m_document, SLOT(openExample()));
     fileOpenExample->setWhatsThis(i18n("Open an example vocabulary document"));
     fileOpenExample->setToolTip(fileOpenExample->whatsThis());
     fileOpenExample->setStatusTip(fileOpenExample->whatsThis());
 
-    KAction* fileGHNS = KNS::standardAction(i18n("Vocabularies..."), this, SLOT(slotGHNS()), actionCollection(), "file_ghns");
+    KAction* fileGHNS = KNS::standardAction(i18n("Vocabularies..."), m_document, SLOT(slotGHNS()), actionCollection(), "file_ghns");
     fileGHNS->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_G));
     fileGHNS->setWhatsThis(i18n("Downloads new vocabularies"));
     fileGHNS->setToolTip(fileGHNS->whatsThis());
     fileGHNS->setStatusTip(fileGHNS->whatsThis());
 
-    fileOpenRecent = KStandardAction::openRecent(this, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
+    m_recentFilesAction = KStandardAction::openRecent(m_document, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
+    m_recentFilesAction->loadEntries(KGlobal::config()->group("Recent Files"));
 
     KAction* fileMerge = new KAction(this);
     actionCollection()->addAction("file_merge", fileMerge);
     fileMerge->setText(i18n("&Merge..."));
-    connect(fileMerge, SIGNAL(triggered(bool)), this, SLOT(slotFileMerge()));
+    connect(fileMerge, SIGNAL(triggered(bool)), m_document, SLOT(slotFileMerge()));
     fileMerge->setWhatsThis(i18n("Merge an existing vocabulary document with the current one"));
     fileMerge->setToolTip(fileMerge->whatsThis());
     fileMerge->setStatusTip(fileMerge->whatsThis());
     fileMerge->setEnabled(false); ///@todo merging files is horribly broken
 
-    KAction* fileSave = KStandardAction::save(this, SLOT(slotFileSave()), actionCollection());
+    KAction* fileSave = KStandardAction::save(m_document, SLOT(save()), actionCollection());
     fileSave->setWhatsThis(i18n("Save the active vocabulary document"));
     fileSave->setToolTip(fileSave->whatsThis());
     fileSave->setStatusTip(fileSave->whatsThis());
 
-    KAction* fileSaveAs = KStandardAction::saveAs(this, SLOT(slotFileSaveAs()), actionCollection());
+    KAction* fileSaveAs = KStandardAction::saveAs(m_document, SLOT(saveAs()), actionCollection());
     fileSaveAs->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
     fileSaveAs->setWhatsThis(i18n("Save the active vocabulary document with a different name"));
     fileSaveAs->setToolTip(fileSaveAs->whatsThis());
     fileSaveAs->setStatusTip(fileSaveAs->whatsThis());
 
-    KAction* filePrint = KStandardAction::print(this, SLOT(slotFilePrint()), actionCollection());
+    KAction* filePrint = KStandardAction::print(m_document, SLOT(printFile()), actionCollection());
     filePrint->setWhatsThis(i18n("Print the active vocabulary document"));
     filePrint->setToolTip(filePrint->whatsThis());
     filePrint->setStatusTip(filePrint->whatsThis());
@@ -209,31 +181,23 @@ void ParleyApp::initActions()
     actionCollection()->addAction("edit_append", editAppend);
     editAppend->setIcon(KIcon("list-add-card"));
     editAppend->setText(i18n("&Add New Entry"));
-    connect(editAppend, SIGNAL(triggered(bool)), this, SLOT(slotNewEntry()));
+    connect(editAppend, SIGNAL(triggered(bool)), m_vocabularyView, SLOT(appendEntry()));
     editAppend->setShortcut(QKeySequence(Qt::Key_Insert));
     editAppend->setWhatsThis(i18n("Append a new row to the vocabulary"));
     editAppend->setToolTip(editAppend->whatsThis());
     editAppend->setStatusTip(editAppend->whatsThis());
+    m_vocabularyView->addAction(editAppend);
 
-    editDelete = new KAction(this);
-    actionCollection()->addAction("edit_remove_selected_area", editDelete);
-    editDelete->setIcon(KIcon("list-remove-card"));
-    editDelete->setText(i18n("&Delete Entry"));
-    connect(editDelete, SIGNAL(triggered(bool)), this, SLOT(slotDeleteEntry()));
-    editDelete->setShortcut(QKeySequence(Qt::Key_Delete));
-    editDelete->setWhatsThis(i18n("Delete the selected rows"));
-    editDelete->setToolTip(editDelete->whatsThis());
-    editDelete->setStatusTip(editDelete->whatsThis());
-
-    KAction* editEditEntry = new KAction(this);
-    actionCollection()->addAction("edit_edit_selected_area", editEditEntry);
-    editEditEntry->setIcon(KIcon("document-properties-card"));
-    editEditEntry->setText(i18n("&Edit Entry..."));
-    connect(editEditEntry, SIGNAL(triggered(bool)), this, SLOT(slotEditEntry()));
-    editEditEntry->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Return));
-    editEditEntry->setWhatsThis(i18n("Edit the entries in the selected rows"));
-    editEditEntry->setToolTip(editEditEntry->whatsThis());
-    editEditEntry->setStatusTip(editEditEntry->whatsThis());
+    m_deleteEntriesAction = new KAction(this);
+    actionCollection()->addAction("edit_remove_selected_area", m_deleteEntriesAction);
+    m_deleteEntriesAction->setIcon(KIcon("list-remove-card"));
+    m_deleteEntriesAction->setText(i18n("&Delete Entry"));
+    connect(m_deleteEntriesAction, SIGNAL(triggered(bool)), this, SLOT(slotDeleteEntry()));
+    m_deleteEntriesAction->setShortcut(QKeySequence(Qt::Key_Delete));
+    m_deleteEntriesAction->setWhatsThis(i18n("Delete the selected rows"));
+    m_deleteEntriesAction->setToolTip(m_deleteEntriesAction->whatsThis());
+    m_deleteEntriesAction->setStatusTip(m_deleteEntriesAction->whatsThis());
+    m_vocabularyView->addAction(m_deleteEntriesAction);
 
 //     KAction* editSaveSelectedArea = new KAction(this);
 //      actionCollection()->addAction("edit_save_selected_area", editSaveSelectedArea);
@@ -275,24 +239,6 @@ void ParleyApp::initActions()
     actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
     actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
 
-    KAction *actionCheckAllLessons = new KAction(this);
-    actionCollection()->addAction("check_all_lessons", actionCheckAllLessons);
-    actionCheckAllLessons->setText(i18n("Select All Lessons"));
-    actionCheckAllLessons->setIcon(KIcon("edit-select-all"));
-    actionCheckAllLessons->setWhatsThis(i18n("Select all lessons for the test."));
-    actionCheckAllLessons->setToolTip(actionCheckAllLessons->whatsThis());
-    actionCheckAllLessons->setStatusTip(actionCheckAllLessons->whatsThis());
-    actionCheckAllLessons->setStatusTip(actionCheckAllLessons->whatsThis());
-
-    KAction *actionCheckNoLessons = new KAction(this);
-    actionCollection()->addAction("check_no_lessons", actionCheckNoLessons);
-    actionCheckNoLessons->setText(i18n("Deselect All Lessons"));
-    actionCheckNoLessons->setIcon(KIcon("edit-clear"));
-    actionCheckNoLessons->setWhatsThis(i18n("Remove all lessons from the test."));
-    actionCheckNoLessons->setToolTip(actionCheckNoLessons->whatsThis());
-    actionCheckNoLessons->setStatusTip(actionCheckNoLessons->whatsThis());
-    actionCheckNoLessons->setStatusTip(actionCheckNoLessons->whatsThis());
-
     KAction *actionSplitLesson = new KAction(this);
     actionCollection()->addAction("split_lesson", actionSplitLesson);
     actionSplitLesson->setText(i18n("Split Lesson into Smaller Lessons"));
@@ -301,6 +247,27 @@ void ParleyApp::initActions()
     actionSplitLesson->setToolTip(actionSplitLesson->whatsThis());
     actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
     actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
+
+    connect(actionNewLesson, SIGNAL(triggered()), 
+        m_lessonView, SLOT(slotCreateNewLesson()));
+    connect(actionRenameLesson, SIGNAL(triggered()), 
+        m_lessonView, SLOT(slotRenameLesson()));
+    connect(actionDeleteLesson, SIGNAL(triggered()), 
+        m_lessonView, SLOT(slotDeleteLesson()));
+    connect(actionSplitLesson, SIGNAL(triggered()), 
+        m_lessonView, SLOT(slotSplitLesson()));
+
+    // right cick menu for the lesson view:
+    m_lessonView->addAction(actionNewLesson);
+    m_lessonView->addAction(actionRenameLesson);
+    m_lessonView->addAction(actionDeleteLesson);
+    QAction* separator = new QAction(this);
+    separator->setSeparator(true);
+    m_lessonView->addAction(separator);
+    separator = new QAction(this);
+    separator->setSeparator(true);
+    m_lessonView->addAction(separator);
+    m_lessonView->addAction(actionSplitLesson);
 
 // -- VOCABULARY --------------------------------------------------
 
@@ -356,12 +323,13 @@ void ParleyApp::initActions()
     configToolbar->setToolTip(configToolbar->whatsThis());
     configToolbar->setStatusTip(configToolbar->whatsThis());
 
-    vocabShowSearchBar = actionCollection()->add<KToggleAction>("config_show_search");
-    vocabShowSearchBar->setText(i18n("Show Se&arch"));
-    connect(vocabShowSearchBar, SIGNAL(triggered(bool)), this, SLOT(slotConfigShowSearch()));
-    vocabShowSearchBar->setWhatsThis(i18n("Toggle display of the search bar"));
-    vocabShowSearchBar->setToolTip(vocabShowSearchBar->whatsThis());
-    vocabShowSearchBar->setStatusTip(vocabShowSearchBar->whatsThis());
+    m_vocabShowSearchBarAction = actionCollection()->add<KToggleAction>("config_show_search");
+    m_vocabShowSearchBarAction->setText(i18n("Show Se&arch"));
+    connect(m_vocabShowSearchBarAction, SIGNAL(triggered(bool)), this, SLOT(slotConfigShowSearch()));
+    m_vocabShowSearchBarAction->setWhatsThis(i18n("Toggle display of the search bar"));
+    m_vocabShowSearchBarAction->setToolTip(m_vocabShowSearchBarAction->whatsThis());
+    m_vocabShowSearchBarAction->setStatusTip(m_vocabShowSearchBarAction->whatsThis());
+    m_vocabShowSearchBarAction->setChecked(Prefs::showSearch());
 
     KAction *actionShowLessonColumn = new KAction(this);
     actionCollection()->addAction("config_show_lesson_column", actionShowLessonColumn);
@@ -375,18 +343,17 @@ void ParleyApp::initActions()
     actionShowActiveColumn->setCheckable((true));
     actionShowActiveColumn->setChecked(Prefs::tableActiveColumnVisible());
 
+    actionCollection()->addAction("show_vocabulary_columns_menu", m_vocabularyColumnsActionMenu);
+    m_vocabularyColumnsActionMenu->setText(i18n("Vocabulary Columns"));
+    m_vocabularyColumnsActionMenu->setWhatsThis(i18n("Toggle display of individual vocabulary columns"));
+    m_vocabularyColumnsActionMenu->setToolTip(m_vocabularyColumnsActionMenu->whatsThis());
+    m_vocabularyColumnsActionMenu->setStatusTip(m_vocabularyColumnsActionMenu->whatsThis());
+    m_vocabularyView->horizontalHeader()->addAction(m_vocabularyColumnsActionMenu);
 
 // -- ONLY ON RIGHT CLICK - HEADER SO FAR -------------------------------------
     KAction *actionRestoreNativeOrder = new KAction(this);
     actionCollection()->addAction("restore_native_order", actionRestoreNativeOrder);
     actionRestoreNativeOrder->setText(i18n("Restore Native Order"));
-
-
-    if (!initialGeometrySet()) {
-        resize(QSize(800, 500).expandedTo(minimumSizeHint()));
-    }
-    setupGUI(ToolBar | Keys | StatusBar | Create);
-    setAutoSaveSettings();
 }
 
 
@@ -407,133 +374,39 @@ void ParleyApp::initStatusBar()
 }
 
 
-void ParleyApp::initDoc()
-{
-    if (fileOpenRecent->actions().count() > 0
-        && fileOpenRecent->action(
-            fileOpenRecent->actions().count()-1)->isEnabled() )
-    {
-        fileOpenRecent->action(fileOpenRecent->actions().count()-1)->trigger();
-    } else {
-        // this is probably the first time we start.
-        m_doc = new KEduVocDocument();
-
-        m_lessonModel->setDocument(m_doc);
-        if (m_lessonView) {
-            m_lessonView->setModel(m_lessonModel);
-            m_lessonView->initializeSelection();
-        }
-        if (m_tableView) {
-            m_tableView->adjustContent();
-            m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
-            m_tableView->setColumnHidden(KV_COL_MARK, !Prefs::tableActiveColumnVisible());
-        }
-
-        m_tableModel->setDocument(m_doc);
-        initializeDefaultGrammar();
-        createExampleEntries();
-
-        connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotUpdateWindowCaption()));
-    }
-}
-
 void ParleyApp::initModel()
 {
-    m_lessonModel = new KVTLessonModel(this);
-    m_tableModel = new KVTTableModel(this);
-    m_sortFilterModel= new KVTSortFilterModel(this);
-    m_sortFilterModel->setSourceModel(m_tableModel);
-}
+    m_vocabularyModel = new VocabularyModel(this);
 
-/**
-  * Initialize the lesson list.
-  */
-QWidget* ParleyApp::initLessonList(QWidget *parent)
-{
-    // Widget to get a boxLayout
-    QWidget *left = new QWidget(parent);
-    // box layout for the left side
-    QVBoxLayout *boxLayout = new QVBoxLayout(left);
-    boxLayout->setMargin(0);
-    boxLayout->setSpacing(KDialog::spacingHint());
+    m_vocabularyFilter = new VocabularyFilter(this);
+    m_vocabularyFilter->setSourceModel(m_vocabularyModel);
+    m_vocabularyView->setModel(m_vocabularyFilter);
 
-    // This contains the lessons for now
-    m_lessonView = new KVTLessonView(left);
-    // To make the treeview appear like a listview
-    m_lessonView->setRootIsDecorated(false);
-    // Get the lessons form vocab document
-    m_lessonModel->setDocument(m_doc);
-    // I need to initialize the lessons with the model as well...
-    m_lessonView->setModel(m_lessonModel);
-    m_lessonView->setToolTip(i18n("Right click to add, delete, or rename lessons. \n"
-                                  "With the checkboxes you can select which lessons you want to practice. \n"
-                                  "Only checked lessons [x] will be asked in the tests!"));
+    connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyModel, SLOT(setDocument(KEduVocDocument*)));
 
-    // Here the user selects whether he wants all lessons in the table, or the current one or the ones in query
-    m_lessonSelectionCombo = new KComboBox();
-    m_lessonSelectionCombo->addItem(i18n("Edit current lesson"));
-    m_lessonSelectionCombo->addItem(i18n("Edit lessons in test"));
-    m_lessonSelectionCombo->addItem(i18n("Edit all lessons"));
-    m_lessonSelectionCombo->setToolTip(i18n("Select which lessons should be displayed for editing to the right."));
+    connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_vocabularyFilter, SLOT(setSearchString(const QString&)));
 
-    boxLayout->addWidget(m_lessonSelectionCombo);
-    boxLayout->addWidget(m_lessonView);
-
-    /// New lesson selected
-    connect(m_lessonView, SIGNAL(signalCurrentLessonChanged(int)), m_sortFilterModel, SLOT(slotCurrentLessonChanged(int)));
-    connect(m_lessonView, SIGNAL(signalCurrentLessonChanged(int)), this, SLOT(slotCurrentLessonChanged()));
-    /** this is a little general, but at least we get notified of the changes */
-    connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), m_sortFilterModel, SLOT(slotLessonsInQueryChanged()));
-
-    connect(m_lessonSelectionCombo, SIGNAL(currentIndexChanged(int)), m_sortFilterModel, SLOT(setLessonSelection(int)));
-    connect(m_lessonModel, SIGNAL(modelReset()), m_lessonView, SLOT(slotModelReset()));
-
-    m_lessonSelectionCombo->setCurrentIndex(Prefs::lessonEditingSelection());
-
-
-    m_lessonView->initializeSelection();
-
-    connect(actionCollection()->action("new_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotCreateNewLesson()));
-    connect(actionCollection()->action("rename_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotRenameLesson()));
-    connect(actionCollection()->action("delete_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotDeleteLesson()));
-    connect(actionCollection()->action("check_all_lessons"), SIGNAL(triggered()), m_lessonView, SLOT(slotCheckAllLessons()));
-    connect(actionCollection()->action("check_no_lessons"), SIGNAL(triggered()), m_lessonView, SLOT(slotCheckNoLessons()));
-    connect(actionCollection()->action("split_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotSplitLesson()));
-
-    m_lessonView->addAction(actionCollection()->action("new_lesson"));
-    m_lessonView->addAction(actionCollection()->action("rename_lesson"));  m_lessonView->addAction(actionCollection()->action("delete_lesson"));
-    /// @todo add a separator here
-    m_lessonView->addAction(actionCollection()->action("check_all_lessons")); m_lessonView->addAction(actionCollection()->action("check_no_lessons"));
-    /// @todo add a separator here
-    m_lessonView->addAction(actionCollection()->action("split_lesson"));
-
-    return left;
 }
 
 
 /**
- * This initializes the main widgets, splitter and table.
+ * This initializes the main widgets and table.
  */
 void ParleyApp::initView()
 {
-    /// Parent of all
+    // Parent of all
     QWidget * mainWidget = new QWidget(this);
     setCentralWidget(mainWidget);
     QVBoxLayout *topLayout = new QVBoxLayout(mainWidget);
     topLayout->setMargin(KDialog::marginHint());
     topLayout->setSpacing(KDialog::spacingHint());
-    /// Splitter to divide lessons and table.
-    m_mainSplitter = new QSplitter(centralWidget());
-    topLayout->addWidget(m_mainSplitter);
-    /// List of lessons
-    m_mainSplitter->addWidget(initLessonList(centralWidget()));
 
     m_searchLine = new KLineEdit(this);
     m_searchLine->show();
     m_searchLine->setFocusPolicy(Qt::ClickFocus);
     m_searchLine->setClearButtonShown(true);
     m_searchLine->setClickMessage(i18n("Enter search terms here"));
-    connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_sortFilterModel, SLOT(slotSearch(const QString&)));
+
     m_searchLine->setToolTip(i18n("Enter space-separated search terms to find words.\n\nEnter ^abc to look for words beginning with \"abc\".\nEnter abc$ to look for words ending with \"abc\".\nEnter type:verb to search for verbs."));
 
     QLabel *label = new QLabel(i18n("S&earch:"), this);
@@ -547,89 +420,20 @@ void ParleyApp::initView()
     layout->addWidget(label);
     layout->addWidget(m_searchLine);
 
-    QWidget * rightWidget = new QWidget(this);
-    QVBoxLayout * rightLayout = new QVBoxLayout(rightWidget);
+///@todo     centralWidget()-> delete layout
+    QVBoxLayout * rightLayout = new QVBoxLayout(centralWidget());
     rightLayout->setSpacing(KDialog::spacingHint());
     rightLayout->setMargin(0);
     rightLayout->addWidget(m_searchWidget);
     m_searchWidget->setVisible(Prefs::showSearch());
-    vocabShowSearchBar->setChecked(Prefs::showSearch());
 
-    /// Table view
-    m_tableView = new KVTTableView(centralWidget());
-    m_tableView->setFrameStyle(QFrame::NoFrame);
-    m_tableView->setAlternatingRowColors(true);
-    rightLayout->addWidget(m_tableView, 1, 0);
+    /* the new table */
+    m_vocabularyView = new VocabularyView(m_vocabularyColumnsActionMenu, centralWidget());
 
-    m_mainSplitter->addWidget(rightWidget);
-    /// Filter proxy
+    rightLayout->addWidget(m_vocabularyView, 1, 0);
 
-    m_tableView->setModel(m_sortFilterModel);
-    m_tableView->setColumnWidth(0, qvariant_cast<QSize>(m_tableModel->headerData(0, Qt::Horizontal, Qt::SizeHintRole)).width());
-    m_tableView->setColumnWidth(1, qvariant_cast<QSize>(m_tableModel->headerData(1, Qt::Horizontal, Qt::SizeHintRole)).width());
-    m_tableView->setColumnWidth(2, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
-    m_tableView->setColumnWidth(3, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
-    m_tableView->horizontalHeader()->setResizeMode(KV_COL_MARK, QHeaderView::Fixed);
-    int currentColumn = Prefs::currentCol();
-    int currentRow = Prefs::currentRow();
-    if (currentColumn <= KV_COL_LESS) {
-        currentColumn = KV_COL_TRANS;
-    }
+    /* end the new table */
 
-    // always operate from m_sortFilterModel
-    m_tableView->setCurrentIndex(m_sortFilterModel->mapFromSource(m_tableModel->index(currentRow, currentColumn)));
-
-    setCaption(m_doc->url().fileName(), false);
-
-    // selection changes (the entry dialog needs these)
-    connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
-            this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
-
-    connect(m_tableView->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
-            this, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
-
-
-    connect(m_tableView, SIGNAL(appendEntry()),
-            m_tableModel, SLOT(appendEntry()));
-
-
-    slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
-
-    m_tableView->addAction(actionCollection()->action("edit_append"));
-    m_tableView->addAction(actionCollection()->action("edit_edit_selected_area"));
-    m_tableView->addAction(actionCollection()->action("edit_remove_selected_area"));
-
-
-    m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
-    m_tableView->setColumnHidden(KV_COL_MARK, !Prefs::tableActiveColumnVisible());
-
-    QAction *actionShowLessonColumn = actionCollection()->action("config_show_lesson_column");
-    m_tableView->horizontalHeader()->addAction(actionShowLessonColumn);
-    connect(actionShowLessonColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowLessonColumn(bool)));
-
-    QAction *actionShowActiveColumn = actionCollection()->action("config_show_active_column");
-    m_tableView->horizontalHeader()->addAction(actionShowActiveColumn);
-    connect(actionShowActiveColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowActiveColumn(bool)));
-
-    QAction * actionRestoreNativeOrder = actionCollection()->action("restore_native_order");
-    m_tableView->horizontalHeader()->addAction(actionRestoreNativeOrder);
-    connect(actionRestoreNativeOrder, SIGNAL(triggered()), m_sortFilterModel, SLOT(restoreNativeOrder()));
-
-//     /* Begin tabs... */
-//     KTabWidget *tabWidget = new KTabWidget(centralWidget());
-//     tabWidget->addTab(rightWidget, "Edit vocabulary");
-//
-//     QPushButton *button = new QPushButton("Resume query");
-//     connect(button, SIGNAL(clicked()), this, SLOT(slotResumeQuery()));
-//     tabWidget->addTab(button, "Query");
-//
-//     m_mainSplitter->addWidget(tabWidget);
-//     /* End tabs - comment out these lines to get the nomal behavior. */
-
-    m_sortFilterModel->clear();
-
-    m_mainSplitter->setSizes(Prefs::mainWindowSplitter());
-    m_doc->setModified(false);
-    m_sortFilterModel->restoreNativeOrder();
+    topLayout->addLayout(rightLayout);
 }
 
