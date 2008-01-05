@@ -6,6 +6,7 @@ Things to improve in parley
  * Add the docks to the menu bar
    - what about special types that have extra attributes like conjugations etc?
      - create a context menu to set a word type to contain nouns etc
+   - creating a new doc does not create any word types
  * KOffice has fancy hide docker buttons in their docker titles, steal them ;)
  * Add the ability to record sound files with phonon to a dock if possible.
  * Save columns hide state, enable hiding of main columns with their children maybe
@@ -20,6 +21,7 @@ Things to improve in parley
  * Update word type and lesson when selecting an entry (?) (Leitner as well?)
  * What about editing multiple entries at the same time? does that work? does it help with the new design?
  * The statistics page is broken. At least reset does not work and there is no tree view for it.
+ * Hide most docks upon first start
 
  * Drag and drop for several things:
    - Reorder lessons
