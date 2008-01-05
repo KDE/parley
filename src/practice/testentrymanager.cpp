@@ -435,7 +435,6 @@ bool TestEntryManager::checkType(KEduVocExpression * entry)
             entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounFemale ||
             entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounNeutral;
 
-
     case Prefs::EnumTestType::ComparisonTest:
         if ( Prefs::comparisonIncludeAdjective() ) {
             if ( entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::Adjective ) {
@@ -518,11 +517,6 @@ int TestEntryManager::statisticTotalSkipUnknown()
         }
     }
     return count;
-}
-
-void TestEntryManager::createPracticeDialog()
-{
-
 }
 
 
