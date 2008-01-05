@@ -471,8 +471,10 @@ bool TestEntryManager::checkType(KEduVocExpression * entry)
         return false;
     }*/
     ///@todo respect subtypes for special practices above
-
-    return entry->translation(m_toTranslation)->wordType()->inPractice();
+    if (entry->translation(m_toTranslation)->wordType()) {
+        return entry->translation(m_toTranslation)->wordType()->inPractice();
+    }
+    return false;
 }
 
 int TestEntryManager::statisticTotalCorrectFirstAttempt()
