@@ -428,52 +428,40 @@ int TestEntryManager::activeEntryCount()
 
 bool TestEntryManager::checkType(KEduVocExpression * entry)
 {
-///@todo for special practices - check for the right types...
-    /*
-    QString wordType = entry->translation(m_toTranslation)->type();
-    QString subWordType = entry->translation(m_toTranslation)->subType();
-    QString specialWordType = m_doc->wordTypes().specialType(wordType);
-    QString specialSubType = m_doc->wordTypes().specialSubType(wordType,
-        subWordType);
-
+    switch (Prefs::testType()) {
     // if we do a grammar test, check only if the grammar type is valid
-    if ( Prefs::testType() == Prefs::EnumTestType::ArticleTest ) {
-        if ( specialWordType == m_doc->wordTypes().specialTypeNoun() ) {
-            return
-                specialSubType ==
-                m_doc->wordTypes().specialTypeNounMale() ||
-                specialSubType ==
-                m_doc->wordTypes().specialTypeNounFemale() ||
-                specialSubType ==
-                m_doc->wordTypes().specialTypeNounNeutral();
-        }
-        return false;
-    }
+    case Prefs::EnumTestType::ArticleTest:
+        return entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounMale ||
+            entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounFemale ||
+            entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounNeutral;
 
-    if ( Prefs::testType() == Prefs::EnumTestType::ComparisonTest ) {
+
+    case Prefs::EnumTestType::ComparisonTest:
         if ( Prefs::comparisonIncludeAdjective() ) {
-            if ( specialWordType == m_doc->wordTypes().specialTypeAdjective() ) {
-                return !entry->translation(m_toTranslation)->comparison().isEmpty();
+            if ( entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::Adjective ) {
+                return !entry->translation(m_toTranslation)->comparative().isEmpty() ||
+                    !entry->translation(m_toTranslation)->superlative().isEmpty();
             }
         }
         if ( Prefs::comparisonIncludeAdverb() ) {
-            if ( specialWordType == m_doc->wordTypes().specialTypeAdverb() ) {
-                return !entry->translation(m_toTranslation)->comparison().isEmpty();
+            if ( entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::Adverb ) {
+                return !entry->translation(m_toTranslation)->comparative().isEmpty() ||
+                    !entry->translation(m_toTranslation)->superlative().isEmpty();
             }
         }
-        return false;
-    }
 
-    if ( Prefs::testType() == Prefs::EnumTestType::ConjugationTest ) {
-        if ( specialWordType == m_doc->wordTypes().specialTypeVerb() ) {
+    case Prefs::EnumTestType::ConjugationTest:
+        if ( entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::Verb ) {
             return entry->translation(m_toTranslation)->conjugations().count() > 0;
         }
         return false;
-    }*/
-    ///@todo respect subtypes for special practices above
-    if (entry->translation(m_toTranslation)->wordType()) {
-        return entry->translation(m_toTranslation)->wordType()->inPractice();
+
+    default:
+        if (entry->translation(m_toTranslation)->wordType()) {
+            return entry->translation(m_toTranslation)->wordType()->inPractice();
+        }
     }
+
     return false;
 }
 
