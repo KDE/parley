@@ -41,10 +41,10 @@ private slots:
     void slotMakeVerb();
 
 private:
-    /**
-     * remember the current entries in m_conjugations to allow another tense to be selected. (stupid name)
-     */
-    void saveCurrentTense();
+    void showMakeVerbWidgets();
+    void showConjugationEditWidgets();
+    void updateVisiblePersons();
+
     /**
      * Fill the line edits
      */
