@@ -15,6 +15,7 @@
 
 #include <keduvocdocument.h>
 #include <keduvocexpression.h>
+#include <keduvocwordtype.h>
 #include <KDebug>
 
 ConjugationWidget::ConjugationWidget(QWidget *parent) : QWidget(parent)
@@ -25,8 +26,19 @@ ConjugationWidget::ConjugationWidget(QWidget *parent) : QWidget(parent)
 
     setupUi(this);
 
-    connect(b_next, SIGNAL(clicked()), SLOT(slotNextConj()));
-    connect(tensebox, SIGNAL(activated(int)), SLOT(slotTenseSelected(int)));
+    connect(makeVerbButton, SIGNAL(clicked()), SLOT(makeVerb()));
+    connect(nextTenseButton, SIGNAL(clicked()), SLOT(slotNextTense()));
+    connect(tenseComboBox, SIGNAL(activated(int)), SLOT(slotTenseSelected(int)));
+
+    singularGroupBox->setVisible(false);
+    pluralGroupBox->setVisible(false);
+    dualGroupBox->setVisible(false);
+    makeVerbButton->setEnabled(false);
+
+    QMap< int, QPair< QLabel*, QLineEdit* > > m_conjugationFormWidgets;
+
+    m_conjugationFormWidgets[KEduVocConjugation::indexOf(KEduVocConjugation::First, KEduVocConjugation::Singular)]
+        = qMakePair(singularFirstPersonLabel, singularFirstPersonLineEdit);
 
     connect(singularFirstPersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
     connect(singularSecondPersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
@@ -202,11 +214,28 @@ void ConjugationWidget::setTranslation(KEduVocExpression * entry, int translatio
 {
     m_entry = entry;
     m_identifier = translation;
+
+    if (!entry) {
+        setEnabled(false);
+        return;
+    }
+
+    if (entry->translation(translation)->wordType()
+            && entry->translation(translation)->wordType()->wordType() == KEduVocWordType::Verb) {
+        // if it's a verb already, hide the make verb button and start editing it
+        makeVerbButton->setVisible(false);
+    } else {
+        makeVerbButton->setText(i18n("\"%1\" is a verb", m_entry->translation(translation)->text()));
+        makeVerbButton->setEnabled(true);
+        makeVerbButton->setVisible(true);
+// hide the other stuff
+    }
 }
 
 void ConjugationWidget::setDocument(KEduVocDocument * doc)
 {
     m_doc = doc;
+    ///@todo set up the tense combo box
 }
 
 

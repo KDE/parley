@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>706</width>
-    <height>829</height>
+    <width>440</width>
+    <height>856</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -19,6 +19,13 @@
    <string>-</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout" >
+   <item>
+    <widget class="QPushButton" name="makeVerbButton" >
+     <property name="text" >
+      <string>Turn the selected word into a verb.</string>
+     </property>
+    </widget>
+   </item>
    <item>
     <layout class="QGridLayout" name="_3" >
      <property name="margin" >
@@ -39,12 +46,12 @@
         <string>&amp;Tense:</string>
        </property>
        <property name="buddy" >
-        <cstring>tensebox</cstring>
+        <cstring>tenseComboBox</cstring>
        </property>
       </widget>
      </item>
      <item row="0" column="2" >
-      <widget class="QPushButton" name="b_next" >
+      <widget class="QPushButton" name="nextTenseButton" >
        <property name="sizePolicy" >
         <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
          <horstretch>0</horstretch>
@@ -57,7 +64,7 @@
       </widget>
      </item>
      <item row="0" column="1" >
-      <widget class="QComboBox" name="tensebox" >
+      <widget class="QComboBox" name="tenseComboBox" >
        <property name="sizePolicy" >
         <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
          <horstretch>0</horstretch>
@@ -70,6 +77,12 @@
    </item>
    <item>
     <widget class="QGroupBox" name="singularGroupBox" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="title" >
       <string>Singular</string>
      </property>
