@@ -64,6 +64,12 @@ void ContainerView::setModel(ContainerModel *model)
 void ContainerView::slotCreateNewLesson()
 {
     QModelIndex selectedIndex = selectionModel()->currentIndex();
+
+    if (!selectedIndex.isValid()) {
+kDebug() << "!selectedIndex.isValid";
+        selectedIndex = m_model->index(0, 0, QModelIndex());
+    }
+
     QModelIndex modelIndex = m_model->appendLesson(selectedIndex);
 
     scrollTo(modelIndex);
