@@ -104,9 +104,9 @@ set(entrydialogs_SRCS
   #  entry-dialogs/FromToEntryPage.cpp
     entry-dialogs/multiplechoicewidget.cpp
   #  entry-dialogs/PhoneticEntryPage.cpp
-  #  entry-dialogs/TenseEntryPage.cpp
   #  entry-dialogs/wordtypewidget.cpp
     entry-dialogs/comparisonwidget.cpp
+    entry-dialogs/conjugationwidget.cpp
     entry-dialogs/imagechooserwidget.cpp
     entry-dialogs/audiowidget.cpp
 )
@@ -120,6 +120,7 @@ kde4_add_ui_files(entrydialogs_SRCS
     entry-dialogs/wordtypewidget.ui
     entry-dialogs/multiplechoicewidget.ui
     entry-dialogs/comparisonwidget.ui
+    entry-dialogs/conjugationwidget.ui
     entry-dialogs/imagechooserwidget.ui
     entry-dialogs/audiowidget.ui
 )

@@ -1,0 +1,299 @@
+<ui version="4.0" >
+ <class>ConjugationWidget</class>
+ <widget class="QWidget" name="ConjugationWidget" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>706</width>
+    <height>829</height>
+   </rect>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>332</width>
+    <height>326</height>
+   </size>
+  </property>
+  <property name="windowTitle" >
+   <string>-</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout" >
+   <item>
+    <layout class="QGridLayout" name="_3" >
+     <property name="margin" >
+      <number>0</number>
+     </property>
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <item row="0" column="0" >
+      <widget class="QLabel" name="tenselabel" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text" >
+        <string>&amp;Tense:</string>
+       </property>
+       <property name="buddy" >
+        <cstring>tensebox</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2" >
+      <widget class="QPushButton" name="b_next" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text" >
+        <string>Ne&amp;xt</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1" >
+      <widget class="QComboBox" name="tensebox" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="singularGroupBox" >
+     <property name="title" >
+      <string>Singular</string>
+     </property>
+     <layout class="QGridLayout" name="_4" >
+      <item row="0" column="0" >
+       <widget class="QLabel" name="singularFirstPersonLabel" >
+        <property name="text" >
+         <string>First</string>
+        </property>
+        <property name="buddy" >
+         <cstring>singularFirstPersonLineEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <widget class="QLineEdit" name="singularFirstPersonLineEdit" />
+      </item>
+      <item row="1" column="0" >
+       <widget class="QLabel" name="singularSecondPersonLabel" >
+        <property name="text" >
+         <string>Second</string>
+        </property>
+        <property name="buddy" >
+         <cstring>singularSecondPersonLineEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <widget class="QLineEdit" name="singularSecondPersonLineEdit" />
+      </item>
+      <item row="2" column="0" >
+       <widget class="QLabel" name="singularThirdMalePersonLabel" >
+        <property name="text" >
+         <string>Third Male</string>
+        </property>
+        <property name="buddy" >
+         <cstring>singularThirdMalePersonLineEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" >
+       <widget class="QLineEdit" name="singularThirdMalePersonLineEdit" />
+      </item>
+      <item row="3" column="0" >
+       <widget class="QLabel" name="singularThirdFemalePersonLabel" >
+        <property name="text" >
+         <string>Third Female</string>
+        </property>
+        <property name="buddy" >
+         <cstring>singularThirdFemalePersonLineEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" >
+       <widget class="QLineEdit" name="singularThirdFemalePersonLineEdit" />
+      </item>
+      <item row="4" column="0" >
+       <widget class="QLabel" name="singularThirdNeutralPersonLabel" >
+        <property name="text" >
+         <string>Third Neutral</string>
+        </property>
+        <property name="buddy" >
+         <cstring>singularThirdNeutralPersonLineEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" >
+       <widget class="QLineEdit" name="singularThirdNeutralPersonLineEdit" />
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="dualGroupBox" >
+     <property name="title" >
+      <string>Dual</string>
+     </property>
+     <layout class="QGridLayout" name="_2" >
+      <item row="0" column="0" >
+       <widget class="QLabel" name="dualFirstPersonLabel" >
+        <property name="text" >
+         <string>First</string>
+        </property>
+        <property name="buddy" >
+         <cstring>dualFirstPersonLineEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <widget class="QLineEdit" name="dualFirstPersonLineEdit" />
+      </item>
+      <item row="1" column="0" >
+       <widget class="QLabel" name="dualSecondPersonLabel" >
+        <property name="text" >
+         <string>Second</string>
+        </property>
+        <property name="buddy" >
+         <cstring>dualSecondPersonLineEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <widget class="QLineEdit" name="dualSecondPersonLineEdit" />
+      </item>
+      <item row="2" column="0" >
+       <widget class="QLabel" name="dualThirdMalePersonLabel" >
+        <property name="text" >
+         <string>Third Male</string>
+        </property>
+        <property name="buddy" >
+         <cstring>dualThirdMalePersonLineEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" >
+       <widget class="QLineEdit" name="dualThirdMalePersonLineEdit" />
+      </item>
+      <item row="3" column="0" >
+       <widget class="QLabel" name="dualThirdFemalePersonLabel" >
+        <property name="text" >
+         <string>Third Female</string>
+        </property>
+        <property name="buddy" >
+         <cstring>dualThirdFemalePersonLineEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" >
+       <widget class="QLineEdit" name="dualThirdFemalePersonLineEdit" />
+      </item>
+      <item row="4" column="0" >
+       <widget class="QLabel" name="dualThirdNeutralPersonLabel" >
+        <property name="text" >
+         <string>Third Neutral</string>
+        </property>
+        <property name="buddy" >
+         <cstring>dualThirdNeutralPersonLineEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" >
+       <widget class="QLineEdit" name="dualThirdNeutralPersonLineEdit" />
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="pluralGroupBox" >
+     <property name="title" >
+      <string>Plural</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="0" column="0" >
+       <widget class="QLabel" name="pluralFirstPersonLabel" >
+        <property name="text" >
+         <string>First</string>
+        </property>
+        <property name="buddy" >
+         <cstring>pluralFirstPersonLineEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <widget class="QLineEdit" name="pluralFirstPersonLineEdit" />
+      </item>
+      <item row="1" column="0" >
+       <widget class="QLabel" name="pluralSecondPersonLabel" >
+        <property name="text" >
+         <string>Second</string>
+        </property>
+        <property name="buddy" >
+         <cstring>pluralSecondPersonLineEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <widget class="QLineEdit" name="pluralSecondPersonLineEdit" />
+      </item>
+      <item row="2" column="0" >
+       <widget class="QLabel" name="pluralThirdMalePersonLabel" >
+        <property name="text" >
+         <string>Third Male</string>
+        </property>
+        <property name="buddy" >
+         <cstring>pluralThirdMalePersonLineEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" >
+       <widget class="QLineEdit" name="pluralThirdMalePersonLineEdit" />
+      </item>
+      <item row="3" column="0" >
+       <widget class="QLabel" name="pluralThirdFemalePersonLabel" >
+        <property name="text" >
+         <string>Third Female</string>
+        </property>
+        <property name="buddy" >
+         <cstring>pluralThirdFemalePersonLineEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" >
+       <widget class="QLineEdit" name="pluralThirdFemalePersonLineEdit" />
+      </item>
+      <item row="4" column="0" >
+       <widget class="QLabel" name="pluralThirdNeutralPersonLabel" >
+        <property name="text" >
+         <string>Third Neutral</string>
+        </property>
+        <property name="buddy" >
+         <cstring>pluralThirdNeutralPersonLineEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" >
+       <widget class="QLineEdit" name="pluralThirdNeutralPersonLineEdit" />
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11" />
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <resources/>
+ <connections/>
+</ui>

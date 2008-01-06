@@ -35,6 +35,7 @@
 #include "entry-dialogs/wordtypewidget.h"
 #include "entry-dialogs/multiplechoicewidget.h"
 #include "entry-dialogs/comparisonwidget.h"
+#include "entry-dialogs/conjugationwidget.h"
 #include "entry-dialogs/imagechooserwidget.h"
 #include "entry-dialogs/audiowidget.h"
 
@@ -694,11 +695,14 @@ void ParleyApp::initDockWidgets()
 // Conjugations
     QDockWidget *conjugationDock = new QDockWidget(i18n("Conjugation"), this);
     conjugationDock->setObjectName("ConjugationDock");
-    QLabel *conjugationWidget = new QLabel("Conjugations placeholder", this);
+    ConjugationWidget *conjugationWidget = new ConjugationWidget(this);
     conjugationDock->setWidget(conjugationWidget);
     addDockWidget(Qt::RightDockWidgetArea, conjugationDock);
     actionCollection()->addAction("show_conjugation_dock", conjugationDock->toggleViewAction());
-//     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_conjugationWidget, SLOT(setTranslation(KEduVocTranslation*)));
+    connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)),
+        conjugationWidget, SLOT(setDocument(KEduVocDocument*)));
+    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+        conjugationWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 
 // Declinations
