@@ -92,7 +92,6 @@ public:
      * @return 
      */
     bool removeRows(int row, int count, const QModelIndex &parent);
-    bool insertRows ( int row, int count, const QModelIndex & parent = QModelIndex() );
 
     /**
      * Divide a lesson into smaller ones.

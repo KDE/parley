@@ -269,8 +269,6 @@ void ContainerModel::splitLesson(const QModelIndex& containerIndex, int entriesP
         parentLesson->appendChildContainer(child);
         endInsertRows();
 
-        // number entries in the lesson that is being filled
-        int entries = 0;
         while (parentLesson->entryCount() > 0 && child->entryCount() < entriesPerLesson) {
             // next entry to be assigned to one of the new lessons
             int nextEntry=0;
@@ -398,6 +396,8 @@ QVariant ContainerModel::headerData(int section, Qt::Orientation orientation, in
 
 int ContainerModel::columnCount(const QModelIndex & parent) const
 {
+    Q_UNUSED(parent);
+
     if(!m_container) {
         return 0;
     }
@@ -464,6 +464,8 @@ QMimeData * ContainerModel::mimeData(const QModelIndexList &indexes) const
 
 bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent)
 {
+    Q_UNUSED(column)
+
     if (action == Qt::IgnoreAction) {
          return true;
     }
@@ -481,7 +483,6 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
             }
 
             if (action == Qt::MoveAction || action == Qt::CopyAction) {
-//                 container->parent();
                 kDebug() << "Move container: " << container->name();
                 KEduVocContainer* parentContainer;
 
@@ -492,8 +493,6 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
                 }
 
                 QModelIndex oldParent = index(container->parent());
-
-// removeRows(row, 1, oldParent);
 
                 beginRemoveRows(oldParent, container->row(), container->row());
                 container->parent()->removeChildContainer(container->row());
@@ -547,7 +546,6 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
             kDebug() << "Copy lesson " << name;
 
             appendLesson(parent, name);
-            
             return true;
         }
     }*/
@@ -564,7 +562,7 @@ bool ContainerModel::removeRows(int row, int count, const QModelIndex & parent)
     } else {
         parentContainer = static_cast<KEduVocContainer*>(parent.internalPointer());
     }
-kDebug() << "removeRows from " << parentContainer->name() << " row " << row << "count" << count;
+    kDebug() << "removeRows from " << parentContainer->name() << " row " << row << "count" << count;
 
     beginRemoveRows ( parent, row, row+count );
     for (int i = 0; i<count; i++) {
@@ -574,14 +572,6 @@ kDebug() << "removeRows from " << parentContainer->name() << " row " << row << "
 
     return true;
 }
-
-bool ContainerModel::insertRows(int row, int count, const QModelIndex & parent)
-{
-    Q_ASSERT(parent.internalPointer());
-    kDebug() << "" << static_cast<KEduVocContainer*>(parent.internalPointer())->name();
-    return false;
-}
-
 
 
 #include "containermodel.moc"
