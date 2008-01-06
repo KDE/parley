@@ -666,6 +666,7 @@ void ParleyApp::initDockWidgets()
     addDockWidget( Qt::LeftDockWidgetArea, wordTypeDockWidget );
 
     m_wordTypeModel = new ContainerModel(KEduVocContainer::WordType, this);
+    wordTypeDockWidget->setVisible(false);
 
 ///@todo test, should be fixed with the lesson one though
 ///@todo remove before release
@@ -698,6 +699,7 @@ void ParleyApp::initDockWidgets()
     ConjugationWidget *conjugationWidget = new ConjugationWidget(this);
     conjugationDock->setWidget(conjugationWidget);
     addDockWidget(Qt::RightDockWidgetArea, conjugationDock);
+    conjugationDock->setVisible(false);
     actionCollection()->addAction("show_conjugation_dock", conjugationDock->toggleViewAction());
     connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)),
         conjugationWidget, SLOT(setDocument(KEduVocDocument*)));
@@ -712,6 +714,7 @@ void ParleyApp::initDockWidgets()
     declinationDock->setWidget(declinationWidget);
     addDockWidget(Qt::RightDockWidgetArea, declinationDock);
     actionCollection()->addAction("show_declination_dock", declinationDock->toggleViewAction());
+    declinationDock->setVisible(false);
 //     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_declinationWidget, SLOT(setTranslation(KEduVocTranslation*)));
 
 
@@ -722,6 +725,7 @@ void ParleyApp::initDockWidgets()
     comparisonDock->setWidget(comparisonWidget);
     addDockWidget(Qt::RightDockWidgetArea, comparisonDock);
     actionCollection()->addAction("show_comparison_dock", comparisonDock->toggleViewAction());
+    comparisonDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         comparisonWidget, SLOT(setTranslation(KEduVocExpression*, int)));
     connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), comparisonWidget, SLOT(setDocument(KEduVocDocument*)));
@@ -736,6 +740,7 @@ void ParleyApp::initDockWidgets()
     multipleChoiceDock->setWidget(multipleChoiceWidget);
     addDockWidget(Qt::RightDockWidgetArea, multipleChoiceDock);
     actionCollection()->addAction("show_multiplechoice_dock", multipleChoiceDock->toggleViewAction());
+    multipleChoiceDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         multipleChoiceWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
@@ -747,7 +752,7 @@ void ParleyApp::initDockWidgets()
     charSelectDock->setWidget(charSelectWidget);
     addDockWidget(Qt::RightDockWidgetArea, charSelectDock);
     actionCollection()->addAction("show_pronunciation_dock", charSelectDock->toggleViewAction());
-
+    charSelectDock->setVisible(false);
 
 // Image
     QDockWidget *imageDock = new QDockWidget(i18n("Image"), this);
@@ -756,6 +761,7 @@ void ParleyApp::initDockWidgets()
     imageDock->setWidget(imageChooserWidget);
     addDockWidget(Qt::RightDockWidgetArea, imageDock);
     actionCollection()->addAction("show_image_dock", imageDock->toggleViewAction());
+    imageDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         imageChooserWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
@@ -766,6 +772,7 @@ void ParleyApp::initDockWidgets()
     audioDock->setWidget(audioWidget);
     addDockWidget(Qt::RightDockWidgetArea, audioDock);
     actionCollection()->addAction("show_audio_dock", audioDock->toggleViewAction());
+    audioDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         audioWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
