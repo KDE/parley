@@ -641,7 +641,7 @@ void ParleyApp::initDockWidgets()
 
     m_lessonModel = new ContainerModel(KEduVocLesson::Lesson, this);
 ///@todo remove before release
-    new ModelTest(m_lessonModel, this);
+//     new ModelTest(m_lessonModel, this);
 
     m_lessonView->setModel(m_lessonModel);
     m_lessonView->setToolTip(i18n("Right click to add, delete, or rename lessons. \n"
@@ -669,7 +669,7 @@ void ParleyApp::initDockWidgets()
 
 ///@todo test, should be fixed with the lesson one though
 ///@todo remove before release
-    new ModelTest(m_wordTypeModel, this);
+//     new ModelTest(m_wordTypeModel, this);
 
     m_wordTypeView->setModel(m_wordTypeModel);
 

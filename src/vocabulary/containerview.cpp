@@ -66,7 +66,6 @@ void ContainerView::slotCreateNewLesson()
     QModelIndex selectedIndex = selectionModel()->currentIndex();
 
     if (!selectedIndex.isValid()) {
-kDebug() << "!selectedIndex.isValid";
         selectedIndex = m_model->index(0, 0, QModelIndex());
     }
 

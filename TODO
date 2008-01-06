@@ -71,6 +71,8 @@ General
  * adjectives can have a gender and plural
 
  * tenses - make it possible to change their order and redo the dialog in general
+ 
+ * Undo - KUndoStack
 
 Pronunciation
  * research how entering that could be made easier
