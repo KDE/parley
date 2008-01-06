@@ -84,8 +84,7 @@ void ConjugationWidget::setData(int row, int col)
     pluralThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural ));
     pluralThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Plural ));
 
-    tensebox->clear();
-    tensebox->addItems(m_doc->tenseDescriptions());
+
 
     dualGroupBox->setVisible( m_doc->identifier(m_currentTranslation).personalPronouns().dualExists() );
 
@@ -235,7 +234,10 @@ void ConjugationWidget::setTranslation(KEduVocExpression * entry, int translatio
 void ConjugationWidget::setDocument(KEduVocDocument * doc)
 {
     m_doc = doc;
-    ///@todo set up the tense combo box
+    tenseComboBox->clear();
+    if (m_doc) {
+        tenseComboBox->addItems(m_doc->tenseDescriptions());
+    }
 }
 
 
