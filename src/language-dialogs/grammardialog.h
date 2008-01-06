@@ -19,8 +19,6 @@
 
 class KEduVocDocument;
 class LangPropPage;
-class UsageOptPage;
-class WordTypeOptionPage;
 class TenseOptPage;
 
 /**
@@ -36,8 +34,6 @@ public:
     void accept();
 
 private:
-//     UsageOptPage          *useOptPage;
-    WordTypeOptionPage    *typeOptPage;
     TenseOptPage          *tenseOptPage;
     QList<LangPropPage *> langPages;
 };
