@@ -106,7 +106,7 @@ void KVTSortFilterModel::slotSearch(const QString& s)
 
     QStringList types = searchterms.filter("type:", Qt::CaseInsensitive);
     // get rid of type searches
-    foreach (QString type, types) {
+    foreach (const QString &type, types) {
         searchterms.removeAt(searchterms.indexOf(type));
     }
 

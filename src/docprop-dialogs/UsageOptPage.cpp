@@ -127,7 +127,7 @@ void UsageOptPage::slotDeleteUsage()
 
 void UsageOptPage::accept()
 {
-    foreach ( QString newUsage, m_newUsages ) {
+    foreach ( const QString &newUsage, m_newUsages ) {
         m_doc->addUsage(newUsage);
     }
 
@@ -135,7 +135,7 @@ void UsageOptPage::accept()
         m_doc->renameUsage(m_renameList[i].first, m_renameList[i].second);
     }
 
-    foreach ( QString newUsage, m_deletedUsages ) {
+    foreach ( const QString &newUsage, m_deletedUsages ) {
         m_doc->removeUsage(newUsage);
     }
 }

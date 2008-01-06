@@ -65,11 +65,11 @@ void EditLanguageDialogPage::initialize()
 
     // qmap automatically sorts by keys
     QMap<QString, QString> languageCodeMap;
-    foreach (QString code, codes){
+    foreach (const QString &code, codes){
         languageCodeMap[KGlobal::locale()->languageCodeToName(code)] = code;
     }
     // add the language, but also it's code as data
-    foreach ( QString language, languageCodeMap.keys() ) {
+    foreach ( const QString &language, languageCodeMap.keys() ) {
         localeComboBox->addItem( language, languageCodeMap.value(language) );
     }
 
@@ -86,7 +86,7 @@ void EditLanguageDialogPage::initialize()
     QStringList countrylist = KGlobal::locale()->allCountriesList();
     countrylist.sort();
 
-    foreach(QString code, countrylist) {
+    foreach(const QString &code, countrylist) {
         QString country = KGlobal::dirs()->findResource("locale",
                 QString("l10n/%1/entry.desktop").arg(code));
         KConfig entry(country, KConfig::SimpleConfig);

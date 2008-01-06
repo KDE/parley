@@ -45,10 +45,10 @@ WordTypeOptionPage::WordTypeOptionPage(KEduVocDocument *doc, QWidget *parent) : 
     m_wordTypeModel = new QStandardItemModel();
     m_wordTypeModel->setHorizontalHeaderLabels( QStringList() << i18n("Word type") );
 
-    foreach ( QString typeString, m_newWordTypes.typeNameList() ) {
+    foreach ( const QString &typeString, m_newWordTypes.typeNameList() ) {
         QStandardItem *item = new QStandardItem(typeString);
         m_wordTypeModel->appendRow(item);
-        foreach ( QString subTypeString, m_newWordTypes.subTypeNameList( typeString ) ) {
+        foreach ( const QString &subTypeString, m_newWordTypes.subTypeNameList( typeString ) ) {
             QStandardItem *subItem = new QStandardItem(subTypeString);
             item->appendRow(subItem);
         }

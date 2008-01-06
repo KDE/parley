@@ -163,7 +163,7 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
     // setup a list of tenses to practice
     m_tenses.clear();
     QStringList tenses = entry->entry()->translation(Prefs::solutionLanguage())->conjugationTenses();
-    foreach ( QString tense, tenses ) {
+    foreach ( const QString &tense, tenses ) {
         if ( !entry->entry()->translation(Prefs::solutionLanguage())->conjugation(tense).isEmpty() ) {
             if ( m_activeTenses.contains( tense ) ) {
                 m_tenses.append(tense);

@@ -115,7 +115,7 @@ bool MultipleChoiceWidget::eventFilter(QObject * obj, QEvent * event)
             kDebug() << "You dropped onto me: " << dropEvent->mimeData()->text();
 
             QStringList choices = dropEvent->mimeData()->text().split('\n');
-            foreach(QString choice, choices) {
+            foreach(const QString &choice, choices) {
                 m_choicesModel->insertRow(multipleChoiceListView->model()->rowCount());
                 m_choicesModel->setData(m_choicesModel->index(multipleChoiceListView->model()->rowCount()-1), choice);
             }

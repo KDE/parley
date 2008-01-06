@@ -343,7 +343,7 @@ QMimeData * VocabularyModel::mimeData(const QModelIndexList & indexes) const
 {
     VocabularyMimeData *mimeData = new VocabularyMimeData();
 
-    foreach (QModelIndex index, indexes) {
+    foreach (const QModelIndex &index, indexes) {
         mimeData->addTranslation(m_container->entry(index.row())->translation(translation(index.column())));
     }
 

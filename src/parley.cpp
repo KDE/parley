@@ -612,7 +612,7 @@ void ParleyApp::updateEditWidgets()
     modelIndexList = m_tableView->selectionModel()->selectedRows();
 
     QList<int> entryList;
-    foreach (QModelIndex modelIndex, modelIndexList) {
+    foreach (const QModelIndex &modelIndex, modelIndexList) {
          entryList.append(m_sortFilterModel->mapToSource(modelIndex).row());
     }
 

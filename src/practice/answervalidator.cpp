@@ -434,12 +434,12 @@ void AnswerValidator::sentenceAnalysis()
 
     QString correction;
     correction.append("Correct: ");
-    foreach (QString correctWord, correctWords) {
+    foreach (const QString &correctWord, correctWords) {
         correction.append(QString::fromLatin1("<font color=\"#188C18\">") + correctWord + QString::fromLatin1("</font> "));
     }
 
     correction.append(" Wrong: ");
-    foreach (QString wrongWord, wrongWords) {
+    foreach (const QString &wrongWord, wrongWords) {
         correction.append(QString::fromLatin1("<font color=\"#8C1818\">") + wrongWord + QString::fromLatin1("</font> "));
     }
 

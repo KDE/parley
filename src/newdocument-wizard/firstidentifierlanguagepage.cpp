@@ -52,7 +52,7 @@ FirstIdentifierLanguagePage::FirstIdentifierLanguagePage(QWizard * parent)
     QStringList codes = KGlobal::locale()->allLanguagesList();
 
     QStringList languageNames;
-    foreach (QString code, codes){
+    foreach (const QString &code, codes){
         languageNames.append( KGlobal::locale()->languageCodeToName(code) );
     }
     languageNames.sort();

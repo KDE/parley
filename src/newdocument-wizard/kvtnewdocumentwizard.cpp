@@ -82,7 +82,7 @@ void KVTNewDocumentWizard::accept()
     m_doc->identifier(1).setName( field("secondIdentifierName").toString() );
 
     // ugly but works for now: iterate over languages to check which code we have
-    foreach ( QString code, KGlobal::locale()->allLanguagesList() ) {
+    foreach ( const QString &code, KGlobal::locale()->allLanguagesList() ) {
         if ( field("firstLocale").toString() == KGlobal::locale()->languageCodeToName(code) ) {
             m_doc->identifier(0).setLocale( code );
         }

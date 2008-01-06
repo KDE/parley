@@ -46,7 +46,7 @@ ThresholdOptions::ThresholdOptions(KEduVocDocument* doc, QWidget* parent) : QWid
 
     QTreeWidgetItem* typeItem;
     QTreeWidgetItem* subTypeItem;
-    foreach ( QString typeName, m_doc->wordTypes().typeNameList() ) {
+    foreach ( const QString &typeName, m_doc->wordTypes().typeNameList() ) {
         typeItem = new QTreeWidgetItem(PracticeWordTypesTreeWidget);
         typeItem->setText(0, typeName);
         if ( activeWordTypes.contains( typeName ) ) {
@@ -57,7 +57,7 @@ ThresholdOptions::ThresholdOptions(KEduVocDocument* doc, QWidget* parent) : QWid
         typeItem->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
         PracticeWordTypesTreeWidget->addTopLevelItem( typeItem );
         // subtypes
-        foreach ( QString subTypeName, m_doc->wordTypes().subTypeNameList(typeName) ) {
+        foreach ( const QString &subTypeName, m_doc->wordTypes().subTypeNameList(typeName) ) {
             subTypeItem = new QTreeWidgetItem(typeItem);
             subTypeItem->setText(0, subTypeName);
             if ( activeSubWordTypes.contains( subTypeName ) ) {

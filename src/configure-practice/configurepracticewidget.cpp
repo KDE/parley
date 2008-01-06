@@ -228,7 +228,7 @@ void ConfigurePracticeWidget::setupTenses()
     QStringList activeTenses = currentSettings.conjugationTenses();
     QTreeWidgetItem* tenseItem;
 
-    foreach ( QString tenseName, m_doc->tenseDescriptions() ) {
+    foreach ( const QString &tenseName, m_doc->tenseDescriptions() ) {
         tenseItem = new QTreeWidgetItem(m_tenseListWidget);
         tenseItem->setText(0, tenseName);
         if ( activeTenses.contains( tenseName ) ) {

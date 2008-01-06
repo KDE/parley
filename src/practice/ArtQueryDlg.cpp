@@ -98,7 +98,7 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
     // strip the article
     ///@todo
     int pos;
-    foreach(QString word, noun.split(QRegExp("\\W"), QString::SkipEmptyParts) ) {
+    foreach(const QString &word, noun.split(QRegExp("\\W"), QString::SkipEmptyParts) ) {
         if (articles.isArticle(word)) {
             while ((pos = noun.indexOf(word)) >= 0) {
                 noun.remove(pos, word.length());

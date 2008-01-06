@@ -443,14 +443,14 @@ QMimeData * ContainerModel::mimeData(const QModelIndexList &indexes) const
      ContainerMimeData *mimeData = new ContainerMimeData();
 //      QByteArray encodedData;
 
-    foreach (QModelIndex index, indexes) {
+    foreach (const QModelIndex &index, indexes) {
         mimeData->addContainer(static_cast<KEduVocContainer*>(index.internalPointer()));
     }
     mimeData->setText("Parley lesson");
 
 //      QDataStream stream(&encodedData, QIODevice::WriteOnly);
 // stream << "Parley lesson";
-//      foreach (QModelIndex index, indexes) {
+//      foreach (const QModelIndex &index, indexes) {
 //          if (index.isValid()) {
 //              QString text = data(index, Qt::DisplayRole).toString();
 //              stream << text;
