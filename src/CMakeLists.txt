@@ -85,26 +85,17 @@ set(docprop_SRCS
     docprop-dialogs/LangPropPage.cpp
     docprop-dialogs/TenseOptPage.cpp
     docprop-dialogs/TitlePage.cpp
-#     docprop-dialogs/TypeOptPage.cpp
-   # docprop-dialogs/UsageOptPage.cpp
 )
 
 kde4_add_ui_files(docprop_SRCS
     docprop-dialogs/LangPropPageForm.ui
     docprop-dialogs/TitlePageForm.ui
     docprop-dialogs/optionlistform.ui
-    docprop-dialogs/typeeditform.ui
 )
 
 set(entrydialogs_SRCS
-    entry-dialogs/AdjEntryPage.cpp
-  #  entry-dialogs/additionaleditpage.cpp
-  #  entry-dialogs/CommonEntryPage.cpp
-  #  entry-dialogs/EntryDlg.cpp
-  #  entry-dialogs/FromToEntryPage.cpp
     entry-dialogs/multiplechoicewidget.cpp
   #  entry-dialogs/PhoneticEntryPage.cpp
-  #  entry-dialogs/wordtypewidget.cpp
     entry-dialogs/comparisonwidget.cpp
     entry-dialogs/conjugationwidget.cpp
     entry-dialogs/imagechooserwidget.cpp
@@ -112,11 +103,6 @@ set(entrydialogs_SRCS
 )
 
 kde4_add_ui_files(entrydialogs_SRCS
-    entry-dialogs/AdjEntryPageForm.ui
-    entry-dialogs/additionaleditpage.ui
-    entry-dialogs/CommonEntryPageForm.ui
-    entry-dialogs/FromToEntryPageForm.ui
-    entry-dialogs/TenseEntryPageForm.ui
     entry-dialogs/wordtypewidget.ui
     entry-dialogs/multiplechoicewidget.ui
     entry-dialogs/comparisonwidget.ui
