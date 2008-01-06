@@ -19,8 +19,9 @@
 #include <KLineEdit>
 #include <KDebug>
 #include <KStandardDirs>
-#include <QGraphicsSvgItem>
-#include <QGraphicsProxyWidget>
+// #include <QGraphicsSvgItem>
+// #include <QGraphicsProxyWidget>
+#include <QResizeEvent>
 
 #include "questiondisplay.h"
 #include "defaulttheme/vocabularycard.h"
