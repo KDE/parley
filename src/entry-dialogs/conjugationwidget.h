@@ -37,7 +37,8 @@ signals:
 private slots:
     void textChanged(const QString&);
     void slotTenseSelected(int);
-    void slotNextConj();
+    void slotNextTense();
+    void slotMakeVerb();
 
 private:
     /**
@@ -53,6 +54,11 @@ private:
     int m_identifier;
     KEduVocExpression* m_entry;
     KEduVocDocument* m_doc;
+
+    /**
+     * All line edits and labels, index corresponding to KEduVocConjugation::indexOf
+     */
+    QMap< int, QLineEdit* > m_conjugationLineEdits;
 };
 
 #endif

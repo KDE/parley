@@ -26,7 +26,7 @@ ConjugationWidget::ConjugationWidget(QWidget *parent) : QWidget(parent)
 
     setupUi(this);
 
-    connect(makeVerbButton, SIGNAL(clicked()), SLOT(makeVerb()));
+    connect(makeVerbButton, SIGNAL(clicked()), SLOT(slotMakeVerb()));
     connect(nextTenseButton, SIGNAL(clicked()), SLOT(slotNextTense()));
     connect(tenseComboBox, SIGNAL(activated(int)), SLOT(slotTenseSelected(int)));
 
@@ -35,23 +35,150 @@ ConjugationWidget::ConjugationWidget(QWidget *parent) : QWidget(parent)
     dualGroupBox->setVisible(false);
     makeVerbButton->setEnabled(false);
 
-    QMap< int, QPair< QLabel*, QLineEdit* > > m_conjugationFormWidgets;
+    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::First, KEduVocConjugation::Singular)]
+        = singularFirstPersonLineEdit;
+    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::Second, KEduVocConjugation::Singular)]
+        = singularSecondPersonLineEdit;
 
-    m_conjugationFormWidgets[KEduVocConjugation::indexOf(KEduVocConjugation::First, KEduVocConjugation::Singular)]
-        = qMakePair(singularFirstPersonLabel, singularFirstPersonLineEdit);
+    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::ThirdMale, KEduVocConjugation::Singular)]
+        = singularThirdMalePersonLineEdit;
+    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Singular)]
+        = singularThirdFemalePersonLineEdit;
+    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Singular)]
+        = singularThirdNeutralPersonLineEdit;
 
-    connect(singularFirstPersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
-    connect(singularSecondPersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
-    connect(singularThirdMalePersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
-    connect(singularThirdFemalePersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
-    connect(singularThirdNeutralPersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
+    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::First, KEduVocConjugation::Dual)]
+        = dualFirstPersonLineEdit;
+    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::Second, KEduVocConjugation::Dual)]
+        = dualSecondPersonLineEdit;
 
-    connect(pluralFirstPersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
-    connect(pluralSecondPersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
-    connect(pluralThirdMalePersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
-    connect(pluralThirdFemalePersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
-    connect(pluralThirdNeutralPersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
+    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::ThirdMale, KEduVocConjugation::Dual)]
+        = dualThirdMalePersonLineEdit;
+    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Dual)]
+        = dualThirdFemalePersonLineEdit;
+    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Dual)]
+        = dualThirdNeutralPersonLineEdit;
+
+    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::First, KEduVocConjugation::Plural)]
+        = pluralFirstPersonLineEdit;
+    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::Second, KEduVocConjugation::Plural)]
+        = pluralSecondPersonLineEdit;
+
+    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::ThirdMale, KEduVocConjugation::Plural)]
+        = pluralThirdMalePersonLineEdit;
+    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural)]
+        = pluralThirdFemalePersonLineEdit;
+    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Plural)]
+        = pluralThirdNeutralPersonLineEdit;
+
+    foreach(int index, m_conjugationLineEdits.keys()) {
+        connect(m_conjugationLineEdits.value(index), SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
+    }
 }
+
+
+void ConjugationWidget::textChanged(const QString& text)
+{
+    Q_UNUSED(text);
+kDebug() << "text for " << m_conjugationLineEdits.values().indexOf(qobject_cast<QLineEdit*>(sender())) << " changed";
+}
+
+
+void ConjugationWidget::slotTenseSelected(int sel)
+{
+kDebug() << "selected tense " << sel;
+    saveCurrentTense();
+    updateEntries();
+}
+
+
+void ConjugationWidget::saveCurrentTense()
+{
+/*
+    QString selection = m_lastSelection;
+
+    KEduVocConjugation::ConjugationNumber num = KEduVocConjugation::Singular;
+
+    m_conjugations[selection].setConjugation(singularFirstPersonLineEdit->text(),  KEduVocConjugation::First , num);
+    m_conjugations[selection].setConjugation(singularSecondPersonLineEdit->text(),  KEduVocConjugation::Second , num);
+    m_conjugations[selection].setConjugation(singularThirdMalePersonLineEdit->text(),  KEduVocConjugation::ThirdMale , num);
+    m_conjugations[selection].setConjugation(singularThirdFemalePersonLineEdit->text(),  KEduVocConjugation::ThirdFemale , num);
+    m_conjugations[selection].setConjugation(singularThirdNeutralPersonLineEdit->text(),  KEduVocConjugation::ThirdNeutralCommon , num);
+
+    num = KEduVocConjugation::Dual;
+    m_conjugations[selection].setConjugation(dualFirstPersonLineEdit->text(),  KEduVocConjugation::First , num);
+    m_conjugations[selection].setConjugation(dualSecondPersonLineEdit->text(),  KEduVocConjugation::Second , num);
+    m_conjugations[selection].setConjugation(dualThirdMalePersonLineEdit->text(),  KEduVocConjugation::ThirdMale , num);
+    m_conjugations[selection].setConjugation(dualThirdFemalePersonLineEdit->text(),  KEduVocConjugation::ThirdFemale , num);
+    m_conjugations[selection].setConjugation(dualThirdNeutralPersonLineEdit->text(),  KEduVocConjugation::ThirdNeutralCommon , num);
+
+    num = KEduVocConjugation::Plural;
+    m_conjugations[selection].setConjugation(pluralFirstPersonLineEdit->text(),  KEduVocConjugation::First , num);
+    m_conjugations[selection].setConjugation(pluralSecondPersonLineEdit->text(),  KEduVocConjugation::Second , num);
+    m_conjugations[selection].setConjugation(pluralThirdMalePersonLineEdit->text(),  KEduVocConjugation::ThirdMale , num);
+    m_conjugations[selection].setConjugation(pluralThirdFemalePersonLineEdit->text(),  KEduVocConjugation::ThirdFemale , num);
+    m_conjugations[selection].setConjugation(pluralThirdNeutralPersonLineEdit->text(),  KEduVocConjugation::ThirdNeutralCommon , num);
+*/
+}
+
+void ConjugationWidget::updateEntries()
+{
+/*
+    QString selection = m_lastSelection;
+
+    KEduVocConjugation::ConjugationNumber num = KEduVocConjugation::Singular;
+    singularFirstPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::First , num));
+    singularSecondPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::Second , num));
+    singularThirdMalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdMale , num));
+    singularThirdFemalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdFemale , num));
+    singularThirdNeutralPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdNeutralCommon , num));
+
+    num = KEduVocConjugation::Dual;
+    dualFirstPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::First , num));
+    dualSecondPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::Second , num));
+    dualThirdMalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdMale , num));
+    dualThirdFemalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdFemale , num));
+    dualThirdNeutralPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdNeutralCommon , num));
+
+    num = KEduVocConjugation::Plural;
+    pluralFirstPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::First , num));
+    pluralSecondPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::Second , num));
+    pluralThirdMalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdMale , num));
+    pluralThirdFemalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdFemale , num));
+    pluralThirdNeutralPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdNeutralCommon , num));
+*/
+}
+
+void ConjugationWidget::setTranslation(KEduVocExpression * entry, int translation)
+{
+    m_entry = entry;
+    m_identifier = translation;
+
+    if (!entry) {
+        setEnabled(false);
+        return;
+    }
+    setEnabled(true);
+    if (entry->translation(translation)->wordType()
+            && entry->translation(translation)->wordType()->wordType() == KEduVocWordType::Verb) {
+        // if it's a verb already, hide the make verb button and start editing it
+        makeVerbButton->setVisible(false);
+        singularGroupBox->setVisible(true);
+        pluralGroupBox->setVisible(true);
+        dualGroupBox->setVisible(true);
+
+        foreach(int key, entry->translation(translation)->conjugation(tenseComboBox->currentText()).keys()) {
+            m_conjugationLineEdits.value(key)->setText(entry->translation(translation)->conjugation(tenseComboBox->currentText()).conjugation(key));
+        }
+
+    } else {
+        makeVerbButton->setText(i18n("\"%1\" is a verb", m_entry->translation(translation)->text()));
+        makeVerbButton->setEnabled(true);
+        makeVerbButton->setVisible(true);
+// hide the other stuff
+    }
+}
+
 
 /*
 void ConjugationWidget::setData(int row, int col)
@@ -122,22 +249,25 @@ void ConjugationWidget::setData(int row, int col)
 }
 */
 
-void ConjugationWidget::textChanged(const QString& text)
+void ConjugationWidget::setDocument(KEduVocDocument * doc)
 {
-    Q_UNUSED(text);
+    m_doc = doc;
+    tenseComboBox->clear();
+    if (m_doc) {
+        tenseComboBox->addItems(m_doc->tenseDescriptions());
+        tenseComboBox->setCurrentIndex(0);
+    }
 }
 
-
-void ConjugationWidget::slotTenseSelected(int sel)
+void ConjugationWidget::slotNextTense()
 {
-kDebug() << "selected tense " << sel;
-    saveCurrentTense();
-    updateEntries();
+    if (tenseComboBox->currentIndex() + 1 < tenseComboBox->count()) {
+        tenseComboBox->setCurrentIndex(tenseComboBox->currentIndex() + 1);
+    } else {
+        tenseComboBox->setCurrentIndex(0);
+    }
 }
 
-
-void ConjugationWidget::slotNextConj()
-{
 /*
     QString tense = tensebox->currentText();
     int newIndex = m_doc->tenseDescriptions().indexOf(tense) +1;
@@ -149,96 +279,9 @@ void ConjugationWidget::slotNextConj()
     tensebox->setCurrentIndex(tenseboxIndex);
     slotTenseSelected(tenseboxIndex);
 */
-}
 
-
-void ConjugationWidget::saveCurrentTense()
+void ConjugationWidget::slotMakeVerb()
 {
-/*
-    QString selection = m_lastSelection;
-
-    KEduVocConjugation::ConjugationNumber num = KEduVocConjugation::Singular;
-
-    m_conjugations[selection].setConjugation(singularFirstPersonLineEdit->text(),  KEduVocConjugation::First , num);
-    m_conjugations[selection].setConjugation(singularSecondPersonLineEdit->text(),  KEduVocConjugation::Second , num);
-    m_conjugations[selection].setConjugation(singularThirdMalePersonLineEdit->text(),  KEduVocConjugation::ThirdMale , num);
-    m_conjugations[selection].setConjugation(singularThirdFemalePersonLineEdit->text(),  KEduVocConjugation::ThirdFemale , num);
-    m_conjugations[selection].setConjugation(singularThirdNeutralPersonLineEdit->text(),  KEduVocConjugation::ThirdNeutralCommon , num);
-
-    num = KEduVocConjugation::Dual;
-    m_conjugations[selection].setConjugation(dualFirstPersonLineEdit->text(),  KEduVocConjugation::First , num);
-    m_conjugations[selection].setConjugation(dualSecondPersonLineEdit->text(),  KEduVocConjugation::Second , num);
-    m_conjugations[selection].setConjugation(dualThirdMalePersonLineEdit->text(),  KEduVocConjugation::ThirdMale , num);
-    m_conjugations[selection].setConjugation(dualThirdFemalePersonLineEdit->text(),  KEduVocConjugation::ThirdFemale , num);
-    m_conjugations[selection].setConjugation(dualThirdNeutralPersonLineEdit->text(),  KEduVocConjugation::ThirdNeutralCommon , num);
-
-    num = KEduVocConjugation::Plural;
-    m_conjugations[selection].setConjugation(pluralFirstPersonLineEdit->text(),  KEduVocConjugation::First , num);
-    m_conjugations[selection].setConjugation(pluralSecondPersonLineEdit->text(),  KEduVocConjugation::Second , num);
-    m_conjugations[selection].setConjugation(pluralThirdMalePersonLineEdit->text(),  KEduVocConjugation::ThirdMale , num);
-    m_conjugations[selection].setConjugation(pluralThirdFemalePersonLineEdit->text(),  KEduVocConjugation::ThirdFemale , num);
-    m_conjugations[selection].setConjugation(pluralThirdNeutralPersonLineEdit->text(),  KEduVocConjugation::ThirdNeutralCommon , num);
-*/
 }
-
-void ConjugationWidget::updateEntries()
-{
-/*
-    QString selection = m_lastSelection;
-
-    KEduVocConjugation::ConjugationNumber num = KEduVocConjugation::Singular;
-    singularFirstPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::First , num));
-    singularSecondPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::Second , num));
-    singularThirdMalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdMale , num));
-    singularThirdFemalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdFemale , num));
-    singularThirdNeutralPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdNeutralCommon , num));
-
-    num = KEduVocConjugation::Dual;
-    dualFirstPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::First , num));
-    dualSecondPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::Second , num));
-    dualThirdMalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdMale , num));
-    dualThirdFemalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdFemale , num));
-    dualThirdNeutralPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdNeutralCommon , num));
-
-    num = KEduVocConjugation::Plural;
-    pluralFirstPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::First , num));
-    pluralSecondPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::Second , num));
-    pluralThirdMalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdMale , num));
-    pluralThirdFemalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdFemale , num));
-    pluralThirdNeutralPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdNeutralCommon , num));
-*/
-}
-
-void ConjugationWidget::setTranslation(KEduVocExpression * entry, int translation)
-{
-    m_entry = entry;
-    m_identifier = translation;
-
-    if (!entry) {
-        setEnabled(false);
-        return;
-    }
-
-    if (entry->translation(translation)->wordType()
-            && entry->translation(translation)->wordType()->wordType() == KEduVocWordType::Verb) {
-        // if it's a verb already, hide the make verb button and start editing it
-        makeVerbButton->setVisible(false);
-    } else {
-        makeVerbButton->setText(i18n("\"%1\" is a verb", m_entry->translation(translation)->text()));
-        makeVerbButton->setEnabled(true);
-        makeVerbButton->setVisible(true);
-// hide the other stuff
-    }
-}
-
-void ConjugationWidget::setDocument(KEduVocDocument * doc)
-{
-    m_doc = doc;
-    tenseComboBox->clear();
-    if (m_doc) {
-        tenseComboBox->addItems(m_doc->tenseDescriptions());
-    }
-}
-
 
 #include "conjugationwidget.moc"
