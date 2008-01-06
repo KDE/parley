@@ -102,9 +102,9 @@ void ConjugationWidget::setTranslation(KEduVocExpression * entry, int identifier
 {
     m_entry = entry;
     if (m_identifier != identifier) {
-        
+        m_identifier = identifier;
+        updateVisiblePersons();
     }
-    m_identifier = identifier;
 
     if (!entry) {
         setEnabled(false);
@@ -119,7 +119,6 @@ void ConjugationWidget::setTranslation(KEduVocExpression * entry, int identifier
         // if it's a verb already, hide the make verb button and start editing it
         showConjugationEditWidgets();
         updateEntries();
-
     } else {
         makeVerbButton->setEnabled(true);
         showMakeVerbWidgets();
@@ -178,13 +177,19 @@ void ConjugationWidget::showMakeVerbWidgets()
 void ConjugationWidget::showConjugationEditWidgets()
 {
     makeVerbButton->setVisible(false);
-    singularGroupBox->setVisible(true);
-    pluralGroupBox->setVisible(true);
-    dualGroupBox->setVisible(true);
 }
 
 void ConjugationWidget::updateVisiblePersons()
 {
+    if (m_identifier < 0) {
+        singularGroupBox->setVisible(false);
+        pluralGroupBox->setVisible(false);
+        dualGroupBox->setVisible(false);
+        return;
+    }
+
+    singularGroupBox->setVisible(true);
+    pluralGroupBox->setVisible(true);
     dualGroupBox->setVisible( m_doc->identifier(m_identifier).personalPronouns().dualExists() );
 
     bool maleFemaleDifferent = m_doc->identifier(m_identifier).personalPronouns().maleFemaleDifferent();
@@ -194,6 +199,11 @@ void ConjugationWidget::updateVisiblePersons()
     singularThirdFemalePersonLabel->setVisible(maleFemaleDifferent);
     singularThirdFemalePersonLineEdit->setVisible(maleFemaleDifferent);
 
+    dualThirdMalePersonLabel->setVisible(maleFemaleDifferent);
+    dualThirdMalePersonLineEdit->setVisible(maleFemaleDifferent);
+    dualThirdFemalePersonLabel->setVisible(maleFemaleDifferent);
+    dualThirdFemalePersonLineEdit->setVisible(maleFemaleDifferent);
+
     pluralThirdMalePersonLabel->setVisible(maleFemaleDifferent);
     pluralThirdMalePersonLineEdit->setVisible(maleFemaleDifferent);
     pluralThirdFemalePersonLabel->setVisible(maleFemaleDifferent);
@@ -202,29 +212,21 @@ void ConjugationWidget::updateVisiblePersons()
     if ( !maleFemaleDifferent ) {
         singularThirdNeutralPersonLabel->setVisible(true);
         singularThirdNeutralPersonLineEdit->setVisible(true);
+        dualThirdNeutralPersonLabel->setVisible(true);
+        dualThirdNeutralPersonLineEdit->setVisible(true);
         pluralThirdNeutralPersonLabel->setVisible(true);
         pluralThirdNeutralPersonLineEdit->setVisible(true);
     } else {
         bool neutralExists = m_doc->identifier(m_identifier).personalPronouns().neutralExists();
         singularThirdNeutralPersonLabel->setVisible(neutralExists);
         singularThirdNeutralPersonLineEdit->setVisible(neutralExists);
+        dualThirdNeutralPersonLabel->setVisible(neutralExists);
+        dualThirdNeutralPersonLineEdit->setVisible(neutralExists);
         pluralThirdNeutralPersonLabel->setVisible(neutralExists);
         pluralThirdNeutralPersonLineEdit->setVisible(neutralExists);
     }
 
-}
-
-/*
-void ConjugationWidget::setData(int row, int col)
-{
-    m_currentRow = row;
-    m_identifier = col;
-
-    if ( m_identifier < 0 ) {
-        kDebug() << "Invalid identifier for ConjugationWidget" << m_identifier;
-        return;
-    }
-
+    // set up the personal pronouns
     KEduVocPersonalPronoun pron = m_doc->identifier(m_identifier).personalPronouns();
 
     singularFirstPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::First, KEduVocConjugation::Singular ));
@@ -244,16 +246,7 @@ void ConjugationWidget::setData(int row, int col)
     pluralThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdMale, KEduVocConjugation::Plural ));
     pluralThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural ));
     pluralThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Plural ));
-
-
-
-    m_conjugations = m_doc->entry(m_currentRow)->translation(m_identifier).conjugations();
-
-    m_lastSelection = tensebox->currentText();
-    updateEntries();
-
 }
-*/
 
 
 #include "conjugationwidget.moc"
