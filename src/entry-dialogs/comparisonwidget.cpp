@@ -31,9 +31,6 @@ ComparisonWidget::ComparisonWidget(QWidget *parent) : QWidget(parent)
     connect(makeAdjectiveButton, SIGNAL(clicked()), SLOT(slotMakeAdjectiveButton()));
     connect(makeAdverbButton, SIGNAL(clicked()), SLOT(slotMakeAdverbButton()));
 
-//     makeAdjectiveButton->setEnabled(false);
-//     makeAdverbButton->setEnabled(false);
-
     connect(comparativeLineEdit, SIGNAL(editingFinished()), SLOT(slotComparativeChanged()));
     connect(superlativeLineEdit, SIGNAL(editingFinished()), SLOT(slotSuperlativeChanged()));
 }
