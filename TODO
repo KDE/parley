@@ -11,17 +11,9 @@ Things to improve in parley
      - create a context menu to set a word type to contain nouns etc
    - creating a new doc does not create any word types
  * KOffice has fancy hide docker buttons in their docker titles, steal them ;)
- * Add the ability to record sound files with phonon to a dock if possible.
+ * Add the ability to record sound files with phonon to a dock if possible. This depends on the state of Phonon - might be ready for 4.1.
  * Save columns hide state, enable hiding of main columns with their children maybe
- * Saving crashes right now
- * Save changes in the multiple choice dock
- * activate all readers/writers
- * Finish porting the word types to use the lesson class and rename the lesson class to container
- * Use the same for the leitner implementation
- * Implement searching again
- * Find a way to select all vocabulary - do we need a root lesson again?
- * Implement Leitner method
- * Update word type and lesson when selecting an entry (?) (Leitner as well?)
+ * Use the container/lesson class for the leitner implementation
  * What about editing multiple entries at the same time? does that work? does it help with the new design?
  * The statistics page is broken. At least reset does not work and there is no tree view for it.
  * Hide most docks upon first start
