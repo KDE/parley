@@ -488,7 +488,7 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
                 if (parent.isValid()) {
                     parentContainer = static_cast<KEduVocContainer*>(parent.internalPointer());
                 } else {
-                    parentContainer = m_container;
+                    parentContainer = m_container->childContainer(0);
                 }
 
                 QModelIndex oldParent = index(container->parent());
