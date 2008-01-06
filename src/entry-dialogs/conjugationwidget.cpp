@@ -81,6 +81,9 @@ void ConjugationWidget::textChanged(const QString& text)
 {
     Q_UNUSED(text);
 kDebug() << "text for " << m_conjugationLineEdits.values().indexOf(qobject_cast<QLineEdit*>(sender())) << " changed";
+    int valueIndex = m_conjugationLineEdits.values().indexOf(qobject_cast<QLineEdit*>(sender()));
+    int key = m_conjugationLineEdits.keys().value(valueIndex);
+    m_entry->translation(m_identifier)->conjugation(tenseComboBox->currentText()).setConjugation(text, key);
 }
 
 
@@ -123,7 +126,7 @@ void ConjugationWidget::saveCurrentTense()
 
 void ConjugationWidget::updateEntries()
 {
-    foreach(int key, m_entry->translation(m_identifier)->conjugation(tenseComboBox->currentText()).keys()) {
+    foreach(int key, m_conjugationLineEdits.keys()) {
         m_conjugationLineEdits.value(key)->setText(m_entry->translation(m_identifier)->conjugation(tenseComboBox->currentText()).conjugation(key));
     }
 }
