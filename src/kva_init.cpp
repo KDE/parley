@@ -344,6 +344,8 @@ void ParleyApp::initActions()
     m_vocabularyColumnsActionMenu->setStatusTip(m_vocabularyColumnsActionMenu->whatsThis());
     m_vocabularyView->horizontalHeader()->addAction(m_vocabularyColumnsActionMenu);
 
+    actionCollection()->addAction(KStandardAction::TipofDay,  "help_tipofday", this, SLOT( tipOfDay() ));
+
 // -- ONLY ON RIGHT CLICK - HEADER SO FAR -------------------------------------
     KAction *actionRestoreNativeOrder = new KAction(this);
     actionCollection()->addAction("restore_native_order", actionRestoreNativeOrder);

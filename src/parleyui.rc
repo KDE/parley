@@ -55,6 +55,9 @@
    <Action name="config_show_search" />
    <Action name="show_vocabulary_columns_menu" />
   </Menu>
+  <Menu name="help"><text>&amp;Help</text>
+    <Action name="help_tipofday"/>
+  </Menu>
  </MenuBar>
 
  <ToolBar noMerge="1" name="mainToolBar" >

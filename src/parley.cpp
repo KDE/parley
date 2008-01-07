@@ -66,6 +66,7 @@
 #include <KActionCollection>
 #include <KActionMenu>
 #include <KMessageBox>
+#include <KTipDialog>
 
 #include <QFile>
 #include <QPixmap>
@@ -75,6 +76,7 @@
 #include <QProgressBar>
 #include <QSplitter>
 #include <QHeaderView>
+#include <QtCore/QTimer>
 #include <QtGui/QDockWidget>
 #include <QtGui/QPrinter>
 #include <QtGui/QPrintDialog>
@@ -144,6 +146,9 @@ kDebug() << "Parley - will open doc";
 
     // save position of dock windows etc
     setAutoSaveSettings();
+
+    // finally show tip-of-day ( if the user wants it :) )
+    QTimer::singleShot( 0, this, SLOT( startupTipOfDay() ) );
 }
 
 
@@ -520,6 +525,7 @@ void ParleyApp::initDockWidgets()
 
     m_wordTypeModel = new ContainerModel(KEduVocContainer::WordType, this);
     wordTypeDockWidget->setVisible(false);
+    actionCollection()->addAction("show_wordtype_dock", wordTypeDockWidget->toggleViewAction());
 
 ///@todo test, should be fixed with the lesson one though
 ///@todo remove before release
@@ -647,6 +653,14 @@ void ParleyApp::initDockWidgets()
 //     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_declinationWidget, SLOT(setTranslation(KEduVocTranslation*)));
 
 // actionCollection()->addAction("show_leitner_dock", ->toggleViewAction());
+}
+
+void ParleyApp::tipOfDay() {
+  KTipDialog::showTip(this, "parley/tips", true);
+}
+
+void ParleyApp::startupTipOfDay() {
+  KTipDialog::showTip(this, "parley/tips");
 }
 
 

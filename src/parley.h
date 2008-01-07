@@ -128,6 +128,15 @@ public slots:
 
     void slotConfigShowSearch();
 
+    /**
+     * Show the tip of the day (force it to be shown)
+     */
+    void tipOfDay();
+
+    /**
+     * Show the tip of the day - the startup version that can be disabled
+     */
+    void startupTipOfDay();
 
 signals:
     void signalSetData( const QList<int>& entries, int currentTranslation);
