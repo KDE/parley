@@ -159,7 +159,7 @@ set(parley_SRCS
     modeltest/modeltest.cpp
 )
 
-kde4_add_app_icon(parley_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/ox*-app-parley.png")
+kde4_add_app_icon(parley_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-parley.png")
 
 kde4_add_executable(parley ${parley_SRCS})
 kde4_install_icons( ${ICON_INSTALL_DIR} )
