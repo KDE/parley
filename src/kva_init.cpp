@@ -125,7 +125,7 @@ void ParleyApp::initActions()
     fileProperties->setStatusTip(fileProperties->whatsThis());
 
 
-    KAction* fileQuit = KStandardAction::quit(this, SLOT(slotFileQuit()), actionCollection());
+    KAction* fileQuit = KStandardAction::quit(this, SLOT(close()), actionCollection());
     fileQuit->setWhatsThis(i18n("Quit Parley"));
     fileQuit->setToolTip(fileQuit->whatsThis());
     fileQuit->setStatusTip(fileQuit->whatsThis());

@@ -534,12 +534,6 @@ bool ParleyApp::queryExit()
 }
 
 
-void ParleyApp::slotFileQuit()
-{
-    close();
-}
-
-
 void ParleyApp::updateDocument()
 {
 ///@todo we can use connect here

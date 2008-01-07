@@ -120,8 +120,6 @@ public slots:
     void startPractice();
     void configurePractice();
 
-    void slotFileQuit();
-
     /** put the marked text/object into the clipboard*/
     void slotEditCopy();
 
