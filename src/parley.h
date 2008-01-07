@@ -98,12 +98,6 @@ public:
 public slots:
     void slotUpdateWindowCaption();
 
-    /** select an entry */
-    void slotCancelSelection();
-    void slotSelectAll();
-
-//     void slotCleanVocabulary();
-
     /** append language to vocabulary - creates a new column */
     void slotEditLanguages();
 

@@ -167,18 +167,6 @@ void ParleyApp::saveOptions()
 }
 
 
-void ParleyApp::slotCancelSelection()
-{
-//     m_tableView->clearSelection();
-}
-
-
-void ParleyApp::slotSelectAll()
-{
-//     m_tableView->selectAll();
-}
-
-
 void ParleyApp::slotLanguageProperties()
 {
     GrammarDialog ddlg(m_document->document(), this);

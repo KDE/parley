@@ -161,12 +161,12 @@ void ParleyApp::initActions()
     connect(editGramar, SIGNAL(triggered(bool)), SLOT(slotLanguageProperties()));
 
 
-    KAction* editSelectAll = KStandardAction::selectAll(this, SLOT(slotSelectAll()), actionCollection());
+    KAction* editSelectAll = KStandardAction::selectAll(m_vocabularyView, SLOT(selectAll()), actionCollection());
     editSelectAll->setWhatsThis(i18n("Select all rows"));
     editSelectAll->setToolTip(editSelectAll->whatsThis());
     editSelectAll->setStatusTip(editSelectAll->whatsThis());
 
-    KAction* editClearSelection = KStandardAction::deselect(this, SLOT(slotCancelSelection()), actionCollection());
+    KAction* editClearSelection = KStandardAction::deselect(m_vocabularyView, SLOT(clearSelection()), actionCollection());
     editClearSelection->setWhatsThis(i18n("Deselect all rows"));
     editClearSelection->setToolTip(editClearSelection->whatsThis());
     editClearSelection->setStatusTip(editClearSelection->whatsThis());
