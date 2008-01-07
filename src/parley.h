@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
-                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+                    (C) 2007-2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -168,10 +168,6 @@ private:
 
     ContainerView *m_wordTypeView;
     ContainerModel *m_wordTypeModel;
-
-    /** The models to represent the data of m_doc */
-//     KVTTableModel       *m_tableModel;
-//     KVTSortFilterModel  *m_sortFilterModel;
 
     KLineEdit           *m_searchLine;
 

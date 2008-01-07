@@ -26,9 +26,6 @@
 #include "parley.h"
 #include "prefs.h"
 
-#include "kvttablemodel.h"
-#include "kvtsortfiltermodel.h"
-#include "kvttableview.h"
 #include "vocabulary/vocabularymodel.h"
 #include "vocabulary/vocabularyview.h"
 #include "vocabulary/vocabularyfilter.h"
@@ -424,12 +421,8 @@ void ParleyApp::initView()
     rightLayout->addWidget(m_searchWidget);
     m_searchWidget->setVisible(Prefs::showSearch());
 
-    /* the new table */
     m_vocabularyView = new VocabularyView(m_vocabularyColumnsActionMenu, centralWidget());
-
     rightLayout->addWidget(m_vocabularyView, 1, 0);
-
-    /* end the new table */
 
     topLayout->addLayout(rightLayout);
 }

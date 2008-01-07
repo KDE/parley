@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
-                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+                    (C) 2007-2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
     -----------------------------------------------------------------------
 
  ***************************************************************************/
@@ -86,10 +86,6 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
 {
     m_appName = appName;
     m_document = new ParleyDocument(this);
-
-//     m_tableView = 0;
-//     m_tableModel = 0;
-//     m_sortFilterModel = 0;
     m_searchLine = 0;
     m_searchWidget = 0;
     m_pronunciationStatusBarLabel = 0;
@@ -116,13 +112,6 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
     initActions();
 
     // these connects need the model to exist
-    // selection changes (the entry dialog needs these)
-//     connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
-//             this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
-
-//     connect(m_tableView->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
-//             this, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
-
 //     QAction * actionRestoreNativeOrder = actionCollection()->action("restore_native_order");
 //     m_tableView->horizontalHeader()->addAction(actionRestoreNativeOrder);
 //     connect(actionRestoreNativeOrder, SIGNAL(triggered()), m_sortFilterModel, SLOT(restoreNativeOrder()));
@@ -196,7 +185,8 @@ void ParleyApp::slotLanguageProperties()
 
     if (ddlg.exec() == KDialog::Accepted) {
         m_document->document()->setModified();
-//         m_tableModel->reset();
+/// @todo update languages shown in the table
+//         m_vocabularyModel->reset();
         slotUpdateWindowCaption();
 //         slotStatusMsg(IDS_DEFAULT);
     }
