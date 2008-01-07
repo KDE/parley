@@ -138,36 +138,12 @@ public slots:
 signals:
     void signalSetData( const QList<int>& entries, int currentTranslation);
 
-private slots:
-    /**
-     * To update the statusbar and the entry dialog
-     * @param
-     * @param
-     */
-    void slotCurrentChanged(const QModelIndex &, const QModelIndex &);
-    /**
-     * To update the entry dialog
-     * @param
-     * @param
-     */
-    void slotSelectionChanged(const QItemSelection &, const QItemSelection &);
-
-    /**
-     * To update e.g. context menu entries when the table view changed
-     */
-    void slotCurrentLessonChanged(int newLesson);
-
 private:
 
     /**
      * Set the current doc (after creating a new one or opening a file)
      */
     void updateDocument();
-
-    /**
-     * When the selection changes, the editors need to be notified
-     */
-    void updateEditWidgets();
 
     // KAction pointers to enable/disable actions
     KRecentFilesAction* m_recentFilesAction;

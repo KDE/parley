@@ -395,55 +395,6 @@ void ParleyApp::slotEditPaste()
 }
 
 
-void ParleyApp::slotSelectionChanged(const QItemSelection &, const QItemSelection &)
-{
-    updateEditWidgets();
-}
-
-
-void ParleyApp::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous)
-{
-    // update the status bar
-/*    Q_UNUSED(previous);
-    if (!current.isValid()) {
-        return;
-    }
-
-    int translationId = current.column() - KV_COL_TRANS;
-    if ( translationId < 0 ) {
-        translationId = 0;
-    }
-
-    QModelIndex index = current;
-    index = m_sortFilterModel->mapToSource(current);
-
-    KEduVocExpression * currentExpression = m_document->document()->entry(index.row());
-    statusBar()->clearMessage();
-
-    if (m_remarkStatusBarLabel != 0) {
-        m_remarkStatusBarLabel->setText(i18n("Comment: %1", currentExpression->translation(translationId).comment()));
-    }
-    if (m_pronunciationStatusBarLabel != 0) {
-        m_pronunciationStatusBarLabel->setText(i18n("Pronunciation: %1", currentExpression->translation(translationId).pronunciation()));
-    }
-    QString typeText = currentExpression->translation(translationId).type();
-    if ( !currentExpression->translation(translationId).subType().isEmpty() ){
-        typeText.append(i18n(" (%1)", currentExpression->translation(translationId).subType()));
-    }
-    if (m_typeStatusBarLabel != 0) {
-        m_typeStatusBarLabel->setText(i18n("Type: %1", typeText));
-    }
-
-    updateEditWidgets();*/
-}
-
-
-void ParleyApp::slotCurrentLessonChanged(int newLesson)
-{
-//     m_sortFilterModel->slotCurrentLessonChanged(newLesson);
-//     m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
-}
-
 void ParleyApp::slotConfigShowSearch()
 {
     if (m_searchWidget) {
@@ -550,30 +501,6 @@ void ParleyApp::updateDocument()
 ///@todo remove this!
 // at the moment creates a new test every time a model is created. this is good because we get the basic sanity check then.
     new ModelTest(m_vocabularyModel, this);
-}
-
-
-void ParleyApp::updateEditWidgets()
-{
-    // to pass on the selection we need to translate from m_sortFilterModel to the real model
-/*    QModelIndexList modelIndexList;
-    modelIndexList = m_tableView->selectionModel()->selectedRows();
-
-    QList<int> entryList;
-    foreach (const QModelIndex &modelIndex, modelIndexList) {
-         entryList.append(m_sortFilterModel->mapToSource(modelIndex).row());
-    }
-
-    QModelIndex currentIndex = m_tableView->currentIndex();
-    if (currentIndex.isValid()) {
-        currentIndex = m_sortFilterModel->mapToSource(currentIndex);
-    }
-
-    if (entryList.isEmpty() ) {
-        entryList.append( currentIndex.row() );
-    }
-
-    emit signalSetData(entryList, currentIndex.column() - KV_COL_TRANS);*/
 }
 
 
