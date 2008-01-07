@@ -31,7 +31,6 @@
 #include "vocabulary/containerview.h"
 #include "vocabulary/containermodel.h"
 
-#include "entry-dialogs/EntryDlg.h"
 #include "entry-dialogs/wordtypewidget.h"
 #include "entry-dialogs/multiplechoicewidget.h"
 #include "entry-dialogs/comparisonwidget.h"
@@ -161,7 +160,6 @@ kDebug() << "Parley - will open doc";
 
 ParleyApp::~ParleyApp()
 {
-    removeEntryDlg();
 }
 
 
@@ -189,49 +187,6 @@ void ParleyApp::slotCancelSelection()
 void ParleyApp::slotSelectAll()
 {
 //     m_tableView->selectAll();
-}
-
-
-/**
- * This slotEditEntry() is called by the button in the toolbar.
- * Uses the current selection.
- */
-void ParleyApp::slotEditEntry()
-{
-//     // prepare the entry dialog
-//     if (m_entryDlg == 0) {
-//         m_entryDlg = new EntryDlg(this, m_document->document());
-//         connect(m_entryDlg, SIGNAL(closeEntryDialog()), this, SLOT(removeEntryDlg()));
-// 
-//         connect(this, SIGNAL(signalSetData(const QList<int>&, int)), m_entryDlg, SLOT(setData(const QList<int>&, int)));
-//     }
-// 
-//     if (m_entryDlg != 0) {
-//         m_entryDlg->commitData(false);
-//     }
-//     m_entryDlg->show();
-// 
-//     if (m_entryDlg == 0) {
-//         kError() << "ParleyApp::setDataEntryDlg: m_entryDlg == 0\n";
-//         return;
-//     }
-// 
-//     // set the data in the dialog
-//     updateEditWidgets();
-
-//     m_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-}
-
-
-void ParleyApp::removeEntryDlg()
-{
-    if (m_entryDlg != 0) {
-        disconnect(m_entryDlg);
-        m_entryDlg->deleteLater();
-        m_entryDlg = 0;
-    }
-
-//     m_tableView->setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
 }
 
 
@@ -533,7 +488,6 @@ void ParleyApp::configurePractice()
 
 void ParleyApp::startPractice()
 {
-    removeEntryDlg();
     hide();
 
     TestEntryManager testManager(m_document->document(), this);

@@ -24,8 +24,9 @@
 
 #include "practicedialog.h"
 #include "answervalidator.h"
-#include "entry-dialogs/EntryDlg.h"
 #include "languagesettings.h"
+
+#include <keduvocdocument.h>
 
 #include <KLocale>
 #include <KPassivePopup>

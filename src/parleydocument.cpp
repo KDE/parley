@@ -19,7 +19,6 @@
 #include "kvttablemodel.h"
 #include "kvttableview.h"
 #include "newdocument-wizard/kvtnewdocumentwizard.h"
-#include "entry-dialogs/EntryDlg.h"
 #include "prefs.h"
 
 #include <KFileDialog>

@@ -72,6 +72,10 @@ public:
 
     /** destructor */
     ~ParleyApp();
+
+    /**
+     * setup the action (menus etc)
+     */
     void initActions();
 
     /** setup the statusbar */
@@ -130,17 +134,8 @@ public slots:
     /** paste the clipboard into the document*/
     void slotEditPaste();
 
-    /** change the status message to text */
-//     void slotStatusMsg(const QString &text);
-    /** change the status message of the whole statusbar temporary */
-//     void slotStatusHelpMsg(const QString &text);
-
     void slotConfigShowSearch();
 
-    /**
-     * Close the entry dialog
-     */
-    void removeEntryDlg();
 
 signals:
     void signalSetData( const QList<int>& entries, int currentTranslation);
@@ -163,9 +158,6 @@ private slots:
      * To update e.g. context menu entries when the table view changed
      */
     void slotCurrentLessonChanged(int newLesson);
-
-    /** edit an entry */
-    void slotEditEntry();
 
 private:
 

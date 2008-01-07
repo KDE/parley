@@ -35,9 +35,6 @@
 #include "vocabulary/vocabularydelegate.h"
 #include "vocabulary/containerview.h"
 
-#include "entry-dialogs/EntryDlg.h"
-#include "entry-dialogs/wordtypewidget.h"
-
 #include <KActionCollection>
 #include <KActionMenu>
 #include <KLineEdit>
