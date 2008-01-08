@@ -72,7 +72,7 @@ void ContainerView::slotCreateNewLesson()
     QModelIndex modelIndex = m_model->appendLesson(selectedIndex);
 
     scrollTo(modelIndex);
-    selectionModel()->select(modelIndex, QItemSelectionModel::ClearAndSelect);
+    selectionModel()->setCurrentIndex(modelIndex, QItemSelectionModel::ClearAndSelect);
     edit(modelIndex);    // let the user type a new name for the lesson
 }
 

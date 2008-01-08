@@ -69,11 +69,14 @@ void VocabularyModel::showContainer(KEduVocContainer * container)
         m_container = 0;
         endRemoveRows();
     }
-// m_container = container;
-    if (container && container->entryCount() > 0) {
-        beginInsertRows(QModelIndex(), 0, container->entryCount()-1);
-        m_container = container;
-        endInsertRows();
+    if (container) {
+        if (container->entryCount() > 0) {
+            beginInsertRows(QModelIndex(), 0, container->entryCount()-1);
+            m_container = container;
+            endInsertRows();
+        } else {
+            m_container = container;
+        }
     }
 }
 
@@ -320,8 +323,7 @@ int VocabularyModel::columnType(int column)
 
 QModelIndex VocabularyModel::appendEntry()
 {
-kDebug() << "appendEntry";
-    if(!m_lesson) {
+    if(!m_lesson || !m_container) {
         return QModelIndex();
     }
 
@@ -329,7 +331,7 @@ kDebug() << "appendEntry";
     KEduVocExpression* entry = new KEduVocExpression;
     m_lesson->appendEntry(entry);
     endInsertRows();
-kDebug() << "appendEntry done";
+
     // the last row will be the new entry
     return index(rowCount(QModelIndex()) - 1, 0, QModelIndex());
 }

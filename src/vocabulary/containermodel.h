@@ -113,7 +113,6 @@ signals:
      */
     void documentModified();
 
-
 private:
     KEduVocContainer * m_container;
     KEduVocLesson::EnumContainerType m_type;
