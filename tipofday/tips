@@ -26,12 +26,25 @@
 
 <tip category="Parley">
 <html>
-<p>To set the <em>word type</em> of a word, simply drag it into the word types list.</p>
-<p>You can even select multiple words at the same time.
-Lessons can be set the same way.</p>
+<p>You can simply drag a word into the word types list to change its type.</p>
+<p>You can even select multiple words at the same time.</p>
 </html>
 </tip>
 
+<tip category="Parley">
+<html>
+<p><em>Setting Images</em></p>
+<p>A fast way to set an image for a word is to simply drop it onto the image dock.</p>
+</html>
+</tip>
+
+<tip category="Parley">
+<html>
+<p><em>Word Types</em></p>
+<p>You can set a special tag to some word types to let Parley know their grammatical meaning.</p>
+<p>For verbs for example you can then enter conjugations.</p>
+</html>
+</tip>
 
 <tip category="Parley">
 <html>
