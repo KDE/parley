@@ -85,6 +85,11 @@ void ContainerView::slotDeleteLesson()
 {
     QModelIndex selectedIndex = selectionModel()->currentIndex();
 
+    if (selectedIndex.parent() == QModelIndex()) {
+        KMessageBox::information(this, i18n("The root lesson cannot be deleted."));
+        return;
+    }
+
     KEduVocLesson* lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
 
     int count = lesson->entriesRecursive().count();

@@ -26,8 +26,7 @@ class KEduVocExpression;
 
 
 /**
- * View for the lesson list.
- * Actually a QTreeView because QListView cannot have checkboxes.
+ * View for containers (KEduVocContainer).
  * @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
  */
 class ContainerView : public QTreeView

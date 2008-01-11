@@ -54,6 +54,7 @@ class VocabularyView;
 class VocabularyModel;
 class VocabularyFilter;
 class ContainerView;
+class LessonView;
 class ContainerModel;
 
 /**
@@ -166,7 +167,7 @@ private:
     ParleyDocument   *m_document;
 
     /// dock widgets to display lessons, word types, ...
-    ContainerView *m_lessonView;
+    LessonView *m_lessonView;
     ContainerModel *m_lessonModel;
 
     ContainerView *m_wordTypeView;

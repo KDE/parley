@@ -31,6 +31,7 @@
 #include "vocabulary/vocabularyfilter.h"
 #include "vocabulary/vocabularydelegate.h"
 #include "vocabulary/containerview.h"
+#include "vocabulary/lessonview.h"
 
 #include <KActionCollection>
 #include <KActionMenu>

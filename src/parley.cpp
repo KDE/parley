@@ -29,6 +29,7 @@
 #include "vocabulary/vocabularyview.h"
 #include "vocabulary/vocabularyfilter.h"
 #include "vocabulary/containerview.h"
+#include "vocabulary/lessonview.h"
 #include "vocabulary/containermodel.h"
 
 #include "entry-dialogs/wordtypewidget.h"
@@ -492,7 +493,7 @@ void ParleyApp::initDockWidgets()
 // Lesson dock
     QDockWidget *lessonDockWidget = new QDockWidget(i18n("Lessons"), this);
     lessonDockWidget->setObjectName("LessonDock");
-    m_lessonView = new ContainerView(this);
+    m_lessonView = new LessonView(this);
     lessonDockWidget->setWidget(m_lessonView);
     addDockWidget(Qt::LeftDockWidgetArea, lessonDockWidget);
     actionCollection()->addAction("show_lesson_dock", lessonDockWidget->toggleViewAction());

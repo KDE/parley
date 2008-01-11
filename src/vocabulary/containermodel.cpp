@@ -411,7 +411,10 @@ void ContainerModel::deleteLesson(const QModelIndex & lessonIndex)
     KEduVocContainer* lesson = static_cast<KEduVocContainer*>(lessonIndex.internalPointer());
     KEduVocContainer* parent = lesson->parent();
 
-///@todo delete children???
+    if (parent == m_container) {
+        // never delete the root lesson
+        return;
+    }
 
     beginRemoveRows(lessonIndex.parent(), lessonIndex.row(), lessonIndex.row());
     parent->deleteChildContainer(lesson->row());
