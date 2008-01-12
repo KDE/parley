@@ -48,7 +48,6 @@ GeneralOptions::GeneralOptions(QWidget* parent) : QWidget(parent)
 {
     setupUi(this);
     connect(kcfg_AutoBackup, SIGNAL(toggled(bool)), kcfg_BackupTime, SLOT(setEnabled(bool)));
-    connect(SeparatorCombo, SIGNAL(activated(int)), this, SLOT(slotSeparatorComboActivated(int)));
 
     fillWidgets();
     updateWidgets();
@@ -58,22 +57,22 @@ GeneralOptions::GeneralOptions(QWidget* parent) : QWidget(parent)
 
 void GeneralOptions::fillWidgets()
 {
-    SeparatorCombo->addItem(i18nc("CSV separator", ";"));
-    SeparatorCombo->addItem(i18nc("CSV separator", "#"));
-    SeparatorCombo->addItem(i18nc("CSV separator", "!"));
-    SeparatorCombo->addItem(i18nc("CSV separator", "|"));
-    SeparatorCombo->addItem(i18nc("CSV separator", ","));
-    SeparatorCombo->addItem(i18nc("CSV separator: tabulator", "TAB"));
-    SeparatorCombo->addItem(i18nc("CSV separator", ">= 2 SPACES"));
-    SeparatorCombo->addItem(i18nc("CSV separator", " : "));
-    SeparatorCombo->addItem(i18nc("CSV separator", " :: "));
+    kcfg_SeparatorCombo->addItem(i18nc("CSV separator", ";"));
+    kcfg_SeparatorCombo->addItem(i18nc("CSV separator", "#"));
+    kcfg_SeparatorCombo->addItem(i18nc("CSV separator", "!"));
+    kcfg_SeparatorCombo->addItem(i18nc("CSV separator", "|"));
+    kcfg_SeparatorCombo->addItem(i18nc("CSV separator", ","));
+    kcfg_SeparatorCombo->addItem(i18nc("CSV separator: tabulator", "TAB"));
+    kcfg_SeparatorCombo->addItem(i18nc("CSV separator", ">= 2 SPACES"));
+    kcfg_SeparatorCombo->addItem(i18nc("CSV separator", " : "));
+    kcfg_SeparatorCombo->addItem(i18nc("CSV separator", " :: "));
 }
 
 void GeneralOptions::updateWidgets()
 {
     for (int i = 0; i < 9; ++i) {
         if (separator_id[i] == Prefs::separator()) {
-            SeparatorCombo->setCurrentIndex(i);
+            kcfg_SeparatorCombo->setCurrentIndex(i);
             break;
         }
     }
@@ -81,34 +80,28 @@ void GeneralOptions::updateWidgets()
 }
 
 
-void GeneralOptions::slotSeparatorComboActivated(int)
-{
-    emit widgetModified();
-}
-
-
 bool GeneralOptions::hasChanged()
 {
-    if (SeparatorCombo->currentIndex() < 0)
+    if (kcfg_SeparatorCombo->currentIndex() < 0)
         return false;
 
-    return (separator_id[SeparatorCombo->currentIndex()] != Prefs::separator());
+    return (separator_id[kcfg_SeparatorCombo->currentIndex()] != Prefs::separator());
 }
 
 
 bool GeneralOptions::isDefault()
 {
-    if (SeparatorCombo->currentIndex() < 0)
+    if (kcfg_SeparatorCombo->currentIndex() < 0)
         return false;
-    return !strcmp(separator_id[SeparatorCombo->currentIndex()], "\t");
+    return !strcmp(separator_id[kcfg_SeparatorCombo->currentIndex()], "\t");
 }
 
 
 void GeneralOptions::updateSettings()
 {
-    if (SeparatorCombo->currentIndex() < 0)
+    if (kcfg_SeparatorCombo->currentIndex() < 0)
         return;
-    Prefs::setSeparator((separator_id[SeparatorCombo->currentIndex()]));
+    Prefs::setSeparator((separator_id[kcfg_SeparatorCombo->currentIndex()]));
 }
 
 #include "generaloptions.moc"
