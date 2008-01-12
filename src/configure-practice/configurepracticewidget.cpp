@@ -43,6 +43,8 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     : QWidget(parent)
 {
     m_doc = doc;
+    m_bilingual = true;
+
     setupUi(this);
 
     for ( int i = 0; i < m_doc->identifierCount(); i++ ) {
@@ -111,13 +113,30 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     connect(ComparisonRadio, SIGNAL(toggled(bool)), SLOT(comparisonRadioToggled(bool)));
     connect(ConjugationRadio, SIGNAL(toggled(bool)), SLOT(conjugationRadioToggled(bool)));
 
+
+    // mono/bilingual - practice effects one/two languages - change the language selection accordingly
+    connect(AntonymRadio, SIGNAL(toggled(bool)), SLOT(bilingualPracticeSelected(bool)));
+    connect(WrittenRadio, SIGNAL(toggled(bool)), SLOT(bilingualPracticeSelected(bool)));
+    connect(MixedLettersRadio, SIGNAL(toggled(bool)), SLOT(bilingualPracticeSelected(bool)));
+    connect(MultipleChoiceRadio, SIGNAL(toggled(bool)), SLOT(bilingualPracticeSelected(bool)));
+
+    connect(ArticleRadio, SIGNAL(toggled(bool)), SLOT(monolingualPracticeSelected(bool)));
+    connect(ExampleRadio, SIGNAL(toggled(bool)), SLOT(monolingualPracticeSelected(bool)));
+    connect(ParaphraseRadio, SIGNAL(toggled(bool)), SLOT(monolingualPracticeSelected(bool)));
+    connect(SynonymRadio, SIGNAL(toggled(bool)), SLOT(monolingualPracticeSelected(bool)));
+    connect(ComparisonRadio, SIGNAL(toggled(bool)), SLOT(monolingualPracticeSelected(bool)));
+    connect(ConjugationRadio, SIGNAL(toggled(bool)), SLOT(monolingualPracticeSelected(bool)));
 }
 
 
 void ConfigurePracticeWidget::updateSettings()
 {
     Prefs::setQuestionLanguage(LanguageFromList->currentRow());
-    Prefs::setSolutionLanguage(LanguageToList->currentItem()->data(Qt::UserRole).toInt());
+    if (m_bilingual) {
+        Prefs::setSolutionLanguage(LanguageToList->currentItem()->data(Qt::UserRole).toInt());
+    } else {
+        Prefs::setSolutionLanguage(LanguageFromList->currentRow());
+    }
 
     if ( m_tenseListWidget ) {
         QTreeWidgetItem* parentItem = m_tenseListWidget->invisibleRootItem();
@@ -220,7 +239,6 @@ void ConfigurePracticeWidget::otherRadioToggled(bool checked)
     }
 }
 
-
 void ConfigurePracticeWidget::setupTenses()
 {
     DocumentSettings currentSettings(m_doc->url().url());
@@ -240,6 +258,22 @@ void ConfigurePracticeWidget::setupTenses()
         m_tenseListWidget->addTopLevelItem( tenseItem );
     }
     ///@todo emit changed when checkstate changed
+}
+
+void ConfigurePracticeWidget::monolingualPracticeSelected(bool selected)
+{
+    if (selected) {
+        LanguageToList->setEnabled(false);
+        m_bilingual = false;
+    }
+}
+
+void ConfigurePracticeWidget::bilingualPracticeSelected(bool selected)
+{
+    if (selected) {
+        LanguageToList->setEnabled(true);
+        m_bilingual = true;
+    }
 }
 
 #include "configurepracticewidget.moc"
