@@ -52,7 +52,7 @@ bool VocabularyFilter::filterAcceptsRow(int sourceRow,
 //     return (sourceModel()->data(index0).toString().contains(filterRegExp())
 //             || sourceModel()->data(index1).toString().contains(filterRegExp()))
 //             && dateInRange(sourceModel()->data(index2).toDate());
-    return (sourceModel()->data(index0).toString().contains(filterRegExp()));
+    return true; //(sourceModel()->data(index0).toString().contains(filterRegExp()));
 
 //     return false;
 }

@@ -82,13 +82,12 @@ public slots:
      * @param container 
      */
     void showContainer(KEduVocContainer *container);
-    
+
     /**
      * 
      * @param lessonContainer 
      */
     void setLesson(KEduVocLesson *lessonContainer);
-
 
     /**
      * 
@@ -96,12 +95,15 @@ public slots:
      */
     void setWordType(KEduVocWordType *wordTypeContainer);
 
+    void showEntriesOfSubcontainers(bool show);
+
 private:
     KEduVocContainer *m_container;
     KEduVocLesson *m_lesson;
     KEduVocWordType *m_wordType;
 
     KEduVocDocument *m_document;
+    KEduVocContainer::EnumEntriesRecursive m_recursive;
 };
 
 Q_DECLARE_METATYPE(KEduVocExpression*)

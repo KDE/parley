@@ -32,6 +32,7 @@ VocabularyModel::VocabularyModel(QObject *parent)
 {
     m_document = 0;
     m_container = 0;
+    m_recursive = KEduVocContainer::NotRecursive;
 
     qRegisterMetaType<KEduVocTranslation*>("KEduVocTranslationStar");
 }
@@ -70,8 +71,8 @@ void VocabularyModel::showContainer(KEduVocContainer * container)
         endRemoveRows();
     }
     if (container) {
-        if (container->entryCount() > 0) {
-            beginInsertRows(QModelIndex(), 0, container->entryCount()-1);
+        if (container->entryCount(m_recursive) > 0) {
+            beginInsertRows(QModelIndex(), 0, container->entryCount(m_recursive)-1);
             m_container = container;
             endInsertRows();
         } else {
@@ -101,7 +102,7 @@ int VocabularyModel::rowCount(const QModelIndex &index) const
     }
     // only the root index has children because we have no hierachical model.
     if (index == QModelIndex()) {
-        return m_container->entryCount();
+        return m_container->entryCount(m_recursive);
     }
     return 0;
 }
@@ -127,22 +128,22 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
     case Qt::DisplayRole:
         switch (entryColumn) {
         case Translation:
-            return QVariant(m_container->entry(index.row())->translation(translationId)->text());
+            return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->text());
         case Pronunciation:
-            return QVariant(m_container->entry(index.row())->translation(translationId)->pronunciation());
+            return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->pronunciation());
         case WordType:
             // if no word type is set, we get a null pointer
-            if(m_container->entry(index.row())->translation(translationId)->wordType()) {
-                return QVariant(m_container->entry(index.row())->translation(translationId)->wordType()->name());
+            if(m_container->entry(index.row(), m_recursive)->translation(translationId)->wordType()) {
+                return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->wordType()->name());
             }
             return QVariant();
         case Synonym:
-            return QVariant(m_container->entry(index.row())->translation(translationId)->synonym());
+            return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->synonym());
         case Antonym:
-            return QVariant(m_container->entry(index.row())->translation(translationId)->antonym());
+            return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->antonym());
         case Example: {
-            QString example = m_container->entry(index.row())->translation(translationId)->example();
-            /*QString word = m_container->entry(index.row())->translation(translationId)->text();
+            QString example = m_container->entry(index.row(), m_recursive)->translation(translationId)->example();
+            /*QString word = m_container->entry(index.row(), m_recursive)->translation(translationId)->text();
             int pos = 0;
             QString start = "<font color=\"#FF0000\"><b>";
             QString end = "</b></font>";
@@ -154,9 +155,9 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
             return QVariant(example);
         }
         case Comment:
-            return QVariant(m_container->entry(index.row())->translation(translationId)->comment());
+            return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->comment());
         case Paraphrase:
-            return QVariant(m_container->entry(index.row())->translation(translationId)->paraphrase());
+            return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->paraphrase());
 //         case Audio:
 //         case Image:
         default:
@@ -166,13 +167,13 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
 //     case Qt::DecorationRole: {
 //         switch (entryColumn) {
 //         case Audio:
-//             if ( !m_container->entry(index.row())->translation(translationId)->soundUrl().isEmpty() ) {
+//             if ( !m_container->entry(index.row(), m_recursive)->translation(translationId)->soundUrl().isEmpty() ) {
 //                 return KIcon("media-playback-start");
 //             }
 //             return QVariant();
 //         case Image:
-//             if ( !m_container->entry(index.row())->translation(translationId)->imageUrl().isEmpty() ) {
-//                 return QPixmap(m_container->entry(index.row())->translation(translationId)->imageUrl().toLocalFile()).scaled(QSize(30,30));
+//             if ( !m_container->entry(index.row(), m_recursive)->translation(translationId)->imageUrl().isEmpty() ) {
+//                 return QPixmap(m_container->entry(index.row(), m_recursive)->translation(translationId)->imageUrl().toLocalFile()).scaled(QSize(30,30));
 //             }
 //             return QVariant();
 //         default:
@@ -189,7 +190,7 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
 
     case EntryRole: {
         QVariant v;
-        v.setValue(m_container->entry(index.row()));
+        v.setValue(m_container->entry(index.row(), m_recursive));
         return v;
         }
     }
@@ -209,28 +210,28 @@ bool VocabularyModel::setData(const QModelIndex &index, const QVariant &value, i
 
     switch (column) {
     case Translation:
-        m_container->entry(index.row())->translation(translationId)->setText(value.toString());
+        m_container->entry(index.row(), m_recursive)->translation(translationId)->setText(value.toString());
         break;
     case Pronunciation:
-        m_container->entry(index.row())->translation(translationId)->setPronunciation(value.toString());
+        m_container->entry(index.row(), m_recursive)->translation(translationId)->setPronunciation(value.toString());
         break;
     case WordType:
-//             m_container->entry(index.row())->translation(translationId)->type();
+//             m_container->entry(index.row(), m_recursive)->translation(translationId)->type();
         break;
     case Synonym:
-        m_container->entry(index.row())->translation(translationId)->setSynonym(value.toString());
+        m_container->entry(index.row(), m_recursive)->translation(translationId)->setSynonym(value.toString());
         break;
     case Antonym:
-        m_container->entry(index.row())->translation(translationId)->setAntonym(value.toString());
+        m_container->entry(index.row(), m_recursive)->translation(translationId)->setAntonym(value.toString());
         break;
     case Example:
-        m_container->entry(index.row())->translation(translationId)->setExample(value.toString());
+        m_container->entry(index.row(), m_recursive)->translation(translationId)->setExample(value.toString());
         break;
     case Comment:
-        m_container->entry(index.row())->translation(translationId)->setComment(value.toString());
+        m_container->entry(index.row(), m_recursive)->translation(translationId)->setComment(value.toString());
         break;
     case Paraphrase:
-        m_container->entry(index.row())->translation(translationId)->setParaphrase(value.toString());
+        m_container->entry(index.row(), m_recursive)->translation(translationId)->setParaphrase(value.toString());
         break;
 //     case Audio:
 //     case Image:
@@ -346,10 +347,20 @@ QMimeData * VocabularyModel::mimeData(const QModelIndexList & indexes) const
     VocabularyMimeData *mimeData = new VocabularyMimeData();
 
     foreach (const QModelIndex &index, indexes) {
-        mimeData->addTranslation(m_container->entry(index.row())->translation(translation(index.column())));
+        mimeData->addTranslation(m_container->entry(index.row(), m_recursive)->translation(translation(index.column())));
     }
 
     return mimeData;
+}
+
+void VocabularyModel::showEntriesOfSubcontainers(bool show)
+{
+    if (show) {
+        m_recursive = KEduVocContainer::Recursive;
+    } else {
+        m_recursive = KEduVocContainer::NotRecursive;
+    }
+    reset();
 }
 
 
