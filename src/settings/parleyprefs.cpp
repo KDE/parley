@@ -41,6 +41,7 @@ ParleyPrefs::ParleyPrefs(KEduVocDocument *doc, QWidget *parent, const QString &n
 
     m_viewOptions = new ViewOptions(0);
     addPage(m_viewOptions, i18n("View"), "view-choose", i18n("View Settings"), true);
+    setHelp(QString(),"parley");
 }
 
 bool ParleyPrefs::hasChanged()

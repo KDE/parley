@@ -49,6 +49,7 @@ ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *
 
     m_advancedPracticeOptions = new AdvancedPracticeOptions(this);
     addPage(m_advancedPracticeOptions, i18nc("@title:group Configure advanced settings for practicing vocabulary, short title in config dialog.", "Advanced"), "advanced-setup", i18nc("Configure advanced settings for practicing vocabulary.", "Advanced Practice Settings"), true);
+    setHelp(QString(),"parley");
 }
 
 ConfigurePracticeDialog::~ConfigurePracticeDialog()
