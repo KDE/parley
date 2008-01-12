@@ -58,6 +58,9 @@ private slots:
     void writtenRadioToggled(bool checked);
     void otherRadioToggled(bool checked);
 
+    void monolingualPracticeSelected(bool selected);
+    void bilingualPracticeSelected(bool selected);
+
 private:
     void setupTenses();
 
@@ -70,6 +73,7 @@ private:
     QStackedLayout* m_optionsStackedLayout;
     QTreeWidget* m_tenseListWidget;
     KEduVocDocument* m_doc;
+    bool m_bilingual;
 };
 
 #endif
