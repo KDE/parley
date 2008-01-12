@@ -310,7 +310,7 @@ QVariant ContainerModel::data(const QModelIndex & index, int role) const
         }
     case 1:
         if (role == Qt::DisplayRole) {
-            return container->entriesRecursive().count();
+            return container->entryCount(KEduVocLesson::Recursive);
         }
         if (role == Qt::TextAlignmentRole) {
             return Qt::AlignRight;

@@ -288,7 +288,7 @@ QStringList MCQueryDlg::createAdditionalChoices(int numberChoices)
 
     KRandomSequence randomSequence (QDateTime::currentDateTime().toTime_t());
 
-    QList<KEduVocExpression*> allEntries = m_doc->lesson()->entriesRecursive();
+    QList<KEduVocExpression*> allEntries = m_doc->lesson()->entries(KEduVocLesson::Recursive);
 
     if (allEntries.count() <= numberChoices) {
         for (int i = choices.count(); i < allEntries.count(); ++i) {

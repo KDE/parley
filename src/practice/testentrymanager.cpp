@@ -120,7 +120,7 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
         KEduVocLesson *lesson = static_cast<KEduVocLesson*>(container);
         if ( lesson->inPractice() ) {
             int lessonLimit = m_allTestEntries.count();
-            foreach ( KEduVocExpression *entry, lesson->entriesRecursive() ) {
+            foreach ( KEduVocExpression *entry, lesson->entries(KEduVocLesson::Recursive) ) {
                 if ( Prefs::testOrderLesson() ) {
                     // insert after the last entry of the last lesson
                     m_allTestEntries.insert(

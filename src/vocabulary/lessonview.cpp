@@ -59,7 +59,7 @@ void LessonView::slotDeleteLesson()
 
     KEduVocLesson* lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
 
-    int count = lesson->entriesRecursive().count();
+    int count = lesson->entryCount(KEduVocLesson::Recursive);
 
     if ( count == 0 ||
          KMessageBox::warningYesNo(this, i18np("There is %1 word left in this lesson. Do you want to delete them?", "There are %1 words left in this lesson. Do you want to delete them?", count)) == KMessageBox::Yes) {

@@ -127,7 +127,7 @@ void TenseOptPage::slotDeleteTense()
 
         QString t = optionsList->item(act)->text();
 
-        foreach (KEduVocExpression *exp, m_doc->lesson()->entriesRecursive()) {
+        foreach (KEduVocExpression *exp, m_doc->lesson()->entries(KEduVocLesson::Recursive)) {
             for (int lang = 0; lang < m_doc->identifierCount(); lang++) {
                 if ( exp->translation(lang)->conjugationTenses().contains(t)) {
                         KMessageBox::information(this, i18n("The selected user defined tense could not be deleted\nbecause it is in use."),    i18n("Deleting Tense Description"));
