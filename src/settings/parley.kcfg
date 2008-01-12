@@ -31,6 +31,9 @@
       <label>If true, vocabularies are automatically saved on close and exit</label>
       <default>false</default>
     </entry>
+    <entry name="SeparatorCombo" type="Int">
+      <default>0</default>
+    </entry>
     <entry name="AutoBackup" type="Bool">
       <label>If true, a backup is save every BackupTime minutes</label>
       <default>false</default>

@@ -37,12 +37,8 @@ public:
     bool isDefault();
     void updateSettings();
 
-signals:
-    void widgetModified();
-
 private slots:
     void fillWidgets();
-    void slotSeparatorComboActivated(int);
 };
 
 #endif

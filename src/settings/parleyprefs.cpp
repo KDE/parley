@@ -37,7 +37,6 @@ ParleyPrefs::ParleyPrefs(KEduVocDocument *doc, QWidget *parent, const QString &n
 
     m_generalOptions = new GeneralOptions(0);
     addPage(m_generalOptions, i18nc("title:window general settings", "General"), "parley", i18n("General Settings"), true);
-    connect(m_generalOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
 
     m_viewOptions = new ViewOptions(0);
     addPage(m_viewOptions, i18n("View"), "view-choose", i18n("View Settings"), true);
