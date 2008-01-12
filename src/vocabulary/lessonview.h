@@ -30,8 +30,18 @@ public:
     LessonView(QWidget *parent = 0);
 
 
+public slots:
+    /** Append a lesson to the model and automatically set an edit up so the user can change "New lesson" into something meaningfull.*/
+    void slotCreateNewLesson();
+    /** Create an editor to let the user type a new name for the lesson.*/
+    void slotRenameLesson();
+    /** Remove a lesson. Ask if it's not empty. */
+    void slotDeleteLesson();
 
-
+    /** Creates many small lessons with the contents of the original lesson.
+     * @todo Let the user select if entries are taken by random or order.
+     */
+    void slotSplitLesson();
 };
 
 #endif

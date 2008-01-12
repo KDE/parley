@@ -43,21 +43,11 @@ public:
 
 
 public slots:
-    /** Append a lesson to the model and automatically set an edit up so the user can change "New lesson" into something meaningfull.*/
-    void slotCreateNewLesson();
-    /** Create an editor to let the user type a new name for the lesson.*/
-    void slotRenameLesson();
-    /** Remove a lesson. Ask if it's not empty. */
-    void slotDeleteLesson();
 
     void setTranslation(KEduVocExpression*, int);
 
     void currentChanged( const QModelIndex & current, const QModelIndex & previous );
 
-    /** Creates many small lessons with the contents of the original lesson.
-     * @todo Let the user select if entries are taken by random or order.
-     */
-    void slotSplitLesson();
 
 signals:
     /** Emitted when a new container is selected. Indicates the selected container. */
@@ -73,11 +63,9 @@ signals:
 protected slots:
     void selectionChanged ( const QItemSelection & selected, const QItemSelection & deselected );
 
-private:
+protected:
     /** The KVTContainerModel for this view. */
     ContainerModel *m_model;
-    /** The context menu for the lesson list. */
-    QMenu *m_lessonMenu;
 };
 
 #endif

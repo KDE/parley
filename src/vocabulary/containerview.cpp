@@ -61,64 +61,6 @@ void ContainerView::setModel(ContainerModel *model)
     header()->setResizeMode(1, QHeaderView::ResizeToContents);
 }
 
-void ContainerView::slotCreateNewLesson()
-{
-    QModelIndex selectedIndex = selectionModel()->currentIndex();
-
-    if (!selectedIndex.isValid()) {
-        selectedIndex = m_model->index(0, 0, QModelIndex());
-    }
-
-    QModelIndex modelIndex = m_model->appendLesson(selectedIndex);
-
-    scrollTo(modelIndex);
-    selectionModel()->setCurrentIndex(modelIndex, QItemSelectionModel::ClearAndSelect);
-    edit(modelIndex);    // let the user type a new name for the lesson
-}
-
-void ContainerView::slotRenameLesson()
-{
-    edit(selectionModel()->currentIndex());
-}
-
-void ContainerView::slotDeleteLesson()
-{
-    QModelIndex selectedIndex = selectionModel()->currentIndex();
-
-    if (selectedIndex.parent() == QModelIndex()) {
-        KMessageBox::information(this, i18n("The root lesson cannot be deleted."));
-        return;
-    }
-
-    KEduVocLesson* lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
-
-    int count = lesson->entriesRecursive().count();
-
-    if ( count == 0 ||
-         KMessageBox::warningYesNo(this, i18np("There is %1 word left in this lesson. Do you want to delete them?", "There are %1 words left in this lesson. Do you want to delete them?", count)) == KMessageBox::Yes) {
-        m_model->deleteLesson(selectedIndex);
-    }
-}
-
-
-void ContainerView::slotSplitLesson()
-{
-    if (!selectionModel()->currentIndex().isValid()) {
-        return;
-    }
-
-    /** @todo A nicer dialog would be great.
-     * Maybe with radio buttons to ask, if the entries should be in random order or as they come. */
-    bool ok = false;
-    int numEntries = KInputDialog::getInteger(i18n("Entries per Lesson"), i18n("The lesson will be split into smaller lessons. How many entries in each lesson do you want?"), Prefs::entriesPerLesson(), 1, 1000, 1, &ok, this);
-    if (!ok) {
-        return;
-    }
-    Prefs::setEntriesPerLesson(numEntries);
-    m_model->splitLesson(selectionModel()->currentIndex(), numEntries, ContainerModel::Random);
-    setExpanded(selectionModel()->currentIndex(), true);
-}
-
 void ContainerView::setTranslation(KEduVocExpression * entry, int translation)
 {
     if (entry == 0) {
