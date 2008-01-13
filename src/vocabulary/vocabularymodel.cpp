@@ -25,6 +25,7 @@
 #include <KIcon>
 #include <KLocalizedString>
 #include <KDebug>
+#include <KMessageBox>
 #include <QPixmap>
 
 VocabularyModel::VocabularyModel(QObject *parent)
@@ -325,6 +326,11 @@ int VocabularyModel::columnType(int column)
 QModelIndex VocabularyModel::appendEntry()
 {
     if(!m_lesson || !m_container) {
+        return QModelIndex();
+    }
+
+    if(m_document->identifierCount() == 0) {
+        KMessageBox::information(0, i18n("Please use Edit -> Languages to set up your document."), i18n("No languages defined"));
         return QModelIndex();
     }
 

@@ -46,6 +46,7 @@ kDebug() << "done new KEduVocDocument";
 
 ParleyDocument::~ParleyDocument()
 {
+    delete m_doc;
 }
 
 
