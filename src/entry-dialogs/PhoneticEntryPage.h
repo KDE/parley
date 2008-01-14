@@ -3,13 +3,9 @@
              dialog page for characters from the phonetic alphabet
 
    -----------------------------------------------------------------------
-
-   begin          : Sun Dec 9 2001
-
-   copyright      : (C) 2001-2002 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                    (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
-                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
-
+    Copyright 2001-2002 Ewald Arnold <kvoctrain@ewald-arnold.de>
+    Copyright 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    Copyright 2007-2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
    -----------------------------------------------------------------------
 
 ***************************************************************************/
@@ -32,6 +28,8 @@
 #include <kdialog.h>
 #include <keduvocdocument.h>
 
+class KCharSelect;
+
 class PhoneticEntryPage : public KDialog
 {
     Q_OBJECT
@@ -40,30 +38,13 @@ public:
     PhoneticEntryPage(const QFont &ipafont, QWidget *parent);
 
 signals:
-    void charSelected(wchar_t);
+    void charSelected(const QChar &c);
 
-protected:
-    void keyPressEvent(QKeyEvent *e);
+private slots:
+    void slotInsertChar();
 
-    friend class PhoneticButton;
+private:
+    KCharSelect* m_charSelect;
 };
-
-
-class PhoneticButton : public QPushButton
-{
-    Q_OBJECT
-
-public:
-    PhoneticButton(const QString & text, QWidget * parent, PhoneticEntryPage *_page)
-            : QPushButton(text, parent), page(_page)
-    {}
-
-protected slots:
-    void slotClicked();
-
-protected:
-    PhoneticEntryPage *page;
-};
-
 
 #endif

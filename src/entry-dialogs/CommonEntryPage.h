@@ -69,7 +69,7 @@ private slots:
      * Append a char from the phonetics dialog
      * @param  the new letter
      */
-    void phoneticSelected(wchar_t);
+    void phoneticSelected(const QChar& c);
     void invokeTypeDlg();
     void invokePronDlg();
     void invokeUsageDlg();

@@ -211,9 +211,9 @@ kDebug() << "fill subType box" << mainType;
 }
 
 
-void CommonEntryPage::phoneticSelected(wchar_t wc)
+void CommonEntryPage::phoneticSelected(const QChar& c)
 {
-    pronounce_line->setText( pronounce_line->text() += QChar(wc) );
+    pronounce_line->setText( pronounce_line->text() += c );
     emit sigModified();
 }
 
@@ -221,7 +221,7 @@ void CommonEntryPage::phoneticSelected(wchar_t wc)
 void CommonEntryPage::invokePronDlg()
 {
     PhoneticEntryPage * phoneticDlg = new PhoneticEntryPage(Prefs::iPAFont(), this);
-    connect(phoneticDlg, SIGNAL(charSelected(wchar_t)), SLOT(phoneticSelected(wchar_t)));
+    connect(phoneticDlg, SIGNAL(charSelected(const QChar&)), SLOT(phoneticSelected(const QChar&)));
     phoneticDlg->show();
 }
 
