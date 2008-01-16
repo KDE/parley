@@ -68,6 +68,7 @@
 #include <KActionMenu>
 #include <KMessageBox>
 #include <KTipDialog>
+#include <KCharSelect>
 
 #include <QFile>
 #include <QPixmap>
@@ -605,14 +606,16 @@ void ParleyApp::initDockWidgets()
         multipleChoiceWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 
-// Pronunciation symbols???
-    QDockWidget *charSelectDock = new QDockWidget(i18n("Pronunciation IPA symbols?"), this);
+// Pronunciation symbols - Use KCharSelect
+    QDockWidget *charSelectDock = new QDockWidget(i18n("Phonetic Symbols"), this);
     charSelectDock->setObjectName("IPADock");
-    QLabel *charSelectWidget = new QLabel("IPA placeholder", this);
+    KCharSelect *charSelectWidget = new KCharSelect(this);
+    charSelectWidget->setCurrentChar(0x0250);
     charSelectDock->setWidget(charSelectWidget);
-    addDockWidget(Qt::RightDockWidgetArea, charSelectDock);
+    addDockWidget(Qt::BottomDockWidgetArea, charSelectDock);
     actionCollection()->addAction("show_pronunciation_dock", charSelectDock->toggleViewAction());
     charSelectDock->setVisible(false);
+    connect(charSelectWidget, SIGNAL(charSelected(const QChar &)), m_vocabularyView, SLOT(appendChar(const QChar &)));
 
 // Image
     QDockWidget *imageDock = new QDockWidget(i18n("Image"), this);

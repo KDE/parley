@@ -240,6 +240,7 @@ bool VocabularyModel::setData(const QModelIndex &index, const QVariant &value, i
         return false;
     }
 
+    emit(dataChanged(index, index));
     return true;
 }
 

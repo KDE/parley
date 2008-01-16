@@ -350,6 +350,12 @@ void VocabularyView::appendEntry()
     edit(newIndex);
 }
 
+void VocabularyView::appendChar(const QChar &c)
+{
+    const QModelIndex &index = selectionModel()->currentIndex();
+    m_model->setData(index, m_model->data(index).toString() + c);
+}
+
 
 #include "vocabularyview.moc"
 

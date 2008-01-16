@@ -1,4 +1,3 @@
-
 add_subdirectory( settings )
 
 include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/
@@ -96,7 +95,6 @@ kde4_add_ui_files(docprop_SRCS
 
 set(entrydialogs_SRCS
     entry-dialogs/multiplechoicewidget.cpp
-  #  entry-dialogs/PhoneticEntryPage.cpp
     entry-dialogs/comparisonwidget.cpp
     entry-dialogs/conjugationwidget.cpp
     entry-dialogs/imagechooserwidget.cpp

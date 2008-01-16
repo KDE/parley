@@ -45,6 +45,12 @@ public slots:
     void reset();
     void appendEntry();
 
+    /**
+     * Append a char to the last edited entry (used to add the phonetic stuff).
+     * @param c the char
+     */
+    void appendChar(const QChar & c);
+
 signals:
     void translationChanged(KEduVocExpression*, int);
 
