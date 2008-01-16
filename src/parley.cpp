@@ -609,7 +609,7 @@ void ParleyApp::initDockWidgets()
 // Pronunciation symbols - Use KCharSelect
     QDockWidget *charSelectDock = new QDockWidget(i18n("Phonetic Symbols"), this);
     charSelectDock->setObjectName("IPADock");
-    KCharSelect *charSelectWidget = new KCharSelect(this);
+    KCharSelect *charSelectWidget = new KCharSelect(this,  KCharSelect::SearchLine | KCharSelect::BlockCombos | KCharSelect::CharacterTable);
     charSelectWidget->setCurrentChar(0x0250);
     charSelectDock->setWidget(charSelectWidget);
     addDockWidget(Qt::BottomDockWidgetArea, charSelectDock);
