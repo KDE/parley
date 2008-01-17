@@ -133,6 +133,11 @@ void EditLanguageDialogPage::initialize()
 void EditLanguageDialogPage::commitData()
 {
     QString locale = localeComboBox->itemData(localeComboBox->currentIndex()).toString();
+
+    // if no locales are found (kdebase not installed?) at least fall back to using the language name as locale.
+    if (locale.isEmpty()) {
+        locale = identifierNameLineEdit->text();
+    }
     m_doc->identifier(m_identifierIndex).setLocale( locale );
     m_doc->identifier(m_identifierIndex).setName( identifierNameLineEdit->text() );
 
