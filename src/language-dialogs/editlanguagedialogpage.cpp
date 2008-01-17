@@ -113,6 +113,16 @@ void EditLanguageDialogPage::initialize()
         keyboardLayoutComboBox->clear();
         keyboardLayoutComboBox->addItems(layouts);
         keyboardLayoutComboBox->setEnabled(true);
+
+        LanguageSettings settings(m_doc->identifier(m_identifierIndex).locale());
+        settings.readConfig();
+
+        if (!settings.keyboardLayout().isEmpty()) {
+            keyboardLayoutComboBox->setCurrentIndex(keyboardLayoutComboBox->findText(settings.keyboardLayout()));
+        } else {
+            QDBusReply<QString> currentLayout = kxbk.call("getCurrentLayout");
+            keyboardLayoutComboBox->setCurrentIndex(keyboardLayoutComboBox->findText(currentLayout));
+        }
     } else {
         kDebug() << "kxkb dbus error";
         keyboardLayoutComboBox->setEnabled(false);
@@ -123,6 +133,11 @@ void EditLanguageDialogPage::initialize()
 void EditLanguageDialogPage::commitData()
 {
     QString locale = localeComboBox->itemData(localeComboBox->currentIndex()).toString();
+
+    // if no locales are found (kdebase not installed?) at least fall back to using the language name as locale.
+    if (locale.isEmpty()) {
+        locale = identifierNameLineEdit->text();
+    }
     m_doc->identifier(m_identifierIndex).setLocale( locale );
     m_doc->identifier(m_identifierIndex).setName( identifierNameLineEdit->text() );
 
