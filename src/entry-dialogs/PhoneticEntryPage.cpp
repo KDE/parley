@@ -36,8 +36,7 @@ PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent) : KD
 
     setModal(false);
 
-    m_charSelect = new KCharSelect(this);
-//, KCharSelect::SearchLine | KCharSelect::FontCombo | KCharSelect::FontSize | KCharSelect::BlockCombos | KCharSelect::CharacterTable);
+    m_charSelect = new KCharSelect(this, KCharSelect::SearchLine | KCharSelect::BlockCombos | KCharSelect::CharacterTable);
     setMainWidget(m_charSelect);
     m_charSelect->setCurrentChar(0x0250);
     connect(m_charSelect, SIGNAL(charSelected(const QChar &)), SIGNAL(charSelected(const QChar &)));
