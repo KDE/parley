@@ -162,23 +162,6 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
     }
     kDebug() << "Found " << m_allTestEntries.count() << " entries in selected lessons.";
 
-
-    switch (m_testType) {
-        case Prefs::EnumTestType::SynonymTest:
-            return !m_allTestEntries.value(i)->translation(m_toTranslation).synonym().simplified().isEmpty();
-            break;
-        case Prefs::EnumTestType::AntonymTest:
-            return !m_allTestEntries.value(i)->translation(m_toTranslation).antonym().simplified().isEmpty();
-            break;
-        case Prefs::EnumTestType::ParaphraseTest:
-            return !m_allTestEntries.value(i)->translation(m_toTranslation).paraphrase().simplified().isEmpty();
-            break;
-        case Prefs::EnumTestType::ExampleTest:
-            return !m_allTestEntries.value(i)->translation(m_toTranslation).example().simplified().isEmpty();
-            break;
-    }
-
-
     // remove empty entries
     for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
         if ( m_allTestEntries.value(i)->exp->translation(TestEntry::gradeFrom()).text().isEmpty() ||
@@ -251,24 +234,10 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
         }
     }
 
-    removeTestEntryList.clear();
-
     // use the old validate methods for now
     for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
-    ///@todo word type, min/max asked/wrong/grade
-        if ( compareBlocking(
-            m_allTestEntries.value(i)->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade(),
-                m_allTestEntries.value(i)->translation(m_toTranslation).gradeFrom(m_fromTranslation).practiceDate(), Prefs::block())) {
-            removeTestEntryList.append(m_allTestEntries.value(i));
-        }
-    }
-
-    if ( removeTestEntryList.count() == m_allTestEntries.count() ) {
-        if ( KMessageBox::questionYesNo(0, i18n("After filtering out entries that are currently blocked, no vocabulary remain to be practiced. Ignore blocking setting? (See \"Configure Practice...->Blocking\")"), i18n("No Entries with Current Blocking Settings") ) == KMessageBox::No ) {
-            return;
-    } else {
-        foreach ( TestEntry* entry, removeTestEntryList ) {
-            delete m_allTestEntries.takeAt(m_allTestEntries.indexOf(entry));
+        if ( !validate(m_allTestEntries.value(i)->exp) ) {
+            delete m_allTestEntries.takeAt(i);
         }
     }
 
@@ -276,7 +245,8 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
 
 ///@todo separate the tests to show better info here. take blocking etc into account for tests other than written/mc.
 
-    // create the initial selection
+    
+
     m_notAskedTestEntries = m_allTestEntries;
 
     for ( int i = 0; i < qMin(m_notAskedTestEntries.count(), Prefs::testNumberOfEntries() ); i++ ) {
@@ -378,6 +348,56 @@ bool TestEntryManager::compareBlocking(int grade, const QDateTime &date, bool us
 }
 
 
+
+bool TestEntryManager::validateWithSettings(KEduVocExpression *expr)
+{
+    if ( !compareBlocking(expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade(), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).practiceDate(), Prefs::block())) {
+        return false;
+    }
+    return true;
+}
+
+bool TestEntryManager::validate(KEduVocExpression *expr)
+{
+
+    ///@todo word type, min/max asked/wrong/grade
+
+    switch (m_testType) {
+    case Prefs::EnumTestType::SynonymTest:
+        return !expr->translation(m_toTranslation).synonym().simplified().isEmpty();
+        break;
+    case Prefs::EnumTestType::AntonymTest:
+        return !expr->translation(m_toTranslation).antonym().simplified().isEmpty();
+        break;
+    case Prefs::EnumTestType::ParaphraseTest:
+        return !expr->translation(m_toTranslation).paraphrase().simplified().isEmpty();
+        break;
+    case Prefs::EnumTestType::ExampleTest:
+        return !expr->translation(m_toTranslation).example().simplified().isEmpty();
+        break;
+
+    case Prefs::EnumTestType::ConjugationTest:
+    case Prefs::EnumTestType::ArticleTest:
+    case Prefs::EnumTestType::ComparisonTest:
+    // already in checkType
+        return true;
+        break;
+
+    default:
+        if ( validateWithSettings(expr) ) {
+            return true;
+        }
+        ///@todo not sure about swap dir stuff...
+//         if (Prefs::swapDirection()) {
+//             int temp = m_fromTranslation;
+//             m_fromTranslation = m_toTranslation;
+//             m_toTranslation = temp;
+//             return validateWithSettings(expr);
+//         } // swapDirection
+//         break;
+    }
+    return false;
+}
 
 
 void TestEntryManager::printStatistics()

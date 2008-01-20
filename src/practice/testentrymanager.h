@@ -103,6 +103,13 @@ private slots:
 private:
     void createPracticeDialog();
 
+    /**
+     * Check if @p expr is valid for the current query settings.
+     * @param expr
+     * @return
+     */
+    bool validate(KEduVocExpression *expr);
+    bool validateWithSettings(KEduVocExpression *expr);
     bool compareBlocking(int grade, const QDateTime &limit, bool use_it);
 
 
