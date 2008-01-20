@@ -148,7 +148,7 @@ void ParleyApp::initActions()
 
     KAction* editLanguages =new KAction(this);
     actionCollection()->addAction("edit_languages", editLanguages);
-    editLanguages->setIcon(KIcon("preferences-desktop-locale"));
+    editLanguages->setIcon(KIcon("set-language"));
     editLanguages->setText(i18n("&Languages..."));
     connect(editLanguages, SIGNAL(triggered()),  this, SLOT(slotEditLanguages()));
     ///@todo tooltip
@@ -297,7 +297,7 @@ void ParleyApp::initActions()
 
     KAction* showStatistics = new KAction(this);
     actionCollection()->addAction("show_statistics", showStatistics);
-    showStatistics->setIcon(KIcon("view-statistics"));
+    showStatistics->setIcon(KIcon("statistics"));
     showStatistics->setText(i18n("&Statistics..."));
     connect(showStatistics, SIGNAL(triggered(bool)), this, SLOT(slotShowStatistics()));
     showStatistics->setWhatsThis(i18n("Show and reset statistics for the current vocabulary"));
