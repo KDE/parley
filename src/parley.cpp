@@ -394,7 +394,7 @@ void ParleyApp::slotEditLanguages()
     ///@todo
     // if this becomes a KConfigDialog: connect(languageDialog, SIGNAL(settingsChanged(const QString&)), m_tableModel, SLOT(loadLanguageSettings()));
     if ( languageDialog->exec() == KDialog::Accepted ) {
-//         m_tableModel->loadLanguageSettings();
+         m_vocabularyModel->resetLanguages();
     }
 }
 

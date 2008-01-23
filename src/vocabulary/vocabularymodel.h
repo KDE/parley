@@ -73,6 +73,7 @@ public:
 //     bool dropMimeData(const QMimeData *data, Qt::DropAction action,
 //         int row, int column, const QModelIndex &parent);
 
+    void resetLanguages();
 
 public slots:
     void setDocument(KEduVocDocument *doc);

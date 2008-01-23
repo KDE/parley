@@ -370,6 +370,11 @@ void VocabularyModel::showEntriesOfSubcontainers(bool show)
     reset();
 }
 
-
+void VocabularyModel::resetLanguages()
+{
+    reset();
+}
 
 #include "vocabularymodel.moc"
+
+
