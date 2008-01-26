@@ -36,6 +36,8 @@
 
 #include "practicesummarydialog.h"
 
+#include "entryfilter.h"
+
 // for the enum
 #include "practicedialog.h"
 
@@ -97,6 +99,7 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
     m_testType = Prefs::testType();
 
     m_practiceTimeoutCounter = 0;
+    m_randomSequence = new KRandomSequence( QDateTime::currentDateTime().toTime_t() );
 
     TestEntry::setGradeTo(m_toTranslation);
 
@@ -108,12 +111,44 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
         TestEntry::setGradeFrom(m_toTranslation);
     }
 
-
     kDebug() << "Test from: " << m_doc->identifier(m_fromTranslation).name()
         << " to: " << m_doc->identifier(m_toTranslation).name();
 
-    m_randomSequence = new KRandomSequence( QDateTime::currentDateTime().toTime_t() );
+    filterTestEntries();
+    kDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
 
+    m_notAskedTestEntries = m_allTestEntries;
+
+    for ( int i = 0; i < qMin(m_notAskedTestEntries.count(), Prefs::testNumberOfEntries() ); i++ ) {
+        m_currentEntries.append( m_notAskedTestEntries.takeAt(0) );
+    }
+
+    m_currentEntry = 0;
+}
+
+
+TestEntryManager::~ TestEntryManager()
+{
+    delete m_randomSequence;
+}
+
+
+void TestEntryManager::filterTestEntries()
+{
+    m_entriesAll = m_doc->lesson()->entries(KEduVocLesson::Recursive);
+    kDebug() << "Document contains " << m_entriesAll.count() << " entries.";
+
+    foreach (KEduVocExpression* entry, m_entriesAll){
+        m_allTestEntries.append(new TestEntry(entry));
+    }
+
+
+    if (m_allTestEntries.count() == 0) {
+        EntryFilter* entryFilter = new EntryFilter(0, this);
+        entryFilter->exec();
+    }
+    
+    /*
     ///@todo respect sub lessons and their inPractice state!
     // append lesson entries
     foreach ( KEduVocContainer *container, m_doc->lesson()->childContainers() ) {
@@ -244,26 +279,19 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
         }
     }
 
-    kDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
 
 ///@todo separate the tests to show better info here. take blocking etc into account for tests other than written/mc.
+*/
 
-    
-
-    m_notAskedTestEntries = m_allTestEntries;
-
-    for ( int i = 0; i < qMin(m_notAskedTestEntries.count(), Prefs::testNumberOfEntries() ); i++ ) {
-        m_currentEntries.append( m_notAskedTestEntries.takeAt(0) );
-    }
-
-    m_currentEntry = 0;
 }
 
 
-TestEntryManager::~ TestEntryManager()
-{
-    delete m_randomSequence;
-}
+
+
+
+
+
+
 
 
 

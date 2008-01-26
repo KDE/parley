@@ -57,6 +57,13 @@ public:
      */
     ~TestEntryManager();
 
+
+    /**
+     * Select appropriate entries for the practice (respect blocking settings etc)
+     * m_allTestEntries will be filled by this.
+     */
+    void filterTestEntries();
+
     void startPractice();
 
     /**
@@ -144,6 +151,16 @@ private:
     KRandomSequence* m_randomSequence;
 
     PracticeDialog* m_practiceDialog;
+    
+    QList<KEduVocExpression*> m_entriesAll;
+    /*QList<KEduVocExpression*> m_entries;
+    QList<KEduVocExpression*> m_entries;
+    QList<KEduVocExpression*> m_entries;
+    QList<KEduVocExpression*> m_entries;
+    QList<KEduVocExpression*> m_entries;*/
+    
+
+friend class EntryFilter;
 };
 
 #endif // kvtquery_included

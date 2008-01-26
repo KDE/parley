@@ -393,7 +393,7 @@ void WrittenPracticeDialog::setHintFields()
     mw->falseFriendLabel->setVisible(hasFalseFriend);
     mw->falsefriendCheckBox->setVisible(hasFalseFriend);
 
-    bool hasType = !m_entry->entry()->translation(Prefs::questionLanguage())->wordType()->name().isEmpty();
+    bool hasType = m_entry->entry()->translation(Prefs::questionLanguage())->wordType() != 0;
     mw->typeLabel->setVisible(hasType);
     mw->typeCheckBox->setVisible(hasType);
 
