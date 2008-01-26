@@ -49,6 +49,7 @@ set(practice_SRCS
     practice/showsolutiondialog.cpp
     practice/practicesummarydialog.cpp
     practice/answervalidator.cpp
+    practice/entryfilter.cpp
 )
 
 kde4_add_ui_files(practice_SRCS
@@ -61,6 +62,7 @@ kde4_add_ui_files(practice_SRCS
     practice/mixedletterpracticedialog.ui
     practice/showsolutionwidget.ui
     practice/practicesummarywidget.ui
+    practice/entryfilter.ui
 )
 
 set(configure-practice_SRCS
