@@ -21,6 +21,7 @@
 
 class KEduVocExpression;
 class KEduVocDocument;
+class KDialog;
 
 class EntryFilter
     :public QObject
@@ -55,7 +56,7 @@ private slots:
 private:
     Ui::EntryFilter ui;
 
-    QList<KEduVocExpression*> m_entries;
+    QSet<KEduVocExpression*> m_entries;
     QSet<KEduVocExpression*> m_entriesLesson;
     QSet<KEduVocExpression*> m_entriesWordType;
     QSet<KEduVocExpression*> m_entriesBlocked;
@@ -63,10 +64,13 @@ private:
     QSet<KEduVocExpression*> m_entriesTimesWrong;
     QSet<KEduVocExpression*> m_entriesTimesPracticed;
     QSet<KEduVocExpression*> m_entriesMinMaxGrade;
+    QSet<KEduVocExpression*> m_currentSelection;
 
     KEduVocDocument *m_doc;
     int m_fromTranslation;
     int m_toTranslation;
+
+    KDialog *m_dialog;
 };
 
 #endif

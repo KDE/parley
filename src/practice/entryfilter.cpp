@@ -37,19 +37,19 @@ void EntryFilter::expireEntries()
 {
     if ( Prefs::expire() ) {
         int counter = 0;
-        for ( int i = m_entries.count() - 1; i >= 0; i-- ) {
-            int grade = m_entries.value(i)->translation(m_toTranslation)->gradeFrom(m_fromTranslation).grade();
+        foreach (KEduVocExpression* entry, m_entries) {
+            int grade = entry->translation(m_toTranslation)->gradeFrom(m_fromTranslation).grade();
 
-            const QDateTime &date =  m_entries.value(i)->translation(m_toTranslation)->gradeFrom(m_fromTranslation).practiceDate();
+            const QDateTime &date =  entry->translation(m_toTranslation)->gradeFrom(m_fromTranslation).practiceDate();
 
             const QDateTime &expireDate = QDateTime::currentDateTime().addSecs( -Prefs::expireItem(grade) );
 
             if ( date < expireDate && grade > 0) {
                 // decrease the grade
-                m_entries.value(i)->translation(m_toTranslation)->gradeFrom(m_fromTranslation).decGrade();
+                entry->translation(m_toTranslation)->gradeFrom(m_fromTranslation).decGrade();
 
                 // prevent from endless dropping
-                m_entries.value(i)->translation(m_toTranslation)->gradeFrom(m_fromTranslation).setPracticeDate( QDateTime::currentDateTime().addSecs( -Prefs::expireItem( grade - 2) ) );
+                entry->translation(m_toTranslation)->gradeFrom(m_fromTranslation).setPracticeDate( QDateTime::currentDateTime().addSecs( -Prefs::expireItem( grade - 2) ) );
                 counter++;
             }
         }
@@ -60,11 +60,11 @@ void EntryFilter::expireEntries()
 QList<KEduVocExpression*> EntryFilter::entries()
 {
     // set up the lists/sets of filtered vocabulary
-    m_entries = m_doc->lesson()->entries(KEduVocLesson::Recursive);
+    m_entries = m_doc->lesson()->entries(KEduVocLesson::Recursive).toSet();
     kDebug() << "Document contains " << m_entries.count() << " entries.";
     if (m_entries.count() == 0) {
         // message box?
-        return m_entries;
+        return m_entries.toList();
     }
 
     lessonEntries();
@@ -77,7 +77,6 @@ QList<KEduVocExpression*> EntryFilter::entries()
 
    // if (m_entries.count() == 0) {
         kDebug() << "Creating practice filter dialog.";
-        KDialog* m_dialog;
         m_dialog = new KDialog();
         m_dialog->setCaption(i18n("Start Practice"));
         QWidget *widget = new QWidget;
@@ -100,8 +99,10 @@ QList<KEduVocExpression*> EntryFilter::entries()
         connect( m_dialog, SIGNAL(cancelClicked()), this, SLOT(userSelectionCanceled()) );
         connect( ui.lessonCheckBox, SIGNAL(toggled(bool)), this, SLOT(filterLesson(bool)));
         m_dialog->enableButtonOk(false);
-        m_dialog->exec();
-        delete m_dialog;
+        if (m_dialog->exec() == KDialog::Cancel) {
+            delete m_dialog;
+            return QList<KEduVocExpression*>();
+        }
 
    // }
 
@@ -238,7 +239,7 @@ QList<KEduVocExpression*> EntryFilter::entries()
     */
 
 
-    return m_entries;
+    return m_currentSelection.toList();
 }
 
 
@@ -346,7 +347,7 @@ void EntryFilter::filterLesson(bool filter)
 
 void EntryFilter::updateDialogTotal()
 {
-    QSet< KEduVocExpression * > selected = m_entries.toSet();
+    QSet< KEduVocExpression * > selected = m_entries;
     if (ui.lessonCheckBox->isChecked()) {
         selected = selected.intersect(m_entriesLesson);
     }
@@ -369,6 +370,9 @@ void EntryFilter::updateDialogTotal()
         selected = selected.intersect(m_entriesMinMaxGrade);
     }
     ui.totalLabel->setText(QString::number(selected.count()));
+
+    m_dialog->enableButtonOk(selected.count() > 0);
+    m_currentSelection = selected;
 }
 
 void EntryFilter::lessonEntries()
@@ -397,7 +401,7 @@ void EntryFilter::wordTypeEntries()
 void EntryFilter::blockedEntries()
 {
     if (!Prefs::block()) {
-        m_entriesBlocked = m_entries.toSet();
+        m_entriesBlocked = m_entries;
         return;
     }
 
