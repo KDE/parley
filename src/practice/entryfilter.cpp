@@ -24,6 +24,7 @@
 EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc) :QObject(parent)
 {
     m_doc = doc;
+    m_dialog = 0;
     m_fromTranslation = Prefs::questionLanguage();
     m_toTranslation = Prefs::solutionLanguage();
     expireEntries();
@@ -61,6 +62,8 @@ QList<KEduVocExpression*> EntryFilter::entries()
 {
     // set up the lists/sets of filtered vocabulary
     m_entries = m_doc->lesson()->entries(KEduVocLesson::Recursive).toSet();
+    cleanupInvalid();
+    
     kDebug() << "Document contains " << m_entries.count() << " entries.";
     if (m_entries.count() == 0) {
         // message box?
@@ -75,7 +78,9 @@ QList<KEduVocExpression*> EntryFilter::entries()
     timesPracticedEntries();
     minMaxGradeEntries();
 
-   // if (m_entries.count() == 0) {
+    updateTotal();
+
+    if (m_currentSelection.count() == 0) {
         kDebug() << "Creating practice filter dialog.";
         m_dialog = new KDialog();
         m_dialog->setCaption(i18n("Start Practice"));
@@ -83,7 +88,7 @@ QList<KEduVocExpression*> EntryFilter::entries()
         ui.setupUi(widget);
         m_dialog->setMainWidget(widget);
         m_dialog->setButtons( KDialog::Ok | KDialog::Cancel );
-        
+
         ui.lessonLabel->setText(QString::number(m_entriesLesson.count()));
         ui.wordTypeLabel->setText(QString::number(m_entriesWordType.count()));
         ui.blockedLabel->setText(QString::number(m_entriesBlocked.count()));
@@ -91,9 +96,9 @@ QList<KEduVocExpression*> EntryFilter::entries()
         ui.timesWrongLabel->setText(QString::number(m_entriesTimesWrong.count()));
         ui.timesPracticedLabel->setText(QString::number(m_entriesTimesPracticed.count()));
         ui.minMaxGradeLabel->setText(QString::number(m_entriesMinMaxGrade.count()));
-    
+
         ui.documentTotalLabel->setText(QString::number(m_entries.count()));
-        updateDialogTotal();
+        updateTotal();
 
         connect( m_dialog, SIGNAL(okClicked()), this, SLOT(userSelectionAccepted()) );
         connect( m_dialog, SIGNAL(cancelClicked()), this, SLOT(userSelectionCanceled()) );
@@ -104,66 +109,10 @@ QList<KEduVocExpression*> EntryFilter::entries()
             return QList<KEduVocExpression*>();
         }
 
-   // }
+    }
 
-    /*
-    ///@todo respect sub lessons and their inPractice state!
-    // append lesson entries
-    foreach ( KEduVocContainer *container, m_doc->lesson()->childContainers() ) {
-    KEduVocLesson *lesson = static_cast<KEduVocLesson*>(container);
-    if ( lesson->inPractice() ) {
-    int lessonLimit = m_entries.count();
-    foreach ( KEduVocExpression *entry, lesson->entries(KEduVocLesson::Recursive) ) {
-    if ( Prefs::testOrderLesson() ) {
-                    // insert after the last entry of the last lesson
-    m_entries.insert(
-    lessonLimit + m_randomSequence->getLong(lessonLimit - m_entries.count()),
-    new TestEntry(entry) );
-} else {
-                    // insert at total random position
-    m_entries.insert(
-    m_randomSequence->getLong(m_entries.count()),
-    new TestEntry(entry) );
+   /*
 
-}
-}
-}
-}
-
-    if ( m_entries.count() == 0 ) {
-    if ( KMessageBox::questionYesNo(0, i18n("<p>The lessons you selected for the practice contain no vocabulary.</p><p>Hint: To select a lesson set a checkmark next to it in the lesson column on the left.</p><p>Would you like to include all lessons?</p>"), i18n("No Entries in Selected Lessons") ) == KMessageBox::Yes ) {
-    kDebug() << "Adding all lessons.";
-            ///@todo reuse the above - make it a function?
-    foreach ( KEduVocContainer *container, m_doc->lesson()->childContainers() ) {
-    KEduVocLesson *lesson = static_cast<KEduVocLesson*>(container);
-    int lessonLimit = m_entries.count();
-    foreach ( KEduVocExpression * entry, lesson->entries() ) {
-    if ( Prefs::testOrderLesson() ) {
-                        // insert after the last entry of the last lesson
-    m_entries.insert(
-    lessonLimit + m_randomSequence->getLong(lessonLimit - m_entries.count()),
-    new TestEntry(entry) );
-} else {
-                        // insert at total random position
-    m_entries.insert(
-    m_randomSequence->getLong(m_entries.count()),
-    new TestEntry(entry) );
-
-}
-}
-}
-} else {
-    return;
-}
-}
-    kDebug() << "Found " << m_entries.count() << " entries in selected lessons.";
-
-    // remove empty entries
-    for ( int i = m_entries.count() - 1; i >= 0; i-- ) {
-    if ( m_entries.value(i)->entry()->translation(TestEntry::gradeFrom())->text().isEmpty() ||
-    m_entries.value(i)->entry()->translation(TestEntry::gradeTo())->text().isEmpty() ) {
-    delete m_entries.takeAt(i);
-}
 }
     kDebug() << "Found " << m_entries.count() << " entries that are not empty.";
 
@@ -342,41 +291,45 @@ void EntryFilter::filterLesson(bool filter)
     } else {
         ui.lessonLabel->setText("no");
     }
-    updateDialogTotal();
+    updateTotal();
 }
 
-void EntryFilter::updateDialogTotal()
+void EntryFilter::updateTotal()
 {
     QSet< KEduVocExpression * > selected = m_entries;
-    if (ui.lessonCheckBox->isChecked()) {
+    if (!m_dialog || ui.lessonCheckBox->isChecked()) {
         selected = selected.intersect(m_entriesLesson);
     }
-    if (ui.wordTypeCheckBox->isChecked()) {
+    if (!m_dialog || ui.wordTypeCheckBox->isChecked()) {
         selected = selected.intersect(m_entriesWordType);
     }
-    if (ui.blockedCheckBox->isChecked()) {
+    if (!m_dialog || ui.blockedCheckBox->isChecked()) {
         selected = selected.intersect(m_entriesBlocked);
     }
-    if (ui.gradeCheckBox->isChecked()) {
+    if (!m_dialog || ui.gradeCheckBox->isChecked()) {
         selected = selected.intersect(m_entriesGrade);
     }
-    if (ui.timesWrongCheckBox->isChecked()) {
+    if (!m_dialog || ui.timesWrongCheckBox->isChecked()) {
         selected = selected.intersect(m_entriesTimesWrong);
     }
-    if (ui.timesPracticedCheckBox->isChecked()) {
+    if (!m_dialog || ui.timesPracticedCheckBox->isChecked()) {
         selected = selected.intersect(m_entriesTimesPracticed);
     }
-    if (ui.minMaxGradeCheckBox->isChecked()) {
+    if (!m_dialog || ui.minMaxGradeCheckBox->isChecked()) {
         selected = selected.intersect(m_entriesMinMaxGrade);
     }
-    ui.totalLabel->setText(QString::number(selected.count()));
 
-    m_dialog->enableButtonOk(selected.count() > 0);
+    if (m_dialog) {
+        ui.totalLabel->setText(QString::number(selected.count()));
+        m_dialog->enableButtonOk(selected.count() > 0);
+    }
+
     m_currentSelection = selected;
 }
 
 void EntryFilter::lessonEntries()
 {
+    /// @todo maybe randomize
     foreach(KEduVocExpression* entry, m_entries) {
         foreach(KEduVocLesson* lesson, entry->lessons()) {
             if (lesson->inPractice()) {
@@ -385,7 +338,12 @@ void EntryFilter::lessonEntries()
             }
         }
     }
+
+    //if ( Prefs::testOrderLesson() ) {
+
 }
+
+
 
 void EntryFilter::wordTypeEntries()
 {
@@ -436,6 +394,18 @@ void EntryFilter::timesPracticedEntries()
 void EntryFilter::minMaxGradeEntries()
 {
    
+}
+
+void EntryFilter::cleanupInvalid()
+{
+    QSet<KEduVocExpression*>::iterator i;
+    for (i = m_entries.begin(); i != m_entries.end(); ++i) {
+        // remove empty entries
+        if (!(*i)->translation(m_toTranslation)->text().isEmpty() 
+              || !(*i)->translation(m_fromTranslation)->text().isEmpty()) {
+            i = m_entries.erase(i);
+        }
+    }
 }
 
 
