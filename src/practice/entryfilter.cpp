@@ -246,42 +246,6 @@ bool TestEntryManager::validateWithSettings(KEduVocExpression *expr)
 }
 */
 
-/*
-bool EntryFilter::checkType(KEduVocExpression * entry)
-{
-    switch (Prefs::testType()) {
-    // if we do a grammar test, check only if the grammar type is valid
-        case Prefs::EnumTestType::ArticleTest:
-            return entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounMale ||
-                    entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounFemale ||
-                    entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounNeutral;
-
-        case Prefs::EnumTestType::ComparisonTest:
-            if ( Prefs::comparisonIncludeAdjective() ) {
-                if ( entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::Adjective ) {
-                    return !entry->translation(m_toTranslation)->comparative().isEmpty() ||
-                            !entry->translation(m_toTranslation)->superlative().isEmpty();
-                }
-            }
-            if ( Prefs::comparisonIncludeAdverb() ) {
-                if ( entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::Adverb ) {
-                    return !entry->translation(m_toTranslation)->comparative().isEmpty() ||
-                            !entry->translation(m_toTranslation)->superlative().isEmpty();
-                }
-            }
-
-        case Prefs::EnumTestType::ConjugationTest:
-            if ( entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::Verb ) {
-                return entry->translation(m_toTranslation)->conjugations().count() > 0;
-            }
-            return false;
-
-
-    }
-
-    return false;
-}
-*/
 
 
 void EntryFilter::filterLesson(bool filter)
@@ -398,14 +362,48 @@ void EntryFilter::minMaxGradeEntries()
 
 void EntryFilter::cleanupInvalid()
 {
+    bool typeTest = Prefs::testType() == Prefs::EnumTestType::ArticleTest
+            || Prefs::testType() == Prefs::EnumTestType::ComparisonTest
+            || Prefs::testType() == Prefs::EnumTestType::ConjugationTest;
+
     QSet<KEduVocExpression*>::iterator i;
     for (i = m_entries.begin(); i != m_entries.end(); ++i) {
         // remove empty entries
         if (!(*i)->translation(m_toTranslation)->text().isEmpty() 
               || !(*i)->translation(m_fromTranslation)->text().isEmpty()) {
             i = m_entries.erase(i);
-        }
-    }
+        } else if (typeTest) {
+            if(!(*i)->translation(m_toTranslation)->wordType()) {
+                i = m_entries.erase(i);
+            } else {
+                switch (Prefs::testType()) {
+    // if we do a grammar test, check if the grammar type is valid
+                case Prefs::EnumTestType::ArticleTest:
+                    if (! ((*i)->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounMale ||
+                          (*i)->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounFemale ||
+                          (*i)->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounNeutral)) {
+                        i = m_entries.erase(i);
+                    }
+                case Prefs::EnumTestType::ComparisonTest:
+                    if (! ((Prefs::comparisonIncludeAdjective() &&(*i)->translation(m_toTranslation)->wordType()->wordType()
+                                == KEduVocWordType::Adjective)
+                           || (Prefs::comparisonIncludeAdverb() &&(*i)->translation(m_toTranslation)->wordType()->wordType()
+                           == KEduVocWordType::Adverb))) {
+                        i = m_entries.erase(i);
+                    } else {
+                        if ((*i)->translation(m_toTranslation)->comparative().isEmpty() &&
+                                    (*i)->translation(m_toTranslation)->superlative().isEmpty()) {
+                            i = m_entries.erase(i);
+                        }
+                    }
+                case Prefs::EnumTestType::ConjugationTest:
+                    if ( (*i)->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::Verb || (*i)->translation(m_toTranslation)->conjugations().count() == 0) {
+                        i = m_entries.erase(i);
+                    } // conjugation
+                } // switch
+            } // type valid
+        } // if typeTest
+    } // for
 }
 
 
