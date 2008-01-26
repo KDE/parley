@@ -198,52 +198,8 @@ bool TestEntryManager::validate(KEduVocExpression *expr)
 
     ///@todo word type, min/max asked/wrong/grade
 
-    switch (m_testType) {
-        case Prefs::EnumTestType::SynonymTest:
-            return !expr->translation(m_toTranslation)->synonym().simplified().isEmpty();
-            break;
-        case Prefs::EnumTestType::AntonymTest:
-            return !expr->translation(m_toTranslation)->antonym().simplified().isEmpty();
-            break;
-        case Prefs::EnumTestType::ParaphraseTest:
-            return !expr->translation(m_toTranslation)->paraphrase().simplified().isEmpty();
-            break;
-        case Prefs::EnumTestType::ExampleTest:
-            return !expr->translation(m_toTranslation)->example().simplified().isEmpty();
-            break;
-
-        case Prefs::EnumTestType::ConjugationTest:
-        case Prefs::EnumTestType::ArticleTest:
-        case Prefs::EnumTestType::ComparisonTest:
-    // already in checkType
-            return true;
-            break;
-
-        default:
-            if ( validateWithSettings(expr) ) {
-                return true;
-            }
-        ///@todo not sure about swap dir stuff...
-//         if (Prefs::swapDirection()) {
-//             int temp = m_fromTranslation;
-//             m_fromTranslation = m_toTranslation;
-//             m_toTranslation = temp;
-//             return validateWithSettings(expr);
-//         } // swapDirection
-//         break;
-    }
-    return false;
-}
 
 
-
-bool TestEntryManager::validateWithSettings(KEduVocExpression *expr)
-{
-    if ( !compareBlocking(expr->translation(m_toTranslation)->gradeFrom(m_fromTranslation).grade(), expr->translation(m_toTranslation)->gradeFrom(m_fromTranslation).practiceDate(), Prefs::block())) {
-        return false;
-    }
-    return true;
-}
 */
 
 
@@ -364,7 +320,11 @@ void EntryFilter::cleanupInvalid()
 {
     bool typeTest = Prefs::testType() == Prefs::EnumTestType::ArticleTest
             || Prefs::testType() == Prefs::EnumTestType::ComparisonTest
-            || Prefs::testType() == Prefs::EnumTestType::ConjugationTest;
+            || Prefs::testType() == Prefs::EnumTestType::ConjugationTest
+            || Prefs::testType() == Prefs::EnumTestType::SynonymTest
+            || Prefs::testType() == Prefs::EnumTestType::AntonymTest
+            || Prefs::testType() == Prefs::EnumTestType::ParaphraseTest
+            || Prefs::testType() == Prefs::EnumTestType::ExampleTest;
 
     QSet<KEduVocExpression*>::iterator i;
     for (i = m_entries.begin(); i != m_entries.end(); ++i) {
@@ -384,6 +344,7 @@ void EntryFilter::cleanupInvalid()
                           (*i)->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounNeutral)) {
                         i = m_entries.erase(i);
                     }
+                    break;
                 case Prefs::EnumTestType::ComparisonTest:
                     if (! ((Prefs::comparisonIncludeAdjective() &&(*i)->translation(m_toTranslation)->wordType()->wordType()
                                 == KEduVocWordType::Adjective)
@@ -396,10 +357,33 @@ void EntryFilter::cleanupInvalid()
                             i = m_entries.erase(i);
                         }
                     }
+                    break;
                 case Prefs::EnumTestType::ConjugationTest:
                     if ( (*i)->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::Verb || (*i)->translation(m_toTranslation)->conjugations().count() == 0) {
                         i = m_entries.erase(i);
                     } // conjugation
+                    break;
+
+                case Prefs::EnumTestType::SynonymTest:
+                    if ((*i)->translation(m_toTranslation)->synonym().simplified().isEmpty()){
+                        i = m_entries.erase(i);
+                    } 
+                    break;
+                case Prefs::EnumTestType::AntonymTest:
+                    if ((*i)->translation(m_toTranslation)->antonym().simplified().isEmpty()){
+                        i = m_entries.erase(i);
+                    }
+                    break;
+                case Prefs::EnumTestType::ParaphraseTest:
+                    if ((*i)->translation(m_toTranslation)->paraphrase().simplified().isEmpty()){
+                        i = m_entries.erase(i);
+                    }
+                    break;
+                case Prefs::EnumTestType::ExampleTest:
+                    if ((*i)->translation(m_toTranslation)->example().simplified().isEmpty()){
+                        i = m_entries.erase(i);
+                    }
+                    break;
                 } // switch
             } // type valid
         } // if typeTest
