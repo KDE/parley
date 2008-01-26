@@ -48,7 +48,6 @@
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>
 #include <keduvocdocument.h>
-#include <keduvocwordtype.h>
 #include <KRandomSequence>
 #include <KMessageBox>
 #include <QDateTime>
@@ -135,165 +134,21 @@ TestEntryManager::~ TestEntryManager()
 
 void TestEntryManager::filterTestEntries()
 {
-    m_entriesAll = m_doc->lesson()->entries(KEduVocLesson::Recursive);
-    kDebug() << "Document contains " << m_entriesAll.count() << " entries.";
+    EntryFilter filter(this, m_doc);
+    QList<KEduVocExpression*> allEntries = filter.entries();
 
-    foreach (KEduVocExpression* entry, m_entriesAll){
+    if (allEntries.count() == 0) {
+        KMessageBox::information(0,
+            i18n("Your selection of vocabulary to practice is empty."),
+                                      i18n("No Valid Vocabulary Found"));
+        return;
+    }
+
+    foreach (KEduVocExpression* entry, allEntries){
         m_allTestEntries.append(new TestEntry(entry));
     }
 
-
-    if (m_allTestEntries.count() == 0) {
-        EntryFilter* entryFilter = new EntryFilter(0, this);
-        entryFilter->exec();
-    }
-    
-    /*
-    ///@todo respect sub lessons and their inPractice state!
-    // append lesson entries
-    foreach ( KEduVocContainer *container, m_doc->lesson()->childContainers() ) {
-        KEduVocLesson *lesson = static_cast<KEduVocLesson*>(container);
-        if ( lesson->inPractice() ) {
-            int lessonLimit = m_allTestEntries.count();
-            foreach ( KEduVocExpression *entry, lesson->entries(KEduVocLesson::Recursive) ) {
-                if ( Prefs::testOrderLesson() ) {
-                    // insert after the last entry of the last lesson
-                    m_allTestEntries.insert(
-                        lessonLimit + m_randomSequence->getLong(lessonLimit - m_allTestEntries.count()),
-                        new TestEntry(entry) );
-                } else {
-                    // insert at total random position
-                    m_allTestEntries.insert(
-                        m_randomSequence->getLong(m_allTestEntries.count()),
-                        new TestEntry(entry) );
-
-                }
-            }
-        }
-    }
-
-    if ( m_allTestEntries.count() == 0 ) {
-        if ( KMessageBox::questionYesNo(0, i18n("<p>The lessons you selected for the practice contain no vocabulary.</p><p>Hint: To select a lesson set a checkmark next to it in the lesson column on the left.</p><p>Would you like to include all lessons?</p>"), i18n("No Entries in Selected Lessons") ) == KMessageBox::Yes ) {
-            kDebug() << "Adding all lessons.";
-            ///@todo reuse the above - make it a function?
-            foreach ( KEduVocContainer *container, m_doc->lesson()->childContainers() ) {
-                KEduVocLesson *lesson = static_cast<KEduVocLesson*>(container);
-                int lessonLimit = m_allTestEntries.count();
-                foreach ( KEduVocExpression * entry, lesson->entries() ) {
-                    if ( Prefs::testOrderLesson() ) {
-                        // insert after the last entry of the last lesson
-                        m_allTestEntries.insert(
-                            lessonLimit + m_randomSequence->getLong(lessonLimit - m_allTestEntries.count()),
-                            new TestEntry(entry) );
-                    } else {
-                        // insert at total random position
-                        m_allTestEntries.insert(
-                            m_randomSequence->getLong(m_allTestEntries.count()),
-                            new TestEntry(entry) );
-
-                    }
-                }
-            }
-        } else {
-            return;
-        }
-    }
-    kDebug() << "Found " << m_allTestEntries.count() << " entries in selected lessons.";
-
-    // remove empty entries
-    for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
-        if ( m_allTestEntries.value(i)->entry()->translation(TestEntry::gradeFrom())->text().isEmpty() ||
-                m_allTestEntries.value(i)->entry()->translation(TestEntry::gradeTo())->text().isEmpty() ) {
-            delete m_allTestEntries.takeAt(i);
-        }
-    }
-    kDebug() << "Found " << m_allTestEntries.count() << " entries that are not empty.";
-
-    // expire (decrease grade after a certain amount of time)
-    expireEntries();
-
-
-    QList <TestEntry *> removeTestEntryList;
-    // word type
-    int validWordType = 0;
-    int validWrongCount = 0;
-    int validPracticeCount = 0;
-    int validGrade = 0;
-    for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
-        bool remove = false;
-        const KEduVocGrade& grade =
-            m_allTestEntries.value(i)->entry()->translation(m_toTranslation)->gradeFrom(m_fromTranslation);
-        if ( checkType(m_allTestEntries.value(i)->entry()) ) {
-            validWordType++;
-        } else { remove = true; }
-        if ( grade.badCount() >= Prefs::practiceMinimumWrongCount() && grade.badCount() <= Prefs::practiceMaximumWrongCount() ) {
-            validWrongCount++;
-        } else { remove = true; }
-        if ( grade.practiceCount() >= Prefs::practiceMinimumTimesAsked() && grade.practiceCount() <= Prefs::practiceMaximumTimesAsked() ) {
-            validPracticeCount++;
-        } else { remove = true; }
-        if ( grade.grade() >= Prefs::practiceMinimumGrade() && grade.grade() <= Prefs::practiceMaximumGrade() ) {
-            validGrade++;
-        } else { remove = true; }
-        if ( remove ) {
-            removeTestEntryList.append(m_allTestEntries.value(i));
-        }
-    }
-    kDebug() << "Valid Type: " << validWordType << " Valid Grade: " << validGrade
-        << " Valid Wrong Count: " << validWrongCount << " Valid Practice Count: " << validPracticeCount;
-    kDebug() << "Found " << removeTestEntryList.count() << " entries with invalid threshold.";
-
-    if (validWordType == 0) {
-        if (m_testType == Prefs::EnumTestType::ArticleTest) {
-            KMessageBox::information(0,
-                i18n("You selected to practice the genders of nouns, but no appropriate nouns could be found. Use \"Edit Entry\" and select Noun as word type and the gender."),
-                i18n("No valid word type found"));
-            return;
-        }
-        if (m_testType == Prefs::EnumTestType::ComparisonTest) {
-            KMessageBox::information(0,
-                i18n("You selected to practice comparison forms, but no adjectives or adverbs containing comparison forms could be found. Use \"Edit Entry\" and select Adverb or Adjective as word type and enter the comparison forms."),
-                i18n("No valid word type found"));
-            return;
-        }
-        if (m_testType == Prefs::EnumTestType::ConjugationTest) {
-            KMessageBox::information(0, i18n("You selected to practice conjugations, but no vocabulary containing conjugations in the tenses you selected could be found. Use \"Edit Entry\" and select Verb as word type and enter the conjugation forms."), i18n("No valid word type found"));
-            return;
-        }
-    }
-
-    if ( removeTestEntryList.count() == m_allTestEntries.count() ) {
-        if ( KMessageBox::questionYesNo(0, i18n("<p>The lessons you selected for the practice contain no entries when the threshold settings are respected.</p><p>Hint: To configure the thresholds use the \"Threshold Page\" in the \"Configure Practice\" dialog.</p><p>Would you like to ignore the threshold setting?</p>"), i18n("No Entries with Current Threshold Settings") ) == KMessageBox::No ) {
-            return;
-        }
-    } else {
-        foreach ( TestEntry* entry, removeTestEntryList ) {
-            delete m_allTestEntries.takeAt(m_allTestEntries.indexOf(entry));
-        }
-    }
-
-    // use the old validate methods for now
-    for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
-        if ( !validate(m_allTestEntries.value(i)->entry()) ) {
-            delete m_allTestEntries.takeAt(i);
-        }
-    }
-
-
-///@todo separate the tests to show better info here. take blocking etc into account for tests other than written/mc.
-*/
-
 }
-
-
-
-
-
-
-
-
-
-
 
 void TestEntryManager::startPractice()
 {
@@ -340,97 +195,6 @@ void TestEntryManager::startPractice()
     practiceSummaryDialog.exec();
 }
 
-
-
-
-void TestEntryManager::expireEntries()
-{
-    if ( Prefs::expire() ) {
-        int counter = 0;
-        for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
-            int grade = m_allTestEntries.value(i)->entry()->translation(m_toTranslation)->gradeFrom(m_fromTranslation).grade();
-
-            const QDateTime &date =  m_allTestEntries.value(i)->entry()->translation(m_toTranslation)->gradeFrom(m_fromTranslation).practiceDate();
-
-            const QDateTime &expireDate = QDateTime::currentDateTime().addSecs( -Prefs::expireItem(grade) );
-
-            if ( date < expireDate && grade > 0) {
-                // decrease the grade
-                m_allTestEntries.value(i)->entry()->translation(m_toTranslation)->gradeFrom(m_fromTranslation).decGrade();
-
-                // prevent from endless dropping
-                m_allTestEntries.value(i)->entry()->translation(m_toTranslation)->gradeFrom(m_fromTranslation).setPracticeDate( QDateTime::currentDateTime().addSecs( -Prefs::expireItem( grade - 2) ) );
-                counter++;
-            }
-        }
-        kDebug() << "Expired words dropped their grade: " << counter;
-    }
-}
-
-
-
-bool TestEntryManager::compareBlocking(int grade, const QDateTime &date, bool use_it)
-{
-    if (grade == KV_NORM_GRADE || Prefs::blockItem(grade) == 0 || !use_it) { // don't care || all off
-        return true;
-    } else {
-        return date.addSecs(Prefs::blockItem(grade)) < QDateTime::currentDateTime();
-    }
-}
-
-
-
-bool TestEntryManager::validateWithSettings(KEduVocExpression *expr)
-{
-    if ( !compareBlocking(expr->translation(m_toTranslation)->gradeFrom(m_fromTranslation).grade(), expr->translation(m_toTranslation)->gradeFrom(m_fromTranslation).practiceDate(), Prefs::block())) {
-        return false;
-    }
-    return true;
-}
-
-bool TestEntryManager::validate(KEduVocExpression *expr)
-{
-
-    ///@todo word type, min/max asked/wrong/grade
-
-    switch (m_testType) {
-    case Prefs::EnumTestType::SynonymTest:
-        return !expr->translation(m_toTranslation)->synonym().simplified().isEmpty();
-        break;
-    case Prefs::EnumTestType::AntonymTest:
-        return !expr->translation(m_toTranslation)->antonym().simplified().isEmpty();
-        break;
-    case Prefs::EnumTestType::ParaphraseTest:
-        return !expr->translation(m_toTranslation)->paraphrase().simplified().isEmpty();
-        break;
-    case Prefs::EnumTestType::ExampleTest:
-        return !expr->translation(m_toTranslation)->example().simplified().isEmpty();
-        break;
-
-    case Prefs::EnumTestType::ConjugationTest:
-    case Prefs::EnumTestType::ArticleTest:
-    case Prefs::EnumTestType::ComparisonTest:
-    // already in checkType
-        return true;
-        break;
-
-    default:
-        if ( validateWithSettings(expr) ) {
-            return true;
-        }
-        ///@todo not sure about swap dir stuff...
-//         if (Prefs::swapDirection()) {
-//             int temp = m_fromTranslation;
-//             m_fromTranslation = m_toTranslation;
-//             m_toTranslation = temp;
-//             return validateWithSettings(expr);
-//         } // swapDirection
-//         break;
-    }
-    return false;
-}
-
-
 void TestEntryManager::printStatistics()
 {
     kDebug() << "Test statistics: ";
@@ -452,44 +216,6 @@ int TestEntryManager::totalEntryCount()
 int TestEntryManager::activeEntryCount()
 {
     return m_notAskedTestEntries.count() + m_currentEntries.count();
-}
-
-bool TestEntryManager::checkType(KEduVocExpression * entry)
-{
-    switch (Prefs::testType()) {
-    // if we do a grammar test, check only if the grammar type is valid
-    case Prefs::EnumTestType::ArticleTest:
-        return entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounMale ||
-            entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounFemale ||
-            entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounNeutral;
-
-    case Prefs::EnumTestType::ComparisonTest:
-        if ( Prefs::comparisonIncludeAdjective() ) {
-            if ( entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::Adjective ) {
-                return !entry->translation(m_toTranslation)->comparative().isEmpty() ||
-                    !entry->translation(m_toTranslation)->superlative().isEmpty();
-            }
-        }
-        if ( Prefs::comparisonIncludeAdverb() ) {
-            if ( entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::Adverb ) {
-                return !entry->translation(m_toTranslation)->comparative().isEmpty() ||
-                    !entry->translation(m_toTranslation)->superlative().isEmpty();
-            }
-        }
-
-    case Prefs::EnumTestType::ConjugationTest:
-        if ( entry->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::Verb ) {
-            return entry->translation(m_toTranslation)->conjugations().count() > 0;
-        }
-        return false;
-
-    default:
-        if (entry->translation(m_toTranslation)->wordType()) {
-            return entry->translation(m_toTranslation)->wordType()->inPractice();
-        }
-    }
-
-    return false;
 }
 
 int TestEntryManager::statisticTotalCorrectFirstAttempt()

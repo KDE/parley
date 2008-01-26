@@ -108,29 +108,6 @@ private slots:
     void setNextEntry();
 
 private:
-
-    /**
-     * Check if @p expr is valid for the current query settings.
-     * @param expr
-     * @return
-     */
-    bool validate(KEduVocExpression *expr);
-    bool validateWithSettings(KEduVocExpression *expr);
-    bool compareBlocking(int grade, const QDateTime &limit, bool use_it);
-
-
-    /**
-     * Called when starting a practice. Looks if the time is up, if the work has been praced too long ago, it will drop in grade. Only if expiring is activated in prefs.
-     */
-    void expireEntries();
-
-    /**
-     * Test if an entry has the right word type to be included in the query.
-     * @param entry
-     * @return
-     */
-    bool checkType(KEduVocExpression* entry);
-
     KEduVocDocument *m_doc;
     int m_fromTranslation;
     int m_toTranslation;
@@ -151,14 +128,7 @@ private:
     KRandomSequence* m_randomSequence;
 
     PracticeDialog* m_practiceDialog;
-    
-    QList<KEduVocExpression*> m_entriesAll;
-    /*QList<KEduVocExpression*> m_entries;
-    QList<KEduVocExpression*> m_entries;
-    QList<KEduVocExpression*> m_entries;
-    QList<KEduVocExpression*> m_entries;
-    QList<KEduVocExpression*> m_entries;*/
-    
+
 
 friend class EntryFilter;
 };

@@ -16,20 +16,57 @@
 
 #include "ui_entryfilter.h"
 
-#include <KDialog>
+#include <QtCore/QList>
+#include <QtCore/QSet>
 
-class TestEntryManager;
+class KEduVocExpression;
+class KEduVocDocument;
 
-class EntryFilter : public KDialog
+class EntryFilter
+    :public QObject
 {
     Q_OBJECT
 public:
-    EntryFilter(QWidget* parent, TestEntryManager* manager);
+    EntryFilter(QObject * parent, KEduVocDocument *doc);
     ~EntryFilter();
 
+    QList<KEduVocExpression*> entries();
+
+private:
+    /**
+     * Called when starting a practice.
+     * Looks if the time is up, if the work has been praced too long ago, it will drop in grade. 
+     * Only if expiring is activated in prefs.
+     */
+    void expireEntries();
+
+    void lessonEntries();
+    void wordTypeEntries();
+    void blockedEntries();
+    void gradeEntries();
+    void timesWrongEntries();
+    void timesPracticedEntries();
+    void minMaxGradeEntries();
+    void updateDialogTotal();
+
+private slots:
+    void filterLesson(bool filter);
+    
 private:
     Ui::EntryFilter ui;
-    TestEntryManager* m_manager;
+
+    QList<KEduVocExpression*> m_entries;
+    QSet<KEduVocExpression*> m_entriesLesson;
+    QSet<KEduVocExpression*> m_entriesWordType;
+    QSet<KEduVocExpression*> m_entriesBlocked;
+    QSet<KEduVocExpression*> m_entriesGrade;
+    QSet<KEduVocExpression*> m_entriesTimesWrong;
+    QSet<KEduVocExpression*> m_entriesTimesPracticed;
+    QSet<KEduVocExpression*> m_entriesMinMaxGrade;
+
+    KEduVocDocument *m_doc;
+    int m_fromTranslation;
+    int m_toTranslation;
 };
 
 #endif

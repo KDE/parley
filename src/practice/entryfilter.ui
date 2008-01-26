@@ -172,6 +172,27 @@
    <item>
     <layout class="QHBoxLayout" >
      <item>
+      <widget class="QLabel" name="label_2" >
+       <property name="text" >
+        <string>Total number of entries:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="documentTotalLabel" >
+       <property name="text" >
+        <string>TextLabel</string>
+       </property>
+       <property name="alignment" >
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
+     <item>
       <widget class="QLabel" name="label_9" >
        <property name="text" >
         <string>Resulting number of words to practice:</string>
