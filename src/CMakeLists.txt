@@ -101,6 +101,7 @@ set(entrydialogs_SRCS
     entry-dialogs/conjugationwidget.cpp
     entry-dialogs/imagechooserwidget.cpp
     entry-dialogs/audiowidget.cpp
+    entry-dialogs/browserwidget.cpp
 )
 
 kde4_add_ui_files(entrydialogs_SRCS
@@ -110,6 +111,7 @@ kde4_add_ui_files(entrydialogs_SRCS
     entry-dialogs/conjugationwidget.ui
     entry-dialogs/imagechooserwidget.ui
     entry-dialogs/audiowidget.ui
+    entry-dialogs/browserwidget.ui
 )
 
 set(statisticsdialogs_SRCS
@@ -156,7 +158,6 @@ set(parley_SRCS
     main.cpp
     kva_init.cpp
 
-
     modeltest/modeltest.cpp
 )
 
@@ -169,6 +170,7 @@ target_link_libraries(
     parley
     keduvocdocument
 #    marblewidget
+    ${KDE4_KHTML_LIBS}
     ${KDE4_KNEWSTUFF2_LIBS}
     ${KDE4_PHONON_LIBS}
 )

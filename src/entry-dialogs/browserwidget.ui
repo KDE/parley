@@ -1,0 +1,44 @@
+<ui version="4.0" >
+ <class>BrowserWidget</class>
+ <widget class="QWidget" name="BrowserWidget" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>514</width>
+    <height>535</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <layout class="QHBoxLayout" >
+     <item>
+      <widget class="QPushButton" name="showCurrentButton" >
+       <property name="text" >
+        <string>Lookup Current</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBox" />
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QWidget" native="1" name="widget" />
+   </item>
+   <item>
+    <widget class="QCheckBox" name="followTableCheckBox" >
+     <property name="text" >
+      <string>Follow Table</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
