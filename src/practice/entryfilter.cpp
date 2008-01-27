@@ -100,7 +100,14 @@ QList<KEduVocExpression*> EntryFilter::entries()
 
         connect( m_dialog, SIGNAL(okClicked()), this, SLOT(userSelectionAccepted()) );
         connect( m_dialog, SIGNAL(cancelClicked()), this, SLOT(userSelectionCanceled()) );
-        connect( ui.lessonCheckBox, SIGNAL(toggled(bool)), this, SLOT(filterLesson(bool)));
+        connect( ui.lessonCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
+        connect( ui.wordTypeCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
+        connect( ui.blockedCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
+        connect( ui.timesWrongCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
+        connect( ui.timesPracticedCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
+        connect( ui.minMaxGradeCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
+
+
         m_dialog->enableButtonOk(false);
         if (m_dialog->exec() == KDialog::Cancel) {
             delete m_dialog;
@@ -113,13 +120,18 @@ QList<KEduVocExpression*> EntryFilter::entries()
 }
 
 
-void EntryFilter::filterLesson(bool filter)
+// void EntryFilter::filterLesson(bool filter)
+// {
+//     if (filter) {
+//         ui.lessonLabel->setText("yes");
+//     } else {
+//         ui.lessonLabel->setText("no");
+//     }
+//     updateTotal();
+// }
+
+void EntryFilter::checkBoxChanged(bool filter)
 {
-    if (filter) {
-        ui.lessonLabel->setText("yes");
-    } else {
-        ui.lessonLabel->setText("no");
-    }
     updateTotal();
 }
 
@@ -168,7 +180,6 @@ void EntryFilter::lessonEntries()
     //if ( Prefs::testOrderLesson() ) {
 
 }
-
 
 
 void EntryFilter::wordTypeEntries()

@@ -48,15 +48,16 @@ private:
     void timesPracticedEntries();
     void minMaxGradeEntries();
     void updateTotal();
-    
+
     /**
      * Remove entries that are empty or not of the right type for the specific test type
      */
     void cleanupInvalid();
 
 private slots:
-    void filterLesson(bool filter);
-    
+//     void filterLesson(bool filter);
+    void checkBoxChanged(bool filter);
+
 private:
     Ui::EntryFilter ui;
 
