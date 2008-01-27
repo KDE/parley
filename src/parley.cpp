@@ -48,45 +48,20 @@
 #include "configure-practice/configurepracticedialog.h"
 #include "prefs.h"
 
-// #include "lib/MarbleWidget.h"
-
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>
 
-#include <kstatusbar.h>
-#include <klineedit.h>
-#include <kcombobox.h>
-#include <kconfig.h>
-#include <kselectaction.h>
-#include <kstandarddirs.h>
-#include <klocale.h>
-#include <kdebug.h>
-#include <kiconloader.h>
-#include <krecentfilesaction.h>
-#include <kinputdialog.h>
-#include <kapplication.h>
+#include <KRecentFilesAction>
 #include <KActionCollection>
 #include <KActionMenu>
 #include <KMessageBox>
 #include <KTipDialog>
 #include <KCharSelect>
 
-#include <QFile>
-#include <QPixmap>
-#include <QKeyEvent>
-#include <QApplication>
-#include <QClipboard>
-#include <QProgressBar>
-#include <QSplitter>
-#include <QHeaderView>
 #include <QtCore/QTimer>
 #include <QtGui/QDockWidget>
-#include <QtGui/QPrinter>
-#include <QtGui/QPrintDialog>
-#include <QtGui/QTextBrowser>
 
 #include "modeltest/modeltest.h"
-
 
 ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWindow(0)
 {
