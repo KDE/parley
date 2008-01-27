@@ -44,7 +44,6 @@ private:
     void lessonEntries();
     void wordTypeEntries();
     void blockedEntries();
-    void gradeEntries();
     void timesWrongEntries();
     void timesPracticedEntries();
     void minMaxGradeEntries();
@@ -65,7 +64,6 @@ private:
     QSet<KEduVocExpression*> m_entriesLesson;
     QSet<KEduVocExpression*> m_entriesWordType;
     QSet<KEduVocExpression*> m_entriesBlocked;
-    QSet<KEduVocExpression*> m_entriesGrade;
     QSet<KEduVocExpression*> m_entriesTimesWrong;
     QSet<KEduVocExpression*> m_entriesTimesPracticed;
     QSet<KEduVocExpression*> m_entriesMinMaxGrade;

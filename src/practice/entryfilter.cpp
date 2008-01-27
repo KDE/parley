@@ -63,8 +63,8 @@ QList<KEduVocExpression*> EntryFilter::entries()
     // set up the lists/sets of filtered vocabulary
     m_entries = m_doc->lesson()->entries(KEduVocLesson::Recursive).toSet();
     cleanupInvalid();
-    
-    kDebug() << "Document contains " << m_entries.count() << " entries.";
+
+    kDebug() << "Document contains " << m_entries.count() << " valid entries.";
     if (m_entries.count() == 0) {
         // message box?
         return m_entries.toList();
@@ -73,7 +73,6 @@ QList<KEduVocExpression*> EntryFilter::entries()
     lessonEntries();
     wordTypeEntries();
     blockedEntries();
-    gradeEntries();
     timesWrongEntries();
     timesPracticedEntries();
     minMaxGradeEntries();
@@ -92,7 +91,6 @@ QList<KEduVocExpression*> EntryFilter::entries()
         ui.lessonLabel->setText(QString::number(m_entriesLesson.count()));
         ui.wordTypeLabel->setText(QString::number(m_entriesWordType.count()));
         ui.blockedLabel->setText(QString::number(m_entriesBlocked.count()));
-        ui.gradeLabel->setText(QString::number(m_entriesGrade.count()));
         ui.timesWrongLabel->setText(QString::number(m_entriesTimesWrong.count()));
         ui.timesPracticedLabel->setText(QString::number(m_entriesTimesPracticed.count()));
         ui.minMaxGradeLabel->setText(QString::number(m_entriesMinMaxGrade.count()));
@@ -111,97 +109,8 @@ QList<KEduVocExpression*> EntryFilter::entries()
 
     }
 
-   /*
-
-}
-    kDebug() << "Found " << m_entries.count() << " entries that are not empty.";
-
-    // expire (decrease grade after a certain amount of time)
-    expireEntries();
-
-
-    QList <TestEntry *> removeTestEntryList;
-    // word type
-    int validWordType = 0;
-    int validWrongCount = 0;
-    int validPracticeCount = 0;
-    int validGrade = 0;
-    for ( int i = m_entries.count() - 1; i >= 0; i-- ) {
-    bool remove = false;
-    const KEduVocGrade& grade =
-    m_entries.value(i)->entry()->translation(m_toTranslation)->gradeFrom(m_fromTranslation);
-    if ( checkType(m_entries.value(i)->entry()) ) {
-    validWordType++;
-} else { remove = true; }
-    if ( grade.badCount() >= Prefs::practiceMinimumWrongCount() && grade.badCount() <= Prefs::practiceMaximumWrongCount() ) {
-    validWrongCount++;
-} else { remove = true; }
-    if ( grade.practiceCount() >= Prefs::practiceMinimumTimesAsked() && grade.practiceCount() <= Prefs::practiceMaximumTimesAsked() ) {
-    validPracticeCount++;
-} else { remove = true; }
-    if ( grade.grade() >= Prefs::practiceMinimumGrade() && grade.grade() <= Prefs::practiceMaximumGrade() ) {
-    validGrade++;
-} else { remove = true; }
-    if ( remove ) {
-    removeTestEntryList.append(m_entries.value(i));
-}
-}
-    kDebug() << "Valid Type: " << validWordType << " Valid Grade: " << validGrade
-    << " Valid Wrong Count: " << validWrongCount << " Valid Practice Count: " << validPracticeCount;
-    kDebug() << "Found " << removeTestEntryList.count() << " entries with invalid threshold.";
-
-    if (validWordType == 0) {
-    if (m_testType == Prefs::EnumTestType::ArticleTest) {
-    KMessageBox::information(0,
-    i18n("You selected to practice the genders of nouns, but no appropriate nouns could be found. Use \"Edit Entry\" and select Noun as word type and the gender."),
-    i18n("No valid word type found"));
-    return;
-}
-    if (m_testType == Prefs::EnumTestType::ComparisonTest) {
-    KMessageBox::information(0,
-    i18n("You selected to practice comparison forms, but no adjectives or adverbs containing comparison forms could be found. Use \"Edit Entry\" and select Adverb or Adjective as word type and enter the comparison forms."),
-    i18n("No valid word type found"));
-    return;
-}
-    if (m_testType == Prefs::EnumTestType::ConjugationTest) {
-    KMessageBox::information(0, i18n("You selected to practice conjugations, but no vocabulary containing conjugations in the tenses you selected could be found. Use \"Edit Entry\" and select Verb as word type and enter the conjugation forms."), i18n("No valid word type found"));
-    return;
-}
-}
-
-    if ( removeTestEntryList.count() == m_entries.count() ) {
-    if ( KMessageBox::questionYesNo(0, i18n("<p>The lessons you selected for the practice contain no entries when the threshold settings are respected.</p><p>Hint: To configure the thresholds use the \"Threshold Page\" in the \"Configure Practice\" dialog.</p><p>Would you like to ignore the threshold setting?</p>"), i18n("No Entries with Current Threshold Settings") ) == KMessageBox::No ) {
-    return;
-}
-} else {
-    foreach ( TestEntry* entry, removeTestEntryList ) {
-    delete m_entries.takeAt(m_entries.indexOf(entry));
-}
-}
-
-    // use the old validate methods for now
-    for ( int i = m_entries.count() - 1; i >= 0; i-- ) {
-    if ( !validate(m_entries.value(i)->entry()) ) {
-    delete m_entries.takeAt(i);
-}
-}
-    */
-
-
     return m_currentSelection.toList();
 }
-
-
-/*
-bool TestEntryManager::validate(KEduVocExpression *expr)
-{
-
-    ///@todo word type, min/max asked/wrong/grade
-
-
-
-*/
-
 
 
 void EntryFilter::filterLesson(bool filter)
@@ -225,9 +134,6 @@ void EntryFilter::updateTotal()
     }
     if (!m_dialog || ui.blockedCheckBox->isChecked()) {
         selected = selected.intersect(m_entriesBlocked);
-    }
-    if (!m_dialog || ui.gradeCheckBox->isChecked()) {
-        selected = selected.intersect(m_entriesGrade);
     }
     if (!m_dialog || ui.timesWrongCheckBox->isChecked()) {
         selected = selected.intersect(m_entriesTimesWrong);
@@ -296,25 +202,64 @@ void EntryFilter::blockedEntries()
     }
 }
 
-void EntryFilter::gradeEntries()
-{
-    
-}
-
 void EntryFilter::timesWrongEntries()
 {
-    
+    foreach(KEduVocExpression* entry, m_entries) {
+        const KEduVocGrade& grade =
+            entry->translation(m_toTranslation)->gradeFrom(m_fromTranslation);
+        if (grade.badCount() >= Prefs::practiceMinimumWrongCount() && grade.badCount() <= Prefs::practiceMaximumWrongCount()) {
+            m_entriesTimesWrong.insert(entry);
+        }
+    }
 }
 
 void EntryFilter::timesPracticedEntries()
 {
-    
+    foreach(KEduVocExpression* entry, m_entries) {
+        const KEduVocGrade& grade =
+                entry->translation(m_toTranslation)->gradeFrom(m_fromTranslation);
+        if (grade.practiceCount() >= Prefs::practiceMinimumTimesAsked() && grade.practiceCount() <= Prefs::practiceMaximumTimesAsked()) {
+            m_entriesTimesPracticed.insert(entry);
+        }
+    }
 }
+
 
 void EntryFilter::minMaxGradeEntries()
 {
-   
+    foreach(KEduVocExpression* entry, m_entries) {
+        int grade =
+                entry->translation(m_toTranslation)->gradeFrom(m_fromTranslation).grade();
+        if (grade >= Prefs::practiceMinimumGrade() && grade <= Prefs::practiceMaximumGrade()) {
+            m_entriesMinMaxGrade.insert(entry);
+        }
+    }
 }
+ /*
+    if (m_testType == Prefs::EnumTestType::ArticleTest) {
+    KMessageBox::information(0,
+    i18n("You selected to practice the genders of nouns, but no appropriate nouns could be found. Use \"Edit Entry\" and select Noun as word type and the gender."),
+    i18n("No valid word type found"));
+    return;
+}
+    if (m_testType == Prefs::EnumTestType::ComparisonTest) {
+    KMessageBox::information(0,
+    i18n("You selected to practice comparison forms, but no adjectives or adverbs containing comparison forms could be found. Use \"Edit Entry\" and select Adverb or Adjective as word type and enter the comparison forms."),
+    i18n("No valid word type found"));
+    return;
+}
+    if (m_testType == Prefs::EnumTestType::ConjugationTest) {
+    KMessageBox::information(0, i18n("You selected to practice conjugations, but no vocabulary containing conjugations in the tenses you selected could be found. Use \"Edit Entry\" and select Verb as word type and enter the conjugation forms."), i18n("No valid word type found"));
+    return;
+}
+}
+
+    if ( removeTestEntryList.count() == m_entries.count() ) {
+    if ( KMessageBox::questionYesNo(0, i18n("<p>The lessons you selected for the practice contain no entries when the threshold settings are respected.</p><p>Hint: To configure the thresholds use the \"Threshold Page\" in the \"Configure Practice\" dialog.</p><p>Would you like to ignore the threshold setting?</p>"), i18n("No Entries with Current Threshold Settings") ) == KMessageBox::No ) {
+    return;
+}
+
+ */
 
 void EntryFilter::cleanupInvalid()
 {
