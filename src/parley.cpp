@@ -681,7 +681,7 @@ void ParleyApp::initActions()
     fileOpenExample->setToolTip(fileOpenExample->whatsThis());
     fileOpenExample->setStatusTip(fileOpenExample->whatsThis());
 
-    KAction* fileGHNS = KNS::standardAction(i18n("Vocabularies..."), m_document, SLOT(slotGHNS()), actionCollection(), "file_ghns");
+    KAction* fileGHNS = KNS::standardAction(i18n("Download New Vocabularies..."), m_document, SLOT(slotGHNS()), actionCollection(), "file_ghns");
     fileGHNS->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_G));
     fileGHNS->setWhatsThis(i18n("Downloads new vocabularies"));
     fileGHNS->setToolTip(fileGHNS->whatsThis());
