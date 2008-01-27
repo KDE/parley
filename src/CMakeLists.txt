@@ -156,7 +156,6 @@ set(parley_SRCS
     parleydocument.cpp
     parley.cpp
     main.cpp
-    kva_init.cpp
 
     modeltest/modeltest.cpp
 )
