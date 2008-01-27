@@ -282,11 +282,11 @@ void EntryFilter::cleanupInvalid()
             || Prefs::testType() == Prefs::EnumTestType::ParaphraseTest
             || Prefs::testType() == Prefs::EnumTestType::ExampleTest;
 
-    QSet<KEduVocExpression*>::iterator i;
-    for (i = m_entries.begin(); i != m_entries.end(); ++i) {
+    QSet<KEduVocExpression*>::iterator i = m_entries.begin();
+    while (i != m_entries.end()) {
         // remove empty entries
-        if (!(*i)->translation(m_toTranslation)->text().isEmpty() 
-              || !(*i)->translation(m_fromTranslation)->text().isEmpty()) {
+        if ((*i)->translation(m_toTranslation)->text().isEmpty()
+              || (*i)->translation(m_fromTranslation)->text().isEmpty()) {
             i = m_entries.erase(i);
         } else if (typeTest) {
             if(!(*i)->translation(m_toTranslation)->wordType()) {
@@ -299,7 +299,7 @@ void EntryFilter::cleanupInvalid()
                           (*i)->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounFemale ||
                           (*i)->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounNeutral)) {
                         i = m_entries.erase(i);
-                    }
+                    } else i++;
                     break;
                 case Prefs::EnumTestType::ComparisonTest:
                     if (! ((Prefs::comparisonIncludeAdjective() &&(*i)->translation(m_toTranslation)->wordType()->wordType()
@@ -311,39 +311,43 @@ void EntryFilter::cleanupInvalid()
                         if ((*i)->translation(m_toTranslation)->comparative().isEmpty() &&
                                     (*i)->translation(m_toTranslation)->superlative().isEmpty()) {
                             i = m_entries.erase(i);
-                        }
+                        } else i++;
                     }
                     break;
                 case Prefs::EnumTestType::ConjugationTest:
-                    if ( (*i)->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::Verb || (*i)->translation(m_toTranslation)->conjugations().count() == 0) {
+                    if ( (*i)->translation(m_toTranslation)->wordType()->wordType() != KEduVocWordType::Verb || (*i)->translation(m_toTranslation)->conjugations().count() == 0) {
                         i = m_entries.erase(i);
-                    } // conjugation
+                    } else i++; // conjugation
                     break;
 
                 case Prefs::EnumTestType::SynonymTest:
                     if ((*i)->translation(m_toTranslation)->synonym().simplified().isEmpty()){
                         i = m_entries.erase(i);
-                    } 
+                    } else i++;
                     break;
                 case Prefs::EnumTestType::AntonymTest:
                     if ((*i)->translation(m_toTranslation)->antonym().simplified().isEmpty()){
                         i = m_entries.erase(i);
-                    }
+                    } else i++;
                     break;
                 case Prefs::EnumTestType::ParaphraseTest:
                     if ((*i)->translation(m_toTranslation)->paraphrase().simplified().isEmpty()){
                         i = m_entries.erase(i);
-                    }
+                    } else i++;
                     break;
                 case Prefs::EnumTestType::ExampleTest:
                     if ((*i)->translation(m_toTranslation)->example().simplified().isEmpty()){
                         i = m_entries.erase(i);
-                    }
+                    } else i++;
                     break;
                 } // switch
             } // type valid
-        } // if typeTest
+        } else { // if typeTest
+            i++;
+        }
     } // for
+
+    kDebug() << "Invalid items removed. Remaining: " << m_entries.count();
 }
 
 
