@@ -15,16 +15,78 @@
 
 #include "lessonview.h"
 
+#include "parley.h"
 #include "containermodel.h"
 #include "keduvoclesson.h"
 #include "prefs.h"
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KInputDialog>
+#include <KAction>
+#include <KActionCollection>
 
-LessonView::LessonView(QWidget * parent) :ContainerView(parent)
+LessonView::LessonView(ParleyApp * parent) :ContainerView(parent)
 {
 //     setContextMenuPolicy(Qt::CustomContextMenu);
+    
+// -- LESSON --------------------------------------------------
+
+    KAction *actionNewLesson = new KAction(this);
+    parent->actionCollection()->addAction("new_lesson", actionNewLesson);
+    actionNewLesson->setText(i18n("New Lesson"));
+    actionNewLesson->setIcon(KIcon("lesson-add"));
+    actionNewLesson->setWhatsThis(i18n("Add a new lesson to your document"));
+    actionNewLesson->setToolTip(actionNewLesson->whatsThis());
+    actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
+    actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
+
+    KAction *actionRenameLesson = new KAction(this);
+    parent->actionCollection()->addAction("rename_lesson", actionRenameLesson);
+    actionRenameLesson->setText(i18n("Rename Lesson"));
+    actionRenameLesson->setIcon(KIcon("edit-rename"));
+    actionRenameLesson->setWhatsThis(i18n("Rename the selected lesson"));
+    actionRenameLesson->setToolTip(actionRenameLesson->whatsThis());
+    actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
+    actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
+
+    KAction *actionDeleteLesson = new KAction(this);
+    parent->actionCollection()->addAction("delete_lesson", actionDeleteLesson);
+    actionDeleteLesson->setText(i18n("Delete Lesson"));
+    actionDeleteLesson->setIcon(KIcon("lesson-remove"));
+    actionDeleteLesson->setWhatsThis(i18n("Delete the selected lesson."));
+    actionDeleteLesson->setToolTip(actionDeleteLesson->whatsThis());
+    actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
+    actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
+
+    KAction *actionSplitLesson = new KAction(this);
+    parent->actionCollection()->addAction("split_lesson", actionSplitLesson);
+    actionSplitLesson->setText(i18n("Split Lesson into Smaller Lessons"));
+    actionSplitLesson->setIcon(KIcon("edit-copy"));  /// @todo better icon
+    actionSplitLesson->setWhatsThis(i18n("Make multiple smaller lessons out of one big lesson."));
+    actionSplitLesson->setToolTip(actionSplitLesson->whatsThis());
+    actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
+    actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
+
+    connect(actionNewLesson, SIGNAL(triggered()),
+            SLOT(slotCreateNewLesson()));
+    connect(actionRenameLesson, SIGNAL(triggered()),
+            SLOT(slotRenameLesson()));
+    connect(actionDeleteLesson, SIGNAL(triggered()),
+            SLOT(slotDeleteLesson()));
+    connect(actionSplitLesson, SIGNAL(triggered()),
+            SLOT(slotSplitLesson()));
+
+    // right cick menu for the lesson view:
+    addAction(actionNewLesson);
+    addAction(actionRenameLesson);
+    addAction(actionDeleteLesson);
+    QAction* separator = new QAction(this);
+    separator->setSeparator(true);
+    addAction(separator);
+    separator = new QAction(this);
+    separator->setSeparator(true);
+    addAction(separator);
+    addAction(actionSplitLesson);
 }
 
 

@@ -18,6 +18,8 @@
 
 #include "containerview.h"
 
+class ParleyApp;
+
 /**
  * View for the lesson list.
  * @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
@@ -27,7 +29,7 @@ class LessonView : public ContainerView
     Q_OBJECT
 
 public:
-    LessonView(QWidget *parent = 0);
+    LessonView(ParleyApp *parent);
 
 
 public slots:

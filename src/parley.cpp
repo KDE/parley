@@ -807,64 +807,7 @@ void ParleyApp::initActions()
 //     ///@todo enable when/if the corresponding function is rewritten
 //     editSaveSelectedArea->setEnabled(false);
 
-// -- LESSON --------------------------------------------------
 
-    KAction *actionNewLesson = new KAction(this);
-    actionCollection()->addAction("new_lesson", actionNewLesson);
-    actionNewLesson->setText(i18n("New Lesson"));
-    actionNewLesson->setIcon(KIcon("lesson-add"));
-    actionNewLesson->setWhatsThis(i18n("Add a new lesson to your document"));
-    actionNewLesson->setToolTip(actionNewLesson->whatsThis());
-    actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
-    actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
-
-    KAction *actionRenameLesson = new KAction(this);
-    actionCollection()->addAction("rename_lesson", actionRenameLesson);
-    actionRenameLesson->setText(i18n("Rename Lesson"));
-    actionRenameLesson->setIcon(KIcon("edit-rename"));
-    actionRenameLesson->setWhatsThis(i18n("Rename the selected lesson"));
-    actionRenameLesson->setToolTip(actionRenameLesson->whatsThis());
-    actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
-    actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
-
-    KAction *actionDeleteLesson = new KAction(this);
-    actionCollection()->addAction("delete_lesson", actionDeleteLesson);
-    actionDeleteLesson->setText(i18n("Delete Lesson"));
-    actionDeleteLesson->setIcon(KIcon("lesson-remove"));
-    actionDeleteLesson->setWhatsThis(i18n("Delete the selected lesson."));
-    actionDeleteLesson->setToolTip(actionDeleteLesson->whatsThis());
-    actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
-    actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
-
-    KAction *actionSplitLesson = new KAction(this);
-    actionCollection()->addAction("split_lesson", actionSplitLesson);
-    actionSplitLesson->setText(i18n("Split Lesson into Smaller Lessons"));
-    actionSplitLesson->setIcon(KIcon("edit-copy"));  /// @todo better icon
-    actionSplitLesson->setWhatsThis(i18n("Make multiple smaller lessons out of one big lesson."));
-    actionSplitLesson->setToolTip(actionSplitLesson->whatsThis());
-    actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
-    actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
-
-    connect(actionNewLesson, SIGNAL(triggered()),
-            m_lessonView, SLOT(slotCreateNewLesson()));
-    connect(actionRenameLesson, SIGNAL(triggered()),
-            m_lessonView, SLOT(slotRenameLesson()));
-    connect(actionDeleteLesson, SIGNAL(triggered()),
-            m_lessonView, SLOT(slotDeleteLesson()));
-    connect(actionSplitLesson, SIGNAL(triggered()),
-            m_lessonView, SLOT(slotSplitLesson()));
-
-    // right cick menu for the lesson view:
-    m_lessonView->addAction(actionNewLesson);
-    m_lessonView->addAction(actionRenameLesson);
-    m_lessonView->addAction(actionDeleteLesson);
-    QAction* separator = new QAction(this);
-    separator->setSeparator(true);
-    m_lessonView->addAction(separator);
-    separator = new QAction(this);
-    separator->setSeparator(true);
-    m_lessonView->addAction(separator);
-    m_lessonView->addAction(actionSplitLesson);
 
 // -- VOCABULARY --------------------------------------------------
 
