@@ -13,6 +13,13 @@
 
 <tip category="Parley">
 <html>
+<p>If you do not want to see the answer again after pressing enter when practicing, you can configure Parley to directly skip to the next entry.</p>
+<p>You can even choose to display the answer for a fixed amount of time. Use "Configure Practice..." -> "Advanced" -> "Show solution after answering".</p>
+</html>
+</tip>
+
+<tip category="Parley">
+<html>
 <p>If you want to see all words of a certain word type (e.g. nouns), simply select the word type in the list.</p>
 <p>To show the word type list, use "Settings" -> "Tools" -> "Word Types" in the menu.</p>
 </html>
