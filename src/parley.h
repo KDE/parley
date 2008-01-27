@@ -55,6 +55,7 @@ class VocabularyModel;
 class VocabularyFilter;
 class ContainerView;
 class LessonView;
+class WordTypeView;
 class ContainerModel;
 
 /**
@@ -170,7 +171,7 @@ private:
     LessonView *m_lessonView;
     ContainerModel *m_lessonModel;
 
-    ContainerView *m_wordTypeView;
+    WordTypeView *m_wordTypeView;
     ContainerModel *m_wordTypeModel;
 
     KLineEdit           *m_searchLine;

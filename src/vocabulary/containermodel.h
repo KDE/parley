@@ -81,8 +81,10 @@ public:
 
     QModelIndex appendLesson(const QModelIndex& parent, const QString & lessonName = QString());
 
-    // returns whether it was possible to delete
+    QModelIndex appendWordType(const QModelIndex& parent, const QString & wordTypeName = QString());
+
     void deleteLesson(const QModelIndex& lessonIndex);
+    void deleteWordType(const QModelIndex& wordTypeIndex);
 
     /**
      * Used for drag and drop, does not delete the lessons!

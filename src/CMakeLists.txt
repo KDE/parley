@@ -33,6 +33,7 @@ set(vocabulary_SRCS
     vocabulary/containerview.cpp
     vocabulary/containermimedata.cpp
     vocabulary/lessonview.cpp
+    vocabulary/wordtypeview.cpp
 )
 
 set(practice_SRCS

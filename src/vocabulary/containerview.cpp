@@ -131,6 +131,10 @@ void ContainerView::selectionChanged(const QItemSelection & selected, const QIte
     }
 }
 
+void ContainerView::slotRename()
+{
+    edit(selectionModel()->currentIndex());
+}
 
 #include "containerview.moc"
 

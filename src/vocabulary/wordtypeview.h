@@ -13,36 +13,28 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef LESSONVIEW_H
-#define LESSONVIEW_H
+#ifndef WORDTYPEVIEW_H
+#define WORDTYPEVIEW_H
 
+#include "wordtypeview.h"
 #include "containerview.h"
 
 class ParleyApp;
 
-/**
- * View for the lesson list.
- * @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
- */
-class LessonView : public ContainerView
+class WordTypeView : public ContainerView
 {
     Q_OBJECT
 
 public:
-    LessonView(ParleyApp *parent);
-
+    WordTypeView(ParleyApp *parent);
 
 public slots:
-    /** Append a lesson to the model and automatically set an edit up so the user can change "New lesson" into something meaningfull.*/
-    void slotCreateNewLesson();
+    /** Append a word type to the model and automatically set an edit up so the user can change "New lesson" into something meaningfull.*/
+    void slotCreateNewWordType();
 
-    /** Remove a lesson. Ask if it's not empty. */
-    void slotDeleteLesson();
+    /** Remove a word type. */
+    void slotDeleteWordType();
 
-    /** Creates many small lessons with the contents of the original lesson.
-     * @todo Let the user select if entries are taken by random or order.
-     */
-    void slotSplitLesson();
 };
 
 #endif

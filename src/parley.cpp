@@ -30,6 +30,7 @@
 #include "vocabulary/vocabularyfilter.h"
 #include "vocabulary/containerview.h"
 #include "vocabulary/lessonview.h"
+#include "vocabulary/wordtypeview.h"
 #include "vocabulary/containermodel.h"
 #include "entry-dialogs/wordtypewidget.h"
 #include "entry-dialogs/multiplechoicewidget.h"
@@ -503,7 +504,7 @@ void ParleyApp::initDockWidgets()
 // Word types dock
     QDockWidget* wordTypeDockWidget = new QDockWidget(i18n("Word Types"), this);
     wordTypeDockWidget->setObjectName( "WordTypeDock" );
-    m_wordTypeView = new ContainerView(this);
+    m_wordTypeView = new WordTypeView(this);
     wordTypeDockWidget->setWidget(m_wordTypeView);
     addDockWidget( Qt::LeftDockWidgetArea, wordTypeDockWidget );
 

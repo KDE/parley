@@ -48,6 +48,8 @@ public slots:
 
     void currentChanged( const QModelIndex & current, const QModelIndex & previous );
 
+    /** Create an editor to let the user type a new name for the lesson.*/
+    void slotRename();
 
 signals:
     /** Emitted when a new container is selected. Indicates the selected container. */

@@ -70,7 +70,7 @@ LessonView::LessonView(ParleyApp * parent) :ContainerView(parent)
     connect(actionNewLesson, SIGNAL(triggered()),
             SLOT(slotCreateNewLesson()));
     connect(actionRenameLesson, SIGNAL(triggered()),
-            SLOT(slotRenameLesson()));
+            SLOT(slotRename()));
     connect(actionDeleteLesson, SIGNAL(triggered()),
             SLOT(slotDeleteLesson()));
     connect(actionSplitLesson, SIGNAL(triggered()),
@@ -103,11 +103,6 @@ void LessonView::slotCreateNewLesson()
     scrollTo(modelIndex);
     selectionModel()->setCurrentIndex(modelIndex, QItemSelectionModel::ClearAndSelect);
     edit(modelIndex);    // let the user type a new name for the lesson
-}
-
-void LessonView::slotRenameLesson()
-{
-    edit(selectionModel()->currentIndex());
 }
 
 void LessonView::slotDeleteLesson()

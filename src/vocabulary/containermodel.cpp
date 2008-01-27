@@ -206,42 +206,30 @@ kDebug() << "Append child lesson to: " << parentLesson->name() << " new lesson n
     return QModelIndex();
 }
 
-// 
-// void ContainerModel::setAllLessonsInPractice()
-// {
-//     for (int lesson = 0; lesson < m_doc->lessonCount(); lesson++) {
-//         m_doc->lesson(lesson).setInPractice(true);
-//     }
-// 
-//     // this is not too great - say all data has changed
-//     emit dataChanged(index(0, 0, QModelIndex()), index(rowCount(), 0, QModelIndex()));
-//     //emit signalLessonsInPracticeChanged(intLessons);
-// }
 
+QModelIndex ContainerModel::appendWordType(const QModelIndex & parent, const QString & wordTypeName)
+{
+    if (m_container->containerType() == KEduVocContainer::WordType) {
+        KEduVocWordType* parentWordType;
+        if (parent.isValid()) {
+            parentWordType = static_cast<KEduVocWordType*>(parent.internalPointer());
+        } else {
+            parentWordType = static_cast<KEduVocWordType*>(m_container);
+        }
 
-// void ContainerModel::setNoLessonsInPractice()
-// {
-//     for (int lesson = 0; lesson < m_doc->lessonCount(); lesson++) {
-//         m_doc->lesson(lesson).setInPractice(false);
-//     }
-// 
-//     // this is not too great - say all data has changed
-//     emit dataChanged(index(0, 0, QModelIndex()), index(rowCount(), 0, QModelIndex()));
-//     //emit signalLessonsInPracticeChanged(intLessons);
-// }
+        kDebug() << "Append child word type to: " << parentWordType->name() << " new lesson name: " << wordTypeName;
 
+        beginInsertRows(parent, parentWordType->childContainerCount(),
+                        parentWordType->childContainerCount() );
 
-// bool ContainerModel::removeRows(int row, int count, const QModelIndex &parent)
-// {
-//     Q_UNUSED(parent);
-//     /// @todo either really use this or remove it
-//     beginRemoveRows(QModelIndex(), row, row);
-//     endRemoveRows();
-// 
-//     // to support drag and drop
-//     kDebug() << "removeRows(int row, int count, const QModelIndex &parent)" << row << ", " << count;
-//     return true;
-// }
+        parentWordType->appendChildContainer(new KEduVocWordType(wordTypeName, parentWordType));
+        endInsertRows();
+
+        return index(parentWordType->childContainerCount() - 1, 0, parent);
+    }
+
+    return QModelIndex();
+}
 
 
 void ContainerModel::splitLesson(const QModelIndex& containerIndex, int entriesPerLesson, SplitLessonOrder order)
@@ -422,6 +410,21 @@ void ContainerModel::deleteLesson(const QModelIndex & lessonIndex)
 }
 
 
+void ContainerModel::deleteWordType(const QModelIndex & wordTypeIndex)
+{
+    KEduVocContainer* wordType = static_cast<KEduVocContainer*>(wordTypeIndex.internalPointer());
+    KEduVocContainer* parent = wordType->parent();
+
+    if (parent == m_container) {
+        // never delete the root word type
+        return;
+    }
+
+    beginRemoveRows(wordTypeIndex.parent(), wordTypeIndex.row(), wordTypeIndex.row());
+    parent->deleteChildContainer(wordType->row());
+    endRemoveRows();
+}
+
 KEduVocContainer::EnumContainerType ContainerModel::containerType()
 {
     if (m_container) {
@@ -575,6 +578,8 @@ bool ContainerModel::removeRows(int row, int count, const QModelIndex & parent)
 
     return true;
 }
+
+
 
 
 #include "containermodel.moc"
