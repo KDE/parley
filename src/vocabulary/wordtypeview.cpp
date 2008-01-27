@@ -24,7 +24,7 @@
 #include <KInputDialog>
 #include <KAction>
 #include <KActionCollection>
-#include <KActionMenu>
+#include <KSelectAction>
 
 WordTypeView::WordTypeView(ParleyApp * parent) :ContainerView(parent)
 {
@@ -57,7 +57,7 @@ WordTypeView::WordTypeView(ParleyApp * parent) :ContainerView(parent)
     actionDeleteWordType->setStatusTip(actionDeleteWordType->whatsThis());
     actionDeleteWordType->setStatusTip(actionDeleteWordType->whatsThis());
 
-    KActionMenu *actionSpecialTypeMenu = new KActionMenu(this);
+    KSelectAction *actionSpecialTypeMenu = new KSelectAction(this);
     parent->actionCollection()->addAction("special_wordtype_menu", actionSpecialTypeMenu);
     actionSpecialTypeMenu->setText(i18nc("Let the user select what grammatical meaning is connected to a word type (nouns have gender, verbs conjugations etc)", "Grammar"));
     //actionSplitWordType->setIcon(KIcon(""));  /// @todo better icon
@@ -65,6 +65,94 @@ WordTypeView::WordTypeView(ParleyApp * parent) :ContainerView(parent)
     actionSpecialTypeMenu->setToolTip(actionSpecialTypeMenu->whatsThis());
     actionSpecialTypeMenu->setStatusTip(actionSpecialTypeMenu->whatsThis());
     actionSpecialTypeMenu->setStatusTip(actionSpecialTypeMenu->whatsThis());
+
+
+    KAction *nounAction = new KAction(this);
+    parent->actionCollection()->addAction("wordtype_noun", nounAction);
+    nounAction->setText(i18n("Noun"));
+    nounAction->setCheckable(true);
+    nounAction->setWhatsThis(i18n("This word type folder contains nouns."));
+    nounAction->setToolTip(nounAction->whatsThis());
+    nounAction->setStatusTip(nounAction->whatsThis());
+    nounAction->setStatusTip(nounAction->whatsThis());
+
+    KAction *nounMaleAction = new KAction(this);
+    parent->actionCollection()->addAction("wordtype_nounMale", nounMaleAction);
+    nounMaleAction->setText(i18n("Male Noun"));
+    nounMaleAction->setCheckable(true);
+    nounMaleAction->setWhatsThis(i18n("This word type folder contains nounMales."));
+    nounMaleAction->setToolTip(nounMaleAction->whatsThis());
+    nounMaleAction->setStatusTip(nounMaleAction->whatsThis());
+    nounMaleAction->setStatusTip(nounMaleAction->whatsThis());
+
+    KAction *nounFemaleAction = new KAction(this);
+    parent->actionCollection()->addAction("wordtype_nounFemale", nounFemaleAction);
+    nounFemaleAction->setText(i18n("Female Noun"));
+    nounFemaleAction->setCheckable(true);
+    nounFemaleAction->setWhatsThis(i18n("This word type folder contains nounFemales."));
+    nounFemaleAction->setToolTip(nounFemaleAction->whatsThis());
+    nounFemaleAction->setStatusTip(nounFemaleAction->whatsThis());
+    nounFemaleAction->setStatusTip(nounFemaleAction->whatsThis());
+
+    KAction *nounNeutralAction = new KAction(this);
+    parent->actionCollection()->addAction("wordtype_nounNeutral", nounNeutralAction);
+    nounNeutralAction->setText(i18n("Neutral Noun"));
+    nounNeutralAction->setCheckable(true);
+    nounNeutralAction->setWhatsThis(i18n("This word type folder contains nounNeutrals."));
+    nounNeutralAction->setToolTip(nounNeutralAction->whatsThis());
+    nounNeutralAction->setStatusTip(nounNeutralAction->whatsThis());
+    nounNeutralAction->setStatusTip(nounNeutralAction->whatsThis());
+
+    KAction *adjectiveAction = new KAction(this);
+    parent->actionCollection()->addAction("wordtype_adjective", adjectiveAction);
+    adjectiveAction->setText(i18n("Adjective"));
+    adjectiveAction->setCheckable(true);
+    adjectiveAction->setWhatsThis(i18n("This word type folder contains adjectives."));
+    adjectiveAction->setToolTip(adjectiveAction->whatsThis());
+    adjectiveAction->setStatusTip(adjectiveAction->whatsThis());
+    adjectiveAction->setStatusTip(adjectiveAction->whatsThis());
+
+    KAction *adverbAction = new KAction(this);
+    parent->actionCollection()->addAction("wordtype_adverb", adverbAction);
+    adverbAction->setText(i18n("Adverb"));
+    adverbAction->setCheckable(true);
+    adverbAction->setWhatsThis(i18n("This word type folder contains adverbs."));
+    adverbAction->setToolTip(adverbAction->whatsThis());
+    adverbAction->setStatusTip(adverbAction->whatsThis());
+    adverbAction->setStatusTip(adverbAction->whatsThis());
+
+
+    KAction *verbAction = new KAction(this);
+    parent->actionCollection()->addAction("wordtype_verb", verbAction);
+    verbAction->setText(i18n("Verb"));
+    verbAction->setCheckable(true);
+    verbAction->setWhatsThis(i18n("This word type folder contains verbs."));
+    verbAction->setToolTip(verbAction->whatsThis());
+    verbAction->setStatusTip(verbAction->whatsThis());
+    verbAction->setStatusTip(verbAction->whatsThis());
+
+    KAction *noneAction = new KAction(this);
+    parent->actionCollection()->addAction("wordtype_none", noneAction);
+    noneAction->setText(i18n("No Special Type"));
+    noneAction->setCheckable(true);
+    noneAction->setChecked(true);
+    noneAction->setWhatsThis(i18n("This word type folder contains nones."));
+    noneAction->setToolTip(noneAction->whatsThis());
+    noneAction->setStatusTip(noneAction->whatsThis());
+    noneAction->setStatusTip(noneAction->whatsThis());
+
+    QAction* separator = new QAction(this);
+    separator->setSeparator(true);
+
+    actionSpecialTypeMenu->addAction(noneAction);
+    actionSpecialTypeMenu->addAction(separator);
+    actionSpecialTypeMenu->addAction(nounAction);
+    actionSpecialTypeMenu->addAction(nounMaleAction);
+    actionSpecialTypeMenu->addAction(nounFemaleAction);
+    actionSpecialTypeMenu->addAction(nounNeutralAction);
+    actionSpecialTypeMenu->addAction(adjectiveAction);
+    actionSpecialTypeMenu->addAction(adverbAction);
+    actionSpecialTypeMenu->addAction(verbAction);
 
     connect(actionNewWordType, SIGNAL(triggered()),
             SLOT(slotCreateNewWordType()));
@@ -79,7 +167,7 @@ WordTypeView::WordTypeView(ParleyApp * parent) :ContainerView(parent)
     addAction(actionNewWordType);
     addAction(actionRenameWordType);
     addAction(actionDeleteWordType);
-    QAction* separator = new QAction(this);
+    separator = new QAction(this);
     separator->setSeparator(true);
     addAction(separator);
     separator = new QAction(this);
