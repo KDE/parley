@@ -278,7 +278,6 @@ void VocabularyView::setModel(VocabularyFilter * model)
 //     resizeEvent(&rsEvent);
 // }
 
-
 void VocabularyView::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous)
 {
     Q_UNUSED(previous);
@@ -287,12 +286,6 @@ void VocabularyView::slotCurrentChanged(const QModelIndex & current, const QMode
         entry =  model()->data(current, VocabularyModel::EntryRole).value<KEduVocExpression*>();
     }
     emit translationChanged(entry, VocabularyModel::translation(current.column()));
-}
-
-
-void VocabularyView::columnCountChanged(int oldCount, int newCount)
-{
-
 }
 
 void VocabularyView::reset()
@@ -337,7 +330,6 @@ void VocabularyView::slotToggleColumn(bool show)
 {
     setColumnHidden(m_columnActionMap[(KAction*)sender()], !show);
 }
-
 
 void VocabularyView::appendEntry()
 {

@@ -20,6 +20,8 @@
 #include "containerview.h"
 
 class ParleyApp;
+class KAction;
+class KSelectAction;
 
 class WordTypeView : public ContainerView
 {
@@ -35,6 +37,34 @@ public slots:
     /** Remove a word type. */
     void slotDeleteWordType();
 
+protected:
+    void contextMenuEvent ( QContextMenuEvent * event );
+
+private slots:
+    void setWordTypeNone();
+    void setWordTypeNoun();
+    void setWordTypeNounMale();
+    void setWordTypeNounFemale();
+    void setWordTypeNounNeutral();
+    void setWordTypeAdjective();
+    void setWordTypeAdverb();
+    void setWordTypeVerb();
+
+private:
+    KAction *m_actionNewWordType;
+    KAction *m_actionDeleteWordType;
+    KAction *m_actionRenameWordType;
+    KSelectAction *m_actionSpecialTypeMenu;
+
+    KAction *m_noneAction;
+    KAction *m_separator;
+    KAction *m_nounAction;
+    KAction *m_nounMaleAction;
+    KAction *m_nounFemaleAction;
+    KAction *m_nounNeutralAction;
+    KAction *m_adjectiveAction;
+    KAction *m_adverbAction;
+    KAction *m_verbAction;
 };
 
 #endif

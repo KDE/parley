@@ -57,8 +57,6 @@ signals:
 private slots:
     void slotCurrentChanged(const QModelIndex& current, const QModelIndex& previous);
 
-    void columnCountChanged ( int oldCount, int newCount );
-
     void slotToggleColumn(bool show);
 
 // private slots:

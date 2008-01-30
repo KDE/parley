@@ -25,155 +25,172 @@
 #include <KAction>
 #include <KActionCollection>
 #include <KSelectAction>
-
+#include <QMenu>
+#include <QContextMenuEvent>
 WordTypeView::WordTypeView(ParleyApp * parent) :ContainerView(parent)
 {
-//     setContextMenuPolicy(Qt::CustomContextMenu);
+    setContextMenuPolicy(Qt::DefaultContextMenu);
 
-    KAction *actionNewWordType = new KAction(this);
-    parent->actionCollection()->addAction("new_wordtype", actionNewWordType);
-    actionNewWordType->setText(i18n("New"));
-    actionNewWordType->setIcon(KIcon("WordType-add"));
-    actionNewWordType->setWhatsThis(i18n("Add a new word type to your document"));
-    actionNewWordType->setToolTip(actionNewWordType->whatsThis());
-    actionNewWordType->setStatusTip(actionNewWordType->whatsThis());
-    actionNewWordType->setStatusTip(actionNewWordType->whatsThis());
+    m_actionNewWordType = new KAction(this);
+    parent->actionCollection()->addAction("new_wordtype", m_actionNewWordType);
+    m_actionNewWordType->setText(i18n("New"));
+    m_actionNewWordType->setIcon(KIcon("WordType-add"));
+    m_actionNewWordType->setWhatsThis(i18n("Add a new word type to your document"));
+    m_actionNewWordType->setToolTip(m_actionNewWordType->whatsThis());
+    m_actionNewWordType->setStatusTip(m_actionNewWordType->whatsThis());
+    m_actionNewWordType->setStatusTip(m_actionNewWordType->whatsThis());
 
-    KAction *actionRenameWordType = new KAction(this);
-    parent->actionCollection()->addAction("rename_wordtype", actionRenameWordType);
-    actionRenameWordType->setText(i18n("Rename"));
-    actionRenameWordType->setIcon(KIcon("edit-rename"));
-    actionRenameWordType->setWhatsThis(i18n("Rename the selected WordType"));
-    actionRenameWordType->setToolTip(actionRenameWordType->whatsThis());
-    actionRenameWordType->setStatusTip(actionRenameWordType->whatsThis());
-    actionRenameWordType->setStatusTip(actionRenameWordType->whatsThis());
+    m_actionRenameWordType = new KAction(this);
+    parent->actionCollection()->addAction("rename_wordtype", m_actionRenameWordType);
+    m_actionRenameWordType->setText(i18n("Rename"));
+    m_actionRenameWordType->setIcon(KIcon("edit-rename"));
+    m_actionRenameWordType->setWhatsThis(i18n("Rename the selected WordType"));
+    m_actionRenameWordType->setToolTip(m_actionRenameWordType->whatsThis());
+    m_actionRenameWordType->setStatusTip(m_actionRenameWordType->whatsThis());
+    m_actionRenameWordType->setStatusTip(m_actionRenameWordType->whatsThis());
 
-    KAction *actionDeleteWordType = new KAction(this);
-    parent->actionCollection()->addAction("delete_wordtype", actionDeleteWordType);
-    actionDeleteWordType->setText(i18n("Delete"));
-    actionDeleteWordType->setIcon(KIcon("WordType-remove"));
-    actionDeleteWordType->setWhatsThis(i18n("Delete the selected WordType."));
-    actionDeleteWordType->setToolTip(actionDeleteWordType->whatsThis());
-    actionDeleteWordType->setStatusTip(actionDeleteWordType->whatsThis());
-    actionDeleteWordType->setStatusTip(actionDeleteWordType->whatsThis());
+    m_actionDeleteWordType = new KAction(this);
+    parent->actionCollection()->addAction("delete_wordtype", m_actionDeleteWordType);
+    m_actionDeleteWordType->setText(i18n("Delete"));
+    m_actionDeleteWordType->setIcon(KIcon("WordType-remove"));
+    m_actionDeleteWordType->setWhatsThis(i18n("Delete the selected WordType."));
+    m_actionDeleteWordType->setToolTip(m_actionDeleteWordType->whatsThis());
+    m_actionDeleteWordType->setStatusTip(m_actionDeleteWordType->whatsThis());
+    m_actionDeleteWordType->setStatusTip(m_actionDeleteWordType->whatsThis());
 
-    KSelectAction *actionSpecialTypeMenu = new KSelectAction(this);
-    parent->actionCollection()->addAction("special_wordtype_menu", actionSpecialTypeMenu);
-    actionSpecialTypeMenu->setText(i18nc("Let the user select what grammatical meaning is connected to a word type (nouns have gender, verbs conjugations etc)", "Grammar"));
+    m_actionSpecialTypeMenu = new KSelectAction(this);
+    parent->actionCollection()->addAction("special_wordtype_menu", m_actionSpecialTypeMenu);
+    m_actionSpecialTypeMenu->setText(i18nc("Let the user select what grammatical meaning is connected to a word type (nouns have gender, verbs conjugations etc)", "Grammar"));
     //actionSplitWordType->setIcon(KIcon(""));  /// @todo better icon
-    actionSpecialTypeMenu->setWhatsThis(i18n("To let Parley know the grammatical meaning of a word type."));
-    actionSpecialTypeMenu->setToolTip(actionSpecialTypeMenu->whatsThis());
-    actionSpecialTypeMenu->setStatusTip(actionSpecialTypeMenu->whatsThis());
-    actionSpecialTypeMenu->setStatusTip(actionSpecialTypeMenu->whatsThis());
+    m_actionSpecialTypeMenu->setWhatsThis(i18n("To let Parley know the grammatical meaning of a word type."));
+    m_actionSpecialTypeMenu->setToolTip(m_actionSpecialTypeMenu->whatsThis());
+    m_actionSpecialTypeMenu->setStatusTip(m_actionSpecialTypeMenu->whatsThis());
+    m_actionSpecialTypeMenu->setStatusTip(m_actionSpecialTypeMenu->whatsThis());
 
 
-    KAction *nounAction = new KAction(this);
-    parent->actionCollection()->addAction("wordtype_noun", nounAction);
-    nounAction->setText(i18n("Noun"));
-    nounAction->setCheckable(true);
-    nounAction->setWhatsThis(i18n("This word type folder contains nouns."));
-    nounAction->setToolTip(nounAction->whatsThis());
-    nounAction->setStatusTip(nounAction->whatsThis());
-    nounAction->setStatusTip(nounAction->whatsThis());
+    m_nounAction = new KAction(this);
+    parent->actionCollection()->addAction("wordtype_noun", m_nounAction);
+    m_nounAction->setText(i18n("Noun"));
+    m_nounAction->setCheckable(true);
+    m_nounAction->setWhatsThis(i18n("This word type folder contains nouns."));
+    m_nounAction->setToolTip(m_nounAction->whatsThis());
+    m_nounAction->setStatusTip(m_nounAction->whatsThis());
+    m_nounAction->setStatusTip(m_nounAction->whatsThis());
 
-    KAction *nounMaleAction = new KAction(this);
-    parent->actionCollection()->addAction("wordtype_nounMale", nounMaleAction);
-    nounMaleAction->setText(i18n("Male Noun"));
-    nounMaleAction->setCheckable(true);
-    nounMaleAction->setWhatsThis(i18n("This word type folder contains nounMales."));
-    nounMaleAction->setToolTip(nounMaleAction->whatsThis());
-    nounMaleAction->setStatusTip(nounMaleAction->whatsThis());
-    nounMaleAction->setStatusTip(nounMaleAction->whatsThis());
+    m_nounMaleAction = new KAction(this);
+    parent->actionCollection()->addAction("wordtype_nounMale", m_nounMaleAction);
+    m_nounMaleAction->setText(i18n("Male Noun"));
+    m_nounMaleAction->setCheckable(true);
+    m_nounMaleAction->setWhatsThis(i18n("This word type folder contains nounMales."));
+    m_nounMaleAction->setToolTip(m_nounMaleAction->whatsThis());
+    m_nounMaleAction->setStatusTip(m_nounMaleAction->whatsThis());
+    m_nounMaleAction->setStatusTip(m_nounMaleAction->whatsThis());
 
-    KAction *nounFemaleAction = new KAction(this);
-    parent->actionCollection()->addAction("wordtype_nounFemale", nounFemaleAction);
-    nounFemaleAction->setText(i18n("Female Noun"));
-    nounFemaleAction->setCheckable(true);
-    nounFemaleAction->setWhatsThis(i18n("This word type folder contains nounFemales."));
-    nounFemaleAction->setToolTip(nounFemaleAction->whatsThis());
-    nounFemaleAction->setStatusTip(nounFemaleAction->whatsThis());
-    nounFemaleAction->setStatusTip(nounFemaleAction->whatsThis());
+    m_nounFemaleAction = new KAction(this);
+    parent->actionCollection()->addAction("wordtype_nounFemale", m_nounFemaleAction);
+    m_nounFemaleAction->setText(i18n("Female Noun"));
+    m_nounFemaleAction->setCheckable(true);
+    m_nounFemaleAction->setWhatsThis(i18n("This word type folder contains nounFemales."));
+    m_nounFemaleAction->setToolTip(m_nounFemaleAction->whatsThis());
+    m_nounFemaleAction->setStatusTip(m_nounFemaleAction->whatsThis());
+    m_nounFemaleAction->setStatusTip(m_nounFemaleAction->whatsThis());
 
-    KAction *nounNeutralAction = new KAction(this);
-    parent->actionCollection()->addAction("wordtype_nounNeutral", nounNeutralAction);
-    nounNeutralAction->setText(i18n("Neutral Noun"));
-    nounNeutralAction->setCheckable(true);
-    nounNeutralAction->setWhatsThis(i18n("This word type folder contains nounNeutrals."));
-    nounNeutralAction->setToolTip(nounNeutralAction->whatsThis());
-    nounNeutralAction->setStatusTip(nounNeutralAction->whatsThis());
-    nounNeutralAction->setStatusTip(nounNeutralAction->whatsThis());
+    m_nounNeutralAction = new KAction(this);
+    parent->actionCollection()->addAction("wordtype_nounNeutral", m_nounNeutralAction);
+    m_nounNeutralAction->setText(i18n("Neutral Noun"));
+    m_nounNeutralAction->setCheckable(true);
+    m_nounNeutralAction->setWhatsThis(i18n("This word type folder contains nounNeutrals."));
+    m_nounNeutralAction->setToolTip(m_nounNeutralAction->whatsThis());
+    m_nounNeutralAction->setStatusTip(m_nounNeutralAction->whatsThis());
+    m_nounNeutralAction->setStatusTip(m_nounNeutralAction->whatsThis());
 
-    KAction *adjectiveAction = new KAction(this);
-    parent->actionCollection()->addAction("wordtype_adjective", adjectiveAction);
-    adjectiveAction->setText(i18n("Adjective"));
-    adjectiveAction->setCheckable(true);
-    adjectiveAction->setWhatsThis(i18n("This word type folder contains adjectives."));
-    adjectiveAction->setToolTip(adjectiveAction->whatsThis());
-    adjectiveAction->setStatusTip(adjectiveAction->whatsThis());
-    adjectiveAction->setStatusTip(adjectiveAction->whatsThis());
+    m_adjectiveAction = new KAction(this);
+    parent->actionCollection()->addAction("wordtype_adjective", m_adjectiveAction);
+    m_adjectiveAction->setText(i18n("Adjective"));
+    m_adjectiveAction->setCheckable(true);
+    m_adjectiveAction->setWhatsThis(i18n("This word type folder contains adjectives."));
+    m_adjectiveAction->setToolTip(m_adjectiveAction->whatsThis());
+    m_adjectiveAction->setStatusTip(m_adjectiveAction->whatsThis());
+    m_adjectiveAction->setStatusTip(m_adjectiveAction->whatsThis());
 
-    KAction *adverbAction = new KAction(this);
-    parent->actionCollection()->addAction("wordtype_adverb", adverbAction);
-    adverbAction->setText(i18n("Adverb"));
-    adverbAction->setCheckable(true);
-    adverbAction->setWhatsThis(i18n("This word type folder contains adverbs."));
-    adverbAction->setToolTip(adverbAction->whatsThis());
-    adverbAction->setStatusTip(adverbAction->whatsThis());
-    adverbAction->setStatusTip(adverbAction->whatsThis());
+    m_adverbAction = new KAction(this);
+    parent->actionCollection()->addAction("wordtype_adverb", m_adverbAction);
+    m_adverbAction->setText(i18n("Adverb"));
+    m_adverbAction->setCheckable(true);
+    m_adverbAction->setWhatsThis(i18n("This word type folder contains adverbs."));
+    m_adverbAction->setToolTip(m_adverbAction->whatsThis());
+    m_adverbAction->setStatusTip(m_adverbAction->whatsThis());
+    m_adverbAction->setStatusTip(m_adverbAction->whatsThis());
 
 
-    KAction *verbAction = new KAction(this);
-    parent->actionCollection()->addAction("wordtype_verb", verbAction);
-    verbAction->setText(i18n("Verb"));
-    verbAction->setCheckable(true);
-    verbAction->setWhatsThis(i18n("This word type folder contains verbs."));
-    verbAction->setToolTip(verbAction->whatsThis());
-    verbAction->setStatusTip(verbAction->whatsThis());
-    verbAction->setStatusTip(verbAction->whatsThis());
+    m_verbAction = new KAction(this);
+    parent->actionCollection()->addAction("wordtype_verb", m_verbAction);
+    m_verbAction->setText(i18n("Verb"));
+    m_verbAction->setCheckable(true);
+    m_verbAction->setWhatsThis(i18n("This word type folder contains verbs."));
+    m_verbAction->setToolTip(m_verbAction->whatsThis());
+    m_verbAction->setStatusTip(m_verbAction->whatsThis());
+    m_verbAction->setStatusTip(m_verbAction->whatsThis());
 
-    KAction *noneAction = new KAction(this);
-    parent->actionCollection()->addAction("wordtype_none", noneAction);
-    noneAction->setText(i18n("No Special Type"));
-    noneAction->setCheckable(true);
-    noneAction->setChecked(true);
-    noneAction->setWhatsThis(i18n("This word type folder contains nones."));
-    noneAction->setToolTip(noneAction->whatsThis());
-    noneAction->setStatusTip(noneAction->whatsThis());
-    noneAction->setStatusTip(noneAction->whatsThis());
+    m_noneAction = new KAction(this);
+    parent->actionCollection()->addAction("wordtype_none", m_noneAction);
+    m_noneAction->setText(i18n("No Special Type"));
+    m_noneAction->setCheckable(true);
+    m_noneAction->setChecked(true);
+    m_noneAction->setWhatsThis(i18n("This word type folder contains nones."));
+    m_noneAction->setToolTip(m_noneAction->whatsThis());
+    m_noneAction->setStatusTip(m_noneAction->whatsThis());
+    m_noneAction->setStatusTip(m_noneAction->whatsThis());
 
     QAction* separator = new QAction(this);
     separator->setSeparator(true);
 
-    actionSpecialTypeMenu->addAction(noneAction);
-    actionSpecialTypeMenu->addAction(separator);
-    actionSpecialTypeMenu->addAction(nounAction);
-    actionSpecialTypeMenu->addAction(nounMaleAction);
-    actionSpecialTypeMenu->addAction(nounFemaleAction);
-    actionSpecialTypeMenu->addAction(nounNeutralAction);
-    actionSpecialTypeMenu->addAction(adjectiveAction);
-    actionSpecialTypeMenu->addAction(adverbAction);
-    actionSpecialTypeMenu->addAction(verbAction);
+    m_actionSpecialTypeMenu->addAction(m_noneAction);
+    m_actionSpecialTypeMenu->addAction(separator);
+    m_actionSpecialTypeMenu->addAction(m_nounAction);
+    m_actionSpecialTypeMenu->addAction(m_nounMaleAction);
+    m_actionSpecialTypeMenu->addAction(m_nounFemaleAction);
+    m_actionSpecialTypeMenu->addAction(m_nounNeutralAction);
+    m_actionSpecialTypeMenu->addAction(m_adjectiveAction);
+    m_actionSpecialTypeMenu->addAction(m_adverbAction);
+    m_actionSpecialTypeMenu->addAction(m_verbAction);
 
-    connect(actionNewWordType, SIGNAL(triggered()),
+    connect(m_actionNewWordType, SIGNAL(triggered()),
             SLOT(slotCreateNewWordType()));
-    connect(actionRenameWordType, SIGNAL(triggered()),
+    connect(m_actionRenameWordType, SIGNAL(triggered()),
             SLOT(slotRename()));
-    connect(actionDeleteWordType, SIGNAL(triggered()),
+    connect(m_actionDeleteWordType, SIGNAL(triggered()),
             SLOT(slotDeleteWordType()));
 
 
-
     // right cick menu for the WordType view:
-    addAction(actionNewWordType);
-    addAction(actionRenameWordType);
-    addAction(actionDeleteWordType);
+    addAction(m_actionNewWordType);
+    addAction(m_actionRenameWordType);
+    addAction(m_actionDeleteWordType);
     separator = new QAction(this);
     separator->setSeparator(true);
     addAction(separator);
     separator = new QAction(this);
     separator->setSeparator(true);
     addAction(separator);
-    addAction(actionSpecialTypeMenu);
+    addAction(m_actionSpecialTypeMenu);
+
+    connect(m_noneAction, SIGNAL(triggered()),
+            SLOT(setWordTypeNone()));
+    connect(m_nounAction, SIGNAL(triggered()),
+            SLOT(setWordTypeNoun()));
+    connect(m_nounMaleAction, SIGNAL(triggered()),
+            SLOT(setWordTypeNounMale()));
+    connect(m_nounFemaleAction, SIGNAL(triggered()),
+            SLOT(setWordTypeNounFemale()));
+    connect(m_nounNeutralAction, SIGNAL(triggered()),
+            SLOT(setWordTypeNounNeutral()));
+    connect(m_adjectiveAction, SIGNAL(triggered()),
+            SLOT(setWordTypeAdjective()));
+    connect(m_adverbAction, SIGNAL(triggered()),
+            SLOT(setWordTypeAdverb()));
+    connect(m_verbAction, SIGNAL(triggered()),
+            SLOT(setWordTypeVerb()));
 }
 
 
@@ -211,7 +228,97 @@ void WordTypeView::slotDeleteWordType()
     }
 }
 
+void WordTypeView::contextMenuEvent(QContextMenuEvent * event)
+{
+    kDebug() << "Context menu event";
+
+    // check for the root element:
+    QModelIndex selectedIndex = selectionModel()->currentIndex();
+    m_actionRenameWordType->setEnabled(selectedIndex.parent() != QModelIndex());
+    m_actionDeleteWordType->setEnabled(selectedIndex.parent() != QModelIndex());
+    m_actionSpecialTypeMenu->setEnabled(selectedIndex.parent() != QModelIndex());
+
+    if (selectedIndex.isValid()) {
+        switch(static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer())->wordType()) {
+        case KEduVocWordType::General:
+            m_noneAction->setChecked(true);
+            break;
+        case KEduVocWordType::Noun:
+            m_nounAction->setChecked(true);
+            break;
+        case KEduVocWordType::NounMale:
+            m_nounMaleAction->setChecked(true);
+            break;
+        case KEduVocWordType::NounFemale:
+            m_nounFemaleAction->setChecked(true);
+            break;
+        case KEduVocWordType::NounNeutral:
+            m_nounNeutralAction->setChecked(true);
+            break;
+        case KEduVocWordType::Adjective:
+            m_adjectiveAction->setChecked(true);
+            break;
+        case KEduVocWordType::Adverb:
+            m_adverbAction->setChecked(true);
+            break;
+        case KEduVocWordType::Verb:
+            m_verbAction->setChecked(true);
+            break;
+        }
+    }
+    
+    QMenu::exec(actions(), event->globalPos());
+}
+
+void WordTypeView::setWordTypeNone()
+{
+    KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
+    wordType->setWordType(KEduVocWordType::General);
+}
+
+void WordTypeView::setWordTypeNoun()
+{
+    KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
+    wordType->setWordType(KEduVocWordType::Noun);
+}
+
+void WordTypeView::setWordTypeNounMale()
+{
+    KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
+    wordType->setWordType(KEduVocWordType::NounMale);
+}
+
+void WordTypeView::setWordTypeNounFemale()
+{
+    KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
+    wordType->setWordType(KEduVocWordType::NounFemale);
+}
+
+void WordTypeView::setWordTypeNounNeutral()
+{
+    KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
+    wordType->setWordType(KEduVocWordType::NounNeutral);
+}
+
+void WordTypeView::setWordTypeAdjective()
+{
+    KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
+    wordType->setWordType(KEduVocWordType::Adjective);
+}
+
+void WordTypeView::setWordTypeAdverb()
+{
+    KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
+    wordType->setWordType(KEduVocWordType::Adverb);
+}
+
+void WordTypeView::setWordTypeVerb()
+{
+    KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
+    wordType->setWordType(KEduVocWordType::Verb);
+}
 
 
 #include "wordtypeview.moc"
+
 
