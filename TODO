@@ -3,37 +3,27 @@ Things to improve in parley
 
  * update the dtd and validate some documents
  * write more unit tests
- * add image tag to lesson class
 
  * Make all dock widgets work
- * Add the docks to the menu bar
-   - what about special types that have extra attributes like conjugations etc?
-     - create a context menu to set a word type to contain nouns etc
    - creating a new doc does not create any word types
- * KOffice has fancy hide docker buttons in their docker titles, steal them ;)
  * Add the ability to record sound files with phonon to a dock if possible. This depends on the state of Phonon - might be ready for 4.1.
  * Save columns hide state, enable hiding of main columns with their children maybe
  * Use the container/lesson class for the leitner implementation
  * What about editing multiple entries at the same time? does that work? does it help with the new design?
- * The statistics page is broken. At least reset does not work and there is no tree view for it.
- * Hide most docks upon first start
-
+ * The statistics page is broken. Time for a rewrite.
  * Drag and drop for several things:
-   - Reorder lessons
-   - Move lessons to be child lessons of others
-   - Drag entries into lessons/word types/leitner boxes
    - Drag lessons/word types into leitner boxes
-   - Drop images from outside
    - Sound
-
+   - Accept text drops (as new vocabulary?)
+ * Implement more online lookup possiblities, language dependent.
  * Give containers an image tag and display images in the lesson view
  * Check for mem leaks - I bet I introduced some in the lib.
+ * Filter/sort is broken.
 
 Gui
  * shortcut keys are badly assigned, they do not respect the focus
  * Image file open dialog: filter and preview. Maybe restrict to image files?
  * Sound file open dialog: filter and preview
- * Editing of vocabulary should be made easier
  * Navigation (editing vocabulary).
    act as usual spreadsheet application. (especially useful if trying to edit more than 2 columns).
      Enter       -> move down.
@@ -42,17 +32,15 @@ Gui
      Shift+Tab   -> move left.
  * When clicking on "Restore native order" arrow in column header remains.
    It should become hidden now.
- * Entry number column - clicking on it should maybe sort entries by
-   their numbers, not select all entries. (This was tricky somehow, though I don't remember why)
  * Ctrl+F shortcut for search
  * Improve the search somehow to let the user continue typing instead of blocking (also not trivial?)
- * If the active field stays, it would be easier to use checkboxes
- * Model/view for the main table: include other fields and be more flexible
- * Different icons for Lesson-Select/Add/Deselect/Delete (right click menu)
+ * Enable the active field again? If the active field stays, use checkboxes
  * For some languages (with signs like chinese) it would be nice to have different font sizes in the columns
 Validator/correction of user answers
  * Seperators need to be implemented with the new corrector class. Possibly giving the user the chance to add more words when entering right answers but not all of them.
  * Analysis of sentences could be improved a lot
+
+  maybe: * KOffice has fancy hide docker buttons in their docker titles, steal them ;)
 
 General
  * Open/Create file - maybe it makes sense to open/create file in new
@@ -69,13 +57,10 @@ General
    - gui has to be extended
 
  * adjectives can have a gender and plural
-
  * tenses - make it possible to change their order and redo the dialog in general
- 
  * Undo - KUndoStack
 
 Pronunciation
- * research how entering that could be made easier
  * option to display it along in the practice dialogs
  * is a pronunciation practice desireable? maybe together with sound (write after listening) also very much for chinese I'm told.
 
