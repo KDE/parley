@@ -19,6 +19,7 @@ Things to improve in parley
  * Give containers an image tag and display images in the lesson view
  * Check for mem leaks - I bet I introduced some in the lib.
  * Filter/sort is broken.
+ * Copy/Paste and friends.
 
 Gui
  * shortcut keys are badly assigned, they do not respect the focus
