@@ -34,7 +34,7 @@ WordTypeView::WordTypeView(ParleyApp * parent) :ContainerView(parent)
     m_actionNewWordType = new KAction(this);
     parent->actionCollection()->addAction("new_wordtype", m_actionNewWordType);
     m_actionNewWordType->setText(i18n("New"));
-    m_actionNewWordType->setIcon(KIcon("WordType-add"));
+    m_actionNewWordType->setIcon(KIcon("lesson-add"));
     m_actionNewWordType->setWhatsThis(i18n("Add a new word type to your document"));
     m_actionNewWordType->setToolTip(m_actionNewWordType->whatsThis());
     m_actionNewWordType->setStatusTip(m_actionNewWordType->whatsThis());
@@ -52,7 +52,7 @@ WordTypeView::WordTypeView(ParleyApp * parent) :ContainerView(parent)
     m_actionDeleteWordType = new KAction(this);
     parent->actionCollection()->addAction("delete_wordtype", m_actionDeleteWordType);
     m_actionDeleteWordType->setText(i18n("Delete"));
-    m_actionDeleteWordType->setIcon(KIcon("WordType-remove"));
+    m_actionDeleteWordType->setIcon(KIcon("lesson-remove"));
     m_actionDeleteWordType->setWhatsThis(i18n("Delete the selected WordType."));
     m_actionDeleteWordType->setToolTip(m_actionDeleteWordType->whatsThis());
     m_actionDeleteWordType->setStatusTip(m_actionDeleteWordType->whatsThis());
@@ -81,7 +81,7 @@ WordTypeView::WordTypeView(ParleyApp * parent) :ContainerView(parent)
     parent->actionCollection()->addAction("wordtype_nounMale", m_nounMaleAction);
     m_nounMaleAction->setText(i18n("Male Noun"));
     m_nounMaleAction->setCheckable(true);
-    m_nounMaleAction->setWhatsThis(i18n("This word type folder contains nounMales."));
+    m_nounMaleAction->setWhatsThis(i18n("This word type folder contains male nouns."));
     m_nounMaleAction->setToolTip(m_nounMaleAction->whatsThis());
     m_nounMaleAction->setStatusTip(m_nounMaleAction->whatsThis());
     m_nounMaleAction->setStatusTip(m_nounMaleAction->whatsThis());
@@ -90,7 +90,7 @@ WordTypeView::WordTypeView(ParleyApp * parent) :ContainerView(parent)
     parent->actionCollection()->addAction("wordtype_nounFemale", m_nounFemaleAction);
     m_nounFemaleAction->setText(i18n("Female Noun"));
     m_nounFemaleAction->setCheckable(true);
-    m_nounFemaleAction->setWhatsThis(i18n("This word type folder contains nounFemales."));
+    m_nounFemaleAction->setWhatsThis(i18n("This word type folder contains female nouns."));
     m_nounFemaleAction->setToolTip(m_nounFemaleAction->whatsThis());
     m_nounFemaleAction->setStatusTip(m_nounFemaleAction->whatsThis());
     m_nounFemaleAction->setStatusTip(m_nounFemaleAction->whatsThis());
@@ -99,7 +99,7 @@ WordTypeView::WordTypeView(ParleyApp * parent) :ContainerView(parent)
     parent->actionCollection()->addAction("wordtype_nounNeutral", m_nounNeutralAction);
     m_nounNeutralAction->setText(i18n("Neutral Noun"));
     m_nounNeutralAction->setCheckable(true);
-    m_nounNeutralAction->setWhatsThis(i18n("This word type folder contains nounNeutrals."));
+    m_nounNeutralAction->setWhatsThis(i18n("This word type folder contains neutral nouns."));
     m_nounNeutralAction->setToolTip(m_nounNeutralAction->whatsThis());
     m_nounNeutralAction->setStatusTip(m_nounNeutralAction->whatsThis());
     m_nounNeutralAction->setStatusTip(m_nounNeutralAction->whatsThis());
@@ -137,7 +137,7 @@ WordTypeView::WordTypeView(ParleyApp * parent) :ContainerView(parent)
     m_noneAction->setText(i18n("No Special Type"));
     m_noneAction->setCheckable(true);
     m_noneAction->setChecked(true);
-    m_noneAction->setWhatsThis(i18n("This word type folder contains nones."));
+    m_noneAction->setWhatsThis(i18n("This word type folder contains no word type with special meaning."));
     m_noneAction->setToolTip(m_noneAction->whatsThis());
     m_noneAction->setStatusTip(m_noneAction->whatsThis());
     m_noneAction->setStatusTip(m_noneAction->whatsThis());
