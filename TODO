@@ -20,6 +20,7 @@ Things to improve in parley
  * Check for mem leaks - I bet I introduced some in the lib.
  * Filter/sort is broken.
  * Copy/Paste and friends.
+ * Check that changes to the document result in a modified state!!!! Ask when quitting Parley!!!
 
 Gui
  * shortcut keys are badly assigned, they do not respect the focus
