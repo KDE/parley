@@ -55,6 +55,12 @@ void BrowserWidget::setupProviders()
     providerComboBox->clear();
 
     DictionaryProvider provider;
+    provider.name="De-Es Beolingus";
+    provider.url="http://beolingus.org/dings.cgi?service=dees&query=\{@}";
+    provider.languages << "de" << "es";
+    m_providers.append(provider);
+    providerComboBox->addItem(provider.name);
+
     provider.name="De-En Beolingus";
     provider.url="http://beolingus.org/dings.cgi?query=\{@}";
     provider.languages << "de" << "en";
@@ -67,11 +73,24 @@ void BrowserWidget::setupProviders()
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
+    provider.name="De-Es Leo";
+    provider.url="http://dict.leo.org/?lp=esde&search=\{@}";
+    provider.languages << "de" << "es";
+    m_providers.append(provider);
+    providerComboBox->addItem(provider.name);
+
     provider.name="De-Fr Leo";
     provider.url="http://dict.leo.org/?lp=frde&search=\{@}";
     provider.languages << "de" << "fr";
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
+
+    provider.name="De-Es Pons";
+    provider.url="http://www.ponsline.de/cgi-bin/wb/w.pl?von=pons.de&Richtung=Spanisch&Begriff=\{@}";
+    provider.languages << "de" << "es";
+    m_providers.append(provider);
+    providerComboBox->addItem(provider.name);
+
 }
 
 void BrowserWidget::setTranslation(KEduVocExpression* entry, int translation)
