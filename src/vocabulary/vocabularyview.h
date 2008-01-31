@@ -19,9 +19,6 @@
 
 #include <QTableView>
 
-//#include <vocabularysortfiltermodel.h>
-//#include <vocabularydelegate.h>
-
 #include <QMap>
 
 class VocabularyFilter;

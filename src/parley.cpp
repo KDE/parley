@@ -103,8 +103,6 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
 //     m_tableView->horizontalHeader()->addAction(actionRestoreNativeOrder);
 //     connect(actionRestoreNativeOrder, SIGNAL(triggered()), m_sortFilterModel, SLOT(restoreNativeOrder()));
 
-kDebug() << "Parley - will open doc";
-
     if ( !filename.url().isEmpty() ) {
         kDebug() << "open doc" << filename.url();
         m_document->open(filename);
@@ -269,10 +267,8 @@ void ParleyApp::slotApplyPreferences()
         m_pronunciationStatusBarLabel->setFont(Prefs::iPAFont());
     }
 
-//     m_tableView->setFont(Prefs::tableFont());
-//     m_tableView->reset();
-// 
-//     m_tableModel->reset();
+    m_vocabularyView->setFont(Prefs::tableFont());
+    m_vocabularyView->reset();
 }
 
 

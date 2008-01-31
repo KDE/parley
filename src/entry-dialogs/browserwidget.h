@@ -22,6 +22,12 @@
 class KEduVocExpression;
 class KHTMLPart;
 
+struct DictionaryProvider {
+    QString name;
+    QString url;
+    QStringList languages;
+};
+
 class BrowserWidget : public QWidget, public Ui::BrowserWidget
 {
     Q_OBJECT
@@ -40,12 +46,20 @@ public slots:
 private slots:
     void showCurrentTranslation();
     void openUrl(const KUrl& targetUrl);
+    void providerChanged(int);
 private:
+    /**
+     * Load a list of providers of online dictionaries
+     */
+    void setupProviders();
+
     /// Column in the document - corresponds to the language (-KV_COL_TRANS)
     int               m_currentTranslation;
     /// Selection in the doc - if more than one row is selected behavior is different
     KEduVocExpression* m_entry;
 
     KHTMLPart *m_htmlPart;
+    QList<DictionaryProvider> m_providers;
+    int m_currentProvider;
 };
 #endif

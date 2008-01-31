@@ -18,6 +18,7 @@
 #include "vocabularymodel.h"
 
 #include "prefs.h"
+#include "languagesettings.h"
 
 #include <keduvocexpression.h>
 #include <keduvocgrade.h>
@@ -31,6 +32,7 @@
 #include <KIconLoader>
 #include <KIcon>
 #include <QPainter>
+#include <QDBusInterface>
 
 VocabularyDelegate::VocabularyDelegate(QObject *parent) : QItemDelegate(parent)
 {}
@@ -50,21 +52,21 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
         editor->setFrame(false);
         editor->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
         editor->setText(index.model()->data(index, Qt::DisplayRole).toString());
-        ///@todo activate the keyboard layout switching code
-        /*if (m_doc) {
-          QString id = (col == KV_COL_ORG) ? m_doc->originalIdentifier()
-            : m_doc->identifier(col - KV_COL_TRANS).name();
 
-          if (langs) {
-            QString kbLayout(langs->keyboardLayout(langs->indexShortId(id)));
-            if (!kbLayout.isEmpty()) {
-                // TODO use generated interface instead
+        QString locale = index.model()->data(index, VocabularyModel::LocaleRole).toString();
+    kDebug() << "creating editor with locale:" << locale;
+        if(!locale.isEmpty()) {
+            LanguageSettings settings(locale);
+            settings.readConfig();
+            QString layout = settings.keyboardLayout();
+            if(!layout.isEmpty()) {
                 QDBusInterface kxkb( "org.kde.kxkb", "/kxkb", "org.kde.KXKB" );
-                if (kxkb.isValid())
-                    kxkb.call( "setLayout", kbLayout );
+                if (kxkb.isValid()) {
+                    kxkb.call( "setLayout", layout );
+                }
             }
-          }
-        }*/
+        }
+
         connect(editor, SIGNAL(returnPressed()), this, SLOT(commitAndCloseEditor()));
         return editor;
     }

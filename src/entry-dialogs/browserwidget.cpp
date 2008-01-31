@@ -21,10 +21,13 @@
 
 #include <QDragEnterEvent>
 
+
 BrowserWidget::BrowserWidget(QWidget *parent) : QWidget(parent)
 {
     setupUi(this);
     m_currentTranslation = -1;
+    m_entry = 0;
+    m_currentProvider = 0; ///@todo kconfig?
 
     m_htmlPart = new KHTMLPart(widget);
     QHBoxLayout *layout = new QHBoxLayout(widget);
@@ -37,6 +40,9 @@ BrowserWidget::BrowserWidget(QWidget *parent) : QWidget(parent)
 
     connect(showCurrentButton, SIGNAL(clicked()), SLOT(showCurrentTranslation()));
 
+    setupProviders();
+    connect(providerComboBox, SIGNAL(currentIndexChanged(int)), SLOT(providerChanged(int)));
+
     m_htmlPart->setJavaEnabled(false);
     m_htmlPart->setPluginsEnabled(false);
     m_htmlPart->setJScriptEnabled(true);
@@ -44,6 +50,29 @@ BrowserWidget::BrowserWidget(QWidget *parent) : QWidget(parent)
     m_htmlPart->setDNDEnabled(true);
 }
 
+void BrowserWidget::setupProviders()
+{
+    providerComboBox->clear();
+
+    DictionaryProvider provider;
+    provider.name="De-En Beolingus";
+    provider.url="http://beolingus.org/dings.cgi?query=\{@}";
+    provider.languages << "de" << "en";
+    m_providers.append(provider);
+    providerComboBox->addItem(provider.name);
+
+    provider.name="De-En Leo";
+    provider.url="http://dict.leo.org/?search=\{@}";
+    provider.languages << "de" << "en";
+    m_providers.append(provider);
+    providerComboBox->addItem(provider.name);
+
+    provider.name="De-Fr Leo";
+    provider.url="http://dict.leo.org/?lp=frde&search=\{@}";
+    provider.languages << "de" << "fr";
+    m_providers.append(provider);
+    providerComboBox->addItem(provider.name);
+}
 
 void BrowserWidget::setTranslation(KEduVocExpression* entry, int translation)
 {
@@ -60,10 +89,9 @@ void BrowserWidget::showCurrentTranslation()
     if (m_entry) {
         if (m_entry->translation(m_currentTranslation)) {
             QString text = m_entry->translation(m_currentTranslation)->text();
-            m_htmlPart->openUrl(KUrl(QString("http://beolingus.org/dings.cgi?query=%1").arg(text)));
+            m_htmlPart->openUrl(KUrl(QString(m_providers.value(m_currentProvider).url.replace("\{@}", text))));
         }
     }
-
 }
 
 void BrowserWidget::openUrl(const KUrl & targetUrl)
@@ -71,5 +99,12 @@ void BrowserWidget::openUrl(const KUrl & targetUrl)
     m_htmlPart->openUrl(targetUrl);
 }
 
+void BrowserWidget::providerChanged(int provider)
+{
+    m_currentProvider = provider;
+    showCurrentTranslation();
+}
+
 
 #include "browserwidget.moc"
+

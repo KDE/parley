@@ -161,6 +161,9 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
             return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->paraphrase());
 //         case Audio:
 //         case Image:
+        case LocaleRole:
+   kDebug() << "locale role: " << m_document->identifier(translation(translationId)).locale();
+            return QVariant(m_document->identifier(translation(translationId)).locale());
         default:
             return QVariant();
         }

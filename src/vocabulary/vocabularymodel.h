@@ -46,7 +46,8 @@ public:
 
     enum roles {
         TranslationRole = Qt::UserRole,
-        EntryRole
+        EntryRole,
+        LocaleRole
     };
 
     VocabularyModel(QObject *parent = 0);

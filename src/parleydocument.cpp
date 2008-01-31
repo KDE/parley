@@ -36,9 +36,7 @@ ParleyDocument::ParleyDocument(ParleyApp *parent)
  : QObject(parent)
 {
     m_parleyApp = parent;
-kDebug() << "will new KEduVocDocument";
     m_doc = new KEduVocDocument(this);
-kDebug() << "done new KEduVocDocument";
     m_backupTimer = 0;
     enableAutoBackup(Prefs::autoBackup());
 }
