@@ -477,12 +477,12 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
     }
 
     // if it's internal, get the pointers
-    const ContainerMimeData * lessonData =
+    const ContainerMimeData * containerData =
              qobject_cast<const ContainerMimeData *>(data);
 
 
-    if (lessonData) {
-        foreach (KEduVocContainer* container, lessonData->containerList()) {
+    if (containerData) {
+        foreach (KEduVocContainer* container, containerData->containerList()) {
             // no way to move a word type to a lesson for now
             if (container->containerType() != m_container->containerType()) {
                 return false;
@@ -559,9 +559,11 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
     return false;
 }
 
-
+/*
 bool ContainerModel::removeRows(int row, int count, const QModelIndex & parent)
 {
+// BIG FAT WARNING this code works, but it gets called by the drag and drop implementation automatically, so either this gets used or the other (dropMimeData) to remove the containers. If both are active, containers get deleted without warning or visible signs.
+
     KEduVocContainer* parentContainer;
     if (!parent.internalPointer()) {
         parentContainer = m_container;
@@ -579,7 +581,7 @@ bool ContainerModel::removeRows(int row, int count, const QModelIndex & parent)
     return true;
 }
 
-
+*/
 
 
 #include "containermodel.moc"

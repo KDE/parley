@@ -93,7 +93,7 @@ public:
      * @param parent 
      * @return 
      */
-    bool removeRows(int row, int count, const QModelIndex &parent);
+//     bool removeRows(int row, int count, const QModelIndex &parent);
 
     /**
      * Divide a lesson into smaller ones.
