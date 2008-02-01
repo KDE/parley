@@ -1,7 +1,7 @@
 /***************************************************************************
 
     Copyright 2006, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
-    Copyright 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2007-2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
  ***************************************************************************/
 

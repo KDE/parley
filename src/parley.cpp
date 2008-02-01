@@ -665,7 +665,6 @@ void ParleyApp::initActions()
 
 
 // -- SETTINGS --------------------------------------------------
-
     KAction* configApp = KStandardAction::preferences(this, SLOT(slotGeneralOptions()), actionCollection());
     configApp->setWhatsThis(i18n("Show the configuration dialog"));
     configApp->setToolTip(configApp->whatsThis());
@@ -685,18 +684,6 @@ void ParleyApp::initActions()
     m_vocabShowSearchBarAction->setStatusTip(m_vocabShowSearchBarAction->whatsThis());
     m_vocabShowSearchBarAction->setChecked(Prefs::showSearch());
 
-    KAction *actionShowLessonColumn = new KAction(this);
-    actionCollection()->addAction("config_show_lesson_column", actionShowLessonColumn);
-    actionShowLessonColumn->setText(i18n("Show Lesson Column"));
-    actionShowLessonColumn->setCheckable((true));
-    actionShowLessonColumn->setChecked(Prefs::tableLessonColumnVisible());
-
-    KAction *actionShowActiveColumn = new KAction(this);
-    actionCollection()->addAction("config_show_active_column", actionShowActiveColumn);
-    actionShowActiveColumn->setText(i18n("Show Active Entry Column"));
-    actionShowActiveColumn->setCheckable((true));
-    actionShowActiveColumn->setChecked(Prefs::tableActiveColumnVisible());
-
     actionCollection()->addAction("show_vocabulary_columns_menu", m_vocabularyColumnsActionMenu);
     m_vocabularyColumnsActionMenu->setText(i18n("Vocabulary Columns"));
     m_vocabularyColumnsActionMenu->setWhatsThis(i18n("Toggle display of individual vocabulary columns"));
@@ -707,6 +694,7 @@ void ParleyApp::initActions()
     actionCollection()->addAction(KStandardAction::TipofDay,  "help_tipofday", this, SLOT( tipOfDay() ));
 
 // -- ONLY ON RIGHT CLICK - HEADER SO FAR -------------------------------------
+    ///@todo what about this one...?
     KAction *actionRestoreNativeOrder = new KAction(this);
     actionCollection()->addAction("restore_native_order", actionRestoreNativeOrder);
     actionRestoreNativeOrder->setText(i18n("Restore Native Order"));

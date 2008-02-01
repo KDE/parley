@@ -68,6 +68,7 @@ public:
 
     QModelIndex appendEntry();
 
+    bool removeRows ( int row, int count, const QModelIndex & parent = QModelIndex() );
 
     QStringList mimeTypes() const;
     QMimeData * mimeData(const QModelIndexList &indexes) const;

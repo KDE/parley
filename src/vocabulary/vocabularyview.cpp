@@ -1,7 +1,7 @@
 /***************************************************************************
 
     Copyright 2006, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
-    Copyright 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2007-2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
  ***************************************************************************/
 
@@ -37,16 +37,39 @@
 #include <KActionCollection>
 #include <KToggleAction>
 #include <KLocale>
-
-
-#define HEADER_MINSIZE   25
-#define KV_COLWIDTH_MARK 25
-
+#include <KMessageBox>
 
 VocabularyView::VocabularyView(ParleyApp * parent)
     : QTableView(parent)
 {
     m_model = 0;
+
+
+
+    horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+//     setSelectionMode(QAbstractItemView::ExtendedSelection);
+//     setSelectionBehavior(QAbstractItemView::SelectRows);
+    setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
+
+    setSortingEnabled(true);
+
+    VocabularyDelegate *vocabularyDelegate = new VocabularyDelegate;
+    setItemDelegate(vocabularyDelegate);
+
+    setFrameStyle(QFrame::NoFrame);
+    setAlternatingRowColors(true);
+
+    // Enable context menus
+    setContextMenuPolicy(Qt::ActionsContextMenu);
+    horizontalHeader()->setContextMenuPolicy(Qt::ActionsContextMenu);
+
+    //horizontalHeader()->setStretchLastSection(true);
+
+    setWordWrap(true);
+    setDragEnabled(true);
+
+    // create actions
+    m_vocabularyColumnsActionMenu = new KActionMenu(this);
 
     m_appendEntryAction = new KAction(this);
     parent->actionCollection()->addAction("edit_append", m_appendEntryAction);
@@ -63,7 +86,7 @@ VocabularyView::VocabularyView(ParleyApp * parent)
     parent->actionCollection()->addAction("edit_remove_selected_area", m_deleteEntriesAction);
     m_deleteEntriesAction->setIcon(KIcon("list-remove-card"));
     m_deleteEntriesAction->setText(i18n("&Delete Entry"));
-    connect(m_deleteEntriesAction, SIGNAL(triggered(bool)), this, SLOT(slotDeleteEntry()));
+    connect(m_deleteEntriesAction, SIGNAL(triggered(bool)), this, SLOT(deleteSelectedEntries()));
     m_deleteEntriesAction->setShortcut(QKeySequence(Qt::Key_Delete));
     m_deleteEntriesAction->setWhatsThis(i18n("Delete the selected rows"));
     m_deleteEntriesAction->setToolTip(m_deleteEntriesAction->whatsThis());
@@ -94,31 +117,6 @@ VocabularyView::VocabularyView(ParleyApp * parent)
     editClearSelection->setWhatsThis(i18n("Deselect all rows"));
     editClearSelection->setToolTip(editClearSelection->whatsThis());
     editClearSelection->setStatusTip(editClearSelection->whatsThis());
-
-
-    horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-//     setSelectionMode(QAbstractItemView::ExtendedSelection);
-//     setSelectionBehavior(QAbstractItemView::SelectRows);
-    setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
-
-    setSortingEnabled(true);
-
-    VocabularyDelegate *vocabularyDelegate = new VocabularyDelegate;
-    setItemDelegate(vocabularyDelegate);
-
-    setFrameStyle(QFrame::NoFrame);
-    setAlternatingRowColors(true);
-
-    // Enable context menus
-    setContextMenuPolicy(Qt::ActionsContextMenu);
-    horizontalHeader()->setContextMenuPolicy(Qt::ActionsContextMenu);
-
-    //horizontalHeader()->setStretchLastSection(true);
-
-    m_vocabularyColumnsActionMenu = new KActionMenu(this);
-
-    setWordWrap(true);
-    setDragEnabled(true);
 }
 
 
@@ -399,28 +397,18 @@ void VocabularyView::appendChar(const QChar &c)
 
 void VocabularyView::deleteSelectedEntries()
 {
-    /*
-    if (selectionModel()->selectedRows().count() == 1) {
-        if (KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18n("Do you really want to delete the selected entry?"), "", KStandardGuiItem::del())) {
-            int currentRow = m_tableView->currentIndex().row();
-            int currentColumn = m_tableView->currentIndex().column();
-            m_model->removeRows(m_tableView->currentIndex().row(), 1, QModelIndex());
-            selectionModel()->setCurrentIndex(m_sortFilterModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
-        }
-    } else {
-        if (KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18n("Do you really want to delete the selected entries?"), "", KStandardGuiItem::del())) {
-            int currentRow = m_tableView->currentIndex().row();
-            int currentColumn = m_tableView->currentIndex().column();
-            int rowCount = m_sortFilterModel->rowCount(QModelIndex());
-            // Must count backwards otherwise entry-numbering goes wrong when
-            // deleting.
-            for (int i = rowCount - 1; i >= 0; i--)
-                if (m_tableView->selectionModel()->isRowSelected(i, QModelIndex()))
-                    m_sortFilterModel->removeRows(i, 1, QModelIndex());
-            m_tableView->selectionModel()->setCurrentIndex(m_sortFilterModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+    QSet<int> rows;
+    foreach (QModelIndex index, selectionModel()->selectedIndexes()) {
+        rows.insert(index.row());
+    }
+
+    bool del = KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18np("Do you really want to delete the selected entry?", "Do you really want to delete the selected %1 entries?", rows.count()), i18n("Delete"), KStandardGuiItem::del());
+
+    if (del) {
+        while (!selectionModel()->selectedIndexes().isEmpty()) {
+            m_model->removeRows(selectionModel()->selectedIndexes()[0].row(), 1, QModelIndex());
         }
     }
-    */
 }
 
 void VocabularyView::slotEditCopy()

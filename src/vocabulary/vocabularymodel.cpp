@@ -347,6 +347,24 @@ QModelIndex VocabularyModel::appendEntry()
     return index(rowCount(QModelIndex()) - 1, 0, QModelIndex());
 }
 
+bool VocabularyModel::removeRows(int row, int count, const QModelIndex & parent)
+{
+    Q_UNUSED(parent);
+    if (count < 1 || row < 0 || row + count > m_container->entryCount(m_recursive)) {
+        return false;
+    }
+
+    int bottomRow = row + count - 1;
+    beginRemoveRows(QModelIndex(), row, bottomRow);
+
+    for (int i = bottomRow; i >= row; i--) {
+        delete m_container->entry(i, m_recursive);
+    }
+
+    endRemoveRows();
+    return true;
+}
+
 QStringList VocabularyModel::mimeTypes() const
 {
     return QStringList() << "text/plain";
