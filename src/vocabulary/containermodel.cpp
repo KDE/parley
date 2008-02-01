@@ -500,6 +500,16 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
 
                 QModelIndex oldParent = index(container->parent());
 
+                //make sure a container cannot be dropped into one of its child containers!
+                KEduVocContainer* childTest = parentContainer;
+                while (childTest != 0) {
+                    if (childTest == container) {
+                        kDebug() << "Cannot drop a container into one of its child containers!";
+                        return false;
+                    }
+                    childTest = childTest->parent();
+                }
+
                 beginRemoveRows(oldParent, container->row(), container->row());
                 container->parent()->removeChildContainer(container->row());
                 endRemoveRows();
