@@ -44,8 +44,6 @@ VocabularyView::VocabularyView(ParleyApp * parent)
 {
     m_model = 0;
 
-
-
     horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 //     setSelectionMode(QAbstractItemView::ExtendedSelection);
 //     setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -62,8 +60,6 @@ VocabularyView::VocabularyView(ParleyApp * parent)
     // Enable context menus
     setContextMenuPolicy(Qt::ActionsContextMenu);
     horizontalHeader()->setContextMenuPolicy(Qt::ActionsContextMenu);
-
-    //horizontalHeader()->setStretchLastSection(true);
 
     setWordWrap(true);
     setDragEnabled(true);
@@ -93,30 +89,37 @@ VocabularyView::VocabularyView(ParleyApp * parent)
     m_deleteEntriesAction->setStatusTip(m_deleteEntriesAction->whatsThis());
     addAction(m_deleteEntriesAction);
 
-    KAction* editCopy = KStandardAction::copy(this, SLOT(slotEditCopy()), parent->actionCollection());
-    editCopy->setWhatsThis(i18n("Copy"));
-    editCopy->setToolTip(editCopy->whatsThis());
-    editCopy->setStatusTip(editCopy->whatsThis());
+    QAction* separator = new QAction(this);
+    separator->setSeparator(true);
+    addAction(separator);
 
-    KAction* editCut = KStandardAction::cut(this, SLOT(slotCutEntry()), parent->actionCollection());
-    editCut->setWhatsThis(i18n("Copy"));
-    editCut->setToolTip(editCut->whatsThis());
-    editCut->setStatusTip(editCut->whatsThis());
+    m_copyAction = KStandardAction::copy(this, SLOT(slotEditCopy()), parent->actionCollection());
+    m_copyAction->setWhatsThis(i18n("Copy"));
+    m_copyAction->setToolTip(m_copyAction->whatsThis());
+    m_copyAction->setStatusTip(m_copyAction->whatsThis());
+    addAction(m_copyAction);
 
-    KAction* editPaste = KStandardAction::paste(this, SLOT(slotEditPaste()), parent->actionCollection());
-    editPaste->setWhatsThis(i18n("Paste"));
-    editPaste->setToolTip(editPaste->whatsThis());
-    editPaste->setStatusTip(editPaste->whatsThis());
+    m_cutAction = KStandardAction::cut(this, SLOT(slotCutEntry()), parent->actionCollection());
+    m_cutAction->setWhatsThis(i18n("Cut"));
+    m_cutAction->setToolTip(m_cutAction->whatsThis());
+    m_cutAction->setStatusTip(m_cutAction->whatsThis());
+    addAction(m_cutAction);
 
-    KAction* editSelectAll = KStandardAction::selectAll(this, SLOT(selectAll()), parent->actionCollection());
-    editSelectAll->setWhatsThis(i18n("Select all rows"));
-    editSelectAll->setToolTip(editSelectAll->whatsThis());
-    editSelectAll->setStatusTip(editSelectAll->whatsThis());
+    m_pasteAction = KStandardAction::paste(this, SLOT(slotEditPaste()), parent->actionCollection());
+    m_pasteAction->setWhatsThis(i18n("Paste"));
+    m_pasteAction->setToolTip(m_pasteAction->whatsThis());
+    m_pasteAction->setStatusTip(m_pasteAction->whatsThis());
+    addAction(m_pasteAction);
 
-    KAction* editClearSelection = KStandardAction::deselect(this, SLOT(clearSelection()), parent->actionCollection());
-    editClearSelection->setWhatsThis(i18n("Deselect all rows"));
-    editClearSelection->setToolTip(editClearSelection->whatsThis());
-    editClearSelection->setStatusTip(editClearSelection->whatsThis());
+    m_selectAllAction = KStandardAction::selectAll(this, SLOT(selectAll()), parent->actionCollection());
+    m_selectAllAction->setWhatsThis(i18n("Select all rows"));
+    m_selectAllAction->setToolTip(m_selectAllAction->whatsThis());
+    m_selectAllAction->setStatusTip(m_selectAllAction->whatsThis());
+
+    m_clearSelectionAction = KStandardAction::deselect(this, SLOT(clearSelection()), parent->actionCollection());
+    m_clearSelectionAction->setWhatsThis(i18n("Deselect all rows"));
+    m_clearSelectionAction->setToolTip(m_clearSelectionAction->whatsThis());
+    m_clearSelectionAction->setStatusTip(m_clearSelectionAction->whatsThis());
 }
 
 
@@ -129,6 +132,9 @@ void VocabularyView::setModel(VocabularyFilter * model)
 //     connect(verticalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(verticalHeaderResized(int, int, int)));
 //     connect(horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(horizontalHeaderResized(int, int, int)));
     connect(selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
+
+    connect(selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)), SLOT(slotSelectionChanged(const QItemSelection&, const QItemSelection&)));
+    slotSelectionChanged(QItemSelection(), QItemSelection());
 }
 
 // void VocabularyView::slotCurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous)
@@ -513,6 +519,15 @@ void VocabularyView::slotCutEntry()
 KActionMenu * VocabularyView::columnsActionMenu()
 {
     return m_vocabularyColumnsActionMenu;
+}
+
+void VocabularyView::slotSelectionChanged(const QItemSelection &, const QItemSelection &)
+{
+    bool hasSelection = selectionModel()->hasSelection();
+    m_deleteEntriesAction->setEnabled(hasSelection);
+    m_clearSelectionAction->setEnabled(hasSelection);
+    m_copyAction->setEnabled(hasSelection);
+    m_cutAction->setEnabled(hasSelection);
 }
 
 #include "vocabularyview.moc"

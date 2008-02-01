@@ -60,12 +60,15 @@ public slots:
      * @param c the char
      */
     void appendChar(const QChar & c);
+    
 
 signals:
     void translationChanged(KEduVocExpression*, int);
 
 private slots:
     void slotCurrentChanged(const QModelIndex& current, const QModelIndex& previous);
+
+    void slotSelectionChanged(const QItemSelection&, const QItemSelection&);
 
     void slotToggleColumn(bool show);
 
@@ -96,6 +99,11 @@ private:
 
     KAction* m_appendEntryAction;
     KAction* m_deleteEntriesAction;
+    KAction* m_copyAction;
+    KAction* m_cutAction;
+    KAction* m_pasteAction;
+    KAction* m_selectAllAction;
+    KAction* m_clearSelectionAction;
 
     VocabularyFilter* m_model;
 };
