@@ -26,21 +26,34 @@ class KEduVocExpression;
 
 class KActionMenu;
 class KAction;
+class ParleyApp;
 
 
 class VocabularyView : public QTableView
 {
     Q_OBJECT
 public:
-    VocabularyView(KActionMenu* vocabularyColumnsActionMenu, QWidget *parent = 0);
+    VocabularyView(ParleyApp *parent);
+    KActionMenu* columnsActionMenu();
 
     void setModel(VocabularyFilter * model);
 
-//     void adjustContent();
 
 public slots:
     void reset();
     void appendEntry();
+
+    /** Delete the currently selected entries */
+    void deleteSelectedEntries();
+
+    /** put the marked text/object into the clipboard*/
+    void slotEditCopy();
+
+    /** Cut an entry */
+    void slotCutEntry();
+
+    /** paste the clipboard into the document*/
+    void slotEditPaste();
 
     /**
      * Append a char to the last edited entry (used to add the phonetic stuff).
@@ -80,6 +93,9 @@ private slots:
 private:
     QMap <KAction*, int> m_columnActionMap;
     KActionMenu * m_vocabularyColumnsActionMenu;
+
+    KAction* m_appendEntryAction;
+    KAction* m_deleteEntriesAction;
 
     VocabularyFilter* m_model;
 };

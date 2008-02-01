@@ -20,6 +20,9 @@
 #include "vocabularyfilter.h"
 #include "vocabularydelegate.h"
 
+#include "parley.h"
+#include "prefs.h"
+
 #include <keduvoctranslation.h>
 #include <keduvocexpression.h>
 
@@ -31,19 +34,67 @@
 #include <KGlobalSettings>
 #include <KAction>
 #include <KActionMenu>
+#include <KActionCollection>
 #include <KToggleAction>
 #include <KLocale>
 
-#include "prefs.h"
 
 #define HEADER_MINSIZE   25
 #define KV_COLWIDTH_MARK 25
 
 
-VocabularyView::VocabularyView(KActionMenu * vocabularyColumnsActionMenu, QWidget * parent)
+VocabularyView::VocabularyView(ParleyApp * parent)
     : QTableView(parent)
 {
     m_model = 0;
+
+    m_appendEntryAction = new KAction(this);
+    parent->actionCollection()->addAction("edit_append", m_appendEntryAction);
+    m_appendEntryAction->setIcon(KIcon("list-add-card"));
+    m_appendEntryAction->setText(i18n("&Add New Entry"));
+    connect(m_appendEntryAction, SIGNAL(triggered(bool)), SLOT(appendEntry()));
+    m_appendEntryAction->setShortcut(QKeySequence(Qt::Key_Insert));
+    m_appendEntryAction->setWhatsThis(i18n("Append a new row to the vocabulary"));
+    m_appendEntryAction->setToolTip(m_appendEntryAction->whatsThis());
+    m_appendEntryAction->setStatusTip(m_appendEntryAction->whatsThis());
+    addAction(m_appendEntryAction);
+
+    m_deleteEntriesAction = new KAction(this);
+    parent->actionCollection()->addAction("edit_remove_selected_area", m_deleteEntriesAction);
+    m_deleteEntriesAction->setIcon(KIcon("list-remove-card"));
+    m_deleteEntriesAction->setText(i18n("&Delete Entry"));
+    connect(m_deleteEntriesAction, SIGNAL(triggered(bool)), this, SLOT(slotDeleteEntry()));
+    m_deleteEntriesAction->setShortcut(QKeySequence(Qt::Key_Delete));
+    m_deleteEntriesAction->setWhatsThis(i18n("Delete the selected rows"));
+    m_deleteEntriesAction->setToolTip(m_deleteEntriesAction->whatsThis());
+    m_deleteEntriesAction->setStatusTip(m_deleteEntriesAction->whatsThis());
+    addAction(m_deleteEntriesAction);
+
+    KAction* editCopy = KStandardAction::copy(this, SLOT(slotEditCopy()), parent->actionCollection());
+    editCopy->setWhatsThis(i18n("Copy"));
+    editCopy->setToolTip(editCopy->whatsThis());
+    editCopy->setStatusTip(editCopy->whatsThis());
+
+    KAction* editCut = KStandardAction::cut(this, SLOT(slotCutEntry()), parent->actionCollection());
+    editCut->setWhatsThis(i18n("Copy"));
+    editCut->setToolTip(editCut->whatsThis());
+    editCut->setStatusTip(editCut->whatsThis());
+
+    KAction* editPaste = KStandardAction::paste(this, SLOT(slotEditPaste()), parent->actionCollection());
+    editPaste->setWhatsThis(i18n("Paste"));
+    editPaste->setToolTip(editPaste->whatsThis());
+    editPaste->setStatusTip(editPaste->whatsThis());
+
+    KAction* editSelectAll = KStandardAction::selectAll(this, SLOT(selectAll()), parent->actionCollection());
+    editSelectAll->setWhatsThis(i18n("Select all rows"));
+    editSelectAll->setToolTip(editSelectAll->whatsThis());
+    editSelectAll->setStatusTip(editSelectAll->whatsThis());
+
+    KAction* editClearSelection = KStandardAction::deselect(this, SLOT(clearSelection()), parent->actionCollection());
+    editClearSelection->setWhatsThis(i18n("Deselect all rows"));
+    editClearSelection->setToolTip(editClearSelection->whatsThis());
+    editClearSelection->setStatusTip(editClearSelection->whatsThis());
+
 
     horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 //     setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -63,10 +114,10 @@ VocabularyView::VocabularyView(KActionMenu * vocabularyColumnsActionMenu, QWidge
     horizontalHeader()->setContextMenuPolicy(Qt::ActionsContextMenu);
 
     //horizontalHeader()->setStretchLastSection(true);
-    m_vocabularyColumnsActionMenu = vocabularyColumnsActionMenu;
+
+    m_vocabularyColumnsActionMenu = new KActionMenu(this);
 
     setWordWrap(true);
-
     setDragEnabled(true);
 }
 
@@ -346,6 +397,135 @@ void VocabularyView::appendChar(const QChar &c)
     m_model->setData(index, m_model->data(index).toString() + c);
 }
 
+void VocabularyView::deleteSelectedEntries()
+{
+    /*
+    if (selectionModel()->selectedRows().count() == 1) {
+        if (KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18n("Do you really want to delete the selected entry?"), "", KStandardGuiItem::del())) {
+            int currentRow = m_tableView->currentIndex().row();
+            int currentColumn = m_tableView->currentIndex().column();
+            m_model->removeRows(m_tableView->currentIndex().row(), 1, QModelIndex());
+            selectionModel()->setCurrentIndex(m_sortFilterModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+        }
+    } else {
+        if (KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18n("Do you really want to delete the selected entries?"), "", KStandardGuiItem::del())) {
+            int currentRow = m_tableView->currentIndex().row();
+            int currentColumn = m_tableView->currentIndex().column();
+            int rowCount = m_sortFilterModel->rowCount(QModelIndex());
+            // Must count backwards otherwise entry-numbering goes wrong when
+            // deleting.
+            for (int i = rowCount - 1; i >= 0; i--)
+                if (m_tableView->selectionModel()->isRowSelected(i, QModelIndex()))
+                    m_sortFilterModel->removeRows(i, 1, QModelIndex());
+            m_tableView->selectionModel()->setCurrentIndex(m_sortFilterModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+        }
+    }
+    */
+}
+
+void VocabularyView::slotEditCopy()
+{
+//     slotStatusMsg(i18n("Copying selection to clipboard..."));
+
+/*    QApplication::setOverrideCursor(Qt::WaitCursor);
+
+    QString textToCopy;
+    QModelIndexList selectedRows = m_tableView->selectionModel()->selectedRows(0);
+
+    foreach(const QModelIndex &idx, selectedRows) {
+    bool sep = false;
+    for (int i = KV_COL_TRANS; i < m_tableModel->columnCount(QModelIndex()); i++) {
+    if (!sep)
+    sep = true;
+    else
+    textToCopy += '\t';
+
+    QModelIndex mappedIndex = m_sortFilterModel->mapToSource(m_sortFilterModel->index(idx.row(), i));
+    textToCopy += m_tableModel->data(mappedIndex, Qt::DisplayRole).toString();
+}
+    if (!textToCopy.isEmpty())
+    textToCopy += '\n';
+}
+
+    if (!textToCopy.isEmpty())
+    QApplication::clipboard()->setText(textToCopy);
+
+    QApplication::restoreOverrideCursor();*/
+//     slotStatusMsg(IDS_DEFAULT);
+}
+
+void VocabularyView::slotEditPaste()
+{
+    /// @todo make the pasted stuff visible by making the corresponding lesson visible, if it is not (?)
+//     slotStatusMsg(i18n("Inserting clipboard contents..."));
+
+/*    QApplication::setOverrideCursor(Qt::WaitCursor);
+    QString s;
+    QString textToPaste = QApplication::clipboard()->text();
+
+    QTextStream ts;
+    ts.setString(&textToPaste, QIODevice::Text);
+
+    QString num;
+
+    QModelIndexList selectedRows = m_tableView->selectionModel()->selectedRows();
+    int lastSelectedRow;
+    if(!selectedRows.isEmpty())
+    lastSelectedRow = m_sortFilterModel->mapToSource(selectedRows.back()).row() + 1;
+    else
+    lastSelectedRow = m_tableModel->rowCount(QModelIndex());
+
+    int count = 0;
+    while (!ts.atEnd()) {
+    s = ts.readLine();
+    if (!s.isEmpty()) {
+    m_tableModel->insertRows(lastSelectedRow + count, 1);
+    QStringList sl = s.split('\t', QString::KeepEmptyParts);
+
+    for (int i = 0; i < sl.count(); ++i) {
+    m_tableModel->setData(m_tableModel->index(lastSelectedRow + count, i + KV_COL_TRANS), sl[i], Qt::EditRole);
+//                 m_tableModel->setData(m_tableModel->index(lastSelectedRow + count, i + KV_COL_TRANS), m_document->document()->currentLesson(), KVTTableModel::LessonRole);
+    m_tableModel->setData(m_tableModel->index(lastSelectedRow + count, i + KV_COL_TRANS), m_lessonDockWidget->selectedLesson(), KVTTableModel::LessonRole);
+}
+}
+    count++;
+}
+
+    QApplication::restoreOverrideCursor();
+//     slotStatusMsg(IDS_DEFAULT);
+
+    m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);*/
+}
+
+void VocabularyView::slotCutEntry()
+{
+    // there's no need to reinvent the wheel ;)
+    slotEditCopy();
+
+    // but we won't ask the user whether to delete or not.. we'll just cut
+//     if (m_tableView->selectionModel()->selectedRows().count() == 1) {
+//         int currentRow = m_tableView->currentIndex().row();
+//         int currentColumn = m_tableView->currentIndex().column();
+//         m_sortFilterModel->removeRows(m_tableView->currentIndex().row(), 1, QModelIndex());
+//         m_tableView->selectionModel()->setCurrentIndex(m_sortFilterModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+//     } else {
+//         int currentRow = m_tableView->currentIndex().row();
+//         int currentColumn = m_tableView->currentIndex().column();
+//         int rowCount = m_sortFilterModel->rowCount(QModelIndex());
+//         // Must count backwards otherwise entry-numbering goes wrong when
+//         // deleting.
+//         for (int i = rowCount - 1; i >= 0; i--)
+//             if (m_tableView->selectionModel()->isRowSelected(i, QModelIndex()))
+//                 m_sortFilterModel->removeRows(i, 1, QModelIndex());
+//         m_tableView->selectionModel()->setCurrentIndex(m_sortFilterModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+//     }
+//     m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
+}
+
+KActionMenu * VocabularyView::columnsActionMenu()
+{
+    return m_vocabularyColumnsActionMenu;
+}
 
 #include "vocabularyview.moc"
 

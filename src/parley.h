@@ -116,18 +116,6 @@ public slots:
     void startPractice();
     void configurePractice();
 
-    /** put the marked text/object into the clipboard*/
-    void slotEditCopy();
-
-    /** Cut an entry */
-    void slotCutEntry();
-
-    /** Delete an entry */
-    void slotDeleteEntry();
-
-    /** paste the clipboard into the document*/
-    void slotEditPaste();
-
     void slotConfigShowSearch();
 
     /**

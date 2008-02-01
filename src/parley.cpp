@@ -88,9 +88,6 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
     setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
     setCorner(Qt::BottomRightCorner, Qt::RightDockWidgetArea);
 
-    // these actions have to be initialized by the VocabularyView
-    m_vocabularyColumnsActionMenu = new KActionMenu(this);
-
     initView();
     initModel();
 
@@ -168,65 +165,11 @@ void ParleyApp::slotLanguageProperties()
     }
 }
 
-
 void ParleyApp::slotUpdateWindowCaption()
 {
     setCaption(m_document->document()->title(), m_document->document()->isModified());
 //     slotStatusMsg(IDS_DEFAULT);
 }
-
-
-void ParleyApp::slotCutEntry()
-{
-    // there's no need to reinvent the wheel ;)
-    slotEditCopy();
-
-    // but we won't ask the user whether to delete or not.. we'll just cut
-//     if (m_tableView->selectionModel()->selectedRows().count() == 1) {
-//         int currentRow = m_tableView->currentIndex().row();
-//         int currentColumn = m_tableView->currentIndex().column();
-//         m_sortFilterModel->removeRows(m_tableView->currentIndex().row(), 1, QModelIndex());
-//         m_tableView->selectionModel()->setCurrentIndex(m_sortFilterModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
-//     } else {
-//         int currentRow = m_tableView->currentIndex().row();
-//         int currentColumn = m_tableView->currentIndex().column();
-//         int rowCount = m_sortFilterModel->rowCount(QModelIndex());
-//         // Must count backwards otherwise entry-numbering goes wrong when
-//         // deleting.
-//         for (int i = rowCount - 1; i >= 0; i--)
-//             if (m_tableView->selectionModel()->isRowSelected(i, QModelIndex()))
-//                 m_sortFilterModel->removeRows(i, 1, QModelIndex());
-//         m_tableView->selectionModel()->setCurrentIndex(m_sortFilterModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
-//     }
-//     m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
-}
-
-
-void ParleyApp::slotDeleteEntry()
-{
-//     if (m_tableView->selectionModel()->selectedRows().count() == 1) {
-//         if (KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18n("Do you really want to delete the selected entry?"), "", KStandardGuiItem::del())) {
-//             int currentRow = m_tableView->currentIndex().row();
-//             int currentColumn = m_tableView->currentIndex().column();
-//             m_sortFilterModel->removeRows(m_tableView->currentIndex().row(), 1, QModelIndex());
-//             m_tableView->selectionModel()->setCurrentIndex(m_sortFilterModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
-//         }
-//     } else {
-//         if (KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18n("Do you really want to delete the selected entries?"), "", KStandardGuiItem::del())) {
-//             int currentRow = m_tableView->currentIndex().row();
-//             int currentColumn = m_tableView->currentIndex().column();
-//             int rowCount = m_sortFilterModel->rowCount(QModelIndex());
-//             // Must count backwards otherwise entry-numbering goes wrong when
-//             // deleting.
-//             for (int i = rowCount - 1; i >= 0; i--)
-//                 if (m_tableView->selectionModel()->isRowSelected(i, QModelIndex()))
-//                     m_sortFilterModel->removeRows(i, 1, QModelIndex());
-//             m_tableView->selectionModel()->setCurrentIndex(m_sortFilterModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
-//         }
-//     }
-//     m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
-}
-
 
 void ParleyApp::slotShowStatistics()
 {
@@ -282,81 +225,6 @@ void ParleyApp::slotApplyPreferences()
 // }
 
 
-
-void ParleyApp::slotEditCopy()
-{
-//     slotStatusMsg(i18n("Copying selection to clipboard..."));
-
-/*    QApplication::setOverrideCursor(Qt::WaitCursor);
-
-    QString textToCopy;
-    QModelIndexList selectedRows = m_tableView->selectionModel()->selectedRows(0);
-
-    foreach(const QModelIndex &idx, selectedRows) {
-        bool sep = false;
-        for (int i = KV_COL_TRANS; i < m_tableModel->columnCount(QModelIndex()); i++) {
-            if (!sep)
-                sep = true;
-            else
-                textToCopy += '\t';
-
-            QModelIndex mappedIndex = m_sortFilterModel->mapToSource(m_sortFilterModel->index(idx.row(), i));
-            textToCopy += m_tableModel->data(mappedIndex, Qt::DisplayRole).toString();
-        }
-        if (!textToCopy.isEmpty())
-            textToCopy += '\n';
-    }
-
-    if (!textToCopy.isEmpty())
-        QApplication::clipboard()->setText(textToCopy);
-
-    QApplication::restoreOverrideCursor();*/
-//     slotStatusMsg(IDS_DEFAULT);
-}
-
-
-void ParleyApp::slotEditPaste()
-{
-    /// @todo make the pasted stuff visible by making the corresponding lesson visible, if it is not (?)
-//     slotStatusMsg(i18n("Inserting clipboard contents..."));
-
-/*    QApplication::setOverrideCursor(Qt::WaitCursor);
-    QString s;
-    QString textToPaste = QApplication::clipboard()->text();
-
-    QTextStream ts;
-    ts.setString(&textToPaste, QIODevice::Text);
-
-    QString num;
-
-    QModelIndexList selectedRows = m_tableView->selectionModel()->selectedRows();
-    int lastSelectedRow;
-    if(!selectedRows.isEmpty())
-        lastSelectedRow = m_sortFilterModel->mapToSource(selectedRows.back()).row() + 1;
-    else
-        lastSelectedRow = m_tableModel->rowCount(QModelIndex());
-
-    int count = 0;
-    while (!ts.atEnd()) {
-        s = ts.readLine();
-        if (!s.isEmpty()) {
-            m_tableModel->insertRows(lastSelectedRow + count, 1);
-            QStringList sl = s.split('\t', QString::KeepEmptyParts);
-
-            for (int i = 0; i < sl.count(); ++i) {
-                m_tableModel->setData(m_tableModel->index(lastSelectedRow + count, i + KV_COL_TRANS), sl[i], Qt::EditRole);
-//                 m_tableModel->setData(m_tableModel->index(lastSelectedRow + count, i + KV_COL_TRANS), m_document->document()->currentLesson(), KVTTableModel::LessonRole);
-                 m_tableModel->setData(m_tableModel->index(lastSelectedRow + count, i + KV_COL_TRANS), m_lessonDockWidget->selectedLesson(), KVTTableModel::LessonRole);
-            }
-        }
-        count++;
-    }
-
-    QApplication::restoreOverrideCursor();
-//     slotStatusMsg(IDS_DEFAULT);
-
-    m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);*/
-}
 
 
 void ParleyApp::slotConfigShowSearch()
@@ -727,23 +595,6 @@ void ParleyApp::initActions()
     fileQuit->setToolTip(fileQuit->whatsThis());
     fileQuit->setStatusTip(fileQuit->whatsThis());
 
-// -- EDIT --------------------------------------------------
-
-    KAction* editCopy = KStandardAction::copy(this, SLOT(slotEditCopy()), actionCollection());
-    editCopy->setWhatsThis(i18n("Copy"));
-    editCopy->setToolTip(editCopy->whatsThis());
-    editCopy->setStatusTip(editCopy->whatsThis());
-
-    KAction* editCut = KStandardAction::cut(this, SLOT(slotCutEntry()), actionCollection());
-    editCut->setWhatsThis(i18n("Copy"));
-    editCut->setToolTip(editCut->whatsThis());
-    editCut->setStatusTip(editCut->whatsThis());
-
-    KAction* editPaste = KStandardAction::paste(this, SLOT(slotEditPaste()), actionCollection());
-    editPaste->setWhatsThis(i18n("Paste"));
-    editPaste->setToolTip(editPaste->whatsThis());
-    editPaste->setStatusTip(editPaste->whatsThis());
-
 
     KAction* editLanguages =new KAction(this);
     actionCollection()->addAction("edit_languages", editLanguages);
@@ -761,38 +612,6 @@ void ParleyApp::initActions()
     connect(editGramar, SIGNAL(triggered(bool)), SLOT(slotLanguageProperties()));
 
 
-    KAction* editSelectAll = KStandardAction::selectAll(m_vocabularyView, SLOT(selectAll()), actionCollection());
-    editSelectAll->setWhatsThis(i18n("Select all rows"));
-    editSelectAll->setToolTip(editSelectAll->whatsThis());
-    editSelectAll->setStatusTip(editSelectAll->whatsThis());
-
-    KAction* editClearSelection = KStandardAction::deselect(m_vocabularyView, SLOT(clearSelection()), actionCollection());
-    editClearSelection->setWhatsThis(i18n("Deselect all rows"));
-    editClearSelection->setToolTip(editClearSelection->whatsThis());
-    editClearSelection->setStatusTip(editClearSelection->whatsThis());
-
-    KAction* editAppend = new KAction(this);
-    actionCollection()->addAction("edit_append", editAppend);
-    editAppend->setIcon(KIcon("list-add-card"));
-    editAppend->setText(i18n("&Add New Entry"));
-    connect(editAppend, SIGNAL(triggered(bool)), m_vocabularyView, SLOT(appendEntry()));
-    editAppend->setShortcut(QKeySequence(Qt::Key_Insert));
-    editAppend->setWhatsThis(i18n("Append a new row to the vocabulary"));
-    editAppend->setToolTip(editAppend->whatsThis());
-    editAppend->setStatusTip(editAppend->whatsThis());
-    m_vocabularyView->addAction(editAppend);
-
-    m_deleteEntriesAction = new KAction(this);
-    actionCollection()->addAction("edit_remove_selected_area", m_deleteEntriesAction);
-    m_deleteEntriesAction->setIcon(KIcon("list-remove-card"));
-    m_deleteEntriesAction->setText(i18n("&Delete Entry"));
-    connect(m_deleteEntriesAction, SIGNAL(triggered(bool)), this, SLOT(slotDeleteEntry()));
-    m_deleteEntriesAction->setShortcut(QKeySequence(Qt::Key_Delete));
-    m_deleteEntriesAction->setWhatsThis(i18n("Delete the selected rows"));
-    m_deleteEntriesAction->setToolTip(m_deleteEntriesAction->whatsThis());
-    m_deleteEntriesAction->setStatusTip(m_deleteEntriesAction->whatsThis());
-    m_vocabularyView->addAction(m_deleteEntriesAction);
-
 //     KAction* editSaveSelectedArea = new KAction(this);
 //      actionCollection()->addAction("edit_save_selected_area", editSaveSelectedArea);
 //     editSaveSelectedArea->setIcon(KIcon("document-save-as"));
@@ -803,8 +622,6 @@ void ParleyApp::initActions()
 //     editSaveSelectedArea->setStatusTip(editSaveSelectedArea->whatsThis());
 //     ///@todo enable when/if the corresponding function is rewritten
 //     editSaveSelectedArea->setEnabled(false);
-
-
 
 // -- VOCABULARY --------------------------------------------------
 
@@ -912,7 +729,6 @@ void ParleyApp::initStatusBar()
     statusBar()->addWidget(m_remarkStatusBarLabel, 150);
 }
 
-
 void ParleyApp::initModel()
 {
     m_vocabularyModel = new VocabularyModel(this);
@@ -926,7 +742,6 @@ void ParleyApp::initModel()
     connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_vocabularyFilter, SLOT(setSearchString(const QString&)));
 
 }
-
 
 /**
  * This initializes the main widgets and table.
@@ -966,7 +781,8 @@ void ParleyApp::initView()
     rightLayout->addWidget(m_searchWidget);
     m_searchWidget->setVisible(Prefs::showSearch());
 
-    m_vocabularyView = new VocabularyView(m_vocabularyColumnsActionMenu, centralWidget());
+    m_vocabularyView = new VocabularyView(this);
+    m_vocabularyColumnsActionMenu = m_vocabularyView->columnsActionMenu();
     rightLayout->addWidget(m_vocabularyView, 1, 0);
 
     topLayout->addLayout(rightLayout);
