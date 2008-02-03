@@ -26,6 +26,10 @@ public:
     void addTranslation(KEduVocTranslation* translation);
     QList<KEduVocTranslation *> translationList() const;
 
+    QVariant retrieveData ( const QString & mimeType, QVariant::Type type ) const;
+
+    QStringList formats () const;
+
 private:
     QList<KEduVocTranslation*> m_translations;
 };
