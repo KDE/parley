@@ -1,16 +1,6 @@
 project(plasma-parley)
 
-find_package(KDE4 REQUIRED)
-include(KDE4Defaults)
-
-add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
-include_directories(
-    ${CMAKE_SOURCE_DIR}
-#     ${CMAKE_BINARY_DIR}
-    ${KDE4_INCLUDES}
-    ${KDE4_INCLUDE_INSTALL_DIR}/libkdeedu/
-    )
-
+include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/   )
 set(parley_plasma_SRCS parley_plasma.cpp)
 kde4_add_ui_files(parley_plasma_SRCS config.ui)
 
