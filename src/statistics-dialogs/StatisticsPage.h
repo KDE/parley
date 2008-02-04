@@ -30,7 +30,6 @@
 
 #include "ui_StatisticsPageForm.h"
 #include <keduvocexpression.h>
-#include <keduvocgrade.h>
 
 class KEduVocDocument;
 

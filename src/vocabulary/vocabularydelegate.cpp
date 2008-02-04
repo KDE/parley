@@ -21,7 +21,6 @@
 #include "languagesettings.h"
 
 #include <keduvocexpression.h>
-#include <keduvocgrade.h>
 
 #include <KPassivePopup>
 #include <KComboBox>
