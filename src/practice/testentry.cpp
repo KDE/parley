@@ -76,12 +76,12 @@ void TestEntry::incGoodCount()
     m_answeredCorrectInSequence++;
     // increase grade, if first time:
     if ( !Prefs::altLearn() && m_statisticBadCount == 0 ) {
-        m_entry->translation(m_gradeTo)->gradeFrom(m_gradeFrom).incGrade();
+        m_entry->translation(m_gradeTo)->incGrade();
         m_correctAtFirstAttempt = true;
     } else {
         // alt learn: 3 times right
         if ( answeredCorrectInSequence() == 3  && m_statisticBadCount == 0 ) {
-            m_entry->translation(m_gradeTo)->gradeFrom(m_gradeFrom).incGrade();
+            m_entry->translation(m_gradeTo)->incGrade();
             m_correctAtFirstAttempt = true;
         }
     }
@@ -94,11 +94,11 @@ void TestEntry::incSkipKnown()
     m_answeredCorrectInSequence++;
     // increase grade, if first time:
     if ( !Prefs::altLearn() && m_statisticBadCount == 0 ) {
-        m_entry->translation(m_gradeTo)->gradeFrom(m_gradeFrom).incGrade();
+        m_entry->translation(m_gradeTo)->incGrade();
     } else {
         // alt learn: 3 times right
         if ( answeredCorrectInSequence() == 3  && m_statisticBadCount == 0 ) {
-            m_entry->translation(m_gradeTo)->gradeFrom(m_gradeFrom).incGrade();
+            m_entry->translation(m_gradeTo)->incGrade();
         }
     }
 }
@@ -108,8 +108,8 @@ void TestEntry::incBadCount()
     update();
     m_statisticBadCount++;
     m_answeredCorrectInSequence = 0;
-    m_entry->translation(m_gradeTo)->gradeFrom(m_gradeFrom).decGrade();
-    m_entry->translation(m_gradeTo)->gradeFrom(m_gradeFrom).incBadCount();
+    m_entry->translation(m_gradeTo)->decGrade();
+    m_entry->translation(m_gradeTo)->incBadCount();
 }
 
 void TestEntry::incTimeout()
@@ -117,8 +117,8 @@ void TestEntry::incTimeout()
     update();
     m_statisticTimeout++;
     m_answeredCorrectInSequence = 0;
-    m_entry->translation(m_gradeTo)->gradeFrom(m_gradeFrom).decGrade();
-    m_entry->translation(m_gradeTo)->gradeFrom(m_gradeFrom).incBadCount();
+    m_entry->translation(m_gradeTo)->decGrade();
+    m_entry->translation(m_gradeTo)->incBadCount();
 }
 
 void TestEntry::incSkipUnknown()
@@ -126,16 +126,16 @@ void TestEntry::incSkipUnknown()
     update();
     m_statisticSkipUnknown++;
     m_answeredCorrectInSequence = 0;
-    m_entry->translation(m_gradeTo)->gradeFrom(m_gradeFrom).decGrade();
-    m_entry->translation(m_gradeTo)->gradeFrom(m_gradeFrom).incBadCount();
+    m_entry->translation(m_gradeTo)->decGrade();
+    m_entry->translation(m_gradeTo)->incBadCount();
 }
 
 
 void TestEntry::update()
 {
-    m_entry->translation(m_gradeTo)->gradeFrom(m_gradeFrom).incPracticeCount();
+    m_entry->translation(m_gradeTo)->incPracticeCount();
     m_statisticCount++;
-    m_entry->translation(m_gradeTo)->gradeFrom(m_gradeFrom).setPracticeDate( QDateTime::currentDateTime() );
+    m_entry->translation(m_gradeTo)->setPracticeDate( QDateTime::currentDateTime() );
 }
 
 int TestEntry::gradeFrom()

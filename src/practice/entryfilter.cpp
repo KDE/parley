@@ -39,18 +39,18 @@ void EntryFilter::expireEntries()
     if ( Prefs::expire() ) {
         int counter = 0;
         foreach (KEduVocExpression* entry, m_entries) {
-            int grade = entry->translation(m_toTranslation)->gradeFrom(m_fromTranslation).grade();
+            int grade = entry->translation(m_toTranslation)->grade();
 
-            const QDateTime &date =  entry->translation(m_toTranslation)->gradeFrom(m_fromTranslation).practiceDate();
+            const QDateTime &date =  entry->translation(m_toTranslation)->practiceDate();
 
             const QDateTime &expireDate = QDateTime::currentDateTime().addSecs( -Prefs::expireItem(grade) );
 
             if ( date < expireDate && grade > 0) {
                 // decrease the grade
-                entry->translation(m_toTranslation)->gradeFrom(m_fromTranslation).decGrade();
+                entry->translation(m_toTranslation)->decGrade();
 
                 // prevent from endless dropping
-                entry->translation(m_toTranslation)->gradeFrom(m_fromTranslation).setPracticeDate( QDateTime::currentDateTime().addSecs( -Prefs::expireItem( grade - 2) ) );
+                entry->translation(m_toTranslation)->setPracticeDate( QDateTime::currentDateTime().addSecs( -Prefs::expireItem( grade - 2) ) );
                 counter++;
             }
         }
@@ -201,11 +201,11 @@ void EntryFilter::blockedEntries()
     }
 
     foreach(KEduVocExpression* entry, m_entries) {
-        int grade = entry->translation(m_toTranslation)->gradeFrom(m_fromTranslation).grade();
+        int grade = entry->translation(m_toTranslation)->grade();
         if (grade == KV_NORM_GRADE || Prefs::blockItem(grade) == 0) {
             m_entriesBlocked.insert(entry);
         } else {
-            QDateTime date = entry->translation(m_toTranslation)->gradeFrom(m_fromTranslation).practiceDate();
+            QDateTime date = entry->translation(m_toTranslation)->practiceDate();
             if (date.addSecs(Prefs::blockItem(grade)) < QDateTime::currentDateTime()) {
                 m_entriesBlocked.insert(entry);
             }
@@ -216,9 +216,7 @@ void EntryFilter::blockedEntries()
 void EntryFilter::timesWrongEntries()
 {
     foreach(KEduVocExpression* entry, m_entries) {
-        const KEduVocGrade& grade =
-            entry->translation(m_toTranslation)->gradeFrom(m_fromTranslation);
-        if (grade.badCount() >= Prefs::practiceMinimumWrongCount() && grade.badCount() <= Prefs::practiceMaximumWrongCount()) {
+        if (entry->translation(m_toTranslation)->badCount() >= Prefs::practiceMinimumWrongCount() && entry->translation(m_toTranslation)->badCount() <= Prefs::practiceMaximumWrongCount()) {
             m_entriesTimesWrong.insert(entry);
         }
     }
@@ -227,9 +225,7 @@ void EntryFilter::timesWrongEntries()
 void EntryFilter::timesPracticedEntries()
 {
     foreach(KEduVocExpression* entry, m_entries) {
-        const KEduVocGrade& grade =
-                entry->translation(m_toTranslation)->gradeFrom(m_fromTranslation);
-        if (grade.practiceCount() >= Prefs::practiceMinimumTimesAsked() && grade.practiceCount() <= Prefs::practiceMaximumTimesAsked()) {
+        if (entry->translation(m_toTranslation)->practiceCount() >= Prefs::practiceMinimumTimesAsked() && entry->translation(m_toTranslation)->practiceCount() <= Prefs::practiceMaximumTimesAsked()) {
             m_entriesTimesPracticed.insert(entry);
         }
     }
@@ -240,7 +236,7 @@ void EntryFilter::minMaxGradeEntries()
 {
     foreach(KEduVocExpression* entry, m_entries) {
         int grade =
-                entry->translation(m_toTranslation)->gradeFrom(m_fromTranslation).grade();
+                entry->translation(m_toTranslation)->grade();
         if (grade >= Prefs::practiceMinimumGrade() && grade <= Prefs::practiceMaximumGrade()) {
             m_entriesMinMaxGrade.insert(entry);
         }
