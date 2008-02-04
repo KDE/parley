@@ -22,7 +22,11 @@
 #include <plasma/widgets/lineedit.h>
 #include <plasma/widgets/label.h>
 
+#include <plasma/layouts/boxlayout.h>
+
 #include <KRandomSequence>
+
+#include <QGraphicsTextItem>
 
 #include "ui_config.h"
 
@@ -63,6 +67,8 @@ class ParleyPlasma : public Plasma::Applet
         QSizeF m_size;
 
         KRandomSequence *m_random;
+
+        Plasma::VBoxLayout *m_layout;
 
         KEduVocDocument *m_doc;
         // number of entries in m_doc

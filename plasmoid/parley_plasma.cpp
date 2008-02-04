@@ -61,7 +61,12 @@ void ParleyPlasma::init()
 
     m_theme.setContentType(Plasma::Svg::SingleImage);
 
+    m_layout = new Plasma::VBoxLayout(this);
+    m_layout->setGeometry(QRectF(0, 0, m_theme.size().width(), m_theme.size().height()));
+
     m_label = new Plasma::Label(this);
+    m_layout->addItem(m_label);
+//     m_label->setTextWidth(m_theme.width());
 
     if (m_doc) {
         int expNum = m_random->getLong(m_vocabularyCount);
@@ -69,16 +74,18 @@ void ParleyPlasma::init()
         if (expression) {
             QString text;
             foreach (int index, expression->translationIndices()) {
-                text += expression->translation(index)->text() + "\n\n";
+                text += "\n" + expression->translation(index)->text();
             }
             m_label->setText(text);
         } else {
-            m_label->setText(i18n("Could not open vocabulary document."));
+            m_label->setText(i18n("Could not open vocabulary document.")
+                            + "'" + file + "'");
         }
-    }
-
-    m_label->resize(boundingRect().width() /10*8, boundingRect().height());
-    m_label->setPos(boundingRect().width() / 10, boundingRect().height()/5);
+    } else {
+        m_label->setText(i18n("Please open a document in Parley once to display it."));
+    } 
+//     m_label->resize(boundingRect().width() /10*8, boundingRect().height());
+//     m_label->setPos(boundingRect().width() / 10, boundingRect().height()/5);
 
     KConfigGroup cg = config();
     m_label->setFont(cg.readEntry("font",m_font));
@@ -88,8 +95,6 @@ void ParleyPlasma::constraintsUpdated(Plasma::Constraints constraints)
 {
     Q_UNUSED(constraints);
     setDrawStandardBackground(false);
-    m_label->resize(boundingRect().width() /10*8, boundingRect().height());
-    m_label->setPos(boundingRect().width() / 10, boundingRect().height()/5);
 }
 
 ParleyPlasma::~ParleyPlasma()
