@@ -53,7 +53,7 @@ VocabularyView::VocabularyView(ParleyApp * parent)
 
     setTabKeyNavigation(true);
 
-    m_vocabularyDelegate = new VocabularyDelegate();
+    m_vocabularyDelegate = new VocabularyDelegate(this);
     setItemDelegate(m_vocabularyDelegate);
 
     setFrameStyle(QFrame::NoFrame);
@@ -137,11 +137,6 @@ void VocabularyView::setModel(VocabularyFilter * model)
 
     connect(selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)), SLOT(slotSelectionChanged(const QItemSelection&, const QItemSelection&)));
     slotSelectionChanged(QItemSelection(), QItemSelection());
-}
-
-VocabularyView::~VocabularyView()
-{
-    delete m_vocabularyDelegate;
 }
 
 

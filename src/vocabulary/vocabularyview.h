@@ -35,7 +35,6 @@ class VocabularyView : public QTableView
     Q_OBJECT
 public:
     VocabularyView(ParleyApp *parent);
-    ~VocabularyView();
     KActionMenu* columnsActionMenu();
 
     void setModel(VocabularyFilter * model);
