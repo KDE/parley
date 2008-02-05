@@ -22,6 +22,7 @@
 #include <QMap>
 
 class VocabularyFilter;
+class VocabularyDelegate;
 class KEduVocExpression;
 
 class KActionMenu;
@@ -34,6 +35,7 @@ class VocabularyView : public QTableView
     Q_OBJECT
 public:
     VocabularyView(ParleyApp *parent);
+    ~VocabularyView();
     KActionMenu* columnsActionMenu();
 
     void setModel(VocabularyFilter * model);
@@ -106,6 +108,7 @@ private:
     KAction* m_clearSelectionAction;
 
     VocabularyFilter* m_model;
+    VocabularyDelegate* m_vocabularyDelegate;
 };
 
 #endif

@@ -51,8 +51,10 @@ VocabularyView::VocabularyView(ParleyApp * parent)
 
     setSortingEnabled(true);
 
-    VocabularyDelegate *vocabularyDelegate = new VocabularyDelegate;
-    setItemDelegate(vocabularyDelegate);
+    setTabKeyNavigation(true);
+
+    m_vocabularyDelegate = new VocabularyDelegate();
+    setItemDelegate(m_vocabularyDelegate);
 
     setFrameStyle(QFrame::NoFrame);
     setAlternatingRowColors(true);
@@ -136,6 +138,12 @@ void VocabularyView::setModel(VocabularyFilter * model)
     connect(selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)), SLOT(slotSelectionChanged(const QItemSelection&, const QItemSelection&)));
     slotSelectionChanged(QItemSelection(), QItemSelection());
 }
+
+VocabularyView::~VocabularyView()
+{
+    delete m_vocabularyDelegate;
+}
+
 
 // void VocabularyView::slotCurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous)
 // {
@@ -529,6 +537,8 @@ void VocabularyView::slotSelectionChanged(const QItemSelection &, const QItemSel
     m_copyAction->setEnabled(hasSelection);
     m_cutAction->setEnabled(hasSelection);
 }
+
+
 
 #include "vocabularyview.moc"
 
