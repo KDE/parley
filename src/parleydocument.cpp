@@ -27,6 +27,7 @@
 #include <knewstuff2/engine.h>
 #include <KUser>
 #include <KMessageBox>
+#include <KProcess>
 
 #include <QTimer>
 #include <QtGui/QPrinter>
@@ -308,16 +309,25 @@ void ParleyDocument::createExampleEntries()
 
 void ParleyDocument::slotGHNS()
 {
-    ///@todo use the same dir as khangman and kanagram
-    ///@todo open downloaded documents in a new instance?
-    KConfig conf("parley.knsrc");
-    KConfigGroup confGroup = conf.group("KNewStuff2");
-    QString installDir = confGroup.readEntry("InstallPath", "Vocabularies");
-    KStandardDirs::makeDir(QDir::home().path() + '/' + installDir);
-
     KNS::Entry::List entries = KNS::Engine::download();
+    // list of changed entries
+    foreach(KNS::Entry* entry, entries) {
+        // care only about installed ones
+        if (entry->status() == KNS::Entry::Installed) {
+            // check mime type and if kvtml, open it
+            foreach(QString file, entry->installedFiles()) {
+                KMimeType::Ptr mimeType = KMimeType::findByPath(file);
+                kDebug() << "KNS2 file of mime type:" << KMimeType::findByPath(file)->name();
+                if (mimeType->name() == "application/x-kvtml") {
+                    KProcess newParley;
+                    newParley.setProgram("parley", QStringList() << file);
+                    newParley.startDetached();
+                }
+            }
+        }
+    }
+    qDeleteAll(entries);
 }
-
 
 
 void ParleyDocument::slotFileMerge()
