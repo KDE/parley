@@ -21,6 +21,9 @@
 #include "newdocument-wizard/kvtnewdocumentwizard.h"
 #include "prefs.h"
 
+#include "keduvoclesson.h"
+#include "keduvocexpression.h"
+
 #include <KFileDialog>
 #include <KRecentFilesAction>
 #include <KStandardDirs>
@@ -291,17 +294,13 @@ void ParleyDocument::createExampleEntries()
     m_doc->identifier(1).setName( i18n("A Second Language") );
     m_doc->identifier(1).setLocale( locale );
 
-//     int lessonIndex = m_parleyApp->m_lessonDockWidget->addLesson();
-//     m_parleyApp->m_lessonDockWidget->selectLesson(lessonIndex);
+    KEduVocLesson* lesson = new KEduVocLesson(i18n("Lesson 1"), m_doc->lesson());
+    m_doc->lesson()->appendChildContainer(lesson);
 
     // add some entries
-//     for ( int i = 0; i < 15 ; i++ ) {
-//         m_parleyApp->m_tableModel->appendEntry();
-//     }
-
-    // select the empty row
-//     Prefs::setCurrentCol(KV_COL_TRANS);
-//     Prefs::setCurrentRow(0);
+    for ( int i = 0; i < 15 ; i++ ) {
+        lesson->appendEntry(new KEduVocExpression());
+    }
 
     m_doc->setModified(false);
 }
