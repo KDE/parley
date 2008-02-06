@@ -1,6 +1,6 @@
 /***************************************************************************
 
-    Copyright 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2007-2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
  ***************************************************************************/
 
@@ -21,11 +21,13 @@ VocabularyFilter::VocabularyFilter(QObject *parent)
  : QSortFilterProxyModel(parent)
 {
     m_model = 0;
-}
-
-
-VocabularyFilter::~VocabularyFilter()
-{
+    // do not use capitalization for searches
+    setSortCaseSensitivity(Qt::CaseInsensitive);
+    setFilterCaseSensitivity(Qt::CaseInsensitive);
+    // sort locale aware: at least puts umlauts and accents in the right position.
+    // Not sure about languages that are more different.
+    // Also depends on the current locale.
+    setSortLocaleAware ( true );
 }
 
 QModelIndex VocabularyFilter::appendEntry()
@@ -42,24 +44,15 @@ void VocabularyFilter::setSourceModel(VocabularyModel * model)
     m_model=model;
 }
 
-bool VocabularyFilter::filterAcceptsRow(int sourceRow,
-        const QModelIndex &sourceParent) const
-{
-    QModelIndex index0 = sourceModel()->index(sourceRow, 0, sourceParent);
-//     QModelIndex index1 = sourceModel()->index(sourceRow, 1, sourceParent);
-//     QModelIndex index2 = sourceModel()->index(sourceRow, 2, sourceParent);
-// 
-//     return (sourceModel()->data(index0).toString().contains(filterRegExp())
-//             || sourceModel()->data(index1).toString().contains(filterRegExp()))
-//             && dateInRange(sourceModel()->data(index2).toDate());
-    return true; //(sourceModel()->data(index0).toString().contains(filterRegExp()));
-
-//     return false;
-}
-
 void VocabularyFilter::setSearchString(const QString & expression)
 {
-    setFilterWildcard ( expression );
+    // maybe use reg exp for advanced stuff
+    setFilterFixedString(expression);
+
+    // eventually accept only one language if so desired...
+    setFilterKeyColumn(-1);
+
+    invalidateFilter();
 }
 
 

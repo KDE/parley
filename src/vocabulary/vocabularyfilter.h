@@ -1,6 +1,6 @@
 /***************************************************************************
 
-    Copyright 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2007-2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
  ***************************************************************************/
 
@@ -20,21 +20,15 @@
 
 class VocabularyModel;
 
-
 class VocabularyFilter : public QSortFilterProxyModel
 {
 Q_OBJECT
 public:
     VocabularyFilter(QObject *parent = 0);
 
-    ~VocabularyFilter();
-
     void setSourceModel(VocabularyModel* model);
 
     QModelIndex appendEntry();
-
-    bool filterAcceptsRow(int sourceRow,
-        const QModelIndex &sourceParent) const;
 
 public slots:
     void setSearchString(const QString& expression);
