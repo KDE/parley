@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Parley Data Engine
+Comment=Vocabulary data for Plasmoids
+
+X-KDE-ServiceTypes=Plasma/DataEngine
+Type=Service
+Icon=parley
+X-KDE-Library=plasma_engine_parley
+X-Plasma-EngineName=parley

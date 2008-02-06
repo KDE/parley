@@ -14,8 +14,8 @@
  ***************************************************************************/
 
 
-#ifndef NOTES_HEADER
-#define NOTES_HEADER
+#ifndef PARLEYPLASMA_H
+#define PARLEYPLASMA_H
 
 #include <Plasma/Applet>
 #include <Plasma/Svg>
@@ -23,8 +23,6 @@
 #include <plasma/widgets/label.h>
 
 #include <plasma/layouts/boxlayout.h>
-
-#include <KRandomSequence>
 
 #include <QGraphicsTextItem>
 
@@ -55,7 +53,7 @@ class ParleyPlasma : public Plasma::Applet
         void showConfigurationInterface();
         void configAccepted();
         void showFontSelectDlg();
-
+        void dataUpdated(const QString &name, const Plasma::DataEngine::Data &data);
     private:
         Plasma::Svg m_theme;
         Plasma::Label *m_label;
@@ -66,15 +64,9 @@ class ParleyPlasma : public Plasma::Applet
         QFont m_font;
         QSizeF m_size;
 
-        KRandomSequence *m_random;
-
         Plasma::VBoxLayout *m_layout;
-
-        KEduVocDocument *m_doc;
-        // number of entries in m_doc
-        int m_vocabularyCount;
 };
 
-K_EXPORT_PLASMA_APPLET(notes, ParleyPlasma)
+K_EXPORT_PLASMA_APPLET(parley, ParleyPlasma)
 
 #endif

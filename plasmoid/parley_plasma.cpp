@@ -16,10 +16,6 @@
 
 #include "parley_plasma.h"
 
-#include <keduvocdocument.h>
-#include <keduvoclesson.h>
-#include <keduvocexpression.h>
-
 #include <KDialog>
 #include <KConfigGroup>
 #include <KFontDialog>
@@ -34,30 +30,18 @@ ParleyPlasma::ParleyPlasma(QObject *parent, const QVariantList &args)
     m_size(256,160)
 
 {
+    m_dialog = 0;
+    m_label = 0;
     setHasConfigurationInterface(true);
     setAcceptDrops(false);
     setAcceptsHoverEvents(true);
     setDrawStandardBackground(false);
-    m_doc = 0;
 }
 
 void ParleyPlasma::init()
 {
-    KConfig parleyConfig("parleyrc");
-    kDebug() << parleyConfig.groupList();
-    KConfigGroup recentFilesGroup( &parleyConfig, "Recent Files" );
-
-    // take the last file, but there are File1..n and Name1..n entries..
-    QString file = recentFilesGroup.readEntry( recentFilesGroup.keyList().value(recentFilesGroup.keyList().count()/2-1),
-            QString() );
-
-    kDebug() << "Open vocabulary file: '" << file << "'";
-    if (!file.isEmpty()) {
-        m_doc = new KEduVocDocument(this);
-        m_doc->open(file);
-        m_vocabularyCount = m_doc->lesson()->entries(KEduVocContainer::Recursive).count();
-    }
-    m_random = new KRandomSequence( QDateTime::currentDateTime().toTime_t() );
+    Plasma::DataEngine* parleyEngine = dataEngine("parley");
+    parleyEngine->connectSource("Random", this, 10000);
 
     m_theme.setContentType(Plasma::Svg::SingleImage);
 
@@ -67,25 +51,6 @@ void ParleyPlasma::init()
     m_label = new Plasma::Label(this);
     m_layout->addItem(m_label);
 //     m_label->setTextWidth(m_theme.width());
-
-    if (m_doc) {
-        int expNum = m_random->getLong(m_vocabularyCount);
-        KEduVocExpression *expression = m_doc->lesson()->entries(KEduVocContainer::Recursive).value(expNum);
-        if (expression) {
-            QString text;
-            foreach (int index, expression->translationIndices()) {
-                text += "\n" + expression->translation(index)->text();
-            }
-            m_label->setText(text);
-        } else {
-            m_label->setText(i18n("Could not open vocabulary document.")
-                            + "'" + file + "'");
-        }
-    } else {
-        m_label->setText(i18n("Please open a document in Parley once to display it."));
-    } 
-//     m_label->resize(boundingRect().width() /10*8, boundingRect().height());
-//     m_label->setPos(boundingRect().width() / 10, boundingRect().height()/5);
 
     KConfigGroup cg = config();
     m_label->setFont(cg.readEntry("font",m_font));
@@ -100,8 +65,17 @@ void ParleyPlasma::constraintsUpdated(Plasma::Constraints constraints)
 ParleyPlasma::~ParleyPlasma()
 {
     delete m_dialog;
-    delete m_random;
-    delete m_doc;
+}
+
+void ParleyPlasma::dataUpdated(const QString& source, const Plasma::DataEngine::Data &data)
+{
+    Q_UNUSED(source);
+// kDebug() << (data["Random"]).toString();
+
+    if ( m_label) {
+        QString text = (data["Random"]).toString();
+        m_label->setText(text);
+    }
 }
 
 void ParleyPlasma::setContentSize(const QSizeF& size)
