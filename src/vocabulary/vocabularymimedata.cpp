@@ -35,8 +35,18 @@ QVariant VocabularyMimeData::retrieveData(const QString & mimeType, QVariant::Ty
 {
     if (mimeType == "text/plain") {
         QString text;
+        KEduVocExpression *expression = 0;
         foreach (KEduVocTranslation * translation, m_translations) {
+            if (expression != 0) {
+                if (expression == translation->entry()) {
+                    // same word
+                    text.append(" - ");
+                } else {
+                    text.append('\n');
+                }
+            }
             text.append(translation->text());
+            expression = translation->entry();
         }
         return text;
     }

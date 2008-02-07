@@ -373,8 +373,10 @@ QStringList VocabularyModel::mimeTypes() const
 QMimeData * VocabularyModel::mimeData(const QModelIndexList & indexes) const
 {
     VocabularyMimeData *mimeData = new VocabularyMimeData();
+    QModelIndexList sortedIndexes = indexes;
+    qSort(sortedIndexes);
 
-    foreach (const QModelIndex &index, indexes) {
+    foreach (const QModelIndex &index, sortedIndexes) {
         mimeData->addTranslation(m_container->entry(index.row(), m_recursive)->translation(translation(index.column())));
     }
 
