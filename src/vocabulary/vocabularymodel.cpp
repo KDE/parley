@@ -376,8 +376,13 @@ QMimeData * VocabularyModel::mimeData(const QModelIndexList & indexes) const
     QModelIndexList sortedIndexes = indexes;
     qSort(sortedIndexes);
 
+    kDebug() << "mimeData for " << indexes.count() << "indexes";
+
     foreach (const QModelIndex &index, sortedIndexes) {
-        mimeData->addTranslation(m_container->entry(index.row(), m_recursive)->translation(translation(index.column())));
+        // only add if it's a translation. other cells like word type are being ignored for now.
+        if (columnType(index.column()) == Translation) {
+            mimeData->addTranslation(m_container->entry(index.row(), m_recursive)->translation(translation(index.column())));
+        }
     }
 
     return mimeData;

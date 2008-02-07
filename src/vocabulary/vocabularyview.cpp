@@ -29,7 +29,9 @@
 #include <QHeaderView>
 #include <QPainter>
 #include <QResizeEvent>
+#include <QClipboard>
 
+#include <KApplication>
 #include <KComponentData>
 #include <KGlobalSettings>
 #include <KAction>
@@ -422,6 +424,10 @@ void VocabularyView::deleteSelectedEntries()
 
 void VocabularyView::slotEditCopy()
 {
+    QClipboard *clipboard = KApplication::clipboard();
+    clipboard->clear();
+    clipboard->setMimeData(m_model->mimeData(selectionModel()->selectedIndexes()));
+
 //     slotStatusMsg(i18n("Copying selection to clipboard..."));
 
 /*    QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -497,7 +503,7 @@ void VocabularyView::slotEditPaste()
 void VocabularyView::slotCutEntry()
 {
     // there's no need to reinvent the wheel ;)
-    slotEditCopy();
+//     slotEditCopy();
 
     // but we won't ask the user whether to delete or not.. we'll just cut
 //     if (m_tableView->selectionModel()->selectedRows().count() == 1) {
