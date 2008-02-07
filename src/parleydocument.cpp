@@ -16,8 +16,6 @@
 
 #include "parley.h"
 
-#include "kvttablemodel.h"
-#include "kvttableview.h"
 #include "newdocument-wizard/kvtnewdocumentwizard.h"
 #include "prefs.h"
 
