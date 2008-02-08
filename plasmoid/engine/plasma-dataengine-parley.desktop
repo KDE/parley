@@ -1,6 +1,8 @@
 [Desktop Entry]
 Name=Parley Data Engine
+Name[ga]=Inneall Sonraí Parley
 Comment=Vocabulary data for Plasmoids
+Comment[ga]=Sonraí Stóir Focal le haghaidh Plasmoids
 
 X-KDE-ServiceTypes=Plasma/DataEngine
 Type=Service
