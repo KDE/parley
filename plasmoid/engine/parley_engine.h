@@ -40,6 +40,7 @@ private:
     void openDocument(const QString& file);
     KEduVocDocument* m_doc;
     KRandomSequence *m_random;
+    int m_current;
 };
 
 K_EXPORT_PLASMA_DATAENGINE(parley, ParleyEngine)

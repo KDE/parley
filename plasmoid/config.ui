@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>448</width>
-    <height>203</height>
+    <height>221</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" >
@@ -33,22 +33,53 @@
       </widget>
      </item>
      <item>
-      <widget class="KComboBox" name="kcombobox" >
+      <widget class="KUrlComboRequester" name="kurlcomborequester" >
        <property name="sizePolicy" >
-        <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+        <sizepolicy vsizetype="Preferred" hsizetype="MinimumExpanding" >
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
       </widget>
      </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
      <item>
-      <widget class="QToolButton" name="m_pictureUrlButton" >
-       <property name="toolTip" >
-        <string>Browse</string>
-       </property>
+      <widget class="QLabel" name="label" >
        <property name="text" >
-        <string>...</string>
+        <string>Update interval</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="updateIntervalSpinBox" >
+       <property name="minimum" >
+        <number>1</number>
+       </property>
+       <property name="maximum" >
+        <number>1000</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2" >
+       <property name="text" >
+        <string>seconds</string>
        </property>
       </widget>
      </item>
@@ -78,14 +109,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KComboBox</class>
-   <extends>QComboBox</extends>
-   <header>kcombobox.h</header>
-  </customwidget>
-  <customwidget>
    <class>KPushButton</class>
    <extends>QPushButton</extends>
    <header>kpushbutton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KUrlComboRequester</class>
+   <extends>KUrlRequester</extends>
+   <header>kurlrequester.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

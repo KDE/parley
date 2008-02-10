@@ -45,8 +45,8 @@
      inkscape:zoom="4.08"
      inkscape:cx="59.149359"
      inkscape:cy="23.92597"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-x="1679"
+     inkscape:window-y="16"
      inkscape:current-layer="svg4420"
      height="80px"
      width="128px" />
@@ -23778,4 +23778,18 @@
        height="0.42620751"
        width="90.867905" />
   </g>
+  <rect
+     style="fill:#000000;fill-opacity:1;opacity:0"
+     id="translation1"
+     width="113.97059"
+     height="32.35294"
+     x="6.6176472"
+     y="12.598039" />
+  <rect
+     style="opacity:0;fill:#ffffff"
+     id="translation2"
+     width="113.97059"
+     height="32.35294"
+     x="7.1078424"
+     y="40.294117" />
 </svg>

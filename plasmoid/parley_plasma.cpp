@@ -31,35 +31,49 @@ ParleyPlasma::ParleyPlasma(QObject *parent, const QVariantList &args)
 
 {
     m_dialog = 0;
-    m_label = 0;
+    m_label1 = 0;
+    m_label2 = 0;
     setHasConfigurationInterface(true);
     setAcceptDrops(false);
     setAcceptsHoverEvents(true);
     setDrawStandardBackground(false);
+
+    m_theme.resize();
 }
 
 void ParleyPlasma::init()
 {
+    KConfigGroup cg = config();
+    m_updateInterval = cg.readEntry("updateInterval", 10000);
     Plasma::DataEngine* parleyEngine = dataEngine("parley");
-    parleyEngine->connectSource("Random", this, 10000);
+    parleyEngine->connectSource("lang:0", this, m_updateInterval);
+    parleyEngine->connectSource("lang:1", this, m_updateInterval);
 
     m_theme.setContentType(Plasma::Svg::SingleImage);
+    m_theme.size().height();
 
-    m_layout = new Plasma::VBoxLayout(this);
-    m_layout->setGeometry(QRectF(0, 0, m_theme.size().width(), m_theme.size().height()));
-
-    m_label = new Plasma::Label(this);
-    m_layout->addItem(m_label);
-//     m_label->setTextWidth(m_theme.width());
-
-    KConfigGroup cg = config();
-    m_label->setFont(cg.readEntry("font",m_font));
+    m_label1 = new Plasma::Label(this);
+    m_label2 = new Plasma::Label(this);
+    
+    m_label1->setPos( m_theme.elementRect( "translation1" ).topLeft() );
+    m_label2->setPos( m_theme.elementRect( "translation2" ).topLeft() );
+    
+    m_label1->setFont(cg.readEntry("font",m_font));
+    m_label2->setFont(cg.readEntry("font",m_font));
 }
 
 void ParleyPlasma::constraintsUpdated(Plasma::Constraints constraints)
 {
-    Q_UNUSED(constraints);
     setDrawStandardBackground(false);
+    prepareGeometryChange();
+    if (constraints & Plasma::SizeConstraint) {
+        m_theme.resize(contentSize().toSize());
+    }
+    m_font = shrinkTextSizeToFit( m_label1->text(), m_theme.elementRect( "translation1" ) );
+    m_label1->setPos( m_theme.elementRect( "translation1" ).topLeft() );
+    m_label1->setFont( m_font );
+    m_label2->setPos( m_theme.elementRect( "translation2" ).topLeft() );
+    m_label2->setFont( m_font );
 }
 
 ParleyPlasma::~ParleyPlasma()
@@ -70,12 +84,28 @@ ParleyPlasma::~ParleyPlasma()
 void ParleyPlasma::dataUpdated(const QString& source, const Plasma::DataEngine::Data &data)
 {
     Q_UNUSED(source);
-// kDebug() << (data["Random"]).toString();
+    kDebug() << "lang:0" << (data["lang:0"]).toString();
 
-    if ( m_label) {
-        QString text = (data["Random"]).toString();
-        m_label->setText(text);
+    if (source == "lang:0") {
+        if ( m_label1) {
+            QString text = (data["lang:0"]).toString();
+            m_label1->setText(text);
+            double scale = qMin(m_theme.elementRect( "translation1" ).width()/m_label1->boundingRect().width(), m_theme.elementRect( "translation1" ).height()/m_label1->boundingRect().height());
+            m_label1->setTransform(QTransform().scale(scale, scale));
+        }
     }
+    if (source == "lang:1") {
+        if ( m_label1) {
+            QString text = (data["lang:1"]).toString();
+            m_label2->setText(text);
+            double scale = qMin(m_theme.elementRect( "translation2" ).width()/m_label2->boundingRect().width(), m_theme.elementRect( "translation2" ).height()/m_label2->boundingRect().height());
+            m_label2->setTransform(QTransform().scale(scale, scale));
+        }
+    }
+//         m_label->setPos( m_theme.elementRect( "translation1" ).topLeft() );
+//         m_label->setFont( shrinkTextSizeToFit( m_label->text(), m_theme.elementRect( "translation1" ) ) );
+    
+//     kDebug() << m_theme.elementRect( "translation1" );
 }
 
 void ParleyPlasma::setContentSize(const QSizeF& size)
@@ -109,6 +139,7 @@ void ParleyPlasma::showConfigurationInterface()
         m_dialog->setCaption( i18n("ParleyPlasma Configuration") );
         ui.setupUi(m_dialog->mainWidget());
         m_dialog->mainWidget()->layout()->setMargin(0);
+        ui.updateIntervalSpinBox->setValue(m_updateInterval/1000);
         m_dialog->setButtons( KDialog::Ok | KDialog::Cancel | KDialog::Apply );
         connect( m_dialog, SIGNAL(applyClicked()), this, SLOT(configAccepted()) );
         connect( m_dialog, SIGNAL(okClicked()), this, SLOT(configAccepted()) );
@@ -129,10 +160,46 @@ void ParleyPlasma::configAccepted()
 
     KConfigGroup cg = config();
     cg.writeEntry("font", m_font);
-    m_label->setFont(m_font);
-    m_label->resize(boundingRect().width() /10*8, boundingRect().height());
-    m_label->setPos(boundingRect().width() / 10, boundingRect().height()/5);
+    m_label1->setFont(m_font);
+    m_label2->setFont(m_font);
+    m_updateInterval = ui.updateIntervalSpinBox->value()*1000;
+    cg.writeEntry("updateInterval", m_updateInterval);
+    Plasma::DataEngine* parleyEngine = dataEngine("parley");
+    parleyEngine->connectSource("lang:0", this, m_updateInterval);
+    parleyEngine->connectSource("lang:1", this, m_updateInterval);
     emit configNeedsSaving();
+}
+
+// Taken form Amarok
+// Copyright 2007 Leo Franchi <lfranchi@gmail.com>
+QFont ParleyPlasma::shrinkTextSizeToFit( const QString& text, const QRectF& bounds )
+{
+    Q_UNUSED( text );
+    int size = 48; // start here, shrink if needed
+    QFont font( QString(), size, QFont::Light );
+    font.setStyleHint( QFont::SansSerif );
+    font.setStyleStrategy( QFont::PreferAntialias );
+
+    QFontMetrics fm( font );
+    while( fm.height() > bounds.height() + 4 )
+    {
+        if( size < 5 )
+        {
+            size = 5;
+            break;
+        }
+        size--;
+        fm = QFontMetrics( QFont( QString(), size ) );
+    }
+
+    // for aesthetics, we make it one smaller
+    size--;
+kDebug() << "bounds: " << bounds << size;
+    QFont returnFont( QString(), size, QFont::Light );
+    font.setStyleHint( QFont::SansSerif );
+    font.setStyleStrategy( QFont::PreferAntialias );
+    
+    return QFont( returnFont );
 }
 
 #include "parley_plasma.moc"

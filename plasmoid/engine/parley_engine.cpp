@@ -36,6 +36,7 @@ ParleyEngine::ParleyEngine(QObject* parent, const QVariantList& args)
 
     kDebug() << "ParleyEngine::ParleyEngine";
     m_doc = new KEduVocDocument(this);
+    m_current = 0;
 
     KConfig parleyConfig("parleyrc");
     kDebug() << parleyConfig.groupList();
@@ -70,32 +71,55 @@ QStringList ParleyEngine::sources() const
 
 bool ParleyEngine::sourceRequested(const QString &source)
 {
+    KEduVocExpression *expression = m_doc->lesson()->entries(KEduVocContainer::Recursive).value(m_current);
+
+    if (!expression) {
+        return false;
+    }
+    
+    kDebug() << "updateSource:" << source;
+    kDebug() << expression->translation(0)->text();
+    
 //     kDebug() << "ParleyEngine::sourceRequested " << source;
-    return updateSource(source);
+    if (source.startsWith("lang:")) {
+        if (expression) {
+            int lang = source.right(source.size() - 5).toInt();
+            setData(source, expression->translation(lang)->text());
+            return true;
+        }
+    }
+
+    if (source == QLatin1String("Random")) {
+        if (expression) {
+            QString text;
+            foreach (int index, expression->translationIndices()) {
+                text += "\n" + expression->translation(index)->text();
+            }
+            setData(QLatin1String("Random"), text);
+            return true;
+        }
+    }
+    return false;
 }
 
 bool ParleyEngine::updateSource(const QString &source)
 {
-//     kDebug() << "ParleyEngine::updateSource()" << source;
-
-    if (source == QLatin1String("Random")) {
-        if (m_doc) {
-            int vocabularyCount = m_doc->lesson()->entries(KEduVocContainer::Recursive).count();
-            int expNum = m_random->getLong(vocabularyCount);
-            KEduVocExpression *expression = m_doc->lesson()->entries(KEduVocContainer::Recursive).value(expNum);    
-            if (expression) {
-                QString text;
-                foreach (int index, expression->translationIndices()) {
-                    text += "\n" + expression->translation(index)->text();
-                }
-                setData(QLatin1String("Random"), text);
-                return true;
-            }
-        }
+    if (!m_doc) {
+        setData(source, i18n("No document set."));
         return false;
     }
+
+    int vocabularyCount = m_doc->lesson()->entries(KEduVocContainer::Recursive).count();
+    m_current = m_random->getLong(vocabularyCount);
+    KEduVocExpression *expression = m_doc->lesson()->entries(KEduVocContainer::Recursive).value(m_current);
+
+    setData("lang:0", expression->translation(0)->text());
+
+    setData("lang:1", expression->translation(1)->text());
+//     kDebug() << "ParleyEngine::updateSource()" << source;
+
     // other sources
-    return false;
+    return true;
 }
 
 #include "parley_engine.moc"

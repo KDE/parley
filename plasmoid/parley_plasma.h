@@ -55,8 +55,11 @@ class ParleyPlasma : public Plasma::Applet
         void showFontSelectDlg();
         void dataUpdated(const QString &name, const Plasma::DataEngine::Data &data);
     private:
+        QFont shrinkTextSizeToFit( const QString& text, const QRectF& bounds );
+
         Plasma::Svg m_theme;
-        Plasma::Label *m_label;
+        Plasma::Label *m_label1;
+        Plasma::Label *m_label2;
 
         Ui::config ui;
         KDialog *m_dialog;
@@ -64,7 +67,7 @@ class ParleyPlasma : public Plasma::Applet
         QFont m_font;
         QSizeF m_size;
 
-        Plasma::VBoxLayout *m_layout;
+        int m_updateInterval;
 };
 
 K_EXPORT_PLASMA_APPLET(parley, ParleyPlasma)
