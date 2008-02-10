@@ -73,6 +73,7 @@ void ParleyPlasma::constraintsUpdated(Plasma::Constraints constraints)
     m_label1->setFont( m_font );
     double scale = qMin(m_theme.elementRect( "translation1" ).width()/m_label1->boundingRect().width(), m_theme.elementRect( "translation1" ).height()/m_label1->boundingRect().height());
     m_label1->setTransform(QTransform().scale(scale, scale));
+
     m_label2->setPos( m_theme.elementRect( "translation2" ).topLeft() );
     m_label2->setFont( m_font );
     scale = qMin(m_theme.elementRect( "translation2" ).width()/m_label2->boundingRect().width(), m_theme.elementRect( "translation2" ).height()/m_label2->boundingRect().height());
@@ -95,6 +96,11 @@ void ParleyPlasma::dataUpdated(const QString& source, const Plasma::DataEngine::
             m_label1->setText(text);
             double scale = qMin(m_theme.elementRect( "translation1" ).width()/m_label1->boundingRect().width(), m_theme.elementRect( "translation1" ).height()/m_label1->boundingRect().height());
             m_label1->setTransform(QTransform().scale(scale, scale));
+            m_label1->setPos(m_theme.elementRect( "translation1" ).topLeft()
+                    + QPointF(
+                        (m_theme.elementRect("translation1").width()-m_label1->boundingRect().width()*scale)/2.0,
+                        (m_theme.elementRect("translation1").height()-m_label1->boundingRect().height()*scale)/2.0));
+
         }
     }
     if (source == "lang:1") {
@@ -104,6 +110,10 @@ void ParleyPlasma::dataUpdated(const QString& source, const Plasma::DataEngine::
             double scale = qMin(m_theme.elementRect( "translation2" ).width()/m_label2->boundingRect().width(), m_theme.elementRect( "translation2" ).height()/m_label2->boundingRect().height());
             m_label2->setTransform(QTransform().scale(scale, scale));
             m_label2->hide();
+            m_label2->setPos(m_theme.elementRect( "translation2" ).topLeft()
+                    + QPointF(
+                              (m_theme.elementRect("translation2").width()-m_label2->boundingRect().width()*scale)/2.0,
+                               (m_theme.elementRect("translation2").height()-m_label2->boundingRect().height()*scale)/2.0));
         }
     }
 }
