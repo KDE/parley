@@ -69,11 +69,14 @@ void ParleyPlasma::constraintsUpdated(Plasma::Constraints constraints)
     if (constraints & Plasma::SizeConstraint) {
         m_theme.resize(contentSize().toSize());
     }
-    m_font = shrinkTextSizeToFit( m_label1->text(), m_theme.elementRect( "translation1" ) );
     m_label1->setPos( m_theme.elementRect( "translation1" ).topLeft() );
     m_label1->setFont( m_font );
+    double scale = qMin(m_theme.elementRect( "translation1" ).width()/m_label1->boundingRect().width(), m_theme.elementRect( "translation1" ).height()/m_label1->boundingRect().height());
+    m_label1->setTransform(QTransform().scale(scale, scale));
     m_label2->setPos( m_theme.elementRect( "translation2" ).topLeft() );
     m_label2->setFont( m_font );
+    scale = qMin(m_theme.elementRect( "translation2" ).width()/m_label2->boundingRect().width(), m_theme.elementRect( "translation2" ).height()/m_label2->boundingRect().height());
+    m_label2->setTransform(QTransform().scale(scale, scale));
 }
 
 ParleyPlasma::~ParleyPlasma()
@@ -103,10 +106,6 @@ void ParleyPlasma::dataUpdated(const QString& source, const Plasma::DataEngine::
             m_label2->hide();
         }
     }
-//         m_label->setPos( m_theme.elementRect( "translation1" ).topLeft() );
-//         m_label->setFont( shrinkTextSizeToFit( m_label->text(), m_theme.elementRect( "translation1" ) ) );
-    
-//     kDebug() << m_theme.elementRect( "translation1" );
 }
 
 void ParleyPlasma::setContentSize(const QSizeF& size)
@@ -169,38 +168,6 @@ void ParleyPlasma::configAccepted()
     parleyEngine->connectSource("lang:0", this, m_updateInterval);
     parleyEngine->connectSource("lang:1", this, m_updateInterval);
     emit configNeedsSaving();
-}
-
-// Taken form Amarok
-// Copyright 2007 Leo Franchi <lfranchi@gmail.com>
-QFont ParleyPlasma::shrinkTextSizeToFit( const QString& text, const QRectF& bounds )
-{
-    Q_UNUSED( text );
-    int size = 48; // start here, shrink if needed
-    QFont font( QString(), size, QFont::Light );
-    font.setStyleHint( QFont::SansSerif );
-    font.setStyleStrategy( QFont::PreferAntialias );
-
-    QFontMetrics fm( font );
-    while( fm.height() > bounds.height() + 4 )
-    {
-        if( size < 5 )
-        {
-            size = 5;
-            break;
-        }
-        size--;
-        fm = QFontMetrics( QFont( QString(), size ) );
-    }
-
-    // for aesthetics, we make it one smaller
-    size--;
-kDebug() << "bounds: " << bounds << size;
-    QFont returnFont( QString(), size, QFont::Light );
-    font.setStyleHint( QFont::SansSerif );
-    font.setStyleStrategy( QFont::PreferAntialias );
-    
-    return QFont( returnFont );
 }
 
 void ParleyPlasma::hoverEnterEvent(QGraphicsSceneHoverEvent * event)

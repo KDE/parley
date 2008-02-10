@@ -58,11 +58,8 @@ class ParleyPlasma : public Plasma::Applet
     protected:
         virtual void hoverEnterEvent ( QGraphicsSceneHoverEvent * event );
         virtual void hoverLeaveEvent ( QGraphicsSceneHoverEvent * event );
-        
 
     private:
-        QFont shrinkTextSizeToFit( const QString& text, const QRectF& bounds );
-
         Plasma::Svg m_theme;
         Plasma::Label *m_label1;
         Plasma::Label *m_label2;
