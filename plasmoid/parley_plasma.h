@@ -54,6 +54,12 @@ class ParleyPlasma : public Plasma::Applet
         void configAccepted();
         void showFontSelectDlg();
         void dataUpdated(const QString &name, const Plasma::DataEngine::Data &data);
+
+    protected:
+        virtual void hoverEnterEvent ( QGraphicsSceneHoverEvent * event );
+        virtual void hoverLeaveEvent ( QGraphicsSceneHoverEvent * event );
+        
+
     private:
         QFont shrinkTextSizeToFit( const QString& text, const QRectF& bounds );
 

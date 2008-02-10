@@ -100,6 +100,7 @@ void ParleyPlasma::dataUpdated(const QString& source, const Plasma::DataEngine::
             m_label2->setText(text);
             double scale = qMin(m_theme.elementRect( "translation2" ).width()/m_label2->boundingRect().width(), m_theme.elementRect( "translation2" ).height()/m_label2->boundingRect().height());
             m_label2->setTransform(QTransform().scale(scale, scale));
+            m_label2->hide();
         }
     }
 //         m_label->setPos( m_theme.elementRect( "translation1" ).topLeft() );
@@ -200,6 +201,18 @@ kDebug() << "bounds: " << bounds << size;
     font.setStyleStrategy( QFont::PreferAntialias );
     
     return QFont( returnFont );
+}
+
+void ParleyPlasma::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
+{
+    Plasma::Applet::hoverEnterEvent(event);
+    m_label2->show();
+}
+
+void ParleyPlasma::hoverLeaveEvent(QGraphicsSceneHoverEvent  * event)
+{
+    Plasma::Applet::hoverLeaveEvent(event);
+    m_label2->hide();
 }
 
 #include "parley_plasma.moc"
