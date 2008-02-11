@@ -56,37 +56,37 @@ void BrowserWidget::setupProviders()
 
     DictionaryProvider provider;
     provider.name="De-Es Beolingus";
-    provider.url="http://beolingus.org/dings.cgi?service=dees&query=\{@}";
+    provider.url="http://beolingus.org/dings.cgi?service=dees&query=\\{@}";
     provider.languages << "de" << "es";
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
     provider.name="De-En Beolingus";
-    provider.url="http://beolingus.org/dings.cgi?query=\{@}";
+    provider.url="http://beolingus.org/dings.cgi?query=\\{@}";
     provider.languages << "de" << "en";
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
     provider.name="De-En Leo";
-    provider.url="http://dict.leo.org/?search=\{@}";
+    provider.url="http://dict.leo.org/?search=\\{@}";
     provider.languages << "de" << "en";
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
     provider.name="De-Es Leo";
-    provider.url="http://dict.leo.org/?lp=esde&search=\{@}";
+    provider.url="http://dict.leo.org/?lp=esde&search=\\{@}";
     provider.languages << "de" << "es";
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
     provider.name="De-Fr Leo";
-    provider.url="http://dict.leo.org/?lp=frde&search=\{@}";
+    provider.url="http://dict.leo.org/?lp=frde&search=\\{@}";
     provider.languages << "de" << "fr";
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
     provider.name="De-Es Pons";
-    provider.url="http://www.ponsline.de/cgi-bin/wb/w.pl?von=pons.de&Richtung=Spanisch&Begriff=\{@}";
+    provider.url="http://www.ponsline.de/cgi-bin/wb/w.pl?von=pons.de&Richtung=Spanisch&Begriff=\\{@}";
     provider.languages << "de" << "es";
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
@@ -108,7 +108,7 @@ void BrowserWidget::showCurrentTranslation()
     if (m_entry) {
         if (m_entry->translation(m_currentTranslation)) {
             QString text = m_entry->translation(m_currentTranslation)->text();
-            m_htmlPart->openUrl(KUrl(QString(m_providers.value(m_currentProvider).url.replace("\{@}", text))));
+            m_htmlPart->openUrl(KUrl(QString(m_providers.value(m_currentProvider).url.replace("\\{@}", text))));
         }
     }
 }
