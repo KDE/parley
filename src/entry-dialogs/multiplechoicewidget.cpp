@@ -121,8 +121,8 @@ bool MultipleChoiceWidget::eventFilter(QObject * obj, QEvent * event)
             }
             return true;
         }
-        return QObject::eventFilter(obj, event);
     }
+    return QObject::eventFilter(obj, event);
 }
 
 
