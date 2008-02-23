@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>554</width>
-    <height>323</height>
+    <height>602</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -22,16 +22,7 @@
    <property name="spacing" >
     <number>6</number>
    </property>
-   <property name="leftMargin" >
-    <number>0</number>
-   </property>
-   <property name="topMargin" >
-    <number>0</number>
-   </property>
-   <property name="rightMargin" >
-    <number>0</number>
-   </property>
-   <property name="bottomMargin" >
+   <property name="margin" >
     <number>0</number>
    </property>
    <item>
@@ -40,22 +31,10 @@
       <string>General Document Properties</string>
      </property>
      <layout class="QGridLayout" >
-      <property name="leftMargin" >
+      <property name="margin" >
        <number>11</number>
       </property>
-      <property name="topMargin" >
-       <number>11</number>
-      </property>
-      <property name="rightMargin" >
-       <number>11</number>
-      </property>
-      <property name="bottomMargin" >
-       <number>11</number>
-      </property>
-      <property name="horizontalSpacing" >
-       <number>6</number>
-      </property>
-      <property name="verticalSpacing" >
+      <property name="spacing" >
        <number>6</number>
       </property>
       <item row="0" column="0" >
@@ -210,7 +189,12 @@ If you consider contributing your file to KDE in the future, an appropriate lice
         </property>
         <item>
          <property name="text" >
-          <string>GPLv2 (GNU General Public License version 2)</string>
+          <string>Public Domain</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>GPLv2+ (GNU General Public License version 2 or later)</string>
          </property>
         </item>
        </widget>
