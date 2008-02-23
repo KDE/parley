@@ -88,6 +88,10 @@ void VocabularyModel::setLesson(KEduVocLesson * lessonContainer)
     m_lesson = lessonContainer;
 }
 
+KEduVocLesson * VocabularyModel::lesson()
+{
+    return m_lesson;
+}
 
 void VocabularyModel::setWordType(KEduVocWordType * wordTypeContainer)
 {
@@ -402,6 +406,8 @@ void VocabularyModel::resetLanguages()
 {
     reset();
 }
+
+
 
 #include "vocabularymodel.moc"
 

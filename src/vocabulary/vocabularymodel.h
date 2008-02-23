@@ -92,6 +92,8 @@ public slots:
      */
     void setLesson(KEduVocLesson *lessonContainer);
 
+    KEduVocLesson * lesson();
+
     /**
      * 
      * @param wordTypeContainer 

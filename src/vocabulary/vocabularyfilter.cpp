@@ -55,6 +55,14 @@ void VocabularyFilter::setSearchString(const QString & expression)
     invalidateFilter();
 }
 
+KEduVocLesson * VocabularyFilter::lesson()
+{
+    if (m_model) {
+        return m_model->lesson();
+    }
+    return 0;
+}
+
 
 #include "vocabularyfilter.moc"
 

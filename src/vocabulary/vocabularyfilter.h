@@ -19,6 +19,7 @@
 #include <QSortFilterProxyModel>
 
 class VocabularyModel;
+class KEduVocLesson;
 
 class VocabularyFilter : public QSortFilterProxyModel
 {
@@ -29,6 +30,7 @@ public:
     void setSourceModel(VocabularyModel* model);
 
     QModelIndex appendEntry();
+    KEduVocLesson * lesson();
 
 public slots:
     void setSearchString(const QString& expression);

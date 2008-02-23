@@ -425,7 +425,6 @@ void VocabularyView::deleteSelectedEntries()
 void VocabularyView::slotEditCopy()
 {
     QClipboard *clipboard = KApplication::clipboard();
-    clipboard->clear();
     clipboard->setMimeData(m_model->mimeData(selectionModel()->selectedIndexes()));
 
 //     slotStatusMsg(i18n("Copying selection to clipboard..."));
@@ -502,27 +501,12 @@ void VocabularyView::slotEditPaste()
 
 void VocabularyView::slotCutEntry()
 {
-    // there's no need to reinvent the wheel ;)
-//     slotEditCopy();
+    slotEditCopy();
+    foreach(const QModelIndex& index, selectionModel()->selectedIndexes()) {
+        KEduVocExpression* expression = model()->data(index, VocabularyModel::EntryRole).value<KEduVocExpression*>();
+        m_model->lesson()->removeEntry(expression);
+    }
 
-    // but we won't ask the user whether to delete or not.. we'll just cut
-//     if (m_tableView->selectionModel()->selectedRows().count() == 1) {
-//         int currentRow = m_tableView->currentIndex().row();
-//         int currentColumn = m_tableView->currentIndex().column();
-//         m_sortFilterModel->removeRows(m_tableView->currentIndex().row(), 1, QModelIndex());
-//         m_tableView->selectionModel()->setCurrentIndex(m_sortFilterModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
-//     } else {
-//         int currentRow = m_tableView->currentIndex().row();
-//         int currentColumn = m_tableView->currentIndex().column();
-//         int rowCount = m_sortFilterModel->rowCount(QModelIndex());
-//         // Must count backwards otherwise entry-numbering goes wrong when
-//         // deleting.
-//         for (int i = rowCount - 1; i >= 0; i--)
-//             if (m_tableView->selectionModel()->isRowSelected(i, QModelIndex()))
-//                 m_sortFilterModel->removeRows(i, 1, QModelIndex());
-//         m_tableView->selectionModel()->setCurrentIndex(m_sortFilterModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
-//     }
-//     m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
 }
 
 KActionMenu * VocabularyView::columnsActionMenu()
