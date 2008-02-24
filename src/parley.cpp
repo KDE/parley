@@ -670,12 +670,6 @@ void ParleyApp::initActions()
     configApp->setToolTip(configApp->whatsThis());
     configApp->setStatusTip(configApp->whatsThis());
 
-    KAction* configToolbar = new KAction(this);
-    actionCollection()->addAction("options_configure_toolbars", configToolbar);
-    configToolbar->setWhatsThis(i18n("Toggle display of the toolbars"));
-    configToolbar->setToolTip(configToolbar->whatsThis());
-    configToolbar->setStatusTip(configToolbar->whatsThis());
-
     m_vocabShowSearchBarAction = actionCollection()->add<KToggleAction>("config_show_search");
     m_vocabShowSearchBarAction->setText(i18n("Show Se&arch"));
     connect(m_vocabShowSearchBarAction, SIGNAL(triggered(bool)), this, SLOT(slotConfigShowSearch()));
