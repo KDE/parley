@@ -20,7 +20,7 @@
 #include <KDebug>
 #include <KStandardDirs>
 // #include <QGraphicsSvgItem>
-// #include <QGraphicsProxyWidget>
+#include <QGraphicsProxyWidget>
 #include <QResizeEvent>
 #include <QSvgRenderer>
 
@@ -55,11 +55,6 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     kDebug() << KStandardDirs::locate("data", "parley/images/card.svg");
 
 
-//     KLineEdit * line = new KLineEdit(this);
-//     QGraphicsProxyWidget * graphicsWidget = scene->addWidget(line);
-//     graphicsWidget->setPos(300, 300);
-
-
     QuestionDisplay* question = new VocabularyCard();
     scene->addItem(question);
     question->setText("a question?");
@@ -81,6 +76,15 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
             m_layout->renderer()->boundsOnElement( "card" ).height()/card2->boundingRect().height());
     card2->setTransform(QTransform().scale(scale, scale));
 
+
+    KLineEdit * line = new KLineEdit;
+    line->setText("Hi WoC");
+    QGraphicsProxyWidget * graphicsWidget = new QGraphicsProxyWidget(m_layout);
+    graphicsWidget->setWidget(line);
+    graphicsWidget->setPos( m_layout->renderer()->boundsOnElement( "userInput" ).topLeft() );
+    graphicsWidget->resize(m_layout->renderer()->boundsOnElement( "userInput" ).width(), m_layout->renderer()->boundsOnElement( "userInput" ).height());
+    line->show();
+
 }
 
 
@@ -99,9 +103,6 @@ bool ParleyPracticeMainWindow::eventFilter(QObject * obj, QEvent * event)
     }
     return QObject::eventFilter(obj, event);
 }
-
-
-
 
 
 #include "parleypracticemainwindow.moc"
