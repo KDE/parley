@@ -51,6 +51,7 @@
 
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>
+
 #include <KLineEdit>
 #include <KStatusBar>
 

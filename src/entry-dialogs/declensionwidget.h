@@ -16,9 +16,12 @@
 
 #include "ui_declensionwidget.h"
 
+#include <keduvocdeclension.h>
+
 class KEduVocExpression;
 class KEduVocTranslation;
 class KEduVocDocument;
+
 
 class DeclensionWidget : public QWidget, public Ui::DeclensionWidget
 {

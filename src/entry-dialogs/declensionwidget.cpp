@@ -13,11 +13,11 @@
 
 #include "declensionwidget.h"
 
-#include <keduvocdeclension.h>
-
 #include <keduvocdocument.h>
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
+#include <keduvocdeclension.h>
+
 #include <KDebug>
 #include <KMessageBox>
 
@@ -34,30 +34,70 @@ DeclensionWidget::DeclensionWidget(QWidget *parent) : QWidget(parent)
     showMakeNounWidgets();
     makeNounButton->setEnabled(false);
 
-//     m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::First, KEduVocDeclension::Singular)]
-//         = singularFirstPersonLineEdit;
-//     m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Second, KEduVocDeclension::Singular)]
-//         = singularSecondPersonLineEdit;
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Singular, KEduVocDeclension::Nominative)] = singular_1;
 
-//     foreach(int index, m_DeclensionLineEdits.keys()) {
-//         connect(m_DeclensionLineEdits.value(index), SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
-//     }
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Singular, KEduVocDeclension::Genitive)] = singular_2;
+ 
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Singular, KEduVocDeclension::Dative)] = singular_3;
+
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Singular, KEduVocDeclension::Accusative)] = singular_4;
+
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Singular, KEduVocDeclension::Ablative)] = singular_5;
+
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Singular, KEduVocDeclension::Locative)] = singular_6;
+
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Singular, KEduVocDeclension::Vocative)] = singular_7;
+
+
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Dual, KEduVocDeclension::Nominative)] = dual_1;
+
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Dual, KEduVocDeclension::Genitive)] = dual_2;
+ 
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Dual, KEduVocDeclension::Dative)] = dual_3;
+
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Dual, KEduVocDeclension::Accusative)] = dual_4;
+
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Dual, KEduVocDeclension::Ablative)] = dual_5;
+
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Dual, KEduVocDeclension::Locative)] = dual_6;
+
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Dual, KEduVocDeclension::Vocative)] = dual_7;
+
+
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Plural, KEduVocDeclension::Nominative)] = plural_1;
+
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Plural, KEduVocDeclension::Genitive)] = plural_2;
+
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Plural, KEduVocDeclension::Dative)] = plural_3;
+
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Plural, KEduVocDeclension::Accusative)] = plural_4;
+
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Plural, KEduVocDeclension::Ablative)] = plural_5;
+
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Plural, KEduVocDeclension::Locative)] = plural_6;
+
+    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Plural, KEduVocDeclension::Vocative)] = plural_7;
+
+    foreach(int index, m_DeclensionLineEdits.keys()) {
+        connect(m_DeclensionLineEdits.value(index), SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
+    }
 }
 
 
 void DeclensionWidget::textChanged(const QString& text)
 {
-//     int valueIndex = m_DeclensionLineEdits.values().indexOf(qobject_cast<QLineEdit*>(sender()));
-//     int key = m_DeclensionLineEdits.keys().value(valueIndex);
-//     m_entry->translation(m_identifier)->Declension(tenseComboBox->currentText()).setDeclension(text, key);
+    int valueIndex = m_DeclensionLineEdits.values().indexOf(qobject_cast<QLineEdit*>(sender()));
+    int key = m_DeclensionLineEdits.keys().value(valueIndex);
+    m_entry->translation(m_identifier)->declension()->setDeclension(text, key);
+    emit sigModified();
 }
 
 
 void DeclensionWidget::updateEntries()
 {
-//     foreach(int key, m_DeclensionLineEdits.keys()) {
-//         m_DeclensionLineEdits.value(key)->setText(m_entry->translation(m_identifier)->Declension(tenseComboBox->currentText()).Declension(key));
-//     }
+    foreach(int key, m_DeclensionLineEdits.keys()) {
+        m_DeclensionLineEdits.value(key)->setText(m_entry->translation(m_identifier)->declension()->declension(key).text());
+    }
 }
 
 void DeclensionWidget::setTranslation(KEduVocExpression * entry, int identifier)
@@ -82,9 +122,16 @@ void DeclensionWidget::setTranslation(KEduVocExpression * entry, int identifier)
             || wordType == KEduVocWordType::NounMale
             || wordType == KEduVocWordType::NounFemale
             || wordType == KEduVocWordType::NounNeutral) {
-        // if it's a noun already, hide the make noun button and start editing it
-        showDeclensionEditWidgets();
-        updateEntries();
+
+            // we create declensions on demand. if empty it will simply not be saved.
+            // very little memory overhead, comfy to use ;)
+            if (!entry->translation(m_identifier)->declension()) {
+                entry->translation(m_identifier)->setDeclension(new KEduVocDeclension);
+            }
+
+            // if it's a noun already, hide the make noun button and start editing it
+            showDeclensionEditWidgets();
+            updateEntries();
         }
     } else {
         makeNounButton->setEnabled(true);
@@ -104,6 +151,8 @@ void DeclensionWidget::slotMakeNoun()
     if(!m_doc) {
         return;
     }
+
+    ///@todo allow to choose the type of noun
 
     // find a noun container
     KEduVocWordType* container = m_doc->wordTypeContainer()->childOfType(KEduVocWordType::Noun);
