@@ -29,7 +29,7 @@ class QuestionDisplay :public QObject, public QGraphicsItem
 {
 Q_OBJECT
 public:
-    QuestionDisplay();
+    QuestionDisplay(QGraphicsItem* parent = 0);
 
     ~QuestionDisplay();
 

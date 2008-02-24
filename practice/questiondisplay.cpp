@@ -15,8 +15,8 @@
 
 #include "questiondisplay.h"
 
-QuestionDisplay::QuestionDisplay()
- : QGraphicsItem()
+QuestionDisplay::QuestionDisplay(QGraphicsItem* parent)
+ : QGraphicsItem(parent)
 {
 }
 

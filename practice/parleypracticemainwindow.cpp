@@ -22,6 +22,7 @@
 // #include <QGraphicsSvgItem>
 // #include <QGraphicsProxyWidget>
 #include <QResizeEvent>
+#include <QSvgRenderer>
 
 #include "questiondisplay.h"
 #include "defaulttheme/vocabularycard.h"
@@ -36,7 +37,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     QGraphicsScene* scene = new QGraphicsScene(this);
     m_view->setScene(scene);
 
-    scene->setSceneRect(0.0, 0.0, 100.0, 100.0);
+    scene->setSceneRect(0.0, 0.0, 800.0, 600.0);
 
     m_view->setSceneRect(scene->sceneRect());
 
@@ -59,8 +60,6 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
 //     graphicsWidget->setPos(300, 300);
 
 
-
-
     QuestionDisplay* question = new VocabularyCard();
     scene->addItem(question);
     question->setText("a question?");
@@ -68,8 +67,20 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     question->scale(75.0/question->boundingRect().width(), 75.0/question->boundingRect().width());
     question->setPos(0, 30);
 
-//     QGraphicsSvgItem * card = new QGraphicsSvgItem(KStandardDirs::locate("data", "parley/images/card.svg"));
-//     scene->addItem(card);
+    kDebug() << KStandardDirs::locate("data", "defaulttheme/layout.svg");
+
+    m_layout = new QGraphicsSvgItem(KStandardDirs::locate("data", "parley/defaulttheme/layout.svg"));
+    scene->addItem(m_layout);
+
+    QuestionDisplay* card2 = new VocabularyCard(m_layout);
+    card2->setText("a second card");
+    card2->setPos( m_layout->renderer()->boundsOnElement( "card" ).topLeft() );
+
+    double scale = qMin(
+            m_layout->renderer()->boundsOnElement( "card" ).width()/card2->boundingRect().width(),
+            m_layout->renderer()->boundsOnElement( "card" ).height()/card2->boundingRect().height());
+    card2->setTransform(QTransform().scale(scale, scale));
+
 }
 
 
@@ -82,7 +93,7 @@ bool ParleyPracticeMainWindow::eventFilter(QObject * obj, QEvent * event)
     if (event->type() == QEvent::Resize) {
         QResizeEvent* resizeEvent = static_cast<QResizeEvent*>(event);
         QMatrix matrix;
-        matrix.scale(resizeEvent->size().width()/100.0, resizeEvent->size().height()/100.0);
+        matrix.scale(resizeEvent->size().width()/800.0, resizeEvent->size().height()/600.0);
         m_view->setMatrix(matrix, false);
         return QObject::eventFilter(obj, event);
     }

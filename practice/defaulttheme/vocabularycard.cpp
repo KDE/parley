@@ -21,15 +21,13 @@
 #include <QGraphicsSvgItem>
 #include <QGraphicsTextItem>
 
-VocabularyCard::VocabularyCard()
- : QuestionDisplay()
+VocabularyCard::VocabularyCard(QGraphicsItem* parent)
+ : QuestionDisplay(parent)
 {
-    m_card = new QGraphicsSvgItem(KStandardDirs::locate("data", "parley/images/card.svg"), this);
+    m_card = new QGraphicsSvgItem(KStandardDirs::locate("data", "parley/defaulttheme/card.svg"), this);
     m_card->setElementId("Card");
 
     m_text = new QGraphicsTextItem(m_card);
-
-
 }
 
 

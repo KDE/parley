@@ -30,7 +30,7 @@ class VocabularyCard : public QuestionDisplay
 {
 Q_OBJECT
 public:
-    VocabularyCard();
+    VocabularyCard(QGraphicsItem* parent = 0);
 
     ~VocabularyCard();
 

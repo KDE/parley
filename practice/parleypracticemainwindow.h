@@ -20,6 +20,7 @@
 #include <KXmlGuiWindow>
 
 #include <QGraphicsView>
+#include <QGraphicsSvgItem>
 
 class ParleyPracticeMainWindow : public KXmlGuiWindow
 {
@@ -31,7 +32,8 @@ public:
 
 private:
     QGraphicsView* m_view;
-
+    QGraphicsSvgItem* m_layout;
+    
     bool eventFilter(QObject *obj, QEvent *event);
 
 };
