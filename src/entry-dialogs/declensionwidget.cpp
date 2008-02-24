@@ -79,7 +79,9 @@ void DeclensionWidget::setTranslation(KEduVocExpression * entry, int identifier)
     if (entry->translation(m_identifier)->wordType()) {
         KEduVocWordType::EnumWordType wordType = entry->translation(m_identifier)->wordType()->wordType();
         if (wordType == KEduVocWordType::Noun
-            || wordType == KEduVocWordType::NounMale) {
+            || wordType == KEduVocWordType::NounMale
+            || wordType == KEduVocWordType::NounFemale
+            || wordType == KEduVocWordType::NounNeutral) {
         // if it's a noun already, hide the make noun button and start editing it
         showDeclensionEditWidgets();
         updateEntries();
@@ -118,13 +120,13 @@ void DeclensionWidget::slotMakeNoun()
 void DeclensionWidget::showMakeNounWidgets()
 {
     makeNounButton->setVisible(true);
-
     declensionGroupBox->setVisible(false);
 }
 
 void DeclensionWidget::showDeclensionEditWidgets()
 {
     makeNounButton->setVisible(false);
+    declensionGroupBox->setVisible(true);
 }
 
 void DeclensionWidget::updateVisiblePersons()

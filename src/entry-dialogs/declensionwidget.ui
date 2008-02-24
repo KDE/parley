@@ -41,7 +41,7 @@
       </sizepolicy>
      </property>
      <property name="title" >
-      <string>Declination Forms</string>
+      <string>Declension Forms</string>
      </property>
      <layout class="QGridLayout" >
       <item row="2" column="0" >
