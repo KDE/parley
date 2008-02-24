@@ -415,15 +415,15 @@ void ParleyApp::initDockWidgets()
         conjugationWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 
-// Declinations
-    QDockWidget *declinationDock = new QDockWidget(i18n("Declination"), this);
-    declinationDock->setObjectName("DeclinationDock");
-    QLabel *declinationWidget = new QLabel("Declinations placeholder", this);
-    declinationDock->setWidget(declinationWidget);
-    addDockWidget(Qt::RightDockWidgetArea, declinationDock);
-    actionCollection()->addAction("show_declination_dock", declinationDock->toggleViewAction());
-    declinationDock->setVisible(false);
-//     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_declinationWidget, SLOT(setTranslation(KEduVocTranslation*)));
+// Declensions
+    QDockWidget *declensionDock = new QDockWidget(i18n("Declension"), this);
+    declensionDock->setObjectName("DeclensionDock");
+    QLabel *declensionWidget = new QLabel("Declensions placeholder", this);
+    declensionDock->setWidget(declensionWidget);
+    addDockWidget(Qt::RightDockWidgetArea, declensionDock);
+    actionCollection()->addAction("show_declension_dock", declensionDock->toggleViewAction());
+    declensionDock->setVisible(false);
+//     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_declensionWidget, SLOT(setTranslation(KEduVocTranslation*)));
 
 
 // Comparison forms
@@ -510,7 +510,7 @@ void ParleyApp::initDockWidgets()
 //     QLabel *gradeWidget = new QLabel("grade placeholder", this);
 //     gradeDock->setWidget(gradeWidget);
 //     addDockWidget(Qt::RightDockWidgetArea, gradeDock);
-//     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_declinationWidget, SLOT(setTranslation(KEduVocTranslation*)));
+//     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_declensionWidget, SLOT(setTranslation(KEduVocTranslation*)));
 
 // actionCollection()->addAction("show_leitner_dock", ->toggleViewAction());
 }

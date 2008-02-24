@@ -34,7 +34,7 @@ public slots:
 
 signals:
     /**
-     * Important to let other widgets know that a certain word type is edited (might make conjugations/comparison/declination appear)
+     * Important to let other widgets know that a certain word type is edited (might make conjugations/comparison/declension appear)
      * @param  
      */
     void wordTypeSelected(const QString&);
