@@ -100,6 +100,7 @@ set(entrydialogs_SRCS
     entry-dialogs/multiplechoicewidget.cpp
     entry-dialogs/comparisonwidget.cpp
     entry-dialogs/conjugationwidget.cpp
+    entry-dialogs/declensionwidget.cpp
     entry-dialogs/imagechooserwidget.cpp
     entry-dialogs/audiowidget.cpp
     entry-dialogs/browserwidget.cpp
@@ -110,6 +111,7 @@ kde4_add_ui_files(entrydialogs_SRCS
     entry-dialogs/multiplechoicewidget.ui
     entry-dialogs/comparisonwidget.ui
     entry-dialogs/conjugationwidget.ui
+    entry-dialogs/declensionwidget.ui
     entry-dialogs/imagechooserwidget.ui
     entry-dialogs/audiowidget.ui
     entry-dialogs/browserwidget.ui
