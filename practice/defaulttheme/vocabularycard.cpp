@@ -27,7 +27,7 @@ VocabularyCard::VocabularyCard()
     m_card = new QGraphicsSvgItem(KStandardDirs::locate("data", "parley/images/card.svg"), this);
     m_card->setElementId("Card");
 
-    m_text = new QGraphicsTextItem(this);
+    m_text = new QGraphicsTextItem(m_card);
 
 
 }
@@ -35,8 +35,6 @@ VocabularyCard::VocabularyCard()
 
 VocabularyCard::~VocabularyCard()
 {
-    delete m_card;
-    delete m_text;
 }
 
 void VocabularyCard::setText(const QString & text)
