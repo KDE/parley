@@ -3,6 +3,7 @@ include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/
 
 set(defaulttheme_SRCS
     defaulttheme/vocabularycard.cpp
+    defaulttheme/layout.svg
 )
 
 set(parleypractice_SRCS

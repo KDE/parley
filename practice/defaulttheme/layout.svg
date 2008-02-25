@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="800"
+   height="600"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   sodipodi:docbase="/home/frederik/kde/4/src/KDE/kdeedu/parley/practice/defaulttheme"
+   sodipodi:docname="layout.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   version="1.0">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="375"
+     inkscape:cy="520"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1202"
+     inkscape:window-height="605"
+     inkscape:window-x="253"
+     inkscape:window-y="103"
+     width="800px"
+     height="600px" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="opacity:0.8;fill:#000000;fill-opacity:1"
+       id="timer"
+       width="214.28572"
+       height="202.85715"
+       x="551.42859"
+       y="28.571428"
+       inkscape:label="#rect2182" />
+    <rect
+       style="opacity:0.8;fill:#000000;fill-opacity:1"
+       id="card"
+       width="474.28571"
+       height="274.28571"
+       x="40"
+       y="142.85716"
+       inkscape:label="#rect2184" />
+    <rect
+       style="opacity:0.8;fill:#ffff00;fill-opacity:1"
+       id="userInput"
+       width="474.28571"
+       height="82.85714"
+       x="45.714287"
+       y="480"
+       inkscape:label="#rect2186" />
+  </g>
+</svg>
