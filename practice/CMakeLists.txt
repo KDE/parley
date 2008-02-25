@@ -24,6 +24,5 @@ target_link_libraries(
 
 install(TARGETS parleypractice  DESTINATION ${BIN_INSTALL_DIR} )
 install( FILES defaulttheme/card.svg
-        defaulttheme/layout.svg
     DESTINATION  ${DATA_INSTALL_DIR}/parley/defaulttheme/ )
 
