@@ -130,7 +130,7 @@ void WordTypeOptionPage::slotNewSubWordType()
     wordTypeTreeView->setCurrentIndex(item->index());
     wordTypeTreeView->edit(item->index());
 
-    setupSpecialComboBox(currentItem->parent()->text(), currentItem->text());
+    setupSpecialComboBox(currentItem->text(), item->text());
 }
 
 void WordTypeOptionPage::slotRename()
