@@ -27,15 +27,14 @@
 
 #include <kpagedialog.h>
 
-class KVTTableModel;
-class KVTLanguageList;
+class KEduVocDocument;
 class StatisticsPage;
 
 class KVTStatisticsDialog : public KPageDialog
 {
     Q_OBJECT
 public:
-    KVTStatisticsDialog(KVTTableModel *model, QWidget *parent);
+    KVTStatisticsDialog(KEduVocDocument* doc, QWidget *parent);
     ~KVTStatisticsDialog();
 
 protected slots:
@@ -43,7 +42,7 @@ protected slots:
     void accept();
 
 private:
-    KVTTableModel * m_model;
+    KEduVocDocument *m_doc;
     QList<StatisticsPage *> pageList;
 };
 

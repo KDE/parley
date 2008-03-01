@@ -30,9 +30,9 @@
 
 #include "StatisticsPage.h"
 #include "GenStatPage.h"
-#include "kvttablemodel.h"
+#include "keduvocdocument.h"
 
-KVTStatisticsDialog::KVTStatisticsDialog(KVTTableModel *model, QWidget *parent) : KPageDialog(parent)
+KVTStatisticsDialog::KVTStatisticsDialog(KEduVocDocument *doc, QWidget *parent) : KPageDialog(parent), m_doc(doc)
 {
     setCaption(i18n("Document Statistics"));
     setButtons(Ok | Apply | Cancel);
@@ -40,18 +40,16 @@ KVTStatisticsDialog::KVTStatisticsDialog(KVTTableModel *model, QWidget *parent) 
     setModal(true);
     setFaceType(KPageDialog::Tabbed);
 
-    m_model = model;
-
     StatisticsPage *spage;
 
-    GenStatPage *gspage = new GenStatPage(m_model->document(), 0);
+    GenStatPage *gspage = new GenStatPage(doc, 0);
     addPage(gspage, i18nc("general statistics page", "General"));
 
-    for (int i = 1; i < (int) m_model->document()->identifierCount(); i++) {
+    for (int i = 1; i < (int) doc->identifierCount(); i++) {
         QString s;
-        s = m_model->document()->identifier(i).name();
+        s = doc->identifier(i).name();
 
-        spage = new StatisticsPage(i, m_model->document(), 0);
+        spage = new StatisticsPage(i, doc, 0);
         addPage(spage, s);
         pageList.append(spage);
     }
@@ -70,9 +68,10 @@ KVTStatisticsDialog::~KVTStatisticsDialog()
 
 void KVTStatisticsDialog::slotApply()
 {
-    foreach(StatisticsPage *page, pageList)
+    foreach(StatisticsPage *page, pageList) {
         page->resetStatistics();
-    m_model->reset();
+    }
+    //m_doc->lesson()->resetGrades();
 }
 
 
