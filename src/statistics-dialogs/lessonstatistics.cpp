@@ -25,9 +25,11 @@
 #include <KAction>
 #include <KActionCollection>
 
+#include <QHeaderView>
+
 LessonStatisticsView::LessonStatisticsView(QWidget * parent) :ContainerView(parent)
 {
-
+    header()->setVisible(true);
 }
 
 

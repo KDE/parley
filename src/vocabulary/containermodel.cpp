@@ -59,21 +59,6 @@ void ContainerModel::setDocument(KEduVocDocument * doc)
 
     if (doc) {
         beginInsertRows(QModelIndex(), 0, 0);
-        /*
-        switch(m_type){
-        case KEduVocLesson::Lesson:
-    kDebug() << "setting root lesson";
-            m_container->appendChildContainer(doc->lesson());
-            break;
-        case KEduVocLesson::WordType:
-            m_container->appendChildContainer(doc->wordTypeContainer());
-            break;
-    //     case KEduVocLesson::Leitner:
-    //         m_container
-    //         break;
-        default:
-            break;
-        } */
         m_doc = doc;
         endInsertRows();
     }
@@ -256,7 +241,7 @@ QVariant ContainerModel::data(const QModelIndex & index, int role) const
     KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
 
     switch (index.column()){
-    case 0:
+    case 0: // Lesson name
         if (role == Qt::DisplayRole || role == Qt::EditRole) {
             return container->name();
         }
@@ -273,9 +258,18 @@ QVariant ContainerModel::data(const QModelIndex & index, int role) const
         if (role == Qt::TextAlignmentRole) {
             return Qt::AlignLeft;
         }
-    case 1:
+        break;
+    case 1: // Total count
         if (role == Qt::DisplayRole) {
             return container->entryCount(KEduVocLesson::Recursive);
+        }
+        if (role == Qt::TextAlignmentRole) {
+            return Qt::AlignRight;
+        }
+        break;
+    default: // Average grade
+        if (role == Qt::DisplayRole) {
+            return container->averageGrade(index.column()-2);
         }
         if (role == Qt::TextAlignmentRole) {
             return Qt::AlignRight;
@@ -326,10 +320,12 @@ Qt::ItemFlags ContainerModel::flags(const QModelIndex &index) const
             return (Qt::ItemIsEnabled | Qt::ItemIsSelectable
                         | Qt::ItemIsUserCheckable | Qt::ItemIsDropEnabled );
         }
-        // every other element
+        // the name column
         if ( index.column() == 0 ) {
             return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable
                     | Qt::ItemIsUserCheckable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled );
+        } else { // every other element
+            return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsDragEnabled |  Qt::ItemIsDropEnabled );
         }
     }
     return  Qt::ItemIsDropEnabled;
@@ -345,13 +341,18 @@ QVariant ContainerModel::headerData(int section, Qt::Orientation orientation, in
             if(role == Qt::DisplayRole) {
                 return i18n("Lesson");
             }
-
+            break;
         case 1:
             if(role == Qt::DisplayRole) {
                 return QVariant();
             }
             if(role == Qt::ToolTipRole) {
                 return i18n("Number of entries in this lesson.");
+            }
+            break;
+        default:
+            if(role == Qt::DisplayRole) {
+                return i18nc("Grade in language, table header", "Grade (%1)", m_doc->identifier(section-2).name());
             }
         }
     }
@@ -362,12 +363,12 @@ QVariant ContainerModel::headerData(int section, Qt::Orientation orientation, in
 int ContainerModel::columnCount(const QModelIndex & parent) const
 {
     Q_UNUSED(parent);
+    if (!m_doc) {
+        return 2;
+    }
 
-//     if(!m_doc) {
-//         return 0;
-//     }
-
-    return 2;
+    // for now one grade per language
+    return 2 + m_doc->identifierCount();
 }
 
 
