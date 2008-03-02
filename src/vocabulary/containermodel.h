@@ -115,9 +115,13 @@ signals:
      */
     void documentModified();
 
+protected:
+    KEduVocContainer *rootContainer() const;
+
 private:
-    KEduVocContainer * m_container;
+//     KEduVocContainer * m_container;
     KEduVocLesson::EnumContainerType m_type;
+    KEduVocDocument *m_doc;
 };
 
 

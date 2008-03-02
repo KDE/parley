@@ -57,6 +57,7 @@ void ContainerView::setModel(ContainerModel *model)
 {
     QTreeView::setModel(model);
     m_model = model;
+
     header()->setResizeMode(0, QHeaderView::Stretch);
     header()->setResizeMode(1, QHeaderView::ResizeToContents);
 }
@@ -70,7 +71,6 @@ void ContainerView::setTranslation(KEduVocExpression * entry, int translation)
     // who am I
     if(m_model->containerType() == KEduVocContainer::Lesson) {
         selectionModel()->clearSelection();
-        bool first = true;
         foreach(KEduVocLesson* lesson, entry->lessons()) {
             QModelIndex current = m_model->index(lesson);
             selectionModel()->select(current, QItemSelectionModel::Select);
