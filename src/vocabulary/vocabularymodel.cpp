@@ -105,7 +105,7 @@ int VocabularyModel::rowCount(const QModelIndex &index) const
     if ( !m_container ) {
         return 0;
     }
-    // only the root index has children because we have no hierachical model.
+    // only the root index has children because we have no hierarchical model.
     if (index == QModelIndex()) {
         return m_container->entryCount(m_recursive);
     }

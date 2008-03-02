@@ -22,7 +22,7 @@
 #include <sonnet/speller.h>
 #include <kdebug.h>
 
-/// temporary namespace for string manipulation fuctions
+/// temporary namespace for string manipulation functions
 /// could move into KStringHandler eventually
 namespace ParleyStringHandler {
     QString stripAccents(const QString& original){
@@ -79,7 +79,7 @@ void AnswerValidator::setLanguage(int translation)
 
     if ( !m_speller->isValid() ) {
         kDebug() << "No spellchecker for current language found: " << m_doc->identifier(m_translation).locale();
-        kDebug() << "Avaliable dictionaries: " << m_speller->availableLanguages()
+        kDebug() << "Available dictionaries: " << m_speller->availableLanguages()
                 << "\n names: " << m_speller->availableLanguageNames()
                 << "\n backends: " << m_speller->availableBackends();
         m_spellerAvailable = false;
@@ -97,7 +97,7 @@ void AnswerValidator::setTestEntry(TestEntry * entry)
     }
 }
 
-int AnswerValidator::levenshteinDistance(QString s, QString t)
+int AnswerValidator::levenshteinDistance(const QString& s, const QString& t)
 {
     int m = s.length();
     int n = t.length();
@@ -139,7 +139,7 @@ int AnswerValidator::levenshteinDistance(QString s, QString t)
     return m_d[m + n*dWidth];
 }
 
-bool AnswerValidator::spellcheckerMisspelled(QString userAnswer)
+bool AnswerValidator::spellcheckerMisspelled(const QString& userAnswer)
 {
     if (!m_spellerAvailable) {
         return true;
@@ -147,7 +147,7 @@ bool AnswerValidator::spellcheckerMisspelled(QString userAnswer)
     return m_speller->isMisspelled(userAnswer);
 }
 
-bool AnswerValidator::spellcheckerInSuggestionList(QString solution, QString userAnswer)
+bool AnswerValidator::spellcheckerInSuggestionList(const QString& solution, const QString& userAnswer)
 {
     if ( !m_spellerAvailable ) {
         return false;
@@ -302,7 +302,7 @@ void AnswerValidator::checkUserAnswer(const QString & userAnswer)
 
 void AnswerValidator::checkUserAnswer(const QString & solution, const QString & userAnswer, const QString& language)
 {
-kDebug() << "CheckUserAnswer with two strings. The one string version is prefered.";
+kDebug() << "CheckUserAnswer with two strings. The one string version is preferred.";
     if ( !language.isEmpty() ) {
 
     } else {
@@ -350,7 +350,7 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
             errorTypes = TestEntry::SpellingMistake;
             return;
         }
-        // this is a different word but sounds similiar!
+        // this is a different word but sounds similar!
         if ( !isMisspelled && inSuggestions ) {
             grade = FALSE_FRIEND_GRADE;
 //             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">NOOOO! That was a false friend!</font> ");
@@ -371,7 +371,7 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
                 errorTypes = TestEntry::SpellingMistake;
                 return;
             } else {
-//                 htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">I don't know that word and it is not similiar to the solution.</font> ");
+//                 htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">I don't know that word and it is not similar to the solution.</font> ");
                 errorTypes = TestEntry::UnknownMistake;
                 return;
             }

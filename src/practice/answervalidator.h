@@ -76,11 +76,11 @@ private:
      * @param t
      * @return the Levenshtein Distance measure
      */
-    int levenshteinDistance(QString s, QString t);
+    int levenshteinDistance(const QString& s, const QString& t);
 
-    bool spellcheckerMisspelled(QString s);
+    bool spellcheckerMisspelled(const QString& s);
 
-    bool spellcheckerInSuggestionList(QString solution, QString userAnswer);
+    bool spellcheckerInSuggestionList(const QString& solution, const QString& userAnswer);
 
     /**
      * Evaluate the closeness of two words. This is probably the most common case.

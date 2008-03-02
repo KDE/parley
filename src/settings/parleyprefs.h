@@ -15,11 +15,10 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef KVOCTRAINPREFS_H
-#define KVOCTRAINPREFS_H
+#ifndef PARLEYPREFS_H
+#define PARLEYPREFS_H
 
 #include <KConfigDialog>
-
 
 /**
   *@author Peter Hedlund
