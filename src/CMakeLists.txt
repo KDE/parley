@@ -121,6 +121,7 @@ set(statisticsdialogs_SRCS
     statistics-dialogs/GenStatPage.cpp
     statistics-dialogs/StatisticsDialog.cpp
     statistics-dialogs/StatisticsPage.cpp
+    statistics-dialogs/lessonstatistics.cpp
 )
 
 kde4_add_ui_files(statisticsdialogs_SRCS

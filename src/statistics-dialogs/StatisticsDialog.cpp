@@ -30,7 +30,12 @@
 
 #include "StatisticsPage.h"
 #include "GenStatPage.h"
+#include "lessonstatistics.h"
 #include "keduvocdocument.h"
+
+#include "vocabulary/containermodel.h"
+
+#include "modeltest/modeltest.h"
 
 KVTStatisticsDialog::KVTStatisticsDialog(KEduVocDocument *doc, QWidget *parent) : KPageDialog(parent), m_doc(doc)
 {
@@ -55,6 +60,18 @@ KVTStatisticsDialog::KVTStatisticsDialog(KEduVocDocument *doc, QWidget *parent) 
     }
 
     connect(this, SIGNAL(applyClicked()), this, SLOT(slotApply()));
+
+
+    ContainerModel *lessonModel = new ContainerModel(KEduVocLesson::Lesson, this);
+    lessonModel->setDocument(doc);
+
+    new ModelTest(lessonModel, this);
+
+    LessonStatisticsView *lessonStatistics = new LessonStatisticsView(0);
+    addPage(lessonStatistics, i18n("Lesson Statistics"));
+
+    lessonStatistics->setModel(lessonModel);
+
 
     KConfigGroup cg(KGlobal::config(), "StatisticsDialog");
     restoreDialogSize(cg);

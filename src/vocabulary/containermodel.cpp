@@ -65,23 +65,6 @@ ContainerModel::~ ContainerModel()
 
 void ContainerModel::setDocument(KEduVocDocument * doc)
 {
-
-//     appendLesson(QModelIndex(), "first");
-//     appendLesson(QModelIndex(), "second");
-// 
-//     appendLesson(index(1, 0, QModelIndex()), "child of second");
-//     appendLesson(index(0, 0, QModelIndex()), "child of first");
-//     appendLesson(index(1, 0, QModelIndex()), "child 2 of second");
-
-/*
-kDebug() <<
-    "appended: " << 
-        static_cast<KEduVocContainer*>(appended.internalPointer())->name()
-    << "\nchild of appended: " <<
-        static_cast<KEduVocContainer*>(app2.internalPointer())->name();*/
-
-//     removeRows(0, 1, appended);
-
     if (rowCount(QModelIndex()) > 0) {
         beginRemoveRows(QModelIndex(), 0, 0);
         m_container->removeChildContainer(0);
@@ -149,15 +132,22 @@ QModelIndex ContainerModel::index(KEduVocContainer * container) const
 
 QModelIndex ContainerModel::parent(const QModelIndex &index) const
 {
-
     if (!index.isValid()) {
         return QModelIndex();
     }
 
     KEduVocContainer *childItem = static_cast<KEduVocContainer*>(index.internalPointer());
+    if (!childItem) {
+        return QModelIndex();
+    }
+
     KEduVocContainer *parentItem = childItem->parent();
 
     if (parentItem == m_container) {
+        return QModelIndex();
+    }
+
+    if (!parentItem) {
         return QModelIndex();
     }
 
