@@ -454,7 +454,6 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
     const ContainerMimeData * containerData =
              qobject_cast<const ContainerMimeData *>(data);
 
-
     if (containerData) {
         foreach (KEduVocContainer* container, containerData->containerList()) {
             // no way to move a word type to a lesson for now
@@ -464,25 +463,29 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
 
             if (action == Qt::MoveAction || action == Qt::CopyAction) {
                 kDebug() << "Move container: " << container->name();
-                KEduVocContainer* parentContainer;
+                KEduVocContainer* parentContainer = 0;
 
                 if (parent.isValid()) {
                     parentContainer = static_cast<KEduVocContainer*>(parent.internalPointer());
-                } else {
+                }
+                if (!parentContainer) {
+                    // drop into root
                     parentContainer = rootContainer();
+                } else {
+                    //make sure a container cannot be dropped into one of its child containers!
+                    KEduVocContainer* childTest = parentContainer;
+                    while (childTest != 0) {
+                        if (childTest == container) {
+                            kDebug() << "Cannot drop a container into one of its child containers!";
+                            return false;
+                        }
+                        childTest = childTest->parent();
+                    }
                 }
 
                 QModelIndex oldParent = index(container->parent());
 
-                //make sure a container cannot be dropped into one of its child containers!
-                KEduVocContainer* childTest = parentContainer;
-                while (childTest != 0) {
-                    if (childTest == container) {
-                        kDebug() << "Cannot drop a container into one of its child containers!";
-                        return false;
-                    }
-                    childTest = childTest->parent();
-                }
+
 
                 beginRemoveRows(oldParent, container->row(), container->row());
                 container->parent()->removeChildContainer(container->row());
@@ -493,7 +496,8 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
                     row = parentContainer->childContainerCount();
                 }
 
-                beginInsertRows(parent, row, row);
+                // use index because we sometimes reparent to the root container instead of dropping into nowhere
+                beginInsertRows(index(parentContainer), row, row);
                 parentContainer->insertChildContainer(row, container);
                 endInsertRows();
 
