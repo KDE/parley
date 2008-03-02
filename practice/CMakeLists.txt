@@ -3,7 +3,6 @@ include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/
 
 set(defaulttheme_SRCS
     defaulttheme/vocabularycard.cpp
-    defaulttheme/layout.svg
 )
 
 set(parleypractice_SRCS
@@ -25,5 +24,6 @@ target_link_libraries(
 
 install(TARGETS parleypractice  DESTINATION ${BIN_INSTALL_DIR} )
 install( FILES defaulttheme/card.svg
+               defaulttheme/layout.svg
     DESTINATION  ${DATA_INSTALL_DIR}/parley/defaulttheme/ )
 
