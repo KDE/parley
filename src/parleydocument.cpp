@@ -1,6 +1,6 @@
 /***************************************************************************
 
-    Copyright: 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
  ***************************************************************************/
 

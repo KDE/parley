@@ -45,7 +45,7 @@ public:
     };
 
 
-    ContainerModel(KEduVocLesson::EnumContainerType type, QObject *parent = 0);
+    explicit ContainerModel(KEduVocLesson::EnumContainerType type, QObject *parent = 0);
     ~ContainerModel(); // no need for cleanup - the doc will do that
 
     QVariant data(const QModelIndex &index, int role) const;

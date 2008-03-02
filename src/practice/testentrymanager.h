@@ -50,7 +50,7 @@ public:
      * Create a collection of entries to be practiced.
      * @param doc
      */
-    TestEntryManager(KEduVocDocument *doc, QObject * parent = 0);
+    explicit TestEntryManager(KEduVocDocument *doc, QObject * parent = 0);
     /**
      * Default ctor
      */

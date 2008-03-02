@@ -173,54 +173,54 @@ void WrittenPracticeDialog::verifyClicked()
     QString errorText;
 
     if ( m_entry->lastErrors() & TestEntry::Correct ) {
-        errorText.append(i18n("<font color=\"#188C18\">You are right!</font>") + "\n");
+        errorText.append(i18n("<font color=\"#188C18\">You are right!</font>") + '\n');
     }
     if ( m_entry->lastErrors() & TestEntry::CapitalizationMistake ) {
-        errorText.append(i18n("<font color=\"#222978\">Watch your capitalization!</font>") + "\n");
+        errorText.append(i18n("<font color=\"#222978\">Watch your capitalization!</font>") + '\n');
     }
     if ( m_entry->lastErrors() & TestEntry::SpellingMistake ) {
-        errorText.append(i18n("<font color=\"#8C1818\">I think you made a spelling mistake. But the word is right.</font>") + "\n");
+        errorText.append(i18n("<font color=\"#8C1818\">I think you made a spelling mistake. But the word is right.</font>") + '\n');
     }
     if ( m_entry->lastErrors() & TestEntry::UnknownMistake ) {
-        errorText.append(i18n("<font color=\"#8C1818\">You made a mistake.</font>") + "\n");
+        errorText.append(i18n("<font color=\"#8C1818\">You made a mistake.</font>") + '\n');
     }
     if ( m_entry->lastErrors() & TestEntry::AccentMistake ) {
-        errorText.append(i18n("<font color=\"#222978\">Your accentuation was wrong.</font>") + "\n");
+        errorText.append(i18n("<font color=\"#222978\">Your accentuation was wrong.</font>") + '\n');
     }
     if ( m_entry->lastErrors() & TestEntry::ArticleWrong ) {
-        errorText.append(i18n("<font color=\"#222978\">The article is wrong.</font>") + "\n");
+        errorText.append(i18n("<font color=\"#222978\">The article is wrong.</font>") + '\n');
     }
     if ( m_entry->lastErrors() & TestEntry::ArticleMissing ) {
-        errorText.append(i18n("<font color=\"#222978\">The article is missing.</font>") + "\n");
+        errorText.append(i18n("<font color=\"#222978\">The article is missing.</font>") + '\n');
     }
     if ( m_entry->lastErrors() & TestEntry::FalseFriend ) {
-        errorText.append(i18n("<font color=\"#8C1818\">Watch out! This is a false friend!</font>") + "\n");
+        errorText.append(i18n("<font color=\"#8C1818\">Watch out! This is a false friend!</font>") + '\n');
     }
     if ( m_entry->lastErrors() & TestEntry::Synonym ) {
-        errorText.append(i18n("<font color=\"#8C1818\">Great, you entered a synonym.</font>") + "\n");
+        errorText.append(i18n("<font color=\"#8C1818\">Great, you entered a synonym.</font>") + '\n');
     }
     if ( m_entry->lastErrors() & TestEntry::Empty ) {
-        errorText.append(i18n("<font color=\"#8C8C18\">Please enter something for me to check.</font>") + "\n");
+        errorText.append(i18n("<font color=\"#8C8C18\">Please enter something for me to check.</font>") + '\n');
     }
     if ( m_entry->lastErrors() & TestEntry::UnrelatedWord ) {
-        errorText.append(i18n("<font color=\"#8C1818\">I know that word, but are you sure it's the right one here?</font>") + "\n");
+        errorText.append(i18n("<font color=\"#8C1818\">I know that word, but are you sure it is the right one here?</font>") + '\n');
     }
 
     if ( errorText.isEmpty() ) {
-        errorText.append(i18n("There is a mistake.") + " " + QString::number(m_entry->lastErrors()));
+        errorText.append(i18n("There is a mistake.") + ' ' + QString::number(m_entry->lastErrors()));
     }
 
     if ( Prefs::ignoreCapitalizationMistakes() ) {
         if (m_entry->lastErrors() == TestEntry::CapitalizationMistake && !userAnswer.isEmpty()) {
             result = 1.0;
-            errorText.append(" (" + userAnswer + ")");
+            errorText.append(" (" + userAnswer + ')');
         }
     }
 
     if ( Prefs::ignoreAccentMistakes() ) {
         if (m_entry->lastErrors() == TestEntry::AccentMistake && !userAnswer.isEmpty()) {
             result = 1.0;
-            errorText.append(" (" + userAnswer + ")");
+            errorText.append(" (" + userAnswer + ')');
         }
     }
 
@@ -229,7 +229,7 @@ void WrittenPracticeDialog::verifyClicked()
         showContinueButton(true);
     } else {
         if(!userAnswer.isEmpty())
-            errorText.append(" (" + userAnswer + ")");
+            errorText.append(" (" + userAnswer + ')');
         setWidgetStyle(mw->answerLineEdit, NegativeResult);
         // the percentage is very vague anyway, don't show floats...
 //         mw->status->setText(i18n("That was wrong. (%1%)", (int)(result*100)));

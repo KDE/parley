@@ -70,7 +70,7 @@ class ParleyApp : public KXmlGuiWindow
 
 public:
     /** construtor with appName (executable name) and filename to open */
-    ParleyApp(const QString& appName, const KUrl &filename = KUrl());
+    explicit ParleyApp(const QString& appName, const KUrl &filename = KUrl());
 
     /** destructor */
     ~ParleyApp();
