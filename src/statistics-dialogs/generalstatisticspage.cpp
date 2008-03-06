@@ -8,6 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+    Copyright 2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>Õ*
 
     -----------------------------------------------------------------------
 
@@ -22,14 +23,14 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "GenStatPage.h"
+#include "generalstatisticspage.h"
 
 #include <QLabel>
 
 #include <keduvocdocument.h>
 #include <keduvoclesson.h>
 
-GenStatPage::GenStatPage(KEduVocDocument *doc, QWidget* parent): QWidget(parent)
+GeneralStatisticsPage::GeneralStatisticsPage(KEduVocDocument *doc, QWidget* parent): QWidget(parent)
 {
     setupUi(this);
     l_filename->setText(doc->url().path());
@@ -39,9 +40,6 @@ GenStatPage::GenStatPage(KEduVocDocument *doc, QWidget* parent): QWidget(parent)
     s.setNum(doc->lesson()->entryCount(KEduVocLesson::Recursive));
     kcfg_entriesPerLesson->setText(s);
 
-//     QStringList lesson = doc->lessonNames();
-//     s.setNum(lesson.size());
-//     l_lessons->setText(s);
 }
 
-#include "GenStatPage.moc"
+#include "generalstatisticspage.moc"

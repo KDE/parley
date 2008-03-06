@@ -8,6 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
+    Copyright 2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>Õ*
 
     -----------------------------------------------------------------------
 
@@ -23,18 +24,22 @@
  ***************************************************************************/
 
 
-#ifndef GenStatPage_included
-#define GenStatPage_included
+#ifndef GENERALSTATISTICSPAGE_H
+#define GENERALSTATISTICSPAGE_H
 
-#include "ui_GenStatPageForm.h"
+#include "ui_generalstatisticspage.h"
 
 class KEduVocDocument;
 
-class GenStatPage : public QWidget, public Ui::GenStatPageForm
+/**
+ * Display general document information like author
+ * and number of contained vocabulary.
+ */
+class GeneralStatisticsPage : public QWidget, public Ui::GeneralStatisticsPage
 {
     Q_OBJECT
 public:
-    GenStatPage(KEduVocDocument *doc, QWidget* parent);
+    GeneralStatisticsPage(KEduVocDocument *doc, QWidget* parent);
 };
 
-#endif // GenStatPage_included
+#endif

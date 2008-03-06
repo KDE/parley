@@ -31,6 +31,9 @@ class LessonView : public ContainerView
 public:
     LessonView(ParleyApp *parent);
 
+    /** Set the model for the view.
+     * @param model the model */
+    virtual void setModel(ContainerModel *model);
 
 public slots:
     /** Append a lesson to the model and automatically set an edit up so the user can change "New lesson" into something meaningfull.*/
@@ -43,6 +46,12 @@ public slots:
      * @todo Let the user select if entries are taken by random or order.
      */
     void slotSplitLesson();
+
+
+    /**
+     * get notified of new columns only to hide them (grades not shown by default).
+     */
+    void columnsInserted();
 };
 
 #endif

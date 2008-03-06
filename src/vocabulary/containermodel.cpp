@@ -368,7 +368,7 @@ int ContainerModel::columnCount(const QModelIndex & parent) const
     }
 
     // for now one grade per language
-    return 2 + m_doc->identifierCount();
+    return 2; // + m_doc->identifierCount();
 }
 
 

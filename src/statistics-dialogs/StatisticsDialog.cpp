@@ -29,7 +29,7 @@
 #include <KGlobal>
 
 #include "StatisticsPage.h"
-#include "GenStatPage.h"
+#include "generalstatisticspage.h"
 #include "lessonstatistics.h"
 #include "keduvocdocument.h"
 
@@ -47,7 +47,7 @@ KVTStatisticsDialog::KVTStatisticsDialog(KEduVocDocument *doc, QWidget *parent) 
 
     StatisticsPage *spage;
 
-    GenStatPage *gspage = new GenStatPage(doc, 0);
+    GeneralStatisticsPage *gspage = new GeneralStatisticsPage(doc, 0);
     addPage(gspage, i18nc("general statistics page", "General"));
 
     for (int i = 1; i < (int) doc->identifierCount(); i++) {

@@ -143,6 +143,22 @@ void LessonView::slotSplitLesson()
     setExpanded(selectionModel()->currentIndex(), true);
 }
 
+void LessonView::setModel(ContainerModel * model)
+{
+    ContainerView::setModel(model);
+    connect(model, SIGNAL(columnsInserted ( const QModelIndex &, int, int )), this, SLOT(columnsInserted()));
+    for (int i = 2; i< model->columnCount(QModelIndex()); i++) {
+        setColumnHidden(i, true);
+    }
+}
+
+void LessonView::columnsInserted()
+{
+    for (int i = 2; i< m_model->columnCount(QModelIndex()); i++) {
+        setColumnHidden(i, true);
+    }
+}
+
 
 
 #include "lessonview.moc"

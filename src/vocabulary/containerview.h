@@ -39,7 +39,7 @@ public:
     ContainerView(QWidget *parent = 0);
     /** Set the model for the view.
      * @param model the model */
-    void setModel(ContainerModel *model);
+    virtual void setModel(ContainerModel *model);
 
 
 public slots:
