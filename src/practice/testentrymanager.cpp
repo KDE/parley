@@ -89,10 +89,11 @@ QString TestEntryManager::gradeStr(int i)
 }
 
 
-TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
+TestEntryManager::TestEntryManager(KEduVocDocument* doc, QWidget * parent)
     :QObject(parent)
 {
     m_doc = doc;
+    m_parent = parent;
     m_fromTranslation = Prefs::questionLanguage();
     m_toTranslation = Prefs::solutionLanguage();
     m_testType = Prefs::testType();
@@ -155,32 +156,35 @@ void TestEntryManager::startPractice()
     if ( m_currentEntries.count() == 0 ) {
         return;
     }
+    if (m_parent) {
+        m_parent->hide();
+    }
 
     switch ( Prefs::testType() ) {
     case Prefs::EnumTestType::WrittenTest:
-        m_practiceDialog = new WrittenPracticeDialog(m_doc, 0);
+        m_practiceDialog = new WrittenPracticeDialog(m_doc, m_parent);
         break;
     case Prefs::EnumTestType::MultipleChoiceTest:
-        m_practiceDialog = new MCQueryDlg(m_doc, 0);
+        m_practiceDialog = new MCQueryDlg(m_doc, m_parent);
         break;
     case Prefs::EnumTestType::MixedLettersTest:
-        m_practiceDialog = new MixedLetterPracticeDialog(m_doc, 0);
+        m_practiceDialog = new MixedLetterPracticeDialog(m_doc, m_parent);
         break;
     case Prefs::EnumTestType::ArticleTest:
-        m_practiceDialog = new ArtQueryDlg(m_doc, 0);
+        m_practiceDialog = new ArtQueryDlg(m_doc, m_parent);
         break;
     case Prefs::EnumTestType::ComparisonTest:
-        m_practiceDialog = new AdjQueryDlg(m_doc, 0);
+        m_practiceDialog = new AdjQueryDlg(m_doc, m_parent);
         break;
     case Prefs::EnumTestType::ConjugationTest:
-        m_practiceDialog = new VerbQueryDlg(m_doc, 0);
+        m_practiceDialog = new VerbQueryDlg(m_doc, m_parent);
         break;
     // tests using the simple dialog
     case Prefs::EnumTestType::SynonymTest:
     case Prefs::EnumTestType::AntonymTest:
     case Prefs::EnumTestType::ExampleTest:
     case Prefs::EnumTestType::ParaphraseTest:
-        m_practiceDialog = new SimpleQueryDlg(m_doc, 0);
+        m_practiceDialog = new SimpleQueryDlg(m_doc, m_parent);
         break;
     default:
         kError() << "unknown test type";
@@ -189,9 +193,12 @@ void TestEntryManager::startPractice()
     connect(m_practiceDialog, SIGNAL(showSolutionFinished()), SLOT(setNextEntry()));
     setNextEntry();
     m_practiceDialog->exec();
-    m_practiceDialog->deleteLater();
 
-    PracticeSummaryDialog practiceSummaryDialog(this, 0);
+    if (m_parent) {
+        m_parent->show();
+    }
+
+    PracticeSummaryDialog practiceSummaryDialog(this, m_parent);
     practiceSummaryDialog.exec();
 }
 

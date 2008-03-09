@@ -50,7 +50,7 @@ public:
      * Create a collection of entries to be practiced.
      * @param doc
      */
-    explicit TestEntryManager(KEduVocDocument *doc, QObject * parent = 0);
+    explicit TestEntryManager(KEduVocDocument *doc, QWidget * parent = 0);
     /**
      * Default ctor
      */
@@ -108,6 +108,7 @@ private slots:
 
 private:
     KEduVocDocument *m_doc;
+    QWidget *m_parent;
     int m_fromTranslation;
     int m_toTranslation;
     int m_testType;
