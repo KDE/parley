@@ -2,6 +2,7 @@
 Name=Parley Data Engine
 Name[el]=Μηχανή δεδομένων Parley
 Name[ga]=Inneall Sonraí Parley
+Name[km]=ម៉ាស៊ីន​ទិន្នន័យ​ចរចា
 Name[nds]=Parley-Datenkarn
 Name[pt]=Motor de Dados do Parley
 Name[pt_BR]=Motor de Dados do Parley
@@ -12,6 +13,7 @@ Name[zh_TW]=Parley 資料引擎
 Comment=Vocabulary data for Plasmoids
 Comment[el]=Δεδομένα λεξιλογίου για πλασμοειδή
 Comment[ga]=Sonraí Stóir Focal le haghaidh Plasmoids
+Comment[km]=ទិន្នន័យ​វាក្យស័ព្ទ​សម្រាប់ Plasmoids
 Comment[nds]=Vokavel-Daten för Plasmoiden
 Comment[pt]=Dados de vocabulário dos Plasmóides
 Comment[pt_BR]=Dados de vocabulário dos Plasmóides
