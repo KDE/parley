@@ -68,6 +68,9 @@ VocabularyView::VocabularyView(ParleyApp * parent)
     setWordWrap(true);
     setDragEnabled(true);
 
+    // smooth scrolling horizontally, otherwise it tries to jump from item to item.
+    setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
+
     // create actions
     m_vocabularyColumnsActionMenu = new KActionMenu(this);
 
