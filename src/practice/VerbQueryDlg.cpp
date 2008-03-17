@@ -344,7 +344,7 @@ void VerbQueryDlg::showSolution()
     QString tense = m_tenses.value(0);
 
     foreach ( int i, m_conjugationWidgets.keys() ) {
-        m_conjugationWidgets.value(i)->setText(m_entry->entry()->translation(Prefs::solutionLanguage())->conjugations()[tense].conjugation(i));
+        m_conjugationWidgets.value(i)->setText(m_entry->entry()->translation(Prefs::solutionLanguage())->conjugations()[tense].conjugation(i).text());
         setWidgetStyle(m_conjugationWidgets.value(i), PositiveResult);
         m_conjugationWidgets.value(i)->setReadOnly(true);
     }
@@ -361,7 +361,7 @@ void VerbQueryDlg::verifyClicked()
     bool all_correct = true;
     bool all_filled = true;
     foreach ( int i, m_conjugationWidgets.keys() ) {
-        solution = m_entry->entry()->translation(Prefs::solutionLanguage())->conjugation(m_currentTense).conjugation(i);
+        solution = m_entry->entry()->translation(Prefs::solutionLanguage())->conjugation(m_currentTense).conjugation(i).text();
         if ( !solution.isEmpty() ) {
             if ( m_conjugationWidgets.value(i)->text() == solution ) {
                 setWidgetStyle(m_conjugationWidgets[i], PositiveResult);

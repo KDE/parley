@@ -94,7 +94,7 @@ void ConjugationWidget::slotTenseSelected(int sel)
 void ConjugationWidget::updateEntries()
 {
     foreach(int key, m_conjugationLineEdits.keys()) {
-        m_conjugationLineEdits.value(key)->setText(m_entry->translation(m_identifier)->conjugation(tenseComboBox->currentText()).conjugation(key));
+        m_conjugationLineEdits.value(key)->setText(m_entry->translation(m_identifier)->conjugation(tenseComboBox->currentText()).conjugation(key).text());
     }
 }
 
