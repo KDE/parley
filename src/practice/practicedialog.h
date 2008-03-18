@@ -28,7 +28,7 @@
 #include "testentrymanager.h"
 #include "prefs.h"
 
-#include <keduvocgrammar.h>
+#include <keduvocarticle.h>
 #include <KUrl>
 #include <KDialog>
 #include <QCloseEvent>
