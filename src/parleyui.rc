@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="parley"  version="0.2">
- <MenuBar>
-  <Menu name="file" >
-   <Action append="open_merge" name="file_open_example" />
-   <Action append="open_merge" name="file_ghns" />
-   <Separator append="open_merge" />
-   <Action append="open_merge" name="file_merge" />
-   <Action append="save_merge" name="edit_save_selected_area" />
-   <Separator/>
-   <Action name="file_properties" />
-   <Separator/>
-  </Menu>
+<gui name="parley"  version="0.3">
+
+<MenuBar>
+    <Menu name="file" >
+        <Action append="open_merge" name="file_open_example" />
+        <Action append="open_merge" name="file_ghns" />
+        <Action append="open_merge" name="file_open_downloaded" />
+        <Separator/>
+        <Action name="file_properties" />
+        <Separator/>
+    </Menu>
   <Menu name="edit" >
       <Separator/>
       <Action name="edit_languages" />
@@ -64,6 +63,7 @@
     <Action name="help_tipofday"/>
   </Menu>
  </MenuBar>
+
  <ToolBar noMerge="1" name="mainToolBar" >
   <text>Main Toolbar</text>
   <Action name="file_open" />

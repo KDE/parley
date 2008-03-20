@@ -142,6 +142,7 @@ ParleyApp::~ParleyApp()
 void ParleyApp::saveOptions()
 {
     m_recentFilesAction->saveEntries(KGlobal::config()->group("Recent Files"));
+    m_downloadedFilesAction->saveEntries(KGlobal::config()->group("Downloaded Files"));
 
 ///@todo save selection per document
 //     if (m_tableView) {
@@ -549,6 +550,15 @@ void ParleyApp::initActions()
     m_recentFilesAction = KStandardAction::openRecent(m_document, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
     m_recentFilesAction->loadEntries(KGlobal::config()->group("Recent Files"));
 
+    m_downloadedFilesAction = new KRecentFilesAction(KIcon("get-hot-new-stuff"), "file_open_downloaded", this);
+    actionCollection()->addAction("file_open_downloaded", m_downloadedFilesAction);
+    m_downloadedFilesAction->setText(i18n("Open Downloaded Vocabularies"));
+    m_downloadedFilesAction->loadEntries(KGlobal::config()->group("Downloaded Files"));
+    connect(m_downloadedFilesAction, SIGNAL(urlSelected(const KUrl &)), m_document, SLOT(open(const KUrl&)));
+    m_downloadedFilesAction->loadEntries(KGlobal::config()->group("Downloaded Files"));
+    m_downloadedFilesAction->setMaxItems(30);
+
+    /*
     KAction* fileMerge = new KAction(this);
     actionCollection()->addAction("file_merge", fileMerge);
     fileMerge->setText(i18n("&Merge..."));
@@ -557,6 +567,7 @@ void ParleyApp::initActions()
     fileMerge->setToolTip(fileMerge->whatsThis());
     fileMerge->setStatusTip(fileMerge->whatsThis());
     fileMerge->setEnabled(false); ///@todo merging files is horribly broken
+    */
 
     KAction* fileSave = KStandardAction::save(m_document, SLOT(save()), actionCollection());
     fileSave->setWhatsThis(i18n("Save the active vocabulary document"));

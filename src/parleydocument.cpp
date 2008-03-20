@@ -319,6 +319,7 @@ void ParleyDocument::slotGHNS()
                     KProcess newParley;
                     newParley.setProgram("parley", QStringList() << file);
                     newParley.startDetached();
+                    m_parleyApp->m_downloadedFilesAction->addUrl(file);
                 }
             }
         }

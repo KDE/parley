@@ -140,6 +140,7 @@ private:
 
     // KAction pointers to enable/disable actions
     KRecentFilesAction* m_recentFilesAction;
+    KRecentFilesAction* m_downloadedFilesAction;
     KAction* m_deleteEntriesAction;
     KAction* m_vocabShowSearchBarAction;
     KActionMenu* m_vocabularyColumnsActionMenu;
