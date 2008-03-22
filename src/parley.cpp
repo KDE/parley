@@ -326,7 +326,12 @@ void ParleyApp::updateDocument()
     m_vocabularyModel->setDocument(m_document->document());
 
     m_lessonModel->setDocument(m_document->document());
+
+    // expand the root items
+    m_lessonView->expandToDepth(0);
+
     m_wordTypeModel->setDocument(m_document->document());
+    m_wordTypeView->expandToDepth(0);
 
     connect(m_document->document(), SIGNAL(docModified(bool)), this, SLOT(slotUpdateWindowCaption()));
 
