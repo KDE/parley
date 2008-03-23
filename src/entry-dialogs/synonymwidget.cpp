@@ -24,132 +24,49 @@ SynonymWidget::SynonymWidget(SynonymWidgetType type, QWidget *parent) : QWidget(
 {
     m_type = type;
     m_currentTranslation = 0;
-    m_newTranslation = 0;
+    m_lastTranslation = 0;
     setupUi(this);
 
-    connect(translationLineEdit, SIGNAL(), SLOT());
-    connect(setTranslationButton, SIGNAL(clicked()), SLOT(makeTranslationCurrent()));
-    connect(listView, SIGNAL(), SLOT());
-    connect(addToListButton, SIGNAL(clicked()), SLOT(addToList()));
-    connect(removeFromListButton, SIGNAL(clicked()), SLOT(removeFromList()));
-
+//     connect(translationLineEdit, SIGNAL(), SLOT());
+    connect(synonymButton, SIGNAL(clicked()), SLOT(togglePair()));
+//     connect(listView, SIGNAL(), SLOT());
+// 
     m_listModel = new QStringListModel(this);     listView->setModel(m_listModel);
-
-//     connect(m_listModel, SIGNAL(dataChanged ( const QModelIndex &, const QModelIndex & )), SLOT(slotDataChanged( const QModelIndex &, const QModelIndex & )));
-
-    listView->setAcceptDrops(true);
-    listView->installEventFilter(this);
 
     setEnabled(false);
 }
 
 
-void SynonymWidget::slotDataChanged( const QModelIndex & topLeft, const QModelIndex & bottomRight )
-{
-//     m_translation->multipleChoice() = m_choicesModel->stringList();
-//     removeChoiceButton->setEnabled(m_translation && m_translation->multipleChoice().count() > 0);
-}
-
-
 void SynonymWidget::setTranslation(KEduVocExpression * entry, int translation)
 {
-    m_newTranslation = entry->translation(translation);
-
-    if (m_newTranslation) {
-        setTranslationButton->setEnabled(true);
+    if (m_currentTranslation) {
+        m_lastTranslation = m_currentTranslation;
     }
 
-    if (m_newTranslation || m_currentTranslation) {
-        setEnabled(true);
-    }
-    addToListButton->setEnabled(m_newTranslation && m_currentTranslation &&
-            m_newTranslation != m_currentTranslation);
-
-    setTranslationButton->setText(entry->translation(translation)->text());
+    m_currentTranslation = entry->translation(translation);
 
     if (m_currentTranslation) {
-        addToListButton->setText(i18n("Add \"%1\" as Synonym", entry->translation(translation)->text()));
+        synonymButton->setEnabled(true);
+        updateList();
+        if (m_lastTranslation) {
+            if (m_currentTranslation->synonyms().contains(m_lastTranslation)) {
+                synonymButton->setText(i18n("%1 and %2 are not Synonyms", m_currentTranslation->text(), m_lastTranslation->text()));
+            } else {
+                synonymButton->setText(i18n("%1 and %2 are Synonyms", m_currentTranslation->text(), m_lastTranslation->text()));
+            }
+        }
     }
 
-//     if (entry) {
-//         m_translation = entry->translation(translation);
-//     } else {
-//         m_translation = 0;
-//     }
-// 
-//     if (m_translation) {
-//         setEnabled(true);
-//         m_choicesModel->setStringList(m_translation->multipleChoice());
-//         removeChoiceButton->setEnabled(m_translation->multipleChoice().count() > 0);
-//     } else {
-//         setEnabled(false);
-//     }
-//     removeChoiceButton->setEnabled(m_translation && m_translation->multipleChoice().count() > 0);
+    if (m_lastTranslation || m_currentTranslation) {
+        setEnabled(true);
+    }
+
 }
 
 
-void SynonymWidget::slotAddChoiceButton()
+void SynonymWidget::updateList()
 {
-//     m_choicesModel->insertRow(m_choicesModel->rowCount());
-//     QModelIndex index(m_choicesModel->index(m_choicesModel->rowCount() - 1));
-//     m_choicesModel->setData(index, "");
-//     multipleChoiceListView->scrollTo(index);
-//     multipleChoiceListView->setCurrentIndex(index);
-//     multipleChoiceListView->edit(index);
-}
-
-
-void SynonymWidget::slotRemoveChoiceButton()
-{
-//     QModelIndex index = multipleChoiceListView->selectionModel()->currentIndex();
-//     if (index.isValid()) {
-//         m_choicesModel->removeRows(index.row(), 1, QModelIndex());
-//     } else {
-//         m_choicesModel->removeRows(m_choicesModel->rowCount(QModelIndex()) - 1, 1, QModelIndex());
-//     }
-//     m_translation->multipleChoice() = m_choicesModel->stringList();
-//     removeChoiceButton->setEnabled(m_translation && m_translation->multipleChoice().count() > 0);
-}
-
-
-bool SynonymWidget::eventFilter(QObject * obj, QEvent * event)
-{
-//     if (obj == multipleChoiceListView) {
-//         if (event->type() == QEvent::DragEnter) {
-//             QDragEnterEvent *dragEnterEvent = static_cast<QDragEnterEvent *>(event);
-//             kDebug() << "DragEnter mime format: " << dragEnterEvent->format();
-//             if (dragEnterEvent->mimeData()->hasText()) {
-//                 event->accept();
-//             }
-//             return true;
-//         }
-// 
-//         if (event->type() == QEvent::DragMove) {
-//             event->accept();
-//             return true;
-//         }
-// 
-//         if (event->type() == QEvent::Drop) {
-//             QDropEvent *dropEvent = static_cast<QDropEvent *>(event);
-//             kDebug() << "You dropped onto me: " << dropEvent->mimeData()->text();
-// 
-//             QStringList choices = dropEvent->mimeData()->text().split('\n');
-//             foreach(const QString &choice, choices) {
-//                 m_choicesModel->insertRow(multipleChoiceListView->model()->rowCount());
-//                 m_choicesModel->setData(m_choicesModel->index(multipleChoiceListView->model()->rowCount()-1), choice);
-//             }
-//             return true;
-//         }
-//     }
-    return QObject::eventFilter(obj, event);
-}
-
-void SynonymWidget::makeTranslationCurrent()
-{
-    m_currentTranslation = m_newTranslation;
-    setTranslationButton->setEnabled(false);
-    addToListButton->setEnabled(false);
-    translationLineEdit->setText(m_currentTranslation->text());
+    synonymLabel->setText(i18nc("Title for a list of synonyms for a word", "Synonyms of %1", m_currentTranslation->text()));
 
     // load list of old synonyms
     m_listModel->removeRows(0, m_listModel->rowCount());
@@ -172,19 +89,21 @@ void SynonymWidget::makeTranslationCurrent()
     }
 }
 
-void SynonymWidget::addToList()
+void SynonymWidget::togglePair()
 {
-    m_currentTranslation->addSynonym(m_newTranslation);
-    m_newTranslation->addSynonym(m_currentTranslation);
+    if (m_currentTranslation->synonyms().contains(m_lastTranslation)) {
+        // break up
+        
+    } else {
+        m_currentTranslation->addSynonym(m_lastTranslation);
+        m_lastTranslation->addSynonym(m_currentTranslation);
 
-    int row = m_listModel->rowCount();
-    m_listModel->insertRow(row);
-    m_listModel->setData(m_listModel->index(row), m_newTranslation->text());
-}
+        int row = m_listModel->rowCount();
+        m_listModel->insertRow(row);
+        m_listModel->setData(m_listModel->index(row), m_lastTranslation->text());
 
-void SynonymWidget::removeFromList()
-{
-    
+        synonymButton->setText("not synonyms");
+    }
 }
 
 

@@ -37,20 +37,14 @@ public:
 public slots:
     void setTranslation(KEduVocExpression* entry, int translation);
 
-protected:
-    bool eventFilter(QObject *obj, QEvent *event);
-
 private slots:
-    void makeTranslationCurrent();
-    void addToList();
-    void removeFromList();
-
-    void slotDataChanged( const QModelIndex & topLeft, const QModelIndex & bottomRight );
-    void slotAddChoiceButton();
-    void slotRemoveChoiceButton();
+    void togglePair();
+    void updateList();
 
 private:
-    KEduVocTranslation* m_newTranslation;
+    // the one that was selected before
+    KEduVocTranslation* m_lastTranslation;
+    // the one the user clicked on latest
     KEduVocTranslation* m_currentTranslation;
     QStringListModel * m_listModel;
     SynonymWidgetType m_type;
