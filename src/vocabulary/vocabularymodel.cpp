@@ -142,10 +142,6 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
                 return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->wordType()->name());
             }
             return QVariant();
-        case Synonym:
-            return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->synonym());
-        case Antonym:
-            return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->antonym());
         case Example: {
             QString example = m_container->entry(index.row(), m_recursive)->translation(translationId)->example();
             /*QString word = m_container->entry(index.row(), m_recursive)->translation(translationId)->text();
@@ -225,12 +221,6 @@ bool VocabularyModel::setData(const QModelIndex &index, const QVariant &value, i
         break;
     case WordType:
 //             m_container->entry(index.row(), m_recursive)->translation(translationId)->type();
-        break;
-    case Synonym:
-        m_container->entry(index.row(), m_recursive)->translation(translationId)->setSynonym(value.toString());
-        break;
-    case Antonym:
-        m_container->entry(index.row(), m_recursive)->translation(translationId)->setAntonym(value.toString());
         break;
     case Example:
         m_container->entry(index.row(), m_recursive)->translation(translationId)->setExample(value.toString());

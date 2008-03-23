@@ -56,7 +56,7 @@ public slots:
     void slotAnswerChanged(const QString&);
 //     void slotTransChanged(const QString&);
 //     void slotTransLostFocus();
-    void slotFalseFriendClicked(bool show);
+//     void slotFalseFriendClicked(bool show);
     void slotTypeClicked(bool show);
     void slotRemClicked(bool show);
 

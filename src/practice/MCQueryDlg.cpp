@@ -145,11 +145,12 @@ void MCQueryDlg::setEntry( TestEntry* entry)
     choices << m_entry->entry()->translation(Prefs::solutionLanguage())->multipleChoice();
 
     // always include false friend
-    QString falseFriend = m_entry->entry()->translation(Prefs::solutionLanguage())
-        ->falseFriend(Prefs::questionLanguage());
-    if (!falseFriend.isEmpty()) {
-        choices.append(falseFriend);
-    }
+    ///@todo include them again
+//     QString falseFriend = m_entry->entry()->translation(Prefs::solutionLanguage())
+//         ->falseFriend(Prefs::questionLanguage());
+//     if (!falseFriend.isEmpty()) {
+//         choices.append(falseFriend);
+//     }
 
     // create choices for the buttons: -solution -choices we have already
     choices << createAdditionalChoices(m_choiceRadioButtons.size() - 1 - choices.size());

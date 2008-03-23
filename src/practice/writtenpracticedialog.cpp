@@ -389,27 +389,27 @@ void WrittenPracticeDialog::setHintFields()
     mw->commentLabel->setVisible(hasComment);
     mw->commentCheckBox->setVisible(hasComment);
 
-    bool hasFalseFriend = !m_entry->entry()->translation(Prefs::questionLanguage())->falseFriend(Prefs::solutionLanguage()).isEmpty();
-    mw->falseFriendLabel->setVisible(hasFalseFriend);
-    mw->falsefriendCheckBox->setVisible(hasFalseFriend);
+//     bool hasFalseFriend = !m_entry->entry()->translation(Prefs::questionLanguage())->falseFriend(Prefs::solutionLanguage()).isEmpty();
+//     mw->falseFriendLabel->setVisible(hasFalseFriend);
+//     mw->falsefriendCheckBox->setVisible(hasFalseFriend);
 
     bool hasType = m_entry->entry()->translation(Prefs::questionLanguage())->wordType() != 0;
     mw->typeLabel->setVisible(hasType);
     mw->typeCheckBox->setVisible(hasType);
 
     // hide an empty hint box
-    mw->hintGroupBox->setVisible((hasComment||hasFalseFriend||hasType));
+    mw->hintGroupBox->setVisible((hasComment||hasType));
 }
 
 
-void WrittenPracticeDialog::slotFalseFriendClicked(bool show)
-{
-    if ( show ) {
-        mw->falseFriendLabel->setText(m_entry->entry()->translation(Prefs::questionLanguage())->falseFriend(Prefs::solutionLanguage()));
-    } else {
-        mw->falseFriendLabel->setText(QString());
-    }
-}
+// void WrittenPracticeDialog::slotFalseFriendClicked(bool show)
+// {
+//     if ( show ) {
+//         mw->falseFriendLabel->setText(m_entry->entry()->translation(Prefs::questionLanguage())->falseFriend(Prefs::solutionLanguage()));
+//     } else {
+//         mw->falseFriendLabel->setText(QString());
+//     }
+// }
 
 void WrittenPracticeDialog::slotRemClicked(bool show)
 {
