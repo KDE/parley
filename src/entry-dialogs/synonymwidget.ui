@@ -14,32 +14,29 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout" >
    <item>
-    <widget class="QLabel" name="translationLabel" >
-     <property name="text" >
-      <string>Add synonyms to:</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="translationLineEdit" />
-   </item>
-   <item>
     <layout class="QHBoxLayout" name="horizontalLayout" >
      <item>
-      <widget class="QPushButton" name="pushButton_2" >
+      <widget class="QLabel" name="translationLabel" >
+       <property name="text" >
+        <string>Add synonyms to:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="setTranslationButton" >
        <property name="text" >
         <string>Set</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QPushButton" name="pushButton" >
-       <property name="text" >
-        <string>Clear</string>
-       </property>
-      </widget>
-     </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="translationLineEdit" >
+     <property name="readOnly" >
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QLabel" name="dragLabel" >
@@ -52,14 +49,25 @@
     </widget>
    </item>
    <item>
-    <widget class="QListWidget" name="listWidget" />
+    <widget class="QListView" name="listView" />
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton_3" >
-     <property name="text" >
-      <string>Add XYZ</string>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout_2" >
+     <item>
+      <widget class="QPushButton" name="addToListButton" >
+       <property name="text" >
+        <string>Add XYZ</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="removeFromListButton" >
+       <property name="text" >
+        <string>Remove Selected</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>

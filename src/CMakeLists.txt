@@ -104,6 +104,7 @@ set(entrydialogs_SRCS
     entry-dialogs/imagechooserwidget.cpp
     entry-dialogs/audiowidget.cpp
     entry-dialogs/browserwidget.cpp
+    entry-dialogs/synonymwidget.cpp
 )
 
 kde4_add_ui_files(entrydialogs_SRCS
@@ -114,6 +115,7 @@ kde4_add_ui_files(entrydialogs_SRCS
     entry-dialogs/declensionwidget.ui
     entry-dialogs/imagechooserwidget.ui
     entry-dialogs/audiowidget.ui
+    entry-dialogs/synonymwidget.ui
     entry-dialogs/browserwidget.ui
 )
 

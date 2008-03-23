@@ -40,6 +40,7 @@
 #include "entry-dialogs/imagechooserwidget.h"
 #include "entry-dialogs/audiowidget.h"
 #include "entry-dialogs/browserwidget.h"
+#include "entry-dialogs/synonymwidget.h"
 
 #include "statistics-dialogs/StatisticsDialog.h"
 #include "settings/parleyprefs.h"
@@ -450,7 +451,39 @@ void ParleyApp::initDockWidgets()
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         multipleChoiceWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
+// Synonym (and the same for antonym and false friends)
+    QDockWidget *synonymDock = new QDockWidget(i18n("Synonyms"), this);
+    synonymDock->setObjectName("SynonymDock");
+    SynonymWidget *synonymWidget = new SynonymWidget(SynonymWidget::Synonym, this);
+    synonymDock->setWidget(synonymWidget);
+    addDockWidget(Qt::RightDockWidgetArea, synonymDock);
+    actionCollection()->addAction("show_synonym_dock", synonymDock->toggleViewAction());
+    synonymDock->setVisible(false);
+    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+            synonymWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
+    QDockWidget *antonymDock = new QDockWidget(i18n("Antonyms"), this);
+    antonymDock->setObjectName("AntonymDock");
+    SynonymWidget *antonymWidget = new SynonymWidget(SynonymWidget::Antonym, this);
+    antonymDock->setWidget(antonymWidget);
+    addDockWidget(Qt::RightDockWidgetArea, antonymDock);
+    actionCollection()->addAction("show_antonym_dock", antonymDock->toggleViewAction());
+    antonymDock->setVisible(false);
+    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+            antonymWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+
+    QDockWidget *falseFriendDock = new QDockWidget(i18n("False Friends"), this);
+    falseFriendDock->setObjectName("FalseFriendDock");
+    SynonymWidget *falseFriendWidget = new SynonymWidget(SynonymWidget::FalseFriend, this);
+    falseFriendDock->setWidget(falseFriendWidget);
+    addDockWidget(Qt::RightDockWidgetArea, falseFriendDock);
+    actionCollection()->addAction("show_falsefriend_dock", falseFriendDock->toggleViewAction());
+    falseFriendDock->setVisible(false);
+    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+            falseFriendWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+
+
+    
 // Pronunciation symbols - Use KCharSelect
     QDockWidget *charSelectDock = new QDockWidget(i18n("Phonetic Symbols"), this);
     charSelectDock->setObjectName("IPADock");

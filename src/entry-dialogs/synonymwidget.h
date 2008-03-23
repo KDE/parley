@@ -41,13 +41,18 @@ protected:
     bool eventFilter(QObject *obj, QEvent *event);
 
 private slots:
+    void makeTranslationCurrent();
+    void addToList();
+    void removeFromList();
+
     void slotDataChanged( const QModelIndex & topLeft, const QModelIndex & bottomRight );
     void slotAddChoiceButton();
     void slotRemoveChoiceButton();
 
 private:
-    KEduVocTranslation* m_translation;
-    QStringListModel * m_choicesModel;
+    KEduVocTranslation* m_newTranslation;
+    KEduVocTranslation* m_currentTranslation;
+    QStringListModel * m_listModel;
     SynonymWidgetType m_type;
 };
 

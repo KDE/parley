@@ -23,15 +23,22 @@
 SynonymWidget::SynonymWidget(SynonymWidgetType type, QWidget *parent) : QWidget(parent)
 {
     m_type = type;
+    m_currentTranslation = 0;
+    m_newTranslation = 0;
     setupUi(this);
 
-    m_choicesModel = new QStringListModel(this);
-//     multipleChoiceListView->setModel(m_choicesModel);
+    connect(translationLineEdit, SIGNAL(), SLOT());
+    connect(setTranslationButton, SIGNAL(clicked()), SLOT(makeTranslationCurrent()));
+    connect(listView, SIGNAL(), SLOT());
+    connect(addToListButton, SIGNAL(clicked()), SLOT(addToList()));
+    connect(removeFromListButton, SIGNAL(clicked()), SLOT(removeFromList()));
 
-//     connect(m_choicesModel, SIGNAL(dataChanged ( const QModelIndex &, const QModelIndex & )), SLOT(slotDataChanged( const QModelIndex &, const QModelIndex & )));
+    m_listModel = new QStringListModel(this);     listView->setModel(m_listModel);
 
-//     multipleChoiceListView->setAcceptDrops(true);
-//     multipleChoiceListView->installEventFilter(this);
+//     connect(m_listModel, SIGNAL(dataChanged ( const QModelIndex &, const QModelIndex & )), SLOT(slotDataChanged( const QModelIndex &, const QModelIndex & )));
+
+    listView->setAcceptDrops(true);
+    listView->installEventFilter(this);
 
     setEnabled(false);
 }
@@ -46,6 +53,23 @@ void SynonymWidget::slotDataChanged( const QModelIndex & topLeft, const QModelIn
 
 void SynonymWidget::setTranslation(KEduVocExpression * entry, int translation)
 {
+    m_newTranslation = entry->translation(translation);
+
+    if (m_newTranslation) {
+        setTranslationButton->setEnabled(true);
+    }
+
+    if (m_newTranslation || m_currentTranslation) {
+        setEnabled(true);
+    }
+    addToListButton->setEnabled(m_newTranslation && m_currentTranslation);
+
+    setTranslationButton->setText(entry->translation(translation)->text());
+
+    if (m_currentTranslation) {
+        addToListButton->setText(i18n("Add \"%1\" as Synonym", entry->translation(translation)->text()));
+    }
+
 //     if (entry) {
 //         m_translation = entry->translation(translation);
 //     } else {
@@ -117,6 +141,47 @@ bool SynonymWidget::eventFilter(QObject * obj, QEvent * event)
 //         }
 //     }
     return QObject::eventFilter(obj, event);
+}
+
+void SynonymWidget::makeTranslationCurrent()
+{
+    m_currentTranslation = m_newTranslation;
+    setTranslationButton->setEnabled(false);
+    translationLineEdit->setText(m_currentTranslation->text());
+
+    // load list of old synonyms
+    m_listModel->removeRows(0, m_listModel->rowCount()-1);
+    QList< KEduVocTranslation* > list;
+    switch(m_type) {
+        case Synonym:
+            list = m_currentTranslation->synonyms();
+            break;
+        case Antonym:
+            list = m_currentTranslation->antonyms();
+            break;
+        case FalseFriend:
+            list = m_currentTranslation->falseFriends();
+            break;
+    }
+    foreach (KEduVocTranslation* translation, list) {
+        int row = m_listModel->rowCount();
+        m_listModel->insertRow(row);
+        m_listModel->setData(m_listModel->index(row), translation->text());
+    }
+}
+
+void SynonymWidget::addToList()
+{
+    m_currentTranslation->addSynonym(m_newTranslation);
+
+    int row = m_listModel->rowCount();
+    m_listModel->insertRow(row);
+    m_listModel->setData(m_listModel->index(row), m_newTranslation->text());
+}
+
+void SynonymWidget::removeFromList()
+{
+    
 }
 
 
