@@ -35,6 +35,10 @@
       <Action name="show_multiplechoice_dock"/>
       <Action name="show_pronunciation_dock"/>
       <Separator/>
+      <Action name="show_synonym_dock"/>
+      <Action name="show_antonym_dock"/>
+      <Action name="show_falsefriend_dock"/>
+      <Separator/>
       <Action name="show_comparison_dock"/>
       <Action name="show_conjugation_dock"/>
       <Action name="show_declension_dock"/>
