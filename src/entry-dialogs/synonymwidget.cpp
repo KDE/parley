@@ -60,13 +60,12 @@ void SynonymWidget::setTranslation(KEduVocExpression * entry, int translation)
     if (m_lastTranslation || m_currentTranslation) {
         setEnabled(true);
     }
-
 }
 
 
 void SynonymWidget::updateList()
 {
-    synonymLabel->setText(i18nc("Title for a list of synonyms for a word", "Synonyms of %1", m_currentTranslation->text()));
+    synonymLabel->setText(i18nc("Title for a list of synonyms for a word", "Synonyms of %1:", m_currentTranslation->text()));
 
     // load list of old synonyms
     m_listModel->removeRows(0, m_listModel->rowCount());
@@ -93,16 +92,15 @@ void SynonymWidget::togglePair()
 {
     if (m_currentTranslation->synonyms().contains(m_lastTranslation)) {
         // break up
-        
+        m_currentTranslation->removeSynonym(m_lastTranslation);
+        m_lastTranslation->removeSynonym(m_currentTranslation);
+
+        updateList();
     } else {
         m_currentTranslation->addSynonym(m_lastTranslation);
         m_lastTranslation->addSynonym(m_currentTranslation);
 
-        int row = m_listModel->rowCount();
-        m_listModel->insertRow(row);
-        m_listModel->setData(m_listModel->index(row), m_lastTranslation->text());
-
-        synonymButton->setText("not synonyms");
+        updateList();
     }
 }
 
