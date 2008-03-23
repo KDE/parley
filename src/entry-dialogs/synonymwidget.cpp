@@ -150,7 +150,7 @@ void SynonymWidget::makeTranslationCurrent()
     translationLineEdit->setText(m_currentTranslation->text());
 
     // load list of old synonyms
-    m_listModel->removeRows(0, m_listModel->rowCount()-1);
+    m_listModel->removeRows(0, m_listModel->rowCount());
     QList< KEduVocTranslation* > list;
     switch(m_type) {
         case Synonym:
