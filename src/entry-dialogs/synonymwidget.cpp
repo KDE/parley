@@ -62,7 +62,8 @@ void SynonymWidget::setTranslation(KEduVocExpression * entry, int translation)
     if (m_newTranslation || m_currentTranslation) {
         setEnabled(true);
     }
-    addToListButton->setEnabled(m_newTranslation && m_currentTranslation);
+    addToListButton->setEnabled(m_newTranslation && m_currentTranslation &&
+            m_newTranslation != m_currentTranslation);
 
     setTranslationButton->setText(entry->translation(translation)->text());
 
@@ -147,6 +148,7 @@ void SynonymWidget::makeTranslationCurrent()
 {
     m_currentTranslation = m_newTranslation;
     setTranslationButton->setEnabled(false);
+    addToListButton->setEnabled(false);
     translationLineEdit->setText(m_currentTranslation->text());
 
     // load list of old synonyms
@@ -173,6 +175,7 @@ void SynonymWidget::makeTranslationCurrent()
 void SynonymWidget::addToList()
 {
     m_currentTranslation->addSynonym(m_newTranslation);
+    m_newTranslation->addSynonym(m_currentTranslation);
 
     int row = m_listModel->rowCount();
     m_listModel->insertRow(row);
