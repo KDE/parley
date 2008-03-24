@@ -15,19 +15,7 @@
 
 #include "lessonmodel.h"
 
-// #include "containermimedata.h"
-// #include "vocabularymimedata.h"
-// 
-// #include <keduvocdocument.h>
-// #include <keduvoclesson.h>
-// #include <keduvocwordtype.h>
-// #include <keduvocexpression.h>
-// 
 #include <KRandom>
-// #include <KIcon>
-// #include <kdebug.h>
-// #include <klocale.h>
-// #include <QItemSelection>
 
 /** @file
   * Implementation of LessonModel.

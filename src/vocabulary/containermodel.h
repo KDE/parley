@@ -64,21 +64,10 @@ public:
      * @return bool @c true it worked */
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
 
-    // add a lesson - returns lesson index
-//     QModelIndex addLesson(const QString &lessonName = QString());
 
     QModelIndex appendContainer(const QModelIndex& parent, const QString & containerName = QString());
 
     void deleteContainer(const QModelIndex& containerIndex);
-
-    /**
-     * Used for drag and drop, does not delete the lessons!
-     * @param row 
-     * @param count 
-     * @param parent 
-     * @return 
-     */
-//     bool removeRows(int row, int count, const QModelIndex &parent);
 
 public slots:
     /** Set the new source kvtml file
@@ -95,8 +84,7 @@ protected:
     KEduVocContainer *rootContainer() const;
 
 private:
-//     KEduVocContainer * m_container;
-    KEduVocLesson::EnumContainerType m_type;
+    KEduVocContainer::EnumContainerType m_type;
     KEduVocDocument *m_doc;
 };
 
