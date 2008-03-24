@@ -116,6 +116,11 @@ QList<KEduVocExpression*> EntryFilter::entries()
 
         updateTotal();
 
+        if (!Prefs::wordTypesInPracticeEnabled()) {
+            ui.wordTypeLabel->setVisible(false);
+            ui.wordTypeCheckBox->setVisible(false);
+        }
+
         if (m_dialog->exec() == QDialog::Rejected) {
             delete m_dialog;
             return QList<KEduVocExpression*>();
