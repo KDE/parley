@@ -31,6 +31,10 @@ public:
     EntryFilter(QObject * parent, KEduVocDocument *doc);
     ~EntryFilter();
 
+    /**
+     * Returns the list of test entries after filtering out invalid entries according to the settings.
+     * @return list of entries to practice
+     */
     QList<KEduVocExpression*> entries();
 
 private:

@@ -5,35 +5,38 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>602</width>
-    <height>469</height>
+    <width>399</width>
+    <height>470</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" >
    <item>
     <widget class="QLabel" name="label" >
      <property name="text" >
-      <string>Your selection of vocabulary for the practice is empty.</string>
+      <string>&lt;p>Your selection of vocabulary for the practice is empty.&lt;/p>&lt;p>Below you can choose to ignore some of your configuration settings to start a practice anyway.&lt;/p>&lt;p>To get rid of this message, please use "Configure Practice" and select the lessons you would like to practice.&lt;/p</string>
+     </property>
+     <property name="wordWrap" >
+      <bool>true</bool>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QGroupBox" name="groupBox" >
      <property name="title" >
-      <string>Change Settings</string>
+      <string>Ignore Configuration for:</string>
      </property>
      <layout class="QGridLayout" >
-      <item row="0" column="0" >
+      <item row="1" column="0" >
        <widget class="QCheckBox" name="lessonCheckBox" >
         <property name="text" >
-         <string>Selected lessons</string>
+         <string>Ignore Lessons</string>
         </property>
         <property name="checked" >
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
       </item>
-      <item row="0" column="1" >
+      <item row="1" column="1" >
        <widget class="QLabel" name="lessonLabel" >
         <property name="text" >
          <string>TextLabel</string>
@@ -43,17 +46,17 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0" >
+      <item row="2" column="0" >
        <widget class="QCheckBox" name="wordTypeCheckBox" >
         <property name="text" >
-         <string>Word type</string>
+         <string>Ignore Word Types</string>
         </property>
         <property name="checked" >
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
       </item>
-      <item row="1" column="1" >
+      <item row="2" column="1" >
        <widget class="QLabel" name="wordTypeLabel" >
         <property name="text" >
          <string>TextLabel</string>
@@ -63,17 +66,17 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="0" >
+      <item row="3" column="0" >
        <widget class="QCheckBox" name="blockedCheckBox" >
         <property name="text" >
-         <string>Blocked</string>
+         <string>Ignore Blocked</string>
         </property>
         <property name="checked" >
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
       </item>
-      <item row="2" column="1" >
+      <item row="3" column="1" >
        <widget class="QLabel" name="blockedLabel" >
         <property name="text" >
          <string>TextLabel</string>
@@ -83,17 +86,17 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="0" >
+      <item row="4" column="0" >
        <widget class="QCheckBox" name="timesWrongCheckBox" >
         <property name="text" >
-         <string>Times answered wrong</string>
+         <string>Ignore Times Answered Wrong</string>
         </property>
         <property name="checked" >
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
       </item>
-      <item row="3" column="1" >
+      <item row="4" column="1" >
        <widget class="QLabel" name="timesWrongLabel" >
         <property name="text" >
          <string>TextLabel</string>
@@ -103,17 +106,17 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0" >
+      <item row="5" column="0" >
        <widget class="QCheckBox" name="timesPracticedCheckBox" >
         <property name="text" >
-         <string>Times practiced</string>
+         <string>Ignore Times Practiced</string>
         </property>
         <property name="checked" >
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
       </item>
-      <item row="4" column="1" >
+      <item row="5" column="1" >
        <widget class="QLabel" name="timesPracticedLabel" >
         <property name="text" >
          <string>TextLabel</string>
@@ -123,20 +126,30 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="0" >
+      <item row="6" column="0" >
        <widget class="QCheckBox" name="minMaxGradeCheckBox" >
         <property name="text" >
-         <string>Minimum/maximum grade</string>
+         <string>Ignore Minimum/Maximum Grade</string>
         </property>
         <property name="checked" >
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
       </item>
-      <item row="5" column="1" >
+      <item row="6" column="1" >
        <widget class="QLabel" name="minMaxGradeLabel" >
         <property name="text" >
          <string>TextLabel</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <widget class="QLabel" name="lessonLabel_2" >
+        <property name="text" >
+         <string>Words</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -193,7 +206,7 @@
      <property name="orientation" >
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeHint" >
+     <property name="sizeHint" stdset="0" >
       <size>
        <width>20</width>
        <height>40</height>

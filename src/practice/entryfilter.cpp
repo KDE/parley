@@ -98,6 +98,13 @@ QList<KEduVocExpression*> EntryFilter::entries()
         ui.documentTotalLabel->setText(QString::number(m_entries.count()));
         updateTotal();
 
+        ui.lessonCheckBox->setChecked(!m_entriesLesson.count());
+        ui.wordTypeCheckBox->setChecked(!m_entriesWordType.count());
+        ui.blockedCheckBox->setChecked(!m_entriesBlocked.count());
+        ui.timesWrongCheckBox->setChecked(!m_entriesTimesWrong.count());
+        ui.timesPracticedCheckBox->setChecked(!m_entriesTimesPracticed.count());
+        ui.minMaxGradeCheckBox->setChecked(!m_entriesMinMaxGrade.count());
+
         connect( m_dialog, SIGNAL(okClicked()), this, SLOT(userSelectionAccepted()) );
         connect( m_dialog, SIGNAL(cancelClicked()), this, SLOT(userSelectionCanceled()) );
         connect( ui.lessonCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
@@ -107,8 +114,8 @@ QList<KEduVocExpression*> EntryFilter::entries()
         connect( ui.timesPracticedCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
         connect( ui.minMaxGradeCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
 
+        updateTotal();
 
-        m_dialog->enableButtonOk(false);
         if (m_dialog->exec() == KDialog::Cancel) {
             delete m_dialog;
             return QList<KEduVocExpression*>();
@@ -119,17 +126,6 @@ QList<KEduVocExpression*> EntryFilter::entries()
     return m_currentSelection.toList();
 }
 
-
-// void EntryFilter::filterLesson(bool filter)
-// {
-//     if (filter) {
-//         ui.lessonLabel->setText("yes");
-//     } else {
-//         ui.lessonLabel->setText("no");
-//     }
-//     updateTotal();
-// }
-
 void EntryFilter::checkBoxChanged(bool filter)
 {
     updateTotal();
@@ -138,22 +134,22 @@ void EntryFilter::checkBoxChanged(bool filter)
 void EntryFilter::updateTotal()
 {
     QSet< KEduVocExpression * > selected = m_entries;
-    if (!m_dialog || ui.lessonCheckBox->isChecked()) {
+    if (!m_dialog || !ui.lessonCheckBox->isChecked()) {
         selected = selected.intersect(m_entriesLesson);
     }
-    if (!m_dialog || ui.wordTypeCheckBox->isChecked()) {
+    if (!m_dialog || !ui.wordTypeCheckBox->isChecked()) {
         selected = selected.intersect(m_entriesWordType);
     }
-    if (!m_dialog || ui.blockedCheckBox->isChecked()) {
+    if (!m_dialog || !ui.blockedCheckBox->isChecked()) {
         selected = selected.intersect(m_entriesBlocked);
     }
-    if (!m_dialog || ui.timesWrongCheckBox->isChecked()) {
+    if (!m_dialog || !ui.timesWrongCheckBox->isChecked()) {
         selected = selected.intersect(m_entriesTimesWrong);
     }
-    if (!m_dialog || ui.timesPracticedCheckBox->isChecked()) {
+    if (!m_dialog || !ui.timesPracticedCheckBox->isChecked()) {
         selected = selected.intersect(m_entriesTimesPracticed);
     }
-    if (!m_dialog || ui.minMaxGradeCheckBox->isChecked()) {
+    if (!m_dialog || !ui.minMaxGradeCheckBox->isChecked()) {
         selected = selected.intersect(m_entriesMinMaxGrade);
     }
 
@@ -230,7 +226,6 @@ void EntryFilter::timesPracticedEntries()
         }
     }
 }
-
 
 void EntryFilter::minMaxGradeEntries()
 {
