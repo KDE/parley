@@ -116,7 +116,7 @@ QList<KEduVocExpression*> EntryFilter::entries()
 
         updateTotal();
 
-        if (m_dialog->exec() == KDialog::Cancel) {
+        if (m_dialog->exec() == QDialog::Rejected) {
             delete m_dialog;
             return QList<KEduVocExpression*>();
         }
