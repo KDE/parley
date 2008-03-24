@@ -13,7 +13,7 @@
    <item>
     <widget class="QLabel" name="label" >
      <property name="text" >
-      <string>&lt;p>Your selection of vocabulary for the practice is empty.&lt;/p>&lt;p>Below you can choose to ignore some of your configuration settings to start a practice anyway.&lt;/p>&lt;p>To get rid of this message, please use "Configure Practice" and select the lessons you would like to practice.&lt;/p</string>
+      <string>&lt;p>Your selection of vocabulary for the practice is empty.&lt;/p>&lt;p>Below you can choose to ignore some of your configuration settings to start a practice anyway.&lt;/p></string>
      </property>
      <property name="wordWrap" >
       <bool>true</bool>
