@@ -180,12 +180,16 @@ void EntryFilter::lessonEntries()
 
 void EntryFilter::wordTypeEntries()
 {
-    foreach(KEduVocExpression* entry, m_entries) {
-        if (entry->translation(m_toTranslation)->wordType()) {
-            if(entry->translation(m_toTranslation)->wordType()->inPractice()) {
-                m_entriesWordType.insert(entry);
+    if (Prefs::wordTypesInPracticeEnabled()) {
+        foreach(KEduVocExpression* entry, m_entries) {
+            if (entry->translation(m_toTranslation)->wordType()) {
+                if(entry->translation(m_toTranslation)->wordType()->inPractice()) {
+                    m_entriesWordType.insert(entry);
+                }
             }
         }
+    } else {
+        m_entriesWordType = m_entries;
     }
 }
 

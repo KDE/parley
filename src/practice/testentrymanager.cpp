@@ -145,7 +145,6 @@ void TestEntryManager::filterTestEntries()
     foreach (KEduVocExpression* entry, allEntries){
         m_allTestEntries.append(new TestEntry(entry));
     }
-
 }
 
 void TestEntryManager::startPractice()
