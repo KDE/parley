@@ -56,7 +56,8 @@ class VocabularyFilter;
 class ContainerView;
 class LessonView;
 class WordTypeView;
-class ContainerModel;
+class LessonModel;
+class WordTypeModel;
 
 /**
   * This Class is the base class for your application. It sets up the main
@@ -158,10 +159,10 @@ private:
 
     /// dock widgets to display lessons, word types, ...
     LessonView *m_lessonView;
-    ContainerModel *m_lessonModel;
+    LessonModel *m_lessonModel;
 
     WordTypeView *m_wordTypeView;
-    ContainerModel *m_wordTypeModel;
+    WordTypeModel *m_wordTypeModel;
 
     KLineEdit           *m_searchLine;
 

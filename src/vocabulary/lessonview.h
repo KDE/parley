@@ -17,6 +17,7 @@
 #define LESSONVIEW_H
 
 #include "containerview.h"
+#include "lessonmodel.h"
 
 class ParleyApp;
 
@@ -33,7 +34,7 @@ public:
 
     /** Set the model for the view.
      * @param model the model */
-    virtual void setModel(ContainerModel *model);
+    virtual void setModel(LessonModel *model);
 
 public slots:
     /** Append a lesson to the model and automatically set an edit up so the user can change "New lesson" into something meaningfull.*/
@@ -52,6 +53,9 @@ public slots:
      * get notified of new columns only to hide them (grades not shown by default).
      */
     void columnsInserted();
+
+private:
+    LessonModel *m_model;
 };
 
 #endif

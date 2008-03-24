@@ -1,12 +1,6 @@
 /***************************************************************************
 
-                             kvtlessonmodel
-
-    -----------------------------------------------------------------------
-
-    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
-
-    -----------------------------------------------------------------------
+    Copyright 2007-2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
  ***************************************************************************/
 
@@ -22,6 +16,8 @@
 #ifndef CONTAINERMODEL_H
 #define CONTAINERMODEL_H
 
+#include "containermodel.h"
+
 #include <QAbstractItemModel>
 #include <QModelIndex>
 
@@ -31,22 +27,14 @@
 #include <keduvoclesson.h>
 
 /**
-  * Model for the tree of lessons.
+  * Model for the tree of containers (lessons, word types).
   */
 class ContainerModel : public QAbstractItemModel
 {
     Q_OBJECT
 
 public:
-    /** When splitting a lesson into smaller ones - how to sort the entries into lessons.*/
-    enum SplitLessonOrder {
-        Sorted,    /**< The order of the entries in the document */
-        Random /**< Randomized */
-    };
-
-
     explicit ContainerModel(KEduVocLesson::EnumContainerType type, QObject *parent = 0);
-    ~ContainerModel(); // no need for cleanup - the doc will do that
 
     QVariant data(const QModelIndex &index, int role) const;
     Qt::ItemFlags flags(const QModelIndex &index) const;
@@ -79,12 +67,9 @@ public:
     // add a lesson - returns lesson index
 //     QModelIndex addLesson(const QString &lessonName = QString());
 
-    QModelIndex appendLesson(const QModelIndex& parent, const QString & lessonName = QString());
+    QModelIndex appendContainer(const QModelIndex& parent, const QString & containerName = QString());
 
-    QModelIndex appendWordType(const QModelIndex& parent, const QString & wordTypeName = QString());
-
-    void deleteLesson(const QModelIndex& lessonIndex);
-    void deleteWordType(const QModelIndex& wordTypeIndex);
+    void deleteContainer(const QModelIndex& containerIndex);
 
     /**
      * Used for drag and drop, does not delete the lessons!
@@ -94,15 +79,6 @@ public:
      * @return 
      */
 //     bool removeRows(int row, int count, const QModelIndex &parent);
-
-    /**
-     * Divide a lesson into smaller ones.
-     * Tip: If you create a lesson that is >= the original one and use random order, you get your lesson reshuffled. Maybe that is sometimes useful. For now the lessons are appended at the end.
-     * @param lessonIndex lesson to split
-     * @param entriesPerLesson number of entries in each new lesson
-     * @param order one of SplitLessonOrder
-     */
-    void splitLesson(const QModelIndex& containerIndex, int entriesPerLesson, SplitLessonOrder order);
 
 public slots:
     /** Set the new source kvtml file

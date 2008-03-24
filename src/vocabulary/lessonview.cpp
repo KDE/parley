@@ -16,7 +16,7 @@
 #include "lessonview.h"
 
 #include "parley.h"
-#include "containermodel.h"
+#include "lessonmodel.h"
 #include "keduvoclesson.h"
 #include "prefs.h"
 #include <KLocalizedString>
@@ -98,7 +98,7 @@ void LessonView::slotCreateNewLesson()
         selectedIndex = m_model->index(0, 0, QModelIndex());
     }
 
-    QModelIndex modelIndex = m_model->appendLesson(selectedIndex);
+    QModelIndex modelIndex = m_model->appendContainer(selectedIndex);
 
     scrollTo(modelIndex);
     selectionModel()->setCurrentIndex(modelIndex, QItemSelectionModel::ClearAndSelect);
@@ -120,7 +120,7 @@ void LessonView::slotDeleteLesson()
 
     if ( count == 0 ||
          KMessageBox::warningYesNo(this, i18np("There is %1 word left in this lesson. Do you want to delete them?", "There are %1 words left in this lesson. Do you want to delete them?", count)) == KMessageBox::Yes) {
-        m_model->deleteLesson(selectedIndex);
+        m_model->deleteContainer(selectedIndex);
     }
 }
 
@@ -139,12 +139,13 @@ void LessonView::slotSplitLesson()
         return;
     }
     Prefs::setEntriesPerLesson(numEntries);
-    m_model->splitLesson(selectionModel()->currentIndex(), numEntries, ContainerModel::Random);
+    m_model->splitLesson(selectionModel()->currentIndex(), numEntries, LessonModel::Random);
     setExpanded(selectionModel()->currentIndex(), true);
 }
 
-void LessonView::setModel(ContainerModel * model)
+void LessonView::setModel(LessonModel * model)
 {
+    m_model = model;
     ContainerView::setModel(model);
     connect(model, SIGNAL(columnsInserted ( const QModelIndex &, int, int )), this, SLOT(columnsInserted()));
     for (int i = 2; i< model->columnCount(QModelIndex()); i++) {

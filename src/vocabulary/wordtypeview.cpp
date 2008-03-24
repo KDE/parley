@@ -202,7 +202,7 @@ void WordTypeView::slotCreateNewWordType()
         selectedIndex = m_model->index(0, 0, QModelIndex());
     }
 
-    QModelIndex modelIndex = m_model->appendWordType(selectedIndex);
+    QModelIndex modelIndex = m_model->appendContainer(selectedIndex);
 
     scrollTo(modelIndex);
     selectionModel()->setCurrentIndex(modelIndex, QItemSelectionModel::ClearAndSelect);
@@ -224,7 +224,7 @@ void WordTypeView::slotDeleteWordType()
 
     if ( count == 0 ||
          KMessageBox::warningYesNo(this, i18np("There is %1 with this word type. It will lose its type. Continue?", "There are %1 words left with this word type. They will lose their word type. Continue?", count)) == KMessageBox::Yes) {
-        m_model->deleteWordType(selectedIndex);
+        m_model->deleteContainer(selectedIndex);
     }
 }
 

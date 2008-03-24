@@ -32,6 +32,9 @@
 #include "vocabulary/lessonview.h"
 #include "vocabulary/wordtypeview.h"
 #include "vocabulary/containermodel.h"
+#include "vocabulary/lessonmodel.h"
+#include "vocabulary/wordtypemodel.h"
+
 #include "entry-dialogs/wordtypewidget.h"
 #include "entry-dialogs/multiplechoicewidget.h"
 #include "entry-dialogs/comparisonwidget.h"
@@ -355,7 +358,7 @@ void ParleyApp::initDockWidgets()
     addDockWidget(Qt::LeftDockWidgetArea, lessonDockWidget);
     actionCollection()->addAction("show_lesson_dock", lessonDockWidget->toggleViewAction());
 
-    m_lessonModel = new ContainerModel(KEduVocLesson::Lesson, this);
+    m_lessonModel = new LessonModel(this);
 ///@todo remove before release
     new ModelTest(m_lessonModel, this);
 
@@ -381,7 +384,7 @@ void ParleyApp::initDockWidgets()
     wordTypeDockWidget->setWidget(m_wordTypeView);
     addDockWidget( Qt::LeftDockWidgetArea, wordTypeDockWidget );
 
-    m_wordTypeModel = new ContainerModel(KEduVocContainer::WordType, this);
+    m_wordTypeModel = new WordTypeModel(this);
     wordTypeDockWidget->setVisible(false);
     actionCollection()->addAction("show_wordtype_dock", wordTypeDockWidget->toggleViewAction());
 

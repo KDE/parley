@@ -1,6 +1,6 @@
 /***************************************************************************
 
-    Copyright 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2007-2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
  ***************************************************************************/
 
@@ -41,12 +41,6 @@ ContainerModel::ContainerModel(KEduVocLesson::EnumContainerType type, QObject * 
 
     setSupportedDragActions(Qt::CopyAction | Qt::MoveAction);
 }
-
-
-ContainerModel::~ContainerModel()
-{
-}
-
 
 void ContainerModel::setDocument(KEduVocDocument * doc)
 {
@@ -144,91 +138,28 @@ int ContainerModel::rowCount(const QModelIndex &parent) const
 }
 
 
-QModelIndex ContainerModel::appendLesson(const QModelIndex& parent, const QString & lessonName)
+QModelIndex ContainerModel::appendContainer(const QModelIndex& parent, const QString & containerName)
 {
-    if (m_type == KEduVocContainer::Lesson) {
-        KEduVocLesson* parentLesson;
-        if (parent.isValid()) {
-            parentLesson = static_cast<KEduVocLesson*>(parent.internalPointer());
-        } else {
-            return QModelIndex();
-        }
-
-kDebug() << "Append child lesson to: " << parentLesson->name() << " new lesson name: " << lessonName;
-
-        beginInsertRows(parent, parentLesson->childContainerCount(), 
-            parentLesson->childContainerCount() );
-
-        parentLesson->appendChildContainer(new KEduVocLesson(lessonName, parentLesson));
-        endInsertRows();
-
-        return index(parentLesson->childContainerCount() - 1, 0, parent);
+    KEduVocContainer* parentContainer;
+    if (parent.isValid()) {
+        parentContainer = static_cast<KEduVocContainer*>(parent.internalPointer());
+    } else {
+        return QModelIndex();
     }
 
-    return QModelIndex();
-}
-
-
-QModelIndex ContainerModel::appendWordType(const QModelIndex & parent, const QString & wordTypeName)
-{
-    if (m_type == KEduVocContainer::WordType) {
-        KEduVocWordType* parentWordType;
-        if (parent.isValid()) {
-            parentWordType = static_cast<KEduVocWordType*>(parent.internalPointer());
-        } else {
-            return QModelIndex();
-        }
-
-        kDebug() << "Append child word type to: " << parentWordType->name() << " new lesson name: " << wordTypeName;
-
-        beginInsertRows(parent, parentWordType->childContainerCount(),
-                        parentWordType->childContainerCount() );
-
-        parentWordType->appendChildContainer(new KEduVocWordType(wordTypeName, parentWordType));
-        endInsertRows();
-
-        return index(parentWordType->childContainerCount() - 1, 0, parent);
+    beginInsertRows(parent, parentContainer->childContainerCount(),
+                    parentContainer->childContainerCount() );
+    switch (m_type){
+    case (KEduVocContainer::Lesson):
+        parentContainer->appendChildContainer(new KEduVocLesson(containerName, static_cast<KEduVocLesson*>(parentContainer)));
+        break;
+    case (KEduVocContainer::WordType):
+        parentContainer->appendChildContainer(new KEduVocWordType(containerName, static_cast<KEduVocWordType*>(parentContainer)));
+    break;
     }
+    endInsertRows();
 
-    return QModelIndex();
-}
-
-
-void ContainerModel::splitLesson(const QModelIndex& containerIndex, int entriesPerLesson, SplitLessonOrder order)
-{
-    if (!containerIndex.isValid()) {
-        return;
-    }
-
-    if (!static_cast<KEduVocContainer*>(containerIndex.internalPointer())->containerType() == KEduVocContainer::Lesson) {
-        return;
-    }
-
-    KEduVocLesson* parentLesson = static_cast<KEduVocLesson*>(containerIndex.internalPointer());
-
-    int numNewLessons = parentLesson->entryCount() / entriesPerLesson;
-    // modulo - fraction lesson if not 0 we need one more
-    if (parentLesson->entryCount()%entriesPerLesson) { 
-        numNewLessons++;
-    }
-
-    while (parentLesson->entryCount() > 0) {
-        beginInsertRows(containerIndex, parentLesson->entryCount(), parentLesson->entryCount() );
-        KEduVocLesson* child = new KEduVocLesson(parentLesson->name()
-            + QString(" %1").arg(parentLesson->childContainerCount() + 1), parentLesson);
-        parentLesson->appendChildContainer(child);
-        endInsertRows();
-
-        while (parentLesson->entryCount() > 0 && child->entryCount() < entriesPerLesson) {
-            // next entry to be assigned to one of the new lessons
-            int nextEntry=0;
-            if (order == Random) {
-                nextEntry = KRandom::random() % parentLesson->entryCount();
-                child->appendEntry(parentLesson->entry(nextEntry));
-                parentLesson->removeEntry(parentLesson->entry(nextEntry));
-            }
-        }
-    }
+    return index(parentContainer->childContainerCount() - 1, 0, parent);
 }
 
 
@@ -372,36 +303,21 @@ int ContainerModel::columnCount(const QModelIndex & parent) const
 }
 
 
-void ContainerModel::deleteLesson(const QModelIndex & lessonIndex)
+void ContainerModel::deleteContainer(const QModelIndex & containerIndex)
 {
-    KEduVocContainer* lesson = static_cast<KEduVocContainer*>(lessonIndex.internalPointer());
-    KEduVocContainer* parent = lesson->parent();
+    KEduVocContainer* container = static_cast<KEduVocContainer*>(containerIndex.internalPointer());
+    KEduVocContainer* parent = container->parent();
 
     if (!parent) {
-        // never delete the root lesson
+        // never delete the root container
         return;
     }
 
-    beginRemoveRows(lessonIndex.parent(), lessonIndex.row(), lessonIndex.row());
-    parent->deleteChildContainer(lesson->row());
+    beginRemoveRows(containerIndex.parent(), containerIndex.row(), containerIndex.row());
+    parent->deleteChildContainer(container->row());
     endRemoveRows();
 }
 
-
-void ContainerModel::deleteWordType(const QModelIndex & wordTypeIndex)
-{
-    KEduVocContainer* wordType = static_cast<KEduVocContainer*>(wordTypeIndex.internalPointer());
-    KEduVocContainer* parent = wordType->parent();
-
-    if (!parent) {
-        // never delete the root word type
-        return;
-    }
-
-    beginRemoveRows(wordTypeIndex.parent(), wordTypeIndex.row(), wordTypeIndex.row());
-    parent->deleteChildContainer(wordType->row());
-    endRemoveRows();
-}
 
 KEduVocContainer::EnumContainerType ContainerModel::containerType()
 {
