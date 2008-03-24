@@ -63,7 +63,7 @@
           <property name="orientation" >
            <enum>Qt::Horizontal</enum>
           </property>
-          <property name="sizeHint" >
+          <property name="sizeHint" stdset="0" >
            <size>
             <width>91</width>
             <height>31</height>
@@ -81,7 +81,7 @@
            <string>Sep&amp;arator for text file import/export (CSV):</string>
           </property>
           <property name="buddy" >
-           <cstring>SeparatorCombo</cstring>
+           <cstring>kcfg_SeparatorCombo</cstring>
           </property>
          </widget>
         </item>
@@ -109,7 +109,7 @@
           <property name="sizeType" >
            <enum>QSizePolicy::Expanding</enum>
           </property>
-          <property name="sizeHint" >
+          <property name="sizeHint" stdset="0" >
            <size>
             <width>121</width>
             <height>20</height>
@@ -128,22 +128,10 @@
       <string>Editing</string>
      </property>
      <layout class="QGridLayout" >
-      <property name="leftMargin" >
+      <property name="margin" >
        <number>9</number>
       </property>
-      <property name="topMargin" >
-       <number>9</number>
-      </property>
-      <property name="rightMargin" >
-       <number>9</number>
-      </property>
-      <property name="bottomMargin" >
-       <number>9</number>
-      </property>
-      <property name="horizontalSpacing" >
-       <number>6</number>
-      </property>
-      <property name="verticalSpacing" >
+      <property name="spacing" >
        <number>6</number>
       </property>
       <item row="1" column="0" >
@@ -183,7 +171,7 @@
      <property name="sizeType" >
       <enum>QSizePolicy::Expanding</enum>
      </property>
-     <property name="sizeHint" >
+     <property name="sizeHint" stdset="0" >
       <size>
        <width>558</width>
        <height>81</height>
@@ -217,7 +205,6 @@
   <tabstop>kcfg_AutoSave</tabstop>
   <tabstop>kcfg_AutoBackup</tabstop>
   <tabstop>kcfg_BackupTime</tabstop>
-  <tabstop>SeparatorCombo</tabstop>
   <tabstop>kcfg_SmartAppend</tabstop>
   <tabstop>kcfg_AutoEntryApply</tabstop>
  </tabstops>
