@@ -139,9 +139,6 @@ void TestEntryManager::filterTestEntries()
     QList<KEduVocExpression*> allEntries = filter.entries();
 
     if (allEntries.count() == 0) {
-        KMessageBox::information(0,
-            i18n("Your selection of vocabulary to practice is empty."),
-                                      i18n("No Valid Vocabulary Found"));
         return;
     }
 
