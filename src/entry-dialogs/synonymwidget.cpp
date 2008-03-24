@@ -30,31 +30,30 @@ SynonymWidget::SynonymWidget(SynonymWidgetType type, QWidget *parent) : QWidget(
     connect(synonymButton, SIGNAL(clicked()), SLOT(togglePair()));
     m_listModel = new QStringListModel(this);     listView->setModel(m_listModel);
 
-    setEnabled(false);
+    updateList();
 }
 
 void SynonymWidget::setTranslation(KEduVocExpression * entry, int translation)
 {
-    if (m_currentTranslation) {
+    // ignore zeros
+    if (entry) {
         m_lastTranslation = m_currentTranslation;
-    }
-
-    m_currentTranslation = entry->translation(translation);
-
-    if (m_currentTranslation) {
+        m_currentTranslation = entry->translation(translation);
         updateList();
-    }
-
-    if (m_lastTranslation || m_currentTranslation) {
-        setEnabled(true);
     }
 }
 
 void SynonymWidget::updateList()
 {
-    if (!m_lastTranslation && m_currentTranslation) {
-        synonymButton->setText(i18n("Select a Word"));
+    // clear the list
+    m_listModel->removeRows(0, m_listModel->rowCount());
+
+    // set the button text
+    if (!(m_lastTranslation && m_currentTranslation)) {
+        synonymButton->setEnabled(false);
+        synonymButton->setText(i18n("Select Synonyms"));
     } else {
+        synonymButton->setEnabled(true);
         switch(m_type) {
             case Synonym:
                 if (m_currentTranslation->synonyms().contains(m_lastTranslation)) {
@@ -80,22 +79,22 @@ void SynonymWidget::updateList()
         }
     }
 
-    switch(m_type) {
-    case Synonym:
-        synonymLabel->setText(i18nc("Title for a list of synonyms for a word", "Synonyms of %1:", m_currentTranslation->text()));
-        break;
-    case Antonym:
-        synonymLabel->setText(i18nc("Title for a list of antonyms (opposites) for a word", "Antonyms of %1:", m_currentTranslation->text()));
-        break;
-    case FalseFriend:
-        synonymLabel->setText(i18nc("Title for a list of false friend (things that sound similiar but have different meanings) for a word", "False Friends of %1:", m_currentTranslation->text()));
-        break;
-    }
+    if (m_currentTranslation) {
+        switch(m_type) {
+        case Synonym:
+            synonymLabel->setText(i18nc("Title for a list of synonyms for a word", "Synonyms of %1:", m_currentTranslation->text()));
+            break;
+        case Antonym:
+            synonymLabel->setText(i18nc("Title for a list of antonyms (opposites) for a word", "Antonyms of %1:", m_currentTranslation->text()));
+            break;
+        case FalseFriend:
+            synonymLabel->setText(i18nc("Title for a list of false friend (things that sound similiar but have different meanings) for a word", "False Friends of %1:", m_currentTranslation->text()));
+            break;
+        }
 
-    // load list of old synonyms
-    m_listModel->removeRows(0, m_listModel->rowCount());
-    QList< KEduVocTranslation* > list;
-    switch(m_type) {
+        // load list of synonyms/antonyms/ffs
+        QList< KEduVocTranslation* > list;
+        switch(m_type) {
         case Synonym:
             list = m_currentTranslation->synonyms();
             break;
@@ -105,11 +104,14 @@ void SynonymWidget::updateList()
         case FalseFriend:
             list = m_currentTranslation->falseFriends();
             break;
-    }
-    foreach (KEduVocTranslation* translation, list) {
-        int row = m_listModel->rowCount();
-        m_listModel->insertRow(row);
-        m_listModel->setData(m_listModel->index(row), translation->text());
+        }
+        foreach (KEduVocTranslation* translation, list) {
+            int row = m_listModel->rowCount();
+            m_listModel->insertRow(row);
+            m_listModel->setData(m_listModel->index(row), translation->text());
+        }
+    } else {
+        synonymLabel->clear();
     }
 }
 
