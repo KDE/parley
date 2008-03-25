@@ -8,6 +8,7 @@ Name[pt]=Motor de Dados do Parley
 Name[pt_BR]=Motor de Dados do Parley
 Name[sv]=Parleys datamotor
 Name[uk]=Рушій даних Parley
+Name[x-test]=xxParley Data Enginexx
 Name[zh_CN]=Parley 数据引擎
 Name[zh_TW]=Parley 資料引擎
 Comment=Vocabulary data for Plasmoids
@@ -20,6 +21,7 @@ Comment[pt_BR]=Dados de vocabulário dos Plasmóides
 Comment[ro]=Vocabular pentru plasmoizi
 Comment[sv]=Ordförrådsdata för plasmoider
 Comment[uk]=Словникові дані для Плазмоїдів
+Comment[x-test]=xxVocabulary data for Plasmoidsxx
 Comment[zh_CN]=Plasmoids 单词数据
 Comment[zh_TW]=Plasmoids 字彙資料
 
