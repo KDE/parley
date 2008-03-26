@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=Parley Data Engine
+Name[da]=Data-motor til Parley
 Name[el]=Μηχανή δεδομένων Parley
 Name[ga]=Inneall Sonraí Parley
 Name[km]=ម៉ាស៊ីន​ទិន្នន័យ​ចរចា
@@ -12,6 +13,7 @@ Name[x-test]=xxParley Data Enginexx
 Name[zh_CN]=Parley 数据引擎
 Name[zh_TW]=Parley 資料引擎
 Comment=Vocabulary data for Plasmoids
+Comment[da]=Ordforrådsdata til plasmoider
 Comment[el]=Δεδομένα λεξιλογίου για πλασμοειδή
 Comment[ga]=Sonraí Stóir Focal le haghaidh Plasmoids
 Comment[km]=ទិន្នន័យ​វាក្យស័ព្ទ​សម្រាប់ Plasmoids
