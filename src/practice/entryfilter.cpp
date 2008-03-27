@@ -170,11 +170,8 @@ void EntryFilter::lessonEntries()
 {
     /// @todo maybe randomize
     foreach(KEduVocExpression* entry, m_entries) {
-        foreach(KEduVocLesson* lesson, entry->lessons()) {
-            if (lesson->inPractice()) {
-                m_entriesLesson.insert(entry);
-                break;
-            }
+        if (entry->lesson()->inPractice()) {
+            m_entriesLesson.insert(entry);
         }
     }
 

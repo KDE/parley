@@ -64,18 +64,16 @@ void ContainerView::setModel(ContainerModel *model)
 
 void ContainerView::setTranslation(KEduVocExpression * entry, int translation)
 {
+    ///@todo put into the view subclasses!
     if (entry == 0) {
         return;
     }
 
     // who am I
     if(m_model->containerType() == KEduVocContainer::Lesson) {
-        selectionModel()->clearSelection();
-        foreach(KEduVocLesson* lesson, entry->lessons()) {
-            QModelIndex current = m_model->index(lesson);
-            selectionModel()->select(current, QItemSelectionModel::Select);
-            scrollTo(current);
-        }
+        QModelIndex current = m_model->index(entry->lesson());
+        selectionModel()->select(current, QItemSelectionModel::ClearAndSelect);
+        scrollTo(current);
         return;
     }
 
