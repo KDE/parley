@@ -433,8 +433,17 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
             return false;
         }
         if (containerType() == KEduVocContainer::Lesson) {
+            // Create a list of the entries associated with the translations being copied. This prevents duplicates if they highlighted several columns.
+            QList<KEduVocExpression*> entries;
+
             foreach (KEduVocTranslation* translation, translationData->translationList()) {
-                static_cast<KEduVocLesson*>(parent.internalPointer())->appendEntry(translation->entry());
+                if (!entries.contains(translation->entry())) {
+                    entries << translation->entry();
+                }
+            }
+
+            foreach (KEduVocExpression* entry, entries) {
+                static_cast<KEduVocLesson*>(parent.internalPointer())->appendEntry(new KEduVocExpression(*entry));
             }
         }
 
