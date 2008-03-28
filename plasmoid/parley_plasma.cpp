@@ -37,6 +37,7 @@ ParleyPlasma::ParleyPlasma(QObject *parent, const QVariantList &args)
     setAcceptDrops(false);
     setAcceptsHoverEvents(true);
     setDrawStandardBackground(false);
+    setRemainSquare(true);
 
     m_theme.resize();
 }
