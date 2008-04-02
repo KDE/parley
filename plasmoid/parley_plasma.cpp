@@ -210,7 +210,7 @@ void ParleyPlasma::configAccepted()
     emit configNeedsSaving();
 
     kDebug() << " will connect source: " << file;
-    m_engine->connectSource(file + ":0,1", this, 100);
+    m_engine->connectSource(file + ":0,1", this, m_updateInterval);
 }
 
 void ParleyPlasma::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
