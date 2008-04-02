@@ -62,7 +62,7 @@ void ParleyPlasma::init()
     m_label1->setFont(cg.readEntry("font",m_font));
     m_label2->setFont(cg.readEntry("font",m_font));
 
-    switch (cg.readEntry("Vocabulary File Source", 0)) {
+    switch (cg.readEntry("Vocabulary File Source", 1)) {
         case Parley: {
             kDebug() << "open file from parleyrc";
             KConfig parleyConfig("parleyrc");
