@@ -50,8 +50,6 @@ void ParleyPlasma::init()
     m_updateInterval = cg.readEntry("updateInterval", 10000);
     m_engine = dataEngine("parley");
 
-    m_engine->connectSource("file:///home/frederik/parley/documents/basic_voc_en2de.kvtml:0,1", this, m_updateInterval);
-
     m_theme.setContentType(Plasma::Svg::SingleImage);
     m_theme.size().height();
 
@@ -64,22 +62,22 @@ void ParleyPlasma::init()
     m_label1->setFont(cg.readEntry("font",m_font));
     m_label2->setFont(cg.readEntry("font",m_font));
 
-    switch (cg.readEntry("Vocabulary File Source", 1)) {
+    switch (cg.readEntry("Vocabulary File Source", 0)) {
         case Parley: {
             kDebug() << "open file from parleyrc";
             KConfig parleyConfig("parleyrc");
             kDebug() << parleyConfig.groupList();
             KConfigGroup recentFilesGroup( &parleyConfig, "Recent Files" );
             // take the last file, but there are File1..n and Name1..n entries..
-            QString file = recentFilesGroup.readEntry( recentFilesGroup.keyList().value(recentFilesGroup.keyList().count()/2-1), QString() );
-            kDebug() << "open file: " << file;
-            m_engine->connectSource(file + ":0,1", this, m_updateInterval);
+            m_sourceFile = recentFilesGroup.readEntry( recentFilesGroup.keyList().value(recentFilesGroup.keyList().count()/2-1), QString() );
+            kDebug() << "open file: " << m_sourceFile;
+            m_engine->connectSource(m_sourceFile, this, m_updateInterval);
             break;
         }
         case UserDefined: {
-            QString file = cg.readEntry("File Name");
-            m_engine->connectSource(file + ":0,1", this, m_updateInterval);
-            kDebug() << "open file: " << file;
+            QString m_sourceFile = cg.readEntry("File Name");
+            m_engine->connectSource(m_sourceFile, this, m_updateInterval);
+            kDebug() << "open file: " << m_sourceFile;
             break;
         }
     }
@@ -169,7 +167,7 @@ void ParleyPlasma::showConfigurationInterface()
         m_dialog->mainWidget()->layout()->setMargin(0);
         ui.updateIntervalSpinBox->setValue(m_updateInterval/1000);
         KConfigGroup cg = config();
-        ui.filechooser->setUrl(cg.readEntry("File Name", QString()));
+
         int fileSource = cg.readEntry("Vocabulary File Source", 0);
         switch (fileSource) {
             case Parley:
@@ -179,6 +177,9 @@ void ParleyPlasma::showConfigurationInterface()
                 ui.sourceCustomRadioButton->setChecked(true);
                 break;
         }
+        m_sourceFile = cg.readEntry("File Name");
+        ui.filechooser->setPath(m_sourceFile);
+        kDebug() << "set file url: " << cg.readEntry("File Name");
         m_dialog->setButtons( KDialog::Ok | KDialog::Cancel | KDialog::Apply );
         connect( m_dialog, SIGNAL(applyClicked()), this, SLOT(configAccepted()) );
         connect( m_dialog, SIGNAL(okClicked()), this, SLOT(configAccepted()) );
@@ -204,13 +205,25 @@ void ParleyPlasma::configAccepted()
     m_updateInterval = ui.updateIntervalSpinBox->value()*1000;
     cg.writeEntry("updateInterval", m_updateInterval);
 
-    QString file = ui.filechooser->url().url();
-    kDebug() << "time: " << m_updateInterval << file;
-    cg.writeEntry("File Name", file);
-    emit configNeedsSaving();
+    if (ui.sourceParleyRadioButton->isChecked()) {
+        cg.writeEntry("Vocabulary File Source", (int) Parley);
+        KConfig parleyConfig("parleyrc");
+        KConfigGroup recentFilesGroup( &parleyConfig, "Recent Files" );
+            // take the last file, but there are File1..n and Name1..n entries..
+        m_sourceFile = recentFilesGroup.readEntry( recentFilesGroup.keyList().value(recentFilesGroup.keyList().count()/2-1), QString() );
+    } else {
+        cg.writeEntry("Vocabulary File Source", (int) UserDefined);
+        m_sourceFile = ui.filechooser->url().url();
+        cg.writeEntry("File Name", m_sourceFile);
 
-    kDebug() << " will connect source: " << file;
-    m_engine->connectSource(file + ":0,1", this, m_updateInterval);
+    }
+
+    m_engine->disconnectSource(m_sourceFile, this);
+    m_engine->connectSource(m_sourceFile, this, m_updateInterval);
+
+    kDebug() << "open:" << m_sourceFile;
+
+    emit configNeedsSaving();
 }
 
 void ParleyPlasma::hoverEnterEvent(QGraphicsSceneHoverEvent * event)

@@ -68,11 +68,10 @@ QStringList ParleyEngine::sources() const
 
 bool ParleyEngine::sourceRequested(const QString &source)
 {
-    QString file = source.left(source.lastIndexOf(':'));
-    if (file != m_file) {
-        kDebug() << "open file: " << file;
-        m_file = file;
-        openDocument(m_file);
+    if (source != m_file) {
+        kDebug() << "open file: " << source;
+        m_file = source;
+        openDocument(source);
     }
     if (m_file.isEmpty()) {
         kDebug() << "could not open source file";

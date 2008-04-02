@@ -78,6 +78,7 @@ class ParleyPlasma : public Plasma::Applet
         QSizeF m_size;
 
         Plasma::DataEngine* m_engine;
+        QString m_sourceFile;
 
         int m_updateInterval;
 };
