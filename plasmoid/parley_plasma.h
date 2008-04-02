@@ -38,6 +38,13 @@ class ParleyPlasma : public Plasma::Applet
 {
     Q_OBJECT
 
+    // could include KWordQuiz
+    // defines the data source
+    enum RecentFiles {
+        UserDefined,
+        Parley
+    };
+
     public:
         ParleyPlasma(QObject *parent, const QVariantList &args);
         ~ParleyPlasma();
@@ -69,6 +76,8 @@ class ParleyPlasma : public Plasma::Applet
 
         QFont m_font;
         QSizeF m_size;
+
+        Plasma::DataEngine* m_engine;
 
         int m_updateInterval;
 };

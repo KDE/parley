@@ -40,6 +40,7 @@ private:
     void openDocument(const QString& file);
     KEduVocDocument* m_doc;
     KRandomSequence *m_random;
+    QString m_file;
     int m_current;
 };
 

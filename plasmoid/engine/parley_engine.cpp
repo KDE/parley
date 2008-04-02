@@ -38,26 +38,20 @@ ParleyEngine::ParleyEngine(QObject* parent, const QVariantList& args)
     m_doc = new KEduVocDocument(this);
     m_current = 0;
 
-    KConfig parleyConfig("parleyrc");
-    kDebug() << parleyConfig.groupList();
-    KConfigGroup recentFilesGroup( &parleyConfig, "Recent Files" );
-    // take the last file, but there are File1..n and Name1..n entries..
-    QString file = recentFilesGroup.readEntry( recentFilesGroup.keyList().value(recentFilesGroup.keyList().count()/2-1), QString() );
-    openDocument(file);
     m_random = new KRandomSequence( QDateTime::currentDateTime().toTime_t() );
-
 }
 
 ParleyEngine::~ParleyEngine()
 {
     delete m_random;
+    delete m_doc;
 }
 
 void ParleyEngine::openDocument(const QString& file)
 {
     kDebug() << "Open vocabulary file: '" << file << "'";
     if (!file.isEmpty()) {
-        m_doc->open(file);
+        m_doc->open(KUrl(file));
 //         m_vocabularyCount = m_doc->lesson()->entries(KEduVocContainer::Recursive).count();
     }
 }
@@ -65,58 +59,45 @@ void ParleyEngine::openDocument(const QString& file)
 QStringList ParleyEngine::sources() const
 {
    QStringList list;
-   list << QLatin1String("Random");
+//    list << QLatin1String("Random");
+   if (!m_file.isEmpty()) {
+       list << QLatin1String("Languages");
+   }
    return list;
 }
 
 bool ParleyEngine::sourceRequested(const QString &source)
 {
-    KEduVocExpression *expression = m_doc->lesson()->entries(KEduVocContainer::Recursive).value(m_current);
-
-    if (!expression) {
+    QString file = source.left(source.lastIndexOf(':'));
+    if (file != m_file) {
+        kDebug() << "open file: " << file;
+        m_file = file;
+        openDocument(m_file);
+    }
+    if (m_file.isEmpty()) {
+        kDebug() << "could not open source file";
         return false;
     }
-    
-    kDebug() << "updateSource:" << source;
-    kDebug() << expression->translation(0)->text();
-    
-//     kDebug() << "ParleyEngine::sourceRequested " << source;
-    if (source.startsWith("lang:")) {
-        if (expression) {
-            int lang = source.right(source.size() - 5).toInt();
-            setData(source, expression->translation(lang)->text());
-            return true;
-        }
-    }
-
-    if (source == QLatin1String("Random")) {
-        if (expression) {
-            QString text;
-            foreach (int index, expression->translationIndices()) {
-                text += "\n" + expression->translation(index)->text();
-            }
-            setData(QLatin1String("Random"), text);
-            return true;
-        }
-    }
-    return false;
+    return updateSource(source);
 }
 
 bool ParleyEngine::updateSource(const QString &source)
 {
-    if (!m_doc) {
-        setData(source, i18n("No document set."));
-        return false;
+    int vocabularyCount = m_doc->lesson()->entries(KEduVocContainer::Recursive).count();
+    if (!vocabularyCount) {
+        setData(source, i18n("No document set.,,Start Parley first."));
+        return true;  // rather false?
     }
 
-    int vocabularyCount = m_doc->lesson()->entries(KEduVocContainer::Recursive).count();
     m_current = m_random->getLong(vocabularyCount);
     KEduVocExpression *expression = m_doc->lesson()->entries(KEduVocContainer::Recursive).value(m_current);
 
-    setData("lang:0", expression->translation(0)->text());
+    // parse the languages ":2,3" means language 2 and 3
+    int lang1 = 0;
+    int lang2 = 1;
+    setData(source, expression->translation(lang1)->text() + ",," + expression->translation(lang2)->text());
 
-    setData("lang:1", expression->translation(1)->text());
-//     kDebug() << "ParleyEngine::updateSource()" << source;
+    kDebug() << "ParleyEngine::updateSource()" << source;
 
     // other sources
     return true;
