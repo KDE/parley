@@ -132,6 +132,9 @@ public slots:
 signals:
     void signalSetData( const QList<int>& entries, int currentTranslation);
 
+private slots:
+    void focusSearchLine();
+
 private:
 
     /**

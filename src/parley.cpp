@@ -738,6 +738,10 @@ void ParleyApp::initActions()
     KAction *actionRestoreNativeOrder = new KAction(this);
     actionCollection()->addAction("restore_native_order", actionRestoreNativeOrder);
     actionRestoreNativeOrder->setText(i18n("Restore Native Order"));
+
+
+    KAction* findVocabulary = KStandardAction::find(this, SLOT(focusSearchLine()), actionCollection());
+
 }
 
 
@@ -814,6 +818,11 @@ void ParleyApp::initView()
     rightLayout->addWidget(m_vocabularyView, 1, 0);
 
     topLayout->addLayout(rightLayout);
+}
+
+void ParleyApp::focusSearchLine()
+{
+    m_searchLine->setFocus();
 }
 
 
