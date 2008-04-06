@@ -1,26 +1,31 @@
 Things to improve in parley
 ---------------------------
 
+Before 4.1 release:
+ * Make all dock widgets work
+   - creating a new doc does not create any word types
+ * Save columns hide state, enable hiding of main columns with their children maybe
+ * The statistics page is broken. Time for a rewrite.
+ * Remove ModelTest!
+ * Copy/Paste and friends.
+ * What about editing multiple entries at the same time? does that work? does it help with the new design?
+ * Check that changes to the document result in a modified state!!!! Ask when quitting Parley!!!
+
+
+ * Implement more online lookup possiblities, language dependent. (or remove this - depends on soc) 
+
+
+When time permits:
  * update the dtd and validate some documents
  * write more unit tests
 
- * Make all dock widgets work
-   - creating a new doc does not create any word types
  * Add the ability to record sound files with phonon to a dock if possible. This depends on the state of Phonon - might be ready for 4.1.
- * Save columns hide state, enable hiding of main columns with their children maybe
  * Use the container/lesson class for the leitner implementation
- * What about editing multiple entries at the same time? does that work? does it help with the new design?
- * The statistics page is broken. Time for a rewrite.
  * Drag and drop for several things:
-   - Drag lessons/word types into leitner boxes
    - Sound
    - Accept text drops (as new vocabulary?)
- * Implement more online lookup possiblities, language dependent.
  * Give containers an image tag and display images in the lesson view
  * Check for mem leaks - I bet I introduced some in the lib.
- * Filter/sort is broken.
- * Copy/Paste and friends.
- * Check that changes to the document result in a modified state!!!! Ask when quitting Parley!!!
 
 Gui
  * shortcut keys are badly assigned, they do not respect the focus
@@ -34,7 +39,6 @@ Gui
      Shift+Tab   -> move left.
  * When clicking on "Restore native order" arrow in column header remains.
    It should become hidden now.
- * Ctrl+F shortcut for search
  * Improve the search somehow to let the user continue typing instead of blocking (also not trivial?)
  * Enable the active field again? If the active field stays, use checkboxes
  * For some languages (with signs like chinese) it would be nice to have different font sizes in the columns
