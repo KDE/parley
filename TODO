@@ -11,6 +11,7 @@ Before 4.1 release:
  * What about editing multiple entries at the same time? does that work? does it help with the new design?
  * Check that changes to the document result in a modified state!!!! Ask when quitting Parley!!!
  * Set version number to something not svn
+ * Reenable synonym, false friend and antonym practices and synonym check in written practice! check if deletion of one of two synonyms crashes
 
  * Implement more online lookup possiblities, language dependent. (or remove this - depends on soc) 
 
