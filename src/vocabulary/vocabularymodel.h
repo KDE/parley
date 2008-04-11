@@ -42,6 +42,7 @@ public:
 //         Audio,
 //         Image,
         EntryColumnsMAX
+        
     };
 
     enum roles {
@@ -77,6 +78,9 @@ public:
 
     void resetLanguages();
 
+    signals:
+        void documentChanged(KEduVocDocument *doc);
+    
 public slots:
     void setDocument(KEduVocDocument *doc);
 

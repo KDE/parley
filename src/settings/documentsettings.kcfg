@@ -12,5 +12,9 @@
       <whatsthis>Selected tenses for conjugation practice.</whatsthis>
       <default></default>
     </entry>
+    <entry name="VisibleColumns" type="IntList">
+    	<label>Visible columns in the main editor window.</label>
+    	<whatsthis>Visible columns in the main editor window.</whatsthis>
+	</entry>
   </group>
 </kcfg>

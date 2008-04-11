@@ -338,6 +338,7 @@ void ParleyApp::updateDocument()
     m_wordTypeView->expandToDepth(0);
 
     connect(m_document->document(), SIGNAL(docModified(bool)), this, SLOT(slotUpdateWindowCaption()));
+    connect(m_vocabularyModel, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(slotRestoreColumnVisibility(KEduVocDocument*)));
 
     setCaption(m_document->document()->url().fileName(), false);
 

@@ -23,6 +23,8 @@
 #include "parley.h"
 #include "prefs.h"
 
+#include "documentsettings.h"
+
 #include <keduvoctranslation.h>
 #include <keduvocexpression.h>
 
@@ -40,6 +42,7 @@
 #include <KToggleAction>
 #include <KLocale>
 #include <KMessageBox>
+#include <KUrl>
 
 VocabularyView::VocabularyView(ParleyApp * parent)
     : QTableView(parent)
@@ -386,12 +389,53 @@ void VocabularyView::reset()
 //     m_columnActionMap
 //     m_vocabularyColumnsActionMenu->addAction(toggleColumn);
 
+    resizeColumnsToContents();
+}
+
+void VocabularyView::slotRestoreColumnVisibility(KEduVocDocument* doc)
+{
+    if (doc && !doc->url().isEmpty())
+    {
+        DocumentSettings ds(doc->url().url());
+
+        QListIterator<int> iter(ds.visibleColumns());
+
+        int j;
+        KAction* column;
+        for (int i = 0; iter.hasNext(); ++i)
+        {
+            j = iter.next();
+            KAction* column = m_columnActionMap.key(i, (KAction*)0);
+            if (column) {
+                column->setChecked((bool)j);
+                setColumnHidden(i, !(bool)j);
+            }
+        }
+    }
     resizeColumnsToContents ();
 }
 
 void VocabularyView::slotToggleColumn(bool show)
 {
     setColumnHidden(m_columnActionMap[(KAction*)sender()], !show);
+}
+
+void VocabularyView::saveColumnVisibility(const KUrl & kurl) const
+{
+    // Generate a QList<int> for saving
+    QList<int> qli;
+
+
+    for (int i = 0; i < m_columnActionMap.size(); ++i)
+    {
+        qli.append(static_cast<int>(!isColumnHidden(i)));
+    }
+
+    DocumentSettings ds(kurl.url());
+
+    ds.setVisibleColumns(qli);
+
+    ds.writeConfig();
 }
 
 void VocabularyView::appendEntry()

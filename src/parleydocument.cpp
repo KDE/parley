@@ -21,6 +21,7 @@
 
 #include "keduvoclesson.h"
 #include "keduvocexpression.h"
+#include "vocabulary/vocabularyview.h"
 
 #include <KFileDialog>
 #include <KRecentFilesAction>
@@ -46,6 +47,7 @@ ParleyDocument::ParleyDocument(ParleyApp *parent)
 
 ParleyDocument::~ParleyDocument()
 {
+    m_parleyApp->m_vocabularyView->saveColumnVisibility(m_doc->url());
     delete m_doc;
 }
 
@@ -142,6 +144,8 @@ void ParleyDocument::save()
 
     m_doc->setCsvDelimiter(Prefs::separator());
 
+    m_parleyApp->m_vocabularyView->saveColumnVisibility(m_doc->url());
+
     int result = m_doc->saveAs(m_doc->url(), KEduVocDocument::Automatic, "Parley");
     if ( result != 0 ) {
         KMessageBox::error(m_parleyApp, i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(), m_doc->errorDescription(result)), i18n("Save File"));
@@ -181,6 +185,10 @@ void ParleyDocument::saveAs()
                                  url.setFileName(url.fileName() + QString::fromLatin1(".kvtml"));
                              }
 
+
+                            m_parleyApp->m_vocabularyView->saveColumnVisibility(url);
+
+                             
                              int result = m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley");
                              if (result != 0) {
                                  KMessageBox::error(m_parleyApp, i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(), m_doc->errorDescription(result)), i18n("Save File"));

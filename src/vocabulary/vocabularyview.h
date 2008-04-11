@@ -24,11 +24,13 @@
 class VocabularyFilter;
 class VocabularyDelegate;
 class KEduVocExpression;
+class KEduVocDocument;
+class ParleyDocument;
 
 class KActionMenu;
 class KAction;
 class ParleyApp;
-
+class KUrl;
 
 class VocabularyView : public QTableView
 {
@@ -39,6 +41,8 @@ public:
 
     void setModel(VocabularyFilter * model);
 
+    /** Save column visibility settings */
+    void saveColumnVisibility(const KUrl & kurl) const;
 
 public slots:
     void reset();
@@ -56,6 +60,8 @@ public slots:
     /** paste the clipboard into the document*/
     void slotEditPaste();
 
+    void slotRestoreColumnVisibility(KEduVocDocument* doc);
+    
     /**
      * Append a char to the last edited entry (used to add the phonetic stuff).
      * @param c the char
@@ -73,6 +79,7 @@ private slots:
 
     void slotToggleColumn(bool show);
 
+    
 // private slots:
 //     void verticalHeaderResized(int, int, int);
 //     void horizontalHeaderResized(int, int, int);
