@@ -12,7 +12,6 @@ Before 4.1 release:
  * Check that changes to the document result in a modified state!!!! Ask when quitting Parley!!!
  * Set version number to something not svn
  * Reenable synonym, false friend and antonym practices and synonym check in written practice! check if deletion of one of two synonyms crashes
- * Port kxkb language switching to the new table stuff
  * Implement more online lookup possiblities, language dependent. (or remove this - depends on soc) 
 
 

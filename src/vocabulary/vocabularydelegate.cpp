@@ -40,36 +40,30 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
 {
     Q_UNUSED(option); /// as long as it's unused
 
-    if (!index.isValid())
+    if (!index.isValid()) {
         return 0;
+    }
 
-    switch (index.column()) {
+    KLineEdit *editor = new KLineEdit(parent);
+    editor->setFrame(false);
+    editor->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
+    editor->setText(index.model()->data(index, Qt::DisplayRole).toString());
 
-
-    default: {
-        KLineEdit *editor = new KLineEdit(parent);
-        editor->setFrame(false);
-        editor->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
-        editor->setText(index.model()->data(index, Qt::DisplayRole).toString());
-
-        QString locale = index.model()->data(index, VocabularyModel::LocaleRole).toString();
-    kDebug() << "creating editor with locale:" << locale;
-        if(!locale.isEmpty()) {
-            LanguageSettings settings(locale);
-            settings.readConfig();
-            QString layout = settings.keyboardLayout();
-            if(!layout.isEmpty()) {
-                QDBusInterface kxkb( "org.kde.kxkb", "/kxkb", "org.kde.KXKB" );
-                if (kxkb.isValid()) {
-                    kxkb.call( "setLayout", layout );
-                }
+    QString locale = index.model()->data(index, VocabularyModel::LocaleRole).toString();
+    if(!locale.isEmpty()) {
+        LanguageSettings settings(locale);
+        settings.readConfig();
+        QString layout = settings.keyboardLayout();
+        if(!layout.isEmpty()) {
+            QDBusInterface kxkb( "org.kde.kxkb", "/kxkb", "org.kde.KXKB" );
+            if (kxkb.isValid()) {
+            kxkb.call( "setLayout", layout );
             }
         }
+    }
 
-        connect(editor, SIGNAL(returnPressed()), this, SLOT(commitAndCloseEditor()));
-        return editor;
-    }
-    }
+    connect(editor, SIGNAL(returnPressed()), this, SLOT(commitAndCloseEditor()));
+    return editor;
 }
 
 
