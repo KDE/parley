@@ -26,6 +26,7 @@ When time permits:
    - Accept text drops (as new vocabulary?)
  * Give containers an image tag and display images in the lesson view
  * Check for mem leaks - I bet I introduced some in the lib.
+ * use QApplication::setQuitOnLastWindowClosed(false); to be able to show statistics and not quit parley
 
 Gui
  * shortcut keys are badly assigned, they do not respect the focus
