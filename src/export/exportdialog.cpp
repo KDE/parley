@@ -54,7 +54,12 @@ void ExportDialog::accept()
 {
     KDialog::accept();
 
-    QString xslFile = KStandardDirs::locate( "data", "parley/xslt/table.xsl");
+    QString xslFile;
+    if (ui->flashCardRadio->isChecked()) {
+        xslFile = KStandardDirs::locate( "data", "parley/xslt/flashcards.xsl");
+    } else {
+        xslFile = KStandardDirs::locate( "data", "parley/xslt/table.xsl");
+    }
 
     kDebug() << " START XSLT";
 
