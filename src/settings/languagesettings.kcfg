@@ -16,8 +16,9 @@
       <label>Keyboard layout for this locale</label>
       <whatsthis>Keyboard layout for this locale</whatsthis>
       <default></default>
-    </entry>
-          <entry name="VisibleColumns" type="IntList">
+      </entry>
+
+      <entry name="VisibleColumns" type="IntList">
     	<label>Visible columns in the main editor window.</label>
     	<whatsthis>Visible columns in the main editor window.</whatsthis>
 	</entry>
