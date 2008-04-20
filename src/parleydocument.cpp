@@ -39,6 +39,8 @@
 
 
 #ifdef HAVE_LIBXSLT
+#include "export/exportdialog.h"
+
 #include <string.h>
 #include <libxml/xmlmemory.h>
 #include <libxml/debugXML.h>
@@ -366,6 +368,15 @@ void ParleyDocument::slotGHNS()
 #ifdef HAVE_LIBXSLT
 void ParleyDocument::exportHtml(const QString& xslFile)
 {
+    QString fileName = m_doc->url().fileName().left(m_doc->url().fileName().indexOf('.'));
+    fileName.append(".html");
+    KUrl fileUrl = m_doc->url();
+    fileUrl.setFileName(fileName);
+
+    ExportDialog* exportDialog = new ExportDialog(fileUrl);
+
+    if (exportDialog->exec() == QDialog::Accepted) {
+
 kDebug() << " START XSLT";
 
         xsltStylesheetPtr cur = NULL;
@@ -379,9 +390,9 @@ kDebug() << "source kvtml: " << m_doc->url().toLocalFile();
 
         doc = xmlParseFile( (const char*) m_doc->url().toLocalFile().toLatin1() );
         res = xsltApplyStylesheet(cur, doc, 0);
-//         FILE* result = fopen("filename.html", "w");
-        xsltSaveResultToFile(stdout, res, cur);
-//         fclose(result);
+        FILE* result = fopen( (const char*) exportDialog->fileName().toLocalFile().toLatin1(), "w");
+        xsltSaveResultToFile(result, res, cur);
+        fclose(result);
 
         xsltFreeStylesheet(cur);
         xmlFreeDoc(res);
@@ -389,6 +400,8 @@ kDebug() << "source kvtml: " << m_doc->url().toLocalFile();
 
         xsltCleanupGlobals();
         xmlCleanupParser();
+    }
+    delete exportDialog;
 }
 
 void ParleyDocument::exportHtmlDialog()
