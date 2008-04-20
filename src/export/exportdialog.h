@@ -28,9 +28,12 @@ public:
 
     KUrl fileName();
 
+private slots:
+    void accept();
+
 private:
     Ui::ExportOptions* ui;
-    ParleyDocument* m_doc;
+    KUrl m_sourceFile;
 };
 
 #endif

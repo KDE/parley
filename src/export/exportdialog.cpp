@@ -13,12 +13,35 @@
 
 #include "exportdialog.h"
 
+#include <KStandardDirs>
+#include <KUrl>
+#include <KDebug>
+
+#include <string.h>
+#include <libxml/xmlmemory.h>
+#include <libxml/debugXML.h>
+#include <libxml/HTMLtree.h>
+#include <libxml/xmlIO.h>
+#include <libxml/DOCBparser.h>
+#include <libxml/xinclude.h>
+#include <libxml/catalog.h>
+#include <libxslt/xslt.h>
+#include <libxslt/xsltInternals.h>
+#include <libxslt/transform.h>
+#include <libxslt/xsltutils.h>
+
 ExportDialog::ExportDialog(const KUrl& file, QWidget * parent)
 {
     ui = new Ui::ExportOptions();
     ui->setupUi(mainWidget());
 
-    ui->fileName->setUrl(file);
+    m_sourceFile = file;
+    KUrl fileUrl = file;
+    QString fileName = file.fileName().left(file.fileName().indexOf('.'));
+    fileName.append(".html");
+    fileUrl.setFileName(fileName);
+
+    ui->fileName->setUrl(fileUrl);
 }
 
 KUrl ExportDialog::fileName()
@@ -26,5 +49,34 @@ KUrl ExportDialog::fileName()
     return ui->fileName->url();
 }
 
+
+void ExportDialog::accept()
+{
+    KDialog::accept();
+
+    QString xslFile = KStandardDirs::locate( "data", "parley/xslt/table.xsl");
+
+    kDebug() << " START XSLT";
+
+    xsltStylesheetPtr cur = NULL;
+    xmlDocPtr doc, res;
+
+    xmlSubstituteEntitiesDefault(1);
+    xmlLoadExtDtdDefaultValue = 1;
+    cur = xsltParseStylesheetFile((const xmlChar*) xslFile.toLatin1().constData());
+
+    doc = xmlParseFile( (const char*) m_sourceFile.toLocalFile().toLatin1() );
+    res = xsltApplyStylesheet(cur, doc, 0);
+    FILE* result = fopen( (const char*) ui->fileName->url().toLocalFile().toLatin1(), "w");
+    xsltSaveResultToFile(result, res, cur);
+    fclose(result);
+
+    xsltFreeStylesheet(cur);
+    xmlFreeDoc(res);
+    xmlFreeDoc(doc);
+
+    xsltCleanupGlobals();
+    xmlCleanupParser();
+}
 
 #include "exportdialog.moc"
