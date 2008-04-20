@@ -24,6 +24,8 @@
 
 #include "parley.h"
 
+#include "../config-parley.h"
+
 #include "practice/testentrymanager.h"
 #include "vocabulary/vocabularymodel.h"
 #include "vocabulary/vocabularyview.h"
@@ -622,10 +624,12 @@ void ParleyApp::initActions()
     fileSaveAs->setToolTip(fileSaveAs->whatsThis());
     fileSaveAs->setStatusTip(fileSaveAs->whatsThis());
 
-    KAction* filePrint = KStandardAction::print(m_document, SLOT(printFile()), actionCollection());
+#ifdef HAVE_LIBXSLT
+    KAction* filePrint = KStandardAction::print(m_document, SLOT(exportHtmlDialog()), actionCollection());
     filePrint->setWhatsThis(i18n("Print the active vocabulary document"));
     filePrint->setToolTip(filePrint->whatsThis());
     filePrint->setStatusTip(filePrint->whatsThis());
+#endif
 
     KAction* fileProperties = new KAction(this);
     actionCollection()->addAction("file_properties", fileProperties);

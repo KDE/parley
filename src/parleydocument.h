@@ -18,6 +18,8 @@
 #include <keduvocdocument.h>
 #include <QObject>
 
+#include "../config-parley.h"
+
 class ParleyApp;
 class QTimer;
 
@@ -61,6 +63,10 @@ public slots:
     void save();
     void saveAs();
 
+// #ifdef HAVE_LIBXSLT
+    void exportHtmlDialog();
+// #endif
+
     void newDocument();
 
     void slotSaveSelection();
@@ -83,6 +89,10 @@ private:
      * When starting the first time, create some entries to get started.
      */
     void createExampleEntries();
+
+#ifdef HAVE_LIBXSLT
+    void exportHtml(const QString& xslFile);
+#endif
 
     QTimer *m_backupTimer;
     KEduVocDocument *m_doc;
