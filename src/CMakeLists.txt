@@ -4,7 +4,15 @@ include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/
 )
 
 if(HAVE_LIBXSLT)
-        include_directories( ${LIBXML2_INCLUDE_DIR} ${LIBXSLT_INCLUDE_DIR} )
+    include_directories( ${LIBXML2_INCLUDE_DIR} ${LIBXSLT_INCLUDE_DIR} )
+
+    set(export_SRCS
+        export/exportdialog.cpp
+    )
+
+    kde4_add_ui_files( export_SRCS
+        export/exportoptions.ui
+    )
 endif(HAVE_LIBXSLT)
 
 ########### next target ###############
@@ -163,10 +171,10 @@ set(parley_SRCS
     ${configure-practice_SRCS} ${docprop_SRCS}
     ${entrydialogs_SRCS} ${statisticsdialogs_SRCS}
     ${languagedialogs_SRCS} ${newdocument-wizard_SRCS}
+    ${export_SRCS}
     parleydocument.cpp
     parley.cpp
     main.cpp
-
     modeltest/modeltest.cpp
 )
 

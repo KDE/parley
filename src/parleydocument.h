@@ -90,10 +90,6 @@ private:
      */
     void createExampleEntries();
 
-#ifdef HAVE_LIBXSLT
-    void exportHtml(const QString& xslFile);
-#endif
-
     QTimer *m_backupTimer;
     KEduVocDocument *m_doc;
     ParleyApp *m_parleyApp;

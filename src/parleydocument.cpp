@@ -39,18 +39,7 @@
 
 
 #ifdef HAVE_LIBXSLT
-#include <string.h>
-#include <libxml/xmlmemory.h>
-#include <libxml/debugXML.h>
-#include <libxml/HTMLtree.h>
-#include <libxml/xmlIO.h>
-#include <libxml/DOCBparser.h>
-#include <libxml/xinclude.h>
-#include <libxml/catalog.h>
-#include <libxslt/xslt.h>
-#include <libxslt/xsltInternals.h>
-#include <libxslt/transform.h>
-#include <libxslt/xsltutils.h>
+#include "export/exportdialog.h"
 #endif
 
 #include <libxml/parser.h>
@@ -363,44 +352,15 @@ void ParleyDocument::slotGHNS()
     qDeleteAll(entries);
 }
 
+
 #ifdef HAVE_LIBXSLT
-void ParleyDocument::exportHtml(const QString& xslFile)
-{
-kDebug() << " START XSLT";
-
-        xsltStylesheetPtr cur = NULL;
-        xmlDocPtr doc, res;
-
-        xmlSubstituteEntitiesDefault(1);
-        xmlLoadExtDtdDefaultValue = 1;
-        cur = xsltParseStylesheetFile((const xmlChar*) xslFile.toLatin1().constData());
-
-kDebug() << "source kvtml: " << m_doc->url().toLocalFile();
-
-        doc = xmlParseFile( (const char*) m_doc->url().toLocalFile().toLatin1() );
-        res = xsltApplyStylesheet(cur, doc, 0);
-//         FILE* result = fopen("filename.html", "w");
-        xsltSaveResultToFile(stdout, res, cur);
-//         fclose(result);
-
-        xsltFreeStylesheet(cur);
-        xmlFreeDoc(res);
-        xmlFreeDoc(doc);
-
-        xsltCleanupGlobals();
-        xmlCleanupParser();
-}
-
 void ParleyDocument::exportHtmlDialog()
 {
-kDebug() << "export stuff!!!";
-//     save();
-// FIXME dialog to select which xsl will be used!
-    QString xslFile = KStandardDirs::locate( "data", "parley/xslt/table.xsl");
-kDebug() << "using xsl file: " << xslFile;
-    exportHtml(xslFile);
+    ExportDialog exportDialog(m_doc->url());
+    exportDialog.exec();
 }
 #endif
+
 
 void ParleyDocument::slotFileMerge()
 {
