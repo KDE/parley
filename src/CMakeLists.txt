@@ -1,9 +1,11 @@
 add_subdirectory( settings )
 
 include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/
-#    ${CMAKE_SOURCE_DIR}/marble/src/
-#    ${CMAKE_SOURCE_DIR}/marble/src/lib/
 )
+
+if(HAVE_LIBXSLT)
+        include_directories( ${LIBXML2_INCLUDE_DIR} ${LIBXSLT_INCLUDE_DIR} )
+endif(HAVE_LIBXSLT)
 
 ########### next target ###############
 kde4_add_kcfg_files( libcommondlg_SKEL_SRCS
@@ -176,11 +178,13 @@ kde4_install_icons( ${ICON_INSTALL_DIR} )
 target_link_libraries(
     parley
     keduvocdocument
-#    marblewidget
     ${KDE4_KHTML_LIBS}
     ${KDE4_KNEWSTUFF2_LIBS}
     ${KDE4_PHONON_LIBS}
 )
+if(HAVE_LIBXSLT)
+    target_link_libraries(parley ${LIBXML2_LIBRARIES} ${LIBXSLT_LIBRARIES})
+endif(HAVE_LIBXSLT)
 
 install(TARGETS parley  DESTINATION ${BIN_INSTALL_DIR} )
 
