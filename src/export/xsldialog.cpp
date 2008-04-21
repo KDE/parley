@@ -14,6 +14,7 @@
 #include "xsldialog.h"
 
 #include <keduvocdocument.h>
+#include <keduvockvtml2writer.h>
 
 #include <KStandardDirs>
 #include <KUrl>
@@ -62,7 +63,8 @@ void XslDialog::accept()
     xmlLoadExtDtdDefaultValue = 1;
     cur = xsltParseStylesheetFile((const xmlChar*) xslFile.toLatin1().constData());
 
-    doc = xmlParseFile( (const char*) m_doc->url().toLocalFile().toLatin1() );
+    doc = xmlParseDoc( (const xmlChar*) m_doc->toByteArray(m_doc->generator()).constData() );
+
     res = xsltApplyStylesheet(cur, doc, 0);
     FILE* result = fopen( (const char*) m_targetFile.toLocalFile().toLatin1(), "w");
     xsltSaveResultToFile(result, res, cur);
