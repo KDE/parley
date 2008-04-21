@@ -61,7 +61,7 @@ public slots:
     void slotFileMerge();
     /** save a document */
     void save();
-    void saveAs();
+    void saveAs(KUrl file = KUrl());
 
 // #ifdef HAVE_LIBXSLT
     void exportHtmlDialog();

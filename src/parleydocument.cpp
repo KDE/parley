@@ -39,7 +39,7 @@
 
 
 #ifdef HAVE_LIBXSLT
-#include "export/exportdialog.h"
+#include "export/export.h"
 #endif
 
 #include <libxml/parser.h>
@@ -173,13 +173,11 @@ void ParleyDocument::save()
 }
 
 
-void ParleyDocument::saveAs()
+void ParleyDocument::saveAs(KUrl url)
 {
-//     if (m_parleyApp->m_entryDlg != 0) {
-//         m_parleyApp->m_entryDlg->commitData(false);
-//     }
-
-    KUrl url = KFileDialog::getSaveUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Writing), m_parleyApp->parentWidget(), i18n("Save Vocabulary As"));
+    if (url.isEmpty()) {
+        url = KFileDialog::getSaveUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Writing), m_parleyApp->parentWidget(), i18n("Save Vocabulary As"));
+    }
 
     if (!url.isEmpty()) {
         QFileInfo fileinfo(url.path());
@@ -202,10 +200,8 @@ void ParleyDocument::saveAs()
                                  url.setFileName(url.fileName() + QString::fromLatin1(".kvtml"));
                              }
 
-
                             m_parleyApp->m_vocabularyView->saveColumnVisibility(url);
 
-                             
                              int result = m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley");
                              if (result != 0) {
                                  KMessageBox::error(m_parleyApp, i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(), m_doc->errorDescription(result)), i18n("Save File"));
@@ -356,8 +352,7 @@ void ParleyDocument::slotGHNS()
 #ifdef HAVE_LIBXSLT
 void ParleyDocument::exportHtmlDialog()
 {
-    ExportDialog exportDialog(m_doc->url());
-    exportDialog.exec();
+    ParleyExport::exportDocument(this, m_parleyApp);
 }
 #endif
 

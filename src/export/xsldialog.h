@@ -11,29 +11,28 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef EXPORTDIALOG_H
-#define EXPORTDIALOG_H
+#ifndef XSLDIALOG_H
+#define XSLDIALOG_H
 
 #include "ui_exportoptions.h"
 
 #include <KDialog>
 
-class ParleyDocument;
+class KEduVocDocument;
 
-class ExportDialog : public KDialog
+class XslDialog : public KDialog
 {
 Q_OBJECT
 public:
-    ExportDialog(const KUrl& file, QWidget *parent = 0);
-
-    KUrl fileName();
+    XslDialog(const KUrl &file, KEduVocDocument *doc, QWidget *parent = 0);
 
 private slots:
     void accept();
 
 private:
     Ui::ExportOptions* ui;
-    KUrl m_sourceFile;
+    KUrl m_targetFile;
+    KEduVocDocument *m_doc;
 };
 
 #endif
