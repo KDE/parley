@@ -14,7 +14,7 @@
 #ifndef XSLDIALOG_H
 #define XSLDIALOG_H
 
-#include "ui_exportoptions.h"
+#include "ui_xsldialog.h"
 
 #include <KDialog>
 
