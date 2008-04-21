@@ -271,7 +271,7 @@
         alt="Logo" />
       <p class="lesson">
         <xsl:value-of
-          select="/kvtml/lessons/container/name[../containerentry/@id=/kvtml/entries/entry[$pos]/@id]" />
+          select="/kvtml/lessons/container/name[../entry/@id=/kvtml/entries/entry[$pos]/@id]" />
       </p>
       <xsl:variable
         name="pronunciation"
