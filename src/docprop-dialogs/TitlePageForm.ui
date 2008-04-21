@@ -212,7 +212,7 @@ If you consider contributing your file to KDE in the future, an appropriate lice
          </sizepolicy>
         </property>
         <property name="toolTip" >
-         <string>A title for your document.</string>
+         <string>A way to contact you (email or a webpage).</string>
         </property>
        </widget>
       </item>
