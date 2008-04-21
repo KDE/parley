@@ -37,7 +37,8 @@ TitlePage::TitlePage(KEduVocDocument * doc, QWidget* parent) : QWidget(parent)
     setupUi(this);
 
     titleLineEdit->setText(doc->title());
-    authorTextEdit->setText(doc->author());
+    authorLineEdit->setText(doc->author());
+    contactLineEdit->setText(doc->authorContact());
     licenseComboBox->setEditText(doc->license());
     commentTextEdit->setText(doc->documentComment());
     categoryComboBox->setEditText(doc->category());
@@ -47,7 +48,8 @@ TitlePage::TitlePage(KEduVocDocument * doc, QWidget* parent) : QWidget(parent)
 void TitlePage::commitData()
 {
     m_doc->setTitle(titleLineEdit->text());
-    m_doc->setAuthor(authorTextEdit->toPlainText());
+    m_doc->setAuthor(authorLineEdit->text());
+    m_doc->setAuthorContact(contactLineEdit->text());
     m_doc->setLicense(licenseComboBox->currentText());
     m_doc->setDocumentComment(commentTextEdit->toPlainText());
     m_doc->setCategory(categoryComboBox->currentText());

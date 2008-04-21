@@ -36,7 +36,8 @@ AuthorTitlePage::AuthorTitlePage(QWizard * parent)
 
     setupUi(this);
 
-    registerField("authorField", authorTextEdit, "plainText", "textChanged()");
+    registerField("authorField", authorLineEdit);
+    registerField("contactField", contactLineEdit);
     registerField("titleField", titleLineEdit);
     registerField("licenseField", licenseComboBox, "currentText", "editTextChanged(const QString&)");
     registerField("commentField", commentTextEdit, "plainText", "textChanged()");
