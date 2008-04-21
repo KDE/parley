@@ -11,11 +11,15 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "exportdialog.h"
+#include "xsldialog.h"
+
+#include <keduvocdocument.h>
+#include <keduvockvtml2writer.h>
 
 #include <KStandardDirs>
 #include <KUrl>
 #include <KDebug>
+#include <KFileDialog>
 
 #include <string.h>
 #include <libxml/xmlmemory.h>
@@ -30,27 +34,16 @@
 #include <libxslt/transform.h>
 #include <libxslt/xsltutils.h>
 
-ExportDialog::ExportDialog(const KUrl& file, QWidget * parent)
+XslDialog::XslDialog(const KUrl &file, KEduVocDocument *doc, QWidget *parent)
 {
+    m_doc = doc;
+    m_targetFile = file;
+
     ui = new Ui::ExportOptions();
     ui->setupUi(mainWidget());
-
-    m_sourceFile = file;
-    KUrl fileUrl = file;
-    QString fileName = file.fileName().left(file.fileName().indexOf('.'));
-    fileName.append(".html");
-    fileUrl.setFileName(fileName);
-
-    ui->fileName->setUrl(fileUrl);
 }
 
-KUrl ExportDialog::fileName()
-{
-    return ui->fileName->url();
-}
-
-
-void ExportDialog::accept()
+void XslDialog::accept()
 {
     KDialog::accept();
 
@@ -61,7 +54,7 @@ void ExportDialog::accept()
         xslFile = KStandardDirs::locate( "data", "parley/xslt/table.xsl");
     }
 
-    kDebug() << " START XSLT";
+    kDebug() << "XSLT starting";
 
     xsltStylesheetPtr cur = NULL;
     xmlDocPtr doc, res;
@@ -70,9 +63,10 @@ void ExportDialog::accept()
     xmlLoadExtDtdDefaultValue = 1;
     cur = xsltParseStylesheetFile((const xmlChar*) xslFile.toLatin1().constData());
 
-    doc = xmlParseFile( (const char*) m_sourceFile.toLocalFile().toLatin1() );
+    doc = xmlParseDoc( (const xmlChar*) m_doc->toByteArray(m_doc->generator()).constData() );
+
     res = xsltApplyStylesheet(cur, doc, 0);
-    FILE* result = fopen( (const char*) ui->fileName->url().toLocalFile().toLatin1(), "w");
+    FILE* result = fopen( (const char*) m_targetFile.toLocalFile().toLatin1(), "w");
     xsltSaveResultToFile(result, res, cur);
     fclose(result);
 
@@ -82,6 +76,8 @@ void ExportDialog::accept()
 
     xsltCleanupGlobals();
     xmlCleanupParser();
+
+    kDebug() << "XSLT finished";
 }
 
-#include "exportdialog.moc"
+#include "xsldialog.moc"

@@ -69,8 +69,8 @@ int KVTNewDocumentWizard::nextId() const
 
 void KVTNewDocumentWizard::accept()
 {
-    QString author = field("authorField").toString();
-    m_doc->setAuthor(author);
+    m_doc->setAuthor( field("authorField").toString() );
+    m_doc->setAuthorContact( field("contactField").toString() );
     m_doc->setTitle( field("titleField").toString() );
     m_doc->setLicense( field("licenseField").toString() );
     m_doc->setDocumentComment( field("commentField").toString() );
