@@ -49,7 +49,6 @@ KUrl ExportDialog::fileName()
     return ui->fileName->url();
 }
 
-
 void ExportDialog::accept()
 {
     KDialog::accept();
@@ -61,7 +60,7 @@ void ExportDialog::accept()
         xslFile = KStandardDirs::locate( "data", "parley/xslt/table.xsl");
     }
 
-    kDebug() << " START XSLT";
+    kDebug() << "XSLT starting";
 
     xsltStylesheetPtr cur = NULL;
     xmlDocPtr doc, res;
@@ -82,6 +81,8 @@ void ExportDialog::accept()
 
     xsltCleanupGlobals();
     xmlCleanupParser();
+
+    kDebug() << "XSLT finished";
 }
 
 #include "exportdialog.moc"

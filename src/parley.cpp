@@ -629,6 +629,15 @@ void ParleyApp::initActions()
     filePrint->setWhatsThis(i18n("Print the active vocabulary document"));
     filePrint->setToolTip(filePrint->whatsThis());
     filePrint->setStatusTip(filePrint->whatsThis());
+
+    KAction* fileExport = new KAction(this);
+    actionCollection()->addAction("file_export", fileExport);
+    fileExport->setText(i18n("&Export..."));
+    connect(fileExport, SIGNAL(triggered(bool)), m_document, SLOT(exportHtmlDialog()));
+    fileExport->setIcon(KIcon("document-export"));
+    fileExport->setWhatsThis(i18n("Export to HTML"));
+    fileExport->setToolTip(fileExport->whatsThis());
+    fileExport->setStatusTip(fileExport->whatsThis());
 #endif
 
     KAction* fileProperties = new KAction(this);

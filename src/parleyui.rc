@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="parley"  version="0.3">
+<gui name="parley"  version="1">
 
 <MenuBar>
     <Menu name="file" >
         <Action append="open_merge" name="file_open_example" />
         <Action append="open_merge" name="file_ghns" />
         <Action append="open_merge" name="file_open_downloaded" />
+        <Separator/>
+        <Action name="file_export" />
         <Separator/>
         <Action name="file_properties" />
         <Separator/>
