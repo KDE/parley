@@ -56,7 +56,7 @@ void VocabularyModel::setDocument(KEduVocDocument * doc)
     reset();
 
     emit documentChanged(doc);
-    
+
     if ( m_document ) {
         showContainer(m_document->lesson());
     } else {

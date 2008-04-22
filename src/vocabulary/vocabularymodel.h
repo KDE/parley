@@ -78,9 +78,9 @@ public:
 
     void resetLanguages();
 
-    signals:
-        void documentChanged(KEduVocDocument *doc);
-    
+signals:
+    void documentChanged(KEduVocDocument *doc);
+
 public slots:
     void setDocument(KEduVocDocument *doc);
 
