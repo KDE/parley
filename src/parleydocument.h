@@ -63,9 +63,7 @@ public slots:
     void save();
     void saveAs(KUrl file = KUrl());
 
-// #ifdef HAVE_LIBXSLT
     void exportHtmlDialog();
-// #endif
 
     void newDocument();
 

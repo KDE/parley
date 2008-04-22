@@ -348,14 +348,13 @@ void ParleyDocument::slotGHNS()
     qDeleteAll(entries);
 }
 
-
-#ifdef HAVE_LIBXSLT
 void ParleyDocument::exportHtmlDialog()
 {
-    ParleyExport::exportDocument(this, m_parleyApp);
-}
-#endif
+#ifdef HAVE_LIBXSLT
 
+    ParleyExport::exportDocument(this, m_parleyApp);
+#endif
+}
 
 void ParleyDocument::slotFileMerge()
 {

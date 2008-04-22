@@ -625,10 +625,12 @@ void ParleyApp::initActions()
     fileSaveAs->setStatusTip(fileSaveAs->whatsThis());
 
 #ifdef HAVE_LIBXSLT
-    KAction* filePrint = KStandardAction::print(m_document, SLOT(exportHtmlDialog()), actionCollection());
-    filePrint->setWhatsThis(i18n("Print the active vocabulary document"));
-    filePrint->setToolTip(filePrint->whatsThis());
-    filePrint->setStatusTip(filePrint->whatsThis());
+
+// Printing would be nice, but for now html export has to suffice
+//     KAction* filePrint = KStandardAction::print(m_document, SLOT(print()), actionCollection());
+//     filePrint->setWhatsThis(i18n("Print the active vocabulary document"));
+//     filePrint->setToolTip(filePrint->whatsThis());
+//     filePrint->setStatusTip(filePrint->whatsThis());
 
     KAction* fileExport = new KAction(this);
     actionCollection()->addAction("file_export", fileExport);
