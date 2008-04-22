@@ -400,22 +400,33 @@ void VocabularyView::slotRestoreColumnVisibility(KEduVocDocument* doc)
 
         QListIterator<int> iter(ds.visibleColumns());
 
-        // if there are no saved settings, default to show everything
+        // if there are no saved settings, it defaults to showing no extra columns.
         if (ds.visibleColumns().size() == 0)
         {
+               KAction* column;
                for (int i = 0; i < m_columnActionMap.size(); ++i)
                {
-                    KAction* column = m_columnActionMap.key(i, (KAction*)0);
+                    column = m_columnActionMap.key(i, (KAction*)0);
                     if (column)
                     {
-                        column->setChecked(true);
-                        setColumnHidden(i, false);
+                        if (VocabularyModel::columnType(i) == VocabularyModel::Translation)
+                        {
+                            // show the column
+                            column->setChecked(true);
+                            setColumnHidden(i, false);
+                        }
+                        else
+                        {
+                            // hide the column
+                            column->setChecked(false);
+                            setColumnHidden(i, true);
+                        }
                     }
-               }   
+               }
                resizeColumnsToContents();
                return;
         }
-        
+
         int j;
         KAction* column;
         for (int i = 0; iter.hasNext(); ++i)
