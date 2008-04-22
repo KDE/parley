@@ -561,6 +561,5 @@ void VocabularyView::setDocument(KEduVocDocument * doc)
 }
 
 
-
 #include "vocabularyview.moc"
 

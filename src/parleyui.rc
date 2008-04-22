@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="parley"  version="1">
+<gui name="parley"  version="2">
 
 <MenuBar>
     <Menu name="file" >
@@ -55,6 +55,8 @@
    <Action name="delete_lesson" />
    <Separator/>
    <Action name="split_lesson" />
+   <Separator/>
+   <Action name="lesson_showsublessonentries" />
   </Menu>
   <Menu name="learning" >
    <text>&amp;Practice</text>

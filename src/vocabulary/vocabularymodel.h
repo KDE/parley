@@ -104,6 +104,10 @@ public slots:
      */
     void setWordType(KEduVocWordType *wordTypeContainer);
 
+    /**
+     * Show the entries of child lessons in selected lessons
+     * @param show
+     */
     void showEntriesOfSubcontainers(bool show);
 
 private:

@@ -685,6 +685,14 @@ void ParleyApp::initActions()
 //     ///@todo enable when/if the corresponding function is rewritten
 //     editSaveSelectedArea->setEnabled(false);
 
+    KAction *showSublessonentries = actionCollection()->add<KToggleAction>("lesson_showsublessonentries");
+    showSublessonentries->setText(i18n("Show Entries from Child Lessons"));
+    connect(showSublessonentries, SIGNAL(triggered(bool)), m_vocabularyModel, SLOT(showEntriesOfSubcontainers(bool)));
+    showSublessonentries->setWhatsThis(i18n("Enable to also see the entries of child lessons in each lesson."));
+    showSublessonentries->setToolTip(showSublessonentries->whatsThis());
+    showSublessonentries->setStatusTip(showSublessonentries->whatsThis());
+    showSublessonentries->setChecked(Prefs::showSublessonentries());
+
 // -- VOCABULARY --------------------------------------------------
 
     KAction* vocabCleanUp = new KAction(this);
@@ -757,7 +765,6 @@ void ParleyApp::initActions()
 
 
     KAction* findVocabulary = KStandardAction::find(this, SLOT(m_searchLine->setFocus()), actionCollection());
-
 }
 
 
@@ -789,7 +796,6 @@ void ParleyApp::initModel()
     connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(setDocument(KEduVocDocument*)));
 
     connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_vocabularyFilter, SLOT(setSearchString(const QString&)));
-
 }
 
 /**

@@ -15,6 +15,7 @@
 #include "vocabularymodel.h"
 
 #include "parleydocument.h"
+#include "prefs.h"
 
 #include <keduvoclesson.h>
 #include <keduvocwordtype.h>
@@ -33,7 +34,7 @@ VocabularyModel::VocabularyModel(QObject *parent)
 {
     m_document = 0;
     m_container = 0;
-    m_recursive = KEduVocContainer::NotRecursive;
+    m_recursive = KEduVocContainer::Recursive;
 
     qRegisterMetaType<KEduVocTranslation*>("KEduVocTranslationStar");
 }
@@ -83,7 +84,6 @@ void VocabularyModel::showContainer(KEduVocContainer * container)
         }
     }
 }
-
 
 void VocabularyModel::setLesson(KEduVocLesson * lessonContainer)
 {
@@ -384,6 +384,7 @@ QMimeData * VocabularyModel::mimeData(const QModelIndexList & indexes) const
 
 void VocabularyModel::showEntriesOfSubcontainers(bool show)
 {
+    Prefs::setShowSublessonentries(show);
     if (show) {
         m_recursive = KEduVocContainer::Recursive;
     } else {
