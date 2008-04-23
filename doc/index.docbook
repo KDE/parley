@@ -111,11 +111,11 @@ There you can find files containing language vocabulary and also anatomy, music,
 </screenshot>
 
 <para>
-For a start you could open an example file by using the <menuchoice><guimenu>File</guimenu> <guimenuitem>Open Example...</guimenuitem></menuchoice> menu. There are 2 files which you may use in order to get to know all the functions of &parley;. The file <filename>sample-en.kvtml</filename> e.g. shows you some vocabulary words in English, German and French.
+For a start you could open an example file by using the <menuchoice><guimenu>File</guimenu> <guimenuitem>Open Example...</guimenuitem></menuchoice> menu. There are 2 files which you may use in order to get to know all the functions of &parley;. The file <filename>sample-en.kvtml</filename> &eg; shows you some vocabulary words in English, German and French.
 </para>
 
 <para>
-You can also download vocabulary files directly from the internet using <guimenu>File</guimenu> <guimenuitem>Download New Vocabularies...</guimenuitem>.
+You can also download vocabulary files directly from the Internet using <guimenu>File</guimenu> <guimenuitem>Download New Vocabularies...</guimenuitem>.
 </para>
 
 <screenshot>
@@ -1971,7 +1971,7 @@ to use <application>unzip</application> to extract the files.</para>
 </itemizedlist>
 
 <para>If you know another source please tell
-<ulink url="mailto:annma@kde.org">me</ulink>
+<ulink url="mailto:&Anne-Marie.Mahfouf.mail;">me</ulink>
 to include it here.</para>
 </sect1>
 
