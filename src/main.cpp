@@ -101,7 +101,7 @@ int main(int argc, char* argv[])
     options.add(I18N_NOOP("+[file]"), ki18n("Document file to open"));
     KCmdLineArgs::addCmdLineOptions(options);
     KApplication app;
-
+    app.setQuitOnLastWindowClosed(false); 
     ParleyApp *parleyApp = 0;
     if (app.isSessionRestored()) {
         int n = 1;
