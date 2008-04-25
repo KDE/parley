@@ -372,7 +372,7 @@ void VocabularyView::reset()
         visibleColumns = ds.visibleColumns();
     }
 
-    KActionMenu* currentTranslationAction;
+    KActionMenu* currentTranslationAction = 0;
     for( int i = 0; i < model()->columnCount(QModelIndex()); i++) {
         KAction* columnAction;
 
@@ -382,18 +382,20 @@ void VocabularyView::reset()
             columnAction = currentTranslationAction;
             m_vocabularyColumnsActionMenu->addAction(currentTranslationAction);
         } else {
-            columnAction = new KToggleAction(model()->headerData(i, Qt::Horizontal).toString(), this);
-            currentTranslationAction->addAction(columnAction);
-            connect (columnAction, SIGNAL(triggered(bool)),
-                this, SLOT(slotToggleColumn(bool)));
+            if (currentTranslationAction) {
+                columnAction = new KToggleAction(model()->headerData(i, Qt::Horizontal).toString(), this);
+                currentTranslationAction->addAction(columnAction);
+                connect (columnAction, SIGNAL(triggered(bool)),
+                    this, SLOT(slotToggleColumn(bool)));
 
-            if (visibleColumns.contains(i) && visibleColumns.value(i) == 1) {
-                // show the column
-                columnAction->setChecked(true);
-                setColumnHidden(i, false);
-            } else {
-                columnAction->setChecked(false);
-                setColumnHidden(i, true);
+                if (visibleColumns.contains(i) && visibleColumns.value(i) == 1) {
+                    // show the column
+                    columnAction->setChecked(true);
+                    setColumnHidden(i, false);
+                } else {
+                    columnAction->setChecked(false);
+                    setColumnHidden(i, true);
+                }
             }
         }
         m_columnActionMap[columnAction] = i;
