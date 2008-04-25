@@ -359,7 +359,7 @@ void VocabularyView::reset()
 {
     QTableView::reset();
     kDebug() << "reset";
-
+///@todo check if the actions are recreated every time when selecting a diff lesson.
     foreach( KAction* oldAction, m_columnActionMap.keys() ) {
         m_columnActionMap.remove(oldAction);
         delete oldAction;
@@ -372,8 +372,8 @@ void VocabularyView::reset()
         visibleColumns = ds.visibleColumns();
     }
 
+    KActionMenu* currentTranslationAction;
     for( int i = 0; i < model()->columnCount(QModelIndex()); i++) {
-        KActionMenu* currentTranslationAction;
         KAction* columnAction;
 
         if(VocabularyModel::columnType(i) == VocabularyModel::Translation) {
