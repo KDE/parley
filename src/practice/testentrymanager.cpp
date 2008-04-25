@@ -152,9 +152,6 @@ void TestEntryManager::startPractice()
     if ( m_currentEntries.count() == 0 ) {
         return;
     }
-    if (m_parent) {
-        m_parent->hide();
-    }
 
     switch ( Prefs::testType() ) {
     case Prefs::EnumTestType::WrittenTest:
@@ -189,10 +186,6 @@ void TestEntryManager::startPractice()
     connect(m_practiceDialog, SIGNAL(showSolutionFinished()), SLOT(setNextEntry()));
     setNextEntry();
     m_practiceDialog->exec();
-
-    if (m_parent) {
-        m_parent->show();
-    }
 
     PracticeSummaryDialog practiceSummaryDialog(this, m_parent);
     practiceSummaryDialog.exec();

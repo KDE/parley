@@ -280,12 +280,10 @@ void ParleyApp::configurePractice()
 
 void ParleyApp::startPractice()
 {
-//     hide();
-
+    hide();
     TestEntryManager testManager(m_document->document(), this);
     testManager.startPractice();
-
-//     show();
+    show();
 }
 
 
