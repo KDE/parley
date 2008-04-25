@@ -443,7 +443,7 @@ void VocabularyView::appendChar(const QChar &c)
 void VocabularyView::deleteSelectedEntries()
 {
     QSet<int> rows;
-    foreach (QModelIndex index, selectionModel()->selectedIndexes()) {
+    foreach (const QModelIndex &index, selectionModel()->selectedIndexes()) {
         rows.insert(index.row());
     }
 
