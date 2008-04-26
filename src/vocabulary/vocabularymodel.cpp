@@ -191,8 +191,7 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
 //             return QSize(25, 25);
 //         }
     case Qt::TextColorRole:
-
-        if (Prefs::useGradeColors() && entryColumn == Translation) {
+        if (entryColumn == Translation) {
             int grade = m_container->entry(index.row(), m_recursive)->translation(translationId)->grade();
             return Prefs::gradeColor(grade);
         } else {
