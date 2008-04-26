@@ -44,7 +44,6 @@
 #include "entry-dialogs/declensionwidget.h"
 #include "entry-dialogs/imagechooserwidget.h"
 #include "entry-dialogs/audiowidget.h"
-#include "entry-dialogs/browserwidget.h"
 #include "entry-dialogs/synonymwidget.h"
 
 #include "statistics-dialogs/StatisticsDialog.h"
@@ -520,18 +519,6 @@ void ParleyApp::initDockWidgets()
     audioDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         audioWidget, SLOT(setTranslation(KEduVocExpression*, int)));
-
-// browser
-    QDockWidget *browserDock = new QDockWidget(i18n("Internet"), this);
-    browserDock->setObjectName("BrowserDock");
-    //TinyWebBrowser *browserWidget = new TinyWebBrowser(this);
-    BrowserWidget *htmlPart = new BrowserWidget(browserDock);
-    browserDock->setWidget(htmlPart);
-    addDockWidget(Qt::RightDockWidgetArea, browserDock);
-    actionCollection()->addAction("show_browser_dock", browserDock->toggleViewAction());
-    browserDock->setVisible(false);
-    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-            htmlPart, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Marble
 //     QDockWidget *marbleDock = new QDockWidget(i18n("Marble"), this);
