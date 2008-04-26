@@ -34,7 +34,7 @@ VocabularyModel::VocabularyModel(QObject *parent)
 {
     m_document = 0;
     m_container = 0;
-    m_recursive = KEduVocContainer::Recursive;
+    m_recursive = Prefs::showSublessonentries() ? KEduVocContainer::Recursive : KEduVocContainer::NotRecursive;
 
     qRegisterMetaType<KEduVocTranslation*>("KEduVocTranslationStar");
 }
