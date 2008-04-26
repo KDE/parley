@@ -32,22 +32,17 @@
 #include <KLocale>
 #include <KRandomSequence>
 
-#include <kvttablemodel.h>
-
 AdjQueryDlg::AdjQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Comparison Training"), doc, parent)
 {
     mw = new Ui::AdjQueryDlgForm();
     mw->setupUi(mainWidget());
 
     mw->stopPracticeButton->setIcon( KIcon("process-stop") );
-    mw->editEntryButton->setIcon( KIcon("document-properties") );
     mw->verify->setIcon(KIcon("dialog-ok"));
     mw->know_it->setIcon(KIcon("go-next"));
     mw->dont_know->setIcon(KIcon("go-next"));
 
     connect(mw->stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
-    connect(mw->editEntryButton, SIGNAL(clicked()), SLOT(editEntry()));
-
     connect(mw->dont_know, SIGNAL(clicked()), SLOT(skipUnknown()));
     connect(mw->know_it, SIGNAL(clicked()), SLOT(skipKnown()));
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));

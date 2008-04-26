@@ -34,9 +34,9 @@ VocabularyModel::VocabularyModel(QObject *parent)
 {
     m_document = 0;
     m_container = 0;
-    m_recursive = KEduVocContainer::Recursive;
+    m_recursive = Prefs::showSublessonentries() ? KEduVocContainer::Recursive : KEduVocContainer::NotRecursive;
 
-    qRegisterMetaType<KEduVocTranslation*>("KEduVocTranslationStar");
+    qRegisterMetaType<KEduVocTranslation*>("KEduVocTranslationPointer");
 }
 
 
@@ -191,7 +191,7 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
 //             return QSize(25, 25);
 //         }
     case Qt::TextColorRole:
-        if (entryColumn == Translation) {
+        if (Prefs::useGradeColors() && entryColumn == Translation) {
             int grade = m_container->entry(index.row(), m_recursive)->translation(translationId)->grade();
             return Prefs::gradeColor(grade);
         } else {

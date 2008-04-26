@@ -32,7 +32,6 @@
 
 #include <KLocale>
 
-#include <kvttablemodel.h>
 #include <keduvocdocument.h>
 
 SimpleQueryDlg::SimpleQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog("", doc, parent)
@@ -41,14 +40,11 @@ SimpleQueryDlg::SimpleQueryDlg(KEduVocDocument *doc, QWidget *parent) : Practice
     mw->setupUi(mainWidget());
 
     mw->stopPracticeButton->setIcon( KIcon("process-stop") );
-    mw->editEntryButton->setIcon( KIcon("document-properties") );
     mw->verify->setIcon(KIcon("dialog-ok"));
     mw->know_it->setIcon(KIcon("go-next"));
     mw->dont_know->setIcon(KIcon("go-next"));
 
     connect(mw->stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
-    connect(mw->editEntryButton, SIGNAL(clicked()), SLOT(editEntry()));
-
     connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()));
     connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()));
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));

@@ -13,7 +13,6 @@
 
 #include "mixedletterpracticedialog.h"
 
-#include <kvttablemodel.h>
 #include <keduvocdocument.h>
 
 #include <KLocale>

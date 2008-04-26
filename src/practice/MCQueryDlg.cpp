@@ -26,7 +26,6 @@
 #include "MCQueryDlg.h"
 #include "prefs.h"
 
-#include <kvttablemodel.h>
 #include <keduvocdocument.h>
 #include <keduvoclesson.h>
 
@@ -52,10 +51,6 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
     // stop practice
     mw->stopPracticeButton->setIcon(KIcon("process-stop"));
     connect(mw->stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
-
-    // edit
-    mw->editEntryButton->setIcon(KIcon("document-properties"));
-    connect(mw->editEntryButton, SIGNAL(clicked()), SLOT(editEntry()));
 
     // skip known
     mw->know_it->setIcon(KIcon("go-next"));
