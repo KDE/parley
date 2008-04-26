@@ -69,7 +69,7 @@ KVTStatisticsDialog::KVTStatisticsDialog(KEduVocDocument *doc, QWidget *parent) 
     addPage(lessonStatistics, i18n("Lesson Statistics"));
 
     lessonStatistics->setModel(statisticsModel);
-
+    lessonStatistics->expandToDepth(0);
 
     KConfigGroup cg(KGlobal::config(), "StatisticsDialog");
     restoreDialogSize(cg);

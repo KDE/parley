@@ -26,24 +26,24 @@ StatisticsModel::StatisticsModel(QObject * parent)
 
 QVariant StatisticsModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    switch (section) {
-        case AverageGrade:
-            if(role == Qt::DisplayRole) {
-                return i18nc("Grade in language, table header", "Grade (%1)", m_doc->identifier(section-2).name());
-            }
+    if (section >= 2) {
+        if(role == Qt::DisplayRole) {
+            return i18nc("Grade in language, table header", "Grade (%1)", m_doc->identifier(section-2).name());
+        }
     }
     return ContainerModel::headerData(section, orientation, role);
 }
 
 QVariant StatisticsModel::data(const QModelIndex & index, int role) const
 {
-    switch (index.column()) {
-        case AverageGrade: // Average grade
-            KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
-            if (role == Qt::DisplayRole) {
+    if (index.column() >= 2) {
+        KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
+        switch (role) {
+            case TotalPercent: // Average grade
                 return container->averageGrade(index.column()-2);
-            }
-
+            case TotalCount:
+                return container->entryCount(KEduVocContainer::NotRecursive);
+        }
     }
     return ContainerModel::data(index, role);
 }
@@ -58,7 +58,7 @@ Qt::ItemFlags StatisticsModel::flags(const QModelIndex & index) const
 
 int StatisticsModel::columnCount(const QModelIndex & parent) const
 {
-    return 3;
+    return m_doc->identifierCount() + 2;
 }
 
 #include "statisticsmodel.moc"

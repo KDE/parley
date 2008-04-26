@@ -23,8 +23,17 @@ class StatisticsModel : public ContainerModel
     Q_OBJECT
 
 public:
-    enum Columns {
-        AverageGrade = 2
+    enum GradeRoles {
+        TotalPercent = Qt::UserRole,
+        TotalCount,
+        Grade0,
+        Grade1,
+        Grade2,
+        Grade3,
+        Grade4,
+        Grade5,
+        Grade6,
+        Grade7
     };
 
     explicit StatisticsModel(QObject *parent = 0);
