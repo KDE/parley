@@ -43,6 +43,8 @@ QVariant StatisticsModel::data(const QModelIndex & index, int role) const
                 return container->averageGrade(index.column()-2);
             case TotalCount:
                 return container->entryCount(KEduVocContainer::NotRecursive);
+            default:
+                return container->expressionsOfGrade(index.column()-2, role - Grade0);
         }
     }
     return ContainerModel::data(index, role);

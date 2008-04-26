@@ -50,8 +50,20 @@ public:
 protected:
     void drawBackground ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const {
         QLinearGradient linearGrad(QPointF(option.rect.x(), 0), QPointF(option.rect.x() + option.rect.width(), 0));
-        linearGrad.setColorAt(0, Qt::green);
-        linearGrad.setColorAt(index.data(StatisticsModel::TotalPercent).toInt()/100.0, Qt::red);
+
+//         linearGrad.setColorAt(0, Prefs::gradeColor(0));
+//         linearGrad.setColorAt(1, Prefs::gradeColor(0));
+
+        int total = index.data(StatisticsModel::TotalCount).toInt();
+        int sum = 0;
+        for (int i = 7; i >= 0; i--) {
+            int count = index.data(StatisticsModel::Grade0 + i).toInt();
+            if (count) {
+                sum += count;
+                linearGrad.setColorAt(((double)sum)/total, Prefs::gradeColor(i));
+            }
+        }
+
         // add a little frame of 1 pixel
         painter->fillRect(option.rect.adjusted(1, 1, -1, -1), linearGrad);
     }
