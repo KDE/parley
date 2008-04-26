@@ -42,7 +42,7 @@ public:
 
         drawBackground(painter, option, index);
 
-        painter->drawText(option.rect, Qt::AlignCenter, QString("%1%").arg(index.data(StatisticsModel::TotalPercent).toString()));
+        painter->drawText(option.rect, Qt::AlignCenter, QString("%1%").arg(index.data(StatisticsModel::TotalPercent).toInt()));
 
 //         drawDisplay(painter, option, option.rect, index.data(Qt::DisplayRole).toString());
     }
