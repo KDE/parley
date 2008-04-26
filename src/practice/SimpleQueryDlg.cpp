@@ -32,7 +32,6 @@
 
 #include <KLocale>
 
-#include <kvttablemodel.h>
 #include <keduvocdocument.h>
 
 SimpleQueryDlg::SimpleQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog("", doc, parent)

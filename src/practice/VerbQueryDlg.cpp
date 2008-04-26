@@ -26,14 +26,13 @@
 
 #include "documentsettings.h"
 
+#include <keduvocdocument.h>
+
+#include <KLocale>
 #include <QTimer>
 #include <QPushButton>
 #include <QLabel>
 #include <QLineEdit>
-
-#include <KLocale>
-
-#include <kvttablemodel.h>
 
 VerbQueryDlg::VerbQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Verb Training"), doc, parent)
 {

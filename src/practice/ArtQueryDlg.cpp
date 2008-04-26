@@ -24,8 +24,8 @@
 
 #include "ArtQueryDlg.h"
 
-#include "kvttablemodel.h"
 #include <keduvocwordtype.h>
+#include <keduvocdocument.h>
 #include <KLocale>
 #include <QTimer>
 #include <QRadioButton>

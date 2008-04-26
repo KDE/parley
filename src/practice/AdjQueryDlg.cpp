@@ -32,8 +32,6 @@
 #include <KLocale>
 #include <KRandomSequence>
 
-#include <kvttablemodel.h>
-
 AdjQueryDlg::AdjQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Comparison Training"), doc, parent)
 {
     mw = new Ui::AdjQueryDlgForm();

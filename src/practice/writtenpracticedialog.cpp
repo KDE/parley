@@ -25,7 +25,6 @@
 
 #include "writtenpracticedialog.h"
 
-#include "kvttablemodel.h"
 #include <keduvocdocument.h>
 #include <keduvocwordtype.h>
 

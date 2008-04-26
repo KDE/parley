@@ -26,7 +26,6 @@
 #include "MCQueryDlg.h"
 #include "prefs.h"
 
-#include <kvttablemodel.h>
 #include <keduvocdocument.h>
 #include <keduvoclesson.h>
 
