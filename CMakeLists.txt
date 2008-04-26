@@ -18,7 +18,6 @@ configure_file(
    ${CMAKE_CURRENT_BINARY_DIR}/config-parley.h
 )
 
-add_subdirectory( practice )
 add_subdirectory( src )
 add_subdirectory( icons )
 add_subdirectory( examples )
