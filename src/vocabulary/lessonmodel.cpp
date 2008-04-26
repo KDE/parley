@@ -58,7 +58,6 @@ void LessonModel::splitLesson(const QModelIndex& containerIndex, int entriesPerL
             if (order == Random) {
                 nextEntry = KRandom::random() % parentLesson->entryCount();
                 child->appendEntry(parentLesson->entry(nextEntry));
-                parentLesson->removeEntry(parentLesson->entry(nextEntry));
             }
         }
     }
