@@ -31,15 +31,15 @@ AudioWidget::AudioWidget(QWidget *parent) : QWidget(parent)
 
     connect(audioUrlRequester, SIGNAL(textChanged(const QString&)), SLOT(slotAudioFileChanged(const QString&)));
     connect(playButton, SIGNAL(clicked()), SLOT(playAudio()));
-    connect(recordButton, SIGNAL(clicked()), SLOT(recordAudio()));
+//     connect(recordButton, SIGNAL(clicked()), SLOT(recordAudio()));
 
     playButton->setEnabled(false);
     playButton->setIcon(KIcon("media-playback-start"));
-    recordButton->setEnabled(false);
-    recordButton->setIcon(KIcon("media-record"));
+    recordButton->setVisible(false);
+//     recordButton->setEnabled(false);
+//     recordButton->setIcon(KIcon("media-record"));
     audioUrlRequester->setEnabled(false);
 }
-
 
 void AudioWidget::setTranslation(KEduVocExpression* entry, int translation)
 {
@@ -64,14 +64,12 @@ void AudioWidget::setTranslation(KEduVocExpression* entry, int translation)
     }
 }
 
-
 void AudioWidget::slotAudioFileChanged(const QString & url)
 {
     kDebug() << "Setting sound " << url;
     m_entry->translation(m_currentTranslation)->setSoundUrl( KUrl(url) );
     playButton->setEnabled(!url.isEmpty());
 }
-
 
 void AudioWidget::playAudio()
 {
@@ -95,9 +93,12 @@ void AudioWidget::playAudio()
     m_player->play();
 }
 
+/*
 void AudioWidget::recordAudio()
 {
+    /// FIXME: When Phonon gains the ability to record sound, implement me :)
 }
+*/
 
 void AudioWidget::slotPlaybackFinished()
 {

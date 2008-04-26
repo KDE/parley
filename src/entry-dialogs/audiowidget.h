@@ -43,7 +43,7 @@ public slots:
 private slots:
     void slotAudioFileChanged(const QString & url);
     void playAudio();
-    void recordAudio();
+//     void recordAudio();
     void slotPlaybackFinished();
 
 private:
