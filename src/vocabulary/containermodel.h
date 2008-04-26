@@ -37,7 +37,7 @@ public:
     explicit ContainerModel(KEduVocLesson::EnumContainerType type, QObject *parent = 0);
 
     QVariant data(const QModelIndex &index, int role) const;
-    Qt::ItemFlags flags(const QModelIndex &index) const;
+    virtual Qt::ItemFlags flags(const QModelIndex &index) const;
     QVariant headerData(int section, Qt::Orientation orientation,
                         int role = Qt::DisplayRole) const;
     QModelIndex index(int row, int column,
@@ -82,8 +82,6 @@ signals:
 
 protected:
     KEduVocContainer *rootContainer() const;
-
-private:
     KEduVocContainer::EnumContainerType m_type;
     KEduVocDocument *m_doc;
 };

@@ -132,6 +132,7 @@ kde4_add_ui_files(entrydialogs_SRCS
 
 set(statisticsdialogs_SRCS
     statistics-dialogs/generalstatisticspage.cpp
+    statistics-dialogs/statisticsmodel.cpp
     statistics-dialogs/StatisticsDialog.cpp
     statistics-dialogs/StatisticsPage.cpp
     statistics-dialogs/lessonstatistics.cpp

@@ -198,10 +198,7 @@ QVariant ContainerModel::data(const QModelIndex & index, int role) const
             return Qt::AlignRight;
         }
         break;
-    default: // Average grade
-        if (role == Qt::DisplayRole) {
-            return container->averageGrade(index.column()-2);
-        }
+    default:
         if (role == Qt::TextAlignmentRole) {
             return Qt::AlignRight;
         }
@@ -281,10 +278,6 @@ QVariant ContainerModel::headerData(int section, Qt::Orientation orientation, in
                 return i18n("Number of entries in this lesson.");
             }
             break;
-        default:
-            if(role == Qt::DisplayRole) {
-                return i18nc("Grade in language, table header", "Grade (%1)", m_doc->identifier(section-2).name());
-            }
         }
     }
     return QVariant();
