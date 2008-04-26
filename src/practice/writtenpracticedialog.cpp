@@ -53,7 +53,6 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
     connect(mw->continueButton, SIGNAL(clicked()),  SLOT(continueButtonClicked()));
 
     mw->stopPracticeButton->setIcon( KIcon("process-stop") );
-    mw->editEntryButton->setIcon( KIcon("document-properties") );
     mw->verify->setIcon(KIcon("dialog-ok"));
     mw->know_it->setIcon(KIcon("go-next"));
     mw->dont_know->setIcon(KIcon("go-next"));
@@ -62,7 +61,6 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
     mw->show_all->setIcon(KIcon("games-solve"));
 
     connect(mw->stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
-    connect(mw->editEntryButton, SIGNAL(clicked()), SLOT(editEntry()));
 
     connect(mw->typeCheckBox, SIGNAL(toggled(bool)), SLOT(slotTypeClicked(bool)));
     connect(mw->commentCheckBox, SIGNAL(toggled(bool)), SLOT(slotRemClicked(bool)));

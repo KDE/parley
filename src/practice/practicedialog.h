@@ -104,12 +104,6 @@ public slots:
      */
     void timeoutReached();
 
-    /**
-     * Slot that starts the edit entry dialog.
-     A practice dialog can call this to allow editing an entry.
-     */
-    void editEntry();
-
 protected slots:
     /**
      * Call this when the user decided to skip this entry as KNOWN.

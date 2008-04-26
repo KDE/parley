@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>609</width>
-    <height>387</height>
+    <width>810</width>
+    <height>429</height>
    </rect>
   </property>
   <property name="sizePolicy" >
@@ -75,16 +75,7 @@
         <property name="spacing" >
          <number>6</number>
         </property>
-        <property name="leftMargin" >
-         <number>8</number>
-        </property>
-        <property name="topMargin" >
-         <number>8</number>
-        </property>
-        <property name="rightMargin" >
-         <number>8</number>
-        </property>
-        <property name="bottomMargin" >
+        <property name="margin" >
          <number>8</number>
         </property>
         <item>
@@ -113,22 +104,10 @@
      </item>
      <item>
       <layout class="QGridLayout" >
-       <property name="leftMargin" >
+       <property name="margin" >
         <number>0</number>
        </property>
-       <property name="topMargin" >
-        <number>0</number>
-       </property>
-       <property name="rightMargin" >
-        <number>0</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>0</number>
-       </property>
-       <property name="horizontalSpacing" >
-        <number>6</number>
-       </property>
-       <property name="verticalSpacing" >
+       <property name="spacing" >
         <number>6</number>
        </property>
        <item rowspan="2" row="0" column="1" >
@@ -143,22 +122,10 @@
           <string>Progress</string>
          </property>
          <layout class="QGridLayout" >
-          <property name="leftMargin" >
+          <property name="margin" >
            <number>11</number>
           </property>
-          <property name="topMargin" >
-           <number>11</number>
-          </property>
-          <property name="rightMargin" >
-           <number>11</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>11</number>
-          </property>
-          <property name="horizontalSpacing" >
-           <number>6</number>
-          </property>
-          <property name="verticalSpacing" >
+          <property name="spacing" >
            <number>6</number>
           </property>
           <item row="0" column="1" >
@@ -232,22 +199,10 @@
        </item>
        <item row="0" column="0" >
         <layout class="QGridLayout" >
-         <property name="leftMargin" >
+         <property name="margin" >
           <number>0</number>
          </property>
-         <property name="topMargin" >
-          <number>0</number>
-         </property>
-         <property name="rightMargin" >
-          <number>0</number>
-         </property>
-         <property name="bottomMargin" >
-          <number>0</number>
-         </property>
-         <property name="horizontalSpacing" >
-          <number>6</number>
-         </property>
-         <property name="verticalSpacing" >
+         <property name="spacing" >
           <number>6</number>
          </property>
          <item row="0" column="1" >
@@ -314,7 +269,7 @@
            <property name="orientation" >
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeHint" >
+           <property name="sizeHint" stdset="0" >
             <size>
              <width>111</width>
              <height>20</height>
@@ -326,13 +281,6 @@
           <widget class="QPushButton" name="stopPracticeButton" >
            <property name="text" >
             <string>&amp;Stop Practice</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="editEntryButton" >
-           <property name="text" >
-            <string>&amp;Edit Entry...</string>
            </property>
           </widget>
          </item>

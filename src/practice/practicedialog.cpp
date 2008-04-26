@@ -158,26 +158,6 @@ void PracticeDialog::setEntry(TestEntry * entry)
     }
 }
 
-void PracticeDialog::editEntry()
-{
-///@todo hide the test and show the big table with the entry selected.
-//     if (m_answerTimer != 0) {
-//         m_answerTimer->stop();
-//     }
-// 
-//     EntryDlg* entryDlg = new EntryDlg(0 , m_doc);
-// 
-//     QList<KEduVocExpression*> entryList;
-//     entryList.append(m_entry);
-//     entryDlg->setData(entryList, Prefs::solutionLanguage());
-//     entryDlg->exec();
-// 
-//     // punish with a don't know
-//     kDebug() << "Edit entry. For now count this attempt as wrong!";
-//     signalResult(TestEntryManager::Wrong);
-//     continueButtonClicked();
-}
-
 void PracticeDialog::skipKnown()
 {
     signalResult(TestEntryManager::SkipKnown);
