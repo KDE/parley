@@ -78,9 +78,9 @@ public:
 
     void resetLanguages();
 
-    signals:
-        void documentChanged(KEduVocDocument *doc);
-    
+signals:
+    void documentChanged(KEduVocDocument *doc);
+
 public slots:
     void setDocument(KEduVocDocument *doc);
 
@@ -104,6 +104,10 @@ public slots:
      */
     void setWordType(KEduVocWordType *wordTypeContainer);
 
+    /**
+     * Show the entries of child lessons in selected lessons
+     * @param show
+     */
     void showEntriesOfSubcontainers(bool show);
 
 private:

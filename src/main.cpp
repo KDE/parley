@@ -102,6 +102,7 @@ int main(int argc, char* argv[])
     KCmdLineArgs::addCmdLineOptions(options);
 
     KApplication app;
+    app.setQuitOnLastWindowClosed(false);
 
     // for i18n of the lib strings
     KGlobal::locale()->insertCatalog("libkdeedu");

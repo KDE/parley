@@ -20,6 +20,7 @@
 #include <keduvocexpression.h>
 
 #include <KDialog>
+#include <KMessageBox>
 
 EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc) :QObject(parent)
 {
@@ -66,7 +67,7 @@ QList<KEduVocExpression*> EntryFilter::entries()
 
     kDebug() << "Document contains " << m_entries.count() << " valid entries.";
     if (m_entries.count() == 0) {
-        // message box?
+        KMessageBox::error(0, i18n("The vocabulary document contains no entries that can be used for the chosen type of practice."));
         return m_entries.toList();
     }
 

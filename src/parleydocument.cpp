@@ -333,7 +333,7 @@ void ParleyDocument::slotGHNS()
         // care only about installed ones
         if (entry->status() == KNS::Entry::Installed) {
             // check mime type and if kvtml, open it
-            foreach(QString file, entry->installedFiles()) {
+            foreach(const QString &file, entry->installedFiles()) {
                 KMimeType::Ptr mimeType = KMimeType::findByPath(file);
                 kDebug() << "KNS2 file of mime type:" << KMimeType::findByPath(file)->name();
                 if (mimeType->name() == "application/x-kvtml") {
@@ -348,14 +348,13 @@ void ParleyDocument::slotGHNS()
     qDeleteAll(entries);
 }
 
-
-#ifdef HAVE_LIBXSLT
 void ParleyDocument::exportHtmlDialog()
 {
-    ParleyExport::exportDocument(this, m_parleyApp);
-}
-#endif
+#ifdef HAVE_LIBXSLT
 
+    ParleyExport::exportDocument(this, m_parleyApp);
+#endif
+}
 
 void ParleyDocument::slotFileMerge()
 {

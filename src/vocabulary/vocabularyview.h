@@ -60,14 +60,13 @@ public slots:
     /** paste the clipboard into the document*/
     void slotEditPaste();
 
-    void slotRestoreColumnVisibility(KEduVocDocument* doc);
-    
     /**
      * Append a char to the last edited entry (used to add the phonetic stuff).
      * @param c the char
      */
     void appendChar(const QChar & c);
-    
+
+    void setDocument(KEduVocDocument * doc);
 
 signals:
     void translationChanged(KEduVocExpression*, int);
@@ -115,6 +114,7 @@ private:
 
     VocabularyFilter* m_model;
     VocabularyDelegate* m_vocabularyDelegate;
+    KEduVocDocument *m_doc;
 };
 
 #endif

@@ -473,8 +473,8 @@ QList< QPair < QString , QString > > AnswerValidator::bestPairs(const QStringLis
 
     // check if another pair is possible
     int min;
-    int posSol;
-    int posUser;
+    int posSol = -1;
+    int posUser = -1;
     do {
         min = MAX_LEVENSHTEIN;
         for ( int i = 0; i < nSol; i++ ) {
@@ -486,7 +486,7 @@ QList< QPair < QString , QString > > AnswerValidator::bestPairs(const QStringLis
                 }
             }
         }
-        if ( min < MAX_LEVENSHTEIN ) {
+        if ( min < MAX_LEVENSHTEIN && posUser != -1 && posSol != -1) {
             pairList.append( qMakePair(solutionWords.value(posSol), userAnswerWords.value(posUser)) );
 
             // taken

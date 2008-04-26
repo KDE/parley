@@ -15,6 +15,7 @@
 #include "vocabularymodel.h"
 
 #include "parleydocument.h"
+#include "prefs.h"
 
 #include <keduvoclesson.h>
 #include <keduvocwordtype.h>
@@ -33,7 +34,7 @@ VocabularyModel::VocabularyModel(QObject *parent)
 {
     m_document = 0;
     m_container = 0;
-    m_recursive = KEduVocContainer::NotRecursive;
+    m_recursive = KEduVocContainer::Recursive;
 
     qRegisterMetaType<KEduVocTranslation*>("KEduVocTranslationStar");
 }
@@ -56,7 +57,7 @@ void VocabularyModel::setDocument(KEduVocDocument * doc)
     reset();
 
     emit documentChanged(doc);
-    
+
     if ( m_document ) {
         showContainer(m_document->lesson());
     } else {
@@ -83,7 +84,6 @@ void VocabularyModel::showContainer(KEduVocContainer * container)
         }
     }
 }
-
 
 void VocabularyModel::setLesson(KEduVocLesson * lessonContainer)
 {
@@ -190,6 +190,13 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
 //         case Image:
 //             return QSize(25, 25);
 //         }
+    case Qt::TextColorRole:
+        if (entryColumn == Translation) {
+            int grade = m_container->entry(index.row(), m_recursive)->translation(translationId)->grade();
+            return Prefs::gradeColor(grade);
+        } else {
+            return QVariant();
+        }
     case LocaleRole:
         return QVariant(m_document->identifier(translationId).locale());
     case EntryRole: {
@@ -238,6 +245,7 @@ bool VocabularyModel::setData(const QModelIndex &index, const QVariant &value, i
     }
 
     emit(dataChanged(index, index));
+    m_document->setModified();
     return true;
 }
 
@@ -384,6 +392,7 @@ QMimeData * VocabularyModel::mimeData(const QModelIndexList & indexes) const
 
 void VocabularyModel::showEntriesOfSubcontainers(bool show)
 {
+    Prefs::setShowSublessonentries(show);
     if (show) {
         m_recursive = KEduVocContainer::Recursive;
     } else {

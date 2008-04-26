@@ -280,12 +280,10 @@ void ParleyApp::configurePractice()
 
 void ParleyApp::startPractice()
 {
-//     hide();
-
+    hide();
     TestEntryManager testManager(m_document->document(), this);
     testManager.startPractice();
-
-//     show();
+    show();
 }
 
 
@@ -625,10 +623,12 @@ void ParleyApp::initActions()
     fileSaveAs->setStatusTip(fileSaveAs->whatsThis());
 
 #ifdef HAVE_LIBXSLT
-    KAction* filePrint = KStandardAction::print(m_document, SLOT(exportHtmlDialog()), actionCollection());
-    filePrint->setWhatsThis(i18n("Print the active vocabulary document"));
-    filePrint->setToolTip(filePrint->whatsThis());
-    filePrint->setStatusTip(filePrint->whatsThis());
+
+// Printing would be nice, but for now html export has to suffice
+//     KAction* filePrint = KStandardAction::print(m_document, SLOT(print()), actionCollection());
+//     filePrint->setWhatsThis(i18n("Print the active vocabulary document"));
+//     filePrint->setToolTip(filePrint->whatsThis());
+//     filePrint->setStatusTip(filePrint->whatsThis());
 
     KAction* fileExport = new KAction(this);
     actionCollection()->addAction("file_export", fileExport);
@@ -682,6 +682,14 @@ void ParleyApp::initActions()
 //     editSaveSelectedArea->setStatusTip(editSaveSelectedArea->whatsThis());
 //     ///@todo enable when/if the corresponding function is rewritten
 //     editSaveSelectedArea->setEnabled(false);
+
+    KAction *showSublessonentries = actionCollection()->add<KToggleAction>("lesson_showsublessonentries");
+    showSublessonentries->setText(i18n("Show Entries from Child Lessons"));
+    connect(showSublessonentries, SIGNAL(triggered(bool)), m_vocabularyModel, SLOT(showEntriesOfSubcontainers(bool)));
+    showSublessonentries->setWhatsThis(i18n("Enable to also see the entries of child lessons in each lesson."));
+    showSublessonentries->setToolTip(showSublessonentries->whatsThis());
+    showSublessonentries->setStatusTip(showSublessonentries->whatsThis());
+    showSublessonentries->setChecked(Prefs::showSublessonentries());
 
 // -- VOCABULARY --------------------------------------------------
 
@@ -755,7 +763,6 @@ void ParleyApp::initActions()
 
 
     KAction* findVocabulary = KStandardAction::find(this, SLOT(m_searchLine->setFocus()), actionCollection());
-
 }
 
 
@@ -784,9 +791,9 @@ void ParleyApp::initModel()
     m_vocabularyView->setModel(m_vocabularyFilter);
 
     connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyModel, SLOT(setDocument(KEduVocDocument*)));
+    connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(setDocument(KEduVocDocument*)));
 
     connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_vocabularyFilter, SLOT(setSearchString(const QString&)));
-
 }
 
 /**

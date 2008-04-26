@@ -159,6 +159,11 @@
       <default>true</default>
     </entry>
 
+    <entry name="ShowSublessonentries" type="Bool">
+      <label>When enabled a lesson also shows entries from its sublessons.</label>
+      <default>false</default>
+    </entry>
+
     <entry name="TableLessonColumnVisible" type="Bool">
       <label>Show/hide the lesson column.</label>
       <default>false</default>
