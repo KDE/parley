@@ -69,7 +69,7 @@ kDebug() << "Practicing tenses: " << m_activeTenses;
     setupPersonalPronouns();
 
     setupConjugationLineEditMap();
-    foreach ( QLineEdit* line, m_conjugationWidgets.values() ) {
+    foreach ( QLineEdit* line, m_conjugationWidgets ) {
         connect(line, SIGNAL(textChanged()), SLOT(textChanged()));
         ///@todo update upon change
     }
