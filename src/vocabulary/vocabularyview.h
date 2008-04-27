@@ -17,8 +17,9 @@
 #ifndef VOCABULARYVIEW_H
 #define VOCABULARYVIEW_H
 
-#include <QTableView>
+#include <sonnet/dialog.h>
 
+#include <QTableView>
 #include <QMap>
 
 class VocabularyFilter;
@@ -68,6 +69,8 @@ public slots:
 
     void setDocument(KEduVocDocument * doc);
 
+    void checkSpelling();
+
 signals:
     void translationChanged(KEduVocExpression*, int);
 
@@ -115,6 +118,9 @@ private:
     VocabularyFilter* m_model;
     VocabularyDelegate* m_vocabularyDelegate;
     KEduVocDocument *m_doc;
+
+    int spellcheckRow;
+    Sonnet::Dialog *spellingDialog;
 };
 
 #endif

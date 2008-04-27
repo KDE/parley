@@ -485,8 +485,6 @@ void ParleyApp::initDockWidgets()
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
             falseFriendWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
-
-    
 // Pronunciation symbols - Use KCharSelect
     QDockWidget *charSelectDock = new QDockWidget(i18n("Phonetic Symbols"), this);
     charSelectDock->setObjectName("IPADock");
@@ -657,6 +655,8 @@ void ParleyApp::initActions()
     editGramar->setToolTip(editGramar->whatsThis());
     editGramar->setStatusTip(editGramar->whatsThis());
     connect(editGramar, SIGNAL(triggered(bool)), SLOT(slotLanguageProperties()));
+
+    KAction *checkSpelling = KStandardAction::spelling(m_vocabularyView, SLOT(checkSpelling()), actionCollection());
 
 
 //     KAction* editSaveSelectedArea = new KAction(this);

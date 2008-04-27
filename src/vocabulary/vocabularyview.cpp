@@ -43,12 +43,16 @@
 #include <KLocale>
 #include <KMessageBox>
 #include <KUrl>
+#include <sonnet/backgroundchecker.h>
 
 VocabularyView::VocabularyView(ParleyApp * parent)
     : QTableView(parent)
 {
     m_model = 0;
     m_doc = 0;
+
+    spellingDialog = 0;
+    spellcheckRow = 0;
 
     horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 //     setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -560,6 +564,30 @@ void VocabularyView::slotSelectionChanged(const QItemSelection &, const QItemSel
 void VocabularyView::setDocument(KEduVocDocument * doc)
 {
     m_doc = doc;
+}
+
+void VocabularyView::checkSpelling()
+{
+    if (!spellingDialog) {
+        spellingDialog=new Sonnet::Dialog(new Sonnet::BackgroundChecker(
+            this), this);
+        spellingDialog->show();
+    }
+
+    //connect signals
+    connect(spellingDialog, SIGNAL(done(const QString&)), this, SLOT(checkSpelling()));
+
+
+kDebug() << "Data: " << spellcheckRow << ":" << m_model->data(m_model->index(spellcheckRow, 0, QModelIndex())).toString();
+
+    spellingDialog->setBuffer( m_model->data(m_model->index(spellcheckRow, 0, QModelIndex())).toString() );
+
+    spellcheckRow++;
+    if (spellcheckRow >= m_model->rowCount()) {
+        spellcheckRow = 0;
+        delete spellingDialog;
+        spellingDialog = 0;
+    }
 }
 
 
