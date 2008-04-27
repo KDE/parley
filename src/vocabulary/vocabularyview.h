@@ -81,6 +81,8 @@ private slots:
 
     void slotToggleColumn(bool show);
 
+    void continueSpelling();
+
     
 // private slots:
 //     void verticalHeaderResized(int, int, int);

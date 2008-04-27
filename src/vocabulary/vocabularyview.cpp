@@ -570,26 +570,29 @@ void VocabularyView::checkSpelling()
 {
     if (!spellingDialog) {
         spellingDialog=new Sonnet::Dialog(new Sonnet::BackgroundChecker(
-            this), this);
-        spellingDialog->show();
+            this), this);    
+        //connect signals
+        connect(spellingDialog, SIGNAL(done(const QString&)), this, SLOT(continueSpelling()));
     }
-
-    //connect signals
-    connect(spellingDialog, SIGNAL(done(const QString&)), this, SLOT(checkSpelling()));
-
-
-kDebug() << "Data: " << spellcheckRow << ":" << m_model->data(m_model->index(spellcheckRow, 0, QModelIndex())).toString();
-
-    spellingDialog->setBuffer( m_model->data(m_model->index(spellcheckRow, 0, QModelIndex())).toString() );
-
-    spellcheckRow++;
-    if (spellcheckRow >= m_model->rowCount()) {
-        spellcheckRow = 0;
-        delete spellingDialog;
-        spellingDialog = 0;
-    }
+    spellcheckRow = 0;
+    continueSpelling();
+    spellingDialog->show();
 }
 
+void VocabularyView::continueSpelling()
+{
+    kDebug() << "Data: " << spellcheckRow << ":" << m_model->data(m_model->index(spellcheckRow, 0, QModelIndex())).toString();
+
+
+    if (spellcheckRow <= m_model->rowCount()) {
+        QModelIndex newIndex = m_model->index(spellcheckRow, 0, QModelIndex());
+        spellingDialog->setBuffer( m_model->data(newIndex).toString() );
+        selectionModel()->select(newIndex, QItemSelectionModel::ClearAndSelect);
+        selectionModel()->setCurrentIndex(newIndex, QItemSelectionModel::ClearAndSelect);
+        scrollTo(newIndex);
+        spellcheckRow++;
+    }
+}
 
 #include "vocabularyview.moc"
 
