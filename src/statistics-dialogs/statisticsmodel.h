@@ -13,25 +13,38 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef LESSONSTATISTICSVIEW_H
-#define LESSONSTATISTICSVIEW_H
+#ifndef STATISTICSMODEL_H
+#define STATISTICSMODEL_H
 
-#include "vocabulary/containerview.h"
+#include "vocabulary/containermodel.h"
 
-class ContainerModel;
-
-/**
- * View for the lesson list.
- * @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
- */
-class LessonStatisticsView : public ContainerView
+class StatisticsModel : public ContainerModel
 {
     Q_OBJECT
 
 public:
-    LessonStatisticsView(QWidget *parent);
+    enum GradeRoles {
+        TotalPercent = Qt::UserRole,
+        TotalCount,
+        Grade0,
+        Grade1,
+        Grade2,
+        Grade3,
+        Grade4,
+        Grade5,
+        Grade6,
+        Grade7
+    };
 
-    void setModel(ContainerModel *model);
+    explicit StatisticsModel(QObject *parent = 0);
+
+    QVariant headerData(int section, Qt::Orientation orientation,
+                        int role = Qt::DisplayRole) const;
+    QVariant data(const QModelIndex &index, int role) const;
+    Qt::ItemFlags flags(const QModelIndex &index) const;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const;
+
 };
+
 
 #endif

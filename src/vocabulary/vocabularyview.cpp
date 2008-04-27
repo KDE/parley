@@ -34,6 +34,7 @@
 #include <QClipboard>
 
 #include <KApplication>
+#include <KPassivePopup>
 #include <KComponentData>
 #include <KGlobalSettings>
 #include <KAction>
@@ -43,12 +44,18 @@
 #include <KLocale>
 #include <KMessageBox>
 #include <KUrl>
+#include <sonnet/backgroundchecker.h>
 
 VocabularyView::VocabularyView(ParleyApp * parent)
     : QTableView(parent)
 {
     m_model = 0;
     m_doc = 0;
+
+    spellingChecker = 0;
+    spellingDialog = 0;
+    spellcheckRow = 0;
+    spellcheckColumn = 0;
 
     horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 //     setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -562,6 +569,95 @@ void VocabularyView::setDocument(KEduVocDocument * doc)
     m_doc = doc;
 }
 
+void VocabularyView::checkSpelling()
+{
+    // values so we will start in the first row:
+    spellcheckRow = m_model->rowCount();
+    spellcheckColumn = -1;
+    continueSpelling();
+}
+
+void VocabularyView::continueSpelling()
+{
+    if (spellcheckRow >= m_model->rowCount()) {
+        spellcheckRow = -1;
+        spellcheckColumn++;
+        while ((VocabularyModel::columnType(spellcheckColumn) == VocabularyModel::Pronunciation ||
+            VocabularyModel::columnType(spellcheckColumn) == VocabularyModel::WordType ||
+            isColumnHidden(spellcheckColumn) ) &&
+            spellcheckColumn < m_model->columnCount()){
+            spellcheckColumn++;
+        }
+        if (spellcheckColumn >= m_model->columnCount() && spellingDialog) {
+            disconnect(spellingDialog);
+            spellingChecker->deleteLater();
+            spellingDialog->deleteLater();
+            spellingChecker = 0;
+            spellingDialog = 0;
+            return;
+        }
+    }
+
+    if (spellcheckRow == -1) {
+        disconnect(spellingDialog);
+        spellingChecker->deleteLater();
+        spellingDialog->deleteLater();
+            spellingChecker = 0;
+            spellingDialog = 0;
+
+        // set up for new language
+        QModelIndex index = m_model->index(0, spellcheckColumn, QModelIndex());
+        spellingChecker = new Sonnet::BackgroundChecker(this);
+        QString locale = m_model->data(index, VocabularyModel::LocaleRole).toString();
+        spellingChecker->changeLanguage(locale);
+        if (!spellingChecker->speller().isValid()) {
+            kDebug() << "Invalid Language, popup here!";
+            KPassivePopup* pop = new KPassivePopup(this);
+            pop->setTimeout(10000);
+            pop->setView(i18nc("@popupmessage", "Either the language set up is incorrect or no spellchecker was installed for this locale: %1.", locale), i18nc("@title of a popup", "No Spell Checker Available"));
+            pop->show();
+//             spellcheckRow = m_model->rowCount();
+//             spellcheckColumn++;
+        }
+        spellingDialog = new Sonnet::Dialog(spellingChecker, this);
+        //connect signals
+        connect(spellingDialog, SIGNAL(done(const QString&)), this, SLOT(continueSpelling()));
+        connect(spellingDialog, SIGNAL(misspelling(const QString&, int)), this, SLOT(misspelling(const QString&, int)));
+        connect(spellingDialog, SIGNAL(replace(const QString&, int, const QString&)), this, SLOT(spellingReplace(const QString&, int, const QString&)));
+    }
+
+    spellcheckRow++;
+
+    QModelIndex index = m_model->index(spellcheckRow, spellcheckColumn, QModelIndex());
+    spellingDialog->setBuffer( m_model->data(index).toString() );
+
+    if (spellcheckRow == 0) {
+        spellingDialog->show();
+    }
+}
+
+void VocabularyView::selectIndex(const QModelIndex &newIndex)
+{
+    selectionModel()->select(newIndex, QItemSelectionModel::ClearAndSelect);
+    selectionModel()->setCurrentIndex(newIndex, QItemSelectionModel::ClearAndSelect);
+    scrollTo(newIndex);
+}
+
+void VocabularyView::misspelling(const QString & word, int start)
+{
+    QModelIndex index = m_model->index(spellcheckRow, spellcheckColumn, QModelIndex());
+    selectIndex(index);
+}
+
+void VocabularyView::spellingReplace(const QString & oldWord, int start, const QString & newWord)
+{
+    kDebug() << oldWord << start << newWord;
+    QModelIndex index = m_model->index(spellcheckRow, spellcheckColumn, QModelIndex());
+    QString data = index.data().toString();
+    QString newData = data.replace(start, oldWord.length(), newWord);
+    kDebug() << "Changing " << data << " to " << newData;
+    m_model->setData(index, newData);
+}
 
 #include "vocabularyview.moc"
 

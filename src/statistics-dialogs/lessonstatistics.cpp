@@ -15,8 +15,7 @@
 
 #include "lessonstatistics.h"
 
-#include "parley.h"
-#include "vocabulary/containermodel.h"
+#include "statisticsmodel.h"
 #include "keduvoclesson.h"
 #include "prefs.h"
 #include <KLocalizedString>
@@ -27,11 +26,65 @@
 
 #include <QHeaderView>
 
+#include <QPainter>
+
+#include <QItemDelegate>
+
+class GradeDelegate: public QItemDelegate
+{
+public:
+    virtual void paint ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const {
+
+        // empty lesson
+        if (!index.data(StatisticsModel::TotalCount).toInt()) {
+            return;
+        }
+
+        drawBackground(painter, option, index);
+
+        painter->drawText(option.rect, Qt::AlignCenter, QString("%1%").arg(index.data(StatisticsModel::TotalPercent).toInt()));
+
+//         drawDisplay(painter, option, option.rect, index.data(Qt::DisplayRole).toString());
+    }
+
+protected:
+    void drawBackground ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const {
+        QLinearGradient linearGrad(QPointF(option.rect.x(), 0), QPointF(option.rect.x() + option.rect.width(), 0));
+
+//         linearGrad.setColorAt(0, Prefs::gradeColor(0));
+//         linearGrad.setColorAt(1, Prefs::gradeColor(0));
+
+        int total = index.data(StatisticsModel::TotalCount).toInt();
+        int sum = 0;
+        for (int i = 7; i >= 0; i--) {
+            int count = index.data(StatisticsModel::Grade0 + i).toInt();
+            if (count) {
+                sum += count;
+                linearGrad.setColorAt(((double)sum)/total, Prefs::gradeColor(i));
+            }
+        }
+
+        // add a little frame of 1 pixel
+        painter->fillRect(option.rect.adjusted(1, 1, -1, -1), linearGrad);
+    }
+};
+
 LessonStatisticsView::LessonStatisticsView(QWidget * parent) :ContainerView(parent)
 {
     header()->setVisible(true);
 }
 
+void LessonStatisticsView::setModel(ContainerModel *model)
+{
+    ContainerView::setModel(model);
+
+//     header()->setResizeMode(0, QHeaderView::Stretch);
+//     header()->setResizeMode(1, QHeaderView::ResizeToContents);
+    for (int i = 2; i < model->columnCount(QModelIndex()); i++) {
+        setItemDelegateForColumn(i, new GradeDelegate());
+        setColumnWidth(i, 200);
+    }
+}
 
 #include "lessonstatistics.moc"
 

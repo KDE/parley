@@ -101,10 +101,10 @@ void ConjugationWidget::updateEntries()
 void ConjugationWidget::setTranslation(KEduVocExpression * entry, int identifier)
 {
     m_entry = entry;
-    if (m_identifier != identifier) {
+//     if (m_identifier != identifier) {
         m_identifier = identifier;
-        updateVisiblePersons();
-    }
+//         updateVisiblePersons();
+//     }
 
     if (!entry) {
         setEnabled(false);
@@ -119,6 +119,7 @@ void ConjugationWidget::setTranslation(KEduVocExpression * entry, int identifier
         // if it's a verb already, hide the make verb button and start editing it
         showConjugationEditWidgets();
         updateEntries();
+        updateVisiblePersons();
     } else {
         makeVerbButton->setEnabled(true);
         showMakeVerbWidgets();

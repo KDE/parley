@@ -486,6 +486,7 @@ void WrittenPracticeDialog::showContinueButton(bool show)
         stopAnswerTimer();
         mw->answerLineEdit->setText(m_entry->entry()->translation(Prefs::solutionLanguage())->text());
         mw->continueButton->setDefault(true);
+        mw->continueButton->setFocus();
         setWidgetStyle(mw->answerLineEdit, PositiveResult);
         mw->answerLineEdit->setReadOnly(true);
 

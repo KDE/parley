@@ -486,8 +486,6 @@ void ParleyApp::initDockWidgets()
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
             falseFriendWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
-
-    
 // Pronunciation symbols - Use KCharSelect
     QDockWidget *charSelectDock = new QDockWidget(i18n("Phonetic Symbols"), this);
     charSelectDock->setObjectName("IPADock");
@@ -671,6 +669,8 @@ void ParleyApp::initActions()
     editGramar->setStatusTip(editGramar->whatsThis());
     connect(editGramar, SIGNAL(triggered(bool)), SLOT(slotLanguageProperties()));
 
+    KAction *checkSpelling = KStandardAction::spelling(m_vocabularyView, SLOT(checkSpelling()), actionCollection());
+
 
 //     KAction* editSaveSelectedArea = new KAction(this);
 //      actionCollection()->addAction("edit_save_selected_area", editSaveSelectedArea);
@@ -814,7 +814,7 @@ void ParleyApp::initView()
     m_searchLine->setClearButtonShown(true);
     m_searchLine->setClickMessage(i18n("Enter search terms here"));
 
-    m_searchLine->setToolTip(i18n("Enter space-separated search terms to find words.\n\nEnter ^abc to look for words beginning with \"abc\".\nEnter abc$ to look for words ending with \"abc\".\nEnter type:verb to search for verbs."));
+//     m_searchLine->setToolTip(i18n("Search your vocabuary"));
 
     QLabel *label = new QLabel(i18n("S&earch:"), this);
     label->setBuddy(m_searchLine);

@@ -17,8 +17,9 @@
 #ifndef VOCABULARYVIEW_H
 #define VOCABULARYVIEW_H
 
-#include <QTableView>
+#include <sonnet/dialog.h>
 
+#include <QTableView>
 #include <QMap>
 
 class VocabularyFilter;
@@ -68,6 +69,8 @@ public slots:
 
     void setDocument(KEduVocDocument * doc);
 
+    void checkSpelling();
+
 signals:
     void translationChanged(KEduVocExpression*, int);
 
@@ -78,29 +81,15 @@ private slots:
 
     void slotToggleColumn(bool show);
 
-    
-// private slots:
-//     void verticalHeaderResized(int, int, int);
-//     void horizontalHeaderResized(int, int, int);
-//     void slotCurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous);
-//     /** Show the lesson column of the table.
-//      * @param show if @c true the lesson column is shown
-//      */
-//     void slotShowLessonColumn(bool show);
-//     void slotShowActiveColumn(bool show);
-// 
-// protected:
-//     /** resizes table when frame is resized */
-//     void resizeEvent(QResizeEvent *);
-//     void showEvent(QShowEvent *);
-//     void keyPressEvent(QKeyEvent*);
-// 
-// private:
-//     void newPage(QPainter &, int, int, int);
-//     void endOfPage(QPainter &, int, int);
-// 
-//     KVTTableDelegate * m_delegate;
+    void continueSpelling();
+
+    void misspelling(const QString &word, int start);
+    void spellingReplace(const QString& oldWord, int start, const QString &newWord);
+
+
 private:
+    void selectIndex(const QModelIndex &index);
+
     QMap <KAction*, int> m_columnActionMap;
     KActionMenu * m_vocabularyColumnsActionMenu;
 
@@ -115,6 +104,11 @@ private:
     VocabularyFilter* m_model;
     VocabularyDelegate* m_vocabularyDelegate;
     KEduVocDocument *m_doc;
+
+    int spellcheckRow;
+    int spellcheckColumn;
+    Sonnet::BackgroundChecker *spellingChecker;
+    Sonnet::Dialog *spellingDialog;
 };
 
 #endif
