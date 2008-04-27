@@ -51,8 +51,10 @@ VocabularyView::VocabularyView(ParleyApp * parent)
     m_model = 0;
     m_doc = 0;
 
+    spellingChecker = 0;
     spellingDialog = 0;
     spellcheckRow = 0;
+    spellcheckColumn = 0;
 
     horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 //     setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -568,30 +570,62 @@ void VocabularyView::setDocument(KEduVocDocument * doc)
 
 void VocabularyView::checkSpelling()
 {
-    if (!spellingDialog) {
-        spellingDialog=new Sonnet::Dialog(new Sonnet::BackgroundChecker(
-            this), this);    
-        //connect signals
-        connect(spellingDialog, SIGNAL(done(const QString&)), this, SLOT(continueSpelling()));
-    }
-    spellcheckRow = 0;
+    // values so we will start in the first row:
+    spellcheckRow = m_model->rowCount();
+    spellcheckColumn = -1;
     continueSpelling();
-    spellingDialog->show();
 }
 
 void VocabularyView::continueSpelling()
 {
-    kDebug() << "Data: " << spellcheckRow << ":" << m_model->data(m_model->index(spellcheckRow, 0, QModelIndex())).toString();
+    kDebug() << "Data: " << spellcheckColumn << "; " << spellcheckRow << ":" << m_model->data(m_model->index(spellcheckRow, spellcheckColumn, QModelIndex())).toString();
 
-
-    if (spellcheckRow <= m_model->rowCount()) {
-        QModelIndex newIndex = m_model->index(spellcheckRow, 0, QModelIndex());
-        spellingDialog->setBuffer( m_model->data(newIndex).toString() );
-        selectionModel()->select(newIndex, QItemSelectionModel::ClearAndSelect);
-        selectionModel()->setCurrentIndex(newIndex, QItemSelectionModel::ClearAndSelect);
-        scrollTo(newIndex);
-        spellcheckRow++;
+    if (spellcheckRow >= m_model->rowCount()) {
+        spellcheckRow = 0;
+        spellcheckColumn++;
+kDebug() << "Column: " << spellcheckColumn;
+        while ((VocabularyModel::columnType(spellcheckColumn) == VocabularyModel::Pronunciation ||
+            VocabularyModel::columnType(spellcheckColumn) == VocabularyModel::WordType ||
+            isColumnHidden(spellcheckColumn) ) &&
+            spellcheckColumn < m_model->columnCount()){
+            spellcheckColumn++;
+kDebug() << "Column: " << spellcheckColumn;
+        }
+        if (spellcheckColumn >= m_model->columnCount()) {
+            disconnect(spellingDialog);
+            delete spellingDialog;
+            spellingDialog = 0;
+            return;
+        }
     }
+
+    if (spellcheckRow == 0) {
+        // set up for new language
+        QModelIndex index = m_model->index(0, spellcheckColumn, QModelIndex());
+        if (!spellingChecker) {
+            spellingChecker = new Sonnet::BackgroundChecker(this);
+        }
+        spellingChecker->changeLanguage(m_model->data(index, VocabularyModel::LocaleRole).toString());
+        if (!spellingChecker->speller().isValid()) {
+            kDebug() << "Invalid Language, popup here!";
+//             spellcheckRow = m_model->rowCount();
+//             spellcheckColumn++;
+        }
+        spellingDialog = new Sonnet::Dialog(spellingChecker, this);
+        //connect signals
+        connect(spellingDialog, SIGNAL(done(const QString&)), this, SLOT(continueSpelling()));
+    }
+
+    QModelIndex newIndex = m_model->index(spellcheckRow, spellcheckColumn, QModelIndex());
+    spellingDialog->setBuffer( m_model->data(newIndex).toString() );
+    selectionModel()->select(newIndex, QItemSelectionModel::ClearAndSelect);
+    selectionModel()->setCurrentIndex(newIndex, QItemSelectionModel::ClearAndSelect);
+    scrollTo(newIndex);
+
+    if (spellcheckRow == 0) {
+        spellingDialog->show();
+    }
+    spellcheckRow++;
 }
 
 #include "vocabularyview.moc"

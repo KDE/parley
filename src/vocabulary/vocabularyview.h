@@ -122,6 +122,8 @@ private:
     KEduVocDocument *m_doc;
 
     int spellcheckRow;
+    int spellcheckColumn;
+    Sonnet::BackgroundChecker *spellingChecker;
     Sonnet::Dialog *spellingDialog;
 };
 
