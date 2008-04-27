@@ -83,29 +83,13 @@ private slots:
 
     void continueSpelling();
 
-    
-// private slots:
-//     void verticalHeaderResized(int, int, int);
-//     void horizontalHeaderResized(int, int, int);
-//     void slotCurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous);
-//     /** Show the lesson column of the table.
-//      * @param show if @c true the lesson column is shown
-//      */
-//     void slotShowLessonColumn(bool show);
-//     void slotShowActiveColumn(bool show);
-// 
-// protected:
-//     /** resizes table when frame is resized */
-//     void resizeEvent(QResizeEvent *);
-//     void showEvent(QShowEvent *);
-//     void keyPressEvent(QKeyEvent*);
-// 
-// private:
-//     void newPage(QPainter &, int, int, int);
-//     void endOfPage(QPainter &, int, int);
-// 
-//     KVTTableDelegate * m_delegate;
+    void misspelling(const QString &word, int start);
+    void spellingReplace(const QString& oldWord, int start, const QString &newWord);
+
+
 private:
+    void selectIndex(const QModelIndex &index);
+
     QMap <KAction*, int> m_columnActionMap;
     KActionMenu * m_vocabularyColumnsActionMenu;
 
