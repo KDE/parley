@@ -579,18 +579,14 @@ void VocabularyView::checkSpelling()
 
 void VocabularyView::continueSpelling()
 {
-    kDebug() << "Data: " << spellcheckColumn << "; " << spellcheckRow << ":" << m_model->data(m_model->index(spellcheckRow, spellcheckColumn, QModelIndex())).toString();
-
     if (spellcheckRow >= m_model->rowCount()) {
         spellcheckRow = -1;
         spellcheckColumn++;
-kDebug() << "Column: " << spellcheckColumn;
         while ((VocabularyModel::columnType(spellcheckColumn) == VocabularyModel::Pronunciation ||
             VocabularyModel::columnType(spellcheckColumn) == VocabularyModel::WordType ||
             isColumnHidden(spellcheckColumn) ) &&
             spellcheckColumn < m_model->columnCount()){
             spellcheckColumn++;
-kDebug() << "Column: " << spellcheckColumn;
         }
         if (spellcheckColumn >= m_model->columnCount() && spellingDialog) {
             disconnect(spellingDialog);
@@ -627,7 +623,7 @@ kDebug() << "Column: " << spellcheckColumn;
         //connect signals
         connect(spellingDialog, SIGNAL(done(const QString&)), this, SLOT(continueSpelling()));
         connect(spellingDialog, SIGNAL(misspelling(const QString&, int)), this, SLOT(misspelling(const QString&, int)));
-        connect(spellingDialog, SIGNAL(replace(const QString&, int, const QString&)), this, SLOT(replace(const QString&, int, const QString&)));
+        connect(spellingDialog, SIGNAL(replace(const QString&, int, const QString&)), this, SLOT(spellingReplace(const QString&, int, const QString&)));
     }
 
     spellcheckRow++;
@@ -655,6 +651,12 @@ void VocabularyView::misspelling(const QString & word, int start)
 
 void VocabularyView::spellingReplace(const QString & oldWord, int start, const QString & newWord)
 {
+    kDebug() << oldWord << start << newWord;
+    QModelIndex index = m_model->index(spellcheckRow, spellcheckColumn, QModelIndex());
+    QString data = index.data().toString();
+    QString newData = data.replace(start, oldWord.length(), newWord);
+    kDebug() << "Changing " << data << " to " << newData;
+    m_model->setData(index, newData);
 }
 
 #include "vocabularyview.moc"
