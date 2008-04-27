@@ -591,20 +591,26 @@ kDebug() << "Column: " << spellcheckColumn;
             spellcheckColumn++;
 kDebug() << "Column: " << spellcheckColumn;
         }
-        if (spellcheckColumn >= m_model->columnCount()) {
+        if (spellcheckColumn >= m_model->columnCount() && spellingDialog) {
             disconnect(spellingDialog);
-            delete spellingDialog;
+            spellingChecker->deleteLater();
+            spellingDialog->deleteLater();
+            spellingChecker = 0;
             spellingDialog = 0;
             return;
         }
     }
 
     if (spellcheckRow == 0) {
+        disconnect(spellingDialog);
+        spellingChecker->deleteLater();
+        spellingDialog->deleteLater();
+            spellingChecker = 0;
+            spellingDialog = 0;
+
         // set up for new language
         QModelIndex index = m_model->index(0, spellcheckColumn, QModelIndex());
-        if (!spellingChecker) {
-            spellingChecker = new Sonnet::BackgroundChecker(this);
-        }
+        spellingChecker = new Sonnet::BackgroundChecker(this);
         spellingChecker->changeLanguage(m_model->data(index, VocabularyModel::LocaleRole).toString());
         if (!spellingChecker->speller().isValid()) {
             kDebug() << "Invalid Language, popup here!";
