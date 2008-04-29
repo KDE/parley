@@ -95,7 +95,7 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
     QString noun = m_entry->entry()->translation(Prefs::solutionLanguage())->text();
     
     // strip the article
-     QStringList qsl = noun.split(QRegExp("\\W"), QString::SkipEmptyParts);
+     QStringList qsl = noun.split(QRegExp("\\s"), QString::SkipEmptyParts);
      QMutableStringListIterator qsli(qsl);
      while (qsli.hasNext())
           if (articles.isArticle(qsli.next()))
