@@ -93,20 +93,15 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
 
     // set the word (possibly without the article)
     QString noun = m_entry->entry()->translation(Prefs::solutionLanguage())->text();
+    
     // strip the article
-    ///@todo
-    int pos;
-    foreach(const QString &word, noun.split(QRegExp("\\W"), QString::SkipEmptyParts) ) {
-        if (articles.isArticle(word)) {
-            while ((pos = noun.indexOf(word)) >= 0) {
-                noun.remove(pos, word.length());
-            }
-        }
-    }
-//     QString firstPart = noun.substring(
-//     if (articles.isArticle(firstPart)){
-        //remove
-//     }
+     QStringList qsl = noun.split(QRegExp("\\W"), QString::SkipEmptyParts);
+     QMutableStringListIterator qsli(qsl);
+     while (qsli.hasNext())
+          if (articles.isArticle(qsli.next()))
+             qsli.remove();
+
+     noun = qsl.join(" ");
 
     mw->orgField->setText(noun);
     mw->progCount->setText(QString::number(entry->statisticCount()));
