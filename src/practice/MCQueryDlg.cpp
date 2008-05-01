@@ -37,7 +37,7 @@
 #include <QRadioButton>
 #include <QButtonGroup>
 #include <QPushButton>
-#include <QKeyEvent>
+#include <QShortcut>
 
 MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Multiple Choice"), doc, parent)
 {
@@ -82,6 +82,17 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
     mw->know_it->setVisible(Prefs::skipKnownEnabled());
     mw->imageGraphicsView->setVisible(false);
 
+    QShortcut *shortcut1 = new QShortcut(QKeySequence(Qt::Key_1), this);
+    connect(shortcut1, SIGNAL(activated()), mw->choiceRadioButton1, SLOT(animateClick()));
+    QShortcut *shortcut2 = new QShortcut(QKeySequence(Qt::Key_2), this);
+    connect(shortcut2, SIGNAL(activated()), mw->choiceRadioButton2, SLOT(animateClick()));
+    QShortcut *shortcut3 = new QShortcut(QKeySequence(Qt::Key_3), this);
+    connect(shortcut3, SIGNAL(activated()), mw->choiceRadioButton3, SLOT(animateClick()));
+    QShortcut *shortcut4 = new QShortcut(QKeySequence(Qt::Key_4), this);
+    connect(shortcut4, SIGNAL(activated()), mw->choiceRadioButton4, SLOT(animateClick()));
+    QShortcut *shortcut5 = new QShortcut(QKeySequence(Qt::Key_5), this);
+    connect(shortcut5, SIGNAL(activated()), mw->choiceRadioButton5, SLOT(animateClick()));
+
     m_choiceRadioButtons << mw->choiceRadioButton1
         << mw->choiceRadioButton2
         << mw->choiceRadioButton3
@@ -90,6 +101,7 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
 
     foreach (QRadioButton* rb, m_choiceRadioButtons) {
         connect(rb, SIGNAL(clicked()), SLOT(verifyClicked()));
+
     }
 
     KConfigGroup cg(KGlobal::config(), "MCQueryDlg");
