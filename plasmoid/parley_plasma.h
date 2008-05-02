@@ -19,6 +19,8 @@
 
 #include <Plasma/Applet>
 #include <Plasma/Svg>
+#include <plasma/dataengine.h>
+#include <plasma/plasma.h>
 
 #include <QGraphicsTextItem>
 
@@ -63,9 +65,9 @@ class ParleyPlasma : public Plasma::Applet
         virtual void hoverLeaveEvent ( QGraphicsSceneHoverEvent * event );
 
     private:
-        Plasma::Svg m_theme;
-        Plasma::Label *m_label1;
-        Plasma::Label *m_label2;
+        Plasma::Svg *m_theme;
+        QGraphicsTextItem *m_label1;
+        QGraphicsTextItem *m_label2;
 
         Ui::config ui;
         KDialog *m_dialog;

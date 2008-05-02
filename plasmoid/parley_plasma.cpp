@@ -24,22 +24,23 @@
 
 ParleyPlasma::ParleyPlasma(QObject *parent, const QVariantList &args)
     : Plasma::Applet(parent, args),
-    m_theme("widgets/parley_plasma_card", this),
     m_dialog(0),
-    m_font(QFont()),
-    m_size(256,160)
-
+    m_font(QFont())
 {
+    resize(256,160);
     m_dialog = 0;
     m_label1 = 0;
     m_label2 = 0;
     setHasConfigurationInterface(true);
     setAcceptDrops(false);
     setAcceptsHoverEvents(true);
-    setDrawStandardBackground(false);
-    setRemainSquare(true);
+//     setDrawStandardBackground(false);
+    setAspectRatioMode(Plasma::KeepAspectRatio);
 
-    m_theme.resize();
+    m_theme = new Plasma::Svg(this);
+    m_theme->setImagePath("widgets/parley_plasma_card");
+    m_theme->setContainsMultipleImages(false);
+    m_theme->resize(size());
 }
 
 void ParleyPlasma::init()
@@ -50,14 +51,14 @@ void ParleyPlasma::init()
     m_updateInterval = cg.readEntry("updateInterval", 10000);
     m_engine = dataEngine("parley");
 
-    m_theme.setContentType(Plasma::Svg::SingleImage);
-    m_theme.size().height();
+//     m_theme->setContentType(Plasma::Svg::SingleImage);
+    m_theme->size().height();
 
-    m_label1 = new Plasma::Label(this);
-    m_label2 = new Plasma::Label(this);
+    m_label1 = new QGraphicsTextItem(this);
+    m_label2 = new QGraphicsTextItem(this);
 
-    m_label1->setPos( m_theme.elementRect( "translation1" ).topLeft() );
-    m_label2->setPos( m_theme.elementRect( "translation2" ).topLeft() );
+    m_label1->setPos( m_theme->elementRect( "translation1" ).topLeft() );
+    m_label2->setPos( m_theme->elementRect( "translation2" ).topLeft() );
 
     m_label1->setFont(cg.readEntry("font",m_font));
     m_label2->setFont(cg.readEntry("font",m_font));
@@ -85,19 +86,19 @@ void ParleyPlasma::init()
 
 void ParleyPlasma::constraintsUpdated(Plasma::Constraints constraints)
 {
-    setDrawStandardBackground(false);
+//     setDrawStandardBackground(false);
     prepareGeometryChange();
     if (constraints & Plasma::SizeConstraint) {
-        m_theme.resize(contentSize().toSize());
+//         m_theme->resize(contentSize().toSize());
     }
-    m_label1->setPos( m_theme.elementRect( "translation1" ).topLeft() );
+    m_label1->setPos( m_theme->elementRect( "translation1" ).topLeft() );
     m_label1->setFont( m_font );
-    double scale = qMin(m_theme.elementRect( "translation1" ).width()/m_label1->boundingRect().width(), m_theme.elementRect( "translation1" ).height()/m_label1->boundingRect().height());
+    double scale = qMin(m_theme->elementRect( "translation1" ).width()/m_label1->boundingRect().width(), m_theme->elementRect( "translation1" ).height()/m_label1->boundingRect().height());
     m_label1->setTransform(QTransform().scale(scale, scale));
 
-    m_label2->setPos( m_theme.elementRect( "translation2" ).topLeft() );
+    m_label2->setPos( m_theme->elementRect( "translation2" ).topLeft() );
     m_label2->setFont( m_font );
-    scale = qMin(m_theme.elementRect( "translation2" ).width()/m_label2->boundingRect().width(), m_theme.elementRect( "translation2" ).height()/m_label2->boundingRect().height());
+    scale = qMin(m_theme->elementRect( "translation2" ).width()/m_label2->boundingRect().width(), m_theme->elementRect( "translation2" ).height()/m_label2->boundingRect().height());
     m_label2->setTransform(QTransform().scale(scale, scale));
 }
 
@@ -113,23 +114,23 @@ void ParleyPlasma::dataUpdated(const QString& source, const Plasma::DataEngine::
 
 
     if ( m_label1) {
-        m_label1->setText(words[0]);
-        double scale = qMin(m_theme.elementRect( "translation1" ).width()/m_label1->boundingRect().width(), m_theme.elementRect( "translation1" ).height()/m_label1->boundingRect().height());
+        m_label1->setPlainText(words[0]);
+        double scale = qMin(m_theme->elementRect( "translation1" ).width()/m_label1->boundingRect().width(), m_theme->elementRect( "translation1" ).height()/m_label1->boundingRect().height());
         m_label1->setTransform(QTransform().scale(scale, scale));
-        m_label1->setPos(m_theme.elementRect( "translation1" ).topLeft()
+        m_label1->setPos(m_theme->elementRect( "translation1" ).topLeft()
                 + QPointF(
-                    (m_theme.elementRect("translation1").width()-m_label1->boundingRect().width()*scale)/2.0,
-                    (m_theme.elementRect("translation1").height()-m_label1->boundingRect().height()*scale)/2.0));
+                    (m_theme->elementRect("translation1").width()-m_label1->boundingRect().width()*scale)/2.0,
+                    (m_theme->elementRect("translation1").height()-m_label1->boundingRect().height()*scale)/2.0));
 
         if (words.size() > 1) {
-        m_label2->setText(words[1]);
-        scale = qMin(m_theme.elementRect( "translation2" ).width()/m_label2->boundingRect().width(), m_theme.elementRect( "translation2" ).height()/m_label2->boundingRect().height());
+        m_label2->setPlainText(words[1]);
+        scale = qMin(m_theme->elementRect( "translation2" ).width()/m_label2->boundingRect().width(), m_theme->elementRect( "translation2" ).height()/m_label2->boundingRect().height());
         m_label2->setTransform(QTransform().scale(scale, scale));
         m_label2->hide();
-        m_label2->setPos(m_theme.elementRect( "translation2" ).topLeft()
+        m_label2->setPos(m_theme->elementRect( "translation2" ).topLeft()
                 + QPointF(
-                            (m_theme.elementRect("translation2").width()-m_label2->boundingRect().width()*scale)/2.0,
-                            (m_theme.elementRect("translation2").height()-m_label2->boundingRect().height()*scale)/2.0));
+                            (m_theme->elementRect("translation2").width()-m_label2->boundingRect().width()*scale)/2.0,
+                            (m_theme->elementRect("translation2").height()-m_label2->boundingRect().height()*scale)/2.0));
         }
     }
 }
@@ -150,9 +151,9 @@ void ParleyPlasma::paintInterface(QPainter *p,
 {
     Q_UNUSED(option);
 
-    m_theme.resize((int)contentsRect.width(),
+    m_theme->resize((int)contentsRect.width(),
                          (int)contentsRect.height());
-    m_theme.paint(p,
+    m_theme->paint(p,
                        (int)contentsRect.left(),
                        (int)contentsRect.top());
 }

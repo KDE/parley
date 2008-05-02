@@ -27,10 +27,10 @@ if(HAVE_LIBXSLT)
     add_subdirectory( xslt )
 endif(HAVE_LIBXSLT)
 
-MESSAGE(STATUS "Parley plasmoid disabled until it will port to new API")
+#MESSAGE(STATUS "Parley plasmoid disabled until it will port to new API")
 
 if(HAVE_PLASMA)
-        #add_subdirectory(plasmoid)
+    add_subdirectory(plasmoid)
 endif(HAVE_PLASMA)
 
 
