@@ -34,8 +34,8 @@ ParleyPlasma::ParleyPlasma(QObject *parent, const QVariantList &args)
     setHasConfigurationInterface(true);
     setAcceptDrops(false);
     setAcceptsHoverEvents(true);
-//     setDrawStandardBackground(false);
     setAspectRatioMode(Plasma::KeepAspectRatio);
+    setBackgroundHints(Plasma::NoBackground);
 
     m_theme = new Plasma::Svg(this);
     m_theme->setImagePath("widgets/parley_plasma_card");
@@ -49,7 +49,7 @@ void ParleyPlasma::init()
     m_updateInterval = cg.readEntry("updateInterval", 10000);
     m_engine = dataEngine("parley");
 
-//     m_theme->setContentType(Plasma::Svg::SingleImage);
+    m_theme->setContentType(Plasma::Svg::SingleImage);
     m_theme->size().height();
 
     m_label1 = new QGraphicsTextItem(this);
