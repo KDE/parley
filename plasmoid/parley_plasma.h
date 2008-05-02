@@ -31,6 +31,7 @@ class QFont;
 class QSizeF;
 class KConfigGroup;
 class KEduVocDocument;
+class KConfigDialog;
 
 class ParleyPlasma : public Plasma::Applet
 {
@@ -55,7 +56,7 @@ class ParleyPlasma : public Plasma::Applet
         void constraintsUpdated(Plasma::Constraints constraints);
 
     public slots:
-        void showConfigurationInterface();
+        void createConfigurationInterface(KConfigDialog *parent);
         void configAccepted();
         void showFontSelectDlg();
         void dataUpdated(const QString &name, const Plasma::DataEngine::Data &data);

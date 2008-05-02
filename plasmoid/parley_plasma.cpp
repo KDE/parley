@@ -18,6 +18,7 @@
 
 #include <KDialog>
 #include <KConfigGroup>
+#include <KConfigDialog>
 #include <KFontDialog>
 #include <KColorDialog>
 #include <KDebug>
@@ -35,7 +36,7 @@ ParleyPlasma::ParleyPlasma(QObject *parent, const QVariantList &args)
     setAcceptDrops(false);
     setAcceptsHoverEvents(true);
     setAspectRatioMode(Plasma::KeepAspectRatio);
-    setBackgroundHints(Plasma::NoBackground);
+    setBackgroundHints(NoBackground);
 
     m_theme = new Plasma::Svg(this);
     m_theme->setImagePath("widgets/parley_plasma_card");
@@ -49,7 +50,7 @@ void ParleyPlasma::init()
     m_updateInterval = cg.readEntry("updateInterval", 10000);
     m_engine = dataEngine("parley");
 
-    m_theme->setContentType(Plasma::Svg::SingleImage);
+//     setContentType(SingleImage);
     m_theme->size().height();
 
     m_label1 = new QGraphicsTextItem(this);
@@ -157,36 +158,32 @@ void ParleyPlasma::paintInterface(QPainter *p,
     m_theme->paint(p, contentsRect, "Card");
 }
 
-void ParleyPlasma::showConfigurationInterface()
+void ParleyPlasma::createConfigurationInterface(KConfigDialog * parent)
 {
-    if (m_dialog == 0) {
-        m_dialog = new KDialog;
-        m_dialog->setWindowIcon(KIcon("parley"));
-        m_dialog->setCaption( i18n("ParleyPlasma Configuration") );
-        ui.setupUi(m_dialog->mainWidget());
-        m_dialog->mainWidget()->layout()->setMargin(0);
-        ui.updateIntervalSpinBox->setValue(m_updateInterval/1000);
-        KConfigGroup cg = config();
+    QWidget *widget = new QWidget();
+    ui.setupUi(widget);
+    parent->addPage(widget, parent->windowTitle(), icon());
+    parent->setButtons( KDialog::Ok | KDialog::Cancel | KDialog::Apply );
+    connect(parent, SIGNAL(applyClicked()), this, SLOT(configAccepted()));
+    connect(parent, SIGNAL(okClicked()), this, SLOT(configAccepted()));
 
-        int fileSource = cg.readEntry("Vocabulary File Source", 0);
-        switch (fileSource) {
-            case Parley:
-                ui.sourceParleyRadioButton->setChecked(true);
-                break;
-            case UserDefined:
-                ui.sourceCustomRadioButton->setChecked(true);
-                break;
-        }
-        m_sourceFile = cg.readEntry("File Name");
-        ui.filechooser->setPath(m_sourceFile);
-        kDebug() << "set file url: " << cg.readEntry("File Name");
-        m_dialog->setButtons( KDialog::Ok | KDialog::Cancel | KDialog::Apply );
-        connect( m_dialog, SIGNAL(applyClicked()), this, SLOT(configAccepted()) );
-        connect( m_dialog, SIGNAL(okClicked()), this, SLOT(configAccepted()) );
-        connect( ui.fontSelectButton, SIGNAL(clicked()), this, SLOT(showFontSelectDlg()) );
+    ui.updateIntervalSpinBox->setValue(m_updateInterval/1000);
+    KConfigGroup cg = config();
+
+    int fileSource = cg.readEntry("Vocabulary File Source", 0);
+    switch (fileSource) {
+        case Parley:
+            ui.sourceParleyRadioButton->setChecked(true);
+            break;
+        case UserDefined:
+            ui.sourceCustomRadioButton->setChecked(true);
+            break;
     }
+    m_sourceFile = cg.readEntry("File Name");
+    ui.filechooser->setPath(m_sourceFile);
+    kDebug() << "set file url: " << cg.readEntry("File Name");
 
-    m_dialog->show();
+    connect( ui.fontSelectButton, SIGNAL(clicked()), this, SLOT(showFontSelectDlg()) );
 }
 
 void ParleyPlasma::showFontSelectDlg()
