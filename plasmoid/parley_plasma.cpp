@@ -154,11 +154,9 @@ void ParleyPlasma::paintInterface(QPainter *p,
 {
     Q_UNUSED(option);
 
-   QSizeF boundSize = geometry().size();
+    QSizeF boundSize = geometry().size();
     m_theme->resize(boundSize);
     m_theme->paint(p, contentsRect, "Card");
-
-
 }
 
 void ParleyPlasma::showConfigurationInterface()

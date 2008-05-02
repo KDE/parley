@@ -32,7 +32,7 @@ ParleyEngine::ParleyEngine(QObject* parent, const QVariantList& args)
     : Plasma::DataEngine(parent)
 {
     Q_UNUSED(args)
-
+    setMinimumPollingInterval(1000);
     kDebug() << "ParleyEngine::ParleyEngine";
     m_doc = new KEduVocDocument(this);
     m_current = 0;
@@ -65,8 +65,9 @@ QStringList ParleyEngine::sources() const
    return list;
 }
 
-bool ParleyEngine::sourceRequested(const QString &source)
+bool ParleyEngine::sourceRequestEvent(const QString &source)
 {
+    kDebug() << "Source requested: " << source;
     if (source != m_file) {
         kDebug() << "open file: " << source;
         m_file = source;
@@ -76,11 +77,12 @@ bool ParleyEngine::sourceRequested(const QString &source)
         kDebug() << "could not open source file";
         return false;
     }
-    return updateSource(source);
+    return updateSourceEvent(source);
 }
 
-bool ParleyEngine::updateSource(const QString &source)
+bool ParleyEngine::updateSourceEvent(const QString &source)
 {
+    kDebug() << "Update Source: " << source;
     int vocabularyCount = m_doc->lesson()->entries(KEduVocContainer::Recursive).count();
     if (!vocabularyCount) {
         setData(source, i18n("No document set.,,Start Parley first."));
