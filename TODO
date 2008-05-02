@@ -5,15 +5,12 @@ Before 4.1 release:
  * Make all dock widgets work
    - creating a new doc does not create any word types
  * Save columns hide state, enable hiding of main columns with their children maybe
- * The statistics page is broken. Time for a rewrite.
  * Remove ModelTest!
  * Copy/Paste and friends.
  * What about editing multiple entries at the same time? does that work? does it help with the new design?
  * Check that changes to the document result in a modified state!!!! Ask when quitting Parley!!!
  * Set version number to something not svn
  * Reenable synonym, false friend and antonym practices and synonym check in written practice! check if deletion of one of two synonyms crashes
- * Implement more online lookup possiblities, language dependent. (or remove this - depends on soc) 
-
 
 When time permits:
  * update the dtd and validate some documents
