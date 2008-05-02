@@ -67,7 +67,6 @@ QStringList ParleyEngine::sources() const
 
 bool ParleyEngine::sourceRequestEvent(const QString &source)
 {
-    kDebug() << "Source requested: " << source;
     if (source != m_file) {
         kDebug() << "open file: " << source;
         m_file = source;
@@ -82,7 +81,6 @@ bool ParleyEngine::sourceRequestEvent(const QString &source)
 
 bool ParleyEngine::updateSourceEvent(const QString &source)
 {
-    kDebug() << "Update Source: " << source;
     int vocabularyCount = m_doc->lesson()->entries(KEduVocContainer::Recursive).count();
     if (!vocabularyCount) {
         setData(source, i18n("No document set.,,Start Parley first."));

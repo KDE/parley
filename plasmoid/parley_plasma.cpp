@@ -45,8 +45,6 @@ ParleyPlasma::ParleyPlasma(QObject *parent, const QVariantList &args)
 
 void ParleyPlasma::init()
 {
-    kDebug() << "init";
-
     KConfigGroup cg = config();
     m_updateInterval = cg.readEntry("updateInterval", 10000);
     m_engine = dataEngine("parley");
