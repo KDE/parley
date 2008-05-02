@@ -57,6 +57,9 @@ void ParleyPlasma::init()
     m_label1 = new QGraphicsTextItem(this);
     m_label2 = new QGraphicsTextItem(this);
 
+    m_label1->setDefaultTextColor(Qt::blue);
+    m_label2->setDefaultTextColor(Qt::red);
+
     m_label1->setPos( m_theme->elementRect( "translation1" ).topLeft() );
     m_label2->setPos( m_theme->elementRect( "translation2" ).topLeft() );
 
@@ -151,11 +154,11 @@ void ParleyPlasma::paintInterface(QPainter *p,
 {
     Q_UNUSED(option);
 
-    m_theme->resize((int)contentsRect.width(),
-                         (int)contentsRect.height());
-    m_theme->paint(p,
-                       (int)contentsRect.left(),
-                       (int)contentsRect.top());
+   QSizeF boundSize = geometry().size();
+    m_theme->resize(boundSize);
+    m_theme->paint(p, contentsRect, "Card");
+
+
 }
 
 void ParleyPlasma::showConfigurationInterface()

@@ -15,7 +15,7 @@
    height="80"
    id="svg4420"
    sodipodi:version="0.32"
-   inkscape:version="0.45+devel"
+   inkscape:version="0.46"
    sodipodi:docname="parley_plasma_card.svg"
    sodipodi:docbase="/home/frederik/kde/4/src/KDE/kdeedu/parley/plasmoid"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
@@ -44,9 +44,9 @@
      id="base"
      inkscape:zoom="4.08"
      inkscape:cx="59.149359"
-     inkscape:cy="39.821267"
-     inkscape:window-x="434"
-     inkscape:window-y="16"
+     inkscape:cy="35.652258"
+     inkscape:window-x="1844"
+     inkscape:window-y="0"
      inkscape:current-layer="svg4420"
      height="80px"
      width="128px"
@@ -23665,7 +23665,8 @@
      style="fill:#ffffff;fill-opacity:0.75688076;fill-rule:nonzero;stroke:none;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:4;stroke-opacity:1"
      id="path2276" />
   <g
-     id="g6728">
+     id="Card"
+     inkscape:label="Card">
     <rect
        width="116.78474"
        height="71.799248"
