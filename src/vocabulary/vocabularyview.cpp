@@ -57,6 +57,8 @@ VocabularyView::VocabularyView(ParleyApp * parent)
     spellcheckRow = 0;
     spellcheckColumn = 0;
 
+//     setHorizontalHeader(new VocabularyHeaderView(Qt::Horizontal, this));
+
     horizontalHeader()->setResizeMode(QHeaderView::Interactive);
 //     setSelectionMode(QAbstractItemView::ExtendedSelection);
 //     setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -377,6 +379,14 @@ void VocabularyView::reset()
         DocumentSettings ds(m_doc->url().url());
         ds.readConfig();
         visibleColumns = ds.visibleColumns();
+
+        KConfig parleyConfig("parleyrc");
+        KConfigGroup documentGroup( &parleyConfig, "Document " + m_doc->url().url() );
+        QByteArray state = documentGroup.readEntry( "VocabularyColumns", QByteArray() );
+
+        if (!horizontalHeader()->restoreState(state)) {
+            resizeColumnsToContents();
+        }
     }
 
     KActionMenu* currentTranslationAction = 0;
@@ -394,8 +404,7 @@ void VocabularyView::reset()
                 currentTranslationAction->addAction(columnAction);
                 connect (columnAction, SIGNAL(triggered(bool)),
                     this, SLOT(slotToggleColumn(bool)));
-
-                if (visibleColumns.contains(i) && visibleColumns.value(i) == 1) {
+                if (i < visibleColumns.size() && visibleColumns.value(i) == 1) {
                     // show the column
                     columnAction->setChecked(true);
                     setColumnHidden(i, false);
@@ -407,7 +416,6 @@ void VocabularyView::reset()
         }
         m_columnActionMap[columnAction] = i;
     }
-    resizeColumnsToContents();
 }
 
 void VocabularyView::slotToggleColumn(bool show)
@@ -419,7 +427,6 @@ void VocabularyView::saveColumnVisibility(const KUrl & kurl) const
 {
     // Generate a QList<int> for saving
     QList<int> qli;
-
     for (int i = 0; i < m_columnActionMap.size(); ++i)
     {
         qli.append(static_cast<int>(!isColumnHidden(i)));
@@ -429,7 +436,10 @@ void VocabularyView::saveColumnVisibility(const KUrl & kurl) const
     ds.setVisibleColumns(qli);
     ds.writeConfig();
 
-    kDebug() << "Saving: " << qli;
+    QByteArray saveState = horizontalHeader()->saveState();
+    KConfig parleyConfig("parleyrc");
+    KConfigGroup documentGroup( &parleyConfig, "Document " + m_doc->url().url() );
+    documentGroup.writeEntry( "VocabularyColumns", horizontalHeader()->saveState() );
 }
 
 void VocabularyView::appendEntry()
@@ -567,6 +577,7 @@ void VocabularyView::slotSelectionChanged(const QItemSelection &, const QItemSel
 void VocabularyView::setDocument(KEduVocDocument * doc)
 {
     m_doc = doc;
+    reset();
 }
 
 void VocabularyView::checkSpelling()
