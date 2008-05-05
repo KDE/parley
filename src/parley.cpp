@@ -749,7 +749,7 @@ void ParleyApp::initActions()
     actionRestoreNativeOrder->setText(i18n("Restore Native Order"));
 
 
-    KAction* findVocabulary = KStandardAction::find(this, SLOT(m_searchLine->setFocus()), actionCollection());
+    KAction* findVocabulary = KStandardAction::find(m_searchLine, SLOT(setFocus()), actionCollection());
 }
 
 
