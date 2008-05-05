@@ -15,6 +15,7 @@
  ***************************************************************************/
 
 #include "vocabularyview.h"
+#include "vocabularyheaderview.h"
 
 #include "vocabularymodel.h"
 #include "vocabularyfilter.h"
@@ -57,7 +58,7 @@ VocabularyView::VocabularyView(ParleyApp * parent)
     spellcheckRow = 0;
     spellcheckColumn = 0;
 
-//     setHorizontalHeader(new VocabularyHeaderView(Qt::Horizontal, this));
+    setHorizontalHeader(new VocabularyHeaderView(Qt::Horizontal, this));
 
     horizontalHeader()->setResizeMode(QHeaderView::Interactive);
 //     setSelectionMode(QAbstractItemView::ExtendedSelection);

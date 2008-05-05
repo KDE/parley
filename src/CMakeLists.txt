@@ -37,6 +37,7 @@ kde4_add_ui_files( libcommondlg_SRCS
 set(vocabulary_SRCS
     vocabulary/vocabularymodel.cpp
     vocabulary/vocabularyview.cpp
+    vocabulary/vocabularyheaderview.cpp
     vocabulary/vocabularydelegate.cpp
     vocabulary/vocabularyfilter.cpp
     vocabulary/vocabularymimedata.cpp

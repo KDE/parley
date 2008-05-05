@@ -86,7 +86,6 @@ private slots:
     void misspelling(const QString &word, int start);
     void spellingReplace(const QString& oldWord, int start, const QString &newWord);
 
-
 private:
     void selectIndex(const QModelIndex &index);
 
