@@ -61,8 +61,6 @@ VocabularyView::VocabularyView(ParleyApp * parent)
     setHorizontalHeader(new VocabularyHeaderView(Qt::Horizontal, this));
 
     horizontalHeader()->setResizeMode(QHeaderView::Interactive);
-//     setSelectionMode(QAbstractItemView::ExtendedSelection);
-//     setSelectionBehavior(QAbstractItemView::SelectRows);
     setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
 
     setSortingEnabled(true);
@@ -148,24 +146,11 @@ void VocabularyView::setModel(VocabularyFilter * model)
 {
     QTableView::setModel(model);
     m_model = model;
-//     setCurrentIndex(model->index(0, 0));
-//     scrollTo(currentIndex());
-//     connect(verticalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(verticalHeaderResized(int, int, int)));
-//     connect(horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(horizontalHeaderResized(int, int, int)));
     connect(selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
 
     connect(selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)), SLOT(slotSelectionChanged(const QItemSelection&, const QItemSelection&)));
     slotSelectionChanged(QItemSelection(), QItemSelection());
 }
-
-
-// void VocabularyView::slotCurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous)
-// {
-//     Q_UNUSED(previous);
-//     m_delegate->setCurrentIndex(current);
-//     reset();
-// }
-
 
 // void VocabularyView::print(QPrinter * pPrinter)
 // {
