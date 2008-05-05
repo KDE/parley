@@ -57,7 +57,7 @@ VocabularyView::VocabularyView(ParleyApp * parent)
     spellcheckRow = 0;
     spellcheckColumn = 0;
 
-    horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    horizontalHeader()->setResizeMode(QHeaderView::Interactive);
 //     setSelectionMode(QAbstractItemView::ExtendedSelection);
 //     setSelectionBehavior(QAbstractItemView::SelectRows);
     setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
