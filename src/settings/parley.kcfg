@@ -42,15 +42,6 @@
       <label>Time interval between two automatic backups</label>
       <default>15</default>
     </entry>
-    <entry name="HeaderResizeMode" type="Enum">
-      <label>How the columns should be resized.</label>
-      <choices>
-        <choice name="Automatic"/>
-        <choice name="Percent"/>
-        <choice name="Fixed"/>
-      </choices>
-      <default>Automatic</default>
-    </entry>
   </group>
 
   <group name="PracticeOptions">
