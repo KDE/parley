@@ -53,7 +53,7 @@ class ParleyPlasma : public Plasma::Applet
         void paintInterface(QPainter *painter,
                             const QStyleOptionGraphicsItem *option,
                             const QRect& contentsRect);
-        void constraintsUpdated(Plasma::Constraints constraints);
+        void constraintsEvent(Plasma::Constraints constraints);
 
     public slots:
         void createConfigurationInterface(KConfigDialog *parent);

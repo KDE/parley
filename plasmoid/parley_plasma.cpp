@@ -56,8 +56,8 @@ void ParleyPlasma::init()
     m_label1 = new QGraphicsTextItem(this);
     m_label2 = new QGraphicsTextItem(this);
 
-    m_label1->setDefaultTextColor(Qt::blue);
-    m_label2->setDefaultTextColor(Qt::red);
+//     m_label1->setDefaultTextColor(Qt::blue);
+//     m_label2->setDefaultTextColor(Qt::red);
 
     m_label1->setPos( m_theme->elementRect( "translation1" ).topLeft() );
     m_label2->setPos( m_theme->elementRect( "translation2" ).topLeft() );
@@ -86,22 +86,24 @@ void ParleyPlasma::init()
     }
 }
 
-void ParleyPlasma::constraintsUpdated(Plasma::Constraints constraints)
+void ParleyPlasma::constraintsEvent(Plasma::Constraints constraints)
 {
-//     setDrawStandardBackground(false);
-    prepareGeometryChange();
-    if (constraints & Plasma::SizeConstraint) {
-//         m_theme->resize(contentSize().toSize());
+    if (constraints & Plasma::FormFactorConstraint) {
+        setBackgroundHints(NoBackground);
     }
-    m_label1->setPos( m_theme->elementRect( "translation1" ).topLeft() );
-    m_label1->setFont( m_font );
-    double scale = qMin(m_theme->elementRect( "translation1" ).width()/m_label1->boundingRect().width(), m_theme->elementRect( "translation1" ).height()/m_label1->boundingRect().height());
-    m_label1->setTransform(QTransform().scale(scale, scale));
 
-    m_label2->setPos( m_theme->elementRect( "translation2" ).topLeft() );
-    m_label2->setFont( m_font );
-    scale = qMin(m_theme->elementRect( "translation2" ).width()/m_label2->boundingRect().width(), m_theme->elementRect( "translation2" ).height()/m_label2->boundingRect().height());
-    m_label2->setTransform(QTransform().scale(scale, scale));
+    if (constraints & Plasma::SizeConstraint) {
+        prepareGeometryChange();
+        m_label1->setPos( m_theme->elementRect( "translation1" ).topLeft() );
+        m_label1->setFont( m_font );
+        double scale = qMin(m_theme->elementRect( "translation1" ).width()/m_label1->boundingRect().width(), m_theme->elementRect( "translation1" ).height()/m_label1->boundingRect().height());
+        m_label1->setTransform(QTransform().scale(scale, scale));
+
+        m_label2->setPos( m_theme->elementRect( "translation2" ).topLeft() );
+        m_label2->setFont( m_font );
+        scale = qMin(m_theme->elementRect( "translation2" ).width()/m_label2->boundingRect().width(), m_theme->elementRect( "translation2" ).height()/m_label2->boundingRect().height());
+        m_label2->setTransform(QTransform().scale(scale, scale));
+    }
 }
 
 ParleyPlasma::~ParleyPlasma()
