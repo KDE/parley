@@ -340,7 +340,6 @@ void ParleyApp::updateDocument()
 
     setCaption(m_document->document()->url().fileName(), false);
 
-
 ///@todo remove this!
 // at the moment creates a new test every time a model is created. this is good because we get the basic sanity check then.
     new ModelTest(m_vocabularyModel, this);

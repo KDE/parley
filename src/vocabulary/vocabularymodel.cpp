@@ -370,7 +370,6 @@ bool VocabularyModel::removeRows(int row, int count, const QModelIndex & parent)
     }
 
     int bottomRow = row + count - 1;
-    beginRemoveRows(QModelIndex(), row, bottomRow);
 
     for (int i = bottomRow; i >= row; i--) {
         delete m_container->entry(i, m_recursive);

@@ -508,5 +508,3 @@ KEduVocContainer * ContainerModel::rootContainer() const
 
 
 #include "containermodel.moc"
-
-
