@@ -1,6 +1,6 @@
 /***************************************************************************
 
-    Copyright 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2007-2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
  ***************************************************************************/
 
@@ -15,16 +15,16 @@
 #include "parleydocument.h"
 
 #include "../config-parley.h"
-
 #include "parley.h"
 #include "version.h"
-
-#include "newdocument-wizard/kvtnewdocumentwizard.h"
 #include "prefs.h"
 
-#include "keduvoclesson.h"
-#include "keduvocexpression.h"
+#include "newdocument-wizard/kvtnewdocumentwizard.h"
 #include "vocabulary/vocabularyview.h"
+
+#include <keduvoclesson.h>
+#include <keduvocexpression.h>
+#include <keduvocwordtype.h>
 
 #include <KFileDialog>
 #include <KRecentFilesAction>
@@ -38,7 +38,6 @@
 #include <QtGui/QPrinter>
 #include <QtGui/QPrintDialog>
 
-
 #ifdef HAVE_LIBXSLT
 #include "export/export.h"
 #endif
@@ -50,8 +49,6 @@
 #include <libxslt/transform.h>
 #include <libxslt/xsltutils.h>
 
-
-// #endif
 
 ParleyDocument::ParleyDocument(ParleyApp *parent)
  : QObject(parent)
@@ -285,12 +282,35 @@ void ParleyDocument::newDocumentWizard()
     delete wizard;
 }
 
-
 void ParleyDocument::initializeDefaultGrammar()
 {
-    ///@todo create word type containers - noun, verb, adjective...
-}
+    KEduVocWordType *root = m_doc->wordTypeContainer();
+    KEduVocWordType *noun = new KEduVocWordType(i18n("Noun"), root);
+    noun->setWordType(KEduVocWordType::Noun);
+    root->appendChildContainer(noun);
 
+    KEduVocWordType *nounChild = new KEduVocWordType(i18n("Male"), noun);
+    nounChild->setWordType(KEduVocWordType::NounMale);
+    noun->appendChildContainer(nounChild);
+    nounChild = new KEduVocWordType(i18n("Female"), noun);
+    nounChild->setWordType(KEduVocWordType::NounFemale);
+    noun->appendChildContainer(nounChild);
+    nounChild = new KEduVocWordType(i18n("Neutral"), noun);
+    nounChild->setWordType(KEduVocWordType::NounNeutral);
+    noun->appendChildContainer(nounChild);
+
+    KEduVocWordType *verb = new KEduVocWordType(i18n("Verb"), root);
+    verb->setWordType(KEduVocWordType::Verb);
+    root->appendChildContainer(verb);
+
+    KEduVocWordType *adjective = new KEduVocWordType(i18n("Adjective"), root);
+    adjective->setWordType(KEduVocWordType::Adjective);
+    root->appendChildContainer(adjective);
+
+    KEduVocWordType *adverb = new KEduVocWordType(i18n("Adverb"), root);
+    adverb->setWordType(KEduVocWordType::Adverb);
+    root->appendChildContainer(adverb);
+}
 
 void ParleyDocument::createExampleEntries()
 {
@@ -302,8 +322,8 @@ void ParleyDocument::createExampleEntries()
     }
     m_doc->setAuthor( userName );
     m_doc->setTitle( i18n("Welcome") );
-    m_doc->setLicense( i18n("GPL (GNU General Public License)") );
-    m_doc->setCategory( i18n("Example document") );
+    m_doc->setLicense( i18n("Public Domain") );
+    m_doc->setCategory( i18n("Languages") );
 
     QString locale = KGlobal::locale()->language();
 
