@@ -37,7 +37,6 @@
 #include "vocabulary/lessonmodel.h"
 #include "vocabulary/wordtypemodel.h"
 
-#include "entry-dialogs/wordtypewidget.h"
 #include "entry-dialogs/multiplechoicewidget.h"
 #include "entry-dialogs/comparisonwidget.h"
 #include "entry-dialogs/conjugationwidget.h"

@@ -121,7 +121,6 @@ set(entrydialogs_SRCS
 )
 
 kde4_add_ui_files(entrydialogs_SRCS
-    entry-dialogs/wordtypewidget.ui
     entry-dialogs/multiplechoicewidget.ui
     entry-dialogs/comparisonwidget.ui
     entry-dialogs/conjugationwidget.ui
