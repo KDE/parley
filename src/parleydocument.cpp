@@ -92,6 +92,7 @@ void ParleyDocument::newDocument()
     createExampleEntries();
 
     m_doc->setModified(false);
+    m_parleyApp->updateDocument();
 
     emit documentChanged(m_doc);
 }
