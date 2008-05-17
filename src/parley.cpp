@@ -37,7 +37,6 @@
 #include "vocabulary/lessonmodel.h"
 #include "vocabulary/wordtypemodel.h"
 
-#include "entry-dialogs/wordtypewidget.h"
 #include "entry-dialogs/multiplechoicewidget.h"
 #include "entry-dialogs/comparisonwidget.h"
 #include "entry-dialogs/conjugationwidget.h"
@@ -341,7 +340,6 @@ void ParleyApp::updateDocument()
     connect(m_vocabularyModel, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(slotRestoreColumnVisibility(KEduVocDocument*)));
 
     setCaption(m_document->document()->url().fileName(), false);
-
 
 ///@todo remove this!
 // at the moment creates a new test every time a model is created. this is good because we get the basic sanity check then.
@@ -762,7 +760,7 @@ void ParleyApp::initActions()
     actionRestoreNativeOrder->setText(i18n("Restore Native Order"));
 
 
-    KAction* findVocabulary = KStandardAction::find(this, SLOT(m_searchLine->setFocus()), actionCollection());
+    KAction* findVocabulary = KStandardAction::find(m_searchLine, SLOT(setFocus()), actionCollection());
 }
 
 

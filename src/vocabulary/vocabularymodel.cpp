@@ -329,22 +329,35 @@ int VocabularyModel::columnType(int column)
     return column % EntryColumnsMAX;
 }
 
-QModelIndex VocabularyModel::appendEntry()
+QModelIndex VocabularyModel::appendEntry(KEduVocExpression *expression)
 {
     if(!m_lesson || !m_container) {
         return QModelIndex();
     }
 
+    if (!m_container->parent()) {
+        KMessageBox::information(0, i18n("Please select a lesson before pasting."), i18n("No Lesson Selected"));
+        delete expression;
+        return QModelIndex();
+    }
+
+//     if (m_container->containerType() != KEduVocContainer::Lesson) {
+//         KMessageBox::information(0, i18n("Please select a lesson before pasting."), i18n("No Lesson Selected"));
+//     }
+
     if(m_document->identifierCount() == 0) {
-        KMessageBox::information(0, i18n("Please use Edit -> Languages to set up your document."), i18n("No languages defined"));
+        KMessageBox::information(0, i18n("Please use Edit -> Languages to set up your document."), i18n("No Languages Defined"));
         return QModelIndex();
     }
 
     beginInsertRows(QModelIndex(), rowCount(QModelIndex()), rowCount(QModelIndex()));
-    KEduVocExpression* entry = new KEduVocExpression;
-    m_lesson->appendEntry(entry);
+    if (!expression) {
+        expression = new KEduVocExpression;
+    }
+    m_lesson->appendEntry(expression);
     endInsertRows();
 
+    ///FIXME: not correct - the last row of the old lesson:
     // the last row will be the new entry
     return index(rowCount(QModelIndex()) - 1, 0, QModelIndex());
 }
@@ -357,7 +370,6 @@ bool VocabularyModel::removeRows(int row, int count, const QModelIndex & parent)
     }
 
     int bottomRow = row + count - 1;
-    beginRemoveRows(QModelIndex(), row, bottomRow);
 
     for (int i = bottomRow; i >= row; i--) {
         delete m_container->entry(i, m_recursive);
@@ -380,12 +392,15 @@ QMimeData * VocabularyModel::mimeData(const QModelIndexList & indexes) const
 
     kDebug() << "mimeData for " << indexes.count() << "indexes";
 
+    QList<KEduVocTranslation*> translations;
     foreach (const QModelIndex &index, sortedIndexes) {
         // only add if it's a translation. other cells like word type are being ignored for now.
         if (columnType(index.column()) == Translation) {
-            mimeData->addTranslation(m_container->entry(index.row(), m_recursive)->translation(translation(index.column())));
+            translations.append(m_container->entry(index.row(), m_recursive)->translation(translation(index.column())));
         }
     }
+
+    mimeData->setTranslations(translations);
 
     return mimeData;
 }

@@ -76,8 +76,6 @@ void KVTNewDocumentWizard::accept()
     m_doc->setDocumentComment( field("commentField").toString() );
     m_doc->setCategory( field("categoryField").toString() );
 
-    m_doc->appendIdentifier();
-    m_doc->appendIdentifier();
     m_doc->identifier(0).setName( field("firstIdentifierName").toString() );
     m_doc->identifier(1).setName( field("secondIdentifierName").toString() );
 

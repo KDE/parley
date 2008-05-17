@@ -33,8 +33,8 @@ public:
     QStringList sources() const;
 
 protected:
-    bool sourceRequested(const QString &name);
-    bool updateSource(const QString& source);
+    bool sourceRequestEvent(const QString &name);
+    bool updateSourceEvent(const QString& source);
 
 private:
     void openDocument(const QString& file);

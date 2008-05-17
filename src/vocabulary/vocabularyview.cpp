@@ -15,10 +15,12 @@
  ***************************************************************************/
 
 #include "vocabularyview.h"
+#include "vocabularyheaderview.h"
 
 #include "vocabularymodel.h"
 #include "vocabularyfilter.h"
 #include "vocabularydelegate.h"
+#include "vocabularymimedata.h"
 
 #include "parley.h"
 #include "prefs.h"
@@ -57,9 +59,9 @@ VocabularyView::VocabularyView(ParleyApp * parent)
     spellcheckRow = 0;
     spellcheckColumn = 0;
 
-    horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-//     setSelectionMode(QAbstractItemView::ExtendedSelection);
-//     setSelectionBehavior(QAbstractItemView::SelectRows);
+    setHorizontalHeader(new VocabularyHeaderView(Qt::Horizontal, this));
+
+    horizontalHeader()->setResizeMode(QHeaderView::Interactive);
     setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
 
     setSortingEnabled(true);
@@ -145,24 +147,11 @@ void VocabularyView::setModel(VocabularyFilter * model)
 {
     QTableView::setModel(model);
     m_model = model;
-//     setCurrentIndex(model->index(0, 0));
-//     scrollTo(currentIndex());
-//     connect(verticalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(verticalHeaderResized(int, int, int)));
-//     connect(horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(horizontalHeaderResized(int, int, int)));
     connect(selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
 
     connect(selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)), SLOT(slotSelectionChanged(const QItemSelection&, const QItemSelection&)));
     slotSelectionChanged(QItemSelection(), QItemSelection());
 }
-
-
-// void VocabularyView::slotCurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous)
-// {
-//     Q_UNUSED(previous);
-//     m_delegate->setCurrentIndex(current);
-//     reset();
-// }
-
 
 // void VocabularyView::print(QPrinter * pPrinter)
 // {
@@ -377,6 +366,14 @@ void VocabularyView::reset()
         DocumentSettings ds(m_doc->url().url());
         ds.readConfig();
         visibleColumns = ds.visibleColumns();
+
+        KConfig parleyConfig("parleyrc");
+        KConfigGroup documentGroup( &parleyConfig, "Document " + m_doc->url().url() );
+        QByteArray state = documentGroup.readEntry( "VocabularyColumns", QByteArray() );
+
+        if (!horizontalHeader()->restoreState(state)) {
+            resizeColumnsToContents();
+        }
     }
 
     KActionMenu* currentTranslationAction = 0;
@@ -394,8 +391,7 @@ void VocabularyView::reset()
                 currentTranslationAction->addAction(columnAction);
                 connect (columnAction, SIGNAL(triggered(bool)),
                     this, SLOT(slotToggleColumn(bool)));
-
-                if (visibleColumns.contains(i) && visibleColumns.value(i) == 1) {
+                if (i < visibleColumns.size() && visibleColumns.value(i) == 1) {
                     // show the column
                     columnAction->setChecked(true);
                     setColumnHidden(i, false);
@@ -407,7 +403,6 @@ void VocabularyView::reset()
         }
         m_columnActionMap[columnAction] = i;
     }
-    resizeColumnsToContents();
 }
 
 void VocabularyView::slotToggleColumn(bool show)
@@ -419,7 +414,6 @@ void VocabularyView::saveColumnVisibility(const KUrl & kurl) const
 {
     // Generate a QList<int> for saving
     QList<int> qli;
-
     for (int i = 0; i < m_columnActionMap.size(); ++i)
     {
         qli.append(static_cast<int>(!isColumnHidden(i)));
@@ -429,7 +423,10 @@ void VocabularyView::saveColumnVisibility(const KUrl & kurl) const
     ds.setVisibleColumns(qli);
     ds.writeConfig();
 
-    kDebug() << "Saving: " << qli;
+    QByteArray saveState = horizontalHeader()->saveState();
+    KConfig parleyConfig("parleyrc");
+    KConfigGroup documentGroup( &parleyConfig, "Document " + m_doc->url().url() );
+    documentGroup.writeEntry( "VocabularyColumns", horizontalHeader()->saveState() );
 }
 
 void VocabularyView::appendEntry()
@@ -447,14 +444,17 @@ void VocabularyView::appendChar(const QChar &c)
     m_model->setData(index, m_model->data(index).toString() + c);
 }
 
-void VocabularyView::deleteSelectedEntries()
+void VocabularyView::deleteSelectedEntries(bool askConfirmation)
 {
     QSet<int> rows;
     foreach (const QModelIndex &index, selectionModel()->selectedIndexes()) {
         rows.insert(index.row());
     }
 
-    bool del = KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18np("Do you really want to delete the selected entry?", "Do you really want to delete the selected %1 entries?", rows.count()), i18n("Delete"), KStandardGuiItem::del());
+    bool del = true;
+    if (askConfirmation) {
+        del = KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18np("Do you really want to delete the selected entry?", "Do you really want to delete the selected %1 entries?", rows.count()), i18n("Delete"), KStandardGuiItem::del());
+    }
 
     if (del) {
         while (!selectionModel()->selectedIndexes().isEmpty()) {
@@ -465,40 +465,29 @@ void VocabularyView::deleteSelectedEntries()
 
 void VocabularyView::slotEditCopy()
 {
+    QModelIndexList sortedIndexes = selectionModel()->selectedIndexes();
+    qSort(sortedIndexes);
+    QMimeData *mimeData = m_model->mimeData(sortedIndexes);
+
     QClipboard *clipboard = KApplication::clipboard();
-    clipboard->setMimeData(m_model->mimeData(selectionModel()->selectedIndexes()));
-
-//     slotStatusMsg(i18n("Copying selection to clipboard..."));
-
-/*    QApplication::setOverrideCursor(Qt::WaitCursor);
-
-    QString textToCopy;
-    QModelIndexList selectedRows = m_tableView->selectionModel()->selectedRows(0);
-
-    foreach(const QModelIndex &idx, selectedRows) {
-    bool sep = false;
-    for (int i = KV_COL_TRANS; i < m_tableModel->columnCount(QModelIndex()); i++) {
-    if (!sep)
-    sep = true;
-    else
-    textToCopy += '\t';
-
-    QModelIndex mappedIndex = m_sortFilterModel->mapToSource(m_sortFilterModel->index(idx.row(), i));
-    textToCopy += m_tableModel->data(mappedIndex, Qt::DisplayRole).toString();
-}
-    if (!textToCopy.isEmpty())
-    textToCopy += '\n';
-}
-
-    if (!textToCopy.isEmpty())
-    QApplication::clipboard()->setText(textToCopy);
-
-    QApplication::restoreOverrideCursor();*/
-//     slotStatusMsg(IDS_DEFAULT);
+    clipboard->setMimeData(mimeData);
 }
 
 void VocabularyView::slotEditPaste()
 {
+    QClipboard *clipboard = KApplication::clipboard();
+    const QMimeData *mimeData = clipboard->mimeData();
+    const VocabularyMimeData *vocMimeData = qobject_cast<const VocabularyMimeData *>(mimeData);
+    if (vocMimeData) {
+        kDebug() << "clipboard contains vocabulary mime data!";
+        foreach(const KEduVocExpression &entry, vocMimeData->expressionList()) {
+            m_model->appendEntry(new KEduVocExpression(entry));
+        }
+    } else {
+        m_model->appendEntry(new KEduVocExpression(mimeData->text()));
+        kDebug() << "clipboard contains text data!";
+    }
+
     /// @todo make the pasted stuff visible by making the corresponding lesson visible, if it is not (?)
 //     slotStatusMsg(i18n("Inserting clipboard contents..."));
 
@@ -534,20 +523,13 @@ void VocabularyView::slotEditPaste()
     count++;
 }
 
-    QApplication::restoreOverrideCursor();
-//     slotStatusMsg(IDS_DEFAULT);
-
     m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);*/
 }
 
 void VocabularyView::slotCutEntry()
 {
     slotEditCopy();
-    foreach(const QModelIndex& index, selectionModel()->selectedIndexes()) {
-        KEduVocExpression* expression = model()->data(index, VocabularyModel::EntryRole).value<KEduVocExpression*>();
-        m_model->lesson()->removeEntry(expression);
-    }
-
+    deleteSelectedEntries(false);
 }
 
 KActionMenu * VocabularyView::columnsActionMenu()
@@ -567,6 +549,7 @@ void VocabularyView::slotSelectionChanged(const QItemSelection &, const QItemSel
 void VocabularyView::setDocument(KEduVocDocument * doc)
 {
     m_doc = doc;
+    reset();
 }
 
 void VocabularyView::checkSpelling()

@@ -19,6 +19,8 @@
 
 #include <Plasma/Applet>
 #include <Plasma/Svg>
+#include <plasma/dataengine.h>
+#include <plasma/plasma.h>
 
 #include <QGraphicsTextItem>
 
@@ -29,6 +31,7 @@ class QFont;
 class QSizeF;
 class KConfigGroup;
 class KEduVocDocument;
+class KConfigDialog;
 
 class ParleyPlasma : public Plasma::Applet
 {
@@ -50,10 +53,10 @@ class ParleyPlasma : public Plasma::Applet
         void paintInterface(QPainter *painter,
                             const QStyleOptionGraphicsItem *option,
                             const QRect& contentsRect);
-        void constraintsUpdated(Plasma::Constraints constraints);
+        void constraintsEvent(Plasma::Constraints constraints);
 
     public slots:
-        void showConfigurationInterface();
+        void createConfigurationInterface(KConfigDialog *parent);
         void configAccepted();
         void showFontSelectDlg();
         void dataUpdated(const QString &name, const Plasma::DataEngine::Data &data);
@@ -63,9 +66,9 @@ class ParleyPlasma : public Plasma::Applet
         virtual void hoverLeaveEvent ( QGraphicsSceneHoverEvent * event );
 
     private:
-        Plasma::Svg m_theme;
-        Plasma::Label *m_label1;
-        Plasma::Label *m_label2;
+        Plasma::Svg *m_theme;
+        QGraphicsTextItem *m_label1;
+        QGraphicsTextItem *m_label2;
 
         Ui::config ui;
         KDialog *m_dialog;

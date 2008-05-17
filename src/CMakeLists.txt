@@ -37,6 +37,7 @@ kde4_add_ui_files( libcommondlg_SRCS
 set(vocabulary_SRCS
     vocabulary/vocabularymodel.cpp
     vocabulary/vocabularyview.cpp
+    vocabulary/vocabularyheaderview.cpp
     vocabulary/vocabularydelegate.cpp
     vocabulary/vocabularyfilter.cpp
     vocabulary/vocabularymimedata.cpp
@@ -121,7 +122,6 @@ set(entrydialogs_SRCS
 )
 
 kde4_add_ui_files(entrydialogs_SRCS
-    entry-dialogs/wordtypewidget.ui
     entry-dialogs/multiplechoicewidget.ui
     entry-dialogs/comparisonwidget.ui
     entry-dialogs/conjugationwidget.ui

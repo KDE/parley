@@ -1,7 +1,5 @@
 /***************************************************************************
-
-    Copyright 2007-2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
-
+    Copyright 2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
  ***************************************************************************/
 
 /***************************************************************************
@@ -13,31 +11,21 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef VOCABULARYFILTER_H
-#define VOCABULARYFILTER_H
+#ifndef VOCABULARYHEADERVIEW_H
+#define VOCABULARYHEADERVIEW_H
 
-#include <QSortFilterProxyModel>
-
-class VocabularyModel;
-class KEduVocLesson;
-class KEduVocExpression;
-
-class VocabularyFilter : public QSortFilterProxyModel
+#include <QHeaderView>
+class VocabularyHeaderView : public QHeaderView
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-    VocabularyFilter(QObject *parent = 0);
+    VocabularyHeaderView ( Qt::Orientation orientation, QWidget * parent = 0 );
 
-    void setSourceModel(VocabularyModel* model);
-
-    QModelIndex appendEntry(KEduVocExpression *expression = 0);
-    KEduVocLesson * lesson();
-
-public slots:
-    void setSearchString(const QString& expression);
+private slots:
+    void updateSorting(int);
 
 private:
-    VocabularyModel * m_model;
+    int m_sortSection;
 };
 
 #endif

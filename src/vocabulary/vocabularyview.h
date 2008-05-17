@@ -50,7 +50,7 @@ public slots:
     void appendEntry();
 
     /** Delete the currently selected entries */
-    void deleteSelectedEntries();
+    void deleteSelectedEntries(bool askConfirmation = true);
 
     /** put the marked text/object into the clipboard*/
     void slotEditCopy();
@@ -85,7 +85,6 @@ private slots:
 
     void misspelling(const QString &word, int start);
     void spellingReplace(const QString& oldWord, int start, const QString &newWord);
-
 
 private:
     void selectIndex(const QModelIndex &index);

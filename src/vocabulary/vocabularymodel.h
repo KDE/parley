@@ -67,7 +67,7 @@ public:
     static int translation(int column);
     static int columnType(int column);
 
-    QModelIndex appendEntry();
+    QModelIndex appendEntry(KEduVocExpression *expression = 0);
 
     bool removeRows ( int row, int count, const QModelIndex & parent = QModelIndex() );
 
