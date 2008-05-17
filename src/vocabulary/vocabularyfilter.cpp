@@ -30,12 +30,12 @@ VocabularyFilter::VocabularyFilter(QObject *parent)
     setSortLocaleAware ( true );
 }
 
-QModelIndex VocabularyFilter::appendEntry()
+QModelIndex VocabularyFilter::appendEntry(KEduVocExpression *expression)
 {
     if (!m_model) {
         return QModelIndex();
     }
-    return mapFromSource(m_model->appendEntry());
+    return mapFromSource(m_model->appendEntry(expression));
 }
 
 void VocabularyFilter::setSourceModel(VocabularyModel * model)

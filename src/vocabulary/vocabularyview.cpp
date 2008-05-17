@@ -20,6 +20,7 @@
 #include "vocabularymodel.h"
 #include "vocabularyfilter.h"
 #include "vocabularydelegate.h"
+#include "vocabularymimedata.h"
 
 #include "parley.h"
 #include "prefs.h"
@@ -443,14 +444,17 @@ void VocabularyView::appendChar(const QChar &c)
     m_model->setData(index, m_model->data(index).toString() + c);
 }
 
-void VocabularyView::deleteSelectedEntries()
+void VocabularyView::deleteSelectedEntries(bool askConfirmation)
 {
     QSet<int> rows;
     foreach (const QModelIndex &index, selectionModel()->selectedIndexes()) {
         rows.insert(index.row());
     }
 
-    bool del = KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18np("Do you really want to delete the selected entry?", "Do you really want to delete the selected %1 entries?", rows.count()), i18n("Delete"), KStandardGuiItem::del());
+    bool del = true;
+    if (askConfirmation) {
+        del = KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18np("Do you really want to delete the selected entry?", "Do you really want to delete the selected %1 entries?", rows.count()), i18n("Delete"), KStandardGuiItem::del());
+    }
 
     if (del) {
         while (!selectionModel()->selectedIndexes().isEmpty()) {
@@ -461,40 +465,29 @@ void VocabularyView::deleteSelectedEntries()
 
 void VocabularyView::slotEditCopy()
 {
+    QModelIndexList sortedIndexes = selectionModel()->selectedIndexes();
+    qSort(sortedIndexes);
+    QMimeData *mimeData = m_model->mimeData(sortedIndexes);
+
     QClipboard *clipboard = KApplication::clipboard();
-    clipboard->setMimeData(m_model->mimeData(selectionModel()->selectedIndexes()));
-
-//     slotStatusMsg(i18n("Copying selection to clipboard..."));
-
-/*    QApplication::setOverrideCursor(Qt::WaitCursor);
-
-    QString textToCopy;
-    QModelIndexList selectedRows = m_tableView->selectionModel()->selectedRows(0);
-
-    foreach(const QModelIndex &idx, selectedRows) {
-    bool sep = false;
-    for (int i = KV_COL_TRANS; i < m_tableModel->columnCount(QModelIndex()); i++) {
-    if (!sep)
-    sep = true;
-    else
-    textToCopy += '\t';
-
-    QModelIndex mappedIndex = m_sortFilterModel->mapToSource(m_sortFilterModel->index(idx.row(), i));
-    textToCopy += m_tableModel->data(mappedIndex, Qt::DisplayRole).toString();
-}
-    if (!textToCopy.isEmpty())
-    textToCopy += '\n';
-}
-
-    if (!textToCopy.isEmpty())
-    QApplication::clipboard()->setText(textToCopy);
-
-    QApplication::restoreOverrideCursor();*/
-//     slotStatusMsg(IDS_DEFAULT);
+    clipboard->setMimeData(mimeData);
 }
 
 void VocabularyView::slotEditPaste()
 {
+    QClipboard *clipboard = KApplication::clipboard();
+    const QMimeData *mimeData = clipboard->mimeData();
+    const VocabularyMimeData *vocMimeData = qobject_cast<const VocabularyMimeData *>(mimeData);
+    if (vocMimeData) {
+        kDebug() << "clipboard contains vocabulary mime data!";
+        foreach(const KEduVocExpression &entry, vocMimeData->expressionList()) {
+            m_model->appendEntry(new KEduVocExpression(entry));
+        }
+    } else {
+        m_model->appendEntry(new KEduVocExpression(mimeData->text()));
+        kDebug() << "clipboard contains text data!";
+    }
+
     /// @todo make the pasted stuff visible by making the corresponding lesson visible, if it is not (?)
 //     slotStatusMsg(i18n("Inserting clipboard contents..."));
 
@@ -530,20 +523,13 @@ void VocabularyView::slotEditPaste()
     count++;
 }
 
-    QApplication::restoreOverrideCursor();
-//     slotStatusMsg(IDS_DEFAULT);
-
     m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);*/
 }
 
 void VocabularyView::slotCutEntry()
 {
     slotEditCopy();
-    foreach(const QModelIndex& index, selectionModel()->selectedIndexes()) {
-        KEduVocExpression* expression = model()->data(index, VocabularyModel::EntryRole).value<KEduVocExpression*>();
-        m_model->lesson()->removeEntry(expression);
-    }
-
+    deleteSelectedEntries(false);
 }
 
 KActionMenu * VocabularyView::columnsActionMenu()

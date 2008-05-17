@@ -16,6 +16,7 @@
 #ifndef VOCABULARYMIMEDATA_H
 #define VOCABULARYMIMEDATA_H
 
+#include <keduvocexpression.h>
 #include <QMimeData>
 
 class KEduVocTranslation;
@@ -23,8 +24,9 @@ class KEduVocTranslation;
 class VocabularyMimeData :public QMimeData {
     Q_OBJECT
 public:
-    void addTranslation(KEduVocTranslation* translation);
+    void setTranslations(QList<KEduVocTranslation*> translation);
     QList<KEduVocTranslation *> translationList() const;
+    QList<KEduVocExpression> expressionList() const;
 
     QVariant retrieveData ( const QString & mimeType, QVariant::Type type ) const;
 
@@ -32,6 +34,7 @@ public:
 
 private:
     QList<KEduVocTranslation*> m_translations;
+    QList<KEduVocExpression> m_expressions;
 };
 
 

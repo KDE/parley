@@ -50,7 +50,7 @@ public slots:
     void appendEntry();
 
     /** Delete the currently selected entries */
-    void deleteSelectedEntries();
+    void deleteSelectedEntries(bool askConfirmation = true);
 
     /** put the marked text/object into the clipboard*/
     void slotEditCopy();

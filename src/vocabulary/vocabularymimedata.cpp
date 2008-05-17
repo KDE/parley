@@ -19,11 +19,24 @@
 #include <keduvoctranslation.h>
 #include <KDebug>
 
-void VocabularyMimeData::addTranslation(KEduVocTranslation * translation)
+void VocabularyMimeData::setTranslations(QList<KEduVocTranslation *> translations)
 {
-    ///@todo the order is important ... also if they have the same parent entry...
-    m_translations.append(translation);
+    // list of pointers for drag and drop - for example to assign word types
+    m_translations = translations;
 
+    // sort the translations into entries to make deep copies for real copy and paste
+    // to only include each expression once
+    QList<KEduVocExpression *> expressions;
+    foreach (KEduVocTranslation * translation, m_translations) {
+        if (!expressions.contains(translation->entry())) {
+            expressions.append(translation->entry());
+        }
+    }
+
+foreach (KEduVocExpression * expression, expressions) {
+            // deep copy
+            m_expressions.append(KEduVocExpression(*expression));
+}
 }
 
 QList< KEduVocTranslation * > VocabularyMimeData::translationList() const
@@ -33,39 +46,35 @@ QList< KEduVocTranslation * > VocabularyMimeData::translationList() const
 
 QVariant VocabularyMimeData::retrieveData(const QString & mimeType, QVariant::Type type) const
 {
+    // only use the expression list.
+    // the translation list may be invalid (eg when cut it is no longer valid.
+    // translations can only be used internally for drag and drop!!!
     if (mimeType == "text/plain") {
         QString text;
-        KEduVocExpression *expression = 0;
-        foreach (KEduVocTranslation * translation, m_translations) {
-            if (expression != 0) {
-                if (expression == translation->entry()) {
-                    // same word
+        for (int j = 0; j < m_expressions.size(); j++) {
+            QList<int>::const_iterator i;
+            for (i = m_expressions.value(j).translationIndices().begin(); i != m_expressions.value(j).translationIndices().end(); i++) {
+                if (m_expressions.value(j).translation(*i)) {
+                    text.append(m_expressions.value(j).translation(*i)->text());
                     text.append(" - ");
-                } else {
-                    text.append('\n');
                 }
             }
-            text.append(translation->text());
-            expression = translation->entry();
+            text.append('\n');
         }
         return text;
     }
-    // maybe this makes sense somewhere... also put translations belonging together into the same row would be nice ;)
-    if (mimeType == "text/html") {
-        QString text;
-        text.append("<table>");
-        foreach (KEduVocTranslation * translation, m_translations) {
-            text.append(QString("<tr><td>%1</td></tr>").arg(translation->text()));
-        }
-        text.append("</table>");
-        return text;
-    }
+
     return QVariant();
 }
 
 QStringList VocabularyMimeData::formats() const
 {
     return QStringList() << "text/plain";
+}
+
+QList< KEduVocExpression > VocabularyMimeData::expressionList() const
+{
+    return m_expressions;
 }
 
 
