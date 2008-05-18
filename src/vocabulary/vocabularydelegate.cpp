@@ -16,25 +16,27 @@
 
 #include "vocabularydelegate.h"
 #include "vocabularymodel.h"
+#include "vocabularyfilter.h"
 
 #include "prefs.h"
 #include "languagesettings.h"
+#include "basiccontainermodel.h"
 
 #include <keduvocexpression.h>
-
+#include <keduvocwordtype.h>
 #include <KPassivePopup>
 #include <KComboBox>
 #include <KDebug>
-#include <KGlobalSettings>
 #include <KLineEdit>
 #include <KLocale>
-#include <KIconLoader>
-#include <KIcon>
-#include <QPainter>
+#include <QTreeView>
+#include <QHeaderView>
 #include <QDBusInterface>
 
 VocabularyDelegate::VocabularyDelegate(QObject *parent) : QItemDelegate(parent)
-{}
+{
+    m_doc = 0;
+}
 
 QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
@@ -44,44 +46,72 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
         return 0;
     }
 
-    KLineEdit *editor = new KLineEdit(parent);
-    editor->setFrame(false);
-    editor->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
-    editor->setText(index.model()->data(index, Qt::DisplayRole).toString());
+    switch (VocabularyModel::columnType(index.column())) {
+    case VocabularyModel::WordType: {
+        if (!m_doc) return 0;
+        KComboBox *wordTypeCombo = new KComboBox(parent);
 
-    QString locale = index.model()->data(index, VocabularyModel::LocaleRole).toString();
-    if(!locale.isEmpty()) {
-        LanguageSettings settings(locale);
-        settings.readConfig();
-        QString layout = settings.keyboardLayout();
-        if(!layout.isEmpty()) {
-            QDBusInterface kxkb( "org.kde.kxkb", "/kxkb", "org.kde.KXKB" );
-            if (kxkb.isValid()) {
-            kxkb.call( "setLayout", layout );
-            }
-        }
+        BasicContainerModel *basicWordTypeModel = new BasicContainerModel(KEduVocContainer::WordType, parent);
+        wordTypeCombo->setModel(basicWordTypeModel);
+        QTreeView *view = new QTreeView(parent);
+
+        view->setModel(basicWordTypeModel);
+        wordTypeCombo->setView(view);
+
+        view->header()->setVisible(false);
+        view->setRootIsDecorated(true);
+
+        basicWordTypeModel->setDocument(m_doc);
+        view->expandAll();
+
+        kDebug() << "index data" << index.data().toString();
+        //view->setCurrentItem();
+
+        return wordTypeCombo;
     }
 
-    connect(editor, SIGNAL(returnPressed()), this, SLOT(commitAndCloseEditor()));
-    return editor;
-}
+    default: {
 
+        KLineEdit *editor = new KLineEdit(parent);
+        editor->setFrame(false);
+        editor->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
+        editor->setText(index.model()->data(index, Qt::DisplayRole).toString());
+
+        QString locale = index.model()->data(index, VocabularyModel::LocaleRole).toString();
+        if(!locale.isEmpty()) {
+            LanguageSettings settings(locale);
+            settings.readConfig();
+            QString layout = settings.keyboardLayout();
+            if(!layout.isEmpty()) {
+                QDBusInterface kxkb( "org.kde.kxkb", "/kxkb", "org.kde.KXKB" );
+                if (kxkb.isValid()) {
+                kxkb.call( "setLayout", layout );
+                }
+            }
+        }
+        connect(editor, SIGNAL(returnPressed()), this, SLOT(commitAndCloseEditor()));
+        return editor;
+    }
+    }
+}
 
 void VocabularyDelegate::setEditorData(QWidget * editor, const QModelIndex & index) const
 {
-    if (!index.isValid())
+    if (!index.isValid()) {
         return;
+    }
 
-    switch (index.column()) {
+    switch (VocabularyModel::columnType(index.column())) {
     default: {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
 
-        KLineEdit *lineEdit = static_cast<KLineEdit*>(editor);
-        lineEdit->setText(value);
-    }
+        KLineEdit *lineEdit = qobject_cast<KLineEdit*>(editor);
+        if (lineEdit) {
+            lineEdit->setText(value);
+        }
+        }
     }
 }
-
 
 void VocabularyDelegate::setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const
 {
@@ -89,10 +119,31 @@ void VocabularyDelegate::setModelData(QWidget * editor, QAbstractItemModel * mod
         return;
     }
 
-    int columnType = VocabularyModel::columnType(index.column());
+    switch (VocabularyModel::columnType(index.column())) {
+    case (VocabularyModel::WordType): {
+        kDebug() << "word type editor";
+        KComboBox *combo = qobject_cast<KComboBox*>(editor);
+        kDebug() << "combo" << combo->currentText();
+        QModelIndex comboIndex = combo->view()->currentIndex();
+        KEduVocWordType* wordType = static_cast<KEduVocWordType*>(comboIndex.internalPointer());
 
-    switch (columnType) {
+        // the root is the same as no word type
+        if (wordType && wordType->parent() == 0) {
+            wordType = 0;
+        }
 
+        VocabularyFilter *filter = qobject_cast<VocabularyFilter*>(model);
+        VocabularyModel *vocModel = qobject_cast<VocabularyModel*>((filter)->sourceModel());
+Q_ASSERT(vocModel);
+        QVariant data = vocModel->data(filter->mapToSource(index), VocabularyModel::EntryRole);
+
+        KEduVocExpression *expression = data.value<KEduVocExpression*>();
+Q_ASSERT(expression);
+        int translationId = VocabularyModel::translation(index.column());
+
+        expression->translation(translationId)->setWordType(wordType);
+
+    }
     default: {
         KLineEdit *lineEdit = static_cast<KLineEdit*>(editor);
         QString value = lineEdit->text();
@@ -111,7 +162,6 @@ void VocabularyDelegate::setModelData(QWidget * editor, QAbstractItemModel * mod
     }
 }
 
-
 void VocabularyDelegate::commitAndCloseEditor()
 {
     QWidget *editor = qobject_cast<QWidget *>(sender());
@@ -120,10 +170,14 @@ void VocabularyDelegate::commitAndCloseEditor()
     emit closeEditor(editor, QAbstractItemDelegate::EditNextItem);
 }
 
-
 void VocabularyDelegate::setCurrentIndex(const QModelIndex & index)
 {
     m_currentIndex = index;
+}
+
+void VocabularyDelegate::setDocument(KEduVocDocument * doc)
+{
+    m_doc = doc;
 }
 
 /*
@@ -142,4 +196,6 @@ QPair< QString, QString > VocabularyDelegate::guessWordType(const QString & entr
     return qMakePair(QString(), QString());
 }
 */
+
+
 #include "vocabularydelegate.moc"

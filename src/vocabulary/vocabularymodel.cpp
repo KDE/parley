@@ -204,6 +204,13 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
         v.setValue(m_container->entry(index.row(), m_recursive));
         return v;
         }
+    case Qt::ToolTipRole: {
+        ///@todo more tooltips?
+        switch (entryColumn) {
+        case WordType:
+            return i18n("You can drag and drop words onto their word type.");
+        }
+        }
     }
 
     return QVariant();
@@ -259,7 +266,7 @@ Qt::ItemFlags VocabularyModel::flags(const QModelIndex & index) const
     case Translation:
         return QAbstractItemModel::flags(index) | Qt::ItemIsEditable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;
     case WordType:
-        return QAbstractItemModel::flags(index) | Qt::ItemIsDropEnabled;
+        return QAbstractItemModel::flags(index) | Qt::ItemIsEditable;
     default:
         return QAbstractItemModel::flags(index) | Qt::ItemIsEditable | Qt::ItemIsDropEnabled;
     }
