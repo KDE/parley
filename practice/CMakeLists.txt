@@ -1,15 +1,27 @@
-include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/
+project(parleypractice)
+
+include_directories( ../libkdeedu/keduvocdocument/
 )
 
-set(defaulttheme_SRCS
-    defaulttheme/vocabularycard.cpp
-)
+
+
+find_package(KDE4 REQUIRED)
+
+include_directories(${KDE4_INCLUDES})
+
+#set(defaulttheme_SRCS
+#    defaulttheme/vocabularycard.cpp
+#)
 
 set(parleypractice_SRCS
-    ${defaulttheme_SRCS}
+ #   ${defaulttheme_SRCS}
     main.cpp
     parleypracticemainwindow.cpp
-    questiondisplay.cpp
+    input.cpp
+    prompt.cpp
+    statistics.cpp
+    stdbuttons.cpp
+#    questiondisplay.cpp
 )
 
 kde4_add_executable(parleypractice ${parleypractice_SRCS})

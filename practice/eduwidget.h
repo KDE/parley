@@ -25,12 +25,12 @@
 * @author David Capel <wot.narg@gmail.com>
 * @brief This is the base class for all EduWidgets; it should never be initialized directly.
 */
-class EduWidget
+class EduWidget : public virtual QWidget
 {
     Q_OBJECT
 
     public:        
-        virtual EduWidget(QObject* parent = 0) = 0;
+        EduWidget(QObject* parent = 0);
         virtual ~EduWidget();
 
 };

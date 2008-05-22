@@ -34,7 +34,7 @@ public:
     ~QuestionDisplay();
 
 public slots:
-    virtual void setText(const QString& text) = 0;
+ //   virtual void setText(const QString& text) = 0;
 
 
 };

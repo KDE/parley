@@ -24,18 +24,22 @@
 
 class ParleyPracticeMainWindow : public KXmlGuiWindow
 {
-Q_OBJECT
-public:
-    ParleyPracticeMainWindow(QWidget *parent = 0);
+        Q_OBJECT
 
-    ~ParleyPracticeMainWindow();
+    public:
+        ParleyPracticeMainWindow(QWidget *parent = 0);
+        /*
+            ~ParleyPracticeMainWindow();*/
 
-private:
-    QGraphicsView* m_view;
-    QGraphicsSvgItem* m_layout;
-    
-    bool eventFilter(QObject *obj, QEvent *event);
+    private:
+        QGraphicsView* m_view;
+        QGraphicsSvgItem* m_layout;
+
+        bool eventFilter(QObject *obj, QEvent *event);
 
 };
+
+
+//#include "moc_parleypracticemainwindow.cpp"
 
 #endif

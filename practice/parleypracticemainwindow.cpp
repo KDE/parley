@@ -16,6 +16,7 @@
 
 #include "parleypracticemainwindow.h"
 
+#include <KXmlGuiWindow>
 #include <KLineEdit>
 #include <KDebug>
 #include <KStandardDirs>
@@ -23,9 +24,17 @@
 #include <QGraphicsProxyWidget>
 #include <QResizeEvent>
 #include <QSvgRenderer>
+#include <QLCDNumber>
 
-#include "questiondisplay.h"
-#include "defaulttheme/vocabularycard.h"
+//#include "questiondisplay.h"
+//#include "defaulttheme/vocabularycard.h"
+
+#include "input.h"
+#include "prompt.h"
+#include "statistics.h"
+#include "stdbuttons.h"
+
+
 
 ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
  : KXmlGuiWindow(parent)
@@ -46,51 +55,47 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     m_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
+    //kDebug() << KStandardDirs::locate("data", "parley/images/card.svg");
 
-    scene->addText("My word!");
+    TextualPrompt * prompt = new TextualPrompt();
+    prompt->resize(100, 30);
+    QGraphicsProxyWidget * gprompt = scene->addWidget(prompt);
+    
+    TextualInput * input = new TextualInput();
+    QGraphicsProxyWidget * ginput = scene->addWidget(input);
 
-    scene->addRect(0, 0, 10, 10);
-    scene->addRect(10, 10, 100, 100);
+    LCDStatistics * stats = new LCDStatistics();
+    QGraphicsProxyWidget * gstats = scene->addWidget(stats);
+    stats->refresh();
 
-    kDebug() << KStandardDirs::locate("data", "parley/images/card.svg");
+    StdButtons * stdbuttons = new StdButtons();
+    QGraphicsProxyWidget * gstdbuttons = scene->addWidget(stdbuttons);
+    
+    connect(prompt, SIGNAL(signalAnswerChanged(const QString&)), input, SLOT(slotSetAnswer(const QString&)));
+    connect(input, SIGNAL(signalCorrect()), stats, SLOT(slotCorrect()));
+    connect(input, SIGNAL(signalIncorrect(Statistics::ErrorType)), stats, SLOT(slotIncorrect(Statistics::ErrorType)));
+    connect(stdbuttons, SIGNAL(signalCheckAnswer()), input, SLOT(slotCheckAnswer()));
+    connect(stdbuttons, SIGNAL(signalSkipped(Statistics::SkipReason)), stats, SLOT(slotSkipped(Statistics::SkipReason)));
+    connect(stdbuttons, SIGNAL(signalSkipped(Statistics::SkipReason)), prompt, SLOT(slotNewPrompt()));
+    connect(stdbuttons, SIGNAL(signalContinue()), prompt, SLOT(slotNewPrompt()));
 
+    
+    gprompt->setPos(30, 100);
+    ginput->setPos(60, 60);
+    gstdbuttons->setPos(200, 200);
+    gstats->setPos(200, 100);
+    
+    //kDebug() << KStandardDirs::locate("data", "defaulttheme/layout.svg");
 
-    QuestionDisplay* question = new VocabularyCard();
-    scene->addItem(question);
-    question->setText("a question?");
+    prompt->slotNewPrompt();
 
-    question->scale(75.0/question->boundingRect().width(), 75.0/question->boundingRect().width());
-    question->setPos(0, 30);
-
-    kDebug() << KStandardDirs::locate("data", "defaulttheme/layout.svg");
-
-    m_layout = new QGraphicsSvgItem(KStandardDirs::locate("data", "parley/defaulttheme/layout.svg"));
-    scene->addItem(m_layout);
-
-    QuestionDisplay* card2 = new VocabularyCard(m_layout);
-    card2->setText("a second card");
-    card2->setPos( m_layout->renderer()->boundsOnElement( "card" ).topLeft() );
-
-    double scale = qMin(
-            m_layout->renderer()->boundsOnElement( "card" ).width()/card2->boundingRect().width(),
-            m_layout->renderer()->boundsOnElement( "card" ).height()/card2->boundingRect().height());
-    card2->setTransform(QTransform().scale(scale, scale));
-
-
-    KLineEdit * line = new KLineEdit;
-    line->setText("Hi WoC");
-    QGraphicsProxyWidget * graphicsWidget = new QGraphicsProxyWidget(m_layout);
-    graphicsWidget->setWidget(line);
-    graphicsWidget->setPos( m_layout->renderer()->boundsOnElement( "userInput" ).topLeft() );
-    graphicsWidget->resize(m_layout->renderer()->boundsOnElement( "userInput" ).width(), m_layout->renderer()->boundsOnElement( "userInput" ).height());
-    line->show();
-
+    m_view->show();
 }
 
-
+/*
 ParleyPracticeMainWindow::~ParleyPracticeMainWindow()
 {
-}
+}*/
 
 bool ParleyPracticeMainWindow::eventFilter(QObject * obj, QEvent * event)
 {
@@ -105,4 +110,3 @@ bool ParleyPracticeMainWindow::eventFilter(QObject * obj, QEvent * event)
 }
 
 
-#include "parleypracticemainwindow.moc"
