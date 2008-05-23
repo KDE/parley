@@ -18,6 +18,8 @@
 
 #include <KDebug>
 #include <QAbstractButton>
+#include <QPushButton>
+#include <QList>
 
 #include "stdbuttons.h"
 #include "statistics.h"
@@ -56,6 +58,26 @@ void StdButtons::slotButtonClicked(QAbstractButton * button)
     else
     {
         kDebug() << "slotButtonClicked recieved unhandled button " << button->text();
+    }
+}
+
+void StdButtons::slotReturnPressed()
+{
+    QList<QAbstractButton*> qlb = buttons();
+    QAbstractButton* b =  qlb[0];
+    if (b->text() == "Check Answer")
+    {
+        b->setText("Continue");
+        emit signalCheckAnswer();
+    }
+    else if (b->text() == "Continue")
+    {
+        b->setText("Check Answer");
+        emit signalContinue();
+    }
+    else
+    {
+                kDebug() << "unknown button text " << b->text();
     }
 }
 

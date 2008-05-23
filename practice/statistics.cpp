@@ -43,7 +43,6 @@ LCDStatistics::LCDStatistics(QWidget * parent)
 
 void Statistics::slotCorrect()
 {
-    kDebug() << "here";
     ++m_attempted;
 
     if (m_tainted)
@@ -58,8 +57,6 @@ void Statistics::slotCorrect()
     }
 
     m_percentCorrect = static_cast<float>(m_correct) / m_attempted;
-
-    kDebug() << m_correct << " / " << m_attempted << " = " << m_percentCorrect;
 
     refresh();
 }
@@ -94,7 +91,9 @@ void Statistics::slotIncorrect(ErrorType error)
     if (error & UnknownMistake) ++errorReasons[11];
 
     // avoid a division by 0 error...
+    // this isn't mathmatically correct, but works in practice (x/0 != 0)
     m_percentCorrect = m_attempted != 0 ? static_cast<float>(m_correct) / m_attempted : 0.0f;
+    
 
     m_tainted = false;
 

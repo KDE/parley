@@ -71,13 +71,14 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     StdButtons * stdbuttons = new StdButtons();
     QGraphicsProxyWidget * gstdbuttons = scene->addWidget(stdbuttons);
     
-    connect(prompt, SIGNAL(signalAnswerChanged(const QString&)), input, SLOT(slotSetAnswer(const QString&)));
+    connect(prompt, SIGNAL(signalAnswerChanged(EduAnswer*)), input, SLOT(slotSetAnswer(EduAnswer*)));
     connect(input, SIGNAL(signalCorrect()), stats, SLOT(slotCorrect()));
     connect(input, SIGNAL(signalIncorrect(Statistics::ErrorType)), stats, SLOT(slotIncorrect(Statistics::ErrorType)));
     connect(stdbuttons, SIGNAL(signalCheckAnswer()), input, SLOT(slotCheckAnswer()));
     connect(stdbuttons, SIGNAL(signalSkipped(Statistics::SkipReason)), stats, SLOT(slotSkipped(Statistics::SkipReason)));
     connect(stdbuttons, SIGNAL(signalSkipped(Statistics::SkipReason)), prompt, SLOT(slotNewPrompt()));
     connect(stdbuttons, SIGNAL(signalContinue()), prompt, SLOT(slotNewPrompt()));
+    connect(input, SIGNAL(returnPressed()), stdbuttons, SLOT(slotReturnPressed()));
 
     
     gprompt->setPos(30, 100);

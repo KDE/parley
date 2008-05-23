@@ -27,34 +27,48 @@ TextualInput::TextualInput(QWidget* parent)
         : QLineEdit(parent), Input()
 {}
 
-Input::~Input() {}
+Input::Input() {}
+
+Input::~Input()
+{
+    delete m_answer;
+}
 
 void TextualInput::slotShowSolutionFinished()
 {
-    setText(m_answer);
+    QPalette pal;
+    pal.setColor(QPalette::Text, Qt::black);
+    setPalette(pal);
+    setText(m_answer->text);
 }
 
 void TextualInput::slotCheckAnswer()
 {
-    kDebug() << "checking answer";
-
-    if (text() == m_answer)
+    if (text() == m_answer->text)
     {
         kDebug() << "correct";
+        QPalette pal;
+        pal.setColor(QPalette::Text, Qt::green);
+        setPalette(pal);
         emit signalCorrect();
     }
     else
     {
         kDebug() << "incorrect";
+        QPalette pal;
+        pal.setColor(QPalette::Text, Qt::red);
+        setPalette(pal);
         emit signalIncorrect(Statistics::UnknownMistake); // TODO: do this logic
     }
 }
 
-void TextualInput::slotSetAnswer(const QString& answer)
+void TextualInput::slotSetAnswer(EduAnswer* answer)
 {
+    QPalette pal;
+    pal.setColor(QPalette::Text, Qt::black);
+    setPalette(pal);
     m_answer = answer;
     setText("");
-    //slotShowSolutionFinished();
 }
 
 #include "input.moc"

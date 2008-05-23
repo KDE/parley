@@ -47,7 +47,7 @@ TextualPrompt::TextualPrompt(QWidget * parent)
     list.append(QPair<QString, QString>("3+7=", "10"));
     list.append(QPair<QString, QString>("12*2=", "24"));
     list.append(QPair<QString, QString>("9/3", "3"));
-    list.append(QPair<QString, QString>("9/3", "3"));
+    list.append(QPair<QString, QString>("27/3", "9"));
     list.append(QPair<QString, QString>("Capital of the USA", "Washington D.C."));
     list.append(QPair<QString, QString>("Capital of Minnesota", "St. Paul"));
     list.append(QPair<QString, QString>("Capital of Japan", "Tokyo"));
@@ -68,7 +68,7 @@ void TextualPrompt::slotNewPrompt()
     m_test_question = qps.first;
     setText(m_test_question);
     emit signalPromptChanged();
-    emit signalAnswerChanged(qps.second);
+    emit signalAnswerChanged(new EduAnswer(qps.second));
 }
 
 /*

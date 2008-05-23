@@ -26,6 +26,8 @@
 
 #include <QList>
 
+#include "eduanswer.h"
+
 class KEduVocExpression;
 
 class KEduVocDocument;
@@ -61,7 +63,7 @@ class Prompt
         void signalPromptChanged();
         /// Emitted when the answer has changed.
         /// This is used to provide the answer to the @class Input object.
-        void signalAnswerChanged(const QString& answer);
+        void signalAnswerChanged(EduAnswer*);
 };
 
 
@@ -73,7 +75,6 @@ class TextualPrompt : public QLabel, public Prompt
         TextualPrompt(QWidget * parent = 0);
 
     public slots:
- //       void slotSetEntry(const QString& entry, const QString& answer);
         void slotNewPrompt();
 
     signals:
@@ -81,7 +82,7 @@ class TextualPrompt : public QLabel, public Prompt
         void signalPromptChanged();
         /// Emitted when the answer has changed.
         /// This is used to provide the answer to the @class Input object.
-        void signalAnswerChanged(const QString& answer);
+        void signalAnswerChanged(EduAnswer * answer);
 
     private:
         // these are only for the initial layout testing ;)

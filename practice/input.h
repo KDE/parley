@@ -23,7 +23,7 @@
 #include <QLineEdit>
 
 #include "eduwidget.h"
-
+#include "eduanswer.h"
 #include "statistics.h"
 
 /**
@@ -44,9 +44,10 @@ class Input
         /// Called to check the users's answer against the correct answer.
         virtual void slotCheckAnswer() = 0;
         /// Called to set the correct answer to a given question.
-        // virtual void slotSetAnswer(QString&);
+        virtual void slotSetAnswer(EduAnswer* answer) { m_answer = answer; };
         virtual ~Input();
-
+        Input();
+        
     protected:
         /// @return if the QStrings are the same.
         /// Does a smart comare of the two QStrings.
@@ -75,6 +76,9 @@ class Input
         void signalIncorrect(Statistics::ErrorType);
         /// Emitted if the answer was correct.
         void signalCorrect();
+
+
+        EduAnswer * m_answer;
 };
 
 class TextualInput : public QLineEdit, public Input
@@ -90,17 +94,12 @@ class TextualInput : public QLineEdit, public Input
         void slotShowSolutionFinished();
         /// Called to check the users's answer against the correct answer.
         void slotCheckAnswer();
-        /// Called to set the correct answer to a given question.
-        void slotSetAnswer(const QString&);
+        void slotSetAnswer(EduAnswer* answer);
 
     signals:
         /// Emitted if the answer was incorrect, with the ErrorType denoting why it was incorrect.
         void signalIncorrect(Statistics::ErrorType);
         /// Emitted if the answer was correct.
         void signalCorrect();
-
-    private:
-        QString m_answer;
-
 };
 #endif
