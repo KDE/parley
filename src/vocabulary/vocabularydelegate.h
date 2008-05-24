@@ -20,6 +20,8 @@
 #include <QItemDelegate>
 #include <QModelIndex>
 
+class KEduVocDocument;
+
 class VocabularyDelegate : public QItemDelegate
 {
     Q_OBJECT
@@ -32,6 +34,9 @@ public:
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
     void setCurrentIndex(const QModelIndex &index);
 
+public slots:
+    void setDocument(KEduVocDocument *doc);
+
 protected:
 //     void drawDisplay(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect, const QString &text) const;
 
@@ -39,14 +44,8 @@ private slots:
     void commitAndCloseEditor();
 
 private:
-    /**
-     * This should become a class of its own. It currently guesses the word type noun based on the articles.
-     * @param entry
-     * @param language
-     * @return
-     */
-//     QPair< QString, QString > guessWordType(const QString & entry, int language) const;
     QModelIndex m_currentIndex;
+    KEduVocDocument *m_doc;
 };
 
 #endif

@@ -86,27 +86,28 @@ void SimpleQueryDlg::setEntry(TestEntry* entry)
 
     QString s;
     switch (m_testType) {
-        ///@todo handle synonyms
-//     case Prefs::EnumTestType::SynonymTest: {
-//             mw->queryLabel->setText(i18n("Expression"));
-//             mw->instructionLabel->setText(i18n("Enter the synonym:"));
-//             setWindowTitle(i18n("Synonym Training"));
-//             answerstring = m_entry->entry()->translation(column)->synonym();
-//             mw->queryField->setAlignment(Qt::AlignVCenter);
-//             mw->queryField->setText( m_entry->entry()->translation(column)->text() );
-//             setQueryFieldWordwrap();
-//         }
-//         break;
+    case Prefs::EnumTestType::SynonymTest: {
+            mw->queryLabel->setText(i18n("Expression"));
+            mw->instructionLabel->setText(i18n("Enter the synonym:"));
+            setWindowTitle(i18n("Synonym Training"));
+            KEduVocTranslation *synonym = m_entry->entry()->translation(column)->synonyms()[0];
+            answerstring = synonym->text();
+            mw->queryField->setAlignment(Qt::AlignVCenter);
+            mw->queryField->setText( m_entry->entry()->translation(column)->text() );
+            setQueryFieldWordwrap();
+        }
+        break;
 
-//     case Prefs::EnumTestType::AntonymTest: {
-//             mw->queryLabel->setText(i18n("Expression"));
-//             mw->instructionLabel->setText(i18n("Enter the antonym:"));
-//             setWindowTitle(i18n("Antonym Training"));
-//             answerstring = m_entry->entry()->translation(column)->antonym();
-//             mw->queryField->setText( m_entry->entry()->translation(column)->text() );
-//             setQueryFieldWordwrap();
-//         }
-//         break;
+    case Prefs::EnumTestType::AntonymTest: {
+            mw->queryLabel->setText(i18n("Expression"));
+            mw->instructionLabel->setText(i18n("Enter the antonym:"));
+            setWindowTitle(i18n("Antonym Training"));
+            KEduVocTranslation *antonym = m_entry->entry()->translation(column)->antonyms()[0];
+            answerstring = antonym->text();
+            mw->queryField->setText( m_entry->entry()->translation(column)->text() );
+            setQueryFieldWordwrap();
+        }
+        break;
 
     case Prefs::EnumTestType::ParaphraseTest: {
             mw->queryLabel->setText(i18n("Paraphrase"));

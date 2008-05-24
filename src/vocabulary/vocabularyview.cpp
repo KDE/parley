@@ -550,6 +550,7 @@ void VocabularyView::setDocument(KEduVocDocument * doc)
 {
     m_doc = doc;
     reset();
+    m_vocabularyDelegate->setDocument(doc);
 }
 
 void VocabularyView::checkSpelling()

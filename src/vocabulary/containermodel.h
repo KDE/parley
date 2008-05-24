@@ -16,7 +16,7 @@
 #ifndef CONTAINERMODEL_H
 #define CONTAINERMODEL_H
 
-#include "containermodel.h"
+#include "basiccontainermodel.h"
 
 #include <QAbstractItemModel>
 #include <QModelIndex>
@@ -29,27 +29,18 @@
 /**
   * Model for the tree of containers (lessons, word types).
   */
-class ContainerModel : public QAbstractItemModel
+class ContainerModel : public BasicContainerModel
 {
     Q_OBJECT
 
 public:
-    explicit ContainerModel(KEduVocLesson::EnumContainerType type, QObject *parent = 0);
+    explicit ContainerModel(KEduVocContainer::EnumContainerType type, QObject *parent = 0);
 
     virtual QVariant data(const QModelIndex &index, int role) const;
     virtual Qt::ItemFlags flags(const QModelIndex &index) const;
     virtual QVariant headerData(int section, Qt::Orientation orientation,
                         int role = Qt::DisplayRole) const;
-    QModelIndex index(int row, int column,
-                    const QModelIndex &parent = QModelIndex()) const;
-
-    QModelIndex index(KEduVocContainer* container) const;
-
-    QModelIndex parent(const QModelIndex &index) const;
-    virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
     virtual int columnCount(const QModelIndex &parent = QModelIndex()) const;
-
-    KEduVocContainer::EnumContainerType containerType();
 
     Qt::DropActions supportedDropActions () const;
     QStringList mimeTypes() const;
@@ -69,21 +60,11 @@ public:
 
     void deleteContainer(const QModelIndex& containerIndex);
 
-public slots:
-    /** Set the new source kvtml file
-     * @param doc the new file */
-    void setDocument(KEduVocDocument *doc);
-
 signals:
     /**
      * emitted when the inPractice state or name of a lesson changed.
      */
     void documentModified();
-
-protected:
-    KEduVocContainer *rootContainer() const;
-    KEduVocContainer::EnumContainerType m_type;
-    KEduVocDocument *m_doc;
 };
 
 

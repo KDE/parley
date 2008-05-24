@@ -42,6 +42,7 @@ set(vocabulary_SRCS
     vocabulary/vocabularyfilter.cpp
     vocabulary/vocabularymimedata.cpp
     vocabulary/containermodel.cpp
+    vocabulary/basiccontainermodel.cpp
     vocabulary/lessonmodel.cpp
     vocabulary/wordtypemodel.cpp
     vocabulary/containerview.cpp
