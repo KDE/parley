@@ -1,6 +1,7 @@
 /***************************************************************************
 
     Copyright 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2008 David Capel <wot.narg@gmail.com>
 
  ***************************************************************************
 

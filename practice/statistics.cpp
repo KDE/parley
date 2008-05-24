@@ -22,6 +22,7 @@ Statistics::Statistics()
 {
     m_percentCorrect = 0.0f;
     m_tainted = false;
+    m_answerChecked = false;
     m_attempted = 0;
     m_correct = 0;
     m_cycles = 0;
@@ -30,6 +31,7 @@ Statistics::Statistics()
     m_taintedIncorrect = 0;
     m_skipped = 0;
     m_streakLength = 0;
+    
 }
 
 Statistics::~Statistics() {}
@@ -58,6 +60,8 @@ void Statistics::slotCorrect()
 
     m_percentCorrect = static_cast<float>(m_correct) / m_attempted;
 
+    m_answerChecked = true;
+    
     refresh();
 }
 
@@ -97,8 +101,19 @@ void Statistics::slotIncorrect(ErrorType error)
 
     m_tainted = false;
 
+    m_answerChecked = true;
+    
     refresh();
 }
+
+void Statistics::slotAnswerShown()
+{
+    if (m_answerChecked) // the answer has already been checked and counted.
+        return; // do nothing
+    else // the user requested that the answer be shown before they provided an answer
+        slotIncorrect(AnswerShown);
+}
+
 
 void Statistics::slotSkipped(SkipReason reason)
 {
@@ -115,3 +130,13 @@ void LCDStatistics::refresh()
     kDebug() << m_percentCorrect;
     display(m_percentCorrect*100);
 }
+
+
+void LCDStatistics::slotSetFinished()
+{
+    // TODO do something here ;)
+}
+
+
+
+

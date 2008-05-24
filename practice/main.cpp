@@ -1,6 +1,7 @@
 /***************************************************************************
 
     Copyright 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2008 David Capel <wot.narg@gmail.com>
 
  ***************************************************************************
 
@@ -28,18 +29,18 @@ int main (int argc, char *argv[])
     static const char version[]     = PARLEY_VERSION_STRING;
 
     KAboutData aboutData("parleypractice", 0,
-                         ki18n("Parley"),
+                         ki18n("ParleyPractice"),
                          version,
                          ki18n(description),
                          KAboutData::License_GPL,
-                         ki18n("© 2007\tFrederik Gladhorn\n"),
-                         ki18n("Parley is sexy."),
+                         ki18n("© 2008\tDavid Capel\n"),
+                         ki18n("ParleyPractice is practiced."),
                          "http://edu.kde.org/parley",
                          "submit@bugs.kde.org");
 
-    aboutData.addAuthor(ki18n("Frederik Gladhorn"),
+    aboutData.addAuthor(ki18n("David Capel"),
                         ki18n("Current Maintainer"),
-                        "frederik.gladhorn@kdemail.net");
+                        "wot.narg@gmail.com");
 
     KCmdLineArgs::init( argc, argv, &aboutData );
 

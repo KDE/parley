@@ -23,8 +23,11 @@
 #include <QLineEdit>
 
 #include "eduwidget.h"
-#include "eduanswer.h"
 #include "statistics.h"
+
+#include "../../libkdeedu/keduvocdocument/keduvocexpression.h"
+#include "../../libkdeedu/keduvocdocument/keduvoctranslation.h"
+
 
 /**
 * @class Input
@@ -39,12 +42,12 @@
 class Input
 {
     public: // slots:
-        /// Called to show the final solution.
-        virtual void slotShowSolutionFinished() = 0;
+        /// Called to show the solution.
+        virtual void slotShowAnswer() = 0;
         /// Called to check the users's answer against the correct answer.
         virtual void slotCheckAnswer() = 0;
         /// Called to set the correct answer to a given question.
-        virtual void slotSetAnswer(EduAnswer* answer) { m_answer = answer; };
+        virtual void slotSetAnswer(KEduVocTranslation* answer) { m_answer = answer; };
         virtual ~Input();
         Input();
         
@@ -78,7 +81,7 @@ class Input
         void signalCorrect();
 
 
-        EduAnswer * m_answer;
+        KEduVocTranslation * m_answer;
 };
 
 class TextualInput : public QLineEdit, public Input
@@ -91,10 +94,10 @@ class TextualInput : public QLineEdit, public Input
 
     public slots:
         /// Called to show the final solution.
-        void slotShowSolutionFinished();
+        void slotShowAnswer();
         /// Called to check the users's answer against the correct answer.
         void slotCheckAnswer();
-        void slotSetAnswer(EduAnswer* answer);
+        void slotSetAnswer(KEduVocTranslation* answer);
 
     signals:
         /// Emitted if the answer was incorrect, with the ErrorType denoting why it was incorrect.

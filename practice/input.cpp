@@ -34,17 +34,17 @@ Input::~Input()
     delete m_answer;
 }
 
-void TextualInput::slotShowSolutionFinished()
+void TextualInput::slotShowAnswer()
 {
     QPalette pal;
-    pal.setColor(QPalette::Text, Qt::black);
+    pal.setColor(QPalette::Text, Qt::green);
     setPalette(pal);
-    setText(m_answer->text);
+    setText(m_answer->text());
 }
 
 void TextualInput::slotCheckAnswer()
 {
-    if (text() == m_answer->text)
+    if (text() == m_answer->text()) // TODO use the smart correction functions
     {
         kDebug() << "correct";
         QPalette pal;
@@ -58,11 +58,11 @@ void TextualInput::slotCheckAnswer()
         QPalette pal;
         pal.setColor(QPalette::Text, Qt::red);
         setPalette(pal);
-        emit signalIncorrect(Statistics::UnknownMistake); // TODO: do this logic
+        emit signalIncorrect(Statistics::UnknownMistake); // TODO do this logic
     }
 }
 
-void TextualInput::slotSetAnswer(EduAnswer* answer)
+void TextualInput::slotSetAnswer(KEduVocTranslation* answer)
 {
     QPalette pal;
     pal.setColor(QPalette::Text, Qt::black);

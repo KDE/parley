@@ -21,6 +21,7 @@ set(parleypractice_SRCS
     prompt.cpp
     statistics.cpp
     stdbuttons.cpp
+    hint.cpp
 #    questiondisplay.cpp
 )
 

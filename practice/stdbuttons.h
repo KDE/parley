@@ -41,9 +41,7 @@ class StdButtons : public KDialogButtonBox
     public slots:
         void slotButtonClicked(QAbstractButton * button);
         void slotReturnPressed();
-//        virtual void slotSkipKnown();
-//        virtual void slotSkipUnknown();
-//        virtual void slotContinue();
+        void slotAnswerShown();
 //        virtual void slotQuit();
 
     signals:

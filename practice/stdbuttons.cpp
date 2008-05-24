@@ -77,7 +77,17 @@ void StdButtons::slotReturnPressed()
     }
     else
     {
-                kDebug() << "unknown button text " << b->text();
+        kDebug() << "unknown button text " << b->text();
     }
 }
 
+void StdButtons::slotAnswerShown()
+{
+    QList<QAbstractButton*> qlb = buttons();
+    QAbstractButton* b =  qlb[0];
+    if (b->text() == "Check Answer")
+    {
+        // showing the answer removes their ability to provide an answer (duh!)
+        b->setText("Continue");
+    }
+}

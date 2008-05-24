@@ -21,6 +21,10 @@
 
 #include <QLCDNumber>
 
+#include "../../libkdeedu/keduvocdocument/keduvocexpression.h"
+#include "../../libkdeedu/keduvocdocument/keduvoctranslation.h"
+
+
 /**
 * @class Statistics
 * @author David Capel <wot.narg@gmail.com>
@@ -60,15 +64,16 @@ class Statistics
             CapitalizationMistake =   0x2, ///< capitalization error (whAt)
             AccentMistake         =   0x4, ///< an accent is missing or wrong (é)
             ArticleWrong          =   0x8, ///< solution is correct with the article interchanged
-            ArticleMissing        =   0x10, ///< solution is correct with the article missing
+            ArticleMissing        =  0x10, ///< solution is correct with the article missing
             FalseFriend           =  0x20, ///< a false friend
             Synonym               =  0x40, ///< a synonym (may be correct)
             Empty                 =  0x80, ///< empty answer string
             UnrelatedWord         = 0x100, ///< a valid word but no connection to the solution
             Incomplete            = 0x200, ///< the part that was entered is right, but not complete
             Correct               = 0x400, ///< no error, solution was right
-            UnknownMistake        = 0x800,  ///< no idea
-            NumberIncorrectReasons = 12
+            AnswerShown           = 0x800, ///< the answer was shown before the user provided an answer
+            UnknownMistake        =0x1000,  ///< no idea
+            NumberIncorrectReasons = 13
         };
 
     public: //slots:
@@ -80,7 +85,16 @@ class Statistics
         virtual void slotSkipped(Statistics::SkipReason reason);
         /// Called when the answer is tainted (because of a hint or running out of time)
         virtual void slotTaintAnswer(Statistics::TaintReason reason);
-
+        /// Called to set the current prompt expression
+        /// We use this to update grade, practice count, etc
+        virtual void slotSetPrompt(KEduVocExpression* prompt) { m_prompt = prompt; m_answerChecked = false; };
+        /// Called when the set of entries is exhausted.
+        /// Most practice modes will want to show a statistical summery before it exits.
+        virtual void slotSetFinished() = 0;
+        /// Called when the user has requested that the answer be shown.
+        /// If the question has not been answered, it will be counted as incorrect.
+        virtual void slotAnswerShown();
+        
         /// Update the GUI display of the statistics
         virtual void refresh() = 0;
 
@@ -113,6 +127,12 @@ class Statistics
         int taintReasons[NumberTaintReasons];
         /// Keeps track of how often a question is skipped for each reason.
         int skipReasons[NumberSkipReasons];
+
+        KEduVocExpression* m_prompt;
+
+        /// This is set when an answer has been corrected and counted and is cleared when a new prompt has been displayed.
+        /// This prevents double-counting of answers, especially when hints are involved.
+        bool m_answerChecked;
 };
 
 class LCDStatistics : public QLCDNumber, public Statistics
@@ -131,7 +151,17 @@ class LCDStatistics : public QLCDNumber, public Statistics
         void slotSkipped(Statistics::SkipReason reason) { Statistics::slotSkipped(reason); };
         /// Called when the answer is tainted (because of a hint or running out of time)
         void slotTaintAnswer(Statistics::TaintReason reason) { Statistics::slotTaintAnswer(reason); };
-
+        /// Called to set the current prompt expression
+        /// We use this to update grade, practice count, etc
+        void slotSetPrompt(KEduVocExpression* prompt) { Statistics::slotSetPrompt(prompt); };
+        /// Called when the set of entries is exhausted.
+        /// Most practice modes will want to show a statistical summery before it exits.
+        void slotSetFinished();
+        /// Called when the user has requested that the answer be shown.
+        /// If the question has not been answered, it will be counted as incorrect.
+        void slotAnswerShown() { Statistics::slotAnswerShown(); };
+        
+        /// Refreshes the GUI display.
         void refresh();
 };
 

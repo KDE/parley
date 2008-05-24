@@ -22,10 +22,6 @@
 #include <KDebug>
 //#include "prefs.h"
 
-//#include <keduvocexpression.h>
-//#include <keduvocdocument.h>
-
-
 
 
 
@@ -43,32 +39,60 @@
 TextualPrompt::TextualPrompt(QWidget * parent)
         : QLabel(parent), Prompt()
 {
-    list.append(QPair<QString, QString>("1+1=", "2"));
-    list.append(QPair<QString, QString>("3+7=", "10"));
-    list.append(QPair<QString, QString>("12*2=", "24"));
-    list.append(QPair<QString, QString>("9/3", "3"));
-    list.append(QPair<QString, QString>("27/3", "9"));
-    list.append(QPair<QString, QString>("Capital of the USA", "Washington D.C."));
-    list.append(QPair<QString, QString>("Capital of Minnesota", "St. Paul"));
-    list.append(QPair<QString, QString>("Capital of Japan", "Tokyo"));
-    list.append(QPair<QString, QString>("Capital of Mexico", "Mexico City"));
-    list.append(QPair<QString, QString>("Capital of Brazil", "Buenos Aires"));
-
 }
 
 Prompt::~Prompt()
 {}
 
 Prompt::Prompt()
-{}
+    : m_iter(QList<KEduVocExpression*>()) // it has no empty constructor. Annoying...
+{
+    m_entries = QList<KEduVocExpression*>();
+}
+
+void Prompt::open(KEduVocDocument* doc)
+{
+    m_doc = doc;
+    if (m_doc && m_doc->lesson())
+    {
+        m_entries = m_doc->lesson()->entries(KEduVocContainer::Recursive);
+        kDebug() << "count " << m_doc->lesson()->entryCount(KEduVocContainer::Recursive);
+        m_iter = m_entries;
+    }
+    else
+    {
+        kDebug() << "bad" << m_doc << m_doc->lesson();
+    }
+}
 
 void TextualPrompt::slotNewPrompt()
 {
-    QPair<QString, QString> qps = list.takeFirst();
-    m_test_question = qps.first;
-    setText(m_test_question);
-    emit signalPromptChanged();
-    emit signalAnswerChanged(new EduAnswer(qps.second));
+    if (m_iter.hasNext())
+    {
+        m_entry = m_iter.next();
+        KEduVocTranslation * original = m_entry->translation(0);
+        kDebug() << original->text();
+        setText(original->text());
+
+        if (!original->imageUrl().isEmpty())
+            emit signalNewImage(original->imageUrl());
+        else
+            emit signalNewImage(KUrl()); // Empty KUrl signals no image;
+
+        if (!original->soundUrl().isEmpty())
+            emit signalNewSound(original->soundUrl());
+        else
+            emit signalNewSound(KUrl());
+        
+        emit signalPromptChanged(m_entry);
+        emit signalAnswerChanged(m_entry->translation(1)); // TODO not hardcode translation 1 ;)
+    }
+    else
+    {
+        emit signalSetFinished();
+        kDebug() << "finished";
+    }
+
 }
 
 /*
