@@ -23,7 +23,7 @@
 //#include "prefs.h"
 
 
-
+#include <algorithm>
 
 //void Prompt::slotSetEntry(KEduVocExpression* entry)
 //{
@@ -95,14 +95,10 @@ void TextualPrompt::slotNewPrompt()
 
 }
 
-/*
-void TextualPrompt::slotSetEntry(const QString& entry, const QString& answer)
+void Prompt::slotShuffle()
 {
-    kDebug() << "setEntry: " << entry << " " << answer;
-    m_test_question = entry;
-    m_test_answer = answer;
-    setText(m_test_question);
-    emit signalAnswerChanged(m_test_answer);
-}*/
+    // The stl random_shuffle is better than what I would write ;)
+    std::random_shuffle(m_entries.begin(), m_entries.end());
+}
 
 #include "prompt.moc"

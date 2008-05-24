@@ -50,7 +50,7 @@ class Prompt
         /// Called to show a new prompt and perform other tasks to create a new question.
         virtual void slotNewPrompt() = 0;
         virtual void open(KEduVocDocument*);
-
+        virtual void slotShuffle();
         
         Prompt();
         virtual ~Prompt();
@@ -90,6 +90,7 @@ class TextualPrompt : public QLabel, public Prompt
 
     public slots:
         void slotNewPrompt();
+        void slotShuffle() { Prompt::slotShuffle(); };
 
     signals:
         /// Emitted when the question is changed.
