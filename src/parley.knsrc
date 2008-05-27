@@ -1,3 +1,5 @@
 [KNewStuff2]
 ProvidersUrl=http://edu.kde.org/parley/newstuff/providers41.xml
 TargetDir=kvtml
+Uncompress=archive
+
