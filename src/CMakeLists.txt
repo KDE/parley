@@ -195,7 +195,7 @@ if(HAVE_LIBXSLT)
     target_link_libraries(parley ${LIBXML2_LIBRARIES} ${LIBXSLT_LIBRARIES})
 endif(HAVE_LIBXSLT)
 
-install(TARGETS parley  DESTINATION ${BIN_INSTALL_DIR} )
+install(TARGETS parley  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 
 ########### install files ###############
