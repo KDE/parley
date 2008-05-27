@@ -29,8 +29,6 @@
 class KDialog;
 class QFont;
 class QSizeF;
-class KConfigGroup;
-class KEduVocDocument;
 class KConfigDialog;
 
 class ParleyPlasma : public Plasma::Applet
