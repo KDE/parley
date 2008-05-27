@@ -45,8 +45,6 @@ class Prompt
 {
 
     public: // slots:
-        /// Sets the question entry.
-        //virtual void slotSetEntry(KEduVocExpression* entry);
         /// Called to show a new prompt and perform other tasks to create a new question.
         virtual void slotNewPrompt() = 0;
         virtual void open(KEduVocDocument*);
@@ -108,11 +106,6 @@ class TextualPrompt : public QLabel, public Prompt
         /// Emitted when the set of questions is finished.
         void signalSetFinished();
 
-    private:
-        // these are only for the initial layout testing ;)
-        QString m_test_question;
-        QString m_test_answer;
-        QList<QPair<QString, QString> > list;
 };
 
 

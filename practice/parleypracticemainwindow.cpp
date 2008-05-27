@@ -21,13 +21,15 @@
 #include <KLineEdit>
 #include <KDebug>
 #include <KStandardDirs>
-// #include <QGraphicsSvgItem>
+#include <QGraphicsSvgItem>
+#include <KSvgRenderer>
 #include <QGraphicsProxyWidget>
 #include <QResizeEvent>
 #include <QSvgRenderer>
 #include <QLCDNumber>
 #include <KFileDialog>
 #include <QPushButton>
+#include <QGraphicsLinearLayout>
 
 //#include "questiondisplay.h"
 //#include "defaulttheme/vocabularycard.h"
@@ -50,7 +52,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     QGraphicsScene* scene = new QGraphicsScene(this);
     m_view->setScene(scene);
 
-    scene->setSceneRect(0.0, 0.0, 800.0, 600.0);
+    scene->setSceneRect(0.0, 0.0, 600.0, 300.0);
 
     m_view->setSceneRect(scene->sceneRect());
 
@@ -58,6 +60,12 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
 
     m_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    QGraphicsSvgItem * backgroundsvg = new QGraphicsSvgItem();
+    KSvgRenderer * krenderer = new KSvgRenderer(QString("~/background.svgz"));
+    backgroundsvg->setSharedRenderer(krenderer);
+//    backgroundsvg->setSize(600,300);
+    scene->addItem(backgroundsvg);
 
     //kDebug() << KStandardDirs::locate("data", "parley/images/card.svg");
 
@@ -69,23 +77,48 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     
     TextualPrompt * prompt = new TextualPrompt();
     prompt->open(doc);
-    prompt->resize(100, 30);
+    prompt->setMinimumSize(100, 30);
     QGraphicsProxyWidget * gprompt = scene->addWidget(prompt);
     
     TextualInput * input = new TextualInput();
+    prompt->setMinimumSize(100, 30);
     QGraphicsProxyWidget * ginput = scene->addWidget(input);
-
+    
     LCDStatistics * stats = new LCDStatistics();
     QGraphicsProxyWidget * gstats = scene->addWidget(stats);
     stats->refresh();
 
+
+    
+    QGraphicsLinearLayout * promptAndInput = new QGraphicsLinearLayout();
+    promptAndInput->setOrientation(Qt::Vertical);
+    promptAndInput->addItem(gprompt);
+    promptAndInput->addItem(ginput);
+    
+    QGraphicsWidget * gpromptAndInput = new QGraphicsWidget();
+    gpromptAndInput->setLayout(promptAndInput);
+    scene->addItem(gpromptAndInput);
+
+    
+
+    
     StdButtons * stdbuttons = new StdButtons();
     QGraphicsProxyWidget * gstdbuttons = scene->addWidget(stdbuttons);
-
+    
     Hint * hint = new Hint(this);
-
     QPushButton * showAnswerButton = new QPushButton("Show Answer");
     QGraphicsProxyWidget * gshowAnswerButton = scene->addWidget(showAnswerButton);
+
+
+    QGraphicsLinearLayout * buttons = new QGraphicsLinearLayout();
+    buttons->addItem(gshowAnswerButton);
+    buttons->addItem(gstdbuttons);
+
+    QGraphicsWidget * gbuttons = new QGraphicsWidget();
+    gbuttons->setLayout(buttons);
+    scene->addItem(gbuttons);
+    
+    
     connect(showAnswerButton, SIGNAL(clicked()), hint, SLOT(slotShowAnswer()));
     
     connect(prompt, SIGNAL(signalAnswerChanged(KEduVocTranslation*)), input, SLOT(slotSetAnswer(KEduVocTranslation*)));
@@ -106,11 +139,14 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     connect(hint, SIGNAL(signalShowAnswer()), stats, SLOT(slotAnswerShown()));
     connect(hint, SIGNAL(signalShowAnswer()), stdbuttons, SLOT(slotAnswerShown()));
     
-    gprompt->setPos(30, 100);
-    ginput->setPos(60, 60);
-    gstdbuttons->setPos(200, 200);
+    //gprompt->setPos(30, 100);
+    //ginput->setPos(60, 60);
+    //gstdbuttons->setPos(200, 200);
     gstats->setPos(200, 100);
-    gshowAnswerButton->setPos(100, 200);
+    //gshowAnswerButton->setPos(100, 200);
+
+    gpromptAndInput->setPos(10, 10);
+    gbuttons->setPos(10, 200);
     
     //kDebug() << KStandardDirs::locate("data", "defaulttheme/layout.svg");
 
