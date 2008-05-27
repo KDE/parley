@@ -23,7 +23,6 @@
 #include "ui_configurepracticewidget.h"
 
 class KEduVocDocument;
-class KConfigSkeleton;
 class QStackedLayout;
 class QTreeWidget;
 

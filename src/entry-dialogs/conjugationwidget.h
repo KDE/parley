@@ -17,7 +17,6 @@
 #include "ui_conjugationwidget.h"
 
 class KEduVocExpression;
-class KEduVocTranslation;
 class KEduVocDocument;
 
 class ConjugationWidget : public QWidget, public Ui::ConjugationWidget

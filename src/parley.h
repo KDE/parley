@@ -35,25 +35,16 @@
 
 #define IDS_DEFAULT I18N_NOOP("Ready.")
 
-class PracticeManager;
 class EntryDlg;
-class LessonDockWidget;
-class WordTypeDockWidget;
 
-class KEduVocDocument;
 class KLineEdit;
-class KComboBox;
-class KMessageBox;
 class KRecentFilesAction;
 class KAction;
 class KActionMenu;
-class QProgressBar;
-class QSplitter;
 class QLabel;
 class VocabularyView;
 class VocabularyModel;
 class VocabularyFilter;
-class ContainerView;
 class LessonView;
 class WordTypeView;
 class LessonModel;
