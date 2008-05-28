@@ -38,6 +38,7 @@ private slots:
     void slotTenseSelected(int);
     void slotNextTense();
     void slotMakeVerb();
+    void tenseEditingFinished();
 
 private:
     void showMakeVerbWidgets();

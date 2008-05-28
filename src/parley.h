@@ -49,6 +49,7 @@ class LessonView;
 class WordTypeView;
 class LessonModel;
 class WordTypeModel;
+class ConjugationWidget;
 
 /**
   * This Class is the base class for your application. It sets up the main
@@ -90,18 +91,22 @@ public:
 
 
 public slots:
+    /** Update the title bar of the main window with the current document */
     void slotUpdateWindowCaption();
 
     /** append language to vocabulary - creates a new column */
     void slotEditLanguages();
-
+    /** When quitting, ask for confirmation if the doc has not been saved */
     bool queryClose();
     /** overloaded for Message box on last window exit */
     bool queryExit();
     /** set up options */
     void slotGeneralOptions();
     void slotApplyPreferences();
-    void slotLanguageProperties();
+
+    /** Let the user edit tenses, articles and personal pronouns */
+    void slotGrammarDialog();
+    /** General doc properties like title, author etc */
     void slotDocumentProperties();
     void slotShowStatistics();
 
@@ -144,6 +149,9 @@ private:
     VocabularyFilter *m_vocabularyFilter;
 
     QWidget *m_searchWidget;
+
+    /** Show a single conjugation and let the user edit it */
+    ConjugationWidget *m_conjugationWidget;
 
     /** m_document is the current vocabulary document. */
     ParleyDocument   *m_document;
