@@ -31,10 +31,12 @@
 * @brief This class keeps track of various statistics about the practice.
 * Depending on the practice mode, this may or may not have a visible widget representation.
 */
-class Statistics
+class Statistics : public QObject
 {
+    Q_OBJECT
+            
     public:
-        Statistics();
+        Statistics(QObject * parent = 0);
         virtual ~Statistics();
 
         
@@ -71,45 +73,72 @@ class Statistics
             UnrelatedWord         = 0x100, ///< a valid word but no connection to the solution
             Incomplete            = 0x200, ///< the part that was entered is right, but not complete
             Correct               = 0x400, ///< no error, solution was right
-            AnswerShown           = 0x800, ///< the answer was shown before the user provided an answer
+            SolutionShown           = 0x800, ///< the answer was shown before the user provided an answer
             UnknownMistake        =0x1000,  ///< no idea
             NumberIncorrectReasons = 13
         };
 
-    public: //slots:
+    public slots:
+        /// Called by AnswerValidator when a correction has been completed.
+        /// @param grade is a 'correctness score', a number from 0.0 to 1.0 denoting how close
+        /// the supplied answer was to the solution. 1.0 means it was correct, 0.0 means it was entirely
+        /// wrong.
+        /// @param error contains the errors the user made. If only Correct is set, the answer is correct.
+        void slotCorrection(float grade, ErrorType error);
         /// Called when the answer is correct.
-        virtual void slotCorrect();
+        void slotCorrect();
         /// Called when the answer is incorrect; ErrorType denotes why it was incorrect.
-        virtual void slotIncorrect(Statistics::ErrorType error);
-        /// Called when the question was skipped. SkipReason denotes if the user knew the answer.
-        virtual void slotSkipped(Statistics::SkipReason reason);
+        void slotIncorrect(Statistics::ErrorType error);
+        /// Called when a known question was skipped.
+        void slotSkippedKnown();
+        /// Called when an unknown question was skipped.
+        void slotSkippedUnknown();
         /// Called when the answer is tainted (because of a hint or running out of time)
-        virtual void slotTaintAnswer(Statistics::TaintReason reason);
+        void slotTaintAnswer(Statistics::TaintReason reason);
         /// Called to set the current prompt expression
         /// We use this to update grade, practice count, etc
-        virtual void slotSetPrompt(KEduVocExpression* prompt) { m_prompt = prompt; m_answerChecked = false; };
+        void slotSetPrompt(KEduVocExpression* prompt) { m_prompt = prompt; m_answerChecked = false; };
         /// Called when the set of entries is exhausted.
         /// Most practice modes will want to show a statistical summery before it exits.
-        virtual void slotSetFinished() = 0;
+        void slotSetFinished();
         /// Called when the user has requested that the answer be shown.
         /// If the question has not been answered, it will be counted as incorrect.
-        virtual void slotAnswerShown();
+        void slotSolutionShown();
         
-        /// Update the GUI display of the statistics
-        virtual void refresh() = 0;
+    public:
+        static const QString gradeToString(int grade);
 
-
+        
+        /// Returns the percent of entries that have been answered correctly.
+        /// This will return 0 when the numerator and/or denominator is 0,
+        /// This practice is mathmatically incorrect (n/0 != 0/0 != 0), but works in practice 
+        float percentCorrect()
+        { return m_attempted != 0 ? static_cast<float>(m_correct) / m_attempted : 0.0f; }
+        bool answerChecked() const  { return m_answerChecked; }
+        int attempted() const { return m_attempted; }
+        int correct() const  { return m_correct; }
+        int cycles() const { return m_cycles; }
+        int skipped() const { return m_skipped; }
+        int streakLength() const { return m_streakLength; }
+        int taintedCorrect() const { return m_taintedCorrect; }
+        int taintedIncorrect() const  { return m_taintedIncorrect; }
+        /// Get how often entries were tainted for ErrorType @param error
+        int errorReason(ErrorType error) const { return m_errorReasons[error]; }
+        /// Get how often entries were tainted for TaintReason @param reason
+        int taintReason(TaintReason reason) const { return m_taintReasons[reason]; }
+        /// Get how often entries were skipped for SkipReason @param reason
+        int skippedReason(SkipReason reason) const { return m_skipReasons[reason]; }
+        
+    signals:
+        void signalUpdateDisplay(Statistics*);
+        
     protected:
-        /// Percent of questions correctly answered.
-        float m_percentCorrect;
         /// Number of questions attempted.
         int m_attempted;
         /// Number of untainted questions correctly answered.
         int m_correct;
         /// Cycles ar}e iterations through a given practice set.
         int m_cycles;
-        /// If the current question is tainted.
-        bool m_tainted;
         /// How many answers were correct after they were tainted.
         int m_taintedCorrect;
         /// How many answers were incorrect after they were tainted.
@@ -122,20 +151,28 @@ class Statistics
 
         /// Keeps track of how often a question is incorrect for each error.
         /// Note that multiple errors can be incremented at once.
-        int errorReasons[NumberIncorrectReasons];
+        int m_errorReasons[NumberIncorrectReasons];
         /// Keeps track of how often a question is tainted for each reason.
-        int taintReasons[NumberTaintReasons];
+        int m_taintReasons[NumberTaintReasons];
         /// Keeps track of how often a question is skipped for each reason.
-        int skipReasons[NumberSkipReasons];
+        int m_skipReasons[NumberSkipReasons];
 
         KEduVocExpression* m_prompt;
 
+
+    // These are purely implementation details, and subclasses shouldn't play with them.
+    private:
         /// This is set when an answer has been corrected and counted and is cleared when a new prompt has been displayed.
         /// This prevents double-counting of answers, especially when hints are involved.
         bool m_answerChecked;
+
+        /// If the current question is tainted.
+        bool m_tainted;
+
+        
 };
 
-class LCDStatistics : public QLCDNumber, public Statistics
+class LCDStatistics : public QLCDNumber
 {
     Q_OBJECT
 
@@ -143,26 +180,7 @@ class LCDStatistics : public QLCDNumber, public Statistics
         LCDStatistics(QWidget* parent = 0);
             
     public slots:
-        /// Called when the answer is correct.
-        void slotCorrect() {Statistics::slotCorrect(); };
-        /// Called when the answer is incorrect; ErrorType denotes why it was incorrect.
-        void slotIncorrect(Statistics::ErrorType error) { Statistics::slotIncorrect(error); };
-        /// Called when the question was skipped. SkipReason denotes if the user knew the answer.
-        void slotSkipped(Statistics::SkipReason reason) { Statistics::slotSkipped(reason); };
-        /// Called when the answer is tainted (because of a hint or running out of time)
-        void slotTaintAnswer(Statistics::TaintReason reason) { Statistics::slotTaintAnswer(reason); };
-        /// Called to set the current prompt expression
-        /// We use this to update grade, practice count, etc
-        void slotSetPrompt(KEduVocExpression* prompt) { Statistics::slotSetPrompt(prompt); };
-        /// Called when the set of entries is exhausted.
-        /// Most practice modes will want to show a statistical summery before it exits.
-        void slotSetFinished();
-        /// Called when the user has requested that the answer be shown.
-        /// If the question has not been answered, it will be counted as incorrect.
-        void slotAnswerShown() { Statistics::slotAnswerShown(); };
-        
         /// Refreshes the GUI display.
-        void refresh();
+        void slotUpdateDisplay(Statistics*);
 };
-
 #endif

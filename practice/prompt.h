@@ -20,66 +20,12 @@
 #ifndef PROMPT_H
 #define PROMPT_H
 
-
-#include <QObject>
+#include <QString>
 #include <QLabel>
 
-#include <QList>
+#include <KUrl>
 
-#include "../../libkdeedu/keduvocdocument/keduvocexpression.h"
-#include "../../libkdeedu/keduvocdocument/keduvoctranslation.h"
-#include "../../libkdeedu/keduvocdocument/keduvocdocument.h"
-
-
-
-/**
-* @class Prompt
-* @author David Capel <wot.narg@gmail.com>
-* @brief This shows the prompt (the question, original translation, image, etc) for each question.
-* Depending on the mode, this will take a variety of forms.
-* This class gets each question from the database and gives the answer
-* to the @class Input object.
-*/
-
-class Prompt
-{
-
-    public: // slots:
-        /// Called to show a new prompt and perform other tasks to create a new question.
-        virtual void slotNewPrompt() = 0;
-        virtual void open(KEduVocDocument*);
-        virtual void slotShuffle();
-        
-        Prompt();
-        virtual ~Prompt();
-        
-    protected:
-        KEduVocDocument * m_doc;
-        QList<KEduVocExpression*> m_entries;
-        KEduVocExpression * m_entry;
-        QListIterator<KEduVocExpression*> m_iter;
-        
-   // signals:
-    protected:
-        /// Emitted when the question is changed.
-        /// This is used so @class Statistics can update the grades and related information.
-        void signalPromptChanged(KEduVocExpression*);
-        /// Emitted when the answer has changed.
-        /// This is used to provide the answer to the @class Input object.
-        void signalAnswerChanged(KEduVocTranslation*);
-        /// Emitted when a new image is available.
-        /// An empty KUrl signals that there is no assosiated image.
-        void signalNewImage(const KUrl&);
-        /// Emitted when a new sound is available.
-        /// An empty KUrl signals that there is no assosiated sound.
-        void signalNewSound(const KUrl&);
-        /// Emitted when the set of questions is finished.
-        void signalSetFinished();
-
-};
-
-
-class TextualPrompt : public QLabel, public Prompt
+class TextualPrompt : public QLabel
 {
         Q_OBJECT
 
@@ -87,25 +33,40 @@ class TextualPrompt : public QLabel, public Prompt
         TextualPrompt(QWidget * parent = 0);
 
     public slots:
-        void slotNewPrompt();
-        void slotShuffle() { Prompt::slotShuffle(); };
+        void setText(const QString& text) {m_text = text; };
 
-    signals:
-        /// Emitted when the question is changed.
-        /// This is used so @class Statistics can update the grades and related information.
-        void signalPromptChanged(KEduVocExpression*);
-        /// Emitted when the answer has changed.
-        /// This is used to provide the answer to the @class Input object.
-        void signalAnswerChanged(KEduVocTranslation*);
-        /// Emitted when a new image is available.
-        /// An empty KUrl signals that there is no assosiated image.
-        void signalNewImage(const KUrl&);
-        /// Emitted when a new sound is available.
-        /// An empty KUrl signals that there is no assosiated sound.
-        void signalNewSound(const KUrl&);
-        /// Emitted when the set of questions is finished.
-        void signalSetFinished();
+    private:
+        QString m_text;
+};
 
+class SoundPrompt : public QLabel
+{
+        Q_OBJECT
+
+
+    public:
+        SoundPrompt(QWidget * parent = 0);
+
+    public slots:
+        void setSound(const KUrl& sound) { m_sound = sound; };
+    private:
+        KUrl m_sound;
+};
+
+class ImagePrompt : public QLabel
+{
+        Q_OBJECT
+
+
+    public:
+        ImagePrompt(QWidget * parent = 0);
+
+    public slots:
+
+        void setImage(const KUrl& image) { m_image = image; };
+
+    private:
+        KUrl m_image;
 };
 
 

@@ -17,10 +17,11 @@
 #include "statistics.h"
 
 #include <KDebug>
+#include <KLocalizedString>
 
-Statistics::Statistics()
+Statistics::Statistics(QObject * parent)
+    : QObject(parent)
 {
-    m_percentCorrect = 0.0f;
     m_tainted = false;
     m_answerChecked = false;
     m_attempted = 0;
@@ -31,26 +32,72 @@ Statistics::Statistics()
     m_taintedIncorrect = 0;
     m_skipped = 0;
     m_streakLength = 0;
-    
+
 }
 
 Statistics::~Statistics() {}
 
 LCDStatistics::LCDStatistics(QWidget * parent)
-    :  QLCDNumber(parent), Statistics()
+        :  QLCDNumber(parent)
 {
-    refresh();
+    display(0.0);
 }
 
+// TODO figure out what to do with grade...
+void Statistics::slotCorrection(float grade, ErrorType error)
+{
+    // this is true when the answer supplied was correct.
+    if ((grade == 1.0) && (error == Correct))
+       slotCorrect();
+    else
+        slotIncorrect(error);
+}
+
+void Statistics::slotIncorrect(ErrorType error)
+{
+    ++m_attempted;
+    // I don't know a better way to do this...
+    if (error & SpellingMistake) ++m_errorReasons[0];
+
+    if (error & CapitalizationMistake) ++m_errorReasons[1];
+
+    if (error & AccentMistake) ++m_errorReasons[2];
+
+    if (error & ArticleWrong) ++m_errorReasons[3];
+
+    if (error & ArticleMissing) ++m_errorReasons[4];
+
+    if (error & FalseFriend) ++m_errorReasons[5];
+
+    if (error & Synonym) ++m_errorReasons[6];
+
+    if (error & Empty) ++m_errorReasons[7];
+
+    if (error & UnrelatedWord) ++m_errorReasons[8];
+
+    if (error & Incomplete) ++m_errorReasons[9];
+
+    if (error & Correct) ++m_errorReasons[10]; // this should never be used...
+
+    if (error & UnknownMistake) ++m_errorReasons[11];
+
+    m_tainted = false;
+
+    m_answerChecked = true;
+
+    m_streakLength = 0;
+
+    emit signalUpdateDisplay(this);
+}
 
 void Statistics::slotCorrect()
 {
     ++m_attempted;
-
     if (m_tainted)
     {
         ++m_taintedCorrect;
         m_tainted = false;
+        m_streakLength = 0;
     }
     else
     {
@@ -58,85 +105,91 @@ void Statistics::slotCorrect()
         ++m_streakLength;
     }
 
-    m_percentCorrect = static_cast<float>(m_correct) / m_attempted;
-
     m_answerChecked = true;
-    
-    refresh();
+
+    emit signalUpdateDisplay(this);
 }
 
-void Statistics::slotIncorrect(ErrorType error)
-{
-    ++m_attempted;
-    // I don't know a better way to do this...
-
-    if (error & SpellingMistake) ++errorReasons[0];
-
-    if (error & CapitalizationMistake) ++errorReasons[1];
-
-    if (error & AccentMistake) ++errorReasons[2];
-
-    if (error & ArticleWrong) ++errorReasons[3];
-
-    if (error & ArticleMissing) ++errorReasons[4];
-
-    if (error & FalseFriend) ++errorReasons[5];
-
-    if (error & Synonym) ++errorReasons[6];
-
-    if (error & Empty) ++errorReasons[7];
-
-    if (error & UnrelatedWord) ++errorReasons[8];
-
-    if (error & Incomplete) ++errorReasons[9];
-
-    if (error & Correct) ++errorReasons[10]; // this should never be used...
-
-    if (error & UnknownMistake) ++errorReasons[11];
-
-    // avoid a division by 0 error...
-    // this isn't mathmatically correct, but works in practice (x/0 != 0)
-    m_percentCorrect = m_attempted != 0 ? static_cast<float>(m_correct) / m_attempted : 0.0f;
-    
-
-    m_tainted = false;
-
-    m_answerChecked = true;
-    
-    refresh();
-}
-
-void Statistics::slotAnswerShown()
+void Statistics::slotSolutionShown()
 {
     if (m_answerChecked) // the answer has already been checked and counted.
         return; // do nothing
     else // the user requested that the answer be shown before they provided an answer
-        slotIncorrect(AnswerShown);
+        slotIncorrect(SolutionShown);
 }
 
 
-void Statistics::slotSkipped(SkipReason reason)
+void Statistics::slotSkippedKnown()
 {
-    ++skipReasons[reason];
+    ++m_skipReasons[Known];
+}
+
+void Statistics::slotSkippedUnknown()
+{
+    ++m_attempted;
+    m_tainted = false;
+    m_streakLength = 0;
+    emit signalUpdateDisplay(this);
 }
 
 void Statistics::slotTaintAnswer(TaintReason reason)
 {
-    ++taintReasons[reason];
-}
-
-void LCDStatistics::refresh()
-{
-    kDebug() << m_percentCorrect;
-    display(m_percentCorrect*100);
+    ++m_taintReasons[reason];
 }
 
 
-void LCDStatistics::slotSetFinished()
+void Statistics::slotSetFinished()
 {
     // TODO do something here ;)
 }
 
 
+const QString Statistics::gradeToString(int i)
+{
+    switch (i)
+    {
+
+        case KV_NORM_GRADE:
+            return i18n(KV_NORM_TEXT);
+            break;
+
+        case KV_LEV1_GRADE:
+            return i18n(KV_LEV1_TEXT);
+            break;
+
+        case KV_LEV2_GRADE:
+            return i18n(KV_LEV2_TEXT);
+            break;
+
+        case KV_LEV3_GRADE:
+            return i18n(KV_LEV3_TEXT);
+            break;
+
+        case KV_LEV4_GRADE:
+            return i18n(KV_LEV4_TEXT);
+            break;
+
+        case KV_LEV5_GRADE:
+            return i18n(KV_LEV5_TEXT);
+            break;
+
+        case KV_LEV6_GRADE:
+            return i18n(KV_LEV6_TEXT);
+            break;
+
+        case KV_LEV7_GRADE:
+            return i18n(KV_LEV7_TEXT);
+            break;
+
+        default:
+            return i18n(KV_LEV1_TEXT);
+            break;
+    }
+}
 
 
+void LCDStatistics::slotUpdateDisplay(Statistics* stats)
+{
+    kDebug() << stats->percentCorrect();
+    display(stats->percentCorrect());
+}

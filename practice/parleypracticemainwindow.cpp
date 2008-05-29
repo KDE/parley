@@ -30,24 +30,30 @@
 #include <KFileDialog>
 #include <QPushButton>
 #include <QGraphicsLinearLayout>
-
-//#include "questiondisplay.h"
-//#include "defaulttheme/vocabularycard.h"
+#include <KAction>
+#include <KActionCollection>
+#include <KActionMenu>
+#include <KLocalizedString>
 
 #include "input.h"
 #include "prompt.h"
 #include "statistics.h"
 #include "stdbuttons.h"
 #include "hint.h"
+#include "testentrymanager.h"
+#include "answervalidator.h"
 
-
+#include "../../libkdeedu/keduvocdocument/keduvocexpression.h"
+#include "../../libkdeedu/keduvocdocument/keduvoctranslation.h"
+#include "../../libkdeedu/keduvocdocument/keduvocdocument.h"
 
 ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
  : KXmlGuiWindow(parent)
 {
+
+    //// Basic setup ////
     m_view = new QGraphicsView;
     setCentralWidget(m_view);
-    setupGUI();
 
     QGraphicsScene* scene = new QGraphicsScene(this);
     m_view->setScene(scene);
@@ -61,34 +67,41 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     m_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
+
     QGraphicsSvgItem * backgroundsvg = new QGraphicsSvgItem();
     KSvgRenderer * krenderer = new KSvgRenderer(QString("~/background.svgz"));
     backgroundsvg->setSharedRenderer(krenderer);
 //    backgroundsvg->setSize(600,300);
     scene->addItem(backgroundsvg);
 
-    //kDebug() << KStandardDirs::locate("data", "parley/images/card.svg");
 
+    //// Loading the Document -- temporary ////
     KEduVocDocument * doc = new KEduVocDocument(this);
-    KUrl url = KFileDialog::getOpenUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), this, tr("Open Vocabulary Document"));
+    KUrl url = KFileDialog::getOpenUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), this, i18n("Open Vocabulary Document"));
     int code = doc->open(url);
     kDebug() << code;
     
-    
+    // this is the only object/widget the window directly keeps track of (outside of the canvas, etc).
+    m_manager = new TestEntryManager(this);
+    m_manager->open(doc);
+
+
+    ////// Graphical Widgets Setup //////
+
     TextualPrompt * prompt = new TextualPrompt();
-    prompt->open(doc);
     prompt->setMinimumSize(100, 30);
     QGraphicsProxyWidget * gprompt = scene->addWidget(prompt);
+    connect(m_manager, SIGNAL(signalNewText(const QString&)), prompt, SLOT(setText(const QString&)));
+
     
     TextualInput * input = new TextualInput();
-    prompt->setMinimumSize(100, 30);
+    input->setMinimumSize(100, 30);
     QGraphicsProxyWidget * ginput = scene->addWidget(input);
-    
-    LCDStatistics * stats = new LCDStatistics();
-    QGraphicsProxyWidget * gstats = scene->addWidget(stats);
-    stats->refresh();
 
-
+    Statistics * stats = new Statistics(this);
+    LCDStatistics * lcdstats = new LCDStatistics();
+    QGraphicsProxyWidget * glcdstats = scene->addWidget(lcdstats);
+    connect(stats, SIGNAL(signalUpdateStatisticsDisplay(Statistics*)), lcdstats, SLOT(slotUpdateStatisticsDisplay(Statistics*)));
     
     QGraphicsLinearLayout * promptAndInput = new QGraphicsLinearLayout();
     promptAndInput->setOrientation(Qt::Vertical);
@@ -99,66 +112,94 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     gpromptAndInput->setLayout(promptAndInput);
     scene->addItem(gpromptAndInput);
 
+    StdButton * stdbutton = new StdButton();
+    QGraphicsProxyWidget * gstdbutton = scene->addWidget(stdbutton);
+
+
+
+    //// Input and Validation Setup ////
+    AnswerValidator * validator = new AnswerValidator(doc, this);
+    validator->setLanguage(1); // TODO do this for real...
+    connect(input, SIGNAL(signalInput(const QString&)), this, SLOT(slotGetInput(const QString&)));
+    connect(this, SIGNAL(signalCheckInput(const QString&, const QString&)), validator, SLOT(checkUserAnswer(const QString&, const QString&)));
+    connect(this, SIGNAL(signalCorrection(float, const QString&)), stats, SLOT(slotCorrection(float, const QString&)));
     
 
-    
-    StdButtons * stdbuttons = new StdButtons();
-    QGraphicsProxyWidget * gstdbuttons = scene->addWidget(stdbuttons);
-    
+    /////////// KAction Setup /////////////
+
+    //// Skip Action Setup ////
+    KAction *skipKnownAction = new KAction(this);
+    skipKnownAction->setText(i18n("Skip (Answer Known)"));
+    actionCollection()->addAction("skip known", skipKnownAction);
+    connect(skipKnownAction, SIGNAL(triggered()), stats, SLOT(slotSkipKnown()));
+
+    KAction *skipUnknownAction = new KAction(this);
+    skipUnknownAction->setText(i18n("Skip (Answer Not Known)"));
+    actionCollection()->addAction("skip unknown", skipUnknownAction);
+    connect(skipUnknownAction, SIGNAL(triggered()), stats, SLOT(slotSkipUnknown()));
+
+
+    //// Hint + Hint Action Setup ////
     Hint * hint = new Hint(this);
-    QPushButton * showAnswerButton = new QPushButton("Show Answer");
-    QGraphicsProxyWidget * gshowAnswerButton = scene->addWidget(showAnswerButton);
+    KAction *hintAction = new KAction(this);
+    hintAction->setText(i18n("Show Hint"));
+    actionCollection()->addAction("hint", hintAction);
+    connect(hintAction, SIGNAL(triggered()), hint, SLOT(slotShowHint()));    
+    connect(hint, SIGNAL(signalShowHint()), hint, SIGNAL(signalShowSolution())); // this is the hint for now :)
+    connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
 
 
-    QGraphicsLinearLayout * buttons = new QGraphicsLinearLayout();
-    buttons->addItem(gshowAnswerButton);
-    buttons->addItem(gstdbuttons);
+    //// Show Solution Setup ////
+    KAction *showSolutionAction = new KAction(this);
+    showSolutionAction->setText(i18n("Show Solution"));
+    actionCollection()->addAction("show solution", showSolutionAction);
+    connect(showSolutionAction, SIGNAL(triggered()), stats, SLOT(slotSolutionShown()));
+    connect(showSolutionAction, SIGNAL(triggered()), stdbutton, SLOT(slotSolutionShown()));
+    connect(showSolutionAction, SIGNAL(triggered()), this, SLOT(slotShowSolution()));
+    connect(this, SIGNAL(signalShowSolution(const QString&)), input, SLOT(slotShowSolution(const QString&)));
 
-    QGraphicsWidget * gbuttons = new QGraphicsWidget();
-    gbuttons->setLayout(buttons);
-    scene->addItem(gbuttons);
+    //// Check Answer Setup ////
+    KAction *checkAnswerAction = new KAction(this);
+    checkAnswerAction->setText(i18n("Check Answer"));
+    actionCollection()->addAction("check answer", checkAnswerAction);
+    connect(stdbutton, SIGNAL(signalCheckAnswer()), checkAnswerAction, SIGNAL(triggered()));
+    connect(checkAnswerAction, SIGNAL(triggered()), input, SLOT(emitCurrentInput()));
+
+    //// Continue Action Setup ////
+    KAction *continueAction = new KAction(this);
+    continueAction->setText(i18n("Continue"));
+    actionCollection()->addAction("continue", continueAction);
+    connect(stdbutton, SIGNAL(signalContinue()), continueAction, SIGNAL(triggered()));
+    connect(continueAction, SIGNAL(triggered()), m_manager, SLOT(slotNewEntry()));        
     
+
+
+
+    //// Final Graphics Setup ////
     
-    connect(showAnswerButton, SIGNAL(clicked()), hint, SLOT(slotShowAnswer()));
-    
-    connect(prompt, SIGNAL(signalAnswerChanged(KEduVocTranslation*)), input, SLOT(slotSetAnswer(KEduVocTranslation*)));
-    connect(prompt, SIGNAL(signalPromptChanged(KEduVocExpression*)), stats, SLOT(slotSetPrompt(KEduVocExpression*)));
-    connect(prompt, SIGNAL(signalSetFinished()), stats, SLOT(slotSetFinished()));
-    // TODO sound and images
-
-    connect(input, SIGNAL(signalCorrect()), stats, SLOT(slotCorrect()));
-    connect(input, SIGNAL(signalIncorrect(Statistics::ErrorType)), stats, SLOT(slotIncorrect(Statistics::ErrorType)));
-    connect(input, SIGNAL(returnPressed()), stdbuttons, SLOT(slotReturnPressed()));
-
-    connect(stdbuttons, SIGNAL(signalCheckAnswer()), input, SLOT(slotCheckAnswer()));
-    connect(stdbuttons, SIGNAL(signalSkipped(Statistics::SkipReason)), stats, SLOT(slotSkipped(Statistics::SkipReason)));
-    connect(stdbuttons, SIGNAL(signalSkipped(Statistics::SkipReason)), prompt, SLOT(slotNewPrompt()));
-    connect(stdbuttons, SIGNAL(signalContinue()), prompt, SLOT(slotNewPrompt()));
-
-    connect(hint, SIGNAL(signalShowAnswer()), input, SLOT(slotShowAnswer()));
-    connect(hint, SIGNAL(signalShowAnswer()), stats, SLOT(slotAnswerShown()));
-    connect(hint, SIGNAL(signalShowAnswer()), stdbuttons, SLOT(slotAnswerShown()));
-    
-    //gprompt->setPos(30, 100);
-    //ginput->setPos(60, 60);
-    //gstdbuttons->setPos(200, 200);
-    gstats->setPos(200, 100);
-    //gshowAnswerButton->setPos(100, 200);
-
+    glcdstats->setPos(200, 100);
     gpromptAndInput->setPos(10, 10);
-    gbuttons->setPos(10, 200);
+    gstdbutton->setPos(10, 200);
     
-    //kDebug() << KStandardDirs::locate("data", "defaulttheme/layout.svg");
 
-    prompt->slotNewPrompt();
+    setupGUI();
 
+    // ... and we are done -- start the first question!
+    m_manager->slotNewEntry();
+    
     m_view->show();
 }
 
-/*
-ParleyPracticeMainWindow::~ParleyPracticeMainWindow()
+
+void ParleyPracticeMainWindow::slotGetInput(const QString& input)
 {
-}*/
+    emit signalCheckInput(m_manager->currentSolution(), input);
+}
+
+void ParleyPracticeMainWindow::slotShowSolution()
+{
+    emit signalShowSolution(m_manager->currentSolution());
+}
 
 bool ParleyPracticeMainWindow::eventFilter(QObject * obj, QEvent * event)
 {

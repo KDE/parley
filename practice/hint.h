@@ -1,7 +1,7 @@
 ///\file hint.h
 // C++ Interface: hint
 //
-// Description: Displays hints about the prompt and/or answer
+// Description: Displays hints about the prompt and/or solution
 //
 //
 // Author: David Capel <wot.narg@gmail.com>, (C) 2008
@@ -37,46 +37,16 @@ class Hint : public QObject
         Hint(QObject* parent = 0);
             
     signals:
-        /// Emitted when a hint is show; tainting makes the answer count
+        /// Emitted when a hint is shown; tainting makes the answer count
         /// as incorrect (even if it is correct); tainting frequency is also tracked
         /// in the statistics module. In the this class, TaintReason will almost always
         /// be HintShown.
-        void signalAnswerTainted(Statistics::TaintReason reason);
-        /// Emitted when the user has requested that the correct answer be shown.
-        /// This causes the question to be counted as incorrect (if the question is incorrect already, there is no affect).
-        void signalShowAnswer();
+        void signalAnswerTainted(Statistics::TaintReason);
         void signalShowHint();
         
     public slots:
         /// Implements the hint logic. The logic itself is dictated by the practice mode.
         virtual void slotShowHint();
-        virtual void slotShowAnswer();
 };
-
-
-#if 0
-/// A generic pushbutton hint shower -- it simply calls the slotShowHint() / slotShowAnswer() of Input
-class PushButtonHint : public QPushButton, public Hint
-{
-    Q_OBJECT;
-    
-    signals:
-        /// Emitted when a hint is show; tainting makes the answer count
-        /// as incorrect (even if it is correct); tainting frequency is also tracked
-        /// in the statistics module. In the this class, TaintReason will almost always
-        /// be HintShown.
-        void signalAnswerTainted(TaintReason reason);
-        /// Emitted when the user has requested that the correct answer be shown.
-        /// This causes the question to be counted as incorrect (if the question is incorrect already, there is no affect).
-        void signalShowAnswer();
-
-    public: // slots:
-        /// Implements the hint logic. The logic itself is dictated by the practice mode.
-        void slotShowHint();
-        void slotShowAnswer();
-}
-#endif
-
-
 
 #endif

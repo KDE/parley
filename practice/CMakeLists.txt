@@ -1,8 +1,8 @@
 project(parleypractice)
 
-include_directories( ../libkdeedu/keduvocdocument/
-)
+#include_directories( ../../libkdeedu/keduvocdocument/)
 
+include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/)
 
 
 find_package(KDE4 REQUIRED)
@@ -22,7 +22,10 @@ set(parleypractice_SRCS
     statistics.cpp
     stdbuttons.cpp
     hint.cpp
-#    questiondisplay.cpp
+    answervalidator.cpp
+    testentrymanager.cpp
+    practiceprefs.cpp
+    entryfilter.cpp
 )
 
 kde4_add_executable(parleypractice ${parleypractice_SRCS})
@@ -36,6 +39,8 @@ target_link_libraries(
 )
 
 install(TARGETS parleypractice  DESTINATION ${BIN_INSTALL_DIR} )
+install(FILES parleypracticeui.rc
+        DESTINATION  ${DATA_INSTALL_DIR}/parleypractice/)
 install( FILES defaulttheme/card.svg
                defaulttheme/layout.svg
     DESTINATION  ${DATA_INSTALL_DIR}/parley/defaulttheme/ )

@@ -22,6 +22,9 @@
 
 #include <QGraphicsView>
 #include <QGraphicsSvgItem>
+#include <QString>
+
+class TestEntryManager;
 
 class ParleyPracticeMainWindow : public KXmlGuiWindow
 {
@@ -35,9 +38,17 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
     private:
         QGraphicsView* m_view;
         QGraphicsSvgItem* m_layout;
+        TestEntryManager * m_manager;
 
         bool eventFilter(QObject *obj, QEvent *event);
 
+    public slots:
+        void slotGetInput(const QString& input);
+        void slotShowSolution();
+        
+    signals:
+        void signalCheckInput(const QString&, const QString&);
+        void signalShowSolution(const QString&);
 };
 
 

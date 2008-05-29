@@ -24,51 +24,44 @@
 #include <KDebug>
 
 TextualInput::TextualInput(QWidget* parent)
-        : QLineEdit(parent), Input()
-{}
-
-Input::Input() {}
-
-Input::~Input()
+        : QLineEdit(parent)
 {
-    delete m_answer;
+    connect(this, SIGNAL(returnPressed()), this, SLOT(slotEmitInput()));
 }
 
-void TextualInput::slotShowAnswer()
+void TextualInput::slotEmitCurrentInput()
+{
+    emit signalInput(text());
+}
+
+void TextualInput::slotChangeAnswerColor(bool correct)
+{
+    QPalette pal;
+    if (correct)
+        pal.setColor(QPalette::Text, Qt::green);
+    else
+        pal.setColor(QPalette::Text, Qt::red);
+    
+    setPalette(pal);
+    setText(text());
+}
+
+
+void TextualInput::slotShowSolution(const QString& solution)
 {
     QPalette pal;
     pal.setColor(QPalette::Text, Qt::green);
     setPalette(pal);
-    setText(m_answer->text());
+    setText(solution);
 }
 
-void TextualInput::slotCheckAnswer()
-{
-    if (text() == m_answer->text()) // TODO use the smart correction functions
-    {
-        kDebug() << "correct";
-        QPalette pal;
-        pal.setColor(QPalette::Text, Qt::green);
-        setPalette(pal);
-        emit signalCorrect();
-    }
-    else
-    {
-        kDebug() << "incorrect";
-        QPalette pal;
-        pal.setColor(QPalette::Text, Qt::red);
-        setPalette(pal);
-        emit signalIncorrect(Statistics::UnknownMistake); // TODO do this logic
-    }
-}
-
-void TextualInput::slotSetAnswer(KEduVocTranslation* answer)
+void TextualInput::slotClear()
 {
     QPalette pal;
     pal.setColor(QPalette::Text, Qt::black);
     setPalette(pal);
-    m_answer = answer;
     setText("");
 }
+    
 
 #include "input.moc"

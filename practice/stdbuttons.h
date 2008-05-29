@@ -19,43 +19,36 @@
 #ifndef EDU_STD_BUTTONS_H
 #define EDU_STD_BUTTONS_H
 
-#include <QDialogButtonBox>
 #include <QWidget>
-
-#include <KDialogButtonBox>
-#include <QAbstractButton>
+#include <KPushButton>
 
 #include "statistics.h"
 
-/// @class StdButtons
+/// @class StdButton
 /// @author David Capel <wot.narg@gmail.com>
-/// @brief The standard set of control button on a practice dialog (contiue, skip, quit, etc)
+/// @brief The standard set of actions on a practice dialog (contiue, skip, quit, etc)
 
-class StdButtons : public KDialogButtonBox
+class StdButton : public KPushButton
 {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
-        StdButtons(QWidget * parent = 0);
+        explicit StdButton(QWidget * parent = 0);
 
     public slots:
-        void slotButtonClicked(QAbstractButton * button);
-        void slotReturnPressed();
-        void slotAnswerShown();
-//        virtual void slotQuit();
+        void slotSolutionShown();
+        void slotButtonClicked();
 
     signals:
-        /// Emitted when a question is skipped.
-        void signalSkipped(Statistics::SkipReason);
         /// Emitted when the user wants to continue.
         /// The user should only be able to use the continue function
         /// after the question was been answered and corrected.
+        /// This should be connected to the Continue Action
         void signalContinue();
+        /// Emitted when the user wants to check their answer.
+        /// Using this will make the continue option appears.
+        /// This should be connected to the CheckAnswer Action
         void signalCheckAnswer();
-        void signalQuit();
-        // void clicked( QAbstractButton * button );
 };
-
-
 
 #endif

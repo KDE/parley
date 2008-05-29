@@ -17,77 +17,42 @@
 ***************************************************************************/
 
 #include <KDebug>
-#include <QAbstractButton>
 #include <QPushButton>
 #include <QList>
 
 #include "stdbuttons.h"
 #include "statistics.h"
 
-StdButtons::StdButtons(QWidget * parent)
-        : KDialogButtonBox(parent)
+StdButton::StdButton(QWidget * parent)
+        : KPushButton(parent)
 {
-    // I realize I'm kinda abusing the ButtonRoles
-    addButton("Check Answer", QDialogButtonBox::ActionRole);
-    addButton("Skip (Answer Known)", QDialogButtonBox::YesRole);
-    addButton("Skip (Answer Not Known)", QDialogButtonBox::NoRole);
-    connect(this, SIGNAL(clicked(QAbstractButton*)), this, SLOT(slotButtonClicked(QAbstractButton*)));
+    connect(this, SIGNAL(clicked()), this, SLOT(slotButtonClicked()));
 }
 
-void StdButtons::slotButtonClicked(QAbstractButton * button)
+void StdButton::slotButtonClicked()
 {
-    if (button->text() == "Check Answer")
+    if (text() == "Check Answer")
     {
         // Continue only shows up after they checked the answer
-        button->setText("Continue");
+        setText("Continue");
         emit signalCheckAnswer();
     }
-    else if (button->text() == "Continue")
+    else if (text() == "Continue")
     {
-        button->setText("Check Answer");
-        emit signalContinue();
-    }
-    else if (button->text() == "Skip (Answer Known)")
-    {
-        emit signalSkipped(Statistics::Known);
-    }
-    else if (button->text() == "Skip (Answer Not Known)")
-    {
-        emit signalSkipped(Statistics::Unknown);
-    }
-    else
-    {
-        kDebug() << "slotButtonClicked recieved unhandled button " << button->text();
-    }
-}
-
-void StdButtons::slotReturnPressed()
-{
-    QList<QAbstractButton*> qlb = buttons();
-    QAbstractButton* b =  qlb[0];
-    if (b->text() == "Check Answer")
-    {
-        b->setText("Continue");
-        emit signalCheckAnswer();
-    }
-    else if (b->text() == "Continue")
-    {
-        b->setText("Check Answer");
+        setText("Check Answer");
         emit signalContinue();
     }
     else
     {
-        kDebug() << "unknown button text " << b->text();
+        kDebug() << "slotButtonClicked recieved unhandled button " << text();
     }
 }
 
-void StdButtons::slotAnswerShown()
+void StdButton::slotSolutionShown()
 {
-    QList<QAbstractButton*> qlb = buttons();
-    QAbstractButton* b =  qlb[0];
-    if (b->text() == "Check Answer")
+    if (text() == "Check Answer")
     {
-        // showing the answer removes their ability to provide an answer (duh!)
-        b->setText("Continue");
+        // showing the solution removes their ability to provide an answer (duh!)
+        setText("Continue");
     }
 }
