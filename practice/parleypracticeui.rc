@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
+<gui name="parleypractice" version="1">
+  <MenuBar>
+    <Menu name="Navigation" >
+      <text>Navigation</text>
+      <Action name="check answer" />
+      <Action name="continue" />
+      <Action name="skip known" />
+      <Action name="skip unknown" />
+    </Menu>
+      <Menu name="Hint" >
+      <text>Hint</text>
+      <Action name="hint" />
+      <Action name="show answer" />
+    </Menu>
+  </MenuBar>
+</gui>
