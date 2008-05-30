@@ -239,7 +239,7 @@ bool ParleyPracticeMainWindow::eventFilter(QObject * obj, QEvent * event)
         double x = (width() - side / 2);
         double y = (height() - side / 2);
         m_view->scale(side / 600.0, side / 600.0);
-        m_view->setViewport(x, y, side, side);
+//        m_view->setViewport(x, y, side, side);
         return QObject::eventFilter(obj, event);
     }
     if (event->type() == QEvent::MouseButtonPress && false)

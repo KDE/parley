@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 
-#include <algorithm>
+#include <KRandomSequence>
 
 #include "practiceprefs.h"
 
@@ -91,8 +91,7 @@ int TestEntryManager::activeEntryCount() const
 void TestEntryManager::shuffle()
 {
     kDebug() << "called";
-    // The stl random_shuffle is better than what I would write ;)
-    std::random_shuffle(m_entries.begin(), m_entries.end());
+    KRandomSequence().randomize(m_entries);
 }
 
 
