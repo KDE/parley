@@ -34,10 +34,12 @@ class StdButton : public KPushButton
 
     public:
         explicit StdButton(QWidget * parent = 0);
+        explicit StdButton(const QString& text, QWidget * parent = 0);
 
     public slots:
         void slotSolutionShown();
-        void slotButtonClicked();
+        void slotActivated();
+        void slotToggleText();
 
     signals:
         /// Emitted when the user wants to continue.

@@ -20,5 +20,13 @@
 
 TextualPrompt::TextualPrompt(QWidget * parent) : QLabel(parent) {};
 SoundPrompt::SoundPrompt(QWidget * parent) : QLabel(parent) {};
-ImagePrompt::ImagePrompt(QWidget * parent) : QLabel(parent) {};
+ImagePrompt::ImagePrompt(QWidget * parent) : QLabel(parent), m_pic(QPicture()) {};
 
+void ImagePrompt::slotSetImage(const KUrl& image)
+{
+    if (!image.isEmpty())
+        m_pic.load(image.url());
+    else
+        m_pic = QPicture();
+    setPicture(m_pic);
+}

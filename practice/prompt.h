@@ -22,6 +22,7 @@
 
 #include <QString>
 #include <QLabel>
+#include <QPicture>
 
 #include <KUrl>
 
@@ -33,10 +34,7 @@ class TextualPrompt : public QLabel
         TextualPrompt(QWidget * parent = 0);
 
     public slots:
-        void setText(const QString& text) {m_text = text; };
-
-    private:
-        QString m_text;
+        void slotSetText(const QString& text) {setText(text); };
 };
 
 class SoundPrompt : public QLabel
@@ -48,7 +46,7 @@ class SoundPrompt : public QLabel
         SoundPrompt(QWidget * parent = 0);
 
     public slots:
-        void setSound(const KUrl& sound) { m_sound = sound; };
+        void slotSetSound(const KUrl& sound) { m_sound = sound; };
     private:
         KUrl m_sound;
 };
@@ -63,10 +61,10 @@ class ImagePrompt : public QLabel
 
     public slots:
 
-        void setImage(const KUrl& image) { m_image = image; };
+        void slotSetImage(const KUrl& image);
 
     private:
-        KUrl m_image;
+        QPicture m_pic;
 };
 
 

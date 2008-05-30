@@ -58,7 +58,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     QGraphicsScene* scene = new QGraphicsScene(this);
     m_view->setScene(scene);
 
-    scene->setSceneRect(0.0, 0.0, 600.0, 300.0);
+    scene->setSceneRect(0.0, 0.0, 600.0, 600.0);
 
     m_view->setSceneRect(scene->sceneRect());
 
@@ -68,17 +68,17 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
 
-    QGraphicsSvgItem * backgroundsvg = new QGraphicsSvgItem();
-    KSvgRenderer * krenderer = new KSvgRenderer(QString("~/background.svgz"));
-    backgroundsvg->setSharedRenderer(krenderer);
-//    backgroundsvg->setSize(600,300);
-    scene->addItem(backgroundsvg);
+//     QGraphicsSvgItem * backgroundsvg = new QGraphicsSvgItem();
+//     KSvgRenderer * krenderer = new KSvgRenderer(QString("~/background.svgz"));
+//     backgroundsvg->setSharedRenderer(krenderer);
+// //    backgroundsvg->setSize(600,300);
+//     scene->addItem(backgroundsvg);
 
 
     //// Loading the Document -- temporary ////
     KEduVocDocument * doc = new KEduVocDocument(this);
-    KUrl url = KFileDialog::getOpenUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), this, i18n("Open Vocabulary Document"));
-    int code = doc->open(url);
+    //KUrl url = KFileDialog::getOpenUrl(KUrl::fromPath("~"), KEduVocDocument::pattern(KEduVocDocument::Reading), this, i18n("Open Vocabulary Document"));
+    int code = doc->open(KUrl::fromPath("~/test.kvtml"));
     kDebug() << code;
     
     // this is the only object/widget the window directly keeps track of (outside of the canvas, etc).
@@ -91,7 +91,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     TextualPrompt * prompt = new TextualPrompt();
     prompt->setMinimumSize(100, 30);
     QGraphicsProxyWidget * gprompt = scene->addWidget(prompt);
-    connect(m_manager, SIGNAL(signalNewText(const QString&)), prompt, SLOT(setText(const QString&)));
+    connect(m_manager, SIGNAL(signalNewText(const QString&)), prompt, SLOT(slotSetText(const QString&)));
 
     
     TextualInput * input = new TextualInput();
@@ -101,7 +101,8 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     Statistics * stats = new Statistics(this);
     LCDStatistics * lcdstats = new LCDStatistics();
     QGraphicsProxyWidget * glcdstats = scene->addWidget(lcdstats);
-    connect(stats, SIGNAL(signalUpdateStatisticsDisplay(Statistics*)), lcdstats, SLOT(slotUpdateStatisticsDisplay(Statistics*)));
+    connect(stats, SIGNAL(signalUpdateDisplay(Statistics*)), lcdstats, SLOT(slotUpdateDisplay(Statistics*)));
+    connect(m_manager, SIGNAL(signalExpressionChanged(KEduVocExpression*)), stats, SLOT(slotSetExpression(KEduVocExpression*)));
     
     QGraphicsLinearLayout * promptAndInput = new QGraphicsLinearLayout();
     promptAndInput->setOrientation(Qt::Vertical);
@@ -112,9 +113,9 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     gpromptAndInput->setLayout(promptAndInput);
     scene->addItem(gpromptAndInput);
 
-    StdButton * stdbutton = new StdButton();
+    StdButton * stdbutton = new StdButton("Check Answer");
     QGraphicsProxyWidget * gstdbutton = scene->addWidget(stdbutton);
-
+    connect(input, SIGNAL(returnPressed()), stdbutton, SLOT(slotActivated()));
 
 
     //// Input and Validation Setup ////
@@ -122,8 +123,8 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     validator->setLanguage(1); // TODO do this for real...
     connect(input, SIGNAL(signalInput(const QString&)), this, SLOT(slotGetInput(const QString&)));
     connect(this, SIGNAL(signalCheckInput(const QString&, const QString&)), validator, SLOT(checkUserAnswer(const QString&, const QString&)));
-    connect(this, SIGNAL(signalCorrection(float, const QString&)), stats, SLOT(slotCorrection(float, const QString&)));
-    
+    connect(validator, SIGNAL(signalCorrection(float, Statistics::ErrorType)), stats, SLOT(slotCorrection(float, Statistics::ErrorType)));
+    connect(validator, SIGNAL(signalCorrection(float, Statistics::ErrorType)), input, SLOT(slotChangeAnswerColor(float)));
 
     /////////// KAction Setup /////////////
 
@@ -131,22 +132,12 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     KAction *skipKnownAction = new KAction(this);
     skipKnownAction->setText(i18n("Skip (Answer Known)"));
     actionCollection()->addAction("skip known", skipKnownAction);
-    connect(skipKnownAction, SIGNAL(triggered()), stats, SLOT(slotSkipKnown()));
+    connect(skipKnownAction, SIGNAL(triggered()), stats, SLOT(slotSkippedKnown()));
 
     KAction *skipUnknownAction = new KAction(this);
     skipUnknownAction->setText(i18n("Skip (Answer Not Known)"));
     actionCollection()->addAction("skip unknown", skipUnknownAction);
-    connect(skipUnknownAction, SIGNAL(triggered()), stats, SLOT(slotSkipUnknown()));
-
-
-    //// Hint + Hint Action Setup ////
-    Hint * hint = new Hint(this);
-    KAction *hintAction = new KAction(this);
-    hintAction->setText(i18n("Show Hint"));
-    actionCollection()->addAction("hint", hintAction);
-    connect(hintAction, SIGNAL(triggered()), hint, SLOT(slotShowHint()));    
-    connect(hint, SIGNAL(signalShowHint()), hint, SIGNAL(signalShowSolution())); // this is the hint for now :)
-    connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
+    connect(skipUnknownAction, SIGNAL(triggered()), stats, SLOT(slotSkippedUnknown()));
 
 
     //// Show Solution Setup ////
@@ -158,23 +149,38 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     connect(showSolutionAction, SIGNAL(triggered()), this, SLOT(slotShowSolution()));
     connect(this, SIGNAL(signalShowSolution(const QString&)), input, SLOT(slotShowSolution(const QString&)));
 
+
+    //// Hint + Hint Action Setup ////
+    Hint * hint = new Hint(this);
+    KAction *hintAction = new KAction(this);
+    hintAction->setText(i18n("Show Hint"));
+    actionCollection()->addAction("hint", hintAction);
+    connect(hintAction, SIGNAL(triggered()), hint, SLOT(slotShowHint()));    
+    connect(hint, SIGNAL(signalShowHint()), showSolutionAction, SIGNAL(triggered())); // this is the hint for now :)
+    connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
+    
     //// Check Answer Setup ////
     KAction *checkAnswerAction = new KAction(this);
     checkAnswerAction->setText(i18n("Check Answer"));
     actionCollection()->addAction("check answer", checkAnswerAction);
     connect(stdbutton, SIGNAL(signalCheckAnswer()), checkAnswerAction, SIGNAL(triggered()));
-    connect(checkAnswerAction, SIGNAL(triggered()), input, SLOT(emitCurrentInput()));
+    connect(checkAnswerAction, SIGNAL(triggered()), input, SLOT(slotEmitCurrentInput()));
+    connect(checkAnswerAction, SIGNAL(triggered()), this, SLOT(slotToggleShowSolutionContinueActions()));
+    connect(checkAnswerAction, SIGNAL(triggered()), stdbutton, SLOT(slotToggleText()));
 
+    checkAnswerAction->setVisible(true);
+    
     //// Continue Action Setup ////
     KAction *continueAction = new KAction(this);
     continueAction->setText(i18n("Continue"));
     actionCollection()->addAction("continue", continueAction);
     connect(stdbutton, SIGNAL(signalContinue()), continueAction, SIGNAL(triggered()));
-    connect(continueAction, SIGNAL(triggered()), m_manager, SLOT(slotNewEntry()));        
+    connect(continueAction, SIGNAL(triggered()), m_manager, SLOT(slotNewEntry()));
+    connect(continueAction, SIGNAL(triggered()), this, SLOT(slotToggleShowSolutionContinueActions()));
+    connect(continueAction, SIGNAL(triggered()), stdbutton, SLOT(slotToggleText()));
+    connect(continueAction, SIGNAL(triggered()), input, SLOT(slotClear()));
+    continueAction->setVisible(false);
     
-
-
-
     //// Final Graphics Setup ////
     
     glcdstats->setPos(200, 100);
@@ -201,12 +207,63 @@ void ParleyPracticeMainWindow::slotShowSolution()
     emit signalShowSolution(m_manager->currentSolution());
 }
 
+// this one is a mouthful...
+void ParleyPracticeMainWindow::slotToggleShowSolutionContinueActions()
+{
+    // This simply toggles between the two actions since both shouldn't be shown at the same time.
+    QAction* showAnswerAction;
+    showAnswerAction = actionCollection()->action("check answer");
+    if (showAnswerAction->isVisible())
+    {
+        showAnswerAction->setVisible(false);
+        actionCollection()->action("continue")->setVisible(true);
+    }
+    else
+    {
+        showAnswerAction->setVisible(true);
+        actionCollection()->action("continue")->setVisible(false);
+    }
+}
+
 bool ParleyPracticeMainWindow::eventFilter(QObject * obj, QEvent * event)
 {
-    if (event->type() == QEvent::Resize) {
+    if (event->type() == QEvent::Resize && false)
+    {
+        QResizeEvent* resizeEvent = static_cast<QResizeEvent*>(event);
+        kDebug() << "w" << resizeEvent->size().width();
+        kDebug() << "h" << resizeEvent->size().height();
+
+        double w = resizeEvent->size().width();
+        double h = resizeEvent->size().height();
+        double side = qMin(w, h);
+        double x = (width() - side / 2);
+        double y = (height() - side / 2);
+        m_view->scale(side / 600.0, side / 600.0);
+        m_view->setViewport(x, y, side, side);
+        return QObject::eventFilter(obj, event);
+    }
+    if (event->type() == QEvent::MouseButtonPress && false)
+    {
+        QMouseEvent* mevent = static_cast<QMouseEvent*>(event);
+        kDebug() << "x" << mevent->x() << " " << mevent->globalX() ;
+        kDebug() << "y" << mevent->y() << " " << mevent->globalY();
+    }
+    if (event->type() == QEvent::Resize && false) {
+        kDebug() << "!!!!!!!!!!!!!!!!!!!!!!!";
         QResizeEvent* resizeEvent = static_cast<QResizeEvent*>(event);
         QMatrix matrix;
-        matrix.scale(resizeEvent->size().width()/800.0, resizeEvent->size().height()/600.0);
+        double w = resizeEvent->size().width();
+        double h = resizeEvent->size().height();
+        if (w < h/2.0)
+        {
+            m_view->setSceneRect(0,0, w, w * .5);
+            matrix.scale(w/600.0, w/600.0 * .5);
+        }
+        else
+        {
+            m_view->setSceneRect(0,0, h, h * 2.0);
+            matrix.scale((w / 600.0) * 2.0 * h, h);
+        }
         m_view->setMatrix(matrix, false);
         return QObject::eventFilter(obj, event);
     }

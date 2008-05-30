@@ -30,7 +30,7 @@ class TextualInput : public QLineEdit
         TextualInput(QWidget * parent = 0);
 
     public slots:
-        void slotChangeAnswerColor(bool correct);
+        void slotChangeAnswerColor(float correct);
         void slotClear();
         void slotShowSolution(const QString& solution);
         void slotEmitCurrentInput();

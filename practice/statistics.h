@@ -84,7 +84,7 @@ class Statistics : public QObject
         /// the supplied answer was to the solution. 1.0 means it was correct, 0.0 means it was entirely
         /// wrong.
         /// @param error contains the errors the user made. If only Correct is set, the answer is correct.
-        void slotCorrection(float grade, ErrorType error);
+        void slotCorrection(float grade, Statistics::ErrorType error);
         /// Called when the answer is correct.
         void slotCorrect();
         /// Called when the answer is incorrect; ErrorType denotes why it was incorrect.
@@ -97,7 +97,7 @@ class Statistics : public QObject
         void slotTaintAnswer(Statistics::TaintReason reason);
         /// Called to set the current prompt expression
         /// We use this to update grade, practice count, etc
-        void slotSetPrompt(KEduVocExpression* prompt) { m_prompt = prompt; m_answerChecked = false; };
+        void slotSetExpression(KEduVocExpression* expr) { m_expression = expr; m_answerChecked = false; };
         /// Called when the set of entries is exhausted.
         /// Most practice modes will want to show a statistical summery before it exits.
         void slotSetFinished();
@@ -157,7 +157,7 @@ class Statistics : public QObject
         /// Keeps track of how often a question is skipped for each reason.
         int m_skipReasons[NumberSkipReasons];
 
-        KEduVocExpression* m_prompt;
+        KEduVocExpression* m_expression;
 
 
     // These are purely implementation details, and subclasses shouldn't play with them.

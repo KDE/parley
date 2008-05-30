@@ -26,26 +26,37 @@
 StdButton::StdButton(QWidget * parent)
         : KPushButton(parent)
 {
-    connect(this, SIGNAL(clicked()), this, SLOT(slotButtonClicked()));
+    connect(this, SIGNAL(clicked()), this, SLOT(slotActivated()));
 }
 
-void StdButton::slotButtonClicked()
+StdButton::StdButton(const QString& text, QWidget * parent)
+        : KPushButton(text, parent)
+{
+    connect(this, SIGNAL(clicked()), this, SLOT(slotActivated()));
+}
+
+void StdButton::slotActivated()
 {
     if (text() == "Check Answer")
     {
-        // Continue only shows up after they checked the answer
-        setText("Continue");
         emit signalCheckAnswer();
     }
     else if (text() == "Continue")
     {
-        setText("Check Answer");
         emit signalContinue();
     }
     else
     {
         kDebug() << "slotButtonClicked recieved unhandled button " << text();
     }
+}
+
+void StdButton::slotToggleText()
+{
+    if (text() == "Check Answer")
+        setText("Continue");
+    else
+        setText("Check Answer");
 }
 
 void StdButton::slotSolutionShown()

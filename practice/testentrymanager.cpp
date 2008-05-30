@@ -43,8 +43,7 @@ TestEntryManager::TestEntryManager(QObject * parent)
     m_toTranslation = PracticePrefs::solutionLanguage();
     m_testType = PracticePrefs::testType();
 
-    filterTestEntries();
-    shuffle();
+
 }
 
 void TestEntryManager::filterTestEntries()
@@ -63,11 +62,14 @@ void TestEntryManager::open(KEduVocDocument* doc)
         m_entries = m_doc->lesson()->entries(KEduVocContainer::Recursive);
         kDebug() << "count " << m_doc->lesson()->entryCount(KEduVocContainer::Recursive);
         m_iter = m_entries;
+        filterTestEntries();
+        shuffle();
     }
     else
     {
         kDebug() << "bad" << m_doc << m_doc->lesson();
     }
+    
 }
 
 const QString TestEntryManager::currentSolution() const
@@ -88,6 +90,7 @@ int TestEntryManager::activeEntryCount() const
 
 void TestEntryManager::shuffle()
 {
+    kDebug() << "called";
     // The stl random_shuffle is better than what I would write ;)
     std::random_shuffle(m_entries.begin(), m_entries.end());
 }
@@ -98,7 +101,7 @@ void TestEntryManager::slotNewEntry()
     if (m_iter.hasNext())
     {
         m_entry = m_iter.next();
-        KEduVocTranslation * original = m_entry->translation(0);
+        KEduVocTranslation * original = m_entry->translation(1);
         kDebug() << original->text();
 
         // It doesn't matter if these are empty since we would emit empty KUrls/QStrings anyway

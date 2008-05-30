@@ -26,7 +26,6 @@
 TextualInput::TextualInput(QWidget* parent)
         : QLineEdit(parent)
 {
-    connect(this, SIGNAL(returnPressed()), this, SLOT(slotEmitInput()));
 }
 
 void TextualInput::slotEmitCurrentInput()
@@ -34,10 +33,10 @@ void TextualInput::slotEmitCurrentInput()
     emit signalInput(text());
 }
 
-void TextualInput::slotChangeAnswerColor(bool correct)
+void TextualInput::slotChangeAnswerColor(float correct)
 {
     QPalette pal;
-    if (correct)
+    if (correct == 1.0)
         pal.setColor(QPalette::Text, Qt::green);
     else
         pal.setColor(QPalette::Text, Qt::red);

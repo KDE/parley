@@ -109,6 +109,8 @@ class TestEntryManager : public QObject
         /// Emitted when the question is changed.
         /// This is used so @class Statistics can update the grades and related information.
         void signalExpressionChanged(KEduVocExpression*);
+        /// Used so various widgets will know to reset themselves.
+        void signalNewEntry();
         /// Emitted when the set of questions is finished.
         void signalQuestionSetFinished();
 
