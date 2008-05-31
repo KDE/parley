@@ -78,7 +78,19 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     //// Loading the Document -- temporary ////
     KEduVocDocument * doc = new KEduVocDocument(this);
     //KUrl url = KFileDialog::getOpenUrl(KUrl::fromPath("~"), KEduVocDocument::pattern(KEduVocDocument::Reading), this, i18n("Open Vocabulary Document"));
-    int code = doc->open(KUrl::fromPath("~/test.kvtml"));
+
+
+    // for the fun of it - use parleyrc
+    kDebug() << "open file from parleyrc";
+    KConfig parleyConfig("parleyrc");
+    kDebug() << parleyConfig.groupList();
+    KConfigGroup recentFilesGroup( &parleyConfig, "Recent Files" );
+    // take the last file, but there are File1..n and Name1..n entries..
+    QString sourceFile = recentFilesGroup.readEntry( recentFilesGroup.keyList().value(recentFilesGroup.keyList().count()/2-1), QString() );
+
+
+// KUrl::fromPath("~/test.kvtml")
+    int code = doc->open(sourceFile);
     kDebug() << code;
     
     // this is the only object/widget the window directly keeps track of (outside of the canvas, etc).
