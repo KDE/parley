@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=Parley Data Engine
+Name[ca]=Motor de dades del Parley
 Name[da]=Data-motor til Parley
 Name[el]=Μηχανή δεδομένων Parley
 Name[es]=Motor de datos Parley
@@ -16,6 +17,7 @@ Name[x-test]=xxParley Data Enginexx
 Name[zh_CN]=Parley 数据引擎
 Name[zh_TW]=Parley 資料引擎
 Comment=Vocabulary data for Plasmoids
+Comment[ca]=Dades de vocabulari per als plasmoides
 Comment[da]=Ordforrådsdata til plasmoider
 Comment[el]=Δεδομένα λεξιλογίου για πλασμοειδή
 Comment[es]=Datos del vocabulario para los plasmoides
