@@ -222,6 +222,7 @@ void WrittenPracticeDialog::verifyClicked()
     }
 
     if ( result == 1.0 ) {
+        // will result in wrong if tainted
         resultCorrect();
         showContinueButton(true);
     } else {
@@ -326,6 +327,7 @@ void WrittenPracticeDialog::showMoreClicked()
 void WrittenPracticeDialog::showSolution()
 {
     setAnswerTainted();
+    resultWrong();
     showContinueButton(true);
 
     mw->status->clear();
