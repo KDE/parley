@@ -54,8 +54,7 @@ The easiest way to use the stylesheet is to include it in the .kvtml file:
 		</style>
 	
 		<script type="text/javascript">
-	<xsl:text disable-output-escaping="yes">
-<![CDATA[
+	<xsl:text disable-output-escaping="yes"><![CDATA[//<![CDATA[
     	function toggle_visibility(id) {
        		var e = document.getElementById(id);
        		if(e.style.visibility == 'visible')
@@ -89,8 +88,7 @@ The easiest way to use the stylesheet is to include it in the .kvtml file:
 			tr = tr.nextSibling;
 		}
 	}
-]]>
-	</xsl:text>
+	]]>//]]&gt;</xsl:text>
 		</script>
 		<title><xsl:value-of select="kvtml/information/title"/></title>
 	</head>
