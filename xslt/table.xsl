@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
 <!-- XSL Stylesheet to transform kvtml-2 files to html
  ***************************************************************************
  *                                                                         *
@@ -13,36 +14,48 @@
 Copyright 2007: Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
 The easiest way to use the stylesheet is to include it in the .kvtml file:
-<?xml-stylesheet type="text/xsl" href="kvtml_html_stylesheet.xsl.xsl"?>
-
+<?xml-stylesheet type="text/xsl" href="kvtml_html_stylesheet.xsl"?>
  -->
-
-<xsl:output method="html" indent="yes" doctype-public="-//W3C//DTD HTML 3.2 Final//EN"/>
-
+ 
+	<xsl:output method="xml" doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
+		encoding="UTF-8" omit-xml-declaration="yes" version="1.0" />
 
 	<xsl:template match="/">
-	<html>
-	<style type="text/css">
-		td {
+	<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style type="text/css">
+		td, th {
 			border: solid 1px black;
 			border-collapse: collapse;
 		}
 		table {
 			border: solid 1px black;
 			border-collapse: collapse;
-			width: <xsl:value-of select="100 div count(/kvtml/identifiers/identifier)"/>%;
-		}
-		tr[languageheader] {
-			color: black;
-			font-size: 1.5em;
-			background-color: lightblue;
+			width: 100%;
 		}
 		.comment {
-			color: blue;
+			font-style: italic;
 		}
-	</style>
+		.firstcolumn {
+			width: 5%;
+		}
+		.contentcell {
+			width: <xsl:value-of select="95 div count(/kvtml/identifiers/identifier)"/>%;
+		}
+		#buttons, #buttons td {
+			width: auto;
+			border: none;
+		}
+		@media print {
+			.noprint {
+				display: none;
+			}
+		}
+		</style>
 	
-	<script type="text/javascript">
+		<script type="text/javascript">
+	<xsl:text disable-output-escaping="yes">
+<![CDATA[
     	function toggle_visibility(id) {
        		var e = document.getElementById(id);
        		if(e.style.visibility == 'visible')
@@ -50,9 +63,35 @@ The easiest way to use the stylesheet is to include it in the .kvtml file:
        		else
           		e.style.visibility = 'visible';
     	}
-	</script>
 
-	<head>
+	function set_column_visibility(table, column, visibility) {
+		if (table == null) {
+			tables = document.getElementsByTagName("table");
+			for(var i = 0; i < tables.length; i++) {
+				if (tables[i].id != "buttons") {
+					set_column_visibility(tables[i].firstChild, column, visibility);
+				}
+			}
+			return;
+		}
+		
+		var tr = table.firstChild;
+		while (tr != null) {
+			var td = tr.firstChild;
+			while (td != null) {
+				if (td.nodeName == "TD" && td.childNodes.length == 1 && td.childNodes[0].nodeName == "DIV") {
+					if(column == -1 || td.childNodes[0].id.split("-")[1] == column) {
+						td.childNodes[0].style.visibility = visibility;
+					}
+				}
+				td = td.nextSibling
+			}
+			tr = tr.nextSibling;
+		}
+	}
+]]>
+	</xsl:text>
+		</script>
 		<title><xsl:value-of select="kvtml/information/title"/></title>
 	</head>
 	
@@ -61,30 +100,33 @@ The easiest way to use the stylesheet is to include it in the .kvtml file:
 	</xsl:template>
 
 	<xsl:template match="kvtml">
-		<h2><xsl:value-of select="information/title"/></h2>
-		<h4 onclick="toggle_visibility(5)">Click in the empty cells to reveal the answer!</h4>
+		<h1><xsl:value-of select="information/title"/></h1>
+		<table id="buttons" class="noprint">
+			<xsl:apply-templates select="/kvtml/identifiers" mode="buttons"/>
+		</table>
 		<xsl:apply-templates select="lessons"/>
 	</xsl:template>
 
 
 	<xsl:template match="lessons">
+		<ul class="noprint">
 		<xsl:for-each select="container">
-			<a href="#{name}"><xsl:value-of select="name"/></a>
-			<br/>
+			<li><a href="#{name}"><xsl:value-of select="name"/></a></li>
 		</xsl:for-each>
-
+		</ul>
 		<xsl:apply-templates select="container"/>
 	</xsl:template>
  
 	<xsl:template match="container">
-		<h3>Lesson: <a name="{name}"><xsl:value-of select="name"/></a> (
-			<a href="#" onclick="var answers=document.getElementsByTagName('div');var i=answers.length;while(i--)answers[i].setAttribute('style','visibility:visible;');return false;">reveal all</a> | 
-			<a href="#" onclick="var answers=document.getElementsByTagName('div');var i=answers.length;while(i--)answers[i].setAttribute('style','visibility:hidden;');return false;">hide all</a>
-		)</h3>
-		<table border="1" cellspacing="30" cellpadding="30">
-			<tr languageheader="true">
-				<td>No.</td>
-				<xsl:apply-templates select="/kvtml/identifiers"/>
+		<h2>Lesson: <a name="{name}"><xsl:value-of select="name"/></a></h2>
+		<table>
+			<tr>
+				<th></th>
+				<xsl:apply-templates select="/kvtml/identifiers" mode="header"/>
+			</tr>
+			<tr class="noprint">
+				<td></td>
+				<xsl:apply-templates select="/kvtml/identifiers" mode="buttonrow"/>
 			</tr>
 			<xsl:apply-templates select="entry"/>
 
@@ -95,32 +137,39 @@ The easiest way to use the stylesheet is to include it in the .kvtml file:
 		</table>
 	</xsl:template>
 	
-	<xsl:template match="identifiers/identifier">
-		<td><xsl:value-of select="name"/></td>
+	<xsl:template match="identifiers/identifier" mode="header">
+		<th class="numbercell"><xsl:value-of select="name"/></th>
+	</xsl:template>
+
+	<xsl:template match="identifiers/identifier" mode="buttons">
+		<tr>
+			<td><xsl:value-of select="name"/>:</td>
+			<td>
+				<input type="button" value="Hide all" onclick="set_column_visibility(null, {@id}, 'hidden')" /><xsl:text> </xsl:text>
+				<input type="button" value="Show all" onclick="set_column_visibility(null, {@id}, 'visible')" />
+			</td>
+		</tr>
+	</xsl:template>
+
+	<xsl:template match="identifiers/identifier" mode="buttonrow">
+		<td>
+			<input type="button" value="Hide all" onclick="set_column_visibility(this.parentNode.parentNode.parentNode, {@id}, 'hidden')" /><xsl:text> </xsl:text>
+			<input type="button" value="Show all" onclick="set_column_visibility(this.parentNode.parentNode.parentNode, {@id}, 'visible')" />
+		</td>
 	</xsl:template>
 	
 	<xsl:template match="/kvtml/entries/entry">
-		<tr><td align="right"><xsl:value-of select="@id+1" />.</td>
+		<tr><td align="right" class="numbercell"><xsl:value-of select="@id+1" />.</td>
 		<xsl:apply-templates select="translation"/>
 		</tr>
 	</xsl:template>
 	
 	<xsl:template match="translation">
-		<td onclick="toggle_visibility('{../@id}')">
-			<xsl:choose> <!-- check if we have the question or the answer -->
-				<xsl:when test="@id = 1"> <!-- ID 1 in <translation> is the answer, we want to hide-->
-					<xsl:variable name="style" select="'hidden'" />
-					<div id="{../@id}" style="visibility:{$style};">
-						<xsl:value-of select="text"/>
-						<xsl:apply-templates select="comment"/>
-					</div>
-				</xsl:when>
-				<xsl:otherwise>
-						<xsl:value-of select="text"/>
-						<xsl:apply-templates select="comment"/>
-				</xsl:otherwise>
-			</xsl:choose>
-			
+		<td class="contentcell" onclick="toggle_visibility('i{../@id}-{@id}')">
+			<div id="i{../@id}-{@id}" style="visibility: visible;">
+				<xsl:value-of select="text"/>
+				<xsl:apply-templates select="comment"/>
+			</div>
 		</td>
 	</xsl:template>
 
@@ -130,9 +179,3 @@ The easiest way to use the stylesheet is to include it in the .kvtml file:
 		</span>
 	</xsl:template>
 </xsl:stylesheet>
-
-
-
-
-
-
