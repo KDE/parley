@@ -48,7 +48,7 @@
 #include "../../libkdeedu/keduvocdocument/keduvocdocument.h"
 
 ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
- : KXmlGuiWindow(parent)
+        : KXmlGuiWindow(parent)
 {
 
     //// Basic setup ////
@@ -58,9 +58,10 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     QGraphicsScene* scene = new QGraphicsScene(this);
     m_view->setScene(scene);
 
-    scene->setSceneRect(0.0, 0.0, 600.0, 600.0);
+    scene->setSceneRect(0.0, 0.0, 800.0, 600.0);
 
     m_view->setSceneRect(scene->sceneRect());
+    scene->addRect(0.0,0.0,800.0,600.0);
 
     m_view->installEventFilter(this);
 
@@ -84,15 +85,15 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     kDebug() << "open file from parleyrc";
     KConfig parleyConfig("parleyrc");
     kDebug() << parleyConfig.groupList();
-    KConfigGroup recentFilesGroup( &parleyConfig, "Recent Files" );
+    KConfigGroup recentFilesGroup(&parleyConfig, "Recent Files");
     // take the last file, but there are File1..n and Name1..n entries..
-    QString sourceFile = recentFilesGroup.readEntry( recentFilesGroup.keyList().value(recentFilesGroup.keyList().count()/2-1), QString() );
+    QString sourceFile = recentFilesGroup.readEntry(recentFilesGroup.keyList().value(recentFilesGroup.keyList().count() / 2 - 1), QString());
 
 
 // KUrl::fromPath("~/test.kvtml")
     int code = doc->open(sourceFile);
     kDebug() << code;
-    
+
     // this is the only object/widget the window directly keeps track of (outside of the canvas, etc).
     m_manager = new TestEntryManager(this);
     m_manager->open(doc);
@@ -105,7 +106,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     QGraphicsProxyWidget * gprompt = scene->addWidget(prompt);
     connect(m_manager, SIGNAL(signalNewText(const QString&)), prompt, SLOT(slotSetText(const QString&)));
 
-    
+
     TextualInput * input = new TextualInput();
     input->setMinimumSize(100, 30);
     QGraphicsProxyWidget * ginput = scene->addWidget(input);
@@ -115,12 +116,12 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     QGraphicsProxyWidget * glcdstats = scene->addWidget(lcdstats);
     connect(stats, SIGNAL(signalUpdateDisplay(Statistics*)), lcdstats, SLOT(slotUpdateDisplay(Statistics*)));
     connect(m_manager, SIGNAL(signalExpressionChanged(KEduVocExpression*)), stats, SLOT(slotSetExpression(KEduVocExpression*)));
-    
+
     QGraphicsLinearLayout * promptAndInput = new QGraphicsLinearLayout();
     promptAndInput->setOrientation(Qt::Vertical);
     promptAndInput->addItem(gprompt);
     promptAndInput->addItem(ginput);
-    
+
     QGraphicsWidget * gpromptAndInput = new QGraphicsWidget();
     gpromptAndInput->setLayout(promptAndInput);
     scene->addItem(gpromptAndInput);
@@ -167,10 +168,10 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     KAction *hintAction = new KAction(this);
     hintAction->setText(i18n("Show Hint"));
     actionCollection()->addAction("hint", hintAction);
-    connect(hintAction, SIGNAL(triggered()), hint, SLOT(slotShowHint()));    
+    connect(hintAction, SIGNAL(triggered()), hint, SLOT(slotShowHint()));
     connect(hint, SIGNAL(signalShowHint()), showSolutionAction, SIGNAL(triggered())); // this is the hint for now :)
     connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
-    
+
     //// Check Answer Setup ////
     KAction *checkAnswerAction = new KAction(this);
     checkAnswerAction->setText(i18n("Check Answer"));
@@ -181,7 +182,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     connect(checkAnswerAction, SIGNAL(triggered()), stdbutton, SLOT(slotToggleText()));
 
     checkAnswerAction->setVisible(true);
-    
+
     //// Continue Action Setup ////
     KAction *continueAction = new KAction(this);
     continueAction->setText(i18n("Continue"));
@@ -192,19 +193,19 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     connect(continueAction, SIGNAL(triggered()), stdbutton, SLOT(slotToggleText()));
     connect(continueAction, SIGNAL(triggered()), input, SLOT(slotClear()));
     continueAction->setVisible(false);
-    
+
     //// Final Graphics Setup ////
-    
+
     glcdstats->setPos(200, 100);
     gpromptAndInput->setPos(10, 10);
     gstdbutton->setPos(10, 200);
-    
+
 
     setupGUI();
 
     // ... and we are done -- start the first question!
     m_manager->slotNewEntry();
-    
+
     m_view->show();
 }
 
@@ -225,6 +226,7 @@ void ParleyPracticeMainWindow::slotToggleShowSolutionContinueActions()
     // This simply toggles between the two actions since both shouldn't be shown at the same time.
     QAction* showAnswerAction;
     showAnswerAction = actionCollection()->action("check answer");
+
     if (showAnswerAction->isVisible())
     {
         showAnswerAction->setVisible(false);
@@ -239,44 +241,10 @@ void ParleyPracticeMainWindow::slotToggleShowSolutionContinueActions()
 
 bool ParleyPracticeMainWindow::eventFilter(QObject * obj, QEvent * event)
 {
-    if (event->type() == QEvent::Resize && false)
+    kDebug() << "here";
+    if (event->type() == QEvent::Resize)
     {
-        QResizeEvent* resizeEvent = static_cast<QResizeEvent*>(event);
-        kDebug() << "w" << resizeEvent->size().width();
-        kDebug() << "h" << resizeEvent->size().height();
-
-        double w = resizeEvent->size().width();
-        double h = resizeEvent->size().height();
-        double side = qMin(w, h);
-        double x = (width() - side / 2);
-        double y = (height() - side / 2);
-        m_view->scale(side / 600.0, side / 600.0);
-//        m_view->setViewport(x, y, side, side);
-        return QObject::eventFilter(obj, event);
-    }
-    if (event->type() == QEvent::MouseButtonPress && false)
-    {
-        QMouseEvent* mevent = static_cast<QMouseEvent*>(event);
-        kDebug() << "x" << mevent->x() << " " << mevent->globalX() ;
-        kDebug() << "y" << mevent->y() << " " << mevent->globalY();
-    }
-    if (event->type() == QEvent::Resize && false) {
-        kDebug() << "!!!!!!!!!!!!!!!!!!!!!!!";
-        QResizeEvent* resizeEvent = static_cast<QResizeEvent*>(event);
-        QMatrix matrix;
-        double w = resizeEvent->size().width();
-        double h = resizeEvent->size().height();
-        if (w < h/2.0)
-        {
-            m_view->setSceneRect(0,0, w, w * .5);
-            matrix.scale(w/600.0, w/600.0 * .5);
-        }
-        else
-        {
-            m_view->setSceneRect(0,0, h, h * 2.0);
-            matrix.scale((w / 600.0) * 2.0 * h, h);
-        }
-        m_view->setMatrix(matrix, false);
+        m_view->fitInView(0.0, 0.0, 800.0, 600.0, Qt::KeepAspectRatio); // TODO not hardcode these
         return QObject::eventFilter(obj, event);
     }
     return QObject::eventFilter(obj, event);
