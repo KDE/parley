@@ -28,6 +28,8 @@ set(parleypractice_SRCS
     entryfilter.cpp
 )
 
+kde4_add_ui_files(parleypractice_SRCS entryfilter.ui )
+
 kde4_add_kcfg_files(parleypractice_SRCS practiceprefs.kcfgc)
 
 kde4_add_executable(parleypractice ${parleypractice_SRCS})

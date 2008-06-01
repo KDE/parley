@@ -20,13 +20,13 @@
 #include "../../libkdeedu/keduvocdocument/keduvocdocument.h"
 #include "../../libkdeedu/keduvocdocument/keduvocwordtype.h"
 #include <KLocalizedString>
-
-
+#include <KMessageBox>
+#include <KDialog>
 
 EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc) :QObject(parent)
 {
     m_doc = doc;
-//    m_dialog = 0;
+    m_dialog = 0;
     m_fromTranslation = PracticePrefs::questionLanguage();
     m_toTranslation = PracticePrefs::solutionLanguage();
     expireEntries();
@@ -68,7 +68,7 @@ QList<KEduVocExpression*> EntryFilter::entries()
 
     kDebug() << "Document contains " << m_entries.count() << " valid entries.";
     if (m_entries.count() == 0) {
-//        KMessageBox::error(0, i18n("The vocabulary document contains no entries that can be used for the chosen type of practice."));
+        KMessageBox::error(0, i18n("The vocabulary document contains no entries that can be used for the chosen type of practice."));
         return m_entries.toList();
     }
 
@@ -81,43 +81,43 @@ QList<KEduVocExpression*> EntryFilter::entries()
 
     updateTotal();
 
-//     if (m_currentSelection.count() == 0) {
-//         kDebug() << "Creating practice filter dialog.";
-//         m_dialog = new KDialog();
-//         m_dialog->setCaption(i18n("Start Practice"));
-//         QWidget *widget = new QWidget;
-//         ui.setupUi(widget);
-//         m_dialog->setMainWidget(widget);
-//         m_dialog->setButtons( KDialog::Ok | KDialog::Cancel );
-// 
-//         ui.lessonLabel->setText(QString::number(m_entriesLesson.count()));
-//         ui.wordTypeLabel->setText(QString::number(m_entriesWordType.count()));
-//         ui.blockedLabel->setText(QString::number(m_entriesBlocked.count()));
-//         ui.timesWrongLabel->setText(QString::number(m_entriesTimesWrong.count()));
-//         ui.timesPracticedLabel->setText(QString::number(m_entriesTimesPracticed.count()));
-//         ui.minMaxGradeLabel->setText(QString::number(m_entriesMinMaxGrade.count()));
-// 
-//         ui.documentTotalLabel->setText(QString::number(m_entries.count()));
-//         updateTotal();
-// 
-//         ui.lessonCheckBox->setChecked(!m_entriesLesson.count());
-//         ui.wordTypeCheckBox->setChecked(!m_entriesWordType.count());
-//         ui.blockedCheckBox->setChecked(!m_entriesBlocked.count());
-//         ui.timesWrongCheckBox->setChecked(!m_entriesTimesWrong.count());
-//         ui.timesPracticedCheckBox->setChecked(!m_entriesTimesPracticed.count());
-//         ui.minMaxGradeCheckBox->setChecked(!m_entriesMinMaxGrade.count());
-// 
-//         connect( m_dialog, SIGNAL(okClicked()), this, SLOT(userSelectionAccepted()) );
-//         connect( m_dialog, SIGNAL(cancelClicked()), this, SLOT(userSelectionCanceled()) );
-//         connect( ui.lessonCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
-//         connect( ui.wordTypeCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
-//         connect( ui.blockedCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
-//         connect( ui.timesWrongCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
-//         connect( ui.timesPracticedCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
-//         connect( ui.minMaxGradeCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
-// 
-//         updateTotal();
-/*
+    if (m_currentSelection.count() == 0) {
+        kDebug() << "Creating practice filter dialog.";
+        m_dialog = new KDialog();
+        m_dialog->setCaption(i18n("Start Practice"));
+        QWidget *widget = new QWidget;
+        ui.setupUi(widget);
+        m_dialog->setMainWidget(widget);
+        m_dialog->setButtons( KDialog::Ok | KDialog::Cancel );
+
+        ui.lessonLabel->setText(QString::number(m_entriesLesson.count()));
+        ui.wordTypeLabel->setText(QString::number(m_entriesWordType.count()));
+        ui.blockedLabel->setText(QString::number(m_entriesBlocked.count()));
+        ui.timesWrongLabel->setText(QString::number(m_entriesTimesWrong.count()));
+        ui.timesPracticedLabel->setText(QString::number(m_entriesTimesPracticed.count()));
+        ui.minMaxGradeLabel->setText(QString::number(m_entriesMinMaxGrade.count()));
+
+        ui.documentTotalLabel->setText(QString::number(m_entries.count()));
+        updateTotal();
+
+        ui.lessonCheckBox->setChecked(!m_entriesLesson.count());
+        ui.wordTypeCheckBox->setChecked(!m_entriesWordType.count());
+        ui.blockedCheckBox->setChecked(!m_entriesBlocked.count());
+        ui.timesWrongCheckBox->setChecked(!m_entriesTimesWrong.count());
+        ui.timesPracticedCheckBox->setChecked(!m_entriesTimesPracticed.count());
+        ui.minMaxGradeCheckBox->setChecked(!m_entriesMinMaxGrade.count());
+
+        connect( m_dialog, SIGNAL(okClicked()), this, SLOT(userSelectionAccepted()) );
+        connect( m_dialog, SIGNAL(cancelClicked()), this, SLOT(userSelectionCanceled()) );
+        connect( ui.lessonCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
+        connect( ui.wordTypeCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
+        connect( ui.blockedCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
+        connect( ui.timesWrongCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
+        connect( ui.timesPracticedCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
+        connect( ui.minMaxGradeCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
+
+        updateTotal();
+
         if (!PracticePrefs::wordTypesInPracticeEnabled()) {
             ui.wordTypeLabel->setVisible(false);
             ui.wordTypeCheckBox->setVisible(false);
@@ -126,20 +126,20 @@ QList<KEduVocExpression*> EntryFilter::entries()
         if (m_dialog->exec() == QDialog::Rejected) {
             delete m_dialog;
             return QList<KEduVocExpression*>();
-        }*/
+        }
 
-    //}
+    }
 
     return m_currentSelection.toList();
 }
-/*
+
 void EntryFilter::checkBoxChanged(bool filter)
 {
     updateTotal();
-}*/
+}
 
 void EntryFilter::updateTotal()
-{/*
+{
     QSet< KEduVocExpression * > selected = m_entries;
     if (!m_dialog || !ui.lessonCheckBox->isChecked()) {
         selected = selected.intersect(m_entriesLesson);
@@ -165,12 +165,11 @@ void EntryFilter::updateTotal()
         m_dialog->enableButtonOk(selected.count() > 0);
     }
 
-    m_currentSelection = selected;*/
+    m_currentSelection = selected;
 }
 
 void EntryFilter::lessonEntries()
 {
-    /// @todo maybe randomize
     foreach(KEduVocExpression* entry, m_entries) {
         if (entry->lesson()->inPractice()) {
             m_entriesLesson.insert(entry);

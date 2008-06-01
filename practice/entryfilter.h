@@ -17,6 +17,8 @@
 #include <QtCore/QList>
 #include <QtCore/QSet>
 
+#include "ui_entryfilter.h"
+
 class KEduVocExpression;
 class KEduVocDocument;
 class KDialog;
@@ -57,10 +59,11 @@ private:
     void cleanupInvalid();
 
 private slots:
-//     void filterLesson(bool filter);
-//     void checkBoxChanged(bool filter);
+    // void filterLesson(bool filter);
+     void checkBoxChanged(bool filter);
 
 private:
+    Ui::EntryFilter ui;
 
     QSet<KEduVocExpression*> m_entries;
     QSet<KEduVocExpression*> m_entriesLesson;
@@ -74,8 +77,8 @@ private:
     KEduVocDocument *m_doc;
     int m_fromTranslation;
     int m_toTranslation;
-/*
-    KDialog *m_dialog;*/
+
+    KDialog *m_dialog;
 };
 
 #endif

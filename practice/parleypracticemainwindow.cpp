@@ -161,7 +161,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     connect(showSolutionAction, SIGNAL(triggered()), stdbutton, SLOT(slotSolutionShown()));
     connect(showSolutionAction, SIGNAL(triggered()), this, SLOT(slotShowSolution()));
     connect(this, SIGNAL(signalShowSolution(const QString&)), input, SLOT(slotShowSolution(const QString&)));
-
+    connect(stdbutton, SIGNAL(signalToggleContinueShowAnswerActions()), this, SLOT(slotToggleShowSolutionContinueActions()));
 
     //// Hint + Hint Action Setup ////
     Hint * hint = new Hint(this);
@@ -241,7 +241,6 @@ void ParleyPracticeMainWindow::slotToggleShowSolutionContinueActions()
 
 bool ParleyPracticeMainWindow::eventFilter(QObject * obj, QEvent * event)
 {
-    kDebug() << "here";
     if (event->type() == QEvent::Resize)
     {
         m_view->fitInView(0.0, 0.0, 800.0, 600.0, Qt::KeepAspectRatio); // TODO not hardcode these

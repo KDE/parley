@@ -65,5 +65,6 @@ void StdButton::slotSolutionShown()
     {
         // showing the solution removes their ability to provide an answer (duh!)
         setText("Continue");
+        signalToggleContinueShowAnswerActions();
     }
 }

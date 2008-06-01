@@ -51,6 +51,9 @@ class StdButton : public KPushButton
         /// Using this will make the continue option appears.
         /// This should be connected to the CheckAnswer Action
         void signalCheckAnswer();
+        /// Emitted to toggle which KAction is available (contine/check solution)
+        /// Used to keep the KActions and the button in sync.
+        void signalToggleContinueShowAnswerActions();
 };
 
 #endif
