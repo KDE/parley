@@ -23,6 +23,8 @@
 #include <QGraphicsView>
 #include <QGraphicsSvgItem>
 #include <QString>
+#include <QRectF>
+
 
 class TestEntryManager;
 
@@ -40,6 +42,8 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         QGraphicsSvgItem* m_layout;
         TestEntryManager * m_manager;
 
+        QRectF m_backgroundRect;
+        
         bool eventFilter(QObject *obj, QEvent *event);
 
     public slots:

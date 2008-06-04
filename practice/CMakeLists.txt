@@ -47,5 +47,7 @@ install(FILES parleypracticeui.rc
         DESTINATION  ${DATA_INSTALL_DIR}/parleypractice/)
 install( FILES defaulttheme/card.svg
                defaulttheme/layout.svg
+               defaulttheme/background.svgz
+	       defaulttheme/widgets.svgz	
     DESTINATION  ${DATA_INSTALL_DIR}/parley/defaulttheme/ )
 

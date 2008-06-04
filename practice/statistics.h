@@ -20,6 +20,7 @@
 #define EDU_STATISTICS_H
 
 #include <QLCDNumber>
+#include <QGraphicsSvgItem>
 
 #include "../../libkdeedu/keduvocdocument/keduvocexpression.h"
 #include "../../libkdeedu/keduvocdocument/keduvoctranslation.h"
@@ -182,5 +183,21 @@ class LCDStatistics : public QLCDNumber
     public slots:
         /// Refreshes the GUI display.
         void slotUpdateDisplay(Statistics*);
+};
+
+class SvgBarStatistics : public QGraphicsSvgItem
+{
+    Q_OBJECT
+
+    public:
+        SvgBarStatistics(const QRectF& background, QGraphicsItem * parent = 0);
+        ~SvgBarStatistics();
+        
+    public slots:
+        /// Refreshes the GUI display.
+        void slotUpdateDisplay(Statistics*);
+
+    private:
+        QRectF m_backgroundRect;
 };
 #endif

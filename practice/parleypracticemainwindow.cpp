@@ -57,25 +57,22 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
 
     QGraphicsScene* scene = new QGraphicsScene(this);
     m_view->setScene(scene);
-
-    scene->setSceneRect(0.0, 0.0, 800.0, 600.0);
-
-    m_view->setSceneRect(scene->sceneRect());
-    scene->addRect(0.0,0.0,800.0,600.0);
-
     m_view->installEventFilter(this);
 
     m_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
 
-//     QGraphicsSvgItem * backgroundsvg = new QGraphicsSvgItem();
-//     KSvgRenderer * krenderer = new KSvgRenderer(QString("~/background.svgz"));
-//     backgroundsvg->setSharedRenderer(krenderer);
-// //    backgroundsvg->setSize(600,300);
-//     scene->addItem(backgroundsvg);
-
-
+     QGraphicsSvgItem * backgroundsvg = new QGraphicsSvgItem();
+     KSvgRenderer * krenderer = new KSvgRenderer();
+     krenderer->load(KStandardDirs::locate("data", "parley/defaulttheme/background.svgz"));
+     backgroundsvg->setSharedRenderer(krenderer);
+     scene->addItem(backgroundsvg);
+     m_backgroundRect = backgroundsvg->boundingRect();
+     
+    scene->setSceneRect(m_backgroundRect);
+    m_view->setSceneRect(scene->sceneRect());
+    
     //// Loading the Document -- temporary ////
     KEduVocDocument * doc = new KEduVocDocument(this);
     //KUrl url = KFileDialog::getOpenUrl(KUrl::fromPath("~"), KEduVocDocument::pattern(KEduVocDocument::Reading), this, i18n("Open Vocabulary Document"));
@@ -89,8 +86,6 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     // take the last file, but there are File1..n and Name1..n entries..
     QString sourceFile = recentFilesGroup.readEntry(recentFilesGroup.keyList().value(recentFilesGroup.keyList().count() / 2 - 1), QString());
 
-
-// KUrl::fromPath("~/test.kvtml")
     int code = doc->open(sourceFile);
     kDebug() << code;
 
@@ -112,9 +107,13 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     QGraphicsProxyWidget * ginput = scene->addWidget(input);
 
     Statistics * stats = new Statistics(this);
-    LCDStatistics * lcdstats = new LCDStatistics();
-    QGraphicsProxyWidget * glcdstats = scene->addWidget(lcdstats);
-    connect(stats, SIGNAL(signalUpdateDisplay(Statistics*)), lcdstats, SLOT(slotUpdateDisplay(Statistics*)));
+    backgroundsvg->setElementId("progress_bar_background");
+    QRectF progress_bar_background = backgroundsvg->boundingRect();
+    kDebug() << progress_bar_background << backgroundsvg->boundingRect();
+    backgroundsvg->setElementId("");
+    SvgBarStatistics * barstats = new SvgBarStatistics(progress_bar_background);
+    scene->addItem(barstats);
+    connect(stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
     connect(m_manager, SIGNAL(signalExpressionChanged(KEduVocExpression*)), stats, SLOT(slotSetExpression(KEduVocExpression*)));
 
     QGraphicsLinearLayout * promptAndInput = new QGraphicsLinearLayout();
@@ -129,7 +128,8 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     StdButton * stdbutton = new StdButton("Check Answer");
     QGraphicsProxyWidget * gstdbutton = scene->addWidget(stdbutton);
     connect(input, SIGNAL(returnPressed()), stdbutton, SLOT(slotActivated()));
-
+    gstdbutton->setVisible(false); // disable for now
+    
 
     //// Input and Validation Setup ////
     AnswerValidator * validator = new AnswerValidator(doc, this);
@@ -196,9 +196,8 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
 
     //// Final Graphics Setup ////
 
-    glcdstats->setPos(200, 100);
-    gpromptAndInput->setPos(10, 10);
-    gstdbutton->setPos(10, 200);
+    gpromptAndInput->setPos(m_backgroundRect.width() / 2.0, m_backgroundRect.height() / 2.0);
+    //gstdbutton->setPos(10, 200); // we'll ignore the button for now.
 
 
     setupGUI();
@@ -243,7 +242,7 @@ bool ParleyPracticeMainWindow::eventFilter(QObject * obj, QEvent * event)
 {
     if (event->type() == QEvent::Resize)
     {
-        m_view->fitInView(0.0, 0.0, 800.0, 600.0, Qt::KeepAspectRatio); // TODO not hardcode these
+        m_view->fitInView(m_backgroundRect, Qt::KeepAspectRatio); // TODO not hardcode these
         return QObject::eventFilter(obj, event);
     }
     return QObject::eventFilter(obj, event);

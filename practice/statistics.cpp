@@ -18,6 +18,10 @@
 
 #include <KDebug>
 #include <KLocalizedString>
+#include <QGraphicsSvgItem>
+#include <KSvgRenderer>
+
+#include <KStandardDirs>
 
 Statistics::Statistics(QObject * parent)
     : QObject(parent)
@@ -42,6 +46,24 @@ LCDStatistics::LCDStatistics(QWidget * parent)
 {
     display(0.0);
 }
+
+SvgBarStatistics::SvgBarStatistics(const QRectF& background, QGraphicsItem * parent)
+    : QGraphicsSvgItem(parent)
+{
+    m_backgroundRect = background;
+    KSvgRenderer * krenderer = new KSvgRenderer();
+    krenderer->load(KStandardDirs::locate("data", "parley/defaulttheme/widgets.svgz"));
+    setSharedRenderer(krenderer);
+    setElementId("progress_bar");
+    setPos(m_backgroundRect.x(), m_backgroundRect.y());
+    kDebug() << m_backgroundRect.x() << m_backgroundRect.y() << x() << y();
+    scale(boundingRect().width()/m_backgroundRect.width(), 1);
+}
+
+SvgBarStatistics::~SvgBarStatistics()
+{}
+
+
 
 // TODO figure out what to do with grade...
 void Statistics::slotCorrection(float grade, ErrorType error)
@@ -193,3 +215,12 @@ void LCDStatistics::slotUpdateDisplay(Statistics* stats)
     kDebug() << stats->percentCorrect();
     display(stats->percentCorrect());
 }
+
+void SvgBarStatistics::slotUpdateDisplay(Statistics*stats)
+{
+        kDebug() << boundingRect() << stats->percentCorrect() / (boundingRect().width() / m_backgroundRect.width());
+        scale(boundingRect().width() / (m_backgroundRect.width() * stats->percentCorrect()), 1);
+}
+
+
+
