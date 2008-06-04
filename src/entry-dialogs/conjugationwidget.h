@@ -17,7 +17,6 @@
 #include "ui_conjugationwidget.h"
 
 class KEduVocExpression;
-class KEduVocTranslation;
 class KEduVocDocument;
 
 class ConjugationWidget : public QWidget, public Ui::ConjugationWidget
@@ -39,6 +38,7 @@ private slots:
     void slotTenseSelected(int);
     void slotNextTense();
     void slotMakeVerb();
+    void tenseEditingFinished();
 
 private:
     void showMakeVerbWidgets();

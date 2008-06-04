@@ -19,7 +19,6 @@
 #include <keduvocdeclension.h>
 
 class KEduVocExpression;
-class KEduVocTranslation;
 class KEduVocDocument;
 
 

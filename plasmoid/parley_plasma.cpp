@@ -93,7 +93,15 @@ void ParleyPlasma::constraintsEvent(Plasma::Constraints constraints)
     }
 
     if (constraints & Plasma::SizeConstraint) {
-        prepareGeometryChange();
+        double aspect = 256.0/160.0; // original aspect ratio
+        if (formFactor() == Plasma::Horizontal) {
+            // We have a fixed height, set some sensible width
+            setMinimumWidth(contentsRect().height() * aspect);
+        } else if (formFactor() == Plasma::Vertical) {
+            // We have a fixed width, set some sensible height
+            setMinimumHeight((int)contentsRect().width() / aspect);
+        }
+
         m_label1->setPos( m_theme->elementRect( "translation1" ).topLeft() );
         m_label1->setFont( m_font );
         double scale = qMin(m_theme->elementRect( "translation1" ).width()/m_label1->boundingRect().width(), m_theme->elementRect( "translation1" ).height()/m_label1->boundingRect().height());

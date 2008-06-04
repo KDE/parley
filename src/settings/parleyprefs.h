@@ -29,7 +29,6 @@ class ViewOptions;
 class PasteOptions;
 
 class KEduVocDocument;
-class KVTQuery;
 class KComboBox;
 
 class ParleyPrefs : public KConfigDialog

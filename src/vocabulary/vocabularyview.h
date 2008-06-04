@@ -26,7 +26,6 @@ class VocabularyFilter;
 class VocabularyDelegate;
 class KEduVocExpression;
 class KEduVocDocument;
-class ParleyDocument;
 
 class KActionMenu;
 class KAction;

@@ -85,6 +85,7 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
     m_pronunciationStatusBarLabel = 0;
     m_remarkStatusBarLabel = 0;
     m_typeStatusBarLabel = 0;
+    m_conjugationWidget = 0;
 
     m_entryDlg = 0;
 
@@ -159,16 +160,16 @@ void ParleyApp::saveOptions()
     Prefs::self()->writeConfig();
 }
 
-
-void ParleyApp::slotLanguageProperties()
+void ParleyApp::slotGrammarDialog()
 {
-    GrammarDialog ddlg(m_document->document(), this);
+    // the dialog to set tenses, personal pronouns and articles
+    GrammarDialog dialog(m_document->document(), this);
 
-    if (ddlg.exec() == KDialog::Accepted) {
+    if (dialog.exec() == KDialog::Accepted) {
         m_document->document()->setModified();
-/// @todo update languages shown in the table
-//         m_vocabularyModel->reset();
-        slotUpdateWindowCaption();
+        // update the list of tenses
+        m_conjugationWidget->setDocument(m_document->document());
+        // FIXME: update articles/pronouns (?)
 //         slotStatusMsg(IDS_DEFAULT);
     }
 }
@@ -405,15 +406,15 @@ void ParleyApp::initDockWidgets()
 // Conjugations
     QDockWidget *conjugationDock = new QDockWidget(i18n("Conjugation"), this);
     conjugationDock->setObjectName("ConjugationDock");
-    ConjugationWidget *conjugationWidget = new ConjugationWidget(this);
-    conjugationDock->setWidget(conjugationWidget);
+    m_conjugationWidget = new ConjugationWidget(this);
+    conjugationDock->setWidget(m_conjugationWidget);
     addDockWidget(Qt::RightDockWidgetArea, conjugationDock);
     conjugationDock->setVisible(false);
     actionCollection()->addAction("show_conjugation_dock", conjugationDock->toggleViewAction());
     connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)),
-        conjugationWidget, SLOT(setDocument(KEduVocDocument*)));
+        m_conjugationWidget, SLOT(setDocument(KEduVocDocument*)));
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-        conjugationWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+        m_conjugationWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Declensions
     QDockWidget *declensionDock = new QDockWidget(i18n("Declension"), this);
@@ -665,7 +666,7 @@ void ParleyApp::initActions()
     editGramar->setWhatsThis(i18n("Edit language properties (types, tenses and usages)."));
     editGramar->setToolTip(editGramar->whatsThis());
     editGramar->setStatusTip(editGramar->whatsThis());
-    connect(editGramar, SIGNAL(triggered(bool)), SLOT(slotLanguageProperties()));
+    connect(editGramar, SIGNAL(triggered(bool)), SLOT(slotGrammarDialog()));
 
     KAction *checkSpelling = KStandardAction::spelling(m_vocabularyView, SLOT(checkSpelling()), actionCollection());
 

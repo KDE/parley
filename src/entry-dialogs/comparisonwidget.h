@@ -32,7 +32,6 @@
 class KEduVocExpression;
 class KEduVocTranslation;
 class KEduVocDocument;
-class KEduVocWordType;
 
 class ComparisonWidget : public QWidget, public Ui::comparisonWidget
 {

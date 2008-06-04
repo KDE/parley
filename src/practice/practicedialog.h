@@ -36,12 +36,8 @@
 
 class AnswerValidator;
 
-class KEduVocExpression;
 class KEduVocDocument;
 
-class QLineEdit;
-class QTextEdit;
-class QRadioButton;
 class QGraphicsView;
 
 namespace Phonon

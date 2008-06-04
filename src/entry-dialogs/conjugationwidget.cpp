@@ -30,6 +30,7 @@ ConjugationWidget::ConjugationWidget(QWidget *parent) : QWidget(parent)
     connect(makeVerbButton, SIGNAL(clicked()), SLOT(slotMakeVerb()));
     connect(nextTenseButton, SIGNAL(clicked()), SLOT(slotNextTense()));
     connect(tenseComboBox, SIGNAL(activated(int)), SLOT(slotTenseSelected(int)));
+    connect(tenseComboBox->lineEdit(), SIGNAL(editingFinished()), SLOT(tenseEditingFinished()));
 
     showMakeVerbWidgets();
     makeVerbButton->setEnabled(false);
@@ -132,8 +133,10 @@ void ConjugationWidget::setDocument(KEduVocDocument * doc)
 {
     m_doc = doc;
     tenseComboBox->clear();
+    tenseComboBox->completionObject()->clear();
     if (m_doc) {
         tenseComboBox->addItems(m_doc->tenseDescriptions());
+        tenseComboBox->completionObject()->insertItems(m_doc->tenseDescriptions());
         tenseComboBox->setCurrentIndex(0);
     }
 }
@@ -247,6 +250,17 @@ void ConjugationWidget::updateVisiblePersons()
     pluralThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdMale, KEduVocConjugation::Plural ));
     pluralThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural ));
     pluralThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Plural ));
+}
+
+void ConjugationWidget::tenseEditingFinished()
+{
+    const QStringList& oldTenses = m_doc->tenseDescriptions();
+    if (!oldTenses.contains(tenseComboBox->currentText())) {
+        // add a new tense
+        m_doc->setTenseName(oldTenses.count(), tenseComboBox->currentText());
+        // put it into the completion
+        tenseComboBox->completionObject()->addItem(tenseComboBox->currentText());
+    }
 }
 
 

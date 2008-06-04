@@ -33,8 +33,6 @@
 #include <QVector>
 
 class KEduVocDocument;
-class Prefs;
-class EnumCompType;
 class KRandomSequence;
 class PracticeDialog;
 
