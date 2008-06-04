@@ -242,7 +242,7 @@ bool ParleyPracticeMainWindow::eventFilter(QObject * obj, QEvent * event)
 {
     if (event->type() == QEvent::Resize)
     {
-        m_view->fitInView(m_backgroundRect, Qt::KeepAspectRatio); // TODO not hardcode these
+        m_view->fitInView(m_backgroundRect, Qt::KeepAspectRatio);
         return QObject::eventFilter(obj, event);
     }
     return QObject::eventFilter(obj, event);
