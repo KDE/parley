@@ -123,6 +123,9 @@ void VocabularyDelegate::setModelData(QWidget * editor, QAbstractItemModel * mod
     case (VocabularyModel::WordType): {
         kDebug() << "word type editor";
         KComboBox *combo = qobject_cast<KComboBox*>(editor);
+        if (!combo) {
+            return;
+        }
         kDebug() << "combo" << combo->currentText();
         QModelIndex comboIndex = combo->view()->currentIndex();
         KEduVocWordType* wordType = static_cast<KEduVocWordType*>(comboIndex.internalPointer());
@@ -146,18 +149,11 @@ Q_ASSERT(expression);
     }
     default: {
         KLineEdit *lineEdit = static_cast<KLineEdit*>(editor);
+        if (!lineEdit) {
+            return;
+        }
         QString value = lineEdit->text();
         model->setData(index, value);
-        /*
-        QPair<QString, QString> type;
-        type = guessWordType( value, index.column() - KV_COL_TRANS );
-        if ( !type.first.isEmpty() ) {
-            KPassivePopup* pop = new KPassivePopup(lineEdit);
-            pop->setTimeout(2000);
-            pop->setView(i18nc("@popupmessage the word has been guessed to be %1 with subtype %2", "Setting word type to %1 (%2).", type.first, type.second), i18nc("@title of a popup", "Noun Detected"));
-            pop->show();
-        }
-        */
     }
     }
 }

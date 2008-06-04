@@ -104,11 +104,16 @@ void TestEntry::incSkipKnown()
 
 void TestEntry::incBadCount()
 {
+kDebug() << "inc bad count!";
     update();
-    m_statisticBadCount++;
-    m_answeredCorrectInSequence = 0;
+
+    // pretty hard, decrease the grade every single time
+    // could be changed, but maybe it's a good idea even...
     m_entry->translation(m_gradeTo)->decGrade();
     m_entry->translation(m_gradeTo)->incBadCount();
+
+    m_statisticBadCount++;
+    m_answeredCorrectInSequence = 0;
 }
 
 void TestEntry::incTimeout()
