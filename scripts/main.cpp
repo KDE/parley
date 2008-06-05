@@ -1,6 +1,11 @@
 #include "scripts.h"
 
+#include <QStringList>
+
+#include <KDebug>
+
 int main() {
     ScriptTest s;
-    s.test();
+    QStringList l = s.translateWord("love");
+    kDebug() << "List of translation results" << l;
 } 
