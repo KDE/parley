@@ -19,6 +19,13 @@ void ScriptTest::test()
     action.setFile("myscript.py");
     QVariantList args;
     args << "hello";
-    QVariant result = action.callFunction("translate",args);
+    QVariant result = action.callFunction("fetchTranslation",args);
     kDebug() << result;
+    QVariant list_result = action.callFunction("returnlist");
+    kDebug() << list_result;
+    QList<QVariant> ql = list_result.toList();
+    for (int i = 0; i < ql.size(); i++)
+        if (ql[i].canConvert<int>())
+            kDebug() << ql[i].toInt(NULL);
+    //foreach (QVariant v, list_result.
 }
