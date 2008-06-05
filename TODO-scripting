@@ -16,6 +16,7 @@ TODO to get scripting into Parley
    - Possible scripts:
      + dict.someserver
      + conjugations for spanish (http://turingmachine.org/compjugador/)
+     + script: fetchTranslation("word")
 
 
  * Maybe try to use python and ruby to check that both are working?
