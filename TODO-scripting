@@ -25,3 +25,8 @@ TODO to get scripting into Parley
 
  * Scripts can make use of kde bindings, so they can have a gui. If we deliver some by default, they could even be translated. If there is still time, look into that.
 
+ * Scripts (for discussion)
+    + define script api
+    + scripts adding actions to menu
+    + script manager (amarok 1.4.x from distro packages)
+
