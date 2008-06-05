@@ -48,16 +48,17 @@ LCDStatistics::LCDStatistics(QWidget * parent)
 }
 
 SvgBarStatistics::SvgBarStatistics(const QRectF& background, QGraphicsItem * parent)
-    : QGraphicsSvgItem(parent)
+    : QGraphicsSvgItem(parent),
+      m_backgroundRect(background)
 {
-    m_backgroundRect = background;
     KSvgRenderer * krenderer = new KSvgRenderer();
     krenderer->load(KStandardDirs::locate("data", "parley/defaulttheme/widgets.svgz"));
     setSharedRenderer(krenderer);
     setElementId("progress_bar");
     setPos(m_backgroundRect.x(), m_backgroundRect.y());
-    kDebug() << m_backgroundRect.x() << m_backgroundRect.y() << x() << y();
-    scale(boundingRect().width()/m_backgroundRect.width(), 1);
+    scale((m_backgroundRect.width())/boundingRect().width(), 1.0);
+    kDebug() << boundingRect() << scenePos();
+    setZValue(10); // higher than the rest
 }
 
 SvgBarStatistics::~SvgBarStatistics()
@@ -218,8 +219,9 @@ void LCDStatistics::slotUpdateDisplay(Statistics* stats)
 
 void SvgBarStatistics::slotUpdateDisplay(Statistics*stats)
 {
-        kDebug() << boundingRect() << stats->percentCorrect() / (boundingRect().width() / m_backgroundRect.width());
-        scale(boundingRect().width() / (m_backgroundRect.width() * stats->percentCorrect()), 1);
+    kDebug() << boundingRect();
+    kDebug() << stats->percentCorrect() << "*" << m_backgroundRect.width() << "/" << mapToScene(boundingRect()).boundingRect().width() << "=";
+    scale((m_backgroundRect.width() * stats->percentCorrect())/mapToScene(boundingRect()).boundingRect().width(), 1.0);
 }
 
 

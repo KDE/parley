@@ -196,6 +196,7 @@ class SvgBarStatistics : public QGraphicsSvgItem
     public slots:
         /// Refreshes the GUI display.
         void slotUpdateDisplay(Statistics*);
+        
 
     private:
         QRectF m_backgroundRect;

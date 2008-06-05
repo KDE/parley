@@ -65,7 +65,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
 
      QGraphicsSvgItem * backgroundsvg = new QGraphicsSvgItem();
      KSvgRenderer * krenderer = new KSvgRenderer();
-     krenderer->load(KStandardDirs::locate("data", "parley/defaulttheme/background.svgz"));
+     krenderer->load(KStandardDirs::locate("data", "parley/defaulttheme/layout.svgz"));
      backgroundsvg->setSharedRenderer(krenderer);
      scene->addItem(backgroundsvg);
      m_backgroundRect = backgroundsvg->boundingRect();
@@ -107,11 +107,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     QGraphicsProxyWidget * ginput = scene->addWidget(input);
 
     Statistics * stats = new Statistics(this);
-    backgroundsvg->setElementId("progress_bar_background");
-    QRectF progress_bar_background = backgroundsvg->boundingRect();
-    kDebug() << progress_bar_background << backgroundsvg->boundingRect();
-    backgroundsvg->setElementId("");
-    SvgBarStatistics * barstats = new SvgBarStatistics(progress_bar_background);
+    SvgBarStatistics * barstats = new SvgBarStatistics(backgroundsvg->renderer()->boundsOnElement("progress_bar_background"));
     scene->addItem(barstats);
     connect(stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
     connect(m_manager, SIGNAL(signalExpressionChanged(KEduVocExpression*)), stats, SLOT(slotSetExpression(KEduVocExpression*)));
@@ -199,6 +195,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     gpromptAndInput->setPos(m_backgroundRect.width() / 2.0, m_backgroundRect.height() / 2.0);
     //gstdbutton->setPos(10, 200); // we'll ignore the button for now.
 
+    //backgroundsvg->setVisible(false);
 
     setupGUI();
 
