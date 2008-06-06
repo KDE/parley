@@ -27,12 +27,16 @@ def fetchTranslation(word,from_lang,to_lang):
   return parser.words
 
 # called by Parley to retrieve the language pairs provided by this script
-# should return: [("en","fr"),("en,"de")] for translation from english to french and english to german
+# should return: [("en","fr"),("en","de")] for translation from english to french and english to german
 def getLanguagePairs():
   data = fetchData("ignorethis","en","fr")
   parser = parseData(data)
-  #L = [  for [f,t] = 
-  return parser.langpairs
+  return map(split_langpair,parser.langpairs)
+
+# function to split a language pair string into a tuple
+def split_langpair(s):
+  [f,t] = s.split("|",1)
+  return (f,t)
 
 
 # ------------ HTML Parser ----------- #
