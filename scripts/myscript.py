@@ -17,22 +17,41 @@ class myParser(SGMLParser):
   def reset(self):
     SGMLParser.reset(self)
     self.words = []
-    self.good = False
+    self.mystack = []
+    self.spanstack = []
 
+  def unknown_starttag(self,tag,attrs):
+        self.mystack.append(tag)
+        print "unknown : ", tag, " ", len(self.mystack)
+  
   def start_span(self, attrs):
+    found = False
     for name, value in attrs:
-      if name == "class" and value == "definition":
-        self.good = True
-        print self.get_starttag_text()
+        if name == "class" and value == "definition":
+            self.mystack.append("<translation>")
+            found = True
+    if not found:
+      self.mystack.append("span")
+  
+  def report_unbalanced(self,tag):
+   print "unbalanced : ",tag
+   return
 
   def handle_data(self,data):
-    if self.good == True:
+    if self.mystack[len(self.mystack)-1] == "<translation>":
         print "data: ", data
-        self.good = False
+        self.words.append(data)
+  
+  def unknown_endtag(self,tag):
+    if len(self.mystack) > 0:
+        if self.mystack[len(self.mystack)-1] == tag:
+            print "end tag: ", self.mystack[len(self.mystack)-1]
+            self.mystack.pop()
 
 def parserTest(data):
   p = myParser()
   p.feed(data)
+  print p.words
   p.close()
 
 
