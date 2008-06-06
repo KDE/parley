@@ -5,89 +5,55 @@ from sgmllib import SGMLParser
 
 
 url = "http://translate.google.com/translate_dict"
-google_url = "http://ajax.googleapis.com/ajax/services/language/translate"
-referer_url = "http://edu.kde.org/parley/"
-referer = "Referer: "+referer_url
-header_referer = ("Referer",referer_url)
 param_lang_pair = ("langpair","en|fr")
-param_version = ("v","1.0")
 
 class myParser(SGMLParser):
 
   def reset(self):
     SGMLParser.reset(self)
     self.words = []
-    self.mystack = []
-    self.spanstack = []
+    self.tags_stack = []
 
   def unknown_starttag(self,tag,attrs):
-        self.mystack.append(tag)
-        print "unknown : ", tag, " ", len(self.mystack)
+        self.tags_stack.append(tag)
+        #print "unknown : ", tag, " ", len(self.tags_stack)
   
   def start_span(self, attrs):
-    found = False
-    for name, value in attrs:
-        if name == "class" and value == "definition":
-            self.mystack.append("<translation>")
-            found = True
-    if not found:
-      self.mystack.append("span")
-  
-  def report_unbalanced(self,tag):
-   print "unbalanced : ",tag
-   return
+    #print "known : ", "span", " ", len(self.tags_stack)
+    if ("class","definition") in attrs:
+        self.tags_stack.append("<!translation!>")
+    else:
+        self.tags_stack.append("span")
 
   def handle_data(self,data):
-    if self.mystack[len(self.mystack)-1] == "<translation>":
-        print "data: ", data
+    if self.tags_stack[len(self.tags_stack)-1] == "<!translation!>":
+        #print "data: ", data
         self.words.append(data)
   
   def unknown_endtag(self,tag):
-    #make it remove if self.mystack[len(self.mystack)-1] != tag
-    if len(self.mystack) > 0:
-        if self.mystack[len(self.mystack)-1] == tag:
-            print "end tag: ", self.mystack[len(self.mystack)-1]
-            self.mystack.pop()
+    myParser.remove_not_closed_tags(self,tag)
+    if len(self.tags_stack) > 0 and self.tags_stack[len(self.tags_stack)-1] == tag:
+        #print "end_tag : ", tag, " ", len(self.tags_stack)
+        self.tags_stack.pop()
 
-def parserTest(data):
+  #removes all the tags from the stack that have no closed tags (don't modify)
+  def remove_not_closed_tags(self,tag):
+    while len(self.tags_stack) > 0 and self.tags_stack[len(self.tags_stack)-1] != tag:
+      self.tags_stack.pop()
+
+def parseData(data):
   p = myParser()
   p.feed(data)
-  print p.words
   p.close()
-
-
-def googleTranslation(word):
-  param_word_trn = ("q",word)
-  request_url = google_url + "?" + urllib.urlencode([param_version,param_word_trn,param_lang_pair])
-  print request_url
-  headers = urllib.urlencode([header_referer])
-  results = urllib2.urlopen(request_url,headers)
-  data = results.read()
-  
-def googleTranslation2(word):
-  param_word_trn = ("q",word)
-  request_url = google_url + "?" + urllib.urlencode([param_version,param_word_trn,param_lang_pair])
-  print request_url
-  r = urllib2.Request(request_url)
-  r.add_header("Referer",referer_url)
-  results = urllib2.urlopen(r)
-  data = results.read()
-  return data
+  return p.words
 
 def fetchTranslation(word):
   param_word_trn = ("q",word)
   request_url = url + "?" + urllib.urlencode([param_word_trn,param_lang_pair])
-  print request_url
+  #print request_url
   results = urllib2.urlopen(request_url)
   data = results.read()
-  #p = re.compile('<span\ class="definition">(?:<span class="comment">.*</span>)*([^<>]*)<span class="comment">',re.IGNORECASE)
-  p = re.compile('<span\ class="definition">([^<>]*)<span class="comment">',re.IGNORECASE)
-  l = p.findall(data)
-  parserTest(data)
-  return l
-
-def returnlist():
-    L = [1,2,3,4,5]
-    return L
+  words = parseData(data)
+  return words
 
 print fetchTranslation("love")
