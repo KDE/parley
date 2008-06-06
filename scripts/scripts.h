@@ -5,5 +5,6 @@ class ScriptTest
 {
 public:
     void test();
-    QStringList translateWord(QString Word);
+    QStringList translateWord(QString word, QString from, QString to);
+    void testJS();
 };

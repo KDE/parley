@@ -6,6 +6,6 @@
 
 int main() {
     ScriptTest s;
-    QStringList l = s.translateWord("love");
-    kDebug() << "List of translation results" << l;
+
+    kDebug() << QString("Translations: ") << s.translateWord("hello","en","de");
 } 
