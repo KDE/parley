@@ -12,8 +12,15 @@
  */
 void ScriptTest::test()
 {
-    foreach(QString s, Kross::Manager::self().interpreters())
-        kDebug() << s;
+//    foreach(QString s, Kross::Manager::self().interpreters())
+//        kDebug() << s;
+
+    Kross::Action action(this,"MyScript");
+    action.setFile("myscript.py");
+    QVariantList args;
+    QVariant result = action.callFunction("testTuple",args);
+    kDebug() << result;
+
 
     /*Kross::Action action(this,"MyScript");
     action.setFile("myscript.py");
@@ -36,10 +43,6 @@ void ScriptTest::test()
             kDebug() << ql[i].toInt(NULL);*/
     //foreach (QVariant v, list_result.
 
-/*    Kross::Action action(this,"MyScript");
-    action.setFile("myscript.py");
-    QVariantList args;
-    QVariant result = action.callFunction("testTuple",args);*/
 }
 
 
@@ -75,4 +78,22 @@ void ScriptTest::testJS()
     args << "hello";
     QVariant script_result = action.callFunction("fetchTranslation",args);
     kDebug() << script_result;
+}
+
+
+/*!
+    \fn ScriptTest::getLanguagePairs()
+ */
+void ScriptTest::getLanguagePairs()
+{
+    Kross::Action action(this,"MyScript2");
+    action.setFile("google_translation.py");
+    QVariant script_result = action.callFunction("getLanguagePairs");
+
+    foreach(QVariant langpair, script_result.toList()) {
+        QVariantList pair = langpair.toList();
+        QString from = pair[0].toString();
+        QString to = pair[1].toString();
+        kDebug() << from << " -> " << to;
+    }
 }

@@ -7,5 +7,6 @@
 int main() {
     ScriptTest s;
 
-    kDebug() << QString("Translations: ") << s.translateWord("hello","en","de");
+    kDebug() << QString("Translations: ") << s.translateWord("baby","en","it");
+    s.getLanguagePairs();
 } 
