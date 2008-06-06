@@ -3,7 +3,7 @@ import urllib
 import re
 from sgmllib import SGMLParser
 
-#fetches the html document for the given word and language pair
+# fetches the html document for the given word and language pair
 def fetchData(word,from_lang,to_lang):
   url = "http://translate.google.com/translate_dict"
   param_word_trn = ("q",word)       #set query parameter
@@ -20,14 +20,18 @@ def parseData(data):
   p.close()
   return p
 
+# called by Parley to translate the word
 def fetchTranslation(word,from_lang,to_lang):
   data = fetchData(word,from_lang,to_lang)
   parser = parseData(data)
   return parser.words
 
+# called by Parley to retrieve the language pairs provided by this script
+# should return: [("en","fr"),("en,"de")] for translation from english to french and english to german
 def getLanguagePairs():
   data = fetchData("ignorethis","en","fr")
   parser = parseData(data)
+  #L = [  for [f,t] = 
   return parser.langpairs
 
 
