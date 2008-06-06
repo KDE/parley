@@ -43,6 +43,7 @@ class myParser(SGMLParser):
         self.words.append(data)
   
   def unknown_endtag(self,tag):
+    #make it remove if self.mystack[len(self.mystack)-1] != tag
     if len(self.mystack) > 0:
         if self.mystack[len(self.mystack)-1] == tag:
             print "end tag: ", self.mystack[len(self.mystack)-1]
@@ -88,5 +89,8 @@ def fetchTranslation(word):
 def returnlist():
     L = [1,2,3,4,5]
     return L
+
+def testTuple():
+  return [("first","second"),("first1","second1")]
 
 print fetchTranslation("love")
