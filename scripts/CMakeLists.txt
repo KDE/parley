@@ -5,7 +5,7 @@ project (scripts)
 
 #install(FILES myscript.py DESTINATION ${DATA_INSTALL_DIR}/parleyscripts/)
  
-set(scripts_SRCS main.cpp scripts.cpp)
+set(scripts_SRCS main.cpp scripts.cpp translationscript.cpp)
  
 kde4_add_executable(scripts ${scripts_SRCS})
 
