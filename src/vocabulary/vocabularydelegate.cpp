@@ -148,7 +148,7 @@ Q_ASSERT(expression);
 
     }
     default: {
-        KLineEdit *lineEdit = static_cast<KLineEdit*>(editor);
+        KLineEdit *lineEdit = qobject_cast<KLineEdit*>(editor);
         if (!lineEdit) {
             return;
         }
