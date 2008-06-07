@@ -45,28 +45,6 @@ void ScriptTest::test()
 
 }
 
-
-/*!
-    \fn ScriptTest::translateWord(QString Word)
- */
-QStringList ScriptTest::translateWord(QString word, QString from, QString to)
-{
-    Kross::Action action(this,"MyScript");
-    action.setFile("google_translation.py");
-    QVariantList args;
-    args << word << from << to;
-    QVariant script_result = action.callFunction("fetchTranslation",args);
-    QList<QVariant> translations = script_result.toList();
-
-    QStringList result;
-
-    for (int i = 0; i < translations.size(); i++)
-        result.push_back(translations[i].toString());
-
-    return result;
-}
-
-
 /*!
     \fn ScriptTest::testJS()
  */
@@ -78,22 +56,4 @@ void ScriptTest::testJS()
     args << "hello";
     QVariant script_result = action.callFunction("fetchTranslation",args);
     kDebug() << script_result;
-}
-
-
-/*!
-    \fn ScriptTest::getLanguagePairs()
- */
-void ScriptTest::getLanguagePairs()
-{
-    Kross::Action action(this,"MyScript2");
-    action.setFile("google_translation.py");
-    QVariant script_result = action.callFunction("getLanguagePairs");
-
-    foreach(QVariant langpair, script_result.toList()) {
-        QVariantList pair = langpair.toList();
-        QString from = pair[0].toString();
-        QString to = pair[1].toString();
-        kDebug() << from << " -> " << to;
-    }
 }
