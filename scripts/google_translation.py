@@ -38,7 +38,6 @@ def split_langpair(s):
   [f,t] = s.split("|",1)
   return (f,t)
 
-
 # ------------ HTML Parser ----------- #
 
 class myParser(SGMLParser):
@@ -70,7 +69,7 @@ class myParser(SGMLParser):
   def handle_data(self,data):
     if self.tags_stack[len(self.tags_stack)-1] == "<!translation!>":
         #print "data: ", data
-        self.words.append(data)
+        self.words.append(data.strip())
   
   def unknown_endtag(self,tag):
     myParser.remove_not_closed_tags(self,tag)
