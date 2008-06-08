@@ -1,6 +1,5 @@
 import urllib2
 import urllib
-import re
 from sgmllib import SGMLParser
 
 # fetches the html document for the given word and language pair
@@ -67,7 +66,7 @@ class myParser(SGMLParser):
     self.tags_stack.append("option")
 
   def handle_data(self,data):
-    if self.tags_stack[len(self.tags_stack)-1] == "<!translation!>":
+    if len(self.tags_stack) > 0 and self.tags_stack[len(self.tags_stack)-1] == "<!translation!>":
         #print "data: ", data
         self.words.append(data.strip())
   
