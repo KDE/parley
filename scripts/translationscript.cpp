@@ -45,11 +45,9 @@ void TranslationScript::getLanguagePairs()
  */
 QStringList TranslationScript::translateWord(QString word, QString from, QString to)
 {
-    Kross::Action action(this,"MyScript");
-    action.setFile("google_translation.py");
     QVariantList args;
     args << word << from << to;
-    QVariant script_result = action.callFunction("fetchTranslation",args);
+    QVariant script_result = action->callFunction("fetchTranslation",args);
     QList<QVariant> translations = script_result.toList();
 
     QStringList result;
