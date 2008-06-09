@@ -36,7 +36,7 @@ void TranslationScript::getLanguagePairs()
         QVariantList pair = langpair.toList();
         QString from = pair[0].toString();
         QString to = pair[1].toString();
-        kDebug() << from << " -> " << to;
+//         kDebug() << from << " -> " << to;
     }
 }
 
@@ -52,8 +52,10 @@ QStringList TranslationScript::translateWord(QString word, QString from, QString
 
     QStringList result;
 
-    for (int i = 0; i < translations.size(); i++)
+    for (int i = 0; i < translations.size(); i++) {
+//         kDebug() << translations[i].toString() << " " << translations[i].toString().length();
         result.push_back(translations[i].toString());
+    }
 
     return result;
 }

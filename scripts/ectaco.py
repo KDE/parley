@@ -13,7 +13,9 @@ def fetchData(word,from_lang,to_lang):
   request_url = url + "?" + urllib.urlencode(params)
   #print request_url
   results = urllib2.urlopen(request_url)
-  return results.read()
+  #results.encoding = 'windows-1250'
+  return results.read().decode("cp1250")
+  #return unicode(results.read(),'iso-8859-1')
 
 
 #parses data and returns the parser object (that contains the translations/langpairs found)
@@ -29,17 +31,18 @@ def fetchTranslation(word,from_lang,to_lang):
   parser = parseData(data)
   return parser.words
 
+
 # called by Parley to retrieve the language pairs provided by this script
 # should return: [("en","fr"),("en","de")] for translation from english to french and english to german
-def getLanguagePairs():
-  data = fetchData("ignorethis","en","fr")
-  parser = parseData(data)
-  return map(split_langpair,parser.langpairs)
+#def getLanguagePairs():
+  #data = fetchData("ignorethis","en","fr")
+  #parser = parseData(data)
+  #return map(split_langpair,parser.langpairs)
 
 # function to split a language pair string into a tuple
-def split_langpair(s):
-  [f,t] = s.split("|",1)
-  return (f,t)
+#def split_langpair(s):
+  #[f,t] = s.split("|",1)
+  #return (f,t)
 
 # ------------ HTML Parser ----------- #
 
@@ -92,6 +95,7 @@ class myParser(SGMLParser):
         #print "data: ", data
         Words = data.split(",")
         for w in Words:
+          #print w.strip()
           self.words.append(w.strip())
   
   def unknown_endtag(self,tag):
