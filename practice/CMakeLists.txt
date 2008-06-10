@@ -1,7 +1,5 @@
 project(parleypractice)
 
-#include_directories( ../../libkdeedu/keduvocdocument/)
-
 include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/)
 
 
@@ -9,9 +7,6 @@ find_package(KDE4 REQUIRED)
 
 include_directories(${KDE4_INCLUDES})
 
-#set(defaulttheme_SRCS
-#    defaulttheme/vocabularycard.cpp
-#)
 
 set(kgametheme_SRCS
 	kgametheme/kgametheme.cpp
@@ -21,7 +16,6 @@ set(kgametheme_SRCS
 kde4_add_ui_files(kgametheme_SRCS kgametheme/kgamethemeselector.ui )
 
 set(parleypractice_SRCS
- #   ${defaulttheme_SRCS}
     ${kgametheme_SRCS}
     main.cpp
     parleypracticemainwindow.cpp
