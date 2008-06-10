@@ -5,13 +5,9 @@ Planning:
 
  * Define which elements a theme has to contain, optional ones
  * How do we realize layout
-   - use a svg with rects for the layout? [probably]
-   - use widgets on canvas? does that give useable layouts? [yes, yes]
    - should the entire interface be on the canvas, or only parts?
    - What needs to be included in the main UI? How can we simplify the UI?
 
- * Define base classes for the theme elements (interface/abstract)
-    - Seperate out logic from interface
  * Theme elements
     - What should be themeable? Do we need any invariant elements?
  * Define interaction with parley
@@ -20,13 +16,14 @@ Planning:
 
 Doing (in no particular order):
  * Make images and sounds work
- * Set up SVG layouts
- * Make sure resizing the window interacts sensibly with the widgets
  * Clean up the UI / Make it pretty
- * Create the settings dialogs
+ * Finish the settings dialogs
  * Make parleypractice honor its settings
  * Create the statistical summary dialog
- * Create the basic widgets
  * Recreate various practice modes
  * Create new practice modes
+ * KNS / themes download
  
+Bugs:
+* Resizing updates based on the previous resize instead of the current one.
+* Filter doesn't filter blank entries
