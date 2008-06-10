@@ -27,6 +27,7 @@
 class GeneralOptions;
 class ViewOptions;
 class PasteOptions;
+class PluginOptions;
 
 class KEduVocDocument;
 class KComboBox;
@@ -70,6 +71,7 @@ private:
     GeneralOptions * m_generalOptions;
     ViewOptions * m_viewOptions;
     PasteOptions * m_pasteOptions;
+    PluginOptions * m_pluginOptions;
 
     KConfigSkeleton *m_config;
     KEduVocDocument *m_doc;

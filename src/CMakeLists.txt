@@ -27,11 +27,13 @@ set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
     settings/parleyprefs.cpp
     settings/generaloptions.cpp
     settings/viewoptions.cpp
+    settings/pluginoptions.cpp
 )
 
 kde4_add_ui_files( libcommondlg_SRCS
     settings/viewoptionsbase.ui
     settings/generaloptionsbase.ui
+    settings/pluginoptionsbase.ui
 )
 
 set(vocabulary_SRCS

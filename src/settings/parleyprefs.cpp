@@ -22,6 +22,7 @@
 
 #include "generaloptions.h"
 #include "viewoptions.h"
+#include "pluginoptions.h"
 #include <KConfigSkeleton>
 
 
@@ -40,6 +41,10 @@ ParleyPrefs::ParleyPrefs(KEduVocDocument *doc, QWidget *parent, const QString &n
 
     m_viewOptions = new ViewOptions(0);
     addPage(m_viewOptions, i18n("View"), "view-choose", i18n("View Settings"), true);
+    setHelp(QString(),"parley");
+
+    m_pluginOptions = new PluginOptions(0);
+    addPage(m_pluginOptions, i18n("Plugins"), "view-choose", i18n("Plugin Settings"), true);
     setHelp(QString(),"parley");
 }
 
