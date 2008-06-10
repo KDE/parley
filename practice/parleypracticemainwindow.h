@@ -50,7 +50,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         void slotGetInput(const QString& input);
         void slotShowSolution();
         void slotToggleShowSolutionContinueActions();
-        
+        void slotCreatePreferencesDialog();        
     signals:
         void signalCheckInput(const QString&, const QString&);
         void signalShowSolution(const QString&);

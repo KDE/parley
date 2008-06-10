@@ -13,8 +13,16 @@ include_directories(${KDE4_INCLUDES})
 #    defaulttheme/vocabularycard.cpp
 #)
 
+set(kgametheme_SRCS
+	kgametheme/kgametheme.cpp
+    kgametheme/kgamethemeselector.cpp)
+
+
+kde4_add_ui_files(kgametheme_SRCS kgametheme/kgamethemeselector.ui )
+
 set(parleypractice_SRCS
  #   ${defaulttheme_SRCS}
+    ${kgametheme_SRCS}
     main.cpp
     parleypracticemainwindow.cpp
     input.cpp
@@ -27,8 +35,7 @@ set(parleypractice_SRCS
     practiceprefs.cpp
     entryfilter.cpp
 )
-
-kde4_add_ui_files(parleypractice_SRCS entryfilter.ui )
+kde4_add_ui_files(parleypractice_SRCS entryfilter.ui)
 
 kde4_add_kcfg_files(parleypractice_SRCS practiceprefs.kcfgc)
 
@@ -37,7 +44,7 @@ kde4_add_executable(parleypractice ${parleypractice_SRCS})
 target_link_libraries(
     parleypractice
     keduvocdocument
-#     ${KDE4_KNEWSTUFF2_LIBS}
+    ${KDE4_KNEWSTUFF2_LIBS}
     ${KDE4_PHONON_LIBS}
     ${KDE4_KDEUI_LIBS}
 )
@@ -45,7 +52,7 @@ target_link_libraries(
 install(TARGETS parleypractice  DESTINATION ${BIN_INSTALL_DIR} )
 install(FILES parleypracticeui.rc
         DESTINATION  ${DATA_INSTALL_DIR}/parleypractice/)
-install( FILES defaulttheme/layout.svgz
-	       defaulttheme/widgets.svgz	
-    DESTINATION  ${DATA_INSTALL_DIR}/parley/defaulttheme/ )
+install( FILES themes/default_theme.svgz
+                themes/default.desktop
+    DESTINATION  ${DATA_INSTALL_DIR}/parley/themes/ )
 

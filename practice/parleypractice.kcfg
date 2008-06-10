@@ -7,6 +7,10 @@
   <kcfgfile name="parleypracticerc"/>
 
   <group name="PracticeOptions">
+    <entry name="Theme" type="String">
+      <label>Practice theme to use</label>
+      <default>default</default>
+    </entry>
     <entry name="Block" type="Bool">
       <label>In Blocking Query Tab Dialog, if checked then the Query is blocked</label>
       <default>false</default>

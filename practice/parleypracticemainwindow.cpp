@@ -34,6 +34,7 @@
 #include <KActionCollection>
 #include <KActionMenu>
 #include <KLocalizedString>
+#include <KConfigDialog>
 
 #include "input.h"
 #include "prompt.h"
@@ -42,6 +43,12 @@
 #include "hint.h"
 #include "testentrymanager.h"
 #include "answervalidator.h"
+#include "practiceprefs.h"
+
+#include "kgametheme/kgamethemeselector.h"
+#include "kgametheme/kgametheme.h"
+
+
 
 #include "../../libkdeedu/keduvocdocument/keduvocexpression.h"
 #include "../../libkdeedu/keduvocdocument/keduvoctranslation.h"
@@ -62,10 +69,14 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     m_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
+    //KGameThemeSelector
 
+    
      QGraphicsSvgItem * backgroundsvg = new QGraphicsSvgItem();
      KSvgRenderer * krenderer = new KSvgRenderer();
-     krenderer->load(KStandardDirs::locate("data", "parley/defaulttheme/layout.svgz"));
+     KGameTheme kgtheme;
+     kgtheme.load("parley/themes/default.desktop");
+     krenderer->load(kgtheme.graphics());
      backgroundsvg->setSharedRenderer(krenderer);
      scene->addItem(backgroundsvg);
      m_backgroundRect = backgroundsvg->boundingRect();
@@ -86,7 +97,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     // take the last file, but there are File1..n and Name1..n entries..
     QString sourceFile = recentFilesGroup.readEntry(recentFilesGroup.keyList().value(recentFilesGroup.keyList().count() / 2 - 1), QString());
 
-    int code = doc->open(sourceFile);
+    int code = doc->open(sourceFile); 
     kDebug() << code;
 
     // this is the only object/widget the window directly keeps track of (outside of the canvas, etc).
@@ -107,7 +118,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     QGraphicsProxyWidget * ginput = scene->addWidget(input);
 
     Statistics * stats = new Statistics(this);
-    SvgBarStatistics * barstats = new SvgBarStatistics(backgroundsvg->renderer()->boundsOnElement("progress_bar_background"));
+    SvgBarStatistics * barstats = new SvgBarStatistics(backgroundsvg->renderer());
     scene->addItem(barstats);
     connect(stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
     connect(m_manager, SIGNAL(signalExpressionChanged(KEduVocExpression*)), stats, SLOT(slotSetExpression(KEduVocExpression*)));
@@ -190,6 +201,9 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     connect(continueAction, SIGNAL(triggered()), input, SLOT(slotClear()));
     continueAction->setVisible(false);
 
+    KAction *prefsAct = KStandardAction::preferences(this, SLOT(slotCreatePreferencesDialog()),
+                                       actionCollection());
+
     //// Final Graphics Setup ////
 
     gpromptAndInput->setPos(m_backgroundRect.width() / 2.0, m_backgroundRect.height() / 2.0);
@@ -214,6 +228,14 @@ void ParleyPracticeMainWindow::slotGetInput(const QString& input)
 void ParleyPracticeMainWindow::slotShowSolution()
 {
     emit signalShowSolution(m_manager->currentSolution());
+}
+
+void ParleyPracticeMainWindow::slotCreatePreferencesDialog()
+{
+    KConfigDialog *dialog = new KConfigDialog(this, "settings", PracticePrefs::self());
+    dialog->addPage(new KGameThemeSelector(dialog, PracticePrefs::self()), i18n("Theme"), "game_theme");
+    kDebug() << "hit";
+    dialog->show();
 }
 
 // this one is a mouthful...

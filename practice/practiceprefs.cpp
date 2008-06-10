@@ -31,6 +31,9 @@ PracticePrefs::PracticePrefs(  )
   s_globalPracticePrefs->q = this;
   setCurrentGroup( QLatin1String( "PracticeOptions" ) );
 
+  KConfigSkeleton::ItemString  *itemTheme;
+  itemTheme = new KConfigSkeleton::ItemString( currentGroup(), QLatin1String( "Theme" ), mTheme, QLatin1String( "default" ) );
+  addItem( itemTheme, QLatin1String( "Theme" ) );
   KConfigSkeleton::ItemBool  *itemBlock;
   itemBlock = new KConfigSkeleton::ItemBool( currentGroup(), QLatin1String( "Block" ), mBlock, false );
   addItem( itemBlock, QLatin1String( "Block" ) );

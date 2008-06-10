@@ -30,6 +30,25 @@ class PracticePrefs : public KConfigSkeleton
     ~PracticePrefs();
 
     /**
+      Set Practice theme to use
+    */
+    static
+    void setTheme( const QString & v )
+    {
+      if (!self()->isImmutable( QString::fromLatin1 ( "Theme" ) ))
+        self()->mTheme = v;
+    }
+
+    /**
+      Get Practice theme to use
+    */
+    static
+    QString theme()
+    {
+      return self()->mTheme;
+    }
+
+    /**
       Set In Blocking Query Tab Dialog, if checked then the Query is blocked
     */
     static
@@ -1023,6 +1042,7 @@ class PracticePrefs : public KConfigSkeleton
 
 
     // PracticeOptions
+    QString mTheme;
     bool mBlock;
     bool mExpire;
     bool mAltLearn;
