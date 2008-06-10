@@ -5,36 +5,59 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>479</width>
+    <height>324</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label" >
-   <property name="geometry" >
-    <rect>
-     <x>30</x>
-     <y>20</y>
-     <width>57</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text" >
-    <string>Test!!</string>
-   </property>
-  </widget>
-  <widget class="QTableWidget" name="tableWidget" >
-   <property name="geometry" >
-    <rect>
-     <x>30</x>
-     <y>50</y>
-     <width>256</width>
-     <height>192</height>
-    </rect>
-   </property>
-  </widget>
+  <layout class="QGridLayout" name="gridLayout_2" >
+   <item row="0" column="0" >
+    <widget class="QLabel" name="label" >
+     <property name="text" >
+      <string>Plugins</string>
+     </property>
+    </widget>
+   </item>
+   <item rowspan="4" row="1" column="0" >
+    <widget class="QTableWidget" name="tableWidget" />
+   </item>
+   <item row="1" column="1" >
+    <widget class="QPushButton" name="pushButton" >
+     <property name="text" >
+      <string>Add</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1" >
+    <widget class="QPushButton" name="pushButton_2" >
+     <property name="text" >
+      <string>Remove</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1" >
+    <spacer name="verticalSpacer" >
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>20</width>
+       <height>108</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="1" >
+    <widget class="QPushButton" name="pushButton_3" >
+     <property name="text" >
+      <string>Run</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
