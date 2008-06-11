@@ -23,7 +23,7 @@
 
 #include <KDebug>
 
-TextualInput::TextualInput(QWidget* parent)
+TextualInput::TextualInput(KSvgRenderer * renderer, QWidget* parent)
         : QLineEdit(parent)
 {
 }

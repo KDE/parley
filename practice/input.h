@@ -22,12 +22,14 @@
 #include <QObject>
 #include <QLineEdit>
 
+#include <KSvgRenderer>
+
 class TextualInput : public QLineEdit
 {
     Q_OBJECT
 
     public:
-        TextualInput(QWidget * parent = 0);
+        TextualInput(KSvgRenderer * renderer, QWidget * parent = 0);
 
     public slots:
         void slotChangeAnswerColor(float correct);

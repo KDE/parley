@@ -18,9 +18,18 @@
 
 #include "prompt.h"
 
-TextualPrompt::TextualPrompt(QWidget * parent) : QLabel(parent) {};
-SoundPrompt::SoundPrompt(QWidget * parent) : QLabel(parent) {};
-ImagePrompt::ImagePrompt(QWidget * parent) : QLabel(parent), m_pic(QPicture()) {};
+TextualPrompt::TextualPrompt(KSvgRenderer * renderer) :
+         m_renderer(renderer)
+{
+    m_backgroundRect = renderer->boundsOnElement("practice_text_background");
+    setPos(m_backgroundRect.x() + m_backgroundRect.width() / 2.0, m_backgroundRect.y() + m_backgroundRect.height() / 2.0);
+    adjustSize();
+};
+
+void TextualPrompt::slotSetText(const QString& text) {setPlainText(text); };
+
+SoundPrompt::SoundPrompt(KSvgRenderer * renderer, QWidget * parent) : QLabel(parent), m_renderer(renderer) {};
+ImagePrompt::ImagePrompt(KSvgRenderer * renderer, QWidget * parent) : QLabel(parent), m_pic(QPicture()), m_renderer(renderer) {};
 
 void ImagePrompt::slotSetImage(const KUrl& image)
 {

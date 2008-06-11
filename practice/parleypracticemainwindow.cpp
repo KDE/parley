@@ -107,13 +107,11 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
 
     ////// Graphical Widgets Setup //////
 
-    TextualPrompt * prompt = new TextualPrompt();
-    prompt->setMinimumSize(100, 30);
-    QGraphicsProxyWidget * gprompt = scene->addWidget(prompt);
+    TextualPrompt * prompt = new TextualPrompt(krenderer);
+    scene->addItem(prompt);
     connect(m_manager, SIGNAL(signalNewText(const QString&)), prompt, SLOT(slotSetText(const QString&)));
 
-
-    TextualInput * input = new TextualInput();
+    TextualInput * input = new TextualInput(krenderer);
     input->setMinimumSize(100, 30);
     QGraphicsProxyWidget * ginput = scene->addWidget(input);
 
@@ -123,14 +121,14 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     connect(stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
     connect(m_manager, SIGNAL(signalExpressionChanged(KEduVocExpression*)), stats, SLOT(slotSetExpression(KEduVocExpression*)));
 
-    QGraphicsLinearLayout * promptAndInput = new QGraphicsLinearLayout();
-    promptAndInput->setOrientation(Qt::Vertical);
-    promptAndInput->addItem(gprompt);
-    promptAndInput->addItem(ginput);
+    //QGraphicsLinearLayout * promptAndInput = new QGraphicsLinearLayout();
+    //promptAndInput->setOrientation(Qt::Vertical);
+    //promptAndInput->addItem(gprompt);
+    //promptAndInput->addItem(ginput);
 
-    QGraphicsWidget * gpromptAndInput = new QGraphicsWidget();
-    gpromptAndInput->setLayout(promptAndInput);
-    scene->addItem(gpromptAndInput);
+    //QGraphicsWidget * gpromptAndInput = new QGraphicsWidget();
+    //gpromptAndInput->setLayout(promptAndInput);
+    //scene->addItem(gpromptAndInput);
 
     StdButton * stdbutton = new StdButton("Check Answer");
     QGraphicsProxyWidget * gstdbutton = scene->addWidget(stdbutton);
@@ -201,15 +199,15 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     connect(continueAction, SIGNAL(triggered()), input, SLOT(slotClear()));
     continueAction->setVisible(false);
 
-    KAction *prefsAct = KStandardAction::preferences(this, SLOT(slotCreatePreferencesDialog()),
+    /// Prefs Action Setup ///
+    
+    KStandardAction::preferences(this, SLOT(slotCreatePreferencesDialog()),
                                        actionCollection());
 
     //// Final Graphics Setup ////
 
-    gpromptAndInput->setPos(m_backgroundRect.width() / 2.0, m_backgroundRect.height() / 2.0);
+    ginput->setPos(m_backgroundRect.width() / 2.0, m_backgroundRect.height() / 2.0);
     //gstdbutton->setPos(10, 200); // we'll ignore the button for now.
-
-    //backgroundsvg->setVisible(false);
 
     setupGUI();
 

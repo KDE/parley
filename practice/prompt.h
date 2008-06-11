@@ -25,16 +25,21 @@
 #include <QPicture>
 
 #include <KUrl>
+#include <KSvgRenderer>
+#include <QGraphicsTextItem>
 
-class TextualPrompt : public QLabel
+class TextualPrompt : public QGraphicsTextItem
 {
         Q_OBJECT
 
     public:
-        TextualPrompt(QWidget * parent = 0);
+        TextualPrompt(KSvgRenderer * renderer);
 
     public slots:
-        void slotSetText(const QString& text) {setText(text); };
+        void slotSetText(const QString& text);
+    private:
+        KSvgRenderer * m_renderer;
+        QRectF m_backgroundRect;
 };
 
 class SoundPrompt : public QLabel
@@ -43,12 +48,14 @@ class SoundPrompt : public QLabel
 
 
     public:
-        SoundPrompt(QWidget * parent = 0);
+        SoundPrompt(KSvgRenderer * renderer, QWidget * parent = 0);
 
     public slots:
         void slotSetSound(const KUrl& sound) { m_sound = sound; };
     private:
         KUrl m_sound;
+        KSvgRenderer * m_renderer;
+        QRectF m_backgroundRect;
 };
 
 class ImagePrompt : public QLabel
@@ -57,7 +64,7 @@ class ImagePrompt : public QLabel
 
 
     public:
-        ImagePrompt(QWidget * parent = 0);
+        ImagePrompt(KSvgRenderer * renderer, QWidget * parent = 0);
 
     public slots:
 
@@ -65,6 +72,8 @@ class ImagePrompt : public QLabel
 
     private:
         QPicture m_pic;
+        KSvgRenderer * m_renderer;
+        QRectF m_backgroundRect;
 };
 
 
