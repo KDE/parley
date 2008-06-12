@@ -58,7 +58,7 @@ ParleyPrefs::ParleyPrefs(KEduVocDocument *doc, QWidget *parent, const QString &n
     KPluginInfo * inf = new KPluginInfo("/home/kde-devel/parley-plugins/test.desktop");
     QList<KPluginInfo> L;
      L.push_back(*inf);
-    m_kps->addPlugins(L);
+    m_kps->addPlugins(L,KPluginSelector::ReadConfigFile,QString("Playlist"),QString("playlist"),KSharedConfig::Ptr());
     kDebug() << QString("Entry Path : ") << inf->entryPath();
 }
 
