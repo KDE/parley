@@ -49,10 +49,9 @@
 #include "kgametheme/kgametheme.h"
 
 
-
-#include "../../libkdeedu/keduvocdocument/keduvocexpression.h"
-#include "../../libkdeedu/keduvocdocument/keduvoctranslation.h"
-#include "../../libkdeedu/keduvocdocument/keduvocdocument.h"
+#include <keduvocexpression.h>
+#include <keduvoctranslation.h>
+#include <keduvocdocument.h>
 
 ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
         : KXmlGuiWindow(parent)
