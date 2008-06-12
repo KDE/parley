@@ -36,6 +36,7 @@
 #include <KLocalizedString>
 #include <KConfigDialog>
 
+#include "practiceview.h"
 #include "input.h"
 #include "prompt.h"
 #include "statistics.h"
@@ -53,17 +54,18 @@
 #include <keduvoctranslation.h>
 #include <keduvocdocument.h>
 
+
 ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
         : KXmlGuiWindow(parent)
 {
 
     //// Basic setup ////
-    m_view = new QGraphicsView;
+    m_view = new PracticeView;
     setCentralWidget(m_view);
 
     QGraphicsScene* scene = new QGraphicsScene(this);
     m_view->setScene(scene);
-    m_view->installEventFilter(this);
+//     m_view->installEventFilter(this);
 
     m_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -253,15 +255,4 @@ void ParleyPracticeMainWindow::slotToggleShowSolutionContinueActions()
         actionCollection()->action("continue")->setVisible(false);
     }
 }
-
-bool ParleyPracticeMainWindow::eventFilter(QObject * obj, QEvent * event)
-{
-    if (event->type() == QEvent::Resize)
-    {
-        m_view->fitInView(m_backgroundRect, Qt::KeepAspectRatio);
-        return QObject::eventFilter(obj, event);
-    }
-    return QObject::eventFilter(obj, event);
-}
-
 

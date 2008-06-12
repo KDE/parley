@@ -25,8 +25,9 @@
 #include <knewstuff2/engine.h>
 #include <KComponentData>
 
-#include "../ui_kgamethemeselector.h"
 #include "kgametheme.h"
+#include "ui_kgamethemeselector.h"
+
 
 class KGameThemeSelector::KGameThemeSelectorPrivate
 {
@@ -159,4 +160,4 @@ void KGameThemeSelector::KGameThemeSelectorPrivate::_k_openKNewStuffDialog()
     qDeleteAll(entries);
 }
 
-#include "../kgamethemeselector.moc"
+#include "kgamethemeselector.moc"

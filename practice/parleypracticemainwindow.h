@@ -27,6 +27,7 @@
 
 
 class TestEntryManager;
+class PracticeView;
 
 class ParleyPracticeMainWindow : public KXmlGuiWindow
 {
@@ -38,13 +39,11 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
             ~ParleyPracticeMainWindow();*/
 
     private:
-        QGraphicsView* m_view;
+        PracticeView* m_view;
         QGraphicsSvgItem* m_layout;
         TestEntryManager * m_manager;
 
         QRectF m_backgroundRect;
-        
-        bool eventFilter(QObject *obj, QEvent *event);
 
     public slots:
         void slotGetInput(const QString& input);

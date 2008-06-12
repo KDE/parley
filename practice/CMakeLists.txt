@@ -19,6 +19,7 @@ set(parleypractice_SRCS
     ${kgametheme_SRCS}
     main.cpp
     parleypracticemainwindow.cpp
+    practiceview.cpp
     input.cpp
     prompt.cpp
     statistics.cpp
