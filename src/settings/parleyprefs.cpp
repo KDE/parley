@@ -24,6 +24,10 @@
 #include "viewoptions.h"
 #include "pluginoptions.h"
 #include <KConfigSkeleton>
+#include <KPluginSelector>
+#include <KPluginInfo>
+#include <QList>
+#include <KDebug>
 
 
 ParleyPrefs::ParleyPrefs(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config)
@@ -46,6 +50,16 @@ ParleyPrefs::ParleyPrefs(KEduVocDocument *doc, QWidget *parent, const QString &n
     m_pluginOptions = new PluginOptions(0);
     addPage(m_pluginOptions, i18n("Plugins"), "view-choose", i18n("Plugin Settings"), true);
     setHelp(QString(),"parley");
+
+    KPluginSelector* m_kps = new KPluginSelector(0);
+    addPage(m_kps, i18n("KPluginSelectorTest"), "view-choose", i18n("PluginSelector"), true);
+    setHelp(QString(),"parley");
+
+    KPluginInfo * inf = new KPluginInfo("/home/kde-devel/parley-plugins/test.desktop");
+    QList<KPluginInfo> L;
+     L.push_back(*inf);
+    m_kps->addPlugins(L);
+    kDebug() << QString("Entry Path : ") << inf->entryPath();
 }
 
 bool ParleyPrefs::hasChanged()

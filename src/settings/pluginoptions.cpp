@@ -15,6 +15,12 @@ PluginOptions::PluginOptions(QWidget* parent)
  : QWidget()
 {
     setupUi(this);
+    connect(addButton, SIGNAL(clicked()), this, SLOT(renameRemoveButton()) );
+}
+
+void PluginOptions::renameRemoveButton() {
+    removeButton->setText("Hi!!");
+    return;
 }
 
 #include "pluginoptions.moc"

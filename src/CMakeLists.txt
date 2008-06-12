@@ -28,6 +28,7 @@ set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
     settings/generaloptions.cpp
     settings/viewoptions.cpp
     settings/pluginoptions.cpp
+    settings/plugintablemodel.cpp
 )
 
 kde4_add_ui_files( libcommondlg_SRCS
@@ -194,6 +195,7 @@ target_link_libraries(
     ${KDE4_KHTML_LIBS}
     ${KDE4_KNEWSTUFF2_LIBS}
     ${KDE4_PHONON_LIBS}
+    ${KDE4_KUTILS_LIBS} #for the KPluginSelector
 )
 if(HAVE_LIBXSLT)
     target_link_libraries(parley ${LIBXML2_LIBRARIES} ${LIBXSLT_LIBRARIES})

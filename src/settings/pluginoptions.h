@@ -22,6 +22,8 @@ class PluginOptions : public QWidget, public Ui::PluginOptionsBase
     Q_OBJECT
 public:
     PluginOptions(QWidget* parent = 0);
+public slots:
+    void renameRemoveButton();
 
 };
 
