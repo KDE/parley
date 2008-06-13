@@ -54,6 +54,8 @@
 #include "configure-practice/configurepracticedialog.h"
 #include "prefs.h"
 
+#include "scripts/scriptdialog.h"
+
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>
 
@@ -762,6 +764,14 @@ void ParleyApp::initActions()
 
 
     KAction* findVocabulary = KStandardAction::find(m_searchLine, SLOT(setFocus()), actionCollection());
+
+    //Script Manager Menu Action
+    KAction* scriptManager =new KAction(this);
+    actionCollection()->addAction("show_script_manager", scriptManager);
+    scriptManager->setIcon(KIcon("set-language"));
+    scriptManager->setText(i18n("&Script Manager"));
+    connect(scriptManager, SIGNAL(triggered()),  this, SLOT(slotShowScriptManager()));
+
 }
 
 
@@ -838,6 +848,12 @@ void ParleyApp::initView()
     rightLayout->addWidget(m_vocabularyView, 1, 0);
 
     topLayout->addLayout(rightLayout);
+}
+
+void ParleyApp::slotShowScriptManager() {
+//      kDebug() << QString("here!!");
+    ScriptDialog * dialog = new ScriptDialog();
+    dialog->show();
 }
 
 

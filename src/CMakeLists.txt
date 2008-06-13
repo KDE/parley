@@ -168,6 +168,10 @@ set(languagedialogs_SRCS
     language-dialogs/grammardialog.cpp
 )
 
+set(scripts_SRCS
+    scripts/scriptdialog.cpp
+)
+
 kde4_add_ui_files(languagedialogs_SRCS
     language-dialogs/languagepage.ui
 )
@@ -176,7 +180,7 @@ set(parley_SRCS
     ${vocabulary_SRCS} ${libcommondlg_SRCS} ${practice_SRCS}
     ${configure-practice_SRCS} ${docprop_SRCS}
     ${entrydialogs_SRCS} ${statisticsdialogs_SRCS}
-    ${languagedialogs_SRCS} ${newdocument-wizard_SRCS}
+    ${languagedialogs_SRCS} ${scripts_SRCS} ${newdocument-wizard_SRCS}
     ${export_SRCS}
     parleydocument.cpp
     parley.cpp

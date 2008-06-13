@@ -116,6 +116,11 @@ public slots:
     void slotConfigShowSearch();
 
     /**
+     *  Display script manager (open a new window / or Settings window)
+     */
+    void slotShowScriptManager();
+
+    /**
      * Show the tip of the day (force it to be shown)
      */
     void tipOfDay();
