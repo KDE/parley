@@ -48,11 +48,11 @@ ParleyPrefs::ParleyPrefs(KEduVocDocument *doc, QWidget *parent, const QString &n
     setHelp(QString(),"parley");
 
     m_pluginOptions = new PluginOptions(0);
-    addPage(m_pluginOptions, i18n("Plugins"), "view-choose", i18n("Plugin Settings"), true);
+    addPage(m_pluginOptions, i18n("Plugins(test)"), "view-choose", i18n("Plugin Settings"), true);
     setHelp(QString(),"parley");
 
     KPluginSelector* m_kps = new KPluginSelector(0);
-    addPage(m_kps, i18n("KPluginSelectorTest"), "view-choose", i18n("PluginSelector"), true);
+    addPage(m_kps, i18n("Scripts"), "view-choose", i18n("PluginSelector"), true);
     setHelp(QString(),"parley");
 
     KPluginInfo * inf = new KPluginInfo("/home/kde-devel/parley-plugins/test.desktop");
