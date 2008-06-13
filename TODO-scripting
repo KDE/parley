@@ -1,6 +1,12 @@
 TODO to get scripting into Parley
 =============================
 
+ * Make KPluginSelector save its settings (which plugin is enabled/disabled)
+ * On Parley startup load the enabled scripts
+ * Connect with signal/slot the script and the editing of vocabulary
+ * Expose some functions that will allow the script to add translations
+ * Make the translations visible to the user in a nice way.
+
  * Read up on kross
 
  * Define which part of the api will be exposed for scripts
