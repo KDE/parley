@@ -17,6 +17,7 @@
 #include "vocabularymimedata.h"
 
 #include <keduvoctranslation.h>
+#include <keduvocwordtype.h>
 #include <KDebug>
 
 void VocabularyMimeData::setTranslations(QList<KEduVocTranslation *> translations)
@@ -33,10 +34,28 @@ void VocabularyMimeData::setTranslations(QList<KEduVocTranslation *> translation
         }
     }
 
-foreach (KEduVocExpression * expression, expressions) {
-            // deep copy
-            m_expressions.append(KEduVocExpression(*expression));
-}
+    foreach (KEduVocExpression * expression, expressions) {
+        MimeExpression exp;
+        // deep copy
+        exp.expression = KEduVocExpression(*expression);
+
+        // copy word types
+        // this sucks but there is not really a better was. copying pointers is not a good idea because copy and paste can be done between different documents.
+        foreach(int i, expression->translationIndices()) {
+            KEduVocWordType *type = expression->translation(i)->wordType();
+
+            if (type) { // check if it has a type != 0
+                exp.wordTypes[i].grammarType = expression->translation(i)->wordType()->wordType();
+
+                // this may seem weird, but the root element is "word types" so no need to copy that one.
+                while (type->parent()) {
+                    exp.wordTypes[i].wordType.prepend(type->name());
+                    type = static_cast<KEduVocWordType*>(type->parent());
+                }
+            }
+        }
+        m_expressions.append(exp);
+    }
 }
 
 QList< KEduVocTranslation * > VocabularyMimeData::translationList() const
@@ -46,16 +65,16 @@ QList< KEduVocTranslation * > VocabularyMimeData::translationList() const
 
 QVariant VocabularyMimeData::retrieveData(const QString & mimeType, QVariant::Type type) const
 {
-    // only use the expression list.
+    // only use the expression list.expressions
     // the translation list may be invalid (eg when cut it is no longer valid.
     // translations can only be used internally for drag and drop!!!
     if (mimeType == "text/plain") {
         QString text;
         for (int j = 0; j < m_expressions.size(); j++) {
             QList<int>::const_iterator i;
-            for (i = m_expressions.value(j).translationIndices().begin(); i != m_expressions.value(j).translationIndices().end(); i++) {
-                if (m_expressions.value(j).translation(*i)) {
-                    text.append(m_expressions.value(j).translation(*i)->text());
+            for (i = m_expressions.value(j).expression.translationIndices().begin(); i != m_expressions.value(j).expression.translationIndices().end(); i++) {
+                if (m_expressions.value(j).expression.translation(*i)) {
+                    text.append(m_expressions.value(j).expression.translation(*i)->text());
                     text.append(" - ");
                 }
             }
@@ -63,7 +82,6 @@ QVariant VocabularyMimeData::retrieveData(const QString & mimeType, QVariant::Ty
         }
         return text;
     }
-
     return QVariant();
 }
 
@@ -72,7 +90,7 @@ QStringList VocabularyMimeData::formats() const
     return QStringList() << "text/plain";
 }
 
-QList< KEduVocExpression > VocabularyMimeData::expressionList() const
+QList< VocabularyMimeData::MimeExpression > VocabularyMimeData::expressionList() const
 {
     return m_expressions;
 }
