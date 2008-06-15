@@ -703,6 +703,15 @@ void ParleyApp::initActions()
     vocabCleanUp->setToolTip(vocabCleanUp->whatsThis());
     vocabCleanUp->setStatusTip(vocabCleanUp->whatsThis());
 
+    KAction* removeGrades = new KAction(this);
+    actionCollection()->addAction("vocab_remove_grades", removeGrades);
+    removeGrades->setIcon(KIcon("edit-clear"));
+    removeGrades->setText(i18n("Remove &Grades"));
+    connect(removeGrades, SIGNAL(triggered(bool)), this, SLOT(removeGrades()));
+    removeGrades->setWhatsThis(i18n("Remove all grades from the current document"));
+    removeGrades->setToolTip(removeGrades->whatsThis());
+    removeGrades->setStatusTip(removeGrades->whatsThis());
+
 // -- PRACTICE --------------------------------------------------
 
     KAction* configurePractice = new KAction(this);
@@ -854,6 +863,11 @@ void ParleyApp::slotShowScriptManager() {
 //      kDebug() << QString("here!!");
     ScriptDialog * dialog = new ScriptDialog();
     dialog->show();
+}
+
+void ParleyApp::removeGrades()
+{
+    m_document->document()->lesson()->resetGrades(-1, KEduVocContainer::Recursive);
 }
 
 

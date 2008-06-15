@@ -24,6 +24,7 @@
       <Action name="tools_spelling" />
       <Action name="edit_edit_selected_area" />
       <Action name="vocab_clean_up" />
+      <Action name="vocab_remove_grades" />
       <Action name="show_script_manager"/>
   </Menu>
   <Menu name="view" >
