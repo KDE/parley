@@ -191,7 +191,7 @@ class SvgBarStatistics : public QGraphicsSvgItem
     Q_OBJECT
 
     public:
-        SvgBarStatistics(QSvgRenderer * renderer, QGraphicsItem * parent = 0);
+        SvgBarStatistics(QSvgRenderer * renderer, const QString& foregroundElementId, const QString& backgroundElementId, QGraphicsItem * parent = 0);
         ~SvgBarStatistics();
 
     public slots:

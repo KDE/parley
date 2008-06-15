@@ -18,10 +18,10 @@
 
 #include "prompt.h"
 
-TextualPrompt::TextualPrompt(KSvgRenderer * renderer) :
+TextualPrompt::TextualPrompt(KSvgRenderer * renderer, const QString& elementId) :
          m_renderer(renderer)
 {
-    m_backgroundRect = renderer->boundsOnElement("practice_text_background");
+    m_backgroundRect = renderer->boundsOnElement(elementId);
     setPos(m_backgroundRect.x() + m_backgroundRect.width() / 2.0, m_backgroundRect.y() + m_backgroundRect.height() / 2.0);
     adjustSize();
 };

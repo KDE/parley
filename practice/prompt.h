@@ -33,7 +33,7 @@ class TextualPrompt : public QGraphicsTextItem
         Q_OBJECT
 
     public:
-        TextualPrompt(KSvgRenderer * renderer);
+        TextualPrompt(KSvgRenderer * renderer, const QString& elementId);
 
     public slots:
         void slotSetText(const QString& text);

@@ -109,15 +109,15 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
 
     ////// Graphical Widgets Setup //////
 
-    TextualPrompt * prompt = new TextualPrompt(krenderer);
+    TextualPrompt * prompt = new TextualPrompt(krenderer, "practice_text_background");
     scene->addItem(prompt);
     connect(m_manager, SIGNAL(signalNewText(const QString&)), prompt, SLOT(slotSetText(const QString&)));
 
-    TextualInput * input = new TextualInput(krenderer, m_view);
+    TextualInput * input = new TextualInput(krenderer, m_view, "practice_text_translation_background");
     QGraphicsProxyWidget * ginput = scene->addWidget(input);
 
     Statistics * stats = new Statistics(this);
-    SvgBarStatistics * barstats = new SvgBarStatistics(backgroundsvg->renderer());
+    SvgBarStatistics * barstats = new SvgBarStatistics(krenderer, "percent_correct_bar", "percent_correct_background");
     scene->addItem(barstats);
     connect(stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
     connect(m_manager, SIGNAL(signalExpressionChanged(KEduVocExpression*)), stats, SLOT(slotSetExpression(KEduVocExpression*)));

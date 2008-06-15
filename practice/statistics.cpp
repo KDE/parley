@@ -47,12 +47,12 @@ LCDStatistics::LCDStatistics(QWidget * parent)
     display(0.0);
 }
 
-SvgBarStatistics::SvgBarStatistics(QSvgRenderer* renderer, QGraphicsItem * parent)
+SvgBarStatistics::SvgBarStatistics(QSvgRenderer* renderer, const QString& foregroundElementId, const QString& backgroundElementId, QGraphicsItem * parent)
     : QGraphicsSvgItem(parent)
 {
     setSharedRenderer(renderer);
-    setElementId("percent_correct_bar");
-    m_backgroundRect = renderer->boundsOnElement("percent_correct_background");
+    setElementId(foregroundElementId);
+    m_backgroundRect = renderer->boundsOnElement(backgroundElementId);
     setPos(m_backgroundRect.x(), m_backgroundRect.y());
     scale((m_backgroundRect.width())/boundingRect().width(), 1.0);
     kDebug() << boundingRect() << scenePos();

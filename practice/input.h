@@ -30,7 +30,7 @@ class TextualInput : public QLineEdit
     Q_OBJECT
 
     public:
-        TextualInput(KSvgRenderer * renderer, QGraphicsView * view, QWidget * parent = 0);
+        TextualInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent = 0);
 
     public slots:
         void slotChangeAnswerColor(float correct);

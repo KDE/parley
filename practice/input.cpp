@@ -23,12 +23,12 @@
 
 #include <KDebug>
 
-TextualInput::TextualInput(KSvgRenderer * renderer, QGraphicsView * view, QWidget* parent)
+TextualInput::TextualInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget* parent)
         : QLineEdit(parent),
         m_renderer(renderer)
 {
 //     //setFrame(false);
-     QRect bounds = m_renderer->boundsOnElement("practice_text_translation_background").toRect();
+     QRect bounds = m_renderer->boundsOnElement(elementId).toRect();
      setGeometry(view->mapToScene(bounds).boundingRect().toRect());
 }
 
