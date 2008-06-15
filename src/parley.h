@@ -125,6 +125,11 @@ public slots:
      */
     void startupTipOfDay();
 
+    /**
+     * Removes all grading information from the current document
+     */
+    void removeGrades();
+
 signals:
     void signalSetData( const QList<int>& entries, int currentTranslation);
 

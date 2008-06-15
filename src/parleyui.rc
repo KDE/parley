@@ -22,7 +22,7 @@
       <Action name="edit_remove_selected_area" />
       <Separator/>
       <Action name="tools_spelling" />
-      <Action name="edit_edit_selected_area" />
+      <Action name="vocab_remove_grades" />
   </Menu>
   <Menu name="view" >
       <text>View</text>
