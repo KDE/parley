@@ -53,6 +53,10 @@ QVariant StatisticsModel::data(const QModelIndex & index, int role) const
 Qt::ItemFlags StatisticsModel::flags(const QModelIndex & index) const
 {
     if (index.isValid()) {
+
+        if (index.column() == 0) {
+            return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
+        }
         return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
     }
     return 0;
