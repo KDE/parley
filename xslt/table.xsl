@@ -55,13 +55,13 @@ The easiest way to use the stylesheet is to include it in the .kvtml file:
 	
 		<script type="text/javascript">
 	<xsl:text disable-output-escaping="yes"><![CDATA[//<![CDATA[
-    	function toggle_visibility(id) {
-       		var e = document.getElementById(id);
-       		if(e.style.visibility == 'visible')
-          		e.style.visibility = 'hidden';
-       		else
-          		e.style.visibility = 'visible';
-    	}
+	function toggle_visibility(id) {
+		var e = document.getElementById(id);
+		if(e.style.visibility == 'visible')
+			e.style.visibility = 'hidden';
+		else
+			e.style.visibility = 'visible';
+	}
 
 	function set_column_visibility(table, column, visibility) {
 		if (table == null) {
@@ -107,32 +107,53 @@ The easiest way to use the stylesheet is to include it in the .kvtml file:
 
 
 	<xsl:template match="lessons">
-		<ul class="noprint">
-		<xsl:for-each select="container">
-			<li><a href="#{name}"><xsl:value-of select="name"/></a></li>
-		</xsl:for-each>
-		</ul>
-		<xsl:apply-templates select="container"/>
+		<xsl:apply-templates select="container" mode="toc"/>
+		<xsl:apply-templates select="container" mode="entries"/>
 	</xsl:template>
- 
-	<xsl:template match="container">
-		<h2>Lesson: <a name="{name}"><xsl:value-of select="name"/></a></h2>
-		<table>
-			<tr>
-				<th></th>
-				<xsl:apply-templates select="/kvtml/identifiers" mode="header"/>
-			</tr>
-			<tr class="noprint">
-				<td></td>
-				<xsl:apply-templates select="/kvtml/identifiers" mode="buttonrow"/>
-			</tr>
-			<xsl:apply-templates select="entry"/>
 
-			<xsl:for-each select="entry">
-				<xsl:variable name="id" select="@id"/>
-				<xsl:apply-templates select="/kvtml/entries/entry[@id=$id]"/>
-			</xsl:for-each>	
-		</table>
+	<xsl:template match="container" mode="toc">
+		<ul class="noprint">
+			<li>
+				<a href="#lesson{count(preceding::container) + count(ancestor::container) + 1}"><xsl:value-of select="name"/></a>
+				<xsl:apply-templates select="container" mode="toc"/>
+			</li>
+		</ul>
+	</xsl:template>
+
+	<xsl:template match="container" mode="entries">
+		<xsl:choose>
+			<xsl:when test="count(ancestor::container) = 0">
+				<h2><a name="lesson{count(preceding::container) + count(ancestor::container) + 1}"><xsl:value-of select="name"/></a></h2>
+			</xsl:when>
+			<xsl:when test="count(ancestor::container) = 1">
+				<h3><a name="lesson{count(preceding::container) + count(ancestor::container) + 1}"><xsl:value-of select="name"/></a></h3>
+			</xsl:when>
+			<xsl:when test="count(ancestor::container) = 2">
+				<h4><a name="lesson{count(preceding::container) + count(ancestor::container) + 1}"><xsl:value-of select="name"/></a></h4>
+			</xsl:when>
+			<xsl:otherwise>
+				<h5><a name="lesson{count(preceding::container) + count(ancestor::container) + 1}"><xsl:value-of select="name"/></a></h5>
+			</xsl:otherwise>
+		</xsl:choose>
+		<xsl:if test="count(child::entry) != 0">
+			<table>
+				<tr>
+					<th></th>
+					<xsl:apply-templates select="/kvtml/identifiers" mode="header"/>
+				</tr>
+				<tr class="noprint">
+					<td></td>
+					<xsl:apply-templates select="/kvtml/identifiers" mode="buttonrow"/>
+				</tr>
+				<xsl:apply-templates select="entry"/>
+
+				<xsl:for-each select="entry">
+					<xsl:variable name="id" select="@id"/>
+					<xsl:apply-templates select="/kvtml/entries/entry[@id=$id]"/>
+				</xsl:for-each>	
+			</table>
+		</xsl:if>
+		<xsl:apply-templates select="container" mode="entries"/>
 	</xsl:template>
 	
 	<xsl:template match="identifiers/identifier" mode="header">
