@@ -30,8 +30,10 @@ class LessonStatisticsView : public ContainerView
 
 public:
     LessonStatisticsView(QWidget *parent);
-
     void setModel(ContainerModel *model);
+
+private Q_SLOTS:
+    void removeGrades();
 };
 
 #endif
