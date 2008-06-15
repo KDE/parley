@@ -72,6 +72,15 @@ protected:
 LessonStatisticsView::LessonStatisticsView(QWidget * parent) :ContainerView(parent)
 {
     header()->setVisible(true);
+
+    // inherits context menu policy - so action will show up in right click menu
+    KAction *removeGradesAction = new KAction(this);
+    removeGradesAction->setText(i18n("Remove Grades"));
+    removeGradesAction->setIcon(KIcon("edit-clear"));
+
+    connect(removeGradesAction, SIGNAL(triggered()), SLOT(removeGrades()));
+
+    addAction(removeGradesAction);
 }
 
 void LessonStatisticsView::setModel(ContainerModel *model)
@@ -84,6 +93,13 @@ void LessonStatisticsView::setModel(ContainerModel *model)
         setItemDelegateForColumn(i, new GradeDelegate());
         setColumnWidth(i, 200);
     }
+}
+
+void LessonStatisticsView::removeGrades()
+{
+    QModelIndex selectedIndex = selectionModel()->currentIndex();
+    KEduVocLesson* lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
+    lesson->resetGrades(-1, KEduVocContainer::NotRecursive);
 }
 
 #include "lessonstatistics.moc"
