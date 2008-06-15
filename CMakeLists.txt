@@ -25,9 +25,9 @@ add_subdirectory( icons )
 add_subdirectory( examples )
 add_subdirectory( tipofday )
 
-#if(HAVE_LIBXSLT)
-#    add_subdirectory( xslt )
-#endif(HAVE_LIBXSLT)
+if(HAVE_LIBXSLT)
+    add_subdirectory( xslt )
+endif(HAVE_LIBXSLT)
 
 if(HAVE_PLASMA)
     add_subdirectory(plasmoid)
