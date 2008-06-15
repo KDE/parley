@@ -656,17 +656,6 @@ void ParleyApp::initActions()
     KAction *checkSpelling = KStandardAction::spelling(m_vocabularyView, SLOT(checkSpelling()), actionCollection());
 
 
-//     KAction* editSaveSelectedArea = new KAction(this);
-//      actionCollection()->addAction("edit_save_selected_area", editSaveSelectedArea);
-//     editSaveSelectedArea->setIcon(KIcon("document-save-as"));
-//     editSaveSelectedArea->setText(i18n("Save E&ntries in Current Test as..."));
-//     connect(editSaveSelectedArea, SIGNAL(triggered(bool)), this, SLOT(slotSaveSelection()));
-//     editSaveSelectedArea->setWhatsThis(i18n("Save the entries in the current test as a new vocabulary"));
-//     editSaveSelectedArea->setToolTip(editSaveSelectedArea->whatsThis());
-//     editSaveSelectedArea->setStatusTip(editSaveSelectedArea->whatsThis());
-//     ///@todo enable when/if the corresponding function is rewritten
-//     editSaveSelectedArea->setEnabled(false);
-
     KAction *showSublessonentries = actionCollection()->add<KToggleAction>("lesson_showsublessonentries");
     showSublessonentries->setText(i18n("Show Entries from Child Lessons"));
     connect(showSublessonentries, SIGNAL(triggered(bool)), m_vocabularyModel, SLOT(showEntriesOfSubcontainers(bool)));
@@ -678,7 +667,7 @@ void ParleyApp::initActions()
     KAction* removeGrades = new KAction(this);
     actionCollection()->addAction("vocab_remove_grades", removeGrades);
     removeGrades->setIcon(KIcon("edit-clear"));
-    removeGrades->setText(i18n("Remove &Grades"));
+    removeGrades->setText(i18n("Remove Grades"));
     connect(removeGrades, SIGNAL(triggered(bool)), this, SLOT(removeGrades()));
     removeGrades->setWhatsThis(i18n("Remove all grades from the current document"));
     removeGrades->setToolTip(removeGrades->whatsThis());
@@ -841,7 +830,6 @@ void ParleyApp::removeGrades()
 {
     m_document->document()->lesson()->resetGrades(-1, KEduVocContainer::Recursive);
 }
-
 
 #include "parley.moc"
 
