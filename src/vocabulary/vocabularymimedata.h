@@ -17,6 +17,7 @@
 #define VOCABULARYMIMEDATA_H
 
 #include <keduvocexpression.h>
+#include <keduvocwordtype.h>
 #include <QMimeData>
 
 class KEduVocTranslation;
@@ -24,17 +25,31 @@ class KEduVocTranslation;
 class VocabularyMimeData :public QMimeData {
     Q_OBJECT
 public:
+    struct MimeExpression {
+        struct WordTypeStrings {
+            QStringList wordType; // better have this hierachical
+            KEduVocWordType::EnumWordType grammarType;
+        };
+
+        // all data as deep copy
+        KEduVocExpression expression;
+        // the word types cannot be copied, thus per translation (int) save parent types and the type
+        QMap<int, WordTypeStrings> wordTypes;
+    };
+
     void setTranslations(QList<KEduVocTranslation*> translation);
     QList<KEduVocTranslation *> translationList() const;
-    QList<KEduVocExpression> expressionList() const;
+    QList<VocabularyMimeData::MimeExpression> expressionList() const;
 
     QVariant retrieveData ( const QString & mimeType, QVariant::Type type ) const;
 
     QStringList formats () const;
 
+
 private:
     QList<KEduVocTranslation*> m_translations;
-    QList<KEduVocExpression> m_expressions;
+    QList <MimeExpression> m_expressions;
+    QString m_text;
 };
 
 

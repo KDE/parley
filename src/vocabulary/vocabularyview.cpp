@@ -457,6 +457,7 @@ void VocabularyView::deleteSelectedEntries(bool askConfirmation)
     }
 
     if (del) {
+        emit translationChanged(0, 0);
         while (!selectionModel()->selectedIndexes().isEmpty()) {
             m_model->removeRows(selectionModel()->selectedIndexes()[0].row(), 1, QModelIndex());
         }
@@ -480,8 +481,32 @@ void VocabularyView::slotEditPaste()
     const VocabularyMimeData *vocMimeData = qobject_cast<const VocabularyMimeData *>(mimeData);
     if (vocMimeData) {
         kDebug() << "clipboard contains vocabulary mime data!";
-        foreach(const KEduVocExpression &entry, vocMimeData->expressionList()) {
-            m_model->appendEntry(new KEduVocExpression(entry));
+        foreach(const VocabularyMimeData::MimeExpression &mimeEntry, vocMimeData->expressionList()) {
+            KEduVocExpression *pasteExpression = new KEduVocExpression(mimeEntry.expression);
+            m_model->appendEntry(pasteExpression);
+
+            // find word type (create if not found)
+            KEduVocWordType *type = m_doc->wordTypeContainer();
+            foreach (int translation, mimeEntry.wordTypes.keys()) {
+                // append if needed
+                foreach (const QString& typeName, mimeEntry.wordTypes.value(translation).wordType) {
+                    kDebug() << mimeEntry.wordTypes.value(translation).wordType;
+                    KEduVocContainer *childType = type->childContainer(typeName);
+                    if (!childType) {
+                        // the doc does not contain the right word type - create it
+                        childType = new KEduVocWordType(typeName);
+                        type->appendChildContainer(childType);
+                    }
+                    type = static_cast<KEduVocWordType*>(childType);
+                }
+                pasteExpression->translation(translation)->setWordType(type);
+                // check for special type stuff
+                if (type->wordType() != mimeEntry.wordTypes.value(translation).grammarType) {
+                    if (type->wordType() == KEduVocWordType::General) {
+                        type->setWordType(mimeEntry.wordTypes.value(translation).grammarType);
+                    }
+                }
+            }
         }
     } else {
         m_model->appendEntry(new KEduVocExpression(mimeData->text()));
