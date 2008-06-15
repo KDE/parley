@@ -35,6 +35,7 @@
 #include <KActionMenu>
 #include <KLocalizedString>
 #include <KConfigDialog>
+#include <KApplication>
 
 #include "practiceview.h"
 #include "input.h"
@@ -120,6 +121,8 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     scene->addItem(barstats);
     connect(stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
     connect(m_manager, SIGNAL(signalExpressionChanged(KEduVocExpression*)), stats, SLOT(slotSetExpression(KEduVocExpression*)));
+    connect(m_manager, SIGNAL(signalSetFinished()), stats, SLOT(slotSetFinished()));
+
 
     //QGraphicsLinearLayout * promptAndInput = new QGraphicsLinearLayout();
     //promptAndInput->setOrientation(Qt::Vertical);
@@ -202,6 +205,11 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     //// Prefs Action Setup ///
     KStandardAction::preferences(this, SLOT(slotCreatePreferencesDialog()),
                                        actionCollection());
+
+    //// Quit action setup ////
+    KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
+    connect(stats, SIGNAL(signalQuit()), kapp, SLOT(quit()));
+
 
     //// Final Graphics Setup ////
 

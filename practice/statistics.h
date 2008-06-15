@@ -35,12 +35,12 @@
 class Statistics : public QObject
 {
     Q_OBJECT
-            
+
     public:
         Statistics(QObject * parent = 0);
         virtual ~Statistics();
 
-        
+
         /// Tainting causes an answer to be counted as incorrect (even if it is
         /// correct), and the tainting frequency is statisticly tracked.
         /// These denote the reason that an answer is tainted.
@@ -105,14 +105,14 @@ class Statistics : public QObject
         /// Called when the user has requested that the answer be shown.
         /// If the question has not been answered, it will be counted as incorrect.
         void slotSolutionShown();
-        
+
     public:
         static const QString gradeToString(int grade);
 
-        
+
         /// Returns the percent of entries that have been answered correctly.
         /// This will return 0 when the numerator and/or denominator is 0,
-        /// This practice is mathmatically incorrect (n/0 != 0/0 != 0), but works in practice 
+        /// This practice is mathmatically incorrect (n/0 != 0/0 != 0), but works in practice
         float percentCorrect()
         { return m_attempted != 0 ? static_cast<float>(m_correct) / m_attempted : 0.0f; }
         bool answerChecked() const  { return m_answerChecked; }
@@ -129,10 +129,11 @@ class Statistics : public QObject
         int taintReason(TaintReason reason) const { return m_taintReasons[reason]; }
         /// Get how often entries were skipped for SkipReason @param reason
         int skippedReason(SkipReason reason) const { return m_skipReasons[reason]; }
-        
+
     signals:
         void signalUpdateDisplay(Statistics*);
-        
+        void signalQuit();
+
     protected:
         /// Number of questions attempted.
         int m_attempted;
@@ -170,7 +171,7 @@ class Statistics : public QObject
         /// If the current question is tainted.
         bool m_tainted;
 
-        
+
 };
 
 class LCDStatistics : public QLCDNumber
@@ -179,7 +180,7 @@ class LCDStatistics : public QLCDNumber
 
     public:
         LCDStatistics(QWidget* parent = 0);
-            
+
     public slots:
         /// Refreshes the GUI display.
         void slotUpdateDisplay(Statistics*);
@@ -192,11 +193,11 @@ class SvgBarStatistics : public QGraphicsSvgItem
     public:
         SvgBarStatistics(QSvgRenderer * renderer, QGraphicsItem * parent = 0);
         ~SvgBarStatistics();
-        
+
     public slots:
         /// Refreshes the GUI display.
         void slotUpdateDisplay(Statistics*);
-        
+
 
     private:
         QRectF m_backgroundRect;

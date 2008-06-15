@@ -162,6 +162,7 @@ void Statistics::slotTaintAnswer(TaintReason reason)
 void Statistics::slotSetFinished()
 {
     // TODO do something here ;)
+    emit signalQuit();
 }
 
 

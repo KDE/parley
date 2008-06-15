@@ -53,7 +53,7 @@ class TestEntryManager : public QObject
 
     public:
         TestEntryManager(QObject* parent = 0);
-        
+
         void open(KEduVocDocument*);
 
         const QString currentSolution() const;
@@ -112,7 +112,7 @@ class TestEntryManager : public QObject
         /// Used so various widgets will know to reset themselves.
         void signalNewEntry();
         /// Emitted when the set of questions is finished.
-        void signalQuestionSetFinished();
+        void signalSetFinished();
 
 };
 

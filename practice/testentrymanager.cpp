@@ -101,8 +101,7 @@ int TestEntryManager::activeEntryCount() const
 
 void TestEntryManager::shuffle()
 {
-    kDebug() << "called";
-    KRandomSequence().randomize(m_entries);
+    KRandomSequence(0).randomize(m_entries);
 }
 
 
@@ -124,7 +123,7 @@ void TestEntryManager::slotNewEntry()
     }
     else
     {
-        emit signalQuestionSetFinished();
+        emit signalSetFinished();
         kDebug() << "finished";
     }
 }
