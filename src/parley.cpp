@@ -185,23 +185,6 @@ void ParleyApp::slotShowStatistics()
     statisticsDialog.exec();
 }
 
-
-// void ParleyApp::slotCleanVocabulary()
-// {
-//     QApplication::setOverrideCursor(Qt::WaitCursor);
-//     int num = m_document->document()->cleanUp();
-//     QApplication::restoreOverrideCursor();
-// 
-//     if (num != 0) {
-//         m_tableModel->reset();
-//         QString s = i18np("1 entry with the same content was found and removed.",
-//                           "%1 entries with the same content were found and removed.", num);
-// 
-//         KMessageBox::information(this, s, i18n("Remove Duplicates"));
-//     }
-// }
-
-
 void ParleyApp::slotGeneralOptions()
 {
     ParleyPrefs* dialog = new ParleyPrefs(m_document->document(), this, "settings",  Prefs::self());
@@ -676,17 +659,6 @@ void ParleyApp::initActions()
     showSublessonentries->setToolTip(showSublessonentries->whatsThis());
     showSublessonentries->setStatusTip(showSublessonentries->whatsThis());
     showSublessonentries->setChecked(Prefs::showSublessonentries());
-
-// -- VOCABULARY --------------------------------------------------
-
-    KAction* vocabCleanUp = new KAction(this);
-    actionCollection()->addAction("vocab_clean_up", vocabCleanUp);
-    vocabCleanUp->setIcon(KIcon("edit-clear"));
-    vocabCleanUp->setText(i18n("Remove &Duplicates"));
-    connect(vocabCleanUp, SIGNAL(triggered(bool)), this, SLOT(slotCleanVocabulary()));
-    vocabCleanUp->setWhatsThis(i18n("Remove duplicate entries from the vocabulary"));
-    vocabCleanUp->setToolTip(vocabCleanUp->whatsThis());
-    vocabCleanUp->setStatusTip(vocabCleanUp->whatsThis());
 
 // -- PRACTICE --------------------------------------------------
 
