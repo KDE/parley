@@ -22,6 +22,10 @@
 
 #include <KRandomSequence>
 
+#include <KMessageBox>
+
+#include <KApplication>
+
 #include "practiceprefs.h"
 
 #include "../../libkdeedu/keduvocdocument/keduvocexpression.h"
@@ -61,6 +65,13 @@ void TestEntryManager::open(KEduVocDocument* doc)
     {
         m_entries = m_doc->lesson()->entries(KEduVocContainer::Recursive);
         kDebug() << "count " << m_doc->lesson()->entryCount(KEduVocContainer::Recursive);
+        if (0 == m_doc->lesson()->entryCount(KEduVocContainer::Recursive))
+        {
+//            KMessageBox::error(0, i18n("The vocabulary document contains no entries."));
+            kDebug() << "No entries in selected document -- aborting.";
+            exit(1);
+
+        }
         m_iter = m_entries;
         filterTestEntries();
         shuffle();
@@ -69,12 +80,12 @@ void TestEntryManager::open(KEduVocDocument* doc)
     {
         kDebug() << "bad" << m_doc << m_doc->lesson();
     }
-    
+
 }
 
 const QString TestEntryManager::currentSolution() const
 {
-    return m_entry->translation(0)->text(); // TODO use PracticePrefs to find real answer
+    return m_entry->translation(PracticePrefs::solutionLanguage())->text();
 }
 
 int TestEntryManager::totalEntryCount() const
@@ -100,14 +111,14 @@ void TestEntryManager::slotNewEntry()
     if (m_iter.hasNext())
     {
         m_entry = m_iter.next();
-        KEduVocTranslation * original = m_entry->translation(1);
+        KEduVocTranslation * original = m_entry->translation(PracticePrefs::questionLanguage());
         kDebug() << original->text();
 
         // It doesn't matter if these are empty since we would emit empty KUrls/QStrings anyway
         emit signalNewText(original->text());
         emit signalNewImage(original->imageUrl());
         emit signalNewSound(original->soundUrl());
-        
+
         emit signalExpressionChanged(m_entry);
 
     }

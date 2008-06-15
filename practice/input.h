@@ -23,22 +23,26 @@
 #include <QLineEdit>
 
 #include <KSvgRenderer>
+#include <QGraphicsView>
 
 class TextualInput : public QLineEdit
 {
     Q_OBJECT
 
     public:
-        TextualInput(KSvgRenderer * renderer, QWidget * parent = 0);
+        TextualInput(KSvgRenderer * renderer, QGraphicsView * view, QWidget * parent = 0);
 
     public slots:
         void slotChangeAnswerColor(float correct);
         void slotClear();
         void slotShowSolution(const QString& solution);
         void slotEmitCurrentInput();
-    
+
     signals:
         void signalInput(const QString& input);
+
+    private:
+        KSvgRenderer* m_renderer;
 };
 
 #endif

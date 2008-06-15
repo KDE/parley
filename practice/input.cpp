@@ -23,9 +23,13 @@
 
 #include <KDebug>
 
-TextualInput::TextualInput(KSvgRenderer * renderer, QWidget* parent)
-        : QLineEdit(parent)
+TextualInput::TextualInput(KSvgRenderer * renderer, QGraphicsView * view, QWidget* parent)
+        : QLineEdit(parent),
+        m_renderer(renderer)
 {
+//     //setFrame(false);
+     QRect bounds = m_renderer->boundsOnElement("practice_text_translation_background").toRect();
+     setGeometry(view->mapToScene(bounds).boundingRect().toRect());
 }
 
 void TextualInput::slotEmitCurrentInput()
@@ -40,7 +44,7 @@ void TextualInput::slotChangeAnswerColor(float correct)
         pal.setColor(QPalette::Text, Qt::green);
     else
         pal.setColor(QPalette::Text, Qt::red);
-    
+
     setPalette(pal);
     setText(text());
 }
@@ -61,6 +65,6 @@ void TextualInput::slotClear()
     setPalette(pal);
     setText("");
 }
-    
+
 
 #include "input.moc"

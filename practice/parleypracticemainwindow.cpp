@@ -72,19 +72,19 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
 
     //KGameThemeSelector
 
-    
      QGraphicsSvgItem * backgroundsvg = new QGraphicsSvgItem();
      KSvgRenderer * krenderer = new KSvgRenderer();
      KGameTheme kgtheme;
-     kgtheme.load("parley/themes/default.desktop");
+     kDebug() << kgtheme.load("parley/themes/default.desktop");
      krenderer->load(kgtheme.graphics());
+     kDebug() << kgtheme.graphics();
      backgroundsvg->setSharedRenderer(krenderer);
      scene->addItem(backgroundsvg);
      m_backgroundRect = backgroundsvg->boundingRect();
-     
+
     scene->setSceneRect(m_backgroundRect);
     m_view->setSceneRect(scene->sceneRect());
-    
+
     //// Loading the Document -- temporary ////
     KEduVocDocument * doc = new KEduVocDocument(this);
     //KUrl url = KFileDialog::getOpenUrl(KUrl::fromPath("~"), KEduVocDocument::pattern(KEduVocDocument::Reading), this, i18n("Open Vocabulary Document"));
@@ -98,7 +98,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     // take the last file, but there are File1..n and Name1..n entries..
     QString sourceFile = recentFilesGroup.readEntry(recentFilesGroup.keyList().value(recentFilesGroup.keyList().count() / 2 - 1), QString());
 
-    int code = doc->open(sourceFile); 
+    int code = doc->open(sourceFile);
     kDebug() << code;
 
     // this is the only object/widget the window directly keeps track of (outside of the canvas, etc).
@@ -112,8 +112,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     scene->addItem(prompt);
     connect(m_manager, SIGNAL(signalNewText(const QString&)), prompt, SLOT(slotSetText(const QString&)));
 
-    TextualInput * input = new TextualInput(krenderer);
-    input->setMinimumSize(100, 30);
+    TextualInput * input = new TextualInput(krenderer, m_view);
     QGraphicsProxyWidget * ginput = scene->addWidget(input);
 
     Statistics * stats = new Statistics(this);
@@ -135,11 +134,11 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     QGraphicsProxyWidget * gstdbutton = scene->addWidget(stdbutton);
     connect(input, SIGNAL(returnPressed()), stdbutton, SLOT(slotActivated()));
     gstdbutton->setVisible(false); // disable for now
-    
+
 
     //// Input and Validation Setup ////
     AnswerValidator * validator = new AnswerValidator(doc, this);
-    validator->setLanguage(1); // TODO do this for real...
+    validator->setLanguage(PracticePrefs::solutionLanguage());
     connect(input, SIGNAL(signalInput(const QString&)), this, SLOT(slotGetInput(const QString&)));
     connect(this, SIGNAL(signalCheckInput(const QString&, const QString&)), validator, SLOT(checkUserAnswer(const QString&, const QString&)));
     connect(validator, SIGNAL(signalCorrection(float, Statistics::ErrorType)), stats, SLOT(slotCorrection(float, Statistics::ErrorType)));
@@ -200,15 +199,11 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     connect(continueAction, SIGNAL(triggered()), input, SLOT(slotClear()));
     continueAction->setVisible(false);
 
-    /// Prefs Action Setup ///
-    
+    //// Prefs Action Setup ///
     KStandardAction::preferences(this, SLOT(slotCreatePreferencesDialog()),
                                        actionCollection());
 
     //// Final Graphics Setup ////
-
-    ginput->setPos(m_backgroundRect.width() / 2.0, m_backgroundRect.height() / 2.0);
-    //gstdbutton->setPos(10, 200); // we'll ignore the button for now.
 
     setupGUI();
 
@@ -255,4 +250,3 @@ void ParleyPracticeMainWindow::slotToggleShowSolutionContinueActions()
         actionCollection()->action("continue")->setVisible(false);
     }
 }
-
