@@ -88,7 +88,7 @@ void SynonymWidget::updateList()
             synonymLabel->setText(i18nc("Title for a list of antonyms (opposites) for a word", "Antonyms of %1:", m_currentTranslation->text()));
             break;
         case FalseFriend:
-            synonymLabel->setText(i18nc("Title for a list of false friend (things that sound similiar but have different meanings) for a word", "False Friends of %1:", m_currentTranslation->text()));
+            synonymLabel->setText(i18nc("Title for a list of false friend (things that sound similar but have different meanings) for a word", "False Friends of %1:", m_currentTranslation->text()));
             break;
         }
 
