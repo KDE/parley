@@ -29,12 +29,12 @@
 
 class KEduVocDocument;
 
-class KVTStatisticsDialog : public KDialog
+class StatisticsDialog : public KDialog
 {
     Q_OBJECT
 public:
-    KVTStatisticsDialog(KEduVocDocument* doc, QWidget *parent);
-    ~KVTStatisticsDialog();
+    StatisticsDialog(KEduVocDocument* doc, QWidget *parent);
+    ~StatisticsDialog();
 
 private:
     KEduVocDocument *m_doc;

@@ -184,7 +184,7 @@ void ParleyApp::slotUpdateWindowCaption()
 
 void ParleyApp::slotShowStatistics()
 {
-    KVTStatisticsDialog statisticsDialog(m_document->document(), this);
+    StatisticsDialog statisticsDialog(m_document->document(), this);
     statisticsDialog.exec();
 }
 

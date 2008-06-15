@@ -23,7 +23,7 @@
 #include "keduvocdocument.h"
 #include "statisticsmodel.h"
 
-KVTStatisticsDialog::KVTStatisticsDialog(KEduVocDocument *doc, QWidget *parent) : KDialog(parent), m_doc(doc)
+StatisticsDialog::StatisticsDialog(KEduVocDocument *doc, QWidget *parent) : KDialog(parent), m_doc(doc)
 {
     setCaption(i18n("Document Statistics"));
     setButtons(Ok);
@@ -42,7 +42,7 @@ KVTStatisticsDialog::KVTStatisticsDialog(KEduVocDocument *doc, QWidget *parent) 
     restoreDialogSize(cg);
 }
 
-KVTStatisticsDialog::~KVTStatisticsDialog()
+StatisticsDialog::~StatisticsDialog()
 {
     KConfigGroup cg(KGlobal::config(), "StatisticsDialog");
     KDialog::saveDialogSize(cg);
