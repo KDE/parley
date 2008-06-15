@@ -502,7 +502,7 @@ void VocabularyView::slotEditPaste()
                 pasteExpression->translation(translation)->setWordType(type);
                 // check for special type stuff
                 if (type->wordType() != mimeEntry.wordTypes.value(translation).grammarType) {
-                    if (!type->wordType()) {
+                    if (type->wordType() == KEduVocWordType::General) {
                         type->setWordType(mimeEntry.wordTypes.value(translation).grammarType);
                     }
                 }

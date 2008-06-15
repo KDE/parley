@@ -49,6 +49,7 @@ public:
 private:
     QList<KEduVocTranslation*> m_translations;
     QList <MimeExpression> m_expressions;
+    QString m_text;
 };
 
 

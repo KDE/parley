@@ -42,6 +42,11 @@ void VocabularyMimeData::setTranslations(QList<KEduVocTranslation *> translation
         // copy word types
         // this sucks but there is not really a better was. copying pointers is not a good idea because copy and paste can be done between different documents.
         foreach(int i, expression->translationIndices()) {
+            // generate text string representation
+            m_text.append(expression->translation(i)->text());
+            m_text.append(" - ");
+
+            // fill in word types independent of pointers
             KEduVocWordType *type = expression->translation(i)->wordType();
 
             if (type) { // check if it has a type != 0
@@ -55,6 +60,7 @@ void VocabularyMimeData::setTranslations(QList<KEduVocTranslation *> translation
             }
         }
         m_expressions.append(exp);
+        m_text.append('\n');
     }
 }
 
@@ -68,19 +74,9 @@ QVariant VocabularyMimeData::retrieveData(const QString & mimeType, QVariant::Ty
     // only use the expression list.expressions
     // the translation list may be invalid (eg when cut it is no longer valid.
     // translations can only be used internally for drag and drop!!!
+
     if (mimeType == "text/plain") {
-        QString text;
-        for (int j = 0; j < m_expressions.size(); j++) {
-            QList<int>::const_iterator i;
-            for (i = m_expressions.value(j).expression.translationIndices().begin(); i != m_expressions.value(j).expression.translationIndices().end(); i++) {
-                if (m_expressions.value(j).expression.translation(*i)) {
-                    text.append(m_expressions.value(j).expression.translation(*i)->text());
-                    text.append(" - ");
-                }
-            }
-            text.append('\n');
-        }
-        return text;
+        return m_text;
     }
     return QVariant();
 }
