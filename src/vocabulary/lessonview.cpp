@@ -38,7 +38,6 @@ LessonView::LessonView(ParleyApp * parent) :ContainerView(parent)
     actionNewLesson->setWhatsThis(i18n("Add a new lesson to your document"));
     actionNewLesson->setToolTip(actionNewLesson->whatsThis());
     actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
-    actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
 
     KAction *actionRenameLesson = new KAction(this);
     parent->actionCollection()->addAction("rename_lesson", actionRenameLesson);
@@ -46,7 +45,6 @@ LessonView::LessonView(ParleyApp * parent) :ContainerView(parent)
     actionRenameLesson->setIcon(KIcon("edit-rename"));
     actionRenameLesson->setWhatsThis(i18n("Rename the selected lesson"));
     actionRenameLesson->setToolTip(actionRenameLesson->whatsThis());
-    actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
     actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
 
     KAction *actionDeleteLesson = new KAction(this);
@@ -56,7 +54,6 @@ LessonView::LessonView(ParleyApp * parent) :ContainerView(parent)
     actionDeleteLesson->setWhatsThis(i18n("Delete the selected lesson."));
     actionDeleteLesson->setToolTip(actionDeleteLesson->whatsThis());
     actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
-    actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
 
     KAction *actionSplitLesson = new KAction(this);
     parent->actionCollection()->addAction("split_lesson", actionSplitLesson);
@@ -64,7 +61,6 @@ LessonView::LessonView(ParleyApp * parent) :ContainerView(parent)
     actionSplitLesson->setIcon(KIcon("edit-copy"));  /// @todo better icon
     actionSplitLesson->setWhatsThis(i18n("Make multiple smaller lessons out of one big lesson."));
     actionSplitLesson->setToolTip(actionSplitLesson->whatsThis());
-    actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
     actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
 
     connect(actionNewLesson, SIGNAL(triggered()),

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="parley"  version="3">
+<gui name="parley"  version="4">
 
 <MenuBar>
     <Menu name="file" >
@@ -22,7 +22,6 @@
       <Action name="edit_remove_selected_area" />
       <Separator/>
       <Action name="tools_spelling" />
-      <Action name="edit_edit_selected_area" />
       <Action name="vocab_remove_grades" />
       <Action name="show_script_manager"/>
   </Menu>
