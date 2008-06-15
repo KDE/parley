@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
-
+    Copyright 2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
     -----------------------------------------------------------------------
 
  ***************************************************************************
@@ -22,28 +22,22 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef StatisticsDialog_included
-#define StatisticsDialog_included
+#ifndef STATISTICSDIALOG_H
+#define STATISTICSDIALOG_H
 
-#include <kpagedialog.h>
+#include <KDialog>
 
 class KEduVocDocument;
-class StatisticsPage;
 
-class KVTStatisticsDialog : public KPageDialog
+class KVTStatisticsDialog : public KDialog
 {
     Q_OBJECT
 public:
     KVTStatisticsDialog(KEduVocDocument* doc, QWidget *parent);
     ~KVTStatisticsDialog();
 
-protected slots:
-    void slotApply();
-    void accept();
-
 private:
     KEduVocDocument *m_doc;
-    QList<StatisticsPage *> pageList;
 };
 
-#endif // StatisticsDialog_included
+#endif
