@@ -55,6 +55,7 @@ class SoundPrompt : public QPushButton
 
     public:
         SoundPrompt(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent = 0);
+        ~SoundPrompt();
     public slots:
         void slotSetSound(const KUrl& sound);
         void slotPlay();
@@ -63,6 +64,7 @@ class SoundPrompt : public QPushButton
         KSvgRenderer * m_renderer;
         QRectF m_backgroundRect;
         Phonon::MediaObject * m_media;
+        QString m_tmpFile;
 };
 
 class ImagePrompt : public QLabel

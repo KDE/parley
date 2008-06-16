@@ -21,75 +21,98 @@
 #include <KDebug>
 #include <kio/netaccess.h>
 
-TextualPrompt::TextualPrompt(KSvgRenderer * renderer, const QString& elementId) :
-         m_renderer(renderer)
+TextualPrompt::TextualPrompt ( KSvgRenderer * renderer, const QString& elementId ) :
+        m_renderer ( renderer )
 {
-    m_backgroundRect = renderer->boundsOnElement(elementId);
-    setPos(m_backgroundRect.x() + m_backgroundRect.width() / 20.0, m_backgroundRect.y() + m_backgroundRect.height() / 4.0);
+    m_backgroundRect = renderer->boundsOnElement ( elementId );
+    setPos ( m_backgroundRect.x() + m_backgroundRect.width() / 20.0, m_backgroundRect.y() + m_backgroundRect.height() / 4.0 );
     adjustSize();
 };
 
-void TextualPrompt::slotSetText(const QString& text) {setPlainText(text); };
+void TextualPrompt::slotSetText ( const QString& text ) {setPlainText ( text ); };
 
-ImagePrompt::ImagePrompt(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent) :
-    QLabel(parent),
-    m_pic(QPixmap()),
-    m_renderer(renderer)
+ImagePrompt::ImagePrompt ( KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent ) :
+        QLabel ( parent ),
+        m_pic ( QPixmap() ),
+        m_renderer ( renderer )
 {
-     QRect bounds = m_renderer->boundsOnElement(elementId).toRect();
-     setGeometry(view->mapToScene(bounds).boundingRect().toRect());
+    QRect bounds = m_renderer->boundsOnElement ( elementId ).toRect();
+    setGeometry ( view->mapToScene ( bounds ).boundingRect().toRect() );
 
-     slotSetImage(KUrl());
+    slotSetImage ( KUrl() );
 };
 
-SoundPrompt::SoundPrompt(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent) :
-    QPushButton(parent),
-    m_renderer(renderer)
+SoundPrompt::SoundPrompt ( KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent ) :
+        QPushButton ( parent ),
+        m_renderer ( renderer )
 {
-    if (!m_media)
+    if ( !m_media )
     {
-        m_media = new Phonon::MediaObject(this);
-        Phonon::AudioOutput * audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
-        createPath(m_media, audioOutput);
+        m_media = new Phonon::MediaObject ( this );
+        Phonon::AudioOutput * audioOutput = new Phonon::AudioOutput ( Phonon::MusicCategory, this );
+        createPath ( m_media, audioOutput );
     }
 
-    setText("Play Sound");
-    QRect bounds = m_renderer->boundsOnElement(elementId).toRect();
-    setGeometry(view->mapToScene(bounds).boundingRect().toRect());
+    setText ( "Play Sound" );
+    QRect bounds = m_renderer->boundsOnElement ( elementId ).toRect();
+    setGeometry ( view->mapToScene ( bounds ).boundingRect().toRect() );
 
-    connect(this, SIGNAL(clicked()), this, SLOT(slotPlay()));
+    connect ( this, SIGNAL ( clicked() ), this, SLOT ( slotPlay() ) );
 
-    slotSetSound(KUrl());
+    slotSetSound ( KUrl() );
 };
 
-void SoundPrompt::slotSetSound(const KUrl& sound)
+void SoundPrompt::slotSetSound ( const KUrl& sound )
 {
+    // remove the temp file from the last call
+    // I'll make sure this function is called at destruction to remove any lingering temp files.
+    KIO::NetAccess::removeTempFile ( m_tmpFile );
+
     //kDebug() << sound;
     m_sound = sound;
-    if (!sound.isEmpty())
-        setVisible(true);
-    else
-        setVisible(false);
-};
+    if ( !sound.isEmpty() )
+    {
+        QString tmpFile;
+        if ( KIO::NetAccess::download ( sound, m_tmpFile, this ) )
+        {
+            m_media->setCurrentSource ( tmpFile );
+            setVisible ( true );
+        }
+        else
+        {
+            //KMessageBox::error(this, KIO::NetAccess::lastErrorString());
+            kDebug() << KIO::NetAccess::lastErrorString();
+        }
+    }
+        else
+            setVisible ( false );
+}
 
+SoundPrompt::~SoundPrompt()
+{
+    slotSetSound(KUrl()); // removes any lingering tmp files.
+}
 
 void SoundPrompt::slotPlay()
 {
-    m_media->setCurrentSource(m_sound);
+    m_media->setCurrentSource ( m_sound );
     m_media->play();
 }
 
-void ImagePrompt::slotSetImage(const KUrl& image)
+void ImagePrompt::slotSetImage ( const KUrl& image )
 {
     kDebug() << image;
-    if (!image.isEmpty())
+    if ( !image.isEmpty() )
     {
         QString tmpFile;
-        if( KIO::NetAccess::download(image, tmpFile, this)) {
-             m_pic.load(tmpFile);
-            KIO::NetAccess::removeTempFile(tmpFile);
-            setVisible(true);
-        } else {
+        if ( KIO::NetAccess::download ( image, tmpFile, this ) )
+        {
+            m_pic.load ( tmpFile );
+            KIO::NetAccess::removeTempFile ( tmpFile );
+            setVisible ( true );
+        }
+        else
+        {
             //KMessageBox::error(this, KIO::NetAccess::lastErrorString());
             kDebug() << KIO::NetAccess::lastErrorString();
         }
@@ -97,7 +120,7 @@ void ImagePrompt::slotSetImage(const KUrl& image)
     else
     {
         m_pic = QPixmap();
-        setVisible(false);
+        setVisible ( false );
     }
-    setPixmap(m_pic);
+    setPixmap ( m_pic );
 }
