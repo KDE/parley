@@ -119,7 +119,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
 
     SoundPrompt * sprompt = new SoundPrompt(krenderer, m_view, "image_box");
     scene->addWidget(sprompt);
-    connect(m_manager, SIGNAL(signalNewSound(const KUrl&)), sprompt, SLOT(slotSetSound(const Kurl&)));
+    connect(m_manager, SIGNAL(signalNewSound(const KUrl&)), sprompt, SLOT(slotSetSound(const KUrl&)));
 
     TextualInput * input = new TextualInput(krenderer, m_view, "practice_text_translation_background");
     scene->addWidget(input);

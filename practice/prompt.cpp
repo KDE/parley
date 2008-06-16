@@ -18,6 +18,8 @@
 
 #include "prompt.h"
 
+#include <KDebug>
+
 TextualPrompt::TextualPrompt(KSvgRenderer * renderer, const QString& elementId) :
          m_renderer(renderer)
 {
@@ -61,6 +63,7 @@ SoundPrompt::SoundPrompt(KSvgRenderer * renderer, QGraphicsView * view, const QS
 
 void SoundPrompt::slotSetSound(const KUrl& sound)
 {
+    //kDebug() << sound;
     m_sound = sound;
     if (!sound.isEmpty())
         setVisible(true);
@@ -77,6 +80,7 @@ void SoundPrompt::slotPlay()
 
 void ImagePrompt::slotSetImage(const KUrl& image)
 {
+    kDebug() << image;
     if (!image.isEmpty())
     {
         m_pic.load(image.url());
