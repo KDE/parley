@@ -77,7 +77,7 @@ class ImagePrompt : public QLabel
         void slotSetImage(const KUrl& image);
 
     private:
-        QPicture m_pic;
+        QPixmap m_pic;
         KSvgRenderer * m_renderer;
         QRectF m_backgroundRect;
 };

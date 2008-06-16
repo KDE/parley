@@ -32,7 +32,7 @@ void TextualPrompt::slotSetText(const QString& text) {setPlainText(text); };
 
 ImagePrompt::ImagePrompt(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent) :
     QLabel(parent),
-    m_pic(QPicture()),
+    m_pic(QPixmap()),
     m_renderer(renderer)
 {
      QRect bounds = m_renderer->boundsOnElement(elementId).toRect();
@@ -88,8 +88,8 @@ void ImagePrompt::slotSetImage(const KUrl& image)
     }
     else
     {
-        m_pic = QPicture();
+        m_pic = QPixmap();
         setVisible(false);
     }
-    setPicture(m_pic);
+    setPixmap(m_pic);
 }
