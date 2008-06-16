@@ -109,12 +109,20 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
 
     ////// Graphical Widgets Setup //////
 
-    TextualPrompt * prompt = new TextualPrompt(krenderer, "practice_text_background");
-    scene->addItem(prompt);
-    connect(m_manager, SIGNAL(signalNewText(const QString&)), prompt, SLOT(slotSetText(const QString&)));
+    TextualPrompt * tprompt = new TextualPrompt(krenderer, "practice_text_background");
+    scene->addItem(tprompt);
+    connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
+
+    ImagePrompt * iprompt = new ImagePrompt(krenderer, m_view, "image_box");
+    scene->addWidget(iprompt);
+    connect(m_manager, SIGNAL(signalNewImage(const KUrl&)), iprompt, SLOT(slotSetImage(const KUrl&)));
+
+    SoundPrompt * sprompt = new SoundPrompt(krenderer, m_view, "image_box");
+    scene->addWidget(sprompt);
+    connect(m_manager, SIGNAL(signalNewSound(const KUrl&)), sprompt, SLOT(slotSetSound(const Kurl&)));
 
     TextualInput * input = new TextualInput(krenderer, m_view, "practice_text_translation_background");
-    QGraphicsProxyWidget * ginput = scene->addWidget(input);
+    scene->addWidget(input);
 
     Statistics * stats = new Statistics(this);
     SvgBarStatistics * barstats = new SvgBarStatistics(krenderer, "percent_correct_bar", "percent_correct_background");

@@ -28,14 +28,64 @@ TextualPrompt::TextualPrompt(KSvgRenderer * renderer, const QString& elementId) 
 
 void TextualPrompt::slotSetText(const QString& text) {setPlainText(text); };
 
-SoundPrompt::SoundPrompt(KSvgRenderer * renderer, QWidget * parent) : QLabel(parent), m_renderer(renderer) {};
-ImagePrompt::ImagePrompt(KSvgRenderer * renderer, QWidget * parent) : QLabel(parent), m_pic(QPicture()), m_renderer(renderer) {};
+ImagePrompt::ImagePrompt(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent) :
+    QLabel(parent),
+    m_pic(QPicture()),
+    m_renderer(renderer)
+{
+     QRect bounds = m_renderer->boundsOnElement(elementId).toRect();
+     setGeometry(view->mapToScene(bounds).boundingRect().toRect());
+
+     slotSetImage(KUrl());
+};
+
+SoundPrompt::SoundPrompt(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent) :
+    QPushButton(parent),
+    m_renderer(renderer)
+{
+    if (!m_media)
+    {
+        m_media = new Phonon::MediaObject(this);
+        Phonon::AudioOutput * audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
+        createPath(m_media, audioOutput);
+    }
+
+    setText("Play Sound");
+    QRect bounds = m_renderer->boundsOnElement(elementId).toRect();
+    setGeometry(view->mapToScene(bounds).boundingRect().toRect());
+
+    connect(this, SIGNAL(clicked()), this, SLOT(slotPlay()));
+
+    slotSetSound(KUrl());
+};
+
+void SoundPrompt::slotSetSound(const KUrl& sound)
+{
+    m_sound = sound;
+    if (!sound.isEmpty())
+        setVisible(true);
+    else
+        setVisible(false);
+};
+
+
+void SoundPrompt::slotPlay()
+{
+    m_media->setCurrentSource(m_sound);
+    m_media->play();
+}
 
 void ImagePrompt::slotSetImage(const KUrl& image)
 {
     if (!image.isEmpty())
+    {
         m_pic.load(image.url());
+        setVisible(true);
+    }
     else
+    {
         m_pic = QPicture();
+        setVisible(false);
+    }
     setPicture(m_pic);
 }

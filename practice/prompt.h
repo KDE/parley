@@ -23,10 +23,16 @@
 #include <QString>
 #include <QLabel>
 #include <QPicture>
-
+#include <QPushButton>
 #include <KUrl>
 #include <KSvgRenderer>
 #include <QGraphicsTextItem>
+#include <QGraphicsView>
+
+#include <Phonon/MediaObject>
+#include <Phonon/Path>
+#include <Phonon/AudioOutput>
+#include <Phonon/Global>
 
 class TextualPrompt : public QGraphicsTextItem
 {
@@ -42,20 +48,21 @@ class TextualPrompt : public QGraphicsTextItem
         QRectF m_backgroundRect;
 };
 
-class SoundPrompt : public QLabel
+class SoundPrompt : public QPushButton
 {
         Q_OBJECT
 
 
     public:
-        SoundPrompt(KSvgRenderer * renderer, QWidget * parent = 0);
-
+        SoundPrompt(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent = 0);
     public slots:
-        void slotSetSound(const KUrl& sound) { m_sound = sound; };
+        void slotSetSound(const KUrl& sound);
+        void slotPlay();
     private:
         KUrl m_sound;
         KSvgRenderer * m_renderer;
         QRectF m_backgroundRect;
+        Phonon::MediaObject * m_media;
 };
 
 class ImagePrompt : public QLabel
@@ -64,8 +71,7 @@ class ImagePrompt : public QLabel
 
 
     public:
-        ImagePrompt(KSvgRenderer * renderer, QWidget * parent = 0);
-
+        ImagePrompt(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent = 0);
     public slots:
 
         void slotSetImage(const KUrl& image);
