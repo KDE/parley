@@ -36,55 +36,9 @@ ScriptDialog::ScriptDialog()
     m_kps = new KPluginSelector(0);
     setMainWidget(m_kps);
 
-//     kDebug() << KStandardDirs::locate("config","parleyrc");
+    pluginsInfoList = KPluginInfo::fromFiles(sm.listAvailablePlugins());
+    m_kps->addPlugins(pluginsInfoList,KPluginSelector::ReadConfigFile,QString("Playlist"),QString("playlist"),KSharedConfig::openConfig("parleyrc"));
 
-    /* there is a slight problem here cause KSharedConfig doesn't write in a specific category
-        in the config file. It writes in a top-level entry .. no the best behaviour
-        Suggestion: create scriptrc or find a way to do this.
-    */
-
-//     QString configFile("parleyscriptsrc");
-
-//      KConfig parleyScriptConfig(configFile);
-//      KConfigGroup scriptsConfigGroup(&parleyScriptConfig,"Scripts");
-//     if (!scriptsConfigGroup.exists()) {
-//         scriptsConfigGroup.writeEntry("create","create");
-//     }
-
-//     KSharedConfig::Ptr config = KSharedConfig::openConfig(KStandardDirs::locate("config",configFile));
-//     KSharedConfig::Ptr config = KSharedConfig::openConfig(KStandardDirs::locate("config","parleyrc"));
-      KSharedConfig::Ptr config = KSharedConfig::openConfig("parleyrc");
-    
-//     KSharedConfig::Ptr config = KSharedConfig::openConfig(parleyScriptConfig);
-
-//     kDebug() << config;
-
-//     KConfigGroup * scripts_config_group = new KConfigGroup(config,"scripts");
-     KConfig parleyConfig("parleyrc");
-//     kDebug() << parleyConfig.groupList();
-     scriptsConfigGroup = new KConfigGroup(&parleyConfig,"Plugins");
-    
-//     if (!scriptsConfigGroup.exists()) {
-//         scriptsConfigGroup.writeEntry("create","configgroup");
-//     }
-
-//     inf->setConfig(scriptsConfigGroup);
-//     inf->load();
-//     kDebug() << inf->isPluginEnabled();
-    pluginsInfoList = KPluginInfo::fromFiles(sm.listAvailablePlugins()/*,scriptsConfigGroup*/);
-//     pluginsInfoList.push_back(inf);
-//     pluginsInfoList.push_back(inf2);
-    m_kps->addPlugins(pluginsInfoList,KPluginSelector::ReadConfigFile,QString("Playlist"),QString("playlist"),config);
-
-
-//     m_kps->load();
-//     m_kps->updatePluginsState();
-
-//  *** This way just adds "Enabled = True" under the scripts category
-//     foreach(KPluginInfo inf, pluginsInfoList) {
-//         kDebug() << QString("Is valid? : ") << inf.isValid();
-//         inf.save(scriptsConfigGroup);
-//     }
 }
 
 
@@ -103,12 +57,10 @@ ScriptDialog::~ScriptDialog()
 void ScriptDialog::accept()
 {
     m_kps->updatePluginsState();
-//     scriptsConfigGroup->dele
-//     foreach(KPluginInfo inf, pluginsInfoList) {
-    for (int i = 0; i < pluginsInfoList.size(); i++) {
-        kDebug() << QString("Is enabled? : ") << pluginsInfoList[i].pluginName() << pluginsInfoList[i].property("PluginName") << pluginsInfoList[i].isPluginEnabled();
+
+     foreach(KPluginInfo inf, pluginsInfoList) {
+        kDebug() << QString("Is enabled? : ") << inf.pluginName() << inf.property("PluginName") << inf.isPluginEnabled();
     }
-//     KPluginInfo i; i.property("PluginName");
     
     m_kps->save();
     done(0); //not sure if I put the right return code
