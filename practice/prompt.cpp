@@ -22,7 +22,7 @@ TextualPrompt::TextualPrompt(KSvgRenderer * renderer, const QString& elementId) 
          m_renderer(renderer)
 {
     m_backgroundRect = renderer->boundsOnElement(elementId);
-    setPos(m_backgroundRect.x() + m_backgroundRect.width() / 2.0, m_backgroundRect.y() + m_backgroundRect.height() / 2.0);
+    setPos(m_backgroundRect.x() + m_backgroundRect.width() / 20.0, m_backgroundRect.y() + m_backgroundRect.height() / 4.0);
     adjustSize();
 };
 
