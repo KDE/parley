@@ -19,6 +19,7 @@
 #include "prompt.h"
 
 #include <KDebug>
+#include <kio/netaccess.h>
 
 TextualPrompt::TextualPrompt(KSvgRenderer * renderer, const QString& elementId) :
          m_renderer(renderer)
@@ -83,8 +84,15 @@ void ImagePrompt::slotSetImage(const KUrl& image)
     kDebug() << image;
     if (!image.isEmpty())
     {
-        m_pic.load(image.url());
-        setVisible(true);
+        QString tmpFile;
+        if( KIO::NetAccess::download(image, tmpFile, this)) {
+             m_pic.load(tmpFile);
+            KIO::NetAccess::removeTempFile(tmpFile);
+            setVisible(true);
+        } else {
+            //KMessageBox::error(this, KIO::NetAccess::lastErrorString());
+            kDebug() << KIO::NetAccess::lastErrorString();
+        }
     }
     else
     {
