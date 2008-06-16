@@ -13,6 +13,7 @@
 #define SCRIPTDIALOG_H
 
 #include <kdialog.h>
+#include <KPluginSelector>
 
 /**
 	@author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
@@ -23,6 +24,12 @@ public:
     ScriptDialog();
 
     ~ScriptDialog();
+    void accept();
+
+private:
+    KPluginSelector* m_kps;
+    QList<KPluginInfo> pluginsInfoList;
+    KConfigGroup* scriptsConfigGroup;
 
 };
 
