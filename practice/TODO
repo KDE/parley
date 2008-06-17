@@ -5,7 +5,6 @@ Planning:
 
  * Define which elements a theme has to contain, optional ones
  * How do we realize layout
-   - should the entire interface be on the canvas, or only parts?
    - What needs to be included in the main UI? How can we simplify the UI?
 
  * Theme elements
@@ -15,15 +14,13 @@ Planning:
     - How much abstraction should be between them?
 
 Doing (in no particular order):
- * Make images and sounds work
- * Clean up the UI / Make it pretty
  * Finish the settings dialogs
  * Make parleypractice honor its settings
  * Create the statistical summary dialog
  * Recreate various practice modes
  * Create new practice modes
  * KNS / themes download
- 
+
 Bugs:
-* Resizing updates based on the previous resize instead of the current one.
-* Filter doesn't filter blank entries
+* Filter (sometimes)) doesn't filter blank entries
+* The % correct bar borks if you get the first question wrong
