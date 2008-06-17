@@ -27,6 +27,8 @@
 #include "../config-parley.h"
 
 #include "practiceold/testentrymanager.h"
+#include "practice/parleypracticemainwindow.h"
+
 #include "vocabulary/vocabularymodel.h"
 #include "vocabulary/vocabularyview.h"
 #include "vocabulary/vocabularyfilter.h"
@@ -265,10 +267,17 @@ void ParleyApp::configurePractice()
 
 void ParleyApp::startPractice()
 {
-    hide();
-    TestEntryManager testManager(m_document->document(), this);
-    testManager.startPractice();
-    show();
+//    if (Prefs::oldPractice()) {
+        hide();
+        TestEntryManager testManager(m_document->document(), this);
+        testManager.startPractice();
+        show();
+//     } else {
+//         hide();
+//         ParleyPracticeMainWindow* window = new ParleyPracticeMainWindow(this);
+//         window->show();
+//         show();
+//     }
 }
 
 

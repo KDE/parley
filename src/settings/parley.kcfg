@@ -42,6 +42,10 @@
       <label>Time interval between two automatic backups</label>
       <default>15</default>
     </entry>
+    <entry name="OldPractice" type="Bool">
+      <label>If true, use the old deprecated practice</label>
+      <default>false</default>
+    </entry>
   </group>
 
   <group name="PracticeOptions">

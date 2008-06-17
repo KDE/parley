@@ -12,7 +12,7 @@
  ***************************************************************************/
 #include "answervalidator.h"
 
-#include "practiceprefs.h"
+#include "prefs.h"
 
 #include "../../libkdeedu/keduvocdocument/keduvocexpression.h"
 #include "../../libkdeedu/keduvocdocument/keduvoctranslation.h"

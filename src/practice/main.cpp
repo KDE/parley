@@ -21,7 +21,7 @@
 
 #include "parleypracticemainwindow.h"
 
-#include "../src/version.h"
+#include "version.h"
 
 int main (int argc, char *argv[])
 {

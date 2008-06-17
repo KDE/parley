@@ -13,7 +13,7 @@
 
 #include "entryfilter.h"
 
-#include "practiceprefs.h"
+#include "prefs.h"
 
 #include "../../libkdeedu/keduvocdocument/keduvocexpression.h"
 #include "../../libkdeedu/keduvocdocument/keduvoctranslation.h"
@@ -27,8 +27,8 @@ EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc) :QObject(parent
 {
     m_doc = doc;
     m_dialog = 0;
-    m_fromTranslation = PracticePrefs::questionLanguage();
-    m_toTranslation = PracticePrefs::solutionLanguage();
+    m_fromTranslation = Prefs::questionLanguage();
+    m_toTranslation = Prefs::solutionLanguage();
     expireEntries();
 }
 
@@ -38,21 +38,21 @@ EntryFilter::~ EntryFilter()
 
 void EntryFilter::expireEntries()
 {
-    if ( PracticePrefs::expire() ) {
+    if ( Prefs::expire() ) {
         int counter = 0;
         foreach (KEduVocExpression* entry, m_entries) {
             int grade = entry->translation(m_toTranslation)->grade();
 
             const QDateTime &date =  entry->translation(m_toTranslation)->practiceDate();
 
-            const QDateTime &expireDate = QDateTime::currentDateTime().addSecs( -PracticePrefs::expireItem(grade) );
+            const QDateTime &expireDate = QDateTime::currentDateTime().addSecs( -Prefs::expireItem(grade) );
 
             if ( date < expireDate && grade > 0) {
                 // decrease the grade
                 entry->translation(m_toTranslation)->decGrade();
 
                 // prevent from endless dropping
-                entry->translation(m_toTranslation)->setPracticeDate( QDateTime::currentDateTime().addSecs( -PracticePrefs::expireItem( grade - 2) ) );
+                entry->translation(m_toTranslation)->setPracticeDate( QDateTime::currentDateTime().addSecs( -Prefs::expireItem( grade - 2) ) );
                 counter++;
             }
         }
@@ -118,7 +118,7 @@ QList<KEduVocExpression*> EntryFilter::entries()
 
         updateTotal();
 
-        if (!PracticePrefs::wordTypesInPracticeEnabled()) {
+        if (!Prefs::wordTypesInPracticeEnabled()) {
             ui.wordTypeLabel->setVisible(false);
             ui.wordTypeCheckBox->setVisible(false);
         }
@@ -176,14 +176,14 @@ void EntryFilter::lessonEntries()
         }
     }
 
-    //if ( PracticePrefs::testOrderLesson() ) {
+    //if ( Prefs::testOrderLesson() ) {
 
 }
 
 
 void EntryFilter::wordTypeEntries()
 {
-    if (PracticePrefs::wordTypesInPracticeEnabled()) {
+    if (Prefs::wordTypesInPracticeEnabled()) {
         foreach(KEduVocExpression* entry, m_entries) {
             if (entry->translation(m_toTranslation)->wordType()) {
                 if(entry->translation(m_toTranslation)->wordType()->inPractice()) {
@@ -198,18 +198,18 @@ void EntryFilter::wordTypeEntries()
 
 void EntryFilter::blockedEntries()
 {
-    if (!PracticePrefs::block()) {
+    if (!Prefs::block()) {
         m_entriesBlocked = m_entries;
         return;
     }
 
     foreach(KEduVocExpression* entry, m_entries) {
         int grade = entry->translation(m_toTranslation)->grade();
-        if (grade == KV_NORM_GRADE || PracticePrefs::blockItem(grade) == 0) {
+        if (grade == KV_NORM_GRADE || Prefs::blockItem(grade) == 0) {
             m_entriesBlocked.insert(entry);
         } else {
             QDateTime date = entry->translation(m_toTranslation)->practiceDate();
-            if (date.addSecs(PracticePrefs::blockItem(grade)) < QDateTime::currentDateTime()) {
+            if (date.addSecs(Prefs::blockItem(grade)) < QDateTime::currentDateTime()) {
                 m_entriesBlocked.insert(entry);
             }
         }
@@ -219,7 +219,7 @@ void EntryFilter::blockedEntries()
 void EntryFilter::timesWrongEntries()
 {
     foreach(KEduVocExpression* entry, m_entries) {
-        if (entry->translation(m_toTranslation)->badCount() >= PracticePrefs::practiceMinimumWrongCount() && entry->translation(m_toTranslation)->badCount() <= PracticePrefs::practiceMaximumWrongCount()) {
+        if (entry->translation(m_toTranslation)->badCount() >= Prefs::practiceMinimumWrongCount() && entry->translation(m_toTranslation)->badCount() <= Prefs::practiceMaximumWrongCount()) {
             m_entriesTimesWrong.insert(entry);
         }
     }
@@ -228,7 +228,7 @@ void EntryFilter::timesWrongEntries()
 void EntryFilter::timesPracticedEntries()
 {
     foreach(KEduVocExpression* entry, m_entries) {
-        if (entry->translation(m_toTranslation)->practiceCount() >= PracticePrefs::practiceMinimumTimesAsked() && entry->translation(m_toTranslation)->practiceCount() <= PracticePrefs::practiceMaximumTimesAsked()) {
+        if (entry->translation(m_toTranslation)->practiceCount() >= Prefs::practiceMinimumTimesAsked() && entry->translation(m_toTranslation)->practiceCount() <= Prefs::practiceMaximumTimesAsked()) {
             m_entriesTimesPracticed.insert(entry);
         }
     }
@@ -239,25 +239,25 @@ void EntryFilter::minMaxGradeEntries()
     foreach(KEduVocExpression* entry, m_entries) {
         int grade =
                 entry->translation(m_toTranslation)->grade();
-        if (grade >= PracticePrefs::practiceMinimumGrade() && grade <= PracticePrefs::practiceMaximumGrade()) {
+        if (grade >= Prefs::practiceMinimumGrade() && grade <= Prefs::practiceMaximumGrade()) {
             m_entriesMinMaxGrade.insert(entry);
         }
     }
 }
  /*
-    if (m_testType == PracticePrefs::EnumTestType::ArticleTest) {
+    if (m_testType == Prefs::EnumTestType::ArticleTest) {
     KMessageBox::information(0,
     i18n("You selected to practice the genders of nouns, but no appropriate nouns could be found. Use \"Edit Entry\" and select Noun as word type and the gender."),
     i18n("No valid word type found"));
     return;
 }
-    if (m_testType == PracticePrefs::EnumTestType::ComparisonTest) {
+    if (m_testType == Prefs::EnumTestType::ComparisonTest) {
     KMessageBox::information(0,
     i18n("You selected to practice comparison forms, but no adjectives or adverbs containing comparison forms could be found. Use \"Edit Entry\" and select Adverb or Adjective as word type and enter the comparison forms."),
     i18n("No valid word type found"));
     return;
 }
-    if (m_testType == PracticePrefs::EnumTestType::ConjugationTest) {
+    if (m_testType == Prefs::EnumTestType::ConjugationTest) {
     KMessageBox::information(0, i18n("You selected to practice conjugations, but no vocabulary containing conjugations in the tenses you selected could be found. Use \"Edit Entry\" and select Verb as word type and enter the conjugation forms."), i18n("No valid word type found"));
     return;
 }
@@ -272,13 +272,13 @@ void EntryFilter::minMaxGradeEntries()
 
 void EntryFilter::cleanupInvalid()
 {
-    bool typeTest = PracticePrefs::testType() == PracticePrefs::EnumTestType::ArticleTest
-            || PracticePrefs::testType() == PracticePrefs::EnumTestType::ComparisonTest
-            || PracticePrefs::testType() == PracticePrefs::EnumTestType::ConjugationTest
-            || PracticePrefs::testType() == PracticePrefs::EnumTestType::SynonymTest
-            || PracticePrefs::testType() == PracticePrefs::EnumTestType::AntonymTest
-            || PracticePrefs::testType() == PracticePrefs::EnumTestType::ParaphraseTest
-            || PracticePrefs::testType() == PracticePrefs::EnumTestType::ExampleTest;
+    bool typeTest = Prefs::testType() == Prefs::EnumTestType::ArticleTest
+            || Prefs::testType() == Prefs::EnumTestType::ComparisonTest
+            || Prefs::testType() == Prefs::EnumTestType::ConjugationTest
+            || Prefs::testType() == Prefs::EnumTestType::SynonymTest
+            || Prefs::testType() == Prefs::EnumTestType::AntonymTest
+            || Prefs::testType() == Prefs::EnumTestType::ParaphraseTest
+            || Prefs::testType() == Prefs::EnumTestType::ExampleTest;
 
     QSet<KEduVocExpression*>::iterator i = m_entries.begin();
     while (i != m_entries.end()) {
@@ -290,19 +290,19 @@ void EntryFilter::cleanupInvalid()
             if(!(*i)->translation(m_toTranslation)->wordType()) {
                 i = m_entries.erase(i);
             } else {
-                switch (PracticePrefs::testType()) {
+                switch (Prefs::testType()) {
     // if we do a grammar test, check if the grammar type is valid
-                case PracticePrefs::EnumTestType::ArticleTest:
+                case Prefs::EnumTestType::ArticleTest:
                     if (! ((*i)->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounMale ||
                           (*i)->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounFemale ||
                           (*i)->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounNeutral)) {
                         i = m_entries.erase(i);
                     } else i++;
                     break;
-                case PracticePrefs::EnumTestType::ComparisonTest:
-                    if (! ((PracticePrefs::comparisonIncludeAdjective() &&(*i)->translation(m_toTranslation)->wordType()->wordType()
+                case Prefs::EnumTestType::ComparisonTest:
+                    if (! ((Prefs::comparisonIncludeAdjective() &&(*i)->translation(m_toTranslation)->wordType()->wordType()
                                 == KEduVocWordType::Adjective)
-                           || (PracticePrefs::comparisonIncludeAdverb() &&(*i)->translation(m_toTranslation)->wordType()->wordType()
+                           || (Prefs::comparisonIncludeAdverb() &&(*i)->translation(m_toTranslation)->wordType()->wordType()
                            == KEduVocWordType::Adverb))) {
                         i = m_entries.erase(i);
                     } else {
@@ -312,28 +312,28 @@ void EntryFilter::cleanupInvalid()
                         } else i++;
                     }
                     break;
-                case PracticePrefs::EnumTestType::ConjugationTest:
+                case Prefs::EnumTestType::ConjugationTest:
                     if ( (*i)->translation(m_toTranslation)->wordType()->wordType() != KEduVocWordType::Verb || (*i)->translation(m_toTranslation)->conjugations().count() == 0) {
                         i = m_entries.erase(i);
                     } else i++; // conjugation
                     break;
 
-//                 case PracticePrefs::EnumTestType::SynonymTest:
+//                 case Prefs::EnumTestType::SynonymTest:
 //                     if ((*i)->translation(m_toTranslation)->synonym().simplified().isEmpty()){
 //                         i = m_entries.erase(i);
 //                     } else i++;
 //                     break;
-//                 case PracticePrefs::EnumTestType::AntonymTest:
+//                 case Prefs::EnumTestType::AntonymTest:
 //                     if ((*i)->translation(m_toTranslation)->antonym().simplified().isEmpty()){
 //                         i = m_entries.erase(i);
 //                     } else i++;
 //                     break;
-                case PracticePrefs::EnumTestType::ParaphraseTest:
+                case Prefs::EnumTestType::ParaphraseTest:
                     if ((*i)->translation(m_toTranslation)->paraphrase().simplified().isEmpty()){
                         i = m_entries.erase(i);
                     } else i++;
                     break;
-                case PracticePrefs::EnumTestType::ExampleTest:
+                case Prefs::EnumTestType::ExampleTest:
                     if ((*i)->translation(m_toTranslation)->example().simplified().isEmpty()){
                         i = m_entries.erase(i);
                     } else i++;

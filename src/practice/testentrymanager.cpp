@@ -26,7 +26,7 @@
 
 #include <KApplication>
 
-#include "practiceprefs.h"
+#include "prefs.h"
 
 #include "../../libkdeedu/keduvocdocument/keduvocexpression.h"
 #include "../../libkdeedu/keduvocdocument/keduvoctranslation.h"
@@ -43,9 +43,9 @@ TestEntryManager::TestEntryManager(QObject * parent)
         m_iter(QList<KEduVocExpression*>()) // it has no empty constructor. Annoying...
 {
     m_entries = QList<KEduVocExpression*>();
-    m_fromTranslation = PracticePrefs::questionLanguage();
-    m_toTranslation = PracticePrefs::solutionLanguage();
-    m_testType = PracticePrefs::testType();
+    m_fromTranslation = Prefs::questionLanguage();
+    m_toTranslation = Prefs::solutionLanguage();
+    m_testType = Prefs::testType();
 
 
 }
@@ -85,7 +85,7 @@ void TestEntryManager::open(KEduVocDocument* doc)
 
 const QString TestEntryManager::currentSolution() const
 {
-    return m_entry->translation(PracticePrefs::solutionLanguage())->text();
+    return m_entry->translation(Prefs::solutionLanguage())->text();
 }
 
 int TestEntryManager::totalEntryCount() const
@@ -110,7 +110,7 @@ void TestEntryManager::slotNewEntry()
     if (m_iter.hasNext())
     {
         m_entry = m_iter.next();
-        KEduVocTranslation * original = m_entry->translation(PracticePrefs::questionLanguage());
+        KEduVocTranslation * original = m_entry->translation(Prefs::questionLanguage());
         kDebug() << original->text();
 
         // It doesn't matter if these are empty since we would emit empty KUrls/QStrings anyway

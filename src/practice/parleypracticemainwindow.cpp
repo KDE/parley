@@ -45,7 +45,7 @@
 #include "hint.h"
 #include "testentrymanager.h"
 #include "answervalidator.h"
-#include "practiceprefs.h"
+#include "prefs.h"
 
 #include "kgametheme/kgamethemeselector.h"
 #include "kgametheme/kgametheme.h"
@@ -149,7 +149,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
 
     //// Input and Validation Setup ////
     AnswerValidator * validator = new AnswerValidator(doc, this);
-    validator->setLanguage(PracticePrefs::solutionLanguage());
+    validator->setLanguage(Prefs::solutionLanguage());
     connect(input, SIGNAL(signalInput(const QString&)), this, SLOT(slotGetInput(const QString&)));
     connect(this, SIGNAL(signalCheckInput(const QString&, const QString&)), validator, SLOT(checkUserAnswer(const QString&, const QString&)));
     connect(validator, SIGNAL(signalCorrection(float, Statistics::ErrorType)), stats, SLOT(slotCorrection(float, Statistics::ErrorType)));
@@ -242,8 +242,8 @@ void ParleyPracticeMainWindow::slotShowSolution()
 
 void ParleyPracticeMainWindow::slotCreatePreferencesDialog()
 {
-    KConfigDialog *dialog = new KConfigDialog(this, "settings", PracticePrefs::self());
-    dialog->addPage(new KGameThemeSelector(dialog, PracticePrefs::self()), i18n("Theme"), "game_theme");
+    KConfigDialog *dialog = new KConfigDialog(this, "settings", Prefs::self());
+    dialog->addPage(new KGameThemeSelector(dialog, Prefs::self()), i18n("Theme"), "game_theme");
     kDebug() << "hit";
     dialog->show();
 }

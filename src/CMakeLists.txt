@@ -1,4 +1,5 @@
 add_subdirectory( settings )
+add_subdirectory( practice/themes )
 
 include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/
 )
@@ -55,6 +56,32 @@ set(vocabulary_SRCS
 )
 
 set(practice_SRCS
+    practice/kgametheme/kgametheme.cpp
+    practice/kgametheme/kgamethemeselector.cpp
+    practice/parleypracticemainwindow.cpp
+    practice/practiceview.cpp
+    practice/input.cpp
+    practice/prompt.cpp
+    practice/statistics.cpp
+    practice/stdbuttons.cpp
+    practice/hint.cpp
+    practice/answervalidator.cpp
+    practice/testentrymanager.cpp
+    practice/entryfilter.cpp
+)
+
+kde4_add_ui_files(practice_SRCS
+    practice/kgametheme/kgamethemeselector.ui
+)
+
+#for the parleypractice app
+set(parleypractice_SRCS
+	${practice_SRCS}
+	${libcommondlg_SKEL_SRCS}
+    practice/main.cpp
+)
+
+set(practice_SRCS
     practiceold/testentry.cpp
     practiceold/testentrymanager.cpp
     practiceold/practicedialog.cpp
@@ -71,7 +98,7 @@ set(practice_SRCS
     practiceold/entryfilter.cpp
 )
 
-kde4_add_ui_files(practice_SRCS
+kde4_add_ui_files(practiceold_SRCS
     practiceold/AdjQueryDlgForm.ui
     practiceold/ArtQueryDlgForm.ui
     practiceold/MCQueryDlgForm.ui
@@ -171,7 +198,8 @@ kde4_add_ui_files(languagedialogs_SRCS
 )
 
 set(parley_SRCS
-    ${vocabulary_SRCS} ${libcommondlg_SRCS} ${practice_SRCS}
+    ${vocabulary_SRCS} ${libcommondlg_SRCS} 
+    ${practice_SRCS} ${practiceold_SRCS}
     ${configure-practice_SRCS} ${docprop_SRCS}
     ${entrydialogs_SRCS} ${statisticsdialogs_SRCS}
     ${languagedialogs_SRCS} ${scripts_SRCS} ${newdocument-wizard_SRCS}
@@ -200,6 +228,17 @@ if(HAVE_LIBXSLT)
 endif(HAVE_LIBXSLT)
 
 install(TARGETS parley  ${INSTALL_TARGETS_DEFAULT_ARGS} )
+
+######### parleypractice #############
+kde4_add_executable(parleypractice ${parleypractice_SRCS})
+install(TARGETS parleypractice  DESTINATION ${BIN_INSTALL_DIR} )
+target_link_libraries(
+    parleypractice
+    keduvocdocument
+    ${KDE4_KNEWSTUFF2_LIBS}
+    ${KDE4_PHONON_LIBS}
+    ${KDE4_KDEUI_LIBS}
+)
 
 
 ########### install files ###############

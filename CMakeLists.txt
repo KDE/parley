@@ -19,7 +19,6 @@ configure_file(
 )
 
 add_subdirectory( scripts_test )
-# add_subdirectory( practice ) #cause it wasn't compiling (maybe from changes by capel)
 add_subdirectory( src )
 add_subdirectory( icons )
 add_subdirectory( plugins )
