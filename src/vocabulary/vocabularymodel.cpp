@@ -426,9 +426,9 @@ void VocabularyModel::showEntriesOfSubcontainers(bool show)
 
 void VocabularyModel::resetLanguages()
 {
-    reset();
+    // play it save - this happens seldom enough to warrant a reload
+    setDocument(m_document);
 }
-
 
 
 #include "vocabularymodel.moc"
