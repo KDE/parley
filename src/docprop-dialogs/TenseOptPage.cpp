@@ -31,7 +31,7 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 
-#include "practice/testentrymanager.h"
+#include "practiceold/testentrymanager.h"
 #include <keduvocdocument.h>
 #include <keduvoclesson.h>
 

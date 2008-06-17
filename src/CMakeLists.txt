@@ -55,33 +55,33 @@ set(vocabulary_SRCS
 )
 
 set(practice_SRCS
-    practice/testentry.cpp
-    practice/testentrymanager.cpp
-    practice/practicedialog.cpp
-    practice/AdjQueryDlg.cpp
-    practice/ArtQueryDlg.cpp
-    practice/MCQueryDlg.cpp
-    practice/writtenpracticedialog.cpp
-    practice/SimpleQueryDlg.cpp
-    practice/VerbQueryDlg.cpp
-    practice/mixedletterpracticedialog.cpp
-    practice/showsolutiondialog.cpp
-    practice/practicesummarydialog.cpp
-    practice/answervalidator.cpp
-    practice/entryfilter.cpp
+    practiceold/testentry.cpp
+    practiceold/testentrymanager.cpp
+    practiceold/practicedialog.cpp
+    practiceold/AdjQueryDlg.cpp
+    practiceold/ArtQueryDlg.cpp
+    practiceold/MCQueryDlg.cpp
+    practiceold/writtenpracticedialog.cpp
+    practiceold/SimpleQueryDlg.cpp
+    practiceold/VerbQueryDlg.cpp
+    practiceold/mixedletterpracticedialog.cpp
+    practiceold/showsolutiondialog.cpp
+    practiceold/practicesummarydialog.cpp
+    practiceold/answervalidator.cpp
+    practiceold/entryfilter.cpp
 )
 
 kde4_add_ui_files(practice_SRCS
-    practice/AdjQueryDlgForm.ui
-    practice/ArtQueryDlgForm.ui
-    practice/MCQueryDlgForm.ui
-    practice/writtenpracticedialog.ui
-    practice/SimpleQueryDlgForm.ui
-    practice/VerbQueryDlgForm.ui
-    practice/mixedletterpracticedialog.ui
-    practice/showsolutionwidget.ui
-    practice/practicesummarywidget.ui
-    practice/entryfilter.ui
+    practiceold/AdjQueryDlgForm.ui
+    practiceold/ArtQueryDlgForm.ui
+    practiceold/MCQueryDlgForm.ui
+    practiceold/writtenpracticedialog.ui
+    practiceold/SimpleQueryDlgForm.ui
+    practiceold/VerbQueryDlgForm.ui
+    practiceold/mixedletterpracticedialog.ui
+    practiceold/showsolutionwidget.ui
+    practiceold/practicesummarywidget.ui
+    practiceold/entryfilter.ui
 )
 
 set(configure-practice_SRCS

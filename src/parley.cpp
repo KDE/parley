@@ -26,7 +26,7 @@
 
 #include "../config-parley.h"
 
-#include "practice/testentrymanager.h"
+#include "practiceold/testentrymanager.h"
 #include "vocabulary/vocabularymodel.h"
 #include "vocabulary/vocabularyview.h"
 #include "vocabulary/vocabularyfilter.h"
