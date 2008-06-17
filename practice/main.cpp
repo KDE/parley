@@ -28,8 +28,8 @@ int main (int argc, char *argv[])
     static const char description[] = I18N_NOOP("Vocabulary Trainer");
     static const char version[]     = PARLEY_VERSION_STRING;
 
-    KAboutData aboutData("parleypractice", 0,
-                         ki18n("ParleyPractice"),
+    KAboutData aboutData("Parley", 0,
+                         ki18n("Parley"),
                          version,
                          ki18n(description),
                          KAboutData::License_GPL,
