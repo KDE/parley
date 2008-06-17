@@ -1,7 +1,7 @@
 //
 // C++ Implementation: scriptmanager
 //
-// Description: 
+// Description:
 //
 //
 // Author: Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>, (C) 2008
@@ -12,6 +12,7 @@
 #include "scriptmanager.h"
 #include <KStandardDirs>
 #include <KDebug>
+#include <KPluginInfo>
 
 ScriptManager::ScriptManager()
 {
@@ -23,21 +24,53 @@ ScriptManager::~ScriptManager()
 }
 
 
-/*!
-    \fn ScriptManager::listAvailablePlugins()
+/**
+    Returns a @list of the paths of all the available plugins
+    by looking in the parley's plugin folder ({DATA_FOLDER}/plugins)
+
+    @return @list
  */
 QStringList ScriptManager::listAvailablePlugins()
 {
-    QStringList scriptsAvailable;
-    QStringList files = KGlobal::dirs()->findAllResources("appdata", QString("plugins/*.desktop"), KStandardDirs::Recursive, scriptsAvailable);
-    return files;
+//     QStringList scriptsAvailable;
+    return KGlobal::dirs()->findAllResources ( "appdata", QString ( "plugins/*.desktop" ), KStandardDirs::Recursive/*, scriptsAvailable*/ );
 }
 
 
-/*!
-    \fn ScriptManager::loadPlugins()
+/**
+ * Reads the state of the plugins from parleyrc (configurarion file) and 
+ * loads the enabled ones.
  */
 void ScriptManager::loadPlugins()
 {
-    /// @todo implement me
+
+    KConfigGroup cfg ( KSharedConfig::openConfig ( "parleyrc" ),"Plugins" );
+    QList<KPluginInfo> pluginsInfoList = KPluginInfo::fromFiles ( ScriptManager::listAvailablePlugins() );
+//     KPluginInfo inf;
+    foreach ( KPluginInfo inf, pluginsInfoList )
+    {
+        inf.load ( cfg );
+        kDebug() << inf.isPluginEnabled();
+    }
 }
+
+
+/**
+    @fn ScriptManager::getCategories()
+
+    @brief
+
+    @param c
+    @param n
+
+    @exception Famoutin
+
+    @return
+ */
+QMap<QString, QString> ScriptManager::getCategories()
+{
+    QMap<QString, QString> categories;
+    categories["translation"] = "Translation";
+    return categories;
+}
+

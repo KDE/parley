@@ -1,7 +1,7 @@
 //
 // C++ Interface: scriptdialog
 //
-// Description: 
+// Description:
 //
 //
 // Author: Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>, (C) 2008
@@ -16,20 +16,19 @@
 #include <KPluginSelector>
 
 /**
-	@author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
+    @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
 */
 class ScriptDialog : public KDialog
 {
-public:
-    ScriptDialog();
+    public:
+        ScriptDialog();
+        ~ScriptDialog();
+        void accept();
 
-    ~ScriptDialog();
-    void accept();
-
-private:
-    KPluginSelector* m_kps;
-    QList<KPluginInfo> pluginsInfoList;
-    KConfigGroup* scriptsConfigGroup;
+    private:
+        KPluginSelector* m_kps;
+        QList<KPluginInfo> pluginsInfoList;
+        KConfigGroup* scriptsConfigGroup;
 
 };
 
