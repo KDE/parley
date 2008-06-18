@@ -43,7 +43,7 @@
 #include "statistics.h"
 #include "stdbuttons.h"
 #include "hint.h"
-#include "testentrymanager.h"
+#include "practiceentrymanager.h"
 #include "answervalidator.h"
 #include "prefs.h"
 
@@ -103,7 +103,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     kDebug() << code;
 
     // this is the only object/widget the window directly keeps track of (outside of the canvas, etc).
-    m_manager = new TestEntryManager(this);
+    m_manager = new PracticeEntryManager(this);
     m_manager->open(doc);
 
 

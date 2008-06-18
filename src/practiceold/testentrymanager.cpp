@@ -36,7 +36,7 @@
 
 #include "practicesummarydialog.h"
 
-#include "entryfilter.h"
+#include "../entryfilter.h"
 
 // for the enum
 #include "practicedialog.h"

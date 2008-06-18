@@ -26,7 +26,7 @@
 #include <QRectF>
 
 
-class TestEntryManager;
+class PracticeEntryManager;
 class PracticeView;
 
 class ParleyPracticeMainWindow : public KXmlGuiWindow
@@ -41,7 +41,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
     private:
         PracticeView* m_view;
         QGraphicsSvgItem* m_layout;
-        TestEntryManager * m_manager;
+        PracticeEntryManager * m_manager;
 
         QRectF m_backgroundRect;
 
