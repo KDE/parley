@@ -193,6 +193,7 @@ set(scripts_SRCS
     scripts/scriptdialog.cpp
     scripts/scriptmanager.cpp
     scripts/scriptobjectparley.cpp
+    scripts/script.cpp
 )
 
 kde4_add_ui_files(languagedialogs_SRCS
