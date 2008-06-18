@@ -225,6 +225,7 @@ target_link_libraries(
     ${KDE4_KNEWSTUFF2_LIBS}
     ${KDE4_PHONON_LIBS}
     ${KDE4_KUTILS_LIBS} #for the KPluginSelector
+    ${KDE4_KROSSUI_LIBS} #for Kross
 )
 if(HAVE_LIBXSLT)
     target_link_libraries(parley ${LIBXML2_LIBRARIES} ${LIBXSLT_LIBRARIES})
