@@ -34,10 +34,8 @@
 #include <QCloseEvent>
 #include <QProgressBar>
 
-class AnswerValidator;
-
+class AnswerValidatorOld;
 class KEduVocDocument;
-
 class QGraphicsView;
 
 namespace Phonon
@@ -215,7 +213,7 @@ private:
     Phonon::MediaObject* m_player;
 
     /// Advanced string evaluation
-    AnswerValidator* m_validator;
+    AnswerValidatorOld* m_validator;
 };
 
 

@@ -10,8 +10,8 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-#ifndef ANSWERVALIDATOR_H
-#define ANSWERVALIDATOR_H
+#ifndef ANSWERVALIDATOROLD_H
+#define ANSWERVALIDATOROLD_H
 
 #include "testentry.h"
 
@@ -28,11 +28,11 @@ Provides different comparison methods to determine the quality of the answer.
 
 	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 */
-class AnswerValidator{
+class AnswerValidatorOld{
 public:
-    AnswerValidator(KEduVocDocument* doc);
+    AnswerValidatorOld(KEduVocDocument* doc);
 
-    ~AnswerValidator();
+    ~AnswerValidatorOld();
 
     bool spellcheckerAvailable();
 

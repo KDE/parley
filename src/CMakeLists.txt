@@ -95,7 +95,7 @@ set(practiceold_SRCS
     practiceold/mixedletterpracticedialog.cpp
     practiceold/showsolutiondialog.cpp
     practiceold/practicesummarydialog.cpp
-    practiceold/answervalidator.cpp
+    practiceold/answervalidatorold.cpp
     entryfilter.cpp
 )
 
@@ -203,7 +203,7 @@ kde4_add_ui_files(languagedialogs_SRCS
 set(parley_SRCS
     ${vocabulary_SRCS} ${libcommondlg_SRCS}
     ${practice_SRCS}
-	#${practiceold_SRCS}
+    ${practiceold_SRCS}
     ${configure-practice_SRCS} ${docprop_SRCS}
     ${entrydialogs_SRCS} ${statisticsdialogs_SRCS}
     ${languagedialogs_SRCS} ${scripts_SRCS} ${newdocument-wizard_SRCS}

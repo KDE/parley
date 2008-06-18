@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-#include "answervalidator.h"
+#include "answervalidatorold.h"
 
 #include "prefs.h"
 
@@ -24,7 +24,7 @@
 
 /// temporary namespace for string manipulation functions
 /// could move into KStringHandler eventually
-namespace ParleyStringHandler {
+namespace ParleyStringHandlerOld {
     QString stripAccents(const QString& original){
         QString noAccents;
         QString decomposed = original.normalized(QString::NormalizationForm_D);
@@ -39,15 +39,15 @@ kDebug() << original << " without accents: " << noAccents;
 }
 
 
-const double AnswerValidator::LEVENSHTEIN_THRESHOLD = 0.2;
-const double AnswerValidator::UNRELATED_WORD_GRADE = 0.0;
-const double AnswerValidator::FALSE_FRIEND_GRADE = 0.0;
-const double AnswerValidator::SPELLING_MISTAKE_PER_LETTER_PUNISHMENT = 0.2;
-const double AnswerValidator::CAPITALIZATION_MISTAKE_PUNISHMENT = 0.1;
-const double AnswerValidator::ACCENT_MISTAKE_PUNISHMENT = 0.1;
-const double AnswerValidator::WRONG_ARTICLE_PUNISHMENT = 0.1;
+const double AnswerValidatorOld::LEVENSHTEIN_THRESHOLD = 0.2;
+const double AnswerValidatorOld::UNRELATED_WORD_GRADE = 0.0;
+const double AnswerValidatorOld::FALSE_FRIEND_GRADE = 0.0;
+const double AnswerValidatorOld::SPELLING_MISTAKE_PER_LETTER_PUNISHMENT = 0.2;
+const double AnswerValidatorOld::CAPITALIZATION_MISTAKE_PUNISHMENT = 0.1;
+const double AnswerValidatorOld::ACCENT_MISTAKE_PUNISHMENT = 0.1;
+const double AnswerValidatorOld::WRONG_ARTICLE_PUNISHMENT = 0.1;
 
-AnswerValidator::AnswerValidator(KEduVocDocument* doc)
+AnswerValidatorOld::AnswerValidatorOld(KEduVocDocument* doc)
 {
     m_doc = doc;
     m_entry = 0;
@@ -55,13 +55,13 @@ AnswerValidator::AnswerValidator(KEduVocDocument* doc)
     m_spellerAvailable = false;
 }
 
-AnswerValidator::~AnswerValidator()
+AnswerValidatorOld::~AnswerValidatorOld()
 {
     delete m_speller;
 }
 
 
-void AnswerValidator::setLanguage(int translation)
+void AnswerValidatorOld::setLanguage(int translation)
 {
     m_translation = translation;
 
@@ -89,7 +89,7 @@ void AnswerValidator::setLanguage(int translation)
 }
 
 
-void AnswerValidator::setTestEntry(TestEntry * entry)
+void AnswerValidatorOld::setTestEntry(TestEntry * entry)
 {
     m_entry = entry;
     if (m_entry) {
@@ -97,7 +97,7 @@ void AnswerValidator::setTestEntry(TestEntry * entry)
     }
 }
 
-int AnswerValidator::levenshteinDistance(const QString& s, const QString& t)
+int AnswerValidatorOld::levenshteinDistance(const QString& s, const QString& t)
 {
     int m = s.length();
     int n = t.length();
@@ -139,7 +139,7 @@ int AnswerValidator::levenshteinDistance(const QString& s, const QString& t)
     return m_d[m + n*dWidth];
 }
 
-bool AnswerValidator::spellcheckerMisspelled(const QString& userAnswer)
+bool AnswerValidatorOld::spellcheckerMisspelled(const QString& userAnswer)
 {
     if (!m_spellerAvailable) {
         return true;
@@ -147,7 +147,7 @@ bool AnswerValidator::spellcheckerMisspelled(const QString& userAnswer)
     return m_speller->isMisspelled(userAnswer);
 }
 
-bool AnswerValidator::spellcheckerInSuggestionList(const QString& solution, const QString& userAnswer)
+bool AnswerValidatorOld::spellcheckerInSuggestionList(const QString& solution, const QString& userAnswer)
 {
     if ( !m_spellerAvailable ) {
         return false;
@@ -165,7 +165,7 @@ bool AnswerValidator::spellcheckerInSuggestionList(const QString& solution, cons
 }
 
 
-void AnswerValidator::simpleCorrector()
+void AnswerValidatorOld::simpleCorrector()
 {
 kDebug() << "simpleCorrector";
     if ( m_entry == 0 ) {
@@ -207,7 +207,7 @@ kDebug() << "right";
 }
 
 
-void AnswerValidator::defaultCorrector()
+void AnswerValidatorOld::defaultCorrector()
 {
     ///@todo does not work completely yet.
     ///@todo can solution.length() be zero? *should* be caught by Parley
@@ -287,7 +287,7 @@ void AnswerValidator::defaultCorrector()
 
 
 
-void AnswerValidator::checkUserAnswer(const QString & userAnswer)
+void AnswerValidatorOld::checkUserAnswer(const QString & userAnswer)
 {
     if ( m_entry == 0 ) {
         kError() << "Error: no entry set for validator.";
@@ -300,7 +300,7 @@ void AnswerValidator::checkUserAnswer(const QString & userAnswer)
     defaultCorrector();
 }
 
-void AnswerValidator::checkUserAnswer(const QString & solution, const QString & userAnswer, const QString& language)
+void AnswerValidatorOld::checkUserAnswer(const QString & solution, const QString & userAnswer, const QString& language)
 {
 kDebug() << "CheckUserAnswer with two strings. The one string version is preferred.";
     if ( !language.isEmpty() ) {
@@ -315,7 +315,7 @@ kDebug() << "CheckUserAnswer with two strings. The one string version is preferr
 }
 
 
-void AnswerValidator::wordCompare(const QString & solution, const QString & userWord, double& grade, TestEntry::ErrorTypes& errorTypes)
+void AnswerValidatorOld::wordCompare(const QString & solution, const QString & userWord, double& grade, TestEntry::ErrorTypes& errorTypes)
 {
     ///@todo add to other errors... ?
 
@@ -330,7 +330,7 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
         errorTypes = TestEntry::CapitalizationMistake;
         return ;
     }
-    if ( ParleyStringHandler::stripAccents(solution) ==    ParleyStringHandler::stripAccents(userWord) ) {
+    if ( ParleyStringHandlerOld::stripAccents(solution) ==    ParleyStringHandlerOld::stripAccents(userWord) ) {
         grade = 1.0 - ACCENT_MISTAKE_PUNISHMENT;
         errorTypes = TestEntry::AccentMistake;
         return ;
@@ -397,7 +397,7 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
 }
 
 
-void AnswerValidator::sentenceAnalysis()
+void AnswerValidatorOld::sentenceAnalysis()
 {
     QStringList solutionWords;
     QStringList userAnswerWords;
@@ -452,7 +452,7 @@ void AnswerValidator::sentenceAnalysis()
 }
 
 
-QList< QPair < QString , QString > > AnswerValidator::bestPairs(const QStringList& solutionWords , const QStringList& userAnswerWords )
+QList< QPair < QString , QString > > AnswerValidatorOld::bestPairs(const QStringList& solutionWords , const QStringList& userAnswerWords )
 {
     int nSol = solutionWords.count();
     int nUser = userAnswerWords.count();
@@ -498,7 +498,7 @@ QList< QPair < QString , QString > > AnswerValidator::bestPairs(const QStringLis
 }
 
 
-bool AnswerValidator::spellcheckerAvailable()
+bool AnswerValidatorOld::spellcheckerAvailable()
 {
         return m_spellerAvailable;
 }
