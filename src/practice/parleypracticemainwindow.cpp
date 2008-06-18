@@ -221,7 +221,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
 
     //// Final Graphics Setup ////
 
-    setupGUI();
+    setupGUI(Default, QString::fromLatin1("parleypracticeui.rc"));
 
     // ... and we are done -- start the first question!
     m_manager->slotNewEntry();
