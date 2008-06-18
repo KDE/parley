@@ -19,15 +19,17 @@ This class finds the scripts installed in the application folder and manages loa
 
     @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
 */
-class ScriptManager
+class ScriptManager : public QObject
 {
     public:
         ScriptManager();
 
         ~ScriptManager();
         static QStringList listAvailablePlugins();
+        void loadScript(QString filename);
         void loadPlugins();
         QMap<QString, QString> getCategories();
+    void update();
 
 };
 

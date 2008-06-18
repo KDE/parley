@@ -14,6 +14,7 @@
 #include <KDebug>
 #include <KPluginInfo>
 #include <KServiceTypeTrader>
+#include <kross/core/action.h>
 
 ScriptManager::ScriptManager()
 {
@@ -37,6 +38,20 @@ QStringList ScriptManager::listAvailablePlugins()
     return KGlobal::dirs()->findAllResources ( "appdata", QString ( "plugins/*.desktop" ), KStandardDirs::Recursive/*, scriptsAvailable*/ );
 }
 
+/**
+ * Reads the state of the plugins from parleyrc (configurarion file) and
+ * loads the enabled ones.
+ */
+void ScriptManager::loadScript(QString filename)
+{
+    Kross::Action action(this,"MyJSScript");
+    action.setFile(filename);
+    action.trigger();
+//     QVariantList args;
+//     args << "hello";
+//     QVariant script_result = action.callFunction("fetchTranslation",args);
+//     kDebug() << script_result;
+}
 
 /**
  * Reads the state of the plugins from parleyrc (configurarion file) and
@@ -107,3 +122,16 @@ QMap<QString, QString> ScriptManager::getCategories()
     return categories;
 }
 
+
+
+/**
+ * This function makes sure that the saved status (enabled/disabled) in the configuration files
+ * reflects the actual status of those scripts. So if any script was enabled/disabled in the
+ * configuration files, it enables/disables it.
+ *
+ * This function is to be used by the ScriptDialog to enable/disable scripts.
+ */
+void ScriptManager::update()
+{
+    /// @todo implement me
+}
