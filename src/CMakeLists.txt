@@ -231,15 +231,15 @@ endif(HAVE_LIBXSLT)
 install(TARGETS parley  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 ######### parleypractice #############
-# kde4_add_executable(parleypractice ${parleypractice_SRCS})
-# install(TARGETS parleypractice  DESTINATION ${BIN_INSTALL_DIR} )
-# target_link_libraries(
-#     parleypractice
-#     keduvocdocument
-#     ${KDE4_KNEWSTUFF2_LIBS}
-#     ${KDE4_PHONON_LIBS}
-#     ${KDE4_KDEUI_LIBS}
-# )
+kde4_add_executable(parleypractice ${parleypractice_SRCS})
+install(TARGETS parleypractice  DESTINATION ${BIN_INSTALL_DIR} )
+target_link_libraries(
+    parleypractice
+    keduvocdocument
+    ${KDE4_KNEWSTUFF2_LIBS}
+    ${KDE4_PHONON_LIBS}
+    ${KDE4_KDEUI_LIBS}
+)
 
 
 ########### install files ###############
