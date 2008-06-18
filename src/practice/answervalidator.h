@@ -27,6 +27,7 @@ namespace Sonnet
 class Speller;
 }
 
+
 /**
 Provides different comparison methods to determine the quality of the answer.
 

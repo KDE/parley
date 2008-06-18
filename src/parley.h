@@ -135,6 +135,9 @@ public slots:
      */
     void removeGrades();
 
+private slots:
+    void slotConfigOldPractice(bool old);
+
 signals:
     void signalSetData( const QList<int>& entries, int currentTranslation);
 

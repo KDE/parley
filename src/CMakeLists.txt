@@ -81,7 +81,7 @@ set(parleypractice_SRCS
     practice/main.cpp
 )
 
-set(practice_SRCS
+set(practiceold_SRCS
     practiceold/testentry.cpp
     practiceold/testentrymanager.cpp
     practiceold/practicedialog.cpp
@@ -199,7 +199,8 @@ kde4_add_ui_files(languagedialogs_SRCS
 
 set(parley_SRCS
     ${vocabulary_SRCS} ${libcommondlg_SRCS} 
-    ${practice_SRCS} ${practiceold_SRCS}
+    ${practice_SRCS}
+	#${practiceold_SRCS}
     ${configure-practice_SRCS} ${docprop_SRCS}
     ${entrydialogs_SRCS} ${statisticsdialogs_SRCS}
     ${languagedialogs_SRCS} ${scripts_SRCS} ${newdocument-wizard_SRCS}
@@ -230,15 +231,15 @@ endif(HAVE_LIBXSLT)
 install(TARGETS parley  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 ######### parleypractice #############
-kde4_add_executable(parleypractice ${parleypractice_SRCS})
-install(TARGETS parleypractice  DESTINATION ${BIN_INSTALL_DIR} )
-target_link_libraries(
-    parleypractice
-    keduvocdocument
-    ${KDE4_KNEWSTUFF2_LIBS}
-    ${KDE4_PHONON_LIBS}
-    ${KDE4_KDEUI_LIBS}
-)
+# kde4_add_executable(parleypractice ${parleypractice_SRCS})
+# install(TARGETS parleypractice  DESTINATION ${BIN_INSTALL_DIR} )
+# target_link_libraries(
+#     parleypractice
+#     keduvocdocument
+#     ${KDE4_KNEWSTUFF2_LIBS}
+#     ${KDE4_PHONON_LIBS}
+#     ${KDE4_KDEUI_LIBS}
+# )
 
 
 ########### install files ###############

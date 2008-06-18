@@ -267,19 +267,23 @@ void ParleyApp::configurePractice()
 
 void ParleyApp::startPractice()
 {
-//    if (Prefs::oldPractice()) {
-        hide();
-        TestEntryManager testManager(m_document->document(), this);
-        testManager.startPractice();
-        show();
-//     } else {
+    if (Prefs::oldPractice()) {
 //         hide();
-//         ParleyPracticeMainWindow* window = new ParleyPracticeMainWindow(this);
-//         window->show();
+//         TestEntryManager testManager(m_document->document(), this);
+//         testManager.startPractice();
 //         show();
-//     }
+    } else {
+        hide();
+        ParleyPracticeMainWindow* window = new ParleyPracticeMainWindow(this);
+        window->show();
+        show();
+    }
 }
 
+void ParleyApp::slotConfigOldPractice(bool old)
+{
+    Prefs::setOldPractice(old);
+}
 
 bool ParleyApp::queryClose()
 {
@@ -751,6 +755,10 @@ void ParleyApp::initActions()
     scriptManager->setText(i18n("&Script Manager"));
     connect(scriptManager, SIGNAL(triggered()),  this, SLOT(slotShowScriptManager()));
 
+    KToggleAction *oldPractice = actionCollection()->add<KToggleAction>("config_oldPractice");
+    oldPractice->setText(i18n("Old Practice Dialogs"));
+    connect(oldPractice, SIGNAL(triggered(bool)), this, SLOT(slotOldPractice()));
+    m_vocabShowSearchBarAction->setChecked(Prefs::oldPractice());
 }
 
 
