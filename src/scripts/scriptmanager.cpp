@@ -13,6 +13,7 @@
 #include <KStandardDirs>
 #include <KDebug>
 #include <KPluginInfo>
+#include <KServiceTypeTrader>
 
 ScriptManager::ScriptManager()
 {
@@ -38,11 +39,34 @@ QStringList ScriptManager::listAvailablePlugins()
 
 
 /**
- * Reads the state of the plugins from parleyrc (configurarion file) and 
+ * Reads the state of the plugins from parleyrc (configurarion file) and
  * loads the enabled ones.
  */
 void ScriptManager::loadPlugins()
 {
+//     KService::List services;
+//     KServiceTypeTrader* trader = KServiceTypeTrader::self();
+// 
+//     services = trader->query ( "Sonnet/SpellClient" );
+// 
+//     foreach ( KService::Ptr service, services )
+//     {
+//         kDebug() << "read write part" << service->name();
+//     }
+// 
+//     services = trader->defaultOffers ( "ThumbCreator" );
+//     if ( services.isEmpty() )
+//     {
+//         kDebug() << "no services found for ThumbCreator!";
+//     }
+// 
+//     KService::Ptr service = trader->preferredService ( "Sonnet/SpellClient" );
+//     if ( !service )
+//     {
+//         kDebug() << "no preferred service found for Parley/Script";
+//     }
+
+// ---------------------------
 
     KConfigGroup cfg ( KSharedConfig::openConfig ( "parleyrc" ),"Plugins" );
     QList<KPluginInfo> pluginsInfoList = KPluginInfo::fromFiles ( ScriptManager::listAvailablePlugins() );
@@ -50,7 +74,16 @@ void ScriptManager::loadPlugins()
     foreach ( KPluginInfo inf, pluginsInfoList )
     {
         inf.load ( cfg );
-        kDebug() << inf.isPluginEnabled();
+//         kDebug() << inf.name() << inf.isPluginEnabled() << inf.property ( "X-KDE-PluginInfo-Script" );
+        kDebug() << inf.name() << inf.isPluginEnabled() << inf.pluginName();
+    }
+
+// Done in the dirty way.
+    QStringList files = ScriptManager::listAvailablePlugins();
+    foreach ( QString filePath, files) {
+        KConfig scriptconfig(filePath, KConfig::SimpleConfig);
+        KConfigGroup group = scriptconfig.group("Desktop Entry");
+        kDebug() << group.readEntry("Script");
     }
 }
 
