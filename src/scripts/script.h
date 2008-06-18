@@ -1,7 +1,7 @@
 //
 // C++ Interface: script
 //
-// Description: 
+// Description:
 //
 //
 // Author: Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>, (C) 2008
@@ -11,6 +11,9 @@
 //
 #ifndef SCRIPT_H
 #define SCRIPT_H
+
+#include <QString>
+#include <QObject>
 
 /**
  * This class represents the activated script and is used by the ScriptManager
@@ -26,14 +29,19 @@
  *
  * @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
 */
-class Script{
-public:
-    Script();
+class Script: public QObject
+{
+    public:
+        Script ( QString file );
 
-    ~Script();
-    bool isActivated();
-private:
-    bool m_activated;
+        ~Script();
+        bool isActivated();
+        QString getScriptFileName();
+    private:
+        bool m_activated;
+        QString m_file;
+    private:
+        void activateScript();
 };
 
 #endif

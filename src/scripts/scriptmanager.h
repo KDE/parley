@@ -26,10 +26,10 @@ class ScriptManager : public QObject
 
         ~ScriptManager();
         static QStringList listAvailablePlugins();
-        void loadScript(QString filename);
+        void loadScript ( QString filename );
         void loadPlugins();
         QMap<QString, QString> getCategories();
-    void update();
+        void update();
 
 };
 

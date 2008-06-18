@@ -42,10 +42,10 @@ QStringList ScriptManager::listAvailablePlugins()
  * Reads the state of the plugins from parleyrc (configurarion file) and
  * loads the enabled ones.
  */
-void ScriptManager::loadScript(QString filename)
+void ScriptManager::loadScript ( QString filename )
 {
-    Kross::Action action(this,"MyJSScript");
-    action.setFile(filename);
+    Kross::Action action ( this,"MyJSScript" );
+    action.setFile ( filename );
     action.trigger();
 //     QVariantList args;
 //     args << "hello";
@@ -61,20 +61,20 @@ void ScriptManager::loadPlugins()
 {
 //     KService::List services;
 //     KServiceTypeTrader* trader = KServiceTypeTrader::self();
-// 
+//
 //     services = trader->query ( "Sonnet/SpellClient" );
-// 
+//
 //     foreach ( KService::Ptr service, services )
 //     {
 //         kDebug() << "read write part" << service->name();
 //     }
-// 
+//
 //     services = trader->defaultOffers ( "ThumbCreator" );
 //     if ( services.isEmpty() )
 //     {
 //         kDebug() << "no services found for ThumbCreator!";
 //     }
-// 
+//
 //     KService::Ptr service = trader->preferredService ( "Sonnet/SpellClient" );
 //     if ( !service )
 //     {
@@ -95,10 +95,11 @@ void ScriptManager::loadPlugins()
 
 // Done in the dirty way.
     QStringList files = ScriptManager::listAvailablePlugins();
-    foreach ( QString filePath, files) {
-        KConfig scriptconfig(filePath, KConfig::SimpleConfig);
-        KConfigGroup group = scriptconfig.group("Desktop Entry");
-        kDebug() << group.readEntry("Script");
+    foreach ( QString filePath, files )
+    {
+        KConfig scriptconfig ( filePath, KConfig::SimpleConfig );
+        KConfigGroup group = scriptconfig.group ( "Desktop Entry" );
+        kDebug() << group.readEntry ( "Script" );
     }
 }
 
@@ -121,7 +122,6 @@ QMap<QString, QString> ScriptManager::getCategories()
     categories["translation"] = "Translation";
     return categories;
 }
-
 
 
 /**
