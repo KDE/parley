@@ -31,6 +31,7 @@ Script::Script ( QString file )
  */
 Script::~Script()
 {
+    delete m_object;
 }
 
 /**
@@ -61,7 +62,8 @@ void Script::activateScript()
     Kross::Action* action = new Kross::Action ( m_object, m_file );
     // Publish our myobject instance and connect signals with
     // scripting functions.
-//      action->addObject ( myobject, "myobject", Kross::ChildrenInterface::AutoConnectSignals );
+    obj_parley = new ScriptObjectParley(); /// @todo delete it at the end of the class (to avoid memory leaks)
+    action->addObject (obj_parley , "Parley", Kross::ChildrenInterface::AutoConnectSignals );
 
     // Set the file we like to execute.
     action->setFile ( m_file );

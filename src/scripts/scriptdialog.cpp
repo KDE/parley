@@ -27,8 +27,9 @@ void test()
     QStringList dfiles = ScriptManager::getDesktopFiles();
     kDebug() << sm.getScriptFileName ( dfiles[0] );
     kDebug() << sm.getEnabledScripts();
-    Script S(sm.getScriptFileName ( dfiles[0] ));
-    S.activateScript();
+    Script * s = new Script(sm.getScriptFileName ( dfiles[0] ));
+    s->activateScript();
+    /// @todo Delete s (to avoid memory leaks)
 // test for disabling all the plugins (works)
 //     foreach(QString file, sm.getDesktopFiles()) {
 //         kDebug() << QString("disabling..") << file;

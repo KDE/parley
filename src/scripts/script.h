@@ -12,6 +12,8 @@
 #ifndef SCRIPT_H
 #define SCRIPT_H
 
+#include "scriptobjectparley.h"
+
 #include <QString>
 #include <QObject>
 
@@ -44,6 +46,7 @@ class Script: public QObject
         bool m_activated;
         QString m_file;
         QObject* m_object;
+        ScriptObjectParley *obj_parley;
 };
 
 #endif
