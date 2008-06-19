@@ -48,21 +48,6 @@ QStringList ScriptManager::getDesktopFiles()
  * Reads the state of the plugins from parleyrc (configurarion file) and
  * loads the enabled ones.
  */
-void ScriptManager::loadScript ( QString filename )
-{
-    Kross::Action action ( this,"MyJSScript" );
-    action.setFile ( filename );
-    action.trigger();
-//     QVariantList args;
-//     args << "hello";
-//     QVariant script_result = action.callFunction("fetchTranslation",args);
-//     kDebug() << script_result;
-}
-
-/**
- * Reads the state of the plugins from parleyrc (configurarion file) and
- * loads the enabled ones.
- */
 void ScriptManager::loadPlugins()
 {
 //     KService::List services;
@@ -177,16 +162,6 @@ QString ScriptManager::getScriptFileName ( QString desktopFile )
 }
 
 
-
-/**
- * Activates all the enabled scripts (if they are not already activated)
- */
-void ScriptManager::activateEnabledScripts()
-{
-    /// @todo implement me
-}
-
-
 /**
  *
  * @return List of filenames of enalbed scripts
@@ -197,7 +172,7 @@ QStringList ScriptManager::getEnabledScripts()
     KConfigGroup cfg ( KSharedConfig::openConfig ( "parleyrc" ),"Plugins" );
     QList<KPluginInfo> pluginsInfoList = KPluginInfo::fromFiles ( getDesktopFiles() );
     KPluginInfo inf;
-    foreach ( KPluginInfo inf, pluginsInfoList )
+    foreach ( inf, pluginsInfoList )
     {
         inf.load ( cfg );
         if ( inf.isPluginEnabled() )
@@ -205,4 +180,40 @@ QStringList ScriptManager::getEnabledScripts()
 //         kDebug() << inf.name() << inf.isPluginEnabled() << inf.pluginName();
     }
     return enabledScripts;
+}
+
+
+/**
+ * Modify the parleyrc configuration so it disables the @p dektopFile plugin.
+ * This function is to be used when the plugin is invalid (wrong script name,
+ * incorrect desktop file etc)
+ *
+ * @param desktopFile 
+ */
+void ScriptManager::disablePlugin(QString desktopFile)
+{
+    KConfigGroup cfg ( KSharedConfig::openConfig ( "parleyrc" ),"Plugins" );
+    KPluginInfo inf(desktopFile);
+    //load parleyrc enabled value
+    inf.load(cfg);
+    inf.setPluginEnabled(false);
+    //save enabled=true in parleyrc
+    inf.save(cfg);
+}
+
+
+/**
+ * Activates all the enabled scripts (if not already activated)
+ */
+void ScriptManager::activateEnabledScripts()
+{
+    /// @todo implement me
+}
+
+/**
+ * Deactivates all disabled scripts (if not already deactivated)
+ */
+void ScriptManager::deactivateDisabledScripts()
+{
+    /// @todo implement me
 }

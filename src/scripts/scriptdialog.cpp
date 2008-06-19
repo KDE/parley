@@ -22,11 +22,16 @@
 
 void test()
 {
-   ScriptManager sm;
+    ScriptManager sm;
 //     sm.loadPlugins();
-   QStringList dfiles = ScriptManager::getDesktopFiles();
-   kDebug() << sm.getScriptFileName(dfiles[0]);
-   kDebug() << sm.getEnabledScripts();
+    QStringList dfiles = ScriptManager::getDesktopFiles();
+    kDebug() << sm.getScriptFileName ( dfiles[0] );
+    kDebug() << sm.getEnabledScripts();
+// test for disabling all the plugins (works)
+//     foreach(QString file, sm.getDesktopFiles()) {
+//         kDebug() << QString("disabling..") << file;
+//         sm.disablePlugin(file);
+//     }
 }
 
 /**

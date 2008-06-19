@@ -28,14 +28,15 @@ class ScriptManager : public QObject
 
         ~ScriptManager();
         static QStringList getDesktopFiles();
-        void loadScript ( QString filename );
         void loadPlugins();
         QMap<QString, QString> getCategories();
         void update();
         static QString getScriptEntry ( QString desktopFile );
         QString getScriptFileName ( QString desktopFile );
-    QStringList getEnabledScripts();
-    void activateEnabledScripts();
+        QStringList getEnabledScripts();
+        void disablePlugin ( QString desktopFile );
+        void activateEnabledScripts();
+        void deactivateDisabledScripts();
 
     protected:
         QList<Script> m_activated_scripts;
