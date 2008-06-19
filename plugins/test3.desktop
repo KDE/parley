@@ -6,6 +6,7 @@ ServiceTypes=KPluginInfo
 
 Name=User Visible Name3
 Comment=Description of what the plugin does
+Script=mywrongscript.py
 
 X-KDE-PluginInfo-Author=Author's Name3
 X-KDE-PluginInfo-Email=author@foo.bar

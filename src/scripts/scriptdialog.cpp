@@ -43,7 +43,7 @@ ScriptDialog::ScriptDialog()
     setMainWidget ( m_kps );
 
     //Load available plugins
-    pluginsInfoList = KPluginInfo::fromFiles ( ScriptManager::listAvailablePlugins() );
+    pluginsInfoList = KPluginInfo::fromFiles ( ScriptManager::getDesktopFiles() );
 
     m_kps->addPlugins ( pluginsInfoList,KPluginSelector::ReadConfigFile,i18n ( "Playlist" ),QString ( "playlist" ),KSharedConfig::openConfig ( "parleyrc" ) );
 }

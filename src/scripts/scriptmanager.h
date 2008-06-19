@@ -12,6 +12,8 @@
 #ifndef SCRIPTMANAGER_H
 #define SCRIPTMANAGER_H
 
+#include "script.h"
+
 #include <QStringList>
 
 /**
@@ -25,12 +27,16 @@ class ScriptManager : public QObject
         ScriptManager();
 
         ~ScriptManager();
-        static QStringList listAvailablePlugins();
+        static QStringList getDesktopFiles();
         void loadScript ( QString filename );
         void loadPlugins();
         QMap<QString, QString> getCategories();
         void update();
+        QString getScriptEntry ( QString desktopFile );
+    QString getScriptFileName(QString desktopFile);
 
+    protected:
+        QList<Script> m_activated_scripts;
 };
 
 #endif

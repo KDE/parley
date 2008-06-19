@@ -56,7 +56,7 @@ void Script::activateScript()
     Kross::Action* action = new Kross::Action ( this, m_file );
     // Publish our myobject instance and connect signals with
     // scripting functions.
-//      action->addObject (  myobject, "myobject", Kross::ChildrenInterface::AutoConnectSignals );
+//      action->addObject ( myobject, "myobject", Kross::ChildrenInterface::AutoConnectSignals );
 
     // Set the file we like to execute.
     action->setFile ( m_file );

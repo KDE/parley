@@ -27,15 +27,19 @@ ScriptManager::~ScriptManager()
 
 
 /**
-    Returns a @list of the paths of all the available plugins
-    by looking in the parley's plugin folder ({DATA_FOLDER}/plugins)
-
-    @return @list
+ * Finds all the available desktop files in {PARLEY_DATA_FOLDER}/plugins
+ *
+ * @return The list of desktop filenames available for parley
  */
-QStringList ScriptManager::listAvailablePlugins()
+QStringList ScriptManager::getDesktopFiles()
 {
 //     QStringList scriptsAvailable;
-    return KGlobal::dirs()->findAllResources ( "appdata", QString ( "plugins/*.desktop" ), KStandardDirs::Recursive/*, scriptsAvailable*/ );
+    return KGlobal::dirs()->findAllResources (
+               "appdata",
+               QString ( "plugins/*.desktop" ),
+               KStandardDirs::Recursive
+               /*, scriptsAvailable*/
+           );
 }
 
 /**
@@ -84,7 +88,7 @@ void ScriptManager::loadPlugins()
 // ---------------------------
 
     KConfigGroup cfg ( KSharedConfig::openConfig ( "parleyrc" ),"Plugins" );
-    QList<KPluginInfo> pluginsInfoList = KPluginInfo::fromFiles ( ScriptManager::listAvailablePlugins() );
+    QList<KPluginInfo> pluginsInfoList = KPluginInfo::fromFiles ( ScriptManager::getDesktopFiles() );
 //     KPluginInfo inf;
     foreach ( KPluginInfo inf, pluginsInfoList )
     {
@@ -92,15 +96,13 @@ void ScriptManager::loadPlugins()
 //         kDebug() << inf.name() << inf.isPluginEnabled() << inf.property ( "X-KDE-PluginInfo-Script" );
         kDebug() << inf.name() << inf.isPluginEnabled() << inf.pluginName();
     }
-
 // Done in the dirty way.
-    QStringList files = ScriptManager::listAvailablePlugins();
+    QStringList files = ScriptManager::getDesktopFiles();
     foreach ( QString filePath, files )
     {
-        KConfig scriptconfig ( filePath, KConfig::SimpleConfig );
-        KConfigGroup group = scriptconfig.group ( "Desktop Entry" );
-        kDebug() << group.readEntry ( "Script" );
+        kDebug() << this->getScriptEntry(filePath);
     }
+
 }
 
 
@@ -115,6 +117,14 @@ void ScriptManager::loadPlugins()
     @exception Famoutin
 
     @return
+ */
+
+/**
+ * Returns a QMap (from from categories codenames to categories display label)
+ * to be used in KPluginSelector (ScriptDialog) for displaying the various
+ * categories
+ *
+ * @return the QMap described above
  */
 QMap<QString, QString> ScriptManager::getCategories()
 {
@@ -134,4 +144,31 @@ QMap<QString, QString> ScriptManager::getCategories()
 void ScriptManager::update()
 {
     /// @todo implement me
+}
+
+
+/**
+ * Parses the desktop @p desktopFile given and returns the value of "Script" entry.
+ *
+ * @param desktopFile The .desktop file that will get the value from
+ * @return The value of "Script" entry. Empty string of no "Script" entry is found
+ */
+QString ScriptManager::getScriptEntry ( QString desktopFile )
+{
+    //open its as a raw configuration file and read the script entry
+    KConfig scriptconfig ( desktopFile, KConfig::SimpleConfig );
+    KConfigGroup group = scriptconfig.group ( "Desktop Entry" );
+    return group.readEntry ( "Script" );
+}
+
+
+/**
+ * 
+ * @param desktopFile 
+ * @return 
+ */
+QString ScriptManager::getScriptFileName(QString desktopFile)
+{
+    /// @todo implement me
+    return QString("hello");
 }
