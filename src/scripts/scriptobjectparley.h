@@ -21,6 +21,7 @@ Implements the object that will be given to Kross scripts to use for accessing p
 */
 class ScriptObjectParley : public QObject
 {
+        Q_OBJECT
     public:
         ScriptObjectParley();
 

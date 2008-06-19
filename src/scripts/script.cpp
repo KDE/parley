@@ -11,8 +11,8 @@
 //
 #include "script.h"
 
-#include <KDebug>
 #include <kross/core/action.h>
+#include <KDebug>
 
 /**
  * Script class constructor. Activates the @p script. In case of failure
@@ -50,7 +50,7 @@ bool Script::isActivated()
  */
 void Script::activateScript()
 {
-    if (!scriptExists()) 
+    if ( !scriptExists() )
     {
         kDebug() << "Script file given does not exist";
         return;
@@ -62,8 +62,8 @@ void Script::activateScript()
     Kross::Action* action = new Kross::Action ( m_object, m_file );
     // Publish our myobject instance and connect signals with
     // scripting functions.
-    obj_parley = new ScriptObjectParley(); /// @todo delete it at the end of the class (to avoid memory leaks)
-    action->addObject (obj_parley , "Parley", Kross::ChildrenInterface::AutoConnectSignals );
+    ScriptObjectParley * obj_parley = new ScriptObjectParley(); /// @todo delete it at the end of the class (to avoid memory leaks)
+    action->addObject ( obj_parley , "Parley", Kross::ChildrenInterface::AutoConnectSignals );
 
     // Set the file we like to execute.
     action->setFile ( m_file );

@@ -33,6 +33,7 @@
 */
 class Script: public QObject
 {
+        Q_OBJECT
     public:
         Script ( QString file );
 
@@ -46,7 +47,6 @@ class Script: public QObject
         bool m_activated;
         QString m_file;
         QObject* m_object;
-        ScriptObjectParley *obj_parley;
 };
 
 #endif
