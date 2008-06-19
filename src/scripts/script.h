@@ -16,6 +16,7 @@
 
 #include <QString>
 #include <QObject>
+#include <QPointer>
 
 /**
  * This class represents the activated script and is used by the ScriptManager
@@ -43,10 +44,11 @@ class Script: public QObject
         void activateScript();
         void deactivateScript();
         bool scriptExists();
+    QString fileName();
     private:
         bool m_activated;
         QString m_file;
-        QObject* m_object;
+        QPointer<QObject> m_object;
 };
 
 #endif

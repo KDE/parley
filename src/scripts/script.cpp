@@ -50,11 +50,17 @@ bool Script::isActivated()
  */
 void Script::activateScript()
 {
+    if ( isActivated() )
+    {
+        kDebug() << "Script already activated";
+        return;
+    }
     if ( !scriptExists() )
     {
         kDebug() << "Script file given does not exist";
         return;
     }
+    
     // Create the script container. m_object is the parent QObject,
     // so that our action instance will be destroyed once the m_object
     // is destroyed.
@@ -96,7 +102,8 @@ QString Script::getScriptFileName()
  */
 void Script::deactivateScript()
 {
-    delete m_object;
+    if ( m_object )
+        delete m_object;
     m_activated = false;
 }
 
@@ -112,4 +119,14 @@ bool Script::scriptExists()
 {
     QFileInfo fileInfo ( m_file );
     return fileInfo.exists();
+}
+
+
+/**
+ * Returns the file that was given as parameter to the constructor
+ * @return
+ */
+QString Script::fileName()
+{
+    return m_file;
 }
