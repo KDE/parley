@@ -11,6 +11,7 @@
 //
 #include "script.h"
 
+#include <KDebug>
 #include <kross/core/action.h>
 
 /**
@@ -23,7 +24,6 @@ Script::Script ( QString file )
 {
     m_file = file;
     m_activated = false;
-    activateScript();
 }
 
 /**
@@ -49,11 +49,16 @@ bool Script::isActivated()
  */
 void Script::activateScript()
 {
-    // Create the script container. myobject is the parent QObject,
-    // so that our action instance will be destroyed once the myobject
+    if (!scriptExists()) 
+    {
+        kDebug() << "Script file given does not exist";
+        return;
+    }
+    // Create the script container. m_object is the parent QObject,
+    // so that our action instance will be destroyed once the m_object
     // is destroyed.
-
-    Kross::Action* action = new Kross::Action ( this, m_file );
+    m_object = new QObject();
+    Kross::Action* action = new Kross::Action ( m_object, m_file );
     // Publish our myobject instance and connect signals with
     // scripting functions.
 //      action->addObject ( myobject, "myobject", Kross::ChildrenInterface::AutoConnectSignals );
@@ -68,9 +73,9 @@ void Script::activateScript()
     // should call our connected init(timer,interval) scripting
     // function if available.
 //     myobject->callInit();
+    m_activated = true;
     /// @todo Add code to specify if activated or not
 }
-
 
 
 /**
@@ -81,4 +86,28 @@ void Script::activateScript()
 QString Script::getScriptFileName()
 {
     return m_file;
+}
+
+
+/**
+ * Deactivate the running script
+ */
+void Script::deactivateScript()
+{
+    delete m_object;
+    m_activated = false;
+}
+
+
+/**
+ * Checks if the script file assigned to the Script object exists as a file on the
+ * given path.
+ *
+ * @return True if the script file exists
+ *         False if it does not exist
+ */
+bool Script::scriptExists()
+{
+    QFileInfo fileInfo ( m_file );
+    return fileInfo.exists();
 }

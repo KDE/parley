@@ -37,11 +37,13 @@ class Script: public QObject
         ~Script();
         bool isActivated();
         QString getScriptFileName();
+        void activateScript();
+        void deactivateScript();
+        bool scriptExists();
     private:
         bool m_activated;
         QString m_file;
-    private:
-        void activateScript();
+        QObject* m_object;
 };
 
 #endif

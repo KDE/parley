@@ -39,7 +39,7 @@ class ScriptManager : public QObject
         void deactivateDisabledScripts();
 
     protected:
-        QList<Script> m_activated_scripts;
+        QList<Script> m_scripts;
 };
 
 #endif

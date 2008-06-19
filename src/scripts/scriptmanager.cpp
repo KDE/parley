@@ -169,8 +169,11 @@ QString ScriptManager::getScriptFileName ( QString desktopFile )
 QStringList ScriptManager::getEnabledScripts()
 {
     QStringList enabledScripts;
+    // Open parleyrc to read the state of the plugins (enabled/disabled)
     KConfigGroup cfg ( KSharedConfig::openConfig ( "parleyrc" ),"Plugins" );
+    // Get list of KPluginInfo for each of the desktop files found
     QList<KPluginInfo> pluginsInfoList = KPluginInfo::fromFiles ( getDesktopFiles() );
+    // Find which plugins are enabled and add them to enabledScripts list
     KPluginInfo inf;
     foreach ( inf, pluginsInfoList )
     {
@@ -188,17 +191,17 @@ QStringList ScriptManager::getEnabledScripts()
  * This function is to be used when the plugin is invalid (wrong script name,
  * incorrect desktop file etc)
  *
- * @param desktopFile 
+ * @param desktopFile
  */
-void ScriptManager::disablePlugin(QString desktopFile)
+void ScriptManager::disablePlugin ( QString desktopFile )
 {
     KConfigGroup cfg ( KSharedConfig::openConfig ( "parleyrc" ),"Plugins" );
-    KPluginInfo inf(desktopFile);
+    KPluginInfo inf ( desktopFile );
     //load parleyrc enabled value
-    inf.load(cfg);
-    inf.setPluginEnabled(false);
+    inf.load ( cfg );
+    inf.setPluginEnabled ( false );
     //save enabled=true in parleyrc
-    inf.save(cfg);
+    inf.save ( cfg );
 }
 
 
