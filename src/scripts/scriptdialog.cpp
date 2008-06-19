@@ -34,8 +34,17 @@ void test()
 //     s.addObject((QObject*) &obj_parley);
     s.addObject("Parley", &obj_parley);
     s.activateScript();
+    
+    Script s2(sm.getScriptFileName ( dfiles[1] ));
+//     s.addObject((QObject*) &obj_parley);
+    s2.addObject("Parley", &obj_parley);
+    s2.activateScript();
+
     obj_parley.translateWord("hello");
+
+    
     s.deactivateScript();
+    s2.deactivateScript();
     kDebug() << "After closing the script";
     /// @todo Delete s (to avoid memory leaks)
 // test for disabling all the plugins (works)

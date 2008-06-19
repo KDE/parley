@@ -9,7 +9,7 @@ def translate(word):
   print "myscript1: Translating Word ..."
 
 print "myscript1"
-init()
-Parley.callFromScript()
+#init()
+#Parley.callFromScript()
 Parley.connect("signalTranslateWord(QString)",translate)
-init()
+#init()
