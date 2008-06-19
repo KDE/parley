@@ -26,13 +26,13 @@ class ScriptObjectParley : public QObject
         ScriptObjectParley();
 
         ~ScriptObjectParley();
-        void translateWord ( const QString & word );
+        void callTranslateWord ( const QString & word );
 
     public Q_SLOTS:
         void callFromScript ();
 
     Q_SIGNALS:
-        void signalTranslateWord ( QString word );
+        void translateWord ( QString word );
 };
 
 #endif

@@ -40,7 +40,7 @@ void test()
     s2.addObject("Parley", &obj_parley);
     s2.activateScript();
 
-    obj_parley.translateWord("hello");
+    obj_parley.callTranslateWord("hello");
 
     
     s.deactivateScript();

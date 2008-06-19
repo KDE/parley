@@ -3,11 +3,11 @@
 def init():
   print "init: myscript2"
 
-def translate(word):
+def translateWord(word):
   print "myscript2: Translating Word ..."
 
 print "myscript2"
 #init()
 #Parley.callFromScript()
-Parley.connect("signalTranslateWord(QString)",translate)
+#Parley.connect("signalTranslateWord(QString)",translate)
 #init()
