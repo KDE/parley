@@ -14,6 +14,8 @@
 #include <KDebug>
 #include <KPluginInfo>
 #include <KServiceTypeTrader>
+#include <QFileInfo>
+
 #include <kross/core/action.h>
 
 ScriptManager::ScriptManager()
@@ -88,7 +90,7 @@ void ScriptManager::loadPlugins()
 // ---------------------------
 
     KConfigGroup cfg ( KSharedConfig::openConfig ( "parleyrc" ),"Plugins" );
-    QList<KPluginInfo> pluginsInfoList = KPluginInfo::fromFiles ( ScriptManager::getDesktopFiles() );
+    QList<KPluginInfo> pluginsInfoList = KPluginInfo::fromFiles ( getDesktopFiles() );
 //     KPluginInfo inf;
     foreach ( KPluginInfo inf, pluginsInfoList )
     {
@@ -100,7 +102,7 @@ void ScriptManager::loadPlugins()
     QStringList files = ScriptManager::getDesktopFiles();
     foreach ( QString filePath, files )
     {
-        kDebug() << this->getScriptEntry(filePath);
+        kDebug() << this->getScriptEntry ( filePath );
     }
 
 }
@@ -163,12 +165,44 @@ QString ScriptManager::getScriptEntry ( QString desktopFile )
 
 
 /**
- * 
- * @param desktopFile 
- * @return 
+ * Returns the full path to the script name given in the @p desktopFile.
+ *
+ * @param desktopFile The desktop file for the parley plugin
+ * @return The full-path to the script
  */
-QString ScriptManager::getScriptFileName(QString desktopFile)
+QString ScriptManager::getScriptFileName ( QString desktopFile )
+{
+    QFileInfo desktopFileInfo ( desktopFile );
+    return desktopFileInfo.absolutePath() + "/" + ScriptManager::getScriptEntry ( desktopFile );
+}
+
+
+
+/**
+ * Activates all the enabled scripts (if they are not already activated)
+ */
+void ScriptManager::activateEnabledScripts()
 {
     /// @todo implement me
-    return QString("hello");
+}
+
+
+/**
+ *
+ * @return List of filenames of enalbed scripts
+ */
+QStringList ScriptManager::getEnabledScripts()
+{
+    QStringList enabledScripts;
+    KConfigGroup cfg ( KSharedConfig::openConfig ( "parleyrc" ),"Plugins" );
+    QList<KPluginInfo> pluginsInfoList = KPluginInfo::fromFiles ( getDesktopFiles() );
+    KPluginInfo inf;
+    foreach ( KPluginInfo inf, pluginsInfoList )
+    {
+        inf.load ( cfg );
+        if ( inf.isPluginEnabled() )
+            enabledScripts.push_back ( getScriptFileName ( inf.entryPath() ) );
+//         kDebug() << inf.name() << inf.isPluginEnabled() << inf.pluginName();
+    }
+    return enabledScripts;
 }

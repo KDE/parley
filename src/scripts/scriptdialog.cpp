@@ -22,8 +22,11 @@
 
 void test()
 {
-    ScriptManager sm;
-    sm.loadPlugins();
+   ScriptManager sm;
+//     sm.loadPlugins();
+   QStringList dfiles = ScriptManager::getDesktopFiles();
+   kDebug() << sm.getScriptFileName(dfiles[0]);
+   kDebug() << sm.getEnabledScripts();
 }
 
 /**
@@ -65,10 +68,6 @@ void ScriptDialog::accept()
 {
     //Update KPluginInfo object changes
     m_kps->updatePluginsState();   //necessary for KPluginInfo::isPluginEnabled to work
-
-//     foreach(KPluginInfo inf, pluginsInfoList) {
-//         kDebug() << QString("Is enabled? : ") << inf.pluginName() << inf.isPluginEnabled();
-//     }
 
     //Save changes in config file (parleyrc)
     m_kps->save();

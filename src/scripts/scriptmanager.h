@@ -32,8 +32,10 @@ class ScriptManager : public QObject
         void loadPlugins();
         QMap<QString, QString> getCategories();
         void update();
-        QString getScriptEntry ( QString desktopFile );
-    QString getScriptFileName(QString desktopFile);
+        static QString getScriptEntry ( QString desktopFile );
+        QString getScriptFileName ( QString desktopFile );
+    QStringList getEnabledScripts();
+    void activateEnabledScripts();
 
     protected:
         QList<Script> m_activated_scripts;
