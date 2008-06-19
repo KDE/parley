@@ -36,6 +36,7 @@
 #include <KLocalizedString>
 #include <KConfigDialog>
 #include <KApplication>
+#include <QTimer>
 
 #include "practiceview.h"
 #include "input.h"
@@ -46,6 +47,7 @@
 #include "practiceentrymanager.h"
 #include "answervalidator.h"
 #include "prefs.h"
+#include "timer.h"
 
 #include "kgametheme/kgamethemeselector.h"
 #include "kgametheme/kgametheme.h"
@@ -132,19 +134,10 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     connect(m_manager, SIGNAL(signalSetFinished()), stats, SLOT(slotSetFinished()));
 
 
-    //QGraphicsLinearLayout * promptAndInput = new QGraphicsLinearLayout();
-    //promptAndInput->setOrientation(Qt::Vertical);
-    //promptAndInput->addItem(gprompt);
-    //promptAndInput->addItem(ginput);
-
-    //QGraphicsWidget * gpromptAndInput = new QGraphicsWidget();
-    //gpromptAndInput->setLayout(promptAndInput);
-    //scene->addItem(gpromptAndInput);
-
-    StdButton * stdbutton = new StdButton("Check Answer");
+    StdButton * stdbutton = new StdButton("Check Answer", krenderer, m_view, "check_answer_and_continue_button");
     QGraphicsProxyWidget * gstdbutton = scene->addWidget(stdbutton);
     connect(input, SIGNAL(returnPressed()), stdbutton, SLOT(slotActivated()));
-    gstdbutton->setVisible(false); // disable for now
+    gstdbutton->setVisible(true); // enable for now
 
 
     //// Input and Validation Setup ////
@@ -217,6 +210,19 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     //// Quit action setup ////
     KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
     connect(stats, SIGNAL(signalQuit()), kapp, SLOT(quit()));
+
+
+    //// Timer setup ////
+    if (Prefs::practiceTimeout() && Prefs::practiceTimeoutTimePerAnswer()) // timeout can't be 0
+    {
+        kDebug() << "timer" << Prefs::practiceTimeout() << Prefs::practiceTimeoutTimePerAnswer();
+        InvisibleTimer * timer = new InvisibleTimer(this);
+        timer->setLength(Prefs::practiceTimeoutTimePerAnswer()*1000); // seconds -> milliseconds
+        // when the timer triggers, it will assume their current input is their answer
+        connect(timer, SIGNAL(signalTimeout()), checkAnswerAction, SIGNAL(triggered()));
+        connect(m_manager, SIGNAL(signalNewEntry()), timer, SLOT(slotStart()));
+        connect(input, SIGNAL(signalInput(const QString&)), timer, SLOT(slotStop()));
+    }
 
 
     //// Final Graphics Setup ////

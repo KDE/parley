@@ -21,8 +21,10 @@
 
 #include <QWidget>
 #include <KPushButton>
+#include <KSvgRenderer>
 
 #include "statistics.h"
+#include "practiceview.h"
 
 /// @class StdButton
 /// @author David Capel <wot.narg@gmail.com>
@@ -33,9 +35,8 @@ class StdButton : public KPushButton
     Q_OBJECT
 
     public:
-        explicit StdButton(QWidget * parent = 0);
-        explicit StdButton(const QString& text, QWidget * parent = 0);
-
+        explicit StdButton(KSvgRenderer * renderer, PracticeView * view, const QString& elementId, QWidget* parent = 0);
+        explicit StdButton(const QString& text, KSvgRenderer * renderer, PracticeView * view, const QString& elementId, QWidget* parent = 0);
     public slots:
         void slotSolutionShown();
         void slotActivated();
@@ -54,6 +55,10 @@ class StdButton : public KPushButton
         /// Emitted to toggle which KAction is available (contine/check solution)
         /// Used to keep the KActions and the button in sync.
         void signalToggleContinueShowAnswerActions();
+
+    private:
+            KSvgRenderer* m_renderer;
+
 };
 
 #endif

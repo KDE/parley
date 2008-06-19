@@ -119,7 +119,7 @@ void PracticeEntryManager::slotNewEntry()
         emit signalNewSound(original->soundUrl());
 
         emit signalExpressionChanged(m_entry);
-
+        emit signalNewEntry();
     }
     else
     {

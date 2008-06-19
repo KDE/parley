@@ -100,6 +100,10 @@ void Statistics::slotIncorrect(ErrorType error)
 
     if (error & Correct) ++m_errorReasons[10]; // this should never be used...
 
+    if (error & SolutionShown) ++m_errorReasons[11];
+
+    if (error & TimedOut) ++m_errorReasons[12];
+
     if (error & UnknownMistake) ++m_errorReasons[11];
 
     m_tainted = false;
@@ -165,6 +169,17 @@ void Statistics::slotSetFinished()
     emit signalQuit();
 }
 
+
+void Statistics::slotQuestionTimedOut()
+{
+    slotIncorrect(TimedOut);
+}
+
+void Statistics::slotSetTimedOut()
+{
+    // TODO do something here
+    slotSetFinished();
+}
 
 const QString Statistics::gradeToString(int i)
 {

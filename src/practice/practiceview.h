@@ -14,6 +14,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#ifndef PRACTICE_VIEW_H
+#define PRACTICE_VIEW_H
 
 #include <QGraphicsView>
 
@@ -23,3 +25,4 @@ class PracticeView
     void resizeEvent(QResizeEvent* event);
 };
 
+#endif

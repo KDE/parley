@@ -67,6 +67,7 @@ set(practice_SRCS
     practice/hint.cpp
     practice/answervalidator.cpp
     practice/practiceentrymanager.cpp
+    practice/timer.cpp
     entryfilter.cpp
 )
 

@@ -23,17 +23,24 @@
 #include "stdbuttons.h"
 #include "statistics.h"
 
-StdButton::StdButton(QWidget * parent)
-        : KPushButton(parent)
+StdButton::StdButton(KSvgRenderer * renderer, PracticeView * view, const QString& elementId, QWidget* parent)
+        : KPushButton(parent),
+        m_renderer(renderer)
 {
     connect(this, SIGNAL(clicked()), this, SLOT(slotActivated()));
+       QRect bounds = m_renderer->boundsOnElement(elementId).toRect();
+     setGeometry(view->mapToScene(bounds).boundingRect().toRect());
 }
 
-StdButton::StdButton(const QString& text, QWidget * parent)
-        : KPushButton(text, parent)
+StdButton::StdButton(const QString& text, KSvgRenderer * renderer, PracticeView * view, const QString& elementId, QWidget* parent)
+        : KPushButton(text, parent),
+        m_renderer(renderer)
 {
     connect(this, SIGNAL(clicked()), this, SLOT(slotActivated()));
+       QRect bounds = m_renderer->boundsOnElement(elementId).toRect();
+     setGeometry(view->mapToScene(bounds).boundingRect().toRect());
 }
+
 
 void StdButton::slotActivated()
 {

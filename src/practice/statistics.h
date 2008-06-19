@@ -74,9 +74,10 @@ class Statistics : public QObject
             UnrelatedWord         = 0x100, ///< a valid word but no connection to the solution
             Incomplete            = 0x200, ///< the part that was entered is right, but not complete
             Correct               = 0x400, ///< no error, solution was right
-            SolutionShown           = 0x800, ///< the answer was shown before the user provided an answer
-            UnknownMistake        =0x1000,  ///< no idea
-            NumberIncorrectReasons = 13
+            SolutionShown         = 0x800, ///< the answer was shown before the user provided an answer
+            TimedOut              =0x1000, ///< there was a per-question time limit and it ran out
+            UnknownMistake        =0x2000,  ///< no idea
+            NumberIncorrectReasons = 15
         };
 
     public slots:
@@ -105,6 +106,10 @@ class Statistics : public QObject
         /// Called when the user has requested that the answer be shown.
         /// If the question has not been answered, it will be counted as incorrect.
         void slotSolutionShown();
+        /// Called if a question timer is set and it runs out of time.
+        void slotQuestionTimedOut();
+        /// Called if a set of questions has a total-set time limit and it has run out.
+        void slotSetTimedOut();
 
     public:
         static const QString gradeToString(int grade);

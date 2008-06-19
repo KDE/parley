@@ -16,8 +16,11 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef EDU_TIMER_H
-#define EDU_TIMER_H
+#ifndef TIMER_H
+#define TIMER_H
+
+#include <QTimer>
+
 
 /**
 * @class Timer
@@ -26,27 +29,38 @@
 * This may have a visible widget or be invisible, depending on the practide mode.
 * Some modes (and settings configurations) may not use timers.
 */
-class Timer : public EduWidget
+class InvisibleTimer : public QObject
 {
-
     Q_OBJECT
 
     public:
+        InvisibleTimer(QObject * parent = 0);
+        ~InvisibleTimer();
+
         /// A typedef for clarity in the Timer functions.
         typedef int Milliseconds;
 
-    public slots:
-        /// Started a timer with a length of ms milliseconds.
-        void slotStartAnswerTimer(Milliseconds ms);
-        /// Stops the timer prematurely (called when the user inputs an answer)
-        void slotStopAnswerTimer();
+        /// Sets the length of the timer
+        void setLength(Milliseconds value) { m_length = value; }
+        /// Returns the length of the timer
+        Milliseconds length() const { return m_length; }
 
+
+    public slots:
+        /// Start a timer with a length of ms milliseconds and set m_length to ms.
+        void slotStart(Milliseconds ms);
+        /// Start a timer with a length of m_length
+        void slotStart();
+        /// Stops the timer prematurely (called when the user inputs an answer)
+        void slotStop();
+        void slotLog();
     signals:
         /// Emitted when the timer times out.
-        void signalTimeoutReached();
+        void signalTimeout();
 
     private:
-        QTimer * timer;
+        QTimer * m_timer;
+        Milliseconds m_length;
 };
 
 #endif
