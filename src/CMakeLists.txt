@@ -254,7 +254,3 @@ install( FILES parley.knsrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
 install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install(FILES practice/parleypracticeui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley)
 
-install( FILES practice/themes/default_theme.svgz
-                practice/themes/default.desktop
-    DESTINATION  ${DATA_INSTALL_DIR}/parley/themes/ )
-
