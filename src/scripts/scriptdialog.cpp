@@ -12,6 +12,7 @@
 #include "scriptdialog.h"
 
 #include "scriptmanager.h"
+#include "scriptobjectparley.h"
 
 #include <KLocale>
 #include <KPluginInfo>
@@ -28,7 +29,10 @@ void test()
     kDebug() << sm.getScriptFileName ( dfiles[0] );
     kDebug() << sm.getEnabledScripts();
 //     Script * s = new Script(sm.getScriptFileName ( dfiles[0] ));
+    ScriptObjectParley obj_parley;
     Script s(sm.getScriptFileName ( dfiles[0] ));
+//     s.addObject((QObject*) &obj_parley);
+    s.addObject("Parley", &obj_parley);
     s.activateScript();
     s.deactivateScript();
     kDebug() << "After closing the script";

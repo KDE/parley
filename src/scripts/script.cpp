@@ -12,6 +12,7 @@
 #include "script.h"
 
 #include <kross/core/action.h>
+// #include <QMapIterator>
 #include <KDebug>
 
 /**
@@ -60,7 +61,7 @@ void Script::activateScript()
         kDebug() << "Script file given does not exist";
         return;
     }
-    
+
     // Create the script container. m_object is the parent QObject,
     // so that our action instance will be destroyed once the m_object
     // is destroyed.
@@ -68,8 +69,16 @@ void Script::activateScript()
     Kross::Action* action = new Kross::Action ( m_object, m_file );
     // Publish our myobject instance and connect signals with
     // scripting functions.
-    ScriptObjectParley * obj_parley = new ScriptObjectParley(); /// @todo delete it at the end of the class (to avoid memory leaks)
-    action->addObject ( obj_parley , "Parley", Kross::ChildrenInterface::AutoConnectSignals );
+    QMapIterator<QString,QObject*> i ( m_scriptObjects );
+    while ( i.hasNext() )
+    {
+        i.next();
+        kDebug() << i.key();
+        action->addObject ( i.value() , i.key(), Kross::ChildrenInterface::AutoConnectSignals );
+    }
+//     foreach (QObject * obj, m_scriptObjects) {
+//         action->addObject ( obj , "Parley", Kross::ChildrenInterface::AutoConnectSignals );
+//     }
 
     // Set the file we like to execute.
     action->setFile ( m_file );
@@ -124,9 +133,29 @@ bool Script::scriptExists()
 
 /**
  * Returns the file that was given as parameter to the constructor
- * @return
  */
 QString Script::fileName()
 {
     return m_file;
+}
+
+
+/**
+ * Add an object to be accessible by the script
+ * @param name
+ * @param object Object to be accessible by the script
+ */
+void Script::addObject ( QString name, QObject * object )
+{
+    m_scriptObjects.insert ( name,object );
+}
+
+
+/**
+ *
+ * @param objects Map of the objects to add
+ */
+void Script::addObjects ( QMap<QString,QObject*> objects )
+{
+    m_scriptObjects.unite ( objects );
 }

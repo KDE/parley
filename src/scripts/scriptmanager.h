@@ -38,8 +38,9 @@ class ScriptManager : public QObject
         void activateEnabledScripts();
         void deactivateDisabledScripts();
 
-    protected:
+    private:
         QList<Script> m_scripts;
+        ScriptObjectParley m_objParley;
 };
 
 #endif
