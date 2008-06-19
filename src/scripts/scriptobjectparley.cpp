@@ -30,3 +30,13 @@ void ScriptObjectParley::callFromScript()
 {
     kDebug() << QString ( "Called from script!!!!" );
 }
+
+
+/**
+ * Test function to emit the translate signal
+ * @param word 
+ */
+void ScriptObjectParley::translateWord(const QString & word)
+{
+    emit signalTranslateWord(word);
+}

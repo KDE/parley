@@ -76,15 +76,13 @@ void Script::activateScript()
         kDebug() << i.key();
         action->addObject ( i.value() , i.key(), Kross::ChildrenInterface::AutoConnectSignals );
     }
-//     foreach (QObject * obj, m_scriptObjects) {
-//         action->addObject ( obj , "Parley", Kross::ChildrenInterface::AutoConnectSignals );
-//     }
 
     // Set the file we like to execute.
     action->setFile ( m_file );
 
     // Execute the script.
     action->trigger();
+    /// @todo add error handling somewhere here
 
     // Now we emit the init(QTimer*,int) signal which in turn
     // should call our connected init(timer,interval) scripting

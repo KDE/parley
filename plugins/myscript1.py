@@ -6,10 +6,10 @@ def init():
   print "init: myscript1"
 
 def translate(word):
-  return "czesc"
+  print "myscript1: Translating Word ..."
 
 print "myscript1"
 init()
 Parley.callFromScript()
-Parley.connect("translateWord(QString)",translate)
+Parley.connect("signalTranslateWord(QString)",translate)
 init()

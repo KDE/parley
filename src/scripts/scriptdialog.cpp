@@ -34,6 +34,7 @@ void test()
 //     s.addObject((QObject*) &obj_parley);
     s.addObject("Parley", &obj_parley);
     s.activateScript();
+    obj_parley.translateWord("hello");
     s.deactivateScript();
     kDebug() << "After closing the script";
     /// @todo Delete s (to avoid memory leaks)
