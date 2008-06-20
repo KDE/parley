@@ -19,34 +19,30 @@
 #include <KSharedConfig>
 #include <KConfigGroup>
 
+#include <kross/core/action.h>
+#include <kross/core/manager.h>
+
 #include <KDebug>
 
 void test()
 {
-    ScriptManager sm;
-//     sm.loadPlugins();
-    QStringList dfiles = ScriptManager::getDesktopFiles();
-    kDebug() << sm.getScriptFileName ( dfiles[0] );
-    kDebug() << sm.getEnabledScripts();
-//     Script * s = new Script(sm.getScriptFileName ( dfiles[0] ));
+
+
+//     Kross::Manager manager;
+
     ScriptObjectParley obj_parley;
-    Script s(sm.getScriptFileName ( dfiles[0] ));
-//     s.addObject((QObject*) &obj_parley);
-    s.addObject("Parley", &obj_parley);
-    s.activateScript();
-    
-    Script s2(sm.getScriptFileName ( dfiles[1] ));
-//     s.addObject((QObject*) &obj_parley);
-    s2.addObject("Parley", &obj_parley);
-    s2.activateScript();
+    ScriptManager sm;
+    sm.addObject ( &obj_parley,"Parley" );
+    sm.loadScripts();
+    sm.activateEnabledScripts();
 
-    obj_parley.callTranslateWord("hello");
+    obj_parley.callTranslateWord ( "hello" );
 
-    
-    s.deactivateScript();
-    s2.deactivateScript();
-    kDebug() << "After closing the script";
-    /// @todo Delete s (to avoid memory leaks)
+    sm.reloadScripts();
+    sm.activateEnabledScripts();
+
+    obj_parley.callTranslateWord ( "hello" );
+
 // test for disabling all the plugins (works)
 //     foreach(QString file, sm.getDesktopFiles()) {
 //         kDebug() << QString("disabling..") << file;

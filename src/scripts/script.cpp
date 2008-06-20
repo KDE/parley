@@ -32,7 +32,7 @@ Script::Script ( QString file )
  */
 Script::~Script()
 {
-    delete m_object;
+    delete  m_object;
 }
 
 /**
@@ -90,17 +90,6 @@ void Script::activateScript()
 //     myobject->callInit();
     m_activated = true;
     /// @todo Add code to specify if activated or not
-}
-
-
-/**
- * Returns the filename of the script that Script class was created with
- *
- * @return filename The filename of the script (with path)
- */
-QString Script::getScriptFileName()
-{
-    return m_file;
 }
 
 

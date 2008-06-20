@@ -28,7 +28,6 @@ class ScriptManager : public QObject
 
         ~ScriptManager();
         static QStringList getDesktopFiles();
-        void loadPlugins();
         QMap<QString, QString> getCategories();
         void update();
         static QString getScriptEntry ( QString desktopFile );
@@ -37,10 +36,15 @@ class ScriptManager : public QObject
         void disablePlugin ( QString desktopFile );
         void activateEnabledScripts();
         void deactivateDisabledScripts();
+        QStringList availableScripts();
+        void loadScripts();
+        void addObject ( QObject * obj, const QString & name );
+        void reloadScripts();
 
     private:
-        QList<Script> m_scripts;
         ScriptObjectParley m_objParley;
+        QList<Script*> m_scripts;
+        QMap<QString, QObject*> m_scriptObjects;
 };
 
 #endif

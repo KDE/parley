@@ -41,7 +41,6 @@ class Script: public QObject
 
         ~Script();
         bool isActivated();
-        QString getScriptFileName();
         void activateScript();
         void deactivateScript();
         bool scriptExists();

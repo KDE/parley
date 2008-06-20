@@ -10,6 +10,8 @@
 //
 //
 #include "scriptmanager.h"
+#include "scriptobjectparley.h"
+
 #include <KStandardDirs>
 #include <KDebug>
 #include <KPluginInfo>
@@ -17,9 +19,11 @@
 #include <QFileInfo>
 
 #include <kross/core/action.h>
+#include <kross/core/manager.h>
 
 ScriptManager::ScriptManager()
 {
+
 }
 
 
@@ -42,54 +46,6 @@ QStringList ScriptManager::getDesktopFiles()
                KStandardDirs::Recursive
                /*, scriptsAvailable*/
            );
-}
-
-/**
- * Reads the state of the plugins from parleyrc (configurarion file) and
- * loads the enabled ones.
- */
-void ScriptManager::loadPlugins()
-{
-//     KService::List services;
-//     KServiceTypeTrader* trader = KServiceTypeTrader::self();
-//
-//     services = trader->query ( "Sonnet/SpellClient" );
-//
-//     foreach ( KService::Ptr service, services )
-//     {
-//         kDebug() << "read write part" << service->name();
-//     }
-//
-//     services = trader->defaultOffers ( "ThumbCreator" );
-//     if ( services.isEmpty() )
-//     {
-//         kDebug() << "no services found for ThumbCreator!";
-//     }
-//
-//     KService::Ptr service = trader->preferredService ( "Sonnet/SpellClient" );
-//     if ( !service )
-//     {
-//         kDebug() << "no preferred service found for Parley/Script";
-//     }
-
-// ---------------------------
-
-    KConfigGroup cfg ( KSharedConfig::openConfig ( "parleyrc" ),"Plugins" );
-    QList<KPluginInfo> pluginsInfoList = KPluginInfo::fromFiles ( getDesktopFiles() );
-//     KPluginInfo inf;
-    foreach ( KPluginInfo inf, pluginsInfoList )
-    {
-        inf.load ( cfg );
-//         kDebug() << inf.name() << inf.isPluginEnabled() << inf.property ( "X-KDE-PluginInfo-Script" );
-        kDebug() << inf.name() << inf.isPluginEnabled() << inf.pluginName();
-    }
-// Done in the dirty way.
-    QStringList files = ScriptManager::getDesktopFiles();
-    foreach ( QString filePath, files )
-    {
-        kDebug() << this->getScriptEntry ( filePath );
-    }
-
 }
 
 
@@ -210,7 +166,14 @@ void ScriptManager::disablePlugin ( QString desktopFile )
  */
 void ScriptManager::activateEnabledScripts()
 {
-    /// @todo implement me
+    QStringList enabledScripts = getEnabledScripts();
+    foreach ( QString scriptFile, enabledScripts )
+    {
+        // go through the list of scripts and
+        for ( int i = 0; i < m_scripts.size(); i++ )
+            if ( m_scripts[i]->fileName() == scriptFile )
+                m_scripts[i]->activateScript();
+    }
 }
 
 /**
@@ -219,4 +182,60 @@ void ScriptManager::activateEnabledScripts()
 void ScriptManager::deactivateDisabledScripts()
 {
     /// @todo implement me
+}
+
+
+/**
+ * Load all the available scripts so they can be activated afterwards
+ */
+void ScriptManager::loadScripts()
+{
+    QStringList scripts = availableScripts();
+    foreach ( QString script, scripts )
+    {
+        //create a new Script and add it to the m_scripts list
+        Script * s = new Script ( script );
+        s->addObjects ( m_scriptObjects );
+        m_scripts.push_back ( s );
+    }
+}
+
+
+/**
+ * Return a list with the file names of all available scripts (got from .desktop files)
+ */
+QStringList ScriptManager::availableScripts()
+{
+    QStringList scripts;
+    // Get list of KPluginInfo for each of the desktop files found
+    QList<KPluginInfo> pluginsInfoList = KPluginInfo::fromFiles ( getDesktopFiles() );
+    // Find which plugins are enabled and add them to enabledScripts list
+    foreach ( KPluginInfo inf, pluginsInfoList )
+        scripts.push_back ( getScriptFileName ( inf.entryPath() ) );
+    return scripts;
+}
+
+
+/**
+ * Adds a QObject as a module for the script
+ * @param obj The QObject to be added to the script
+ * @param name The name of the object as it will appear in the script
+ */
+void ScriptManager::addObject ( QObject * obj, const QString & name )
+{
+    m_scriptObjects[name] = obj;
+}
+
+
+/**
+ * Reload all the scripts
+ */
+void ScriptManager::reloadScripts()
+{
+    foreach ( Script * s, m_scripts )
+    {
+        s->deactivateScript();
+        delete s;
+    }
+    loadScripts();
 }
