@@ -34,9 +34,9 @@ void ScriptObjectParley::callFromScript()
 
 /**
  * Test function to emit the translate signal
- * @param word 
+ * @param word
  */
-void ScriptObjectParley::callTranslateWord(const QString & word)
+void ScriptObjectParley::callTranslateWord ( const QString & word )
 {
-    emit translateWord(word);
+    emit translateWord ( word );
 }

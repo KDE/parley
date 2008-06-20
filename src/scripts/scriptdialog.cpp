@@ -26,28 +26,12 @@
 
 void test()
 {
-
-
-//     Kross::Manager manager;
-
     ScriptObjectParley obj_parley;
     ScriptManager sm;
     sm.addObject ( &obj_parley,"Parley" );
     sm.loadScripts();
-    sm.activateEnabledScripts();
 
     obj_parley.callTranslateWord ( "hello" );
-
-    sm.reloadScripts();
-    sm.activateEnabledScripts();
-
-    obj_parley.callTranslateWord ( "hello" );
-
-// test for disabling all the plugins (works)
-//     foreach(QString file, sm.getDesktopFiles()) {
-//         kDebug() << QString("disabling..") << file;
-//         sm.disablePlugin(file);
-//     }
 }
 
 /**
@@ -69,7 +53,12 @@ ScriptDialog::ScriptDialog()
     //Load available plugins
     pluginsInfoList = KPluginInfo::fromFiles ( ScriptManager::getDesktopFiles() );
 
-    m_kps->addPlugins ( pluginsInfoList,KPluginSelector::ReadConfigFile,i18n ( "Playlist" ),QString ( "playlist" ),KSharedConfig::openConfig ( "parleyrc" ) );
+//     m_kps->addPlugins ( pluginsInfoList,KPluginSelector::ReadConfigFile,i18n ( "Playlist" ),QString ( "playlist" ),KSharedConfig::openConfig ( "parleyrc" ) );
+    m_kps->addPlugins ( pluginsInfoList,
+                        KPluginSelector::ReadConfigFile,
+                        QString(),
+                        QString (),
+                        KSharedConfig::openConfig ( "parleyrc" ) );
 }
 
 /**

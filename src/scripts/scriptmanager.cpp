@@ -23,7 +23,6 @@
 
 ScriptManager::ScriptManager()
 {
-
 }
 
 
@@ -50,43 +49,17 @@ QStringList ScriptManager::getDesktopFiles()
 
 
 /**
-    @fn ScriptManager::getCategories()
-
-    @brief
-
-    @param c
-    @param n
-
-    @exception Famoutin
-
-    @return
- */
-
-/**
  * Returns a QMap (from from categories codenames to categories display label)
  * to be used in KPluginSelector (ScriptDialog) for displaying the various
  * categories
  *
  * @return the QMap described above
  */
-QMap<QString, QString> ScriptManager::getCategories()
+QMap<QString, QString> ScriptManager::categories()
 {
     QMap<QString, QString> categories;
     categories["translation"] = "Translation";
     return categories;
-}
-
-
-/**
- * This function makes sure that the saved status (enabled/disabled) in the configuration files
- * reflects the actual status of those scripts. So if any script was enabled/disabled in the
- * configuration files, it enables/disables it.
- *
- * This function is to be used by the ScriptDialog to enable/disable scripts.
- */
-void ScriptManager::update()
-{
-    /// @todo implement me
 }
 
 
@@ -122,7 +95,7 @@ QString ScriptManager::getScriptFileName ( QString desktopFile )
  *
  * @return List of filenames of enalbed scripts
  */
-QStringList ScriptManager::getEnabledScripts()
+QStringList ScriptManager::enabledScripts()
 {
     QStringList enabledScripts;
     // Open parleyrc to read the state of the plugins (enabled/disabled)
@@ -162,57 +135,19 @@ void ScriptManager::disablePlugin ( QString desktopFile )
 
 
 /**
- * Activates all the enabled scripts (if not already activated)
- */
-void ScriptManager::activateEnabledScripts()
-{
-    QStringList enabledScripts = getEnabledScripts();
-    foreach ( QString scriptFile, enabledScripts )
-    {
-        // go through the list of scripts and
-        for ( int i = 0; i < m_scripts.size(); i++ )
-            if ( m_scripts[i]->fileName() == scriptFile )
-                m_scripts[i]->activateScript();
-    }
-}
-
-/**
- * Deactivates all disabled scripts (if not already deactivated)
- */
-void ScriptManager::deactivateDisabledScripts()
-{
-    /// @todo implement me
-}
-
-
-/**
  * Load all the available scripts so they can be activated afterwards
  */
 void ScriptManager::loadScripts()
 {
-    QStringList scripts = availableScripts();
+    QStringList scripts = enabledScripts();
     foreach ( QString script, scripts )
     {
         //create a new Script and add it to the m_scripts list
         Script * s = new Script ( script );
         s->addObjects ( m_scriptObjects );
+        s->activateScript();
         m_scripts.push_back ( s );
     }
-}
-
-
-/**
- * Return a list with the file names of all available scripts (got from .desktop files)
- */
-QStringList ScriptManager::availableScripts()
-{
-    QStringList scripts;
-    // Get list of KPluginInfo for each of the desktop files found
-    QList<KPluginInfo> pluginsInfoList = KPluginInfo::fromFiles ( getDesktopFiles() );
-    // Find which plugins are enabled and add them to enabledScripts list
-    foreach ( KPluginInfo inf, pluginsInfoList )
-        scripts.push_back ( getScriptFileName ( inf.entryPath() ) );
-    return scripts;
 }
 
 
