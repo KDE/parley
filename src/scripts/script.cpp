@@ -11,45 +11,31 @@
 //
 #include "script.h"
 
-#include <kross/core/action.h>
-// #include <QMapIterator>
 #include <KDebug>
 
-/**
- * Script class constructor. Activates the @p script. In case of failure
- * sets the m_activated
- *
- * @param file The path to the script file to be activated (executed)
- */
+#include <kross/core/action.h>
+
+
 Script::Script ( QString file )
 {
     m_file = file;
     m_activated = false;
 }
 
-/**
- * Script class destructor.
- */
+
 Script::~Script()
 {
     if (m_object)
         delete  m_object;
 }
 
-/**
- * Returns if the script was successfully activated. If not, Script object should
- * be destroyed.
- */
+
 bool Script::isActivated()
 {
     return m_activated;
 }
 
-/**
- * Activates the script
- *
- * @param scriptFilePath The path to the script file to be activated (executed)
- */
+
 void Script::activateScript()
 {
     if ( isActivated() )
@@ -94,9 +80,6 @@ void Script::activateScript()
 }
 
 
-/**
- * Deactivate the running script
- */
 void Script::deactivateScript()
 {
     if ( m_object )
@@ -105,13 +88,6 @@ void Script::deactivateScript()
 }
 
 
-/**
- * Checks if the script file assigned to the Script object exists as a file on the
- * given path.
- *
- * @return True if the script file exists
- *         False if it does not exist
- */
 bool Script::scriptExists()
 {
     QFileInfo fileInfo ( m_file );
@@ -119,30 +95,18 @@ bool Script::scriptExists()
 }
 
 
-/**
- * Returns the file that was given as parameter to the constructor
- */
 QString Script::fileName()
 {
     return m_file;
 }
 
 
-/**
- * Add an object to be accessible by the script
- * @param name
- * @param object Object to be accessible by the script
- */
 void Script::addObject ( QString name, QObject * object )
 {
     m_scriptObjects.insert ( name,object );
 }
 
 
-/**
- *
- * @param objects Map of the objects to add
- */
 void Script::addObjects ( QMap<QString,QObject*> objects )
 {
     m_scriptObjects.unite ( objects );
