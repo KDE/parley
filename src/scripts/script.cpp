@@ -32,7 +32,8 @@ Script::Script ( QString file )
  */
 Script::~Script()
 {
-    delete  m_object;
+    if (m_object)
+        delete  m_object;
 }
 
 /**

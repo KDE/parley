@@ -57,6 +57,7 @@
 #include "prefs.h"
 
 #include "scripts/scriptdialog.h"
+#include "scripts/scriptmanager.h"
 
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>
@@ -104,6 +105,8 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
     initModel();
 
     initDockWidgets();
+
+    initScripts();
 
     initActions();
 
@@ -750,11 +753,11 @@ void ParleyApp::initActions()
     KAction* findVocabulary = KStandardAction::find(m_searchLine, SLOT(setFocus()), actionCollection());
 
     //Script Manager Menu Action
-    KAction* scriptManager =new KAction(this);
-    actionCollection()->addAction("show_script_manager", scriptManager);
-    scriptManager->setIcon(KIcon("set-language"));
-    scriptManager->setText(i18n("&Script Manager"));
-    connect(scriptManager, SIGNAL(triggered()),  this, SLOT(slotShowScriptManager()));
+    KAction* menu_scriptManager =new KAction(this);
+    actionCollection()->addAction("show_script_manager", menu_scriptManager);
+    menu_scriptManager->setIcon(KIcon("set-language"));
+    menu_scriptManager->setText(i18n("&Script Manager"));
+    connect(menu_scriptManager, SIGNAL(triggered()),  this, SLOT(slotShowScriptManager()));
 
     KToggleAction *oldPractice = actionCollection()->add<KToggleAction>("config_oldPractice");
     oldPractice->setText(i18n("Old Practice Dialogs"));
@@ -840,7 +843,7 @@ void ParleyApp::initView()
 
 void ParleyApp::slotShowScriptManager() {
 //      kDebug() << QString("here!!");
-    ScriptDialog * dialog = new ScriptDialog();
+    ScriptDialog * dialog = new ScriptDialog(&m_scriptManager);
     dialog->show();
 }
 
@@ -849,5 +852,14 @@ void ParleyApp::removeGrades()
     m_document->document()->lesson()->resetGrades(-1, KEduVocContainer::Recursive);
 }
 
+void ParleyApp::initScripts()
+{
+    m_scriptManager.addObject ( &m_scriptObjectParley,"Parley" );
+    m_scriptManager.loadScripts();
+}
+
 #include "parley.moc"
+
+
+
 

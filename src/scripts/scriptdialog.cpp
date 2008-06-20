@@ -11,7 +11,6 @@
 //
 #include "scriptdialog.h"
 
-#include "scriptmanager.h"
 #include "scriptobjectparley.h"
 
 #include <KLocale>
@@ -37,10 +36,11 @@ void test()
 /**
  * Constructor Function.
  */
-ScriptDialog::ScriptDialog()
+ScriptDialog::ScriptDialog(ScriptManager * scriptManager)
         : KDialog()
 {
-    test();
+//     test();
+    m_scriptManager = scriptManager;
 
     //Configure window
     setCaption ( i18n ( "Script Dialog" ) );
@@ -81,6 +81,9 @@ void ScriptDialog::accept()
 
     //Save changes in config file (parleyrc)
     m_kps->save();
+
+    //Reload scripts
+    m_scriptManager->reloadScripts();
 
     //Close dialog
     done ( 0 ); //not sure if I put the right return code

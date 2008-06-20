@@ -24,7 +24,7 @@
  * to activate/deactivate scripts.
  *
  * @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
-*/
+ */
 class Script: public QObject
 {
         Q_OBJECT

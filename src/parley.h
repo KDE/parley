@@ -28,6 +28,9 @@
 
 #include "parleydocument.h"
 
+#include "scripts/scriptmanager.h"
+#include "scripts/scriptobjectparley.h"
+
 #include <KXmlGuiWindow>
 #include <KUrl>
 #include <QItemSelection>
@@ -88,6 +91,11 @@ public:
 
     /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
     void updateTableFilter();
+
+    /**
+     * Load enabled scripts (from configuration parleyrc)
+     */
+    void initScripts();
 
 
 public slots:
@@ -188,6 +196,12 @@ private:
 
     // the name of the executable
     QString m_appName;
+
+    //Script Manager
+    ScriptManager m_scriptManager;
+
+    //script objects (objects that will be used from inside the scripts)
+    ScriptObjectParley m_scriptObjectParley;
 };
 
 #endif // PARLEY_H

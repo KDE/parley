@@ -12,7 +12,9 @@
 #ifndef SCRIPTDIALOG_H
 #define SCRIPTDIALOG_H
 
-#include <kdialog.h>
+#include "scriptmanager.h"
+
+#include <KDialog>
 #include <KPluginSelector>
 
 /**
@@ -21,7 +23,7 @@
 class ScriptDialog : public KDialog
 {
     public:
-        ScriptDialog();
+        ScriptDialog(ScriptManager* scriptManager);
         ~ScriptDialog();
         void accept();
 
@@ -29,6 +31,7 @@ class ScriptDialog : public KDialog
         KPluginSelector* m_kps;
         QList<KPluginInfo> pluginsInfoList;
         KConfigGroup* scriptsConfigGroup;
+        ScriptManager* m_scriptManager;
 
 };
 

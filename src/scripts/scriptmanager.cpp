@@ -10,7 +10,7 @@
 //
 //
 #include "scriptmanager.h"
-#include "scriptobjectparley.h"
+// #include "scriptobjectparley.h"
 
 #include <KStandardDirs>
 #include <KDebug>
@@ -168,9 +168,6 @@ void ScriptManager::addObject ( QObject * obj, const QString & name )
 void ScriptManager::reloadScripts()
 {
     foreach ( Script * s, m_scripts )
-    {
-        s->deactivateScript();
         delete s;
-    }
     loadScripts();
 }
