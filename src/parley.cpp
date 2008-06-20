@@ -759,6 +759,12 @@ void ParleyApp::initActions()
     menu_scriptManager->setText(i18n("&Script Manager"));
     connect(menu_scriptManager, SIGNAL(triggered()),  this, SLOT(slotShowScriptManager()));
 
+    KAction* menu_translateLesson =new KAction(this);
+    actionCollection()->addAction("translate_lesson", menu_translateLesson);
+    menu_translateLesson->setIcon(KIcon("set-language"));
+    menu_translateLesson->setText(i18n("&Translate Lesson"));
+    connect(menu_translateLesson, SIGNAL(triggered()),  this, SLOT(slotTranslateLesson()));
+
     KToggleAction *oldPractice = actionCollection()->add<KToggleAction>("config_oldPractice");
     oldPractice->setText(i18n("Old Practice Dialogs"));
     connect(oldPractice, SIGNAL(triggered(bool)), this, SLOT(slotConfigOldPractice(bool)));
@@ -845,6 +851,18 @@ void ParleyApp::slotShowScriptManager() {
 //      kDebug() << QString("here!!");
     ScriptDialog * dialog = new ScriptDialog(&m_scriptManager);
     dialog->show();
+}
+
+void ParleyApp::slotTranslateLesson() {
+//     QModelIndex QAbstractItemModel::createIndex ( int row, int column, void * ptr = 0 ) const   [protected]
+
+    //with this way I can get the values of each cell in the table
+     kDebug() << m_vocabularyModel->index(0,0,QModelIndex()).data();
+
+    // only the root index has children because we have no hierarchical model.
+//     if (index == QModelIndex()) {
+//         return m_container->entryCount(m_recursive);
+//     }
 }
 
 void ParleyApp::removeGrades()
