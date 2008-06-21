@@ -28,11 +28,6 @@
 
 #include "prefs.h"
 
-#include "../../libkdeedu/keduvocdocument/keduvocexpression.h"
-#include "../../libkdeedu/keduvocdocument/keduvoctranslation.h"
-#include "../../libkdeedu/keduvocdocument/keduvocdocument.h"
-
-
 #include <KDebug>
 
 #include "entryfilter.h"

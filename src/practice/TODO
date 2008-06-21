@@ -25,3 +25,4 @@ Doing (in no particular order):
 
 Bugs:
 * Filter (sometimes) doesn't filter blank entries
+* I don't think the filter works at all... (it's not removing unchecked lessions)

@@ -15,10 +15,11 @@
 
 #include "prefs.h"
 
-#include "../../libkdeedu/keduvocdocument/keduvocexpression.h"
-#include "../../libkdeedu/keduvocdocument/keduvoctranslation.h"
-#include "../../libkdeedu/keduvocdocument/keduvocdocument.h"
-#include "../../libkdeedu/keduvocdocument/keduvocwordtype.h"
+#include <keduvocexpression.h>
+#include <keduvoctranslation.h>
+#include <keduvocdocument.h>
+#include <keduvocwordtype.h>
+
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KDialog>

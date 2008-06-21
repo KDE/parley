@@ -22,10 +22,11 @@
 #include <QLCDNumber>
 #include <QGraphicsSvgItem>
 
-#include "practiceentrymanager.h"
+#include <keduvocexpression.h>
+#include <keduvoctranslation.h>
+#include <keduvocdocument.h>
 
-#include "../../libkdeedu/keduvocdocument/keduvocexpression.h"
-#include "../../libkdeedu/keduvocdocument/keduvoctranslation.h"
+#include "practiceentrymanager.h"
 
 
 /**

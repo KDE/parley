@@ -14,11 +14,10 @@
 
 #include "prefs.h"
 
-#include "../../libkdeedu/keduvocdocument/keduvocexpression.h"
-#include "../../libkdeedu/keduvocdocument/keduvoctranslation.h"
-#include "../../libkdeedu/keduvocdocument/keduvocdocument.h"
-#include "../../libkdeedu/keduvocdocument/keduvocidentifier.h"
-
+#include <keduvocidentifier.h>
+#include <keduvocexpression.h>
+#include <keduvoctranslation.h>
+#include <keduvocdocument.h>
 
 #include <KLocalizedString>
 #include <sonnet/speller.h>

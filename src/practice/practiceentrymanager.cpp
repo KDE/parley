@@ -21,21 +21,13 @@
 
 
 #include <KRandomSequence>
-
 #include <KMessageBox>
-
 #include <KApplication>
-
-#include "prefs.h"
-
-#include "../../libkdeedu/keduvocdocument/keduvocexpression.h"
-#include "../../libkdeedu/keduvocdocument/keduvoctranslation.h"
-#include "../../libkdeedu/keduvocdocument/keduvocdocument.h"
-
-
 #include <KDebug>
 
+#include "prefs.h"
 #include "../entryfilter.h"
+
 #include "practiceentrymanager.h"
 
 PracticeEntryManager::PracticeEntryManager(QObject * parent)
