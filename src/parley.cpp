@@ -856,8 +856,30 @@ void ParleyApp::slotShowScriptManager() {
 void ParleyApp::slotTranslateLesson() {
 //     QModelIndex QAbstractItemModel::createIndex ( int row, int column, void * ptr = 0 ) const   [protected]
 
+#define WORD(r,c) m_vocabularyModel->index((r),(c),QModelIndex()).data().toString()
+
     //with this way I can get the values of each cell in the table
-     kDebug() << m_vocabularyModel->index(0,0,QModelIndex()).data();
+    kDebug() << m_vocabularyModel->index(0,0,QModelIndex()).data();
+
+    if (m_document->document()->identifierCount() >= 2) {
+        kDebug() << m_document->document()->identifier(0).locale();
+        kDebug() << m_document->document()->identifier(1).locale();
+
+//         int translationId = translation(index.column());
+//         int column = columnType(index.column());
+
+//     switch (column) {
+//     case Translation:
+//         m_container->entry(index.row(), m_recursive)->translation(translationId)->setText(value.toString());
+//         break;
+
+        for (int r = 0; r < m_vocabularyModel->rowCount(QModelIndex()); r++) {
+            if (! WORD(r,0).isEmpty() && WORD(r,1).isEmpty() ) {
+//                 kDebug() << "Translation column" << VocabularyModel::translation(0);
+                kDebug() << "Translate:" << WORD(r,0) << WORD(r,VocabularyModel::EntryColumnsMAX);
+            }
+        }
+    }
 
     // only the root index has children because we have no hierarchical model.
 //     if (index == QModelIndex()) {

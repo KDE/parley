@@ -135,6 +135,7 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
     case Qt::DisplayRole:
         switch (entryColumn) {
         case Translation:
+//             kDebug() << columnCount(QModelIndex()) << index.column() << m_container->entry(index.row(), m_recursive)->translation(translationId)->text();
             return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->text());
         case Pronunciation:
             return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->pronunciation());

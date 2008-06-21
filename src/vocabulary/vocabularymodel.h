@@ -64,7 +64,16 @@ public:
 
     QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
 
+    /**
+     * Returns which translation this column matches. It starts from 0 and increases every
+     * EntryColumnMax columns
+     */
     static int translation(int column);
+
+    /**
+     * Returns the type of the column specified. Translation types are multiples of
+     * EntryColumnsMAX
+     */
     static int columnType(int column);
 
     QModelIndex appendEntry(KEduVocExpression *expression = 0);
