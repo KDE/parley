@@ -874,7 +874,7 @@ void ParleyApp::slotTranslateLesson() {
 //         break;
 
         for (int r = 0; r < m_vocabularyModel->rowCount(QModelIndex()); r++) {
-            if (! WORD(r,0).isEmpty() && WORD(r,1).isEmpty() ) {
+            if (! WORD(r,0).isEmpty() && WORD(r,VocabularyModel::EntryColumnsMAX).isEmpty() ) {
 //                 kDebug() << "Translation column" << VocabularyModel::translation(0);
                 kDebug() << "Translate:" << WORD(r,0) << WORD(r,VocabularyModel::EntryColumnsMAX);
             }
