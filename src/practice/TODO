@@ -14,7 +14,7 @@ Planning:
     - How much abstraction should be between them?
 
 Doing (in no particular order):
- * Finish the settings dialogs
+ * Finish the settings dialogs // Note: we're using the old one
  * Make parleypractice honor its settings
  * Create the statistical summary dialog
  * Recreate various practice modes
@@ -22,8 +22,6 @@ Doing (in no particular order):
  * KNS / themes download
  * keep track of users incorrect answers
  * more robust error checking
- * add incorrect entries to end of practice list
 
 Bugs:
-* Filter (sometimes)) doesn't filter blank entries
-* The % correct bar borks if you get the first question wrong
+* Filter (sometimes) doesn't filter blank entries
