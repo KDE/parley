@@ -26,7 +26,7 @@
 #include <KDebug>
 
 #include "prefs.h"
-#include "../entryfilter.h"
+#include "practiceold/entryfilter.h"
 
 #include "practiceentrymanager.h"
 
@@ -34,45 +34,35 @@ PracticeEntryManager::PracticeEntryManager(QObject * parent)
         : QObject(parent),
         m_iter(QList<KEduVocExpression*>()) // it has no empty constructor. Annoying...
 {
-    m_entries = QList<KEduVocExpression*>();
     m_fromTranslation = Prefs::questionLanguage();
     m_toTranslation = Prefs::solutionLanguage();
     m_testType = Prefs::testType();
-
-
 }
 
 void PracticeEntryManager::filterTestEntries()
 {
     EntryFilter filter(this, m_doc);
-    QList<KEduVocExpression*> m_entries = filter.entries();
+    m_entries = filter.entries();
 }
-
 
 void PracticeEntryManager::open(KEduVocDocument* doc)
 {
     m_doc = doc;
 
-    if (m_doc && m_doc->lesson())
-    {
-        m_entries = m_doc->lesson()->entries(KEduVocContainer::Recursive);
-        kDebug() << "count " << m_doc->lesson()->entryCount(KEduVocContainer::Recursive);
-        if (0 == m_doc->lesson()->entryCount(KEduVocContainer::Recursive))
-        {
-//            KMessageBox::error(0, i18n("The vocabulary document contains no entries."));
-            kDebug() << "No entries in selected document -- aborting.";
-            exit(1);
-
-        }
-        m_iter = m_entries;
-        filterTestEntries();
-        shuffle();
-    }
-    else
-    {
-        kDebug() << "bad" << m_doc << m_doc->lesson();
+    // should not happen
+    if (!m_doc) {
+        kDebug() << "No document -- aborting.";
+        return;
     }
 
+    filterTestEntries();
+    if (m_entries.count() == 0) {
+        kDebug() << "No entries selected -- aborting";
+        return;
+    }
+
+    m_iter = m_entries;
+    shuffle();
 }
 
 const QString PracticeEntryManager::currentSolution() const

@@ -68,12 +68,12 @@ set(practice_SRCS
     practice/answervalidator.cpp
     practice/practiceentrymanager.cpp
     practice/timer.cpp
-    entryfilter.cpp
+    practiceold/entryfilter.cpp
 )
 
 kde4_add_ui_files(practice_SRCS
     practice/kgametheme/kgamethemeselector.ui
-    entryfilter.ui
+    practiceold/entryfilter.ui
 )
 
 #for the parleypractice app
@@ -97,7 +97,6 @@ set(practiceold_SRCS
     practiceold/showsolutiondialog.cpp
     practiceold/practicesummarydialog.cpp
     practiceold/answervalidatorold.cpp
-    entryfilter.cpp
 )
 
 kde4_add_ui_files(practiceold_SRCS
@@ -110,7 +109,6 @@ kde4_add_ui_files(practiceold_SRCS
     practiceold/mixedletterpracticedialog.ui
     practiceold/showsolutionwidget.ui
     practiceold/practicesummarywidget.ui
-    entryfilter.ui
 )
 
 set(configure-practice_SRCS
