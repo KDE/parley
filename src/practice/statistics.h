@@ -22,6 +22,8 @@
 #include <QLCDNumber>
 #include <QGraphicsSvgItem>
 
+#include "practiceentrymanager.h"
+
 #include "../../libkdeedu/keduvocdocument/keduvocexpression.h"
 #include "../../libkdeedu/keduvocdocument/keduvoctranslation.h"
 
@@ -37,7 +39,7 @@ class Statistics : public QObject
     Q_OBJECT
 
     public:
-        Statistics(QObject * parent = 0);
+        Statistics(PracticeEntryManager* manager, QObject * parent = 0);
         virtual ~Statistics();
 
 
@@ -134,6 +136,8 @@ class Statistics : public QObject
         int taintReason(TaintReason reason) const { return m_taintReasons[reason]; }
         /// Get how often entries were skipped for SkipReason @param reason
         int skippedReason(SkipReason reason) const { return m_skipReasons[reason]; }
+        PracticeEntryManager* manager() const { return m_manager; }
+
 
     signals:
         void signalUpdateDisplay(Statistics*);
@@ -166,6 +170,7 @@ class Statistics : public QObject
 
         KEduVocExpression* m_expression;
 
+        PracticeEntryManager* m_manager;
 
     // These are purely implementation details, and subclasses shouldn't play with them.
     private:

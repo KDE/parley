@@ -45,7 +45,7 @@ target_link_libraries(
 
 install(TARGETS parleypractice  DESTINATION ${BIN_INSTALL_DIR} )
 install(FILES parleypracticeui.rc
-        DESTINATION  ${DATA_INSTALL_DIR}/parleypractice/)
+        DESTINATION  ${DATA_INSTALL_DIR}/parley/)
 install( FILES themes/default_theme.svgz
                 themes/default.desktop
     DESTINATION  ${DATA_INSTALL_DIR}/parley/themes/ )

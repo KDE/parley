@@ -20,6 +20,9 @@ Doing (in no particular order):
  * Recreate various practice modes
  * Create new practice modes
  * KNS / themes download
+ * keep track of users incorrect answers
+ * more robust error checking
+ * add incorrect entries to end of practice list
 
 Bugs:
 * Filter (sometimes)) doesn't filter blank entries

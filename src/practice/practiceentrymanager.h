@@ -58,7 +58,9 @@ class PracticeEntryManager : public QObject
 
         const QString currentSolution() const;
 
-
+        /// Append an expression to the end of the internal list.
+        /// Used when the user gets the answer wrong and we want to save the question for later.
+        void appendExpressionToList(KEduVocExpression*);
 
 
         /**
@@ -93,7 +95,7 @@ class PracticeEntryManager : public QObject
         int m_fromTranslation;
         int m_toTranslation;
         int m_testType;
-        int m_numberEntriesUsed;
+        int m_numberEntriesRemaining;
 
 
     signals:

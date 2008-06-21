@@ -68,7 +68,6 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
 
     QGraphicsScene* scene = new QGraphicsScene(this);
     m_view->setScene(scene);
-//     m_view->installEventFilter(this);
 
     m_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -78,9 +77,9 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
      QGraphicsSvgItem * backgroundsvg = new QGraphicsSvgItem();
      KSvgRenderer * krenderer = new KSvgRenderer();
      KGameTheme kgtheme;
-     kDebug() << kgtheme.load("parley/themes/default.desktop");
+     kDebug() << "kgametheme valid:" << kgtheme.load("parley/themes/default.desktop");
+     kDebug() << "graphics svg path" << kgtheme.graphics();
      krenderer->load(kgtheme.graphics());
-     kDebug() << kgtheme.graphics();
      backgroundsvg->setSharedRenderer(krenderer);
      scene->addItem(backgroundsvg);
      m_backgroundRect = backgroundsvg->boundingRect();
@@ -90,13 +89,11 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
 
     //// Loading the Document -- temporary ////
     KEduVocDocument * doc = new KEduVocDocument(this);
-    //KUrl url = KFileDialog::getOpenUrl(KUrl::fromPath("~"), KEduVocDocument::pattern(KEduVocDocument::Reading), this, i18n("Open Vocabulary Document"));
-
 
     // for the fun of it - use parleyrc
     kDebug() << "open file from parleyrc";
     KConfig parleyConfig("parleyrc");
-    kDebug() << parleyConfig.groupList();
+    kDebug() << "groupList" << parleyConfig.groupList();
     KConfigGroup recentFilesGroup(&parleyConfig, "Recent Files");
     // take the last file, but there are File1..n and Name1..n entries..
     QString sourceFile = recentFilesGroup.readEntry(recentFilesGroup.keyList().value(recentFilesGroup.keyList().count() / 2 - 1), QString());
@@ -126,7 +123,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     TextualInput * input = new TextualInput(krenderer, m_view, "practice_text_translation_background");
     scene->addWidget(input);
 
-    Statistics * stats = new Statistics(this);
+    Statistics * stats = new Statistics(m_manager, this);
     SvgBarStatistics * barstats = new SvgBarStatistics(krenderer, "percent_correct_bar", "percent_correct_background");
     scene->addItem(barstats);
     connect(stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));

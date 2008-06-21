@@ -23,8 +23,9 @@
 
 #include <KStandardDirs>
 
-Statistics::Statistics(QObject * parent)
-    : QObject(parent)
+Statistics::Statistics(PracticeEntryManager* manager, QObject * parent)
+    : QObject(parent),
+      m_manager(manager)
 {
     m_tainted = false;
     m_answerChecked = false;
@@ -36,7 +37,6 @@ Statistics::Statistics(QObject * parent)
     m_taintedIncorrect = 0;
     m_skipped = 0;
     m_streakLength = 0;
-
 }
 
 Statistics::~Statistics() {}
@@ -54,7 +54,7 @@ SvgBarStatistics::SvgBarStatistics(QSvgRenderer* renderer, const QString& foregr
     setElementId(foregroundElementId);
     m_backgroundRect = renderer->boundsOnElement(backgroundElementId);
     setPos(m_backgroundRect.x(), m_backgroundRect.y());
-    scale((m_backgroundRect.width())/boundingRect().width(), 1.0);
+    scale((m_backgroundRect.width())/boundingRect().width()*.0001, 1.0);
     kDebug() << boundingRect() << scenePos();
     setZValue(10); // higher than the rest
 }
@@ -62,9 +62,6 @@ SvgBarStatistics::SvgBarStatistics(QSvgRenderer* renderer, const QString& foregr
 SvgBarStatistics::~SvgBarStatistics()
 {}
 
-
-
-// TODO figure out what to do with grade...
 void Statistics::slotCorrection(float grade, ErrorType error)
 {
     // this is true when the answer supplied was correct.
@@ -112,6 +109,7 @@ void Statistics::slotIncorrect(ErrorType error)
 
     m_streakLength = 0;
 
+    m_manager->appendExpressionToList(m_expression);
     emit signalUpdateDisplay(this);
 }
 
@@ -233,14 +231,11 @@ void LCDStatistics::slotUpdateDisplay(Statistics* stats)
 
 void SvgBarStatistics::slotUpdateDisplay(Statistics*stats)
 {
-    if (stats->percentCorrect() == 0.0)
+    if (isVisible())
     {
-        setVisible(false);
-        return;
-    }
-    else if (isVisible() && stats->percentCorrect() != 0.0)
         setVisible(true);
-    scale((m_backgroundRect.width() * stats->percentCorrect())/mapToScene(boundingRect()).boundingRect().width(), 1.0);
+    }
+    scale((m_backgroundRect.width() * ((double)stats->correct() / stats->manager()->totalEntryCount()) )/mapToScene(boundingRect()).boundingRect().width(), 1.0);
 }
 
 

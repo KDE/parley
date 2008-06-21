@@ -88,14 +88,26 @@ const QString PracticeEntryManager::currentSolution() const
     return m_entry->translation(Prefs::solutionLanguage())->text();
 }
 
+void PracticeEntryManager::appendExpressionToList(KEduVocExpression* expr)
+{
+    m_entries.append(expr);
+    // when this entry was emitted, this was decremented, so now that we
+    // get it back, we'll increment to stay even.
+    ++m_numberEntriesRemaining;
+}
+
+// We append incorrect entries to the end of the list, so taking the
+// current size each time wouldn't be what we want.
+// So we'll only use the original size.
 int PracticeEntryManager::totalEntryCount() const
 {
-    return m_entries.count();
+    static int original_size = m_entries.count();
+    return original_size;
 }
 
 int PracticeEntryManager::activeEntryCount() const
 {
-    return totalEntryCount() - m_numberEntriesUsed;
+    return m_numberEntriesRemaining;
 }
 
 
@@ -120,6 +132,7 @@ void PracticeEntryManager::slotNewEntry()
 
         emit signalExpressionChanged(m_entry);
         emit signalNewEntry();
+        --m_numberEntriesRemaining;
     }
     else
     {
