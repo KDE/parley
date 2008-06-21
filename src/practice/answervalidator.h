@@ -63,9 +63,9 @@ class AnswerValidator : public QObject
     signals:
         /// The float is the 'correctness score', a number from 0.0 to 1.0 that denotes how close
         /// the user's answer was. The ErrorType containts the error(s) that the user made.
-        /// signalCorrection(1.0, Statistics::Correct) denotes a correct answer;
-        void signalCorrection(float, Statistics::ErrorType);
-
+        /// signalCorrection(1.0, Statistics::Correct, answer) denotes a correct answer;
+        /// The qstring is the user answer, which can be recorded if incorrect.
+        void signalCorrection(float, Statistics::ErrorType, const QString&);
     private:
         /**
          * Default correction mechanism.

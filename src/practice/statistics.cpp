@@ -62,16 +62,16 @@ SvgBarStatistics::SvgBarStatistics(QSvgRenderer* renderer, const QString& foregr
 SvgBarStatistics::~SvgBarStatistics()
 {}
 
-void Statistics::slotCorrection(float grade, ErrorType error)
+void Statistics::slotCorrection(float grade, ErrorType error, const QString& userAnswer)
 {
     // this is true when the answer supplied was correct.
     if ((grade == 1.0) && (error == Correct))
        slotCorrect();
     else
-        slotIncorrect(error);
+        slotIncorrect(error, userAnswer);
 }
 
-void Statistics::slotIncorrect(ErrorType error)
+void Statistics::slotIncorrect(ErrorType error, const QString&)
 {
     ++m_attempted;
     // I don't know a better way to do this...
@@ -110,6 +110,7 @@ void Statistics::slotIncorrect(ErrorType error)
     m_streakLength = 0;
 
     m_manager->appendExpressionToList(m_expression);
+    // TODO where should I store the incorrect answers? Do we need a new class?
     emit signalUpdateDisplay(this);
 }
 
@@ -138,7 +139,7 @@ void Statistics::slotSolutionShown()
     if (m_answerChecked) // the answer has already been checked and counted.
         return; // do nothing
     else // the user requested that the answer be shown before they provided an answer
-        slotIncorrect(SolutionShown);
+        slotIncorrect(SolutionShown, "");
 }
 
 
@@ -170,7 +171,7 @@ void Statistics::slotSetFinished()
 
 void Statistics::slotQuestionTimedOut()
 {
-    slotIncorrect(TimedOut);
+    slotIncorrect(TimedOut, "");
 }
 
 void Statistics::slotSetTimedOut()

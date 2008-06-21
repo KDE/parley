@@ -222,7 +222,7 @@ void AnswerValidator::simpleCorrector()
     ///@todo can solution.length() be zero? *should* be caught by Parley
     if (m_solution == m_userAnswer)
     {
-        emit signalCorrection(1.0, Statistics::Correct);
+        emit signalCorrection(1.0, Statistics::Correct, m_userAnswer);
         return;
     }
 
@@ -243,7 +243,7 @@ void AnswerValidator::simpleCorrector()
 
     int levensthein = levenshteinDistance(m_solution, m_userAnswer);
 
-    emit signalCorrection(1.0 - ((double)levensthein / qMax(m_solution.length(), m_userAnswer.length())), Statistics::UnknownMistake);
+    emit signalCorrection(1.0 - ((double)levensthein / qMax(m_solution.length(), m_userAnswer.length())), Statistics::UnknownMistake, m_userAnswer);
 
 }
 
@@ -254,13 +254,13 @@ void AnswerValidator::defaultCorrector()
     ///@todo can solution.length() be zero? *should* be caught by Parley
     if (m_solution == m_userAnswer)
     {
-        emit signalCorrection(1.0, Statistics::Correct);
+        emit signalCorrection(1.0, Statistics::Correct, m_userAnswer);
         return;
     }
 
     if (m_userAnswer.isEmpty())
     {
-        emit signalCorrection(1.0, Statistics::Empty);
+        emit signalCorrection(1.0, Statistics::Empty, m_userAnswer);
         return;
     }
 
@@ -286,7 +286,7 @@ void AnswerValidator::defaultCorrector()
         double grade;
         Statistics::ErrorType error;
         wordCompare(m_solution, m_userAnswer, grade, error);
-        emit signalCorrection(grade, error);
+        emit signalCorrection(grade, error, m_userAnswer);
         return;
     }
 
@@ -306,7 +306,7 @@ void AnswerValidator::defaultCorrector()
                     Statistics::ErrorType errors;
                     wordCompare(solutionWords.value(1), m_userAnswer.simplified(), percent, errors);
                     errors = static_cast<Statistics::ErrorType>((int)errors | Statistics::ArticleMissing);
-                    emit signalCorrection(qMax(percent - WRONG_ARTICLE_PUNISHMENT, 0.0), errors);
+                    emit signalCorrection(qMax(percent - WRONG_ARTICLE_PUNISHMENT, 0.0), errors, m_userAnswer);
                     return;
                 }
 
@@ -318,12 +318,12 @@ void AnswerValidator::defaultCorrector()
 
                     if (m_userAnswer.simplified().split(" ").value(0) == solutionWords.value(0))
                     {
-                        emit signalCorrection(grade, errors);
+                        emit signalCorrection(grade, errors, m_userAnswer);
                         return;
                     }
                     else
                     {
-                       emit signalCorrection(qMax(grade - WRONG_ARTICLE_PUNISHMENT, 0.0), static_cast<Statistics::ErrorType>((int)errors | Statistics::ArticleWrong));
+                       emit signalCorrection(qMax(grade - WRONG_ARTICLE_PUNISHMENT, 0.0), static_cast<Statistics::ErrorType>((int)errors | Statistics::ArticleWrong), m_userAnswer);
                        return;
                     }
                 }
@@ -339,7 +339,7 @@ void AnswerValidator::checkUserAnswer(const QString & solution, const QString & 
 {
     m_solution = solution;
     m_userAnswer = userAnswer;
-    
+
     defaultCorrector();
 }
 
@@ -511,7 +511,7 @@ void AnswerValidator::sentenceAnalysis()
 
     kDebug() << correction;
     kDebug() << "IMPLEMENT ME TO ACTUALLY EVALUATE THE ABOVE AND GENERATE A GRADE!";
-    emit signalCorrection(1.0 - ((double)levenshtein / qMax(m_solution.length(), m_userAnswer.length())),Statistics::UnknownMistake);
+    emit signalCorrection(1.0 - ((double)levenshtein / qMax(m_solution.length(), m_userAnswer.length())),Statistics::UnknownMistake, m_userAnswer);
 }
 
 

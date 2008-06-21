@@ -88,11 +88,12 @@ class Statistics : public QObject
         /// the supplied answer was to the solution. 1.0 means it was correct, 0.0 means it was entirely
         /// wrong.
         /// @param error contains the errors the user made. If only Correct is set, the answer is correct.
-        void slotCorrection(float grade, Statistics::ErrorType error);
+        /// userAnswer is stored if it is incorrect (something about learning from mistakes.... ;) )
+        void slotCorrection(float grade, Statistics::ErrorType error, const QString& userAnswer);
         /// Called when the answer is correct.
         void slotCorrect();
         /// Called when the answer is incorrect; ErrorType denotes why it was incorrect.
-        void slotIncorrect(Statistics::ErrorType error);
+        void slotIncorrect(Statistics::ErrorType error, const QString& userAnswer);
         /// Called when a known question was skipped.
         void slotSkippedKnown();
         /// Called when an unknown question was skipped.

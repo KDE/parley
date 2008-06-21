@@ -142,8 +142,8 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     validator->setLanguage(Prefs::solutionLanguage());
     connect(input, SIGNAL(signalInput(const QString&)), this, SLOT(slotGetInput(const QString&)));
     connect(this, SIGNAL(signalCheckInput(const QString&, const QString&)), validator, SLOT(checkUserAnswer(const QString&, const QString&)));
-    connect(validator, SIGNAL(signalCorrection(float, Statistics::ErrorType)), stats, SLOT(slotCorrection(float, Statistics::ErrorType)));
-    connect(validator, SIGNAL(signalCorrection(float, Statistics::ErrorType)), input, SLOT(slotChangeAnswerColor(float)));
+    connect(validator, SIGNAL(signalCorrection(float, Statistics::ErrorType, const QString&)), stats, SLOT(slotCorrection(float, Statistics::ErrorType, const QString&)));
+    connect(validator, SIGNAL(signalCorrection(float, Statistics::ErrorType, const QString&)), input, SLOT(slotChangeAnswerColor(float)));
 
     /////////// KAction Setup /////////////
 
