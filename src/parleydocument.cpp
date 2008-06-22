@@ -40,14 +40,13 @@
 
 #ifdef HAVE_LIBXSLT
 #include "export/export.h"
-#endif
-
 #include <libxml/parser.h>
 #include <libxml/tree.h>
 #include <libxslt/xslt.h>
 #include <libxslt/xsltInternals.h>
 #include <libxslt/transform.h>
 #include <libxslt/xsltutils.h>
+#endif
 
 
 ParleyDocument::ParleyDocument(ParleyApp *parent)
