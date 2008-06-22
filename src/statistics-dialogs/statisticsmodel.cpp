@@ -67,6 +67,14 @@ int StatisticsModel::columnCount(const QModelIndex & parent) const
     return m_doc->identifierCount() + 2;
 }
 
+KEduVocContainer * StatisticsModel::rootContainer() const
+{
+    if (!m_doc) {
+        return 0;
+    }
+    return m_doc->lesson();
+}
+
 #include "statisticsmodel.moc"
 
 

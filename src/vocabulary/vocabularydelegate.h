@@ -17,6 +17,8 @@
 #ifndef VOCABULARYDELEGATE_H
 #define VOCABULARYDELEGATE_H
 
+#include "basiccontainermodel.h"
+
 #include <QItemDelegate>
 #include <QModelIndex>
 
@@ -46,6 +48,17 @@ private slots:
 private:
     QModelIndex m_currentIndex;
     KEduVocDocument *m_doc;
+
+    // for the word type combo
+    class WordTypeBasicModel;
+};
+
+class VocabularyDelegate::WordTypeBasicModel :public BasicContainerModel
+{
+public:
+    explicit WordTypeBasicModel(QObject *parent = 0);
+protected:
+    KEduVocContainer * rootContainer() const;
 };
 
 #endif

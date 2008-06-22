@@ -33,6 +33,8 @@ public:
 
     void deleteWordType(const QModelIndex& wordTypeIndex);
 
+protected:
+    KEduVocContainer * rootContainer() const;
 };
 
 

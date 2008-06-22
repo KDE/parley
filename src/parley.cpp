@@ -38,6 +38,8 @@
 #include "vocabulary/containermodel.h"
 #include "vocabulary/lessonmodel.h"
 #include "vocabulary/wordtypemodel.h"
+#include "vocabulary/leitnerview.h"
+#include "vocabulary/leitnermodel.h"
 
 #include "entry-dialogs/multiplechoicewidget.h"
 #include "entry-dialogs/comparisonwidget.h"
@@ -332,12 +334,15 @@ void ParleyApp::updateDocument()
     m_vocabularyModel->setDocument(m_document->document());
 
     m_lessonModel->setDocument(m_document->document());
-
     // expand the root items
     m_lessonView->expandToDepth(0);
 
     m_wordTypeModel->setDocument(m_document->document());
     m_wordTypeView->expandToDepth(0);
+
+    m_leitnerModel->setDocument(m_document->document());
+    // the top level container of this model only holds the others
+    m_leitnerView->setRootIndex(m_leitnerModel->index(0,0));
 
     connect(m_document->document(), SIGNAL(docModified(bool)), this, SLOT(slotUpdateWindowCaption()));
     connect(m_vocabularyModel, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(slotRestoreColumnVisibility(KEduVocDocument*)));
@@ -404,6 +409,28 @@ void ParleyApp::initDockWidgets()
 
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         m_wordTypeView, SLOT(setTranslation(KEduVocExpression*, int)));
+
+// Leitner boxes dock
+    QDockWidget* leitnerDockWidget = new QDockWidget(i18n("Grade Boxes"), this);
+    leitnerDockWidget->setObjectName( "LeitnerDock" );
+    m_leitnerView = new LeitnerView(this);
+    leitnerDockWidget->setWidget(m_leitnerView);
+    addDockWidget( Qt::LeftDockWidgetArea, leitnerDockWidget );
+
+    m_leitnerModel = new LeitnerModel(this);
+    leitnerDockWidget->setVisible(false);
+    actionCollection()->addAction("show_leitner_dock", leitnerDockWidget->toggleViewAction());
+
+    m_leitnerView->setModel(m_leitnerModel);
+
+//     connect(m_leitnerView, SIGNAL(selectedWordTypeChanged(KEduVocWordType*)),
+//         m_vocabularyModel, SLOT(setWordType(KEduVocWordType*)));
+// 
+//     connect(m_leitnerView, SIGNAL(signalShowContainer(KEduVocContainer*)), 
+//         m_vocabularyModel, SLOT(showContainer(KEduVocContainer*)));
+// 
+//     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+//         m_leitnerView, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Conjugations
     QDockWidget *conjugationDock = new QDockWidget(i18n("Conjugation"), this);

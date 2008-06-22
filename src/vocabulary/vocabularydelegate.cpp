@@ -33,6 +33,7 @@
 #include <QHeaderView>
 #include <QDBusInterface>
 
+
 VocabularyDelegate::VocabularyDelegate(QObject *parent) : QItemDelegate(parent)
 {
     m_doc = 0;
@@ -51,7 +52,7 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
         if (!m_doc) return 0;
         KComboBox *wordTypeCombo = new KComboBox(parent);
 
-        BasicContainerModel *basicWordTypeModel = new BasicContainerModel(KEduVocContainer::WordType, parent);
+        WordTypeBasicModel *basicWordTypeModel = new WordTypeBasicModel(parent);
         wordTypeCombo->setModel(basicWordTypeModel);
         QTreeView *view = new QTreeView(parent);
 
@@ -193,5 +194,18 @@ QPair< QString, QString > VocabularyDelegate::guessWordType(const QString & entr
 }
 */
 
+
+VocabularyDelegate::WordTypeBasicModel::WordTypeBasicModel(QObject * parent)
+    :BasicContainerModel(KEduVocContainer::WordType, parent)
+{
+}
+
+KEduVocContainer * VocabularyDelegate::WordTypeBasicModel::rootContainer() const
+{
+    if (!m_doc) {
+        return 0;
+    }
+    return m_doc->wordTypeContainer();
+}
 
 #include "vocabularydelegate.moc"

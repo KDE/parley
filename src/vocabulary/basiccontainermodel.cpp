@@ -35,8 +35,6 @@ BasicContainerModel::BasicContainerModel(KEduVocContainer::EnumContainerType typ
 {
     m_type = type;
     m_doc = 0;
-
-    setSupportedDragActions(Qt::CopyAction | Qt::MoveAction);
 }
 
 void BasicContainerModel::setDocument(KEduVocDocument * doc)
@@ -55,30 +53,28 @@ void BasicContainerModel::setDocument(KEduVocDocument * doc)
     }
 }
 
-
 QModelIndex BasicContainerModel::index(int row, int column, const QModelIndex &parent) const
 {
     if (!m_doc || !hasIndex(row, column, parent)) {
         return QModelIndex();
     }
 
-    KEduVocContainer *parentLesson;
+    KEduVocContainer *parentContainer;
 
     if (!parent.isValid()) {
-        parentLesson = 0;
+        parentContainer = 0;
     } else {
-        parentLesson = static_cast<KEduVocContainer*>(parent.internalPointer());
+        parentContainer = static_cast<KEduVocContainer*>(parent.internalPointer());
     }
 
-    KEduVocContainer *childLesson;
-    if (!parentLesson) {
-        childLesson = rootContainer();
+    KEduVocContainer *childContainer;
+    if (!parentContainer) {
+        childContainer = rootContainer();
     } else {
-        childLesson = parentLesson->childContainer(row);
+        childContainer = parentContainer->childContainer(row);
     }
-    return createIndex(row, column, childLesson);
+    return createIndex(row, column, childContainer);
 }
-
 
 QModelIndex BasicContainerModel::index(KEduVocContainer * container) const
 {
@@ -91,7 +87,6 @@ QModelIndex BasicContainerModel::index(KEduVocContainer * container) const
 
     return currentIndex;
 }
-
 
 QModelIndex BasicContainerModel::parent(const QModelIndex &index) const
 {
@@ -113,7 +108,6 @@ QModelIndex BasicContainerModel::parent(const QModelIndex &index) const
     QModelIndex parentIndex = createIndex(parentItem->row(), 0, parentItem);
     return parentIndex;
 }
-
 
 int BasicContainerModel::rowCount(const QModelIndex &parent) const
 {
@@ -143,7 +137,7 @@ QVariant BasicContainerModel::data(const QModelIndex & index, int role) const
     KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
 
     switch (index.column()){
-    case 0: // Lesson name
+    case 0: // Container name
         if (role == Qt::DisplayRole || role == Qt::EditRole) {
             if (index.parent() == QModelIndex()) {
                 return i18n("None");
@@ -189,22 +183,6 @@ int BasicContainerModel::columnCount(const QModelIndex & parent) const
 KEduVocContainer::EnumContainerType BasicContainerModel::containerType()
 {
     return m_type;
-}
-
-KEduVocContainer * BasicContainerModel::rootContainer() const
-{
-    if (!m_doc) {
-        return 0;
-    }
-
-    switch (m_type) {
-        case KEduVocContainer::Lesson:
-            return m_doc->lesson();
-        case KEduVocContainer::WordType:
-            return m_doc->wordTypeContainer();
-    }
-
-    return 0;
 }
 
 

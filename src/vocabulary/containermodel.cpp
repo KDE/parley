@@ -73,7 +73,7 @@ QVariant ContainerModel::data(const QModelIndex & index, int role) const
     KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
 
     switch (index.column()){
-    case 0: // Lesson name
+    case 0: // Container name
         if (role == Qt::DisplayRole || role == Qt::EditRole) {
             return container->name();
         }
@@ -93,7 +93,7 @@ QVariant ContainerModel::data(const QModelIndex & index, int role) const
         break;
     case 1: // Total count
         if (role == Qt::DisplayRole) {
-            return container->entryCount(KEduVocLesson::Recursive);
+            return container->entryCount(KEduVocContainer::Recursive);
         }
         if (role == Qt::TextAlignmentRole) {
             return Qt::AlignRight;

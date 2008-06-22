@@ -53,6 +53,8 @@ set(vocabulary_SRCS
     vocabulary/containermimedata.cpp
     vocabulary/lessonview.cpp
     vocabulary/wordtypeview.cpp
+    vocabulary/leitnerview.cpp
+    vocabulary/leitnermodel.cpp
 )
 
 set(practice_SRCS

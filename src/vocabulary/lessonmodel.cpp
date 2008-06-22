@@ -27,6 +27,14 @@ LessonModel::LessonModel(QObject * parent)
 {
 }
 
+KEduVocContainer * LessonModel::rootContainer() const
+{
+    if (!m_doc) {
+        return 0;
+    }
+    return m_doc->lesson();
+}
+
 void LessonModel::splitLesson(const QModelIndex& containerIndex, int entriesPerLesson, SplitLessonOrder order)
 {
     if (!containerIndex.isValid()) {

@@ -44,6 +44,8 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
+protected:
+    KEduVocContainer * rootContainer() const;
 };
 
 

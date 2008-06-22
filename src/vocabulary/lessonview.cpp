@@ -28,8 +28,6 @@
 LessonView::LessonView(ParleyApp * parent) :ContainerView(parent)
 {
 //     setContextMenuPolicy(Qt::CustomContextMenu);
-    
-// -- LESSON --------------------------------------------------
 
     KAction *actionNewLesson = new KAction(this);
     parent->actionCollection()->addAction("new_lesson", actionNewLesson);
@@ -85,7 +83,6 @@ LessonView::LessonView(ParleyApp * parent) :ContainerView(parent)
     addAction(actionSplitLesson);
 }
 
-
 void LessonView::slotCreateNewLesson()
 {
     QModelIndex selectedIndex = selectionModel()->currentIndex();
@@ -119,7 +116,6 @@ void LessonView::slotDeleteLesson()
         m_model->deleteContainer(selectedIndex);
     }
 }
-
 
 void LessonView::slotSplitLesson()
 {

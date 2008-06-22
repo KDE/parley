@@ -15,13 +15,20 @@
 
 #include "wordtypemodel.h"
 
+#include <keduvocwordtype.h>
 
 WordTypeModel::WordTypeModel(QObject * parent)
     :ContainerModel(KEduVocContainer::WordType, parent)
 {
 }
 
+KEduVocContainer * WordTypeModel::rootContainer() const
+{
+    if (!m_doc) {
+        return 0;
+    }
+    return m_doc->wordTypeContainer();
+}
 
 #include "wordtypemodel.moc"
-
 
