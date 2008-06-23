@@ -30,14 +30,15 @@
 
 #include <KDebug>
 
+#include "practiceentry.h"
 #include "entryfilter.h"
 #include "testentrymanager.h"
 
 TestEntryManager::TestEntryManager(QObject * parent)
         : QObject(parent),
-        m_iter(QList<KEduVocExpression*>()) // it has no empty constructor. Annoying...
+        m_iter(QList<PracticeEntry*>()) // it has no empty constructor. Annoying...
 {
-    m_entries = QList<KEduVocExpression*>();
+    m_entries = QList<PracticeEntry*>();
     m_fromTranslation = Prefs::questionLanguage();
     m_toTranslation = Prefs::solutionLanguage();
     m_testType = Prefs::testType();
@@ -45,10 +46,19 @@ TestEntryManager::TestEntryManager(QObject * parent)
 
 }
 
+TestEntryManager::~TestEntryManager()
+{
+    qDeleteAll(m_entries);
+}
+
 void TestEntryManager::filterTestEntries()
 {
     EntryFilter filter(this, m_doc);
-    QList<KEduVocExpression*> m_entries = filter.entries();
+    QList<KEduVocExpression*> entries = filter.entries();
+    foreach(entry : entries)
+    {
+        m_entries.append(new PracticeEntry(entry));
+    }
 }
 
 
@@ -105,7 +115,7 @@ void TestEntryManager::slotNewEntry()
     if (m_iter.hasNext())
     {
         m_entry = m_iter.next();
-        KEduVocTranslation * original = m_entry->translation(Prefs::questionLanguage());
+        KEduVocTranslation * original = m_entry->expression()->translation(Prefs::questionLanguage());
         kDebug() << original->text();
 
         // It doesn't matter if these are empty since we would emit empty KUrls/QStrings anyway

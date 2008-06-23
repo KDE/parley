@@ -31,9 +31,10 @@
 #include <QObject>
 #include <QList>
 
-#include <keduvocexpression.h>
 #include <keduvoctranslation.h>
 #include <keduvocdocument.h>
+
+#include "practiceentry.h"
 
 
 /**
@@ -48,7 +49,7 @@ class TestEntryManager : public QObject
 
     public:
         TestEntryManager(QObject* parent = 0);
-
+        ~TestEntryManager();
         void open(KEduVocDocument*);
 
         const QString currentSolution() const;
@@ -81,9 +82,9 @@ class TestEntryManager : public QObject
 
     protected:
         KEduVocDocument * m_doc;
-        QList<KEduVocExpression*> m_entries;
-        KEduVocExpression * m_entry;
-        QListIterator<KEduVocExpression*> m_iter;
+        QList<PracticeEntry*> m_entries;
+        PracticeEntry* m_entry;
+        QListIterator<PracticeEntry*> m_iter;
 
         int m_fromTranslation;
         int m_toTranslation;

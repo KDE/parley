@@ -146,6 +146,8 @@ class Statistics : public QObject
         void signalQuit();
 
     protected:
+        void incErrorReason(ErrorType error);
+
         /// Number of questions attempted.
         int m_attempted;
         /// Number of untainted questions correctly answered.
@@ -170,7 +172,7 @@ class Statistics : public QObject
         /// Keeps track of how often a question is skipped for each reason.
         int m_skipReasons[NumberSkipReasons];
 
-        KEduVocExpression* m_expression;
+        PracticeEntry* m_entry;
 
         PracticeEntryManager* m_manager;
 

@@ -71,43 +71,19 @@ void Statistics::slotCorrection(float grade, ErrorType error, const QString& use
         slotIncorrect(error, userAnswer);
 }
 
-void Statistics::slotIncorrect(ErrorType error, const QString&)
+void Statistics::slotIncorrect(ErrorType error, const QString& incorrectAnswer)
 {
     ++m_attempted;
-    // I don't know a better way to do this...
-    if (error & SpellingMistake) ++m_errorReasons[0];
 
-    if (error & CapitalizationMistake) ++m_errorReasons[1];
-
-    if (error & AccentMistake) ++m_errorReasons[2];
-
-    if (error & ArticleWrong) ++m_errorReasons[3];
-
-    if (error & ArticleMissing) ++m_errorReasons[4];
-
-    if (error & FalseFriend) ++m_errorReasons[5];
-
-    if (error & Synonym) ++m_errorReasons[6];
-
-    if (error & Empty) ++m_errorReasons[7];
-
-    if (error & UnrelatedWord) ++m_errorReasons[8];
-
-    if (error & Incomplete) ++m_errorReasons[9];
-
-    if (error & Correct) ++m_errorReasons[10]; // this should never be used...
-
-    if (error & SolutionShown) ++m_errorReasons[11];
-
-    if (error & TimedOut) ++m_errorReasons[12];
-
-    if (error & UnknownMistake) ++m_errorReasons[11];
+    incErrorReason(error);
 
     m_tainted = false;
 
     m_answerChecked = true;
 
     m_streakLength = 0;
+
+    m_entry->answeredIncorrectly(error, incorrectAnswer, m_tainted);
 
     m_manager->appendExpressionToList(m_expression);
     // TODO where should I store the incorrect answers? Do we need a new class?
@@ -131,6 +107,8 @@ void Statistics::slotCorrect()
 
     m_answerChecked = true;
 
+    m_entry->answeredCorrectly(m_tainted);
+
     emit signalUpdateDisplay(this);
 }
 
@@ -142,10 +120,29 @@ void Statistics::slotSolutionShown()
         slotIncorrect(SolutionShown, "");
 }
 
+void incErrorReason(ErrorType error)
+{
+    if (error & SpellingMistake) ++m_errorReasons[0];
+    if (error & CapitalizationMistake) ++m_errorReasons[1];
+    if (error & AccentMistake) ++m_errorReasons[2];
+    if (error & ArticleWrong) ++m_errorReasons[3];
+    if (error & ArticleMissing) ++m_errorReasons[4];
+    if (error & FalseFriend) ++m_errorReasons[5];
+    if (error & Synonym) ++m_errorReasons[6];
+    if (error & Empty) ++m_errorReasons[7];
+    if (error & UnrelatedWord) ++m_errorReasons[8];
+    if (error & Incomplete) ++m_errorReasons[9];
+    if (error & Correct) ++m_errorReasons[10]; // this should never be used...
+    if (error & SolutionShown) ++m_errorReasons[11];
+    if (error & TimedOut) ++m_errorReasons[12];
+    if (error & UnknownMistake) ++m_errorReasons[11];
+}
+
 
 void Statistics::slotSkippedKnown()
 {
     ++m_skipReasons[Known];
+    m_entry->incSkippedReason(Known);
 }
 
 void Statistics::slotSkippedUnknown()
@@ -153,12 +150,16 @@ void Statistics::slotSkippedUnknown()
     ++m_attempted;
     m_tainted = false;
     m_streakLength = 0;
+    ++m_skipReasons[Unknown];
+
+    m_entry->incSkippedReason(Unknown);
     emit signalUpdateDisplay(this);
 }
 
 void Statistics::slotTaintAnswer(TaintReason reason)
 {
     ++m_taintReasons[reason];
+    m_entry->incTaintReason(reason);
 }
 
 
