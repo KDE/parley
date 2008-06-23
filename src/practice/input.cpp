@@ -22,12 +22,19 @@
 #include "statistics.h"
 
 #include <KDebug>
+#include <KSvgRenderer>
 
 TextualInput::TextualInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget* parent)
         : QLineEdit(parent),
         m_renderer(renderer)
 {
-//     //setFrame(false);
+    if (!renderer->elementExists(elementId))
+    {
+        setVisible(false);
+        kDebug() << "!! Element id doesn't exist:";
+        kDebug() << elementId << ":" << renderer->elementExists(elementId);
+    }
+
      QRect bounds = m_renderer->boundsOnElement(elementId).toRect();
      setGeometry(view->mapToScene(bounds).boundingRect().toRect());
 }

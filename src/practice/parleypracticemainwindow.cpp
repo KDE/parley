@@ -124,7 +124,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     scene->addWidget(input);
 
     Statistics * stats = new Statistics(m_manager, this);
-    SvgBarStatistics * barstats = new SvgBarStatistics(krenderer, "percent_correct_bar", "percent_correct_background");
+    SvgBarStatistics * barstats = new SvgBarStatistics(krenderer, "bar", "bar_background");
     scene->addItem(barstats);
     connect(stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
     connect(m_manager, SIGNAL(signalExpressionChanged(KEduVocExpression*)), stats, SLOT(slotSetExpression(KEduVocExpression*)));

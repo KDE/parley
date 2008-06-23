@@ -16,6 +16,11 @@
 
 #include <keduvocexpression.h>
 
+#include <QString>
+#include <QStringList>
+
+#include "statistics.h"
+
 /// @class PracticeEntry
 /// @brief A wrapper class for @c KEduVocExpression
 class PracticeEntry
@@ -28,14 +33,16 @@ class PracticeEntry
         int skipped() const { return m_skipped; }
         int taintedCorrect() const { return m_taintedCorrect; }
         int taintedIncorrect() const  { return m_taintedIncorrect; }
+        /// Gets a list of incorrect answers that were supplied for this entry.
+        QStringList incorrectAnswers() { return m_incorrectAnswers; }
         /// Get how often entry was tainted for ErrorType @param error
-        int errorReason(ErrorType error) const { return m_errorReasons[error]; }
+        int errorReason(Statistics::ErrorType error) const { return m_errorReasons[error]; }
         /// Get how often they entry was tainted for TaintReason @param reason
-        int taintReason(TaintReason reason) const { return m_taintReasons[reason]; }
+        int taintReason(Statistics::TaintReason reason) const { return m_taintReasons[reason]; }
         /// Get how often the entry was skipped for SkipReason @param reason
-        int skippedReason(SkipReason reason) const { return m_skipReasons[reason]; }
+        int skippedReason(Statistics::SkipReason reason) const { return m_skipReasons[reason]; }
 
-        PracticeEntryManager* expression() const { return m_expression; }
+        KEduVocExpression* expression() const { return m_expression; }
 
 
 
@@ -52,12 +59,12 @@ class PracticeEntry
         void addIncorrectAnswer(const QString& incorrectAnswer);
 
         /// Increment how often they entry was tainted for TaintReason @param reason
-        void incTaintReason(TaintReason reason) { ++m_taintReasons[reason]; }
+        void incTaintReason(Statistics::TaintReason reason) { ++m_taintReasons[reason]; }
         /// Increment how often the entry was skipped for SkipReason @param reason
-        void incSkippedReason(SkipReason reason) { ++m_skipReasons[reason]; }
+        void incSkippedReason(Statistics::SkipReason reason) { ++m_skipReasons[reason]; }
     protected:
         /// Increment how often entry was tainted for ErrorType @param error
-        void incErrorReason(ErrorType error);
+        void incErrorReason(Statistics::ErrorType error);
 
         /// Number of times attempted.
         int m_attempted;
@@ -81,6 +88,7 @@ class PracticeEntry
 
         KEduVocExpression* m_expression;
 
+        QStringList m_incorrectAnswers;
 };
 
 

@@ -50,6 +50,14 @@ LCDStatistics::LCDStatistics(QWidget * parent)
 SvgBarStatistics::SvgBarStatistics(QSvgRenderer* renderer, const QString& foregroundElementId, const QString& backgroundElementId, QGraphicsItem * parent)
     : QGraphicsSvgItem(parent)
 {
+    if (!(renderer->elementExists(foregroundElementId) && renderer->elementExists(backgroundElementId)))
+    {
+        setVisible(false);
+        kDebug() << "!! Element id doesn't exist:";
+        kDebug() << foregroundElementId << ":" << renderer->elementExists(foregroundElementId);
+        kDebug() << "or" << backgroundElementId << ":" << renderer->elementExists(backgroundElementId);
+    }
+
     setSharedRenderer(renderer);
     setElementId(foregroundElementId);
     m_backgroundRect = renderer->boundsOnElement(backgroundElementId);

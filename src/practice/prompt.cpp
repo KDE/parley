@@ -24,6 +24,14 @@
 TextualPrompt::TextualPrompt ( KSvgRenderer * renderer, const QString& elementId ) :
         m_renderer ( renderer )
 {
+
+    if (!renderer->elementExists(elementId))
+    {
+        setVisible(false);
+        kDebug() << "!! Element id doesn't exist:";
+        kDebug() << elementId << ":" << renderer->elementExists(elementId);
+    }
+
     m_backgroundRect = renderer->boundsOnElement ( elementId );
     setPos ( m_backgroundRect.x() + m_backgroundRect.width() / 20.0, m_backgroundRect.y() + m_backgroundRect.height() / 4.0 );
     adjustSize();
@@ -36,6 +44,14 @@ ImagePrompt::ImagePrompt ( KSvgRenderer * renderer, QGraphicsView * view, const 
         m_pic ( QPixmap() ),
         m_renderer ( renderer )
 {
+
+    if (!renderer->elementExists(elementId))
+    {
+        setVisible(false);
+        kDebug() << "!! Element id doesn't exist:";
+        kDebug() << elementId << ":" << renderer->elementExists(elementId);
+    }
+
     QRect bounds = m_renderer->boundsOnElement ( elementId ).toRect();
     setGeometry ( view->mapToScene ( bounds ).boundingRect().toRect() );
 
@@ -46,6 +62,14 @@ SoundPrompt::SoundPrompt ( KSvgRenderer * renderer, QGraphicsView * view, const 
         QPushButton ( parent ),
         m_renderer ( renderer )
 {
+
+    if (!renderer->elementExists(elementId))
+    {
+        setVisible(false);
+        kDebug() << "!! Element id doesn't exist:";
+        kDebug() << elementId << ":" << renderer->elementExists(elementId);
+    }
+
     if ( !m_media )
     {
         m_media = new Phonon::MediaObject ( this );

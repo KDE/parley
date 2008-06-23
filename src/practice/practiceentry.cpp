@@ -45,7 +45,7 @@ void answeredIncorrectly(Statistics::ErrorType, const QString& incorrectAnswer, 
     addIncorrectAnswer(incorrectAnswer);
 }
 
-void incErrorReason(ErrorType error)
+void incErrorReason(Statistics::ErrorType error)
 {
     if (error & SpellingMistake) ++m_errorReasons[0];
     if (error & CapitalizationMistake) ++m_errorReasons[1];
@@ -61,4 +61,20 @@ void incErrorReason(ErrorType error)
     if (error & SolutionShown) ++m_errorReasons[11];
     if (error & TimedOut) ++m_errorReasons[12];
     if (error & UnknownMistake) ++m_errorReasons[11];
+}
+
+
+void PracticeEntry::incGrade()
+{
+    // TODO do this once fregl finishes leitner
+}
+
+void PracticeEntry::decGrade()
+{
+    // TODO do this once fregl finishes leitner
+}
+
+void appendIncorrectAnswer(const QString& incorrectAnswer)
+{
+    m_incorrectAnswers.append(incorrectAnswer);
 }

@@ -9,16 +9,12 @@ Planning:
 
  * Theme elements
     - What should be themeable? Do we need any invariant elements?
- * Define interaction with parley
-    - How will parleypractice be spawned?
-    - How much abstraction should be between them?
 
 Doing (in no particular order):
  * Finish the settings dialogs // Note: we're using the old one
- * Make parleypractice honor its settings
+ * Make parleypractice honor its settings; Progress: **
  * Create the statistical summary dialog
  * Recreate various practice modes
  * Create new practice modes
- * KNS / themes download
- * keep track of users incorrect answers -- Wrapper class time!
- * more robust error checking
+ * KNS / themes download; Progress: **
+ * more robust error checking; Progress: *

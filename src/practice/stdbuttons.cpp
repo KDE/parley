@@ -27,6 +27,13 @@ StdButton::StdButton(KSvgRenderer * renderer, PracticeView * view, const QString
         : KPushButton(parent),
         m_renderer(renderer)
 {
+    if (!renderer->elementExists(elementId))
+    {
+        setVisible(false);
+        kDebug() << "!! Element id doesn't exist:";
+        kDebug() << elementId << ":" << renderer->elementExists(elementId);
+    }
+
     connect(this, SIGNAL(clicked()), this, SLOT(slotActivated()));
        QRect bounds = m_renderer->boundsOnElement(elementId).toRect();
      setGeometry(view->mapToScene(bounds).boundingRect().toRect());
@@ -36,6 +43,14 @@ StdButton::StdButton(const QString& text, KSvgRenderer * renderer, PracticeView 
         : KPushButton(text, parent),
         m_renderer(renderer)
 {
+
+    if (!renderer->elementExists(elementId))
+    {
+        setVisible(false);
+        kDebug() << "!! Element id doesn't exist:";
+        kDebug() << elementId << ":" << renderer->elementExists(elementId);
+    }
+
     connect(this, SIGNAL(clicked()), this, SLOT(slotActivated()));
        QRect bounds = m_renderer->boundsOnElement(elementId).toRect();
      setGeometry(view->mapToScene(bounds).boundingRect().toRect());
