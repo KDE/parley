@@ -20,9 +20,5 @@ Doing (in no particular order):
  * Recreate various practice modes
  * Create new practice modes
  * KNS / themes download
- * keep track of users incorrect answers
+ * keep track of users incorrect answers -- Wrapper class time!
  * more robust error checking
-
-Bugs:
-* Filter (sometimes) doesn't filter blank entries
-* I don't think the filter works at all... (it's not removing unchecked lessions)
