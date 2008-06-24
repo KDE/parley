@@ -70,6 +70,7 @@ set(practice_SRCS
     practice/answervalidator.cpp
     practice/practiceentrymanager.cpp
     practice/timer.cpp
+    practice/practiceentry.cpp
     practiceold/entryfilter.cpp
 )
 

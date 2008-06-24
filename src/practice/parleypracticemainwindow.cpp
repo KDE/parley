@@ -127,7 +127,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     SvgBarStatistics * barstats = new SvgBarStatistics(krenderer, "bar", "bar_background");
     scene->addItem(barstats);
     connect(stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
-    connect(m_manager, SIGNAL(signalExpressionChanged(KEduVocExpression*)), stats, SLOT(slotSetExpression(KEduVocExpression*)));
+    connect(m_manager, SIGNAL(signalEntryChanged(PracticeEntry*)), stats, SLOT(slotSetEntry(PracticeEntry*)));
     connect(m_manager, SIGNAL(signalSetFinished()), stats, SLOT(slotSetFinished()));
 
 
@@ -177,6 +177,9 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     connect(hintAction, SIGNAL(triggered()), hint, SLOT(slotShowHint()));
     connect(hint, SIGNAL(signalShowHint()), showSolutionAction, SIGNAL(triggered())); // this is the hint for now :)
     connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
+    if (!Prefs::showHints())
+        hintAction->setVisible(false);
+
 
     //// Check Answer Setup ////
     KAction *checkAnswerAction = new KAction(this);

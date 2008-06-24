@@ -80,11 +80,11 @@ class PracticeEntry
 
         /// Keeps track of how often a question is incorrect for each error.
         /// Note that multiple errors can be incremented at once.
-        int m_errorReasons[NumberIncorrectReasons];
+        int m_errorReasons[Statistics::NumberIncorrectReasons];
         /// Keeps track of how often a question is tainted for each reason.
-        int m_taintReasons[NumberTaintReasons];
+        int m_taintReasons[Statistics::NumberTaintReasons];
         /// Keeps track of how often a question is skipped for each reason.
-        int m_skipReasons[NumberSkipReasons];
+        int m_skipReasons[Statistics::NumberSkipReasons];
 
         KEduVocExpression* m_expression;
 

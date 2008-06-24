@@ -20,7 +20,7 @@
 #define TIMER_H
 
 #include <QTimer>
-
+#include "prefs.h"
 
 /**
 * @class Timer
@@ -53,10 +53,10 @@ class InvisibleTimer : public QObject
         void slotStart();
         /// Stops the timer prematurely (called when the user inputs an answer)
         void slotStop();
-        void slotLog();
+        void slotTimeout();
     signals:
         /// Emitted when the timer times out.
-        void signalTimeout();
+        void signalTimeout(Prefs::EnumPracticeTimeoutMode);
 
     private:
         QTimer * m_timer;

@@ -15,6 +15,7 @@
 *                                                                         *
 ***************************************************************************/
 #include "statistics.h"
+#include "practiceentry.h"
 
 #include <KDebug>
 #include <KLocalizedString>
@@ -93,8 +94,7 @@ void Statistics::slotIncorrect(ErrorType error, const QString& incorrectAnswer)
 
     m_entry->answeredIncorrectly(error, incorrectAnswer, m_tainted);
 
-    m_manager->appendExpressionToList(m_expression);
-    // TODO where should I store the incorrect answers? Do we need a new class?
+    m_manager->appendEntryToList(m_entry);
     emit signalUpdateDisplay(this);
 }
 
@@ -128,7 +128,7 @@ void Statistics::slotSolutionShown()
         slotIncorrect(SolutionShown, "");
 }
 
-void incErrorReason(ErrorType error)
+void Statistics::incErrorReason(Statistics::ErrorType error)
 {
     if (error & SpellingMistake) ++m_errorReasons[0];
     if (error & CapitalizationMistake) ++m_errorReasons[1];

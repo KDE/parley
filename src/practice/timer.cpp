@@ -19,7 +19,7 @@ InvisibleTimer::InvisibleTimer(QObject * parent)
 {
     kDebug() << "ctor'ed";
     m_timer = new QTimer();
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(slotLog()));
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(slotTimeout()));
 }
 
 InvisibleTimer::~InvisibleTimer()
@@ -47,8 +47,8 @@ void InvisibleTimer::slotStop()
     m_timer->stop();
 }
 
-void InvisibleTimer::slotLog()
+void InvisibleTimer::slotTimeout()
 {
     kDebug() << "hit";
-    emit signalTimeout();
+ //   emit signalTimeout((Prefs::EnumPracticeTimeoutMode)(Prefs::practiceTimeoutMode())); // TODO check on this
 }

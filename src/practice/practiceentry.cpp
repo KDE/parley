@@ -15,7 +15,7 @@
 #include "statistics.h"
 
 
-PracticeEntry(KEduVocExpression* expr)
+PracticeEntry::PracticeEntry(KEduVocExpression* expr)
 : m_expression(expr)
 {}
 
@@ -35,7 +35,7 @@ void PracticeEntry::answeredCorrectly(bool tainted)
     }
 };
 
-void answeredIncorrectly(Statistics::ErrorType, const QString& incorrectAnswer, bool tainted)
+void PracticeEntry::answeredIncorrectly(Statistics::ErrorType, const QString& incorrectAnswer, bool tainted)
 {
     if (tainted)
         ++m_taintedIncorrect;
@@ -45,22 +45,23 @@ void answeredIncorrectly(Statistics::ErrorType, const QString& incorrectAnswer, 
     addIncorrectAnswer(incorrectAnswer);
 }
 
-void incErrorReason(Statistics::ErrorType error)
+void PracticeEntry::incErrorReason(Statistics::ErrorType error)
 {
-    if (error & SpellingMistake) ++m_errorReasons[0];
-    if (error & CapitalizationMistake) ++m_errorReasons[1];
-    if (error & AccentMistake) ++m_errorReasons[2];
-    if (error & ArticleWrong) ++m_errorReasons[3];
-    if (error & ArticleMissing) ++m_errorReasons[4];
-    if (error & FalseFriend) ++m_errorReasons[5];
-    if (error & Synonym) ++m_errorReasons[6];
-    if (error & Empty) ++m_errorReasons[7];
-    if (error & UnrelatedWord) ++m_errorReasons[8];
-    if (error & Incomplete) ++m_errorReasons[9];
-    if (error & Correct) ++m_errorReasons[10]; // this should never be used...
-    if (error & SolutionShown) ++m_errorReasons[11];
-    if (error & TimedOut) ++m_errorReasons[12];
-    if (error & UnknownMistake) ++m_errorReasons[11];
+
+    if (error & Statistics::SpellingMistake) ++m_errorReasons[0];
+    if (error & Statistics::CapitalizationMistake) ++m_errorReasons[1];
+    if (error & Statistics::AccentMistake) ++m_errorReasons[2];
+    if (error & Statistics::ArticleWrong) ++m_errorReasons[3];
+    if (error & Statistics::ArticleMissing) ++m_errorReasons[4];
+    if (error & Statistics::FalseFriend) ++m_errorReasons[5];
+    if (error & Statistics::Synonym) ++m_errorReasons[6];
+    if (error & Statistics::Empty) ++m_errorReasons[7];
+    if (error & Statistics::UnrelatedWord) ++m_errorReasons[8];
+    if (error & Statistics::Incomplete) ++m_errorReasons[9];
+    if (error & Statistics::Correct) ++m_errorReasons[10]; // this should never be used...
+    if (error & Statistics::SolutionShown) ++m_errorReasons[11];
+    if (error & Statistics::TimedOut) ++m_errorReasons[12];
+    if (error & Statistics::UnknownMistake) ++m_errorReasons[11];
 }
 
 
@@ -74,7 +75,7 @@ void PracticeEntry::decGrade()
     // TODO do this once fregl finishes leitner
 }
 
-void appendIncorrectAnswer(const QString& incorrectAnswer)
+void PracticeEntry::addIncorrectAnswer(const QString& incorrectAnswer)
 {
     m_incorrectAnswers.append(incorrectAnswer);
 }

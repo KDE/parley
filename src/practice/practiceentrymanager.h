@@ -35,6 +35,7 @@
 #include <keduvoctranslation.h>
 #include <keduvocdocument.h>
 
+class PracticeEntry;
 
 /**
 * @class PracticeEntryManager
@@ -48,6 +49,7 @@ class PracticeEntryManager : public QObject
 
     public:
         PracticeEntryManager(QObject* parent = 0);
+        ~PracticeEntryManager();
 
         void open(KEduVocDocument*);
 
@@ -55,7 +57,7 @@ class PracticeEntryManager : public QObject
 
         /// Append an expression to the end of the internal list.
         /// Used when the user gets the answer wrong and we want to save the question for later.
-        void appendExpressionToList(KEduVocExpression*);
+        void appendEntryToList(PracticeEntry*);
 
 
         /**
@@ -83,9 +85,9 @@ class PracticeEntryManager : public QObject
 
     protected:
         KEduVocDocument * m_doc;
-        QList<KEduVocExpression*> m_entries;
-        KEduVocExpression * m_entry;
-        QListIterator<KEduVocExpression*> m_iter;
+        QList<PracticeEntry*> m_entries;
+        PracticeEntry * m_entry;
+        QListIterator<PracticeEntry*> m_iter;
 
         int m_fromTranslation;
         int m_toTranslation;
@@ -105,7 +107,7 @@ class PracticeEntryManager : public QObject
         void signalNewSound(const KUrl&);
         /// Emitted when the question is changed.
         /// This is used so @class Statistics can update the grades and related information.
-        void signalExpressionChanged(KEduVocExpression*);
+        void signalEntryChanged(PracticeEntry*);
         /// Used so various widgets will know to reset themselves.
         void signalNewEntry();
         /// Emitted when the set of questions is finished.

@@ -99,7 +99,10 @@
       <label>Enable suggestion lists in written practice.</label>
       <default>false</default>
     </entry>
-
+    <entry name = "showHints" type="Bool">
+     <label>Enable the showing of hints.</label>
+     <default>true</default>
+    </entry>
     <entry name="IgnoreAccentMistakes" type="Bool">
       <label>Count answers as right when only the accentuation is wrong.</label>
       <default>false</default>

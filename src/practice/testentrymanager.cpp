@@ -123,7 +123,7 @@ void TestEntryManager::slotNewEntry()
         emit signalNewImage(original->imageUrl());
         emit signalNewSound(original->soundUrl());
 
-        emit signalExpressionChanged(m_entry);
+        emit signalEntryChanged(m_entry);
 
     }
     else

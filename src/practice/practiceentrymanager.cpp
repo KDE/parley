@@ -29,20 +29,28 @@
 #include "practiceold/entryfilter.h"
 
 #include "practiceentrymanager.h"
+#include "practiceentry.h"
 
 PracticeEntryManager::PracticeEntryManager(QObject * parent)
         : QObject(parent),
-        m_iter(QList<KEduVocExpression*>()) // it has no empty constructor. Annoying...
+        m_iter(QList<PracticeEntry*>()) // it has no empty constructor. Annoying...
 {
     m_fromTranslation = Prefs::questionLanguage();
     m_toTranslation = Prefs::solutionLanguage();
     m_testType = Prefs::testType();
 }
 
+PracticeEntryManager::~PracticeEntryManager()
+{
+    qDeleteAll(m_entries);
+}
+
 void PracticeEntryManager::filterTestEntries()
 {
     EntryFilter filter(this, m_doc);
-    m_entries = filter.entries();
+    QList<KEduVocExpression*> tempList = filter.entries();
+    foreach(KEduVocExpression* expr, tempList)
+        m_entries.append(new PracticeEntry(expr));
 }
 
 void PracticeEntryManager::open(KEduVocDocument* doc)
@@ -67,12 +75,12 @@ void PracticeEntryManager::open(KEduVocDocument* doc)
 
 const QString PracticeEntryManager::currentSolution() const
 {
-    return m_entry->translation(Prefs::solutionLanguage())->text();
+    return m_entry->expression()->translation(Prefs::solutionLanguage())->text();
 }
 
-void PracticeEntryManager::appendExpressionToList(KEduVocExpression* expr)
+void PracticeEntryManager::appendEntryToList(PracticeEntry* entry)
 {
-    m_entries.append(expr);
+    m_entries.append(entry);
     // when this entry was emitted, this was decremented, so now that we
     // get it back, we'll increment to stay even.
     ++m_numberEntriesRemaining;
@@ -104,7 +112,7 @@ void PracticeEntryManager::slotNewEntry()
     if (m_iter.hasNext())
     {
         m_entry = m_iter.next();
-        KEduVocTranslation * original = m_entry->translation(Prefs::questionLanguage());
+        KEduVocTranslation * original = m_entry->expression()->translation(Prefs::questionLanguage());
         kDebug() << original->text();
 
         // It doesn't matter if these are empty since we would emit empty KUrls/QStrings anyway
@@ -112,7 +120,7 @@ void PracticeEntryManager::slotNewEntry()
         emit signalNewImage(original->imageUrl());
         emit signalNewSound(original->soundUrl());
 
-        emit signalExpressionChanged(m_entry);
+        emit signalEntryChanged(m_entry);
         emit signalNewEntry();
         --m_numberEntriesRemaining;
     }

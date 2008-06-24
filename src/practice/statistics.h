@@ -28,6 +28,7 @@
 
 #include "practiceentrymanager.h"
 
+class PracticeEntry;
 
 /**
 * @class Statistics
@@ -103,7 +104,7 @@ class Statistics : public QObject
         void slotTaintAnswer(Statistics::TaintReason reason);
         /// Called to set the current prompt expression
         /// We use this to update grade, practice count, etc
-        void slotSetExpression(KEduVocExpression* expr) { m_expression = expr; m_answerChecked = false; };
+        void slotSetEntry(PracticeEntry* e) { m_entry = e; m_answerChecked = false; };
         /// Called when the set of entries is exhausted.
         /// Most practice modes will want to show a statistical summery before it exits.
         void slotSetFinished();
