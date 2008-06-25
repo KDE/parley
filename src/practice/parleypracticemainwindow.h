@@ -20,14 +20,7 @@
 
 #include <KXmlGuiWindow>
 
-#include <QGraphicsView>
-#include <QGraphicsSvgItem>
-#include <QString>
-#include <QRectF>
-
-
-class PracticeEntryManager;
-class PracticeView;
+class QString;
 
 class ParleyPracticeMainWindow : public KXmlGuiWindow
 {
@@ -38,24 +31,30 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         /*
             ~ParleyPracticeMainWindow();*/
 
-    private:
-        PracticeView* m_view;
-        QGraphicsSvgItem* m_layout;
-        PracticeEntryManager * m_manager;
+    protected:
+        class PracticeView* m_view;
+        class QGraphicsSvgItem* m_layout;
+        class QGraphicsScene* m_scene;
+        class KSvgRenderer* m_renderer;
 
-        QRectF m_backgroundRect;
+        class PracticeEntryManager * m_manager;
+        class Statistics* m_stats;
+        class AnswerValidator* m_validator;
+
+        void setupBase();
+        virtual void setupActions();
+        virtual void setupModeSpecifics();
 
     public slots:
-        void slotGetInput(const QString& input);
+        void slotCheckAnswer(const QString& input);
         void slotShowSolution();
-        void slotToggleShowSolutionContinueActions();
+        void slotToggleCheckAnswerContinueActions();
         void slotCreatePreferencesDialog();
     signals:
-        void signalCheckInput(const QString&, const QString&);
+        void signalCheckAnswer(const QString&, const QString&);
         void signalShowSolution(const QString&);
+        void signalCheckAnswerContinueActionsToggled();
 };
 
-
-//#include "moc_parleypracticemainwindow.cpp"
 
 #endif

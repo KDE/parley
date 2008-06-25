@@ -23,6 +23,9 @@
 #include "stdbuttons.h"
 #include "statistics.h"
 
+
+// TODO This entire file smells of poor localizablity and fragility. Redo?
+
 StdButton::StdButton(KSvgRenderer * renderer, PracticeView * view, const QString& elementId, QWidget* parent)
         : KPushButton(parent),
         m_renderer(renderer)
@@ -87,6 +90,5 @@ void StdButton::slotSolutionShown()
     {
         // showing the solution removes their ability to provide an answer (duh!)
         setText("Continue");
-        signalToggleContinueShowAnswerActions();
     }
 }

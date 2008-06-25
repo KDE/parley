@@ -331,7 +331,7 @@ void AnswerValidator::defaultCorrector()
     sentenceAnalysis();
 }
 
-void AnswerValidator::checkUserAnswer(const QString & solution, const QString & userAnswer)
+void AnswerValidator::slotCheckAnswer(const QString & solution, const QString & userAnswer)
 {
     m_solution = solution;
     m_userAnswer = userAnswer;

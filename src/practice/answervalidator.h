@@ -58,7 +58,7 @@ class AnswerValidator : public QObject
         * which tells the 'correctness score' (a number from 0.0 to 1.0
         * that denotes how close it was) and what error was made.
         */
-        void checkUserAnswer(const QString& solution, const QString& userAnswer);
+        void slotCheckAnswer(const QString& solution, const QString& userAnswer);
 
     signals:
         /// The float is the 'correctness score', a number from 0.0 to 1.0 that denotes how close
