@@ -61,7 +61,7 @@ void PracticeEntry::incErrorReason(Statistics::ErrorType error)
     if (error & Statistics::Correct) ++m_errorReasons[10]; // this should never be used...
     if (error & Statistics::SolutionShown) ++m_errorReasons[11];
     if (error & Statistics::TimedOut) ++m_errorReasons[12];
-    if (error & Statistics::UnknownMistake) ++m_errorReasons[11];
+    if (error & Statistics::UnknownMistake) ++m_errorReasons[13];
 }
 
 

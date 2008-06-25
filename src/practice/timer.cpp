@@ -50,5 +50,5 @@ void InvisibleTimer::slotStop()
 void InvisibleTimer::slotTimeout()
 {
     kDebug() << "hit";
- //   emit signalTimeout((Prefs::EnumPracticeTimeoutMode)(Prefs::practiceTimeoutMode())); // TODO check on this
+    emit signalTimeout(Prefs::practiceTimeoutMode());
 }

@@ -56,7 +56,7 @@ class InvisibleTimer : public QObject
         void slotTimeout();
     signals:
         /// Emitted when the timer times out.
-        void signalTimeout(Prefs::EnumPracticeTimeoutMode);
+        void signalTimeout(Prefs::EnumPracticeTimeoutMode::type);
 
     private:
         QTimer * m_timer;

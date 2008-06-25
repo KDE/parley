@@ -152,6 +152,10 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     skipKnownAction->setText(i18n("Skip (Answer Known)"));
     actionCollection()->addAction("skip known", skipKnownAction);
     connect(skipKnownAction, SIGNAL(triggered()), stats, SLOT(slotSkippedKnown()));
+    if (!Prefs::skipKnownEnabled())
+    {
+        skipKnownAction->setVisible(false);
+    }
 
     KAction *skipUnknownAction = new KAction(this);
     skipUnknownAction->setText(i18n("Skip (Answer Not Known)"));

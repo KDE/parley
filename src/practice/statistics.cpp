@@ -143,7 +143,7 @@ void Statistics::incErrorReason(Statistics::ErrorType error)
     if (error & Correct) ++m_errorReasons[10]; // this should never be used...
     if (error & SolutionShown) ++m_errorReasons[11];
     if (error & TimedOut) ++m_errorReasons[12];
-    if (error & UnknownMistake) ++m_errorReasons[11];
+    if (error & UnknownMistake) ++m_errorReasons[13];
 }
 
 

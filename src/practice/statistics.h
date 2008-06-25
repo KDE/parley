@@ -81,7 +81,7 @@ class Statistics : public QObject
             SolutionShown         = 0x800, ///< the answer was shown before the user provided an answer
             TimedOut              =0x1000, ///< there was a per-question time limit and it ran out
             UnknownMistake        =0x2000,  ///< no idea
-            NumberIncorrectReasons = 15
+            NumberIncorrectReasons = 14
         };
 
     public slots:

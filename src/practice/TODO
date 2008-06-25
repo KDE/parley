@@ -12,9 +12,22 @@ Planning:
 
 Doing (in no particular order):
  * Finish the settings dialogs // Note: we're using the old one
- * Make parleypractice honor its settings; Progress: **
+ * Make parleypractice honor its settings; Progress: ****-
  * Create the statistical summary dialog
  * Recreate various practice modes
  * Create new practice modes
- * KNS / themes download; Progress: **
- * more robust error checking; Progress: *
+ * KNS / themes download; Progress: ***--
+ * more robust error checking; Progress: **---
+
+
+Modes to remake:
+ * Mixed Letters
+ * Multiple choice
+ * Written -- Done (It's the prototype)
+ * Example
+ * Paraphrase
+ * Article Training
+ * Comparison
+ * Conjugation
+ * Synonym
+ * Antonym

@@ -99,7 +99,7 @@
       <label>Enable suggestion lists in written practice.</label>
       <default>false</default>
     </entry>
-    <entry name = "showHints" type="Bool">
+    <entry name = "ShowHints" type="Bool">
      <label>Enable the showing of hints.</label>
      <default>true</default>
     </entry>
@@ -133,6 +133,7 @@
       <default>false</default>
     </entry>
 
+    <!-- This will be deprecated in the new partice -->
     <entry name="ShowMore" type="Bool">
       <label>Enable Show More button to reveal parts of the solution in written practice.</label>
       <default>true</default>
