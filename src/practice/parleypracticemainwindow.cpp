@@ -71,7 +71,12 @@ void ParleyPracticeMainWindow::slotCheckAnswer(const QString& input)
 
 void ParleyPracticeMainWindow::slotShowSolution()
 {
-    emit signalShowSolution(m_manager->currentSolution());
+    emit signalShowSolution(m_manager->currentSolution(), m_state);
+    if (m_state == CheckAnswer) // only switch if they haven't already answered
+    {
+        emit signalCheckAnswerContinueActionsToggled(m_state);
+        m_stats->slotSolutionShown();
+    }
 }
 
 void ParleyPracticeMainWindow::slotCreatePreferencesDialog()
@@ -85,79 +90,31 @@ void ParleyPracticeMainWindow::slotCreatePreferencesDialog()
 // this one is a mouthful...
 void ParleyPracticeMainWindow::slotToggleCheckAnswerContinueActions()
 {
-    // This simply toggles between the two actions since both shouldn't be shown at the same time.
-    QAction* showAnswerAction;
-    showAnswerAction = actionCollection()->action("check answer");
-
-    if (showAnswerAction->isVisible())
+    if (m_state == Continue)
     {
-        showAnswerAction->setVisible(false);
-        actionCollection()->action("continue")->setVisible(true);
+        actionCollection()->action("continue")->setVisible(false);
+        actionCollection()->action("check answer")->setVisible(true);
+        m_state = CheckAnswer;
     }
     else
     {
-        showAnswerAction->setVisible(true);
-        actionCollection()->action("continue")->setVisible(false);
+        actionCollection()->action("continue")->setVisible(true);
+        actionCollection()->action("check answer")->setVisible(false);
+        m_state = Continue;
     }
 
-    emit signalCheckAnswerContinueActionsToggled();
-}
-
-// This has all the GUI independent action setup code.
-void ParleyPracticeMainWindow::setupActions()
-{
-    KAction *skipKnownAction = new KAction(this);
-    skipKnownAction->setText(i18n("Skip (Answer Known)"));
-    actionCollection()->addAction("skip known", skipKnownAction);
-    connect(skipKnownAction, SIGNAL(triggered()), m_stats, SLOT(slotSkippedKnown()));
-    if (!Prefs::skipKnownEnabled())
-    {
-        skipKnownAction->setVisible(false);
-    }
-
-    KAction *skipUnknownAction = new KAction(this);
-    skipUnknownAction->setText(i18n("Skip (Answer Not Known)"));
-    actionCollection()->addAction("skip unknown", skipUnknownAction);
-    connect(skipUnknownAction, SIGNAL(triggered()), m_stats, SLOT(slotSkippedUnknown()));
-
-    KAction *showSolutionAction = new KAction(this);
-    showSolutionAction->setText(i18n("Show Solution"));
-    actionCollection()->addAction("show solution", showSolutionAction);
-    connect(showSolutionAction, SIGNAL(triggered()), m_stats, SLOT(slotSolutionShown()));
-    connect(showSolutionAction, SIGNAL(triggered()), this, SLOT(slotShowSolution()));
-
-    KAction *checkAnswerAction = new KAction(this);
-    checkAnswerAction->setText(i18n("Check Answer"));
-    actionCollection()->addAction("check answer", checkAnswerAction);
-    connect(checkAnswerAction, SIGNAL(triggered()), this, SLOT(slotToggleCheckAnswerContinueActions()));
-    checkAnswerAction->setVisible(true);
-
-    KAction *continueAction = new KAction(this);
-    continueAction->setText(i18n("Continue"));
-    actionCollection()->addAction("continue", continueAction);
-    connect(continueAction, SIGNAL(triggered()), m_manager, SLOT(slotNewEntry()));
-    connect(continueAction, SIGNAL(triggered()), this, SLOT(slotToggleCheckAnswerContinueActions()));
-    continueAction->setVisible(false);
-
-    KAction *hintAction = new KAction(this);
-    hintAction->setText(i18n("Show Hint"));
-    actionCollection()->addAction("hint", hintAction);
-    if (!Prefs::showHints())
-        hintAction->setVisible(false);
-
-    KStandardAction::preferences(this, SLOT(slotCreatePreferencesDialog()),
-                                       actionCollection());
-
-    KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
-    connect(m_stats, SIGNAL(signalQuit()), kapp, SLOT(quit()));
+    emit signalCheckAnswerContinueActionsToggled(m_state);
 }
 
 void ParleyPracticeMainWindow::setupBase()
 {
+    m_state = CheckAnswer;
+    m_mode = Prefs::testType();
+
     m_view = new PracticeView;
     setCentralWidget(m_view);
 
-    QGraphicsScene* m_scene = new QGraphicsScene(this);
+    m_scene = new QGraphicsScene(this);
     m_view->setScene(m_scene);
 
     m_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -203,40 +160,105 @@ void ParleyPracticeMainWindow::setupBase()
 }
 
 
+// This has all the GUI independent action setup code.
+void ParleyPracticeMainWindow::setupActions()
+{
+    KAction *skipKnownAction = new KAction(this);
+    skipKnownAction->setText(i18n("Skip (Answer Known)"));
+    actionCollection()->addAction("skip known", skipKnownAction);
+    connect(skipKnownAction, SIGNAL(triggered()), m_stats, SLOT(slotSkippedKnown()));
+    if (!Prefs::skipKnownEnabled())
+    {
+        skipKnownAction->setVisible(false);
+    }
+
+    KAction *skipUnknownAction = new KAction(this);
+    skipUnknownAction->setText(i18n("Skip (Answer Not Known)"));
+    actionCollection()->addAction("skip unknown", skipUnknownAction);
+    connect(skipUnknownAction, SIGNAL(triggered()), m_stats, SLOT(slotSkippedUnknown()));
+
+    KAction *showSolutionAction = new KAction(this);
+    showSolutionAction->setText(i18n("Show Solution"));
+    actionCollection()->addAction("show solution", showSolutionAction);
+    connect(showSolutionAction, SIGNAL(triggered()), this, SLOT(slotShowSolution()));
+
+    KAction *checkAnswerAction = new KAction(this);
+    checkAnswerAction->setText(i18n("Check Answer"));
+    actionCollection()->addAction("check answer", checkAnswerAction);
+    connect(checkAnswerAction, SIGNAL(triggered()), this, SLOT(slotToggleCheckAnswerContinueActions()));
+    checkAnswerAction->setVisible(true);
+
+    KAction *continueAction = new KAction(this);
+    continueAction->setText(i18n("Continue"));
+    actionCollection()->addAction("continue", continueAction);
+    connect(continueAction, SIGNAL(triggered()), m_manager, SLOT(slotNewEntry()));
+    connect(continueAction, SIGNAL(triggered()), this, SLOT(slotToggleCheckAnswerContinueActions()));
+    continueAction->setVisible(false);
+
+    KAction *hintAction = new KAction(this);
+    hintAction->setText(i18n("Show Hint"));
+    actionCollection()->addAction("hint", hintAction);
+    if (!Prefs::showHints())
+        hintAction->setVisible(false);
+
+    KStandardAction::preferences(this, SLOT(slotCreatePreferencesDialog()),
+                                       actionCollection());
+
+    KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
+    connect(m_stats, SIGNAL(signalQuit()), kapp, SLOT(quit()));
+}
+
+// here is where we'll add new modes
 void ParleyPracticeMainWindow::setupModeSpecifics()
+{
+    if (m_mode == Prefs::EnumTestType::WrittenTest)
+        setupWritten();
+    else
+        kDebug() << "unhandled practice mode " << m_mode << " selected.";
+}
+
+
+void ParleyPracticeMainWindow::setupWritten()
 {
 
     TextualPrompt * tprompt = new TextualPrompt(m_renderer, "practice_text_background");
     m_scene->addItem(tprompt);
     connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
 
-    ImagePrompt * iprompt = new ImagePrompt(m_renderer, m_view, "image_box");
-    m_scene->addWidget(iprompt);
-    connect(m_manager, SIGNAL(signalNewImage(const KUrl&)), iprompt, SLOT(slotSetImage(const KUrl&)));
+    if (Prefs::practiceImagesEnabled())
+    {
+        ImagePrompt * iprompt = new ImagePrompt(m_renderer, m_view, "image_box");
+        m_scene->addWidget(iprompt);
+        connect(m_manager, SIGNAL(signalNewImage(const KUrl&)), iprompt, SLOT(slotSetImage(const KUrl&)));
+    }
 
-    SoundPrompt * sprompt = new SoundPrompt(m_renderer, m_view, "image_box");
-    m_scene->addWidget(sprompt);
-    connect(m_manager, SIGNAL(signalNewSound(const KUrl&)), sprompt, SLOT(slotSetSound(const KUrl&)));
+    if (Prefs::practiceSoundEnabled())
+    {
+        SoundPrompt * sprompt = new SoundPrompt(m_renderer, m_view, "image_box");
+        m_scene->addWidget(sprompt);
+        connect(m_manager, SIGNAL(signalNewSound(const KUrl&)), sprompt, SLOT(slotSetSound(const KUrl&)));
+    }
 
     TextualInput * input = new TextualInput(m_renderer, m_view, "practice_text_translation_background");
     m_scene->addWidget(input);
     connect(input, SIGNAL(signalAnswer(const QString&)), this, SLOT(slotCheckAnswer(const QString&)));
     connect(m_validator, SIGNAL(signalCorrection(float, Statistics::ErrorType, const QString&)), input, SLOT(slotChangeAnswerColor(float)));
-    connect(m_manager, SIGNAL(signalShowSolution(const QString&)), input, SLOT(slotShowSolution(const QString&)));
-
+    connect(this, SIGNAL(signalShowSolution(const QString&, int)), input, SLOT(slotShowSolution(const QString&)));
+    connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
+    connect(actionCollection()->action("continue"), SIGNAL(triggered()), input, SLOT(slotClear()));
 
     SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, "bar", "bar_background");
     m_scene->addItem(barstats);
     connect(m_stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
 
-    StdButton * stdbutton = new StdButton("Check Answer", m_renderer, m_view, "check_answer_and_continue_button");
-    QGraphicsProxyWidget * gstdbutton = m_scene->addWidget(stdbutton);
+    StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, m_view, "check_answer_and_continue_button");
+    m_scene->addWidget(stdbutton);
     connect(input, SIGNAL(returnPressed()), stdbutton, SLOT(slotActivated()));
-    connect(this, SIGNAL(signalCheckAnswerContinueActionsToggled()), stdbutton, SLOT(slotToggleText()));
-    gstdbutton->setVisible(true); // enable for now
-    connect(actionCollection()->action("show solution"), SIGNAL(triggered()), stdbutton, SLOT(slotSolutionShown()));
+    connect(this, SIGNAL(signalCheckAnswerContinueActionsToggled(int)), stdbutton, SLOT(slotToggleText(int)));
     connect(stdbutton, SIGNAL(signalCheckAnswer()), actionCollection()->action("check answer"), SIGNAL(triggered()));
     connect(stdbutton, SIGNAL(signalContinue()), actionCollection()->action("continue"), SIGNAL(triggered()));
+    stdbutton->setVisible(true); // enable for now
+
 
     Hint * hint = new Hint(this);
     connect(actionCollection()->action("hint"), SIGNAL(triggered()), hint, SLOT(slotShowHint()));

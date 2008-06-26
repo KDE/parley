@@ -39,9 +39,9 @@ TextualInput::TextualInput(KSvgRenderer * renderer, QGraphicsView * view, const 
      setGeometry(view->mapToScene(bounds).boundingRect().toRect());
 }
 
-void TextualInput::slotEmitCurrentInput()
+void TextualInput::slotEmitAnswer()
 {
-    emit signalInput(text());
+    emit signalAnswer(text());
 }
 
 void TextualInput::slotChangeAnswerColor(float correct)

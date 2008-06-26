@@ -25,6 +25,7 @@
 
 #include "statistics.h"
 #include "practiceview.h"
+#include "parleypracticemainwindow.h"
 
 /// @class StdButton
 /// @author David Capel <wot.narg@gmail.com>
@@ -38,9 +39,8 @@ class StdButton : public KPushButton
         explicit StdButton(KSvgRenderer * renderer, PracticeView * view, const QString& elementId, QWidget* parent = 0);
         explicit StdButton(const QString& text, KSvgRenderer * renderer, PracticeView * view, const QString& elementId, QWidget* parent = 0);
     public slots:
-        void slotSolutionShown();
         void slotActivated();
-        void slotToggleText();
+        void slotToggleText(int state);
 
     signals:
         /// Emitted when the user wants to continue.
@@ -54,7 +54,7 @@ class StdButton : public KPushButton
         void signalCheckAnswer();
     private:
             KSvgRenderer* m_renderer;
-
+            int m_state;
 };
 
 #endif

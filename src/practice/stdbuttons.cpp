@@ -17,14 +17,11 @@
 ***************************************************************************/
 
 #include <KDebug>
-#include <QPushButton>
-#include <QList>
+#include <KLocalizedString>
 
 #include "stdbuttons.h"
 #include "statistics.h"
 
-
-// TODO This entire file smells of poor localizablity and fragility. Redo?
 
 StdButton::StdButton(KSvgRenderer * renderer, PracticeView * view, const QString& elementId, QWidget* parent)
         : KPushButton(parent),
@@ -62,33 +59,25 @@ StdButton::StdButton(const QString& text, KSvgRenderer * renderer, PracticeView 
 
 void StdButton::slotActivated()
 {
-    if (text() == "Check Answer")
+    if (m_state == ParleyPracticeMainWindow::CheckAnswer)
     {
         emit signalCheckAnswer();
     }
-    else if (text() == "Continue")
+    else
     {
         emit signalContinue();
     }
-    else
+}
+
+void StdButton::slotToggleText(int state)
+{
+    m_state = state;
+    if (state == ParleyPracticeMainWindow::CheckAnswer)
     {
-        kDebug() << "slotButtonClicked recieved unhandled button " << text();
+        setText(i18n("Check Answer"));
     }
-}
-
-void StdButton::slotToggleText()
-{
-    if (text() == "Check Answer")
-        setText("Continue");
     else
-        setText("Check Answer");
-}
-
-void StdButton::slotSolutionShown()
-{
-    if (text() == "Check Answer")
     {
-        // showing the solution removes their ability to provide an answer (duh!)
-        setText("Continue");
+       setText(i18n("Continue"));
     }
 }

@@ -20,6 +20,8 @@
 
 #include <KXmlGuiWindow>
 
+#include <prefs.h>
+
 class QString;
 
 class ParleyPracticeMainWindow : public KXmlGuiWindow
@@ -31,6 +33,10 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         /*
             ~ParleyPracticeMainWindow();*/
 
+    // States that the actions can be in.
+    static const int CheckAnswer = 1;
+    static const int Continue = 2;
+
     protected:
         class PracticeView* m_view;
         class QGraphicsSvgItem* m_layout;
@@ -41,9 +47,15 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         class Statistics* m_stats;
         class AnswerValidator* m_validator;
 
+        int m_state;
+        Prefs::EnumTestType::type m_mode;
+
         void setupBase();
-        virtual void setupActions();
-        virtual void setupModeSpecifics();
+        void setupActions();
+        void setupModeSpecifics();
+
+        // Mode specific setup functions
+        void setupWritten();
 
     public slots:
         void slotCheckAnswer(const QString& input);
@@ -52,8 +64,8 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         void slotCreatePreferencesDialog();
     signals:
         void signalCheckAnswer(const QString&, const QString&);
-        void signalShowSolution(const QString&);
-        void signalCheckAnswerContinueActionsToggled();
+        void signalShowSolution(const QString&, int);
+        void signalCheckAnswerContinueActionsToggled(int);
 };
 
 

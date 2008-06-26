@@ -70,7 +70,8 @@ void PracticeEntryManager::open(KEduVocDocument* doc)
     }
 
     m_iter = m_entries;
-    shuffle();
+    if (!Prefs::testOrderLesson())
+        shuffle();
 }
 
 const QString PracticeEntryManager::currentSolution() const
@@ -117,6 +118,7 @@ void PracticeEntryManager::slotNewEntry()
 
         // It doesn't matter if these are empty since we would emit empty KUrls/QStrings anyway
         emit signalNewText(original->text());
+        // if sound/images are disabled, these connect to nothing and are ignored.
         emit signalNewImage(original->imageUrl());
         emit signalNewSound(original->soundUrl());
 
