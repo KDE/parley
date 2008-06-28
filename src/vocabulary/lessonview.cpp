@@ -83,6 +83,33 @@ LessonView::LessonView(ParleyApp * parent) :ContainerView(parent)
     addAction(actionSplitLesson);
 }
 
+void LessonView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
+{
+    QTreeView::currentChanged(current, previous);
+
+    if (current.isValid()) {
+        KEduVocLesson *container = static_cast<KEduVocLesson*>(current.internalPointer());
+        if (container) {
+            emit selectedLessonChanged(container);
+            emit signalShowContainer(container);
+        }
+    }
+}
+
+void LessonView::selectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
+{
+    QTreeView::selectionChanged(selected, deselected);
+
+    if(selected.count() == 0) {
+        return;
+    }
+
+    KEduVocLesson *container = static_cast<KEduVocLesson*>(selected.indexes().value(0).internalPointer());
+    if (container) {
+        emit selectedLessonChanged(container);
+    }
+}
+
 void LessonView::slotCreateNewLesson()
 {
     QModelIndex selectedIndex = selectionModel()->currentIndex();

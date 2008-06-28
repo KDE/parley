@@ -15,11 +15,10 @@
 
 #include "leitnermodel.h"
 
-#include <keduvoclesson.h>
+#include <keduvocleitnerbox.h>
 
 #include <KIcon>
 #include <KLocalizedString>
-#include <QGradient>
 #include <KDebug>
 
 LeitnerModel::LeitnerModel(QObject * parent)

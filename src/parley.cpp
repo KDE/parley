@@ -423,14 +423,14 @@ void ParleyApp::initDockWidgets()
 
     m_leitnerView->setModel(m_leitnerModel);
 
-//     connect(m_leitnerView, SIGNAL(selectedWordTypeChanged(KEduVocWordType*)),
-//         m_vocabularyModel, SLOT(setWordType(KEduVocWordType*)));
-// 
-//     connect(m_leitnerView, SIGNAL(signalShowContainer(KEduVocContainer*)), 
-//         m_vocabularyModel, SLOT(showContainer(KEduVocContainer*)));
-// 
-//     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-//         m_leitnerView, SLOT(setTranslation(KEduVocExpression*, int)));
+    connect(m_leitnerView, SIGNAL(selectedLeitnerBoxChanged(KEduVocLeitnerBox*)),
+        m_vocabularyModel, SLOT(setLeitnerBox(KEduVocLeitnerBox*)));
+
+    connect(m_leitnerView, SIGNAL(signalShowContainer(KEduVocContainer*)), 
+        m_vocabularyModel, SLOT(showContainer(KEduVocContainer*)));
+
+    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+        m_leitnerView, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Conjugations
     QDockWidget *conjugationDock = new QDockWidget(i18n("Conjugation"), this);

@@ -16,8 +16,8 @@
 #include "leitnerview.h"
 
 #include "parley.h"
-#include "lessonmodel.h"
-#include "keduvoclesson.h"
+#include "leitnermodel.h"
+#include "keduvocleitnerbox.h"
 #include "prefs.h"
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -65,6 +65,33 @@ LeitnerView::LeitnerView(ParleyApp * parent) :QListView(parent)
     addAction(actionRenameLesson);
     addAction(actionDeleteLesson);
 */
+}
+
+void LeitnerView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
+{
+    QListView::currentChanged(current, previous);
+
+    if (current.isValid()) {
+        KEduVocLeitnerBox *container = static_cast<KEduVocLeitnerBox*>(current.internalPointer());
+        if (container) {
+            emit selectedLeitnerBoxChanged(container);
+            emit signalShowContainer(container);
+        }
+    }
+}
+
+void LeitnerView::selectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
+{
+    QListView::selectionChanged(selected, deselected);
+
+    if(selected.count() == 0) {
+        return;
+    }
+
+    KEduVocLeitnerBox *container = static_cast<KEduVocLeitnerBox*>(selected.indexes().value(0).internalPointer());
+    if (container) {
+        emit selectedLeitnerBoxChanged(container);
+    }
 }
 
 void LeitnerView::slotCreateLeitnerBox()

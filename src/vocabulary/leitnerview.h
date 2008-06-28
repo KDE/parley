@@ -21,6 +21,7 @@
 #include <QListView>
 
 class ParleyApp;
+class KEduVocLeitnerBox;
 
 /**
  * View for the lesson list.
@@ -43,6 +44,14 @@ public slots:
 
     /** Remove a lesson. Ask if it's not empty. */
     void slotDeleteLeitnerBox();
+
+signals:
+    void selectedLeitnerBoxChanged(KEduVocLeitnerBox*);
+    void signalShowContainer(KEduVocContainer*);
+
+protected slots:
+    void selectionChanged ( const QItemSelection & selected, const QItemSelection & deselected );
+    void currentChanged( const QModelIndex & current, const QModelIndex & previous );
 
 private:
     LeitnerModel *m_model;

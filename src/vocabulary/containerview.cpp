@@ -91,44 +91,6 @@ void ContainerView::setTranslation(KEduVocExpression * entry, int translation)
     return;
 }
 
-
-void ContainerView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
-{
-    QTreeView::currentChanged(current, previous);
-
-    KEduVocContainer *container = 0;
-    if (current.isValid()) {
-        container = static_cast<KEduVocContainer*>(current.internalPointer());
-    }
-    if (container) {
-        if (container->containerType() == KEduVocContainer::Lesson) {
-            emit selectedLessonChanged(static_cast<KEduVocLesson*>(container));
-        } else {
-            emit selectedWordTypeChanged(static_cast<KEduVocWordType*>(container));
-        }
-        emit signalShowContainer(container);
-    }
-}
-
-void ContainerView::selectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
-{
-    QTreeView::selectionChanged(selected, deselected);
-    if(selected.count() == 0) {
-        return;
-    }
-
-    KEduVocContainer *container;
-    container = static_cast<KEduVocContainer*>(selected.indexes().value(0).internalPointer());
-    if (container) {
-        if (container->containerType() == KEduVocContainer::Lesson) {
-            emit selectedLessonChanged(static_cast<KEduVocLesson*>(container));
-        }
-        if (container->containerType() == KEduVocContainer::WordType) {
-            emit selectedWordTypeChanged(static_cast<KEduVocWordType*>(container));
-        }
-    }
-}
-
 void ContainerView::slotRename()
 {
     edit(selectionModel()->currentIndex());
