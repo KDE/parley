@@ -399,6 +399,7 @@ void ParleyApp::initDockWidgets()
         m_conjugationWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Declensions
+/* disabled for 4.1 since there is no way to practice declensions or make any other use of this stuff.
     QDockWidget *declensionDock = new QDockWidget(i18n("Declension"), this);
     declensionDock->setObjectName("DeclensionDock");
     DeclensionWidget *declensionWidget = new DeclensionWidget(this);
@@ -410,7 +411,7 @@ void ParleyApp::initDockWidgets()
             declensionWidget, SLOT(setDocument(KEduVocDocument*)));
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
             declensionWidget, SLOT(setTranslation(KEduVocExpression*, int)));
-
+*/
 
 // Comparison forms
     QDockWidget *comparisonDock = new QDockWidget(i18n("Comparison forms"), this);
