@@ -279,3 +279,66 @@ void ParleyPracticeMainWindow::setupWritten()
     }
 
 }
+
+
+void ParleyPracticeMainWindow::setupMultipleChoice()
+{
+
+    TextualPrompt * tprompt = new TextualPrompt(m_renderer, "practice_text_background");
+    m_scene->addItem(tprompt);
+    connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
+
+    if (Prefs::practiceImagesEnabled())
+    {
+        ImagePrompt * iprompt = new ImagePrompt(m_renderer, m_view, "image_box");
+        m_scene->addWidget(iprompt);
+        connect(m_manager, SIGNAL(signalNewImage(const KUrl&)), iprompt, SLOT(slotSetImage(const KUrl&)));
+    }
+
+    if (Prefs::practiceSoundEnabled())
+    {
+        SoundPrompt * sprompt = new SoundPrompt(m_renderer, m_view, "image_box");
+        m_scene->addWidget(sprompt);
+        connect(m_manager, SIGNAL(signalNewSound(const KUrl&)), sprompt, SLOT(slotSetSound(const KUrl&)));
+    }
+
+    TextualInput * input = new TextualInput(m_renderer, m_view, "practice_text_translation_background");
+    m_scene->addWidget(input);
+    connect(input, SIGNAL(signalAnswer(const QString&)), this, SLOT(slotCheckAnswer(const QString&)));
+    connect(m_validator, SIGNAL(signalCorrection(float, Statistics::ErrorType, const QString&)), input, SLOT(slotChangeAnswerColor(float)));
+    connect(this, SIGNAL(signalShowSolution(const QString&, int)), input, SLOT(slotShowSolution(const QString&)));
+    connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
+    connect(actionCollection()->action("continue"), SIGNAL(triggered()), input, SLOT(slotClear()));
+
+    SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, "bar", "bar_background");
+    m_scene->addItem(barstats);
+    connect(m_stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
+
+    StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, m_view, "check_answer_and_continue_button");
+    m_scene->addWidget(stdbutton);
+    connect(input, SIGNAL(returnPressed()), stdbutton, SLOT(slotActivated()));
+    connect(this, SIGNAL(signalCheckAnswerContinueActionsToggled(int)), stdbutton, SLOT(slotToggleText(int)));
+    connect(stdbutton, SIGNAL(signalCheckAnswer()), actionCollection()->action("check answer"), SIGNAL(triggered()));
+    connect(stdbutton, SIGNAL(signalContinue()), actionCollection()->action("continue"), SIGNAL(triggered()));
+    stdbutton->setVisible(true); // enable for now
+
+
+    Hint * hint = new Hint(this);
+    connect(actionCollection()->action("hint"), SIGNAL(triggered()), hint, SLOT(slotShowHint()));
+    // this is the hint for now :)
+    connect(hint, SIGNAL(signalShowHint()), actionCollection()->action("show solution"), SIGNAL(triggered()));
+    connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), m_stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
+
+
+    if (Prefs::practiceTimeout() && Prefs::practiceTimeoutTimePerAnswer()) // timeout can't be 0
+    {
+        kDebug() << "timer" << Prefs::practiceTimeout() << Prefs::practiceTimeoutTimePerAnswer();
+        InvisibleTimer * timer = new InvisibleTimer(this);
+        timer->setLength(Prefs::practiceTimeoutTimePerAnswer()*1000); // seconds -> milliseconds
+        // when the timer triggers, it will assume their current input is their answer
+        connect(timer, SIGNAL(signalTimeout()), actionCollection()->action("check answer"), SIGNAL(triggered()));
+        connect(m_manager, SIGNAL(signalNewEntry()), timer, SLOT(slotStart()));
+        connect(input, SIGNAL(signalInput(const QString&)), timer, SLOT(slotStop()));
+    }
+
+}

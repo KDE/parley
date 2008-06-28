@@ -56,7 +56,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
 
         // Mode specific setup functions
         void setupWritten();
-
+	void setupMultipleChoice();
     public slots:
         void slotCheckAnswer(const QString& input);
         void slotShowSolution();
