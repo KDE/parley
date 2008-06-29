@@ -2,6 +2,7 @@
 Name=Parley Data Engine
 Name[ca]=Motor de dades del Parley
 Name[da]=Data-motor til Parley
+Name[de]=Parley Datenverarbeitung
 Name[el]=Μηχανή δεδομένων Parley
 Name[es]=Motor de datos Parley
 Name[et]=Parley andmemootor
@@ -23,6 +24,7 @@ Name[zh_TW]=Parley 資料引擎
 Comment=Vocabulary data for Plasmoids
 Comment[ca]=Dades de vocabulari per als plasmoides
 Comment[da]=Ordforrådsdata til plasmoider
+Comment[de]=Vokabulardaten für Plasmoide
 Comment[el]=Δεδομένα λεξιλογίου για πλασμοειδή
 Comment[es]=Datos del vocabulario para los plasmoides
 Comment[et]=Sõnavaraandmed plasmoididele
