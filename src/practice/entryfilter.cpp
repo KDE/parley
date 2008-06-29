@@ -84,9 +84,9 @@ QList<KEduVocExpression*> EntryFilter::entries()
 
     if (m_currentSelection.count() == 0) {
         kDebug() << "Creating practice filter dialog.";
-        m_dialog = new KDialog();
+        m_dialog = new KDialog;
         m_dialog->setCaption(i18n("Start Practice"));
-        QWidget *widget = new QWidget;
+        QWidget *widget = new QWidget(m_dialog);
         ui.setupUi(widget);
         m_dialog->setMainWidget(widget);
         m_dialog->setButtons( KDialog::Ok | KDialog::Cancel );
@@ -128,6 +128,7 @@ QList<KEduVocExpression*> EntryFilter::entries()
             delete m_dialog;
             return QList<KEduVocExpression*>();
         }
+        delete m_dialog;
 
     }
 
