@@ -122,7 +122,7 @@ void PracticeEntryManager::slotNewEntry()
         emit signalNewImage(original->imageUrl());
         emit signalNewSound(original->soundUrl());
 
-        emit signalEntryChanged(m_entry);
+        emit signalEntryChanged(m_entry, m_entries);
         emit signalNewEntry();
         --m_numberEntriesRemaining;
     }

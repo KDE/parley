@@ -50,13 +50,13 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         int m_state;
         Prefs::EnumTestType::type m_mode;
 
-        void setupBase();
+        void setupBase(const QString& desktopFileFilename);
         void setupActions();
         void setupModeSpecifics();
 
         // Mode specific setup functions
         void setupWritten();
-	void setupMultipleChoice();
+    	void setupMultipleChoice();
     public slots:
         void slotCheckAnswer(const QString& input);
         void slotShowSolution();

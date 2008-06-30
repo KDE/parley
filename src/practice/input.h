@@ -21,9 +21,13 @@
 
 #include <QObject>
 #include <QLineEdit>
+#include <QGroupBox>
 
 #include <KSvgRenderer>
 #include <QGraphicsView>
+
+class QString;
+class PracticeEntry;
 
 class TextualInput : public QLineEdit
 {
@@ -39,7 +43,26 @@ class TextualInput : public QLineEdit
         void slotEmitAnswer();
 
     signals:
-        void signalAnswer(const QString& input);
+        void signalAnswer(const QString& answer);
+
+    private:
+        KSvgRenderer* m_renderer;
+};
+
+
+class MultipleChoiceInput : public QGroupBox
+{
+    Q_OBJECT;
+    public:
+        MultipleChoiceInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent = 0);
+        ~MultipleChoiceInput();
+
+    public slots:
+        void slotEmitAnswer();
+        void slotSetAnswers(PracticeEntry*, QList<PracticeEntry*>);
+
+    signals:
+        void signalAnswer(const QString& answer);
 
     private:
         KSvgRenderer* m_renderer;

@@ -51,7 +51,7 @@
 ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
         : KXmlGuiWindow(parent)
 {
-    setupBase();
+    setupBase("mc.desktop");
     setupActions();
     setupModeSpecifics();
 
@@ -106,7 +106,7 @@ void ParleyPracticeMainWindow::slotToggleCheckAnswerContinueActions()
     emit signalCheckAnswerContinueActionsToggled(m_state);
 }
 
-void ParleyPracticeMainWindow::setupBase()
+void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName)
 {
     m_state = CheckAnswer;
     m_mode = Prefs::testType();
@@ -123,7 +123,7 @@ void ParleyPracticeMainWindow::setupBase()
      QGraphicsSvgItem * backgroundsvg = new QGraphicsSvgItem();
      m_renderer = new KSvgRenderer();
      KGameTheme kgtheme;
-     kDebug() << "kgametheme valid:" << kgtheme.load("parley/themes/default.desktop");
+     kDebug() << "kgametheme valid:" << kgtheme.load("parley/themes/" + desktopFileName);
      kDebug() << "graphics svg path" << kgtheme.graphics();
      m_renderer->load(kgtheme.graphics());
      backgroundsvg->setSharedRenderer(m_renderer);
@@ -135,7 +135,7 @@ void ParleyPracticeMainWindow::setupBase()
     m_manager = new PracticeEntryManager(this);
 
     m_stats = new Statistics(m_manager, this);
-    connect(m_manager, SIGNAL(signalEntryChanged(PracticeEntry*)), m_stats, SLOT(slotSetEntry(PracticeEntry*)));
+    connect(m_manager, SIGNAL(signalEntryChanged(PracticeEntry*, QList<PracticeEntry*>)), m_stats, SLOT(slotSetEntry(PracticeEntry*)));
     connect(m_manager, SIGNAL(signalSetFinished()), m_stats, SLOT(slotSetFinished()));
     //// Loading the Document -- temporary ////
     KEduVocDocument * doc = new KEduVocDocument(this);
@@ -213,6 +213,8 @@ void ParleyPracticeMainWindow::setupModeSpecifics()
 {
     if (m_mode == Prefs::EnumTestType::WrittenTest)
         setupWritten();
+    else if (m_mode == Prefs::EnumTestType::MultipleChoiceTest)
+        setupMultipleChoice();
     else
         kDebug() << "unhandled practice mode " << m_mode << " selected.";
 }
@@ -302,13 +304,11 @@ void ParleyPracticeMainWindow::setupMultipleChoice()
         connect(m_manager, SIGNAL(signalNewSound(const KUrl&)), sprompt, SLOT(slotSetSound(const KUrl&)));
     }
 
-    TextualInput * input = new TextualInput(m_renderer, m_view, "practice_text_translation_background");
+    MultipleChoiceInput * input = new MultipleChoiceInput(m_renderer, m_view, "practice_text_translation_background");
     m_scene->addWidget(input);
     connect(input, SIGNAL(signalAnswer(const QString&)), this, SLOT(slotCheckAnswer(const QString&)));
-    connect(m_validator, SIGNAL(signalCorrection(float, Statistics::ErrorType, const QString&)), input, SLOT(slotChangeAnswerColor(float)));
-    connect(this, SIGNAL(signalShowSolution(const QString&, int)), input, SLOT(slotShowSolution(const QString&)));
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
-    connect(actionCollection()->action("continue"), SIGNAL(triggered()), input, SLOT(slotClear()));
+    connect(m_manager, SIGNAL(signalEntryChanged(PracticeEntry*, QList<PracticeEntry*>)), input, SLOT(slotSetAnswers(PracticeEntry*, QList<PracticeEntry*>)));
 
     SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, "bar", "bar_background");
     m_scene->addItem(barstats);
@@ -316,7 +316,8 @@ void ParleyPracticeMainWindow::setupMultipleChoice()
 
     StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, m_view, "check_answer_and_continue_button");
     m_scene->addWidget(stdbutton);
-    connect(input, SIGNAL(returnPressed()), stdbutton, SLOT(slotActivated()));
+    // TODO somehow get some form of keyboard input working.
+ //   connect(input, SIGNAL(returnPressed()), stdbutton, SLOT(slotActivated()));
     connect(this, SIGNAL(signalCheckAnswerContinueActionsToggled(int)), stdbutton, SLOT(slotToggleText(int)));
     connect(stdbutton, SIGNAL(signalCheckAnswer()), actionCollection()->action("check answer"), SIGNAL(triggered()));
     connect(stdbutton, SIGNAL(signalContinue()), actionCollection()->action("continue"), SIGNAL(triggered()));
