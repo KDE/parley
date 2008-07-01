@@ -29,6 +29,9 @@
 #include <QRadioButton>
 #include <QVBoxLayout>
 #include <KRandomSequence>
+#include <QString>
+
+#include "keduvocwordtype.h"
 
 TextualInput::TextualInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget* parent)
         : QLineEdit(parent),
@@ -99,12 +102,6 @@ MultipleChoiceInput::MultipleChoiceInput(KSvgRenderer * renderer, QGraphicsView 
 
 void MultipleChoiceInput::slotSetAnswers(PracticeEntry* currentEntry, const QList<PracticeEntry*> source)
 {
-    if (source.size() < 4)
-    {
-        kDebug() << "source list too short with " << source.size() << "entries. Aborted.";
-        return;
-    }
-
 
     // clean up from last time
     delete layout();
@@ -115,25 +112,70 @@ void MultipleChoiceInput::slotSetAnswers(PracticeEntry* currentEntry, const QLis
     }
 
 
+
+    if (source.size() == 0)
+    {
+        kDebug() << "Source list empty. Aborted.";
+        return;
+    }
+
+
+
     // start fresh and new!
     QVBoxLayout *vbox = new QVBoxLayout;
     QString s;
     QList<QString> list;
-    // TODO should size of question set be configurable?
     int timeout = 0;
     long r;
 
     list.append(currentEntry->expression()->translation(Prefs::solutionLanguage())->text());
 
-    while (list.size() < 4 && timeout < 50) // prevent infinite loop
+    // if we only have a few entries, we use them all.
+    if (source.size() < 5)
     {
-        ++timeout;
-        r = KRandom::random() % source.size();
-        s = source[r]->expression()->translation(Prefs::solutionLanguage())->text();
-        if (!list.contains(s))
-            list.append(s);
+       foreach(PracticeEntry* pe, source)
+       {
+            s = pe->expression()->translation(Prefs::solutionLanguage())->text();
+            if (!list.contains(s))
+                list.append(s);
+       }
     }
 
+    else
+    {
+        KEduVocWordType* cwt = currentEntry->expression()->translation(Prefs::solutionLanguage())->wordType();
+        KEduVocWordType *wt = 0;
+
+        while (list.size() < 4 && timeout < 50) // prevent infinite loop
+        {
+            ++timeout;
+            r = KRandom::random() % source.size();
+            s = source[r]->expression()->translation(Prefs::solutionLanguage())->text();
+            if (!list.contains(s))
+            {
+                if (Prefs::multipleChoiceWordTypeConsistancy() && cwt)
+                {
+                    wt = source[r]->expression()->translation(Prefs::solutionLanguage())->wordType();
+                    if (wt && wt->wordType() == cwt->wordType())
+                        list.append(s);
+                    // ignore gender of nouns in our word type comparison
+                    else if (wt &&
+                                (  wt->wordType() == KEduVocWordType::Noun
+                                || wt->wordType() == KEduVocWordType::NounMale
+                                || wt->wordType() == KEduVocWordType::NounNeutral
+                                || wt->wordType() == KEduVocWordType::NounFemale)
+                                &&
+                                (  cwt->wordType() == KEduVocWordType::Noun
+                                || cwt->wordType() == KEduVocWordType::NounMale
+                                || cwt->wordType() == KEduVocWordType::NounNeutral
+                                || cwt->wordType() == KEduVocWordType::NounFemale))
+                            list.append(s);
+                }
+                else
+                    list.append(s);
+            }
+        }
+    }
     KRandomSequence(0).randomize(list);
 
     foreach(s, list)
