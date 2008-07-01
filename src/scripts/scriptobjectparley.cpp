@@ -40,3 +40,9 @@ void ScriptObjectParley::callTranslateWord ( const QString & word )
 {
     emit translateWord ( word );
 }
+
+
+void ScriptObjectParley::addTranslation ( QString word,QString fromLanguage,QString toLanguage, QString translation )
+{
+    
+}

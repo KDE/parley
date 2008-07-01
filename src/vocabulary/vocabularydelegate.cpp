@@ -71,6 +71,29 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
         return wordTypeCombo;
     }
 
+    case VocabularyModel::Translation: {
+        if (!m_doc) return 0;
+        QComboBox *translationCombo = new QComboBox(parent);
+        translationCombo->setFrame(false);
+
+        QStringList list;
+        list.push_back("car");
+        list.push_back("auto");
+
+//         KCompletion * completion = translationCombo->completionObject();
+//         translationCombo->setCompletionMode(KGlobalSettings::CompletionPopupAuto);
+//         completion->insertItems(list);
+
+        translationCombo->addItems(list);
+        translationCombo->setEditable(true);
+        translationCombo->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
+        translationCombo->setEditText(index.model()->data(index, Qt::DisplayRole).toString());
+
+        kDebug() << "index data" << index.data().toString();
+
+        return translationCombo;
+    }
+
     default: {
 
         KLineEdit *editor = new KLineEdit(parent);
@@ -91,6 +114,18 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
             }
         }
         connect(editor, SIGNAL(returnPressed()), this, SLOT(commitAndCloseEditor()));
+
+        //add auto completion to KLineEdit for translation columns
+//         if (VocabularyModel::columnType(index.column()) == VocabularyModel::Translation) {
+// 
+//             QStringList list;
+//             list.push_back("car");
+//             list.push_back("auto");
+// 
+//             KCompletion * completion = editor->completionObject();
+//             editor->setCompletionMode(KGlobalSettings::CompletionPopupAuto);
+//             completion->insertItems(list);
+//         }
         return editor;
     }
     }
@@ -103,6 +138,11 @@ void VocabularyDelegate::setEditorData(QWidget * editor, const QModelIndex & ind
     }
 
     switch (VocabularyModel::columnType(index.column())) {
+    case (VocabularyModel::Translation): {
+        QString value = index.model()->data(index, Qt::DisplayRole).toString();
+        QComboBox * translationCombo = qobject_cast<QComboBox*>(editor);
+        translationCombo->setEditText(value);
+    }
     default: {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
 
@@ -147,6 +187,10 @@ Q_ASSERT(expression);
 
         expression->translation(translationId)->setWordType(wordType);
 
+    }
+    case (VocabularyModel::Translation): {
+        QComboBox * translationCombo = qobject_cast<QComboBox*>(editor);
+        model->setData(index,translationCombo->currentText());
     }
     default: {
         KLineEdit *lineEdit = qobject_cast<KLineEdit*>(editor);
