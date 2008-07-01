@@ -884,6 +884,12 @@ void ParleyApp::slotShowScriptManager() {
 void ParleyApp::slotTranslateLesson() {
 //     QModelIndex QAbstractItemModel::createIndex ( int row, int column, void * ptr = 0 ) const   [protected]
 
+//     Translator tr;
+//     tr.addTranslation("baby","en","fr","bebe");
+//     tr.addTranslation("baby","en","fr","babe");
+// 
+//     kDebug() << *(tr.getTranslation("baby","en","fr"));
+
 #define WORD(r,c) m_vocabularyModel->index((r),(c),QModelIndex()).data().toString()
 
     //with this way I can get the values of each cell in the table
@@ -922,6 +928,7 @@ void ParleyApp::removeGrades()
 
 void ParleyApp::initScripts()
 {
+    m_scriptObjectParley.setTranslator(m_translator);
     m_scriptManager.addObject ( &m_scriptObjectParley,"Parley" );
     m_scriptManager.loadScripts();
 }

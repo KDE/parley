@@ -15,6 +15,7 @@
 
 ScriptObjectParley::ScriptObjectParley()
 {
+    m_translator = 0;
 }
 
 
@@ -42,7 +43,26 @@ void ScriptObjectParley::callTranslateWord ( const QString & word )
 }
 
 
+/**
+ * 
+ * @param word 
+ * @param fromLanguage 
+ * @param toLanguage 
+ * @param translation 
+ */
 void ScriptObjectParley::addTranslation ( QString word,QString fromLanguage,QString toLanguage, QString translation )
 {
-    
+    if (m_translator) {
+        m_translator->addTranslation(word,fromLanguage,toLanguage,translation);
+    }
+}
+
+
+/**
+ * 
+ * @param translator 
+ */
+void ScriptObjectParley::setTranslator(Translator& translator)
+{
+    m_translator = &translator;
 }

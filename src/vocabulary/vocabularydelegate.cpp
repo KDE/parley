@@ -76,9 +76,8 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
         QComboBox *translationCombo = new QComboBox(parent);
         translationCombo->setFrame(false);
 
-        QStringList list;
-        list.push_back("car");
-        list.push_back("auto");
+        //get the translations of this word
+        
 
 //         KCompletion * completion = translationCombo->completionObject();
 //         translationCombo->setCompletionMode(KGlobalSettings::CompletionPopupAuto);

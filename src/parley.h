@@ -30,6 +30,7 @@
 
 #include "scripts/scriptmanager.h"
 #include "scripts/scriptobjectparley.h"
+#include "scripts/translator.h"
 
 #include <KXmlGuiWindow>
 #include <KUrl>
@@ -212,6 +213,9 @@ private:
 
     //script objects (objects that will be used from inside the scripts)
     ScriptObjectParley m_scriptObjectParley;
+
+    //stores all the translations of a vocabulary word
+    Translator m_translator;
 };
 
 #endif // PARLEY_H

@@ -12,6 +12,8 @@
 #ifndef SCRIPTOBJECTPARLEY_H
 #define SCRIPTOBJECTPARLEY_H
 
+#include "translator.h"
+
 #include <QObject>
 
 /**
@@ -27,6 +29,7 @@ class ScriptObjectParley : public QObject
 
         ~ScriptObjectParley();
         void callTranslateWord ( const QString & word );
+    void setTranslator(Translator& translator);
 
     public Q_SLOTS:
         void callFromScript();
@@ -34,6 +37,9 @@ class ScriptObjectParley : public QObject
 
     Q_SIGNALS:
         void translateWord ( QString word );
+
+    private:
+        Translator* m_translator;
 };
 
 #endif
