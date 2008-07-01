@@ -131,7 +131,7 @@ void MultipleChoiceInput::slotSetAnswers(PracticeEntry* currentEntry, const QLis
     list.append(currentEntry->expression()->translation(Prefs::solutionLanguage())->text());
 
     // if we only have a few entries, we use them all.
-    if (source.size() < 5)
+    if (source.size() < Prefs::numberMultipleChoiceAnswers())
     {
        foreach(PracticeEntry* pe, source)
        {
@@ -146,7 +146,7 @@ void MultipleChoiceInput::slotSetAnswers(PracticeEntry* currentEntry, const QLis
         KEduVocWordType* cwt = currentEntry->expression()->translation(Prefs::solutionLanguage())->wordType();
         KEduVocWordType *wt = 0;
 
-        while (list.size() < 4 && timeout < 50) // prevent infinite loop
+        while (list.size() < Prefs::numberMultipleChoiceAnswers() && timeout < 50) // prevent infinite loop
         {
             ++timeout;
             r = KRandom::random() % source.size();
@@ -178,9 +178,10 @@ void MultipleChoiceInput::slotSetAnswers(PracticeEntry* currentEntry, const QLis
     }
     KRandomSequence(0).randomize(list);
 
+    int n = 1;
     foreach(s, list)
     {
-        vbox->addWidget(new QRadioButton(s));
+        vbox->addWidget(new QRadioButton(QString("&%1 %2").arg(n++).arg(s)));
     }
 
      vbox->addStretch(1);
@@ -202,7 +203,8 @@ void MultipleChoiceInput::slotEmitAnswer()
         if (b->isChecked())
         {
             kDebug() << "found it";
-            emit signalAnswer(b->text());
+            // screw regexps ;)
+            emit signalAnswer(b->text().replace("&1 ", "").replace("&2 ", "").replace("&3 ", "").replace("&4 ", "").replace("&5 ", "").replace("&6 ", "").replace("&7 ", "").replace("&8 ", "").replace("&9 ", ""));
         }
     emit signalAnswer(""); // none were selected.
 }

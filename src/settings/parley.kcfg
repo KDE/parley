@@ -158,6 +158,10 @@
         <label>Use the same word type as the solution for the incorrect answers in a multiple choice practice.</label>
         <default>true</default>
     </entry>
+    <entry name="NumberMultipleChoiceAnswers" type="Int">
+        <label>How many answers are provided for a multiple choice question, including the correct answer.</label>
+        <default>5</default>
+     </entry>
   </group>
 
   <group name="Appearance">
