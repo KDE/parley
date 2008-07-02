@@ -29,7 +29,7 @@ class ScriptObjectParley : public QObject
 
         ~ScriptObjectParley();
         void callTranslateWord ( const QString & word );
-    void setTranslator(Translator& translator);
+    void setTranslator(Translator* translator);
 
     public Q_SLOTS:
         void callFromScript();

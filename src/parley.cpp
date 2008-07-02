@@ -884,11 +884,11 @@ void ParleyApp::slotShowScriptManager() {
 void ParleyApp::slotTranslateLesson() {
 //     QModelIndex QAbstractItemModel::createIndex ( int row, int column, void * ptr = 0 ) const   [protected]
 
-//     Translator tr;
+//      Translator tr;
 //     tr.addTranslation("baby","en","fr","bebe");
 //     tr.addTranslation("baby","en","fr","babe");
 // 
-//     kDebug() << *(tr.getTranslation("baby","en","fr"));
+//      kDebug() << *(tr.getTranslation("baby","en","fr"));
 
 #define WORD(r,c) m_vocabularyModel->index((r),(c),QModelIndex()).data().toString()
 
@@ -928,7 +928,10 @@ void ParleyApp::removeGrades()
 
 void ParleyApp::initScripts()
 {
-    m_scriptObjectParley.setTranslator(m_translator);
+//     m_translator.addTranslation("Hello","en_US","fr","bonjour");
+    Translator* tr = new Translator();
+//     kDebug() << m_translator.getTranslation("Hello","en_US","fr");
+    m_scriptObjectParley.setTranslator(tr);
     m_scriptManager.addObject ( &m_scriptObjectParley,"Parley" );
     m_scriptManager.loadScripts();
 }

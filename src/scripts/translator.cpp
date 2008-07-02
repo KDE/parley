@@ -13,31 +13,6 @@
 
 #include <KDebug>
 
-class Translation
-{
-    public:
-        QString word;
-        QString fromLanguage;
-        QString toLanguage;
-
-        Translation() { }
-        Translation ( QString pword, QString pfromLanguage, QString ptoLanguage )
-        {
-            word = pword;
-            fromLanguage = pfromLanguage;
-            toLanguage = ptoLanguage;
-        }
-};
-
-inline bool operator< ( const Translation &t1, const Translation &t2 )
-{
-    if ( t1.word != t2.word )
-        return t1.word < t2.word;
-    if ( t1.fromLanguage != t2.fromLanguage )
-        return t1.fromLanguage < t2.fromLanguage;
-    return t1.toLanguage < t2.toLanguage;
-}
-
 Translator::Translator()
 {
 }
@@ -56,7 +31,8 @@ Translator::~Translator()
  */
 void Translator::addTranslation ( QString word, QString fromLanguage, QString toLanguage, QString translation )
 {
-    Translation t( word,fromLanguage,toLanguage );
+//     Translation t( word,fromLanguage,toLanguage );
+    QString t = word+fromLanguage+toLanguage;
     kDebug() << m_translations.contains(t);
     if (!m_translations.contains(t))
         m_translations[t] = new QStringList();
@@ -69,13 +45,15 @@ void Translator::addTranslation ( QString word, QString fromLanguage, QString to
  * @param word
  * @param fromLanguage
  * @param toLanguage
- * @return QStringList with the translations
+ * @return QStringList with the translations (or an empty QStringList if no translations found)
  */
 QStringList* Translator::getTranslation ( QString word, QString fromLanguage, QString toLanguage )
 {
-    Translation t(word,fromLanguage,toLanguage);
+//     Translation t(word,fromLanguage,toLanguage);
+    QString t = word+fromLanguage+toLanguage;
+    kDebug() << t;
     if (m_translations.contains(t))
-        return m_translations[t];
+        return m_translations.value(t);
     else
         return 0;
 }

@@ -62,7 +62,7 @@ void ScriptObjectParley::addTranslation ( QString word,QString fromLanguage,QStr
  * 
  * @param translator 
  */
-void ScriptObjectParley::setTranslator(Translator& translator)
+void ScriptObjectParley::setTranslator(Translator* translator)
 {
-    m_translator = &translator;
+    m_translator = translator;
 }

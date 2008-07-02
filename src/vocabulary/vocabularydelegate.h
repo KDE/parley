@@ -18,6 +18,7 @@
 #define VOCABULARYDELEGATE_H
 
 #include "basiccontainermodel.h"
+#include "../scripts/translator.h"
 
 #include <QItemDelegate>
 #include <QModelIndex>
@@ -35,6 +36,7 @@ public:
     void setEditorData(QWidget *editor, const QModelIndex &index) const;
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
     void setCurrentIndex(const QModelIndex &index);
+    void setTranslator(Translator & translator);
 
 public slots:
     void setDocument(KEduVocDocument *doc);
@@ -48,6 +50,7 @@ private slots:
 private:
     QModelIndex m_currentIndex;
     KEduVocDocument *m_doc;
+    Translator * m_translator;
 
     // for the word type combo
     class WordTypeBasicModel;
