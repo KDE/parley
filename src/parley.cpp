@@ -936,7 +936,9 @@ void ParleyApp::initScripts()
     m_scriptManager.loadScripts();
 
     connect(m_vocabularyModel, SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)),
-            this, SLOT(slotTranslateWords(const QModelIndex&, const QModelIndex&)));
+            this, SLOT(slotTranslateWords(const QModelIndex&, const QModelIndex&)),
+            Qt::QueuedConnection
+            );
 }
 
 void ParleyApp::slotTranslateWords(const QModelIndex & topLeft, const QModelIndex & bottomRight)
