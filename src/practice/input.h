@@ -60,9 +60,11 @@ class MultipleChoiceInput : public QGroupBox
     public slots:
         void slotEmitAnswer();
         void slotSetAnswers(PracticeEntry*, QList<PracticeEntry*>);
+        void slotShortcutTriggered(int shortcutNumber);
 
     signals:
         void signalAnswer(const QString& answer);
+        void triggered();
 
     private:
         KSvgRenderer* m_renderer;

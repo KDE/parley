@@ -8,6 +8,15 @@
       <Action name="continue" />
       <Action name="skip known" />
       <Action name="skip unknown" />
+      <Action name="select option 1" />
+      <Action name="select option 2" />
+      <Action name="select option 3" />
+      <Action name="select option 4" />
+      <Action name="select option 5" />
+      <Action name="select option 6" />
+      <Action name="select option 7" />
+      <Action name="select option 8" />
+      <Action name="select option 9" />
     </Menu>
       <Menu name="Hint" >
       <text>Hint</text>

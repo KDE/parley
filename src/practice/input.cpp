@@ -96,9 +96,37 @@ MultipleChoiceInput::MultipleChoiceInput(KSvgRenderer * renderer, QGraphicsView 
 
      QRect bounds = m_renderer->boundsOnElement(elementId).toRect();
      setGeometry(view->mapToScene(bounds).boundingRect().toRect());
+
 }
 
+void MultipleChoiceInput::slotShortcutTriggered(int shortcutNumber)
+{
+    if (shortcutNumber > Prefs::numberMultipleChoiceAnswers())
+        return; // bogus false positive
 
+    // Shortcut number 0 is triggered by return/enter and is used for activating the currently selected option.
+    // Therefore, we check if any buttons are checked, and if so, emit the signal
+    // if none are checked, we ignore this shortcut
+    if (shortcutNumber == 0)
+        // we emit only if a button is checked
+        foreach(QRadioButton* b, findChildren<QRadioButton*>())
+            if (b->isChecked())
+            {
+                emit triggered();
+                return;
+            }
+
+    foreach(QRadioButton* b, findChildren<QRadioButton*>())
+    {
+        if (b->text().startsWith(QString("&%1 ").arg(shortcutNumber)))
+        {
+            b->setChecked(true);
+            emit triggered();
+            return;
+        }
+    }
+    // we didn't find anything.
+}
 
 void MultipleChoiceInput::slotSetAnswers(PracticeEntry* currentEntry, const QList<PracticeEntry*> source)
 {
@@ -202,9 +230,7 @@ void MultipleChoiceInput::slotEmitAnswer()
     foreach(QRadioButton* b, findChildren<QRadioButton*>())
         if (b->isChecked())
         {
-            kDebug() << "found it";
-            // screw regexps ;)
-            emit signalAnswer(b->text().replace("&1 ", "").replace("&2 ", "").replace("&3 ", "").replace("&4 ", "").replace("&5 ", "").replace("&6 ", "").replace("&7 ", "").replace("&8 ", "").replace("&9 ", ""));
+            emit signalAnswer(b->text().remove(QRegExp("^&\\d ")));
         }
     emit signalAnswer(""); // none were selected.
 }

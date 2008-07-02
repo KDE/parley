@@ -29,6 +29,8 @@
 #include <KLocalizedString>
 #include <KConfigDialog>
 #include <KApplication>
+#include <QShortcut>
+#include <QSignalMapper>
 
 #include "practiceview.h"
 #include "input.h"
@@ -201,6 +203,7 @@ void ParleyPracticeMainWindow::setupActions()
     if (!Prefs::showHints())
         hintAction->setVisible(false);
 
+
     KStandardAction::preferences(this, SLOT(slotCreatePreferencesDialog()),
                                        actionCollection());
 
@@ -316,8 +319,7 @@ void ParleyPracticeMainWindow::setupMultipleChoice()
 
     StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, m_view, "check_answer_and_continue_button");
     m_scene->addWidget(stdbutton);
-    // TODO somehow get some form of keyboard input working.
- //   connect(input, SIGNAL(returnPressed()), stdbutton, SLOT(slotActivated()));
+    connect(input, SIGNAL(triggered()), stdbutton, SLOT(slotActivated()));
     connect(this, SIGNAL(signalCheckAnswerContinueActionsToggled(int)), stdbutton, SLOT(slotToggleText(int)));
     connect(stdbutton, SIGNAL(signalCheckAnswer()), actionCollection()->action("check answer"), SIGNAL(triggered()));
     connect(stdbutton, SIGNAL(signalContinue()), actionCollection()->action("continue"), SIGNAL(triggered()));
@@ -342,4 +344,33 @@ void ParleyPracticeMainWindow::setupMultipleChoice()
         connect(input, SIGNAL(signalInput(const QString&)), timer, SLOT(slotStop()));
     }
 
+    // setup shortcuts for multiple choice input
+    QSignalMapper * mapper = new QSignalMapper(this);
+    KAction * shortcut;
+     for(int n = 1; n < 10; ++n)
+     {
+        shortcut = new KAction(this);
+        shortcut->setText(i18n("Select Option %1", n));
+        actionCollection()->addAction(QString("select option %1").arg(n), shortcut);
+        shortcut->setShortcut(KShortcut(QString("%1; Alt+%1").arg(n)));
+        mapper->setMapping(shortcut, n);
+        connect(shortcut, SIGNAL(triggered()), mapper, SLOT(map()));
+        if (n > Prefs::numberMultipleChoiceAnswers())
+            shortcut->setVisible(false); // disable non-relevent shortcuts
+     }
+
+
+    // enter/return triggers shortcut 0, which means use the currently selected option
+    // if no option is selected, this is ignored.
+    QShortcut* accelerator = new QShortcut(Qt::Key_Enter, this);
+    accelerator->setAutoRepeat(false);
+    mapper->setMapping(accelerator, 0);
+    connect(accelerator, SIGNAL(activated()), mapper, SLOT(map()));
+
+    accelerator = new QShortcut(Qt::Key_Return, this);
+    accelerator->setAutoRepeat(false);
+    mapper->setMapping(accelerator, 0);
+    connect(accelerator, SIGNAL(activated()), mapper, SLOT(map()));
+
+    connect(mapper, SIGNAL(mapped(int)), input, SLOT(slotShortcutTriggered(int)));
 }
