@@ -76,13 +76,16 @@ ScriptDialog::~ScriptDialog()
  */
 void ScriptDialog::accept()
 {
+    kDebug() << "Updating Plugins State";
     //Update KPluginInfo object changes
     m_kps->updatePluginsState();   //necessary for KPluginInfo::isPluginEnabled to work
 
+    kDebug() << "Saving Config File (parleyrc)";
     //Save changes in config file (parleyrc)
     m_kps->save();
 
     //Reload scripts
+    kDebug() << "Reloading Scripts";
     m_scriptManager->reloadScripts();
 
     //Close dialog

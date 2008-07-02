@@ -38,6 +38,7 @@ bool Script::isActivated()
 
 void Script::activateScript()
 {
+    kDebug() << "Activating Script" << fileName();
     if ( isActivated() )
     {
         kDebug() << "Script already activated";
