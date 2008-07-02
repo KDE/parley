@@ -882,6 +882,12 @@ void ParleyApp::slotShowScriptManager() {
 }
 
 void ParleyApp::slotTranslateLesson() {
+
+   QStringList codes = KGlobal::locale()->allLanguagesList();
+
+   foreach (const QString &code, codes){
+        kDebug() << code << KGlobal::locale()->languageCodeToName(code);
+    }
 //     QModelIndex QAbstractItemModel::createIndex ( int row, int column, void * ptr = 0 ) const   [protected]
 
 //      Translator tr;

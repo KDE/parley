@@ -30,6 +30,13 @@ def parseData(data,word,from_lang,to_lang):
 def locale(lang):
   if lang == "en_US":
     return "en"
+  if lang == "zh_TW":
+    return "zh-TW"
+  if lang == "zh_HK":
+    return "zh-HK"
+  if lang == "zh_CN":
+    return "zh-CN"
+
   return lang
 
 # called by Parley to translate the word
