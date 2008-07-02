@@ -168,7 +168,7 @@ void ScriptManager::addObject ( QObject * obj, const QString & name )
 void ScriptManager::reloadScripts()
 {
     foreach ( Script * s, m_scripts )
-        if (s) delete s;
+        if ( s ) delete s;
     m_scripts.clear();
     loadScripts();
 }

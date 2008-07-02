@@ -36,7 +36,7 @@ void test()
 /**
  * Constructor Function.
  */
-ScriptDialog::ScriptDialog(ScriptManager * scriptManager)
+ScriptDialog::ScriptDialog ( ScriptManager * scriptManager )
         : KDialog()
 {
 //     test();

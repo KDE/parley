@@ -39,7 +39,7 @@ void ScriptObjectParley::callFromScript()
  */
 void ScriptObjectParley::callTranslateWord ( const QString & word,const QString& fromLanguage,const QString& toLanguage )
 {
-    emit translateWord ( word );
+    emit translateWord ( word, fromLanguage, toLanguage );
 }
 
 
