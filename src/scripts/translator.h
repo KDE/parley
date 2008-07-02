@@ -73,11 +73,11 @@ class Translator
 
         ~Translator();
         void addTranslation ( QString word, QString fromLanguage, QString toLanguage, QString translation );
-        QStringList* getTranslation ( QString word, QString fromLanguage, QString toLanguage );
+        QSet<QString>* getTranslation ( QString word, QString fromLanguage, QString toLanguage );
 
     private:
 //         QMap<Translation,QStringList*> m_translations;
-         QMap<QString,QStringList*> m_translations;
+         QMap<QString,QSet<QString>*> m_translations;
 //          QHash<QString,QStringList*> m_translations;
 };
 

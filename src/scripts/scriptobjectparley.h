@@ -28,8 +28,8 @@ class ScriptObjectParley : public QObject
         ScriptObjectParley();
 
         ~ScriptObjectParley();
-        void callTranslateWord ( const QString & word );
-    void setTranslator(Translator* translator);
+        void callTranslateWord ( const QString & word,const QString& fromLanguage,const QString& toLanguage );
+        void setTranslator ( Translator* translator );
 
     public Q_SLOTS:
         void callFromScript();

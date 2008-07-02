@@ -578,6 +578,16 @@ void VocabularyView::setDocument(KEduVocDocument * doc)
     m_vocabularyDelegate->setDocument(doc);
 }
 
+/**
+ * Set the translator to be used by the delegate
+ * @param translator 
+ */
+void VocabularyView::setTranslator(Translator* translator)
+{
+    m_vocabularyDelegate->setTranslator(translator);
+}
+
+
 void VocabularyView::checkSpelling()
 {
     // values so we will start in the first row:
@@ -669,4 +679,3 @@ void VocabularyView::spellingReplace(const QString & oldWord, int start, const Q
 }
 
 #include "vocabularyview.moc"
-

@@ -928,16 +928,34 @@ void ParleyApp::removeGrades()
 
 void ParleyApp::initScripts()
 {
-//     m_translator.addTranslation("Hello","en_US","fr","bonjour");
-    Translator* tr = new Translator();
-//     kDebug() << m_translator.getTranslation("Hello","en_US","fr");
-    m_scriptObjectParley.setTranslator(tr);
+    m_translator.addTranslation("Hello","en_US","fr","bonjour");
+    m_translator.addTranslation("Baby","en_US","pl","dziecko");
+    m_vocabularyView->setTranslator(&m_translator);
+    m_scriptObjectParley.setTranslator(&m_translator);
     m_scriptManager.addObject ( &m_scriptObjectParley,"Parley" );
     m_scriptManager.loadScripts();
+
+    connect(m_vocabularyModel, SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)),
+            this, SLOT(slotTranslateWords(const QModelIndex&, const QModelIndex&)));
+}
+
+void ParleyApp::slotTranslateWords(const QModelIndex & topLeft, const QModelIndex & bottomRight)
+{
+    kDebug() << "Translate Words" << topLeft << bottomRight;
+    if (topLeft.column() == VocabularyModel::Translation) {
+        QString word = topLeft.data().toString();
+        QString fromLanguage = m_document->document()->identifier(0).locale();
+        const int N = VocabularyModel::EntryColumnsMAX;
+        //iterate through all the translation columns
+        for (int i = topLeft.column()+N; i < topLeft.model()->columnCount(topLeft.parent()); i += N) {
+            QString toLanguage = m_document->document()->identifier(i / N).locale();
+            kDebug() << word << fromLanguage << toLanguage;
+            //the scripts will receive a signal to translate this word
+            m_scriptObjectParley.callTranslateWord(word,fromLanguage,toLanguage);
+        }
+    }
 }
 
 #include "parley.moc"
-
-
 
 

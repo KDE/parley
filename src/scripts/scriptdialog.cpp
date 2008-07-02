@@ -30,7 +30,7 @@ void test()
     sm.addObject ( &obj_parley,"Parley" );
     sm.loadScripts();
 
-    obj_parley.callTranslateWord ( "hello" );
+    obj_parley.callTranslateWord ( "hello", "en_US", "fr" );
 }
 
 /**

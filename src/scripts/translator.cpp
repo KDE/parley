@@ -33,10 +33,11 @@ void Translator::addTranslation ( QString word, QString fromLanguage, QString to
 {
 //     Translation t( word,fromLanguage,toLanguage );
     QString t = word+fromLanguage+toLanguage;
-    kDebug() << m_translations.contains(t);
-    if (!m_translations.contains(t))
-        m_translations[t] = new QStringList();
-    m_translations[t]->push_back ( translation );
+    kDebug() << m_translations.contains ( t );
+    if ( !m_translations.contains ( t ) )
+        m_translations[t] = new QSet<QString>();
+    m_translations[t]->insert ( translation );
+//     m_translations[t]->push_back ( translation );
 }
 
 
@@ -47,13 +48,13 @@ void Translator::addTranslation ( QString word, QString fromLanguage, QString to
  * @param toLanguage
  * @return QStringList with the translations (or an empty QStringList if no translations found)
  */
-QStringList* Translator::getTranslation ( QString word, QString fromLanguage, QString toLanguage )
+QSet<QString>* Translator::getTranslation ( QString word, QString fromLanguage, QString toLanguage )
 {
 //     Translation t(word,fromLanguage,toLanguage);
     QString t = word+fromLanguage+toLanguage;
     kDebug() << t;
-    if (m_translations.contains(t))
-        return m_translations.value(t);
+    if ( m_translations.contains ( t ) )
+        return m_translations.value ( t );
     else
         return 0;
 }

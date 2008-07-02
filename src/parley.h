@@ -151,6 +151,11 @@ public slots:
      */
     void removeGrades();
 
+    /**
+     * Translates the changed words
+     */
+    void slotTranslateWords(const QModelIndex & topLeft, const QModelIndex & bottomRight);
+
 private slots:
     void slotConfigOldPractice(bool old);
 

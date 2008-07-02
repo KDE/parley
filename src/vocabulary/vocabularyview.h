@@ -32,6 +32,8 @@ class KAction;
 class ParleyApp;
 class KUrl;
 
+class Translator;
+
 class VocabularyView : public QTableView
 {
     Q_OBJECT
@@ -67,6 +69,8 @@ public slots:
     void appendChar(const QChar & c);
 
     void setDocument(KEduVocDocument * doc);
+
+    void setTranslator(Translator* translator);
 
     void checkSpelling();
 
