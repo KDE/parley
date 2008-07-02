@@ -31,6 +31,7 @@ Translator::~Translator()
  */
 void Translator::addTranslation ( QString word, QString fromLanguage, QString toLanguage, QString translation )
 {
+    if (word.trimmed() == "") return;
 //     Translation t( word,fromLanguage,toLanguage );
     QString t = word+fromLanguage+toLanguage;
     kDebug() << m_translations.contains ( t );
