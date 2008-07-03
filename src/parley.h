@@ -155,6 +155,7 @@ public slots:
      * Translates the changed words
      */
     void slotTranslateWords(const QModelIndex & topLeft, const QModelIndex & bottomRight);
+    void slotTranslationFinished(const QString & word,const QString& fromLanguage,const QString& toLanguage);
 
 private slots:
     void slotConfigOldPractice(bool old);

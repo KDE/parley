@@ -36,6 +36,8 @@ class ScriptObjectParley : public QObject
 
     Q_SIGNALS:
         void translateWord ( QString word, QString fromLanguage, QString toLanguage );
+        void translationFinished( const QString & word,const QString& fromLanguage,const QString& toLanguage );
+        void translationStarted( const QString & word,const QString& fromLanguage,const QString& toLanguage );
 
     private:
         Translator* m_translator;

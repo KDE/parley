@@ -917,6 +917,7 @@ void ParleyApp::slotTranslateLesson() {
             if (! WORD(r,0).isEmpty() && WORD(r,VocabularyModel::EntryColumnsMAX).isEmpty() ) {
 //                 kDebug() << "Translation column" << VocabularyModel::translation(0);
                 kDebug() << "Translate:" << WORD(r,0) << WORD(r,VocabularyModel::EntryColumnsMAX);
+                
             }
         }
     }
@@ -945,6 +946,10 @@ void ParleyApp::initScripts()
             this, SLOT(slotTranslateWords(const QModelIndex&, const QModelIndex&)),
             Qt::QueuedConnection
             );
+    connect(&m_scriptObjectParley, SIGNAL(translationFinished(const QString&,const QString&,const QString &)),
+            this, SLOT(slotTranslationFinished(const QString&, const QString&, const QString&)),
+            Qt::QueuedConnection
+            );
 }
 
 void ParleyApp::slotTranslateWords(const QModelIndex & topLeft, const QModelIndex & bottomRight)
@@ -960,6 +965,41 @@ void ParleyApp::slotTranslateWords(const QModelIndex & topLeft, const QModelInde
             kDebug() << word << fromLanguage << toLanguage;
             //the scripts will receive a signal to translate this word
             m_scriptObjectParley.callTranslateWord(word,fromLanguage,toLanguage);
+        }
+    }
+}
+
+int indexOfIdentifier(KEduVocDocument* document, const QString& locale) {
+    for (int i = 0; i < document->identifierCount(); i++)
+        if (document->identifier(i).locale() == locale)
+            return i;
+    return -1;
+}
+
+void ParleyApp::slotTranslationFinished(const QString & word,const QString& fromLanguage,const QString& toLanguage)
+{
+    if (m_translator.getTranslation(word,fromLanguage,toLanguage)->size() == 0)
+        return;
+
+    kDebug() << "Translation Finised";
+
+    int fromIdentifier = indexOfIdentifier(m_document->document(),fromLanguage);
+    int toIdentifier = indexOfIdentifier(m_document->document(),toLanguage);
+    kDebug() << fromIdentifier << toIdentifier;
+    int N = VocabularyModel::EntryColumnsMAX;
+
+    for (int r = 0; r < m_vocabularyModel->rowCount(QModelIndex()); r++) {
+        const QModelIndex& fromIndex = m_vocabularyModel->index(r,fromIdentifier * N,QModelIndex());
+        const QModelIndex& toIndex = m_vocabularyModel->index(r,toIdentifier * N, QModelIndex());
+
+        kDebug() << fromIndex.data().toString() << toIndex.data().toString();
+
+        if (fromIndex.data().toString() == word && toIndex.data().toString().isEmpty()) {
+            QString firstTranslation = *(m_translator.getTranslation(word,fromLanguage,toLanguage)->begin());
+            kDebug() << "First translation: " << firstTranslation;
+            kDebug() << fromIndex;
+            kDebug() << toIndex;
+            kDebug() << m_vocabularyModel->setData(toIndex,firstTranslation,Qt::EditRole);
         }
     }
 }

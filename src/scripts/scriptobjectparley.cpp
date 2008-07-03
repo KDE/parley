@@ -30,30 +30,31 @@ ScriptObjectParley::~ScriptObjectParley()
  */
 void ScriptObjectParley::callTranslateWord ( const QString & word,const QString& fromLanguage,const QString& toLanguage )
 {
+    emit translationStarted ( word, fromLanguage, toLanguage );
     emit translateWord ( word, fromLanguage, toLanguage );
+    emit translationFinished ( word, fromLanguage, toLanguage );
 }
 
 
 /**
- * 
- * @param word 
- * @param fromLanguage 
- * @param toLanguage 
- * @param translation 
+ *
+ * @param word
+ * @param fromLanguage
+ * @param toLanguage
+ * @param translation
  */
 void ScriptObjectParley::addTranslation ( QString word,QString fromLanguage,QString toLanguage, QString translation )
 {
-    if (m_translator) {
-        m_translator->addTranslation(word,fromLanguage,toLanguage,translation);
-    }
+    if ( m_translator )
+        m_translator->addTranslation ( word,fromLanguage,toLanguage,translation );
 }
 
 
 /**
- * 
- * @param translator 
+ *
+ * @param translator
  */
-void ScriptObjectParley::setTranslator(Translator* translator)
+void ScriptObjectParley::setTranslator ( Translator* translator )
 {
     m_translator = translator;
 }
