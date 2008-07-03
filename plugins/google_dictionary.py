@@ -3,6 +3,7 @@
 import urllib2
 import urllib
 from sgmllib import SGMLParser
+import threading
 import Parley
 
 
@@ -40,11 +41,29 @@ def locale(lang):
   return lang
 
 # called by Parley to translate the word
-def translateWord(word,from_lang,to_lang):
+def pTranslateWord(word,from_lang,to_lang):
   print "google_dictionary.py - Translating",word,from_lang,to_lang
   data = fetchData(word,locale(from_lang),locale(to_lang))
   parser = parseData(data,word,from_lang,to_lang)
   #return parser.words
+  
+  
+class TranslationThread(threading.Thread):
+  
+  def __init__ (self, word, from_lang, to_lang):
+    self.word = word
+    self.from_lang = from_lang
+    self.to_lang = to_lang
+    threading.Thread.__init__(self)
+
+  def run(self):
+    print "google script: translating.."
+    pTranslateWord(self.word,self.from_lang,self.to_lang)
+    print "google script: finished"
+  
+def translateWord(word,from_lang,to_lang):
+  print "google script: here"
+  TranslationThread(word,from_lang,to_lang).start()
 
 # called by Parley to retrieve the language pairs provided by this script
 # should return: [("en","fr"),("en","de")] for translation from english to french and english to german
@@ -70,6 +89,7 @@ class myParser(SGMLParser):
     self.tags_stack = []
 
   def unknown_starttag(self,tag,attrs):
+    print "parsing.."
     self.tags_stack.append(tag)
     #print "unknown : ", tag, " ", len(self.tags_stack)
 
