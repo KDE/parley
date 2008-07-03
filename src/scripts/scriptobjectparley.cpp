@@ -25,15 +25,6 @@ ScriptObjectParley::~ScriptObjectParley()
 
 
 /**
- * Just to call it from the script to test it out ;)
- */
-void ScriptObjectParley::callFromScript()
-{
-    kDebug() << QString ( "Called from script!!!!" );
-}
-
-
-/**
  * Test function to emit the translate signal
  * @param word
  */

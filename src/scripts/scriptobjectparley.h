@@ -32,7 +32,6 @@ class ScriptObjectParley : public QObject
         void setTranslator ( Translator* translator );
 
     public Q_SLOTS:
-        void callFromScript();
         void addTranslation ( QString word,QString fromLanguage,QString toLanguage, QString translation );
 
     Q_SIGNALS:
