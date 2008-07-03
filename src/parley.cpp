@@ -978,7 +978,7 @@ int indexOfIdentifier(KEduVocDocument* document, const QString& locale) {
 
 void ParleyApp::slotTranslationFinished(const QString & word,const QString& fromLanguage,const QString& toLanguage)
 {
-    if (m_translator.getTranslation(word,fromLanguage,toLanguage)->size() == 0)
+    if (!m_translator.getTranslation(word,fromLanguage,toLanguage))
         return;
 
     kDebug() << "Translation Finised";
