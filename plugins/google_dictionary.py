@@ -2,7 +2,7 @@
 
 import urllib2
 import urllib
-from sgmllib import SGMLParserz
+from sgmllib import SGMLParser
 import Parley
 
 
