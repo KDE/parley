@@ -59,6 +59,7 @@
    <Action name="split_lesson" />
    <Separator/>
    <Action name="lesson_showsublessonentries" />
+   <Action name="lesson_automatictranslation" />
   </Menu>
   <Menu name="learning" >
    <text>&amp;Practice</text>

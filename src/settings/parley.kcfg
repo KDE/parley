@@ -46,6 +46,10 @@
       <label>If true, use the old deprecated practice</label>
       <default>false</default>
     </entry>
+    <entry name="AutomaticTranslation" type="Bool">
+      <label>Enable for automatic translation of the lesson entries.</label>
+      <default>false</default>
+    </entry>
   </group>
 
   <group name="PracticeOptions">

@@ -431,6 +431,10 @@ void VocabularyModel::resetLanguages()
     setDocument(m_document);
 }
 
+void VocabularyModel::automaticTranslation(bool enabled) {
+    Prefs::setAutomaticTranslation(enabled);
+}
+
 
 #include "vocabularymodel.moc"
 

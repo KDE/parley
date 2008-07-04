@@ -119,6 +119,13 @@ public slots:
      */
     void showEntriesOfSubcontainers(bool show);
 
+    /**
+     * Set automatic translation to enabled/disabled
+     * @param enabled
+     */
+    void automaticTranslation(bool enabled);
+
+
 private:
     KEduVocContainer *m_container;
     KEduVocLesson *m_lesson;

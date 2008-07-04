@@ -709,6 +709,14 @@ void ParleyApp::initActions()
     showSublessonentries->setStatusTip(showSublessonentries->whatsThis());
     showSublessonentries->setChecked(Prefs::showSublessonentries());
 
+    KAction *automaticTranslation = actionCollection()->add<KToggleAction>("lesson_automatictranslation");
+    automaticTranslation->setText(i18n("Automatic Translation"));
+    connect(automaticTranslation, SIGNAL(triggered(bool)), m_vocabularyModel, SLOT(automaticTranslation(bool)));
+    automaticTranslation->setWhatsThis(i18n("Enable for automatic translation of the lesson entries."));
+    automaticTranslation->setToolTip(automaticTranslation->whatsThis());
+    automaticTranslation->setStatusTip(automaticTranslation->whatsThis());
+    automaticTranslation->setChecked(Prefs::automaticTranslation());
+
     KAction* removeGrades = new KAction(this);
     actionCollection()->addAction("vocab_remove_grades", removeGrades);
     removeGrades->setIcon(KIcon("edit-clear"));
@@ -954,6 +962,8 @@ void ParleyApp::initScripts()
 
 void ParleyApp::slotTranslateWords(const QModelIndex & topLeft, const QModelIndex & bottomRight)
 {
+    if (Prefs::automaticTranslation() == false) return;
+
     kDebug() << "Translate Words" << topLeft << bottomRight;
     if (topLeft.column() == VocabularyModel::Translation) {
         QString word = topLeft.data().toString();
