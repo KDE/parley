@@ -240,29 +240,29 @@
 
   <group name="Thresholds">
     <entry name="PracticeMinimumTimesAsked" type="Int">
-      <label>The entry has been asked at least this often to be included in the practice.</label>
+      <label>The entry must have been asked at least this often to be included in the practice.</label>
       <default>0</default>
     </entry>
     <entry name="PracticeMaximumTimesAsked" type="Int">
-      <label>The entry has been asked at most this often to be included in the practice.</label>
+      <label>The entry must have been asked at most this often to be included in the practice.</label>
       <default>1000</default>
     </entry>
 
     <entry name="PracticeMinimumWrongCount" type="Int">
-      <label>The entry was answered wrong at least this often to be included in the practice.</label>
+      <label>The entry must have been answered wrong at least this often to be included in the practice.</label>
       <default>0</default>
     </entry>
     <entry name="PracticeMaximumWrongCount" type="Int">
-      <label>The entry was answered wrong at most this often to be included in the practice.</label>
+      <label>The entry must have been answered wrong at most this often to be included in the practice.</label>
       <default>1000</default>
     </entry>
 
     <entry name="PracticeMinimumGrade" type="Int">
-      <label>The entry has at least this grade to be included in the practice (0..7).</label>
+      <label>The entry must have at least this grade to be included in the practice (0..7).</label>
       <default>0</default>
     </entry>
     <entry name="PracticeMaximumGrade" type="Int">
-      <label>The entry has at most this grade to be included in the practice (0..7).</label>
+      <label>The entry must have at most this grade to be included in the practice (0..7).</label>
       <default>7</default>
     </entry>
     <entry name="WordTypesInPracticeEnabled" type="Bool">
