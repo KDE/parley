@@ -49,25 +49,49 @@ class TextualInput : public QLineEdit
         KSvgRenderer* m_renderer;
 };
 
-
-class MultipleChoiceInput : public QGroupBox
+class MCInput : public QGroupBox
 {
-    Q_OBJECT;
+    Q_OBJECT
     public:
-        MultipleChoiceInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent = 0);
-        ~MultipleChoiceInput();
+        MCInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent = 0);
+        ~MCInput();
 
     public slots:
-        void slotEmitAnswer();
-        void slotSetAnswers(PracticeEntry*, QList<PracticeEntry*>);
+        virtual void slotEmitAnswer();
         void slotShortcutTriggered(int shortcutNumber);
 
     signals:
         void signalAnswer(const QString& answer);
         void triggered();
 
+    protected:
+        void setAvailableAnswers(QStringList answers);
     private:
         KSvgRenderer* m_renderer;
 };
 
+
+class MultipleChoiceMCInput : public MCInput
+{
+    Q_OBJECT
+    public:
+        MultipleChoiceMCInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent = 0);
+
+    public slots:
+        void slotSetAnswers(PracticeEntry*, QList<PracticeEntry*>);
+};
+
+
+class ArticleMCInput : public MCInput
+{
+    Q_OBJECT
+     public:
+        ArticleMCInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, class KEduVocDocument * doc, QWidget * parent = 0);
+
+    public slots:
+        void slotSetAnswers(PracticeEntry*);
+        void slotEmitAnswer();
+    private:
+        KEduVocDocument* m_doc;
+};
 #endif

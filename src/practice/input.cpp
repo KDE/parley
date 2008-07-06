@@ -30,8 +30,12 @@
 #include <QVBoxLayout>
 #include <KRandomSequence>
 #include <QString>
+#include <KLocalizedString>
+#include <QStringList>
 
 #include "keduvocwordtype.h"
+#include "keduvocdocument.h"
+#include "keduvocarticle.h"
 
 TextualInput::TextualInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget* parent)
         : QLineEdit(parent),
@@ -82,8 +86,7 @@ void TextualInput::slotClear()
     setText("");
 }
 
-
-MultipleChoiceInput::MultipleChoiceInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget* parent)
+MCInput::MCInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget* parent)
         : QGroupBox(parent),
         m_renderer(renderer)
 {
@@ -97,9 +100,10 @@ MultipleChoiceInput::MultipleChoiceInput(KSvgRenderer * renderer, QGraphicsView 
      QRect bounds = m_renderer->boundsOnElement(elementId).toRect();
      setGeometry(view->mapToScene(bounds).boundingRect().toRect());
 
+    setAttribute(Qt::WA_OpaquePaintEvent, true);
 }
 
-void MultipleChoiceInput::slotShortcutTriggered(int shortcutNumber)
+void MCInput::slotShortcutTriggered(int shortcutNumber)
 {
     if (shortcutNumber > Prefs::numberMultipleChoiceAnswers())
         return; // bogus false positive
@@ -128,9 +132,8 @@ void MultipleChoiceInput::slotShortcutTriggered(int shortcutNumber)
     // we didn't find anything.
 }
 
-void MultipleChoiceInput::slotSetAnswers(PracticeEntry* currentEntry, const QList<PracticeEntry*> source)
+void MCInput::setAvailableAnswers(const QStringList list)
 {
-
     // clean up from last time
     delete layout();
 
@@ -140,19 +143,55 @@ void MultipleChoiceInput::slotSetAnswers(PracticeEntry* currentEntry, const QLis
     }
 
 
-
-    if (source.size() == 0)
+    if (list.size() == 0)
     {
         kDebug() << "Source list empty. Aborted.";
         return;
     }
 
-
-
     // start fresh and new!
+
     QVBoxLayout *vbox = new QVBoxLayout;
+
+    int n = 1;
+    foreach(QString s, list)
+    {
+        vbox->addWidget(new QRadioButton(QString("&%1 %2").arg(n++).arg(s)));
+    }
+
+     vbox->addStretch(1);
+     setLayout(vbox);
+}
+
+
+MCInput::~MCInput()
+{
+    foreach(QRadioButton* b, findChildren<QRadioButton*>())
+    {
+        delete b;
+    }
+}
+
+void MCInput::slotEmitAnswer()
+{
+    foreach(QRadioButton* b, findChildren<QRadioButton*>())
+        if (b->isChecked())
+        {
+            emit signalAnswer(b->text().remove(QRegExp("^&\\d ")));
+        }
+    emit signalAnswer(""); // none were selected.
+}
+
+
+MultipleChoiceMCInput::MultipleChoiceMCInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget* parent)
+    : MCInput(renderer, view, elementId, parent)
+{}
+
+
+void MultipleChoiceMCInput::slotSetAnswers(PracticeEntry* currentEntry, const QList<PracticeEntry*> source)
+{
+    QStringList list;
     QString s;
-    QList<QString> list;
     int timeout = 0;
     long r;
 
@@ -206,31 +245,76 @@ void MultipleChoiceInput::slotSetAnswers(PracticeEntry* currentEntry, const QLis
     }
     KRandomSequence(0).randomize(list);
 
-    int n = 1;
-    foreach(s, list)
-    {
-        vbox->addWidget(new QRadioButton(QString("&%1 %2").arg(n++).arg(s)));
-    }
-
-     vbox->addStretch(1);
-     setLayout(vbox);
-
+    setAvailableAnswers(list);
 }
 
-MultipleChoiceInput::~MultipleChoiceInput()
+
+
+ArticleMCInput::ArticleMCInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, KEduVocDocument * doc, QWidget * parent)
+: MCInput(renderer, view, elementId, parent), m_doc(doc)
+{}
+
+void ArticleMCInput::slotSetAnswers(PracticeEntry* currentEntry)
 {
-    foreach(QRadioButton* b, findChildren<QRadioButton*>())
+    QStringList list;
+    QString def, indef;
+
+    KEduVocArticle articles = m_doc->identifier(Prefs::solutionLanguage()).article();
+
+    // set the choices
+    if(articles.isEmpty())
     {
-        delete b;
+        list.append(i18nc("@label the gender of the word: Male", "Male"));
+        list.append(i18nc("@label the gender of the word: Female", "Female"));
+        list.append(i18nc("@label the gender of the word: Neutral", "Neutral"));
     }
+    else
+    {
+        QString article;
+        def = articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Masculine );
+        indef = articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Masculine );
+        bool male = !(def.isEmpty() && indef.isEmpty());
+
+        if((!def.isEmpty()) && (!indef.isEmpty())) {
+            article = def + " / " + indef;
+        } else {
+            article = def + indef;
+        }
+        list.append(i18nc("@label the gender of the word: male", "Male:\t") + article);
+
+        def = articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Feminine );
+        indef = articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Feminine );
+        bool female = !(def.isEmpty() && indef.isEmpty());
+        if((!def.isEmpty()) && (!indef.isEmpty())) {
+            article = def + " / " + indef;
+        } else {
+            article = def + indef;
+        }
+        list.append(i18nc("@label the gender of the word: female", "Female:\t") + article);
+
+        def = articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Neutral );
+        indef = articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Neutral );
+        bool neutral = !(def.isEmpty() && indef.isEmpty());
+        if((!def.isEmpty()) && (!indef.isEmpty())) {
+            article = def + " / " + indef;
+        } else {
+            article = def + indef;
+        }
+        if (!(!neutral && male && female))
+            list.append(i18nc("@label the gender of the word: neutral", "Neutral:\t") + article);
+    }
+
+    setAvailableAnswers(list);
 }
 
-void MultipleChoiceInput::slotEmitAnswer()
+void ArticleMCInput::slotEmitAnswer()
 {
     foreach(QRadioButton* b, findChildren<QRadioButton*>())
         if (b->isChecked())
         {
-            emit signalAnswer(b->text().remove(QRegExp("^&\\d ")));
+            // removes the number and Male:/Female:/Neutral:
+            // it doesn't trigger when there is ONLY Male, Female, or Neutral, though
+            emit signalAnswer(b->text().remove(QRegExp("^&\\d .+:\t")));
         }
     emit signalAnswer(""); // none were selected.
 }

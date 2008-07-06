@@ -59,6 +59,8 @@ class PracticeEntryManager : public QObject
         /// Used when the user gets the answer wrong and we want to save the question for later.
         void appendEntryToList(PracticeEntry*);
 
+        /// Returns the current KEduVocDocument for the practice set.
+        KEduVocDocument* document() {return m_doc;}
 
         /**
         * The number of entries in the practice set

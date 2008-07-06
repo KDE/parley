@@ -280,10 +280,11 @@ void ParleyApp::startPractice()
     } else {
         hide();
         ParleyPracticeMainWindow* window = new ParleyPracticeMainWindow(this);
+        connect(window, SIGNAL(destroyed()), this, SLOT(show()));
         window->show();
-        show();
     }
 }
+
 
 void ParleyApp::slotConfigOldPractice(bool old)
 {
@@ -375,10 +376,10 @@ void ParleyApp::initDockWidgets()
             "With the checkboxes you can select which lessons you want to practice. \n"
             "Only checked lessons [x] will be asked in the tests!"));
 
-    connect(m_lessonView, SIGNAL(selectedLessonChanged(KEduVocLesson*)), 
+    connect(m_lessonView, SIGNAL(selectedLessonChanged(KEduVocLesson*)),
         m_vocabularyModel, SLOT(setLesson(KEduVocLesson*)));
 
-    connect(m_lessonView, SIGNAL(signalShowContainer(KEduVocContainer*)), 
+    connect(m_lessonView, SIGNAL(signalShowContainer(KEduVocContainer*)),
         m_vocabularyModel, SLOT(showContainer(KEduVocContainer*)));
 
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
@@ -402,10 +403,10 @@ void ParleyApp::initDockWidgets()
 
     m_wordTypeView->setModel(m_wordTypeModel);
 
-    connect(m_wordTypeView, SIGNAL(selectedWordTypeChanged(KEduVocWordType*)), 
+    connect(m_wordTypeView, SIGNAL(selectedWordTypeChanged(KEduVocWordType*)),
         m_vocabularyModel, SLOT(setWordType(KEduVocWordType*)));
 
-    connect(m_wordTypeView, SIGNAL(signalShowContainer(KEduVocContainer*)), 
+    connect(m_wordTypeView, SIGNAL(signalShowContainer(KEduVocContainer*)),
         m_vocabularyModel, SLOT(showContainer(KEduVocContainer*)));
 
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
@@ -427,7 +428,7 @@ void ParleyApp::initDockWidgets()
     connect(m_leitnerView, SIGNAL(selectedLeitnerBoxChanged(KEduVocLeitnerBox*)),
         m_vocabularyModel, SLOT(setLeitnerBox(KEduVocLeitnerBox*)));
 
-    connect(m_leitnerView, SIGNAL(signalShowContainer(KEduVocContainer*)), 
+    connect(m_leitnerView, SIGNAL(signalShowContainer(KEduVocContainer*)),
         m_vocabularyModel, SLOT(showContainer(KEduVocContainer*)));
 
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
