@@ -335,13 +335,13 @@ void ParleyApp::updateDocument()
     m_vocabularyModel->setDocument(m_document->document());
 
     m_lessonModel->setDocument(m_document->document());
+    m_wordTypeModel->setDocument(m_document->document());
+    m_leitnerModel->setDocument(m_document->document());
+
     // expand the root items
     m_lessonView->expandToDepth(0);
-
-    m_wordTypeModel->setDocument(m_document->document());
     m_wordTypeView->expandToDepth(0);
 
-    m_leitnerModel->setDocument(m_document->document());
     // the top level container of this model only holds the others
     m_leitnerView->setRootIndex(m_leitnerModel->index(0,0));
 
