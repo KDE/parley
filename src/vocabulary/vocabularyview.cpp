@@ -354,6 +354,8 @@ void VocabularyView::slotCurrentChanged(const QModelIndex & current, const QMode
 void VocabularyView::reset()
 {
     QTableView::reset();
+    emit translationChanged(0, 0);
+
     kDebug() << "reset";
 ///@todo check if the actions are recreated every time when selecting a diff lesson.
     foreach( KAction* oldAction, m_columnActionMap.keys() ) {
