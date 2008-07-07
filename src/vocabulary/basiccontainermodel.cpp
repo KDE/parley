@@ -39,18 +39,8 @@ BasicContainerModel::BasicContainerModel(KEduVocContainer::EnumContainerType typ
 
 void BasicContainerModel::setDocument(KEduVocDocument * doc)
 {
-    // cleanup old document
-    if (rowCount(QModelIndex()) > 0) {
-        beginRemoveRows(QModelIndex(), 0, 0);
-        m_doc = 0;
-        endRemoveRows();
-    }
-
-    if (doc) {
-        beginInsertRows(QModelIndex(), 0, 0);
-        m_doc = doc;
-        endInsertRows();
-    }
+    m_doc=doc;
+    reset();
 }
 
 QModelIndex BasicContainerModel::index(int row, int column, const QModelIndex &parent) const
