@@ -11,6 +11,8 @@
 //
 #include "scriptobjectparley.h"
 
+#include <KLocale>
+#include <KGlobal>
 #include <KDebug>
 
 ScriptObjectParley::ScriptObjectParley()
@@ -57,4 +59,24 @@ void ScriptObjectParley::addTranslation ( QString word,QString fromLanguage,QStr
 void ScriptObjectParley::setTranslator ( Translator* translator )
 {
     m_translator = translator;
+}
+
+/**
+ * Returns a list of all available language codes (to be used by the scripts)
+ * @return
+ */
+QStringList ScriptObjectParley::languageCodes()
+{
+    return KGlobal::locale()->allLanguagesList();
+}
+
+
+/**
+ * Gives the language name of the given @p code language code.
+ * @param code Language code
+ * @return Language name
+ */
+QString ScriptObjectParley::languageCodeToName ( QString code )
+{
+    return KGlobal::locale()->languageCodeToName ( code );
 }

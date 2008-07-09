@@ -33,11 +33,13 @@ class ScriptObjectParley : public QObject
 
     public Q_SLOTS:
         void addTranslation ( QString word,QString fromLanguage,QString toLanguage, QString translation );
+        QStringList languageCodes();
+        QString languageCodeToName ( QString code );
 
     Q_SIGNALS:
         void translateWord ( QString word, QString fromLanguage, QString toLanguage );
-        void translationFinished( const QString & word,const QString& fromLanguage,const QString& toLanguage );
-        void translationStarted( const QString & word,const QString& fromLanguage,const QString& toLanguage );
+        void translationFinished ( const QString & word,const QString& fromLanguage,const QString& toLanguage );
+        void translationStarted ( const QString & word,const QString& fromLanguage,const QString& toLanguage );
 
     private:
         Translator* m_translator;
