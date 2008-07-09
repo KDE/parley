@@ -992,25 +992,29 @@ void ParleyApp::slotTranslationFinished(const QString & word,const QString& from
     if (!m_translator.getTranslation(word,fromLanguage,toLanguage))
         return;
 
-    kDebug() << "Translation Finised";
+//     kDebug() << "Translation Finised";
 
+    //get identifiers
     int fromIdentifier = indexOfIdentifier(m_document->document(),fromLanguage);
     int toIdentifier = indexOfIdentifier(m_document->document(),toLanguage);
-    kDebug() << fromIdentifier << toIdentifier;
+
+    if (fromIdentifier == -1 || toIdentifier == -1) return;
+//     kDebug() << fromIdentifier << toIdentifier;
     int N = VocabularyModel::EntryColumnsMAX;
 
+    //iterate through all the lesson rows (entries) and fill up the empty cells, if a translation is available
     for (int r = 0; r < m_vocabularyModel->rowCount(QModelIndex()); r++) {
         const QModelIndex& fromIndex = m_vocabularyModel->index(r,fromIdentifier * N,QModelIndex());
         const QModelIndex& toIndex = m_vocabularyModel->index(r,toIdentifier * N, QModelIndex());
 
-        kDebug() << fromIndex.data().toString() << toIndex.data().toString();
+//         kDebug() << fromIndex.data().toString() << toIndex.data().toString();
 
         if (fromIndex.data().toString() == word && toIndex.data().toString().isEmpty()) {
             QString firstTranslation = *(m_translator.getTranslation(word,fromLanguage,toLanguage)->begin());
-            kDebug() << "First translation: " << firstTranslation;
-            kDebug() << fromIndex;
-            kDebug() << toIndex;
-            kDebug() << m_vocabularyModel->setData(toIndex,firstTranslation,Qt::EditRole);
+//             kDebug() << "First translation: " << firstTranslation;
+//             kDebug() << fromIndex;
+//             kDebug() << toIndex;
+            m_vocabularyModel->setData(toIndex,firstTranslation,Qt::EditRole);
         }
     }
 }
