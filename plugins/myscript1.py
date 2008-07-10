@@ -11,8 +11,16 @@ def translateWord(word,fromLang,toLang):
 print Parley.languageCodes()
 print Parley.languageCodeToName("en_US")
 
-doc = Parley.document()
-doc.callFromScriptTest()
+#doc = Parley.document()
+#doc.callFromScriptTest()
+Parley.document.callFromScriptTest()
+
+doc = Parley.document
+doc.name = "Hi"
+doc.printName()
+
+#print "OPENING DOCUMENT"
+##Parley.open('/home/kde-devel/My\ Vocabularies/test.kvtml')
 
 #print "myscript1"
 #init()

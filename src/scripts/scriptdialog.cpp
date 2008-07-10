@@ -25,12 +25,12 @@
 
 void test()
 {
-    ScriptObjectParley obj_parley;
-    ScriptManager sm;
-    sm.addObject ( &obj_parley,"Parley" );
-    sm.loadScripts();
-
-    obj_parley.callTranslateWord ( "hello", "en_US", "fr" );
+//     ScriptObjectParley obj_parley;
+//     ScriptManager sm;
+//     sm.addObject ( &obj_parley,"Parley" );
+//     sm.loadScripts();
+// 
+//     obj_parley.callTranslateWord ( "hello", "en_US", "fr" );
 }
 
 /**

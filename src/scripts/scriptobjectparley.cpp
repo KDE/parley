@@ -10,14 +10,20 @@
 //
 //
 #include "scriptobjectparley.h"
+#include "scriptobjectdocument.h"
+#include "translator.h"
+
+#include "../parley.h"
 
 #include <KLocale>
 #include <KGlobal>
 #include <KDebug>
 
-ScriptObjectParley::ScriptObjectParley() : QObject()
+ScriptObjectParley::ScriptObjectParley ( ParleyApp * parley ) : QObject()
 {
     m_translator = 0;
+    m_parleyApp = parley;
+    m_doc = new ScriptObjectDocument(m_parleyApp->parleyDocument()->document());
 }
 
 
@@ -86,7 +92,24 @@ QString ScriptObjectParley::languageCodeToName ( QString code )
  * Returns the Parley currently open document
  * @return Document object
  */
-QObject* ScriptObjectParley::document()
+QObject* ScriptObjectParley::getDocument()
 {
-    return &m_doc;
+    return m_doc;
+}
+
+/**
+ * Open the Parley Document @p file
+ * Usage:
+ * @code
+ * import Parley
+ * Parley.open("Vocab/MyVocab.kvtml")
+ * @endcode
+ * @param file Parley Document file path (ex. /home/kde-user/MyVocab.kvtml)
+ */
+void ScriptObjectParley::open ( QString filename )
+{
+    KUrl k;
+    k.setFileName(filename);
+    kDebug() << k;
+    m_parleyApp->parleyDocument()->open(k,false);
 }

@@ -12,6 +12,8 @@
 #ifndef SCRIPTOBJECTDOCUMENT_H
 #define SCRIPTOBJECTDOCUMENT_H
 
+#include <keduvocdocument.h>
+
 #include <QObject>
 
 /**
@@ -27,13 +29,27 @@ doc = Parley.document()
 class ScriptObjectDocument : public QObject
 {
         Q_OBJECT
+
+        Q_PROPERTY ( QString name READ getName WRITE setName )
+
     public:
-        ScriptObjectDocument();
+        ScriptObjectDocument ( KEduVocDocument * doc );
 
         ~ScriptObjectDocument();
 
+        QString getName() const { return m_name; }
+        void setName ( const QString & name ) { m_name = name; }
+
     public slots:
+        /**
+        * Call from script (test function)
+        */
         void callFromScriptTest();
+        void printName();
+
+    private:
+        QString m_name;
+        KEduVocDocument * m_doc;
 };
 
 #endif

@@ -12,10 +12,12 @@
 #ifndef SCRIPTOBJECTPARLEY_H
 #define SCRIPTOBJECTPARLEY_H
 
-#include "translator.h"
 #include "scriptobjectdocument.h"
 
 #include <QObject>
+
+class ParleyApp;
+class Translator;
 
 /**
 Implements the object that will be given to Kross scripts to use for accessing parley features
@@ -25,18 +27,20 @@ Implements the object that will be given to Kross scripts to use for accessing p
 class ScriptObjectParley : public QObject
 {
         Q_OBJECT
+        Q_PROPERTY(QObject * document READ getDocument)
     public:
-        ScriptObjectParley();
+        ScriptObjectParley ( ParleyApp * parley );
 
         ~ScriptObjectParley();
         void callTranslateWord ( const QString & word,const QString& fromLanguage,const QString& toLanguage );
         void setTranslator ( Translator* translator );
+        QObject* getDocument();
 
     public Q_SLOTS:
         void addTranslation ( QString word,QString fromLanguage,QString toLanguage, QString translation );
         QStringList languageCodes();
         QString languageCodeToName ( QString code );
-        QObject* document();
+        void open ( QString filename );
 
     Q_SIGNALS:
         void translateWord ( QString word, QString fromLanguage, QString toLanguage );
@@ -45,7 +49,8 @@ class ScriptObjectParley : public QObject
 
     private:
         Translator* m_translator;
-        ScriptObjectDocument m_doc;
+        ScriptObjectDocument* m_doc;
+        ParleyApp * m_parleyApp;
 };
 
 #endif

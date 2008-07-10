@@ -947,15 +947,16 @@ void ParleyApp::initScripts()
     m_translator.addTranslation("Hello","en_US","fr","bonjour");
     m_translator.addTranslation("Baby","en_US","pl","dziecko");
     m_vocabularyView->setTranslator(&m_translator);
-    m_scriptObjectParley.setTranslator(&m_translator);
-    m_scriptManager.addObject ( &m_scriptObjectParley,"Parley" );
+    m_scriptObjectParley = new ScriptObjectParley(this);
+    m_scriptObjectParley->setTranslator(&m_translator);
+    m_scriptManager.addObject ( m_scriptObjectParley,"Parley" );
     m_scriptManager.loadScripts();
 
     connect(m_vocabularyModel, SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)),
             this, SLOT(slotTranslateWords(const QModelIndex&, const QModelIndex&)),
             Qt::QueuedConnection
             );
-    connect(&m_scriptObjectParley, SIGNAL(translationFinished(const QString&,const QString&,const QString &)),
+    connect(m_scriptObjectParley, SIGNAL(translationFinished(const QString&,const QString&,const QString &)),
             this, SLOT(slotTranslationFinished(const QString&, const QString&, const QString&)),
             Qt::QueuedConnection
             );
@@ -975,7 +976,7 @@ void ParleyApp::slotTranslateWords(const QModelIndex & topLeft, const QModelInde
             QString toLanguage = m_document->document()->identifier(i / N).locale();
             kDebug() << word << fromLanguage << toLanguage;
             //the scripts will receive a signal to translate this word
-            m_scriptObjectParley.callTranslateWord(word,fromLanguage,toLanguage);
+            m_scriptObjectParley->callTranslateWord(word,fromLanguage,toLanguage);
         }
     }
 }
@@ -1019,6 +1020,10 @@ void ParleyApp::slotTranslationFinished(const QString & word,const QString& from
     }
 }
 
+ParleyDocument* ParleyApp::parleyDocument()
+{
+    return m_document;
+}
+
+
 #include "parley.moc"
-
-

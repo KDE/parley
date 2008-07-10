@@ -100,6 +100,12 @@ public:
      */
     void initScripts();
 
+    /**
+     * Return the ParleyDocument member object
+     * @return member m_document
+     */
+    ParleyDocument* parleyDocument();
+
 
 public slots:
     /** Update the title bar of the main window with the current document */
@@ -218,7 +224,7 @@ private:
     ScriptManager m_scriptManager;
 
     //script objects (objects that will be used from inside the scripts)
-    ScriptObjectParley m_scriptObjectParley;
+    ScriptObjectParley* m_scriptObjectParley;
 
     //stores all the translations of a vocabulary word
     Translator m_translator;
