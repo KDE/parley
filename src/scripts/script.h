@@ -30,7 +30,7 @@ class Script: public QObject
         Q_OBJECT
     public:
         /**
-         * Script class constructor. Activates the @p script. In case of failure
+         * Script class constructor. Activates the @p file. In case of failure
          * sets the m_activated
          * @param file The path to the script file to be activated (executed)
          */

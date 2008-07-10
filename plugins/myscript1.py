@@ -1,5 +1,4 @@
 #!/usr/bin/env kross
-
 import Parley
 
 def init():
@@ -11,6 +10,9 @@ def translateWord(word,fromLang,toLang):
 
 print Parley.languageCodes()
 print Parley.languageCodeToName("en_US")
+
+doc = Parley.document()
+doc.callFromScriptTest()
 
 #print "myscript1"
 #init()
