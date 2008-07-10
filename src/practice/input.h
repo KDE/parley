@@ -41,10 +41,9 @@ class TextualInput : public QLineEdit
         void slotClear();
         void slotShowSolution(const QString& solution);
         void slotEmitAnswer();
-
     signals:
         void signalAnswer(const QString& answer);
-
+        void signalAnswerChanged(const QString& answer);
     private:
         KSvgRenderer* m_renderer;
 };

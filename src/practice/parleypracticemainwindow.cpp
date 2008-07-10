@@ -53,7 +53,7 @@
 ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
         : KXmlGuiWindow(parent)
 {
-    setupBase("mc.desktop");
+    setupBase("default.desktop");
     setupActions();
     setupModeSpecifics();
 
@@ -214,14 +214,24 @@ void ParleyPracticeMainWindow::setupActions()
 // here is where we'll add new modes
 void ParleyPracticeMainWindow::setupModeSpecifics()
 {
-    if (m_mode == Prefs::EnumTestType::WrittenTest)
+    switch (m_mode)
+    {
+       case Prefs::EnumTestType::WrittenTest:
         setupWritten();
-    else if (m_mode == Prefs::EnumTestType::MultipleChoiceTest)
+        break;
+       case Prefs::EnumTestType::MultipleChoiceTest:
         setupMultipleChoice();
-    else if (m_mode == Prefs::EnumTestType::ArticleTest)
+        break;
+       case Prefs::EnumTestType::ArticleTest:
         setupArticle();
-    else
+        break;
+       case Prefs::EnumTestType::MixedLettersTest:
+        setupMixedLetters();
+        break;
+       default:
         kDebug() << "unhandled practice mode " << m_mode << " selected.";
+        break;
+    }
 }
 
 
@@ -467,3 +477,50 @@ void ParleyPracticeMainWindow::setupArticle()
     connect(mapper, SIGNAL(mapped(int)), input, SLOT(slotShortcutTriggered(int)));
 }
 
+
+void ParleyPracticeMainWindow::setupMixedLetters()
+{
+
+    MixedLettersPrompt * prompt = new MixedLettersPrompt(m_renderer, m_view, "practice_text_background");
+    connect(m_manager, SIGNAL(signalNewText(const QString&)), prompt, SLOT(slotSetText(const QString&)));
+
+    TextualInput * input = new TextualInput(m_renderer, m_view, "practice_text_translation_background");
+    m_scene->addWidget(input);
+    connect(input, SIGNAL(signalAnswer(const QString&)), this, SLOT(slotCheckAnswer(const QString&)));
+    connect(input, SIGNAL(signalAnswerChanged(const QString&)), prompt, SLOT(slotAnswerChanged(const QString&)));
+    connect(this, SIGNAL(signalShowSolution(const QString&, int)), input, SLOT(slotShowSolution(const QString&)));
+    connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
+    connect(actionCollection()->action("continue"), SIGNAL(triggered()), input, SLOT(slotClear()));
+
+    SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, "bar", "bar_background");
+    m_scene->addItem(barstats);
+    connect(m_stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
+
+    StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, m_view, "check_answer_and_continue_button");
+    m_scene->addWidget(stdbutton);
+    connect(input, SIGNAL(returnPressed()), stdbutton, SLOT(slotActivated()));
+    connect(this, SIGNAL(signalCheckAnswerContinueActionsToggled(int)), stdbutton, SLOT(slotToggleText(int)));
+    connect(stdbutton, SIGNAL(signalCheckAnswer()), actionCollection()->action("check answer"), SIGNAL(triggered()));
+    connect(stdbutton, SIGNAL(signalContinue()), actionCollection()->action("continue"), SIGNAL(triggered()));
+    stdbutton->setVisible(true); // enable for now
+
+
+    Hint * hint = new Hint(this);
+    connect(actionCollection()->action("hint"), SIGNAL(triggered()), hint, SLOT(slotShowHint()));
+    // this is the hint for now :)
+    connect(hint, SIGNAL(signalShowHint()), actionCollection()->action("show solution"), SIGNAL(triggered()));
+    connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), m_stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
+
+
+    if (Prefs::practiceTimeout() && Prefs::practiceTimeoutTimePerAnswer()) // timeout can't be 0
+    {
+        kDebug() << "timer" << Prefs::practiceTimeout() << Prefs::practiceTimeoutTimePerAnswer();
+        InvisibleTimer * timer = new InvisibleTimer(this);
+        timer->setLength(Prefs::practiceTimeoutTimePerAnswer()*1000); // seconds -> milliseconds
+        // when the timer triggers, it will assume their current input is their answer
+        connect(timer, SIGNAL(signalTimeout()), actionCollection()->action("check answer"), SIGNAL(triggered()));
+        connect(m_manager, SIGNAL(signalNewEntry()), timer, SLOT(slotStart()));
+        connect(input, SIGNAL(signalInput(const QString&)), timer, SLOT(slotStop()));
+    }
+
+}

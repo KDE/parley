@@ -69,7 +69,7 @@ class SoundPrompt : public QPushButton
 
 class ImagePrompt : public QLabel
 {
-        Q_OBJECT
+    Q_OBJECT
 
 
     public:
@@ -84,6 +84,25 @@ class ImagePrompt : public QLabel
         QRectF m_backgroundRect;
 };
 
+
+class MixedLettersPrompt : public QWidget
+{
+    Q_OBJECT
+
+    public:
+        MixedLettersPrompt(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent = 0);
+        QStringList scramble(const QString& input);
+    public slots:
+        void slotSetText(const QString& solution);
+        void slotAnswerChanged(const QString& answer);
+    private:
+        KSvgRenderer * m_renderer;
+        QRectF m_backgroundRect;
+        QGraphicsScene* m_scene;
+        QGraphicsView* m_view;
+        QList<QGraphicsTextItem*> m_letters;
+        QString m_solution;
+};
 
 #endif
 
