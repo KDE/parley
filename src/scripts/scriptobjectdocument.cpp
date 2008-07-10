@@ -32,10 +32,5 @@ namespace Scripting
         m_doc->lesson();
     }
 
-    QObject * Scripting::ScriptObjectDocument::getActiveLesson()
-    {
-        
-    }
-
 }
 

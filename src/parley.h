@@ -216,6 +216,7 @@ private:
     QLabel              *m_typeStatusBarLabel;
 
     friend class ParleyDocument;
+    friend class Scripting::ScriptObjectParley;
 
     // the name of the executable
     QString m_appName;

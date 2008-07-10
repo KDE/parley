@@ -14,7 +14,7 @@
 namespace Scripting
 {
 
-    ScriptObjectLesson::ScriptObjectLesson(KEduVocLesson * lesson)
+    ScriptObjectLesson::ScriptObjectLesson ( KEduVocLesson * lesson )
             : QObject()
     {
         m_lesson = lesson;
@@ -25,5 +25,9 @@ namespace Scripting
     {
     }
 
+    QList<ScriptObjectEntry*> ScriptObjectLesson::getEntries()
+    {
+//         m_lesson->entries();
+    }
 
 }

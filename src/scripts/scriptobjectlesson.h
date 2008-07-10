@@ -14,6 +14,8 @@
 
 #include <keduvoclesson.h>
 
+#include "scriptobjectentry.h"
+
 #include <QObject>
 
 namespace Scripting
@@ -27,11 +29,18 @@ namespace Scripting
     class ScriptObjectLesson : public QObject
     {
             Q_OBJECT
+            /// name of the lesson (Read/Write)
+            Q_PROPERTY ( QString name READ getName WRITE setName )
+            /// entries (Read Only)
+            Q_PROPERTY ( QList<ScriptObjectEntry*> entries READ getEntries )
+
         public:
             ScriptObjectLesson ( KEduVocLesson * lesson );
+            QString getName() { return m_lesson->name(); }
+            void setName ( const QString & name ) { m_lesson->setName ( name ); }
+            QList<ScriptObjectEntry*> getEntries();
 
             ~ScriptObjectLesson();
-
         private:
             KEduVocLesson* m_lesson;
     };

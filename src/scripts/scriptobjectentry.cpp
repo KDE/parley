@@ -14,9 +14,10 @@
 namespace Scripting
 {
 
-    ScriptObjectEntry::ScriptObjectEntry()
+    ScriptObjectEntry::ScriptObjectEntry(KEduVocExpression * entry)
             : QObject()
     {
+        m_entry = entry;
     }
 
 

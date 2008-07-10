@@ -7,6 +7,12 @@ def init():
 def translateWord(word,fromLang,toLang):
   print "myscript1: Translating Word ...", word, fromLang, toLang
   Parley.addTranslation("Hello","en_US","fr","bonbon")
+  
+def test():
+  print "Test from myscript1.py"
+  #Parley.open('/home/kde-devel/My\ Vocabularies/test2.kvtml')
+  print Parley.activeLesson.name
+  Parley.activeLesson.name = "Hi!!"
 
 print Parley.languageCodes()
 print Parley.languageCodeToName("en_US")

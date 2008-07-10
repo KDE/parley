@@ -59,7 +59,6 @@
 #include "prefs.h"
 
 #include "scripts/scriptdialog.h"
-#include "scripts/scriptmanager.h"
 
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>
@@ -108,9 +107,9 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
 
     initDockWidgets();
 
-    initScripts();
-
     initActions();
+
+    initScripts();
 
     // these connects need the model to exist
 //     QAction * actionRestoreNativeOrder = actionCollection()->action("restore_native_order");
@@ -891,6 +890,10 @@ void ParleyApp::slotShowScriptManager() {
 }
 
 void ParleyApp::slotTranslateLesson() {
+
+    //only for testing purposes
+    m_scriptObjectParley->callTest();
+    return;
 
    QStringList codes = KGlobal::locale()->allLanguagesList();
 

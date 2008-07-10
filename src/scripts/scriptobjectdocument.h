@@ -43,15 +43,6 @@ namespace Scripting
             * @endcode
             */
             Q_PROPERTY ( QObject * rootLesson READ getRootLesson )
-
-            /** Read-Only property that gives the active of the lesson (the one that is currently open by Parley)
-            * @code
-            * import Parley
-            * activelesson = Parley.document.activeLesson
-            * @endcode
-            */
-            Q_PROPERTY ( QObject * activeLesson READ getActiveLesson )
-
         public:
             ScriptObjectDocument ( KEduVocDocument * doc );
 

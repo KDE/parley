@@ -12,6 +12,8 @@
 #ifndef SCRIPTINGSCRIPTOBJECTENTRY_H
 #define SCRIPTINGSCRIPTOBJECTENTRY_H
 
+#include <keduvocexpression.h>
+
 #include <QObject>
 
 namespace Scripting
@@ -26,9 +28,12 @@ namespace Scripting
     {
             Q_OBJECT
         public:
-            ScriptObjectEntry();
+            ScriptObjectEntry(KEduVocExpression * entry);
 
             ~ScriptObjectEntry();
+
+        private:
+            KEduVocExpression* m_entry;
 
     };
 

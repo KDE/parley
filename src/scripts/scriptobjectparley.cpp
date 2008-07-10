@@ -11,6 +11,10 @@
 //
 #include "scriptobjectparley.h"
 #include "scriptobjectdocument.h"
+#include "scriptobjectlesson.h"
+
+#include "../vocabulary/vocabularymodel.h"
+
 #include "translator.h"
 
 #include "../parley.h"
@@ -19,101 +23,57 @@
 #include <KGlobal>
 #include <KDebug>
 
-namespace Scripting {
-
-ScriptObjectParley::ScriptObjectParley ( ParleyApp * parley ) : QObject()
+namespace Scripting
 {
-    m_translator = 0;
-    m_parleyApp = parley;
-    m_doc = new ScriptObjectDocument(m_parleyApp->parleyDocument()->document());
-}
+
+    ScriptObjectParley::ScriptObjectParley ( ParleyApp * parley ) : QObject()
+    {
+        m_translator = 0;
+        m_parleyApp = parley;
+        m_doc = new ScriptObjectDocument ( m_parleyApp->parleyDocument()->document() );
+    }
 
 
-ScriptObjectParley::~ScriptObjectParley()
-{
-}
+    ScriptObjectParley::~ScriptObjectParley()
+    {
+    }
 
-/**
- * Test function to emit the translate signal
- * @param word
- */
-void ScriptObjectParley::callTranslateWord ( const QString & word,const QString& fromLanguage,const QString& toLanguage )
-{
-    emit translationStarted ( word, fromLanguage, toLanguage );
-    emit translateWord ( word, fromLanguage, toLanguage );
-    emit translationFinished ( word, fromLanguage, toLanguage );
-}
+    void ScriptObjectParley::callTranslateWord ( const QString & word,const QString& fromLanguage,const QString& toLanguage )
+    {
+        emit translationStarted ( word, fromLanguage, toLanguage );
+        emit translateWord ( word, fromLanguage, toLanguage );
+        emit translationFinished ( word, fromLanguage, toLanguage );
+    }
 
+    void ScriptObjectParley::addTranslation ( QString word,QString fromLanguage,QString toLanguage, QString translation )
+    {
+        if ( m_translator )
+            m_translator->addTranslation ( word,fromLanguage,toLanguage,translation );
+    }
 
-/**
- *
- * @param word
- * @param fromLanguage
- * @param toLanguage
- * @param translation
- */
-void ScriptObjectParley::addTranslation ( QString word,QString fromLanguage,QString toLanguage, QString translation )
-{
-    if ( m_translator )
-        m_translator->addTranslation ( word,fromLanguage,toLanguage,translation );
-}
+    QStringList ScriptObjectParley::languageCodes()
+    {
+        /// @todo Change it into a QMap property (Parley.languageCodes)
+        return KGlobal::locale()->allLanguagesList();
+    }
 
+    QString ScriptObjectParley::languageCodeToName ( QString code )
+    {
+        return KGlobal::locale()->languageCodeToName ( code );
+    }
 
-/**
- *
- * @param translator
- */
-void ScriptObjectParley::setTranslator ( Translator* translator )
-{
-    m_translator = translator;
-}
+    void ScriptObjectParley::open ( QString filename )
+    {
+        KUrl k;
+        k.setFileName ( filename );
+        kDebug() << k;
+        m_parleyApp->parleyDocument()->open ( k,false );
+    }
 
-/**
- * Returns a list of all available language codes (to be used by the scripts)
- * @return
- */
-QStringList ScriptObjectParley::languageCodes()
-{
-    /// @todo Change it into a QMap property (Parley.languageCodes)
-    return KGlobal::locale()->allLanguagesList();
-}
-
-
-/**
- * Gives the language name of the given @p code language code.
- * @param code Language code
- * @return Language name
- */
-QString ScriptObjectParley::languageCodeToName ( QString code )
-{
-    return KGlobal::locale()->languageCodeToName ( code );
-}
-
-
-/**
- * Returns the Parley currently open document
- * @return Document object
- */
-QObject* ScriptObjectParley::getDocument()
-{
-    return m_doc;
-}
-
-/**
- * Open the Parley Document @p file
- * Usage:
- * @code
- * import Parley
- * Parley.open("Vocab/MyVocab.kvtml")
- * @endcode
- * @param file Parley Document file path (ex. /home/kde-user/MyVocab.kvtml)
- */
-void ScriptObjectParley::open ( QString filename )
-{
-    KUrl k;
-    k.setFileName(filename);
-    kDebug() << k;
-    m_parleyApp->parleyDocument()->open(k,false);
-}
+    QObject* Scripting::ScriptObjectParley::getActiveLesson()
+    {
+        return new ScriptObjectLesson(m_parleyApp->m_vocabularyModel->lesson());
+    }
 
 }
+
