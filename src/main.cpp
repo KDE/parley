@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
 
     aboutData.addAuthor(ki18n("Frederik Gladhorn"),
                         ki18n("Current Maintainer"),
-                        "frederik.gladhorn@kdemail.net");
+                        "gladhorn@kde.org");
 
     aboutData.addAuthor(ki18n("David Capel"),
                         ki18n("Practice Dialogs"),
@@ -67,20 +67,9 @@ int main(int argc, char* argv[])
                         "kvoctrain@ewald-arnold.de",
                         "http://www.ewald-arnold.de");
 
-    aboutData.addCredit(ki18n("Waldo Bastian"),
-                        ki18n("Help with port to Qt3/KDE3"));
 
-    aboutData.addCredit(ki18n("Eric Bischoff"),
-                        ki18n("Converting documentation to docbook format"));
-
-    aboutData.addCredit(ki18n("Kevin Kramer"),
-                        ki18n("Tool to create lists with ISO639 codes"));
-
-    aboutData.addCredit(ki18n("Andreas Neuper"),
-                        ki18n("Converter script \"langen2kvtml\" \nDownload files at http://www.vokabeln.de/files.htm"));
-
-    aboutData.addCredit(ki18n("Dennis Haney"),
-                        ki18n("Patch to implement Leitner learning method"));
+    aboutData.addCredit(ki18n("Lee Olson"),
+                        ki18n("Artwork and Oxygen Icons"));
 
     aboutData.addCredit(ki18n("Anne-Marie Mahfouf"),
                         ki18n("Port to KConfig XT"));
@@ -91,17 +80,8 @@ int main(int argc, char* argv[])
     aboutData.addCredit(ki18n("Markus Büchele"),
                         ki18n("Bug reports and testing on the way to KDE4"));
 
-    aboutData.addCredit(ki18n("Johannes Simon"),
-                        ki18n("Bug fixes and testing on the way to KDE4"));
-
     aboutData.addCredit(ki18n("Ramona Knapp"),
                         ki18n("Conceived the name Parley"));
-
-    aboutData.addCredit(ki18n("Lee Olson"),
-                        ki18n("Oxygen icons"));
-
-    aboutData.addCredit(ki18n("KDE Team"),
-                        ki18n("Many small enhancements"));
 
     KCmdLineArgs::init(argc, argv, &aboutData);
 
