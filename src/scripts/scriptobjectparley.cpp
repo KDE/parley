@@ -15,7 +15,7 @@
 #include <KGlobal>
 #include <KDebug>
 
-ScriptObjectParley::ScriptObjectParley()
+ScriptObjectParley::ScriptObjectParley() : QObject()
 {
     m_translator = 0;
 }
@@ -79,4 +79,14 @@ QStringList ScriptObjectParley::languageCodes()
 QString ScriptObjectParley::languageCodeToName ( QString code )
 {
     return KGlobal::locale()->languageCodeToName ( code );
+}
+
+
+/**
+ * Returns the Parley currently open document
+ * @return Document object
+ */
+QObject* ScriptObjectParley::document()
+{
+    return &m_doc;
 }

@@ -13,6 +13,7 @@
 #define SCRIPTOBJECTPARLEY_H
 
 #include "translator.h"
+#include "scriptobjectdocument.h"
 
 #include <QObject>
 
@@ -35,6 +36,7 @@ class ScriptObjectParley : public QObject
         void addTranslation ( QString word,QString fromLanguage,QString toLanguage, QString translation );
         QStringList languageCodes();
         QString languageCodeToName ( QString code );
+        QObject* document();
 
     Q_SIGNALS:
         void translateWord ( QString word, QString fromLanguage, QString toLanguage );
@@ -43,6 +45,7 @@ class ScriptObjectParley : public QObject
 
     private:
         Translator* m_translator;
+        ScriptObjectDocument m_doc;
 };
 
 #endif
