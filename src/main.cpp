@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
                          ki18n("© 1999-2002\tEwald Arnold\n"
                                    "© 2001-2002\tThe KDE team\n"
                                    "© 2004-2007\tPeter Hedlund\n"
-                                   "© 2007\tFrederik Gladhorn\n"),
+                                   "© 2007-2008\tFrederik Gladhorn\n"),
                          ki18n("Helps you train your vocabulary"),
                          "http://edu.kde.org/parley",
                          "submit@bugs.kde.org");
@@ -50,6 +50,14 @@ int main(int argc, char* argv[])
     aboutData.addAuthor(ki18n("Frederik Gladhorn"),
                         ki18n("Current Maintainer"),
                         "frederik.gladhorn@kdemail.net");
+
+    aboutData.addAuthor(ki18n("David Capel"),
+                        ki18n("Practice Dialogs"),
+                        "wot.narg@gmail.com");
+
+    aboutData.addAuthor(ki18n("Avgoustinos Kadis"),
+                        ki18n("Scripting"),
+                        "avgoustinos.kadis@kdemail.net");
 
     aboutData.addAuthor(ki18n("Peter Hedlund"),
                         ki18n("Countless fixes, former maintainer, port to KDE4"),
