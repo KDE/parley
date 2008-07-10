@@ -195,6 +195,7 @@ set(scripts_SRCS
     scripts/scriptdialog.cpp
     scripts/scriptmanager.cpp
     scripts/scriptobjectparley.cpp
+    scripts/scriptobjectdocument.cpp
     scripts/script.cpp
     scripts/translator.cpp
 )
