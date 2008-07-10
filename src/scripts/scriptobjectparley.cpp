@@ -19,6 +19,8 @@
 #include <KGlobal>
 #include <KDebug>
 
+namespace Scripting {
+
 ScriptObjectParley::ScriptObjectParley ( ParleyApp * parley ) : QObject()
 {
     m_translator = 0;
@@ -30,7 +32,6 @@ ScriptObjectParley::ScriptObjectParley ( ParleyApp * parley ) : QObject()
 ScriptObjectParley::~ScriptObjectParley()
 {
 }
-
 
 /**
  * Test function to emit the translate signal
@@ -73,6 +74,7 @@ void ScriptObjectParley::setTranslator ( Translator* translator )
  */
 QStringList ScriptObjectParley::languageCodes()
 {
+    /// @todo Change it into a QMap property (Parley.languageCodes)
     return KGlobal::locale()->allLanguagesList();
 }
 
@@ -112,4 +114,6 @@ void ScriptObjectParley::open ( QString filename )
     k.setFileName(filename);
     kDebug() << k;
     m_parleyApp->parleyDocument()->open(k,false);
+}
+
 }

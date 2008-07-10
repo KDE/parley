@@ -13,6 +13,8 @@
 
 #include <KDebug>
 
+namespace Scripting {
+
 ScriptObjectDocument::ScriptObjectDocument(KEduVocDocument * doc)
  : QObject()
 {
@@ -24,13 +26,4 @@ ScriptObjectDocument::~ScriptObjectDocument()
 {
 }
 
-void ScriptObjectDocument::callFromScriptTest()
-{
-    kDebug() << "Document object : Test";
-}
-
-
-void ScriptObjectDocument::printName()
-{
-    kDebug() << m_name;
 }

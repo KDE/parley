@@ -947,7 +947,7 @@ void ParleyApp::initScripts()
     m_translator.addTranslation("Hello","en_US","fr","bonjour");
     m_translator.addTranslation("Baby","en_US","pl","dziecko");
     m_vocabularyView->setTranslator(&m_translator);
-    m_scriptObjectParley = new ScriptObjectParley(this);
+    m_scriptObjectParley = new Scripting::ScriptObjectParley(this);
     m_scriptObjectParley->setTranslator(&m_translator);
     m_scriptManager.addObject ( m_scriptObjectParley,"Parley" );
     m_scriptManager.loadScripts();

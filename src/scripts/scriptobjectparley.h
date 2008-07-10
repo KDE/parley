@@ -19,6 +19,9 @@
 class ParleyApp;
 class Translator;
 
+namespace Scripting {
+
+
 /**
 Implements the object that will be given to Kross scripts to use for accessing parley features
 
@@ -27,6 +30,7 @@ Implements the object that will be given to Kross scripts to use for accessing p
 class ScriptObjectParley : public QObject
 {
         Q_OBJECT
+        /// Read-only property of the active document
         Q_PROPERTY(QObject * document READ getDocument)
     public:
         ScriptObjectParley ( ParleyApp * parley );
@@ -53,4 +57,5 @@ class ScriptObjectParley : public QObject
         ParleyApp * m_parleyApp;
 };
 
+}
 #endif
