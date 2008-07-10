@@ -1,7 +1,7 @@
 //
 // C++ Implementation: scriptobjectdocument
 //
-// Description: 
+// Description:
 //
 //
 // Author: Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>, (C) 2008
@@ -13,17 +13,29 @@
 
 #include <KDebug>
 
-namespace Scripting {
-
-ScriptObjectDocument::ScriptObjectDocument(KEduVocDocument * doc)
- : QObject()
+namespace Scripting
 {
-    m_doc = doc;
-}
+
+    ScriptObjectDocument::ScriptObjectDocument ( KEduVocDocument * doc )
+            : QObject()
+    {
+        m_doc = doc;
+    }
 
 
-ScriptObjectDocument::~ScriptObjectDocument()
-{
-}
+    ScriptObjectDocument::~ScriptObjectDocument()
+    {
+    }
+
+    QObject * Scripting::ScriptObjectDocument::getRootLesson()
+    {
+        m_doc->lesson();
+    }
+
+    QObject * Scripting::ScriptObjectDocument::getActiveLesson()
+    {
+        
+    }
 
 }
+

@@ -17,42 +17,58 @@
 #include <QObject>
 #include <KDebug>
 
-namespace Scripting {
-
-/**
-Implements the Document object to be used by the scripts
-
-@code
-import Parley
-doc = Parley.document
-@endcode
-
-    @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
-*/
-class ScriptObjectDocument : public QObject
+namespace Scripting
 {
-        Q_OBJECT
 
-        Q_PROPERTY ( QString name READ getName WRITE setName )
-//         Q_PROPERTY ( ScriptObjectLesson READ
+    /**
+    Implements the Document object to be used by the scripts
 
-    public:
-        ScriptObjectDocument ( KEduVocDocument * doc );
+    @code
+    import Parley
+    doc = Parley.document
+    @endcode
 
-        ~ScriptObjectDocument();
+        @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
+    */
+    class ScriptObjectDocument : public QObject
+    {
+            Q_OBJECT
 
-        QString getName() const { return m_name; }
-        void setName ( const QString & name ) { m_name = name; }
+            Q_PROPERTY ( QString name READ getName WRITE setName )
 
-    public slots:
-        /** Call from script (test function) */
-        void callFromScriptTest() { kDebug() << "Document object : Test"; }
-        void printName() { kDebug() << m_name; }
+            /** Read-Only property that gives the root of the lesson tree
+            * @code
+            * import Parley
+            * root = Parley.document.rootLesson
+            * @endcode
+            */
+            Q_PROPERTY ( QObject * rootLesson READ getRootLesson )
 
-    private:
-        QString m_name;
-        KEduVocDocument * m_doc;
-};
+            /** Read-Only property that gives the active of the lesson (the one that is currently open by Parley)
+            * @code
+            * import Parley
+            * activelesson = Parley.document.activeLesson
+            * @endcode
+            */
+            Q_PROPERTY ( QObject * activeLesson READ getActiveLesson )
+
+        public:
+            ScriptObjectDocument ( KEduVocDocument * doc );
+
+            ~ScriptObjectDocument();
+
+            QString getName() const { return m_name; }
+            void setName ( const QString & name ) { m_name = name; }
+            QObject * getRootLesson();
+
+        public slots:
+            void callFromScriptTest() { kDebug() << "Document object : Test"; }
+            void printName() { kDebug() << m_name; }
+
+        private:
+            QString m_name;
+            KEduVocDocument * m_doc;
+    };
 
 }
 #endif
