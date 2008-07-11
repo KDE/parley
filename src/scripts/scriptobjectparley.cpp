@@ -26,10 +26,9 @@
 namespace Scripting
 {
 
-    ScriptObjectParley::ScriptObjectParley ( ParleyApp * parley ) : QObject()
+    ScriptObjectParley::ScriptObjectParley ( ParleyApp * parley ) : QObject(), m_parleyApp(parley)
     {
         m_translator = 0;
-        m_parleyApp = parley;
         m_doc = new ScriptObjectDocument ( m_parleyApp->parleyDocument()->document() );
     }
 
