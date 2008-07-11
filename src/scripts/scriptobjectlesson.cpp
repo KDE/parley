@@ -10,6 +10,7 @@
 //
 //
 #include "scriptobjectlesson.h"
+#include <keduvocexpression.h>
 
 namespace Scripting
 {
@@ -25,9 +26,18 @@ namespace Scripting
     {
     }
 
-    QList<ScriptObjectEntry*> ScriptObjectLesson::getEntries()
+    QList<QObject*> ScriptObjectLesson::getEntries()
     {
-//         m_lesson->entries();
+        QList<QObject*> entries;
+        KEduVocExpression * entry;
+        foreach ( entry, m_lesson->entries ( KEduVocContainer::Recursive ) ) {
+            entries.push_back(new ScriptObjectEntry(entry));
+        }
+        return entries;
+    }
+
+    QObject * ScriptObjectLesson::firstEntry() {
+        return new ScriptObjectEntry( m_lesson->entry(0,KEduVocContainer::Recursive) );
     }
 
 }

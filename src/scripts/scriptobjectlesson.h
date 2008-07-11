@@ -32,17 +32,19 @@ namespace Scripting
             /// name of the lesson (Read/Write)
             Q_PROPERTY ( QString name READ getName WRITE setName )
             /// entries (Read Only)
-            Q_PROPERTY ( QList<ScriptObjectEntry*> entries READ getEntries )
+            Q_PROPERTY ( QList<QObject*> entries READ getEntries )
 
         public:
             ScriptObjectLesson ( KEduVocLesson * lesson );
             QString getName() { return m_lesson->name(); }
             void setName ( const QString & name ) { m_lesson->setName ( name ); }
-            QList<ScriptObjectEntry*> getEntries();
+            QList<QObject*> getEntries();
 
             ~ScriptObjectLesson();
         private:
             KEduVocLesson* m_lesson;
+        public slots:
+            QObject * firstEntry();
     };
 
 }

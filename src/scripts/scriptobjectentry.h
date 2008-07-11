@@ -28,13 +28,16 @@ namespace Scripting
     {
             Q_OBJECT
         public:
-            ScriptObjectEntry(KEduVocExpression * entry);
+            ScriptObjectEntry ( KEduVocExpression * entry );
 
             ~ScriptObjectEntry();
 
+        public slots:
+            /// for testing purposes only
+            QString getTranslation();
+
         private:
             KEduVocExpression* m_entry;
-
     };
 
 }
