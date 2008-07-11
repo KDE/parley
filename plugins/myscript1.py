@@ -14,8 +14,12 @@ def test():
   print Parley.activeLesson.name
   Parley.activeLesson.name = "Hi!!"
   lesson = Parley.activeLesson
+  print lesson.getEntries()
+  L = []
   for i in range(0,lesson.entryCount(True)):
-     print i," ",lesson.entry(i,True).getTranslation()
+     print i," ",lesson.entry(i,True)#.getTranslation()
+     L.append( lesson.entry(i,True) )
+  print L
   print lesson.entryCount()
   lesson.removeEntry(0)
   print lesson.entryCount()
