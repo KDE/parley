@@ -17,9 +17,8 @@ namespace Scripting
 {
 
     ScriptObjectDocument::ScriptObjectDocument ( KEduVocDocument * doc )
-            : QObject()
+            : QObject(), m_doc(doc)
     {
-        m_doc = doc;
     }
 
 
