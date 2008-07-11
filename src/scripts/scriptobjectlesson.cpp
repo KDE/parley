@@ -12,13 +12,14 @@
 #include "scriptobjectlesson.h"
 #include <keduvocexpression.h>
 
+#include <KDebug>
+
 namespace Scripting
 {
 
     ScriptObjectLesson::ScriptObjectLesson ( KEduVocLesson * lesson )
-            : QObject()
+            : QObject(), m_lesson ( lesson )
     {
-        m_lesson = lesson;
     }
 
 
@@ -28,16 +29,51 @@ namespace Scripting
 
     QList<QObject*> ScriptObjectLesson::getEntries()
     {
-        QList<QObject*> entries;
-        KEduVocExpression * entry;
-        foreach ( entry, m_lesson->entries ( KEduVocContainer::Recursive ) ) {
-            entries.push_back(new ScriptObjectEntry(entry));
-        }
-        return entries;
+/// @note This will be usefull somewhere!!
+//             void setStyle(QObject* style) {
+//                 ParagraphStyle* s = dynamic_cast<ParagraphStyle*>(style);
+
+        //doesn't work (crashes)
+//         QList<QObject*> entries;
+//         KEduVocExpression * entry;
+//         foreach ( entry, m_lesson->entries ( KEduVocContainer::Recursive ) )
+//         {
+//             kDebug() << entry->translation ( 0 )->text();
+//             entries.push_back ( new ScriptObjectEntry (entry) );
+//         }
+//         return entries;
     }
 
-    QObject * ScriptObjectLesson::firstEntry() {
-        return new ScriptObjectEntry( m_lesson->entry(0,KEduVocContainer::Recursive) );
+    KEduVocContainer::EnumEntriesRecursive boolToEnum(bool value) {
+        if (value)
+            return KEduVocContainer::Recursive;
+        return KEduVocContainer::NotRecursive;
+
+    }
+
+    QObject * ScriptObjectLesson::entry ( int row, bool recursive )
+    {
+        return new ScriptObjectEntry(m_lesson->entry(row, boolToEnum(recursive)));
+    }
+
+    int ScriptObjectLesson::entryCount ( bool recursive )
+    {
+        return m_lesson->entryCount(boolToEnum(recursive));
+    }
+
+    void ScriptObjectLesson::appendEntry ( ScriptObjectEntry * entry )
+    {
+        m_lesson->appendEntry(entry->kEduVocEntry());
+    }
+
+    void ScriptObjectLesson::insertEntry ( int index, ScriptObjectEntry * entry )
+    {
+        m_lesson->insertEntry(index,entry->kEduVocEntry());
+    }
+
+    void ScriptObjectLesson::removeEntry ( ScriptObjectEntry * entry )
+    {
+        m_lesson->removeEntry(entry->kEduVocEntry());
     }
 
 }

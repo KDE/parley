@@ -29,9 +29,11 @@ namespace Scripting
             Q_OBJECT
         public:
             ScriptObjectEntry ( KEduVocExpression * entry );
+            ScriptObjectEntry ( ScriptObjectEntry & other );
 
             ~ScriptObjectEntry();
-
+            KEduVocExpression * kEduVocEntry() { return m_entry; }
+            
         public slots:
             /// for testing purposes only
             QString getTranslation();

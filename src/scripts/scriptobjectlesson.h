@@ -17,6 +17,7 @@
 #include "scriptobjectentry.h"
 
 #include <QObject>
+#include <KSharedPtr>
 
 namespace Scripting
 {
@@ -32,19 +33,26 @@ namespace Scripting
             /// name of the lesson (Read/Write)
             Q_PROPERTY ( QString name READ getName WRITE setName )
             /// entries (Read Only)
-            Q_PROPERTY ( QList<QObject*> entries READ getEntries )
+//             Q_PROPERTY ( QList<QObject*> entries READ getEntries )
 
         public:
             ScriptObjectLesson ( KEduVocLesson * lesson );
             QString getName() { return m_lesson->name(); }
             void setName ( const QString & name ) { m_lesson->setName ( name ); }
-            QList<QObject*> getEntries();
+
 
             ~ScriptObjectLesson();
+
+        public slots:
+            QList<QObject *> getEntries();
+            QObject * entry(int row, bool recursive);
+            int entryCount(bool recursive);
+            void appendEntry(ScriptObjectEntry * entry);
+            void insertEntry(int index, ScriptObjectEntry * entry);
+            void removeEntry(ScriptObjectEntry * entry);
+
         private:
             KEduVocLesson* m_lesson;
-        public slots:
-            QObject * firstEntry();
     };
 
 }

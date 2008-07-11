@@ -15,9 +15,13 @@ namespace Scripting
 {
 
     ScriptObjectEntry::ScriptObjectEntry ( KEduVocExpression * entry )
-            : QObject()
+            : QObject(), m_entry ( entry )
     {
-        m_entry = entry;
+    }
+
+    ScriptObjectEntry::ScriptObjectEntry ( ScriptObjectEntry & other ) : QObject()
+    {
+        m_entry = other.kEduVocEntry();
     }
 
 
@@ -28,7 +32,7 @@ namespace Scripting
     QString Scripting::ScriptObjectEntry::getTranslation()
     {
         /// @note KEduVocTranslation inherits from KEduVocText
-        return m_entry->translation(0)->text();
+        return m_entry->translation ( 0 )->text();
     }
 }
 
