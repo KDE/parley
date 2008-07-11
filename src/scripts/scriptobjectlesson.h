@@ -45,7 +45,7 @@ namespace Scripting
 
         public slots:
 //             QList<Expression> getEntries();
-            QList<QVariant> getEntries();
+//             QList<QVariant> getEntries();
             Expression * entry(int row, bool recursive = false);
             int entryCount(bool recursive = false);
             void appendEntry(Expression * entry);

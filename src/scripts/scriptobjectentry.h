@@ -30,14 +30,20 @@ namespace Scripting
         public:
             /** default constructor for an empty vocabulary expression
              */
-//             Expression () { }
+            Expression ();
 
-            
+            /** Constructor for a vocabulary expression with one translation
+             *
+             * @param expression       translation
+             */
+            Expression ( const QString & expression );
+
             /**
              * Constructor from a KEduVocExpression
-             * @param expression 
+             * @param expression KEduVocExpression object
              */
             Expression ( KEduVocExpression * expression );
+
             Expression ( const Expression & other );
 
             ~Expression();

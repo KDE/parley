@@ -14,6 +14,15 @@
 namespace Scripting
 {
 
+    Expression::Expression() {
+        m_expression = new KEduVocExpression();
+    }
+
+    Expression::Expression ( const QString & expression )
+    {
+        m_expression = new KEduVocExpression(expression);
+    }
+
     Expression::Expression ( KEduVocExpression * expression )
             : QObject(), m_expression ( expression )
     {
@@ -35,7 +44,8 @@ namespace Scripting
         return ( *this );
     }
 
-    bool Expression::operator== ( const Expression &other ) const {
+    bool Expression::operator== ( const Expression &other ) const
+    {
         return m_expression == other.kEduVocEntry();
     }
 

@@ -28,8 +28,8 @@ namespace Scripting
     }
 
 //     QList<Expression> Lesson::getEntries()
-    QList<QVariant> Lesson::getEntries()
-    {
+//     QList<QVariant> Lesson::getEntries()
+//     {
 /// @note This will be usefull somewhere!!
 //             void setStyle(QObject* style) {
 //                 ParagraphStyle* s = dynamic_cast<ParagraphStyle*>(style);
@@ -55,7 +55,7 @@ namespace Scripting
 //         }
 //         return list;
 
-    }
+//     }
 
     KEduVocContainer::EnumEntriesRecursive boolToEnum(bool value) {
         if (value)
