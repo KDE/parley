@@ -63,17 +63,24 @@ namespace Scripting
 
     void ScriptObjectLesson::appendEntry ( ScriptObjectEntry * entry )
     {
+        /// @todo try it out
         m_lesson->appendEntry(entry->kEduVocEntry());
     }
 
     void ScriptObjectLesson::insertEntry ( int index, ScriptObjectEntry * entry )
     {
+        /// @todo try it out
         m_lesson->insertEntry(index,entry->kEduVocEntry());
     }
 
-    void ScriptObjectLesson::removeEntry ( ScriptObjectEntry * entry )
+    void ScriptObjectLesson::removeEntry ( QObject * entry )
     {
-        m_lesson->removeEntry(entry->kEduVocEntry());
+        ScriptObjectEntry * e = dynamic_cast<ScriptObjectEntry*>(entry);
+        if (e) {
+            m_lesson->removeEntry(e->kEduVocEntry());
+        } else {
+            kDebug() << "The entry given does not exist";
+        }
     }
 
 }

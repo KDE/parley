@@ -32,7 +32,7 @@ namespace Scripting
             ScriptObjectEntry ( ScriptObjectEntry & other );
 
             ~ScriptObjectEntry();
-            KEduVocExpression * kEduVocEntry() { return m_entry; }
+            KEduVocExpression * kEduVocEntry() const { return m_entry; }
             
         public slots:
             /// for testing purposes only

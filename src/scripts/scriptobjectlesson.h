@@ -45,11 +45,11 @@ namespace Scripting
 
         public slots:
             QList<QObject *> getEntries();
-            QObject * entry(int row, bool recursive);
-            int entryCount(bool recursive);
+            QObject * entry(int row, bool recursive = false);
+            int entryCount(bool recursive = false);
             void appendEntry(ScriptObjectEntry * entry);
             void insertEntry(int index, ScriptObjectEntry * entry);
-            void removeEntry(ScriptObjectEntry * entry);
+            void removeEntry(QObject * entry);
 
         private:
             KEduVocLesson* m_lesson;

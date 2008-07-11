@@ -13,9 +13,12 @@ def test():
   #Parley.open('/home/kde-devel/My\ Vocabularies/test2.kvtml')
   print Parley.activeLesson.name
   Parley.activeLesson.name = "Hi!!"
-  myentries = Parley.activeLesson.getEntries()
-  #print myentries[0].getTranslation()
-  print myentries
+  lesson = Parley.activeLesson
+  for i in range(0,lesson.entryCount(True)):
+     print i," ",lesson.entry(i,True).getTranslation()
+  print lesson.entryCount()
+  lesson.removeEntry(0)
+  print lesson.entryCount()
 
 print Parley.languageCodes()
 print Parley.languageCodeToName("en_US")
