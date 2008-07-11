@@ -14,13 +14,13 @@
 
 #include <keduvoclesson.h>
 
-#include "scriptobjectentry.h"
-
 #include <QObject>
 #include <KSharedPtr>
 
 namespace Scripting
 {
+
+    class Expression;
 
     /**
     Lesson script object class
@@ -46,11 +46,11 @@ namespace Scripting
         public slots:
 //             QList<Expression> getEntries();
 //             QList<QVariant> getEntries();
-            Expression * entry(int row, bool recursive = false);
-            int entryCount(bool recursive = false);
-            void appendEntry(Expression * entry);
-            void insertEntry(int index, Expression * entry);
-            void removeEntry(QObject * entry);
+            Expression * entry ( int row, bool recursive = false );
+            int entryCount ( bool recursive = false );
+            void appendEntry ( Expression * entry );
+            void insertEntry ( int index, Expression * entry );
+            void removeEntry ( QObject * entry );
 
         private:
             KEduVocLesson* m_lesson;

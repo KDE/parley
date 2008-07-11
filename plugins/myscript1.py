@@ -11,15 +11,18 @@ def translateWord(word,fromLang,toLang):
 def test():
   print "Test from myscript1.py"
   #Parley.open('/home/kde-devel/My\ Vocabularies/test2.kvtml')
-  print Parley.activeLesson.name
-  Parley.activeLesson.name = "Hi!!"
+  #print Parley.activeLesson.name
+  #Parley.activeLesson.name = "Hi!!"
   lesson = Parley.activeLesson
   #print lesson.getEntries()
-  L = []
+  print lesson.entry(0).translationIndices
+  print lesson.entry(0).translation(0).text
+  print lesson.entry(0).translation(1).text
+  print "Listing"
+
   for i in range(0,lesson.entryCount(True)):
-     print i," ",lesson.entry(i,True)#.getTranslation()
-     L.append( lesson.entry(i,True) )
-  print L
+     print i,lesson.entry(i,True).translation(0).text,lesson.entry(i,True).translation(1).text
+
   print lesson.entryCount()
   lesson.removeEntry(0)
   print lesson.entryCount()

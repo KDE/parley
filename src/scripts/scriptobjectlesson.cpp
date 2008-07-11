@@ -10,6 +10,8 @@
 //
 //
 #include "scriptobjectlesson.h"
+#include "scriptobjectentry.h"
+
 #include <keduvocexpression.h>
 
 #include <KDebug>
@@ -88,6 +90,7 @@ namespace Scripting
 
     void Lesson::removeEntry ( QObject * entry )
     {
+        /// @note parameter has to be QObject (tried with Expression * entry but didn't work)
         Expression * e = dynamic_cast<Expression*>(entry);
         if (e) {
             m_lesson->removeEntry(e->kEduVocEntry());

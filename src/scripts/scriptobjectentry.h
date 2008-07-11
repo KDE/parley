@@ -14,10 +14,15 @@
 
 #include <keduvocexpression.h>
 
+#include "scriptobjectlesson.h"
+
 #include <QObject>
+#include <QVariantList>
 
 namespace Scripting
 {
+
+    class Translation;
 
     /**
     Expression class to be used by the scripts
@@ -27,6 +32,10 @@ namespace Scripting
     class Expression : public QObject
     {
             Q_OBJECT
+            Q_PROPERTY ( Lesson * lesson READ lesson )
+            Q_PROPERTY ( bool active READ isActive WRITE setActive )
+            Q_PROPERTY ( QVariantList translationIndices READ translationIndices )
+//             Q_PROPERTY ( int sizeHint READ sizeHint WRITE setSizeHint)
         public:
             /** default constructor for an empty vocabulary expression
              */
@@ -39,22 +48,78 @@ namespace Scripting
             Expression ( const QString & expression );
 
             /**
-             * Constructor from a KEduVocExpression
+             * Constructor for vocabulary expression with more than one translation
+             * @param translations
+             */
+            Expression ( const QStringList & translations );
+
+            Expression ( const Expression & other );
+
+            /**
+             * Constructor from a KEduVocExpression (doens't exist in KEduVocExpression)
              * @param expression KEduVocExpression object
              */
             Expression ( KEduVocExpression * expression );
 
-            Expression ( const Expression & other );
-
             ~Expression();
+
             KEduVocExpression * kEduVocEntry() const { return m_expression; }
 
+            //Property: lesson [get method - read-only]
+            Lesson * lesson() const { return new Lesson ( m_expression->lesson() ); }
+
+            /* returns flag if entry is activated for queries */
+            bool isActive() const { return m_expression->isActive(); }
+            /* set entry active (enabled for queries) */
+            void setActive ( bool flag = true ) { m_expression->setActive ( flag ); }
+
+            //Property: sizeHing [get/set methods] (not implemented in KEduVocExpression)
+            //int sizeHint() const { return m_expression->sizeHint(); }
+            //void setSizeHint( int sizeHint ) { m_expression->setSizeHint(sizeHint); }
+
+            //Property: translationIndices [get method - read-only]
+            QVariantList translationIndices() const;
+
+            //for assignlable type
             Expression & operator= ( const Expression &other );
             bool operator== ( const Expression &other ) const;
 
         public slots:
             /// for testing purposes only
             QString getTranslation() const;
+
+            /** reset all grades of the entry
+             * @param index     identifier (language)
+             */
+            void resetGrades ( int index ) { m_expression->resetGrades ( index ); }
+
+            //not implemented in KEduVocExpression
+//             void setTranslation( int index, QObject* translation );
+
+            /**
+            * Add a translation to this expression
+            * @param index            number of translation = the identifier
+            * @param expression       the translation
+            */
+            void setTranslation ( int index, const QString &expression )
+            {
+                m_expression->setTranslation ( index,expression );
+            }
+
+            /**
+             * removes a translation
+             * @param index            number of translation 1..x
+             */
+            void removeTranslation ( int index ) { m_expression->removeTranslation ( index ); }
+
+            /**
+             * Get a pointer to the translation
+             * @param index of the language identifier
+             * @return the translation
+             */
+            Translation* translation ( int index );
+            Translation* translation ( int index ) const;
+
 
         private:
             KEduVocExpression* m_expression;

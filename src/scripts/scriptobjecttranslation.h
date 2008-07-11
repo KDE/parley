@@ -49,6 +49,8 @@ namespace Scripting
              */
             Translation ( KEduVocTranslation * translation );
 
+            KEduVocTranslation* kEduVocTranslation() { return m_translation; }
+
             //Property: text (see KEduVocText for details)
             QString text() const { return m_translation->text(); }
             void setText( const QString & expr ) { m_translation->setText(expr); }
