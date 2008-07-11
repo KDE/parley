@@ -36,7 +36,7 @@ namespace Scripting
 //             void setStyle(QObject* style) {
 //                 ParagraphStyle* s = dynamic_cast<ParagraphStyle*>(style);
 
-        //doesn't work (crashes)
+    //doesn't work (crashes)
 //         QList<Expression> entries;
 //         KEduVocExpression * entry;
 //         foreach ( entry, m_lesson->entries ( KEduVocContainer::Recursive ) )
@@ -59,8 +59,9 @@ namespace Scripting
 
 //     }
 
-    KEduVocContainer::EnumEntriesRecursive boolToEnum(bool value) {
-        if (value)
+    KEduVocContainer::EnumEntriesRecursive boolToEnum ( bool value )
+    {
+        if ( value )
             return KEduVocContainer::Recursive;
         return KEduVocContainer::NotRecursive;
 
@@ -68,35 +69,53 @@ namespace Scripting
 
     Expression * Lesson::entry ( int row, bool recursive )
     {
-        return new Expression(m_lesson->entry(row, boolToEnum(recursive)));
+        return new Expression ( m_lesson->entry ( row, boolToEnum ( recursive ) ) );
     }
 
     int Lesson::entryCount ( bool recursive )
     {
-        return m_lesson->entryCount(boolToEnum(recursive));
+        return m_lesson->entryCount ( boolToEnum ( recursive ) );
     }
 
     void Lesson::appendEntry ( Expression * entry )
     {
         /// @todo try it out
-        m_lesson->appendEntry(entry->kEduVocEntry());
+        m_lesson->appendEntry ( entry->kEduVocEntry() );
     }
 
     void Lesson::insertEntry ( int index, Expression * entry )
     {
         /// @todo try it out
-        m_lesson->insertEntry(index,entry->kEduVocEntry());
+        m_lesson->insertEntry ( index,entry->kEduVocEntry() );
     }
 
     void Lesson::removeEntry ( QObject * entry )
     {
         /// @note parameter has to be QObject (tried with Expression * entry but didn't work)
-        Expression * e = dynamic_cast<Expression*>(entry);
-        if (e) {
-            m_lesson->removeEntry(e->kEduVocEntry());
-        } else {
+        Expression * e = dynamic_cast<Expression*> ( entry );
+        if ( e )
+        {
+            m_lesson->removeEntry ( e->kEduVocEntry() );
+        }
+        else
+        {
             kDebug() << "The entry given does not exist";
         }
+    }
+
+    Expression* Lesson::newEntry()
+    {
+        return new Expression();
+    }
+
+    Expression* Lesson::newEntry ( const QString & expression )
+    {
+        return new Expression ( expression );
+    }
+
+    Expression* Lesson::newEntry ( const QStringList & translations )
+    {
+        return new Expression ( translations );
     }
 
 }

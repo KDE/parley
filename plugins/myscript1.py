@@ -8,7 +8,15 @@ def translateWord(word,fromLang,toLang):
   print "myscript1: Translating Word ...", word, fromLang, toLang
   Parley.addTranslation("Hello","en_US","fr","bonbon")
   
+def addNewEntry():
+  newEntry = Parley.activeLesson.newEntry()
+  newEntry.translation(0).text = "boy"
+  newEntry.translation(1).text = "hijo"
+  Parley.activeLesson.appendEntry(newEntry)
+  
 def test():
+  print "Adding new entry"
+  addNewEntry()
   print "Test from myscript1.py"
   #Parley.open('/home/kde-devel/My\ Vocabularies/test2.kvtml')
   #print Parley.activeLesson.name
@@ -22,6 +30,11 @@ def test():
 
   for i in range(0,lesson.entryCount(True)):
      print i,lesson.entry(i,True).translation(0).text,lesson.entry(i,True).translation(1).text
+     
+  for i in range(0,lesson.entryCount(True)):
+    entry = lesson.entry(i,True)
+    if entry.translation(0).text == "girl":
+      entry.translation(0).text = "boy"
 
   print lesson.entryCount()
   lesson.removeEntry(0)

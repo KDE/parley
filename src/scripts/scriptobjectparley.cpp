@@ -32,7 +32,6 @@ namespace Scripting
         m_doc = new Document ( m_parleyApp->parleyDocument()->document() );
     }
 
-
     Parley::~Parley()
     {
     }

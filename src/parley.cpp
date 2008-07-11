@@ -59,6 +59,8 @@
 #include "prefs.h"
 
 #include "scripts/scriptdialog.h"
+#include "scripts/scriptobjectparley.h"
+#include "scripts/scriptobjectentry.h"
 
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>
@@ -947,12 +949,19 @@ void ParleyApp::removeGrades()
 
 void ParleyApp::initScripts()
 {
-    m_translator.addTranslation("Hello","en_US","fr","bonjour");
-    m_translator.addTranslation("Baby","en_US","pl","dziecko");
     m_vocabularyView->setTranslator(&m_translator);
+
+    //add Scripting::Parley
     m_scriptObjectParley = new Scripting::Parley(this);
     m_scriptObjectParley->setTranslator(&m_translator);
     m_scriptManager.addObject ( m_scriptObjectParley,"Parley" );
+
+    //add Scripting::Expression
+    /// @note not a good idea to be added cause it can be used without instanciating it
+    //     Scripting::Expression * expression = new Scripting::Expression();
+    //     m_scriptManager.addObject( expression, "Entry" );
+    
+    //Load scripts
     m_scriptManager.loadScripts();
 
     connect(m_vocabularyModel, SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)),

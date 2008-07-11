@@ -52,6 +52,28 @@ namespace Scripting
             void insertEntry ( int index, Expression * entry );
             void removeEntry ( QObject * entry );
 
+            
+            /**
+             * Creates and returns a new Expression Object
+             * @return A new Expression object
+             */
+            Expression* newEntry();
+
+            /**
+             * Creates and returns a new Expression Object
+             * @param expression 
+             * @return A new Expression object
+             */
+            Expression* newEntry(const QString & expression);
+
+            /**
+             * Creates and returns a new Expression Object
+             * @param translations 
+             * @return A new Expression object
+             */
+            Expression* newEntry( const QStringList & translations );
+
+
         private:
             KEduVocLesson* m_lesson;
     };

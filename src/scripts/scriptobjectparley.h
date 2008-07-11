@@ -65,12 +65,14 @@ namespace Scripting
              * @return
              */
             QStringList languageCodes();
+
             /**
              * Gives the language name of the given @p code language code.
              * @param code Language code
              * @return Language name
              */
             QString languageCodeToName ( QString code );
+
             /**
              * Open the Parley Document @p file
              * Usage:
@@ -81,6 +83,10 @@ namespace Scripting
              * @param file Parley Document file path (ex. /home/kde-user/MyVocab.kvtml)
              */
             void open ( QString filename );
+
+            QString testFunction() { return "testFunction"; }
+
+//             void updateDocument() { m_parleyApp->updateDocument(); }
 
         Q_SIGNALS:
             void translateWord ( QString word, QString fromLanguage, QString toLanguage );
