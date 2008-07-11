@@ -16,17 +16,17 @@
 namespace Scripting
 {
 
-    ScriptObjectDocument::ScriptObjectDocument ( KEduVocDocument * doc )
+    Document::Document ( KEduVocDocument * doc )
             : QObject(), m_doc(doc)
     {
     }
 
 
-    ScriptObjectDocument::~ScriptObjectDocument()
+    Document::~Document()
     {
     }
 
-    QObject * Scripting::ScriptObjectDocument::getRootLesson()
+    QObject * Scripting::Document::getRootLesson()
     {
         m_doc->lesson();
     }

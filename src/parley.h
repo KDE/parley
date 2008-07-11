@@ -216,7 +216,7 @@ private:
     QLabel              *m_typeStatusBarLabel;
 
     friend class ParleyDocument;
-    friend class Scripting::ScriptObjectParley;
+    friend class Scripting::Parley;
 
     // the name of the executable
     QString m_appName;
@@ -225,7 +225,7 @@ private:
     ScriptManager m_scriptManager;
 
     //script objects (objects that will be used from inside the scripts)
-    Scripting::ScriptObjectParley* m_scriptObjectParley;
+    Scripting::Parley* m_scriptObjectParley;
 
     //stores all the translations of a vocabulary word
     Translator m_translator;

@@ -30,7 +30,7 @@ namespace Scripting
 
         @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
     */
-    class ScriptObjectDocument : public QObject
+    class Document : public QObject
     {
             Q_OBJECT
 
@@ -44,9 +44,9 @@ namespace Scripting
             */
             Q_PROPERTY ( QObject * rootLesson READ getRootLesson )
         public:
-            ScriptObjectDocument ( KEduVocDocument * doc );
+            Document ( KEduVocDocument * doc );
 
-            ~ScriptObjectDocument();
+            ~Document();
 
             QString getName() const { return m_name; }
             void setName ( const QString & name ) { m_name = name; }

@@ -25,7 +25,7 @@ namespace Scripting
 
         @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
     */
-    class ScriptObjectTranslation : public QObject
+    class Translation : public QObject
     {
             Q_OBJECT
             Q_PROPERTY (QString text READ text WRITE setText)
@@ -35,19 +35,19 @@ namespace Scripting
             /**
              * Default constructor for an empty translation.
              */
-            ScriptObjectTranslation ( ScriptObjectEntry * entry );
+            Translation ( Entry * entry );
 
             /**
              * Constructor
              * @param translation is used as translation
              */
-            ScriptObjectTranslation ( ScriptObjectEntry * entry, const QString & translation );
+            Translation ( Entry * entry, const QString & translation );
 
             /**
              * Constructor from KEduVocTranslation (not used by scripts)
              * @param translation KEduVocTranslation to initialize ScriptObjecTranslation
              */
-            ScriptObjectTranslation ( KEduVocTranslation * translation );
+            Translation ( KEduVocTranslation * translation );
 
             //Property: text (see KEduVocText for details)
             QString text() const { return m_translation->text(); }
@@ -63,7 +63,7 @@ namespace Scripting
 
             /// @todo add more properties
 
-            ~ScriptObjectTranslation();
+            ~Translation();
 
         private:
             KEduVocTranslation * m_translation;

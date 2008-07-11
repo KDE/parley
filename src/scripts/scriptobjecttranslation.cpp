@@ -13,22 +13,22 @@
 
 namespace Scripting
 {
-    ScriptObjectTranslation::ScriptObjectTranslation (ScriptObjectEntry * entry)
+    Translation::Translation (Entry * entry)
             : QObject()
     {
          m_translation = new KEduVocTranslation(entry->kEduVocEntry());
     }
 
-    ScriptObjectTranslation::ScriptObjectTranslation ( ScriptObjectEntry * entry, const QString & translation ) {
+    Translation::Translation ( Entry * entry, const QString & translation ) {
         m_translation = new KEduVocTranslation(entry->kEduVocEntry(),translation);
     }
 
-    ScriptObjectTranslation::ScriptObjectTranslation ( KEduVocTranslation * translation )
+    Translation::Translation ( KEduVocTranslation * translation )
             : QObject(), m_translation ( translation )
     {
     }
 
-    ScriptObjectTranslation::~ScriptObjectTranslation()
+    Translation::~Translation()
     {
     }
 

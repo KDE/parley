@@ -26,42 +26,42 @@
 namespace Scripting
 {
 
-    ScriptObjectParley::ScriptObjectParley ( ParleyApp * parley ) : QObject(), m_parleyApp(parley)
+    Parley::Parley ( ParleyApp * parley ) : QObject(), m_parleyApp(parley)
     {
         m_translator = 0;
-        m_doc = new ScriptObjectDocument ( m_parleyApp->parleyDocument()->document() );
+        m_doc = new Document ( m_parleyApp->parleyDocument()->document() );
     }
 
 
-    ScriptObjectParley::~ScriptObjectParley()
+    Parley::~Parley()
     {
     }
 
-    void ScriptObjectParley::callTranslateWord ( const QString & word,const QString& fromLanguage,const QString& toLanguage )
+    void Parley::callTranslateWord ( const QString & word,const QString& fromLanguage,const QString& toLanguage )
     {
         emit translationStarted ( word, fromLanguage, toLanguage );
         emit translateWord ( word, fromLanguage, toLanguage );
         emit translationFinished ( word, fromLanguage, toLanguage );
     }
 
-    void ScriptObjectParley::addTranslation ( QString word,QString fromLanguage,QString toLanguage, QString translation )
+    void Parley::addTranslation ( QString word,QString fromLanguage,QString toLanguage, QString translation )
     {
         if ( m_translator )
             m_translator->addTranslation ( word,fromLanguage,toLanguage,translation );
     }
 
-    QStringList ScriptObjectParley::languageCodes()
+    QStringList Parley::languageCodes()
     {
         /// @todo Change it into a QMap property (Parley.languageCodes)
         return KGlobal::locale()->allLanguagesList();
     }
 
-    QString ScriptObjectParley::languageCodeToName ( QString code )
+    QString Parley::languageCodeToName ( QString code )
     {
         return KGlobal::locale()->languageCodeToName ( code );
     }
 
-    void ScriptObjectParley::open ( QString filename )
+    void Parley::open ( QString filename )
     {
         KUrl k;
         k.setFileName ( filename );
@@ -69,9 +69,9 @@ namespace Scripting
         m_parleyApp->parleyDocument()->open ( k,false );
     }
 
-    QObject* Scripting::ScriptObjectParley::getActiveLesson()
+    QObject* Scripting::Parley::getActiveLesson()
     {
-        return new ScriptObjectLesson(m_parleyApp->m_vocabularyModel->lesson());
+        return new Lesson(m_parleyApp->m_vocabularyModel->lesson());
     }
 
 }

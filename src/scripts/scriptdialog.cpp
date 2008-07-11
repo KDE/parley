@@ -25,7 +25,7 @@
 
 void test()
 {
-//     ScriptObjectParley obj_parley;
+//     Parley obj_parley;
 //     ScriptManager sm;
 //     sm.addObject ( &obj_parley,"Parley" );
 //     sm.loadScripts();

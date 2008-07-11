@@ -27,7 +27,7 @@ namespace Scripting
 
         @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
     */
-    class ScriptObjectLesson : public QObject
+    class Lesson : public QObject
     {
             Q_OBJECT
             /// name of the lesson (Read/Write)
@@ -36,20 +36,20 @@ namespace Scripting
 //             Q_PROPERTY ( QList<QObject*> entries READ getEntries )
 
         public:
-            ScriptObjectLesson ( KEduVocLesson * lesson );
+            Lesson ( KEduVocLesson * lesson );
             QString getName() { return m_lesson->name(); }
             void setName ( const QString & name ) { m_lesson->setName ( name ); }
 
 
-            ~ScriptObjectLesson();
+            ~Lesson();
 
         public slots:
-//             QList<ScriptObjectEntry> getEntries();
+//             QList<Entry> getEntries();
             QList<QVariant> getEntries();
-            ScriptObjectEntry * entry(int row, bool recursive = false);
+            Entry * entry(int row, bool recursive = false);
             int entryCount(bool recursive = false);
-            void appendEntry(ScriptObjectEntry * entry);
-            void insertEntry(int index, ScriptObjectEntry * entry);
+            void appendEntry(Entry * entry);
+            void insertEntry(int index, Entry * entry);
             void removeEntry(QObject * entry);
 
         private:

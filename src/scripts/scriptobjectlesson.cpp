@@ -17,41 +17,41 @@
 namespace Scripting
 {
 
-    ScriptObjectLesson::ScriptObjectLesson ( KEduVocLesson * lesson )
+    Lesson::Lesson ( KEduVocLesson * lesson )
             : QObject(), m_lesson ( lesson )
     {
     }
 
 
-    ScriptObjectLesson::~ScriptObjectLesson()
+    Lesson::~Lesson()
     {
     }
 
-//     QList<ScriptObjectEntry> ScriptObjectLesson::getEntries()
-    QList<QVariant> ScriptObjectLesson::getEntries()
+//     QList<Entry> Lesson::getEntries()
+    QList<QVariant> Lesson::getEntries()
     {
 /// @note This will be usefull somewhere!!
 //             void setStyle(QObject* style) {
 //                 ParagraphStyle* s = dynamic_cast<ParagraphStyle*>(style);
 
         //doesn't work (crashes)
-//         QList<ScriptObjectEntry> entries;
+//         QList<Entry> entries;
 //         KEduVocExpression * entry;
 //         foreach ( entry, m_lesson->entries ( KEduVocContainer::Recursive ) )
 //         {
 //             kDebug() << entry->translation ( 0 )->text();
-//             ScriptObjectEntry e(entry);
+//             Entry e(entry);
 //             entries.push_back(e);
-// //             entries.push_back ( new ScriptObjectEntry (entry) );
+// //             entries.push_back ( new Entry (entry) );
 //         }
 //         return entries;
 //         QList<QVariant> list;
 //         foreach ( entry, m_lesson->entries ( KEduVocContainer::Recursive ) )
 //         {
 //             kDebug() << entry->translation ( 0 )->text();
-//             QVariant q(ScriptObjectEntry(entry));
+//             QVariant q(Entry(entry));
 //             list.push_back(q);
-// //             entries.push_back ( new ScriptObjectEntry (entry) );
+// //             entries.push_back ( new Entry (entry) );
 //         }
 //         return list;
 
@@ -64,31 +64,31 @@ namespace Scripting
 
     }
 
-    ScriptObjectEntry * ScriptObjectLesson::entry ( int row, bool recursive )
+    Entry * Lesson::entry ( int row, bool recursive )
     {
-        return new ScriptObjectEntry(m_lesson->entry(row, boolToEnum(recursive)));
+        return new Entry(m_lesson->entry(row, boolToEnum(recursive)));
     }
 
-    int ScriptObjectLesson::entryCount ( bool recursive )
+    int Lesson::entryCount ( bool recursive )
     {
         return m_lesson->entryCount(boolToEnum(recursive));
     }
 
-    void ScriptObjectLesson::appendEntry ( ScriptObjectEntry * entry )
+    void Lesson::appendEntry ( Entry * entry )
     {
         /// @todo try it out
         m_lesson->appendEntry(entry->kEduVocEntry());
     }
 
-    void ScriptObjectLesson::insertEntry ( int index, ScriptObjectEntry * entry )
+    void Lesson::insertEntry ( int index, Entry * entry )
     {
         /// @todo try it out
         m_lesson->insertEntry(index,entry->kEduVocEntry());
     }
 
-    void ScriptObjectLesson::removeEntry ( QObject * entry )
+    void Lesson::removeEntry ( QObject * entry )
     {
-        ScriptObjectEntry * e = dynamic_cast<ScriptObjectEntry*>(entry);
+        Entry * e = dynamic_cast<Entry*>(entry);
         if (e) {
             m_lesson->removeEntry(e->kEduVocEntry());
         } else {

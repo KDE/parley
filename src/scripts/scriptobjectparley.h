@@ -28,7 +28,7 @@ namespace Scripting
 
         @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
     */
-    class ScriptObjectParley : public QObject
+    class Parley : public QObject
     {
             Q_OBJECT
             /// Read-only property of the active document
@@ -42,9 +42,9 @@ namespace Scripting
             */
             Q_PROPERTY ( QObject * activeLesson READ getActiveLesson )
         public:
-            ScriptObjectParley ( ParleyApp * parley );
+            Parley ( ParleyApp * parley );
 
-            ~ScriptObjectParley();
+            ~Parley();
 
             /**
              * Emits translateWord signal so the script function connected to it translate the @p word
@@ -90,7 +90,7 @@ namespace Scripting
 
         private:
             Translator* m_translator;
-            ScriptObjectDocument* m_doc;
+            Document* m_doc;
             ParleyApp * m_parleyApp;
     };
 

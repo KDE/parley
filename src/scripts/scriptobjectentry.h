@@ -24,19 +24,19 @@ namespace Scripting
 
         @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
     */
-    class ScriptObjectEntry : public QObject
+    class Entry : public QObject
     {
             Q_OBJECT
         public:
-            ScriptObjectEntry () { }
-            ScriptObjectEntry ( KEduVocExpression * entry );
-            ScriptObjectEntry ( const ScriptObjectEntry & other );
+            Entry () { }
+            Entry ( KEduVocExpression * entry );
+            Entry ( const Entry & other );
 
-            ~ScriptObjectEntry();
+            ~Entry();
             KEduVocExpression * kEduVocEntry() const { return m_entry; }
 
-            ScriptObjectEntry & operator= ( const ScriptObjectEntry &other );
-            bool operator== ( const ScriptObjectEntry &other ) const;
+            Entry & operator= ( const Entry &other );
+            bool operator== ( const Entry &other ) const;
 
         public slots:
             /// for testing purposes only

@@ -39,7 +39,7 @@ class ScriptManager : public QObject
         void reloadScripts();
 
     private:
-//         ScriptObjectParley m_objParley;
+//         Parley m_objParley;
         QList<Script*> m_scripts;
         QMap<QString, QObject*> m_scriptObjects;
 };
