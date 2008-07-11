@@ -20,30 +20,38 @@ namespace Scripting
 {
 
     /**
-    Entry class to be used by the scripts
+    Expression class to be used by the scripts
 
         @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
     */
-    class Entry : public QObject
+    class Expression : public QObject
     {
             Q_OBJECT
         public:
-            Entry () { }
-            Entry ( KEduVocExpression * entry );
-            Entry ( const Entry & other );
+            /** default constructor for an empty vocabulary expression
+             */
+//             Expression () { }
 
-            ~Entry();
-            KEduVocExpression * kEduVocEntry() const { return m_entry; }
+            
+            /**
+             * Constructor from a KEduVocExpression
+             * @param expression 
+             */
+            Expression ( KEduVocExpression * expression );
+            Expression ( const Expression & other );
 
-            Entry & operator= ( const Entry &other );
-            bool operator== ( const Entry &other ) const;
+            ~Expression();
+            KEduVocExpression * kEduVocEntry() const { return m_expression; }
+
+            Expression & operator= ( const Expression &other );
+            bool operator== ( const Expression &other ) const;
 
         public slots:
             /// for testing purposes only
             QString getTranslation() const;
 
         private:
-            KEduVocExpression* m_entry;
+            KEduVocExpression* m_expression;
     };
 
 }

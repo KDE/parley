@@ -13,13 +13,13 @@
 
 namespace Scripting
 {
-    Translation::Translation (Entry * entry)
+    Translation::Translation (Expression * entry)
             : QObject()
     {
          m_translation = new KEduVocTranslation(entry->kEduVocEntry());
     }
 
-    Translation::Translation ( Entry * entry, const QString & translation ) {
+    Translation::Translation ( Expression * entry, const QString & translation ) {
         m_translation = new KEduVocTranslation(entry->kEduVocEntry(),translation);
     }
 

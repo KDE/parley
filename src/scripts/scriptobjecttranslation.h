@@ -35,13 +35,13 @@ namespace Scripting
             /**
              * Default constructor for an empty translation.
              */
-            Translation ( Entry * entry );
+            Translation ( Expression * entry );
 
             /**
              * Constructor
              * @param translation is used as translation
              */
-            Translation ( Entry * entry, const QString & translation );
+            Translation ( Expression * entry, const QString & translation );
 
             /**
              * Constructor from KEduVocTranslation (not used by scripts)

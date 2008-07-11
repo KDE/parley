@@ -14,7 +14,7 @@ def test():
   print Parley.activeLesson.name
   Parley.activeLesson.name = "Hi!!"
   lesson = Parley.activeLesson
-  print lesson.getEntries()
+  #print lesson.getEntries()
   L = []
   for i in range(0,lesson.entryCount(True)):
      print i," ",lesson.entry(i,True)#.getTranslation()

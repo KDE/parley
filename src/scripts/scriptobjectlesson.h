@@ -44,12 +44,12 @@ namespace Scripting
             ~Lesson();
 
         public slots:
-//             QList<Entry> getEntries();
+//             QList<Expression> getEntries();
             QList<QVariant> getEntries();
-            Entry * entry(int row, bool recursive = false);
+            Expression * entry(int row, bool recursive = false);
             int entryCount(bool recursive = false);
-            void appendEntry(Entry * entry);
-            void insertEntry(int index, Entry * entry);
+            void appendEntry(Expression * entry);
+            void insertEntry(int index, Expression * entry);
             void removeEntry(QObject * entry);
 
         private:

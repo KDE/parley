@@ -27,7 +27,7 @@ namespace Scripting
     {
     }
 
-//     QList<Entry> Lesson::getEntries()
+//     QList<Expression> Lesson::getEntries()
     QList<QVariant> Lesson::getEntries()
     {
 /// @note This will be usefull somewhere!!
@@ -35,23 +35,23 @@ namespace Scripting
 //                 ParagraphStyle* s = dynamic_cast<ParagraphStyle*>(style);
 
         //doesn't work (crashes)
-//         QList<Entry> entries;
+//         QList<Expression> entries;
 //         KEduVocExpression * entry;
 //         foreach ( entry, m_lesson->entries ( KEduVocContainer::Recursive ) )
 //         {
 //             kDebug() << entry->translation ( 0 )->text();
-//             Entry e(entry);
+//             Expression e(entry);
 //             entries.push_back(e);
-// //             entries.push_back ( new Entry (entry) );
+// //             entries.push_back ( new Expression (entry) );
 //         }
 //         return entries;
 //         QList<QVariant> list;
 //         foreach ( entry, m_lesson->entries ( KEduVocContainer::Recursive ) )
 //         {
 //             kDebug() << entry->translation ( 0 )->text();
-//             QVariant q(Entry(entry));
+//             QVariant q(Expression(entry));
 //             list.push_back(q);
-// //             entries.push_back ( new Entry (entry) );
+// //             entries.push_back ( new Expression (entry) );
 //         }
 //         return list;
 
@@ -64,9 +64,9 @@ namespace Scripting
 
     }
 
-    Entry * Lesson::entry ( int row, bool recursive )
+    Expression * Lesson::entry ( int row, bool recursive )
     {
-        return new Entry(m_lesson->entry(row, boolToEnum(recursive)));
+        return new Expression(m_lesson->entry(row, boolToEnum(recursive)));
     }
 
     int Lesson::entryCount ( bool recursive )
@@ -74,13 +74,13 @@ namespace Scripting
         return m_lesson->entryCount(boolToEnum(recursive));
     }
 
-    void Lesson::appendEntry ( Entry * entry )
+    void Lesson::appendEntry ( Expression * entry )
     {
         /// @todo try it out
         m_lesson->appendEntry(entry->kEduVocEntry());
     }
 
-    void Lesson::insertEntry ( int index, Entry * entry )
+    void Lesson::insertEntry ( int index, Expression * entry )
     {
         /// @todo try it out
         m_lesson->insertEntry(index,entry->kEduVocEntry());
@@ -88,7 +88,7 @@ namespace Scripting
 
     void Lesson::removeEntry ( QObject * entry )
     {
-        Entry * e = dynamic_cast<Entry*>(entry);
+        Expression * e = dynamic_cast<Expression*>(entry);
         if (e) {
             m_lesson->removeEntry(e->kEduVocEntry());
         } else {
