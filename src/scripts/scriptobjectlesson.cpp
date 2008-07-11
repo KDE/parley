@@ -27,21 +27,34 @@ namespace Scripting
     {
     }
 
-    QList<QObject*> ScriptObjectLesson::getEntries()
+//     QList<ScriptObjectEntry> ScriptObjectLesson::getEntries()
+    QList<QVariant> ScriptObjectLesson::getEntries()
     {
 /// @note This will be usefull somewhere!!
 //             void setStyle(QObject* style) {
 //                 ParagraphStyle* s = dynamic_cast<ParagraphStyle*>(style);
 
         //doesn't work (crashes)
-//         QList<QObject*> entries;
+//         QList<ScriptObjectEntry> entries;
 //         KEduVocExpression * entry;
 //         foreach ( entry, m_lesson->entries ( KEduVocContainer::Recursive ) )
 //         {
 //             kDebug() << entry->translation ( 0 )->text();
-//             entries.push_back ( new ScriptObjectEntry (entry) );
+//             ScriptObjectEntry e(entry);
+//             entries.push_back(e);
+// //             entries.push_back ( new ScriptObjectEntry (entry) );
 //         }
 //         return entries;
+//         QList<QVariant> list;
+//         foreach ( entry, m_lesson->entries ( KEduVocContainer::Recursive ) )
+//         {
+//             kDebug() << entry->translation ( 0 )->text();
+//             QVariant q(ScriptObjectEntry(entry));
+//             list.push_back(q);
+// //             entries.push_back ( new ScriptObjectEntry (entry) );
+//         }
+//         return list;
+
     }
 
     KEduVocContainer::EnumEntriesRecursive boolToEnum(bool value) {
@@ -51,7 +64,7 @@ namespace Scripting
 
     }
 
-    QObject * ScriptObjectLesson::entry ( int row, bool recursive )
+    ScriptObjectEntry * ScriptObjectLesson::entry ( int row, bool recursive )
     {
         return new ScriptObjectEntry(m_lesson->entry(row, boolToEnum(recursive)));
     }

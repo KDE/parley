@@ -28,15 +28,19 @@ namespace Scripting
     {
             Q_OBJECT
         public:
+            ScriptObjectEntry () { }
             ScriptObjectEntry ( KEduVocExpression * entry );
-            ScriptObjectEntry ( ScriptObjectEntry & other );
+            ScriptObjectEntry ( const ScriptObjectEntry & other );
 
             ~ScriptObjectEntry();
             KEduVocExpression * kEduVocEntry() const { return m_entry; }
-            
+
+            ScriptObjectEntry & operator= ( const ScriptObjectEntry &other );
+            bool operator== ( const ScriptObjectEntry &other ) const;
+
         public slots:
             /// for testing purposes only
-            QString getTranslation();
+            QString getTranslation() const;
 
         private:
             KEduVocExpression* m_entry;

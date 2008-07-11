@@ -44,8 +44,9 @@ namespace Scripting
             ~ScriptObjectLesson();
 
         public slots:
-            QList<QObject *> getEntries();
-            QObject * entry(int row, bool recursive = false);
+//             QList<ScriptObjectEntry> getEntries();
+            QList<QVariant> getEntries();
+            ScriptObjectEntry * entry(int row, bool recursive = false);
             int entryCount(bool recursive = false);
             void appendEntry(ScriptObjectEntry * entry);
             void insertEntry(int index, ScriptObjectEntry * entry);

@@ -19,7 +19,7 @@ namespace Scripting
     {
     }
 
-    ScriptObjectEntry::ScriptObjectEntry ( ScriptObjectEntry & other ) : QObject()
+    ScriptObjectEntry::ScriptObjectEntry ( const ScriptObjectEntry & other ) : QObject()
     {
         m_entry = other.kEduVocEntry();
     }
@@ -29,7 +29,17 @@ namespace Scripting
     {
     }
 
-    QString Scripting::ScriptObjectEntry::getTranslation()
+    ScriptObjectEntry & ScriptObjectEntry::operator= ( const ScriptObjectEntry &other )
+    {
+        m_entry = other.kEduVocEntry();
+        return ( *this );
+    }
+
+    bool ScriptObjectEntry::operator== ( const ScriptObjectEntry &other ) const {
+        return m_entry == other.kEduVocEntry();
+    }
+
+    QString Scripting::ScriptObjectEntry::getTranslation() const
     {
         /// @note KEduVocTranslation inherits from KEduVocText
         return m_entry->translation ( 0 )->text();
