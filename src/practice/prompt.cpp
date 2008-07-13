@@ -22,6 +22,7 @@
 #include <kio/netaccess.h>
 #include <KRandomSequence>
 #include <KRandom>
+#include <QGraphicsSvgItem>
 
 TextualPrompt::TextualPrompt ( KSvgRenderer * renderer, const QString& elementId ) :
         m_renderer ( renderer )
@@ -191,7 +192,8 @@ void MixedLettersPrompt::slotSetText (const QString& solution )
         m_backgroundRect.height()/4 - 5 + random.getLong( m_backgroundRect.height()/2 ) );
         m_letters.append(letter);
         m_scene->addItem(letter);
-        letter->setPos(m_view->mapToScene(letter->x(), letter->y()));
+//         letter->setParentItem(backgroundItem);
+        letter->setPos(m_view->mapToScene(letter->x(), letter->y()) + m_backgroundRect.topLeft());
     }
 }
 
