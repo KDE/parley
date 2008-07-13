@@ -4,8 +4,8 @@ Any of these can be visible or invisible.
 Note on terminology: 'solution' is the correct response. 'answer' is anything the user inputs, and it may or may not match the solution.
 
 Optional:
-bar # this element will be scaled in proportion to bar_background to show progress. Note: if existant, it must be visible.
-bar_background # this element will determine how the bar in scaled. At 100% progress, bar will cover the same area as bar_background
+progress_bar # this element will be scaled in proportion to bar_background to show progress. Note: if existant, it must be visible.
+progress_bar_background # this element will determine how the bar in scaled. At 100% progress, bar will cover the same area as bar_background
 
 Optional UI elements: (If these do not exist, they are still available from the menus)
 check_answer_and_continue_button # a button that toggles between displaying 'check answer' and 'continue' is placed here. 

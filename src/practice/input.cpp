@@ -51,7 +51,7 @@ TextualInput::TextualInput(KSvgRenderer * renderer, QGraphicsView * view, const 
      QRect bounds = m_renderer->boundsOnElement(elementId).toRect();
      setGeometry(view->mapToScene(bounds).boundingRect().toRect());
 
-     connect(this, SIGNAL(textChanged(const QString&)), this, SIGNAL(answerChanged(const QString&)));
+     connect(this, SIGNAL(textChanged(const QString&)), this, SIGNAL(signalAnswerChanged(const QString&)));
 }
 
 void TextualInput::slotEmitAnswer()

@@ -280,8 +280,8 @@ void ParleyApp::startPractice()
         show();
     } else {
         hide();
-        ParleyPracticeMainWindow* window = new ParleyPracticeMainWindow(this);
-        connect(window, SIGNAL(destroyed()), this, SLOT(show()));
+        ParleyPracticeMainWindow* window = new ParleyPracticeMainWindow(m_document->document(), this);
+        connect(window, SIGNAL(signalPracticeFinished()), this, SLOT(show()));
         window->show();
     }
 }
@@ -907,7 +907,7 @@ void ParleyApp::slotTranslateLesson() {
 //      Translator tr;
 //     tr.addTranslation("baby","en","fr","bebe");
 //     tr.addTranslation("baby","en","fr","babe");
-// 
+//
 //      kDebug() << *(tr.getTranslation("baby","en","fr"));
 
 #define WORD(r,c) m_vocabularyModel->index((r),(c),QModelIndex()).data().toString()
@@ -931,7 +931,7 @@ void ParleyApp::slotTranslateLesson() {
             if (! WORD(r,0).isEmpty() && WORD(r,VocabularyModel::EntryColumnsMAX).isEmpty() ) {
 //                 kDebug() << "Translation column" << VocabularyModel::translation(0);
                 kDebug() << "Translate:" << WORD(r,0) << WORD(r,VocabularyModel::EntryColumnsMAX);
-                
+
             }
         }
     }
@@ -960,7 +960,7 @@ void ParleyApp::initScripts()
     /// @note not a good idea to be added cause it can be used without instanciating it
     //     Scripting::Expression * expression = new Scripting::Expression();
     //     m_scriptManager.addObject( expression, "Entry" );
-    
+
     //Load scripts
     m_scriptManager.loadScripts();
 

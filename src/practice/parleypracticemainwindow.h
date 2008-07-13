@@ -30,8 +30,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
 
     public:
         ParleyPracticeMainWindow(QWidget *parent = 0);
-        /*
-            ~ParleyPracticeMainWindow();*/
+        ParleyPracticeMainWindow(class KEduVocDocument * doc, QWidget * parent = 0);
 
     // States that the actions can be in.
     static const int CheckAnswer = 1;
@@ -50,7 +49,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         int m_state;
         Prefs::EnumTestType::type m_mode;
 
-        void setupBase(const QString& desktopFileFilename);
+        void setupBase(const QString& desktopFileFilename, class KEduVocDocument * doc = 0);
         void setupActions();
         void setupModeSpecifics();
 
@@ -59,15 +58,23 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
     	void setupMultipleChoice();
         void setupArticle();
         void setupMixedLetters();
+        void setupFlashCards();
     public slots:
         void slotCheckAnswer(const QString& input);
         void slotShowSolution();
         void slotToggleCheckAnswerContinueActions();
         void slotCreatePreferencesDialog();
+        /// Forces the entry to be marked as correctly answered. Used for when correction isn't neccessary.
+        void slotForceCorrect();
+        /// Forces the entry to be marked as incorrectly answered. Used for when correction isn't neccessary.
+        void slotForceIncorrect();
+
+        bool queryClose();
     signals:
         void signalCheckAnswer(const QString&, const QString&);
         void signalShowSolution(const QString&, int);
         void signalCheckAnswerContinueActionsToggled(int);
+        void signalPracticeFinished();
 };
 
 

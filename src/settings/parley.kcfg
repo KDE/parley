@@ -310,6 +310,7 @@
             <choice name="SynonymTest"/>
             <choice name="ParaphraseTest"/>
             <choice name="AntonymTest"/>
+            <choice name="FlashCardsTest"/>
         </choices>
         <label>The test type that is currently selected.</label>
         <default>WrittenTest</default>

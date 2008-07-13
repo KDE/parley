@@ -65,6 +65,21 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     m_view->show();
 }
 
+ParleyPracticeMainWindow::ParleyPracticeMainWindow(KEduVocDocument* doc, QWidget *parent)
+        : KXmlGuiWindow(parent)
+{
+    setupBase("default.desktop", doc);
+    setupActions();
+    setupModeSpecifics();
+
+    setupGUI(Default, QString::fromLatin1("parleypracticeui.rc"));
+
+    // ... and we are done -- start the first question!
+    m_manager->slotNewEntry();
+
+    m_view->show();
+}
+
 
 void ParleyPracticeMainWindow::slotCheckAnswer(const QString& input)
 {
@@ -108,7 +123,19 @@ void ParleyPracticeMainWindow::slotToggleCheckAnswerContinueActions()
     emit signalCheckAnswerContinueActionsToggled(m_state);
 }
 
-void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName)
+void ParleyPracticeMainWindow::slotForceCorrect()
+{
+    m_stats->slotCorrection(1.0, Statistics::Correct, QString());
+    m_manager->slotNewEntry();
+}
+
+void ParleyPracticeMainWindow::slotForceIncorrect()
+{
+    m_stats->slotCorrection(0.0f, Statistics::ForcedIncorrect, QString());
+    m_manager->slotNewEntry();
+}
+
+void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVocDocument * doc)
 {
     m_state = CheckAnswer;
     m_mode = Prefs::testType();
@@ -140,21 +167,29 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName)
     connect(m_manager, SIGNAL(signalEntryChanged(PracticeEntry*, QList<PracticeEntry*>)), m_stats, SLOT(slotSetEntry(PracticeEntry*)));
     connect(m_manager, SIGNAL(signalSetFinished()), m_stats, SLOT(slotSetFinished()));
     //// Loading the Document -- temporary ////
-    KEduVocDocument * doc = new KEduVocDocument(this);
+    connect(m_manager, SIGNAL(signalSetFinished()), this, SIGNAL(quit())); // for now
 
-    // for the fun of it - use parleyrc
-    kDebug() << "open file from parleyrc";
-    KConfig parleyConfig("parleyrc");
-    kDebug() << "groupList" << parleyConfig.groupList();
-    KConfigGroup recentFilesGroup(&parleyConfig, "Recent Files");
-    // take the last file, but there are File1..n and Name1..n entries..
-    QString sourceFile = recentFilesGroup.readEntry(recentFilesGroup.keyList().value(recentFilesGroup.keyList().count() / 2 - 1), QString());
+    KEduVocDocument * local_doc;
+    if (doc != 0)
+    {
+        local_doc = doc;
+    }
+    else // m_doc will be non-null if we used the doc-giving constructor
+    {
+        local_doc = new KEduVocDocument(this);
+        // for the fun of it - use parleyrc
+        kDebug() << "open file from parleyrc";
+        KConfig parleyConfig("parleyrc");
+        kDebug() << "groupList" << parleyConfig.groupList();
+        KConfigGroup recentFilesGroup(&parleyConfig, "Recent Files");
+        // take the last file, but there are File1..n and Name1..n entries..
+        QString sourceFile = recentFilesGroup.readEntry(recentFilesGroup.keyList().value(recentFilesGroup.keyList().count() / 2 - 1), QString());
 
-    int code = doc->open(sourceFile);
-    kDebug() << "file open code:" << code;
+        int code = local_doc->open(sourceFile);
+        kDebug() << "file open code:" << code;
+    }
 
-    m_manager->open(doc);
-
+    m_manager->open(local_doc);
 
     m_validator = new AnswerValidator(doc, this);
     m_validator->setLanguage(Prefs::solutionLanguage());
@@ -207,8 +242,7 @@ void ParleyPracticeMainWindow::setupActions()
     KStandardAction::preferences(this, SLOT(slotCreatePreferencesDialog()),
                                        actionCollection());
 
-    KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
-    connect(m_stats, SIGNAL(signalQuit()), kapp, SLOT(quit()));
+    KStandardAction::quit(this, SLOT(queryClose()), actionCollection());
 }
 
 // here is where we'll add new modes
@@ -228,12 +262,20 @@ void ParleyPracticeMainWindow::setupModeSpecifics()
        case Prefs::EnumTestType::MixedLettersTest:
         setupMixedLetters();
         break;
+       case Prefs::EnumTestType::FlashCardsTest:
+        setupFlashCards();
+        break;
        default:
         kDebug() << "unhandled practice mode " << m_mode << " selected.";
         break;
     }
 }
 
+
+bool ParleyPracticeMainWindow::queryClose()
+{
+    emit signalPracticeFinished();
+}
 
 void ParleyPracticeMainWindow::setupWritten()
 {
@@ -251,7 +293,7 @@ void ParleyPracticeMainWindow::setupWritten()
 
     if (Prefs::practiceSoundEnabled())
     {
-        SoundPrompt * sprompt = new SoundPrompt(m_renderer, m_view, "image_box");
+        SoundPrompt * sprompt = new SoundPrompt(m_renderer, m_view, "sound_box");
         m_scene->addWidget(sprompt);
         connect(m_manager, SIGNAL(signalNewSound(const KUrl&)), sprompt, SLOT(slotSetSound(const KUrl&)));
     }
@@ -298,6 +340,38 @@ void ParleyPracticeMainWindow::setupWritten()
 }
 
 
+void ParleyPracticeMainWindow::setupFlashCards()
+{
+
+    TextualPrompt * tprompt = new TextualPrompt(m_renderer, "flashcard_text_background");
+    m_scene->addItem(tprompt);
+    connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
+
+    SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, "bar", "bar_background");
+    m_scene->addItem(barstats);
+    connect(m_stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
+
+    // flip the card on click
+    connect(this, SIGNAL(clicked()), actionCollection()->action("show solution"), SIGNAL(triggered()));
+
+    PracticeActionButton * knownButton = new PracticeActionButton("Known", m_renderer, "known_button");
+    connect(knownButton, SIGNAL(clicked()), this, SLOT(slotForceCorrect()));
+    PracticeActionButton * unknownButton = new PracticeActionButton("Not Known", m_renderer, "unknown_button");
+    connect(unknownButton, SIGNAL(clicked()), this, SLOT(slotForceIncorrect()));
+
+    if (Prefs::practiceTimeout() && Prefs::practiceTimeoutTimePerAnswer()) // timeout can't be 0
+    {
+        kDebug() << "timer" << Prefs::practiceTimeout() << Prefs::practiceTimeoutTimePerAnswer();
+        InvisibleTimer * timer = new InvisibleTimer(this);
+        timer->setLength(Prefs::practiceTimeoutTimePerAnswer()*1000); // seconds -> milliseconds
+        // when the timer triggers, it will assume their current input is their answer
+        connect(timer, SIGNAL(signalTimeout()), this, SLOT(slotForceCorrect()));
+        connect(m_manager, SIGNAL(signalNewEntry()), timer, SLOT(slotStart()));
+        connect(this, SIGNAL(clicked()), timer, SLOT(slotStop()));
+    }
+}
+
+
 void ParleyPracticeMainWindow::setupMultipleChoice()
 {
 
@@ -314,7 +388,7 @@ void ParleyPracticeMainWindow::setupMultipleChoice()
 
     if (Prefs::practiceSoundEnabled())
     {
-        SoundPrompt * sprompt = new SoundPrompt(m_renderer, m_view, "image_box");
+        SoundPrompt * sprompt = new SoundPrompt(m_renderer, m_view, "sound_box");
         m_scene->addWidget(sprompt);
         connect(m_manager, SIGNAL(signalNewSound(const KUrl&)), sprompt, SLOT(slotSetSound(const KUrl&)));
     }

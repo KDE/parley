@@ -62,6 +62,7 @@ class MCInput : public QGroupBox
     signals:
         void signalAnswer(const QString& answer);
         void triggered();
+        void signalAnswerChanged(const QString& answer);
 
     protected:
         void setAvailableAnswers(QStringList answers);

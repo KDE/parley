@@ -57,6 +57,19 @@ StdButton::StdButton(const QString& text, KSvgRenderer * renderer, PracticeView 
 }
 
 
+PracticeActionButton::PracticeActionButton(const QString& text, KSvgRenderer * renderer, const QString& elementId, QWidget* parent)
+        : KPushButton(text, parent),
+        m_renderer(renderer)
+{
+    if (!renderer->elementExists(elementId))
+    {
+        setVisible(false);
+        kDebug() << "!! Element id doesn't exist:";
+        kDebug() << elementId << ":" << renderer->elementExists(elementId);
+    }
+}
+
+
 void StdButton::slotActivated()
 {
     if (m_state == ParleyPracticeMainWindow::CheckAnswer)

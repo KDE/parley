@@ -80,7 +80,8 @@ class Statistics : public QObject
             Correct               = 0x400, ///< no error, solution was right
             SolutionShown         = 0x800, ///< the answer was shown before the user provided an answer
             TimedOut              =0x1000, ///< there was a per-question time limit and it ran out
-            UnknownMistake        =0x2000,  ///< no idea
+            ForcedIncorrect       =0x2000, ///< The answer was automatically counted as incorrect (from, eg, flash cards)
+            UnknownMistake        =0x4000,  ///< no idea
             NumberIncorrectReasons = 14
         };
 
