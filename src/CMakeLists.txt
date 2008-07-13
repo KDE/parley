@@ -257,7 +257,7 @@ target_link_libraries(
 
 ########### install files ###############
 
-install( FILES parley.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
+install( FILES parley.desktop parleypractice.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 install( FILES parley.knsrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
 install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install(FILES practice/parleypracticeui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley)
