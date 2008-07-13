@@ -151,6 +151,9 @@ void VocabularyView::setModel(VocabularyFilter * model)
 
     connect(selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)), SLOT(slotSelectionChanged(const QItemSelection&, const QItemSelection&)));
     slotSelectionChanged(QItemSelection(), QItemSelection());
+    
+    // for the header view workaround
+    connect(m_model, SIGNAL(rowsInserted(const QModelIndex&, int, int)), this, SLOT(headerViewWorkaround()));
 }
 
 // void VocabularyView::print(QPrinter * pPrinter)
@@ -395,9 +398,13 @@ void VocabularyView::reset()
                     // show the column
                     columnAction->setChecked(true);
                     setColumnHidden(i, false);
+                    // for the header view workaround
+                    m_workaroundColumnVisibilityMap[i] = true;
                 } else {
                     columnAction->setChecked(false);
                     setColumnHidden(i, true);
+                    // for the header view workaround
+                    m_workaroundColumnVisibilityMap[i] = false;
                 }
             }
         }
@@ -408,6 +415,8 @@ void VocabularyView::reset()
 void VocabularyView::slotToggleColumn(bool show)
 {
     setColumnHidden(m_columnActionMap[(KAction*)sender()], !show);
+    // for the header view workaround
+    m_workaroundColumnVisibilityMap[m_columnActionMap[(KAction*)sender()]] = show;
 }
 
 void VocabularyView::saveColumnVisibility(const KUrl & kurl) const
@@ -666,6 +675,26 @@ void VocabularyView::spellingReplace(const QString & oldWord, int start, const Q
     QString newData = data.replace(start, oldWord.length(), newWord);
     kDebug() << "Changing " << data << " to " << newData;
     m_model->setData(index, newData);
+}
+
+
+// This slot is used as a temporary workaround for a Qt bug:
+// http://trolltech.com/developer/task-tracker/index_html?method=entry&id=212660
+// The bug causes all columns to be shown when you accidentally click on the header view
+// when the vocabulary view is empty, which can be really annoying.
+//
+// To minimize the impact of this bug, a map of visible columns is stored and applied every
+// time a row is inserted, so that the accidentally shown columns are removed again after
+// showing come entries.
+//
+// This code should be removed once the bug in Qt is fixed (probably 4.4.2).
+void VocabularyView::headerViewWorkaround()
+{
+    QMapIterator<int, bool> i(m_workaroundColumnVisibilityMap);
+    while (i.hasNext()) {
+        i.next();
+        setColumnHidden(i.key(), !i.value());
+    }
 }
 
 #include "vocabularyview.moc"

@@ -84,12 +84,17 @@ private slots:
 
     void misspelling(const QString &word, int start);
     void spellingReplace(const QString& oldWord, int start, const QString &newWord);
+    
+    // for the header view workaround
+    void headerViewWorkaround();
 
 private:
     void selectIndex(const QModelIndex &index);
 
     QMap <KAction*, int> m_columnActionMap;
     KActionMenu * m_vocabularyColumnsActionMenu;
+    // for the header view workaround
+    QMap <int, bool> m_workaroundColumnVisibilityMap;
 
     KAction* m_appendEntryAction;
     KAction* m_deleteEntriesAction;
