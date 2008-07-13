@@ -1,0 +1,1550 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.0"
+   width="1140"
+   height="640"
+   id="svg2518"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   sodipodi:docname="theme_brainstorm.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <metadata
+     id="metadata24">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     inkscape:window-height="951"
+     inkscape:window-width="1670"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     guidetolerance="10.0"
+     gridtolerance="10.0"
+     objecttolerance="10.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     showgrid="false"
+     inkscape:zoom="1"
+     inkscape:cx="719.82312"
+     inkscape:cy="-1648.6147"
+     inkscape:window-x="1680"
+     inkscape:window-y="0"
+     inkscape:current-layer="svg2518">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2396" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2520">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 320 : 1"
+       inkscape:vp_y="6.1230318e-14 : 1000 : 0"
+       inkscape:vp_z="1140 : 320 : 1"
+       inkscape:persp3d-origin="570 : 213.33333 : 1"
+       id="perspective45" />
+  </defs>
+  <rect
+     style="opacity:0.75;fill:#ff9955;fill-opacity:1;stroke:none;stroke-width:1.89397538;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     id="rect3477"
+     width="616.10602"
+     height="344.10602"
+     x="228.94699"
+     y="1189.947" />
+  <rect
+     style="opacity:1;fill:#ffaaaa;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect3405"
+     width="100"
+     height="29"
+     x="585"
+     y="1134"
+     rx="10"
+     ry="10" />
+  <rect
+     style="opacity:1;fill:#000000;fill-opacity:0.5205479"
+     id="rect3363"
+     width="953"
+     height="434"
+     x="-1068.5"
+     y="805"
+     rx="10"
+     ry="10" />
+  <g
+     id="background">
+    <rect
+       y="0"
+       x="0"
+       height="640"
+       width="1140"
+       id="rect2400"
+       style="opacity:1;fill:#00316e;fill-opacity:1;stroke:none;stroke-width:0.75;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <g
+       transform="translate(239.48981,67.857812)"
+       id="vocabulary_card">
+      <rect
+         width="1068.2151"
+         height="516.6073"
+         rx="10"
+         ry="13.692303"
+         x="-199.82184"
+         y="-23.084326"
+         id="rect3192"
+         style="opacity:1;fill:#ffffff;fill-opacity:0.94117647;stroke:none;stroke-width:10;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <g
+         transform="matrix(9.2278557,0,0,7.3374208,-5906.6561,-546.3539)"
+         id="g12059">
+        <rect
+           width="115.66783"
+           height="0.61613178"
+           x="618.47156"
+           y="-77.319221"
+           transform="scale(1,-1)"
+           id="rect14295"
+           style="fill:#ff80df;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <rect
+           width="115.66783"
+           height="0.61613178"
+           x="618.47156"
+           y="-83.756416"
+           transform="scale(1,-1)"
+           id="rect14297"
+           style="opacity:0.8;fill:#80b3ff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <rect
+           width="115.66783"
+           height="0.61613178"
+           x="618.47156"
+           y="-90.361031"
+           transform="scale(1,-1)"
+           id="rect14299"
+           style="opacity:0.8;fill:#80b3ff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <rect
+           width="115.66783"
+           height="0.61613178"
+           x="618.47156"
+           y="-96.798164"
+           transform="scale(1,-1)"
+           id="rect14301"
+           style="opacity:0.8;fill:#80b3ff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <rect
+           width="115.66783"
+           height="0.61613178"
+           x="618.47156"
+           y="-103.33643"
+           transform="scale(1,-1)"
+           id="rect14303"
+           style="opacity:0.8;fill:#80b3ff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <rect
+           width="115.66783"
+           height="0.61613178"
+           x="618.47156"
+           y="-109.77363"
+           transform="scale(1,-1)"
+           id="rect14305"
+           style="opacity:0.8;fill:#80b3ff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <rect
+           width="115.66783"
+           height="0.61613178"
+           x="618.47156"
+           y="-116.3783"
+           transform="scale(1,-1)"
+           id="rect14307"
+           style="opacity:0.8;fill:#80b3ff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <rect
+           width="115.66783"
+           height="0.61613178"
+           x="618.47156"
+           y="-122.81547"
+           transform="scale(1,-1)"
+           id="rect14309"
+           style="opacity:0.8;fill:#80b3ff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <rect
+           width="115.66783"
+           height="0.61613178"
+           x="618.47156"
+           y="-129.50606"
+           transform="scale(1,-1)"
+           id="rect14311"
+           style="opacity:0.8;fill:#80b3ff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <rect
+           width="115.66783"
+           height="0.61613178"
+           x="618.47156"
+           y="-135.94325"
+           transform="scale(1,-1)"
+           id="rect14313"
+           style="opacity:0.8;fill:#80b3ff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <rect
+           width="110.04902"
+           height="32.35294"
+           x="621.39062"
+           y="77.968941"
+           id="translation1"
+           style="opacity:0;fill:#000000;fill-opacity:1" />
+        <rect
+           width="109.55882"
+           height="32.35294"
+           x="621.14551"
+           y="108.36109"
+           id="translation2"
+           style="opacity:0;fill:#ffffff" />
+      </g>
+    </g>
+  </g>
+  <rect
+     style="fill:#bfd9ff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;opacity:0.50000000000000000"
+     id="bar_background"
+     y="580"
+     x="40"
+     height="40"
+     width="1069.0875" />
+  <g
+     id="bar"
+     inkscape:label="#bar"
+     transform="matrix(4.3857529e-2,0,0,1,38.245709,0)"
+     style="opacity:1">
+    <rect
+       style="fill:#80b3ff;fill-opacity:1;stroke:none;stroke-width:5;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.30980392"
+       id="rect3230"
+       y="580"
+       x="40"
+       height="40"
+       width="40" />
+    <rect
+       width="40"
+       height="20"
+       x="40"
+       y="580"
+       id="rect2452"
+       style="opacity:0.5;fill:#eeeeee;fill-opacity:1;stroke:none;stroke-width:5;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.30980392" />
+  </g>
+  <rect
+     style="opacity:0.75;fill:#bfd9ff;fill-opacity:1;stroke:none;stroke-width:1.89397538;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     id="image_box"
+     width="287.10602"
+     height="422.10602"
+     x="-1060.45"
+     y="813.04297" />
+  <rect
+     width="591.12708"
+     height="63.705463"
+     rx="8.9096308"
+     ry="10.009958"
+     x="241.6116"
+     y="1318.5786"
+     id="practice_text_translation_background"
+     style="opacity:1;fill:#00316e;fill-opacity:1;stroke:#ffffff;stroke-width:1.07608175;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     inkscape:export-filename="/home/lee/Work/parley/parley practice widgets/parley-practice1.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90" />
+  <text
+     x="252.12857"
+     y="1299.7598"
+     id="enter_translation_label"
+     xml:space="preserve"
+     style="font-size:56px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:FreeSans;-inkscape-font-specification:FreeSans"
+     inkscape:export-filename="/home/lee/Work/parley/parley practice widgets/parley-practice1.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90"><tspan
+       x="252.12857"
+       y="1299.7598"
+       id="tspan3198"
+       style="font-size:22px">Translate:</tspan></text>
+  <text
+     x="201.12857"
+     y="978.75977"
+     xml:space="preserve"
+     style="font-size:56px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:FreeSans;-inkscape-font-specification:FreeSans"
+     inkscape:export-filename="/home/lee/Work/parley/parley practice widgets/parley-practice1.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90"
+     id="text3369"><tspan
+       x="201.12857"
+       y="978.75977"
+       style="font-size:22px"
+       id="tspan3371" /></text>
+  <flowRoot
+     xml:space="preserve"
+     id="black_box"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:FreeSans;-inkscape-font-specification:FreeSans"><flowRegion
+       id="flowRegion3666"><rect
+         id="rect3668"
+         width="659.00287"
+         height="55.897564"
+         x="255.95201"
+         y="-341.14938" /></flowRegion><flowPara
+       id="flowPara3670" /></flowRoot>  <rect
+     style="opacity:0.18577073;fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:8.52466965;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="practice_text_background"
+     width="567.09802"
+     height="56.521713"
+     x="253.03568"
+     y="1204.2686"
+     rx="8.5862293"
+     ry="10.11166"
+     inkscape:label="#practice_text_background" />
+  <rect
+     style="fill:#0000ff;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;opacity:0.04276316"
+     id="check_answer_and_continue_button"
+     width="152.9828"
+     height="63.252506"
+     x="867.8833"
+     y="454.65543"
+     inkscape:label="#rect2410" />
+  <rect
+     style="opacity:1;fill:#000000;fill-opacity:1"
+     id="rect2575"
+     width="953"
+     height="434"
+     x="94"
+     y="99"
+     rx="10"
+     ry="10" />
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="164"
+     y="206"
+     id="text2577"><tspan
+       sodipodi:role="line"
+       id="tspan2579"
+       x="164"
+       y="206" /></text>
+  <text
+     xml:space="preserve"
+     style="font-size:36px;font-style:normal;font-weight:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="151"
+     y="238"
+     id="text3355"><tspan
+       sodipodi:role="line"
+       id="tspan3357"
+       x="151"
+       y="238">This is the main layout, it gets a nice name </tspan><tspan
+       sodipodi:role="line"
+       x="151"
+       y="283"
+       id="tspan3359">and will contain what is needed</tspan><tspan
+       sodipodi:role="line"
+       x="151"
+       y="283"
+       id="tspan3361">specifically to a practice </tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="222"
+     y="1153"
+     id="text3365"><tspan
+       sodipodi:role="line"
+       id="tspan3367"
+       x="222"
+       y="1153">A copy of the main area, for example the layout we have for written practice:</tspan></text>
+  <rect
+     style="opacity:1;fill:#ff5555;fill-opacity:0.5205479"
+     id="rect3373"
+     width="565"
+     height="114"
+     x="250"
+     y="1416"
+     rx="10"
+     ry="10" />
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="278"
+     y="1445"
+     id="text3375"><tspan
+       sodipodi:role="line"
+       id="tspan3377"
+       x="278"
+       y="1445">An area for additional stuff might be needed - here the hints could appear maybe?</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="-893"
+     y="757"
+     id="text3413"><tspan
+       sodipodi:role="line"
+       id="tspan3415"
+       x="-893"
+       y="757"
+       style="font-size:72px">1a</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:72px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="118"
+     y="1164"
+     id="text3417"><tspan
+       sodipodi:role="line"
+       id="tspan3419"
+       x="118"
+       y="1164">2a</tspan></text>
+  <flowRoot
+     xml:space="preserve"
+     id="flowRoot3421"
+     style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Bitstream Vera Sans;font-style:normal;font-weight:normal;font-size:12px"><flowRegion
+       id="flowRegion3423"><rect
+         id="rect3425"
+         width="218"
+         height="474"
+         x="-211"
+         y="800" /></flowRegion><flowPara
+       id="flowPara3427"></flowPara></flowRoot>  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="-763"
+     y="715"
+     id="text3429"><tspan
+       sodipodi:role="line"
+       id="tspan3431"
+       x="-763"
+       y="715">General layout - this is applicable for all practices</tspan><tspan
+       sodipodi:role="line"
+       x="-763"
+       y="730"
+       id="tspan3433">it includes the image if it is there and offers an alternative layout  if there is no image</tspan></text>
+  <flowRoot
+     xml:space="preserve"
+     id="flowRoot3435"
+     style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Bitstream Vera Sans;font-style:normal;font-weight:normal;font-size:12px"><flowRegion
+       id="flowRegion3437"><rect
+         id="rect3439"
+         width="202"
+         height="251"
+         x="1208"
+         y="-61" /></flowRegion><flowPara
+       id="flowPara3441"></flowPara></flowRoot>  <rect
+     style="opacity:1;fill:#000080;fill-opacity:1"
+     id="rect3379"
+     width="170"
+     height="31"
+     x="-317.9043"
+     y="823.31055"
+     rx="10"
+     ry="10" />
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M -167.9043,834.3105 L 16.0957,785.3105"
+     id="path3385" />
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="25.095703"
+     y="770.31055"
+     id="text3389"><tspan
+       sodipodi:role="line"
+       id="tspan3391"
+       x="25.095703"
+       y="770.31055">One or two fancy icons  could go here - maybe a questionmark/lightbulb to show a hint</tspan><tspan
+       sodipodi:role="line"
+       x="25.095703"
+       y="785.31055"
+       id="tspan3393">and a sound button to play back the associated sound.</tspan><tspan
+       sodipodi:role="line"
+       x="25.095703"
+       y="800.31055"
+       id="tspan3395">Both would be hidden unless the sound/hint actually exists</tspan><tspan
+       sodipodi:role="line"
+       x="25.095703"
+       y="815.31055"
+       id="tspan3397">A cool hover light up effect would be awesome :p</tspan><tspan
+       sodipodi:role="line"
+       x="25.095703"
+       y="830.31055"
+       id="tspan3399" /><tspan
+       sodipodi:role="line"
+       x="25.095703"
+       y="845.31055"
+       id="tspan3401">I would probably be a good idea to only have a rect here and define the icons somewhere else.</tspan><tspan
+       sodipodi:role="line"
+       x="25.095703"
+       y="860.31055"
+       id="tspan3403">Maybe this should be part of the big black rect (specific stuff)</tspan></text>
+  <rect
+     style="opacity:1;fill:#000000;fill-opacity:0.5205479"
+     id="rect3453"
+     width="953"
+     height="434"
+     x="-1073.5"
+     y="1309"
+     rx="10"
+     ry="10" />
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="-984.66797"
+     y="1295.7344"
+     id="text3455"><tspan
+       sodipodi:role="line"
+       id="tspan3457"
+       x="-984.66797"
+       y="1295.7344"
+       style="font-size:72px">1b</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="-843"
+     y="1278"
+     id="text3459"><tspan
+       sodipodi:role="line"
+       id="tspan3461"
+       x="-843"
+       y="1278">Not sure if needed - the basic layout with no image associated</tspan></text>
+  <rect
+     style="opacity:0.75;fill:#ff9955;fill-opacity:1;stroke:none;stroke-width:1.89397538;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     id="rect3463"
+     width="616.10602"
+     height="344.10602"
+     x="-744.55298"
+     y="883.94702" />
+  <rect
+     style="opacity:1;fill:#000080;fill-opacity:1"
+     id="rect3465"
+     width="170"
+     height="31"
+     x="-320.40433"
+     y="1322.6288"
+     rx="10"
+     ry="10" />
+  <rect
+     style="opacity:0.75000000000000000;fill:#ff9955;fill-opacity:1;stroke:none;stroke-width:1.89397538000000010;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     id="rect3467"
+     width="874.10602"
+     height="344.10602"
+     x="-1018.053"
+     y="1377.2653" />
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="-640"
+     y="1007"
+     id="text3469"><tspan
+       sodipodi:role="line"
+       id="tspan3471"
+       x="-640"
+       y="1007">This is where the different practices put their stuff - see 2</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="-817.55859"
+     y="1542.3105"
+     id="text3473"><tspan
+       sodipodi:role="line"
+       id="tspan3475"
+       x="-817.55859"
+       y="1542.3105">This is where the different practices put their stuff - see 2</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="283"
+     y="1229"
+     id="text3479"><tspan
+       sodipodi:role="line"
+       id="tspan3481"
+       x="283"
+       y="1229">Defined elements like TEXT PROMPT THAT IS SHOWN TO THE USER</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="287"
+     y="1347"
+     id="text3483"><tspan
+       sodipodi:role="line"
+       id="tspan3485"
+       x="287"
+       y="1347">Text input</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="309"
+     y="1483"
+     id="text3487"><tspan
+       sodipodi:role="line"
+       id="tspan3489"
+       x="309"
+       y="1483">This could probably again be shared between the different modes!?!</tspan></text>
+  <rect
+     style="opacity:0.75;fill:#ff9955;fill-opacity:1;stroke:none;stroke-width:1.89397538;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     id="rect3491"
+     width="616.10602"
+     height="344.10602"
+     x="232.78375"
+     y="1682.6393" />
+  <rect
+     style="opacity:1;fill:#ffaaaa;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect3493"
+     width="100"
+     height="29"
+     x="588.83679"
+     y="1626.6923"
+     rx="10"
+     ry="10" />
+  <rect
+     width="548.80774"
+     height="115.38612"
+     rx="8.2717819"
+     ry="18.130476"
+     x="273.60803"
+     y="1772.4305"
+     id="rect3495"
+     style="opacity:1;fill:#00316e;fill-opacity:1;stroke:#ffffff;stroke-width:1.39541519;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     inkscape:export-filename="/home/lee/Work/parley/parley practice widgets/parley-practice1.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90" />
+  <rect
+     style="opacity:0.18577073;fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:8.52466965;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="rect3501"
+     width="567.09802"
+     height="56.521713"
+     x="256.87244"
+     y="1696.9608"
+     rx="8.5862293"
+     ry="10.11166"
+     inkscape:label="#practice_text_background" />
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="225.83679"
+     y="1645.6923"
+     id="text3503"><tspan
+       sodipodi:role="line"
+       id="tspan3505"
+       x="225.83679"
+       y="1645.6923">A copy of the main area, for example the layout we have for Multiple Choice:</tspan></text>
+  <rect
+     style="opacity:1;fill:#ff5555;fill-opacity:0.5205479"
+     id="rect3507"
+     width="565"
+     height="114"
+     x="253.83679"
+     y="1908.6923"
+     rx="10"
+     ry="10" />
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="281.83679"
+     y="1937.6923"
+     id="text3509"><tspan
+       sodipodi:role="line"
+       id="tspan3511"
+       x="281.83679"
+       y="1937.6923">An area for additional stuff might be needed - here the hints could appear maybe?</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:72px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="121.83679"
+     y="1663.6923"
+     id="text3513"><tspan
+       sodipodi:role="line"
+       id="tspan3515"
+       x="121.83679"
+       y="1663.6923">2b</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="286.83679"
+     y="1721.6923"
+     id="text3517"><tspan
+       sodipodi:role="line"
+       id="tspan3519"
+       x="286.83679"
+       y="1721.6923">Defined elements like TEXT PROMPT THAT IS SHOWN TO THE USER</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="312.83679"
+     y="1975.6923"
+     id="text3525"><tspan
+       sodipodi:role="line"
+       id="tspan3527"
+       x="312.83679"
+       y="1975.6923">This could probably again be shared between the different modes!?!</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="353"
+     y="1827"
+     id="text3529"><tspan
+       sodipodi:role="line"
+       id="tspan3531"
+       x="353"
+       y="1827">Choices AREA</tspan></text>
+  <rect
+     width="548.28662"
+     height="217.86502"
+     rx="8.2639275"
+     ry="34.232857"
+     x="920.85669"
+     y="1769.5674"
+     id="rect3533"
+     style="opacity:1;fill:#00316e;fill-opacity:1;stroke:#ffffff;stroke-width:1.91652334;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     inkscape:export-filename="/home/lee/Work/parley/parley practice widgets/parley-practice1.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90" />
+  <rect
+     style="opacity:1;fill:#ffff00;fill-opacity:0.32876713;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect3551"
+     width="525"
+     height="47"
+     x="927.5"
+     y="1849.5"
+     rx="8.2639275"
+     ry="34.232857" />
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="927"
+     y="1692"
+     id="text3539"><tspan
+       sodipodi:role="line"
+       id="tspan3541"
+       x="927"
+       y="1692">Maybe that's overdoing it - but it would be cool to offer the user to display 3-7 choices</tspan></text>
+  <path
+     sodipodi:type="star"
+     style="opacity:1;fill:#ffff00;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="path3543"
+     sodipodi:sides="5"
+     sodipodi:cx="953"
+     sodipodi:cy="1814"
+     sodipodi:r1="22.022716"
+     sodipodi:r2="11.011358"
+     sodipodi:arg1="0.68892439"
+     sodipodi:arg2="1.3172429"
+     inkscape:flatsided="false"
+     inkscape:rounded="0"
+     inkscape:randomized="0"
+     d="M 970,1828 L 955.76215,1824.6593 L 944.9385,1834.4942 L 943.71596,1819.9209 L 931.01772,1812.6661 L 944.5,1807 L 947.4757,1792.6814 L 957.03075,1803.7529 L 971.56808,1802.1583 L 963.99114,1814.6669 L 970,1828 z" />
+  <path
+     sodipodi:type="star"
+     style="opacity:1;fill:#ffff00;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="path3545"
+     sodipodi:sides="5"
+     sodipodi:cx="941"
+     sodipodi:cy="1862"
+     sodipodi:r1="19.416489"
+     sodipodi:r2="9.7082443"
+     sodipodi:arg1="0.60228735"
+     sodipodi:arg2="1.2306059"
+     inkscape:flatsided="false"
+     inkscape:rounded="0"
+     inkscape:randomized="0"
+     d="M 957,1873 L 944.23932,1871.1519 L 935.48265,1880.6161 L 933.29705,1867.9089 L 921.59009,1862.5054 L 933,1856.5 L 934.52137,1843.6962 L 943.75868,1852.692 L 956.40589,1850.1823 L 950.70496,1861.7473 L 957,1873 z"
+     transform="matrix(1.0527704,0.5710721,-0.5543023,1.0218553,996.13044,-566.10322)" />
+  <rect
+     style="opacity:1;fill:#ffff00;fill-opacity:0.32876713;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect3553"
+     width="525"
+     height="47"
+     x="935.5"
+     y="1908.5"
+     rx="8.2639275"
+     ry="34.232857" />
+  <path
+     sodipodi:type="star"
+     style="opacity:1;fill:#ffff00;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="path3547"
+     sodipodi:sides="5"
+     sodipodi:cx="944"
+     sodipodi:cy="1932"
+     sodipodi:r1="21.213203"
+     sodipodi:r2="10.606602"
+     sodipodi:arg1="0.78539816"
+     sodipodi:arg2="1.4137167"
+     inkscape:flatsided="false"
+     inkscape:rounded="0"
+     inkscape:randomized="0"
+     d="M 959,1947 L 945.65924,1942.476 L 934.36941,1950.9011 L 934.54945,1936.8153 L 923.04797,1928.6815 L 936.5,1924.5 L 940.68152,1911.048 L 948.8153,1922.5494 L 962.9011,1922.3694 L 954.47602,1933.6592 L 959,1947 z"
+     transform="matrix(0.994171,0.1078145,-0.1078145,0.994171,228.57457,-89.869428)" />
+  <rect
+     style="opacity:1;fill:#ffff00;fill-opacity:0.32876712;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect3549"
+     width="525"
+     height="47"
+     x="930"
+     y="1792"
+     rx="8.2639275"
+     ry="34.232857" />
+  <text
+     xml:space="preserve"
+     style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="992"
+     y="1833"
+     id="text3555"><tspan
+       sodipodi:role="line"
+       id="tspan3557"
+       x="992"
+       y="1833">A choice</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="991"
+     y="1864"
+     id="text3559"><tspan
+       sodipodi:role="line"
+       id="tspan3561"
+       x="991"
+       y="1864">This would be used for three choices - the invisible rects that define</tspan><tspan
+       sodipodi:role="line"
+       x="991"
+       y="1879"
+       id="tspan3563">the background are needed to watch where the user clicks!</tspan><tspan
+       sodipodi:role="line"
+       x="991"
+       y="1894"
+       id="tspan3565">Also we need shortcuts - but we have that working.</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="1007"
+     y="1932"
+     id="text3567"><tspan
+       sodipodi:role="line"
+       id="tspan3569"
+       x="1007"
+       y="1932">Lee - How about a cool hover effect? *bling*</tspan></text>
+  <rect
+     width="548.28662"
+     height="217.86502"
+     rx="8.2639275"
+     ry="34.232857"
+     x="913.85669"
+     y="2029.0674"
+     id="rect3571"
+     style="opacity:1;fill:#00316e;fill-opacity:1;stroke:#ffffff;stroke-width:1.91652334;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     inkscape:export-filename="/home/lee/Work/parley/parley practice widgets/parley-practice1.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90" />
+  <path
+     sodipodi:type="star"
+     style="opacity:1;fill:#ffff00;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="path3573"
+     sodipodi:sides="5"
+     sodipodi:cx="953"
+     sodipodi:cy="1814"
+     sodipodi:r1="22.022717"
+     sodipodi:r2="11.011358"
+     sodipodi:arg1="0.68892439"
+     sodipodi:arg2="1.3172429"
+     inkscape:flatsided="false"
+     inkscape:rounded="0"
+     inkscape:randomized="0"
+     d="M 970,1828 L 955.76215,1824.6593 L 944.9385,1834.4942 L 943.71596,1819.9209 L 931.01772,1812.6661 L 944.5,1807 L 947.4757,1792.6814 L 957.03075,1803.7529 L 971.56808,1802.1583 L 963.99114,1814.6669 L 970,1828 z"
+     transform="translate(-7,259.50011)" />
+  <rect
+     style="opacity:1;fill:#ffff00;fill-opacity:0.32876713;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect3581"
+     width="525"
+     height="34"
+     x="922.5"
+     y="2106"
+     rx="8.2639275"
+     ry="24.764194" />
+  <path
+     sodipodi:type="star"
+     style="opacity:1;fill:#ffff00;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="path3575"
+     sodipodi:sides="5"
+     sodipodi:cx="941"
+     sodipodi:cy="1862"
+     sodipodi:r1="19.416489"
+     sodipodi:r2="9.7082443"
+     sodipodi:arg1="0.60228735"
+     sodipodi:arg2="1.2306059"
+     inkscape:flatsided="false"
+     inkscape:rounded="0"
+     inkscape:randomized="0"
+     d="M 957,1873 L 944.23932,1871.1519 L 935.48265,1880.6161 L 933.29705,1867.9089 L 921.59009,1862.5054 L 933,1856.5 L 934.52137,1843.6962 L 943.75868,1852.692 L 956.40589,1850.1823 L 950.70496,1861.7473 L 957,1873 z"
+     transform="matrix(1.1976848,0,0,1.1625142,-178.18432,-44.126773)" />
+  <rect
+     style="opacity:1;fill:#ffff00;fill-opacity:0.32876713;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect3629"
+     width="525"
+     height="35"
+     x="922.5"
+     y="2196.5"
+     rx="8.2639275"
+     ry="25.492554" />
+  <rect
+     style="opacity:1;fill:#ffff00;fill-opacity:0.32876713;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect3583"
+     width="525"
+     height="35"
+     x="920.5"
+     y="2153"
+     rx="8.2639275"
+     ry="25.492554" />
+  <path
+     sodipodi:type="star"
+     style="opacity:1;fill:#ffff00;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="path3577"
+     sodipodi:sides="5"
+     sodipodi:cx="944"
+     sodipodi:cy="1932"
+     sodipodi:r1="21.213203"
+     sodipodi:r2="10.606602"
+     sodipodi:arg1="0.78539816"
+     sodipodi:arg2="1.4137167"
+     inkscape:flatsided="false"
+     inkscape:rounded="0"
+     inkscape:randomized="0"
+     d="M 959,1947 L 945.65924,1942.476 L 934.36941,1950.9011 L 934.54945,1936.8153 L 923.04797,1928.6815 L 936.5,1924.5 L 940.68152,1911.048 L 948.8153,1922.5494 L 962.9011,1922.3694 L 954.47602,1933.6592 L 959,1947 z"
+     transform="translate(7,240.50011)" />
+  <rect
+     style="opacity:1;fill:#ffff00;fill-opacity:0.32876713;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect3579"
+     width="525"
+     height="35"
+     x="923"
+     y="2051.5"
+     rx="8.2639275"
+     ry="25.492554" />
+  <text
+     xml:space="preserve"
+     style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="988"
+     y="2083.5"
+     id="text3585"><tspan
+       sodipodi:role="line"
+       id="tspan3587"
+       x="988"
+       y="2083.5">A choice</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="894"
+     y="2021"
+     id="text3601"><tspan
+       sodipodi:role="line"
+       id="tspan3603"
+       x="894"
+       y="2021">We need to fill the same space for FOUR choices - compress them?</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:72px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="857.55859"
+     y="1643.8418"
+     id="text3609"><tspan
+       sodipodi:role="line"
+       id="tspan3611"
+       x="857.55859"
+       y="1643.8418">3a</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:72px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="795"
+     y="2136"
+     id="text3613"><tspan
+       sodipodi:role="line"
+       id="tspan3615"
+       x="795"
+       y="2136">3b</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:72px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="544.55859"
+     y="1856.8418"
+     id="text3617"><tspan
+       sodipodi:role="line"
+       id="tspan3619"
+       x="544.55859"
+       y="1856.8418">3</tspan></text>
+  <flowRoot
+     xml:space="preserve"
+     id="flowRoot3621"
+     style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Bitstream Vera Sans;font-style:normal;font-weight:normal;font-size:12px"><flowRegion
+       id="flowRegion3623"><rect
+         id="rect3625"
+         width="36"
+         height="47"
+         x="371"
+         y="2178" /></flowRegion><flowPara
+       id="flowPara3627"></flowPara></flowRoot>  <path
+     sodipodi:type="star"
+     style="opacity:1;fill:#ffff00;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="path3631"
+     sodipodi:sides="5"
+     sodipodi:cx="944"
+     sodipodi:cy="1932"
+     sodipodi:r1="21.213203"
+     sodipodi:r2="10.606602"
+     sodipodi:arg1="0.78539816"
+     sodipodi:arg2="1.4137167"
+     inkscape:flatsided="false"
+     inkscape:rounded="0"
+     inkscape:randomized="0"
+     d="M 959,1947 L 945.65924,1942.476 L 934.36941,1950.9011 L 934.54945,1936.8153 L 923.04797,1928.6815 L 936.5,1924.5 L 940.68152,1911.048 L 948.8153,1922.5494 L 962.9011,1922.3694 L 954.47602,1933.6592 L 959,1947 z"
+     transform="translate(7.025465,280.02547)" />
+  <text
+     xml:space="preserve"
+     style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="986.06445"
+     y="2138.9121"
+     id="text3633"><tspan
+       sodipodi:role="line"
+       id="tspan3635"
+       x="986.06445"
+       y="2138.9121">A choice</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="983.06451"
+     y="2185.9121"
+     id="text3637"><tspan
+       sodipodi:role="line"
+       id="tspan3639"
+       x="983.06451"
+       y="2185.9121">A choice</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="987.06445"
+     y="2226.9121"
+     id="text3641"><tspan
+       sodipodi:role="line"
+       id="tspan3643"
+       x="987.06445"
+       y="2226.9121">A choice</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="1017"
+     y="1709"
+     id="text3645"><tspan
+       sodipodi:role="line"
+       id="tspan3647"
+       x="1017"
+       y="1709">3 is really the minimum - if you  think more than 5 are bad, don't do it</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="443"
+     y="1998"
+     id="text3649"><tspan
+       sodipodi:role="line"
+       id="tspan3651"
+       x="443"
+       y="1998">Can we compress it or move it to the right?</tspan><tspan
+       sodipodi:role="line"
+       x="443"
+       y="2013"
+       id="tspan3653">Because for multiple c  we need vertical space I guess</tspan></text>
+  <rect
+     style="opacity:0.75;fill:#ff9955;fill-opacity:1;stroke:none;stroke-width:1.89397538;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     id="rect3655"
+     width="616.10602"
+     height="344.10602"
+     x="288.78375"
+     y="2361.772" />
+  <rect
+     style="opacity:1;fill:#ffaaaa;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect3657"
+     width="100"
+     height="29"
+     x="644.83679"
+     y="2305.825"
+     rx="10"
+     ry="10" />
+  <rect
+     style="opacity:0.18577073;fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:6.14198971;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="rect3661"
+     width="282.48071"
+     height="58.904392"
+     x="311.68109"
+     y="2374.9021"
+     rx="4.2769399"
+     ry="10.537918"
+     inkscape:label="#practice_text_background" />
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="281.83679"
+     y="2324.825"
+     id="text3663"><tspan
+       sodipodi:role="line"
+       id="tspan3665"
+       x="281.83679"
+       y="2324.825">A copy of the main area, for example the layout we have for Conjugations:</tspan></text>
+  <rect
+     style="opacity:1;fill:#ff5555;fill-opacity:0.5205479"
+     id="rect3667"
+     width="565"
+     height="169"
+     x="688.83679"
+     y="2657.825"
+     rx="10"
+     ry="14.824561" />
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="716.83679"
+     y="2686.825"
+     id="text3669"><tspan
+       sodipodi:role="line"
+       id="tspan3671"
+       x="716.83679"
+       y="2686.825">An area for additional stuff might be needed - here the hints could appear maybe?</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:72px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="177.83679"
+     y="2342.825"
+     id="text3673"><tspan
+       sodipodi:role="line"
+       id="tspan3675"
+       x="177.83679"
+       y="2342.825">2c</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="747.83679"
+     y="2724.825"
+     id="text3681"><tspan
+       sodipodi:role="line"
+       id="tspan3683"
+       x="747.83679"
+       y="2724.825">This could probably again be shared between the different modes!?!</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="878"
+     y="2747.1328"
+     id="text3693"><tspan
+       sodipodi:role="line"
+       id="tspan3695"
+       x="878"
+       y="2747.1328">Can we compress it or move it to the right?</tspan><tspan
+       sodipodi:role="line"
+       x="878"
+       y="2762.1328"
+       id="tspan3697">Because for multiple c  we need vertical space I guess</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="307"
+     y="2272"
+     id="text3699"><tspan
+       sodipodi:role="line"
+       id="tspan3701"
+       x="307"
+       y="2272">Conjugations suck. Always. I bet this time too.</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="363"
+     y="2292"
+     id="text3703"><tspan
+       sodipodi:role="line"
+       id="tspan3705"
+       x="363"
+       y="2292">I don't like to learn them, they are numerous - bah :(</tspan></text>
+  <rect
+     width="261.65582"
+     height="37.234215"
+     rx="3.943749"
+     ry="5.850564"
+     x="621.17206"
+     y="2397.3806"
+     id="rect3707"
+     style="opacity:1;fill:#00316e;fill-opacity:1;stroke:#ffffff;stroke-width:0.54733443;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     inkscape:export-filename="/home/lee/Work/parley/parley practice widgets/parley-practice1.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90" />
+  <text
+     x="-202.04657"
+     y="2435.8262"
+     id="text3709"
+     xml:space="preserve"
+     style="font-size:56px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:FreeSans;-inkscape-font-specification:FreeSans"
+     inkscape:export-filename="/home/lee/Work/parley/parley practice widgets/parley-practice1.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90"><tspan
+       x="-202.04657"
+       y="2435.8262"
+       id="tspan3711"
+       style="font-size:22px">Translate:</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="-167.17514"
+     y="2483.0664"
+     id="text3713"><tspan
+       sodipodi:role="line"
+       id="tspan3715"
+       x="-167.17514"
+       y="2483.0664">Text input</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:20;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="734"
+     y="2798"
+     id="text3717"><tspan
+       sodipodi:role="line"
+       id="tspan3719"
+       x="734"
+       y="2798">This is probably not the case here - conjugations are just that ... no hints avaiable?</tspan><tspan
+       sodipodi:role="line"
+       x="734"
+       y="2813"
+       id="tspan3721">But maybe the &quot;this is a regular verb would be an idea?&quot;</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="624"
+     y="2389"
+     id="text3723"><tspan
+       sodipodi:role="line"
+       id="tspan3725"
+       x="624"
+       y="2389">Translation:</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:32px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="398"
+     y="2415"
+     id="text3727"><tspan
+       sodipodi:role="line"
+       id="tspan3729"
+       x="398"
+       y="2415">to be</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:28px;font-style:normal;font-weight:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="705"
+     y="2423"
+     id="text3731"><tspan
+       sodipodi:role="line"
+       id="tspan3733"
+       x="705"
+       y="2423">sein</tspan></text>
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 862,2417 C 901.95917,2411.3596 956.94931,2423.0127 1001,2412 C 1019.8952,2407.2762 1065.4654,2410.5346 1079,2397"
+     id="path3735" />
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 1128,2474 C 1128.3234,2473.9192 1128.6667,2474 1128,2474 z"
+     id="path3737" />
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="1092"
+     y="2379"
+     id="text3739"><tspan
+       sodipodi:role="line"
+       id="tspan3741"
+       x="1092"
+       y="2379">The user enters it!</tspan><tspan
+       sodipodi:role="line"
+       x="1092"
+       y="2394"
+       id="tspan3743">might be a good idea to evaluate before filling in the conjugated verb...</tspan><tspan
+       sodipodi:role="line"
+       x="1092"
+       y="2409"
+       id="tspan3745">so the right word is conjugated at least.</tspan></text>
+  <rect
+     style="opacity:1;fill:#d40000;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect3747"
+     width="565"
+     height="180"
+     x="317"
+     y="2504"
+     rx="4.2769399"
+     ry="10.537918" />
+  <text
+     xml:space="preserve"
+     style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="445"
+     y="2604"
+     id="text3749"><tspan
+       sodipodi:role="line"
+       id="tspan3751"
+       x="445"
+       y="2604">HELL (also 4)</tspan></text>
+  <rect
+     style="opacity:1;fill:#d40000;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect3753"
+     width="566"
+     height="243"
+     x="265.5"
+     y="2952"
+     rx="4.2845097"
+     ry="14.226189" />
+  <text
+     xml:space="preserve"
+     style="font-size:28px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="346.61426"
+     y="2483.4385"
+     id="text3755"><tspan
+       sodipodi:role="line"
+       id="tspan3757"
+       x="346.61426"
+       y="2483.4385">Tense:</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:37.9148941px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="571.46527"
+     y="2190.7844"
+     id="text3759"
+     transform="scale(0.8817624,1.1340924)"><tspan
+       sodipodi:role="line"
+       id="tspan3761"
+       x="571.46527"
+       y="2190.7844">Past future perfect</tspan></text>
+  <rect
+     style="opacity:1;fill:#ffff00;fill-opacity:0.32876713;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect3763"
+     width="160"
+     height="21"
+     x="359.5"
+     y="2976.5"
+     rx="2.5185304"
+     ry="15.295532" />
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#2d3600;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="154"
+     y="2863"
+     id="text3765"><tspan
+       sodipodi:role="line"
+       id="tspan3767"
+       x="154"
+       y="2863">Too many inputs and stuff</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#6a0000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="228"
+     y="2891"
+     id="text3769"><tspan
+       sodipodi:role="line"
+       id="tspan3771"
+       x="228"
+       y="2891">This could theoretically have a size of singular/dual/plural * person(3) * gender(3) which would be 27 fields</tspan></text>
+  <path
+     sodipodi:type="spiral"
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     id="path3773"
+     sodipodi:cx="21"
+     sodipodi:cy="2936"
+     sodipodi:expansion="1"
+     sodipodi:revolution="3"
+     sodipodi:radius="79.202271"
+     sodipodi:argument="-18.198479"
+     sodipodi:t0="0"
+     d="M 21,2936 C 24.158718,2938.4066 19.314291,2941.4452 16.999997,2941.25 C 10.728406,2940.7209 8.6956455,2933.054 10.500004,2928 C 13.727579,2918.9595 24.940371,2916.4362 33.000008,2920.25 C 44.827849,2925.8469 47.905499,2941.0143 41.999991,2952 C 34.128879,2966.6422 14.884111,2970.2815 0.99998739,2962.25 C -16.471765,2952.1432 -20.674982,2928.7696 -10.499987,2912 C 1.8232947,2891.6897 29.352196,2886.9214 49.000018,2899.25 C 72.154296,2913.7789 77.488587,2945.4785 62.999983,2968 C 46.272316,2994.002 10.392141,2999.9028 -15.000023,2983.25 C -43.852213,2964.328 -50.319976,2924.2607 -31.499978,2896 C -10.386786,2864.2957 33.872349,2857.2607 65.000028,2878.25 C 99.557652,2901.5522 107.16025,2950.0065 83.999974,2984" />
+  <text
+     xml:space="preserve"
+     style="font-size:17.03562355px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="82.981987"
+     y="4138.2373"
+     id="text3803"
+     transform="scale(1.4196355,0.7044062)"><tspan
+       sodipodi:role="line"
+       id="tspan3805"
+       x="82.981987"
+       y="4138.2373">Ideas appreciated</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="186"
+     y="2940"
+     id="text3807"><tspan
+       sodipodi:role="line"
+       id="tspan3809"
+       x="186"
+       y="2940">I'll go on with german to be</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="281"
+     y="2996"
+     id="text3811"><tspan
+       sodipodi:role="line"
+       id="tspan3813"
+       x="281"
+       y="2996">ich</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="281"
+     y="3024"
+     id="text3815"><tspan
+       sodipodi:role="line"
+       id="tspan3817"
+       x="281"
+       y="3024">du</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="281"
+     y="3048"
+     id="text3819"><tspan
+       sodipodi:role="line"
+       id="tspan3821"
+       x="281"
+       y="3048">er/sie/es</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="288"
+     y="3071"
+     id="text3823"><tspan
+       sodipodi:role="line"
+       id="tspan3825"
+       x="288"
+       y="3071">wir</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="288"
+     y="3097"
+     id="text3827"><tspan
+       sodipodi:role="line"
+       id="tspan3829"
+       x="288"
+       y="3097">ihr</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="293"
+     y="3131"
+     id="text3831"><tspan
+       sodipodi:role="line"
+       id="tspan3833"
+       x="293"
+       y="3131">sie</tspan></text>
+  <rect
+     style="opacity:1;fill:#ffff00;fill-opacity:0.32876713;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect3835"
+     width="154"
+     height="16"
+     x="362.5"
+     y="3010.5"
+     rx="2.4240854"
+     ry="11.653739" />
+  <rect
+     style="opacity:1;fill:#ffff00;fill-opacity:0.32876713;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect3837"
+     width="154"
+     height="16"
+     x="366"
+     y="3036"
+     rx="2.4240854"
+     ry="11.653739" />
+  <rect
+     style="opacity:1;fill:#ffff00;fill-opacity:0.32876713;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect3839"
+     width="154"
+     height="16"
+     x="366"
+     y="3060"
+     rx="2.4240854"
+     ry="11.653739" />
+  <rect
+     style="opacity:1;fill:#ffff00;fill-opacity:0.32876713;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect3841"
+     width="154"
+     height="16"
+     x="366"
+     y="3084"
+     rx="2.4240854"
+     ry="11.653739" />
+  <rect
+     style="opacity:1;fill:#ffff00;fill-opacity:0.32876713;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect3843"
+     width="154"
+     height="16"
+     x="365"
+     y="3114"
+     rx="2.4240854"
+     ry="11.653739" />
+  <text
+     xml:space="preserve"
+     style="font-size:197.34692383px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="-12.869754"
+     y="7109.8716"
+     id="text3857"
+     transform="scale(2.2927674,0.4361541)"><tspan
+       sodipodi:role="line"
+       id="tspan3859"
+       x="-12.869754"
+       y="7109.8716">4</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="401"
+     y="2991"
+     id="text3861"><tspan
+       sodipodi:role="line"
+       id="tspan3863"
+       x="401"
+       y="2991">bin</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="396"
+     y="3024"
+     id="text3865"><tspan
+       sodipodi:role="line"
+       id="tspan3867"
+       x="396"
+       y="3024">bist</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:19.76070213px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="476.44113"
+     y="2425.0779"
+     id="text3869"
+     transform="scale(0.7466393,1.3393347)"><tspan
+       sodipodi:role="line"
+       id="tspan3871"
+       x="476.44113"
+       y="2425.0779">Lucky us - only 6 forms per verb</tspan></text>
+  <flowRoot
+     xml:space="preserve"
+     id="flowRoot3873"
+     style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Bitstream Vera Sans;font-style:normal;font-weight:normal;font-size:12px"><flowRegion
+       id="flowRegion3875"><rect
+         id="rect3877"
+         width="24"
+         height="30"
+         x="355"
+         y="3281" /></flowRegion><flowPara
+       id="flowPara3879"></flowPara></flowRoot>  <text
+     xml:space="preserve"
+     style="font-size:20.75597191px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="1892.9869"
+     y="113.0124"
+     id="text3881"
+     transform="scale(0.6159171,1.6235951)"><tspan
+       sodipodi:role="line"
+       id="tspan3883"
+       x="1892.9869"
+       y="113.0124">Next to this we can show general status stuff like leitner boxes etc</tspan></text>
+  <flowRoot
+     xml:space="preserve"
+     id="flowRoot3885"
+     style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Bitstream Vera Sans;font-style:normal;font-weight:normal;font-size:12px"><flowRegion
+       id="flowRegion3887"><rect
+         id="rect3889"
+         width="11"
+         height="29"
+         x="1181"
+         y="188" /></flowRegion><flowPara
+       id="flowPara3891"></flowPara></flowRoot></svg>
