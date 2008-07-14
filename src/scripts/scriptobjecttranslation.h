@@ -37,6 +37,7 @@ namespace Scripting
 //             Q_PROPERTY ( QString irregularPlural READ irregularPlural WRITE setIrregularPlural )
             Q_PROPERTY ( QString comparative READ comparative WRITE setComparative )
             Q_PROPERTY ( QString superlative READ superlative WRITE setSuperlative )
+            Q_PROPERTY ( QStringList multipleChoice READ multipleChoice )
         public:
             /**
              * Default constructor for an empty translation.
@@ -200,17 +201,6 @@ namespace Scripting
              */
 //             void setImageUrl ( const KUrl &url );
 
-            /**
-             * add a false friend
-             * @param falseFriend false friend of this index
-             */
-            void addFalseFriend ( Translation* falseFriend ) { m_translation->addFalseFriend ( falseFriend->kEduVocTranslation() ); }
-
-            /**
-             * remove a false friend
-             * @param falseFriend false friend of this index
-             */
-            void removeFalseFriend ( Translation* falseFriend ) { m_translation->removeFalseFriend ( falseFriend->kEduVocTranslation() ); }
 
             /**
              * returns false friends of this expression
@@ -219,34 +209,10 @@ namespace Scripting
 //             QList<KEduVocTranslation*> falseFriends() const;
 
             /**
-             * add a synonym
-             * @param synonym
-             */
-            void addSynonym ( Translation* synonym ) { m_translation->addSynonym ( synonym->kEduVocTranslation() ); }
-
-            /**
-             * remove a synonym
-             * @param synonym
-             */
-            void removeSynonym ( Translation* synonym ) { m_translation->removeSynonym ( synonym->kEduVocTranslation() ); }
-
-            /**
              * returns synonyms of this expression
              * @return synonyms
              */
 //             QList<KEduVocTranslation*> synonyms() const;
-
-            /**
-             * add a antonym
-             * @param antonym
-                 */
-            void addAntonym ( Translation* antonym ) { m_translation->addAntonym ( antonym->kEduVocTranslation() ); }
-
-            /**
-             * remove a antonym
-             * @param antonym
-             */
-            void removeAntonym ( Translation* antonym ) { m_translation->removeAntonym ( antonym->kEduVocTranslation() ); }
 
             /**
              * returns antonyms of this expression
@@ -270,6 +236,43 @@ namespace Scripting
 
 //             void fromKVTML2 ( QDomElement& parent );
 //             void toKVTML2 ( QDomElement& parent );
+    public slots:
+            /**
+             * add a false friend
+             * @param falseFriend false friend of this index
+             */
+            void addFalseFriend ( Translation* falseFriend ) { m_translation->addFalseFriend ( falseFriend->kEduVocTranslation() ); }
+
+            /**
+             * remove a false friend
+             * @param falseFriend false friend of this index
+             */
+            void removeFalseFriend ( Translation* falseFriend ) { m_translation->removeFalseFriend ( falseFriend->kEduVocTranslation() ); }
+
+            /**
+             * add a synonym
+             * @param synonym
+             */
+            void addSynonym ( Translation* synonym ) { m_translation->addSynonym ( synonym->kEduVocTranslation() ); }
+
+            /**
+             * remove a synonym
+             * @param synonym
+             */
+            void removeSynonym ( Translation* synonym ) { m_translation->removeSynonym ( synonym->kEduVocTranslation() ); }
+
+            /**
+             * add a antonym
+             * @param antonym
+                 */
+            void addAntonym ( Translation* antonym ) { m_translation->addAntonym ( antonym->kEduVocTranslation() ); }
+
+            /**
+             * remove a antonym
+             * @param antonym
+             */
+            void removeAntonym ( Translation* antonym ) { m_translation->removeAntonym ( antonym->kEduVocTranslation() ); }
+
 
         private:
             KEduVocTranslation * m_translation;
