@@ -76,40 +76,41 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
         if (!m_doc || !m_translator) return 0;
 
         if (VocabularyModel::columnType( index.column() ) == VocabularyModel::Translation) {
-            QComboBox *translationCombo = new QComboBox(parent);
-            translationCombo->setFrame(false);
-    
-            QSet<QString> translations;
 
+            //get the translations of this word
+            
+            QSet<QString> translations; //translations of this column from all the other languages
+            
             int language = index.column() / VocabularyModel::EntryColumnsMAX;
             QString toLanguage = m_doc->identifier(language).locale();
 
-            //get the translations of this word
             //iterate through all the Translation columns
             for (int i = 0; i < index.model()->columnCount(index.parent()); i ++) {
-                if (VocabularyModel::columnType(i) == VocabularyModel::Translation)
+                if (VocabularyModel::columnType(i) == VocabularyModel::Translation) //translation column
                 {
                     QString fromLanguage = m_doc->identifier(VocabularyModel::translation(i)).locale();
                     QString word = index.model()->index(index.row(),i,QModelIndex()).data().toString();
+
                     if (fromLanguage != toLanguage) {
                         kDebug() << fromLanguage << toLanguage << word;
+                        //get the word translations and add them to the translations set
                         QSet<QString> * tr = m_translator->getTranslation(word,fromLanguage,toLanguage);
                         if (tr)
                             translations.unite(*(tr));
                     }
                 }
             }
+
+            //create combo box
+            QComboBox *translationCombo = new QComboBox(parent);
+            translationCombo->setFrame(false);
     
-//             kDebug() << fromLanguage << toLanguage << word;
-            
             if (!translations.isEmpty())
                 translationCombo->addItems(translations.toList());
-    
+
             translationCombo->setEditable(true);
             translationCombo->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
             translationCombo->setEditText(index.model()->data(index, Qt::DisplayRole).toString());
-    
-            kDebug() << "index data" << index.data().toString();
     
             return translationCombo;
         }
