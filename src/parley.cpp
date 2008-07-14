@@ -979,18 +979,42 @@ void ParleyApp::slotTranslateWords(const QModelIndex & topLeft, const QModelInde
     if (Prefs::automaticTranslation() == false) return;
 
     kDebug() << "Translate Words" << topLeft << bottomRight;
-    if (topLeft.column() == VocabularyModel::Translation) {
-        QString word = topLeft.data().toString();
-        QString fromLanguage = m_document->document()->identifier(0).locale();
-        const int N = VocabularyModel::EntryColumnsMAX;
-        //iterate through all the translation columns
-        for (int i = topLeft.column()+N; i < topLeft.model()->columnCount(topLeft.parent()); i += N) {
-            QString toLanguage = m_document->document()->identifier(i / N).locale();
-            kDebug() << word << fromLanguage << toLanguage;
-            //the scripts will receive a signal to translate this word
+
+    const int N = VocabularyModel::EntryColumnsMAX;
+    QString fromLanguage;
+    QString word;
+
+    //find the first translation column that has a word in it (not empty)
+    for (int i = 0; i < topLeft.model()->columnCount(topLeft.parent()); i += N) {
+        word = topLeft.model()->index(topLeft.row(),i,QModelIndex()).data().toString();
+        if (!word.isEmpty()) {
+            fromLanguage = m_document->document()->identifier(i / N).locale();
+            break;
+        }
+    }
+
+    //translate to the rest translation columns
+    for (int i = 0; i < topLeft.model()->columnCount(topLeft.parent()); i += N) {
+        const QString & toLanguage = m_document->document()->identifier(i / N).locale();
+        if (toLanguage != fromLanguage) {
             m_scriptObjectParley->callTranslateWord(word,fromLanguage,toLanguage);
         }
     }
+
+    return;
+//     //old function
+//     if (topLeft.column() == VocabularyModel::Translation) {
+//         QString word = topLeft.data().toString();
+//         QString fromLanguage = m_document->document()->identifier(0).locale();
+//         
+//         //iterate through all the translation columns
+//         for (int i = topLeft.column()+N; i < topLeft.model()->columnCount(topLeft.parent()); i += N) {
+//             QString toLanguage = m_document->document()->identifier(i / N).locale();
+//             kDebug() << word << fromLanguage << toLanguage;
+//             //the scripts will receive a signal to translate this word
+//             m_scriptObjectParley->callTranslateWord(word,fromLanguage,toLanguage);
+//         }
+//     }
 }
 
 int indexOfIdentifier(KEduVocDocument* document, const QString& locale) {
