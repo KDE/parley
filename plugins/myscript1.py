@@ -16,20 +16,27 @@ def addNewEntry():
   
 def test():
   print "Adding new entry"
-  addNewEntry()
+  #addNewEntry()
   print "Test from myscript1.py"
   #Parley.open('/home/kde-devel/My\ Vocabularies/test2.kvtml')
   #print Parley.activeLesson.name
   #Parley.activeLesson.name = "Hi!!"
   lesson = Parley.activeLesson
   #print lesson.getEntries()
-  print lesson.entry(0).translationIndices
-  print lesson.entry(0).translation(0).text
-  print lesson.entry(0).translation(1).text
+  print lesson.entry(0,True).translationIndices
+  print lesson.entry(0,True).translation(0).text
+  print lesson.entry(0,True).translation(1).text
+  print lesson.entry(0,True).translation(1).practiceDate
   print "Listing"
+  print dir(lesson.entry(0,True).translation(1))
+  
+  print "Translation attributes"
+  for attr in dir(lesson.entry(0,True).translation(1)):
+    a = getattr(lesson.entry(0,True).translation(1),attr)
+    print attr, a
 
   for i in range(0,lesson.entryCount(True)):
-     print i,lesson.entry(i,True).translation(0).text,lesson.entry(i,True).translation(1).text
+     print i,lesson.entry(i,True).translation(0).text,lesson.entry(i,True).translation(1).grade
      
   for i in range(0,lesson.entryCount(True)):
     entry = lesson.entry(i,True)

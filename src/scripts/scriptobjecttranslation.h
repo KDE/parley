@@ -14,6 +14,7 @@
 
 #include "keduvoctranslation.h"
 #include "scriptobjectentry.h"
+#include "scriptobjecttext.h"
 
 #include <QObject>
 
@@ -25,10 +26,9 @@ namespace Scripting
 
         @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
     */
-    class Translation : public QObject
+    class Translation : Text
     {
             Q_OBJECT
-            Q_PROPERTY (QString text READ text WRITE setText)
             Q_PROPERTY (QString pronunciation READ pronunciation WRITE setPronunciation )
             Q_PROPERTY (QString comment READ comment WRITE setComment )
         public:
@@ -45,15 +45,11 @@ namespace Scripting
 
             /**
              * Constructor from KEduVocTranslation (not used by scripts)
-             * @param translation KEduVocTranslation to initialize ScriptObjecTranslation
+             * @param translation KEduVocTranslation to initialize Scripting::Translation
              */
             Translation ( KEduVocTranslation * translation );
 
             KEduVocTranslation* kEduVocTranslation() { return m_translation; }
-
-            //Property: text (see KEduVocText for details)
-            QString text() const { return m_translation->text(); }
-            void setText( const QString & expr ) { m_translation->setText(expr); }
 
             //Property: pronunciation (see KEduVocTranslation for details)
             QString pronunciation() const { return m_translation->pronunciation(); }

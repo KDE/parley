@@ -14,17 +14,18 @@
 namespace Scripting
 {
     Translation::Translation (Expression * entry)
-            : QObject()
     {
-         m_translation = new KEduVocTranslation(entry->kEduVocEntry());
+        m_translation = new KEduVocTranslation(entry->kEduVocEntry());
+        Text(m_translation);
     }
 
     Translation::Translation ( Expression * entry, const QString & translation ) {
         m_translation = new KEduVocTranslation(entry->kEduVocEntry(),translation);
+        Text(m_translation);
     }
 
     Translation::Translation ( KEduVocTranslation * translation )
-            : QObject(), m_translation ( translation )
+            : Text (translation), m_translation ( translation )
     {
     }
 
