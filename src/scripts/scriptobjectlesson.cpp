@@ -18,16 +18,32 @@
 
 namespace Scripting
 {
-
     Lesson::Lesson ( KEduVocLesson * lesson )
-            : QObject(), m_lesson ( lesson )
+            : Container ( lesson ), m_lesson ( lesson )
     {
+    }
+
+    Lesson::Lesson ( const QString& name )
+    {
+        m_lesson = new KEduVocLesson ( name );
+        m_container = m_lesson;
     }
 
 
     Lesson::~Lesson()
     {
     }
+
+// Didn't work either
+//     QObjectList Lesson::getEntries()
+//     {
+//         QObjectList oList;
+//         KEduVocExpression* entry;
+//         foreach ( entry, m_lesson->entries ( KEduVocContainer::Recursive ) )
+//             oList.push_back( new Expression(entry) );
+//         return oList;
+//     }
+
 
 //     QList<Expression> Lesson::getEntries()
 //     QList<QVariant> Lesson::getEntries()
@@ -59,13 +75,14 @@ namespace Scripting
 
 //     }
 
-    KEduVocContainer::EnumEntriesRecursive boolToEnum ( bool value )
-    {
-        if ( value )
-            return KEduVocContainer::Recursive;
-        return KEduVocContainer::NotRecursive;
-
-    }
+/// @note this function is not needed cause it's inherited from Scripting::Container
+//     KEduVocContainer::EnumEntriesRecursive boolToEnum ( bool value )
+//     {
+//         if ( value )
+//             return KEduVocContainer::Recursive;
+//         return KEduVocContainer::NotRecursive;
+//
+//     }
 
     Expression * Lesson::entry ( int row, bool recursive )
     {

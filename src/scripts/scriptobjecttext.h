@@ -144,7 +144,7 @@ namespace Scripting
             /** decrements grade */
             void decGrade() { m_text->decGrade(); }
 
-        private:
+        protected:
             KEduVocText * m_text;
 
     };

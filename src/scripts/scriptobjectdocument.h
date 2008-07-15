@@ -14,6 +14,8 @@
 
 #include <keduvocdocument.h>
 
+#include "scriptobjectlesson.h"
+
 #include <QObject>
 #include <KDebug>
 
@@ -55,6 +57,13 @@ namespace Scripting
         public slots:
             void callFromScriptTest() { kDebug() << "Document object : Test"; }
             void printName() { kDebug() << m_name; }
+
+             /**
+              * Creates and returns a new Lesson Object
+              * @param name Name of the lesson
+              * @return Scripting::Lesson object to be used by scripts
+              */
+             Lesson * newLesson(const QString & name) { return new Lesson(name); }
 
         private:
             QString m_name;

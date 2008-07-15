@@ -17,7 +17,7 @@ namespace Scripting
 {
 
     Document::Document ( KEduVocDocument * doc )
-            : QObject(), m_doc(doc)
+            : QObject(), m_doc ( doc )
     {
     }
 
@@ -28,7 +28,7 @@ namespace Scripting
 
     QObject * Scripting::Document::getRootLesson()
     {
-        m_doc->lesson();
+        return new Lesson ( m_doc->lesson() );
     }
 
 }

@@ -38,6 +38,7 @@ namespace Scripting
             Q_PROPERTY ( QString comparative READ comparative WRITE setComparative )
             Q_PROPERTY ( QString superlative READ superlative WRITE setSuperlative )
             Q_PROPERTY ( QStringList multipleChoice READ multipleChoice )
+            Q_PROPERTY ( QString soundUrl READ soundUrl WRITE setSoundUrl )
         public:
             /**
              * Default constructor for an empty translation.
@@ -84,7 +85,7 @@ namespace Scripting
             /** returns paraphrase of this expression
             * @return                 paraphrase or "" if no string available
             */
-            QString paraphrase() const { return paraphrase(); }
+            QString paraphrase() const { return m_translation->paraphrase(); }
 
             /** sets antonym this expression
             * @param expression       antonym of this index
@@ -187,19 +188,19 @@ namespace Scripting
 //     void setMultipleChoice( const QStringList &mc );
 
             /** get the sound url for this translation if it exists */
-//             KUrl soundUrl();
+            QString soundUrl() { return m_translation->soundUrl().path(); }
 
             /** set the sound url for this translation
              * @param url               url of the sound file */
-//             void setSoundUrl ( const KUrl &url );
+            void setSoundUrl ( const QString &url ) { m_translation->setSoundUrl ( url ); }
 
             /** get the image url for this translation if it exists */
-//             KUrl imageUrl();
+            QString imageUrl() { return m_translation->soundUrl().path(); }
 
             /** set the image url for this translation
              * @param url               url of the image
              */
-//             void setImageUrl ( const KUrl &url );
+            void setImageUrl ( const QString &url ) { m_translation->setImageUrl(url); }
 
 
             /**
@@ -236,7 +237,7 @@ namespace Scripting
 
 //             void fromKVTML2 ( QDomElement& parent );
 //             void toKVTML2 ( QDomElement& parent );
-    public slots:
+        public slots:
             /**
              * add a false friend
              * @param falseFriend false friend of this index

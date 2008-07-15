@@ -200,6 +200,7 @@ set(scripts_SRCS
     scripts/scriptobjectentry.cpp
     scripts/scriptobjecttranslation.cpp
     scripts/scriptobjecttext.cpp
+    scripts/scriptobjectcontainer.cpp
     scripts/script.cpp
     scripts/translator.cpp
 )
