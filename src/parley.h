@@ -28,7 +28,7 @@
 
 #include "parleydocument.h"
 
-#include "scripts/scriptmanager.h"
+// #include "scripts/scriptmanager.h"
 #include "scripts/scriptobjectparley.h"
 #include "scripts/translator.h"
 
@@ -56,6 +56,7 @@ class LessonModel;
 class WordTypeModel;
 class LeitnerModel;
 class ConjugationWidget;
+class ScriptManager;
 
 /**
   * This Class is the base class for your application. It sets up the main
@@ -219,12 +220,13 @@ private:
 
     friend class ParleyDocument;
     friend class Scripting::Parley;
+    friend class ScriptManager;
 
     /// the name of the executable
     QString m_appName;
 
     //Script Manager
-    ScriptManager m_scriptManager;
+    ScriptManager* m_scriptManager;
 
     ///script objects (objects that will be used from inside the scripts)
     Scripting::Parley* m_scriptObjectParley;

@@ -14,6 +14,8 @@
 
 #include "script.h"
 
+#include "../parley.h"
+
 #include <QStringList>
 
 /**
@@ -24,7 +26,7 @@ This class finds the scripts installed in the application folder and manages loa
 class ScriptManager : public QObject
 {
     public:
-        ScriptManager();
+        ScriptManager(ParleyApp * parleyApp);
 
         ~ScriptManager();
         static QStringList getDesktopFiles();
@@ -37,11 +39,15 @@ class ScriptManager : public QObject
         void loadScripts();
         void addObject ( QObject * obj, const QString & name );
         void reloadScripts();
+        void addScriptAction(const QString & name, KAction * action);
 
     private:
-//         Parley m_objParley;
+        ParleyApp * m_parleyApp;
         QList<Script*> m_scripts;
         QMap<QString, QObject*> m_scriptObjects;
+        QList<QAction*> m_scriptActions;
+
+//         friend class Scripting::Parley;
 };
 
 #endif

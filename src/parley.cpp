@@ -898,7 +898,7 @@ void ParleyApp::initView()
 
 void ParleyApp::slotShowScriptManager() {
 //      kDebug() << QString("here!!");
-    ScriptDialog * dialog = new ScriptDialog(&m_scriptManager);
+    ScriptDialog * dialog = new ScriptDialog(m_scriptManager);
     dialog->show();
 }
 
@@ -960,12 +960,14 @@ void ParleyApp::removeGrades()
 
 void ParleyApp::initScripts()
 {
+    m_scriptManager = new ScriptManager(this);
+
     m_vocabularyView->setTranslator(&m_translator);
 
     //add Scripting::Parley
     m_scriptObjectParley = new Scripting::Parley(this);
     m_scriptObjectParley->setTranslator(&m_translator);
-    m_scriptManager.addObject ( m_scriptObjectParley,"Parley" );
+    m_scriptManager->addObject ( m_scriptObjectParley,"Parley" );
 
     //add Scripting::Expression
     /// @note not a good idea to be added cause it can be used without instanciating it
@@ -973,7 +975,7 @@ void ParleyApp::initScripts()
     //     m_scriptManager.addObject( expression, "Entry" );
 
     //Load scripts
-    m_scriptManager.loadScripts();
+    m_scriptManager->loadScripts();
 
     connect(m_vocabularyModel, SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)),
             this, SLOT(slotTranslateWords(const QModelIndex&, const QModelIndex&)),

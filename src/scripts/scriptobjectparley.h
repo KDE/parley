@@ -105,7 +105,6 @@ namespace Scripting
             Translator* m_translator;
             Document* m_doc;
             ParleyApp * m_parleyApp;
-            QList<QAction*> m_scriptActions;
     };
 
 }

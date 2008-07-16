@@ -38,13 +38,20 @@ def testAction():
   print newaction
   newaction.text="My script 1"
   Parley.connect(newaction,"triggered()",actionFunction)
-  #Parley.registerAction("myscript1_action",newaction)
-  #connect(menu_testscript, SIGNAL(triggered()),  this, SLOT(slotTranslateLesson()))
+  
+  newaction2 = Parley.newAction("my_script1")
+  newaction2.text = "My script 2"
+  Parley.connect(newaction2,"triggered()",actionFunction2)
   return
 
 def actionFunction():
   print "Action called!!"
   return
+
+def actionFunction2():
+  print "Action2 called!!"
+  return
+
 
 def test():
     print "Test from myscript1.py"

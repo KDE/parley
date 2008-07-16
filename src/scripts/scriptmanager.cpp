@@ -17,11 +17,13 @@
 #include <KPluginInfo>
 #include <KServiceTypeTrader>
 #include <QFileInfo>
+#include <KActionCollection>
 
 #include <kross/core/action.h>
 #include <kross/core/manager.h>
 
-ScriptManager::ScriptManager()
+ScriptManager::ScriptManager(ParleyApp * parleyApp)
+        : m_parleyApp(parleyApp)
 {
 }
 
@@ -167,8 +169,35 @@ void ScriptManager::addObject ( QObject * obj, const QString & name )
  */
 void ScriptManager::reloadScripts()
 {
+    //deactivate (delete) all the active scripts
     foreach ( Script * s, m_scripts )
-        if ( s ) delete s;
+    if ( s ) delete s;
     m_scripts.clear();
+
+    //reload the scripts menu
+    m_parleyApp->unplugActionList("scripts_actionlist");
+    m_scriptActions.clear();
+    m_parleyApp->plugActionList("scripts_actionlist",m_scriptActions);
+
+    //load all the enabled scripts
     loadScripts();
+}
+
+
+/**
+ *
+ */
+void ScriptManager::addScriptAction (const QString & name, KAction * action )
+{
+    //unplug action list (orelse it will add twice the same entries
+    m_parleyApp->unplugActionList ( "scripts_actionlist" );
+    
+    //add to action collection
+    m_parleyApp->actionCollection()->addAction ( name,action );
+    //add it to actions menu list
+    m_parleyApp->m_scriptManager->m_scriptActions.push_back ( action );
+//         m_scriptActions.push_back(action);
+    //plug the action list
+    m_parleyApp->plugActionList ( "scripts_actionlist",m_scriptActions );
+
 }

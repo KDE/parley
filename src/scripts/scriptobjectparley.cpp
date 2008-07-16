@@ -9,6 +9,9 @@
 // Copyright: See COPYING file that comes with this distribution
 //
 //
+
+#include "scriptmanager.h"
+
 #include "scriptobjectparley.h"
 #include "scriptobjectdocument.h"
 #include "scriptobjectlesson.h"
@@ -76,19 +79,11 @@ namespace Scripting
     }
 
 
-    KAction * Scripting::Parley::newAction(const QString & name)
+    KAction * Scripting::Parley::newAction ( const QString & name )
     {
-        //unplug action list (orelse it will add twice the same entries
-        m_parleyApp->unplugActionList("scripts_actionlist");
         //create new action
-        KAction* action = new KAction(m_parleyApp);
-        //add to action collection
-        m_parleyApp->actionCollection()->addAction(name,action);
-        //add it to actions menu list
-        m_scriptActions.push_back(action);
-        //plug the action list
-        m_parleyApp->plugActionList("scripts_actionlist",m_scriptActions);
-
+        KAction* action = new KAction ( m_parleyApp );
+        m_parleyApp->m_scriptManager->addScriptAction(name,action);
         return action;
 
     }
