@@ -170,14 +170,11 @@ void VocabularyDelegate::setEditorData(QWidget * editor, const QModelIndex & ind
 
     switch (VocabularyModel::columnType(index.column())) {
     case (VocabularyModel::Translation): {
-        if (VocabularyModel::columnType( index.column() ) == VocabularyModel::Translation) {
-            QSet<QString> translations = getTranslations(index);
-            if (!translations.isEmpty() && !(translations.size() == 1 && (*translations.begin()) == index.model()->data(index, Qt::DisplayRole).toString())) {
-                QString value = index.model()->data(index, Qt::DisplayRole).toString();
-                QComboBox * translationCombo = qobject_cast<QComboBox*>(editor);
-                translationCombo->setEditText(value);
-                break;
-            }
+        QString value = index.model()->data(index, Qt::DisplayRole).toString();
+        QComboBox * translationCombo = qobject_cast<QComboBox*>(editor);
+        if (translationCombo) {
+            translationCombo->setEditText(value);
+            break;
         }
     }
     default: {
@@ -226,13 +223,10 @@ Q_ASSERT(expression);
 
     }
     case (VocabularyModel::Translation): {
-        if (VocabularyModel::columnType( index.column() ) == VocabularyModel::Translation) {
-            QSet<QString> translations = getTranslations(index);
-            if (!translations.isEmpty() && !(translations.size() == 1 && (*translations.begin()) == index.model()->data(index, Qt::DisplayRole).toString())) {
-                QComboBox * translationCombo = qobject_cast<QComboBox*>(editor);
-                model->setData(index,translationCombo->currentText());
-                break;
-            }
+        QComboBox * translationCombo = qobject_cast<QComboBox*>(editor);
+        if (translationCombo) {
+            model->setData(index,translationCombo->currentText());
+            break;
         }
     }
     default: {

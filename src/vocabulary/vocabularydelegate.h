@@ -55,6 +55,7 @@ private:
     KEduVocDocument *m_doc;
     Translator * m_translator;
 
+    /** Returns the translations of the word of the given index */
     QSet<QString> getTranslations(const QModelIndex & index) const;
 
     // for the word type combo
