@@ -38,6 +38,8 @@ public:
     void setCurrentIndex(const QModelIndex &index);
     void setTranslator(Translator * translator);
 
+    
+
 public slots:
     void setDocument(KEduVocDocument *doc);
 
@@ -48,9 +50,12 @@ private slots:
     void commitAndCloseEditor();
 
 private:
+    
     QModelIndex m_currentIndex;
     KEduVocDocument *m_doc;
     Translator * m_translator;
+
+    QSet<QString> getTranslations(const QModelIndex & index) const;
 
     // for the word type combo
     class WordTypeBasicModel;

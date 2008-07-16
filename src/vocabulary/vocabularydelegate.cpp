@@ -40,6 +40,33 @@ VocabularyDelegate::VocabularyDelegate(QObject *parent) : QItemDelegate(parent)
     m_translator = 0;
 }
 
+QSet<QString> VocabularyDelegate::getTranslations(const QModelIndex & index) const
+{
+    QSet<QString> translations; //translations of this column from all the other languages
+            
+    int language = index.column() / VocabularyModel::EntryColumnsMAX;
+    QString toLanguage = m_doc->identifier(language).locale();
+
+    //iterate through all the Translation columns
+    for (int i = 0; i < index.model()->columnCount(index.parent()); i ++) {
+        if (VocabularyModel::columnType(i) == VocabularyModel::Translation) //translation column
+        {
+            QString fromLanguage = m_doc->identifier(VocabularyModel::translation(i)).locale();
+            QString word = index.model()->index(index.row(),i,QModelIndex()).data().toString();
+
+            if (fromLanguage != toLanguage) {
+                kDebug() << fromLanguage << toLanguage << word;
+                //get the word translations and add them to the translations set
+                QSet<QString> * tr = m_translator->getTranslation(word,fromLanguage,toLanguage);
+                if (tr)
+                    translations.unite(*(tr));
+            }
+        }
+    }
+
+    return translations;
+}
+
 QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
     Q_UNUSED(option); /// as long as it's unused
@@ -78,41 +105,23 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
         if (VocabularyModel::columnType( index.column() ) == VocabularyModel::Translation) {
 
             //get the translations of this word
-            
-            QSet<QString> translations; //translations of this column from all the other languages
-            
-            int language = index.column() / VocabularyModel::EntryColumnsMAX;
-            QString toLanguage = m_doc->identifier(language).locale();
-
-            //iterate through all the Translation columns
-            for (int i = 0; i < index.model()->columnCount(index.parent()); i ++) {
-                if (VocabularyModel::columnType(i) == VocabularyModel::Translation) //translation column
-                {
-                    QString fromLanguage = m_doc->identifier(VocabularyModel::translation(i)).locale();
-                    QString word = index.model()->index(index.row(),i,QModelIndex()).data().toString();
-
-                    if (fromLanguage != toLanguage) {
-                        kDebug() << fromLanguage << toLanguage << word;
-                        //get the word translations and add them to the translations set
-                        QSet<QString> * tr = m_translator->getTranslation(word,fromLanguage,toLanguage);
-                        if (tr)
-                            translations.unite(*(tr));
-                    }
-                }
-            }
+            QSet<QString> translations = getTranslations(index);
 
             //create combo box
-            QComboBox *translationCombo = new QComboBox(parent);
-            translationCombo->setFrame(false);
-    
-            if (!translations.isEmpty())
+            //if there is only one word and that is the suggestion word (in translations) then don't create the combobox
+            if (!translations.isEmpty() && !(translations.size() == 1 && (*translations.begin()) == index.model()->data(index, Qt::DisplayRole).toString())) {
+
+                QComboBox *translationCombo = new QComboBox(parent);
+                translationCombo->setFrame(false);
+
                 translationCombo->addItems(translations.toList());
 
-            translationCombo->setEditable(true);
-            translationCombo->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
-            translationCombo->setEditText(index.model()->data(index, Qt::DisplayRole).toString());
-    
-            return translationCombo;
+                translationCombo->setEditable(true);
+                translationCombo->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
+                translationCombo->setEditText(index.model()->data(index, Qt::DisplayRole).toString());
+
+                return translationCombo;
+            }
         }
     }
 
@@ -162,10 +171,13 @@ void VocabularyDelegate::setEditorData(QWidget * editor, const QModelIndex & ind
     switch (VocabularyModel::columnType(index.column())) {
     case (VocabularyModel::Translation): {
         if (VocabularyModel::columnType( index.column() ) == VocabularyModel::Translation) {
-            QString value = index.model()->data(index, Qt::DisplayRole).toString();
-            QComboBox * translationCombo = qobject_cast<QComboBox*>(editor);
-            translationCombo->setEditText(value);
-            break;
+            QSet<QString> translations = getTranslations(index);
+            if (!translations.isEmpty() && !(translations.size() == 1 && (*translations.begin()) == index.model()->data(index, Qt::DisplayRole).toString())) {
+                QString value = index.model()->data(index, Qt::DisplayRole).toString();
+                QComboBox * translationCombo = qobject_cast<QComboBox*>(editor);
+                translationCombo->setEditText(value);
+                break;
+            }
         }
     }
     default: {
@@ -215,9 +227,12 @@ Q_ASSERT(expression);
     }
     case (VocabularyModel::Translation): {
         if (VocabularyModel::columnType( index.column() ) == VocabularyModel::Translation) {
-            QComboBox * translationCombo = qobject_cast<QComboBox*>(editor);
-            model->setData(index,translationCombo->currentText());
-            break;
+            QSet<QString> translations = getTranslations(index);
+            if (!translations.isEmpty() && !(translations.size() == 1 && (*translations.begin()) == index.model()->data(index, Qt::DisplayRole).toString())) {
+                QComboBox * translationCombo = qobject_cast<QComboBox*>(editor);
+                model->setData(index,translationCombo->currentText());
+                break;
+            }
         }
     }
     default: {
