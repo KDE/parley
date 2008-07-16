@@ -33,7 +33,7 @@ def testKUrl():
   #l.setImageUrl("/home/kde-devel/image.jpg");
   #print l.imageUrl()
   
-def testAction():
+def registerActions():
   newaction = Parley.newAction("my_script1")
   print newaction
   newaction.text="My script 1"
@@ -99,19 +99,20 @@ def test_old():
   lesson.removeEntry(0)
   print lesson.entryCount()
 
-print Parley.languageCodes()
-print Parley.languageCodeToName("en_US")
+#print Parley.languageCodes()
+#print Parley.languageCodeToName("en_US")
 
 #doc = Parley.document()
 #doc.callFromScriptTest()
-Parley.document.callFromScriptTest()
 
-doc = Parley.document
-doc.name = "Hi"
-doc.printName()
+#Parley.document.callFromScriptTest()
+
+#doc = Parley.document
+#doc.name = "Hi"
+#doc.printName()
 
 print "TEST ACTION"
-testAction()
+registerActions()
 
 #print "OPENING DOCUMENT"
 ##Parley.open('/home/kde-devel/My\ Vocabularies/test.kvtml')

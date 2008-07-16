@@ -138,11 +138,6 @@ public slots:
     void slotShowScriptManager();
 
     /**
-     * Translate the words of the active lesson
-     */
-    void slotTranslateLesson();
-
-    /**
      * Show the tip of the day (force it to be shown)
      */
     void tipOfDay();
