@@ -33,8 +33,24 @@ def testKUrl():
   #l.setImageUrl("/home/kde-devel/image.jpg");
   #print l.imageUrl()
   
-  
+def testAction():
+  newaction = Parley.newAction("my_script1")
+  print newaction
+  newaction.text="My script 1"
+  Parley.connect(newaction,"triggered()",actionFunction)
+  #Parley.registerAction("myscript1_action",newaction)
+  #connect(menu_testscript, SIGNAL(triggered()),  this, SLOT(slotTranslateLesson()))
+  return
+
+def actionFunction():
+  print "Action called!!"
+  return
+
 def test():
+    print "Test from myscript1.py"
+    testAction()
+  
+def test_old():
   print "Test from myscript1.py"
   print Parley.document.rootLesson.name
   #addNewEntry()
@@ -86,6 +102,9 @@ Parley.document.callFromScriptTest()
 doc = Parley.document
 doc.name = "Hi"
 doc.printName()
+
+print "TEST ACTION"
+testAction()
 
 #print "OPENING DOCUMENT"
 ##Parley.open('/home/kde-devel/My\ Vocabularies/test.kvtml')

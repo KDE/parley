@@ -72,6 +72,7 @@
 #include <KRecentFilesAction>
 #include <KToggleAction>
 #include <KActionMenu>
+#include <KMenuBar>
 #include <KMessageBox>
 #include <KTipDialog>
 #include <KCharSelect>
@@ -111,8 +112,6 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
 
     initActions();
 
-    initScripts();
-
     // these connects need the model to exist
 //     QAction * actionRestoreNativeOrder = actionCollection()->action("restore_native_order");
 //     m_tableView->horizontalHeader()->addAction(actionRestoreNativeOrder);
@@ -144,6 +143,8 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
 
     // save position of dock windows etc
     setAutoSaveSettings();
+
+    initScripts();
 
     // finally show tip-of-day ( if the user wants it :) )
     QTimer::singleShot( 0, this, SLOT( startupTipOfDay() ) );
@@ -790,6 +791,10 @@ void ParleyApp::initActions()
 
     KAction* findVocabulary = KStandardAction::find(m_searchLine, SLOT(setFocus()), actionCollection());
 
+// SCRIPTS MENU
+//     QMenu * scriptsMenu = menuBar()->addMenu(i18n("Scriptss"));
+//     scriptsMenu->addAction(i18n("Test"));
+    
     //Script Manager Menu Action
     KAction* menu_scriptManager =new KAction(this);
     actionCollection()->addAction("show_script_manager", menu_scriptManager);
@@ -797,11 +802,17 @@ void ParleyApp::initActions()
     menu_scriptManager->setText(i18n("&Script Manager"));
     connect(menu_scriptManager, SIGNAL(triggered()),  this, SLOT(slotShowScriptManager()));
 
-    KAction* menu_translateLesson =new KAction(this);
-    actionCollection()->addAction("translate_lesson", menu_translateLesson);
-    menu_translateLesson->setIcon(KIcon("set-language"));
-    menu_translateLesson->setText(i18n("&Translate Lesson"));
-    connect(menu_translateLesson, SIGNAL(triggered()),  this, SLOT(slotTranslateLesson()));
+//     KAction* menu_translateLesson =new KAction(this);
+//     actionCollection()->addAction("translate_lesson", menu_translateLesson);
+//     menu_translateLesson->setIcon(KIcon("set-language"));
+//     menu_translateLesson->setText(i18n("&Translate Lesson"));
+//     connect(menu_translateLesson, SIGNAL(triggered()),  this, SLOT(slotTranslateLesson()));
+// 
+//     KAction* menu_testscript =new KAction(this);
+//     actionCollection()->addAction("test_script", menu_testscript);
+//     menu_testscript->setIcon(KIcon("set-language"));
+//     menu_testscript->setText(i18n("&Test Script"));
+//     connect(menu_testscript, SIGNAL(triggered()),  this, SLOT(slotTranslateLesson()));
 
     KToggleAction *oldPractice = actionCollection()->add<KToggleAction>("config_oldPractice");
     oldPractice->setText(i18n("Old Practice Dialogs"));
@@ -1063,3 +1074,5 @@ ParleyDocument* ParleyApp::parleyDocument()
 
 
 #include "parley.moc"
+
+

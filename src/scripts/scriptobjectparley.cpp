@@ -22,11 +22,13 @@
 #include <KLocale>
 #include <KGlobal>
 #include <KDebug>
+#include <KActionCollection>
+#include <KMenuBar>
 
 namespace Scripting
 {
 
-    Parley::Parley ( ParleyApp * parley ) : QObject(), m_parleyApp(parley)
+    Parley::Parley ( ParleyApp * parley ) : QObject(), m_parleyApp ( parley )
     {
         m_translator = 0;
         m_doc = new Document ( m_parleyApp->parleyDocument()->document() );
@@ -70,8 +72,29 @@ namespace Scripting
 
     QObject* Scripting::Parley::getActiveLesson()
     {
-        return new Lesson(m_parleyApp->m_vocabularyModel->lesson());
+        return new Lesson ( m_parleyApp->m_vocabularyModel->lesson() );
+    }
+
+
+    KAction * Scripting::Parley::newAction(const QString & name)
+    {
+        //unplug action list (orelse it will add twice the same entries
+        m_parleyApp->unplugActionList("scripts_actionlist");
+        //create new action
+        KAction* action = new KAction(m_parleyApp);
+        //add to action collection
+        m_parleyApp->actionCollection()->addAction(name,action);
+        //add it to actions menu list
+        m_scriptActions.push_back(action);
+        //plug the action list
+        m_parleyApp->plugActionList("scripts_actionlist",m_scriptActions);
+
+        return action;
+
     }
 
 }
+
+
+
 

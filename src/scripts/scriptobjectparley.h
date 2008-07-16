@@ -15,6 +15,7 @@
 #include "scriptobjectdocument.h"
 
 #include <QObject>
+#include <KAction>
 
 class ParleyApp;
 class Translator;
@@ -88,6 +89,12 @@ namespace Scripting
 
 //             void updateDocument() { m_parleyApp->updateDocument(); }
 
+            /**
+             *
+             * @return
+             */
+            KAction * newAction ( const QString & name );
+
         Q_SIGNALS:
             void translateWord ( QString word, QString fromLanguage, QString toLanguage );
             void translationFinished ( const QString & word,const QString& fromLanguage,const QString& toLanguage );
@@ -98,6 +105,7 @@ namespace Scripting
             Translator* m_translator;
             Document* m_doc;
             ParleyApp * m_parleyApp;
+            QList<QAction*> m_scriptActions;
     };
 
 }

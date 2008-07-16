@@ -23,8 +23,6 @@
       <Separator/>
       <Action name="tools_spelling" />
       <Action name="vocab_remove_grades" />
-      <Action name="show_script_manager"/>
-      <Action name="translate_lesson" />
   </Menu>
   <Menu name="view" >
       <text>View</text>
@@ -68,6 +66,12 @@
    <Action name="config_oldPractice" />
    <Separator/>
    <Action name="show_statistics" />
+  </Menu>
+  <Menu name="scripts" >
+    <text>&amp;Scripts</text>
+    <ActionList name="scripts_actionlist" />
+    <Separator/>
+    <Action name="show_script_manager" />
   </Menu>
   <Menu name="settings" >
   </Menu>

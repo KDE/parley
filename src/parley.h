@@ -106,7 +106,6 @@ public:
      */
     ParleyDocument* parleyDocument();
 
-
 public slots:
     /** Update the title bar of the main window with the current document */
     void slotUpdateWindowCaption();
@@ -221,16 +220,16 @@ private:
     friend class ParleyDocument;
     friend class Scripting::Parley;
 
-    // the name of the executable
+    /// the name of the executable
     QString m_appName;
 
     //Script Manager
     ScriptManager m_scriptManager;
 
-    //script objects (objects that will be used from inside the scripts)
+    ///script objects (objects that will be used from inside the scripts)
     Scripting::Parley* m_scriptObjectParley;
 
-    //stores all the translations of a vocabulary word
+    ///stores all the translations of a vocabulary word
     Translator m_translator;
 };
 
