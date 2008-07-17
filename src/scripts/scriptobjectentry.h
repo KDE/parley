@@ -35,6 +35,7 @@ namespace Scripting
             Q_PROPERTY ( Lesson * lesson READ lesson )
             Q_PROPERTY ( bool active READ isActive WRITE setActive )
             Q_PROPERTY ( QVariantList translationIndices READ translationIndices )
+            Q_PROPERTY ( QVariantList translations READ translations )
 //             Q_PROPERTY ( int sizeHint READ sizeHint WRITE setSizeHint)
         public:
             /** default constructor for an empty vocabulary expression
@@ -65,6 +66,9 @@ namespace Scripting
 
             KEduVocExpression * kEduVocEntry() const { return m_expression; }
 
+            template <class T, class S>
+            QVariantList toVariantList ( QList<T*> objList ) const;
+
             //Property: lesson [get method - read-only]
             Lesson * lesson() const { return new Lesson ( m_expression->lesson() ); }
 
@@ -79,6 +83,9 @@ namespace Scripting
 
             //Property: translationIndices [get method - read-only]
             QVariantList translationIndices() const;
+
+            //Property: translations [get method - read-only]
+            QVariantList translations() const;
 
             //for assignlable type
             Expression & operator= ( const Expression &other );
@@ -124,6 +131,20 @@ namespace Scripting
         private:
             KEduVocExpression* m_expression;
     };
+
+
+    template <class T, class S>
+    QVariantList Expression::toVariantList ( QList<T*> objList ) const
+    {
+        QVariantList list;
+        foreach ( T * t, objList )
+        {
+            QObject * obj = new S ( t );
+            list.push_back ( qVariantFromValue ( obj ) );
+        }
+        return list;
+    }
+
 
 }
 

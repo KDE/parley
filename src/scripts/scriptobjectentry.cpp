@@ -47,10 +47,22 @@ namespace Scripting
     QVariantList Expression::translationIndices() const
     {
         QVariantList vlist;
-        foreach (int k, m_expression->translationIndices()) {
-            vlist.push_back(QVariant(k));
+        foreach ( int k, m_expression->translationIndices() )
+        {
+            vlist.push_back ( QVariant ( k ) );
         }
         return vlist;
+    }
+
+    QVariantList Expression::translations() const
+    {
+        //build a list of all the translations
+        QList<KEduVocTranslation *> translations;
+        foreach ( int k, m_expression->translationIndices() )
+            if (m_expression->translation(k))
+                translations.push_back(m_expression->translation(k));
+        //convert it to QVariantList and return it
+        return toVariantList<KEduVocTranslation,Translation>(translations);
     }
 
     Expression & Expression::operator= ( const Expression &other )

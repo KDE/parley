@@ -33,8 +33,4 @@ namespace Scripting
     {
     }
 
-//     QVariantList Translation::conjugationTenses() const {
-        
-//     }
-
 }

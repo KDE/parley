@@ -26,7 +26,7 @@ namespace Scripting
 
         @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
     */
-    class Translation : Text
+    class Translation : public Text
     {
             Q_OBJECT
             Q_PROPERTY ( QString pronunciation READ pronunciation WRITE setPronunciation )
@@ -39,6 +39,9 @@ namespace Scripting
             Q_PROPERTY ( QString superlative READ superlative WRITE setSuperlative )
             Q_PROPERTY ( QStringList multipleChoice READ multipleChoice )
             Q_PROPERTY ( QString soundUrl READ soundUrl WRITE setSoundUrl )
+            Q_PROPERTY ( QVariantList falseFriends READ falseFriends )
+            Q_PROPERTY ( QVariantList synonyms READ synonyms )
+            Q_PROPERTY ( QVariantList antonyms READ antonyms )
         public:
             /**
              * Default constructor for an empty translation.
@@ -60,6 +63,9 @@ namespace Scripting
             ~Translation();
 
             KEduVocTranslation* kEduVocTranslation() { return m_translation; }
+
+            template <class T, class S>
+            QVariantList toVariantList ( QList<T*> objList ) const;
 
             //Property: pronunciation (see KEduVocTranslation for details)
             QString pronunciation() const { return m_translation->pronunciation(); }
@@ -200,26 +206,26 @@ namespace Scripting
             /** set the image url for this translation
              * @param url               url of the image
              */
-            void setImageUrl ( const QString &url ) { m_translation->setImageUrl(url); }
+            void setImageUrl ( const QString &url ) { m_translation->setImageUrl ( url ); }
 
 
             /**
              * returns false friends of this expression
              * @return list of false friends
              */
-//             QList<KEduVocTranslation*> falseFriends() const;
+            QVariantList falseFriends() const { return toVariantList<KEduVocTranslation,Translation> ( m_translation->falseFriends() ); }
 
             /**
              * returns synonyms of this expression
              * @return synonyms
              */
-//             QList<KEduVocTranslation*> synonyms() const;
+            QVariantList synonyms() const { return toVariantList<KEduVocTranslation,Translation> ( m_translation->synonyms() ); }
 
             /**
              * returns antonyms of this expression
              * @return antonyms
              */
-//             QList<KEduVocTranslation*> antonyms() const;
+            QVariantList antonyms() const { return toVariantList<KEduVocTranslation,Translation> ( m_translation->antonyms() ); }
 
             /**
              * Equal operator to assing a translation to another one.
@@ -279,6 +285,19 @@ namespace Scripting
             KEduVocTranslation * m_translation;
 
     };
+
+    template <class T, class S>
+    QVariantList Translation::toVariantList ( QList<T*> objList ) const
+    {
+        QVariantList list;
+        foreach ( T * t, objList )
+        {
+            QObject * obj = new S ( t );
+            list.push_back ( qVariantFromValue ( obj ) );
+        }
+        return list;
+    }
+
 
 }
 

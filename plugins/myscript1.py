@@ -46,8 +46,20 @@ def registerActions():
 
 def actionFunction():
   print "Action called!!"
-  entries = Parley.activeLesson.getEntries()
-  print entries
+  entries = Parley.activeLesson.entries(True)
+  
+  for entry in entries:
+    s = ""
+    for tr in entry.translations:
+      print tr
+      if tr.text:
+        s += tr.text + " "
+    print s;
+    
+  print "sublessons"
+  for sublesson in Parley.activeLesson.childLessons:
+    print sublesson.name
+
   return
 
 def actionFunction2():
@@ -89,8 +101,8 @@ def test_old():
     a = getattr(lesson.entry(0,True).translation(1),attr)
     print attr, a
 
-  for i in range(0,lesson.entryCount(True)):
-     print i,lesson.entry(i,True).translation(0).text,lesson.entry(i,True).translation(1).grade
+  for entry in lesson.entries(true):
+     print entry.translation(0).text,lesson.entry(i,True).translation(1).grade
      
   for i in range(0,lesson.entryCount(True)):
     entry = lesson.entry(i,True)

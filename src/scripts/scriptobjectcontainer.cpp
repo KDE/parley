@@ -51,4 +51,9 @@ namespace Scripting
         return KEduVocContainer::NotRecursive;
     }
 
+    QVariantList Container::childContainers()
+    {
+        return toVariantList<KEduVocContainer,Container> ( m_container->childContainers() );
+    }
+
 }

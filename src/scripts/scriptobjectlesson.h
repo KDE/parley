@@ -31,11 +31,7 @@ namespace Scripting
     class Lesson : public Container
     {
             Q_OBJECT
-            /// name of the lesson (Read/Write)
-//             Q_PROPERTY ( QString name READ getName WRITE setName )
-            /// entries (Read Only)
-//             Q_PROPERTY ( QList<QObject*> entries READ getEntries )
-
+            Q_PROPERTY ( QVariantList childLessons READ childLessons )
         public:
 
             Lesson ( KEduVocLesson * lesson );
@@ -44,10 +40,11 @@ namespace Scripting
 
             ~Lesson();
 
+            //just to change the name from childContainers to childLessons
+            QVariantList childLessons() { return childContainers(); }
+
         public slots:
-//             QList<Expression> getEntries();
-            QVariantList getEntries();
-//             QObjectList getEntries();
+            QVariantList entries ( bool recursive = false ) const;
             Expression * entry ( int row, bool recursive = false );
             int entryCount ( bool recursive = false );
             void appendEntry ( Expression * entry );
@@ -76,7 +73,6 @@ namespace Scripting
             Expression* newEntry ( const QStringList & translations );
 
             //child lesson public functions (just to change the names from "Container" to "Lesson")
-
             void appendChildLesson ( Container *child ) { appendChildContainer ( child ); }
             void insertChildLesson ( int row, Container *child ) { insertChildContainer ( row, child ); }
             void deleteChildLesson ( int row ) { deleteChildContainer ( row ); }
@@ -89,9 +85,9 @@ namespace Scripting
              * @param name lesson name
              * @return the child lesson
              */
-            Container *childLesson ( const QString& name ) { return childContainer(name); }
+            Container *childLesson ( const QString& name ) { return childContainer ( name ); }
 
-//             QList<KEduVocContainer *> childContainers();
+
 
             int childLessonCount() const { return childContainerCount(); }
 

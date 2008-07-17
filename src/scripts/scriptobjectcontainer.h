@@ -31,9 +31,10 @@ namespace Scripting
             Q_PROPERTY ( QString name READ name WRITE setName )
             Q_PROPERTY ( bool inPractice READ inPractice WRITE setInPractice )
             Q_PROPERTY ( QString imageUrl READ imageUrl WRITE setImageUrl )
+            Q_PROPERTY ( QVariantList childContainers READ childContainers )
         public:
 
-            Container ( KEduVocContainer * container = 0);
+            Container ( KEduVocContainer * container = 0 );
 
             /** copy constructor for d-pointer safe copying */
 //             Container ( const Container &other );
@@ -41,6 +42,9 @@ namespace Scripting
 //             Container ( const QString& name, KEduVocContainer::EnumContainerType type, KEduVocContainer *parent = 0 );
 
             ~Container();
+
+            template <class T, class S>
+            QVariantList toVariantList ( QList<T*> objList ) const;
 
             KEduVocContainer * kEduVocContainer() { return m_container; }
 
@@ -69,7 +73,7 @@ namespace Scripting
              */
             Container *childContainer ( const QString& name ) { return new Container ( m_container->childContainer ( name ) ); }
 
-//             QList<KEduVocContainer *> childContainers();
+            QVariantList childContainers();
 
             int childContainerCount() const { return m_container->childContainerCount(); }
 
@@ -82,7 +86,7 @@ namespace Scripting
             /** set the image url for this container
              * @param url               url of the image
              */
-            void setImageUrl ( const QString & url ) { m_container->setImageUrl(url); }
+            void setImageUrl ( const QString & url ) { m_container->setImageUrl ( url ); }
 
         public slots:
 
@@ -98,6 +102,7 @@ namespace Scripting
 //             KEduVocContainer& operator= ( const KEduVocContainer& );
 
             /** get a list of all entries in the container */
+//virtual functions (no need to be here)
 //             virtual QList < KEduVocExpression* > entries ( EnumEntriesRecursive recursive = NotRecursive ) =0;
 //             virtual int entryCount ( EnumEntriesRecursive recursive = NotRecursive ) =0;
 //             virtual KEduVocExpression* entry ( int row, EnumEntriesRecursive recursive = NotRecursive ) =0;
@@ -140,6 +145,20 @@ namespace Scripting
             KEduVocContainer * m_container;
     };
 
+
+    template <class T, class S>
+    QVariantList Container::toVariantList ( QList<T*> objList ) const
+    {
+        QVariantList list;
+        foreach ( T * t, objList )
+        {
+            QObject * obj = new S ( t );
+            list.push_back ( qVariantFromValue ( obj ) );
+        }
+        return list;
+    }
+
 }
+
 
 #endif
