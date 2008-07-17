@@ -45,6 +45,19 @@ namespace Scripting
 //     }
 
 
+    QVariantList Lesson::getEntries()
+    {
+        QVariantList list;
+        KEduVocExpression* entry;
+        foreach ( entry, m_lesson->entries ( KEduVocContainer::Recursive ) ) {
+//              QVariant v(QVariant::UserType,new Expression(entry));
+            QObject * obj = new Expression(entry);
+             QVariant v = qVariantFromValue(obj);
+             list.push_back( v );
+        }
+        return list;
+    }
+
 //     QList<Expression> Lesson::getEntries()
 //     QList<QVariant> Lesson::getEntries()
 //     {

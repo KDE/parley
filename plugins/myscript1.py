@@ -46,6 +46,8 @@ def registerActions():
 
 def actionFunction():
   print "Action called!!"
+  entries = Parley.activeLesson.getEntries()
+  print entries
   return
 
 def actionFunction2():
