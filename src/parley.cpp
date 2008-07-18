@@ -59,8 +59,8 @@
 #include "prefs.h"
 
 #include "scripts/scriptdialog.h"
-#include "scripts/scripting/scriptobjectparley.h"
-#include "scripts/scripting/scriptobjectexpression.h"
+#include "scripts/scripting/parley.h"
+#include "scripts/scripting/expression.h"
 
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>

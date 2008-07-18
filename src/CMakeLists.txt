@@ -194,13 +194,13 @@ set(languagedialogs_SRCS
 set(scripts_SRCS
     scripts/scriptdialog.cpp
     scripts/scriptmanager.cpp
-    scripts/scripting/scriptobjectparley.cpp
-    scripts/scripting/scriptobjectdocument.cpp
-    scripts/scripting/scriptobjectlesson.cpp
-    scripts/scripting/scriptobjectexpression.cpp
-    scripts/scripting/scriptobjecttranslation.cpp
-    scripts/scripting/scriptobjecttext.cpp
-    scripts/scripting/scriptobjectcontainer.cpp
+    scripts/scripting/parley.cpp
+    scripts/scripting/document.cpp
+    scripts/scripting/lesson.cpp
+    scripts/scripting/expression.cpp
+    scripts/scripting/translation.cpp
+    scripts/scripting/text.cpp
+    scripts/scripting/container.cpp
     scripts/script.cpp
     scripts/translator.cpp
 )

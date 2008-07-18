@@ -12,9 +12,9 @@
 
 #include "../scriptmanager.h"
 
-#include "scriptobjectparley.h"
-#include "scriptobjectdocument.h"
-#include "scriptobjectlesson.h"
+#include "./parley.h"
+#include "document.h"
+#include "lesson.h"
 
 #include "../../vocabulary/vocabularymodel.h"
 

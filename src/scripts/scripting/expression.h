@@ -14,7 +14,7 @@
 
 #include <keduvocexpression.h>
 
-#include "scriptobjectlesson.h"
+#include "lesson.h"
 
 #include <QObject>
 #include <QVariantList>

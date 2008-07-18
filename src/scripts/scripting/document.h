@@ -14,7 +14,7 @@
 
 #include <keduvocdocument.h>
 
-#include "scriptobjectlesson.h"
+#include "lesson.h"
 
 #include <QObject>
 

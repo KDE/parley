@@ -12,7 +12,7 @@
 #ifndef SCRIPTOBJECTPARLEY_H
 #define SCRIPTOBJECTPARLEY_H
 
-#include "scriptobjectdocument.h"
+#include "document.h"
 
 #include <QObject>
 #include <KAction>

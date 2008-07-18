@@ -10,7 +10,6 @@
 //
 //
 #include "scriptmanager.h"
-// #include "scriptobjectparley.h"
 
 #include <KStandardDirs>
 #include <KDebug>

@@ -9,8 +9,8 @@
 // Copyright: See COPYING file that comes with this distribution
 //
 //
-#include "scriptobjectlesson.h"
-#include "scriptobjectexpression.h"
+#include "lesson.h"
+#include "expression.h"
 
 #include <keduvocexpression.h>
 

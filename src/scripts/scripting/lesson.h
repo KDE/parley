@@ -13,7 +13,7 @@
 #define SCRIPTINGSCRIPTOBJECTLESSON_H
 
 #include <keduvoclesson.h>
-#include "scriptobjectcontainer.h"
+#include "container.h"
 
 #include <QObject>
 #include <KSharedPtr>

@@ -13,8 +13,8 @@
 #define SCRIPTINGSCRIPTOBJECTTRANSLATION_H
 
 #include "keduvoctranslation.h"
-#include "scriptobjectexpression.h"
-#include "scriptobjecttext.h"
+#include "expression.h"
+#include "text.h"
 
 #include <QObject>
 

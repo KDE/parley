@@ -9,7 +9,7 @@
 // Copyright: See COPYING file that comes with this distribution
 //
 //
-#include "scriptobjectcontainer.h"
+#include "container.h"
 
 namespace Scripting
 {

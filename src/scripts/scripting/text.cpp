@@ -9,7 +9,7 @@
 // Copyright: See COPYING file that comes with this distribution
 //
 //
-#include "scriptobjecttext.h"
+#include "text.h"
 
 namespace Scripting
 {
