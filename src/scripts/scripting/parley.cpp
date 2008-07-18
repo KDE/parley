@@ -81,7 +81,7 @@ namespace Scripting
     }
 
 
-    KAction * Scripting::Parley::newAction ( const QString & name )
+    QObject * Scripting::Parley::newAction ( const QString & name )
     {
         //create new action
         KAction* action = new KAction ( m_parleyApp );

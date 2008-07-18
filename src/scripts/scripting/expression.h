@@ -37,8 +37,8 @@ namespace Scripting
             Q_OBJECT
             Q_PROPERTY ( Lesson * lesson READ lesson )
             Q_PROPERTY ( bool active READ isActive WRITE setActive )
-            Q_PROPERTY ( QVariantList translationIndices READ translationIndices )
-            Q_PROPERTY ( QVariantList translations READ translations )
+//             Q_PROPERTY ( QVariantList translationIndices READ translationIndices )
+//             Q_PROPERTY ( QVariantList translations READ translations )
 //             Q_PROPERTY ( int sizeHint READ sizeHint WRITE setSizeHint)
         public:
             /** default constructor for an empty vocabulary expression
@@ -84,12 +84,6 @@ namespace Scripting
             //int sizeHint() const { return m_expression->sizeHint(); }
             //void setSizeHint( int sizeHint ) { m_expression->setSizeHint(sizeHint); }
 
-            //Property: translationIndices [get method - read-only]
-            QVariantList translationIndices() const;
-
-            //Property: translations [get method - read-only]
-            QVariantList translations() const;
-
             //for assignlable type
             Expression & operator= ( const Expression &other );
             bool operator== ( const Expression &other ) const;
@@ -129,6 +123,13 @@ namespace Scripting
              */
             Translation* translation ( int index );
             Translation* translation ( int index ) const;
+
+            
+            QVariantList translationIndices() const;
+
+            
+            QVariantList translations() const;
+
 
 
         private:

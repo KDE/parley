@@ -22,18 +22,30 @@ namespace Scripting
 {
 
     /**
-    exposes KEduVocText to Parley scripting
-
-        @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
-    */
+     * This Scripting class can not be directly accessed but it's inherited by the Translation class. So
+     * all the methods/properties here are available to the Translation class
+     * @code
+     * #how to access a translation object
+     * import Parley
+     * for entry in Parley.document.rootLesson.entries():
+     *     for translation in entry.translations():
+     *         
+     * @endcode
+     * @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
+     */
     class Text : public QObject
     {
             Q_OBJECT
+            /**
+             * The translation as string (the word itself)
+             * @code
+             * @endcode
+             * tr = Parley.activeLesson.
+             */
             Q_PROPERTY ( QString text READ text WRITE setText )
             Q_PROPERTY ( unsigned int practiceCount READ practiceCount WRITE setPracticeCount )
             Q_PROPERTY ( unsigned int badCount READ badCount WRITE setBadCount )
             Q_PROPERTY ( unsigned int grade READ grade() WRITE setGrade )
-            /// @todo check if QDateTime is accessible by scripts
             Q_PROPERTY ( QDateTime practiceDate READ practiceDate WRITE setPracticeDate )
         public:
             /** default constructor */

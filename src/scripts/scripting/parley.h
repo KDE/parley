@@ -93,10 +93,10 @@ namespace Scripting
 //             void updateDocument() { m_parleyApp->updateDocument(); }
 
             /**
-             *
+             * 
              * @return
              */
-            KAction * newAction ( const QString & name );
+            QObject * newAction ( const QString & name );
 
         Q_SIGNALS:
             void translateWord ( QString word, QString fromLanguage, QString toLanguage );
