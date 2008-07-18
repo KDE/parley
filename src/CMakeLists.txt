@@ -197,7 +197,7 @@ set(scripts_SRCS
     scripts/scriptobjectparley.cpp
     scripts/scriptobjectdocument.cpp
     scripts/scriptobjectlesson.cpp
-    scripts/scriptobjectentry.cpp
+    scripts/scriptobjectexpression.cpp
     scripts/scriptobjecttranslation.cpp
     scripts/scriptobjecttext.cpp
     scripts/scriptobjectcontainer.cpp

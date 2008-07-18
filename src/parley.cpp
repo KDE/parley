@@ -60,7 +60,7 @@
 
 #include "scripts/scriptdialog.h"
 #include "scripts/scriptobjectparley.h"
-#include "scripts/scriptobjectentry.h"
+#include "scripts/scriptobjectexpression.h"
 
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>

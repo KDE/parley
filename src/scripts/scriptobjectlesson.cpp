@@ -10,7 +10,7 @@
 //
 //
 #include "scriptobjectlesson.h"
-#include "scriptobjectentry.h"
+#include "scriptobjectexpression.h"
 
 #include <keduvocexpression.h>
 

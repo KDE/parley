@@ -9,7 +9,7 @@
 // Copyright: See COPYING file that comes with this distribution
 //
 //
-#include "scriptobjectentry.h"
+#include "scriptobjectexpression.h"
 #include "scriptobjecttranslation.h"
 
 namespace Scripting
