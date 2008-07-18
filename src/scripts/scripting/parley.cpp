@@ -12,17 +12,16 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-#include "../scriptmanager.h"
-
-#include "./parley.h"
-#include "document.h"
-#include "lesson.h"
-
-#include "../../vocabulary/vocabularymodel.h"
-
-#include "../translator.h"
 
 #include "../../parley.h"
+#include "../../vocabulary/vocabularymodel.h"
+
+#include "../scriptmanager.h"
+#include "../translator.h"
+
+#include "parley.h"
+#include "document.h"
+#include "lesson.h"
 
 #include <KLocale>
 #include <KGlobal>
@@ -79,7 +78,6 @@ namespace Scripting
     {
         return new Lesson ( m_parleyApp->m_vocabularyModel->lesson() );
     }
-
 
     QObject * Scripting::Parley::newAction ( const QString & name )
     {

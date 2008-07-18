@@ -67,7 +67,7 @@ namespace Scripting
              * @param name Name of the lesson
              * @return The new lesson
              */
-            Lesson * newLesson ( const QString & name ) { return new Lesson ( name ); }
+            QObject * newLesson ( const QString & name ) { return new Lesson ( name ); }
 
             /**
              * Returns all the lessons in the document (including sublessons)

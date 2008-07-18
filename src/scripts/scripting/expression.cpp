@@ -90,12 +90,12 @@ namespace Scripting
 //         m_expression->setTranslation(index,t->kEduVocTranslation());
 //     }
 
-    Translation* Expression::translation ( int index )
+    QObject* Expression::translation ( int index )
     {
         return new Translation ( m_expression->translation ( index ) );
     }
 
-    Translation* Expression::translation ( int index ) const
+    QObject* Expression::translation ( int index ) const
     {
         return new Translation ( m_expression->translation ( index ) );
     }

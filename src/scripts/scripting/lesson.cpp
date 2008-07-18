@@ -65,7 +65,7 @@ namespace Scripting
         return toVariantList<KEduVocExpression,Expression> ( m_lesson->entries ( boolToEnum ( recursive ) ) );
     }
 
-    Expression * Lesson::entry ( int row, bool recursive )
+    QObject * Lesson::entry ( int row, bool recursive )
     {
         return new Expression ( m_lesson->entry ( row, boolToEnum ( recursive ) ) );
     }
@@ -99,17 +99,17 @@ namespace Scripting
         }
     }
 
-    Expression* Lesson::newEntry()
+    QObject* Lesson::newEntry()
     {
         return new Expression();
     }
 
-    Expression* Lesson::newEntry ( const QString & expression )
+    QObject* Lesson::newEntry ( const QString & expression )
     {
         return new Expression ( expression );
     }
 
-    Expression* Lesson::newEntry ( const QStringList & translations )
+    QObject* Lesson::newEntry ( const QStringList & translations )
     {
         return new Expression ( translations );
     }

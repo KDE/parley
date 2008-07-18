@@ -46,7 +46,7 @@ namespace Scripting
 
         public slots:
             QVariantList entries ( bool recursive = false ) const;
-            Expression * entry ( int row, bool recursive = false );
+            QObject * entry ( int row, bool recursive = false );
             int entryCount ( bool recursive = false );
             void appendEntry ( Expression * entry );
             void insertEntry ( int index, Expression * entry );
@@ -57,28 +57,28 @@ namespace Scripting
              * Creates and returns a new Expression Object
              * @return A new Expression object
              */
-            Expression* newEntry();
+            QObject* newEntry();
 
             /**
              * Creates and returns a new Expression Object
              * @param expression
              * @return A new Expression object
              */
-            Expression* newEntry ( const QString & expression );
+            QObject* newEntry ( const QString & expression );
 
             /**
              * Creates and returns a new Expression Object
              * @param translations
              * @return A new Expression object
              */
-            Expression* newEntry ( const QStringList & translations );
+            QObject* newEntry ( const QStringList & translations );
 
             //child lesson public functions (just to change the names from "Container" to "Lesson")
             void appendChildLesson ( Lesson *child ) { appendChildContainer ( child ); }
             void insertChildLesson ( int row, Lesson *child ) { insertChildContainer ( row, child ); }
             void deleteChildLesson ( int row ) { deleteChildContainer ( row ); }
             void removeChildLesson ( int row ) { removeChildContainer ( row ); }
-            Lesson *childLesson ( int row ) { return new Lesson(m_lesson->childContainer(row)); }
+            QObject *childLesson ( int row ) { return new Lesson(m_lesson->childContainer(row)); }
 
             /**
              * Retrieve a child container by its name
@@ -86,7 +86,7 @@ namespace Scripting
              * @param name lesson name
              * @return the child lesson
              */
-            Lesson *childLesson ( const QString& name ) { return new Lesson(m_lesson->childContainer(name)); }
+            QObject *childLesson ( const QString& name ) { return new Lesson(m_lesson->childContainer(name)); }
 
             QVariantList childLessons(bool recursive = false);
 
