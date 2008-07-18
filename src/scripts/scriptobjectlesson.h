@@ -31,7 +31,6 @@ namespace Scripting
     class Lesson : public Container
     {
             Q_OBJECT
-            Q_PROPERTY ( QVariantList childLessons READ childLessons )
         public:
 
             Lesson ( KEduVocLesson * lesson );
