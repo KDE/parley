@@ -12,7 +12,7 @@
 #ifndef SCRIPT_H
 #define SCRIPT_H
 
-#include "scriptobjectparley.h"
+#include "scripting/scriptobjectparley.h"
 
 #include <QString>
 #include <QObject>

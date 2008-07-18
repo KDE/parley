@@ -11,7 +11,7 @@
 //
 #include "scriptdialog.h"
 
-#include "scriptobjectparley.h"
+#include "scripting/scriptobjectparley.h"
 
 #include <KLocale>
 #include <KPluginInfo>

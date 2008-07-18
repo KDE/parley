@@ -29,7 +29,7 @@
 #include "parleydocument.h"
 
 // #include "scripts/scriptmanager.h"
-#include "scripts/scriptobjectparley.h"
+#include "scripts/scripting/scriptobjectparley.h"
 #include "scripts/translator.h"
 
 #include <KXmlGuiWindow>

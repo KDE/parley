@@ -10,17 +10,17 @@
 //
 //
 
-#include "scriptmanager.h"
+#include "../scriptmanager.h"
 
 #include "scriptobjectparley.h"
 #include "scriptobjectdocument.h"
 #include "scriptobjectlesson.h"
 
-#include "../vocabulary/vocabularymodel.h"
+#include "../../vocabulary/vocabularymodel.h"
 
-#include "translator.h"
+#include "../translator.h"
 
-#include "../parley.h"
+#include "../../parley.h"
 
 #include <KLocale>
 #include <KGlobal>
