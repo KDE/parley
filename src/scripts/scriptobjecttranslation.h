@@ -39,9 +39,9 @@ namespace Scripting
             Q_PROPERTY ( QString superlative READ superlative WRITE setSuperlative )
             Q_PROPERTY ( QStringList multipleChoice READ multipleChoice )
             Q_PROPERTY ( QString soundUrl READ soundUrl WRITE setSoundUrl )
-            Q_PROPERTY ( QVariantList falseFriends READ falseFriends )
-            Q_PROPERTY ( QVariantList synonyms READ synonyms )
-            Q_PROPERTY ( QVariantList antonyms READ antonyms )
+//             Q_PROPERTY ( QVariantList falseFriends READ falseFriends )
+//             Q_PROPERTY ( QVariantList synonyms READ synonyms )
+//             Q_PROPERTY ( QVariantList antonyms READ antonyms )
         public:
             /**
              * Default constructor for an empty translation.
@@ -208,25 +208,6 @@ namespace Scripting
              */
             void setImageUrl ( const QString &url ) { m_translation->setImageUrl ( url ); }
 
-
-            /**
-             * returns false friends of this expression
-             * @return list of false friends
-             */
-            QVariantList falseFriends() const { return toVariantList<KEduVocTranslation,Translation> ( m_translation->falseFriends() ); }
-
-            /**
-             * returns synonyms of this expression
-             * @return synonyms
-             */
-            QVariantList synonyms() const { return toVariantList<KEduVocTranslation,Translation> ( m_translation->synonyms() ); }
-
-            /**
-             * returns antonyms of this expression
-             * @return antonyms
-             */
-            QVariantList antonyms() const { return toVariantList<KEduVocTranslation,Translation> ( m_translation->antonyms() ); }
-
             /**
              * Equal operator to assing a translation to another one.
              * @param translation translation to be copied
@@ -279,6 +260,25 @@ namespace Scripting
              * @param antonym
              */
             void removeAntonym ( Translation* antonym ) { m_translation->removeAntonym ( antonym->kEduVocTranslation() ); }
+
+            /**
+             * returns false friends of this expression
+             * @return list of false friends
+             */
+            QVariantList falseFriends() const { return toVariantList<KEduVocTranslation,Translation> ( m_translation->falseFriends() ); }
+
+            /**
+             * returns synonyms of this expression
+             * @return synonyms
+             */
+            QVariantList synonyms() const { return toVariantList<KEduVocTranslation,Translation> ( m_translation->synonyms() ); }
+
+            /**
+             * returns antonyms of this expression
+             * @return antonyms
+             */
+            QVariantList antonyms() const { return toVariantList<KEduVocTranslation,Translation> ( m_translation->antonyms() ); }
+
 
 
         private:

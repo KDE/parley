@@ -31,7 +31,7 @@ namespace Scripting
             Q_PROPERTY ( QString name READ name WRITE setName )
             Q_PROPERTY ( bool inPractice READ inPractice WRITE setInPractice )
             Q_PROPERTY ( QString imageUrl READ imageUrl WRITE setImageUrl )
-            Q_PROPERTY ( QVariantList childContainers READ childContainers )
+//             Q_PROPERTY ( QVariantList childContainers READ childContainers )
         public:
 
             Container ( KEduVocContainer * container = 0 );
@@ -72,8 +72,6 @@ namespace Scripting
              * @return the child container
              */
             Container *childContainer ( const QString& name ) { return new Container ( m_container->childContainer ( name ) ); }
-
-            QVariantList childContainers();
 
             int childContainerCount() const { return m_container->childContainerCount(); }
 
@@ -140,6 +138,8 @@ namespace Scripting
             void resetGrades ( int translation, bool recursive ) { return m_container->resetGrades ( translation, boolToEnum ( recursive ) ); }
 
             double averageGrade ( int translation ) { return m_container->averageGrade ( translation ); }
+
+            QVariantList childContainers();
 
         protected:
             KEduVocContainer * m_container;

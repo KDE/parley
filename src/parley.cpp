@@ -802,18 +802,6 @@ void ParleyApp::initActions()
     menu_scriptManager->setText(i18n("&Script Manager"));
     connect(menu_scriptManager, SIGNAL(triggered()),  this, SLOT(slotShowScriptManager()));
 
-//     KAction* menu_translateLesson =new KAction(this);
-//     actionCollection()->addAction("translate_lesson", menu_translateLesson);
-//     menu_translateLesson->setIcon(KIcon("set-language"));
-//     menu_translateLesson->setText(i18n("&Translate Lesson"));
-//     connect(menu_translateLesson, SIGNAL(triggered()),  this, SLOT(slotTranslateLesson()));
-// 
-//     KAction* menu_testscript =new KAction(this);
-//     actionCollection()->addAction("test_script", menu_testscript);
-//     menu_testscript->setIcon(KIcon("set-language"));
-//     menu_testscript->setText(i18n("&Test Script"));
-//     connect(menu_testscript, SIGNAL(triggered()),  this, SLOT(slotTranslateLesson()));
-
     KToggleAction *oldPractice = actionCollection()->add<KToggleAction>("config_oldPractice");
     oldPractice->setText(i18n("Old Practice Dialogs"));
     connect(oldPractice, SIGNAL(triggered(bool)), this, SLOT(slotConfigOldPractice(bool)));
