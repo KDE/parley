@@ -28,6 +28,7 @@ set(parleypractice_SRCS
     answervalidator.cpp
     testentrymanager.cpp
     entryfilter.cpp
+    feedback.cpp
 )
 kde4_add_ui_files(parleypractice_SRCS entryfilter.ui)
 

@@ -6,15 +6,22 @@ Note on terminology: 'solution' is the correct response. 'answer' is anything th
 Optional:
 progress_bar # this element will be scaled in proportion to bar_background to show progress. Note: if existant, it must be visible.
 progress_bar_background # this element will determine how the bar in scaled. At 100% progress, bar will cover the same area as bar_background
+feedback_box # A feedback sentence is placed here (telling the user if it is correct and hints if it is wrong, etc). This is highly reccomended in a theme.
 
 Optional UI elements: (If these do not exist, they are still available from the menus)
-check_answer_and_continue_button # a button that toggles between displaying 'check answer' and 'continue' is placed here. 
+check_answer_and_continue_button # a button that toggles between displaying 'check answer' and 'continue' is placed here.
 
 Note: These can be turned off in settings; if they are, the buttons won't be shown (ie, make them invisible or it will look wierd)
 skip_known_button # show a button to skip to the next question while signalling you know the solution
 skip_unknown_button # show a button to skip to the next question while signally you don't know the solution
 hint_button # show a button to give a hint.
 show_solution_button # shows the solution and counts the question as incorrectly answered (See flashcard for exception)
+
+Timers: Implement either 0 or 1 of these:
+timer_progress_box # A timer is shown as an embedded QProgressBar.
+timer_digital_clock # A timer is shown as a number in an embedded widget.
+timer_bar / timer_bar_background # A timer is shown as a progress bar (counting down).
+timer_clock # A timer is shown as a graphical clock of some sort.
 
 Written:
 answer_text_box # the text input widget will be placed here

@@ -55,6 +55,7 @@ private slots:
     void comparisonRadioToggled(bool checked);
     void conjugationRadioToggled(bool checked);
     void writtenRadioToggled(bool checked);
+    void multipleChoiceRadioToggled(bool checked);
     void otherRadioToggled(bool checked);
 
     void monolingualPracticeSelected(bool selected);
@@ -67,7 +68,8 @@ private:
         Empty,
         WrittenPractice,
         Conjugation,
-        Comparison
+        Comparison,
+        MultipleChoice
     };
     QStackedLayout* m_optionsStackedLayout;
     QTreeWidget* m_tenseListWidget;

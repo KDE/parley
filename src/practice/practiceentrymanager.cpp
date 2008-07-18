@@ -122,6 +122,8 @@ void PracticeEntryManager::slotNewEntry()
         emit signalNewImage(original->imageUrl());
         emit signalNewSound(original->soundUrl());
 
+        emit signalNewSolution(m_entry->expression()->translation(Prefs::solutionLanguage())->text());
+
         emit signalEntryChanged(m_entry, m_entries);
         emit signalNewEntry();
         --m_numberEntriesRemaining;

@@ -101,6 +101,9 @@ class PracticeEntryManager : public QObject
         /// Emitted when new text is available.
         /// An empty QString signals that there is no assosiated text.
         void signalNewText(const QString&);
+        /// Emitted when a new solution is available.
+        /// Used when modes need the answer but don't need the hassle of the raw PracticeEntry.
+        void signalNewSolution(const QString&);
         /// Emitted when a new image is available.
         /// An empty KUrl signals that there is no assosiated image.
         void signalNewImage(const KUrl&);

@@ -16,6 +16,7 @@
 
 #include <QtCore/QString>
 #include <QtCore/QPair>
+#include <QColor>
 
 #include "statistics.h"
 
@@ -37,6 +38,8 @@ Provides different comparison methods to determine the quality of the answer.
 class AnswerValidator : public QObject
 {
            Q_OBJECT
+
+
     public:
         AnswerValidator(KEduVocDocument* doc, QObject* parent = 0);
 
@@ -66,6 +69,9 @@ class AnswerValidator : public QObject
         /// signalCorrection(1.0, Statistics::Correct, answer) denotes a correct answer;
         /// The qstring is the user answer, which can be recorded if incorrect.
         void signalCorrection(float, Statistics::ErrorType, const QString&);
+        /// This is the text to show the user as feedback.
+        /// Note, the feedback is in html form.
+        void signalFeedback(const QString& htmlfeedback);
     private:
         /**
          * Default correction mechanism.
@@ -98,7 +104,7 @@ class AnswerValidator : public QObject
          * @param word2
          * @param errorType
          */
-        void wordCompare(const QString& solution, const QString& userWord, double& grade, Statistics::ErrorType& errorType);
+        void wordCompare(const QString& solution, const QString& userWord, double& grade, Statistics::ErrorType& errorType, QString& htmlCorrection);
 
         /**
          * Split up a sentence and try to work magic with it...

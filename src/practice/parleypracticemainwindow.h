@@ -45,6 +45,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         class PracticeEntryManager * m_manager;
         class Statistics* m_stats;
         class AnswerValidator* m_validator;
+        class Timer * m_timer;
 
         int m_state;
         Prefs::EnumTestType::type m_mode;
@@ -52,6 +53,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         void setupBase(const QString& desktopFileFilename, class KEduVocDocument * doc = 0);
         void setupActions();
         void setupModeSpecifics();
+        void setupModeIndependent();
 
         // Mode specific setup functions
         void setupWritten();
@@ -69,6 +71,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         /// Forces the entry to be marked as incorrectly answered. Used for when correction isn't neccessary.
         void slotForceIncorrect();
 
+        void slotClose() { queryClose(); };
         bool queryClose();
     signals:
         void signalCheckAnswer(const QString&, const QString&);

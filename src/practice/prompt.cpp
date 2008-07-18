@@ -199,7 +199,7 @@ void MixedLettersPrompt::slotSetText (const QString& solution )
 
 void MixedLettersPrompt::slotAnswerChanged(const QString& answer)
 {
-    for ( int i = 0; i < m_solution.length(); i++ ) {
+    for ( int i = 0; i < m_solution.length() && i < answer.length(); i++ ) {
         if ( answer[i] == m_solution[i] ) {
             m_letters[i]->setHtml("<b><font color=\"#188C18\">" + m_solution[i] + "</font></b>");
         } else {

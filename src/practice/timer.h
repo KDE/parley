@@ -20,6 +20,7 @@
 #define TIMER_H
 
 #include <QTimer>
+
 #include "prefs.h"
 
 /**
@@ -29,13 +30,14 @@
 * This may have a visible widget or be invisible, depending on the practide mode.
 * Some modes (and settings configurations) may not use timers.
 */
-class InvisibleTimer : public QObject
+class Timer : public QObject
 {
     Q_OBJECT
 
     public:
-        InvisibleTimer(QObject * parent = 0);
-        ~InvisibleTimer();
+        Timer(QObject * parent = 0);
+        explicit Timer(bool enable);
+        ~Timer();
 
         /// A typedef for clarity in the Timer functions.
         typedef int Milliseconds;
@@ -45,6 +47,7 @@ class InvisibleTimer : public QObject
         /// Returns the length of the timer
         Milliseconds length() const { return m_length; }
 
+        void makeGUI(class KSvgRenderer* renderer, class QGraphicsScene * scene);
 
     public slots:
         /// Start a timer with a length of ms milliseconds and set m_length to ms.
@@ -53,7 +56,8 @@ class InvisibleTimer : public QObject
         void slotStart();
         /// Stops the timer prematurely (called when the user inputs an answer)
         void slotStop();
-        void slotTimeout();
+        /// Called each second; it checks the time remaining and updates the GUI.
+        void slotTick();
     signals:
         /// Emitted when the timer times out.
         void signalTimeout(Prefs::EnumPracticeTimeoutMode::type);
@@ -61,6 +65,25 @@ class InvisibleTimer : public QObject
     private:
         QTimer * m_timer;
         Milliseconds m_length;
+        class TimerWidget * m_gtimer;
+        Milliseconds m_remaining;
+        bool m_enabled;
+};
+
+class TimerWidget
+{
+    public:
+        virtual void update(Timer::Milliseconds remaining, Timer::Milliseconds original) = 0;
+        virtual void stop() = 0;
+        virtual void timeout() = 0;
+        virtual ~TimerWidget() {}
+};
+
+class DummyTimerWidget : public TimerWidget
+{
+       void update(Timer::Milliseconds remaining, Timer::Milliseconds original) {};
+       void stop() {};
+       void timeout() {};
 };
 
 #endif

@@ -12,43 +12,67 @@
 
 #include "timer.h"
 
+#include <KSvgRenderer>
+#include <QGraphicsScene>
 #include <KDebug>
 
-InvisibleTimer::InvisibleTimer(QObject * parent)
+Timer::Timer(QObject * parent)
     : QObject(parent)
 {
     kDebug() << "ctor'ed";
     m_timer = new QTimer();
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(slotTimeout()));
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(slotTick()));
+    m_enabled = true;
 }
 
-InvisibleTimer::~InvisibleTimer()
+Timer::Timer(bool enable)
+: m_enabled(enable)
+{}
+
+Timer::~Timer()
 {
     delete m_timer;
+    delete m_gtimer;
 }
 
-void InvisibleTimer::slotStart(Milliseconds ms)
+void Timer::slotStart(Milliseconds ms)
 {
     kDebug() << "hit with " << ms;
     setLength(ms);
     slotStart();
 }
 
-void InvisibleTimer::slotStart()
+void Timer::slotStart()
 {
     kDebug() << "...continues with " << m_length;
-    m_timer->setSingleShot(true);
-    m_timer->start(m_length);
+    m_timer->start(1000);
+    m_remaining = m_length;
+    m_gtimer->update(m_remaining, m_length);
 }
 
-void InvisibleTimer::slotStop()
+void Timer::slotStop()
 {
+    if (!m_enabled) return;
     kDebug() << "stopped";
     m_timer->stop();
+    m_gtimer->stop();
 }
 
-void InvisibleTimer::slotTimeout()
+void Timer::slotTick()
 {
-    kDebug() << "hit";
-    emit signalTimeout(Prefs::practiceTimeoutMode());
+    m_remaining -= 1000;
+    if (m_remaining)
+        m_gtimer->update(m_remaining, m_length);
+    else
+    {
+        m_gtimer->timeout();
+        emit signalTimeout(Prefs::practiceTimeoutMode());
+    }
+}
+
+
+void Timer::makeGUI(KSvgRenderer * renderer, QGraphicsScene* scene)
+{
+    // TODO do this
+    m_gtimer = new DummyTimerWidget();
 }

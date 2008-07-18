@@ -72,6 +72,7 @@ set(practice_SRCS
     practice/timer.cpp
     practice/practiceentry.cpp
     practiceold/entryfilter.cpp
+    practice/feedback.cpp
 )
 
 kde4_add_ui_files(practice_SRCS
@@ -130,6 +131,7 @@ kde4_add_ui_files(configure-practice_SRCS
     configure-practice/comparisonoptionswidget.ui
     configure-practice/conjugationoptionswidget.ui
     configure-practice/writtenpracticeoptionswidget.ui
+    configure-practice/multiplechoiceoptionswidget.ui
 )
 
 set(docprop_SRCS

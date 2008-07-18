@@ -42,6 +42,7 @@
 #include "answervalidator.h"
 #include "prefs.h"
 #include "timer.h"
+#include "feedback.h"
 
 #include "kgametheme/kgamethemeselector.h"
 #include "kgametheme/kgametheme.h"
@@ -70,6 +71,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(KEduVocDocument* doc, QWidget
 {
     setupBase("default.desktop", doc);
     setupActions();
+    setupModeIndependent();
     setupModeSpecifics();
 
     setupGUI(Default, QString::fromLatin1("parleypracticeui.rc"));
@@ -166,8 +168,7 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
     m_stats = new Statistics(m_manager, this);
     connect(m_manager, SIGNAL(signalEntryChanged(PracticeEntry*, QList<PracticeEntry*>)), m_stats, SLOT(slotSetEntry(PracticeEntry*)));
     connect(m_manager, SIGNAL(signalSetFinished()), m_stats, SLOT(slotSetFinished()));
-    //// Loading the Document -- temporary ////
-    connect(m_manager, SIGNAL(signalSetFinished()), this, SIGNAL(quit())); // for now
+    connect(m_manager, SIGNAL(signalSetFinished()), this, SIGNAL(queryClose()));
 
     KEduVocDocument * local_doc;
     if (doc != 0)
@@ -194,6 +195,7 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
     m_validator = new AnswerValidator(doc, this);
     m_validator->setLanguage(Prefs::solutionLanguage());
     connect(m_validator, SIGNAL(signalCorrection(float, Statistics::ErrorType, const QString&)), m_stats, SLOT(slotCorrection(float, Statistics::ErrorType, const QString&)));
+
 }
 
 
@@ -245,6 +247,36 @@ void ParleyPracticeMainWindow::setupActions()
     KStandardAction::quit(this, SLOT(queryClose()), actionCollection());
 }
 
+void ParleyPracticeMainWindow::setupModeIndependent()
+{
+    Feedback * feedback = new Feedback(m_renderer, "feedback_box");
+    m_scene->addItem(feedback);
+    connect(m_validator, SIGNAL(signalFeedback(const QString&)), feedback, SLOT(slotSetText(const QString&)));
+
+
+    SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, "bar", "bar_background");
+    m_scene->addItem(barstats);
+    connect(m_stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
+
+    if (Prefs::practiceTimeout() && Prefs::practiceTimeoutTimePerAnswer()) // timeout can't be 0
+    {
+        kDebug() << "timer" << Prefs::practiceTimeout() << Prefs::practiceTimeoutTimePerAnswer();
+        m_timer = new Timer(this);
+        m_timer->makeGUI(m_renderer, m_scene);
+        m_timer->setLength(Prefs::practiceTimeoutTimePerAnswer()*1000); // seconds -> milliseconds
+
+        // when the timer triggers, it will assume their current input is their answer
+        connect(m_timer, SIGNAL(signalTimeout()), actionCollection()->action("check answer"), SIGNAL(triggered()));
+        connect(m_manager, SIGNAL(signalNewEntry()), m_timer, SLOT(slotStart()));
+        connect(actionCollection()->action("check answer"), SIGNAL(triggered()), m_timer, SLOT(slotStop()));
+    }
+    else
+    {
+        m_timer = new Timer(false);
+    }
+
+}
+
 // here is where we'll add new modes
 void ParleyPracticeMainWindow::setupModeSpecifics()
 {
@@ -275,6 +307,7 @@ void ParleyPracticeMainWindow::setupModeSpecifics()
 bool ParleyPracticeMainWindow::queryClose()
 {
     emit signalPracticeFinished();
+    return true;
 }
 
 void ParleyPracticeMainWindow::setupWritten()
@@ -306,10 +339,6 @@ void ParleyPracticeMainWindow::setupWritten()
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
     connect(actionCollection()->action("continue"), SIGNAL(triggered()), input, SLOT(slotClear()));
 
-    SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, "bar", "bar_background");
-    m_scene->addItem(barstats);
-    connect(m_stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
-
     StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, m_view, "check_answer_and_continue_button");
     m_scene->addWidget(stdbutton);
     connect(input, SIGNAL(returnPressed()), stdbutton, SLOT(slotActivated()));
@@ -324,19 +353,6 @@ void ParleyPracticeMainWindow::setupWritten()
     // this is the hint for now :)
     connect(hint, SIGNAL(signalShowHint()), actionCollection()->action("show solution"), SIGNAL(triggered()));
     connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), m_stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
-
-
-    if (Prefs::practiceTimeout() && Prefs::practiceTimeoutTimePerAnswer()) // timeout can't be 0
-    {
-        kDebug() << "timer" << Prefs::practiceTimeout() << Prefs::practiceTimeoutTimePerAnswer();
-        InvisibleTimer * timer = new InvisibleTimer(this);
-        timer->setLength(Prefs::practiceTimeoutTimePerAnswer()*1000); // seconds -> milliseconds
-        // when the timer triggers, it will assume their current input is their answer
-        connect(timer, SIGNAL(signalTimeout()), actionCollection()->action("check answer"), SIGNAL(triggered()));
-        connect(m_manager, SIGNAL(signalNewEntry()), timer, SLOT(slotStart()));
-        connect(input, SIGNAL(signalInput(const QString&)), timer, SLOT(slotStop()));
-    }
-
 }
 
 
@@ -347,10 +363,6 @@ void ParleyPracticeMainWindow::setupFlashCards()
     m_scene->addItem(tprompt);
     connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
 
-    SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, "bar", "bar_background");
-    m_scene->addItem(barstats);
-    connect(m_stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
-
     // flip the card on click
     connect(this, SIGNAL(clicked()), actionCollection()->action("show solution"), SIGNAL(triggered()));
 
@@ -359,16 +371,6 @@ void ParleyPracticeMainWindow::setupFlashCards()
     PracticeActionButton * unknownButton = new PracticeActionButton("Not Known", m_renderer, "unknown_button");
     connect(unknownButton, SIGNAL(clicked()), this, SLOT(slotForceIncorrect()));
 
-    if (Prefs::practiceTimeout() && Prefs::practiceTimeoutTimePerAnswer()) // timeout can't be 0
-    {
-        kDebug() << "timer" << Prefs::practiceTimeout() << Prefs::practiceTimeoutTimePerAnswer();
-        InvisibleTimer * timer = new InvisibleTimer(this);
-        timer->setLength(Prefs::practiceTimeoutTimePerAnswer()*1000); // seconds -> milliseconds
-        // when the timer triggers, it will assume their current input is their answer
-        connect(timer, SIGNAL(signalTimeout()), this, SLOT(slotForceCorrect()));
-        connect(m_manager, SIGNAL(signalNewEntry()), timer, SLOT(slotStart()));
-        connect(this, SIGNAL(clicked()), timer, SLOT(slotStop()));
-    }
 }
 
 
@@ -399,10 +401,6 @@ void ParleyPracticeMainWindow::setupMultipleChoice()
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
     connect(m_manager, SIGNAL(signalEntryChanged(PracticeEntry*, QList<PracticeEntry*>)), input, SLOT(slotSetAnswers(PracticeEntry*, QList<PracticeEntry*>)));
 
-    SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, "bar", "bar_background");
-    m_scene->addItem(barstats);
-    connect(m_stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
-
     StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, m_view, "check_answer_and_continue_button");
     m_scene->addWidget(stdbutton);
     connect(input, SIGNAL(triggered()), stdbutton, SLOT(slotActivated()));
@@ -417,18 +415,6 @@ void ParleyPracticeMainWindow::setupMultipleChoice()
     // this is the hint for now :)
     connect(hint, SIGNAL(signalShowHint()), actionCollection()->action("show solution"), SIGNAL(triggered()));
     connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), m_stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
-
-
-    if (Prefs::practiceTimeout() && Prefs::practiceTimeoutTimePerAnswer()) // timeout can't be 0
-    {
-        kDebug() << "timer" << Prefs::practiceTimeout() << Prefs::practiceTimeoutTimePerAnswer();
-        InvisibleTimer * timer = new InvisibleTimer(this);
-        timer->setLength(Prefs::practiceTimeoutTimePerAnswer()*1000); // seconds -> milliseconds
-        // when the timer triggers, it will assume their current input is their answer
-        connect(timer, SIGNAL(signalTimeout()), actionCollection()->action("check answer"), SIGNAL(triggered()));
-        connect(m_manager, SIGNAL(signalNewEntry()), timer, SLOT(slotStart()));
-        connect(input, SIGNAL(signalInput(const QString&)), timer, SLOT(slotStop()));
-    }
 
     // setup shortcuts for multiple choice input
     QSignalMapper * mapper = new QSignalMapper(this);
@@ -489,10 +475,6 @@ void ParleyPracticeMainWindow::setupArticle()
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
     connect(m_manager, SIGNAL(signalEntryChanged(PracticeEntry*, QList<PracticeEntry*>)), input, SLOT(slotSetAnswers(PracticeEntry*)));
 
-    SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, "bar", "bar_background");
-    m_scene->addItem(barstats);
-    connect(m_stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
-
     StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, m_view, "check_answer_and_continue_button");
     m_scene->addWidget(stdbutton);
     connect(input, SIGNAL(triggered()), stdbutton, SLOT(slotActivated()));
@@ -508,17 +490,6 @@ void ParleyPracticeMainWindow::setupArticle()
     connect(hint, SIGNAL(signalShowHint()), actionCollection()->action("show solution"), SIGNAL(triggered()));
     connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), m_stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
 
-
-    if (Prefs::practiceTimeout() && Prefs::practiceTimeoutTimePerAnswer()) // timeout can't be 0
-    {
-        kDebug() << "timer" << Prefs::practiceTimeout() << Prefs::practiceTimeoutTimePerAnswer();
-        InvisibleTimer * timer = new InvisibleTimer(this);
-        timer->setLength(Prefs::practiceTimeoutTimePerAnswer()*1000); // seconds -> milliseconds
-        // when the timer triggers, it will assume their current input is their answer
-        connect(timer, SIGNAL(signalTimeout()), actionCollection()->action("check answer"), SIGNAL(triggered()));
-        connect(m_manager, SIGNAL(signalNewEntry()), timer, SLOT(slotStart()));
-        connect(input, SIGNAL(signalInput(const QString&)), timer, SLOT(slotStop()));
-    }
 
     // setup shortcuts for multiple choice input
     QSignalMapper * mapper = new QSignalMapper(this);
@@ -555,20 +526,21 @@ void ParleyPracticeMainWindow::setupArticle()
 void ParleyPracticeMainWindow::setupMixedLetters()
 {
 
-    MixedLettersPrompt * prompt = new MixedLettersPrompt(m_renderer, m_view, "practice_text_background");
-    connect(m_manager, SIGNAL(signalNewText(const QString&)), prompt, SLOT(slotSetText(const QString&)));
+    MixedLettersPrompt * mixed = new MixedLettersPrompt(m_renderer, m_view, "image_box");
+    connect(m_manager, SIGNAL(signalNewSolution(const QString&)), mixed, SLOT(slotSetText(const QString&)));
+
+    TextualPrompt * tprompt = new TextualPrompt(m_renderer, "practice_text_background");
+    m_scene->addItem(tprompt);
+    connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
 
     TextualInput * input = new TextualInput(m_renderer, m_view, "practice_text_translation_background");
     m_scene->addWidget(input);
     connect(input, SIGNAL(signalAnswer(const QString&)), this, SLOT(slotCheckAnswer(const QString&)));
-    connect(input, SIGNAL(signalAnswerChanged(const QString&)), prompt, SLOT(slotAnswerChanged(const QString&)));
+    connect(input, SIGNAL(signalAnswerChanged(const QString&)), mixed, SLOT(slotAnswerChanged(const QString&)));
     connect(this, SIGNAL(signalShowSolution(const QString&, int)), input, SLOT(slotShowSolution(const QString&)));
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
     connect(actionCollection()->action("continue"), SIGNAL(triggered()), input, SLOT(slotClear()));
 
-    SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, "bar", "bar_background");
-    m_scene->addItem(barstats);
-    connect(m_stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
 
     StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, m_view, "check_answer_and_continue_button");
     m_scene->addWidget(stdbutton);
@@ -584,17 +556,4 @@ void ParleyPracticeMainWindow::setupMixedLetters()
     // this is the hint for now :)
     connect(hint, SIGNAL(signalShowHint()), actionCollection()->action("show solution"), SIGNAL(triggered()));
     connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), m_stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
-
-
-    if (Prefs::practiceTimeout() && Prefs::practiceTimeoutTimePerAnswer()) // timeout can't be 0
-    {
-        kDebug() << "timer" << Prefs::practiceTimeout() << Prefs::practiceTimeoutTimePerAnswer();
-        InvisibleTimer * timer = new InvisibleTimer(this);
-        timer->setLength(Prefs::practiceTimeoutTimePerAnswer()*1000); // seconds -> milliseconds
-        // when the timer triggers, it will assume their current input is their answer
-        connect(timer, SIGNAL(signalTimeout()), actionCollection()->action("check answer"), SIGNAL(triggered()));
-        connect(m_manager, SIGNAL(signalNewEntry()), timer, SLOT(slotStart()));
-        connect(input, SIGNAL(signalInput(const QString&)), timer, SLOT(slotStop()));
-    }
-
 }
