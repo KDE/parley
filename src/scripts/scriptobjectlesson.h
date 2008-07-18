@@ -36,12 +36,11 @@ namespace Scripting
 
             Lesson ( KEduVocLesson * lesson );
 
+            Lesson ( KEduVocContainer * container );
+
             Lesson ( const QString& name );
 
             ~Lesson();
-
-            //just to change the name from childContainers to childLessons
-            QVariantList childLessons() { return childContainers(); }
 
         public slots:
             QVariantList entries ( bool recursive = false ) const;
@@ -73,11 +72,11 @@ namespace Scripting
             Expression* newEntry ( const QStringList & translations );
 
             //child lesson public functions (just to change the names from "Container" to "Lesson")
-            void appendChildLesson ( Container *child ) { appendChildContainer ( child ); }
-            void insertChildLesson ( int row, Container *child ) { insertChildContainer ( row, child ); }
+            void appendChildLesson ( Lesson *child ) { appendChildContainer ( child ); }
+            void insertChildLesson ( int row, Lesson *child ) { insertChildContainer ( row, child ); }
             void deleteChildLesson ( int row ) { deleteChildContainer ( row ); }
             void removeChildLesson ( int row ) { removeChildContainer ( row ); }
-            Container *childLesson ( int row ) { return childContainer ( row ); }
+            Lesson *childLesson ( int row ) { return new Lesson(m_lesson->childContainer(row)); }
 
             /**
              * Retrieve a child container by its name
@@ -85,9 +84,9 @@ namespace Scripting
              * @param name lesson name
              * @return the child lesson
              */
-            Container *childLesson ( const QString& name ) { return childContainer ( name ); }
+            Lesson *childLesson ( const QString& name ) { return new Lesson(m_lesson->childContainer(name)); }
 
-
+            QVariantList childLessons(bool recursive = false);
 
             int childLessonCount() const { return childContainerCount(); }
 

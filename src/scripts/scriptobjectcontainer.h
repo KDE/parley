@@ -145,7 +145,7 @@ namespace Scripting
             KEduVocContainer * m_container;
     };
 
-
+    //Template functions should not be separated from their definition (must be in the header file)
     template <class T, class S>
     QVariantList Container::toVariantList ( QList<T*> objList ) const
     {

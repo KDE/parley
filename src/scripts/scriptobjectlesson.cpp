@@ -23,6 +23,12 @@ namespace Scripting
     {
     }
 
+    Lesson::Lesson ( KEduVocContainer * container )
+    {
+        m_lesson = static_cast<KEduVocLesson*> ( container );
+        m_container = m_lesson;
+    }
+
     Lesson::Lesson ( const QString& name )
     {
         m_lesson = new KEduVocLesson ( name );
@@ -34,9 +40,26 @@ namespace Scripting
     {
     }
 
-    QVariantList Lesson::entries(bool recursive) const
+    QList<KEduVocLesson*>  flattenLessons(KEduVocLesson * rootLesson) {
+        QList<KEduVocLesson*> lessonsList;
+        foreach (KEduVocContainer * child, rootLesson->childContainers()) {
+            lessonsList << static_cast<KEduVocLesson*>(child);
+            lessonsList += flattenLessons(static_cast<KEduVocLesson*>(child));
+        }
+        return lessonsList;
+    }
+
+
+    QVariantList Lesson::childLessons(bool recursive)
     {
-        return toVariantList<KEduVocExpression,Expression>(m_lesson->entries(boolToEnum(recursive)));
+        if (recursive)
+            return toVariantList<KEduVocLesson,Lesson> ( flattenLessons(m_lesson) );
+        return toVariantList<KEduVocContainer,Lesson> ( m_lesson->childContainers() );
+    }
+
+    QVariantList Lesson::entries ( bool recursive ) const
+    {
+        return toVariantList<KEduVocExpression,Expression> ( m_lesson->entries ( boolToEnum ( recursive ) ) );
     }
 
     Expression * Lesson::entry ( int row, bool recursive )

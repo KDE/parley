@@ -44,9 +44,26 @@ def registerActions():
   Parley.connect(newaction2,"triggered()",actionFunction2)
   return
 
+def appendChildrenToAllLessons():
+  children = Parley.activeLesson.childLessons()
+  print children
+  i = 1
+  for child in children:
+    print dir(child)
+    newlesson = Parley.document.newLesson("Testa!! " + str(i))
+    child.appendChildLesson(newlesson)
+    i = i + 1
+  return
+
 def actionFunction():
   print "Action called!!"
-  return
+  #appendChildrenToAllLessons()
+  for lesson in Parley.document.allLessons():
+    print lesson.name
+  
+  #children = Parley.activeLesson.childLessons(True)
+  #for child in children:
+    #print child.name
 
 def actionFunction_old():
   print "Action called!!"

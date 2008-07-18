@@ -132,7 +132,7 @@ namespace Scripting
             KEduVocExpression* m_expression;
     };
 
-
+    //Template functions should not be separated from their definition (must be in the header file)
     template <class T, class S>
     QVariantList Expression::toVariantList ( QList<T*> objList ) const
     {

@@ -17,26 +17,24 @@
 #include "scriptobjectlesson.h"
 
 #include <QObject>
-#include <KDebug>
 
 namespace Scripting
 {
-
+    //Implements the Document object to be used by the scripts
     /**
-    Implements the Document object to be used by the scripts
-
-    @code
-    import Parley
-    doc = Parley.document
-    @endcode
-
-        @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
-    */
+     * Parley Document scripting object. Gives access to all the document properties and lessoons
+     *
+     * @code
+     * #how to get a reference to the Parley's active document
+     * import Parley
+     * doc = Parley.document
+     * @endcode
+     *
+     * @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
+     */
     class Document : public QObject
     {
             Q_OBJECT
-
-            Q_PROPERTY ( QString name READ getName WRITE setName )
 
             /** Read-Only property that gives the root of the lesson tree
             * @code
@@ -44,29 +42,43 @@ namespace Scripting
             * root = Parley.document.rootLesson
             * @endcode
             */
-            Q_PROPERTY ( QObject * rootLesson READ getRootLesson )
+            Q_PROPERTY ( QObject * rootLesson READ rootLesson )
         public:
             Document ( KEduVocDocument * doc );
 
             ~Document();
 
-            QString getName() const { return m_name; }
-            void setName ( const QString & name ) { m_name = name; }
-            QObject * getRootLesson();
+            //Property: rootLesson (READ)
+            QObject * rootLesson() { return new Lesson ( m_doc->lesson() ); }
 
         public slots:
-            void callFromScriptTest() { kDebug() << "Document object : Test"; }
-            void printName() { kDebug() << m_name; }
 
-             /**
-              * Creates and returns a new Lesson Object
-              * @param name Name of the lesson
-              * @return Scripting::Lesson object to be used by scripts
-              */
-             Lesson * newLesson(const QString & name) { return new Lesson(name); }
+            /**
+             * Creates and returns a new lesson (doesn't add it as a sublesson to any lesson)
+             * @code
+             * #how to add a new lesson to the root lesson
+             * import Parley
+             * newlesson = Parley.document.newLesson("My New Lesson")
+             * Parley.document.rootLesson.appendChildLesson(newlesson)
+             * @endcode
+             * @param name Name of the lesson
+             * @return The new lesson
+             */
+            Lesson * newLesson ( const QString & name ) { return new Lesson ( name ); }
+
+            /**
+             * Returns all the lessons in the document (including sublessons)
+             * @code
+             * #how to print the names of all the lessons
+             * import Parley
+             * for lesson in Parley.document.allLessons():
+             *    print lesson.name
+             * @endcode
+             * @return A list of all the lessons in the document
+             */
+            QVariantList allLessons();
 
         private:
-            QString m_name;
             KEduVocDocument * m_doc;
     };
 

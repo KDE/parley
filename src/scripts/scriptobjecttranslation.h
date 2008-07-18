@@ -286,6 +286,7 @@ namespace Scripting
 
     };
 
+    //Template functions should not be separated from their definition (must be in the header file)
     template <class T, class S>
     QVariantList Translation::toVariantList ( QList<T*> objList ) const
     {

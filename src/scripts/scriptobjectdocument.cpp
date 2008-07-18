@@ -21,14 +21,14 @@ namespace Scripting
     {
     }
 
-
     Document::~Document()
     {
     }
 
-    QObject * Scripting::Document::getRootLesson()
+    QVariantList Document::allLessons()
     {
-        return new Lesson ( m_doc->lesson() );
+        Lesson * l = new Lesson( m_doc->lesson() );
+        return QVariantList() << qVariantFromValue(static_cast<QObject*>(l)) <<  l->childLessons(true);
     }
 
 }
