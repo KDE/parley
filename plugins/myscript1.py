@@ -54,16 +54,27 @@ def appendChildrenToAllLessons():
     child.appendChildLesson(newlesson)
     i = i + 1
   return
+  
+def testcode():
+  for entry in Parley.document.rootLesson.entries(True):
+    for translation in entry.translations():
+      print translation.text
+      print translation.practiceDate
+      print translation.practiceDate.isValid()
+
 
 def actionFunction():
   print "Action called!!"
+  testcode()
   #appendChildrenToAllLessons()
-  for lesson in Parley.document.allLessons():
-    print lesson.name
+  
+  #for lesson in Parley.document.allLessons():
+    #print lesson.name
   
   #children = Parley.activeLesson.childLessons(True)
   #for child in children:
     #print child.name
+    
 
 def actionFunction_old():
   print "Action called!!"
