@@ -19,7 +19,6 @@
 Timer::Timer(QObject * parent)
     : QObject(parent)
 {
-    kDebug() << "ctor'ed";
     m_timer = new QTimer();
     connect(m_timer, SIGNAL(timeout()), this, SLOT(slotTick()));
     m_enabled = true;
@@ -37,14 +36,12 @@ Timer::~Timer()
 
 void Timer::slotStart(Milliseconds ms)
 {
-    kDebug() << "hit with " << ms;
     setLength(ms);
     slotStart();
 }
 
 void Timer::slotStart()
 {
-    kDebug() << "...continues with " << m_length;
     m_timer->start(1000);
     m_remaining = m_length;
     m_gtimer->update(m_remaining, m_length);

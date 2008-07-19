@@ -76,7 +76,21 @@ void PracticeEntryManager::open(KEduVocDocument* doc)
 
 const QString PracticeEntryManager::currentSolution() const
 {
-    return m_entry->expression()->translation(Prefs::solutionLanguage())->text();
+    switch (Prefs::testType())
+    {
+        // Implement special crap here.
+        case Prefs::EnumTestType::ArticleTest:
+        case Prefs::EnumTestType::ComparisonTest:
+        case Prefs::EnumTestType::AntonymTest:
+        case Prefs::EnumTestType::SynonymTest:
+        case Prefs::EnumTestType::ConjugationTest:
+            return "IMPLEMENT SOLUTION LOGIC";
+            // TODO Implement logic here.
+
+       // All other modes are normal and just use the text() field.
+       default:
+        return m_entry->expression()->translation(Prefs::solutionLanguage())->text();
+    }
 }
 
 void PracticeEntryManager::appendEntryToList(PracticeEntry* entry)
@@ -108,6 +122,25 @@ void PracticeEntryManager::shuffle()
 }
 
 
+const QString& PracticeEntryManager::findTextForCurrentMode(KEduVocTranslation* question)
+{
+    switch (Prefs::testType())
+    {
+        // Use the paraphrase field.
+       case Prefs::EnumTestType::ParaphraseTest:
+        return question->paraphrase();
+
+       // Use the example field, but blank out the solution.
+       case Prefs::EnumTestType::ExampleTest:
+        // This is the logic to blank the solution.
+        return question->example().replace(question->text(), "...");
+
+       // All other modes are normal and just use the text() field.
+       default:
+        return question->text();
+    }
+}
+
 void PracticeEntryManager::slotNewEntry()
 {
     if (m_iter.hasNext())
@@ -117,7 +150,8 @@ void PracticeEntryManager::slotNewEntry()
         kDebug() << original->text();
 
         // It doesn't matter if these are empty since we would emit empty KUrls/QStrings anyway
-        emit signalNewText(original->text());
+        emit signalNewText(findTextForCurrentMode(original));
+
         // if sound/images are disabled, these connect to nothing and are ignored.
         emit signalNewImage(original->imageUrl());
         emit signalNewSound(original->soundUrl());
