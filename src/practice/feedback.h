@@ -36,6 +36,7 @@ class Feedback : public QGraphicsTextItem
 
     public slots:
         void slotSetText(const QString& htmltext);
+        void slotClear();
     private:
         KSvgRenderer * m_renderer;
         QRectF m_backgroundRect;

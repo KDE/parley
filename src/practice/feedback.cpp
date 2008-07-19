@@ -41,3 +41,8 @@ void Feedback::slotSetText(const QString& htmltext)
 {
     setHtml(htmltext);
 }
+
+void Feedback::slotClear()
+{
+    setHtml("");
+}

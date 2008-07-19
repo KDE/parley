@@ -251,7 +251,7 @@ void ParleyPracticeMainWindow::setupModeIndependent()
     Feedback * feedback = new Feedback(m_renderer, "feedback_box");
     m_scene->addItem(feedback);
     connect(m_validator, SIGNAL(signalFeedback(const QString&)), feedback, SLOT(slotSetText(const QString&)));
-
+    connect(m_manager, SIGNAL(signalNewEntry()), feedback, SLOT(slotClear()));
 
     SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, "bar", "bar_background");
     m_scene->addItem(barstats);
