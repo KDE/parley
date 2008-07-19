@@ -72,9 +72,6 @@
 #include <QtGui/QDockWidget>
 #include <QtGui/QHeaderView>
 
-#include "modeltest/modeltest.h"
-
-
 ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWindow(0)
 {
     m_appName = appName;
@@ -323,10 +320,6 @@ void ParleyApp::updateDocument()
     connect(m_vocabularyModel, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(slotRestoreColumnVisibility(KEduVocDocument*)));
 
     setCaption(m_document->document()->url().fileName(), false);
-
-///@todo remove this!
-// at the moment creates a new test every time a model is created. this is good because we get the basic sanity check then.
-    new ModelTest(m_vocabularyModel, this);
 }
 
 
@@ -341,8 +334,6 @@ void ParleyApp::initDockWidgets()
     actionCollection()->addAction("show_lesson_dock", lessonDockWidget->toggleViewAction());
 
     m_lessonModel = new LessonModel(this);
-///@todo remove before release
-    new ModelTest(m_lessonModel, this);
 
     m_lessonView->setModel(m_lessonModel);
     m_lessonView->setToolTip(i18n("Right click to add, delete, or rename lessons. \n"
@@ -369,10 +360,6 @@ void ParleyApp::initDockWidgets()
     m_wordTypeModel = new WordTypeModel(this);
     wordTypeDockWidget->setVisible(false);
     actionCollection()->addAction("show_wordtype_dock", wordTypeDockWidget->toggleViewAction());
-
-///@todo test, should be fixed with the lesson one though
-///@todo remove before release
-//     new ModelTest(m_wordTypeModel, this);
 
     m_wordTypeView->setModel(m_wordTypeModel);
 

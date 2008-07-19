@@ -169,7 +169,6 @@ set(parley_SRCS
     parleydocument.cpp
     parley.cpp
     main.cpp
-    modeltest/modeltest.cpp
 )
 
 kde4_add_app_icon(parley_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-parley.png")
