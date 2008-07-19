@@ -561,9 +561,9 @@ void ParleyPracticeMainWindow::setupMixedLetters()
 void ParleyPracticeMainWindow::setupParaphrase()
 {
 
-    TextualPrompt * tprompt = new TextualPrompt(m_renderer, "practice_text_background");
-    m_scene->addItem(tprompt);
-    connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
+    TextualPrompt * prompt = new TextualPrompt(m_renderer, "practice_text_background");
+    m_scene->addItem(prompt);
+    connect(m_manager, SIGNAL(signalNewText(const QString&)), prompt, SLOT(slotSetText(const QString&)));
 
     TextualInput * input = new TextualInput(m_renderer, m_view, "practice_text_translation_background");
     m_scene->addWidget(input);

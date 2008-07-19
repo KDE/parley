@@ -81,7 +81,7 @@ class PracticeEntryManager : public QObject
         */
         void filterTestEntries();
         void shuffle();
-        const QString& findTextForCurrentMode(KEduVocTranslation* question);
+        QString findTextForCurrentMode(KEduVocTranslation* question);
 
     public slots:
         void slotNewEntry();

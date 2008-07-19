@@ -122,12 +122,13 @@ void PracticeEntryManager::shuffle()
 }
 
 
-const QString& PracticeEntryManager::findTextForCurrentMode(KEduVocTranslation* question)
+QString PracticeEntryManager::findTextForCurrentMode(KEduVocTranslation* question)
 {
     switch (Prefs::testType())
     {
         // Use the paraphrase field.
        case Prefs::EnumTestType::ParaphraseTest:
+        kDebug() << question->paraphrase();
         return question->paraphrase();
 
        // Use the example field, but blank out the solution.
