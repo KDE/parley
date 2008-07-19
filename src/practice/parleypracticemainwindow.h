@@ -62,6 +62,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         void setupMixedLetters();
         void setupFlashCards();
         void setupParaphrase();
+        void setupExample();
     public slots:
         void slotCheckAnswer(const QString& input);
         void slotShowSolution();

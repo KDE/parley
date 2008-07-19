@@ -124,6 +124,8 @@ void PracticeEntryManager::shuffle()
 
 QString PracticeEntryManager::findTextForCurrentMode(KEduVocTranslation* question)
 {
+
+    QStringList modified;
     switch (Prefs::testType())
     {
         // Use the paraphrase field.
@@ -134,8 +136,16 @@ QString PracticeEntryManager::findTextForCurrentMode(KEduVocTranslation* questio
        // Use the example field, but blank out the solution.
        case Prefs::EnumTestType::ExampleTest:
         // This is the logic to blank the solution.
-        return question->example().replace(question->text(), "...");
-
+        foreach(QString word, question->example().split(" "))
+        {
+            if (word.contains(question->text(), Qt::CaseInsensitive))
+                modified.append("...");
+            else
+                modified.append(word);
+        }
+        kDebug() << modified.join(" ");
+        return modified.join(" ");
+        break;
        // All other modes are normal and just use the text() field.
        default:
         return question->text();
