@@ -59,19 +59,6 @@ void TextualInput::slotEmitAnswer()
     emit signalAnswer(text());
 }
 
-void TextualInput::slotChangeAnswerColor(float correct)
-{
-    QPalette pal;
-    if (correct == 1.0)
-        pal.setColor(QPalette::Text, Qt::green);
-    else
-        pal.setColor(QPalette::Text, Qt::red);
-
-    setPalette(pal);
-    setText(text());
-}
-
-
 void TextualInput::slotShowSolution(const QString& solution)
 {
     QPalette pal;
@@ -82,9 +69,6 @@ void TextualInput::slotShowSolution(const QString& solution)
 
 void TextualInput::slotClear()
 {
-    QPalette pal;
-    pal.setColor(QPalette::Text, Qt::black);
-    setPalette(pal);
     setText("");
 }
 

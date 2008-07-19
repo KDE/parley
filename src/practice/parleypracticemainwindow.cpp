@@ -102,7 +102,6 @@ void ParleyPracticeMainWindow::slotCreatePreferencesDialog()
 {
     KConfigDialog *dialog = new KConfigDialog(this, "settings", Prefs::self());
     dialog->addPage(new KGameThemeSelector(dialog, Prefs::self()), i18n("Theme"), "game_theme");
-    kDebug() << "hit";
     dialog->show();
 }
 
@@ -260,7 +259,6 @@ void ParleyPracticeMainWindow::setupModeIndependent()
 
     if (Prefs::practiceTimeout() && Prefs::practiceTimeoutTimePerAnswer()) // timeout can't be 0
     {
-        kDebug() << "timer" << Prefs::practiceTimeout() << Prefs::practiceTimeoutTimePerAnswer();
         m_timer = new Timer(this);
         m_timer->makeGUI(m_renderer, m_scene);
         m_timer->setLength(Prefs::practiceTimeoutTimePerAnswer()*1000); // seconds -> milliseconds
@@ -296,6 +294,9 @@ void ParleyPracticeMainWindow::setupModeSpecifics()
         break;
        case Prefs::EnumTestType::FlashCardsTest:
         setupFlashCards();
+        break;
+       case Prefs::EnumTestType::ParaphraseTest:
+        setupParaphrase();
         break;
        default:
         kDebug() << "unhandled practice mode " << m_mode << " selected.";
@@ -334,7 +335,6 @@ void ParleyPracticeMainWindow::setupWritten()
     TextualInput * input = new TextualInput(m_renderer, m_view, "practice_text_translation_background");
     m_scene->addWidget(input);
     connect(input, SIGNAL(signalAnswer(const QString&)), this, SLOT(slotCheckAnswer(const QString&)));
-    connect(m_validator, SIGNAL(signalCorrection(float, Statistics::ErrorType, const QString&)), input, SLOT(slotChangeAnswerColor(float)));
     connect(this, SIGNAL(signalShowSolution(const QString&, int)), input, SLOT(slotShowSolution(const QString&)));
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
     connect(actionCollection()->action("continue"), SIGNAL(triggered()), input, SLOT(slotClear()));
@@ -541,6 +541,36 @@ void ParleyPracticeMainWindow::setupMixedLetters()
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
     connect(actionCollection()->action("continue"), SIGNAL(triggered()), input, SLOT(slotClear()));
 
+
+    StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, m_view, "check_answer_and_continue_button");
+    m_scene->addWidget(stdbutton);
+    connect(input, SIGNAL(returnPressed()), stdbutton, SLOT(slotActivated()));
+    connect(this, SIGNAL(signalCheckAnswerContinueActionsToggled(int)), stdbutton, SLOT(slotToggleText(int)));
+    connect(stdbutton, SIGNAL(signalCheckAnswer()), actionCollection()->action("check answer"), SIGNAL(triggered()));
+    connect(stdbutton, SIGNAL(signalContinue()), actionCollection()->action("continue"), SIGNAL(triggered()));
+    stdbutton->setVisible(true); // enable for now
+
+
+    Hint * hint = new Hint(this);
+    connect(actionCollection()->action("hint"), SIGNAL(triggered()), hint, SLOT(slotShowHint()));
+    // this is the hint for now :)
+    connect(hint, SIGNAL(signalShowHint()), actionCollection()->action("show solution"), SIGNAL(triggered()));
+    connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), m_stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
+}
+
+void ParleyPracticeMainWindow::setupParaphrase()
+{
+
+    TextualPrompt * tprompt = new TextualPrompt(m_renderer, "practice_text_background");
+    m_scene->addItem(tprompt);
+    connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
+
+    TextualInput * input = new TextualInput(m_renderer, m_view, "practice_text_translation_background");
+    m_scene->addWidget(input);
+    connect(input, SIGNAL(signalAnswer(const QString&)), this, SLOT(slotCheckAnswer(const QString&)));
+    connect(this, SIGNAL(signalShowSolution(const QString&, int)), input, SLOT(slotShowSolution(const QString&)));
+    connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
+    connect(actionCollection()->action("continue"), SIGNAL(triggered()), input, SLOT(slotClear()));
 
     StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, m_view, "check_answer_and_continue_button");
     m_scene->addWidget(stdbutton);

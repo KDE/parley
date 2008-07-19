@@ -64,7 +64,6 @@ SvgBarStatistics::SvgBarStatistics(QSvgRenderer* renderer, const QString& foregr
     m_backgroundRect = renderer->boundsOnElement(backgroundElementId);
     setPos(m_backgroundRect.x(), m_backgroundRect.y());
     scale((m_backgroundRect.width())/boundingRect().width()*.0001, 1.0);
-    kDebug() << boundingRect() << scenePos();
     setZValue(10); // higher than the rest
 }
 
@@ -236,7 +235,6 @@ const QString Statistics::gradeToString(int i)
 void LCDStatistics::slotUpdateDisplay(Statistics* stats)
 {
     kDebug() << stats->percentCorrect();
-    display(stats->percentCorrect());
 }
 
 void SvgBarStatistics::slotUpdateDisplay(Statistics*stats)
