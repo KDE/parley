@@ -13,6 +13,10 @@
 
 #include "welcomescreen.h"
 
+#include <KMimeType>
+
+#include <QStandardItemModel>
+
 WelcomeScreen::WelcomeScreen(QWidget *parent)
  : QWidget(parent)
 {
@@ -22,7 +26,7 @@ WelcomeScreen::WelcomeScreen(QWidget *parent)
     QColor fgColor = palette().text().color();
 
     QString css = QString::fromUtf8(
-       "#downloadedLabel, #recentLabel {"
+       "#recentLabel {"
         "   font-weight: bold;"
         "   border-bottom: 1px solid %1;"
         "}"
@@ -35,6 +39,39 @@ WelcomeScreen::WelcomeScreen(QWidget *parent)
     setStyleSheet(css);
     
     ui->iconLabel->setPixmap(KIcon("parley").pixmap(128, 128));
+    ui->newButton->setIcon(KIcon("document-new"));
+    ui->openButton->setIcon(KIcon("document-open"));
+    ui->ghnsButton->setIcon(KIcon("get-hot-new-stuff"));
+    
+    m_recentFilesModel = new QStandardItemModel(this);
+    updateRecentFilesModel();
+    ui->recentFiles->setModel(m_recentFilesModel);
+}
+
+void WelcomeScreen::updateRecentFilesModel()
+{
+    KConfig parleyConfig("parleyrc");
+    KConfigGroup recentFilesGroup(&parleyConfig, "Recent Files");
+
+    m_recentFilesModel->clear();
+    for (int i = recentFilesGroup.keyList().count() / 2; i > 0 ; i--) {
+        QString urlString = recentFilesGroup.readPathEntry("File"+QString::number(i), QString());
+        QString nameString = recentFilesGroup.readEntry("Name"+QString::number(i), QString());
+
+        KUrl url(urlString);
+
+        QStandardItem* item = new QStandardItem;
+        item->setEditable(false);
+        item->setText(nameString+" ("+url.pathOrUrl()+")");
+        item->setToolTip(nameString+" ("+url.pathOrUrl()+")");
+
+        QString iconName = KMimeType::iconNameForUrl(url);
+        item->setIcon(KIcon(iconName));
+
+        item->setData(QVariant(url), Qt::UserRole);
+
+        m_recentFilesModel->appendRow(item);
+    }
 }
 
 #include "welcomescreen.moc"

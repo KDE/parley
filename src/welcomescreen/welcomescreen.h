@@ -18,14 +18,18 @@
 
 #include <QWidget>
 
+class QStandardItemModel;
+
 class WelcomeScreen : public QWidget
 {
 Q_OBJECT
 public:
     WelcomeScreen(QWidget *parent = 0);
+    void updateRecentFilesModel();
 
 private:
     Ui::WelcomeScreen* ui;
+    QStandardItemModel* m_recentFilesModel;
 };
 
 #endif
