@@ -40,7 +40,7 @@ TextualPrompt::TextualPrompt ( KSvgRenderer * renderer, const QString& elementId
     adjustSize();
 };
 
-void TextualPrompt::slotSetText ( const QString& text ) {setHtml( text ); };
+void TextualPrompt::slotSetText ( const QString& text ) { setHtml( text ); };
 
 ImagePrompt::ImagePrompt ( KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent ) :
         QLabel ( parent ),
