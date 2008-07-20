@@ -25,7 +25,7 @@ const int margin = 5;
 const int iconSize = 32;
 
 ButtonDelegate::ButtonDelegate(QAbstractItemView *itemView, QObject *parent )
-        : KWidgetItemDelegate(itemView, parent)
+        : KWidgetItemDelegate(itemView, parent), m_rightMargin(0), m_buttonHeight(0)
 {
 }
 
