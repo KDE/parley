@@ -11,25 +11,31 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef WELCOMESCREEN_H
-#define WELCOMESCREEN_H
+#ifndef BUTTONDELEGATE_H
+#define BUTTONDELEGATE_H
 
-#include "ui_welcomescreen.h"
+#include <kwidgetitemdelegate.h>
 
-#include <QWidget>
-
-class QStandardItemModel;
-
-class WelcomeScreen : public QWidget
+class ButtonDelegate
+    : public KWidgetItemDelegate
 {
 Q_OBJECT
 public:
-    WelcomeScreen(QWidget *parent = 0);
-    void updateRecentFilesModel();
+    ButtonDelegate(QAbstractItemView *itemView, QObject *parent = 0);
 
-private:
-    Ui::WelcomeScreen *ui;
-    QStandardItemModel *m_recentFilesModel;
+    virtual ~ButtonDelegate();
+    
+    QList<QWidget*> createItemWidgets() const;
+    void updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const;
+
+
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+
+    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
 };
+
+
+
+
 
 #endif

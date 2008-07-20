@@ -12,6 +12,7 @@
  ***************************************************************************/
 
 #include "welcomescreen.h"
+#include "buttondelegate.h"
 
 #include <KMimeType>
 
@@ -46,6 +47,9 @@ WelcomeScreen::WelcomeScreen(QWidget *parent)
     m_recentFilesModel = new QStandardItemModel(this);
     updateRecentFilesModel();
     ui->recentFiles->setModel(m_recentFilesModel);
+    
+    ButtonDelegate* delegate = new ButtonDelegate(ui->recentFiles, this);
+    ui->recentFiles->setItemDelegate(delegate);
 }
 
 void WelcomeScreen::updateRecentFilesModel()
@@ -67,9 +71,7 @@ void WelcomeScreen::updateRecentFilesModel()
 
         QString iconName = KMimeType::iconNameForUrl(url);
         item->setIcon(KIcon(iconName));
-
-        item->setData(QVariant(url), Qt::UserRole);
-
+        
         m_recentFilesModel->appendRow(item);
     }
 }

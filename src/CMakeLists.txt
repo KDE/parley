@@ -218,6 +218,7 @@ kde4_add_ui_files(languagedialogs_SRCS
 
 set(welcomescreen_SRCS
     welcomescreen/welcomescreen.cpp
+    welcomescreen/buttondelegate.cpp
 )
 
 kde4_add_ui_files(welcomescreen_SRCS
