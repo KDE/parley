@@ -47,7 +47,7 @@
    <item row="4" column="0" >
     <widget class="KPushButton" name="ghnsButton" >
      <property name="text" >
-      <string>Download New Vocabularies</string>
+      <string>Download New Collections</string>
      </property>
     </widget>
    </item>
