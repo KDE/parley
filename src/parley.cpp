@@ -129,15 +129,15 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
         m_document->open(filename);
         kDebug() << "open done";
     } else {
-        bool configWelcomeScreen = true; //TODO: use config value and add checkbox somewhere
-        if (!configWelcomeScreen && m_recentFilesAction->actions().count() > 0
+        bool openLastFile = Prefs::autoOpenLast();
+        if (openLastFile && m_recentFilesAction->actions().count() > 0
             && m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->isEnabled() ) {
             m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->trigger();
         } else {
             kDebug() << "new doc";
             m_document->newDocument();
             updateDocument();
-            if (configWelcomeScreen) {
+            if (!openLastFile) {
                 showWelcomeScreen = true;
             }
         }

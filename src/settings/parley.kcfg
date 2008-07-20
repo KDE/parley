@@ -27,6 +27,10 @@
       <label>The number of entries per lesson</label>
       <default>20</default>
     </entry>
+    <entry name="AutoOpenLast" type="Bool">
+      <label>If true, on each application start the last opened file will be loaded</label>
+      <default>false</default>
+    </entry>
     <entry name="AutoSave" type="Bool">
       <label>If true, vocabularies are automatically saved on close and exit</label>
       <default>false</default>
