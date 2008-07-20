@@ -47,6 +47,7 @@ WelcomeScreen::WelcomeScreen(QWidget *parent)
     m_recentFilesModel = new QStandardItemModel(this);
     updateRecentFilesModel();
     ui->recentFiles->setModel(m_recentFilesModel);
+    ui->recentFiles->setSelectionMode(QAbstractItemView::NoSelection);
     
     ButtonDelegate* delegate = new ButtonDelegate(ui->recentFiles, this);
     ui->recentFiles->setItemDelegate(delegate);

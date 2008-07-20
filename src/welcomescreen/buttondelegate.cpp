@@ -22,6 +22,7 @@
 #include <QApplication>
 
 const int margin = 5;
+const int iconSize = 32;
 
 ButtonDelegate::ButtonDelegate(QAbstractItemView *itemView, QObject *parent )
         : KWidgetItemDelegate(itemView, parent)
@@ -35,10 +36,14 @@ ButtonDelegate::~ButtonDelegate()
 QList<QWidget*> ButtonDelegate::createItemWidgets() const
 {
     QList<QWidget*> widgetList;
-    KPushButton* editButton = new KPushButton();
+    KPushButton *editButton = new KPushButton();
     editButton->setText("Edit");
-    KPushButton* practiceButton = new KPushButton();
+    editButton->setIcon(KIcon("document-open"));
+    KPushButton *practiceButton = new KPushButton();
     practiceButton->setText("Practice");
+    practiceButton->setIcon(KIcon("practice-start"));
+    m_rightMargin = editButton->sizeHint().width() + practiceButton->sizeHint().width() + 3*margin;
+    m_buttonHeight = editButton->sizeHint().height();
     widgetList << editButton << practiceButton;
     return widgetList;
 }
@@ -54,8 +59,7 @@ void ButtonDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QSty
     practiceButton->resize(practiceButtonSizeHint);
     
     editButton->move(option.rect.width() - editButtonSizeHint.width() - practiceButtonSizeHint.width() - 2*margin, (option.rect.height() - editButtonSizeHint.height())/2);
-    practiceButton->move(option.rect.width() - practiceButtonSizeHint.width() - margin, (option.rect.height() - practiceButtonSizeHint.height())/2);
-
+    practiceButton->move(option.rect.width() - practiceButtonSizeHint.width() - margin, (option.rect.height() - practiceButtonSizeHint.height())/2);  
 }
 
 void ButtonDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
@@ -63,8 +67,15 @@ void ButtonDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
     QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, 0);
     
     QIcon icon = index.data(Qt::DecorationRole).value<QIcon>();
-    int iconMargin = (option.rect.height() - 32)/2;
-    painter->drawPixmap(option.rect.x() + iconMargin, option.rect.y() + iconMargin, icon.pixmap(32, 32));
+    int iconMargin = (option.rect.height() - iconSize)/2;
+    painter->drawPixmap(option.rect.x() + iconMargin, option.rect.y() + iconMargin, icon.pixmap(iconSize, iconSize));
+    
+    int rectX = option.rect.x() + iconMargin + iconSize + margin;
+    QRect textRect(rectX, option.rect.y(), option.rect.width() - rectX - m_rightMargin, option.rect.height());
+    
+    QFontMetrics fm(option.font);
+    QString elidedText = fm.elidedText(index.data().toString(), Qt::ElideRight, textRect.width());
+    painter->drawText(textRect, Qt::AlignLeft | Qt::AlignVCenter, elidedText);
 
     KWidgetItemDelegate::paintWidgets(painter, option, index);
 }
@@ -74,7 +85,7 @@ QSize ButtonDelegate::sizeHint(const QStyleOptionViewItem &option,
 {
     Q_UNUSED(index);
 
-    return QSize(32, 32);
+    return QSize(qMax(iconSize, m_buttonHeight), 32);
 }
 
 #include "buttondelegate.moc"

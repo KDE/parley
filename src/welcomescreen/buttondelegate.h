@@ -28,10 +28,12 @@ public:
     QList<QWidget*> createItemWidgets() const;
     void updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const;
 
-
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
+private:
+    mutable int m_rightMargin;
+    mutable int m_buttonHeight;
 };
 
 
