@@ -216,6 +216,14 @@ kde4_add_ui_files(languagedialogs_SRCS
     language-dialogs/languagepage.ui
 )
 
+set(welcomescreen_SRCS
+    welcomescreen/welcomescreen.cpp
+)
+
+kde4_add_ui_files(welcomescreen_SRCS
+    welcomescreen/welcomescreen.ui
+)
+
 set(parley_SRCS
     ${vocabulary_SRCS} ${libcommondlg_SRCS}
     ${practice_SRCS}
@@ -226,6 +234,7 @@ set(parley_SRCS
     ${scripts_SRCS}
     ${newdocument-wizard_SRCS}
     ${export_SRCS}
+    ${welcomescreen_SRCS}
     parleydocument.cpp
     parley.cpp
     main.cpp

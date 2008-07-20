@@ -62,6 +62,8 @@
 #include "scripts/scripting/parley.h"
 #include "scripts/scripting/expression.h"
 
+#include "welcomescreen/welcomescreen.h"
+
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>
 
@@ -134,7 +136,10 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
             updateDocument();
         }
     }
-
+    
+    //temporary: show welcome screen in extra window for testing
+    WelcomeScreen* welcomeScreen = new WelcomeScreen(0);
+    welcomeScreen->show();
 
     if (!initialGeometrySet()) {
         resize(QSize(800, 600).expandedTo(minimumSizeHint()));
