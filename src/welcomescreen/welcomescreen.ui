@@ -1,0 +1,101 @@
+<ui version="4.0" >
+ <class>WelcomeScreen</class>
+ <widget class="QWidget" name="WelcomeScreen" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>670</width>
+    <height>526</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Parley</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout" >
+   <item rowspan="2" row="0" column="0" colspan="2" >
+    <widget class="QLabel" name="headingLabel" >
+     <property name="text" >
+      <string>&lt;h1>Parley&lt;/h1></string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" >
+    <widget class="KPushButton" name="newButton" >
+     <property name="text" >
+      <string>Create a New Collection</string>
+     </property>
+    </widget>
+   </item>
+   <item rowspan="4" row="1" column="1" >
+    <widget class="QLabel" name="iconLabel" >
+     <property name="text" >
+      <string/>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" >
+    <widget class="KPushButton" name="openButton" >
+     <property name="text" >
+      <string>Open an Existing Collection</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" >
+    <widget class="KPushButton" name="ghnsButton" >
+     <property name="text" >
+      <string>Download New Collections</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="2" >
+    <spacer name="verticalSpacer" >
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>20</width>
+       <height>5</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="6" column="0" colspan="2" >
+    <widget class="QLabel" name="recentLabel" >
+     <property name="text" >
+      <string>Last Opened Collections</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0" colspan="2" >
+    <widget class="QListView" name="recentFiles" >
+     <property name="frameShape" >
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="iconSize" >
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>KPushButton</class>
+   <extends>QPushButton</extends>
+   <header>kpushbutton.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

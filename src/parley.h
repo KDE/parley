@@ -36,6 +36,7 @@
 #include <KUrl>
 #include <QItemSelection>
 #include <QModelIndex>
+#include <QList>
 
 #define IDS_DEFAULT I18N_NOOP("Ready.")
 
@@ -46,6 +47,7 @@ class KRecentFilesAction;
 class KAction;
 class KActionMenu;
 class QLabel;
+class QDockWidget;
 class VocabularyView;
 class VocabularyModel;
 class VocabularyFilter;
@@ -88,6 +90,9 @@ public:
     /** setup the main view*/
     void initView();
 
+    /** setup the welcome screen */
+    void initWelcomeScreen();
+
     void initDockWidgets();
 
     /** save the app-specific options on slotAppExit or by an Options dialog */
@@ -120,6 +125,8 @@ public slots:
     /** set up options */
     void slotGeneralOptions();
     void slotApplyPreferences();
+
+    void slotCloseDocument();
 
     /** Let the user edit tenses, articles and personal pronouns */
     void slotGrammarDialog();
@@ -160,12 +167,21 @@ public slots:
      * After the translation is finished, it adds the first translation to the table cell (Translation column)
      */
     void slotTranslationFinished(const QString & word,const QString& fromLanguage,const QString& toLanguage);
+    
+    /**
+     * Shows or hides the welcome screen.
+     */
+    void setShowWelcomeScreen(bool show);
+    void hideWelcomeScreen();
 
 private slots:
     void slotConfigOldPractice(bool old);
 
 signals:
     void signalSetData( const QList<int>& entries, int currentTranslation);
+
+protected:
+    void closeEvent(QCloseEvent *event);
 
 private:
 
@@ -228,6 +244,9 @@ private:
 
     ///stores all the translations of a vocabulary word
     Translator m_translator;
+
+    QList<QDockWidget*> m_dockWidgets;
+    QList<bool> m_dockWidgetVisibility;
 };
 
 #endif // PARLEY_H

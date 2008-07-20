@@ -18,6 +18,22 @@
      </property>
      <layout class="QVBoxLayout" >
       <item>
+       <widget class="QCheckBox" name="kcfg_AutoOpenLast" >
+        <property name="toolTip" >
+         <string>Always open the collection that was active when quitting Parley</string>
+        </property>
+        <property name="whatsThis" >
+         <string>When this option is checked, the last active collection will be loaded automatically when starting Parley instead of showing the welcome screen.</string>
+        </property>
+        <property name="text" >
+         <string>Always load the last opened collection on start</string>
+        </property>
+        <property name="checked" >
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QCheckBox" name="kcfg_AutoSave" >
         <property name="toolTip" >
          <string>Allow automatic saving of your work</string>
