@@ -52,13 +52,29 @@
     </widget>
    </item>
    <item row="5" column="0" colspan="2" >
+    <spacer name="verticalSpacer" >
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>20</width>
+       <height>5</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="6" column="0" colspan="2" >
     <widget class="QLabel" name="recentLabel" >
      <property name="text" >
       <string>Last Opened Collections</string>
      </property>
     </widget>
    </item>
-   <item row="6" column="0" colspan="2" >
+   <item row="7" column="0" colspan="2" >
     <widget class="QListView" name="recentFiles" >
      <property name="frameShape" >
       <enum>QFrame::NoFrame</enum>
