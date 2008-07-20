@@ -40,7 +40,7 @@ class QPixmap;
  *
  * @author Mauricio Piacentini
  **/
-class KEDUVOCDOCUMENT_EXPORT KGameTheme
+class KGameTheme
 {
     public:
         KGameTheme(const QString &themeGroup = QLatin1String("KGameTheme"));
