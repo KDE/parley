@@ -88,6 +88,9 @@ public:
     /** setup the main view*/
     void initView();
 
+    /** setup the welcome screen */
+    void initWelcomeScreen();
+
     void initDockWidgets();
 
     /** save the app-specific options on slotAppExit or by an Options dialog */

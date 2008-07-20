@@ -83,6 +83,7 @@
 #include <QtCore/QTimer>
 #include <QtGui/QDockWidget>
 #include <QtGui/QHeaderView>
+#include <QtGui/QStackedWidget>
 
 #include "modeltest/modeltest.h"
 
@@ -110,6 +111,8 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
     initView();
     initModel();
 
+    initWelcomeScreen();
+
     initDockWidgets();
 
     initActions();
@@ -124,22 +127,19 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
         m_document->open(filename);
         kDebug() << "open done";
     } else {
-        if (m_recentFilesAction->actions().count() > 0
-            && m_recentFilesAction->action(
-                                        m_recentFilesAction->actions().count()-1)->isEnabled() )
-        {
+        bool showWelcomeScreen = true; //TODO: use config value and add checkbox somewhere
+        if (!showWelcomeScreen && m_recentFilesAction->actions().count() > 0
+            && m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->isEnabled() ) {
             m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->trigger();
         } else {
-        kDebug() << "new doc";
-            // this is probably the first time we start.
+            kDebug() << "new doc";
             m_document->newDocument();
             updateDocument();
+            if (showWelcomeScreen) {
+                qobject_cast<QStackedWidget*>(centralWidget())->setCurrentIndex(1); //show the welcome screen
+            }
         }
     }
-    
-    //temporary: show welcome screen in extra window for testing
-    WelcomeScreen* welcomeScreen = new WelcomeScreen(0);
-    welcomeScreen->show();
 
     if (!initialGeometrySet()) {
         resize(QSize(800, 600).expandedTo(minimumSizeHint()));
@@ -850,8 +850,11 @@ void ParleyApp::initModel()
 void ParleyApp::initView()
 {
     // Parent of all
-    QWidget * mainWidget = new QWidget(this);
-    setCentralWidget(mainWidget);
+    QStackedWidget *stackedWidget = new QStackedWidget(this);
+    setCentralWidget(stackedWidget);
+    
+    QWidget *mainWidget = new QWidget(this);
+    stackedWidget->addWidget(mainWidget);
     QVBoxLayout *topLayout = new QVBoxLayout(mainWidget);
     topLayout->setMargin(KDialog::marginHint());
     topLayout->setSpacing(KDialog::spacingHint());
@@ -876,7 +879,7 @@ void ParleyApp::initView()
     layout->addWidget(m_searchLine);
 
 ///@todo     centralWidget()-> delete layout
-    QVBoxLayout * rightLayout = new QVBoxLayout(centralWidget());
+    QVBoxLayout * rightLayout = new QVBoxLayout(mainWidget);
     rightLayout->setSpacing(KDialog::spacingHint());
     rightLayout->setMargin(0);
     rightLayout->addWidget(m_searchWidget);
@@ -887,6 +890,12 @@ void ParleyApp::initView()
     rightLayout->addWidget(m_vocabularyView, 1, 0);
 
     topLayout->addLayout(rightLayout);
+}
+
+void ParleyApp::initWelcomeScreen()
+{
+    WelcomeScreen* welcomeScreen = new WelcomeScreen(this);
+    qobject_cast<QStackedWidget*>(centralWidget())->addWidget(welcomeScreen);
 }
 
 void ParleyApp::slotShowScriptManager() {
