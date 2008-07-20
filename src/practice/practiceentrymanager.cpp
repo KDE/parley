@@ -140,7 +140,7 @@ QString PracticeEntryManager::findTextForCurrentMode(KEduVocTranslation* questio
         {
             if (word.contains(question->text(), Qt::CaseInsensitive))
             {
-                modified.append("<font color=\"#8C1818\">");
+                modified.append("<font color=\"#ff0000\">");
                 modified.append("...");
                 modified.append("</font>");
             }
