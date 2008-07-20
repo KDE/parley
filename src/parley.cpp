@@ -136,7 +136,7 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
             m_document->newDocument();
             updateDocument();
             if (showWelcomeScreen) {
-                qobject_cast<QStackedWidget*>(centralWidget())->setCurrentIndex(1); //show the welcome screen
+                setShowWelcomeScreen(true);
             }
         }
     }
@@ -360,7 +360,8 @@ void ParleyApp::updateDocument()
 
 ///@todo remove this!
 // at the moment creates a new test every time a model is created. this is good because we get the basic sanity check then.
-    new ModelTest(m_vocabularyModel, this);
+// temporarily disabled because somehow with the welcome screen this crashes Parley when using open recent
+//     new ModelTest(m_vocabularyModel, this);
 }
 
 
@@ -896,6 +897,8 @@ void ParleyApp::initWelcomeScreen()
 {
     WelcomeScreen* welcomeScreen = new WelcomeScreen(this);
     qobject_cast<QStackedWidget*>(centralWidget())->addWidget(welcomeScreen);
+    
+    connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), this, SLOT(hideWelcomeScreen()));
 }
 
 void ParleyApp::slotShowScriptManager() {
@@ -1019,6 +1022,16 @@ void ParleyApp::slotTranslationFinished(const QString & word,const QString& from
             m_vocabularyModel->setData(toIndex,firstTranslation,Qt::EditRole);
         }
     }
+}
+
+void ParleyApp::setShowWelcomeScreen(bool show)
+{
+    qobject_cast<QStackedWidget*>(centralWidget())->setCurrentIndex(int(show));
+}
+
+void ParleyApp::hideWelcomeScreen()
+{
+    setShowWelcomeScreen(false);
 }
 
 ParleyDocument* ParleyApp::parleyDocument()

@@ -163,6 +163,12 @@ public slots:
      * After the translation is finished, it adds the first translation to the table cell (Translation column)
      */
     void slotTranslationFinished(const QString & word,const QString& fromLanguage,const QString& toLanguage);
+    
+    /**
+     * Shows or hides the welcome screen.
+     */
+    void setShowWelcomeScreen(bool show);
+    void hideWelcomeScreen();
 
 private slots:
     void slotConfigOldPractice(bool old);
