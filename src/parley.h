@@ -126,6 +126,8 @@ public slots:
     void slotGeneralOptions();
     void slotApplyPreferences();
 
+    void slotCloseDocument();
+
     /** Let the user edit tenses, articles and personal pronouns */
     void slotGrammarDialog();
     /** General doc properties like title, author etc */

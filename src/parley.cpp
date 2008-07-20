@@ -228,6 +228,16 @@ void ParleyApp::slotApplyPreferences()
     m_vocabularyView->reset();
 }
 
+void ParleyApp::slotCloseDocument()
+{
+    if (!queryClose()) {
+        return;
+    }
+    m_document->newDocument();
+    updateDocument();
+    setShowWelcomeScreen(true);
+}
+
 
 // void ParleyApp::slotStatusHelpMsg(const QString &text)
 // {
@@ -712,6 +722,10 @@ void ParleyApp::initActions()
     fileProperties->setToolTip(fileProperties->whatsThis());
     fileProperties->setStatusTip(fileProperties->whatsThis());
 
+    KAction* fileClose = KStandardAction::close(this, SLOT(slotCloseDocument()), actionCollection());
+    fileClose->setWhatsThis(i18n("Close the current collection"));
+    fileClose->setToolTip(fileClose->whatsThis());
+    fileClose->setStatusTip(fileClose->whatsThis());
 
     KAction* fileQuit = KStandardAction::quit(this, SLOT(close()), actionCollection());
     fileQuit->setWhatsThis(i18n("Quit Parley"));
