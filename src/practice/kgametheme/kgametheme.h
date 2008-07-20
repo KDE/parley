@@ -20,8 +20,6 @@
 #ifndef KGAMETHEME_H
 #define KGAMETHEME_H
 
-#include <libkeduvocdocument_export.h>
-
 #include <QtCore/QString>
 
 class KGameThemePrivate;

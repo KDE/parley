@@ -22,8 +22,6 @@
 
 #include <QtGui/QWidget>
 
-#include <libkeduvocdocument_export.h>
-
 class KGameTheme;
 class KConfigSkeleton;
 class KGameThemeSelectorPrivate;
