@@ -36,6 +36,7 @@
 #include <KUrl>
 #include <QItemSelection>
 #include <QModelIndex>
+#include <QList>
 
 #define IDS_DEFAULT I18N_NOOP("Ready.")
 
@@ -46,6 +47,7 @@ class KRecentFilesAction;
 class KAction;
 class KActionMenu;
 class QLabel;
+class QDockWidget;
 class VocabularyView;
 class VocabularyModel;
 class VocabularyFilter;
@@ -237,6 +239,9 @@ private:
 
     ///stores all the translations of a vocabulary word
     Translator m_translator;
+
+    QList<QDockWidget*> m_dockWidgets;
+    QList<bool> m_dockWidgetVisibility;
 };
 
 #endif // PARLEY_H

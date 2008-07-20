@@ -121,22 +121,24 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
 //     QAction * actionRestoreNativeOrder = actionCollection()->action("restore_native_order");
 //     m_tableView->horizontalHeader()->addAction(actionRestoreNativeOrder);
 //     connect(actionRestoreNativeOrder, SIGNAL(triggered()), m_sortFilterModel, SLOT(restoreNativeOrder()));
-
+    
+    bool showWelcomeScreen = false;
+    
     if ( !filename.url().isEmpty() ) {
         kDebug() << "open doc" << filename.url();
         m_document->open(filename);
         kDebug() << "open done";
     } else {
-        bool showWelcomeScreen = true; //TODO: use config value and add checkbox somewhere
-        if (!showWelcomeScreen && m_recentFilesAction->actions().count() > 0
+        bool configWelcomeScreen = true; //TODO: use config value and add checkbox somewhere
+        if (!configWelcomeScreen && m_recentFilesAction->actions().count() > 0
             && m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->isEnabled() ) {
             m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->trigger();
         } else {
             kDebug() << "new doc";
             m_document->newDocument();
             updateDocument();
-            if (showWelcomeScreen) {
-                setShowWelcomeScreen(true);
+            if (configWelcomeScreen) {
+                showWelcomeScreen = true;
             }
         }
     }
@@ -150,6 +152,10 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
     setAutoSaveSettings();
 
     initScripts();
+    
+    if (showWelcomeScreen) {
+        setShowWelcomeScreen(true);
+    }
 
     // finally show tip-of-day ( if the user wants it :) )
     QTimer::singleShot( 0, this, SLOT( startupTipOfDay() ) );
@@ -373,6 +379,7 @@ void ParleyApp::initDockWidgets()
     m_lessonView = new LessonView(this);
     lessonDockWidget->setWidget(m_lessonView);
     addDockWidget(Qt::LeftDockWidgetArea, lessonDockWidget);
+    m_dockWidgets.append(lessonDockWidget);
     actionCollection()->addAction("show_lesson_dock", lessonDockWidget->toggleViewAction());
 
     m_lessonModel = new LessonModel(this);
@@ -400,6 +407,7 @@ void ParleyApp::initDockWidgets()
     m_wordTypeView = new WordTypeView(this);
     wordTypeDockWidget->setWidget(m_wordTypeView);
     addDockWidget( Qt::LeftDockWidgetArea, wordTypeDockWidget );
+    m_dockWidgets.append(wordTypeDockWidget);
 
     m_wordTypeModel = new WordTypeModel(this);
     wordTypeDockWidget->setVisible(false);
@@ -426,6 +434,7 @@ void ParleyApp::initDockWidgets()
     m_leitnerView = new LeitnerView(this);
     leitnerDockWidget->setWidget(m_leitnerView);
     addDockWidget( Qt::LeftDockWidgetArea, leitnerDockWidget );
+    m_dockWidgets.append(leitnerDockWidget);
 
     m_leitnerModel = new LeitnerModel(this);
     leitnerDockWidget->setVisible(false);
@@ -448,6 +457,7 @@ void ParleyApp::initDockWidgets()
     m_conjugationWidget = new ConjugationWidget(this);
     conjugationDock->setWidget(m_conjugationWidget);
     addDockWidget(Qt::RightDockWidgetArea, conjugationDock);
+    m_dockWidgets.append(conjugationDock);
     conjugationDock->setVisible(false);
     actionCollection()->addAction("show_conjugation_dock", conjugationDock->toggleViewAction());
     connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)),
@@ -461,6 +471,7 @@ void ParleyApp::initDockWidgets()
     DeclensionWidget *declensionWidget = new DeclensionWidget(this);
     declensionDock->setWidget(declensionWidget);
     addDockWidget(Qt::RightDockWidgetArea, declensionDock);
+    m_dockWidgets.append(declensionDock);
     actionCollection()->addAction("show_declension_dock", declensionDock->toggleViewAction());
     declensionDock->setVisible(false);
     connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)),
@@ -475,6 +486,7 @@ void ParleyApp::initDockWidgets()
     ComparisonWidget *comparisonWidget = new ComparisonWidget(this);
     comparisonDock->setWidget(comparisonWidget);
     addDockWidget(Qt::RightDockWidgetArea, comparisonDock);
+    m_dockWidgets.append(comparisonDock);
     actionCollection()->addAction("show_comparison_dock", comparisonDock->toggleViewAction());
     comparisonDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
@@ -488,6 +500,7 @@ void ParleyApp::initDockWidgets()
     MultipleChoiceWidget *multipleChoiceWidget = new MultipleChoiceWidget(this);
     multipleChoiceDock->setWidget(multipleChoiceWidget);
     addDockWidget(Qt::RightDockWidgetArea, multipleChoiceDock);
+    m_dockWidgets.append(multipleChoiceDock);
     actionCollection()->addAction("show_multiplechoice_dock", multipleChoiceDock->toggleViewAction());
     multipleChoiceDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
@@ -499,6 +512,7 @@ void ParleyApp::initDockWidgets()
     SynonymWidget *synonymWidget = new SynonymWidget(SynonymWidget::Synonym, this);
     synonymDock->setWidget(synonymWidget);
     addDockWidget(Qt::RightDockWidgetArea, synonymDock);
+    m_dockWidgets.append(synonymDock);
     actionCollection()->addAction("show_synonym_dock", synonymDock->toggleViewAction());
     synonymDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
@@ -509,6 +523,7 @@ void ParleyApp::initDockWidgets()
     SynonymWidget *antonymWidget = new SynonymWidget(SynonymWidget::Antonym, this);
     antonymDock->setWidget(antonymWidget);
     addDockWidget(Qt::RightDockWidgetArea, antonymDock);
+    m_dockWidgets.append(antonymDock);
     actionCollection()->addAction("show_antonym_dock", antonymDock->toggleViewAction());
     antonymDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
@@ -519,6 +534,7 @@ void ParleyApp::initDockWidgets()
     SynonymWidget *falseFriendWidget = new SynonymWidget(SynonymWidget::FalseFriend, this);
     falseFriendDock->setWidget(falseFriendWidget);
     addDockWidget(Qt::RightDockWidgetArea, falseFriendDock);
+    m_dockWidgets.append(falseFriendDock);
     actionCollection()->addAction("show_falsefriend_dock", falseFriendDock->toggleViewAction());
     falseFriendDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
@@ -531,6 +547,7 @@ void ParleyApp::initDockWidgets()
     charSelectWidget->setCurrentChar(0x0250);
     charSelectDock->setWidget(charSelectWidget);
     addDockWidget(Qt::BottomDockWidgetArea, charSelectDock);
+    m_dockWidgets.append(charSelectDock);
     actionCollection()->addAction("show_pronunciation_dock", charSelectDock->toggleViewAction());
     charSelectDock->setVisible(false);
     connect(charSelectWidget, SIGNAL(charSelected(const QChar &)), m_vocabularyView, SLOT(appendChar(const QChar &)));
@@ -541,6 +558,7 @@ void ParleyApp::initDockWidgets()
     ImageChooserWidget *imageChooserWidget = new ImageChooserWidget(this);
     imageDock->setWidget(imageChooserWidget);
     addDockWidget(Qt::RightDockWidgetArea, imageDock);
+    m_dockWidgets.append(imageDock);
     actionCollection()->addAction("show_image_dock", imageDock->toggleViewAction());
     imageDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
@@ -552,6 +570,7 @@ void ParleyApp::initDockWidgets()
     AudioWidget *audioWidget = new AudioWidget(this);
     audioDock->setWidget(audioWidget);
     addDockWidget(Qt::RightDockWidgetArea, audioDock);
+    m_dockWidgets.append(audioDock);
     actionCollection()->addAction("show_audio_dock", audioDock->toggleViewAction());
     audioDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
@@ -564,6 +583,7 @@ void ParleyApp::initDockWidgets()
     BrowserWidget *htmlPart = new BrowserWidget(browserDock);
     browserDock->setWidget(htmlPart);
     addDockWidget(Qt::RightDockWidgetArea, browserDock);
+    m_dockWidgets.append(browserDock);
     actionCollection()->addAction("show_browser_dock", browserDock->toggleViewAction());
     browserDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
@@ -1026,7 +1046,34 @@ void ParleyApp::slotTranslationFinished(const QString & word,const QString& from
 
 void ParleyApp::setShowWelcomeScreen(bool show)
 {
-    qobject_cast<QStackedWidget*>(centralWidget())->setCurrentIndex(int(show));
+    QStackedWidget* central = qobject_cast<QStackedWidget*>(centralWidget());
+    int index = int(show);
+    if (central->currentIndex() != index) {
+        central->setCurrentIndex(int(show));
+    } else {
+        return;
+    }
+    
+    if (show) {
+        // hide dock widgets
+        m_dockWidgetVisibility.clear();
+        foreach(QDockWidget* dock, m_dockWidgets) {
+            m_dockWidgetVisibility.append(!dock->isHidden());
+            dock->close();
+        }
+    } else {
+        // restore dock widgets
+        if(m_dockWidgets.count() != m_dockWidgetVisibility.count()) {
+            return;
+        }
+        int i = 0;
+        foreach(QDockWidget* dock, m_dockWidgets) {
+            if (m_dockWidgetVisibility[i]) {
+                dock->show();
+            }
+            i++;
+        }
+    }
 }
 
 void ParleyApp::hideWelcomeScreen()
