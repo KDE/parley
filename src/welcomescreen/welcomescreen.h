@@ -18,17 +18,24 @@
 
 #include <QWidget>
 
+class ParleyApp;
+class KUrl;
 class QStandardItemModel;
 
 class WelcomeScreen : public QWidget
 {
 Q_OBJECT
 public:
-    WelcomeScreen(QWidget *parent = 0);
+    WelcomeScreen(ParleyApp *parent);
     void updateRecentFilesModel();
+
+public slots:
+    void slotOpenUrl(const KUrl& url);
+    void slotDoubleClicked(const QModelIndex& index);
 
 private:
     Ui::WelcomeScreen *ui;
+    ParleyApp *m_parleyApp;
     QStandardItemModel *m_recentFilesModel;
 };
 

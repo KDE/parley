@@ -12,9 +12,11 @@
  ***************************************************************************/
 
 #include "buttondelegate.h"
+#include "welcomescreen.h"
 
 #include <kwidgetitemdelegate.h>
 #include <KPushButton>
+#include <KMessageBox>
 
 #include <QStandardItemModel>
 #include <QPainter>
@@ -24,8 +26,8 @@
 const int margin = 5;
 const int iconSize = 32;
 
-ButtonDelegate::ButtonDelegate(QAbstractItemView *itemView, QObject *parent )
-        : KWidgetItemDelegate(itemView, parent), m_rightMargin(0), m_buttonHeight(0)
+ButtonDelegate::ButtonDelegate(QAbstractItemView *itemView, WelcomeScreen *parent )
+        : KWidgetItemDelegate(itemView, parent), m_rightMargin(0), m_buttonHeight(0), m_welcomeScreen(parent)
 {
 }
 
@@ -44,6 +46,10 @@ QList<QWidget*> ButtonDelegate::createItemWidgets() const
     practiceButton->setIcon(KIcon("practice-start"));
     m_rightMargin = editButton->sizeHint().width() + practiceButton->sizeHint().width() + 3*margin;
     m_buttonHeight = editButton->sizeHint().height();
+
+    connect(editButton, SIGNAL(clicked()), this, SLOT(slotEdit()));
+    connect(practiceButton, SIGNAL(clicked()), this, SLOT(slotPractice()));
+
     widgetList << editButton << practiceButton;
     return widgetList;
 }
@@ -86,6 +92,18 @@ QSize ButtonDelegate::sizeHint(const QStyleOptionViewItem &option,
     Q_UNUSED(index);
 
     return QSize(qMax(iconSize, m_buttonHeight), 32);
+}
+
+void ButtonDelegate::slotEdit()
+{
+    const QModelIndex index = focusedIndex();
+    KUrl url = index.data(Qt::UserRole).toUrl();
+    m_welcomeScreen->slotOpenUrl(url);
+}
+
+void ButtonDelegate::slotPractice()
+{
+    KMessageBox::information(0, "Coming soon.");
 }
 
 #include "buttondelegate.moc"

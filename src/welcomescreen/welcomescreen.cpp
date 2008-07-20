@@ -13,13 +13,15 @@
 
 #include "welcomescreen.h"
 #include "buttondelegate.h"
+#include "parley.h"
+#include "parleydocument.h"
 
 #include <KMimeType>
 
 #include <QStandardItemModel>
 
-WelcomeScreen::WelcomeScreen(QWidget *parent)
- : QWidget(parent)
+WelcomeScreen::WelcomeScreen(ParleyApp *parent)
+ : QWidget(parent), m_parleyApp(parent)
 {
     ui = new Ui::WelcomeScreen();
     ui->setupUi(this);
@@ -51,6 +53,12 @@ WelcomeScreen::WelcomeScreen(QWidget *parent)
     
     ButtonDelegate* delegate = new ButtonDelegate(ui->recentFiles, this);
     ui->recentFiles->setItemDelegate(delegate);
+    
+    ParleyDocument* doc = m_parleyApp->parleyDocument();
+    connect(ui->newButton, SIGNAL(clicked()), doc, SLOT(slotFileNew()));
+    connect(ui->openButton, SIGNAL(clicked()), doc, SLOT(slotFileOpen()));
+    connect(ui->ghnsButton, SIGNAL(clicked()), doc, SLOT(slotGHNS()));
+    connect(ui->recentFiles, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(slotDoubleClicked(const QModelIndex&)));
 }
 
 void WelcomeScreen::updateRecentFilesModel()
@@ -69,12 +77,24 @@ void WelcomeScreen::updateRecentFilesModel()
         item->setEditable(false);
         item->setText(nameString+" ("+url.pathOrUrl()+")");
         item->setToolTip(nameString+" ("+url.pathOrUrl()+")");
-
+        item->setData(QVariant(url), Qt::UserRole);
+        
         QString iconName = KMimeType::iconNameForUrl(url);
         item->setIcon(KIcon(iconName));
         
         m_recentFilesModel->appendRow(item);
     }
+}
+
+void WelcomeScreen::slotOpenUrl(const KUrl& url)
+{
+    m_parleyApp->parleyDocument()->open(url);
+}
+
+void WelcomeScreen::slotDoubleClicked(const QModelIndex& index)
+{
+    KUrl url = index.data(Qt::UserRole).toUrl();
+    slotOpenUrl(url);
 }
 
 #include "welcomescreen.moc"

@@ -16,12 +16,14 @@
 
 #include <kwidgetitemdelegate.h>
 
+class WelcomeScreen;
+
 class ButtonDelegate
     : public KWidgetItemDelegate
 {
 Q_OBJECT
 public:
-    ButtonDelegate(QAbstractItemView *itemView, QObject *parent = 0);
+    ButtonDelegate(QAbstractItemView *itemView, WelcomeScreen *parent);
 
     virtual ~ButtonDelegate();
     
@@ -31,13 +33,15 @@ public:
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
+
+public slots:
+    void slotEdit();
+    void slotPractice();
+
 private:
     mutable int m_rightMargin;
     mutable int m_buttonHeight;
+    WelcomeScreen *m_welcomeScreen;
 };
-
-
-
-
 
 #endif
