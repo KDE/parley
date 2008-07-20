@@ -62,7 +62,10 @@ set(practice_SRCS
     practice/kgametheme/kgamethemeselector.cpp
     practice/parleypracticemainwindow.cpp
     practice/practiceview.cpp
-    practice/input.cpp
+    practice/input/textualinput.cpp
+    practice/input/mcinput.cpp
+    practice/input/multiplechoicemcinput.cpp
+    practice/input/articlemcinput.cpp
     practice/prompt.cpp
     practice/statistics.cpp
     practice/stdbuttons.cpp

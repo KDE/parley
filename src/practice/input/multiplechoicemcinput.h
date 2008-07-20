@@ -1,15 +1,10 @@
 //
-// C++ Implementation: input
+// C++ Interface: multiplechoicemcinput
 //
-// Description: Implementation of the input-gathering class
+// Description:
 //
 //
 // Author: David Capel <wot.narg@gmail.com>, (C) 2008
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
-
 /***************************************************************************
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *
@@ -18,23 +13,24 @@
 *   (at your option) any later version.                                   *
 *                                                                         *
 ***************************************************************************/
-#include "input.h"
-#include "statistics.h"
-#include "practiceentry.h"
-#include "prefs.h"
 
-#include <KDebug>
-#include <KSvgRenderer>
-#include <KRandom>
-#include <QRadioButton>
-#include <QVBoxLayout>
-#include <KRandomSequence>
-#include <QString>
-#include <KLocalizedString>
-#include <QStringList>
 
-#include "keduvocwordtype.h"
-#include "keduvocdocument.h"
-#include "keduvocarticle.h"
+#ifndef MULTIPLECHOICEMCIINPUT_H
+#define MULTIPLECHOICEMCIINPUT_H
 
-#include "input.moc"
+#include "mcinput.h"
+
+class PracticeEntry;
+
+class MultipleChoiceMCInput : public MCInput
+{
+    Q_OBJECT
+    public:
+        MultipleChoiceMCInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent = 0);
+
+    public slots:
+        void slotSetAnswers(PracticeEntry*, QList<PracticeEntry*>);
+};
+
+
+#endif

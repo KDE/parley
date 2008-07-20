@@ -1,13 +1,10 @@
 //
-// C++ Implementation: input
+// C++ Interface: textualinput
 //
-// Description: Implementation of the input-gathering class
+// Description:
 //
 //
 // Author: David Capel <wot.narg@gmail.com>, (C) 2008
-//
-// Copyright: See COPYING file that comes with this distribution
-//
 //
 
 /***************************************************************************
@@ -18,23 +15,34 @@
 *   (at your option) any later version.                                   *
 *                                                                         *
 ***************************************************************************/
-#include "input.h"
-#include "statistics.h"
-#include "practiceentry.h"
-#include "prefs.h"
 
-#include <KDebug>
-#include <KSvgRenderer>
-#include <KRandom>
-#include <QRadioButton>
-#include <QVBoxLayout>
-#include <KRandomSequence>
-#include <QString>
-#include <KLocalizedString>
-#include <QStringList>
 
-#include "keduvocwordtype.h"
-#include "keduvocdocument.h"
-#include "keduvocarticle.h"
+#ifndef TEXTUALINPUT_H
+#define TEXTUALINPUT_H
 
-#include "input.moc"
+#include <QLineEdit>
+
+class KSvgRenderer;
+class QGraphicsView;
+class QString;
+
+
+class TextualInput : public QLineEdit
+{
+    Q_OBJECT
+
+    public:
+        TextualInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent = 0);
+
+    public slots:
+        void slotClear();
+        void slotShowSolution(const QString& solution);
+        void slotEmitAnswer();
+    signals:
+        void signalAnswer(const QString& answer);
+        void signalAnswerChanged(const QString& answer);
+    private:
+        KSvgRenderer* m_renderer;
+};
+
+#endif

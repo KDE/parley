@@ -33,7 +33,12 @@
 #include <QSignalMapper>
 
 #include "practiceview.h"
-#include "input.h"
+
+#include "input/textualinput.h"
+#include "input/multiplechoicemcinput.h"
+#include "input/mcinput.h"
+#include "input/articlemcinput.h"
+
 #include "prompt.h"
 #include "statistics.h"
 #include "stdbuttons.h"
