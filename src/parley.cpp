@@ -305,6 +305,13 @@ kDebug() << "slot config old practice";
     Prefs::setOldPractice(old);
 }
 
+void ParleyApp::closeEvent(QCloseEvent *event)
+{
+    // hide the welcome screen to prevent the dock widgets to be hidden when saving the window state
+    setShowWelcomeScreen(false);
+    KXmlGuiWindow::closeEvent(event);
+}
+
 bool ParleyApp::queryClose()
 {
     bool erg = queryExit();

@@ -178,6 +178,9 @@ private slots:
 signals:
     void signalSetData( const QList<int>& entries, int currentTranslation);
 
+protected:
+    void closeEvent(QCloseEvent *event);
+
 private:
 
     /**
