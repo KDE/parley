@@ -42,9 +42,21 @@
       <label>Time interval between two automatic backups</label>
       <default>15</default>
     </entry>
+    <entry name="OldPractice" type="Bool">
+      <label>If true, use the old deprecated practice</label>
+      <default>false</default>
+    </entry>
+    <entry name="AutomaticTranslation" type="Bool">
+      <label>Enable for automatic translation of the lesson entries.</label>
+      <default>false</default>
+    </entry>
   </group>
 
   <group name="PracticeOptions">
+    <entry name="Theme" type="String">
+      <label>Practice theme to use</label>
+      <default>default</default>
+    </entry>
     <entry name="Block" type="Bool">
       <label>In Blocking Query Tab Dialog, if checked then the Query is blocked</label>
       <default>false</default>
@@ -91,7 +103,10 @@
       <label>Enable suggestion lists in written practice.</label>
       <default>false</default>
     </entry>
-
+    <entry name = "ShowHints" type="Bool">
+     <label>Enable the showing of hints.</label>
+     <default>true</default>
+    </entry>
     <entry name="IgnoreAccentMistakes" type="Bool">
       <label>Count answers as right when only the accentuation is wrong.</label>
       <default>false</default>
@@ -122,6 +137,7 @@
       <default>false</default>
     </entry>
 
+    <!-- This will be deprecated in the new partice -->
     <entry name="ShowMore" type="Bool">
       <label>Enable Show More button to reveal parts of the solution in written practice.</label>
       <default>true</default>
@@ -142,6 +158,14 @@
       <label>Enable sound playback in the practice dialogs.</label>
       <default>true</default>
     </entry>
+    <entry name="MultipleChoiceWordTypeConsistancy" type="Bool">"
+        <label>Use the same word type as the solution for the incorrect answers in a multiple choice practice.</label>
+        <default>true</default>
+    </entry>
+    <entry name="NumberMultipleChoiceAnswers" type="Int">
+        <label>How many answers are provided for a multiple choice question, including the correct answer.</label>
+        <default>5</default>
+     </entry>
   </group>
 
   <group name="Appearance">
@@ -152,7 +176,7 @@
 
     <entry name="ShowSublessonentries" type="Bool">
       <label>When enabled a lesson also shows entries from its sublessons.</label>
-      <default>false</default>
+      <default>true</default>
     </entry>
 
     <entry name="TableLessonColumnVisible" type="Bool">
@@ -216,29 +240,29 @@
 
   <group name="Thresholds">
     <entry name="PracticeMinimumTimesAsked" type="Int">
-      <label>The entry has been asked at least this often to be included in the practice.</label>
+      <label>The entry must have been asked at least this often to be included in the practice.</label>
       <default>0</default>
     </entry>
     <entry name="PracticeMaximumTimesAsked" type="Int">
-      <label>The entry has been asked at most this often to be included in the practice.</label>
+      <label>The entry must have been asked at most this often to be included in the practice.</label>
       <default>1000</default>
     </entry>
 
     <entry name="PracticeMinimumWrongCount" type="Int">
-      <label>The entry was answered wrong at least this often to be included in the practice.</label>
+      <label>The entry must have been answered wrong at least this often to be included in the practice.</label>
       <default>0</default>
     </entry>
     <entry name="PracticeMaximumWrongCount" type="Int">
-      <label>The entry was answered wrong at most this often to be included in the practice.</label>
+      <label>The entry must have been answered wrong at most this often to be included in the practice.</label>
       <default>1000</default>
     </entry>
 
     <entry name="PracticeMinimumGrade" type="Int">
-      <label>The entry has at least this grade to be included in the practice (0..7).</label>
+      <label>The entry must have at least this grade to be included in the practice (0..7).</label>
       <default>0</default>
     </entry>
     <entry name="PracticeMaximumGrade" type="Int">
-      <label>The entry has at most this grade to be included in the practice (0..7).</label>
+      <label>The entry must have at most this grade to be included in the practice (0..7).</label>
       <default>7</default>
     </entry>
     <entry name="WordTypesInPracticeEnabled" type="Bool">
@@ -286,6 +310,7 @@
             <choice name="SynonymTest"/>
             <choice name="ParaphraseTest"/>
             <choice name="AntonymTest"/>
+            <choice name="FlashCardsTest"/>
         </choices>
         <label>The test type that is currently selected.</label>
         <default>WrittenTest</default>

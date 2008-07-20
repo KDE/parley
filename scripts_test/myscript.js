@@ -1,0 +1,4 @@
+
+function fetchTranslation() {
+    return "hallo";
+}

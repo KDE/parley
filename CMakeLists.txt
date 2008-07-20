@@ -18,8 +18,10 @@ configure_file(
    ${CMAKE_CURRENT_BINARY_DIR}/config-parley.h
 )
 
+add_subdirectory( scripts_test )
 add_subdirectory( src )
 add_subdirectory( icons )
+add_subdirectory( plugins )
 add_subdirectory( examples )
 add_subdirectory( tipofday )
 

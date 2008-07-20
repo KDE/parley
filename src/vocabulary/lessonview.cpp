@@ -28,8 +28,6 @@
 LessonView::LessonView(ParleyApp * parent) :ContainerView(parent)
 {
 //     setContextMenuPolicy(Qt::CustomContextMenu);
-    
-// -- LESSON --------------------------------------------------
 
     KAction *actionNewLesson = new KAction(this);
     parent->actionCollection()->addAction("new_lesson", actionNewLesson);
@@ -37,7 +35,6 @@ LessonView::LessonView(ParleyApp * parent) :ContainerView(parent)
     actionNewLesson->setIcon(KIcon("lesson-add"));
     actionNewLesson->setWhatsThis(i18n("Add a new lesson to your document"));
     actionNewLesson->setToolTip(actionNewLesson->whatsThis());
-    actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
     actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
 
     KAction *actionRenameLesson = new KAction(this);
@@ -47,7 +44,6 @@ LessonView::LessonView(ParleyApp * parent) :ContainerView(parent)
     actionRenameLesson->setWhatsThis(i18n("Rename the selected lesson"));
     actionRenameLesson->setToolTip(actionRenameLesson->whatsThis());
     actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
-    actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
 
     KAction *actionDeleteLesson = new KAction(this);
     parent->actionCollection()->addAction("delete_lesson", actionDeleteLesson);
@@ -56,7 +52,6 @@ LessonView::LessonView(ParleyApp * parent) :ContainerView(parent)
     actionDeleteLesson->setWhatsThis(i18n("Delete the selected lesson."));
     actionDeleteLesson->setToolTip(actionDeleteLesson->whatsThis());
     actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
-    actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
 
     KAction *actionSplitLesson = new KAction(this);
     parent->actionCollection()->addAction("split_lesson", actionSplitLesson);
@@ -64,7 +59,6 @@ LessonView::LessonView(ParleyApp * parent) :ContainerView(parent)
     actionSplitLesson->setIcon(KIcon("edit-copy"));  /// @todo better icon
     actionSplitLesson->setWhatsThis(i18n("Make multiple smaller lessons out of one big lesson."));
     actionSplitLesson->setToolTip(actionSplitLesson->whatsThis());
-    actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
     actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
 
     connect(actionNewLesson, SIGNAL(triggered()),
@@ -89,6 +83,32 @@ LessonView::LessonView(ParleyApp * parent) :ContainerView(parent)
     addAction(actionSplitLesson);
 }
 
+void LessonView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
+{
+    QTreeView::currentChanged(current, previous);
+
+    if (current.isValid()) {
+        KEduVocLesson *container = static_cast<KEduVocLesson*>(current.internalPointer());
+        if (container) {
+            emit selectedLessonChanged(container);
+            emit signalShowContainer(container);
+        }
+    }
+}
+
+void LessonView::selectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
+{
+    QTreeView::selectionChanged(selected, deselected);
+
+    if(selected.count() == 0) {
+        return;
+    }
+
+    KEduVocLesson *container = static_cast<KEduVocLesson*>(selected.indexes().value(0).internalPointer());
+    if (container) {
+        emit selectedLessonChanged(container);
+    }
+}
 
 void LessonView::slotCreateNewLesson()
 {
@@ -123,7 +143,6 @@ void LessonView::slotDeleteLesson()
         m_model->deleteContainer(selectedIndex);
     }
 }
-
 
 void LessonView::slotSplitLesson()
 {

@@ -1,0 +1,5 @@
+[KNewStuff2]
+ProvidersUrl=http://newstuff.kde.org/cgi-bin/hotstuff-provider?site=parleypractice-dxs
+TargetDir=parley/themes
+Uncompress=archive
+

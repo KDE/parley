@@ -36,6 +36,7 @@ class KEduVocDocument;
 class KRandomSequence;
 class PracticeDialog;
 
+
 class TestEntryManager
     :public QObject
 {
@@ -130,5 +131,6 @@ private:
 
 friend class EntryFilter;
 };
+
 
 #endif // kvtquery_included

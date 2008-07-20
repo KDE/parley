@@ -354,6 +354,8 @@ void VocabularyView::slotCurrentChanged(const QModelIndex & current, const QMode
 void VocabularyView::reset()
 {
     QTableView::reset();
+    emit translationChanged(0, 0);
+
     kDebug() << "reset";
 ///@todo check if the actions are recreated every time when selecting a diff lesson.
     foreach( KAction* oldAction, m_columnActionMap.keys() ) {
@@ -578,6 +580,16 @@ void VocabularyView::setDocument(KEduVocDocument * doc)
     m_vocabularyDelegate->setDocument(doc);
 }
 
+/**
+ * Set the translator to be used by the delegate
+ * @param translator 
+ */
+void VocabularyView::setTranslator(Translator* translator)
+{
+    m_vocabularyDelegate->setTranslator(translator);
+}
+
+
 void VocabularyView::checkSpelling()
 {
     // values so we will start in the first row:
@@ -669,4 +681,3 @@ void VocabularyView::spellingReplace(const QString & oldWord, int start, const Q
 }
 
 #include "vocabularyview.moc"
-

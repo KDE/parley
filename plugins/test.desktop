@@ -1,0 +1,23 @@
+[Desktop Entry]
+Encoding=UTF-8
+Icon=mypluginicon
+Type=Service
+# The next line doesn't work (didn't help recongnizing X-KDE-PluginInfo-Script=myscript.py
+# ServiceTypes=Parley/Script
+ServiceTypes=KPluginInfo
+
+Name=User Visible Name1
+Comment=Description of what the plugin does
+Script=myskatascript.py
+
+X-KDE-PluginInfo-Author=Author's Name1
+X-KDE-PluginInfo-Email=author@foo.bar
+X-KDE-PluginInfo-Name=internalname1
+X-KDE-PluginInfo-Version=1.1
+X-KDE-PluginInfo-Website=http://www.plugin.org/
+X-KDE-PluginInfo-Category=playlist
+# X-KDE-PluginInfo-Depends=plugin1,plugin3
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-EnabledByDefault=true
+# the next line didn't work
+# X-KDE-PluginInfo-Script=myscript.py

@@ -27,7 +27,7 @@ class VocabularyMimeData :public QMimeData {
 public:
     struct MimeExpression {
         struct WordTypeStrings {
-            QStringList wordType; // better have this hierachical
+            QStringList wordType; // better have this hierarchical
             KEduVocWordType::EnumWordType grammarType;
         };
 

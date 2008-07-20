@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="parley"  version="3">
+<gui name="parley"  version="6">
 
 <MenuBar>
     <Menu name="file" >
@@ -57,13 +57,21 @@
    <Action name="split_lesson" />
    <Separator/>
    <Action name="lesson_showsublessonentries" />
+   <Action name="lesson_automatictranslation" />
   </Menu>
   <Menu name="learning" >
    <text>&amp;Practice</text>
    <Action name="practice_configure" />
    <Action name="practice_start" />
+   <Action name="config_oldPractice" />
    <Separator/>
    <Action name="show_statistics" />
+  </Menu>
+  <Menu name="scripts" >
+    <text>&amp;Scripts</text>
+    <Action name="show_script_manager" />
+    <Separator/>
+    <ActionList name="scripts_actionlist" />
   </Menu>
   <Menu name="settings" >
   </Menu>

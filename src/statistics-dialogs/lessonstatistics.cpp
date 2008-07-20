@@ -75,8 +75,11 @@ LessonStatisticsView::LessonStatisticsView(QWidget * parent) :ContainerView(pare
 
     // inherits context menu policy - so action will show up in right click menu
     KAction *removeGradesAction = new KAction(this);
-    removeGradesAction->setText(i18n("Remove Grades"));
+    removeGradesAction->setText(i18n("Remove &Grades"));
     removeGradesAction->setIcon(KIcon("edit-clear"));
+    removeGradesAction->setWhatsThis(i18n("Remove all grades from this lesson"));
+    removeGradesAction->setToolTip(removeGradesAction->whatsThis());
+    removeGradesAction->setStatusTip(removeGradesAction->whatsThis());
 
     connect(removeGradesAction, SIGNAL(triggered()), SLOT(removeGrades()));
 

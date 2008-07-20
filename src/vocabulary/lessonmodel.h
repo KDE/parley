@@ -43,6 +43,9 @@ public:
      * @param order one of SplitLessonOrder
         */
     void splitLesson(const QModelIndex& containerIndex, int entriesPerLesson, SplitLessonOrder order);
+
+protected:
+    KEduVocContainer * rootContainer() const;
 };
 
 

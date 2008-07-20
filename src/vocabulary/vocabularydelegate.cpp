@@ -33,9 +33,38 @@
 #include <QHeaderView>
 #include <QDBusInterface>
 
+
 VocabularyDelegate::VocabularyDelegate(QObject *parent) : QItemDelegate(parent)
 {
     m_doc = 0;
+    m_translator = 0;
+}
+
+QSet<QString> VocabularyDelegate::getTranslations(const QModelIndex & index) const
+{
+    QSet<QString> translations; //translations of this column from all the other languages
+            
+    int language = index.column() / VocabularyModel::EntryColumnsMAX;
+    QString toLanguage = m_doc->identifier(language).locale();
+
+    //iterate through all the Translation columns
+    for (int i = 0; i < index.model()->columnCount(index.parent()); i ++) {
+        if (VocabularyModel::columnType(i) == VocabularyModel::Translation) //translation column
+        {
+            QString fromLanguage = m_doc->identifier(VocabularyModel::translation(i)).locale();
+            QString word = index.model()->index(index.row(),i,QModelIndex()).data().toString();
+
+            if (fromLanguage != toLanguage) {
+                kDebug() << fromLanguage << toLanguage << word;
+                //get the word translations and add them to the translations set
+                QSet<QString> * tr = m_translator->getTranslation(word,fromLanguage,toLanguage);
+                if (tr)
+                    translations.unite(*(tr));
+            }
+        }
+    }
+
+    return translations;
 }
 
 QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index) const
@@ -51,7 +80,7 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
         if (!m_doc) return 0;
         KComboBox *wordTypeCombo = new KComboBox(parent);
 
-        BasicContainerModel *basicWordTypeModel = new BasicContainerModel(KEduVocContainer::WordType, parent);
+        WordTypeBasicModel *basicWordTypeModel = new WordTypeBasicModel(parent);
         wordTypeCombo->setModel(basicWordTypeModel);
         QTreeView *view = new QTreeView(parent);
 
@@ -68,6 +97,32 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
         //view->setCurrentItem();
 
         return wordTypeCombo;
+    }
+
+    case VocabularyModel::Translation: {
+        if (!m_doc || !m_translator) return 0;
+
+        if (VocabularyModel::columnType( index.column() ) == VocabularyModel::Translation) {
+
+            //get the translations of this word
+            QSet<QString> translations = getTranslations(index);
+
+            //create combo box
+            //if there is only one word and that is the suggestion word (in translations) then don't create the combobox
+            if (!translations.isEmpty() && !(translations.size() == 1 && (*translations.begin()) == index.model()->data(index, Qt::DisplayRole).toString())) {
+
+                QComboBox *translationCombo = new QComboBox(parent);
+                translationCombo->setFrame(false);
+
+                translationCombo->addItems(translations.toList());
+
+                translationCombo->setEditable(true);
+                translationCombo->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
+                translationCombo->setEditText(index.model()->data(index, Qt::DisplayRole).toString());
+
+                return translationCombo;
+            }
+        }
     }
 
     default: {
@@ -90,6 +145,18 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
             }
         }
         connect(editor, SIGNAL(returnPressed()), this, SLOT(commitAndCloseEditor()));
+
+        //add auto completion to KLineEdit for translation columns
+//         if (VocabularyModel::columnType(index.column()) == VocabularyModel::Translation) {
+// 
+//             QStringList list;
+//             list.push_back("car");
+//             list.push_back("auto");
+// 
+//             KCompletion * completion = editor->completionObject();
+//             editor->setCompletionMode(KGlobalSettings::CompletionPopupAuto);
+//             completion->insertItems(list);
+//         }
         return editor;
     }
     }
@@ -102,6 +169,14 @@ void VocabularyDelegate::setEditorData(QWidget * editor, const QModelIndex & ind
     }
 
     switch (VocabularyModel::columnType(index.column())) {
+    case (VocabularyModel::Translation): {
+        QString value = index.model()->data(index, Qt::DisplayRole).toString();
+        QComboBox * translationCombo = qobject_cast<QComboBox*>(editor);
+        if (translationCombo) {
+            translationCombo->setEditText(value);
+            break;
+        }
+    }
     default: {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
 
@@ -146,6 +221,13 @@ Q_ASSERT(expression);
 
         expression->translation(translationId)->setWordType(wordType);
 
+    }
+    case (VocabularyModel::Translation): {
+        QComboBox * translationCombo = qobject_cast<QComboBox*>(editor);
+        if (translationCombo) {
+            model->setData(index,translationCombo->currentText());
+            break;
+        }
     }
     default: {
         KLineEdit *lineEdit = qobject_cast<KLineEdit*>(editor);
@@ -193,5 +275,28 @@ QPair< QString, QString > VocabularyDelegate::guessWordType(const QString & entr
 }
 */
 
+
+VocabularyDelegate::WordTypeBasicModel::WordTypeBasicModel(QObject * parent)
+    :BasicContainerModel(KEduVocContainer::WordType, parent)
+{
+}
+
+KEduVocContainer * VocabularyDelegate::WordTypeBasicModel::rootContainer() const
+{
+    if (!m_doc) {
+        return 0;
+    }
+    return m_doc->wordTypeContainer();
+}
+
+
+/**
+ * Sets the member variable m_translator to a Translator object
+ * @param translator Translator Object to be used for retreiving word translations
+ */
+void VocabularyDelegate::setTranslator(Translator* translator)
+{
+    m_translator = translator;
+}
 
 #include "vocabularydelegate.moc"

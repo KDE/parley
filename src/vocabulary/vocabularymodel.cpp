@@ -135,6 +135,7 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
     case Qt::DisplayRole:
         switch (entryColumn) {
         case Translation:
+//             kDebug() << columnCount(QModelIndex()) << index.column() << m_container->entry(index.row(), m_recursive)->translation(translationId)->text();
             return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->text());
         case Pronunciation:
             return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->pronunciation());
@@ -290,7 +291,7 @@ QVariant VocabularyModel::headerData(int section, Qt::Orientation orientation, i
                 if (m_document->identifierCount() - 1 < translationId) {
                     return QVariant();
                 }
-                return m_document->identifier(translationId).name();
+                return m_document->identifier(translationId).name(); //returns "English", "German", etc
             case Pronunciation:
                 return i18n("Pronunciation");
             case WordType:
@@ -430,6 +431,9 @@ void VocabularyModel::resetLanguages()
     setDocument(m_document);
 }
 
+void VocabularyModel::automaticTranslation(bool enabled) {
+    Prefs::setAutomaticTranslation(enabled);
+}
 
 #include "vocabularymodel.moc"
 

@@ -26,7 +26,9 @@
 
 #include "../config-parley.h"
 
-#include "practice/testentrymanager.h"
+#include "practiceold/testentrymanager.h"
+#include "practice/parleypracticemainwindow.h"
+
 #include "vocabulary/vocabularymodel.h"
 #include "vocabulary/vocabularyview.h"
 #include "vocabulary/vocabularyfilter.h"
@@ -36,6 +38,8 @@
 #include "vocabulary/containermodel.h"
 #include "vocabulary/lessonmodel.h"
 #include "vocabulary/wordtypemodel.h"
+#include "vocabulary/leitnerview.h"
+#include "vocabulary/leitnermodel.h"
 
 #include "entry-dialogs/multiplechoicewidget.h"
 #include "entry-dialogs/comparisonwidget.h"
@@ -43,6 +47,7 @@
 #include "entry-dialogs/declensionwidget.h"
 #include "entry-dialogs/imagechooserwidget.h"
 #include "entry-dialogs/audiowidget.h"
+#include "entry-dialogs/browserwidget.h"
 #include "entry-dialogs/synonymwidget.h"
 
 #include "statistics-dialogs/StatisticsDialog.h"
@@ -52,6 +57,10 @@
 #include "docprop-dialogs/TitlePage.h"
 #include "configure-practice/configurepracticedialog.h"
 #include "prefs.h"
+
+#include "scripts/scriptdialog.h"
+#include "scripts/scripting/parley.h"
+#include "scripts/scripting/expression.h"
 
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>
@@ -63,6 +72,7 @@
 #include <KRecentFilesAction>
 #include <KToggleAction>
 #include <KActionMenu>
+#include <KMenuBar>
 #include <KMessageBox>
 #include <KTipDialog>
 #include <KCharSelect>
@@ -134,6 +144,8 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
     // save position of dock windows etc
     setAutoSaveSettings();
 
+    initScripts();
+
     // finally show tip-of-day ( if the user wants it :) )
     QTimer::singleShot( 0, this, SLOT( startupTipOfDay() ) );
 }
@@ -181,7 +193,7 @@ void ParleyApp::slotUpdateWindowCaption()
 
 void ParleyApp::slotShowStatistics()
 {
-    KVTStatisticsDialog statisticsDialog(m_document->document(), this);
+    StatisticsDialog statisticsDialog(m_document->document(), this);
     statisticsDialog.exec();
 }
 
@@ -262,12 +274,25 @@ void ParleyApp::configurePractice()
 
 void ParleyApp::startPractice()
 {
-    hide();
-    TestEntryManager testManager(m_document->document(), this);
-    testManager.startPractice();
-    show();
+    if (Prefs::oldPractice()) {
+        hide();
+        TestEntryManager testManager(m_document->document(), this);
+        testManager.startPractice();
+        show();
+    } else {
+        hide();
+        ParleyPracticeMainWindow* window = new ParleyPracticeMainWindow(m_document->document(), this);
+        connect(window, SIGNAL(signalPracticeFinished()), this, SLOT(show()));
+        window->show();
+    }
 }
 
+
+void ParleyApp::slotConfigOldPractice(bool old)
+{
+kDebug() << "slot config old practice";
+    Prefs::setOldPractice(old);
+}
 
 bool ParleyApp::queryClose()
 {
@@ -312,14 +337,18 @@ void ParleyApp::updateDocument()
     m_vocabularyModel->setDocument(m_document->document());
 
     m_lessonModel->setDocument(m_document->document());
+    m_wordTypeModel->setDocument(m_document->document());
+    m_leitnerModel->setDocument(m_document->document());
 
     // expand the root items
     m_lessonView->expandToDepth(0);
-
-    m_wordTypeModel->setDocument(m_document->document());
     m_wordTypeView->expandToDepth(0);
 
+    // the top level container of this model only holds the others
+    m_leitnerView->setRootIndex(m_leitnerModel->index(0,0));
+
     connect(m_document->document(), SIGNAL(docModified(bool)), this, SLOT(slotUpdateWindowCaption()));
+//     connect(m_lessonModel,SIGNAL(documentModified()),this,SLOT(slotUpdateWindowCaption()));
     connect(m_vocabularyModel, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(slotRestoreColumnVisibility(KEduVocDocument*)));
 
     setCaption(m_document->document()->url().fileName(), false);
@@ -349,10 +378,10 @@ void ParleyApp::initDockWidgets()
             "With the checkboxes you can select which lessons you want to practice. \n"
             "Only checked lessons [x] will be asked in the tests!"));
 
-    connect(m_lessonView, SIGNAL(selectedLessonChanged(KEduVocLesson*)), 
+    connect(m_lessonView, SIGNAL(selectedLessonChanged(KEduVocLesson*)),
         m_vocabularyModel, SLOT(setLesson(KEduVocLesson*)));
 
-    connect(m_lessonView, SIGNAL(signalShowContainer(KEduVocContainer*)), 
+    connect(m_lessonView, SIGNAL(signalShowContainer(KEduVocContainer*)),
         m_vocabularyModel, SLOT(showContainer(KEduVocContainer*)));
 
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
@@ -376,14 +405,36 @@ void ParleyApp::initDockWidgets()
 
     m_wordTypeView->setModel(m_wordTypeModel);
 
-    connect(m_wordTypeView, SIGNAL(selectedWordTypeChanged(KEduVocWordType*)), 
+    connect(m_wordTypeView, SIGNAL(selectedWordTypeChanged(KEduVocWordType*)),
         m_vocabularyModel, SLOT(setWordType(KEduVocWordType*)));
 
-    connect(m_wordTypeView, SIGNAL(signalShowContainer(KEduVocContainer*)), 
+    connect(m_wordTypeView, SIGNAL(signalShowContainer(KEduVocContainer*)),
         m_vocabularyModel, SLOT(showContainer(KEduVocContainer*)));
 
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         m_wordTypeView, SLOT(setTranslation(KEduVocExpression*, int)));
+
+// Leitner boxes dock
+    QDockWidget* leitnerDockWidget = new QDockWidget(i18n("Grade Boxes"), this);
+    leitnerDockWidget->setObjectName( "LeitnerDock" );
+    m_leitnerView = new LeitnerView(this);
+    leitnerDockWidget->setWidget(m_leitnerView);
+    addDockWidget( Qt::LeftDockWidgetArea, leitnerDockWidget );
+
+    m_leitnerModel = new LeitnerModel(this);
+    leitnerDockWidget->setVisible(false);
+    actionCollection()->addAction("show_leitner_dock", leitnerDockWidget->toggleViewAction());
+
+    m_leitnerView->setModel(m_leitnerModel);
+
+    connect(m_leitnerView, SIGNAL(selectedLeitnerBoxChanged(KEduVocLeitnerBox*)),
+        m_vocabularyModel, SLOT(setLeitnerBox(KEduVocLeitnerBox*)));
+
+    connect(m_leitnerView, SIGNAL(signalShowContainer(KEduVocContainer*)),
+        m_vocabularyModel, SLOT(showContainer(KEduVocContainer*)));
+
+    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+        m_leitnerView, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Conjugations
     QDockWidget *conjugationDock = new QDockWidget(i18n("Conjugation"), this);
@@ -399,7 +450,6 @@ void ParleyApp::initDockWidgets()
         m_conjugationWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Declensions
-/* disabled for 4.1 since there is no way to practice declensions or make any other use of this stuff.
     QDockWidget *declensionDock = new QDockWidget(i18n("Declension"), this);
     declensionDock->setObjectName("DeclensionDock");
     DeclensionWidget *declensionWidget = new DeclensionWidget(this);
@@ -411,7 +461,7 @@ void ParleyApp::initDockWidgets()
             declensionWidget, SLOT(setDocument(KEduVocDocument*)));
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
             declensionWidget, SLOT(setTranslation(KEduVocExpression*, int)));
-*/
+
 
 // Comparison forms
     QDockWidget *comparisonDock = new QDockWidget(i18n("Comparison forms"), this);
@@ -500,6 +550,18 @@ void ParleyApp::initDockWidgets()
     audioDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         audioWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+
+// browser
+    QDockWidget *browserDock = new QDockWidget(i18n("Internet"), this);
+    browserDock->setObjectName("BrowserDock");
+    //TinyWebBrowser *browserWidget = new TinyWebBrowser(this);
+    BrowserWidget *htmlPart = new BrowserWidget(browserDock);
+    browserDock->setWidget(htmlPart);
+    addDockWidget(Qt::RightDockWidgetArea, browserDock);
+    actionCollection()->addAction("show_browser_dock", browserDock->toggleViewAction());
+    browserDock->setVisible(false);
+    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+            htmlPart, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Marble
 //     QDockWidget *marbleDock = new QDockWidget(i18n("Marble"), this);
@@ -650,12 +712,20 @@ void ParleyApp::initActions()
     showSublessonentries->setStatusTip(showSublessonentries->whatsThis());
     showSublessonentries->setChecked(Prefs::showSublessonentries());
 
+    KAction *automaticTranslation = actionCollection()->add<KToggleAction>("lesson_automatictranslation");
+    automaticTranslation->setText(i18n("Automatic Translation"));
+    connect(automaticTranslation, SIGNAL(triggered(bool)), m_vocabularyModel, SLOT(automaticTranslation(bool)));
+    automaticTranslation->setWhatsThis(i18n("Enable for automatic translation of the lesson entries."));
+    automaticTranslation->setToolTip(automaticTranslation->whatsThis());
+    automaticTranslation->setStatusTip(automaticTranslation->whatsThis());
+    automaticTranslation->setChecked(Prefs::automaticTranslation());
+
     KAction* removeGrades = new KAction(this);
     actionCollection()->addAction("vocab_remove_grades", removeGrades);
     removeGrades->setIcon(KIcon("edit-clear"));
     removeGrades->setText(i18n("Remove Grades"));
     connect(removeGrades, SIGNAL(triggered(bool)), this, SLOT(removeGrades()));
-    removeGrades->setWhatsThis(i18n("Remove all grades from the current file"));
+    removeGrades->setWhatsThis(i18n("Remove all grades from the current document"));
     removeGrades->setToolTip(removeGrades->whatsThis());
     removeGrades->setStatusTip(removeGrades->whatsThis());
 
@@ -720,6 +790,22 @@ void ParleyApp::initActions()
 
 
     KAction* findVocabulary = KStandardAction::find(m_searchLine, SLOT(setFocus()), actionCollection());
+
+// SCRIPTS MENU
+//     QMenu * scriptsMenu = menuBar()->addMenu(i18n("Scriptss"));
+//     scriptsMenu->addAction(i18n("Test"));
+    
+    //Script Manager Menu Action
+    KAction* menu_scriptManager =new KAction(this);
+    actionCollection()->addAction("show_script_manager", menu_scriptManager);
+    menu_scriptManager->setIcon(KIcon("set-language"));
+    menu_scriptManager->setText(i18n("&Script Manager"));
+    connect(menu_scriptManager, SIGNAL(triggered()),  this, SLOT(slotShowScriptManager()));
+
+    KToggleAction *oldPractice = actionCollection()->add<KToggleAction>("config_oldPractice");
+    oldPractice->setText(i18n("Old Practice Dialogs"));
+    connect(oldPractice, SIGNAL(triggered(bool)), this, SLOT(slotConfigOldPractice(bool)));
+    m_vocabShowSearchBarAction->setChecked(Prefs::oldPractice());
 }
 
 
@@ -798,11 +884,135 @@ void ParleyApp::initView()
     topLayout->addLayout(rightLayout);
 }
 
+void ParleyApp::slotShowScriptManager() {
+//      kDebug() << QString("here!!");
+    ScriptDialog * dialog = new ScriptDialog(m_scriptManager);
+    dialog->show();
+}
+
+
 void ParleyApp::removeGrades()
 {
     m_document->document()->lesson()->resetGrades(-1, KEduVocContainer::Recursive);
 }
 
+void ParleyApp::initScripts()
+{
+    m_scriptManager = new ScriptManager(this);
+
+    m_vocabularyView->setTranslator(&m_translator);
+
+    //add Scripting::Parley
+    m_scriptObjectParley = new Scripting::Parley(this);
+    m_scriptObjectParley->setTranslator(&m_translator);
+    m_scriptManager->addObject ( m_scriptObjectParley,"Parley" );
+
+    //add Scripting::Expression
+    /// @note not a good idea to be added cause it can be used without instanciating it
+    //     Scripting::Expression * expression = new Scripting::Expression();
+    //     m_scriptManager.addObject( expression, "Entry" );
+
+    //Load scripts
+    m_scriptManager->loadScripts();
+
+    connect(m_vocabularyModel, SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)),
+            this, SLOT(slotTranslateWords(const QModelIndex&, const QModelIndex&)),
+            Qt::QueuedConnection
+            );
+    connect(m_scriptObjectParley, SIGNAL(translationFinished(const QString&,const QString&,const QString &)),
+            this, SLOT(slotTranslationFinished(const QString&, const QString&, const QString&)),
+            Qt::QueuedConnection
+            );
+}
+
+void ParleyApp::slotTranslateWords(const QModelIndex & topLeft, const QModelIndex & bottomRight)
+{
+    if (Prefs::automaticTranslation() == false) return;
+
+    kDebug() << "Translate Words" << topLeft << bottomRight;
+
+    const int N = VocabularyModel::EntryColumnsMAX;
+    QString fromLanguage;
+    QString word;
+
+    //find the first translation column that has a word in it (not empty)
+    for (int i = 0; i < topLeft.model()->columnCount(topLeft.parent()); i += N) {
+        word = topLeft.model()->index(topLeft.row(),i,QModelIndex()).data().toString();
+        if (!word.isEmpty()) {
+            fromLanguage = m_document->document()->identifier(i / N).locale();
+            break;
+        }
+    }
+
+    //translate to the rest translation columns
+    for (int i = 0; i < topLeft.model()->columnCount(topLeft.parent()); i += N) {
+        const QString & toLanguage = m_document->document()->identifier(i / N).locale();
+        if (toLanguage != fromLanguage) {
+            m_scriptObjectParley->callTranslateWord(word,fromLanguage,toLanguage);
+        }
+    }
+
+    return;
+//     //old function
+//     if (topLeft.column() == VocabularyModel::Translation) {
+//         QString word = topLeft.data().toString();
+//         QString fromLanguage = m_document->document()->identifier(0).locale();
+//         
+//         //iterate through all the translation columns
+//         for (int i = topLeft.column()+N; i < topLeft.model()->columnCount(topLeft.parent()); i += N) {
+//             QString toLanguage = m_document->document()->identifier(i / N).locale();
+//             kDebug() << word << fromLanguage << toLanguage;
+//             //the scripts will receive a signal to translate this word
+//             m_scriptObjectParley->callTranslateWord(word,fromLanguage,toLanguage);
+//         }
+//     }
+}
+
+int indexOfIdentifier(KEduVocDocument* document, const QString& locale) {
+    for (int i = 0; i < document->identifierCount(); i++)
+        if (document->identifier(i).locale() == locale)
+            return i;
+    return -1;
+}
+
+void ParleyApp::slotTranslationFinished(const QString & word,const QString& fromLanguage,const QString& toLanguage)
+{
+    if (!m_translator.getTranslation(word,fromLanguage,toLanguage))
+        return;
+
+//     kDebug() << "Translation Finised";
+
+    //get identifiers
+    int fromIdentifier = indexOfIdentifier(m_document->document(),fromLanguage);
+    int toIdentifier = indexOfIdentifier(m_document->document(),toLanguage);
+
+    if (fromIdentifier == -1 || toIdentifier == -1) return;
+//     kDebug() << fromIdentifier << toIdentifier;
+    int N = VocabularyModel::EntryColumnsMAX;
+
+    //iterate through all the lesson rows (entries) and fill up the empty cells, if a translation is available
+    for (int r = 0; r < m_vocabularyModel->rowCount(QModelIndex()); r++) {
+        const QModelIndex& fromIndex = m_vocabularyModel->index(r,fromIdentifier * N,QModelIndex());
+        const QModelIndex& toIndex = m_vocabularyModel->index(r,toIdentifier * N, QModelIndex());
+
+//         kDebug() << fromIndex.data().toString() << toIndex.data().toString();
+
+        if (fromIndex.data().toString() == word && toIndex.data().toString().isEmpty()) {
+            QString firstTranslation = *(m_translator.getTranslation(word,fromLanguage,toLanguage)->begin());
+//             kDebug() << "First translation: " << firstTranslation;
+//             kDebug() << fromIndex;
+//             kDebug() << toIndex;
+            m_vocabularyModel->setData(toIndex,firstTranslation,Qt::EditRole);
+        }
+    }
+}
+
+ParleyDocument* ParleyApp::parleyDocument()
+{
+    return m_document;
+}
+
 
 #include "parley.moc"
+
 

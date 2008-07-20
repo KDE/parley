@@ -193,6 +193,32 @@ WordTypeView::WordTypeView(ParleyApp * parent) :ContainerView(parent)
             SLOT(setWordTypeVerb()));
 }
 
+void WordTypeView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
+{
+    QTreeView::currentChanged(current, previous);
+
+    if (current.isValid()) {
+        KEduVocWordType *container = static_cast<KEduVocWordType*>(current.internalPointer());
+        if (container) {
+            emit selectedWordTypeChanged(container);
+            emit signalShowContainer(container);
+        }
+    }
+}
+
+void WordTypeView::selectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
+{
+    QTreeView::selectionChanged(selected, deselected);
+
+    if(selected.count() == 0) {
+        return;
+    }
+
+    KEduVocWordType *container = static_cast<KEduVocWordType*>(selected.indexes().value(0).internalPointer());
+    if (container) {
+        emit selectedWordTypeChanged(container);
+    }
+}
 
 void WordTypeView::slotCreateNewWordType()
 {

@@ -1,0 +1,38 @@
+TODO to get scripting into Parley
+=============================
+
+ * Make KPluginSelector save its settings (which plugin is enabled/disabled)
+ * On Parley startup load the enabled scripts
+ * Connect with signal/slot the script and the editing of vocabulary
+ * Expose some functions that will allow the script to add translations
+ * Make the translations visible to the user in a nice way.
+
+ * Read up on kross
+
+ * Define which part of the api will be exposed for scripts
+   - Do we need an extra layer or can it be integrated directly?
+   - Can we pass around complex stuff like KEduVocExpression or does that need a wrapper?
+   - How can scripts fill out for example the conjugations for a verb?
+
+ * Integrate with KNewStuff2
+
+ * How are scripts/plugins recognized? Probably using .desktop files. Investigate how other apps are doing this.
+
+ * Write some example scripts to validate the implementation
+   - Possible scripts:
+     + dict.someserver
+     + conjugations for spanish (http://turingmachine.org/compjugador/)
+     + script: fetchTranslation("word")
+
+
+ * Maybe try to use python and ruby to check that both are working?
+   - Frederik volunteers for one py script :)
+
+
+ * Scripts can make use of kde bindings, so they can have a gui. If we deliver some by default, they could even be translated. If there is still time, look into that.
+
+ * Scripts (for discussion)
+    + define script api
+    + scripts adding actions to menu
+    + script manager (amarok 1.4.x from distro packages)
+

@@ -48,11 +48,17 @@ public slots:
      */
     void slotSplitLesson();
 
-
     /**
      * get notified of new columns only to hide them (grades not shown by default).
      */
     void columnsInserted();
+
+signals:
+    void selectedLessonChanged(KEduVocLesson* lesson);
+
+protected slots:
+    void selectionChanged ( const QItemSelection & selected, const QItemSelection & deselected );
+    void currentChanged( const QModelIndex & current, const QModelIndex & previous );
 
 private:
     LessonModel *m_model;

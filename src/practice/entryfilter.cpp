@@ -15,12 +15,14 @@
 
 #include "prefs.h"
 
+#include <keduvocexpression.h>
+#include <keduvoctranslation.h>
 #include <keduvocdocument.h>
 #include <keduvocwordtype.h>
-#include <keduvocexpression.h>
 
-#include <KDialog>
+#include <KLocalizedString>
 #include <KMessageBox>
+#include <KDialog>
 
 EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc) :QObject(parent)
 {
@@ -170,7 +172,6 @@ void EntryFilter::updateTotal()
 
 void EntryFilter::lessonEntries()
 {
-    /// @todo maybe randomize
     foreach(KEduVocExpression* entry, m_entries) {
         if (entry->lesson()->inPractice()) {
             m_entriesLesson.insert(entry);
@@ -319,18 +320,18 @@ void EntryFilter::cleanupInvalid()
                     } else i++; // conjugation
                     break;
 
-                case Prefs::EnumTestType::SynonymTest:
-                    if ((*i)->translation(m_toTranslation)->synonyms().isEmpty()){
-                        i = m_entries.erase(i);
-                    } else i++;
-                    break;
-                case Prefs::EnumTestType::AntonymTest:
-                    if ((*i)->translation(m_toTranslation)->antonyms().isEmpty()){
-                        i = m_entries.erase(i);
-                    } else i++;
-                    break;
+//                 case Prefs::EnumTestType::SynonymTest:
+//                     if ((*i)->translation(m_toTranslation)->synonym().simplified().isEmpty()){
+//                         i = m_entries.erase(i);
+//                     } else i++;
+//                     break;
+//                 case Prefs::EnumTestType::AntonymTest:
+//                     if ((*i)->translation(m_toTranslation)->antonym().simplified().isEmpty()){
+//                         i = m_entries.erase(i);
+//                     } else i++;
+//                     break;
                 case Prefs::EnumTestType::ParaphraseTest:
-                    if ((*i)->translation(m_toTranslation)->paraphrase().isEmpty()){
+                    if ((*i)->translation(m_toTranslation)->paraphrase().simplified().isEmpty()){
                         i = m_entries.erase(i);
                     } else i++;
                     break;

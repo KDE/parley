@@ -43,10 +43,7 @@ public:
 
 
 public slots:
-
     void setTranslation(KEduVocExpression*, int);
-
-    void currentChanged( const QModelIndex & current, const QModelIndex & previous );
 
     /** Create an editor to let the user type a new name for the lesson.*/
     void slotRename();
@@ -57,13 +54,6 @@ signals:
 
     /** Emitted when any of the checkboxes for the query change. */
     void lessonsInPracticeChanged();
-
-    void selectedLessonChanged(KEduVocLesson* lesson);
-
-    void selectedWordTypeChanged(KEduVocWordType* wordType);
-
-protected slots:
-    void selectionChanged ( const QItemSelection & selected, const QItemSelection & deselected );
 
 protected:
     /** The KVTContainerModel for this view. */

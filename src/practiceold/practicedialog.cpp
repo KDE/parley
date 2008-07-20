@@ -23,7 +23,7 @@
  ***************************************************************************/
 
 #include "practicedialog.h"
-#include "answervalidator.h"
+#include "answervalidatorold.h"
 #include "languagesettings.h"
 
 #include <keduvocdocument.h>
@@ -59,7 +59,7 @@ PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QW
     m_showSolutionTimer = 0;
 
     m_player = 0;
-    m_validator = new AnswerValidator(m_doc);
+    m_validator = new AnswerValidatorOld(m_doc);
     m_validator->setLanguage(Prefs::solutionLanguage());
 
     if ( !m_validator->spellcheckerAvailable() ) {

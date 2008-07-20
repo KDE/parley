@@ -28,6 +28,10 @@
 
 #include "parleydocument.h"
 
+// #include "scripts/scriptmanager.h"
+#include "scripts/scripting/parley.h"
+#include "scripts/translator.h"
+
 #include <KXmlGuiWindow>
 #include <KUrl>
 #include <QItemSelection>
@@ -47,9 +51,12 @@ class VocabularyModel;
 class VocabularyFilter;
 class LessonView;
 class WordTypeView;
+class LeitnerView;
 class LessonModel;
 class WordTypeModel;
+class LeitnerModel;
 class ConjugationWidget;
+class ScriptManager;
 
 /**
   * This Class is the base class for your application. It sets up the main
@@ -89,6 +96,16 @@ public:
     /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
     void updateTableFilter();
 
+    /**
+     * Load enabled scripts (from configuration parleyrc)
+     */
+    void initScripts();
+
+    /**
+     * Return the ParleyDocument member object
+     * @return member m_document
+     */
+    ParleyDocument* parleyDocument();
 
 public slots:
     /** Update the title bar of the main window with the current document */
@@ -116,6 +133,11 @@ public slots:
     void slotConfigShowSearch();
 
     /**
+     *  Display script manager (open a new window / or Settings window)
+     */
+    void slotShowScriptManager();
+
+    /**
      * Show the tip of the day (force it to be shown)
      */
     void tipOfDay();
@@ -129,6 +151,18 @@ public slots:
      * Removes all grading information from the current document
      */
     void removeGrades();
+
+    /**
+     * Translates the changed words
+     */
+    void slotTranslateWords(const QModelIndex & topLeft, const QModelIndex & bottomRight);
+    /**
+     * After the translation is finished, it adds the first translation to the table cell (Translation column)
+     */
+    void slotTranslationFinished(const QString & word,const QString& fromLanguage,const QString& toLanguage);
+
+private slots:
+    void slotConfigOldPractice(bool old);
 
 signals:
     void signalSetData( const QList<int>& entries, int currentTranslation);
@@ -168,6 +202,9 @@ private:
     WordTypeView *m_wordTypeView;
     WordTypeModel *m_wordTypeModel;
 
+    LeitnerView *m_leitnerView;
+    LeitnerModel *m_leitnerModel;
+
     KLineEdit           *m_searchLine;
 
     EntryDlg            *m_entryDlg;
@@ -177,9 +214,20 @@ private:
     QLabel              *m_typeStatusBarLabel;
 
     friend class ParleyDocument;
+    friend class Scripting::Parley;
+    friend class ScriptManager;
 
-    // the name of the executable
+    /// the name of the executable
     QString m_appName;
+
+    //Script Manager
+    ScriptManager* m_scriptManager;
+
+    ///script objects (objects that will be used from inside the scripts)
+    Scripting::Parley* m_scriptObjectParley;
+
+    ///stores all the translations of a vocabulary word
+    Translator m_translator;
 };
 
 #endif // PARLEY_H

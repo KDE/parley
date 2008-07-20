@@ -3,3 +3,4 @@ File=parley.kcfg
 ClassName=Prefs
 Singleton=true
 Mutators=true
+UseEnumTypes=true

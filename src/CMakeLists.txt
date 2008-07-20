@@ -1,4 +1,5 @@
 add_subdirectory( settings )
+add_subdirectory( practice/themes )
 
 include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/
 )
@@ -27,11 +28,14 @@ set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
     settings/parleyprefs.cpp
     settings/generaloptions.cpp
     settings/viewoptions.cpp
+    settings/pluginoptions.cpp
+    settings/plugintablemodel.cpp
 )
 
 kde4_add_ui_files( libcommondlg_SRCS
     settings/viewoptionsbase.ui
     settings/generaloptionsbase.ui
+    settings/pluginoptionsbase.ui
 )
 
 set(vocabulary_SRCS
@@ -49,36 +53,71 @@ set(vocabulary_SRCS
     vocabulary/containermimedata.cpp
     vocabulary/lessonview.cpp
     vocabulary/wordtypeview.cpp
+    vocabulary/leitnerview.cpp
+    vocabulary/leitnermodel.cpp
 )
 
 set(practice_SRCS
-    practice/testentry.cpp
-    practice/testentrymanager.cpp
-    practice/practicedialog.cpp
-    practice/AdjQueryDlg.cpp
-    practice/ArtQueryDlg.cpp
-    practice/MCQueryDlg.cpp
-    practice/writtenpracticedialog.cpp
-    practice/SimpleQueryDlg.cpp
-    practice/VerbQueryDlg.cpp
-    practice/mixedletterpracticedialog.cpp
-    practice/showsolutiondialog.cpp
-    practice/practicesummarydialog.cpp
+    practice/kgametheme/kgametheme.cpp
+    practice/kgametheme/kgamethemeselector.cpp
+    practice/parleypracticemainwindow.cpp
+    practice/modespecifics.cpp
+    practice/modeindependent.cpp
+    practice/practiceview.cpp
+    practice/input/textualinput.cpp
+    practice/input/mcinput.cpp
+    practice/input/multiplechoicemcinput.cpp
+    practice/input/articlemcinput.cpp
+    practice/prompt.cpp
+    practice/statistics.cpp
+    practice/stdbuttons.cpp
+    practice/hint.cpp
     practice/answervalidator.cpp
-    practice/entryfilter.cpp
+    practice/practiceentrymanager.cpp
+    practice/timer.cpp
+    practice/practiceentry.cpp
+    practiceold/entryfilter.cpp
+    practice/feedback.cpp
 )
 
 kde4_add_ui_files(practice_SRCS
-    practice/AdjQueryDlgForm.ui
-    practice/ArtQueryDlgForm.ui
-    practice/MCQueryDlgForm.ui
-    practice/writtenpracticedialog.ui
-    practice/SimpleQueryDlgForm.ui
-    practice/VerbQueryDlgForm.ui
-    practice/mixedletterpracticedialog.ui
-    practice/showsolutionwidget.ui
-    practice/practicesummarywidget.ui
-    practice/entryfilter.ui
+    practice/kgametheme/kgamethemeselector.ui
+    practiceold/entryfilter.ui
+)
+
+#for the parleypractice app
+set(parleypractice_SRCS
+	${practice_SRCS}
+	${libcommondlg_SKEL_SRCS}
+    practice/main.cpp
+)
+
+set(practiceold_SRCS
+    practiceold/testentry.cpp
+    practiceold/testentrymanager.cpp
+    practiceold/practicedialog.cpp
+    practiceold/AdjQueryDlg.cpp
+    practiceold/ArtQueryDlg.cpp
+    practiceold/MCQueryDlg.cpp
+    practiceold/writtenpracticedialog.cpp
+    practiceold/SimpleQueryDlg.cpp
+    practiceold/VerbQueryDlg.cpp
+    practiceold/mixedletterpracticedialog.cpp
+    practiceold/showsolutiondialog.cpp
+    practiceold/practicesummarydialog.cpp
+    practiceold/answervalidatorold.cpp
+)
+
+kde4_add_ui_files(practiceold_SRCS
+    practiceold/AdjQueryDlgForm.ui
+    practiceold/ArtQueryDlgForm.ui
+    practiceold/MCQueryDlgForm.ui
+    practiceold/writtenpracticedialog.ui
+    practiceold/SimpleQueryDlgForm.ui
+    practiceold/VerbQueryDlgForm.ui
+    practiceold/mixedletterpracticedialog.ui
+    practiceold/showsolutionwidget.ui
+    practiceold/practicesummarywidget.ui
 )
 
 set(configure-practice_SRCS
@@ -97,6 +136,7 @@ kde4_add_ui_files(configure-practice_SRCS
     configure-practice/comparisonoptionswidget.ui
     configure-practice/conjugationoptionswidget.ui
     configure-practice/writtenpracticeoptionswidget.ui
+    configure-practice/multiplechoiceoptionswidget.ui
 )
 
 set(docprop_SRCS
@@ -118,6 +158,7 @@ set(entrydialogs_SRCS
     entry-dialogs/declensionwidget.cpp
     entry-dialogs/imagechooserwidget.cpp
     entry-dialogs/audiowidget.cpp
+    entry-dialogs/browserwidget.cpp
     entry-dialogs/synonymwidget.cpp
 )
 
@@ -129,6 +170,7 @@ kde4_add_ui_files(entrydialogs_SRCS
     entry-dialogs/imagechooserwidget.ui
     entry-dialogs/audiowidget.ui
     entry-dialogs/synonymwidget.ui
+    entry-dialogs/browserwidget.ui
 )
 
 set(statisticsdialogs_SRCS
@@ -156,15 +198,33 @@ set(languagedialogs_SRCS
     language-dialogs/grammardialog.cpp
 )
 
+set(scripts_SRCS
+    scripts/scriptdialog.cpp
+    scripts/scriptmanager.cpp
+    scripts/scripting/parley.cpp
+    scripts/scripting/document.cpp
+    scripts/scripting/lesson.cpp
+    scripts/scripting/expression.cpp
+    scripts/scripting/translation.cpp
+    scripts/scripting/text.cpp
+    scripts/scripting/container.cpp
+    scripts/script.cpp
+    scripts/translator.cpp
+)
+
 kde4_add_ui_files(languagedialogs_SRCS
     language-dialogs/languagepage.ui
 )
 
 set(parley_SRCS
-    ${vocabulary_SRCS} ${libcommondlg_SRCS} ${practice_SRCS}
+    ${vocabulary_SRCS} ${libcommondlg_SRCS}
+    ${practice_SRCS}
+    ${practiceold_SRCS}
     ${configure-practice_SRCS} ${docprop_SRCS}
     ${entrydialogs_SRCS} ${statisticsdialogs_SRCS}
-    ${languagedialogs_SRCS} ${newdocument-wizard_SRCS}
+    ${languagedialogs_SRCS}
+    ${scripts_SRCS}
+    ${newdocument-wizard_SRCS}
     ${export_SRCS}
     parleydocument.cpp
     parley.cpp
@@ -183,6 +243,8 @@ target_link_libraries(
     ${KDE4_KHTML_LIBS}
     ${KDE4_KNEWSTUFF2_LIBS}
     ${KDE4_PHONON_LIBS}
+    ${KDE4_KUTILS_LIBS} #for the KPluginSelector
+    ${KDE4_KROSSUI_LIBS} #for Kross
 )
 if(HAVE_LIBXSLT)
     target_link_libraries(parley ${LIBXML2_LIBRARIES} ${LIBXSLT_LIBRARIES})
@@ -190,10 +252,25 @@ endif(HAVE_LIBXSLT)
 
 install(TARGETS parley  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
+######### parleypractice #############
+kde4_add_executable(parleypractice ${parleypractice_SRCS})
+install(TARGETS parleypractice  DESTINATION ${BIN_INSTALL_DIR} )
+target_link_libraries(
+    parleypractice
+    keduvocdocument
+    ${KDE4_KNEWSTUFF2_LIBS}
+    ${KDE4_PHONON_LIBS}
+    ${KDE4_KDEUI_LIBS}
+)
+
 
 ########### install files ###############
 
-install( FILES parley.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
+install( FILES parley.desktop parleypractice.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 install( FILES parley.knsrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
 install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )
+install(FILES practice/parleypracticeui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley)
 
+install( FILES practice/themes/default_theme.svgz
+               practice/themes/default.desktop
+    DESTINATION  ${DATA_INSTALL_DIR}/parley/themes/ )

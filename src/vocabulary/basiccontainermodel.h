@@ -56,7 +56,7 @@ public slots:
     void setDocument(KEduVocDocument *doc);
 
 protected:
-    KEduVocContainer *rootContainer() const;
+    virtual KEduVocContainer *rootContainer() const = 0;
     KEduVocContainer::EnumContainerType m_type;
     KEduVocDocument *m_doc;
 };
