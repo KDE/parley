@@ -43,6 +43,8 @@ namespace Scripting
             /// Document's root lesson
             Q_PROPERTY ( QObject * rootLesson READ rootLesson )
         public:
+            Document ( QObject* parent = 0 );
+
             Document ( KEduVocDocument * doc );
 
             ~Document();
@@ -99,7 +101,7 @@ namespace Scripting
              * @param url      url to file to open
              * @returns        ErrorCode
              */
-//             int open ( const KUrl& url );
+            int open ( const QString & url ) { m_doc->open ( url ); }
 
             /**
              * Saves the data under the given name
@@ -109,7 +111,9 @@ namespace Scripting
              * @param generator  the name of the application saving the document
              * @returns          ErrorCode
              */
-//             int saveAs ( const KUrl & url, FileType ft, const QString & generator );
+            int saveAs ( const QString & url, const QString & generator ) { m_doc->saveAs ( url,KEduVocDocument::Automatic, generator ); }
+            /// @todo Implement the enums for the FileType
+//             int saveAs ( const QString & url, FileType ft, const QString & generator );
 
 //             QByteArray toByteArray ( const QString &generator );
 
@@ -120,7 +124,7 @@ namespace Scripting
              * @param matchIdentifiers if true only entries having identifiers present in the
              *                         current document will be mergedurl is empty (or NULL) actual name is preserved
              */
-//             void merge ( Document *docToMerge, bool matchIdentifiers );
+            void merge ( Document *docToMerge, bool matchIdentifiers ) { m_doc->merge ( docToMerge->kEduVocDocument(),matchIdentifiers ); }
 
             /**
              * Indicates if the document is modified
@@ -135,11 +139,10 @@ namespace Scripting
             /**
              * Sets the URL of the XML file
              */
-//             void setUrl ( const KUrl& url );
+            void setUrl ( const QString& url ) { m_doc->setUrl ( url ); }
 
             /** @returns the URL of the XML file */
-//             KUrl url() const;
-
+            QString url() const { return m_doc->url().path(); }
 
             /** set the title of the file
              * @param title title to set */

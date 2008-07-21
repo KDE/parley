@@ -93,6 +93,7 @@ namespace Scripting
             QString testFunction() { return "testFunction"; }
 
 //             void updateDocument() { m_parleyApp->updateDocument(); }
+            QObject * newDocument() { return new Document(); }
 
             /**
              * 

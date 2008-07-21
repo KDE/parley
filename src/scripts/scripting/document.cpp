@@ -22,6 +22,11 @@
 namespace Scripting
 {
 
+    Document::Document ( QObject* parent )
+    {
+        m_doc = new KEduVocDocument(parent);
+    }
+
     Document::Document ( KEduVocDocument * doc )
             : QObject(), m_doc ( doc )
     {
