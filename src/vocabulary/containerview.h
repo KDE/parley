@@ -20,8 +20,6 @@
 
 class ContainerModel;
 class KEduVocContainer;
-class KEduVocLesson;
-class KEduVocWordType;
 class KEduVocExpression;
 
 

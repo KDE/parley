@@ -22,6 +22,7 @@
 class ParleyApp;
 class KAction;
 class KSelectAction;
+class KEduVocWordType;
 
 class WordTypeView : public ContainerView
 {
