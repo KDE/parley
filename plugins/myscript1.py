@@ -86,6 +86,7 @@ def testcode():
  Parley.doc.setTenseName(1,"past simple")
  for entry in Parley.doc.rootLesson.entries(True):
     for tr in entry.translations():
+        print tr.wordType()
         if tr.text == "play":
             Parley.doc.setWordType(tr,"Verb")
             tr.setConjugation("plays","present","singular","third")

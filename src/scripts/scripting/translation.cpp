@@ -137,7 +137,7 @@ namespace Scripting
         {
             QSet<KEduVocConjugation::ConjugationPerson> personList = getConjPersonMap().values().toSet();
             foreach ( KEduVocConjugation::ConjugationPerson person, personList )
-                list << conjug.conjugation ( person, numberMap[number.toLower()] ).text();
+            list << conjug.conjugation ( person, numberMap[number.toLower() ] ).text();
             return list;
         }
         kDebug() << "Invalid conjugation number given";
