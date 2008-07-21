@@ -39,8 +39,15 @@ def conjugations():
         if tr.wordType() == "Verb":
           print "setting conjugation"
           print tr.text
-          tr.setConjugation("katourw","present","singular","first")
-          tr.setConjugation("playing","past","plural","third")
+          tr.setConjugation("first","present","Plural","First")
+          tr.setConjugation("third","present","Plural","Third")
+          tr.setConjugation("male","present","Plural","ThirdMale")
+          tr.setConjugation("female","present","Plural","ThirdFemale")
+          tr.setConjugation("playing","past","plural","Third")
+          tr.setConjugation("se","present","Plural","Second")
+          tr.setConjugation("dualthird","present","Dual","Third")
+          #print tr.conjugation("past","plural","Third")
+          print tr.conjugation("present")
   
 def testKUrl():
   l = Parley.activeLesson
@@ -75,7 +82,16 @@ def appendChildrenToAllLessons():
   return
   
 def testcode():
-  for entry in Parley.document.rootLesson.entries(True):
+ Parley.doc.setTenseName(0,"present")
+ Parley.doc.setTenseName(1,"past simple")
+ for entry in Parley.doc.rootLesson.entries(True):
+    for tr in entry.translations():
+        if tr.text == "play":
+            Parley.doc.setWordType(tr,"Verb")
+            tr.setConjugation("plays","present","singular","third")
+            tr.setConjugation("played","past simple","singular","first")
+ return
+ for entry in Parley.document.rootLesson.entries(True):
     for translation in entry.translations():
       print translation.text
       print translation.practiceDate()
@@ -84,10 +100,10 @@ def testcode():
 
 def actionFunction():
   print "Action called!!"
-  conjugations()
+  #conjugations()
   #print Parley.doc.wordTypes()
   #setWordType()
-  #testcode()
+  testcode()
   #appendChildrenToAllLessons()
   
   #for lesson in Parley.document.allLessons():
