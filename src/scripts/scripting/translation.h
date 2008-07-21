@@ -42,7 +42,7 @@ namespace Scripting
 //             Q_PROPERTY ( QString irregularPlural READ irregularPlural WRITE setIrregularPlural )
             Q_PROPERTY ( QString comparative READ comparative WRITE setComparative )
             Q_PROPERTY ( QString superlative READ superlative WRITE setSuperlative )
-            Q_PROPERTY ( QStringList multipleChoice READ multipleChoice )
+//             Q_PROPERTY ( QStringList multipleChoice READ multipleChoice )
             Q_PROPERTY ( QString soundUrl READ soundUrl WRITE setSoundUrl )
 //             Q_PROPERTY ( QVariantList falseFriends READ falseFriends )
 //             Q_PROPERTY ( QVariantList synonyms READ synonyms )
@@ -142,11 +142,6 @@ namespace Scripting
              */
 //             KEduVocConjugation& conjugation ( const QString& tense );
 
-            /** adds conjugations or replaces them, if they exist.
-            * @param conjugation      conjugation
-            */
-//             void setConjugation ( const QString& tense, const KEduVocConjugation & conjugation );
-
             /**
              * Returns a pointer to the declension object of this translation.
              * Returns 0 if no declension object exists!
@@ -166,7 +161,7 @@ namespace Scripting
              */
 //             void setConjugations ( const QMap<QString, KEduVocConjugation>& conjugations );
 
-            QStringList conjugationTenses() const { return m_translation->conjugationTenses(); }
+
 
             /**
              * Bad, only compatibility. Deprecated.
@@ -181,10 +176,6 @@ namespace Scripting
             void setComparative ( const QString& comparative ) { m_translation->setComparative ( comparative ); }
             QString superlative() const { return m_translation->superlative(); }
             void setSuperlative ( const QString& superlative ) { m_translation->setSuperlative ( superlative ); }
-
-            /** returns multiple choice if available
-              */
-            QStringList & multipleChoice() { return m_translation->multipleChoice(); }
 
             /** sets multiple choice
              * @param mc               multiple choice block
@@ -283,6 +274,17 @@ namespace Scripting
             * @return                 type or "" if no type available
             */
             QString wordType() const;
+
+            /** returns multiple choice if available */
+            QStringList multipleChoice() { return m_translation->multipleChoice(); }
+
+            /** returns a string list with the available conjugation tenses */
+            QStringList conjugationTenses() const { return m_translation->conjugationTenses(); }
+
+            /** adds conjugations or replaces them, if they exist.
+            * @param conjugation      conjugation
+            */
+            void setConjugation ( const QString& conjugation, const QString& tense, const QString & number, const QString & person );
 
         private:
             KEduVocTranslation * m_translation;

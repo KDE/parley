@@ -987,6 +987,9 @@ void ParleyApp::slotTranslateWords(const QModelIndex & topLeft, const QModelInde
 {
     if (Prefs::automaticTranslation() == false) return;
 
+    //translate only if the change was made in a translation column
+    if (!(VocabularyModel::columnType( topLeft.column() ) == VocabularyModel::Translation)) return;
+
     kDebug() << "Translate Words" << topLeft << bottomRight;
 
     const int N = VocabularyModel::EntryColumnsMAX;

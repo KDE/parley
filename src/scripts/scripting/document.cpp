@@ -49,7 +49,7 @@ namespace Scripting
         return list;
     }
 
-    KEduVocWordType * Scripting::Document::wordTypeFromString ( const QString & name )
+    KEduVocWordType * Document::wordTypeFromString ( const QString & name )
     {
         QList<KEduVocContainer*> list = flattenContainer ( m_doc->wordTypeContainer() );
         list.removeFirst();
@@ -66,7 +66,7 @@ namespace Scripting
         return 0;
     }
 
-    void Scripting::Document::setWordType ( QObject * translation, const QString & wordtype )
+    void Document::setWordType ( QObject * translation, const QString & wordtype )
     {
         Translation * tr = dynamic_cast<Translation*> ( translation );
         if ( !tr )
@@ -81,7 +81,7 @@ namespace Scripting
             kDebug() << "Invalid given wordtype: " << wordtype;
     }
 
-    QStringList Scripting::Document::wordTypes()
+    QStringList Document::wordTypes()
     {
         QList<KEduVocContainer*> list = flattenContainer ( m_doc->wordTypeContainer() );
         list.removeFirst();
@@ -92,5 +92,17 @@ namespace Scripting
         }
         return strList;
     }
+
+// Tried to pass a python list as an argument but it didn't work
+
+//     void Document::setTenseDescriptions ( QObject * names )
+//     {
+//         kDebug() << names;
+//         QVariantList * list = dynamic_cast<QVariantList *> ( names );
+//         if ( list ) {
+//             kDebug() << "list: " << list;
+//             m_doc->setTenseDescriptions ( *list );
+//         }
+//     }
 
 }

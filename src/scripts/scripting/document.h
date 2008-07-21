@@ -89,6 +89,33 @@ namespace Scripting
 
             QStringList wordTypes();
 
+            // *** tense methods ***
+
+            /**
+             * Set the name of a tense
+             * @param index            number of tense
+             * @param tense            name of tense
+             */
+            void setTenseName ( int index, const QString &tense ) { m_doc->setTenseName(index,tense); }
+
+            /**
+             * Returns the tense string
+             *
+             * @param index            number of tense
+             * @returns                string
+             */
+            QString tenseName ( int index ) const { return m_doc->tenseName(index); }
+
+            /**
+             * Sets the description of the tenses
+             */
+//             void setTenseDescriptions ( QObject * names );
+
+            /**
+             * Gets the descriptions of the tenses
+             */
+            QStringList tenseDescriptions() const { return m_doc->tenseDescriptions(); }
+
         private:
             KEduVocDocument * m_doc;
     };

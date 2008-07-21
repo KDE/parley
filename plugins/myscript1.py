@@ -29,6 +29,17 @@ def setWordType():
         Parley.doc.setWordType(tr,"Noun")
         print tr.wordType()
   
+def conjugations():
+  print Parley.doc.tenseDescriptions()
+  Parley.doc.setTenseName(0,"present")
+  Parley.doc.setTenseName(1,"past")
+  print Parley.doc.tenseDescriptions()
+  for entry in Parley.doc.rootLesson.entries(True):
+    for tr in entry.translations():
+        if tr.wordType() == "Verb":
+          print "setting conjugation"
+          print tr.text
+          tr.setConjugation("katourw","present","singular","first")
   
 def testKUrl():
   l = Parley.activeLesson
@@ -72,7 +83,8 @@ def testcode():
 
 def actionFunction():
   print "Action called!!"
-  print Parley.doc.wordTypes()
+  conjugations()
+  #print Parley.doc.wordTypes()
   #setWordType()
   #testcode()
   #appendChildrenToAllLessons()
