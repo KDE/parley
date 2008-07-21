@@ -376,7 +376,7 @@ void ParleyApp::updateDocument()
     m_leitnerView->setRootIndex(m_leitnerModel->index(0,0));
 
     connect(m_document->document(), SIGNAL(docModified(bool)), this, SLOT(slotUpdateWindowCaption()));
-    connect(m_document->document(), SIGNAL(docModified(bool)), m_document, SLOT(emitDataChanged(bool)));
+    connect(m_document->document(), SIGNAL(docModified(bool)), m_document, SLOT(slotDocumentChanged(bool)));
 //     connect(m_lessonModel,SIGNAL(documentModified()),this,SLOT(slotUpdateWindowCaption()));
     connect(m_vocabularyModel, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(slotRestoreColumnVisibility(KEduVocDocument*)));
 

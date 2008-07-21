@@ -428,7 +428,8 @@ void ParleyDocument::enableAutoBackup(bool enable)
     }
 }
 
-void ParleyDocument::emitDocumentChanged(bool modified) {
+void ParleyDocument::slotDocumentChanged(bool modified) {
+    kDebug() << modified;
     if (modified)
         emit documentChanged(m_doc);
 }
