@@ -34,7 +34,11 @@
 #include "input/mcinput.h"
 #include "input/articlemcinput.h"
 
-#include "prompt.h"
+#include "prompt/mixedlettersprompt.h"
+#include "prompt/soundprompt.h"
+#include "prompt/imageprompt.h"
+#include "prompt/textualprompt.h"
+
 #include "statistics.h"
 #include "stdbuttons.h"
 #include "hint.h"

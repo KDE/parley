@@ -16,11 +16,29 @@
 *                                                                         *
 ***************************************************************************/
 
-#include "prompt.h"
+#include "textualprompt.h"
 
+
+#include <KSvgRenderer>
+#include <QString>
+#include <QGraphicsView>
+#include <QGraphicsScene>
 #include <KDebug>
-#include <kio/netaccess.h>
-#include <KRandomSequence>
-#include <KRandom>
-#include <QGraphicsSvgItem>
 
+TextualPrompt::TextualPrompt ( KSvgRenderer * renderer, const QString& elementId ) :
+        m_renderer ( renderer )
+{
+
+    if (!renderer->elementExists(elementId))
+    {
+        setVisible(false);
+        kDebug() << "!! Element id doesn't exist:";
+        kDebug() << elementId << ":" << renderer->elementExists(elementId);
+    }
+
+    m_backgroundRect = renderer->boundsOnElement ( elementId );
+    setPos ( m_backgroundRect.x() + m_backgroundRect.width() / 20.0, m_backgroundRect.y() + m_backgroundRect.height() / 4.0 );
+    adjustSize();
+};
+
+void TextualPrompt::slotSetText ( const QString& text ) { setHtml( text ); };

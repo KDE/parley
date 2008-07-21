@@ -1,12 +1,11 @@
 //
-// C++ Implementation: prompt
+// C++ Interface: imageprompt
 //
-// Description: Implementation of the prompt (or question) displaying class
+// Description:
 //
 //
 // Author: David Capel <wot.narg@gmail.com>, (C) 2008
 //
-
 /***************************************************************************
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *
@@ -16,11 +15,34 @@
 *                                                                         *
 ***************************************************************************/
 
-#include "prompt.h"
 
-#include <KDebug>
-#include <kio/netaccess.h>
-#include <KRandomSequence>
-#include <KRandom>
-#include <QGraphicsSvgItem>
+#ifndef IMAGEPROMPT_H
+#define IMAGEPROMPT_H
 
+#include <QLabel>
+
+class KSvgRenderer;
+class QString;
+class QGraphicsView;
+class QWidget;
+class KUrl;
+
+class ImagePrompt : public QLabel
+{
+    Q_OBJECT
+
+
+    public:
+        ImagePrompt(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent = 0);
+    public slots:
+
+        void slotSetImage(const KUrl& image);
+
+    private:
+        class QPixmap m_pic;
+        KSvgRenderer * m_renderer;
+        class QRectF m_backgroundRect;
+};
+
+
+#endif

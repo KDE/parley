@@ -1,12 +1,11 @@
 //
-// C++ Implementation: prompt
+// C++ Interface: textualprompt
 //
-// Description: Implementation of the prompt (or question) displaying class
+// Description:
 //
 //
 // Author: David Capel <wot.narg@gmail.com>, (C) 2008
 //
-
 /***************************************************************************
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *
@@ -16,11 +15,29 @@
 *                                                                         *
 ***************************************************************************/
 
-#include "prompt.h"
+#ifndef TEXTUALPROMPT_H
+#define TEXTUALPROMPT_H
 
-#include <KDebug>
-#include <kio/netaccess.h>
-#include <KRandomSequence>
-#include <KRandom>
-#include <QGraphicsSvgItem>
+#include <QGraphicsTextItem>
 
+class KSvgRenderer;
+class QString;
+class QGraphicsView;
+class QWidget;
+class QRectF;
+
+class TextualPrompt : public QGraphicsTextItem
+{
+        Q_OBJECT
+
+    public:
+        TextualPrompt(KSvgRenderer * renderer, const QString& elementId);
+
+    public slots:
+        void slotSetText(const QString& text);
+    private:
+        KSvgRenderer * m_renderer;
+        QRectF m_backgroundRect;
+};
+
+#endif
