@@ -23,6 +23,8 @@
 
 namespace Scripting
 {
+    class Translation;
+
     //Implements the Document object to be used by the scripts
     /**
      * Parley Document scripting object. Gives access to all the document properties and lessoons
@@ -54,6 +56,8 @@ namespace Scripting
             //Property: rootLesson (READ)
             QObject * rootLesson() { return new Lesson ( m_doc->lesson() ); }
 
+            KEduVocWordType * wordTypeFromString ( const QString & name );
+
         public slots:
 
             /**
@@ -80,6 +84,10 @@ namespace Scripting
              * @return A list of all the lessons in the document
              */
             QVariantList allLessons();
+
+            void setWordType ( QObject * tr, const QString & wordtype );
+
+            QStringList wordTypes();
 
         private:
             KEduVocDocument * m_doc;

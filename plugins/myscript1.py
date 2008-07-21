@@ -23,6 +23,13 @@ def addNewLesson():
   newEntry.translation(1).text = "Hola"
   newlesson.appendEntry(newEntry)
   
+def setWordType():
+  for entry in Parley.doc.rootLesson.entries(True):
+    for tr in entry.translations():
+        Parley.doc.setWordType(tr,"Noun")
+        print tr.wordType()
+  
+  
 def testKUrl():
   l = Parley.activeLesson
   print l.name
@@ -59,13 +66,15 @@ def testcode():
   for entry in Parley.document.rootLesson.entries(True):
     for translation in entry.translations():
       print translation.text
-      print translation.practiceDate
-      print translation.practiceDate.isValid()
+      print translation.practiceDate()
+      print translation.practiceDate("dd/MM/yyyy")
 
 
 def actionFunction():
   print "Action called!!"
-  testcode()
+  print Parley.doc.wordTypes()
+  #setWordType()
+  #testcode()
   #appendChildrenToAllLessons()
   
   #for lesson in Parley.document.allLessons():

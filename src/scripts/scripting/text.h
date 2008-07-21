@@ -32,6 +32,7 @@ namespace Scripting
      *         print translation.text
      *         print translation.grade
      *         translation.incBadCount()
+     *         print translation.practiceDate("dd/MM/yyyy")
      *         translation.grade = 5
      * @endcode
      * @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
@@ -52,8 +53,8 @@ namespace Scripting
             /// word grade
             Q_PROPERTY ( unsigned int grade READ grade() WRITE setGrade )
 
-            /// last date when this word was practiced
-            Q_PROPERTY ( QDateTime practiceDate READ practiceDate WRITE setPracticeDate )
+            // last date when this word was practiced
+//             Q_PROPERTY ( QDateTime practiceDate READ practiceDate WRITE setPracticeDate )
 
             /// true if the word text is empty
             Q_PROPERTY ( bool isEmpty READ isEmpty )
@@ -134,15 +135,6 @@ namespace Scripting
             */
             unsigned int grade() const { return m_text->grade(); }
 
-            /* returns last practice date as int
-            */
-            QDateTime practiceDate() const { return m_text->practiceDate(); }
-
-            /* Set last query date
-            * @param date             the new date
-            */
-            void setPracticeDate ( const QDateTime & date ) { m_text->setPracticeDate ( date ); }
-
             /*
              * If the string inside is empty this returns true.
              * @return
@@ -167,6 +159,34 @@ namespace Scripting
 
             /** decrements grade */
             void decGrade() { m_text->decGrade(); }
+
+            /** returns the last date when this word was practiced */
+            QString practiceDate() const { return m_text->practiceDate().toString(); }
+
+            /**
+             * Last date this word was practiced
+             * @param format Format of the date (see QDateTime toString(format) function
+             * @return the last practice date in the format given by @p format
+             * @code
+             * print translation.practiceDate("dd/MM/yyyy")
+             * print translation.practiceDate("M-d-yy, h:m:s")
+             * @endcode
+             */
+            QString practiceDate ( const QString & format ) const { return m_text->practiceDate().toString ( format ); }
+
+            /** Sets the last date when this word was practiced */
+            void setPracticeDate ( const QString & date ) { m_text->setPracticeDate ( QDateTime::fromString ( date ) ); }
+
+            /**
+             * Sets the laast date this word was practiced
+             * @param date A string containing the date
+             * @param format Format of the date (see QDateTime fromString(date,format) function
+             * @code
+             * translation.setPracticeDate("05/12/1999","dd/MM/yyyy")
+             * translation.setPracticeDate("02 Jan 05","dd MMM yy")
+             * @endcode
+             */
+            void setPracticeDate ( const QString & date, const QString & format ) { m_text->setPracticeDate ( QDateTime::fromString ( date, format ) ); }
 
         protected:
             KEduVocText * m_text;

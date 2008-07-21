@@ -16,8 +16,10 @@
 #define SCRIPTINGSCRIPTOBJECTTRANSLATION_H
 
 #include "keduvoctranslation.h"
+#include "keduvocwordtype.h"
 #include "expression.h"
 #include "text.h"
+// #include "document.h"
 
 #include <QObject>
 
@@ -118,16 +120,10 @@ namespace Scripting
              */
 //             QString irregularPlural() const { return m_translation->irregularPlural(); }
 
-            /** returns the word type of this expression
-            *
-            * @return                 type or "" if no type available
-            */
-//             KEduVocWordType* wordType() const;
-
             /** sets the word type of this expression
             * @param type             type of this expression ("" = none)
             */
-//             void setWordType ( KEduVocWordType* wordType );
+            void setWordType ( KEduVocWordType* wordType ) { m_translation->setWordType ( wordType ); }
 
             /** returns the leitner box of this translation
              * @return the box
@@ -282,7 +278,11 @@ namespace Scripting
              */
             QVariantList antonyms() const { return toVariantList<KEduVocTranslation,Translation> ( m_translation->antonyms() ); }
 
-
+            /** returns the word type of this expression
+            *
+            * @return                 type or "" if no type available
+            */
+            QString wordType() const;
 
         private:
             KEduVocTranslation * m_translation;

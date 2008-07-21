@@ -37,6 +37,8 @@ namespace Scripting
             Q_OBJECT
             /// Read-only property of the active document
             Q_PROPERTY ( QObject * document READ getDocument )
+            /// Abreviation of document property (same as Parley.document)
+            Q_PROPERTY ( QObject * doc READ getDocument )
 
             /** Read-Only property that gives the active of the lesson (the one that is currently open by Parley)
             * @code
