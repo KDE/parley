@@ -48,7 +48,8 @@ namespace Scripting
     void Translation::setConjugation ( const QString& conjugation, const QString& tense, const QString & number, const QString & person )
     {
         static QMap<QString,KEduVocConjugation::ConjugationNumber> numberMap;
-        if (numberMap.isEmpty()) {
+        if ( numberMap.isEmpty() )
+        {
             //do this only the first time (cause numberMap is static and keeps its value)
             numberMap["singular"] = KEduVocConjugation::Singular;
             numberMap["dual"] = KEduVocConjugation::Dual;
@@ -56,20 +57,23 @@ namespace Scripting
         }
 
         static QMap<QString,KEduVocConjugation::ConjugationPerson> personMap;
-        if (personMap.isEmpty()) {
+        if ( personMap.isEmpty() )
+        {
             //do this only the first time (cause personMap is static and keeps its value)
-             personMap["first"] = KEduVocConjugation::First;
-             personMap["second"] = KEduVocConjugation::Second;
-             personMap["thirdmale"] = KEduVocConjugation::ThirdMale;
-             personMap["thirdfemale"] = KEduVocConjugation::ThirdFemale;
-             personMap["thirdneutralcommon"] = KEduVocConjugation::ThirdNeutralCommon;
+            personMap["first"] = KEduVocConjugation::First;
+            personMap["second"] = KEduVocConjugation::Second;
+            personMap["thirdmale"] = KEduVocConjugation::ThirdMale;
+            personMap["thirdfemale"] = KEduVocConjugation::ThirdFemale;
+            personMap["thirdneutralcommon"] = KEduVocConjugation::ThirdNeutralCommon;
+            personMap["third"] = KEduVocConjugation::ThirdNeutralCommon;
         }
 
-        if (numberMap.contains(number) && personMap.contains(person)) {
+        if ( numberMap.contains ( number ) && personMap.contains ( person ) )
+        {
             kDebug() << "Here";
             KEduVocConjugation & conjug = m_translation->conjugation ( tense );
-            conjug.setConjugation(conjugation,personMap[person],numberMap[number]);
-            m_translation->setConjugation( tense, conjug );
+            conjug.setConjugation ( conjugation,personMap[person],numberMap[number] );
+            m_translation->setConjugation ( tense, conjug );
         }
     }
 

@@ -40,6 +40,7 @@ def conjugations():
           print "setting conjugation"
           print tr.text
           tr.setConjugation("katourw","present","singular","first")
+          tr.setConjugation("playing","past","plural","third")
   
 def testKUrl():
   l = Parley.activeLesson
