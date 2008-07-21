@@ -37,7 +37,7 @@ MixedLettersPrompt::MixedLettersPrompt(KSvgRenderer * renderer, QGraphicsView * 
     }
 
     m_backgroundRect = renderer->boundsOnElement ( elementId );
-};
+}
 
 void MixedLettersPrompt::slotSetText (const QString& solution )
 {

@@ -41,7 +41,7 @@ ImagePrompt::ImagePrompt ( KSvgRenderer * renderer, QGraphicsView * view, const 
     setGeometry ( view->mapToScene ( bounds ).boundingRect().toRect() );
 
     slotSetImage ( KUrl() );
-};
+}
 
 
 

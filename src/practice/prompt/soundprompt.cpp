@@ -50,7 +50,7 @@ SoundPrompt::SoundPrompt ( KSvgRenderer * renderer, QGraphicsView * view, const 
     connect ( this, SIGNAL ( clicked() ), this, SLOT ( slotPlay() ) );
 
     slotSetSound ( KUrl() );
-};
+}
 
 void SoundPrompt::slotSetSound ( const KUrl& sound )
 {
