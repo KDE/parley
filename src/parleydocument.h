@@ -42,6 +42,9 @@ public:
 
     void enableAutoBackup(bool enable);
 
+    /** emits the document changed signal */
+    void emitDocumentChanged(bool modified);
+
 public slots:
     /** open a new application window */
     void slotFileNew();

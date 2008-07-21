@@ -428,5 +428,10 @@ void ParleyDocument::enableAutoBackup(bool enable)
     }
 }
 
+void ParleyDocument::emitDocumentChanged(bool modified) {
+    if (modified)
+        emit documentChanged(m_doc);
+}
+
 
 #include "parleydocument.moc"
