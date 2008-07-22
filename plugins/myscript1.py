@@ -99,12 +99,44 @@ def testcode():
       print translation.practiceDate("dd/MM/yyyy")
 
 
+def newDocument():
+  doc = Parley.newDocument()
+  doc.setTitle("Neo document")
+  #set identifiers
+  doc.appendIdentifier("English","en_US")
+  doc.appendIdentifier("French","fr")
+  #lessons
+  l = doc.newLesson("Neo mathima")
+  doc.rootLesson.appendChildLesson(l)
+  e = l.newEntry()
+  e.setTranslation(0,"dog")
+  e.setTranslation(1,"pies")
+  l.appendEntry(e)
+  
+  ee = l.newEntry(("glass","szklanka"))
+  l.appendEntry(ee)
+  doc.saveAs("/home/kde-devel/test_new_document.kvtml","Parley")
+  
+def tryArticle():
+   #add new one
+  newid = Parley.doc.newIdentifier()
+  newid.name = "English"
+  newid.locale = "en_US"
+  newid.setArticle("o","singular","definite","masculine")
+  newid.setArticle("h","singular","definite","feminine")
+  newid.setArticle("to","singular","definite","neutral")
+  newid.setPersonalPronoun("oi","plural","first")
+  print newid.article("singular","definite","neutral")
+  index = Parley.doc.appendIdentifier(newid)
+  
 def actionFunction():
   print "Action called!!"
+  #tryArticle()
+  newDocument()
   #conjugations()
   #print Parley.doc.wordTypes()
   #setWordType()
-  testcode()
+  #testcode()
   #appendChildrenToAllLessons()
   
   #for lesson in Parley.document.allLessons():

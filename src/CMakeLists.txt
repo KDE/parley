@@ -208,6 +208,7 @@ set(scripts_SRCS
     scripts/scripting/translation.cpp
     scripts/scripting/text.cpp
     scripts/scripting/container.cpp
+    scripts/scripting/identifier.cpp
     scripts/script.cpp
     scripts/translator.cpp
 )

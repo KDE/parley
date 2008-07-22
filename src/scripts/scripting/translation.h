@@ -81,6 +81,10 @@ namespace Scripting
             template <class T, class S>
             QVariantList toVariantList ( QList<T*> objList ) const;
 
+            static QMap<QString,KEduVocConjugation::ConjugationNumber> & getConjNumberMap ();
+
+            static QMap<QString,KEduVocConjugation::ConjugationPerson> & getConjPersonMap ();
+
             /* returns the pronunciation of this translation */
             QString pronunciation() const { return m_translation->pronunciation(); }
             /* sets the pronunciation of this expression */

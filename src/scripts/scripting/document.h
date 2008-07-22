@@ -18,6 +18,7 @@
 #include <keduvocdocument.h>
 
 #include "lesson.h"
+#include "identifier.h"
 
 #include <QObject>
 
@@ -209,12 +210,25 @@ namespace Scripting
             int identifierCount() const { return m_doc->identifierCount(); }
 
             /**
+             * Creates a new identifier and returns a reference to it
+             * @return 
+             */
+            QObject * newIdentifier() { return new Identifier(); }
+
+            /**
+             * Append a new identifier by giving the @p name and @p locale
+             * @param name Language description ex. "American English"
+             * @param locale Language locale ex. "en_US"
+             */
+            void appendIdentifier(const QString& name, const QString& locale);
+
+            /**
              * Appends a new identifier (usually a language)
              *
              * @param identifier the identifier to append. If empty default names are used.
              * @returns the identifier number
              */
-//             int appendIdentifier ( const KEduVocIdentifier & identifier = KEduVocIdentifier() );
+            int appendIdentifier ( Identifier * identifier ) { return m_doc->appendIdentifier(*(identifier->kEduVocIdentifier())); }
 
             /**
              * Sets the identifier of translation
@@ -222,7 +236,7 @@ namespace Scripting
              * @param index            number of translation 0..x
              * @param lang             thr language identifier: en=english, de=german, ...
              */
-//             void setIdentifier ( int index, const KEduVocIdentifier& lang );
+//             void setIdentifier ( int index, Identifier * lang ) { m_doc->setIdentifier ( index,* ( lang->kEduVocIdentifier() ) ); }
 
             /**
              * Returns the identifier of translation @p index
@@ -230,7 +244,7 @@ namespace Scripting
              * @param index            number of translation 0..x
              * @returns                the language identifier: en=english, de=german, ...
              */
-//             KEduVocIdentifier& identifier ( int index );
+            QObject * identifier ( int index ) { return new Identifier ( m_doc->identifier ( index ) ); }
 
             /**
              * Removes identifier and the according translations in all entries
@@ -239,15 +253,21 @@ namespace Scripting
              */
             void removeIdentifier ( int index ) { m_doc->removeIdentifier ( index ); }
 
+            /** Returns a list of all the identifiers of this document */
+            QVariantList identifiers();
+
             /**
              * Determines the index of a given identifier
              *
              * @param lang             identifier of language
              * @returns                index of identifier, 0 = original, 1..n = translation, -1 = not found
              */
+// not implemented in KEduVocDocument
 //             int indexOfIdentifier ( const QString &name ) const { return m_doc->indexOfIdentifier(name); }
 
             // *** tense methods ***
+
+            /// @todo Add a function addTense (for more easily adding tenses .. will be iterating, check if it exists and if not add it to the end)
 
             /**
              * Set the name of a tense

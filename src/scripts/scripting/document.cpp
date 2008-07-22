@@ -24,7 +24,7 @@ namespace Scripting
 
     Document::Document ( QObject* parent )
     {
-        m_doc = new KEduVocDocument(parent);
+        m_doc = new KEduVocDocument ( parent );
     }
 
     Document::Document ( KEduVocDocument * doc )
@@ -109,5 +109,24 @@ namespace Scripting
 //             m_doc->setTenseDescriptions ( *list );
 //         }
 //     }
+
+    QVariantList Document::identifiers()
+    {
+        QVariantList list;
+        for ( int i = 0; i < m_doc->identifierCount(); i++ )
+        {
+            QObject * obj = new Identifier ( m_doc->identifier ( i ) );
+            list << qVariantFromValue ( obj );
+        }
+        return list;
+    }
+
+    void Document::appendIdentifier ( const QString& name, const QString& locale )
+    {
+        KEduVocIdentifier ident;
+        ident.setName(name);
+        ident.setLocale(locale);
+        m_doc->appendIdentifier(ident);
+    }
 
 }

@@ -71,7 +71,9 @@ namespace Scripting
              * @param translations
              * @return A new Expression object
              */
+            ///@todo try this one if it works (list as parameter)
             QObject* newEntry ( const QStringList & translations );
+            
 
             //child lesson public functions (just to change the names from "Container" to "Lesson")
             void appendChildLesson ( Lesson *child ) { appendChildContainer ( child ); }

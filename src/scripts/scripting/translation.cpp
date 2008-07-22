@@ -45,7 +45,7 @@ namespace Scripting
         return QString();
     }
 
-    QMap<QString,KEduVocConjugation::ConjugationNumber> & getConjNumberMap ()
+    QMap<QString,KEduVocConjugation::ConjugationNumber> & Translation::getConjNumberMap ()
     {
         static QMap<QString,KEduVocConjugation::ConjugationNumber> numberMap;
         if ( numberMap.isEmpty() )
@@ -60,7 +60,7 @@ namespace Scripting
 //             return numberMap[number.toLower() ];
     }
 
-    QMap<QString,KEduVocConjugation::ConjugationPerson> & getConjPersonMap ()
+    QMap<QString,KEduVocConjugation::ConjugationPerson> & Translation::getConjPersonMap ()
     {
         static QMap<QString,KEduVocConjugation::ConjugationPerson> personMap;
         if ( personMap.isEmpty() )

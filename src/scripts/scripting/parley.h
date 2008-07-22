@@ -95,10 +95,6 @@ namespace Scripting
 //             void updateDocument() { m_parleyApp->updateDocument(); }
             QObject * newDocument() { return new Document(); }
 
-            /**
-             * 
-             * @return
-             */
             QObject * newAction ( const QString & name );
 
         Q_SIGNALS:
