@@ -127,7 +127,7 @@ def newDocument():
   l3 = doc.appendNewLesson("Lesson 3",l2)
   l3.appendNewEntry(["hey","bonjour"])
   
-  fl = doc.rootLesson.findChildLesson("Lesson 5")
+  fl = doc.findLesson("Lesson 3")
   if fl != None:
     print "found"
     print fl.name

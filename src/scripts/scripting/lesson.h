@@ -45,9 +45,35 @@ namespace Scripting
             ~Lesson();
 
         public slots:
+            /**
+             * Returns a list of all the entries of a lesson
+             * @code
+             * import Parley
+             * entries = Parley.doc.rootLesson.entries(True)
+             * for entry in entries
+             *     print entry.translations
+             * @endcode
+             * @param recursive If true, then will return recursively all the entries below this lesson
+             * @return A list of Expression objects (entries)
+             */
             QVariantList entries ( bool recursive = false ) const;
+
+            /** Returns the entry of the given @p row. If @p recursive is true then it considers all the entries of the sublessons too. */
             QObject * entry ( int row, bool recursive = false );
+
+            /** Returns how many entries are in this lesson (or with sublessons if @p recursive is true) */
             int entryCount ( bool recursive = false );
+
+            /**
+             * Appends an entry at the end of the lesson
+             * @code
+             * import Parley
+             * lesson = Parley.doc.findLesson("Lesson 2")
+             * new_entry = lesson.newEntry(["hello","bonjour"])
+             * lesson.appendEntry(new_entry)
+             * @endcode
+             * @param entry The entry to add the the lesson
+             */
             void appendEntry ( Expression * entry );
 
             /**
@@ -123,6 +149,17 @@ namespace Scripting
              */
             QObject *childLesson ( const QString& name ) { return new Lesson ( m_lesson->childContainer ( name ) ); }
 
+            /**
+             * Returns a list of all the child lessons
+             * @code
+             * #how to access the all the lessons
+             * import Parley
+             * for lesson in Parley.doc.rootLesson.childLessons(True):
+             *     print lesson.name
+             * @endcode
+             * @param recursive If true, then will return the child lessons recursively
+             * @return A List with Lesson objects (child lessons)
+             */
             QVariantList childLessons ( bool recursive = false );
 
             /**

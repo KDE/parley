@@ -111,6 +111,23 @@ namespace Scripting
             QVariantList allLessons();
 
             /**
+             * Searches through all the lessons (recursively) and returns the first lesson the specified @p name
+             * @code
+             * #how to search for a lesson
+             * import Parley
+             * lesson = Parley.findLesson("Lesson 2")
+             * if lesson != None:
+             *     print lesson.name
+             * else:
+             *     print "not found"
+             * @endcode
+             * @param name Name of the lesson to look for
+             * @return A reference to a lesson if found. 0 otherwise
+             */
+
+            QObject * findLesson(const QString& name);
+
+            /**
              * Sets the word type (@p wordtype) of the given @p tr translation object.
             *  If the @p wordtype is not valid, no changes are made to the translation object
              * @param tr Translation object to set it's word type

@@ -131,4 +131,9 @@ namespace Scripting
         return new Lesson(lesson);
     }
 
+    QObject * Document::findLesson(const QString& name) {
+        Lesson tmpLesson(m_doc->lesson());
+        return tmpLesson.findChildLesson(name);
+    }
+
 }
