@@ -127,6 +127,13 @@ def newDocument():
   l3 = doc.appendNewLesson("Lesson 3",l2)
   l3.appendNewEntry(["hey","bonjour"])
   
+  fl = doc.rootLesson.findChildLesson("Lesson 5")
+  if fl != None:
+    print "found"
+    print fl.name
+  else:
+    print "not found"
+  
   #save document
   doc.saveAs("/home/kde-devel/test_new_document.kvtml","Parley")
   

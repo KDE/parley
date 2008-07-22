@@ -122,6 +122,13 @@ namespace Scripting
         m_lesson->appendEntry(expr);
     }
 
-
+    QObject * Lesson::findChildLesson ( const QString& name )
+    {
+        KEduVocContainer * container = findContainer(name);
+        if (container)
+            return new Lesson ( container );
+        kDebug() << "not found";
+        return 0;
+    }
 
 }

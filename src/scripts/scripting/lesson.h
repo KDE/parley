@@ -125,6 +125,23 @@ namespace Scripting
 
             QVariantList childLessons ( bool recursive = false );
 
+            /**
+             * Searches through all the child lessons (recursively) and returns the first lesson the specified @p name
+             * @code
+             * #how to search for a lesson
+             * import Parley
+             * lesson = Parley.doc.rootLesson.findChildLesson("Lesson 5")
+             * if lesson != None:
+             *     print "found"
+             *     print lesson.name
+             * else:
+             *     print "not found"
+             * @endcode
+             * @param name Name of the lesson to look for
+             * @return A reference to a lesson if found. 0 otherwise
+             */
+            QObject * findChildLesson ( const QString& name );
+
             int childLessonCount() const { return childContainerCount(); }
 
         private:

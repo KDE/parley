@@ -146,6 +146,8 @@ namespace Scripting
 
             QVariantList childContainers();
 
+            KEduVocContainer * findContainer(const QString& name);
+
         protected:
             KEduVocContainer * m_container;
     };

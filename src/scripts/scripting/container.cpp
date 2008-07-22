@@ -71,5 +71,14 @@ namespace Scripting
         return list;
     }
 
+    KEduVocContainer * Container::findContainer ( const QString& name )
+    {
+        QList<KEduVocContainer*> list = flattenContainer(m_container);
+        foreach (KEduVocContainer * container, list)
+            if (container->name() == name)
+                return container;
+        return 0;
+    }
+
 
 }
