@@ -113,7 +113,6 @@ namespace Scripting
 
             /**
              * Creates and returns a new Expression Object
-             * @return A new Expression object
              */
             QObject* newEntry();
 
@@ -179,6 +178,9 @@ namespace Scripting
              */
             QObject * findChildLesson ( const QString& name );
 
+            /**
+             * Returns how many child lessons exist under this lesson
+             */
             int childLessonCount() const { return childContainerCount(); }
 
         private:

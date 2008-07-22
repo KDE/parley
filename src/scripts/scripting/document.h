@@ -43,6 +43,14 @@ namespace Scripting
             Q_OBJECT
             /// Document's root lesson
             Q_PROPERTY ( QObject * rootLesson READ rootLesson )
+            Q_PROPERTY ( QString title READ title WRITE setTitle )
+            Q_PROPERTY ( QString author READ author WRITE setAuthor )
+            Q_PROPERTY ( QString authorContact READ authorContact WRITE setAuthorContact )
+            Q_PROPERTY ( QString license READ license WRITE setLicense )
+            Q_PROPERTY ( QString documentComment READ documentComment WRITE setDocumentComment )
+            Q_PROPERTY ( QString category READ category WRITE setCategory )
+            Q_PROPERTY ( QString generator READ generator WRITE setGenerator )
+            Q_PROPERTY ( QString version READ version WRITE setVersion )
         public:
             Document ( QObject* parent = 0 );
 
@@ -56,6 +64,65 @@ namespace Scripting
             QObject * rootLesson() { return new Lesson ( m_doc->lesson() ); }
 
             KEduVocWordType * wordTypeFromString ( const QString & name );
+
+            //**** Property Methods ****//
+
+            /** set the title of the file
+             * @param title title to set */
+            void setTitle ( const QString & title ) { m_doc->setTitle ( title ); }
+
+            /** @returns the title of the file */
+            QString title() const { return m_doc->title(); }
+
+            /** set the author of the file
+             * @param author author to set */
+            void setAuthor ( const QString & author ) { m_doc->setAuthor ( author ); }
+
+            /** @returns the author of the file */
+            QString author() const { return m_doc->author(); }
+
+            /** set the author contact info
+             * @param contact email/contact info to set */
+            void setAuthorContact ( const QString & authorContact ) { m_doc->setAuthorContact ( authorContact ); }
+
+            /** @returns the author contact information */
+            QString authorContact() const { return m_doc->authorContact(); }
+
+            /** set the license of the file
+             * @param license license to set */
+            void setLicense ( const QString & license ) { m_doc->setLicense ( license ); }
+
+            /** @returns the license of the file */
+            QString license() const { return m_doc->license(); }
+
+            /** set the comment of the file
+             * @param comment comment to set */
+            void setDocumentComment ( const QString & comment ) { m_doc->setDocumentComment ( comment ); }
+
+            /** @return the comment of the file */
+            QString documentComment() const { return m_doc->documentComment(); }
+
+            /** set the category of the file
+             * @param category category to set */
+            void setCategory ( const QString & category ) { m_doc->setCategory ( category ); }
+
+            /** @return the category of the file */
+            QString category() const { return m_doc->category(); }
+
+            /**
+             * Sets the generator of the file
+             */
+            void setGenerator ( const QString & generator ) { m_doc->setGenerator ( generator ); }
+
+            /** @returns the generator of the file */
+            QString generator() const { m_doc->generator(); }
+
+            /** Sets version of the loaded file
+             * @param ver the new version */
+            void setVersion ( const QString & ver ) { m_doc->setVersion ( ver ); }
+
+            /** @returns the version of the loaded file */
+            QString version() const { return m_doc->version(); }
 
         public slots:
 
@@ -125,7 +192,7 @@ namespace Scripting
              * @return A reference to a lesson if found. 0 otherwise
              */
 
-            QObject * findLesson(const QString& name);
+            QObject * findLesson ( const QString& name );
 
             /**
              * Sets the word type (@p wordtype) of the given @p tr translation object.
@@ -188,62 +255,7 @@ namespace Scripting
             /** @returns the URL of the XML file */
             QString url() const { return m_doc->url().path(); }
 
-            /** set the title of the file
-             * @param title title to set */
-            void setTitle ( const QString & title ) { m_doc->setTitle ( title ); }
 
-            /** @returns the title of the file */
-            QString title() const { return m_doc->title(); }
-
-            /** set the author of the file
-             * @param author author to set */
-            void setAuthor ( const QString & author ) { m_doc->setAuthor ( author ); }
-
-            /** @returns the author of the file */
-            QString author() const { return m_doc->author(); }
-
-            /** set the author contact info
-             * @param contact email/contact info to set */
-            void setAuthorContact ( const QString & authorContact ) { m_doc->setAuthorContact ( authorContact ); }
-
-            /** @returns the author contact information */
-            QString authorContact() const { return m_doc->authorContact(); }
-
-            /** set the license of the file
-             * @param license license to set */
-            void setLicense ( const QString & license ) { m_doc->setLicense ( license ); }
-
-            /** @returns the license of the file */
-            QString license() const { return m_doc->license(); }
-
-            /** set the comment of the file
-             * @param comment comment to set */
-            void setDocumentComment ( const QString & comment ) { m_doc->setDocumentComment ( comment ); }
-
-            /** @return the comment of the file */
-            QString documentComment() const { return m_doc->documentComment(); }
-
-            /** set the category of the file
-             * @param category category to set */
-            void setCategory ( const QString & category ) { m_doc->setCategory ( category ); }
-
-            /** @return the category of the file */
-            QString category() const { return m_doc->category(); }
-
-            /**
-             * Sets the generator of the file
-             */
-            void setGenerator ( const QString & generator ) { m_doc->setGenerator ( generator ); }
-
-            /** @returns the generator of the file */
-            QString generator() const { m_doc->generator(); }
-
-            /** Sets version of the loaded file
-             * @param ver the new version */
-            void setVersion ( const QString & ver ) { m_doc->setVersion ( ver ); }
-
-            /** @returns the version of the loaded file */
-            QString version() const { return m_doc->version(); }
 
             // *** identifier methods ***
 
@@ -254,7 +266,7 @@ namespace Scripting
 
             /**
              * Creates a new identifier and returns a reference to it
-             * @return 
+             * @return
              */
             QObject * newIdentifier() { return new Identifier(); }
 
@@ -263,7 +275,7 @@ namespace Scripting
              * @param name Language description ex. "American English"
              * @param locale Language locale ex. "en_US"
              */
-            void appendIdentifier(const QString& name, const QString& locale);
+            void appendIdentifier ( const QString& name, const QString& locale );
 
             /**
              * Appends a new identifier (usually a language)
@@ -271,7 +283,7 @@ namespace Scripting
              * @param identifier the identifier to append. If empty default names are used.
              * @returns the identifier number
              */
-            int appendIdentifier ( Identifier * identifier ) { return m_doc->appendIdentifier(*(identifier->kEduVocIdentifier())); }
+            int appendIdentifier ( Identifier * identifier ) { return m_doc->appendIdentifier ( * ( identifier->kEduVocIdentifier() ) ); }
 
             /**
              * Sets the identifier of translation
