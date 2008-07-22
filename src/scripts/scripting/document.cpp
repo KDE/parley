@@ -86,18 +86,6 @@ namespace Scripting
         return strList;
     }
 
-// Tried to pass a python list as an argument but it didn't work
-
-//     void Document::setTenseDescriptions ( QObject * names )
-//     {
-//         kDebug() << names;
-//         QVariantList * list = dynamic_cast<QVariantList *> ( names );
-//         if ( list ) {
-//             kDebug() << "list: " << list;
-//             m_doc->setTenseDescriptions ( *list );
-//         }
-//     }
-
     QVariantList Document::identifiers()
     {
         QVariantList list;
@@ -109,7 +97,7 @@ namespace Scripting
         return list;
     }
 
-    void Document::appendIdentifier ( const QString& name, const QString& locale )
+    void Document::appendNewIdentifier ( const QString& name, const QString& locale )
     {
         KEduVocIdentifier ident;
         ident.setName ( name );

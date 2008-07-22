@@ -47,15 +47,10 @@ namespace Scripting
             Q_PROPERTY ( QString comparative READ comparative WRITE setComparative )
             /// Superlative form
             Q_PROPERTY ( QString superlative READ superlative WRITE setSuperlative )
-//             Q_PROPERTY ( QStringList multipleChoice READ multipleChoice )
             /// Url of the sound file
             Q_PROPERTY ( QString soundUrl READ soundUrl WRITE setSoundUrl )
             /// Url of the image file
             Q_PROPERTY ( QString imageUrl READ soundUrl WRITE setImageUrl )
-
-//             Q_PROPERTY ( QVariantList falseFriends READ falseFriends )
-//             Q_PROPERTY ( QVariantList synonyms READ synonyms )
-//             Q_PROPERTY ( QVariantList antonyms READ antonyms )
         public:
             /*
              * Default constructor for an empty translation.

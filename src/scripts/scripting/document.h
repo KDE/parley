@@ -59,6 +59,10 @@ namespace Scripting
             Q_PROPERTY ( QString generator READ generator WRITE setGenerator )
             /// Document version
             Q_PROPERTY ( QString version READ version WRITE setVersion )
+            /// Delimiter (separator) used for csv import and export.
+            Q_PROPERTY ( QString csvDelimiter READ csvDelimiter WRITE setCsvDelimiter )
+            /// URL of the XML file
+            Q_PROPERTY ( QString url READ url WRITE setUrl )
         public:
             Document ( QObject* parent = 0 );
 
@@ -131,6 +135,31 @@ namespace Scripting
 
             /* @returns the version of the loaded file */
             QString version() const { return m_doc->version(); }
+
+            /*
+             * Returns the delimiter (separator) used for csv import and export.
+             * The default is a single tab character
+             *
+             * @returns                the delimiter used
+             */
+            QString csvDelimiter() const { return m_doc->csvDelimiter(); }
+
+            /*
+             * Sets the delimiter (separator) used for csv import and export
+             *
+             * @param delimiter        the delimiter to use
+             */
+            void setCsvDelimiter ( const QString &delimiter ) { m_doc->setCsvDelimiter ( delimiter ); }
+
+            /*
+             * Sets the URL of the XML file
+             */
+            void setUrl ( const QString& url ) { m_doc->setUrl ( url ); }
+
+            /* @returns the URL of the XML file */
+            QString url() const { return m_doc->url().path(); }
+
+
 
         public slots:
 
@@ -210,6 +239,9 @@ namespace Scripting
              */
             void setWordType ( QObject * tr, const QString & wordtype );
 
+            /**
+             * Returns a string list with all the available word type's names
+             */
             QStringList wordTypes();
 
 // ---------------------  copied from KEduVocDocument
@@ -226,12 +258,13 @@ namespace Scripting
              * Saves the data under the given name
              *
              * @param url        if url is empty (or NULL) actual name is preserved
-             * @param ft         the filetype to be used when saving the document
              * @param generator  the name of the application saving the document
              * @returns          ErrorCode
              */
+
+            //* @param ft         the filetype to be used when saving the document
             int saveAs ( const QString & url, const QString & generator ) { m_doc->saveAs ( url,KEduVocDocument::Automatic, generator ); }
-            /// @todo Implement the enums for the FileType
+            /// @todo Implement the enums for the FileType (if needed)
 //             int saveAs ( const QString & url, FileType ft, const QString & generator );
 
 //             QByteArray toByteArray ( const QString &generator );
@@ -245,25 +278,16 @@ namespace Scripting
              */
             void merge ( Document *docToMerge, bool matchIdentifiers ) { m_doc->merge ( docToMerge->kEduVocDocument(),matchIdentifiers ); }
 
-            /**
+// NOT NEEDED
+            /*
              * Indicates if the document is modified
              *
              * @param dirty   new state
              */
-            void setModified ( bool dirty = true ) { m_doc->setModified ( dirty ); }
+//             void setModified ( bool dirty = true ) { m_doc->setModified ( dirty ); }
 
-            /** @returns the modification state of the doc */
-            bool isModified() const { return m_doc->isModified(); }
-
-            /**
-             * Sets the URL of the XML file
-             */
-            void setUrl ( const QString& url ) { m_doc->setUrl ( url ); }
-
-            /** @returns the URL of the XML file */
-            QString url() const { return m_doc->url().path(); }
-
-
+            /* @returns the modification state of the doc */
+//             bool isModified() const { return m_doc->isModified(); }
 
             // *** identifier methods ***
 
@@ -283,7 +307,7 @@ namespace Scripting
              * @param name Language description ex. "American English"
              * @param locale Language locale ex. "en_US"
              */
-            void appendIdentifier ( const QString& name, const QString& locale );
+            void appendNewIdentifier ( const QString& name, const QString& locale );
 
             /**
              * Appends a new identifier (usually a language)
@@ -293,7 +317,7 @@ namespace Scripting
              */
             int appendIdentifier ( Identifier * identifier ) { return m_doc->appendIdentifier ( * ( identifier->kEduVocIdentifier() ) ); }
 
-            /**
+            /*
              * Sets the identifier of translation
              *
              * @param index            number of translation 0..x
@@ -319,7 +343,7 @@ namespace Scripting
             /** Returns a list of all the identifiers of this document */
             QVariantList identifiers();
 
-            /**
+            /*
              * Determines the index of a given identifier
              *
              * @param lang             identifier of language
@@ -330,36 +354,31 @@ namespace Scripting
 
             // *** tense methods ***
 
-            /// @todo Add a function addTense (for more easily adding tenses .. will be iterating, check if it exists and if not add it to the end)
+            /**
+             * Sets the document tenses
+             * @code
+             * #how to add new tenses to a parley document
+             * import Parley
+             * tenses = Parley.doc.tenses()
+             * print tenses
+             * tenses.append("Present Perfect")
+             * tenses.append("Past Simple")
+             * Parley.doc.setTenses(tenses)
+             * print Parley.doc.tenses()
+             * @endcode
+             * @param names A string list of the document tenses we want to be using
+             */
+            void setTenses ( QStringList names ) { m_doc->setTenseDescriptions ( names ); }
 
             /**
-             * Set the name of a tense
-             * @param index            number of tense
-             * @param tense            name of tense
+             * Gets the document tenses
+             * @return A string list of all the document tenses
              */
-            void setTenseName ( int index, const QString &tense ) { m_doc->setTenseName ( index,tense ); }
-
-            /**
-             * Returns the tense string
-             *
-             * @param index            number of tense
-             * @returns                string
-             */
-            QString tenseName ( int index ) const { return m_doc->tenseName ( index ); }
-
-            /**
-             * Sets the description of the tenses
-             */
-//             void setTenseDescriptions ( QObject * names );
-
-            /**
-             * Gets the descriptions of the tenses
-             */
-            QStringList tenseDescriptions() const { return m_doc->tenseDescriptions(); }
+            QStringList tenses() const { return m_doc->tenseDescriptions(); }
 
             // *** grade methods ***
 
-            /**
+            /*
              * Retrieves the identifiers for the current query
              * not written in the new version!
              *
@@ -368,7 +387,7 @@ namespace Scripting
              */
 //             KDE_DEPRECATED void queryIdentifier ( QString &org, QString &trans ) const;
 
-            /**
+            /*
              * Sets the identifiers for the current query
              * not written in the new version!
              *
@@ -379,7 +398,7 @@ namespace Scripting
 
             // *** lesson methods ***
 
-            /** get the lesson root object
+            /* get the lesson root object
              * @returns a pointer to the lesson object
              */
 //             KEduVocLesson * lesson();
@@ -390,20 +409,6 @@ namespace Scripting
 
             // *** file format specific methods ***
 
-            /**
-             * Returns the delimiter (separator) used for csv import and export.
-             * The default is a single tab character
-             *
-             * @returns                the delimiter used
-             */
-            QString csvDelimiter() const { return m_doc->csvDelimiter(); }
-
-            /**
-             * Sets the delimiter (separator) used for csv import and export
-             *
-             * @param delimiter        the delimiter to use
-             */
-            void setCsvDelimiter ( const QString &delimiter ) { m_doc->setCsvDelimiter ( delimiter ); }
 
 //             static FileType detectFileType ( const QString &fileName );
 

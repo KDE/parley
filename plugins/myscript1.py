@@ -187,8 +187,12 @@ def actionFunction_old():
 
 def actionFunction2():
   print "Action2 called!!"
-  Parley.listTest(["hi","baby","here"])
-  Parley.listTest("hihiha")
+  tenses = Parley.doc.tenses()
+  print tenses
+  tenses.append("Present Perfect")
+  tenses.append("Past Simple")
+  Parley.doc.setTenses(tenses)
+  print Parley.doc.tenses()
   return
 
 
