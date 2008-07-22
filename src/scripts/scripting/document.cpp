@@ -124,9 +124,23 @@ namespace Scripting
     void Document::appendIdentifier ( const QString& name, const QString& locale )
     {
         KEduVocIdentifier ident;
-        ident.setName(name);
-        ident.setLocale(locale);
-        m_doc->appendIdentifier(ident);
+        ident.setName ( name );
+        ident.setLocale ( locale );
+        m_doc->appendIdentifier ( ident );
+    }
+
+    QObject * Document::appendNewLesson ( const QString & name )
+    {
+        KEduVocLesson * lesson = new KEduVocLesson(name,m_doc->lesson());
+        m_doc->lesson()->appendChildContainer(lesson);
+        return new Lesson(lesson);
+    }
+
+    QObject * Document::appendNewLesson ( const QString & name, Lesson * parent )
+    {
+        KEduVocLesson * lesson = new KEduVocLesson(name,parent->kEduVocContainer());
+        parent->kEduVocContainer()->appendChildContainer(lesson);
+        return new Lesson(lesson);
     }
 
 }

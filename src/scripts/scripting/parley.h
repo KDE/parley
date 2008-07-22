@@ -19,6 +19,7 @@
 
 #include <QObject>
 #include <KAction>
+#include <KDebug>
 
 class ParleyApp;
 class Translator;
@@ -96,6 +97,10 @@ namespace Scripting
             QObject * newDocument() { return new Document(); }
 
             QObject * newAction ( const QString & name );
+
+            void listTest(QString list) { kDebug() << list; }
+
+            void listTest(QStringList list) { kDebug() << list; }
 
         Q_SIGNALS:
             void translateWord ( QString word, QString fromLanguage, QString toLanguage );

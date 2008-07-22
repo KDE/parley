@@ -49,6 +49,19 @@ namespace Scripting
             QObject * entry ( int row, bool recursive = false );
             int entryCount ( bool recursive = false );
             void appendEntry ( Expression * entry );
+
+            /**
+             * Creates and appends a new entry with the given @p translations
+             * @code
+             * #how to add a new entry with appendNewEntry()
+             * import Parley
+             * lesson = Parley.doc.rootLesson
+             * lesson.appendNewEntry(["good morning","bonjour"])
+             * lesson.appendNewEntry(["play","jouer"])
+             * @endcode
+             * @param translations A string list with the translations (in same order as their identifiers)
+             */
+            void appendNewEntry ( QStringList translations );
             void insertEntry ( int index, Expression * entry );
             void removeEntry ( QObject * entry );
 
@@ -61,26 +74,28 @@ namespace Scripting
 
             /**
              * Creates and returns a new Expression Object
-             * @param expression
-             * @return A new Expression object
-             */
-            QObject* newEntry ( const QString & expression );
-
-            /**
-             * Creates and returns a new Expression Object
              * @param translations
              * @return A new Expression object
              */
             ///@todo try this one if it works (list as parameter)
-            QObject* newEntry ( const QStringList & translations );
-            
+            QObject* newEntry ( QStringList translations );
+
+
+            /// @note this one doesn't work with the previous one (python doesn't know which one to call)
+            /*
+             * Creates and returns a new Expression Object
+             * @param expression
+             * @return A new Expression object
+             */
+//             QObject* newEntry ( const QString & expression );
+
 
             //child lesson public functions (just to change the names from "Container" to "Lesson")
             void appendChildLesson ( Lesson *child ) { appendChildContainer ( child ); }
             void insertChildLesson ( int row, Lesson *child ) { insertChildContainer ( row, child ); }
             void deleteChildLesson ( int row ) { deleteChildContainer ( row ); }
             void removeChildLesson ( int row ) { removeChildContainer ( row ); }
-            QObject *childLesson ( int row ) { return new Lesson(m_lesson->childContainer(row)); }
+            QObject *childLesson ( int row ) { return new Lesson ( m_lesson->childContainer ( row ) ); }
 
             /**
              * Retrieve a child container by its name
@@ -88,9 +103,9 @@ namespace Scripting
              * @param name lesson name
              * @return the child lesson
              */
-            QObject *childLesson ( const QString& name ) { return new Lesson(m_lesson->childContainer(name)); }
+            QObject *childLesson ( const QString& name ) { return new Lesson ( m_lesson->childContainer ( name ) ); }
 
-            QVariantList childLessons(bool recursive = false);
+            QVariantList childLessons ( bool recursive = false );
 
             int childLessonCount() const { return childContainerCount(); }
 

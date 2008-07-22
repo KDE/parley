@@ -108,13 +108,26 @@ def newDocument():
   #lessons
   l = doc.newLesson("Neo mathima")
   doc.rootLesson.appendChildLesson(l)
+  #first way
   e = l.newEntry()
   e.setTranslation(0,"dog")
   e.setTranslation(1,"pies")
   l.appendEntry(e)
-  
-  ee = l.newEntry(("glass","szklanka"))
+  #second way
+  ee = l.newEntry(["glass","szklanka"])
   l.appendEntry(ee)
+  #third way
+  ee = l.appendNewEntry(["book","livre"])
+  
+  #new lesson (fast way)
+  l2 = doc.appendNewLesson("Lesson 2")
+  l2.appendNewEntry(["me","je"]);
+  
+  #new lesson under Lesson 2
+  l3 = doc.appendNewLesson("Lesson 3",l2)
+  l3.appendNewEntry(["hey","bonjour"])
+  
+  #save document
   doc.saveAs("/home/kde-devel/test_new_document.kvtml","Parley")
   
 def tryArticle():
@@ -167,6 +180,8 @@ def actionFunction_old():
 
 def actionFunction2():
   print "Action2 called!!"
+  Parley.listTest(["hi","baby","here"])
+  Parley.listTest("hihiha")
   return
 
 

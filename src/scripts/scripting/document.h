@@ -64,13 +64,39 @@ namespace Scripting
              * @code
              * #how to add a new lesson to the root lesson
              * import Parley
-             * newlesson = Parley.document.newLesson("My New Lesson")
-             * Parley.document.rootLesson.appendChildLesson(newlesson)
+             * newlesson = Parley.doc.newLesson("My New Lesson")
+             * Parley.doc.rootLesson.appendChildLesson(newlesson)
              * @endcode
              * @param name Name of the lesson
              * @return The new lesson
              */
             QObject * newLesson ( const QString & name ) { return new Lesson ( name ); }
+
+            /**
+             * Creates a new lesson and appends it to the root lesson
+             * @code
+             * #how to add a new lesson to the root lesson
+             * import Parley
+             * newlesson = Parley.doc.appendNewLesson("My New Lesson")
+             * @endcode
+             * @param name Lesson name
+             * @return A reference to the new lesson
+             */
+            QObject * appendNewLesson ( const QString & name );
+
+            /**
+             * Creates a new lesson and appends it to the @p parent lesson
+             * @code
+             * #how to add a new lesson under another lesson
+             * import Parley
+             * parentLesson = Parley.doc.appendNewLesson("My Parent Lesson")
+             * childLesson = Parley.doc.appendNewLesson("My new child lesson",parentLesson)
+             * @endcode
+             * @param name Lesson name
+             * @param parent Parent lesson
+             * @return A reference to the new lesson
+             */
+            QObject * appendNewLesson ( const QString & name, Lesson * parent );
 
             /**
              * Returns all the lessons in the document (including sublessons)

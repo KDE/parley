@@ -43,20 +43,22 @@ namespace Scripting
     {
     }
 
-    QList<KEduVocLesson*>  flattenLessons(KEduVocLesson * rootLesson) {
+    QList<KEduVocLesson*>  flattenLessons ( KEduVocLesson * rootLesson )
+    {
         QList<KEduVocLesson*> lessonsList;
-        foreach (KEduVocContainer * child, rootLesson->childContainers()) {
-            lessonsList << static_cast<KEduVocLesson*>(child);
-            lessonsList += flattenLessons(static_cast<KEduVocLesson*>(child));
+        foreach ( KEduVocContainer * child, rootLesson->childContainers() )
+        {
+            lessonsList << static_cast<KEduVocLesson*> ( child );
+            lessonsList += flattenLessons ( static_cast<KEduVocLesson*> ( child ) );
         }
         return lessonsList;
     }
 
 
-    QVariantList Lesson::childLessons(bool recursive)
+    QVariantList Lesson::childLessons ( bool recursive )
     {
-        if (recursive)
-            return toVariantList<KEduVocLesson,Lesson> ( flattenLessons(m_lesson) );
+        if ( recursive )
+            return toVariantList<KEduVocLesson,Lesson> ( flattenLessons ( m_lesson ) );
         return toVariantList<KEduVocContainer,Lesson> ( m_lesson->childContainers() );
     }
 
@@ -104,14 +106,20 @@ namespace Scripting
         return new Expression();
     }
 
-    QObject* Lesson::newEntry ( const QString & expression )
-    {
-        return new Expression ( expression );
-    }
+//     QObject* Lesson::newEntry ( const QString & expression )
+//     {
+//         return new Expression ( expression );
+//     }
 
-    QObject* Lesson::newEntry ( const QStringList & translations )
+    QObject* Lesson::newEntry ( QStringList translations )
     {
         return new Expression ( translations );
+    }
+
+    void Lesson::appendNewEntry ( QStringList translations )
+    {
+        KEduVocExpression * expr = new KEduVocExpression(translations);
+        m_lesson->appendEntry(expr);
     }
 
 
