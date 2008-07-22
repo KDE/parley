@@ -59,4 +59,17 @@ namespace Scripting
         return toVariantList<KEduVocContainer,Container> ( m_container->childContainers() );
     }
 
+    QList<KEduVocContainer*>  Container::flattenContainer ( KEduVocContainer * root )
+    {
+        QList<KEduVocContainer*> list;
+        if ( root )
+        {
+            list << root;
+            foreach ( KEduVocContainer * child, root->childContainers() )
+            list += flattenContainer ( child );
+        }
+        return list;
+    }
+
+
 }

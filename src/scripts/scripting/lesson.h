@@ -62,9 +62,28 @@ namespace Scripting
              * @param translations A string list with the translations (in same order as their identifiers)
              */
             void appendNewEntry ( QStringList translations );
-            void insertEntry ( int index, Expression * entry );
-            void removeEntry ( QObject * entry );
 
+            /**
+             * Insert an entry on a specific @p index
+             * @param index Index where the entry will be added
+             * @param entry The entry to add (can be created by newEntry() function)
+             */
+            void insertEntry ( int index, Expression * entry );
+
+            /**
+             * Removes an entry from this lesson
+             * @code
+             * #how to remove all the entries with the word "play" (from all lessons)
+             * import Parley
+             * for lesson in Parley.doc.allLessons():
+             *     for entry in lesson.entries():
+             *         for tr in entry.translations():
+             *             if tr.text == "play":
+             *                 lesson.remove(entry)
+             * @endcode
+             * @param entry A reference to the entry to remove
+             */
+            void removeEntry ( QObject * entry );
 
             /**
              * Creates and returns a new Expression Object
@@ -77,11 +96,10 @@ namespace Scripting
              * @param translations
              * @return A new Expression object
              */
-            ///@todo try this one if it works (list as parameter)
             QObject* newEntry ( QStringList translations );
 
 
-            /// @note this one doesn't work with the previous one (python doesn't know which one to call)
+            // @note this one doesn't work with the previous one (python doesn't know which one to call)
             /*
              * Creates and returns a new Expression Object
              * @param expression

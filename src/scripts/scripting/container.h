@@ -49,6 +49,8 @@ namespace Scripting
             template <class T, class S>
             QVariantList toVariantList ( QList<T*> objList ) const;
 
+            static QList<KEduVocContainer*>  flattenContainer ( KEduVocContainer * root );
+
             KEduVocContainer * kEduVocContainer() { return m_container; }
 
             static bool enumToBool ( KEduVocContainer::EnumEntriesRecursive recursive );

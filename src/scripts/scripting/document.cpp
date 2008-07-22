@@ -42,21 +42,9 @@ namespace Scripting
         return QVariantList() << qVariantFromValue ( static_cast<QObject*> ( l ) ) <<  l->childLessons ( true );
     }
 
-    QList<KEduVocContainer*>  flattenContainer ( KEduVocContainer * root )
-    {
-        QList<KEduVocContainer*> list;
-        if ( root )
-        {
-            list << root;
-            foreach ( KEduVocContainer * child, root->childContainers() )
-            list += flattenContainer ( child );
-        }
-        return list;
-    }
-
     KEduVocWordType * Document::wordTypeFromString ( const QString & name )
     {
-        QList<KEduVocContainer*> list = flattenContainer ( m_doc->wordTypeContainer() );
+        QList<KEduVocContainer*> list = Container::flattenContainer ( m_doc->wordTypeContainer() );
         list.removeFirst();
 
 //         foreach ( KEduVocContainer * child, list )
@@ -88,7 +76,7 @@ namespace Scripting
 
     QStringList Document::wordTypes()
     {
-        QList<KEduVocContainer*> list = flattenContainer ( m_doc->wordTypeContainer() );
+        QList<KEduVocContainer*> list = Container::flattenContainer ( m_doc->wordTypeContainer() );
         list.removeFirst();
         QStringList strList;
         foreach ( KEduVocContainer * child, list )
