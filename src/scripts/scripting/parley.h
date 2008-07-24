@@ -21,6 +21,8 @@
 #include <KAction>
 #include <KDebug>
 
+#include <keduvocdeclension.h>
+
 class ParleyApp;
 class Translator;
 
@@ -48,7 +50,28 @@ namespace Scripting
             * @endcode
             */
             Q_PROPERTY ( QObject * activeLesson READ getActiveLesson )
+
+            Q_ENUMS ( DeclensionNumber DeclensionCase )
+
         public:
+            enum DeclensionNumber
+            {
+                Singular = 0,
+                Dual,
+                Plural
+            };
+
+            enum DeclensionCase
+            {
+                Nominative = 0,
+                Genitive,
+                Dative,
+                Accusative,
+                Ablative,
+                Locative,
+                Vocative
+            };
+
             Parley ( ParleyApp * parley );
 
             ~Parley();
@@ -98,15 +121,23 @@ namespace Scripting
 
             QObject * newAction ( const QString & name );
 
-            void listTest(QString list) { kDebug() << list; }
+            void listTest ( QString list ) { kDebug() << list; }
 
-            void listTest(QStringList list) { kDebug() << list; }
+            void listTest ( QStringList list ) { kDebug() << list; }
+
+            void whichEnum ( KEduVocDeclension::DeclensionNumber d )
+            {
+                kDebug() << d;
+            }
+
 
         Q_SIGNALS:
             void translateWord ( QString word, QString fromLanguage, QString toLanguage );
             void translationFinished ( const QString & word,const QString& fromLanguage,const QString& toLanguage );
             void translationStarted ( const QString & word,const QString& fromLanguage,const QString& toLanguage );
             void test();
+
+
 
         private:
             Translator* m_translator;

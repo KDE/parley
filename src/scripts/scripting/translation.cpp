@@ -144,4 +144,35 @@ namespace Scripting
         return list;
     }
 
+//     QString Translation::declension( const QString& number, const QString& decCase) {
+//
+//     }
+
+//     QObject * Translation::declension ( KEduVocDeclension::DeclensionNumber number, KEduVocDeclension::DeclensionCase decCase )
+//     {
+//         kDebug() << number << decCase;
+//         kDebug() << m_translation->declension();
+//         if ( m_translation->declension() ) {
+//             kDebug() << "in here";
+//             //crashes here!
+//             m_translation->declension()->declension ( number,decCase );
+//             kDebug() << "in here";
+//             return new Text ( m_translation->declension()->declension ( number,decCase ) );
+//         }
+//         else
+//             return new Text ( QString() );
+//     }
+
+//     void Translation::setDeclension ( const QString& declension, KEduVocDeclension::DeclensionNumber number, KEduVocDeclension::DeclensionCase decCase )
+//     {
+//         kDebug() << number << decCase;
+//         KEduVocDeclension * dec = m_translation->declension();
+//         kDebug() << dec;
+//         if ( !dec )
+//             dec = new KEduVocDeclension();
+//         kDebug() << "here";
+//         dec->setDeclension ( KEduVocText ( declension ),number,decCase );
+//         m_translation->setDeclension ( dec );
+//     }
+
 }

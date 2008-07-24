@@ -15,6 +15,8 @@
 #ifndef SCRIPTINGSCRIPTOBJECTTRANSLATION_H
 #define SCRIPTINGSCRIPTOBJECTTRANSLATION_H
 
+#include <keduvocdeclension.h>
+
 #include "keduvoctranslation.h"
 #include "keduvocwordtype.h"
 #include "expression.h"
@@ -144,19 +146,6 @@ namespace Scripting
              * @param leitnerBox the box
              */
 //             void setLeitnerBox ( KEduVocLeitnerBox* leitnerBox );
-
-            /*
-             * Returns a pointer to the declension object of this translation.
-             * Returns 0 if no declension object exists!
-             * @return the declension
-             */
-//             KEduVocDeclension* declension();
-
-            /*
-             * Set a new declension for a translation
-             * @param declension
-             */
-//             void setDeclension ( KEduVocDeclension* declension );
 
             /*
              * Bad, only used for tense entry page, will be deleted later. Deprecated.
@@ -326,6 +315,24 @@ namespace Scripting
              * @return A String list with 5 conjugations in the order of [First, Second, ThirdMale, ThirdFemale, Third/ThirdNeural]
              */
             QStringList conjugation ( const QString& tense, const QString& number );
+
+
+            /*
+             * Returns a pointer to the declension object of this translation.
+             * Returns 0 if no declension object exists!
+             * @return the declension
+             */
+//             KEduVocDeclension* declension();
+//weird bug with QMap
+//             QObject * declension(KEduVocDeclension::DeclensionNumber number, KEduVocDeclension::DeclensionCase decCase);
+
+            /*
+             * Set a new declension for a translation
+             * @param declension
+             */
+//             void setDeclension ( KEduVocDeclension* declension );
+//             void setDeclension(const QString& declension, KEduVocDeclension::DeclensionNumber number, KEduVocDeclension::DeclensionCase decCase);
+
 
 
         private:

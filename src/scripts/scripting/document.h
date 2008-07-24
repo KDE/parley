@@ -127,7 +127,7 @@ namespace Scripting
             void setGenerator ( const QString & generator ) { m_doc->setGenerator ( generator ); }
 
             /* @returns the generator of the file */
-            QString generator() const { m_doc->generator(); }
+            QString generator() const { return m_doc->generator(); }
 
             /* Sets version of the loaded file
              * @param ver the new version */
@@ -219,7 +219,7 @@ namespace Scripting
              * @code
              * #how to search for a lesson
              * import Parley
-             * lesson = Parley.findLesson("Lesson 2")
+             * lesson = Parley.doc.findLesson("Lesson 2")
              * if lesson != None:
              *     print lesson.name
              * else:
@@ -252,7 +252,7 @@ namespace Scripting
              * @param url      url to file to open
              * @returns        ErrorCode
              */
-            int open ( const QString & url ) { m_doc->open ( url ); }
+            int open ( const QString & url ) { return m_doc->open ( url ); }
 
             /**
              * Saves the data under the given name
@@ -263,7 +263,7 @@ namespace Scripting
              */
 
             //* @param ft         the filetype to be used when saving the document
-            int saveAs ( const QString & url, const QString & generator ) { m_doc->saveAs ( url,KEduVocDocument::Automatic, generator ); }
+            int saveAs ( const QString & url, const QString & generator ) { return  m_doc->saveAs ( url,KEduVocDocument::Automatic, generator ); }
             /// @todo Implement the enums for the FileType (if needed)
 //             int saveAs ( const QString & url, FileType ft, const QString & generator );
 

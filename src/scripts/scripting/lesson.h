@@ -69,8 +69,9 @@ namespace Scripting
              * @code
              * import Parley
              * lesson = Parley.doc.findLesson("Lesson 2")
-             * new_entry = lesson.newEntry(["hello","bonjour"])
-             * lesson.appendEntry(new_entry)
+             * if lesson != None:
+             *     new_entry = lesson.newEntry(["hello","bonjour"])
+             *     lesson.appendEntry(new_entry)
              * @endcode
              * @param entry The entry to add the the lesson
              */
@@ -113,12 +114,29 @@ namespace Scripting
 
             /**
              * Creates and returns a new Expression Object
+             * @code
+             * #how to add a new entry
+             * import Parley
+             * lesson = Parley.doc.findLesson("Lesson 2")
+             * if lesson != None:
+             *     new_entry = lesson.newEntry()
+             *     new_entry.setTranslation(0,"day")
+             *     new_entry.setTranslation(0,"jour")
+             *     lesson.appendEntry(new_entry)
+             * @endcode
              */
             QObject* newEntry();
 
             /**
              * Creates and returns a new Expression Object
-             * @param translations
+             * @code
+             * import Parley
+             * lesson = Parley.doc.findLesson("Lesson 2")
+             * if lesson != None:
+             *     new_entry = lesson.newEntry(["hello","bonjour"])
+             *     lesson.appendEntry(new_entry)
+             * @endcode
+             * @param translations A list with the translations of this entry (must be in correct order)
              * @return A new Expression object
              */
             QObject* newEntry ( QStringList translations );

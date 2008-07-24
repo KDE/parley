@@ -75,6 +75,8 @@ namespace Scripting
              */
             Text ( KEduVocText * text );
 
+            Text ( KEduVocText & text );
+
             ~Text();
 
             KEduVocText * kEduVocText() { return m_text; }

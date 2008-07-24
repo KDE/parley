@@ -82,8 +82,14 @@ def appendChildrenToAllLessons():
   return
   
 def testcode():
- Parley.doc.setTenseName(0,"present")
- Parley.doc.setTenseName(1,"past simple")
+ new_entry = Parley.activeLesson.newEntry()
+ new_entry.setTranslations(["good morning","bonjour"])
+ print new_entry.active
+ new_entry.active = False
+ Parley.activeLesson.appendEntry(new_entry)
+ return
+ #Parley.doc.setTenseName(0,"present")
+ #Parley.doc.setTenseName(1,"past simple")
  for entry in Parley.doc.rootLesson.entries(True):
     for tr in entry.translations():
         print tr.wordType()
@@ -149,10 +155,22 @@ def tryArticle():
   print newid.article("singular","definite","neutral")
   index = Parley.doc.appendIdentifier(newid)
   
+  
+def testEnums():
+  for entry in Parley.doc.rootLesson.entries(True):
+    tr = entry.translation(0)
+    print tr
+    tr.setDeclension("Paizontas",Parley.Singular,Parley.Genitive)
+    tr.setDeclension("Paizomenos",Parley.Singular,Parley.Accusative)
+    print tr.declension(Parley.Singular,Parley.Genitive).text
+    print tr.declension(Parley.Singular,Parley.Accusative).text
+    return
+  
 def actionFunction():
   print "Action called!!"
+  testEnums()
   #tryArticle()
-  newDocument()
+  #newDocument()
   #conjugations()
   #print Parley.doc.wordTypes()
   #setWordType()
