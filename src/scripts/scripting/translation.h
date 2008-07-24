@@ -16,6 +16,7 @@
 #define SCRIPTINGSCRIPTOBJECTTRANSLATION_H
 
 #include <keduvocdeclension.h>
+#include <keduvocconjugation.h>
 
 #include "keduvoctranslation.h"
 #include "keduvocwordtype.h"
@@ -295,18 +296,17 @@ namespace Scripting
              * @param number The number of the @p conjugation. Values: ("Singular","Dual","Plural")
              * @param person The person of the @p conjugation. Values: ("First","Second","Third","ThirdMale","ThirdFemale","ThirdNeutral"). Note that "Third" is exactly the same as "ThirdNeutral".
              */
-            void setConjugation ( const QString& conjugation, const QString& tense, const QString & number, const QString & person );
-
+            void setConjugation ( const QString& conjugation, const QString& tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person);
 
             /** returns the conjugation of the verb in the given @p tense, @p number and @p person */
-            QString conjugation ( const QString & tense, const QString & number, const QString & person );
+            QString conjugation ( const QString & tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person );
 
             /**
              * Returns all the possible conjugations of the given @p tense
              * @param tense The tense of the conjugation
              * @return A String list with 15 entries. First 5 are for Singluar [First, Second, ThirdMale, ThirdFemale, ThirdNeutral/Third], next 5 for Dual (in a similar way) and last 5 for plural.
              */
-            QStringList conjugation ( const QString& tense );
+            QStringList conjugationTexts ( const QString& tense );
 
             /**
              * Returns the conjugations of the given @p tense and @p number
@@ -314,7 +314,7 @@ namespace Scripting
              * @param number Conjugation number. Values: "Singular","Dual","Plural"
              * @return A String list with 5 conjugations in the order of [First, Second, ThirdMale, ThirdFemale, Third/ThirdNeural]
              */
-            QStringList conjugation ( const QString& tense, const QString& number );
+             QStringList conjugationTexts ( const QString& tense, KEduVocConjugation::ConjugationNumber number );
 
 
             /*
@@ -323,7 +323,7 @@ namespace Scripting
              * @return the declension
              */
 //             KEduVocDeclension* declension();
-//weird bug with QMap
+//weird bug with QMap with this function
 //             QObject * declension(KEduVocDeclension::DeclensionNumber number, KEduVocDeclension::DeclensionCase decCase);
 
             /*

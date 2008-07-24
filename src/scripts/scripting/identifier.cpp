@@ -14,8 +14,6 @@
  ***************************************************************************/
 #include "identifier.h"
 
-#include "translation.h"
-
 #include <QMap>
 
 #include <KDebug>
@@ -45,98 +43,29 @@ namespace Scripting
     {
     }
 
-    QMap<QString,KEduVocArticle::ArticleNumber> & getArticleNumberMap ()
+    QString Identifier::article ( KEduVocArticle::ArticleNumber number, KEduVocArticle::ArticleDefiniteness definite, KEduVocArticle::ArticleGender gender )
     {
-        static QMap<QString,KEduVocArticle::ArticleNumber> numberMap;
-        if ( numberMap.isEmpty() )
-        {
-            //do this only the first time (cause numberMap is static and keeps its value)
-            numberMap["singular"] = KEduVocArticle::Singular;
-            numberMap["dual"] = KEduVocArticle::Dual;
-            numberMap["plural"] = KEduVocArticle::Plural;
-        }
-        return numberMap;
+        return m_identifier->article().article ( number,definite,gender );
     }
 
-    QMap<QString,KEduVocArticle::ArticleGender> & getArticleGenderMap ()
+
+    void Identifier::setArticle ( const QString& article, KEduVocArticle::ArticleNumber number, KEduVocArticle::ArticleDefiniteness definite, KEduVocArticle::ArticleGender gender )
     {
-        static QMap<QString,KEduVocArticle::ArticleGender> genderMap;
-        if ( genderMap.isEmpty() )
-        {
-            //do this only the first time (cause genderMap is static and keeps its value)
-            genderMap["masculine"] = KEduVocArticle::Masculine;
-            genderMap["feminine"] = KEduVocArticle::Feminine;
-            genderMap["neutral"] = KEduVocArticle::Neutral;
-        }
-        return genderMap;
+        KEduVocArticle karticle = m_identifier->article();
+        karticle.setArticle ( article, number, definite, gender );
+        m_identifier->setArticle ( karticle );
     }
 
-    QMap<QString,KEduVocArticle::ArticleDefiniteness> & getArticleDefinitenessMap ()
+    QString Identifier::personalPronoun ( KEduVocConjugation::ConjugationPerson person, KEduVocConjugation::ConjugationNumber number ) const
     {
-        static QMap<QString,KEduVocArticle::ArticleDefiniteness> definitenessMap;
-        if ( definitenessMap.isEmpty() )
-        {
-            //do this only the first time (cause genderMap is static and keeps its value)
-            definitenessMap["definite"] = KEduVocArticle::Definite;
-            definitenessMap["indefinite"] = KEduVocArticle::Indefinite;
-        }
-        return definitenessMap;
+        return m_identifier->personalPronouns().personalPronoun ( person,number );
     }
 
-    QString Identifier::article ( const QString& number,const QString& definite,const QString& gender )
+    void Identifier::setPersonalPronoun ( const QString& conjugation, KEduVocConjugation::ConjugationPerson person, KEduVocConjugation::ConjugationNumber number )
     {
-        QMap<QString,KEduVocArticle::ArticleNumber> numberMap = getArticleNumberMap();
-        QMap<QString,KEduVocArticle::ArticleGender> genderMap = getArticleGenderMap();
-        QMap<QString,KEduVocArticle::ArticleDefiniteness> definitenessMap = getArticleDefinitenessMap();
-
-        if ( numberMap.contains ( number.toLower() ) && definitenessMap.contains ( definite.toLower() ), genderMap.contains ( gender.toLower() ) )
-            return m_identifier->article().article ( numberMap[number.toLower() ],definitenessMap[definite.toLower() ],genderMap[gender.toLower() ] );
-        else
-            kDebug() << "Invalid number, definite or gender";
-    }
-
-    void Identifier::setArticle ( const QString& article, const QString& number,const QString& definite,const QString& gender )
-    {
-        QMap<QString,KEduVocArticle::ArticleNumber> numberMap = getArticleNumberMap();
-        QMap<QString,KEduVocArticle::ArticleGender> genderMap = getArticleGenderMap();
-        QMap<QString,KEduVocArticle::ArticleDefiniteness> definitenessMap = getArticleDefinitenessMap();
-
-        if ( numberMap.contains ( number.toLower() ) && definitenessMap.contains ( definite.toLower() ), genderMap.contains ( gender.toLower() ) )
-        {
-            KEduVocArticle karticle = m_identifier->article();
-            karticle.setArticle ( article, numberMap[number.toLower() ],definitenessMap[definite.toLower() ],genderMap[gender.toLower() ] );
-            m_identifier->setArticle ( karticle );
-        }
-        else
-            kDebug() << "Invalid number, definite or gender";
-    }
-
-    QString Identifier::personalPronoun ( const QString & number, const QString & person )
-    {
-        QMap<QString,KEduVocConjugation::ConjugationNumber> numberMap = Translation::getConjNumberMap();
-        QMap<QString,KEduVocConjugation::ConjugationPerson> personMap = Translation::getConjPersonMap();
-
-
-        if ( numberMap.contains ( number.toLower() ) && personMap.contains ( person.toLower() ) )
-        {
-            return m_identifier->personalPronouns().personalPronoun ( personMap[person.toLower() ],numberMap[number.toLower() ] );
-        }
-        else kDebug() << "Invalid number or person";
-    }
-
-    void Identifier::setPersonalPronoun ( const QString& personalPronoun, const QString & number, const QString & person )
-    {
-        QMap<QString,KEduVocConjugation::ConjugationNumber> numberMap = Translation::getConjNumberMap();
-        QMap<QString,KEduVocConjugation::ConjugationPerson> personMap = Translation::getConjPersonMap();
-
-
-        if ( numberMap.contains ( number.toLower() ) && personMap.contains ( person.toLower() ) )
-        {
-            KEduVocPersonalPronoun ppronouns = m_identifier->personalPronouns();
-            ppronouns.setPersonalPronoun ( personalPronoun,personMap[person.toLower() ],numberMap[number.toLower() ] );
-            m_identifier->setPersonalPronouns(ppronouns);
-        }
-        else kDebug() << "Invalid number or person";
+        KEduVocPersonalPronoun ppronouns = m_identifier->personalPronouns();
+        ppronouns.setPersonalPronoun ( conjugation,person,number );
+        m_identifier->setPersonalPronouns ( ppronouns );
     }
 
 }

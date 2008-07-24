@@ -30,24 +30,24 @@ def setWordType():
         print tr.wordType()
   
 def conjugations():
-  print Parley.doc.tenseDescriptions()
-  Parley.doc.setTenseName(0,"present")
-  Parley.doc.setTenseName(1,"past")
-  print Parley.doc.tenseDescriptions()
+  Parley.doc.setTenses(["present","past"])
+  print Parley.doc.tenses()
   for entry in Parley.doc.rootLesson.entries(True):
     for tr in entry.translations():
         if tr.wordType() == "Verb":
           print "setting conjugation"
           print tr.text
-          tr.setConjugation("first","present","Plural","First")
-          tr.setConjugation("third","present","Plural","Third")
-          tr.setConjugation("male","present","Plural","ThirdMale")
-          tr.setConjugation("female","present","Plural","ThirdFemale")
-          tr.setConjugation("playing","past","plural","Third")
-          tr.setConjugation("se","present","Plural","Second")
-          tr.setConjugation("dualthird","present","Dual","Third")
+          #tr.setConjugation("first","present","Plural","First")
+          tr.setConjugation("first","present",Parley.Plural,Parley.First)
+          tr.setConjugation("third","present",Parley.Plural,Parley.Third)
+          tr.setConjugation("male","present",Parley.Plural,Parley.ThirdMale)
+          #tr.setConjugation("female","present","Plural","ThirdFemale")
+          #tr.setConjugation("playing","past","plural","Third")
+          #tr.setConjugation("se","present","Plural","Second")
+          #tr.setConjugation("dualthird","present","Dual","Third")
           #print tr.conjugation("past","plural","Third")
           print tr.conjugation("present")
+          print tr.conjugation("present",Parley.Plural)
   
 def testKUrl():
   l = Parley.activeLesson
@@ -148,11 +148,12 @@ def tryArticle():
   newid = Parley.doc.newIdentifier()
   newid.name = "English"
   newid.locale = "en_US"
-  newid.setArticle("o","singular","definite","masculine")
-  newid.setArticle("h","singular","definite","feminine")
-  newid.setArticle("to","singular","definite","neutral")
-  newid.setPersonalPronoun("oi","plural","first")
-  print newid.article("singular","definite","neutral")
+  newid.setArticle("o",Parley.Singular,Parley.Definite,Parley.Masculine)
+  newid.setArticle("h",Parley.Singular,Parley.Definite,Parley.Feminine)
+  newid.setArticle("to",Parley.Singular,Parley.Definite,Parley.Neutral)
+  newid.setPersonalPronoun("oi",Parley.Plural,Parley.First)
+  print newid.personalPronoun(Parley.Plural,Parley.First)
+  print newid.article(Parley.Singular,Parley.Definite,Parley.Neutral)
   index = Parley.doc.appendIdentifier(newid)
   
   
@@ -168,8 +169,8 @@ def testEnums():
   
 def actionFunction():
   print "Action called!!"
-  testEnums()
-  #tryArticle()
+  #testEnums()
+  tryArticle()
   #newDocument()
   #conjugations()
   #print Parley.doc.wordTypes()

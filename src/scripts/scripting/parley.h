@@ -51,17 +51,18 @@ namespace Scripting
             */
             Q_PROPERTY ( QObject * activeLesson READ getActiveLesson )
 
-            Q_ENUMS ( DeclensionNumber DeclensionCase )
+            Q_ENUMS ( Number Case Person Gender Definiteness)
 
         public:
-            enum DeclensionNumber
+            ///Conjugation/Declension number
+            enum Number
             {
                 Singular = 0,
                 Dual,
                 Plural
             };
 
-            enum DeclensionCase
+            enum Case
             {
                 Nominative = 0,
                 Genitive,
@@ -70,6 +71,29 @@ namespace Scripting
                 Ablative,
                 Locative,
                 Vocative
+            };
+
+            enum Person
+            {
+                First,
+                Second,
+                ThirdMale,
+                ThirdFemale,
+//                 ThirdNeutralCommon
+                Third
+            };
+
+            enum Gender
+            {
+                Masculine,
+                Feminine,
+                Neutral
+            };
+
+            enum Definiteness
+            {
+                Definite,
+                Indefinite
             };
 
             Parley ( ParleyApp * parley );

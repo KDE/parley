@@ -13,7 +13,6 @@
  *                                                                         *
  ***************************************************************************/
 #include "translation.h"
-#include <keduvocconjugation.h>
 
 namespace Scripting
 {
@@ -45,108 +44,44 @@ namespace Scripting
         return QString();
     }
 
-    QMap<QString,KEduVocConjugation::ConjugationNumber> & Translation::getConjNumberMap ()
+    void Translation::setConjugation ( const QString& conjugation, const QString& tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person )
     {
-        static QMap<QString,KEduVocConjugation::ConjugationNumber> numberMap;
-        if ( numberMap.isEmpty() )
-        {
-            //do this only the first time (cause numberMap is static and keeps its value)
-            numberMap["singular"] = KEduVocConjugation::Singular;
-            numberMap["dual"] = KEduVocConjugation::Dual;
-            numberMap["plural"] = KEduVocConjugation::Plural;
-        }
-        return numberMap;
-//         if ( numberMap.contains ( number.toLower() ) )
-//             return numberMap[number.toLower() ];
+        KEduVocConjugation & conjug = m_translation->conjugation ( tense );
+        conjug.setConjugation ( conjugation, person, number );
+        m_translation->setConjugation ( tense, conjug );
     }
 
-    QMap<QString,KEduVocConjugation::ConjugationPerson> & Translation::getConjPersonMap ()
+    QString Translation::conjugation ( const QString & tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person )
     {
-        static QMap<QString,KEduVocConjugation::ConjugationPerson> personMap;
-        if ( personMap.isEmpty() )
-        {
-            //do this only the first time (cause personMap is static and keeps its value)
-            personMap["first"] = KEduVocConjugation::First;
-            personMap["second"] = KEduVocConjugation::Second;
-            personMap["thirdmale"] = KEduVocConjugation::ThirdMale;
-            personMap["thirdfemale"] = KEduVocConjugation::ThirdFemale;
-            personMap["thirdneutral"] = KEduVocConjugation::ThirdNeutralCommon;
-            personMap["third"] = KEduVocConjugation::ThirdNeutralCommon;
-        }
-        return personMap;
-//         if (personMap.contains(person.toLower())) return personMap[person.toLower()];
+        KEduVocConjugation conjug = m_translation->conjugation ( tense );
+        return conjug.conjugation ( person , number ).text();
     }
 
-    void Translation::setConjugation ( const QString& conjugation, const QString& tense, const QString & number, const QString & person )
-    {
-        static QMap<QString,KEduVocConjugation::ConjugationNumber> numberMap = getConjNumberMap();
-        static QMap<QString,KEduVocConjugation::ConjugationPerson> personMap = getConjPersonMap();
-
-        if ( numberMap.contains ( number.toLower() ) && personMap.contains ( person.toLower() ) )
-        {
-            //set conjugation
-            KEduVocConjugation & conjug = m_translation->conjugation ( tense );
-            conjug.setConjugation ( conjugation,personMap[person.toLower() ],numberMap[number.toLower() ] );
-            m_translation->setConjugation ( tense, conjug );
-        }
-        else kDebug() << "Invalid number or person";
-    }
-
-    QString Translation::conjugation ( const QString & tense, const QString & number, const QString & person )
-    {
-        static QMap<QString,KEduVocConjugation::ConjugationNumber> numberMap = getConjNumberMap();
-        static QMap<QString,KEduVocConjugation::ConjugationPerson> personMap = getConjPersonMap();
-
-        if ( numberMap.contains ( number.toLower() ) && personMap.contains ( person.toLower() ) )
-        {
-            //get conjugation text
-            KEduVocConjugation conjug = m_translation->conjugation ( tense );
-            return conjug.conjugation ( personMap[person.toLower() ],numberMap[number.toLower() ] ).text();
-        }
-        else kDebug() << "Invalid number or person";
-    }
-
-    QStringList Translation::conjugation ( const QString& tense )
+    QStringList Translation::conjugationTexts ( const QString& tense )
     {
         KEduVocConjugation conjug = m_translation->conjugation ( tense );
 
         QStringList list;
 
-        QSet<KEduVocConjugation::ConjugationNumber> numberList = getConjNumberMap().values().toSet();
-        QSet<KEduVocConjugation::ConjugationPerson> personList = getConjPersonMap().values().toSet();
-
-        foreach ( KEduVocConjugation::ConjugationNumber number, numberList )
-        {
-            foreach ( KEduVocConjugation::ConjugationPerson person, personList )
-            {
-                list << conjug.conjugation ( person,number ).text();
-            }
-        }
+        for ( int n = 0; n <= KEduVocConjugation::Plural; n++ )
+            for ( int p = 0; p <= KEduVocConjugation::ThirdNeutralCommon; p++ )
+                list << conjug.conjugation ( ( KEduVocConjugation::ConjugationPerson ) p, ( KEduVocConjugation::ConjugationNumber ) n ).text();
 
         return list;
     }
 
-    QStringList Translation::conjugation ( const QString& tense, const QString& number )
+    QStringList Translation::conjugationTexts ( const QString& tense, KEduVocConjugation::ConjugationNumber number )
     {
         KEduVocConjugation conjug = m_translation->conjugation ( tense );
-        static QMap<QString,KEduVocConjugation::ConjugationNumber> numberMap = getConjNumberMap();
 
         QStringList list;
 
-        if ( numberMap.contains ( number.toLower() ) )
-        {
-            QSet<KEduVocConjugation::ConjugationPerson> personList = getConjPersonMap().values().toSet();
-            foreach ( KEduVocConjugation::ConjugationPerson person, personList )
-            list << conjug.conjugation ( person, numberMap[number.toLower() ] ).text();
-            return list;
-        }
-        kDebug() << "Invalid conjugation number given";
+        for ( int p = 0; p <= KEduVocConjugation::ThirdNeutralCommon; p++ )
+            list << conjug.conjugation ( ( KEduVocConjugation::ConjugationPerson ) p, number ).text();
+
         return list;
     }
 
-//     QString Translation::declension( const QString& number, const QString& decCase) {
-//
-//     }
 
 //     QObject * Translation::declension ( KEduVocDeclension::DeclensionNumber number, KEduVocDeclension::DeclensionCase decCase )
 //     {

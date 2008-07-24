@@ -83,13 +83,7 @@ namespace Scripting
              * @param gender Article gender. Values: "Masculine", "Feminine", "Neutral"
              * @return A string containing the requested article. Empty string if does not exist
              */
-            QString article ( const QString& number,const QString& definite,const QString& gender );
-
-            /**
-             * Sets the articles for this identifier
-             * @param art              article block
-             */
-//             void setArticle ( const KEduVocArticle& article );
+            QString article ( KEduVocArticle::ArticleNumber number, KEduVocArticle::ArticleDefiniteness definite, KEduVocArticle::ArticleGender gender );
 
             /**
              * Sets the article in the given @p number, definiteness (@p definite) and @p gender
@@ -98,7 +92,7 @@ namespace Scripting
              * @param definite Article definiteness. Values: "Definite", "Indefinite"
              * @param gender Article gender. Values: "Masculine", "Feminine", "Neutral"
              */
-            void setArticle ( const QString& article, const QString& number,const QString& definite,const QString& gender );
+            void setArticle ( const QString& article, KEduVocArticle::ArticleNumber number, KEduVocArticle::ArticleDefiniteness definite, KEduVocArticle::ArticleGender gender );
 
             /**** Personal Pronoun Functions ****/
 
@@ -108,7 +102,8 @@ namespace Scripting
              */
 //             KEduVocPersonalPronoun personalPronouns() const;
 
-            QString personalPronoun ( const QString & number, const QString & person );
+//              QString personalPronoun ( const QString & number, const QString & person );
+            QString personalPronoun ( KEduVocConjugation::ConjugationPerson person, KEduVocConjugation::ConjugationNumber number ) const;
 
 
             /**
@@ -117,7 +112,8 @@ namespace Scripting
              */
 //             void setPersonalPronouns ( const KEduVocPersonalPronoun &pronouns );
 
-            void setPersonalPronoun ( const QString& personalPronoun, const QString & number, const QString & person );
+//             void setPersonalPronoun ( const QString& personalPronoun, const QString & number, const QString & person );
+            void setPersonalPronoun ( const QString& conjugation, KEduVocConjugation::ConjugationPerson person, KEduVocConjugation::ConjugationNumber number );
 
 
         private:
