@@ -63,7 +63,52 @@ namespace Scripting
             Q_PROPERTY ( QString csvDelimiter READ csvDelimiter WRITE setCsvDelimiter )
             /// URL of the XML file
             Q_PROPERTY ( QString url READ url WRITE setUrl )
+
+            Q_ENUMS ( FileType )
         public:
+
+            /// known vocabulary file types
+            enum FileType
+            {
+                KvdNone,
+                Automatic,
+                Kvtml,
+                Wql,
+                Pauker,
+                Vokabeln,
+                Xdxf,
+                Csv,
+                Kvtml1
+            };
+
+            /// the return code when opening/saving
+            enum ErrorCode
+            {
+                NoError = 0,
+                Unknown,
+                InvalidXml,
+                FileTypeUnknown,
+                FileCannotWrite,
+                FileWriterFailed,
+                FileCannotRead,
+                FileReaderFailed,
+                FileDoesNotExist
+            };
+
+            /// used as parameter for pattern
+            enum FileDialogMode
+            {
+                Reading,
+                Writing
+            };
+
+            /// delete only empty lessons or also if they have entries
+            enum LessonDeletion
+            {
+                DeleteEmptyLesson,
+                DeleteEntriesAndLesson
+            };
+
             Document ( QObject* parent = 0 );
 
             Document ( KEduVocDocument * doc );
@@ -158,8 +203,6 @@ namespace Scripting
 
             /* @returns the URL of the XML file */
             QString url() const { return m_doc->url().path(); }
-
-
 
         public slots:
 
@@ -258,14 +301,11 @@ namespace Scripting
              * Saves the data under the given name
              *
              * @param url        if url is empty (or NULL) actual name is preserved
-             * @param generator  the name of the application saving the document
+             * @param ft         the filetype to be used when saving the document (default value: Automatic). See enum FileType.
+             * @param generator  the name of the application saving the document (default value: "Parley")
              * @returns          ErrorCode
              */
-
-            //* @param ft         the filetype to be used when saving the document
-            int saveAs ( const QString & url, const QString & generator ) { return  m_doc->saveAs ( url,KEduVocDocument::Automatic, generator ); }
-            /// @todo Implement the enums for the FileType (if needed)
-//             int saveAs ( const QString & url, FileType ft, const QString & generator );
+            int saveAs ( const QString & url, KEduVocDocument::FileType ft = KEduVocDocument::Automatic, const QString & generator = QString("Parley") ) { return m_doc->saveAs ( url, ft, generator ); }
 
 //             QByteArray toByteArray ( const QString &generator );
 
@@ -410,19 +450,20 @@ namespace Scripting
             // *** file format specific methods ***
 
 
-//             static FileType detectFileType ( const QString &fileName );
+            static KEduVocDocument::FileType detectFileType ( const QString &fileName ) { return KEduVocDocument::detectFileType( fileName ); }
 
             /**
              * Create a string with the supported document types, that can be used
              * as filter in KFileDialog. It includes also an entry to match all the
              * supported types.
              *
-             * @param mode             the mode for the supported document types
+             * @param mode             the mode for the supported document types. See FileDialogMode enum
              * @returns                the filter string
              */
-//             static QString pattern ( FileDialogMode mode );
+            static QString pattern ( KEduVocDocument::FileDialogMode mode ) { return KEduVocDocument::pattern(mode); }
 
-//             static QString errorDescription ( int errorCode );
+            /** Returns a more detailed description of the @p errorCode given */
+            static QString errorDescription ( int errorCode ) { return KEduVocDocument::errorDescription(errorCode); }
 
         private:
             KEduVocDocument * m_doc;

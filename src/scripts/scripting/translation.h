@@ -273,32 +273,36 @@ namespace Scripting
 
             /**
              * Sets the @p conjugation of the verb in the given @p tense, @p number and @p person
-            * @code
-            * #how to add a conjugation for a verb
-            * import Parley
-            * #set the tenses of this document (if not previously done)
-            * Parley.doc.setTenseName(0,"present")
-            * Parley.doc.setTenseName(1,"past simple")
-            * #iterate through all the word translations and find word "play"
-            * for entry in Parley.doc.rootLesson.entries(True):
-            *    for tr in entry.translations():
-            *        if tr.text == "play":
-            *            #make sure it's marked as a verb
-            *            Parley.doc.setWordType(tr,"Verb")
-            *            #add conjugations
-            *            tr.setConjugation("plays","present","singular","third")
-            *            tr.setConjugation("play","present","plural","first")
-            *            tr.setConjugation("played","past simple","singular","second")
-            @endcode
-
+             * @code
+             * #how to add a conjugation for a verb
+             * import Parley
+             * #set the tenses of this document (if not previously done)
+             * Parley.doc.setTenses(["present","past simple"])
+             * #iterate through all the word translations and find word "play"
+             * for entry in Parley.doc.rootLesson.entries(True):
+             *    for tr in entry.translations():
+             *        if tr.text == "play":
+             *            #make sure it's marked as a verb
+             *            Parley.doc.setWordType(tr,"Verb")
+             *            #add conjugations
+             *            tr.setConjugation("plays","present",Parley.Singular,Parley.Third)
+             *            tr.setConjugation("play","present",Parley.Plural,Parley.First)
+             *            tr.setConjugation("played","past simple",Parley.Singular,Parley.Second)
+             * @endcode
              * @param conjugation The conjugation in @p tense, @p number, @p person
-             * @param tense The tense that @p conjugation belongs to (see Parley.doc.tenseDescriptions())
-             * @param number The number of the @p conjugation. Values: ("Singular","Dual","Plural")
-             * @param person The person of the @p conjugation. Values: ("First","Second","Third","ThirdMale","ThirdFemale","ThirdNeutral"). Note that "Third" is exactly the same as "ThirdNeutral".
+             * @param tense The tense that @p conjugation belongs to (see Document::tenses())
+             * @param number The number of the @p conjugation. See Parley::Number enum
+             * @param person The person of the @p conjugation. See Parley::Person enum
              */
-            void setConjugation ( const QString& conjugation, const QString& tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person);
+            void setConjugation ( const QString& conjugation, const QString& tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person );
 
-            /** returns the conjugation of the verb in the given @p tense, @p number and @p person */
+            /**
+             * returns the conjugation of the verb in the given @p tense, @p number and @p person
+             * @param tense The conjugation tense (see Document::tenses())
+             * @param number The conjugation number. See Parley::Number enum
+             * @param person The conjugation person. See Parley::Person enum
+             * @return 
+             */
             QString conjugation ( const QString & tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person );
 
             /**
@@ -311,10 +315,10 @@ namespace Scripting
             /**
              * Returns the conjugations of the given @p tense and @p number
              * @param tense The tense of conjugation
-             * @param number Conjugation number. Values: "Singular","Dual","Plural"
-             * @return A String list with 5 conjugations in the order of [First, Second, ThirdMale, ThirdFemale, Third/ThirdNeural]
+             * @param number Conjugation number. See Parley::Number enum
+             * @return A String list with 5 conjugations in the order of [First, Second, ThirdMale, ThirdFemale, Third]
              */
-             QStringList conjugationTexts ( const QString& tense, KEduVocConjugation::ConjugationNumber number );
+            QStringList conjugationTexts ( const QString& tense, KEduVocConjugation::ConjugationNumber number );
 
 
             /*
