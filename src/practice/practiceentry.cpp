@@ -12,7 +12,7 @@
  ***************************************************************************/
 
 #include "practiceentry.h"
-#include "statistics/statistics.h"
+#include "statistics.h"
 
 
 PracticeEntry::PracticeEntry(KEduVocExpression* expr)
@@ -33,7 +33,7 @@ void PracticeEntry::answeredCorrectly(bool tainted)
         ++m_taintedCorrect;
         decGrade();
     }
-}
+};
 
 void PracticeEntry::answeredIncorrectly(Statistics::ErrorType, const QString& incorrectAnswer, bool tainted)
 {

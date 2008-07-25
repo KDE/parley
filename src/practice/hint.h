@@ -19,7 +19,7 @@
 #ifndef EDU_HINT_H
 #define EDU_HINT_H
 
-#include "statistics/statistics.h"
+#include "statistics.h"
 
 /**
  * @class Hint
@@ -35,7 +35,7 @@ class Hint : public QObject
 
     public:
         Hint(QObject* parent = 0);
-
+            
     signals:
         /// Emitted when a hint is shown; tainting makes the answer count
         /// as incorrect (even if it is correct); tainting frequency is also tracked
@@ -43,7 +43,7 @@ class Hint : public QObject
         /// be HintShown.
         void signalAnswerTainted(Statistics::TaintReason);
         void signalShowHint();
-
+        
     public slots:
         /// Implements the hint logic. The logic itself is dictated by the practice mode.
         virtual void slotShowHint();

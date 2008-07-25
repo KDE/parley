@@ -23,6 +23,32 @@ def addNewLesson():
   newEntry.translation(1).text = "Hola"
   newlesson.appendEntry(newEntry)
   
+def setWordType():
+  for entry in Parley.doc.rootLesson.entries(True):
+    for tr in entry.translations():
+        Parley.doc.setWordType(tr,"Noun")
+        print tr.wordType()
+  
+def conjugations():
+  Parley.doc.setTenses(["present","past"])
+  print Parley.doc.tenses()
+  for entry in Parley.doc.rootLesson.entries(True):
+    for tr in entry.translations():
+        if tr.wordType() == "Verb":
+          print "setting conjugation"
+          print tr.text
+          #tr.setConjugation("first","present","Plural","First")
+          tr.setConjugation("first","present",Parley.Plural,Parley.First)
+          tr.setConjugation("third","present",Parley.Plural,Parley.Third)
+          tr.setConjugation("male","present",Parley.Plural,Parley.ThirdMale)
+          #tr.setConjugation("female","present","Plural","ThirdFemale")
+          #tr.setConjugation("playing","past","plural","Third")
+          #tr.setConjugation("se","present","Plural","Second")
+          #tr.setConjugation("dualthird","present","Dual","Third")
+          #print tr.conjugation("past","plural","Third")
+          print tr.conjugation("present")
+          print tr.conjugation("present",Parley.Plural)
+  
 def testKUrl():
   l = Parley.activeLesson
   print l.name
@@ -39,8 +65,7 @@ def registerActions():
   newaction.text="My script 1"
   Parley.connect(newaction,"triggered()",actionFunction)
   
-  newaction2 = Parley.newAction("my_script1")
-  newaction2.text = "My script 2"
+  newaction2 = Parley.newAction("my_script1","My script 2a")
   Parley.connect(newaction2,"triggered()",actionFunction2)
   return
 
@@ -56,16 +81,135 @@ def appendChildrenToAllLessons():
   return
   
 def testcode():
-  for entry in Parley.document.rootLesson.entries(True):
+ new_entry = Parley.activeLesson.newEntry()
+ new_entry.setTranslations(["good morning","bonjour"])
+ print new_entry.active
+ new_entry.active = False
+ Parley.activeLesson.appendEntry(new_entry)
+ return
+ #Parley.doc.setTenseName(0,"present")
+ #Parley.doc.setTenseName(1,"past simple")
+ for entry in Parley.doc.rootLesson.entries(True):
+    for tr in entry.translations():
+        print tr.wordType()
+        if tr.text == "play":
+            Parley.doc.setWordType(tr,"Verb")
+            tr.setConjugation("plays","present","singular","third")
+            tr.setConjugation("played","past simple","singular","first")
+ return
+ for entry in Parley.document.rootLesson.entries(True):
     for translation in entry.translations():
       print translation.text
-      print translation.practiceDate
-      print translation.practiceDate.isValid()
+      print translation.practiceDate()
+      print translation.practiceDate("dd/MM/yyyy")
 
 
+def newDocument():
+  doc = Parley.newDocument()
+  doc.title = "New document"
+  #set identifiers
+  doc.appendNewIdentifier("English","en_US")
+  doc.appendNewIdentifier("French","fr")
+  #lessons
+  l1 = doc.newLesson("Lesson1")
+  doc.rootLesson.appendChildLesson(l1)
+  #first way
+  e = l1.newEntry()
+  e.setTranslation(0,"dog")
+  e.setTranslation(1,"chien")
+  l1.appendEntry(e)
+  #second way
+  ee = l1.newEntry(["glass","verre"])
+  l1.appendEntry(ee)
+  #third way
+  ee = l1.appendNewEntry(["book","livre"])
+  
+  #new lesson (fast way)
+  l2 = doc.appendNewLesson("Lesson 2")
+  l2.appendNewEntry(["I","je"]);
+  
+  #new lesson under Lesson 2
+  l3 = doc.appendNewLesson("Lesson 3",l2)
+  l3.appendNewEntry(["good morning","bonjour"])
+  
+  l5 = doc.newLesson("Lesson 5")
+  doc.appendLesson(l5)
+  
+  #fl = doc.findLesson("Lesson 3")
+  #if fl != None:
+    #print "found"
+    #print fl.name
+  #else:
+    #print "not found"
+  
+  #save document
+  doc.saveAs("/home/kde-devel/test_new_document.kvtml")
+  
+def tryArticle():
+   #add new one
+  newid = Parley.doc.newIdentifier()
+  newid.name = "English"
+  newid.locale = "en_US"
+  newid.setArticle("o",Parley.Singular,Parley.Definite,Parley.Masculine)
+  newid.setArticle("h",Parley.Singular,Parley.Definite,Parley.Feminine)
+  newid.setArticle("to",Parley.Singular,Parley.Definite,Parley.Neutral)
+  newid.setPersonalPronoun("oi",Parley.Plural,Parley.First)
+  print newid.personalPronoun(Parley.Plural,Parley.First)
+  print newid.article(Parley.Singular,Parley.Definite,Parley.Neutral)
+  index = Parley.doc.appendIdentifier(newid)
+  
+def GermanArticles():
+    newid = Parley.doc.newIdentifier()
+    newid.name = "German"
+    newid.locale = "fr"
+    newid.setArticle("der",Parley.Singular,Parley.Definite,Parley.Masculine)
+    newid.setArticle("die",Parley.Singular,Parley.Definite,Parley.Feminine)
+    newid.setArticle("das",Parley.Singular,Parley.Definite,Parley.Neutral)
+    newid.setArticle("ein",Parley.Singular,Parley.Indefinite,Parley.Masculine)
+    newid.setArticle("eine",Parley.Singular,Parley.Indefinite,Parley.Feminine)
+    newid.setArticle("ein",Parley.Singular,Parley.Indefinite,Parley.Neutral)
+    newid.setPersonalPronoun("ich",Parley.Singular,Parley.First)
+    newid.setPersonalPronoun("du",Parley.Singular,Parley.Second)
+    newid.setPersonalPronoun("er",Parley.Singular,Parley.ThirdMale)
+    newid.setPersonalPronoun("sie",Parley.Singular,Parley.ThirdFemale)
+    newid.setPersonalPronoun("es",Parley.Singular,Parley.Third)
+    newid.setPersonalPronoun("wir",Parley.Plural,Parley.First)
+    newid.setPersonalPronoun("ihr",Parley.Plural,Parley.Second)
+    newid.setPersonalPronoun("sie",Parley.Plural,Parley.Third)
+    print newid.personalPronouns()
+    index = Parley.doc.appendIdentifier(newid)
+  
+def testEnums():
+  for entry in Parley.doc.rootLesson.entries(True):
+    tr = entry.translation(0)
+    print tr
+    tr.setDeclension("Paizontas",Parley.Singular,Parley.Genitive)
+    tr.setDeclension("Paizomenos",Parley.Singular,Parley.Accusative)
+    print tr.declension(Parley.Singular,Parley.Genitive).text
+    print tr.declension(Parley.Singular,Parley.Accusative).text
+    return
+  
+def testSetEntries():
+  l = Parley.activeLesson
+  entries = []
+  #entries.append(l.newEntry(["good morning","bonjoura"]))
+  entries.append(l.newEntry(["ela","paenne"]))
+  print entries
+  l.setEntries(entries)
+  
 def actionFunction():
   print "Action called!!"
-  testcode()
+  #for entry in Parley.doc.rootLesson.entries(True):
+    #print entry.translationTexts()
+  testSetEntries()
+  #testEnums()
+  #tryArticle()
+  #GermanArticles()
+  #newDocument()
+  #conjugations()
+  #print Parley.doc.wordTypes()
+  #setWordType()
+  #testcode()
   #appendChildrenToAllLessons()
   
   #for lesson in Parley.document.allLessons():
@@ -96,6 +240,12 @@ def actionFunction_old():
 
 def actionFunction2():
   print "Action2 called!!"
+  tenses = Parley.doc.tenses()
+  print tenses
+  tenses.append("Present Perfect")
+  tenses.append("Past Simple")
+  Parley.doc.setTenses(tenses)
+  print Parley.doc.tenses()
   return
 
 
@@ -145,8 +295,8 @@ def test_old():
   lesson.removeEntry(0)
   print lesson.entryCount()
 
-#print Parley.languageCodes()
-#print Parley.languageCodeToName("en_US")
+#print Parley.locales()
+#print Parley.localeName("en_US")
 
 #doc = Parley.document()
 #doc.callFromScriptTest()
@@ -156,6 +306,11 @@ def test_old():
 #doc = Parley.document
 #doc.name = "Hi"
 #doc.printName()
+
+def translateFromInternet(word,fromLang,toLang):
+    print "Translating from Internet!!.."
+
+Parley.connect("translateWord(const QString &,const QString &,const QString &)",translateFromInternet)
 
 print "TEST ACTION"
 registerActions()
@@ -168,3 +323,4 @@ registerActions()
 #Parley.callFromScript()
 #Parley.connect("signalTranslateWord(QString)",translate)
 #init()
+

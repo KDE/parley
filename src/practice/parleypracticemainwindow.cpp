@@ -38,7 +38,10 @@
 #include "input/mcinput.h"
 #include "input/articlemcinput.h"
 
-#include "statistics/statistics.h"
+#include "prompt.h"
+#include "statistics.h"
+#include "stdbuttons.h"
+#include "hint.h"
 #include "practiceentrymanager.h"
 #include "answervalidator.h"
 #include "prefs.h"
@@ -57,7 +60,6 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
 {
     setupBase("default.desktop");
     setupActions();
-    setupModeIndependent();
     setupModeSpecifics();
 
     setupGUI(Default, QString::fromLatin1("parleypracticeui.rc"));

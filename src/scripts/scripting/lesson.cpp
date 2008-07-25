@@ -43,26 +43,42 @@ namespace Scripting
     {
     }
 
-    QList<KEduVocLesson*>  flattenLessons(KEduVocLesson * rootLesson) {
+    QList<KEduVocLesson*>  flattenLessons ( KEduVocLesson * rootLesson )
+    {
         QList<KEduVocLesson*> lessonsList;
-        foreach (KEduVocContainer * child, rootLesson->childContainers()) {
-            lessonsList << static_cast<KEduVocLesson*>(child);
-            lessonsList += flattenLessons(static_cast<KEduVocLesson*>(child));
+        foreach ( KEduVocContainer * child, rootLesson->childContainers() )
+        {
+            lessonsList << static_cast<KEduVocLesson*> ( child );
+            lessonsList += flattenLessons ( static_cast<KEduVocLesson*> ( child ) );
         }
         return lessonsList;
     }
 
 
-    QVariantList Lesson::childLessons(bool recursive)
+    QVariantList Lesson::childLessons ( bool recursive )
     {
-        if (recursive)
-            return toVariantList<KEduVocLesson,Lesson> ( flattenLessons(m_lesson) );
+        if ( recursive )
+            return toVariantList<KEduVocLesson,Lesson> ( flattenLessons ( m_lesson ) );
         return toVariantList<KEduVocContainer,Lesson> ( m_lesson->childContainers() );
     }
 
     QVariantList Lesson::entries ( bool recursive ) const
     {
         return toVariantList<KEduVocExpression,Expression> ( m_lesson->entries ( boolToEnum ( recursive ) ) );
+    }
+
+    void Lesson::setEntries ( QVariantList entries )
+    {
+        clearEntries();
+
+        foreach ( QVariant ventry, entries )
+        {
+            QObject * obj = qvariant_cast<QObject*> ( ventry );
+            Expression * entry = dynamic_cast<Expression*> ( obj );
+            if ( entry )
+                m_lesson->appendEntry ( entry->kEduVocExpression() );
+//                 kDebug() << entry->translationTexts();
+        }
     }
 
     QObject * Lesson::entry ( int row, bool recursive )
@@ -77,12 +93,12 @@ namespace Scripting
 
     void Lesson::appendEntry ( Expression * entry )
     {
-        m_lesson->appendEntry ( entry->kEduVocEntry() );
+        m_lesson->appendEntry ( entry->kEduVocExpression() );
     }
 
     void Lesson::insertEntry ( int index, Expression * entry )
     {
-        m_lesson->insertEntry ( index,entry->kEduVocEntry() );
+        m_lesson->insertEntry ( index,entry->kEduVocExpression() );
     }
 
     void Lesson::removeEntry ( QObject * entry )
@@ -91,7 +107,7 @@ namespace Scripting
         Expression * e = dynamic_cast<Expression*> ( entry );
         if ( e )
         {
-            m_lesson->removeEntry ( e->kEduVocEntry() );
+            m_lesson->removeEntry ( e->kEduVocExpression() );
         }
         else
         {
@@ -99,21 +115,42 @@ namespace Scripting
         }
     }
 
+    void Lesson::clearEntries()
+    {
+        int N = m_lesson->entryCount ( KEduVocLesson::NotRecursive );
+        for ( int i = 0; i < N; i++ )
+            m_lesson->removeEntry( m_lesson->entry ( 0,KEduVocLesson::NotRecursive ) );
+    }
+
+
     QObject* Lesson::newEntry()
     {
         return new Expression();
     }
 
-    QObject* Lesson::newEntry ( const QString & expression )
-    {
-        return new Expression ( expression );
-    }
+//     QObject* Lesson::newEntry ( const QString & expression )
+//     {
+//         return new Expression ( expression );
+//     }
 
-    QObject* Lesson::newEntry ( const QStringList & translations )
+    QObject* Lesson::newEntry ( QStringList translations )
     {
         return new Expression ( translations );
     }
 
+    void Lesson::appendNewEntry ( QStringList translations )
+    {
+        KEduVocExpression * expr = new KEduVocExpression ( translations );
+        m_lesson->appendEntry ( expr );
+    }
 
+    QObject * Lesson::findChildLesson ( const QString& name )
+    {
+        KEduVocContainer * container = findContainer ( name );
+        if ( container )
+            return new Lesson ( container );
+        kDebug() << "not found";
+        return 0;
+    }
 
 }

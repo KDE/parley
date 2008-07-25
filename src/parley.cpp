@@ -376,7 +376,8 @@ void ParleyApp::updateDocument()
     m_leitnerView->setRootIndex(m_leitnerModel->index(0,0));
 
     connect(m_document->document(), SIGNAL(docModified(bool)), this, SLOT(slotUpdateWindowCaption()));
-//     connect(m_lessonModel,SIGNAL(documentModified()),this,SLOT(slotUpdateWindowCaption()));
+    connect(m_document->document(), SIGNAL(docModified(bool)), m_document, SLOT(slotDocumentChanged(bool)));
+
     connect(m_vocabularyModel, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(slotRestoreColumnVisibility(KEduVocDocument*)));
 
     setCaption(m_document->document()->url().fileName(), false);
@@ -948,7 +949,6 @@ void ParleyApp::slotShowScriptManager() {
     dialog->show();
 }
 
-
 void ParleyApp::removeGrades()
 {
     m_document->document()->lesson()->resetGrades(-1, KEduVocContainer::Recursive);
@@ -986,6 +986,9 @@ void ParleyApp::initScripts()
 void ParleyApp::slotTranslateWords(const QModelIndex & topLeft, const QModelIndex & bottomRight)
 {
     if (Prefs::automaticTranslation() == false) return;
+
+    //translate only if the change was made in a translation column
+    if (!(VocabularyModel::columnType( topLeft.column() ) == VocabularyModel::Translation)) return;
 
     kDebug() << "Translate Words" << topLeft << bottomRight;
 
@@ -1074,7 +1077,7 @@ void ParleyApp::setShowWelcomeScreen(bool show)
     } else {
         return;
     }
-    
+
     if (show) {
         // hide dock widgets
         m_dockWidgetVisibility.clear();
@@ -1107,7 +1110,5 @@ ParleyDocument* ParleyApp::parleyDocument()
     return m_document;
 }
 
-
 #include "parley.moc"
-
 

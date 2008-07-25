@@ -35,10 +35,7 @@ Feedback::Feedback ( KSvgRenderer * renderer, const QString& elementId ) :
     }
 
     m_backgroundRect = renderer->boundsOnElement ( elementId );
-    setPos ( m_backgroundRect.x() + m_backgroundRect.width() / 20.0, m_backgroundRect.y() + m_backgroundRect.height() / 4.0 );
-    adjustSize();
-
-}
+};
 
 void Feedback::slotSetText(const QString& htmltext)
 {

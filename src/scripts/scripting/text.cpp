@@ -28,6 +28,12 @@ namespace Scripting
     {
     }
 
+    Text::Text ( KEduVocText & text )
+    {
+        m_text = new KEduVocText ( text );
+    }
+
+
     Text::~Text()
     {
     }

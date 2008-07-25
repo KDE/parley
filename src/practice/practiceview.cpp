@@ -23,3 +23,5 @@ void PracticeView::resizeEvent(QResizeEvent* event) {
     fitInView(scene()->sceneRect(), Qt::KeepAspectRatio);
     event->accept();
 }
+
+#include "practiceview.moc"

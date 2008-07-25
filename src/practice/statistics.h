@@ -19,11 +19,15 @@
 #ifndef EDU_STATISTICS_H
 #define EDU_STATISTICS_H
 
+#include <QLCDNumber>
+#include <QGraphicsSvgItem>
+
 #include <keduvocexpression.h>
 #include <keduvoctranslation.h>
 #include <keduvocdocument.h>
 
-class PracticeEntryManager;
+#include "practiceentrymanager.h"
+
 class PracticeEntry;
 
 /**
@@ -184,5 +188,34 @@ class Statistics : public QObject
         bool m_tainted;
 
 
+};
+
+class LCDStatistics : public QLCDNumber
+{
+    Q_OBJECT
+
+    public:
+        LCDStatistics(QWidget* parent = 0);
+
+    public slots:
+        /// Refreshes the GUI display.
+        void slotUpdateDisplay(Statistics*);
+};
+
+class SvgBarStatistics : public QGraphicsSvgItem
+{
+    Q_OBJECT
+
+    public:
+        SvgBarStatistics(QSvgRenderer * renderer, const QString& foregroundElementId, const QString& backgroundElementId, QGraphicsItem * parent = 0);
+        ~SvgBarStatistics();
+
+    public slots:
+        /// Refreshes the GUI display.
+        void slotUpdateDisplay(Statistics*);
+
+
+    private:
+        QRectF m_backgroundRect;
 };
 #endif

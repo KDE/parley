@@ -59,4 +59,26 @@ namespace Scripting
         return toVariantList<KEduVocContainer,Container> ( m_container->childContainers() );
     }
 
+    QList<KEduVocContainer*>  Container::flattenContainer ( KEduVocContainer * root )
+    {
+        QList<KEduVocContainer*> list;
+        if ( root )
+        {
+            list << root;
+            foreach ( KEduVocContainer * child, root->childContainers() )
+            list += flattenContainer ( child );
+        }
+        return list;
+    }
+
+    KEduVocContainer * Container::findContainer ( const QString& name )
+    {
+        QList<KEduVocContainer*> list = flattenContainer(m_container);
+        foreach (KEduVocContainer * container, list)
+            if (container->name() == name)
+                return container;
+        return 0;
+    }
+
+
 }

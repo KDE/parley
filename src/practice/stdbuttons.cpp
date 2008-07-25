@@ -20,7 +20,7 @@
 #include <KLocalizedString>
 
 #include "stdbuttons.h"
-#include "statistics/statistics.h"
+#include "statistics.h"
 
 
 StdButton::StdButton(KSvgRenderer * renderer, PracticeView * view, const QString& elementId, QWidget* parent)

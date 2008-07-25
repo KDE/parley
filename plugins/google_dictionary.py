@@ -1,10 +1,14 @@
 #!/usr/bin/env kross
 
+import socket
 import urllib2
 import urllib
 from sgmllib import SGMLParser
 import Parley
 
+# timeout of search (important for slow connections, not to freeze Parley by waiting for a result)
+timeout = 0.5
+socket.setdefaulttimeout(timeout)
 
 # fetches the html document for the given word and language pair
 def fetchData(word,from_lang,to_lang):
@@ -13,8 +17,12 @@ def fetchData(word,from_lang,to_lang):
   param_lang_pair = ("langpair",from_lang+"|"+to_lang)
   request_url = url + "?" + urllib.urlencode([param_word_trn,param_lang_pair])
   #print request_url
-  results = urllib2.urlopen(request_url)
-  return results.read()
+  try:
+    results = urllib2.urlopen(request_url)
+    return results.read()
+  except:
+    #in case of error not to return incompleted results
+    return ""
 
 #parses data and returns the parser object (that contains the translations/langpairs found)
 def parseData(data,word,from_lang,to_lang):
@@ -68,6 +76,7 @@ class myParser(SGMLParser):
     self.words = []         #translated words found in html
     self.langpairs = []     #language pairs found in html file
     self.tags_stack = []
+    self.stop = False
 
   def unknown_starttag(self,tag,attrs):
     self.tags_stack.append(tag)
@@ -87,11 +96,13 @@ class myParser(SGMLParser):
     self.tags_stack.append("option")
 
   def handle_data(self,data):
+    if data == "Web definitions": self.stop = True #to make it stop after the web definitions
     if len(self.tags_stack) > 0 and self.tags_stack[len(self.tags_stack)-1] == "<!translation!>":
         #print "data: ", data
         self.words.append(data.strip())
         #print self.word, self.from_lang, self.to_lang
-        Parley.addTranslation(self.word,self.from_lang,self.to_lang,data.strip())
+        if self.stop == False:
+            Parley.addTranslation(self.word,self.from_lang,self.to_lang,data.strip())
   
   def unknown_endtag(self,tag):
     myParser.remove_not_closed_tags(self,tag)
