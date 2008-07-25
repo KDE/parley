@@ -33,7 +33,7 @@ namespace Scripting
      * @code
      * #how to get a reference to the Parley's active document
      * import Parley
-     * doc = Parley.document
+     * doc = Parley.doc
      * @endcode
      *
      * @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>

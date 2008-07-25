@@ -44,18 +44,29 @@ namespace Scripting
         return QString();
     }
 
-    void Translation::setConjugation ( const QString& conjugation, const QString& tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person )
+    void Translation::setConjugationText ( const QString& conjugation, const QString& tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person )
     {
         KEduVocConjugation & conjug = m_translation->conjugation ( tense );
         conjug.setConjugation ( conjugation, person, number );
         m_translation->setConjugation ( tense, conjug );
     }
 
-    QString Translation::conjugation ( const QString & tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person )
+    QObject * Translation::conjugation ( const QString & tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person )
     {
         KEduVocConjugation conjug = m_translation->conjugation ( tense );
-        return conjug.conjugation ( person , number ).text();
+        return new Text ( conjug.conjugation ( person , number ) );
     }
+
+    void Translation::setConjugation ( QObject * conjugation, const QString& tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person )
+    {
+        Text * txt = dynamic_cast<Text*>(conjugation);
+        if (txt) {
+            KEduVocConjugation & conjug = m_translation->conjugation ( tense );
+            conjug.setConjugation ( *(txt->kEduVocText()), person, number );
+            m_translation->setConjugation ( tense, conjug );
+        }
+    }
+
 
     QStringList Translation::conjugationTexts ( const QString& tense )
     {

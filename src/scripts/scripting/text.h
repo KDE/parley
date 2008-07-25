@@ -22,8 +22,7 @@ namespace Scripting
 {
 
     /**
-     * This Scripting class can not be directly accessed but it's inherited by the Translation class. So
-     * all the methods/properties here are available to the Translation class
+     * Scripting::Text class object provides methods and properties for accessing Parley text's value and grades. It is inherited and mainly used by Scripting::Translation.
      * @code
      * #how to access a translation's object properties/methods
      * import Parley

@@ -285,25 +285,35 @@ namespace Scripting
              *            #make sure it's marked as a verb
              *            Parley.doc.setWordType(tr,"Verb")
              *            #add conjugations
-             *            tr.setConjugation("plays","present",Parley.Singular,Parley.Third)
-             *            tr.setConjugation("play","present",Parley.Plural,Parley.First)
-             *            tr.setConjugation("played","past simple",Parley.Singular,Parley.Second)
+             *            tr.setConjugationText("plays","present",Parley.Singular,Parley.Third)
+             *            tr.setConjugationText("play","present",Parley.Plural,Parley.First)
+             *            tr.setConjugationText("played","past simple",Parley.Singular,Parley.Second)
              * @endcode
              * @param conjugation The conjugation in @p tense, @p number, @p person
              * @param tense The tense that @p conjugation belongs to (see Document::tenses())
              * @param number The number of the @p conjugation. See Parley::Number enum
              * @param person The person of the @p conjugation. See Parley::Person enum
              */
-            void setConjugation ( const QString& conjugation, const QString& tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person );
+            void setConjugationText ( const QString& conjugation, const QString& tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person );
+
+            /**
+             * Sets the @p conjugation of the verb in the given @p tense, @p number and @p person. Use this method instead of setConjugationText when the grades, practice count etc are important and want them to be set in this conjugation
+             * @param conjugation Scripting::Text object as the conjugation
+             * @param tense The tense that @p conjugation belongs to (see Document::tenses())
+             * @param number The number of the @p conjugation. See Parley::Number enum
+             * @param person The person of the @p conjugation. See Parley::Person enum
+             */
+            void setConjugation ( QObject * conjugation, const QString& tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person );
+
 
             /**
              * returns the conjugation of the verb in the given @p tense, @p number and @p person
              * @param tense The conjugation tense (see Document::tenses())
              * @param number The conjugation number. See Parley::Number enum
              * @param person The conjugation person. See Parley::Person enum
-             * @return 
+             * @return A Text object that represents the conjugation
              */
-            QString conjugation ( const QString & tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person );
+            QObject * conjugation ( const QString & tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person );
 
             /**
              * Returns all the possible conjugations of the given @p tense

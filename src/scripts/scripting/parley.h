@@ -62,6 +62,7 @@ namespace Scripting
                 Plural
             };
 
+            ///Declension case
             enum Case
             {
                 Nominative = 0,
@@ -73,6 +74,7 @@ namespace Scripting
                 Vocative
             };
 
+            ///Conjugation Person
             enum Person
             {
                 First,
@@ -83,6 +85,7 @@ namespace Scripting
                 Third
             };
 
+            ///Conjugation gender
             enum Gender
             {
                 Masculine,
@@ -90,6 +93,7 @@ namespace Scripting
                 Neutral
             };
 
+            ///Article Definiteness
             enum Definiteness
             {
                 Definite,
