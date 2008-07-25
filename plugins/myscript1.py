@@ -189,12 +189,23 @@ def testEnums():
     print tr.declension(Parley.Singular,Parley.Accusative).text
     return
   
+def testSetEntries():
+  l = Parley.activeLesson
+  entries = []
+  #entries.append(l.newEntry(["good morning","bonjoura"]))
+  entries.append(l.newEntry(["ela","paenne"]))
+  print entries
+  l.setEntries(entries)
+  
 def actionFunction():
   print "Action called!!"
+  #for entry in Parley.doc.rootLesson.entries(True):
+    #print entry.translationTexts()
+  testSetEntries()
   #testEnums()
   #tryArticle()
   #GermanArticles()
-  newDocument()
+  #newDocument()
   #conjugations()
   #print Parley.doc.wordTypes()
   #setWordType()

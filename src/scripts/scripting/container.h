@@ -24,10 +24,13 @@ namespace Scripting
 {
 
     /**
-    Wrapper class for KEduVocContainer
-
-        @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
-    */
+     * @class Container
+     * @brief KEduVocContainer wrapping class for Kross scripts (inherited by Lesson)
+     *
+     * This class should not be used directly by a script but through Lesson class which inherits all the Container's properties. See Lesson class documentation.
+     *
+     * @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
+     */
     class Container : public QObject
     {
             Q_OBJECT
@@ -69,21 +72,21 @@ namespace Scripting
             static bool enumToBool ( KEduVocContainer::EnumEntriesRecursive recursive );
             static KEduVocContainer::EnumEntriesRecursive boolToEnum ( bool recursive );
 
-            /** set the container name
+            /* set the container name
              * @param name text to set for the name
              */
             void setName ( const QString &name ) { m_container->setName ( name ); }
 
-            /** get the container name */
+            /* get the container name */
             QString name() { return m_container->name(); }
 
             void appendChildContainer ( Container *child ) { m_container->appendChildContainer ( child->kEduVocContainer() ); }
             void insertChildContainer ( int row, Container *child ) { m_container->insertChildContainer ( row,child->kEduVocContainer() ); }
-            void deleteChildContainer ( int row ) { m_container->deleteChildContainer ( row ); }
+//             void deleteChildContainer ( int row ) { m_container->deleteChildContainer ( row ); }
             void removeChildContainer ( int row ) { m_container->removeChildContainer ( row ); }
             Container *childContainer ( int row ) { return new Container ( m_container->childContainer ( row ) ); }
 
-            /**
+            /*
              * Retrieve a child container by its name
              * Returns 0 if no container is found
              * @param name container name
@@ -96,10 +99,10 @@ namespace Scripting
             bool inPractice() { return m_container->inPractice(); }
             void setInPractice ( bool inPractice ) { m_container->setInPractice ( inPractice ); }
 
-            /** get the image url for this container if it exists */
+            /* get the image url for this container if it exists */
             QString imageUrl() { return m_container->imageUrl().path(); }
 
-            /** set the image url for this container
+            /* set the image url for this container
              * @param url               url of the image
              */
             void setImageUrl ( const QString & url ) { m_container->setImageUrl ( url ); }
@@ -113,9 +116,16 @@ namespace Scripting
              */
             void removeTranslation ( int translation ) { return m_container->removeTranslation ( translation ); }
 
+            /*
+             * Returns a list with all the child containers (lessons)
+             * @return A list of Container objects
+             */
+            QVariantList childContainers();
+
 
         public slots:
 
+            /** Returns an integer, the Container's unique row. Useful for Lesson::removeChildLesson() function */
             int row() const { return m_container->row(); }
 
 //             virtual Container *parent() { return new Container ( m_container->parent() ); }
@@ -154,12 +164,6 @@ namespace Scripting
              * @return A double, the average lesson grade
              */
             double averageGrade ( int translation ) { return m_container->averageGrade ( translation ); }
-
-            /**
-             * Returns a list with all the child containers (lessons)
-             * @return A list of Container objects
-             */
-            QVariantList childContainers();
 
         protected:
             KEduVocContainer * m_container;

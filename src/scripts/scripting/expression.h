@@ -67,7 +67,7 @@ namespace Scripting
 
             ~Expression();
 
-            KEduVocExpression * kEduVocEntry() const { return m_expression; }
+            KEduVocExpression * kEduVocExpression() const { return m_expression; }
 
             template <class T, class S>
             QVariantList toVariantList ( QList<T*> objList ) const;
@@ -164,6 +164,17 @@ namespace Scripting
              * @return A list of Translation objects
              */
             QVariantList translations() const;
+
+            /**
+             * Returns a list of all the translations texts of an entry
+             * @code
+             * #iterate through all the translations of all the entries of the root lesson and print their text
+             * for entry in Parley.doc.rootLesson.entries(True):
+             *     print entry.translationTexts()
+             * @endcode
+             * @return A list of strings (list of translation.text property of every translation)
+             */
+            QStringList translationTexts() const;
 
         private:
             KEduVocExpression* m_expression;

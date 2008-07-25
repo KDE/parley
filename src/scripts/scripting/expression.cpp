@@ -40,7 +40,7 @@ namespace Scripting
 
     Expression::Expression ( const Expression & other ) : QObject()
     {
-        m_expression = other.kEduVocEntry();
+        m_expression = other.kEduVocExpression();
     }
 
     Expression::~Expression()
@@ -62,10 +62,24 @@ namespace Scripting
         //build a list of all the translations
         QList<KEduVocTranslation *> translations;
         foreach ( int k, m_expression->translationIndices() )
-        if ( m_expression->translation ( k ) )
-            translations.push_back ( m_expression->translation ( k ) );
+        {
+            if ( m_expression->translation ( k ) )
+                translations.push_back ( m_expression->translation ( k ) );
+        }
         //convert it to QVariantList and return it
         return toVariantList<KEduVocTranslation,Translation> ( translations );
+    }
+
+    QStringList Expression::translationTexts() const
+    {
+        //build a list of all the translation texts
+        QStringList list;
+        foreach ( int k, m_expression->translationIndices() )
+        {
+            if ( m_expression->translation ( k ) )
+                list << m_expression->translation(k)->text();
+        }
+        return list;
     }
 
 //     Expression & Expression::operator= ( const Expression &other )
