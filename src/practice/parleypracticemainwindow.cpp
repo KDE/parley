@@ -57,6 +57,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
 {
     setupBase("default.desktop");
     setupActions();
+    setupModeIndependent();
     setupModeSpecifics();
 
     setupGUI(Default, QString::fromLatin1("parleypracticeui.rc"));
