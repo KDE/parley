@@ -105,6 +105,12 @@ namespace Scripting
         m_doc->appendIdentifier ( ident );
     }
 
+    void Document::appendLesson( QObject * lesson ) { 
+        Lesson * l = dynamic_cast<Lesson*>(lesson);
+        if (l)
+            m_doc->lesson()->appendChildContainer(l->kEduVocContainer());
+    }
+
     QObject * Document::appendNewLesson ( const QString & name )
     {
         KEduVocLesson * lesson = new KEduVocLesson(name,m_doc->lesson());

@@ -27,7 +27,8 @@ class ParleyApp;
 class Translator;
 
 /**
- * Namespace that contains all the classes exposed to Kross scripts.
+ * @namespace Scripting
+ * @brief Contains all the classes exposed to Kross scripts.
  *
  * Main entry point is the Scripting::Parley class which allows us to access all the other Scripting classes (see code below).
  *
@@ -45,6 +46,9 @@ namespace Scripting
 
 
     /**
+     * @class Parley
+     * @brief Parley scripting class (main entry point of a %Parley Kross script)
+     *
      * Parley class is the main entry point of Parley scripting classes. Through it you can access the Document class (Parley.doc or Parley.document) which provides functionality for viewing/modifying a %Parley document (%KEduVocDocument), that means access lessons, entries, document languages etc.
      *
      * The Parley class has to do more with the active %Parley application. Here it follows a list of possible usages of Parley class:
@@ -274,7 +278,18 @@ namespace Scripting
 
         Q_SIGNALS:
             /**
-             * Slots (script functions) connected to this signal are called when a translation of @p word is requested
+             * Slots (script functions) connected to this signal are called when a translation of @p word is requested. Note that a script function with the same name as a signal will be automatically connected to that signal when the script is activated.
+             *
+             * @code
+             * #example usage of translateWord signal
+             * import Parley
+             * #function called by Parley whenever a translation of a word is needed
+             * def translateWord(word,fromLang,toLang):
+             *     <<look for the word translation>>
+             *     Parley.addTranslation(word,fromLang,toLang,foundWord)
+             *     <<look for more translations>>
+             * @endcode
+             *
              * @param word Word to translate
              * @param fromLanguage The language of @p word to translate from
              * @param toLanguage The language you want to translate to

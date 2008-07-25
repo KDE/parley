@@ -27,10 +27,10 @@ namespace Scripting
     class Expression;
 
     /**
-    Lesson script object class
-
-        @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
-    */
+     * Lesson script object class
+     *
+     * @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
+     */
     class Lesson : public Container
     {
             Q_OBJECT

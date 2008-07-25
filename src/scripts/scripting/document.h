@@ -26,15 +26,42 @@ namespace Scripting
 {
     class Translation;
 
-    //Implements the Document object to be used by the scripts
     /**
-     * Parley Document scripting object. Gives access to all the document properties and lessoons
+     * @class Document
+     * @brief KEduVocDocument wrapping class for Kross scripts
+     *
+     * The Document class provides methods and properties for accessing the document lessons, entries, languages, word types and general document parameters. The easiest way of accessing this class is through the Parley.document (Parley.doc) property like in the example.
      *
      * @code
      * #how to get a reference to the Parley's active document
      * import Parley
      * doc = Parley.doc
+     * print doc.title, doc.author, doc.authorContact
      * @endcode
+     *
+     * You can access <b> document lessons </b> with the following ways:
+     * - Document::rootLesson property
+     * - allLessons() function
+     * - findLesson() function
+     *
+     * and add a new lesson with
+     * - newLesson() and appendLesson() function
+     * - Document::appendNewLesson(const QString &) function
+     * - Document::appendNewLesson(const QString &,Lesson*) function
+     *
+     * The <b> document tenses </b> can be set with setTenses() function and read by tenses() function.
+     *
+     * The <b> document identifiers </b> (see Identifier class) can be set by these functions:
+     * - newIdentifier() and appendIdentifier() functions
+     * - appendNewIdentifier() function
+     * - removeIdentifier() function (for removing a language)
+     *
+     * and be accessed by:
+     * - as a list with identifiers() function
+     * - individually by identifier() function
+     * - and get how many identifiers exist with identifierCount() function
+     *
+     * The saveAs() function can be used to save into a file a newly created document, or the active document. See Parley::newDocument().
      *
      * @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
      */
@@ -208,16 +235,32 @@ namespace Scripting
 
             /**
              * Creates and returns a new lesson (doesn't add it as a sublesson to any lesson)
+             *
              * @code
              * #how to add a new lesson to the root lesson
              * import Parley
              * newlesson = Parley.doc.newLesson("My New Lesson")
              * Parley.doc.rootLesson.appendChildLesson(newlesson)
              * @endcode
+             *
              * @param name Name of the lesson
-             * @return The new lesson
+             * @return Lesson object (the new lesson)
              */
             QObject * newLesson ( const QString & name ) { return new Lesson ( name ); }
+
+            /**
+             * Appends a lesson to the document
+             *
+             * @code
+             * #how to add a new lesson with appendLesson() function
+             * import Parley
+             * newlesson = Parley.doc.newLesson("My New Lesson")
+             * Parley.doc.appendLesson(newlesson)
+             * @endcode
+             *
+             * @param lesson Lesson object (the lesson to be added)
+             */
+            void appendLesson ( QObject * lesson );
 
             /**
              * Creates a new lesson and appends it to the root lesson
@@ -289,13 +332,13 @@ namespace Scripting
 
 // ---------------------  copied from KEduVocDocument
 
-            /**
+            /*
              * Open a document file
              *
              * @param url      url to file to open
              * @returns        ErrorCode
              */
-            int open ( const QString & url ) { return m_doc->open ( url ); }
+//             int open ( const QString & url ) { return m_doc->open ( url ); }
 
             /**
              * Saves the data under the given name
@@ -305,7 +348,7 @@ namespace Scripting
              * @param generator  the name of the application saving the document (default value: "Parley")
              * @returns          ErrorCode
              */
-            int saveAs ( const QString & url, KEduVocDocument::FileType ft = KEduVocDocument::Automatic, const QString & generator = QString("Parley") ) { return m_doc->saveAs ( url, ft, generator ); }
+            int saveAs ( const QString & url, KEduVocDocument::FileType ft = KEduVocDocument::Automatic, const QString & generator = QString ( "Parley" ) ) { return m_doc->saveAs ( url, ft, generator ); }
 
 //             QByteArray toByteArray ( const QString &generator );
 
@@ -450,7 +493,7 @@ namespace Scripting
             // *** file format specific methods ***
 
 
-            static KEduVocDocument::FileType detectFileType ( const QString &fileName ) { return KEduVocDocument::detectFileType( fileName ); }
+            static KEduVocDocument::FileType detectFileType ( const QString &fileName ) { return KEduVocDocument::detectFileType ( fileName ); }
 
             /**
              * Create a string with the supported document types, that can be used
@@ -460,10 +503,10 @@ namespace Scripting
              * @param mode             the mode for the supported document types. See FileDialogMode enum
              * @returns                the filter string
              */
-            static QString pattern ( KEduVocDocument::FileDialogMode mode ) { return KEduVocDocument::pattern(mode); }
+            static QString pattern ( KEduVocDocument::FileDialogMode mode ) { return KEduVocDocument::pattern ( mode ); }
 
             /** Returns a more detailed description of the @p errorCode given */
-            static QString errorDescription ( int errorCode ) { return KEduVocDocument::errorDescription(errorCode); }
+            static QString errorDescription ( int errorCode ) { return KEduVocDocument::errorDescription ( errorCode ); }
 
         private:
             KEduVocDocument * m_doc;
