@@ -38,7 +38,7 @@
 #include "input/mcinput.h"
 #include "input/articlemcinput.h"
 
-#include "statistics.h"
+#include "statistics/statistics.h"
 #include "practiceentrymanager.h"
 #include "answervalidator.h"
 #include "prefs.h"

@@ -23,7 +23,7 @@
 #include <KPushButton>
 #include <KSvgRenderer>
 
-#include "statistics.h"
+#include "statistics/statistics.h"
 #include "practiceview.h"
 #include "parleypracticemainwindow.h"
 

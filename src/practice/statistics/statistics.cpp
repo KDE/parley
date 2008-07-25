@@ -15,7 +15,8 @@
 *                                                                         *
 ***************************************************************************/
 #include "statistics.h"
-#include "practiceentry.h"
+#include "../practiceentry.h"
+#include "../practiceentrymanager.h"
 
 #include <KDebug>
 #include <KLocalizedString>
@@ -41,34 +42,6 @@ Statistics::Statistics(PracticeEntryManager* manager, QObject * parent)
 }
 
 Statistics::~Statistics() {}
-
-LCDStatistics::LCDStatistics(QWidget * parent)
-        :  QLCDNumber(parent)
-{
-    display(0.0);
-}
-
-SvgBarStatistics::SvgBarStatistics(QSvgRenderer* renderer, const QString& foregroundElementId, const QString& backgroundElementId, QGraphicsItem * parent)
-    : QGraphicsSvgItem(parent)
-{
-    if (!(renderer->elementExists(foregroundElementId) && renderer->elementExists(backgroundElementId)))
-    {
-        setVisible(false);
-        kDebug() << "!! Element id doesn't exist:";
-        kDebug() << foregroundElementId << ":" << renderer->elementExists(foregroundElementId);
-        kDebug() << "or" << backgroundElementId << ":" << renderer->elementExists(backgroundElementId);
-    }
-
-    setSharedRenderer(renderer);
-    setElementId(foregroundElementId);
-    m_backgroundRect = renderer->boundsOnElement(backgroundElementId);
-    setPos(m_backgroundRect.x(), m_backgroundRect.y());
-    scale((m_backgroundRect.width())/boundingRect().width()*.0001, 1.0);
-    setZValue(10); // higher than the rest
-}
-
-SvgBarStatistics::~SvgBarStatistics()
-{}
 
 void Statistics::slotCorrection(float grade, ErrorType error, const QString& userAnswer)
 {
@@ -230,21 +203,4 @@ const QString Statistics::gradeToString(int i)
             break;
     }
 }
-
-
-void LCDStatistics::slotUpdateDisplay(Statistics* stats)
-{
-    kDebug() << stats->percentCorrect();
-}
-
-void SvgBarStatistics::slotUpdateDisplay(Statistics*stats)
-{
-    if (isVisible())
-    {
-        setVisible(true);
-    }
-    scale((m_backgroundRect.width() * ((double)stats->correct() / stats->manager()->totalEntryCount()) )/mapToScene(boundingRect()).boundingRect().width(), 1.0);
-}
-
-
 

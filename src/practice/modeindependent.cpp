@@ -34,7 +34,8 @@
 
 #include "practiceview.h"
 
-#include "statistics.h"
+#include "statistics/statistics.h"
+#include "statistics/svgbarstatistics.h"
 #include "hint.h"
 #include "practiceentrymanager.h"
 #include "answervalidator.h"

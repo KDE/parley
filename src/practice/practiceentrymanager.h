@@ -35,7 +35,7 @@
 #include <keduvoctranslation.h>
 #include <keduvocdocument.h>
 
-class PracticeEntry;
+#include "practiceentry.h"
 
 /**
 * @class PracticeEntryManager

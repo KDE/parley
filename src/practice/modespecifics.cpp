@@ -39,7 +39,8 @@
 #include "prompt/imageprompt.h"
 #include "prompt/textualprompt.h"
 
-#include "statistics.h"
+#include "statistics/statistics.h"
+#include "statistics/svgbarstatistics.h"
 #include "stdbuttons.h"
 #include "hint.h"
 #include "practiceentrymanager.h"

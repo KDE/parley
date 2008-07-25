@@ -12,7 +12,7 @@
  ***************************************************************************/
 
 #include "practiceentry.h"
-#include "statistics.h"
+#include "statistics/statistics.h"
 
 
 PracticeEntry::PracticeEntry(KEduVocExpression* expr)
