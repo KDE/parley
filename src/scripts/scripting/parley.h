@@ -45,15 +45,15 @@ namespace Scripting
 
 
     /**
-     * Parley class is the main entry point of Parley scripting classes. Through it you can access the Document class (Parley.doc or Parley.document) which provides functionality for viewing/modifying a Parley document (KEduVocDocument), that means access lessons, entries, document languages etc.
+     * Parley class is the main entry point of Parley scripting classes. Through it you can access the Document class (Parley.doc or Parley.document) which provides functionality for viewing/modifying a %Parley document (%KEduVocDocument), that means access lessons, entries, document languages etc.
      *
-     * The Parley class has to do more with the active Parley application. Here it follows a list of possible usages of Parley class:
+     * The Parley class has to do more with the active %Parley application. Here it follows a list of possible usages of Parley class:
      *
      * - Add a new Action to the script menu (see Parley::newAction() function)
      * - Add a new translation script (see Parley::translateWord() signal)
      * - Have direct access to the active lesson (see Parley::activeLesson property)
      * - Have access to various enumerations (see Parley::Number, Parley::Case, Parley::Person, Parley::Gender and Parley::Definiteness enumerations)
-     * - Create a new Parley Document (see Parley::newDocument() function)
+     * - Create a new %Parley %Document (see Parley::newDocument() function)
      *
      * Signals and Slots: To connect a script function (slot) to a signal you <b> just define a function with the same name as the signal </b> or use the Parley.connect function:
      * @code
@@ -73,13 +73,7 @@ namespace Scripting
             Q_PROPERTY ( QObject * document READ getDocument )
             /// Abreviation of document property (same as Parley.document)
             Q_PROPERTY ( QObject * doc READ getDocument )
-
-            /** Read-Only property that gives the active of the lesson (the one that is currently open by Parley)
-            * @code
-            * import Parley
-            * activelesson = Parley.activeLesson
-            * @endcode
-            */
+            /// Currently active lesson
             Q_PROPERTY ( QObject * activeLesson READ getActiveLesson )
 
             Q_ENUMS ( Number Case Person Gender Definiteness )
@@ -154,14 +148,23 @@ namespace Scripting
 
         public Q_SLOTS:
 
-            ///@todo fill up the documentation of this function
             /**
-             * Adds a translation
+             * Adds the found @p translation of the @p word from language @p fromLanguage to language @p toLanguage to %Parley translations to be used for translating lesson entries (or anything else). This function is ment to be used by scripts to add a translation of a word by parsing either online or offline dictionaries.
+             *
+             * @code
+             * #example usage of addTranslation function
+             * import Parley
+             * #function called by Parley whenever a translation of a word is needed
+             * def translateWord(word,fromLang,toLang):
+             *     <<look for the word translation>>
+             *     Parley.addTranslation(word,fromLang,toLang,foundWord)
+             *     <<look for more translations>>
+             * @endcode
              *
              * @param word Translated word
              * @param fromLanguage From language
              * @param toLanguage To language
-             * @param translation Translation of word
+             * @param translation %Translation of word
              */
             void addTranslation ( QString word,QString fromLanguage,QString toLanguage, QString translation );
             /**
@@ -177,7 +180,8 @@ namespace Scripting
              */
             QString localeName ( QString locale );
 
-            /**
+            /// @todo Make this function working (not very important function)
+            /*
              * Open the Parley Document @p file
              * Usage:
              * @code
@@ -195,6 +199,9 @@ namespace Scripting
              *
              * @code
              * #how to create a new document, add lessons, add entries and save it to a kvtml file
+             * import Parley
+             *
+             * #create new document
              * doc = Parley.newDocument()
              * doc.title = "New document"
              *
@@ -237,9 +244,12 @@ namespace Scripting
             QObject * newDocument() { return new Document(); }
 
             /**
-             * Creates and adds to the Script menu a new KAction (see KAction documentation)
+             * Creates and adds to the Scripts menu a new KAction (see KAction documentation)
              *
              * @code
+             * #how to add two new Scripts menu entries
+             * import Parley
+             *
              * def convertLessonToPDF():
              *     print "Converting lesson to PDF.."
              *
@@ -270,7 +280,9 @@ namespace Scripting
              * @param toLanguage The language you want to translate to
              */
             void translateWord ( const QString & word,const QString& fromLanguage,const QString& toLanguage );
+            /* Emits when the translation of a word is finished (from all the scripts) [not to be used by scripts] */
             void translationFinished ( const QString & word,const QString& fromLanguage,const QString& toLanguage );
+            /* Emits when the translation of a word starts [not to be used by scripts] */
             void translationStarted ( const QString & word,const QString& fromLanguage,const QString& toLanguage );
 
         private:
