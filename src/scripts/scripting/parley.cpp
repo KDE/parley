@@ -55,15 +55,15 @@ namespace Scripting
             m_translator->addTranslation ( word,fromLanguage,toLanguage,translation );
     }
 
-    QStringList Parley::languageCodes()
+    QStringList Parley::locales()
     {
         /// @todo Change it into a QMap property (Parley.languageCodes)
         return KGlobal::locale()->allLanguagesList();
     }
 
-    QString Parley::languageCodeToName ( QString code )
+    QString Parley::localeName ( QString locale )
     {
-        return KGlobal::locale()->languageCodeToName ( code );
+        return KGlobal::locale()->languageCodeToName ( locale );
     }
 
     void Parley::open ( QString filename )
@@ -79,10 +79,10 @@ namespace Scripting
         return new Lesson ( m_parleyApp->m_vocabularyModel->lesson() );
     }
 
-    QObject * Scripting::Parley::newAction ( const QString & name )
+    QObject * Scripting::Parley::newAction ( const QString & name, const QString& text )
     {
         //create new action
-        KAction* action = new KAction ( m_parleyApp );
+        KAction* action = new KAction (text, m_parleyApp );
         m_parleyApp->m_scriptManager->addScriptAction(name,action);
         return action;
 

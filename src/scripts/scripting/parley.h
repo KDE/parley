@@ -26,15 +26,46 @@
 class ParleyApp;
 class Translator;
 
+/**
+ * Namespace that contains all the classes exposed to Kross scripts.
+ *
+ * Main entry point is the Scripting::Parley class which allows us to access all the other Scripting classes (see code below).
+ *
+ * Class Hierarchy:
+ *
+ * - Parley
+ *   - Document
+ *     - Lesson (inherits Container)
+ *       - Expression (known as Entry in functions)
+ *         - Translation (inherits Text)
+ *   - Identifier
+ */
 namespace Scripting
 {
 
 
     /**
-    Implements the object that will be given to Kross scripts to use for accessing parley features
-
-        @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
-    */
+     * Parley class is the main entry point of Parley scripting classes. Through it you can access the Document class (Parley.doc or Parley.document) which provides functionality for viewing/modifying a Parley document (KEduVocDocument), that means access lessons, entries, document languages etc.
+     *
+     * The Parley class has to do more with the active Parley application. Here it follows a list of possible usages of Parley class:
+     *
+     * - Add a new Action to the script menu (see Parley::newAction() function)
+     * - Add a new translation script (see Parley::translateWord() signal)
+     * - Have direct access to the active lesson (see Parley::activeLesson property)
+     * - Have access to various enumerations (see Parley::Number, Parley::Case, Parley::Person, Parley::Gender and Parley::Definiteness enumerations)
+     * - Create a new Parley Document (see Parley::newDocument() function)
+     *
+     * Signals and Slots: To connect a script function (slot) to a signal you <b> just define a function with the same name as the signal </b> or use the Parley.connect function:
+     * @code
+     * #how to connect a function to a signal (example with Parley::translateWord() signal)
+     * def translateFromInternet(word,fromLang,toLang):
+     *     print "Translating from Internet!!.."
+     *
+     * Parley.connect("translateWord(const QString &,const QString &,const QString &)",translateFromInternet)
+     * @endcode
+     *
+     *   @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
+     */
     class Parley : public QObject
     {
             Q_OBJECT
@@ -51,7 +82,7 @@ namespace Scripting
             */
             Q_PROPERTY ( QObject * activeLesson READ getActiveLesson )
 
-            Q_ENUMS ( Number Case Person Gender Definiteness)
+            Q_ENUMS ( Number Case Person Gender Definiteness )
 
         public:
             ///Conjugation/Declension number
@@ -82,7 +113,7 @@ namespace Scripting
                 ThirdMale,
                 ThirdFemale,
 //                 ThirdNeutralCommon
-                Third
+                Third ///use this for Third Neutral form as well
             };
 
             ///Conjugation gender
@@ -104,32 +135,47 @@ namespace Scripting
 
             ~Parley();
 
-            /**
+            /*
              * Emits translateWord signal so the script function connected to it translate the @p word
              * @param word Word to translate
              * @param fromLanguage The language of @p word to translate from
              * @param toLanguage The language you want to translate to
              */
             void callTranslateWord ( const QString & word,const QString& fromLanguage,const QString& toLanguage );
-            void callTest() { emit test(); }
+
+            //sets the translator object
             void setTranslator ( Translator* translator ) { m_translator = translator; }
+
+            //Returns the active document
             QObject* getDocument() { return m_doc; }
+
+            //Returns the active lesson
             QObject* getActiveLesson();
 
         public Q_SLOTS:
+
+            ///@todo fill up the documentation of this function
+            /**
+             * Adds a translation
+             *
+             * @param word Translated word
+             * @param fromLanguage From language
+             * @param toLanguage To language
+             * @param translation Translation of word
+             */
             void addTranslation ( QString word,QString fromLanguage,QString toLanguage, QString translation );
             /**
-             * Returns a list of all available language codes (to be used by the scripts)
+             * Returns a list of all available locales (to be used by the scripts)
              * @return
              */
-            QStringList languageCodes();
+            QStringList locales();
 
             /**
-             * Gives the language name of the given @p code language code.
-             * @param code Language code
+             * Gives the language name of the given @p locale
+             * @param locale Language locale
              * @return Language name
              */
-            QString languageCodeToName ( QString code );
+            QString localeName ( QString locale );
 
             /**
              * Open the Parley Document @p file
@@ -142,30 +188,90 @@ namespace Scripting
              */
             void open ( QString filename );
 
-            QString testFunction() { return "testFunction"; }
-
 //             void updateDocument() { m_parleyApp->updateDocument(); }
+
+            /**
+             * Creates a new document and returns a reference to it
+             *
+             * @code
+             * #how to create a new document, add lessons, add entries and save it to a kvtml file
+             * doc = Parley.newDocument()
+             * doc.title = "New document"
+             *
+             * #set identifiers
+             * doc.appendNewIdentifier("English","en_US")
+             * doc.appendNewIdentifier("French","fr")
+             *
+             * #lessons
+             * l1 = doc.newLesson("Lesson1")
+             * doc.rootLesson.appendChildLesson(l1)
+             *
+             * #add a new entry (first way)
+             * e = l1.newEntry()
+             * e.setTranslation(0,"dog")
+             * e.setTranslation(1,"chien")
+             * l1.appendEntry(e)
+             *
+             * #add a new entry (second way)
+             * ee = l1.newEntry(["glass","verre"])
+             * l1.appendEntry(ee)
+             * #third way
+             * ee = l1.appendNewEntry(["book","livre"])
+             *
+             * #add a new lesson (fast way)
+             * l2 = doc.appendNewLesson("Lesson 2")
+             *
+             * #add a new child lesson under "Lesson 2"
+             * l3 = doc.appendNewLesson("Lesson 3",l2)
+             *
+             * #add a new entry (third way)
+             * l2.appendNewEntry(["I","je"]);
+             * l3.appendNewEntry(["good morning","bonjour"])
+             *
+             * #save document
+             * doc.saveAs("/home/kde-devel/test_new_document.kvtml")
+             * @endcode
+             *
+             * @return A Document object, the newly created lesson
+             */
             QObject * newDocument() { return new Document(); }
 
-            QObject * newAction ( const QString & name );
-
-            void listTest ( QString list ) { kDebug() << list; }
-
-            void listTest ( QStringList list ) { kDebug() << list; }
-
-            void whichEnum ( KEduVocDeclension::DeclensionNumber d )
-            {
-                kDebug() << d;
-            }
-
+            /**
+             * Creates and adds to the Script menu a new KAction (see KAction documentation)
+             *
+             * @code
+             * def convertLessonToPDF():
+             *     print "Converting lesson to PDF.."
+             *
+             * def convertLessonToHTML():
+             *     print "Converting lesson to HTML.."
+             *
+             * #one way of creating a new action
+             * newaction_pdf = Parley.newAction("convert_lesson_pdf")
+             * newaction_pdf.text="Convert Lesson to PDF"
+             * Parley.connect(newaction_pdf,"triggered()",convertLessonToPDF)
+             *
+             * #second way of creating a new action (short)
+             * newaction_html = Parley.newAction("convert_lesson_html","Convert Lesson to HTML")
+             * Parley.connect(newaction_html,"triggered()",convertLessonToHTML)
+             * @endcode
+             *
+             * @param name Unique action name
+             * @param text Action's text (what text appears in the scripts menu)
+             * @return A reference to a KAction object (accessible by scripts)
+             */
+            QObject * newAction ( const QString & name, const QString & text = QString() );
 
         Q_SIGNALS:
-            void translateWord ( QString word, QString fromLanguage, QString toLanguage );
+            /**
+             * Slots (script functions) connected to this signal are called when a translation of @p word is requested
+             * @param word Word to translate
+             * @param fromLanguage The language of @p word to translate from
+             * @param toLanguage The language you want to translate to
+             */
+            void translateWord ( const QString & word,const QString& fromLanguage,const QString& toLanguage );
             void translationFinished ( const QString & word,const QString& fromLanguage,const QString& toLanguage );
             void translationStarted ( const QString & word,const QString& fromLanguage,const QString& toLanguage );
-            void test();
-
-
 
         private:
             Translator* m_translator;

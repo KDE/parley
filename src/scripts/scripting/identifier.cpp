@@ -56,16 +56,31 @@ namespace Scripting
         m_identifier->setArticle ( karticle );
     }
 
-    QString Identifier::personalPronoun ( KEduVocConjugation::ConjugationPerson person, KEduVocConjugation::ConjugationNumber number ) const
+    QString Identifier::personalPronoun ( KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person ) const
     {
         return m_identifier->personalPronouns().personalPronoun ( person,number );
     }
 
-    void Identifier::setPersonalPronoun ( const QString& conjugation, KEduVocConjugation::ConjugationPerson person, KEduVocConjugation::ConjugationNumber number )
+    void Identifier::setPersonalPronoun ( const QString& conjugation,KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person )
     {
         KEduVocPersonalPronoun ppronouns = m_identifier->personalPronouns();
         ppronouns.setPersonalPronoun ( conjugation,person,number );
         m_identifier->setPersonalPronouns ( ppronouns );
+    }
+
+    QStringList Identifier::personalPronouns ()
+    {
+        KEduVocPersonalPronoun ppronouns = m_identifier->personalPronouns();
+
+        QStringList list;
+
+        for ( int n = 0; n <= KEduVocConjugation::Plural; n++ )
+            for ( int p = 0; p <= KEduVocConjugation::ThirdNeutralCommon; p++ )
+            {
+                list << ppronouns.personalPronoun ( ( KEduVocConjugation::ConjugationPerson ) p, ( KEduVocConjugation::ConjugationNumber ) n );
+            }
+
+        return list;
     }
 
 }

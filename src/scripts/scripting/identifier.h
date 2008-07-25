@@ -23,10 +23,34 @@ namespace Scripting
 {
 
     /**
-    Implements the KEduVocIdentifier class
-
-        @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
-    */
+     * Identifier class can be accessed from Document class and is used for specifying the document languages, articles and personal pronouns.
+     *
+    @code
+    #how to specify the articles and personal pronouns of a language (German in this example)
+    import Parley
+    newid = Parley.doc.newIdentifier()
+    newid.name = "German"
+    newid.locale = "de"
+    newid.setArticle("der",Parley.Singular,Parley.Definite,Parley.Masculine)
+    newid.setArticle("die",Parley.Singular,Parley.Definite,Parley.Feminine)
+    newid.setArticle("das",Parley.Singular,Parley.Definite,Parley.Neutral)
+    newid.setArticle("ein",Parley.Singular,Parley.Indefinite,Parley.Masculine)
+    newid.setArticle("eine",Parley.Singular,Parley.Indefinite,Parley.Feminine)
+    newid.setArticle("ein",Parley.Singular,Parley.Indefinite,Parley.Neutral)
+    newid.setPersonalPronoun("ich",Parley.Singular,Parley.First)
+    newid.setPersonalPronoun("du",Parley.Singular,Parley.Second)
+    newid.setPersonalPronoun("er",Parley.Singular,Parley.ThirdMale)
+    newid.setPersonalPronoun("sie",Parley.Singular,Parley.ThirdFemale)
+    newid.setPersonalPronoun("es",Parley.Singular,Parley.Third)
+    newid.setPersonalPronoun("wir",Parley.Plural,Parley.First)
+    newid.setPersonalPronoun("ihr",Parley.Plural,Parley.Second)
+    newid.setPersonalPronoun("sie",Parley.Plural,Parley.Third)
+    print newid.personalPronouns()
+    index = Parley.doc.appendIdentifier(newid)
+    @endcode
+     *
+     *   @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
+     */
     class Identifier : public QObject
     {
             Q_OBJECT
@@ -103,7 +127,7 @@ namespace Scripting
 //             KEduVocPersonalPronoun personalPronouns() const;
 
 //              QString personalPronoun ( const QString & number, const QString & person );
-            QString personalPronoun ( KEduVocConjugation::ConjugationPerson person, KEduVocConjugation::ConjugationNumber number ) const;
+            QString personalPronoun ( KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person ) const;
 
 
             /**
@@ -113,7 +137,9 @@ namespace Scripting
 //             void setPersonalPronouns ( const KEduVocPersonalPronoun &pronouns );
 
 //             void setPersonalPronoun ( const QString& personalPronoun, const QString & number, const QString & person );
-            void setPersonalPronoun ( const QString& conjugation, KEduVocConjugation::ConjugationPerson person, KEduVocConjugation::ConjugationNumber number );
+            void setPersonalPronoun ( const QString& conjugation,KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person );
+
+            QStringList personalPronouns ();
 
 
         private:

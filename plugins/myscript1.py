@@ -65,8 +65,7 @@ def registerActions():
   newaction.text="My script 1"
   Parley.connect(newaction,"triggered()",actionFunction)
   
-  newaction2 = Parley.newAction("my_script1")
-  newaction2.text = "My script 2"
+  newaction2 = Parley.newAction("my_script1","My script 2a")
   Parley.connect(newaction2,"triggered()",actionFunction2)
   return
 
@@ -107,41 +106,41 @@ def testcode():
 
 def newDocument():
   doc = Parley.newDocument()
-  doc.setTitle("Neo document")
+  doc.title = "New document"
   #set identifiers
-  doc.appendIdentifier("English","en_US")
-  doc.appendIdentifier("French","fr")
+  doc.appendNewIdentifier("English","en_US")
+  doc.appendNewIdentifier("French","fr")
   #lessons
-  l = doc.newLesson("Neo mathima")
-  doc.rootLesson.appendChildLesson(l)
+  l1 = doc.newLesson("Lesson1")
+  doc.rootLesson.appendChildLesson(l1)
   #first way
-  e = l.newEntry()
+  e = l1.newEntry()
   e.setTranslation(0,"dog")
-  e.setTranslation(1,"pies")
-  l.appendEntry(e)
+  e.setTranslation(1,"chien")
+  l1.appendEntry(e)
   #second way
-  ee = l.newEntry(["glass","szklanka"])
-  l.appendEntry(ee)
+  ee = l1.newEntry(["glass","verre"])
+  l1.appendEntry(ee)
   #third way
-  ee = l.appendNewEntry(["book","livre"])
+  ee = l1.appendNewEntry(["book","livre"])
   
   #new lesson (fast way)
   l2 = doc.appendNewLesson("Lesson 2")
-  l2.appendNewEntry(["me","je"]);
+  l2.appendNewEntry(["I","je"]);
   
   #new lesson under Lesson 2
   l3 = doc.appendNewLesson("Lesson 3",l2)
-  l3.appendNewEntry(["hey","bonjour"])
+  l3.appendNewEntry(["good morning","bonjour"])
   
-  fl = doc.findLesson("Lesson 3")
-  if fl != None:
-    print "found"
-    print fl.name
-  else:
-    print "not found"
+  #fl = doc.findLesson("Lesson 3")
+  #if fl != None:
+    #print "found"
+    #print fl.name
+  #else:
+    #print "not found"
   
   #save document
-  doc.saveAs("/home/kde-devel/test_new_document.kvtml","Parley")
+  doc.saveAs("/home/kde-devel/test_new_document.kvtml")
   
 def tryArticle():
    #add new one
@@ -156,6 +155,26 @@ def tryArticle():
   print newid.article(Parley.Singular,Parley.Definite,Parley.Neutral)
   index = Parley.doc.appendIdentifier(newid)
   
+def GermanArticles():
+    newid = Parley.doc.newIdentifier()
+    newid.name = "German"
+    newid.locale = "fr"
+    newid.setArticle("der",Parley.Singular,Parley.Definite,Parley.Masculine)
+    newid.setArticle("die",Parley.Singular,Parley.Definite,Parley.Feminine)
+    newid.setArticle("das",Parley.Singular,Parley.Definite,Parley.Neutral)
+    newid.setArticle("ein",Parley.Singular,Parley.Indefinite,Parley.Masculine)
+    newid.setArticle("eine",Parley.Singular,Parley.Indefinite,Parley.Feminine)
+    newid.setArticle("ein",Parley.Singular,Parley.Indefinite,Parley.Neutral)
+    newid.setPersonalPronoun("ich",Parley.Singular,Parley.First)
+    newid.setPersonalPronoun("du",Parley.Singular,Parley.Second)
+    newid.setPersonalPronoun("er",Parley.Singular,Parley.ThirdMale)
+    newid.setPersonalPronoun("sie",Parley.Singular,Parley.ThirdFemale)
+    newid.setPersonalPronoun("es",Parley.Singular,Parley.Third)
+    newid.setPersonalPronoun("wir",Parley.Plural,Parley.First)
+    newid.setPersonalPronoun("ihr",Parley.Plural,Parley.Second)
+    newid.setPersonalPronoun("sie",Parley.Plural,Parley.Third)
+    print newid.personalPronouns()
+    index = Parley.doc.appendIdentifier(newid)
   
 def testEnums():
   for entry in Parley.doc.rootLesson.entries(True):
@@ -170,8 +189,9 @@ def testEnums():
 def actionFunction():
   print "Action called!!"
   #testEnums()
-  tryArticle()
-  #newDocument()
+  #tryArticle()
+  #GermanArticles()
+  newDocument()
   #conjugations()
   #print Parley.doc.wordTypes()
   #setWordType()
@@ -261,8 +281,8 @@ def test_old():
   lesson.removeEntry(0)
   print lesson.entryCount()
 
-#print Parley.languageCodes()
-#print Parley.languageCodeToName("en_US")
+#print Parley.locales()
+#print Parley.localeName("en_US")
 
 #doc = Parley.document()
 #doc.callFromScriptTest()
@@ -272,6 +292,11 @@ def test_old():
 #doc = Parley.document
 #doc.name = "Hi"
 #doc.printName()
+
+def translateFromInternet(word,fromLang,toLang):
+    print "Translating from Internet!!.."
+
+Parley.connect("translateWord(const QString &,const QString &,const QString &)",translateFromInternet)
 
 print "TEST ACTION"
 registerActions()
@@ -284,3 +309,4 @@ registerActions()
 #Parley.callFromScript()
 #Parley.connect("signalTranslateWord(QString)",translate)
 #init()
+
