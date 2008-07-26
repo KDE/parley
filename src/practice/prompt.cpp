@@ -38,7 +38,7 @@ TextualPrompt::TextualPrompt ( KSvgRenderer * renderer, const QString& elementId
     m_backgroundRect = renderer->boundsOnElement ( elementId );
     setPos ( m_backgroundRect.x() + m_backgroundRect.width() / 20.0, m_backgroundRect.y() + m_backgroundRect.height() / 4.0 );
     adjustSize();
-};
+}
 
 void TextualPrompt::slotSetText ( const QString& text ) { setHtml( text ); };
 
@@ -59,7 +59,7 @@ ImagePrompt::ImagePrompt ( KSvgRenderer * renderer, QGraphicsView * view, const 
     setGeometry ( view->mapToScene ( bounds ).boundingRect().toRect() );
 
     slotSetImage ( KUrl() );
-};
+}
 
 SoundPrompt::SoundPrompt ( KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent ) :
         QPushButton ( parent ),
@@ -87,7 +87,7 @@ SoundPrompt::SoundPrompt ( KSvgRenderer * renderer, QGraphicsView * view, const 
     connect ( this, SIGNAL ( clicked() ), this, SLOT ( slotPlay() ) );
 
     slotSetSound ( KUrl() );
-};
+}
 
 void SoundPrompt::slotSetSound ( const KUrl& sound )
 {
@@ -164,7 +164,7 @@ MixedLettersPrompt::MixedLettersPrompt(KSvgRenderer * renderer, QGraphicsView * 
     }
 
     m_backgroundRect = renderer->boundsOnElement ( elementId );
-};
+}
 
 void MixedLettersPrompt::slotSetText (const QString& solution )
 {
