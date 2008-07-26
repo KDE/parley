@@ -24,7 +24,7 @@
 
 #include "parley.h"
 #include "prefs.h"
-
+#include "language-dialogs/vocabularycolumnsdialog.h"
 #include "documentsettings.h"
 
 #include <keduvoctranslation.h>
@@ -140,6 +140,18 @@ VocabularyView::VocabularyView(ParleyApp * parent)
     m_clearSelectionAction->setWhatsThis(i18n("Deselect all rows"));
     m_clearSelectionAction->setToolTip(m_clearSelectionAction->whatsThis());
     m_clearSelectionAction->setStatusTip(m_clearSelectionAction->whatsThis());
+
+    // vocabulary columns dialog
+    KAction *vocabularyColumnsDialogAction = new KAction(this);
+    parent->actionCollection()->addAction("show_vocabulary_columns_dialog", vocabularyColumnsDialogAction);
+    vocabularyColumnsDialogAction->setIcon(KIcon("view-file-columns"));
+    vocabularyColumnsDialogAction->setText(i18n("Vocabulary Columns Dialog"));
+    vocabularyColumnsDialogAction->setWhatsThis(i18n("Display a dialog to enable or disable the vocabulary columns"));
+    vocabularyColumnsDialogAction->setToolTip(vocabularyColumnsDialogAction->whatsThis());
+    vocabularyColumnsDialogAction->setStatusTip(vocabularyColumnsDialogAction->whatsThis());
+    horizontalHeader()->addAction(vocabularyColumnsDialogAction);
+    addAction(vocabularyColumnsDialogAction);
+    connect(vocabularyColumnsDialogAction, SIGNAL(triggered(bool)), this, SLOT(slotShowVocabularyColumnsDialog()));
 }
 
 
@@ -596,6 +608,15 @@ void VocabularyView::checkSpelling()
     spellcheckRow = m_model->rowCount();
     spellcheckColumn = -1;
     continueSpelling();
+}
+
+void VocabularyView::slotShowVocabularyColumnsDialog()
+{
+    VocabularyColumnsDialog *dialog = new VocabularyColumnsDialog(m_doc, this);
+
+    if ( dialog->exec() == KDialog::Accepted ) {
+        reset();
+    }
 }
 
 void VocabularyView::continueSpelling()

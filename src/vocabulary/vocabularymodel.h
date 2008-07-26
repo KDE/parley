@@ -65,6 +65,11 @@ public:
     QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
 
     /**
+    * Returns the name of the entryColumns column 
+    */
+    static QString columnTitle(KEduVocDocument *document, int translation, int column);
+
+    /**
      * Returns which translation this column matches. It starts from 0 and increases every
      * EntryColumnMax columns
      */

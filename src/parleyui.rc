@@ -27,6 +27,7 @@
   <Menu name="view" >
       <text>View</text>
       <Action name="show_vocabulary_columns_menu" />
+      <Action name="show_vocabulary_columns_dialog" />
       <Separator/>
       <Action name="show_lesson_dock"/>
       <Action name="show_wordtype_dock"/>

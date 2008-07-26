@@ -283,29 +283,8 @@ QVariant VocabularyModel::headerData(int section, Qt::Orientation orientation, i
         int entryColumn = section % EntryColumnsMAX;
 
         switch (role) {
-        case Qt::DisplayRole:
-
-            switch (entryColumn){
-            case Translation:
-                if (m_document->identifierCount() - 1 < translationId) {
-                    return QVariant();
-                }
-                return m_document->identifier(translationId).name(); //returns "English", "German", etc
-            case Pronunciation:
-                return i18n("Pronunciation");
-            case WordType:
-                return i18n("Word Type");
-            case Synonym:
-                return i18n("Synonym");
-            case Antonym:
-                return i18n("Antonym");
-            case Example:
-                return i18n("Example");
-            case Comment:
-                return i18n("Comment");
-            case Paraphrase:
-                return i18n("Paraphrase");
-            }
+            case Qt::DisplayRole:
+                return VocabularyModel::columnTitle(m_document, translationId, entryColumn);
             break;
 //         case Qt::DecorationRole:
 //             switch(entryColumn){
@@ -324,6 +303,33 @@ QVariant VocabularyModel::headerData(int section, Qt::Orientation orientation, i
         } // switch role
     } // if horizontal
     return QVariant();
+}
+
+QString VocabularyModel::columnTitle(KEduVocDocument *document, int translation, int column)
+{
+    switch (column){
+        case Translation:
+            if (document->identifierCount() - 1 < translation) {
+                return QString();
+            }
+            return document->identifier(translation).name(); //returns "English", "German", etc
+        case Pronunciation:
+            return i18n("Pronunciation");
+        case WordType:
+            return i18n("Word Type");
+        case Synonym:
+            return i18n("Synonym");
+        case Antonym:
+            return i18n("Antonym");
+        case Example:
+            return i18n("Example");
+        case Comment:
+            return i18n("Comment");
+        case Paraphrase:
+            return i18n("Paraphrase");
+    }
+
+    return QString();
 }
 
 int VocabularyModel::translation(int column)

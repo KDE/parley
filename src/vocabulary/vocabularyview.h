@@ -74,6 +74,11 @@ public slots:
 
     void checkSpelling();
 
+    /**
+    * Show the vocabulary columns dialog to enable or disable the columns in the view
+    */
+    void slotShowVocabularyColumnsDialog();
+
 signals:
     void translationChanged(KEduVocExpression*, int);
 

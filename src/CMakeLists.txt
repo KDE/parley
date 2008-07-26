@@ -199,6 +199,7 @@ set(languagedialogs_SRCS
     language-dialogs/languagedialog.cpp
     language-dialogs/editlanguagedialogpage.cpp
     language-dialogs/grammardialog.cpp
+    language-dialogs/vocabularycolumnsdialog.cpp
 )
 
 set(scripts_SRCS
