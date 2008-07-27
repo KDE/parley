@@ -49,6 +49,11 @@ void ParleyPlasma::init()
 {
     KConfigGroup cg = config();
     m_updateInterval = cg.readEntry("updateInterval", 10000);
+    m_solutionType = cg.readEntry("Solution", 0);
+
+    m_lang1 = cg.readEntry("Top Language", 0);
+    m_lang2 = cg.readEntry("Bottom Language", 1);
+
     m_engine = dataEngine("parley");
 
 //     setContentType(SingleImage);
@@ -66,7 +71,7 @@ void ParleyPlasma::init()
     m_label1->setFont(cg.readEntry("font",m_font));
     m_label2->setFont(cg.readEntry("font",m_font));
 
-    QString m_sourceFile = cg.readEntry("File Name");
+    m_sourceFile.setUrl(cg.readEntry("File Name"));
     if (m_sourceFile.isEmpty()) {
         kDebug() << "open file from parleyrc";
         KConfig parleyConfig("parleyrc");
@@ -76,7 +81,7 @@ void ParleyPlasma::init()
         m_sourceFile = recentFilesGroup.readEntry( recentFilesGroup.keyList().value(recentFilesGroup.keyList().count()/2-1), QString() );
         kDebug() << "open file: " << m_sourceFile;
     }
-    m_engine->connectSource(m_sourceFile, this, m_updateInterval);
+    m_engine->connectSource(m_sourceFile.url(), this, m_updateInterval);
 }
 
 void ParleyPlasma::constraintsEvent(Plasma::Constraints constraints)
@@ -116,10 +121,10 @@ void ParleyPlasma::dataUpdated(const QString& source, const Plasma::DataEngine::
 {
     kDebug() << "data updated" << source << data;
 
-    QStringList languages = data.keys();
+    m_languages = data.keys();
 
     if ( m_label1) {
-        m_label1->setPlainText(data[languages.value(0)].toString());
+        m_label1->setPlainText(data[m_languages.value(m_lang1)].toString());
         double scale = qMin(m_theme->elementRect( "translation1" ).width()/m_label1->boundingRect().width(), m_theme->elementRect( "translation1" ).height()/m_label1->boundingRect().height());
         m_label1->setTransform(QTransform().scale(scale, scale));
         m_label1->setPos(m_theme->elementRect( "translation1" ).topLeft()
@@ -127,11 +132,13 @@ void ParleyPlasma::dataUpdated(const QString& source, const Plasma::DataEngine::
                     (m_theme->elementRect("translation1").width()-m_label1->boundingRect().width()*scale)/2.0,
                     (m_theme->elementRect("translation1").height()-m_label1->boundingRect().height()*scale)/2.0));
 
-        if (languages.size() > 1) {
-        m_label2->setPlainText(data[languages.value(1)].toString());
+        if (m_languages.size() > 1) {
+        m_label2->setPlainText(data[m_languages.value(m_lang2)].toString());
         scale = qMin(m_theme->elementRect( "translation2" ).width()/m_label2->boundingRect().width(), m_theme->elementRect( "translation2" ).height()/m_label2->boundingRect().height());
         m_label2->setTransform(QTransform().scale(scale, scale));
-        m_label2->hide();
+        if (m_solutionType == Hover) {
+            m_label2->hide();
+        }
         m_label2->setPos(m_theme->elementRect( "translation2" ).topLeft()
                 + QPointF(
                             (m_theme->elementRect("translation2").width()-m_label2->boundingRect().width()*scale)/2.0,
@@ -170,14 +177,27 @@ void ParleyPlasma::createConfigurationInterface(KConfigDialog * parent)
     connect(parent, SIGNAL(applyClicked()), this, SLOT(configAccepted()));
     connect(parent, SIGNAL(okClicked()), this, SLOT(configAccepted()));
 
+    connect( ui.fontSelectButton, SIGNAL(clicked()), this, SLOT(showFontSelectDlg()) );
+
     ui.updateIntervalSpinBox->setValue(m_updateInterval/1000);
     KConfigGroup cg = config();
 
-    m_sourceFile = cg.readEntry("File Name");
-    ui.filechooser->setPath(m_sourceFile);
-    kDebug() << "set file url: " << cg.readEntry("File Name");
+    ui.filechooser->setUrl(m_sourceFile);
+    ui.filechooser->setFilter("*.kvtml|Vocabulary Collections");
 
-    connect( ui.fontSelectButton, SIGNAL(clicked()), this, SLOT(showFontSelectDlg()) );
+    ui.language1->addItems(m_languages);
+    ui.language2->addItems(m_languages);
+    ui.language1->setCurrentIndex(m_lang1);
+    ui.language2->setCurrentIndex(m_lang2);
+
+    switch (m_solutionType) {
+    case Hover:
+        ui.solutionOnHover->setChecked(true);
+        break;
+    case Always:
+        ui.solutionAlways->setChecked(true);
+        break;
+    }
 }
 
 void ParleyPlasma::showFontSelectDlg()
@@ -196,11 +216,24 @@ void ParleyPlasma::configAccepted()
     m_updateInterval = ui.updateIntervalSpinBox->value()*1000;
     cg.writeEntry("updateInterval", m_updateInterval);
 
-    m_sourceFile = ui.filechooser->url().url();
+    m_sourceFile = ui.filechooser->url();
     cg.writeEntry("File Name", m_sourceFile);
 
-    m_engine->disconnectSource(m_sourceFile, this);
-    m_engine->connectSource(m_sourceFile, this, m_updateInterval);
+    m_solutionType = Hover;
+    if (ui.solutionAlways->isChecked()) {
+        m_solutionType = Always;
+        m_label2->show();
+    }
+    cg.writeEntry("Solution", m_solutionType);
+
+    m_lang1 = ui.language1->currentIndex();
+    m_lang2 = ui.language2->currentIndex();
+
+    cg.writeEntry("Top Language", m_lang1);
+    cg.writeEntry("Bottom Language", m_lang2);
+
+    m_engine->disconnectSource(m_sourceFile.url(), this);
+    m_engine->connectSource(m_sourceFile.url(), this, m_updateInterval);
 
     kDebug() << "open:" << m_sourceFile;
 
@@ -216,7 +249,6 @@ void ParleyPlasma::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
 void ParleyPlasma::hoverLeaveEvent(QGraphicsSceneHoverEvent  * event)
 {
     Plasma::Applet::hoverLeaveEvent(event);
-    m_label2->hide();
 }
 
 #include "parley_plasma.moc"

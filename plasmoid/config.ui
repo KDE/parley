@@ -6,10 +6,10 @@
     <x>0</x>
     <y>0</y>
     <width>448</width>
-    <height>309</height>
+    <height>368</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" >
+  <layout class="QVBoxLayout" name="verticalLayout_4" >
    <item>
     <layout class="QHBoxLayout" >
      <item>
@@ -20,49 +20,88 @@
       </widget>
      </item>
      <item>
-      <widget class="KUrlComboRequester" name="filechooser" >
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="Preferred" hsizetype="MinimumExpanding" >
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-      </widget>
+      <widget class="KUrlRequester" name="filechooser" />
      </item>
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="label_4" >
-     <property name="text" >
-      <string>Language selection:</string>
+    <widget class="QGroupBox" name="groupBox_2" >
+     <property name="title" >
+      <string>Language selection</string>
      </property>
+     <layout class="QHBoxLayout" name="horizontalLayout" >
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_2" >
+        <item>
+         <widget class="QLabel" name="label_5" >
+          <property name="text" >
+           <string>Top:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_6" >
+          <property name="text" >
+           <string>Bottom:</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout" >
+        <item>
+         <widget class="KComboBox" name="language1" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="KComboBox" name="language2" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout" >
-     <item>
-      <widget class="KComboBox" name="kcombobox" />
-     </item>
-     <item>
-      <widget class="KComboBox" name="kcombobox_2" />
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="QRadioButton" name="solutionOnHover" >
-     <property name="text" >
-      <string>Reveal solution when mouse cursor is over the plasmoid</string>
+    <widget class="QGroupBox" name="groupBox" >
+     <property name="title" >
+      <string>Solution</string>
      </property>
-     <property name="checked" >
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QRadioButton" name="solutionAlways" >
-     <property name="text" >
-      <string>Always show the solution</string>
-     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3" >
+      <item>
+       <widget class="QRadioButton" name="solutionOnHover" >
+        <property name="text" >
+         <string>Reveal solution when mouse cursor is over the plasmoid</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="solutionAlways" >
+        <property name="text" >
+         <string>Always show the solution</string>
+        </property>
+        <property name="checked" >
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item>
@@ -143,8 +182,8 @@
    <header>kpushbutton.h</header>
   </customwidget>
   <customwidget>
-   <class>KUrlComboRequester</class>
-   <extends>KUrlRequester</extends>
+   <class>KUrlRequester</class>
+   <extends>QFrame</extends>
    <header>kurlrequester.h</header>
   </customwidget>
  </customwidgets>

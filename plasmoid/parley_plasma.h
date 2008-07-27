@@ -57,6 +57,10 @@ class ParleyPlasma : public Plasma::Applet
         virtual void hoverLeaveEvent ( QGraphicsSceneHoverEvent * event );
 
     private:
+        enum ShowSolution {
+            Hover = 0,
+            Always
+        };
         Plasma::Svg *m_theme;
         QGraphicsTextItem *m_label1;
         QGraphicsTextItem *m_label2;
@@ -68,8 +72,11 @@ class ParleyPlasma : public Plasma::Applet
         QSizeF m_size;
 
         Plasma::DataEngine* m_engine;
-        QString m_sourceFile;
-
+        KUrl m_sourceFile;
+        QStringList m_languages;
+        int m_solutionType;
+        int m_lang1;
+        int m_lang2;
         int m_updateInterval;
 };
 
