@@ -19,6 +19,8 @@
 #include "container.h"
 
 #include <QObject>
+#include <QStringList>
+
 #include <KSharedPtr>
 
 namespace Scripting
