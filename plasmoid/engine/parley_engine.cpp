@@ -58,8 +58,7 @@ void ParleyEngine::openDocument(const QString& file)
 QStringList ParleyEngine::sources() const
 {
     QStringList list;
-    //    list << QLatin1String("Random");
-    if (!m_file.isEmpty()) {
+    if (m_doc) {
         for (int i = 0; i < m_doc->identifierCount(); i++) {
             list.append(m_doc->identifier(i).name());
         }
@@ -98,9 +97,6 @@ bool ParleyEngine::updateSourceEvent(const QString &source)
     }
     setData(source, data);
 
-    kDebug() << "ParleyEngine::updateSource()" << source;
-
-    // other sources
     return true;
 }
 

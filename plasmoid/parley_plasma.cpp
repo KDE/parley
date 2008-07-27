@@ -26,13 +26,12 @@
 ParleyPlasma::ParleyPlasma(QObject *parent, const QVariantList &args)
     : Plasma::Applet(parent, args),
     m_dialog(0),
+    m_label1(0),
+    m_label2(0),
     m_font(QFont())
 {
     KGlobal::locale()->insertCatalog("parley");
     resize(256,160);
-    m_dialog = 0;
-    m_label1 = 0;
-    m_label2 = 0;
     setHasConfigurationInterface(true);
     setAcceptDrops(false);
     setAcceptsHoverEvents(true);
