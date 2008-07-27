@@ -22,8 +22,6 @@
 
 #include <QtGui/QWidget>
 
-#include <libkeduvocdocument_export.h>
-
 class KGameTheme;
 class KConfigSkeleton;
 class KGameThemeSelectorPrivate;
@@ -45,7 +43,7 @@ class KGameThemeSelectorPrivate;
  *
  * @author Mauricio Piacentini
  **/
-class KEDUVOCDOCUMENT_EXPORT KGameThemeSelector : public QWidget
+class KGameThemeSelector : public QWidget
 {
     Q_OBJECT
     public:

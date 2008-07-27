@@ -20,8 +20,6 @@
 #ifndef KGAMETHEME_H
 #define KGAMETHEME_H
 
-#include <libkeduvocdocument_export.h>
-
 #include <QtCore/QString>
 
 class KGameThemePrivate;
@@ -40,7 +38,7 @@ class QPixmap;
  *
  * @author Mauricio Piacentini
  **/
-class KEDUVOCDOCUMENT_EXPORT KGameTheme
+class KGameTheme
 {
     public:
         KGameTheme(const QString &themeGroup = QLatin1String("KGameTheme"));
