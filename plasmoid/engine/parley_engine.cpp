@@ -85,7 +85,7 @@ bool ParleyEngine::updateSourceEvent(const QString &source)
 {
     int vocabularyCount = m_doc->lesson()->entries(KEduVocContainer::Recursive).count();
     if (!vocabularyCount) {
-        setData(source, i18n("No document set.") + QString::fromLatin1(",,") + i18n("Start Parley first."));
+        setData(source, "no language",i18n("No document set."));
         return true;  // rather false?
     }
 
