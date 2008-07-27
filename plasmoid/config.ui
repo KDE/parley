@@ -6,29 +6,16 @@
     <x>0</x>
     <y>0</y>
     <width>448</width>
-    <height>221</height>
+    <height>309</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" >
-   <item>
-    <widget class="QRadioButton" name="sourceParleyRadioButton" >
-     <property name="text" >
-      <string>Get file from Parley (last opened)</string>
-     </property>
-     <property name="checked" >
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
+  <layout class="QVBoxLayout" name="verticalLayout" >
    <item>
     <layout class="QHBoxLayout" >
      <item>
-      <widget class="QRadioButton" name="sourceCustomRadioButton" >
-       <property name="enabled" >
-        <bool>true</bool>
-       </property>
+      <widget class="QLabel" name="label_3" >
        <property name="text" >
-        <string>Custom:</string>
+        <string>Vocabulary collection:</string>
        </property>
       </widget>
      </item>
@@ -43,6 +30,40 @@
       </widget>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_4" >
+     <property name="text" >
+      <string>Language selection:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout" >
+     <item>
+      <widget class="KComboBox" name="kcombobox" />
+     </item>
+     <item>
+      <widget class="KComboBox" name="kcombobox_2" />
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QRadioButton" name="solutionOnHover" >
+     <property name="text" >
+      <string>Reveal solution when mouse cursor is over the plasmoid</string>
+     </property>
+     <property name="checked" >
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QRadioButton" name="solutionAlways" >
+     <property name="text" >
+      <string>Always show the solution</string>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" >
@@ -73,6 +94,9 @@
        </property>
        <property name="maximum" >
         <number>1000</number>
+       </property>
+       <property name="value" >
+        <number>10</number>
        </property>
       </widget>
      </item>
@@ -108,6 +132,11 @@
   </layout>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>KComboBox</class>
+   <extends>QComboBox</extends>
+   <header>kcombobox.h</header>
+  </customwidget>
   <customwidget>
    <class>KPushButton</class>
    <extends>QPushButton</extends>

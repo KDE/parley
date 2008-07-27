@@ -57,12 +57,14 @@ void ParleyEngine::openDocument(const QString& file)
 
 QStringList ParleyEngine::sources() const
 {
-   QStringList list;
-//    list << QLatin1String("Random");
-   if (!m_file.isEmpty()) {
-       list << QLatin1String("Languages");
-   }
-   return list;
+    QStringList list;
+    //    list << QLatin1String("Random");
+    if (!m_file.isEmpty()) {
+        for (int i = 0; i < m_doc->identifierCount(); i++) {
+            list.append(m_doc->identifier(i).name());
+        }
+    }
+    return list;
 }
 
 bool ParleyEngine::sourceRequestEvent(const QString &source)
@@ -90,10 +92,11 @@ bool ParleyEngine::updateSourceEvent(const QString &source)
     m_current = m_random->getLong(vocabularyCount);
     KEduVocExpression *expression = m_doc->lesson()->entries(KEduVocContainer::Recursive).value(m_current);
 
-    // parse the languages ":2,3" means language 2 and 3
-    int lang1 = 0;
-    int lang2 = 1;
-    setData(source, expression->translation(lang1)->text() + ",," + expression->translation(lang2)->text());
+    QHash<QString,QVariant> data;
+    for (int i = 0; i < m_doc->identifierCount(); i++) {
+        data[m_doc->identifier(i).name()] = expression->translation(i)->text();
+    }
+    setData(source, data);
 
     kDebug() << "ParleyEngine::updateSource()" << source;
 
