@@ -159,15 +159,6 @@ public slots:
      * Removes all grading information from the current document
      */
     void removeGrades();
-
-    /**
-     * Translates the changed words
-     */
-    void slotTranslateWords(const QModelIndex & topLeft, const QModelIndex & bottomRight);
-    /**
-     * After the translation is finished, it adds the first translation to the table cell (Translation column)
-     */
-    void slotTranslationFinished(const QString & word,const QString& fromLanguage,const QString& toLanguage);
     
     /**
      * Shows or hides the welcome screen.

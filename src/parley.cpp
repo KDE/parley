@@ -974,62 +974,8 @@ void ParleyApp::initScripts()
 
     //Load scripts
     m_scriptManager->loadScripts();
-
-    connect(m_vocabularyModel, SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)),
-            this, SLOT(slotTranslateWords(const QModelIndex&, const QModelIndex&)),
-            Qt::QueuedConnection
-            );
-    connect(m_scriptObjectParley, SIGNAL(translationFinished(const QString&,const QString&,const QString &)),
-            this, SLOT(slotTranslationFinished(const QString&, const QString&, const QString&)),
-            Qt::QueuedConnection
-            );
 }
 
-void ParleyApp::slotTranslateWords(const QModelIndex & topLeft, const QModelIndex & bottomRight)
-{
-/*    if (Prefs::automaticTranslation() == false) return;
-
-    //translate only if the change was made in a translation column
-    if (!(VocabularyModel::columnType( topLeft.column() ) == VocabularyModel::Translation)) return;
-
-    kDebug() << "Translate Words" << topLeft << bottomRight;
-
-    const int N = VocabularyModel::EntryColumnsMAX;
-    QString fromLanguage;
-    QString word;
-
-    //find the first translation column that has a word in it (not empty)
-    for (int i = 0; i < topLeft.model()->columnCount(topLeft.parent()); i += N) {
-        word = topLeft.model()->index(topLeft.row(),i,QModelIndex()).data().toString();
-        if (!word.isEmpty()) {
-            fromLanguage = m_document->document()->identifier(i / N).locale();
-            break;
-        }
-    }
-
-    //translate to the rest translation columns
-    for (int i = 0; i < topLeft.model()->columnCount(topLeft.parent()); i += N) {
-        const QString & toLanguage = m_document->document()->identifier(i / N).locale();
-        if (toLanguage != fromLanguage) {
-            m_scriptObjectParley->callTranslateWord(word,fromLanguage,toLanguage);
-        }
-    }
-*/
-    return;
-//     //old function
-//     if (topLeft.column() == VocabularyModel::Translation) {
-//         QString word = topLeft.data().toString();
-//         QString fromLanguage = m_document->document()->identifier(0).locale();
-//         
-//         //iterate through all the translation columns
-//         for (int i = topLeft.column()+N; i < topLeft.model()->columnCount(topLeft.parent()); i += N) {
-//             QString toLanguage = m_document->document()->identifier(i / N).locale();
-//             kDebug() << word << fromLanguage << toLanguage;
-//             //the scripts will receive a signal to translate this word
-//             m_scriptObjectParley->callTranslateWord(word,fromLanguage,toLanguage);
-//         }
-//     }
-}
 
 ///@todo move it in KEduVocDocument
 int indexOfIdentifier(KEduVocDocument* document, const QString& locale) {
@@ -1039,40 +985,6 @@ int indexOfIdentifier(KEduVocDocument* document, const QString& locale) {
     return -1;
 }
 
-void ParleyApp::slotTranslationFinished(const QString & word,const QString& fromLanguage,const QString& toLanguage)
-{
-    if (!m_translator->getTranslation(word,fromLanguage,toLanguage))
-        return;
-    return;
-
-//     m_vocabularyModel->
-
-//     kDebug() << "Translation Finised";
-
-    //get identifiers
-    int fromIdentifier = indexOfIdentifier(m_document->document(),fromLanguage);
-    int toIdentifier = indexOfIdentifier(m_document->document(),toLanguage);
-
-    if (fromIdentifier == -1 || toIdentifier == -1) return;
-//     kDebug() << fromIdentifier << toIdentifier;
-    int N = VocabularyModel::EntryColumnsMAX;
-
-    //iterate through all the lesson rows (entries) and fill up the empty cells, if a translation is available
-    for (int r = 0; r < m_vocabularyModel->rowCount(QModelIndex()); r++) {
-        const QModelIndex& fromIndex = m_vocabularyModel->index(r,fromIdentifier * N,QModelIndex());
-        const QModelIndex& toIndex = m_vocabularyModel->index(r,toIdentifier * N, QModelIndex());
-
-//         kDebug() << fromIndex.data().toString() << toIndex.data().toString();
-
-        if (fromIndex.data().toString() == word && toIndex.data().toString().isEmpty()) {
-            QString firstTranslation = *(m_translator->getTranslation(word,fromLanguage,toLanguage)->begin());
-//             kDebug() << "First translation: " << firstTranslation;
-//             kDebug() << fromIndex;
-//             kDebug() << toIndex;
-            m_vocabularyModel->setData(toIndex,firstTranslation,Qt::EditRole);
-        }
-    }
-}
 
 void ParleyApp::setShowWelcomeScreen(bool show)
 {
