@@ -40,6 +40,12 @@ class Translator;
  *       - Expression (known as Entry in functions)
  *         - Translation (inherits Text)
  *   - Identifier
+ *
+ * <h3> How to create a new Parley script (full example) </h3>
+ *
+ * <b> First Step - Create desktop file and script file</b>
+ *
+ * Each Parley script must be accompanied by a .desktop file, both in the kde applications folder (usually /usr/share/apps
  */
 namespace Scripting
 {

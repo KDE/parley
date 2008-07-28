@@ -64,6 +64,8 @@
 //     return t1.toLanguage < t2.toLanguage;
 // }
 
+#include "../parley.h"
+
 /**
 Keeps the translated words
 
@@ -73,6 +75,7 @@ class Translator
 {
     public:
         Translator();
+        Translator(ParleyApp * parent);
 
         ~Translator();
         void addTranslation ( QString word, QString fromLanguage, QString toLanguage, QString translation );
@@ -82,6 +85,7 @@ class Translator
 //         QMap<Translation,QStringList*> m_translations;
          QMap<QString,QSet<QString>*> m_translations;
 //          QHash<QString,QStringList*> m_translations;
+        ParleyApp * m_parent;
 };
 
 #endif

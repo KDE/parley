@@ -34,32 +34,36 @@
 #include <QDBusInterface>
 
 
-VocabularyDelegate::VocabularyDelegate(QObject *parent) : QItemDelegate(parent)
+VocabularyDelegate::VocabularyDelegate ( QObject *parent ) : QItemDelegate ( parent )
 {
     m_doc = 0;
     m_translator = 0;
 }
 
-QSet<QString> VocabularyDelegate::getTranslations(const QModelIndex & index) const
+QSet<QString> VocabularyDelegate::getTranslations ( const QModelIndex & index ) const
 {
+    if ( Prefs::automaticTranslation() == false ) return QSet<QString>();
+
     QSet<QString> translations; //translations of this column from all the other languages
-            
+
     int language = index.column() / VocabularyModel::EntryColumnsMAX;
-    QString toLanguage = m_doc->identifier(language).locale();
+    QString toLanguage = m_doc->identifier ( language ).locale();
 
     //iterate through all the Translation columns
-    for (int i = 0; i < index.model()->columnCount(index.parent()); i ++) {
-        if (VocabularyModel::columnType(i) == VocabularyModel::Translation) //translation column
+    for ( int i = 0; i < index.model()->columnCount ( index.parent() ); i ++ )
+    {
+        if ( VocabularyModel::columnType ( i ) == VocabularyModel::Translation ) //translation column
         {
-            QString fromLanguage = m_doc->identifier(VocabularyModel::translation(i)).locale();
-            QString word = index.model()->index(index.row(),i,QModelIndex()).data().toString();
+            QString fromLanguage = m_doc->identifier ( VocabularyModel::translation ( i ) ).locale();
+            QString word = index.model()->index ( index.row(),i,QModelIndex() ).data().toString();
 
-            if (fromLanguage != toLanguage) {
-                kDebug() << fromLanguage << toLanguage << word;
+            if ( fromLanguage != toLanguage )
+            {
+//                 kDebug() << fromLanguage << toLanguage << word;
                 //get the word translations and add them to the translations set
-                QSet<QString> * tr = m_translator->getTranslation(word,fromLanguage,toLanguage);
-                if (tr)
-                    translations.unite(*(tr));
+                QSet<QString> * tr = m_translator->getTranslation ( word,fromLanguage,toLanguage );
+                if ( tr )
+                    translations.unite ( * ( tr ) );
             }
         }
     }
@@ -67,193 +71,227 @@ QSet<QString> VocabularyDelegate::getTranslations(const QModelIndex & index) con
     return translations;
 }
 
-QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index) const
+QWidget * VocabularyDelegate::createEditor ( QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index ) const
 {
-    Q_UNUSED(option); /// as long as it's unused
+    Q_UNUSED ( option ); /// as long as it's unused
 
-    if (!index.isValid()) {
+    if ( !index.isValid() )
+    {
         return 0;
     }
 
-    switch (VocabularyModel::columnType(index.column())) {
-    case VocabularyModel::WordType: {
-        if (!m_doc) return 0;
-        KComboBox *wordTypeCombo = new KComboBox(parent);
+    switch ( VocabularyModel::columnType ( index.column() ) )
+    {
+        case VocabularyModel::WordType:
+        {
+            if ( !m_doc ) return 0;
+            KComboBox *wordTypeCombo = new KComboBox ( parent );
 
-        WordTypeBasicModel *basicWordTypeModel = new WordTypeBasicModel(parent);
-        wordTypeCombo->setModel(basicWordTypeModel);
-        QTreeView *view = new QTreeView(parent);
+            WordTypeBasicModel *basicWordTypeModel = new WordTypeBasicModel ( parent );
+            wordTypeCombo->setModel ( basicWordTypeModel );
+            QTreeView *view = new QTreeView ( parent );
 
-        view->setModel(basicWordTypeModel);
-        wordTypeCombo->setView(view);
+            view->setModel ( basicWordTypeModel );
+            wordTypeCombo->setView ( view );
 
-        view->header()->setVisible(false);
-        view->setRootIsDecorated(true);
+            view->header()->setVisible ( false );
+            view->setRootIsDecorated ( true );
 
-        basicWordTypeModel->setDocument(m_doc);
-        view->expandAll();
+            basicWordTypeModel->setDocument ( m_doc );
+            view->expandAll();
 
-        kDebug() << "index data" << index.data().toString();
-        //view->setCurrentItem();
+            kDebug() << "index data" << index.data().toString();
+            //view->setCurrentItem();
 
-        return wordTypeCombo;
-    }
-
-    case VocabularyModel::Translation: {
-        if (!m_doc || !m_translator) return 0;
-
-        if (VocabularyModel::columnType( index.column() ) == VocabularyModel::Translation) {
-
-            //get the translations of this word
-            QSet<QString> translations = getTranslations(index);
-
-            //create combo box
-            //if there is only one word and that is the suggestion word (in translations) then don't create the combobox
-            if (!translations.isEmpty() && !(translations.size() == 1 && (*translations.begin()) == index.model()->data(index, Qt::DisplayRole).toString())) {
-
-                QComboBox *translationCombo = new QComboBox(parent);
-                translationCombo->setFrame(false);
-
-                translationCombo->addItems(translations.toList());
-
-                translationCombo->setEditable(true);
-                translationCombo->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
-                translationCombo->setEditText(index.model()->data(index, Qt::DisplayRole).toString());
-
-                return translationCombo;
-            }
+            return wordTypeCombo;
         }
-    }
 
-    default: {
+        case VocabularyModel::Translation:
+        {
+            if ( !m_doc || !m_translator ) return 0;
 
-        KLineEdit *editor = new KLineEdit(parent);
-        editor->setFrame(false);
-        editor->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
-        editor->setText(index.model()->data(index, Qt::DisplayRole).toString());
+            if ( VocabularyModel::columnType ( index.column() ) == VocabularyModel::Translation )
+            {
 
-        QString locale = index.model()->data(index, VocabularyModel::LocaleRole).toString();
-        if(!locale.isEmpty()) {
-            LanguageSettings settings(locale);
-            settings.readConfig();
-            QString layout = settings.keyboardLayout();
-            if(!layout.isEmpty()) {
-                QDBusInterface kxkb( "org.kde.kxkb", "/kxkb", "org.kde.KXKB" );
-                if (kxkb.isValid()) {
-                kxkb.call( "setLayout", layout );
+                //get the translations of this word
+//                 kDebug() << "Translating now ...";
+                QSet<QString> translations = getTranslations ( index );
+//                 kDebug() << "Translating finished now ...";
+//                 kDebug() << translations.toList();
+
+                //create combo box
+                //if there is only one word and that is the suggestion word (in translations) then don't create the combobox
+                if ( !translations.isEmpty() && ! ( translations.size() == 1 && ( *translations.begin() ) == index.model()->data ( index, Qt::DisplayRole ).toString() ) )
+                {
+
+                    QComboBox *translationCombo = new QComboBox ( parent );
+                    translationCombo->setFrame ( false );
+
+                    translationCombo->addItems ( translations.toList() );
+
+                    translationCombo->setEditable ( true );
+                    translationCombo->setFont ( index.model()->data ( index, Qt::FontRole ).value<QFont>() );
+                    translationCombo->setEditText ( index.model()->data ( index, Qt::DisplayRole ).toString() );
+
+                    return translationCombo;
                 }
             }
         }
-        connect(editor, SIGNAL(returnPressed()), this, SLOT(commitAndCloseEditor()));
 
-        //add auto completion to KLineEdit for translation columns
+        default:
+        {
+
+            KLineEdit *editor = new KLineEdit ( parent );
+            editor->setFrame ( false );
+            editor->setFont ( index.model()->data ( index, Qt::FontRole ).value<QFont>() );
+            editor->setText ( index.model()->data ( index, Qt::DisplayRole ).toString() );
+
+            QString locale = index.model()->data ( index, VocabularyModel::LocaleRole ).toString();
+            if ( !locale.isEmpty() )
+            {
+                LanguageSettings settings ( locale );
+                settings.readConfig();
+                QString layout = settings.keyboardLayout();
+                if ( !layout.isEmpty() )
+                {
+                    QDBusInterface kxkb ( "org.kde.kxkb", "/kxkb", "org.kde.KXKB" );
+                    if ( kxkb.isValid() )
+                    {
+                        kxkb.call ( "setLayout", layout );
+                    }
+                }
+            }
+            connect ( editor, SIGNAL ( returnPressed() ), this, SLOT ( commitAndCloseEditor() ) );
+
+            //add auto completion to KLineEdit for translation columns
 //         if (VocabularyModel::columnType(index.column()) == VocabularyModel::Translation) {
-// 
+//
 //             QStringList list;
 //             list.push_back("car");
 //             list.push_back("auto");
-// 
+//
 //             KCompletion * completion = editor->completionObject();
 //             editor->setCompletionMode(KGlobalSettings::CompletionPopupAuto);
 //             completion->insertItems(list);
 //         }
-        return editor;
-    }
-    }
-}
-
-void VocabularyDelegate::setEditorData(QWidget * editor, const QModelIndex & index) const
-{
-    if (!index.isValid()) {
-        return;
-    }
-
-    switch (VocabularyModel::columnType(index.column())) {
-    case (VocabularyModel::Translation): {
-        QString value = index.model()->data(index, Qt::DisplayRole).toString();
-        QComboBox * translationCombo = qobject_cast<QComboBox*>(editor);
-        if (translationCombo) {
-            translationCombo->setEditText(value);
-            break;
-        }
-    }
-    default: {
-        QString value = index.model()->data(index, Qt::DisplayRole).toString();
-
-        KLineEdit *lineEdit = qobject_cast<KLineEdit*>(editor);
-        if (lineEdit) {
-            lineEdit->setText(value);
-        }
+            return editor;
         }
     }
 }
 
-void VocabularyDelegate::setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const
+void VocabularyDelegate::setEditorData ( QWidget * editor, const QModelIndex & index ) const
 {
-    if (!index.isValid()) {
+    if ( !index.isValid() )
+    {
         return;
     }
 
-    switch (VocabularyModel::columnType(index.column())) {
-    case (VocabularyModel::WordType): {
-        kDebug() << "word type editor";
-        KComboBox *combo = qobject_cast<KComboBox*>(editor);
-        if (!combo) {
-            return;
+    switch ( VocabularyModel::columnType ( index.column() ) )
+    {
+        case ( VocabularyModel::Translation ) :
+        {
+            QString value = index.model()->data ( index, Qt::DisplayRole ).toString();
+            QComboBox * translationCombo = qobject_cast<QComboBox*> ( editor );
+            if ( translationCombo )
+            {
+                if ( value.isNull() )
+                {
+                    QSet<QString> translations = getTranslations ( index );
+                    if ( translations.size() > 0 )
+                        value = *translations.begin();
+                }
+                translationCombo->setEditText ( value );
+                break;
+            }
         }
-        kDebug() << "combo" << combo->currentText();
-        QModelIndex comboIndex = combo->view()->currentIndex();
-        KEduVocWordType* wordType = static_cast<KEduVocWordType*>(comboIndex.internalPointer());
+        default:
+        {
+            QString value = index.model()->data ( index, Qt::DisplayRole ).toString();
 
-        // the root is the same as no word type
-        if (wordType && wordType->parent() == 0) {
-            wordType = 0;
-        }
-
-        VocabularyFilter *filter = qobject_cast<VocabularyFilter*>(model);
-        VocabularyModel *vocModel = qobject_cast<VocabularyModel*>((filter)->sourceModel());
-Q_ASSERT(vocModel);
-        QVariant data = vocModel->data(filter->mapToSource(index), VocabularyModel::EntryRole);
-
-        KEduVocExpression *expression = data.value<KEduVocExpression*>();
-Q_ASSERT(expression);
-        int translationId = VocabularyModel::translation(index.column());
-
-        expression->translation(translationId)->setWordType(wordType);
-
-    }
-    case (VocabularyModel::Translation): {
-        QComboBox * translationCombo = qobject_cast<QComboBox*>(editor);
-        if (translationCombo) {
-            model->setData(index,translationCombo->currentText());
-            break;
+            KLineEdit *lineEdit = qobject_cast<KLineEdit*> ( editor );
+            if ( lineEdit )
+            {
+                lineEdit->setText ( value );
+            }
         }
     }
-    default: {
-        KLineEdit *lineEdit = qobject_cast<KLineEdit*>(editor);
-        if (!lineEdit) {
-            return;
-        }
-        QString value = lineEdit->text();
-        model->setData(index, value);
+}
+
+void VocabularyDelegate::setModelData ( QWidget * editor, QAbstractItemModel * model, const QModelIndex & index ) const
+{
+    if ( !index.isValid() )
+    {
+        return;
     }
+
+    switch ( VocabularyModel::columnType ( index.column() ) )
+    {
+        case ( VocabularyModel::WordType ) :
+        {
+            kDebug() << "word type editor";
+            KComboBox *combo = qobject_cast<KComboBox*> ( editor );
+            if ( !combo )
+            {
+                return;
+            }
+            kDebug() << "combo" << combo->currentText();
+            QModelIndex comboIndex = combo->view()->currentIndex();
+            KEduVocWordType* wordType = static_cast<KEduVocWordType*> ( comboIndex.internalPointer() );
+
+            // the root is the same as no word type
+            if ( wordType && wordType->parent() == 0 )
+            {
+                wordType = 0;
+            }
+
+            VocabularyFilter *filter = qobject_cast<VocabularyFilter*> ( model );
+            VocabularyModel *vocModel = qobject_cast<VocabularyModel*> ( ( filter )->sourceModel() );
+            Q_ASSERT ( vocModel );
+            QVariant data = vocModel->data ( filter->mapToSource ( index ), VocabularyModel::EntryRole );
+
+            KEduVocExpression *expression = data.value<KEduVocExpression*>();
+            Q_ASSERT ( expression );
+            int translationId = VocabularyModel::translation ( index.column() );
+
+            expression->translation ( translationId )->setWordType ( wordType );
+
+        }
+        case ( VocabularyModel::Translation ) :
+        {
+            QComboBox * translationCombo = qobject_cast<QComboBox*> ( editor );
+            if ( translationCombo )
+            {
+                model->setData ( index,translationCombo->currentText() );
+                break;
+            }
+        }
+        default:
+        {
+            KLineEdit *lineEdit = qobject_cast<KLineEdit*> ( editor );
+            if ( !lineEdit )
+            {
+                return;
+            }
+            QString value = lineEdit->text();
+            model->setData ( index, value );
+        }
     }
 }
 
 void VocabularyDelegate::commitAndCloseEditor()
 {
-    QWidget *editor = qobject_cast<QWidget *>(sender());
+    QWidget *editor = qobject_cast<QWidget *> ( sender() );
     kDebug() << "Committing and closing\n";
-    emit commitData(editor);
-    emit closeEditor(editor, QAbstractItemDelegate::EditNextItem);
+    emit commitData ( editor );
+    emit closeEditor ( editor, QAbstractItemDelegate::EditNextItem );
 }
 
-void VocabularyDelegate::setCurrentIndex(const QModelIndex & index)
+void VocabularyDelegate::setCurrentIndex ( const QModelIndex & index )
 {
     m_currentIndex = index;
 }
 
-void VocabularyDelegate::setDocument(KEduVocDocument * doc)
+void VocabularyDelegate::setDocument ( KEduVocDocument * doc )
 {
     m_doc = doc;
 }
@@ -276,14 +314,15 @@ QPair< QString, QString > VocabularyDelegate::guessWordType(const QString & entr
 */
 
 
-VocabularyDelegate::WordTypeBasicModel::WordTypeBasicModel(QObject * parent)
-    :BasicContainerModel(KEduVocContainer::WordType, parent)
+VocabularyDelegate::WordTypeBasicModel::WordTypeBasicModel ( QObject * parent )
+        :BasicContainerModel ( KEduVocContainer::WordType, parent )
 {
 }
 
 KEduVocContainer * VocabularyDelegate::WordTypeBasicModel::rootContainer() const
 {
-    if (!m_doc) {
+    if ( !m_doc )
+    {
         return 0;
     }
     return m_doc->wordTypeContainer();
@@ -294,7 +333,7 @@ KEduVocContainer * VocabularyDelegate::WordTypeBasicModel::rootContainer() const
  * Sets the member variable m_translator to a Translator object
  * @param translator Translator Object to be used for retreiving word translations
  */
-void VocabularyDelegate::setTranslator(Translator* translator)
+void VocabularyDelegate::setTranslator ( Translator* translator )
 {
     m_translator = translator;
 }

@@ -61,6 +61,7 @@
 #include "scripts/scriptdialog.h"
 #include "scripts/scripting/parley.h"
 #include "scripts/scripting/expression.h"
+#include "scripts/translator.h"
 
 #include "welcomescreen/welcomescreen.h"
 
@@ -956,13 +957,14 @@ void ParleyApp::removeGrades()
 
 void ParleyApp::initScripts()
 {
+    m_translator = new Translator(this);
     m_scriptManager = new ScriptManager(this);
 
-    m_vocabularyView->setTranslator(&m_translator);
+    m_vocabularyView->setTranslator(m_translator);
 
     //add Scripting::Parley
     m_scriptObjectParley = new Scripting::Parley(this);
-    m_scriptObjectParley->setTranslator(&m_translator);
+    m_scriptObjectParley->setTranslator(m_translator);
     m_scriptManager->addObject ( m_scriptObjectParley,"Parley" );
 
     //add Scripting::Expression
@@ -985,7 +987,7 @@ void ParleyApp::initScripts()
 
 void ParleyApp::slotTranslateWords(const QModelIndex & topLeft, const QModelIndex & bottomRight)
 {
-    if (Prefs::automaticTranslation() == false) return;
+/*    if (Prefs::automaticTranslation() == false) return;
 
     //translate only if the change was made in a translation column
     if (!(VocabularyModel::columnType( topLeft.column() ) == VocabularyModel::Translation)) return;
@@ -1012,7 +1014,7 @@ void ParleyApp::slotTranslateWords(const QModelIndex & topLeft, const QModelInde
             m_scriptObjectParley->callTranslateWord(word,fromLanguage,toLanguage);
         }
     }
-
+*/
     return;
 //     //old function
 //     if (topLeft.column() == VocabularyModel::Translation) {
@@ -1029,6 +1031,7 @@ void ParleyApp::slotTranslateWords(const QModelIndex & topLeft, const QModelInde
 //     }
 }
 
+///@todo move it in KEduVocDocument
 int indexOfIdentifier(KEduVocDocument* document, const QString& locale) {
     for (int i = 0; i < document->identifierCount(); i++)
         if (document->identifier(i).locale() == locale)
@@ -1038,8 +1041,11 @@ int indexOfIdentifier(KEduVocDocument* document, const QString& locale) {
 
 void ParleyApp::slotTranslationFinished(const QString & word,const QString& fromLanguage,const QString& toLanguage)
 {
-    if (!m_translator.getTranslation(word,fromLanguage,toLanguage))
+    if (!m_translator->getTranslation(word,fromLanguage,toLanguage))
         return;
+    return;
+
+//     m_vocabularyModel->
 
 //     kDebug() << "Translation Finised";
 
@@ -1059,7 +1065,7 @@ void ParleyApp::slotTranslationFinished(const QString & word,const QString& from
 //         kDebug() << fromIndex.data().toString() << toIndex.data().toString();
 
         if (fromIndex.data().toString() == word && toIndex.data().toString().isEmpty()) {
-            QString firstTranslation = *(m_translator.getTranslation(word,fromLanguage,toLanguage)->begin());
+            QString firstTranslation = *(m_translator->getTranslation(word,fromLanguage,toLanguage)->begin());
 //             kDebug() << "First translation: " << firstTranslation;
 //             kDebug() << fromIndex;
 //             kDebug() << toIndex;

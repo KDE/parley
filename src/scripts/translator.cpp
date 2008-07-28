@@ -20,6 +20,12 @@ Translator::Translator()
 {
 }
 
+Translator::Translator ( ParleyApp * parent )
+    : m_parent(parent)
+{
+
+}
+
 
 Translator::~Translator()
 {
@@ -34,7 +40,7 @@ Translator::~Translator()
  */
 void Translator::addTranslation ( QString word, QString fromLanguage, QString toLanguage, QString translation )
 {
-    if (word.trimmed() == "") return;
+    if ( word.trimmed() == "" ) return;
 //     Translation t( word,fromLanguage,toLanguage );
     QString t = word+fromLanguage+toLanguage;
     kDebug() << m_translations.contains ( t );
@@ -54,9 +60,15 @@ void Translator::addTranslation ( QString word, QString fromLanguage, QString to
  */
 QSet<QString>* Translator::getTranslation ( QString word, QString fromLanguage, QString toLanguage )
 {
+    if (word.isEmpty() || fromLanguage.isEmpty() || toLanguage.isEmpty()) return 0;
 //     Translation t(word,fromLanguage,toLanguage);
     QString t = word+fromLanguage+toLanguage;
     kDebug() << t;
+
+    kDebug() << m_translations.contains(t);
+    if (!m_translations.contains(t))
+        m_parent->m_scriptObjectParley->callTranslateWord(word,fromLanguage,toLanguage);
+
     if ( m_translations.contains ( t ) )
         return m_translations.value ( t );
     else

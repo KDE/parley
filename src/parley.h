@@ -30,7 +30,7 @@
 
 // #include "scripts/scriptmanager.h"
 #include "scripts/scripting/parley.h"
-#include "scripts/translator.h"
+// #include "scripts/translator.h"
 
 #include <KXmlGuiWindow>
 #include <KUrl>
@@ -59,6 +59,7 @@ class WordTypeModel;
 class LeitnerModel;
 class ConjugationWidget;
 class ScriptManager;
+class Translator;
 
 /**
   * This Class is the base class for your application. It sets up the main
@@ -232,6 +233,7 @@ private:
     friend class ParleyDocument;
     friend class Scripting::Parley;
     friend class ScriptManager;
+    friend class Translator;
 
     /// the name of the executable
     QString m_appName;
@@ -243,7 +245,7 @@ private:
     Scripting::Parley* m_scriptObjectParley;
 
     ///stores all the translations of a vocabulary word
-    Translator m_translator;
+    Translator* m_translator;
 
     QList<QDockWidget*> m_dockWidgets;
     QList<bool> m_dockWidgetVisibility;
