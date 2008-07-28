@@ -10,4 +10,6 @@ File management is done in ParleyDocument
 
 The plasma part consists of ParleyPlasma and ParleyEngine
 
+Parley supports Kross scripts. See the scripting API documentation in the Scripting namespace
+
 */
