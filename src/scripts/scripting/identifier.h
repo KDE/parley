@@ -104,7 +104,7 @@ namespace Scripting
              * Returns the article in the given @p number, definiteness (@p definite) and @p gender
              * @param number Article number. Values: "Singular", "Dual", "Plural"
              * @param definite Article definiteness. Values: "Definite", "Indefinite"
-             * @param gender Article gender. Values: "Masculine", "Feminine", "Neutral"
+             * @param gender Article gender. Values: "Masculine", "Feminine", "Neuter"
              * @return A string containing the requested article. Empty string if does not exist
              */
             QString article ( KEduVocArticle::ArticleNumber number, KEduVocArticle::ArticleDefiniteness definite, KEduVocArticle::ArticleGender gender );
@@ -114,7 +114,7 @@ namespace Scripting
              * @param article The article to set
              * @param number Article number. Values: "Singular", "Dual", "Plural"
              * @param definite Article definiteness. Values: "Definite", "Indefinite"
-             * @param gender Article gender. Values: "Masculine", "Feminine", "Neutral"
+             * @param gender Article gender. Values: "Masculine", "Feminine", "Neuter"
              */
             void setArticle ( const QString& article, KEduVocArticle::ArticleNumber number, KEduVocArticle::ArticleDefiniteness definite, KEduVocArticle::ArticleGender gender );
 

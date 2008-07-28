@@ -290,13 +290,13 @@ void ParleyDocument::initializeDefaultGrammar()
     noun->setWordType(KEduVocWordType::Noun);
     root->appendChildContainer(noun);
 
-    KEduVocWordType *nounChild = new KEduVocWordType(i18n("Male"), noun);
+    KEduVocWordType *nounChild = new KEduVocWordType(i18n("Masculine"), noun);
     nounChild->setWordType(KEduVocWordType::NounMale);
     noun->appendChildContainer(nounChild);
-    nounChild = new KEduVocWordType(i18n("Female"), noun);
+    nounChild = new KEduVocWordType(i18n("Feminine"), noun);
     nounChild->setWordType(KEduVocWordType::NounFemale);
     noun->appendChildContainer(nounChild);
-    nounChild = new KEduVocWordType(i18n("Neutral"), noun);
+    nounChild = new KEduVocWordType(i18n("Neuter"), noun);
     nounChild->setWordType(KEduVocWordType::NounNeutral);
     noun->appendChildContainer(nounChild);
 

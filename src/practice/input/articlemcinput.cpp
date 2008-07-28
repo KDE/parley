@@ -42,9 +42,9 @@ void ArticleMCInput::slotSetAnswers(PracticeEntry* currentEntry)
     // set the choices
     if(articles.isEmpty())
     {
-        list.append(i18nc("@label the gender of the word: Masculine", "Male"));
-        list.append(i18nc("@label the gender of the word: Female", "Female"));
-        list.append(i18nc("@label the gender of the word: Neutral", "Neutral"));
+        list.append(i18nc("@label the gender of the word: Masculine", "Masculine"));
+        list.append(i18nc("@label the gender of the word: Feminine", "Feminine"));
+        list.append(i18nc("@label the gender of the word: Neuter", "Neuter"));
     }
     else
     {
@@ -58,7 +58,7 @@ void ArticleMCInput::slotSetAnswers(PracticeEntry* currentEntry)
         } else {
             article = def + indef;
         }
-        list.append(i18nc("@label the gender of the word: male", "Male:\t") + article);
+        list.append(i18nc("@label the gender of the word: masculine", "Masculine:\t") + article);
 
         def = articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Feminine );
         indef = articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Feminine );
@@ -68,7 +68,7 @@ void ArticleMCInput::slotSetAnswers(PracticeEntry* currentEntry)
         } else {
             article = def + indef;
         }
-        list.append(i18nc("@label the gender of the word: female", "Female:\t") + article);
+        list.append(i18nc("@label the gender of the word: feminine", "Feminine:\t") + article);
 
         def = articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Neutral );
         indef = articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Neutral );
@@ -79,7 +79,7 @@ void ArticleMCInput::slotSetAnswers(PracticeEntry* currentEntry)
             article = def + indef;
         }
         if (!(!neutral && male && female))
-            list.append(i18nc("@label the gender of the word: neutral", "Neutral:\t") + article);
+            list.append(i18nc("@label the gender of the word: neuter", "Neuter:\t") + article);
     }
 
     setAvailableAnswers(list);

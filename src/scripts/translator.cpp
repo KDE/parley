@@ -40,7 +40,7 @@ void Translator::addTranslation ( QString word, QString fromLanguage, QString to
     kDebug() << m_translations.contains ( t );
     if ( !m_translations.contains ( t ) )
         m_translations[t] = new QSet<QString>();
-    m_translations[t]->insert ( translation );
+    m_translations[t]->insert ( translation.simplified() );
 //     m_translations[t]->push_back ( translation );
 }
 

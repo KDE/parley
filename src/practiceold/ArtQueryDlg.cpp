@@ -109,9 +109,9 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
 
     // set the choices
     if(articles.isEmpty()) {
-        mw->maleRadio->setText(i18nc("@label the gender of the word: male", "&male"));
-        mw->femaleRadio->setText(i18nc("@label the gender of the word: female", "&female"));
-        mw->neutralRadio->setText(i18nc("@label the gender of the word: neutral", "&neutral"));
+        mw->maleRadio->setText(i18nc("@label the gender of the word: masculine", "&masculine"));
+        mw->femaleRadio->setText(i18nc("@label the gender of the word: feminine", "&feminine"));
+        mw->neutralRadio->setText(i18nc("@label the gender of the word: neuter", "&neuter"));
     } else {
         def = articles.article( singular, definite, male );
         indef = articles.article( singular, indefinite, male );
@@ -122,7 +122,7 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
         } else {
             article = def + indef;
         }
-        mw->maleRadio->setText(i18nc("@label the gender of the word: male", "&male:\t") + article);
+        mw->maleRadio->setText(i18nc("@label the gender of the word: masculine", "&masculine:\t") + article);
 
         def = articles.article( singular, definite, female );
         indef = articles.article( singular, indefinite, female );
@@ -132,7 +132,7 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
         } else {
             article = def + indef;
         }
-        mw->femaleRadio->setText(i18nc("@label the gender of the word: female", "&female:\t") + article);
+        mw->femaleRadio->setText(i18nc("@label the gender of the word: feminine", "&feminine:\t") + article);
 
         def = articles.article( singular, definite, neutral );
         indef = articles.article( singular, indefinite, neutral );
@@ -145,7 +145,7 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
         if (!neutral && male && female) {
             mw->neutralRadio->setVisible(false);
         } else {
-            mw->neutralRadio->setText(i18nc("@label the gender of the word: neutral", "&neutral:\t") + article);
+            mw->neutralRadio->setText(i18nc("@label the gender of the word: neuter", "&neuter:\t") + article);
             mw->neutralRadio->setVisible(true);
         }
     }

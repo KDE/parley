@@ -79,27 +79,27 @@ WordTypeView::WordTypeView(ParleyApp * parent) :ContainerView(parent)
 
     m_nounMaleAction = new KAction(this);
     parent->actionCollection()->addAction("wordtype_nounMale", m_nounMaleAction);
-    m_nounMaleAction->setText(i18n("Male Noun"));
+    m_nounMaleAction->setText(i18n("Masculine Noun"));
     m_nounMaleAction->setCheckable(true);
-    m_nounMaleAction->setWhatsThis(i18n("This word type folder contains male nouns."));
+    m_nounMaleAction->setWhatsThis(i18n("This word type folder contains masculine nouns."));
     m_nounMaleAction->setToolTip(m_nounMaleAction->whatsThis());
     m_nounMaleAction->setStatusTip(m_nounMaleAction->whatsThis());
     m_nounMaleAction->setStatusTip(m_nounMaleAction->whatsThis());
 
     m_nounFemaleAction = new KAction(this);
     parent->actionCollection()->addAction("wordtype_nounFemale", m_nounFemaleAction);
-    m_nounFemaleAction->setText(i18n("Female Noun"));
+    m_nounFemaleAction->setText(i18n("Feminine Noun"));
     m_nounFemaleAction->setCheckable(true);
-    m_nounFemaleAction->setWhatsThis(i18n("This word type folder contains female nouns."));
+    m_nounFemaleAction->setWhatsThis(i18n("This word type folder contains feminine nouns."));
     m_nounFemaleAction->setToolTip(m_nounFemaleAction->whatsThis());
     m_nounFemaleAction->setStatusTip(m_nounFemaleAction->whatsThis());
     m_nounFemaleAction->setStatusTip(m_nounFemaleAction->whatsThis());
 
     m_nounNeutralAction = new KAction(this);
     parent->actionCollection()->addAction("wordtype_nounNeutral", m_nounNeutralAction);
-    m_nounNeutralAction->setText(i18n("Neutral Noun"));
+    m_nounNeutralAction->setText(i18n("Neuter Noun"));
     m_nounNeutralAction->setCheckable(true);
-    m_nounNeutralAction->setWhatsThis(i18n("This word type folder contains neutral nouns."));
+    m_nounNeutralAction->setWhatsThis(i18n("This word type folder contains neuter nouns."));
     m_nounNeutralAction->setToolTip(m_nounNeutralAction->whatsThis());
     m_nounNeutralAction->setStatusTip(m_nounNeutralAction->whatsThis());
     m_nounNeutralAction->setStatusTip(m_nounNeutralAction->whatsThis());
