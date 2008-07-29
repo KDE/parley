@@ -41,11 +41,36 @@ class Translator;
  *         - Translation (inherits Text)
  *   - Identifier
  *
- * <h3> How to create a new Parley script (full example) </h3>
+ * <h3>How to create a new Parley script (full example)</h3>
  *
- * <b> First Step - Create desktop file and script file</b>
+ * <b>First Step - Create desktop file and script file</b>
  *
- * Each Parley script must be accompanied by a .desktop file, both in the kde applications folder (usually /usr/share/apps
+ * Each Parley script must be accompanied by a .desktop file, both put in the parley data folder (probably in  /usr/share/apps/parley/plugins/). In this example the desktop file is "example.desktop" and the script file is "example.py".
+ *
+ * The desktop file provides information about the script func.....
+ *
+ * Content of example.desktop (/usr/share/apps/parley/plugins/example.desktop)
+ *
+@code
+[Desktop Entry]
+Encoding=UTF-8
+Icon=mypluginicon
+Type=Service
+ServiceTypes=KPluginInfo
+
+Name=Example Parley Script
+Comment=Uses Google Dictionary (translate.google.com) to translate words
+Script=example.py
+
+X-KDE-PluginInfo-Author=Avgoustinos Kadis
+X-KDE-PluginInfo-Email=avgoustinos.kadis@kdemail.net
+X-KDE-PluginInfo-Name=parley_example_script
+X-KDE-PluginInfo-Version=1.1
+X-KDE-PluginInfo-Website=http://edu.kde.org/parley
+X-KDE-PluginInfo-Category=translation
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-EnabledByDefault=true
+@endcode
  */
 namespace Scripting
 {
