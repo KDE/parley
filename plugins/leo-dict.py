@@ -86,8 +86,8 @@ def translateWord(word,from_lang,to_lang):
   print "dict-leo.py - Translating",word,from_lang,to_lang
   data = fetchData(word,locale(from_lang),locale(to_lang))
   if data != None:
-    print "Data Fetched for word",word
-    print data
+    print "Data Fetched for",word
+    #print data
   #print data
   parser = parseData(data,word,from_lang,to_lang)
   #return parser.words
@@ -135,14 +135,14 @@ class myParser(SGMLParser):
   #checks if the word contained by this <td> (self.td_data) matches the keyword. If yes then the corresponding td_data (previous/next two) is added as a translation
   def end_td(self):
     #print "end of a table data"
-    print "-" ,self.td_data , "-"
-    print myParser.clearWord(self,self.td_data)
+    #print "-" ,self.td_data , "-"
+    #print myParser.clearWord(self,self.td_data)
 
     self.td_data = myParser.clearWord(self,self.td_data)
 
     #matching on the second column (german) and getting the translation from 2 column's on the left
     if self.td_data.lower() == self.word.lower(): #found word
-      print self.td_data
+      #print self.td_data
       self.keyword_found = True
       if self.from_lang == "de": #then get the one that is two td_data behind (using the stack)
         #print "Translation: ", self.td_data_stack[0]
