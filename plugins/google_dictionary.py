@@ -5,9 +5,10 @@ import urllib2
 import urllib
 from sgmllib import SGMLParser
 import Parley
+import re
 
 # timeout of search (important for slow connections, not to freeze Parley by waiting for a result)
-timeout = 0.3
+timeout = 1.0
 socket.setdefaulttimeout(timeout)
 
 # fetches the html document for the given word and language pair
@@ -102,7 +103,8 @@ class myParser(SGMLParser):
         self.words.append(data.strip())
         #print self.word, self.from_lang, self.to_lang
         if self.stop == False:
-            Parley.addTranslation(self.word,self.from_lang,self.to_lang,data.strip())
+          w = self.clearWord(data)
+          Parley.addTranslation(self.word,self.from_lang,self.to_lang,w)
   
   def unknown_endtag(self,tag):
     myParser.remove_not_closed_tags(self,tag)
@@ -114,3 +116,19 @@ class myParser(SGMLParser):
   def remove_not_closed_tags(self,tag):
     while len(self.tags_stack) > 0 and self.tags_stack[len(self.tags_stack)-1] != tag:
       self.tags_stack.pop()
+
+  #cleans up the given word from parentheses etc
+  def clearWord(self,word):
+    #word = "b[lue] socks (and) red shoes"
+    p = re.compile( '(jmdn\.|etw\.)')
+    word = p.sub( '', word)
+    p = re.compile( '(\(.*\))')
+    word = p.sub( '', word)
+    p = re.compile( '(\[.*\])')
+    word = p.sub( '', word)
+    p = re.compile( '(\W)',re.UNICODE)
+    word = p.sub( ' ', word)
+    #replace double spaces produced from the previous ones
+    p = re.compile( '(\s\s)')
+    word = p.sub( ' ', word)
+    return word.strip()
