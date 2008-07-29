@@ -201,7 +201,9 @@ def actionFunction():
   print "Action called!!"
   #for entry in Parley.doc.rootLesson.entries(True):
     #print entry.translationTexts()
-  testSetEntries()
+  #testSetEntries()
+  for entry in Parley.selectedEntries():
+    print entry.translationTexts()
   #testEnums()
   #tryArticle()
   #GermanArticles()

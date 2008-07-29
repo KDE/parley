@@ -5,6 +5,7 @@ install(FILES
    test3.desktop
    google_dictionary.desktop
    leo-dict.desktop
+   example.desktop
    DESTINATION ${DATA_INSTALL_DIR}/parley/plugins)
 
 # for now on the same directory but later maybe somewhere else
@@ -14,4 +15,5 @@ install(FILES
    myscript3.py
    google_dictionary.py
    leo-dict.py
+   example.py
    DESTINATION ${DATA_INSTALL_DIR}/parley/plugins)
