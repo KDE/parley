@@ -1,0 +1,185 @@
+#!/usr/bin/env kross
+
+import socket
+import urllib2
+import urllib
+from sgmllib import SGMLParser
+import Parley
+import re
+
+#german to french (Glas) [links off]
+#http://dict.leo.org/frde?lp=frde&lang=de&searchLoc=1&cmpType=relaxed&sectHdr=on&spellToler=on&chinese=both&pinyin=diacritic&search=Glas&relink=off
+
+#german to spanish (Glas)
+#http://dict.leo.org/esde?lp=esde&lang=de&searchLoc=1&cmpType=relaxed&sectHdr=on&spellToler=std&chinese=both&pinyin=diacritic&search=Glas&relink=on
+
+#spanish to german (tarro)
+#http://dict.leo.org/esde?lp=esde&lang=de&searchLoc=-1&cmpType=relaxed&sectHdr=on&spellToler=std&chinese=both&pinyin=diacritic&search=tarro&relink=on
+
+#spanish to german (tarro) [links off]
+#http://dict.leo.org/esde?lp=esde&lang=de&searchLoc=-1&cmpType=relaxed&sectHdr=on&spellToler=std&chinese=both&pinyin=diacritic&search=tarro&relink=off
+
+# timeout of search (important for slow connections, not to freeze Parley by waiting for a result)
+timeout = 1.0
+socket.setdefaulttimeout(timeout)
+
+def languageString(from_lang,to_lang):
+  combined = from_lang + "-" + to_lang
+  A = { 'es-de': 'esde', 'de-es':'esde', 'fr-de':'frde', 'de-fr':'frde', 'en-de':'ende', 'de-en':'ende', 'it-de':'itde', 'de-it':'itde', 'ch-de':'chde', 'de-ch':'chde' }
+  if (A.has_key(combined)):
+    return A[combined]
+  else:
+    return None
+
+def searchLoc(from_lang,to_lang):
+  if from_lang == "de":
+    return 1
+  return -1
+
+# fetches the html document for the given word and language pair
+def fetchData(word,from_lang,to_lang):
+  locale = languageString(from_lang,to_lang)
+  if locale == None:
+    return #not supported languages
+  url = "http://dict.leo.org/"+locale
+  #esde?lp=esde&lang=de&searchLoc=-1&cmpType=relaxed&sectHdr=on&spellToler=std&chinese=both&pinyin=diacritic&search=tarro&relink=off
+  params = [("lp",locale),("lang","de"),("searchLoc",searchLoc(from_lang,to_lang)),("cmpType","relaxed"),("sectHdr","on"),("spellToler","std"),("chinese","both"),("pinyin","diacritic"),("search",word),("relink","off")]
+
+  #param_word_trn = ("q",word)       #set query parameter
+  #param_lang_pair = ("langpair",from_lang+"|"+to_lang)
+  request_url = url + "?" + urllib.urlencode(params)
+  #print request_url
+  try:
+    results = urllib2.urlopen(request_url)
+    return results.read()
+  except:
+    #in case of error not to return incompleted results
+    return ""
+
+#parses data and returns the parser object (that contains the translations/langpairs found)
+def parseData(data,word,from_lang,to_lang):
+  p = myParser()
+  p.word = word
+  p.from_lang = from_lang
+  p.to_lang = to_lang
+  p.feed(data)
+  p.close()
+  return p
+
+#corrects the difference between the locale names of Parley and the google dictionary
+def locale(lang):
+  if lang == "en_US":
+    return "en"
+  if lang == "en_GB":
+    return "en"
+  if lang == "zh_TW":
+    return "zh-TW"
+  if lang == "zh_HK":
+    return "zh-HK"
+  if lang == "zh_CN":
+    return "zh-CN"
+
+  return lang
+
+# called by Parley to translate the word
+def translateWord(word,from_lang,to_lang):
+  print "dict-leo.py - Translating",word,from_lang,to_lang
+  data = fetchData(word,locale(from_lang),locale(to_lang))
+  #print data
+  parser = parseData(data,word,from_lang,to_lang)
+  #return parser.words
+
+# called by Parley to retrieve the language pairs provided by this script
+# should return: [("en","fr"),("en","de")] for translation from english to french and english to german
+def getLanguagePairs():
+  data = fetchData("ignorethis","en","fr")
+  parser = parseData(data)
+  return map(split_langpair,parser.langpairs)
+
+# function to split a language pair string into a tuple
+def split_langpair(s):
+  [f,t] = s.split("|",1)
+  return (f,t)
+
+# ------------ HTML Parser ----------- #
+
+class myParser(SGMLParser):
+  #for every start_tagname function you add you have to make sure the tag is added to the self.tags_stack
+
+  def reset(self):
+    SGMLParser.reset(self)
+    self.tags_stack = []
+    self.td_data_stack = []
+    self.in_results_table = False
+    self.td_data = ""
+    self.td_after = 0
+    self.keyword_found = False
+    self.in_translation_td = False
+    self.in_small = False
+
+  def start_table(self,attrs):
+    if ("id","results") in attrs:
+      print "In Results Table"
+    self.in_results_table = True
+    
+  def start_small(self,attrs):
+    self.in_small = True
+    
+  def end_small(self):
+    self.in_small = False
+    
+  def end_td(self):
+    #print "end of a table data"
+    print "-" ,self.td_data , "-"
+    print myParser.clearWord(self,self.td_data)
+    self.td_data = myParser.clearWord(self,self.td_data)
+    
+    if self.td_data.lower() == self.word.lower(): #found word
+      print self.td_data
+      self.keyword_found = True
+      if self.from_lang == "de": #then get the one that is two td_data behind (using the stack)
+        print "Translation: ", self.td_data_stack[0]
+        Parley.addTranslation(self.word,self.from_lang,self.to_lang,self.td_data_stack[0].strip())
+    if self.in_translation_td: #found translation
+      if self.from_lang != "de":
+        print "Translation: ", self.td_data
+        Parley.addTranslation(self.word,self.from_lang,self.to_lang,self.td_data.strip())
+      self.in_translation_td = False
+      self.td_after = 0
+      self.keyword_found = False
+    self.td_data_stack.append(self.td_data)
+    if len(self.td_data_stack) > 2:
+      self.td_data_stack.pop(0)
+    self.td_data = ""
+      
+  def start_td(self,attrs):
+    if self.keyword_found == True:
+        self.td_after += 1
+        if self.td_after == 2:
+          self.in_translation_td = True
+
+  def handle_data(self,data):
+    if self.in_small:
+      return
+    self.td_data += data
+     
+  def clearWord(self,word):
+    #word = "b[lue] socks (and) red shoes"
+    p = re.compile( '(jmdn\.|etw\.)')
+    word = p.sub( '', word)
+
+    p = re.compile( '(\(.*\))')
+    word = p.sub( '', word)
+    #print word
+    p = re.compile( '(\[.*\])')
+    word = p.sub( '', word)
+    #print word
+    p = re.compile( '([-+,])')
+    word = p.sub( ' ', word)
+    #print word
+    p = re.compile( '(\s\s)')
+    word = p.sub( ' ', word)
+    #print word
+    return word.strip()
+
+

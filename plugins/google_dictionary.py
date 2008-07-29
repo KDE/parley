@@ -7,7 +7,7 @@ from sgmllib import SGMLParser
 import Parley
 
 # timeout of search (important for slow connections, not to freeze Parley by waiting for a result)
-timeout = 0.5
+timeout = 0.3
 socket.setdefaulttimeout(timeout)
 
 # fetches the html document for the given word and language pair

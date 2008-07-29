@@ -1,0 +1,18 @@
+[Desktop Entry]
+Encoding=UTF-8
+Icon=mypluginicon
+Type=Service
+ServiceTypes=KPluginInfo
+
+Name=LEO Dictionary (Translation)
+Comment=Uses LEO Dictionary (dict.leo.org) to translate words
+Script=leo-dict.py
+
+X-KDE-PluginInfo-Author=Avgoustinos Kadis
+X-KDE-PluginInfo-Email=avgoustinos.kadis@kdemail.net
+X-KDE-PluginInfo-Name=leo_dict
+X-KDE-PluginInfo-Version=1.1
+X-KDE-PluginInfo-Website=http://edu.kde.org/parley
+X-KDE-PluginInfo-Category=translation
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-EnabledByDefault=true
