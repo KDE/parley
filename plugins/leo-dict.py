@@ -85,6 +85,9 @@ def locale(lang):
 def translateWord(word,from_lang,to_lang):
   print "dict-leo.py - Translating",word,from_lang,to_lang
   data = fetchData(word,locale(from_lang),locale(to_lang))
+  if data != None:
+    print "Data Fetched for word",word
+    print data
   #print data
   parser = parseData(data,word,from_lang,to_lang)
   #return parser.words
@@ -108,7 +111,7 @@ class myParser(SGMLParser):
 
   def reset(self):
     SGMLParser.reset(self)
-    self.tags_stack = []
+    #self.tags_stack = []
     self.td_data_stack = []
     self.in_results_table = False
     self.td_data = ""
@@ -118,40 +121,54 @@ class myParser(SGMLParser):
     self.in_small = False
 
   def start_table(self,attrs):
+    #mark the results table
     if ("id","results") in attrs:
-      print "In Results Table"
-    self.in_results_table = True
+      self.in_results_table = True
     
+  #to ignore the <small> tags
   def start_small(self,attrs):
     self.in_small = True
     
-  def end_small(self):
-    self.in_small = False
+  #def end_small(self):
+    #self.in_small = False
     
+  #checks if the word contained by this <td> (self.td_data) matches the keyword. If yes then the corresponding td_data (previous/next two) is added as a translation
   def end_td(self):
     #print "end of a table data"
     print "-" ,self.td_data , "-"
     print myParser.clearWord(self,self.td_data)
+
     self.td_data = myParser.clearWord(self,self.td_data)
-    
+
+    #matching on the second column (german) and getting the translation from 2 column's on the left
     if self.td_data.lower() == self.word.lower(): #found word
       print self.td_data
       self.keyword_found = True
       if self.from_lang == "de": #then get the one that is two td_data behind (using the stack)
-        print "Translation: ", self.td_data_stack[0]
+        #print "Translation: ", self.td_data_stack[0]
         Parley.addTranslation(self.word,self.from_lang,self.to_lang,self.td_data_stack[0].strip())
+
+    #matching on the first column (not german) and getting the translation from 2 column's on the right
     if self.in_translation_td: #found translation
       if self.from_lang != "de":
-        print "Translation: ", self.td_data
+        #print "Translation: ", self.td_data
         Parley.addTranslation(self.word,self.from_lang,self.to_lang,self.td_data.strip())
       self.in_translation_td = False
       self.td_after = 0
       self.keyword_found = False
+
+    #append td_data on the stack that keeps the last two ones
     self.td_data_stack.append(self.td_data)
+    
+    #make it keep only the last 2 td_data (works since we append only one item at a time)
     if len(self.td_data_stack) > 2:
       self.td_data_stack.pop(0)
+
     self.td_data = ""
-      
+    
+    self.in_small = False
+
+  #marks in which <td> to be able to count 2 more <td>'s and find our translation
   def start_td(self,attrs):
     if self.keyword_found == True:
         self.td_after += 1
@@ -163,23 +180,20 @@ class myParser(SGMLParser):
       return
     self.td_data += data
      
+  #cleans up the given word from parentheses etc
   def clearWord(self,word):
     #word = "b[lue] socks (and) red shoes"
     p = re.compile( '(jmdn\.|etw\.)')
     word = p.sub( '', word)
-
     p = re.compile( '(\(.*\))')
     word = p.sub( '', word)
-    #print word
     p = re.compile( '(\[.*\])')
     word = p.sub( '', word)
-    #print word
-    p = re.compile( '([-+,])')
+    p = re.compile( '(\W)',re.UNICODE)
     word = p.sub( ' ', word)
-    #print word
+    #replace double spaces produced from the previous ones
     p = re.compile( '(\s\s)')
     word = p.sub( ' ', word)
-    #print word
     return word.strip()
 
 
