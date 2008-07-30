@@ -154,54 +154,89 @@ namespace Scripting
             /// Currently active lesson
             Q_PROPERTY ( QObject * activeLesson READ activeLesson )
 
-            Q_ENUMS ( Number Case Person Gender Definiteness )
+//             Q_ENUMS ( Number Case Person Gender Definiteness )
+            Q_ENUMS ( Flags )
 
         public:
-            ///Conjugation/Declension number
-            enum Number
+
+            enum Flags
             {
-                Singular = 0,
-                Dual,
-                Plural
+                // This is used for both empty flags and to denote no flags of the correct type were set.
+                NoInformation = 0x0,
+
+                // Gender
+                Masculine = 0x1,
+                Feminine = 0x2,
+                Neuter = 0x4,
+
+                // Plurality
+                Singular = 0x10,
+                Dual = 0x20,
+                Plural = 0x40,
+
+                // Part of Speech
+                Verb = 0x100,
+                Noun = 0x200,
+                Pronoun = 0x400,
+                Adjective = 0x800,
+                Adverb = 0x1000,
+                Article = 0x2000,
+                Conjunction = 0x4000,
+                OtherPartOfSpeech = 0x8000,
+
+                // Other assorted flags
+                Regular = 0x10000, // Regular verb conjugation
+                Irregular = 0x20000, // Irregular verb conjugation
+                Phrase = 0x40000, // The 'word' is actually a phrase
+                Definite = 0x80000, // The article is definite
+                Indefinite = 0x100000, // The article is indefinite
             };
+
+            ///Conjugation/Declension number
+//             enum Number
+//             {
+//                 Singular = 0,
+//                 Dual,
+//                 Plural
+//             };
 
             ///Declension case
-            enum Case
-            {
-                Nominative = 0,
-                Genitive,
-                Dative,
-                Accusative,
-                Ablative,
-                Locative,
-                Vocative
-            };
+//             enum Case
+//             {
+//                 Nominative = 0,
+//                 Genitive,
+//                 Dative,
+//                 Accusative,
+//                 Ablative,
+//                 Locative,
+//                 Vocative
+//             };
 
             ///Conjugation Person
-            enum Person
-            {
-                First,
-                Second,
-                ThirdMale,
-                ThirdFemale,
-//                 ThirdNeutralCommon
-                Third ///use this for Third Neutral form as well
-            };
+//             enum Person
+//             {
+//                 First,
+//                 Second,
+//                 ThirdMale,
+//                 ThirdFemale,
+// //                 ThirdNeutralCommon
+//                 Third ///use this for Third Neutral form as well
+//             };
 
             ///Conjugation gender
-            enum Gender
-            {
-                Masculine,
-                Feminine,
-                Neutral
-            };
+//             enum Gender
+//             {
+//                 Masculine,
+//                 Feminine,
+//                 Neutral
+//             };
 
             ///Article Definiteness
-            enum Definiteness
-            {
-                Definite,
-                Indefinite
-            };
+//             enum Definiteness
+//             {
+//                 Definite,
+//                 Indefinite
+//             };
 
             Parley ( ParleyApp * parley );
 

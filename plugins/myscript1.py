@@ -1,5 +1,7 @@
 #!/usr/bin/env kross
 import Parley
+#from PyQt4 import QtCore, QtGui
+
 
 def init():
   print "init: myscript1"
@@ -66,6 +68,9 @@ def registerActions():
   Parley.connect(newaction,"triggered()",actionFunction)
   
   newaction2 = Parley.newAction("my_script1","My script 2a")
+  Parley.connect(newaction2,"triggered()",actionFunction2)
+  
+  newaction3 = Parley.newAction("my_script1","pyKDE")
   Parley.connect(newaction2,"triggered()",actionFunction2)
   return
 
@@ -158,6 +163,20 @@ def tryArticle():
   print newid.article(Parley.Singular,Parley.Definite,Parley.Neutral)
   index = Parley.doc.appendIdentifier(newid)
   
+def tryArticle2():
+   #add new one
+  newid = Parley.doc.newIdentifier()
+  newid.name = "English"
+  newid.locale = "en_US"
+  newid.setArticle("o",Parley.Singular|Parley.Definite|Parley.Masculine)
+  newid.setArticle("h",Parley.Singular|Parley.Definite|Parley.Feminine)
+  newid.setArticle("to",Parley.Singular|Parley.Definite|Parley.Neuter)
+  newid.setArticle("ta",Parley.Singular|Parley.Indefinite|Parley.Masculine)
+  #newid.setPersonalPronoun("oi",Parley.Plural,Parley.First)
+  #print newid.personalPronoun(Parley.Plural,Parley.First)
+  print newid.article(Parley.Singular|Parley.Definite|Parley.Neuter)
+  index = Parley.doc.appendIdentifier(newid)
+  
 def GermanArticles():
     newid = Parley.doc.newIdentifier()
     newid.name = "German"
@@ -202,10 +221,10 @@ def actionFunction():
   #for entry in Parley.doc.rootLesson.entries(True):
     #print entry.translationTexts()
   #testSetEntries()
-  for entry in Parley.selectedEntries():
-    print entry.translationTexts()
+  #for entry in Parley.selectedEntries():
+    #print entry.translationTexts()
   #testEnums()
-  #tryArticle()
+  tryArticle2()
   #GermanArticles()
   #newDocument()
   #conjugations()

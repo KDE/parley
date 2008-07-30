@@ -16,6 +16,7 @@
 #define SCRIPTINGIDENTIFIER_H
 
 #include <keduvocidentifier.h>
+#include <keduvocwordflags.h>
 
 #include <QObject>
 
@@ -107,7 +108,7 @@ namespace Scripting
              * @param gender Article gender. Values: "Masculine", "Feminine", "Neuter"
              * @return A string containing the requested article. Empty string if does not exist
              */
-            QString article ( KEduVocArticle::ArticleNumber number, KEduVocArticle::ArticleDefiniteness definite, KEduVocArticle::ArticleGender gender );
+            QString article ( const KEduVocWordFlags& flags );
 
             /**
              * Sets the article in the given @p number, definiteness (@p definite) and @p gender
@@ -116,7 +117,7 @@ namespace Scripting
              * @param definite Article definiteness. Values: "Definite", "Indefinite"
              * @param gender Article gender. Values: "Masculine", "Feminine", "Neuter"
              */
-            void setArticle ( const QString& article, KEduVocArticle::ArticleNumber number, KEduVocArticle::ArticleDefiniteness definite, KEduVocArticle::ArticleGender gender );
+            void setArticle ( const QString& article, const KEduVocWordFlags& flags );
 
             /**** Personal Pronoun Functions ****/
 

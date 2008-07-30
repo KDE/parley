@@ -43,16 +43,16 @@ namespace Scripting
     {
     }
 
-    QString Identifier::article ( KEduVocArticle::ArticleNumber number, KEduVocArticle::ArticleDefiniteness definite, KEduVocArticle::ArticleGender gender )
+    QString Identifier::article ( const KEduVocWordFlags& flags )
     {
-        return m_identifier->article().article ( number,definite,gender );
+        return m_identifier->article().article ( flags );
     }
 
 
-    void Identifier::setArticle ( const QString& article, KEduVocArticle::ArticleNumber number, KEduVocArticle::ArticleDefiniteness definite, KEduVocArticle::ArticleGender gender )
+    void Identifier::setArticle ( const QString& article, const KEduVocWordFlags& flags )
     {
         KEduVocArticle karticle = m_identifier->article();
-        karticle.setArticle ( article, number, definite, gender );
+        karticle.setArticle ( article, flags );
         m_identifier->setArticle ( karticle );
     }
 
