@@ -46,6 +46,8 @@ ParleyPlasma::ParleyPlasma(QObject *parent, const QVariantList &args)
 
 void ParleyPlasma::init()
 {
+    m_theme->size().height();
+
     KConfigGroup cg = config();
     m_updateInterval = cg.readEntry("updateInterval", 10000);
     m_solutionType = cg.readEntry("Solution", 0);
@@ -55,18 +57,10 @@ void ParleyPlasma::init()
 
     m_engine = dataEngine("parley");
 
-//     setContentType(SingleImage);
-    m_theme->size().height();
-
     m_label1 = new QGraphicsTextItem(this);
     m_label2 = new QGraphicsTextItem(this);
-
-//     m_label1->setDefaultTextColor(Qt::blue);
-//     m_label2->setDefaultTextColor(Qt::red);
-
     m_label1->setPos( m_theme->elementRect( "translation1" ).topLeft() );
     m_label2->setPos( m_theme->elementRect( "translation2" ).topLeft() );
-
     m_label1->setFont(cg.readEntry("font",m_font));
     m_label2->setFont(cg.readEntry("font",m_font));
 
