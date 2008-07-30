@@ -116,7 +116,7 @@ void ConjugationWidget::setTranslation(KEduVocExpression * entry, int identifier
 
     setEnabled(true);
     if (entry->translation(m_identifier)->wordType()
-            && entry->translation(m_identifier)->wordType()->wordType() == KEduVocWordType::Verb) {
+            && entry->translation(m_identifier)->wordType()->wordType() & KEduVocWordFlag::Verb) {
         // if it's a verb already, hide the make verb button and start editing it
         showConjugationEditWidgets();
         updateEntries();
@@ -158,7 +158,7 @@ void ConjugationWidget::slotMakeVerb()
     }
 
     // find an adverb container
-    KEduVocWordType* container = m_doc->wordTypeContainer()->childOfType(KEduVocWordType::Verb);
+    KEduVocWordType* container = m_doc->wordTypeContainer()->childOfType(KEduVocWordFlag::Verb);
     if (container) {
         m_entry->translation(m_identifier)->setWordType(container);
         showConjugationEditWidgets();

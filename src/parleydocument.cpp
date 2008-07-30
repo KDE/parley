@@ -287,29 +287,29 @@ void ParleyDocument::initializeDefaultGrammar()
 {
     KEduVocWordType *root = m_doc->wordTypeContainer();
     KEduVocWordType *noun = new KEduVocWordType(i18n("Noun"), root);
-    noun->setWordType(KEduVocWordType::Noun);
+    noun->setWordType(KEduVocWordFlag::Noun);
     root->appendChildContainer(noun);
 
     KEduVocWordType *nounChild = new KEduVocWordType(i18n("Masculine"), noun);
-    nounChild->setWordType(KEduVocWordType::NounMale);
+    nounChild->setWordType(KEduVocWordFlag::Noun | KEduVocWordFlag::Masculine);
     noun->appendChildContainer(nounChild);
     nounChild = new KEduVocWordType(i18n("Feminine"), noun);
-    nounChild->setWordType(KEduVocWordType::NounFemale);
+    nounChild->setWordType(KEduVocWordFlag::Noun | KEduVocWordFlag::Feminine);
     noun->appendChildContainer(nounChild);
     nounChild = new KEduVocWordType(i18n("Neuter"), noun);
-    nounChild->setWordType(KEduVocWordType::NounNeutral);
+    nounChild->setWordType(KEduVocWordFlag::Noun | KEduVocWordFlag::Neuter);
     noun->appendChildContainer(nounChild);
 
     KEduVocWordType *verb = new KEduVocWordType(i18n("Verb"), root);
-    verb->setWordType(KEduVocWordType::Verb);
+    verb->setWordType(KEduVocWordFlag::Verb);
     root->appendChildContainer(verb);
 
     KEduVocWordType *adjective = new KEduVocWordType(i18n("Adjective"), root);
-    adjective->setWordType(KEduVocWordType::Adjective);
+    adjective->setWordType(KEduVocWordFlag::Adjective);
     root->appendChildContainer(adjective);
 
     KEduVocWordType *adverb = new KEduVocWordType(i18n("Adverb"), root);
-    adverb->setWordType(KEduVocWordType::Adverb);
+    adverb->setWordType(KEduVocWordFlag::Adverb);
     root->appendChildContainer(adverb);
 }
 

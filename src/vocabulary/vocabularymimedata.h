@@ -28,7 +28,7 @@ public:
     struct MimeExpression {
         struct WordTypeStrings {
             QStringList wordType; // better have this hierarchical
-            KEduVocWordType::EnumWordType grammarType;
+            KEduVocWordFlags grammarType;
         };
 
         // all data as deep copy

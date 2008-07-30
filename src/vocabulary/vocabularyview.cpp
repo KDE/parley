@@ -172,61 +172,61 @@ void VocabularyView::setModel(VocabularyFilter * model)
 //     painter.setBrush(Qt::NoBrush);
 //     int res = pPrinter->resolution();
 //     int marg = res;
-// 
+//
 //     int pw;
 //     int c = 0;
 //     int currentWidth;
 //     int startCol;
 //     int pageNum = 1;
-// 
+//
 //     int colCount = model()->columnCount(QModelIndex());
 //     int hh = horizontalHeader()->height();
 //     int tPos = marg + hh;
-// 
+//
 //     QStyleOptionViewItem option;
 //     option.initFrom(this);
-// 
+//
 //     painter.begin(pPrinter);
 //     QRect w = painter.window();
 //     QRect cr;
-// 
+//
 //     pw = w.width() - (2 * marg);
-// 
+//
 //     while (c < colCount) {
 //         startCol = c;
 //         currentWidth = marg;
-// 
+//
 //         while ((currentWidth < pw) && (c < colCount)) {
 //             currentWidth = currentWidth + columnWidth(c);
 //             c++;
 //         }
 //         if (c < colCount)
 //             c--;
-// 
+//
 //         newPage(painter, res, startCol, c);
-// 
+//
 //         for (int rc = 0; rc < model()->rowCount(QModelIndex()); ++rc) {
 //             int rh = rowHeight(rc);
-// 
+//
 //             painter.resetMatrix();
 //             painter.setFont(Prefs::tableFont());
 //             painter.translate(marg, tPos);
-// 
+//
 //             for (int i = startCol; i <= c && i < colCount; ++i) {
 //                 cr.setRect(0, 0, columnWidth(i), rh);
 //                 option.displayAlignment = Qt::AlignLeft | Qt::AlignVCenter;
 //                 option.rect = cr;
 //                 painter.drawRect(cr);
 //                 painter.save();
-// 
+//
 //                 itemDelegate()->paint(&painter, option, model()->index(rc, i));
 //                 painter.restore();
-// 
+//
 //                 painter.translate(columnWidth(i), 0);
 //             }
-// 
+//
 //             tPos = tPos + rowHeight(rc);
-// 
+//
 //             if (tPos + rowHeight(rc + 1) > w.height() - marg) {
 //                 endOfPage(painter, pageNum++, res);
 //                 tPos = marg + hh;
@@ -235,7 +235,7 @@ void VocabularyView::setModel(VocabularyFilter * model)
 //             }
 //         }
 //         endOfPage(painter, pageNum++, res);
-// 
+//
 //         if (c < colCount) {
 //             pPrinter->newPage();
 //             tPos = marg + hh;
@@ -244,7 +244,7 @@ void VocabularyView::setModel(VocabularyFilter * model)
 //     }
 //     painter.end();
 // }
-// 
+//
 // void VocabularyView::newPage(QPainter & painter, int res, int startCol, int endCol)
 // {
 //     int marg = res;
@@ -266,7 +266,7 @@ void VocabularyView::setModel(VocabularyFilter * model)
 //         painter.translate(cw, 0);
 //     }
 // }
-// 
+//
 // void VocabularyView::endOfPage(QPainter & painter, int pageNum, int res)
 // {
 //     painter.resetMatrix();
@@ -275,28 +275,28 @@ void VocabularyView::setModel(VocabularyFilter * model)
 //     QRect r = painter.boundingRect(0, 0, 0, 0, Qt::AlignLeft, QString::number(pageNum));
 //     painter.drawText((w.width()/2) - (r.width()/2), w.height() - res + 20, QString::number(pageNum));
 // }
-// 
+//
 // void VocabularyView::resizeEvent(QResizeEvent * event)
 // {
 //     QWidget::resizeEvent(event);
-// 
+//
 // //     if (event == 0) {
 // //         return;
 // //     }
-// 
+//
 //     if ( !model() || (model()->columnCount() < 3) ) {
 //         return;
 //     }
-// 
+//
 //     QHeaderView * header = horizontalHeader();
 //     int colCount =  model()->columnCount(QModelIndex());
 //     int oldWidth = 0;
-// 
+//
 //     for (int i = 0; i < colCount; ++i)
 //         oldWidth += header->sectionSize(i);
-// 
+//
 //     int newWidth = viewport()->width();
-// 
+//
 //     switch (Prefs::headerResizeMode()) {
 //     case Prefs::EnumHeaderResizeMode::Automatic: {
 //             // lesson is only half as wide as a original/translation
@@ -306,31 +306,31 @@ void VocabularyView::setModel(VocabularyFilter * model)
 //                 newWidth -= KV_COLWIDTH_MARK;
 //                 header->resizeSection(KV_COL_MARK, KV_COLWIDTH_MARK);
 //             }
-// 
+//
 //             int columnsHalfWidth;
 //             if ( Prefs::tableLessonColumnVisible() ) {
-//                 // total width / ((total number of columns - active column) * 2 -1 lesson only half) 
+//                 // total width / ((total number of columns - active column) * 2 -1 lesson only half)
 //                 columnsHalfWidth = newWidth / ((colCount - 1) * 2 -1);
 //                 header->resizeSection(KV_COL_LESS, columnsHalfWidth);
 //             } else {
 //                 columnsHalfWidth = newWidth / ((colCount - 2) * 2);
 //             }
-// 
+//
 //             for (int currentColumn = KV_COL_TRANS; currentColumn < colCount; currentColumn++) {
 //                 header->resizeSection(currentColumn, 2 * columnsHalfWidth);
 //             }
 //         }
 //         break;
-// 
+//
 //     case Prefs::EnumHeaderResizeMode::Percent: {
 //             float grow = float(newWidth) / float(oldWidth);
 //             header->resizeSection(KV_COL_MARK, KV_COLWIDTH_MARK);
-// 
+//
 //             int remainder = newWidth - KV_COLWIDTH_MARK;
 //             int x = qMax(HEADER_MINSIZE, (int)((header->sectionSize(KV_COL_LESS) * grow) + 0.5));
 //             header->resizeSection(KV_COL_LESS, x);
 //             remainder -= x;
-// 
+//
 //             for (int i = KV_COL_TRANS; i < colCount - 1; i++) {
 //                 x = qMax(HEADER_MINSIZE, (int)((header->sectionSize(i) * grow) + 0.5));
 //                 remainder -= x;
@@ -339,13 +339,13 @@ void VocabularyView::setModel(VocabularyFilter * model)
 //             header->resizeSection(colCount - 1, qMax(HEADER_MINSIZE, remainder));
 //         }
 //         break;
-// 
+//
 //     case Prefs::EnumHeaderResizeMode::Fixed:
 //         // do nothing
 //         break;
 //     }
 // }
-// 
+//
 // void VocabularyView::showEvent(QShowEvent * event)
 // {
 //     QWidget::showEvent(event);
@@ -516,7 +516,7 @@ void VocabularyView::slotEditPaste()
                 pasteExpression->translation(translation)->setWordType(type);
                 // check for special type stuff
                 if (type->wordType() != mimeEntry.wordTypes.value(translation).grammarType) {
-                    if (type->wordType() == KEduVocWordType::General) {
+                    if (type->wordType() == KEduVocWordFlag::NoInformation) {
                         type->setWordType(mimeEntry.wordTypes.value(translation).grammarType);
                     }
                 }
@@ -594,7 +594,7 @@ void VocabularyView::setDocument(KEduVocDocument * doc)
 
 /**
  * Set the translator to be used by the delegate
- * @param translator 
+ * @param translator
  */
 void VocabularyView::setTranslator(Translator* translator)
 {

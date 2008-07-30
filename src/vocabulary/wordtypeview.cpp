@@ -265,83 +265,82 @@ void WordTypeView::contextMenuEvent(QContextMenuEvent * event)
     m_actionSpecialTypeMenu->setEnabled(selectedIndex.parent() != QModelIndex());
 
     if (selectedIndex.isValid()) {
-        switch(static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer())->wordType()) {
-        case KEduVocWordType::General:
+        KEduVocWordFlags t = (static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer())->wordType());
+
+        if (!t)
             m_noneAction->setChecked(true);
-            break;
-        case KEduVocWordType::Noun:
-            m_nounAction->setChecked(true);
-            break;
-        case KEduVocWordType::NounMale:
+
+        else if (t.testFlag(KEduVocWordFlag::Noun) && t.testFlag(KEduVocWordFlag::Masculine))
             m_nounMaleAction->setChecked(true);
-            break;
-        case KEduVocWordType::NounFemale:
+
+        else if (t.testFlag(KEduVocWordFlag::Noun) && t.testFlag(KEduVocWordFlag::Feminine))
             m_nounFemaleAction->setChecked(true);
-            break;
-        case KEduVocWordType::NounNeutral:
+
+        else if (t.testFlag(KEduVocWordFlag::Noun) && t.testFlag(KEduVocWordFlag::Neuter))
             m_nounNeutralAction->setChecked(true);
-            break;
-        case KEduVocWordType::Adjective:
+
+        else if (t.testFlag(KEduVocWordFlag::Noun))
+            m_nounAction->setChecked(true);
+
+        else if (t.testFlag(KEduVocWordFlag::Adjective))
             m_adjectiveAction->setChecked(true);
-            break;
-        case KEduVocWordType::Adverb:
+
+        else if (t.testFlag(KEduVocWordFlag::Adverb))
             m_adverbAction->setChecked(true);
-            break;
-        case KEduVocWordType::Verb:
+
+        else if (t.testFlag(KEduVocWordFlag::Verb))
             m_verbAction->setChecked(true);
-            break;
-        }
     }
-    
+
     QMenu::exec(actions(), event->globalPos());
 }
 
 void WordTypeView::setWordTypeNone()
 {
     KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
-    wordType->setWordType(KEduVocWordType::General);
+    wordType->setWordType(KEduVocWordFlag::NoInformation);
 }
 
 void WordTypeView::setWordTypeNoun()
 {
     KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
-    wordType->setWordType(KEduVocWordType::Noun);
+    wordType->setWordType(KEduVocWordFlag::Noun);
 }
 
 void WordTypeView::setWordTypeNounMale()
 {
     KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
-    wordType->setWordType(KEduVocWordType::NounMale);
+    wordType->setWordType(KEduVocWordFlag::Noun | KEduVocWordFlag::Masculine);
 }
 
 void WordTypeView::setWordTypeNounFemale()
 {
     KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
-    wordType->setWordType(KEduVocWordType::NounFemale);
+    wordType->setWordType(KEduVocWordFlag::Noun | KEduVocWordFlag::Feminine);
 }
 
 void WordTypeView::setWordTypeNounNeutral()
 {
     KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
-    wordType->setWordType(KEduVocWordType::NounNeutral);
+    wordType->setWordType(KEduVocWordFlag::Noun | KEduVocWordFlag::Neuter);
 }
 
 void WordTypeView::setWordTypeAdjective()
 {
     KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
-    wordType->setWordType(KEduVocWordType::Adjective);
+    wordType->setWordType(KEduVocWordFlag::Adjective);
 }
 
 void WordTypeView::setWordTypeAdverb()
 {
     KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
-    wordType->setWordType(KEduVocWordType::Adverb);
+    wordType->setWordType(KEduVocWordFlag::Adverb);
 }
 
 void WordTypeView::setWordTypeVerb()
 {
     KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
-    wordType->setWordType(KEduVocWordType::Verb);
+    wordType->setWordType(KEduVocWordFlag::Verb);
 }
 
 

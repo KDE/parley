@@ -43,14 +43,14 @@ LangPropPage::LangPropPage(KEduVocDocument *doc, int identifierIndex, QWidget *p
     // articles
     KEduVocArticle articles = m_doc->identifier(m_identifierIndex).article();
 
-    def_male->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Masculine ));
-    indef_male->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Masculine ));
+    def_male->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Definite | KEduVocWordFlag::Masculine ));
+    indef_male->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Masculine ));
 
-    def_female->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Feminine ));
-    indef_female->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Feminine ));
+    def_female->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Definite | KEduVocWordFlag::Feminine ));
+    indef_female->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Feminine ));
 
-    def_natural->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Neutral ));
-    indef_natural->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Neutral ));
+    def_natural->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Definite | KEduVocWordFlag::Neuter ));
+    indef_natural->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Neuter ));
 
     // personal pronouns
     const KEduVocConjugation::ConjugationNumber numS = KEduVocConjugation::Singular;
@@ -92,21 +92,21 @@ LangPropPage::LangPropPage(KEduVocDocument *doc, int identifierIndex, QWidget *p
 void LangPropPage::accept()
 {
     // articles
-    const KEduVocArticle::ArticleNumber artSing = KEduVocArticle::Singular;
-    const KEduVocArticle::ArticleNumber artDual = KEduVocArticle::Dual;
-    const KEduVocArticle::ArticleNumber artPlur = KEduVocArticle::Plural;
+    const KEduVocWordFlag::Flags artSing = KEduVocWordFlag::Singular;
+    const KEduVocWordFlag::Flags artDual = KEduVocWordFlag::Dual;
+    const KEduVocWordFlag::Flags artPlur = KEduVocWordFlag::Plural;
 
-    const KEduVocArticle::ArticleDefiniteness artDef = KEduVocArticle::Definite;
-    const KEduVocArticle::ArticleDefiniteness artIndef = KEduVocArticle::Indefinite;
+    const KEduVocWordFlag::Flags artDef = KEduVocWordFlag::Definite;
+    const KEduVocWordFlag::Flags artIndef = KEduVocWordFlag::Indefinite;
 
     KEduVocArticle article;
 
-    article.setArticle( def_male->text(),  artSing, artDef, KEduVocArticle::Masculine );
-    article.setArticle( indef_male->text(),  artSing, artIndef, KEduVocArticle::Masculine );
-    article.setArticle( def_female->text(),  artSing, artDef, KEduVocArticle::Feminine );
-    article.setArticle( indef_female->text(),  artSing, artIndef, KEduVocArticle::Feminine );
-    article.setArticle( def_natural->text(),  artSing, artDef, KEduVocArticle::Neutral );
-    article.setArticle( indef_natural->text(),  artSing, artIndef, KEduVocArticle::Neutral );
+    article.setArticle( def_male->text(),  artSing | artDef | KEduVocWordFlag::Masculine );
+    article.setArticle( indef_male->text(),  artSing | artIndef | KEduVocWordFlag::Masculine );
+    article.setArticle( def_female->text(),  artSing | artDef | KEduVocWordFlag::Feminine );
+    article.setArticle( indef_female->text(),  artSing | artIndef | KEduVocWordFlag::Feminine );
+    article.setArticle( def_natural->text(),  artSing | artDef | KEduVocWordFlag::Neuter );
+    article.setArticle( indef_natural->text(),  artSing | artIndef | KEduVocWordFlag::Neuter );
 
     m_doc->identifier(m_identifierIndex).setArticle( article );
 

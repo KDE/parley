@@ -84,16 +84,16 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
 
     QString def, indef;
 
-    KEduVocArticle::ArticleNumber singular = KEduVocArticle::Singular;
-    KEduVocArticle::ArticleDefiniteness definite = KEduVocArticle::Definite;
-    KEduVocArticle::ArticleDefiniteness indefinite = KEduVocArticle::Indefinite;
-    KEduVocArticle::ArticleGender male = KEduVocArticle::Masculine;
-    KEduVocArticle::ArticleGender female = KEduVocArticle::Feminine;
-    KEduVocArticle::ArticleGender neutral = KEduVocArticle::Neutral;
+    KEduVocWordFlag::Flags singular = KEduVocWordFlag::Singular;
+    KEduVocWordFlag::Flags definite = KEduVocWordFlag::Definite;
+    KEduVocWordFlag::Flags indefinite = KEduVocWordFlag::Indefinite;
+    KEduVocWordFlag::Flags male = KEduVocWordFlag::Masculine;
+    KEduVocWordFlag::Flags female = KEduVocWordFlag::Feminine;
+    KEduVocWordFlag::Flags neutral = KEduVocWordFlag::Neuter;
 
     // set the word (possibly without the article)
     QString noun = m_entry->entry()->translation(Prefs::solutionLanguage())->text();
-    
+
     // strip the article
      QStringList qsl = noun.split(QRegExp("\\s"), QString::SkipEmptyParts);
      QMutableStringListIterator qsli(qsl);
@@ -113,8 +113,8 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
         mw->femaleRadio->setText(i18nc("@label the gender of the word: feminine", "&feminine"));
         mw->neutralRadio->setText(i18nc("@label the gender of the word: neuter", "&neuter"));
     } else {
-        def = articles.article( singular, definite, male );
-        indef = articles.article( singular, indefinite, male );
+        def = articles.article( singular | definite | male );
+        indef = articles.article( singular | indefinite | male );
         bool male = !(def.isEmpty() && indef.isEmpty());
         QString article;
         if((!def.isEmpty()) && (!indef.isEmpty())) {
@@ -124,8 +124,8 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
         }
         mw->maleRadio->setText(i18nc("@label the gender of the word: masculine", "&masculine:\t") + article);
 
-        def = articles.article( singular, definite, female );
-        indef = articles.article( singular, indefinite, female );
+        def = articles.article( singular | definite | female );
+        indef = articles.article( singular | indefinite | female );
         bool female = !(def.isEmpty() && indef.isEmpty());
         if((!def.isEmpty()) && (!indef.isEmpty())) {
             article = def + " / " + indef;
@@ -134,8 +134,8 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
         }
         mw->femaleRadio->setText(i18nc("@label the gender of the word: feminine", "&feminine:\t") + article);
 
-        def = articles.article( singular, definite, neutral );
-        indef = articles.article( singular, indefinite, neutral );
+        def = articles.article( singular | definite | neutral );
+        indef = articles.article( singular | indefinite | neutral );
         bool neutral = !(def.isEmpty() && indef.isEmpty());
         if((!def.isEmpty()) && (!indef.isEmpty())) {
             article = def + " / " + indef;
@@ -173,7 +173,7 @@ void ArtQueryDlg::showSolution()
     setWidgetStyle(mw->neutralRadio);
 ///@todo port me!!!
 //     QString specialSubType = m_doc->wordTypes().specialSubType(m_entry->entry()->translation(Prefs::solutionLanguage())->type(), m_entry->entry()->translation(Prefs::solutionLanguage())->subType());
-// 
+//
 //     if (specialSubType == m_doc->wordTypes().specialTypeNounMale()) {
 //         mw->maleRadio->setChecked(true);
 //         setWidgetStyle(mw->maleRadio, PositiveResult);
@@ -193,9 +193,9 @@ void ArtQueryDlg::verifyClicked()
 {
 ///@todo port
 //     QString specialSubType = m_doc->wordTypes().specialSubType(m_entry->entry()->translation(Prefs::solutionLanguage())->type(), m_entry->entry()->translation(Prefs::solutionLanguage())->subType());
-// 
+//
 //     bool correct = false;
-// 
+//
 //     if (specialSubType ==  m_doc->wordTypes().specialTypeNounMale()) {
 //         if ( mw->maleRadio->isChecked() ) {
 //             setWidgetStyle(mw->maleRadio, PositiveResult);
@@ -220,7 +220,7 @@ void ArtQueryDlg::verifyClicked()
 //             setWidgetStyle(mw->neutralRadio, NegativeResult);
 //         }
 //     }
-// 
+//
 //     if (correct) {
 //         resultCorrect();
 //         emit showSolutionFinished();

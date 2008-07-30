@@ -37,7 +37,7 @@ DeclensionWidget::DeclensionWidget(QWidget *parent) : QWidget(parent)
     m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Singular, KEduVocDeclension::Nominative)] = singular_1;
 
     m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Singular, KEduVocDeclension::Genitive)] = singular_2;
- 
+
     m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Singular, KEduVocDeclension::Dative)] = singular_3;
 
     m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Singular, KEduVocDeclension::Accusative)] = singular_4;
@@ -52,7 +52,7 @@ DeclensionWidget::DeclensionWidget(QWidget *parent) : QWidget(parent)
     m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Dual, KEduVocDeclension::Nominative)] = dual_1;
 
     m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Dual, KEduVocDeclension::Genitive)] = dual_2;
- 
+
     m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Dual, KEduVocDeclension::Dative)] = dual_3;
 
     m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Dual, KEduVocDeclension::Accusative)] = dual_4;
@@ -117,11 +117,8 @@ void DeclensionWidget::setTranslation(KEduVocExpression * entry, int identifier)
 
     setEnabled(true);
     if (entry->translation(m_identifier)->wordType()) {
-        KEduVocWordType::EnumWordType wordType = entry->translation(m_identifier)->wordType()->wordType();
-        if (wordType == KEduVocWordType::Noun
-            || wordType == KEduVocWordType::NounMale
-            || wordType == KEduVocWordType::NounFemale
-            || wordType == KEduVocWordType::NounNeutral) {
+        KEduVocWordFlags wordType = entry->translation(m_identifier)->wordType()->wordType();
+        if (wordType & KEduVocWordFlag::Noun) {
 
             // we create declensions on demand. if empty it will simply not be saved.
             // very little memory overhead, comfy to use ;)
@@ -155,7 +152,7 @@ void DeclensionWidget::slotMakeNoun()
     ///@todo allow to choose the type of noun
 
     // find a noun container
-    KEduVocWordType* container = m_doc->wordTypeContainer()->childOfType(KEduVocWordType::Noun);
+    KEduVocWordType* container = m_doc->wordTypeContainer()->childOfType(KEduVocWordFlag::Noun);
     if (container) {
         m_entry->translation(m_identifier)->setWordType(container);
         showDeclensionEditWidgets();

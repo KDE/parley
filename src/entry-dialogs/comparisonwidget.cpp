@@ -53,8 +53,8 @@ void ComparisonWidget::setTranslation(KEduVocExpression * entry, int translation
         setEnabled(true);
 
         if(m_translation->wordType()) {
-            if(m_translation->wordType()->wordType() == KEduVocWordType::Adjective
-                || m_translation->wordType()->wordType() == KEduVocWordType::Adverb) {
+            if(m_translation->wordType()->wordType() & KEduVocWordFlag::Adjective
+                || m_translation->wordType()->wordType() & KEduVocWordFlag::Adverb) {
                 comparativeLineEdit->setEnabled(true);
                 superlativeLineEdit->setEnabled(true);
 
@@ -75,7 +75,7 @@ void ComparisonWidget::slotMakeAdjectiveButton()
     }
 
     // find an adjective container
-    KEduVocWordType* container = m_doc->wordTypeContainer()->childOfType(KEduVocWordType::Adjective);
+    KEduVocWordType* container = m_doc->wordTypeContainer()->childOfType(KEduVocWordFlag::Adjective);
     if (container) {
         m_translation->setWordType(container);
         comparativeLineEdit->setEnabled(true);
@@ -94,7 +94,7 @@ void ComparisonWidget::slotMakeAdverbButton()
     }
 
     // find an adverb container
-    KEduVocWordType* container = m_doc->wordTypeContainer()->childOfType(KEduVocWordType::Adverb);
+    KEduVocWordType* container = m_doc->wordTypeContainer()->childOfType(KEduVocWordFlag::Adverb);
     if (container) {
         m_translation->setWordType(container);
         comparativeLineEdit->setEnabled(true);

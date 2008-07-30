@@ -72,7 +72,8 @@ set(practice_SRCS
     practice/prompt/textualprompt.cpp
     practice/prompt/imageprompt.cpp
     practice/prompt/soundprompt.cpp
-    practice/statistics.cpp
+    practice/statistics/statistics.cpp
+    practice/statistics/svgbarstatistics.cpp
     practice/stdbuttons.cpp
     practice/hint.cpp
     practice/answervalidator.cpp
