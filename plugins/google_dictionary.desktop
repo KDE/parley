@@ -7,7 +7,9 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Google Dictionary (translation)
+Name[uk]=Словник Google (переклад)
 Comment=Uses Google Dictionary (translate.google.com) to translate words
+Comment[uk]=Використовує словник Google (translate.google.com) для перекладу слів
 Script=google_dictionary.py
 
 X-KDE-PluginInfo-Author=Avgoustinos Kadis

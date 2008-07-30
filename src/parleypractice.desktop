@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=Parley Practice
+Name[uk]=Тренування Parley
 MimeType=application/x-kvtml;
 Exec=parley -p %u
 Icon=parley
@@ -8,4 +9,5 @@ Type=Application
 Terminal=false
 Categories=Qt;KDE;Education;Languages;
 GenericName=Vocabulary Practice
+GenericName[uk]=Тренування словникового запасу
 

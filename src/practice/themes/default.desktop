@@ -1,6 +1,10 @@
 [KGameTheme]
 Name=Default
+Name[pt]=Predefinição
+Name[pt_BR]=Predefinição
+Name[uk]=Типова
 Description=Default theme for KDE 4
+Description[uk]=Типова тема для KDE 4
 VersionFormat=1
 Author=leeo
 Type=SVG

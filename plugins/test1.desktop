@@ -7,7 +7,9 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=User Visible Name1
+Name[uk]=Видиме ім’я користувача1
 Comment=Description of what the plugin does
+Comment[uk]=Опис того, що робить додаток
 Script=myscript1.py
 
 X-KDE-PluginInfo-Author=Author's Name1
