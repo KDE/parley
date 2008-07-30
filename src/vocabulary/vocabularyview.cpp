@@ -701,4 +701,9 @@ void VocabularyView::spellingReplace(const QString & oldWord, int start, const Q
     m_model->setData(index, newData);
 }
 
+QModelIndexList VocabularyView::getSelectedIndexes() const 
+{
+    return selectionModel()->selectedIndexes();
+}
+
 #include "vocabularyview.moc"

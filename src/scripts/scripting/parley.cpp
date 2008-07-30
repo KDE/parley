@@ -15,6 +15,7 @@
 
 #include "../../parley.h"
 #include "../../vocabulary/vocabularymodel.h"
+#include "../../vocabulary/vocabularyview.h"
 
 #include "../scriptmanager.h"
 #include "../translator.h"
@@ -22,6 +23,8 @@
 #include "parley.h"
 #include "document.h"
 #include "lesson.h"
+#include "expression.h"
+#include "translation.h"
 
 #include <KLocale>
 #include <KGlobal>
@@ -74,16 +77,72 @@ namespace Scripting
         m_parleyApp->parleyDocument()->open ( k,false );
     }
 
-    QObject* Scripting::Parley::getActiveLesson()
+    QObject* Parley::activeLesson()
     {
         return new Lesson ( m_parleyApp->m_vocabularyModel->lesson() );
+    }
+
+    QVariantList Parley::selectedEntries()
+    {
+        QVariantList entries;
+
+        //get selected indexes and active lesson
+        QModelIndexList indexes = m_parleyApp->m_vocabularyView->getSelectedIndexes();
+
+        //get the unique selected entries
+        QSet<KEduVocExpression*> kentries;
+        foreach ( const QModelIndex &index, indexes )
+        {
+//             kDebug() << index.row() << index.data(Qt::DisplayRole);
+            KEduVocExpression * expr = qvariant_cast<KEduVocExpression*> ( index.data(VocabularyModel::EntryRole) );
+            kentries << expr;
+        }
+
+        //convert them to Expression objects and add them to the QVariantList
+        foreach (KEduVocExpression * expr, kentries) {
+//             Expression entry(expr);
+//             kDebug() << entry.translationTexts();
+            QObject * obj = new Expression(expr);
+            entries << qVariantFromValue ( obj );
+        }
+
+        return entries;
+    }
+
+    QVariantList Parley::selectedTranslations() {
+        QVariantList translations;
+
+        //get selected indexes and active lesson
+        QModelIndexList indexes = m_parleyApp->m_vocabularyView->getSelectedIndexes();
+
+        //get the unique selected entries
+        QSet<KEduVocTranslation*> ktranslations;
+//         const QModelIndex &index;
+        foreach ( const QModelIndex &index, indexes )
+        {
+            if (VocabularyModel::columnType( index.column() ) == VocabularyModel::Translation) {
+                KEduVocExpression * expr = qvariant_cast<KEduVocExpression*> ( index.data(VocabularyModel::EntryRole) );
+                ktranslations << expr->translation(VocabularyModel::translation(index.column()));
+            }
+//             kDebug() << index.row() << index.data(Qt::DisplayRole);
+        }
+
+        //convert them to Expression objects and add them to the QVariantList
+        foreach (KEduVocTranslation * tr, ktranslations) {
+//             Translation transltion(tr);
+//             kDebug() << entry.translationTexts();
+            QObject * obj = new Translation(tr);
+            translations << qVariantFromValue ( obj );
+        }
+
+        return translations;
     }
 
     QObject * Scripting::Parley::newAction ( const QString & name, const QString& text )
     {
         //create new action
-        KAction* action = new KAction (text, m_parleyApp );
-        m_parleyApp->m_scriptManager->addScriptAction(name,action);
+        KAction* action = new KAction ( text, m_parleyApp );
+        m_parleyApp->m_scriptManager->addScriptAction ( name,action );
         return action;
 
     }

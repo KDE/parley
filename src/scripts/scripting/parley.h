@@ -41,13 +41,11 @@ class Translator;
  *         - Translation (inherits Text)
  *   - Identifier
  *
- * <h3>How to create a new Parley script (full example)</h3>
+ *<h3>How to create a new %Parley script (full example)</h3>
  *
- * <b>First Step - Create desktop file and script file</b>
+ * Each %Parley script must be accompanied by a .desktop file, both put in the plugins folder in parley data directory (usually in  /usr/share/apps/parley/plugins/). In this example the desktop file is "example.desktop" and the script file is "example.py".
  *
- * Each Parley script must be accompanied by a .desktop file, both put in the parley data folder (probably in  /usr/share/apps/parley/plugins/). In this example the desktop file is "example.desktop" and the script file is "example.py".
- *
- * The desktop file provides information about the script func.....
+ * The desktop file provides information about the script's functionality, author and specifies the script file that implements it. This information will appear in the Scripts Manager (Scripts->Script Manager in main menu) and the user will be able to enable/disable the script. If the script is enabled then it'll be loaded every time Parley starts up.
  *
  * Content of example.desktop (/usr/share/apps/parley/plugins/example.desktop)
  *
@@ -59,7 +57,7 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Example Parley Script
-Comment=Uses Google Dictionary (translate.google.com) to translate words
+Comment=This Script offers two actions: 1) Move to new lesson 2) Mark as known for the Scripts menu
 Script=example.py
 
 X-KDE-PluginInfo-Author=Avgoustinos Kadis
@@ -67,10 +65,55 @@ X-KDE-PluginInfo-Email=avgoustinos.kadis@kdemail.net
 X-KDE-PluginInfo-Name=parley_example_script
 X-KDE-PluginInfo-Version=1.1
 X-KDE-PluginInfo-Website=http://edu.kde.org/parley
-X-KDE-PluginInfo-Category=translation
+X-KDE-PluginInfo-Category=examples
 X-KDE-PluginInfo-License=GPL
 X-KDE-PluginInfo-EnabledByDefault=true
 @endcode
+ *
+ * The script file will contain the functions (script functionality) and some code for creating an action for the Scripts menu. In the example below, the functions are moveSelectedToNewLesson() and markAsKnown() and they are called by the two actions that are added to the scripts menu (action1 and action2).
+ *
+ * When the script file is loaded all the global code (outside of any function) is executed. This way we can register the Scripts menu actions and connect them with script functions (see example below for how to do this).
+ *
+ * Another way to have a function called is by connecting it to a %Parley signal (see Parley::translateWord() and the example in Detailed Description of the Parley class).
+ *
+ * Content of example.py (/usr/share/apps/parley/plugins/example.py)
+@code
+#!/usr/bin/env kross
+import Parley
+
+#FUNCTIONS
+
+#moves selected entries to a new lesson
+def moveSelectedToNewLesson():
+  selected_entries = Parley.selectedEntries()
+  if len(selected_entries) > 0:
+    newlesson = Parley.doc.appendNewLesson("New Lesson")
+    for entry in selected_entries:
+      newlesson.appendEntry(entry)
+
+#marks the selected translations as known (grade 7)
+def markAsKnown():
+  for tr in Parley.selectedTranslations():
+    tr.grade = 7
+
+#SCRIPT MENU
+
+#create a new action for the Scripts menu (action1)
+action1 = Parley.newAction("example_action1","Move to new lesson")
+action1.statusTip="Moves the selected rows to a new lesson"
+Parley.connect(action1,"triggered()",moveSelectedToNewLesson)
+
+
+#create a new action for the Scripts menu (action2)
+action2 = Parley.newAction("example_action2","Mark as known (highest grade)")
+action2.statusTip="Sets the grade selected translations to 7 (highest grade)"
+Parley.connect(action2,"triggered()",markAsKnown)
+@endcode
+ *
+ * After creating the Script action and being able to call a function you can start adding your own code, using the documentation provided for the scripting classes and by seeing other examples.
+ *
+ * For debugging use the standard output and observed it in the terminal.
+ *
  */
 namespace Scripting
 {
@@ -109,7 +152,7 @@ namespace Scripting
             /// Abreviation of document property (same as Parley.document)
             Q_PROPERTY ( QObject * doc READ getDocument )
             /// Currently active lesson
-            Q_PROPERTY ( QObject * activeLesson READ getActiveLesson )
+            Q_PROPERTY ( QObject * activeLesson READ activeLesson )
 
             Q_ENUMS ( Number Case Person Gender Definiteness )
 
@@ -179,9 +222,15 @@ namespace Scripting
             QObject* getDocument() { return m_doc; }
 
             //Returns the active lesson
-            QObject* getActiveLesson();
+            QObject* activeLesson();
 
         public Q_SLOTS:
+
+            /** Returns a list of Expression objects (the selected entries of the active lesson) */
+            QVariantList selectedEntries();
+
+            /** Returns a list of Translation objects (the selected translations of the active lesson) */
+            QVariantList selectedTranslations();
 
             /**
              * Adds the found @p translation of the @p word from language @p fromLanguage to language @p toLanguage to %Parley translations to be used for translating lesson entries (or anything else). This function is ment to be used by scripts to add a translation of a word by parsing either online or offline dictionaries.

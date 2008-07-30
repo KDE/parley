@@ -46,6 +46,8 @@ public:
     /** Save column visibility settings */
     void saveColumnVisibility(const KUrl & kurl) const;
 
+    QModelIndexList getSelectedIndexes() const;
+
 public slots:
     void reset();
     void appendEntry();
