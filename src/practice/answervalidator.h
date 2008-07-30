@@ -18,7 +18,7 @@
 #include <QtCore/QPair>
 #include <QColor>
 
-#include "statistics.h"
+#include "statistics/statistics.h"
 
 class KEduVocDocument;
 

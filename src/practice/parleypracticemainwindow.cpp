@@ -39,7 +39,7 @@
 #include "input/articlemcinput.h"
 
 #include "prompt.h"
-#include "statistics.h"
+#include "statistics/statistics.h"
 #include "stdbuttons.h"
 #include "hint.h"
 #include "practiceentrymanager.h"

@@ -31,6 +31,8 @@
 #include "practiceentrymanager.h"
 #include "practiceentry.h"
 
+#include <keduvocwordtype.h>
+
 PracticeEntryManager::PracticeEntryManager(QObject * parent)
         : QObject(parent),
         m_iter(QList<PracticeEntry*>()) // it has no empty constructor. Annoying...
@@ -76,10 +78,15 @@ void PracticeEntryManager::open(KEduVocDocument* doc)
 
 const QString PracticeEntryManager::currentSolution() const
 {
+    QStringList l;
     switch (Prefs::testType())
     {
         // Implement special crap here.
         case Prefs::EnumTestType::ArticleTest:
+            l.append(m_doc->identifier(Prefs::solutionLanguage()).article().article(m_entry->expression()->translation(Prefs::solutionLanguage())->wordType()->wordType() | KEduVocWordFlag::Definite));
+            l.append(m_doc->identifier(Prefs::solutionLanguage()).article().article(m_entry->expression()->translation(Prefs::solutionLanguage())->wordType()->wordType() | KEduVocWordFlag::Indefinite));
+            return l.join(" / ");
+            break;
         case Prefs::EnumTestType::ComparisonTest:
         case Prefs::EnumTestType::AntonymTest:
         case Prefs::EnumTestType::SynonymTest:

@@ -28,14 +28,16 @@
 
 #include "prefs.h"
 
+
 ArticleMCInput::ArticleMCInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, KEduVocDocument * doc, QWidget * parent)
 : MCInput(renderer, view, elementId, parent), m_doc(doc)
 {}
 
-void ArticleMCInput::slotSetAnswers(PracticeEntry* currentEntry)
+void ArticleMCInput::slotSetAnswers()
 {
     QStringList list;
     QString def, indef;
+    QStringList parts;
 
     KEduVocArticle articles = m_doc->identifier(Prefs::solutionLanguage()).article();
 
@@ -43,46 +45,71 @@ void ArticleMCInput::slotSetAnswers(PracticeEntry* currentEntry)
     if(articles.isEmpty())
     {
         list.append(i18nc("@label the gender of the word: Masculine", "Masculine"));
-        list.append(i18nc("@label the gender of the word: Feminine", "Feminine"));
+        list.append(i18nc("@label the gender of the word: Female", "Feminine"));
         list.append(i18nc("@label the gender of the word: Neuter", "Neuter"));
     }
     else
     {
-        QString article;
-        def = articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Masculine );
-        indef = articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Masculine );
-        bool male = !(def.isEmpty() && indef.isEmpty());
+        QString answer;
+        answer = makeAnswer(KEduVocWordFlag::Singular | KEduVocWordFlag::Masculine);
+        if (!answer.isEmpty() && !list.contains(answer))
+            list.append(answer);
 
-        if((!def.isEmpty()) && (!indef.isEmpty())) {
-            article = def + " / " + indef;
-        } else {
-            article = def + indef;
-        }
-        list.append(i18nc("@label the gender of the word: masculine", "Masculine:\t") + article);
 
-        def = articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Feminine );
-        indef = articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Feminine );
-        bool female = !(def.isEmpty() && indef.isEmpty());
-        if((!def.isEmpty()) && (!indef.isEmpty())) {
-            article = def + " / " + indef;
-        } else {
-            article = def + indef;
-        }
-        list.append(i18nc("@label the gender of the word: feminine", "Feminine:\t") + article);
+        answer = makeAnswer(KEduVocWordFlag::Singular |KEduVocWordFlag::Feminine);
+        if (!answer.isEmpty() && !list.contains(answer)) // the contains makes sure there are no dupes
+            list.append(answer);
 
-        def = articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Neutral );
-        indef = articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Neutral );
-        bool neutral = !(def.isEmpty() && indef.isEmpty());
-        if((!def.isEmpty()) && (!indef.isEmpty())) {
-            article = def + " / " + indef;
-        } else {
-            article = def + indef;
-        }
-        if (!(!neutral && male && female))
-            list.append(i18nc("@label the gender of the word: neuter", "Neuter:\t") + article);
+
+        answer = makeAnswer(KEduVocWordFlag::Singular | KEduVocWordFlag::Neuter);
+        if (!answer.isEmpty() && !list.contains(answer))
+            list.append(answer);
+
+
+        answer = makeAnswer(KEduVocWordFlag::Plural | KEduVocWordFlag::Masculine);
+        if (!answer.isEmpty() && !list.contains(answer))
+            list.append(answer);
+
+
+        answer = makeAnswer(KEduVocWordFlag::Plural | KEduVocWordFlag::Feminine);
+        if (!answer.isEmpty() && !list.contains(answer))
+            list.append(answer);
+
+
+        answer = makeAnswer(KEduVocWordFlag::Plural | KEduVocWordFlag::Neuter);
+        if (!answer.isEmpty() && !list.contains(answer))
+            list.append(answer);
+
+
+        answer = makeAnswer(KEduVocWordFlag::Dual | KEduVocWordFlag::Masculine);
+        if (!answer.isEmpty() && !list.contains(answer))
+            list.append(answer);
+
+
+        answer = makeAnswer(KEduVocWordFlag::Dual | KEduVocWordFlag::Feminine);
+        if (!answer.isEmpty() && !list.contains(answer))
+            list.append(answer);
+
+
+        answer = makeAnswer(KEduVocWordFlag::Dual | KEduVocWordFlag::Neuter);
+        if (!answer.isEmpty() && !list.contains(answer))
+            list.append(answer);
     }
 
     setAvailableAnswers(list);
+}
+
+QString ArticleMCInput::makeAnswer(KEduVocWordFlags flags)
+{
+        QStringList parts;
+        KEduVocArticle articles = m_doc->identifier(Prefs::solutionLanguage()).article();
+
+        QString article;
+        QString def = articles.article(flags | KEduVocWordFlag::Definite);
+        QString indef = articles.article(flags | KEduVocWordFlag::Indefinite);
+        if (!def.isEmpty()) parts.append(def);
+        if (!indef.isEmpty()) parts.append(indef);
+        return parts.join(" / ");
 }
 
 void ArticleMCInput::slotEmitAnswer()
@@ -90,9 +117,9 @@ void ArticleMCInput::slotEmitAnswer()
     foreach(QRadioButton* b, findChildren<QRadioButton*>())
         if (b->isChecked())
         {
-            // removes the number and Male:/Female:/Neutral:
-            // it doesn't trigger when there is ONLY Male, Female, or Neutral, though
-            emit signalAnswer(b->text().remove(QRegExp("^&\\d .+:\t")));
+            // removes the number and Male:/Female:/Neuter:
+            // it doesn't trigger when there is ONLY Male, Female, or Neuter, though
+            emit signalAnswer(b->text().remove(QRegExp("^&\\d ")));
         }
     emit signalAnswer(""); // none were selected.
 }

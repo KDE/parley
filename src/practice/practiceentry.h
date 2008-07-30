@@ -19,7 +19,7 @@
 #include <QString>
 #include <QStringList>
 
-#include "statistics.h"
+#include "statistics/statistics.h"
 
 /// @class PracticeEntry
 /// @brief A wrapper class for @c KEduVocExpression

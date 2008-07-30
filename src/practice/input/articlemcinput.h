@@ -15,6 +15,8 @@
 
 #include "mcinput.h"
 
+#include <keduvocarticle.h>
+
 class PracticeEntry;
 
 class ArticleMCInput : public MCInput
@@ -24,10 +26,11 @@ class ArticleMCInput : public MCInput
         ArticleMCInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, class KEduVocDocument * doc, QWidget * parent = 0);
 
     public slots:
-        void slotSetAnswers(PracticeEntry*);
+        void slotSetAnswers();
         void slotEmitAnswer();
     private:
         KEduVocDocument* m_doc;
+        QString makeAnswer(KEduVocWordFlags flags);
 };
 
 #endif

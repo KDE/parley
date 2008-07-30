@@ -61,8 +61,11 @@ void MultipleChoiceMCInput::slotSetAnswers(PracticeEntry* currentEntry, const QL
 
     else
     {
-        KEduVocWordType* cwt = currentEntry->expression()->translation(Prefs::solutionLanguage())->wordType();
-        KEduVocWordType *wt = 0;
+        // we use an int so we can play with bitwise flags
+        int cwt = currentEntry->expression()->translation(Prefs::solutionLanguage())->wordType()->wordType();
+        // filter everything that isn't a part of speech flag.
+        cwt &= KEduVocWordFlag::partsOfSpeech;
+        int wt = 0;
 
         while (list.size() < Prefs::numberMultipleChoiceAnswers() && timeout < 50) // prevent infinite loop
         {
@@ -73,22 +76,11 @@ void MultipleChoiceMCInput::slotSetAnswers(PracticeEntry* currentEntry, const QL
             {
                 if (Prefs::multipleChoiceWordTypeConsistancy() && cwt)
                 {
-                    wt = source[r]->expression()->translation(Prefs::solutionLanguage())->wordType();
-                    if (wt && wt->wordType() == cwt->wordType())
+                    wt = source[r]->expression()->translation(Prefs::solutionLanguage())->wordType()->wordType();
+                    wt &= KEduVocWordFlag::partsOfSpeech;
+                    if (wt == cwt)
                         list.append(s);
-                    // ignore gender of nouns in our word type comparison
-                    else if (wt &&
-                                (  wt->wordType() == KEduVocWordType::Noun
-                                || wt->wordType() == KEduVocWordType::NounMale
-                                || wt->wordType() == KEduVocWordType::NounNeutral
-                                || wt->wordType() == KEduVocWordType::NounFemale)
-                                &&
-                                (  cwt->wordType() == KEduVocWordType::Noun
-                                || cwt->wordType() == KEduVocWordType::NounMale
-                                || cwt->wordType() == KEduVocWordType::NounNeutral
-                                || cwt->wordType() == KEduVocWordType::NounFemale))
-                            list.append(s);
-                }
+               }
                 else
                     list.append(s);
             }

@@ -295,17 +295,15 @@ void EntryFilter::cleanupInvalid()
                 switch (Prefs::testType()) {
     // if we do a grammar test, check if the grammar type is valid
                 case Prefs::EnumTestType::ArticleTest:
-                    if (! ((*i)->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounMale ||
-                          (*i)->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounFemale ||
-                          (*i)->translation(m_toTranslation)->wordType()->wordType() == KEduVocWordType::NounNeutral)) {
+                    if (! ((*i)->translation(m_toTranslation)->wordType()->wordType() & KEduVocWordFlag::Noun)) {
                         i = m_entries.erase(i);
                     } else i++;
                     break;
                 case Prefs::EnumTestType::ComparisonTest:
                     if (! ((Prefs::comparisonIncludeAdjective() &&(*i)->translation(m_toTranslation)->wordType()->wordType()
-                                == KEduVocWordType::Adjective)
+                                == KEduVocWordFlag::Adjective)
                            || (Prefs::comparisonIncludeAdverb() &&(*i)->translation(m_toTranslation)->wordType()->wordType()
-                           == KEduVocWordType::Adverb))) {
+                           == KEduVocWordFlag::Adverb))) {
                         i = m_entries.erase(i);
                     } else {
                         if ((*i)->translation(m_toTranslation)->comparative().isEmpty() &&
@@ -315,7 +313,7 @@ void EntryFilter::cleanupInvalid()
                     }
                     break;
                 case Prefs::EnumTestType::ConjugationTest:
-                    if ( (*i)->translation(m_toTranslation)->wordType()->wordType() != KEduVocWordType::Verb || (*i)->translation(m_toTranslation)->conjugations().count() == 0) {
+                    if ( (*i)->translation(m_toTranslation)->wordType()->wordType() != KEduVocWordFlag::Verb || (*i)->translation(m_toTranslation)->conjugations().count() == 0) {
                         i = m_entries.erase(i);
                     } else i++; // conjugation
                     break;
