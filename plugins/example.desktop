@@ -5,8 +5,8 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Example Parley Script
+Name[uk]=Приклад скрипту Parley
 Comment=This Script offers two actions: 1) Move to new lesson 2) Mark as known for the Scripts menu
-Comment[uk]=Використовує словник Google (translate.google.com) для перекладу слів
 Script=example.py
 
 X-KDE-PluginInfo-Author=Avgoustinos Kadis

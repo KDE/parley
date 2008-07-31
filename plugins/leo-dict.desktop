@@ -5,7 +5,9 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=LEO Dictionary (Translation)
+Name[uk]=Словник LEO (переклад)
 Comment=Uses LEO Dictionary (dict.leo.org) to translate words
+Comment[uk]=Використовує словник LEO (dict.leo.org) для перекладу слів
 Script=leo-dict.py
 
 X-KDE-PluginInfo-Author=Avgoustinos Kadis
