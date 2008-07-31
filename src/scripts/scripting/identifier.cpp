@@ -70,17 +70,17 @@ namespace Scripting
 
     QStringList Identifier::personalPronouns ()
     {
-        KEduVocPersonalPronoun ppronouns = m_identifier->personalPronouns();
+//         KEduVocPersonalPronoun ppronouns = m_identifier->personalPronouns();
 
-        QStringList list;
+//         QStringList list;
 
-        for ( int n = 0; n <= KEduVocConjugation::Plural; n++ )
-            for ( int p = 0; p <= KEduVocConjugation::ThirdNeutralCommon; p++ )
-            {
-                list << ppronouns.personalPronoun ( ( KEduVocConjugation::ConjugationPerson ) p, ( KEduVocConjugation::ConjugationNumber ) n );
-            }
+//         for ( int n = 0; n <= KEduVocConjugation::Plural; n++ )
+//             for ( int p = 0; p <= KEduVocConjugation::ThirdNeutralCommon; p++ )
+//             {
+//                 list << ppronouns.personalPronoun ( ( KEduVocConjugation::ConjugationPerson ) p, ( KEduVocConjugation::ConjugationNumber ) n );
+//             }
 
-        return list;
+//         return list;
     }
 
 }
