@@ -23,6 +23,8 @@
 
 #include <keduvocdeclension.h>
 
+#include <KStandardDirs>
+
 class ParleyApp;
 class Translator;
 
@@ -260,6 +262,14 @@ namespace Scripting
             QObject* activeLesson();
 
         public Q_SLOTS:
+
+            QStringList dataDirs() {
+                return KGlobal::dirs()->findDirs("data","parley");
+            }
+
+            QStringList pluginDirs() {
+                return KGlobal::dirs()->findDirs("data","parley/plugins");
+            }
 
             /** Returns a list of Expression objects (the selected entries of the active lesson) */
             QVariantList selectedEntries();

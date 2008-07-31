@@ -1,6 +1,52 @@
 #!/usr/bin/env kross
 import Parley
-#from PyQt4 import QtCore, QtGui
+import Kross
+#import PyKDE4
+
+def testUI():
+ forms = Kross.module("forms")
+ dialog = forms.createDialog("My Dialog")
+ dialog.setButtons("Ok|Cancel")
+ print dir(dialog)
+ page = dialog.addPage("Picture Selector","Select an image","document-open")
+ #l = forms.createLayout(dialog,"QVBoxLayout")
+ #label = forms.createWidget(page,"QLabel")
+ #label.text = "Hello World Label"
+ btn = forms.createWidget(page,"QPushButton")
+ btn.text = "Next Picture"
+ gview = forms.createWidget(page,"QGraphicsView")
+ print dir(gview)
+ if dialog.exec_loop():
+     forms.showMessageBox("Information", "Okay...", "The Ok-button was pressed")
+
+
+def click():
+  print "click"
+
+def testUI2():
+  #print Parley.dataDirs()
+  #print Parley.pluginDirs()
+  #return
+  forms = Kross.module("forms")
+  mydialog = forms.createDialog("MyDialog")
+  mydialog.setButtons("Ok|Cancel")
+  mydialog.setFaceType("Plain") #Auto Plain List Tree Tabbed
+  
+  print dir(mydialog)
+  #for attr in dir(mydialog):
+    #print attr, getattr(mydialog,attr)
+  mywidget = forms.createWidgetFromUIFile(mydialog, Parley.pluginDirs()[0]+"./mywidget.ui")
+  mydialog.setMainWidget(mywidget)
+  mywidget["QTextEdit"].setText("some string")
+  #print dir(mywidget["QPushButton"])
+  mywidget["QPushButton"].text = "Push me"
+  #mywidget.textEdit.setText("soooome string")
+  Parley.connect(mywidget["QPushButton"],"pressed()",click)
+  #print mywidget
+  print dir(mywidget)
+  if mydialog.exec_loop():
+      if mydialog.result() == "Ok":
+          print mywidget["QTextEdit"].text
 
 
 def init():
@@ -70,8 +116,11 @@ def registerActions():
   newaction2 = Parley.newAction("my_script1","My script 2a")
   Parley.connect(newaction2,"triggered()",actionFunction2)
   
-  newaction3 = Parley.newAction("my_script1","pyKDE")
-  Parley.connect(newaction2,"triggered()",actionFunction2)
+  newaction3 = Parley.newAction("my_script1","ui")
+  Parley.connect(newaction3,"triggered()",testUI)
+  
+  newaction4 = Parley.newAction("my_script1","ui2")
+  Parley.connect(newaction4,"triggered()",testUI2)
   return
 
 def appendChildrenToAllLessons():
@@ -224,7 +273,8 @@ def actionFunction():
   #for entry in Parley.selectedEntries():
     #print entry.translationTexts()
   #testEnums()
-  tryArticle2()
+  #tryArticle2()
+  testUI()
   #GermanArticles()
   #newDocument()
   #conjugations()
