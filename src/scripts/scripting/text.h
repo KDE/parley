@@ -74,7 +74,7 @@ namespace Scripting
              */
             Text ( KEduVocText * text );
 
-            Text ( KEduVocText & text );
+            Text ( const KEduVocText & text );
 
             ~Text();
 

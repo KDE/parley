@@ -28,7 +28,7 @@ namespace Scripting
     {
     }
 
-    Text::Text ( KEduVocText & text )
+    Text::Text (const KEduVocText & text )
     {
         m_text = new KEduVocText ( text );
     }
