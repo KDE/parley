@@ -128,7 +128,7 @@ namespace Scripting
 //             KEduVocPersonalPronoun personalPronouns() const;
 
 //              QString personalPronoun ( const QString & number, const QString & person );
-            QString personalPronoun ( KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person ) const;
+            QString personalPronoun ( const KEduVocWordFlags& flags ) const;
 
 
             /**
@@ -138,7 +138,7 @@ namespace Scripting
 //             void setPersonalPronouns ( const KEduVocPersonalPronoun &pronouns );
 
 //             void setPersonalPronoun ( const QString& personalPronoun, const QString & number, const QString & person );
-            void setPersonalPronoun ( const QString& conjugation,KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person );
+            void setPersonalPronoun ( const QString& conjugation, const KEduVocWordFlags& flags );
 
             QStringList personalPronouns ();
 

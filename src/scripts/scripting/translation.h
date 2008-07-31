@@ -79,9 +79,9 @@ namespace Scripting
             template <class T, class S>
             QVariantList toVariantList ( QList<T*> objList ) const;
 
-            static QMap<QString,KEduVocConjugation::ConjugationNumber> & getConjNumberMap ();
+//             static QMap<QString,KEduVocConjugation::ConjugationNumber> & getConjNumberMap ();
 
-            static QMap<QString,KEduVocConjugation::ConjugationPerson> & getConjPersonMap ();
+//             static QMap<QString,KEduVocConjugation::ConjugationPerson> & getConjPersonMap ();
 
             /* returns the pronunciation of this translation */
             QString pronunciation() const { return m_translation->pronunciation(); }
@@ -294,7 +294,7 @@ namespace Scripting
              * @param number The number of the @p conjugation. See Parley::Number enum
              * @param person The person of the @p conjugation. See Parley::Person enum
              */
-            void setConjugationText ( const QString& conjugation, const QString& tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person );
+            void setConjugationText ( const QString& conjugation, const QString& tense, const KEduVocWordFlags& flags );
 
             /**
              * Sets the @p conjugation of the verb in the given @p tense, @p number and @p person. Use this method instead of setConjugationText when the grades, practice count etc are important and want them to be set in this conjugation
@@ -303,7 +303,7 @@ namespace Scripting
              * @param number The number of the @p conjugation. See Parley::Number enum
              * @param person The person of the @p conjugation. See Parley::Person enum
              */
-            void setConjugation ( QObject * conjugation, const QString& tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person );
+            void setConjugation ( QObject * conjugation, const QString& tense, const KEduVocWordFlags& flags );
 
 
             /**
@@ -313,7 +313,7 @@ namespace Scripting
              * @param person The conjugation person. See Parley::Person enum
              * @return A Text object that represents the conjugation
              */
-            QObject * conjugation ( const QString & tense, KEduVocConjugation::ConjugationNumber number, KEduVocConjugation::ConjugationPerson person );
+            QObject * conjugation ( const QString & tense, const KEduVocWordFlags& flags );
 
             /**
              * Returns all the possible conjugations of the given @p tense
@@ -328,7 +328,7 @@ namespace Scripting
              * @param number Conjugation number. See Parley::Number enum
              * @return A String list with 5 conjugations in the order of [First, Second, ThirdMale, ThirdFemale, Third]
              */
-            QStringList conjugationTexts ( const QString& tense, KEduVocConjugation::ConjugationNumber number );
+            QStringList conjugationTexts ( const QString& tense, const KEduVocWordFlags& flags );
 
 
             /*
