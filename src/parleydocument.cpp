@@ -402,7 +402,7 @@ void ParleyDocument::slotFileMerge()
     //
 //         m_doc->merge(new_doc, true);
     //
-//         KEduVocConjugation::setTenseNames(m_doc->tenseDescriptions());
+//         KEduVocWordFlag::setTenseNames(m_doc->tenseDescriptions());
 //         KVTUsage::setUsageNames(m_doc->usageDescriptions());
     //
 //         delete(new_doc);

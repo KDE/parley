@@ -35,40 +35,40 @@ ConjugationWidget::ConjugationWidget(QWidget *parent) : QWidget(parent)
     showMakeVerbWidgets();
     makeVerbButton->setEnabled(false);
 
-    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::First, KEduVocConjugation::Singular)]
+    m_conjugationLineEdits[KEduVocWordFlag::indexOf(KEduVocWordFlag::First, KEduVocWordFlag::Singular)]
         = singularFirstPersonLineEdit;
-    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::Second, KEduVocConjugation::Singular)]
+    m_conjugationLineEdits[KEduVocWordFlag::indexOf(KEduVocWordFlag::Second, KEduVocWordFlag::Singular)]
         = singularSecondPersonLineEdit;
 
-    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::ThirdMale, KEduVocConjugation::Singular)]
+    m_conjugationLineEdits[KEduVocWordFlag::indexOf(KEduVocWordFlag::ThirdMale, KEduVocWordFlag::Singular)]
         = singularThirdMalePersonLineEdit;
-    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Singular)]
+    m_conjugationLineEdits[KEduVocWordFlag::indexOf(KEduVocWordFlag::ThirdFemale, KEduVocWordFlag::Singular)]
         = singularThirdFemalePersonLineEdit;
-    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Singular)]
+    m_conjugationLineEdits[KEduVocWordFlag::indexOf(KEduVocWordFlag::ThirdNeutralCommon, KEduVocWordFlag::Singular)]
         = singularThirdNeutralPersonLineEdit;
 
-    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::First, KEduVocConjugation::Dual)]
+    m_conjugationLineEdits[KEduVocWordFlag::indexOf(KEduVocWordFlag::First, KEduVocWordFlag::Dual)]
         = dualFirstPersonLineEdit;
-    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::Second, KEduVocConjugation::Dual)]
+    m_conjugationLineEdits[KEduVocWordFlag::indexOf(KEduVocWordFlag::Second, KEduVocWordFlag::Dual)]
         = dualSecondPersonLineEdit;
 
-    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::ThirdMale, KEduVocConjugation::Dual)]
+    m_conjugationLineEdits[KEduVocWordFlag::indexOf(KEduVocWordFlag::ThirdMale, KEduVocWordFlag::Dual)]
         = dualThirdMalePersonLineEdit;
-    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Dual)]
+    m_conjugationLineEdits[KEduVocWordFlag::indexOf(KEduVocWordFlag::ThirdFemale, KEduVocWordFlag::Dual)]
         = dualThirdFemalePersonLineEdit;
-    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Dual)]
+    m_conjugationLineEdits[KEduVocWordFlag::indexOf(KEduVocWordFlag::ThirdNeutralCommon, KEduVocWordFlag::Dual)]
         = dualThirdNeutralPersonLineEdit;
 
-    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::First, KEduVocConjugation::Plural)]
+    m_conjugationLineEdits[KEduVocWordFlag::indexOf(KEduVocWordFlag::First, KEduVocWordFlag::Plural)]
         = pluralFirstPersonLineEdit;
-    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::Second, KEduVocConjugation::Plural)]
+    m_conjugationLineEdits[KEduVocWordFlag::indexOf(KEduVocWordFlag::Second, KEduVocWordFlag::Plural)]
         = pluralSecondPersonLineEdit;
 
-    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::ThirdMale, KEduVocConjugation::Plural)]
+    m_conjugationLineEdits[KEduVocWordFlag::indexOf(KEduVocWordFlag::ThirdMale, KEduVocWordFlag::Plural)]
         = pluralThirdMalePersonLineEdit;
-    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural)]
+    m_conjugationLineEdits[KEduVocWordFlag::indexOf(KEduVocWordFlag::ThirdFemale, KEduVocWordFlag::Plural)]
         = pluralThirdFemalePersonLineEdit;
-    m_conjugationLineEdits[KEduVocConjugation::indexOf(KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Plural)]
+    m_conjugationLineEdits[KEduVocWordFlag::indexOf(KEduVocWordFlag::ThirdNeutralCommon, KEduVocWordFlag::Plural)]
         = pluralThirdNeutralPersonLineEdit;
 
     foreach(int index, m_conjugationLineEdits.keys()) {
@@ -233,23 +233,23 @@ void ConjugationWidget::updateVisiblePersons()
     // set up the personal pronouns
     KEduVocPersonalPronoun pron = m_doc->identifier(m_identifier).personalPronouns();
 
-    singularFirstPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::First, KEduVocConjugation::Singular ));
-    singularSecondPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::Second, KEduVocConjugation::Singular ));
-    singularThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdMale, KEduVocConjugation::Singular ));
-    singularThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdFemale, KEduVocConjugation::Singular ));
-    singularThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Singular ));
+    singularFirstPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::First, KEduVocWordFlag::Singular ));
+    singularSecondPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Second, KEduVocWordFlag::Singular ));
+    singularThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdMale, KEduVocWordFlag::Singular ));
+    singularThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdFemale, KEduVocWordFlag::Singular ));
+    singularThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdNeutralCommon, KEduVocWordFlag::Singular ));
 
-    dualFirstPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::First, KEduVocConjugation::Dual ));
-    dualSecondPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::Second, KEduVocConjugation::Dual ));
-    dualThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdMale, KEduVocConjugation::Dual ));
-    dualThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdFemale, KEduVocConjugation::Dual ));
-    dualThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Dual ));
+    dualFirstPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::First, KEduVocWordFlag::Dual ));
+    dualSecondPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Second, KEduVocWordFlag::Dual ));
+    dualThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdMale, KEduVocWordFlag::Dual ));
+    dualThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdFemale, KEduVocWordFlag::Dual ));
+    dualThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdNeutralCommon, KEduVocWordFlag::Dual ));
 
-    pluralFirstPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::First, KEduVocConjugation::Plural ));
-    pluralSecondPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::Second, KEduVocConjugation::Plural ));
-    pluralThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdMale, KEduVocConjugation::Plural ));
-    pluralThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural ));
-    pluralThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Plural ));
+    pluralFirstPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::First, KEduVocWordFlag::Plural ));
+    pluralSecondPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Second, KEduVocWordFlag::Plural ));
+    pluralThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdMale, KEduVocWordFlag::Plural ));
+    pluralThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdFemale, KEduVocWordFlag::Plural ));
+    pluralThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdNeutralCommon, KEduVocWordFlag::Plural ));
 }
 
 void ConjugationWidget::tenseEditingFinished()

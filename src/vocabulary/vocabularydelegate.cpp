@@ -303,7 +303,7 @@ QPair< QString, QString > VocabularyDelegate::guessWordType(const QString & entr
 
     QString article = entry.section(" ", 0, 0);
     if ( article.length() < entry.length() ) {
-        if ( article == ->identifier(language).articles().article(KEduVocWordFlag::Singular, KEduVocWordFlag::Definite, KEduVocWordFlag::Masculine) ) {
+        if ( article == ->identifier(language).articles().article(KEduVocWordFlag::Singular| KEduVocWordFlag::Definite| KEduVocWordFlag::Masculine) ) {
             kDebug() << "Noun masculine";
             return qMakePair(m_doc->wordTypes().specialTypeNoun(), m_doc->wordTypes().specialTypeNounMale());
         }

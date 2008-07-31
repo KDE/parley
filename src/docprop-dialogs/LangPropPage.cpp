@@ -53,29 +53,29 @@ LangPropPage::LangPropPage(KEduVocDocument *doc, int identifierIndex, QWidget *p
     indef_natural->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Neuter ));
 
     // personal pronouns
-    const KEduVocConjugation::ConjugationNumber numS = KEduVocConjugation::Singular;
-    const KEduVocConjugation::ConjugationNumber numD = KEduVocConjugation::Dual;
-    const KEduVocConjugation::ConjugationNumber numP = KEduVocConjugation::Plural;
+    const KEduVocWordFlag::ConjugationNumber numS = KEduVocWordFlag::Singular;
+    const KEduVocWordFlag::ConjugationNumber numD = KEduVocWordFlag::Dual;
+    const KEduVocWordFlag::ConjugationNumber numP = KEduVocWordFlag::Plural;
 
     KEduVocPersonalPronoun pronoun = m_doc->identifier(identifierIndex).personalPronouns();
 
-    first_singular->setText(pronoun.personalPronoun(KEduVocConjugation::First, numS));
-    second_singular->setText(pronoun.personalPronoun(KEduVocConjugation::Second, numS));
-    thirdM_singular->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdMale, numS));
-    thirdF_singular->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdFemale, numS));
-    thirdN_singular->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdNeutralCommon, numS));
+    first_singular->setText(pronoun.personalPronoun(KEduVocWordFlag::First, numS));
+    second_singular->setText(pronoun.personalPronoun(KEduVocWordFlag::Second, numS));
+    thirdM_singular->setText(pronoun.personalPronoun(KEduVocWordFlag::ThirdMale, numS));
+    thirdF_singular->setText(pronoun.personalPronoun(KEduVocWordFlag::ThirdFemale, numS));
+    thirdN_singular->setText(pronoun.personalPronoun(KEduVocWordFlag::ThirdNeutralCommon, numS));
 
-    dualFirstLineEdit->setText(pronoun.personalPronoun(KEduVocConjugation::First, numD));
-    dualSecondLineEdit->setText(pronoun.personalPronoun(KEduVocConjugation::Second, numD));
-    dualThirdMaleLineEdit->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdMale, numD));
-    dualThirdFemaleLineEdit->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdFemale, numD));
-    dualThirdNeutralLineEdit->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdNeutralCommon, numD));
+    dualFirstLineEdit->setText(pronoun.personalPronoun(KEduVocWordFlag::First, numD));
+    dualSecondLineEdit->setText(pronoun.personalPronoun(KEduVocWordFlag::Second, numD));
+    dualThirdMaleLineEdit->setText(pronoun.personalPronoun(KEduVocWordFlag::ThirdMale, numD));
+    dualThirdFemaleLineEdit->setText(pronoun.personalPronoun(KEduVocWordFlag::ThirdFemale, numD));
+    dualThirdNeutralLineEdit->setText(pronoun.personalPronoun(KEduVocWordFlag::ThirdNeutralCommon, numD));
 
-    first_plural->setText(pronoun.personalPronoun(KEduVocConjugation::First, numP));
-    second_plural->setText(pronoun.personalPronoun(KEduVocConjugation::Second, numP));
-    thirdM_plural->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdMale, numP));
-    thirdF_plural->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdFemale, numP));
-    thirdN_plural->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdNeutralCommon, numP));
+    first_plural->setText(pronoun.personalPronoun(KEduVocWordFlag::First, numP));
+    second_plural->setText(pronoun.personalPronoun(KEduVocWordFlag::Second, numP));
+    thirdM_plural->setText(pronoun.personalPronoun(KEduVocWordFlag::ThirdMale, numP));
+    thirdF_plural->setText(pronoun.personalPronoun(KEduVocWordFlag::ThirdFemale, numP));
+    thirdN_plural->setText(pronoun.personalPronoun(KEduVocWordFlag::ThirdNeutralCommon, numP));
 
     maleFemaleDifferCheckBox->setChecked(pronoun.maleFemaleDifferent());
     neutralCheckBox->setChecked(pronoun.neutralExists());
@@ -112,27 +112,27 @@ void LangPropPage::accept()
 
     // personal pronouns
     KEduVocPersonalPronoun pronoun;
-    const KEduVocConjugation::ConjugationNumber numS = KEduVocConjugation::Singular;
-    const KEduVocConjugation::ConjugationNumber numD = KEduVocConjugation::Dual;
-    const KEduVocConjugation::ConjugationNumber numP = KEduVocConjugation::Plural;
+    const KEduVocWordFlag::ConjugationNumber numS = KEduVocWordFlag::Singular;
+    const KEduVocWordFlag::ConjugationNumber numD = KEduVocWordFlag::Dual;
+    const KEduVocWordFlag::ConjugationNumber numP = KEduVocWordFlag::Plural;
 
-    pronoun.setPersonalPronoun(first_singular->text(),  KEduVocConjugation::First, numS);
-    pronoun.setPersonalPronoun(second_singular->text(), KEduVocConjugation::Second, numS);
-    pronoun.setPersonalPronoun(thirdM_singular->text(), KEduVocConjugation::ThirdMale, numS);
-    pronoun.setPersonalPronoun(thirdF_singular->text(), KEduVocConjugation::ThirdFemale, numS);
-    pronoun.setPersonalPronoun(thirdN_singular->text(), KEduVocConjugation::ThirdNeutralCommon, numS);
+    pronoun.setPersonalPronoun(first_singular->text(),  KEduVocWordFlag::First, numS);
+    pronoun.setPersonalPronoun(second_singular->text(), KEduVocWordFlag::Second, numS);
+    pronoun.setPersonalPronoun(thirdM_singular->text(), KEduVocWordFlag::ThirdMale, numS);
+    pronoun.setPersonalPronoun(thirdF_singular->text(), KEduVocWordFlag::ThirdFemale, numS);
+    pronoun.setPersonalPronoun(thirdN_singular->text(), KEduVocWordFlag::ThirdNeutralCommon, numS);
 
-    pronoun.setPersonalPronoun(dualFirstLineEdit->text(), KEduVocConjugation::First, numD);
-    pronoun.setPersonalPronoun(dualSecondLineEdit->text(), KEduVocConjugation::Second, numD);
-    pronoun.setPersonalPronoun(dualThirdMaleLineEdit->text(), KEduVocConjugation::ThirdMale, numD);
-    pronoun.setPersonalPronoun(dualThirdFemaleLineEdit->text(), KEduVocConjugation::ThirdFemale, numD);
-    pronoun.setPersonalPronoun(dualThirdNeutralLineEdit->text(), KEduVocConjugation::ThirdNeutralCommon, numD);
+    pronoun.setPersonalPronoun(dualFirstLineEdit->text(), KEduVocWordFlag::First, numD);
+    pronoun.setPersonalPronoun(dualSecondLineEdit->text(), KEduVocWordFlag::Second, numD);
+    pronoun.setPersonalPronoun(dualThirdMaleLineEdit->text(), KEduVocWordFlag::ThirdMale, numD);
+    pronoun.setPersonalPronoun(dualThirdFemaleLineEdit->text(), KEduVocWordFlag::ThirdFemale, numD);
+    pronoun.setPersonalPronoun(dualThirdNeutralLineEdit->text(), KEduVocWordFlag::ThirdNeutralCommon, numD);
 
-    pronoun.setPersonalPronoun(first_plural->text(), KEduVocConjugation::First, numP);
-    pronoun.setPersonalPronoun(second_plural->text(), KEduVocConjugation::Second, numP);
-    pronoun.setPersonalPronoun(thirdM_plural->text(), KEduVocConjugation::ThirdMale, numP);
-    pronoun.setPersonalPronoun(thirdF_plural->text(), KEduVocConjugation::ThirdFemale, numP);
-    pronoun.setPersonalPronoun(thirdN_plural->text(), KEduVocConjugation::ThirdNeutralCommon, numP);
+    pronoun.setPersonalPronoun(first_plural->text(), KEduVocWordFlag::First, numP);
+    pronoun.setPersonalPronoun(second_plural->text(), KEduVocWordFlag::Second, numP);
+    pronoun.setPersonalPronoun(thirdM_plural->text(), KEduVocWordFlag::ThirdMale, numP);
+    pronoun.setPersonalPronoun(thirdF_plural->text(), KEduVocWordFlag::ThirdFemale, numP);
+    pronoun.setPersonalPronoun(thirdN_plural->text(), KEduVocWordFlag::ThirdNeutralCommon, numP);
 
     pronoun.setMaleFemaleDifferent(maleFemaleDifferCheckBox->isChecked());
     pronoun.setNeutralExists(neutralCheckBox->isChecked());

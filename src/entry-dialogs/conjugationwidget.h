@@ -56,7 +56,7 @@ private:
     KEduVocDocument* m_doc;
 
     /**
-     * All line edits and labels, index corresponding to KEduVocConjugation::indexOf
+     * All line edits and labels, index corresponding to KEduVocWordFlag::indexOf
      */
     QMap< int, QLineEdit* > m_conjugationLineEdits;
 };
