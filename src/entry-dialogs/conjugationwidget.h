@@ -16,6 +16,8 @@
 
 #include "ui_conjugationwidget.h"
 
+#include <keduvocwordflags.h>
+
 class KEduVocExpression;
 class KEduVocDocument;
 
@@ -58,7 +60,7 @@ private:
     /**
      * All line edits and labels, index corresponding to KEduVocWordFlag::indexOf
      */
-    QMap< int, QLineEdit* > m_conjugationLineEdits;
+    QMap< KEduVocWordFlags, QLineEdit* > m_conjugationLineEdits;
 };
 
 #endif

@@ -94,7 +94,7 @@ namespace Scripting
     }
 
 
-//     QObject * Translation::declension ( KEduVocDeclension::DeclensionNumber number, KEduVocDeclension::DeclensionCase decCase )
+//     QObject * Translation::declension ( KEduVocWordFlag::DeclensionNumber number, KEduVocWordFlag::DeclensionCase decCase )
 //     {
 //         kDebug() << number << decCase;
 //         kDebug() << m_translation->declension();
@@ -109,7 +109,7 @@ namespace Scripting
 //             return new Text ( QString() );
 //     }
 
-//     void Translation::setDeclension ( const QString& declension, KEduVocDeclension::DeclensionNumber number, KEduVocDeclension::DeclensionCase decCase )
+//     void Translation::setDeclension ( const QString& declension, KEduVocWordFlag::DeclensionNumber number, KEduVocWordFlag::DeclensionCase decCase )
 //     {
 //         kDebug() << number << decCase;
 //         KEduVocDeclension * dec = m_translation->declension();

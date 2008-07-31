@@ -34,49 +34,49 @@ DeclensionWidget::DeclensionWidget(QWidget *parent) : QWidget(parent)
     showMakeNounWidgets();
     makeNounButton->setEnabled(false);
 
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Singular, KEduVocDeclension::Nominative)] = singular_1;
+    m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Nominative] = singular_1;
 
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Singular, KEduVocDeclension::Genitive)] = singular_2;
+    m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Genitive] = singular_2;
 
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Singular, KEduVocDeclension::Dative)] = singular_3;
+    m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Dative] = singular_3;
 
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Singular, KEduVocDeclension::Accusative)] = singular_4;
+    m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Accusative] = singular_4;
 
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Singular, KEduVocDeclension::Ablative)] = singular_5;
+    m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Ablative] = singular_5;
 
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Singular, KEduVocDeclension::Locative)] = singular_6;
+    m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Locative] = singular_6;
 
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Singular, KEduVocDeclension::Vocative)] = singular_7;
-
-
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Dual, KEduVocDeclension::Nominative)] = dual_1;
-
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Dual, KEduVocDeclension::Genitive)] = dual_2;
-
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Dual, KEduVocDeclension::Dative)] = dual_3;
-
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Dual, KEduVocDeclension::Accusative)] = dual_4;
-
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Dual, KEduVocDeclension::Ablative)] = dual_5;
-
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Dual, KEduVocDeclension::Locative)] = dual_6;
-
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Dual, KEduVocDeclension::Vocative)] = dual_7;
+    m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Vocative] = singular_7;
 
 
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Plural, KEduVocDeclension::Nominative)] = plural_1;
+    m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Nominative] = dual_1;
 
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Plural, KEduVocDeclension::Genitive)] = plural_2;
+    m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Genitive] = dual_2;
 
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Plural, KEduVocDeclension::Dative)] = plural_3;
+    m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Dative] = dual_3;
 
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Plural, KEduVocDeclension::Accusative)] = plural_4;
+    m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Accusative] = dual_4;
 
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Plural, KEduVocDeclension::Ablative)] = plural_5;
+    m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Ablative] = dual_5;
 
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Plural, KEduVocDeclension::Locative)] = plural_6;
+    m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Locative] = dual_6;
 
-    m_DeclensionLineEdits[KEduVocDeclension::indexOf(KEduVocDeclension::Plural, KEduVocDeclension::Vocative)] = plural_7;
+    m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Vocative] = dual_7;
+
+
+    m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Nominative] = plural_1;
+
+    m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Genitive] = plural_2;
+
+    m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Dative] = plural_3;
+
+    m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Accusative] = plural_4;
+
+    m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Ablative] = plural_5;
+
+    m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Locative] = plural_6;
+
+    m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Vocative] = plural_7;
 
     foreach(int index, m_DeclensionLineEdits.keys()) {
         connect(m_DeclensionLineEdits.value(index), SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
@@ -88,7 +88,7 @@ void DeclensionWidget::textChanged(const QString& text)
 {
     int valueIndex = m_DeclensionLineEdits.values().indexOf(qobject_cast<QLineEdit*>(sender()));
     int key = m_DeclensionLineEdits.keys().value(valueIndex);
-    m_entry->translation(m_identifier)->declension()->setDeclension(text, key);
+    m_entry->translation(m_identifier)->declension()->setDeclension(text, (KEduVocWordFlag::Flags)key);
     emit sigModified();
 }
 
@@ -96,7 +96,7 @@ void DeclensionWidget::textChanged(const QString& text)
 void DeclensionWidget::updateEntries()
 {
     foreach(int key, m_DeclensionLineEdits.keys()) {
-        m_DeclensionLineEdits.value(key)->setText(m_entry->translation(m_identifier)->declension()->declension(key).text());
+        m_DeclensionLineEdits.value(key)->setText(m_entry->translation(m_identifier)->declension()->declension((KEduVocWordFlag::Flags)key).text());
     }
 }
 
@@ -226,23 +226,23 @@ void DeclensionWidget::updateVisiblePersons()
     // set up the personal pronouns
     KEduVocPersonalPronoun pron = m_doc->identifier(m_identifier).personalPronouns();
 
-    singularFirstPersonLabel->setText(pron.personalPronoun( KEduVocDeclension::First, KEduVocDeclension::Singular ));
-    singularSecondPersonLabel->setText(pron.personalPronoun( KEduVocDeclension::Second, KEduVocDeclension::Singular ));
-    singularThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocDeclension::ThirdMale, KEduVocDeclension::Singular ));
-    singularThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocDeclension::ThirdFemale, KEduVocDeclension::Singular ));
-    singularThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocDeclension::ThirdNeutralCommon, KEduVocDeclension::Singular ));
+    singularFirstPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::First, KEduVocWordFlag::Singular ));
+    singularSecondPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Second, KEduVocWordFlag::Singular ));
+    singularThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdMale, KEduVocWordFlag::Singular ));
+    singularThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdFemale, KEduVocWordFlag::Singular ));
+    singularThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdNeutralCommon, KEduVocWordFlag::Singular ));
 
-    dualFirstPersonLabel->setText(pron.personalPronoun( KEduVocDeclension::First, KEduVocDeclension::Dual ));
-    dualSecondPersonLabel->setText(pron.personalPronoun( KEduVocDeclension::Second, KEduVocDeclension::Dual ));
-    dualThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocDeclension::ThirdMale, KEduVocDeclension::Dual ));
-    dualThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocDeclension::ThirdFemale, KEduVocDeclension::Dual ));
-    dualThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocDeclension::ThirdNeutralCommon, KEduVocDeclension::Dual ));
+    dualFirstPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::First, KEduVocWordFlag::Dual ));
+    dualSecondPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Second, KEduVocWordFlag::Dual ));
+    dualThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdMale, KEduVocWordFlag::Dual ));
+    dualThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdFemale, KEduVocWordFlag::Dual ));
+    dualThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdNeutralCommon, KEduVocWordFlag::Dual ));
 
-    pluralFirstPersonLabel->setText(pron.personalPronoun( KEduVocDeclension::First, KEduVocDeclension::Plural ));
-    pluralSecondPersonLabel->setText(pron.personalPronoun( KEduVocDeclension::Second, KEduVocDeclension::Plural ));
-    pluralThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocDeclension::ThirdMale, KEduVocDeclension::Plural ));
-    pluralThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocDeclension::ThirdFemale, KEduVocDeclension::Plural ));
-    pluralThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocDeclension::ThirdNeutralCommon, KEduVocDeclension::Plural ));
+    pluralFirstPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::First, KEduVocWordFlag::Plural ));
+    pluralSecondPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Second, KEduVocWordFlag::Plural ));
+    pluralThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdMale, KEduVocWordFlag::Plural ));
+    pluralThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdFemale, KEduVocWordFlag::Plural ));
+    pluralThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdNeutralCommon, KEduVocWordFlag::Plural ));
     */
 }
 

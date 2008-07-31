@@ -338,14 +338,14 @@ namespace Scripting
              */
 //             KEduVocDeclension* declension();
 //weird bug with QMap with this function
-//             QObject * declension(KEduVocDeclension::DeclensionNumber number, KEduVocDeclension::DeclensionCase decCase);
+//             QObject * declension(KEduVocWordFlag::DeclensionNumber number, KEduVocWordFlag::DeclensionCase decCase);
 
             /*
              * Set a new declension for a translation
              * @param declension
              */
 //             void setDeclension ( KEduVocDeclension* declension );
-//             void setDeclension(const QString& declension, KEduVocDeclension::DeclensionNumber number, KEduVocDeclension::DeclensionCase decCase);
+//             void setDeclension(const QString& declension, KEduVocWordFlag::DeclensionNumber number, KEduVocWordFlag::DeclensionCase decCase);
 
 
 
