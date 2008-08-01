@@ -9,6 +9,13 @@ import urllib2
 import urllib
 from sgmllib import SGMLParser
 
+# TODO
+# + Fetch more images (get the next results page)
+# + Resize images before saving (to take less space)
+# + comment out the code!
+# + improve getIdentifier function (maybe by adding a new C++ function)
+# + add "Alert" message box when no translation was selected
+
 #GUI
 uiFile = "google_images.ui"
 
@@ -19,10 +26,12 @@ for plugindir in Parley.pluginDirs():
     (MyWidget, baseClass) = uic.loadUiType(plugindir+uiFile)
     break
 
+#dialog class (loads google_images.ui)
 class MyDialog(QtGui.QDialog, MyWidget):
   def __init__(self,images,word,locale):
     QtGui.QDialog.__init__(self)
 
+    #member variables
     self.images = images
     self.word = word
     self.locale = locale
@@ -31,17 +40,17 @@ class MyDialog(QtGui.QDialog, MyWidget):
     # Set up the user interface from Designer.
     self.setupUi(self)
 
-    print "connecting"
-    
-    #self.connect(self.pushButton, QtCore.SIGNAL("clicked()"),self.edittext)
+    # Connect signals
     self.connect(self.nextButton, QtCore.SIGNAL("clicked()"),self.nextImage)
     self.connect(self.previousButton, QtCore.SIGNAL("clicked()"),self.previousImage)
     self.connect(self.searchButton, QtCore.SIGNAL("clicked()"),self.searchBtnClicked)
     self.connect(self.okButton, QtCore.SIGNAL("clicked()"),self.okBtnClicked)
     self.connect(self.cancelButton, QtCore.SIGNAL("clicked()"),self.cancelBtnClicked)
     
+    #set search text
     self.searchEdit.setText(self.word)
     
+    #display image
     self.showImage(self.images[self.img_index])
     
   def showImage(self,url):
@@ -88,6 +97,7 @@ class MyDialog(QtGui.QDialog, MyWidget):
   def searchBtnClicked(self):
     data = fetchData(self.searchEdit.text(),self.locale)
     self.images = getImageUrls(data)
+    #display the first image (a small hack)
     self.img_index = -1
     self.nextImage()
 
@@ -99,6 +109,7 @@ class MyDialog(QtGui.QDialog, MyWidget):
     [u,img_name] = url.rsplit("/",1)
     [name,ext] = img_name.rsplit(".",1)
     
+    #get a unique file name
     if path.exists(filesdir+"/"+name+"."+ext):
         c = 1
         while path.exists(filesdir+"/"+name+"-"+str(c)+"."+ext):
@@ -116,15 +127,9 @@ class MyDialog(QtGui.QDialog, MyWidget):
   def cancelBtnClicked(self):
     self.close()
 
-
-#URL : http://images.google.com/images?hl=en&safe=active&q=pies
-
-
 #FUNCTIONS
 
-# timeout of search (important for slow connections, not to freeze Parley by waiting for a result)
-
-  #params = [("gbv","2"),("hl",lang),("safe","active"),("q",word),("sa","2"),("btnG","Bilder-Suche")]
+#params = [("gbv","2"),("hl",lang),("safe","active"),("q",word),("sa","2"),("btnG","Bilder-Suche")]
 
 # fetches the html document for the given word and language pair
 def fetchData(word,lang):
@@ -147,6 +152,7 @@ def fetchData(word,lang):
     print "error on fetching online data"
     return ""
 
+#parces the data (html) and returns all the links to images
 def getImageUrls(data):
   print "Parsing data"
   imageurls = []
@@ -161,11 +167,13 @@ def getImageUrls(data):
   return imageurls
   
 
+#downloads image from the url given and returns the data (array of chars)
 def downloadImage(url):
   img = urllib2.urlopen(url)
   imgdata = img.read()
   return imgdata
-        
+
+#get the identifier of the given translation (see Scripting::Translation)
 def getIdentifier(trans):
   sel_entries = Parley.selectedEntries()
   for entry in sel_entries:
@@ -189,6 +197,19 @@ def locale(lang):
   return lang
 
 
+def getFilesDir():
+    filepath = Parley.doc.url
+    #print path.dirname(filepath)
+    p,f = path.split(filepath)
+    [name,ext] = f.rsplit(".",1)
+    #print f.rsplit(".",1)
+    filesdir = p+"/"+name+"_files"
+    return filesdir
+
+
+#ACTION FUNCTION
+
+#method called by clicking "Fetch image" in the Scripts menu
 def fetchImage():
   print "fetching image"
   tr = Parley.selectedTranslations()
@@ -204,24 +225,6 @@ def fetchImage():
   else:
     print "No translation selected"
 
-
-def getFilesDir():
-    filepath = Parley.doc.url
-    #print path.dirname(filepath)
-    p,f = path.split(filepath)
-    [name,ext] = f.rsplit(".",1)
-    #print f.rsplit(".",1)
-    filesdir = p+"/"+name+"_files"
-    return filesdir
-
-  
-#class myParser(SGMLParser):
-  #def reset(self):
-    #SGMLParser.reset(self)
-    #self.images = []
-    
-  #def start_img(self,attrs):
-    #print "Image:",attrs
 
 #SCRIPT MENU
 
