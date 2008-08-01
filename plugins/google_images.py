@@ -197,7 +197,7 @@ def locale(lang):
 
   return lang
 
-
+#Get the string that describes the _files directory next to the Parley document
 def getFilesDir():
     filepath = Parley.doc.url
     #print path.dirname(filepath)
