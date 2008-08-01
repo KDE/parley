@@ -15,6 +15,7 @@ from sgmllib import SGMLParser
 # + comment out the code!
 # + improve getIdentifier function (maybe by adding a new C++ function)
 # + add "Alert" message box when no translation was selected
+# + i18n (make it multilanguage)
 
 #GUI
 uiFile = "google_images.ui"
@@ -66,6 +67,7 @@ class MyDialog(QtGui.QDialog, MyWidget):
       return False
 
 
+  #Returns a QPixmap from the given http url or None if url is invalid
   def getPixmap(self,url):
     pixmap = QtGui.QPixmap()
     
@@ -74,7 +76,6 @@ class MyDialog(QtGui.QDialog, MyWidget):
       imgdata = img.read()
       pixmap.loadFromData(imgdata);
       return pixmap
-
     except:
       print "Image not found"
       return None
