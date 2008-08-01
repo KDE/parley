@@ -7,6 +7,7 @@ ServiceTypes=KPluginInfo
 Name=Example Parley Script
 Name[uk]=Приклад скрипту Parley
 Comment=This Script offers two actions: 1) Move to new lesson 2) Mark as known for the Scripts menu
+Comment[uk]=Скрипт додає дві дії: 1) Перейти до наступного уроку 2) Позначити як відоме питання, до меню «Скрипти»
 Script=example.py
 
 X-KDE-PluginInfo-Author=Avgoustinos Kadis
