@@ -144,7 +144,7 @@ void ScriptManager::disablePlugin ( QString desktopFile )
 void ScriptManager::loadScripts()
 {
     QStringList scripts = enabledScripts();
-    foreach ( QString script, scripts )
+    foreach ( const QString& script, scripts )
     {
         //create a new Script and add it to the m_scripts list
         Script * s = new Script ( script );
