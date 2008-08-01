@@ -1,0 +1,19 @@
+[Desktop Entry]
+Encoding=UTF-8
+Icon=mypluginicon
+Type=Service
+ServiceTypes=KPluginInfo
+
+Name=Google Images (online image fetching)
+Comment=This scripts automatically fetches images from images.google.com for the selected translation. Requires PyQt4
+Comment[uk]=Використовує словник Google (translate.google.com) для перекладу слів
+Script=google_images.py
+
+X-KDE-PluginInfo-Author=Avgoustinos Kadis
+X-KDE-PluginInfo-Email=avgoustinos.kadis@kdemail.net
+X-KDE-PluginInfo-Name=google_images
+X-KDE-PluginInfo-Version=1.1
+X-KDE-PluginInfo-Website=http://edu.kde.org/parley
+X-KDE-PluginInfo-Category=Images
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-EnabledByDefault=true

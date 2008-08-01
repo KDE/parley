@@ -1,7 +1,62 @@
 #!/usr/bin/env kross
 import Parley
 import Kross
-#import PyKDE4
+import PyKDE4
+from PyQt4 import QtGui
+from PyQt4 import QtCore
+from PyQt4 import uic
+import sys
+
+(MyWidget, baseClass) = uic.loadUiType(Parley.pluginDirs()[0]+"./mywidget.ui")
+
+class MyDialog(QtGui.QDialog, MyWidget):
+  def edittext(self):
+    print "button clicked"
+    self.textEdit.setText("edit!!")
+      
+  def __init__(self):
+    QtGui.QDialog.__init__(self)
+
+    # Set up the user interface from Designer.
+    self.setupUi(self)
+
+    # Make some local modifications.
+    #self.colorDepthCombo.addItem("2 colors (1 bit per pixel)")
+        
+    print "connecting"
+    self.connect(self.pushButton, QtCore.SIGNAL("clicked()"),self.edittext)
+                 #self, QtCore.SLOT("edittext(MyDialog)"))
+                    
+    print self.textEdit
+    print self.pushButton
+
+    # Connect up the buttons.
+    #self.connect(self.okButton, QtCore.SIGNAL("clicked()"),
+                 #self, QtCore.SLOT("accept()"))
+    #self.connect(self.cancelButton, QtCore.SIGNAL("clicked()"),
+                     #self, QtCore.SLOT("reject()"))
+    
+
+
+def testPyQt():
+  print "Testing pyQt"
+  #app = QtGui.QApplication(sys.argv)
+  #(formClass, baseClassu) = uic.loadUiType(Parley.pluginDirs()[0]+"./mywidget.ui")
+
+  #widget = QtGui.QDialog()
+  #widget.resize(250, 150)
+  #widget.setWindowTitle('simple')
+  #c = formClass()
+  #print c
+  #c.setupUi(widget)
+  #widget.exec_()
+  window = MyDialog()
+  window.exec_()
+  #app.exec_()
+  
+def testPyKDE():
+  dialog = PyKDE4.kdeui.KDialog()
+
 
 def testUI():
  forms = Kross.module("forms")
@@ -121,6 +176,13 @@ def registerActions():
   
   newaction4 = Parley.newAction("my_script1","ui2")
   Parley.connect(newaction4,"triggered()",testUI2)
+  
+  newaction5 = Parley.newAction("my_script1","pyQt")
+  Parley.connect(newaction5,"triggered()",testPyQt)
+  
+  newaction6 = Parley.newAction("my_script1","pyKDE")
+  Parley.connect(newaction6,"triggered()",testPyKDE)
+
   return
 
 def appendChildrenToAllLessons():
@@ -384,7 +446,8 @@ def translateFromInternet(word,fromLang,toLang):
 Parley.connect("translateWord(const QString &,const QString &,const QString &)",translateFromInternet)
 
 print "TEST ACTION"
-registerActions()
+
+#registerActions()
 
 #print "OPENING DOCUMENT"
 ##Parley.open('/home/kde-devel/My\ Vocabularies/test.kvtml')
