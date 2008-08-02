@@ -1,3 +1,6 @@
+Elements that are part of an active area should be prefixed with the area name and _ (eg written_answer_text_box)
+Elements are are NOT part of an active area (ie they are part of the main group) should be prefixed with __ (two underscores).
+
 Elements required (sorted by mode required):
 
 Any of these can be visible or invisible.
@@ -30,7 +33,7 @@ sound_box # this will contain a button to play the sound
 question_text_box # the question text will be placed here, vertically centered
 
 Flashcard:
-flashcard_text_background # where to put the text on the flashcard (both the question and solution can be put here)
+flashcard_text_box # where to put the text on the flashcard (both the question and solution can be put here)
 show_solution_button # On this one it shows the solution, but doesn't automatically count it as wrong. Also, it is non-optional for this mode.
 known_button # this indicates you know the solution
 unknown_button # this indicates you didn't know the solution
@@ -61,3 +64,22 @@ See Multiple Choice, image/sound optional
 Conjugation:
 question_text_box
 input method unknown, but leave some space
+
+Main background name: main, with element active_area that active areas (below) are placed in.
+
+Active areas are the parts of the practice that change depending on the mode. For the modes with defaults listed,
+if you do not provide an area for that mode, it will default to the listed mode.
+Active Area names: (name -> default)
+written
+flashcard
+multiple_choice
+article -> multiple_choice
+mixed_letters
+example -> written
+paraphrase -> written
+antonym -> multiple_choice
+synonyn -> multiple_choice
+conjugation -> ?
+comparison -> ?
+
+
