@@ -31,6 +31,7 @@ public:
 
 public slots:
     void slotOpenUrl(const KUrl& url);
+    void slotPracticeUrl(const KUrl& url);
     void slotDoubleClicked(const QModelIndex& index);
 
 private:

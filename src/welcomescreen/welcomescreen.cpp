@@ -40,20 +40,20 @@ WelcomeScreen::WelcomeScreen(ParleyApp *parent)
         )
         .arg(fgColor.name());
     setStyleSheet(css);
-    
+
     ui->iconLabel->setPixmap(KIcon("parley").pixmap(128, 128));
     ui->newButton->setIcon(KIcon("document-new"));
     ui->openButton->setIcon(KIcon("document-open"));
     ui->ghnsButton->setIcon(KIcon("get-hot-new-stuff"));
-    
+
     m_recentFilesModel = new QStandardItemModel(this);
     updateRecentFilesModel();
     ui->recentFiles->setModel(m_recentFilesModel);
     ui->recentFiles->setSelectionMode(QAbstractItemView::NoSelection);
-    
+
     ButtonDelegate* delegate = new ButtonDelegate(ui->recentFiles, this);
     ui->recentFiles->setItemDelegate(delegate);
-    
+
     ParleyDocument* doc = m_parleyApp->parleyDocument();
     connect(ui->newButton, SIGNAL(clicked()), doc, SLOT(slotFileNew()));
     connect(ui->openButton, SIGNAL(clicked()), doc, SLOT(slotFileOpen()));
@@ -78,10 +78,10 @@ void WelcomeScreen::updateRecentFilesModel()
         item->setText(nameString+" ("+url.pathOrUrl()+")");
         item->setToolTip(nameString+" ("+url.pathOrUrl()+")");
         item->setData(QVariant(url), Qt::UserRole);
-        
+
         QString iconName = KMimeType::iconNameForUrl(url);
         item->setIcon(KIcon(iconName));
-        
+
         m_recentFilesModel->appendRow(item);
     }
 }
@@ -95,6 +95,12 @@ void WelcomeScreen::slotDoubleClicked(const QModelIndex& index)
 {
     KUrl url = index.data(Qt::UserRole).toUrl();
     slotOpenUrl(url);
+}
+
+void WelcomeScreen::slotPracticeUrl(const KUrl & url)
+{
+    m_parleyApp->parleyDocument()->open(url);
+    m_parleyApp->startPractice();
 }
 
 #include "welcomescreen.moc"

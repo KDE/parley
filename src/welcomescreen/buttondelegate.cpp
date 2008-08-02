@@ -103,7 +103,9 @@ void ButtonDelegate::slotEdit()
 
 void ButtonDelegate::slotPractice()
 {
-    KMessageBox::information(0, "Coming soon.");
+    const QModelIndex index = focusedIndex();
+    KUrl url = index.data(Qt::UserRole).toUrl();
+    m_welcomeScreen->slotPracticeUrl(url);
 }
 
 #include "buttondelegate.moc"
