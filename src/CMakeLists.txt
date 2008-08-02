@@ -1,9 +1,14 @@
+# installation of kconfig files .kcfg containing app settings
 add_subdirectory( settings )
+
+# leave themes installation in the sudir to make changes to themes easier
 add_subdirectory( practice/themes )
 
+# libkdeedu/keduvocdocument contains the library for reading and writing vocabulary files
 include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/
 )
 
+# xslt to transform the document xml to html or other
 if(HAVE_LIBXSLT)
     include_directories( ${LIBXML2_INCLUDE_DIR} ${LIBXSLT_INCLUDE_DIR} )
 
@@ -17,13 +22,14 @@ if(HAVE_LIBXSLT)
     )
 endif(HAVE_LIBXSLT)
 
-########### next target ###############
+# create kconfig
 kde4_add_kcfg_files( libcommondlg_SKEL_SRCS
     settings/prefs.kcfgc
     settings/documentsettings.kcfgc
     settings/languagesettings.kcfgc
 )
 
+# settings
 set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
     settings/parleyprefs.cpp
     settings/generaloptions.cpp
@@ -32,12 +38,14 @@ set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
     settings/plugintablemodel.cpp
 )
 
+# settings ui
 kde4_add_ui_files( libcommondlg_SRCS
     settings/viewoptionsbase.ui
     settings/generaloptionsbase.ui
     settings/pluginoptionsbase.ui
 )
 
+# views on the vocabulary files contents - lessons and the actual words
 set(vocabulary_SRCS
     vocabulary/vocabularymodel.cpp
     vocabulary/vocabularyview.cpp
@@ -57,6 +65,7 @@ set(vocabulary_SRCS
     vocabulary/leitnermodel.cpp
 )
 
+# the practice using qgraphicsview
 set(practice_SRCS
     practice/kgametheme/kgametheme.cpp
     practice/kgametheme/kgamethemeselector.cpp
@@ -97,6 +106,7 @@ set(parleypractice_SRCS
     practice/main.cpp
 )
 
+# old practice dialogs (normal qdialog)
 set(practiceold_SRCS
     practiceold/testentry.cpp
     practiceold/testentrymanager.cpp
@@ -125,6 +135,7 @@ kde4_add_ui_files(practiceold_SRCS
     practiceold/practicesummarywidget.ui
 )
 
+# settings for the practice
 set(configure-practice_SRCS
     configure-practice/configurepracticedialog.cpp
     configure-practice/configurepracticewidget.cpp
@@ -144,6 +155,7 @@ kde4_add_ui_files(configure-practice_SRCS
     configure-practice/multiplechoiceoptionswidget.ui
 )
 
+# general document settings - author etc, contained languages
 set(docprop_SRCS
     docprop-dialogs/LangPropPage.cpp
     docprop-dialogs/TenseOptPage.cpp
@@ -156,6 +168,7 @@ kde4_add_ui_files(docprop_SRCS
     docprop-dialogs/optionlistform.ui
 )
 
+# dock widgets to help editing vocabulary
 set(entrydialogs_SRCS
     entry-dialogs/multiplechoicewidget.cpp
     entry-dialogs/comparisonwidget.cpp
@@ -178,12 +191,14 @@ kde4_add_ui_files(entrydialogs_SRCS
     entry-dialogs/browserwidget.ui
 )
 
+# overview over grades
 set(statisticsdialogs_SRCS
     statistics-dialogs/statisticsmodel.cpp
     statistics-dialogs/StatisticsDialog.cpp
     statistics-dialogs/lessonstatistics.cpp
 )
 
+# new document wizard, should be merged into a single page (Daniel, kill this!)
 set(newdocument-wizard_SRCS
     newdocument-wizard/kvtnewdocumentwizard.cpp
     newdocument-wizard/kvtnewdocumentwizardintropage.cpp
@@ -197,6 +212,7 @@ kde4_add_ui_files(newdocument-wizard_SRCS
     newdocument-wizard/secondidentifierlanguagepage.ui
 )
 
+# properties of languages - grammar stuff like articles
 set(languagedialogs_SRCS
     language-dialogs/languagedialog.cpp
     language-dialogs/editlanguagedialogpage.cpp
@@ -204,6 +220,11 @@ set(languagedialogs_SRCS
     language-dialogs/vocabularycolumnsdialog.cpp
 )
 
+kde4_add_ui_files(languagedialogs_SRCS
+    language-dialogs/languagepage.ui
+)
+
+# scripting interface using kross
 set(scripts_SRCS
     scripts/scriptdialog.cpp
     scripts/scriptmanager.cpp
@@ -215,14 +236,12 @@ set(scripts_SRCS
     scripts/scripting/text.cpp
     scripts/scripting/container.cpp
     scripts/scripting/identifier.cpp
-    scripts/script.cpp
-    scripts/translator.cpp
-)
 
 kde4_add_ui_files(languagedialogs_SRCS
     language-dialogs/languagepage.ui
 )
 
+# the first thing you see when startin parley
 set(welcomescreen_SRCS
     welcomescreen/welcomescreen.cpp
     welcomescreen/buttondelegate.cpp
@@ -232,6 +251,7 @@ kde4_add_ui_files(welcomescreen_SRCS
     welcomescreen/welcomescreen.ui
 )
 
+# put it all together
 set(parley_SRCS
     ${vocabulary_SRCS} ${libcommondlg_SRCS}
     ${practice_SRCS}
@@ -282,9 +302,15 @@ target_link_libraries(
 
 
 ########### install files ###############
-
+# desktop files appear in the menus
 install( FILES parley.desktop parleypractice.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
+
+# hot new stuff config
 install( FILES parley.knsrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
+
+# main window ui (menus)
 install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )
+
+# practice main window ui
 install(FILES practice/parleypracticeui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley)
 
