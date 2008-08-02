@@ -23,7 +23,7 @@ class ArticleMCInput : public MCInput
 {
     Q_OBJECT
      public:
-        ArticleMCInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, class KEduVocDocument * doc, QWidget * parent = 0);
+        ArticleMCInput(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, class KEduVocDocument * doc, QWidget * parent = 0);
 
     public slots:
         void slotSetAnswers();

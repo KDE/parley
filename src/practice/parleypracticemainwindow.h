@@ -41,6 +41,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         class QGraphicsSvgItem* m_layout;
         class QGraphicsScene* m_scene;
         class KSvgRenderer* m_renderer;
+        class ActiveArea* m_area;
 
         class PracticeEntryManager * m_manager;
         class Statistics* m_stats;
@@ -51,6 +52,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         Prefs::EnumTestType::type m_mode;
 
         void setupBase(const QString& desktopFileFilename, class KEduVocDocument * doc = 0);
+        void setupActiveArea();
         void setupActions();
         void setupModeSpecifics();
         void setupModeIndependent();

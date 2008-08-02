@@ -25,14 +25,14 @@
 class KSvgRenderer;
 class QGraphicsView;
 class QString;
-
+class ActiveArea;
 
 class TextualInput : public QLineEdit
 {
     Q_OBJECT
 
     public:
-        TextualInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent = 0);
+        TextualInput(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId,  QWidget * parent = 0);
 
     public slots:
         void slotClear();

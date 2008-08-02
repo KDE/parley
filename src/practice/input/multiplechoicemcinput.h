@@ -26,7 +26,7 @@ class MultipleChoiceMCInput : public MCInput
 {
     Q_OBJECT
     public:
-        MultipleChoiceMCInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent = 0);
+        MultipleChoiceMCInput(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent = 0);
 
     public slots:
         void slotSetAnswers(PracticeEntry*, QList<PracticeEntry*>);

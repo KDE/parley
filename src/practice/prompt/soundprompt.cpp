@@ -16,6 +16,8 @@
 ***************************************************************************/
 
 #include "soundprompt.h"
+#include "../activearea.h"
+
 
 #include <KDebug>
 #include <kio/netaccess.h>
@@ -24,7 +26,7 @@
 #include <QGraphicsView>
 #include <KUrl>
 
-SoundPrompt::SoundPrompt ( KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent ) :
+SoundPrompt::SoundPrompt ( KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent ) :
         QPushButton ( parent ),
         m_renderer ( renderer )
 {
@@ -44,8 +46,11 @@ SoundPrompt::SoundPrompt ( KSvgRenderer * renderer, QGraphicsView * view, const 
     }
 
     setText ( "Play Sound" );
-    QRect bounds = m_renderer->boundsOnElement ( elementId ).toRect();
-    setGeometry ( view->mapToScene ( bounds ).boundingRect().toRect() );
+
+    QRectF bounds = m_renderer->boundsOnElement(elementId);
+     bounds.translate(area->offset());
+     setGeometry(bounds.toRect());
+
 
     connect ( this, SIGNAL ( clicked() ), this, SLOT ( slotPlay() ) );
 

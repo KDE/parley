@@ -27,12 +27,13 @@ class QGraphicsView;
 class QString;
 class QWidget;
 class QStringList;
+class ActiveArea;
 
 class MCInput : public QGroupBox
 {
     Q_OBJECT
     public:
-        MCInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent = 0);
+        MCInput(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent = 0);
         ~MCInput();
 
     public slots:

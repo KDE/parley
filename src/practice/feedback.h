@@ -26,13 +26,14 @@
 class QString;
 class KSvgRenderer;
 class QRectF;
+class ActiveArea;
 
 class Feedback : public QGraphicsTextItem
 {
         Q_OBJECT
 
     public:
-        Feedback(KSvgRenderer * renderer, const QString& elementId);
+        Feedback(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId);
 
     public slots:
         void slotSetText(const QString& htmltext);

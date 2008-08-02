@@ -34,8 +34,8 @@
 
 #include <keduvocwordtype.h>
 
-MultipleChoiceMCInput::MultipleChoiceMCInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget* parent)
-    : MCInput(renderer, view, elementId, parent)
+MultipleChoiceMCInput::MultipleChoiceMCInput(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget* parent)
+    : MCInput(renderer, area, elementId, parent)
 {}
 
 

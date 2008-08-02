@@ -64,17 +64,18 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
     m_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-     QGraphicsSvgItem * backgroundsvg = new QGraphicsSvgItem();
+     m_layout = new QGraphicsSvgItem();
      m_renderer = new KSvgRenderer();
      KGameTheme kgtheme;
      kDebug() << "kgametheme valid:" << kgtheme.load("parley/themes/" + desktopFileName);
-     kDebug() << "graphics svg path" << kgtheme.graphics();
+     kDebug() << "graphics svg path:" << kgtheme.graphics();
      m_renderer->load(kgtheme.graphics());
-     backgroundsvg->setSharedRenderer(m_renderer);
-     m_scene->addItem(backgroundsvg);
-     backgroundsvg->setZValue(-10);
+     m_layout->setSharedRenderer(m_renderer);
+     m_layout->setElementId("main");
+     m_scene->addItem(m_layout);
+     m_layout->setZValue(-10);
 
-    m_scene->setSceneRect(backgroundsvg->boundingRect());
+    m_scene->setSceneRect(m_layout->boundingRect());
     m_view->setSceneRect(m_scene->sceneRect());
 
     m_manager = new PracticeEntryManager(this);
@@ -163,19 +164,19 @@ void ParleyPracticeMainWindow::setupActions()
 
 void ParleyPracticeMainWindow::setupModeIndependent()
 {
-    Feedback * feedback = new Feedback(m_renderer, "feedback_box");
+    Feedback * feedback = new Feedback(m_renderer, m_area, "feedback_box");
     m_scene->addItem(feedback);
     connect(m_validator, SIGNAL(signalFeedback(const QString&)), feedback, SLOT(slotSetText(const QString&)));
     connect(m_manager, SIGNAL(signalNewEntry()), feedback, SLOT(slotClear()));
 
-    SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, "bar", "bar_background");
+    SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, m_area, "bar", "bar_background");
     m_scene->addItem(barstats);
     connect(m_stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
 
     if (Prefs::practiceTimeout() && Prefs::practiceTimeoutTimePerAnswer()) // timeout can't be 0
     {
         m_timer = new Timer(this);
-        m_timer->makeGUI(m_renderer, m_scene);
+        m_timer->makeGUI(m_renderer, m_area);
         m_timer->setLength(Prefs::practiceTimeoutTimePerAnswer()*1000); // seconds -> milliseconds
 
         // when the timer triggers, it will assume their current input is their answer

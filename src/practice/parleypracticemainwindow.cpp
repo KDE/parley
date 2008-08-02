@@ -59,7 +59,9 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
         : KXmlGuiWindow(parent)
 {
     setupBase("default.desktop");
+    setupActiveArea();
     setupActions();
+    setupModeIndependent();
     setupModeSpecifics();
 
     setupGUI(Default, QString::fromLatin1("parleypracticeui.rc"));
@@ -74,6 +76,7 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(KEduVocDocument* doc, QWidget
         : KXmlGuiWindow(parent)
 {
     setupBase("default.desktop", doc);
+    setupActiveArea();
     setupActions();
     setupModeIndependent();
     setupModeSpecifics();
@@ -170,6 +173,38 @@ void ParleyPracticeMainWindow::setupModeSpecifics()
         kDebug() << "unhandled practice mode " << m_mode << " selected.";
         break;
     }
+}
+
+void ParleyPracticeMainWindow::setupActiveArea()
+{
+    switch (m_mode)
+    {
+       case Prefs::EnumTestType::ParaphraseTest:
+            m_area = new ActiveArea(m_renderer, "paraphrase", "written");
+            break;
+       case Prefs::EnumTestType::ExampleTest:
+            m_area = new ActiveArea(m_renderer, "example", "written");
+            break;
+       case Prefs::EnumTestType::WrittenTest:
+            m_area = new ActiveArea(m_renderer, "written");
+            break;
+       case Prefs::EnumTestType::MultipleChoiceTest:
+            m_area = new ActiveArea(m_renderer, "multiple_choice");
+            break;
+       case Prefs::EnumTestType::ArticleTest:
+            m_area = new ActiveArea(m_renderer, "article", "multiple_choice");
+            break;
+       case Prefs::EnumTestType::MixedLettersTest:
+            m_area = new ActiveArea(m_renderer, "mixed_letters");
+            break;
+       case Prefs::EnumTestType::FlashCardsTest:
+            m_area = new ActiveArea(m_renderer, "flashcards");
+            break;
+       default:
+        kDebug() << "unhandled practice mode " << m_mode << " selected.";
+        break;
+    }
+    m_scene->addItem(m_area);
 }
 
 

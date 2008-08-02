@@ -16,6 +16,8 @@
 ***************************************************************************/
 
 #include "mixedlettersprompt.h"
+#include "../activearea.h"
+
 
 #include <KSvgRenderer>
 #include <QString>
@@ -26,8 +28,8 @@
 #include <KDebug>
 #include <QGraphicsTextItem>
 
-MixedLettersPrompt::MixedLettersPrompt(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent)
-: QWidget(parent), m_renderer(renderer), m_scene(view->scene()), m_view(view)
+MixedLettersPrompt::MixedLettersPrompt(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent)
+: QWidget(parent), m_renderer(renderer), m_area(area)
 {
     if (!renderer->elementExists(elementId))
     {
@@ -37,6 +39,10 @@ MixedLettersPrompt::MixedLettersPrompt(KSvgRenderer * renderer, QGraphicsView * 
     }
 
     m_backgroundRect = renderer->boundsOnElement ( elementId );
+
+     m_backgroundRect.translate(area->offset());
+     setGeometry(m_backgroundRect.toRect());
+
 }
 
 void MixedLettersPrompt::slotSetText (const QString& solution )
@@ -66,7 +72,9 @@ void MixedLettersPrompt::slotSetText (const QString& solution )
         m_letters.append(letter);
         m_scene->addItem(letter);
 //         letter->setParentItem(backgroundItem);
-        letter->setPos(m_view->mapToScene(letter->x(), letter->y()) + m_backgroundRect.topLeft());
+//         letter->setPos(m_view->mapToScene(letter->x(), letter->y()) + m_backgroundRect.topLeft());
+        letter->setPos(m_area->offset() + m_backgroundRect.topLeft());
+
     }
 }
 

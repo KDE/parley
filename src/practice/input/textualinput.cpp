@@ -20,15 +20,17 @@
 
 #include "../practiceentry.h"
 #include "prefs.h"
+#include "../activearea.h"
 
 #include <KDebug>
 #include <KSvgRenderer>
 #include <QString>
 #include <KLocalizedString>
+#include <QRectF>
 
 #include <QGraphicsView>
 
-TextualInput::TextualInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget* parent)
+TextualInput::TextualInput(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget* parent)
         : QLineEdit(parent),
         m_renderer(renderer)
 {
@@ -39,8 +41,11 @@ TextualInput::TextualInput(KSvgRenderer * renderer, QGraphicsView * view, const 
         kDebug() << elementId << ":" << renderer->elementExists(elementId);
     }
 
-     QRect bounds = m_renderer->boundsOnElement(elementId).toRect();
-     setGeometry(view->mapToScene(bounds).boundingRect().toRect());
+     QRectF bounds = m_renderer->boundsOnElement(elementId);
+     bounds.translate(area->offset());
+     setGeometry(bounds.toRect());
+
+     kDebug() << pos();
 
      connect(this, SIGNAL(textChanged(const QString&)), this, SIGNAL(signalAnswerChanged(const QString&)));
 }

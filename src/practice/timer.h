@@ -47,7 +47,7 @@ class Timer : public QObject
         /// Returns the length of the timer
         Milliseconds length() const { return m_length; }
 
-        void makeGUI(class KSvgRenderer* renderer, class QGraphicsScene * scene);
+        void makeGUI(class KSvgRenderer* renderer, class ActiveArea * scene);
 
     public slots:
         /// Start a timer with a length of ms milliseconds and set m_length to ms.

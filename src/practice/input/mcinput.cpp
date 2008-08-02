@@ -19,6 +19,7 @@
 
 #include "../practiceentry.h"
 #include "prefs.h"
+#include "../activearea.h"
 
 #include <KDebug>
 #include <KSvgRenderer>
@@ -34,7 +35,7 @@
 #include "keduvocwordtype.h"
 
 
-MCInput::MCInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget* parent)
+MCInput::MCInput(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget* parent)
         : QGroupBox(parent),
         m_renderer(renderer)
 {
@@ -45,10 +46,11 @@ MCInput::MCInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& e
         kDebug() << elementId << ":" << renderer->elementExists(elementId);
     }
 
-     QRect bounds = m_renderer->boundsOnElement(elementId).toRect();
-     setGeometry(view->mapToScene(bounds).boundingRect().toRect());
+     QRectF bounds = m_renderer->boundsOnElement(elementId);
+     bounds.translate(area->offset());
+     setGeometry(bounds.toRect());
 
-    setAttribute(Qt::WA_OpaquePaintEvent, true);
+     setAttribute(Qt::WA_OpaquePaintEvent, true);
 }
 
 void MCInput::slotShortcutTriggered(int shortcutNumber)

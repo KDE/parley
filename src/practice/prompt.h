@@ -99,7 +99,6 @@ class MixedLettersPrompt : public QWidget
         KSvgRenderer * m_renderer;
         QRectF m_backgroundRect;
         QGraphicsScene* m_scene;
-        QGraphicsView* m_view;
         QList<QGraphicsTextItem*> m_letters;
         QString m_solution;
 };

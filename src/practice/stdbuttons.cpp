@@ -23,7 +23,7 @@
 #include "statistics/statistics.h"
 
 
-StdButton::StdButton(KSvgRenderer * renderer, PracticeView * view, const QString& elementId, QWidget* parent)
+StdButton::StdButton(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget* parent)
         : KPushButton(parent),
         m_renderer(renderer)
 {
@@ -35,11 +35,13 @@ StdButton::StdButton(KSvgRenderer * renderer, PracticeView * view, const QString
     }
 
     connect(this, SIGNAL(clicked()), this, SLOT(slotActivated()));
-       QRect bounds = m_renderer->boundsOnElement(elementId).toRect();
-     setGeometry(view->mapToScene(bounds).boundingRect().toRect());
+
+     QRectF bounds = m_renderer->boundsOnElement(elementId);
+     bounds.translate(area->offset());
+     setGeometry(bounds.toRect());
 }
 
-StdButton::StdButton(const QString& text, KSvgRenderer * renderer, PracticeView * view, const QString& elementId, QWidget* parent)
+StdButton::StdButton(const QString& text, KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget* parent)
         : KPushButton(text, parent),
         m_renderer(renderer)
 {
@@ -52,8 +54,10 @@ StdButton::StdButton(const QString& text, KSvgRenderer * renderer, PracticeView 
     }
 
     connect(this, SIGNAL(clicked()), this, SLOT(slotActivated()));
-       QRect bounds = m_renderer->boundsOnElement(elementId).toRect();
-     setGeometry(view->mapToScene(bounds).boundingRect().toRect());
+
+     QRectF bounds = m_renderer->boundsOnElement(elementId);
+     bounds.translate(area->offset());
+     setGeometry(bounds.toRect());
 }
 
 

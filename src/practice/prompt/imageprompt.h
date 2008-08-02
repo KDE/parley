@@ -26,6 +26,7 @@ class QString;
 class QGraphicsView;
 class QWidget;
 class KUrl;
+class ActiveArea;
 
 class ImagePrompt : public QLabel
 {
@@ -33,7 +34,7 @@ class ImagePrompt : public QLabel
 
 
     public:
-        ImagePrompt(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent = 0);
+        ImagePrompt(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent = 0);
     public slots:
 
         void slotSetImage(const KUrl& image);

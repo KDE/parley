@@ -82,6 +82,7 @@ set(practice_SRCS
     practice/practiceentry.cpp
     practiceold/entryfilter.cpp
     practice/feedback.cpp
+    practice/activearea.cpp
 )
 
 kde4_add_ui_files(practice_SRCS

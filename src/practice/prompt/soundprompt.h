@@ -27,11 +27,13 @@
 #include <Phonon/Global>
 #include <KUrl>
 
+
+
 class KSvgRenderer;
 class QString;
 class QGraphicsView;
 class QWidget;
-
+class ActiveArea;
 
 class SoundPrompt : public QPushButton
 {
@@ -39,7 +41,7 @@ class SoundPrompt : public QPushButton
 
 
     public:
-        SoundPrompt(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent = 0);
+        SoundPrompt(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent = 0);
         ~SoundPrompt();
     public slots:
         void slotSetSound(const KUrl& sound);

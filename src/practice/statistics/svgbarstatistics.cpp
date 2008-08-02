@@ -16,13 +16,14 @@
 ***************************************************************************/
 #include "svgbarstatistics.h"
 #include "statistics.h"
+#include "../activearea.h"
 
 #include <QSvgRenderer>
 #include <QString>
 #include <QRectF>
 #include <KDebug>
 
-SvgBarStatistics::SvgBarStatistics(QSvgRenderer* renderer, const QString& foregroundElementId, const QString& backgroundElementId, QGraphicsItem * parent)
+SvgBarStatistics::SvgBarStatistics(QSvgRenderer* renderer, ActiveArea * area, const QString& foregroundElementId, const QString& backgroundElementId, QGraphicsItem * parent)
     : QGraphicsSvgItem(parent)
 {
     if (!(renderer->elementExists(foregroundElementId) && renderer->elementExists(backgroundElementId)))
@@ -36,7 +37,7 @@ SvgBarStatistics::SvgBarStatistics(QSvgRenderer* renderer, const QString& foregr
     setSharedRenderer(renderer);
     setElementId(foregroundElementId);
     m_backgroundRect = renderer->boundsOnElement(backgroundElementId);
-    setPos(m_backgroundRect.x(), m_backgroundRect.y());
+    setPos(m_backgroundRect.x() + area->offset().x(), m_backgroundRect.y() + area->offset().y());
     scale((m_backgroundRect.width())/boundingRect().width()*.0001, 1.0);
     setZValue(10); // higher than the rest
 }

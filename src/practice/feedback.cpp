@@ -17,13 +17,14 @@
 ***************************************************************************/
 
 #include "feedback.h"
+#include "activearea.h"
 
 #include <QRectF>
 #include <QString>
 #include <KSvgRenderer>
 #include <KDebug>
 
-Feedback::Feedback ( KSvgRenderer * renderer, const QString& elementId ) :
+Feedback::Feedback ( KSvgRenderer * renderer, ActiveArea * area, const QString& elementId ) :
         m_renderer ( renderer )
 {
 
@@ -35,6 +36,10 @@ Feedback::Feedback ( KSvgRenderer * renderer, const QString& elementId ) :
     }
 
     m_backgroundRect = renderer->boundsOnElement ( elementId );
+    setPos (area->offset().x() + m_backgroundRect.x(), area->offset().y() + m_backgroundRect.y() );
+    adjustSize();
+    setZValue(5);
+
 }
 
 void Feedback::slotSetText(const QString& htmltext)

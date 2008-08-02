@@ -16,6 +16,7 @@
 ***************************************************************************/
 
 #include "imageprompt.h"
+#include "../activearea.h"
 
 #include <KSvgRenderer>
 #include <QString>
@@ -24,7 +25,7 @@
 #include <kio/netaccess.h>
 
 
-ImagePrompt::ImagePrompt ( KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent ) :
+ImagePrompt::ImagePrompt ( KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent ) :
         QLabel ( parent ),
         m_pic ( QPixmap() ),
         m_renderer ( renderer )
@@ -37,8 +38,10 @@ ImagePrompt::ImagePrompt ( KSvgRenderer * renderer, QGraphicsView * view, const 
         kDebug() << elementId << ":" << renderer->elementExists(elementId);
     }
 
-    QRect bounds = m_renderer->boundsOnElement ( elementId ).toRect();
-    setGeometry ( view->mapToScene ( bounds ).boundingRect().toRect() );
+     QRectF bounds = m_renderer->boundsOnElement(elementId);
+     bounds.translate(area->offset());
+     setGeometry(bounds.toRect());
+
 
     slotSetImage ( KUrl() );
 }

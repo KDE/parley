@@ -25,12 +25,13 @@
 #include <QStringList>
 #include <QGraphicsView>
 #include "../practiceentry.h"
+#include "../activearea.h"
 
 #include "prefs.h"
 
 
-ArticleMCInput::ArticleMCInput(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, KEduVocDocument * doc, QWidget * parent)
-: MCInput(renderer, view, elementId, parent), m_doc(doc)
+ArticleMCInput::ArticleMCInput(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, KEduVocDocument * doc, QWidget * parent)
+: MCInput(renderer, area, elementId, parent), m_doc(doc)
 {}
 
 void ArticleMCInput::slotSetAnswers()

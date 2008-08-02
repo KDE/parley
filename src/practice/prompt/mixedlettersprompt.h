@@ -28,13 +28,14 @@ class QGraphicsView;
 class QWidget;
 class QGraphicsScene;
 class QGraphicsTextItem;
+class ActiveArea;
 
 class MixedLettersPrompt : public QWidget
 {
     Q_OBJECT
 
     public:
-        MixedLettersPrompt(KSvgRenderer * renderer, QGraphicsView * view, const QString& elementId, QWidget * parent = 0);
+        MixedLettersPrompt(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent = 0);
         QStringList scramble(const QString& input);
     public slots:
         void slotSetText(const QString& solution);
@@ -43,9 +44,9 @@ class MixedLettersPrompt : public QWidget
         KSvgRenderer * m_renderer;
         QRectF m_backgroundRect;
         QGraphicsScene* m_scene;
-        QGraphicsView* m_view;
         QList<QGraphicsTextItem*> m_letters;
         QString m_solution;
+        ActiveArea * m_area;
 };
 
 #endif

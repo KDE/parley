@@ -25,13 +25,14 @@ class QString;
 class QGraphicsView;
 class QWidget;
 class QRectF;
+class ActiveArea;
 
 class TextualPrompt : public QGraphicsTextItem
 {
         Q_OBJECT
 
     public:
-        TextualPrompt(KSvgRenderer * renderer, const QString& elementId);
+        TextualPrompt(KSvgRenderer * renderer, ActiveArea * area,  const QString& elementId, QGraphicsItem * parent = 0);
 
     public slots:
         void slotSetText(const QString& text);

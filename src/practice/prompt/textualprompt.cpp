@@ -17,7 +17,7 @@
 ***************************************************************************/
 
 #include "textualprompt.h"
-
+#include "../activearea.h"
 
 #include <KSvgRenderer>
 #include <QString>
@@ -25,8 +25,8 @@
 #include <QGraphicsScene>
 #include <KDebug>
 
-TextualPrompt::TextualPrompt ( KSvgRenderer * renderer, const QString& elementId ) :
-        m_renderer ( renderer )
+TextualPrompt::TextualPrompt ( KSvgRenderer * renderer, ActiveArea * area, const QString& elementId,  QGraphicsItem * parent ) :
+        QGraphicsTextItem(parent), m_renderer ( renderer )
 {
 
     if (!renderer->elementExists(elementId))
@@ -37,8 +37,9 @@ TextualPrompt::TextualPrompt ( KSvgRenderer * renderer, const QString& elementId
     }
 
     m_backgroundRect = renderer->boundsOnElement ( elementId );
-    setPos ( m_backgroundRect.x() + m_backgroundRect.width() / 20.0, m_backgroundRect.y() + m_backgroundRect.height() / 4.0 );
+    setPos (area->offset().x() + m_backgroundRect.x() + m_backgroundRect.width() / 20.0, area->offset().y() + m_backgroundRect.y() + m_backgroundRect.height() / 4.0 );
     adjustSize();
+    setZValue(5);
 }
 
 void TextualPrompt::slotSetText ( const QString& text ) { setHtml( text ); }

@@ -11,6 +11,7 @@
 //
 
 #include "timer.h"
+#include "activearea.h"
 
 #include <KSvgRenderer>
 #include <QGraphicsScene>
@@ -68,7 +69,7 @@ void Timer::slotTick()
 }
 
 
-void Timer::makeGUI(KSvgRenderer * renderer, QGraphicsScene* scene)
+void Timer::makeGUI(KSvgRenderer * renderer, ActiveArea* area)
 {
     // TODO do this
     m_gtimer = new DummyTimerWidget();

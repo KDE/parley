@@ -23,6 +23,7 @@
 #include <KPushButton>
 #include <KSvgRenderer>
 
+#include "activearea.h"
 #include "statistics/statistics.h"
 #include "practiceview.h"
 #include "parleypracticemainwindow.h"
@@ -36,8 +37,8 @@ class StdButton : public KPushButton
     Q_OBJECT
 
     public:
-        explicit StdButton(KSvgRenderer * renderer, PracticeView * view, const QString& elementId, QWidget* parent = 0);
-        explicit StdButton(const QString& text, KSvgRenderer * renderer, PracticeView * view, const QString& elementId, QWidget* parent = 0);
+        explicit StdButton(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget* parent = 0);
+        explicit StdButton(const QString& text, KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget* parent = 0);
     public slots:
         void slotActivated();
         void slotToggleText(int state);
