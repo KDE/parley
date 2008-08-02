@@ -1,5 +1,5 @@
 Elements that are part of an active area should be prefixed with the area name and _ (eg written_answer_text_box)
-Elements are are NOT part of an active area (ie they are part of the main group) should be prefixed with __ (two underscores).
+Elements are are NOT part of an active area (ie they are part of the main group) should be prefixed with main_ (eg main_progress_bar).
 
 Elements required (sorted by mode required):
 
