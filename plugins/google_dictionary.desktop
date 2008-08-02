@@ -7,9 +7,13 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Google Dictionary (translation)
+Name[km]=វចនានុក្រម​ហ្គូហ្គល (កា​របកប្រែ)
 Name[uk]=Словник Google (переклад)
+Name[zh_TW]=Google 字典（翻譯）
 Comment=Uses Google Dictionary (translate.google.com) to translate words
+Comment[km]=ប្រើ​វចនានុក្រម​ហ្គូហ្គល (translate.google.com) ដើម្បី​បកប្រែ​ពាក្យ
 Comment[uk]=Використовує словник Google (translate.google.com) для перекладу слів
+Comment[zh_TW]=使用 Google 字典（translate.google.com）來翻譯單字
 Script=google_dictionary.py
 
 X-KDE-PluginInfo-Author=Avgoustinos Kadis

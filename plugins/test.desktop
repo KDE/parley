@@ -7,9 +7,10 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Testing Purposes Script
-Name[uk]=Видиме ім’я користувача1
 Comment=Description of what the plugin does
+Comment[km]=សេចក្ដី​ពិពណ៌នា​របស់​កម្មវិធី​ជំនួយ​អ្វី​ដែល​អាច​ប្រើ​បាន
 Comment[uk]=Опис того, що робить додаток
+Comment[zh_TW]=描述此外掛程式在做什麼
 Script=test.py
 
 X-KDE-PluginInfo-Author=Parley Developer

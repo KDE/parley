@@ -5,9 +5,13 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=LEO Dictionary (Translation)
+Name[km]=វចនានុក្រម LEO (ការ​បកប្រែ)
 Name[uk]=Словник LEO (переклад)
+Name[zh_TW]=LEO 字典（翻譯）
 Comment=Uses LEO Dictionary (dict.leo.org) to translate words
+Comment[km]=ប្រើ​វចនានុក្រម LEO (dict.leo.org) ដើម្បី​បកប្រែ​ពាក្យ
 Comment[uk]=Використовує словник LEO (dict.leo.org) для перекладу слів
+Comment[zh_TW]=使用 LEO 字典（dict.leo.org）來翻譯單字
 Script=leo-dict.py
 
 X-KDE-PluginInfo-Author=Avgoustinos Kadis
