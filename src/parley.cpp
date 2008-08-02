@@ -52,9 +52,9 @@
 
 #include "statistics-dialogs/StatisticsDialog.h"
 #include "settings/parleyprefs.h"
-#include "language-dialogs/languagedialog.h"
-#include "language-dialogs/grammardialog.h"
-#include "docprop-dialogs/TitlePage.h"
+#include "settings/languagedialog.h"
+#include "settings/grammardialog.h"
+#include "settings/TitlePage.h"
 #include "configure-practice/configurepracticedialog.h"
 #include "prefs.h"
 

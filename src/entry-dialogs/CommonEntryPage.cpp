@@ -38,8 +38,6 @@
 #include <kdialog.h>
 
 #include "practice/testentrymanager.h"
-#include "docprop-dialogs/UsageOptPage.h"
-#include "docprop-dialogs/TypeOptPage.h"
 
 #include "PhoneticEntryPage.h"
 #include "EntryDlg.h"

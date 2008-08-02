@@ -23,26 +23,37 @@ if(HAVE_LIBXSLT)
 endif(HAVE_LIBXSLT)
 
 # create kconfig
-kde4_add_kcfg_files( libcommondlg_SKEL_SRCS
+kde4_add_kcfg_files( settings_SKEL_SRCS
     settings/prefs.kcfgc
     settings/documentsettings.kcfgc
     settings/languagesettings.kcfgc
 )
 
-# settings
-set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
+# settings, document properties and grammar options
+set(settings_SRCS ${settings_SKEL_SRCS}
     settings/parleyprefs.cpp
     settings/generaloptions.cpp
     settings/viewoptions.cpp
     settings/pluginoptions.cpp
     settings/plugintablemodel.cpp
+    settings/LangPropPage.cpp
+    settings/TenseOptPage.cpp
+    settings/TitlePage.cpp
+    settings/languagedialog.cpp
+    settings/editlanguagedialogpage.cpp
+    settings/grammardialog.cpp
+
 )
 
 # settings ui
 kde4_add_ui_files( libcommondlg_SRCS
+    settings/LangPropPageForm.ui
+    settings/TitlePageForm.ui
+    settings/optionlistform.ui
     settings/viewoptionsbase.ui
     settings/generaloptionsbase.ui
     settings/pluginoptionsbase.ui
+    settings/languagepage.ui
 )
 
 # views on the vocabulary files contents - lessons and the actual words
@@ -156,19 +167,6 @@ kde4_add_ui_files(configure-practice_SRCS
     configure-practice/multiplechoiceoptionswidget.ui
 )
 
-# general document settings - author etc, contained languages
-set(docprop_SRCS
-    docprop-dialogs/LangPropPage.cpp
-    docprop-dialogs/TenseOptPage.cpp
-    docprop-dialogs/TitlePage.cpp
-)
-
-kde4_add_ui_files(docprop_SRCS
-    docprop-dialogs/LangPropPageForm.ui
-    docprop-dialogs/TitlePageForm.ui
-    docprop-dialogs/optionlistform.ui
-)
-
 # dock widgets to help editing vocabulary
 set(entrydialogs_SRCS
     entry-dialogs/multiplechoicewidget.cpp
@@ -213,17 +211,6 @@ kde4_add_ui_files(newdocument-wizard_SRCS
     newdocument-wizard/secondidentifierlanguagepage.ui
 )
 
-# properties of languages - grammar stuff like articles
-set(languagedialogs_SRCS
-    language-dialogs/languagedialog.cpp
-    language-dialogs/editlanguagedialogpage.cpp
-    language-dialogs/grammardialog.cpp
-)
-
-kde4_add_ui_files(languagedialogs_SRCS
-    language-dialogs/languagepage.ui
-)
-
 # scripting interface using kross
 set(scripts_SRCS
     scripts/scriptdialog.cpp
@@ -253,12 +240,13 @@ kde4_add_ui_files(welcomescreen_SRCS
 
 # put it all together
 set(parley_SRCS
-    ${vocabulary_SRCS} ${libcommondlg_SRCS}
+    ${vocabulary_SRCS}
+    ${settings_SRCS}
     ${practice_SRCS}
     ${practiceold_SRCS}
-    ${configure-practice_SRCS} ${docprop_SRCS}
-    ${entrydialogs_SRCS} ${statisticsdialogs_SRCS}
-    ${languagedialogs_SRCS}
+    ${configure-practice_SRCS}
+    ${entrydialogs_SRCS}
+    ${statisticsdialogs_SRCS}
     ${scripts_SRCS}
     ${newdocument-wizard_SRCS}
     ${export_SRCS}
@@ -287,21 +275,9 @@ if(HAVE_LIBXSLT)
     target_link_libraries(parley ${LIBXML2_LIBRARIES} ${LIBXSLT_LIBRARIES})
 endif(HAVE_LIBXSLT)
 
+########### install files ###############
 install(TARGETS parley  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
-######### parleypractice #############
-kde4_add_executable(parleypractice ${parleypractice_SRCS})
-install(TARGETS parleypractice  DESTINATION ${BIN_INSTALL_DIR} )
-target_link_libraries(
-    parleypractice
-    keduvocdocument
-    ${KDE4_KNEWSTUFF2_LIBS}
-    ${KDE4_PHONON_LIBS}
-    ${KDE4_KDEUI_LIBS}
-)
-
-
-########### install files ###############
 # desktop files appear in the menus
 install( FILES parley.desktop parleypractice.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 

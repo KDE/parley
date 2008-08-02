@@ -13,8 +13,8 @@
 
 #include "grammardialog.h"
 
-#include "docprop-dialogs/TenseOptPage.h"
-#include "docprop-dialogs/LangPropPage.h"
+#include "TenseOptPage.h"
+#include "LangPropPage.h"
 #include "languagesettings.h"
 #include <keduvocdocument.h>
 
@@ -37,14 +37,8 @@ GrammarDialog::GrammarDialog(KEduVocDocument *doc, QWidget *parent) : KPageDialo
 
     setFaceType(KPageDialog::List);
 
-//     typeOptPage = new WordTypeOptionPage(doc, this);
-//     addPage(typeOptPage, i18nc("word types","Types"));
-
     tenseOptPage = new TenseOptPage(doc, 0);
     addPage(tenseOptPage, i18n("Tenses"));
-
-//     useOptPage = new UsageOptPage(doc, 0);
-//     addPage(useOptPage, i18nc("usage (area) of an expression", "Usage"));
 
     // add the language specific pages
     LangPropPage *lpp;
@@ -80,8 +74,6 @@ GrammarDialog::~GrammarDialog()
 
 void GrammarDialog::accept()
 {
-//     useOptPage->accept();
-//     typeOptPage->accept();
     tenseOptPage->accept();
 
     foreach ( LangPropPage* langPage, langPages ) {
