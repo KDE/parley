@@ -63,6 +63,7 @@ set(vocabulary_SRCS
     vocabulary/wordtypeview.cpp
     vocabulary/leitnerview.cpp
     vocabulary/leitnermodel.cpp
+    vocabulary/vocabularycolumnsdialog.cpp
 )
 
 # the practice using qgraphicsview
@@ -217,7 +218,6 @@ set(languagedialogs_SRCS
     language-dialogs/languagedialog.cpp
     language-dialogs/editlanguagedialogpage.cpp
     language-dialogs/grammardialog.cpp
-    language-dialogs/vocabularycolumnsdialog.cpp
 )
 
 kde4_add_ui_files(languagedialogs_SRCS

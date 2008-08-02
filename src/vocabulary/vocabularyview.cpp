@@ -24,7 +24,7 @@
 
 #include "parley.h"
 #include "prefs.h"
-#include "language-dialogs/vocabularycolumnsdialog.h"
+#include "vocabularycolumnsdialog.h"
 #include "documentsettings.h"
 
 #include <keduvoctranslation.h>

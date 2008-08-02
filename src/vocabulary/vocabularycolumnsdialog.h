@@ -3,9 +3,6 @@
                       options to enable/disable columns for the languages
 
     -----------------------------------------------------------------------
-
-    begin         : Tue Mar 29 2005
-
     copyright     :(C) 2008 Javier goday <jgoday@gmail.com>
     -----------------------------------------------------------------------
 
