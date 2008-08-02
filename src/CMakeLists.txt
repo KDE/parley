@@ -236,11 +236,11 @@ set(scripts_SRCS
     scripts/scripting/text.cpp
     scripts/scripting/container.cpp
     scripts/scripting/identifier.cpp
+    scripts/script.cpp
+    scripts/translator.cpp
 
-kde4_add_ui_files(languagedialogs_SRCS
-    language-dialogs/languagepage.ui
 )
-
+    
 # the first thing you see when startin parley
 set(welcomescreen_SRCS
     welcomescreen/welcomescreen.cpp
