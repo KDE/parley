@@ -83,7 +83,7 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
     m_stats = new Statistics(m_manager, this);
     connect(m_manager, SIGNAL(signalEntryChanged(PracticeEntry*, QList<PracticeEntry*>)), m_stats, SLOT(slotSetEntry(PracticeEntry*)));
     connect(m_manager, SIGNAL(signalSetFinished()), m_stats, SLOT(slotSetFinished()));
-    connect(m_manager, SIGNAL(signalSetFinished()), this, SIGNAL(queryClose()));
+    connect(m_manager, SIGNAL(signalSetFinished()), this, SIGNAL(signalPracticeFinished()));
 
     KEduVocDocument * local_doc;
     if (doc != 0)
