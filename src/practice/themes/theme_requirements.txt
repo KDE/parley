@@ -44,19 +44,19 @@ sound_box
 question_text_box
 answer_mc_box # this holds the multiple choice widget. Note: up to 9 choices are allowed, and 5 is default, so this has to be fairly large.
 
-Article training:
-question_text_box
-answer_mc_box
-
 Mixed Letters:
 question_mixed_letters_box # This box holds the mixed up letters. Note: Make this reasonably large.
+question_text_box
 answer_text_box
+image_box
+sound_box
 
 Example:
 Paraphrase:
 Comparison:
 See Written, image/sound optional
 
+Article:
 Antonym:
 Synonym:
 See Multiple Choice, image/sound optional
