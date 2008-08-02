@@ -46,7 +46,7 @@ set(settings_SRCS ${settings_SKEL_SRCS}
 )
 
 # settings ui
-kde4_add_ui_files( libcommondlg_SRCS
+kde4_add_ui_files( settings_SRCS
     settings/LangPropPageForm.ui
     settings/TitlePageForm.ui
     settings/optionlistform.ui
