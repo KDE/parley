@@ -690,25 +690,11 @@ whole &kde; team, for their help, constructive criticism, suggestions or bug-rep
 <sect1 id="obtaining">
 <title>How to obtain &parley;</title>
 
-<!-- &install.intro.documentation; -->
+Please visit the <ulink url="http://edu.kde.org/parley/">&parley; homepage</ulink> to learn how to obtain Parley
+&install.intro.documentation;
 
 </sect1>
 
-<sect1 id="requirements">
-<title>Requirements</title>
-
-<para>In order to successfully compile &parley;,
-you need the &kde; libraries as well as the &Qt; C++
-library. All required libraries can be found on &kde-ftp;.</para>
-
-</sect1>
-
-<sect1 id="compilation">
-<title>Compilation and installation</title>
-
-&install.compile.documentation;
-
-</sect1>
 </appendix>
 
 &documentation.index;
