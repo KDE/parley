@@ -7,6 +7,8 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Testing Purposes Script
+Name[uk]=Скрипт для тестування
+Name[zh_TW]=測試目的文稿
 Comment=Description of what the plugin does
 Comment[km]=សេចក្ដី​ពិពណ៌នា​របស់​កម្មវិធី​ជំនួយ​អ្វី​ដែល​អាច​ប្រើ​បាន
 Comment[uk]=Опис того, що робить додаток
