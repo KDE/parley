@@ -176,6 +176,7 @@ set(entrydialogs_SRCS
     entry-dialogs/audiowidget.cpp
     entry-dialogs/browserwidget.cpp
     entry-dialogs/synonymwidget.cpp
+    entry-dialogs/summarywordwidget.cpp
 )
 
 kde4_add_ui_files(entrydialogs_SRCS
@@ -187,6 +188,7 @@ kde4_add_ui_files(entrydialogs_SRCS
     entry-dialogs/audiowidget.ui
     entry-dialogs/synonymwidget.ui
     entry-dialogs/browserwidget.ui
+    entry-dialogs/summarywordwidget.ui
 )
 
 # overview over grades

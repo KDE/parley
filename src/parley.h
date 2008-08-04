@@ -58,6 +58,7 @@ class LessonModel;
 class WordTypeModel;
 class LeitnerModel;
 class ConjugationWidget;
+class SummaryWordWidget;
 class ScriptManager;
 class Translator;
 
@@ -199,6 +200,7 @@ private:
 
     /** Show a single conjugation and let the user edit it */
     ConjugationWidget *m_conjugationWidget;
+    SummaryWordWidget *m_summaryWordWidget;
 
     /** m_document is the current vocabulary document. */
     ParleyDocument   *m_document;

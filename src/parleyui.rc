@@ -32,6 +32,7 @@
       <Action name="show_lesson_dock"/>
       <Action name="show_wordtype_dock"/>
       <Action name="show_leitner_dock"/>
+      <Action name="show_summary_dock"/>
       <Separator/>
       <Action name="show_image_dock"/>
       <Action name="show_audio_dock"/>

@@ -49,6 +49,7 @@
 #include "entry-dialogs/audiowidget.h"
 #include "entry-dialogs/browserwidget.h"
 #include "entry-dialogs/synonymwidget.h"
+#include "entry-dialogs/summarywordwidget.h"
 
 #include "statistics-dialogs/StatisticsDialog.h"
 #include "settings/parleyprefs.h"
@@ -378,7 +379,11 @@ void ParleyApp::updateDocument()
 
     connect(m_document->document(), SIGNAL(docModified(bool)), this, SLOT(slotUpdateWindowCaption()));
     connect(m_document->document(), SIGNAL(docModified(bool)), m_document, SLOT(slotDocumentChanged(bool)));
-
+    connect(m_vocabularyModel, SIGNAL(documentChanged(KEduVocDocument*)),
+            m_summaryWordWidget, SLOT(slotDocumentChanged(KEduVocDocument *)));
+    connect(m_vocabularyView->selectionModel(), 
+                SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
+            m_summaryWordWidget, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
     connect(m_vocabularyModel, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(slotRestoreColumnVisibility(KEduVocDocument*)));
 
     setCaption(m_document->document()->url().fileName(), false);
@@ -582,6 +587,20 @@ void ParleyApp::initDockWidgets()
     imageDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         imageChooserWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+
+// Summary word
+    QDockWidget *summaryDock = new QDockWidget(i18n("Summary"), this);
+    summaryDock->setObjectName("SummaryDock");
+    m_summaryWordWidget = new SummaryWordWidget(m_vocabularyModel, m_document->document(), this);
+    summaryDock->setWidget(m_summaryWordWidget);
+    addDockWidget(Qt::RightDockWidgetArea, summaryDock);
+    actionCollection()->addAction("show_summary_dock", summaryDock->toggleViewAction());
+    summaryDock->setVisible(false);
+    m_dockWidgets.append(summaryDock);
+    connect(m_document, SIGNAL(documentChanged(KEduVocDocument *)),
+            m_summaryWordWidget, SLOT(slotDocumentChanged(KEduVocDocument *)));
+    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+            m_summaryWordWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Sound
     QDockWidget *audioDock = new QDockWidget(i18n("Sound"), this);
