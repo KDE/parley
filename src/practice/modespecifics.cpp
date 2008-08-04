@@ -73,7 +73,7 @@ void ParleyPracticeMainWindow::setupWritten()
 
     if (Prefs::practiceSoundEnabled())
     {
-        SoundPrompt * sprompt = new SoundPrompt(m_renderer, m_area, "llama_sound_box");
+        SoundPrompt * sprompt = new SoundPrompt(m_renderer, m_area, "sound_box");
         m_scene->addWidget(sprompt);
         connect(m_manager, SIGNAL(signalNewSound(const KUrl&)), sprompt, SLOT(slotSetSound(const KUrl&)));
     }
