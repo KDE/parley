@@ -61,11 +61,13 @@ void MultipleChoiceMCInput::slotSetAnswers(PracticeEntry* currentEntry, const QL
 
     else
     {
-        // we use an int so we can play with bitwise flags
-        int cwt = currentEntry->expression()->translation(Prefs::solutionLanguage())->wordType()->wordType();
+        KEduVocWordFlags cwt = KEduVocWordFlag::NoInformation;
+        // if word type is not set, it could have a null pointer exception.
+        if (currentEntry->expression()->translation(Prefs::solutionLanguage())->wordType())
+            KEduVocWordFlags cwt = currentEntry->expression()->translation(Prefs::solutionLanguage())->wordType()->wordType();
         // filter everything that isn't a part of speech flag.
         cwt &= KEduVocWordFlag::partsOfSpeech;
-        int wt = 0;
+        KEduVocWordFlags wt = KEduVocWordFlag::NoInformation;
 
         while (list.size() < Prefs::numberMultipleChoiceAnswers() && timeout < 50) // prevent infinite loop
         {
@@ -76,7 +78,10 @@ void MultipleChoiceMCInput::slotSetAnswers(PracticeEntry* currentEntry, const QL
             {
                 if (Prefs::multipleChoiceWordTypeConsistancy() && cwt)
                 {
-                    wt = source[r]->expression()->translation(Prefs::solutionLanguage())->wordType()->wordType();
+                    if (source[r]->expression()->translation(Prefs::solutionLanguage())->wordType())
+                        wt = source[r]->expression()->translation(Prefs::solutionLanguage())->wordType()->wordType();
+                    else
+                        wt = KEduVocWordFlag::NoInformation;
                     wt &= KEduVocWordFlag::partsOfSpeech;
                     if (wt == cwt)
                         list.append(s);

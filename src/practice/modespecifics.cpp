@@ -73,7 +73,7 @@ void ParleyPracticeMainWindow::setupWritten()
 
     if (Prefs::practiceSoundEnabled())
     {
-        SoundPrompt * sprompt = new SoundPrompt(m_renderer, m_area, "sound_box");
+        SoundPrompt * sprompt = new SoundPrompt(m_renderer, m_area, "llama_sound_box");
         m_scene->addWidget(sprompt);
         connect(m_manager, SIGNAL(signalNewSound(const KUrl&)), sprompt, SLOT(slotSetSound(const KUrl&)));
     }
@@ -91,7 +91,6 @@ void ParleyPracticeMainWindow::setupWritten()
     connect(this, SIGNAL(signalCheckAnswerContinueActionsToggled(int)), stdbutton, SLOT(slotToggleText(int)));
     connect(stdbutton, SIGNAL(signalCheckAnswer()), actionCollection()->action("check answer"), SIGNAL(triggered()));
     connect(stdbutton, SIGNAL(signalContinue()), actionCollection()->action("continue"), SIGNAL(triggered()));
-    stdbutton->setVisible(true); // enable for now
 
 
     Hint * hint = new Hint(this);

@@ -22,40 +22,17 @@
 #include "stdbuttons.h"
 #include "statistics/statistics.h"
 
-
-StdButton::StdButton(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget* parent)
-        : KPushButton(parent),
-        m_renderer(renderer)
-{
-    if (!renderer->elementExists(elementId))
-    {
-        setVisible(false);
-        kDebug() << "!! Element id doesn't exist:";
-        kDebug() << elementId << ":" << renderer->elementExists(elementId);
-    }
-
-    connect(this, SIGNAL(clicked()), this, SLOT(slotActivated()));
-
-     QRectF bounds = m_renderer->boundsOnElement(elementId);
-     bounds.translate(area->offset());
-     setGeometry(bounds.toRect());
-}
-
 StdButton::StdButton(const QString& text, KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget* parent)
         : KPushButton(text, parent),
         m_renderer(renderer)
 {
+    QString tId = area->translateElementId(elementId);
 
-    if (!renderer->elementExists(elementId))
-    {
-        setVisible(false);
-        kDebug() << "!! Element id doesn't exist:";
-        kDebug() << elementId << ":" << renderer->elementExists(elementId);
-    }
+    if (tId.isEmpty()) setVisible(false);
 
     connect(this, SIGNAL(clicked()), this, SLOT(slotActivated()));
 
-     QRectF bounds = m_renderer->boundsOnElement(elementId);
+     QRectF bounds = m_renderer->boundsOnElement(tId);
      bounds.translate(area->offset());
      setGeometry(bounds.toRect());
 }

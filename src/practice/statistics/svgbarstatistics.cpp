@@ -26,17 +26,16 @@
 SvgBarStatistics::SvgBarStatistics(QSvgRenderer* renderer, ActiveArea * area, const QString& foregroundElementId, const QString& backgroundElementId, QGraphicsItem * parent)
     : QGraphicsSvgItem(parent)
 {
-    if (!(renderer->elementExists(foregroundElementId) && renderer->elementExists(backgroundElementId)))
-    {
-        setVisible(false);
-        kDebug() << "!! Element id doesn't exist:";
-        kDebug() << foregroundElementId << ":" << renderer->elementExists(foregroundElementId);
-        kDebug() << "or" << backgroundElementId << ":" << renderer->elementExists(backgroundElementId);
-    }
+    QString tId_foreground = area->translateElementId(foregroundElementId);
+    QString tId_background = area->translateElementId(backgroundElementId);
+    if (tId_foreground.isEmpty() || tId_background.isEmpty()) setVisible(false);
+
+
+    kDebug() << tId_foreground << tId_background;
 
     setSharedRenderer(renderer);
-    setElementId(foregroundElementId);
-    m_backgroundRect = renderer->boundsOnElement(backgroundElementId);
+    setElementId(tId_foreground);
+    m_backgroundRect = renderer->boundsOnElement(tId_background);
     setPos(m_backgroundRect.x() + area->offset().x(), m_backgroundRect.y() + area->offset().y());
     scale((m_backgroundRect.width())/boundingRect().width()*.0001, 1.0);
     setZValue(10); // higher than the rest

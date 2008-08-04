@@ -30,15 +30,11 @@ ImagePrompt::ImagePrompt ( KSvgRenderer * renderer, ActiveArea * area, const QSt
         m_pic ( QPixmap() ),
         m_renderer ( renderer )
 {
+    QString tId = area->translateElementId(elementId);
+    if (tId.isEmpty()) setVisible(false);
 
-    if (!renderer->elementExists(elementId))
-    {
-        setVisible(false);
-        kDebug() << "!! Element id doesn't exist:";
-        kDebug() << elementId << ":" << renderer->elementExists(elementId);
-    }
 
-     QRectF bounds = m_renderer->boundsOnElement(elementId);
+     QRectF bounds = m_renderer->boundsOnElement(tId);
      bounds.translate(area->offset());
      setGeometry(bounds.toRect());
 

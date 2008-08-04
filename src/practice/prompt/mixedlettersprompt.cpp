@@ -29,16 +29,12 @@
 #include <QGraphicsTextItem>
 
 MixedLettersPrompt::MixedLettersPrompt(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent)
-: QWidget(parent), m_renderer(renderer), m_area(area)
+: QWidget(parent), m_renderer(renderer), m_area(area), m_scene(area->scene())
 {
-    if (!renderer->elementExists(elementId))
-    {
-        setVisible(false);
-        kDebug() << "!! Element id doesn't exist:";
-        kDebug() << elementId << ":" << renderer->elementExists(elementId);
-    }
+    QString tId = area->translateElementId(elementId);
+    if (tId.isEmpty()) setVisible(false);
 
-    m_backgroundRect = renderer->boundsOnElement ( elementId );
+    m_backgroundRect = renderer->boundsOnElement ( tId );
 
      m_backgroundRect.translate(area->offset());
      setGeometry(m_backgroundRect.toRect());

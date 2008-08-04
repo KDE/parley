@@ -24,6 +24,7 @@
 ActiveArea::ActiveArea(KSvgRenderer * renderer, const QString& elementId, const QString& fallbackElementId)
 : m_renderer(renderer)
 {
+    QString id = elementId;
     setSharedRenderer(renderer);
     if (!renderer->elementExists(elementId))
     {
@@ -33,7 +34,7 @@ ActiveArea::ActiveArea(KSvgRenderer * renderer, const QString& elementId, const 
         }
         else if (renderer->elementExists(fallbackElementId))
         {
-            setElementId(fallbackElementId);
+            id = fallbackElementId;
             kDebug() << "Current theme doesn't support mode " << elementId << ". Falling back to" << fallbackElementId;
         }
         else
@@ -42,20 +43,37 @@ ActiveArea::ActiveArea(KSvgRenderer * renderer, const QString& elementId, const 
             " (fallback). Panic!";
         }
     }
+    setElementId(id);
+    m_mode_string = id;
 
-    setElementId(elementId);
-    setZValue(-1);
+    setZValue(-5);
 
     QRect bounds = m_renderer->boundsOnElement("active_area").toRect();
     setPos(bounds.x(), bounds.y());
     scale(bounds.width()/boundingRect().width(), bounds.height()/boundingRect().height());
     kDebug() << scenePos() << pos();
 
-    m_offset = QPointF(m_renderer->boundsOnElement("active_area").x() - m_renderer->boundsOnElement(elementId).x(),
-    m_renderer->boundsOnElement("active_area").y() - m_renderer->boundsOnElement(elementId).y());
+    m_offset = QPointF(m_renderer->boundsOnElement("active_area").x() - m_renderer->boundsOnElement(id).x(),
+    m_renderer->boundsOnElement("active_area").y() - m_renderer->boundsOnElement(id).y());
+    kDebug() << m_offset;
 }
 
 QPointF ActiveArea::offset()
 {
     return m_offset;
+}
+
+
+QString ActiveArea::translateElementId(const QString& originalElementId)
+{
+    // active area specific elements take precedence.
+    if (m_renderer->elementExists(m_mode_string + "_" + originalElementId))
+        return m_mode_string + "_" + originalElementId;
+    else if (m_renderer->elementExists("main_" + originalElementId))
+        return "main_" + originalElementId;
+    else
+    {
+        kDebug() << "No translation for elementid " << originalElementId << " found. (main_ +" << originalElementId << " and " << m_mode_string << "_" << originalElementId << " don't exist)";
+        return "";
+    }
 }

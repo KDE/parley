@@ -34,14 +34,10 @@ TextualInput::TextualInput(KSvgRenderer * renderer, ActiveArea * area, const QSt
         : QLineEdit(parent),
         m_renderer(renderer)
 {
-    if (!renderer->elementExists(elementId))
-    {
-        setVisible(false);
-        kDebug() << "!! Element id doesn't exist:";
-        kDebug() << elementId << ":" << renderer->elementExists(elementId);
-    }
+    QString tId = area->translateElementId(elementId);
+    if (tId.isEmpty()) setVisible(false);
 
-     QRectF bounds = m_renderer->boundsOnElement(elementId);
+     QRectF bounds = m_renderer->boundsOnElement(tId);
      bounds.translate(area->offset());
      setGeometry(bounds.toRect());
 

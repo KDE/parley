@@ -28,15 +28,10 @@
 TextualPrompt::TextualPrompt ( KSvgRenderer * renderer, ActiveArea * area, const QString& elementId,  QGraphicsItem * parent ) :
         QGraphicsTextItem(parent), m_renderer ( renderer )
 {
+    QString tId = area->translateElementId(elementId);
+    if (tId.isEmpty()) setVisible(false);
 
-    if (!renderer->elementExists(elementId))
-    {
-        setVisible(false);
-        kDebug() << "!! Element id doesn't exist:";
-        kDebug() << elementId << ":" << renderer->elementExists(elementId);
-    }
-
-    m_backgroundRect = renderer->boundsOnElement ( elementId );
+    m_backgroundRect = renderer->boundsOnElement ( tId );
     setPos (area->offset().x() + m_backgroundRect.x() + m_backgroundRect.width() / 20.0, area->offset().y() + m_backgroundRect.y() + m_backgroundRect.height() / 4.0 );
     adjustSize();
     setZValue(5);

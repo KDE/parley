@@ -169,7 +169,7 @@ void ParleyPracticeMainWindow::setupModeIndependent()
     connect(m_validator, SIGNAL(signalFeedback(const QString&)), feedback, SLOT(slotSetText(const QString&)));
     connect(m_manager, SIGNAL(signalNewEntry()), feedback, SLOT(slotClear()));
 
-    SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, m_area, "bar", "bar_background");
+    SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, m_area, "progress_bar", "progress_bar_background");
     m_scene->addItem(barstats);
     connect(m_stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
 
