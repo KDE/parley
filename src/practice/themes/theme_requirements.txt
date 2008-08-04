@@ -69,6 +69,9 @@ Main background name: main, with element active_area that active areas (below) a
 
 Active areas are the parts of the practice that change depending on the mode. For the modes with defaults listed,
 if you do not provide an area for that mode, it will default to the listed mode.
+
+To create an active area, make a rectangle the same size as the 'active_area' element and name it 'modename_box'. Add all the other elements on top of it, 
+and then group them and name the group 'modename'.
 Active Area names: (name -> default)
 written
 flashcard
