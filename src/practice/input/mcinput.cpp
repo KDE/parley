@@ -71,7 +71,10 @@ void MCInput::slotShortcutTriggered(int shortcutNumber)
         if (b->text().startsWith(QString("&%1 ").arg(shortcutNumber)))
         {
             b->setChecked(true);
-            emit triggered();
+            if (b->isChecked())
+                emit triggered();
+            else
+                kDebug() << "bad news";
             return;
         }
     }
@@ -125,5 +128,4 @@ void MCInput::slotEmitAnswer()
         {
             emit signalAnswer(b->text().remove(QRegExp("^&\\d ")));
         }
-    emit signalAnswer(""); // none were selected.
 }

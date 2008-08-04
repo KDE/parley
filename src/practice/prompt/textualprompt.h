@@ -36,6 +36,7 @@ class TextualPrompt : public QGraphicsTextItem
 
     public slots:
         void slotSetText(const QString& text);
+        void slotClear();
     private:
         KSvgRenderer * m_renderer;
         QRectF m_backgroundRect;

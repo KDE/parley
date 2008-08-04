@@ -102,7 +102,6 @@ set(practice_SRCS
     practice/timer.cpp
     practice/practiceentry.cpp
     practiceold/entryfilter.cpp
-    practice/feedback.cpp
     practice/activearea.cpp
 )
 
@@ -227,7 +226,7 @@ set(scripts_SRCS
     scripts/translator.cpp
 
 )
-    
+
 # the first thing you see when startin parley
 set(welcomescreen_SRCS
     welcomescreen/welcomescreen.cpp

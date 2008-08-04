@@ -252,14 +252,14 @@ void AnswerValidator::defaultCorrector()
     if (m_solution == m_userAnswer)
     {
         emit signalCorrection(1.0, Statistics::Correct, m_userAnswer);
-        emit signalFeedback(QString::fromLatin1("<font color=\"#000fff000\">Correct!</font> "));
+        emit signalFeedback(i18n("<font color=\"#000fff000\">Correct!</font> "));
         return;
     }
 
     if (m_userAnswer.isEmpty())
     {
-        emit signalCorrection(1.0, Statistics::Empty, m_userAnswer);
-        emit signalFeedback(QString::fromLatin1("<font color=\"#8C1818\">Empty answers are never correct.</font> "));
+        emit signalCorrection(0.0, Statistics::Empty, m_userAnswer);
+        emit signalFeedback(i18n("<font color=\"#8C1818\">Empty answers are never correct.</font> "));
         return;
     }
 /*
@@ -328,7 +328,7 @@ void AnswerValidator::defaultCorrector()
                     else
                     {
                        emit signalCorrection(qMax(grade - WRONG_ARTICLE_PUNISHMENT, 0.0), static_cast<Statistics::ErrorType>((int)errors | Statistics::ArticleWrong), m_userAnswer);
-                       emit signalFeedback(QString::fromLatin1("<font color=\"#8C1818\">You're missing an article.</font> "));
+                       emit signalFeedback(i18n("<font color=\"#8C1818\">You're missing an article.</font> "));
                        return;
                     }
                 }
@@ -358,7 +358,7 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
     {
         grade = 1.0;
         ErrorType = Statistics::Correct;
-        htmlCorrection = QString::fromLatin1("<font color=\"#000fff000\">Correct!</font> ");
+        htmlCorrection = i18n("<font color=\"#000fff000\">Correct!</font> ");
         return;
     }
 
@@ -368,7 +368,7 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
         ErrorType = Statistics::CapitalizationMistake;
         if (Prefs::ignoreCapitalizationMistakes())
             ErrorType = static_cast<Statistics::ErrorType>((int)ErrorType | Statistics::Correct);
-        htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">Correct answer, capitalized wrong.</font> ");
+        htmlCorrection = i18n("<font color=\"#8C1818\">Correct answer, capitalized wrong.</font> ");
         return;
     }
 
@@ -378,7 +378,7 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
         ErrorType = Statistics::AccentMistake;
         if (Prefs::ignoreAccentMistakes())
             ErrorType = static_cast<Statistics::ErrorType>((int)ErrorType | Statistics::Correct);
-        htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">Correct, but you have an accent problem.</font> ");
+        htmlCorrection = i18n("<font color=\"#8C1818\">Correct, but you have an accent problem.</font> ");
         return ;
     }
 
@@ -399,7 +399,7 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
         {
             grade = 1.0 - qMax(levenshtein * SPELLING_MISTAKE_PER_LETTER_PUNISHMENT, 1.0);
             ErrorType = Statistics::SpellingMistake;
-            htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">Try improving your spelling.</font> ");
+            htmlCorrection = i18n("<font color=\"#8C1818\">Try improving your spelling.</font> ");
             return;
         }
 
@@ -407,7 +407,7 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
         if (!isMisspelled && inSuggestions)
         {
             grade = FALSE_FRIEND_GRADE;
-             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">NOOOO! That was a false friend!</font> ");
+             htmlCorrection = i18n("<font color=\"#8C1818\">NOOOO! That was a false friend!</font> ");
             ErrorType = ErrorType = Statistics::FalseFriend;
             return ;
         }
@@ -416,7 +416,7 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
         if (!isMisspelled && !inSuggestions)
         {
             grade = UNRELATED_WORD_GRADE;
-             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">Do you have any idea what you are talking about? (Wrong word, you spelled it correct I guess.)</font> ");
+             htmlCorrection = i18n("<font color=\"#8C1818\">Do you have any idea what you are talking about? (Wrong word, you spelled it correct I guess.)</font> ");
             ErrorType = Statistics::UnrelatedWord;
             return;
         }
@@ -426,13 +426,13 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
         {
             if (((double)levenshtein / qMax(solution.length(), userWord.length())) < LEVENSHTEIN_THRESHOLD)
             {
-                 htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">Seems like you got the spellig wrong.</font> ");
+                 htmlCorrection = i18n("<font color=\"#8C1818\">Seems like you got the spellig wrong.</font> ");
                 ErrorType = Statistics::SpellingMistake;
                 return;
             }
             else
             {
-                 htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">I don't know that word and it is not similar to the solution.</font> ");
+                 htmlCorrection = i18n("<font color=\"#8C1818\">I don't know that word and it is not similar to the solution.</font> ");
                 ErrorType = Statistics::UnknownMistake;
                 return;
             }
@@ -443,21 +443,21 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
         if (((double)levenshtein / qMax(solution.length(), userWord.length())) < LEVENSHTEIN_THRESHOLD)
         {
             grade = 1.0 - ((double)levenshtein / qMax(solution.length(), userWord.length()));
-             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">No spellchecker, but seems like a spelling error.</font> ");
+             htmlCorrection = i18n("<font color=\"#8C1818\">No spellchecker, but seems like a spelling error.</font> ");
             ErrorType = Statistics::SpellingMistake;
             return;
         }
         else
         {
             grade = 1.0 - ((double)levenshtein / qMax(solution.length(), userWord.length()));
-             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">No dictionary and no clue.</font> ");
+             htmlCorrection = i18n("<font color=\"#8C1818\">No dictionary and no clue.</font> ");
             ErrorType = Statistics::UnknownMistake;
             return;
         }
     }
 
     // cannot get here
-    htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">No dictionary and no clue.</font> ");
+    htmlCorrection = i18n("<font color=\"#8C1818\">No dictionary and no clue.</font> ");
     ErrorType = Statistics::UnknownMistake;
 
     return;
@@ -511,13 +511,13 @@ void AnswerValidator::sentenceAnalysis()
     correction.append("Correct: ");
     foreach(const QString &correctWord, correctWords)
     {
-        correction.append(QString::fromLatin1("<font color=\"#188C18\">") + correctWord + QString::fromLatin1("</font> "));
+        correction.append(i18n("<font color=\"#188C18\">") + correctWord + i18n("</font> "));
     }
 
     correction.append(" Wrong: ");
     foreach(const QString &wrongWord, wrongWords)
     {
-        correction.append(QString::fromLatin1("<font color=\"#8C1818\">") + wrongWord + QString::fromLatin1("</font> "));
+        correction.append(i18n("<font color=\"#8C1818\">") + wrongWord + i18n("</font> "));
     }
 
     int levenshtein = levenshteinDistance(m_solution, m_userAnswer);

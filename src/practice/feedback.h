@@ -19,28 +19,9 @@
 #ifndef FEEDBACK_H
 #define FEEDBACK_H
 
-#include "answervalidator.h"
+#include "prompt/textualprompt.h"
 
-#include <QGraphicsTextItem>
-
-class QString;
-class KSvgRenderer;
-class QRectF;
-class ActiveArea;
-
-class Feedback : public QGraphicsTextItem
-{
-        Q_OBJECT
-
-    public:
-        Feedback(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId);
-
-    public slots:
-        void slotSetText(const QString& htmltext);
-        void slotClear();
-    private:
-        KSvgRenderer * m_renderer;
-        QRectF m_backgroundRect;
-};
+// These have identicle functionality and interfaces, but it is nice to have seperate names.
+typedef TextualPrompt Feedback;
 
 #endif

@@ -32,9 +32,19 @@ TextualPrompt::TextualPrompt ( KSvgRenderer * renderer, ActiveArea * area, const
     if (tId.isEmpty()) setVisible(false);
 
     m_backgroundRect = renderer->boundsOnElement ( tId );
-    setPos (area->offset().x() + m_backgroundRect.x() + m_backgroundRect.width() / 20.0, area->offset().y() + m_backgroundRect.y() + m_backgroundRect.height() / 4.0 );
+    setPos (area->offset().x() + m_backgroundRect.x()/* + m_backgroundRect.width() / 20.0*/, area->offset().y() + m_backgroundRect.y() + m_backgroundRect.height() / 4.0 );
     adjustSize();
     setZValue(5);
+
+    setTextWidth(m_backgroundRect.width()*.8);
 }
 
-void TextualPrompt::slotSetText ( const QString& text ) { setHtml( text ); }
+void TextualPrompt::slotSetText ( const QString& text )
+{
+    setHtml( "<center>" + text + "</center>" );
+}
+
+void TextualPrompt::slotClear()
+{
+    setHtml("");
+}

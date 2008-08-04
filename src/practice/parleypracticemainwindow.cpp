@@ -38,7 +38,6 @@
 #include "input/mcinput.h"
 #include "input/articlemcinput.h"
 
-#include "prompt.h"
 #include "statistics/statistics.h"
 #include "stdbuttons.h"
 #include "hint.h"
