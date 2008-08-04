@@ -46,21 +46,37 @@ ActiveArea::ActiveArea(KSvgRenderer * renderer, const QString& elementId, const 
     setElementId(id);
     m_mode_string = id;
 
+
+    QString bid = id + "_box";
+    if (!m_renderer->elementExists(bid))
+        kDebug() << bid << "doesn't exist";
+
     setZValue(-5);
 
-    QRect bounds = m_renderer->boundsOnElement("active_area").toRect();
+//     kDebug() << "eq:" << (m_renderer->boundsOnElement(id) == m_renderer->boundsOnElement(bid));
+//     kDebug() << m_renderer->boundsOnElement(id) << m_renderer->boundsOnElement(bid) << boundingRect();
+//
+//     //kDebug() << m_renderer->boundsOnElement("active_area") << "-" << m_renderer->boundsOnElement(bid) << m_renderer->boundsOnElement("active_area").topLeft() - m_renderer->boundsOnElement(id).topLeft();
+
+    QRectF bounds = m_renderer->boundsOnElement("active_area");
+     m_original = m_renderer->boundsOnElement(bid);
+//
     setPos(bounds.x(), bounds.y());
     scale(bounds.width()/boundingRect().width(), bounds.height()/boundingRect().height());
-    kDebug() << scenePos() << pos();
 
-    m_offset = QPointF(m_renderer->boundsOnElement("active_area").x() - m_renderer->boundsOnElement(id).x(),
-    m_renderer->boundsOnElement("active_area").y() - m_renderer->boundsOnElement(id).y());
+    m_offset = QPointF(m_renderer->boundsOnElement("active_area").x() - m_renderer->boundsOnElement(bid).x(),
+    (m_renderer->boundsOnElement("active_area").y() - m_renderer->boundsOnElement(bid).y()));
     kDebug() << m_offset;
 }
 
 QPointF ActiveArea::offset()
 {
     return m_offset;
+}
+
+QRectF ActiveArea::original()
+{
+    return m_original;
 }
 
 

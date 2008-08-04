@@ -31,11 +31,13 @@ class ActiveArea : public QGraphicsSvgItem
         ActiveArea(KSvgRenderer * renderer, const QString& elementId, const QString& fallbackElementId = "");
         QPointF offset();
         QString translateElementId(const QString& originalElementId);
+        QRectF original();
 
     private:
         KSvgRenderer * m_renderer;
         QPointF m_offset;
         QString m_mode_string; /// The active area name.
+        QRectF m_original;
 };
 
 #endif

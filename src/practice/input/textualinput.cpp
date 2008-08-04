@@ -37,8 +37,13 @@ TextualInput::TextualInput(KSvgRenderer * renderer, ActiveArea * area, const QSt
     QString tId = area->translateElementId(elementId);
     if (tId.isEmpty()) setVisible(false);
 
+
      QRectF bounds = m_renderer->boundsOnElement(tId);
+     kDebug() << tId;
+     kDebug() << "in orig:" << area->original().contains(bounds);
+     kDebug() << "orig:" << bounds << "+" << area->offset() << "=";
      bounds.translate(area->offset());
+     kDebug() << bounds;
      setGeometry(bounds.toRect());
 
      kDebug() << pos();
