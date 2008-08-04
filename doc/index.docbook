@@ -640,6 +640,7 @@ The International Phonetic Association</ulink></para></listitem>
 
 <sect1 id="general-settings">
 <title>&parley; settings for all documents.</title>
+<para>TODO</para>
 </sect1>
 </chapter>
 
@@ -690,7 +691,7 @@ whole &kde; team, for their help, constructive criticism, suggestions or bug-rep
 <sect1 id="obtaining">
 <title>How to obtain &parley;</title>
 
-Please visit the <ulink url="http://edu.kde.org/parley/">&parley; homepage</ulink> to learn how to obtain Parley
+<para>Please visit the <ulink url="http://edu.kde.org/parley/">&parley; homepage</ulink> to learn how to obtain Parley.</para>
 &install.intro.documentation;
 
 </sect1>
