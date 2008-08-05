@@ -218,24 +218,26 @@ void AnswerValidator::simpleCorrector()
         return;
     }
 
-    ///@todo can solution.length() be zero? *should* be caught by Parley
     if (m_solution == m_userAnswer)
     {
         emit signalCorrection(1.0, Statistics::Correct, m_userAnswer);
         return;
     }
-/*
-    // TODO we should probably use a corrector here, but there is a chance it would cause infinite recursion
-    if ( m_entry->translation(m_translation)->synonym() == m_userAnswer ) {
-        if ( Prefs::countSynonymsAsCorrect() ) {
-            // synonym, good for you
-            emit signalCorrection(1.0, (Statistics::ErrorType) Statistics::Correct | Statistics::Synonym, m_userAnswer);
-        } else {
-            // it is the synonym but we don't accept it
-            emit signalCorrection(0.0, Statistics::Synonym, m_userAnswer); // bit harsh maybe
+
+        // TODO we should probably use a corrector here, but there is a chance it would cause infinite recursion
+        foreach(KEduVocTranslation * t, m_entry->translation(m_translation)->synonyms())
+        {
+            if (t->text() == m_userAnswer ) {
+                if ( Prefs::countSynonymsAsCorrect() ) {
+                    // synonym, good for you
+                    emit signalCorrection(1.0, (Statistics::ErrorType)(Statistics::Correct | Statistics::Synonym), m_userAnswer);
+                 } else {
+                // it is the synonym but we don't accept it
+                emit signalCorrection(0.0, Statistics::Synonym, m_userAnswer); // bit harsh maybe
+                }
+            }
         }
-        return;
-    }*/
+
 
 
     int levensthein = levenshteinDistance(m_solution, m_userAnswer);
@@ -248,7 +250,6 @@ void AnswerValidator::simpleCorrector()
 void AnswerValidator::defaultCorrector()
 {
     ///@todo does not work completely yet.
-    ///@todo can solution.length() be zero? *should* be caught by Parley
     if (m_solution == m_userAnswer)
     {
         emit signalCorrection(1.0, Statistics::Correct, m_userAnswer);
@@ -262,18 +263,22 @@ void AnswerValidator::defaultCorrector()
         emit signalFeedback(i18n("<font color=\"#8C1818\">Empty answers are never correct.</font> "));
         return;
     }
-/*
-    // TODO we should probably use a corrector here, but there is a chance it would cause infinite recursion
-    if ( m_entry->translation(m_translation)->synonym() == m_userAnswer ) {
-        if ( Prefs::countSynonymsAsCorrect() ) {
-            // synonym, good for you
-            emit signalCorrection(1.0, (Statistics::ErrorType) Statistics::Correct | Statistics::Synonym, m_userAnswer);
-        } else {
-            // it is the synonym but we don't accept it
-            emit signalCorrection(0.0, Statistics::Synonym, m_userAnswer); // bit harsh maybe
+
+
+        // TODO we should probably use a corrector here, but there is a chance it would cause infinite recursion
+        foreach(KEduVocTranslation * t, m_entry->translation(m_translation)->synonyms())
+        {
+            if (t->text() == m_userAnswer ) {
+                if ( Prefs::countSynonymsAsCorrect() ) {
+                    // synonym, good for you
+                    emit signalCorrection(1.0, (Statistics::ErrorType)(Statistics::Correct | Statistics::Synonym), m_userAnswer);
+                 } else {
+                // it is the synonym but we don't accept it
+                emit signalCorrection(0.0, Statistics::Synonym, m_userAnswer); // bit harsh maybe
+                }
+            }
         }
-        return;
-    }*/
+
 
     int numberSolutionWords = m_solution.simplified().split(" ").count();
 
