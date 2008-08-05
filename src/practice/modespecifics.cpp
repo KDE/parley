@@ -100,28 +100,33 @@ void ParleyPracticeMainWindow::setupWritten()
     connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), m_stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
 }
 
-void ParleyPracticeMainWindow::setupFlashCards()
+void ParleyPracticeMainWindow::setupFlashCard()
 {
-
-
-    TextualPrompt * tprompt = new TextualPrompt(m_renderer, m_area, "flashcard_text_box", 0);
+    TextualPrompt * tprompt = new TextualPrompt(m_renderer, m_area, "flashcard_text_box");
     m_scene->addItem(tprompt);
     connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
+    connect(this, SIGNAL(signalShowSolution(const QString&, int)), tprompt, SLOT(slotSetText(const QString&)));
 
     // flip the card on click
     connect(this, SIGNAL(clicked()), actionCollection()->action("show solution"), SIGNAL(triggered()));
 
-    PracticeActionButton * knownButton = new PracticeActionButton("Known", m_renderer, "known_button");
+    PracticeActionButton * knownButton = new PracticeActionButton(i18n("I Know It"), m_renderer, m_area, "known_button");
+    m_scene->addWidget(knownButton);
     connect(knownButton, SIGNAL(clicked()), this, SLOT(slotForceCorrect()));
-    PracticeActionButton * unknownButton = new PracticeActionButton("Not Known", m_renderer, "unknown_button");
-    connect(unknownButton, SIGNAL(clicked()), this, SLOT(slotForceIncorrect()));
 
+    PracticeActionButton * unknownButton = new PracticeActionButton(i18n("I Don't Know It"), m_renderer, m_area, "unknown_button");
+    connect(unknownButton, SIGNAL(clicked()), this, SLOT(slotForceIncorrect()));
+    m_scene->addWidget(unknownButton);
+
+    PracticeActionButton * showSolutionButton = new PracticeActionButton(i18n("Check"), m_renderer, m_area, "show_solution_button");
+    connect(showSolutionButton, SIGNAL(clicked()), this, SLOT(slotShowSolution()));
+    m_scene->addWidget(showSolutionButton);
 }
 
 
 void ParleyPracticeMainWindow::setupMultipleChoice()
 {
-    TextualPrompt * tprompt = new TextualPrompt(m_renderer, m_area, "question_text_box", 0);
+    TextualPrompt * tprompt = new TextualPrompt(m_renderer, m_area, "question_text_box");
     m_scene->addItem(tprompt);
     connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
 
@@ -195,7 +200,7 @@ void ParleyPracticeMainWindow::setupMultipleChoice()
 void ParleyPracticeMainWindow::setupArticle()
 {
 
-    TextualPrompt * tprompt = new TextualPrompt(m_renderer, m_area, "question_text_box", 0);
+    TextualPrompt * tprompt = new TextualPrompt(m_renderer, m_area, "question_text_box");
     m_scene->addItem(tprompt);
     connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
 
@@ -272,7 +277,7 @@ void ParleyPracticeMainWindow::setupMixedLetters()
     MixedLettersPrompt * mixed = new MixedLettersPrompt(m_renderer, m_area, "question_mixed_letters_box");
     connect(m_manager, SIGNAL(signalNewSolution(const QString&)), mixed, SLOT(slotSetText(const QString&)));
 
-    TextualPrompt * tprompt = new TextualPrompt(m_renderer, m_area, "question_text_box", 0);
+    TextualPrompt * tprompt = new TextualPrompt(m_renderer, m_area, "question_text_box");
     m_scene->addItem(tprompt);
     connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
 
@@ -304,7 +309,7 @@ void ParleyPracticeMainWindow::setupMixedLetters()
 void ParleyPracticeMainWindow::setupParaphrase()
 {
 
-    TextualPrompt * prompt = new TextualPrompt(m_renderer, m_area, "question_text_box", 0);
+    TextualPrompt * prompt = new TextualPrompt(m_renderer, m_area, "question_text_box");
     m_scene->addItem(prompt);
     connect(m_manager, SIGNAL(signalNewText(const QString&)), prompt, SLOT(slotSetText(const QString&)));
 
@@ -332,7 +337,7 @@ void ParleyPracticeMainWindow::setupParaphrase()
 
 void ParleyPracticeMainWindow::setupExample()
 {
-    TextualPrompt * prompt = new TextualPrompt(m_renderer, m_area, "question_text_box", 0);
+    TextualPrompt * prompt = new TextualPrompt(m_renderer, m_area, "question_text_box");
     m_scene->addItem(prompt);
     connect(m_manager, SIGNAL(signalNewText(const QString&)), prompt, SLOT(slotSetText(const QString&)));
 

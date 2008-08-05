@@ -97,10 +97,13 @@ void ParleyPracticeMainWindow::slotCheckAnswer(const QString& input)
 void ParleyPracticeMainWindow::slotShowSolution()
 {
     emit signalShowSolution(m_manager->currentSolution(), m_state);
-    if (m_state == CheckAnswer) // only switch if they haven't already answered
+    if (m_mode != Prefs::EnumTestType::FlashCardsTest) // tainting and such doesn't exist in flashcard mode.
     {
-        emit signalCheckAnswerContinueActionsToggled(m_state);
-        m_stats->slotSolutionShown();
+        if (m_state == CheckAnswer) // only switch if they haven't already answered
+        {
+            emit signalCheckAnswerContinueActionsToggled(m_state);
+            m_stats->slotSolutionShown();
+        }
     }
 }
 
@@ -160,7 +163,7 @@ void ParleyPracticeMainWindow::setupModeSpecifics()
         setupMixedLetters();
         break;
        case Prefs::EnumTestType::FlashCardsTest:
-        setupFlashCards();
+        setupFlashCard();
         break;
        case Prefs::EnumTestType::ParaphraseTest:
         setupParaphrase();
@@ -197,7 +200,7 @@ void ParleyPracticeMainWindow::setupActiveArea()
             m_area = new ActiveArea(m_renderer, "mixed_letters");
             break;
        case Prefs::EnumTestType::FlashCardsTest:
-            m_area = new ActiveArea(m_renderer, "flashcards");
+            m_area = new ActiveArea(m_renderer, "flashcard");
             break;
        default:
         kDebug() << "unhandled practice mode " << m_mode << " selected.";

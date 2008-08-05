@@ -62,7 +62,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
     	void setupMultipleChoice();
         void setupArticle();
         void setupMixedLetters();
-        void setupFlashCards();
+        void setupFlashCard();
         void setupParaphrase();
         void setupExample();
     public slots:

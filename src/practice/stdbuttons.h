@@ -60,7 +60,7 @@ class StdButton : public KPushButton
 class PracticeActionButton : public KPushButton
 {
     public:
-        explicit PracticeActionButton(const QString& text, KSvgRenderer * renderer,  const QString& elementId, QWidget* parent = 0);
+        explicit PracticeActionButton(const QString& text, KSvgRenderer * renderer, ActiveArea * area,  const QString& elementId, QWidget* parent = 0);
 
     private:
             KSvgRenderer* m_renderer;

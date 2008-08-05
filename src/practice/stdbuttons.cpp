@@ -38,16 +38,17 @@ StdButton::StdButton(const QString& text, KSvgRenderer * renderer, ActiveArea * 
 }
 
 
-PracticeActionButton::PracticeActionButton(const QString& text, KSvgRenderer * renderer, const QString& elementId, QWidget* parent)
+PracticeActionButton::PracticeActionButton(const QString& text, KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget* parent)
         : KPushButton(text, parent),
         m_renderer(renderer)
 {
-    if (!renderer->elementExists(elementId))
-    {
-        setVisible(false);
-        kDebug() << "!! Element id doesn't exist:";
-        kDebug() << elementId << ":" << renderer->elementExists(elementId);
-    }
+    QString tId = area->translateElementId(elementId);
+
+    if (tId.isEmpty()) setVisible(false);
+
+     QRectF bounds = m_renderer->boundsOnElement(tId);
+     bounds.translate(area->offset());
+     setGeometry(bounds.toRect());
 }
 
 
