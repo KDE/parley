@@ -421,7 +421,7 @@ void ParleyDocument::enableAutoBackup(bool enable)
         }
     } else {
         if ( !m_backupTimer ) {
-            m_backupTimer = new QTimer;
+            m_backupTimer = new QTimer(this);
             connect(m_backupTimer, SIGNAL(timeout()), this, SLOT(save()));
         }
         m_backupTimer->start(Prefs::backupTime() * 60 * 1000);
