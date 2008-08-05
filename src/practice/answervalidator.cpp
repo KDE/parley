@@ -230,7 +230,7 @@ void AnswerValidator::simpleCorrector()
             if (t->text() == m_userAnswer ) {
                 if ( Prefs::countSynonymsAsCorrect() ) {
                     // synonym, good for you
-                    emit signalCorrection(1.0, (Statistics::ErrorType)(Statistics::Correct | Statistics::Synonym), m_userAnswer);
+                    emit signalCorrection(1.0, (Statistics::Correct | Statistics::Synonym), m_userAnswer);
                  } else {
                 // it is the synonym but we don't accept it
                 emit signalCorrection(0.0, Statistics::Synonym, m_userAnswer); // bit harsh maybe
@@ -271,7 +271,7 @@ void AnswerValidator::defaultCorrector()
             if (t->text() == m_userAnswer ) {
                 if ( Prefs::countSynonymsAsCorrect() ) {
                     // synonym, good for you
-                    emit signalCorrection(1.0, (Statistics::ErrorType)(Statistics::Correct | Statistics::Synonym), m_userAnswer);
+                    emit signalCorrection(1.0, (Statistics::Correct | Statistics::Synonym), m_userAnswer);
                  } else {
                 // it is the synonym but we don't accept it
                 emit signalCorrection(0.0, Statistics::Synonym, m_userAnswer); // bit harsh maybe
@@ -311,7 +311,7 @@ void AnswerValidator::defaultCorrector()
                     Statistics::ErrorType errors;
                     QString htmlCorrection;
                     wordCompare(solutionWords.value(1), m_userAnswer.simplified(), percent, errors, htmlCorrection);
-                    errors = static_cast<Statistics::ErrorType>((int)errors | Statistics::ArticleMissing);
+                    errors |= Statistics::ArticleMissing;
                     emit signalCorrection(qMax(percent - WRONG_ARTICLE_PUNISHMENT, 0.0), errors, m_userAnswer);
                     emit signalFeedback(htmlCorrection);
                     return;
@@ -332,7 +332,7 @@ void AnswerValidator::defaultCorrector()
                     }
                     else
                     {
-                       emit signalCorrection(qMax(grade - WRONG_ARTICLE_PUNISHMENT, 0.0), static_cast<Statistics::ErrorType>((int)errors | Statistics::ArticleWrong), m_userAnswer);
+                       emit signalCorrection(qMax(grade - WRONG_ARTICLE_PUNISHMENT, 0.0), errors | Statistics::ArticleWrong, m_userAnswer);
                        emit signalFeedback(i18n("<font color=\"#8C1818\">You're missing an article.</font> "));
                        return;
                     }
@@ -372,7 +372,7 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
         grade = 1.0 - CAPITALIZATION_MISTAKE_PUNISHMENT;
         ErrorType = Statistics::CapitalizationMistake;
         if (Prefs::ignoreCapitalizationMistakes())
-            ErrorType = static_cast<Statistics::ErrorType>((int)ErrorType | Statistics::Correct);
+            ErrorType |= Statistics::Correct;
         htmlCorrection = i18n("<font color=\"#8C1818\">Correct answer, capitalized wrong.</font> ");
         return;
     }
@@ -382,7 +382,7 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
         grade = 1.0 - ACCENT_MISTAKE_PUNISHMENT;
         ErrorType = Statistics::AccentMistake;
         if (Prefs::ignoreAccentMistakes())
-            ErrorType = static_cast<Statistics::ErrorType>((int)ErrorType | Statistics::Correct);
+            ErrorType |= Statistics::Correct;
         htmlCorrection = i18n("<font color=\"#8C1818\">Correct, but you have an accent problem.</font> ");
         return ;
     }

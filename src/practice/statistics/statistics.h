@@ -186,4 +186,16 @@ class Statistics : public QObject
 
 
 };
+
+inline Statistics::ErrorType operator|(Statistics::ErrorType a , Statistics::ErrorType b)
+{
+    return static_cast<Statistics::ErrorType>(a|b);
+}
+
+
+inline Statistics::ErrorType operator|=(Statistics::ErrorType a, Statistics::ErrorType b)
+{
+    return static_cast<Statistics::ErrorType>(a |= b);
+}
+
 #endif
