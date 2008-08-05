@@ -34,8 +34,7 @@
 #include <keduvocwordtype.h>
 
 PracticeEntryManager::PracticeEntryManager(QObject * parent)
-        : QObject(parent),
-        m_iter(QList<PracticeEntry*>()) // it has no empty constructor. Annoying...
+        : QObject(parent)
 {
     m_fromTranslation = Prefs::questionLanguage();
     m_toTranslation = Prefs::solutionLanguage();
@@ -53,6 +52,7 @@ void PracticeEntryManager::filterTestEntries()
     QList<KEduVocExpression*> tempList = filter.entries();
     foreach(KEduVocExpression* expr, tempList)
         m_entries.append(new PracticeEntry(expr));
+    kDebug() << m_entries;
 }
 
 void PracticeEntryManager::open(KEduVocDocument* doc)
@@ -71,7 +71,6 @@ void PracticeEntryManager::open(KEduVocDocument* doc)
         return;
     }
 
-    m_iter = m_entries;
     if (!Prefs::testOrderLesson())
         shuffle();
 }
@@ -103,6 +102,7 @@ const QString PracticeEntryManager::currentSolution() const
 void PracticeEntryManager::appendEntryToList(PracticeEntry* entry)
 {
     m_entries.append(entry);
+    m_finishedEntries.removeAll(entry); // to avoid duplicate entries.
     // when this entry was emitted, this was decremented, so now that we
     // get it back, we'll increment to stay even.
     ++m_numberEntriesRemaining;
@@ -125,7 +125,7 @@ int PracticeEntryManager::activeEntryCount() const
 
 void PracticeEntryManager::shuffle()
 {
-    KRandomSequence(0).randomize(m_entries);
+    KRandomSequence().randomize(m_entries);
 }
 
 
@@ -165,9 +165,11 @@ QString PracticeEntryManager::findTextForCurrentMode(KEduVocTranslation* questio
 
 void PracticeEntryManager::slotNewEntry()
 {
-    if (m_iter.hasNext())
+    kDebug() << m_entries;
+    if (!m_entries.isEmpty())
     {
-        m_entry = m_iter.next();
+        m_entry = m_entries.takeFirst();
+        m_finishedEntries.append(m_entry);
         KEduVocTranslation * original = m_entry->expression()->translation(Prefs::questionLanguage());
         kDebug() << original->text();
 

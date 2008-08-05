@@ -62,6 +62,9 @@ class PracticeEntryManager : public QObject
         /// Returns the current KEduVocDocument for the practice set.
         KEduVocDocument* document() {return m_doc;}
 
+        /// Returns the list of finished (correctly answered) entries.
+        QList<PracticeEntry*> finishedEntries() { return m_finishedEntries; };
+
         /**
         * The number of entries in the practice set
         * @return size of the set
@@ -90,7 +93,7 @@ class PracticeEntryManager : public QObject
         KEduVocDocument * m_doc;
         QList<PracticeEntry*> m_entries;
         PracticeEntry * m_entry;
-        QListIterator<PracticeEntry*> m_iter;
+        QList<PracticeEntry*> m_finishedEntries;
 
         int m_fromTranslation;
         int m_toTranslation;
