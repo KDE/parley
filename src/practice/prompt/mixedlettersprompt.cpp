@@ -52,42 +52,41 @@ void MixedLettersPrompt::slotSetText (const QString& solution )
     }
     m_letters.clear();
 
-
-    QList<int> positions;
-    for ( int i = 0; i < solution.length(); i++ )
-    {
-        positions.append((m_backgroundRect.width()-20) * i/solution.length()  + 10 );
-    }
-
-    KRandomSequence random;
     for ( int i = 0; i < solution.length(); i++ )
     {
         QGraphicsTextItem* letter = new QGraphicsTextItem( QString(solution[i]) );
-        letter->translate(positions.takeAt( random.getLong(positions.size())),
-        m_backgroundRect.height()/4 - 5 + random.getLong( m_backgroundRect.height()/2 ) );
+        letter->setPos(randomValidLocation());
         m_letters.append(letter);
         m_scene->addItem(letter);
-//         letter->setParentItem(backgroundItem);
-//         letter->setPos(m_view->mapToScene(letter->x(), letter->y()) + m_backgroundRect.topLeft());
-        letter->setPos(m_area->offset() + m_backgroundRect.topLeft());
-
     }
 }
 
 void MixedLettersPrompt::slotAnswerChanged(const QString& answer)
 {
-    for ( int i = 0; i < m_solution.length() && i < answer.length(); i++ ) {
+    int i = 0;
+    for (; i < m_solution.length() && i < answer.length(); i++ ) {
         if ( answer[i] == m_solution[i] ) {
             m_letters[i]->setHtml("<b><font color=\"#188C18\">" + m_solution[i] + "</font></b>");
         } else {
-//             if ( i >= answerLineEdit->text().length() ) {
-                // no input yet
             m_letters[i]->setHtml(QString(m_solution[i]));
-//             } else {
-                // wrong
-//                 m_answerTextItems[i]->setHtml("<b><font color=\"#FF0000\">" + solution[i] + "</font></b>");
-//             }
         }
+    }
+    // unhighlight all remaining letters.
+    for (; i < m_solution.length(); ++i)
+    {
+        m_letters[i]->setHtml(QString(m_solution[i]));
     }
 }
 
+QPointF MixedLettersPrompt::randomValidLocation()
+{
+    qreal minx = m_backgroundRect.left() + m_backgroundRect.width() / 8.0;
+    qreal maxx = m_backgroundRect.right() - m_backgroundRect.width() / 8.0;
+    qreal miny = m_backgroundRect.top() + m_backgroundRect.height() / 8.0;
+    qreal maxy = m_backgroundRect.bottom() - m_backgroundRect.height() / 8.0;
+    KRandomSequence seq;
+    qreal x = seq.getLong(maxx-minx) + minx;
+    qreal y = seq.getLong(maxy-miny) + miny;
+
+    return QPointF(x,y);
+}

@@ -70,9 +70,9 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         void slotShowSolution();
         void slotToggleCheckAnswerContinueActions();
         void slotCreatePreferencesDialog();
-        /// Forces the entry to be marked as correctly answered. Used for when correction isn't neccessary.
+        /// Forces the entry to be marked as correctly answered. Used for when correction isn't neccessary. (eg  Flashcard mode)
         void slotForceCorrect();
-        /// Forces the entry to be marked as incorrectly answered. Used for when correction isn't neccessary.
+        /// Forces the entry to be marked as incorrectly answered. Used for when correction isn't neccessary. (eg Flashcard mode)
         void slotForceIncorrect();
 
         void slotClose() { queryClose(); };

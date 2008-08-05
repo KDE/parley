@@ -41,6 +41,8 @@ class MixedLettersPrompt : public QWidget
         void slotSetText(const QString& solution);
         void slotAnswerChanged(const QString& answer);
     private:
+        /// Returns a random location that is within m_backgroundRect
+        QPointF randomValidLocation();
         KSvgRenderer * m_renderer;
         QRectF m_backgroundRect;
         QGraphicsScene* m_scene;

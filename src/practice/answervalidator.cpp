@@ -268,6 +268,7 @@ void AnswerValidator::defaultCorrector()
         // TODO we should probably use a corrector here, but there is a chance it would cause infinite recursion
         foreach(KEduVocTranslation * t, m_entry->translation(m_translation)->synonyms())
         {
+            if (!t) break;
             if (t->text() == m_userAnswer ) {
                 if ( Prefs::countSynonymsAsCorrect() ) {
                     // synonym, good for you

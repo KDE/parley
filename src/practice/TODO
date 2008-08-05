@@ -21,3 +21,9 @@ Modes to remake:
  * Conjugation
  * Synonym
  * Antonym
+
+
+Bugs:
+* Fix progress bar
+* Figure out why qDeleteAll() in ~PracticeEntryManager crashes
+* Fix the annoying discount-the-first-two-entries bug. It has to do with PPMW::m_status...
