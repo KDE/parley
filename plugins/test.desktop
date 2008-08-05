@@ -7,10 +7,16 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Testing Purposes Script
+Name[et]=Skript testimiseks
+Name[pt]=Programa para Fins de Teste
+Name[pt_BR]=Programa para Fins de Teste
 Name[uk]=Скрипт для тестування
 Name[zh_TW]=測試目的文稿
 Comment=Description of what the plugin does
+Comment[et]=Plugina tegevuse kirjeldus
 Comment[km]=សេចក្ដី​ពិពណ៌នា​របស់​កម្មវិធី​ជំនួយ​អ្វី​ដែល​អាច​ប្រើ​បាន
+Comment[pt]=Descrição do que faz o 'plugin'
+Comment[pt_BR]=Descrição do que faz o 'plugin'
 Comment[uk]=Опис того, що робить додаток
 Comment[zh_TW]=描述此外掛程式在做什麼
 Script=test.py

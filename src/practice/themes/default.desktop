@@ -1,12 +1,18 @@
 [KGameTheme]
 Name=Default
+Name[et]=Vaikimisi
+Name[ga]=Réamhshocrú
 Name[km]=លំនាំដើម
 Name[pt]=Predefinição
 Name[pt_BR]=Predefinição
 Name[uk]=Типова
 Name[zh_TW]=預設
 Description=Default theme for KDE 4
+Description[et]=KDE 4 vaiketeema
+Description[ga]=Téama réamhshocraithe le haghaidh KDE 4
 Description[km]=ស្បែក​លំនាំដើម​សម្រាប់ KDE 4
+Description[pt]=Tema predefinido para o KDE 4
+Description[pt_BR]=Tema predefinido para o KDE 4
 Description[uk]=Типова тема для KDE 4
 Description[zh_TW]=KDE 4 預設主題
 VersionFormat=1

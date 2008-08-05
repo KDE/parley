@@ -5,11 +5,17 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Example Parley Script
+Name[et]=Parley näidisskript
 Name[km]=ស្គ្រីប Parley ​ជា​គំរូ
+Name[pt]=Programa de Exemplo do Parley
+Name[pt_BR]=Programa de Exemplo do Parley
 Name[uk]=Приклад скрипту Parley
 Name[zh_TW]=範例 Parley 文稿
 Comment=This Script offers two actions: 1) Move to new lesson 2) Mark as known for the Scripts menu
+Comment[et]=See skript pakub skriptimenüüle kaks kirjet: 1) Liigu uuele õppetunnile, 2) Märgi tuntuks
 Comment[km]=ស្គ្រីប​នេះ​ផ្ដល់​នូវ​អំពើពីរ ៖ ១) ផ្លាស់ទី​ទៅ​មេរៀន​ថ្មី ២) សម្គាល់​ថា​បានស្គាល់​សម្រាប់​ម៉ឺនុយ​ស្គ្រីប
+Comment[pt]=Este programa oferece duas acções: 1) Passar para uma lição nova 2) Marcar como conhecida para o menu de Programas
+Comment[pt_BR]=Este programa oferece duas acções: 1) Passar para uma lição nova 2) Marcar como conhecida para o menu de Programas
 Comment[uk]=Скрипт додає дві дії: 1) Перейти до наступного уроку 2) Позначити як відоме питання, до меню «Скрипти»
 Comment[zh_TW]=此文稿提供兩個動作：1) 移動到新課程 2) 將文稿選單標記為已知
 Script=example.py
