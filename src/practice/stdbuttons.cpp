@@ -35,6 +35,8 @@ StdButton::StdButton(const QString& text, KSvgRenderer * renderer, ActiveArea * 
      QRectF bounds = m_renderer->boundsOnElement(tId);
      bounds.translate(area->offset());
      setGeometry(bounds.toRect());
+
+     m_state = ParleyPracticeMainWindow::CheckAnswer;
 }
 
 
