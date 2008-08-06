@@ -185,9 +185,6 @@
           <property name="suffix" >
            <string comment="Seconds (suffix)" >s</string>
           </property>
-          <property name="prefix" >
-           <string comment="Seconds (prefix)" />
-          </property>
           <property name="minimum" >
            <number>0</number>
           </property>
