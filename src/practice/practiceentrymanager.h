@@ -34,7 +34,7 @@
 #include <keduvocexpression.h>
 #include <keduvoctranslation.h>
 #include <keduvocdocument.h>
-#include "../prefs.h"
+#include "prefs.h"
 
 class PracticeEntry;
 
