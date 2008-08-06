@@ -53,8 +53,12 @@ sound_box
 
 Example:
 Paraphrase:
-Comparison:
 See Written, image/sound optional
+
+Comparison:
+absolute_box
+comparative_box
+superlative_box
 
 Article:
 Antonym:

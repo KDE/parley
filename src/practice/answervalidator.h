@@ -62,7 +62,8 @@ class AnswerValidator : public QObject
         * that denotes how close it was) and what error was made.
         */
         void slotCheckAnswer(const QString& solution, const QString& userAnswer);
-
+        /// Same as above, but used for multiple pieces of data.
+        void slotCheckAnswer(const QStringList& solutions, const QStringList& userAnswers);
     signals:
         /// The float is the 'correctness score', a number from 0.0 to 1.0 that denotes how close
         /// the user's answer was. The ErrorType containts the error(s) that the user made.

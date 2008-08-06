@@ -65,8 +65,10 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         void setupFlashCard();
         void setupParaphrase();
         void setupExample();
+        void setupComparison();
     public slots:
         void slotCheckAnswer(const QString& input);
+        void slotCheckAnswer(const QStringList& input);
         void slotShowSolution();
         void slotToggleCheckAnswerContinueActions();
         void slotCreatePreferencesDialog();
@@ -80,6 +82,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
     signals:
         void signalCheckAnswer(const QString&, const QString&);
         void signalShowSolution(const QString&, int);
+        void signalShowSolution(const QStringList&, int);
         void signalCheckAnswerContinueActionsToggled(int);
         void signalPracticeFinished();
 };

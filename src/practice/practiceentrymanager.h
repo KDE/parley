@@ -34,6 +34,7 @@
 #include <keduvocexpression.h>
 #include <keduvoctranslation.h>
 #include <keduvocdocument.h>
+#include "../prefs.h"
 
 class PracticeEntry;
 
@@ -53,7 +54,11 @@ class PracticeEntryManager : public QObject
 
         void open(KEduVocDocument*);
 
+        /// Returns the solution to the current entry.
         const QString currentSolution() const;
+
+        /// Returns the solutions for modes where there are multiple pieces of data.
+        const QStringList currentSolutions() const;
 
         /// Append an expression to the end of the internal list.
         /// Used when the user gets the answer wrong and we want to save the question for later.
@@ -85,6 +90,8 @@ class PracticeEntryManager : public QObject
         void filterTestEntries();
         void shuffle();
         QString findTextForCurrentMode(KEduVocTranslation* question);
+        QStringList findTextListForCurrentMode(KEduVocTranslation* question);
+        bool isMultipleDataTestType(Prefs::EnumTestType::type);
 
     public slots:
         void slotNewEntry();
@@ -105,6 +112,9 @@ class PracticeEntryManager : public QObject
         /// Emitted when new text is available.
         /// An empty QString signals that there is no assosiated text.
         void signalNewText(const QString&);
+        /// Emitted when a set of new texts are available.
+        /// Used for modes that need multiple pieces of data, but not the hassle of the raw PracticeEntry.
+        void signalNewTextList(const QStringList&);
         /// Emitted when a new solution is available.
         /// Used when modes need the answer but don't need the hassle of the raw PracticeEntry.
         void signalNewSolution(const QString&);

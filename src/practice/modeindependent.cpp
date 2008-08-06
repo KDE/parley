@@ -43,6 +43,7 @@
 #include "prefs.h"
 #include "timer.h"
 #include "feedback.h"
+#include "stdbuttons.h"
 
 #include "kgametheme/kgamethemeselector.h"
 #include "kgametheme/kgametheme.h"
@@ -173,6 +174,19 @@ void ParleyPracticeMainWindow::setupModeIndependent()
     SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, m_area, "progress_bar", "progress_bar_background");
     m_scene->addItem(barstats);
     connect(m_stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
+
+    PracticeActionButton * knownButton = new PracticeActionButton(i18n("I Know It"), m_renderer, m_area, "skip_known_button");
+    m_scene->addWidget(knownButton);
+    connect(knownButton, SIGNAL(clicked()), actionCollection()->action("skip known"), SIGNAL(triggered()));
+
+    PracticeActionButton * unknownButton = new PracticeActionButton(i18n("I Don't Know It"), m_renderer, m_area, "skip_unknown_button");
+    connect(unknownButton, SIGNAL(clicked()), actionCollection()->action("skip unknown"), SIGNAL(triggered()));
+    m_scene->addWidget(unknownButton);
+
+
+    PracticeActionButton * showSolutionButton = new PracticeActionButton(i18n("Show Solution"), m_renderer, m_area, "show_solution_button");
+    connect(showSolutionButton, SIGNAL(clicked()), actionCollection()->action("show solution"), SIGNAL(triggered()));
+    m_scene->addWidget(showSolutionButton);
 
     if (Prefs::practiceTimeout() && Prefs::practiceTimeoutTimePerAnswer()) // timeout can't be 0
     {

@@ -94,6 +94,11 @@ void ParleyPracticeMainWindow::slotCheckAnswer(const QString& input)
     m_validator->slotCheckAnswer(m_manager->currentSolution(), input);
 }
 
+void ParleyPracticeMainWindow::slotCheckAnswer(const QStringList& input)
+{
+    m_validator->slotCheckAnswer(m_manager->currentSolutions(), input);
+}
+
 void ParleyPracticeMainWindow::slotShowSolution()
 {
     emit signalShowSolution(m_manager->currentSolution(), m_state);
@@ -171,6 +176,9 @@ void ParleyPracticeMainWindow::setupModeSpecifics()
        case Prefs::EnumTestType::ExampleTest:
         setupExample();
         break;
+       case Prefs::EnumTestType::ComparisonTest:
+        setupComparison();
+        break;
        default:
         kDebug() << "unhandled practice mode " << m_mode << " selected.";
         break;
@@ -201,6 +209,9 @@ void ParleyPracticeMainWindow::setupActiveArea()
             break;
        case Prefs::EnumTestType::FlashCardsTest:
             m_area = new ActiveArea(m_renderer, "flashcard");
+            break;
+       case Prefs::EnumTestType::ComparisonTest:
+            m_area = new ActiveArea(m_renderer, "comparison");
             break;
        default:
         kDebug() << "unhandled practice mode " << m_mode << " selected.";

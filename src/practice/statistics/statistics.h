@@ -64,6 +64,7 @@ class Statistics : public QObject
         /// Multiple flags may be used with a bitwise OR.
         enum ErrorType
         {
+            NoInformation         =   0x0, ///< No information available.
             SpellingMistake       =   0x1, ///< misspelled
             CapitalizationMistake =   0x2, ///< capitalization error (whAt)
             AccentMistake         =   0x4, ///< an accent is missing or wrong (é)

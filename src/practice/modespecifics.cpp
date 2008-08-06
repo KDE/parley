@@ -39,6 +39,9 @@
 #include "prompt/imageprompt.h"
 #include "prompt/textualprompt.h"
 
+#include "multiple/multiplewidgetparent.h"
+#include "multiple/mwpcomparison.h"
+
 #include "statistics/statistics.h"
 #include "statistics/svgbarstatistics.h"
 #include "stdbuttons.h"
@@ -83,7 +86,7 @@ void ParleyPracticeMainWindow::setupWritten()
     connect(input, SIGNAL(signalAnswer(const QString&)), this, SLOT(slotCheckAnswer(const QString&)));
     connect(this, SIGNAL(signalShowSolution(const QString&, int)), input, SLOT(slotShowSolution(const QString&)));
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
-    connect(actionCollection()->action("continue"), SIGNAL(triggered()), input, SLOT(slotClear()));
+     connect(actionCollection()->action("continue"), SIGNAL(triggered()), input, SLOT(slotClear()));
 
     StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, m_area, "check_answer_and_continue_button");
     m_scene->addWidget(stdbutton);
@@ -361,3 +364,26 @@ void ParleyPracticeMainWindow::setupExample()
     connect(hint, SIGNAL(signalShowHint()), actionCollection()->action("show solution"), SIGNAL(triggered()));
     connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), m_stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
 }
+
+void ParleyPracticeMainWindow::setupComparison()
+{
+    QStringList qsl;
+    qsl << "absolute" << "comparative" << "superlative";
+    // it adds itself to the scene
+    MWPComparison * logic = new MWPComparison();
+    MultipleWidgetParent * minput = new MultipleWidgetParent(m_renderer, m_area, m_scene, qsl, logic);
+    connect(m_manager, SIGNAL(signalNewTextList(const QStringList&)), minput, SLOT(slotSetTexts(const QStringList&)));
+    connect(minput, SIGNAL(signalAnswer(const QStringList&)), this, SLOT(slotCheckAnswer(const QStringList&)));
+    // connect(this, SIGNAL(signalShowSolution(const QStringList&, int)), minput, SLOT(slotShowSolution(const QStringList&))); // TODO do this
+    connect(actionCollection()->action("check answer"), SIGNAL(triggered()), minput, SLOT(slotEmitAnswer()));
+    //
+    //connect(actionCollection()->action("continue"), SIGNAL(triggered()), minput, SLOT(slotClear()));
+
+    StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, m_area, "check_answer_and_continue_button");
+    m_scene->addWidget(stdbutton);
+    connect(this, SIGNAL(signalCheckAnswerContinueActionsToggled(int)), stdbutton, SLOT(slotToggleText(int)));
+    connect(stdbutton, SIGNAL(signalCheckAnswer()), actionCollection()->action("check answer"), SIGNAL(triggered()));
+    connect(stdbutton, SIGNAL(signalContinue()), actionCollection()->action("continue"), SIGNAL(triggered()));
+
+}
+

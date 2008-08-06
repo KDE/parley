@@ -265,7 +265,7 @@ void AnswerValidator::defaultCorrector()
         return;
     }
 
-
+        if (m_entry && m_entry->translation(m_translation))
         // TODO we should probably use a corrector here, but there is a chance it would cause infinite recursion
         foreach(KEduVocTranslation * t, m_entry->translation(m_translation)->synonyms())
         {
@@ -355,6 +355,74 @@ void AnswerValidator::slotCheckAnswer(const QString & solution, const QString & 
     defaultCorrector();
 }
 
+void AnswerValidator::slotCheckAnswer(const QStringList& solutions, const QStringList& userAnswers)
+{
+    QStringList answers = userAnswers;
+    Statistics::ErrorType error = Statistics::NoInformation;
+    while (userAnswers.size() < solutions.size())
+    {
+        error |= Statistics::Incomplete;
+        answers << "";
+    }
+
+    QList<QPair<QString, bool> > list;
+    QStringList wrong;
+    for(int i = 0; i < solutions.size() && i < answers.size(); ++i)
+    {
+        if (solutions[i].toLower() == answers[i].toLower())
+        {
+            list << QPair<QString, bool>("", true);
+        }
+        else if (answers[i].isEmpty())
+        {
+            list << QPair<QString, bool>(i18n("Empty answers are always wrong."), false);
+//            error |= Statistics::Empty;
+        }
+        else
+        {
+            bool found = false;
+            foreach(QString sol, solutions)
+            {
+                if (answers[i].toLower() == sol.toLower())
+                {
+                    list << QPair<QString, bool>(i18n("%1 is <b>a</b> solution, but not <b>the</b> solution.", answers[i]), false);
+                    wrong << answers[i];
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                list << QPair<QString, bool>(i18n("%1 has a problem...", answers[i]), false);
+                wrong << answers[i];
+            }
+        }
+    }
+
+    bool incorrect = false;
+    QString message;
+    QPair<QString, bool> p;
+    foreach(p, list)
+    {
+        if (!p.second)
+        {
+            incorrect = true;
+            message += p.first;
+            message += "<br>";
+        }
+    }
+
+    if (!incorrect)
+    {
+        emit signalFeedback(i18n("<font color=\"#000fff000\">Correct!</font>"));
+        emit signalCorrection(1.0, Statistics::Correct, "");
+    }
+    else
+    {
+        emit signalFeedback(message);
+        emit signalCorrection(wrong.size() / solutions.size(), error, wrong.join(":"));
+    }
+}
 
 void AnswerValidator::wordCompare(const QString & solution, const QString & userWord, double& grade, Statistics::ErrorType& ErrorType, QString& htmlCorrection)
 {

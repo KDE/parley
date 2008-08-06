@@ -86,10 +86,8 @@ const QString PracticeEntryManager::currentSolution() const
             l.append(m_doc->identifier(Prefs::solutionLanguage()).article().article(m_entry->expression()->translation(Prefs::solutionLanguage())->wordType()->wordType() | KEduVocWordFlag::Indefinite));
             return l.join(" / ");
             break;
-        case Prefs::EnumTestType::ComparisonTest:
         case Prefs::EnumTestType::AntonymTest:
         case Prefs::EnumTestType::SynonymTest:
-        case Prefs::EnumTestType::ConjugationTest:
             return "IMPLEMENT SOLUTION LOGIC";
             // TODO Implement logic here.
 
@@ -98,6 +96,30 @@ const QString PracticeEntryManager::currentSolution() const
         return m_entry->expression()->translation(Prefs::solutionLanguage())->text();
     }
 }
+
+const QStringList PracticeEntryManager::currentSolutions() const
+{
+    QStringList l;
+    switch (Prefs::testType())
+    {
+        // Implement special crap here.
+        case Prefs::EnumTestType::ComparisonTest:
+            l << m_entry->expression()->translation(Prefs::solutionLanguage())->text();
+            l << m_entry->expression()->translation(Prefs::solutionLanguage())->comparative();
+            l << m_entry->expression()->translation(Prefs::solutionLanguage())->superlative();
+            return l;
+            break;
+        case Prefs::EnumTestType::ConjugationTest:
+            kDebug() << "IMPLEMENT SOLUTION LOGIC";
+            return l;
+            // TODO Implement logic here.
+        default:
+            kDebug() << "bad practice mode";
+            return l;
+    }
+    return l;
+}
+
 
 void PracticeEntryManager::appendEntryToList(PracticeEntry* entry)
 {
@@ -128,10 +150,37 @@ void PracticeEntryManager::shuffle()
     KRandomSequence().randomize(m_entries);
 }
 
+bool PracticeEntryManager::isMultipleDataTestType(Prefs::EnumTestType::type type)
+{
+    switch (type)
+    {
+        // this is likely to grow.
+       case Prefs::EnumTestType::ComparisonTest:
+           return true;
+       default:
+            return false;
+    }
+}
+
+QStringList PracticeEntryManager::findTextListForCurrentMode(KEduVocTranslation* question)
+{
+    QStringList result;
+    switch (Prefs::testType())
+    {
+        case Prefs::EnumTestType::ComparisonTest:
+            result.append(question->text());
+            result.append(question->comparative());
+            result.append(question->superlative());
+            break;
+        default:
+            kDebug() << "unhandled mode";
+            break;
+    }
+    return result;
+}
 
 QString PracticeEntryManager::findTextForCurrentMode(KEduVocTranslation* question)
 {
-
     QStringList modified;
     switch (Prefs::testType())
     {
@@ -157,7 +206,7 @@ QString PracticeEntryManager::findTextForCurrentMode(KEduVocTranslation* questio
         kDebug() << modified.join(" ");
         return modified.join(" ");
         break;
-       // All other modes are normal and just use the text() field.
+       // All other single-datum modes are normal and just use the text() field.
        default:
         return question->text();
     }
@@ -173,9 +222,20 @@ void PracticeEntryManager::slotNewEntry()
         KEduVocTranslation * original = m_entry->expression()->translation(Prefs::questionLanguage());
         kDebug() << original->text();
 
-        // It doesn't matter if these are empty since we would emit empty KUrls/QStrings anyway
-        emit signalNewText(findTextForCurrentMode(original));
 
+        if (isMultipleDataTestType(Prefs::testType()))
+        {
+            kDebug() << "multi";
+            emit signalNewTextList(findTextListForCurrentMode(original));
+        }
+        else
+        {
+            kDebug() << "single";
+            emit signalNewText(findTextForCurrentMode(original));
+        }
+
+
+        // It doesn't matter if these are empty since we would emit empty KUrls/QStrings anyway
         // if sound/images are disabled, these connect to nothing and are ignored.
         emit signalNewImage(original->imageUrl());
         emit signalNewSound(original->soundUrl());
