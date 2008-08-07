@@ -83,7 +83,7 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
     m_manager = new PracticeEntryManager(this);
 
     m_stats = new Statistics(m_manager, this);
-    connect(m_manager, SIGNAL(signalEntryChanged(PracticeEntry*, QList<PracticeEntry*>)), m_stats, SLOT(slotSetEntry(PracticeEntry*)));
+    connect(m_manager, SIGNAL(signalNewEntry(PracticeEntry*)), m_stats, SLOT(slotSetEntry(PracticeEntry*)));
     connect(m_manager, SIGNAL(signalSetFinished()), m_stats, SLOT(slotSetFinished()));
     connect(m_manager, SIGNAL(signalSetFinished()), this, SIGNAL(signalPracticeFinished()));
 
@@ -169,7 +169,7 @@ void ParleyPracticeMainWindow::setupModeIndependent()
     Feedback * feedback = new Feedback(m_renderer, m_area, "feedback_box");
     m_scene->addItem(feedback);
     connect(m_validator, SIGNAL(signalFeedback(const QString&)), feedback, SLOT(slotSetText(const QString&)));
-    connect(m_manager, SIGNAL(signalNewEntry()), feedback, SLOT(slotClear()));
+    connect(m_manager, SIGNAL(signalNewEntry(PracticeEntry*)), feedback, SLOT(slotClear()));
 
     SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, m_area, "progress_bar", "progress_bar_background");
     m_scene->addItem(barstats);
@@ -196,7 +196,7 @@ void ParleyPracticeMainWindow::setupModeIndependent()
 
         // when the timer triggers, it will assume their current input is their answer
         connect(m_timer, SIGNAL(signalTimeout()), actionCollection()->action("check answer"), SIGNAL(triggered()));
-        connect(m_manager, SIGNAL(signalNewEntry()), m_timer, SLOT(slotStart()));
+        connect(m_manager, SIGNAL(signalNewEntry(PracticeEntry*)), m_timer, SLOT(slotStart()));
         connect(actionCollection()->action("check answer"), SIGNAL(triggered()), m_timer, SLOT(slotStop()));
     }
     else

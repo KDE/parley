@@ -37,13 +37,12 @@ class MCInput : public QGroupBox
         ~MCInput();
 
     public slots:
-        virtual void slotEmitAnswer();
+        void slotEmitAnswer();
         void slotShortcutTriggered(int shortcutNumber);
-
+        void slotSetChoices(const QStringList& choices);
     signals:
         void signalAnswer(const QString& answer);
         void triggered();
-        void signalAnswerChanged(const QString& answer);
 
     protected:
         void setAvailableAnswers(QStringList answers);

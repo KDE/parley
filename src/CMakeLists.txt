@@ -87,8 +87,6 @@ set(practice_SRCS
     practice/practiceview.cpp
     practice/input/textualinput.cpp
     practice/input/mcinput.cpp
-    practice/input/multiplechoicemcinput.cpp
-    practice/input/articlemcinput.cpp
     practice/prompt/mixedlettersprompt.cpp
     practice/prompt/textualprompt.cpp
     practice/prompt/imageprompt.cpp

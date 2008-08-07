@@ -38,6 +38,7 @@ Statistics::Statistics(PracticeEntryManager* manager, QObject * parent)
     m_taintedIncorrect = 0;
     m_skipped = 0;
     m_streakLength = 0;
+    m_entry = 0;
 }
 
 Statistics::~Statistics() {}

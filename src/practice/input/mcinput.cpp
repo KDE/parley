@@ -81,7 +81,7 @@ void MCInput::slotShortcutTriggered(int shortcutNumber)
     // we didn't find anything.
 }
 
-void MCInput::setAvailableAnswers(const QStringList list)
+void MCInput::slotSetChoices(const QStringList& list)
 {
     // clean up from last time
     delete layout();

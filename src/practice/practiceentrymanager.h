@@ -49,16 +49,24 @@ class PracticeEntryManager : public QObject
         Q_OBJECT
 
     public:
+        enum TestCategory
+        {
+            Written,
+            MultipleChoice,
+            MultipleChoiceWithoutPrompt
+        };
+
+
         PracticeEntryManager(QObject* parent = 0);
         ~PracticeEntryManager();
 
         void open(KEduVocDocument*);
 
         /// Returns the solution to the current entry.
-        const QString currentSolution() const;
+        QString currentSolution() const;
 
         /// Returns the solutions for modes where there are multiple pieces of data.
-        const QStringList currentSolutions() const;
+        QStringList currentSolutions() const;
 
         /// Append an expression to the end of the internal list.
         /// Used when the user gets the answer wrong and we want to save the question for later.
@@ -68,7 +76,7 @@ class PracticeEntryManager : public QObject
         KEduVocDocument* document() {return m_doc;}
 
         /// Returns the list of finished (correctly answered) entries.
-        QList<PracticeEntry*> finishedEntries() { return m_finishedEntries; };
+        QList<PracticeEntry*> entriesFinished() { return m_entriesFinished; };
 
         /**
         * The number of entries in the practice set
@@ -89,50 +97,53 @@ class PracticeEntryManager : public QObject
         */
         void filterTestEntries();
         void shuffle();
-        QString findTextForCurrentMode(KEduVocTranslation* question);
-        QStringList findTextListForCurrentMode(KEduVocTranslation* question);
-        bool isMultipleDataTestType(Prefs::EnumTestType::type);
+        KEduVocTranslation* makeSolution(); // sets the solution so it can be gotten later.
+        QStringList makeChoices(KEduVocTranslation* solution) const;
+        QStringList makeMultipleChoiceChoices(KEduVocTranslation * solution) const;
+        QStringList makeArticleChoices(const QString& solution) const;
+        QString makeArticleAnswer(KEduVocWordFlags wordTypeFlags) const;
+
+        QString currentQuestion() const;
+
+
+        TestCategory testCategory() const;
+
 
     public slots:
         void slotNewEntry();
 
     protected:
         KEduVocDocument * m_doc;
-        QList<PracticeEntry*> m_entries;
+        QList<PracticeEntry*> m_entriesOriginal;
+        QList<PracticeEntry*> m_entriesRemaining;
+        QList<PracticeEntry*> m_entriesFinished;
         PracticeEntry * m_entry;
-        QList<PracticeEntry*> m_finishedEntries;
-
-        int m_fromTranslation;
-        int m_toTranslation;
-        int m_testType;
-        int m_numberEntriesRemaining;
-
+        QString m_solution;
 
     signals:
         /// Emitted when new text is available.
         /// An empty QString signals that there is no assosiated text.
         void signalNewText(const QString&);
-        /// Emitted when a set of new texts are available.
-        /// Used for modes that need multiple pieces of data, but not the hassle of the raw PracticeEntry.
-        void signalNewTextList(const QStringList&);
-        /// Emitted when a new solution is available.
-        /// Used when modes need the answer but don't need the hassle of the raw PracticeEntry.
-        void signalNewSolution(const QString&);
+
+        /// Emitted for multiple-choice-style modes
+        void signalNewChoices(const QStringList&);
+
         /// Emitted when a new image is available.
         /// An empty KUrl signals that there is no assosiated image.
         void signalNewImage(const KUrl&);
+
         /// Emitted when a new sound is available.
         /// An empty KUrl signals that there is no assosiated sound.
         void signalNewSound(const KUrl&);
-        /// Emitted when the question is changed.
-        /// This is used so @class Statistics can update the grades and related information.
-        /// It is additionally used by some input widgets.
-        void signalEntryChanged(PracticeEntry*, QList<PracticeEntry*>);
+
         /// Used so various widgets will know to reset themselves.
-        void signalNewEntry();
+        void signalNewEntry(PracticeEntry*);
+
         /// Emitted when the set of questions is finished.
         void signalSetFinished();
 
+        /// The text of the solution.
+        void signalNewSolution(const QString&);
 };
 
 

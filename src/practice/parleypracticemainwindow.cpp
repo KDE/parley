@@ -34,9 +34,7 @@
 #include "practiceview.h"
 
 #include "input/textualinput.h"
-#include "input/multiplechoicemcinput.h"
 #include "input/mcinput.h"
-#include "input/articlemcinput.h"
 
 #include "statistics/statistics.h"
 #include "stdbuttons.h"
@@ -155,30 +153,31 @@ void ParleyPracticeMainWindow::setupModeSpecifics()
 {
     switch (m_mode)
     {
-       case Prefs::EnumTestType::WrittenTest:
-        setupWritten();
-        break;
-       case Prefs::EnumTestType::MultipleChoiceTest:
-        setupMultipleChoice();
-        break;
-       case Prefs::EnumTestType::ArticleTest:
-        setupArticle();
-        break;
-       case Prefs::EnumTestType::MixedLettersTest:
-        setupMixedLetters();
-        break;
-       case Prefs::EnumTestType::FlashCardsTest:
-        setupFlashCard();
-        break;
-       case Prefs::EnumTestType::ParaphraseTest:
-        setupParaphrase();
-        break;
        case Prefs::EnumTestType::ExampleTest:
-        setupExample();
+       case Prefs::EnumTestType::ParaphraseTest:
+       case Prefs::EnumTestType::WrittenTest:
+        setupWrittenTemplate();
         break;
+
+       case Prefs::EnumTestType::SynonymTest:
+       case Prefs::EnumTestType::AntonymTest:
+       case Prefs::EnumTestType::ArticleTest:
+       case Prefs::EnumTestType::MultipleChoiceTest:
+        setupMultipleChoiceTemplate();
+        break;
+
+       case Prefs::EnumTestType::MixedLettersTest:
+        setupMixedLettersTemplate();
+        break;
+
+       case Prefs::EnumTestType::FlashCardsTest:
+        setupFlashCardTemplate();
+        break;
+
        case Prefs::EnumTestType::ComparisonTest:
-        setupComparison();
+        setupComparisonTemplate();
         break;
+
        default:
         kDebug() << "unhandled practice mode " << m_mode << " selected.";
         break;
@@ -212,6 +211,12 @@ void ParleyPracticeMainWindow::setupActiveArea()
             break;
        case Prefs::EnumTestType::ComparisonTest:
             m_area = new ActiveArea(m_renderer, "comparison");
+            break;
+       case Prefs::EnumTestType::SynonymTest:
+            m_area = new ActiveArea(m_renderer, "synonym", "multiple_choice");
+            break;
+       case Prefs::EnumTestType::AntonymTest:
+            m_area = new ActiveArea(m_renderer, "antonym", "multiple_choice");
             break;
        default:
         kDebug() << "unhandled practice mode " << m_mode << " selected.";

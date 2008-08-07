@@ -58,14 +58,11 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         void setupModeIndependent();
 
         // Mode specific setup functions
-        void setupWritten();
-    	void setupMultipleChoice();
-        void setupArticle();
-        void setupMixedLetters();
-        void setupFlashCard();
-        void setupParaphrase();
-        void setupExample();
-        void setupComparison();
+        void setupWrittenTemplate();
+    	void setupMultipleChoiceTemplate();
+        void setupMixedLettersTemplate();
+        void setupFlashCardTemplate();
+        void setupComparisonTemplate();
     public slots:
         void slotCheckAnswer(const QString& input);
         void slotCheckAnswer(const QStringList& input);

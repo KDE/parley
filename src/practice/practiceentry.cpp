@@ -17,7 +17,8 @@
 
 PracticeEntry::PracticeEntry(KEduVocExpression* expr)
 : m_expression(expr)
-{}
+{
+}
 
 void PracticeEntry::answeredCorrectly(bool tainted)
 {

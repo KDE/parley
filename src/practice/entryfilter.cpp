@@ -318,16 +318,16 @@ void EntryFilter::cleanupInvalid()
                     } else i++; // conjugation
                     break;
 
-//                 case Prefs::EnumTestType::SynonymTest:
-//                     if ((*i)->translation(m_toTranslation)->synonym().simplified().isEmpty()){
-//                         i = m_entries.erase(i);
-//                     } else i++;
-//                     break;
-//                 case Prefs::EnumTestType::AntonymTest:
-//                     if ((*i)->translation(m_toTranslation)->antonym().simplified().isEmpty()){
-//                         i = m_entries.erase(i);
-//                     } else i++;
-//                     break;
+                case Prefs::EnumTestType::SynonymTest:
+                    if ((*i)->translation(m_toTranslation)->synonym().simplified().isEmpty()){
+                        i = m_entries.erase(i);
+                    } else i++;
+                    break;
+                case Prefs::EnumTestType::AntonymTest:
+                    if ((*i)->translation(m_toTranslation)->antonym().simplified().isEmpty()){
+                        i = m_entries.erase(i);
+                    } else i++;
+                    break;
                 case Prefs::EnumTestType::ParaphraseTest:
                     if ((*i)->translation(m_toTranslation)->paraphrase().simplified().isEmpty()){
                         i = m_entries.erase(i);
