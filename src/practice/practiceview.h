@@ -18,11 +18,20 @@
 #define PRACTICE_VIEW_H
 
 #include <QGraphicsView>
+#include <QGraphicsScene>
+
+class ActiveArea;
 
 class PracticeView
     :public QGraphicsView
 {
-    void resizeEvent(QResizeEvent* event);
+    public:
+        PracticeView(QGraphicsScene*scene);
+        void resizeEvent(QResizeEvent* event);
+        void setActiveArea(ActiveArea * area);
+        ActiveArea * activeArea();
+    private:
+        class ActiveArea * m_area;
 };
 
 #endif

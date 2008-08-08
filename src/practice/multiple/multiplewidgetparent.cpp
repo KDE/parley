@@ -33,7 +33,7 @@
 #include <QGraphicsScene>
 #include <QLineEdit>
 
-MultipleWidgetParent::MultipleWidgetParent(KSvgRenderer * renderer, ActiveArea * area, QGraphicsScene * scene, QStringList& elementIds, MWPLogic* logic, QObject * parent)
+MultipleWidgetParent::MultipleWidgetParent(KSvgRenderer * renderer, ActiveArea * area, QStringList& elementIds, MWPLogic* logic, QObject * parent)
     : QObject(parent), m_renderer(renderer),m_elementIds(elementIds),  m_logic(logic)
 {
     foreach(QString id, elementIds)
@@ -44,7 +44,7 @@ MultipleWidgetParent::MultipleWidgetParent(KSvgRenderer * renderer, ActiveArea *
         QLineEdit * t = new QLineEdit();
         m_kids.append(t);
         m_map[id] = t;
-        scene->addWidget(t);
+        area->scene()->addWidget(t);
         QRectF bounds = m_renderer->boundsOnElement(tId);
         bounds.translate(area->offset());
         t->setGeometry(bounds.toRect());

@@ -24,6 +24,7 @@
 ActiveArea::ActiveArea(KSvgRenderer * renderer, const QString& elementId, const QString& fallbackElementId)
 : m_renderer(renderer)
 {
+    m_valid = true;
     QString id = elementId;
     setSharedRenderer(renderer);
     if (!renderer->elementExists(elementId))
@@ -31,6 +32,7 @@ ActiveArea::ActiveArea(KSvgRenderer * renderer, const QString& elementId, const 
         if (fallbackElementId.isEmpty())
         {
             kDebug() << "Current theme doesn't support mode " << elementId << "and no fallback was provided. Panic!";
+            m_valid = false;
         }
         else if (renderer->elementExists(fallbackElementId))
         {
@@ -41,6 +43,7 @@ ActiveArea::ActiveArea(KSvgRenderer * renderer, const QString& elementId, const 
         {
             kDebug() << "Current theme doesn't support modes " << elementId << " or " << fallbackElementId <<
             " (fallback). Panic!";
+            m_valid = false;
         }
     }
     setElementId(id);
@@ -86,10 +89,27 @@ QString ActiveArea::translateElementId(const QString& originalElementId)
     if (m_renderer->elementExists(m_mode_string + "_" + originalElementId))
         return m_mode_string + "_" + originalElementId;
     else if (m_renderer->elementExists("main_" + originalElementId))
-        return "main_" + originalElementId;
+    {
+            return "main_" + originalElementId;
+    }
     else
     {
         kDebug() << "No translation for elementid " << originalElementId << " found. (main_ +" << originalElementId << " and " << m_mode_string << "_" << originalElementId << " don't exist)";
         return "";
     }
+}
+
+bool ActiveArea::valid()
+{
+    return m_valid;
+}
+
+void ActiveArea::setActive(bool active)
+{
+    m_active = active;
+}
+
+bool ActiveArea::active()
+{
+    return m_active;
 }

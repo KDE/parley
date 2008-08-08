@@ -32,12 +32,17 @@ class ActiveArea : public QGraphicsSvgItem
         QPointF offset();
         QString translateElementId(const QString& originalElementId);
         QRectF original();
-
+        bool valid();
+        void setActive(bool active);
+        bool active();
     private:
         KSvgRenderer * m_renderer;
         QPointF m_offset;
         QString m_mode_string; /// The active area name.
         QRectF m_original;
+        bool m_valid;
+        bool m_imageArea;
+        bool m_active;
 };
 
 #endif

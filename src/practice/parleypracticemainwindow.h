@@ -23,6 +23,8 @@
 #include <prefs.h>
 
 class QString;
+class ActiveArea;
+class KUrl;
 
 class ParleyPracticeMainWindow : public KXmlGuiWindow
 {
@@ -37,11 +39,13 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
     static const int Continue = 2;
 
     protected:
-        class PracticeView* m_view;
-        class QGraphicsSvgItem* m_layout;
-        class QGraphicsScene* m_scene;
         class KSvgRenderer* m_renderer;
-        class ActiveArea* m_area;
+
+        // for questions without images (or if no image theme exists)
+        class PracticeView* m_normalView;
+
+        // for questions with images (uses the normal ones if no image theme exists)
+        class PracticeView* m_imageView;
 
         class PracticeEntryManager * m_manager;
         class Statistics* m_stats;
@@ -55,14 +59,14 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         void setupActiveArea();
         void setupActions();
         void setupModeSpecifics();
-        void setupModeIndependent();
+        void setupModeIndependent(ActiveArea * area);
 
         // Mode specific setup functions
-        void setupWrittenTemplate();
-    	void setupMultipleChoiceTemplate();
-        void setupMixedLettersTemplate();
-        void setupFlashCardTemplate();
-        void setupComparisonTemplate();
+        void setupWrittenTemplate(ActiveArea * area);
+    	void setupMultipleChoiceTemplate(ActiveArea * area);
+        void setupMixedLettersTemplate(ActiveArea * area);
+        void setupFlashCardTemplate(ActiveArea * area);
+        void setupComparisonTemplate(ActiveArea * area);
     public slots:
         void slotCheckAnswer(const QString& input);
         void slotCheckAnswer(const QStringList& input);
@@ -73,6 +77,9 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         void slotForceCorrect();
         /// Forces the entry to be marked as incorrectly answered. Used for when correction isn't neccessary. (eg Flashcard mode)
         void slotForceIncorrect();
+
+        // if a valid url exists, we show the image view.
+        void slotShowImageView(const KUrl&);
 
         void slotClose() { queryClose(); };
         bool queryClose();

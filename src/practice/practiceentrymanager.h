@@ -108,6 +108,7 @@ class PracticeEntryManager : public QObject
 
         TestCategory testCategory() const;
 
+        QString tenseDescription(KEduVocWordFlags flags, const QString& tenseName = "") const;
 
     public slots:
         void slotNewEntry();

@@ -1,8 +1,6 @@
 Elements that are part of an active area should be prefixed with the area name and _ (eg written_answer_text_box)
 Elements are are NOT part of an active area (ie they are part of the main group) should be prefixed with main_ (eg main_progress_bar).
 
-Elements required (sorted by mode required):
-
 Any of these can be visible or invisible.
 Note on terminology: 'solution' is the correct response. 'answer' is anything the user inputs, and it may or may not match the solution.
 
@@ -12,7 +10,7 @@ progress_bar_background # this element will determine how the bar in scaled. At 
 feedback_box # A feedback sentence is placed here (telling the user if it is correct and hints if it is wrong, etc). This is highly reccomended in a theme.
 
 Optional UI elements: (If these do not exist, they are still available from the menus)
-check_answer_and_continue_button # a button that toggles between displaying 'check answer' and 'continue' is placed here.
+continue_button # a button that toggles between displaying 'check answer' and 'continue' is placed here.
 
 Note: These can be turned off in settings; if they are, the buttons won't be shown (ie, make them invisible or it will look wierd)
 skip_known_button # show a button to skip to the next question while signalling you know the solution
@@ -26,10 +24,19 @@ timer_digital_clock # A timer is shown as a number in an embedded widget.
 timer_bar / timer_bar_background # A timer is shown as a progress bar (counting down).
 timer_clock # A timer is shown as a graphical clock of some sort.
 
+
+Sound & Images:
+image_box and sound_box can be added to any mode, but be aware they are not neccessarily common and can be disabled; don't make the existence of an image integral to your UI design.
+
+If an active_area exists with a name that is suffixed by _image (eg written_image, elements become written_image_question_text_box), that layout will be used for questions with images assosiated. If such an area does not exist, the normal area will always be used.
+
+
+Elements required (sorted by mode required):
+
 Written:
+Example:
+Paraphrase:
 answer_text_box # the text input widget will be placed here
-image_box # this will be filled with the image
-sound_box # this will contain a button to play the sound
 question_text_box # the question text will be placed here, vertically centered
 
 Flashcard:
@@ -39,8 +46,9 @@ known_button # this indicates you know the solution
 unknown_button # this indicates you didn't know the solution
 
 Multiple Choice:
-image_box
-sound_box
+Article:
+Antonym:
+Synonym:
 question_text_box
 answer_mc_box # this holds the multiple choice widget. Note: up to 9 choices are allowed, and 5 is default, so this has to be fairly large.
 
@@ -48,22 +56,11 @@ Mixed Letters:
 question_mixed_letters_box # This box holds the mixed up letters. Note: Make this reasonably large.
 question_text_box
 answer_text_box
-image_box
-sound_box
-
-Example:
-Paraphrase:
-See Written, image/sound optional
 
 Comparison:
 absolute_box
 comparative_box
 superlative_box
-
-Article:
-Antonym:
-Synonym:
-See Multiple Choice, image/sound optional
 
 Conjugation:
 question_text_box
@@ -80,13 +77,14 @@ Active Area names: (name -> default)
 written
 flashcard
 multiple_choice
-article -> multiple_choice
+comparison
 mixed_letters
+conjugation
+article -> multiple_choice
 example -> written
 paraphrase -> written
 antonym -> multiple_choice
 synonyn -> multiple_choice
-conjugation -> ?
-comparison -> ?
+
 
 

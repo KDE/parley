@@ -32,7 +32,7 @@
 
 TextualInput::TextualInput(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget* parent)
         : QLineEdit(parent),
-        m_renderer(renderer)
+        m_renderer(renderer), m_area(area)
 {
     QString tId = area->translateElementId(elementId);
     if (tId.isEmpty()) setVisible(false);
@@ -48,7 +48,8 @@ TextualInput::TextualInput(KSvgRenderer * renderer, ActiveArea * area, const QSt
 
 void TextualInput::slotEmitAnswer()
 {
-    emit signalAnswer(text());
+    if (m_area->active())
+        emit signalAnswer(text());
 }
 
 void TextualInput::slotShowSolution(const QString& solution)

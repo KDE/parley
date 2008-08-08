@@ -43,6 +43,7 @@ class TextualInput : public QLineEdit
         void signalAnswerChanged(const QString& answer);
     private:
         KSvgRenderer* m_renderer;
+        ActiveArea* m_area;
 };
 
 #endif

@@ -19,38 +19,22 @@
 
 #include <KXmlGuiWindow>
 #include <KDebug>
-#include <KStandardDirs>
 #include <QGraphicsSvgItem>
 #include <KSvgRenderer>
-#include <KAction>
-#include <KActionCollection>
-#include <KActionMenu>
 #include <KLocalizedString>
 #include <KConfigDialog>
 #include <KApplication>
-#include <QShortcut>
-#include <QSignalMapper>
-
-#include "practiceview.h"
-
-#include "input/textualinput.h"
-#include "input/mcinput.h"
-
-#include "statistics/statistics.h"
-#include "stdbuttons.h"
-#include "hint.h"
-#include "practiceentrymanager.h"
-#include "answervalidator.h"
-#include "prefs.h"
-#include "timer.h"
-#include "feedback.h"
+#include <KActionCollection>
+#include <KAction>
+#include <KUrl>
 
 #include "kgametheme/kgamethemeselector.h"
 #include "kgametheme/kgametheme.h"
 
-#include <keduvocexpression.h>
-#include <keduvocdocument.h>
-
+#include "practiceview.h"
+#include "activearea.h"
+#include "practiceentrymanager.h"
+#include "answervalidator.h"
 
 ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
         : KXmlGuiWindow(parent)
@@ -58,15 +42,15 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
     setupBase("default.desktop");
     setupActiveArea();
     setupActions();
-    setupModeIndependent();
+    setupModeIndependent(m_normalView->activeArea());
+    if (m_imageView->activeArea()->valid())
+        setupModeIndependent(m_imageView->activeArea());
     setupModeSpecifics();
 
     setupGUI(Default, QString::fromLatin1("parleypracticeui.rc"));
 
     // ... and we are done -- start the first question!
     m_manager->slotNewEntry();
-
-    m_view->show();
 }
 
 ParleyPracticeMainWindow::ParleyPracticeMainWindow(KEduVocDocument* doc, QWidget *parent)
@@ -75,7 +59,9 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(KEduVocDocument* doc, QWidget
     setupBase("default.desktop", doc);
     setupActiveArea();
     setupActions();
-    setupModeIndependent();
+    setupModeIndependent(m_normalView->activeArea());
+    if (m_imageView->activeArea()->valid())
+        setupModeIndependent(m_imageView->activeArea());
     setupModeSpecifics();
 
     setupGUI(Default, QString::fromLatin1("parleypracticeui.rc"));
@@ -83,7 +69,6 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(KEduVocDocument* doc, QWidget
     // ... and we are done -- start the first question!
     m_manager->slotNewEntry();
 
-    m_view->show();
 }
 
 
@@ -156,26 +141,36 @@ void ParleyPracticeMainWindow::setupModeSpecifics()
        case Prefs::EnumTestType::ExampleTest:
        case Prefs::EnumTestType::ParaphraseTest:
        case Prefs::EnumTestType::WrittenTest:
-        setupWrittenTemplate();
+        setupWrittenTemplate(m_normalView->activeArea());
+        if (m_imageView->activeArea()->valid())
+            setupWrittenTemplate(m_imageView->activeArea());
         break;
 
        case Prefs::EnumTestType::SynonymTest:
        case Prefs::EnumTestType::AntonymTest:
        case Prefs::EnumTestType::ArticleTest:
        case Prefs::EnumTestType::MultipleChoiceTest:
-        setupMultipleChoiceTemplate();
+        setupMultipleChoiceTemplate(m_normalView->activeArea());
+        if (m_imageView->activeArea()->valid())
+            setupMultipleChoiceTemplate(m_imageView->activeArea());
         break;
 
        case Prefs::EnumTestType::MixedLettersTest:
-        setupMixedLettersTemplate();
+        setupMixedLettersTemplate(m_normalView->activeArea());
+        if (m_imageView->activeArea()->valid())
+            setupMixedLettersTemplate(m_imageView->activeArea());
         break;
 
        case Prefs::EnumTestType::FlashCardsTest:
-        setupFlashCardTemplate();
+        setupFlashCardTemplate(m_normalView->activeArea());
+        if (m_imageView->activeArea()->valid())
+            setupFlashCardTemplate(m_imageView->activeArea());
         break;
 
        case Prefs::EnumTestType::ComparisonTest:
-        setupComparisonTemplate();
+        setupComparisonTemplate(m_normalView->activeArea());
+        if (m_imageView->activeArea()->valid())
+            setupComparisonTemplate(m_imageView->activeArea());
         break;
 
        default:
@@ -189,40 +184,49 @@ void ParleyPracticeMainWindow::setupActiveArea()
     switch (m_mode)
     {
        case Prefs::EnumTestType::ParaphraseTest:
-            m_area = new ActiveArea(m_renderer, "paraphrase", "written");
+            m_normalView->setActiveArea(new ActiveArea(m_renderer, "paraphrase", "written"));
+            m_imageView->setActiveArea(new ActiveArea(m_renderer, "paraphrase_image", "written_image"));
             break;
        case Prefs::EnumTestType::ExampleTest:
-            m_area = new ActiveArea(m_renderer, "example", "written");
+            m_normalView->setActiveArea(new ActiveArea(m_renderer, "example", "written"));
+            m_imageView->setActiveArea(new ActiveArea(m_renderer, "example_image", "written_image"));
             break;
        case Prefs::EnumTestType::WrittenTest:
-            m_area = new ActiveArea(m_renderer, "written");
+            m_normalView->setActiveArea(new ActiveArea(m_renderer, "written"));
+            m_imageView->setActiveArea(new ActiveArea(m_renderer, "written_image"));
             break;
        case Prefs::EnumTestType::MultipleChoiceTest:
-            m_area = new ActiveArea(m_renderer, "multiple_choice");
+            m_normalView->setActiveArea(new ActiveArea(m_renderer, "multiple_choice"));
+            m_imageView->setActiveArea(new ActiveArea(m_renderer, "multiple_choice_image"));
             break;
        case Prefs::EnumTestType::ArticleTest:
-            m_area = new ActiveArea(m_renderer, "article", "multiple_choice");
+            m_normalView->setActiveArea(new ActiveArea(m_renderer, "article", "multiple_choice"));
+            m_imageView->setActiveArea(new ActiveArea(m_renderer, "article_image", "multiple_choice_image"));
             break;
        case Prefs::EnumTestType::MixedLettersTest:
-            m_area = new ActiveArea(m_renderer, "mixed_letters");
+            m_normalView->setActiveArea(new ActiveArea(m_renderer, "mixed_letters"));
+            m_imageView->setActiveArea(new ActiveArea(m_renderer, "mixed_letters_image"));
             break;
        case Prefs::EnumTestType::FlashCardsTest:
-            m_area = new ActiveArea(m_renderer, "flashcard");
+            m_normalView->setActiveArea(new ActiveArea(m_renderer, "flashcard"));
+            m_imageView->setActiveArea(new ActiveArea(m_renderer, "flashcard_image"));
             break;
        case Prefs::EnumTestType::ComparisonTest:
-            m_area = new ActiveArea(m_renderer, "comparison");
+            m_normalView->setActiveArea(new ActiveArea(m_renderer, "comparison"));
+            m_imageView->setActiveArea(new ActiveArea(m_renderer, "comparison_image"));
             break;
        case Prefs::EnumTestType::SynonymTest:
-            m_area = new ActiveArea(m_renderer, "synonym", "multiple_choice");
+            m_normalView->setActiveArea(new ActiveArea(m_renderer, "synonym", "multiple_choice"));
+            m_imageView->setActiveArea(new ActiveArea(m_renderer, "synonym_image", "multiple_choice_image"));
             break;
        case Prefs::EnumTestType::AntonymTest:
-            m_area = new ActiveArea(m_renderer, "antonym", "multiple_choice");
+            m_normalView->setActiveArea(new ActiveArea(m_renderer, "antonym", "multiple_choice"));
+            m_imageView->setActiveArea(new ActiveArea(m_renderer, "antonym_image", "multiple_choice_image"));
             break;
        default:
         kDebug() << "unhandled practice mode " << m_mode << " selected.";
         break;
     }
-    m_scene->addItem(m_area);
 }
 
 
@@ -230,4 +234,25 @@ bool ParleyPracticeMainWindow::queryClose()
 {
     emit signalPracticeFinished();
     return true;
+}
+
+void ParleyPracticeMainWindow::slotShowImageView(const KUrl& url)
+{
+    bool show = url.url().isEmpty();
+    if (!show && m_imageView->activeArea()->valid())
+    {
+        m_normalView->activeArea()->setActive(false);
+        m_imageView->activeArea()->setActive(true);
+        m_normalView->hide();
+        setCentralWidget(m_imageView);
+        m_imageView->show();
+    }
+    else
+    {
+        m_normalView->activeArea()->setActive(true);
+        m_imageView->activeArea()->setActive(false);
+        m_imageView->hide();
+        setCentralWidget(m_normalView);
+        m_normalView->show();
+    }
 }

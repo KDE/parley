@@ -449,3 +449,35 @@ QString PracticeEntryManager::makeArticleAnswer(KEduVocWordFlags flags) const
         if (!indef.isEmpty()) parts.append(indef);
         return parts.join(" / ");
 }
+
+
+QString PracticeEntryManager::tenseDescription(KEduVocWordFlags flags, const QString& tenseName) const
+{
+    QStringList desc;
+    if (flags & KEduVocWordFlag::First)
+        desc << i18n("First person");
+    else if (flags & KEduVocWordFlag::Second)
+        desc << i18n("Second person");
+    else if (flags & KEduVocWordFlag::Third)
+        desc << i18n("Third person");
+
+    // do genders ever influence conjugation?
+    if (flags & KEduVocWordFlag::Masculine)
+        desc << i18nc("Grammatical masculine gender", "Masculine");
+    else if (flags & KEduVocWordFlag::Feminine)
+        desc << i18nc("Grammatical feminine gender", "Feminine");
+    else if (flags & KEduVocWordFlag::Neuter)
+        desc << i18nc("Grammatical neuter gender", "Neuter");
+
+    if (flags & KEduVocWordFlag::Singular)
+        desc << i18nc("Grammatical singular number", "Singular");
+    if (flags & KEduVocWordFlag::Dual)
+        desc << i18nc("Grammatical dual number (doesn't exist in all languages)", "Dual");
+    if (flags & KEduVocWordFlag::Plural)
+        desc << i18nc("Grammatical plural number", "Plural");
+
+    if (!tenseName.isEmpty())
+        desc << tenseName;
+
+    return desc.join(" ");
+}

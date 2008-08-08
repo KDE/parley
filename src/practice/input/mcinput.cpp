@@ -37,7 +37,7 @@
 
 MCInput::MCInput(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget* parent)
         : QGroupBox(parent),
-        m_renderer(renderer)
+        m_renderer(renderer), m_area(area)
 {
     QString tId = area->translateElementId(elementId);
     if (tId.isEmpty()) setVisible(false);
@@ -123,6 +123,8 @@ MCInput::~MCInput()
 
 void MCInput::slotEmitAnswer()
 {
+    if (!m_area->active())
+        return;
     foreach(QRadioButton* b, findChildren<QRadioButton*>())
         if (b->isChecked())
         {

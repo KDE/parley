@@ -45,6 +45,9 @@
 #include "feedback.h"
 #include "stdbuttons.h"
 
+#include "prompt/imageprompt.h"
+#include "prompt/soundprompt.h"
+
 #include "kgametheme/kgamethemeselector.h"
 #include "kgametheme/kgametheme.h"
 
@@ -56,31 +59,43 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
     m_state = CheckAnswer;
     m_mode = Prefs::testType();
 
-    m_view = new PracticeView;
-    setCentralWidget(m_view);
 
-    m_scene = new QGraphicsScene(this);
-    m_view->setScene(m_scene);
 
-    m_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-     m_layout = new QGraphicsSvgItem();
      m_renderer = new KSvgRenderer();
      KGameTheme kgtheme;
      // TODO use the kgametheme theme
      kDebug() << "kgametheme valid:" << kgtheme.load("parley/themes/" + desktopFileName);
      kDebug() << "graphics svg path:" << kgtheme.graphics();
      m_renderer->load(kgtheme.graphics());
-     m_layout->setSharedRenderer(m_renderer);
-     m_layout->setElementId("main");
-     m_scene->addItem(m_layout);
-     m_layout->setZValue(-10);
 
-    m_scene->setSceneRect(m_layout->boundingRect());
-    m_view->setSceneRect(m_scene->sceneRect());
+
+     QGraphicsSvgItem * layout = new QGraphicsSvgItem();
+     layout->setSharedRenderer(m_renderer);
+     layout->setElementId("main");
+     layout->setZValue(-10);
+
+
+     QGraphicsSvgItem * ilayout = new QGraphicsSvgItem();
+     ilayout->setSharedRenderer(m_renderer);
+     ilayout->setElementId("main");
+     ilayout->setZValue(-10);
+
+
+     QGraphicsScene* normalScene = new QGraphicsScene(this);
+     m_normalView = new PracticeView(normalScene);
+     normalScene->addItem(layout);
+     m_normalView->setSceneRect(layout->boundingRect());
+
+     QGraphicsScene* imageScene = new QGraphicsScene(this);
+     m_imageView = new PracticeView(imageScene);
+     imageScene->addItem(ilayout);
+     m_imageView->setSceneRect(ilayout->boundingRect());
+
 
     m_manager = new PracticeEntryManager(this);
+    connect(m_manager, SIGNAL(signalNewImage(const KUrl&)), this, SLOT(slotShowImageView(const KUrl&)));
+
 
     m_stats = new Statistics(m_manager, this);
     connect(m_manager, SIGNAL(signalNewEntry(PracticeEntry*)), m_stats, SLOT(slotSetEntry(PracticeEntry*)));
@@ -164,34 +179,49 @@ void ParleyPracticeMainWindow::setupActions()
     KStandardAction::quit(this, SLOT(queryClose()), actionCollection());
 }
 
-void ParleyPracticeMainWindow::setupModeIndependent()
+void ParleyPracticeMainWindow::setupModeIndependent(ActiveArea * area)
 {
-    Feedback * feedback = new Feedback(m_renderer, m_area, "feedback_box");
-    m_scene->addItem(feedback);
+    QGraphicsScene * scene = area->scene();
+    if (Prefs::practiceImagesEnabled())
+    {
+        ImagePrompt * iprompt = new ImagePrompt(m_renderer, area, "image_box");
+        scene->addWidget(iprompt);
+        connect(m_manager, SIGNAL(signalNewImage(const KUrl&)), iprompt, SLOT(slotSetImage(const KUrl&)));
+    }
+
+    if (Prefs::practiceSoundEnabled())
+    {
+        SoundPrompt * sprompt = new SoundPrompt(m_renderer, area, "sound_box");
+        scene->addWidget(sprompt);
+        connect(m_manager, SIGNAL(signalNewSound(const KUrl&)), sprompt, SLOT(slotSetSound(const KUrl&)));
+    }
+
+    Feedback * feedback = new Feedback(m_renderer, area, "feedback_box");
+    scene->addItem(feedback);
     connect(m_validator, SIGNAL(signalFeedback(const QString&)), feedback, SLOT(slotSetText(const QString&)));
     connect(m_manager, SIGNAL(signalNewEntry(PracticeEntry*)), feedback, SLOT(slotClear()));
 
-    SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, m_area, "progress_bar", "progress_bar_background");
-    m_scene->addItem(barstats);
+    SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, area, "progress_bar", "progress_bar_background");
+    scene->addItem(barstats);
     connect(m_stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
 
-    PracticeActionButton * knownButton = new PracticeActionButton(i18n("I Know It"), m_renderer, m_area, "skip_known_button");
-    m_scene->addWidget(knownButton);
+    PracticeActionButton * knownButton = new PracticeActionButton(i18n("I Know It"), m_renderer, area, "skip_known_button");
+    scene->addWidget(knownButton);
     connect(knownButton, SIGNAL(clicked()), actionCollection()->action("skip known"), SIGNAL(triggered()));
 
-    PracticeActionButton * unknownButton = new PracticeActionButton(i18n("I Don't Know It"), m_renderer, m_area, "skip_unknown_button");
+    PracticeActionButton * unknownButton = new PracticeActionButton(i18n("I Don't Know It"), m_renderer, area, "skip_unknown_button");
     connect(unknownButton, SIGNAL(clicked()), actionCollection()->action("skip unknown"), SIGNAL(triggered()));
-    m_scene->addWidget(unknownButton);
+    scene->addWidget(unknownButton);
 
 
-    PracticeActionButton * showSolutionButton = new PracticeActionButton(i18n("Show Solution"), m_renderer, m_area, "show_solution_button");
+    PracticeActionButton * showSolutionButton = new PracticeActionButton(i18n("Show Solution"), m_renderer, area, "show_solution_button");
     connect(showSolutionButton, SIGNAL(clicked()), actionCollection()->action("show solution"), SIGNAL(triggered()));
-    m_scene->addWidget(showSolutionButton);
+    scene->addWidget(showSolutionButton);
 
     if (Prefs::practiceTimeout() && Prefs::practiceTimeoutTimePerAnswer()) // timeout can't be 0
     {
         m_timer = new Timer(this);
-        m_timer->makeGUI(m_renderer, m_area);
+        m_timer->makeGUI(m_renderer, area);
         m_timer->setLength(Prefs::practiceTimeoutTimePerAnswer()*1000); // seconds -> milliseconds
 
         // when the timer triggers, it will assume their current input is their answer

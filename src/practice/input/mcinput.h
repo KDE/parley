@@ -48,6 +48,7 @@ class MCInput : public QGroupBox
         void setAvailableAnswers(QStringList answers);
     private:
         KSvgRenderer* m_renderer;
+        ActiveArea* m_area;
 };
 
 #endif

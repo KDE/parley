@@ -59,35 +59,23 @@
 
 
 
-void ParleyPracticeMainWindow::setupWrittenTemplate()
+void ParleyPracticeMainWindow::setupWrittenTemplate(ActiveArea * area)
 {
-    TextualPrompt * tprompt = new TextualPrompt(m_renderer, m_area, "question_text_box");
-    m_scene->addItem(tprompt);
+    QGraphicsScene * scene = area->scene();
+
+    TextualPrompt * tprompt = new TextualPrompt(m_renderer, area, "question_text_box");
+    scene->addItem(tprompt);
     connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
 
-    if (Prefs::practiceImagesEnabled())
-    {
-        ImagePrompt * iprompt = new ImagePrompt(m_renderer, m_area, "image_box");
-        m_scene->addWidget(iprompt);
-        connect(m_manager, SIGNAL(signalNewImage(const KUrl&)), iprompt, SLOT(slotSetImage(const KUrl&)));
-    }
-
-    if (Prefs::practiceSoundEnabled())
-    {
-        SoundPrompt * sprompt = new SoundPrompt(m_renderer, m_area, "sound_box");
-        m_scene->addWidget(sprompt);
-        connect(m_manager, SIGNAL(signalNewSound(const KUrl&)), sprompt, SLOT(slotSetSound(const KUrl&)));
-    }
-
-    TextualInput * input = new TextualInput(m_renderer, m_area, "answer_text_box");
-    m_scene->addWidget(input);
+    TextualInput * input = new TextualInput(m_renderer, area, "answer_text_box");
+    scene->addWidget(input);
     connect(input, SIGNAL(signalAnswer(const QString&)), this, SLOT(slotCheckAnswer(const QString&)));
     connect(this, SIGNAL(signalShowSolution(const QString&, int)), input, SLOT(slotShowSolution(const QString&)));
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
      connect(actionCollection()->action("continue"), SIGNAL(triggered()), input, SLOT(slotClear()));
 
-    StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, m_area, "check_answer_and_continue_button");
-    m_scene->addWidget(stdbutton);
+    StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, area, "continue_button");
+    scene->addWidget(stdbutton);
     connect(input, SIGNAL(returnPressed()), stdbutton, SLOT(slotActivated()));
     connect(this, SIGNAL(signalCheckAnswerContinueActionsToggled(int)), stdbutton, SLOT(slotToggleText(int)));
     connect(stdbutton, SIGNAL(signalCheckAnswer()), actionCollection()->action("check answer"), SIGNAL(triggered()));
@@ -101,58 +89,62 @@ void ParleyPracticeMainWindow::setupWrittenTemplate()
     connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), m_stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
 }
 
-void ParleyPracticeMainWindow::setupFlashCardTemplate()
+void ParleyPracticeMainWindow::setupFlashCardTemplate(ActiveArea * area)
 {
-    TextualPrompt * tprompt = new TextualPrompt(m_renderer, m_area, "flashcard_text_box");
-    m_scene->addItem(tprompt);
+    QGraphicsScene * scene = area->scene();
+
+    TextualPrompt * tprompt = new TextualPrompt(m_renderer, area, "flashcard_text_box");
+    scene->addItem(tprompt);
     connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
     connect(this, SIGNAL(signalShowSolution(const QString&, int)), tprompt, SLOT(slotSetText(const QString&)));
 
     // flip the card on click
     connect(this, SIGNAL(clicked()), actionCollection()->action("show solution"), SIGNAL(triggered()));
 
-    PracticeActionButton * knownButton = new PracticeActionButton(i18n("I Know It"), m_renderer, m_area, "known_button");
-    m_scene->addWidget(knownButton);
+    PracticeActionButton * knownButton = new PracticeActionButton(i18n("I Know It"), m_renderer, area, "known_button");
+    scene->addWidget(knownButton);
     connect(knownButton, SIGNAL(clicked()), this, SLOT(slotForceCorrect()));
 
-    PracticeActionButton * unknownButton = new PracticeActionButton(i18n("I Don't Know It"), m_renderer, m_area, "unknown_button");
+    PracticeActionButton * unknownButton = new PracticeActionButton(i18n("I Don't Know It"), m_renderer, area, "unknown_button");
     connect(unknownButton, SIGNAL(clicked()), this, SLOT(slotForceIncorrect()));
-    m_scene->addWidget(unknownButton);
+    scene->addWidget(unknownButton);
 
-    PracticeActionButton * showSolutionButton = new PracticeActionButton(i18n("Check"), m_renderer, m_area, "show_solution_button");
+    PracticeActionButton * showSolutionButton = new PracticeActionButton(i18n("Check"), m_renderer, area, "show_solution_button");
     connect(showSolutionButton, SIGNAL(clicked()), this, SLOT(slotShowSolution()));
-    m_scene->addWidget(showSolutionButton);
+    scene->addWidget(showSolutionButton);
 }
 
 
-void ParleyPracticeMainWindow::setupMultipleChoiceTemplate()
+void ParleyPracticeMainWindow::setupMultipleChoiceTemplate(ActiveArea * area)
 {
-    TextualPrompt * tprompt = new TextualPrompt(m_renderer, m_area, "question_text_box");
-    m_scene->addItem(tprompt);
+    QGraphicsScene * scene = area->scene();
+
+    TextualPrompt * tprompt = new TextualPrompt(m_renderer, area, "question_text_box");
+    scene->addItem(tprompt);
     connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
 
     if (Prefs::practiceImagesEnabled())
     {
-        ImagePrompt * iprompt = new ImagePrompt(m_renderer, m_area, "image_box");
-        m_scene->addWidget(iprompt);
+        ImagePrompt * iprompt = new ImagePrompt(m_renderer, area, "image_box");
+        scene->addWidget(iprompt);
         connect(m_manager, SIGNAL(signalNewImage(const KUrl&)), iprompt, SLOT(slotSetImage(const KUrl&)));
     }
 
     if (Prefs::practiceSoundEnabled())
     {
-        SoundPrompt * sprompt = new SoundPrompt(m_renderer, m_area, "sound_box");
-        m_scene->addWidget(sprompt);
+        SoundPrompt * sprompt = new SoundPrompt(m_renderer, area, "sound_box");
+        scene->addWidget(sprompt);
         connect(m_manager, SIGNAL(signalNewSound(const KUrl&)), sprompt, SLOT(slotSetSound(const KUrl&)));
     }
 
-    MCInput * input = new MCInput(m_renderer, m_area, "answer_mc_box");
-    m_scene->addWidget(input);
+    MCInput * input = new MCInput(m_renderer, area, "answer_mc_box");
+    scene->addWidget(input);
     connect(input, SIGNAL(signalAnswer(const QString&)), this, SLOT(slotCheckAnswer(const QString&)));
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
     connect(m_manager, SIGNAL(signalNewChoices(const QStringList&)), input, SLOT(slotSetChoices(const QStringList&)));
 
-    StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, m_area, "check_answer_and_continue_button");
-    m_scene->addWidget(stdbutton);
+    StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, area, "continue_button");
+    scene->addWidget(stdbutton);
     connect(input, SIGNAL(triggered()), stdbutton, SLOT(slotActivated()));
     connect(this, SIGNAL(signalCheckAnswerContinueActionsToggled(int)), stdbutton, SLOT(slotToggleText(int)));
     connect(stdbutton, SIGNAL(signalCheckAnswer()), actionCollection()->action("check answer"), SIGNAL(triggered()));
@@ -198,17 +190,19 @@ void ParleyPracticeMainWindow::setupMultipleChoiceTemplate()
 }
 
 
-void ParleyPracticeMainWindow::setupMixedLettersTemplate()
+void ParleyPracticeMainWindow::setupMixedLettersTemplate(ActiveArea * area)
 {
-    MixedLettersPrompt * mixed = new MixedLettersPrompt(m_renderer, m_area, "question_mixed_letters_box");
+    QGraphicsScene * scene = area->scene();
+
+    MixedLettersPrompt * mixed = new MixedLettersPrompt(m_renderer, area, "question_mixed_letters_box");
     connect(m_manager, SIGNAL(signalNewSolution(const QString&)), mixed, SLOT(slotSetText(const QString&)));
 
-    TextualPrompt * tprompt = new TextualPrompt(m_renderer, m_area, "question_text_box");
-    m_scene->addItem(tprompt);
+    TextualPrompt * tprompt = new TextualPrompt(m_renderer, area, "question_text_box");
+    scene->addItem(tprompt);
     connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
 
-    TextualInput * input = new TextualInput(m_renderer, m_area, "answer_text_box");
-    m_scene->addWidget(input);
+    TextualInput * input = new TextualInput(m_renderer, area, "answer_text_box");
+    scene->addWidget(input);
     connect(input, SIGNAL(signalAnswer(const QString&)), this, SLOT(slotCheckAnswer(const QString&)));
     connect(input, SIGNAL(signalAnswerChanged(const QString&)), mixed, SLOT(slotAnswerChanged(const QString&)));
     connect(this, SIGNAL(signalShowSolution(const QString&, int)), input, SLOT(slotShowSolution(const QString&)));
@@ -216,14 +210,12 @@ void ParleyPracticeMainWindow::setupMixedLettersTemplate()
     connect(actionCollection()->action("continue"), SIGNAL(triggered()), input, SLOT(slotClear()));
 
 
-    StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, m_area, "check_answer_and_continue_button");
-    m_scene->addWidget(stdbutton);
+    StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, area, "continue_button");
+    scene->addWidget(stdbutton);
     connect(input, SIGNAL(returnPressed()), stdbutton, SLOT(slotActivated()));
     connect(this, SIGNAL(signalCheckAnswerContinueActionsToggled(int)), stdbutton, SLOT(slotToggleText(int)));
     connect(stdbutton, SIGNAL(signalCheckAnswer()), actionCollection()->action("check answer"), SIGNAL(triggered()));
     connect(stdbutton, SIGNAL(signalContinue()), actionCollection()->action("continue"), SIGNAL(triggered()));
-    stdbutton->setVisible(true); // enable for now
-
 
     Hint * hint = new Hint(this);
     connect(actionCollection()->action("hint"), SIGNAL(triggered()), hint, SLOT(slotShowHint()));
@@ -232,13 +224,15 @@ void ParleyPracticeMainWindow::setupMixedLettersTemplate()
     connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), m_stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
 }
 
-void ParleyPracticeMainWindow::setupComparisonTemplate()
+void ParleyPracticeMainWindow::setupComparisonTemplate(ActiveArea * area)
 {
+    QGraphicsScene * scene = area->scene();
+
     QStringList qsl;
     qsl << "absolute" << "comparative" << "superlative";
     // it adds itself to the scene
     MWPComparison * logic = new MWPComparison();
-    MultipleWidgetParent * minput = new MultipleWidgetParent(m_renderer, m_area, m_scene, qsl, logic);
+    MultipleWidgetParent * minput = new MultipleWidgetParent(m_renderer, area, qsl, logic);
     connect(m_manager, SIGNAL(signalNewChoices(const QStringList&)), minput, SLOT(slotSetChoices(const QStringList&)));
     connect(minput, SIGNAL(signalAnswer(const QStringList&)), this, SLOT(slotCheckAnswer(const QStringList&)));
     // connect(this, SIGNAL(signalShowSolution(const QStringList&, int)), minput, SLOT(slotShowSolution(const QStringList&))); // TODO do this
@@ -246,8 +240,8 @@ void ParleyPracticeMainWindow::setupComparisonTemplate()
     //
     //connect(actionCollection()->action("continue"), SIGNAL(triggered()), minput, SLOT(slotClear()));
 
-    StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, m_area, "check_answer_and_continue_button");
-    m_scene->addWidget(stdbutton);
+    StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, area, "continue_button");
+    scene->addWidget(stdbutton);
     connect(this, SIGNAL(signalCheckAnswerContinueActionsToggled(int)), stdbutton, SLOT(slotToggleText(int)));
     connect(stdbutton, SIGNAL(signalCheckAnswer()), actionCollection()->action("check answer"), SIGNAL(triggered()));
     connect(stdbutton, SIGNAL(signalContinue()), actionCollection()->action("continue"), SIGNAL(triggered()));

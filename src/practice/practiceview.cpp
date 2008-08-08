@@ -16,10 +16,31 @@
 
 
 #include "practiceview.h"
+#include "activearea.h"
 
 #include <QResizeEvent>
 
+PracticeView::PracticeView(QGraphicsScene * scene)
+{
+    setScene(scene);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_area = 0;
+}
+
 void PracticeView::resizeEvent(QResizeEvent* event) {
-    fitInView(scene()->sceneRect(), Qt::KeepAspectRatio);
+    fitInView(sceneRect(), Qt::KeepAspectRatio);
     event->accept();
+}
+
+void PracticeView::setActiveArea(ActiveArea * area)
+{
+    m_area = area;
+    if (m_area->valid())
+        scene()->addItem(m_area);
+}
+
+ActiveArea * PracticeView::activeArea()
+{
+    return m_area;
 }

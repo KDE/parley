@@ -33,7 +33,7 @@ class MultipleWidgetParent : public QObject
     Q_OBJECT
 
     public:
-        MultipleWidgetParent(KSvgRenderer * renderer, ActiveArea * area, QGraphicsScene * scene, QStringList& elementIds, MWPLogic* logic, QObject * parent = 0);
+        MultipleWidgetParent(KSvgRenderer * renderer, ActiveArea * area, QStringList& elementIds, MWPLogic* logic, QObject * parent = 0);
         ~MultipleWidgetParent();
     public slots:
         void slotSetTexts(const QStringList& texts);
