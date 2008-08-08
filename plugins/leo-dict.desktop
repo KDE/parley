@@ -6,6 +6,7 @@ ServiceTypes=KPluginInfo
 
 Name=LEO Dictionary (Translation)
 Name[et]=LEO sõnaraamat (tõlkimiseks)
+Name[gu]=LEO શબ્દકોશ (ભાષાંતર)
 Name[km]=វចនានុក្រម LEO (ការ​បកប្រែ)
 Name[pt]=Dicionário LEO (Tradução)
 Name[pt_BR]=Dicionário LEO (Tradução)
@@ -13,6 +14,7 @@ Name[uk]=Словник LEO (переклад)
 Name[zh_TW]=LEO 字典（翻譯）
 Comment=Uses LEO Dictionary (dict.leo.org) to translate words
 Comment[et]=LEO sõnaraamatu (dict.leo.org) kasutamine sõnade tõlkimiseks
+Comment[gu]=શબ્દો ભાષાંતર કરવા માટે LEO શબ્દકોશ (dict.leo.org) વાપરો
 Comment[km]=ប្រើ​វចនានុក្រម LEO (dict.leo.org) ដើម្បី​បកប្រែ​ពាក្យ
 Comment[pt]=Usa o Dicionário LEO (dict.leo.org) para traduzir palavras
 Comment[pt_BR]=Usa o Dicionário LEO (dict.leo.org) para traduzir palavras

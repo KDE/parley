@@ -8,6 +8,7 @@ ServiceTypes=KPluginInfo
 
 Name=Google Dictionary (translation)
 Name[et]=Google'i sõnaraamat (tõlkimiseks)
+Name[gu]=ગુગલ શબ્દકોશ (ભાષાંતર)
 Name[km]=វចនានុក្រម​ហ្គូហ្គល (កា​របកប្រែ)
 Name[pt]=Dicionário do Google (tradução)
 Name[pt_BR]=Dicionário do Google (tradução)
@@ -15,6 +16,7 @@ Name[uk]=Словник Google (переклад)
 Name[zh_TW]=Google 字典（翻譯）
 Comment=Uses Google Dictionary (translate.google.com) to translate words
 Comment[et]=Google'i sõnaraamatu (translate.google.com) kasutamine sõnade tõlkimiseks
+Comment[gu]=શબ્દો ભાષાંતર કરવા માટે ગુગલ શબ્દકોશ (translate.google.com) વાપરે છે
 Comment[km]=ប្រើ​វចនានុក្រម​ហ្គូហ្គល (translate.google.com) ដើម្បី​បកប្រែ​ពាក្យ
 Comment[pt]=Usar o Dicionário do Google (translate.google.com) para traduzir palavras
 Comment[pt_BR]=Usar o Dicionário do Google (translate.google.com) para traduzir palavras

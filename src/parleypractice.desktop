@@ -2,6 +2,7 @@
 Name=Parley Practice
 Name[et]=Parley harjutamine
 Name[ga]=Cleachtadh Parley
+Name[gu]=પારેલે અભ્યાસ
 Name[km]=អនុវត្ត Parley
 Name[pt]=Exercício do Parley
 Name[pt_BR]=Exercício do Parley
@@ -16,6 +17,7 @@ Terminal=false
 Categories=Qt;KDE;Education;Languages;
 GenericName=Vocabulary Practice
 GenericName[et]=Sõnavara harjutamine
+GenericName[gu]=શબ્દયાદી અભ્યાસ
 GenericName[km]=អនុវត្ត​វាក្យស័ព្ទ
 GenericName[pt]=Exercício de Vocabulário
 GenericName[pt_BR]=Exercício de Vocabulário
