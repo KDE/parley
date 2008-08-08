@@ -292,8 +292,15 @@ QStringList PracticeEntryManager::makeMultipleChoiceChoices(KEduVocTranslation* 
 
     list.append(solution->text());
 
+    if (Prefs::testType() == Prefs::EnumTestType::MultipleChoiceTest)
+        if (!m_entry->expression()->translation(Prefs::questionLanguage())->multipleChoice().isEmpty())
+        {
+            foreach(s, m_entry->expression()->translation(Prefs::questionLanguage())->multipleChoice())
+                list.append(s);
+        }
+
     // if we only have a few entries, we use them all.
-    if (source.size() < Prefs::numberMultipleChoiceAnswers())
+    if (source.size() < Prefs::numberMultipleChoiceAnswers() - list.size())
     {
        foreach(PracticeEntry* pe, source)
        {
