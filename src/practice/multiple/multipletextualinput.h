@@ -1,5 +1,5 @@
 //
-// C++ Interface: mwpcomparison
+// C++ Interface: multipletextualinput
 //
 // Description:
 //
@@ -15,25 +15,33 @@
 *                                                                         *
 ***************************************************************************/
 
-#ifndef MWPCOMPARISON_H
-#define MWPCOMPARISON_H
+#ifndef MULTIPLETEXTUALINPUT_H
+#define MULTIPLETEXTUALINPUT_H
 
-#include "mwplogic.h"
+#include <QMap>
+#include <QList>
+#include <QStringList>
+#include <QObject>
+class ActiveArea;
+class QString;
+class KSvgRenderer;
+class QLineEdit;
 
-
-class MWPComparison : public MWPLogic
+class MultipleTextualInput : public QObject
 {
+    Q_OBJECT
 
     public:
-        MWPComparison() {};
-
-        void setup(const QStringList& elementids, const QList<QLineEdit*> kids, const QMap<QString, QLineEdit*> map);
-        void clear();
-        void setTexts(const QStringList& texts);
-        void setEntry(const PracticeEntry* entry) {Q_UNUSED(entry);} // ignore
-        QStringList answer();
-
-    private:
+        MultipleTextualInput(KSvgRenderer * renderer, ActiveArea * area, QStringList& elementIds, QObject * parent = 0);
+        ~MultipleTextualInput();
+    public slots:
+        void slotSetText(const QStringList& texts);
+        void slotClear();
+        void slotEmitAnswer();
+    signals:
+        void signalAnswer(const QStringList&);
+    protected:
+        KSvgRenderer * m_renderer;
         QStringList m_elementIds;
         QList<QLineEdit*> m_kids;
         QMap<QString, QLineEdit*> m_map;

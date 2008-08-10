@@ -46,7 +46,7 @@ MCInput::MCInput(KSvgRenderer * renderer, ActiveArea * area, const QString& elem
      bounds.translate(area->offset());
      setGeometry(bounds.toRect());
 
-     setAttribute(Qt::WA_OpaquePaintEvent, true);
+    setAutoFillBackground(false);
 }
 
 void MCInput::slotShortcutTriggered(int shortcutNumber)

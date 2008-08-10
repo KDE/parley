@@ -1,5 +1,5 @@
 //
-// C++ Implementation: multiplewidgetparent
+// C++ Implementation: multipletextualinput
 //
 // Description:
 //
@@ -16,10 +16,9 @@
 ***************************************************************************/
 
 
-#include "multiplewidgetparent.h"
+#include "multipletextualinput.h"
 
 
-#include "mwplogic.h"
 #include "../activearea.h"
 #include "../practiceentry.h"
 
@@ -32,9 +31,9 @@
 #include <QList>
 #include <QGraphicsScene>
 #include <QLineEdit>
-
-MultipleWidgetParent::MultipleWidgetParent(KSvgRenderer * renderer, ActiveArea * area, QStringList& elementIds, MWPLogic* logic, QObject * parent)
-    : QObject(parent), m_renderer(renderer),m_elementIds(elementIds),  m_logic(logic)
+#include <KRandom>
+MultipleTextualInput::MultipleTextualInput(KSvgRenderer * renderer, ActiveArea * area, QStringList& elementIds, QObject * parent)
+    : QObject(parent), m_renderer(renderer),m_elementIds(elementIds)
 {
     foreach(QString id, elementIds)
     {
@@ -50,33 +49,48 @@ MultipleWidgetParent::MultipleWidgetParent(KSvgRenderer * renderer, ActiveArea *
         t->setGeometry(bounds.toRect());
     }
 
-
-    m_logic->setup(m_elementIds, m_kids, m_map);
 }
 
-void MultipleWidgetParent::slotSetTexts(const QStringList& texts)
-{
-    m_logic->setTexts(texts);
-}
-
-void MultipleWidgetParent::slotSetEntry(const PracticeEntry* entry)
-{
-    m_logic->setEntry(entry);
-}
-
-void MultipleWidgetParent::slotClear()
-{
-    m_logic->clear();
-}
-
-void MultipleWidgetParent::slotEmitAnswer()
-{
-    emit signalAnswer(m_logic->answer());
-}
-
-MultipleWidgetParent::~MultipleWidgetParent()
+MultipleTextualInput::~MultipleTextualInput()
 {
     qDeleteAll(m_kids);
-    delete m_logic;
 }
 
+
+void MultipleTextualInput::slotSetText(const QStringList& texts)
+{
+    kDebug() << texts;
+    if (texts.size() < 4)
+    {
+        kDebug() << "input data <" << texts << "> is of length" << texts.size() << "; we need length 3";
+        return; // bad news
+    }
+
+    slotClear();
+
+    // in this mode we only set one; the provide the other 2
+    int r = KRandom::random() % 3;
+    kDebug() << r;
+    m_map[m_elementIds[r]]->setText(texts[r]);
+
+
+}
+
+void MultipleTextualInput::slotClear()
+{
+    foreach(QLineEdit* k, m_kids)
+    {
+        k->setText("");
+    }
+}
+
+void MultipleTextualInput::slotEmitAnswer()
+{
+    QStringList qsl;
+    for(int i = 0; i <= 4; ++i)
+    {
+        qsl << m_map[m_elementIds[i]]->text();
+    }
+    kDebug() << qsl;
+    emit signalAnswer(qsl);
+}

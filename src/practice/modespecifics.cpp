@@ -37,8 +37,8 @@
 #include "prompt/imageprompt.h"
 #include "prompt/textualprompt.h"
 
-#include "multiple/multiplewidgetparent.h"
-#include "multiple/mwpcomparison.h"
+#include "multiple/multipletextualinput.h"
+#include "multiple/multipletextualprompt.h"
 
 #include "statistics/statistics.h"
 #include "statistics/svgbarstatistics.h"
@@ -231,14 +231,39 @@ void ParleyPracticeMainWindow::setupComparisonTemplate(ActiveArea * area)
     QStringList qsl;
     qsl << "absolute" << "comparative" << "superlative";
     // it adds itself to the scene
-    MWPComparison * logic = new MWPComparison();
-    MultipleWidgetParent * minput = new MultipleWidgetParent(m_renderer, area, qsl, logic);
+    MultipleTextualInput * minput = new MultipleTextualInput(m_renderer, area, qsl);
     connect(m_manager, SIGNAL(signalNewChoices(const QStringList&)), minput, SLOT(slotSetChoices(const QStringList&)));
     connect(minput, SIGNAL(signalAnswer(const QStringList&)), this, SLOT(slotCheckAnswer(const QStringList&)));
     // connect(this, SIGNAL(signalShowSolution(const QStringList&, int)), minput, SLOT(slotShowSolution(const QStringList&))); // TODO do this
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), minput, SLOT(slotEmitAnswer()));
     //
     //connect(actionCollection()->action("continue"), SIGNAL(triggered()), minput, SLOT(slotClear()));
+
+    StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, area, "continue_button");
+    scene->addWidget(stdbutton);
+    connect(this, SIGNAL(signalCheckAnswerContinueActionsToggled(int)), stdbutton, SLOT(slotToggleText(int)));
+    connect(stdbutton, SIGNAL(signalCheckAnswer()), actionCollection()->action("check answer"), SIGNAL(triggered()));
+    connect(stdbutton, SIGNAL(signalContinue()), actionCollection()->action("continue"), SIGNAL(triggered()));
+}
+
+
+void ParleyPracticeMainWindow::setupConjugationTemplate(ActiveArea * area)
+{
+    QGraphicsScene * scene = area->scene();
+
+    QStringList questions, answers;
+    questions << "infinitive_question_text_box"  << "question_text_box_1" << "question_text_box_2" <<  "question_text_box_3";
+    answers << "infinitive_answer_text_box"  << "answer_text_box_1" << "answer_text_box_2" <<  "answer_text_box_3";
+
+    MultipleTextualPrompt * mprompt = new MultipleTextualPrompt(m_renderer, area, questions);
+    connect(m_manager, SIGNAL(signalNewText(const QStringList&)), mprompt, SLOT(slotSetTexts(const QStringList&)));
+
+    // it adds itself to the scene
+    MultipleTextualInput * minput = new MultipleTextualInput(m_renderer, area, answers);
+    connect(m_manager, SIGNAL(signalNewChoices(const QStringList&)), minput, SLOT(slotSetChoices(const QStringList&)));
+    connect(minput, SIGNAL(signalAnswer(const QStringList&)), this, SLOT(slotCheckAnswer(const QStringList&)));
+    // connect(this, SIGNAL(signalShowSolution(const QStringList&, int)), minput, SLOT(slotShowSolution(const QStringList&))); // TODO do this
+    connect(actionCollection()->action("check answer"), SIGNAL(triggered()), minput, SLOT(slotEmitAnswer()));
 
     StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, area, "continue_button");
     scene->addWidget(stdbutton);

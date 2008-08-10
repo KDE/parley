@@ -63,15 +63,33 @@ comparative_box
 superlative_box
 
 Conjugation:
-question_text_box
-input method unknown, but leave some space
+infinitive_question_text_box # used for the infinitive label (It will just say "Infinitive")
+infinitive_answer_text_box # line edit to enter the infinitive
+
+# These are all used to prompt for various conjugation tenses
+# make the question_text_boxes fairly long; a significant amount of text may be placed there
+# The answer_text_boxes can be fairly short
+# For example, infinitive_question_text_box would say "Infinitive"
+# infinitive_answer_text_box would say "to be" (even though this is a line edit, it would be prepopulated)
+# question_text_box_1 would say "First-person plural present"
+# answer_text_box_1 would want "are"
+answer_text_box_1
+question_text_box_1
+
+answer_text_box_2
+question_text_box_2
+
+answer_text_box_2
+question_text_box_2
+
+
 
 Main background name: main, with element active_area that active areas (below) are placed in.
 
 Active areas are the parts of the practice that change depending on the mode. For the modes with defaults listed,
 if you do not provide an area for that mode, it will default to the listed mode.
 
-To create an active area, make a rectangle the same size as the 'active_area' element and name it 'modename_box'. Add all the other elements on top of it, 
+To create an active area, make a rectangle the same size as the 'active_area' element and name it 'modename_box'. Add all the other elements on top of it,
 and then group them and name the group 'modename'.
 Active Area names: (name -> default)
 written

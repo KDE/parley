@@ -1,5 +1,5 @@
 //
-// C++ Interface: multiplewidgetparent
+// C++ Interface: multipletextualprompt
 //
 // Description:
 //
@@ -15,39 +15,34 @@
 *                                                                         *
 ***************************************************************************/
 
-#ifndef MULTIPLEWIDGETPARENT_H
-#define MULTIPLEWIDGETPARENT_H
+#ifndef MULTIPLETEXTUALPROMPT_H
+#define MULTIPLETEXTUALPROMPT_H
 
-#include "mwplogic.h"
 #include <QMap>
 #include <QList>
+#include <QObject>
+#include <QStringList>
 class ActiveArea;
-class QStringList;
 class QString;
 class KSvgRenderer;
-class QGraphicsScene;
-class QLineEdit;
+class QGraphicsTextItem;
 
-class MultipleWidgetParent : public QObject
+
+class MultipleTextualPrompt : public QObject
 {
     Q_OBJECT
 
     public:
-        MultipleWidgetParent(KSvgRenderer * renderer, ActiveArea * area, QStringList& elementIds, MWPLogic* logic, QObject * parent = 0);
-        ~MultipleWidgetParent();
+        MultipleTextualPrompt(KSvgRenderer * renderer, ActiveArea * area, QStringList& elementIds, QObject * parent = 0);
+        ~MultipleTextualPrompt();
     public slots:
-        void slotSetTexts(const QStringList& texts);
-        void slotSetEntry(const PracticeEntry* entry);
+        void slotSetText(const QStringList& texts);
         void slotClear();
-        void slotEmitAnswer();
-    signals:
-        void signalAnswer(const QStringList&);
-    private:
+    protected:
         KSvgRenderer * m_renderer;
         QStringList m_elementIds;
-        QList<QLineEdit*> m_kids;
-        QMap<QString, QLineEdit*> m_map;
-        MWPLogic* m_logic;
+        QList<QGraphicsTextItem*> m_kids;
+        QMap<QString, QGraphicsTextItem*> m_map;
 };
 
 #endif

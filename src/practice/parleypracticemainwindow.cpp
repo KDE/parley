@@ -172,6 +172,12 @@ void ParleyPracticeMainWindow::setupModeSpecifics()
         if (m_imageView->activeArea()->valid())
             setupComparisonTemplate(m_imageView->activeArea());
         break;
+       case Prefs::EnumTestType::ConjugationTest:
+        setupConjugationTemplate(m_normalView->activeArea());
+        if (m_imageView->activeArea()->valid())
+            setupConjugationTemplate(m_imageView->activeArea());
+        break;
+
 
        default:
         kDebug() << "unhandled practice mode " << m_mode << " selected.";
@@ -214,6 +220,10 @@ void ParleyPracticeMainWindow::setupActiveArea()
        case Prefs::EnumTestType::ComparisonTest:
             m_normalView->setActiveArea(new ActiveArea(m_renderer, "comparison"));
             m_imageView->setActiveArea(new ActiveArea(m_renderer, "comparison_image"));
+            break;
+       case Prefs::EnumTestType::ConjugationTest:
+            m_normalView->setActiveArea(new ActiveArea(m_renderer, "conjugation"));
+            m_imageView->setActiveArea(new ActiveArea(m_renderer, "conjugation_image"));
             break;
        case Prefs::EnumTestType::SynonymTest:
             m_normalView->setActiveArea(new ActiveArea(m_renderer, "synonym", "multiple_choice"));

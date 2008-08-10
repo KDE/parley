@@ -101,8 +101,8 @@ set(practice_SRCS
     practice/practiceentry.cpp
     practiceold/entryfilter.cpp
     practice/activearea.cpp
-    practice/multiple/multiplewidgetparent.cpp
-    practice/multiple/mwpcomparison.cpp
+    practice/multiple/multipletextualprompt.cpp
+    practice/multiple/multipletextualinput.cpp
 )
 
 kde4_add_ui_files(practice_SRCS

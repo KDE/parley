@@ -125,8 +125,10 @@ class PracticeEntryManager : public QObject
         /// Emitted when new text is available.
         /// An empty QString signals that there is no assosiated text.
         void signalNewText(const QString&);
-
-        /// Emitted for multiple-choice-style modes
+        /// Emitted when a set of new text prompts is available.
+        /// Used for modes that need multiple pieces of data
+        void signalNewText(const QStringList&);
+        /// Emitted for multiple-choice-style modes and modes that need multiple pieces of data.
         void signalNewChoices(const QStringList&);
 
         /// Emitted when a new image is available.
