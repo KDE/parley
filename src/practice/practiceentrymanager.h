@@ -53,7 +53,7 @@ class PracticeEntryManager : public QObject
         {
             Written,
             MultipleChoice,
-            MultipleChoiceWithoutPrompt
+            MultipleData
         };
 
 
@@ -90,6 +90,11 @@ class PracticeEntryManager : public QObject
         */
         int activeEntryCount() const;
 
+        /**
+        * Re-emits the current image. Used for flashcards mode.
+        */
+        void slotEmitImage(bool backsideOfFlashcard);
+
     protected:
         /**
         * Select appropriate entries for the practice (respect blocking settings etc)
@@ -102,9 +107,10 @@ class PracticeEntryManager : public QObject
         QStringList makeMultipleChoiceChoices(KEduVocTranslation * solution) const;
         QStringList makeArticleChoices(const QString& solution) const;
         QString makeArticleAnswer(KEduVocWordFlags wordTypeFlags) const;
+        void setConjugationData(KEduVocTranslation * solution);
 
         QString currentQuestion() const;
-
+        QStringList currentQuestions() const;
 
         TestCategory testCategory() const;
 
@@ -120,6 +126,8 @@ class PracticeEntryManager : public QObject
         QList<PracticeEntry*> m_entriesFinished;
         PracticeEntry * m_entry;
         QString m_solution;
+        QStringList m_solutions;
+        QStringList m_prompts;
 
     signals:
         /// Emitted when new text is available.
@@ -133,7 +141,8 @@ class PracticeEntryManager : public QObject
 
         /// Emitted when a new image is available.
         /// An empty KUrl signals that there is no assosiated image.
-        void signalNewImage(const KUrl&);
+        /// The boolean is ignored for all modes except flashcards.
+        void signalNewImage(const KUrl&, bool);
 
         /// Emitted when a new sound is available.
         /// An empty KUrl signals that there is no assosiated sound.

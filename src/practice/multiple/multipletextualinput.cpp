@@ -57,7 +57,7 @@ MultipleTextualInput::~MultipleTextualInput()
 }
 
 
-void MultipleTextualInput::slotSetText(const QStringList& texts)
+void MultipleTextualInput::slotSetChoices(const QStringList& texts)
 {
     kDebug() << texts;
     if (texts.size() < 4)

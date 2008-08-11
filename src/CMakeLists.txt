@@ -164,6 +164,7 @@ kde4_add_ui_files(configure-practice_SRCS
     configure-practice/conjugationoptionswidget.ui
     configure-practice/writtenpracticeoptionswidget.ui
     configure-practice/multiplechoiceoptionswidget.ui
+    configure-practice/flashcardsoptionswidget.ui
 )
 
 # dock widgets to help editing vocabulary

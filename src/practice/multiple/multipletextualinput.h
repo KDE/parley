@@ -35,7 +35,7 @@ class MultipleTextualInput : public QObject
         MultipleTextualInput(KSvgRenderer * renderer, ActiveArea * area, QStringList& elementIds, QObject * parent = 0);
         ~MultipleTextualInput();
     public slots:
-        void slotSetText(const QStringList& texts);
+        void slotSetChoices(const QStringList& texts);
         void slotClear();
         void slotEmitAnswer();
     signals:

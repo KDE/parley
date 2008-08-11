@@ -55,6 +55,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         int m_state;
         Prefs::EnumTestType::type m_mode;
 
+
         void setupBase(const QString& desktopFileFilename, class KEduVocDocument * doc = 0);
         void setupActiveArea();
         void setupActions();
@@ -80,7 +81,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         void slotForceIncorrect();
 
         // if a valid url exists, we show the image view.
-        void slotShowImageView(const KUrl&);
+        void slotShowImageView(const KUrl&, bool backsideOfFlashcard);
 
         void slotClose() { queryClose(); };
         bool queryClose();

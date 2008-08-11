@@ -63,8 +63,8 @@ comparative_box
 superlative_box
 
 Conjugation:
-infinitive_question_text_box # used for the infinitive label (It will just say "Infinitive")
-infinitive_answer_text_box # line edit to enter the infinitive
+question_text_box_infinitive # used for the infinitive label (It will just say "Infinitive")
+answer_text_box_infinitive # line edit to enter the infinitive
 
 # These are all used to prompt for various conjugation tenses
 # make the question_text_boxes fairly long; a significant amount of text may be placed there

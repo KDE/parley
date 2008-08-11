@@ -57,6 +57,14 @@
   </group>
 
   <group name="PracticeOptions">
+    <entry name="FlashcardsFrontImage" type="Bool">
+        <label>Show images on the front of the flashcard.</label>
+        <default>true</default>
+    </entry>
+    <entry name="FlashcardsBackImage" type="Bool">
+        <label>Show images on the back of the flashcard.</label>
+        <default>false</default>
+    </entry>
     <entry name="Theme" type="String">
       <label>Practice theme to use</label>
       <default>default</default>

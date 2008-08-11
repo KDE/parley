@@ -23,6 +23,7 @@
 #include "ui_conjugationoptionswidget.h"
 #include "ui_writtenpracticeoptionswidget.h"
 #include "ui_multiplechoiceoptionswidget.h"
+#include "ui_flashcardsoptionswidget.h"
 
 #include "languagesettings.h"
 #include "documentsettings.h"
@@ -104,6 +105,12 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     comparisonUi.setupUi(comparisonContainer);
     m_optionsStackedLayout->insertWidget(Comparison, comparisonContainer);
 
+    // add the flashcard ui
+    QWidget* flashcardsContainer = new QWidget(OptionsGroupBox);
+    Ui::FlashCardsOptionsWidget flashcardsUi;
+    flashcardsUi.setupUi(flashcardsContainer);
+    m_optionsStackedLayout->insertWidget(FlashCards, flashcardsContainer);
+
     // this is preset in the ui. thus the button is not toggled when setting up
     if ( WrittenRadio->isChecked() ) {
         writtenRadioToggled(true);
@@ -116,8 +123,8 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     connect(MultipleChoiceRadio, SIGNAL(toggled(bool)), SLOT(otherRadioToggled(bool)));
     connect(ParaphraseRadio, SIGNAL(toggled(bool)), SLOT(otherRadioToggled(bool)));
     connect(SynonymRadio, SIGNAL(toggled(bool)), SLOT(otherRadioToggled(bool)));
-    connect(FlashCardsRadio, SIGNAL(toggled(bool)), SLOT(otherRadioToggled(bool)));
 
+    connect(FlashCardsRadio, SIGNAL(toggled(bool)), SLOT(flashCardsRadioToggled(bool)));
     connect(WrittenRadio, SIGNAL(toggled(bool)), SLOT(writtenRadioToggled(bool)));
     connect(ComparisonRadio, SIGNAL(toggled(bool)), SLOT(comparisonRadioToggled(bool)));
     connect(ConjugationRadio, SIGNAL(toggled(bool)), SLOT(conjugationRadioToggled(bool)));
@@ -125,7 +132,6 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
 
 
     // mono/bilingual - practice effects one/two languages - change the language selection accordingly
-    connect(AntonymRadio, SIGNAL(toggled(bool)), SLOT(bilingualPracticeSelected(bool)));
     connect(WrittenRadio, SIGNAL(toggled(bool)), SLOT(bilingualPracticeSelected(bool)));
     connect(MixedLettersRadio, SIGNAL(toggled(bool)), SLOT(bilingualPracticeSelected(bool)));
     connect(MultipleChoiceRadio, SIGNAL(toggled(bool)), SLOT(bilingualPracticeSelected(bool)));
@@ -136,6 +142,7 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     connect(ExampleRadio, SIGNAL(toggled(bool)), SLOT(monolingualPracticeSelected(bool)));
     connect(ParaphraseRadio, SIGNAL(toggled(bool)), SLOT(monolingualPracticeSelected(bool)));
     connect(SynonymRadio, SIGNAL(toggled(bool)), SLOT(monolingualPracticeSelected(bool)));
+    connect(AntonymRadio, SIGNAL(toggled(bool)), SLOT(bilingualPracticeSelected(bool)));
     connect(ComparisonRadio, SIGNAL(toggled(bool)), SLOT(monolingualPracticeSelected(bool)));
     connect(ConjugationRadio, SIGNAL(toggled(bool)), SLOT(monolingualPracticeSelected(bool)));
 }
@@ -250,6 +257,15 @@ void ConfigurePracticeWidget::conjugationRadioToggled(bool checked)
     if ( checked ) {
         OptionsGroupBox->setEnabled(true);
         m_optionsStackedLayout->setCurrentIndex(Conjugation);
+    }
+}
+
+
+void ConfigurePracticeWidget::flashCardsRadioToggled(bool checked)
+{
+    if ( checked ) {
+        OptionsGroupBox->setEnabled(true);
+        m_optionsStackedLayout->setCurrentIndex(FlashCards);
     }
 }
 

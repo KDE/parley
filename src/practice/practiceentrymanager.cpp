@@ -118,7 +118,7 @@ PracticeEntryManager::TestCategory PracticeEntryManager::testCategory() const
         case Prefs::EnumTestType::MixedLettersTest:
             return Written;
         case Prefs::EnumTestType::ComparisonTest:
-            return MultipleChoiceWithoutPrompt;
+            return MultipleData;
         default:
             return Written; // if this happens, we have bigger problems.
     }
@@ -137,7 +137,8 @@ void PracticeEntryManager::slotNewEntry()
 
         switch (testCategory())
         {
-            case MultipleChoiceWithoutPrompt:
+            case MultipleData:
+                emit signalNewText(currentSolutions());
                 emit signalNewChoices(makeChoices(solution));
                 break;
 
@@ -152,7 +153,7 @@ void PracticeEntryManager::slotNewEntry()
 
         // It doesn't matter if these are empty since we would emit empty KUrls/QStrings anyway
         // if sound/images aren't used in a mode, these connect to nothing and are ignored.
-        emit signalNewImage(original->imageUrl());
+        emit signalNewImage(original->imageUrl(), false);
         emit signalNewSound(original->soundUrl());
 
         emit signalNewEntry(m_entry);
@@ -172,25 +173,36 @@ void PracticeEntryManager::slotNewEntry()
 KEduVocTranslation * PracticeEntryManager::makeSolution()
 {
     QStringList l;
+    KEduVocTranslation * t = m_entry->expression()->translation(Prefs::solutionLanguage());
     switch (Prefs::testType())
     {
         case Prefs::EnumTestType::SynonymTest:
-                m_solution =  m_entry->expression()->translation(Prefs::solutionLanguage())->synonyms()[KRandom::random() % m_entry->expression()->translation(Prefs::solutionLanguage())->synonyms().size()]->text();
-                return m_entry->expression()->translation(Prefs::solutionLanguage())->synonyms()[KRandom::random() % m_entry->expression()->translation(Prefs::solutionLanguage())->synonyms().size()];
+                m_solution =  t->synonyms()[KRandom::random() % t->synonyms().size()]->text();
+                return t->synonyms()[KRandom::random() % t->synonyms().size()];
         case Prefs::EnumTestType::AntonymTest:
-                m_solution = m_entry->expression()->translation(Prefs::solutionLanguage())->antonyms()[ KRandom::random() % m_entry->expression()->translation(Prefs::solutionLanguage())->antonyms().size()]->text();
-                return m_entry->expression()->translation(Prefs::solutionLanguage())->antonyms()[ KRandom::random() % m_entry->expression()->translation(Prefs::solutionLanguage())->antonyms().size()];
+                m_solution = t->antonyms()[ KRandom::random() % t->antonyms().size()]->text();
+                return t->antonyms()[ KRandom::random() % t->antonyms().size()];
         case Prefs::EnumTestType::ArticleTest:
-                m_solution = makeArticleAnswer(m_entry->expression()->translation(Prefs::solutionLanguage())->wordType()->wordType());
-                return m_entry->expression()->translation(Prefs::solutionLanguage());
+                m_solution = makeArticleAnswer(t->wordType()->wordType());
+                return t;
         case Prefs::EnumTestType::ParaphraseTest:
         case Prefs::EnumTestType::ExampleTest:
         case Prefs::EnumTestType::WrittenTest:
         case Prefs::EnumTestType::FlashCardsTest:
         case Prefs::EnumTestType::MultipleChoiceTest:
         case Prefs::EnumTestType::MixedLettersTest:
-            m_solution = m_entry->expression()->translation(Prefs::solutionLanguage())->text();
-            return m_entry->expression()->translation(Prefs::solutionLanguage());
+            m_solution = t->text();
+            return t;
+        case Prefs::EnumTestType::ComparisonTest:
+            m_solutions.clear();
+            m_solutions << t->text();
+            m_solutions << t->comparative();
+            m_solutions << t->superlative();
+            return t;
+        case Prefs::EnumTestType::ConjugationTest:
+            m_solutions.clear();
+            setConjugationData(t);
+            return t;
         default:
             kDebug() << "bad practice mode";
             return 0;
@@ -204,23 +216,7 @@ QString PracticeEntryManager::currentSolution() const
 
 QStringList PracticeEntryManager::currentSolutions() const
 {
-    QStringList l;
-    // we ignore newEntry in this case -- there is no need of it.
-    switch (Prefs::testType())
-    {
-        case Prefs::EnumTestType::ComparisonTest:
-            l << m_entry->expression()->translation(Prefs::solutionLanguage())->text();
-            l << m_entry->expression()->translation(Prefs::solutionLanguage())->comparative();
-            l << m_entry->expression()->translation(Prefs::solutionLanguage())->superlative();
-            return l;
-        case Prefs::EnumTestType::ConjugationTest:
-            // TODO Implement logic here.
-            kDebug() << "IMPLEMENT SOLUTION LOGIC";
-            return l;
-        default:
-            kDebug() << "bad practice mode";
-            return QStringList();
-    }
+    return m_solutions;
 }
 
 QString PracticeEntryManager::currentQuestion() const
@@ -254,12 +250,26 @@ QString PracticeEntryManager::currentQuestion() const
         case Prefs::EnumTestType::MixedLettersTest:
             return m_entry->expression()->translation(Prefs::questionLanguage())->text();
         case Prefs::EnumTestType::ConjugationTest:
-            return QString(); // TODO do this logic
         case Prefs::EnumTestType::ComparisonTest:
-            return QString(); // this mode has no prompt, per se
         default:
             kDebug() << "bad practice mode";
             return QString();
+    }
+}
+
+QStringList PracticeEntryManager::currentQuestions() const
+{
+    QStringList modified;
+    switch (Prefs::testType())
+    {
+
+        case Prefs::EnumTestType::ConjugationTest:
+            return m_prompts;
+        case Prefs::EnumTestType::ComparisonTest:
+            return QStringList(); // these modes have no quesiton, per se
+        default:
+            kDebug() << "bad practice mode";
+            return QStringList();
     }
 }
 
@@ -275,6 +285,8 @@ QStringList PracticeEntryManager::makeChoices(KEduVocTranslation* solution) cons
             return makeArticleChoices(currentSolution());
         case Prefs::EnumTestType::ComparisonTest:
             return currentSolutions(); // no special code needed.
+        case Prefs::EnumTestType::ConjugationTest:
+            return currentSolutions();
         default:
             kDebug() << "bad practice mode";
             return QStringList();
@@ -480,4 +492,62 @@ QString PracticeEntryManager::tenseDescription(KEduVocWordFlags flags, const QSt
         desc << tenseName;
 
     return desc.join(" ");
+}
+
+
+void PracticeEntryManager::setConjugationData(KEduVocTranslation * t)
+{
+    m_prompts.clear();
+    m_solutions.clear();
+
+    if (!(t->wordType()->wordType() & KEduVocWordFlag::Verb))
+    {
+        kDebug() << "attempting to conjugation non-verb" << t->text();
+        return;
+    }
+
+    m_prompts << i18nc("Grammatical infinitive of a verb", "Infinitive");
+    m_solutions << t->text(); // infinitive
+
+    QStringList tenses = t->conjugationTenses();
+
+    QStringList used;
+    int i, n;
+    i = n = 0;
+    unsigned int r, r2;
+    while(i < 3 && !tenses.isEmpty())
+    {
+        r = KRandom::random() % tenses.size();
+        used << tenses.takeAt(r);
+        ++i;
+    }
+
+    kDebug() << used;
+
+    i = 0;
+    QList<KEduVocWordFlags> keys;
+    KEduVocWordFlags f;
+    QString s;
+    while(i < 3 && n < 50)
+    {
+        r = KRandom::random() % used.size();
+        keys = t->conjugation(used[r]).keys();
+        kDebug() << keys << keys.size();
+        r2 = KRandom::random() % keys.size();
+        f = keys[r2];
+        s = t->conjugation(used[r]).conjugation(f).text();
+        if (!m_solutions.contains(s))
+        {
+            m_prompts << tenseDescription(f, used[r]);
+            m_solutions << s;
+            ++i;
+        }
+        ++n;
+    }
+}
+
+
+void PracticeEntryManager::slotEmitImage(bool backsideOfCard)
+{
+    emit signalNewImage(m_entry->expression()->translation(Prefs::solutionLanguage())->imageUrl(), backsideOfCard);
 }

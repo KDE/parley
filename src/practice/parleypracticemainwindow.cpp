@@ -93,6 +93,10 @@ void ParleyPracticeMainWindow::slotShowSolution()
             m_stats->slotSolutionShown();
         }
     }
+    else
+    {
+        m_manager->slotEmitImage(true);
+    }
 }
 
 void ParleyPracticeMainWindow::slotCreatePreferencesDialog()
@@ -246,10 +250,27 @@ bool ParleyPracticeMainWindow::queryClose()
     return true;
 }
 
-void ParleyPracticeMainWindow::slotShowImageView(const KUrl& url)
+void ParleyPracticeMainWindow::slotShowImageView(const KUrl& url, bool backsideOfCard)
 {
     bool show = url.url().isEmpty();
-    if (!show && m_imageView->activeArea()->valid())
+
+    bool fc = false;
+    if (m_mode == Prefs::EnumTestType::FlashCardsTest)
+    {
+       if (!backsideOfCard && Prefs::flashcardsFrontImage())
+       {
+        fc = true;
+       }
+       else if (backsideOfCard && Prefs::flashcardsBackImage())
+       {
+        fc = true;
+       }
+       else
+       {
+        fc = false;
+       }
+    }
+    if (!show && m_imageView->activeArea()->valid() && fc)
     {
         m_normalView->activeArea()->setActive(false);
         m_imageView->activeArea()->setActive(true);

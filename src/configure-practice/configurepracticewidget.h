@@ -52,6 +52,7 @@ public:
 private slots:
     void fromLanguageSelected(int identifierFromIndex);
 
+    void flashCardsRadioToggled(bool checked);
     void comparisonRadioToggled(bool checked);
     void conjugationRadioToggled(bool checked);
     void writtenRadioToggled(bool checked);
@@ -69,7 +70,8 @@ private:
         WrittenPractice,
         Conjugation,
         Comparison,
-        MultipleChoice
+        MultipleChoice,
+        FlashCards
     };
     QStackedLayout* m_optionsStackedLayout;
     QTreeWidget* m_tenseListWidget;

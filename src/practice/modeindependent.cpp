@@ -94,7 +94,7 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
 
 
     m_manager = new PracticeEntryManager(this);
-    connect(m_manager, SIGNAL(signalNewImage(const KUrl&)), this, SLOT(slotShowImageView(const KUrl&)));
+    connect(m_manager, SIGNAL(signalNewImage(const KUrl&, bool)), this, SLOT(slotShowImageView(const KUrl&, bool)));
 
 
     m_stats = new Statistics(m_manager, this);
@@ -186,7 +186,7 @@ void ParleyPracticeMainWindow::setupModeIndependent(ActiveArea * area)
     {
         ImagePrompt * iprompt = new ImagePrompt(m_renderer, area, "image_box");
         scene->addWidget(iprompt);
-        connect(m_manager, SIGNAL(signalNewImage(const KUrl&)), iprompt, SLOT(slotSetImage(const KUrl&)));
+        connect(m_manager, SIGNAL(signalNewImage(const KUrl&, bool)), iprompt, SLOT(slotSetImage(const KUrl&)));
     }
 
     if (Prefs::practiceSoundEnabled())

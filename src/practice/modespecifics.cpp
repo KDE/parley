@@ -127,7 +127,7 @@ void ParleyPracticeMainWindow::setupMultipleChoiceTemplate(ActiveArea * area)
     {
         ImagePrompt * iprompt = new ImagePrompt(m_renderer, area, "image_box");
         scene->addWidget(iprompt);
-        connect(m_manager, SIGNAL(signalNewImage(const KUrl&)), iprompt, SLOT(slotSetImage(const KUrl&)));
+        connect(m_manager, SIGNAL(signalNewImage(const KUrl&, bool)), iprompt, SLOT(slotSetImage(const KUrl&)));
     }
 
     if (Prefs::practiceSoundEnabled())
@@ -256,7 +256,7 @@ void ParleyPracticeMainWindow::setupConjugationTemplate(ActiveArea * area)
     answers << "infinitive_answer_text_box"  << "answer_text_box_1" << "answer_text_box_2" <<  "answer_text_box_3";
 
     MultipleTextualPrompt * mprompt = new MultipleTextualPrompt(m_renderer, area, questions);
-    connect(m_manager, SIGNAL(signalNewText(const QStringList&)), mprompt, SLOT(slotSetTexts(const QStringList&)));
+    connect(m_manager, SIGNAL(signalNewText(const QStringList&)), mprompt, SLOT(slotSetText(const QStringList&)));
 
     // it adds itself to the scene
     MultipleTextualInput * minput = new MultipleTextualInput(m_renderer, area, answers);
