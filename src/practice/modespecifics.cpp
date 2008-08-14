@@ -99,7 +99,7 @@ void ParleyPracticeMainWindow::setupFlashCardTemplate(ActiveArea * area)
     connect(this, SIGNAL(signalShowSolution(const QString&, int)), tprompt, SLOT(slotSetText(const QString&)));
 
     // flip the card on click
-    connect(this, SIGNAL(clicked()), actionCollection()->action("show solution"), SIGNAL(triggered()));
+    //connect(this, SIGNAL(clicked()), actionCollection()->action("show solution"), SIGNAL(triggered()));
 
     PracticeActionButton * knownButton = new PracticeActionButton(i18n("I Know It"), m_renderer, area, "known_button");
     scene->addWidget(knownButton);
@@ -122,20 +122,6 @@ void ParleyPracticeMainWindow::setupMultipleChoiceTemplate(ActiveArea * area)
     TextualPrompt * tprompt = new TextualPrompt(m_renderer, area, "question_text_box");
     scene->addItem(tprompt);
     connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
-
-    if (Prefs::practiceImagesEnabled())
-    {
-        ImagePrompt * iprompt = new ImagePrompt(m_renderer, area, "image_box");
-        scene->addWidget(iprompt);
-        connect(m_manager, SIGNAL(signalNewImage(const KUrl&, bool)), iprompt, SLOT(slotSetImage(const KUrl&)));
-    }
-
-    if (Prefs::practiceSoundEnabled())
-    {
-        SoundPrompt * sprompt = new SoundPrompt(m_renderer, area, "sound_box");
-        scene->addWidget(sprompt);
-        connect(m_manager, SIGNAL(signalNewSound(const KUrl&)), sprompt, SLOT(slotSetSound(const KUrl&)));
-    }
 
     MCInput * input = new MCInput(m_renderer, area, "answer_mc_box");
     scene->addWidget(input);

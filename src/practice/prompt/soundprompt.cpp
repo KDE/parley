@@ -28,7 +28,8 @@
 
 SoundPrompt::SoundPrompt ( KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent ) :
         QPushButton ( parent ),
-        m_renderer ( renderer )
+        m_renderer ( renderer ),
+        m_area(area)
 {
     QString tId = area->translateElementId(elementId);
     if (tId.isEmpty()) setVisible(false);
@@ -54,6 +55,9 @@ SoundPrompt::SoundPrompt ( KSvgRenderer * renderer, ActiveArea * area, const QSt
 
 void SoundPrompt::slotSetSound ( const KUrl& sound )
 {
+    if (!m_area->active())
+        return;
+
     // remove the temp file from the last call
     // I'll make sure this function is called at destruction to remove any lingering temp files.
     KIO::NetAccess::removeTempFile ( m_tmpFile );

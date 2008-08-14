@@ -30,9 +30,6 @@ SvgBarStatistics::SvgBarStatistics(QSvgRenderer* renderer, ActiveArea * area, co
     QString tId_background = area->translateElementId(backgroundElementId);
     if (tId_foreground.isEmpty() || tId_background.isEmpty()) setVisible(false);
 
-
-    kDebug() << tId_foreground << tId_background;
-
     setSharedRenderer(renderer);
     setElementId(tId_foreground);
     m_backgroundRect = renderer->boundsOnElement(tId_background);
@@ -46,11 +43,8 @@ SvgBarStatistics::~SvgBarStatistics()
 
 void SvgBarStatistics::slotUpdateDisplay(Statistics*stats)
 {
-    if (isVisible())
-    {
-        setVisible(true);
-    }
-    scale((m_backgroundRect.width() * ((double)stats->correct() / stats->manager()->totalEntryCount()) )/mapToScene(boundingRect()).boundingRect().width(), 1.0);
+    kDebug() << "update to" << stats->correct() << "/" << stats->manager()->totalEntryCount();
+   scale((m_backgroundRect.width() * ((double)stats->correct() / stats->manager()->totalEntryCount()) )/mapToScene(boundingRect()).boundingRect().width(), 1.0);
 }
 
 

@@ -94,7 +94,7 @@ QString ActiveArea::translateElementId(const QString& originalElementId)
     }
     else
     {
-        kDebug() << "No translation for elementid " << originalElementId << " found. (main_ +" << originalElementId << " and " << m_mode_string << "_" << originalElementId << " don't exist)";
+        kDebug() << "No translation for elementid " << originalElementId << " found. Area:" << m_mode_string;
         return "";
     }
 }
@@ -106,6 +106,7 @@ bool ActiveArea::valid()
 
 void ActiveArea::setActive(bool active)
 {
+    kDebug() << (long int) this << m_mode_string  << active;
     m_active = active;
 }
 

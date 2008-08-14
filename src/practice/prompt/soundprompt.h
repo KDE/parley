@@ -52,6 +52,7 @@ class SoundPrompt : public QPushButton
         class QRectF m_backgroundRect;
         class Phonon::MediaObject * m_media;
         QString m_tmpFile;
+        ActiveArea * m_area;
 };
 
 #endif

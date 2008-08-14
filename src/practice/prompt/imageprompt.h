@@ -40,9 +40,11 @@ class ImagePrompt : public QLabel
         void slotSetImage(const KUrl& image);
 
     private:
+        ActiveArea * m_area;
         class QPixmap m_pic;
         KSvgRenderer * m_renderer;
         class QRectF m_backgroundRect;
+        bool m_enabled;
 };
 
 

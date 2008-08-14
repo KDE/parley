@@ -26,7 +26,7 @@
 #include <KDebug>
 
 TextualPrompt::TextualPrompt ( KSvgRenderer * renderer, ActiveArea * area, const QString& elementId,  QGraphicsItem * parent ) :
-        QGraphicsTextItem(parent), m_renderer ( renderer )
+        QGraphicsTextItem(parent), m_renderer ( renderer ), m_area(area)
 {
     QString tId = area->translateElementId(elementId);
     if (tId.isEmpty()) setVisible(false);
@@ -41,6 +41,8 @@ TextualPrompt::TextualPrompt ( KSvgRenderer * renderer, ActiveArea * area, const
 
 void TextualPrompt::slotSetText ( const QString& text )
 {
+    if (!m_area->active())
+        return;
     setHtml( "<center>" + text + "</center>" );
 }
 

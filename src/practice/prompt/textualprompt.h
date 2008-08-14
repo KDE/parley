@@ -40,6 +40,7 @@ class TextualPrompt : public QGraphicsTextItem
     private:
         KSvgRenderer * m_renderer;
         QRectF m_backgroundRect;
+        ActiveArea* m_area;
 };
 
 #endif

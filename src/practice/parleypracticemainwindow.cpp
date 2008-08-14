@@ -253,6 +253,11 @@ bool ParleyPracticeMainWindow::queryClose()
 void ParleyPracticeMainWindow::slotShowImageView(const KUrl& url, bool backsideOfCard)
 {
     bool show = url.url().isEmpty();
+    kDebug() << "!show" << !show;
+
+    kDebug() << "front" << Prefs::flashcardsFrontImage();
+    kDebug() << "back" << Prefs::flashcardsBackImage();
+    kDebug() << "card backside" << backsideOfCard;
 
     bool fc = false;
     if (m_mode == Prefs::EnumTestType::FlashCardsTest)
@@ -270,8 +275,15 @@ void ParleyPracticeMainWindow::slotShowImageView(const KUrl& url, bool backsideO
         fc = false;
        }
     }
+    else
+    {
+        fc = true;
+    }
+
+    kDebug() << "fc" << fc << "valid" << m_imageView->activeArea()->valid();
     if (!show && m_imageView->activeArea()->valid() && fc)
     {
+        kDebug() << "image";
         m_normalView->activeArea()->setActive(false);
         m_imageView->activeArea()->setActive(true);
         m_normalView->hide();
@@ -280,6 +292,7 @@ void ParleyPracticeMainWindow::slotShowImageView(const KUrl& url, bool backsideO
     }
     else
     {
+        kDebug() << "no image";
         m_normalView->activeArea()->setActive(true);
         m_imageView->activeArea()->setActive(false);
         m_imageView->hide();

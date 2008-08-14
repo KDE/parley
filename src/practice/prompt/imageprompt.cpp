@@ -28,10 +28,12 @@
 ImagePrompt::ImagePrompt ( KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent ) :
         QLabel ( parent ),
         m_pic ( QPixmap() ),
-        m_renderer ( renderer )
+        m_renderer ( renderer ),
+        m_area(area)
 {
     QString tId = area->translateElementId(elementId);
-    if (tId.isEmpty()) setVisible(false);
+    m_enabled = !tId.isEmpty();
+    if (!m_enabled) setVisible(false);
 
 
      QRectF bounds = m_renderer->boundsOnElement(tId);
@@ -46,6 +48,12 @@ ImagePrompt::ImagePrompt ( KSvgRenderer * renderer, ActiveArea * area, const QSt
 
 void ImagePrompt::slotSetImage ( const KUrl& image )
 {
+    setVisible(m_area->active() && m_enabled);
+    if (!m_area->active() && m_enabled)
+    {
+        m_pic = QPixmap();
+        return;
+    }
     kDebug() << image;
     if ( !image.isEmpty() )
     {
