@@ -42,11 +42,13 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
     protected:
         class KSvgRenderer* m_renderer;
 
+        class PracticeView* m_view;
+
         // for questions without images (or if no image theme exists)
-        class PracticeView* m_normalView;
+        class ActiveArea* m_normalArea;
 
         // for questions with images (uses the normal ones if no image theme exists)
-        class PracticeView* m_imageView;
+        class ActiveArea * m_imageArea;
 
         class PracticeEntryManager * m_manager;
         class Statistics* m_stats;

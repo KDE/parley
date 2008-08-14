@@ -137,6 +137,12 @@ void PracticeEntryManager::slotNewEntry()
         kDebug() << original->text();
         KEduVocTranslation* solution = makeSolution();
 
+        // It doesn't matter if these are empty since we would emit empty KUrls/QStrings anyway
+        // if sound/images aren't used in a mode, these connect to nothing and are ignored.
+        emit signalNewImage(original->imageUrl(), false);
+        emit signalNewSound(original->soundUrl());
+
+
         switch (testCategory())
         {
             case MultipleData:
@@ -151,12 +157,6 @@ void PracticeEntryManager::slotNewEntry()
                 emit signalNewText(currentQuestion());
                 break;
         }
-
-
-        // It doesn't matter if these are empty since we would emit empty KUrls/QStrings anyway
-        // if sound/images aren't used in a mode, these connect to nothing and are ignored.
-        emit signalNewImage(original->imageUrl(), false);
-        emit signalNewSound(original->soundUrl());
 
         emit signalNewEntry(m_entry);
 
@@ -537,8 +537,7 @@ void PracticeEntryManager::setConjugationData(KEduVocTranslation * t)
         kDebug() << keys << keys.size();
         r2 = KRandom::random() % keys.size();
         f = keys[r2];
-        s = t->conjugation(used[r]).conjugation(f).text();
-        if (!m_solutions.contains(s))
+        s = t->conjugation(used[r]).conjugation(f).text();        if (!m_solutions.contains(s))
         {
             m_prompts << tenseDescription(f, used[r]);
             m_solutions << s;

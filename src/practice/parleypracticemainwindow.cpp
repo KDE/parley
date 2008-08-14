@@ -40,11 +40,10 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
         : KXmlGuiWindow(parent)
 {
     setupBase("default.desktop");
-    setupActiveArea();
     setupActions();
-    setupModeIndependent(m_normalView->activeArea());
-    if (m_imageView->activeArea()->valid())
-        setupModeIndependent(m_imageView->activeArea());
+    setupModeIndependent(m_normalArea);
+    if (m_imageArea->valid())
+        setupModeIndependent(m_imageArea);
     setupModeSpecifics();
 
 
@@ -59,11 +58,10 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(KEduVocDocument* doc, QWidget
         : KXmlGuiWindow(parent)
 {
     setupBase("default.desktop", doc);
-    setupActiveArea();
     setupActions();
-    setupModeIndependent(m_normalView->activeArea());
-    if (m_imageView->activeArea()->valid())
-        setupModeIndependent(m_imageView->activeArea());
+    setupModeIndependent(m_normalArea);
+    if (m_imageArea->valid())
+        setupModeIndependent(m_imageArea);
     setupModeSpecifics();
 
     setupGUI(Default, QString::fromLatin1("parleypracticeui.rc"));
@@ -149,41 +147,41 @@ void ParleyPracticeMainWindow::setupModeSpecifics()
        case Prefs::EnumTestType::ExampleTest:
        case Prefs::EnumTestType::ParaphraseTest:
        case Prefs::EnumTestType::WrittenTest:
-        setupWrittenTemplate(m_normalView->activeArea());
-        if (m_imageView->activeArea()->valid())
-            setupWrittenTemplate(m_imageView->activeArea());
+        setupWrittenTemplate(m_normalArea);
+        if (m_imageArea->valid())
+            setupWrittenTemplate(m_imageArea);
         break;
 
        case Prefs::EnumTestType::SynonymTest:
        case Prefs::EnumTestType::AntonymTest:
        case Prefs::EnumTestType::ArticleTest:
        case Prefs::EnumTestType::MultipleChoiceTest:
-        setupMultipleChoiceTemplate(m_normalView->activeArea());
-        if (m_imageView->activeArea()->valid())
-            setupMultipleChoiceTemplate(m_imageView->activeArea());
+        setupMultipleChoiceTemplate(m_normalArea);
+        if (m_imageArea->valid())
+            setupMultipleChoiceTemplate(m_imageArea);
         break;
 
        case Prefs::EnumTestType::MixedLettersTest:
-        setupMixedLettersTemplate(m_normalView->activeArea());
-        if (m_imageView->activeArea()->valid())
-            setupMixedLettersTemplate(m_imageView->activeArea());
+        setupMixedLettersTemplate(m_normalArea);
+        if (m_imageArea->valid())
+            setupMixedLettersTemplate(m_imageArea);
         break;
 
        case Prefs::EnumTestType::FlashCardsTest:
-        setupFlashCardTemplate(m_normalView->activeArea());
-        if (m_imageView->activeArea()->valid())
-            setupFlashCardTemplate(m_imageView->activeArea());
+        setupFlashCardTemplate(m_normalArea);
+        if (m_imageArea->valid())
+            setupFlashCardTemplate(m_imageArea);
         break;
 
        case Prefs::EnumTestType::ComparisonTest:
-        setupComparisonTemplate(m_normalView->activeArea());
-        if (m_imageView->activeArea()->valid())
-            setupComparisonTemplate(m_imageView->activeArea());
+        setupComparisonTemplate(m_normalArea);
+        if (m_imageArea->valid())
+            setupComparisonTemplate(m_imageArea);
         break;
        case Prefs::EnumTestType::ConjugationTest:
-        setupConjugationTemplate(m_normalView->activeArea());
-        if (m_imageView->activeArea()->valid())
-            setupConjugationTemplate(m_imageView->activeArea());
+        setupConjugationTemplate(m_normalArea);
+        if (m_imageArea->valid())
+            setupConjugationTemplate(m_imageArea);
         break;
 
 
@@ -198,48 +196,48 @@ void ParleyPracticeMainWindow::setupActiveArea()
     switch (m_mode)
     {
        case Prefs::EnumTestType::ParaphraseTest:
-            m_normalView->setActiveArea(new ActiveArea(m_renderer, "paraphrase", "written"));
-            m_imageView->setActiveArea(new ActiveArea(m_renderer, "paraphrase_image", "written_image"));
+            m_normalArea = new ActiveArea(m_renderer, "paraphrase", "written");
+            m_imageArea = new ActiveArea(m_renderer, "paraphrase_image", "written_image");
             break;
        case Prefs::EnumTestType::ExampleTest:
-            m_normalView->setActiveArea(new ActiveArea(m_renderer, "example", "written"));
-            m_imageView->setActiveArea(new ActiveArea(m_renderer, "example_image", "written_image"));
+            m_normalArea = new ActiveArea(m_renderer, "example", "written");
+            m_imageArea = new ActiveArea(m_renderer, "example_image", "written_image");
             break;
        case Prefs::EnumTestType::WrittenTest:
-            m_normalView->setActiveArea(new ActiveArea(m_renderer, "written"));
-            m_imageView->setActiveArea(new ActiveArea(m_renderer, "written_image"));
+            m_normalArea = new ActiveArea(m_renderer, "written");
+            m_imageArea = new ActiveArea(m_renderer, "written_image");
             break;
        case Prefs::EnumTestType::MultipleChoiceTest:
-            m_normalView->setActiveArea(new ActiveArea(m_renderer, "multiple_choice"));
-            m_imageView->setActiveArea(new ActiveArea(m_renderer, "multiple_choice_image"));
+            m_normalArea = new ActiveArea(m_renderer, "multiple_choice");
+            m_imageArea = new ActiveArea(m_renderer, "multiple_choice_image");
             break;
        case Prefs::EnumTestType::ArticleTest:
-            m_normalView->setActiveArea(new ActiveArea(m_renderer, "article", "multiple_choice"));
-            m_imageView->setActiveArea(new ActiveArea(m_renderer, "article_image", "multiple_choice_image"));
+            m_normalArea = new ActiveArea(m_renderer, "article", "multiple_choice");
+            m_imageArea = new ActiveArea(m_renderer, "article_image", "multiple_choice_image");
             break;
        case Prefs::EnumTestType::MixedLettersTest:
-            m_normalView->setActiveArea(new ActiveArea(m_renderer, "mixed_letters"));
-            m_imageView->setActiveArea(new ActiveArea(m_renderer, "mixed_letters_image"));
+            m_normalArea = new ActiveArea(m_renderer, "mixed_letters");
+            m_imageArea = new ActiveArea(m_renderer, "mixed_letters_image");
             break;
        case Prefs::EnumTestType::FlashCardsTest:
-            m_normalView->setActiveArea(new ActiveArea(m_renderer, "flashcard"));
-            m_imageView->setActiveArea(new ActiveArea(m_renderer, "flashcard_image"));
+            m_normalArea = new ActiveArea(m_renderer, "flashcard");
+            m_imageArea = new ActiveArea(m_renderer, "flashcard_image");
             break;
        case Prefs::EnumTestType::ComparisonTest:
-            m_normalView->setActiveArea(new ActiveArea(m_renderer, "comparison"));
-            m_imageView->setActiveArea(new ActiveArea(m_renderer, "comparison_image"));
+            m_normalArea = new ActiveArea(m_renderer, "comparison");
+            m_imageArea = new ActiveArea(m_renderer, "comparison_image");
             break;
        case Prefs::EnumTestType::ConjugationTest:
-            m_normalView->setActiveArea(new ActiveArea(m_renderer, "conjugation"));
-            m_imageView->setActiveArea(new ActiveArea(m_renderer, "conjugation_image"));
+            m_normalArea = new ActiveArea(m_renderer, "conjugation");
+            m_imageArea = new ActiveArea(m_renderer, "conjugation_image");
             break;
        case Prefs::EnumTestType::SynonymTest:
-            m_normalView->setActiveArea(new ActiveArea(m_renderer, "synonym", "multiple_choice"));
-            m_imageView->setActiveArea(new ActiveArea(m_renderer, "synonym_image", "multiple_choice_image"));
+            m_normalArea = new ActiveArea(m_renderer, "synonym", "multiple_choice");
+            m_imageArea = new ActiveArea(m_renderer, "synonym_image", "multiple_choice_image");
             break;
        case Prefs::EnumTestType::AntonymTest:
-            m_normalView->setActiveArea(new ActiveArea(m_renderer, "antonym", "multiple_choice"));
-            m_imageView->setActiveArea(new ActiveArea(m_renderer, "antonym_image", "multiple_choice_image"));
+            m_normalArea = new ActiveArea(m_renderer, "antonym", "multiple_choice");
+            m_imageArea = new ActiveArea(m_renderer, "antonym_image", "multiple_choice_image");
             break;
        default:
         kDebug() << "unhandled practice mode " << m_mode << " selected.";
@@ -284,24 +282,24 @@ void ParleyPracticeMainWindow::slotShowImageView(const KUrl& url, bool backsideO
         fc = true;
     }
 
-    kDebug() << "fc" << fc << "valid" << m_imageView->activeArea()->valid();
-    if (!show && m_imageView->activeArea()->valid() && fc)
+    kDebug() << "fc" << fc << "valid" << m_imageArea->valid();
+    if (!show && m_imageArea->valid() && fc)
     {
-        kDebug() << "image";
-        m_normalView->activeArea()->setActive(false);
-        m_imageView->activeArea()->setActive(true);
-        m_normalView->hide();
-        setCentralWidget(m_imageView);
-        m_imageView->show();
+
+        if (m_imageArea->active())
+            return; // nothing to be done.
+
+        m_normalArea->setActive(false);
+        m_imageArea->setActive(true);
+        m_view->setActiveArea(m_imageArea);
     }
     else
     {
-        kDebug() << "no image";
-        m_normalView->activeArea()->setActive(true);
-        m_imageView->activeArea()->setActive(false);
-        m_imageView->hide();
-        setCentralWidget(m_normalView);
-        m_normalView->show();
+        if (m_normalArea->active())
+            return; // nothing to be done.
+        m_normalArea->setActive(true);
+        m_imageArea->setActive(false);
+        m_view->setActiveArea(m_normalArea);
     }
 }
 

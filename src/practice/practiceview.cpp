@@ -19,11 +19,11 @@
 #include "activearea.h"
 
 #include <QResizeEvent>
+#include <KDebug>
 
-PracticeView::PracticeView(QGraphicsScene * scene, QWidget* parent)
-    : QGraphicsView(scene, parent)
+PracticeView::PracticeView(QWidget* parent)
+    : QGraphicsView(parent)
 {
-    setScene(scene);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_area = 0;
@@ -38,10 +38,16 @@ void PracticeView::setActiveArea(ActiveArea * area)
 {
     m_area = area;
     if (m_area->valid())
-        scene()->addItem(m_area);
+        setScene(m_area->scene());
+    setSceneRect(scene()->sceneRect());
 }
 
 ActiveArea * PracticeView::activeArea()
 {
     return m_area;
+}
+
+PracticeView::~PracticeView()
+{
+    kDebug() << "dtor'ed!";
 }

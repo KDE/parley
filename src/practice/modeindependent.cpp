@@ -70,6 +70,8 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
      m_renderer->load(kgtheme.graphics());
 
 
+    setupActiveArea();
+
      QGraphicsSvgItem * layout = new QGraphicsSvgItem();
      layout->setSharedRenderer(m_renderer);
      layout->setElementId("main");
@@ -82,16 +84,20 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
      ilayout->setZValue(-10);
 
 
+
      QGraphicsScene* normalScene = new QGraphicsScene(this);
-     m_normalView = new PracticeView(normalScene, this);
-     normalScene->addItem(layout);
-     m_normalView->setSceneRect(layout->boundingRect());
+    normalScene->addItem(layout);
+     normalScene->addItem(m_normalArea);
+     normalScene->setSceneRect(layout->boundingRect());
 
      QGraphicsScene* imageScene = new QGraphicsScene(this);
-     m_imageView = new PracticeView(imageScene, this);
      imageScene->addItem(ilayout);
-     m_imageView->setSceneRect(ilayout->boundingRect());
+     imageScene->addItem(m_imageArea);
+     imageScene->setSceneRect(ilayout->boundingRect());
 
+
+     m_view = new PracticeView(this);
+    setCentralWidget(m_view);
 
     m_manager = new PracticeEntryManager(this);
     connect(m_manager, SIGNAL(signalNewImage(const KUrl&, bool)), this, SLOT(slotShowImageView(const KUrl&, bool)));
