@@ -83,12 +83,12 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
 
 
      QGraphicsScene* normalScene = new QGraphicsScene(this);
-     m_normalView = new PracticeView(normalScene);
+     m_normalView = new PracticeView(normalScene, this);
      normalScene->addItem(layout);
      m_normalView->setSceneRect(layout->boundingRect());
 
      QGraphicsScene* imageScene = new QGraphicsScene(this);
-     m_imageView = new PracticeView(imageScene);
+     m_imageView = new PracticeView(imageScene, this);
      imageScene->addItem(ilayout);
      m_imageView->setSceneRect(ilayout->boundingRect());
 

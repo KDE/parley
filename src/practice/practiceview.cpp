@@ -20,7 +20,8 @@
 
 #include <QResizeEvent>
 
-PracticeView::PracticeView(QGraphicsScene * scene)
+PracticeView::PracticeView(QGraphicsScene * scene, QWidget* parent)
+    : QGraphicsView(scene, parent)
 {
     setScene(scene);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

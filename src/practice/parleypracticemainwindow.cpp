@@ -300,3 +300,9 @@ void ParleyPracticeMainWindow::slotShowImageView(const KUrl& url, bool backsideO
         m_normalView->show();
     }
 }
+
+ParleyPracticeMainWindow::~ParleyPracticeMainWindow()
+{
+    delete m_renderer;
+
+}

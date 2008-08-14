@@ -25,6 +25,7 @@ ActiveArea::ActiveArea(KSvgRenderer * renderer, const QString& elementId, const 
 : m_renderer(renderer)
 {
     m_valid = true;
+    m_active = false;
     QString id = elementId;
     setSharedRenderer(renderer);
     if (!renderer->elementExists(elementId))

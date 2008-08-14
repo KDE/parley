@@ -33,6 +33,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
     public:
         ParleyPracticeMainWindow(QWidget *parent = 0);
         ParleyPracticeMainWindow(class KEduVocDocument * doc, QWidget * parent = 0);
+        ~ParleyPracticeMainWindow();
 
     // States that the actions can be in.
     static const int CheckAnswer = 1;

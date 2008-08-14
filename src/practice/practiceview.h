@@ -26,7 +26,7 @@ class PracticeView
     :public QGraphicsView
 {
     public:
-        PracticeView(QGraphicsScene*scene);
+        PracticeView(QGraphicsScene*scene, QWidget* parent = 0);
         void resizeEvent(QResizeEvent* event);
         void setActiveArea(ActiveArea * area);
         ActiveArea * activeArea();

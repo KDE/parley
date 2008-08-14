@@ -42,7 +42,7 @@ PracticeEntryManager::PracticeEntryManager(QObject * parent)
 
 PracticeEntryManager::~PracticeEntryManager()
 {
-    qDeleteAll(m_entriesOriginal);
+    //qDeleteAll(m_entriesOriginal);
 }
 
 void PracticeEntryManager::filterTestEntries()
