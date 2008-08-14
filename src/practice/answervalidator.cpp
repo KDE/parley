@@ -501,7 +501,7 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
         {
             if (((double)levenshtein / qMax(solution.length(), userWord.length())) < LEVENSHTEIN_THRESHOLD)
             {
-                 htmlCorrection = i18n("<font color=\"#8C1818\">Seems like you got the spellig wrong.</font> ");
+                 htmlCorrection = i18n("<font color=\"#8C1818\">Seems like you got the spelling wrong.</font> ");
                 ErrorType = Statistics::SpellingMistake;
                 return;
             }
