@@ -29,7 +29,8 @@
 SoundPrompt::SoundPrompt ( KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent ) :
         QPushButton ( parent ),
         m_renderer ( renderer ),
-        m_area(area)
+        m_area(area),
+        m_sound(0)
 {
     QString tId = area->translateElementId(elementId);
     if (tId.isEmpty()) setVisible(false);
