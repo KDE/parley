@@ -49,6 +49,7 @@ class MixedLettersPrompt : public QWidget
         QList<QGraphicsTextItem*> m_letters;
         QString m_solution;
         ActiveArea * m_area;
+        bool m_enabled;
 };
 
 #endif

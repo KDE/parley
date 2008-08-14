@@ -48,7 +48,6 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
 
 
     setupGUI(Default, QString::fromLatin1("parleypracticeui.rc"));
-    m_manager->slotEmitImage(false);
 
     // ... and we are done -- start the first question!
     m_manager->slotNewEntry();
@@ -65,7 +64,6 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(KEduVocDocument* doc, QWidget
     setupModeSpecifics();
 
     setupGUI(Default, QString::fromLatin1("parleypracticeui.rc"));
-    m_manager->slotEmitImage(false);
 
 
     // ... and we are done -- start the first question!
@@ -97,7 +95,7 @@ void ParleyPracticeMainWindow::slotShowSolution()
     }
     else
     {
-        m_manager->slotEmitImage(true);
+        m_manager->slotNewFlashcardBack();
     }
 }
 
@@ -254,36 +252,20 @@ bool ParleyPracticeMainWindow::queryClose()
 
 void ParleyPracticeMainWindow::slotShowImageView(const KUrl& url, bool backsideOfCard)
 {
-    bool show = url.url().isEmpty();
-    kDebug() << "!show" << !show;
+    bool show = !(url.url().isEmpty());
+    bool fc = true;
 
-    kDebug() << "front" << Prefs::flashcardsFrontImage();
-    kDebug() << "back" << Prefs::flashcardsBackImage();
-    kDebug() << "card backside" << backsideOfCard;
-
-    bool fc = false;
     if (m_mode == Prefs::EnumTestType::FlashCardsTest)
     {
        if (!backsideOfCard && Prefs::flashcardsFrontImage())
-       {
         fc = true;
-       }
        else if (backsideOfCard && Prefs::flashcardsBackImage())
-       {
         fc = true;
-       }
        else
-       {
         fc = false;
-       }
-    }
-    else
-    {
-        fc = true;
     }
 
-    kDebug() << "fc" << fc << "valid" << m_imageArea->valid();
-    if (!show && m_imageArea->valid() && fc)
+    if (show && m_imageArea->valid() && fc)
     {
 
         if (m_imageArea->active())

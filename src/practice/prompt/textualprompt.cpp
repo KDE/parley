@@ -42,7 +42,10 @@ TextualPrompt::TextualPrompt ( KSvgRenderer * renderer, ActiveArea * area, const
 void TextualPrompt::slotSetText ( const QString& text )
 {
     if (!m_area->active())
+    {
+        setHtml("");
         return;
+    }
     setHtml( "<center>" + text + "</center>" );
 }
 

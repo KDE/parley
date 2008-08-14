@@ -35,6 +35,7 @@ ImagePrompt::ImagePrompt ( KSvgRenderer * renderer, ActiveArea * area, const QSt
     m_enabled = !tId.isEmpty();
     if (!m_enabled) setVisible(false);
 
+    kDebug() << tId;
 
      QRectF bounds = m_renderer->boundsOnElement(tId);
      bounds.translate(area->offset());
@@ -49,7 +50,7 @@ ImagePrompt::ImagePrompt ( KSvgRenderer * renderer, ActiveArea * area, const QSt
 void ImagePrompt::slotSetImage ( const KUrl& image )
 {
     setVisible(m_area->active() && m_enabled);
-    if (!m_area->active() && m_enabled)
+    if (!m_area->active() || !m_enabled)
     {
         m_pic = QPixmap();
         return;

@@ -126,21 +126,32 @@ PracticeEntryManager::TestCategory PracticeEntryManager::testCategory() const
     }
 }
 
+void PracticeEntryManager::slotNewFlashcardBack()
+{
+     if (!m_entry)   return;
+
+
+        emit signalNewImage( m_entry->expression()->translation(Prefs::solutionLanguage())->imageUrl(), true);
+        emit signalNewSound( m_entry->expression()->translation(Prefs::solutionLanguage())->soundUrl());
+
+        emit signalNewText(m_solution);
+
+}
+
 void PracticeEntryManager::slotNewEntry()
 {
+    // We need to keep this around, but starting a new class member is overkill.
     if (!m_entriesRemaining.isEmpty())
     {
         m_entry = m_entriesRemaining.takeFirst();
         // if they get it wrong, we remove it from this list later.
         m_entriesFinished.append(m_entry);
-        KEduVocTranslation * original = m_entry->expression()->translation(Prefs::questionLanguage());
-        kDebug() << original->text();
         KEduVocTranslation* solution = makeSolution();
 
         // It doesn't matter if these are empty since we would emit empty KUrls/QStrings anyway
         // if sound/images aren't used in a mode, these connect to nothing and are ignored.
-        emit signalNewImage(original->imageUrl(), false);
-        emit signalNewSound(original->soundUrl());
+        emit signalNewImage( m_entry->expression()->translation(Prefs::questionLanguage())->imageUrl(), false);
+        emit signalNewSound( m_entry->expression()->translation(Prefs::questionLanguage())->soundUrl());
 
 
         switch (testCategory())
@@ -545,10 +556,4 @@ void PracticeEntryManager::setConjugationData(KEduVocTranslation * t)
         }
         ++n;
     }
-}
-
-
-void PracticeEntryManager::slotEmitImage(bool backsideOfCard)
-{
-    emit signalNewImage(m_entry->expression()->translation(Prefs::solutionLanguage())->imageUrl(), backsideOfCard);
 }

@@ -90,11 +90,6 @@ class PracticeEntryManager : public QObject
         */
         int activeEntryCount() const;
 
-        /**
-        * Re-emits the current image. Used for flashcards mode.
-        */
-        void slotEmitImage(bool backsideOfFlashcard);
-
     protected:
         /**
         * Select appropriate entries for the practice (respect blocking settings etc)
@@ -117,7 +112,11 @@ class PracticeEntryManager : public QObject
         QString tenseDescription(KEduVocWordFlags flags, const QString& tenseName = "") const;
 
     public slots:
+        /// Emits data for a new entry, using the below signals.
         void slotNewEntry();
+        /// Emits data for the back of the flashcard.
+        /// Unused in all other modes.
+        void slotNewFlashcardBack();
 
     protected:
         KEduVocDocument * m_doc;

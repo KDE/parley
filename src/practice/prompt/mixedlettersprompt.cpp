@@ -32,7 +32,8 @@ MixedLettersPrompt::MixedLettersPrompt(KSvgRenderer * renderer, ActiveArea * are
 : QWidget(parent), m_renderer(renderer), m_area(area), m_scene(area->scene())
 {
     QString tId = area->translateElementId(elementId);
-    if (tId.isEmpty()) setVisible(false);
+    m_enabled = tId.isEmpty();
+    setVisible(m_enabled);
 
     m_backgroundRect = renderer->boundsOnElement ( tId );
 
@@ -52,6 +53,9 @@ void MixedLettersPrompt::slotSetText (const QString& solution )
     }
     m_letters.clear();
 
+    if (!m_area->active() || !m_enabled)
+        return;
+
     for ( int i = 0; i < solution.length(); i++ )
     {
         QGraphicsTextItem* letter = new QGraphicsTextItem( QString(solution[i]) );
@@ -63,6 +67,9 @@ void MixedLettersPrompt::slotSetText (const QString& solution )
 
 void MixedLettersPrompt::slotAnswerChanged(const QString& answer)
 {
+    if (!m_area->active() || !m_enabled)
+        return;
+
     int i = 0;
     for (; i < m_solution.length() && i < answer.length(); i++ ) {
         if ( answer[i] == m_solution[i] ) {
