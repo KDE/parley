@@ -43,7 +43,7 @@ SvgBarStatistics::~SvgBarStatistics()
 
 void SvgBarStatistics::slotUpdateDisplay(Statistics*stats)
 {
-    kDebug() << "update to" << stats->correct() << "/" << stats->manager()->totalEntryCount();
+    kDebug() << "update to" << stats->correct() << "/" << stats->manager()->totalEntryCount() << ((double)stats->correct() / stats->manager()->totalEntryCount());
    scale((m_backgroundRect.width() * ((double)stats->correct() / stats->manager()->totalEntryCount()) )/mapToScene(boundingRect()).boundingRect().width(), 1.0);
 }
 

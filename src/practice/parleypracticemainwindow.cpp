@@ -47,7 +47,9 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
         setupModeIndependent(m_imageView->activeArea());
     setupModeSpecifics();
 
+
     setupGUI(Default, QString::fromLatin1("parleypracticeui.rc"));
+    m_manager->slotEmitImage(false);
 
     // ... and we are done -- start the first question!
     m_manager->slotNewEntry();
@@ -65,6 +67,8 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(KEduVocDocument* doc, QWidget
     setupModeSpecifics();
 
     setupGUI(Default, QString::fromLatin1("parleypracticeui.rc"));
+    m_manager->slotEmitImage(false);
+
 
     // ... and we are done -- start the first question!
     m_manager->slotNewEntry();

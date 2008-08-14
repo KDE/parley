@@ -25,5 +25,5 @@ Modes to remake:
 
 Bugs:
 * Fix progress bar
-* Figure out why qDeleteAll() in ~PracticeEntryManager crashes
 * Hunt down the "don't delete "unnamed" in its event handler." crash bug.
+* Fix the null-d-pointer-in-keduvoctranslation-on-exit crash

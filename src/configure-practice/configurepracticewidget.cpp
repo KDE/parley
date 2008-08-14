@@ -75,12 +75,6 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     writtenPracticeUi.setupUi(writtenContainer);
     m_optionsStackedLayout->insertWidget(WrittenPractice, writtenContainer);
 
-    // add the written practice ui to the stacked widget
-    QWidget* multipleChoiceContainer = new QWidget(OptionsGroupBox);
-    Ui::MultipleChoiceOptionsWidget multipleChoiceUi;
-    multipleChoiceUi.setupUi(multipleChoiceContainer);
-    m_optionsStackedLayout->insertWidget(MultipleChoice, multipleChoiceContainer);
-
 
     // add the conjugation ui to the stacked widget
     if ( !m_doc->tenseDescriptions().isEmpty() ) {
@@ -105,11 +99,18 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     comparisonUi.setupUi(comparisonContainer);
     m_optionsStackedLayout->insertWidget(Comparison, comparisonContainer);
 
+
+    QWidget* multipleChoiceContainer = new QWidget(OptionsGroupBox);
+    Ui::MultipleChoiceOptionsWidget multipleChoiceUi;
+    multipleChoiceUi.setupUi(multipleChoiceContainer);
+    m_optionsStackedLayout->insertWidget(MultipleChoice, multipleChoiceContainer);
+
     // add the flashcard ui
     QWidget* flashcardsContainer = new QWidget(OptionsGroupBox);
     Ui::FlashCardsOptionsWidget flashcardsUi;
     flashcardsUi.setupUi(flashcardsContainer);
     m_optionsStackedLayout->insertWidget(FlashCards, flashcardsContainer);
+
 
     // this is preset in the ui. thus the button is not toggled when setting up
     if ( WrittenRadio->isChecked() ) {

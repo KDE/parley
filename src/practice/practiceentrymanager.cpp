@@ -76,6 +76,8 @@ void PracticeEntryManager::open(KEduVocDocument* doc)
 
     if (!Prefs::testOrderLesson())
         shuffle();
+
+        m_entry = m_entriesRemaining.first();
 }
 
 
