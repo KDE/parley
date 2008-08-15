@@ -89,12 +89,6 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     comparisonUi.setupUi(comparisonContainer);
     m_optionsStackedLayout->insertWidget(Comparison, comparisonContainer);
 
-
-    QWidget* multipleChoiceContainer = new QWidget(OptionsGroupBox);
-    Ui::MultipleChoiceOptionsWidget multipleChoiceUi;
-    multipleChoiceUi.setupUi(multipleChoiceContainer);
-    m_optionsStackedLayout->insertWidget(MultipleChoice, multipleChoiceContainer);
-
     // add the flashcard ui
     QWidget* flashcardsContainer = new QWidget(OptionsGroupBox);
     Ui::FlashCardsOptionsWidget flashcardsUi;
