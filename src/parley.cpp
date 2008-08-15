@@ -53,8 +53,6 @@
 
 #include "statistics-dialogs/StatisticsDialog.h"
 #include "settings/parleyprefs.h"
-#include "settings/languagedialog.h"
-#include "settings/grammardialog.h"
 #include "settings/TitlePage.h"
 #include "settings/languageproperties.h"
 #include "configure-practice/configurepracticedialog.h"
@@ -164,12 +162,6 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
     QTimer::singleShot( 0, this, SLOT( startupTipOfDay() ) );
 }
 
-
-ParleyApp::~ParleyApp()
-{
-}
-
-
 void ParleyApp::saveOptions()
 {
     m_recentFilesAction->saveEntries(KGlobal::config()->group("Recent Files"));
@@ -183,20 +175,6 @@ void ParleyApp::saveOptions()
 //         Prefs::setCurrentCol(sourceIndex.column());
 //     }
     Prefs::self()->writeConfig();
-}
-
-void ParleyApp::slotGrammarDialog()
-{
-    // the dialog to set tenses, personal pronouns and articles
-    GrammarDialog dialog(m_document->document(), this);
-
-    if (dialog.exec() == KDialog::Accepted) {
-        m_document->document()->setModified();
-        // update the list of tenses
-        m_conjugationWidget->setDocument(m_document->document());
-        // FIXME: update articles/pronouns (?)
-//         slotStatusMsg(IDS_DEFAULT);
-    }
 }
 
 void ParleyApp::slotUpdateWindowCaption()
@@ -259,16 +237,6 @@ void ParleyApp::slotConfigShowSearch()
     if (m_searchWidget) {
         m_searchWidget->setVisible(m_searchWidget->isHidden());
         Prefs::setShowSearch(m_searchWidget->isVisible());
-    }
-}
-
-void ParleyApp::slotEditLanguages()
-{
-    LanguageDialog* languageDialog = new LanguageDialog(m_document->document(), this);
-    ///@todo
-    // if this becomes a KConfigDialog: connect(languageDialog, SIGNAL(settingsChanged(const QString&)), m_tableModel, SLOT(loadLanguageSettings()));
-    if ( languageDialog->exec() == KDialog::Accepted ) {
-         m_vocabularyModel->resetLanguages();
     }
 }
 
@@ -759,19 +727,13 @@ void ParleyApp::initActions()
     actionCollection()->addAction("edit_languages", editLanguages);
     editLanguages->setIcon(KIcon("set-language"));
     editLanguages->setText(i18n("&Languages..."));
+    editLanguages->setWhatsThis(i18n("Edit which languages are in the collection and their grammar properties."));
+    editLanguages->setToolTip(editLanguages->whatsThis());
+    editLanguages->setStatusTip(editLanguages->whatsThis());
     connect(editLanguages, SIGNAL(triggered()),  this, SLOT(slotLanguageProperties()));
     ///@todo tooltip
 
-    KAction* editGramar = new KAction(this);
-    actionCollection()->addAction("edit_grammar", editGramar);
-    editGramar->setText(i18n("&Grammar..."));
-    editGramar->setWhatsThis(i18n("Edit language properties (types, tenses and usages)."));
-    editGramar->setToolTip(editGramar->whatsThis());
-    editGramar->setStatusTip(editGramar->whatsThis());
-    connect(editGramar, SIGNAL(triggered(bool)), SLOT(slotGrammarDialog()));
-
     KAction *checkSpelling = KStandardAction::spelling(m_vocabularyView, SLOT(checkSpelling()), actionCollection());
-
 
     KAction *showSublessonentries = actionCollection()->add<KToggleAction>("lesson_showsublessonentries");
     showSublessonentries->setText(i18n("Show Entries from Child Lessons"));

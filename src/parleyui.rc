@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="parley"  version="6">
+<gui name="parley"  version="7">
 
 <MenuBar>
     <Menu name="file" >
@@ -16,7 +16,6 @@
   <Menu name="edit" >
       <Separator/>
       <Action name="edit_languages" />
-      <Action name="edit_grammar" />
       <Separator/>
       <Action name="edit_append" />
       <Action name="edit_remove_selected_area" />

@@ -76,9 +76,6 @@ public:
     /** construtor with appName (executable name) and filename to open */
     explicit ParleyApp(const QString& appName, const KUrl &filename = KUrl());
 
-    /** destructor */
-    ~ParleyApp();
-
     /**
      * setup the action (menus etc)
      */
@@ -125,8 +122,6 @@ public slots:
      */
     void slotLanguageProperties();
 
-    /** append language to vocabulary - creates a new column */
-    void slotEditLanguages();
     /** When quitting, ask for confirmation if the doc has not been saved */
     bool queryClose();
     /** overloaded for Message box on last window exit */
@@ -137,8 +132,6 @@ public slots:
 
     void slotCloseDocument();
 
-    /** Let the user edit tenses, articles and personal pronouns */
-    void slotGrammarDialog();
     /** General doc properties like title, author etc */
     void slotDocumentProperties();
     void slotShowStatistics();

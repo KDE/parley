@@ -31,30 +31,25 @@ kde4_add_kcfg_files( settings_SKEL_SRCS
 
 # settings, document properties and grammar options
 set(settings_SRCS ${settings_SKEL_SRCS}
+# general settings dialog
     settings/parleyprefs.cpp
     settings/generaloptions.cpp
     settings/viewoptions.cpp
+
+# script settings
     settings/pluginoptions.cpp
     settings/plugintablemodel.cpp
-    settings/LangPropPage.cpp
-    settings/TenseOptPage.cpp
     settings/TitlePage.cpp
-    settings/languagedialog.cpp
-    settings/editlanguagedialogpage.cpp
-    settings/grammardialog.cpp
     settings/languageproperties.cpp
     settings/languagepropertiespage.cpp
 )
 
 # settings ui
 kde4_add_ui_files( settings_SRCS
-    settings/LangPropPageForm.ui
-    settings/TitlePageForm.ui
     settings/optionlistform.ui
     settings/viewoptionsbase.ui
     settings/generaloptionsbase.ui
     settings/pluginoptionsbase.ui
-    settings/languagepage.ui
     settings/languagepropertiespage.ui
 )
 
