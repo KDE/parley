@@ -76,7 +76,6 @@ private:
     };
     QStackedLayout* m_optionsStackedLayout;
     Ui::ConjugationOptionsWidget m_conjugationUi;
-//     QTreeWidget* m_tenseListWidget;
     KEduVocDocument* m_doc;
     bool m_bilingual;
 };

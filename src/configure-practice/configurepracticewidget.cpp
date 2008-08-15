@@ -80,7 +80,6 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
 
     // add the conjugation ui to the stacked widget
     QWidget* conjugationContainer = new QWidget(OptionsGroupBox);
-
     m_conjugationUi.setupUi(conjugationContainer);
     m_optionsStackedLayout->insertWidget(Conjugation, conjugationContainer);
 
@@ -277,7 +276,7 @@ void ConfigurePracticeWidget::otherRadioToggled(bool checked)
 void ConfigurePracticeWidget::setupTenses()
 {
     int index = LanguageFromList->currentRow();
-kDebug() << "tense: " << index;
+
     QTreeWidget *tenseListWidget = m_conjugationUi.tenseSelectionTreeWidget;
     tenseListWidget->clear();
 

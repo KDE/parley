@@ -17,7 +17,11 @@
       <whatsthis>Keyboard layout for this locale</whatsthis>
       <default></default>
       </entry>
-
+      <entry name="ConjugationTenses" type="StringList">
+        <label>Selected tenses for conjugation practice.</label>
+        <whatsthis>Selected tenses for conjugation practice.</whatsthis>
+        <default></default>
+      </entry>
       <entry name="VisibleColumns" type="IntList">
     	<label>Visible columns in the main editor window.</label>
     	<whatsthis>Visible columns in the main editor window.</whatsthis>
