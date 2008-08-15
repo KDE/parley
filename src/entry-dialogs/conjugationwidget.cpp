@@ -101,6 +101,9 @@ void ConjugationWidget::updateEntries()
 
 void ConjugationWidget::setTranslation(KEduVocExpression * entry, int identifier)
 {
+    tenseComboBox->clear();
+    tenseComboBox->completionObject()->clear();
+
     m_entry = entry;
 //     if (m_identifier != identifier) {
         m_identifier = identifier;
@@ -113,6 +116,11 @@ void ConjugationWidget::setTranslation(KEduVocExpression * entry, int identifier
         makeVerbButton->setEnabled(false);
         return;
     }
+
+    // init tenses per language
+    tenseComboBox->addItems(m_doc->identifier(identifier).tenseList());
+    tenseComboBox->completionObject()->insertItems(m_doc->identifier(identifier).tenseList());
+    tenseComboBox->setCurrentIndex(0);
 
     setEnabled(true);
     if (entry->translation(m_identifier)->wordType()
@@ -134,11 +142,6 @@ void ConjugationWidget::setDocument(KEduVocDocument * doc)
     m_doc = doc;
     tenseComboBox->clear();
     tenseComboBox->completionObject()->clear();
-    if (m_doc) {
-        tenseComboBox->addItems(m_doc->tenseDescriptions());
-        tenseComboBox->completionObject()->insertItems(m_doc->tenseDescriptions());
-        tenseComboBox->setCurrentIndex(0);
-    }
 }
 
 void ConjugationWidget::slotNextTense()
