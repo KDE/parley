@@ -175,14 +175,15 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
     m_doc = doc;
 
     int i = 1;
-    foreach(const QString &tenseName, m_doc->tenseDescriptions()) {
+    foreach(const QString &tenseName, m_doc->identifier(m_identifierIndex).tenseList()) {
         optionsList->addItem(QString("%1").arg(i++, 2).append(TENSE_TAG).append(tenseName));
         tenseIndex.append(i);
     }
 
     m_currentTense = 0;
-    if (optionsList->count() > 0)
+    if (optionsList->count() > 0) {
         optionsList->setCurrentRow(m_currentTense);
+    }
 
     modifyButton->setEnabled(optionsList->count() > 0);
     deleteButton->setEnabled(optionsList->count() > 0);
@@ -264,15 +265,15 @@ void LanguagePropertiesPage::accept()
 
     // tenses
     QList<int> tenseIndex;
-    QStringList new_tenseStr;
+    QStringList tenses;
 
     QString str;
     for (int i = 0; i < (int) optionsList->count(); i++) {
         str = optionsList->item(i)->text();
-        new_tenseStr.append(str.mid(str.indexOf(TENSE_TAG) + QString(TENSE_TAG).length()));
+        tenses.append(str.mid(str.indexOf(TENSE_TAG) + QString(TENSE_TAG).length()));
     }
 
-    m_doc->setTenseDescriptions(new_tenseStr);
+    m_doc->identifier(m_identifierIndex).setTenseList(tenses);
 }
 
 
