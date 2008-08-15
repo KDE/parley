@@ -1,15 +1,21 @@
 /** @mainpage
 
 Parley is a vocabulary trainer.
-See also http://edu.kde.org/parley
+For general information visit http://edu.kde.org/parley
 
-Vocabulary are stored in XML, see http://api.kde.org/4.0-api/kdeedu-apidocs/libkdeedu/keduvocdocument/html/classKEduVocDocument.html for information about the file format.
+Vocabulary are stored in XML, see KEduVocDocument for information about the file format.
+\see KEduVocDocument
+\see KEduVocLesson
+\see KEduVocExpression
+\see KEduVocTranslation
+
 
 The main class is ParleyApp
 File management is done in ParleyDocument
 
-The plasma part consists of ParleyPlasma and ParleyEngine
+The parloid (plasmoid) consists of ParleyPlasma and ParleyEngine.
 
-Parley supports Kross scripts. See the scripting API documentation in the Scripting namespace.
+Parley supports Kross scripts.
+To get started writing scripts for Parley, have a look at the scripts provided with Parley and read the scripting API documentation in the Scripting namespace.
 
 */
