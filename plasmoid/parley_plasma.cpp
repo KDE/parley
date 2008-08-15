@@ -176,7 +176,7 @@ void ParleyPlasma::createConfigurationInterface(KConfigDialog * parent)
     KConfigGroup cg = config();
 
     ui.filechooser->setUrl(m_sourceFile);
-    ui.filechooser->setFilter("*.kvtml|Vocabulary Collections");
+    ui.filechooser->setFilter(i18n("*.kvtml|Vocabulary Collections"));
 
     ui.language1->addItems(m_languages);
     ui.language2->addItems(m_languages);
