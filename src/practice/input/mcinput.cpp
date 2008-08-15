@@ -51,8 +51,12 @@ MCInput::MCInput(KSvgRenderer * renderer, ActiveArea * area, const QString& elem
 
 void MCInput::slotShortcutTriggered(int shortcutNumber)
 {
+    if (!m_area->active())
+        return;
+
     if (shortcutNumber > Prefs::numberMultipleChoiceAnswers())
         return; // bogus false positive
+
 
     // Shortcut number 0 is triggered by return/enter and is used for activating the currently selected option.
     // Therefore, we check if any buttons are checked, and if so, emit the signal
@@ -83,6 +87,8 @@ void MCInput::slotShortcutTriggered(int shortcutNumber)
 
 void MCInput::slotSetChoices(const QStringList& list)
 {
+    if (!m_area->active()) return;
+
     // clean up from last time
     delete layout();
 
@@ -124,10 +130,16 @@ MCInput::~MCInput()
 void MCInput::slotEmitAnswer()
 {
     if (!m_area->active())
+    {
         return;
+    }
     foreach(QRadioButton* b, findChildren<QRadioButton*>())
+    {
+        kDebug() << b << b->isChecked();
         if (b->isChecked())
         {
+            kDebug() << b->text();
             emit signalAnswer(b->text().remove(QRegExp("^&\\d ")));
         }
+     }
 }

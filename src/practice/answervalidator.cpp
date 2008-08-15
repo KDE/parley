@@ -254,7 +254,7 @@ void AnswerValidator::defaultCorrector()
     if (m_solution == m_userAnswer)
     {
         emit signalCorrection(1.0, Statistics::Correct, m_userAnswer);
-        emit signalFeedback(i18n("<font color=\"#000fff000\">Correct!</font> "));
+        emit signalFeedback(i18n("<font color=\"#006633\">Correct!</font> "));
         return;
     }
 
@@ -583,13 +583,15 @@ void AnswerValidator::sentenceAnalysis()
 
     QString correction;
 
-    correction.append("Correct: ");
+    if (!correctWords.isEmpty())
+        correction.append("Correct: ");
     foreach(const QString &correctWord, correctWords)
     {
         correction.append(i18n("<font color=\"#188C18\">") + correctWord + i18n("</font> "));
     }
 
-    correction.append(" Wrong: ");
+    if (!wrongWords.isEmpty())
+        correction.append(" Wrong: ");
     foreach(const QString &wrongWord, wrongWords)
     {
         correction.append(i18n("<font color=\"#8C1818\">") + wrongWord + i18n("</font> "));

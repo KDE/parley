@@ -50,6 +50,7 @@
 #include "timer.h"
 #include "feedback.h"
 #include "activearea.h"
+#include "messagebox.h"
 
 #include "kgametheme/kgamethemeselector.h"
 #include "kgametheme/kgametheme.h"
@@ -57,7 +58,7 @@
 #include <keduvocexpression.h>
 #include <keduvocdocument.h>
 
-
+#include <QPointer>
 
 void ParleyPracticeMainWindow::setupWrittenTemplate(ActiveArea * area)
 {
@@ -137,40 +138,47 @@ void ParleyPracticeMainWindow::setupMultipleChoiceTemplate(ActiveArea * area)
     connect(stdbutton, SIGNAL(signalContinue()), actionCollection()->action("continue"), SIGNAL(triggered()));
     stdbutton->setVisible(true); // enable for now
 
-
     Hint * hint = new Hint(this);
     connect(actionCollection()->action("hint"), SIGNAL(triggered()), hint, SLOT(slotShowHint()));
     // this is the hint for now :)
     connect(hint, SIGNAL(signalShowHint()), actionCollection()->action("show solution"), SIGNAL(triggered()));
     connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), m_stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
 
-    // setup shortcuts for multiple choice input
-    QSignalMapper * mapper = new QSignalMapper(this);
-    KAction * shortcut;
-     for(int n = 1; n < 10; ++n)
-     {
-        shortcut = new KAction(this);
-        shortcut->setText(i18n("Select Option %1", n));
-        actionCollection()->addAction(QString("select option %1").arg(n), shortcut);
-        shortcut->setShortcut(KShortcut(QString("%1; Alt+%1").arg(n)));
-        mapper->setMapping(shortcut, n);
-        connect(shortcut, SIGNAL(triggered()), mapper, SLOT(map()));
-        if (n > Prefs::numberMultipleChoiceAnswers())
-            shortcut->setVisible(false); // disable non-relevent shortcuts
-     }
+
+    // if practice is stopped and started again, this will revert to 0.
+    static QPointer<QSignalMapper> mapper = 0;
+
+    // we once want to do this once
+    if (!mapper)
+    {
+        // setup shortcuts for multiple choice input
+        mapper = new QSignalMapper(this);
+        KAction * shortcut;
+        for(int n = 1; n < 10; ++n)
+        {
+            shortcut = new KAction(this);
+            shortcut->setText(i18n("Select Option %1", n));
+            actionCollection()->addAction(QString("select option %1").arg(n), shortcut);
+            shortcut->setShortcut(KShortcut(QString("%1; Alt+%1").arg(n)));
+            mapper->setMapping(shortcut, n);
+            connect(shortcut, SIGNAL(triggered()), mapper, SLOT(map()));
+            if (n > Prefs::numberMultipleChoiceAnswers())
+                shortcut->setVisible(false); // disable non-relevent shortcuts
+        }
 
 
-    // enter/return triggers shortcut 0, which means use the currently selected option
-    // if no option is selected, this is ignored.
-    QShortcut* accelerator = new QShortcut(Qt::Key_Enter, this);
-    accelerator->setAutoRepeat(false);
-    mapper->setMapping(accelerator, 0);
-    connect(accelerator, SIGNAL(activated()), mapper, SLOT(map()));
+        // enter/return triggers shortcut 0, which means use the currently selected option
+        // if no option is selected, this is ignored.
+        QShortcut* accelerator = new QShortcut(Qt::Key_Enter, this);
+        accelerator->setAutoRepeat(false);
+        mapper->setMapping(accelerator, 0);
+        connect(accelerator, SIGNAL(activated()), mapper, SLOT(map()));
 
-    accelerator = new QShortcut(Qt::Key_Return, this);
-    accelerator->setAutoRepeat(false);
-    mapper->setMapping(accelerator, 0);
-    connect(accelerator, SIGNAL(activated()), mapper, SLOT(map()));
+        accelerator = new QShortcut(Qt::Key_Return, this);
+        accelerator->setAutoRepeat(false);
+        mapper->setMapping(accelerator, 0);
+        connect(accelerator, SIGNAL(activated()), mapper, SLOT(map()));
+    }
 
     connect(mapper, SIGNAL(mapped(int)), input, SLOT(slotShortcutTriggered(int)));
 }
@@ -214,8 +222,18 @@ void ParleyPracticeMainWindow::setupComparisonTemplate(ActiveArea * area)
 {
     QGraphicsScene * scene = area->scene();
 
+
+    MessageBox* message1 = new MessageBox(m_renderer, area, "absolute_instruction_box", i18n("Absolute:"));
+    scene->addItem(message1);
+
+    MessageBox* message2 = new MessageBox(m_renderer, area, "comparative_instruction_box", i18n("Comparative:"));
+    scene->addItem(message2);
+
+    MessageBox* message3 = new MessageBox(m_renderer, area, "superlative_instruction_box", i18n("Superlative:"));
+    scene->addItem(message3);
+
     QStringList qsl;
-    qsl << "absolute" << "comparative" << "superlative";
+    qsl << "absolute_text_box" << "comparative_text_box" << "superlative_text_box";
     // it adds itself to the scene
     MultipleTextualInput * minput = new MultipleTextualInput(m_renderer, area, qsl);
     connect(m_manager, SIGNAL(signalNewChoices(const QStringList&)), minput, SLOT(slotSetChoices(const QStringList&)));

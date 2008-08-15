@@ -101,6 +101,7 @@ set(practice_SRCS
     practice/activearea.cpp
     practice/multiple/multipletextualprompt.cpp
     practice/multiple/multipletextualinput.cpp
+    practice/messagebox.cpp
 )
 
 kde4_add_ui_files(practice_SRCS

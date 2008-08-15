@@ -176,6 +176,9 @@ void PracticeEntryManager::slotNewEntry()
         m_entry = m_entriesRemaining.takeFirst();
         // if they get it wrong, we remove it from this list later.
         m_entriesFinished.append(m_entry);
+        m_solution.clear();
+        m_solutions.clear();
+
         KEduVocTranslation* solution = makeSolution();
 
         // It doesn't matter if these are empty since we would emit empty KUrls/QStrings anyway
@@ -226,11 +229,7 @@ KEduVocTranslation * PracticeEntryManager::makeSolution()
                 m_solution = t->antonyms()[ KRandom::random() % t->antonyms().size()]->text();
                 return t->antonyms()[ KRandom::random() % t->antonyms().size()];
         case Prefs::EnumTestType::ArticleTest:
-                if (t->wordType()->wordType() & KEduVocWordFlag::genders)
-                    m_solution = makeArticleAnswer(t->wordType()->wordType());
-                else
-                    // if the word has no gender, we'll default it to neuter (otherwise things get messed up)
-                    m_solution = makeArticleAnswer(t->wordType()->wordType() | KEduVocWordFlag::Neuter);
+                m_solution = makeArticleAnswer(t->wordType()->wordType());
                 return t;
         case Prefs::EnumTestType::ParaphraseTest:
         case Prefs::EnumTestType::ExampleTest:
@@ -241,13 +240,11 @@ KEduVocTranslation * PracticeEntryManager::makeSolution()
             m_solution = t->text();
             return t;
         case Prefs::EnumTestType::ComparisonTest:
-            m_solutions.clear();
             m_solutions << t->text();
             m_solutions << t->comparative();
             m_solutions << t->superlative();
             return t;
         case Prefs::EnumTestType::ConjugationTest:
-            m_solutions.clear();
             setConjugationData(t);
             return t;
         default:
@@ -507,6 +504,18 @@ QString PracticeEntryManager::makeArticleAnswer(KEduVocWordFlags flags) const
             if (flags & KEduVocWordFlag::Masculine) return i18nc("@label the gender of the word: Masculine", "Masculine");
             if (flags & KEduVocWordFlag::Masculine) return i18nc("@label the gender of the word: Female", "Feminine");
             if (flags & KEduVocWordFlag::Masculine) return i18nc("@label the gender of the word: Neuter", "Neuter");
+        }
+
+        // Give them default values.
+        if (!(flags & KEduVocWordFlag::genders))
+        {
+            flags |= KEduVocWordFlag::Neuter;
+            kDebug() << "Neuter added.";
+        }
+        if (!(flags & KEduVocWordFlag::numbers))
+        {
+            flags |= KEduVocWordFlag::Singular;
+            kDebug() << "Singular added";
         }
 
         QString article;

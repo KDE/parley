@@ -64,14 +64,19 @@ MultipleTextualPrompt::~MultipleTextualPrompt()
 
 void MultipleTextualPrompt::slotSetText(const QStringList& texts)
 {
-    kDebug() << texts;
-    if (texts.size() < 4)
+    if (m_elementIds.size() != texts.size())
     {
-        kDebug() << "input data <" << texts << "> is of length" << texts.size() << "; we need length 4";
-        return; // bad news
+        kDebug() << "Size mismatch; we got " << texts.size() << "and need" << m_elementIds.size();
+        return;
     }
 
-    for(int i = 0; i < 5; ++i)
+    if (texts.size() == 0)
+    {
+        kDebug() << "Text list of size 0 recieved, aborting";
+        return;
+    }
+
+    for(int i = 0; i < texts.size(); ++i)
     {
         m_map[m_elementIds[i]]->setHtml(texts[i]);
     }

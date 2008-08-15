@@ -247,7 +247,7 @@ void ParleyPracticeMainWindow::setupActiveArea()
 bool ParleyPracticeMainWindow::queryClose()
 {
     emit signalPracticeFinished();
-    return true;
+    return close();
 }
 
 void ParleyPracticeMainWindow::slotShowImageView(const KUrl& url, bool backsideOfCard)
@@ -288,5 +288,4 @@ void ParleyPracticeMainWindow::slotShowImageView(const KUrl& url, bool backsideO
 ParleyPracticeMainWindow::~ParleyPracticeMainWindow()
 {
     delete m_renderer;
-
 }

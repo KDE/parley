@@ -60,20 +60,25 @@ MultipleTextualInput::~MultipleTextualInput()
 void MultipleTextualInput::slotSetChoices(const QStringList& texts)
 {
     kDebug() << texts;
-    if (texts.size() < 4)
+
+    if (m_elementIds.size() != texts.size())
     {
-        kDebug() << "input data <" << texts << "> is of length" << texts.size() << "; we need length 3";
-        return; // bad news
+        kDebug() << "Size mismatch; we got " << texts.size() << "and need" << m_elementIds.size();
+        return;
+    }
+
+    if (texts.size() == 0)
+    {
+        kDebug() << "Text list of size 0 recieved, aborting";
+        return;
     }
 
     slotClear();
 
     // in this mode we only set one; the provide the other 2
-    int r = KRandom::random() % 3;
+    int r = KRandom::random() % (m_elementIds.size() - 1);
     kDebug() << r;
     m_map[m_elementIds[r]]->setText(texts[r]);
-
-
 }
 
 void MultipleTextualInput::slotClear()
@@ -87,7 +92,7 @@ void MultipleTextualInput::slotClear()
 void MultipleTextualInput::slotEmitAnswer()
 {
     QStringList qsl;
-    for(int i = 0; i <= 4; ++i)
+    for(int i = 0; i < m_elementIds.size(); ++i)
     {
         qsl << m_map[m_elementIds[i]]->text();
     }

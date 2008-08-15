@@ -44,6 +44,7 @@
 #include "timer.h"
 #include "feedback.h"
 #include "stdbuttons.h"
+#include "messagebox.h"
 
 #include "prompt/imageprompt.h"
 #include "prompt/soundprompt.h"
@@ -189,6 +190,10 @@ void ParleyPracticeMainWindow::setupActions()
 void ParleyPracticeMainWindow::setupModeIndependent(ActiveArea * area)
 {
     QGraphicsScene * scene = area->scene();
+
+    MessageBox* messagebox = new MessageBox(m_renderer, area, "instruction_box", i18n("Enter Translation:"));
+    scene->addItem(messagebox);
+
     if (Prefs::practiceImagesEnabled())
     {
         ImagePrompt * iprompt = new ImagePrompt(m_renderer, area, "image_box");
