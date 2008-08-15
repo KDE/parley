@@ -26,8 +26,30 @@ EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc) :QObject(parent
 {
     m_doc = doc;
     m_dialog = 0;
-    m_fromTranslation = Prefs::questionLanguage();
-    m_toTranslation = Prefs::solutionLanguage();
+
+    // keep languages consistant between the edit, the filter, and practice
+    switch (Prefs::testType())
+    {
+        // bilingual mode.
+        case Prefs::EnumTestType::WrittenTest:
+        case Prefs::EnumTestType::MixedLettersTest:
+        case Prefs::EnumTestType::MultipleChoiceTest:
+        case Prefs::EnumTestType::FlashCardsTest:
+            m_fromTranslation = Prefs::questionLanguage();
+            m_toTranslation = Prefs::solutionLanguage();
+            break;
+        // monolingual mode
+        case Prefs::EnumTestType::ArticleTest:
+        case Prefs::EnumTestType::ExampleTest:
+        case Prefs::EnumTestType::ParaphraseTest:
+        case Prefs::EnumTestType::SynonymTest:
+        case Prefs::EnumTestType::AntonymTest:
+        case Prefs::EnumTestType::ComparisonTest:
+        case Prefs::EnumTestType::ConjugationTest:
+        default:
+            m_fromTranslation = m_toTranslation = Prefs::questionLanguage();
+            break;
+    }
     expireEntries();
 }
 
@@ -69,6 +91,15 @@ QList<KEduVocExpression*> EntryFilter::entries()
     if (m_entries.count() == 0) {
         KMessageBox::error(0, i18n("The vocabulary document contains no entries that can be used for the chosen type of practice."));
         return m_entries.toList();
+    }
+
+    if (Prefs::testType() == Prefs::EnumTestType::ArticleTest)
+    {
+        if (m_doc->identifier(m_toTranslation).article().isEmpty())
+        {
+            KMessageBox::error(0, i18n("The vocabulary document contains no articles for the current language. Please add some in the Edit->Grammar menu."));
+            return QList<KEduVocExpression*>();
+        }
     }
 
     lessonEntries();

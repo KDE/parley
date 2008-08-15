@@ -37,6 +37,13 @@
 PracticeEntryManager::PracticeEntryManager(QObject * parent)
         : QObject(parent)
 {
+    if (!bilingualTest())
+        m_solutionTestType = m_questionTestType = static_cast<Prefs::EnumTestType::type>(Prefs::questionLanguage());
+    else
+    {
+        m_solutionTestType = static_cast<Prefs::EnumTestType::type>(Prefs::solutionLanguage());
+        m_questionTestType = static_cast<Prefs::EnumTestType::type>(Prefs::questionLanguage());
+    }
     //m_entry = (PracticeEntry*)0xdeadbeef;
 }
 
@@ -69,6 +76,7 @@ void PracticeEntryManager::open(KEduVocDocument* doc)
     filterTestEntries();
     if (m_entriesOriginal.count() == 0) {
         kDebug() << "No entries selected -- aborting";
+        emit signalSetFinished();
         return;
     }
 
@@ -77,7 +85,7 @@ void PracticeEntryManager::open(KEduVocDocument* doc)
     if (!Prefs::testOrderLesson())
         shuffle();
 
-        m_entry = m_entriesRemaining.first();
+    m_entry = m_entriesRemaining.first();
 }
 
 
@@ -126,13 +134,35 @@ PracticeEntryManager::TestCategory PracticeEntryManager::testCategory() const
     }
 }
 
+bool PracticeEntryManager::bilingualTest() const
+{
+    switch (Prefs::testType())
+    {
+        case Prefs::EnumTestType::WrittenTest:
+        case Prefs::EnumTestType::MixedLettersTest:
+        case Prefs::EnumTestType::MultipleChoiceTest:
+        case Prefs::EnumTestType::FlashCardsTest:
+            return true;
+        case Prefs::EnumTestType::ArticleTest:
+        case Prefs::EnumTestType::ExampleTest:
+        case Prefs::EnumTestType::ParaphraseTest:
+        case Prefs::EnumTestType::SynonymTest:
+        case Prefs::EnumTestType::AntonymTest:
+        case Prefs::EnumTestType::ComparisonTest:
+        case Prefs::EnumTestType::ConjugationTest:
+        default:
+            return false;
+    }
+}
+
+
 void PracticeEntryManager::slotNewFlashcardBack()
 {
      if (!m_entry)   return;
 
 
-        emit signalNewImage( m_entry->expression()->translation(Prefs::solutionLanguage())->imageUrl(), true);
-        emit signalNewSound( m_entry->expression()->translation(Prefs::solutionLanguage())->soundUrl());
+        emit signalNewImage( m_entry->expression()->translation(m_solutionTestType)->imageUrl(), true);
+        emit signalNewSound( m_entry->expression()->translation(m_solutionTestType)->soundUrl());
 
         emit signalNewText(m_solution);
 
@@ -150,8 +180,8 @@ void PracticeEntryManager::slotNewEntry()
 
         // It doesn't matter if these are empty since we would emit empty KUrls/QStrings anyway
         // if sound/images aren't used in a mode, these connect to nothing and are ignored.
-        emit signalNewImage( m_entry->expression()->translation(Prefs::questionLanguage())->imageUrl(), false);
-        emit signalNewSound( m_entry->expression()->translation(Prefs::questionLanguage())->soundUrl());
+        emit signalNewImage( m_entry->expression()->translation(m_questionTestType)->imageUrl(), false);
+        emit signalNewSound( m_entry->expression()->translation(m_questionTestType)->soundUrl());
 
 
         switch (testCategory())
@@ -186,7 +216,7 @@ void PracticeEntryManager::slotNewEntry()
 KEduVocTranslation * PracticeEntryManager::makeSolution()
 {
     QStringList l;
-    KEduVocTranslation * t = m_entry->expression()->translation(Prefs::solutionLanguage());
+    KEduVocTranslation * t = m_entry->expression()->translation(m_solutionTestType);
     switch (Prefs::testType())
     {
         case Prefs::EnumTestType::SynonymTest:
@@ -196,7 +226,11 @@ KEduVocTranslation * PracticeEntryManager::makeSolution()
                 m_solution = t->antonyms()[ KRandom::random() % t->antonyms().size()]->text();
                 return t->antonyms()[ KRandom::random() % t->antonyms().size()];
         case Prefs::EnumTestType::ArticleTest:
-                m_solution = makeArticleAnswer(t->wordType()->wordType());
+                if (t->wordType()->wordType() & KEduVocWordFlag::genders)
+                    m_solution = makeArticleAnswer(t->wordType()->wordType());
+                else
+                    // if the word has no gender, we'll default it to neuter (otherwise things get messed up)
+                    m_solution = makeArticleAnswer(t->wordType()->wordType() | KEduVocWordFlag::Neuter);
                 return t;
         case Prefs::EnumTestType::ParaphraseTest:
         case Prefs::EnumTestType::ExampleTest:
@@ -239,9 +273,9 @@ QString PracticeEntryManager::currentQuestion() const
     {
         case Prefs::EnumTestType::ExampleTest:
             // This is the logic to blank the solution.
-            foreach(QString word, m_entry->expression()->translation(Prefs::questionLanguage())->example())
+            foreach(QString word, m_entry->expression()->translation(m_questionTestType)->example())
             {
-                if (word.contains(m_entry->expression()->translation(Prefs::questionLanguage())->text(), Qt::CaseInsensitive))
+                if (word.contains(m_entry->expression()->translation(m_questionTestType)->text(), Qt::CaseInsensitive))
                 {
                     modified.append("<font color=\"#ff0000\">");
                     modified.append("...");
@@ -253,7 +287,7 @@ QString PracticeEntryManager::currentQuestion() const
             kDebug() << modified.join(" ");
             return modified.join(" ");
         case Prefs::EnumTestType::ParaphraseTest:
-            return m_entry->expression()->translation(Prefs::questionLanguage())->paraphrase();
+            return m_entry->expression()->translation(m_questionTestType)->paraphrase();
         case Prefs::EnumTestType::SynonymTest:
         case Prefs::EnumTestType::AntonymTest:
         case Prefs::EnumTestType::ArticleTest:
@@ -261,7 +295,7 @@ QString PracticeEntryManager::currentQuestion() const
         case Prefs::EnumTestType::FlashCardsTest:
         case Prefs::EnumTestType::MultipleChoiceTest:
         case Prefs::EnumTestType::MixedLettersTest:
-            return m_entry->expression()->translation(Prefs::questionLanguage())->text();
+            return m_entry->expression()->translation(m_questionTestType)->text();
         case Prefs::EnumTestType::ConjugationTest:
         case Prefs::EnumTestType::ComparisonTest:
         default:
@@ -318,9 +352,9 @@ QStringList PracticeEntryManager::makeMultipleChoiceChoices(KEduVocTranslation* 
     list.append(solution->text());
 
     if (Prefs::testType() == Prefs::EnumTestType::MultipleChoiceTest)
-        if (!m_entry->expression()->translation(Prefs::questionLanguage())->multipleChoice().isEmpty())
+        if (!m_entry->expression()->translation(m_questionTestType)->multipleChoice().isEmpty())
         {
-            foreach(s, m_entry->expression()->translation(Prefs::questionLanguage())->multipleChoice())
+            foreach(s, m_entry->expression()->translation(m_questionTestType)->multipleChoice())
                 list.append(s);
         }
 
@@ -329,7 +363,7 @@ QStringList PracticeEntryManager::makeMultipleChoiceChoices(KEduVocTranslation* 
     {
        foreach(PracticeEntry* pe, source)
        {
-            s = pe->expression()->translation(Prefs::solutionLanguage())->text();
+            s = pe->expression()->translation(m_solutionTestType)->text();
             if (!list.contains(s))
                 list.append(s);
        }
@@ -350,7 +384,7 @@ QStringList PracticeEntryManager::makeMultipleChoiceChoices(KEduVocTranslation* 
         {
             ++timeout;
             r = KRandom::random() % source.size();
-            t = source[r]->expression()->translation(Prefs::solutionLanguage());
+            t = source[r]->expression()->translation(m_solutionTestType);
             s = t->text();
             if (!list.contains(s))
             {
@@ -385,7 +419,7 @@ QStringList PracticeEntryManager::makeArticleChoices(const QString& solution) co
     QString def, indef;
     QStringList parts;
 
-    KEduVocArticle articles = m_doc->identifier(Prefs::solutionLanguage()).article();
+    KEduVocArticle articles = m_doc->identifier(m_solutionTestType).article();
 
     // avoid regeneration every question.
     if (list.isEmpty())
@@ -465,7 +499,15 @@ QStringList PracticeEntryManager::makeArticleChoices(const QString& solution) co
 QString PracticeEntryManager::makeArticleAnswer(KEduVocWordFlags flags) const
 {
         QStringList parts;
-        KEduVocArticle articles = m_doc->identifier(Prefs::solutionLanguage()).article();
+        KEduVocArticle articles = m_doc->identifier(m_solutionTestType).article();
+
+        // these are our degenerate options
+        if(articles.isEmpty())
+        {
+            if (flags & KEduVocWordFlag::Masculine) return i18nc("@label the gender of the word: Masculine", "Masculine");
+            if (flags & KEduVocWordFlag::Masculine) return i18nc("@label the gender of the word: Female", "Feminine");
+            if (flags & KEduVocWordFlag::Masculine) return i18nc("@label the gender of the word: Neuter", "Neuter");
+        }
 
         QString article;
         QString def = articles.article(flags | KEduVocWordFlag::Definite);

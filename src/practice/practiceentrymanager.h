@@ -108,6 +108,7 @@ class PracticeEntryManager : public QObject
         QStringList currentQuestions() const;
 
         TestCategory testCategory() const;
+        bool bilingualTest() const;
 
         QString tenseDescription(KEduVocWordFlags flags, const QString& tenseName = "") const;
 
@@ -127,6 +128,9 @@ class PracticeEntryManager : public QObject
         QString m_solution;
         QStringList m_solutions;
         QStringList m_prompts;
+
+        Prefs::EnumTestType::type m_solutionTestType;
+        Prefs::EnumTestType::type m_questionTestType;
 
     signals:
         /// Emitted when new text is available.

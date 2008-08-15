@@ -143,7 +143,7 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     connect(ExampleRadio, SIGNAL(toggled(bool)), SLOT(monolingualPracticeSelected(bool)));
     connect(ParaphraseRadio, SIGNAL(toggled(bool)), SLOT(monolingualPracticeSelected(bool)));
     connect(SynonymRadio, SIGNAL(toggled(bool)), SLOT(monolingualPracticeSelected(bool)));
-    connect(AntonymRadio, SIGNAL(toggled(bool)), SLOT(bilingualPracticeSelected(bool)));
+    connect(AntonymRadio, SIGNAL(toggled(bool)), SLOT(monolingualPracticeSelected(bool)));
     connect(ComparisonRadio, SIGNAL(toggled(bool)), SLOT(monolingualPracticeSelected(bool)));
     connect(ConjugationRadio, SIGNAL(toggled(bool)), SLOT(monolingualPracticeSelected(bool)));
 }
@@ -211,10 +211,11 @@ bool ConfigurePracticeWidget::hasChanged()
     if ( toRow <= LanguageFromList->currentRow() ) {
         toRow++;
     }
-    ///@todo implement so that the current settings are respected
-    return false;
-        //LanguageFromList->currentRow() == Prefs::questionLanguage() &&
-        //    toRow == Prefs::solutionLanguage();
+    if (LanguageFromList->currentRow() == Prefs::questionLanguage() &&
+        toRow == Prefs::solutionLanguage())
+        return false;
+
+    return true;
 
         /// @todo tenses
 }

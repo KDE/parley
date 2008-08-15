@@ -65,7 +65,8 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
      m_renderer = new KSvgRenderer();
      KGameTheme kgtheme;
      // TODO use the kgametheme theme
-     kDebug() << "kgametheme valid:" << kgtheme.load("parley/themes/" + desktopFileName);
+     kDebug() << "kgametheme valid:" << kgtheme.load("parley/themes/" + Prefs::theme() +
+     ".desktop");
      kDebug() << "graphics svg path:" << kgtheme.graphics();
      m_renderer->load(kgtheme.graphics());
 
@@ -202,28 +203,32 @@ void ParleyPracticeMainWindow::setupModeIndependent(ActiveArea * area)
         connect(m_manager, SIGNAL(signalNewSound(const KUrl&)), sprompt, SLOT(slotSetSound(const KUrl&)));
     }
 
-    Feedback * feedback = new Feedback(m_renderer, area, "feedback_box");
-    scene->addItem(feedback);
-    connect(m_validator, SIGNAL(signalFeedback(const QString&)), feedback, SLOT(slotSetText(const QString&)));
-    connect(m_manager, SIGNAL(signalNewEntry(PracticeEntry*)), feedback, SLOT(slotClear()));
-
     SvgBarStatistics * barstats = new SvgBarStatistics(m_renderer, area, "progress_bar", "progress_bar_background");
     scene->addItem(barstats);
     connect(m_stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
 
-    PracticeActionButton * knownButton = new PracticeActionButton(i18n("I Know It"), m_renderer, area, "skip_known_button");
-    scene->addWidget(knownButton);
-    connect(knownButton, SIGNAL(clicked()), actionCollection()->action("skip known"), SIGNAL(triggered()));
+    // these don't apply to flashcard mode
+    if (m_mode != Prefs::EnumTestType::FlashCardsTest)
+    {
+        Feedback * feedback = new Feedback(m_renderer, area, "feedback_box");
+        scene->addItem(feedback);
+        connect(m_validator, SIGNAL(signalFeedback(const QString&)), feedback, SLOT(slotSetText(const QString&)));
+        connect(m_manager, SIGNAL(signalNewEntry(PracticeEntry*)), feedback, SLOT(slotClear()));
 
-    PracticeActionButton * unknownButton = new PracticeActionButton(i18n("I Don't Know It"), m_renderer, area, "skip_unknown_button");
-    connect(unknownButton, SIGNAL(clicked()), actionCollection()->action("skip unknown"), SIGNAL(triggered()));
-    scene->addWidget(unknownButton);
+
+        PracticeActionButton * knownButton = new PracticeActionButton(i18n("I Know It"), m_renderer, area, "skip_known_button");
+        scene->addWidget(knownButton);
+        connect(knownButton, SIGNAL(clicked()), actionCollection()->action("skip known"), SIGNAL(triggered()));
+
+        PracticeActionButton * unknownButton = new PracticeActionButton(i18n("I Don't Know It"), m_renderer, area, "skip_unknown_button");
+        connect(unknownButton, SIGNAL(clicked()), actionCollection()->action("skip unknown"), SIGNAL(triggered()));
+        scene->addWidget(unknownButton);
 
 
-    PracticeActionButton * showSolutionButton = new PracticeActionButton(i18n("Show Solution"), m_renderer, area, "show_solution_button");
-    connect(showSolutionButton, SIGNAL(clicked()), actionCollection()->action("show solution"), SIGNAL(triggered()));
-    scene->addWidget(showSolutionButton);
-
+        PracticeActionButton * showSolutionButton = new PracticeActionButton(i18n("Show Solution"), m_renderer, area, "show_solution_button");
+        connect(showSolutionButton, SIGNAL(clicked()), actionCollection()->action("show solution"), SIGNAL(triggered()));
+        scene->addWidget(showSolutionButton);
+    }
     if (Prefs::practiceTimeout() && Prefs::practiceTimeoutTimePerAnswer()) // timeout can't be 0
     {
         m_timer = new Timer(this);
