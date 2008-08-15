@@ -260,7 +260,7 @@ void ConjugationWidget::tenseEditingFinished()
     const QStringList& oldTenses = m_doc->tenseDescriptions();
     if (!oldTenses.contains(tenseComboBox->currentText())) {
         // add a new tense
-        m_doc->setTenseName(oldTenses.count(), tenseComboBox->currentText());
+        m_doc->identifier(m_identifier).setTense(oldTenses.count(), tenseComboBox->currentText());
         // put it into the completion
         tenseComboBox->completionObject()->addItem(tenseComboBox->currentText());
     }
