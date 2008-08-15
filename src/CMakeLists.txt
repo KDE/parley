@@ -51,6 +51,7 @@ kde4_add_ui_files( settings_SRCS
     settings/generaloptionsbase.ui
     settings/pluginoptionsbase.ui
     settings/languagepropertiespage.ui
+    settings/TitlePageForm.ui
 )
 
 # views on the vocabulary files contents - lessons and the actual words
