@@ -21,6 +21,7 @@
 #define CONFIGUREPRACTICEWIDGET_H
 
 #include "ui_configurepracticewidget.h"
+#include "ui_conjugationoptionswidget.h"
 
 class KEduVocDocument;
 class QStackedLayout;
@@ -74,7 +75,8 @@ private:
         FlashCards
     };
     QStackedLayout* m_optionsStackedLayout;
-    QTreeWidget* m_tenseListWidget;
+    Ui::ConjugationOptionsWidget m_conjugationUi;
+//     QTreeWidget* m_tenseListWidget;
     KEduVocDocument* m_doc;
     bool m_bilingual;
 };

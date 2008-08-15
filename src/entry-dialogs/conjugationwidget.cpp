@@ -257,7 +257,7 @@ void ConjugationWidget::updateVisiblePersons()
 
 void ConjugationWidget::tenseEditingFinished()
 {
-    const QStringList& oldTenses = m_doc->tenseDescriptions();
+    const QStringList& oldTenses = m_doc->identifier(m_identifier).tenseList();
     if (!oldTenses.contains(tenseComboBox->currentText())) {
         // add a new tense
         m_doc->identifier(m_identifier).setTense(oldTenses.count(), tenseComboBox->currentText());

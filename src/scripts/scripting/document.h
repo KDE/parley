@@ -457,8 +457,9 @@ namespace Scripting
             /**
              * Gets the document tenses
              * @return A string list of all the document tenses
+* @todo port this
              */
-            QStringList tenses() const { return m_doc->tenseDescriptions(); }
+//             QStringList tenses() const { return m_doc->tenseDescriptions(); }
 
             // *** grade methods ***
 

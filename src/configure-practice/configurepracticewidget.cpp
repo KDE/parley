@@ -59,9 +59,6 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
         LanguageFromList->addItem( new QListWidgetItem( KIcon(icon), m_doc->identifier(i).name() ) );
     }
 
-    connect(LanguageFromList, SIGNAL(currentRowChanged(int)), SLOT(fromLanguageSelected(int)));
-    LanguageFromList->setCurrentRow(Prefs::questionLanguage());
-
     OptionsGroupBox->setEnabled( false );
     m_optionsStackedLayout = new QStackedLayout(OptionsGroupBox);
     OptionsGroupBox->setLayout(m_optionsStackedLayout);
@@ -75,23 +72,17 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     writtenPracticeUi.setupUi(writtenContainer);
     m_optionsStackedLayout->insertWidget(WrittenPractice, writtenContainer);
 
+    // add the muliple choice practice ui to the stacked widget
+    QWidget* multipleChoiceContainer = new QWidget(OptionsGroupBox);
+    Ui::MultipleChoiceOptionsWidget multipleChoiceUi;
+    multipleChoiceUi.setupUi(multipleChoiceContainer);
+    m_optionsStackedLayout->insertWidget(MultipleChoice, multipleChoiceContainer);
 
     // add the conjugation ui to the stacked widget
-    if ( !m_doc->tenseDescriptions().isEmpty() ) {
-        QWidget* conjugationContainer = new QWidget(OptionsGroupBox);
-        Ui::ConjugationOptionsWidget conjugationUi;
-        conjugationUi.setupUi(conjugationContainer);
-        m_optionsStackedLayout->insertWidget(Conjugation, conjugationContainer);
-        m_tenseListWidget = conjugationUi.tenseSelectionTreeWidget;
-        setupTenses();
-    } else {
-        m_tenseListWidget = 0;
-        QLabel* tenseHint = new QLabel(OptionsGroupBox);
-        tenseHint->setText(i18n("To practice conjugations set up tenses in the \"Edit\" -> \"Grammar\" options and add the conjugation forms to your vocabulary."));
-        tenseHint->setWordWrap(true);
-        m_optionsStackedLayout->insertWidget(Conjugation, tenseHint);
-    }
+    QWidget* conjugationContainer = new QWidget(OptionsGroupBox);
 
+    m_conjugationUi.setupUi(conjugationContainer);
+    m_optionsStackedLayout->insertWidget(Conjugation, conjugationContainer);
 
     // add the comparison ui to the stacked widget
     QWidget* comparisonContainer = new QWidget(OptionsGroupBox);
@@ -116,6 +107,11 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     if ( WrittenRadio->isChecked() ) {
         writtenRadioToggled(true);
     }
+
+    connect(LanguageFromList, SIGNAL(currentRowChanged(int)), SLOT(fromLanguageSelected(int)));
+    LanguageFromList->setCurrentRow(Prefs::questionLanguage());
+
+    setupTenses();
 
     connect(AntonymRadio, SIGNAL(toggled(bool)), SLOT(otherRadioToggled(bool)));
     connect(ArticleRadio, SIGNAL(toggled(bool)), SLOT(otherRadioToggled(bool)));
@@ -158,20 +154,18 @@ void ConfigurePracticeWidget::updateSettings()
         Prefs::setSolutionLanguage(LanguageFromList->currentRow());
     }
 
-    if ( m_tenseListWidget ) {
-        QTreeWidgetItem* parentItem = m_tenseListWidget->invisibleRootItem();
-        QStringList activeTenses;
-        for ( int i = 0; i < parentItem->childCount(); i++ ) {
-            QTreeWidgetItem* tenseItem = parentItem->child(i);
-            if ( tenseItem->checkState(0) == Qt::Checked ) {
-                activeTenses.append(tenseItem->text(0));
-            }
+    QTreeWidgetItem* parentItem = m_conjugationUi.tenseSelectionTreeWidget->invisibleRootItem();
+    QStringList activeTenses;
+    for ( int i = 0; i < parentItem->childCount(); i++ ) {
+        QTreeWidgetItem* tenseItem = parentItem->child(i);
+        if ( tenseItem->checkState(0) == Qt::Checked ) {
+            activeTenses.append(tenseItem->text(0));
         }
-
-        DocumentSettings documentSettings(m_doc->url().url());
-        documentSettings.setConjugationTenses(activeTenses);
-        documentSettings.writeConfig();
     }
+
+    DocumentSettings documentSettings(m_doc->url().url());
+    documentSettings.setConjugationTenses(activeTenses);
+    documentSettings.writeConfig();
 }
 
 void ConfigurePracticeWidget::fromLanguageSelected(int identifierFromIndex)
@@ -197,6 +191,7 @@ void ConfigurePracticeWidget::fromLanguageSelected(int identifierFromIndex)
     if ( LanguageToList->currentRow() < 0 ) {
         LanguageToList->setCurrentRow(0);
     }
+    setupTenses();
 }
 
 void ConfigurePracticeWidget::updateWidgets()
@@ -281,13 +276,28 @@ void ConfigurePracticeWidget::otherRadioToggled(bool checked)
 
 void ConfigurePracticeWidget::setupTenses()
 {
-    DocumentSettings currentSettings(m_doc->url().url());
+    int index = LanguageFromList->currentRow();
+kDebug() << "tense: " << index;
+    QTreeWidget *tenseListWidget = m_conjugationUi.tenseSelectionTreeWidget;
+    tenseListWidget->clear();
+
+    // stack widget - select the right index
+    if ( m_doc->identifier(index).tenseList().isEmpty() ) {
+        // help message
+        m_conjugationUi.conjugationStack->setCurrentIndex(1);
+        return;
+    }
+
+    // the tense list
+    m_conjugationUi.conjugationStack->setCurrentIndex(0);
+
+    DocumentSettings currentSettings(m_doc->url().url() + QString::number(index));
     currentSettings.readConfig();
     QStringList activeTenses = currentSettings.conjugationTenses();
     QTreeWidgetItem* tenseItem;
 
-    foreach ( const QString &tenseName, m_doc->tenseDescriptions() ) {
-        tenseItem = new QTreeWidgetItem(m_tenseListWidget);
+    foreach ( const QString &tenseName, m_doc->identifier(index).tenseList() ) {
+        tenseItem = new QTreeWidgetItem(tenseListWidget);
         tenseItem->setText(0, tenseName);
         if ( activeTenses.contains( tenseName ) ) {
             tenseItem->setCheckState(0, Qt::Checked);
@@ -295,7 +305,7 @@ void ConfigurePracticeWidget::setupTenses()
             tenseItem->setCheckState(0, Qt::Unchecked);
         }
         tenseItem->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
-        m_tenseListWidget->addTopLevelItem( tenseItem );
+        tenseListWidget->addTopLevelItem( tenseItem );
     }
     ///@todo emit changed when checkstate changed
 }
