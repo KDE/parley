@@ -118,6 +118,13 @@ public slots:
     /** Update the title bar of the main window with the current document */
     void slotUpdateWindowCaption();
 
+    /**
+     * Edit languages contained in the document.
+     * This includes adding/removing languages, 
+     * editing articles, personal pronouns and tenses.
+     */
+    void slotLanguageProperties();
+
     /** append language to vocabulary - creates a new column */
     void slotEditLanguages();
     /** When quitting, ask for confirmation if the doc has not been saved */

@@ -56,6 +56,7 @@
 #include "settings/languagedialog.h"
 #include "settings/grammardialog.h"
 #include "settings/TitlePage.h"
+#include "settings/languageproperties.h"
 #include "configure-practice/configurepracticedialog.h"
 #include "prefs.h"
 
@@ -758,7 +759,7 @@ void ParleyApp::initActions()
     actionCollection()->addAction("edit_languages", editLanguages);
     editLanguages->setIcon(KIcon("set-language"));
     editLanguages->setText(i18n("&Languages..."));
-    connect(editLanguages, SIGNAL(triggered()),  this, SLOT(slotEditLanguages()));
+    connect(editLanguages, SIGNAL(triggered()),  this, SLOT(slotLanguageProperties()));
     ///@todo tooltip
 
     KAction* editGramar = new KAction(this);
@@ -1045,6 +1046,14 @@ void ParleyApp::hideWelcomeScreen()
 ParleyDocument* ParleyApp::parleyDocument()
 {
     return m_document;
+}
+
+void ParleyApp::slotLanguageProperties()
+{
+    LanguageProperties properties(m_document->document(), this);
+    if ( properties.exec() == KDialog::Accepted ) {
+         m_vocabularyModel->resetLanguages();
+    }
 }
 
 #include "parley.moc"

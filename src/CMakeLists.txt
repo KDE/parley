@@ -42,7 +42,8 @@ set(settings_SRCS ${settings_SKEL_SRCS}
     settings/languagedialog.cpp
     settings/editlanguagedialogpage.cpp
     settings/grammardialog.cpp
-
+    settings/languageproperties.cpp
+    settings/languagepropertiespage.cpp
 )
 
 # settings ui
@@ -54,6 +55,7 @@ kde4_add_ui_files( settings_SRCS
     settings/generaloptionsbase.ui
     settings/pluginoptionsbase.ui
     settings/languagepage.ui
+    settings/languagepropertiespage.ui
 )
 
 # views on the vocabulary files contents - lessons and the actual words
