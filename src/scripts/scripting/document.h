@@ -450,8 +450,9 @@ namespace Scripting
              * print Parley.doc.tenses()
              * @endcode
              * @param names A string list of the document tenses we want to be using
+* @todo this was moved to identifier->setTenses!
              */
-            void setTenses ( QStringList names ) { m_doc->setTenseDescriptions ( names ); }
+//             void setTenses ( QStringList names ) { m_doc->setTenseDescriptions ( names ); }
 
             /**
              * Gets the document tenses
