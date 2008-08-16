@@ -74,6 +74,8 @@ void MCInput::slotShortcutTriggered(int shortcutNumber)
     {
         if (b->text().startsWith(QString("&%1 ").arg(shortcutNumber)))
         {
+            if (!b->isEnabled())
+                return;
             b->setChecked(true);
             if (b->isChecked())
                 emit triggered();
@@ -135,11 +137,45 @@ void MCInput::slotEmitAnswer()
     }
     foreach(QRadioButton* b, findChildren<QRadioButton*>())
     {
-        kDebug() << b << b->isChecked();
         if (b->isChecked())
         {
-            kDebug() << b->text();
             emit signalAnswer(b->text().remove(QRegExp("^&\\d ")));
         }
      }
+}
+
+
+void MCInput::slotShowHint(const QString& solution)
+{
+    if (!m_area->active()) return;
+
+    int n = 0;
+    int r;
+    QList<QRadioButton*> list = findChildren<QRadioButton*>();
+
+    while (n < 50)
+    {
+        r = KRandom::random() % list.size();
+        QRadioButton* b = list[r];
+        if (b->isEnabled()  && (b->text().remove(QRegExp("^&\\d ")).toLower() != solution.toLower()))
+        {
+            b->setEnabled(false);
+            return;
+        }
+        ++n;
+    }
+}
+
+
+void MCInput::slotShowSolution(const QString& solution)
+{
+    if (!m_area->active()) return;
+
+    foreach(QRadioButton* b, findChildren<QRadioButton*>())
+    {
+        if (b->isEnabled() && (b->text().remove(QRegExp("^&\\d ")).toLower() != solution.toLower()))
+        {
+            b->setEnabled(false);
+        }
+    }
 }

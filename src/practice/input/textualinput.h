@@ -37,6 +37,7 @@ class TextualInput : public QLineEdit
     public slots:
         void slotClear();
         void slotShowSolution(const QString& solution);
+        void slotShowHint(const QString& solution);
         void slotEmitAnswer();
     signals:
         void signalAnswer(const QString& answer);
@@ -44,6 +45,7 @@ class TextualInput : public QLineEdit
     private:
         KSvgRenderer* m_renderer;
         ActiveArea* m_area;
+        int m_size_hint_shown;
 };
 
 #endif

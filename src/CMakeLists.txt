@@ -92,7 +92,6 @@ set(practice_SRCS
     practice/statistics/statistics.cpp
     practice/statistics/svgbarstatistics.cpp
     practice/stdbuttons.cpp
-    practice/hint.cpp
     practice/answervalidator.cpp
     practice/practiceentrymanager.cpp
     practice/timer.cpp

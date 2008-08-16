@@ -120,13 +120,13 @@ PracticeEntryManager::TestCategory PracticeEntryManager::testCategory() const
         case Prefs::EnumTestType::ArticleTest:
         case Prefs::EnumTestType::MultipleChoiceTest:
             return MultipleChoice;
-        case Prefs::EnumTestType::ConjugationTest:
         case Prefs::EnumTestType::ExampleTest:
         case Prefs::EnumTestType::ParaphraseTest:
         case Prefs::EnumTestType::WrittenTest:
         case Prefs::EnumTestType::FlashCardsTest: // this isn't really written, but it doesn't matter.
         case Prefs::EnumTestType::MixedLettersTest:
             return Written;
+        case Prefs::EnumTestType::ConjugationTest:
         case Prefs::EnumTestType::ComparisonTest:
             return MultipleData;
         default:
@@ -190,7 +190,7 @@ void PracticeEntryManager::slotNewEntry()
         switch (testCategory())
         {
             case MultipleData:
-                emit signalNewText(currentSolutions());
+                emit signalNewText(m_prompts);
                 emit signalNewChoices(makeChoices(solution));
                 break;
 
@@ -529,33 +529,41 @@ QString PracticeEntryManager::makeArticleAnswer(KEduVocWordFlags flags) const
 
 QString PracticeEntryManager::tenseDescription(KEduVocWordFlags flags, const QString& tenseName) const
 {
-    QStringList desc;
-    if (flags & KEduVocWordFlag::First)
-        desc << i18n("First person");
-    else if (flags & KEduVocWordFlag::Second)
-        desc << i18n("Second person");
-    else if (flags & KEduVocWordFlag::Third)
-        desc << i18n("Third person");
+    // first we try pronouns
+    KEduVocPersonalPronoun pp = m_doc->identifier(m_solutionTestType).personalPronouns();
 
-    // do genders ever influence conjugation?
-    if (flags & KEduVocWordFlag::Masculine)
-        desc << i18nc("Grammatical masculine gender", "Masculine");
-    else if (flags & KEduVocWordFlag::Feminine)
-        desc << i18nc("Grammatical feminine gender", "Feminine");
-    else if (flags & KEduVocWordFlag::Neuter)
-        desc << i18nc("Grammatical neuter gender", "Neuter");
+    QString pronoun = pp.personalPronoun(flags);
+    if (pronoun.isEmpty())
+    {
+        kDebug() << "failed to find a pronoun.";
+        // if its empty, we revert to a generic description
+        QStringList desc;
+        if (flags & KEduVocWordFlag::First)
+            desc << i18n("First person");
+        else if (flags & KEduVocWordFlag::Second)
+            desc << i18n("Second person");
+        else if (flags & KEduVocWordFlag::Third)
+            desc << i18n("Third person");
 
-    if (flags & KEduVocWordFlag::Singular)
-        desc << i18nc("Grammatical singular number", "Singular");
-    if (flags & KEduVocWordFlag::Dual)
-        desc << i18nc("Grammatical dual number (doesn't exist in all languages)", "Dual");
-    if (flags & KEduVocWordFlag::Plural)
-        desc << i18nc("Grammatical plural number", "Plural");
+        // do genders ever influence conjugation?
+        if (flags & KEduVocWordFlag::Masculine)
+            desc << i18nc("Grammatical masculine gender", "Masculine");
+        else if (flags & KEduVocWordFlag::Feminine)
+            desc << i18nc("Grammatical feminine gender", "Feminine");
+        else if (flags & KEduVocWordFlag::Neuter)
+            desc << i18nc("Grammatical neuter gender", "Neuter");
 
-    if (!tenseName.isEmpty())
-        desc << tenseName;
+        if (flags & KEduVocWordFlag::Singular)
+            desc << i18nc("Grammatical singular number", "Singular");
+        if (flags & KEduVocWordFlag::Dual)
+            desc << i18nc("Grammatical dual number (doesn't exist in all languages)", "Dual");
+        if (flags & KEduVocWordFlag::Plural)
+            desc << i18nc("Grammatical plural number", "Plural");
 
-    return desc.join(" ");
+        pronoun = desc.join(" ");
+    }
+
+    return tenseName + ": " + pronoun;
 }
 
 
@@ -596,10 +604,12 @@ void PracticeEntryManager::setConjugationData(KEduVocTranslation * t)
     {
         r = KRandom::random() % used.size();
         keys = t->conjugation(used[r]).keys();
-        kDebug() << keys << keys.size();
+        if (!keys.size()) continue;
+
         r2 = KRandom::random() % keys.size();
         f = keys[r2];
-        s = t->conjugation(used[r]).conjugation(f).text();        if (!m_solutions.contains(s))
+        s = t->conjugation(used[r]).conjugation(f).text();
+        if (!m_solutions.contains(s))
         {
             m_prompts << tenseDescription(f, used[r]);
             m_solutions << s;

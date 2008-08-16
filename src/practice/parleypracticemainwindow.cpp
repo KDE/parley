@@ -84,7 +84,10 @@ void ParleyPracticeMainWindow::slotCheckAnswer(const QStringList& input)
 
 void ParleyPracticeMainWindow::slotShowSolution()
 {
-    emit signalShowSolution(m_manager->currentSolution(), m_state);
+    if (m_mode == Prefs::EnumTestType::ConjugationTest || m_mode == Prefs::EnumTestType::ComparisonTest)
+        emit signalShowSolution(m_manager->currentSolutions(), m_state);
+    else
+        emit signalShowSolution(m_manager->currentSolution(), m_state);
     if (m_mode != Prefs::EnumTestType::FlashCardsTest) // tainting and such doesn't exist in flashcard mode.
     {
         if (m_state == CheckAnswer) // only switch if they haven't already answered
@@ -97,6 +100,13 @@ void ParleyPracticeMainWindow::slotShowSolution()
     {
         m_manager->slotNewFlashcardBack();
     }
+}
+
+void ParleyPracticeMainWindow::slotShowHint()
+{
+    // the currentSolutions() modes use their own hint mechanism,
+    // so we can default to the currentSolution() version.
+    emit signalShowHint(m_manager->currentSolution());
 }
 
 void ParleyPracticeMainWindow::slotCreatePreferencesDialog()

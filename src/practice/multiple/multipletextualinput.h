@@ -38,6 +38,8 @@ class MultipleTextualInput : public QObject
         void slotSetChoices(const QStringList& texts);
         void slotClear();
         void slotEmitAnswer();
+        void slotShowHint();
+        void slotShowSolution(const QStringList& solutions);
     signals:
         void signalAnswer(const QStringList&);
     protected:
@@ -45,6 +47,8 @@ class MultipleTextualInput : public QObject
         QStringList m_elementIds;
         QList<QLineEdit*> m_kids;
         QMap<QString, QLineEdit*> m_map;
+        QString m_hint;
+        ActiveArea* m_area;
 };
 
 #endif

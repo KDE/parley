@@ -21,7 +21,7 @@
       <Menu name="Hint" >
       <text>Hint</text>
       <Action name="hint" />
-      <Action name="show answer" />
+      <Action name="show solution" />
     </Menu>
   </MenuBar>
 </gui>

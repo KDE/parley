@@ -40,6 +40,8 @@ class MCInput : public QGroupBox
         void slotEmitAnswer();
         void slotShortcutTriggered(int shortcutNumber);
         void slotSetChoices(const QStringList& choices);
+        void slotShowHint(const QString& solution);
+        void slotShowSolution(const QString& solution);
     signals:
         void signalAnswer(const QString& answer);
         void triggered();

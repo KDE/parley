@@ -76,6 +76,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         void slotCheckAnswer(const QString& input);
         void slotCheckAnswer(const QStringList& input);
         void slotShowSolution();
+        void slotShowHint();
         void slotToggleCheckAnswerContinueActions();
         void slotCreatePreferencesDialog();
         /// Forces the entry to be marked as correctly answered. Used for when correction isn't neccessary. (eg  Flashcard mode)
@@ -92,6 +93,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         void signalCheckAnswer(const QString&, const QString&);
         void signalShowSolution(const QString&, int);
         void signalShowSolution(const QStringList&, int);
+        void signalShowHint(const QString&);
         void signalCheckAnswerContinueActionsToggled(int);
         void signalPracticeFinished();
 };

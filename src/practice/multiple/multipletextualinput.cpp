@@ -33,7 +33,7 @@
 #include <QLineEdit>
 #include <KRandom>
 MultipleTextualInput::MultipleTextualInput(KSvgRenderer * renderer, ActiveArea * area, QStringList& elementIds, QObject * parent)
-    : QObject(parent), m_renderer(renderer),m_elementIds(elementIds)
+    : QObject(parent), m_renderer(renderer),m_elementIds(elementIds), m_area(area)
 {
     foreach(QString id, elementIds)
     {
@@ -59,7 +59,7 @@ MultipleTextualInput::~MultipleTextualInput()
 
 void MultipleTextualInput::slotSetChoices(const QStringList& texts)
 {
-    kDebug() << texts;
+    if (!m_area->active()) return;
 
     if (m_elementIds.size() != texts.size())
     {
@@ -73,24 +73,44 @@ void MultipleTextualInput::slotSetChoices(const QStringList& texts)
         return;
     }
 
+
     slotClear();
 
     // in this mode we only set one; the provide the other 2
-    int r = KRandom::random() % (m_elementIds.size() - 1);
+    int r = KRandom::random() % m_elementIds.size();
     kDebug() << r;
     m_map[m_elementIds[r]]->setText(texts[r]);
+
+    // entry zero is the absolute/infintive/basic form, so it makes a good hint.
+    // if r happens to equal 0, too bad for the user ;)
+    m_hint = texts[0];
 }
 
 void MultipleTextualInput::slotClear()
 {
+    if (!m_area->active()) return;
+
     foreach(QLineEdit* k, m_kids)
     {
         k->setText("");
     }
 }
 
+void MultipleTextualInput::slotShowHint()
+{
+    if (!m_area->active()) return;
+
+    QPalette pal;
+    pal.setColor(QPalette::Text, Qt::green);
+    m_map[m_elementIds[0]]->setPalette(pal);
+    // in this mode hints are the absolute/infinitive/basic form
+    m_map[m_elementIds[0]]->setText(m_hint);
+}
+
 void MultipleTextualInput::slotEmitAnswer()
 {
+    if (!m_area->active()) return;
+
     QStringList qsl;
     for(int i = 0; i < m_elementIds.size(); ++i)
     {
@@ -98,4 +118,17 @@ void MultipleTextualInput::slotEmitAnswer()
     }
     kDebug() << qsl;
     emit signalAnswer(qsl);
+}
+
+void MultipleTextualInput::slotShowSolution(const QStringList& texts)
+{
+    if (!m_area->active()) return;
+
+    for(int i = 0; i < texts.size() && i < m_elementIds.size(); ++i)
+    {
+        QPalette pal;
+        pal.setColor(QPalette::Text, Qt::green);
+        m_map[m_elementIds[i]]->setPalette(pal);
+        m_map[m_elementIds[i]]->setText(texts[i]);
+    }
 }

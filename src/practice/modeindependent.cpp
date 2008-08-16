@@ -37,7 +37,6 @@
 #include "statistics/statistics.h"
 #include "statistics/svgbarstatistics.h"
 
-#include "hint.h"
 #include "practiceentrymanager.h"
 #include "answervalidator.h"
 #include "prefs.h"
@@ -177,6 +176,7 @@ void ParleyPracticeMainWindow::setupActions()
     KAction *hintAction = new KAction(this);
     hintAction->setText(i18n("Show Hint"));
     actionCollection()->addAction("hint", hintAction);
+    connect(hintAction, SIGNAL(triggered()), this, SLOT(slotShowHint()));
     if (!Prefs::showHints())
         hintAction->setVisible(false);
 

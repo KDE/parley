@@ -34,7 +34,7 @@
 #include <KRandom>
 
 MultipleTextualPrompt::MultipleTextualPrompt(KSvgRenderer * renderer, ActiveArea * area, QStringList& elementIds, QObject * parent)
-    : QObject(parent), m_renderer(renderer),m_elementIds(elementIds)
+    : QObject(parent), m_renderer(renderer),m_elementIds(elementIds), m_area(area)
 {
     foreach(QString id, elementIds)
     {
@@ -64,6 +64,8 @@ MultipleTextualPrompt::~MultipleTextualPrompt()
 
 void MultipleTextualPrompt::slotSetText(const QStringList& texts)
 {
+    if (!m_area->active()) return;
+
     if (m_elementIds.size() != texts.size())
     {
         kDebug() << "Size mismatch; we got " << texts.size() << "and need" << m_elementIds.size();
@@ -85,6 +87,8 @@ void MultipleTextualPrompt::slotSetText(const QStringList& texts)
 
 void MultipleTextualPrompt::slotClear()
 {
+    if (!m_area->active()) return;
+
     foreach(QGraphicsTextItem* k, m_kids)
     {
         k->setHtml("");

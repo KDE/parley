@@ -32,7 +32,7 @@
 
 TextualInput::TextualInput(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget* parent)
         : QLineEdit(parent),
-        m_renderer(renderer), m_area(area)
+        m_renderer(renderer), m_area(area), m_size_hint_shown(0)
 {
     QString tId = area->translateElementId(elementId);
     if (tId.isEmpty()) setVisible(false);
@@ -54,6 +54,8 @@ void TextualInput::slotEmitAnswer()
 
 void TextualInput::slotShowSolution(const QString& solution)
 {
+    if (!m_area->active()) return;
+
     QPalette pal;
     pal.setColor(QPalette::Text, Qt::green);
     setPalette(pal);
@@ -62,5 +64,20 @@ void TextualInput::slotShowSolution(const QString& solution)
 
 void TextualInput::slotClear()
 {
+    if (!m_area->active()) return;
+
     setText("");
+}
+
+void TextualInput::slotShowHint(const QString& hint)
+{
+    if (!m_area->active()) return;
+
+    QString temp;
+    ++m_size_hint_shown;
+    for( int i = 0; i < m_size_hint_shown ; ++i)
+    {
+        temp.append(hint[i]);
+    }
+    slotShowSolution(temp);
 }

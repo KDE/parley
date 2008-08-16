@@ -43,6 +43,7 @@ class MultipleTextualPrompt : public QObject
         QStringList m_elementIds;
         QList<QGraphicsTextItem*> m_kids;
         QMap<QString, QGraphicsTextItem*> m_map;
+        ActiveArea* m_area;
 };
 
 #endif

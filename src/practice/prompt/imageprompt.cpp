@@ -35,7 +35,6 @@ ImagePrompt::ImagePrompt ( KSvgRenderer * renderer, ActiveArea * area, const QSt
     m_enabled = !tId.isEmpty();
     if (!m_enabled) setVisible(false);
 
-    kDebug() << tId;
 
      QRectF bounds = m_renderer->boundsOnElement(tId);
      bounds.translate(area->offset());

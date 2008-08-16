@@ -43,7 +43,6 @@
 #include "statistics/statistics.h"
 #include "statistics/svgbarstatistics.h"
 #include "stdbuttons.h"
-#include "hint.h"
 #include "practiceentrymanager.h"
 #include "answervalidator.h"
 #include "prefs.h"
@@ -72,6 +71,7 @@ void ParleyPracticeMainWindow::setupWrittenTemplate(ActiveArea * area)
     scene->addWidget(input);
     connect(input, SIGNAL(signalAnswer(const QString&)), this, SLOT(slotCheckAnswer(const QString&)));
     connect(this, SIGNAL(signalShowSolution(const QString&, int)), input, SLOT(slotShowSolution(const QString&)));
+    connect(this, SIGNAL(signalShowHint(const QString&)), input, SLOT(slotShowHint(const QString&)));
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
      connect(actionCollection()->action("continue"), SIGNAL(triggered()), input, SLOT(slotClear()));
 
@@ -83,11 +83,6 @@ void ParleyPracticeMainWindow::setupWrittenTemplate(ActiveArea * area)
     connect(stdbutton, SIGNAL(signalContinue()), actionCollection()->action("continue"), SIGNAL(triggered()));
 
 
-    Hint * hint = new Hint(this);
-    connect(actionCollection()->action("hint"), SIGNAL(triggered()), hint, SLOT(slotShowHint()));
-    // this is the hint for now :)
-    connect(hint, SIGNAL(signalShowHint()), actionCollection()->action("show solution"), SIGNAL(triggered()));
-    connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), m_stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
 }
 
 void ParleyPracticeMainWindow::setupFlashCardTemplate(ActiveArea * area)
@@ -129,6 +124,9 @@ void ParleyPracticeMainWindow::setupMultipleChoiceTemplate(ActiveArea * area)
     connect(input, SIGNAL(signalAnswer(const QString&)), this, SLOT(slotCheckAnswer(const QString&)));
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
     connect(m_manager, SIGNAL(signalNewChoices(const QStringList&)), input, SLOT(slotSetChoices(const QStringList&)));
+    connect(this, SIGNAL(signalShowHint(const QString&)), input, SLOT(slotShowHint(const QString&)));
+    connect(this, SIGNAL(signalShowSolution(const QString&, int)), input, SLOT(slotShowSolution(const QString&)));
+
 
     StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, area, "continue_button");
     scene->addWidget(stdbutton);
@@ -137,13 +135,6 @@ void ParleyPracticeMainWindow::setupMultipleChoiceTemplate(ActiveArea * area)
     connect(stdbutton, SIGNAL(signalCheckAnswer()), actionCollection()->action("check answer"), SIGNAL(triggered()));
     connect(stdbutton, SIGNAL(signalContinue()), actionCollection()->action("continue"), SIGNAL(triggered()));
     stdbutton->setVisible(true); // enable for now
-
-    Hint * hint = new Hint(this);
-    connect(actionCollection()->action("hint"), SIGNAL(triggered()), hint, SLOT(slotShowHint()));
-    // this is the hint for now :)
-    connect(hint, SIGNAL(signalShowHint()), actionCollection()->action("show solution"), SIGNAL(triggered()));
-    connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), m_stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
-
 
     // if practice is stopped and started again, this will revert to 0.
     static QPointer<QSignalMapper> mapper = 0;
@@ -202,7 +193,7 @@ void ParleyPracticeMainWindow::setupMixedLettersTemplate(ActiveArea * area)
     connect(this, SIGNAL(signalShowSolution(const QString&, int)), input, SLOT(slotShowSolution(const QString&)));
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
     connect(actionCollection()->action("continue"), SIGNAL(triggered()), input, SLOT(slotClear()));
-
+    connect(this, SIGNAL(signalShowHint(const QString&)), input, SLOT(slotShowHint(const QString&)));
 
     StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, area, "continue_button");
     scene->addWidget(stdbutton);
@@ -210,12 +201,6 @@ void ParleyPracticeMainWindow::setupMixedLettersTemplate(ActiveArea * area)
     connect(this, SIGNAL(signalCheckAnswerContinueActionsToggled(int)), stdbutton, SLOT(slotToggleText(int)));
     connect(stdbutton, SIGNAL(signalCheckAnswer()), actionCollection()->action("check answer"), SIGNAL(triggered()));
     connect(stdbutton, SIGNAL(signalContinue()), actionCollection()->action("continue"), SIGNAL(triggered()));
-
-    Hint * hint = new Hint(this);
-    connect(actionCollection()->action("hint"), SIGNAL(triggered()), hint, SLOT(slotShowHint()));
-    // this is the hint for now :)
-    connect(hint, SIGNAL(signalShowHint()), actionCollection()->action("show solution"), SIGNAL(triggered()));
-    connect(hint, SIGNAL(signalAnswerTainted(Statistics::TaintReason)), m_stats, SLOT(slotTaintAnswer(Statistics::TaintReason)));
 }
 
 void ParleyPracticeMainWindow::setupComparisonTemplate(ActiveArea * area)
@@ -238,10 +223,10 @@ void ParleyPracticeMainWindow::setupComparisonTemplate(ActiveArea * area)
     MultipleTextualInput * minput = new MultipleTextualInput(m_renderer, area, qsl);
     connect(m_manager, SIGNAL(signalNewChoices(const QStringList&)), minput, SLOT(slotSetChoices(const QStringList&)));
     connect(minput, SIGNAL(signalAnswer(const QStringList&)), this, SLOT(slotCheckAnswer(const QStringList&)));
-    // connect(this, SIGNAL(signalShowSolution(const QStringList&, int)), minput, SLOT(slotShowSolution(const QStringList&))); // TODO do this
+    connect(this, SIGNAL(signalShowSolution(const QStringList&, int)), minput, SLOT(slotShowSolution(const QStringList&)));
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), minput, SLOT(slotEmitAnswer()));
-    //
     //connect(actionCollection()->action("continue"), SIGNAL(triggered()), minput, SLOT(slotClear()));
+    connect(this, SIGNAL(signalShowHint(const QString&)), minput, SLOT(slotShowHint()));
 
     StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, area, "continue_button");
     scene->addWidget(stdbutton);
@@ -256,18 +241,19 @@ void ParleyPracticeMainWindow::setupConjugationTemplate(ActiveArea * area)
     QGraphicsScene * scene = area->scene();
 
     QStringList questions, answers;
-    questions << "infinitive_question_text_box"  << "question_text_box_1" << "question_text_box_2" <<  "question_text_box_3";
-    answers << "infinitive_answer_text_box"  << "answer_text_box_1" << "answer_text_box_2" <<  "answer_text_box_3";
+    questions << "question_text_box_infinitive"  << "question_text_box_1" << "question_text_box_2" <<  "question_text_box_3";
+    answers << "answer_text_box_infinitive"  << "answer_text_box_1" << "answer_text_box_2" <<  "answer_text_box_3";
 
     MultipleTextualPrompt * mprompt = new MultipleTextualPrompt(m_renderer, area, questions);
     connect(m_manager, SIGNAL(signalNewText(const QStringList&)), mprompt, SLOT(slotSetText(const QStringList&)));
 
     // it adds itself to the scene
     MultipleTextualInput * minput = new MultipleTextualInput(m_renderer, area, answers);
-    connect(m_manager, SIGNAL(signalNewChoices(const QStringList&)), minput, SLOT(slotSetChoices(const QStringList&)));
     connect(minput, SIGNAL(signalAnswer(const QStringList&)), this, SLOT(slotCheckAnswer(const QStringList&)));
-    // connect(this, SIGNAL(signalShowSolution(const QStringList&, int)), minput, SLOT(slotShowSolution(const QStringList&))); // TODO do this
+    connect(m_manager, SIGNAL(signalNewChoices(const QStringList&)), minput, SLOT(slotSetChoices(const QStringList&)));
+    connect(this, SIGNAL(signalShowSolution(const QStringList&, int)), minput, SLOT(slotShowSolution(const QStringList&)));
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), minput, SLOT(slotEmitAnswer()));
+    connect(this, SIGNAL(signalShowHint(const QString&)), minput, SLOT(slotShowHint()));
 
     StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, area, "continue_button");
     scene->addWidget(stdbutton);
