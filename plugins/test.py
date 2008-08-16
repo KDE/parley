@@ -131,6 +131,15 @@ def setWordType():
     for tr in entry.translations():
         Parley.doc.setWordType(tr,"Noun")
         print tr.wordType()
+        
+def addNewTenses():
+  for ident in Parley.doc.identifiers():
+    T = ident.tenses()
+    T.append("Present Perfect")
+    T.append("Past Simple")
+    T.append("Past Perfect")
+    ident.setTenses(T)
+    print ident.tenses()
   
 def conjugations():
   Parley.doc.setTenses(["present","past"])
@@ -308,6 +317,28 @@ def GermanArticles():
     newid.setPersonalPronoun("sie",Parley.Plural,Parley.Third)
     print newid.personalPronouns()
     index = Parley.doc.appendIdentifier(newid)
+    
+    #how to specify the articles and personal pronouns of a language (German in this example)
+def GermanArticlesNew():
+    newid = Parley.doc.newIdentifier()
+    newid.name = "German"
+    newid.locale = "de"
+    newid.setArticle("der",Parley.Singular|Parley.Definite|Parley.Masculine)
+    newid.setArticle("die",Parley.Singular|Parley.Definite|Parley.Feminine)
+    newid.setArticle("das",Parley.Singular|Parley.Definite|Parley.Neuter)
+    newid.setArticle("ein",Parley.Singular|Parley.Indefinite|Parley.Masculine)
+    newid.setArticle("eine",Parley.Singular|Parley.Indefinite|Parley.Feminine)
+    newid.setArticle("ein",Parley.Singular|Parley.Indefinite|Parley.Neuter)
+    newid.setPersonalPronoun("ich",Parley.Singular|Parley.First)
+    newid.setPersonalPronoun("du",Parley.Singular|Parley.Second)
+    newid.setPersonalPronoun("er",Parley.Singular|Parley.Third|Parley.Masculine)
+    newid.setPersonalPronoun("sie",Parley.Singular|Parley.Third|Parley.Feminine)
+    newid.setPersonalPronoun("es",Parley.Singular|Parley.Third|Parley.Neuter)
+    newid.setPersonalPronoun("wir",Parley.Plural|Parley.First)
+    newid.setPersonalPronoun("ihr",Parley.Plural|Parley.Second)
+    newid.setPersonalPronoun("sie",Parley.Plural|Parley.Third)
+    #print newid.personalPronouns()
+    index = Parley.doc.appendIdentifier(newid)
   
 def testEnums():
   for entry in Parley.doc.rootLesson.entries(True):
@@ -329,6 +360,8 @@ def testSetEntries():
   
 def actionFunction():
   print "Action called!!"
+  #addNewTenses()
+  GermanArticlesNew()
   #for entry in Parley.doc.rootLesson.entries(True):
     #print entry.translationTexts()
   #testSetEntries()
@@ -336,7 +369,7 @@ def actionFunction():
     #print entry.translationTexts()
   #testEnums()
   #tryArticle2()
-  testUI()
+  #testUI()
   #GermanArticles()
   #newDocument()
   #conjugations()
@@ -447,7 +480,7 @@ Parley.connect("translateWord(const QString &,const QString &,const QString &)",
 
 print "TEST ACTION"
 
-#registerActions()
+registerActions()
 
 #print "OPENING DOCUMENT"
 ##Parley.open('/home/kde-devel/My\ Vocabularies/test.kvtml')

@@ -184,14 +184,26 @@ namespace Scripting
                 Adverb = 0x1000,
                 Article = 0x2000,
                 Conjunction = 0x4000,
-                OtherPartOfSpeech = 0x8000,
+
+                // Person
+                First = 0x10000,
+                Second = 0x20000,
+                Third = 0x40000,
+
+                // Declension Case
+                Nominative = 0x80000,
+                Genitive = 0x100000,
+                Dative = 0x200000,
+                Accusative = 0x400000,
+                Ablative = 0x800000,
+                Locative = 0x1000000,
+                Vocative = 0x2000000,
 
                 // Other assorted flags
-                Regular = 0x10000, // Regular verb conjugation
-                Irregular = 0x20000, // Irregular verb conjugation
-                Phrase = 0x40000, // The 'word' is actually a phrase
-                Definite = 0x80000, // The article is definite
-                Indefinite = 0x100000 // The article is indefinite
+                Definite = 0x4000000, // The article is definite
+                Indefinite = 0x8000000, // The article is indefinite
+                Regular = 0x10000000,
+                Irregular = 0x20000000
             };
 
             ///Conjugation/Declension number
@@ -263,12 +275,14 @@ namespace Scripting
 
         public Q_SLOTS:
 
-            QStringList dataDirs() {
-                return KGlobal::dirs()->findDirs("data","parley");
+            QStringList dataDirs()
+            {
+                return KGlobal::dirs()->findDirs ( "data","parley" );
             }
 
-            QStringList pluginDirs() {
-                return KGlobal::dirs()->findDirs("data","parley/plugins");
+            QStringList pluginDirs()
+            {
+                return KGlobal::dirs()->findDirs ( "data","parley/plugins" );
             }
 
             /** Returns a list of Expression objects (the selected entries of the active lesson) */

@@ -29,20 +29,71 @@ This class finds the scripts installed in the application folder and manages loa
 class ScriptManager : public QObject
 {
     public:
-        ScriptManager(ParleyApp * parleyApp);
+        ScriptManager ( ParleyApp * parleyApp );
 
         ~ScriptManager();
+        /**
+         * Finds all the available desktop files in {PARLEY_DATA_FOLDER}/plugins
+         *
+         * @return The list of desktop filenames available for parley
+         */
         static QStringList getDesktopFiles();
+        /**
+         * Returns a QMap (from from categories codenames to categories display label)
+         * to be used in KPluginSelector (ScriptDialog) for displaying the various
+         * categories
+         *
+         * @return the QMap described above
+         */
         static QMap<QString, QString> categories();
+        /**
+         * Parses the desktop @p desktopFile given and returns the value of "Script" entry.
+         *
+         * @param desktopFile The .desktop file that will get the value from
+         * @return The value of "Script" entry. Empty string of no "Script" entry is found
+         */
         static QString getScriptEntry ( QString desktopFile );
+        /**
+         * Returns the full path to the script name given in the @p desktopFile.
+         *
+         * @param desktopFile The desktop file for the parley plugin
+         * @return The full-path to the script
+         */
+
         QString getScriptFileName ( QString desktopFile );
+        /**
+         * Returns a list of filenames (full path) of enabled scripts
+         */
         QStringList enabledScripts();
+        /**
+         * Modify the parleyrc configuration so it disables the @p dektopFile plugin.
+         * This function is to be used when the plugin is invalid (wrong script name,
+         * incorrect desktop file etc)
+         *
+         * @param desktopFile
+         */
         void disablePlugin ( QString desktopFile );
         QStringList availableScripts();
+        /**
+         * Load all the available scripts so they can be activated afterwards
+         */
         void loadScripts();
+        /**
+         * Adds a QObject as a module for the script
+         * @param obj The QObject to be added to the script
+         * @param name The name of the object as it will appear in the script
+         */
         void addObject ( QObject * obj, const QString & name );
+        /**
+         * Reload all the scripts
+         */
         void reloadScripts();
-        void addScriptAction(const QString & name, KAction * action);
+        /**
+         * Add a KAction to the Scripts menu
+         * @param name The action name
+         * @param action KAction to be added
+         */
+        void addScriptAction ( const QString & name, KAction * action );
 
     private:
         ParleyApp * m_parleyApp;

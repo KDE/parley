@@ -35,11 +35,6 @@ ScriptManager::~ScriptManager()
 }
 
 
-/**
- * Finds all the available desktop files in {PARLEY_DATA_FOLDER}/plugins
- *
- * @return The list of desktop filenames available for parley
- */
 QStringList ScriptManager::getDesktopFiles()
 {
 //     QStringList scriptsAvailable;
@@ -52,13 +47,6 @@ QStringList ScriptManager::getDesktopFiles()
 }
 
 
-/**
- * Returns a QMap (from from categories codenames to categories display label)
- * to be used in KPluginSelector (ScriptDialog) for displaying the various
- * categories
- *
- * @return the QMap described above
- */
 QMap<QString, QString> ScriptManager::categories()
 {
     QMap<QString, QString> categories;
@@ -67,12 +55,6 @@ QMap<QString, QString> ScriptManager::categories()
 }
 
 
-/**
- * Parses the desktop @p desktopFile given and returns the value of "Script" entry.
- *
- * @param desktopFile The .desktop file that will get the value from
- * @return The value of "Script" entry. Empty string of no "Script" entry is found
- */
 QString ScriptManager::getScriptEntry ( QString desktopFile )
 {
     //open its as a raw configuration file and read the script entry
@@ -82,12 +64,6 @@ QString ScriptManager::getScriptEntry ( QString desktopFile )
 }
 
 
-/**
- * Returns the full path to the script name given in the @p desktopFile.
- *
- * @param desktopFile The desktop file for the parley plugin
- * @return The full-path to the script
- */
 QString ScriptManager::getScriptFileName ( QString desktopFile )
 {
     QFileInfo desktopFileInfo ( desktopFile );
@@ -95,10 +71,6 @@ QString ScriptManager::getScriptFileName ( QString desktopFile )
 }
 
 
-/**
- *
- * @return List of filenames of enalbed scripts
- */
 QStringList ScriptManager::enabledScripts()
 {
     QStringList enabledScripts;
@@ -119,13 +91,6 @@ QStringList ScriptManager::enabledScripts()
 }
 
 
-/**
- * Modify the parleyrc configuration so it disables the @p dektopFile plugin.
- * This function is to be used when the plugin is invalid (wrong script name,
- * incorrect desktop file etc)
- *
- * @param desktopFile
- */
 void ScriptManager::disablePlugin ( QString desktopFile )
 {
     KConfigGroup cfg ( KSharedConfig::openConfig ( "parleyrc" ),"Plugins" );
@@ -138,9 +103,6 @@ void ScriptManager::disablePlugin ( QString desktopFile )
 }
 
 
-/**
- * Load all the available scripts so they can be activated afterwards
- */
 void ScriptManager::loadScripts()
 {
     QStringList scripts = enabledScripts();
@@ -155,20 +117,12 @@ void ScriptManager::loadScripts()
 }
 
 
-/**
- * Adds a QObject as a module for the script
- * @param obj The QObject to be added to the script
- * @param name The name of the object as it will appear in the script
- */
 void ScriptManager::addObject ( QObject * obj, const QString & name )
 {
     m_scriptObjects[name] = obj;
 }
 
 
-/**
- * Reload all the scripts
- */
 void ScriptManager::reloadScripts()
 {
     //deactivate (delete) all the active scripts
@@ -186,9 +140,6 @@ void ScriptManager::reloadScripts()
 }
 
 
-/**
- *
- */
 void ScriptManager::addScriptAction (const QString & name, KAction * action )
 {
     //unplug action list (orelse it will add twice the same entries
