@@ -49,8 +49,6 @@ namespace Scripting
      * - Document::appendNewLesson(const QString &) function
      * - Document::appendNewLesson(const QString &,Lesson*) function
      *
-     * The <b> document tenses </b> can be set with setTenses() function and read by tenses() function.
-     *
      * The <b> document identifiers </b> (see Identifier class) can be set by these functions:
      * - newIdentifier() and appendIdentifier() functions
      * - appendNewIdentifier() function
@@ -435,31 +433,6 @@ namespace Scripting
 // not implemented in KEduVocDocument
 //             int indexOfIdentifier ( const QString &name ) const { return m_doc->indexOfIdentifier(name); }
 
-            // *** tense methods ***
-
-            /**
-             * Sets the document tenses
-             * @code
-             * #how to add new tenses to a parley document
-             * import Parley
-             * tenses = Parley.doc.tenses()
-             * print tenses
-             * tenses.append("Present Perfect")
-             * tenses.append("Past Simple")
-             * Parley.doc.setTenses(tenses)
-             * print Parley.doc.tenses()
-             * @endcode
-             * @param names A string list of the document tenses we want to be using
-* @todo this was moved to identifier->setTenses!
-             */
-//             void setTenses ( QStringList names ) { m_doc->setTenseDescriptions ( names ); }
-
-            /**
-             * Gets the document tenses
-             * @return A string list of all the document tenses
-* @todo port this
-             */
-//             QStringList tenses() const { return m_doc->tenseDescriptions(); }
 
             // *** grade methods ***
 
