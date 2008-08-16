@@ -147,20 +147,21 @@ namespace Scripting
             * @code
             * #how to add new tenses to a language
             * import Parley
-            * tenses = Parley.doc.tenses()
-            * print tenses
-            * tenses.append("Present Perfect")
-            * tenses.append("Past Simple")
-            * Parley.doc.setTenses(tenses)
-            * print Parley.doc.tenses()
+            * for ident in Parley.doc.identifiers():
+            *    T = ident.tenses()
+            *    print T
+            *    T.append("Present Perfect")
+            *    T.append("Past Simple")
+            *    T.append("Past Perfect")
+            *    ident.setTenses(T)
+            *    print ident.tenses()
             * @endcode
             * @param names A string list of the document tenses we want to be using
-* @todo Change the example for this function
             */
             void setTenses ( QStringList names ) { m_identifier->setTenseList ( names ); }
 
             /**
-             * Gets the language tenses
+             * Gets the language tenses (see example in Identifier::setTenses())
              * @return A string list of all the language tenses
              */
             QStringList tenses() const { return m_identifier->tenseList(); }
