@@ -7,36 +7,6 @@ from PyQt4 import QtCore
 from PyQt4 import uic
 import sys
 
-(MyWidget, baseClass) = uic.loadUiType(Parley.pluginDirs()[0]+"./mywidget.ui")
-
-class MyDialog(QtGui.QDialog, MyWidget):
-  def edittext(self):
-    print "button clicked"
-    self.textEdit.setText("edit!!")
-      
-  def __init__(self):
-    QtGui.QDialog.__init__(self)
-
-    # Set up the user interface from Designer.
-    self.setupUi(self)
-
-    # Make some local modifications.
-    #self.colorDepthCombo.addItem("2 colors (1 bit per pixel)")
-        
-    print "connecting"
-    self.connect(self.pushButton, QtCore.SIGNAL("clicked()"),self.edittext)
-                 #self, QtCore.SLOT("edittext(MyDialog)"))
-                    
-    print self.textEdit
-    print self.pushButton
-
-    # Connect up the buttons.
-    #self.connect(self.okButton, QtCore.SIGNAL("clicked()"),
-                 #self, QtCore.SLOT("accept()"))
-    #self.connect(self.cancelButton, QtCore.SIGNAL("clicked()"),
-                     #self, QtCore.SLOT("reject()"))
-    
-
 
 def testPyQt():
   print "Testing pyQt"
@@ -50,8 +20,6 @@ def testPyQt():
   #print c
   #c.setupUi(widget)
   #widget.exec_()
-  window = MyDialog()
-  window.exec_()
   #app.exec_()
   
 def testPyKDE():
