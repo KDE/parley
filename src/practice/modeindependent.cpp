@@ -196,26 +196,37 @@ void ParleyPracticeMainWindow::setupModeIndependent(ActiveArea * area)
     {
         case Prefs::EnumTestType::SynonymTest:
             instruction = i18n("Select Synonym:");
+            break;
         case Prefs::EnumTestType::AntonymTest:
             instruction = i18n("Select Antonym:");
+            break;
         case Prefs::EnumTestType::ArticleTest:
             instruction = i18n("Select the Correct Article:");
+            break;
         case Prefs::EnumTestType::MultipleChoiceTest:
             instruction = i18n("Select Translation:");
+            break;
         case Prefs::EnumTestType::ExampleTest:
             instruction = i18n("Enter Missing Word:");
+            break;
         case Prefs::EnumTestType::ParaphraseTest:
             instruction = i18n("Enter An Matching Word:");
+            break;
         case Prefs::EnumTestType::WrittenTest:
             instruction = i18n("Enter Translation:");
-        case Prefs::EnumTestType::FlashCardsTest: // this isn't really written, but it doesn't matter.
+            break;
+        case Prefs::EnumTestType::FlashCardsTest:
             instruction = i18n("What is the solution?");
+            break;
         case Prefs::EnumTestType::MixedLettersTest:
             instruction = i18n("Unscramble:");
+            break;
         case Prefs::EnumTestType::ConjugationTest:
             instruction = i18n("Conjugate:");
+            break;
         case Prefs::EnumTestType::ComparisonTest:
             instruction = i18n("Enter Comparison Forms:");
+            break;
     }
 
     MessageBox* messagebox = new MessageBox(m_renderer, area, "instruction_box", instruction);
