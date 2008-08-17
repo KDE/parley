@@ -190,8 +190,35 @@ void ParleyPracticeMainWindow::setupActions()
 void ParleyPracticeMainWindow::setupModeIndependent(ActiveArea * area)
 {
     QGraphicsScene * scene = area->scene();
+    QString instruction;
 
-    MessageBox* messagebox = new MessageBox(m_renderer, area, "instruction_box", i18n("Enter Translation:"));
+    switch (Prefs::testType())
+    {
+        case Prefs::EnumTestType::SynonymTest:
+            instruction = i18n("Select Synonym:");
+        case Prefs::EnumTestType::AntonymTest:
+            instruction = i18n("Select Antonym:");
+        case Prefs::EnumTestType::ArticleTest:
+            instruction = i18n("Select the Correct Article:");
+        case Prefs::EnumTestType::MultipleChoiceTest:
+            instruction = i18n("Select Translation:");
+        case Prefs::EnumTestType::ExampleTest:
+            instruction = i18n("Enter Missing Word:");
+        case Prefs::EnumTestType::ParaphraseTest:
+            instruction = i18n("Enter An Matching Word:");
+        case Prefs::EnumTestType::WrittenTest:
+            instruction = i18n("Enter Translation:");
+        case Prefs::EnumTestType::FlashCardsTest: // this isn't really written, but it doesn't matter.
+            instruction = i18n("What is the solution?");
+        case Prefs::EnumTestType::MixedLettersTest:
+            instruction = i18n("Unscramble:");
+        case Prefs::EnumTestType::ConjugationTest:
+            instruction = i18n("Conjugate:");
+        case Prefs::EnumTestType::ComparisonTest:
+            instruction = i18n("Enter Comparison Forms:");
+    }
+
+    MessageBox* messagebox = new MessageBox(m_renderer, area, "instruction_box", instruction);
     scene->addItem(messagebox);
 
     if (Prefs::practiceImagesEnabled())
