@@ -26,23 +26,9 @@
 
 #include <KDebug>
 
-void test()
-{
-//     Parley obj_parley;
-//     ScriptManager sm;
-//     sm.addObject ( &obj_parley,"Parley" );
-//     sm.loadScripts();
-// 
-//     obj_parley.callTranslateWord ( "hello", "en_US", "fr" );
-}
-
-/**
- * Constructor Function.
- */
 ScriptDialog::ScriptDialog ( ScriptManager * scriptManager )
         : KDialog()
 {
-//     test();
     m_scriptManager = scriptManager;
 
     //Configure window
@@ -51,6 +37,8 @@ ScriptDialog::ScriptDialog ( ScriptManager * scriptManager )
 
     //Add KPluginSelector as the main widget of the dialog
     m_kps = new KPluginSelector ( 0 );
+    m_kps->setMinimumSize ( 500,500 );
+
     setMainWidget ( m_kps );
 
     //Load available plugins
@@ -64,33 +52,22 @@ ScriptDialog::ScriptDialog ( ScriptManager * scriptManager )
                         KSharedConfig::openConfig ( "parleyrc" ) );
 }
 
-/**
- * Destructor. Releasing any dynamically allocated memory
- */
 ScriptDialog::~ScriptDialog()
 {
     delete m_kps;
 }
 
-
-/** Executed when user clicks OK button.
- * Saves the state of the plugins (which ones are loaded) in the config file
- * and make the necessary loads/unloads of plugins
- */
 void ScriptDialog::accept()
 {
-    kDebug() << "Updating Plugins State";
     //Update KPluginInfo object changes
     m_kps->updatePluginsState();   //necessary for KPluginInfo::isPluginEnabled to work
 
-    kDebug() << "Saving Config File (parleyrc)";
     //Save changes in config file (parleyrc)
     m_kps->save();
 
     //Reload scripts
-    kDebug() << "Reloading Scripts";
     m_scriptManager->reloadScripts();
 
     //Close dialog
-    done ( 0 ); //not sure if I put the right return code
+    done ( 0 );
 }

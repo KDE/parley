@@ -37,12 +37,14 @@ namespace Scripting
 
     Parley::Parley ( ParleyApp * parley ) : QObject(), m_parleyApp ( parley )
     {
-        m_translator = 0;
+        m_translator = new Translator(this); //parameter has to be <this> cause it's used by Translator to access callTranslateWord
         m_doc = new Document ( m_parleyApp->parleyDocument()->document() );
     }
 
     Parley::~Parley()
     {
+        delete m_translator;
+        delete m_doc;
     }
 
     void Parley::callTranslateWord ( const QString & word,const QString& fromLanguage,const QString& toLanguage )

@@ -265,7 +265,8 @@ namespace Scripting
             void callTranslateWord ( const QString & word,const QString& fromLanguage,const QString& toLanguage );
 
             //sets the translator object
-            void setTranslator ( Translator* translator ) { m_translator = translator; }
+//             void setTranslator ( Translator* translator ) { m_translator = translator; }
+            Translator * translator() { return m_translator; }
 
             //Returns the active document
             QObject* getDocument() { return m_doc; }

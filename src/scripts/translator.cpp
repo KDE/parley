@@ -13,6 +13,7 @@
  *                                                                         *
  ***************************************************************************/
 #include "translator.h"
+#include "scripting/parley.h"
 
 #include <KDebug>
 
@@ -20,7 +21,7 @@ Translator::Translator()
 {
 }
 
-Translator::Translator ( ParleyApp * parent )
+Translator::Translator ( QObject * parent )
     : m_parent(parent)
 {
 
@@ -52,8 +53,11 @@ QSet<QString>* Translator::getTranslation ( QString word, QString fromLanguage, 
     kDebug() << t;
 
     kDebug() << m_translations.contains(t);
-    if (!m_translations.contains(t))
-        m_parent->m_scriptObjectParley->callTranslateWord(word,fromLanguage,toLanguage);
+    if (!m_translations.contains(t)) {
+        Scripting::Parley * p = dynamic_cast<Scripting::Parley*>(m_parent);
+        if (p)
+            p->callTranslateWord(word,fromLanguage,toLanguage);
+    }
 
     if ( m_translations.contains ( t ) )
         return m_translations.value ( t );

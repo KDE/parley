@@ -27,6 +27,9 @@
 ScriptManager::ScriptManager(ParleyApp * parleyApp)
         : m_parleyApp(parleyApp)
 {
+    //add Scripting::Parley
+    m_scriptObjectParley = new Scripting::Parley(parleyApp);
+    addObject ( m_scriptObjectParley,"Parley" );
 }
 
 

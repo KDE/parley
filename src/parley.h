@@ -234,9 +234,6 @@ private:
     //Script Manager
     ScriptManager* m_scriptManager;
 
-    ///script objects (objects that will be used from inside the scripts)
-    Scripting::Parley* m_scriptObjectParley;
-
     ///stores all the translations of a vocabulary word
     Translator* m_translator;
 

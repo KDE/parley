@@ -85,7 +85,7 @@ class ScriptManager : public QObject
          */
         void addObject ( QObject * obj, const QString & name );
         /**
-         * Reload all the scripts
+         * Reloads all the scripts
          */
         void reloadScripts();
         /**
@@ -95,11 +95,20 @@ class ScriptManager : public QObject
          */
         void addScriptAction ( const QString & name, KAction * action );
 
+        /**
+         * 
+         * @return 
+         */
+        Translator * translator() { return m_scriptObjectParley->translator(); }
+
     private:
         ParleyApp * m_parleyApp;
         QList<Script*> m_scripts;
         QMap<QString, QObject*> m_scriptObjects;
         QList<QAction*> m_scriptActions;
+
+        ///script objects (objects that will be used from inside the scripts)
+        Scripting::Parley* m_scriptObjectParley;
 
 //         friend class Scripting::Parley;
 };

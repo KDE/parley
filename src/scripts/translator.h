@@ -75,7 +75,7 @@ class Translator
 {
     public:
         Translator();
-        Translator ( ParleyApp * parent );
+        Translator ( QObject * parent );
 
         ~Translator();
 
@@ -102,7 +102,7 @@ class Translator
 //         QMap<Translation,QStringList*> m_translations;
         QMap<QString,QSet<QString>*> m_translations;
 //          QHash<QString,QStringList*> m_translations;
-        ParleyApp * m_parent;
+        QObject * m_parent;
 };
 
 #endif

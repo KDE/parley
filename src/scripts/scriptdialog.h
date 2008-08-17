@@ -26,8 +26,13 @@
 class ScriptDialog : public KDialog
 {
     public:
-        ScriptDialog(ScriptManager* scriptManager);
+        ScriptDialog ( ScriptManager* scriptManager );
         ~ScriptDialog();
+        /**
+         * Executed when user clicks OK button.
+         * Saves the state of the plugins (which ones are loaded) in the config file
+         * and makes the necessary loads/unloads of plugins
+         */
         void accept();
 
     private:
