@@ -53,11 +53,11 @@ class Script: public QObject
          *
          * @param scriptFilePath The path to the script file to be activated (executed)
          */
-        void activateScript();
+        void activate();
         /**
          * Deactivate the running script
          */
-        void deactivateScript();
+        void deactivate();
         /**
          * Checks if the script file assigned to the Script object exists as a file on the
          * given path.
@@ -65,7 +65,7 @@ class Script: public QObject
          * @return True if the script file exists
          *         False if it does not exist
         */
-        bool scriptExists();
+        bool exists();
         /**
          * Returns the file that was given as parameter to the constructor
          */

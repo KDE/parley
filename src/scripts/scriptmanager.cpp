@@ -20,6 +20,7 @@
 #include <KServiceTypeTrader>
 #include <QFileInfo>
 #include <KActionCollection>
+#include <KMessageBox>
 
 #include <kross/core/action.h>
 #include <kross/core/manager.h>
@@ -114,8 +115,11 @@ void ScriptManager::loadScripts()
         //create a new Script and add it to the m_scripts list
         Script * s = new Script ( script );
         s->addObjects ( m_scriptObjects );
-        s->activateScript();
+        s->activate();
         m_scripts.push_back ( s );
+        //inform with a message box when a script could not be activated
+        if (!s->isActivated())
+            KMessageBox::information(m_parleyApp,QString("The following script could not be activated due to errors in the script:\n")+script,"Script Activation");
     }
 }
 
@@ -150,9 +154,10 @@ void ScriptManager::addScriptAction (const QString & name, KAction * action )
     
     //add to action collection
     m_parleyApp->actionCollection()->addAction ( name,action );
+
     //add it to actions menu list
     m_parleyApp->m_scriptManager->m_scriptActions.push_back ( action );
-//         m_scriptActions.push_back(action);
+
     //plug the action list
     m_parleyApp->plugActionList ( "scripts_actionlist",m_scriptActions );
 

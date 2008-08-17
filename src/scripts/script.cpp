@@ -39,7 +39,7 @@ bool Script::isActivated()
 }
 
 
-void Script::activateScript()
+void Script::activate()
 {
     kDebug() << "Activating Script" << fileName();
     if ( isActivated() )
@@ -47,7 +47,7 @@ void Script::activateScript()
         kDebug() << "Script already activated";
         return;
     }
-    if ( !scriptExists() )
+    if ( !exists() )
     {
         kDebug() << "Script file given does not exist";
         return;
@@ -79,12 +79,14 @@ void Script::activateScript()
     // should call our connected init(timer,interval) scripting
     // function if available.
 //     myobject->callInit();
-    m_activated = true;
+    m_activated = !action->isFinalized();
     /// @todo Add code to specify if activated or not
+    if (!m_activated)
+        kDebug() << "Script not activated";
 }
 
 
-void Script::deactivateScript()
+void Script::deactivate()
 {
     if ( m_object )
         delete m_object;
@@ -92,7 +94,7 @@ void Script::deactivateScript()
 }
 
 
-bool Script::scriptExists()
+bool Script::exists()
 {
     QFileInfo fileInfo ( m_file );
     return fileInfo.exists();

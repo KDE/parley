@@ -75,7 +75,8 @@ class ScriptManager : public QObject
         void disablePlugin ( QString desktopFile );
         QStringList availableScripts();
         /**
-         * Load all the available scripts so they can be activated afterwards
+         * Loads (activates) all the available scripts and notifies the user if any
+         * script was not activated (due to errors in the script)
          */
         void loadScripts();
         /**
