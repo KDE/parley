@@ -37,8 +37,6 @@ set(settings_SRCS ${settings_SKEL_SRCS}
     settings/viewoptions.cpp
 
 # script settings
-    settings/pluginoptions.cpp
-    settings/plugintablemodel.cpp
     settings/TitlePage.cpp
     settings/languageproperties.cpp
     settings/languagepropertiespage.cpp
@@ -49,7 +47,6 @@ kde4_add_ui_files( settings_SRCS
     settings/optionlistform.ui
     settings/viewoptionsbase.ui
     settings/generaloptionsbase.ui
-    settings/pluginoptionsbase.ui
     settings/languagepropertiespage.ui
     settings/TitlePageForm.ui
 )
