@@ -30,7 +30,7 @@ class ActiveArea : public QGraphicsSvgItem
 {
     public:
         ActiveArea(KSvgRenderer * renderer, const QString& elementId, const QString& fallbackElementId = "");
-        QPointF offset() const { return m_offset; };
+        QPointF offset(const QString& tId) const;
         QString translateElementId(const QString& originalElementId);
         QRectF original() const { return m_original; };
         bool valid() const { return m_valid; };

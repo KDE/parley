@@ -45,7 +45,7 @@ MultipleTextualInput::MultipleTextualInput(KSvgRenderer * renderer, ActiveArea *
         m_map[id] = t;
         area->scene()->addWidget(t);
         QRectF bounds = m_renderer->boundsOnElement(tId);
-        bounds.translate(area->offset());
+        bounds.translate(area->offset(tId));
         t->setGeometry(bounds.toRect());
     }
 

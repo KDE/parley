@@ -32,7 +32,7 @@ TextualPrompt::TextualPrompt ( KSvgRenderer * renderer, ActiveArea * area, const
     if (tId.isEmpty()) setVisible(false);
 
     m_backgroundRect = renderer->boundsOnElement ( tId );
-    setPos (area->offset().x() + m_backgroundRect.x()/* + m_backgroundRect.width() / 20.0*/, area->offset().y() + m_backgroundRect.y() + m_backgroundRect.height() / 4.0 );
+    setPos (area->offset(tId).x() + m_backgroundRect.x(), area->offset(tId).y() + m_backgroundRect.y() + m_backgroundRect.height() / 4.0 );
     adjustSize();
     setZValue(5);
 

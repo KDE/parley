@@ -37,7 +37,7 @@ MixedLettersPrompt::MixedLettersPrompt(KSvgRenderer * renderer, ActiveArea * are
 
     m_backgroundRect = renderer->boundsOnElement ( tId );
 
-     m_backgroundRect.translate(area->offset());
+     m_backgroundRect.translate(area->offset(tId));
      setGeometry(m_backgroundRect.toRect());
 
 }

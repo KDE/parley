@@ -33,7 +33,7 @@ SvgBarStatistics::SvgBarStatistics(QSvgRenderer* renderer, ActiveArea * area, co
     setSharedRenderer(renderer);
     setElementId(tId_foreground);
     m_backgroundRect = renderer->boundsOnElement(tId_background);
-    setPos(m_backgroundRect.x() + area->offset().x(), m_backgroundRect.y() + area->offset().y());
+    setPos(m_backgroundRect.x() + area->offset(tId_background).x(), m_backgroundRect.y() + area->offset(tId_background).y());
     scale((m_backgroundRect.width())/boundingRect().width()*.0001, 1.0);
     setZValue(10); // higher than the rest
 }
@@ -43,7 +43,9 @@ SvgBarStatistics::~SvgBarStatistics()
 
 void SvgBarStatistics::slotUpdateDisplay(Statistics*stats)
 {
-    kDebug() << "update to" << stats->correct() << "/" << stats->manager()->totalEntryCount() << ((double)stats->correct() / stats->manager()->totalEntryCount());
+    if (((double)stats->correct() / stats->manager()->totalEntryCount()) == 0.0)
+        return; // prevents it being reduced to nothing
+
    scale((m_backgroundRect.width() * ((double)stats->correct() / stats->manager()->totalEntryCount()) )/mapToScene(boundingRect()).boundingRect().width(), 1.0);
 }
 

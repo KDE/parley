@@ -37,7 +37,7 @@ ImagePrompt::ImagePrompt ( KSvgRenderer * renderer, ActiveArea * area, const QSt
 
 
      QRectF bounds = m_renderer->boundsOnElement(tId);
-     bounds.translate(area->offset());
+     bounds.translate(area->offset(tId));
      setGeometry(bounds.toRect());
 
 

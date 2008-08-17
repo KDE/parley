@@ -43,7 +43,7 @@ MCInput::MCInput(KSvgRenderer * renderer, ActiveArea * area, const QString& elem
     if (tId.isEmpty()) setVisible(false);
 
      QRectF bounds = m_renderer->boundsOnElement(tId);
-     bounds.translate(area->offset());
+     bounds.translate(area->offset(tId));
      setGeometry(bounds.toRect());
 
     setAutoFillBackground(false);

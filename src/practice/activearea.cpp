@@ -93,3 +93,13 @@ QString ActiveArea::translateElementId(const QString& originalElementId)
     }*/
     return str;
 }
+
+QPointF ActiveArea::offset(const QString& tId) const
+{
+    // if it is part of main, we don't offset it
+    if (tId.startsWith("main_"))
+        return QPointF();
+    // otherwise, we do
+    else
+        return m_offset;
+}

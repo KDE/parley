@@ -47,7 +47,7 @@ MultipleTextualPrompt::MultipleTextualPrompt(KSvgRenderer * renderer, ActiveArea
         area->scene()->addItem(t);
 
         QRectF backgroundRect = renderer->boundsOnElement ( tId );
-        t->setPos (area->offset().x() + backgroundRect.x(), area->offset().y() + backgroundRect.y() + backgroundRect.height() / 4.0 );
+        t->setPos (area->offset(tId).x() + backgroundRect.x(), area->offset(tId).y() + backgroundRect.y() + backgroundRect.height() / 4.0 );
         t->adjustSize();
         t->setZValue(5);
 

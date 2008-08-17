@@ -33,7 +33,7 @@ StdButton::StdButton(const QString& text, KSvgRenderer * renderer, ActiveArea * 
     connect(this, SIGNAL(clicked()), this, SLOT(slotActivated()));
 
      QRectF bounds = m_renderer->boundsOnElement(tId);
-     bounds.translate(area->offset());
+     bounds.translate(area->offset(tId));
      setGeometry(bounds.toRect());
 
      m_state = ParleyPracticeMainWindow::CheckAnswer;
@@ -49,7 +49,7 @@ PracticeActionButton::PracticeActionButton(const QString& text, KSvgRenderer * r
     if (tId.isEmpty()) setVisible(false);
 
      QRectF bounds = m_renderer->boundsOnElement(tId);
-     bounds.translate(area->offset());
+     bounds.translate(area->offset(tId));
      setGeometry(bounds.toRect());
 }
 
