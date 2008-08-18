@@ -68,19 +68,13 @@ void Script::activate()
         action->addObject ( i.value() , i.key(), Kross::ChildrenInterface::AutoConnectSignals );
     }
 
-    // Set the file we like to execute.
+    // Set the file to be execute
     action->setFile ( m_file );
 
     // Execute the script.
     action->trigger();
-    /// @todo add error handling somewhere here
 
-    // Now we emit the init(QTimer*,int) signal which in turn
-    // should call our connected init(timer,interval) scripting
-    // function if available.
-//     myobject->callInit();
     m_activated = !action->isFinalized();
-    /// @todo Add code to specify if activated or not
     if (!m_activated)
         kDebug() << "Script not activated";
 }

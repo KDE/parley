@@ -33,29 +33,22 @@ class Script: public QObject
         Q_OBJECT
     public:
         /**
-         * Script class constructor. Activates the @p file. In case of failure
-         * sets the m_activated
+         * Script class constructor
+         *
          * @param file The path to the script file to be activated (executed)
          */
         Script ( QString file );
-
-        /**
-         * Deletes the m_object that was dynam
-         */
         ~Script();
         /**
-         * Returns if the script was successfully activated. If not, Script object should
-         * be destroyed.
+         * Returns true if the script was successfully activated; false otherwise
          */
         bool isActivated();
         /**
          * Activates the script
-         *
-         * @param scriptFilePath The path to the script file to be activated (executed)
          */
         void activate();
         /**
-         * Deactivate the running script
+         * Deactivate the script
          */
         void deactivate();
         /**
@@ -72,12 +65,12 @@ class Script: public QObject
         QString fileName();
         /**
          * Add an object to be accessible by the script
-         * @param name
+         * @param name Name to appear in the script
          * @param object Object to be accessible by the script
          */
         void addObject ( QString name, QObject * object );
         /**
-         *
+         * Adds more than one scripting Objects to the script
          * @param objects Map of the objects to add
          */
         void addObjects ( QMap<QString, QObject*> objects );

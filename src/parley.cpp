@@ -937,6 +937,7 @@ void ParleyApp::removeGrades()
     m_document->document()->lesson()->resetGrades(-1, KEduVocContainer::Recursive);
 }
 
+
 void ParleyApp::initScripts()
 {
     m_scriptManager = new ScriptManager(this);
@@ -945,15 +946,6 @@ void ParleyApp::initScripts()
 
     //Load scripts
     m_scriptManager->loadScripts();
-}
-
-
-///@todo move it in KEduVocDocument
-int indexOfIdentifier(KEduVocDocument* document, const QString& locale) {
-    for (int i = 0; i < document->identifierCount(); i++)
-        if (document->identifier(i).locale() == locale)
-            return i;
-    return -1;
 }
 
 

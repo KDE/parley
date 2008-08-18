@@ -206,52 +206,6 @@ namespace Scripting
                 Irregular = 0x20000000
             };
 
-            ///Conjugation/Declension number
-//             enum Number
-//             {
-//                 Singular = 0,
-//                 Dual,
-//                 Plural
-//             };
-
-            ///Declension case
-//             enum Case
-//             {
-//                 Nominative = 0,
-//                 Genitive,
-//                 Dative,
-//                 Accusative,
-//                 Ablative,
-//                 Locative,
-//                 Vocative
-//             };
-
-            ///Conjugation Person
-//             enum Person
-//             {
-//                 First,
-//                 Second,
-//                 ThirdMale,
-//                 ThirdFemale,
-// //                 ThirdNeutralCommon
-//                 Third ///use this for Third Neutral form as well
-//             };
-
-            ///Conjugation gender
-//             enum Gender
-//             {
-//                 Masculine,
-//                 Feminine,
-//                 Neutral
-//             };
-
-            ///Article Definiteness
-//             enum Definiteness
-//             {
-//                 Definite,
-//                 Indefinite
-//             };
-
             Parley ( ParleyApp * parley );
 
             ~Parley();

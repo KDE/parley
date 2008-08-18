@@ -22,9 +22,9 @@
 #include <QStringList>
 
 /**
-This class finds the scripts installed in the application folder and manages loading and unloading of plugin scripts
-
-    @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
+ * This class finds the scripts installed in the application directory and manages loading and unloading of the scripts. For each script an instance of Script class is created.
+ *
+ * @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
 */
 class ScriptManager : public QObject
 {
@@ -32,20 +32,25 @@ class ScriptManager : public QObject
         ScriptManager ( ParleyApp * parleyApp );
 
         ~ScriptManager();
+
         /**
          * Finds all the available desktop files in {PARLEY_DATA_FOLDER}/plugins
          *
          * @return The list of desktop filenames available for parley
          */
         static QStringList getDesktopFiles();
+
         /**
          * Returns a QMap (from from categories codenames to categories display label)
          * to be used in KPluginSelector (ScriptDialog) for displaying the various
          * categories
          *
+         * @note this function is not used later on (categories are disabled)
+         *
          * @return the QMap described above
          */
         static QMap<QString, QString> categories();
+
         /**
          * Parses the desktop @p desktopFile given and returns the value of "Script" entry.
          *
@@ -53,18 +58,20 @@ class ScriptManager : public QObject
          * @return The value of "Script" entry. Empty string of no "Script" entry is found
          */
         static QString getScriptEntry ( QString desktopFile );
+
         /**
          * Returns the full path to the script name given in the @p desktopFile.
          *
          * @param desktopFile The desktop file for the parley plugin
          * @return The full-path to the script
          */
-
         QString getScriptFileName ( QString desktopFile );
+
         /**
          * Returns a list of filenames (full path) of enabled scripts
          */
         QStringList enabledScripts();
+
         /**
          * Modify the parleyrc configuration so it disables the @p dektopFile plugin.
          * This function is to be used when the plugin is invalid (wrong script name,
@@ -73,22 +80,25 @@ class ScriptManager : public QObject
          * @param desktopFile
          */
         void disablePlugin ( QString desktopFile );
-        QStringList availableScripts();
+
         /**
          * Loads (activates) all the available scripts and notifies the user if any
          * script was not activated (due to errors in the script)
          */
         void loadScripts();
+
         /**
          * Adds a QObject as a module for the script
          * @param obj The QObject to be added to the script
          * @param name The name of the object as it will appear in the script
          */
         void addObject ( QObject * obj, const QString & name );
+
         /**
          * Reloads all the scripts
          */
         void reloadScripts();
+
         /**
          * Add a KAction to the Scripts menu
          * @param name The action name
@@ -96,11 +106,8 @@ class ScriptManager : public QObject
          */
         void addScriptAction ( const QString & name, KAction * action );
 
-        /**
-         * 
-         * @return 
-         */
-        Translator * translator() { return m_scriptObjectParley->translator(); }
+        /** returns the Translator object the Scripting::Parley */
+        Translator * translator() { return m_scriptingParley->translator(); }
 
     private:
         ParleyApp * m_parleyApp;
@@ -109,9 +116,7 @@ class ScriptManager : public QObject
         QList<QAction*> m_scriptActions;
 
         ///script objects (objects that will be used from inside the scripts)
-        Scripting::Parley* m_scriptObjectParley;
-
-//         friend class Scripting::Parley;
+        Scripting::Parley* m_scriptingParley;
 };
 
 #endif

@@ -101,20 +101,26 @@ namespace Scripting
 //             KEduVocArticle article() const;
 
             /**
-             * Returns the article in the given @p number, definiteness (@p definite) and @p gender
-             * @param number Article number. Values: "Singular", "Dual", "Plural"
-             * @param definite Article definiteness. Values: "Definite", "Indefinite"
-             * @param gender Article gender. Values: "Masculine", "Feminine", "Neuter"
+             * Returns the article in the given number, definiteness and gender flags:
+             *
+             * - Number flags: Parley.Singular, Parley.Dual, Parley.Plural
+             * - Definiteness flags: Parley.Definite, Parley.Indefinite
+             * - Gender flags: Parley.Masculine, Parley.Feninine, Parley.Neuter
+             *
+             * @param flags Flags to indicate which article to return
              * @return A string containing the requested article. Empty string if does not exist
              */
             QString article ( const KEduVocWordFlags& flags );
 
             /**
-             * Sets the article in the given @p number, definiteness (@p definite) and @p gender
+             * Sets the @p article in the given number, definiteness and gender flags:
+             *
+             * - Number flags: Parley.Singular, Parley.Dual, Parley.Plural
+             * - Definiteness flags: Parley.Definite, Parley.Indefinite
+             * - Gender flags: Parley.Masculine, Parley.Feninine, Parley.Neuter
+             *
              * @param article The article to set
-             * @param number Article number. Values: "Singular", "Dual", "Plural"
-             * @param definite Article definiteness. Values: "Definite", "Indefinite"
-             * @param gender Article gender. Values: "Masculine", "Feminine", "Neuter"
+             * @param flags Flags to indicate which article to set
              */
             void setArticle ( const QString& article, const KEduVocWordFlags& flags );
 

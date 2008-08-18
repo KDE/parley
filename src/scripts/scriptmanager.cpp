@@ -25,12 +25,12 @@
 #include <kross/core/action.h>
 #include <kross/core/manager.h>
 
-ScriptManager::ScriptManager(ParleyApp * parleyApp)
-        : m_parleyApp(parleyApp)
+ScriptManager::ScriptManager ( ParleyApp * parleyApp )
+        : m_parleyApp ( parleyApp )
 {
     //add Scripting::Parley
-    m_scriptObjectParley = new Scripting::Parley(parleyApp);
-    addObject ( m_scriptObjectParley,"Parley" );
+    m_scriptingParley = new Scripting::Parley ( parleyApp );
+    addObject ( m_scriptingParley,"Parley" );
 }
 
 
@@ -118,8 +118,8 @@ void ScriptManager::loadScripts()
         s->activate();
         m_scripts.push_back ( s );
         //inform with a message box when a script could not be activated
-        if (!s->isActivated())
-            KMessageBox::information(m_parleyApp,QString("The following script could not be activated due to errors in the script:\n")+script,"Script Activation");
+        if ( !s->isActivated() )
+            KMessageBox::information ( m_parleyApp,QString ( "The following script could not be activated due to errors in the script:\n" ) +script,"Script Activation" );
     }
 }
 
@@ -134,24 +134,26 @@ void ScriptManager::reloadScripts()
 {
     //deactivate (delete) all the active scripts
     foreach ( Script * s, m_scripts )
-    if ( s ) delete s;
+    {
+        if ( s ) delete s;
+    }
     m_scripts.clear();
 
     //reload the scripts menu
-    m_parleyApp->unplugActionList("scripts_actionlist");
+    m_parleyApp->unplugActionList ( "scripts_actionlist" );
     m_scriptActions.clear();
-    m_parleyApp->plugActionList("scripts_actionlist",m_scriptActions);
+    m_parleyApp->plugActionList ( "scripts_actionlist",m_scriptActions );
 
     //load all the enabled scripts
     loadScripts();
 }
 
 
-void ScriptManager::addScriptAction (const QString & name, KAction * action )
+void ScriptManager::addScriptAction ( const QString & name, KAction * action )
 {
     //unplug action list (orelse it will add twice the same entries
     m_parleyApp->unplugActionList ( "scripts_actionlist" );
-    
+
     //add to action collection
     m_parleyApp->actionCollection()->addAction ( name,action );
 
