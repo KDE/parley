@@ -35,6 +35,11 @@ class QGraphicsView;
 class QWidget;
 class ActiveArea;
 
+/**
+* @class SoundPrompt
+* @author David Capel <wot.narg@gmail.com>
+* @brief This widget provides a button that, when pushed, will play a sound.
+*/
 class SoundPrompt : public QPushButton
 {
         Q_OBJECT
@@ -44,7 +49,9 @@ class SoundPrompt : public QPushButton
         SoundPrompt(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent = 0);
         ~SoundPrompt();
     public slots:
+        /// Sets the sound to play. Pass an empty KUrl to clear it.
         void slotSetSound(const KUrl& sound);
+        /// Plays the previously set sound.
         void slotPlay();
     private:
         KUrl m_sound;

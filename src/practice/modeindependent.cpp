@@ -57,10 +57,6 @@
 void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVocDocument * doc)
 {
     m_state = CheckAnswer;
-    m_mode = Prefs::testType();
-
-
-
 
      m_renderer = new KSvgRenderer();
      KGameTheme kgtheme;
@@ -69,7 +65,6 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
      ".desktop");
      kDebug() << "graphics svg path:" << kgtheme.graphics();
      m_renderer->load(kgtheme.graphics());
-
 
     setupActiveArea();
 
@@ -139,7 +134,7 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
 
 
 // This has all the GUI independent action setup code.
-void ParleyPracticeMainWindow::setupActions()
+ void ParleyPracticeMainWindow::setupActions()
 {
     KAction *skipKnownAction = new KAction(this);
     skipKnownAction->setText(i18n("Skip (Answer Known)"));
@@ -251,7 +246,7 @@ void ParleyPracticeMainWindow::setupModeIndependent(ActiveArea * area)
     connect(m_stats, SIGNAL(signalUpdateDisplay(Statistics*)), barstats, SLOT(slotUpdateDisplay(Statistics*)));
 
     // these don't apply to flashcard mode
-    if (m_mode != Prefs::EnumTestType::FlashCardsTest)
+    if (Prefs::testType() != Prefs::EnumTestType::FlashCardsTest)
     {
         Feedback * feedback = new Feedback(m_renderer, area, "feedback_box");
         scene->addItem(feedback);

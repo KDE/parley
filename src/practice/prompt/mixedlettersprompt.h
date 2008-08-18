@@ -30,6 +30,11 @@ class QGraphicsScene;
 class QGraphicsTextItem;
 class ActiveArea;
 
+/**
+* @class MixedLettersPrompt
+* @author David Capel <wot.narg@gmail.com>
+* @brief This widget scrambles the input given to it and places the letters randomly throughout the area enclosed by the provided elementId. When connect to a @c TextualPrompt, it will bold correct letters as the user types them.
+*/
 class MixedLettersPrompt : public QWidget
 {
     Q_OBJECT
@@ -38,7 +43,9 @@ class MixedLettersPrompt : public QWidget
         MixedLettersPrompt(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent = 0);
         QStringList scramble(const QString& input);
     public slots:
+        /// Sets the text to be scrambled.
         void slotSetText(const QString& solution);
+        /// Bolds all the letters of answer that match with the solution.
         void slotAnswerChanged(const QString& answer);
     private:
         /// Returns a random location that is within m_backgroundRect

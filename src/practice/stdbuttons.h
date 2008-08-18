@@ -30,8 +30,7 @@
 
 /// @class StdButton
 /// @author David Capel <wot.narg@gmail.com>
-/// @brief The standard set of actions on a practice dialog (contiue, skip, quit, etc)
-
+/// @brief A button that toggles between showing "Check Answer" and "Continue".
 class StdButton : public KPushButton
 {
     Q_OBJECT
@@ -39,7 +38,9 @@ class StdButton : public KPushButton
     public:
         explicit StdButton(const QString& text, KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget* parent = 0);
     public slots:
+        /// Called internally when it is pushed.
         void slotActivated();
+        /// Toggles the text between "Check Answer" and "Continue" based on state.
         void slotToggleText(int state);
 
     signals:
@@ -57,6 +58,11 @@ class StdButton : public KPushButton
             int m_state;
 };
 
+/**
+* @class PracticeActionButton
+* @author David Capel <wot.narg@gmail.com>
+* @brief This widget provides a generic push button that can be set to anything and placed in a theme.
+*/
 class PracticeActionButton : public KPushButton
 {
     public:

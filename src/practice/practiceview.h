@@ -30,7 +30,6 @@ class PracticeView
         ~PracticeView();
         void resizeEvent(QResizeEvent* event);
         void setActiveArea(ActiveArea * area);
-        ActiveArea * activeArea();
     private:
         class ActiveArea * m_area;
 };

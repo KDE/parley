@@ -27,6 +27,11 @@ class QWidget;
 class QRectF;
 class ActiveArea;
 
+/**
+* @class TextualInput
+* @author David Capel <wot.narg@gmail.com>
+* @brief This widget shows a piece of text to user.
+*/
 class TextualPrompt : public QGraphicsTextItem
 {
         Q_OBJECT
@@ -35,7 +40,9 @@ class TextualPrompt : public QGraphicsTextItem
         TextualPrompt(KSvgRenderer * renderer, ActiveArea * area,  const QString& elementId, QGraphicsItem * parent = 0);
 
     public slots:
+        /// Shows the given piece of text.
         void slotSetText(const QString& text);
+        /// Clears any shown text.
         void slotClear();
     private:
         KSvgRenderer * m_renderer;

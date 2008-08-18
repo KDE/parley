@@ -136,6 +136,7 @@ PracticeEntryManager::TestCategory PracticeEntryManager::testCategory() const
 
 bool PracticeEntryManager::bilingualTest() const
 {
+    // if a mode supports two languages, it is bilingual. Otherwise, it is not.
     switch (Prefs::testType())
     {
         case Prefs::EnumTestType::WrittenTest:
@@ -220,6 +221,12 @@ KEduVocTranslation * PracticeEntryManager::makeSolution()
 {
     QStringList l;
     KEduVocTranslation * t = m_entry->expression()->translation(m_solutionTestType);
+    // This is where you should put any special code that relates to generating the solution.
+    // If it needs more than 3 or so lines, make a new function and call it here.
+    // Make sure to return t (or the KEduVocTranslation* for the solution, if different)
+    //
+    // If your solution is only one string, put it in m_solution; if it require multiple strings,
+    // put it in m_solutions.
     switch (Prefs::testType())
     {
         case Prefs::EnumTestType::SynonymTest:
@@ -231,6 +238,7 @@ KEduVocTranslation * PracticeEntryManager::makeSolution()
         case Prefs::EnumTestType::ArticleTest:
                 m_solution = makeArticleAnswer(t->wordType()->wordType());
                 return t;
+        // add your mode here if it just needs the text of the solution. (eg written mode).
         case Prefs::EnumTestType::ParaphraseTest:
         case Prefs::EnumTestType::ExampleTest:
         case Prefs::EnumTestType::WrittenTest:
@@ -265,6 +273,10 @@ QStringList PracticeEntryManager::currentSolutions() const
 
 QString PracticeEntryManager::currentQuestion() const
 {
+    // This is where you should put any mode-specific code for generating the question.
+    // The return value of this is sent to the question elements in the theme files.
+    //
+    // If your mode requires multiple strings for the quesiton, use currentQuestions().
     QStringList modified;
     switch (Prefs::testType())
     {
@@ -285,6 +297,7 @@ QString PracticeEntryManager::currentQuestion() const
             return modified.join(" ");
         case Prefs::EnumTestType::ParaphraseTest:
             return m_entry->expression()->translation(m_questionTestType)->paraphrase();
+        // if the mode only needs the text of the main entry (eg written), add it here.
         case Prefs::EnumTestType::SynonymTest:
         case Prefs::EnumTestType::AntonymTest:
         case Prefs::EnumTestType::ArticleTest:
@@ -303,10 +316,12 @@ QString PracticeEntryManager::currentQuestion() const
 
 QStringList PracticeEntryManager::currentQuestions() const
 {
+    // Put any mode-specific question generation code here.
+    // Use this function for modes that require multiple strings
+    // If you only need a single string in your question, use currentQuestion()
     QStringList modified;
     switch (Prefs::testType())
     {
-
         case Prefs::EnumTestType::ConjugationTest:
             return m_prompts;
         case Prefs::EnumTestType::ComparisonTest:
@@ -319,8 +334,12 @@ QStringList PracticeEntryManager::currentQuestions() const
 
 QStringList PracticeEntryManager::makeChoices(KEduVocTranslation* solution) const
 {
+    // If your mode uses the multiple choice template, add it here.
+    // If you need more than a few lines of code, make a seperate function.
     switch (Prefs::testType())
     {
+        // If you just want to use other random entries as the distractors (wrong answers),
+        // add your mode here.
         case Prefs::EnumTestType::SynonymTest:
         case Prefs::EnumTestType::AntonymTest:
         case Prefs::EnumTestType::MultipleChoiceTest:
@@ -328,7 +347,6 @@ QStringList PracticeEntryManager::makeChoices(KEduVocTranslation* solution) cons
         case Prefs::EnumTestType::ArticleTest:
             return makeArticleChoices(currentSolution());
         case Prefs::EnumTestType::ComparisonTest:
-            return currentSolutions(); // no special code needed.
         case Prefs::EnumTestType::ConjugationTest:
             return currentSolutions();
         default:

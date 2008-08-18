@@ -28,6 +28,11 @@ class QWidget;
 class KUrl;
 class ActiveArea;
 
+/**
+* @class ImagePrompt
+* @author David Capel <wot.narg@gmail.com>
+* @brief This widget provides the a way to show images.
+*/
 class ImagePrompt : public QLabel
 {
     Q_OBJECT
@@ -36,7 +41,7 @@ class ImagePrompt : public QLabel
     public:
         ImagePrompt(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent = 0);
     public slots:
-
+        /// Shows the given image. Pass an empty KUrl to clear this.
         void slotSetImage(const KUrl& image);
 
     private:

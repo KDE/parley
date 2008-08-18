@@ -41,10 +41,7 @@ class PracticeEntry
         int taintReason(Statistics::TaintReason reason) const { return m_taintReasons[reason]; }
         /// Get how often the entry was skipped for SkipReason @param reason
         int skippedReason(Statistics::SkipReason reason) const { return m_skipReasons[reason]; }
-
         KEduVocExpression* expression() const { return m_expression; }
-
-
 
         /// Call when the entry was correctly answered.
         void answeredCorrectly(bool tainted = false);
@@ -55,9 +52,8 @@ class PracticeEntry
         void incGrade();
         /// Decrement the Leitner Grade.
         void decGrade();
-
+        /// Adds an incorrect answer to the list.
         void addIncorrectAnswer(const QString& incorrectAnswer);
-
         /// Increment how often they entry was tainted for TaintReason @param reason
         void incTaintReason(Statistics::TaintReason reason) { ++m_taintReasons[reason]; }
         /// Increment how often the entry was skipped for SkipReason @param reason

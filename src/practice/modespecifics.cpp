@@ -70,7 +70,7 @@ void ParleyPracticeMainWindow::setupWrittenTemplate(ActiveArea * area)
     TextualInput * input = new TextualInput(m_renderer, area, "answer_text_box");
     scene->addWidget(input);
     connect(input, SIGNAL(signalAnswer(const QString&)), this, SLOT(slotCheckAnswer(const QString&)));
-    connect(this, SIGNAL(signalShowSolution(const QString&, int)), input, SLOT(slotShowSolution(const QString&)));
+    connect(this, SIGNAL(signalShowSolution(const QString&)), input, SLOT(slotShowSolution(const QString&)));
     connect(this, SIGNAL(signalShowHint(const QString&)), input, SLOT(slotShowHint(const QString&)));
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
      connect(actionCollection()->action("continue"), SIGNAL(triggered()), input, SLOT(slotClear()));
@@ -92,7 +92,7 @@ void ParleyPracticeMainWindow::setupFlashCardTemplate(ActiveArea * area)
     TextualPrompt * tprompt = new TextualPrompt(m_renderer, area, "flashcard_text_box");
     scene->addItem(tprompt);
     connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
-    connect(this, SIGNAL(signalShowSolution(const QString&, int)), tprompt, SLOT(slotSetText(const QString&)));
+    connect(this, SIGNAL(signalShowSolution(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
 
     // flip the card on click
     //connect(this, SIGNAL(clicked()), actionCollection()->action("show solution"), SIGNAL(triggered()));
@@ -125,7 +125,7 @@ void ParleyPracticeMainWindow::setupMultipleChoiceTemplate(ActiveArea * area)
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
     connect(m_manager, SIGNAL(signalNewChoices(const QStringList&)), input, SLOT(slotSetChoices(const QStringList&)));
     connect(this, SIGNAL(signalShowHint(const QString&)), input, SLOT(slotShowHint(const QString&)));
-    connect(this, SIGNAL(signalShowSolution(const QString&, int)), input, SLOT(slotShowSolution(const QString&)));
+    connect(this, SIGNAL(signalShowSolution(const QString&)), input, SLOT(slotShowSolution(const QString&)));
 
 
     StdButton * stdbutton = new StdButton(i18n("Check Answer"), m_renderer, area, "continue_button");
@@ -190,7 +190,7 @@ void ParleyPracticeMainWindow::setupMixedLettersTemplate(ActiveArea * area)
     scene->addWidget(input);
     connect(input, SIGNAL(signalAnswer(const QString&)), this, SLOT(slotCheckAnswer(const QString&)));
     connect(input, SIGNAL(signalAnswerChanged(const QString&)), mixed, SLOT(slotAnswerChanged(const QString&)));
-    connect(this, SIGNAL(signalShowSolution(const QString&, int)), input, SLOT(slotShowSolution(const QString&)));
+    connect(this, SIGNAL(signalShowSolution(const QString&)), input, SLOT(slotShowSolution(const QString&)));
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), input, SLOT(slotEmitAnswer()));
     connect(actionCollection()->action("continue"), SIGNAL(triggered()), input, SLOT(slotClear()));
     connect(this, SIGNAL(signalShowHint(const QString&)), input, SLOT(slotShowHint(const QString&)));
@@ -223,7 +223,7 @@ void ParleyPracticeMainWindow::setupComparisonTemplate(ActiveArea * area)
     MultipleTextualInput * minput = new MultipleTextualInput(m_renderer, area, qsl);
     connect(m_manager, SIGNAL(signalNewChoices(const QStringList&)), minput, SLOT(slotSetChoices(const QStringList&)));
     connect(minput, SIGNAL(signalAnswer(const QStringList&)), this, SLOT(slotCheckAnswer(const QStringList&)));
-    connect(this, SIGNAL(signalShowSolution(const QStringList&, int)), minput, SLOT(slotShowSolution(const QStringList&)));
+    connect(this, SIGNAL(signalShowSolution(const QStringList&)), minput, SLOT(slotShowSolution(const QStringList&)));
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), minput, SLOT(slotEmitAnswer()));
     //connect(actionCollection()->action("continue"), SIGNAL(triggered()), minput, SLOT(slotClear()));
     connect(this, SIGNAL(signalShowHint(const QString&)), minput, SLOT(slotShowHint()));
@@ -251,7 +251,7 @@ void ParleyPracticeMainWindow::setupConjugationTemplate(ActiveArea * area)
     MultipleTextualInput * minput = new MultipleTextualInput(m_renderer, area, answers);
     connect(minput, SIGNAL(signalAnswer(const QStringList&)), this, SLOT(slotCheckAnswer(const QStringList&)));
     connect(m_manager, SIGNAL(signalNewChoices(const QStringList&)), minput, SLOT(slotSetChoices(const QStringList&)));
-    connect(this, SIGNAL(signalShowSolution(const QStringList&, int)), minput, SLOT(slotShowSolution(const QStringList&)));
+    connect(this, SIGNAL(signalShowSolution(const QStringList&)), minput, SLOT(slotShowSolution(const QStringList&)));
     connect(actionCollection()->action("check answer"), SIGNAL(triggered()), minput, SLOT(slotEmitAnswer()));
     connect(this, SIGNAL(signalShowHint(const QString&)), minput, SLOT(slotShowHint()));
 

@@ -84,11 +84,11 @@ void ParleyPracticeMainWindow::slotCheckAnswer(const QStringList& input)
 
 void ParleyPracticeMainWindow::slotShowSolution()
 {
-    if (m_mode == Prefs::EnumTestType::ConjugationTest || m_mode == Prefs::EnumTestType::ComparisonTest)
-        emit signalShowSolution(m_manager->currentSolutions(), m_state);
+    if (Prefs::testType() == Prefs::EnumTestType::ConjugationTest || Prefs::testType() == Prefs::EnumTestType::ComparisonTest)
+        emit signalShowSolution(m_manager->currentSolutions());
     else
-        emit signalShowSolution(m_manager->currentSolution(), m_state);
-    if (m_mode != Prefs::EnumTestType::FlashCardsTest) // tainting and such doesn't exist in flashcard mode.
+        emit signalShowSolution(m_manager->currentSolution());
+    if (Prefs::testType() != Prefs::EnumTestType::FlashCardsTest) // tainting and such doesn't exist in flashcard mode.
     {
         if (m_state == CheckAnswer) // only switch if they haven't already answered
         {
@@ -147,10 +147,10 @@ void ParleyPracticeMainWindow::slotForceIncorrect()
     m_manager->slotNewEntry();
 }
 
-// here is where we'll add new modes
 void ParleyPracticeMainWindow::setupModeSpecifics()
 {
-    switch (m_mode)
+    // Add a new mode's case where it will call the appropriate template mode function.
+    switch (Prefs::testType())
     {
        case Prefs::EnumTestType::ExampleTest:
        case Prefs::EnumTestType::ParaphraseTest:
@@ -194,14 +194,20 @@ void ParleyPracticeMainWindow::setupModeSpecifics()
 
 
        default:
-        kDebug() << "unhandled practice mode " << m_mode << " selected.";
+        kDebug() << "unhandled practice mode " << Prefs::testType() << " selected.";
         break;
     }
 }
 
+
 void ParleyPracticeMainWindow::setupActiveArea()
 {
-    switch (m_mode)
+    // The first string parameter is the mode's name; the second is the template mode's name.
+    // This allows a theme designer to make an active area specific to a mode without forcing them to.
+    // If a specific active area doesn't exist in the theme file, it will fall back to the default.
+    //
+    // Be sure to add a second entry with _image appended.
+    switch (Prefs::testType())
     {
        case Prefs::EnumTestType::ParaphraseTest:
             m_normalArea = new ActiveArea(m_renderer, "paraphrase", "written");
@@ -248,7 +254,7 @@ void ParleyPracticeMainWindow::setupActiveArea()
             m_imageArea = new ActiveArea(m_renderer, "antonym_image", "multiple_choice_image");
             break;
        default:
-        kDebug() << "unhandled practice mode " << m_mode << " selected.";
+        kDebug() << "unhandled practice mode " << Prefs::testType() << " selected.";
         break;
     }
 }
@@ -265,7 +271,7 @@ void ParleyPracticeMainWindow::slotShowImageView(const KUrl& url, bool backsideO
     bool show = !(url.url().isEmpty());
     bool fc = true;
 
-    if (m_mode == Prefs::EnumTestType::FlashCardsTest)
+    if (Prefs::testType() == Prefs::EnumTestType::FlashCardsTest)
     {
        if (!backsideOfCard && Prefs::flashcardsFrontImage())
         fc = true;

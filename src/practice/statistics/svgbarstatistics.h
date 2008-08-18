@@ -25,11 +25,17 @@ class QRectF;
 class Statistics;
 class ActiveArea;
 
+/**
+* @class SvgBarStatistics
+* @author David Capel <wot.narg@gmail.com>
+* @brief This widget shows progress through a set of questions with a graphical progress bar.
+*/
 class SvgBarStatistics : public QGraphicsSvgItem
 {
     Q_OBJECT
 
     public:
+        /// The @param foregroundElementId must be located above the backgroundElementId; it will be resized to show progress.
         SvgBarStatistics(QSvgRenderer * renderer, ActiveArea * area, const QString& foregroundElementId, const QString& backgroundElementId, QGraphicsItem * parent = 0);
         ~SvgBarStatistics();
 

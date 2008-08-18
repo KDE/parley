@@ -23,6 +23,8 @@
 
 #include "prefs.h"
 
+// TODO make graphical representations of this
+
 /**
 * @class Timer
 * @author David Capel <wot.narg@gmail.com>
@@ -70,6 +72,11 @@ class Timer : public QObject
         bool m_enabled;
 };
 
+/**
+* @class TimerWidget
+* @author David Capel <wot.narg@gmail.com>
+* @brief This widget provides the interface for graphical representations of the @c Timer.
+*/
 class TimerWidget
 {
     public:
@@ -79,6 +86,11 @@ class TimerWidget
         virtual ~TimerWidget() {}
 };
 
+/**
+* @class TextualInput
+* @author David Capel <wot.narg@gmail.com>
+* @brief A dummy instance of the TimerWidget interface. It does nothing.
+*/
 class DummyTimerWidget : public TimerWidget
 {
        void update(Timer::Milliseconds remaining, Timer::Milliseconds original) {};

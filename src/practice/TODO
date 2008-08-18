@@ -3,27 +3,22 @@ TODO Practice
 
 Doing (in no particular order):
  * Make parleypractice honor its settings; Progress: *****
- * Create the statistical summary dialog
- * Recreate various practice modes ****-
+ * Create the statistical summary dialog :/
+ * Recreate various practice modes *****
  * Create new practice modes: 1 done
- * KNS / themes download; Progress: ***--
- * more robust error checking; Progress: ****-
+ * KNS / themes download; Progress: ****-
+ * more robust error checking; Progress: *****
 
 Modes to remake:
  * Mixed Letters *****
  * Multiple choice *****
  * Written *****
- * Flashcards ****-
+ * Flashcards *****
  * Example *****
  * Paraphrase *****
- * Article Training ****-
+ * Article Training *****
  * Comparison ******
- * Conjugation ****-
+ * Conjugation *****
  * Synonym *****
  * Antonym *****
 
-
-Bugs:
-* Fix progress bar
-* Hunt down the "don't delete "unnamed" in its event handler." crash bug.
-* Fix the null-d-pointer-in-keduvoctranslation-on-exit crash

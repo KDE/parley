@@ -28,15 +28,28 @@ class KSvgRenderer;
 class QGraphicsTextItem;
 
 
+
+/**
+* @class MultipleTextualInput
+* @author David Capel <wot.narg@gmail.com>
+* @brief Manages a set of input widgets.
+* All QStringLists passed to a given instance of this class *must* be the same length and *must* be in the same order.
+* For example, the first QString passed to slotSetText(QStringList) will be put in the input widget for the first
+* elementId passed to the constructor.
+*/
 class MultipleTextualPrompt : public QObject
 {
     Q_OBJECT
 
     public:
+        /// Creates a QGraphicsTextItem for each elementId passed.
         MultipleTextualPrompt(KSvgRenderer * renderer, ActiveArea * area, QStringList& elementIds, QObject * parent = 0);
         ~MultipleTextualPrompt();
     public slots:
+        /// Filled each QGraphicsTextItem with an item from the list of texts.
+        /// These will be applied in the same order as the list passed othe constructor.
         void slotSetText(const QStringList& texts);
+        /// Clears all QGraphicsTextItems.
         void slotClear();
     protected:
         KSvgRenderer * m_renderer;

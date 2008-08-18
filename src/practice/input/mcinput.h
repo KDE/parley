@@ -29,6 +29,11 @@ class QWidget;
 class QStringList;
 class ActiveArea;
 
+/**
+* @class MCInput
+* @author David Capel <wot.narg@gmail.com>
+* @brief The widget that provides a multiple choice-style user input method.
+*/
 class MCInput : public QGroupBox
 {
     Q_OBJECT
@@ -37,17 +42,21 @@ class MCInput : public QGroupBox
         ~MCInput();
 
     public slots:
+        /// Emits the currently selected answer using signalAnswer()
         void slotEmitAnswer();
+        /// Checks to see if the given shortcut was valid, and if so, emits triggered()
         void slotShortcutTriggered(int shortcutNumber);
+        /// Sets the QRadioButton choices to the @param choices.
         void slotSetChoices(const QStringList& choices);
+        /// Shows a hint by disabling distrator choices.
         void slotShowHint(const QString& solution);
+        /// Shows the solution by disabling all distractors.
         void slotShowSolution(const QString& solution);
     signals:
+        /// Gives the users answer.
         void signalAnswer(const QString& answer);
+        /// Signals that a shortcut was successfully triggered.
         void triggered();
-
-    protected:
-        void setAvailableAnswers(QStringList answers);
     private:
         KSvgRenderer* m_renderer;
         ActiveArea* m_area;

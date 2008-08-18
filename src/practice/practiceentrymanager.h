@@ -41,9 +41,8 @@ class PracticeEntry;
 /**
 * @class PracticeEntryManager
 * @author David Capel <wot.narg@gmail.com>
-* @brief This stores the question set and provides information about the current question (the question, answer, image, etc)
+* @brief This stores the question set and provides information about the current question (the question, answer, image, etc). Additionally, it handles the logic for generating the answers and solutions.
 */
-
 class PracticeEntryManager : public QObject
 {
         Q_OBJECT
@@ -51,15 +50,17 @@ class PracticeEntryManager : public QObject
     public:
         enum TestCategory
         {
-            Written,
-            MultipleChoice,
-            MultipleData
+            Written, ///< The test uses the written format
+            MultipleChoice, ///< The test uses the multiple choice format.
+            MultipleData ///< The test uses multiple pieces of data in a single question.
         };
 
 
         PracticeEntryManager(QObject* parent = 0);
         ~PracticeEntryManager();
 
+        /// Opens the given @class KEduVocDocument, filters the entries, and prepares itself for practice.
+        /// This must be called before this class is used.
         void open(KEduVocDocument*);
 
         /// Returns the solution to the current entry.
@@ -96,20 +97,35 @@ class PracticeEntryManager : public QObject
         * m_allTestEntries will be filled by this.
         */
         void filterTestEntries();
+        /// Shuffles the order of the entries.
         void shuffle();
-        KEduVocTranslation* makeSolution(); // sets the solution so it can be gotten later.
+        /// Creates the solution and stores it to m_solution or m_solutions
+        /// This should be the only place where those are modified to keep consistancy.
+        /// @return the @class KEduVocTranslation of the solution.
+        KEduVocTranslation* makeSolution();
+        /// Creates a set of choices (including the solution and distractors) for use in multiple choice modes.
+        /// This calls other functions to do the actual work.
         QStringList makeChoices(KEduVocTranslation* solution) const;
+        /// Creates a set of choices using random entries (depending on settings, these can be filtered by word type).
         QStringList makeMultipleChoiceChoices(KEduVocTranslation * solution) const;
+        /// Creates a set of articles to use as the choices.
         QStringList makeArticleChoices(const QString& solution) const;
+        /// Finds or creates an article that matches the given word flags
         QString makeArticleAnswer(KEduVocWordFlags wordTypeFlags) const;
+        /// Generates the questions and solutions for conjugation mode.
         void setConjugationData(KEduVocTranslation * solution);
 
+        /// Returns a question for the current entry.
         QString currentQuestion() const;
+        /// Returns a set of questions for the current entry (used for multiple data modes)
         QStringList currentQuestions() const;
 
+        /// Returns the @c TestCategory of the current mode.
         TestCategory testCategory() const;
+        /// Returns true if the current mode is bilingual.
         bool bilingualTest() const;
 
+        /// Finds an personal pronoun or generates a generic description to represent a tense.
         QString tenseDescription(KEduVocWordFlags flags, const QString& tenseName = "") const;
 
     public slots:

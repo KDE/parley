@@ -42,11 +42,6 @@ void PracticeView::setActiveArea(ActiveArea * area)
     setSceneRect(scene()->sceneRect());
 }
 
-ActiveArea * PracticeView::activeArea()
-{
-    return m_area;
-}
-
 PracticeView::~PracticeView()
 {
     kDebug() << "dtor'ed!";
