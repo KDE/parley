@@ -1,0 +1,10 @@
+[KGameTheme]
+Name=Clean
+Name[es]=Tema limpia
+Description=Clean theme for KDE 4
+Description[es]=Una tema limpia para KDE 4
+VersionFormat=1
+Author=capel
+Type=SVG
+FileName=clean_theme.svgz
+Preview=clean_preview.png
