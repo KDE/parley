@@ -1,6 +1,17 @@
 [KGameTheme]
 Name=Clean
+Name[et]=Klaar
+Name[ga]=Glan
+Name[pt]=Limpo
+Name[pt_BR]=Limpo
+Name[sv]=Rent
 Description=Clean theme for KDE 4
+Description[et]=KDE 4 klaar teema
+Description[ga]=Téama glan le haghaidh KDE 4
+Description[pt]=Tema limpo para o KDE 4
+Description[pt_BR]=Tema limpo para o KDE 4
+Description[sv]=Rent tema för KDE 4
+Description[uk]=Тема «Clean» для KDE 4
 VersionFormat=1
 Author=capel
 Type=SVG
