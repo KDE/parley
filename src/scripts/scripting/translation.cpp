@@ -72,25 +72,25 @@ namespace Scripting
     {
 //         KEduVocConjugation conjug = m_translation->conjugation ( tense );
 
-//         QStringList list;
+         QStringList list;
 
 //         for ( int n = 0; n <= KEduVocConjugation::Plural; n++ )
 //             for ( int p = 0; p <= KEduVocConjugation::ThirdNeutralCommon; p++ )
 //                 list << conjug.conjugation ( ( KEduVocConjugation::ConjugationPerson ) p, ( KEduVocConjugation::ConjugationNumber ) n ).text();
 
-//         return list;
+         return list;
     }
 
     QStringList Translation::conjugationTexts ( const QString& tense, const KEduVocWordFlags& flags )
     {
 //         KEduVocConjugation conjug = m_translation->conjugation ( tense );
 
-//         QStringList list;
+         QStringList list;
 
 //         for ( int p = 0; p <= KEduVocConjugation::ThirdNeutralCommon; p++ )
 //             list << conjug.conjugation ( ( KEduVocConjugation::ConjugationPerson ) p, number ).text();
 
-//         return list;
+         return list;
     }
 
 

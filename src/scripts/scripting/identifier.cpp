@@ -72,7 +72,7 @@ namespace Scripting
     {
 //         KEduVocPersonalPronoun ppronouns = m_identifier->personalPronouns();
 
-//         QStringList list;
+         QStringList list;
 
 //         for ( int n = 0; n <= KEduVocConjugation::Plural; n++ )
 //             for ( int p = 0; p <= KEduVocConjugation::ThirdNeutralCommon; p++ )
@@ -80,7 +80,7 @@ namespace Scripting
 //                 list << ppronouns.personalPronoun ( ( KEduVocConjugation::ConjugationPerson ) p, ( KEduVocConjugation::ConjugationNumber ) n );
 //             }
 
-//         return list;
+         return list;
     }
 
 }
