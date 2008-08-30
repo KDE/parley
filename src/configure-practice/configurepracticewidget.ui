@@ -137,14 +137,14 @@
         <item row="0" column="0" >
          <widget class="QLabel" name="label" >
           <property name="text" >
-           <string>From</string>
+           <string comment="the language that is shown to the user in a test" >From</string>
           </property>
          </widget>
         </item>
         <item row="0" column="1" >
          <widget class="QLabel" name="label_2" >
           <property name="text" >
-           <string>To</string>
+           <string comment="the language to which the user translates to in a test" >To</string>
           </property>
          </widget>
         </item>
