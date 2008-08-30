@@ -58,41 +58,41 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
 {
     m_state = CheckAnswer;
 
-     m_renderer = new KSvgRenderer();
-     KGameTheme kgtheme;
-     // TODO use the kgametheme theme
-     kDebug() << "kgametheme valid:" << kgtheme.load("parley/themes/" + Prefs::theme() +
-     ".desktop");
-     kDebug() << "graphics svg path:" << kgtheme.graphics();
-     m_renderer->load(kgtheme.graphics());
+    m_renderer = new KSvgRenderer();
+    KGameTheme kgtheme;
+    // TODO use the kgametheme theme
+    kDebug() << "kgametheme valid:" << kgtheme.load("parley/themes/" + Prefs::theme() +
+    ".desktop");
+    kDebug() << "graphics svg path:" << kgtheme.graphics();
+    m_renderer->load(kgtheme.graphics());
 
     setupActiveArea();
 
-     QGraphicsSvgItem * layout = new QGraphicsSvgItem();
-     layout->setSharedRenderer(m_renderer);
-     layout->setElementId("main");
-     layout->setZValue(-10);
+    QGraphicsSvgItem * layout = new QGraphicsSvgItem();
+    layout->setSharedRenderer(m_renderer);
+    layout->setElementId("main");
+    layout->setZValue(-10);
 
 
-     QGraphicsSvgItem * ilayout = new QGraphicsSvgItem();
-     ilayout->setSharedRenderer(m_renderer);
-     ilayout->setElementId("main");
-     ilayout->setZValue(-10);
+    QGraphicsSvgItem * ilayout = new QGraphicsSvgItem();
+    ilayout->setSharedRenderer(m_renderer);
+    ilayout->setElementId("main");
+    ilayout->setZValue(-10);
 
 
 
-     QGraphicsScene* normalScene = new QGraphicsScene(this);
+    QGraphicsScene* normalScene = new QGraphicsScene(this);
     normalScene->addItem(layout);
-     normalScene->addItem(m_normalArea);
-     normalScene->setSceneRect(layout->boundingRect());
+    normalScene->addItem(m_normalArea);
+    normalScene->setSceneRect(layout->boundingRect());
 
-     QGraphicsScene* imageScene = new QGraphicsScene(this);
-     imageScene->addItem(ilayout);
-     imageScene->addItem(m_imageArea);
-     imageScene->setSceneRect(ilayout->boundingRect());
+    QGraphicsScene* imageScene = new QGraphicsScene(this);
+    imageScene->addItem(ilayout);
+    imageScene->addItem(m_imageArea);
+    imageScene->setSceneRect(ilayout->boundingRect());
 
 
-     m_view = new PracticeView(this);
+    m_view = new PracticeView(this);
     setCentralWidget(m_view);
 
     m_manager = new PracticeEntryManager(this);
