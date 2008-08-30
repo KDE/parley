@@ -36,8 +36,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         Q_OBJECT
 
     public:
-        ParleyPracticeMainWindow(QWidget *parent = 0);
-        ParleyPracticeMainWindow(class KEduVocDocument * doc, QWidget * parent = 0);
+        ParleyPracticeMainWindow(class KEduVocDocument * doc = 0, QWidget * parent = 0);
         ~ParleyPracticeMainWindow();
 
     /// States that the actions can be in -- Check Answer means the next navigation command should check the answer.
@@ -79,7 +78,7 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         void setupWrittenTemplate(ActiveArea * area);
 
         /// Sets up widgets for modes with the multiple choice template.
-    	void setupMultipleChoiceTemplate(ActiveArea * area);
+        void setupMultipleChoiceTemplate(ActiveArea * area);
 
         /// Sets up widgets for modes with the mixed letters template.
         void setupMixedLettersTemplate(ActiveArea * area);

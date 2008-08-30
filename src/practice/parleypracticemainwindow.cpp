@@ -1,6 +1,6 @@
 /***************************************************************************
 
-    Copyright 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2007-2008 Frederik Gladhorn <gladhorn@kde.org>
     Copyright 2008 David Capel <wot.narg@gmail.com>
 
  ***************************************************************************
@@ -36,22 +36,6 @@
 #include "practiceentrymanager.h"
 #include "answervalidator.h"
 
-ParleyPracticeMainWindow::ParleyPracticeMainWindow(QWidget *parent)
-        : KXmlGuiWindow(parent)
-{
-    setupBase("default.desktop");
-    setupActions();
-    setupModeIndependent(m_normalArea);
-    if (m_imageArea->valid())
-        setupModeIndependent(m_imageArea);
-    setupModeSpecifics();
-
-
-    setupGUI(Default, QString::fromLatin1("parleypracticeui.rc"));
-
-    // ... and we are done -- start the first question!
-    m_manager->slotNewEntry();
-}
 
 ParleyPracticeMainWindow::ParleyPracticeMainWindow(KEduVocDocument* doc, QWidget *parent)
         : KXmlGuiWindow(parent)
@@ -262,6 +246,7 @@ void ParleyPracticeMainWindow::setupActiveArea()
 
 bool ParleyPracticeMainWindow::queryClose()
 {
+    kDebug() << "queryClose";
     emit signalPracticeFinished();
     return close();
 }
