@@ -71,7 +71,7 @@ namespace Scripting
     {
         clearEntries();
 
-        foreach ( QVariant ventry, entries )
+        foreach ( const QVariant &ventry, entries )
         {
             QObject * obj = qvariant_cast<QObject*> ( ventry );
             Expression * entry = dynamic_cast<Expression*> ( obj );

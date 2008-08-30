@@ -282,7 +282,7 @@ QString PracticeEntryManager::currentQuestion() const
     {
         case Prefs::EnumTestType::ExampleTest:
             // This is the logic to blank the solution.
-            foreach(QString word, m_entry->expression()->translation(m_questionTestType)->example())
+            foreach(const QString &word, m_entry->expression()->translation(m_questionTestType)->example())
             {
                 if (word.contains(m_entry->expression()->translation(m_questionTestType)->text(), Qt::CaseInsensitive))
                 {
@@ -358,7 +358,6 @@ QStringList PracticeEntryManager::makeChoices(KEduVocTranslation* solution) cons
 QStringList PracticeEntryManager::makeMultipleChoiceChoices(KEduVocTranslation* solution) const
 {
     QStringList list;
-    QString s;
     int timeout = 0;
     long r;
 
@@ -369,7 +368,7 @@ QStringList PracticeEntryManager::makeMultipleChoiceChoices(KEduVocTranslation* 
     if (Prefs::testType() == Prefs::EnumTestType::MultipleChoiceTest)
         if (!m_entry->expression()->translation(m_questionTestType)->multipleChoice().isEmpty())
         {
-            foreach(s, m_entry->expression()->translation(m_questionTestType)->multipleChoice())
+            foreach(const QString &s, m_entry->expression()->translation(m_questionTestType)->multipleChoice())
                 list.append(s);
         }
 
@@ -378,7 +377,7 @@ QStringList PracticeEntryManager::makeMultipleChoiceChoices(KEduVocTranslation* 
     {
        foreach(PracticeEntry* pe, source)
        {
-            s = pe->expression()->translation(m_solutionTestType)->text();
+            QString s = pe->expression()->translation(m_solutionTestType)->text();
             if (!list.contains(s))
                 list.append(s);
        }
@@ -400,7 +399,7 @@ QStringList PracticeEntryManager::makeMultipleChoiceChoices(KEduVocTranslation* 
             ++timeout;
             r = KRandom::random() % source.size();
             t = source[r]->expression()->translation(m_solutionTestType);
-            s = t->text();
+            QString s = t->text();
             if (!list.contains(s))
             {
                 if (Prefs::testType() == Prefs::EnumTestType::AntonymTest && solution->antonyms().contains(t))

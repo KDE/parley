@@ -36,7 +36,7 @@
 MultipleTextualPrompt::MultipleTextualPrompt(KSvgRenderer * renderer, ActiveArea * area, QStringList& elementIds, QObject * parent)
     : QObject(parent), m_renderer(renderer),m_elementIds(elementIds), m_area(area)
 {
-    foreach(QString id, elementIds)
+    foreach(const QString &id, elementIds)
     {
         QString tId = area->translateElementId(id);
         if (tId.isEmpty()) continue; // we just move on if it doesn't exist.

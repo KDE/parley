@@ -111,7 +111,7 @@ void MCInput::slotSetChoices(const QStringList& list)
     QVBoxLayout *vbox = new QVBoxLayout;
 
     int n = 1;
-    foreach(QString s, list)
+    foreach(const QString &s, list)
     {
         vbox->addWidget(new QRadioButton(QString("&%1 %2").arg(n++).arg(s)));
     }

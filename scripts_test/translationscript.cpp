@@ -35,7 +35,7 @@ void TranslationScript::getLanguagePairs()
 {
     QVariant script_result = action->callFunction("getLanguagePairs");
 
-    foreach(QVariant langpair, script_result.toList()) {
+    foreach(const QVariant &langpair, script_result.toList()) {
         QVariantList pair = langpair.toList();
         QString from = pair[0].toString();
         QString to = pair[1].toString();

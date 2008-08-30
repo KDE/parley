@@ -381,7 +381,7 @@ void AnswerValidator::slotCheckAnswer(const QStringList& solutions, const QStrin
         else
         {
             bool found = false;
-            foreach(QString sol, solutions)
+            foreach(const QString &sol, solutions)
             {
                 if (answers[i].toLower() == sol.toLower())
                 {

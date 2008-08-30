@@ -15,7 +15,7 @@ int main() {
 
     TranslationScript s("ectaco.py");
 //     kDebug() << s.translateWord("test","en","pl");
-    foreach(QString word, s.translateWord("test","en","pl"))
+    foreach(const QString &word, s.translateWord("test","en","pl"))
         kDebug() << "trns: " << word;
 
     return 0;

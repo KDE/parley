@@ -71,7 +71,7 @@ ConjugationWidget::ConjugationWidget(QWidget *parent) : QWidget(parent)
     m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Neuter, KEduVocWordFlag::Plural]
         = pluralThirdNeutralPersonLineEdit;
 
-    foreach(KEduVocWordFlags index, m_conjugationLineEdits.keys()) {
+    foreach(const KEduVocWordFlags &index, m_conjugationLineEdits.keys()) {
         connect(m_conjugationLineEdits.value(index), SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
     }
 }
