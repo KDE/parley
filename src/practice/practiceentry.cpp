@@ -18,6 +18,17 @@
 PracticeEntry::PracticeEntry(KEduVocExpression* expr)
 : m_expression(expr)
 {
+    m_attempted = 0;
+    m_correct = 0;
+    m_taintedCorrect = 0;
+    m_taintedIncorrect = 0;
+    m_skipped = 0;
+
+    /// @todo initialize
+//     m_errorReasons[Statistics::NumberIncorrectReasons];
+//     m_taintReasons[Statistics::NumberTaintReasons];
+//     m_skipReasons[Statistics::NumberSkipReasons];
+
 }
 
 void PracticeEntry::answeredCorrectly(bool tainted)

@@ -175,6 +175,8 @@ class PracticeEntryManager : public QObject
 
         /// The text of the solution.
         void signalNewSolution(const QString&);
+
+    friend class PracticeSummary;
 };
 
 

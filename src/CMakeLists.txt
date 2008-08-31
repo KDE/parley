@@ -98,10 +98,13 @@ set(practice_SRCS
     practice/multiple/multipletextualprompt.cpp
     practice/multiple/multipletextualinput.cpp
     practice/messagebox.cpp
+    practice/summary/practicesummary.cpp
+    practice/summary/summarymodel.cpp
 )
 
 kde4_add_ui_files(practice_SRCS
     practice/kgametheme/kgamethemeselector.ui
+    practice/summary/practicesummary.ui
     practiceold/entryfilter.ui
 )
 

@@ -47,7 +47,7 @@ void Statistics::slotCorrection(float grade, ErrorType error, const QString& use
 {
     // this is true when the answer supplied was correct.
     if ((grade == 1.0) && (error == Correct))
-       slotCorrect();
+        slotCorrect();
     else
         slotIncorrect(error, userAnswer);
 }

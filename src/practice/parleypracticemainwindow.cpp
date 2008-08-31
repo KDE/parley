@@ -35,6 +35,7 @@
 #include "activearea.h"
 #include "practiceentrymanager.h"
 #include "answervalidator.h"
+#include "practice/summary/practicesummary.h"
 
 
 ParleyPracticeMainWindow::ParleyPracticeMainWindow(KEduVocDocument* doc, QWidget *parent)
@@ -247,6 +248,17 @@ void ParleyPracticeMainWindow::setupActiveArea()
 bool ParleyPracticeMainWindow::queryClose()
 {
     kDebug() << "queryClose";
+
+
+    hide();
+    // show statistics dialog
+    // be done with it
+    // should probably be moved out of here (?)
+    PracticeSummary* summary = new PracticeSummary(m_stats, m_manager, this);
+    summary->exec();
+
+    kDebug() << "Percent: " << m_stats->percentCorrect() << " Attempted: " << m_stats->attempted() << " Correct: " << m_stats->correct();
+
     emit signalPracticeFinished();
     return close();
 }
