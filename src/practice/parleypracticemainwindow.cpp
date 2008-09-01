@@ -41,7 +41,7 @@
 ParleyPracticeMainWindow::ParleyPracticeMainWindow(KEduVocDocument* doc, QWidget *parent)
         : KXmlGuiWindow(parent)
 {
-    setupBase("default.desktop", doc);
+    setupBase("themes/default.desktop", doc);
     setupActions();
     setupModeIndependent(m_normalArea);
     if (m_imageArea->valid())

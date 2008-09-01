@@ -61,7 +61,7 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
     m_renderer = new KSvgRenderer();
     KGameTheme kgtheme;
     // TODO use the kgametheme theme
-    kDebug() << "kgametheme valid:" << kgtheme.load("parley/themes/" + Prefs::theme() +
+    kDebug() << "kgametheme valid:" << kgtheme.load("themes/" + Prefs::theme() +
     ".desktop");
     kDebug() << "graphics svg path:" << kgtheme.graphics();
     m_renderer->load(kgtheme.graphics());
