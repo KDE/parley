@@ -44,7 +44,7 @@ target_link_libraries(
     ${KDE4_KDEUI_LIBS}
 )
 
-install(TARGETS parleypractice  DESTINATION ${BIN_INSTALL_DIR} )
+install(TARGETS parleypractice  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 install(FILES parleypracticeui.rc
         DESTINATION  ${DATA_INSTALL_DIR}/parley/)
 install( FILES themes/default_theme.svgz
