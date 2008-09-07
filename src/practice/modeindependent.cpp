@@ -31,6 +31,7 @@
 #include <KApplication>
 #include <QShortcut>
 #include <QSignalMapper>
+#include <KMessageBox>
 
 #include "practiceview.h"
 
@@ -60,9 +61,16 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
 
     m_renderer = new KSvgRenderer();
     KGameTheme kgtheme;
-    // TODO use the kgametheme theme
-    kDebug() << "kgametheme valid:" << kgtheme.load("themes/" + Prefs::theme() +
+    bool valid = kgtheme.load("themes/" + Prefs::theme() +
     ".desktop");
+    kDebug() << "kgametheme valid:" << valid;
+    // if we're screwed, abort to avoid crashing messily.
+    if (!valid)
+    {
+      KMessageBox::information(this, i18n("The selected theme is invalid and cannot be loaded."));
+      slotClose();
+      return;
+    }
     kDebug() << "graphics svg path:" << kgtheme.graphics();
     m_renderer->load(kgtheme.graphics());
 
