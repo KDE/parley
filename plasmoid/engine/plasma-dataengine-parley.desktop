@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Parley Data Engine
+Name=Parley
 Name[ca]=Motor de dades del Parley
 Name[da]=Data-motor til Parley
 Name[de]=Parley Datenverarbeitung
@@ -66,4 +66,10 @@ X-KDE-ServiceTypes=Plasma/DataEngine
 Type=Service
 Icon=parley
 X-KDE-Library=plasma_engine_parley
-X-Plasma-EngineName=parley
+
+X-KDE-PluginInfo-Author=
+X-KDE-PluginInfo-Email=
+X-KDE-PluginInfo-Name=parley
+X-KDE-PluginInfo-Version=
+X-KDE-PluginInfo-Website=
+X-KDE-PluginInfo-Category=
