@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=Parley Practice
+Name[el]=Εξάσκηση Parley
 Name[et]=Parley harjutamine
 Name[ga]=Cleachtadh Parley
 Name[gl]=Prática con Parley
@@ -22,6 +23,7 @@ Type=Application
 Terminal=false
 Categories=Qt;KDE;Education;Languages;
 GenericName=Vocabulary Practice
+GenericName[el]=Εξάσκηση λεξιλογίου
 GenericName[et]=Sõnavara harjutamine
 GenericName[gl]=Práticas de vocabulario
 GenericName[gu]=શબ્દયાદી અભ્યાસ

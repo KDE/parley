@@ -7,6 +7,7 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Testing Purposes Script
+Name[el]=Σενάριο για τον έλεγχο
 Name[et]=Skript testimiseks
 Name[gl]=Script para probas
 Name[gu]=ચકાસણી કરવા માટેની સ્ક્રિપ્ટ
@@ -19,6 +20,7 @@ Name[sv]=Skript för testsyfte
 Name[uk]=Скрипт для тестування
 Name[zh_TW]=測試目的文稿
 Comment=Description of what the plugin does
+Comment[el]=Περιγραφή του προσθέτου
 Comment[et]=Plugina tegevuse kirjeldus
 Comment[gl]=A descrición do que fai a extensión
 Comment[gu]=પ્લગઇન શું કરે છે તેનું વર્ણન

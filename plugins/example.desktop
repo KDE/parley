@@ -5,6 +5,7 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Example Parley Script
+Name[el]=Παράδειγμα σεναρίου Parley
 Name[et]=Parley näidisskript
 Name[gl]=Script de exemplo para Parley
 Name[gu]=ઉદાહરણ પારેલે સ્ક્રિપ્ટ
@@ -19,6 +20,7 @@ Name[sv]=Exempelskript för Parley
 Name[uk]=Приклад скрипту Parley
 Name[zh_TW]=範例 Parley 文稿
 Comment=This Script offers two actions: 1) Move to new lesson 2) Mark as known for the Scripts menu
+Comment[el]=Το σενόριο αυτό προσφέρει δύο ενέργειες: 1) Μετακίνηση σε νέο μάθημα 2) Σημείωση ως γνωστό για το μενού σεναρίων
 Comment[et]=See skript pakub skriptimenüüle kaks kirjet: 1) Liigu uuele õppetunnile, 2) Märgi tuntuks
 Comment[gl]=Este script oferece dúas accións: 1)Ir á nova lección 2)Marcar como coñecida no menú scripts
 Comment[gu]=આ સ્ક્રિપ્ટ બે ક્રિયાઓ રજૂ કરે છે: ૧) નવા પાઠમાં જાવ ૨) સ્ક્રિપ્ટ્સ મેનુમાં જાણીતાં તરીકે નોંધ કરશે
