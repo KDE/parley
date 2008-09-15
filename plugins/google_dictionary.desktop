@@ -21,6 +21,7 @@ Name[pt_BR]=Dicionário do Google (tradução)
 Name[sv]=Googles ordlista (översättning)
 Name[tr]=Google Sözlüğü (çeviri)
 Name[uk]=Словник Google (переклад)
+Name[zh_CN]=Google 词典(翻译)
 Name[zh_TW]=Google 字典（翻譯）
 Comment=Uses Google Dictionary (translate.google.com) to translate words
 Comment[el]=Χρήση του λεξικού Google (translate.google.com) για τη μετάφραση λέξεων
@@ -37,6 +38,7 @@ Comment[pt_BR]=Usar o Dicionário do Google (translate.google.com) para traduzir
 Comment[sv]=Använder Googles ordlista (translate.google.com) för att översätta ord
 Comment[tr]=Kelimeleri çevirmek için Google Sözlüğünü (translate.google.com) kullanır
 Comment[uk]=Використовує словник Google (translate.google.com) для перекладу слів
+Comment[zh_CN]=使用 Google 词典(translate.google.com)来翻译单词
 Comment[zh_TW]=使用 Google 字典（translate.google.com）來翻譯單字
 Script=google_dictionary.py
 

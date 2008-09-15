@@ -19,6 +19,7 @@ Name[pt_BR]=Programa de Exemplo do Parley
 Name[sv]=Exempelskript för Parley
 Name[tr]=Örnek Parley Betiği
 Name[uk]=Приклад скрипту Parley
+Name[zh_CN]=示例 Parley 脚本
 Name[zh_TW]=範例 Parley 文稿
 Comment=This Script offers two actions: 1) Move to new lesson 2) Mark as known for the Scripts menu
 Comment[el]=Το σενόριο αυτό προσφέρει δύο ενέργειες: 1) Μετακίνηση σε νέο μάθημα 2) Σημείωση ως γνωστό για το μενού σεναρίων
@@ -33,6 +34,7 @@ Comment[pt_BR]=Este programa oferece duas acções: 1) Passar para uma lição n
 Comment[sv]=Skriptet erbjuder två åtgärder: 1) Gå till ny lektion, 2) Markera som känd för skriptmenyn
 Comment[tr]=Bu betik iki eylem öneriyor: 1) Yeni derse git 2) Betik menüsü için bilinen olarak işaretle
 Comment[uk]=Скрипт додає дві дії: 1) Перейти до наступного уроку 2) Позначити як відоме питання, до меню «Скрипти»
+Comment[zh_CN]=本脚本提供两个动作：1) 移动到新课程 2) 对脚本菜单标记为已知
 Comment[zh_TW]=此文稿提供兩個動作：1) 移動到新課程 2) 將文稿選單標記為已知
 Script=example.py
 
