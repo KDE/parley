@@ -66,7 +66,6 @@ class ParleyPlasma : public Plasma::Applet
         QGraphicsTextItem *m_label2;
 
         Ui::config ui;
-        KDialog *m_dialog;
 
         QFont m_font;
         QSizeF m_size;

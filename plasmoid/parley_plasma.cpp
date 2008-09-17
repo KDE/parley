@@ -27,7 +27,6 @@ ParleyPlasma::ParleyPlasma(QObject *parent, const QVariantList &args)
     : Plasma::Applet(parent, args),
     m_label1(0),
     m_label2(0),
-    m_dialog(0),
     m_font(QFont())
 {
     KGlobal::locale()->insertCatalog("parley");
@@ -107,7 +106,6 @@ void ParleyPlasma::constraintsEvent(Plasma::Constraints constraints)
 
 ParleyPlasma::~ParleyPlasma()
 {
-    delete m_dialog;
 }
 
 void ParleyPlasma::dataUpdated(const QString& source, const Plasma::DataEngine::Data &data)
