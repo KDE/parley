@@ -435,8 +435,8 @@ void ParleyApp::initDockWidgets()
 
     m_leitnerView->setModel(m_leitnerModel);
 
-    connect(m_leitnerView, SIGNAL(selectedLeitnerBoxChanged(KEduVocLeitnerBox*)),
-        m_vocabularyModel, SLOT(setLeitnerBox(KEduVocLeitnerBox*)));
+    //connect(m_leitnerView, SIGNAL(selectedLeitnerBoxChanged(KEduVocLeitnerBox*)),
+    //    m_vocabularyModel, SLOT(setLeitnerBox(KEduVocLeitnerBox*)));
 
     connect(m_leitnerView, SIGNAL(signalShowContainer(KEduVocContainer*)),
         m_vocabularyModel, SLOT(showContainer(KEduVocContainer*)));
