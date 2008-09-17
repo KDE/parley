@@ -32,6 +32,7 @@ ParleyEngine::ParleyEngine(QObject* parent, const QVariantList& args)
     : Plasma::DataEngine(parent)
 {
     Q_UNUSED(args)
+    KGlobal::locale()->insertCatalog("parley");
     setMinimumPollingInterval(1000);
     kDebug() << "ParleyEngine::ParleyEngine";
     m_doc = new KEduVocDocument(this);
