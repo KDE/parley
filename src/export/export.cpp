@@ -28,7 +28,7 @@ void ParleyExport::exportDocument(ParleyDocument* document, QWidget * parent)
     // first get the new file name and type
     QString filter = "*.html|" + i18n("HTML document") + '\n' + KEduVocDocument::pattern(KEduVocDocument::Writing);
 
-    KFileDialog dlg( document->document()->url().path(), filter, parent );
+    KFileDialog dlg( (document->document()->url().fileName() == i18n("Untitled")) ? "": document->document()->url().path(), filter, parent );
     dlg.setOperationMode( KFileDialog::Saving );
     dlg.setMode( KFile::File );
     dlg.setWindowTitle(i18n("Export As"));
