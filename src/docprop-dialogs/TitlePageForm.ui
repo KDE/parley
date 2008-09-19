@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>445</width>
-    <height>248</height>
+    <width>449</width>
+    <height>294</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -34,7 +34,7 @@
       <item row="0" column="0" >
        <widget class="QLabel" name="label_title" >
         <property name="sizePolicy" >
-         <sizepolicy vsizetype="MinimumExpanding" hsizetype="MinimumExpanding" >
+         <sizepolicy vsizetype="MinimumExpanding" hsizetype="Minimum" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -42,85 +42,41 @@
         <property name="text" >
          <string>&amp;Title:</string>
         </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
         <property name="buddy" >
          <cstring>titleLineEdit</cstring>
         </property>
        </widget>
       </item>
-      <item row="0" column="1" >
-       <widget class="QLineEdit" name="titleLineEdit" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip" >
-         <string>A title for your document.</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" >
-       <widget class="QLabel" name="label_author" >
-        <property name="text" >
-         <string>&amp;Author:</string>
-        </property>
-        <property name="buddy" >
-         <cstring>authorLineEdit</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1" >
-       <layout class="QHBoxLayout" name="horizontalLayout" >
-        <item>
-         <widget class="QLineEdit" name="authorLineEdit" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="toolTip" >
-           <string>A title for your document.</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_author_2" >
-          <property name="text" >
-           <string>&amp;Email:</string>
-          </property>
-          <property name="buddy" >
-           <cstring>contactLineEdit</cstring>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="contactLineEdit" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="toolTip" >
-           <string>A way to contact you (email or a webpage).</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="2" column="0" >
+      <item row="4" column="0" >
        <widget class="QLabel" name="label_remark" >
         <property name="text" >
          <string>&amp;Comment:</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
         <property name="buddy" >
          <cstring>commentTextEdit</cstring>
         </property>
        </widget>
       </item>
-      <item row="2" column="1" >
+      <item row="6" column="0" >
+       <widget class="QLabel" name="label_license" >
+        <property name="text" >
+         <string>&amp;License:</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="buddy" >
+         <cstring>licenseComboBox</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" >
        <widget class="QTextEdit" name="commentTextEdit" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
@@ -139,17 +95,20 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="0" >
+      <item row="5" column="0" >
        <widget class="QLabel" name="label" >
         <property name="text" >
          <string>Cat&amp;egory</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
         <property name="buddy" >
          <cstring>categoryComboBox</cstring>
         </property>
        </widget>
       </item>
-      <item row="3" column="1" >
+      <item row="5" column="1" >
        <widget class="QComboBox" name="categoryComboBox" >
         <property name="toolTip" >
          <string>A general category into which your document belongs.</string>
@@ -189,17 +148,7 @@
         </item>
        </widget>
       </item>
-      <item row="4" column="0" >
-       <widget class="QLabel" name="label_license" >
-        <property name="text" >
-         <string>&amp;License:</string>
-        </property>
-        <property name="buddy" >
-         <cstring>licenseComboBox</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1" >
+      <item row="6" column="1" >
        <widget class="QComboBox" name="licenseComboBox" >
         <property name="toolTip" >
          <string>The license under which your document will be.
@@ -220,9 +169,73 @@ If you consider contributing your file to KDE in the future, an appropriate lice
         </item>
        </widget>
       </item>
+      <item row="0" column="1" >
+       <widget class="QLineEdit" name="titleLineEdit" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip" >
+         <string>A title for your document.</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
+       <widget class="QLabel" name="label_author" >
+        <property name="text" >
+         <string>&amp;Author:</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="buddy" >
+         <cstring>authorLineEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" >
+       <widget class="QLabel" name="label_author_2" >
+        <property name="text" >
+         <string>&amp;Email:</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="buddy" >
+         <cstring>contactLineEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" >
+       <widget class="QLineEdit" name="contactLineEdit" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip" >
+         <string>A way to contact you (email or a webpage).</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <widget class="QLineEdit" name="authorLineEdit" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip" >
+         <string>A title for your document.</string>
+        </property>
+       </widget>
+      </item>
      </layout>
      <zorder>label_title</zorder>
-     <zorder>label_author</zorder>
      <zorder>label_remark</zorder>
      <zorder>label_license</zorder>
      <zorder>commentTextEdit</zorder>
@@ -230,16 +243,13 @@ If you consider contributing your file to KDE in the future, an appropriate lice
      <zorder>categoryComboBox</zorder>
      <zorder>licenseComboBox</zorder>
      <zorder>titleLineEdit</zorder>
-     <zorder>authorLineEdit</zorder>
+     <zorder>label_author</zorder>
      <zorder>label_author_2</zorder>
      <zorder>contactLineEdit</zorder>
-     <zorder>contactLineEdit</zorder>
-     <zorder>label_author</zorder>
+     <zorder>authorLineEdit</zorder>
     </widget>
    </item>
   </layout>
-  <zorder>tiltle_group</zorder>
-  <zorder>tiltle_group</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
