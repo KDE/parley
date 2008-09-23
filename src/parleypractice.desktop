@@ -15,6 +15,7 @@ Name[pt_BR]=Exercício do Parley
 Name[sv]=Övning med Parley
 Name[tr]=Parley Çalışması
 Name[uk]=Тренування Parley
+Name[x-test]=xxParley Practicexx
 Name[zh_CN]=Parley 练习
 Name[zh_TW]=Parley 練習
 MimeType=application/x-kvtml;
@@ -39,6 +40,7 @@ GenericName[pt_BR]=Exercício de Vocabulário
 GenericName[sv]=Ordförrådsövning
 GenericName[tr]=Sözcük Hazinesi Çalışması
 GenericName[uk]=Тренування словникового запасу
+GenericName[x-test]=xxVocabulary Practicexx
 GenericName[zh_CN]=单词练习
 GenericName[zh_TW]=字彙練習
 
