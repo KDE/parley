@@ -46,7 +46,7 @@ MCInput::MCInput(KSvgRenderer * renderer, ActiveArea * area, const QString& elem
      bounds.translate(area->offset(tId));
      setGeometry(bounds.toRect());
 
-    setAutoFillBackground(false);
+     setAutoFillBackground(false);
 }
 
 void MCInput::slotShortcutTriggered(int shortcutNumber)
@@ -113,7 +113,9 @@ void MCInput::slotSetChoices(const QStringList& list)
     int n = 1;
     foreach(const QString &s, list)
     {
-        vbox->addWidget(new QRadioButton(QString("&%1 %2").arg(n++).arg(s), this));
+        QRadioButton *choice = new QRadioButton(QString("&%1 %2").arg(n++).arg(s), this);
+        vbox->addWidget(choice);
+        connect(choice, SIGNAL(clicked()), this, SLOT(slotEmitAnswer()));
     }
 
      vbox->addStretch(1);
@@ -134,7 +136,6 @@ void MCInput::slotEmitAnswer()
         }
      }
 }
-
 
 void MCInput::slotShowHint(const QString& solution)
 {
