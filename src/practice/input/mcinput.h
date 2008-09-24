@@ -39,7 +39,6 @@ class MCInput : public QGroupBox
     Q_OBJECT
     public:
         MCInput(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent = 0);
-        ~MCInput();
 
     public slots:
         /// Emits the currently selected answer using signalAnswer()

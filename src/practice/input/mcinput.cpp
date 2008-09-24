@@ -108,25 +108,16 @@ void MCInput::slotSetChoices(const QStringList& list)
 
     // start fresh and new!
 
-    QVBoxLayout *vbox = new QVBoxLayout;
+    QVBoxLayout *vbox = new QVBoxLayout(this);
 
     int n = 1;
     foreach(const QString &s, list)
     {
-        vbox->addWidget(new QRadioButton(QString("&%1 %2").arg(n++).arg(s)));
+        vbox->addWidget(new QRadioButton(QString("&%1 %2").arg(n++).arg(s), this));
     }
 
      vbox->addStretch(1);
      setLayout(vbox);
-}
-
-
-MCInput::~MCInput()
-{
-    foreach(QRadioButton* b, findChildren<QRadioButton*>())
-    {
-        delete b;
-    }
 }
 
 void MCInput::slotEmitAnswer()

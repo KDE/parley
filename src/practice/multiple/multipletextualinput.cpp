@@ -32,6 +32,8 @@
 #include <QGraphicsScene>
 #include <QLineEdit>
 #include <KRandom>
+
+
 MultipleTextualInput::MultipleTextualInput(KSvgRenderer * renderer, ActiveArea * area, QStringList& elementIds, QObject * parent)
     : QObject(parent), m_renderer(renderer),m_elementIds(elementIds), m_area(area)
 {
