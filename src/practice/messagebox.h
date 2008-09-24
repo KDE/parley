@@ -46,3 +46,4 @@ class MessageBox : public QGraphicsTextItem
 };
 
 #endif
+
