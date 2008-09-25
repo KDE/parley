@@ -117,7 +117,7 @@ namespace Scripting
              *     new_entry = lesson.newEntry(["hello","bonjour"])
              *     lesson.appendEntry(new_entry)
              * @endcode
-             * @param entry The entry to add the the lesson
+             * @param entry The entry to add the lesson
              */
             void appendEntry ( Expression * entry );
 

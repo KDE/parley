@@ -1,7 +1,7 @@
 //
 // C++ Implementation: stdbuttons
 //
-// Description: Implements a set of standard buttons to control the the practice session
+// Description: Implements a set of standard buttons to control the practice session
 //
 //
 // Author: David Capel <wot.narg@gmail.com>, (C) 2008
