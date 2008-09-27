@@ -150,7 +150,7 @@ class PracticeEntryManager : public QObject
 
     signals:
         /// Emitted when new text is available.
-        /// An empty QString signals that there is no assosiated text.
+        /// An empty QString signals that there is no associated text.
         void signalNewText(const QString&);
         /// Emitted when a set of new text prompts is available.
         /// Used for modes that need multiple pieces of data
@@ -159,12 +159,12 @@ class PracticeEntryManager : public QObject
         void signalNewChoices(const QStringList&);
 
         /// Emitted when a new image is available.
-        /// An empty KUrl signals that there is no assosiated image.
+        /// An empty KUrl signals that there is no associated image.
         /// The boolean is ignored for all modes except flashcards.
         void signalNewImage(const KUrl&, bool);
 
         /// Emitted when a new sound is available.
-        /// An empty KUrl signals that there is no assosiated sound.
+        /// An empty KUrl signals that there is no associated sound.
         void signalNewSound(const KUrl&);
 
         /// Used so various widgets will know to reset themselves.

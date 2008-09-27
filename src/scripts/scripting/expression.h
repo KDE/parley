@@ -60,7 +60,7 @@ namespace Scripting
             Expression ( const Expression & other );
 
             /*
-             * Constructor from a KEduVocExpression (doens't exist in KEduVocExpression)
+             * Constructor from a KEduVocExpression (doesn't exist in KEduVocExpression)
              * @param expression KEduVocExpression object
              */
             Expression ( KEduVocExpression * expression );

@@ -154,7 +154,7 @@ namespace Scripting
             /**
              * Remove grades from all entries of this lessons
              * @param translation which translation to remove. -1 for all.
-             * @param recursive wether to include child lessons
+             * @param recursive whether to include child lessons
              */
             void resetGrades ( int translation, bool recursive ) { return m_container->resetGrades ( translation, boolToEnum ( recursive ) ); }
 

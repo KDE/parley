@@ -154,7 +154,7 @@ void ParleyPracticeMainWindow::setupMultipleChoiceTemplate(ActiveArea * area)
             mapper->setMapping(shortcut, n);
             connect(shortcut, SIGNAL(triggered()), mapper, SLOT(map()));
             if (n > Prefs::numberMultipleChoiceAnswers())
-                shortcut->setVisible(false); // disable non-relevent shortcuts
+                shortcut->setVisible(false); // disable non-relevant shortcuts
         }
 
 

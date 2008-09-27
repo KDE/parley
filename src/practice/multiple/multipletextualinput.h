@@ -32,7 +32,7 @@ class QLineEdit;
 * @class MultipleTextualInput
 * @author David Capel <wot.narg@gmail.com>
 * @brief Manages a set of input widgets.
-* This class recieves a set of elementIds and creates a QLineEdit in each one. Later, it is passed a set of solutions
+* This class receives a set of elementIds and creates a QLineEdit in each one. Later, it is passed a set of solutions
 * with slotSetChoices(QStringList); it picks one of them and displays it, but leaves all other input widgets blank.
 * The intended use of this class is to give show one element of a set of related solutions (eg the conjugation forms
 * of a single verb) and have the user supply the rest.

@@ -21,7 +21,7 @@
 
 #include "prompt/textualprompt.h"
 
-// These have identicle functionality and interfaces, but it is nice to have seperate names.
+// These have identical functionality and interfaces, but it is nice to have separate names.
 typedef TextualPrompt Feedback;
 
 #endif

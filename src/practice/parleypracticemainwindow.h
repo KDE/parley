@@ -108,9 +108,9 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         void slotToggleCheckAnswerContinueActions();
         /// Creates a preferences dialog that allows the user to change the theme.
         void slotCreatePreferencesDialog();
-        /// Forces the entry to be marked as correctly answered. Used for when correction isn't neccessary. (eg  Flashcard mode)
+        /// Forces the entry to be marked as correctly answered. Used for when correction isn't necessary. (eg  Flashcard mode)
         void slotForceCorrect();
-        /// Forces the entry to be marked as incorrectly answered. Used for when correction isn't neccessary. (eg Flashcard mode)
+        /// Forces the entry to be marked as incorrectly answered. Used for when correction isn't necessary. (eg Flashcard mode)
         void slotForceIncorrect();
 
         /// Checks if an image is available and should be shown, and if so, shows the image version of the theme.

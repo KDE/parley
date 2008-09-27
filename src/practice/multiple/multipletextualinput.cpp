@@ -71,7 +71,7 @@ void MultipleTextualInput::slotSetChoices(const QStringList& texts)
 
     if (texts.size() == 0)
     {
-        kDebug() << "Text list of size 0 recieved, aborting";
+        kDebug() << "Text list of size 0 received, aborting";
         return;
     }
 

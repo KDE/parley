@@ -31,7 +31,7 @@ class KSvgRenderer;
 * @author David Capel <wot.narg@gmail.com>
 * @brief Represents the active areas of theme files and coordinates widget positions.
 * The theme files have active areas in them for each mode -- they are a box that contains the widgets
-* relevent to that mode. These are then moved into the active_area element's confines in the main portion of theme.
+* relevant to that mode. These are then moved into the active_area element's confines in the main portion of theme.
 * The represents that by giving the offset to individual widgets that would place them in the correct position.
 * This class also allows themes to provide an image and a non-image layout for each mode. When the active area that
 * represents the image version is shown (read: there is currently an image), it allows the widgets it coordinates to

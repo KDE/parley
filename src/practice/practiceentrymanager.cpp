@@ -335,7 +335,7 @@ QStringList PracticeEntryManager::currentQuestions() const
 QStringList PracticeEntryManager::makeChoices(KEduVocTranslation* solution) const
 {
     // If your mode uses the multiple choice template, add it here.
-    // If you need more than a few lines of code, make a seperate function.
+    // If you need more than a few lines of code, make a separate function.
     switch (Prefs::testType())
     {
         // If you just want to use other random entries as the distractors (wrong answers),
