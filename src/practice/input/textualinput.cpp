@@ -81,3 +81,4 @@ void TextualInput::slotShowHint(const QString& hint)
     }
     slotShowSolution(temp);
 }
+

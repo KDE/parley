@@ -97,3 +97,4 @@ QPointF MixedLettersPrompt::randomValidLocation()
 
     return QPointF(x,y);
 }
+

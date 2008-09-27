@@ -53,3 +53,4 @@ void TextualPrompt::slotClear()
 {
     setHtml("");
 }
+

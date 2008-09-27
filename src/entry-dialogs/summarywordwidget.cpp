@@ -190,3 +190,4 @@ void SummaryWordDelegate::setEditorData(QWidget *editor, const QModelIndex &inde
 }
 
 #include "summarywordwidget.moc"
+
