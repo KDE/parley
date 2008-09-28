@@ -282,9 +282,9 @@ void AnswerValidator::defaultCorrector()
         }
 
 
-    int numberSolutionWords = m_solution.simplified().split(" ").count();
+    int numberSolutionWords = m_solution.simplified().split(' ').count();
 
-    int numberAnswerWords = m_userAnswer.simplified().split(" ").count();
+    int numberAnswerWords = m_userAnswer.simplified().split(' ').count();
 
     if (numberSolutionWords == 1)
     {
@@ -300,7 +300,7 @@ void AnswerValidator::defaultCorrector()
     if (numberSolutionWords == 2)
     {
         // could be noun + article
-        QStringList solutionWords = m_solution.simplified().split(" ");
+        QStringList solutionWords = m_solution.simplified().split(' ');
 
         if (m_translation >= 0)
         {
@@ -324,9 +324,9 @@ void AnswerValidator::defaultCorrector()
                     double grade;
                     Statistics::ErrorType errors;
                     QString htmlCorrection;
-                    wordCompare(solutionWords.value(1), m_userAnswer.simplified().split(" ").value(1), grade, errors, htmlCorrection);
+                    wordCompare(solutionWords.value(1), m_userAnswer.simplified().split(' ').value(1), grade, errors, htmlCorrection);
 
-                    if (m_userAnswer.simplified().split(" ").value(0) == solutionWords.value(0))
+                    if (m_userAnswer.simplified().split(' ').value(0) == solutionWords.value(0))
                     {
                         emit signalCorrection(grade, errors, m_userAnswer);
                         emit signalFeedback(htmlCorrection);

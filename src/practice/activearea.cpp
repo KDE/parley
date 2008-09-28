@@ -73,8 +73,8 @@ QString ActiveArea::translateElementId(const QString& originalElementId)
 
     QString str;
     // active area specific elements take precedence.
-    if (m_renderer->elementExists(m_mode_string + "_" + originalElementId))
-        str = m_mode_string + "_" + originalElementId;
+    if (m_renderer->elementExists(m_mode_string + '_' + originalElementId))
+        str = m_mode_string + '_' + originalElementId;
     else if (m_renderer->elementExists("main_" + originalElementId))
     {
             str = "main_" + originalElementId;

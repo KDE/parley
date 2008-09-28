@@ -71,7 +71,7 @@ QString ScriptManager::getScriptEntry ( QString desktopFile )
 QString ScriptManager::getScriptFileName ( QString desktopFile )
 {
     QFileInfo desktopFileInfo ( desktopFile );
-    return desktopFileInfo.absolutePath() + "/" + ScriptManager::getScriptEntry ( desktopFile );
+    return desktopFileInfo.absolutePath() + '/' + ScriptManager::getScriptEntry ( desktopFile );
 }
 
 
