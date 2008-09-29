@@ -246,12 +246,12 @@ If you consider contributing your file to KDE in the future, an appropriate lice
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
         <property name="buddy" >
-         <cstring>kcombobox</cstring>
+         <cstring>firstLanguageComboBox</cstring>
         </property>
        </widget>
       </item>
       <item row="0" column="2" >
-       <widget class="KComboBox" name="kcombobox" >
+       <widget class="KComboBox" name="firstLanguageComboBox" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
           <horstretch>0</horstretch>
@@ -272,12 +272,12 @@ If you consider contributing your file to KDE in the future, an appropriate lice
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
         <property name="buddy" >
-         <cstring>kcombobox_2</cstring>
+         <cstring>secondLanguageComboBox</cstring>
         </property>
        </widget>
       </item>
       <item row="2" column="2" >
-       <widget class="KComboBox" name="kcombobox_2" >
+       <widget class="KComboBox" name="secondLanguageComboBox" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
           <horstretch>0</horstretch>
@@ -292,10 +292,13 @@ If you consider contributing your file to KDE in the future, an appropriate lice
         </property>
        </widget>
       </item>
-      <item row="3" column="2" >
-       <widget class="QPushButton" name="pushButton" >
+      <item row="4" column="2" >
+       <widget class="QCheckBox" name="grammarCheckBox" >
         <property name="text" >
-         <string>Edit Language &amp;Details</string>
+         <string>&amp;Setup Grammar Details</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -315,9 +318,14 @@ If you consider contributing your file to KDE in the future, an appropriate lice
  </customwidgets>
  <tabstops>
   <tabstop>titleLineEdit</tabstop>
-  <tabstop>licenseComboBox</tabstop>
+  <tabstop>authorLineEdit</tabstop>
+  <tabstop>contactLineEdit</tabstop>
   <tabstop>commentTextEdit</tabstop>
   <tabstop>categoryComboBox</tabstop>
+  <tabstop>licenseComboBox</tabstop>
+  <tabstop>firstLanguageComboBox</tabstop>
+  <tabstop>secondLanguageComboBox</tabstop>
+  <tabstop>grammarCheckBox</tabstop>
  </tabstops>
  <resources/>
  <connections/>

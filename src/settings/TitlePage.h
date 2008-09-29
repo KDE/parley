@@ -35,13 +35,17 @@ class TitlePage : public QWidget, public Ui::TitlePageForm
     Q_OBJECT
 
 public:
-    TitlePage(KEduVocDocument * doc, QWidget *parent);
+    TitlePage(KEduVocDocument * doc, bool languageSetup, QWidget *parent);
 
 public slots:
-    void commitData();
+    // this will apply the settings, but be aware, this is not a kdialog, only a qwidget - thus you need to connect to the accept!
+    virtual void accept();
 
 private:
     KEduVocDocument* m_doc;
+
+    // when this is used to set up a new document, show languages is true and the user can input two languages.
+    bool m_showLanguages;
 };
 
 #endif // TitlePage_included

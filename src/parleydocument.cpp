@@ -21,6 +21,7 @@
 
 #include "newdocument-wizard/kvtnewdocumentwizard.h"
 #include "vocabulary/vocabularyview.h"
+#include "settings/TitlePage.h"
 
 #include <keduvoclesson.h>
 #include <keduvocleitnerbox.h>
@@ -95,17 +96,23 @@ void ParleyDocument::newDocument(bool wizard)
     m_parleyApp->updateDocument();
 
     if (wizard) {
-        KVTNewDocumentWizard *wizard;
+        TitlePage* titleAuthorWidget = new TitlePage(m_doc, true, m_parleyApp);
+        KDialog* titleAuthorDialog;
+        titleAuthorDialog = new KDialog(m_parleyApp);
+        titleAuthorDialog->setMainWidget( titleAuthorWidget );
+        titleAuthorDialog->setCaption(i18nc("@title:window document properties", "Properties for %1", m_doc->url().url()));
+        connect(titleAuthorDialog, SIGNAL(accepted()), titleAuthorWidget, SLOT(accept()));
+        titleAuthorDialog->exec();
 
-        wizard = new KVTNewDocumentWizard(m_doc, m_parleyApp);
-        if( !wizard->exec() == KDialog::Accepted ){
-            delete wizard;
-            return;
+        if(titleAuthorWidget->grammarCheckBox->isChecked()) {
+            m_parleyApp->slotLanguageProperties();
         }
-        delete wizard;
+
+        delete titleAuthorDialog;
     }
 
     emit documentChanged(m_doc);
+
 }
 
 void ParleyDocument::slotFileOpen()
