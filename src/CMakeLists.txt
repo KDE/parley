@@ -197,20 +197,6 @@ set(statisticsdialogs_SRCS
     statistics-dialogs/lessonstatistics.cpp
 )
 
-# new document wizard, should be merged into a single page (Daniel, kill this!)
-set(newdocument-wizard_SRCS
-    newdocument-wizard/kvtnewdocumentwizard.cpp
-    newdocument-wizard/kvtnewdocumentwizardintropage.cpp
-    newdocument-wizard/authortitlepage.cpp
-    newdocument-wizard/firstidentifierlanguagepage.cpp
-    newdocument-wizard/secondidentifierlanguagepage.cpp
-)
-
-kde4_add_ui_files(newdocument-wizard_SRCS
-    newdocument-wizard/identifierlanguagepage.ui
-    newdocument-wizard/secondidentifierlanguagepage.ui
-)
-
 # scripting interface using kross
 set(scripts_SRCS
     scripts/scriptdialog.cpp
@@ -248,7 +234,6 @@ set(parley_SRCS
     ${entrydialogs_SRCS}
     ${statisticsdialogs_SRCS}
     ${scripts_SRCS}
-    ${newdocument-wizard_SRCS}
     ${export_SRCS}
     ${welcomescreen_SRCS}
     parleydocument.cpp

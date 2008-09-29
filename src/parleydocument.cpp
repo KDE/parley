@@ -19,7 +19,6 @@
 #include "version.h"
 #include "prefs.h"
 
-#include "newdocument-wizard/kvtnewdocumentwizard.h"
 #include "vocabulary/vocabularyview.h"
 #include "settings/TitlePage.h"
 
