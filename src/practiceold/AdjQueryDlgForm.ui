@@ -54,6 +54,9 @@
          <property name="text" >
           <string comment="Comparison form of adjective - the normal form of the adjective (good)" >&amp;Absolute</string>
          </property>
+         <property name="alignment" >
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
          <property name="buddy" >
           <cstring>lev1Field</cstring>
          </property>
@@ -74,6 +77,9 @@
          <property name="text" >
           <string comment="comparison form of adjectives - comparison form (better)" >&amp;Comparative</string>
          </property>
+         <property name="alignment" >
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
          <property name="buddy" >
           <cstring>lev2Field</cstring>
          </property>
@@ -93,6 +99,9 @@
         <widget class="QLabel" name="lev3Label" >
          <property name="text" >
           <string comment="comparison of adjectives - (best)" >&amp;Superlative</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
          <property name="buddy" >
           <cstring>lev3Field</cstring>
@@ -245,6 +254,9 @@
             <property name="text" >
              <string>Count:</string>
             </property>
+            <property name="alignment" >
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
            </widget>
           </item>
           <item row="1" column="0" >
@@ -258,6 +270,9 @@
             <property name="text" >
              <string>Time:</string>
             </property>
+            <property name="alignment" >
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
            </widget>
           </item>
           <item row="2" column="0" >
@@ -267,6 +282,9 @@
             </property>
             <property name="text" >
              <string>Cycle:</string>
+            </property>
+            <property name="alignment" >
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>

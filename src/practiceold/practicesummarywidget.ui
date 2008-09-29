@@ -21,6 +21,9 @@
         <property name="text" >
          <string>Total:</string>
         </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
        </widget>
       </item>
       <item row="0" column="1" >
@@ -40,6 +43,9 @@
        <widget class="QLabel" name="label_2" >
         <property name="text" >
          <string>Answered correctly (first attempt):</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -65,6 +71,9 @@
         <property name="text" >
          <string>Wrong answer:</string>
         </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
        </widget>
       </item>
       <item row="2" column="1" >
@@ -88,6 +97,9 @@
        <widget class="QLabel" name="label_4" >
         <property name="text" >
          <string>Not answered:</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -113,6 +125,9 @@
         <property name="text" >
          <string>Skipped:</string>
         </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
        </widget>
       </item>
       <item row="4" column="1" >
@@ -136,6 +151,9 @@
        <widget class="QLabel" name="skipUnknownLabel" >
         <property name="text" >
          <string>Postponed:</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -164,7 +182,7 @@
      <property name="orientation" >
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeHint" >
+     <property name="sizeHint" stdset="0" >
       <size>
        <width>20</width>
        <height>40</height>

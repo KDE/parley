@@ -49,6 +49,9 @@
         <property name="text" >
          <string comment="one of the seven cases (grammatical)" >Nominative</string>
         </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
         <property name="buddy" >
          <cstring>singular_1</cstring>
         </property>
@@ -68,6 +71,9 @@
         <property name="text" >
          <string comment="one of the seven cases (grammatical)" >Genitive</string>
         </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
        </widget>
       </item>
       <item row="3" column="1" colspan="2" >
@@ -83,6 +89,9 @@
        <widget class="QLabel" name="singularThirdMalePersonLabel" >
         <property name="text" >
          <string comment="one of the seven cases (grammatical)" >Dative</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -100,6 +109,9 @@
         <property name="text" >
          <string comment="one of the seven cases (grammatical)" >Accusative</string>
         </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
        </widget>
       </item>
       <item row="5" column="1" colspan="2" >
@@ -115,6 +127,9 @@
        <widget class="QLabel" name="singularThirdNeutralPersonLabel" >
         <property name="text" >
          <string comment="one of the seven cases (grammatical)" >Ablative</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -132,6 +147,9 @@
         <property name="text" >
          <string comment="one of the seven cases (grammatical)" >Locative</string>
         </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
        </widget>
       </item>
       <item row="7" column="1" colspan="2" >
@@ -147,6 +165,9 @@
        <widget class="QLabel" name="label_2" >
         <property name="text" >
          <string comment="one of the seven cases (grammatical)" >Vocative</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>

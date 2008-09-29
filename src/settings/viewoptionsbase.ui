@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>490</width>
-    <height>531</height>
+    <width>355</width>
+    <height>505</height>
    </rect>
   </property>
   <layout class="QGridLayout" >
@@ -52,6 +52,9 @@
        <property name="text" >
         <string>&amp;IPA font:</string>
        </property>
+       <property name="alignment" >
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
        <property name="buddy" >
         <cstring>kcfg_IPAFont</cstring>
        </property>
@@ -61,6 +64,9 @@
       <widget class="QLabel" name="TableFontLabel" >
        <property name="text" >
         <string>&amp;Table font:</string>
+       </property>
+       <property name="alignment" >
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
        <property name="buddy" >
         <cstring>kcfg_TableFont</cstring>
@@ -97,7 +103,7 @@
       <item row="8" column="1" >
        <widget class="KColorButton" name="kcfg_GradeColor0" >
         <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -110,7 +116,7 @@
       <item row="7" column="1" >
        <widget class="KColorButton" name="kcfg_GradeColor1" >
         <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -132,7 +138,7 @@
       <item row="6" column="1" >
        <widget class="KColorButton" name="kcfg_GradeColor2" >
         <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -154,7 +160,7 @@
       <item row="5" column="1" >
        <widget class="KColorButton" name="kcfg_GradeColor3" >
         <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -176,7 +182,7 @@
       <item row="4" column="1" >
        <widget class="KColorButton" name="kcfg_GradeColor4" >
         <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -198,7 +204,7 @@
       <item row="3" column="1" >
        <widget class="KColorButton" name="kcfg_GradeColor5" >
         <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -220,7 +226,7 @@
       <item row="2" column="1" >
        <widget class="KColorButton" name="kcfg_GradeColor6" >
         <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -242,7 +248,7 @@
       <item row="1" column="1" >
        <widget class="KColorButton" name="kcfg_GradeColor7" >
         <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -272,6 +278,9 @@
         <property name="text" >
          <string>Level &amp;7:</string>
         </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
         <property name="buddy" >
          <cstring>kcfg_GradeColor7</cstring>
         </property>
@@ -287,6 +296,9 @@
         </property>
         <property name="text" >
          <string>Level &amp;6:</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
         <property name="buddy" >
          <cstring>kcfg_GradeColor6</cstring>
@@ -304,6 +316,9 @@
         <property name="text" >
          <string>Level &amp;5:</string>
         </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
         <property name="buddy" >
          <cstring>kcfg_GradeColor5</cstring>
         </property>
@@ -319,6 +334,9 @@
         </property>
         <property name="text" >
          <string>Level &amp;4:</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
         <property name="buddy" >
          <cstring>kcfg_GradeColor4</cstring>
@@ -336,6 +354,9 @@
         <property name="text" >
          <string>Level &amp;3:</string>
         </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
         <property name="buddy" >
          <cstring>kcfg_GradeColor3</cstring>
         </property>
@@ -351,6 +372,9 @@
         </property>
         <property name="text" >
          <string>Level &amp;2:</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
         <property name="buddy" >
          <cstring>kcfg_GradeColor2</cstring>
@@ -368,6 +392,9 @@
         <property name="text" >
          <string>Level &amp;1:</string>
         </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
         <property name="buddy" >
          <cstring>kcfg_GradeColor1</cstring>
         </property>
@@ -383,6 +410,9 @@
         </property>
         <property name="text" >
          <string>Not &amp;practiced:</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
         <property name="buddy" >
          <cstring>kcfg_GradeColor0</cstring>

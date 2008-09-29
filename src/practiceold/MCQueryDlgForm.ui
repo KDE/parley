@@ -330,6 +330,9 @@
             <property name="text" >
              <string>Count:</string>
             </property>
+            <property name="alignment" >
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
            </widget>
           </item>
           <item row="1" column="0" >
@@ -343,6 +346,9 @@
             <property name="text" >
              <string>Time:</string>
             </property>
+            <property name="alignment" >
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
            </widget>
           </item>
           <item row="2" column="0" >
@@ -352,6 +358,9 @@
             </property>
             <property name="text" >
              <string>Cycle:</string>
+            </property>
+            <property name="alignment" >
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>

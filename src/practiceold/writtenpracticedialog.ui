@@ -437,6 +437,9 @@
             <property name="text" >
              <string>Count:</string>
             </property>
+            <property name="alignment" >
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
            </widget>
           </item>
           <item row="0" column="1" >
@@ -446,6 +449,9 @@
            <widget class="QLabel" name="timelabel" >
             <property name="text" >
              <string>Time:</string>
+            </property>
+            <property name="alignment" >
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>
@@ -459,6 +465,9 @@
             </property>
             <property name="text" >
              <string>Cycle:</string>
+            </property>
+            <property name="alignment" >
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>
