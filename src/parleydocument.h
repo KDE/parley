@@ -65,7 +65,7 @@ public slots:
 
     void exportHtmlDialog();
 
-    void newDocument();
+    void newDocument(bool wizard = false);
 
     void slotSaveSelection();
 
@@ -76,10 +76,6 @@ signals:
     void documentChanged(KEduVocDocument *newDocument);
 
 private:
-    /**
-     * Start the wizard to help set up the doc.
-     */
-    void newDocumentWizard();
     /**
      * Add some pre defined types and usages.
      */

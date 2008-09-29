@@ -76,12 +76,12 @@ KEduVocDocument * ParleyDocument::document()
 void ParleyDocument::slotFileNew()
 {
     if (m_parleyApp->queryExit()) {
-        newDocumentWizard();
+        newDocument(true);
     }
 }
 
 
-void ParleyDocument::newDocument()
+void ParleyDocument::newDocument(bool wizard)
 {
     disconnect(m_doc);
     delete m_doc;
@@ -93,6 +93,17 @@ void ParleyDocument::newDocument()
 
     m_doc->setModified(false);
     m_parleyApp->updateDocument();
+
+    if (wizard) {
+        KVTNewDocumentWizard *wizard;
+
+        wizard = new KVTNewDocumentWizard(m_doc, m_parleyApp);
+        if( !wizard->exec() == KDialog::Accepted ){
+            delete wizard;
+            return;
+        }
+        delete wizard;
+    }
 
     emit documentChanged(m_doc);
 }
@@ -262,25 +273,6 @@ void ParleyDocument::slotSaveSelection()
     Prefs::setSeparator(save_separator);
 //     slotStatusMsg(IDS_DEFAULT);
     */
-}
-
-
-
-
-
-
-void ParleyDocument::newDocumentWizard()
-{
-    newDocument();
-
-    KVTNewDocumentWizard *wizard;
-
-    wizard = new KVTNewDocumentWizard(m_doc, m_parleyApp);
-    if( !wizard->exec() == KDialog::Accepted ){
-        delete wizard;
-        return;
-    }
-    delete wizard;
 }
 
 void ParleyDocument::initializeDefaultGrammar()
