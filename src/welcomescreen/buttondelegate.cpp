@@ -39,10 +39,10 @@ QList<QWidget*> ButtonDelegate::createItemWidgets() const
 {
     QList<QWidget*> widgetList;
     KPushButton *editButton = new KPushButton();
-    editButton->setText("Edit");
+    editButton->setText(i18n("Edit"));
     editButton->setIcon(KIcon("document-open"));
     KPushButton *practiceButton = new KPushButton();
-    practiceButton->setText("Practice");
+    practiceButton->setText(i18n("Practice"));
     practiceButton->setIcon(KIcon("practice-start"));
     m_rightMargin = editButton->sizeHint().width() + practiceButton->sizeHint().width() + 3*margin;
     m_buttonHeight = editButton->sizeHint().height();
