@@ -5,6 +5,7 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=LEO Dictionary (Translation)
+Name[ca]=Diccionari LEO (traducció)
 Name[el]=Λεξικό LEO (μετάφραση)
 Name[et]=LEO sõnaraamat (tõlkimiseks)
 Name[gl]=Dicionario LEO (Tradución)
@@ -23,6 +24,7 @@ Name[x-test]=xxLEO Dictionary (Translation)xx
 Name[zh_CN]=LEO 词典(翻译)
 Name[zh_TW]=LEO 字典（翻譯）
 Comment=Uses LEO Dictionary (dict.leo.org) to translate words
+Comment[ca]=Utilitza el diccionari LEO (dict.leo.org) per traduir mots
 Comment[el]=Χρήση λεξικού LEO (dict.leo.org) για τη μετάφραση λέξεων
 Comment[et]=LEO sõnaraamatu (dict.leo.org) kasutamine sõnade tõlkimiseks
 Comment[gl]=Emprega o dicionario LEO (dict.leo.org) para traducir palabras

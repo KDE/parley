@@ -7,6 +7,7 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Testing Purposes Script
+Name[ca]=Script de prova
 Name[el]=Σενάριο για τον έλεγχο
 Name[et]=Skript testimiseks
 Name[gl]=Script para probas
@@ -23,6 +24,7 @@ Name[x-test]=xxTesting Purposes Scriptxx
 Name[zh_CN]=测试目的脚本
 Name[zh_TW]=測試目的文稿
 Comment=Description of what the plugin does
+Comment[ca]=Descripció de què fa l'endollable
 Comment[el]=Περιγραφή του προσθέτου
 Comment[et]=Plugina tegevuse kirjeldus
 Comment[gl]=A descrición do que fai a extensión

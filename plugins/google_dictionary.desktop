@@ -7,6 +7,7 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Google Dictionary (translation)
+Name[ca]=diccionari de Google (traducció)
 Name[el]=Λεξικό Google (μετάφραση)
 Name[et]=Google'i sõnaraamat (tõlkimiseks)
 Name[gl]=Dicionario de Google (tradución)
@@ -25,6 +26,7 @@ Name[x-test]=xxGoogle Dictionary (translation)xx
 Name[zh_CN]=Google 词典(翻译)
 Name[zh_TW]=Google 字典（翻譯）
 Comment=Uses Google Dictionary (translate.google.com) to translate words
+Comment[ca]=Utilitza el diccionari de Google (translate.google.com) per a traduir mots
 Comment[el]=Χρήση του λεξικού Google (translate.google.com) για τη μετάφραση λέξεων
 Comment[et]=Google'i sõnaraamatu (translate.google.com) kasutamine sõnade tõlkimiseks
 Comment[gl]=Emprega os dicionario de Google (translate.google.com) para traducir verbas

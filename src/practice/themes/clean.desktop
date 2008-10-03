@@ -1,5 +1,6 @@
 [KGameTheme]
 Name=Clean
+Name[ca]=Net
 Name[el]=Καθαρό
 Name[et]=Klaar
 Name[ga]=Glan
@@ -14,6 +15,7 @@ Name[x-test]=xxCleanxx
 Name[zh_CN]=简洁
 Name[zh_TW]=乾淨
 Description=Clean theme for KDE 4
+Description[ca]=Un tema net per al KDE 4
 Description[el]=Καθαρό θέμα για το KDE 4
 Description[et]=KDE 4 klaar teema
 Description[ga]=Téama glan le haghaidh KDE 4
