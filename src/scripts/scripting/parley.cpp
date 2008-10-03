@@ -13,6 +13,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "parley.h"
+
 #include "../../parley.h"
 #include "../../vocabulary/vocabularymodel.h"
 #include "../../vocabulary/vocabularyview.h"
@@ -20,7 +22,6 @@
 #include "../scriptmanager.h"
 #include "../translator.h"
 
-#include "parley.h"
 #include "document.h"
 #include "lesson.h"
 #include "expression.h"

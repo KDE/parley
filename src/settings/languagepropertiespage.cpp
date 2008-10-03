@@ -29,8 +29,6 @@
 #include <QLabel>
 #include <QtDBus>
 
-#include <keduvocdocument.h>
-
 #define TENSE_TAG ". "
 
 LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identifierIndex, QWidget *parent) : QWidget(parent)

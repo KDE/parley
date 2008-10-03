@@ -19,6 +19,7 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "practiceentrymanager.h"
 
 #include <KRandomSequence>
 #include <KRandom>
@@ -29,7 +30,6 @@
 #include "prefs.h"
 #include "practiceold/entryfilter.h"
 
-#include "practiceentrymanager.h"
 #include "practiceentry.h"
 
 #include <keduvocwordtype.h>

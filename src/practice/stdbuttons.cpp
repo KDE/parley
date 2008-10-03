@@ -16,10 +16,11 @@
 *                                                                         *
 ***************************************************************************/
 
+#include "stdbuttons.h"
+
 #include <KDebug>
 #include <KLocalizedString>
 
-#include "stdbuttons.h"
 #include "statistics/statistics.h"
 
 StdButton::StdButton(const QString& text, KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget* parent)
