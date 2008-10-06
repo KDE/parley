@@ -264,7 +264,7 @@ endif(HAVE_LIBXSLT)
 install(TARGETS parley  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 # desktop files appear in the menus
-install( FILES parley.desktop parleypractice.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
+install( FILES parley.desktop DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 
 # hot new stuff config
 install( FILES parley.knsrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
