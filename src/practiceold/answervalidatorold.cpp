@@ -236,8 +236,8 @@ void AnswerValidatorOld::defaultCorrector()
 //         return;
 //     }
 
-    int numberSolutionWords = m_solution.simplified().split(" ").count();
-    int numberAnswerWords = m_userAnswer.simplified().split(" ").count();
+    int numberSolutionWords = m_solution.simplified().split(' ').count();
+    int numberAnswerWords = m_userAnswer.simplified().split(' ').count();
 
     if ( numberSolutionWords == 1 ) {
         double grade;
@@ -250,7 +250,7 @@ void AnswerValidatorOld::defaultCorrector()
 
     if ( numberSolutionWords == 2 ) {
         // could be noun + article
-        QStringList solutionWords = m_solution.simplified().split(" ");
+        QStringList solutionWords = m_solution.simplified().split(' ');
 
         if ( m_translation >= 0 ) {
             if (m_doc->identifier(m_translation).article().isArticle(solutionWords.value(0)) ) {
@@ -266,9 +266,10 @@ void AnswerValidatorOld::defaultCorrector()
                 if ( numberAnswerWords == 2 ) {
                     double percent;
                     TestEntry::ErrorTypes errors;
-                    wordCompare(solutionWords.value(1), m_userAnswer.simplified().split(" ").value(1), percent, errors);
+                    wordCompare(solutionWords.value(1), m_userAnswer.simplified().split(' ').value(1), percent, 
+errors);
 
-                    if ( m_userAnswer.simplified().split(" ").value(0) == solutionWords.value(0) ) {
+                    if ( m_userAnswer.simplified().split(' ').value(0) == solutionWords.value(0) ) {
                         m_entry->setLastErrors(errors);
                     } else {
                         m_entry->setLastPercentage(qMax(percent-WRONG_ARTICLE_PUNISHMENT, 0.0));
