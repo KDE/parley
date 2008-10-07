@@ -1,3 +1,6 @@
+#ifndef SCRIPTS_TEST_SCRIPTS_H
+#define SCRIPTS_TEST_SCRIPTS_H
+
 #include <QObject>
 
 class ScriptTest
@@ -8,3 +11,5 @@ public:
     void test();
     void testJS();
 };
+
+#endif
