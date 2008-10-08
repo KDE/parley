@@ -31,7 +31,7 @@
 #include <QGraphicsView>
 
 TextualInput::TextualInput(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget* parent)
-        : QLineEdit(parent),
+        : KLineEdit(parent),
         m_renderer(renderer), m_area(area), m_size_hint_shown(0)
 {
     QString tId = area->translateElementId(elementId);

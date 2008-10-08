@@ -24,7 +24,7 @@
 
 #include <KLocale>
 #include <KStandardDirs>
-#include <QLineEdit>
+#include <KLineEdit>
 #include <QCheckBox>
 #include <QLabel>
 #include <QtDBus>

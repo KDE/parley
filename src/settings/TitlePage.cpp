@@ -26,8 +26,8 @@
 #include "TitlePage.h"
 
 #include <KDebug>
+#include <KLineEdit>
 
-#include <QLineEdit>
 #include <QTextEdit>
 #include <QLabel>
 

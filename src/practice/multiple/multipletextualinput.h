@@ -25,14 +25,14 @@
 class ActiveArea;
 class QString;
 class KSvgRenderer;
-class QLineEdit;
+class KLineEdit;
 
 
 /**
 * @class MultipleTextualInput
 * @author David Capel <wot.narg@gmail.com>
 * @brief Manages a set of input widgets.
-* This class receives a set of elementIds and creates a QLineEdit in each one. Later, it is passed a set of solutions
+* This class receives a set of elementIds and creates a KLineEdit in each one. Later, it is passed a set of solutions
 * with slotSetChoices(QStringList); it picks one of them and displays it, but leaves all other input widgets blank.
 * The intended use of this class is to give show one element of a set of related solutions (eg the conjugation forms
 * of a single verb) and have the user supply the rest.
@@ -47,7 +47,7 @@ class MultipleTextualInput : public QObject
     Q_OBJECT
 
     public:
-        /// Creates a QLineEdit for each elementId that is passed to it.
+        /// Creates a KLineEdit for each elementId that is passed to it.
         MultipleTextualInput(KSvgRenderer * renderer, ActiveArea * area, QStringList& elementIds, QObject * parent = 0);
         ~MultipleTextualInput();
     public slots:
@@ -68,8 +68,8 @@ class MultipleTextualInput : public QObject
     protected:
         KSvgRenderer * m_renderer;
         QStringList m_elementIds;
-        QList<QLineEdit*> m_kids;
-        QMap<QString, QLineEdit*> m_map;
+        QList<KLineEdit*> m_kids;
+        QMap<QString, KLineEdit*> m_map;
         QString m_hint;
         ActiveArea* m_area;
 };

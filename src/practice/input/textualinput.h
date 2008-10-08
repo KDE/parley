@@ -20,7 +20,7 @@
 #ifndef TEXTUALINPUT_H
 #define TEXTUALINPUT_H
 
-#include <QLineEdit>
+#include <KLineEdit>
 
 class KSvgRenderer;
 class QGraphicsView;
@@ -33,7 +33,7 @@ class ActiveArea;
 * @author David Capel <wot.narg@gmail.com>
 * @brief This widget provides the free-form written user input method.
 */
-class TextualInput : public QLineEdit
+class TextualInput : public KLineEdit
 {
     Q_OBJECT
 

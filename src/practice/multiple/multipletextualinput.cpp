@@ -30,7 +30,7 @@
 #include <QMap>
 #include <QList>
 #include <QGraphicsScene>
-#include <QLineEdit>
+#include <KLineEdit>
 #include <KRandom>
 
 
@@ -42,7 +42,7 @@ MultipleTextualInput::MultipleTextualInput(KSvgRenderer * renderer, ActiveArea *
         QString tId = area->translateElementId(id);
         if (tId.isEmpty()) continue; // we just move on if it doesn't exist.
 
-        QLineEdit * t = new QLineEdit();
+        KLineEdit * t = new KLineEdit();
         m_kids.append(t);
         m_map[id] = t;
         area->scene()->addWidget(t);
@@ -92,7 +92,7 @@ void MultipleTextualInput::slotClear()
 {
     if (!m_area->active()) return;
 
-    foreach(QLineEdit* k, m_kids)
+    foreach(KLineEdit* k, m_kids)
     {
         k->setText("");
     }
