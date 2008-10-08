@@ -45,7 +45,7 @@
        </widget>
       </item>
       <item row="0" column="1" >
-       <widget class="QLineEdit" name="titleLineEdit" >
+       <widget class="KLineEdit" name="titleLineEdit" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
           <horstretch>0</horstretch>
@@ -71,7 +71,7 @@
        </widget>
       </item>
       <item row="1" column="1" >
-       <widget class="QLineEdit" name="authorLineEdit" >
+       <widget class="KLineEdit" name="authorLineEdit" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
           <horstretch>0</horstretch>
@@ -97,7 +97,7 @@
        </widget>
       </item>
       <item row="2" column="1" >
-       <widget class="QLineEdit" name="contactLineEdit" >
+       <widget class="KLineEdit" name="contactLineEdit" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
           <horstretch>0</horstretch>
@@ -123,7 +123,7 @@
        </widget>
       </item>
       <item row="3" column="1" >
-       <widget class="QTextEdit" name="commentTextEdit" >
+       <widget class="KTextEdit" name="commentTextEdit" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
           <horstretch>0</horstretch>
@@ -155,7 +155,7 @@
        </widget>
       </item>
       <item row="4" column="1" >
-       <widget class="QComboBox" name="categoryComboBox" >
+       <widget class="KComboBox" name="categoryComboBox" >
         <property name="toolTip" >
          <string>A general category into which your document belongs.</string>
         </property>
@@ -208,7 +208,7 @@
        </widget>
       </item>
       <item row="5" column="1" >
-       <widget class="QComboBox" name="licenseComboBox" >
+       <widget class="KComboBox" name="licenseComboBox" >
         <property name="toolTip" >
          <string>The license under which your document will be.
 If you consider contributing your file to KDE in the future, an appropriate license is required.</string>
@@ -314,6 +314,16 @@ If you consider contributing your file to KDE in the future, an appropriate lice
    <class>KComboBox</class>
    <extends>QComboBox</extends>
    <header>kcombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KTextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>ktextedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>klineedit.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

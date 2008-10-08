@@ -44,7 +44,7 @@
         </widget>
        </item>
        <item row="0" column="1" >
-        <widget class="QLineEdit" name="lineEdit" >
+        <widget class="KLineEdit" name="lineEdit" >
          <property name="readOnly" >
           <bool>true</bool>
          </property>
@@ -61,7 +61,7 @@
         </widget>
        </item>
        <item row="1" column="1" >
-        <widget class="QLineEdit" name="lineEdit_2" >
+        <widget class="KLineEdit" name="lineEdit_2" >
          <property name="readOnly" >
           <bool>true</bool>
          </property>
@@ -85,7 +85,7 @@
        </widget>
       </item>
       <item row="0" column="1" >
-       <widget class="QLineEdit" name="totalCountLineEdit" >
+       <widget class="KLineEdit" name="totalCountLineEdit" >
         <property name="inputMask" >
          <string/>
         </property>
@@ -105,7 +105,7 @@
        </widget>
       </item>
       <item row="1" column="1" >
-       <widget class="QLineEdit" name="correctLineEdit" >
+       <widget class="KLineEdit" name="correctLineEdit" >
         <property name="alignment" >
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
@@ -129,7 +129,7 @@
        </widget>
       </item>
       <item row="2" column="1" >
-       <widget class="QLineEdit" name="wrongLineEdit" >
+       <widget class="KLineEdit" name="wrongLineEdit" >
         <property name="alignment" >
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
@@ -153,7 +153,7 @@
        </widget>
       </item>
       <item row="3" column="1" >
-       <widget class="QLineEdit" name="notAnsweredLineEdit" >
+       <widget class="KLineEdit" name="notAnsweredLineEdit" >
         <property name="alignment" >
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
@@ -177,7 +177,7 @@
        </widget>
       </item>
       <item row="4" column="1" >
-       <widget class="QLineEdit" name="skipKnownLineEdit" >
+       <widget class="KLineEdit" name="skipKnownLineEdit" >
         <property name="alignment" >
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
@@ -201,7 +201,7 @@
        </widget>
       </item>
       <item row="5" column="1" >
-       <widget class="QLineEdit" name="skipUnknownLineEdit" >
+       <widget class="KLineEdit" name="skipUnknownLineEdit" >
         <property name="alignment" >
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
@@ -222,6 +222,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>KLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>klineedit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

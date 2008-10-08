@@ -31,7 +31,7 @@
         </widget>
        </item>
        <item row="0" column="1" >
-        <widget class="QComboBox" name="localeComboBox" />
+        <widget class="KComboBox" name="localeComboBox" />
        </item>
        <item row="1" column="0" >
         <widget class="QLabel" name="nameLabel" >
@@ -47,7 +47,7 @@
         </widget>
        </item>
        <item row="1" column="1" >
-        <widget class="QLineEdit" name="identifierNameLineEdit" />
+        <widget class="KLineEdit" name="identifierNameLineEdit" />
        </item>
        <item row="2" column="0" >
         <widget class="QLabel" name="iconSelectionLabel" >
@@ -60,7 +60,7 @@
         </widget>
        </item>
        <item row="2" column="1" >
-        <widget class="QComboBox" name="iconComboBox" />
+        <widget class="KComboBox" name="iconComboBox" />
        </item>
        <item row="3" column="0" >
         <widget class="QLabel" name="keyboardLayoutLabel" >
@@ -73,7 +73,7 @@
         </widget>
        </item>
        <item row="3" column="1" >
-        <widget class="QComboBox" name="keyboardLayoutComboBox" />
+        <widget class="KComboBox" name="keyboardLayoutComboBox" />
        </item>
        <item row="4" column="1" >
         <spacer name="spacer_2" >
@@ -129,7 +129,7 @@
         </widget>
        </item>
        <item row="1" column="2" >
-        <widget class="QLineEdit" name="def_male" >
+        <widget class="KLineEdit" name="def_male" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -152,7 +152,7 @@
         </widget>
        </item>
        <item row="2" column="2" >
-        <widget class="QLineEdit" name="def_female" >
+        <widget class="KLineEdit" name="def_female" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -162,7 +162,7 @@
         </widget>
        </item>
        <item row="2" column="3" >
-        <widget class="QLineEdit" name="indef_female" >
+        <widget class="KLineEdit" name="indef_female" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -185,7 +185,7 @@
         </widget>
        </item>
        <item row="3" column="2" >
-        <widget class="QLineEdit" name="def_natural" >
+        <widget class="KLineEdit" name="def_natural" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -195,7 +195,7 @@
         </widget>
        </item>
        <item row="3" column="3" >
-        <widget class="QLineEdit" name="indef_natural" >
+        <widget class="KLineEdit" name="indef_natural" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -218,7 +218,7 @@
         </spacer>
        </item>
        <item row="9" column="2" >
-        <widget class="QLineEdit" name="def_natural_2" >
+        <widget class="KLineEdit" name="def_natural_2" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -228,7 +228,7 @@
         </widget>
        </item>
        <item row="8" column="2" >
-        <widget class="QLineEdit" name="def_male_2" >
+        <widget class="KLineEdit" name="def_male_2" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -238,7 +238,7 @@
         </widget>
        </item>
        <item row="6" column="2" >
-        <widget class="QLineEdit" name="def_female_2" >
+        <widget class="KLineEdit" name="def_female_2" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -248,7 +248,7 @@
         </widget>
        </item>
        <item row="1" column="3" >
-        <widget class="QLineEdit" name="indef_male" >
+        <widget class="KLineEdit" name="indef_male" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -258,7 +258,7 @@
         </widget>
        </item>
        <item row="6" column="3" >
-        <widget class="QLineEdit" name="indef_male_2" >
+        <widget class="KLineEdit" name="indef_male_2" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -268,7 +268,7 @@
         </widget>
        </item>
        <item row="8" column="3" >
-        <widget class="QLineEdit" name="indef_female_2" >
+        <widget class="KLineEdit" name="indef_female_2" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -278,7 +278,7 @@
         </widget>
        </item>
        <item row="9" column="3" >
-        <widget class="QLineEdit" name="indef_natural_2" >
+        <widget class="KLineEdit" name="indef_natural_2" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -462,7 +462,7 @@
         </widget>
        </item>
        <item row="1" column="1" >
-        <widget class="QLineEdit" name="first_singular" >
+        <widget class="KLineEdit" name="first_singular" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -472,10 +472,10 @@
         </widget>
        </item>
        <item row="1" column="2" >
-        <widget class="QLineEdit" name="dualFirstLineEdit" />
+        <widget class="KLineEdit" name="dualFirstLineEdit" />
        </item>
        <item row="1" column="3" >
-        <widget class="QLineEdit" name="first_plural" >
+        <widget class="KLineEdit" name="first_plural" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -498,7 +498,7 @@
         </widget>
        </item>
        <item row="2" column="1" >
-        <widget class="QLineEdit" name="second_singular" >
+        <widget class="KLineEdit" name="second_singular" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -508,10 +508,10 @@
         </widget>
        </item>
        <item row="2" column="2" >
-        <widget class="QLineEdit" name="dualSecondLineEdit" />
+        <widget class="KLineEdit" name="dualSecondLineEdit" />
        </item>
        <item row="2" column="3" >
-        <widget class="QLineEdit" name="second_plural" >
+        <widget class="KLineEdit" name="second_plural" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -544,7 +544,7 @@
         </widget>
        </item>
        <item row="4" column="1" >
-        <widget class="QLineEdit" name="thirdM_singular" >
+        <widget class="KLineEdit" name="thirdM_singular" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -554,10 +554,10 @@
         </widget>
        </item>
        <item row="4" column="2" >
-        <widget class="QLineEdit" name="dualThirdMaleLineEdit" />
+        <widget class="KLineEdit" name="dualThirdMaleLineEdit" />
        </item>
        <item row="4" column="3" >
-        <widget class="QLineEdit" name="thirdM_plural" >
+        <widget class="KLineEdit" name="thirdM_plural" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -580,7 +580,7 @@
         </widget>
        </item>
        <item row="5" column="1" >
-        <widget class="QLineEdit" name="thirdF_singular" >
+        <widget class="KLineEdit" name="thirdF_singular" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -590,10 +590,10 @@
         </widget>
        </item>
        <item row="5" column="2" >
-        <widget class="QLineEdit" name="dualThirdFemaleLineEdit" />
+        <widget class="KLineEdit" name="dualThirdFemaleLineEdit" />
        </item>
        <item row="5" column="3" >
-        <widget class="QLineEdit" name="thirdF_plural" >
+        <widget class="KLineEdit" name="thirdF_plural" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -616,7 +616,7 @@
         </widget>
        </item>
        <item row="6" column="1" >
-        <widget class="QLineEdit" name="thirdN_singular" >
+        <widget class="KLineEdit" name="thirdN_singular" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -626,10 +626,10 @@
         </widget>
        </item>
        <item row="6" column="2" >
-        <widget class="QLineEdit" name="dualThirdNeutralLineEdit" />
+        <widget class="KLineEdit" name="dualThirdNeutralLineEdit" />
        </item>
        <item row="6" column="3" >
-        <widget class="QLineEdit" name="thirdN_plural" >
+        <widget class="KLineEdit" name="thirdN_plural" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -835,6 +835,11 @@
    <extends>QTabWidget</extends>
    <header>ktabwidget.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>KComboBox</class>
+   <extends>QComboBox</extends>
+   <header>kcombobox.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
