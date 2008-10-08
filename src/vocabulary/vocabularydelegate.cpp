@@ -124,7 +124,7 @@ QWidget * VocabularyDelegate::createEditor ( QWidget * parent, const QStyleOptio
                 if ( !translations.isEmpty() && ! ( translations.size() == 1 && ( *translations.begin() ) == index.model()->data ( index, Qt::DisplayRole ).toString() ) )
                 {
 
-                    QComboBox *translationCombo = new QComboBox ( parent );
+                    KComboBox *translationCombo = new KComboBox ( parent );
                     translationCombo->setFrame ( false );
 
                     translationCombo->addItems ( translations.toList() );
@@ -191,7 +191,7 @@ void VocabularyDelegate::setEditorData ( QWidget * editor, const QModelIndex & i
         case ( VocabularyModel::Translation ) :
         {
             QString value = index.model()->data ( index, Qt::DisplayRole ).toString();
-            QComboBox * translationCombo = qobject_cast<QComboBox*> ( editor );
+            KComboBox * translationCombo = qobject_cast<KComboBox*> ( editor );
             if ( translationCombo )
             {
                 if ( value.isNull() )
@@ -258,7 +258,7 @@ void VocabularyDelegate::setModelData ( QWidget * editor, QAbstractItemModel * m
         }
         case ( VocabularyModel::Translation ) :
         {
-            QComboBox * translationCombo = qobject_cast<QComboBox*> ( editor );
+            KComboBox * translationCombo = qobject_cast<KComboBox*> ( editor );
             if ( translationCombo )
             {
                 model->setData ( index,translationCombo->currentText() );
