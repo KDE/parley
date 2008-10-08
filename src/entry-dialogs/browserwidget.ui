@@ -20,7 +20,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="providerComboBox" />
+      <widget class="KComboBox" name="providerComboBox" />
      </item>
     </layout>
    </item>
@@ -36,6 +36,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>KComboBox</class>
+   <extends>QComboBox</extends>
+   <header>kcombobox.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

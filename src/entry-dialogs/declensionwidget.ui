@@ -58,13 +58,13 @@
        </widget>
       </item>
       <item row="2" column="1" colspan="2" >
-       <widget class="QLineEdit" name="singular_1" />
+       <widget class="KLineEdit" name="singular_1" />
       </item>
       <item row="2" column="3" colspan="2" >
-       <widget class="QLineEdit" name="dual_1" />
+       <widget class="KLineEdit" name="dual_1" />
       </item>
       <item row="2" column="5" colspan="2" >
-       <widget class="QLineEdit" name="plural_1" />
+       <widget class="KLineEdit" name="plural_1" />
       </item>
       <item row="3" column="0" >
        <widget class="QLabel" name="singularSecondPersonLabel" >
@@ -77,13 +77,13 @@
        </widget>
       </item>
       <item row="3" column="1" colspan="2" >
-       <widget class="QLineEdit" name="singular_2" />
+       <widget class="KLineEdit" name="singular_2" />
       </item>
       <item row="3" column="3" colspan="2" >
-       <widget class="QLineEdit" name="dual_2" />
+       <widget class="KLineEdit" name="dual_2" />
       </item>
       <item row="3" column="5" colspan="2" >
-       <widget class="QLineEdit" name="plural_2" />
+       <widget class="KLineEdit" name="plural_2" />
       </item>
       <item row="4" column="0" >
        <widget class="QLabel" name="singularThirdMalePersonLabel" >
@@ -96,13 +96,13 @@
        </widget>
       </item>
       <item row="4" column="1" colspan="2" >
-       <widget class="QLineEdit" name="singular_3" />
+       <widget class="KLineEdit" name="singular_3" />
       </item>
       <item row="4" column="3" colspan="2" >
-       <widget class="QLineEdit" name="dual_3" />
+       <widget class="KLineEdit" name="dual_3" />
       </item>
       <item row="4" column="5" colspan="2" >
-       <widget class="QLineEdit" name="plural_3" />
+       <widget class="KLineEdit" name="plural_3" />
       </item>
       <item row="5" column="0" >
        <widget class="QLabel" name="singularThirdFemalePersonLabel" >
@@ -115,13 +115,13 @@
        </widget>
       </item>
       <item row="5" column="1" colspan="2" >
-       <widget class="QLineEdit" name="singular_4" />
+       <widget class="KLineEdit" name="singular_4" />
       </item>
       <item row="5" column="3" colspan="2" >
-       <widget class="QLineEdit" name="dual_4" />
+       <widget class="KLineEdit" name="dual_4" />
       </item>
       <item row="5" column="5" colspan="2" >
-       <widget class="QLineEdit" name="plural_4" />
+       <widget class="KLineEdit" name="plural_4" />
       </item>
       <item row="6" column="0" >
        <widget class="QLabel" name="singularThirdNeutralPersonLabel" >
@@ -134,13 +134,13 @@
        </widget>
       </item>
       <item row="6" column="1" colspan="2" >
-       <widget class="QLineEdit" name="singular_5" />
+       <widget class="KLineEdit" name="singular_5" />
       </item>
       <item row="6" column="3" colspan="2" >
-       <widget class="QLineEdit" name="dual_5" />
+       <widget class="KLineEdit" name="dual_5" />
       </item>
       <item row="6" column="5" colspan="2" >
-       <widget class="QLineEdit" name="plural_5" />
+       <widget class="KLineEdit" name="plural_5" />
       </item>
       <item row="7" column="0" >
        <widget class="QLabel" name="label" >
@@ -153,13 +153,13 @@
        </widget>
       </item>
       <item row="7" column="1" colspan="2" >
-       <widget class="QLineEdit" name="singular_6" />
+       <widget class="KLineEdit" name="singular_6" />
       </item>
       <item row="7" column="3" colspan="2" >
-       <widget class="QLineEdit" name="dual_6" />
+       <widget class="KLineEdit" name="dual_6" />
       </item>
       <item row="7" column="5" colspan="2" >
-       <widget class="QLineEdit" name="plural_6" />
+       <widget class="KLineEdit" name="plural_6" />
       </item>
       <item row="8" column="0" >
        <widget class="QLabel" name="label_2" >
@@ -172,13 +172,13 @@
        </widget>
       </item>
       <item row="8" column="1" colspan="2" >
-       <widget class="QLineEdit" name="singular_7" />
+       <widget class="KLineEdit" name="singular_7" />
       </item>
       <item row="8" column="3" colspan="2" >
-       <widget class="QLineEdit" name="dual_7" />
+       <widget class="KLineEdit" name="dual_7" />
       </item>
       <item row="8" column="5" colspan="2" >
-       <widget class="QLineEdit" name="plural_7" />
+       <widget class="KLineEdit" name="plural_7" />
       </item>
       <item row="1" column="1" colspan="2" >
        <widget class="QLabel" name="label_3" >
@@ -221,6 +221,13 @@
  </widget>
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <customwidgets>
+  <customwidget>
+   <class>KLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>klineedit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
