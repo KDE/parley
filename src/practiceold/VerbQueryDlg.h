@@ -64,7 +64,7 @@ private:
 
     bool m_hasDualConjugations;
 
-    QMap < int, QLineEdit* > m_conjugationWidgets;
+    QMap < int, KLineEdit* > m_conjugationWidgets;
 
     Ui::VerbQueryDlgForm * mw;
 };

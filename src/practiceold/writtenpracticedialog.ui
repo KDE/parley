@@ -111,7 +111,7 @@
          </widget>
         </item>
         <item row="3" column="0" >
-         <widget class="QLineEdit" name="answerLineEdit" />
+         <widget class="KLineEdit" name="answerLineEdit" />
         </item>
        </layout>
       </widget>
@@ -515,6 +515,13 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11" />
+ <customwidgets>
+  <customwidget>
+   <class>KLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>klineedit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

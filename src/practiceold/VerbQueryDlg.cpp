@@ -32,7 +32,7 @@
 #include <QTimer>
 #include <QPushButton>
 #include <QLabel>
-#include <QLineEdit>
+#include <KLineEdit>
 
 VerbQueryDlg::VerbQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Verb Training"), doc, parent)
 {
@@ -69,7 +69,7 @@ kDebug() << "Practicing tenses: " << m_activeTenses;
     setupPersonalPronouns();
 
     setupConjugationLineEditMap();
-    foreach ( QLineEdit* line, m_conjugationWidgets ) {
+    foreach ( KLineEdit* line, m_conjugationWidgets ) {
         connect(line, SIGNAL(textChanged()), SLOT(textChanged()));
         ///@todo update upon change
     }
@@ -138,7 +138,7 @@ void VerbQueryDlg::setupConjugationLineEditMap()
 void VerbQueryDlg::clearLineEdits()
 {
     foreach ( int i, m_conjugationWidgets.keys() ) {
-        QLineEdit* conjugationLineEdit = m_conjugationWidgets.value(i);
+        KLineEdit* conjugationLineEdit = m_conjugationWidgets.value(i);
         conjugationLineEdit->setText(QString());
         setWidgetStyle(conjugationLineEdit, Default);
         conjugationLineEdit->setReadOnly(false);

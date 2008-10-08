@@ -343,7 +343,7 @@ void WrittenPracticeDialog::showSolution()
 //     KLineEdit* senderedit = qobject_cast<KLineEdit*>(sender());
 //
 //     if (suggestions && combo) {
-//         QLineEdit* edit = qobject_cast<QLineEdit*>(combo->lineEdit());
+//         KLineEdit* edit = qobject_cast<KLineEdit*>(combo->lineEdit());
 //         if ( !edit ) {
 //             return; // cast failed
 //         }

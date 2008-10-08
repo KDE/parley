@@ -30,11 +30,11 @@
 
 #include <KLocale>
 #include <KPassivePopup>
+#include <KLineEdit>
 #include <Phonon/MediaObject>
 #include <Phonon/Path>
 #include <Phonon/AudioOutput>
 #include <Phonon/Global>
-#include <QLineEdit>
 #include <QTextEdit>
 #include <QRadioButton>
 #include <QCloseEvent>

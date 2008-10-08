@@ -26,11 +26,11 @@
 
 #include <QTimer>
 #include <QPushButton>
-#include <QLineEdit>
 #include <QLabel>
 
 #include <KLocale>
 #include <KRandomSequence>
+#include <KLineEdit>
 
 AdjQueryDlg::AdjQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Comparison Training"), doc, parent)
 {

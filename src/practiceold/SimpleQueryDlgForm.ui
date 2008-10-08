@@ -85,7 +85,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="answerField" />
+        <widget class="KLineEdit" name="answerField" />
        </item>
       </layout>
      </item>
@@ -331,6 +331,13 @@
   <tabstop>know_it</tabstop>
   <tabstop>dont_know</tabstop>
  </tabstops>
+ <customwidgets>
+  <customwidget>
+   <class>KLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>klineedit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
