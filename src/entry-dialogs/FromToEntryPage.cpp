@@ -25,12 +25,12 @@
 
 #include "FromToEntryPage.h"
 
-#include <QLineEdit>
-#include <QComboBox>
 #include <QPushButton>
 #include <QGroupBox>
 
 #include <klocale.h>
+#include <KComboBox>
+#include <KLineEdit>
 
 #include "practice/testentrymanager.h"
 #include "EntryDlg.h"

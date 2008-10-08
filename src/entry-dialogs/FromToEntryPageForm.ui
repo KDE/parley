@@ -57,7 +57,7 @@
          </spacer>
         </item>
         <item row="1" column="1" colspan="2" >
-         <widget class="QLineEdit" name="fauxami_line" >
+         <widget class="KLineEdit" name="fauxami_line" >
           <property name="sizePolicy" >
            <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
             <horstretch>0</horstretch>
@@ -80,7 +80,7 @@
          </widget>
         </item>
         <item row="0" column="1" >
-         <widget class="QComboBox" name="gradebox" >
+         <widget class="KComboBox" name="gradebox" >
           <property name="sizePolicy" >
            <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
             <horstretch>0</horstretch>
@@ -279,6 +279,18 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11" />
+ <customwidgets>
+  <customwidget>
+   <class>KComboBox</class>
+   <extends>QComboBox</extends>
+   <header>kcombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>klineedit.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>gradebox</tabstop>
   <tabstop>fauxami_line</tabstop>

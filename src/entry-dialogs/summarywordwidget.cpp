@@ -180,7 +180,7 @@ void SummaryWordDelegate::setEditorData(QWidget *editor, const QModelIndex &inde
             case VocabularyModel::Example:
             case VocabularyModel::Paraphrase:
 
-                QLineEdit *entry = static_cast <QLineEdit *> (editor);
+                KLineEdit *entry = static_cast <KLineEdit *> (editor);
                 if (entry) {
                     entry->setText(index.model()->data(index).toString());
                 }

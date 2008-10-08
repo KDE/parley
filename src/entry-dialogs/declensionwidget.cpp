@@ -86,7 +86,7 @@ DeclensionWidget::DeclensionWidget(QWidget *parent) : QWidget(parent)
 
 void DeclensionWidget::textChanged(const QString& text)
 {
-    int valueIndex = m_DeclensionLineEdits.values().indexOf(qobject_cast<QLineEdit*>(sender()));
+    int valueIndex = m_DeclensionLineEdits.values().indexOf(qobject_cast<KLineEdit*>(sender()));
     int key = m_DeclensionLineEdits.keys().value(valueIndex);
     m_entry->translation(m_identifier)->declension()->setDeclension(text, (KEduVocWordFlag::Flags)key);
     emit sigModified();

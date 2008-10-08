@@ -57,7 +57,7 @@ private:
     /**
      * All line edits and labels, index corresponding to KEduVocWordFlag::indexOf
      */
-    QMap< int, QLineEdit* > m_DeclensionLineEdits;
+    QMap< int, KLineEdit* > m_DeclensionLineEdits;
 };
 
 #endif

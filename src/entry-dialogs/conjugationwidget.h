@@ -60,7 +60,7 @@ private:
     /**
      * All line edits and labels, index corresponding to KEduVocWordFlag::indexOf
      */
-    QMap< KEduVocWordFlags, QLineEdit* > m_conjugationLineEdits;
+    QMap< KEduVocWordFlags, KLineEdit* > m_conjugationLineEdits;
 };
 
 #endif

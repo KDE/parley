@@ -79,7 +79,7 @@ ConjugationWidget::ConjugationWidget(QWidget *parent) : QWidget(parent)
 
 void ConjugationWidget::textChanged(const QString& text)
 {
-    int valueIndex = m_conjugationLineEdits.values().indexOf(qobject_cast<QLineEdit*>(sender()));
+    int valueIndex = m_conjugationLineEdits.values().indexOf(qobject_cast<KLineEdit*>(sender()));
     int key = m_conjugationLineEdits.keys().value(valueIndex);
     m_entry->translation(m_identifier)->conjugation(tenseComboBox->currentText()).setConjugation(text, (KEduVocWordFlag::Flags)key);
 }
