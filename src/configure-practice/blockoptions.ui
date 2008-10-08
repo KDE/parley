@@ -29,10 +29,10 @@
     <number>6</number>
    </property>
    <item row="7" column="2" >
-    <widget class="QComboBox" name="expire2" />
+    <widget class="KComboBox" name="expire2" />
    </item>
    <item row="2" column="2" >
-    <widget class="QComboBox" name="expire7" />
+    <widget class="KComboBox" name="expire7" />
    </item>
    <item row="7" column="0" >
     <widget class="QLabel" name="l_lev2" >
@@ -45,7 +45,7 @@
     </widget>
    </item>
    <item row="8" column="2" >
-    <widget class="QComboBox" name="expire1" />
+    <widget class="KComboBox" name="expire1" />
    </item>
    <item row="4" column="0" >
     <widget class="QLabel" name="l_lev5" >
@@ -81,7 +81,7 @@
     </widget>
    </item>
    <item row="5" column="1" >
-    <widget class="QComboBox" name="block4" />
+    <widget class="KComboBox" name="block4" />
    </item>
    <item row="0" column="1" >
     <widget class="QCheckBox" name="kcfg_Block" >
@@ -97,10 +97,10 @@
     </widget>
    </item>
    <item row="8" column="1" >
-    <widget class="QComboBox" name="block1" />
+    <widget class="KComboBox" name="block1" />
    </item>
    <item row="2" column="1" >
-    <widget class="QComboBox" name="block7" >
+    <widget class="KComboBox" name="block7" >
      <property name="sizePolicy" >
       <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
        <horstretch>0</horstretch>
@@ -110,7 +110,7 @@
     </widget>
    </item>
    <item row="3" column="2" >
-    <widget class="QComboBox" name="expire6" />
+    <widget class="KComboBox" name="expire6" />
    </item>
    <item row="5" column="0" >
     <widget class="QLabel" name="l_lev4" >
@@ -133,16 +133,16 @@
     </widget>
    </item>
    <item row="4" column="2" >
-    <widget class="QComboBox" name="expire5" />
+    <widget class="KComboBox" name="expire5" />
    </item>
    <item row="6" column="1" >
-    <widget class="QComboBox" name="block3" />
+    <widget class="KComboBox" name="block3" />
    </item>
    <item row="7" column="1" >
-    <widget class="QComboBox" name="block2" />
+    <widget class="KComboBox" name="block2" />
    </item>
    <item row="5" column="2" >
-    <widget class="QComboBox" name="expire4" />
+    <widget class="KComboBox" name="expire4" />
    </item>
    <item row="8" column="0" >
     <widget class="QLabel" name="l_lev1" >
@@ -171,13 +171,13 @@
     </spacer>
    </item>
    <item row="6" column="2" >
-    <widget class="QComboBox" name="expire3" />
+    <widget class="KComboBox" name="expire3" />
    </item>
    <item row="4" column="1" >
-    <widget class="QComboBox" name="block5" />
+    <widget class="KComboBox" name="block5" />
    </item>
    <item row="3" column="1" >
-    <widget class="QComboBox" name="block6" >
+    <widget class="KComboBox" name="block6" >
      <property name="sizePolicy" >
       <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
        <horstretch>0</horstretch>
@@ -236,6 +236,13 @@
  </widget>
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <customwidgets>
+  <customwidget>
+   <class>KComboBox</class>
+   <extends>QComboBox</extends>
+   <header>kcombobox.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>kcfg_Block</tabstop>
   <tabstop>kcfg_Expire</tabstop>

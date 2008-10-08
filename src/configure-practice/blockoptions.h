@@ -29,7 +29,7 @@
 #include "ui_blockoptions.h"
 #include "practiceold/testentrymanager.h"
 
-class QComboBox;
+class KComboBox;
 
 class BlockOptions : public QWidget, public Ui::BlockOptionsBase
 {
@@ -51,12 +51,12 @@ protected slots:
 
 private:
     void fillWidgets();
-    void fillComboBox(QComboBox *);
-    void updateComboBox(int, QComboBox *);
+    void fillComboBox(KComboBox *);
+    void updateComboBox(int, KComboBox *);
     void checkValidity();
 
-    QList<QComboBox *> m_blockComboList;
-    QList<QComboBox *> m_expireComboList;
+    QList<KComboBox *> m_blockComboList;
+    QList<KComboBox *> m_expireComboList;
 };
 
 #endif

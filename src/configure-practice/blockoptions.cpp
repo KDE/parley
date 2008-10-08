@@ -23,11 +23,11 @@
 
 #include "blockoptions.h"
 
-#include <QComboBox>
 #include <QCheckBox>
 
 #include <klocale.h>
 #include <kmessagebox.h>
+#include <KComboBox>
 
 #include "prefs.h"
 
@@ -174,7 +174,7 @@ void BlockOptions::updateWidgets()
     expire7->setEnabled(expire);
 }
 
-void BlockOptions::fillComboBox(QComboBox * cb)
+void BlockOptions::fillComboBox(KComboBox * cb)
 {
     ListRef *ref = date_itemlist;
 
@@ -185,7 +185,7 @@ void BlockOptions::fillComboBox(QComboBox * cb)
     }
 }
 
-void BlockOptions::updateComboBox(int value, QComboBox * cb)
+void BlockOptions::updateComboBox(int value, KComboBox * cb)
 {
     ListRef *ref = date_itemlist;
     int index = 0;
