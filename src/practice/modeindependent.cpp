@@ -4,7 +4,7 @@
 // Description:
 //
 //
-// Author: David Capel <wot.narg@gmail.com>, (C) 2008
+// Copyright 2008 David Capel <wot.narg@gmail.com>
 /***************************************************************************
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *

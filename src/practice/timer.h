@@ -4,7 +4,7 @@
 // Description: Keeps track of the timer for practices that are timed.
 //
 ///\file timer.h
-// Author: David Capel <wot.narg@gmail.com>, (C) 2008
+// Copyright 2008 David Capel <wot.narg@gmail.com>
 //
 
  /***************************************************************************

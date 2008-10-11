@@ -4,7 +4,7 @@
 // Description: The class the manages the standard buttons of a practice dialog (continue, skip, quit, etc).
 //
 //
-// Author: David Capel <wot.narg@gmail.com>, (C) 2008
+// Copyright 2008 David Capel <wot.narg@gmail.com>
 //
 
 /***************************************************************************

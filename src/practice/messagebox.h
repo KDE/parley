@@ -4,9 +4,7 @@
 // Description:
 //
 //
-// Author: David Capel <wot.narg@gmail.com>, (C) 2008
-//
-// Copyright: See COPYING file that comes with this distribution
+// Copyright 2008 David Capel <wot.narg@gmail.com>
 //
 //
 
