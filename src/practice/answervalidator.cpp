@@ -483,7 +483,7 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
         {
             grade = FALSE_FRIEND_GRADE;
              htmlCorrection = i18n("<font color=\"#8C1818\">NOOOO! That was a false friend!</font> ");
-            ErrorType = ErrorType = Statistics::FalseFriend;
+            ErrorType = Statistics::FalseFriend;
             return ;
         }
 

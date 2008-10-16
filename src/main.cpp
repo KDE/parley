@@ -132,7 +132,9 @@ int main(int argc, char* argv[])
                 parleyApp = new ParleyApp(KCmdLineArgs::appName());
             }
         }
-        args->clear();
+        if (args) {
+            args->clear();
+        }
         parleyApp->show();
         return app.exec();
     }
