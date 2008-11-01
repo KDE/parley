@@ -3,7 +3,7 @@
 <gui name="parleypractice" version="1">
   <MenuBar>
     <Menu name="file">
-      <Action name="end_practice" />
+      <Action name="open_in_editor" />
     </Menu>
     <Menu name="Navigation" >
       <text>Navigation</text>
