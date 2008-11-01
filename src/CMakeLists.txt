@@ -72,6 +72,10 @@ set(vocabulary_SRCS
     vocabulary/vocabularycolumnsdialog.cpp
 )
 
+set(editor_SRCS
+    editor/editor.cpp
+)
+
 # the practice using qgraphicsview
 set(practice_SRCS
     practice/kgametheme/kgametheme.cpp
@@ -227,6 +231,7 @@ kde4_add_ui_files(welcomescreen_SRCS
 # put it all together
 set(parley_SRCS
     ${vocabulary_SRCS}
+    ${editor_SRCS}
     ${settings_SRCS}
     ${practice_SRCS}
     ${practiceold_SRCS}
@@ -237,7 +242,7 @@ set(parley_SRCS
     ${export_SRCS}
     ${welcomescreen_SRCS}
     parleydocument.cpp
-    parley.cpp
+    parleymainwindow.cpp
     main.cpp
     modeltest/modeltest.cpp
 )

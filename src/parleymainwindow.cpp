@@ -22,7 +22,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "parley.h"
+#include "parleymainwindow.h"
 
 #include "../config-parley.h"
 
@@ -89,7 +89,7 @@
 #include "modeltest/modeltest.h"
 
 
-ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWindow(0)
+ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename) : KXmlGuiWindow(0)
 {
     m_appName = appName;
     m_document = new ParleyDocument(this);
@@ -162,7 +162,7 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
     QTimer::singleShot( 0, this, SLOT( startupTipOfDay() ) );
 }
 
-void ParleyApp::saveOptions()
+void ParleyMainWindow::saveOptions()
 {
     m_recentFilesAction->saveEntries(KGlobal::config()->group("Recent Files"));
     m_downloadedFilesAction->saveEntries(KGlobal::config()->group("Downloaded Files"));
@@ -177,19 +177,19 @@ void ParleyApp::saveOptions()
     Prefs::self()->writeConfig();
 }
 
-void ParleyApp::slotUpdateWindowCaption()
+void ParleyMainWindow::slotUpdateWindowCaption()
 {
     setCaption(m_document->document()->title(), m_document->document()->isModified());
 //     slotStatusMsg(IDS_DEFAULT);
 }
 
-void ParleyApp::slotShowStatistics()
+void ParleyMainWindow::slotShowStatistics()
 {
     StatisticsDialog statisticsDialog(m_document->document(), this);
     statisticsDialog.exec();
 }
 
-void ParleyApp::slotGeneralOptions()
+void ParleyMainWindow::slotGeneralOptions()
 {
     ParleyPrefs* dialog = new ParleyPrefs(m_document->document(), this, "settings",  Prefs::self());
     connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
@@ -197,7 +197,7 @@ void ParleyApp::slotGeneralOptions()
 }
 
 
-void ParleyApp::slotApplyPreferences()
+void ParleyMainWindow::slotApplyPreferences()
 {
     m_document->enableAutoBackup(Prefs::autoBackup());
 
@@ -209,7 +209,7 @@ void ParleyApp::slotApplyPreferences()
     m_vocabularyView->reset();
 }
 
-void ParleyApp::slotCloseDocument()
+void ParleyMainWindow::slotCloseDocument()
 {
     if (!queryClose()) {
         return;
@@ -220,7 +220,7 @@ void ParleyApp::slotCloseDocument()
 }
 
 
-// void ParleyApp::slotStatusHelpMsg(const QString &text)
+// void ParleyMainWindow::slotStatusHelpMsg(const QString &text)
 // {
 //     ///////////////////////////////////////////////////////////////////
 //     // change status message of whole statusbar temporary (text, msec)
@@ -232,7 +232,7 @@ void ParleyApp::slotCloseDocument()
 
 
 
-void ParleyApp::slotConfigShowSearch()
+void ParleyMainWindow::slotConfigShowSearch()
 {
     if (m_searchWidget) {
         m_searchWidget->setVisible(m_searchWidget->isHidden());
@@ -240,7 +240,7 @@ void ParleyApp::slotConfigShowSearch()
     }
 }
 
-void ParleyApp::slotDocumentProperties()
+void ParleyMainWindow::slotDocumentProperties()
 {
     TitlePage* titleAuthorWidget = new TitlePage(m_document->document(), false, this);
     KDialog* titleAuthorDialog;
@@ -256,7 +256,7 @@ void ParleyApp::slotDocumentProperties()
     delete titleAuthorDialog;
 }
 
-void ParleyApp::configurePractice()
+void ParleyMainWindow::configurePractice()
 {
     ConfigurePracticeDialog* configurePracticeDialog;
     configurePracticeDialog = new ConfigurePracticeDialog(m_document->document(), this, "practice settings",  Prefs::self());
@@ -266,7 +266,7 @@ void ParleyApp::configurePractice()
     }
 }
 
-void ParleyApp::startPractice()
+void ParleyMainWindow::startPractice()
 {
     if (Prefs::oldPractice()) {
         hide();
@@ -282,20 +282,20 @@ void ParleyApp::startPractice()
 }
 
 
-void ParleyApp::slotConfigOldPractice(bool old)
+void ParleyMainWindow::slotConfigOldPractice(bool old)
 {
 kDebug() << "slot config old practice";
     Prefs::setOldPractice(old);
 }
 
-void ParleyApp::closeEvent(QCloseEvent *event)
+void ParleyMainWindow::closeEvent(QCloseEvent *event)
 {
     // hide the welcome screen to prevent the dock widgets to be hidden when saving the window state
     setShowWelcomeScreen(false);
     KXmlGuiWindow::closeEvent(event);
 }
 
-bool ParleyApp::queryClose()
+bool ParleyMainWindow::queryClose()
 {
     bool erg = queryExit();
     if (erg)
@@ -304,7 +304,7 @@ bool ParleyApp::queryClose()
 }
 
 
-bool ParleyApp::queryExit()
+bool ParleyMainWindow::queryExit()
 {
     saveOptions();
     if (!m_document->document()->isModified()) {
@@ -332,7 +332,7 @@ bool ParleyApp::queryExit()
 }
 
 
-void ParleyApp::updateDocument()
+void ParleyMainWindow::updateDocument()
 {
 ///@todo we can use connect here
     m_vocabularyModel->setDocument(m_document->document());
@@ -366,7 +366,7 @@ void ParleyApp::updateDocument()
 }
 
 
-void ParleyApp::initDockWidgets()
+void ParleyMainWindow::initDockWidgets()
 {
 // Lesson dock
     QDockWidget *lessonDockWidget = new QDockWidget(i18n("Lessons"), this);
@@ -617,16 +617,16 @@ void ParleyApp::initDockWidgets()
 // actionCollection()->addAction("show_leitner_dock", ->toggleViewAction());
 }
 
-void ParleyApp::tipOfDay() {
+void ParleyMainWindow::tipOfDay() {
   KTipDialog::showTip(this, "parley/tips", true);
 }
 
-void ParleyApp::startupTipOfDay() {
+void ParleyMainWindow::startupTipOfDay() {
   KTipDialog::showTip(this, "parley/tips");
 }
 
 
-void ParleyApp::initActions()
+void ParleyMainWindow::initActions()
 {
 // -- FILE --------------------------------------------------
     KAction* fileNew = KStandardAction::openNew(m_document, SLOT(slotFileNew()), actionCollection());
@@ -842,7 +842,7 @@ void ParleyApp::initActions()
 }
 
 
-void ParleyApp::initStatusBar()
+void ParleyMainWindow::initStatusBar()
 {
     m_typeStatusBarLabel = new QLabel(statusBar());
     m_typeStatusBarLabel->setFrameStyle(QFrame::NoFrame);
@@ -858,7 +858,7 @@ void ParleyApp::initStatusBar()
     statusBar()->addWidget(m_remarkStatusBarLabel, 150);
 }
 
-void ParleyApp::initModel()
+void ParleyMainWindow::initModel()
 {
     m_vocabularyModel = new VocabularyModel(this);
 
@@ -875,7 +875,7 @@ void ParleyApp::initModel()
 /**
  * This initializes the main widgets and table.
  */
-void ParleyApp::initView()
+void ParleyMainWindow::initView()
 {
     // Parent of all
     QStackedWidget *stackedWidget = new QStackedWidget(this);
@@ -920,7 +920,7 @@ void ParleyApp::initView()
     topLayout->addLayout(rightLayout);
 }
 
-void ParleyApp::initWelcomeScreen()
+void ParleyMainWindow::initWelcomeScreen()
 {
     WelcomeScreen* welcomeScreen = new WelcomeScreen(this);
     qobject_cast<QStackedWidget*>(centralWidget())->addWidget(welcomeScreen);
@@ -928,19 +928,19 @@ void ParleyApp::initWelcomeScreen()
     connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), this, SLOT(hideWelcomeScreen()));
 }
 
-void ParleyApp::slotShowScriptManager() {
+void ParleyMainWindow::slotShowScriptManager() {
 //      kDebug() << QString("here!!");
     ScriptDialog * dialog = new ScriptDialog(m_scriptManager);
     dialog->show();
 }
 
-void ParleyApp::removeGrades()
+void ParleyMainWindow::removeGrades()
 {
     m_document->document()->lesson()->resetGrades(-1, KEduVocContainer::Recursive);
 }
 
 
-void ParleyApp::initScripts()
+void ParleyMainWindow::initScripts()
 {
     m_scriptManager = new ScriptManager(this);
 
@@ -951,7 +951,7 @@ void ParleyApp::initScripts()
 }
 
 
-void ParleyApp::setShowWelcomeScreen(bool show)
+void ParleyMainWindow::setShowWelcomeScreen(bool show)
 {
     QStackedWidget* central = qobject_cast<QStackedWidget*>(centralWidget());
     int index = int(show);
@@ -983,17 +983,17 @@ void ParleyApp::setShowWelcomeScreen(bool show)
     }
 }
 
-void ParleyApp::hideWelcomeScreen()
+void ParleyMainWindow::hideWelcomeScreen()
 {
     setShowWelcomeScreen(false);
 }
 
-ParleyDocument* ParleyApp::parleyDocument()
+ParleyDocument* ParleyMainWindow::parleyDocument()
 {
     return m_document;
 }
 
-void ParleyApp::slotLanguageProperties()
+void ParleyMainWindow::slotLanguageProperties()
 {
     LanguageProperties properties(m_document->document(), this);
     if ( properties.exec() == KDialog::Accepted ) {
@@ -1001,5 +1001,5 @@ void ParleyApp::slotLanguageProperties()
     }
 }
 
-#include "parley.moc"
+#include "parleymainwindow.moc"
 

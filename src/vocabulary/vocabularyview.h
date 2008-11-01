@@ -29,7 +29,7 @@ class KEduVocDocument;
 
 class KActionMenu;
 class KAction;
-class ParleyApp;
+class ParleyMainWindow;
 class KUrl;
 
 class Translator;
@@ -38,7 +38,7 @@ class VocabularyView : public QTableView
 {
     Q_OBJECT
 public:
-    VocabularyView(ParleyApp *parent);
+    VocabularyView(ParleyMainWindow *parent);
     KActionMenu* columnsActionMenu();
 
     void setModel(VocabularyFilter * model);

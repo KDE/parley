@@ -64,7 +64,7 @@
 //     return t1.toLanguage < t2.toLanguage;
 // }
 
-#include "../parley.h"
+#include "../parleymainwindow.h"
 
 /**
 Keeps the translated words

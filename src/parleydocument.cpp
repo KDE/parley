@@ -15,7 +15,7 @@
 #include "parleydocument.h"
 
 #include "../config-parley.h"
-#include "parley.h"
+#include "parleymainwindow.h"
 #include "version.h"
 #include "prefs.h"
 
@@ -50,7 +50,7 @@
 #endif
 
 
-ParleyDocument::ParleyDocument(ParleyApp *parent)
+ParleyDocument::ParleyDocument(ParleyMainWindow *parent)
  : QObject(parent)
 {
     m_parleyApp = parent;

@@ -20,7 +20,7 @@
 
 #include "../config-parley.h"
 
-class ParleyApp;
+class ParleyMainWindow;
 class QTimer;
 
 /**
@@ -30,7 +30,7 @@ class ParleyDocument : public QObject
 {
 Q_OBJECT
 public:
-    ParleyDocument(ParleyApp *parent);
+    ParleyDocument(ParleyMainWindow *parent);
 
     ~ParleyDocument();
 
@@ -89,7 +89,7 @@ private:
 
     QTimer *m_backupTimer;
     KEduVocDocument *m_doc;
-    ParleyApp *m_parleyApp;
+    ParleyMainWindow *m_parleyApp;
 };
 
 #endif

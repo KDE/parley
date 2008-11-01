@@ -1,18 +1,9 @@
 /***************************************************************************
-
-                         main part of Parley
-
-    -----------------------------------------------------------------------
-
-    begin         : Thu Mar 11 20:50:53 MET 1999
-
-    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                    (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
-                    (C) 2007-2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
-
-    -----------------------------------------------------------------------
-
- ***************************************************************************/
+    Copyright 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+    Copyright 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
+    Copyright 2007-2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2008 Daniel Laidig <d.laidig@gmx.de>
+***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
@@ -23,8 +14,9 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef PARLEY_H
-#define PARLEY_H
+#ifndef EDITOR_H
+#define EDITOR_H
+#if 0
 
 #include "parleydocument.h"
 
@@ -68,13 +60,13 @@ class Translator;
   * and statusbar. For the main view, an instance of class kvoctrainView is
   * created which creates your view.
   */
-class ParleyApp : public KXmlGuiWindow
+class Editor : public KXmlGuiWindow
 {
     Q_OBJECT
 
 public:
     /** construtor with appName (executable name) and filename to open */
-    explicit ParleyApp(const QString& appName, const KUrl &filename = KUrl());
+    explicit Editor(const QString& appName, const KUrl &filename = KUrl());
 
     /**
      * setup the action (menus etc)
@@ -241,5 +233,6 @@ private:
     QList<bool> m_dockWidgetVisibility;
 };
 
-#endif // PARLEY_H
+#endif 0
+#endif // EDITOR_H
 

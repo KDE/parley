@@ -13,14 +13,14 @@
 
 #include "welcomescreen.h"
 #include "buttondelegate.h"
-#include "parley.h"
+#include "parleymainwindow.h"
 #include "parleydocument.h"
 
 #include <KMimeType>
 
 #include <QStandardItemModel>
 
-WelcomeScreen::WelcomeScreen(ParleyApp *parent)
+WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
  : QWidget(parent), m_parleyApp(parent)
 {
     ui = new Ui::WelcomeScreen();

@@ -18,7 +18,7 @@
 
 #include <QWidget>
 
-class ParleyApp;
+class ParleyMainWindow;
 class KUrl;
 class QStandardItemModel;
 
@@ -26,7 +26,7 @@ class WelcomeScreen : public QWidget
 {
 Q_OBJECT
 public:
-    WelcomeScreen(ParleyApp *parent);
+    WelcomeScreen(ParleyMainWindow *parent);
     void updateRecentFilesModel();
 
 public slots:
@@ -36,7 +36,7 @@ public slots:
 
 private:
     Ui::WelcomeScreen *ui;
-    ParleyApp *m_parleyApp;
+    ParleyMainWindow *m_parleyApp;
     QStandardItemModel *m_recentFilesModel;
 };
 

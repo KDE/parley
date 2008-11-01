@@ -17,7 +17,7 @@
 
 #include "script.h"
 
-#include "../parley.h"
+#include "../parleymainwindow.h"
 
 #include <QStringList>
 
@@ -29,7 +29,7 @@
 class ScriptManager : public QObject
 {
     public:
-        ScriptManager ( ParleyApp * parleyApp );
+        ScriptManager ( ParleyMainWindow * parleyApp );
 
         ~ScriptManager();
 
@@ -110,7 +110,7 @@ class ScriptManager : public QObject
         Translator * translator() { return m_scriptingParley->translator(); }
 
     private:
-        ParleyApp * m_parleyApp;
+        ParleyMainWindow * m_parleyApp;
         QList<Script*> m_scripts;
         QMap<QString, QObject*> m_scriptObjects;
         QList<QAction*> m_scriptActions;

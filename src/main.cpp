@@ -26,7 +26,7 @@
 #include <klocale.h>
 #include <kapplication.h>
 
-#include "parley.h"
+#include "parleymainwindow.h"
 #include "practice/parleypracticemainwindow.h"
 #include "version.h"
 
@@ -100,13 +100,13 @@ int main(int argc, char* argv[])
     // for i18n of the lib strings
     KGlobal::locale()->insertCatalog("libkdeedu");
 
-    ParleyApp *parleyApp = 0;
+    ParleyMainWindow *parleyApp = 0;
 
     if (app.isSessionRestored()) {
 //         kRestoreMainWindows< ParleyApp >();
         int n = 1;
         while (KMainWindow::canBeRestored(n)){
-            (new ParleyApp(KCmdLineArgs::appName()))->restore(n);
+            (new ParleyMainWindow(KCmdLineArgs::appName()))->restore(n);
             n++;
         }
         return app.exec();
@@ -123,13 +123,13 @@ int main(int argc, char* argv[])
 
         if (args && args->count() > 0) {
             ///@todo make --practice command line argument work with a file name
-            parleyApp = new ParleyApp(KCmdLineArgs::appName(), args->url(0));
+            parleyApp = new ParleyMainWindow(KCmdLineArgs::appName(), args->url(0));
             args->clear();
         } else {
             if (practiceMode) {
                 parleyApp = new ParleyPracticeMainWindow();
             } else {
-                parleyApp = new ParleyApp(KCmdLineArgs::appName());
+                parleyApp = new ParleyMainWindow(KCmdLineArgs::appName());
             }
         }
         if (args) {

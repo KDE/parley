@@ -25,7 +25,7 @@
 #include <kross/core/action.h>
 #include <kross/core/manager.h>
 
-ScriptManager::ScriptManager ( ParleyApp * parleyApp )
+ScriptManager::ScriptManager ( ParleyMainWindow * parleyApp )
         : m_parleyApp ( parleyApp )
 {
     //add Scripting::Parley

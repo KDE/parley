@@ -15,7 +15,7 @@
 
 #include "lessonview.h"
 
-#include "parley.h"
+#include "parleymainwindow.h"
 #include "lessonmodel.h"
 #include "keduvoclesson.h"
 #include "prefs.h"
@@ -25,7 +25,7 @@
 #include <KAction>
 #include <KActionCollection>
 
-LessonView::LessonView(ParleyApp * parent) :ContainerView(parent)
+LessonView::LessonView(ParleyMainWindow * parent) :ContainerView(parent)
 {
 //     setContextMenuPolicy(Qt::CustomContextMenu);
 

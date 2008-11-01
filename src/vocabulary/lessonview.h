@@ -19,7 +19,7 @@
 #include "containerview.h"
 #include "lessonmodel.h"
 
-class ParleyApp;
+class ParleyMainWindow;
 
 /**
  * View for the lesson list.
@@ -30,7 +30,7 @@ class LessonView : public ContainerView
     Q_OBJECT
 
 public:
-    LessonView(ParleyApp *parent);
+    LessonView(ParleyMainWindow *parent);
 
     /** Set the model for the view.
      * @param model the model */
