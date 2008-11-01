@@ -80,8 +80,6 @@ public slots:
      */
     void slotLanguageProperties();
 
-    void startPractice();
-
     void slotConfigShowSearch();
 
     /**

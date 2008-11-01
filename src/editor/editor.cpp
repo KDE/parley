@@ -18,9 +18,6 @@
 
 #include "../config-parley.h"
 
-#include "practiceold/testentrymanager.h"
-#include "practice/parleypracticemainwindow.h"
-
 #include "vocabulary/vocabularymodel.h"
 #include "vocabulary/vocabularyview.h"
 #include "vocabulary/vocabularyfilter.h"
@@ -98,21 +95,6 @@ void Editor::slotConfigShowSearch()
     if (m_searchWidget) {
         m_searchWidget->setVisible(m_searchWidget->isHidden());
         Prefs::setShowSearch(m_searchWidget->isVisible());
-    }
-}
-
-void Editor::startPractice()
-{
-    if (Prefs::oldPractice()) {
-        hide();
-        TestEntryManager testManager(m_mainWindow->parleyDocument()->document(), this);
-        testManager.startPractice();
-        show();
-    } else {
-        hide();
-        ParleyPracticeMainWindow* window = new ParleyPracticeMainWindow(m_mainWindow->parleyDocument()->document(), this);
-        connect(window, SIGNAL(signalPracticeFinished()), this, SLOT(show()));
-        window->show();
     }
 }
 
@@ -453,7 +435,7 @@ void Editor::initActions()
     startPractice->setToolTip(startPractice->whatsThis());
     startPractice->setStatusTip(startPractice->whatsThis());
     actionCollection()->addAction("practice_start", startPractice);
-    connect(startPractice, SIGNAL(triggered(bool)), SLOT(startPractice()));
+    connect(startPractice, SIGNAL(triggered(bool)), m_mainWindow, SLOT(startPractice()));
 
 // -- PRACTICE --------------------------------------------------
 

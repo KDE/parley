@@ -12,6 +12,7 @@
         <Separator/>
         <Action name="file_properties" />
         <Separator/>
+        <Merge/>
     </Menu>
   <Merge/>
   <Menu name="settings" >

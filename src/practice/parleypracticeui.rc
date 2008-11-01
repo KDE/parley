@@ -2,6 +2,9 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 <gui name="parleypractice" version="1">
   <MenuBar>
+    <Menu name="file">
+      <Action name="end_practice" />
+    </Menu>
     <Menu name="Navigation" >
       <text>Navigation</text>
       <Action name="check answer" />

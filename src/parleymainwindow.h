@@ -49,6 +49,7 @@ class LeitnerModel;
 class ConjugationWidget;
 class SummaryWordWidget;
 class ScriptManager;
+class ParleyPracticeMainWindow;
 
 class ParleyMainWindow : public KXmlGuiWindow
 {
@@ -104,6 +105,8 @@ public slots:
 
     void configurePractice();
 
+    void startPractice();
+
     /**
      * Show the tip of the day (force it to be shown)
      */
@@ -133,7 +136,7 @@ private:
 
     WelcomeScreen *m_welcomeScreen;
     Editor *m_editor;
-    KXmlGuiWindow *m_practice;
+    ParleyPracticeMainWindow *m_practice;
 
     KRecentFilesAction* m_recentFilesAction;
     KRecentFilesAction* m_downloadedFilesAction;

@@ -31,6 +31,8 @@
 #include "settings/parleyprefs.h"
 #include "settings/TitlePage.h"
 #include "configure-practice/configurepracticedialog.h"
+#include "practiceold/testentrymanager.h"
+#include "practice/parleypracticemainwindow.h"
 #include "prefs.h"
 #include "welcomescreen/welcomescreen.h"
 
@@ -43,7 +45,7 @@
 
 #include <QtCore/QTimer>
 
-ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename) : KXmlGuiWindow(0), m_currentComponent(NoComponent)
+ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename) : KXmlGuiWindow(0), m_currentComponent(NoComponent), m_practice(0)
 {
     m_appName = appName;
     m_document = new ParleyDocument(this);
@@ -165,8 +167,24 @@ void ParleyMainWindow::configurePractice()
     configurePracticeDialog = new ConfigurePracticeDialog(m_document->document(), this, "practice settings",  Prefs::self());
 
     if ( configurePracticeDialog->exec() == ConfigurePracticeDialog::StartPractice ) {
-//         startPractice();
-    ///@todo: implement start practice
+        startPractice();
+    }
+}
+
+void ParleyMainWindow::startPractice()
+{
+    if (Prefs::oldPractice()) {
+        hide();
+        TestEntryManager testManager(m_document->document(), this);
+        testManager.startPractice();
+        show();
+    } else {
+        ///@todo: instead of creating a new instance only a new document should be set
+        switchComponent(NoComponent); // unload the last component (could be a practice window)
+        m_practice = new ParleyPracticeMainWindow(m_document->document(), 0);
+        switchComponent(PracticeComponent);
+        m_practice->show();
+        connect(m_practice, SIGNAL(signalPracticeFinished()), this, SLOT(showEditor()));
     }
 }
 

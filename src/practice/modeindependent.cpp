@@ -144,6 +144,15 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
 // This has all the GUI independent action setup code.
  void ParleyPracticeMainWindow::setupActions()
 {
+    KAction *endPracticeAction = new KAction(this);
+    endPracticeAction->setText(i18n("End Practice"));
+    endPracticeAction->setIcon(KIcon("dialog-cancel"));
+    actionCollection()->addAction("end_practice", endPracticeAction);
+    connect(endPracticeAction, SIGNAL(triggered()), this, SLOT(queryClose()));
+    endPracticeAction->setWhatsThis(i18n("Leave the practice mode and return to the editor."));
+    endPracticeAction->setToolTip(endPracticeAction->whatsThis());
+    endPracticeAction->setStatusTip(endPracticeAction->whatsThis());
+
     KAction *skipKnownAction = new KAction(this);
     skipKnownAction->setText(i18n("Skip (Answer Known)"));
     actionCollection()->addAction("skip known", skipKnownAction);
@@ -183,11 +192,9 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
     if (!Prefs::showHints())
         hintAction->setVisible(false);
 
-
+    ///@todo: merge preferences with main preference dialog
     KStandardAction::preferences(this, SLOT(slotCreatePreferencesDialog()),
                                        actionCollection());
-
-    KStandardAction::quit(this, SLOT(queryClose()), actionCollection());
 }
 
 void ParleyPracticeMainWindow::setupModeIndependent(ActiveArea * area)

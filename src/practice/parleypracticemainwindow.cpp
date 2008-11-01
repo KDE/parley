@@ -41,15 +41,13 @@
 ParleyPracticeMainWindow::ParleyPracticeMainWindow(KEduVocDocument* doc, QWidget *parent)
         : KXmlGuiWindow(parent)
 {
+    setXMLFile("parleypracticeui.rc");
     setupBase("themes/default.desktop", doc);
     setupActions();
     setupModeIndependent(m_normalArea);
     if (m_imageArea->valid())
         setupModeIndependent(m_imageArea);
     setupModeSpecifics();
-
-    setupGUI(Default, QString::fromLatin1("parleypracticeui.rc"));
-
 
     // ... and we are done -- start the first question!
     m_manager->slotNewEntry();
@@ -260,7 +258,7 @@ bool ParleyPracticeMainWindow::queryClose()
     kDebug() << "Percent: " << m_stats->percentCorrect() << " Attempted: " << m_stats->attempted() << " Correct: " << m_stats->correct();
 
     emit signalPracticeFinished();
-    return close();
+    return true;
 }
 
 void ParleyPracticeMainWindow::slotShowImageView(const KUrl& url, bool backsideOfCard)
