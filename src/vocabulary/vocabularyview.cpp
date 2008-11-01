@@ -426,6 +426,9 @@ void VocabularyView::slotToggleColumn(bool show)
 
 void VocabularyView::saveColumnVisibility(const KUrl & kurl) const
 {
+    if(!m_doc) {
+        return;
+    }
     // Generate a QList<int> for saving
     QList<int> qli;
     for (int i = 0; i < m_columnActionMap.size(); ++i)
