@@ -148,7 +148,7 @@ void ParleyDocument::open(const KUrl & url, bool addRecent)
         m_parleyApp->editor()->updateDocument();
 
         if (addRecent) { // open sample does not go into recent
-            m_parleyApp->m_recentFilesAction->addUrl(url);
+            m_parleyApp->m_recentFilesAction->addUrl(url, m_doc->title());
         }
         emit documentChanged(m_doc);
     }
@@ -190,7 +190,7 @@ void ParleyDocument::save()
         saveAs();
         return;
     }
-    m_parleyApp->m_recentFilesAction->addUrl(m_doc->url());
+    m_parleyApp->m_recentFilesAction->addUrl(m_doc->url(), m_doc->title());
 }
 
 
@@ -227,7 +227,7 @@ void ParleyDocument::saveAs(KUrl url)
                              if (result != 0) {
                                  KMessageBox::error(m_parleyApp, i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(), m_doc->errorDescription(result)), i18n("Save File"));
                              } else {
-                                 m_parleyApp->m_recentFilesAction->addUrl(m_doc->url());
+                                 m_parleyApp->m_recentFilesAction->addUrl(m_doc->url(), m_doc->title());
                              }
                      }
     }
