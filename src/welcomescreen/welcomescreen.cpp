@@ -75,7 +75,7 @@ void WelcomeScreen::updateRecentFilesModel()
 
         QStandardItem* item = new QStandardItem;
         item->setEditable(false);
-        item->setText(nameString+" ("+url.pathOrUrl()+')');
+        item->setText(nameString+" ("+url.fileName()+')');
         item->setToolTip(nameString+" ("+url.pathOrUrl()+')');
         item->setData(QVariant(url), Qt::UserRole);
 
