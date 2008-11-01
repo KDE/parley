@@ -82,8 +82,10 @@
 ///@todo remove unneccessary includes
 
 
-Editor::Editor(ParleyMainWindow* parent) : KXmlGuiWindow(0), m_mainWindow(parent)
+Editor::Editor(ParleyMainWindow* parent) : KXmlGuiWindow(parent), m_mainWindow(parent)
 {
+    setXMLFile("editorui.rc");
+
     m_searchLine = 0;
     m_searchWidget = 0;
     m_conjugationWidget = 0;
@@ -426,7 +428,6 @@ void Editor::initDockWidgets()
 // actionCollection()->addAction("show_leitner_dock", ->toggleViewAction());
 }
 
-///@todo: split between editor and mainwindow
 void Editor::initActions()
 {
     KAction* editLanguages =new KAction(this);
@@ -456,15 +457,6 @@ void Editor::initActions()
     automaticTranslation->setToolTip(automaticTranslation->whatsThis());
     automaticTranslation->setStatusTip(automaticTranslation->whatsThis());
     automaticTranslation->setChecked(Prefs::automaticTranslation());
-
-    KAction* removeGrades = new KAction(this);
-    actionCollection()->addAction("vocab_remove_grades", removeGrades);
-    removeGrades->setIcon(KIcon("edit-clear"));
-    removeGrades->setText(i18n("Remove Grades"));
-    connect(removeGrades, SIGNAL(triggered(bool)), this, SLOT(removeGrades()));
-    removeGrades->setWhatsThis(i18n("Remove all grades from the current document"));
-    removeGrades->setToolTip(removeGrades->whatsThis());
-    removeGrades->setStatusTip(removeGrades->whatsThis());
 
     KAction* startPractice = new KAction(this);
     startPractice->setText(i18n("Start Practice..."));
@@ -498,7 +490,7 @@ void Editor::initActions()
 //     actionCollection()->addAction("restore_native_order", actionRestoreNativeOrder);
 //     actionRestoreNativeOrder->setText(i18n("Restore Native Order"));
 
-
+    ///@todo: this action and some of the standard actions don't show up here (Cut, Copy, Paste, Select All, Deselect)
     KAction* findVocabulary = KStandardAction::find(m_searchLine, SLOT(setFocus()), actionCollection());
 
 // SCRIPTS MENU
@@ -511,6 +503,12 @@ void Editor::initActions()
     menu_scriptManager->setIcon(KIcon("set-language"));
     menu_scriptManager->setText(i18n("&Script Manager"));
     connect(menu_scriptManager, SIGNAL(triggered()),  this, SLOT(slotShowScriptManager()));
+
+    // temporary
+    KToggleAction *oldPractice = actionCollection()->add<KToggleAction>("config_oldPractice");
+    oldPractice->setText(i18n("Old Practice Dialogs"));
+    connect(oldPractice, SIGNAL(triggered(bool)), this, SLOT(slotConfigOldPractice(bool)));
+    oldPractice->setChecked(Prefs::oldPractice());
 }
 
 void Editor::initModel()

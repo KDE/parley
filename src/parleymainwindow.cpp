@@ -83,6 +83,7 @@
 #include <KTipDialog>
 #include <KCharSelect>
 #include <knewstuff2/ui/knewstuffaction.h>
+#include <KXMLGUIFactory>
 
 #include <QtCore/QTimer>
 #include <QtGui/QDockWidget>
@@ -129,6 +130,8 @@ ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename
         resize(QSize(800, 600).expandedTo(minimumSizeHint()));
     }
     setupGUI(ToolBar | Keys | StatusBar | Create);
+
+    guiFactory()->addClient(m_editor);
 
     // save position of dock windows etc
     setAutoSaveSettings();
@@ -272,7 +275,6 @@ void ParleyMainWindow::startupTipOfDay() {
   KTipDialog::showTip(this, "parley/tips");
 }
 
-///@todo: split between editor and mainwindow
 void ParleyMainWindow::initActions()
 {
 // -- FILE --------------------------------------------------
