@@ -9,7 +9,7 @@
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
                     (C) 2007-2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
-
+                    (C) 2008 Daniel Laidig <d.laidig@gmx.de>
     -----------------------------------------------------------------------
 
  ***************************************************************************/
@@ -28,9 +28,7 @@
 
 #include "parleydocument.h"
 
-// #include "scripts/scriptmanager.h"
 #include "scripts/scripting/parley.h"
-// #include "scripts/translator.h"
 
 #include <KXmlGuiWindow>
 #include <KUrl>
@@ -48,6 +46,7 @@ class KAction;
 class KActionMenu;
 class QLabel;
 class QDockWidget;
+class Editor;
 class VocabularyView;
 class VocabularyModel;
 class VocabularyFilter;
@@ -60,14 +59,8 @@ class LeitnerModel;
 class ConjugationWidget;
 class SummaryWordWidget;
 class ScriptManager;
-class Translator;
+class Translator; ///@todo remove unneccessary items
 
-/**
-  * This Class is the base class for your application. It sets up the main
-  * window and reads the config file as well as providing a menubar, toolbar
-  * and statusbar. For the main view, an instance of class kvoctrainView is
-  * created which creates your view.
-  */
 class ParleyMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
@@ -81,18 +74,8 @@ public:
      */
     void initActions();
 
-    /** setup the statusbar */
-    void initStatusBar();
-    /** setup the main model*/
-    void initModel();
-
-    /** setup the main view*/
-    void initView();
-
     /** setup the welcome screen */
     void initWelcomeScreen();
-
-    void initDockWidgets();
 
     /** save the app-specific options on slotAppExit or by an Options dialog */
     void saveOptions();
@@ -101,26 +84,17 @@ public:
     void updateTableFilter();
 
     /**
-     * Load enabled scripts (from configuration parleyrc)
-     */
-    void initScripts();
-
-    /**
      * Return the ParleyDocument member object
      * @return member m_document
      */
     ParleyDocument* parleyDocument();
 
+    /** return the editor instance */
+    Editor* editor();
+
 public slots:
     /** Update the title bar of the main window with the current document */
     void slotUpdateWindowCaption();
-
-    /**
-     * Edit languages contained in the document.
-     * This includes adding/removing languages, 
-     * editing articles, personal pronouns and tenses.
-     */
-    void slotLanguageProperties();
 
     /** When quitting, ask for confirmation if the doc has not been saved */
     bool queryClose();
@@ -136,15 +110,7 @@ public slots:
     void slotDocumentProperties();
     void slotShowStatistics();
 
-    void startPractice();
     void configurePractice();
-
-    void slotConfigShowSearch();
-
-    /**
-     *  Display script manager (open a new window / or Settings window)
-     */
-    void slotShowScriptManager();
 
     /**
      * Show the tip of the day (force it to be shown)
@@ -167,61 +133,22 @@ public slots:
     void setShowWelcomeScreen(bool show);
     void hideWelcomeScreen();
 
-private slots:
-    void slotConfigOldPractice(bool old);
-
 signals:
     void signalSetData( const QList<int>& entries, int currentTranslation);
+    void documentChanged();
 
 protected:
     void closeEvent(QCloseEvent *event);
 
 private:
-
-    /**
-     * Set the current doc (after creating a new one or opening a file)
-     */
-    void updateDocument();
+    Editor *m_editor;
 
     // KAction pointers to enable/disable actions
     KRecentFilesAction* m_recentFilesAction;
     KRecentFilesAction* m_downloadedFilesAction;
-    KAction* m_deleteEntriesAction;
-    KAction* m_vocabShowSearchBarAction;
-    KActionMenu* m_vocabularyColumnsActionMenu;
-
-    QString lastPixName;
-
-    VocabularyModel *m_vocabularyModel;
-    VocabularyView *m_vocabularyView;
-    VocabularyFilter *m_vocabularyFilter;
-
-    QWidget *m_searchWidget;
-
-    /** Show a single conjugation and let the user edit it */
-    ConjugationWidget *m_conjugationWidget;
-    SummaryWordWidget *m_summaryWordWidget;
 
     /** m_document is the current vocabulary document. */
     ParleyDocument   *m_document;
-
-    /// dock widgets to display lessons, word types, ...
-    LessonView *m_lessonView;
-    LessonModel *m_lessonModel;
-
-    WordTypeView *m_wordTypeView;
-    WordTypeModel *m_wordTypeModel;
-
-    LeitnerView *m_leitnerView;
-    LeitnerModel *m_leitnerModel;
-
-    KLineEdit           *m_searchLine;
-
-    EntryDlg            *m_entryDlg;
-
-    QLabel              *m_pronunciationStatusBarLabel;
-    QLabel              *m_remarkStatusBarLabel;
-    QLabel              *m_typeStatusBarLabel;
 
     friend class ParleyDocument;
     friend class Scripting::Parley;
@@ -230,16 +157,6 @@ private:
 
     /// the name of the executable
     QString m_appName;
-
-    //Script Manager
-    ScriptManager* m_scriptManager;
-
-    ///stores all the translations of a vocabulary word
-    Translator* m_translator;
-
-    QList<QDockWidget*> m_dockWidgets;
-    QList<bool> m_dockWidgetVisibility;
 };
 
 #endif // PARLEYMAINWINDOW_H
-

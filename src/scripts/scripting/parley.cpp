@@ -15,7 +15,7 @@
 
 #include "parley.h"
 
-#include "../../parleymainwindow.h"
+#include "editor/editor.h"
 #include "../../vocabulary/vocabularymodel.h"
 #include "../../vocabulary/vocabularyview.h"
 
@@ -36,10 +36,10 @@
 namespace Scripting
 {
 
-    Parley::Parley ( ParleyMainWindow * parley ) : QObject(), m_parleyApp ( parley )
+    Parley::Parley ( Editor * editor ) : QObject(), m_editor ( editor )
     {
         m_translator = new Translator(this); //parameter has to be <this> cause it's used by Translator to access callTranslateWord
-        m_doc = new Document ( m_parleyApp->parleyDocument()->document() );
+        m_doc = new Document ( m_editor->mainWindow()->parleyDocument()->document() );
     }
 
     Parley::~Parley()
@@ -77,12 +77,12 @@ namespace Scripting
         KUrl k;
         k.setFileName ( filename );
         kDebug() << k;
-        m_parleyApp->parleyDocument()->open ( k,false );
+        m_editor->mainWindow()->parleyDocument()->open ( k,false );
     }
 
     QObject* Parley::activeLesson()
     {
-        return new Lesson ( m_parleyApp->m_vocabularyModel->lesson() );
+        return new Lesson ( m_editor->m_vocabularyModel->lesson() );
     }
 
     QVariantList Parley::selectedEntries()
@@ -90,7 +90,7 @@ namespace Scripting
         QVariantList entries;
 
         //get selected indexes and active lesson
-        QModelIndexList indexes = m_parleyApp->m_vocabularyView->getSelectedIndexes();
+        QModelIndexList indexes = m_editor->m_vocabularyView->getSelectedIndexes();
 
         //get the unique selected entries
         QSet<KEduVocExpression*> kentries;
@@ -116,7 +116,7 @@ namespace Scripting
         QVariantList translations;
 
         //get selected indexes and active lesson
-        QModelIndexList indexes = m_parleyApp->m_vocabularyView->getSelectedIndexes();
+        QModelIndexList indexes = m_editor->m_vocabularyView->getSelectedIndexes();
 
         //get the unique selected entries
         QSet<KEduVocTranslation*> ktranslations;
@@ -144,8 +144,8 @@ namespace Scripting
     QObject * Scripting::Parley::newAction ( const QString & name, const QString& text )
     {
         //create new action
-        KAction* action = new KAction ( text, m_parleyApp );
-        m_parleyApp->m_scriptManager->addScriptAction ( name,action );
+        KAction* action = new KAction ( text, m_editor );
+        m_editor->m_scriptManager->addScriptAction ( name,action );
         return action;
 
     }

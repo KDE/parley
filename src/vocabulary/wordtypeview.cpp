@@ -15,7 +15,7 @@
 
 #include "wordtypeview.h"
 
-#include "parleymainwindow.h"
+#include "editor/editor.h"
 #include "containermodel.h"
 #include "keduvocwordtype.h"
 #include "prefs.h"
@@ -27,7 +27,8 @@
 #include <KSelectAction>
 #include <QMenu>
 #include <QContextMenuEvent>
-WordTypeView::WordTypeView(ParleyMainWindow * parent) :ContainerView(parent)
+
+WordTypeView::WordTypeView(Editor* parent) : ContainerView(parent)
 {
     setContextMenuPolicy(Qt::DefaultContextMenu);
 

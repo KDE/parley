@@ -20,7 +20,7 @@
 
 #include <QListView>
 
-class ParleyMainWindow;
+class Editor;
 class KEduVocLeitnerBox;
 
 /**
@@ -32,7 +32,7 @@ class LeitnerView : public QListView
     Q_OBJECT
 
 public:
-    LeitnerView(ParleyMainWindow *parent);
+    LeitnerView(Editor *parent);
 
     /** Set the model for the view.
      * @param model the model */

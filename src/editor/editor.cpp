@@ -14,7 +14,6 @@
  *                                                                         *
  ***************************************************************************/
 
-#if 0
 #include "editor.h"
 
 #include "../config-parley.h"
@@ -80,22 +79,16 @@
 #include <QtGui/QStackedWidget>
 
 #include "modeltest/modeltest.h"
+///@todo remove unneccessary includes
 
 
-Editor::Editor(const QString& appName, const KUrl & filename) : KXmlGuiWindow(0)
+Editor::Editor(ParleyMainWindow* parent) : KXmlGuiWindow(0), m_mainWindow(parent)
 {
-    m_appName = appName;
-    m_document = new ParleyDocument(this);
     m_searchLine = 0;
     m_searchWidget = 0;
-    m_pronunciationStatusBarLabel = 0;
-    m_remarkStatusBarLabel = 0;
-    m_typeStatusBarLabel = 0;
     m_conjugationWidget = 0;
 
-    m_entryDlg = 0;
-
-    initStatusBar();
+//     m_entryDlg = 0;
 
     setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
     setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
@@ -105,8 +98,6 @@ Editor::Editor(const QString& appName, const KUrl & filename) : KXmlGuiWindow(0)
     initView();
     initModel();
 
-    initWelcomeScreen();
-
     initDockWidgets();
 
     initActions();
@@ -115,115 +106,11 @@ Editor::Editor(const QString& appName, const KUrl & filename) : KXmlGuiWindow(0)
 //     QAction * actionRestoreNativeOrder = actionCollection()->action("restore_native_order");
 //     m_tableView->horizontalHeader()->addAction(actionRestoreNativeOrder);
 //     connect(actionRestoreNativeOrder, SIGNAL(triggered()), m_sortFilterModel, SLOT(restoreNativeOrder()));
-    
-    bool showWelcomeScreen = false;
-    
-    if ( !filename.url().isEmpty() ) {
-        kDebug() << "open doc" << filename.url();
-        m_document->open(filename);
-        kDebug() << "open done";
-    } else {
-        bool openLastFile = Prefs::autoOpenLast();
-        if (openLastFile && m_recentFilesAction->actions().count() > 0
-            && m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->isEnabled() ) {
-            m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->trigger();
-        } else {
-            kDebug() << "new doc";
-            m_document->newDocument();
-            updateDocument();
-            if (!openLastFile) {
-                showWelcomeScreen = true;
-            }
-        }
-    }
-
-    if (!initialGeometrySet()) {
-        resize(QSize(800, 600).expandedTo(minimumSizeHint()));
-    }
-    setupGUI(ToolBar | Keys | StatusBar | Create);
-
-    // save position of dock windows etc
-    setAutoSaveSettings();
 
     initScripts();
-    
-    if (showWelcomeScreen) {
-        setShowWelcomeScreen(true);
-    }
 
-    // finally show tip-of-day ( if the user wants it :) )
-    QTimer::singleShot( 0, this, SLOT( startupTipOfDay() ) );
+    connect(parent, SIGNAL(documentChanged()), this, SLOT(updateDocument()));
 }
-
-void Editor::saveOptions()
-{
-    m_recentFilesAction->saveEntries(KGlobal::config()->group("Recent Files"));
-    m_downloadedFilesAction->saveEntries(KGlobal::config()->group("Downloaded Files"));
-
-///@todo save selection per document
-//     if (m_tableView) {
-//         // map to original entry numbers:
-//         QModelIndex sourceIndex = m_sortFilterModel->mapToSource(m_tableView->currentIndex());
-//         Prefs::setCurrentRow(sourceIndex.row());
-//         Prefs::setCurrentCol(sourceIndex.column());
-//     }
-    Prefs::self()->writeConfig();
-}
-
-void Editor::slotUpdateWindowCaption()
-{
-    setCaption(m_document->document()->title(), m_document->document()->isModified());
-//     slotStatusMsg(IDS_DEFAULT);
-}
-
-void Editor::slotShowStatistics()
-{
-    StatisticsDialog statisticsDialog(m_document->document(), this);
-    statisticsDialog.exec();
-}
-
-void Editor::slotGeneralOptions()
-{
-    ParleyPrefs* dialog = new ParleyPrefs(m_document->document(), this, "settings",  Prefs::self());
-    connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
-    dialog->show();
-}
-
-
-void Editor::slotApplyPreferences()
-{
-    m_document->enableAutoBackup(Prefs::autoBackup());
-
-    if (m_pronunciationStatusBarLabel) {
-        m_pronunciationStatusBarLabel->setFont(Prefs::iPAFont());
-    }
-
-    m_vocabularyView->setFont(Prefs::tableFont());
-    m_vocabularyView->reset();
-}
-
-void Editor::slotCloseDocument()
-{
-    if (!queryClose()) {
-        return;
-    }
-    m_document->newDocument();
-    updateDocument();
-    setShowWelcomeScreen(true);
-}
-
-
-// void Editor::slotStatusHelpMsg(const QString &text)
-// {
-//     ///////////////////////////////////////////////////////////////////
-//     // change status message of whole statusbar temporary (text, msec)
-//     if (pbar == 0 || !pbar->isVisible()) {
-//         statusBar()->showMessage(text, 3000);
-//     }
-// }
-
-
-
 
 void Editor::slotConfigShowSearch()
 {
@@ -233,45 +120,20 @@ void Editor::slotConfigShowSearch()
     }
 }
 
-void Editor::slotDocumentProperties()
-{
-    TitlePage* titleAuthorWidget = new TitlePage(m_document->document(), this);
-    KDialog* titleAuthorDialog;
-    titleAuthorDialog = new KDialog(this);
-    titleAuthorDialog->setMainWidget( titleAuthorWidget );
-    titleAuthorDialog->setCaption(i18nc("@title:window document properties", "Properties for %1", m_document->document()->url().url()));
-    if ( titleAuthorDialog->exec() == KDialog::Accepted ) {
-        titleAuthorWidget->commitData();
-    }
-    slotUpdateWindowCaption();
-    delete titleAuthorDialog;
-}
-
-void Editor::configurePractice()
-{
-    ConfigurePracticeDialog* configurePracticeDialog;
-    configurePracticeDialog = new ConfigurePracticeDialog(m_document->document(), this, "practice settings",  Prefs::self());
-
-    if ( configurePracticeDialog->exec() == ConfigurePracticeDialog::StartPractice ) {
-        startPractice();
-    }
-}
-
 void Editor::startPractice()
 {
     if (Prefs::oldPractice()) {
         hide();
-        TestEntryManager testManager(m_document->document(), this);
+        TestEntryManager testManager(m_mainWindow->parleyDocument()->document(), this);
         testManager.startPractice();
         show();
     } else {
         hide();
-        ParleyPracticeMainWindow* window = new ParleyPracticeMainWindow(m_document->document(), this);
+        ParleyPracticeMainWindow* window = new ParleyPracticeMainWindow(m_mainWindow->parleyDocument()->document(), this);
         connect(window, SIGNAL(signalPracticeFinished()), this, SLOT(show()));
         window->show();
     }
 }
-
 
 void Editor::slotConfigOldPractice(bool old)
 {
@@ -279,58 +141,14 @@ kDebug() << "slot config old practice";
     Prefs::setOldPractice(old);
 }
 
-void Editor::closeEvent(QCloseEvent *event)
-{
-    // hide the welcome screen to prevent the dock widgets to be hidden when saving the window state
-    setShowWelcomeScreen(false);
-    KXmlGuiWindow::closeEvent(event);
-}
-
-bool Editor::queryClose()
-{
-    bool erg = queryExit();
-    if (erg)
-        m_document->document()->setModified(false);  // avoid double query on exit via system menu
-    return erg;
-}
-
-
-bool Editor::queryExit()
-{
-    saveOptions();
-    if (!m_document->document()->isModified()) {
-        return true;
-    }
-
-    bool save = Prefs::autoSave(); //save without asking
-
-    if (!save) {
-        int exit = KMessageBox::warningYesNoCancel(this, i18n("Vocabulary is modified.\n\nSave file before exit?\n"),
-                "", KStandardGuiItem::save(), KStandardGuiItem::discard());
-        if (exit == KMessageBox::Yes) {
-            save = true;   // save and exit
-        } else if (exit == KMessageBox::No) {
-            save = false;  // don't save but exit
-        } else {
-            return false;  // continue work
-        }
-    }
-
-    if (save) {
-        m_document->save();       // save and exit
-    }
-    return true;
-}
-
-
 void Editor::updateDocument()
 {
 ///@todo we can use connect here
-    m_vocabularyModel->setDocument(m_document->document());
+    m_vocabularyModel->setDocument(m_mainWindow->parleyDocument()->document());
 
-    m_lessonModel->setDocument(m_document->document());
-    m_wordTypeModel->setDocument(m_document->document());
-    m_leitnerModel->setDocument(m_document->document());
+    m_lessonModel->setDocument(m_mainWindow->parleyDocument()->document());
+    m_wordTypeModel->setDocument(m_mainWindow->parleyDocument()->document());
+    m_leitnerModel->setDocument(m_mainWindow->parleyDocument()->document());
 
     // expand the root items
     m_lessonView->expandToDepth(0);
@@ -339,8 +157,8 @@ void Editor::updateDocument()
     // the top level container of this model only holds the others
     m_leitnerView->setRootIndex(m_leitnerModel->index(0,0));
 
-    connect(m_document->document(), SIGNAL(docModified(bool)), this, SLOT(slotUpdateWindowCaption()));
-    connect(m_document->document(), SIGNAL(docModified(bool)), m_document, SLOT(slotDocumentChanged(bool)));
+    connect(m_mainWindow->parleyDocument()->document(), SIGNAL(docModified(bool)), this, SLOT(slotUpdateWindowCaption()));
+    connect(m_mainWindow->parleyDocument()->document(), SIGNAL(docModified(bool)), m_mainWindow->parleyDocument(), SLOT(slotDocumentChanged(bool)));
     connect(m_vocabularyModel, SIGNAL(documentChanged(KEduVocDocument*)),
             m_summaryWordWidget, SLOT(slotDocumentChanged(KEduVocDocument *)));
     connect(m_vocabularyView->selectionModel(), 
@@ -348,7 +166,7 @@ void Editor::updateDocument()
             m_summaryWordWidget, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
     connect(m_vocabularyModel, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(slotRestoreColumnVisibility(KEduVocDocument*)));
 
-    setCaption(m_document->document()->url().fileName(), false);
+    setCaption(m_mainWindow->parleyDocument()->document()->url().fileName(), false);
 
 ///@todo remove this!
 // at the moment creates a new test every time a model is created. this is good because we get the basic sanity check then.
@@ -446,7 +264,7 @@ void Editor::initDockWidgets()
     m_dockWidgets.append(conjugationDock);
     conjugationDock->setVisible(false);
     actionCollection()->addAction("show_conjugation_dock", conjugationDock->toggleViewAction());
-    connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)),
+    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)),
         m_conjugationWidget, SLOT(setDocument(KEduVocDocument*)));
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         m_conjugationWidget, SLOT(setTranslation(KEduVocExpression*, int)));
@@ -460,7 +278,7 @@ void Editor::initDockWidgets()
     m_dockWidgets.append(declensionDock);
     actionCollection()->addAction("show_declension_dock", declensionDock->toggleViewAction());
     declensionDock->setVisible(false);
-    connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)),
+    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)),
             declensionWidget, SLOT(setDocument(KEduVocDocument*)));
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
             declensionWidget, SLOT(setTranslation(KEduVocExpression*, int)));
@@ -477,7 +295,7 @@ void Editor::initDockWidgets()
     comparisonDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         comparisonWidget, SLOT(setTranslation(KEduVocExpression*, int)));
-    connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), comparisonWidget, SLOT(setDocument(KEduVocDocument*)));
+    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), comparisonWidget, SLOT(setDocument(KEduVocDocument*)));
 
 
 // Multiple choice
@@ -553,13 +371,13 @@ void Editor::initDockWidgets()
 // Summary word
     QDockWidget *summaryDock = new QDockWidget(i18n("Summary"), this);
     summaryDock->setObjectName("SummaryDock");
-    m_summaryWordWidget = new SummaryWordWidget(m_vocabularyModel, m_document->document(), this);
+    m_summaryWordWidget = new SummaryWordWidget(m_vocabularyModel, m_mainWindow->parleyDocument()->document(), this);
     summaryDock->setWidget(m_summaryWordWidget);
     addDockWidget(Qt::RightDockWidgetArea, summaryDock);
     actionCollection()->addAction("show_summary_dock", summaryDock->toggleViewAction());
     summaryDock->setVisible(false);
     m_dockWidgets.append(summaryDock);
-    connect(m_document, SIGNAL(documentChanged(KEduVocDocument *)),
+    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument *)),
             m_summaryWordWidget, SLOT(slotDocumentChanged(KEduVocDocument *)));
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
             m_summaryWordWidget, SLOT(setTranslation(KEduVocExpression*, int)));
@@ -608,24 +426,16 @@ void Editor::initDockWidgets()
 // actionCollection()->addAction("show_leitner_dock", ->toggleViewAction());
 }
 
-void Editor::tipOfDay() {
-  KTipDialog::showTip(this, "parley/tips", true);
-}
-
-void Editor::startupTipOfDay() {
-  KTipDialog::showTip(this, "parley/tips");
-}
-
-
+///@todo: split between editor and mainwindow
 void Editor::initActions()
 {
 // -- FILE --------------------------------------------------
-    KAction* fileNew = KStandardAction::openNew(m_document, SLOT(slotFileNew()), actionCollection());
+    KAction* fileNew = KStandardAction::openNew(m_mainWindow->parleyDocument(), SLOT(slotFileNew()), actionCollection());
     fileNew->setWhatsThis(i18n("Creates a new blank vocabulary document"));
     fileNew->setToolTip(fileNew->whatsThis());
     fileNew->setStatusTip(fileNew->whatsThis());
 
-    KAction* fileOpen = KStandardAction::open(m_document, SLOT(slotFileOpen()), actionCollection());
+    KAction* fileOpen = KStandardAction::open(m_mainWindow->parleyDocument(), SLOT(slotFileOpen()), actionCollection());
     fileOpen->setWhatsThis(i18n("Opens an existing vocabulary document"));
     fileOpen->setToolTip(fileOpen->whatsThis());
     fileOpen->setStatusTip(fileOpen->whatsThis());
@@ -634,25 +444,25 @@ void Editor::initActions()
     actionCollection()->addAction("file_open_example", fileOpenExample);
     fileOpenExample->setIcon(KIcon("document-open"));
     fileOpenExample->setText(i18n("Open &Example..."));
-    connect(fileOpenExample, SIGNAL(triggered(bool)), m_document, SLOT(openExample()));
+    connect(fileOpenExample, SIGNAL(triggered(bool)), m_mainWindow->parleyDocument(), SLOT(openExample()));
     fileOpenExample->setWhatsThis(i18n("Open an example vocabulary document"));
     fileOpenExample->setToolTip(fileOpenExample->whatsThis());
     fileOpenExample->setStatusTip(fileOpenExample->whatsThis());
 
-    KAction* fileGHNS = KNS::standardAction(i18n("Download New Vocabularies..."), m_document, SLOT(slotGHNS()), actionCollection(), "file_ghns");
+    KAction* fileGHNS = KNS::standardAction(i18n("Download New Vocabularies..."), m_mainWindow->parleyDocument(), SLOT(slotGHNS()), actionCollection(), "file_ghns");
     fileGHNS->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_G));
     fileGHNS->setWhatsThis(i18n("Downloads new vocabularies"));
     fileGHNS->setToolTip(fileGHNS->whatsThis());
     fileGHNS->setStatusTip(fileGHNS->whatsThis());
 
-    m_recentFilesAction = KStandardAction::openRecent(m_document, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
+    m_recentFilesAction = KStandardAction::openRecent(m_mainWindow->parleyDocument(), SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
     m_recentFilesAction->loadEntries(KGlobal::config()->group("Recent Files"));
 
     m_downloadedFilesAction = new KRecentFilesAction(KIcon("get-hot-new-stuff"), "file_open_downloaded", this);
     actionCollection()->addAction("file_open_downloaded", m_downloadedFilesAction);
     m_downloadedFilesAction->setText(i18n("Open Downloaded Vocabularies"));
     m_downloadedFilesAction->loadEntries(KGlobal::config()->group("Downloaded Files"));
-    connect(m_downloadedFilesAction, SIGNAL(urlSelected(const KUrl &)), m_document, SLOT(open(const KUrl&)));
+    connect(m_downloadedFilesAction, SIGNAL(urlSelected(const KUrl &)), m_mainWindow->parleyDocument(), SLOT(open(const KUrl&)));
     m_downloadedFilesAction->loadEntries(KGlobal::config()->group("Downloaded Files"));
     m_downloadedFilesAction->setMaxItems(30);
 
@@ -667,12 +477,12 @@ void Editor::initActions()
     fileMerge->setEnabled(false); ///@todo merging files is horribly broken
     */
 
-    KAction* fileSave = KStandardAction::save(m_document, SLOT(save()), actionCollection());
+    KAction* fileSave = KStandardAction::save(m_mainWindow->parleyDocument(), SLOT(save()), actionCollection());
     fileSave->setWhatsThis(i18n("Save the active vocabulary document"));
     fileSave->setToolTip(fileSave->whatsThis());
     fileSave->setStatusTip(fileSave->whatsThis());
 
-    KAction* fileSaveAs = KStandardAction::saveAs(m_document, SLOT(saveAs()), actionCollection());
+    KAction* fileSaveAs = KStandardAction::saveAs(m_mainWindow->parleyDocument(), SLOT(saveAs()), actionCollection());
     fileSaveAs->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
     fileSaveAs->setWhatsThis(i18n("Save the active vocabulary document with a different name"));
     fileSaveAs->setToolTip(fileSaveAs->whatsThis());
@@ -689,7 +499,7 @@ void Editor::initActions()
     KAction* fileExport = new KAction(this);
     actionCollection()->addAction("file_export", fileExport);
     fileExport->setText(i18n("&Export..."));
-    connect(fileExport, SIGNAL(triggered(bool)), m_document, SLOT(exportHtmlDialog()));
+    connect(fileExport, SIGNAL(triggered(bool)), m_mainWindow->parleyDocument(), SLOT(exportHtmlDialog()));
     fileExport->setIcon(KIcon("document-export"));
     fileExport->setWhatsThis(i18n("Export to HTML"));
     fileExport->setToolTip(fileExport->whatsThis());
@@ -816,9 +626,9 @@ void Editor::initActions()
     KAction* findVocabulary = KStandardAction::find(m_searchLine, SLOT(setFocus()), actionCollection());
 
 // SCRIPTS MENU
-//     QMenu * scriptsMenu = menuBar()->addMenu(i18n("Scriptss"));
+//     QMenu * scriptsMenu = menuBcar()->addMenu(i18n("Scripts"));
 //     scriptsMenu->addAction(i18n("Test"));
-    
+
     //Script Manager Menu Action
     KAction* menu_scriptManager =new KAction(this);
     actionCollection()->addAction("show_script_manager", menu_scriptManager);
@@ -832,23 +642,6 @@ void Editor::initActions()
     m_vocabShowSearchBarAction->setChecked(Prefs::oldPractice());
 }
 
-
-void Editor::initStatusBar()
-{
-    m_typeStatusBarLabel = new QLabel(statusBar());
-    m_typeStatusBarLabel->setFrameStyle(QFrame::NoFrame);
-    statusBar()->addWidget(m_typeStatusBarLabel, 150);
-
-    m_pronunciationStatusBarLabel = new QLabel(statusBar());
-    m_pronunciationStatusBarLabel->setFrameStyle(QFrame::NoFrame);
-    m_pronunciationStatusBarLabel->setFont(Prefs::iPAFont());
-    statusBar()->addWidget(m_pronunciationStatusBarLabel, 200);
-
-    m_remarkStatusBarLabel = new QLabel(statusBar());
-    m_remarkStatusBarLabel->setFrameStyle(QFrame::NoFrame);
-    statusBar()->addWidget(m_remarkStatusBarLabel, 150);
-}
-
 void Editor::initModel()
 {
     m_vocabularyModel = new VocabularyModel(this);
@@ -857,8 +650,8 @@ void Editor::initModel()
     m_vocabularyFilter->setSourceModel(m_vocabularyModel);
     m_vocabularyView->setModel(m_vocabularyFilter);
 
-    connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyModel, SLOT(setDocument(KEduVocDocument*)));
-    connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(setDocument(KEduVocDocument*)));
+    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyModel, SLOT(setDocument(KEduVocDocument*)));
+    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(setDocument(KEduVocDocument*)));
 
     connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_vocabularyFilter, SLOT(setSearchString(const QString&)));
 }
@@ -871,7 +664,7 @@ void Editor::initView()
     // Parent of all
     QStackedWidget *stackedWidget = new QStackedWidget(this);
     setCentralWidget(stackedWidget);
-    
+
     QWidget *mainWidget = new QWidget(this);
     stackedWidget->addWidget(mainWidget);
     QVBoxLayout *topLayout = new QVBoxLayout(mainWidget);
@@ -911,25 +704,16 @@ void Editor::initView()
     topLayout->addLayout(rightLayout);
 }
 
-void Editor::initWelcomeScreen()
-{
-    WelcomeScreen* welcomeScreen = new WelcomeScreen(this);
-    qobject_cast<QStackedWidget*>(centralWidget())->addWidget(welcomeScreen);
-    
-    connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), this, SLOT(hideWelcomeScreen()));
-}
-
 void Editor::slotShowScriptManager() {
-//      kDebug() << QString("here!!");
     ScriptDialog * dialog = new ScriptDialog(m_scriptManager);
     dialog->show();
 }
 
-void Editor::removeGrades()
+void Editor::setTableFont(const QFont& font)
 {
-    m_document->document()->lesson()->resetGrades(-1, KEduVocContainer::Recursive);
+    m_vocabularyView->setFont(font);
+    m_vocabularyView->reset();
 }
-
 
 void Editor::initScripts()
 {
@@ -941,56 +725,17 @@ void Editor::initScripts()
     m_scriptManager->loadScripts();
 }
 
-
-void Editor::setShowWelcomeScreen(bool show)
+ParleyMainWindow* Editor::mainWindow()
 {
-    QStackedWidget* central = qobject_cast<QStackedWidget*>(centralWidget());
-    int index = int(show);
-    if (central->currentIndex() != index) {
-        central->setCurrentIndex(int(show));
-    } else {
-        return;
-    }
-
-    if (show) {
-        // hide dock widgets
-        m_dockWidgetVisibility.clear();
-        foreach(QDockWidget* dock, m_dockWidgets) {
-            m_dockWidgetVisibility.append(!dock->isHidden());
-            dock->close();
-        }
-    } else {
-        // restore dock widgets
-        if(m_dockWidgets.count() != m_dockWidgetVisibility.count()) {
-            return;
-        }
-        int i = 0;
-        foreach(QDockWidget* dock, m_dockWidgets) {
-            if (m_dockWidgetVisibility[i]) {
-                dock->show();
-            }
-            i++;
-        }
-    }
-}
-
-void Editor::hideWelcomeScreen()
-{
-    setShowWelcomeScreen(false);
-}
-
-ParleyDocument* Editor::parleyDocument()
-{
-    return m_document;
+    return m_mainWindow;
 }
 
 void Editor::slotLanguageProperties()
 {
-    LanguageProperties properties(m_document->document(), this);
+    LanguageProperties properties(m_mainWindow->parleyDocument()->document(), this);
     if ( properties.exec() == KDialog::Accepted ) {
          m_vocabularyModel->resetLanguages();
     }
 }
 
 #include "editor.moc"
-#endif

@@ -19,7 +19,7 @@
 #include "wordtypeview.h"
 #include "containerview.h"
 
-class ParleyMainWindow;
+class Editor;
 class KAction;
 class KSelectAction;
 class KEduVocWordType;
@@ -29,7 +29,7 @@ class WordTypeView : public ContainerView
     Q_OBJECT
 
 public:
-    WordTypeView(ParleyMainWindow *parent);
+    WordTypeView(Editor *parent);
 
 public slots:
     /** Append a word type to the model and automatically set an edit up so the user can change "New lesson" into something meaningfull.*/

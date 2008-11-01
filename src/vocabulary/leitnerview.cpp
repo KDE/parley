@@ -15,7 +15,7 @@
 
 #include "leitnerview.h"
 
-#include "parleymainwindow.h"
+#include "editor/editor.h"
 #include "leitnermodel.h"
 #include "keduvocleitnerbox.h"
 #include "prefs.h"
@@ -25,7 +25,7 @@
 #include <KAction>
 #include <KActionCollection>
 
-LeitnerView::LeitnerView(ParleyMainWindow * parent) :QListView(parent)
+LeitnerView::LeitnerView(Editor *parent) :QListView(parent)
 {
 /*
     KAction *actionNewLesson = new KAction(this);

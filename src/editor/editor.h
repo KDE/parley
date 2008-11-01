@@ -16,13 +16,10 @@
 
 #ifndef EDITOR_H
 #define EDITOR_H
-#if 0
 
 #include "parleydocument.h"
 
-// #include "scripts/scriptmanager.h"
 #include "scripts/scripting/parley.h"
-// #include "scripts/translator.h"
 
 #include <KXmlGuiWindow>
 #include <KUrl>
@@ -31,8 +28,6 @@
 #include <QList>
 
 #define IDS_DEFAULT I18N_NOOP("Ready.")
-
-class EntryDlg;
 
 class KLineEdit;
 class KRecentFilesAction;
@@ -52,42 +47,27 @@ class LeitnerModel;
 class ConjugationWidget;
 class SummaryWordWidget;
 class ScriptManager;
-class Translator;
+class Translator; ///@todo remove unneccessary items
 
-/**
-  * This Class is the base class for your application. It sets up the main
-  * window and reads the config file as well as providing a menubar, toolbar
-  * and statusbar. For the main view, an instance of class kvoctrainView is
-  * created which creates your view.
-  */
 class Editor : public KXmlGuiWindow
 {
     Q_OBJECT
 
 public:
-    /** construtor with appName (executable name) and filename to open */
-    explicit Editor(const QString& appName, const KUrl &filename = KUrl());
+    Editor(ParleyMainWindow* parent);
 
     /**
      * setup the action (menus etc)
      */
     void initActions();
 
-    /** setup the statusbar */
-    void initStatusBar();
     /** setup the main model*/
     void initModel();
 
     /** setup the main view*/
     void initView();
 
-    /** setup the welcome screen */
-    void initWelcomeScreen();
-
     void initDockWidgets();
-
-    /** save the app-specific options on slotAppExit or by an Options dialog */
-    void saveOptions();
 
     /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
     void updateTableFilter();
@@ -98,14 +78,11 @@ public:
     void initScripts();
 
     /**
-     * Return the ParleyDocument member object
-     * @return member m_document
+     * Return the top-level main window
      */
-    ParleyDocument* parleyDocument();
+    ParleyMainWindow* mainWindow();
 
 public slots:
-    /** Update the title bar of the main window with the current document */
-    void slotUpdateWindowCaption();
 
     /**
      * Edit languages contained in the document.
@@ -114,22 +91,7 @@ public slots:
      */
     void slotLanguageProperties();
 
-    /** When quitting, ask for confirmation if the doc has not been saved */
-    bool queryClose();
-    /** overloaded for Message box on last window exit */
-    bool queryExit();
-    /** set up options */
-    void slotGeneralOptions();
-    void slotApplyPreferences();
-
-    void slotCloseDocument();
-
-    /** General doc properties like title, author etc */
-    void slotDocumentProperties();
-    void slotShowStatistics();
-
     void startPractice();
-    void configurePractice();
 
     void slotConfigShowSearch();
 
@@ -138,35 +100,13 @@ public slots:
      */
     void slotShowScriptManager();
 
-    /**
-     * Show the tip of the day (force it to be shown)
-     */
-    void tipOfDay();
-
-    /**
-     * Show the tip of the day - the startup version that can be disabled
-     */
-    void startupTipOfDay();
-
-    /**
-     * Removes all grading information from the current document
-     */
-    void removeGrades();
-    
-    /**
-     * Shows or hides the welcome screen.
-     */
-    void setShowWelcomeScreen(bool show);
-    void hideWelcomeScreen();
+    void setTableFont(const QFont& font);
 
 private slots:
     void slotConfigOldPractice(bool old);
 
 signals:
     void signalSetData( const QList<int>& entries, int currentTranslation);
-
-protected:
-    void closeEvent(QCloseEvent *event);
 
 private:
 
@@ -175,6 +115,7 @@ private:
      */
     void updateDocument();
 
+    ParleyMainWindow* m_mainWindow;
     // KAction pointers to enable/disable actions
     KRecentFilesAction* m_recentFilesAction;
     KRecentFilesAction* m_downloadedFilesAction;
@@ -194,9 +135,6 @@ private:
     ConjugationWidget *m_conjugationWidget;
     SummaryWordWidget *m_summaryWordWidget;
 
-    /** m_document is the current vocabulary document. */
-    ParleyDocument   *m_document;
-
     /// dock widgets to display lessons, word types, ...
     LessonView *m_lessonView;
     LessonModel *m_lessonModel;
@@ -208,12 +146,6 @@ private:
     LeitnerModel *m_leitnerModel;
 
     KLineEdit           *m_searchLine;
-
-    EntryDlg            *m_entryDlg;
-
-    QLabel              *m_pronunciationStatusBarLabel;
-    QLabel              *m_remarkStatusBarLabel;
-    QLabel              *m_typeStatusBarLabel;
 
     friend class ParleyDocument;
     friend class Scripting::Parley;
@@ -233,6 +165,5 @@ private:
     QList<bool> m_dockWidgetVisibility;
 };
 
-#endif 0
 #endif // EDITOR_H
 

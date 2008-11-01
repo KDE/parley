@@ -16,6 +16,7 @@
 
 #include "../config-parley.h"
 #include "parleymainwindow.h"
+#include "editor/editor.h"
 #include "version.h"
 #include "prefs.h"
 
@@ -62,7 +63,7 @@ ParleyDocument::ParleyDocument(ParleyMainWindow *parent)
 
 ParleyDocument::~ParleyDocument()
 {
-    m_parleyApp->m_vocabularyView->saveColumnVisibility(m_doc->url());
+    m_parleyApp->editor()->m_vocabularyView->saveColumnVisibility(m_doc->url());
     delete m_doc;
 }
 
@@ -86,13 +87,15 @@ void ParleyDocument::newDocument(bool wizard)
     disconnect(m_doc);
     delete m_doc;
     m_doc = new KEduVocDocument(this);
-    m_parleyApp->updateDocument();
+///@todo: is this neccessary?
+//     m_parleyApp->updateDocument();
 
     initializeDefaultGrammar();
     createExampleEntries();
 
     m_doc->setModified(false);
-    m_parleyApp->updateDocument();
+///@todo: is this neccessary?
+//     m_parleyApp->updateDocument();
 
     if (wizard) {
         TitlePage* titleAuthorWidget = new TitlePage(m_doc, true, m_parleyApp);
@@ -103,8 +106,9 @@ void ParleyDocument::newDocument(bool wizard)
         connect(titleAuthorDialog, SIGNAL(accepted()), titleAuthorWidget, SLOT(accept()));
         titleAuthorDialog->exec();
 
+        ///@todo: check if this still makes sense and reenable
         if(titleAuthorWidget->grammarCheckBox->isChecked()) {
-            m_parleyApp->slotLanguageProperties();
+            m_parleyApp->editor()->slotLanguageProperties();
         }
 
         delete titleAuthorDialog;
@@ -140,7 +144,8 @@ void ParleyDocument::open(const KUrl & url, bool addRecent)
         m_doc->setCsvDelimiter(Prefs::separator());
         m_doc->open(url);
 
-        m_parleyApp->updateDocument();
+///@todo: is this neccessary?
+//         m_parleyApp->updateDocument();
 
         if (addRecent) { // open sample does not go into recent
             m_parleyApp->m_recentFilesAction->addUrl(url);
@@ -177,7 +182,7 @@ void ParleyDocument::save()
 
     m_doc->setCsvDelimiter(Prefs::separator());
 
-    m_parleyApp->m_vocabularyView->saveColumnVisibility(m_doc->url());
+    m_parleyApp->editor()->m_vocabularyView->saveColumnVisibility(m_doc->url());
 
     int result = m_doc->saveAs(m_doc->url(), KEduVocDocument::Automatic, QString::fromLatin1("Parley ") + PARLEY_VERSION_STRING);
     if ( result != 0 ) {
@@ -185,7 +190,7 @@ void ParleyDocument::save()
         saveAs();
         return;
     }
-    m_parleyApp->m_recentFilesAction->addUrl(m_doc->url());
+    m_parleyApp->editor()->m_recentFilesAction->addUrl(m_doc->url());
 }
 
 
@@ -216,7 +221,7 @@ void ParleyDocument::saveAs(KUrl url)
                                  url.setFileName(url.fileName() + QString::fromLatin1(".kvtml"));
                              }
 
-                            m_parleyApp->m_vocabularyView->saveColumnVisibility(url);
+                            m_parleyApp->editor()->m_vocabularyView->saveColumnVisibility(url);
 
                              int result = m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley");
                              if (result != 0) {

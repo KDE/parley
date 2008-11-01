@@ -22,7 +22,7 @@
 #include "vocabularydelegate.h"
 #include "vocabularymimedata.h"
 
-#include "parleymainwindow.h"
+#include "editor/editor.h"
 #include "prefs.h"
 #include "vocabularycolumnsdialog.h"
 #include "documentsettings.h"
@@ -48,7 +48,7 @@
 #include <KUrl>
 #include <sonnet/backgroundchecker.h>
 
-VocabularyView::VocabularyView(ParleyMainWindow * parent)
+VocabularyView::VocabularyView(Editor * parent)
     : QTableView(parent)
 {
     m_model = 0;

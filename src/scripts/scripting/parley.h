@@ -25,7 +25,7 @@
 
 #include <KStandardDirs>
 
-class ParleyMainWindow;
+class Editor;
 class Translator;
 
 /**
@@ -206,7 +206,7 @@ namespace Scripting
                 Irregular = 0x20000000
             };
 
-            Parley ( ParleyMainWindow * parley );
+            Parley ( Editor * editor );
 
             ~Parley();
 
@@ -397,7 +397,7 @@ namespace Scripting
         private:
             Translator* m_translator;
             Document* m_doc;
-            ParleyMainWindow * m_parleyApp;
+            Editor * m_editor;
     };
 
 }
