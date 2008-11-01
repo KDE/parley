@@ -190,7 +190,7 @@ void ParleyDocument::save()
         saveAs();
         return;
     }
-    m_parleyApp->editor()->m_recentFilesAction->addUrl(m_doc->url());
+    m_parleyApp->m_recentFilesAction->addUrl(m_doc->url());
 }
 
 

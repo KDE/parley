@@ -28,21 +28,9 @@
 
 #include "parleydocument.h"
 
-#include "scripts/scripting/parley.h"
-
 #include <KXmlGuiWindow>
-#include <KUrl>
-#include <QItemSelection>
-#include <QModelIndex>
-#include <QList>
 
-#define IDS_DEFAULT I18N_NOOP("Ready.")
-
-class EntryDlg;
-
-class KLineEdit;
 class KRecentFilesAction;
-class KAction;
 class KActionMenu;
 class QLabel;
 class QDockWidget;
@@ -59,7 +47,6 @@ class LeitnerModel;
 class ConjugationWidget;
 class SummaryWordWidget;
 class ScriptManager;
-class Translator; ///@todo remove unneccessary items
 
 class ParleyMainWindow : public KXmlGuiWindow
 {
@@ -134,7 +121,6 @@ public slots:
     void hideWelcomeScreen();
 
 signals:
-    void signalSetData( const QList<int>& entries, int currentTranslation);
     void documentChanged();
 
 protected:
@@ -143,7 +129,6 @@ protected:
 private:
     Editor *m_editor;
 
-    // KAction pointers to enable/disable actions
     KRecentFilesAction* m_recentFilesAction;
     KRecentFilesAction* m_downloadedFilesAction;
 
@@ -151,9 +136,6 @@ private:
     ParleyDocument   *m_document;
 
     friend class ParleyDocument;
-    friend class Scripting::Parley;
-    friend class ScriptManager;
-    friend class Translator;
 
     /// the name of the executable
     QString m_appName;

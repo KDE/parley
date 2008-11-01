@@ -371,17 +371,6 @@ void ParleyMainWindow::initActions()
     fileQuit->setToolTip(fileQuit->whatsThis());
     fileQuit->setStatusTip(fileQuit->whatsThis());
 
-
-    KAction* editLanguages =new KAction(this);
-    actionCollection()->addAction("edit_languages", editLanguages);
-    editLanguages->setIcon(KIcon("set-language"));
-    editLanguages->setText(i18n("&Languages..."));
-    editLanguages->setWhatsThis(i18n("Edit which languages are in the collection and their grammar properties."));
-    editLanguages->setToolTip(editLanguages->whatsThis());
-    editLanguages->setStatusTip(editLanguages->whatsThis());
-    connect(editLanguages, SIGNAL(triggered()),  this, SLOT(slotLanguageProperties()));
-    ///@todo tooltip
-
     KAction* removeGrades = new KAction(this);
     actionCollection()->addAction("vocab_remove_grades", removeGrades);
     removeGrades->setIcon(KIcon("edit-clear"));
@@ -402,15 +391,6 @@ void ParleyMainWindow::initActions()
     actionCollection()->addAction("practice_configure", configurePractice);
     connect(configurePractice, SIGNAL(triggered(bool)), SLOT(configurePractice()));
 
-    KAction* startPractice = new KAction(this);
-    startPractice->setText(i18n("Start Practice..."));
-    startPractice->setIcon(KIcon("practice-start"));
-    startPractice->setWhatsThis(i18n("Start a test with the last settings"));
-    startPractice->setToolTip(startPractice->whatsThis());
-    startPractice->setStatusTip(startPractice->whatsThis());
-    actionCollection()->addAction("practice_start", startPractice);
-    connect(startPractice, SIGNAL(triggered(bool)), SLOT(startPractice()));
-
     KAction* showStatistics = new KAction(this);
     actionCollection()->addAction("show_statistics", showStatistics);
     showStatistics->setIcon(KIcon("statistics"));
@@ -419,7 +399,6 @@ void ParleyMainWindow::initActions()
     showStatistics->setWhatsThis(i18n("Show and reset statistics for the current vocabulary"));
     showStatistics->setToolTip(showStatistics->whatsThis());
     showStatistics->setStatusTip(showStatistics->whatsThis());
-
 
 // -- SETTINGS --------------------------------------------------
     KAction* configApp = KStandardAction::preferences(this, SLOT(slotGeneralOptions()), actionCollection());

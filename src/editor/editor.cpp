@@ -429,103 +429,6 @@ void Editor::initDockWidgets()
 ///@todo: split between editor and mainwindow
 void Editor::initActions()
 {
-// -- FILE --------------------------------------------------
-    KAction* fileNew = KStandardAction::openNew(m_mainWindow->parleyDocument(), SLOT(slotFileNew()), actionCollection());
-    fileNew->setWhatsThis(i18n("Creates a new blank vocabulary document"));
-    fileNew->setToolTip(fileNew->whatsThis());
-    fileNew->setStatusTip(fileNew->whatsThis());
-
-    KAction* fileOpen = KStandardAction::open(m_mainWindow->parleyDocument(), SLOT(slotFileOpen()), actionCollection());
-    fileOpen->setWhatsThis(i18n("Opens an existing vocabulary document"));
-    fileOpen->setToolTip(fileOpen->whatsThis());
-    fileOpen->setStatusTip(fileOpen->whatsThis());
-
-    KAction* fileOpenExample = new KAction(this);
-    actionCollection()->addAction("file_open_example", fileOpenExample);
-    fileOpenExample->setIcon(KIcon("document-open"));
-    fileOpenExample->setText(i18n("Open &Example..."));
-    connect(fileOpenExample, SIGNAL(triggered(bool)), m_mainWindow->parleyDocument(), SLOT(openExample()));
-    fileOpenExample->setWhatsThis(i18n("Open an example vocabulary document"));
-    fileOpenExample->setToolTip(fileOpenExample->whatsThis());
-    fileOpenExample->setStatusTip(fileOpenExample->whatsThis());
-
-    KAction* fileGHNS = KNS::standardAction(i18n("Download New Vocabularies..."), m_mainWindow->parleyDocument(), SLOT(slotGHNS()), actionCollection(), "file_ghns");
-    fileGHNS->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_G));
-    fileGHNS->setWhatsThis(i18n("Downloads new vocabularies"));
-    fileGHNS->setToolTip(fileGHNS->whatsThis());
-    fileGHNS->setStatusTip(fileGHNS->whatsThis());
-
-    m_recentFilesAction = KStandardAction::openRecent(m_mainWindow->parleyDocument(), SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
-    m_recentFilesAction->loadEntries(KGlobal::config()->group("Recent Files"));
-
-    m_downloadedFilesAction = new KRecentFilesAction(KIcon("get-hot-new-stuff"), "file_open_downloaded", this);
-    actionCollection()->addAction("file_open_downloaded", m_downloadedFilesAction);
-    m_downloadedFilesAction->setText(i18n("Open Downloaded Vocabularies"));
-    m_downloadedFilesAction->loadEntries(KGlobal::config()->group("Downloaded Files"));
-    connect(m_downloadedFilesAction, SIGNAL(urlSelected(const KUrl &)), m_mainWindow->parleyDocument(), SLOT(open(const KUrl&)));
-    m_downloadedFilesAction->loadEntries(KGlobal::config()->group("Downloaded Files"));
-    m_downloadedFilesAction->setMaxItems(30);
-
-    /*
-    KAction* fileMerge = new KAction(this);
-    actionCollection()->addAction("file_merge", fileMerge);
-    fileMerge->setText(i18n("&Merge..."));
-    connect(fileMerge, SIGNAL(triggered(bool)), m_document, SLOT(slotFileMerge()));
-    fileMerge->setWhatsThis(i18n("Merge an existing vocabulary document with the current one"));
-    fileMerge->setToolTip(fileMerge->whatsThis());
-    fileMerge->setStatusTip(fileMerge->whatsThis());
-    fileMerge->setEnabled(false); ///@todo merging files is horribly broken
-    */
-
-    KAction* fileSave = KStandardAction::save(m_mainWindow->parleyDocument(), SLOT(save()), actionCollection());
-    fileSave->setWhatsThis(i18n("Save the active vocabulary document"));
-    fileSave->setToolTip(fileSave->whatsThis());
-    fileSave->setStatusTip(fileSave->whatsThis());
-
-    KAction* fileSaveAs = KStandardAction::saveAs(m_mainWindow->parleyDocument(), SLOT(saveAs()), actionCollection());
-    fileSaveAs->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
-    fileSaveAs->setWhatsThis(i18n("Save the active vocabulary document with a different name"));
-    fileSaveAs->setToolTip(fileSaveAs->whatsThis());
-    fileSaveAs->setStatusTip(fileSaveAs->whatsThis());
-
-#ifdef HAVE_LIBXSLT
-
-// Printing would be nice, but for now html export has to suffice
-//     KAction* filePrint = KStandardAction::print(m_document, SLOT(print()), actionCollection());
-//     filePrint->setWhatsThis(i18n("Print the active vocabulary document"));
-//     filePrint->setToolTip(filePrint->whatsThis());
-//     filePrint->setStatusTip(filePrint->whatsThis());
-
-    KAction* fileExport = new KAction(this);
-    actionCollection()->addAction("file_export", fileExport);
-    fileExport->setText(i18n("&Export..."));
-    connect(fileExport, SIGNAL(triggered(bool)), m_mainWindow->parleyDocument(), SLOT(exportHtmlDialog()));
-    fileExport->setIcon(KIcon("document-export"));
-    fileExport->setWhatsThis(i18n("Export to HTML"));
-    fileExport->setToolTip(fileExport->whatsThis());
-    fileExport->setStatusTip(fileExport->whatsThis());
-#endif
-
-    KAction* fileProperties = new KAction(this);
-    actionCollection()->addAction("file_properties", fileProperties);
-    fileProperties->setText(i18n("&Properties..."));
-    connect(fileProperties, SIGNAL(triggered(bool)), SLOT(slotDocumentProperties()));
-    fileProperties->setIcon(KIcon("document-properties"));
-    fileProperties->setWhatsThis(i18n("Edit document properties"));
-    fileProperties->setToolTip(fileProperties->whatsThis());
-    fileProperties->setStatusTip(fileProperties->whatsThis());
-
-    KAction* fileClose = KStandardAction::close(this, SLOT(slotCloseDocument()), actionCollection());
-    fileClose->setWhatsThis(i18n("Close the current collection"));
-    fileClose->setToolTip(fileClose->whatsThis());
-    fileClose->setStatusTip(fileClose->whatsThis());
-
-    KAction* fileQuit = KStandardAction::quit(this, SLOT(close()), actionCollection());
-    fileQuit->setWhatsThis(i18n("Quit Parley"));
-    fileQuit->setToolTip(fileQuit->whatsThis());
-    fileQuit->setStatusTip(fileQuit->whatsThis());
-
-
     KAction* editLanguages =new KAction(this);
     actionCollection()->addAction("edit_languages", editLanguages);
     editLanguages->setIcon(KIcon("set-language"));
@@ -563,17 +466,6 @@ void Editor::initActions()
     removeGrades->setToolTip(removeGrades->whatsThis());
     removeGrades->setStatusTip(removeGrades->whatsThis());
 
-// -- PRACTICE --------------------------------------------------
-
-    KAction* configurePractice = new KAction(this);
-    configurePractice->setText(i18n("Configure Practice..."));
-    configurePractice->setIcon(KIcon("practice-setup"));
-    configurePractice->setWhatsThis(i18n("Set up and start a test"));
-    configurePractice->setToolTip(configurePractice->whatsThis());
-    configurePractice->setStatusTip(configurePractice->whatsThis());
-    actionCollection()->addAction("practice_configure", configurePractice);
-    connect(configurePractice, SIGNAL(triggered(bool)), SLOT(configurePractice()));
-
     KAction* startPractice = new KAction(this);
     startPractice->setText(i18n("Start Practice..."));
     startPractice->setIcon(KIcon("practice-start"));
@@ -583,22 +475,8 @@ void Editor::initActions()
     actionCollection()->addAction("practice_start", startPractice);
     connect(startPractice, SIGNAL(triggered(bool)), SLOT(startPractice()));
 
-    KAction* showStatistics = new KAction(this);
-    actionCollection()->addAction("show_statistics", showStatistics);
-    showStatistics->setIcon(KIcon("statistics"));
-    showStatistics->setText(i18n("&Statistics..."));
-    connect(showStatistics, SIGNAL(triggered(bool)), this, SLOT(slotShowStatistics()));
-    showStatistics->setWhatsThis(i18n("Show and reset statistics for the current vocabulary"));
-    showStatistics->setToolTip(showStatistics->whatsThis());
-    showStatistics->setStatusTip(showStatistics->whatsThis());
-
 
 // -- SETTINGS --------------------------------------------------
-    KAction* configApp = KStandardAction::preferences(this, SLOT(slotGeneralOptions()), actionCollection());
-    configApp->setWhatsThis(i18n("Show the configuration dialog"));
-    configApp->setToolTip(configApp->whatsThis());
-    configApp->setStatusTip(configApp->whatsThis());
-
     m_vocabShowSearchBarAction = actionCollection()->add<KToggleAction>("config_show_search");
     m_vocabShowSearchBarAction->setText(i18n("Show Se&arch"));
     connect(m_vocabShowSearchBarAction, SIGNAL(triggered(bool)), this, SLOT(slotConfigShowSearch()));
@@ -614,13 +492,11 @@ void Editor::initActions()
     m_vocabularyColumnsActionMenu->setStatusTip(m_vocabularyColumnsActionMenu->whatsThis());
     m_vocabularyView->horizontalHeader()->addAction(m_vocabularyColumnsActionMenu);
 
-    actionCollection()->addAction(KStandardAction::TipofDay,  "help_tipofday", this, SLOT( tipOfDay() ));
-
 // -- ONLY ON RIGHT CLICK - HEADER SO FAR -------------------------------------
     ///@todo what about this one...?
-    KAction *actionRestoreNativeOrder = new KAction(this);
-    actionCollection()->addAction("restore_native_order", actionRestoreNativeOrder);
-    actionRestoreNativeOrder->setText(i18n("Restore Native Order"));
+//     KAction *actionRestoreNativeOrder = new KAction(this);
+//     actionCollection()->addAction("restore_native_order", actionRestoreNativeOrder);
+//     actionRestoreNativeOrder->setText(i18n("Restore Native Order"));
 
 
     KAction* findVocabulary = KStandardAction::find(m_searchLine, SLOT(setFocus()), actionCollection());
@@ -635,11 +511,6 @@ void Editor::initActions()
     menu_scriptManager->setIcon(KIcon("set-language"));
     menu_scriptManager->setText(i18n("&Script Manager"));
     connect(menu_scriptManager, SIGNAL(triggered()),  this, SLOT(slotShowScriptManager()));
-
-    KToggleAction *oldPractice = actionCollection()->add<KToggleAction>("config_oldPractice");
-    oldPractice->setText(i18n("Old Practice Dialogs"));
-    connect(oldPractice, SIGNAL(triggered(bool)), this, SLOT(slotConfigOldPractice(bool)));
-    m_vocabShowSearchBarAction->setChecked(Prefs::oldPractice());
 }
 
 void Editor::initModel()

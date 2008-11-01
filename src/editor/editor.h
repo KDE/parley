@@ -22,19 +22,9 @@
 #include "scripts/scripting/parley.h"
 
 #include <KXmlGuiWindow>
-#include <KUrl>
-#include <QItemSelection>
-#include <QModelIndex>
-#include <QList>
-
-#define IDS_DEFAULT I18N_NOOP("Ready.")
 
 class KLineEdit;
-class KRecentFilesAction;
-class KAction;
 class KActionMenu;
-class QLabel;
-class QDockWidget;
 class VocabularyView;
 class VocabularyModel;
 class VocabularyFilter;
@@ -47,7 +37,6 @@ class LeitnerModel;
 class ConjugationWidget;
 class SummaryWordWidget;
 class ScriptManager;
-class Translator; ///@todo remove unneccessary items
 
 class Editor : public KXmlGuiWindow
 {
@@ -116,14 +105,9 @@ private:
     void updateDocument();
 
     ParleyMainWindow* m_mainWindow;
-    // KAction pointers to enable/disable actions
-    KRecentFilesAction* m_recentFilesAction;
-    KRecentFilesAction* m_downloadedFilesAction;
-    KAction* m_deleteEntriesAction;
+
     KAction* m_vocabShowSearchBarAction;
     KActionMenu* m_vocabularyColumnsActionMenu;
-
-    QString lastPixName;
 
     VocabularyModel *m_vocabularyModel;
     VocabularyView *m_vocabularyView;
@@ -150,12 +134,7 @@ private:
     friend class ParleyDocument;
     friend class Scripting::Parley;
     friend class ScriptManager;
-    friend class Translator;
 
-    /// the name of the executable
-    QString m_appName;
-
-    //Script Manager
     ScriptManager* m_scriptManager;
 
     ///stores all the translations of a vocabulary word
