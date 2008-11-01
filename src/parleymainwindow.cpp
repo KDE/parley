@@ -42,6 +42,7 @@
 #include <KTipDialog>
 #include <knewstuff2/ui/knewstuffaction.h>
 #include <KXMLGUIFactory>
+#include <KToolBar>
 
 #include <QtCore/QTimer>
 
@@ -78,6 +79,13 @@ ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename
         resize(QSize(800, 600).expandedTo(minimumSizeHint()));
     }
     setupGUI(ToolBar | Keys | StatusBar | Create);
+
+    // currently there is no way to remove the mainToolBar that is always there by default (defined in ui_standards.rc)
+    // as a workaround the toolbar is deleted right after it is created
+    KToolBar *mainToolBar = toolBar("mainToolBar");
+    removeToolBar(mainToolBar);
+    delete mainToolBar;
+    setupToolbarMenuActions();
 
     // save position of dock windows etc
     setAutoSaveSettings();

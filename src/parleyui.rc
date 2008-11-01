@@ -21,8 +21,4 @@
     <Action name="help_tipofday"/>
   </Menu>
  </MenuBar>
-
- <ToolBar noEdit="true" hidden="true" name="mainToolBar" >
-  <text>Main Toolbar</text>
- </ToolBar>
 </gui>
