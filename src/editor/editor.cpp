@@ -43,44 +43,23 @@
 #include "entry-dialogs/synonymwidget.h"
 #include "entry-dialogs/summarywordwidget.h"
 
-#include "statistics-dialogs/StatisticsDialog.h"
 #include "settings/parleyprefs.h"
-#include "settings/TitlePage.h"
 #include "settings/languageproperties.h"
-#include "configure-practice/configurepracticedialog.h"
 #include "prefs.h"
 
 #include "scripts/scriptdialog.h"
-#include "scripts/scripting/parley.h"
-#include "scripts/scripting/expression.h"
 #include "scripts/translator.h"
 
-#include "welcomescreen/welcomescreen.h"
-
-#include <keduvoclesson.h>
-#include <keduvocexpression.h>
-
-#include <KLineEdit>
-#include <KStatusBar>
-
 #include <KActionCollection>
-#include <KRecentFilesAction>
 #include <KToggleAction>
 #include <KActionMenu>
-#include <KMenuBar>
-#include <KMessageBox>
-#include <KTipDialog>
 #include <KCharSelect>
-#include <knewstuff2/ui/knewstuffaction.h>
 
-#include <QtCore/QTimer>
 #include <QtGui/QDockWidget>
 #include <QtGui/QHeaderView>
 #include <QtGui/QStackedWidget>
 
 #include "modeltest/modeltest.h"
-///@todo remove unneccessary includes
-
 
 Editor::Editor(ParleyMainWindow* parent) : KXmlGuiWindow(parent), m_mainWindow(parent)
 {

@@ -26,72 +26,22 @@
 #include "parleymainwindow.h"
 
 #include "../config-parley.h"
-
 #include "editor/editor.h"
-
-#include "practiceold/testentrymanager.h"
-#include "practice/parleypracticemainwindow.h"
-
-#include "vocabulary/vocabularymodel.h"
-#include "vocabulary/vocabularyview.h"
-#include "vocabulary/vocabularyfilter.h"
-#include "vocabulary/containerview.h"
-#include "vocabulary/lessonview.h"
-#include "vocabulary/wordtypeview.h"
-#include "vocabulary/containermodel.h"
-#include "vocabulary/lessonmodel.h"
-#include "vocabulary/wordtypemodel.h"
-#include "vocabulary/leitnerview.h"
-#include "vocabulary/leitnermodel.h"
-
-#include "entry-dialogs/multiplechoicewidget.h"
-#include "entry-dialogs/comparisonwidget.h"
-#include "entry-dialogs/conjugationwidget.h"
-#include "entry-dialogs/declensionwidget.h"
-#include "entry-dialogs/imagechooserwidget.h"
-#include "entry-dialogs/audiowidget.h"
-#include "entry-dialogs/browserwidget.h"
-#include "entry-dialogs/synonymwidget.h"
-#include "entry-dialogs/summarywordwidget.h"
-
 #include "statistics-dialogs/StatisticsDialog.h"
 #include "settings/parleyprefs.h"
 #include "settings/TitlePage.h"
-#include "settings/languageproperties.h"
 #include "configure-practice/configurepracticedialog.h"
 #include "prefs.h"
-
-#include "scripts/scriptdialog.h"
-#include "scripts/scripting/parley.h"
-#include "scripts/scripting/expression.h"
-#include "scripts/translator.h"
-
 #include "welcomescreen/welcomescreen.h"
-
-#include <keduvoclesson.h>
-#include <keduvocexpression.h>
-
-#include <KLineEdit>
-#include <KStatusBar>
 
 #include <KActionCollection>
 #include <KRecentFilesAction>
-#include <KToggleAction>
-#include <KActionMenu>
-#include <KMenuBar>
 #include <KMessageBox>
 #include <KTipDialog>
-#include <KCharSelect>
 #include <knewstuff2/ui/knewstuffaction.h>
 #include <KXMLGUIFactory>
 
 #include <QtCore/QTimer>
-#include <QtGui/QDockWidget>
-#include <QtGui/QHeaderView>
-#include <QtGui/QStackedWidget>
-
-#include "modeltest/modeltest.h"
-///@todo remove unneccessary includes
 
 ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename) : KXmlGuiWindow(0), m_currentComponent(NoComponent)
 {
