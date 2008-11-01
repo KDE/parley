@@ -88,14 +88,13 @@ void ParleyDocument::newDocument(bool wizard)
     delete m_doc;
     m_doc = new KEduVocDocument(this);
 ///@todo: is this neccessary?
-//     m_parleyApp->updateDocument();
+     m_parleyApp->editor()->updateDocument();
 
     initializeDefaultGrammar();
     createExampleEntries();
 
     m_doc->setModified(false);
-///@todo: is this neccessary?
-//     m_parleyApp->updateDocument();
+    m_parleyApp->editor()->updateDocument();
 
     if (wizard) {
         TitlePage* titleAuthorWidget = new TitlePage(m_doc, true, m_parleyApp);
@@ -114,8 +113,8 @@ void ParleyDocument::newDocument(bool wizard)
         delete titleAuthorDialog;
     }
 
+    m_parleyApp->showEditor();
     emit documentChanged(m_doc);
-
 }
 
 void ParleyDocument::slotFileOpen()
@@ -123,6 +122,7 @@ void ParleyDocument::slotFileOpen()
     if (m_parleyApp->queryExit()) {
         KUrl url = KFileDialog::getOpenUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), m_parleyApp, i18n("Open Vocabulary Document"));
         open(url, true);
+        m_parleyApp->showEditor(); ///@todo: add checkbox to dialog to start practice directly
     }
 }
 
@@ -130,6 +130,7 @@ void ParleyDocument::slotFileOpenRecent(const KUrl& url)
 {
     if (m_parleyApp->queryExit()) {
         open(url);
+        m_parleyApp->showEditor(); ///@todo: start practice directly depending on current component
     }
 }
 
@@ -144,8 +145,7 @@ void ParleyDocument::open(const KUrl & url, bool addRecent)
         m_doc->setCsvDelimiter(Prefs::separator());
         m_doc->open(url);
 
-///@todo: is this neccessary?
-//         m_parleyApp->updateDocument();
+        m_parleyApp->editor()->updateDocument();
 
         if (addRecent) { // open sample does not go into recent
             m_parleyApp->m_recentFilesAction->addUrl(url);

@@ -93,14 +93,17 @@
 #include "modeltest/modeltest.h"
 ///@todo remove unneccessary includes
 
-ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename) : KXmlGuiWindow(0)
+ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename) : KXmlGuiWindow(0), m_currentComponent(NoComponent)
 {
     m_appName = appName;
     m_document = new ParleyDocument(this);
 
     m_editor = new Editor(this);
+    m_editor->hide();
 
-    setCentralWidget(new QStackedWidget());
+    setCentralWidget(new QWidget());
+    centralWidget()->setLayout(new QHBoxLayout());
+
     initWelcomeScreen();
 
     initActions();
@@ -108,21 +111,14 @@ ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename
     bool showWelcomeScreen = false;
 
     if ( !filename.url().isEmpty() ) {
-        kDebug() << "open doc" << filename.url();
         m_document->open(filename);
-        kDebug() << "open done";
     } else {
         bool openLastFile = Prefs::autoOpenLast();
         if (openLastFile && m_recentFilesAction->actions().count() > 0
             && m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->isEnabled() ) {
             m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->trigger();
         } else {
-            kDebug() << "new doc";
-            m_document->newDocument();
-            emit documentChanged();
-            if (!openLastFile) {
-                showWelcomeScreen = true;
-            }
+            showWelcomeScreen = true;
         }
     }
 
@@ -131,13 +127,13 @@ ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename
     }
     setupGUI(ToolBar | Keys | StatusBar | Create);
 
-    guiFactory()->addClient(m_editor);
-
     // save position of dock windows etc
     setAutoSaveSettings();
 
     if (showWelcomeScreen) {
-        setShowWelcomeScreen(true);
+        this->showWelcomeScreen();
+    } else {
+        showEditor();
     }
 
     // finally show tip-of-day ( if the user wants it :) )
@@ -194,7 +190,7 @@ void ParleyMainWindow::slotCloseDocument()
     }
     m_document->newDocument();
     emit documentChanged();
-    setShowWelcomeScreen(true);
+    showWelcomeScreen();
 }
 
 void ParleyMainWindow::slotDocumentProperties()
@@ -222,13 +218,6 @@ void ParleyMainWindow::configurePractice()
 //         startPractice();
     ///@todo: implement start practice
     }
-}
-
-void ParleyMainWindow::closeEvent(QCloseEvent *event)
-{
-    // hide the welcome screen to prevent the dock widgets to be hidden when saving the window state
-    setShowWelcomeScreen(false);
-    KXmlGuiWindow::closeEvent(event);
 }
 
 bool ParleyMainWindow::queryClose()
@@ -413,10 +402,8 @@ void ParleyMainWindow::initActions()
 
 void ParleyMainWindow::initWelcomeScreen()
 {
-    WelcomeScreen* welcomeScreen = new WelcomeScreen(this);
-    qobject_cast<QStackedWidget*>(centralWidget())->addWidget(welcomeScreen);
-
-    connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), this, SLOT(hideWelcomeScreen()));
+    m_welcomeScreen = new WelcomeScreen(this);
+    m_welcomeScreen->hide();
 }
 
 void ParleyMainWindow::removeGrades()
@@ -424,41 +411,90 @@ void ParleyMainWindow::removeGrades()
     m_document->document()->lesson()->resetGrades(-1, KEduVocContainer::Recursive);
 }
 
-void ParleyMainWindow::setShowWelcomeScreen(bool show)
+void ParleyMainWindow::showWelcomeScreen()
 {
-    QStackedWidget* central = qobject_cast<QStackedWidget*>(centralWidget());
-    int index = int(show);
-    if (central->currentIndex() != index) {
-        central->setCurrentIndex(int(show));
-    } else {
+    switchComponent(WelcomeComponent);
+}
+
+void ParleyMainWindow::showEditor()
+{
+    switchComponent(EditorComponent);
+}
+
+void ParleyMainWindow::showPractice()
+{
+    switchComponent(PracticeComponent);
+}
+
+void ParleyMainWindow::switchComponent(Component component)
+{
+    kDebug() << "switch to component" << component;
+
+    if(m_currentComponent == component) {
         return;
     }
 
-//     if (show) {
-//         // hide dock widgets
-//         m_dockWidgetVisibility.clear();
-//         foreach(QDockWidget* dock, m_dockWidgets) {
-//             m_dockWidgetVisibility.append(!dock->isHidden());
-//             dock->close();
-//         }
-//     } else {
-//         // restore dock widgets
-//         if(m_dockWidgets.count() != m_dockWidgetVisibility.count()) {
-//             return;
-//         }
-//         int i = 0;
-//         foreach(QDockWidget* dock, m_dockWidgets) {
-//             if (m_dockWidgetVisibility[i]) {
-//                 dock->show();
-//             }
-//             i++;
-//         }
-//     }
-}
+    // Get pointers to the old component (we need them as widgets and gui clients)
+    KXMLGUIClient *oldClient = 0;
+    QWidget *oldWidget = 0;
+    switch (m_currentComponent) {
+    case WelcomeComponent:
+        oldClient = 0; // The welcome screen doesn't inherit from KXMLGUIClient and doesn't have any actions
+        oldWidget = m_welcomeScreen;
+        break;
+    case EditorComponent:
+        oldClient = m_editor;
+        oldWidget = m_editor;
+        break;
+    case PracticeComponent:
+        oldClient = m_practice;
+        oldWidget = m_practice;
+        break;
+    default:
+        break;
+    }
+    kDebug() << "old component" << oldClient << oldWidget;
 
-void ParleyMainWindow::hideWelcomeScreen()
-{
-    setShowWelcomeScreen(false);
+    // Get pointers to the new component (we need them as widgets and gui clients)
+    KXMLGUIClient *newClient = 0;
+    QWidget *newWidget = 0;
+    switch (component) {
+    case WelcomeComponent:
+        newClient = 0; // The welcome screen doesn't inherit from KXMLGUIClient and doesn't have any actions
+        newWidget = m_welcomeScreen;
+        break;
+    case EditorComponent:
+        newClient = m_editor;
+        newWidget = m_editor;
+        break;
+    case PracticeComponent:
+        newClient = m_practice;
+        newWidget = m_practice;
+        break;
+    default:
+        break;
+    }
+    kDebug() << "new component" << newClient << newWidget;
+
+    // Unload the old actions and load the new ones
+    if (oldClient) {
+        guiFactory()->removeClient(oldClient);
+    }
+    if (newClient) {
+        guiFactory()->addClient(newClient);
+    }
+
+    // Hide the old central widget and insert the new one
+    if (oldWidget) {
+        centralWidget()->layout()->removeWidget(oldWidget);
+        oldWidget->hide();
+    }
+    if (newWidget) {
+        centralWidget()->layout()->addWidget(newWidget);
+        newWidget->show();
+    }
+
+    m_currentComponent = component;
 }
 
 ParleyDocument* ParleyMainWindow::parleyDocument()

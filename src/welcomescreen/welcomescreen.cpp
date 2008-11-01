@@ -89,6 +89,7 @@ void WelcomeScreen::updateRecentFilesModel()
 void WelcomeScreen::slotOpenUrl(const KUrl& url)
 {
     m_parleyApp->parleyDocument()->open(url);
+    m_parleyApp->showEditor();
 }
 
 void WelcomeScreen::slotDoubleClicked(const QModelIndex& index)
@@ -100,6 +101,7 @@ void WelcomeScreen::slotDoubleClicked(const QModelIndex& index)
 void WelcomeScreen::slotPracticeUrl(const KUrl & url)
 {
     m_parleyApp->parleyDocument()->open(url);
+    m_parleyApp->showEditor();
 //     m_parleyApp->startPractice();
 ///@todo: implement start practice
 }

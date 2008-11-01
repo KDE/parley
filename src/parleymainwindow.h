@@ -35,6 +35,7 @@ class KActionMenu;
 class QLabel;
 class QDockWidget;
 class Editor;
+class WelcomeScreen;
 class VocabularyView;
 class VocabularyModel;
 class VocabularyFilter;
@@ -55,6 +56,9 @@ class ParleyMainWindow : public KXmlGuiWindow
 public:
     /** construtor with appName (executable name) and filename to open */
     explicit ParleyMainWindow(const QString& appName, const KUrl &filename = KUrl());
+
+    /** enum for the different components that can be displayed */
+    enum Component {NoComponent, WelcomeComponent, EditorComponent, PracticeComponent};
 
     /**
      * setup the action (menus etc)
@@ -113,21 +117,22 @@ public slots:
      * Removes all grading information from the current document
      */
     void removeGrades();
-    
-    /**
-     * Shows or hides the welcome screen.
-     */
-    void setShowWelcomeScreen(bool show);
-    void hideWelcomeScreen();
+
+    void showWelcomeScreen();
+    void showEditor();
+    void showPractice();
+
+    void switchComponent(Component component);
 
 signals:
     void documentChanged();
 
-protected:
-    void closeEvent(QCloseEvent *event);
-
 private:
+    Component m_currentComponent;
+
+    WelcomeScreen *m_welcomeScreen;
     Editor *m_editor;
+    KXmlGuiWindow *m_practice;
 
     KRecentFilesAction* m_recentFilesAction;
     KRecentFilesAction* m_downloadedFilesAction;

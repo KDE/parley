@@ -94,16 +94,15 @@ public slots:
 private slots:
     void slotConfigOldPractice(bool old);
 
-signals:
-    void signalSetData( const QList<int>& entries, int currentTranslation);
-
-private:
-
     /**
      * Set the current doc (after creating a new one or opening a file)
      */
     void updateDocument();
 
+signals:
+    void signalSetData( const QList<int>& entries, int currentTranslation);
+
+private:
     ParleyMainWindow* m_mainWindow;
 
     KAction* m_vocabShowSearchBarAction;
