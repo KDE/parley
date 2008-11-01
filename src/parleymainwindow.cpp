@@ -405,6 +405,7 @@ void ParleyMainWindow::switchComponent(Component component)
         newClient = 0; // The welcome screen doesn't inherit from KXMLGUIClient and doesn't have any actions
         newWidget = m_welcomeScreen;
         showDocumentActions(false);
+        m_welcomeScreen->updateRecentFilesModel();
         break;
     case EditorComponent:
         newClient = m_editor;
