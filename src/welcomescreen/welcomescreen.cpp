@@ -101,9 +101,7 @@ void WelcomeScreen::slotDoubleClicked(const QModelIndex& index)
 void WelcomeScreen::slotPracticeUrl(const KUrl & url)
 {
     m_parleyApp->parleyDocument()->open(url);
-    m_parleyApp->showEditor();
-//     m_parleyApp->startPractice();
-///@todo: implement start practice
+    m_parleyApp->startPractice();
 }
 
 #include "welcomescreen.moc"
