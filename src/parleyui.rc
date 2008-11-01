@@ -14,65 +14,15 @@
         <Separator/>
     </Menu>
   <Menu name="edit" >
-      <Separator/>
-      <Action name="edit_languages" />
-      <Separator/>
-      <Action name="edit_append" />
-      <Action name="edit_remove_selected_area" />
-      <Separator/>
-      <Action name="tools_spelling" />
+      <Merge/>
       <Action name="vocab_remove_grades" />
   </Menu>
-  <Menu name="view" >
-      <text>View</text>
-      <Action name="show_vocabulary_columns_menu" />
-      <Action name="show_vocabulary_columns_dialog" />
-      <Separator/>
-      <Action name="show_lesson_dock"/>
-      <Action name="show_wordtype_dock"/>
-      <Action name="show_leitner_dock"/>
-      <Action name="show_summary_dock"/>
-      <Separator/>
-      <Action name="show_image_dock"/>
-      <Action name="show_audio_dock"/>
-      <Action name="show_multiplechoice_dock"/>
-      <Action name="show_pronunciation_dock"/>
-      <Separator/>
-      <Action name="show_synonym_dock"/>
-      <Action name="show_antonym_dock"/>
-      <Action name="show_falsefriend_dock"/>
-      <Separator/>
-      <Action name="show_comparison_dock"/>
-      <Action name="show_conjugation_dock"/>
-      <Action name="show_declension_dock"/>
-      <Separator/>
-      <Action name="show_browser_dock"/>
-      <Action name="config_show_search" />
-  </Menu>
-  <Menu name="lesson" >
-   <text>&amp;Lesson</text>
-   <Action name="new_lesson" />
-   <Action name="rename_lesson" />
-   <Action name="delete_lesson" />
-   <Separator/>
-   <Action name="split_lesson" />
-   <Separator/>
-   <Action name="lesson_showsublessonentries" />
-   <Action name="lesson_automatictranslation" />
-  </Menu>
+  <Merge/>
   <Menu name="learning" >
    <text>&amp;Practice</text>
-   <Action name="practice_configure" />
-   <Action name="practice_start" />
-   <Action name="config_oldPractice" />
+   <Merge/>
    <Separator/>
    <Action name="show_statistics" />
-  </Menu>
-  <Menu name="scripts" >
-    <text>&amp;Scripts</text>
-    <Action name="show_script_manager" />
-    <Separator/>
-    <ActionList name="scripts_actionlist" />
   </Menu>
   <Menu name="settings" >
   </Menu>
@@ -85,16 +35,5 @@
   <text>Main Toolbar</text>
   <Action name="file_open" />
   <Action name="file_save" />
-  <Separator/>
-  <Action name="edit_copy" />
-  <Action name="edit_paste" />
-  <Separator/>
-  <Action name="new_lesson" />
-  <Action name="edit_append" />
-  <Separator/>
-  <Action name="edit_selected_area" />
-  <Separator/>
-  <Action name="practice_configure"/>
-  <Action name="practice_start" />
  </ToolBar>
 </gui>

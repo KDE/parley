@@ -277,6 +277,9 @@ install( FILES parley.knsrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
 # main window ui (menus)
 install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )
 
+# editor ui
+install( FILES editor/editorui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
+
 # practice main window ui
 install(FILES practice/parleypracticeui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley)
 
