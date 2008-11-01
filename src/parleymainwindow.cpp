@@ -48,15 +48,15 @@ ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename
     m_appName = appName;
     m_document = new ParleyDocument(this);
 
-    m_editor = new Editor(this);
-    m_editor->hide();
-
     setCentralWidget(new QWidget());
     centralWidget()->setLayout(new QHBoxLayout());
 
     initWelcomeScreen();
 
     initActions();
+
+    m_editor = new Editor(this);
+    m_editor->hide();
 
     bool showWelcomeScreen = false;
 
@@ -312,35 +312,6 @@ void ParleyMainWindow::initActions()
     fileQuit->setToolTip(fileQuit->whatsThis());
     fileQuit->setStatusTip(fileQuit->whatsThis());
 
-    KAction* removeGrades = new KAction(this);
-    actionCollection()->addAction("vocab_remove_grades", removeGrades);
-    removeGrades->setIcon(KIcon("edit-clear"));
-    removeGrades->setText(i18n("Remove Grades"));
-    connect(removeGrades, SIGNAL(triggered(bool)), this, SLOT(removeGrades()));
-    removeGrades->setWhatsThis(i18n("Remove all grades from the current document"));
-    removeGrades->setToolTip(removeGrades->whatsThis());
-    removeGrades->setStatusTip(removeGrades->whatsThis());
-
-// -- PRACTICE --------------------------------------------------
-
-    KAction* configurePractice = new KAction(this);
-    configurePractice->setText(i18n("Configure Practice..."));
-    configurePractice->setIcon(KIcon("practice-setup"));
-    configurePractice->setWhatsThis(i18n("Set up and start a test"));
-    configurePractice->setToolTip(configurePractice->whatsThis());
-    configurePractice->setStatusTip(configurePractice->whatsThis());
-    actionCollection()->addAction("practice_configure", configurePractice);
-    connect(configurePractice, SIGNAL(triggered(bool)), SLOT(configurePractice()));
-
-    KAction* showStatistics = new KAction(this);
-    actionCollection()->addAction("show_statistics", showStatistics);
-    showStatistics->setIcon(KIcon("statistics"));
-    showStatistics->setText(i18n("&Statistics..."));
-    connect(showStatistics, SIGNAL(triggered(bool)), this, SLOT(slotShowStatistics()));
-    showStatistics->setWhatsThis(i18n("Show and reset statistics for the current vocabulary"));
-    showStatistics->setToolTip(showStatistics->whatsThis());
-    showStatistics->setStatusTip(showStatistics->whatsThis());
-
 // -- SETTINGS --------------------------------------------------
     KAction* configApp = KStandardAction::preferences(this, SLOT(slotGeneralOptions()), actionCollection());
     configApp->setWhatsThis(i18n("Show the configuration dialog"));
@@ -354,11 +325,6 @@ void ParleyMainWindow::initWelcomeScreen()
 {
     m_welcomeScreen = new WelcomeScreen(this);
     m_welcomeScreen->hide();
-}
-
-void ParleyMainWindow::removeGrades()
-{
-    m_document->document()->lesson()->resetGrades(-1, KEduVocContainer::Recursive);
 }
 
 void ParleyMainWindow::showWelcomeScreen()
@@ -412,14 +378,17 @@ void ParleyMainWindow::switchComponent(Component component)
     case WelcomeComponent:
         newClient = 0; // The welcome screen doesn't inherit from KXMLGUIClient and doesn't have any actions
         newWidget = m_welcomeScreen;
+        showDocumentActions(false);
         break;
     case EditorComponent:
         newClient = m_editor;
         newWidget = m_editor;
+        showDocumentActions(true);
         break;
     case PracticeComponent:
         newClient = m_practice;
         newWidget = m_practice;
+        showDocumentActions(true);
         break;
     default:
         break;
@@ -445,6 +414,15 @@ void ParleyMainWindow::switchComponent(Component component)
     }
 
     m_currentComponent = component;
+}
+
+void ParleyMainWindow::showDocumentActions(bool show)
+{
+    actionCollection()->action("file_save")->setVisible(show);
+    actionCollection()->action("file_save_as")->setVisible(show);
+    actionCollection()->action("file_close")->setVisible(show);
+    actionCollection()->action("file_export")->setVisible(show);
+    actionCollection()->action("file_properties")->setVisible(show);
 }
 
 ParleyDocument* ParleyMainWindow::parleyDocument()

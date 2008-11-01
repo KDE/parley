@@ -4,6 +4,7 @@
 
 <MenuBar>
   <Menu name="edit" >
+      <text>Edit</text>
       <Separator/>
       <Action name="edit_languages" />
       <Separator/>
@@ -11,6 +12,7 @@
       <Action name="edit_remove_selected_area" />
       <Separator/>
       <Action name="tools_spelling" />
+      <Action name="vocab_remove_grades" />
   </Menu>
   <Menu name="view" >
       <text>View</text>
@@ -50,10 +52,13 @@
    <Action name="lesson_automatictranslation" />
   </Menu>
   <Menu name="learning" >
+   <text>&amp;Practice</text>
+   <Action name="practice_configure" />
    <Action name="practice_start" />
    <Action name="config_oldPractice" />
    <Separator/>
-  </Menu>
+   <Action name="show_statistics" />
+  </Menu>  
   <Menu name="scripts" >
     <text>&amp;Scripts</text>
     <Action name="show_script_manager" />

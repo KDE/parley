@@ -13,18 +13,7 @@
         <Action name="file_properties" />
         <Separator/>
     </Menu>
-  <Menu name="edit" >
-      <Merge/>
-      <Action name="vocab_remove_grades" />
-  </Menu>
   <Merge/>
-  <Menu name="learning" >
-   <text>&amp;Practice</text>
-   <Action name="practice_configure" />
-   <Merge/>
-   <Separator/>
-   <Action name="show_statistics" />
-  </Menu>
   <Menu name="settings" >
   </Menu>
   <Menu name="help"><text>&amp;Help</text>

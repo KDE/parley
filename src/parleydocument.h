@@ -74,6 +74,8 @@ public slots:
 
 signals:
     void documentChanged(KEduVocDocument *newDocument);
+    void documentOpened();
+    void documentClosed();
 
 private:
     /**

@@ -419,6 +419,15 @@ void Editor::initActions()
     connect(editLanguages, SIGNAL(triggered()),  this, SLOT(slotLanguageProperties()));
     ///@todo tooltip
 
+    KAction *removeGrades = new KAction(this);
+    actionCollection()->addAction("vocab_remove_grades", removeGrades);
+    removeGrades->setIcon(KIcon("edit-clear"));
+    removeGrades->setText(i18n("Remove Grades"));
+    connect(removeGrades, SIGNAL(triggered(bool)), this, SLOT(removeGrades()));
+    removeGrades->setWhatsThis(i18n("Remove all grades from the current document"));
+    removeGrades->setToolTip(removeGrades->whatsThis());
+    removeGrades->setStatusTip(removeGrades->whatsThis());
+
     KAction *checkSpelling = KStandardAction::spelling(m_vocabularyView, SLOT(checkSpelling()), actionCollection());
 
     KAction *showSublessonentries = actionCollection()->add<KToggleAction>("lesson_showsublessonentries");
@@ -446,6 +455,25 @@ void Editor::initActions()
     actionCollection()->addAction("practice_start", startPractice);
     connect(startPractice, SIGNAL(triggered(bool)), SLOT(startPractice()));
 
+// -- PRACTICE --------------------------------------------------
+
+    KAction* configurePractice = new KAction(this);
+    configurePractice->setText(i18n("Configure Practice..."));
+    configurePractice->setIcon(KIcon("practice-setup"));
+    configurePractice->setWhatsThis(i18n("Set up and start a test"));
+    configurePractice->setToolTip(configurePractice->whatsThis());
+    configurePractice->setStatusTip(configurePractice->whatsThis());
+    actionCollection()->addAction("practice_configure", configurePractice);
+    connect(configurePractice, SIGNAL(triggered(bool)), m_mainWindow, SLOT(configurePractice()));
+
+    KAction* showStatistics = new KAction(this);
+    actionCollection()->addAction("show_statistics", showStatistics);
+    showStatistics->setIcon(KIcon("statistics"));
+    showStatistics->setText(i18n("&Statistics..."));
+    connect(showStatistics, SIGNAL(triggered(bool)), m_mainWindow, SLOT(slotShowStatistics()));
+    showStatistics->setWhatsThis(i18n("Show and reset statistics for the current vocabulary"));
+    showStatistics->setToolTip(showStatistics->whatsThis());
+    showStatistics->setStatusTip(showStatistics->whatsThis());
 
 // -- SETTINGS --------------------------------------------------
     m_vocabShowSearchBarAction = actionCollection()->add<KToggleAction>("config_show_search");
@@ -561,6 +589,11 @@ void Editor::setTableFont(const QFont& font)
 {
     m_vocabularyView->setFont(font);
     m_vocabularyView->reset();
+}
+
+void Editor::removeGrades()
+{
+    m_mainWindow->parleyDocument()->document()->lesson()->resetGrades(-1, KEduVocContainer::Recursive);
 }
 
 void Editor::initScripts()

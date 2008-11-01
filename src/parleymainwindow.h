@@ -32,6 +32,7 @@
 
 class KRecentFilesAction;
 class KActionMenu;
+class KAction;
 class QLabel;
 class QDockWidget;
 class Editor;
@@ -113,16 +114,16 @@ public slots:
      */
     void startupTipOfDay();
 
-    /**
-     * Removes all grading information from the current document
-     */
-    void removeGrades();
-
     void showWelcomeScreen();
     void showEditor();
     void showPractice();
 
     void switchComponent(Component component);
+
+    /**
+     * Shows or hides actions that are only relevant when a document is opened
+     */
+    void showDocumentActions(bool show);
 
 signals:
     void documentChanged();

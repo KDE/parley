@@ -91,6 +91,11 @@ public slots:
 
     void setTableFont(const QFont& font);
 
+    /**
+     * Removes all grading information from the current document
+     */
+    void removeGrades();
+
 private slots:
     void slotConfigOldPractice(bool old);
 
