@@ -78,7 +78,6 @@
   <Action name="new_lesson" />
   <Action name="edit_append" />
   <Separator/>
-  <Action name="practice_configure"/>
   <Action name="practice_start" />
  </ToolBar>
 </gui>
