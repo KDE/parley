@@ -24,6 +24,7 @@
 #include <KAction>
 #include <KActionCollection>
 
+#include <QApplication>
 #include <QHeaderView>
 
 #include <QPainter>
@@ -34,6 +35,7 @@ class GradeDelegate: public QItemDelegate
 {
 public:
     virtual void paint ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const {
+        QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, 0);
 
         // empty lesson
         if (!index.data(StatisticsModel::TotalCount).toInt()) {
