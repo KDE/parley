@@ -1,6 +1,7 @@
 [KGameTheme]
 Name=Default
 Name[ca]=Omissió
+Name[de]=Standard
 Name[el]=Προκαθορισμένο
 Name[es]=Predeterminado
 Name[et]=Vaikimisi
@@ -23,6 +24,7 @@ Name[zh_CN]=默认
 Name[zh_TW]=預設
 Description=Default theme for KDE 4
 Description[ca]=Tema predeterminat per al KDE 4
+Description[de]=Standard-Thema für KDE 4
 Description[el]=Προκαθορισμένο θέμα για το KDE 4
 Description[es]=Tema predeterminado para KDE 4
 Description[et]=KDE 4 vaiketeema
