@@ -120,7 +120,7 @@ void Editor::updateDocument()
     // the top level container of this model only holds the others
     m_leitnerView->setRootIndex(m_leitnerModel->index(0,0));
 
-    connect(m_mainWindow->parleyDocument()->document(), SIGNAL(docModified(bool)), this, SLOT(slotUpdateWindowCaption()));
+    connect(m_mainWindow->parleyDocument()->document(), SIGNAL(docModified(bool)), m_mainWindow, SLOT(slotUpdateWindowCaption()));
     connect(m_mainWindow->parleyDocument()->document(), SIGNAL(docModified(bool)), m_mainWindow->parleyDocument(), SLOT(slotDocumentChanged(bool)));
     connect(m_vocabularyModel, SIGNAL(documentChanged(KEduVocDocument*)),
             m_summaryWordWidget, SLOT(slotDocumentChanged(KEduVocDocument *)));
@@ -130,6 +130,8 @@ void Editor::updateDocument()
     connect(m_vocabularyModel, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(slotRestoreColumnVisibility(KEduVocDocument*)));
 
     setCaption(m_mainWindow->parleyDocument()->document()->url().fileName(), false);
+
+    m_mainWindow->slotUpdateWindowCaption();
 
 ///@todo remove this!
 // at the moment creates a new test every time a model is created. this is good because we get the basic sanity check then.

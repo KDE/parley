@@ -325,7 +325,6 @@ void ParleyDocument::createExampleEntries()
         userName = user.loginName();
     }
     m_doc->setAuthor( userName );
-    m_doc->setTitle( i18n("Welcome") );
     m_doc->setLicense( i18n("Public Domain") );
     m_doc->setCategory( i18n("Languages") );
 
