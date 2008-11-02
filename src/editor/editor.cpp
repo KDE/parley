@@ -433,7 +433,7 @@ void Editor::initActions()
     KAction* startPractice = new KAction(this);
     startPractice->setText(i18n("Start Practice..."));
     startPractice->setIcon(KIcon("practice-start"));
-    startPractice->setWhatsThis(i18n("Start a test with the last settings"));
+    startPractice->setWhatsThis(i18n("Start a test"));
     startPractice->setToolTip(startPractice->whatsThis());
     startPractice->setStatusTip(startPractice->whatsThis());
     actionCollection()->addAction("practice_start", startPractice);

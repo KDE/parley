@@ -31,6 +31,7 @@
 #include "settings/parleyprefs.h"
 #include "settings/TitlePage.h"
 #include "configure-practice/configurepracticedialog.h"
+#include "configure-practice/practicestartdialog.h"
 #include "practiceold/testentrymanager.h"
 #include "practice/parleypracticemainwindow.h"
 #include "prefs.h"
@@ -185,6 +186,13 @@ void ParleyMainWindow::configurePractice()
 
 void ParleyMainWindow::startPractice()
 {
+    PracticeStartDialog *dialog = new PracticeStartDialog(this, m_document->document());
+    int result = dialog->exec();
+    delete dialog;
+    if(!result) {
+        return;
+    }
+
     if (Prefs::oldPractice()) {
         hide();
         TestEntryManager testManager(m_document->document(), this);
