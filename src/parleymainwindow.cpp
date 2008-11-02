@@ -178,10 +178,7 @@ void ParleyMainWindow::configurePractice()
 {
     ConfigurePracticeDialog* configurePracticeDialog;
     configurePracticeDialog = new ConfigurePracticeDialog(m_document->document(), this, "practice settings",  Prefs::self());
-
-    if ( configurePracticeDialog->exec() == ConfigurePracticeDialog::StartPractice ) {
-        startPractice();
-    }
+    configurePracticeDialog->exec();
 }
 
 void ParleyMainWindow::startPractice()

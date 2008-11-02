@@ -444,7 +444,7 @@ void Editor::initActions()
     KAction* configurePractice = new KAction(this);
     configurePractice->setText(i18n("Configure Practice..."));
     configurePractice->setIcon(KIcon("practice-setup"));
-    configurePractice->setWhatsThis(i18n("Set up and start a test"));
+    configurePractice->setWhatsThis(i18n("Change practice settings"));
     configurePractice->setToolTip(configurePractice->whatsThis());
     configurePractice->setStatusTip(configurePractice->whatsThis());
     actionCollection()->addAction("practice_configure", configurePractice);
