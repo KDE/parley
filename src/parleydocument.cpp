@@ -87,7 +87,7 @@ void ParleyDocument::newDocument(bool wizard)
     disconnect(m_doc);
     delete m_doc;
     m_doc = new KEduVocDocument(this);
-///@todo: is this neccessary?
+///@todo: is this necessary?
      m_parleyApp->editor()->updateDocument();
 
     initializeDefaultGrammar();
