@@ -67,9 +67,8 @@ PracticeStartDialog::~PracticeStartDialog()
 
 void PracticeStartDialog::configurePractice()
 {
-    ConfigurePracticeDialog* dialog = new ConfigurePracticeDialog(m_doc, this, "practice settings",  Prefs::self());
-    dialog->exec();
-    delete dialog;
+    ConfigurePracticeDialog dialog(m_doc, this, "practice settings",  Prefs::self());
+    dialog.exec();
 }
 
 #include "practicestartdialog.moc"
