@@ -32,6 +32,7 @@ PracticeStartDialog::PracticeStartDialog(QWidget *parent, KEduVocDocument *doc)
     setCaption(i18n("Start Practice"));
     setWindowIcon(KIcon("practice-start"));
     setButtons(Ok | Cancel | User1);
+    setButtonFocus(Ok);
     setModal(true);
 
     QWidget *mainWidget = new QWidget(this);
