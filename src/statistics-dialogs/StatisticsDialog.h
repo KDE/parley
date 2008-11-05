@@ -33,8 +33,11 @@ class StatisticsDialog : public KDialog
 {
     Q_OBJECT
 public:
-    StatisticsDialog(KEduVocDocument* doc, QWidget *parent);
+    StatisticsDialog(KEduVocDocument* doc, QWidget *parent, bool showPracticeButtons);
     ~StatisticsDialog();
+
+private slots:
+    void configurePractice();
 
 private:
     KEduVocDocument *m_doc;

@@ -155,7 +155,6 @@ set(configure-practice_SRCS
     configure-practice/advancedpracticeoptions.cpp
     configure-practice/blockoptions.cpp
     configure-practice/thresholdoptions.cpp
-    configure-practice/practicestartdialog.cpp
 )
 
 kde4_add_ui_files(configure-practice_SRCS

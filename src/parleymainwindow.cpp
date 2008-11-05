@@ -31,7 +31,6 @@
 #include "settings/parleyprefs.h"
 #include "settings/TitlePage.h"
 #include "configure-practice/configurepracticedialog.h"
-#include "configure-practice/practicestartdialog.h"
 #include "practiceold/testentrymanager.h"
 #include "practice/parleypracticemainwindow.h"
 #include "prefs.h"
@@ -127,7 +126,7 @@ void ParleyMainWindow::slotUpdateWindowCaption()
 
 void ParleyMainWindow::slotShowStatistics()
 {
-    StatisticsDialog statisticsDialog(m_document->document(), this);
+    StatisticsDialog statisticsDialog(m_document->document(), this, false);
     statisticsDialog.exec();
 }
 
@@ -183,7 +182,7 @@ void ParleyMainWindow::configurePractice()
 
 void ParleyMainWindow::startPractice()
 {
-    PracticeStartDialog *dialog = new PracticeStartDialog(this, m_document->document());
+    StatisticsDialog *dialog = new StatisticsDialog(m_document->document(), this, true);
     int result = dialog->exec();
     delete dialog;
     if(!result) {
