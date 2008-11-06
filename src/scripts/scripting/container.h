@@ -149,7 +149,7 @@ namespace Scripting
              * @param grade grade
              * @return A number that represents the number of expressions of that grade
              */
-            int expressionsOfGrade ( int translation, unsigned int grade ) { return m_container->expressionsOfGrade ( translation,grade ); }
+            int expressionsOfGrade ( int translation, unsigned int grade, bool recursive ) { return m_container->expressionsOfGrade ( translation,grade, boolToEnum ( recursive ) ); }
 
             /**
              * Remove grades from all entries of this lessons
@@ -163,7 +163,7 @@ namespace Scripting
              * @param translation language index
              * @return A double, the average lesson grade
              */
-            double averageGrade ( int translation ) { return m_container->averageGrade ( translation ); }
+            double averageGrade ( int translation, bool recursive ) { return m_container->averageGrade ( translation, boolToEnum ( recursive ) ); }
 
         protected:
             KEduVocContainer * m_container;

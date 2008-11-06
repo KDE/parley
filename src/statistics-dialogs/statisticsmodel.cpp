@@ -40,11 +40,11 @@ QVariant StatisticsModel::data(const QModelIndex & index, int role) const
         KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
         switch (role) {
             case TotalPercent: // Average grade
-                return container->averageGrade(index.column()-2);
+                return container->averageGrade(index.column()-2, KEduVocContainer::Recursive);
             case TotalCount:
-                return container->entryCount(KEduVocContainer::NotRecursive);
+                return container->entryCount(KEduVocContainer::Recursive);
             default:
-                return container->expressionsOfGrade(index.column()-2, role - Grade0);
+                return container->expressionsOfGrade(index.column()-2, role - Grade0, KEduVocContainer::Recursive);
         }
     }
     return ContainerModel::data(index, role);

@@ -53,6 +53,7 @@ StatisticsDialog::StatisticsDialog(KEduVocDocument *doc, QWidget *parent, bool s
         // just an ok button, no start/configure practice
         setCaption(i18n("Document Statistics"));
         setButtons(Ok);
+        caption->setText(i18n("Average grades for each lesson:"));
     }
 
     StatisticsModel *statisticsModel = new StatisticsModel(this);
