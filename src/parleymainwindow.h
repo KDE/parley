@@ -126,7 +126,7 @@ public slots:
     /**
      * Shows or hides actions that are only relevant when a document is opened
      */
-    void showDocumentActions(bool show);
+    void showDocumentActions(bool open, bool edit);
 
 signals:
     void documentChanged();

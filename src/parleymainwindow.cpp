@@ -412,18 +412,18 @@ void ParleyMainWindow::switchComponent(Component component)
     case WelcomeComponent:
         newClient = 0; // The welcome screen doesn't inherit from KXMLGUIClient and doesn't have any actions
         newWidget = m_welcomeScreen;
-        showDocumentActions(false);
+        showDocumentActions(true, false);
         m_welcomeScreen->updateRecentFilesModel();
         break;
     case EditorComponent:
         newClient = m_editor;
         newWidget = m_editor;
-        showDocumentActions(true);
+        showDocumentActions(true, true);
         break;
     case PracticeComponent:
         newClient = m_practice;
         newWidget = m_practice;
-        showDocumentActions(true);
+        showDocumentActions(false, false);
         break;
     default:
         break;
@@ -451,13 +451,21 @@ void ParleyMainWindow::switchComponent(Component component)
     m_currentComponent = component;
 }
 
-void ParleyMainWindow::showDocumentActions(bool show)
+void ParleyMainWindow::showDocumentActions(bool open, bool edit)
 {
-    actionCollection()->action("file_save")->setVisible(show);
-    actionCollection()->action("file_save_as")->setVisible(show);
-    actionCollection()->action("file_close")->setVisible(show);
-    actionCollection()->action("file_export")->setVisible(show);
-    actionCollection()->action("file_properties")->setVisible(show);
+    actionCollection()->action("file_new")->setVisible(open);
+    actionCollection()->action("file_open")->setVisible(open);
+    actionCollection()->action("file_open_recent")->setVisible(open);
+    actionCollection()->action("file_open_example")->setVisible(open);
+    actionCollection()->action("file_ghns")->setVisible(open);
+    actionCollection()->action("file_open_downloaded")->setVisible(open);
+
+    actionCollection()->action("file_save")->setVisible(edit);
+    actionCollection()->action("file_save_as")->setVisible(edit);
+    actionCollection()->action("file_close")->setVisible(edit);
+    actionCollection()->action("file_export")->setVisible(edit);
+    actionCollection()->action("file_properties")->setVisible(edit);
+    actionCollection()->action("file_close")->setVisible(edit);
 }
 
 ParleyDocument* ParleyMainWindow::parleyDocument()
