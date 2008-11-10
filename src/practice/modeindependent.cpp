@@ -144,15 +144,14 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
 // This has all the GUI independent action setup code.
  void ParleyPracticeMainWindow::setupActions()
 {
-    KAction *editorAction = new KAction(this);
-    editorAction->setText(i18n("Open in Editor"));
-    ///@todo: missing icon
-    //editorAction->setIcon(KIcon("todo"));
-    actionCollection()->addAction("open_in_editor", editorAction);
-    connect(editorAction, SIGNAL(triggered()), this, SLOT(queryClose()));
-    editorAction->setWhatsThis(i18n("Leave the practice mode and open the collection in the editor."));
-    editorAction->setToolTip(editorAction->whatsThis());
-    editorAction->setStatusTip(editorAction->whatsThis());
+    KAction *stopAction = new KAction(this);
+    stopAction->setText(i18n("Stop Practice"));
+    stopAction->setIcon(KIcon("window-close"));
+    actionCollection()->addAction("stop_practice", stopAction);
+    connect(stopAction, SIGNAL(triggered()), this, SLOT(queryClose()));
+    stopAction->setWhatsThis(i18n("Leave the practice mode."));
+    stopAction->setToolTip(stopAction->whatsThis());
+    stopAction->setStatusTip(stopAction->whatsThis());
 
     KAction *skipKnownAction = new KAction(this);
     skipKnownAction->setText(i18n("Skip (Answer Known)"));
