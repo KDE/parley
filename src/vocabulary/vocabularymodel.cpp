@@ -344,22 +344,14 @@ int VocabularyModel::columnType(int column)
 
 QModelIndex VocabularyModel::appendEntry(KEduVocExpression *expression)
 {
-    if(!m_lesson || !m_container) {
-        return QModelIndex();
-    }
-
-    if (!m_container->parent()) {
-        KMessageBox::information(0, i18n("Please select a lesson before pasting."), i18n("No Lesson Selected"));
-        delete expression;
-        return QModelIndex();
-    }
-
-//     if (m_container->containerType() != KEduVocContainer::Lesson) {
-//         KMessageBox::information(0, i18n("Please select a lesson before pasting."), i18n("No Lesson Selected"));
-//     }
-
     if(m_document->identifierCount() == 0) {
         KMessageBox::information(0, i18n("Please use Edit -> Languages to set up your document."), i18n("No Languages Defined"));
+        return QModelIndex();
+    }
+
+    if (!m_lesson || !m_lesson->parent()) {
+        KMessageBox::information(0, i18n("Select a lesson before adding vocabulary."), i18n("No Lesson Selected"));
+        delete expression;
         return QModelIndex();
     }
 
