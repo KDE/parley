@@ -308,17 +308,17 @@
 
     <entry name="TestType" type="Enum">
         <choices>
-            <choice name="MixedLettersTest"/>
-            <choice name="ArticleTest"/>
-            <choice name="MultipleChoiceTest"/>
-            <choice name="ComparisonTest"/>
-            <choice name="WrittenTest"/>
-            <choice name="ConjugationTest"/>
-            <choice name="ExampleTest"/>
-            <choice name="SynonymTest"/>
-            <choice name="ParaphraseTest"/>
-            <choice name="AntonymTest"/>
             <choice name="FlashCardsTest"/>
+            <choice name="MixedLettersTest"/>
+            <choice name="MultipleChoiceTest"/>
+            <choice name="WrittenTest"/>
+            <choice name="ExampleTest"/>
+            <choice name="ParaphraseTest"/>
+            <choice name="ArticleTest"/>
+            <choice name="ComparisonTest"/>
+            <choice name="ConjugationTest"/>
+            <choice name="SynonymTest"/>
+            <choice name="AntonymTest"/>
         </choices>
         <label>The test type that is currently selected.</label>
         <default>WrittenTest</default>
