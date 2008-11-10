@@ -29,18 +29,11 @@
 SoundPrompt::SoundPrompt ( KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent ) :
         QPushButton ( parent ),
         m_renderer ( renderer ),
-        m_area(area),
-        m_sound(0)
+        m_media(0),
+        m_area(area)
 {
     QString tId = area->translateElementId(elementId);
     if (tId.isEmpty()) setVisible(false);
-
-    if ( !m_media )
-    {
-        m_media = new Phonon::MediaObject ( this );
-        Phonon::AudioOutput * audioOutput = new Phonon::AudioOutput ( Phonon::MusicCategory, this );
-        createPath ( m_media, audioOutput );
-    }
 
     setText ( "Play Sound" );
 
@@ -48,39 +41,17 @@ SoundPrompt::SoundPrompt ( KSvgRenderer * renderer, ActiveArea * area, const QSt
      bounds.translate(area->offset(tId));
      setGeometry(bounds.toRect());
 
-
     connect ( this, SIGNAL ( clicked() ), this, SLOT ( slotPlay() ) );
-
-    slotSetSound ( KUrl() );
 }
 
 void SoundPrompt::slotSetSound ( const KUrl& sound )
 {
-    if (!m_area->active())
-        return;
-
-    // remove the temp file from the last call
-    // I'll make sure this function is called at destruction to remove any lingering temp files.
-    KIO::NetAccess::removeTempFile ( m_tmpFile );
-
-    //kDebug() << sound;
     m_sound = sound;
-    if ( !sound.isEmpty() )
-    {
-        QString tmpFile;
-        if ( KIO::NetAccess::download ( sound, m_tmpFile, this ) )
-        {
-            m_media->setCurrentSource ( tmpFile );
-            setVisible ( true );
-        }
-        else
-        {
-            //KMessageBox::error(this, KIO::NetAccess::lastErrorString());
-            kDebug() << KIO::NetAccess::lastErrorString();
-        }
+    if ( !sound.isEmpty() ) {
+        setVisible ( true );
+    } else {
+        setVisible ( false );
     }
-        else
-            setVisible ( false );
 }
 
 SoundPrompt::~SoundPrompt()
@@ -90,7 +61,19 @@ SoundPrompt::~SoundPrompt()
 
 void SoundPrompt::slotPlay()
 {
-    m_media->setCurrentSource ( m_sound );
+    if (m_sound.isEmpty()) {
+        return;
+    }
+
+    if (!m_media ) {
+        m_media = Phonon::createPlayer(Phonon::NotificationCategory, m_sound);
+        m_media->setParent(this);
+    } else {
+        if (m_media->state() == Phonon::PlayingState) {
+            m_media->stop();
+        }
+        m_media->setCurrentSource ( m_sound );
+    }
     m_media->play();
 }
 
