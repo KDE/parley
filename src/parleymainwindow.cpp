@@ -189,12 +189,8 @@ void ParleyMainWindow::startPractice()
         return;
     }
 
-    if (Prefs::oldPractice()) {
-        hide();
-        TestEntryManager testManager(m_document->document(), this);
-        testManager.startPractice();
-        show();
-    } else {
+    if (Prefs::testType() == Prefs::EnumTestType::FlashCardsTest) {
+        // New practice modes - for now enabled only for flash cards
         ///@todo: instead of creating a new instance only a new document should be set
         Component lastComponent = m_currentComponent;
         switchComponent(NoComponent); // unload the last component (could be a practice window)
@@ -206,6 +202,11 @@ void ParleyMainWindow::startPractice()
         } else {
             connect(m_practice, SIGNAL(signalPracticeFinished()), this, SLOT(showWelcomeScreen()));
         }
+    } else {
+        hide();
+        TestEntryManager testManager(m_document->document(), this);
+        testManager.startPractice();
+        show();
     }
 }
 

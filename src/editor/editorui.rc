@@ -55,7 +55,6 @@
    <text>&amp;Practice</text>
    <Action name="practice_configure" />
    <Action name="practice_start" />
-   <Action name="config_oldPractice" />
    <Separator/>
    <Action name="show_statistics" />
   </Menu>  

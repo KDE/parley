@@ -95,8 +95,6 @@ public slots:
     void removeGrades();
 
 private slots:
-    void slotConfigOldPractice(bool old);
-
     /**
      * Set the current doc (after creating a new one or opening a file)
      */

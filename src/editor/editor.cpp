@@ -98,12 +98,6 @@ void Editor::slotConfigShowSearch()
     }
 }
 
-void Editor::slotConfigOldPractice(bool old)
-{
-kDebug() << "slot config old practice";
-    Prefs::setOldPractice(old);
-}
-
 void Editor::updateDocument()
 {
 ///@todo we can use connect here
@@ -494,12 +488,6 @@ void Editor::initActions()
     menu_scriptManager->setIcon(KIcon("set-language"));
     menu_scriptManager->setText(i18n("&Script Manager"));
     connect(menu_scriptManager, SIGNAL(triggered()),  this, SLOT(slotShowScriptManager()));
-
-    // temporary
-    KToggleAction *oldPractice = actionCollection()->add<KToggleAction>("config_oldPractice");
-    oldPractice->setText(i18n("Old Practice Dialogs"));
-    connect(oldPractice, SIGNAL(triggered(bool)), this, SLOT(slotConfigOldPractice(bool)));
-    oldPractice->setChecked(Prefs::oldPractice());
 }
 
 void Editor::initModel()
