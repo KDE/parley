@@ -52,7 +52,7 @@ WordTypeView::WordTypeView(Editor* parent) : ContainerView(parent)
 
     m_actionDeleteWordType = new KAction(this);
     parent->actionCollection()->addAction("delete_wordtype", m_actionDeleteWordType);
-    m_actionDeleteWordType->setText(i18n("Delete"));
+    m_actionDeleteWordType->setText(i18n("Delete Word Type"));
     m_actionDeleteWordType->setIcon(KIcon("lesson-remove"));
     m_actionDeleteWordType->setWhatsThis(i18n("Delete the selected WordType."));
     m_actionDeleteWordType->setToolTip(m_actionDeleteWordType->whatsThis());
