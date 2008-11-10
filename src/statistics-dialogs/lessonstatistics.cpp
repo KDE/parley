@@ -53,12 +53,10 @@ protected:
     void drawBackground ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const {
         QLinearGradient linearGrad(QPointF(option.rect.x(), 0), QPointF(option.rect.x() + option.rect.width(), 0));
 
-//         linearGrad.setColorAt(0, Prefs::gradeColor(0));
-//         linearGrad.setColorAt(1, Prefs::gradeColor(0));
-
         int total = index.data(StatisticsModel::TotalCount).toInt();
+
         int sum = 0;
-        for (int i = 7; i >= 0; i--) {
+        for (int i = 7; i >= 1; i--) {
             int count = index.data(StatisticsModel::Grade0 + i).toInt();
             if (count) {
                 sum += count;
@@ -66,8 +64,13 @@ protected:
             }
         }
 
-        // add a little frame of 1 pixel
-        painter->fillRect(option.rect.adjusted(1, 1, -1, -1), linearGrad);
+        if (sum == 0) {
+            return;
+        }
+
+        QRect rect(option.rect);
+        rect.adjust(1, 1, -(rect.width()-rect.width()*sum/total)-1, -1);
+        painter->fillRect(rect, linearGrad);
     }
 };
 
