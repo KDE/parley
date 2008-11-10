@@ -238,7 +238,7 @@
     <entry name="GradeColor$(Number)" type="Color" key="GradeColor$(Number)">
       <parameter name="Number" type="Int" max="7"/>
       <label>Colors used to display different grades</label>
-      <default param="0">0, 0, 0</default>
+      <default param="0">0, 0, 191</default>
       <default param="1">140, 25, 25</default>
       <default param="2">140, 25, 25</default>
       <default param="3">140, 25, 25</default>
