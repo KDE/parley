@@ -89,7 +89,7 @@ int main(int argc, char* argv[])
 
     KCmdLineOptions options;
 //     options.add("e").add("edit", ki18n("Start the editor part of Parley"));
-    options.add("p").add("practice", ki18n("Start Practice instead of editor"));
+    options.add("p").add("practice", ki18n("Start practice instead of editor"));
     options.add(I18N_NOOP("+[file]"), ki18n("Document file to open"));
 
     KCmdLineArgs::addCmdLineOptions(options);

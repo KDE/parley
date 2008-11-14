@@ -84,7 +84,7 @@
       <item>
        <widget class="QRadioButton" name="solutionOnHover" >
         <property name="text" >
-         <string>Reveal solution when mouse cursor is over the plasmoid</string>
+         <string>Reveal solution when mouse cursor is over the widget</string>
         </property>
         <property name="checked" >
          <bool>true</bool>

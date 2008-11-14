@@ -47,7 +47,7 @@
       <default>15</default>
     </entry>
     <entry name="AutomaticTranslation" type="Bool">
-      <label>Enable for automatic translation of the lesson entries.</label>
+      <label>Enable automatic translation of the lesson entries.</label>
       <default>false</default>
     </entry>
   </group>
