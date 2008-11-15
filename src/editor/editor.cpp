@@ -419,7 +419,7 @@ void Editor::initActions()
     KAction *automaticTranslation = actionCollection()->add<KToggleAction>("lesson_automatictranslation");
     automaticTranslation->setText(i18n("Automatic Translation"));
     connect(automaticTranslation, SIGNAL(triggered(bool)), m_vocabularyModel, SLOT(automaticTranslation(bool)));
-    automaticTranslation->setWhatsThis(i18n("Enable for automatic translation of the lesson entries."));
+    automaticTranslation->setWhatsThis(i18n("Enable automatic translation of the lesson entries."));
     automaticTranslation->setToolTip(automaticTranslation->whatsThis());
     automaticTranslation->setStatusTip(automaticTranslation->whatsThis());
     automaticTranslation->setChecked(Prefs::automaticTranslation());

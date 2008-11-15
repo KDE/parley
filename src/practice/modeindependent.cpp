@@ -220,7 +220,7 @@ void ParleyPracticeMainWindow::setupModeIndependent(ActiveArea * area)
             instruction = i18n("Enter Missing Word:");
             break;
         case Prefs::EnumTestType::ParaphraseTest:
-            instruction = i18n("Enter An Matching Word:");
+            instruction = i18n("Enter a Matching Word:");
             break;
         case Prefs::EnumTestType::WrittenTest:
             instruction = i18n("Enter Translation:");

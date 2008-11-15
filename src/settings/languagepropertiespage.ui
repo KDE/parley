@@ -688,7 +688,7 @@
        <item>
         <widget class="QLabel" name="label" >
          <property name="text" >
-          <string>Placeholder! A list of cases (possibility to rename them?) should be here</string>
+          <string comment="KDE::DoNotExtract">Placeholder! A list of cases (possibility to rename them?) should be here</string>
          </property>
         </widget>
        </item>
