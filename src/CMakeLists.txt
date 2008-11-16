@@ -260,6 +260,7 @@ target_link_libraries(
     ${KDE4_PHONON_LIBS}
     ${KDE4_KUTILS_LIBS} #for the KPluginSelector
     ${KDE4_KROSSCORE_LIBS} ${KDE4_KROSSUI_LIBS} #for Kross
+    ${QT_QTCORE_LIBRARY}
 )
 if(HAVE_LIBXSLT)
     target_link_libraries(parley ${LIBXML2_LIBRARIES} ${LIBXSLT_LIBRARIES})
