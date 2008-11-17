@@ -120,9 +120,17 @@ void ParleyDocument::newDocument(bool wizard)
 void ParleyDocument::slotFileOpen()
 {
     if (m_parleyApp->queryExit()) {
-        KUrl url = KFileDialog::getOpenUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), m_parleyApp, i18n("Open Vocabulary Document"));
-        open(url, true);
-        m_parleyApp->showEditor(); ///@todo: add checkbox to dialog to start practice directly
+        QCheckBox *practiceCheckBox = new QCheckBox(i18n("Open in practice &mode"));
+        KFileDialog dialog(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), m_parleyApp, practiceCheckBox);
+        dialog.setCaption(i18n("Open Vocabulary Collection"));
+        if(dialog.exec()) {
+            open(dialog.selectedUrl(), true);
+            if(practiceCheckBox->isChecked()) {
+                m_parleyApp->startPractice();
+            } else {
+                m_parleyApp->showEditor();
+            }
+        }
     }
 }
 
