@@ -40,7 +40,7 @@ QList<QWidget*> ButtonDelegate::createItemWidgets() const
     QList<QWidget*> widgetList;
     KPushButton *editButton = new KPushButton();
     editButton->setText(i18n("Edit"));
-    editButton->setIcon(KIcon("document-open"));
+    editButton->setIcon(KIcon("document-edit"));
     KPushButton *practiceButton = new KPushButton();
     practiceButton->setText(i18n("Practice"));
     practiceButton->setIcon(KIcon("practice-start"));
