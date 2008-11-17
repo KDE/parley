@@ -258,12 +258,12 @@ void ParleyMainWindow::initActions()
 {
 // -- FILE --------------------------------------------------
     KAction* fileNew = KStandardAction::openNew(m_document, SLOT(slotFileNew()), actionCollection());
-    fileNew->setWhatsThis(i18n("Creates a new blank vocabulary document"));
+    fileNew->setWhatsThis(i18n("Creates a new vocabulary collection"));
     fileNew->setToolTip(fileNew->whatsThis());
     fileNew->setStatusTip(fileNew->whatsThis());
 
     KAction* fileOpen = KStandardAction::open(m_document, SLOT(slotFileOpen()), actionCollection());
-    fileOpen->setWhatsThis(i18n("Opens an existing vocabulary document"));
+    fileOpen->setWhatsThis(i18n("Opens an existing vocabulary collection"));
     fileOpen->setToolTip(fileOpen->whatsThis());
     fileOpen->setStatusTip(fileOpen->whatsThis());
 
@@ -272,7 +272,7 @@ void ParleyMainWindow::initActions()
     fileOpenExample->setIcon(KIcon("document-open"));
     fileOpenExample->setText(i18n("Open &Example..."));
     connect(fileOpenExample, SIGNAL(triggered(bool)), m_document, SLOT(openExample()));
-    fileOpenExample->setWhatsThis(i18n("Open an example vocabulary document"));
+    fileOpenExample->setWhatsThis(i18n("Open an example vocabulary collection"));
     fileOpenExample->setToolTip(fileOpenExample->whatsThis());
     fileOpenExample->setStatusTip(fileOpenExample->whatsThis());
 
@@ -305,13 +305,13 @@ void ParleyMainWindow::initActions()
     */
 
     KAction* fileSave = KStandardAction::save(m_document, SLOT(save()), actionCollection());
-    fileSave->setWhatsThis(i18n("Save the active vocabulary document"));
+    fileSave->setWhatsThis(i18n("Save the active vocabulary collection"));
     fileSave->setToolTip(fileSave->whatsThis());
     fileSave->setStatusTip(fileSave->whatsThis());
 
     KAction* fileSaveAs = KStandardAction::saveAs(m_document, SLOT(saveAs()), actionCollection());
     fileSaveAs->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
-    fileSaveAs->setWhatsThis(i18n("Save the active vocabulary document with a different name"));
+    fileSaveAs->setWhatsThis(i18n("Save the active vocabulary collection with a different name"));
     fileSaveAs->setToolTip(fileSaveAs->whatsThis());
     fileSaveAs->setStatusTip(fileSaveAs->whatsThis());
 
@@ -328,7 +328,7 @@ void ParleyMainWindow::initActions()
     fileExport->setText(i18n("&Export..."));
     connect(fileExport, SIGNAL(triggered(bool)), m_document, SLOT(exportHtmlDialog()));
     fileExport->setIcon(KIcon("document-export"));
-    fileExport->setWhatsThis(i18n("Export to HTML"));
+    fileExport->setWhatsThis(i18n("Export to HTML or CSV"));
     fileExport->setToolTip(fileExport->whatsThis());
     fileExport->setStatusTip(fileExport->whatsThis());
 #endif

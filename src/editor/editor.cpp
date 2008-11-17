@@ -449,7 +449,7 @@ void Editor::initActions()
     showStatistics->setIcon(KIcon("statistics"));
     showStatistics->setText(i18n("&Statistics..."));
     connect(showStatistics, SIGNAL(triggered(bool)), m_mainWindow, SLOT(slotShowStatistics()));
-    showStatistics->setWhatsThis(i18n("Show and reset statistics for the current vocabulary"));
+    showStatistics->setWhatsThis(i18n("Show and reset statistics for the current collection"));
     showStatistics->setToolTip(showStatistics->whatsThis());
     showStatistics->setStatusTip(showStatistics->whatsThis());
 

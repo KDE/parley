@@ -41,6 +41,8 @@ XslDialog::XslDialog(const KUrl &file, KEduVocDocument *doc, QWidget *parent)
 
     ui = new Ui::ExportOptions();
     ui->setupUi(mainWidget());
+
+    setCaption(i18n("Export"));
 }
 
 void XslDialog::accept()
