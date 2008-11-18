@@ -18,7 +18,6 @@ add_subdirectory( scripts_test )
 add_subdirectory( src )
 add_subdirectory( icons )
 add_subdirectory( plugins )
-add_subdirectory( examples )
 add_subdirectory( tipofday )
 
 if(HAVE_LIBXSLT)
