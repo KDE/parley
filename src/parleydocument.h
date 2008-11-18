@@ -51,12 +51,12 @@ public slots:
 
     /** opens a file from the recent files menu */
     void slotFileOpenRecent(const KUrl& url);
-    /** open a sample document */
-    void openExample();
+    /** open a downloaded (knewstuff/get hot new stuff) document */
+    void openGHNS();
     /** download new vocabularies */
     void slotGHNS();
 
-    void open(const KUrl &, bool addRecent = true);
+    void open(const KUrl &);
     /** merge a document */
     void slotFileMerge();
     /** save a document */

@@ -22,6 +22,7 @@
 
 #include "vocabulary/vocabularyview.h"
 #include "settings/TitlePage.h"
+#include "welcomescreen/welcomescreen.h"
 
 #include <keduvoclesson.h>
 #include <keduvocleitnerbox.h>
@@ -124,7 +125,7 @@ void ParleyDocument::slotFileOpen()
         KFileDialog dialog(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), m_parleyApp, practiceCheckBox);
         dialog.setCaption(i18n("Open Vocabulary Collection"));
         if(dialog.exec()) {
-            open(dialog.selectedUrl(), true);
+            open(dialog.selectedUrl());
             if(practiceCheckBox->isChecked()) {
                 m_parleyApp->startPractice();
             } else {
@@ -142,8 +143,7 @@ void ParleyDocument::slotFileOpenRecent(const KUrl& url)
     }
 }
 
-
-void ParleyDocument::open(const KUrl & url, bool addRecent)
+void ParleyDocument::open(const KUrl & url)
 {
     if (!url.path().isEmpty()) {
         emit documentChanged(0);
@@ -154,24 +154,21 @@ void ParleyDocument::open(const KUrl & url, bool addRecent)
         m_doc->open(url);
 
         m_parleyApp->editor()->updateDocument();
+        m_parleyApp->m_recentFilesAction->addUrl(url, m_doc->title());
 
-        if (addRecent) { // open sample does not go into recent
-            m_parleyApp->m_recentFilesAction->addUrl(url, m_doc->title());
-        }
         emit documentChanged(m_doc);
     }
 }
 
-
-void ParleyDocument::openExample()
+void ParleyDocument::openGHNS()
 {
     if (m_parleyApp->queryExit()) {
-        QString s = KStandardDirs::locate("data", "parley/examples/");
-        KUrl url = KFileDialog::getOpenUrl(s, KEduVocDocument::pattern(KEduVocDocument::Reading), m_parleyApp, i18n("Open Example Vocabulary Document"));
-        open(url, false);
+        QString s = KStandardDirs::locateLocal("data", "kvtml/");
+        KUrl url = KFileDialog::getOpenUrl(s, KEduVocDocument::pattern(KEduVocDocument::Reading), m_parleyApp, i18n("Open Downloaded Vocabulary Collection"));
+        open(url);
+        m_parleyApp->showEditor();
     }
 }
-
 
 void ParleyDocument::save()
 {
@@ -365,10 +362,10 @@ void ParleyDocument::createExampleEntries()
     m_doc->setModified(false);
 }
 
-
 void ParleyDocument::slotGHNS()
 {
     KNS::Entry::List entries = KNS::Engine::download();
+    int numberInstalled = 0;
     // list of changed entries
     foreach(KNS::Entry* entry, entries) {
         // care only about installed ones
@@ -378,21 +375,27 @@ void ParleyDocument::slotGHNS()
                 KMimeType::Ptr mimeType = KMimeType::findByPath(file);
                 kDebug() << "KNS2 file of mime type:" << KMimeType::findByPath(file)->name();
                 if (mimeType->name() == "application/x-kvtml") {
-                    KProcess newParley;
-                    newParley.setProgram("parley", QStringList() << file);
-                    newParley.startDetached();
-                    m_parleyApp->m_downloadedFilesAction->addUrl(file);
-                }
+                    m_parleyApp->m_recentFilesAction->addUrl(file);
+                    ++numberInstalled;
+                }         
             }
         }
     }
     qDeleteAll(entries);
+    // to enable the display in the welcome screen
+    m_parleyApp->m_recentFilesAction->saveEntries(KGlobal::config()->group("Recent Files"));
+    Prefs::self()->writeConfig();
+    m_parleyApp->m_welcomeScreen->updateRecentFilesModel();
+    if (numberInstalled > 1) {
+        openGHNS();
+    } else if (numberInstalled == 1) {
+        m_parleyApp->m_recentFilesAction->action(0)->trigger();
+    }
 }
 
 void ParleyDocument::exportHtmlDialog()
 {
 #ifdef HAVE_LIBXSLT
-
     ParleyExport::exportDocument(this, m_parleyApp);
 #endif
 }

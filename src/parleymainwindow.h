@@ -139,7 +139,6 @@ private:
     ParleyPracticeMainWindow *m_practice;
 
     KRecentFilesAction* m_recentFilesAction;
-    KRecentFilesAction* m_downloadedFilesAction;
 
     /** m_document is the current vocabulary document. */
     ParleyDocument   *m_document;

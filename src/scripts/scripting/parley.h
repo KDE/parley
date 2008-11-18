@@ -290,8 +290,6 @@ namespace Scripting
              */
             void open ( QString filename );
 
-//             void updateDocument() { m_parleyApp->updateDocument(); }
-
             /**
              * Creates a new document and returns a reference to it
              *

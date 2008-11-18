@@ -72,12 +72,11 @@ namespace Scripting
         return KGlobal::locale()->languageCodeToName ( locale );
     }
 
-    void Parley::open ( QString filename )
+    void Parley::open( QString filename )
     {
-        KUrl k;
-        k.setFileName ( filename );
-        kDebug() << k;
-        m_editor->mainWindow()->parleyDocument()->open ( k,false );
+        KUrl url(filename);
+        kDebug() << url;
+        m_editor->mainWindow()->parleyDocument()->open ( url );
     }
 
     QObject* Parley::activeLesson()

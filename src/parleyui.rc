@@ -4,7 +4,6 @@
 
 <MenuBar>
     <Menu name="file" >
-        <Action append="open_merge" name="file_open_example" />
         <Action append="open_merge" name="file_ghns" />
         <Action append="open_merge" name="file_open_downloaded" />
         <Separator/>

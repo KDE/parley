@@ -103,7 +103,6 @@ ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename
 void ParleyMainWindow::saveOptions()
 {
     m_recentFilesAction->saveEntries(KGlobal::config()->group("Recent Files"));
-    m_downloadedFilesAction->saveEntries(KGlobal::config()->group("Downloaded Files"));
 
 ///@todo save selection per document
 //     if (m_tableView) {
@@ -267,31 +266,23 @@ void ParleyMainWindow::initActions()
     fileOpen->setToolTip(fileOpen->whatsThis());
     fileOpen->setStatusTip(fileOpen->whatsThis());
 
-    KAction* fileOpenExample = new KAction(this);
-    actionCollection()->addAction("file_open_example", fileOpenExample);
-    fileOpenExample->setIcon(KIcon("document-open"));
-    fileOpenExample->setText(i18n("Open &Example..."));
-    connect(fileOpenExample, SIGNAL(triggered(bool)), m_document, SLOT(openExample()));
-    fileOpenExample->setWhatsThis(i18n("Open an example vocabulary collection"));
-    fileOpenExample->setToolTip(fileOpenExample->whatsThis());
-    fileOpenExample->setStatusTip(fileOpenExample->whatsThis());
-
     KAction* fileGHNS = KNS::standardAction(i18n("Download New Vocabularies..."), m_document, SLOT(slotGHNS()), actionCollection(), "file_ghns");
     fileGHNS->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_G));
-    fileGHNS->setWhatsThis(i18n("Downloads new vocabularies"));
+    fileGHNS->setWhatsThis(i18n("Downloads new vocabulary collections"));
     fileGHNS->setToolTip(fileGHNS->whatsThis());
     fileGHNS->setStatusTip(fileGHNS->whatsThis());
 
+    KAction* fileOpenGHNS = new KAction(this);
+    actionCollection()->addAction("file_open_downloaded", fileOpenGHNS);
+    fileOpenGHNS->setIcon(KIcon("get-hot-new-stuff"));
+    fileOpenGHNS->setText(i18n("Open &Downloaded Vocabularies..."));
+    connect(fileOpenGHNS, SIGNAL(triggered(bool)), m_document, SLOT(openGHNS()));
+    fileOpenGHNS->setWhatsThis(i18n("Open downloaded vocabulary collections"));
+    fileOpenGHNS->setToolTip(fileOpenGHNS->whatsThis());
+    fileOpenGHNS->setStatusTip(fileOpenGHNS->whatsThis());
+
     m_recentFilesAction = KStandardAction::openRecent(m_document, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
     m_recentFilesAction->loadEntries(KGlobal::config()->group("Recent Files"));
-
-    m_downloadedFilesAction = new KRecentFilesAction(KIcon("get-hot-new-stuff"), "file_open_downloaded", this);
-    actionCollection()->addAction("file_open_downloaded", m_downloadedFilesAction);
-    m_downloadedFilesAction->setText(i18n("Open Downloaded Vocabularies"));
-    m_downloadedFilesAction->loadEntries(KGlobal::config()->group("Downloaded Files"));
-    connect(m_downloadedFilesAction, SIGNAL(urlSelected(const KUrl &)), m_document, SLOT(open(const KUrl&)));
-    m_downloadedFilesAction->loadEntries(KGlobal::config()->group("Downloaded Files"));
-    m_downloadedFilesAction->setMaxItems(30);
 
     /*
     KAction* fileMerge = new KAction(this);
@@ -462,7 +453,6 @@ void ParleyMainWindow::showDocumentActions(bool open, bool edit)
     actionCollection()->action("file_new")->setVisible(open);
     actionCollection()->action("file_open")->setVisible(open);
     actionCollection()->action("file_open_recent")->setVisible(open);
-    actionCollection()->action("file_open_example")->setVisible(open);
     actionCollection()->action("file_ghns")->setVisible(open);
     actionCollection()->action("file_open_downloaded")->setVisible(open);
 
