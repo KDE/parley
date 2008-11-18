@@ -80,25 +80,19 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
     layout->setSharedRenderer(m_renderer);
     layout->setElementId("main");
     layout->setZValue(-10);
-
-
-    QGraphicsSvgItem * ilayout = new QGraphicsSvgItem();
-    ilayout->setSharedRenderer(m_renderer);
-    ilayout->setElementId("main");
-    ilayout->setZValue(-10);
-
-
-
     QGraphicsScene* normalScene = new QGraphicsScene(this);
     normalScene->addItem(layout);
     normalScene->addItem(m_normalArea);
     normalScene->setSceneRect(layout->boundingRect());
 
+    QGraphicsSvgItem * ilayout = new QGraphicsSvgItem();
+    ilayout->setSharedRenderer(m_renderer);
+    ilayout->setElementId("main");
+    ilayout->setZValue(-10);
     QGraphicsScene* imageScene = new QGraphicsScene(this);
     imageScene->addItem(ilayout);
     imageScene->addItem(m_imageArea);
     imageScene->setSceneRect(ilayout->boundingRect());
-
 
     m_view = new PracticeView(this);
     setCentralWidget(m_view);
@@ -106,38 +100,16 @@ void ParleyPracticeMainWindow::setupBase(const QString& desktopFileName, KEduVoc
     m_manager = new PracticeEntryManager(this);
     connect(m_manager, SIGNAL(signalNewImage(const KUrl&, bool)), this, SLOT(slotShowImageView(const KUrl&, bool)));
 
-
     m_stats = new Statistics(m_manager, this);
     connect(m_manager, SIGNAL(signalNewEntry(PracticeEntry*)), m_stats, SLOT(slotSetEntry(PracticeEntry*)));
     connect(m_manager, SIGNAL(signalSetFinished()), m_stats, SLOT(slotSetFinished()));
     connect(m_manager, SIGNAL(signalSetFinished()), this, SLOT(queryClose()));
 
-    KEduVocDocument * local_doc;
-    if (doc != 0)
-    {
-        local_doc = doc;
-    }
-    else // m_doc will be non-null if we used the doc-giving constructor
-    {
-        local_doc = new KEduVocDocument(this);
-        // for the fun of it - use parleyrc
-        kDebug() << "open file from parleyrc";
-        KConfig parleyConfig("parleyrc");
-        kDebug() << "groupList" << parleyConfig.groupList();
-        KConfigGroup recentFilesGroup(&parleyConfig, "Recent Files");
-        // take the last file, but there are File1..n and Name1..n entries..
-        QString sourceFile = recentFilesGroup.readEntry(recentFilesGroup.keyList().value(recentFilesGroup.keyList().count() / 2 - 1), QString());
-
-        int code = local_doc->open(sourceFile);
-        kDebug() << "file open code:" << code;
-    }
-
-    m_manager->open(local_doc);
+    m_manager->open(doc);
 
     m_validator = new AnswerValidator(doc, this);
     m_validator->setLanguage(Prefs::solutionLanguage());
     connect(m_validator, SIGNAL(signalCorrection(float, Statistics::ErrorType, const QString&)), m_stats, SLOT(slotCorrection(float, Statistics::ErrorType, const QString&)));
-
 }
 
 
