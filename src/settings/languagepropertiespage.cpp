@@ -113,7 +113,6 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
     }
 
 
-
     // articles
     KEduVocArticle articles = m_doc->identifier(m_identifierIndex).article();
 
@@ -125,6 +124,17 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
 
     def_natural->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Definite | KEduVocWordFlag::Neuter ));
     indef_natural->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Neuter ));
+
+
+    def_male_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Definite | KEduVocWordFlag::Masculine ));
+    indef_male_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Masculine ));
+
+    def_female_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Definite | KEduVocWordFlag::Feminine ));
+    indef_female_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Feminine ));
+
+    def_natural_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Definite | KEduVocWordFlag::Neuter ));
+    indef_natural_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Neuter ));
+
 
     // personal pronouns
     const KEduVocWordFlags numS = KEduVocWordFlag::Singular;
@@ -225,6 +235,15 @@ void LanguagePropertiesPage::accept()
     article.setArticle( indef_female->text(),  artSing | artIndef | KEduVocWordFlag::Feminine );
     article.setArticle( def_natural->text(),  artSing | artDef | KEduVocWordFlag::Neuter );
     article.setArticle( indef_natural->text(),  artSing | artIndef | KEduVocWordFlag::Neuter );
+
+
+    article.setArticle( def_male_plural->text(),  artPlur | artDef | KEduVocWordFlag::Masculine );
+    article.setArticle( indef_male_plural->text(),  artPlur | artIndef | KEduVocWordFlag::Masculine );
+    article.setArticle( def_female_plural->text(),  artPlur | artDef | KEduVocWordFlag::Feminine );
+    article.setArticle( indef_female_plural->text(),  artPlur | artIndef | KEduVocWordFlag::Feminine );
+    article.setArticle( def_natural_plural->text(),  artPlur | artDef | KEduVocWordFlag::Neuter );
+    article.setArticle( indef_natural_plural->text(),  artPlur | artIndef | KEduVocWordFlag::Neuter );
+
 
     m_doc->identifier(m_identifierIndex).setArticle( article );
 

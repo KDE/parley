@@ -13,7 +13,7 @@
    <item>
     <widget class="KTabWidget" name="ktabwidget" >
      <property name="currentIndex" >
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab" >
       <attribute name="title" >
@@ -218,7 +218,7 @@
         </spacer>
        </item>
        <item row="9" column="2" >
-        <widget class="KLineEdit" name="def_natural_2" >
+        <widget class="KLineEdit" name="def_natural_plural" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -228,7 +228,7 @@
         </widget>
        </item>
        <item row="8" column="2" >
-        <widget class="KLineEdit" name="def_male_2" >
+        <widget class="KLineEdit" name="def_female_plural" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -238,7 +238,7 @@
         </widget>
        </item>
        <item row="6" column="2" >
-        <widget class="KLineEdit" name="def_female_2" >
+        <widget class="KLineEdit" name="def_male_plural" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -258,7 +258,7 @@
         </widget>
        </item>
        <item row="6" column="3" >
-        <widget class="KLineEdit" name="indef_male_2" >
+        <widget class="KLineEdit" name="indef_male_plural" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -268,7 +268,7 @@
         </widget>
        </item>
        <item row="8" column="3" >
-        <widget class="KLineEdit" name="indef_female_2" >
+        <widget class="KLineEdit" name="indef_female_plural" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -278,7 +278,7 @@
         </widget>
        </item>
        <item row="9" column="3" >
-        <widget class="KLineEdit" name="indef_natural_2" >
+        <widget class="KLineEdit" name="indef_natural_plural" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -296,7 +296,7 @@
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
          <property name="buddy" >
-          <cstring>def_natural_2</cstring>
+          <cstring>def_natural_plural</cstring>
          </property>
         </widget>
        </item>
@@ -309,7 +309,7 @@
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
          <property name="buddy" >
-          <cstring>def_male_2</cstring>
+          <cstring>def_female_plural</cstring>
          </property>
         </widget>
        </item>
@@ -322,7 +322,7 @@
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
          <property name="buddy" >
-          <cstring>def_female_2</cstring>
+          <cstring>def_male_plural</cstring>
          </property>
         </widget>
        </item>
@@ -688,7 +688,7 @@
        <item>
         <widget class="QLabel" name="label" >
          <property name="text" >
-          <string comment="KDE::DoNotExtract">Placeholder! A list of cases (possibility to rename them?) should be here</string>
+          <string comment="KDE::DoNotExtract" >Placeholder! A list of cases (possibility to rename them?) should be here</string>
          </property>
         </widget>
        </item>
@@ -826,6 +826,11 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>KComboBox</class>
+   <extends>QComboBox</extends>
+   <header>kcombobox.h</header>
+  </customwidget>
+  <customwidget>
    <class>KLineEdit</class>
    <extends>QLineEdit</extends>
    <header>klineedit.h</header>
@@ -836,25 +841,20 @@
    <header>ktabwidget.h</header>
    <container>1</container>
   </customwidget>
-  <customwidget>
-   <class>KComboBox</class>
-   <extends>QComboBox</extends>
-   <header>kcombobox.h</header>
-  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>def_male</tabstop>
   <tabstop>def_female</tabstop>
   <tabstop>def_natural</tabstop>
-  <tabstop>def_female_2</tabstop>
-  <tabstop>def_male_2</tabstop>
-  <tabstop>def_natural_2</tabstop>
+  <tabstop>def_male_plural</tabstop>
+  <tabstop>def_female_plural</tabstop>
+  <tabstop>def_natural_plural</tabstop>
   <tabstop>indef_male</tabstop>
   <tabstop>indef_female</tabstop>
   <tabstop>indef_natural</tabstop>
-  <tabstop>indef_male_2</tabstop>
-  <tabstop>indef_female_2</tabstop>
-  <tabstop>indef_natural_2</tabstop>
+  <tabstop>indef_male_plural</tabstop>
+  <tabstop>indef_female_plural</tabstop>
+  <tabstop>indef_natural_plural</tabstop>
   <tabstop>localeComboBox</tabstop>
   <tabstop>identifierNameLineEdit</tabstop>
   <tabstop>iconComboBox</tabstop>
