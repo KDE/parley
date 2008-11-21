@@ -60,8 +60,8 @@ kDebug() << "accept";
         } else {
             // page is disabled, delete the language
             if (index < m_doc->identifierCount()) {
-                kDebug() << "Delete Language: " << m_deleteList.value(index);
-                if ( KMessageBox::warningYesNo(this, i18n("Really delete language: %1?", QString("name")), i18n("Remove Language")) == KMessageBox::Yes ) {
+//                 kDebug() << "Delete Language: " << m_deleteList.value(index);
+                if ( KMessageBox::warningYesNo(this, i18n("Really delete language: %1?", m_doc->identifier(index-deleted).name()), i18n("Remove Language")) == KMessageBox::Yes ) {
                     m_doc->removeIdentifier(index-deleted);
                     m_doc->setModified();
                     deleted++;
@@ -92,13 +92,6 @@ void LanguageProperties::slotDeleteIdentifier()
     currentPage()->setEnabled(false);
 
     int index = m_pages.indexOf(currentPage());
-kDebug() << "disable page: " <<  index;
-
-/*
-
-    m_deleteList.append(index);
-    removePage(currentPage());
-*/
 }
 
 void LanguageProperties::pageIconChanged(const QString & newIcon)

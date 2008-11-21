@@ -200,6 +200,11 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
 
 void LanguagePropertiesPage::accept()
 {
+    if (!isEnabled()) {
+        // disabled pages are deleted languages
+        return;
+    }
+
     // general
     QString locale = localeComboBox->itemData(localeComboBox->currentIndex()).toString();
 
