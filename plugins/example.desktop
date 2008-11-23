@@ -28,6 +28,8 @@ Name[x-test]=xxExample Parley Scriptxx
 Name[zh_CN]=示例 Parley 脚本
 Name[zh_TW]=範例 Parley 文稿
 Comment=This example script offers two actions: 1) Move selected vocabulary to a different lesson 2) Change the grade of selected words to known (highest grade)
+Comment[nds]=Dit Bispillskript stellt twee Akschonen praat: 1) Den utsöchten Vokavelsett na en anner Lex verschuven 2) De Stoop vun de utsöchten Wöör op "begäng" (hööchst Stoop) setten
+Comment[uk]=Цей скрипт-зразок виконує дві функції: 1) Переміщує вибраний словник до іншого уроку. 2) Змінює клас вибраних слів на відому (найвищий клас).
 Script=example.py
 
 X-KDE-PluginInfo-Author=Avgoustinos Kadis
