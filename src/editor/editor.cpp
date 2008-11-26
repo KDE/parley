@@ -462,13 +462,6 @@ void Editor::initActions()
     m_vocabShowSearchBarAction->setStatusTip(m_vocabShowSearchBarAction->whatsThis());
     m_vocabShowSearchBarAction->setChecked(Prefs::showSearch());
 
-    actionCollection()->addAction("show_vocabulary_columns_menu", m_vocabularyColumnsActionMenu);
-    m_vocabularyColumnsActionMenu->setText(i18n("Vocabulary Columns"));
-    m_vocabularyColumnsActionMenu->setWhatsThis(i18n("Toggle display of individual vocabulary columns"));
-    m_vocabularyColumnsActionMenu->setToolTip(m_vocabularyColumnsActionMenu->whatsThis());
-    m_vocabularyColumnsActionMenu->setStatusTip(m_vocabularyColumnsActionMenu->whatsThis());
-    m_vocabularyView->horizontalHeader()->addAction(m_vocabularyColumnsActionMenu);
-
 // -- ONLY ON RIGHT CLICK - HEADER SO FAR -------------------------------------
     ///@todo what about this one...?
 //     KAction *actionRestoreNativeOrder = new KAction(this);
@@ -546,7 +539,6 @@ void Editor::initView()
     m_searchWidget->setVisible(Prefs::showSearch());
 
     m_vocabularyView = new VocabularyView(this);
-    m_vocabularyColumnsActionMenu = m_vocabularyView->columnsActionMenu();
     rightLayout->addWidget(m_vocabularyView, 1, 0);
 
     topLayout->addLayout(rightLayout);

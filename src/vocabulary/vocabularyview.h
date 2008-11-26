@@ -86,21 +86,14 @@ signals:
 
 private slots:
     void slotCurrentChanged(const QModelIndex& current, const QModelIndex& previous);
-
     void slotSelectionChanged(const QItemSelection&, const QItemSelection&);
 
-    void slotToggleColumn(bool show);
-
     void continueSpelling();
-
     void misspelling(const QString &word, int start);
     void spellingReplace(const QString& oldWord, int start, const QString &newWord);
 
 private:
     void selectIndex(const QModelIndex &index);
-
-    QMap <KAction*, int> m_columnActionMap;
-    KActionMenu * m_vocabularyColumnsActionMenu;
 
     KAction* m_appendEntryAction;
     KAction* m_deleteEntriesAction;

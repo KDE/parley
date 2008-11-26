@@ -47,7 +47,6 @@ public:
     ~VocabularyColumnsDialog();
 
     void accept();
-    void reject();
 
 private:
     /**

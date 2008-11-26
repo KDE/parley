@@ -40,7 +40,6 @@
 #include <KComponentData>
 #include <KGlobalSettings>
 #include <KAction>
-#include <KActionMenu>
 #include <KActionCollection>
 #include <KToggleAction>
 #include <KLocale>
@@ -83,9 +82,6 @@ VocabularyView::VocabularyView(Editor * parent)
 
     // smooth scrolling horizontally, otherwise it tries to jump from item to item.
     setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
-
-    // create actions
-    m_vocabularyColumnsActionMenu = new KActionMenu(this);
 
     m_appendEntryAction = new KAction(this);
     parent->actionCollection()->addAction("edit_append", m_appendEntryAction);
@@ -145,8 +141,8 @@ VocabularyView::VocabularyView(Editor * parent)
     KAction *vocabularyColumnsDialogAction = new KAction(this);
     parent->actionCollection()->addAction("show_vocabulary_columns_dialog", vocabularyColumnsDialogAction);
     vocabularyColumnsDialogAction->setIcon(KIcon("view-file-columns"));
-    vocabularyColumnsDialogAction->setText(i18n("Vocabulary Columns Dialog"));
-    vocabularyColumnsDialogAction->setWhatsThis(i18n("Display a dialog to enable or disable the vocabulary columns"));
+    vocabularyColumnsDialogAction->setText(i18n("Vocabulary Columns")); ///@todo add "..." since this opens a dialog
+    vocabularyColumnsDialogAction->setWhatsThis(i18n("Toggle display of individual vocabulary columns"));
     vocabularyColumnsDialogAction->setToolTip(vocabularyColumnsDialogAction->whatsThis());
     vocabularyColumnsDialogAction->setStatusTip(vocabularyColumnsDialogAction->whatsThis());
     horizontalHeader()->addAction(vocabularyColumnsDialogAction);
@@ -369,11 +365,6 @@ void VocabularyView::reset()
     emit translationChanged(0, 0);
 
     kDebug() << "reset";
-///@todo check if the actions are recreated every time when selecting a diff lesson.
-    foreach( KAction* oldAction, m_columnActionMap.keys() ) {
-        m_columnActionMap.remove(oldAction);
-        delete oldAction;
-    }
 
     QList<int> visibleColumns;
     if (m_doc) {
@@ -390,38 +381,11 @@ void VocabularyView::reset()
         }
     }
 
-    KActionMenu* currentTranslationAction = 0;
     for( int i = 0; i < model()->columnCount(QModelIndex()); i++) {
-        KAction* columnAction;
-
-        if(VocabularyModel::columnType(i) == VocabularyModel::Translation) {
-            currentTranslationAction = new KActionMenu(
-                model()->headerData(i, Qt::Horizontal).toString(), this);
-            columnAction = currentTranslationAction;
-            m_vocabularyColumnsActionMenu->addAction(currentTranslationAction);
-        } else {
-            if (currentTranslationAction) {
-                columnAction = new KToggleAction(model()->headerData(i, Qt::Horizontal).toString(), this);
-                currentTranslationAction->addAction(columnAction);
-                connect (columnAction, SIGNAL(triggered(bool)),
-                    this, SLOT(slotToggleColumn(bool)));
-                if (i < visibleColumns.size() && visibleColumns.value(i) == 1) {
-                    // show the column
-                    columnAction->setChecked(true);
-                    setColumnHidden(i, false);
-                } else {
-                    columnAction->setChecked(false);
-                    setColumnHidden(i, true);
-                }
-            }
+        if (i < visibleColumns.size()) {
+            setColumnHidden(i, !visibleColumns.value(i));
         }
-        m_columnActionMap[columnAction] = i;
     }
-}
-
-void VocabularyView::slotToggleColumn(bool show)
-{
-    setColumnHidden(m_columnActionMap[(KAction*)sender()], !show);
 }
 
 void VocabularyView::saveColumnVisibility(const KUrl & kurl) const
@@ -430,14 +394,14 @@ void VocabularyView::saveColumnVisibility(const KUrl & kurl) const
         return;
     }
     // Generate a QList<int> for saving
-    QList<int> qli;
-    for (int i = 0; i < m_columnActionMap.size(); ++i)
+    QList<int> visibleList;
+    for (int i = 0; i < m_model->columnCount(); ++i)
     {
-        qli.append(static_cast<int>(!isColumnHidden(i)));
+        visibleList.append(static_cast<int>(!isColumnHidden(i)));
     }
 
     DocumentSettings ds(kurl.url());
-    ds.setVisibleColumns(qli);
+    ds.setVisibleColumns(visibleList);
     ds.writeConfig();
 
     QByteArray saveState = horizontalHeader()->saveState();
@@ -572,11 +536,6 @@ void VocabularyView::slotCutEntry()
 {
     slotEditCopy();
     deleteSelectedEntries(false);
-}
-
-KActionMenu * VocabularyView::columnsActionMenu()
-{
-    return m_vocabularyColumnsActionMenu;
 }
 
 void VocabularyView::slotSelectionChanged(const QItemSelection &, const QItemSelection &)

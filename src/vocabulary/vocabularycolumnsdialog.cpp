@@ -48,7 +48,7 @@ VocabularyColumnsDialog::VocabularyColumnsDialog(KEduVocDocument *doc, QWidget *
     m_doc = doc;
     m_settings = new DocumentSettings(m_doc->url().url());
 
-    setCaption(i18n("Vocabulary columns"));
+    setCaption(i18n("Vocabulary Columns"));
     setButtons(Ok|Cancel);
 
     QWidget *main_widget = new QWidget(this);
@@ -72,13 +72,7 @@ VocabularyColumnsDialog::~VocabularyColumnsDialog()
 void VocabularyColumnsDialog::accept()
 {
     saveVisibleColumns();
-
     KDialog::accept();
-}
-
-void VocabularyColumnsDialog::reject()
-{
-    KDialog::reject();
 }
 
 void VocabularyColumnsDialog::createLanguagesLayout()

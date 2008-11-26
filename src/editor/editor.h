@@ -107,7 +107,6 @@ private:
     ParleyMainWindow* m_mainWindow;
 
     KAction* m_vocabShowSearchBarAction;
-    KActionMenu* m_vocabularyColumnsActionMenu;
 
     VocabularyModel *m_vocabularyModel;
     VocabularyView *m_vocabularyView;
