@@ -174,9 +174,8 @@ void ParleyMainWindow::slotDocumentProperties()
 
 void ParleyMainWindow::configurePractice()
 {
-    ConfigurePracticeDialog* configurePracticeDialog;
-    configurePracticeDialog = new ConfigurePracticeDialog(m_document->document(), this, "practice settings",  Prefs::self());
-    configurePracticeDialog->exec();
+    ConfigurePracticeDialog configurePracticeDialog(m_document->document(), this, "practice settings",  Prefs::self());
+    configurePracticeDialog.exec();
 }
 
 void ParleyMainWindow::startPractice()
