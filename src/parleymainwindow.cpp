@@ -29,7 +29,7 @@
 #include "editor/editor.h"
 #include "statistics-dialogs/StatisticsDialog.h"
 #include "settings/parleyprefs.h"
-#include "settings/TitlePage.h"
+#include "settings/documentproperties.h"
 #include "configure-practice/configurepracticedialog.h"
 #include "practiceold/testentrymanager.h"
 #include "practice/parleypracticemainwindow.h"
@@ -158,7 +158,7 @@ void ParleyMainWindow::slotCloseDocument()
 
 void ParleyMainWindow::slotDocumentProperties()
 {
-    TitlePage* titleAuthorWidget = new TitlePage(m_document->document(), false, this);
+    DocumentProperties* titleAuthorWidget = new DocumentProperties(m_document->document(), false, this);
     KDialog* titleAuthorDialog;
     titleAuthorDialog = new KDialog(this);
     titleAuthorDialog->setMainWidget( titleAuthorWidget );

@@ -37,7 +37,7 @@ set(settings_SRCS ${settings_SKEL_SRCS}
     settings/viewoptions.cpp
 
 # script settings
-    settings/TitlePage.cpp
+    settings/documentproperties.cpp
     settings/languageproperties.cpp
     settings/languagepropertiespage.cpp
 )
@@ -48,7 +48,7 @@ kde4_add_ui_files( settings_SRCS
     settings/viewoptionsbase.ui
     settings/generaloptionsbase.ui
     settings/languagepropertiespage.ui
-    settings/TitlePageForm.ui
+    settings/documentproperties.ui
 )
 
 # views on the vocabulary files contents - lessons and the actual words

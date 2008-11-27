@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>TitlePageForm</class>
- <widget class="QWidget" name="TitlePageForm" >
+ <class>DocumentProperties</class>
+ <widget class="QWidget" name="DocumentProperties" >
   <property name="geometry" >
    <rect>
     <x>0</x>

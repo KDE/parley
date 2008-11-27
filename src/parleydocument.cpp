@@ -21,7 +21,7 @@
 #include "prefs.h"
 
 #include "vocabulary/vocabularyview.h"
-#include "settings/TitlePage.h"
+#include "settings/documentproperties.h"
 #include "welcomescreen/welcomescreen.h"
 
 #include <keduvoclesson.h>
@@ -98,7 +98,7 @@ void ParleyDocument::newDocument(bool wizard)
     m_parleyApp->editor()->updateDocument();
 
     if (wizard) {
-        TitlePage* titleAuthorWidget = new TitlePage(m_doc, true, m_parleyApp);
+        DocumentProperties* titleAuthorWidget = new DocumentProperties(m_doc, true, m_parleyApp);
         KDialog* titleAuthorDialog;
         titleAuthorDialog = new KDialog(m_parleyApp);
         titleAuthorDialog->setMainWidget( titleAuthorWidget );

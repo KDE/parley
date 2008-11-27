@@ -23,7 +23,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "TitlePage.h"
+#include "documentproperties.h"
 
 #include <KDebug>
 #include <KLineEdit>
@@ -33,7 +33,7 @@
 
 #include <keduvocdocument.h>
 
-TitlePage::TitlePage(KEduVocDocument * doc, bool languageSetup, QWidget* parent) : QWidget(parent)
+DocumentProperties::DocumentProperties(KEduVocDocument * doc, bool languageSetup, QWidget* parent) : QWidget(parent)
 {
     m_doc = doc;
     setupUi(this);
@@ -62,15 +62,12 @@ TitlePage::TitlePage(KEduVocDocument * doc, bool languageSetup, QWidget* parent)
         secondLanguageComboBox->completionObject()->insertItems(languageNames);
 
         languageGroupBox->setVisible(true);
-
-connect(fetchLanguageButton, SIGNAL(clicked()), SLOT(fetchGrammar()));
-
     } else {
         languageGroupBox->setVisible(false);
     }
 }
 
-void TitlePage::accept()
+void DocumentProperties::accept()
 {
     m_doc->setTitle(titleLineEdit->text());
     m_doc->setAuthor(authorLineEdit->text());
@@ -104,7 +101,7 @@ void TitlePage::accept()
     }
 }
 
-void TitlePage::fetchGrammar(KEduVocDocument* doc, int index)
+void DocumentProperties::fetchGrammar(KEduVocDocument* doc, int index)
 {
     QString locale = doc->identifier(index).locale();
     
@@ -121,5 +118,5 @@ void TitlePage::fetchGrammar(KEduVocDocument* doc, int index)
     }
 }
 
-#include "TitlePage.moc"
+#include "documentproperties.moc"
 

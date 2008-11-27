@@ -23,19 +23,19 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef TITLEPAGE_H
-#define TITLEPAGE_H
+#ifndef DOCUMENTPROPERTIES_H
+#define DOCUMENTPROPERTIES_H
 
-#include "ui_TitlePageForm.h"
+#include "ui_documentproperties.h"
 
 class KEduVocDocument;
 
-class TitlePage : public QWidget, public Ui::TitlePageForm
+class DocumentProperties : public QWidget, public Ui::DocumentProperties
 {
     Q_OBJECT
 
 public:
-    TitlePage(KEduVocDocument * doc, bool languageSetup, QWidget *parent);
+    DocumentProperties(KEduVocDocument * doc, bool languageSetup, QWidget *parent);
 
 public slots:
     // this will apply the settings, but be aware, this is not a kdialog, only a qwidget - thus you need to connect to the accept!
@@ -49,4 +49,5 @@ private:
     bool m_showLanguages;
 };
 
-#endif // TitlePage_included
+#endif
+
