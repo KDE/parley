@@ -99,42 +99,27 @@ void TitlePage::accept()
         m_doc->identifier(0).setName(firstLanguage);
         m_doc->identifier(1).setLocale(secondLocale);
         m_doc->identifier(1).setName(secondLanguage);
+	fetchGrammar(m_doc, 0);
+	fetchGrammar(m_doc, 1);
     }
 }
 
-#include <KMessageBox>
-
-void TitlePage::fetchGrammar() {
-    QString firstLanguage = firstLanguageComboBox->currentText();
-    QString firstLocale;
-    QString secondLanguage = secondLanguageComboBox->currentText();
-    QString secondLocale;
-    foreach ( const QString &code, KGlobal::locale()->allLanguagesList() ) {
-        if ( firstLanguage == KGlobal::locale()->languageCodeToName(code) ) {
-            firstLocale = code;
-        }
-        if ( secondLanguage == KGlobal::locale()->languageCodeToName(code) ) {
-            secondLocale = code;
-        }
-    }
-
-    KUrl location(QString("http://edu.kde.org/parley/locale/") + firstLocale + QString(".kvtml"));
-
-    KEduVocDocument firstLanguageDoc;
-    if (firstLanguageDoc.open(location) == KEduVocDocument::NoError) {
-
-
-        m_doc->identifier(0).setArticle(firstLanguageDoc.identifier(0).article());
-        m_doc->identifier(0).setPersonalPronouns(firstLanguageDoc.identifier(0).personalPronouns());
-// @todo        m_doc->identifier(0).setDeclension(firstLanguageDoc.identifier(0).declension());
-        m_doc->identifier(0).setTenseList(firstLanguageDoc.identifier(0).tenseList());
-
-        KMessageBox::information(this, "Success");
-    } else {
-        KMessageBox::information(this, "Failure");
+void TitlePage::fetchGrammar(KEduVocDocument* doc, int index)
+{
+    QString locale = doc->identifier(index).locale();
     
-    }
+    KUrl location(QString("http://edu.kde.org/parley/locale/") + locale + QString(".kvtml"));
 
+    KEduVocDocument grammarDoc;
+    if (grammarDoc.open(location) == KEduVocDocument::NoError) {
+        m_doc->identifier(index).setArticle(grammarDoc.identifier(0).article());
+        m_doc->identifier(index).setPersonalPronouns(grammarDoc.identifier(0).personalPronouns());
+// @todo        m_doc->identifier(index).setDeclension(grammarDoc.identifier(0).declension());
+        m_doc->identifier(index).setTenseList(grammarDoc.identifier(0).tenseList());
+    } else {
+        kDebug() << "Download of " << location.url() << " failed.";
+    }
 }
 
 #include "TitlePage.moc"
+

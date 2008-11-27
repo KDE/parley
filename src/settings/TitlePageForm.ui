@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>454</width>
-    <height>526</height>
+    <width>331</width>
+    <height>385</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -302,13 +302,6 @@ If you consider contributing your file to KDE in the future, an appropriate lice
         </property>
        </widget>
       </item>
-      <item row="0" column="3" >
-       <widget class="QPushButton" name="fetchLanguageButton" >
-        <property name="text" >
-         <string>Get Grammar Details Online</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </item>
@@ -319,17 +312,17 @@ If you consider contributing your file to KDE in the future, an appropriate lice
  <customwidgets>
   <customwidget>
    <class>KComboBox</class>
-   <extends></extends>
+   <extends>QComboBox</extends>
    <header>kcombobox.h</header>
   </customwidget>
   <customwidget>
    <class>KLineEdit</class>
-   <extends></extends>
+   <extends>QLineEdit</extends>
    <header>klineedit.h</header>
   </customwidget>
   <customwidget>
    <class>KTextEdit</class>
-   <extends></extends>
+   <extends>QTextEdit</extends>
    <header>ktextedit.h</header>
   </customwidget>
  </customwidgets>
