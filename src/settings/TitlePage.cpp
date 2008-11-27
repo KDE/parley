@@ -62,6 +62,9 @@ TitlePage::TitlePage(KEduVocDocument * doc, bool languageSetup, QWidget* parent)
         secondLanguageComboBox->completionObject()->insertItems(languageNames);
 
         languageGroupBox->setVisible(true);
+
+connect(fetchLanguageButton, SIGNAL(clicked()), SLOT(fetchGrammar()));
+
     } else {
         languageGroupBox->setVisible(false);
     }
@@ -97,6 +100,41 @@ void TitlePage::accept()
         m_doc->identifier(1).setLocale(secondLocale);
         m_doc->identifier(1).setName(secondLanguage);
     }
+}
+
+#include <KMessageBox>
+
+void TitlePage::fetchGrammar() {
+    QString firstLanguage = firstLanguageComboBox->currentText();
+    QString firstLocale;
+    QString secondLanguage = secondLanguageComboBox->currentText();
+    QString secondLocale;
+    foreach ( const QString &code, KGlobal::locale()->allLanguagesList() ) {
+        if ( firstLanguage == KGlobal::locale()->languageCodeToName(code) ) {
+            firstLocale = code;
+        }
+        if ( secondLanguage == KGlobal::locale()->languageCodeToName(code) ) {
+            secondLocale = code;
+        }
+    }
+
+    KUrl location(QString("http://edu.kde.org/parley/locale/") + firstLocale + QString(".kvtml"));
+
+    KEduVocDocument firstLanguageDoc;
+    if (firstLanguageDoc.open(location) == KEduVocDocument::NoError) {
+
+
+        m_doc->identifier(0).setArticle(firstLanguageDoc.identifier(0).article());
+        m_doc->identifier(0).setPersonalPronouns(firstLanguageDoc.identifier(0).personalPronouns());
+// @todo        m_doc->identifier(0).setDeclension(firstLanguageDoc.identifier(0).declension());
+        m_doc->identifier(0).setTenseList(firstLanguageDoc.identifier(0).tenseList());
+
+        KMessageBox::information(this, "Success");
+    } else {
+        KMessageBox::information(this, "Failure");
+    
+    }
+
 }
 
 #include "TitlePage.moc"

@@ -40,6 +40,7 @@ public:
 public slots:
     // this will apply the settings, but be aware, this is not a kdialog, only a qwidget - thus you need to connect to the accept!
     virtual void accept();
+    void fetchGrammar();
 
 private:
     KEduVocDocument* m_doc;

@@ -302,6 +302,13 @@ If you consider contributing your file to KDE in the future, an appropriate lice
         </property>
        </widget>
       </item>
+      <item row="0" column="3" >
+       <widget class="QPushButton" name="fetchLanguageButton" >
+        <property name="text" >
+         <string>Get Grammar Details Online</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -312,18 +319,18 @@ If you consider contributing your file to KDE in the future, an appropriate lice
  <customwidgets>
   <customwidget>
    <class>KComboBox</class>
-   <extends>QComboBox</extends>
+   <extends></extends>
    <header>kcombobox.h</header>
   </customwidget>
   <customwidget>
-   <class>KTextEdit</class>
-   <extends>QTextEdit</extends>
-   <header>ktextedit.h</header>
+   <class>KLineEdit</class>
+   <extends></extends>
+   <header>klineedit.h</header>
   </customwidget>
   <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
+   <class>KTextEdit</class>
+   <extends></extends>
+   <header>ktextedit.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
