@@ -446,7 +446,7 @@ void Editor::initActions()
 
     KAction* showStatistics = new KAction(this);
     actionCollection()->addAction("show_statistics", showStatistics);
-    showStatistics->setIcon(KIcon("statistics"));
+    showStatistics->setIcon(KIcon("view-statistics"));
     showStatistics->setText(i18n("&Statistics..."));
     connect(showStatistics, SIGNAL(triggered(bool)), m_mainWindow, SLOT(slotShowStatistics()));
     showStatistics->setWhatsThis(i18n("Show and reset statistics for the current collection"));
