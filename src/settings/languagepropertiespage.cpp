@@ -173,7 +173,6 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
 
     // tenses
     connect(optionsList,   SIGNAL(currentRowChanged(int)), this, SLOT(slotTenseChosen(int)));
-    connect(cleanUpButton, SIGNAL(clicked()),              this, SLOT(slotCleanup()));
     connect(deleteButton,  SIGNAL(clicked()),              this, SLOT(slotDeleteTense()));
     connect(modifyButton,  SIGNAL(clicked()),              this, SLOT(slotModifyTense()));
     connect(newButton,     SIGNAL(clicked()),              this, SLOT(slotNewTense()));

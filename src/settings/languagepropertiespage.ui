@@ -427,6 +427,19 @@
          </property>
         </spacer>
        </item>
+       <item row="10" column="1" >
+        <spacer name="verticalSpacer_5" >
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0" >
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
        <item row="0" column="1" >
         <widget class="QLabel" name="TextLabel4_2_2" >
          <property name="text" >
@@ -645,19 +658,6 @@
          </property>
         </widget>
        </item>
-       <item row="10" column="1" >
-        <spacer name="verticalSpacer_5" >
-         <property name="orientation" >
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0" >
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
        <item row="8" column="1" colspan="2" >
         <widget class="QCheckBox" name="neutralCheckBox" >
          <property name="text" >
@@ -677,74 +677,6 @@
           <string>Male/female have different conjugations</string>
          </property>
         </widget>
-       </item>
-      </layout>
-      <zorder>TextLabel4_2_2</zorder>
-      <zorder>dualLabel</zorder>
-      <zorder>TextLabel4_3</zorder>
-      <zorder>pers1_label</zorder>
-      <zorder>first_singular</zorder>
-      <zorder>dualFirstLineEdit</zorder>
-      <zorder>first_plural</zorder>
-      <zorder>pers2_label</zorder>
-      <zorder>second_singular</zorder>
-      <zorder>dualSecondLineEdit</zorder>
-      <zorder>second_plural</zorder>
-      <zorder>pers3_label</zorder>
-      <zorder>male_c_label</zorder>
-      <zorder>thirdM_singular</zorder>
-      <zorder>dualThirdMaleLineEdit</zorder>
-      <zorder>thirdM_plural</zorder>
-      <zorder>female_c_label</zorder>
-      <zorder>thirdF_singular</zorder>
-      <zorder>dualThirdFemaleLineEdit</zorder>
-      <zorder>thirdF_plural</zorder>
-      <zorder>natural_c_label</zorder>
-      <zorder>thirdN_singular</zorder>
-      <zorder>dualThirdNeutralLineEdit</zorder>
-      <zorder>thirdN_plural</zorder>
-      <zorder>dualCheckBox</zorder>
-      <zorder>neutralCheckBox</zorder>
-      <zorder>maleFemaleDifferCheckBox</zorder>
-     </widget>
-     <widget class="QWidget" name="tab_5" >
-      <attribute name="title" >
-       <string>Declensions</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_2" >
-       <item>
-        <widget class="QLabel" name="label" >
-         <property name="text" >
-          <string comment="KDE::DoNotExtract" >Placeholder! A list of cases (possibility to rename them?) should be here</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QGridLayout" name="gridLayout_4" >
-         <item row="0" column="0" >
-          <widget class="QCheckBox" name="checkBox" >
-           <property name="text" >
-            <string>Case Name</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1" >
-          <widget class="KLineEdit" name="klineedit" />
-         </item>
-        </layout>
-       </item>
-       <item>
-        <spacer name="verticalSpacer_4" >
-         <property name="orientation" >
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0" >
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>
@@ -830,19 +762,6 @@
            </property>
           </spacer>
          </item>
-         <item>
-          <widget class="QPushButton" name="cleanUpButton" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text" >
-            <string>&amp;Clean Up</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
       </layout>
@@ -909,9 +828,6 @@
   <tabstop>newButton</tabstop>
   <tabstop>modifyButton</tabstop>
   <tabstop>deleteButton</tabstop>
-  <tabstop>cleanUpButton</tabstop>
-  <tabstop>klineedit</tabstop>
-  <tabstop>checkBox</tabstop>
  </tabstops>
  <resources/>
  <connections/>
