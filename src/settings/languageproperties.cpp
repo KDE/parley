@@ -60,7 +60,6 @@ kDebug() << "accept";
         } else {
             // page is disabled, delete the language
             if (index < m_doc->identifierCount()) {
-//                 kDebug() << "Delete Language: " << m_deleteList.value(index);
                 if ( KMessageBox::warningYesNo(this, i18n("Really delete language: %1?", m_doc->identifier(index-deleted).name()), i18n("Remove Language")) == KMessageBox::Yes ) {
                     m_doc->removeIdentifier(index-deleted);
                     m_doc->setModified();

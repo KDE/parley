@@ -686,14 +686,7 @@
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout" >
        <item>
-        <widget class="QLabel" name="label_2" >
-         <property name="text" >
-          <string>Note: Tense definitions are shared between all languages.</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QListWidget" name="optionsList" >
+        <widget class="QListWidget" name="tenseList" >
          <property name="selectionBehavior" >
           <enum>QAbstractItemView::SelectRows</enum>
          </property>
@@ -824,7 +817,7 @@
   <tabstop>neutralCheckBox</tabstop>
   <tabstop>dualCheckBox</tabstop>
   <tabstop>ktabwidget</tabstop>
-  <tabstop>optionsList</tabstop>
+  <tabstop>tenseList</tabstop>
   <tabstop>newButton</tabstop>
   <tabstop>modifyButton</tabstop>
   <tabstop>deleteButton</tabstop>

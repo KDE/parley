@@ -55,15 +55,20 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
         localeComboBox->addItem( language, languageCodeMap.value(language) );
     }
 
-    localeComboBox->setCurrentIndex(localeComboBox->findData(
-        m_doc->identifier(m_identifierIndex).locale()));
+    
+    QString currentIcon;
 
-    identifierNameLineEdit->setText(m_doc->identifier(m_identifierIndex).name());
+    if (m_identifierIndex < m_doc->identifierCount()) {
+        localeComboBox->setCurrentIndex(localeComboBox->findData(
+            m_doc->identifier(m_identifierIndex).locale()));
+
+        identifierNameLineEdit->setText(m_doc->identifier(m_identifierIndex).name());
         
-    // icons
-    LanguageSettings currentSettings(m_doc->identifier(m_identifierIndex).locale());
-    currentSettings.readConfig();
-    QString currentIcon = currentSettings.icon();
+        // icons
+        LanguageSettings currentSettings(m_doc->identifier(m_identifierIndex).locale());
+        currentSettings.readConfig();
+        currentIcon = currentSettings.icon();
+    }
 
     iconComboBox->addItem(i18n("No icon"));
 
@@ -98,72 +103,74 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
         keyboardLayoutComboBox->addItems(layouts);
         keyboardLayoutComboBox->setEnabled(true);
 
-        LanguageSettings settings(m_doc->identifier(m_identifierIndex).locale());
-        settings.readConfig();
-
-        if (!settings.keyboardLayout().isEmpty()) {
-            keyboardLayoutComboBox->setCurrentIndex(keyboardLayoutComboBox->findText(settings.keyboardLayout()));
-        } else {
-            QDBusReply<QString> currentLayout = kxbk.call("getCurrentLayout");
-            keyboardLayoutComboBox->setCurrentIndex(keyboardLayoutComboBox->findText(currentLayout));
+        QDBusReply<QString> currentLayout = kxbk.call("getCurrentLayout");
+        keyboardLayoutComboBox->setCurrentIndex(keyboardLayoutComboBox->findText(currentLayout));
+        if (m_identifierIndex < m_doc->identifierCount()) {
+            LanguageSettings settings(m_doc->identifier(m_identifierIndex).locale());
+            settings.readConfig();
+            if (!settings.keyboardLayout().isEmpty()) {
+                keyboardLayoutComboBox->setCurrentIndex(keyboardLayoutComboBox->findText(settings.keyboardLayout()));
+	    }
         }
     } else {
         kDebug() << "kxkb dbus error";
         keyboardLayoutComboBox->setEnabled(false);
     }
 
+    if (m_identifierIndex < m_doc->identifierCount()) {
+        // articles
+        KEduVocArticle articles = m_doc->identifier(m_identifierIndex).article();
 
-    // articles
-    KEduVocArticle articles = m_doc->identifier(m_identifierIndex).article();
+        def_male->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Definite | KEduVocWordFlag::Masculine ));
+        indef_male->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Masculine ));
 
-    def_male->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Definite | KEduVocWordFlag::Masculine ));
-    indef_male->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Masculine ));
+        def_female->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Definite | KEduVocWordFlag::Feminine ));
+        indef_female->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Feminine ));
 
-    def_female->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Definite | KEduVocWordFlag::Feminine ));
-    indef_female->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Feminine ));
-
-    def_natural->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Definite | KEduVocWordFlag::Neuter ));
-    indef_natural->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Neuter ));
-
-
-    def_male_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Definite | KEduVocWordFlag::Masculine ));
-    indef_male_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Masculine ));
-
-    def_female_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Definite | KEduVocWordFlag::Feminine ));
-    indef_female_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Feminine ));
-
-    def_natural_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Definite | KEduVocWordFlag::Neuter ));
-    indef_natural_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Neuter ));
+        def_natural->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Definite | KEduVocWordFlag::Neuter ));
+        indef_natural->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Neuter ));
 
 
-    // personal pronouns
-    const KEduVocWordFlags numS = KEduVocWordFlag::Singular;
-    const KEduVocWordFlags numD = KEduVocWordFlag::Dual;
-    const KEduVocWordFlags numP = KEduVocWordFlag::Plural;
+        def_male_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Definite | KEduVocWordFlag::Masculine ));
+        indef_male_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Masculine ));
 
-    KEduVocPersonalPronoun pronoun = m_doc->identifier(identifierIndex).personalPronouns();
+        def_female_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Definite | KEduVocWordFlag::Feminine ));
+        indef_female_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Feminine ));
 
-    first_singular->setText(pronoun.personalPronoun(KEduVocWordFlag::First | numS));
-    second_singular->setText(pronoun.personalPronoun(KEduVocWordFlag::Second | numS));
-    thirdM_singular->setText(pronoun.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | numS));
-    thirdF_singular->setText(pronoun.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | numS));
-    thirdN_singular->setText(pronoun.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | numS));
+        def_natural_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Definite | KEduVocWordFlag::Neuter ));
+        indef_natural_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Neuter ));
 
-    dualFirstLineEdit->setText(pronoun.personalPronoun(KEduVocWordFlag::First | numD));
-    dualSecondLineEdit->setText(pronoun.personalPronoun(KEduVocWordFlag::Second | numD));
-    dualThirdMaleLineEdit->setText(pronoun.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | numD));
-    dualThirdFemaleLineEdit->setText(pronoun.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | numD));
-    dualThirdNeutralLineEdit->setText(pronoun.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | numD));
 
-    first_plural->setText(pronoun.personalPronoun(KEduVocWordFlag::First | numP));
-    second_plural->setText(pronoun.personalPronoun(KEduVocWordFlag::Second | numP));
-    thirdM_plural->setText(pronoun.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | numP));
-    thirdF_plural->setText(pronoun.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | numP));
-    thirdN_plural->setText(pronoun.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | numP));
+        // personal pronouns
+        const KEduVocWordFlags numS = KEduVocWordFlag::Singular;
+        const KEduVocWordFlags numD = KEduVocWordFlag::Dual;
+        const KEduVocWordFlags numP = KEduVocWordFlag::Plural;
 
-    maleFemaleDifferCheckBox->setChecked(pronoun.maleFemaleDifferent());
-    neutralCheckBox->setChecked(pronoun.neutralExists());
-    dualCheckBox->setChecked(pronoun.dualExists());
+        KEduVocPersonalPronoun pronoun = m_doc->identifier(identifierIndex).personalPronouns();
+
+        first_singular->setText(pronoun.personalPronoun(KEduVocWordFlag::First | numS));
+        second_singular->setText(pronoun.personalPronoun(KEduVocWordFlag::Second | numS));
+        thirdM_singular->setText(pronoun.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | numS));
+        thirdF_singular->setText(pronoun.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | numS));
+        thirdN_singular->setText(pronoun.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | numS));
+
+        dualFirstLineEdit->setText(pronoun.personalPronoun(KEduVocWordFlag::First | numD));
+        dualSecondLineEdit->setText(pronoun.personalPronoun(KEduVocWordFlag::Second | numD));
+        dualThirdMaleLineEdit->setText(pronoun.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | numD));
+        dualThirdFemaleLineEdit->setText(pronoun.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | numD));
+        dualThirdNeutralLineEdit->setText(pronoun.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | numD));
+
+        first_plural->setText(pronoun.personalPronoun(KEduVocWordFlag::First | numP));
+        second_plural->setText(pronoun.personalPronoun(KEduVocWordFlag::Second | numP));
+        thirdM_plural->setText(pronoun.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | numP));
+        thirdF_plural->setText(pronoun.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | numP));
+        thirdN_plural->setText(pronoun.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | numP));
+
+        maleFemaleDifferCheckBox->setChecked(pronoun.maleFemaleDifferent());
+        neutralCheckBox->setChecked(pronoun.neutralExists());
+        dualCheckBox->setChecked(pronoun.dualExists());
+    }
+
     // update shown labels etc...
     updateCheckBoxes();
 
@@ -172,30 +179,30 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
     connect(dualCheckBox, SIGNAL(toggled(bool)), SLOT(updateCheckBoxes()));
 
     // tenses
-    connect(optionsList,   SIGNAL(currentRowChanged(int)), this, SLOT(slotTenseChosen(int)));
+    connect(tenseList,   SIGNAL(currentRowChanged(int)), this, SLOT(slotTenseChosen(int)));
     connect(deleteButton,  SIGNAL(clicked()),              this, SLOT(slotDeleteTense()));
     connect(modifyButton,  SIGNAL(clicked()),              this, SLOT(slotModifyTense()));
     connect(newButton,     SIGNAL(clicked()),              this, SLOT(slotNewTense()));
 
-    m_doc = doc;
 
-    int i = 1;
-    foreach(const QString &tenseName, m_doc->identifier(m_identifierIndex).tenseList()) {
-        optionsList->addItem(QString("%1").arg(i++, 2).append(TENSE_TAG).append(tenseName));
-        tenseIndex.append(i);
+    if (m_identifierIndex < m_doc->identifierCount()) {
+        int i = 1;
+        foreach(const QString &tenseName, m_doc->identifier(m_identifierIndex).tenseList()) {
+            tenseList->addItem(QString("%1").arg(i++, 2).append(TENSE_TAG).append(tenseName));
+            tenseIndex.append(i);
+        }
     }
 
     m_currentTense = 0;
-    if (optionsList->count() > 0) {
-        optionsList->setCurrentRow(m_currentTense);
+    if (tenseList->count() > 0) {
+        tenseList->setCurrentRow(m_currentTense);
     }
 
-    modifyButton->setEnabled(optionsList->count() > 0);
-    deleteButton->setEnabled(optionsList->count() > 0);
+    modifyButton->setEnabled(tenseList->count() > 0);
+    deleteButton->setEnabled(tenseList->count() > 0);
 
-    optionsList->setFocus();
+    tenseList->setFocus();
 }
-
 
 void LanguagePropertiesPage::accept()
 {
@@ -287,8 +294,8 @@ void LanguagePropertiesPage::accept()
     QStringList tenses;
 
     QString str;
-    for (int i = 0; i < (int) optionsList->count(); i++) {
-        str = optionsList->item(i)->text();
+    for (int i = 0; i < (int) tenseList->count(); i++) {
+        str = tenseList->item(i)->text();
         tenses.append(str.mid(str.indexOf(TENSE_TAG) + QString(TENSE_TAG).length()));
     }
 
@@ -357,20 +364,20 @@ void LanguagePropertiesPage::slotNewTense()
         return;
 
     QString str;
-    int i = optionsList->count() + 1;
-    optionsList->addItem(QString("%1").arg(i, 2).append(TENSE_TAG).append(getTense.simplified()));
+    int i = tenseList->count() + 1;
+    tenseList->addItem(QString("%1").arg(i, 2).append(TENSE_TAG).append(getTense.simplified()));
     tenseIndex.append(-(i - 1));
 
-    m_currentTense = optionsList->count();
-    optionsList->setCurrentRow(i - 1);
+    m_currentTense = tenseList->count();
+    tenseList->setCurrentRow(i - 1);
     modifyButton->setEnabled(true);
     deleteButton->setEnabled(true);
 }
 
 void LanguagePropertiesPage::slotModifyTense()
 {
-    if (optionsList->count() != 0 && (int) optionsList->count() > m_currentTense) {
-        QString str = optionsList->item(m_currentTense)->text();
+    if (tenseList->count() != 0 && (int) tenseList->count() > m_currentTense) {
+        QString str = tenseList->item(m_currentTense)->text();
         str = str.mid(str.indexOf(TENSE_TAG) + QString(TENSE_TAG).length());
 
         bool ok;
@@ -379,26 +386,26 @@ void LanguagePropertiesPage::slotModifyTense()
             return;
 
         int i = m_currentTense + 1;
-        optionsList->item(m_currentTense)->setText(QString("%1").arg(i, 2).append(TENSE_TAG).append(getTense.simplified()));
+        tenseList->item(m_currentTense)->setText(QString("%1").arg(i, 2).append(TENSE_TAG).append(getTense.simplified()));
     }
 }
 
 void LanguagePropertiesPage::updateListBox(int start)
 {
     QString str;
-    for (int i = start; i < (int) optionsList->count(); i++) {
-        str = optionsList->item(i)->text();
+    for (int i = start; i < (int) tenseList->count(); i++) {
+        str = tenseList->item(i)->text();
         str = str.mid(str.indexOf(TENSE_TAG) + QString(TENSE_TAG).length());
-        optionsList->item(i)->setText(QString("%1").arg(i + 1, 2).append(TENSE_TAG).append(str));
+        tenseList->item(i)->setText(QString("%1").arg(i + 1, 2).append(TENSE_TAG).append(str));
     }
 }
 
 void LanguagePropertiesPage::slotDeleteTense()
 {
     int act = m_currentTense;
-    if (optionsList->count() > 0 && (int) optionsList->count() > act) {
+    if (tenseList->count() > 0 && (int) tenseList->count() > act) {
 
-        QString t = optionsList->item(act)->text();
+        QString t = tenseList->item(act)->text();
 
         foreach (KEduVocExpression *exp, m_doc->lesson()->entries(KEduVocLesson::Recursive)) {
             for (int lang = 0; lang < m_doc->identifierCount(); lang++) {
@@ -409,19 +416,19 @@ void LanguagePropertiesPage::slotDeleteTense()
             }
         }
 
-        delete optionsList->takeItem(act);
+        delete tenseList->takeItem(act);
         tenseIndex.erase(tenseIndex.begin() + act);
 
-        if ((int) optionsList->count() <= act)
-            act = optionsList->count() - 1;
+        if ((int) tenseList->count() <= act)
+            act = tenseList->count() - 1;
         else
             updateListBox(act); // update items after current
 
         if (act >= 0)
-            optionsList->setCurrentRow(act);
+            tenseList->setCurrentRow(act);
     }
-    modifyButton->setEnabled(optionsList->count() > 0);
-    deleteButton->setEnabled(optionsList->count() > 0);
+    modifyButton->setEnabled(tenseList->count() > 0);
+    deleteButton->setEnabled(tenseList->count() > 0);
 }
 
 #include "languagepropertiespage.moc"
