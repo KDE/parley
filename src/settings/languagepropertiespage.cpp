@@ -319,7 +319,7 @@ void LanguagePropertiesPage::updateCheckBoxes()
     dualThirdFemaleLineEdit->setVisible(dual && maleFemale);
 
     if ( !maleFemale ) {
-        natural_c_label->setVisible(true);
+        natural_c_label->setVisible(false);
         thirdN_singular->setVisible(true);
         thirdN_plural->setVisible(true);
         dualThirdNeutralLineEdit->setVisible(dual);
