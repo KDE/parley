@@ -76,7 +76,7 @@ kDebug() << "accept";
 void LanguageProperties::slotAppendIdentifier()
 {
     // if a page that was "removed" is selected, simply enable it again to not delete it.
-    if (!currentPage()->isEnabled()) {
+    if (currentPage() && !currentPage()->isEnabled()) {
         currentPage()->setEnabled(true);
         return;
     }
