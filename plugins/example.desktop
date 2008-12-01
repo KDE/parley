@@ -36,6 +36,7 @@ Comment[pt]=Este programa de exemplo oferece duas acções: 1) Move o vocabulár
 Comment[pt_BR]=Este programa de exemplo oferece duas acções: 1) Move o vocabulário seleccionado para uma lição diferente 2) Muda a nota das palavras seleccionadas para sabida (nota mais alta)
 Comment[sv]=Exempelskriptet erbjuder två åtgärder: 1) Flytta valt ordförråt till en annan lektion,  2) Ändra betyg för valda ord till kända (högsta betyget)
 Comment[uk]=Цей скрипт-зразок виконує дві функції: 1) Переміщує вибраний словник до іншого уроку. 2) Змінює клас вибраних слів на відому (найвищий клас).
+Comment[x-test]=xxThis example script offers two actions: 1) Move selected vocabulary to a different lesson 2) Change the grade of selected words to known (highest grade)xx
 Comment[zh_TW]=此範例提供兩個動作：1) 將選取的字彙移到不同的課程中。2) 變更所選取的單字的等級。
 Script=example.py
 
