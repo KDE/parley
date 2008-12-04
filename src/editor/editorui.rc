@@ -4,7 +4,7 @@
 
 <MenuBar>
   <Menu name="edit" >
-      <text>Edit</text>
+      <text>&amp;Edit</text>
       <Separator/>
       <Action name="edit_languages" />
       <Separator/>
@@ -15,7 +15,7 @@
       <Action name="vocab_remove_grades" />
   </Menu>
   <Menu name="view" >
-      <text>View</text>
+      <text>&amp;View</text>
       <Action name="show_vocabulary_columns_menu" />
       <Action name="show_vocabulary_columns_dialog" />
       <Separator/>
