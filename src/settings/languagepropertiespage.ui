@@ -408,7 +408,7 @@
      </widget>
      <widget class="QWidget" name="tab_3" >
       <attribute name="title" >
-       <string>Personal Prounouns</string>
+       <string>Personal Pronouns</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2" >
        <item row="0" column="0" >
