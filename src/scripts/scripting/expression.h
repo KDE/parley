@@ -12,8 +12,8 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-#ifndef SCRIPTINGSCRIPTOBJECTENTRY_H
-#define SCRIPTINGSCRIPTOBJECTENTRY_H
+#ifndef SCRIPTINGEXPRESSION_H
+#define SCRIPTINGEXPRESSION_H
 
 #include <keduvocexpression.h>
 
