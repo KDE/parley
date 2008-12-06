@@ -55,7 +55,6 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
         localeComboBox->addItem( language, languageCodeMap.value(language) );
     }
 
-    
     QString currentIcon;
 
     if (m_identifierIndex < m_doc->identifierCount()) {
@@ -70,11 +69,7 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
         currentIcon = currentSettings.icon();
     }
 
-    iconComboBox->addItem(i18n("No icon"));
-
     QStringList countrylist = KGlobal::locale()->allCountriesList();
-    countrylist.sort();
-
     foreach(const QString &code, countrylist) {
         QString country = KGlobal::dirs()->findResource("locale",
                 QString("l10n/%1/entry.desktop").arg(code));
@@ -88,12 +83,19 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
 
         iconComboBox->addItem(QIcon(pixmap), name, pixmap);
     }
-
-    iconComboBox->setCurrentIndex(iconComboBox->findData(currentIcon));
+    // sort the list by country name
+    iconComboBox->model()->sort(0);
+    // prepend no icon
+    iconComboBox->insertItem(0, i18n("No icon"));
+    int currentIconPosition = iconComboBox->findData(currentIcon);
+    if (currentIconPosition >= 0) {
+        iconComboBox->setCurrentIndex(currentIconPosition);
+    } else {
+        iconComboBox->setCurrentIndex(0);
+    }
 
     // keyboard layout
     // try to talk to kxbk - get a list of keyboard layouts
-
     QDBusInterface kxbk("org.kde.kxkb", "/kxkb", "org.kde.KXKB");
     QDBusReply<QStringList> reply = kxbk.call("getLayoutsList");
     if (reply.isValid()) {
