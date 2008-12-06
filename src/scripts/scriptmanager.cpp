@@ -20,7 +20,7 @@
 #include <KServiceTypeTrader>
 #include <QFileInfo>
 #include <KActionCollection>
-#include <KMessageBox>
+#include <KPassivePopup>
 
 #include <kross/core/action.h>
 #include <kross/core/manager.h>
@@ -118,8 +118,9 @@ void ScriptManager::loadScripts()
         s->activate();
         m_scripts.push_back ( s );
         //inform with a message box when a script could not be activated
-        if ( !s->isActivated() )
-            KMessageBox::information ( m_editor, i18n ( "The following script could not be activated due to errors in the script:\n" ) +script,"Script Activation" );
+        if ( !s->isActivated() ) {
+            KPassivePopup::message("Script Activation", i18n("The following script could not be activated due to errors in the script:\n" ) + script , m_editor);
+        }
     }
 }
 
