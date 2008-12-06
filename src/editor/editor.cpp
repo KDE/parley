@@ -58,8 +58,7 @@
 
 #include "modeltest/modeltest.h"
 
-Editor::Editor(ParleyMainWindow* parent) : KXmlGuiWindow(parent), m_mainWindow(parent),
-        m_searchLine(0), m_searchWidget(0)
+Editor::Editor(ParleyMainWindow* parent) : KXmlGuiWindow(parent), m_mainWindow(parent)
 {
     // KXmlGui
     setXMLFile("editorui.rc");
@@ -73,25 +72,10 @@ Editor::Editor(ParleyMainWindow* parent) : KXmlGuiWindow(parent), m_mainWindow(p
     initModel();
 
     initDockWidgets();
-
     initActions();
-
-    // these connects need the model to exist
-//     QAction * actionRestoreNativeOrder = actionCollection()->action("restore_native_order");
-//     m_tableView->horizontalHeader()->addAction(actionRestoreNativeOrder);
-//     connect(actionRestoreNativeOrder, SIGNAL(triggered()), m_sortFilterModel, SLOT(restoreNativeOrder()));
-
     initScripts();
 
     connect(parent, SIGNAL(documentChanged()), this, SLOT(updateDocument()));
-}
-
-void Editor::slotConfigShowSearch()
-{
-    if (m_searchWidget) {
-        m_searchWidget->setVisible(m_searchWidget->isHidden());
-        Prefs::setShowSearch(m_searchWidget->isVisible());
-    }
 }
 
 void Editor::updateDocument()
@@ -516,6 +500,12 @@ void Editor::initView()
     rightLayout->addWidget(m_vocabularyView, 1, 0);
 
     topLayout->addLayout(rightLayout);
+}
+
+void Editor::slotConfigShowSearch()
+{
+    m_searchWidget->setVisible(m_searchWidget->isHidden());
+    Prefs::setShowSearch(m_searchWidget->isVisible());
 }
 
 void Editor::slotShowScriptManager() {

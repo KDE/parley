@@ -18,16 +18,18 @@
 #include "vocabularymodel.h"
 
 VocabularyFilter::VocabularyFilter(QObject *parent)
- : QSortFilterProxyModel(parent)
+ : QSortFilterProxyModel(parent), m_model(0)
 {
-    m_model = 0;
     // do not use capitalization for searches
     setSortCaseSensitivity(Qt::CaseInsensitive);
     setFilterCaseSensitivity(Qt::CaseInsensitive);
     // sort locale aware: at least puts umlauts and accents in the right position.
     // Not sure about languages that are more different.
     // Also depends on the current locale.
-    setSortLocaleAware ( true );
+    setSortLocaleAware(true);
+
+    // eventually accept only one language if so desired...
+    setFilterKeyColumn(-1);
 }
 
 QModelIndex VocabularyFilter::appendEntry(KEduVocExpression *expression)
@@ -46,13 +48,24 @@ void VocabularyFilter::setSourceModel(VocabularyModel * model)
 
 void VocabularyFilter::setSearchString(const QString & expression)
 {
-    // maybe use reg exp for advanced stuff
-    setFilterFixedString(expression);
+    m_filterString = expression;
+    reset();
+}
 
-    // eventually accept only one language if so desired...
-    setFilterKeyColumn(-1);
+bool VocabularyFilter::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
+{
+    if(m_filterString.isEmpty()) {
+        return true;
+    }
 
-    invalidateFilter();
+    int columns = m_model->columnCount(QModelIndex());
+    for(int i=0; i < columns; i += VocabularyModel::EntryColumnsMAX) {
+        QModelIndex index = sourceModel()->index(sourceRow, i, sourceParent);
+        if(sourceModel()->data(index).toString().contains(m_filterString, Qt::CaseInsensitive)) {
+            return true;
+        }
+    }
+    return false;
 }
 
 KEduVocLesson * VocabularyFilter::lesson()
@@ -62,7 +75,6 @@ KEduVocLesson * VocabularyFilter::lesson()
     }
     return 0;
 }
-
 
 #include "vocabularyfilter.moc"
 

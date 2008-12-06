@@ -36,8 +36,12 @@ public:
 public slots:
     void setSearchString(const QString& expression);
 
+protected:
+    virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
+
 private:
     VocabularyModel * m_model;
+    QString m_filterString;
 };
 
 #endif

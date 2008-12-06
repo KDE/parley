@@ -31,7 +31,7 @@ class VocabularyModel : public QAbstractTableModel
 Q_OBJECT
 public:
     enum entryColumns {
-        Translation,
+        Translation = 0,
         Pronunciation,
         WordType,
         Synonym,
