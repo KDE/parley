@@ -58,15 +58,11 @@
 
 #include "modeltest/modeltest.h"
 
-Editor::Editor(ParleyMainWindow* parent) : KXmlGuiWindow(parent), m_mainWindow(parent)
+Editor::Editor(ParleyMainWindow* parent) : KXmlGuiWindow(parent), m_mainWindow(parent),
+        m_searchLine(0), m_searchWidget(0)
 {
+    // KXmlGui
     setXMLFile("editorui.rc");
-
-    m_searchLine = 0;
-    m_searchWidget = 0;
-    m_conjugationWidget = 0;
-
-//     m_entryDlg = 0;
 
     setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
     setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
@@ -242,7 +238,6 @@ void Editor::initDockWidgets()
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
             declensionWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
-
 // Comparison forms
     QDockWidget *comparisonDock = new QDockWidget(i18n("Comparison forms"), this);
     comparisonDock->setObjectName("ComparisonDock");
@@ -255,7 +250,6 @@ void Editor::initDockWidgets()
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         comparisonWidget, SLOT(setTranslation(KEduVocExpression*, int)));
     connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), comparisonWidget, SLOT(setDocument(KEduVocDocument*)));
-
 
 // Multiple choice
     QDockWidget *multipleChoiceDock = new QDockWidget(i18n("Multiple Choice"), this);
@@ -366,14 +360,6 @@ void Editor::initDockWidgets()
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
             htmlPart, SLOT(setTranslation(KEduVocExpression*, int)));
 
-// Marble
-//     QDockWidget *marbleDock = new QDockWidget(i18n("Marble"), this);
-//     marbleDock->setObjectName("MarbleDock");
-//     MarbleWidget *marbleWidget = new MarbleWidget(this);
-//     marbleDock->setWidget(marbleWidget);
-//     addDockWidget(Qt::RightDockWidgetArea, marbleDock);
-
-
 // Grades
 //     QDockWidget *gradeDock = new QDockWidget(i18n("Grade"), this);
 //     gradeDock->setObjectName("gradeDock");
@@ -462,18 +448,8 @@ void Editor::initActions()
     m_vocabShowSearchBarAction->setStatusTip(m_vocabShowSearchBarAction->whatsThis());
     m_vocabShowSearchBarAction->setChecked(Prefs::showSearch());
 
-// -- ONLY ON RIGHT CLICK - HEADER SO FAR -------------------------------------
-    ///@todo what about this one...?
-//     KAction *actionRestoreNativeOrder = new KAction(this);
-//     actionCollection()->addAction("restore_native_order", actionRestoreNativeOrder);
-//     actionRestoreNativeOrder->setText(i18n("Restore Native Order"));
-
     ///@todo: this action and some of the standard actions don't show up here (Cut, Copy, Paste, Select All, Deselect)
     KAction* findVocabulary = KStandardAction::find(m_searchLine, SLOT(setFocus()), actionCollection());
-
-// SCRIPTS MENU
-//     QMenu * scriptsMenu = menuBcar()->addMenu(i18n("Scripts"));
-//     scriptsMenu->addAction(i18n("Test"));
 
     //Script Manager Menu Action
     KAction* menu_scriptManager =new KAction(this);
@@ -486,14 +462,12 @@ void Editor::initActions()
 void Editor::initModel()
 {
     m_vocabularyModel = new VocabularyModel(this);
-
     m_vocabularyFilter = new VocabularyFilter(this);
     m_vocabularyFilter->setSourceModel(m_vocabularyModel);
     m_vocabularyView->setModel(m_vocabularyFilter);
 
     connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyModel, SLOT(setDocument(KEduVocDocument*)));
     connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(setDocument(KEduVocDocument*)));
-
     connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_vocabularyFilter, SLOT(setSearchString(const QString&)));
 }
 

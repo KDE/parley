@@ -112,6 +112,7 @@ private:
     VocabularyView *m_vocabularyView;
     VocabularyFilter *m_vocabularyFilter;
 
+    KLineEdit           *m_searchLine;
     QWidget *m_searchWidget;
 
     /** Show a single conjugation and let the user edit it */
@@ -127,8 +128,6 @@ private:
 
     LeitnerView *m_leitnerView;
     LeitnerModel *m_leitnerModel;
-
-    KLineEdit           *m_searchLine;
 
     friend class ParleyDocument;
     friend class Scripting::Parley;
