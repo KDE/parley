@@ -119,7 +119,7 @@ void ScriptManager::loadScripts()
         m_scripts.push_back ( s );
         //inform with a message box when a script could not be activated
         if ( !s->isActivated() ) {
-            KPassivePopup::message("Script Activation", i18n("The following script could not be activated due to errors in the script:\n" ) + script , m_editor);
+            KPassivePopup::message(i18n("Script Activation"), i18n("The following script could not be activated due to errors in the script:\n" ) + script , m_editor);
         }
     }
 }
