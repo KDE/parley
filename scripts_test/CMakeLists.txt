@@ -9,4 +9,4 @@ set(scripts_SRCS main.cpp scripts.cpp translationscript.cpp)
  
 kde4_add_executable(scripts ${scripts_SRCS})
 
-target_link_libraries(scripts ${KDE4_KROSSCORE_LIBS} ${KDE4_KROSSUI_LIBS} ${QT_QTCORE_LIBRARY})
+target_link_libraries(scripts ${KDE4_KROSSCORE_LIBS} ${KDE4_KROSSUI_LIBS} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} )
