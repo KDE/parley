@@ -89,8 +89,6 @@ void LanguageProperties::slotAppendIdentifier()
 void LanguageProperties::slotDeleteIdentifier()
 {
     currentPage()->setEnabled(false);
-
-    int index = m_pages.indexOf(currentPage());
 }
 
 void LanguageProperties::pageIconChanged(const QString & newIcon)
