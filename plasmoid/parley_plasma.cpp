@@ -175,7 +175,7 @@ void ParleyPlasma::createConfigurationInterface(KConfigDialog * parent)
 
     ui.filechooser->setUrl(m_sourceFile);
     ui.filechooser->setFilter(i18n("*.kvtml|Vocabulary Collections"));
-
+    connect(ui.filechooser, SIGNAL(urlSelected (const KUrl &)), this, SLOT(urlSelected (const KUrl &)));
     ui.language1->addItems(m_languages);
     ui.language2->addItems(m_languages);
     ui.language1->setCurrentIndex(m_lang1);
@@ -189,6 +189,26 @@ void ParleyPlasma::createConfigurationInterface(KConfigDialog * parent)
         ui.solutionAlways->setChecked(true);
         break;
     }
+}
+
+void ParleyPlasma::urlSelected (const KUrl &file)
+{
+    // turn off old engine
+    m_engine->disconnectSource(m_sourceFile.url(), this);
+    // connect to new file
+    m_sourceFile = ui.filechooser->url();
+    m_engine->connectSource(m_sourceFile.url(), this, m_updateInterval);
+    // get language data
+    Plasma::DataEngine::Data data = m_engine->query(m_sourceFile.url());
+    m_languages = data.keys();
+    // update language selection
+    ui.language1->clear();
+    ui.language2->clear();
+    ui.language1->addItems(m_languages);
+    ui.language2->addItems(m_languages);
+    // just select the first languages - better than nothing ;)
+    ui.language1->setCurrentIndex(0);
+    ui.language2->setCurrentIndex(1);
 }
 
 void ParleyPlasma::showFontSelectDlg()
@@ -207,6 +227,7 @@ void ParleyPlasma::configAccepted()
     m_updateInterval = ui.updateIntervalSpinBox->value()*1000;
     cg.writeEntry("updateInterval", m_updateInterval);
 
+    m_engine->disconnectSource(m_sourceFile.url(), this);
     m_sourceFile = ui.filechooser->url();
     cg.writeEntry("File Name", m_sourceFile);
 
@@ -223,7 +244,7 @@ void ParleyPlasma::configAccepted()
     cg.writeEntry("Top Language", m_lang1);
     cg.writeEntry("Bottom Language", m_lang2);
 
-    m_engine->disconnectSource(m_sourceFile.url(), this);
+
     m_engine->connectSource(m_sourceFile.url(), this, m_updateInterval);
 
     kDebug() << "open:" << m_sourceFile;
