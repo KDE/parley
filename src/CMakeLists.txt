@@ -13,12 +13,11 @@ if(HAVE_LIBXSLT)
     include_directories( ${LIBXML2_INCLUDE_DIR} ${LIBXSLT_INCLUDE_DIR} )
 
     set(export_SRCS
-        export/export.cpp
-        export/xsldialog.cpp
+        export/exportdialog.cpp
     )
 
     kde4_add_ui_files( export_SRCS
-        export/xsldialog.ui
+        export/exportdialog.ui
     )
 endif(HAVE_LIBXSLT)
 

@@ -11,8 +11,9 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "xsldialog.h"
+#include "exportdialog.h"
 
+#include <parleydocument.h>
 #include <keduvocdocument.h>
 #include <keduvockvtml2writer.h>
 
@@ -34,10 +35,10 @@
 #include <libxslt/transform.h>
 #include <libxslt/xsltutils.h>
 
-XslDialog::XslDialog(const KUrl &file, KEduVocDocument *doc, QWidget *parent)
+ExportDialog::ExportDialog(ParleyDocument *doc, QWidget *parent) : KDialog(parent)
 {
     m_doc = doc;
-    m_targetFile = file;
+    m_parent = parent;
 
     ui = new Ui::ExportOptions();
     ui->setupUi(mainWidget());
@@ -45,15 +46,33 @@ XslDialog::XslDialog(const KUrl &file, KEduVocDocument *doc, QWidget *parent)
     setCaption(i18n("Export"));
 }
 
-void XslDialog::accept()
+void ExportDialog::accept()
 {
     KDialog::accept();
+
+    if (ui->csvRadio->isChecked()) {
+        /// Find the CSV filter in the standard filter list
+        //!@todo: good and clean solution
+        QStringList defaultFilters = KEduVocDocument::pattern(KEduVocDocument::Writing).split('\n');
+        QString filter = defaultFilters.filter("csv").join("\n");
+        KUrl filename = getFileName(filter);
+        if(filename != KUrl()) {
+            m_doc->saveAs(filename);
+        }
+        return;
+    }
 
     QString xslFile;
     if (ui->flashCardRadio->isChecked()) {
         xslFile = KStandardDirs::locate( "data", "parley/xslt/flashcards.xsl");
     } else {
         xslFile = KStandardDirs::locate( "data", "parley/xslt/table.xsl");
+    }
+
+    QString filter = "*.html|" + i18n("HTML document");
+    KUrl filename = getFileName(filter);
+    if(filename == KUrl()) {
+        return;
     }
 
     kDebug() << "XSLT starting";
@@ -65,10 +84,10 @@ void XslDialog::accept()
     xmlLoadExtDtdDefaultValue = 1;
     cur = xsltParseStylesheetFile((const xmlChar*) xslFile.toLatin1().constData());
 
-    doc = xmlParseDoc( (const xmlChar*) m_doc->toByteArray(m_doc->generator()).constData() );
+    doc = xmlParseDoc( (const xmlChar*) m_doc->document()->toByteArray(m_doc->document()->generator()).constData() );
 
     res = xsltApplyStylesheet(cur, doc, 0);
-    FILE* result = fopen( (const char*) m_targetFile.toLocalFile().toLatin1(), "w");
+    FILE* result = fopen( (const char*) filename.toLocalFile().toLatin1(), "w");
     xsltSaveResultToFile(result, res, cur);
     fclose(result);
 
@@ -82,4 +101,18 @@ void XslDialog::accept()
     kDebug() << "XSLT finished";
 }
 
-#include "xsldialog.moc"
+KUrl ExportDialog::getFileName(const QString& filter)
+{
+
+    KFileDialog dlg( (m_doc->document()->url().fileName() == i18n("Untitled")) ? "": m_doc->document()->url().path(), filter, m_parent );
+    dlg.setOperationMode( KFileDialog::Saving );
+    dlg.setMode( KFile::File );
+    dlg.setWindowTitle(i18n("Export As"));
+    if (dlg.exec() != QDialog::Accepted) {
+        return KUrl();
+    }
+
+    return dlg.selectedFile();
+}
+
+#include "exportdialog.moc"

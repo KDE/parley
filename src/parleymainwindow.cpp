@@ -316,7 +316,7 @@ void ParleyMainWindow::initActions()
     KAction* fileExport = new KAction(this);
     actionCollection()->addAction("file_export", fileExport);
     fileExport->setText(i18n("&Export..."));
-    connect(fileExport, SIGNAL(triggered(bool)), m_document, SLOT(exportHtmlDialog()));
+    connect(fileExport, SIGNAL(triggered(bool)), m_document, SLOT(exportDialog()));
     fileExport->setIcon(KIcon("document-export"));
     fileExport->setWhatsThis(i18n("Export to HTML or CSV"));
     fileExport->setToolTip(fileExport->whatsThis());

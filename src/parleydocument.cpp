@@ -42,7 +42,7 @@
 #include <QtGui/QPrintDialog>
 
 #ifdef HAVE_LIBXSLT
-#include "export/export.h"
+#include "export/exportdialog.h"
 #include <libxml/parser.h>
 #include <libxml/tree.h>
 #include <libxslt/xslt.h>
@@ -393,10 +393,11 @@ void ParleyDocument::slotGHNS()
     }
 }
 
-void ParleyDocument::exportHtmlDialog()
+void ParleyDocument::exportDialog()
 {
 #ifdef HAVE_LIBXSLT
-    ParleyExport::exportDocument(this, m_parleyApp);
+    ExportDialog dialog(this, m_parleyApp);
+    dialog.exec();
 #endif
 }
 

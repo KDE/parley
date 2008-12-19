@@ -63,7 +63,7 @@ public slots:
     void save();
     void saveAs(KUrl file = KUrl());
 
-    void exportHtmlDialog();
+    void exportDialog();
 
     void newDocument(bool wizard = false);
 

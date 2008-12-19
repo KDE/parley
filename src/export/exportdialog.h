@@ -11,20 +11,31 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef EXPORT_H
-#define EXPORT_H
+#ifndef EXPORTDIALOG_H
+#define EXPORTDIALOG_H
+
+#include "ui_exportdialog.h"
+
+#include <KDialog>
 
 class ParleyDocument;
-class QWidget;
+class KUrl;
 
-class ParleyExport
+class ExportDialog : public KDialog
 {
+Q_OBJECT
 public:
-    static void exportDocument(ParleyDocument* document, QWidget *parent = 0);
+    ExportDialog(ParleyDocument *doc, QWidget *parent = 0);
 
-// private:
-//     ParleyExport(KEduVocDocument* file, QWidget *parent = 0);
+private slots:
+    void accept();
 
+private:
+    KUrl getFileName(const QString& filter);
+
+    Ui::ExportOptions* ui;
+    ParleyDocument *m_doc;
+    QWidget *m_parent;
 };
 
 #endif
