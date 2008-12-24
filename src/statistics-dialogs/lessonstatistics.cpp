@@ -70,7 +70,11 @@ protected:
 
         QRect rect(option.rect);
         rect.adjust(1, 1, -(rect.width()-rect.width()*sum/total)-1, -1);
-        painter->fillRect(rect, linearGrad);
+
+        QPainterPath path;
+        path.addRoundedRect( rect, 2.0, 2.0 );
+        painter->setBrush(QBrush(linearGrad));
+        painter->drawPath(path);
     }
 };
 
