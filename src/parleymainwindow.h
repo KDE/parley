@@ -93,6 +93,9 @@ public slots:
     bool queryClose();
     /** overloaded for Message box on last window exit */
     bool queryExit();
+
+    QSize sizeHint() const;
+
     /** set up options */
     void slotGeneralOptions();
     void slotApplyPreferences();

@@ -75,9 +75,6 @@ ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename
         }
     }
 
-    if (!initialGeometrySet()) {
-        resize(QSize(800, 600).expandedTo(minimumSizeHint()));
-    }
     setupGUI(ToolBar | Keys | StatusBar | Create);
 
     // currently there is no way to remove the mainToolBar that is always there by default (defined in ui_standards.rc)
@@ -242,6 +239,11 @@ bool ParleyMainWindow::queryExit()
         m_document->save();       // save and exit
     }
     return true;
+}
+
+QSize ParleyMainWindow::sizeHint() const
+{
+    return QSize(800, 600).expandedTo(KXmlGuiWindow::minimumSizeHint());
 }
 
 void ParleyMainWindow::tipOfDay() {
