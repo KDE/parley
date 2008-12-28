@@ -74,7 +74,7 @@ void PracticeEntryManager::open(KEduVocDocument* doc)
     filterTestEntries();
     if (m_entriesOriginal.count() == 0) {
         kDebug() << "No entries selected -- aborting";
-        emit signalSetFinished();
+//         emit signalSetFinished();
         return;
     }
 
