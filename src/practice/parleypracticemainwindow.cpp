@@ -39,7 +39,7 @@
 
 
 ParleyPracticeMainWindow::ParleyPracticeMainWindow(KEduVocDocument* doc, QWidget *parent)
-        : KXmlGuiWindow(parent)
+        : KXmlGuiWindow(parent), m_finished(false)
 {
     setXMLFile("parleypracticeui.rc");
     setupBase("themes/default.desktop", doc);
@@ -52,6 +52,11 @@ ParleyPracticeMainWindow::ParleyPracticeMainWindow(KEduVocDocument* doc, QWidget
     // ... and we are done -- start the first question!
     m_manager->slotNewEntry();
 
+}
+
+bool ParleyPracticeMainWindow::finished() const
+{
+    return m_finished;
 }
 
 
@@ -257,6 +262,7 @@ bool ParleyPracticeMainWindow::queryClose()
 
     kDebug() << "Percent: " << m_stats->percentCorrect() << " Attempted: " << m_stats->attempted() << " Correct: " << m_stats->correct();
 
+    m_finished = true;
     emit signalPracticeFinished();
     return true;
 }

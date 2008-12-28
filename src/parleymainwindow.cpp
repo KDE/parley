@@ -197,6 +197,13 @@ void ParleyMainWindow::startPractice()
         } else {
             connect(m_practice, SIGNAL(signalPracticeFinished()), this, SLOT(showWelcomeScreen()));
         }
+        // If starting the practice fails (e.g. there are no entries selected), the signalPracticeFinished() signal
+        // is emitted in the constructor and thus before the connect
+        if (m_practice->finished() && lastComponent == EditorComponent) {
+            showEditor();
+        } else if(m_practice->finished()) {
+            showWelcomeScreen();
+        }
     } else {
         hide();
         TestEntryManager testManager(m_document->document(), this);

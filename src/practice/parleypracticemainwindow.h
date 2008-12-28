@@ -39,6 +39,9 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
         ParleyPracticeMainWindow(class KEduVocDocument * doc = 0, QWidget * parent = 0);
         ~ParleyPracticeMainWindow();
 
+        /// Returns true when the practice is finished
+        bool finished() const;
+
     /// States that the actions can be in -- Check Answer means the next navigation command should check the answer.
     static const int CheckAnswer = 1;
     /// States that the actions can be in -- Continue means the next navigation command should be to move to the next question.
@@ -62,6 +65,8 @@ class ParleyPracticeMainWindow : public KXmlGuiWindow
 
         /// Keeps track of the global action state -- CheckAnswer or Continue.
         int m_state;
+
+        bool m_finished;
 
         /// Sets up the canvas, view, and essetial logic items.
         void setupBase(const QString& desktopFileFilename, class KEduVocDocument * doc = 0);
