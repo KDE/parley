@@ -20,4 +20,7 @@
     <Action name="help_tipofday"/>
   </Menu>
  </MenuBar>
+ <ToolBar noMerge="true" noEdit="true" deleted="true" name="mainToolBar">
+  <text>Main Toolbar</text>
+ </ToolBar>
 </gui>

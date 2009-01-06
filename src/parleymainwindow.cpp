@@ -77,13 +77,6 @@ ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename
 
     setupGUI(ToolBar | Keys | StatusBar | Create);
 
-    // currently there is no way to remove the mainToolBar that is always there by default (defined in ui_standards.rc)
-    // as a workaround the toolbar is deleted right after it is created
-    KToolBar *mainToolBar = toolBar("mainToolBar");
-    removeToolBar(mainToolBar);
-    delete mainToolBar;
-    setupToolbarMenuActions();
-
     // save position of dock windows etc
     setAutoSaveSettings();
 
@@ -454,6 +447,7 @@ void ParleyMainWindow::switchComponent(Component component)
     }
 
     m_currentComponent = component;
+    setupToolbarMenuActions();
 }
 
 void ParleyMainWindow::showDocumentActions(bool open, bool edit)
