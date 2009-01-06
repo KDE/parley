@@ -76,13 +76,13 @@ private:
     /**
      * Add some pre defined types and usages.
      */
-    void initializeDefaultGrammar();
+    void initializeDefaultGrammar(KEduVocDocument *doc);
     /**
      *
      * 
      * When starting the first time, create some entries to get started.
      */
-    void createExampleEntries();
+    void createExampleEntries(KEduVocDocument *doc);
 
     QTimer *m_backupTimer;
     KEduVocDocument *m_doc;

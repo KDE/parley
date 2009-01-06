@@ -85,34 +85,35 @@ void ParleyDocument::slotFileNew()
 
 void ParleyDocument::newDocument(bool wizard)
 {
-    disconnect(m_doc);
-    delete m_doc;
-    m_doc = new KEduVocDocument(this);
-///@todo: is this necessary?
-     m_parleyApp->editor()->updateDocument();
-
-    initializeDefaultGrammar();
-    createExampleEntries();
-
-    m_doc->setModified(false);
-    m_parleyApp->editor()->updateDocument();
-
+    KEduVocDocument *newDoc = new KEduVocDocument();
+    bool setupLanguage = false;
+    initializeDefaultGrammar(newDoc);
+    createExampleEntries(newDoc);
     if (wizard) {
-        DocumentProperties* titleAuthorWidget = new DocumentProperties(m_doc, true, m_parleyApp);
+        DocumentProperties* titleAuthorWidget = new DocumentProperties(newDoc, true, m_parleyApp);
         KDialog* titleAuthorDialog;
         titleAuthorDialog = new KDialog(m_parleyApp);
         titleAuthorDialog->setMainWidget( titleAuthorWidget );
-        titleAuthorDialog->setCaption(i18nc("@title:window document properties", "Properties for %1", m_doc->url().url()));
+        titleAuthorDialog->setCaption(i18nc("@title:window document properties", "Properties for %1", newDoc->url().url()));
         connect(titleAuthorDialog, SIGNAL(accepted()), titleAuthorWidget, SLOT(accept()));
-        titleAuthorDialog->exec();
-
-        ///@todo: check if this still makes sense and reenable
-        if(titleAuthorWidget->grammarCheckBox->isChecked()) {
-            m_parleyApp->editor()->slotLanguageProperties();
+        if(titleAuthorDialog->exec()) {
+            setupLanguage = titleAuthorWidget->grammarCheckBox->isChecked();
+            delete titleAuthorDialog;
+        } else {
+            delete titleAuthorDialog;
+            return;
         }
-
-        delete titleAuthorDialog;
     }
+
+    disconnect(m_doc);
+    delete m_doc;
+    m_doc = newDoc;
+
+    if(setupLanguage) {
+        m_parleyApp->editor()->slotLanguageProperties();
+    }
+
+    m_parleyApp->editor()->updateDocument();
 
     m_parleyApp->showEditor();
     emit documentChanged(m_doc);
@@ -291,9 +292,9 @@ void ParleyDocument::slotSaveSelection()
     */
 }
 
-void ParleyDocument::initializeDefaultGrammar()
+void ParleyDocument::initializeDefaultGrammar(KEduVocDocument *doc)
 {
-    KEduVocWordType *root = m_doc->wordTypeContainer();
+    KEduVocWordType *root = doc->wordTypeContainer();
     KEduVocWordType *noun = new KEduVocWordType(i18n("Noun"), root);
     noun->setWordType(KEduVocWordFlag::Noun);
     root->appendChildContainer(noun);
@@ -321,7 +322,7 @@ void ParleyDocument::initializeDefaultGrammar()
     root->appendChildContainer(adverb);
 }
 
-void ParleyDocument::createExampleEntries()
+void ParleyDocument::createExampleEntries(KEduVocDocument *doc)
 {
     // some default values
     KUser user;
@@ -329,23 +330,23 @@ void ParleyDocument::createExampleEntries()
     if ( userName.isEmpty() ) {
         userName = user.loginName();
     }
-    m_doc->setAuthor( userName );
-    m_doc->setLicense( i18n("Public Domain") );
-    m_doc->setCategory( i18n("Languages") );
+    doc->setAuthor( userName );
+    doc->setLicense( i18n("Public Domain") );
+    doc->setCategory( i18n("Languages") );
 
     QString locale = KGlobal::locale()->language();
 
-    m_doc->appendIdentifier();
-    m_doc->appendIdentifier();
-    m_doc->identifier(0).setName( KGlobal::locale()->languageCodeToName( locale) );
-    m_doc->identifier(0).setLocale( locale );
-    m_doc->identifier(1).setName( i18n("A Second Language") );
-    m_doc->identifier(1).setLocale( locale );
+    doc->appendIdentifier();
+    doc->appendIdentifier();
+    doc->identifier(0).setName( KGlobal::locale()->languageCodeToName( locale) );
+    doc->identifier(0).setLocale( locale );
+    doc->identifier(1).setName( i18n("A Second Language") );
+    doc->identifier(1).setLocale( locale );
 
-    KEduVocLesson* lesson = new KEduVocLesson(i18n("Lesson 1"), m_doc->lesson());
-    m_doc->lesson()->appendChildContainer(lesson);
+    KEduVocLesson* lesson = new KEduVocLesson(i18n("Lesson 1"), doc->lesson());
+    doc->lesson()->appendChildContainer(lesson);
 
-    KEduVocLeitnerBox *box = m_doc->leitnerContainer();
+    KEduVocLeitnerBox *box = doc->leitnerContainer();
     box->appendChildContainer(new KEduVocLesson(i18n("Box 7 (best)"), box));
     box->appendChildContainer(new KEduVocLesson(i18n("Box 6"), box));
     box->appendChildContainer(new KEduVocLesson(i18n("Box 5"), box));
@@ -359,7 +360,7 @@ void ParleyDocument::createExampleEntries()
         lesson->appendEntry(new KEduVocExpression());
     }
 
-    m_doc->setModified(false);
+    doc->setModified(false);
 }
 
 void ParleyDocument::slotGHNS()
