@@ -182,7 +182,7 @@ void ParleyDocument::save()
     }
 
     // remove previous backup
-    QFile::remove(QFile::encodeName(m_doc->url().path()+'~'));
+    QFile::remove(m_doc->url().path()+'~');
     ::rename(QFile::encodeName(m_doc->url().path()), QFile::encodeName(m_doc->url().path()+'~'));
 
     m_doc->setCsvDelimiter(Prefs::separator());
@@ -217,7 +217,7 @@ void ParleyDocument::saveAs(KUrl url)
                          QString msg = i18nc("@info:status saving a file", "Saving %1", url.path());
 //                 slotStatusMsg(msg);
 
-                         QFile::remove(QFile::encodeName(url.path()+'~')); // remove previous backup
+                         QFile::remove(url.path()+'~'); // remove previous backup
                              ::rename(QFile::encodeName(url.path()), QFile::encodeName(QString(url.path()+'~')));
 
                              m_doc->setCsvDelimiter(Prefs::separator());
