@@ -34,6 +34,7 @@ Name[zh_TW]=範例 Parley 文稿
 Comment=This example script offers two actions: 1) Move selected vocabulary to a different lesson 2) Change the grade of selected words to known (highest grade)
 Comment[de]=Dieses Beispielskript bietet zwei Möglichkeiten an: 1) Das ausgewählte Vokabular in eine andere Lektion verschieben 2) Den Bekanntheitsgrad auf ‚bekannt‘ (höchste Stufe) setzen
 Comment[el]=Το σενάριο παράδειγμα αυτό προσφέρει δύο ενέργειες: 1) Μετακίνηση επιλεγμένου λεξιλογίου σε ένα διαφορετικό μάθημα 2)Τροποποίηση του βαθμού των επιλεγμένων λέξεων σε γνωστή λέξη (υψηλότερος βαθμός)
+Comment[es]=Este guión de ejemplo ofrece dos acciones: 1) Mueve el vocabulario seleccionado a otra lección 2) Cambia el nivel de las palabras seleccionadas a conocer (nivel más alto)
 Comment[et]=See näidisskript võimaldab kaht asja. 1) valitud sõnavara liigutamine teise õppetundi, 2) valitud sõnade taseme muutmine omandatud sõnadeks (kõrgeim tase)
 Comment[fr]=Cet exemple de script effectue deux actions : 1/ Déplace le vocabulaire sélectionné dans une leçon différente 2/ Modifie le grade des mots sélectionnés en connu (grade le plus haut)
 Comment[gl]=Este script de exemplo fornece dúas accións: 1) Move o vocabulario escollido a unha lección diferente 2) Pon o grau das palabras escollidas como coñecidas (máximo grau)
