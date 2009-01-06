@@ -442,9 +442,4 @@ void ParleyDocument::enableAutoBackup(bool enable)
     }
 }
 
-void ParleyDocument::slotDocumentChanged(bool modified) {
-    m_doc->setModified(modified);
-}
-
-
 #include "parleydocument.moc"
