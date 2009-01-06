@@ -69,13 +69,8 @@ public slots:
 
     void slotSaveSelection();
 
-    /** emits the document changed signal */
-    void slotDocumentChanged(bool modified);
-
 signals:
     void documentChanged(KEduVocDocument *newDocument);
-    void documentOpened();
-    void documentClosed();
 
 private:
     /**

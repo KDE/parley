@@ -95,7 +95,6 @@ void Editor::updateDocument()
     m_leitnerView->setRootIndex(m_leitnerModel->index(0,0));
 
     connect(m_mainWindow->parleyDocument()->document(), SIGNAL(docModified(bool)), m_mainWindow, SLOT(slotUpdateWindowCaption()));
-    connect(m_mainWindow->parleyDocument()->document(), SIGNAL(docModified(bool)), m_mainWindow->parleyDocument(), SLOT(slotDocumentChanged(bool)));
     connect(m_vocabularyModel, SIGNAL(documentChanged(KEduVocDocument*)),
             m_summaryWordWidget, SLOT(slotDocumentChanged(KEduVocDocument *)));
     connect(m_vocabularyView->selectionModel(), 
