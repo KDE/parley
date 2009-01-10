@@ -461,7 +461,7 @@ void VocabularyView::slotEditPaste()
     const QMimeData *mimeData = clipboard->mimeData();
     const VocabularyMimeData *vocMimeData = qobject_cast<const VocabularyMimeData *>(mimeData);
     if (vocMimeData) {
-        kDebug() << "clipboard contains vocabulary mime data!";
+        kDebug() << "Clipboard contains vocabulary mime data.";
         foreach(const VocabularyMimeData::MimeExpression &mimeEntry, vocMimeData->expressionList()) {
             KEduVocExpression *pasteExpression = new KEduVocExpression(mimeEntry.expression);
             m_model->appendEntry(pasteExpression);
@@ -489,47 +489,15 @@ void VocabularyView::slotEditPaste()
                 }
             }
         }
-    } else {
-        m_model->appendEntry(new KEduVocExpression(mimeData->text()));
-        kDebug() << "clipboard contains text data!";
+    } else if (mimeData->hasText()) {
+        kDebug() << "Clipboard contains text data.";
+        // split at newline
+        QStringList lines = clipboard->text().split('\n');
+        foreach(QString line, lines) {
+            // split at tabs or semicolon:
+            m_model->appendEntry(new KEduVocExpression(line.split(QRegExp("[\t;]"), QString::KeepEmptyParts)));
+        }
     }
-
-    /// @todo make the pasted stuff visible by making the corresponding lesson visible, if it is not (?)
-//     slotStatusMsg(i18n("Inserting clipboard contents..."));
-
-/*    QApplication::setOverrideCursor(Qt::WaitCursor);
-    QString s;
-    QString textToPaste = QApplication::clipboard()->text();
-
-    QTextStream ts;
-    ts.setString(&textToPaste, QIODevice::Text);
-
-    QString num;
-
-    QModelIndexList selectedRows = m_tableView->selectionModel()->selectedRows();
-    int lastSelectedRow;
-    if(!selectedRows.isEmpty())
-    lastSelectedRow = m_sortFilterModel->mapToSource(selectedRows.back()).row() + 1;
-    else
-    lastSelectedRow = m_tableModel->rowCount(QModelIndex());
-
-    int count = 0;
-    while (!ts.atEnd()) {
-    s = ts.readLine();
-    if (!s.isEmpty()) {
-    m_tableModel->insertRows(lastSelectedRow + count, 1);
-    QStringList sl = s.split('\t', QString::KeepEmptyParts);
-
-    for (int i = 0; i < sl.count(); ++i) {
-    m_tableModel->setData(m_tableModel->index(lastSelectedRow + count, i + KV_COL_TRANS), sl[i], Qt::EditRole);
-//                 m_tableModel->setData(m_tableModel->index(lastSelectedRow + count, i + KV_COL_TRANS), m_document->document()->currentLesson(), KVTTableModel::LessonRole);
-    m_tableModel->setData(m_tableModel->index(lastSelectedRow + count, i + KV_COL_TRANS), m_lessonDockWidget->selectedLesson(), KVTTableModel::LessonRole);
-}
-}
-    count++;
-}
-
-    m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);*/
 }
 
 void VocabularyView::slotCutEntry()
