@@ -58,8 +58,10 @@ DocumentProperties::DocumentProperties(KEduVocDocument * doc, bool languageSetup
 
         firstLanguageComboBox->addItems(languageNames);
         firstLanguageComboBox->completionObject()->insertItems(languageNames);
+        firstLanguageComboBox->completionObject()->setIgnoreCase(true);
         secondLanguageComboBox->addItems(languageNames);
         secondLanguageComboBox->completionObject()->insertItems(languageNames);
+        secondLanguageComboBox->completionObject()->setIgnoreCase(true);
 
         languageGroupBox->setVisible(true);
     } else {
