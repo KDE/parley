@@ -63,6 +63,8 @@ ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename
 
     bool showWelcomeScreen = false;
 
+    setupGUI(ToolBar | Keys | StatusBar | Create);
+
     if ( !filename.url().isEmpty() ) {
         m_document->open(filename);
     } else {
@@ -74,8 +76,6 @@ ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename
             showWelcomeScreen = true;
         }
     }
-
-    setupGUI(ToolBar | Keys | StatusBar | Create);
 
     // save position of dock windows etc
     setAutoSaveSettings();
