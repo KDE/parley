@@ -1,6 +1,6 @@
 #desktop files
 install(FILES
-   test.desktop
+#   test.desktop
    google_dictionary.desktop
    leo-dict.desktop
    example.desktop
@@ -9,7 +9,7 @@ install(FILES
 
 #script files
 install(FILES
-   test.py
+#   test.py
    google_dictionary.py
    leo-dict.py
    example.py
