@@ -112,35 +112,28 @@ QWidget * VocabularyDelegate::createEditor ( QWidget * parent, const QStyleOptio
 
             if ( VocabularyModel::columnType ( index.column() ) == VocabularyModel::Translation )
             {
-
-                //get the translations of this word
-//                 kDebug() << "Translating now ...";
+                //get the translations of this word (fetch only with the help of scripts, if enabled)
                 QSet<QString> translations = getTranslations ( index );
-//                 kDebug() << "Translating finished now ...";
-//                 kDebug() << translations.toList();
 
                 //create combo box
                 //if there is only one word and that is the suggestion word (in translations) then don't create the combobox
                 if ( !translations.isEmpty() && ! ( translations.size() == 1 && ( *translations.begin() ) == index.model()->data ( index, Qt::DisplayRole ).toString() ) )
                 {
-
                     KComboBox *translationCombo = new KComboBox ( parent );
                     translationCombo->setFrame ( false );
-
                     translationCombo->addItems ( translations.toList() );
-
                     translationCombo->setEditable ( true );
                     translationCombo->setFont ( index.model()->data ( index, Qt::FontRole ).value<QFont>() );
                     translationCombo->setEditText ( index.model()->data ( index, Qt::DisplayRole ).toString() );
-
+                    translationCombo->completionObject()->setItems ( translations.toList() );
+                    connect ( translationCombo->lineEdit(), SIGNAL ( editingFinished() ), this, SLOT ( commitAndCloseEditor() ) );
                     return translationCombo;
                 }
             }
+            // no break - we fall back to a line edit if there are not multiple translations fetched online
         }
-
         default:
         {
-
             KLineEdit *editor = new KLineEdit ( parent );
             editor->setFrame ( false );
             editor->setFont ( index.model()->data ( index, Qt::FontRole ).value<QFont>() );
@@ -161,19 +154,7 @@ QWidget * VocabularyDelegate::createEditor ( QWidget * parent, const QStyleOptio
                     }
                 }
             }
-            connect ( editor, SIGNAL ( returnPressed() ), this, SLOT ( commitAndCloseEditor() ) );
-
-            //add auto completion to KLineEdit for translation columns
-//         if (VocabularyModel::columnType(index.column()) == VocabularyModel::Translation) {
-//
-//             QStringList list;
-//             list.push_back("car");
-//             list.push_back("auto");
-//
-//             KCompletion * completion = editor->completionObject();
-//             editor->setCompletionMode(KGlobalSettings::CompletionPopupAuto);
-//             completion->insertItems(list);
-//         }
+            connect ( editor, SIGNAL ( editingFinished() ), this, SLOT ( commitAndCloseEditor() ) );
             return editor;
         }
     }
@@ -181,8 +162,7 @@ QWidget * VocabularyDelegate::createEditor ( QWidget * parent, const QStyleOptio
 
 void VocabularyDelegate::setEditorData ( QWidget * editor, const QModelIndex & index ) const
 {
-    if ( !index.isValid() )
-    {
+    if ( !index.isValid() ) {
         return;
     }
 
@@ -194,13 +174,11 @@ void VocabularyDelegate::setEditorData ( QWidget * editor, const QModelIndex & i
             KComboBox * translationCombo = qobject_cast<KComboBox*> ( editor );
             if ( translationCombo )
             {
-                if ( value.isNull() )
-                {
-                    QSet<QString> translations = getTranslations ( index );
-                    if ( translations.size() > 0 )
-                        value = *translations.begin();
-                }
                 translationCombo->setEditText ( value );
+                if (value.isEmpty()) {
+                    // show the translations that were fetched as popup
+                    translationCombo->showPopup();
+                }
                 break;
             }
         }
@@ -209,8 +187,7 @@ void VocabularyDelegate::setEditorData ( QWidget * editor, const QModelIndex & i
             QString value = index.model()->data ( index, Qt::DisplayRole ).toString();
 
             KLineEdit *lineEdit = qobject_cast<KLineEdit*> ( editor );
-            if ( lineEdit )
-            {
+            if ( lineEdit ) {
                 lineEdit->setText ( value );
             }
         }
@@ -219,8 +196,7 @@ void VocabularyDelegate::setEditorData ( QWidget * editor, const QModelIndex & i
 
 void VocabularyDelegate::setModelData ( QWidget * editor, QAbstractItemModel * model, const QModelIndex & index ) const
 {
-    if ( !index.isValid() )
-    {
+    if ( !index.isValid() ) {
         return;
     }
 
@@ -230,8 +206,7 @@ void VocabularyDelegate::setModelData ( QWidget * editor, QAbstractItemModel * m
         {
             kDebug() << "word type editor";
             KComboBox *combo = qobject_cast<KComboBox*> ( editor );
-            if ( !combo )
-            {
+            if ( !combo ) {
                 return;
             }
             kDebug() << "combo" << combo->currentText();
@@ -268,20 +243,21 @@ void VocabularyDelegate::setModelData ( QWidget * editor, QAbstractItemModel * m
         default:
         {
             KLineEdit *lineEdit = qobject_cast<KLineEdit*> ( editor );
-            if ( !lineEdit )
+            if ( lineEdit )
             {
-                return;
-            }
-            QString value = lineEdit->text();
-            model->setData ( index, value );
+                model->setData ( index, lineEdit->text() );
+            }            
         }
     }
 }
 
 void VocabularyDelegate::commitAndCloseEditor()
 {
+    kDebug() << "Committing and closing delegate";
     QWidget *editor = qobject_cast<QWidget *> ( sender() );
-    kDebug() << "Committing and closing\n";
+    if (editor) {
+        editor->setFocus();
+    }
     emit commitData ( editor );
     emit closeEditor ( editor, QAbstractItemDelegate::EditNextItem );
 }
@@ -321,13 +297,11 @@ VocabularyDelegate::WordTypeBasicModel::WordTypeBasicModel ( QObject * parent )
 
 KEduVocContainer * VocabularyDelegate::WordTypeBasicModel::rootContainer() const
 {
-    if ( !m_doc )
-    {
+    if ( !m_doc ) {
         return 0;
     }
     return m_doc->wordTypeContainer();
 }
-
 
 /**
  * Sets the member variable m_translator to a Translator object
