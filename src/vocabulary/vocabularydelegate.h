@@ -38,8 +38,6 @@ public:
     void setCurrentIndex(const QModelIndex &index);
     void setTranslator(Translator * translator);
 
-    
-
 public slots:
     void setDocument(KEduVocDocument *doc);
 
@@ -49,8 +47,7 @@ protected:
 private slots:
     void commitAndCloseEditor();
 
-private:
-    
+private:    
     QModelIndex m_currentIndex;
     KEduVocDocument *m_doc;
     Translator * m_translator;
