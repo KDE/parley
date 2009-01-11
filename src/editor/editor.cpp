@@ -100,7 +100,6 @@ void Editor::updateDocument()
     connect(m_vocabularyView->selectionModel(), 
                 SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
             m_summaryWordWidget, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
-    connect(m_vocabularyModel, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(slotRestoreColumnVisibility(KEduVocDocument*)));
 
     setCaption(m_mainWindow->parleyDocument()->document()->url().fileName(), false);
 
