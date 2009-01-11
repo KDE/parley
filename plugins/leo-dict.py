@@ -1,4 +1,5 @@
 #!/usr/bin/env kross
+# -*- coding: utf-8 -*-
 
 import socket
 import urllib2
@@ -83,10 +84,10 @@ def locale(lang):
 
 # called by Parley to translate the word
 def translateWord(word,from_lang,to_lang):
-  print "dict-leo.py - Translating",word,from_lang,to_lang
+  print "dict-leo.py - Translating:",word, "from", from_lang, "to", to_lang
   data = fetchData(word,locale(from_lang),locale(to_lang))
   if data != None:
-    print "Data Fetched for",word
+    print "Data Fetched for:",word
     #print data
   #print data
   parser = parseData(data,word,from_lang,to_lang)
