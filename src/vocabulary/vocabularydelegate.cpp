@@ -32,12 +32,12 @@
 #include <QTreeView>
 #include <QHeaderView>
 #include <QDBusInterface>
+#include <QKeyEvent>
 
 
-VocabularyDelegate::VocabularyDelegate ( QObject *parent ) : QItemDelegate ( parent )
+VocabularyDelegate::VocabularyDelegate ( QObject *parent )
+    :QItemDelegate(parent), m_doc(0), m_translator(0)
 {
-    m_doc = 0;
-    m_translator = 0;
 }
 
 QSet<QString> VocabularyDelegate::getTranslations ( const QModelIndex & index ) const
