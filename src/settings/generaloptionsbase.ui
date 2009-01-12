@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>576</width>
-    <height>383</height>
+    <width>401</width>
+    <height>257</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" >
@@ -150,26 +150,13 @@
       <property name="spacing" >
        <number>6</number>
       </property>
-      <item row="1" column="0" >
-       <widget class="QCheckBox" name="kcfg_AutoEntryApply" >
-        <property name="toolTip" >
-         <string>Your changes will be applied automatically.</string>
-        </property>
-        <property name="whatsThis" >
-         <string>If checked, you will not be asked if you really want this change; it will be applied automatically.</string>
-        </property>
-        <property name="text" >
-         <string>Appl&amp;y changes without asking</string>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="0" >
        <widget class="QCheckBox" name="kcfg_SmartAppend" >
         <property name="toolTip" >
-         <string>If checked, the entry dialog will popup repeatedly</string>
+         <string/>
         </property>
         <property name="whatsThis" >
-         <string>If this feature is activated, you will repeatedly be prompted with the entry dialog. After entering the first original you have to enter the corresponding translations. Afterwards you proceed with the next original and its translations until you stop by pressing the ESC key.</string>
+         <string/>
         </property>
         <property name="text" >
          <string>Smart a&amp;ppending</string>
@@ -189,7 +176,7 @@
      </property>
      <property name="sizeHint" stdset="0" >
       <size>
-       <width>558</width>
+       <width>10</width>
        <height>81</height>
       </size>
      </property>
@@ -222,7 +209,6 @@
   <tabstop>kcfg_AutoBackup</tabstop>
   <tabstop>kcfg_BackupTime</tabstop>
   <tabstop>kcfg_SmartAppend</tabstop>
-  <tabstop>kcfg_AutoEntryApply</tabstop>
  </tabstops>
  <resources/>
  <connections/>
