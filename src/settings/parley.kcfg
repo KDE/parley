@@ -11,10 +11,6 @@
       <label>Number of stored setting profiles</label>
       <default>0</default>
     </entry>
-    <entry name="AutoEntryApply" type="Bool">
-      <label></label>
-      <default>false</default>
-    </entry>
     <entry name="SmartAppend" type="Bool">
       <label>If true, when using the entry dialog, new rows will be appended as needed</label>
       <default>true</default>

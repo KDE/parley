@@ -6,17 +6,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>576</width>
-    <height>383</height>
+    <width>401</width>
+    <height>244</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout" name="verticalLayout" >
    <item>
-    <widget class="KButtonGroup" name="kbuttongroup" >
+    <widget class="QGroupBox" name="groupBox" >
      <property name="title" >
       <string>Open/Save</string>
      </property>
-     <layout class="QVBoxLayout" >
+     <layout class="QVBoxLayout" name="verticalLayout_2" >
       <item>
        <widget class="QCheckBox" name="kcfg_AutoOpenLast" >
         <property name="toolTip" >
@@ -50,6 +50,12 @@
        <layout class="QHBoxLayout" >
         <item>
          <widget class="QCheckBox" name="kcfg_AutoBackup" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="toolTip" >
            <string>Allow automatic saving of your work</string>
           </property>
@@ -62,10 +68,23 @@
          </widget>
         </item>
         <item>
-         <widget class="KIntSpinBox" name="kcfg_BackupTime" />
+         <widget class="KIntSpinBox" name="kcfg_BackupTime" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QLabel" name="lblBackupInterva" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text" >
            <string>minutes</string>
           </property>
@@ -73,19 +92,6 @@
            <cstring>kIntSpinBox1</cstring>
           </property>
          </widget>
-        </item>
-        <item>
-         <spacer>
-          <property name="orientation" >
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0" >
-           <size>
-            <width>91</width>
-            <height>31</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </item>
@@ -118,16 +124,13 @@
          </widget>
         </item>
         <item>
-         <spacer>
+         <spacer name="horizontalSpacer" >
           <property name="orientation" >
            <enum>Qt::Horizontal</enum>
           </property>
-          <property name="sizeType" >
-           <enum>QSizePolicy::Expanding</enum>
-          </property>
           <property name="sizeHint" stdset="0" >
            <size>
-            <width>121</width>
+            <width>40</width>
             <height>20</height>
            </size>
           </property>
@@ -139,40 +142,27 @@
     </widget>
    </item>
    <item>
-    <widget class="KButtonGroup" name="editingGroup" >
+    <widget class="QGroupBox" name="groupBox_2" >
      <property name="title" >
       <string>Editing</string>
      </property>
-     <layout class="QGridLayout" >
-      <property name="margin" >
-       <number>9</number>
-      </property>
-      <property name="spacing" >
-       <number>6</number>
-      </property>
-      <item row="1" column="0" >
-       <widget class="QCheckBox" name="kcfg_AutoEntryApply" >
-        <property name="toolTip" >
-         <string>Your changes will be applied automatically.</string>
-        </property>
-        <property name="whatsThis" >
-         <string>If checked, you will not be asked if you really want this change; it will be applied automatically.</string>
-        </property>
-        <property name="text" >
-         <string>Appl&amp;y changes without asking</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0" >
+     <layout class="QHBoxLayout" name="horizontalLayout" >
+      <item>
        <widget class="QCheckBox" name="kcfg_SmartAppend" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="toolTip" >
-         <string>If checked, the entry dialog will popup repeatedly</string>
+         <string/>
         </property>
         <property name="whatsThis" >
-         <string>If this feature is activated, you will repeatedly be prompted with the entry dialog. After entering the first original you have to enter the corresponding translations. Afterwards you proceed with the next original and its translations until you stop by pressing the ESC key.</string>
+         <string/>
         </property>
         <property name="text" >
-         <string>Smart a&amp;ppending</string>
+         <string>&amp;Append new rows automatically when editing</string>
         </property>
        </widget>
       </item>
@@ -180,17 +170,14 @@
     </widget>
    </item>
    <item>
-    <spacer>
+    <spacer name="verticalSpacer" >
      <property name="orientation" >
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeType" >
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
      <property name="sizeHint" stdset="0" >
       <size>
-       <width>558</width>
-       <height>81</height>
+       <width>20</width>
+       <height>40</height>
       </size>
      </property>
     </spacer>
@@ -200,12 +187,6 @@
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <customwidgets>
-  <customwidget>
-   <class>KButtonGroup</class>
-   <extends>QGroupBox</extends>
-   <header>kbuttongroup.h</header>
-   <container>1</container>
-  </customwidget>
   <customwidget>
    <class>KComboBox</class>
    <extends>QComboBox</extends>
@@ -219,10 +200,7 @@
  </customwidgets>
  <tabstops>
   <tabstop>kcfg_AutoSave</tabstop>
-  <tabstop>kcfg_AutoBackup</tabstop>
   <tabstop>kcfg_BackupTime</tabstop>
-  <tabstop>kcfg_SmartAppend</tabstop>
-  <tabstop>kcfg_AutoEntryApply</tabstop>
  </tabstops>
  <resources/>
  <connections/>
