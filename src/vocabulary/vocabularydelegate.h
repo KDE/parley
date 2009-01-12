@@ -41,13 +41,10 @@ public:
 public slots:
     void setDocument(KEduVocDocument *doc);
 
-protected:
-//     void drawDisplay(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect, const QString &text) const;
-
 private slots:
     void commitAndCloseEditor();
 
-private:    
+private:
     QModelIndex m_currentIndex;
     KEduVocDocument *m_doc;
     Translator * m_translator;

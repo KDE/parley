@@ -94,6 +94,8 @@ private slots:
 
 private:
     void selectIndex(const QModelIndex &index);
+    // trap enter presses at the end of the document to add a new entry instead of moving to the first cell
+    bool eventFilter(QObject *obj, QEvent *event);
 
     KAction* m_appendEntryAction;
     KAction* m_deleteEntriesAction;

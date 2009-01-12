@@ -48,15 +48,10 @@
 #include <sonnet/backgroundchecker.h>
 
 VocabularyView::VocabularyView(Editor * parent)
-    : QTableView(parent)
+    : QTableView(parent), m_model(0), m_doc(0),
+    spellcheckRow(0), spellcheckColumn(0), spellingChecker(0), spellingDialog(0)
 {
-    m_model = 0;
-    m_doc = 0;
-
-    spellingChecker = 0;
-    spellingDialog = 0;
-    spellcheckRow = 0;
-    spellcheckColumn = 0;
+    installEventFilter(this);
 
     setHorizontalHeader(new VocabularyHeaderView(Qt::Horizontal, this));
 
@@ -64,7 +59,6 @@ VocabularyView::VocabularyView(Editor * parent)
     setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
 
     setSortingEnabled(true);
-
     setTabKeyNavigation(true);
 
     m_vocabularyDelegate = new VocabularyDelegate(this);
@@ -613,6 +607,19 @@ void VocabularyView::selectIndex(const QModelIndex &newIndex)
     selectionModel()->select(newIndex, QItemSelectionModel::ClearAndSelect);
     selectionModel()->setCurrentIndex(newIndex, QItemSelectionModel::ClearAndSelect);
     scrollTo(newIndex);
+}
+
+bool VocabularyView::eventFilter(QObject* obj, QEvent* event) {
+    if (event->type() == QEvent::KeyPress && Prefs::smartAppend()) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        if (keyEvent->key() == Qt::Key_Return || keyEvent->key() == Qt::Key_Enter) {
+            if (selectionModel()->currentIndex().row() == m_model->rowCount() - 1) {
+                m_model->appendEntry();
+            }
+        }
+    }
+    // standard event processing
+    return QObject::eventFilter(obj, event);
 }
 
 void VocabularyView::misspelling(const QString & word, int start)
