@@ -110,15 +110,14 @@ void ParleyDocument::newDocument(bool wizard)
 
     close();
     m_doc = newDoc;
+    m_parleyApp->editor()->updateDocument();
+    emit documentChanged(m_doc);
 
     if(setupLanguage) {
         m_parleyApp->editor()->slotLanguageProperties();
     }
 
-    m_parleyApp->editor()->updateDocument();
-
     m_parleyApp->showEditor();
-    emit documentChanged(m_doc);
 }
 
 void ParleyDocument::slotFileOpen()
