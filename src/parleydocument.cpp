@@ -178,13 +178,6 @@ void ParleyDocument::openGHNS()
     }
 }
 
-void ParleyDocument::close() {
-    emit documentChanged(0);
-    disconnect(m_doc);
-    delete m_doc;
-    m_doc = 0;
-}
-
 void ParleyDocument::save()
 {
 //     if (m_parleyApp->m_entryDlg != 0) {
