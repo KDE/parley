@@ -110,7 +110,7 @@ void ConjugationWidget::setTranslation(KEduVocExpression * entry, int identifier
 //         updateVisiblePersons();
 //     }
 
-    if (!entry) {
+    if (!m_doc || !entry) {
         setEnabled(false);
         showMakeVerbWidgets();
         makeVerbButton->setEnabled(false);

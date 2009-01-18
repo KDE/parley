@@ -90,6 +90,10 @@ Editor::~Editor()
 
 void Editor::updateDocument()
 {
+    if (!m_mainWindow->parleyDocument()->document()) {
+        return;
+    }
+
 ///@todo we can use connect here
     m_vocabularyModel->setDocument(m_mainWindow->parleyDocument()->document());
 

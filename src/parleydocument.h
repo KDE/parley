@@ -57,6 +57,8 @@ public slots:
     void slotGHNS();
 
     void open(const KUrl &);
+    void close();
+
     /** merge a document */
     void slotFileMerge();
     /** save a document */
