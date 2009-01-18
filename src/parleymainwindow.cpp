@@ -220,7 +220,7 @@ bool ParleyMainWindow::queryClose()
 bool ParleyMainWindow::queryExit()
 {
     saveOptions();
-    if (!m_document->document()->isModified()) {
+    if (m_document->document() && !m_document->document()->isModified()) {
         return true;
     }
 
