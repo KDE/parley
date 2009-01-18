@@ -126,7 +126,7 @@ void ParleyDocument::slotFileOpen()
         QCheckBox *practiceCheckBox = new QCheckBox(i18n("Open in practice &mode"));
         KFileDialog dialog(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), m_parleyApp, practiceCheckBox);
         dialog.setCaption(i18n("Open Vocabulary Collection"));
-        if(dialog.exec()) {
+        if(dialog.exec() && !dialog.selectedUrl().isEmpty()) {
             open(dialog.selectedUrl());
             if(practiceCheckBox->isChecked()) {
                 m_parleyApp->startPractice();
@@ -172,8 +172,10 @@ void ParleyDocument::openGHNS()
     if (m_parleyApp->queryExit()) {
         QString s = KStandardDirs::locateLocal("data", "kvtml/");
         KUrl url = KFileDialog::getOpenUrl(s, KEduVocDocument::pattern(KEduVocDocument::Reading), m_parleyApp, i18n("Open Downloaded Vocabulary Collection"));
-        open(url);
-        m_parleyApp->showEditor();
+        if (!url.isEmpty()) {
+            open(url);
+            m_parleyApp->showEditor();
+        }
     }
 }
 
