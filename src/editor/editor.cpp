@@ -90,16 +90,16 @@ Editor::~Editor()
 
 void Editor::updateDocument()
 {
-    if (!m_mainWindow->parleyDocument()->document()) {
-        return;
-    }
-
 ///@todo we can use connect here
     m_vocabularyModel->setDocument(m_mainWindow->parleyDocument()->document());
 
     m_lessonModel->setDocument(m_mainWindow->parleyDocument()->document());
     m_wordTypeModel->setDocument(m_mainWindow->parleyDocument()->document());
     m_leitnerModel->setDocument(m_mainWindow->parleyDocument()->document());
+
+    if (!m_mainWindow->parleyDocument()->document()) {
+        return;
+    }
 
     // expand the root items
     m_lessonView->expandToDepth(0);
@@ -221,18 +221,18 @@ void Editor::initDockWidgets()
         m_conjugationWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Declensions
-    QDockWidget *declensionDock = new QDockWidget(i18n("Declension"), this);
-    declensionDock->setObjectName("DeclensionDock");
-    DeclensionWidget *declensionWidget = new DeclensionWidget(this);
-    declensionDock->setWidget(declensionWidget);
-    addDockWidget(Qt::RightDockWidgetArea, declensionDock);
-    m_dockWidgets.append(declensionDock);
-    actionCollection()->addAction("show_declension_dock", declensionDock->toggleViewAction());
-    declensionDock->setVisible(false);
-    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)),
-            declensionWidget, SLOT(setDocument(KEduVocDocument*)));
-    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-            declensionWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+//     QDockWidget *declensionDock = new QDockWidget(i18n("Declension"), this);
+//     declensionDock->setObjectName("DeclensionDock");
+//     DeclensionWidget *declensionWidget = new DeclensionWidget(this);
+//     declensionDock->setWidget(declensionWidget);
+//     addDockWidget(Qt::RightDockWidgetArea, declensionDock);
+//     m_dockWidgets.append(declensionDock);
+//     actionCollection()->addAction("show_declension_dock", declensionDock->toggleViewAction());
+//     declensionDock->setVisible(false);
+//     connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)),
+//             declensionWidget, SLOT(setDocument(KEduVocDocument*)));
+//     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+//             declensionWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Comparison forms
     QDockWidget *comparisonDock = new QDockWidget(i18n("Comparison forms"), this);

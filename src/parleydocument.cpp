@@ -64,7 +64,10 @@ ParleyDocument::ParleyDocument(ParleyMainWindow *parent)
 
 ParleyDocument::~ParleyDocument()
 {
-    m_parleyApp->editor()->m_vocabularyView->saveColumnVisibility(m_doc->url());
+    if (m_doc) {
+        // FIXME: this should be part of the editor
+        m_parleyApp->editor()->m_vocabularyView->saveColumnVisibility(m_doc->url());
+    }
     delete m_doc;
 }
 
@@ -105,8 +108,7 @@ void ParleyDocument::newDocument(bool wizard)
         }
     }
 
-    disconnect(m_doc);
-    delete m_doc;
+    close();
     m_doc = newDoc;
 
     if(setupLanguage) {
