@@ -2,7 +2,7 @@
 add_subdirectory( settings )
 
 # leave themes installation in the sudir to make changes to themes easier
-add_subdirectory( practice/themes )
+#add_subdirectory( practice/themes )
 
 # libkdeedu/keduvocdocument contains the library for reading and writing vocabulary files
 include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/
@@ -75,39 +75,39 @@ set(editor_SRCS
     editor/editor.cpp
 )
 
-# the practice using qgraphicsview
+## the practice using qgraphicsview
 set(practice_SRCS
-    practice/kgametheme/kgametheme.cpp
-    practice/kgametheme/kgamethemeselector.cpp
-    practice/parleypracticemainwindow.cpp
-    practice/modespecifics.cpp
-    practice/modeindependent.cpp
-    practice/practiceview.cpp
-    practice/input/textualinput.cpp
-    practice/input/mcinput.cpp
-    practice/prompt/mixedlettersprompt.cpp
-    practice/prompt/textualprompt.cpp
-    practice/prompt/imageprompt.cpp
-    practice/prompt/soundprompt.cpp
-    practice/statistics/statistics.cpp
-    practice/statistics/svgbarstatistics.cpp
-    practice/stdbuttons.cpp
-    practice/answervalidator.cpp
-    practice/practiceentrymanager.cpp
-    practice/timer.cpp
-    practice/practiceentry.cpp
+	#    practice/kgametheme/kgametheme.cpp
+	#    practice/kgametheme/kgamethemeselector.cpp
+	#    practice/parleypracticemainwindow.cpp
+	#    practice/modespecifics.cpp
+	#    practice/modeindependent.cpp
+	#    practice/practiceview.cpp
+	#    practice/input/textualinput.cpp
+	#    practice/input/mcinput.cpp
+	#    practice/prompt/mixedlettersprompt.cpp
+	#    practice/prompt/textualprompt.cpp
+	#    practice/prompt/imageprompt.cpp
+	#    practice/prompt/soundprompt.cpp
+	#    practice/statistics/statistics.cpp
+	#    practice/statistics/svgbarstatistics.cpp
+	#    practice/stdbuttons.cpp
+	#    practice/answervalidator.cpp
+	#    practice/practiceentrymanager.cpp
+	#    practice/timer.cpp
+	#    practice/practiceentry.cpp
     practiceold/entryfilter.cpp
-    practice/activearea.cpp
-    practice/multiple/multipletextualprompt.cpp
-    practice/multiple/multipletextualinput.cpp
-    practice/messagebox.cpp
-    practice/summary/practicesummary.cpp
-    practice/summary/summarymodel.cpp
+	#    practice/activearea.cpp
+	#    practice/multiple/multipletextualprompt.cpp
+	#    practice/multiple/multipletextualinput.cpp
+	#    practice/messagebox.cpp
+	#    practice/summary/practicesummary.cpp
+	#    practice/summary/summarymodel.cpp
 )
 
 kde4_add_ui_files(practice_SRCS
-    practice/kgametheme/kgamethemeselector.ui
-    practice/summary/practicesummary.ui
+#    practice/kgametheme/kgamethemeselector.ui
+#    practice/summary/practicesummary.ui
     practiceold/entryfilter.ui
 )
 

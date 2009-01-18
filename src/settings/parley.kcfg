@@ -304,7 +304,6 @@
 
     <entry name="TestType" type="Enum">
         <choices>
-            <choice name="FlashCardsTest"/>
             <choice name="MixedLettersTest"/>
             <choice name="MultipleChoiceTest"/>
             <choice name="WrittenTest"/>

@@ -139,7 +139,7 @@ private:
 
     WelcomeScreen *m_welcomeScreen;
     Editor *m_editor;
-    ParleyPracticeMainWindow *m_practice;
+    //ParleyPracticeMainWindow *m_practice;
 
     KRecentFilesAction* m_recentFilesAction;
 
