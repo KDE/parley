@@ -102,6 +102,10 @@ void DeclensionWidget::updateEntries()
 
 void DeclensionWidget::setTranslation(KEduVocExpression * entry, int identifier)
 {
+    if (!m_doc) {
+        return;
+    }
+
     m_entry = entry;
     if (m_identifier != identifier) {
         m_identifier = identifier;
