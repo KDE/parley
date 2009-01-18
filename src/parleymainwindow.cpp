@@ -211,18 +211,18 @@ void ParleyMainWindow::startPractice()
 bool ParleyMainWindow::queryClose()
 {
     bool erg = queryExit();
-    if (erg)
+    if (erg && m_document->document()) {
         m_document->document()->setModified(false);  // avoid double query on exit via system menu
+    }
     return erg;
 }
 
-
 bool ParleyMainWindow::queryExit()
 {
-    saveOptions();
-    if (m_document->document() && !m_document->document()->isModified()) {
+    if (!m_document->document() || !m_document->document()->isModified()) {
         return true;
     }
+    saveOptions();
 
     bool save = Prefs::autoSave(); //save without asking
 
