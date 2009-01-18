@@ -62,6 +62,7 @@ Editor::Editor(ParleyMainWindow* parent) : KXmlGuiWindow(parent), m_mainWindow(p
 {
     // KXmlGui
     setXMLFile("editorui.rc");
+    setObjectName("Editor");
 
     setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
     setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
@@ -75,7 +76,16 @@ Editor::Editor(ParleyMainWindow* parent) : KXmlGuiWindow(parent), m_mainWindow(p
     initActions();
     initScripts();
 
+    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
+    applyMainWindowSettings(cfg);
+
     connect(parent, SIGNAL(documentChanged()), this, SLOT(updateDocument()));
+}
+
+Editor::~Editor()
+{
+    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
+    saveMainWindowSettings(cfg);
 }
 
 void Editor::updateDocument()

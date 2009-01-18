@@ -44,6 +44,7 @@ class Editor : public KXmlGuiWindow
 
 public:
     Editor(ParleyMainWindow* parent);
+    ~Editor();
 
     /**
      * setup the action (menus etc)
