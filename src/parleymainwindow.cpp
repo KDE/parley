@@ -141,7 +141,9 @@ void ParleyMainWindow::slotCloseDocument()
     if (!queryClose()) {
         return;
     }
-    m_document->newDocument();
+    //m_document->newDocument();
+
+    m_document->close();
     emit documentChanged();
     showWelcomeScreen();
 }

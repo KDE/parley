@@ -147,9 +147,7 @@ void ParleyDocument::slotFileOpenRecent(const KUrl& url)
 void ParleyDocument::open(const KUrl & url)
 {
     if (!url.path().isEmpty()) {
-        emit documentChanged(0);
-        disconnect(m_doc);
-        delete m_doc;
+        close();
         m_doc = new KEduVocDocument(this);
         m_doc->setCsvDelimiter(Prefs::separator());
         m_doc->open(url);
@@ -159,6 +157,13 @@ void ParleyDocument::open(const KUrl & url)
 
         emit documentChanged(m_doc);
     }
+}
+
+void ParleyDocument::close() {
+    emit documentChanged(0);
+    disconnect(m_doc);
+    delete m_doc;
+    m_doc = 0;
 }
 
 void ParleyDocument::openGHNS()
