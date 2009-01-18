@@ -80,16 +80,16 @@ Editor::Editor(ParleyMainWindow* parent) : KXmlGuiWindow(parent), m_mainWindow(p
 
 void Editor::updateDocument()
 {
-    if (!m_mainWindow->parleyDocument()->document()) {
-        return;
-    }
-
 ///@todo we can use connect here
     m_vocabularyModel->setDocument(m_mainWindow->parleyDocument()->document());
 
     m_lessonModel->setDocument(m_mainWindow->parleyDocument()->document());
     m_wordTypeModel->setDocument(m_mainWindow->parleyDocument()->document());
     m_leitnerModel->setDocument(m_mainWindow->parleyDocument()->document());
+
+    if (!m_mainWindow->parleyDocument()->document()) {
+        return;
+    }
 
     // expand the root items
     m_lessonView->expandToDepth(0);

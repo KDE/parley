@@ -108,8 +108,7 @@ void ParleyDocument::newDocument(bool wizard)
         }
     }
 
-    disconnect(m_doc);
-    delete m_doc;
+    close();
     m_doc = newDoc;
 
     if(setupLanguage) {
