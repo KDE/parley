@@ -57,7 +57,7 @@ private slots:
     void comparisonRadioToggled(bool checked);
     void conjugationRadioToggled(bool checked);
     void writtenRadioToggled(bool checked);
-    void multipleChoiceRadioToggled(bool checked);
+//    void multipleChoiceRadioToggled(bool checked);
     void otherRadioToggled(bool checked);
 
     void monolingualPracticeSelected(bool selected);
