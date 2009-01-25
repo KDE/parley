@@ -31,7 +31,7 @@
         <number>2</number>
        </property>
        <property name="maximum" >
-        <number>9</number>
+        <number>5</number>
        </property>
        <property name="value" >
         <number>5</number>

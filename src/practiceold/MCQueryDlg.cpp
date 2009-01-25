@@ -160,12 +160,12 @@ void MCQueryDlg::setEntry( TestEntry* entry)
 //     }
 
     // create choices for the buttons: -solution -choices we have already
-    choices << createAdditionalChoices(m_choiceRadioButtons.size() - 1 - choices.size());
+    choices << createAdditionalChoices(Prefs::numberMultipleChoiceAnswers() - 1 - choices.size());
 
     KRandomSequence randomSequence (QDateTime::currentDateTime().toTime_t());
-    m_solution = randomSequence.getLong(m_choiceRadioButtons.size());
+    m_solution = randomSequence.getLong(Prefs::numberMultipleChoiceAnswers());
 
-    for ( int i = 0; i < m_choiceRadioButtons.count(); i++ ) {
+    for ( int i = 0; i < Prefs::numberMultipleChoiceAnswers(); i++ ) {
         QString choice;
         if ( i == m_solution ) {
             choice = solution;
@@ -181,6 +181,11 @@ void MCQueryDlg::setEntry( TestEntry* entry)
         m_choiceRadioButtons[i]->setText(QString::number(i+1) + ": " + choice);
         m_choiceRadioButtons[i]->setShortcut(QString::number(i+1));
         m_choiceRadioButtons[i]->setFont(Prefs::tableFont());
+    }
+
+    for ( int i = Prefs::numberMultipleChoiceAnswers(); i < m_choiceRadioButtons.count(); i++ ) {
+        m_choiceRadioButtons[i]->setVisible(false);
+        m_choiceRadioButtons[i]->setEnabled(false);
     }
 
     // As long as the buttons are AutoExclusive we cannot uncheck all.
