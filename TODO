@@ -17,7 +17,6 @@ When time permits:
    - Sound
    - Accept text drops (as new vocabulary?)
  * Give containers an image tag and display images in the lesson view
- * Implement changing the number of choices in multiple choice practice
 
 Gui
  * shortcut keys are badly assigned, they do not respect the focus (pressing del when a lesson was selected will attempt to delete a word anyways)
