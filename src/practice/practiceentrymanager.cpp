@@ -551,7 +551,7 @@ QString PracticeEntryManager::tenseDescription(KEduVocWordFlags flags, const QSt
     if (pronoun.isEmpty())
     {
         kDebug() << "failed to find a pronoun.";
-        // if its empty, we revert to a generic description
+        // if it is empty, we revert to a generic description
         QStringList desc;
         if (flags & KEduVocWordFlag::First)
             desc << i18n("First person");

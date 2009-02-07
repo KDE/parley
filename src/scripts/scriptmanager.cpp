@@ -61,7 +61,7 @@ QMap<QString, QString> ScriptManager::categories()
 
 QString ScriptManager::getScriptEntry ( QString desktopFile )
 {
-    //open its as a raw configuration file and read the script entry
+    //open it as a raw configuration file and read the script entry
     KConfig scriptconfig ( desktopFile, KConfig::SimpleConfig );
     KConfigGroup group = scriptconfig.group ( "Desktop Entry" );
     return group.readEntry ( "Script" );
