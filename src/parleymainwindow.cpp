@@ -128,7 +128,7 @@ void ParleyMainWindow::slotGeneralOptions()
 
 void ParleyMainWindow::slotApplyPreferences()
 {
-    m_document->enableAutoBackup(Prefs::autoBackup());
+    m_document->enableAutoBackup((m_currentComponent != WelcomeComponent) && Prefs::autoBackup());
 
 //     if (m_pronunciationStatusBarLabel) {
 //         m_pronunciationStatusBarLabel->setFont(Prefs::iPAFont());

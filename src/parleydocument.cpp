@@ -58,7 +58,6 @@ ParleyDocument::ParleyDocument(ParleyMainWindow *parent)
     m_parleyApp = parent;
     m_doc = new KEduVocDocument(this);
     m_backupTimer = 0;
-    enableAutoBackup(Prefs::autoBackup());
 }
 
 
@@ -111,6 +110,7 @@ void ParleyDocument::newDocument(bool wizard)
     close();
     m_doc = newDoc;
     m_parleyApp->editor()->updateDocument();
+    enableAutoBackup(Prefs::autoBackup());
     emit documentChanged(m_doc);
 
     if(setupLanguage) {
@@ -156,11 +156,13 @@ void ParleyDocument::open(const KUrl & url)
         m_parleyApp->editor()->updateDocument();
         m_parleyApp->m_recentFilesAction->addUrl(url, m_doc->title());
 
+        enableAutoBackup(Prefs::autoBackup());
         emit documentChanged(m_doc);
     }
 }
 
 void ParleyDocument::close() {
+    enableAutoBackup(false);
     emit documentChanged(0);
     disconnect(m_doc);
     delete m_doc;
@@ -205,6 +207,7 @@ void ParleyDocument::save()
         return;
     }
     m_parleyApp->m_recentFilesAction->addUrl(m_doc->url(), m_doc->title());
+    enableAutoBackup(Prefs::autoBackup());
 }
 
 
