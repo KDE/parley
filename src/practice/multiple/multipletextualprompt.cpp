@@ -78,11 +78,14 @@ void MultipleTextualPrompt::slotSetText(const QStringList& texts)
         return;
     }
 
+	QString escapedText;
+
     for(int i = 0; i < texts.size(); ++i)
     {
-        m_map[m_elementIds[i]]->setHtml(texts[i]);
+		escapedText = texts[i];
+		escapedText.replace("<", "&lt;").replace(">", "&gt;");
+        m_map[m_elementIds[i]]->setHtml(escapedText);
     }
-
 }
 
 void MultipleTextualPrompt::slotClear()

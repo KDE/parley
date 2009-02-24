@@ -39,5 +39,7 @@ MessageBox::MessageBox ( KSvgRenderer * renderer, ActiveArea * area, const QStri
 
     setTextWidth(m_backgroundRect.width()*.8);
 
-    setHtml("<center>" + text + "</center>");
+	QString escapedText = text;
+	escapedText.replace("<", "&lt;").replace(">", "&gt;");
+    setHtml("<center>" + escapedText + "</center>");
 }

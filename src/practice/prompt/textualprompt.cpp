@@ -46,7 +46,10 @@ void TextualPrompt::slotSetText ( const QString& text )
         setHtml("");
         return;
     }
-    setHtml( "<center>" + text + "</center>" );
+
+	QString escapedText = text;
+	escapedText.replace("<", "&lt;").replace(">", "&gt;");
+	setHtml("<center>" + escapedText + "</center>");
 }
 
 void TextualPrompt::slotClear()
