@@ -40,6 +40,8 @@ class KSvgRenderer;
 */
 class ActiveArea : public QGraphicsSvgItem
 {
+    Q_OBJECT
+
     public:
         /// It attempts to find an active area that matches @param modeName, but falls back to @param fallbackModeName if it cannot.
         ActiveArea(KSvgRenderer * renderer, const QString& modeName, const QString& fallbackModeName = "");
@@ -56,6 +58,11 @@ class ActiveArea : public QGraphicsSvgItem
         void setActive(bool active) { m_active = active; };
         /// Access function for the active flag.
         bool active() const { return m_active; };
+
+        void mousePressEvent ( QGraphicsSceneMouseEvent * event );
+
+    signals:
+        void signalClicked();
     private:
         KSvgRenderer * m_renderer;
         QPointF m_offset;

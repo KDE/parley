@@ -67,6 +67,12 @@ ActiveArea::ActiveArea(KSvgRenderer * renderer, const QString& elementId, const 
 }
 
 
+void ActiveArea::mousePressEvent ( QGraphicsSceneMouseEvent * event )
+{
+  emit signalClicked();
+  QGraphicsItem::mousePressEvent(event);
+}
+
 QString ActiveArea::translateElementId(const QString& originalElementId)
 {
     //static QSet<QString> m_set = QSet();

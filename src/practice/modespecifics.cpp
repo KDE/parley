@@ -94,20 +94,46 @@ void ParleyPracticeMainWindow::setupFlashCardTemplate(ActiveArea * area)
     connect(m_manager, SIGNAL(signalNewText(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
     connect(this, SIGNAL(signalShowSolution(const QString&)), tprompt, SLOT(slotSetText(const QString&)));
 
-    // flip the card on click
-    //connect(this, SIGNAL(clicked()), actionCollection()->action("show solution"), SIGNAL(triggered()));
 
-    PracticeActionButton * knownButton = new PracticeActionButton(i18n("I Know It"), m_renderer, area, "known_button");
+    KAction *knownAction = actionCollection()->addAction("flashcard known");
+    knownAction->setText(i18n("I &Know It"));
+    knownAction->setShortcut(Qt::Key_K, KAction::DefaultShortcut);
+    knownAction->setShortcutConfigurable(true);
+    connect(knownAction, SIGNAL(triggered()), this, SLOT(slotForceCorrect()));
+
+
+    PracticeActionButton * knownButton = new PracticeActionButton(i18n("I &Know It"), m_renderer, area, "known_button");
     scene->addWidget(knownButton);
-    connect(knownButton, SIGNAL(clicked()), this, SLOT(slotForceCorrect()));
+    connect(knownButton, SIGNAL(clicked()), knownAction, SLOT(trigger()));
 
-    PracticeActionButton * unknownButton = new PracticeActionButton(i18n("I Don't Know It"), m_renderer, area, "unknown_button");
-    connect(unknownButton, SIGNAL(clicked()), this, SLOT(slotForceIncorrect()));
+    KAction *unknownAction = actionCollection()->addAction("flashcard unknown");
+    unknownAction->setText(i18n("I &Don't Know It"));
+    unknownAction->setShortcut(Qt::Key_D, KAction::DefaultShortcut);
+    unknownAction->setShortcutConfigurable(true);
+    connect(unknownAction, SIGNAL(triggered()), this, SLOT(slotForceIncorrect()));
+
+    PracticeActionButton * unknownButton = new PracticeActionButton(i18n("I &Don't Know It"), m_renderer, area, "unknown_button");
+    connect(unknownButton, SIGNAL(clicked()), unknownAction, SLOT(trigger()));
     scene->addWidget(unknownButton);
 
-    PracticeActionButton * showSolutionButton = new PracticeActionButton(i18n("Check"), m_renderer, area, "show_solution_button");
-    connect(showSolutionButton, SIGNAL(clicked()), this, SLOT(slotShowSolution()));
+    KAction *showSolutionAction = actionCollection()->addAction("show solution");
+    showSolutionAction->setText(i18n("&Flip"));
+    showSolutionAction->setShortcut(Qt::Key_F, KAction::DefaultShortcut);
+    showSolutionAction->setShortcutConfigurable(true);
+    connect(showSolutionAction, SIGNAL(triggered()), this, SLOT(slotShowSolution()));
+
+    PracticeActionButton * showSolutionButton = new PracticeActionButton(i18n("&Flip"), m_renderer, area, "show_solution_button");
+    connect(showSolutionButton, SIGNAL(clicked()), showSolutionAction, SLOT(trigger()));
     scene->addWidget(showSolutionButton);
+
+    //flip the card on click
+    connect(area, SIGNAL(signalClicked()), showSolutionAction, SLOT(trigger()));
+
+    // these don't make sense for flashcards
+    actionCollection()->action("skip known")->setVisible(false);
+    actionCollection()->action("skip unknown")->setVisible(false);
+    actionCollection()->action("check answer")->setVisible(false);
+    actionCollection()->action("hint")->setVisible(false);
 }
 
 

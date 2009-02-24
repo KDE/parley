@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="parleypractice" version="1">
+<gui name="parleypractice" version="1.1">
   <MenuBar>
     <Menu name="file">
       <Action name="stop_practice" />
@@ -11,6 +11,8 @@
       <Action name="continue" />
       <Action name="skip known" />
       <Action name="skip unknown" />
+      <Action name="flashcard known" />
+      <Action name="flashcard unknown" />
       <Action name="select option 1" />
       <Action name="select option 2" />
       <Action name="select option 3" />
@@ -21,8 +23,8 @@
       <Action name="select option 8" />
       <Action name="select option 9" />
     </Menu>
-      <Menu name="Hint" >
-      <text>Hint</text>
+      <Menu name="Solution" >
+      <text>Solution</text>
       <Action name="hint" />
       <Action name="show solution" />
     </Menu>
