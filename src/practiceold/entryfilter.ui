@@ -89,7 +89,7 @@
       <item row="4" column="0" >
        <widget class="QCheckBox" name="timesWrongCheckBox" >
         <property name="text" >
-         <string>Ignore Times Answered Wrong</string>
+         <string>Ignore Times Answered Incorrectly</string>
         </property>
         <property name="checked" >
          <bool>false</bool>

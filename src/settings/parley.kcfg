@@ -91,7 +91,7 @@
       <default>false</default>
     </entry>
     <entry name="PracticeTimeoutMode" type="Enum">
-      <label>Show - show the solution after the given time, Continue goes to the next question after the timeout.</label>
+      <label>Show - show the solution after the given time; continue - go to the next question after the given time.</label>
       <choices>
         <choice name="Show"/>
         <choice name="Continue"/>
@@ -253,11 +253,11 @@
     </entry>
 
     <entry name="PracticeMinimumWrongCount" type="Int">
-      <label>The entry must have been answered wrong at least this often to be included in the practice.</label>
+      <label>The entry must have been answered incorrectly at least this often to be included in the practice.</label>
       <default>0</default>
     </entry>
     <entry name="PracticeMaximumWrongCount" type="Int">
-      <label>The entry must have been answered wrong at most this often to be included in the practice.</label>
+      <label>The entry must have been answered incorrectly at most this often to be included in the practice.</label>
       <default>1000</default>
     </entry>
 

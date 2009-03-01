@@ -443,7 +443,7 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
         ErrorType = Statistics::CapitalizationMistake;
         if (Prefs::ignoreCapitalizationMistakes())
             ErrorType |= Statistics::Correct;
-        htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">") + i18n("Correct answer, capitalized wrong.") + QString::fromLatin1("</font>");
+        htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">") + i18n("Correct answer, capitalized incorrectly.") + QString::fromLatin1("</font>");
         return;
     }
 
@@ -491,7 +491,7 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
         if (!isMisspelled && !inSuggestions)
         {
             grade = UNRELATED_WORD_GRADE;
-             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">") + i18n("Do you have any idea what you are talking about? (Wrong word, you spelled it correct I guess.)") + QString::fromLatin1("</font>");
+             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">") + i18n("Do you have any idea what you are talking about? (Wrong word, you spelled it correctly I guess.)") + QString::fromLatin1("</font>");
             ErrorType = Statistics::UnrelatedWord;
             return;
         }

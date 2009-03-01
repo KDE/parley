@@ -43,7 +43,7 @@ WordTypeView::WordTypeView(Editor* parent) : ContainerView(parent)
     m_actionRenameWordType = new KAction(this);
     m_actionRenameWordType->setText(i18n("Rename"));
     m_actionRenameWordType->setIcon(KIcon("edit-rename"));
-    m_actionRenameWordType->setWhatsThis(i18n("Rename the selected WordType"));
+    m_actionRenameWordType->setWhatsThis(i18n("Rename the selected word type"));
     m_actionRenameWordType->setToolTip(m_actionRenameWordType->whatsThis());
     m_actionRenameWordType->setStatusTip(m_actionRenameWordType->whatsThis());
     m_actionRenameWordType->setStatusTip(m_actionRenameWordType->whatsThis());
@@ -51,7 +51,7 @@ WordTypeView::WordTypeView(Editor* parent) : ContainerView(parent)
     m_actionDeleteWordType = new KAction(this);
     m_actionDeleteWordType->setText(i18n("Delete Word Type"));
     m_actionDeleteWordType->setIcon(KIcon("lesson-remove"));
-    m_actionDeleteWordType->setWhatsThis(i18n("Delete the selected WordType."));
+    m_actionDeleteWordType->setWhatsThis(i18n("Delete the selected word type."));
     m_actionDeleteWordType->setToolTip(m_actionDeleteWordType->whatsThis());
     m_actionDeleteWordType->setStatusTip(m_actionDeleteWordType->whatsThis());
     m_actionDeleteWordType->setStatusTip(m_actionDeleteWordType->whatsThis());
@@ -229,7 +229,7 @@ void WordTypeView::slotDeleteWordType()
     QModelIndex selectedIndex = selectionModel()->currentIndex();
 
     if (selectedIndex.parent() == QModelIndex()) {
-        KMessageBox::information(this, i18n("The root WordType cannot be deleted."));
+        KMessageBox::information(this, i18n("The root word type cannot be deleted."));
         return;
     }
 
