@@ -220,6 +220,26 @@ void AnswerValidatorOld::defaultCorrector()
         return;
     }
 
+    if ( m_solution.toLower() == m_userAnswer.toLower() ) {
+        if (Prefs::ignoreCapitalizationMistakes()) {
+            m_entry->setLastPercentage(1.0);
+        } else {
+            m_entry->setLastPercentage(1.0 - CAPITALIZATION_MISTAKE_PUNISHMENT);
+        }
+        m_entry->setLastErrors(TestEntry::CapitalizationMistake);
+        return ;
+    }
+
+    if ( ParleyStringHandlerOld::stripAccents(m_solution) == ParleyStringHandlerOld::stripAccents(m_userAnswer) ) {
+        if (Prefs::ignoreAccentMistakes()) {
+            m_entry->setLastPercentage(1.0);
+        } else {
+            m_entry->setLastPercentage(1.0 - ACCENT_MISTAKE_PUNISHMENT);
+        }
+        m_entry->setLastErrors(TestEntry::AccentMistake);
+        return ;
+    }
+
     foreach(KEduVocTranslation *synonym, m_entry->entry()->translation(m_translation)->synonyms()) {
         if (synonym->text() == m_userAnswer) {
             m_entry->setLastErrors(TestEntry::Synonym);
@@ -322,13 +342,23 @@ void AnswerValidatorOld::wordCompare(const QString & solution, const QString & u
         errorTypes = TestEntry::Correct;
         return;
     }
+
     if ( solution.toLower() == userWord.toLower() ) {
-        grade = 1.0 - CAPITALIZATION_MISTAKE_PUNISHMENT;
+        if (Prefs::ignoreCapitalizationMistakes()) {
+            grade = 1.0;
+        } else {
+            grade = 1.0 - CAPITALIZATION_MISTAKE_PUNISHMENT;
+        }
         errorTypes = TestEntry::CapitalizationMistake;
         return ;
     }
-    if ( ParleyStringHandlerOld::stripAccents(solution) ==    ParleyStringHandlerOld::stripAccents(userWord) ) {
-        grade = 1.0 - ACCENT_MISTAKE_PUNISHMENT;
+
+    if ( ParleyStringHandlerOld::stripAccents(solution) == ParleyStringHandlerOld::stripAccents(userWord) ) {
+        if (Prefs::ignoreAccentMistakes()) {
+            grade = 1.0;
+        } else {
+            grade = 1.0 - ACCENT_MISTAKE_PUNISHMENT;
+        }
         errorTypes = TestEntry::AccentMistake;
         return ;
     }
@@ -387,8 +417,6 @@ void AnswerValidatorOld::wordCompare(const QString & solution, const QString & u
         }
     }
 
-    // cannot get here
-//     htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">No dictionary and no clue.</font> ");
     errorTypes = TestEntry::UnknownMistake;
     return;
 }
