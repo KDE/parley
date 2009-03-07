@@ -184,20 +184,17 @@ kDebug() << "right";
 
     TestEntry::ErrorTypes errorTypes = TestEntry::UnknownMistake;
 
-//     if ( m_entry ) {
-        /// @todo check synonym
-//         if ( m_entry->entry()->translation(m_translation)->synonym() == m_userAnswer ) {
-//             m_entry->setLastErrors(TestEntry::Synonym);
-//             if ( Prefs::countSynonymsAsCorrect() ) {
-//                 m_entry->setLastPercentage(1.0);
-// //                 m_htmlCorrection = i18n("You entered a synonym.");
-//             } else {
-//                 m_entry->setLastPercentage(0.0); // bit harsh maybe
-// //                 m_htmlCorrection = i18n("You entered a synonym.");
-//             }
-//             return;
-//         }
-//     }
+    foreach(KEduVocTranslation *synonym, m_entry->entry()->translation(m_translation)->synonyms()) {
+        if (synonym->text() == m_userAnswer) {
+            m_entry->setLastErrors(TestEntry::Synonym);
+            if ( Prefs::countSynonymsAsCorrect() ) {
+                m_entry->setLastPercentage(1.0);
+            } else {
+                m_entry->setLastPercentage(0.0); // bit harsh maybe
+            }
+            return;
+        }
+    }
 
     int levensthein = levenshteinDistance( m_solution, m_userAnswer );
 
@@ -223,18 +220,17 @@ void AnswerValidatorOld::defaultCorrector()
         return;
     }
 
-     ///@todo check synonym
-//     if ( m_entry->entry()->translation(m_translation)->synonym() == m_userAnswer ) {
-//         m_entry->setLastErrors(TestEntry::Synonym);
-//         if ( Prefs::countSynonymsAsCorrect() ) {
-//             // synonym, good for you
-//             m_entry->setLastPercentage(1.0);
-//         } else {
-//             // it is the synonym but we don't accept it
-//             m_entry->setLastPercentage(0.0); // bit harsh maybe
-//         }
-//         return;
-//     }
+    foreach(KEduVocTranslation *synonym, m_entry->entry()->translation(m_translation)->synonyms()) {
+        if (synonym->text() == m_userAnswer) {
+            m_entry->setLastErrors(TestEntry::Synonym);
+            if ( Prefs::countSynonymsAsCorrect() ) {
+                m_entry->setLastPercentage(1.0);
+            } else {
+                m_entry->setLastPercentage(0.0); // bit harsh maybe
+            }
+            return;
+        }
+    }
 
     int numberSolutionWords = m_solution.simplified().split(' ').count();
     int numberAnswerWords = m_userAnswer.simplified().split(' ').count();
