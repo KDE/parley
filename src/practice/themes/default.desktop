@@ -1,6 +1,7 @@
 [KGameTheme]
 Name=Default
 Name[ca]=Omissió
+Name[cs]=Výchozí
 Name[da]=Standard
 Name[de]=Standard
 Name[el]=Προκαθορισμένο
@@ -35,6 +36,7 @@ Name[zh_CN]=默认
 Name[zh_TW]=預設
 Description=Default theme for KDE 4
 Description[ca]=Tema predeterminat per al KDE 4
+Description[cs]=Výchozí téma určené pro KDE 4
 Description[da]=Standardtema til KDE 4
 Description[de]=Standard-Thema für KDE 4
 Description[el]=Προκαθορισμένο θέμα για το KDE 4
