@@ -101,7 +101,6 @@ There you can find files containing language vocabulary and also anatomy, music,
 <chapter id="quick-start">
 <title>Quick Start to &parley;</title>
 
-<!--para>Here is &parley; the first time you run it, either from the <menuchoice><guimenu>&kmenu;</guimenu> <guisubmenu>Edutainment</guisubmenu> <guimenuitem>Languages</guimenuitem></menuchoice> or with <keycombo action="simul">&Alt;<keycap>F2</keycap></keycombo> and type <command>parley</command> in the field.</para-->
 <screenshot>
 <screeninfo>&parley; main window</screeninfo>
 <mediaobject>
@@ -111,11 +110,7 @@ There you can find files containing language vocabulary and also anatomy, music,
 </screenshot>
 
 <para>
-For a start you could open an example file by using the <menuchoice><guimenu>File</guimenu> <guimenuitem>Open Example...</guimenuitem></menuchoice> menu. There are 2 files which you may use in order to get to know all the functions of &parley;. The file <filename>sample-en.kvtml</filename> &eg; shows you some vocabulary words in English, German and French.
-</para>
-
-<para>
-You can also download vocabulary files directly from the Internet using <guimenu>File</guimenu> <guimenuitem>Download New Vocabularies...</guimenuitem>.
+For a start you could download vocabulary files directly from the Internet using <guimenu>File</guimenu> <guimenuitem>Download New Vocabularies...</guimenuitem>.
 </para>
 
 <screenshot>
@@ -126,7 +121,7 @@ You can also download vocabulary files directly from the Internet using <guimenu
 </mediaobject>
 </screenshot>
 
-<para>Here, for example, I choose the file "Basic vocabulary German-English" with a click on the <guibutton>Install</guibutton> button in the dialog, the file is saved in your home dir ~/Vocabularies.</para>
+<para>Here, for example, I choose the file "Basic vocabulary German-English" with a click on the <guibutton>Install</guibutton> button in the dialog, the file is saved in your home folder <filename>~/share/apps/kvtml</filename>.</para>
 
 <screenshot>
 <screeninfo>The Basic vocabulary German-English file</screeninfo>
@@ -135,9 +130,7 @@ You can also download vocabulary files directly from the Internet using <guimenu
 <textobject><phrase>The vocabulary file</phrase></textobject>
 </mediaobject>
 </screenshot>
-<para>On the left of the main window you see a list of lessons. To select a lesson for training tick the box in front of it. After selecting one or more lessons let's start learning by clicking <guimenu>Start Practice</guimenu> in the toolbar.</para>
-
-
+<para>On the left of the main window you see a list of lessons. To select a lesson for training tick the box in front of it. After selecting one or more lessons let's start learning by clicking <guibutton>Start Practice</guibutton> in the toolbar.</para>
 
 <screenshot>
 <screeninfo>Written Practice Dialog</screeninfo>
@@ -152,7 +145,7 @@ If you want to check your answer click on <guibutton>Verify</guibutton>.
 
 To ignore words or to mark them as known without entering them, click on the <guibutton>Skip (Do Not Know)</guibutton> or <guibutton>Skip (I know It)</guibutton> buttons respectively.
 
-In the progress box you the number of words you have answered correctly and the seconds remaining for your answer. You can configure this option in the <guibutton>configure practice</guibutton> <guimenuitem>Advanced</guimenuitem> settings.</para>
+In the progress box you can see the number of words you have answered correctly and the seconds remaining for your answer. You can configure this option <guilabel>Advanced</guilabel> page of the in the <guilabel>Configure Practice</guilabel> settings.</para>
 
 <para>In case you find writing the words too hard, why not try a multiple choice test? After stopping the practice click on <guimenuitem>Configure Practice</guimenuitem> and choose a different practice method. You can also change the order of languages.</para>
 
@@ -163,7 +156,7 @@ In the progress box you the number of words you have answered correctly and the 
 <textobject><phrase>Configure Practice Dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
-<para>This is how a <guimenuitem>Multiple Choice Test</guimenuitem> looks like:</para>
+<para>This is how a <guilabel>Multiple Choice</guilabel> test looks like:</para>
 <screenshot>
 <screeninfo>Multiple Choice Practice Dialog</screeninfo>
 <mediaobject>
@@ -196,15 +189,8 @@ This is the main window of &parley;. It consists of two areas: the lesson list i
 
 <sect2>
 <title>The lesson list</title>
-<para>The lesson list on the left shows all lessons in your vocabulary file. If you mark a lesson, is will become the current one. In this case it is survival training.</para>
+<para>The lesson list on the left shows all lessons in your vocabulary file. If you mark a lesson, it will become the current one. In this case it is survival training.</para>
 <para>The ticked box left of the name of each lesson indicates that it is to be included in the practice. You may choose as many lessons for a test as you like.</para>
-<para>On top of the list there is a combo box which allows you to select which vocabulary selection you want displayed on the right:
-<itemizedlist>
-<listitem><para>The current lesson only (survival training in this case).</para></listitem>
-<listitem><para>Lessons in the test (the ones with a checkmark).</para></listitem>
-<listitem><para>All lessons (everything in the vocabulary file).</para></listitem>
-</itemizedlist>
-</para>
 </sect2>
 
 <sect2>
@@ -212,13 +198,12 @@ This is the main window of &parley;. It consists of two areas: the lesson list i
 <para>
 Depending on your selection, one or more lessons are displayed on the right side of the screen.
 </para>
-<para>A green check mark in the second column means that this entry is active. A red and white "X" indicates a deactivated entry that will not be practiced. See Editing Entries for more information on active entries.</para>
 
-<para>If you mark a range of entries to work with, their background colour changes. Many editing functions work for multiple entries simultaneously.</para>
+<para>If you mark a range of entries to work with, their background color changes. Many editing functions work for multiple entries simultaneously.</para>
 
-<para>The colour in the column with the original will vary if you have
+<para>The color in the column with the original will vary if you have
 two or more columns with translations. If the cursor is in one of the
-translations the colour represents its grade <quote>to the
+translations the color represents its grade <quote>to the
 original</quote>. See section <link linkend="general-settings">entry
 dialog</link> for more on this.</para>
 
@@ -263,7 +248,7 @@ extension is <literal role="extension">.csv</literal> in this
 case.</para>
 
 <para>There are a lot of files on the Internet which use the
-tab stops or one or two colons to separate the languages. To select this separator use the tab for setting the <link linkend="general-settings"><guilabel> Copy &amp; Paste</guilabel> options</link> in the <guimenu>Settings</guimenu> <guimenuitem>Configure &parley;...</guimenuitem> dialog.</para></listitem>
+tab stops or one or two colons to separate the languages. To select this separator use the tab for setting the <link linkend="general-settings"><guilabel>Open/Save</guilabel> options</link> in the <guilabel>General</guilabel> page of the <guilabel>Configure -  &parley;</guilabel> dialog.</para></listitem>
 
 </itemizedlist>
 
@@ -338,7 +323,7 @@ every document can contain user defined types.</para>
      <listitem><para>neutral</para></listitem>
   </itemizedlist></para></entry>
 <entry><para>names of things, feelings</para></entry>
-<entry><para>table, coffee (there is no distiction of genders in English)</para></entry>
+<entry><para>table, coffee (there is no distinction of genders in English)</para></entry>
 </row>
 
 <row>
@@ -422,7 +407,7 @@ them to one of seven levels ranging from <quote>Level 1</quote> to
 <quote>Level 7</quote>.</para>
 
 <para>Several options are implemented which can be configured in
-the dialogue for the practice options.</para>
+the dialog for the practice options.</para>
 
 <itemizedlist>
 <listitem><para>To keep the amount of expressions in a query in a reasonable range, you may restrict
@@ -471,7 +456,7 @@ problematic! The files must be licensed under a free license, please indicate it
 <sect1 id="new-stuff">
 <title>Downloading and installing existing files</title>
 
-<para>&parley; is shipped with only two examples files. But you can easily get and install existing files using the <menuchoice><guimenu>File</guimenu> <guimenuitem>Get New Vocabularies...</guimenuitem> </menuchoice> menu, provided you have an Internet connection. The following dialog is then displayed:</para>
+<para>You can easily get and install existing files using the <menuchoice><guimenu>File</guimenu> <guimenuitem>Get New Vocabularies...</guimenuitem> </menuchoice> menu, provided you have an Internet connection. The following dialog is then displayed:</para>
 
 <screenshot>
 <screeninfo>Get New Vocabularies... dialog</screeninfo>
@@ -481,10 +466,10 @@ problematic! The files must be licensed under a free license, please indicate it
 </mediaobject>
 </screenshot>
 
-<para>Choose the file you want to get. The <guibutton>Details</guibutton> button will give you more details about the content of the highlighted file. Click the <guibutton>Install</guibutton> button. The file is then downloaded from its location on the Internet, saved on your hard disk and opened in &parley; current window.
+<para>Choose the file you want to get and click the <guibutton>Install</guibutton> button. The file is then downloaded from its location on the Internet, saved on your hard disk and opened in &parley; current window.
 </para>
 
-<note><para>The files you download are saved in your home folder in the <filename>Vocabularies</filename> folder.</para></note>
+<note><para>The files you download are saved in your home folder <filename>~/share/apps/kvtml</filename>.</para></note>
 </sect1>
 
 <sect1 id="other-dict">
