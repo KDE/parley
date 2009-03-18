@@ -190,13 +190,13 @@ class Statistics : public QObject
 
 inline Statistics::ErrorType operator|(Statistics::ErrorType a , Statistics::ErrorType b)
 {
-    return static_cast<Statistics::ErrorType>(a|b);
+    return static_cast<Statistics::ErrorType>((int)a|(int)b);
 }
 
 
 inline Statistics::ErrorType operator|=(Statistics::ErrorType a, Statistics::ErrorType b)
 {
-    return static_cast<Statistics::ErrorType>(a |= b);
+    return static_cast<Statistics::ErrorType>(a|b);
 }
 
 #endif
