@@ -98,7 +98,7 @@ void ParleyDocument::newDocument(bool wizard)
         connect(titleAuthorDialog, SIGNAL(accepted()), titleAuthorWidget, SLOT(accept()));
         if(titleAuthorDialog->exec()) {
             showGrammarDialog = titleAuthorWidget->grammarCheckBox->isChecked();
-            fetchGrammarOnline = titleAuthorWidget->fetchGrammarOnlineCheckBox->isChecked();
+            fetchGrammarOnline = titleAuthorWidget->downloadGrammarCheckBox->isChecked();
             delete titleAuthorDialog;
         } else {
             delete titleAuthorDialog;

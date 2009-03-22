@@ -28,26 +28,27 @@
 #include <QCheckBox>
 #include <QLabel>
 #include <QtDBus>
+#include <parleydocument.h>
 
 #define TENSE_TAG ". "
 
-LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identifierIndex, QWidget *parent) : QWidget(parent)
+LanguagePropertiesPage::LanguagePropertiesPage(ParleyDocument *doc, int identifierIndex, QWidget *parent)
+    :QWidget(parent), m_parleyDocument(doc), m_identifierIndex(identifierIndex)
 {
-    m_doc = doc;
-    m_identifierIndex = identifierIndex;
+    m_doc = m_parleyDocument->document();
 
     setupUi(this);
 
     connect(localeComboBox, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(localeChanged(const QString&)));
     connect(iconComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(iconChanged(int)));
     connect(identifierNameLineEdit, SIGNAL(textChanged(const QString&)), this, SLOT(languageNameChanged(const QString&)));
+    connect(downloadGrammarButton, SIGNAL(clicked()), this, SLOT(downloadGrammar()));
 
-    // language codes
-    QStringList codes = KGlobal::locale()->allLanguagesList();
+    QStringList languageCodes = KGlobal::locale()->allLanguagesList();
 
     // qmap automatically sorts by keys
     QMap<QString, QString> languageCodeMap;
-    foreach (const QString &code, codes){
+    foreach (const QString &code, languageCodes){
         languageCodeMap[KGlobal::locale()->languageCodeToName(code)] = code;
     }
     // add the language, but also it's code as data
@@ -119,6 +120,17 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
         keyboardLayoutComboBox->setEnabled(false);
     }
 
+    loadGrammarFromDocument();
+}
+
+void LanguagePropertiesPage::downloadGrammar()
+{
+    m_parleyDocument->fetchGrammar(m_identifierIndex);
+    loadGrammarFromDocument();
+}
+
+void LanguagePropertiesPage::loadGrammarFromDocument()
+{
     if (m_identifierIndex < m_doc->identifierCount()) {
         // articles
         KEduVocArticle articles = m_doc->identifier(m_identifierIndex).article();
@@ -142,13 +154,12 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
         def_natural_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Definite | KEduVocWordFlag::Neuter ));
         indef_natural_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Neuter ));
 
-
         // personal pronouns
         const KEduVocWordFlags numS = KEduVocWordFlag::Singular;
         const KEduVocWordFlags numD = KEduVocWordFlag::Dual;
         const KEduVocWordFlags numP = KEduVocWordFlag::Plural;
 
-        KEduVocPersonalPronoun pronoun = m_doc->identifier(identifierIndex).personalPronouns();
+        KEduVocPersonalPronoun pronoun = m_doc->identifier(m_identifierIndex).personalPronouns();
 
         first_singular->setText(pronoun.personalPronoun(KEduVocWordFlag::First | numS));
         second_singular->setText(pronoun.personalPronoun(KEduVocWordFlag::Second | numS));
@@ -186,7 +197,6 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
     connect(modifyButton,  SIGNAL(clicked()),              this, SLOT(slotModifyTense()));
     connect(newButton,     SIGNAL(clicked()),              this, SLOT(slotNewTense()));
 
-
     if (m_identifierIndex < m_doc->identifierCount()) {
         int i = 1;
         foreach(const QString &tenseName, m_doc->identifier(m_identifierIndex).tenseList()) {
@@ -202,7 +212,6 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
 
     modifyButton->setEnabled(tenseList->count() > 0);
     deleteButton->setEnabled(tenseList->count() > 0);
-
     tenseList->setFocus();
 }
 
@@ -256,7 +265,6 @@ void LanguagePropertiesPage::accept()
     article.setArticle( indef_female_plural->text(),  artPlur | artIndef | KEduVocWordFlag::Feminine );
     article.setArticle( def_natural_plural->text(),  artPlur | artDef | KEduVocWordFlag::Neuter );
     article.setArticle( indef_natural_plural->text(),  artPlur | artIndef | KEduVocWordFlag::Neuter );
-
 
     m_doc->identifier(m_identifierIndex).setArticle( article );
 

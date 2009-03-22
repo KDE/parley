@@ -17,19 +17,18 @@
 
 #include "ui_languagepropertiespage.h"
 
-#include <keduvocarticle.h>
-#include <keduvocconjugation.h>
-
 class KEduVocDocument;
+class ParleyDocument;
 
 class LanguagePropertiesPage : public QWidget, public Ui::LanguagePropertiesPage
 {
     Q_OBJECT
 public:
-    LanguagePropertiesPage(KEduVocDocument *doc, int identifierIndex, QWidget *parent = 0);
+    LanguagePropertiesPage(ParleyDocument *doc, int identifierIndex, QWidget *parent = 0);
 
 public slots:
     void accept();
+    void downloadGrammar();
 
 signals:
     void nameChanged(const QString&);
@@ -50,13 +49,12 @@ private slots:
 
 private:
     void updateListBox(int start);
+    void loadGrammarFromDocument();
 
-    // tenses
-    int               m_currentTense;
-    QList<int>        tenseIndex; // contains indices of tenses on exec()
-    // negative values are new tenses
+    int m_currentTense;
+    QList<int> tenseIndex;
 
-    // general
+    ParleyDocument* m_parleyDocument;
     KEduVocDocument* m_doc;
     int m_identifierIndex;
 };

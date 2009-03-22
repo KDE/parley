@@ -37,7 +37,7 @@ public:
     KEduVocDocument *document();
 
     void enableAutoBackup(bool enable);
-    void fetchGrammar(int languageIndey);
+    void fetchGrammar(int languageIndex);
 
 public slots:
     /** open a new application window */
@@ -65,7 +65,6 @@ public slots:
     void exportDialog();
 
     void newDocument(bool wizard);
-    //void slotSaveSelection();
 
 signals:
     void documentChanged(KEduVocDocument *newDocument);

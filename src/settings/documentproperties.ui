@@ -303,9 +303,9 @@ If you consider contributing your file to KDE in the future, an appropriate lice
        </widget>
       </item>
       <item row="5" column="2" >
-       <widget class="QCheckBox" name="fetchGrammarOnlineCheckBox" >
+       <widget class="QCheckBox" name="downloadGrammarCheckBox" >
         <property name="text" >
-         <string comment="Attept to download grammar properties for the selected languages" >Try to Fetch Grammar Online</string>
+         <string comment="Attept to download grammar properties for the selected languages" >Download Grammar</string>
         </property>
         <property name="checked" >
          <bool>true</bool>

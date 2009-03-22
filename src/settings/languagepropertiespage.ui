@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>411</width>
-    <height>339</height>
+    <width>424</width>
+    <height>353</height>
    </rect>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout" >
@@ -87,6 +87,16 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item row="5" column="1" >
+        <widget class="QPushButton" name="downloadGrammarButton" >
+         <property name="text" >
+          <string>&amp;Download Grammar</string>
+         </property>
+         <property name="checkable" >
+          <bool>false</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -212,7 +222,7 @@
          <property name="sizeHint" stdset="0" >
           <size>
            <width>20</width>
-           <height>40</height>
+           <height>0</height>
           </size>
          </property>
         </spacer>
@@ -399,7 +409,7 @@
          <property name="sizeHint" stdset="0" >
           <size>
            <width>20</width>
-           <height>20</height>
+           <height>10</height>
           </size>
          </property>
         </spacer>

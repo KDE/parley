@@ -553,7 +553,7 @@ ParleyMainWindow* Editor::mainWindow()
 
 void Editor::slotLanguageProperties()
 {
-    LanguageProperties properties(m_mainWindow->parleyDocument()->document(), this);
+    LanguageProperties properties(m_mainWindow->parleyDocument(), this);
     if ( properties.exec() == KDialog::Accepted ) {
          m_vocabularyModel->resetLanguages();
     }

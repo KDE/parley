@@ -45,7 +45,6 @@ public slots:
 private:
     void prepareLanguageSelection();
     void acceptLanguageConfiguration();
-    void fetchGrammar(KEduVocDocument* doc, int index);
 
     KEduVocDocument* m_doc;
     // also allow the user to setup two languages - used when first creating a document
