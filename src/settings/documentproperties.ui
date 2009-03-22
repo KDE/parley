@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>331</width>
-    <height>385</height>
+    <width>426</width>
+    <height>437</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -302,13 +302,23 @@ If you consider contributing your file to KDE in the future, an appropriate lice
         </property>
        </widget>
       </item>
+      <item row="5" column="2" >
+       <widget class="QCheckBox" name="fetchGrammarOnlineCheckBox" >
+        <property name="text" >
+         <string comment="Attept to download grammar properties for the selected languages" >Try to Fetch Grammar Online</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11" />
-  <customwidgets>
+ <customwidgets>
   <customwidget>
    <class>KComboBox</class>
    <extends>QComboBox</extends>

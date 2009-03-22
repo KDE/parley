@@ -33,12 +33,10 @@
 
 #include <keduvocdocument.h>
 
-DocumentProperties::DocumentProperties(KEduVocDocument * doc, bool languageSetup, QWidget* parent) : QWidget(parent)
+DocumentProperties::DocumentProperties(KEduVocDocument * doc, bool languageSetup, QWidget* parent)
+    :QWidget(parent), m_doc(doc), m_showLanguages(languageSetup)
 {
-    m_doc = doc;
     setupUi(this);
-
-    m_showLanguages = languageSetup;
 
     titleLineEdit->setText(doc->title());
     authorLineEdit->setText(doc->author());
@@ -48,25 +46,29 @@ DocumentProperties::DocumentProperties(KEduVocDocument * doc, bool languageSetup
     categoryComboBox->setEditText(doc->category());
 
     if (languageSetup) {
-        QStringList codes = KGlobal::locale()->allLanguagesList();
-
-        QStringList languageNames;
-        foreach (const QString &code, codes){
-            languageNames.append( KGlobal::locale()->languageCodeToName(code) );
-        }
-        languageNames.sort();
-
-        firstLanguageComboBox->addItems(languageNames);
-        firstLanguageComboBox->completionObject()->insertItems(languageNames);
-        firstLanguageComboBox->completionObject()->setIgnoreCase(true);
-        secondLanguageComboBox->addItems(languageNames);
-        secondLanguageComboBox->completionObject()->insertItems(languageNames);
-        secondLanguageComboBox->completionObject()->setIgnoreCase(true);
-
-        languageGroupBox->setVisible(true);
+        prepareLanguageSelection();
     } else {
         languageGroupBox->setVisible(false);
     }
+}
+
+void DocumentProperties::prepareLanguageSelection()
+{
+    QStringList codes = KGlobal::locale()->allLanguagesList();
+    QStringList languageNames;
+    foreach (const QString &code, codes){
+        languageNames.append( KGlobal::locale()->languageCodeToName(code) );
+    }
+    languageNames.sort();
+
+    firstLanguageComboBox->addItems(languageNames);
+    firstLanguageComboBox->completionObject()->insertItems(languageNames);
+    firstLanguageComboBox->completionObject()->setIgnoreCase(true);
+    secondLanguageComboBox->addItems(languageNames);
+    secondLanguageComboBox->completionObject()->insertItems(languageNames);
+    secondLanguageComboBox->completionObject()->setIgnoreCase(true);
+
+    languageGroupBox->setVisible(true);
 }
 
 void DocumentProperties::accept()
@@ -79,27 +81,34 @@ void DocumentProperties::accept()
     m_doc->setCategory(categoryComboBox->currentText());
 
     if (m_showLanguages) {
-        QString firstLanguage = firstLanguageComboBox->currentText();
-        QString firstLocale;
-        QString secondLanguage = secondLanguageComboBox->currentText();
-        QString secondLocale;
-        
-        // ugly but works for now: iterate over languages to check which code we have
-        foreach ( const QString &code, KGlobal::locale()->allLanguagesList() ) {
-            if ( firstLanguage == KGlobal::locale()->languageCodeToName(code) ) {
-                firstLocale = code;
-            }
-            if ( secondLanguage == KGlobal::locale()->languageCodeToName(code) ) {
-                secondLocale = code;
-            }
-        }
+        acceptLanguageConfiguration();
+    }
+}
 
-        m_doc->identifier(0).setLocale(firstLocale);
-        m_doc->identifier(0).setName(firstLanguage);
-        m_doc->identifier(1).setLocale(secondLocale);
-        m_doc->identifier(1).setName(secondLanguage);
-	fetchGrammar(m_doc, 0);
-	fetchGrammar(m_doc, 1);
+void DocumentProperties::acceptLanguageConfiguration()
+{
+    QString firstLanguage = firstLanguageComboBox->currentText();
+    QString firstLocale;
+    QString secondLanguage = secondLanguageComboBox->currentText();
+    QString secondLocale;
+
+    // ugly but works for now: iterate over languages to check which code we have
+    foreach ( const QString &code, KGlobal::locale()->allLanguagesList() ) {
+        if ( firstLanguage == KGlobal::locale()->languageCodeToName(code) ) {
+            firstLocale = code;
+        }
+        if ( secondLanguage == KGlobal::locale()->languageCodeToName(code) ) {
+            secondLocale = code;
+        }
+    }
+
+    m_doc->identifier(0).setLocale(firstLocale);
+    m_doc->identifier(0).setName(firstLanguage);
+    m_doc->identifier(1).setLocale(secondLocale);
+    m_doc->identifier(1).setName(secondLanguage);
+    if (fetchGrammarOnlineCheckBox->isChecked()) {
+        fetchGrammar(m_doc, 0);
+        fetchGrammar(m_doc, 1);
     }
 }
 

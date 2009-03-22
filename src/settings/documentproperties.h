@@ -37,15 +37,18 @@ class DocumentProperties : public QWidget, public Ui::DocumentProperties
 public:
     DocumentProperties(KEduVocDocument * doc, bool languageSetup, QWidget *parent);
 
+
 public slots:
-    // this will apply the settings, but be aware, this is not a kdialog, only a qwidget - thus you need to connect to the accept!
-    virtual void accept();
+    /// Apply the settings. This is not a KDialog, so accept is not automatically called!
+    void accept();
 
 private:
+    void prepareLanguageSelection();
+    void acceptLanguageConfiguration();
     void fetchGrammar(KEduVocDocument* doc, int index);
-    KEduVocDocument* m_doc;
 
-    // when this is used to set up a new document, show languages is true and the user can input two languages.
+    KEduVocDocument* m_doc;
+    // also allow the user to setup two languages - used when first creating a document
     bool m_showLanguages;
 };
 
