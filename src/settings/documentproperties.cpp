@@ -106,28 +106,6 @@ void DocumentProperties::acceptLanguageConfiguration()
     m_doc->identifier(0).setName(firstLanguage);
     m_doc->identifier(1).setLocale(secondLocale);
     m_doc->identifier(1).setName(secondLanguage);
-    if (fetchGrammarOnlineCheckBox->isChecked()) {
-        fetchGrammar(m_doc, 0);
-        fetchGrammar(m_doc, 1);
-    }
-}
-
-void DocumentProperties::fetchGrammar(KEduVocDocument* doc, int index)
-{
-    QString locale = doc->identifier(index).locale();
-    
-    KUrl location(QString("http://edu.kde.org/parley/locale/") + locale + QString(".kvtml"));
-
-    KEduVocDocument grammarDoc;
-    if (grammarDoc.open(location) == KEduVocDocument::NoError) {
-        m_doc->identifier(index).setArticle(grammarDoc.identifier(0).article());
-        m_doc->identifier(index).setPersonalPronouns(grammarDoc.identifier(0).personalPronouns());
-// @todo        m_doc->identifier(index).setDeclension(grammarDoc.identifier(0).declension());
-        m_doc->identifier(index).setTenseList(grammarDoc.identifier(0).tenseList());
-    } else {
-        kDebug() << "Download of " << location.url() << " failed.";
-    }
 }
 
 #include "documentproperties.moc"
-

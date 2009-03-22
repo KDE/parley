@@ -84,13 +84,14 @@ void ParleyDocument::slotFileNew()
     }
 }
 
-
 void ParleyDocument::newDocument(bool wizard)
 {
     KEduVocDocument *newDoc = new KEduVocDocument();
-    bool setupLanguage = false;
+    
     initializeDefaultGrammar(newDoc);
-    createExampleEntries(newDoc);
+    setDefaultDocumentProperties(newDoc);
+    bool showGrammarDialog = false;
+    bool fetchGrammarOnline = false;
     if (wizard) {
         DocumentProperties* titleAuthorWidget = new DocumentProperties(newDoc, true, m_parleyApp);
         KDialog* titleAuthorDialog;
@@ -99,10 +100,12 @@ void ParleyDocument::newDocument(bool wizard)
         titleAuthorDialog->setCaption(i18nc("@title:window document properties", "Properties for %1", newDoc->url().url()));
         connect(titleAuthorDialog, SIGNAL(accepted()), titleAuthorWidget, SLOT(accept()));
         if(titleAuthorDialog->exec()) {
-            setupLanguage = titleAuthorWidget->grammarCheckBox->isChecked();
+            showGrammarDialog = titleAuthorWidget->grammarCheckBox->isChecked();
+            fetchGrammarOnline = titleAuthorWidget->fetchGrammarOnlineCheckBox->isChecked();
             delete titleAuthorDialog;
         } else {
             delete titleAuthorDialog;
+            delete newDoc;
             return;
         }
     }
@@ -113,11 +116,32 @@ void ParleyDocument::newDocument(bool wizard)
     enableAutoBackup(Prefs::autoBackup());
     emit documentChanged(m_doc);
 
-    if(setupLanguage) {
+    if(fetchGrammarOnline) {
+        fetchGrammar(0);
+        fetchGrammar(1);
+    }
+    if(showGrammarDialog) {
         m_parleyApp->editor()->slotLanguageProperties();
     }
 
     m_parleyApp->showEditor();
+}
+
+void ParleyDocument::fetchGrammar(int languageIndex)
+{
+    QString locale = m_doc->identifier(languageIndex).locale();
+
+    KUrl location(QString("http://edu.kde.org/parley/locale/") + locale + QString(".kvtml"));
+
+    KEduVocDocument grammarDoc;
+    if (grammarDoc.open(location) == KEduVocDocument::NoError) {
+        m_doc->identifier(languageIndex).setArticle(grammarDoc.identifier(0).article());
+        m_doc->identifier(languageIndex).setPersonalPronouns(grammarDoc.identifier(0).personalPronouns());
+// @todo        m_doc->identifier(index).setDeclension(grammarDoc.identifier(0).declension());
+        m_doc->identifier(languageIndex).setTenseList(grammarDoc.identifier(0).tenseList());
+    } else {
+        kDebug() << "Download of " << location.url() << " failed.";
+    }
 }
 
 void ParleyDocument::slotFileOpen()
@@ -221,86 +245,32 @@ void ParleyDocument::saveAs(KUrl url)
         QFileInfo fileinfo(url.path());
         if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
             i18n("<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>",
-                 url.path()),QString(),KStandardGuiItem::overwrite()) == KMessageBox::Cancel) {
+                url.path()),QString(),KStandardGuiItem::overwrite()) == KMessageBox::Cancel) {
             // do nothing
-                 } else
+        } else
 
-                     if (m_doc) {
-                         QString msg = i18nc("@info:status saving a file", "Saving %1", url.path());
-//                 slotStatusMsg(msg);
+            if (m_doc) {
+                QString msg = i18nc("@info:status saving a file", "Saving %1", url.path());
 
-                         QFile::remove(url.path()+'~'); // remove previous backup
-                             ::rename(QFile::encodeName(url.path()), QFile::encodeName(QString(url.path()+'~')));
+                QFile::remove(url.path()+'~'); // remove previous backup
+                QFile::rename(QFile::encodeName(url.path()), QFile::encodeName(QString(url.path()+'~')));
 
-                             m_doc->setCsvDelimiter(Prefs::separator());
+                m_doc->setCsvDelimiter(Prefs::separator());
 
-                             if ( !url.fileName().contains('.') ) {
-                                 url.setFileName(url.fileName() + QString::fromLatin1(".kvtml"));
-                             }
+                if ( !url.fileName().contains('.') ) {
+                    url.setFileName(url.fileName() + QString::fromLatin1(".kvtml"));
+                }
 
-                            m_parleyApp->editor()->m_vocabularyView->saveColumnVisibility(url);
+                m_parleyApp->editor()->m_vocabularyView->saveColumnVisibility(url);
 
-                             int result = m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley");
-                             if (result != 0) {
-                                 KMessageBox::error(m_parleyApp, i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(), m_doc->errorDescription(result)), i18n("Save File"));
-                             } else {
-                                 m_parleyApp->m_recentFilesAction->addUrl(m_doc->url(), m_doc->title());
-                             }
-                     }
+                    int result = m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley");
+                    if (result != 0) {
+                        KMessageBox::error(m_parleyApp, i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(), m_doc->errorDescription(result)), i18n("Save File"));
+                    } else {
+                        m_parleyApp->m_recentFilesAction->addUrl(m_doc->url(), m_doc->title());
+                    }
+            }
     }
-}
-
-
-void ParleyDocument::slotSaveSelection()
-{
-///@todo I doubt this works. If it's not checked, better not enable it.
-
-    /*
-    if (m_entryDlg != 0) {
-    m_entryDlg->commitData(false);
-}
-//     slotStatusMsg(i18n("Saving selected area under new filename..."));
-    QString save_separator = Prefs::separator();
-    Prefs::setSeparator("\t");
-    KEduVocDocument seldoc(this);
-    // transfer most important parts
-    for (int i = 0; i < m_doc->identifierCount(); i++) {
-    seldoc.appendIdentifier(m_doc->identifier(i));
-}
-    seldoc.setAuthor(m_doc->author());
-    //seldoc.setLessons(m_doc->lessons());
-    //seldoc.setLessonsInQuery(m_doc->lessonsInQuery());
-    //seldoc.setTypeDescriptions(m_doc->typeDescriptions());
-
-//     for (int i = m_doc->entryCount()-1; i >= 0; i--)
-//         if (m_doc->entry(i)->isInQuery())
-//             seldoc.appendEntry(m_doc->entry(i));
-
-    KUrl url = KFileDialog::getSaveUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Writing), parentWidget(), i18n("Save Vocabulary As"));
-
-    if (!url.isEmpty()) {
-    QFileInfo fileinfo(url.path());
-    if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
-    i18n("<qt>The file<br><b>%1</b><br />already exists. Do you want to overwrite it?</qt>",
-    url.path()),QString(),KStandardGuiItem::overwrite()) == KMessageBox::Cancel) {
-            // do nothing
-} else {
-    QString msg = i18nc("@info:status saving a file", "Saving %1", url.path());
-//             slotStatusMsg(msg);
-
-    QFile::remove(url.path()+'~'); // remove previous backup
-            // FIXME: check error
-    ::rename(QFile::encodeName(url.path()), QFile::encodeName(url.path()+'~'));
-
-    prepareProgressBar();
-    seldoc.setCsvDelimiter(Prefs::separator());
-    seldoc.saveAs(url, KEduVocDocument::Automatic, "Parley");
-    removeProgressBar();
-}
-}
-    Prefs::setSeparator(save_separator);
-//     slotStatusMsg(IDS_DEFAULT);
-    */
 }
 
 void ParleyDocument::initializeDefaultGrammar(KEduVocDocument *doc)
@@ -333,7 +303,7 @@ void ParleyDocument::initializeDefaultGrammar(KEduVocDocument *doc)
     root->appendChildContainer(adverb);
 }
 
-void ParleyDocument::createExampleEntries(KEduVocDocument *doc)
+void ParleyDocument::setDefaultDocumentProperties(KEduVocDocument *doc)
 {
     // some default values
     KUser user;

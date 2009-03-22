@@ -34,13 +34,10 @@ public:
 
     ~ParleyDocument();
 
-    /**
-     * Pointer to the current document.
-     * @return 
-     */
     KEduVocDocument *document();
 
     void enableAutoBackup(bool enable);
+    void fetchGrammar(int languageIndey);
 
 public slots:
     /** open a new application window */
@@ -67,24 +64,15 @@ public slots:
 
     void exportDialog();
 
-    void newDocument(bool wizard = false);
-
-    void slotSaveSelection();
+    void newDocument(bool wizard);
+    //void slotSaveSelection();
 
 signals:
     void documentChanged(KEduVocDocument *newDocument);
 
 private:
-    /**
-     * Add some pre defined types and usages.
-     */
     void initializeDefaultGrammar(KEduVocDocument *doc);
-    /**
-     *
-     * 
-     * When starting the first time, create some entries to get started.
-     */
-    void createExampleEntries(KEduVocDocument *doc);
+    void setDefaultDocumentProperties(KEduVocDocument *doc);
 
     QTimer *m_backupTimer;
     KEduVocDocument *m_doc;
