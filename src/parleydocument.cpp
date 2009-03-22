@@ -234,42 +234,50 @@ void ParleyDocument::save()
     enableAutoBackup(Prefs::autoBackup());
 }
 
-
 void ParleyDocument::saveAs(KUrl url)
 {
-    if (url.isEmpty()) {
-        url = KFileDialog::getSaveUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Writing), m_parleyApp->parentWidget(), i18n("Save Vocabulary As"));
+    if (!m_doc) {
+        return;
     }
 
-    if (!url.isEmpty()) {
-        QFileInfo fileinfo(url.path());
-        if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
-            i18n("<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>",
+    if (url.isEmpty()) {
+        url = KFileDialog::getSaveUrl(QString(),
+            KEduVocDocument::pattern(KEduVocDocument::Writing),
+            m_parleyApp->parentWidget(),
+            i18n("Save Vocabulary As"));
+    }
+    if (url.isEmpty()) {
+        return;
+    }
+    
+    QFileInfo fileinfo(url.path());
+    if (fileinfo.exists()) {
+        if(KMessageBox::warningContinueCancel(0,
+                i18n("<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>",
                 url.path()),QString(),KStandardGuiItem::overwrite()) == KMessageBox::Cancel) {
-            // do nothing
-        } else
+            return;
+        }
+    }
 
-            if (m_doc) {
-                QString msg = i18nc("@info:status saving a file", "Saving %1", url.path());
+    QString msg = i18nc("@info:status saving a file", "Saving %1", url.path());
 
-                QFile::remove(url.path()+'~'); // remove previous backup
-                QFile::rename(QFile::encodeName(url.path()), QFile::encodeName(QString(url.path()+'~')));
+    QFile::remove(url.path()+'~'); // remove previous backup
+    QFile::rename(QFile::encodeName(url.path()), QFile::encodeName(QString(url.path()+'~')));
 
-                m_doc->setCsvDelimiter(Prefs::separator());
+    m_doc->setCsvDelimiter(Prefs::separator());
 
-                if ( !url.fileName().contains('.') ) {
-                    url.setFileName(url.fileName() + QString::fromLatin1(".kvtml"));
-                }
+    if ( !url.fileName().contains('.') ) {
+        url.setFileName(url.fileName() + QString::fromLatin1(".kvtml"));
+    }
 
-                m_parleyApp->editor()->m_vocabularyView->saveColumnVisibility(url);
+    m_parleyApp->editor()->m_vocabularyView->saveColumnVisibility(url);
 
-                    int result = m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley");
-                    if (result != 0) {
-                        KMessageBox::error(m_parleyApp, i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(), m_doc->errorDescription(result)), i18n("Save File"));
-                    } else {
-                        m_parleyApp->m_recentFilesAction->addUrl(m_doc->url(), m_doc->title());
-                    }
-            }
+    int result = m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley");
+    if (result == 0) {
+        m_parleyApp->m_recentFilesAction->addUrl(m_doc->url(), m_doc->title());
+    } else {
+        KMessageBox::error(m_parleyApp, i18n("Writing file \"%1\" resulted in an error: %2",
+            m_doc->url().url(), m_doc->errorDescription(result)), i18n("Save File"));
     }
 }
 
