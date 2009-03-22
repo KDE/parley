@@ -135,7 +135,7 @@ VocabularyView::VocabularyView(Editor * parent)
     KAction *vocabularyColumnsDialogAction = new KAction(this);
     parent->actionCollection()->addAction("show_vocabulary_columns_dialog", vocabularyColumnsDialogAction);
     vocabularyColumnsDialogAction->setIcon(KIcon("view-file-columns"));
-    vocabularyColumnsDialogAction->setText(i18n("Vocabulary Columns")); ///@todo add "..." since this opens a dialog
+    vocabularyColumnsDialogAction->setText(i18n("Vocabulary Columns..."));
     vocabularyColumnsDialogAction->setWhatsThis(i18n("Toggle display of individual vocabulary columns"));
     vocabularyColumnsDialogAction->setToolTip(vocabularyColumnsDialogAction->whatsThis());
     vocabularyColumnsDialogAction->setStatusTip(vocabularyColumnsDialogAction->whatsThis());
@@ -144,204 +144,16 @@ VocabularyView::VocabularyView(Editor * parent)
     connect(vocabularyColumnsDialogAction, SIGNAL(triggered(bool)), this, SLOT(slotShowVocabularyColumnsDialog()));
 }
 
-
 void VocabularyView::setModel(VocabularyFilter * model)
 {
     QTableView::setModel(model);
     m_model = model;
-    connect(selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
-
-    connect(selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)), SLOT(slotSelectionChanged(const QItemSelection&, const QItemSelection&)));
+    connect(selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
+        SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
+    connect(selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
+        SLOT(slotSelectionChanged(const QItemSelection&, const QItemSelection&)));
     slotSelectionChanged(QItemSelection(), QItemSelection());
 }
-
-// void VocabularyView::print(QPrinter * pPrinter)
-// {
-//     ///@todo revisit and check before release
-//     QPainter painter;
-//     painter.setBrush(Qt::NoBrush);
-//     int res = pPrinter->resolution();
-//     int marg = res;
-//
-//     int pw;
-//     int c = 0;
-//     int currentWidth;
-//     int startCol;
-//     int pageNum = 1;
-//
-//     int colCount = model()->columnCount(QModelIndex());
-//     int hh = horizontalHeader()->height();
-//     int tPos = marg + hh;
-//
-//     QStyleOptionViewItem option;
-//     option.initFrom(this);
-//
-//     painter.begin(pPrinter);
-//     QRect w = painter.window();
-//     QRect cr;
-//
-//     pw = w.width() - (2 * marg);
-//
-//     while (c < colCount) {
-//         startCol = c;
-//         currentWidth = marg;
-//
-//         while ((currentWidth < pw) && (c < colCount)) {
-//             currentWidth = currentWidth + columnWidth(c);
-//             c++;
-//         }
-//         if (c < colCount)
-//             c--;
-//
-//         newPage(painter, res, startCol, c);
-//
-//         for (int rc = 0; rc < model()->rowCount(QModelIndex()); ++rc) {
-//             int rh = rowHeight(rc);
-//
-//             painter.resetMatrix();
-//             painter.setFont(Prefs::tableFont());
-//             painter.translate(marg, tPos);
-//
-//             for (int i = startCol; i <= c && i < colCount; ++i) {
-//                 cr.setRect(0, 0, columnWidth(i), rh);
-//                 option.displayAlignment = Qt::AlignLeft | Qt::AlignVCenter;
-//                 option.rect = cr;
-//                 painter.drawRect(cr);
-//                 painter.save();
-//
-//                 itemDelegate()->paint(&painter, option, model()->index(rc, i));
-//                 painter.restore();
-//
-//                 painter.translate(columnWidth(i), 0);
-//             }
-//
-//             tPos = tPos + rowHeight(rc);
-//
-//             if (tPos + rowHeight(rc + 1) > w.height() - marg) {
-//                 endOfPage(painter, pageNum++, res);
-//                 tPos = marg + hh;
-//                 pPrinter->newPage();
-//                 newPage(painter, res, startCol, c);
-//             }
-//         }
-//         endOfPage(painter, pageNum++, res);
-//
-//         if (c < colCount) {
-//             pPrinter->newPage();
-//             tPos = marg + hh;
-//             c++;
-//         }
-//     }
-//     painter.end();
-// }
-//
-// void VocabularyView::newPage(QPainter & painter, int res, int startCol, int endCol)
-// {
-//     int marg = res;
-//     int hh = horizontalHeader()->height();
-//     int cw;
-//     QRect cr;
-//     QRect w = painter.window();
-//     painter.resetMatrix();
-//     painter.setFont(KGlobalSettings::generalFont());
-//     painter.drawText(marg, marg - 20, KGlobal::caption());
-//     painter.translate(marg, marg);
-//     painter.drawLine(0 , 0, 0, hh);
-//     for (int i = startCol; i <= endCol && i < model()->columnCount(QModelIndex()); ++i) {
-//         cw = columnWidth(i);
-//         painter.drawLine(0, 0, cw, 0);
-//         painter.drawLine(cw, 0, cw, hh);
-//         cr.setRect(3, 0, columnWidth(i)- 6, hh);
-//         painter.drawText(cr, Qt::AlignLeft | Qt::AlignVCenter, model()->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
-//         painter.translate(cw, 0);
-//     }
-// }
-//
-// void VocabularyView::endOfPage(QPainter & painter, int pageNum, int res)
-// {
-//     painter.resetMatrix();
-//     painter.setFont(KGlobalSettings::generalFont());
-//     QRect w = painter.window();
-//     QRect r = painter.boundingRect(0, 0, 0, 0, Qt::AlignLeft, QString::number(pageNum));
-//     painter.drawText((w.width()/2) - (r.width()/2), w.height() - res + 20, QString::number(pageNum));
-// }
-//
-// void VocabularyView::resizeEvent(QResizeEvent * event)
-// {
-//     QWidget::resizeEvent(event);
-//
-// //     if (event == 0) {
-// //         return;
-// //     }
-//
-//     if ( !model() || (model()->columnCount() < 3) ) {
-//         return;
-//     }
-//
-//     QHeaderView * header = horizontalHeader();
-//     int colCount =  model()->columnCount(QModelIndex());
-//     int oldWidth = 0;
-//
-//     for (int i = 0; i < colCount; ++i)
-//         oldWidth += header->sectionSize(i);
-//
-//     int newWidth = viewport()->width();
-//
-//     switch (Prefs::headerResizeMode()) {
-//     case Prefs::EnumHeaderResizeMode::Automatic: {
-//             // lesson is only half as wide as a original/translation
-//             // exclude fixed size of "mark"-column
-//             int activeColumnVisible = 0;
-//             if ( Prefs::tableActiveColumnVisible() ) {
-//                 newWidth -= KV_COLWIDTH_MARK;
-//                 header->resizeSection(KV_COL_MARK, KV_COLWIDTH_MARK);
-//             }
-//
-//             int columnsHalfWidth;
-//             if ( Prefs::tableLessonColumnVisible() ) {
-//                 // total width / ((total number of columns - active column) * 2 -1 lesson only half)
-//                 columnsHalfWidth = newWidth / ((colCount - 1) * 2 -1);
-//                 header->resizeSection(KV_COL_LESS, columnsHalfWidth);
-//             } else {
-//                 columnsHalfWidth = newWidth / ((colCount - 2) * 2);
-//             }
-//
-//             for (int currentColumn = KV_COL_TRANS; currentColumn < colCount; currentColumn++) {
-//                 header->resizeSection(currentColumn, 2 * columnsHalfWidth);
-//             }
-//         }
-//         break;
-//
-//     case Prefs::EnumHeaderResizeMode::Percent: {
-//             float grow = float(newWidth) / float(oldWidth);
-//             header->resizeSection(KV_COL_MARK, KV_COLWIDTH_MARK);
-//
-//             int remainder = newWidth - KV_COLWIDTH_MARK;
-//             int x = qMax(HEADER_MINSIZE, (int)((header->sectionSize(KV_COL_LESS) * grow) + 0.5));
-//             header->resizeSection(KV_COL_LESS, x);
-//             remainder -= x;
-//
-//             for (int i = KV_COL_TRANS; i < colCount - 1; i++) {
-//                 x = qMax(HEADER_MINSIZE, (int)((header->sectionSize(i) * grow) + 0.5));
-//                 remainder -= x;
-//                 header->resizeSection(i, x);
-//             }
-//             header->resizeSection(colCount - 1, qMax(HEADER_MINSIZE, remainder));
-//         }
-//         break;
-//
-//     case Prefs::EnumHeaderResizeMode::Fixed:
-//         // do nothing
-//         break;
-//     }
-// }
-//
-// void VocabularyView::showEvent(QShowEvent * event)
-// {
-//     QWidget::showEvent(event);
-//     QResizeEvent rsEvent(size(), size());
-//     resizeEvent(&rsEvent);
-// }
 
 void VocabularyView::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous)
 {
