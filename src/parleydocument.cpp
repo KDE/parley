@@ -53,16 +53,13 @@
 
 
 ParleyDocument::ParleyDocument(ParleyMainWindow *parent)
- : QObject(parent)
+    :QObject(parent), m_parleyApp(parent), m_doc(new KEduVocDocument(this)), m_backupTimer(0)
 {
-    m_parleyApp = parent;
-    m_doc = new KEduVocDocument(this);
-    m_backupTimer = 0;
 }
-
 
 ParleyDocument::~ParleyDocument()
 {
+    delete m_backupTimer;
     if (m_doc) {
         // FIXME: this should be part of the editor
         m_parleyApp->editor()->m_vocabularyView->saveColumnVisibility(m_doc->url());

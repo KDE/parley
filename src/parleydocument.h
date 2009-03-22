@@ -74,9 +74,9 @@ private:
     void initializeDefaultGrammar(KEduVocDocument *doc);
     void setDefaultDocumentProperties(KEduVocDocument *doc);
 
-    QTimer *m_backupTimer;
-    KEduVocDocument *m_doc;
     ParleyMainWindow *m_parleyApp;
+    KEduVocDocument *m_doc;
+    QTimer *m_backupTimer;
 };
 
 #endif
