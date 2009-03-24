@@ -40,11 +40,11 @@ ConjugationWidget::ConjugationWidget(QWidget *parent) : QWidget(parent)
     m_conjugationLineEdits[KEduVocWordFlag::Second | KEduVocWordFlag::Singular]
         = singularSecondPersonLineEdit;
 
-    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Masculine, KEduVocWordFlag::Singular]
+    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | KEduVocWordFlag::Singular]
         = singularThirdMalePersonLineEdit;
-    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Feminine, KEduVocWordFlag::Singular]
+    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | KEduVocWordFlag::Singular]
         = singularThirdFemalePersonLineEdit;
-    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Neuter, KEduVocWordFlag::Singular]
+    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | KEduVocWordFlag::Singular]
         = singularThirdNeutralPersonLineEdit;
 
     m_conjugationLineEdits[KEduVocWordFlag::First | KEduVocWordFlag::Dual]
@@ -52,11 +52,11 @@ ConjugationWidget::ConjugationWidget(QWidget *parent) : QWidget(parent)
     m_conjugationLineEdits[KEduVocWordFlag::Second | KEduVocWordFlag::Dual]
         = dualSecondPersonLineEdit;
 
-    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Masculine, KEduVocWordFlag::Dual]
+    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | KEduVocWordFlag::Dual]
         = dualThirdMalePersonLineEdit;
-    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Feminine, KEduVocWordFlag::Dual]
+    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | KEduVocWordFlag::Dual]
         = dualThirdFemalePersonLineEdit;
-    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Neuter, KEduVocWordFlag::Dual]
+    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | KEduVocWordFlag::Dual]
         = dualThirdNeutralPersonLineEdit;
 
     m_conjugationLineEdits[KEduVocWordFlag::First | KEduVocWordFlag::Plural]
@@ -64,11 +64,11 @@ ConjugationWidget::ConjugationWidget(QWidget *parent) : QWidget(parent)
     m_conjugationLineEdits[KEduVocWordFlag::Second | KEduVocWordFlag::Plural]
         = pluralSecondPersonLineEdit;
 
-    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Masculine, KEduVocWordFlag::Plural]
+    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | KEduVocWordFlag::Plural]
         = pluralThirdMalePersonLineEdit;
-    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Feminine, KEduVocWordFlag::Plural]
+    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | KEduVocWordFlag::Plural]
         = pluralThirdFemalePersonLineEdit;
-    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Neuter, KEduVocWordFlag::Plural]
+    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | KEduVocWordFlag::Plural]
         = pluralThirdNeutralPersonLineEdit;
 
     foreach(const KEduVocWordFlags &index, m_conjugationLineEdits.keys()) {
