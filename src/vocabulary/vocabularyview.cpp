@@ -220,6 +220,7 @@ void VocabularyView::appendEntry()
 {
     QModelIndex newIndex = m_model->appendEntry();
     scrollTo(newIndex);
+    selectionModel()->clear(); // otherwise proxy mapping gets screwed for some reason
     selectionModel()->select(newIndex, QItemSelectionModel::ClearAndSelect);
     selectionModel()->setCurrentIndex(newIndex, QItemSelectionModel::ClearAndSelect);
     edit(newIndex);
