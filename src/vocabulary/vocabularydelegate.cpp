@@ -254,20 +254,20 @@ void VocabularyDelegate::setModelData ( QWidget * editor, QAbstractItemModel * m
 void VocabularyDelegate::commitAndCloseEditor()
 {
     kDebug() << "Committing and closing delegate";
-    QWidget *editor = qobject_cast<QWidget *> ( sender() );
+    QWidget *editor = qobject_cast<QWidget *>(sender());
     if (editor) {
         editor->setFocus();
     }
-    emit commitData ( editor );
-    emit closeEditor ( editor, QAbstractItemDelegate::EditNextItem );
+    emit commitData(editor);
+    emit closeEditor(editor, QAbstractItemDelegate::EditNextItem);
 }
 
-void VocabularyDelegate::setCurrentIndex ( const QModelIndex & index )
+void VocabularyDelegate::setCurrentIndex(const QModelIndex & index)
 {
     m_currentIndex = index;
 }
 
-void VocabularyDelegate::setDocument ( KEduVocDocument * doc )
+void VocabularyDelegate::setDocument(KEduVocDocument * doc)
 {
     m_doc = doc;
 }

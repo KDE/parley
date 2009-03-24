@@ -40,8 +40,6 @@ public:
 
 public slots:
     void setDocument(KEduVocDocument *doc);
-
-private slots:
     void commitAndCloseEditor();
 
 private:
