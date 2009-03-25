@@ -320,7 +320,7 @@ void Editor::initDockWidgets()
 // Summary word
     QDockWidget *summaryDock = new QDockWidget(i18n("Summary"), this);
     summaryDock->setObjectName("SummaryDock");
-    m_summaryWordWidget = new SummaryWordWidget(m_vocabularyModel, m_mainWindow->parleyDocument()->document(), this);
+    m_summaryWordWidget = new SummaryWordWidget(m_vocabularyFilter, m_mainWindow->parleyDocument()->document(), this);
     summaryDock->setWidget(m_summaryWordWidget);
     addDockWidget(Qt::RightDockWidgetArea, summaryDock);
     actionCollection()->addAction("show_summary_dock", summaryDock->toggleViewAction());

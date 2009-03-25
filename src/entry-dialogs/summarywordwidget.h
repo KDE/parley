@@ -26,7 +26,7 @@ class QModelIndex;
 class KEduVocContainer;
 class KEduVocDocument;
 class KEduVocExpression;
-class VocabularyModel;
+class VocabularyFilter;
 
 /**
 * Represents the overview of a KEduVocExpression
@@ -43,7 +43,7 @@ class SummaryWordWidget : public QWidget, public Ui::SummaryWordWidget
     Q_OBJECT
 
 public:
-    SummaryWordWidget(VocabularyModel *model, KEduVocDocument *doc, QWidget *parent = 0);
+    SummaryWordWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent = 0);
     ~SummaryWordWidget();
 
 public slots:
@@ -79,7 +79,7 @@ private:
     void populateWordTypeList(KEduVocExpression *entry, int translation);
 
 private:
-    VocabularyModel *m_model;
+    VocabularyFilter *m_model;
     KEduVocDocument *m_doc;
     QDataWidgetMapper *m_mapper;
 };
