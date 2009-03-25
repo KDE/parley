@@ -17,6 +17,7 @@
 #include "languagesettings.h"
 #include "vocabulary/lessonmodel.h"
 #include "vocabulary/vocabularymodel.h"
+#include "vocabulary/vocabularyfilter.h"
 #include "vocabulary/wordtypemodel.h"
 
 // Qt headers
@@ -36,7 +37,7 @@
 #include <KIcon>
 #include <KLocale>
 
-SummaryWordWidget::SummaryWordWidget(VocabularyModel *model, KEduVocDocument *doc, QWidget *parent) :
+SummaryWordWidget::SummaryWordWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent) :
     QWidget(parent)
 {
     m_doc = doc;
