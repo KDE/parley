@@ -145,7 +145,7 @@ If you want to check your answer click on <guibutton>Verify</guibutton>.
 
 To ignore words or to mark them as known without entering them, click on the <guibutton>Skip (Do Not Know)</guibutton> or <guibutton>Skip (I know It)</guibutton> buttons respectively.
 
-In the progress box you can see the number of words you have answered correctly and the seconds remaining for your answer. You can configure this option <guilabel>Advanced</guilabel> page of the in the <guilabel>Configure Practice</guilabel> settings.</para>
+In the progress box you can see the number of words you have answered correctly and the seconds remaining for your answer. You can configure this option on the <guilabel>Advanced</guilabel> page in the <guilabel>Configure Practice</guilabel> settings.</para>
 
 <para>In case you find writing the words too hard, why not try a multiple choice test? After stopping the practice click on <guimenuitem>Configure Practice</guimenuitem> and choose a different practice method. You can also change the order of languages.</para>
 
