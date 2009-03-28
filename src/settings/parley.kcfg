@@ -91,7 +91,7 @@
       <default>false</default>
     </entry>
     <entry name="PracticeTimeoutMode" type="Enum">
-      <label>Show - show the solution after the given time; continue - go to the next question after the given time.</label>
+      <label>Show - show the solution after the given time; Continue - go to the next question after the given time.</label>
       <choices>
         <choice name="Show"/>
         <choice name="Continue"/>
