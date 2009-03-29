@@ -144,7 +144,7 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
             if(m_container->entry(index.row(), m_recursive)->translation(translationId)->wordType()) {
                 return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->wordType()->name());
             }
-            return QVariant();
+            return QVariant(QString());
         case Example: {
             QString example = m_container->entry(index.row(), m_recursive)->translation(translationId)->example();
             /*QString word = m_container->entry(index.row(), m_recursive)->translation(translationId)->text();
