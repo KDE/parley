@@ -30,20 +30,18 @@
 #include <QPixmap>
 
 VocabularyModel::VocabularyModel(QObject *parent)
- : QAbstractTableModel(parent)
+    :QAbstractTableModel(parent),
+    m_container(0), m_document(0)
 {
-    m_document = 0;
-    m_container = 0;
-    m_recursive = Prefs::showSublessonentries() ? KEduVocContainer::Recursive : KEduVocContainer::NotRecursive;
+    m_recursive = Prefs::showSublessonentries() ? KEduVocContainer::Recursive
+        : KEduVocContainer::NotRecursive;
 
     qRegisterMetaType<KEduVocTranslation*>("KEduVocTranslationPointer");
 }
 
-
 VocabularyModel::~VocabularyModel()
 {
 }
-
 
 void VocabularyModel::setDocument(KEduVocDocument * doc)
 {
@@ -100,7 +98,6 @@ void VocabularyModel::setWordType(KEduVocWordType * wordTypeContainer)
     m_wordType = wordTypeContainer;
 }
 
-
 int VocabularyModel::rowCount(const QModelIndex &index) const
 {
     // no lesson set - zarro rows
@@ -135,7 +132,6 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
     case Qt::DisplayRole:
         switch (entryColumn) {
         case Translation:
-//             kDebug() << columnCount(QModelIndex()) << index.column() << m_container->entry(index.row(), m_recursive)->translation(translationId)->text();
             return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->text());
         case Pronunciation:
             return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->pronunciation());
@@ -144,7 +140,7 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
             if(m_container->entry(index.row(), m_recursive)->translation(translationId)->wordType()) {
                 return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->wordType()->name());
             }
-            return QVariant();
+            return QVariant(QString());
         case Example: {
             QString example = m_container->entry(index.row(), m_recursive)->translation(translationId)->example();
             /*QString word = m_container->entry(index.row(), m_recursive)->translation(translationId)->text();
@@ -162,35 +158,10 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
             return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->comment());
         case Paraphrase:
             return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->paraphrase());
-//         case Audio:
-//         case Image:
         default:
             return QVariant();
         }
         break;
-//     case Qt::DecorationRole: {
-//         switch (entryColumn) {
-//         case Audio:
-//             if ( !m_container->entry(index.row(), m_recursive)->translation(translationId)->soundUrl().isEmpty() ) {
-//                 return KIcon("media-playback-start");
-//             }
-//             return QVariant();
-//         case Image:
-//             if ( !m_container->entry(index.row(), m_recursive)->translation(translationId)->imageUrl().isEmpty() ) {
-//                 return QPixmap(m_container->entry(index.row(), m_recursive)->translation(translationId)->imageUrl().toLocalFile()).scaled(QSize(30,30));
-//             }
-//             return QVariant();
-//         default:
-//             return QVariant();
-//         }
-//         break;
-//     }
-//     case Qt::SizeHintRole:
-//         switch (entryColumn) {
-//         case Audio:
-//         case Image:
-//             return QSize(25, 25);
-//         }
     case Qt::TextColorRole:
         if (Prefs::useGradeColors() && entryColumn == Translation) {
             int grade = m_container->entry(index.row(), m_recursive)->translation(translationId)->grade();
@@ -210,10 +181,13 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
         switch (entryColumn) {
         case WordType:
             return i18n("You can drag and drop words onto their word type.");
+        case Synonym:
+            return i18n("Enable the synonym view to edit synonyms.");
+        case Antonym:
+            return i18n("Enable the antonym view to edit antonyms.");
         }
         }
     }
-
     return QVariant();
 }
 
@@ -235,7 +209,6 @@ bool VocabularyModel::setData(const QModelIndex &index, const QVariant &value, i
         m_container->entry(index.row(), m_recursive)->translation(translationId)->setPronunciation(value.toString());
         break;
     case WordType:
-//             m_container->entry(index.row(), m_recursive)->translation(translationId)->type();
         break;
     case Example:
         m_container->entry(index.row(), m_recursive)->translation(translationId)->setExample(value.toString());
@@ -246,8 +219,6 @@ bool VocabularyModel::setData(const QModelIndex &index, const QVariant &value, i
     case Paraphrase:
         m_container->entry(index.row(), m_recursive)->translation(translationId)->setParaphrase(value.toString());
         break;
-//     case Audio:
-//     case Image:
     default:
         return false;
     }
@@ -287,20 +258,6 @@ QVariant VocabularyModel::headerData(int section, Qt::Orientation orientation, i
             case Qt::DisplayRole:
                 return VocabularyModel::columnTitle(m_document, translationId, entryColumn);
             break;
-//         case Qt::DecorationRole:
-//             switch(entryColumn){
-//             case Audio:
-//                 return KIcon("speaker");
-//             case Image:
-//                 return KIcon("view-preview");
-//             }
-
-//         case Qt::SizeHintRole:
-//             switch (entryColumn) {
-//             case Audio:
-//             case Image:
-//                 return QSize(25, 25);
-//             }
         } // switch role
     } // if horizontal
     return QVariant();
@@ -363,8 +320,6 @@ QModelIndex VocabularyModel::appendEntry(KEduVocExpression *expression)
     m_lesson->appendEntry(expression);
     endInsertRows();
 
-    ///FIXME: not correct - the last row of the old lesson:
-    // the last row will be the new entry
     return index(rowCount(QModelIndex()) - 1, 0, QModelIndex());
 }
 
@@ -408,7 +363,6 @@ QMimeData * VocabularyModel::mimeData(const QModelIndexList & indexes) const
     }
 
     mimeData->setTranslations(translations);
-
     return mimeData;
 }
 
@@ -429,10 +383,9 @@ void VocabularyModel::resetLanguages()
     setDocument(m_document);
 }
 
-void VocabularyModel::automaticTranslation(bool enabled) {
+void VocabularyModel::automaticTranslation(bool enabled)
+{
     Prefs::setAutomaticTranslation(enabled);
 }
 
 #include "vocabularymodel.moc"
-
-
