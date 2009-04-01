@@ -1,6 +1,5 @@
 #desktop files
 install(FILES
-#   test.desktop
    google_dictionary.desktop
    leo-dict.desktop
    example.desktop
@@ -9,7 +8,6 @@ install(FILES
 
 #script files
 install(FILES
-#   test.py
    google_dictionary.py
    leo-dict.py
    example.py
@@ -20,3 +18,5 @@ install(FILES
 install(FILES
    google_images.ui
    DESTINATION ${DATA_INSTALL_DIR}/parley/plugins)
+
+add_subdirectory( wiktionary )

@@ -1,0 +1,19 @@
+[Desktop Entry]
+Encoding=UTF-8
+Icon=parley
+Type=Service
+ServiceTypes=KPluginInfo
+
+Name=Wiktionary Sound
+Comment=This script fetches sound files from http://commons.wikimedia.org.
+
+Script=wiktionary_sound.py
+
+X-KDE-PluginInfo-Author=Frederik Gladhorn, Thomas Eitzenberger
+X-KDE-PluginInfo-Email=gladhorn@kde.org
+X-KDE-PluginInfo-Name=wiktionary_sound
+X-KDE-PluginInfo-Version=0.1
+X-KDE-PluginInfo-Website=http://edu.kde.org/parley
+X-KDE-PluginInfo-Category=Sound
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-EnabledByDefault=true
