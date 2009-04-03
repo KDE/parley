@@ -5,7 +5,15 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Wiktionary Sound
+Name[pt]=Som do Wiktionary
+Name[pt_BR]=Som do Wiktionary
+Name[sv]=Wiktionary-ljud
+Name[uk]=Звук з Wiktionary
 Comment=This script fetches sound files from http://commons.wikimedia.org.
+Comment[pt]=Este programa obtém ficheiros de sons do http://commons.wikimedia.org.
+Comment[pt_BR]=Este programa obtém ficheiros de sons do http://commons.wikimedia.org.
+Comment[sv]=Skriptet hämtar ljudfiler från http://commons.wikimedia.org.
+Comment[uk]=Цей скрипт звантажує звукові файли з http://commons.wikimedia.org.
 
 Script=wiktionary_sound.py
 
