@@ -10,12 +10,14 @@ Name[pt_BR]=Som do Wiktionary
 Name[sv]=Wiktionary-ljud
 Name[uk]=Звук з Wiktionary
 Name[x-test]=xxWiktionary Soundxx
+Name[zh_TW]=Wiktionary 音效
 Comment=This script fetches sound files from http://commons.wikimedia.org.
 Comment[pt]=Este programa obtém ficheiros de sons do http://commons.wikimedia.org.
 Comment[pt_BR]=Este programa obtém ficheiros de sons do http://commons.wikimedia.org.
 Comment[sv]=Skriptet hämtar ljudfiler från http://commons.wikimedia.org.
 Comment[uk]=Цей скрипт звантажує звукові файли з http://commons.wikimedia.org.
 Comment[x-test]=xxThis script fetches sound files from http://commons.wikimedia.org.xx
+Comment[zh_TW]=此文稿會從 http://commons.wikimedia.org 中抓取音效檔。
 
 Script=wiktionary_sound.py
 
