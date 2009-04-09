@@ -22,20 +22,30 @@ def fetchSound():
     print "fetching sound"
     tr = Parley.selectedTranslations()
     for word in tr:
+    print "checking sound for " + word.text
         fetchSoundForTranslation(word)
-    else:
-        print "No translation selected"
 
 def fetchSoundForTranslation(word):
     locale = getLocale(word)
-    wikiLocale = getWikiLocale(locale)
-    print 'Language:', wikiLocale, ' Word: ', word.text
-    soundfile = getWikiObject(wikiLocale, word.text)
-    if soundfile:
-        url = downloadFromWiki(soundfile)
-        word.soundUrl = url
-    else:
-        print "No translation found for: ", word.text
+    wikiLocales = getWikiLocales(locale)
+    bFound = 0
+    for wikiLocale in wikiLocales:
+        if (bFound == 0):
+        print 'Language:', wikiLocale, ' Word: ', word.text
+            soundfile = getWikiObject(wikiLocale, word.text, None)
+            # check for specific pronounciation for nouns
+        if soundfile == None:
+            soundfile = getWikiObject(wikiLocale, word.text, 'noun')
+            # check for specific pronounciation for verbs
+            if soundfile == None:
+            soundfile = getWikiObject(wikiLocale, word.text, 'verb')
+            if soundfile:
+                url = downloadFromWiki(soundfile)
+                word.soundUrl = url
+        bFound = 1
+            print "setting url for word " + word.text + ":" + word.soundUrl
+            else:
+                print "No translation found for: ", word.text
 
 # locale of the given translation
 def getLocale(trans):
@@ -46,16 +56,29 @@ def getLocale(trans):
                 return Parley.doc.identifier(i).locale
 
 # go from iso codes to wiktionary
-def getWikiLocale(lang):
+def getWikiLocales(lang):
+    langs = []
     if (string.lower(lang[:2]) == 'en'):
-        lang = 'En-us'
-    lang.replace('_', '-')
-    return lang
+        langs.append('En-us')
+    langs.append('En-uk')
+    langs.append('En-ca')
+    elif (string.lower(lang[:2]) == 'de'):
+        langs.append('De')
+    langs.append('De-at')
+    elif (string.lower(lang[:2]) == 'fr'):
+    langs.append('Fr')
+    else:
+    langs.append(lang.capitalize())
+    return langs
 
-def getWikiObject(lang, word):
+def getWikiObject(lang, word, appendix):
     commons = mwclient.Site('commons.wikimedia.org')
     # TODO: figure out if some utf-8 magic is needed here
-    query = lang + '-' + word + '.ogg'
+    query = lang + '-' + word
+    if (appendix != None):
+    query += '-' + appendix
+
+    query += '.ogg'
     soundfile = commons.Images[query]
     print 'Query: ', query, 'File: ', soundfile.name.encode('utf-8'), ' Exists: ', soundfile.exists
     if soundfile.exists:
