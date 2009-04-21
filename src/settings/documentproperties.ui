@@ -317,7 +317,6 @@ If you consider contributing your file to KDE in the future, an appropriate lice
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="11" />
  <customwidgets>
   <customwidget>
    <class>KComboBox</class>

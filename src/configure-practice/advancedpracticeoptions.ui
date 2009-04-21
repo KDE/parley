@@ -311,7 +311,6 @@
   <zorder>kcfg_PracticeTimeout</zorder>
   <zorder>groupBox</zorder>
  </widget>
- <layoutdefault spacing="6" margin="11" />
   <customwidgets>
   <customwidget>
    <class>KButtonGroup</class>

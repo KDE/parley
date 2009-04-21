@@ -439,7 +439,6 @@
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="11" />
  <tabstops>
   <tabstop>show_all</tabstop>
   <tabstop>know_it</tabstop>
