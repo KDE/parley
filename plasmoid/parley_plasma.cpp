@@ -195,7 +195,7 @@ void ParleyPlasma::createConfigurationInterface(KConfigDialog * parent)
 
 void ParleyPlasma::updateSpinBoxSuffix()
 {
-    ui.updateIntervalSpinBox->setSuffix(QString(" ") + i18np("second", "seconds", ui.updateIntervalSpinBox->value()));
+    ui.updateIntervalSpinBox->setSuffix(i18np(" second", " seconds", ui.updateIntervalSpinBox->value()));
 }
 
 void ParleyPlasma::urlSelected (const KUrl &file)
