@@ -5,6 +5,7 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Wiktionary Sound
+Name[ca]=So de Wiktionary
 Name[el]=Ήχος Wiktionary
 Name[es]=Sonido del Wiktionario
 Name[et]=Wiktionary heli
@@ -18,6 +19,7 @@ Name[uk]=Звук з Wiktionary
 Name[x-test]=xxWiktionary Soundxx
 Name[zh_TW]=Wiktionary 音效
 Comment=This script fetches sound files from http://commons.wikimedia.org.
+Comment[ca]=Aquest script recupera fitxers de so des de http://commons.wikimedia.org.
 Comment[el]=Το σενάριο αυτό ανακτά αρχεία ήχου από το http://commons.wikimedia.org
 Comment[es]=Este guión extrae archivos de sonido de http://commons.wikimedia.org.
 Comment[et]=See skript tõmbab helifaile aadressilt http://commons.wikimedia.org.

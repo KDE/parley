@@ -7,7 +7,7 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Google Dictionary (translation)
-Name[ca]=diccionari de Google (traducció)
+Name[ca]=Diccionari de Google (traducció)
 Name[da]=Google Dictionary (oversættelse)
 Name[de]=Google Wörterbuch (Übersetzung)
 Name[el]=Λεξικό Google (μετάφραση)
