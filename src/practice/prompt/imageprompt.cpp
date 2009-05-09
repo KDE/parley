@@ -27,9 +27,9 @@
 
 ImagePrompt::ImagePrompt ( KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent ) :
         QLabel ( parent ),
+        m_area(area),
         m_pic ( QPixmap() ),
-        m_renderer ( renderer ),
-        m_area(area)
+        m_renderer ( renderer )
 {
     QString tId = area->translateElementId(elementId);
     m_enabled = !tId.isEmpty();

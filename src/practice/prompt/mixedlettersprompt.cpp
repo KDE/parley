@@ -29,7 +29,7 @@
 #include <QGraphicsTextItem>
 
 MixedLettersPrompt::MixedLettersPrompt(KSvgRenderer * renderer, ActiveArea * area, const QString& elementId, QWidget * parent)
-: QWidget(parent), m_renderer(renderer), m_area(area), m_scene(area->scene())
+: QWidget(parent), m_renderer(renderer), m_scene(area->scene()), m_area(area)
 {
     QString tId = area->translateElementId(elementId);
     m_enabled = tId.isEmpty();
