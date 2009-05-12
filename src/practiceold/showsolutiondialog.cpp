@@ -20,7 +20,7 @@
 #include <Phonon/MediaObject>
 #include <Phonon/Path>
 #include <Phonon/AudioOutput>
-#include <Phonon/Global>
+#include <Phonon/phononnamespace.h>
 
 ShowSolutionDialog::ShowSolutionDialog(TestEntry* entry, QWidget* parent)
     :KDialog(parent)
