@@ -34,7 +34,7 @@
 #include <Phonon/MediaObject>
 #include <Phonon/Path>
 #include <Phonon/AudioOutput>
-#include <Phonon/phononnamespace.h>
+#include <phononnamespace.h>
 #include <QTextEdit>
 #include <QRadioButton>
 #include <QCloseEvent>
