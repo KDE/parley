@@ -22,6 +22,7 @@ Name[x-test]=xxWiktionary Soundxx
 Name[zh_TW]=Wiktionary 音效
 Comment=This script fetches sound files from http://commons.wikimedia.org.
 Comment[ca]=Aquest script recupera fitxers de so des de http://commons.wikimedia.org.
+Comment[cs]=Tento skript stahuje zvuk z  http://commons.wikimedia.org.
 Comment[da]=Dette script henter lydfiler fra http://commons.wikimedia.org.
 Comment[el]=Το σενάριο αυτό ανακτά αρχεία ήχου από το http://commons.wikimedia.org
 Comment[es]=Este guión extrae archivos de sonido de http://commons.wikimedia.org.
