@@ -91,6 +91,24 @@ void BrowserWidget::setupProviders()
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
+    provider.name="Ru-En Multitran";
+    provider.url="http://multitran.ru/c/m.exe?SHL=1&CL=1&l1=1&s=\\{@}";
+    provider.languages << "ru" << "en";
+    m_providers.append(provider);
+    providerComboBox->addItem(provider.name);
+
+    provider.name="Ru-De Multitran";
+    provider.url="http://multitran.ru/c/m.exe?SHL=1&CL=1&l1=3&s=\\{@}";
+    provider.languages << "ru" << "de";
+    m_providers.append(provider);
+    providerComboBox->addItem(provider.name);
+
+    provider.name="Ru-Fr Multitran";
+    provider.url="http://multitran.ru/c/m.exe?SHL=1&CL=1&l1=4&s=\\{@}";
+    provider.languages << "ru" << "fr";
+    m_providers.append(provider);
+    providerComboBox->addItem(provider.name);
+
 }
 
 void BrowserWidget::setTranslation(KEduVocExpression* entry, int translation)
