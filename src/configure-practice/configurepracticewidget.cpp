@@ -114,7 +114,7 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     connect(ParaphraseRadio, SIGNAL(toggled(bool)), SLOT(otherRadioToggled(bool)));
     connect(SynonymRadio, SIGNAL(toggled(bool)), SLOT(otherRadioToggled(bool)));
 
-    connect(FlashCardsRadio, SIGNAL(toggled(bool)), SLOT(flashCardsRadioToggled(bool)));
+//    connect(FlashCardsRadio, SIGNAL(toggled(bool)), SLOT(flashCardsRadioToggled(bool)));
     connect(WrittenRadio, SIGNAL(toggled(bool)), SLOT(writtenRadioToggled(bool)));
     connect(ComparisonRadio, SIGNAL(toggled(bool)), SLOT(comparisonRadioToggled(bool)));
     connect(ConjugationRadio, SIGNAL(toggled(bool)), SLOT(conjugationRadioToggled(bool)));
@@ -125,7 +125,7 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     connect(WrittenRadio, SIGNAL(toggled(bool)), SLOT(bilingualPracticeSelected(bool)));
     connect(MixedLettersRadio, SIGNAL(toggled(bool)), SLOT(bilingualPracticeSelected(bool)));
     connect(MultipleChoiceRadio, SIGNAL(toggled(bool)), SLOT(bilingualPracticeSelected(bool)));
-    connect(FlashCardsRadio, SIGNAL(toggled(bool)), SLOT(bilingualPracticeSelected(bool)));
+//    connect(FlashCardsRadio, SIGNAL(toggled(bool)), SLOT(bilingualPracticeSelected(bool)));
 
 
     connect(ArticleRadio, SIGNAL(toggled(bool)), SLOT(monolingualPracticeSelected(bool)));

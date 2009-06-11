@@ -32,7 +32,7 @@
 #include "settings/documentproperties.h"
 #include "configure-practice/configurepracticedialog.h"
 #include "practiceold/testentrymanager.h"
-#include "practice/parleypracticemainwindow.h"
+//#include "practice/parleypracticemainwindow.h"
 #include "prefs.h"
 #include "welcomescreen/welcomescreen.h"
 
@@ -46,7 +46,7 @@
 
 #include <QtCore/QTimer>
 
-ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename) : KXmlGuiWindow(0), m_currentComponent(NoComponent), m_practice(0)
+ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename) : KXmlGuiWindow(0), m_currentComponent(NoComponent) //, m_practice(0)
 {
     m_appName = appName;
     m_document = new ParleyDocument(this);
@@ -179,32 +179,33 @@ void ParleyMainWindow::startPractice()
         return;
     }
 
-    if (Prefs::testType() == Prefs::EnumTestType::FlashCardsTest) {
-        // New practice modes - for now enabled only for flash cards
-        ///@todo: instead of creating a new instance only a new document should be set
-        Component lastComponent = m_currentComponent;
-        switchComponent(NoComponent); // unload the last component (could be a practice window)
-        m_practice = new ParleyPracticeMainWindow(m_document->document(), 0);
-        switchComponent(PracticeComponent);
-        m_practice->show();
-        if (lastComponent == EditorComponent) {
-            connect(m_practice, SIGNAL(signalPracticeFinished()), this, SLOT(showEditor()));
-        } else {
-            connect(m_practice, SIGNAL(signalPracticeFinished()), this, SLOT(showWelcomeScreen()));
-        }
-        // If starting the practice fails (e.g. there are no entries selected), the signalPracticeFinished() signal
-        // is emitted in the constructor and thus before the connect
-        if (m_practice->finished() && lastComponent == EditorComponent) {
-            showEditor();
-        } else if(m_practice->finished()) {
-            showWelcomeScreen();
-        }
-    } else {
+// disable flash card mode for 4.2
+//    if (Prefs::testType() == Prefs::EnumTestType::FlashCardsTest) {
+//        // New practice modes - for now enabled only for flash cards
+//        ///@todo: instead of creating a new instance only a new document should be set
+//        Component lastComponent = m_currentComponent;
+//        switchComponent(NoComponent); // unload the last component (could be a practice window)
+//        m_practice = new ParleyPracticeMainWindow(m_document->document(), 0);
+//        switchComponent(PracticeComponent);
+//        m_practice->show();
+//        if (lastComponent == EditorComponent) {
+//            connect(m_practice, SIGNAL(signalPracticeFinished()), this, SLOT(showEditor()));
+//        } else {
+//            connect(m_practice, SIGNAL(signalPracticeFinished()), this, SLOT(showWelcomeScreen()));
+//        }
+//        // If starting the practice fails (e.g. there are no entries selected), the signalPracticeFinished() signal
+//        // is emitted in the constructor and thus before the connect
+//        if (m_practice->finished() && lastComponent == EditorComponent) {
+//            showEditor();
+//        } else if(m_practice->finished()) {
+//            showWelcomeScreen();
+//        }
+//    } else {
         hide();
         TestEntryManager testManager(m_document->document(), this);
         testManager.startPractice();
         show();
-    }
+//    }
 }
 
 bool ParleyMainWindow::queryClose()
@@ -396,10 +397,10 @@ void ParleyMainWindow::switchComponent(Component component)
         oldClient = m_editor;
         oldWidget = m_editor;
         break;
-    case PracticeComponent:
-        oldClient = m_practice;
-        oldWidget = m_practice;
-        break;
+//    case PracticeComponent:
+//        oldClient = m_practice;
+//        oldWidget = m_practice;
+//        break;
     default:
         break;
     }
@@ -420,11 +421,11 @@ void ParleyMainWindow::switchComponent(Component component)
         newWidget = m_editor;
         showDocumentActions(true, true);
         break;
-    case PracticeComponent:
-        newClient = m_practice;
-        newWidget = m_practice;
-        showDocumentActions(false, false);
-        break;
+//    case PracticeComponent:
+//        newClient = m_practice;
+//        newWidget = m_practice;
+//        showDocumentActions(false, false);
+//        break;
     default:
         break;
     }

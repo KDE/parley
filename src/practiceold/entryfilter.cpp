@@ -34,7 +34,7 @@ EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc) :QObject(parent
         case Prefs::EnumTestType::WrittenTest:
         case Prefs::EnumTestType::MixedLettersTest:
         case Prefs::EnumTestType::MultipleChoiceTest:
-        case Prefs::EnumTestType::FlashCardsTest:
+//        case Prefs::EnumTestType::FlashCardsTest:
             m_fromTranslation = Prefs::questionLanguage();
             m_toTranslation = Prefs::solutionLanguage();
             break;

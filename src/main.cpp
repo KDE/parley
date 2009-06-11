@@ -27,7 +27,7 @@
 #include <kapplication.h>
 
 #include "parleymainwindow.h"
-#include "practice/parleypracticemainwindow.h"
+//#include "practice/parleypracticemainwindow.h"
 #include "version.h"
 
 
@@ -126,11 +126,11 @@ int main(int argc, char* argv[])
             parleyApp = new ParleyMainWindow(KCmdLineArgs::appName(), args->url(0));
             args->clear();
         } else {
-            if (practiceMode) {
-                parleyApp = new ParleyPracticeMainWindow();
-            } else {
+//            if (practiceMode) {
+//                parleyApp = new ParleyPracticeMainWindow();
+//            } else {
                 parleyApp = new ParleyMainWindow(KCmdLineArgs::appName());
-            }
+//            }
         }
         if (args) {
             args->clear();
