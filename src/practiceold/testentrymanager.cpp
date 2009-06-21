@@ -111,6 +111,13 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QWidget * parent)
         TestEntry::setGradeFrom(m_toTranslation);
     }
 
+    // don't crash when trying to start practicing a document containing only one language
+    if (m_doc->identifierCount() < 2) {
+	KMessageBox::error(0, i18n("The vocabulary document contains no entries that can be used for the chosen type of practice."));
+	m_currentEntry = 0;
+	return;
+    }
+
     kDebug() << "Test from: " << m_doc->identifier(m_fromTranslation).name()
         << " to: " << m_doc->identifier(m_toTranslation).name();
 
