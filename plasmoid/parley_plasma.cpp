@@ -169,10 +169,9 @@ void ParleyPlasma::createConfigurationInterface(KConfigDialog * parent)
     connect(parent, SIGNAL(okClicked()), this, SLOT(configAccepted()));
 
     connect( ui.fontSelectButton, SIGNAL(clicked()), this, SLOT(showFontSelectDlg()) );
-    connect( ui.updateIntervalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateSpinBoxSuffix()) );
 
     ui.updateIntervalSpinBox->setValue(m_updateInterval/1000);
-    emit updateSpinBoxSuffix();
+    ui.updateIntervalSpinBox->setSuffix(ki18np(" second", " seconds"));
     KConfigGroup cg = config();
 
     ui.filechooser->setUrl(m_sourceFile);
@@ -191,11 +190,6 @@ void ParleyPlasma::createConfigurationInterface(KConfigDialog * parent)
         ui.solutionAlways->setChecked(true);
         break;
     }
-}
-
-void ParleyPlasma::updateSpinBoxSuffix()
-{
-    ui.updateIntervalSpinBox->setSuffix(i18np(" second", " seconds", ui.updateIntervalSpinBox->value()));
 }
 
 void ParleyPlasma::urlSelected (const KUrl &file)

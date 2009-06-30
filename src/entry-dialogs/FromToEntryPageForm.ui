@@ -117,7 +117,7 @@
           <number>6</number>
          </property>
          <item row="1" column="1" >
-          <widget class="QSpinBox" name="badCountEdit" >
+          <widget class="KIntSpinBox" name="badCountEdit" >
            <property name="minimum" >
             <number>0</number>
            </property>
@@ -130,7 +130,7 @@
           </widget>
          </item>
          <item row="0" column="1" >
-          <widget class="QSpinBox" name="totalCountEdit" >
+          <widget class="KIntSpinBox" name="totalCountEdit" >
            <property name="maximum" >
             <number>999999999</number>
            </property>
@@ -283,6 +283,11 @@
    <class>KComboBox</class>
    <extends>QComboBox</extends>
    <header>kcombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KIntSpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>knuminput.h</header>
   </customwidget>
   <customwidget>
    <class>KLineEdit</class>

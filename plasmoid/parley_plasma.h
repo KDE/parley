@@ -78,8 +78,6 @@ class ParleyPlasma : public Plasma::Applet
         int m_lang1;
         int m_lang2;
         int m_updateInterval;
-    private slots:
-        void updateSpinBoxSuffix();
 };
 
 K_EXPORT_PLASMA_APPLET(parley, ParleyPlasma)
