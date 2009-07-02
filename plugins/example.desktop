@@ -61,6 +61,7 @@ Comment[lt]=Šis scenarijaus pavyzdys atlieka du veiksmus: 1) Parinktą žodyną
 Comment[nb]=Dette eksempelskriptet kan utføre to handlinger: 1) Flytt markert ordforråd til en annen leksjon 2) Endre karakter for markerte ord til kjent (høyeste karakter)
 Comment[nds]=Dit Bispillskript stellt twee Akschonen praat: 1) Den utsöchten Vokavelsett na en anner Lex verschuven 2) De Stoop vun de utsöchten Wöör op "begäng" (hööchst Stoop) setten
 Comment[nl]=In dit voorbeeldscript worden twee acties uitgevoerd: 1) Geselecteerde woordenlijst naar een andere les verplaatsen 2) De beoordeling van de geselecteerde woorden naar bekend veranderen (de hoogste beoordeling)
+Comment[nn]=Dette eksempelskriptet har to handlingar: 1) Flytt vald orddokument til ei anna øving. 2) Endra nivået til dei valde orda til «kjent» (høgaste nivå).
 Comment[pl]=Ten przykładowy skrypt pozwala na dwie akcje: 1) przeniesienie wybranego słownictwa do innej lekcji 2) zmiany stanu wybranych słów na znane (najwyższa ocena)
 Comment[pt]=Este programa de exemplo oferece duas acções: 1) Move o vocabulário seleccionado para uma lição diferente 2) Muda a nota das palavras seleccionadas para sabida (nota mais alta)
 Comment[pt_BR]=Este script de exemplo oferece duas ações: 1) mover o vocabulário selecionado para uma lição diferente 2) alterar o grau das palavras selecionadas para conhecidas (grau mais alto)
