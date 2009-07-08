@@ -110,6 +110,7 @@ void ScriptManager::disablePlugin ( QString desktopFile )
 void ScriptManager::loadScripts()
 {
     QStringList scripts = enabledScripts();
+    QStringList failed;
     foreach ( const QString& script, scripts )
     {
         //create a new Script and add it to the m_scripts list
@@ -117,10 +118,13 @@ void ScriptManager::loadScripts()
         s->addObjects ( m_scriptObjects );
         s->activate();
         m_scripts.push_back ( s );
-        //inform with a message box when a script could not be activated
         if ( !s->isActivated() ) {
-            KPassivePopup::message(i18n("Script Activation"), i18n("The following script could not be activated due to errors in the script:\n" ) + script , m_editor);
+            failed << script;
         }
+    }
+    //inform with a message box when a script could not be activated
+    if (!failed.empty()) {
+        KPassivePopup::message(i18n("Script Activation"), i18n("The following script could not be activated due to errors in the script:\n" ) + failed.join("\n") , m_editor);
     }
 }
 
