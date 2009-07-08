@@ -89,7 +89,7 @@ QStringList ScriptManager::enabledScripts()
     {
         inf.load ( cfg );
         if ( inf.isPluginEnabled() )
-            enabledScripts.push_back ( getScriptFileName ( inf.entryPath() ) );
+            enabledScripts.push_back ( inf.entryPath() );
 //         kDebug() << inf.name() << inf.isPluginEnabled() << inf.pluginName();
     }
     return enabledScripts;
@@ -116,13 +116,14 @@ void ScriptManager::loadScripts()
     foreach ( const QString& script, scripts )
     {
         //create a new Script and add it to the m_scripts list
-        Script * s = new Script ( script );
+        Script * s = new Script ( getScriptFileName (script) );
         s->addObjects ( m_scriptObjects );
         s->activate();
         m_scripts.push_back ( s );
         if ( !s->isActivated() ) {
-            failed << script;
+            failed << getScriptFileName (script); //TODO: real name?
             errorDetails << s->errorMessage();
+            disablePlugin(script);
         }
     }
     //inform with a message box when a script could not be activated
