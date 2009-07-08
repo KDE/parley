@@ -21,6 +21,7 @@
 #include <QFileInfo>
 #include <KActionCollection>
 #include <KPassivePopup>
+#include <KMessageBox>
 
 #include <kross/core/action.h>
 #include <kross/core/manager.h>
@@ -111,6 +112,7 @@ void ScriptManager::loadScripts()
 {
     QStringList scripts = enabledScripts();
     QStringList failed;
+    QStringList errorDetails;
     foreach ( const QString& script, scripts )
     {
         //create a new Script and add it to the m_scripts list
@@ -120,11 +122,14 @@ void ScriptManager::loadScripts()
         m_scripts.push_back ( s );
         if ( !s->isActivated() ) {
             failed << script;
+            errorDetails << s->errorMessage();
         }
     }
     //inform with a message box when a script could not be activated
     if (!failed.empty()) {
-        KPassivePopup::message(i18n("Script Activation"), i18n("The following script could not be activated due to errors in the script:\n" ) + failed.join("\n") , m_editor);
+        QString errorMessage = "<p>"+i18np("A script could not be activated and has been disabled.", "%1 scripts could not be activated and have been disabled.", failed.count())+' '+i18n("This probably means that there are errors in the script or that the required packages are not installed.")+"</p>";
+        errorMessage += "<ul><li>"+failed.join("</li><li>")+"</li></ul>";
+        KMessageBox::detailedError(m_editor, errorMessage, errorDetails.join("<hr/>"), i18n("Script Activation"));
     }
 }
 

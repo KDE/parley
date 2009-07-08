@@ -15,6 +15,7 @@
 #include "script.h"
 
 #include <KDebug>
+#include <KLocale>
 
 #include <kross/core/action.h>
 
@@ -50,6 +51,7 @@ void Script::activate()
     if ( !exists() )
     {
         kDebug() << "Script file given does not exist";
+        m_errorMessage = i18n("The script file does not exist.");
         return;
     }
 
@@ -75,8 +77,17 @@ void Script::activate()
     action->trigger();
 
     m_activated = !action->isFinalized();
-    if (!m_activated)
+    if (!m_activated) {
         kDebug() << "Script not activated";
+        QString msg = action->errorMessage();
+        QString trace = action->errorTrace();
+        msg.replace('<', "&lt;").replace('\n',"<br/>");
+        trace.replace('<', "&lt;").replace('\n',"<br/>");
+        m_errorMessage = "<p><strong>"+i18n("Error in file %1 at line %2:", fileName(),
+            action->errorLineNo())+"</strong><br/>"+msg+"<br/><strong>"
+            +i18nc("debug information in error message", "Backtrace:")+
+            "</strong><br/>"+trace+"</p>";
+    }
 }
 
 
@@ -110,4 +121,9 @@ void Script::addObject ( QString name, QObject * object )
 void Script::addObjects ( QMap<QString,QObject*> objects )
 {
     m_scriptObjects.unite ( objects );
+}
+
+QString Script::errorMessage()
+{
+    return m_errorMessage;
 }

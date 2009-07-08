@@ -74,11 +74,16 @@ class Script: public QObject
          * @param objects Map of the objects to add
          */
         void addObjects ( QMap<QString, QObject*> objects );
+        /**
+         * Returns an html error message if there have been errors in the script.
+         */
+        QString errorMessage();
     private:
         bool m_activated;
         QString m_file;
         QPointer<QObject> m_object;
         QMap<QString, QObject*> m_scriptObjects;
+        QString m_errorMessage;
 };
 
 #endif
