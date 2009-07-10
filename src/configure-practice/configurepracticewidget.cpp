@@ -270,6 +270,9 @@ void ConfigurePracticeWidget::otherRadioToggled(bool checked)
 void ConfigurePracticeWidget::setupTenses()
 {
     int index = LanguageFromList->currentRow();
+    if (index < 0) {
+        index = 0;
+    }
 
     QTreeWidget *tenseListWidget = m_conjugationUi.tenseSelectionTreeWidget;
     tenseListWidget->clear();
