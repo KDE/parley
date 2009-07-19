@@ -190,6 +190,10 @@ void VocabularyView::reset()
     for( int i = 0; i < model()->columnCount(QModelIndex()); i++) {
         if (i < visibleColumns.size()) {
             setColumnHidden(i, !visibleColumns.value(i));
+        } else {
+            if (VocabularyModel::columnType(i) != VocabularyModel::Translation) {
+                setColumnHidden(i, true);
+            }
         }
     }
 }
