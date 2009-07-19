@@ -90,10 +90,14 @@ ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename
     QTimer::singleShot( 0, this, SLOT( startupTipOfDay() ) );
 }
 
+void ParleyMainWindow::addRecentFile(const KUrl &url, const QString &name)
+{
+    m_recentFilesAction->addUrl(url, name);
+    m_recentFilesAction->saveEntries(KGlobal::config()->group("Recent Files"));
+}
+
 void ParleyMainWindow::saveOptions()
 {
-    m_recentFilesAction->saveEntries(KGlobal::config()->group("Recent Files"));
-
 ///@todo save selection per document
 //     if (m_tableView) {
 //         // map to original entry numbers:
