@@ -22,7 +22,7 @@ def fetchSound():
     print "fetching sound"
     tr = Parley.selectedTranslations()
     for word in tr:
-    print "checking sound for " + word.text
+        print "checking sound for " + word.text
         fetchSoundForTranslation(word)
 
 def fetchSoundForTranslation(word):
@@ -31,19 +31,19 @@ def fetchSoundForTranslation(word):
     bFound = 0
     for wikiLocale in wikiLocales:
         if (bFound == 0):
-        print 'Language:', wikiLocale, ' Word: ', word.text
+            print 'Language:', wikiLocale, ' Word: ', word.text
             soundfile = getWikiObject(wikiLocale, word.text, None)
             # check for specific pronounciation for nouns
-        if soundfile == None:
-            soundfile = getWikiObject(wikiLocale, word.text, 'noun')
+            if soundfile == None:
+                soundfile = getWikiObject(wikiLocale, word.text, 'noun')
             # check for specific pronounciation for verbs
             if soundfile == None:
-            soundfile = getWikiObject(wikiLocale, word.text, 'verb')
+                soundfile = getWikiObject(wikiLocale, word.text, 'verb')
             if soundfile:
                 url = downloadFromWiki(soundfile)
                 word.soundUrl = url
-        bFound = 1
-            print "setting url for word " + word.text + ":" + word.soundUrl
+                bFound = 1
+                print "setting url for word " + word.text + ":" + word.soundUrl
             else:
                 print "No translation found for: ", word.text
 
@@ -60,15 +60,15 @@ def getWikiLocales(lang):
     langs = []
     if (string.lower(lang[:2]) == 'en'):
         langs.append('En-us')
-    langs.append('En-uk')
-    langs.append('En-ca')
+        langs.append('En-uk')
+        langs.append('En-ca')
     elif (string.lower(lang[:2]) == 'de'):
         langs.append('De')
-    langs.append('De-at')
+        langs.append('De-at')
     elif (string.lower(lang[:2]) == 'fr'):
-    langs.append('Fr')
+        langs.append('Fr')
     else:
-    langs.append(lang.capitalize())
+        langs.append(lang.capitalize())
     return langs
 
 def getWikiObject(lang, word, appendix):
@@ -76,7 +76,7 @@ def getWikiObject(lang, word, appendix):
     # TODO: figure out if some utf-8 magic is needed here
     query = lang + '-' + word
     if (appendix != None):
-    query += '-' + appendix
+        query += '-' + appendix
 
     query += '.ogg'
     soundfile = commons.Images[query]
