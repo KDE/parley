@@ -353,6 +353,7 @@ void ParleyDocument::slotGHNS()
 {
     KNS::Entry::List entries = KNS::Engine::download();
     int numberInstalled = 0;
+    QString fileName;
     // list of changed entries
     foreach(KNS::Entry* entry, entries) {
         // care only about installed ones
@@ -363,6 +364,7 @@ void ParleyDocument::slotGHNS()
                 kDebug() << "KNS2 file of mime type:" << KMimeType::findByPath(file)->name();
                 if (mimeType->name() == "application/x-kvtml") {
                     m_parleyApp->addRecentFile(file, QString()); ///@todo: title!
+		    fileName = file;
                     ++numberInstalled;
                 }         
             }
@@ -376,7 +378,8 @@ void ParleyDocument::slotGHNS()
     if (numberInstalled > 1) {
         openGHNS();
     } else if (numberInstalled == 1) {
-        m_parleyApp->m_recentFilesAction->action(0)->trigger();
+	open(KUrl(fileName));
+	m_parleyApp->showEditor();
     }
 }
 
