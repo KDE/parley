@@ -70,6 +70,9 @@ public:
     /** setup the welcome screen */
     void initWelcomeScreen();
 
+    /** add a new entry to the list of recent files */
+    void addRecentFile(const KUrl &url, const QString &name);
+
     /** save the app-specific options on slotAppExit or by an Options dialog */
     void saveOptions();
 

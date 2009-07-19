@@ -175,7 +175,7 @@ void ParleyDocument::open(const KUrl & url)
         m_doc->open(url);
 
         m_parleyApp->editor()->updateDocument();
-        m_parleyApp->m_recentFilesAction->addUrl(url, m_doc->title());
+        m_parleyApp->addRecentFile(url, m_doc->title());
 
         enableAutoBackup(Prefs::autoBackup());
         emit documentChanged(m_doc);
@@ -227,7 +227,7 @@ void ParleyDocument::save()
         saveAs();
         return;
     }
-    m_parleyApp->m_recentFilesAction->addUrl(m_doc->url(), m_doc->title());
+    m_parleyApp->addRecentFile(m_doc->url(), m_doc->title());
     enableAutoBackup(Prefs::autoBackup());
 }
 
@@ -271,7 +271,7 @@ void ParleyDocument::saveAs(KUrl url)
 
     int result = m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley");
     if (result == 0) {
-        m_parleyApp->m_recentFilesAction->addUrl(m_doc->url(), m_doc->title());
+        m_parleyApp->addRecentFile(m_doc->url(), m_doc->title());
     } else {
         KMessageBox::error(m_parleyApp, i18n("Writing file \"%1\" resulted in an error: %2",
             m_doc->url().url(), m_doc->errorDescription(result)), i18n("Save File"));
@@ -362,7 +362,7 @@ void ParleyDocument::slotGHNS()
                 KMimeType::Ptr mimeType = KMimeType::findByPath(file);
                 kDebug() << "KNS2 file of mime type:" << KMimeType::findByPath(file)->name();
                 if (mimeType->name() == "application/x-kvtml") {
-                    m_parleyApp->m_recentFilesAction->addUrl(file);
+                    m_parleyApp->addRecentFile(file, QString()); ///@todo: title!
                     ++numberInstalled;
                 }         
             }
