@@ -30,7 +30,7 @@ class VocabularyModel;
 class VocabularyFilter;
 class LessonView;
 class WordTypeView;
-class LeitnerView;
+//class LeitnerView;
 class LessonModel;
 class WordTypeModel;
 class LeitnerModel;
@@ -133,8 +133,8 @@ private:
     WordTypeView *m_wordTypeView;
     WordTypeModel *m_wordTypeModel;
 
-    LeitnerView *m_leitnerView;
-    LeitnerModel *m_leitnerModel;
+//    LeitnerView *m_leitnerView;
+//    LeitnerModel *m_leitnerModel;
 
     friend class ParleyDocument;
     friend class Scripting::Parley;
