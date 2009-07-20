@@ -141,6 +141,20 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
                 return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->wordType()->name());
             }
             return QVariant(QString());
+        case Synonym: {
+            QStringList displayElements;
+            foreach(KEduVocTranslation* synonym,  m_container->entry(index.row(), m_recursive)->translation(translationId)->synonyms()) {
+                displayElements.append(synonym->text());
+            }
+            return QVariant(displayElements.join("; "));
+        }
+        case Antonym: {
+            QStringList displayElements;
+            foreach(KEduVocTranslation* antonym,  m_container->entry(index.row(), m_recursive)->translation(translationId)->antonyms()) {
+                displayElements.append(antonym->text());
+            }
+            return QVariant(displayElements.join("; "));
+        }
         case Example: {
             QString example = m_container->entry(index.row(), m_recursive)->translation(translationId)->example();
             /*QString word = m_container->entry(index.row(), m_recursive)->translation(translationId)->text();
