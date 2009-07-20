@@ -188,6 +188,7 @@ void ParleyDocument::close() {
     disconnect(m_doc);
     delete m_doc;
     m_doc = 0;
+    m_parleyApp->slotUpdateWindowCaption();
 }
 
 void ParleyDocument::openGHNS()
