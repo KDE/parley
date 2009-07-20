@@ -110,11 +110,16 @@ void ParleyMainWindow::saveOptions()
 
 void ParleyMainWindow::slotUpdateWindowCaption()
 {
-    QString title = m_document->document()->title();
-    if (title == i18n("Untitled")) {
-        title.clear();
+    QString title;
+    bool modified = false;
+    if (m_document->document()) {
+        title = m_document->document()->title();
+        modified = m_document->document()->isModified();
+        if (title == i18n("Untitled")) {
+            title.clear();
+        }
     }
-    setCaption(title, m_document->document()->isModified());
+    setCaption(title, modified);
 }
 
 void ParleyMainWindow::slotShowStatistics()
