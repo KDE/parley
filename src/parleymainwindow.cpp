@@ -455,6 +455,10 @@ void ParleyMainWindow::switchComponent(Component component)
 
     m_currentComponent = component;
     setupToolbarMenuActions();
+
+    if (component == EditorComponent) {
+        m_editor->updateScriptMenu();
+    }
 }
 
 void ParleyMainWindow::showDocumentActions(bool open, bool edit)

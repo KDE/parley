@@ -88,6 +88,11 @@ Editor::~Editor()
     saveMainWindowSettings(cfg);
 }
 
+void Editor::updateScriptMenu()
+{
+    m_scriptManager->reloadActions();
+}
+
 void Editor::updateDocument()
 {
 ///@todo we can use connect here
@@ -125,7 +130,6 @@ void Editor::updateDocument()
 // temporarily disabled because somehow with the welcome screen this crashes Parley when using open recent
 //     new ModelTest(m_vocabularyModel, this);
 }
-
 
 void Editor::initDockWidgets()
 {
@@ -545,6 +549,7 @@ void Editor::initScripts()
 
     //Load scripts
     m_scriptManager->loadScripts();
+    m_scriptManager->reloadScripts();
 }
 
 ParleyMainWindow* Editor::mainWindow()

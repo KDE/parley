@@ -95,6 +95,12 @@ public slots:
      */
     void removeGrades();
 
+    /**
+      * Reinserts the actions provided by the scripts into the action collection.
+      * This has to be done every time after switching components to make the actions show up in the menu.
+      */
+    void updateScriptMenu();
+
 private slots:
     /**
      * Set the current doc (after creating a new one or opening a file)

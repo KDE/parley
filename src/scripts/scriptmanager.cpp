@@ -169,3 +169,12 @@ void ScriptManager::addScriptAction ( const QString & name, KAction * action )
     m_editor->plugActionList ( "scripts_actionlist",m_scriptActions );
 
 }
+
+void ScriptManager::reloadActions()
+{
+    //unplug action list (orelse it will add twice the same entries
+    m_editor->unplugActionList ( "scripts_actionlist" );
+
+    //plug the action list
+    m_editor->plugActionList ( "scripts_actionlist",m_scriptActions );
+}

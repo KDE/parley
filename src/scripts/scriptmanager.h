@@ -106,6 +106,11 @@ class ScriptManager : public QObject
          */
         void addScriptAction ( const QString & name, KAction * action );
 
+        /**
+          * Reinserts the actions provided by the scripts into the action collection.
+          */
+        void reloadActions();
+
         /** returns the Translator object the Scripting::Parley */
         Translator * translator() { return m_scriptingParley->translator(); }
 
