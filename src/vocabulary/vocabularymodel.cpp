@@ -239,6 +239,9 @@ Qt::ItemFlags VocabularyModel::flags(const QModelIndex & index) const
         return QAbstractItemModel::flags(index) | Qt::ItemIsEditable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;
     case WordType:
         return QAbstractItemModel::flags(index) | Qt::ItemIsEditable;
+    case Synonym:
+    case Antonym:
+        return QAbstractItemModel::flags(index) | Qt::ItemIsDropEnabled;
     default:
         return QAbstractItemModel::flags(index) | Qt::ItemIsEditable | Qt::ItemIsDropEnabled;
     }
