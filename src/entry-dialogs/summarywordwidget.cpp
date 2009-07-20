@@ -48,6 +48,10 @@ SummaryWordWidget::SummaryWordWidget(VocabularyFilter *model, KEduVocDocument *d
     m_mapper = new QDataWidgetMapper(this);
     m_mapper->setModel(model);
     m_mapper->setItemDelegate(new SummaryWordDelegate(this));
+
+    //temporarily hide word type widgets (currently broken)
+    wordTypeComboBox->setVisible(false);
+    label_2->setVisible(false);
 }
 
 SummaryWordWidget::~SummaryWordWidget()
