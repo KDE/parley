@@ -96,8 +96,8 @@ void Editor::updateScriptMenu()
 void Editor::updateDocument()
 {
 ///@todo we can use connect here
-    m_vocabularyModel->setDocument(m_mainWindow->parleyDocument()->document());
     m_vocabularyView->setDocument(m_mainWindow->parleyDocument()->document());
+    m_vocabularyModel->setDocument(m_mainWindow->parleyDocument()->document());
 
     m_lessonModel->setDocument(m_mainWindow->parleyDocument()->document());
     m_wordTypeModel->setDocument(m_mainWindow->parleyDocument()->document());
