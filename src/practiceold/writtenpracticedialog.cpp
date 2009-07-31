@@ -77,7 +77,6 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
     mw->timebar->setFormat("%v");
 
     connect(mw->answerLineEdit, SIGNAL(textChanged(const QString&)), SLOT(slotAnswerChanged(const QString&)));
-//     connect(mw->answerLineEdit, SIGNAL(lostFocus()), SLOT(slotAnswerLostFocus()));
 
     mw->answerLineEdit->setFont(Prefs::tableFont());
 
@@ -138,12 +137,6 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
     mw->status->clear();
     suggestion_hint = false;
 
-//     if (Prefs::suggestions()) {
-//         transCombos.at(0)->setFocus();
-//     }
-//     else {
-//         transFields.at(0)->setFocus();
-//     }
     mw->answerLineEdit->setFocus();
 
     mw->audioPlayQuestionButton->setVisible( Prefs::practiceSoundEnabled() &&
@@ -165,7 +158,6 @@ void WrittenPracticeDialog::verifyClicked()
     double result = verifyAnswer(userAnswer);
     TestEntry::ErrorTypes errors = m_entry->lastErrors();
 
-//     kDebug() << "verifying grade: " << result << " errors: " << errors;
 
     QString errorText;
 
@@ -238,54 +230,6 @@ void WrittenPracticeDialog::verifyClicked()
     mw->correctionLabel->setText(errorText);
 }
 
-
-// void WrittenPracticeDialog::showMoreClicked()
-// {
-//     setAnswerTainted();
-//     if (Prefs::suggestions()) {
-//         for (int i = 0; i < translations.count(); i ++) {
-//             KComboBox* combo = transCombos.at(i);
-//             if ( verifyAnswer(combo->currentText(), translations[i]) != 1.0 ) {
-//                 int length = combo->currentText().length() + 1;
-//                 if (length >= translations[i].length()) {
-//                     combo->setEditText(translations[i]);
-//                     verifyField(combo->lineEdit(), translations[i]);
-//                     mw->verify->setEnabled(false);
-//                 } else {
-//                     combo->setEditText(translations[i].left(length));
-//                     setWidgetStyle(combo->lineEdit());
-//                 }
-//                 mw->dont_know->setDefault(true);
-//                 break;
-//             }
-//         }
-//     } else {
-//         for (int i = 0; i < translations.count(); i ++) {
-//             KLineEdit* field = transFields.at(i);
-//             if ( verifyAnswer(field->text(), translations[i]) != 1.0 ) {
-//                 int length = 1;
-//                 while ( field->text().startsWith( translations[i].left(length) ) ) {
-//                     kDebug() << " length " << length << "text " << field->text();
-//                     length++;
-//                 }
-//                 if (length >= translations[i].length()) {
-//                     field->setText(translations[i]);
-//                     verifyField(field, translations[i]);
-//                     showContinueButton(true);
-//                 } else {
-//                     field->setText(translations[i].left(length));
-//                     setWidgetStyle(field);
-//                     mw->verify->setDefault(true);
-//                     field->setFocus();
-//                 }
-//                 break;
-//             }
-//         }
-//     }
-//     mw->status->clear();
-//     suggestion_hint = false;
-// }
-
 void WrittenPracticeDialog::showMoreClicked()
 {
     QString solution = m_entry->entry()->translation(Prefs::solutionLanguage())->text();
@@ -334,52 +278,11 @@ void WrittenPracticeDialog::showSolution()
     suggestion_hint = false;
 }
 
-
-// void WrittenPracticeDialog::slotTransChanged(const QString&)
-// {
-//     mw->verify->setDefault(true);
-//     bool suggestions = Prefs::suggestions();
-//     KComboBox* combo = qobject_cast<KComboBox*>(sender());
-//     KLineEdit* senderedit = qobject_cast<KLineEdit*>(sender());
-//
-//     if (suggestions && combo) {
-//         KLineEdit* edit = qobject_cast<KLineEdit*>(combo->lineEdit());
-//         if ( !edit ) {
-//             return; // cast failed
-//         }
-//         setWidgetStyle(edit);
-//         suggestion_hint = ! edit->text().isEmpty() && edit->text().length() <= 10;
-//         if (suggestion_hint)
-//             mw->status->setText(i18n("Press F5 for a list of translations starting with '%1'\n"
-//                                        "Press F6 for a list of translations containing '%1'", edit->text()));
-//         else {
-//             mw->status->clear();
-//         }
-//     } else {
-//         if ( (!suggestions) && senderedit) {
-//             setWidgetStyle(senderedit);
-//         }
-//     }
-// }
-
-// void WrittenPracticeDialog::slotTransLostFocus()
-// {
-//     if (suggestion_hint) {
-//         mw->status->clear();
-//     }
-//     suggestion_hint = false;
-// }
-
-
-
 void WrittenPracticeDialog::slotAnswerChanged(const QString&)
 {
     mw->verify->setDefault(true);
     setWidgetStyle(mw->answerLineEdit, Default);
 }
-
-
-
 
 void WrittenPracticeDialog::setHintFields()
 {
@@ -507,6 +410,5 @@ void WrittenPracticeDialog::showContinueButton(bool show)
         mw->answerLineEdit->setReadOnly(false);
     }
 }
-
 
 #include "writtenpracticedialog.moc"
