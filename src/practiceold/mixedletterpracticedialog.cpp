@@ -139,7 +139,7 @@ void MixedLetterPracticeDialog::verifyClicked()
     double result = verifyAnswer(answerLineEdit->text(), m_entry->entry()->translation(Prefs::solutionLanguage())->text());
     if ( result == 1.0 ) {
         resultCorrect();
-        emit showSolutionFinished();
+        emit currentEntryFinished();
     } else {
         setWidgetStyle( answerLineEdit, NegativeResult );
         setAnswerTainted();

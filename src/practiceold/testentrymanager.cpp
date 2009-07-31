@@ -190,7 +190,7 @@ void TestEntryManager::startPractice()
         kError() << "unknown test type";
     }
     connect(m_practiceDialog, SIGNAL(signalResult(TestEntryManager::Result)), SLOT(slotResult(TestEntryManager::Result)));
-    connect(m_practiceDialog, SIGNAL(showSolutionFinished()), SLOT(setNextEntry()));
+    connect(m_practiceDialog, SIGNAL(currentEntryFinished()), SLOT(setNextEntry()));
     setNextEntry();
     m_practiceDialog->exec();
 

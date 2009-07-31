@@ -320,7 +320,7 @@ void PracticeDialog::continueButtonClicked()
     if ( m_showSolutionTimer ) {
         m_showSolutionTimer->stop();
     }
-    emit showSolutionFinished();
+    emit currentEntryFinished();
 }
 
 

@@ -62,8 +62,6 @@ public:
      */
     PracticeDialog(const QString & caption, KEduVocDocument *doc, QWidget *parent);
 
-    void setTestEntryManager(TestEntryManager* testEntryManager);
-
     /**
      * Default dtor
      */
@@ -85,7 +83,7 @@ public:
 
 signals:
     void signalResult(TestEntryManager::Result);
-    void showSolutionFinished();
+    void currentEntryFinished();
 
 public slots:
     /**
@@ -164,7 +162,7 @@ protected:
 
     virtual void closeEvent(QCloseEvent*e);
 
-    KEduVocDocument   *m_doc;
+    KEduVocDocument *m_doc;
     TestEntry* m_entry;
     int m_testType;
 
@@ -195,9 +193,6 @@ protected:
      * @return
      */
     bool answerTainted();
-
-    /// The vocabulary will come from here
-//     TestEntryManager    *m_entryManager;
 
 private:
 
