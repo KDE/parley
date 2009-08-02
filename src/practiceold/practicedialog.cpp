@@ -43,7 +43,13 @@
 #include <QGraphicsItem>
 #include <QDBusInterface>
 
-PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QWidget *parent) : KDialog(parent)
+PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QWidget *parent)
+	:KDialog(parent)
+	,m_doc(doc)
+	,m_entry(0)
+	,m_answerTimer(0)
+	,m_showSolutionTimer(0)
+	,m_player()
 {
     // dialog without buttons
     setCaption(caption);
@@ -54,11 +60,6 @@ PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QW
     QWidget *main = new QWidget(this);
     setMainWidget(main);
 
-    m_doc = doc;
-    m_answerTimer = 0;
-    m_showSolutionTimer = 0;
-
-    m_player = 0;
     m_validator = new AnswerValidatorOld(m_doc);
     m_validator->setLanguage(Prefs::solutionLanguage());
 
@@ -73,9 +74,6 @@ PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QW
 
 PracticeDialog::~PracticeDialog()
 {
-    if ( m_player ) {
-        m_player->deleteLater();
-    }
     delete m_validator;
 }
 
