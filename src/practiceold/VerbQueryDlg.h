@@ -50,7 +50,7 @@ private:
     void clearLineEdits();
     void setupTense(const QString& tense);
 
-    void setStatusText(const QString &statusText) {}
+    void setStatusText(const QString &) {}
     QProgressBar* timebar() { return mw->timebar; }
 
     /// the tense that is asked right now

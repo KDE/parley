@@ -48,7 +48,6 @@
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>
 #include <keduvocdocument.h>
-#include <KRandomSequence>
 #include <KMessageBox>
 #include <QDateTime>
 
@@ -98,7 +97,7 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QWidget * parent)
     ,m_testType(Prefs::testType())
     ,m_practiceTimeoutCounter(0)
     ,m_currentEntry(0)
-    ,m_randomSequence(new KRandomSequence( QDateTime::currentDateTime().toTime_t() ))
+    ,m_randomSequence(QDateTime::currentDateTime().toTime_t())
 {
     TestEntry::setGradeTo(m_toTranslation);
 
@@ -131,9 +130,7 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QWidget * parent)
 
 
 TestEntryManager::~TestEntryManager()
-{
-    delete m_randomSequence;
-}
+{}
 
 
 void TestEntryManager::filterTestEntries()
@@ -362,11 +359,11 @@ void TestEntryManager::setNextEntry()
     // return one of the current entries
     if ( m_currentEntries.count() > 0 ) {
         // one of the current words (by random)
-        m_currentEntry = m_randomSequence->getLong(m_currentEntries.count());
+        m_currentEntry = m_randomSequence.getLong(m_currentEntries.count());
         // do not allow to ask the same entry twice in a row
         if ( m_currentEntries.count() > 1 ) {
             while ( m_currentEntry == lastEntry ) {
-                m_currentEntry = m_randomSequence->getLong(m_currentEntries.count());
+                m_currentEntry = m_randomSequence.getLong(m_currentEntries.count());
             }
         }
 

@@ -30,12 +30,11 @@
 #include "prefs.h"
 
 #include <keduvocexpression.h>
+#include <KRandomSequence>
 #include <QVector>
 
 class KEduVocDocument;
-class KRandomSequence;
 class PracticeDialog;
-
 
 class TestEntryManager
     :public QObject
@@ -122,7 +121,7 @@ private:
     QList<TestEntry*> m_currentEntries;
     int m_currentEntry;
 
-    KRandomSequence* m_randomSequence;
+    KRandomSequence m_randomSequence;
 
     PracticeDialog* m_practiceDialog;
 
