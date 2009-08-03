@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
-                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+                    (C) 2007-2009 Frederik Gladhorn <gladhorn@kde.org>
 
     -----------------------------------------------------------------------
 
@@ -91,16 +91,15 @@ QString TestEntryManager::gradeStr(int i)
 
 TestEntryManager::TestEntryManager(KEduVocDocument* doc, QWidget * parent)
     :QObject(parent)
+    ,m_doc(doc)
+    ,m_parent(parent)
+    ,m_fromTranslation(Prefs::questionLanguage())
+    ,m_toTranslation(Prefs::solutionLanguage())
+    ,m_testType(Prefs::testType())
+    ,m_practiceTimeoutCounter(0)
+    ,m_currentEntry(0)
+    ,m_randomSequence(new KRandomSequence( QDateTime::currentDateTime().toTime_t() ))
 {
-    m_doc = doc;
-    m_parent = parent;
-    m_fromTranslation = Prefs::questionLanguage();
-    m_toTranslation = Prefs::solutionLanguage();
-    m_testType = Prefs::testType();
-
-    m_practiceTimeoutCounter = 0;
-    m_randomSequence = new KRandomSequence( QDateTime::currentDateTime().toTime_t() );
-
     TestEntry::setGradeTo(m_toTranslation);
 
     // write grades of mono lingual tests into translation(i).gradeFrom(i)
@@ -113,9 +112,8 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QWidget * parent)
 
     // don't crash when trying to start practicing a document containing only one language
     if (m_doc->identifierCount() < 2) {
-	KMessageBox::error(0, i18n("The vocabulary document contains no entries that can be used for the chosen type of practice."));
-	m_currentEntry = 0;
-	return;
+        KMessageBox::error(0, i18n("The vocabulary document contains no entries that can be used for the chosen type of practice."));
+        return;
     }
 
     kDebug() << "Test from: " << m_doc->identifier(m_fromTranslation).name()
@@ -129,12 +127,10 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QWidget * parent)
     for ( int i = 0; i < qMin(m_notAskedTestEntries.count(), Prefs::testNumberOfEntries() ); i++ ) {
         m_currentEntries.append( m_notAskedTestEntries.takeAt(0) );
     }
-
-    m_currentEntry = 0;
 }
 
 
-TestEntryManager::~ TestEntryManager()
+TestEntryManager::~TestEntryManager()
 {
     delete m_randomSequence;
 }
@@ -279,7 +275,7 @@ int TestEntryManager::statisticTotalSkipUnknown()
 
 void TestEntryManager::slotResult(TestEntryManager::Result res)
 {
-kDebug() << "result: " << res;
+    kDebug() << "result: " << res;
     m_doc->setModified();
 
     // check if stop was requested

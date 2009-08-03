@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
-                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+                    (C) 2007-2009 Frederik Gladhorn <gladhorn@kde.org>
 
     -----------------------------------------------------------------------
 
@@ -55,13 +55,6 @@ public:
      */
     ~TestEntryManager();
 
-
-    /**
-     * Select appropriate entries for the practice (respect blocking settings etc)
-     * m_allTestEntries will be filled by this.
-     */
-    void filterTestEntries();
-
     void startPractice();
 
     /**
@@ -106,6 +99,12 @@ private slots:
     void setNextEntry();
 
 private:
+    /**
+     * Select appropriate entries for the practice (respect blocking settings etc)
+     * m_allTestEntries will be filled by this.
+     */
+    void filterTestEntries();
+
     KEduVocDocument *m_doc;
     QWidget *m_parent;
     int m_fromTranslation;
@@ -114,7 +113,6 @@ private:
 
     /// after x timeouts we pause the whole show
     int m_practiceTimeoutCounter;
-
 
     /// All entries in the test.
     QList<TestEntry*> m_allTestEntries;
@@ -127,7 +125,6 @@ private:
     KRandomSequence* m_randomSequence;
 
     PracticeDialog* m_practiceDialog;
-
 
 friend class EntryFilter;
 };
