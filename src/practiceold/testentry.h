@@ -40,20 +40,7 @@ public:
     Q_DECLARE_FLAGS(ErrorTypes, ErrorType)
 
 
-    TestEntry(KEduVocExpression *entry)
-    {
-        m_entry = entry;
-        m_answeredCorrectInSequence = 0;
-        m_statisticCount = 0;
-        m_statisticGoodCount = 0;
-        m_statisticBadCount = 0;
-        m_statisticTimeout = 0;
-        m_statisticSkipUnknown = 0;
-        m_statisticSkipKnown = 0;
-        m_canSwitchDirection = false;
-        m_correctAtFirstAttempt = false;
-        m_lastError = UnknownMistake;
-    }
+    TestEntry(KEduVocExpression *entry);
 
     void incGoodCount();
     void incBadCount();
@@ -89,6 +76,9 @@ public:
 private:
     void update();
 
+    /// the entry itself
+    KEduVocExpression *m_entry;
+
     // these are for the CURRENT query only, so we can display statistics.
     int m_statisticCount;
     int m_statisticGoodCount;
@@ -103,14 +93,8 @@ private:
     double m_lastPercentage;
     ErrorTypes m_lastError;
 
-//     QStringList m_correctParts;
-//     QStringList m_wrongParts;
-
     static int m_gradeTo;
     static int m_gradeFrom;
-
-    /// the entry itself
-    KEduVocExpression *m_entry;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(TestEntry::ErrorTypes)

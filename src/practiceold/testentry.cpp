@@ -22,6 +22,22 @@
 int TestEntry::m_gradeFrom = 0;
 int TestEntry::m_gradeTo = 1;
 
+
+TestEntry::TestEntry(KEduVocExpression *entry)
+    :m_entry(entry)
+    ,m_statisticCount(0)
+    ,m_statisticGoodCount(0)
+    ,m_statisticBadCount(0)
+    ,m_statisticTimeout(0)
+    ,m_statisticSkipUnknown(0)
+    ,m_statisticSkipKnown(0)
+    ,m_answeredCorrectInSequence(0)
+    ,m_canSwitchDirection(false)
+    ,m_correctAtFirstAttempt(false)
+    ,m_lastPercentage(0.0)
+    ,m_lastError(UnknownMistake)
+{}
+
 void TestEntry::setGradeTo(int to)
 {
     m_gradeTo = to;
@@ -31,7 +47,6 @@ void TestEntry::setGradeFrom(int from)
 {
     m_gradeFrom = from;
 }
-
 
 int TestEntry::answeredCorrectInSequence()
 {
