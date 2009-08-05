@@ -25,7 +25,7 @@
 #ifndef PRACTICEDIALOG_H
 #define PRACTICEDIALOG_H
 
-#include "testentrymanager.h"
+#include "vocabularypractice.h"
 #include "prefs.h"
 
 #include <keduvocarticle.h>
@@ -82,7 +82,7 @@ public:
     virtual void setProgressCounter(int current, int total) = 0;
 
 signals:
-    void signalResult(TestEntryManager::Result);
+    void signalResult(VocabularyPractice::Result);
     void currentEntryFinished();
 
 public slots:

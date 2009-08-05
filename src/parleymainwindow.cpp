@@ -31,8 +31,8 @@
 #include "settings/parleyprefs.h"
 #include "settings/documentproperties.h"
 #include "configure-practice/configurepracticedialog.h"
-#include "practiceold/testentrymanager.h"
-//#include "practice/parleypracticemainwindow.h"
+#include "practiceold/vocabularypractice.h"
+
 #include "prefs.h"
 #include "welcomescreen/welcomescreen.h"
 
@@ -211,8 +211,8 @@ void ParleyMainWindow::startPractice()
 //        }
 //    } else {
         hide();
-        TestEntryManager testManager(m_document->document(), this);
-        testManager.startPractice();
+        VocabularyPractice practice(m_document->document(), this);
+        practice.startPractice();
         show();
 //    }
 }

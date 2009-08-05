@@ -25,16 +25,6 @@
 
 #include "testentrymanager.h"
 
-#include "testentry.h"
-#include "writtenpracticedialog.h"
-#include "MCQueryDlg.h"
-#include "AdjQueryDlg.h"
-#include "VerbQueryDlg.h"
-#include "ArtQueryDlg.h"
-#include "SimpleQueryDlg.h"
-#include "mixedletterpracticedialog.h"
-
-#include "practicesummarydialog.h"
 
 #include "practiceold/entryfilter.h"
 
@@ -48,20 +38,15 @@
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>
 #include <keduvocdocument.h>
-#include <KMessageBox>
 #include <QDateTime>
 
-#define MAX_PRACTICE_TIMEOUT 3
 
-
-TestEntryManager::TestEntryManager(KEduVocDocument* doc, QWidget * parent)
-    :QObject(parent)
-    ,m_doc(doc)
+TestEntryManager::TestEntryManager(KEduVocDocument* doc, QWidget* parent)
+    :m_doc(doc)
     ,m_parent(parent)
     ,m_fromTranslation(Prefs::questionLanguage())
     ,m_toTranslation(Prefs::solutionLanguage())
     ,m_testType(Prefs::testType())
-    ,m_practiceTimeoutCounter(0)
     ,m_currentEntry(0)
     ,m_randomSequence(QDateTime::currentDateTime().toTime_t())
 {
@@ -94,16 +79,14 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QWidget * parent)
     }
 }
 
-
 TestEntryManager::~TestEntryManager()
 {
     qDeleteAll(m_allTestEntries);
 }
 
-
 void TestEntryManager::filterTestEntries()
 {
-    EntryFilter filter(this, m_doc);
+    EntryFilter filter(m_parent, m_doc);
     QList<KEduVocExpression*> allEntries = filter.entries();
 
     if (allEntries.count() == 0) {
@@ -115,48 +98,9 @@ void TestEntryManager::filterTestEntries()
     }
 }
 
-void TestEntryManager::startPractice()
+void TestEntryManager::currentEntryFinished()
 {
-    if ( m_currentEntries.count() == 0 ) {
-        return;
-    }
-
-    switch ( Prefs::testType() ) {
-    case Prefs::EnumTestType::WrittenTest:
-        m_practiceDialog = new WrittenPracticeDialog(m_doc, m_parent);
-        break;
-    case Prefs::EnumTestType::MultipleChoiceTest:
-        m_practiceDialog = new MCQueryDlg(m_doc, m_parent);
-        break;
-    case Prefs::EnumTestType::MixedLettersTest:
-        m_practiceDialog = new MixedLetterPracticeDialog(m_doc, m_parent);
-        break;
-    case Prefs::EnumTestType::ArticleTest:
-        m_practiceDialog = new ArtQueryDlg(m_doc, m_parent);
-        break;
-    case Prefs::EnumTestType::ComparisonTest:
-        m_practiceDialog = new AdjQueryDlg(m_doc, m_parent);
-        break;
-    case Prefs::EnumTestType::ConjugationTest:
-        m_practiceDialog = new VerbQueryDlg(m_doc, m_parent);
-        break;
-    // tests using the simple dialog
-    case Prefs::EnumTestType::SynonymTest:
-    case Prefs::EnumTestType::AntonymTest:
-    case Prefs::EnumTestType::ExampleTest:
-    case Prefs::EnumTestType::ParaphraseTest:
-        m_practiceDialog = new SimpleQueryDlg(m_doc, m_parent);
-        break;
-    default:
-        kError() << "unknown test type";
-    }
-    connect(m_practiceDialog, SIGNAL(signalResult(TestEntryManager::Result)), SLOT(slotResult(TestEntryManager::Result)));
-    connect(m_practiceDialog, SIGNAL(currentEntryFinished()), SLOT(setNextEntry()));
-    setNextEntry();
-    m_practiceDialog->exec();
-
-    PracticeSummaryDialog practiceSummaryDialog(this, m_parent);
-    practiceSummaryDialog.exec();
+    m_currentEntries.takeAt(m_currentEntry);
 }
 
 void TestEntryManager::printStatistics()
@@ -238,84 +182,7 @@ int TestEntryManager::statisticTotalSkipUnknown()
 }
 
 
-void TestEntryManager::slotResult(TestEntryManager::Result res)
-{
-    kDebug() << "result: " << res;
-    m_doc->setModified();
-
-    // check if stop was requested
-    if ( res == StopPractice ) {
-        m_practiceDialog->accept();
-        return;
-    }
-
-    if ( res == Timeout ) {
-        // too many timeouts in a row will hold the test
-        if (++m_practiceTimeoutCounter >= MAX_PRACTICE_TIMEOUT) {
-            const QString not_answered = i18n(
-                "The test dialog was not answered several times in a row.\n"
-                "It is assumed that there is currently nobody in front of "
-                "the screen, and for that reason the practice is stopped.");
-
-            KMessageBox::information(m_practiceDialog, not_answered, i18n("Stopping Test"));
-        }
-    } else {
-        m_practiceTimeoutCounter = 0;
-    }
-
-    // update general stuff (count, date), unless the practice has been stopped.
-    m_doc->setModified();
-
-    // change statistics, remove entry from test, if aplicable
-    switch ( res ) {
-    case Correct:
-        m_currentEntries[m_currentEntry]->incGoodCount();
-        // takeAt but no delete, since we still have the pointer in m_allTestEntries!
-        if ( !Prefs::altLearn() ) {
-            m_currentEntries.takeAt(m_currentEntry);
-        } else {
-            // alt learn: 3 times right
-            if ( m_currentEntries[m_currentEntry]->answeredCorrectInSequence() >= 3 ) {
-                m_currentEntries.takeAt(m_currentEntry);
-            }
-        }
-        break;
-
-    case SkipKnown:
-        m_currentEntries[m_currentEntry]->incSkipKnown();
-        // takeAt but no delete, since we still have the pointer in m_allTestEntries!
-        if ( !Prefs::altLearn() ) {
-            m_currentEntries.takeAt(m_currentEntry);
-        } else {
-            // alt learn: 3 times right
-            if ( m_currentEntries[m_currentEntry]->answeredCorrectInSequence() >= 3 ) {
-                m_currentEntries.takeAt(m_currentEntry);
-            }
-        }
-        break;
-
-    case SkipUnknown:
-        m_currentEntries[m_currentEntry]->incSkipUnknown();
-        break;
-
-    case Wrong:
-        m_currentEntries[m_currentEntry]->incBadCount();
-        break;
-
-    case Timeout:
-        m_currentEntries[m_currentEntry]->incTimeout();
-        break;
-
-    default :
-        kError() << "Unknown result from Practice Dialog.";
-    }
-
-//     printStatistics();
-}
-
-
-// get a new entry
-void TestEntryManager::setNextEntry()
+TestEntry* TestEntryManager::getNextEntry()
 {
     // refill current entries
     while ( m_currentEntries.count() < Prefs::testNumberOfEntries() &&
@@ -337,13 +204,8 @@ void TestEntryManager::setNextEntry()
 
         kDebug() << "nextEntry: " << m_currentEntry << " = " << m_currentEntries.value(m_currentEntry)->entry()->translation(0)->text() << " (" << m_currentEntries.count() + m_notAskedTestEntries.count() << "entries remaining)";
 
-        m_practiceDialog->setEntry(m_currentEntries.value(m_currentEntry));
-        m_practiceDialog->setProgressCounter(
-            totalEntryCount()-activeEntryCount(), totalEntryCount());
+        return m_currentEntries.value(m_currentEntry);
     } else {
-        // we're done, no more entries
-        m_practiceDialog->accept();
+        return 0;
     }
 }
-
-#include "testentrymanager.moc"

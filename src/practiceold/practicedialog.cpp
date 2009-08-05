@@ -81,7 +81,7 @@ PracticeDialog::~PracticeDialog()
 void PracticeDialog::closeEvent(QCloseEvent *e)
 {
     Q_UNUSED(e);
-    signalResult(TestEntryManager::StopPractice);
+    signalResult(VocabularyPractice::StopPractice);
 }
 
 
@@ -99,7 +99,7 @@ void PracticeDialog::timeoutReached()
         if (Prefs::practiceTimeoutMode() == Prefs::EnumPracticeTimeoutMode::Show) {
             showSolution();
         } else if (Prefs::practiceTimeoutMode() == Prefs::EnumPracticeTimeoutMode::Continue) {
-            signalResult(TestEntryManager::Timeout); ///@todo check if this works - esp with 3x timeout
+            signalResult(VocabularyPractice::Timeout); ///@todo check if this works - esp with 3x timeout
             continueButtonClicked();
         }
     }
@@ -158,13 +158,13 @@ void PracticeDialog::setEntry(TestEntry * entry)
 
 void PracticeDialog::skipKnown()
 {
-    signalResult(TestEntryManager::SkipKnown);
+    signalResult(VocabularyPractice::SkipKnown);
     continueButtonClicked();
 }
 
 void PracticeDialog::skipUnknown()
 {
-    signalResult(TestEntryManager::SkipUnknown);
+    signalResult(VocabularyPractice::SkipUnknown);
     continueButtonClicked();
 }
 
@@ -172,16 +172,16 @@ void PracticeDialog::resultCorrect()
 {
 //     audioPlayCorrect();
     if (!m_answerTainted) {
-        signalResult(TestEntryManager::Correct);
+        signalResult(VocabularyPractice::Correct);
     } else {
         kDebug() << "Correct answer but with help (counts as wrong).";
-        signalResult(TestEntryManager::Wrong);
+        signalResult(VocabularyPractice::Wrong);
     }
 }
 
 void PracticeDialog::resultWrong()
 {
-    signalResult(TestEntryManager::Wrong);
+    signalResult(VocabularyPractice::Wrong);
 }
 
 void PracticeDialog::audioPlayFromIdentifier()

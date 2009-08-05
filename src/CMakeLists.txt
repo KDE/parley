@@ -120,6 +120,7 @@ set(parleypractice_SRCS
 
 # old practice dialogs (normal qdialog)
 set(practiceold_SRCS
+    practiceold/vocabularypractice.cpp
     practiceold/testentry.cpp
     practiceold/testentrymanager.cpp
     practiceold/practicedialog.cpp

@@ -37,24 +37,23 @@ class KEduVocDocument;
 class PracticeDialog;
 
 class TestEntryManager
-    :public QObject
 {
-Q_OBJECT
 public:
-    // should go...
-    enum Result { Correct, SkipKnown, SkipUnknown, Wrong, Timeout, StopPractice };
-
     /**
      * Create a collection of entries to be practiced.
      * @param doc
      */
-    explicit TestEntryManager(KEduVocDocument *doc, QWidget * parent = 0);
+    explicit TestEntryManager(KEduVocDocument *doc, QWidget *parent);
     /**
      * Default ctor
      */
     ~TestEntryManager();
 
-    void startPractice();
+    /**
+     * Get the next entry to show to the user.
+     * @return TestEntry* the entry
+     */
+    TestEntry* getNextEntry();
 
     /**
      * The number of entries in the practice
@@ -73,25 +72,13 @@ public:
      */
     void printStatistics();
 
+    void currentEntryFinished();
+
     int statisticTotalCorrectFirstAttempt();
     int statisticTotalWrong();
     int statisticTotalUnanswered();
     int statisticTotalSkipKnown();
     int statisticTotalSkipUnknown();
-
-///@todo can this be private? we only connect from within
-private slots:
-    /**
-     * The user has answered with this result, internal update.
-     * @param result the result (PracticeDialog)
-     */
-    void slotResult(TestEntryManager::Result res);
-
-    /**
-     * This is called to get the next entry to show to the user.
-     * @return
-     */
-    void setNextEntry();
 
 private:
     /**
@@ -106,9 +93,6 @@ private:
     int m_toTranslation;
     int m_testType;
 
-    /// after x timeouts we pause the whole show
-    int m_practiceTimeoutCounter;
-
     /// All entries in the test.
     QList<TestEntry*> m_allTestEntries;
     /// All entries that have not been asked.
@@ -118,8 +102,6 @@ private:
     int m_currentEntry;
 
     KRandomSequence m_randomSequence;
-
-    PracticeDialog* m_practiceDialog;
 
 friend class EntryFilter;
 };
