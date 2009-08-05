@@ -96,7 +96,9 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QWidget * parent)
 
 
 TestEntryManager::~TestEntryManager()
-{}
+{
+    qDeleteAll(m_allTestEntries);
+}
 
 
 void TestEntryManager::filterTestEntries()
