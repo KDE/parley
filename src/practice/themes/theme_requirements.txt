@@ -1,7 +1,0 @@
-This has been ported to techbase and placed here:
-http://techbase.kde.org/Projects/Edu/Parley/Practice/Theme_Requirements
-
-This (text) version is no longer authoritive, so it is being remade as a link to the authoritive version.
-
-Note: a new practice mode creation guide is also here:
-http://techbase.kde.org/Projects/Edu/Parley/Practice/Mode_Creation_Guide
