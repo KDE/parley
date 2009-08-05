@@ -137,6 +137,7 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QWidget * parent)
 TestEntryManager::~ TestEntryManager()
 {
     delete m_randomSequence;
+    qDeleteAll(m_allTestEntries);
 }
 
 
