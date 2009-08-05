@@ -53,40 +53,6 @@
 
 #define MAX_PRACTICE_TIMEOUT 3
 
-// this has nothing really to do with the rest. stays here until it has a better home.
-QString TestEntryManager::gradeStr(int i)
-{
-    switch (i) {
-    case KV_NORM_GRADE:
-        return i18n(KV_NORM_TEXT);
-        break;
-    case KV_LEV1_GRADE:
-        return i18n(KV_LEV1_TEXT);
-        break;
-    case KV_LEV2_GRADE:
-        return i18n(KV_LEV2_TEXT);
-        break;
-    case KV_LEV3_GRADE:
-        return i18n(KV_LEV3_TEXT);
-        break;
-    case KV_LEV4_GRADE:
-        return i18n(KV_LEV4_TEXT);
-        break;
-    case KV_LEV5_GRADE:
-        return i18n(KV_LEV5_TEXT);
-        break;
-    case KV_LEV6_GRADE:
-        return i18n(KV_LEV6_TEXT);
-        break;
-    case KV_LEV7_GRADE:
-        return i18n(KV_LEV7_TEXT);
-        break;
-    default:
-        return i18n(KV_LEV1_TEXT);
-        break;
-    }
-}
-
 
 TestEntryManager::TestEntryManager(KEduVocDocument* doc, QWidget * parent)
     :QObject(parent)

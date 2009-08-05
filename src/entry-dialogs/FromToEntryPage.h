@@ -60,6 +60,9 @@ private slots:
     void badCountChanged(int);
 
 private:
+    /// get a text representation of a grade
+    static QString gradeStr(int i);
+
     KEduVocDocument     *m_doc;
     int m_translationFrom;
     int m_translationTo;

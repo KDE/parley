@@ -68,10 +68,6 @@ public:
      */
     int activeEntryCount();
 
-
-    /// grade int to string (?)
-    static QString gradeStr(int i);
-
     /**
      * Puts some grades on the shell
      */

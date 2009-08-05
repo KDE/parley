@@ -32,8 +32,43 @@
 #include <KComboBox>
 #include <KLineEdit>
 
-#include "practice/testentrymanager.h"
 #include "EntryDlg.h"
+
+
+// this has nothing really to do with the rest. stays here until it has a better home.
+QString FromToEntryPage::gradeToString(int i)
+{
+    switch (i) {
+    case KV_NORM_GRADE:
+        return i18n(KV_NORM_TEXT);
+        break;
+    case KV_LEV1_GRADE:
+        return i18n(KV_LEV1_TEXT);
+        break;
+    case KV_LEV2_GRADE:
+        return i18n(KV_LEV2_TEXT);
+        break;
+    case KV_LEV3_GRADE:
+        return i18n(KV_LEV3_TEXT);
+        break;
+    case KV_LEV4_GRADE:
+        return i18n(KV_LEV4_TEXT);
+        break;
+    case KV_LEV5_GRADE:
+        return i18n(KV_LEV5_TEXT);
+        break;
+    case KV_LEV6_GRADE:
+        return i18n(KV_LEV6_TEXT);
+        break;
+    case KV_LEV7_GRADE:
+        return i18n(KV_LEV7_TEXT);
+        break;
+    default:
+        return i18n(KV_LEV1_TEXT);
+        break;
+    }
+}
+
 
 FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, int fromIdentifier, int toIdentifier, QWidget *parent) : QWidget(parent)
 {
@@ -57,7 +92,7 @@ FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, int fromIdentifier, int t
     connect(resetGradesButton, SIGNAL(clicked()), SLOT(slotResetGrades()));
 
     for (int i = 0; i <= KV_MAX_GRADE; i++) {
-        gradebox->addItem(TestEntryManager::gradeStr(i));
+        gradebox->addItem(gradeToString(i));
     }
 
 }
