@@ -22,7 +22,7 @@
 #include <KDebug>
 
 int main() {
-    QTextCodec* Utf8Codec  = QTextCodec::codecForName("utf-8");
+    //QTextCodec* Utf8Codec  = QTextCodec::codecForName("utf-8");
 
     //TranslationScript script("google_translation.py");
     //script.getLanguagePairs();
