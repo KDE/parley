@@ -37,6 +37,8 @@ private Q_SLOTS:
     void entryDone();
 
 private:
+    void nextEntry();
+
     /** Update the TestEntry with the current result. */
     void setResultForCurrent(VocabularyPractice::Result res);
 

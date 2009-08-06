@@ -72,8 +72,7 @@ void VocabularyPractice::startPractice()
     }
     connect(m_practiceDialog, SIGNAL(currentEntryFinished()), SLOT(entryDone()));
 
-    // set a word
-    entryDone();
+    nextEntry();
     m_practiceDialog->exec();
 
     PracticeSummaryDialog practiceSummaryDialog(&m_testEntryManager, m_parent);
@@ -83,7 +82,11 @@ void VocabularyPractice::startPractice()
 void VocabularyPractice::entryDone()
 {
     setResultForCurrent(m_practiceDialog->result());
+    nextEntry();
+}
 
+void VocabularyPractice::nextEntry()
+{
     m_currentEntry = m_testEntryManager.getNextEntry();
     if (m_currentEntry) {
         m_practiceDialog->setEntry(m_currentEntry);
