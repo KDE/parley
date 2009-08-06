@@ -8,6 +8,7 @@
 
     copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                      (C) 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
+    Copyright 2007-2009 Frederik Gladhorn <gladhorn@kde.org>
 
     -----------------------------------------------------------------------
 
@@ -81,8 +82,11 @@ public:
      */
     virtual void setProgressCounter(int current, int total) = 0;
 
-signals:
-    void signalResult(VocabularyPractice::Result);
+    /** Gives back the result (right/wrong answer) after currentEntryFinished() has been emitted */
+    VocabularyPractice::Result result();
+
+Q_SIGNALS:
+    /** Emitted when the user has answered and the solution is displayed */
     void currentEntryFinished();
 
 public slots:
@@ -118,9 +122,12 @@ protected slots:
     void audioPlayToIdentifier();
 
     /**
-     * The continue button has been clicked - stop m_showSolutionTimer
+     * Move on to the next word
      */
-    void continueButtonClicked();
+    void continueWithNextWord();
+
+    /** Continue with the next word and count this one as right */
+    void countAsRight();
 
 protected:
     void resultCorrect();
@@ -203,6 +210,8 @@ private:
 
     /// true if the user entered a false answer or received help (show more button). we still let the user give input until the right one is selected.
     bool m_answerTainted;
+    /// the current state of the answer
+    VocabularyPractice::Result m_result;
 
     /// The sound player. Has to be initialized before using the first time.
     Phonon::MediaObject* m_player;

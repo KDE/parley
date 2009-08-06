@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
-    Copyright 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2007-2009 Frederik Gladhorn <gladhorn@kde.org>
 
     -----------------------------------------------------------------------
 
@@ -50,7 +50,7 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
     mw->setupUi(mainWidget());
 
     mw->continueButton->setIcon(KIcon("dialog-ok"));
-    connect(mw->continueButton, SIGNAL(clicked()),  SLOT(continueButtonClicked()));
+    connect(mw->continueButton, SIGNAL(clicked()),  SLOT(continueWithNextWord()));
 
     mw->stopPracticeButton->setIcon( KIcon("process-stop") );
     mw->verify->setIcon(KIcon("dialog-ok"));
@@ -62,6 +62,10 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
 
     connect(mw->stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
 
+    mw->know_it->setVisible(Prefs::skipKnownEnabled());
+    mw->countAsRightButton->setVisible(Prefs::skipKnownEnabled());
+    mw->show_more->setVisible(Prefs::showMore());
+
     connect(mw->typeCheckBox, SIGNAL(toggled(bool)), SLOT(slotTypeClicked(bool)));
     connect(mw->commentCheckBox, SIGNAL(toggled(bool)), SLOT(slotRemClicked(bool)));
     connect(mw->falsefriendCheckBox, SIGNAL(toggled(bool)), SLOT(slotFalseFriendClicked(bool)));
@@ -70,6 +74,7 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showSolution()));
     connect(mw->show_more, SIGNAL(clicked()), SLOT(showMoreClicked()));
+    connect(mw->countAsRightButton, SIGNAL(clicked()), SLOT(countAsRight()));
 
     showContinueButton(false);
 
@@ -331,7 +336,6 @@ void WrittenPracticeDialog::slotTypeClicked(bool show)
     }
 }
 
-
 void WrittenPracticeDialog::keyPressEvent(QKeyEvent *e)
 {
     switch (e->key()) {
@@ -350,7 +354,7 @@ void WrittenPracticeDialog::keyPressEvent(QKeyEvent *e)
         } else if (mw->verify->isDefault()) {
             verifyClicked();
         } else if (mw->continueButton->isDefault()) {
-            continueButtonClicked();
+            continueWithNextWord();
         }
         break;
 
@@ -373,22 +377,14 @@ void WrittenPracticeDialog::showContinueButton(bool show)
         if(!answerTainted()) {
             // don't show the solution
             if ( !Prefs::showSolutionAfterAnswer() ) {
-                mw->continueButton->click();
+                continueWithNextWord();
                 return;
             }
         }
-    }
-
-    mw->dont_know->setVisible(!show);
-    mw->know_it->setVisible(!show && Prefs::skipKnownEnabled());
-    mw->show_more->setVisible(!show && Prefs::showMore());
-    mw->show_all->setVisible(!show);
-    mw->verify->setVisible(!show);
-
-    mw->continueButton->setVisible(show);
-
-    if ( show ) {
+        mw->countAsRightButton->setEnabled(answerTainted());
+        mw->buttonStackWidget->setCurrentIndex(1);
         stopAnswerTimer();
+
         mw->answerLineEdit->setText(m_entry->entry()->translation(Prefs::solutionLanguage())->text());
         mw->continueButton->setDefault(true);
         mw->continueButton->setFocus();
@@ -406,9 +402,11 @@ void WrittenPracticeDialog::showContinueButton(bool show)
             }
         }
     } else {
+        mw->buttonStackWidget->setCurrentIndex(0);
         mw->verify->setDefault(true);
         mw->answerLineEdit->setReadOnly(false);
     }
+
 }
 
 #include "writtenpracticedialog.moc"

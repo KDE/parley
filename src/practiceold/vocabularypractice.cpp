@@ -33,13 +33,11 @@ VocabularyPractice::VocabularyPractice(KEduVocDocument *doc, QWidget * parent)
     ,m_doc(doc)
     ,m_practiceTimeoutCounter(0)
 {
-
+    m_doc->setModified(true);
 }
 
 VocabularyPractice::~VocabularyPractice()
-{
-
-}
+{}
 
 void VocabularyPractice::startPractice()
 {
@@ -72,7 +70,6 @@ void VocabularyPractice::startPractice()
     default:
         kError() << "unknown test type";
     }
-    connect(m_practiceDialog, SIGNAL(signalResult(VocabularyPractice::Result)), SLOT(slotResult(VocabularyPractice::Result)));
     connect(m_practiceDialog, SIGNAL(currentEntryFinished()), SLOT(entryDone()));
 
     // set a word
@@ -85,6 +82,8 @@ void VocabularyPractice::startPractice()
 
 void VocabularyPractice::entryDone()
 {
+    setResultForCurrent(m_practiceDialog->result());
+
     m_currentEntry = m_testEntryManager.getNextEntry();
     if (m_currentEntry) {
         m_practiceDialog->setEntry(m_currentEntry);
@@ -97,16 +96,10 @@ void VocabularyPractice::entryDone()
     }
 }
 
-void VocabularyPractice::slotResult(VocabularyPractice::Result res)
+void VocabularyPractice::setResultForCurrent(VocabularyPractice::Result res)
 {
     kDebug() << "result: " << res;
     m_doc->setModified();
-
-    // check if stop was requested
-    if ( res == StopPractice ) {
-        m_practiceDialog->accept();
-        return;
-    }
 
     if ( res == Timeout ) {
         // too many timeouts in a row will hold the test
@@ -118,15 +111,16 @@ void VocabularyPractice::slotResult(VocabularyPractice::Result res)
 
             KMessageBox::information(m_practiceDialog, not_answered, i18n("Stopping Test"));
         }
+        return;
     } else {
         m_practiceTimeoutCounter = 0;
     }
 
-    // update general stuff (count, date), unless the practice has been stopped.
-    m_doc->setModified();
-
-    // change statistics, remove entry from test, if aplicable
-    switch ( res ) {
+    // check if stop was requested
+    switch (res) {
+    case StopPractice:
+        m_practiceDialog->accept();
+        break;
     case Correct:
         m_currentEntry->incGoodCount();
         // takeAt but no delete, since we still have the pointer in m_allTestEntries!
@@ -139,7 +133,6 @@ void VocabularyPractice::slotResult(VocabularyPractice::Result res)
             }
         }
         break;
-
     case SkipKnown:
         m_currentEntry->incSkipKnown();
         // takeAt but no delete, since we still have the pointer in m_allTestEntries!
@@ -152,21 +145,15 @@ void VocabularyPractice::slotResult(VocabularyPractice::Result res)
             }
         }
         break;
-
     case SkipUnknown:
         m_currentEntry->incSkipUnknown();
         break;
-
     case Wrong:
         m_currentEntry->incBadCount();
         break;
-
     case Timeout:
         m_currentEntry->incTimeout();
         break;
-
-    default :
-        kError() << "Unknown result from Practice Dialog.";
     }
 }
 

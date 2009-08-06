@@ -8,6 +8,7 @@
 
     copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                      (C) 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
+    Copyright 2007-2009 Frederik Gladhorn <gladhorn@kde.org>
 
     -----------------------------------------------------------------------
 
@@ -78,10 +79,10 @@ PracticeDialog::~PracticeDialog()
 }
 
 
-void PracticeDialog::closeEvent(QCloseEvent *e)
+void PracticeDialog::closeEvent(QCloseEvent *)
 {
-    Q_UNUSED(e);
-    signalResult(VocabularyPractice::StopPractice);
+    m_result = VocabularyPractice::StopPractice;
+    continueWithNextWord();
 }
 
 
@@ -99,8 +100,8 @@ void PracticeDialog::timeoutReached()
         if (Prefs::practiceTimeoutMode() == Prefs::EnumPracticeTimeoutMode::Show) {
             showSolution();
         } else if (Prefs::practiceTimeoutMode() == Prefs::EnumPracticeTimeoutMode::Continue) {
-            signalResult(VocabularyPractice::Timeout); ///@todo check if this works - esp with 3x timeout
-            continueButtonClicked();
+            m_result = VocabularyPractice::Timeout;
+            continueWithNextWord();
         }
     }
 }
@@ -156,32 +157,37 @@ void PracticeDialog::setEntry(TestEntry * entry)
     }
 }
 
+VocabularyPractice::Result PracticeDialog::result()
+{
+    return m_result;
+}
+
 void PracticeDialog::skipKnown()
 {
-    signalResult(VocabularyPractice::SkipKnown);
-    continueButtonClicked();
+    m_result = VocabularyPractice::SkipKnown;
+    continueWithNextWord();
 }
 
 void PracticeDialog::skipUnknown()
 {
-    signalResult(VocabularyPractice::SkipUnknown);
-    continueButtonClicked();
+    m_result = VocabularyPractice::SkipUnknown;
+    continueWithNextWord();
 }
 
 void PracticeDialog::resultCorrect()
 {
 //     audioPlayCorrect();
     if (!m_answerTainted) {
-        signalResult(VocabularyPractice::Correct);
+        m_result = VocabularyPractice::Correct;
     } else {
         kDebug() << "Correct answer but with help (counts as wrong).";
-        signalResult(VocabularyPractice::Wrong);
+        m_result = VocabularyPractice::Wrong;
     }
 }
 
 void PracticeDialog::resultWrong()
 {
-    signalResult(VocabularyPractice::Wrong);
+    m_result = VocabularyPractice::Wrong;
 }
 
 void PracticeDialog::audioPlayFromIdentifier()
@@ -214,7 +220,6 @@ void PracticeDialog::audioPlayFile(const KUrl & soundFile)
     m_player->setCurrentSource(soundFile);
     m_player->play();
 }
-
 
 void PracticeDialog::imageShowFile(QGraphicsView * view, const QString & url)
 {
@@ -307,13 +312,19 @@ void PracticeDialog::startShowSolutionTimer()
             m_showSolutionTimer = new QTimer(this);
         }
         m_showSolutionTimer->setSingleShot(true);
-        connect(m_showSolutionTimer, SIGNAL(timeout()), SLOT(continueButtonClicked()));
+        connect(m_showSolutionTimer, SIGNAL(timeout()), SLOT(continueWithNextWord()));
         m_showSolutionTimer->start(Prefs::showSolutionAfterAnswerTime() * 1000);
     }
 }
 
 
-void PracticeDialog::continueButtonClicked()
+void PracticeDialog::countAsRight()
+{
+    m_result = VocabularyPractice::Correct;
+    continueWithNextWord();
+}
+
+void PracticeDialog::continueWithNextWord()
 {
     if ( m_showSolutionTimer ) {
         m_showSolutionTimer->stop();
@@ -321,13 +332,11 @@ void PracticeDialog::continueButtonClicked()
     emit currentEntryFinished();
 }
 
-
 double PracticeDialog::verifyAnswer(const QString & userAnswer)
 {
     m_validator->checkUserAnswer(userAnswer);
     return m_entry->lastPercentage();
 }
-
 
 double PracticeDialog::verifyAnswer(const QString & solution, const QString & userAnswer)
 {

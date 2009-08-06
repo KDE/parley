@@ -8,7 +8,7 @@
 
     copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                      (C) 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
-    Copyright 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2007-2009 Frederik Gladhorn <gladhorn@kde.org>
 
     -----------------------------------------------------------------------
 

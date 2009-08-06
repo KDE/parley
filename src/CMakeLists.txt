@@ -72,19 +72,6 @@ set(editor_SRCS
     editor/editor.cpp
 )
 
-kde4_add_ui_files(practice_SRCS
-    practiceold/entryfilter.ui
-    practiceold/AdjQueryDlgForm.ui
-    practiceold/ArtQueryDlgForm.ui
-    practiceold/MCQueryDlgForm.ui
-    practiceold/writtenpracticedialog.ui
-    practiceold/SimpleQueryDlgForm.ui
-    practiceold/VerbQueryDlgForm.ui
-    practiceold/mixedletterpracticedialog.ui
-    practiceold/showsolutionwidget.ui
-    practiceold/practicesummarywidget.ui
-)
-
 set(practice_SRCS
     practiceold/vocabularypractice.cpp
     practiceold/testentry.cpp
@@ -101,6 +88,19 @@ set(practice_SRCS
     practiceold/showsolutiondialog.cpp
     practiceold/practicesummarydialog.cpp
     practiceold/answervalidatorold.cpp
+)
+
+kde4_add_ui_files(practice_SRCS
+    practiceold/entryfilter.ui
+    practiceold/AdjQueryDlgForm.ui
+    practiceold/ArtQueryDlgForm.ui
+    practiceold/MCQueryDlgForm.ui
+    practiceold/writtenpracticedialog.ui
+    practiceold/SimpleQueryDlgForm.ui
+    practiceold/VerbQueryDlgForm.ui
+    practiceold/mixedletterpracticedialog.ui
+    practiceold/showsolutionwidget.ui
+    practiceold/practicesummarywidget.ui
 )
 
 # settings for the practice

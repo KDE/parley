@@ -36,13 +36,9 @@ public:
 private Q_SLOTS:
     void entryDone();
 
-    /**
-     * The user has answered with this result, internal update.
-     * @param result the result (PracticeDialog)
-     */
-    void slotResult(VocabularyPractice::Result res);
-
 private:
+    /** Update the TestEntry with the current result. */
+    void setResultForCurrent(VocabularyPractice::Result res);
 
     TestEntryManager m_testEntryManager;
     QWidget* m_parent;
