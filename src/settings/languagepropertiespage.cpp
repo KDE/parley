@@ -369,7 +369,7 @@ void LanguagePropertiesPage::slotTenseChosen(int index)
 void LanguagePropertiesPage::slotNewTense()
 {
     bool ok;
-    QString getTense = KInputDialog::getText(i18n("Tense Description"), i18n("Enter tense description:"), QString(), &ok, this);
+    QString getTense = KInputDialog::getText(i18n("Tense Name"), i18n("Enter name of tense:"), QString(), &ok, this);
     if (!ok)
         return;
 
@@ -391,7 +391,7 @@ void LanguagePropertiesPage::slotModifyTense()
         str = str.mid(str.indexOf(TENSE_TAG) + QString(TENSE_TAG).length());
 
         bool ok;
-        QString getTense = KInputDialog::getText(i18n("Tense Description"), i18n("Enter tense description:"), str, &ok, this);
+        QString getTense = KInputDialog::getText(i18n("Tense Name"), i18n("Enter name of tense:"), str, &ok, this);
         if (!ok)
             return;
 
