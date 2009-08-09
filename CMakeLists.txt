@@ -1,5 +1,7 @@
 project(parley)
 
+kde4_no_enable_final(parley)
+
 macro_optional_find_package(LibXslt)
 macro_optional_find_package(LibXml2)
 
