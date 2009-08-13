@@ -123,6 +123,11 @@ LanguagePropertiesPage::LanguagePropertiesPage(ParleyDocument *doc, int identifi
     loadGrammarFromDocument();
 }
 
+void LanguagePropertiesPage::setLanguageIdentifierIndex(int newIndex)
+{
+    m_identifierIndex = newIndex;
+}
+
 void LanguagePropertiesPage::downloadGrammar()
 {
     m_parleyDocument->fetchGrammar(m_identifierIndex);
