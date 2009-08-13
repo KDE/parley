@@ -25,7 +25,8 @@ class LanguagePropertiesPage : public QWidget, public Ui::LanguagePropertiesPage
     Q_OBJECT
 public:
     LanguagePropertiesPage(ParleyDocument *doc, int identifierIndex, QWidget *parent = 0);
-
+    void setLanguageIdentifierIndex(int newIndex);
+    
 public slots:
     void accept();
     void downloadGrammar();

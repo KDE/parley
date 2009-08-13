@@ -86,6 +86,8 @@ void LanguageProperties::accept()
                 // add a language
                 doc->appendIdentifier();
             }
+            LanguagePropertiesPage * page = static_cast<LanguagePropertiesPage *>(m_pages.value(index)->widget());
+            page->setLanguageIdentifierIndex(index-deleted);
         } else {
             // page is disabled, delete the language
             if (index < doc->identifierCount()) {
