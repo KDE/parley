@@ -215,8 +215,8 @@ void ParleyDocument::save()
     }
 
     // remove previous backup
-    QFile::remove(m_doc->url().path()+'~');
-    ::rename(QFile::encodeName(m_doc->url().path()), QFile::encodeName(m_doc->url().path()+'~'));
+    QFile::remove(m_doc->url().toLocalFile()+'~');
+    ::rename(QFile::encodeName(m_doc->url().toLocalFile()), QFile::encodeName(m_doc->url().toLocalFile()+'~'));
 
     m_doc->setCsvDelimiter(Prefs::separator());
 
@@ -248,19 +248,19 @@ void ParleyDocument::saveAs(KUrl url)
         return;
     }
     
-    QFileInfo fileinfo(url.path());
+    QFileInfo fileinfo(url.toLocalFile());
     if (fileinfo.exists()) {
         if(KMessageBox::warningContinueCancel(0,
                 i18n("<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>",
-                url.path()),QString(),KStandardGuiItem::overwrite()) == KMessageBox::Cancel) {
+                url.toLocalFile()),QString(),KStandardGuiItem::overwrite()) == KMessageBox::Cancel) {
             return;
         }
     }
 
-    QString msg = i18nc("@info:status saving a file", "Saving %1", url.path());
+    QString msg = i18nc("@info:status saving a file", "Saving %1", url.toLocalFile());
 
-    QFile::remove(url.path()+'~'); // remove previous backup
-    QFile::rename(QFile::encodeName(url.path()), QFile::encodeName(QString(url.path()+'~')));
+    QFile::remove(url.toLocalFile()+'~'); // remove previous backup
+    QFile::rename(QFile::encodeName(url.toLocalFile()), QFile::encodeName(QString(url.toLocalFile()+'~')));
 
     m_doc->setCsvDelimiter(Prefs::separator());
 
