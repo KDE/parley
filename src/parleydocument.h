@@ -81,8 +81,6 @@ private:
     ParleyMainWindow *m_parleyApp;
     KEduVocDocument *m_doc;
     QTimer *m_backupTimer;
-
-    friend class ParleyMainWindow;
 };
 
 #endif

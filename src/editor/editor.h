@@ -1,7 +1,7 @@
 /***************************************************************************
     Copyright 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
     Copyright 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
-    Copyright 2007-2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2007-2009 Frederik Gladhorn <gladhorn@kde.org>
     Copyright 2008 Daniel Laidig <d.laidig@gmx.de>
 ***************************************************************************/
 
@@ -71,13 +71,15 @@ public:
     void saveState();
 
 public slots:
-
     /**
      * Edit languages contained in the document.
      * This includes adding/removing languages, 
      * editing articles, personal pronouns and tenses.
      */
     void slotLanguageProperties();
+
+    /** General doc properties like title, author etc */
+    void slotDocumentProperties();
 
     void slotConfigShowSearch();
 

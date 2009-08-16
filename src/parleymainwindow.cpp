@@ -29,7 +29,6 @@
 #include "editor/editor.h"
 #include "statistics-dialogs/StatisticsDialog.h"
 #include "settings/parleyprefs.h"
-#include "settings/documentproperties.h"
 #include "configure-practice/configurepracticedialog.h"
 #include "practiceold/vocabularypractice.h"
 
@@ -57,17 +56,17 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
     ,m_currentComponent(NoComponent)
 {
     s_instance = this;
-    m_document = new ParleyDocument();
+    m_document = ParleyDocument::instance();
 
     setCentralWidget(new QWidget());
     centralWidget()->setLayout(new QHBoxLayout());
 
     initWelcomeScreen();
 
-    initActions();
-
     m_editor = new Editor(this);
     m_editor->hide();
+
+    initActions();
 
     bool showWelcomeScreen = false;
 
@@ -169,22 +168,6 @@ void ParleyMainWindow::slotCloseDocument()
     m_document->close();
     emit documentChanged();
     showWelcomeScreen();
-}
-
-void ParleyMainWindow::slotDocumentProperties()
-{
-    DocumentProperties* titleAuthorWidget = new DocumentProperties(m_document->document(), false, this);
-    KDialog* titleAuthorDialog;
-    titleAuthorDialog = new KDialog(this);
-    titleAuthorDialog->setMainWidget( titleAuthorWidget );
-
-    // the language options are only shown, when this is used to create a new document.
-    titleAuthorWidget->languageGroupBox->setVisible(false);
-    titleAuthorDialog->setCaption(i18nc("@title:window document properties", "Properties for %1", m_document->document()->url().url()));
-    connect(titleAuthorDialog, SIGNAL(accepted()), titleAuthorWidget, SLOT(accept()));
-    titleAuthorDialog->exec();
-    slotUpdateWindowCaption();
-    delete titleAuthorDialog;
 }
 
 void ParleyMainWindow::configurePractice()
@@ -354,7 +337,7 @@ void ParleyMainWindow::initActions()
     KAction* fileProperties = new KAction(this);
     actionCollection()->addAction("file_properties", fileProperties);
     fileProperties->setText(i18n("&Properties..."));
-    connect(fileProperties, SIGNAL(triggered(bool)), SLOT(slotDocumentProperties()));
+    connect(fileProperties, SIGNAL(triggered(bool)), m_editor, SLOT(slotDocumentProperties()));
     fileProperties->setIcon(KIcon("document-properties"));
     fileProperties->setWhatsThis(i18n("Edit document properties"));
     fileProperties->setToolTip(fileProperties->whatsThis());

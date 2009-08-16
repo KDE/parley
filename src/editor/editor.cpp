@@ -1,7 +1,7 @@
 /***************************************************************************
     Copyright 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
     Copyright 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
-    Copyright 2007-2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2007-2009 Frederik Gladhorn <gladhorn@kde.org>
     Copyright 2008 Daniel Laidig <d.laidig@gmx.de>
 ***************************************************************************/
 
@@ -42,6 +42,7 @@
 
 #include "settings/parleyprefs.h"
 #include "settings/languageproperties.h"
+#include "settings/documentproperties.h"
 #include "prefs.h"
 
 #include "scripts/scriptdialog.h"
@@ -558,6 +559,21 @@ void Editor::slotLanguageProperties()
     if ( properties.exec() == KDialog::Accepted ) {
          m_vocabularyModel->resetLanguages();
     }
+}
+
+void Editor::slotDocumentProperties()
+{
+    DocumentProperties* titleAuthorWidget = new DocumentProperties(ParleyDocument::instance()->document(), false, this);
+    KDialog* titleAuthorDialog;
+    titleAuthorDialog = new KDialog(this);
+    titleAuthorDialog->setMainWidget( titleAuthorWidget );
+
+    // the language options are only shown, when this is used to create a new document.
+    titleAuthorWidget->languageGroupBox->setVisible(false);
+    titleAuthorDialog->setCaption(i18nc("@title:window document properties", "Properties for %1", ParleyDocument::instance()->document()->url().url()));
+    connect(titleAuthorDialog, SIGNAL(accepted()), titleAuthorWidget, SLOT(accept()));
+    titleAuthorDialog->exec();
+    delete titleAuthorDialog;
 }
 
 #include "editor.moc"

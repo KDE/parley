@@ -106,8 +106,6 @@ public slots:
 
     void slotCloseDocument();
 
-    /** General doc properties like title, author etc */
-    void slotDocumentProperties();
     void slotShowStatistics();
 
     void configurePractice();
