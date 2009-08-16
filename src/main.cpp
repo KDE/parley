@@ -106,7 +106,7 @@ int main(int argc, char* argv[])
 //         kRestoreMainWindows< ParleyApp >();
         int n = 1;
         while (KMainWindow::canBeRestored(n)){
-            (new ParleyMainWindow(KCmdLineArgs::appName()))->restore(n);
+            (new ParleyMainWindow())->restore(n);
             n++;
         }
         return app.exec();
@@ -123,13 +123,13 @@ int main(int argc, char* argv[])
 
         if (args && args->count() > 0) {
             ///@todo make --practice command line argument work with a file name
-            parleyApp = new ParleyMainWindow(KCmdLineArgs::appName(), args->url(0));
+            parleyApp = new ParleyMainWindow(args->url(0));
             args->clear();
         } else {
 //            if (practiceMode) {
 //                parleyApp = new ParleyPracticeMainWindow();
 //            } else {
-                parleyApp = new ParleyMainWindow(KCmdLineArgs::appName());
+                parleyApp = new ParleyMainWindow();
 //            }
         }
         if (args) {

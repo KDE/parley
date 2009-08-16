@@ -46,9 +46,8 @@
 
 #include <QtCore/QTimer>
 
-ParleyMainWindow::ParleyMainWindow(const QString& appName, const KUrl & filename) : KXmlGuiWindow(0), m_currentComponent(NoComponent) //, m_practice(0)
+ParleyMainWindow::ParleyMainWindow(const KUrl & filename) : KXmlGuiWindow(0), m_currentComponent(NoComponent) //, m_practice(0)
 {
-    m_appName = appName;
     m_document = new ParleyDocument(this);
 
     setCentralWidget(new QWidget());
