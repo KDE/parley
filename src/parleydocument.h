@@ -30,11 +30,12 @@ class ParleyDocument : public QObject
 {
 Q_OBJECT
 public:
-    ParleyDocument(ParleyMainWindow *parent);
-
-    ~ParleyDocument();
+    static ParleyDocument * instance();
+    static void destroy();
 
     KEduVocDocument *document();
+
+    void setTitle(const QString& title);
 
     void enableAutoBackup(bool enable);
     void fetchGrammar(int languageIndex);
@@ -70,12 +71,18 @@ signals:
     void documentChanged(KEduVocDocument *newDocument);
 
 private:
+    static ParleyDocument* s_instance;
+    ParleyDocument();
+    ~ParleyDocument();
+
     void initializeDefaultGrammar(KEduVocDocument *doc);
     void setDefaultDocumentProperties(KEduVocDocument *doc);
 
     ParleyMainWindow *m_parleyApp;
     KEduVocDocument *m_doc;
     QTimer *m_backupTimer;
+
+    friend class ParleyMainWindow;
 };
 
 #endif

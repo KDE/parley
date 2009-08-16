@@ -44,7 +44,7 @@ public:
     void setModel(VocabularyFilter * model);
 
     /** Save column visibility settings */
-    void saveColumnVisibility(const KUrl & kurl) const;
+    void saveColumnVisibility() const;
 
     QModelIndexList getSelectedIndexes() const;
 

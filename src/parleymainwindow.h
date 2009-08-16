@@ -56,9 +56,9 @@ class ParleyMainWindow : public KXmlGuiWindow
     Q_OBJECT
 
 public:
+    static ParleyMainWindow * instance();
 
-    /** construtor with appName (executable name) and filename to open */
-    explicit ParleyMainWindow(const KUrl &filename = KUrl());
+    ~ParleyMainWindow();
 
     /** enum for the different components that can be displayed */
     enum Component {NoComponent, WelcomeComponent, EditorComponent, PracticeComponent};
@@ -139,6 +139,9 @@ signals:
     void documentChanged();
 
 private:
+    ParleyMainWindow(const KUrl& filename = KUrl());
+    static ParleyMainWindow *s_instance;
+
     Component m_currentComponent;
 
     WelcomeScreen *m_welcomeScreen;
@@ -154,6 +157,8 @@ private:
 
     /// the name of the executable
     QString m_appName;
+
+    friend int main(int argc, char* argv[]);
 };
 
 #endif // PARLEYMAINWINDOW_H

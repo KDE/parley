@@ -198,11 +198,12 @@ void VocabularyView::reset()
     }
 }
 
-void VocabularyView::saveColumnVisibility(const KUrl & kurl) const
+void VocabularyView::saveColumnVisibility() const
 {
     if(!m_doc) {
         return;
     }
+
     // Generate a QList<int> for saving
     QList<int> visibleList;
     for (int i = 0; i < m_model->columnCount(); ++i)
@@ -210,7 +211,7 @@ void VocabularyView::saveColumnVisibility(const KUrl & kurl) const
         visibleList.append(static_cast<int>(!isColumnHidden(i)));
     }
 
-    DocumentSettings ds(kurl.url());
+    DocumentSettings ds(m_doc->url().url());
     ds.setVisibleColumns(visibleList);
     ds.writeConfig();
 

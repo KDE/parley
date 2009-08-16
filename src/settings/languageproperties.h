@@ -22,7 +22,7 @@ class LanguageProperties : public KPageDialog
 {
 Q_OBJECT
 public:
-    LanguageProperties(ParleyDocument* doc, QWidget *parent);
+    LanguageProperties(QWidget *parent);
 
 public slots:
     virtual void accept ();

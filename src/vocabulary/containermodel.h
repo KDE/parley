@@ -53,7 +53,7 @@ public:
      * @param value new name
      * @param role
      * @return bool @c true it worked */
-    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+    virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
 
 
     QModelIndex appendContainer(const QModelIndex& parent, const QString & containerName = QString());

@@ -12,6 +12,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+
 #include "parleydocument.h"
 
 #include "../config-parley.h"
@@ -51,32 +52,50 @@
 #include <libxslt/xsltutils.h>
 #endif
 
+ParleyDocument* ParleyDocument::s_instance = 0;
 
-ParleyDocument::ParleyDocument(ParleyMainWindow *parent)
-    :QObject(parent), m_parleyApp(parent), m_doc(new KEduVocDocument(this)), m_backupTimer(0)
+ParleyDocument* ParleyDocument::instance()
+{
+    if (!s_instance) {
+        s_instance = new ParleyDocument;
+    }
+    return s_instance;
+}
+
+void ParleyDocument::destroy()
+{
+    if (s_instance) {
+        delete s_instance;
+        s_instance = 0;
+    }
+}
+
+ParleyDocument::ParleyDocument()
+    :QObject(ParleyMainWindow::instance()), m_doc(new KEduVocDocument(this)), m_backupTimer(0)
 {
 }
 
 ParleyDocument::~ParleyDocument()
 {
     delete m_backupTimer;
-    if (m_doc) {
-        // FIXME: this should be part of the editor
-        m_parleyApp->editor()->m_vocabularyView->saveColumnVisibility(m_doc->url());
-    }
     delete m_doc;
 }
-
 
 KEduVocDocument * ParleyDocument::document()
 {
     return m_doc;
 }
 
+void ParleyDocument::setTitle(const QString& title)
+{
+    m_doc->setTitle(title);
+    ParleyMainWindow::instance()->slotUpdateWindowCaption();
+    m_doc->setModified(true);
+}
 
 void ParleyDocument::slotFileNew()
 {
-    if (m_parleyApp->queryExit()) {
+    if (ParleyMainWindow::instance()->queryExit()) {
         newDocument(true);
     }
 }
@@ -90,9 +109,9 @@ void ParleyDocument::newDocument(bool wizard)
     bool showGrammarDialog = false;
     bool fetchGrammarOnline = false;
     if (wizard) {
-        DocumentProperties* titleAuthorWidget = new DocumentProperties(newDoc, true, m_parleyApp);
+        DocumentProperties* titleAuthorWidget = new DocumentProperties(newDoc, true, ParleyMainWindow::instance());
         KDialog* titleAuthorDialog;
-        titleAuthorDialog = new KDialog(m_parleyApp);
+        titleAuthorDialog = new KDialog(ParleyMainWindow::instance());
         titleAuthorDialog->setMainWidget( titleAuthorWidget );
         titleAuthorDialog->setCaption(i18nc("@title:window document properties", "Properties for %1", newDoc->url().url()));
         connect(titleAuthorDialog, SIGNAL(accepted()), titleAuthorWidget, SLOT(accept()));
@@ -109,7 +128,7 @@ void ParleyDocument::newDocument(bool wizard)
 
     close();
     m_doc = newDoc;
-    m_parleyApp->editor()->updateDocument();
+    ParleyMainWindow::instance()->editor()->updateDocument();
     enableAutoBackup(Prefs::autoBackup());
     emit documentChanged(m_doc);
 
@@ -118,10 +137,10 @@ void ParleyDocument::newDocument(bool wizard)
         fetchGrammar(1);
     }
     if(showGrammarDialog) {
-        m_parleyApp->editor()->slotLanguageProperties();
+        ParleyMainWindow::instance()->editor()->slotLanguageProperties();
     }
 
-    m_parleyApp->showEditor();
+    ParleyMainWindow::instance()->showEditor();
 }
 
 void ParleyDocument::fetchGrammar(int languageIndex)
@@ -143,16 +162,16 @@ void ParleyDocument::fetchGrammar(int languageIndex)
 
 void ParleyDocument::slotFileOpen()
 {
-    if (m_parleyApp->queryExit()) {
+    if (ParleyMainWindow::instance()->queryExit()) {
         QCheckBox *practiceCheckBox = new QCheckBox(i18n("Open in practice &mode"));
-        KFileDialog dialog(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), m_parleyApp, practiceCheckBox);
+        KFileDialog dialog(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), ParleyMainWindow::instance(), practiceCheckBox);
         dialog.setCaption(i18n("Open Vocabulary Collection"));
         if(dialog.exec() && !dialog.selectedUrl().isEmpty()) {
             open(dialog.selectedUrl());
             if(practiceCheckBox->isChecked()) {
-                m_parleyApp->startPractice();
+                ParleyMainWindow::instance()->startPractice();
             } else {
-                m_parleyApp->showEditor();
+                ParleyMainWindow::instance()->showEditor();
             }
         }
     }
@@ -160,9 +179,9 @@ void ParleyDocument::slotFileOpen()
 
 void ParleyDocument::slotFileOpenRecent(const KUrl& url)
 {
-    if (m_parleyApp->queryExit()) {
+    if (ParleyMainWindow::instance()->queryExit()) {
         open(url);
-        m_parleyApp->showEditor(); ///@todo: start practice directly depending on current component
+        ParleyMainWindow::instance()->showEditor(); ///@todo: start practice directly depending on current component
     }
 }
 
@@ -174,8 +193,8 @@ void ParleyDocument::open(const KUrl & url)
         m_doc->setCsvDelimiter(Prefs::separator());
         m_doc->open(url);
 
-        m_parleyApp->editor()->updateDocument();
-        m_parleyApp->addRecentFile(url, m_doc->title());
+        ParleyMainWindow::instance()->editor()->updateDocument();
+        ParleyMainWindow::instance()->addRecentFile(url, m_doc->title());
 
         enableAutoBackup(Prefs::autoBackup());
         emit documentChanged(m_doc);
@@ -188,27 +207,27 @@ void ParleyDocument::close() {
     disconnect(m_doc);
     delete m_doc;
     m_doc = 0;
-    m_parleyApp->slotUpdateWindowCaption();
+    ParleyMainWindow::instance()->slotUpdateWindowCaption();
 }
 
 void ParleyDocument::openGHNS()
 {
-    if (m_parleyApp->queryExit()) {
-        QString s = KStandardDirs::locateLocal("data", "kvtml/");
-        KUrl url = KFileDialog::getOpenUrl(s, KEduVocDocument::pattern(KEduVocDocument::Reading), m_parleyApp, i18n("Open Downloaded Vocabulary Collection"));
+    if (ParleyMainWindow::instance()->queryExit()) {
+        QString downloadDir = KStandardDirs::locateLocal("data", "kvtml/");
+        KUrl url = KFileDialog::getOpenUrl(
+                downloadDir,
+                KEduVocDocument::pattern(KEduVocDocument::Reading),
+                ParleyMainWindow::instance(),
+                i18n("Open Downloaded Vocabulary Collection"));
         if (!url.isEmpty()) {
             open(url);
-            m_parleyApp->showEditor();
+            ParleyMainWindow::instance()->showEditor();
         }
     }
 }
 
 void ParleyDocument::save()
 {
-//     if (m_parleyApp->m_entryDlg != 0) {
-//         m_parleyApp->m_entryDlg->commitData(false);
-//     }
-
     if (m_doc->url().fileName() == i18n("Untitled")) {
         saveAs();
         return;
@@ -220,15 +239,17 @@ void ParleyDocument::save()
 
     m_doc->setCsvDelimiter(Prefs::separator());
 
-    m_parleyApp->editor()->m_vocabularyView->saveColumnVisibility(m_doc->url());
+    ParleyMainWindow::instance()->editor()->saveState();
 
     int result = m_doc->saveAs(m_doc->url(), KEduVocDocument::Automatic, QString::fromLatin1("Parley ") + PARLEY_VERSION_STRING);
     if ( result != 0 ) {
-        KMessageBox::error(m_parleyApp, i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(), m_doc->errorDescription(result)), i18n("Save File"));
+        KMessageBox::error(ParleyMainWindow::instance(),
+                i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(),
+                        m_doc->errorDescription(result)), i18n("Save File"));
         saveAs();
         return;
     }
-    m_parleyApp->addRecentFile(m_doc->url(), m_doc->title());
+    ParleyMainWindow::instance()->addRecentFile(m_doc->url(), m_doc->title());
     enableAutoBackup(Prefs::autoBackup());
 }
 
@@ -241,7 +262,7 @@ void ParleyDocument::saveAs(KUrl url)
     if (url.isEmpty()) {
         url = KFileDialog::getSaveUrl(QString(),
             KEduVocDocument::pattern(KEduVocDocument::Writing),
-            m_parleyApp->parentWidget(),
+            ParleyMainWindow::instance()->parentWidget(),
             i18n("Save Vocabulary As"));
     }
     if (url.isEmpty()) {
@@ -268,13 +289,12 @@ void ParleyDocument::saveAs(KUrl url)
         url.setFileName(url.fileName() + QString::fromLatin1(".kvtml"));
     }
 
-    m_parleyApp->editor()->m_vocabularyView->saveColumnVisibility(url);
-
     int result = m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley");
     if (result == 0) {
-        m_parleyApp->addRecentFile(m_doc->url(), m_doc->title());
+        ParleyMainWindow::instance()->addRecentFile(m_doc->url(), m_doc->title());
+        ParleyMainWindow::instance()->editor()->saveState();
     } else {
-        KMessageBox::error(m_parleyApp, i18n("Writing file \"%1\" resulted in an error: %2",
+        KMessageBox::error(ParleyMainWindow::instance(), i18n("Writing file \"%1\" resulted in an error: %2",
             m_doc->url().url(), m_doc->errorDescription(result)), i18n("Save File"));
     }
 }
@@ -364,7 +384,7 @@ void ParleyDocument::slotGHNS()
                 KMimeType::Ptr mimeType = KMimeType::findByPath(file);
                 kDebug() << "KNS2 file of mime type:" << KMimeType::findByPath(file)->name();
                 if (mimeType->name() == "application/x-kvtml") {
-                    m_parleyApp->addRecentFile(file, QString()); ///@todo: title!
+                    ParleyMainWindow::instance()->addRecentFile(file, QString()); ///@todo: title!
 		    fileName = file;
                     ++numberInstalled;
                 }         
@@ -373,21 +393,21 @@ void ParleyDocument::slotGHNS()
     }
     qDeleteAll(entries);
     // to enable the display in the welcome screen
-    m_parleyApp->m_recentFilesAction->saveEntries(KGlobal::config()->group("Recent Files"));
+    ParleyMainWindow::instance()->m_recentFilesAction->saveEntries(KGlobal::config()->group("Recent Files"));
     Prefs::self()->writeConfig();
-    m_parleyApp->m_welcomeScreen->updateRecentFilesModel();
+    ParleyMainWindow::instance()->m_welcomeScreen->updateRecentFilesModel();
     if (numberInstalled > 1) {
         openGHNS();
     } else if (numberInstalled == 1) {
 	open(KUrl(fileName));
-	m_parleyApp->showEditor();
+	ParleyMainWindow::instance()->showEditor();
     }
 }
 
 void ParleyDocument::exportDialog()
 {
 #ifdef HAVE_LIBXSLT
-    ExportDialog dialog(this, m_parleyApp);
+    ExportDialog dialog(this, ParleyMainWindow::instance());
     dialog.exec();
 #endif
 }

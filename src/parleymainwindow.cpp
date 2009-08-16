@@ -46,9 +46,18 @@
 
 #include <QtCore/QTimer>
 
-ParleyMainWindow::ParleyMainWindow(const KUrl & filename) : KXmlGuiWindow(0), m_currentComponent(NoComponent) //, m_practice(0)
+ParleyMainWindow* ParleyMainWindow::s_instance = 0;
+ParleyMainWindow* ParleyMainWindow::instance()
 {
-    m_document = new ParleyDocument(this);
+    return s_instance;
+}
+
+ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
+    :KXmlGuiWindow(0)
+    ,m_currentComponent(NoComponent)
+{
+    s_instance = this;
+    m_document = new ParleyDocument();
 
     setCentralWidget(new QWidget());
     centralWidget()->setLayout(new QHBoxLayout());
@@ -87,6 +96,12 @@ ParleyMainWindow::ParleyMainWindow(const KUrl & filename) : KXmlGuiWindow(0), m_
 
     // finally show tip-of-day ( if the user wants it :) )
     QTimer::singleShot( 0, this, SLOT( startupTipOfDay() ) );
+}
+
+ParleyMainWindow::~ParleyMainWindow()
+{
+    m_editor->saveState();
+    ParleyDocument::destroy();
 }
 
 void ParleyMainWindow::addRecentFile(const KUrl &url, const QString &name)

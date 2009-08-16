@@ -1,6 +1,6 @@
 /***************************************************************************
 
-    Copyright 2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2008-2009 Frederik Gladhorn <gladhorn@kde.org>
 
  ***************************************************************************/
 
@@ -15,12 +15,16 @@
 
 #include "lessonmodel.h"
 
+#include "parleydocument.h"
 #include <KRandom>
+#include <KLocalizedString>
+#include <QFont>
 
 /** @file
   * Implementation of LessonModel.
   * Functions to create the model from the lessons of the vocabulary document.
   */
+
 
 LessonModel::LessonModel(QObject * parent)
     :ContainerModel(KEduVocContainer::Lesson, parent)
@@ -33,6 +37,47 @@ KEduVocContainer * LessonModel::rootContainer() const
         return 0;
     }
     return m_doc->lesson();
+}
+
+Qt::ItemFlags LessonModel::flags(const QModelIndex &index) const
+{
+    if (index.isValid() && index.parent() == QModelIndex()) {
+        return (Qt::ItemIsEnabled 
+              | Qt::ItemIsEditable
+              | Qt::ItemIsSelectable
+              | Qt::ItemIsUserCheckable );
+    }
+
+    return  ContainerModel::flags(index);
+}
+
+QVariant LessonModel::data(const QModelIndex & index, int role) const
+{
+    if (index.isValid() && !index.parent().isValid()) {
+        if (index.column() == 0) {
+            switch (role) {
+                case Qt::DisplayRole:
+                    return i18nc("display of the name of the vocabulary collection", "Collection: %1", ContainerModel::data(index, role).toString());
+                case Qt::FontRole:
+                    QFont f;
+                    f.setBold(true);
+                    return f;                
+            }
+        }
+    }
+    return ContainerModel::data(index, role);
+}
+
+
+bool LessonModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    if (index.isValid() && !index.parent().isValid()) {
+        if (index.column() == 0) {
+            ParleyDocument::instance()->setTitle(value.toString());
+        }
+    }
+    
+    return ContainerModel::setData(index, value, role);
 }
 
 void LessonModel::splitLesson(const QModelIndex& containerIndex, int entriesPerLesson, SplitLessonOrder order)

@@ -39,7 +39,7 @@ namespace Scripting
     Parley::Parley ( Editor * editor ) : QObject(), m_editor ( editor )
     {
         m_translator = new Translator(this); //parameter has to be <this> cause it's used by Translator to access callTranslateWord
-        m_doc = new Document ( m_editor->mainWindow()->parleyDocument()->document() );
+        m_doc = new Document ( ParleyDocument::instance()->document() );
     }
 
     Parley::~Parley()
@@ -76,7 +76,7 @@ namespace Scripting
     {
         KUrl url(filename);
         kDebug() << url;
-        m_editor->mainWindow()->parleyDocument()->open ( url );
+        ParleyDocument::instance()->open( url );
     }
 
     QObject* Parley::activeLesson()

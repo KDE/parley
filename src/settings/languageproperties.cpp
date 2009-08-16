@@ -21,8 +21,8 @@
 #include <QLabel>
 #include <KLocale>
 
-LanguageProperties::LanguageProperties(ParleyDocument* doc, QWidget * parent)
-    :KPageDialog(parent), m_doc(doc)
+LanguageProperties::LanguageProperties(QWidget * parent)
+    :KPageDialog(parent), m_doc(ParleyDocument::instance())
 {
     setCaption(i18n("Edit Languages"));
     setFaceType( List );

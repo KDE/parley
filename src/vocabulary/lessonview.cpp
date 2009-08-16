@@ -27,8 +27,6 @@
 
 LessonView::LessonView(Editor * parent) :ContainerView(parent)
 {
-//     setContextMenuPolicy(Qt::CustomContextMenu);
-
     KAction *actionNewLesson = new KAction(this);
     parent->actionCollection()->addAction("new_lesson", actionNewLesson);
     actionNewLesson->setText(i18n("New Lesson"));

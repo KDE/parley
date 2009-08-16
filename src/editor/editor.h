@@ -67,10 +67,8 @@ public:
      */
     void initScripts();
 
-    /**
-     * Return the top-level main window
-     */
-    ParleyMainWindow* mainWindow();
+    /** when closing the application, save the editor's state */
+    void saveState();
 
 public slots:
 

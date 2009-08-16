@@ -547,14 +547,14 @@ void Editor::initScripts()
     m_scriptManager->loadScripts();
 }
 
-ParleyMainWindow* Editor::mainWindow()
+void Editor::saveState()
 {
-    return m_mainWindow;
+    m_vocabularyView->saveColumnVisibility();
 }
 
 void Editor::slotLanguageProperties()
 {
-    LanguageProperties properties(m_mainWindow->parleyDocument(), this);
+    LanguageProperties properties(this);
     if ( properties.exec() == KDialog::Accepted ) {
          m_vocabularyModel->resetLanguages();
     }
