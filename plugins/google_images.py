@@ -1,4 +1,5 @@
 #!/usr/bin/env kross
+# -*- coding: utf-8 -*-
 import Parley
 import socket
 from PyQt4 import QtGui
@@ -29,16 +30,16 @@ for plugindir in Parley.pluginDirs():
     break
 
 #dialog class (loads google_images.ui)
-class MyDialog(QtGui.QDialog, MyWidget):
-  def __init__(self,images,word,locale):
+class ImageDialog(QtGui.QDialog, MyWidget):
+  def __init__(self, translations):
     QtGui.QDialog.__init__(self)
 
-    #member variables
-    self.images = images
-    self.word = word
-    self.locale = locale
-    self.img_index = 0
+    self.translation = translations[0]
 
+    #member variables
+    self.word = self.translation.text
+    self.locale = locale(getIdentifier(self.translation))
+    
     # Set up the user interface from Designer.
     self.setupUi(self)
 
@@ -46,6 +47,7 @@ class MyDialog(QtGui.QDialog, MyWidget):
     self.connect(self.nextButton, QtCore.SIGNAL("clicked()"),self.nextImage)
     self.connect(self.previousButton, QtCore.SIGNAL("clicked()"),self.previousImage)
     self.connect(self.searchButton, QtCore.SIGNAL("clicked()"),self.searchBtnClicked)
+    self.connect(self.freeImageCheckBox, QtCore.SIGNAL("clicked()"),self.searchBtnClicked)
     self.connect(self.okButton, QtCore.SIGNAL("clicked()"),self.okBtnClicked)
     self.connect(self.cancelButton, QtCore.SIGNAL("clicked()"),self.cancelBtnClicked)
     
@@ -53,7 +55,8 @@ class MyDialog(QtGui.QDialog, MyWidget):
     self.searchEdit.setText(self.word)
     
     #display image
-    self.showImage(self.images[self.img_index])
+    self.searchBtnClicked()
+
     
   def showImage(self,url):
     #pixmap = self.getPixmap("http://www.tuning-blog.net/wp-content/uploads/2007/05/audittclubsportquattro1.jpg")
@@ -71,7 +74,6 @@ class MyDialog(QtGui.QDialog, MyWidget):
   #Returns a QPixmap from the given http url or None if url is invalid
   def getPixmap(self,url):
     pixmap = QtGui.QPixmap()
-    
     try:
       img = urllib2.urlopen(url)
       imgdata = img.read()
@@ -97,7 +99,8 @@ class MyDialog(QtGui.QDialog, MyWidget):
         self.previousImage()
 
   def searchBtnClicked(self):
-    data = fetchData(self.searchEdit.text(),self.locale)
+    print "search"
+    data = self.fetchData()
     self.images = getImageUrls(data)
     #display the first image (a small hack)
     self.img_index = -1
@@ -129,32 +132,37 @@ class MyDialog(QtGui.QDialog, MyWidget):
   def cancelBtnClicked(self):
     self.close()
 
+
+  # fetches the html document for the given word and language pair
+  def fetchData(self):
+    timeout = 10.0
+    socket.setdefaulttimeout(timeout)
+
+    url = "http://images.google.com/images"
+    user_agent = 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008072820 Firefox/3.0.1'
+    #params = [("gbv","2"),("hl",lang),("safe","active"),("q",word),("sa","2"),("btnG","Bilder-Suche")]
+    params = {"q":self.searchEdit.text(), "hl":self.locale, "safe":"active"}
+    if self.freeImageCheckBox.isChecked():
+      params["as_rights"]="(cc_publicdomain|cc_attribute|cc_sharealike|cc_noncommercial|cc_nonderived)"
+
+    headrs = { 'User-Agent' : user_agent }
+    request_url = url + "?" + urllib.urlencode(params)
+    req = urllib2.Request(url = request_url, headers=headrs)
+    
+    try:
+      response = urllib2.urlopen(req)
+      #print response.read()
+      return response.read()
+    except:
+      #in case of error not to return incompleted results
+      print "error on fetching online data"
+      return ""
+
+
 #FUNCTIONS
 
-#params = [("gbv","2"),("hl",lang),("safe","active"),("q",word),("sa","2"),("btnG","Bilder-Suche")]
 
-# fetches the html document for the given word and language pair
-def fetchData(word,lang):
-  timeout = 10.0
-  socket.setdefaulttimeout(timeout)
-
-  url = "http://images.google.com/images"
-  user_agent = 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008072820 Firefox/3.0.1'
-  params = {'q':word, "hl":lang, "safe":"active"}
-  headrs = { 'User-Agent' : user_agent }
-  request_url = url + "?" + urllib.urlencode(params)
-  req = urllib2.Request(url = request_url, headers=headrs)
-  
-  try:
-    response = urllib2.urlopen(req)
-    #print response.read()
-    return response.read()
-  except:
-    #in case of error not to return incompleted results
-    print "error on fetching online data"
-    return ""
-
-#parces the data (html) and returns all the links to images
+#parses the data (html) and returns all the links to images
 def getImageUrls(data):
   print "Parsing data"
   imageurls = []
@@ -209,19 +217,16 @@ def getFilesDir():
     return filesdir
 
 
+
+
 #ACTION FUNCTION
 
 #method called by clicking "Fetch image" in the Scripts menu
 def fetchImage():
   print "fetching image"
-  tr = Parley.selectedTranslations()
-  if len(tr) > 0:
-    #print getIdentifier(tr[0])
-    data = fetchData(tr[0].text,locale(getIdentifier(tr[0])))
-    images = getImageUrls(data)
-    m = MyDialog(images,tr[0].text,locale(getIdentifier(tr[0])))
-    #print m.images
-    m.translation = tr[0]
+  translations = Parley.selectedTranslations()
+  if len(translations) > 0:
+    m = ImageDialog(translations)
     m.exec_()
 
   else:
