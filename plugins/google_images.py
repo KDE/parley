@@ -5,6 +5,7 @@ from PyQt4 import QtGui
 from PyQt4 import QtCore
 from PyQt4 import uic
 from os import path
+from os import mkdir
 import urllib2
 import urllib
 from sgmllib import SGMLParser
@@ -105,7 +106,7 @@ class MyDialog(QtGui.QDialog, MyWidget):
   def okBtnClicked(self):
     filesdir = getFilesDir()
     if not path.exists(filesdir):
-        os.mkdir(filesdir)
+        mkdir(filesdir)
     url = self.images[self.img_index]
     [u,img_name] = url.rsplit("/",1)
     [name,ext] = img_name.rsplit(".",1)
