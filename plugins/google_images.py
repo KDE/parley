@@ -5,6 +5,7 @@ import socket
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 from PyQt4 import uic
+from PyKDE4.kdeui import KIcon
 from os import path
 from os import mkdir
 import urllib2
@@ -42,6 +43,12 @@ class ImageDialog(QtGui.QDialog, MyWidget):
     
     # Set up the user interface from Designer.
     self.setupUi(self)
+
+    self.okButton.setIcon(KIcon("dialog-ok"))
+    self.cancelButton.setIcon(KIcon("dialog-cancel"))
+    self.nextButton.setIcon(KIcon("go-next"))
+    self.previousButton.setIcon(KIcon("go-previous"))
+    self.searchButton.setIcon(KIcon("system-search"))
 
     # Connect signals
     self.connect(self.nextButton, QtCore.SIGNAL("clicked()"),self.nextImage)
@@ -99,7 +106,6 @@ class ImageDialog(QtGui.QDialog, MyWidget):
         self.previousImage()
 
   def searchBtnClicked(self):
-    print "search"
     data = self.fetchData()
     self.images = getImageUrls(data)
     #display the first image (a small hack)
