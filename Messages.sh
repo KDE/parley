@@ -7,7 +7,8 @@ $EXTRACTRC `find . -name \*.rc -o -name \*.ui -o -name \*.kcfg` >> rc.cpp
 # call xgettext on all source files. If your sources have other filename
 # extensions besides .cc, .cpp, and .h, just add them in the find call.
 $XGETTEXT `find . -name \*.cpp -o -name \*.h` -o $podir/parley.pot
-$XGETTEXT `find . -name \*.py` -o $podir/parley.pot
+$XGETTEXT -L python `find . -name \*.py` -o python_parley.pot
+msgcat $podir/parley.pot python_parley.pot -o $podir/parley.pot
 # remove the generated files
-rm -f tips.cpp rc.cpp
+rm -f tips.cpp rc.cpp python_parley.pot
 
