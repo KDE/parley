@@ -5,12 +5,18 @@ import socket
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 from PyQt4 import uic
+# for localization (i18n)
+from PyKDE4.kdecore import *
 from PyKDE4.kdeui import KIcon
+from PyKDE4.kdeui import KDialog
+from PyKDE4.kdeui import KMessageBox
+
 from os import path
 from os import mkdir
 import urllib2
 import urllib
 from sgmllib import SGMLParser
+
 
 # TODO
 # + Fetch more images (get the next results page)
@@ -18,22 +24,27 @@ from sgmllib import SGMLParser
 # + comment out the code!
 # + improve getIdentifier function (maybe by adding a new C++ function)
 # + add "Alert" message box when no translation was selected
-# + i18n (make it multilanguage)
 
 #GUI
 uiFile = "google_images.ui"
 
-
-#look for the uiFile in plugin dirs and get the first occurence of it
-for plugindir in Parley.pluginDirs():
-  if path.exists(plugindir+uiFile):
-    (MyWidget, baseClass) = uic.loadUiType(plugindir+uiFile)
-    break
-
 #dialog class (loads google_images.ui)
-class ImageDialog(QtGui.QDialog, MyWidget):
+class ImageDialog(KDialog):
   def __init__(self, translations):
-    QtGui.QDialog.__init__(self)
+    KDialog.__init__(self)
+
+    self.w = None
+    #look for the uiFile in plugin dirs and get the first occurence of it
+    for plugindir in Parley.pluginDirs():
+      if path.exists(plugindir+uiFile):
+        (ImageWidget, widget) = uic.loadUiType(plugindir+uiFile)
+        self.w = ImageWidget()
+        self.w.setupUi(self.mainWidget())
+        break
+
+    if self.w is None:
+        KMessageBox.error(None, i18n("Error: Ui file not found!\nCheck your installation."), i18n("Fetch Image"))
+        return
 
     self.translation = translations[0]
 
@@ -41,25 +52,20 @@ class ImageDialog(QtGui.QDialog, MyWidget):
     self.word = self.translation.text
     self.locale = locale(getIdentifier(self.translation))
     
-    # Set up the user interface from Designer.
-    self.setupUi(self)
-
-    self.okButton.setIcon(KIcon("dialog-ok"))
-    self.cancelButton.setIcon(KIcon("dialog-cancel"))
-    self.nextButton.setIcon(KIcon("go-next"))
-    self.previousButton.setIcon(KIcon("go-previous"))
-    self.searchButton.setIcon(KIcon("system-search"))
+    self.w.nextButton.setIcon(KIcon("go-next"))
+    self.w.previousButton.setIcon(KIcon("go-previous"))
+    self.w.searchButton.setIcon(KIcon("edit-find"))
 
     # Connect signals
-    self.connect(self.nextButton, QtCore.SIGNAL("clicked()"),self.nextImage)
-    self.connect(self.previousButton, QtCore.SIGNAL("clicked()"),self.previousImage)
-    self.connect(self.searchButton, QtCore.SIGNAL("clicked()"),self.searchBtnClicked)
-    self.connect(self.freeImageCheckBox, QtCore.SIGNAL("clicked()"),self.searchBtnClicked)
-    self.connect(self.okButton, QtCore.SIGNAL("clicked()"),self.okBtnClicked)
-    self.connect(self.cancelButton, QtCore.SIGNAL("clicked()"),self.cancelBtnClicked)
+    self.connect(self.w.nextButton, QtCore.SIGNAL("clicked()"),self.nextImage)
+    self.connect(self.w.previousButton, QtCore.SIGNAL("clicked()"),self.previousImage)
+    self.connect(self.w.searchButton, QtCore.SIGNAL("clicked()"),self.searchBtnClicked)
+    self.connect(self.w.freeImageCheckBox, QtCore.SIGNAL("clicked()"),self.searchBtnClicked)
+    self.connect(self, QtCore.SIGNAL("okClicked()"),self.okBtnClicked)
+    self.connect(self, QtCore.SIGNAL("cancelClicked()"),self.cancelBtnClicked)
     
     #set search text
-    self.searchEdit.setText(self.word)
+    self.w.searchEdit.setText(self.word)
     
     #display image
     self.searchBtnClicked()
@@ -72,7 +78,7 @@ class ImageDialog(QtGui.QDialog, MyWidget):
         p = pixmap.scaledToWidth(self.width()-10)
         if p.height() > self.height()-100:
             p = p.scaledToHeight(self.height()-100)
-        self.imageLabel.setPixmap(p)
+        self.w.imageLabel.setPixmap(p)
         return True
     else:
       return False
@@ -131,7 +137,7 @@ class ImageDialog(QtGui.QDialog, MyWidget):
         
     print fn
       
-    self.imageLabel.pixmap().save(fn)
+    self.w.imageLabel.pixmap().save(fn)
     self.translation.imageUrl = fn
     self.close()
 
@@ -147,8 +153,8 @@ class ImageDialog(QtGui.QDialog, MyWidget):
     url = "http://images.google.com/images"
     user_agent = 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008072820 Firefox/3.0.1'
     #params = [("gbv","2"),("hl",lang),("safe","active"),("q",word),("sa","2"),("btnG","Bilder-Suche")]
-    params = {"q":self.searchEdit.text(), "hl":self.locale, "safe":"active"}
-    if self.freeImageCheckBox.isChecked():
+    params = {"q":self.w.searchEdit.text(), "hl":self.locale, "safe":"active"}
+    if self.w.freeImageCheckBox.isChecked():
       params["as_rights"]="(cc_publicdomain|cc_attribute|cc_sharealike|cc_noncommercial|cc_nonderived)"
 
     headrs = { 'User-Agent' : user_agent }
@@ -223,8 +229,6 @@ def getFilesDir():
     return filesdir
 
 
-
-
 #ACTION FUNCTION
 
 #method called by clicking "Fetch image" in the Scripts menu
@@ -236,13 +240,13 @@ def fetchImage():
     m.exec_()
 
   else:
-    print "No translation selected"
+    KMessageBox.error(None, i18n("No Selection:\nSelect a word to fetch an image for it"), i18n("Fetch Image"))
 
 
 #SCRIPT MENU
 
 #create a new action for the Scripts menu (action1)
-action1 = Parley.newAction("example_action1","Fetch Image")
-action1.statusTip="Fetches an image for the selected translation"
+action1 = Parley.newAction("example_action1", i18n("Fetch Image"))
+action1.statusTip = str(i18n("Fetches an image for the selected translation"))
 Parley.connect(action1,"triggered()",fetchImage)
 
