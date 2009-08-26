@@ -109,6 +109,11 @@ void ParleyMainWindow::addRecentFile(const KUrl &url, const QString &name)
     m_recentFilesAction->saveEntries(KGlobal::config()->group("Recent Files"));
 }
 
+void ParleyMainWindow::updateRecentFilesModel()
+{
+    m_welcomeScreen->updateRecentFilesModel();
+}
+
 void ParleyMainWindow::saveOptions()
 {
 ///@todo save selection per document

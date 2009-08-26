@@ -80,6 +80,9 @@ public:
     /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
     void updateTableFilter();
 
+    /** update the list of recent files in the welcome screen */
+    void updateRecentFilesModel();
+
     /**
      * Return the ParleyDocument member object
      * @return member m_document
@@ -150,8 +153,6 @@ private:
 
     /** m_document is the current vocabulary document. */
     ParleyDocument   *m_document;
-
-    friend class ParleyDocument;
 
     /// the name of the executable
     QString m_appName;

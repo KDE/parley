@@ -393,14 +393,13 @@ void ParleyDocument::slotGHNS()
     }
     qDeleteAll(entries);
     // to enable the display in the welcome screen
-    ParleyMainWindow::instance()->m_recentFilesAction->saveEntries(KGlobal::config()->group("Recent Files"));
     Prefs::self()->writeConfig();
-    ParleyMainWindow::instance()->m_welcomeScreen->updateRecentFilesModel();
+    ParleyMainWindow::instance()->updateRecentFilesModel();
     if (numberInstalled > 1) {
         openGHNS();
     } else if (numberInstalled == 1) {
-	open(KUrl(fileName));
-	ParleyMainWindow::instance()->showEditor();
+        open(KUrl(fileName));
+        ParleyMainWindow::instance()->showEditor();
     }
 }
 
