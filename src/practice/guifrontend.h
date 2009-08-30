@@ -17,6 +17,9 @@
 #include "abstractfrontend.h"
 
 class KXmlGuiWindow;
+namespace Ui {
+class PracticeMainWindow;
+}
 
 namespace Practice {
 
@@ -29,11 +32,11 @@ class GuiFrontend : public Practice::AbstractFrontend
 public:
     GuiFrontend(AbstractBackend* backend, QObject* parent = 0);
     virtual QVariant userInput();
-    QWidget* getWidget();
     KXmlGuiWindow* getWindow();
 
 private:
     MainWindow* m_mainWindow;
+    Ui::PracticeMainWindow* m_ui;
 };
 
 }

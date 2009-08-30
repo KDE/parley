@@ -31,6 +31,8 @@
 #include "settings/parleyprefs.h"
 #include "configure-practice/configurepracticedialog.h"
 #include "practiceold/vocabularypractice.h"
+#include "practice/guifrontend.h"
+#include "practice/fakebackend.h"
 
 #include "prefs.h"
 #include "welcomescreen/welcomescreen.h"
@@ -190,33 +192,34 @@ void ParleyMainWindow::startPractice()
         return;
     }
 
-// disable flash card mode for 4.2
-//    if (Prefs::testType() == Prefs::EnumTestType::FlashCardsTest) {
-//        // New practice modes - for now enabled only for flash cards
-//        ///@todo: instead of creating a new instance only a new document should be set
-//        Component lastComponent = m_currentComponent;
-//        switchComponent(NoComponent); // unload the last component (could be a practice window)
-//        m_practice = new ParleyPracticeMainWindow(m_document->document(), 0);
-//        switchComponent(PracticeComponent);
-//        m_practice->show();
-//        if (lastComponent == EditorComponent) {
-//            connect(m_practice, SIGNAL(signalPracticeFinished()), this, SLOT(showEditor()));
-//        } else {
-//            connect(m_practice, SIGNAL(signalPracticeFinished()), this, SLOT(showWelcomeScreen()));
-//        }
-//        // If starting the practice fails (e.g. there are no entries selected), the signalPracticeFinished() signal
-//        // is emitted in the constructor and thus before the connect
-//        if (m_practice->finished() && lastComponent == EditorComponent) {
-//            showEditor();
-//        } else if(m_practice->finished()) {
-//            showWelcomeScreen();
-//        }
-//    } else {
+    bool newPractice = true;
+    if (newPractice) {
+        ///@todo: instead of creating a new instance only a new document should be set
+        Component lastComponent = m_currentComponent;
+        switchComponent(NoComponent); // unload the last component (could be a practice window)
+//         m_practice = new ParleyPracticeMainWindow(m_document->document(), 0);
+        Practice::AbstractBackend *backend = new Practice::FakeBackend(this);
+        m_practiceFrontend = new Practice::GuiFrontend(backend, this);
+        switchComponent(PracticeComponent);
+//         m_practice->show();
+//         if (lastComponent == EditorComponent) {
+//             connect(m_practice, SIGNAL(signalPracticeFinished()), this, SLOT(showEditor()));
+//         } else {
+//             connect(m_practice, SIGNAL(signalPracticeFinished()), this, SLOT(showWelcomeScreen()));
+//         }
+        // If starting the practice fails (e.g. there are no entries selected), the signalPracticeFinished() signal
+        // is emitted in the constructor and thus before the connect
+//         if (m_practice->finished() && lastComponent == EditorComponent) {
+//             showEditor();
+//         } else if(m_practice->finished()) {
+//             showWelcomeScreen();
+//         }
+   } else { // old dialog based practice
         hide();
         VocabularyPractice practice(m_document->document(), this);
         practice.startPractice();
         show();
-//    }
+   }
 }
 
 bool ParleyMainWindow::queryClose()
@@ -408,10 +411,10 @@ void ParleyMainWindow::switchComponent(Component component)
         oldClient = m_editor;
         oldWidget = m_editor;
         break;
-//    case PracticeComponent:
-//        oldClient = m_practice;
-//        oldWidget = m_practice;
-//        break;
+   case PracticeComponent:
+       oldClient = m_practiceFrontend->getWindow();
+       oldWidget = m_practiceFrontend->getWindow();
+       break;
     default:
         break;
     }
@@ -432,11 +435,11 @@ void ParleyMainWindow::switchComponent(Component component)
         newWidget = m_editor;
         showDocumentActions(true, true);
         break;
-//    case PracticeComponent:
-//        newClient = m_practice;
-//        newWidget = m_practice;
-//        showDocumentActions(false, false);
-//        break;
+   case PracticeComponent:
+       newClient = m_practiceFrontend->getWindow();
+       newWidget = m_practiceFrontend->getWindow();
+       showDocumentActions(false, false);
+       break;
     default:
         break;
     }

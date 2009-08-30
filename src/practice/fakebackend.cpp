@@ -19,6 +19,12 @@
 
 using namespace Practice;
 
+FakeBackend::FakeBackend(QObject *parent)
+    : AbstractBackend(parent)
+{
+
+}
+
 QString FakeBackend::lessonName()
 {
     return "foo";

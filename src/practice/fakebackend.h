@@ -24,6 +24,7 @@ class FakeBackend : public Practice::AbstractBackend
     Q_OBJECT
 
 public:
+    FakeBackend(QObject *parent = 0);
     virtual QString lessonName();
     virtual int previousBox();
     virtual int currentBox();

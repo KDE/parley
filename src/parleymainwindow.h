@@ -30,6 +30,10 @@
 
 #include <KXmlGuiWindow>
 
+namespace Practice {
+class GuiFrontend;
+}
+
 class KRecentFilesAction;
 class KActionMenu;
 class KAction;
@@ -147,7 +151,7 @@ private:
 
     WelcomeScreen *m_welcomeScreen;
     Editor *m_editor;
-    //ParleyPracticeMainWindow *m_practice;
+    Practice::GuiFrontend *m_practiceFrontend;
 
     KRecentFilesAction* m_recentFilesAction;
 

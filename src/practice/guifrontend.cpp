@@ -12,6 +12,7 @@
  ***************************************************************************/
 
 #include "guifrontend.h"
+#include "ui_practice_mainwindow.h"
 
 #include <kxmlguiwindow.h>
 
@@ -30,6 +31,10 @@ GuiFrontend::GuiFrontend(AbstractBackend* backend, QObject* parent)
     : AbstractFrontend(backend, parent)
 {
     m_mainWindow = new MainWindow();
+    QWidget* centralWidget = new QWidget(m_mainWindow);
+    m_mainWindow->setCentralWidget(centralWidget);
+    m_ui = new Ui::PracticeMainWindow();
+    m_ui->setupUi(centralWidget);
 }
 
 QVariant GuiFrontend::userInput()
