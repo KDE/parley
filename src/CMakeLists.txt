@@ -88,6 +88,9 @@ set(practice_SRCS
     practiceold/showsolutiondialog.cpp
     practiceold/practicesummarydialog.cpp
     practiceold/answervalidatorold.cpp
+
+    practice/abstractfrontend.cpp
+    practice/abstractbackend.cpp
 )
 
 kde4_add_ui_files(practice_SRCS
@@ -101,6 +104,9 @@ kde4_add_ui_files(practice_SRCS
     practiceold/mixedletterpracticedialog.ui
     practiceold/showsolutionwidget.ui
     practiceold/practicesummarywidget.ui
+
+    practice/practice_mainwindow.ui
+    practice/practice_widget_written.ui
 )
 
 # settings for the practice
