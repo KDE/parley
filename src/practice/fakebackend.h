@@ -35,7 +35,8 @@ public:
     virtual Practice::AbstractBackend::Mode mode();
 
 public slots:
-    void continueAction(AbstractFrontend::ContinueReason continueReason);
+    void continueAction(AbstractBackend::ContinueReason continueReason);
+    void startPractice();
 };
 
 }

@@ -15,10 +15,9 @@
 #define PRACTICE_ABSTRACTFRONTEND_H
 
 #include <QtCore/qobject.h>
+#include "abstractbackend.h"
 
 namespace Practice {
-
-class AbstractBackend;
 
 class AbstractFrontend : public QObject
 {
@@ -26,16 +25,17 @@ class AbstractFrontend : public QObject
 public:
     AbstractFrontend(AbstractBackend *backend, QObject* parent = 0);
 
-    enum ContinueReason { Default, AnswerLater, Hint };
-
     /**
      * Enables access to the input of the user.
-     * This is queried
+     * This is queried by the backend when it needs to evaluate the input.
      */
     virtual QVariant userInput() = 0;
 
+public slots:
+    void updateDisplay();
+
 signals:
-    void continueAction(ContinueReason continueReason);
+    void continueAction(AbstractBackend::ContinueReason continueReason);
 };
 
 }

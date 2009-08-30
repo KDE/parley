@@ -15,7 +15,6 @@
 #define PRACTICE_ABSTRACTBACKEND_H
 
 #include <QtCore/qobject.h>
-#include "abstractfrontend.h"
 
 class QVariant;
 
@@ -29,6 +28,7 @@ public:
 
     enum Mode {Written, MultipleChoice, FlashCards, MixedLetters};
     enum State {AskUser, ShowSolution};
+    enum ContinueReason { Default, AnswerLater, Hint };
 
     virtual Mode mode() = 0;
     virtual State state() = 0;
@@ -41,10 +41,11 @@ public:
     virtual QString lessonName() = 0;
 
 public slots:
-    void continueAction(AbstractFrontend::ContinueReason);
+    void continueAction(ContinueReason);
 
 signals:
     void updateDisplay();
+    void modeChanged(AbstractBackend::Mode);
 };
 
 }

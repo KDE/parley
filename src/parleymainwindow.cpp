@@ -198,9 +198,10 @@ void ParleyMainWindow::startPractice()
         Component lastComponent = m_currentComponent;
         switchComponent(NoComponent); // unload the last component (could be a practice window)
 //         m_practice = new ParleyPracticeMainWindow(m_document->document(), 0);
-        Practice::AbstractBackend *backend = new Practice::FakeBackend(this);
+        Practice::FakeBackend *backend = new Practice::FakeBackend(this);
         m_practiceFrontend = new Practice::GuiFrontend(backend, this);
         switchComponent(PracticeComponent);
+        backend->startPractice();
 //         m_practice->show();
 //         if (lastComponent == EditorComponent) {
 //             connect(m_practice, SIGNAL(signalPracticeFinished()), this, SLOT(showEditor()));

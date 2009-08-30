@@ -22,7 +22,7 @@ AbstractBackend::AbstractBackend(QObject *parent)
 }
 
 
-void AbstractBackend::continueAction(AbstractFrontend::ContinueReason continueReason)
+void AbstractBackend::continueAction(ContinueReason continueReason)
 {
 
 }

@@ -11,42 +11,17 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef PRACTICE_GUIFRONTEND_H
-#define PRACTICE_GUIFRONTEND_H
+#include "abstractwidget.h"
 
-#include "abstractfrontend.h"
-#include "abstractbackend.h"
+using namespace Practice;
 
-class KXmlGuiWindow;
-namespace Ui {
-class PracticeMainWindow;
-}
-
-namespace Practice {
-
-class MainWindow;
-class AbstractWidget;
-
-class GuiFrontend : public Practice::AbstractFrontend
+AbstractWidget::AbstractWidget(QWidget* parent)
+    : QWidget(parent)
 {
-    Q_OBJECT
-
-public:
-    GuiFrontend(AbstractBackend* backend, QObject* parent = 0);
-    virtual QVariant userInput();
-    KXmlGuiWindow* getWindow();
-
-public slots:
-    void setCentralWidget(AbstractBackend::Mode mode);
-    void updateDisplay();
-
-private:
-    AbstractBackend* m_backend;
-    MainWindow* m_mainWindow;
-    Ui::PracticeMainWindow* m_ui;
-    AbstractWidget* m_centralWidget;
-};
 
 }
 
-#endif // PRACTICE_GUIFRONTEND_H
+void AbstractWidget::updateDisplay()
+{
+
+}

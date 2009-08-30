@@ -93,6 +93,8 @@ set(practice_SRCS
     practice/abstractbackend.cpp
     practice/fakebackend.cpp
     practice/guifrontend.cpp
+    practice/abstractwidget.cpp
+    practice/writtenpracticewidget.cpp
 )
 
 kde4_add_ui_files(practice_SRCS

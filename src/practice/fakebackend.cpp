@@ -65,7 +65,15 @@ Practice::AbstractBackend::Mode FakeBackend::mode()
     return Practice::AbstractBackend::Written;
 }
 
-void FakeBackend::continueAction(AbstractFrontend::ContinueReason continueReason)
+void FakeBackend::continueAction(AbstractBackend::ContinueReason continueReason)
 {
     kDebug() << "continue action" << continueReason;
 }
+
+void FakeBackend::startPractice()
+{
+    kDebug() << "emitting modeChanged";
+    emit modeChanged(Written);
+}
+
+#include "fakebackend.moc"
