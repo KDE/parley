@@ -27,11 +27,9 @@ public:
     AbstractBackend(QObject *parent = 0);
 
     enum Mode {Written, MultipleChoice, FlashCards, MixedLetters};
-    enum State {AskUser, ShowSolution};
     enum ContinueReason { Default, AnswerLater, Hint };
 
     virtual Mode mode() = 0;
-    virtual State state() = 0;
     virtual QVariant question() = 0;
 
     virtual int progress() = 0;
@@ -39,9 +37,11 @@ public:
     virtual int currentBox() = 0;
     virtual int previousBox() = 0;
     virtual QString lessonName() = 0;
+    virtual QVariant solution() = 0;
+    virtual bool acceptUserInput() = 0;
 
 public slots:
-    void continueAction(ContinueReason);
+    virtual void continueAction(ContinueReason) = 0;
 
 signals:
     void updateDisplay();

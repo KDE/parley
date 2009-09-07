@@ -20,11 +20,12 @@
 
 #include "writtenpracticewidget.h"
 #include "ui_practice_widget_written.h"
+#include <kdebug.h>
 
 using namespace Practice;
 
-WrittenPracticeWidget::WrittenPracticeWidget(QWidget *parent)
-    : AbstractWidget(parent)
+WrittenPracticeWidget::WrittenPracticeWidget(AbstractBackend *backend, QWidget *parent)
+    : AbstractWidget(backend, parent), m_backend(backend)
 {
     m_ui = new Ui::WrittenPracticeWidget();
     m_ui->setupUi(this);
@@ -32,6 +33,18 @@ WrittenPracticeWidget::WrittenPracticeWidget(QWidget *parent)
 
 QVariant WrittenPracticeWidget::userInput()
 {
-
+    return QVariant(m_ui->answerEdit->text());
 }
 
+void WrittenPracticeWidget::updateDisplay()
+{
+    kDebug() << "update display";
+    if (m_backend->acceptUserInput()) {
+        m_ui->answerEdit->setEnabled(true);
+        m_ui->answerEdit->clear();
+        m_ui->questionLabel->setText(m_backend->question().toString());
+    } else {
+        m_ui->answerEdit->setEnabled(false);
+        m_ui->solutionLabel->setText(m_backend->solution().toString());
+    }
+}

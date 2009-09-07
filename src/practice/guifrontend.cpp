@@ -64,7 +64,7 @@ void GuiFrontend::setCentralWidget(AbstractBackend::Mode mode)
                 kDebug() << "Written practice widget is already the central widget";
                 break;
             }
-            newWidget = new WrittenPracticeWidget(m_mainWindow);
+            newWidget = new WrittenPracticeWidget(m_backend, m_mainWindow);
             break;
         case AbstractBackend::MultipleChoice:
         case AbstractBackend::FlashCards:

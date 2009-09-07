@@ -35,10 +35,14 @@ class WrittenPracticeWidget : public Practice::AbstractWidget
     Q_OBJECT
 
 public:
-    WrittenPracticeWidget(QWidget *parent = 0);;
+    WrittenPracticeWidget(AbstractBackend *backend, QWidget *parent = 0);;
     virtual QVariant userInput();
 
+public slots:
+    void updateDisplay();
+
 private:
+    AbstractBackend* m_backend;
     Ui::WrittenPracticeWidget* m_ui;
 };
 

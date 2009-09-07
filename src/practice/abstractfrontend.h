@@ -32,7 +32,7 @@ public:
     virtual QVariant userInput() = 0;
 
 public slots:
-    void updateDisplay();
+    virtual void updateDisplay() = 0;
 
 signals:
     void continueAction(AbstractBackend::ContinueReason continueReason);

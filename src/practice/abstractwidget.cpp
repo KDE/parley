@@ -12,16 +12,12 @@
  ***************************************************************************/
 
 #include "abstractwidget.h"
+#include <kdebug.h>
 
 using namespace Practice;
 
-AbstractWidget::AbstractWidget(QWidget* parent)
+AbstractWidget::AbstractWidget(AbstractBackend *backend, QWidget* parent)
     : QWidget(parent)
 {
-
-}
-
-void AbstractWidget::updateDisplay()
-{
-
+    Q_UNUSED(backend);
 }

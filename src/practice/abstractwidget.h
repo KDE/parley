@@ -26,12 +26,12 @@ class AbstractWidget : public QWidget
     Q_OBJECT
 
 public:
-    AbstractWidget(QWidget* parent = 0);
+    AbstractWidget(AbstractBackend *backend, QWidget* parent = 0);
 
     virtual QVariant userInput() = 0;
 
 public slots:
-    void updateDisplay();
+    virtual void updateDisplay() = 0;
 
 signals:
     void continueAction(AbstractBackend::ContinueReason continueReason);

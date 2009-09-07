@@ -23,9 +23,4 @@ AbstractFrontend::AbstractFrontend(AbstractBackend* backend, QObject* parent)
     connect(this, SIGNAL("continueAction(ContinueReason)"), backend, SLOT("continueAction(ContinueReason)"));
 }
 
-void AbstractFrontend::updateDisplay()
-{
-
-}
-
 #include "abstractfrontend.moc"

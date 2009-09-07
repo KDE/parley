@@ -52,18 +52,24 @@ int FakeBackend::progress()
 
 QVariant FakeBackend::question()
 {
-    return QVariant("tree");
-}
-
-Practice::AbstractBackend::State FakeBackend::state()
-{
-    return Practice::AbstractBackend::AskUser;
+    return QVariant("house");
 }
 
 Practice::AbstractBackend::Mode FakeBackend::mode()
 {
     return Practice::AbstractBackend::Written;
 }
+
+QVariant FakeBackend::solution()
+{
+    return QVariant("solution");
+}
+
+bool FakeBackend::acceptUserInput()
+{
+    return true;
+}
+
 
 void FakeBackend::continueAction(AbstractBackend::ContinueReason continueReason)
 {

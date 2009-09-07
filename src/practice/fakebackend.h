@@ -31,8 +31,9 @@ public:
     virtual int progressTotal();
     virtual int progress();
     virtual QVariant question();
-    virtual Practice::AbstractBackend::State state();
     virtual Practice::AbstractBackend::Mode mode();
+    virtual QVariant solution();
+    virtual bool acceptUserInput();
 
 public slots:
     void continueAction(AbstractBackend::ContinueReason continueReason);

@@ -21,10 +21,4 @@ AbstractBackend::AbstractBackend(QObject *parent)
 
 }
 
-
-void AbstractBackend::continueAction(ContinueReason continueReason)
-{
-
-}
-
 #include "abstractbackend.moc"
