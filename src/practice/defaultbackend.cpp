@@ -57,7 +57,6 @@ int DefaultBackend::practicedEntryCount()
 
 QVariant DefaultBackend::question()
 {
-    
     return m_current->entry()->translation(m_languageFrom)->text();
 }
 
@@ -88,8 +87,13 @@ bool DefaultBackend::acceptUserInput()
 
 void DefaultBackend::continueAction()
 {
+    kDebug() << "continue: " << m_languageFrom << m_languageTo;
     m_current = m_testEntryManager.getNextEntry();
-    emit updateDisplay();
+    if (!m_current) {
+        // practice done
+    } else {
+        emit updateDisplay();
+    }
 }
 
 void DefaultBackend::hintAction()
@@ -100,10 +104,9 @@ void DefaultBackend::skipAction()
 
 void DefaultBackend::startPractice()
 {
+    kDebug() << "start: " << m_languageFrom << m_languageTo;
     emit modeChanged(Written);
-    continueAction();
-    
-  
+    continueAction();  
 }
 
 #include "defaultbackend.moc"

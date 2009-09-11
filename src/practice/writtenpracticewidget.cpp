@@ -29,6 +29,13 @@ WrittenPracticeWidget::WrittenPracticeWidget(AbstractBackend *backend, QWidget *
 {
     m_ui = new Ui::WrittenPracticeWidget();
     m_ui->setupUi(this);
+    connect(m_ui->continueButton, SIGNAL(clicked()), this, SLOT(continueClicked()));
+}
+
+void WrittenPracticeWidget::continueClicked()
+{
+    kDebug() << "cont";
+    emit continueAction();
 }
 
 QVariant WrittenPracticeWidget::userInput()

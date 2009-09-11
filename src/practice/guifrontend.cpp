@@ -41,6 +41,10 @@ GuiFrontend::GuiFrontend(AbstractBackend* backend, QObject* parent)
 
     connect(backend, SIGNAL(modeChanged(AbstractBackend::Mode)), this, SLOT(setCentralWidget(AbstractBackend::Mode)));
     connect(backend, SIGNAL(updateDisplay()), this, SLOT(updateDisplay()));
+    
+    connect(this, SIGNAL(continueAction()), backend, SLOT(continueAction()));
+    connect(this, SIGNAL(hintAction()), backend, SLOT(hintAction()));
+    connect(this, SIGNAL(skipAction()), backend, SLOT(skipAction()));
 
 }
 
@@ -76,7 +80,6 @@ void GuiFrontend::setCentralWidget(AbstractBackend::Mode mode)
         delete m_centralWidget;
         m_centralWidget = newWidget;
     }
-    updateDisplay();
 }
 
 void GuiFrontend::updateDisplay()
@@ -86,7 +89,7 @@ void GuiFrontend::updateDisplay()
     }
 
     // update lesson label
-    m_ui->lessonLabel->setText(i18n("Lesson:")+' '+m_backend->lessonName());
+    m_ui->lessonLabel->setText(i18nc("Display of the current lesson during practice", "Lesson: %1", m_backend->lessonName()));
     // update progress bar
     m_ui->totalProgress->setMaximum(m_backend->totalEntryCount());
     m_ui->totalProgress->setValue(m_backend->practicedEntryCount());

@@ -40,6 +40,7 @@ public:
 
 public slots:
     void updateDisplay();
+    void continueClicked();
 
 private:
     AbstractBackend* m_backend;

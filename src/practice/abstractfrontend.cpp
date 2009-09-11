@@ -20,7 +20,9 @@ using namespace Practice;
 AbstractFrontend::AbstractFrontend(AbstractBackend* backend, QObject* parent)
     : QObject(parent)
 {
-    connect(this, SIGNAL("continueAction(ContinueReason)"), backend, SLOT("continueAction(ContinueReason)"));
+    connect(this, SIGNAL(continueAction()), backend, SLOT(continueAction()));
+    connect(this, SIGNAL(hintAction()), backend, SLOT(hintAction()));
+    connect(this, SIGNAL(skipAction()), backend, SLOT(skipAction()));
 }
 
 #include "abstractfrontend.moc"

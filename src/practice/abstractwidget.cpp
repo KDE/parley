@@ -19,5 +19,7 @@ using namespace Practice;
 AbstractModeWidget::AbstractModeWidget(AbstractBackend *backend, QWidget* parent)
     : QWidget(parent)
 {
-    Q_UNUSED(backend);
+    connect(this, SIGNAL(continueAction()), backend, SLOT(continueAction()));
+    connect(this, SIGNAL(hintAction()), backend, SLOT(hintAction()));
+    connect(this, SIGNAL(skipAction()), backend, SLOT(skipAction()));
 }
