@@ -45,7 +45,10 @@ public:
     
     
 public slots:
-    void continueAction(AbstractBackend::ContinueReason continueReason);
+    virtual void continueAction();
+    virtual void hintAction();
+    virtual void skipAction();
+    
     void startPractice();
     
 private:

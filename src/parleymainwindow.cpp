@@ -32,7 +32,6 @@
 #include "configure-practice/configurepracticedialog.h"
 #include "practiceold/vocabularypractice.h"
 #include "practice/guifrontend.h"
-#include "practice/fakebackend.h"
 #include "practice/defaultbackend.h"
 
 #include "prefs.h"

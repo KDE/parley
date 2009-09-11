@@ -57,7 +57,7 @@ KXmlGuiWindow* GuiFrontend::getWindow()
 void GuiFrontend::setCentralWidget(AbstractBackend::Mode mode)
 {
     kDebug() << "setCentralWidget!";
-    AbstractWidget *newWidget = 0;
+    AbstractModeWidget *newWidget = 0;
     switch(mode) {
         case AbstractBackend::Written:
             if (/*m_centralWidget->metaObject()->className() == QLatin1String("WrittenPracticeWidget")*/false) {

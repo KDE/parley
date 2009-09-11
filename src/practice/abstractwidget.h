@@ -21,12 +21,12 @@ class QVariant;
 
 namespace Practice {
 
-class AbstractWidget : public QWidget
+class AbstractModeWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    AbstractWidget(AbstractBackend *backend, QWidget* parent = 0);
+    AbstractModeWidget(AbstractBackend *backend, QWidget* parent = 0);
 
     virtual QVariant userInput() = 0;
 
@@ -34,7 +34,9 @@ public slots:
     virtual void updateDisplay() = 0;
 
 signals:
-    void continueAction(AbstractBackend::ContinueReason continueReason);
+    void continueAction();
+    void hintAction();
+    void skipAction();
 };
 
 }

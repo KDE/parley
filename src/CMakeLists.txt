@@ -91,7 +91,6 @@ set(practice_SRCS
 
     practice/abstractfrontend.cpp
     practice/abstractbackend.cpp
-    practice/fakebackend.cpp
     practice/defaultbackend.cpp
     practice/guifrontend.cpp
     practice/abstractwidget.cpp

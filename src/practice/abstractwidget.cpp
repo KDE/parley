@@ -16,7 +16,7 @@
 
 using namespace Practice;
 
-AbstractWidget::AbstractWidget(AbstractBackend *backend, QWidget* parent)
+AbstractModeWidget::AbstractModeWidget(AbstractBackend *backend, QWidget* parent)
     : QWidget(parent)
 {
     Q_UNUSED(backend);

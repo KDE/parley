@@ -30,7 +30,7 @@ class WrittenPracticeWidget;
 
 namespace Practice {
 
-class WrittenPracticeWidget : public Practice::AbstractWidget
+class WrittenPracticeWidget : public Practice::AbstractModeWidget
 {
     Q_OBJECT
 

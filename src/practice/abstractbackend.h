@@ -27,7 +27,6 @@ public:
     AbstractBackend(QObject *parent = 0);
 
     enum Mode {Written, MultipleChoice, FlashCards, MixedLetters};
-    enum ContinueReason { Default, AnswerLater, Hint };
 
     /** The type of practice to be displayed, such as multiple choice or written */
     virtual Mode mode() = 0;
@@ -41,6 +40,7 @@ public:
     /** Pronunciation of the solution [in text form] */
     virtual QString solutionPronunciation() = 0;
     
+    /** Wether the front end should allow the user to enter a solution or is in "read only" mode when displaying the solution */
     virtual bool acceptUserInput() = 0;
 
     /** The number of finished entries that will not be asked in this practice session again */
@@ -54,12 +54,18 @@ public:
     /** Name of the lesson the currently practiced word is in */
     virtual QString lessonName() = 0;
     
-    
 public slots:
-    virtual void continueAction(ContinueReason) = 0;
+    /** continue was selected by the user (button clicked) */
+    virtual void continueAction() = 0;
+    /** the user requested a hint */
+    virtual void hintAction() = 0;
+    /** skip the current word (show it again later) */
+    virtual void skipAction() = 0;
 
 signals:
+    /** something changed, update the frontend */
     void updateDisplay();
+    /** display a different test type */
     void modeChanged(AbstractBackend::Mode);
 };
 

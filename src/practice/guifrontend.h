@@ -25,7 +25,7 @@ class PracticeMainWindow;
 namespace Practice {
 
 class MainWindow;
-class AbstractWidget;
+class AbstractModeWidget;
 
 class GuiFrontend : public Practice::AbstractFrontend
 {
@@ -44,7 +44,7 @@ private:
     AbstractBackend* m_backend;
     MainWindow* m_mainWindow;
     Ui::PracticeMainWindow* m_ui;
-    AbstractWidget* m_centralWidget;
+    AbstractModeWidget* m_centralWidget;
 };
 
 }

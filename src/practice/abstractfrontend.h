@@ -35,7 +35,9 @@ public slots:
     virtual void updateDisplay() = 0;
 
 signals:
-    void continueAction(AbstractBackend::ContinueReason continueReason);
+    void continueAction();
+    void hintAction();
+    void skipAction();
 };
 
 }

@@ -86,19 +86,24 @@ bool DefaultBackend::acceptUserInput()
     return true;
 }
 
-
-void DefaultBackend::continueAction(AbstractBackend::ContinueReason continueReason)
+void DefaultBackend::continueAction()
 {
-    kDebug() << "continue action" << continueReason;
+    m_current = m_testEntryManager.getNextEntry();
+    emit updateDisplay();
 }
+
+void DefaultBackend::hintAction()
+{}
+
+void DefaultBackend::skipAction()
+{}
 
 void DefaultBackend::startPractice()
 {
-    kDebug() << "emitting modeChanged";
-    
-    m_current = m_testEntryManager.getNextEntry();
     emit modeChanged(Written);
+    continueAction();
     
+  
 }
 
 #include "defaultbackend.moc"
