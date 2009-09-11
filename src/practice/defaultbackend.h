@@ -46,6 +46,8 @@ public slots:
 private:
     TestEntryManager m_testEntryManager;
     TestEntry* m_current;
+    int m_languageFrom;
+    int m_languageTo;
 };
 
 }

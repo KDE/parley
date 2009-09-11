@@ -26,6 +26,8 @@ DefaultBackend::DefaultBackend(ParleyDocument *doc, QObject *parent)
     : AbstractBackend(parent)
     , m_testEntryManager(doc->document(), 0)
 {
+    m_languageFrom = Prefs::questionLanguage();
+    m_languageTo = Prefs::solutionLanguage();
 }
 
 QString DefaultBackend::lessonName()
@@ -35,12 +37,12 @@ QString DefaultBackend::lessonName()
 
 int DefaultBackend::previousBox()
 {
-    return m_current->entry()->translation(0)->grade();
+    return m_current->entry()->translation(m_languageTo)->grade();
 }
 
 int DefaultBackend::currentBox()
 {
-    return m_current->entry()->translation(0)->grade();
+    return m_current->entry()->translation(m_languageTo)->grade();
 }
 
 int DefaultBackend::totalEntryCount()
@@ -56,7 +58,7 @@ int DefaultBackend::practicedEntryCount()
 QVariant DefaultBackend::question()
 {
     
-    return m_current->entry()->translation(0)->text();
+    return m_current->entry()->translation(m_languageFrom)->text();
 }
 
 Practice::AbstractBackend::Mode DefaultBackend::mode()
@@ -66,7 +68,7 @@ Practice::AbstractBackend::Mode DefaultBackend::mode()
 
 QVariant DefaultBackend::solution()
 {
-    return m_current->entry()->translation(1)->text();
+    return m_current->entry()->translation(m_languageTo)->text();
 }
 
 bool DefaultBackend::acceptUserInput()
