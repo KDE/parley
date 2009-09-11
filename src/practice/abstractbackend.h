@@ -29,17 +29,32 @@ public:
     enum Mode {Written, MultipleChoice, FlashCards, MixedLetters};
     enum ContinueReason { Default, AnswerLater, Hint };
 
+    /** The type of practice to be displayed, such as multiple choice or written */
     virtual Mode mode() = 0;
-    virtual QVariant question() = 0;
 
-    virtual int practicedEntryCount() = 0;
-    virtual int totalEntryCount() = 0;
-    virtual int currentBox() = 0;
-    virtual int previousBox() = 0;
-    virtual QString lessonName() = 0;
-    virtual QVariant solution() = 0;
+    /** The word that is displayed to the user */
+    virtual QVariant question() = 0;
+    /** The translation of the question */
+    virtual QVariant solution() = 0;    
+    /** Pronunciation of the question [in text form] */
+    virtual QString questionPronunciation() = 0;
+    /** Pronunciation of the solution [in text form] */
+    virtual QString solutionPronunciation() = 0;
+    
     virtual bool acceptUserInput() = 0;
 
+    /** The number of finished entries that will not be asked in this practice session again */
+    virtual int practicedEntryCount() = 0;
+    /** Total of entries to practice */
+    virtual int totalEntryCount() = 0;
+    /** The current grade of the entry */
+    virtual int currentBox() = 0;
+    /** The new grade */
+    virtual int previousBox() = 0;
+    /** Name of the lesson the currently practiced word is in */
+    virtual QString lessonName() = 0;
+    
+    
 public slots:
     virtual void continueAction(ContinueReason) = 0;
 

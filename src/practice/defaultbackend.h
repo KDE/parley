@@ -35,10 +35,15 @@ public:
     virtual int totalEntryCount();
     virtual int practicedEntryCount();
     virtual QVariant question();
-    virtual Practice::AbstractBackend::Mode mode();
     virtual QVariant solution();
+    virtual QString questionPronunciation();
+    virtual QString solutionPronunciation();
+        
     virtual bool acceptUserInput();
 
+    virtual Practice::AbstractBackend::Mode mode();
+    
+    
 public slots:
     void continueAction(AbstractBackend::ContinueReason continueReason);
     void startPractice();

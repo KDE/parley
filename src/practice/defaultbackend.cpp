@@ -61,6 +61,11 @@ QVariant DefaultBackend::question()
     return m_current->entry()->translation(m_languageFrom)->text();
 }
 
+QString DefaultBackend::questionPronunciation()
+{
+    return m_current->entry()->translation(m_languageFrom)->pronunciation();
+}
+
 Practice::AbstractBackend::Mode DefaultBackend::mode()
 {
     return Practice::AbstractBackend::Written;
@@ -69,6 +74,11 @@ Practice::AbstractBackend::Mode DefaultBackend::mode()
 QVariant DefaultBackend::solution()
 {
     return m_current->entry()->translation(m_languageTo)->text();
+}
+
+QString DefaultBackend::solutionPronunciation()
+{
+    return m_current->entry()->translation(m_languageTo)->pronunciation();
 }
 
 bool DefaultBackend::acceptUserInput()
