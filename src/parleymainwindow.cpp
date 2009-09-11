@@ -33,6 +33,7 @@
 #include "practiceold/vocabularypractice.h"
 #include "practice/guifrontend.h"
 #include "practice/fakebackend.h"
+#include "practice/defaultbackend.h"
 
 #include "prefs.h"
 #include "welcomescreen/welcomescreen.h"
@@ -198,7 +199,7 @@ void ParleyMainWindow::startPractice()
         Component lastComponent = m_currentComponent;
         switchComponent(NoComponent); // unload the last component (could be a practice window)
 //         m_practice = new ParleyPracticeMainWindow(m_document->document(), 0);
-        Practice::FakeBackend *backend = new Practice::FakeBackend(this);
+        Practice::DefaultBackend *backend = new Practice::DefaultBackend(m_document, this);
         m_practiceFrontend = new Practice::GuiFrontend(backend, this);
         switchComponent(PracticeComponent);
         backend->startPractice();
