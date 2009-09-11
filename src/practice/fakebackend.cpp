@@ -40,12 +40,12 @@ int FakeBackend::currentBox()
     return 2;
 }
 
-int FakeBackend::progressTotal()
+int FakeBackend::totalEntryCount()
 {
     return 42;
 }
 
-int FakeBackend::progress()
+int FakeBackend::practicedEntryCount()
 {
     return 7;
 }

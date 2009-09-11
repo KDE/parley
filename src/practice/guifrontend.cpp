@@ -88,8 +88,8 @@ void GuiFrontend::updateDisplay()
     // update lesson label
     m_ui->lessonLabel->setText(i18n("Lesson:")+' '+m_backend->lessonName());
     // update progress bar
-    m_ui->totalProgress->setMaximum(m_backend->progressTotal());
-    m_ui->totalProgress->setValue(m_backend->progress());
+    m_ui->totalProgress->setMaximum(m_backend->totalEntryCount());
+    m_ui->totalProgress->setValue(m_backend->practicedEntryCount());
 }
 
 #include "guifrontend.moc"

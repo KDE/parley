@@ -28,8 +28,8 @@ public:
     virtual QString lessonName();
     virtual int previousBox();
     virtual int currentBox();
-    virtual int progressTotal();
-    virtual int progress();
+    virtual int totalEntryCount();
+    virtual int practicedEntryCount();
     virtual QVariant question();
     virtual Practice::AbstractBackend::Mode mode();
     virtual QVariant solution();

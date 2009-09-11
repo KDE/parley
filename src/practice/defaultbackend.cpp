@@ -35,22 +35,22 @@ QString DefaultBackend::lessonName()
 
 int DefaultBackend::previousBox()
 {
-    return 1;
+    return m_current->entry()->translation(0)->grade();
 }
 
 int DefaultBackend::currentBox()
 {
-    return 2;
+    return m_current->entry()->translation(0)->grade();
 }
 
-int DefaultBackend::progressTotal()
+int DefaultBackend::totalEntryCount()
 {
-    return 42;
+    return m_testEntryManager.totalEntryCount();
 }
 
-int DefaultBackend::progress()
+int DefaultBackend::practicedEntryCount()
 {
-    return m_testEntryManager.activeEntryCount() / m_testEntryManager.totalEntryCount();
+    return m_testEntryManager.totalEntryCount() - m_testEntryManager.activeEntryCount();
 }
 
 QVariant DefaultBackend::question()

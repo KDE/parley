@@ -32,8 +32,8 @@ public:
     virtual Mode mode() = 0;
     virtual QVariant question() = 0;
 
-    virtual int progress() = 0;
-    virtual int progressTotal() = 0;
+    virtual int practicedEntryCount() = 0;
+    virtual int totalEntryCount() = 0;
     virtual int currentBox() = 0;
     virtual int previousBox() = 0;
     virtual QString lessonName() = 0;
