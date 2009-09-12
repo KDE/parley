@@ -14,20 +14,61 @@
 
 #include "defaultbackend.h"
 
-#include "prefs.h"
-
 #include <kdebug.h>
 
 #include <QtCore/QVariant>
 
 using namespace Practice;
 
-DefaultBackend::DefaultBackend(ParleyDocument *doc, QObject *parent)
+DefaultBackend::DefaultBackend(ParleyDocument* doc, const PracticeOptions& options, QObject* parent)
     : AbstractBackend(parent)
+    , m_options(options)
     , m_testEntryManager(doc->document(), 0)
+    , m_currentMode(Written)
+    , m_mode(0)
 {
-    m_languageFrom = Prefs::questionLanguage();
-    m_languageTo = Prefs::solutionLanguage();
+}
+
+DefaultBackend::~DefaultBackend()
+{
+    delete m_mode;
+}
+
+void DefaultBackend::startPractice()
+{
+    createPracticeMode();
+    kDebug() << "start: " << m_options.languageFrom() << m_options.languageTo();
+
+    continueAction();
+}
+
+void DefaultBackend::createPracticeMode()
+{
+    delete m_mode;
+    
+    QList<Mode> modes = m_options.modes();
+    
+    // TODO: mode needs to change at some point...
+    m_currentMode = modes.at(0);
+    
+    switch(m_currentMode) {
+        case Written:
+            kDebug() << "Create Written Practice";
+            m_mode = new WrittenBackendMode(m_options);
+            break;
+        case FlashCard:
+            kDebug() << "Create Flash Card Practice";
+            m_mode = new FlashCardBackendMode(m_options);
+            break;
+        default:
+            Q_ASSERT("Implement selected Mode" == 0);
+            break;
+    }
+    kDebug() << "practice mode: " << m_currentMode;
+    
+    m_mode->setTestEntry(m_current);
+    
+    emit modeChanged(m_currentMode);
 }
 
 QString DefaultBackend::lessonName()
@@ -37,12 +78,12 @@ QString DefaultBackend::lessonName()
 
 int DefaultBackend::previousBox()
 {
-    return m_current->entry()->translation(m_languageTo)->grade();
+    return m_current->entry()->translation(m_options.languageTo())->grade();
 }
 
 int DefaultBackend::currentBox()
 {
-    return m_current->entry()->translation(m_languageTo)->grade();
+    return m_current->entry()->translation(m_options.languageTo())->grade();
 }
 
 int DefaultBackend::totalEntryCount()
@@ -57,27 +98,27 @@ int DefaultBackend::practicedEntryCount()
 
 QVariant DefaultBackend::question()
 {
-    return m_current->entry()->translation(m_languageFrom)->text();
+    return m_mode->question();
 }
 
 QString DefaultBackend::questionPronunciation()
 {
-    return m_current->entry()->translation(m_languageFrom)->pronunciation();
+    return m_current->entry()->translation(m_options.languageFrom())->pronunciation();
 }
 
-Practice::AbstractBackend::Mode DefaultBackend::mode()
+AbstractBackend::Mode DefaultBackend::mode()
 {
-    return Practice::AbstractBackend::Written;
+    return m_currentMode;
 }
 
 QVariant DefaultBackend::solution()
 {
-    return m_current->entry()->translation(m_languageTo)->text();
+    return m_mode->solution();
 }
 
 QString DefaultBackend::solutionPronunciation()
 {
-    return m_current->entry()->translation(m_languageTo)->pronunciation();
+    return m_current->entry()->translation(m_options.languageTo())->pronunciation();
 }
 
 bool DefaultBackend::acceptUserInput()
@@ -87,8 +128,9 @@ bool DefaultBackend::acceptUserInput()
 
 void DefaultBackend::continueAction()
 {
-    kDebug() << "continue: " << m_languageFrom << m_languageTo;
+    kDebug() << "continue: " << m_options.languageFrom() << m_options.languageTo();
     m_current = m_testEntryManager.getNextEntry();
+    m_mode->setTestEntry(m_current);
     if (!m_current) {
         // practice done
     } else {
@@ -102,11 +144,5 @@ void DefaultBackend::hintAction()
 void DefaultBackend::skipAction()
 {}
 
-void DefaultBackend::startPractice()
-{
-    kDebug() << "start: " << m_languageFrom << m_languageTo;
-    emit modeChanged(Written);
-    continueAction();  
-}
 
 #include "defaultbackend.moc"

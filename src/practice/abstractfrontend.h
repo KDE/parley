@@ -24,6 +24,7 @@ class AbstractFrontend : public QObject
     Q_OBJECT
 public:
     AbstractFrontend(AbstractBackend *backend, QObject* parent = 0);
+    virtual ~AbstractFrontend() {}
 
     /**
      * Enables access to the input of the user.

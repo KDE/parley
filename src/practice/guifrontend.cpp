@@ -17,6 +17,7 @@
 #include <kxmlguiwindow.h>
 #include <kdebug.h>
 #include "writtenpracticewidget.h"
+#include "flashcardmodewidget.h"
 
 namespace Practice {
 class MainWindow : public KXmlGuiWindow
@@ -50,7 +51,7 @@ GuiFrontend::GuiFrontend(AbstractBackend* backend, QObject* parent)
 
 QVariant GuiFrontend::userInput()
 {
-    return QVariant("Baum");
+    return m_centralWidget->userInput();
 }
 
 KXmlGuiWindow* GuiFrontend::getWindow()
@@ -71,7 +72,10 @@ void GuiFrontend::setCentralWidget(AbstractBackend::Mode mode)
             newWidget = new WrittenPracticeWidget(m_backend, m_mainWindow);
             break;
         case AbstractBackend::MultipleChoice:
-        case AbstractBackend::FlashCards:
+            break;
+        case AbstractBackend::FlashCard:
+            newWidget = new FlashCardModeWidget(m_backend, m_mainWindow);
+            break;
         case AbstractBackend::MixedLetters:
             break;
     }

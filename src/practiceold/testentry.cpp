@@ -15,13 +15,8 @@
 
 #include "prefs.h"
 
-#include <keduvocexpression.h>
-
-
-
 int TestEntry::m_gradeFrom = 0;
 int TestEntry::m_gradeTo = 1;
-
 
 TestEntry::TestEntry(KEduVocExpression *entry)
     :m_entry(entry)

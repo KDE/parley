@@ -1,5 +1,5 @@
 /***************************************************************************
-    Copyright 2009 Daniel Laidig <d.laidig@gmx.de>
+    Copyright 2009 Frederik Gladhorn <gladhorn@kde.org>
  ***************************************************************************/
 
 /***************************************************************************
@@ -11,16 +11,36 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "abstractwidget.h"
-#include <kdebug.h>
+#include "flashcardmodewidget.h"
+
+#include "ui_practice_widget_flashcard.h"
 
 using namespace Practice;
 
-AbstractModeWidget::AbstractModeWidget(AbstractBackend *backend, QWidget* parent)
-    : QWidget(parent)
-    , m_backend(backend)
+
+FlashCardModeWidget::FlashCardModeWidget ( AbstractBackend* backend, QWidget* parent )
+    : AbstractModeWidget ( backend, parent )
 {
-    connect(this, SIGNAL(continueAction()), backend, SLOT(continueAction()));
-    connect(this, SIGNAL(hintAction()), backend, SLOT(hintAction()));
-    connect(this, SIGNAL(skipAction()), backend, SLOT(skipAction()));
+    m_ui = new Ui::FlashCardPracticeWidget();
+    m_ui->setupUi(this);
+    connect(m_ui->continueButton, SIGNAL(clicked()), this, SLOT(continueClicked()));
 }
+
+
+void FlashCardModeWidget::updateDisplay()
+{
+    m_ui->questionLabel->setText(m_backend->question().toString());
+    m_ui->solutionLabel->setText(m_backend->solution().toString());
+}
+
+QVariant FlashCardModeWidget::userInput()
+{
+    return QVariant();
+}
+
+void Practice::FlashCardModeWidget::continueClicked()
+{
+    emit continueAction();
+}
+
+#include "flashcardmodewidget.moc"

@@ -17,9 +17,13 @@
 
 #include "abstractbackend.h"
 #include "parleydocument.h"
+#include "writtenbackendmode.h"
+#include "flashcardbackendmode.h"
+
 
 #include "practiceold/testentrymanager.h"
 #include "practiceold/testentry.h"
+#include "practiceoptions.h"
 
 namespace Practice {
 
@@ -28,7 +32,9 @@ class DefaultBackend : public Practice::AbstractBackend
     Q_OBJECT
 
 public:
-    DefaultBackend(ParleyDocument *doc, QObject *parent = 0);
+    DefaultBackend(ParleyDocument *doc, const PracticeOptions& options, QObject *parent = 0);
+    ~DefaultBackend();
+    
     virtual QString lessonName();
     virtual int previousBox();
     virtual int currentBox();
@@ -41,7 +47,7 @@ public:
         
     virtual bool acceptUserInput();
 
-    virtual Practice::AbstractBackend::Mode mode();
+    virtual Mode mode();
     
     
 public slots:
@@ -50,12 +56,14 @@ public slots:
     virtual void skipAction();
     
     void startPractice();
+    void createPracticeMode();
     
 private:
     TestEntryManager m_testEntryManager;
     TestEntry* m_current;
-    int m_languageFrom;
-    int m_languageTo;
+    PracticeOptions m_options;
+    AbstractBackend::Mode m_currentMode;
+    AbstractBackendMode* m_mode;
 };
 
 }

@@ -1,5 +1,5 @@
 /***************************************************************************
-    Copyright 2009 Daniel Laidig <d.laidig@gmx.de>
+    Copyright 2009 Frederik Gladhorn <gladhorn@kde.org>
  ***************************************************************************/
 
 /***************************************************************************
@@ -11,38 +11,31 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef PRACTICE_ABSTRACTWIDGET_H
-#define PRACTICE_ABSTRACTWIDGET_H
+#ifndef ABSTRACTBACKENDMODE_H
+#define ABSTRACTBACKENDMODE_H
 
-#include <QtGui/QWidget>
-#include "abstractbackend.h"
+#include "practiceold/testentry.h"
+#include "practiceoptions.h"
 
-class QVariant;
+#include <QVariant>
 
 namespace Practice {
-
-class AbstractModeWidget : public QWidget
-{
-    Q_OBJECT
-
-public:
-    AbstractModeWidget(AbstractBackend *backend, QWidget* parent = 0);
-    virtual ~AbstractModeWidget() {}
     
-    virtual QVariant userInput() = 0;
-
-public slots:
-    virtual void updateDisplay() = 0;
-
-signals:
-    void continueAction();
-    void hintAction();
-    void skipAction();
-
+class AbstractBackendMode
+{
+public:
+    AbstractBackendMode(const PracticeOptions& options) :m_options(options) {}
+    virtual ~AbstractBackendMode() {}
+    void setTestEntry(TestEntry* current) { m_current = current; }
+    virtual QVariant question() = 0;
+    virtual QVariant solution() = 0;
+    virtual qreal verifyAnswer(const QVariant& answer) = 0;
+    
 protected:
-    AbstractBackend *m_backend; 
+    PracticeOptions m_options;
+    TestEntry* m_current;
 };
 
 }
 
-#endif // PRACTICE_ABSTRACTWIDGET_H
+#endif // ABSTRACTBACKENDMODE_H

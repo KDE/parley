@@ -24,13 +24,19 @@ class AbstractBackend : public QObject
 {
     Q_OBJECT
 public:
+    enum Mode {
+        FlashCard,
+        MixedLetters,
+        MultipleChoice,
+        Written
+    };
+    
     AbstractBackend(QObject *parent = 0);
-
-    enum Mode {Written, MultipleChoice, FlashCards, MixedLetters};
-
+    virtual ~AbstractBackend() {}
+    
     /** The type of practice to be displayed, such as multiple choice or written */
     virtual Mode mode() = 0;
-
+    
     /** The word that is displayed to the user */
     virtual QVariant question() = 0;
     /** The translation of the question */

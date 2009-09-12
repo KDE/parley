@@ -35,7 +35,7 @@ class WrittenPracticeWidget : public Practice::AbstractModeWidget
     Q_OBJECT
 
 public:
-    WrittenPracticeWidget(AbstractBackend *backend, QWidget *parent = 0);;
+    WrittenPracticeWidget(AbstractBackend *backend, QWidget *parent = 0);
     virtual QVariant userInput();
 
 public slots:
@@ -43,7 +43,6 @@ public slots:
     void continueClicked();
 
 private:
-    AbstractBackend* m_backend;
     Ui::WrittenPracticeWidget* m_ui;
 };
 

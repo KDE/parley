@@ -1,5 +1,5 @@
 /***************************************************************************
-    Copyright 2009 Daniel Laidig <d.laidig@gmx.de>
+    Copyright 2009 Frederik Gladhorn <gladhorn@kde.org>
  ***************************************************************************/
 
 /***************************************************************************
@@ -11,38 +11,32 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef PRACTICE_ABSTRACTWIDGET_H
-#define PRACTICE_ABSTRACTWIDGET_H
 
-#include <QtGui/QWidget>
+#ifndef PRACTICEOPTIONS_H
+#define PRACTICEOPTIONS_H
+
 #include "abstractbackend.h"
 
-class QVariant;
-
 namespace Practice {
-
-class AbstractModeWidget : public QWidget
-{
-    Q_OBJECT
-
-public:
-    AbstractModeWidget(AbstractBackend *backend, QWidget* parent = 0);
-    virtual ~AbstractModeWidget() {}
     
-    virtual QVariant userInput() = 0;
-
-public slots:
-    virtual void updateDisplay() = 0;
-
-signals:
-    void continueAction();
-    void hintAction();
-    void skipAction();
-
-protected:
-    AbstractBackend *m_backend; 
+class PracticeOptions
+{
+public:  
+    PracticeOptions();
+    
+    int languageFrom() {return m_languageFrom;}
+    int languageTo() {return m_languageTo;}
+    
+    QList<AbstractBackend::Mode> modes();
+    
+private:
+    void loadPreferences();
+    
+    int m_languageFrom;
+    int m_languageTo;
+    
+    QList<AbstractBackend::Mode> m_modes;
+    
 };
-
 }
-
-#endif // PRACTICE_ABSTRACTWIDGET_H
+#endif // PRACTICEOPTIONS_H

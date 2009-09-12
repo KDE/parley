@@ -1,5 +1,5 @@
 /***************************************************************************
-    Copyright 2009 Daniel Laidig <d.laidig@gmx.de>
+    Copyright 2009 Frederik Gladhorn <gladhorn@kde.org>
  ***************************************************************************/
 
 /***************************************************************************
@@ -11,38 +11,36 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef PRACTICE_ABSTRACTWIDGET_H
-#define PRACTICE_ABSTRACTWIDGET_H
 
-#include <QtGui/QWidget>
-#include "abstractbackend.h"
+#ifndef FLASHCARDMODEWIDGET_H
+#define FLASHCARDMODEWIDGET_H
 
-class QVariant;
+#include "abstractwidget.h"
+
+
+namespace Ui {
+    class FlashCardPracticeWidget;
+}
 
 namespace Practice {
-
-class AbstractModeWidget : public QWidget
-{
-    Q_OBJECT
-
-public:
-    AbstractModeWidget(AbstractBackend *backend, QWidget* parent = 0);
-    virtual ~AbstractModeWidget() {}
     
-    virtual QVariant userInput() = 0;
-
-public slots:
-    virtual void updateDisplay() = 0;
-
-signals:
-    void continueAction();
-    void hintAction();
-    void skipAction();
-
-protected:
-    AbstractBackend *m_backend; 
+class FlashCardModeWidget: public AbstractModeWidget
+{    
+    Q_OBJECT
+    
+public:
+    FlashCardModeWidget(AbstractBackend *backend, QWidget *parent = 0);
+    virtual QVariant userInput();
+    
+public Q_SLOTS:
+    virtual void updateDisplay();
+    virtual void continueClicked();
+    
+private:
+    Ui::FlashCardPracticeWidget* m_ui;
 };
 
 }
 
-#endif // PRACTICE_ABSTRACTWIDGET_H
+#endif // FLASHCARDMODEWIDGET_H
+

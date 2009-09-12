@@ -1,5 +1,5 @@
 /***************************************************************************
-    Copyright 2009 Daniel Laidig <d.laidig@gmx.de>
+    Copyright 2009 Frederik Gladhorn <gladhorn@kde.org>
  ***************************************************************************/
 
 /***************************************************************************
@@ -11,38 +11,27 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef PRACTICE_ABSTRACTWIDGET_H
-#define PRACTICE_ABSTRACTWIDGET_H
 
-#include <QtGui/QWidget>
-#include "abstractbackend.h"
+#include "writtenbackendmode.h"
 
-class QVariant;
+using namespace Practice;
 
-namespace Practice {
-
-class AbstractModeWidget : public QWidget
+qreal WrittenBackendMode::verifyAnswer(const QVariant& answer)
 {
-    Q_OBJECT
-
-public:
-    AbstractModeWidget(AbstractBackend *backend, QWidget* parent = 0);
-    virtual ~AbstractModeWidget() {}
-    
-    virtual QVariant userInput() = 0;
-
-public slots:
-    virtual void updateDisplay() = 0;
-
-signals:
-    void continueAction();
-    void hintAction();
-    void skipAction();
-
-protected:
-    AbstractBackend *m_backend; 
-};
-
+    // TODO: be more clever about this...
+    if (answer == solution()) {
+        return 1.0;
+    }
+    return 0.0;
 }
 
-#endif // PRACTICE_ABSTRACTWIDGET_H
+QVariant WrittenBackendMode::solution()
+{
+    return m_current->entry()->translation(m_options.languageTo())->text();
+}
+
+QVariant WrittenBackendMode::question()
+{
+    return m_current->entry()->translation(m_options.languageFrom())->text();
+}
+

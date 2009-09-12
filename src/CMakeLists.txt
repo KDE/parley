@@ -89,12 +89,17 @@ set(practice_SRCS
     practiceold/practicesummarydialog.cpp
     practiceold/answervalidatorold.cpp
 
+    practice/practiceoptions.cpp
     practice/abstractfrontend.cpp
     practice/abstractbackend.cpp
     practice/defaultbackend.cpp
     practice/guifrontend.cpp
     practice/abstractwidget.cpp
     practice/writtenpracticewidget.cpp
+    practice/writtenbackendmode.cpp
+    practice/flashcardmodewidget.cpp
+    practice/flashcardbackendmode.cpp
+    #practice/multiplechoicebackendmode.cpp
 )
 
 kde4_add_ui_files(practice_SRCS
@@ -111,6 +116,7 @@ kde4_add_ui_files(practice_SRCS
 
     practice/practice_mainwindow.ui
     practice/practice_widget_written.ui
+    practice/practice_widget_flashcard.ui
 )
 
 # settings for the practice
