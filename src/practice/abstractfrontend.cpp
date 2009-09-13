@@ -13,8 +13,6 @@
 
 #include "abstractfrontend.h"
 
-#include "abstractbackend.h"
-
 using namespace Practice;
 
 AbstractFrontend::AbstractFrontend(QObject* parent)

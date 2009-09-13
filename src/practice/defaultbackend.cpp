@@ -21,7 +21,8 @@
 using namespace Practice;
 
 DefaultBackend::DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, const PracticeOptions& options, QObject* parent)
-    : AbstractBackend(frontend, parent)
+    : QObject(parent)
+    , m_frontend(frontend)
     , m_options(options)
     , m_testEntryManager(doc->document(), 0)
     , m_currentMode(AbstractFrontend::Written)

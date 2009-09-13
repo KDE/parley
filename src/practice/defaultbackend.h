@@ -15,7 +15,6 @@
 #ifndef PRACTICE_DEFAULTBACKEND_H
 #define PRACTICE_DEFAULTBACKEND_H
 
-#include "abstractbackend.h"
 #include "parleydocument.h"
 #include "writtenbackendmode.h"
 #include "flashcardbackendmode.h"
@@ -27,7 +26,7 @@
 
 namespace Practice {
 
-class DefaultBackend : public AbstractBackend
+class DefaultBackend :public QObject
 {
     Q_OBJECT
 
@@ -49,6 +48,7 @@ private:
     PracticeOptions m_options;
     AbstractFrontend::Mode m_currentMode;
     AbstractBackendMode* m_mode;
+    AbstractFrontend* m_frontend;
 };
 
 }
