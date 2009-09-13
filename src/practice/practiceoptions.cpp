@@ -43,7 +43,7 @@ void PracticeOptions::loadPreferences()
     */
     
     m_modes.append(AbstractFrontend::FlashCard);
-   // m_modes.append(AbstractBackend::Written);
+    // m_modes.append(AbstractFrontend::Written);
 }
 
 QList<AbstractFrontend::Mode> PracticeOptions::modes()

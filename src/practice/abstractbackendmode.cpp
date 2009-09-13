@@ -16,8 +16,9 @@ Copyright 2009 Frederik Gladhorn <gladhorn@kde.org>
 
 using namespace Practice;
 
-AbstractBackendMode::AbstractBackendMode(Practice::AbstractFrontend* frontend, QObject *parent)
+AbstractBackendMode::AbstractBackendMode(const PracticeOptions& practiceOptions, Practice::AbstractFrontend* frontend, QObject *parent)
     :QObject(parent)
+    ,m_practiceOptions(practiceOptions)
     ,m_frontend(frontend)
 {}
 

@@ -33,6 +33,7 @@ public:
     virtual QVariant userInput();
     
     virtual void setQuestion(const QVariant& question);
+    virtual void setSolution(const QVariant& question);
     
 public Q_SLOTS:
     virtual void showQuestion();

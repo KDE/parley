@@ -47,20 +47,19 @@ void DefaultBackend::createPracticeMode()
     delete m_mode;
     
     QList<AbstractFrontend::Mode> modes = m_options.modes();
-    
-    m_frontend->setMode(m_currentMode);
-    
     // TODO: mode needs to change at some point...
     m_currentMode = modes.at(0);
+    m_frontend->setMode(m_currentMode);
+    
     
     switch(m_currentMode) {
         case AbstractFrontend::Written:
             kDebug() << "Create Written Practice";
-            m_mode = new WrittenBackendMode(m_frontend, this);
+            m_mode = new WrittenBackendMode(m_options, m_frontend, this);
             break;
         case AbstractFrontend::FlashCard:
             kDebug() << "Create Flash Card Practice";
-            m_mode = new FlashCardBackendMode(m_frontend, this);
+            m_mode = new FlashCardBackendMode(m_options, m_frontend, this);
             break;
         default:
             Q_ASSERT("Implement selected Mode" == 0);
@@ -68,7 +67,7 @@ void DefaultBackend::createPracticeMode()
     }
     kDebug() << "practice mode: " << m_currentMode;
 
-    connect(m_mode, SIGNAL(nextEntry()), this, SLOT(nextEntry()));    
+    connect(m_mode, SIGNAL(nextEntry()), this, SLOT(nextEntry()));
 }
 
 PracticeOptions* DefaultBackend::options()
@@ -76,35 +75,14 @@ PracticeOptions* DefaultBackend::options()
     return &m_options;
 }
 
-QString DefaultBackend::lessonName()
-{
-    return m_current->entry()->lesson()->name();
-}
-
-int DefaultBackend::previousBox()
-{
-    return m_current->entry()->translation(m_options.languageTo())->grade();
-}
-
-int DefaultBackend::currentBox()
-{
-    return m_current->entry()->translation(m_options.languageTo())->grade();
-}
-
-int DefaultBackend::totalEntryCount()
-{
-    return m_testEntryManager.totalEntryCount();
-}
-
-int DefaultBackend::practicedEntryCount()
-{
-    return m_testEntryManager.totalEntryCount() - m_testEntryManager.activeEntryCount();
-}
-
 void DefaultBackend::nextEntry()
 {
     m_current = m_testEntryManager.getNextEntry();
     m_mode->setTestEntry(m_current);
+    m_frontend->setFinishedWordsTotalWords(
+        m_testEntryManager.totalEntryCount() - m_testEntryManager.activeEntryCount(), 
+        m_testEntryManager.totalEntryCount());
+    m_frontend->setLessonName(m_current->entry()->lesson()->name());
 }
 
 

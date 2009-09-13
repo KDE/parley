@@ -30,11 +30,13 @@ public:
     virtual ~AbstractModeWidget() {}
     
     virtual void setQuestion(const QVariant& question) = 0;
+    virtual void setSolution(const QVariant& question) = 0;
     virtual QVariant userInput() = 0;
 
 public slots:
     virtual void showQuestion() = 0;
     virtual void showSolution() = 0;
+    
 
 signals:
     void continueAction();

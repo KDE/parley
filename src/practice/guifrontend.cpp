@@ -54,7 +54,7 @@ KXmlGuiWindow* GuiFrontend::getWindow()
 
 void GuiFrontend::setMode(Mode mode)
 {
-    kDebug() << "setCentralWidget!";
+    kDebug() << "setCentralWidget!" << mode;
     AbstractModeWidget *newWidget = 0;
     switch(mode) {
         case Written:
@@ -80,26 +80,48 @@ void GuiFrontend::setMode(Mode mode)
 }
 
 
-void GuiFrontend::setLesson(const QString& lessonName)
+void GuiFrontend::setLessonName(const QString& lessonName)
 {
     m_ui->lessonLabel->setText(i18nc("Display of the current lesson during practice", "Lesson: %1", lessonName));
 }
 
 void GuiFrontend::showQuestion()
 {
-
     m_centralWidget->showQuestion();
-/*
-    // update progress bar
-    m_ui->totalProgress->setMaximum(m_backend->totalEntryCount());
-    m_ui->totalProgress->setValue(m_backend->practicedEntryCount());
-    */
 }
-
 
 void GuiFrontend::showSolution()
 {
     m_centralWidget->showSolution();
+}
+
+void GuiFrontend::setFinishedWordsTotalWords(int finished, int total)
+{
+    // update progress bar
+    m_ui->totalProgress->setMaximum(total);
+    m_ui->totalProgress->setValue(finished);
+    m_ui->totalProgress->setToolTip(i18n("You answered %1 of a total of %2 words.\nYou are %3% done.", finished, total, finished/total*100));
+}
+
+
+void GuiFrontend::setQuestionImage(const QPixmap& img)
+{
+    m_ui->imageLabel->setPixmap(img);
+}
+
+void GuiFrontend::setHint(const QVariant& hint)
+{
+    // TODO
+}
+
+void GuiFrontend::setSolution(const QVariant& solution)
+{
+    m_centralWidget->setSolution(solution);
+}
+
+void GuiFrontend::setSolutionImage(const QPixmap& img)
+{
+    // TODO
 }
 
 

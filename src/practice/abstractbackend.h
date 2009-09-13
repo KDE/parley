@@ -29,18 +29,7 @@ public:
    
     AbstractBackend(AbstractFrontend *frontend, QObject *parent = 0);
     virtual ~AbstractBackend() {}
-    
-    /** The number of finished entries that will not be asked in this practice session again */
-    virtual int practicedEntryCount() = 0;
-    /** Total of entries to practice */
-    virtual int totalEntryCount() = 0;
-    /** The current grade of the entry */
-    virtual int currentBox() = 0;
-    /** The new grade */
-    virtual int previousBox() = 0;
-    /** Name of the lesson the currently practiced word is in */
-    virtual QString lessonName() = 0;
-    
+
 public slots:
     virtual void nextEntry() = 0;
 

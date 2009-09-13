@@ -26,18 +26,22 @@ FlashCardModeWidget::FlashCardModeWidget (QWidget* parent )
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SLOT(continueClicked()));
 }
 
-void FlashCardModeWidget::showQuestion()
-{
-    
-    m_ui->solutionLabel->setHidden(true);
-    m_ui->ratingStack->setCurrentIndex(0);
-}
 
 void FlashCardModeWidget::setQuestion(const QVariant& question)
 {
     m_ui->questionLabel->setText(question.toString());
 }
 
+void FlashCardModeWidget::showQuestion()
+{
+    m_ui->solutionLabel->setHidden(true);
+    m_ui->ratingStack->setCurrentIndex(0);
+}
+
+void FlashCardModeWidget::setSolution(const QVariant& question)
+{
+    m_ui->solutionLabel->setText(question.toString());
+}
 
 void FlashCardModeWidget::showSolution()
 {

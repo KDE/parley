@@ -53,11 +53,19 @@ void WrittenPracticeWidget::showQuestion()
     kDebug() << "update display";
     m_ui->answerEdit->setEnabled(true);
     m_ui->answerEdit->clear();
+    m_ui->solutionLabel->setVisible(false);
+}
+
+void WrittenPracticeWidget::setSolution(const QVariant& question)
+{
+    m_ui->solutionLabel->setText(question.toString());
 }
 
 void WrittenPracticeWidget::showSolution()
 {
     m_ui->answerEdit->setEnabled(false);
+    m_ui->solutionLabel->setVisible(true);
 }
+
 
 #include "writtenpracticewidget.moc"

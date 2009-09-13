@@ -23,7 +23,7 @@ class WrittenBackendMode : public AbstractBackendMode
 {
     Q_OBJECT
 public:
-    WrittenBackendMode(AbstractFrontend *frontend, QObject *parent) : AbstractBackendMode(frontend, parent) {}
+    WrittenBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend *frontend, QObject *parent);
     
     virtual qreal verifyAnswer(const QVariant& answer);
     virtual QVariant solution();

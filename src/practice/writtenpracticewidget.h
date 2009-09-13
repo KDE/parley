@@ -38,7 +38,8 @@ public:
     WrittenPracticeWidget(QWidget *parent = 0);
     virtual QVariant userInput();
 
-    void setQuestion(const QVariant& question);
+    virtual void setQuestion(const QVariant& question);
+    virtual void setSolution(const QVariant& question);
     
 public slots:
     void showQuestion();

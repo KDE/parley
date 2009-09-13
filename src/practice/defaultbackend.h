@@ -35,12 +35,6 @@ public:
     DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, const PracticeOptions& options, QObject* parent = 0);
     ~DefaultBackend();
     
-    virtual QString lessonName();
-    virtual int previousBox();
-    virtual int currentBox();
-    virtual int totalEntryCount();
-    virtual int practicedEntryCount();
-
     PracticeOptions *options();
     
 public slots:    

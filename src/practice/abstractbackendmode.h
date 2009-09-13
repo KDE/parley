@@ -15,6 +15,7 @@
 #define ABSTRACTBACKENDMODE_H
 
 #include "practiceold/testentry.h"
+#include "practiceoptions.h"
 #include "abstractfrontend.h"
 
 #include <QVariant>
@@ -26,7 +27,7 @@ class AbstractBackendMode :public QObject
     Q_OBJECT
     
 public:
-    AbstractBackendMode(AbstractFrontend *frontend, QObject *parent) ;
+    AbstractBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend *frontend, QObject *parent);
     virtual ~AbstractBackendMode() {}
     virtual void setTestEntry(TestEntry* current) { m_current = current; }
 
@@ -37,6 +38,7 @@ Q_SIGNALS:
     void nextEntry();
     
 protected:
+    PracticeOptions m_practiceOptions;
     AbstractFrontend* m_frontend;
     TestEntry* m_current;
 };

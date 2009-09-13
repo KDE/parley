@@ -24,13 +24,11 @@ class FlashCardBackendMode : public AbstractBackendMode
     Q_OBJECT
     
 public:
-    FlashCardBackendMode(AbstractFrontend *frontend, QObject *parent) : AbstractBackendMode(frontend, parent) {}
+    FlashCardBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend, QObject *parent);
     
     virtual void setTestEntry(TestEntry* current);
     
     virtual qreal verifyAnswer ( const QVariant& answer );
-    virtual QVariant solution();
-    virtual QVariant question();
 
 public Q_SLOTS:
     virtual void continueAction();

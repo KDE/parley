@@ -15,6 +15,7 @@
 #define PRACTICE_ABSTRACTFRONTEND_H
 
 #include <QtCore/qobject.h>
+#include <QPixmap>
 
 namespace Practice {
 
@@ -37,13 +38,23 @@ public:
      * This is queried by the backend when it needs to evaluate the input.
      */
     virtual QVariant userInput() = 0;
+    
+    /** The status such as lesson or number of words has changed */
+    virtual void setFinishedWordsTotalWords(int finished, int total) = 0;
 
     virtual void setQuestion(const QVariant& question) = 0;
-    
+    virtual void setSolution(const QVariant& solution) = 0;
+    virtual void setHint(const QVariant& hint) = 0;
+    virtual void setQuestionImage(const QPixmap& img) = 0;
+    virtual void setSolutionImage(const QPixmap& img) = 0;
+    virtual void setLessonName(const QString& lesson) = 0;
     
 public slots:
+    /** enter question mode - the user is asked to provide the solution */
     virtual void showQuestion() = 0;
+    /** enter show solution mode - the solution is shown */
     virtual void showSolution() = 0;
+    /** switch between different modes such as written, flash card, etc */
     virtual void setMode(Mode mode) = 0;
 
 signals:

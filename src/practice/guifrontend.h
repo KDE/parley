@@ -36,8 +36,17 @@ public:
     virtual QVariant userInput();
     KXmlGuiWindow* getWindow();
     
+    
+    virtual void setFinishedWordsTotalWords(int finished, int total);
+    
+    virtual void setHint(const QVariant& hint);
+    
+    virtual void setQuestionImage(const QPixmap& img);
+    virtual void setSolution(const QVariant& solution);
+    virtual void setSolutionImage(const QPixmap& img);
+        
     /// update lesson label
-    void setLesson(const QString& lessonName);
+    void setLessonName(const QString& lessonName);
     
     virtual void setQuestion(const QVariant& question) { m_centralWidget->setQuestion(question); }
     

@@ -17,30 +17,26 @@
  
 using namespace Practice;
  
+ 
+FlashCardBackendMode::FlashCardBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent)
+:AbstractBackendMode(practiceOptions, frontend, parent)
+{
+    connect(frontend, SIGNAL(continueAction()), this, SLOT(continueAction()));
+}
 
 void FlashCardBackendMode::setTestEntry(TestEntry* current)
 {
     Practice::AbstractBackendMode::setTestEntry(current);
     m_solutionVisible = false;
     
-    m_frontend->setQuestion("Oink Oink!");
+    m_frontend->setQuestion(m_current->entry()->translation(m_practiceOptions.languageFrom())->text());
+    m_frontend->setQuestion(m_current->entry()->translation(m_practiceOptions.languageTo())->text());
     m_frontend->showQuestion();
-    
 }
- 
+
 qreal FlashCardBackendMode::verifyAnswer ( const QVariant& answer )
 {
     return 0.0;
-}
-
-QVariant FlashCardBackendMode::solution()
-{
-//    return m_current->entry()->translation(m_backend->options()->languageTo())->text();
-}
-
-QVariant FlashCardBackendMode::question()
-{
-//    return m_current->entry()->translation(m_backend->options()->languageFrom())->text();
 }
 
 void FlashCardBackendMode::continueAction()
