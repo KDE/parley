@@ -13,8 +13,20 @@
 
 
 #include "flashcardbackendmode.h"
+#include "defaultbackend.h"
  
 using namespace Practice;
+ 
+
+void FlashCardBackendMode::setTestEntry(TestEntry* current)
+{
+    Practice::AbstractBackendMode::setTestEntry(current);
+    m_solutionVisible = false;
+    
+    m_frontend->setQuestion("Oink Oink!");
+    m_frontend->showQuestion();
+    
+}
  
 qreal FlashCardBackendMode::verifyAnswer ( const QVariant& answer )
 {
@@ -23,11 +35,23 @@ qreal FlashCardBackendMode::verifyAnswer ( const QVariant& answer )
 
 QVariant FlashCardBackendMode::solution()
 {
-    return m_current->entry()->translation(m_options.languageTo())->text();
+//    return m_current->entry()->translation(m_backend->options()->languageTo())->text();
 }
 
 QVariant FlashCardBackendMode::question()
 {
-    return m_current->entry()->translation(m_options.languageFrom())->text();
+//    return m_current->entry()->translation(m_backend->options()->languageFrom())->text();
 }
 
+void FlashCardBackendMode::continueAction()
+{
+    if (m_solutionVisible) {
+        // TODO: evaluate the grade
+        kDebug() << "Answer was " << m_frontend->userInput();
+        emit nextEntry();
+        return;
+    }
+    m_frontend->showSolution();
+}
+
+#include "flashcardbackendmode.moc"

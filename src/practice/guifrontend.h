@@ -15,7 +15,7 @@
 #define PRACTICE_GUIFRONTEND_H
 
 #include "abstractfrontend.h"
-#include "abstractbackend.h"
+#include "abstractwidget.h"
 
 class KXmlGuiWindow;
 namespace Ui {
@@ -32,16 +32,21 @@ class GuiFrontend : public Practice::AbstractFrontend
     Q_OBJECT
 
 public:
-    GuiFrontend(AbstractBackend* backend, QObject* parent = 0);
+    GuiFrontend(QObject* parent = 0);
     virtual QVariant userInput();
     KXmlGuiWindow* getWindow();
-
+    
+    /// update lesson label
+    void setLesson(const QString& lessonName);
+    
+    virtual void setQuestion(const QVariant& question) { m_centralWidget->setQuestion(question); }
+    
 public slots:
-    void setCentralWidget(AbstractBackend::Mode mode);
-    void updateDisplay();
+    void setMode(Mode mode);
+    void showQuestion();
+    void showSolution();
 
 private:
-    AbstractBackend* m_backend;
     MainWindow* m_mainWindow;
     Ui::PracticeMainWindow* m_ui;
     AbstractModeWidget* m_centralWidget;

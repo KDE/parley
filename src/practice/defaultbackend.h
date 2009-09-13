@@ -27,12 +27,12 @@
 
 namespace Practice {
 
-class DefaultBackend : public Practice::AbstractBackend
+class DefaultBackend : public AbstractBackend
 {
     Q_OBJECT
 
 public:
-    DefaultBackend(ParleyDocument *doc, const PracticeOptions& options, QObject *parent = 0);
+    DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, const PracticeOptions& options, QObject* parent = 0);
     ~DefaultBackend();
     
     virtual QString lessonName();
@@ -40,29 +40,20 @@ public:
     virtual int currentBox();
     virtual int totalEntryCount();
     virtual int practicedEntryCount();
-    virtual QVariant question();
-    virtual QVariant solution();
-    virtual QString questionPronunciation();
-    virtual QString solutionPronunciation();
-        
-    virtual bool acceptUserInput();
 
-    virtual Mode mode();
+    PracticeOptions *options();
     
-    
-public slots:
-    virtual void continueAction();
-    virtual void hintAction();
-    virtual void skipAction();
-    
+public slots:    
     void startPractice();
     void createPracticeMode();
+
+    void nextEntry();
     
 private:
     TestEntryManager m_testEntryManager;
     TestEntry* m_current;
     PracticeOptions m_options;
-    AbstractBackend::Mode m_currentMode;
+    AbstractFrontend::Mode m_currentMode;
     AbstractBackendMode* m_mode;
 };
 

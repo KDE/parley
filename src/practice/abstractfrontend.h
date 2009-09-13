@@ -15,7 +15,6 @@
 #define PRACTICE_ABSTRACTFRONTEND_H
 
 #include <QtCore/qobject.h>
-#include "abstractbackend.h"
 
 namespace Practice {
 
@@ -23,7 +22,14 @@ class AbstractFrontend : public QObject
 {
     Q_OBJECT
 public:
-    AbstractFrontend(AbstractBackend *backend, QObject* parent = 0);
+    enum Mode {
+        FlashCard,
+        MixedLetters,
+        MultipleChoice,
+        Written
+    };
+    
+    AbstractFrontend(QObject* parent = 0);
     virtual ~AbstractFrontend() {}
 
     /**
@@ -32,8 +38,13 @@ public:
      */
     virtual QVariant userInput() = 0;
 
+    virtual void setQuestion(const QVariant& question) = 0;
+    
+    
 public slots:
-    virtual void updateDisplay() = 0;
+    virtual void showQuestion() = 0;
+    virtual void showSolution() = 0;
+    virtual void setMode(Mode mode) = 0;
 
 signals:
     void continueAction();

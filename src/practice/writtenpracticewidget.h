@@ -35,11 +35,14 @@ class WrittenPracticeWidget : public Practice::AbstractModeWidget
     Q_OBJECT
 
 public:
-    WrittenPracticeWidget(AbstractBackend *backend, QWidget *parent = 0);
+    WrittenPracticeWidget(QWidget *parent = 0);
     virtual QVariant userInput();
 
+    void setQuestion(const QVariant& question);
+    
 public slots:
-    void updateDisplay();
+    void showQuestion();
+    void showSolution();
     void continueClicked();
 
 private:

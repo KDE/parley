@@ -15,24 +15,29 @@
 #define ABSTRACTBACKENDMODE_H
 
 #include "practiceold/testentry.h"
-#include "practiceoptions.h"
+#include "abstractfrontend.h"
 
 #include <QVariant>
 
 namespace Practice {
     
-class AbstractBackendMode
+class AbstractBackendMode :public QObject
 {
+    Q_OBJECT
+    
 public:
-    AbstractBackendMode(const PracticeOptions& options) :m_options(options) {}
+    AbstractBackendMode(AbstractFrontend *frontend, QObject *parent) ;
     virtual ~AbstractBackendMode() {}
-    void setTestEntry(TestEntry* current) { m_current = current; }
-    virtual QVariant question() = 0;
-    virtual QVariant solution() = 0;
+    virtual void setTestEntry(TestEntry* current) { m_current = current; }
+
     virtual qreal verifyAnswer(const QVariant& answer) = 0;
+    void continueAction();
+    
+Q_SIGNALS:
+    void nextEntry();
     
 protected:
-    PracticeOptions m_options;
+    AbstractFrontend* m_frontend;
     TestEntry* m_current;
 };
 

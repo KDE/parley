@@ -24,8 +24,8 @@
 
 using namespace Practice;
 
-WrittenPracticeWidget::WrittenPracticeWidget(AbstractBackend *backend, QWidget *parent)
-    : AbstractModeWidget(backend, parent)
+WrittenPracticeWidget::WrittenPracticeWidget(QWidget *parent)
+    : AbstractModeWidget(parent)
 {
     m_ui = new Ui::WrittenPracticeWidget();
     m_ui->setupUi(this);
@@ -43,17 +43,21 @@ QVariant WrittenPracticeWidget::userInput()
     return QVariant(m_ui->answerEdit->text());
 }
 
-void WrittenPracticeWidget::updateDisplay()
+void WrittenPracticeWidget::setQuestion(const QVariant& question)
+{
+    m_ui->questionLabel->setText(question.toString());
+}
+
+void WrittenPracticeWidget::showQuestion()
 {
     kDebug() << "update display";
-    if (m_backend->acceptUserInput()) {
-        m_ui->answerEdit->setEnabled(true);
-        m_ui->answerEdit->clear();
-        m_ui->questionLabel->setText(m_backend->question().toString());
-    } else {
-        m_ui->answerEdit->setEnabled(false);
-        m_ui->solutionLabel->setText(m_backend->solution().toString());
-    }
+    m_ui->answerEdit->setEnabled(true);
+    m_ui->answerEdit->clear();
+}
+
+void WrittenPracticeWidget::showSolution()
+{
+    m_ui->answerEdit->setEnabled(false);
 }
 
 #include "writtenpracticewidget.moc"

@@ -26,21 +26,21 @@ class AbstractModeWidget : public QWidget
     Q_OBJECT
 
 public:
-    AbstractModeWidget(AbstractBackend *backend, QWidget* parent = 0);
+    AbstractModeWidget(QWidget* parent = 0);
     virtual ~AbstractModeWidget() {}
     
+    virtual void setQuestion(const QVariant& question) = 0;
     virtual QVariant userInput() = 0;
 
 public slots:
-    virtual void updateDisplay() = 0;
+    virtual void showQuestion() = 0;
+    virtual void showSolution() = 0;
 
 signals:
     void continueAction();
     void hintAction();
     void skipAction();
 
-protected:
-    AbstractBackend *m_backend; 
 };
 
 }

@@ -14,6 +14,8 @@
 
 #include "writtenbackendmode.h"
 
+#include "defaultbackend.h"
+
 using namespace Practice;
 
 qreal WrittenBackendMode::verifyAnswer(const QVariant& answer)
@@ -27,11 +29,11 @@ qreal WrittenBackendMode::verifyAnswer(const QVariant& answer)
 
 QVariant WrittenBackendMode::solution()
 {
-    return m_current->entry()->translation(m_options.languageTo())->text();
+    //return m_current->entry()->translation(options()->languageTo())->text();
 }
 
 QVariant WrittenBackendMode::question()
 {
-    return m_current->entry()->translation(m_options.languageFrom())->text();
+    //return m_current->entry()->translation(options()->languageFrom())->text();
 }
 

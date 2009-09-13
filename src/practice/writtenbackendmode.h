@@ -21,8 +21,10 @@ namespace Practice {
 
 class WrittenBackendMode : public AbstractBackendMode
 {
+    Q_OBJECT
 public:
-    WrittenBackendMode(const PracticeOptions& options) : AbstractBackendMode(options) {}
+    WrittenBackendMode(AbstractFrontend *frontend, QObject *parent) : AbstractBackendMode(frontend, parent) {}
+    
     virtual qreal verifyAnswer(const QVariant& answer);
     virtual QVariant solution();
     virtual QVariant question();

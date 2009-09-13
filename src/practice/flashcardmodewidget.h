@@ -29,11 +29,14 @@ class FlashCardModeWidget: public AbstractModeWidget
     Q_OBJECT
     
 public:
-    FlashCardModeWidget(AbstractBackend *backend, QWidget *parent = 0);
+    FlashCardModeWidget(QWidget *parent = 0);
     virtual QVariant userInput();
     
+    virtual void setQuestion(const QVariant& question);
+    
 public Q_SLOTS:
-    virtual void updateDisplay();
+    virtual void showQuestion();
+    virtual void showSolution();
     virtual void continueClicked();
     
 private:

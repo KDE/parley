@@ -15,10 +15,10 @@
 
 using namespace Practice;
 
-AbstractBackend::AbstractBackend(QObject *parent)
+AbstractBackend::AbstractBackend(AbstractFrontend *frontend, QObject* parent)
     : QObject(parent)
 {
-
+    m_frontend = frontend;
 }
 
 #include "abstractbackend.moc"

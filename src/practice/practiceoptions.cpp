@@ -42,11 +42,11 @@ void PracticeOptions::loadPreferences()
         case Prefs::EnumTestType::ParaphraseTest:
     */
     
-    m_modes.append(AbstractBackend::FlashCard);
+    m_modes.append(AbstractFrontend::FlashCard);
    // m_modes.append(AbstractBackend::Written);
 }
 
-QList<AbstractBackend::Mode> PracticeOptions::modes()
+QList<AbstractFrontend::Mode> PracticeOptions::modes()
 {
     return m_modes;
 }

@@ -15,7 +15,7 @@
 #ifndef PRACTICEOPTIONS_H
 #define PRACTICEOPTIONS_H
 
-#include "abstractbackend.h"
+#include "abstractfrontend.h"
 
 namespace Practice {
     
@@ -27,7 +27,7 @@ public:
     int languageFrom() {return m_languageFrom;}
     int languageTo() {return m_languageTo;}
     
-    QList<AbstractBackend::Mode> modes();
+    QList<AbstractFrontend::Mode> modes();
     
 private:
     void loadPreferences();
@@ -35,7 +35,7 @@ private:
     int m_languageFrom;
     int m_languageTo;
     
-    QList<AbstractBackend::Mode> m_modes;
+    QList<AbstractFrontend::Mode> m_modes;
     
 };
 }

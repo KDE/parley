@@ -30,8 +30,8 @@ public:
 
 using namespace Practice;
 
-GuiFrontend::GuiFrontend(AbstractBackend* backend, QObject* parent)
-    : AbstractFrontend(backend, parent), m_centralWidget(0), m_backend(backend)
+GuiFrontend::GuiFrontend(QObject* parent)
+    : AbstractFrontend(parent), m_centralWidget(0)
 {
     m_mainWindow = new MainWindow();
     QWidget* centralWidget = new QWidget(m_mainWindow);
@@ -39,13 +39,6 @@ GuiFrontend::GuiFrontend(AbstractBackend* backend, QObject* parent)
     m_ui = new Ui::PracticeMainWindow();
     m_ui->setupUi(centralWidget);
     m_ui->centralPracticeWidget->setLayout(new QHBoxLayout(m_mainWindow));
-
-    connect(backend, SIGNAL(modeChanged(AbstractBackend::Mode)), this, SLOT(setCentralWidget(AbstractBackend::Mode)));
-    connect(backend, SIGNAL(updateDisplay()), this, SLOT(updateDisplay()));
-    
-    connect(this, SIGNAL(continueAction()), backend, SLOT(continueAction()));
-    connect(this, SIGNAL(hintAction()), backend, SLOT(hintAction()));
-    connect(this, SIGNAL(skipAction()), backend, SLOT(skipAction()));
 
 }
 
@@ -59,24 +52,24 @@ KXmlGuiWindow* GuiFrontend::getWindow()
     return m_mainWindow;
 }
 
-void GuiFrontend::setCentralWidget(AbstractBackend::Mode mode)
+void GuiFrontend::setMode(Mode mode)
 {
     kDebug() << "setCentralWidget!";
     AbstractModeWidget *newWidget = 0;
     switch(mode) {
-        case AbstractBackend::Written:
+        case Written:
             if (/*m_centralWidget->metaObject()->className() == QLatin1String("WrittenPracticeWidget")*/false) {
                 kDebug() << "Written practice widget is already the central widget";
                 break;
             }
-            newWidget = new WrittenPracticeWidget(m_backend, m_mainWindow);
+            newWidget = new WrittenPracticeWidget(m_mainWindow);
             break;
-        case AbstractBackend::MultipleChoice:
+        case MultipleChoice:
             break;
-        case AbstractBackend::FlashCard:
-            newWidget = new FlashCardModeWidget(m_backend, m_mainWindow);
+        case FlashCard:
+            newWidget = new FlashCardModeWidget(m_mainWindow);
             break;
-        case AbstractBackend::MixedLetters:
+        case MixedLetters:
             break;
     }
     if (newWidget) {
@@ -86,17 +79,28 @@ void GuiFrontend::setCentralWidget(AbstractBackend::Mode mode)
     }
 }
 
-void GuiFrontend::updateDisplay()
-{
-    if (m_centralWidget) {
-        m_centralWidget->updateDisplay();
-    }
 
-    // update lesson label
-    m_ui->lessonLabel->setText(i18nc("Display of the current lesson during practice", "Lesson: %1", m_backend->lessonName()));
+void GuiFrontend::setLesson(const QString& lessonName)
+{
+    m_ui->lessonLabel->setText(i18nc("Display of the current lesson during practice", "Lesson: %1", lessonName));
+}
+
+void GuiFrontend::showQuestion()
+{
+
+    m_centralWidget->showQuestion();
+/*
     // update progress bar
     m_ui->totalProgress->setMaximum(m_backend->totalEntryCount());
     m_ui->totalProgress->setValue(m_backend->practicedEntryCount());
+    */
 }
+
+
+void GuiFrontend::showSolution()
+{
+    m_centralWidget->showSolution();
+}
+
 
 #include "guifrontend.moc"

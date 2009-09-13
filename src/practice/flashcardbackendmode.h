@@ -21,11 +21,22 @@ namespace Practice {
 
 class FlashCardBackendMode : public AbstractBackendMode
 {
+    Q_OBJECT
+    
 public:
-    FlashCardBackendMode(const PracticeOptions& options) : AbstractBackendMode(options) {}
+    FlashCardBackendMode(AbstractFrontend *frontend, QObject *parent) : AbstractBackendMode(frontend, parent) {}
+    
+    virtual void setTestEntry(TestEntry* current);
+    
     virtual qreal verifyAnswer ( const QVariant& answer );
     virtual QVariant solution();
     virtual QVariant question();
+
+public Q_SLOTS:
+    virtual void continueAction();
+
+private:
+    bool m_solutionVisible;
 };
 
 }

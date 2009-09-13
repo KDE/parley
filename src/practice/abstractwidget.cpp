@@ -16,11 +16,12 @@
 
 using namespace Practice;
 
-AbstractModeWidget::AbstractModeWidget(AbstractBackend *backend, QWidget* parent)
+AbstractModeWidget::AbstractModeWidget(QWidget* parent)
     : QWidget(parent)
-    , m_backend(backend)
 {
+    /*
     connect(this, SIGNAL(continueAction()), backend, SLOT(continueAction()));
     connect(this, SIGNAL(hintAction()), backend, SLOT(hintAction()));
     connect(this, SIGNAL(skipAction()), backend, SLOT(skipAction()));
+    */
 }

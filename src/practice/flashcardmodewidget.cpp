@@ -18,24 +18,37 @@
 using namespace Practice;
 
 
-FlashCardModeWidget::FlashCardModeWidget ( AbstractBackend* backend, QWidget* parent )
-    : AbstractModeWidget ( backend, parent )
+FlashCardModeWidget::FlashCardModeWidget (QWidget* parent )
+    : AbstractModeWidget (parent)
 {
     m_ui = new Ui::FlashCardPracticeWidget();
     m_ui->setupUi(this);
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SLOT(continueClicked()));
 }
 
-
-void FlashCardModeWidget::updateDisplay()
+void FlashCardModeWidget::showQuestion()
 {
-    m_ui->questionLabel->setText(m_backend->question().toString());
-    m_ui->solutionLabel->setText(m_backend->solution().toString());
+    
+    m_ui->solutionLabel->setHidden(true);
+    m_ui->ratingStack->setCurrentIndex(0);
 }
+
+void FlashCardModeWidget::setQuestion(const QVariant& question)
+{
+    m_ui->questionLabel->setText(question.toString());
+}
+
+
+void FlashCardModeWidget::showSolution()
+{
+    m_ui->solutionLabel->setHidden(false);
+    m_ui->ratingStack->setCurrentIndex(1);
+}
+
 
 QVariant FlashCardModeWidget::userInput()
 {
-    return QVariant();
+    return QVariant(m_ui->easyButton->isChecked());
 }
 
 void Practice::FlashCardModeWidget::continueClicked()
