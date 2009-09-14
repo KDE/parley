@@ -32,6 +32,7 @@ GuiFrontend::GuiFrontend(QObject* parent)
     
     connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SLOT(answerLaterButtonClicked()));
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SLOT(continueButtonClicked()));
+    connect(m_ui->correctButton, SIGNAL(toggled(bool)), this, SLOT(resultRadioButtonsChanged()));
     
     kDebug() << "Created GuiFrontend";
 }
@@ -135,9 +136,15 @@ void GuiFrontend::setResultState(ResultState resultState)
         break;
     case AbstractFrontend::AnswerCorrect:
         m_ui->statusImageLabel->setText(QChar(0x2713));
+        if(!m_ui->correctButton->isChecked()) {
+            m_ui->continueButton->setChecked(true);
+        }
         break;
     case AbstractFrontend::AnswerWrong:
         m_ui->statusImageLabel->setText(QChar(0x2717));
+        if(!m_ui->wrongButton->isChecked()) {
+            m_ui->wrongButton->setChecked(true);
+        }
         break;
     }
 
@@ -154,6 +161,15 @@ void GuiFrontend::continueButtonClicked()
     kDebug() << "cont";
     emit signalContinueButton();
     
+}
+
+void GuiFrontend::resultRadioButtonsChanged()
+{
+    if(m_ui->correctButton->isChecked()) {
+        setResultState(AnswerCorrect);
+    } else {
+        setResultState(AnswerWrong);
+    }
 }
 
 #include "guifrontend.moc"

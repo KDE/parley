@@ -57,6 +57,7 @@ public Q_SLOTS:
 private Q_SLOTS:
     void answerLaterButtonClicked();
     void continueButtonClicked();
+    void resultRadioButtonsChanged();
    
 private:
     PracticeMainWindow* m_mainWindow;
