@@ -19,10 +19,12 @@
 #include "writtenbackendmode.h"
 #include "flashcardbackendmode.h"
 
-
 #include "practiceold/testentrymanager.h"
 #include "practiceold/testentry.h"
 #include "practiceoptions.h"
+
+#include "abstractfrontend.h"
+#include "guifrontend.h"
 
 namespace Practice {
 
@@ -34,21 +36,22 @@ public:
     DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, const PracticeOptions& options, QObject* parent = 0);
     ~DefaultBackend();
     
-    PracticeOptions *options();
-    
-public slots:    
+public Q_SLOTS:    
     void startPractice();
     void createPracticeMode();
 
     void nextEntry();
     
+    void backendContinueAction();
+    void skipWord();
+    
 private:
-    TestEntryManager m_testEntryManager;
     TestEntry* m_current;
+    AbstractFrontend* m_frontend;
     PracticeOptions m_options;
+    TestEntryManager m_testEntryManager;
     AbstractFrontend::Mode m_currentMode;
     AbstractBackendMode* m_mode;
-    AbstractFrontend* m_frontend;
 };
 
 }

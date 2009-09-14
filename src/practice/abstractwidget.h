@@ -15,7 +15,6 @@
 #define PRACTICE_ABSTRACTWIDGET_H
 
 #include <QtGui/QWidget>
-#include "defaultbackend.h"
 
 class QVariant;
 
@@ -37,7 +36,6 @@ public slots:
     virtual void showQuestion() = 0;
     virtual void showSolution() = 0;
     
-
 signals:
     void continueAction();
     void hintAction();

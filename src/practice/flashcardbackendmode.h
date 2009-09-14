@@ -27,11 +27,6 @@ public:
     FlashCardBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend, QObject *parent);
     
     virtual void setTestEntry(TestEntry* current);
-    
-    virtual qreal verifyAnswer ( const QVariant& answer );
-
-public Q_SLOTS:
-    virtual void continueAction();
 
 private:
     bool m_solutionVisible;

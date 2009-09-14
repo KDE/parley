@@ -49,7 +49,7 @@ public:
     virtual void setSolutionImage(const QPixmap& img) = 0;
     virtual void setLessonName(const QString& lesson) = 0;
     
-public slots:
+public Q_SLOTS:
     /** enter question mode - the user is asked to provide the solution */
     virtual void showQuestion() = 0;
     /** enter show solution mode - the solution is shown */
@@ -57,10 +57,11 @@ public slots:
     /** switch between different modes such as written, flash card, etc */
     virtual void setMode(Mode mode) = 0;
 
-signals:
-    void continueAction();
+Q_SIGNALS:
+    void signalContinueButton();
     void hintAction();
     void skipAction();
+    
 };
 
 }

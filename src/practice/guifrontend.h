@@ -14,20 +14,20 @@
 #ifndef PRACTICE_GUIFRONTEND_H
 #define PRACTICE_GUIFRONTEND_H
 
-#include "abstractfrontend.h"
 #include "abstractwidget.h"
+#include "abstractfrontend.h"
 
-class KXmlGuiWindow;
+#include <KXmlGuiWindow>
+
+#include "practicemainwindow.h"
+
 namespace Ui {
-class PracticeMainWindow;
+    class PracticeMainWindow;
 }
 
 namespace Practice {
 
-class MainWindow;
-class AbstractModeWidget;
-
-class GuiFrontend : public Practice::AbstractFrontend
+class GuiFrontend : public AbstractFrontend
 {
     Q_OBJECT
 
@@ -35,28 +35,29 @@ public:
     GuiFrontend(QObject* parent = 0);
     virtual QVariant userInput();
     KXmlGuiWindow* getWindow();
-    
-    
-    virtual void setFinishedWordsTotalWords(int finished, int total);
-    
+
     virtual void setHint(const QVariant& hint);
-    
+       
+    virtual void setQuestion(const QVariant& question);
     virtual void setQuestionImage(const QPixmap& img);
     virtual void setSolution(const QVariant& solution);
     virtual void setSolutionImage(const QPixmap& img);
-        
+
     /// update lesson label
     void setLessonName(const QString& lessonName);
+    virtual void setFinishedWordsTotalWords(int finished, int total);
     
-    virtual void setQuestion(const QVariant& question) { m_centralWidget->setQuestion(question); }
-    
-public slots:
+public Q_SLOTS:
     void setMode(Mode mode);
     void showQuestion();
     void showSolution();
 
+private Q_SLOTS:
+    void answerLaterButtonClicked();
+    void continueButtonClicked();
+   
 private:
-    MainWindow* m_mainWindow;
+    PracticeMainWindow* m_mainWindow;
     Ui::PracticeMainWindow* m_ui;
     AbstractModeWidget* m_centralWidget;
 };

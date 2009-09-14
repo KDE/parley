@@ -22,25 +22,16 @@ using namespace Practice;
 WrittenBackendMode::WrittenBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent)
 :AbstractBackendMode(practiceOptions, frontend, parent)
 {
+    kDebug() << "Created WrittenBackendMode";
 }
 
-
-qreal WrittenBackendMode::verifyAnswer(const QVariant& answer)
+void WrittenBackendMode::setTestEntry(TestEntry* current)
 {
-    // TODO: be more clever about this...
-    if (answer == solution()) {
-        return 1.0;
-    }
-    return 0.0;
+    Practice::AbstractBackendMode::setTestEntry(current);
+    
+    m_frontend->setQuestion(m_current->entry()->translation(m_practiceOptions.languageFrom())->text());
+    m_frontend->setQuestion(m_current->entry()->translation(m_practiceOptions.languageTo())->text());
+    m_frontend->showQuestion();
 }
 
-QVariant WrittenBackendMode::solution()
-{
-    return m_current->entry()->translation(m_practiceOptions.languageTo())->text();
-}
-
-QVariant WrittenBackendMode::question()
-{
-    return m_current->entry()->translation(m_practiceOptions.languageFrom())->text();
-}
 

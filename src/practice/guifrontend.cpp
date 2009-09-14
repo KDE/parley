@@ -14,32 +14,25 @@
 #include "guifrontend.h"
 #include "ui_practice_mainwindow.h"
 
-#include <kxmlguiwindow.h>
 #include <kdebug.h>
 #include "writtenpracticewidget.h"
 #include "flashcardmodewidget.h"
-
-namespace Practice {
-class MainWindow : public KXmlGuiWindow
-{
-public:
-    MainWindow(QWidget* parent = 0, Qt::WindowFlags f = 0)
-        : KXmlGuiWindow(parent, f) {};
-};
-}
 
 using namespace Practice;
 
 GuiFrontend::GuiFrontend(QObject* parent)
     : AbstractFrontend(parent), m_centralWidget(0)
 {
-    m_mainWindow = new MainWindow();
+    m_mainWindow = new PracticeMainWindow();
     QWidget* centralWidget = new QWidget(m_mainWindow);
     m_mainWindow->setCentralWidget(centralWidget);
     m_ui = new Ui::PracticeMainWindow();
     m_ui->setupUi(centralWidget);
     m_ui->centralPracticeWidget->setLayout(new QHBoxLayout(m_mainWindow));
-
+    
+    connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SLOT(answerLaterButtonClicked()));
+    
+    kDebug() << "Created GuiFrontend";
 }
 
 QVariant GuiFrontend::userInput()
@@ -76,9 +69,10 @@ void GuiFrontend::setMode(Mode mode)
         m_ui->centralPracticeWidget->layout()->addWidget(newWidget);
         delete m_centralWidget;
         m_centralWidget = newWidget;
+        connect(m_centralWidget, SIGNAL(continueAction()), this, SLOT(continueButtonClicked()));
+        kDebug() << "set up frontend";
     }
 }
-
 
 void GuiFrontend::setLessonName(const QString& lessonName)
 {
@@ -103,7 +97,6 @@ void GuiFrontend::setFinishedWordsTotalWords(int finished, int total)
     m_ui->totalProgress->setToolTip(i18n("You answered %1 of a total of %2 words.\nYou are %3% done.", finished, total, finished/total*100));
 }
 
-
 void GuiFrontend::setQuestionImage(const QPixmap& img)
 {
     m_ui->imageLabel->setPixmap(img);
@@ -112,6 +105,11 @@ void GuiFrontend::setQuestionImage(const QPixmap& img)
 void GuiFrontend::setHint(const QVariant& hint)
 {
     // TODO
+}
+
+void GuiFrontend::setQuestion(const QVariant& question)
+{
+    m_centralWidget->setQuestion(question);
 }
 
 void GuiFrontend::setSolution(const QVariant& solution)
@@ -124,5 +122,19 @@ void GuiFrontend::setSolutionImage(const QPixmap& img)
     // TODO
 }
 
+void GuiFrontend::answerLaterButtonClicked()
+{
+    kDebug() << "later";
+}
+
+void GuiFrontend::continueButtonClicked()
+{
+    kDebug() << "cont";
+    
+    connect(this, SIGNAL(signalContinueButton()), this, SLOT(answerLaterButtonClicked()));
+    
+    emit signalContinueButton();
+    
+}
 
 #include "guifrontend.moc"

@@ -25,9 +25,9 @@ class WrittenBackendMode : public AbstractBackendMode
 public:
     WrittenBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend *frontend, QObject *parent);
     
-    virtual qreal verifyAnswer(const QVariant& answer);
-    virtual QVariant solution();
-    virtual QVariant question();
+    virtual void setTestEntry(TestEntry* current);
+
+
 };
 
 }

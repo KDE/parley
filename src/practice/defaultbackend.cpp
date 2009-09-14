@@ -20,7 +20,7 @@
 
 using namespace Practice;
 
-DefaultBackend::DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, const PracticeOptions& options, QObject* parent)
+DefaultBackend::DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, const Practice::PracticeOptions& options, QObject* parent)
     : QObject(parent)
     , m_frontend(frontend)
     , m_options(options)
@@ -38,8 +38,7 @@ DefaultBackend::~DefaultBackend()
 void DefaultBackend::startPractice()
 {
     createPracticeMode();
-    kDebug() << "start: " << m_options.languageFrom() << m_options.languageTo();
-
+    kDebug() << "start practice ... nextEntry";
     nextEntry();
 }
 
@@ -49,9 +48,9 @@ void DefaultBackend::createPracticeMode()
     
     QList<AbstractFrontend::Mode> modes = m_options.modes();
     // TODO: mode needs to change at some point...
-    m_currentMode = modes.at(0);
+    m_currentMode = AbstractFrontend::FlashCard; //modes.at(0);
     m_frontend->setMode(m_currentMode);
-    
+    kDebug() << "practice mode: " << m_currentMode;
     
     switch(m_currentMode) {
         case AbstractFrontend::Written:
@@ -66,14 +65,10 @@ void DefaultBackend::createPracticeMode()
             Q_ASSERT("Implement selected Mode" == 0);
             break;
     }
-    kDebug() << "practice mode: " << m_currentMode;
 
     connect(m_mode, SIGNAL(nextEntry()), this, SLOT(nextEntry()));
-}
-
-PracticeOptions* DefaultBackend::options()
-{
-    return &m_options;
+    
+    connect(m_frontend, SIGNAL(signalContinueButton()), this, SLOT(backendContinueAction()));
 }
 
 void DefaultBackend::nextEntry()
@@ -86,6 +81,15 @@ void DefaultBackend::nextEntry()
     m_frontend->setLessonName(m_current->entry()->lesson()->name());
 }
 
+void DefaultBackend::backendContinueAction()
+{
+    kDebug() << "cont";
+    //m_mode->continueAction(); 
+}
 
+void DefaultBackend::skipWord()
+{
+    kDebug() << "YAY - SKIP";
+}
 
 #include "defaultbackend.moc"

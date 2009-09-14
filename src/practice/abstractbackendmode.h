@@ -31,9 +31,6 @@ public:
     virtual ~AbstractBackendMode() {}
     virtual void setTestEntry(TestEntry* current) { m_current = current; }
 
-    virtual qreal verifyAnswer(const QVariant& answer) = 0;
-    void continueAction();
-    
 Q_SIGNALS:
     void nextEntry();
     

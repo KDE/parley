@@ -30,6 +30,7 @@ WrittenPracticeWidget::WrittenPracticeWidget(QWidget *parent)
     m_ui = new Ui::WrittenPracticeWidget();
     m_ui->setupUi(this);
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SLOT(continueClicked()));
+    kDebug() << "Created WrittenPracticeWidget";
 }
 
 void WrittenPracticeWidget::continueClicked()

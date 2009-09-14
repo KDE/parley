@@ -15,6 +15,8 @@
 
 #include "ui_practice_widget_flashcard.h"
 
+#include <KDebug>
+
 using namespace Practice;
 
 
@@ -57,6 +59,7 @@ QVariant FlashCardModeWidget::userInput()
 
 void Practice::FlashCardModeWidget::continueClicked()
 {
+    kDebug() << "cont";
     emit continueAction();
 }
 

@@ -14,14 +14,16 @@
 
 #include "flashcardbackendmode.h"
 #include "defaultbackend.h"
- 
+
+#include <KDebug>
+
 using namespace Practice;
  
  
 FlashCardBackendMode::FlashCardBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent)
 :AbstractBackendMode(practiceOptions, frontend, parent)
 {
-    connect(frontend, SIGNAL(continueAction()), this, SLOT(continueAction()));
+    kDebug() << "Created FlashCardBackendMode";
 }
 
 void FlashCardBackendMode::setTestEntry(TestEntry* current)
@@ -34,20 +36,18 @@ void FlashCardBackendMode::setTestEntry(TestEntry* current)
     m_frontend->showQuestion();
 }
 
-qreal FlashCardBackendMode::verifyAnswer ( const QVariant& answer )
-{
-    return 0.0;
-}
-
+/*
 void FlashCardBackendMode::continueAction()
 {
+    kDebug() << "cont";
     if (m_solutionVisible) {
         // TODO: evaluate the grade
         kDebug() << "Answer was " << m_frontend->userInput();
-        emit nextEntry();
+        //emit nextEntry();
         return;
     }
     m_frontend->showSolution();
 }
+*/
 
 #include "flashcardbackendmode.moc"
