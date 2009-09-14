@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_13">
+  <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="lessonLabel">
      <property name="text">
@@ -38,8 +38,8 @@
     </spacer>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_23">
-     <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
       <spacer name="horizontalSpacer_12">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -52,7 +52,7 @@
        </property>
       </spacer>
      </item>
-     <item>
+     <item row="0" column="1">
       <widget class="QGroupBox" name="groupBox_5">
        <property name="title">
         <string/>
@@ -92,10 +92,7 @@
        </layout>
       </widget>
      </item>
-     <item>
-      <layout class="QVBoxLayout" name="verticalLayout_9"/>
-     </item>
-     <item>
+     <item row="0" column="2">
       <spacer name="horizontalSpacer_13">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -108,17 +105,7 @@
        </property>
       </spacer>
      </item>
-     <item>
-      <widget class="QWidget" name="centralPracticeWidget" native="true">
-       <property name="minimumSize">
-        <size>
-         <width>200</width>
-         <height>100</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item>
+     <item row="0" column="4">
       <spacer name="horizontalSpacer_14">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -131,7 +118,7 @@
        </property>
       </spacer>
      </item>
-     <item>
+     <item row="0" column="5">
       <layout class="QVBoxLayout" name="verticalLayout_11">
        <item>
         <widget class="QGroupBox" name="groupBox_6">
@@ -165,13 +152,6 @@
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="countAsRightCheckBox">
-            <property name="text">
-             <string>Count as right</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="answerLaterButton">
             <property name="text">
              <string>Answer Later</string>
@@ -190,7 +170,7 @@
        </item>
       </layout>
      </item>
-     <item>
+     <item row="0" column="6">
       <spacer name="horizontalSpacer_15">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -202,6 +182,54 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item row="2" column="3">
+      <widget class="QPushButton" name="continueButton">
+       <property name="text">
+        <string>Continue</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QStackedWidget" name="ratingStack">
+       <property name="currentIndex">
+        <number>1</number>
+       </property>
+       <widget class="QWidget" name="page">
+        <layout class="QHBoxLayout" name="horizontalLayout_2"/>
+       </widget>
+       <widget class="QWidget" name="page_2">
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QRadioButton" name="easyButton">
+           <property name="text">
+            <string>Easy</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="difficultButton">
+           <property name="text">
+            <string>Difficult</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QWidget" name="centralPracticeWidget" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>100</height>
+        </size>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

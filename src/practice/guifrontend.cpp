@@ -31,6 +31,7 @@ GuiFrontend::GuiFrontend(QObject* parent)
     m_ui->centralPracticeWidget->setLayout(new QHBoxLayout(m_mainWindow));
     
     connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SLOT(answerLaterButtonClicked()));
+    connect(m_ui->continueButton, SIGNAL(clicked()), this, SLOT(continueButtonClicked()));
     
     kDebug() << "Created GuiFrontend";
 }
@@ -81,11 +82,13 @@ void GuiFrontend::setLessonName(const QString& lessonName)
 
 void GuiFrontend::showQuestion()
 {
+    m_ui->ratingStack->setCurrentIndex(0);
     m_centralWidget->showQuestion();
 }
 
 void GuiFrontend::showSolution()
 {
+    m_ui->ratingStack->setCurrentIndex(1);
     m_centralWidget->showSolution();
 }
 

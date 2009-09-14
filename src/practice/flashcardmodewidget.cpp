@@ -25,7 +25,6 @@ FlashCardModeWidget::FlashCardModeWidget (QWidget* parent )
 {
     m_ui = new Ui::FlashCardPracticeWidget();
     m_ui->setupUi(this);
-    connect(m_ui->continueButton, SIGNAL(clicked()), this, SLOT(continueClicked()));
 }
 
 void FlashCardModeWidget::setQuestion(const QVariant& question)
@@ -36,7 +35,6 @@ void FlashCardModeWidget::setQuestion(const QVariant& question)
 void FlashCardModeWidget::showQuestion()
 {
     m_ui->solutionLabel->setHidden(true);
-    m_ui->ratingStack->setCurrentIndex(0);
 }
 
 void FlashCardModeWidget::setSolution(const QVariant& question)
@@ -47,19 +45,11 @@ void FlashCardModeWidget::setSolution(const QVariant& question)
 void FlashCardModeWidget::showSolution()
 {
     m_ui->solutionLabel->setHidden(false);
-    m_ui->ratingStack->setCurrentIndex(1);
 }
-
 
 QVariant FlashCardModeWidget::userInput()
 {
-    return QVariant(m_ui->easyButton->isChecked());
-}
-
-void Practice::FlashCardModeWidget::continueClicked()
-{
-    kDebug() << "cont";
-    emit continueAction();
+    return QVariant();
 }
 
 #include "flashcardmodewidget.moc"

@@ -38,7 +38,6 @@ public:
 public Q_SLOTS:
     virtual void showQuestion();
     virtual void showSolution();
-    virtual void continueClicked();
     
 private:
     Ui::FlashCardPracticeWidget* m_ui;
