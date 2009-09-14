@@ -29,7 +29,7 @@ GuiFrontend::GuiFrontend(QObject* parent)
     m_ui = new Ui::PracticeMainWindow();
     m_ui->setupUi(centralWidget);
     m_ui->centralPracticeWidget->setLayout(new QHBoxLayout(m_mainWindow));
-    
+
     connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SLOT(answerLaterButtonClicked()));
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SLOT(continueButtonClicked()));
     connect(m_ui->correctButton, SIGNAL(toggled(bool)), this, SLOT(resultRadioButtonsChanged()));
@@ -137,7 +137,7 @@ void GuiFrontend::setResultState(ResultState resultState)
     case AbstractFrontend::AnswerCorrect:
         m_ui->statusImageLabel->setText(QChar(0x2713));
         if(!m_ui->correctButton->isChecked()) {
-            m_ui->continueButton->setChecked(true);
+            m_ui->correctButton->setChecked(true);
         }
         break;
     case AbstractFrontend::AnswerWrong:
