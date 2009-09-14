@@ -56,7 +56,7 @@ ParleyMainWindow* ParleyMainWindow::instance()
 
 ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
     :KXmlGuiWindow(0)
-    ,m_currentComponent(NoComponent)
+    ,m_currentComponent(NoComponent), m_practiceFrontend(0), m_practiceBackend(0)
 {
     s_instance = this;
     m_document = ParleyDocument::instance();
@@ -199,14 +199,15 @@ void ParleyMainWindow::startPractice()
         Component lastComponent = m_currentComponent;
         switchComponent(NoComponent); // unload the last component (could be a practice window)
 //         m_practice = new ParleyPracticeMainWindow(m_document->document(), 0);
-
+        delete m_practiceFrontend;
+        delete m_practiceBackend;
         m_practiceFrontend = new Practice::GuiFrontend(this);
         
         Practice::PracticeOptions options;
-        Practice::DefaultBackend backend(m_practiceFrontend, m_document, options, this);
+        m_practiceBackend = new Practice::DefaultBackend(m_practiceFrontend, m_document, options, this);
         
         switchComponent(PracticeComponent);
-        backend.startPractice();        
+        m_practiceBackend->startPractice();
         
 //         m_practice->show();
 //         if (lastComponent == EditorComponent) {

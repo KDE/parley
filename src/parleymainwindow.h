@@ -32,6 +32,7 @@
 
 namespace Practice {
 class GuiFrontend;
+class DefaultBackend;
 }
 
 class KRecentFilesAction;
@@ -152,6 +153,7 @@ private:
     WelcomeScreen *m_welcomeScreen;
     Editor *m_editor;
     Practice::GuiFrontend *m_practiceFrontend;
+    Practice::DefaultBackend *m_practiceBackend;
 
     KRecentFilesAction* m_recentFilesAction;
 
