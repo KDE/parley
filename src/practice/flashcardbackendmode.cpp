@@ -32,7 +32,7 @@ void FlashCardBackendMode::setTestEntry(TestEntry* current)
     m_solutionVisible = false;
     
     m_frontend->setQuestion(m_current->entry()->translation(m_practiceOptions.languageFrom())->text());
-    m_frontend->setQuestion(m_current->entry()->translation(m_practiceOptions.languageTo())->text());
+    m_frontend->setSolution(m_current->entry()->translation(m_practiceOptions.languageTo())->text());
     m_frontend->showQuestion();
 }
 

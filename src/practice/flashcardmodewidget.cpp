@@ -37,9 +37,9 @@ void FlashCardModeWidget::showQuestion()
     m_ui->solutionLabel->setHidden(true);
 }
 
-void FlashCardModeWidget::setSolution(const QVariant& question)
+void FlashCardModeWidget::setSolution(const QVariant& solution)
 {
-    m_ui->solutionLabel->setText(question.toString());
+    m_ui->solutionLabel->setText(solution.toString());
 }
 
 void FlashCardModeWidget::showSolution()

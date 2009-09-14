@@ -153,6 +153,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="answerLaterButton">
+            <property name="focusPolicy">
+             <enum>Qt::TabFocus</enum>
+            </property>
             <property name="text">
              <string>Answer Later</string>
             </property>
@@ -160,6 +163,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="hintButton">
+            <property name="focusPolicy">
+             <enum>Qt::TabFocus</enum>
+            </property>
             <property name="text">
              <string>Hint</string>
             </property>
@@ -188,12 +194,18 @@
        <property name="text">
         <string>Continue</string>
        </property>
+       <property name="autoDefault">
+        <bool>true</bool>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item row="1" column="3">
       <widget class="QStackedWidget" name="ratingStack">
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="page">
         <layout class="QHBoxLayout" name="horizontalLayout_2"/>
@@ -497,6 +509,13 @@
   <zorder>verticalSpacer_2</zorder>
   <zorder>lessonLabel</zorder>
  </widget>
+ <tabstops>
+  <tabstop>continueButton</tabstop>
+  <tabstop>answerLaterButton</tabstop>
+  <tabstop>hintButton</tabstop>
+  <tabstop>easyButton</tabstop>
+  <tabstop>difficultButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
