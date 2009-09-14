@@ -28,7 +28,6 @@ FlashCardModeWidget::FlashCardModeWidget (QWidget* parent )
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SLOT(continueClicked()));
 }
 
-
 void FlashCardModeWidget::setQuestion(const QVariant& question)
 {
     m_ui->questionLabel->setText(question.toString());

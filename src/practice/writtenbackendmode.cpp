@@ -35,3 +35,8 @@ void WrittenBackendMode::setTestEntry(TestEntry* current)
 }
 
 
+void WrittenBackendMode::continueAction()
+{
+    emit nextEntry();
+}
+

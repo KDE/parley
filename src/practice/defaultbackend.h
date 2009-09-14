@@ -41,10 +41,7 @@ public Q_SLOTS:
     void createPracticeMode();
 
     void nextEntry();
-    
-    void backendContinueAction();
-    void skipWord();
-    
+        
 private:
     TestEntry* m_current;
     AbstractFrontend* m_frontend;

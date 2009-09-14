@@ -30,6 +30,9 @@ public:
     AbstractBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend *frontend, QObject *parent);
     virtual ~AbstractBackendMode() {}
     virtual void setTestEntry(TestEntry* current) { m_current = current; }
+    
+public Q_SLOTS:
+    virtual void continueAction() = 0;
 
 Q_SIGNALS:
     void nextEntry();

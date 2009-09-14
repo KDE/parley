@@ -67,8 +67,7 @@ void DefaultBackend::createPracticeMode()
     }
 
     connect(m_mode, SIGNAL(nextEntry()), this, SLOT(nextEntry()));
-    
-    connect(m_frontend, SIGNAL(signalContinueButton()), this, SLOT(backendContinueAction()));
+    connect(m_frontend, SIGNAL(signalContinueButton()), m_mode, SLOT(continueAction()));
 }
 
 void DefaultBackend::nextEntry()
@@ -79,17 +78,6 @@ void DefaultBackend::nextEntry()
         m_testEntryManager.totalEntryCount() - m_testEntryManager.activeEntryCount(), 
         m_testEntryManager.totalEntryCount());
     m_frontend->setLessonName(m_current->entry()->lesson()->name());
-}
-
-void DefaultBackend::backendContinueAction()
-{
-    kDebug() << "cont";
-    //m_mode->continueAction(); 
-}
-
-void DefaultBackend::skipWord()
-{
-    kDebug() << "YAY - SKIP";
 }
 
 #include "defaultbackend.moc"

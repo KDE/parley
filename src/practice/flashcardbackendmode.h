@@ -28,6 +28,9 @@ public:
     
     virtual void setTestEntry(TestEntry* current);
 
+public Q_SLOTS:
+    virtual void continueAction();
+    
 private:
     bool m_solutionVisible;
 };

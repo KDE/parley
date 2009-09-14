@@ -130,9 +130,6 @@ void GuiFrontend::answerLaterButtonClicked()
 void GuiFrontend::continueButtonClicked()
 {
     kDebug() << "cont";
-    
-    connect(this, SIGNAL(signalContinueButton()), this, SLOT(answerLaterButtonClicked()));
-    
     emit signalContinueButton();
     
 }

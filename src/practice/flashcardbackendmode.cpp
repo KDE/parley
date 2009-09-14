@@ -36,18 +36,18 @@ void FlashCardBackendMode::setTestEntry(TestEntry* current)
     m_frontend->showQuestion();
 }
 
-/*
+
 void FlashCardBackendMode::continueAction()
 {
     kDebug() << "cont";
     if (m_solutionVisible) {
         // TODO: evaluate the grade
         kDebug() << "Answer was " << m_frontend->userInput();
-        //emit nextEntry();
+        emit nextEntry();
         return;
     }
     m_frontend->showSolution();
 }
-*/
+
 
 #include "flashcardbackendmode.moc"
