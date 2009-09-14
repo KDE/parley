@@ -47,6 +47,7 @@ void FlashCardBackendMode::continueAction()
         return;
     }
     m_frontend->showSolution();
+    m_solutionVisible = true;
 }
 
 
