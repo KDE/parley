@@ -30,6 +30,7 @@ GuiFrontend::GuiFrontend(QObject* parent)
     m_ui->setupUi(centralWidget);
     m_ui->centralPracticeWidget->setLayout(new QHBoxLayout(m_mainWindow));
 
+    connect(m_mainWindow, SIGNAL(enterPressed()), m_ui->continueButton, SLOT(animateClick()));
     connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SLOT(answerLaterButtonClicked()));
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SLOT(continueButtonClicked()));
     connect(m_ui->correctButton, SIGNAL(toggled(bool)), this, SLOT(resultRadioButtonsChanged()));

@@ -101,6 +101,7 @@ set(practice_SRCS
     practice/flashcardbackendmode.cpp
     #practice/multiplechoicebackendmode.cpp
     practice/imagewidget.cpp
+    practice/practicemainwindow.cpp
 )
 
 kde4_add_ui_files(practice_SRCS

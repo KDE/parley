@@ -11,28 +11,21 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef PRACTICE_MAINWINDOW_H
-#define PRACTICE_MAINWINDOW_H
+#include "practicemainwindow.h"
 
-#include <KXmlGuiWindow>
-#include <QtGui/QKeyEvent>
+#include <KDebug>
 
-namespace Practice {    
+using namespace Practice;
 
-class PracticeMainWindow : public KXmlGuiWindow
+void PracticeMainWindow::keyPressEvent(QKeyEvent* e)
 {
-    Q_OBJECT
-    public:
-        PracticeMainWindow(QWidget* parent = 0, Qt::WindowFlags f = 0)
-        : KXmlGuiWindow(parent, f) {};
-
-    Q_SIGNALS:
-        void enterPressed();
-
-    protected:
-        virtual void keyPressEvent(QKeyEvent* e);
-};
+    if (e->key() == Qt::Key_Enter || e->key() == Qt::Key_Return) {
+        if (focusWidget()->metaObject()->className() == QLatin1String("QRadioButton")) {
+            emit enterPressed();
+            return;
+        }
+    }
+    KXmlGuiWindow::keyPressEvent(e);
 }
 
-
-#endif
+#include "practicemainwindow.moc"
