@@ -146,6 +146,9 @@
             <property name="pixmap">
              <pixmap>:/newPrefix/dialog-information.png</pixmap>
             </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
             <property name="wordWrap">
              <bool>true</bool>
             </property>
@@ -205,7 +208,7 @@
      <item row="1" column="3">
       <widget class="QStackedWidget" name="ratingStack">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="page">
         <layout class="QHBoxLayout" name="horizontalLayout_2"/>
@@ -213,9 +216,9 @@
        <widget class="QWidget" name="page_2">
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <widget class="QRadioButton" name="easyButton">
+          <widget class="QRadioButton" name="wrongButton">
            <property name="text">
-            <string>Easy</string>
+            <string>I didn't know the answer.</string>
            </property>
            <property name="checked">
             <bool>true</bool>
@@ -223,9 +226,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="difficultButton">
+          <widget class="QRadioButton" name="correctButton">
            <property name="text">
-            <string>Difficult</string>
+            <string>I knew the answer.</string>
            </property>
           </widget>
          </item>
@@ -513,8 +516,8 @@
   <tabstop>continueButton</tabstop>
   <tabstop>answerLaterButton</tabstop>
   <tabstop>hintButton</tabstop>
-  <tabstop>easyButton</tabstop>
-  <tabstop>difficultButton</tabstop>
+  <tabstop>wrongButton</tabstop>
+  <tabstop>correctButton</tabstop>
  </tabstops>
  <resources/>
  <connections/>

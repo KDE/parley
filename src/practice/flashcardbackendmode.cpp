@@ -33,6 +33,7 @@ void FlashCardBackendMode::setTestEntry(TestEntry* current)
     
     m_frontend->setQuestion(m_current->entry()->translation(m_practiceOptions.languageFrom())->text());
     m_frontend->setSolution(m_current->entry()->translation(m_practiceOptions.languageTo())->text());
+    m_frontend->setResultState(AbstractFrontend::QuestionState);
     m_frontend->showQuestion();
 }
 
@@ -46,6 +47,7 @@ void FlashCardBackendMode::continueAction()
         emit nextEntry();
         return;
     }
+    m_frontend->setResultState(AbstractFrontend::AnswerWrong);
     m_frontend->showSolution();
     m_solutionVisible = true;
 }

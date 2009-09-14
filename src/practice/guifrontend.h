@@ -43,6 +43,8 @@ public:
     virtual void setSolution(const QVariant& solution);
     virtual void setSolutionImage(const QPixmap& img);
 
+    virtual void setResultState(ResultState resultState);
+
     /// update lesson label
     void setLessonName(const QString& lessonName);
     virtual void setFinishedWordsTotalWords(int finished, int total);
@@ -60,6 +62,7 @@ private:
     PracticeMainWindow* m_mainWindow;
     Ui::PracticeMainWindow* m_ui;
     AbstractModeWidget* m_centralWidget;
+    ResultState m_resultState;
 };
 
 }

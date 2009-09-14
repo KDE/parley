@@ -125,6 +125,25 @@ void GuiFrontend::setSolutionImage(const QPixmap& img)
     // TODO
 }
 
+void GuiFrontend::setResultState(ResultState resultState)
+{
+    // TODO: temporary text labels instead of graphics
+    m_ui->statusImageLabel->setFont(QFont("", 80, QFont::Bold));
+    switch (resultState) {
+    case AbstractFrontend::QuestionState:
+        m_ui->statusImageLabel->setText("?");
+        break;
+    case AbstractFrontend::AnswerCorrect:
+        m_ui->statusImageLabel->setText(QChar(0x2713));
+        break;
+    case AbstractFrontend::AnswerWrong:
+        m_ui->statusImageLabel->setText(QChar(0x2717));
+        break;
+    }
+
+    m_resultState = resultState;
+}
+
 void GuiFrontend::answerLaterButtonClicked()
 {
     kDebug() << "later";
