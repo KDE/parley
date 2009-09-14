@@ -12,9 +12,9 @@
  ***************************************************************************/
 
 #include "imagewidget.h"
-#include <kdebug.h>
 #include <QtGui/QPainter>
 #include <QtCore/QTimer>
+#include <QtCore/QTimeLine>
 
 using namespace Practice;
 
@@ -24,17 +24,31 @@ ImageWidget::ImageWidget(QWidget *parent)
     m_scaleTimer = new QTimer(this);
     m_scaleTimer->setSingleShot(true);
     m_scaleTimer->setInterval(500);
+
+    m_animation = new QTimeLine(500, this);
+    
     m_scaledPixmapOutOfDate = false;
     connect(m_scaleTimer, SIGNAL(timeout()), this, SLOT(scalePixmap()));
+    connect(m_animation, SIGNAL(valueChanged(qreal)), this, SLOT(update()));
+    connect(m_animation, SIGNAL(finished()), this, SLOT(animationFinished()));
 }
 
 void ImageWidget::setPixmap(const QPixmap& pixmap)
 {
+    if (m_animation->state() == QTimeLine::Running) {
+        m_animation->stop();
+        animationFinished();
+    }
+    m_animationPixmap = m_scaledPixmap;
     m_originalPixmap = pixmap;
     m_scaledPixmap = QPixmap();
     m_scaledBackupPixmap = QPixmap();
     m_scaledPixmapOutOfDate = true;
-    update();
+    if (!m_scaling) {
+        m_scaledPixmap = pixmap;
+    }
+    scalePixmap(true);
+    m_animation->start();
 }
 
 void ImageWidget::setScalingEnabled(bool scaling)
@@ -50,19 +64,30 @@ void ImageWidget::paintEvent(QPaintEvent* e)
         m_scaleTimer->start();
         scalePixmap(false);
     }
-    if (m_scaling) {
-        int x = (size().width() - m_scaledPixmap.width()) / 2;
-        int y = (size().height() - m_scaledPixmap.height()) / 2;
-        painter.drawPixmap(x, y, m_scaledPixmap);
-    } else {
-        painter.drawPixmap(0, 0, m_originalPixmap);
+    if (m_animation->state() == QTimeLine::Running) {
+        if(m_scaledPixmap.isNull()) { // special case: fading to null pixmap
+            painter.setOpacity(1-m_animation->currentValue());
+        }
+        int x = (size().width() - m_animationPixmap.width()) / 2;
+        int y = (size().height() - m_animationPixmap.height()) / 2;
+        painter.drawPixmap(x, y, m_animationPixmap);
+        painter.setOpacity(m_animation->currentValue());
     }
+
+    int x = (size().width() - m_scaledPixmap.width()) / 2;
+    int y = (size().height() - m_scaledPixmap.height()) / 2;
+    painter.drawPixmap(x, y, m_scaledPixmap);
 }
 
 void ImageWidget::resizeEvent(QResizeEvent* e)
 {
     if (!m_scaledPixmapOutOfDate) {
         m_scaledBackupPixmap = m_scaledPixmap;
+    }
+    // stop animations when resizing
+    if (m_animation->state() == QTimeLine::Running) {
+        m_animation->stop();
+        animationFinished();
     }
     m_scaledPixmapOutOfDate = true;
     QWidget::resizeEvent(e);
@@ -101,6 +126,11 @@ void ImageWidget::scalePixmap(bool smooth)
         }
         m_scaledPixmapOutOfDate = true;
     }
+}
+
+void ImageWidget::animationFinished()
+{
+    m_animationPixmap = QPixmap();
 }
 
 #include "imagewidget.moc"

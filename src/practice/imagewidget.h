@@ -16,6 +16,7 @@
 
 #include <QtGui/QWidget>
 
+class QTimeLine;
 
 namespace Practice {
 
@@ -35,15 +36,18 @@ protected:
 
 private Q_SLOTS:
     void scalePixmap(bool smooth = true);
+    void animationFinished();
 
 private:
     bool m_scaling;
     QPixmap m_originalPixmap;
     QPixmap m_scaledPixmap;
     QPixmap m_scaledBackupPixmap;
+    QPixmap m_animationPixmap;
     bool m_scaledPixmapOutOfDate;
     /// Timer used to delay the smooth scaling
     QTimer *m_scaleTimer;
+    QTimeLine *m_animation;
 };
 
 }
