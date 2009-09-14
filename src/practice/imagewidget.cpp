@@ -19,14 +19,14 @@
 using namespace Practice;
 
 ImageWidget::ImageWidget(QWidget *parent)
-    : QWidget(parent), m_scaling(false)
+    : QWidget(parent), m_scaling(true)
 {
     m_scaleTimer = new QTimer(this);
     m_scaleTimer->setSingleShot(true);
     m_scaleTimer->setInterval(500);
 
-    m_animation = new QTimeLine(500, this);
-    
+    m_animation = new QTimeLine(300, this);
+
     m_scaledPixmapOutOfDate = false;
     connect(m_scaleTimer, SIGNAL(timeout()), this, SLOT(scalePixmap()));
     connect(m_animation, SIGNAL(valueChanged(qreal)), this, SLOT(update()));
@@ -65,9 +65,7 @@ void ImageWidget::paintEvent(QPaintEvent* e)
         scalePixmap(false);
     }
     if (m_animation->state() == QTimeLine::Running) {
-        if(m_scaledPixmap.isNull()) { // special case: fading to null pixmap
-            painter.setOpacity(1-m_animation->currentValue());
-        }
+        painter.setOpacity(1-m_animation->currentValue());
         int x = (size().width() - m_animationPixmap.width()) / 2;
         int y = (size().height() - m_animationPixmap.height()) / 2;
         painter.drawPixmap(x, y, m_animationPixmap);
@@ -97,6 +95,7 @@ void ImageWidget::scalePixmap(bool smooth)
 {
     if (smooth) {
         if (m_originalPixmap.isNull() || size().isEmpty()) {
+            m_scaledPixmapOutOfDate = false;
             m_scaledPixmap = QPixmap();
             update();
             return;
