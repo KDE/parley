@@ -44,6 +44,7 @@ public:
     virtual void setSolutionImage(const QPixmap& img);
 
     virtual void setResultState(ResultState resultState);
+    virtual ResultState resultState();
 
     /// update lesson label
     void setLessonName(const QString& lessonName);

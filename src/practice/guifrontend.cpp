@@ -151,6 +151,11 @@ void GuiFrontend::setResultState(ResultState resultState)
     m_resultState = resultState;
 }
 
+AbstractFrontend::ResultState GuiFrontend::resultState()
+{
+    return m_resultState;
+}
+
 void GuiFrontend::answerLaterButtonClicked()
 {
     kDebug() << "later";

@@ -55,6 +55,7 @@ public:
     virtual void setSolutionImage(const QPixmap& img) = 0;
     virtual void setLessonName(const QString& lesson) = 0;
     virtual void setResultState(ResultState resultState) = 0;
+    virtual ResultState resultState() = 0;
     
 public Q_SLOTS:
     /** enter question mode - the user is asked to provide the solution */
