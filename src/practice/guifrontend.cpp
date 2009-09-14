@@ -85,12 +85,14 @@ void GuiFrontend::setLessonName(const QString& lessonName)
 void GuiFrontend::showQuestion()
 {
     m_ui->ratingStack->setCurrentIndex(0);
+    m_ui->continueButton->setFocus();
     m_centralWidget->showQuestion();
 }
 
 void GuiFrontend::showSolution()
 {
     m_ui->ratingStack->setCurrentIndex(1);
+    m_ui->wrongButton->setFocus();
     m_centralWidget->showSolution();
 }
 
