@@ -28,8 +28,8 @@ ImageChooserWidget::ImageChooserWidget(QWidget *parent) : QWidget(parent)
 
     connect(imageUrlRequester, SIGNAL(textChanged(const QString&)), SLOT(slotImageChanged(const QString&)));
 
-    imageLabel->setAcceptDrops(true);
-    imageLabel->installEventFilter(this);
+    imageWidget->setAcceptDrops(true);
+    imageWidget->installEventFilter(this);
     setEnabled(false);
 }
 
@@ -46,7 +46,8 @@ void ImageChooserWidget::setTranslation(KEduVocExpression* entry, int translatio
     } else {
         setEnabled(false);
         imageUrlRequester->clear();
-        imageLabel->setText(i18nc("@label image preview is empty", "No Preview"));
+//         imageLabel->setText(i18nc("@label image preview is empty", "No Preview"));
+        imageWidget->setPixmap(QPixmap());
     }
 }
 
@@ -55,9 +56,10 @@ void ImageChooserWidget::slotImageChanged(const QString & url)
 {
     if ( !url.isEmpty() ) {
         QPixmap pixmap(url);
-        imageLabel->setPixmap(pixmap.scaled(imageLabel->size(), Qt::KeepAspectRatio));
+        imageWidget->setPixmap(pixmap);
     } else {
-        imageLabel->setText(i18nc("@label image preview is empty", "No Image"));
+//         imageLabel->setText(i18nc("@label image preview is empty", "No Image"));
+        imageWidget->setPixmap(QPixmap());
     }
 
     if (m_entry) {
@@ -72,17 +74,17 @@ void ImageChooserWidget::slotImageChanged(const QString & url)
 
 bool ImageChooserWidget::eventFilter(QObject * obj, QEvent * event)
 {
-    if (obj == imageLabel) {
+    if (obj == imageWidget) {
 //         if (event->type() == QEvent::KeyPress) {
 //              QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
 //              kDebug() << "Ate key press " << keyEvent->key();
 //              return true;
 //         }
-        if (event->type() == QEvent::Resize) {
-            QPixmap pixmap(imageUrlRequester->url().toLocalFile());
-            imageLabel->setPixmap(pixmap.scaled(imageLabel->size(), Qt::KeepAspectRatio));
-            return false;
-        }
+//         if (event->type() == QEvent::Resize) {
+//             QPixmap pixmap(imageUrlRequester->url().toLocalFile());
+//             imageLabel->setPixmap(pixmap.scaled(imageLabel->size(), Qt::KeepAspectRatio));
+//             return false;
+//         }
 
 
         if (event->type() == QEvent::DragEnter) {
