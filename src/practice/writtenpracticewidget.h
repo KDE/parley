@@ -43,6 +43,11 @@ public:
     virtual void setHint(const QVariant& hint);
     virtual void setFeedback(const QVariant& feedback);
     virtual void setResultState(AbstractFrontend::ResultState resultState);
+
+    virtual void setQuestionSound(const KUrl& soundUrl);
+    virtual void setSolutionSound(const KUrl& soundUrl);
+    virtual void setSolutionPronunciation(const QString& pronunciationText);
+    virtual void setQuestionPronunciation(const QString& pronunciationText);
     
 public slots:
     void showQuestion();

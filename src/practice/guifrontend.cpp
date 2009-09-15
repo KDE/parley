@@ -128,12 +128,12 @@ void GuiFrontend::setQuestionImage(const KUrl& image)
 
 void GuiFrontend::setQuestionPronunciation(const QString& pronunciationText)
 {
-
+    m_centralWidget->setQuestionPronunciation(pronunciationText);
 }
 
 void GuiFrontend::setQuestionSound(const KUrl& soundUrl)
 {
-
+    m_centralWidget->setQuestionSound(soundUrl);
 }
 
 void GuiFrontend::setSolution(const QVariant& solution)
@@ -148,12 +148,12 @@ void GuiFrontend::setSolutionImage(const KUrl& img)
 
 void GuiFrontend::setSolutionPronunciation(const QString& pronunciationText)
 {
-
+    m_centralWidget->setSolutionPronunciation(pronunciationText);
 }
 
 void GuiFrontend::setSolutionSound(const KUrl& soundUrl)
 {
-
+    m_centralWidget->setSolutionSound(soundUrl);
 }
 
 void GuiFrontend::setFeedback(const QVariant& feedback)

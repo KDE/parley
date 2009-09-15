@@ -52,4 +52,24 @@ QVariant FlashCardModeWidget::userInput()
     return QVariant();
 }
 
+void FlashCardModeWidget::setQuestionSound(const KUrl& soundUrl)
+{
+
+}
+
+void FlashCardModeWidget::setSolutionSound(const KUrl& soundUrl)
+{
+
+}
+
+void FlashCardModeWidget::setSolutionPronunciation(const QString& pronunciationText)
+{
+
+}
+
+void FlashCardModeWidget::setQuestionPronunciation(const QString& pronunciationText)
+{
+
+}
+
 #include "flashcardmodewidget.moc"

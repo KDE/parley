@@ -41,6 +41,10 @@ WrittenPracticeWidget::WrittenPracticeWidget(QWidget *parent)
     m_wrongPalette = QApplication::palette();
     m_wrongPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::NegativeText).color());
     m_wrongPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::NegativeText).color());
+
+    m_ui->questionSoundButton->setIcon(KIcon("media-playback-start"));
+    m_ui->questionSoundButton->setToolTip(i18n("Play"));
+    m_ui->solutionSoundButton->setIcon(KIcon("media-playback-start"));
 }
 
 void WrittenPracticeWidget::continueClicked()
@@ -67,6 +71,11 @@ void WrittenPracticeWidget::showQuestion()
     m_ui->answerEdit->setFocus();
     m_ui->answerEdit->setPalette(QApplication::palette());
     m_ui->solutionLabel->setText(QString());
+
+    m_ui->questionPronunciationLabel->setVisible(m_ui->questionPronunciationLabel->isEnabled());
+    m_ui->questionSoundButton->setVisible(m_ui->questionSoundButton->isEnabled());
+    m_ui->solutionPronunciationLabel->setVisible(false);
+    m_ui->solutionSoundButton->setVisible(false);
 }
 
 void WrittenPracticeWidget::setSolution(const QVariant& solution)
@@ -84,6 +93,9 @@ void WrittenPracticeWidget::showSolution()
         m_ui->answerEdit->setPalette(m_wrongPalette);
     }
     m_ui->solutionLabel->setPalette(m_correctPalette);
+
+    m_ui->solutionPronunciationLabel->setVisible(m_ui->solutionPronunciationLabel->isEnabled());
+    m_ui->solutionSoundButton->setVisible(m_ui->solutionSoundButton->isEnabled());
 }
 
 void WrittenPracticeWidget::setHint(const QVariant& hint)
@@ -101,5 +113,26 @@ void WrittenPracticeWidget::setResultState(AbstractFrontend::ResultState resultS
     m_resultState = resultState;
 }
 
+void WrittenPracticeWidget::setQuestionSound(const KUrl& soundUrl)
+{
+    m_ui->questionSoundButton->setEnabled(soundUrl.isLocalFile());
+}
+
+void WrittenPracticeWidget::setSolutionSound(const KUrl& soundUrl)
+{
+    m_ui->solutionSoundButton->setEnabled(soundUrl.isLocalFile());
+}
+
+void WrittenPracticeWidget::setSolutionPronunciation(const QString& pronunciationText)
+{
+    m_ui->solutionPronunciationLabel->setText('['+pronunciationText+']');
+    m_ui->solutionPronunciationLabel->setEnabled(!pronunciationText.isNull());
+}
+
+void WrittenPracticeWidget::setQuestionPronunciation(const QString& pronunciationText)
+{
+    m_ui->questionPronunciationLabel->setText('['+pronunciationText+']');
+    m_ui->questionPronunciationLabel->setEnabled(!pronunciationText.isNull());
+}
 
 #include "writtenpracticewidget.moc"
