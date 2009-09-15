@@ -42,6 +42,7 @@ public:
     virtual void setSolution(const QVariant& solution);
     virtual void setHint(const QVariant& hint);
     virtual void setFeedback(const QVariant& feedback);
+    virtual void setResultState(AbstractFrontend::ResultState resultState);
     
 public slots:
     void showQuestion();
@@ -53,6 +54,7 @@ private:
     QPalette m_correctPalette;
     QPalette m_wrongPalette;
     QString m_solution;
+    AbstractFrontend::ResultState m_resultState;
 };
 
 }

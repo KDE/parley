@@ -66,7 +66,6 @@ void WrittenPracticeWidget::showQuestion()
     m_ui->answerEdit->clear();
     m_ui->answerEdit->setFocus();
     m_ui->answerEdit->setPalette(QApplication::palette());
-//     m_ui->solutionLabel->setVisible(false);
     m_ui->solutionLabel->setText(QString());
 }
 
@@ -79,8 +78,11 @@ void WrittenPracticeWidget::showSolution()
 {
     m_ui->solutionLabel->setText(m_solution);
     m_ui->answerEdit->setEnabled(false);
-//     m_ui->solutionLabel->setVisible(true);
-    m_ui->answerEdit->setPalette(m_wrongPalette);
+    if (m_resultState == AbstractFrontend::AnswerCorrect) {
+        m_ui->answerEdit->setPalette(m_correctPalette);
+    } else {
+        m_ui->answerEdit->setPalette(m_wrongPalette);
+    }
     m_ui->solutionLabel->setPalette(m_correctPalette);
 }
 
@@ -92,6 +94,11 @@ void WrittenPracticeWidget::setHint(const QVariant& hint)
 void WrittenPracticeWidget::setFeedback(const QVariant& feedback)
 {
     m_ui->helpLabel->setText(feedback.toString());
+}
+
+void WrittenPracticeWidget::setResultState(AbstractFrontend::ResultState resultState)
+{
+    m_resultState = resultState;
 }
 
 

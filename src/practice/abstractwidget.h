@@ -14,6 +14,8 @@
 #ifndef PRACTICE_ABSTRACTWIDGET_H
 #define PRACTICE_ABSTRACTWIDGET_H
 
+#include "abstractfrontend.h"
+
 #include <QtGui/QWidget>
 
 class QVariant;
@@ -33,6 +35,7 @@ public:
     virtual QVariant userInput() = 0;
     virtual void setHint(const QVariant& hint) = 0;
     virtual void setFeedback(const QVariant& feedback) = 0;
+    virtual void setResultState(AbstractFrontend::ResultState resultState) = 0;
     
 public slots:
     virtual void showQuestion() = 0;

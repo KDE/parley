@@ -164,6 +164,7 @@ void GuiFrontend::setResultState(ResultState resultState)
     }
 
     m_resultState = resultState;
+    m_centralWidget->setResultState(resultState);
 }
 
 AbstractFrontend::ResultState GuiFrontend::resultState()
