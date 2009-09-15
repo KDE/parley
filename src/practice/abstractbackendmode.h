@@ -29,14 +29,21 @@ class AbstractBackendMode :public QObject
 public:
     AbstractBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend *frontend, QObject *parent);
     virtual ~AbstractBackendMode() {}
-    virtual void setTestEntry(TestEntry* current) { m_current = current; }
+    
+    /** start practicing a new word. sets some default that can be overwritten by the modes.
+      * m_frontend->showQuestion() should be called after the initialization. */
+    virtual void setTestEntry(TestEntry* current);
     
 public Q_SLOTS:
+    /** the frontend requested to continue */
     virtual void continueAction() = 0;
+    /** the frontend requested a hint */
     virtual void hintAction() = 0;
 
 Q_SIGNALS:
+    /** the current word is done and should not be shown again */
     void currentEntryFinished();
+    /** ask for the next word to be practiced */
     void nextEntry();
     
 protected:

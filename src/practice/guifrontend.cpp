@@ -110,12 +110,6 @@ void GuiFrontend::setFinishedWordsTotalWords(int finished, int total)
     m_ui->totalProgress->setToolTip(i18n("You answered %1 of a total of %2 words.\nYou are %3% done.", finished, total, finished/total*100));
 }
 
-void GuiFrontend::setQuestionImage(const KUrl& image)
-{
-    QPixmap pixmap(image.path());
-    m_ui->imageWidget->setPixmap(pixmap);
-}
-
 void GuiFrontend::setHint(const QVariant& hint)
 {
     m_centralWidget->setHint(hint);
@@ -126,14 +120,40 @@ void GuiFrontend::setQuestion(const QVariant& question)
     m_centralWidget->setQuestion(question);
 }
 
+void GuiFrontend::setQuestionImage(const KUrl& image)
+{
+    QPixmap pixmap(image.path());
+    m_ui->imageWidget->setPixmap(pixmap);
+}
+
+void GuiFrontend::setQuestionPronunciation(const QString& pronunciationText)
+{
+
+}
+
+void GuiFrontend::setQuestionSound(const KUrl& soundUrl)
+{
+
+}
+
 void GuiFrontend::setSolution(const QVariant& solution)
 {
     m_centralWidget->setSolution(solution);
 }
 
-void GuiFrontend::setSolutionImage(const QPixmap& img)
+void GuiFrontend::setSolutionImage(const KUrl& img)
 {
     // TODO
+}
+
+void GuiFrontend::setSolutionPronunciation(const QString& pronunciationText)
+{
+
+}
+
+void GuiFrontend::setSolutionSound(const KUrl& soundUrl)
+{
+
 }
 
 void GuiFrontend::setFeedback(const QVariant& feedback)

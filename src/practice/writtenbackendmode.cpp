@@ -29,11 +29,8 @@ WrittenBackendMode::WrittenBackendMode(const PracticeOptions& practiceOptions, A
 
 void WrittenBackendMode::setTestEntry(TestEntry* current)
 {
+    AbstractBackendMode::setTestEntry(current);
     m_state = NotAnswered;
-    Practice::AbstractBackendMode::setTestEntry(current);
-    m_frontend->setQuestion(m_current->entry()->translation(m_practiceOptions.languageFrom())->text());
-    m_frontend->setSolution(m_current->entry()->translation(m_practiceOptions.languageTo())->text());
-    m_frontend->setResultState(AbstractFrontend::QuestionState);
     m_frontend->showQuestion();
     m_lastAnswer.clear();
 }

@@ -56,7 +56,12 @@ public:
     
     virtual void setHint(const QVariant& hint) = 0;
     virtual void setQuestionImage(const KUrl& img) = 0;
-    virtual void setSolutionImage(const QPixmap& img) = 0;
+    virtual void setSolutionImage(const KUrl& img) = 0;
+    virtual void setQuestionSound(const KUrl& soundUrl) = 0;
+    virtual void setSolutionSound(const KUrl& soundUrl) = 0;
+    virtual void setSolutionPronunciation(const QString& pronunciationText) = 0;
+    virtual void setQuestionPronunciation(const QString& pronunciationText) = 0;
+       
     virtual void setLessonName(const QString& lesson) = 0;
     virtual void setResultState(ResultState resultState) = 0;
     virtual ResultState resultState() = 0;
@@ -66,6 +71,7 @@ public Q_SLOTS:
     virtual void showQuestion() = 0;
     /** enter show solution mode - the solution is shown */
     virtual void showSolution() = 0;
+
     /** switch between different modes such as written, flash card, etc */
     virtual void setMode(Mode mode) = 0;
 
