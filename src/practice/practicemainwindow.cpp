@@ -21,6 +21,7 @@ void PracticeMainWindow::keyPressEvent(QKeyEvent* e)
 {
     if (e->key() == Qt::Key_Enter || e->key() == Qt::Key_Return) {
         if (focusWidget()->metaObject()->className() == QLatin1String("QRadioButton")) {
+            kDebug() << "enter on radio";
             emit enterPressed();
             return;
         }

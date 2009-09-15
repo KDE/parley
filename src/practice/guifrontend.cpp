@@ -30,11 +30,13 @@ GuiFrontend::GuiFrontend(QObject* parent)
     m_ui->setupUi(centralWidget);
     m_ui->centralPracticeWidget->setLayout(new QHBoxLayout(m_mainWindow));
 
+    connect(m_mainWindow, SIGNAL(enterPressed()), this, SIGNAL(signalContinueButton()));
+    
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SIGNAL(signalContinueButton()));
     connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SIGNAL(skipAction()));
     connect(m_ui->hintButton, SIGNAL(clicked()), this, SIGNAL(hintAction()));
     connect(m_ui->correctButton, SIGNAL(toggled(bool)), this, SLOT(resultRadioButtonsChanged()));
-        
+
     kDebug() << "Created GuiFrontend";
 }
 
@@ -151,12 +153,14 @@ void GuiFrontend::setResultState(ResultState resultState)
         m_ui->statusImageLabel->setText(QChar(0x2713));
         if(!m_ui->correctButton->isChecked()) {
             m_ui->correctButton->setChecked(true);
+            m_ui->correctButton->setFocus();
         }
         break;
     case AbstractFrontend::AnswerWrong:
         m_ui->statusImageLabel->setText(QChar(0x2717));
         if(!m_ui->wrongButton->isChecked()) {
             m_ui->wrongButton->setChecked(true);
+            m_ui->wrongButton->setFocus();
         }
         break;
     }

@@ -218,7 +218,7 @@
             <string>I didn't know the answer.</string>
            </property>
            <property name="checked">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -226,6 +226,9 @@
           <widget class="QRadioButton" name="correctButton">
            <property name="text">
             <string>I knew the answer.</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
