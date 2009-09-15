@@ -48,6 +48,8 @@
 
 #include <QtCore/QTimer>
 
+using namespace Editor;
+
 ParleyMainWindow* ParleyMainWindow::s_instance = 0;
 ParleyMainWindow* ParleyMainWindow::instance()
 {

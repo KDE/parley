@@ -61,8 +61,6 @@ class WelcomeScreen;
 class ScriptManager;
 class ParleyPracticeMainWindow;
 
-using namespace Editor;
-
 class ParleyMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
@@ -166,7 +164,7 @@ private:
     Component m_currentComponent;
 
     WelcomeScreen *m_welcomeScreen;
-    EditorWindow *m_editor;
+    Editor::EditorWindow *m_editor;
     Practice::GuiFrontend *m_practiceFrontend;
     Practice::DefaultBackend *m_practiceBackend;
     StatisticsWidget *m_statisticsWidget;
