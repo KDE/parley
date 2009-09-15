@@ -66,7 +66,8 @@ void WrittenPracticeWidget::showQuestion()
     m_ui->answerEdit->clear();
     m_ui->answerEdit->setFocus();
     m_ui->answerEdit->setPalette(QApplication::palette());
-    m_ui->solutionLabel->setVisible(false);
+//     m_ui->solutionLabel->setVisible(false);
+    m_ui->solutionLabel->setText(QString());
 }
 
 void WrittenPracticeWidget::setSolution(const QVariant& question)
@@ -77,7 +78,7 @@ void WrittenPracticeWidget::setSolution(const QVariant& question)
 void WrittenPracticeWidget::showSolution()
 {
     m_ui->answerEdit->setEnabled(false);
-    m_ui->solutionLabel->setVisible(true);
+//     m_ui->solutionLabel->setVisible(true);
     m_ui->answerEdit->setPalette(m_wrongPalette);
     m_ui->solutionLabel->setPalette(m_correctPalette);
 }
