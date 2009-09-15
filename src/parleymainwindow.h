@@ -119,6 +119,7 @@ public slots:
     void configurePractice();
 
     void startPractice();
+    void practiceFinished();
 
     /**
      * Show the tip of the day (force it to be shown)
@@ -162,6 +163,7 @@ private:
 
     /// the name of the executable
     QString m_appName;
+    Component m_componentBeforePractice;
 
     friend int main(int argc, char* argv[]);
 };

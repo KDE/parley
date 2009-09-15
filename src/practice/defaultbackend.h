@@ -38,9 +38,12 @@ public:
     
     void startPractice();
     
-public Q_SLOTS: 
+public Q_SLOTS:
     void nextEntry();
     void removeCurrentEntryFromPractice();
+
+Q_SIGNALS:
+    void practiceFinished();
 
 private:
     void createPracticeMode();

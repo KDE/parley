@@ -196,7 +196,7 @@ void ParleyMainWindow::startPractice()
     bool newPractice = true;
     if (newPractice) {
         ///@todo: instead of creating a new instance only a new document should be set
-        Component lastComponent = m_currentComponent;
+        m_componentBeforePractice = m_currentComponent;
         switchComponent(NoComponent); // unload the last component (could be a practice window)
 //         m_practice = new ParleyPracticeMainWindow(m_document->document(), 0);
         delete m_practiceFrontend;
@@ -208,6 +208,8 @@ void ParleyMainWindow::startPractice()
         
         switchComponent(PracticeComponent);
         m_practiceBackend->startPractice();
+        
+        connect(m_practiceBackend, SIGNAL(practiceFinished()), this, SLOT(practiceFinished()));
         
 //         m_practice->show();
 //         if (lastComponent == EditorComponent) {
@@ -228,6 +230,11 @@ void ParleyMainWindow::startPractice()
         practice.startPractice();
         show();
    }
+}
+
+void ParleyMainWindow::practiceFinished()
+{
+    switchComponent(m_componentBeforePractice);
 }
 
 bool ParleyMainWindow::queryClose()

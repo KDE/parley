@@ -77,6 +77,10 @@ void DefaultBackend::createPracticeMode()
 void DefaultBackend::nextEntry()
 {
     m_current = m_testEntryManager.getNextEntry();
+    if (m_current == 0) {
+        emit practiceFinished();
+        return;
+    }
     m_mode->setTestEntry(m_current);
     updateFrontend();
 }
