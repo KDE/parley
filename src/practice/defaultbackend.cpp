@@ -88,7 +88,7 @@ void DefaultBackend::updateFrontend()
     
     QString imgUrl = m_current->entry()->translation(m_options.languageFrom())->imageUrl().url();
     kDebug() << "Show image: " << imgUrl;
-    m_frontend->setQuestionImage(QPixmap(imgUrl));
+    m_frontend->setQuestionImage(imgUrl);
 }
 
 
