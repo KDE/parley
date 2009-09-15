@@ -7,13 +7,15 @@
    <text>&amp;Practice</text>
    <Action name="practice_configure" />
    <Action name="practice_start" />
-  </Menu>  
-</MenuBar> 
+  </Menu>
+</MenuBar>
 
  <ToolBar noMerge="1" name="statisticsToolBar" >
   <text>Statistics Toolbar</text>
   <Action name="file_close" />
   <Separator/>
+  <Action name="file_edit" />
+  <Action name="practice_configure" />
   <Action name="practice_start" />
  </ToolBar>
 </gui>

@@ -125,8 +125,6 @@ public slots:
 
     void slotCloseDocument();
 
-    void slotShowStatistics();
-
     void configurePractice();
 
     void startPractice();

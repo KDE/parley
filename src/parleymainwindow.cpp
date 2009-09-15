@@ -177,11 +177,6 @@ void ParleyMainWindow::slotCloseDocument()
     showWelcomeScreen();
 }
 
-void ParleyMainWindow::slotShowStatistics()
-{
-    showStatistics();
-}
-
 void ParleyMainWindow::configurePractice()
 {
     ConfigurePracticeDialog configurePracticeDialog(m_document->document(), this, "practice settings",  Prefs::self());

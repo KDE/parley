@@ -47,10 +47,10 @@ private slots:
 private:
     void initActions();
     
+    ParleyMainWindow* m_mainWindow; 
     KEduVocDocument* m_doc;
     StatisticsModel* m_statisticsModel;
     LessonStatisticsView* m_lessonStatistics;
-    ParleyMainWindow* m_mainWindow;
 };
 
 #endif

@@ -36,11 +36,13 @@ using namespace Editor;
 
 StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindow* parent) 
     :KXmlGuiWindow(parent)
+    ,m_mainWindow(parent)
     ,m_doc(doc)
 {
     // KXmlGui
     setXMLFile("statisticsui.rc");
     setObjectName("Statistics");
+    initActions();
     
     QVBoxLayout *layout = new QVBoxLayout();
     
@@ -96,7 +98,6 @@ void StatisticsMainWindow::setDocument(KEduVocDocument* doc)
     m_lessonStatistics->expandToDepth(0);
 }
 
-
 void StatisticsMainWindow::initActions()
 {
     KAction* startPractice = new KAction(this);
@@ -108,7 +109,6 @@ void StatisticsMainWindow::initActions()
     actionCollection()->addAction("practice_start", startPractice);
     connect(startPractice, SIGNAL(triggered(bool)), m_mainWindow, SLOT(startPractice()));
 }
-
 
 void StatisticsMainWindow::configurePractice()
 {
