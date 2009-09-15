@@ -93,7 +93,11 @@ void GuiFrontend::showQuestion()
 void GuiFrontend::showSolution()
 {
     m_ui->ratingStack->setCurrentIndex(1);
-    m_ui->wrongButton->setFocus();
+    if (m_ui->wrongButton->isChecked()) {
+        m_ui->wrongButton->setFocus();
+    } else {
+        m_ui->correctButton->setFocus();
+    }
     m_centralWidget->showSolution();
 }
 
