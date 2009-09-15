@@ -115,7 +115,7 @@ private:
     VocabularyView *m_vocabularyView;
     VocabularyFilter *m_vocabularyFilter;
 
-    KLineEdit           *m_searchLine;
+    KLineEdit *m_searchLine;
     QWidget *m_searchWidget;
 
     /** Show a single conjugation and let the user edit it */

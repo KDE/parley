@@ -401,15 +401,6 @@ void EditorWindow::initActions()
     actionCollection()->addAction("practice_configure", configurePractice);
     connect(configurePractice, SIGNAL(triggered(bool)), m_mainWindow, SLOT(configurePractice()));
 
-    KAction* showStatistics = new KAction(this);
-    actionCollection()->addAction("show_statistics", showStatistics);
-    showStatistics->setIcon(KIcon("view-statistics"));
-    showStatistics->setText(i18n("&Statistics..."));
-    connect(showStatistics, SIGNAL(triggered(bool)), m_mainWindow, SLOT(slotShowStatistics()));
-    showStatistics->setWhatsThis(i18n("Show statistics for the current collection"));
-    showStatistics->setToolTip(showStatistics->whatsThis());
-    showStatistics->setStatusTip(showStatistics->whatsThis());
-
 // -- SETTINGS --------------------------------------------------
     m_vocabShowSearchBarAction = actionCollection()->add<KToggleAction>("config_show_search");
     m_vocabShowSearchBarAction->setText(i18n("Show Se&arch"));

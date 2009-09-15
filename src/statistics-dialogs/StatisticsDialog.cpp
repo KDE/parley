@@ -42,7 +42,6 @@ StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindo
     // KXmlGui
     setXMLFile("statisticsui.rc");
     setObjectName("Statistics");
-    initActions();
     
     QVBoxLayout *layout = new QVBoxLayout();
     
@@ -80,6 +79,8 @@ StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindo
 
     setDocument(doc);
     
+    initActions();
+    
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);    
 }
@@ -108,6 +109,16 @@ void StatisticsMainWindow::initActions()
     startPractice->setStatusTip(startPractice->whatsThis());
     actionCollection()->addAction("practice_start", startPractice);
     connect(startPractice, SIGNAL(triggered(bool)), m_mainWindow, SLOT(startPractice()));
+    
+    KAction* configurePractice = new KAction(this);
+    configurePractice->setText(i18n("Configure Practice..."));
+    configurePractice->setIcon(KIcon("practice-setup"));
+    configurePractice->setWhatsThis(i18n("Change practice settings"));
+    configurePractice->setToolTip(configurePractice->whatsThis());
+    configurePractice->setStatusTip(configurePractice->whatsThis());
+    actionCollection()->addAction("practice_configure", configurePractice);
+    connect(configurePractice, SIGNAL(triggered(bool)), m_mainWindow, SLOT(configurePractice()));
+    
 }
 
 void StatisticsMainWindow::configurePractice()

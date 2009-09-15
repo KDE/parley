@@ -447,12 +447,12 @@ void ParleyMainWindow::switchComponent(Component component)
         m_welcomeScreen->updateRecentFilesModel();
         break;
     case StatisticsComponent:
-        newClient = 0;
         if (!m_statisticsWidget) {
             m_statisticsWidget = new StatisticsMainWindow(m_document->document(), this);
         } else {
             m_statisticsWidget->setDocument(m_document->document());
         }
+        newClient = m_statisticsWidget;
         newWidget = m_statisticsWidget;
         showDocumentActions(true, false);
         break;
