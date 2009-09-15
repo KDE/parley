@@ -153,14 +153,12 @@ void GuiFrontend::setResultState(ResultState resultState)
         m_ui->statusImageLabel->setText(QChar(0x2713));
         if(!m_ui->correctButton->isChecked()) {
             m_ui->correctButton->setChecked(true);
-            m_ui->correctButton->setFocus();
         }
         break;
     case AbstractFrontend::AnswerWrong:
         m_ui->statusImageLabel->setText(QChar(0x2717));
         if(!m_ui->wrongButton->isChecked()) {
             m_ui->wrongButton->setChecked(true);
-            m_ui->wrongButton->setFocus();
         }
         break;
     }

@@ -40,6 +40,7 @@ private:
         ShowSolution
     };
     State m_state;
+    QString m_lastAnswer;
 };
 
 }
