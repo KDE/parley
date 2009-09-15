@@ -36,13 +36,13 @@ public:
     virtual QVariant userInput();
     KXmlGuiWindow* getWindow();
 
-    virtual void setHint(const QVariant& hint);
-       
     virtual void setQuestion(const QVariant& question);
     virtual void setQuestionImage(const QPixmap& img);
     virtual void setSolution(const QVariant& solution);
     virtual void setSolutionImage(const QPixmap& img);
-
+    virtual void setHint(const QVariant& hint);
+    virtual void setFeedback(const QVariant& feedback);
+       
     virtual void setResultState(ResultState resultState);
     virtual ResultState resultState();
 
@@ -56,8 +56,6 @@ public Q_SLOTS:
     void showSolution();
 
 private Q_SLOTS:
-    void answerLaterButtonClicked();
-    void continueButtonClicked();
     void resultRadioButtonsChanged();
    
 private:

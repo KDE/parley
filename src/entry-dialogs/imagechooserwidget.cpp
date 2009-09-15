@@ -33,7 +33,6 @@ ImageChooserWidget::ImageChooserWidget(QWidget *parent) : QWidget(parent)
     setEnabled(false);
 }
 
-
 void ImageChooserWidget::setTranslation(KEduVocExpression* entry, int translation)
 {
     m_currentTranslation = translation;
@@ -50,7 +49,6 @@ void ImageChooserWidget::setTranslation(KEduVocExpression* entry, int translatio
         imageWidget->setPixmap(QPixmap());
     }
 }
-
 
 void ImageChooserWidget::slotImageChanged(const QString & url)
 {

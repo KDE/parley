@@ -31,10 +31,11 @@ GuiFrontend::GuiFrontend(QObject* parent)
     m_ui->centralPracticeWidget->setLayout(new QHBoxLayout(m_mainWindow));
 
     connect(m_mainWindow, SIGNAL(enterPressed()), m_ui->continueButton, SLOT(animateClick()));
-    connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SLOT(answerLaterButtonClicked()));
-    connect(m_ui->continueButton, SIGNAL(clicked()), this, SLOT(continueButtonClicked()));
+    connect(m_ui->continueButton, SIGNAL(clicked()), this, SIGNAL(signalContinueButton()));
+    connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SIGNAL(skipAction()));
+    connect(m_ui->hintButton, SIGNAL(clicked()), this, SIGNAL(hintAction()));
     connect(m_ui->correctButton, SIGNAL(toggled(bool)), this, SLOT(resultRadioButtonsChanged()));
-    
+        
     kDebug() << "Created GuiFrontend";
 }
 
@@ -72,7 +73,7 @@ void GuiFrontend::setMode(Mode mode)
         m_ui->centralPracticeWidget->layout()->addWidget(newWidget);
         delete m_centralWidget;
         m_centralWidget = newWidget;
-        connect(m_centralWidget, SIGNAL(continueAction()), this, SLOT(continueButtonClicked()));
+        connect(m_centralWidget, SIGNAL(continueAction()), this, SIGNAL(signalContinueButton()));
         kDebug() << "set up frontend";
     }
 }
@@ -104,14 +105,17 @@ void GuiFrontend::setFinishedWordsTotalWords(int finished, int total)
     m_ui->totalProgress->setToolTip(i18n("You answered %1 of a total of %2 words.\nYou are %3% done.", finished, total, finished/total*100));
 }
 
-void GuiFrontend::setQuestionImage(const QPixmap& img)
+void GuiFrontend::setQuestionImage(const QPixmap& image)
 {
+    kDebug() << "set image";
+    QString img ("file:///home/frederik/.kde4-svn/share/apps/kvtml//en-de-es-ar-ru/Pictures/gazelle.jpg");
+    QPixmap pix(img);
     m_ui->imageLabel->setPixmap(img);
 }
 
 void GuiFrontend::setHint(const QVariant& hint)
 {
-    // TODO
+    m_centralWidget->setHint(hint);
 }
 
 void GuiFrontend::setQuestion(const QVariant& question)
@@ -127,6 +131,11 @@ void GuiFrontend::setSolution(const QVariant& solution)
 void GuiFrontend::setSolutionImage(const QPixmap& img)
 {
     // TODO
+}
+
+void GuiFrontend::setFeedback(const QVariant& feedback)
+{
+    m_centralWidget->setFeedback(feedback);
 }
 
 void GuiFrontend::setResultState(ResultState resultState)
@@ -157,18 +166,6 @@ void GuiFrontend::setResultState(ResultState resultState)
 AbstractFrontend::ResultState GuiFrontend::resultState()
 {
     return m_resultState;
-}
-
-void GuiFrontend::answerLaterButtonClicked()
-{
-    kDebug() << "later";
-}
-
-void GuiFrontend::continueButtonClicked()
-{
-    kDebug() << "cont";
-    emit signalContinueButton();
-    
 }
 
 void GuiFrontend::resultRadioButtonsChanged()

@@ -34,6 +34,8 @@ public:
     
     virtual void setQuestion(const QVariant& question);
     virtual void setSolution(const QVariant& question);
+    virtual void setHint(const QVariant& hint) {}
+    virtual void setFeedback(const QVariant& feedback) {}
     
 public Q_SLOTS:
     virtual void showQuestion();

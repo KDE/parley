@@ -37,7 +37,6 @@ void FlashCardBackendMode::setTestEntry(TestEntry* current)
     m_frontend->showQuestion();
 }
 
-
 void FlashCardBackendMode::continueAction()
 {
     kDebug() << "cont";
@@ -52,5 +51,9 @@ void FlashCardBackendMode::continueAction()
     m_solutionVisible = true;
 }
 
+void FlashCardBackendMode::hintAction()
+{
+    m_frontend->setHint("This is a hint :P");
+}
 
 #include "flashcardbackendmode.moc"

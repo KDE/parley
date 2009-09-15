@@ -29,8 +29,8 @@ WrittenPracticeWidget::WrittenPracticeWidget(QWidget *parent)
 {
     m_ui = new Ui::WrittenPracticeWidget();
     m_ui->setupUi(this);
-    connect(m_ui->continueButton, SIGNAL(clicked()), this, SLOT(continueClicked()));
     kDebug() << "Created WrittenPracticeWidget";
+    connect(m_ui->answerEdit, SIGNAL(editingFinished()), this, SLOT(continueClicked()));
 }
 
 void WrittenPracticeWidget::continueClicked()
@@ -54,6 +54,7 @@ void WrittenPracticeWidget::showQuestion()
     kDebug() << "update display";
     m_ui->answerEdit->setEnabled(true);
     m_ui->answerEdit->clear();
+    m_ui->answerEdit->setFocus();
     m_ui->solutionLabel->setVisible(false);
 }
 
@@ -66,6 +67,16 @@ void WrittenPracticeWidget::showSolution()
 {
     m_ui->answerEdit->setEnabled(false);
     m_ui->solutionLabel->setVisible(true);
+}
+
+void WrittenPracticeWidget::setHint(const QVariant& hint)
+{
+    m_ui->helpLabel->setText(hint.toString());
+}
+
+void WrittenPracticeWidget::setFeedback(const QVariant& feedback)
+{
+    m_ui->helpLabel->setText(feedback.toString());
 }
 
 

@@ -33,6 +33,7 @@ public:
     
 public Q_SLOTS:
     virtual void continueAction() = 0;
+    virtual void hintAction() = 0;
 
 Q_SIGNALS:
     void nextEntry();

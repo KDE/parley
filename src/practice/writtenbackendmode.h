@@ -29,7 +29,17 @@ public:
 
 public Q_SLOTS:
     virtual void continueAction();
-
+    virtual void hintAction();
+    
+private:
+    void checkAnswer();
+    
+    enum State {
+        WaitForFirstAnswer,
+        WrongAnswer,
+        ShowSolution
+    };
+    State m_state;
 };
 
 }

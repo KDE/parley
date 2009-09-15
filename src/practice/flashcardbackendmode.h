@@ -30,6 +30,7 @@ public:
 
 public Q_SLOTS:
     virtual void continueAction();
+    virtual void hintAction();
     
 private:
     bool m_solutionVisible;

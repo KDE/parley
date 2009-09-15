@@ -48,7 +48,7 @@ void DefaultBackend::createPracticeMode()
     
     QList<AbstractFrontend::Mode> modes = m_options.modes();
     // TODO: mode needs to change at some point...
-    m_currentMode = AbstractFrontend::FlashCard; //modes.at(0);
+    m_currentMode = AbstractFrontend::Written; //modes.at(0);
     m_frontend->setMode(m_currentMode);
     kDebug() << "practice mode: " << m_currentMode;
     
@@ -68,16 +68,30 @@ void DefaultBackend::createPracticeMode()
 
     connect(m_mode, SIGNAL(nextEntry()), this, SLOT(nextEntry()));
     connect(m_frontend, SIGNAL(signalContinueButton()), m_mode, SLOT(continueAction()));
+    connect(m_frontend, SIGNAL(hintAction()), m_mode, SLOT(hintAction()));
+    connect(m_frontend, SIGNAL(skipAction()), this, SLOT(nextEntry()));
 }
 
 void DefaultBackend::nextEntry()
 {
     m_current = m_testEntryManager.getNextEntry();
     m_mode->setTestEntry(m_current);
+    updateFrontend();
+}
+
+void DefaultBackend::updateFrontend()
+{
+    m_frontend->setLessonName(m_current->entry()->lesson()->name());
     m_frontend->setFinishedWordsTotalWords(
         m_testEntryManager.totalEntryCount() - m_testEntryManager.activeEntryCount(), 
         m_testEntryManager.totalEntryCount());
-    m_frontend->setLessonName(m_current->entry()->lesson()->name());
+    
+    QString imgUrl = m_current->entry()->translation(m_options.languageFrom())->imageUrl().url();
+    kDebug() << "Show image: " << imgUrl;
+    m_frontend->setQuestionImage(QPixmap(imgUrl));
 }
+
+
+
 
 #include "defaultbackend.moc"
