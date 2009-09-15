@@ -21,18 +21,22 @@
 #include <keduvocdocument.h>
 #include "lessonstatistics.h"
 #include "statisticsmodel.h"
+#include "parleymainwindow.h"
 
 #include <KLocale>
 #include <KConfig>
 #include <KGlobal>
+#include <KActionCollection>
+#include <KAction>
 
 #include <QLayout>
 #include <QLabel>
 
 using namespace Editor;
 
-StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument *doc, QWidget *parent) 
+StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindow* parent) 
     :KXmlGuiWindow(parent)
+    ,m_doc(doc)
 {
     // KXmlGui
     setXMLFile("statisticsui.rc");
@@ -46,6 +50,7 @@ StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument *doc, QWidget *parent
     
     QLabel *caption = new QLabel(this);
     layout->addWidget(caption);
+    caption->setText(i18n("Statistics for %1", m_doc->title()));
 
     /*
     if (showPracticeButtons) {
@@ -90,6 +95,20 @@ void StatisticsMainWindow::setDocument(KEduVocDocument* doc)
     m_lessonStatistics->setModel(m_statisticsModel);
     m_lessonStatistics->expandToDepth(0);
 }
+
+
+void StatisticsMainWindow::initActions()
+{
+    KAction* startPractice = new KAction(this);
+    startPractice->setText(i18n("Start Practice..."));
+    startPractice->setIcon(KIcon("practice-start"));
+    startPractice->setWhatsThis(i18n("Start a test"));
+    startPractice->setToolTip(startPractice->whatsThis());
+    startPractice->setStatusTip(startPractice->whatsThis());
+    actionCollection()->addAction("practice_start", startPractice);
+    connect(startPractice, SIGNAL(triggered(bool)), m_mainWindow, SLOT(startPractice()));
+}
+
 
 void StatisticsMainWindow::configurePractice()
 {

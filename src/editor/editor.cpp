@@ -388,7 +388,7 @@ void EditorWindow::initActions()
     startPractice->setToolTip(startPractice->whatsThis());
     startPractice->setStatusTip(startPractice->whatsThis());
     actionCollection()->addAction("practice_start", startPractice);
-    connect(startPractice, SIGNAL(triggered(bool)), m_mainWindow, SLOT(startPractice()));
+    connect(startPractice, SIGNAL(triggered(bool)), m_mainWindow, SLOT(showStatistics()));
 
 // -- PRACTICE --------------------------------------------------
 

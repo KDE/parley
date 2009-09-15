@@ -30,12 +30,13 @@
 class LessonStatisticsView;
 class StatisticsModel;
 class KEduVocDocument;
+class ParleyMainWindow;
 
 class StatisticsMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
-    StatisticsMainWindow(KEduVocDocument* doc, QWidget *parent);
+    StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindow* parent);
     ~StatisticsMainWindow();
     
     void setDocument(KEduVocDocument* doc);
@@ -44,9 +45,12 @@ private slots:
     void configurePractice();
 
 private:
+    void initActions();
+    
     KEduVocDocument* m_doc;
     StatisticsModel* m_statisticsModel;
     LessonStatisticsView* m_lessonStatistics;
+    ParleyMainWindow* m_mainWindow;
 };
 
 #endif
