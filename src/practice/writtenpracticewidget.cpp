@@ -20,7 +20,9 @@
 
 #include "writtenpracticewidget.h"
 #include "ui_practice_widget_written.h"
+
 #include <kdebug.h>
+#include <kcolorscheme.h>
 
 using namespace Practice;
 
@@ -31,6 +33,14 @@ WrittenPracticeWidget::WrittenPracticeWidget(QWidget *parent)
     m_ui->setupUi(this);
     kDebug() << "Created WrittenPracticeWidget";
     connect(m_ui->answerEdit, SIGNAL(returnPressed()), this, SLOT(continueClicked()));
+
+    KColorScheme scheme(QPalette::Active);
+    m_correctPalette = QApplication::palette();
+    m_correctPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::PositiveText).color());
+    m_correctPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::PositiveText).color());
+    m_wrongPalette = QApplication::palette();
+    m_wrongPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::NegativeText).color());
+    m_wrongPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::NegativeText).color());
 }
 
 void WrittenPracticeWidget::continueClicked()
@@ -55,6 +65,7 @@ void WrittenPracticeWidget::showQuestion()
     m_ui->answerEdit->setEnabled(true);
     m_ui->answerEdit->clear();
     m_ui->answerEdit->setFocus();
+    m_ui->answerEdit->setPalette(QApplication::palette());
     m_ui->solutionLabel->setVisible(false);
 }
 
@@ -67,6 +78,8 @@ void WrittenPracticeWidget::showSolution()
 {
     m_ui->answerEdit->setEnabled(false);
     m_ui->solutionLabel->setVisible(true);
+    m_ui->answerEdit->setPalette(m_wrongPalette);
+    m_ui->solutionLabel->setPalette(m_correctPalette);
 }
 
 void WrittenPracticeWidget::setHint(const QVariant& hint)

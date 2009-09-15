@@ -50,6 +50,8 @@ public slots:
 
 private:
     Ui::WrittenPracticeWidget* m_ui;
+    QPalette m_correctPalette;
+    QPalette m_wrongPalette;
 };
 
 }
