@@ -30,7 +30,6 @@ GuiFrontend::GuiFrontend(QObject* parent)
     m_ui->setupUi(centralWidget);
     m_ui->centralPracticeWidget->setLayout(new QHBoxLayout(m_mainWindow));
 
-    connect(m_mainWindow, SIGNAL(enterPressed()), m_ui->continueButton, SLOT(animateClick()));
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SIGNAL(signalContinueButton()));
     connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SIGNAL(skipAction()));
     connect(m_ui->hintButton, SIGNAL(clicked()), this, SIGNAL(hintAction()));
@@ -73,7 +72,7 @@ void GuiFrontend::setMode(Mode mode)
         m_ui->centralPracticeWidget->layout()->addWidget(newWidget);
         delete m_centralWidget;
         m_centralWidget = newWidget;
-        connect(m_centralWidget, SIGNAL(continueAction()), this, SIGNAL(signalContinueButton()));
+        connect(m_centralWidget, SIGNAL(continueAction()), this, SLOT(continueAction()));
         kDebug() << "set up frontend";
     }
 }
@@ -178,5 +177,13 @@ void GuiFrontend::resultRadioButtonsChanged()
         setResultState(AnswerWrong);
     }
 }
+
+
+void GuiFrontend::continueAction()
+{
+    // animateClick emits the pushed signal
+    m_ui->continueButton->animateClick();
+}
+
 
 #include "guifrontend.moc"

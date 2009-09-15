@@ -38,7 +38,7 @@ void WrittenBackendMode::setTestEntry(TestEntry* current)
 }
 
 void WrittenBackendMode::continueAction()
-{
+{    
     kDebug() << "cont -- state:" <<  m_state;
     switch (m_state) {
         case WaitForFirstAnswer:
@@ -54,6 +54,7 @@ void WrittenBackendMode::continueAction()
 void WrittenBackendMode::checkAnswer()
 {
     QString answer = m_frontend->userInput().toString();
+    
     switch(m_state) {
         case WaitForFirstAnswer:
             if (answer == m_current->entry()->translation(m_practiceOptions.languageTo())->text()) {
