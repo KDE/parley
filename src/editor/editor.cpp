@@ -59,7 +59,8 @@
 
 using namespace Editor;
 
-EditorWindow::EditorWindow(ParleyMainWindow* parent) : KXmlGuiWindow(parent), m_mainWindow(parent)
+EditorWindow::EditorWindow(ParleyMainWindow* parent)
+    :KXmlGuiWindow(parent), m_mainWindow(parent)
 {
     // KXmlGui
     setXMLFile("editorui.rc");

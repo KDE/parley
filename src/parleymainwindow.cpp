@@ -425,7 +425,7 @@ void ParleyMainWindow::switchComponent(Component component)
         oldWidget = m_welcomeScreen;
         break;
     case StatisticsComponent:
-        oldClient = 0;
+        oldClient = m_statisticsWidget;
         oldWidget = m_statisticsWidget;
         break;
     case EditorComponent:
@@ -454,7 +454,7 @@ void ParleyMainWindow::switchComponent(Component component)
     case StatisticsComponent:
         newClient = 0;
         if (!m_statisticsWidget) {
-            m_statisticsWidget = new StatisticsWidget(m_document->document(), this);
+            m_statisticsWidget = new StatisticsMainWindow(m_document->document(), this);
         } else {
             m_statisticsWidget->setDocument(m_document->document());
         }

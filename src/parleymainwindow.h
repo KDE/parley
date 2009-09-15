@@ -167,7 +167,7 @@ private:
     Editor::EditorWindow *m_editor;
     Practice::GuiFrontend *m_practiceFrontend;
     Practice::DefaultBackend *m_practiceBackend;
-    StatisticsWidget *m_statisticsWidget;
+    StatisticsMainWindow *m_statisticsWidget;
 
     KRecentFilesAction* m_recentFilesAction;
 

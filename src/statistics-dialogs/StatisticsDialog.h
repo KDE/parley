@@ -25,18 +25,18 @@
 #ifndef STATISTICSDIALOG_H
 #define STATISTICSDIALOG_H
 
-#include <KDialog>
+#include <KXmlGuiWindow>
 
 class LessonStatisticsView;
 class StatisticsModel;
 class KEduVocDocument;
 
-class StatisticsWidget : public QWidget
+class StatisticsMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
-    StatisticsWidget(KEduVocDocument* doc, QWidget *parent);
-    ~StatisticsWidget();
+    StatisticsMainWindow(KEduVocDocument* doc, QWidget *parent);
+    ~StatisticsMainWindow();
     
     void setDocument(KEduVocDocument* doc);
 

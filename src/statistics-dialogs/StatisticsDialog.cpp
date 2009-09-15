@@ -31,12 +31,21 @@
 
 using namespace Editor;
 
-StatisticsWidget::StatisticsWidget(KEduVocDocument *doc, QWidget *parent) 
-    :QWidget(parent)
+StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument *doc, QWidget *parent) 
+    :KXmlGuiWindow(parent)
 {
-    setLayout(new QVBoxLayout());
+    // KXmlGui
+    setXMLFile("statisticsui.rc");
+    setObjectName("Statistics");
+    
+    QVBoxLayout *layout = new QVBoxLayout();
+    
+    QWidget *mainWidget = new QWidget(this);
+    mainWidget->setLayout(layout);
+    setCentralWidget(mainWidget);
+    
     QLabel *caption = new QLabel(this);
-    layout()->addWidget(caption);
+    layout->addWidget(caption);
 
     /*
     if (showPracticeButtons) {
@@ -60,16 +69,21 @@ StatisticsWidget::StatisticsWidget(KEduVocDocument *doc, QWidget *parent)
     m_statisticsModel = new StatisticsModel(this);
 
     m_lessonStatistics = new LessonStatisticsView(this);
-    layout()->addWidget(m_lessonStatistics);
+    layout->addWidget(m_lessonStatistics);
 
     setDocument(doc);
+    
+    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
+    applyMainWindowSettings(cfg);    
 }
 
-StatisticsWidget::~StatisticsWidget()
+StatisticsMainWindow::~StatisticsMainWindow()
 {
+    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
+    saveMainWindowSettings(cfg);
 }
 
-void StatisticsWidget::setDocument(KEduVocDocument* doc)
+void StatisticsMainWindow::setDocument(KEduVocDocument* doc)
 {
     m_doc = doc;
     m_statisticsModel->setDocument(doc);
@@ -77,7 +91,7 @@ void StatisticsWidget::setDocument(KEduVocDocument* doc)
     m_lessonStatistics->expandToDepth(0);
 }
 
-void StatisticsWidget::configurePractice()
+void StatisticsMainWindow::configurePractice()
 {
     ConfigurePracticeDialog dialog(m_doc, this, "practice settings",  Prefs::self());
     dialog.exec();
