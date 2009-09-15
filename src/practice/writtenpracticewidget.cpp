@@ -70,13 +70,14 @@ void WrittenPracticeWidget::showQuestion()
     m_ui->solutionLabel->setText(QString());
 }
 
-void WrittenPracticeWidget::setSolution(const QVariant& question)
+void WrittenPracticeWidget::setSolution(const QVariant& solution)
 {
-    m_ui->solutionLabel->setText(question.toString());
+    m_solution = solution.toString();
 }
 
 void WrittenPracticeWidget::showSolution()
 {
+    m_ui->solutionLabel->setText(m_solution);
     m_ui->answerEdit->setEnabled(false);
 //     m_ui->solutionLabel->setVisible(true);
     m_ui->answerEdit->setPalette(m_wrongPalette);

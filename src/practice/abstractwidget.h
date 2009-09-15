@@ -29,7 +29,7 @@ public:
     virtual ~AbstractModeWidget() {}
     
     virtual void setQuestion(const QVariant& question) = 0;
-    virtual void setSolution(const QVariant& question) = 0;
+    virtual void setSolution(const QVariant& solution) = 0;
     virtual QVariant userInput() = 0;
     virtual void setHint(const QVariant& hint) = 0;
     virtual void setFeedback(const QVariant& feedback) = 0;

@@ -39,7 +39,7 @@ public:
     virtual QVariant userInput();
 
     virtual void setQuestion(const QVariant& question);
-    virtual void setSolution(const QVariant& question);
+    virtual void setSolution(const QVariant& solution);
     virtual void setHint(const QVariant& hint);
     virtual void setFeedback(const QVariant& feedback);
     
@@ -52,6 +52,7 @@ private:
     Ui::WrittenPracticeWidget* m_ui;
     QPalette m_correctPalette;
     QPalette m_wrongPalette;
+    QString m_solution;
 };
 
 }
