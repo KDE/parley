@@ -122,8 +122,12 @@ void GuiFrontend::setQuestion(const QVariant& question)
 
 void GuiFrontend::setQuestionImage(const KUrl& image)
 {
-    QPixmap pixmap(image.path());
-    m_ui->imageWidget->setPixmap(pixmap);
+    if (image.path().isEmpty()) {
+        m_ui->imageWidget->setPixmap(KIcon("parley").pixmap(256));
+    } else {
+        QPixmap pixmap(image.path());
+        m_ui->imageWidget->setPixmap(pixmap);
+    }
 }
 
 void GuiFrontend::setQuestionPronunciation(const QString& pronunciationText)
