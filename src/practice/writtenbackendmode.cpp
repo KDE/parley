@@ -34,10 +34,12 @@ void WrittenBackendMode::setTestEntry(TestEntry* current)
     m_frontend->setQuestion(m_current->entry()->translation(m_practiceOptions.languageFrom())->text());
     m_frontend->setSolution(m_current->entry()->translation(m_practiceOptions.languageTo())->text());
     m_frontend->showQuestion();
+    m_frontend->setResultState(AbstractFrontend::QuestionState);
 }
 
 void WrittenBackendMode::continueAction()
 {
+    kDebug() << "cont -- state:" <<  m_state;
     switch (m_state) {
         case WaitForFirstAnswer:
         case WrongAnswer:
@@ -52,13 +54,33 @@ void WrittenBackendMode::continueAction()
 void WrittenBackendMode::checkAnswer()
 {
     QString answer = m_frontend->userInput().toString();
-    if (answer == m_current->entry()->translation(m_practiceOptions.languageTo())->text()) {
-        m_state = ShowSolution;
-        m_frontend->showSolution();
-        m_frontend->setFeedback(i18n("Your answer was right on the first attempt :D"));
-    } else {
-        m_state = WrongAnswer;
-        m_frontend->setFeedback(i18n("Wrong. Idiot."));
+    switch(m_state) {
+        case WaitForFirstAnswer:
+            if (answer == m_current->entry()->translation(m_practiceOptions.languageTo())->text()) {
+                m_frontend->showSolution();
+                m_frontend->setFeedback(i18n("Your answer was right on the first attempt :D"));
+                m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
+                m_state = ShowSolution;
+            } else {
+                m_frontend->setFeedback(i18n("Try again - I fear that was not right..."));
+                m_state = WrongAnswer;
+                m_frontend->setResultState(AbstractFrontend::AnswerWrong);
+            }
+            break;
+        case WrongAnswer:
+            if (answer == m_current->entry()->translation(m_practiceOptions.languageTo())->text()) {
+                m_frontend->showSolution();
+                m_frontend->setFeedback(i18n("Your answer was right... but not on the first try."));
+                m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
+                m_state = ShowSolution;
+            } else {
+                m_frontend->setFeedback(i18n("Wrong. Idiot."));
+                m_state = WrongAnswer;
+                m_frontend->setResultState(AbstractFrontend::AnswerWrong);
+            }
+            break;
+        case ShowSolution:
+            break;
     }
 }
 
