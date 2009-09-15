@@ -40,9 +40,10 @@ void FlashCardBackendMode::setTestEntry(TestEntry* current)
 void FlashCardBackendMode::continueAction()
 {
     kDebug() << "cont";
-    if (m_solutionVisible) {
-        // TODO: evaluate the grade
-        kDebug() << "Answer was " << m_frontend->userInput();
+    if (m_solutionVisible) {        
+        if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
+            emit currentEntryFinished();
+        }        
         emit nextEntry();
         return;
     }

@@ -35,9 +35,9 @@ private:
     void checkAnswer();
     
     enum State {
-        WaitForFirstAnswer,
-        WrongAnswer,
-        ShowSolution
+        NotAnswered,
+        AnswerWasWrong,
+        SolutionShown
     };
     State m_state;
     QString m_lastAnswer;

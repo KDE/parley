@@ -36,12 +36,12 @@ public:
     DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, const PracticeOptions& options, QObject* parent = 0);
     ~DefaultBackend();
     
-   
     void startPractice();
     
 public Q_SLOTS: 
     void nextEntry();
-        
+    void removeCurrentEntryFromPractice();
+
 private:
     void createPracticeMode();
     void updateFrontend();

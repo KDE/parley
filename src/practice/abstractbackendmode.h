@@ -36,6 +36,7 @@ public Q_SLOTS:
     virtual void hintAction() = 0;
 
 Q_SIGNALS:
+    void currentEntryFinished();
     void nextEntry();
     
 protected:

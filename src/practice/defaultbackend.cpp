@@ -66,7 +66,9 @@ void DefaultBackend::createPracticeMode()
             break;
     }
 
+    connect(m_mode, SIGNAL(currentEntryFinished()), this, SLOT(removeCurrentEntryFromPractice()));
     connect(m_mode, SIGNAL(nextEntry()), this, SLOT(nextEntry()));
+    
     connect(m_frontend, SIGNAL(signalContinueButton()), m_mode, SLOT(continueAction()));
     connect(m_frontend, SIGNAL(hintAction()), m_mode, SLOT(hintAction()));
     connect(m_frontend, SIGNAL(skipAction()), this, SLOT(nextEntry()));
@@ -77,6 +79,11 @@ void DefaultBackend::nextEntry()
     m_current = m_testEntryManager.getNextEntry();
     m_mode->setTestEntry(m_current);
     updateFrontend();
+}
+
+void DefaultBackend::removeCurrentEntryFromPractice()
+{
+    m_testEntryManager.currentEntryFinished();
 }
 
 void DefaultBackend::updateFrontend()

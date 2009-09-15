@@ -29,7 +29,7 @@ WrittenBackendMode::WrittenBackendMode(const PracticeOptions& practiceOptions, A
 
 void WrittenBackendMode::setTestEntry(TestEntry* current)
 {
-    m_state = WaitForFirstAnswer;
+    m_state = NotAnswered;
     Practice::AbstractBackendMode::setTestEntry(current);
     m_frontend->setQuestion(m_current->entry()->translation(m_practiceOptions.languageFrom())->text());
     m_frontend->setSolution(m_current->entry()->translation(m_practiceOptions.languageTo())->text());
@@ -42,11 +42,15 @@ void WrittenBackendMode::continueAction()
 {    
     kDebug() << "cont -- state:" <<  m_state;
     switch (m_state) {
-        case WaitForFirstAnswer:
-        case WrongAnswer:
+        case NotAnswered:
+        case AnswerWasWrong:
             checkAnswer();
             break;
-        case ShowSolution:
+        case SolutionShown:
+            if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
+                m_current->incGoodCount();
+                emit currentEntryFinished();
+            }
             emit nextEntry();
             break;
     }
@@ -57,45 +61,45 @@ void WrittenBackendMode::checkAnswer()
     QString answer = m_frontend->userInput().toString();
     
     switch(m_state) {
-        case WaitForFirstAnswer:
+        case NotAnswered:
             if (answer == m_current->entry()->translation(m_practiceOptions.languageTo())->text()) {
                 m_frontend->setFeedback(i18n("Your answer was right on the first attempt :D"));
                 m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
                 m_frontend->showSolution();
-                m_state = ShowSolution;
+                m_state = SolutionShown;
             } else {
                 if (answer == m_lastAnswer) {
                     m_frontend->setFeedback(i18n("You did not answer correctly."));
-                    m_state = ShowSolution;
+                    m_state = SolutionShown;
                     m_frontend->setResultState(AbstractFrontend::AnswerWrong);
                     m_frontend->showSolution();
                 } else {
                     m_frontend->setFeedback(i18n("Try again - I fear that was not right..."));
-                    m_state = WrongAnswer;
+                    m_state = AnswerWasWrong;
                     m_frontend->setResultState(AbstractFrontend::AnswerWrong);
                 }
             }
             break;
-        case WrongAnswer:
+        case AnswerWasWrong:
             if (answer == m_current->entry()->translation(m_practiceOptions.languageTo())->text()) {
                 m_frontend->setFeedback(i18n("Your answer was right... but not on the first try."));
                 m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
                 m_frontend->showSolution();
-                m_state = ShowSolution;                
+                m_state = SolutionShown;                
             } else {
                 if (answer == m_lastAnswer) {
                     m_frontend->setFeedback(i18n("You did not answer correctly."));
-                    m_state = ShowSolution;
+                    m_state = SolutionShown;
                     m_frontend->setResultState(AbstractFrontend::AnswerWrong);
                     m_frontend->showSolution();
                 } else {
                     m_frontend->setFeedback(i18n("Wrong. Idiot."));
-                    m_state = WrongAnswer;
+                    m_state = AnswerWasWrong;
                     m_frontend->setResultState(AbstractFrontend::AnswerWrong);
                 }
             }
             break;
-        case ShowSolution:
+        case SolutionShown:
             break;
     }
     
