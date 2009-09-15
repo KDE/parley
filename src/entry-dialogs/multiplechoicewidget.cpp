@@ -24,6 +24,8 @@
 #include <QStringListModel>
 #include <QDragEnterEvent>
 
+using namespace Editor;
+
 MultipleChoiceWidget::MultipleChoiceWidget(QWidget *parent) : QWidget(parent)
 {
     setupUi(this);

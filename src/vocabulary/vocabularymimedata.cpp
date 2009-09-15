@@ -20,6 +20,9 @@
 #include <keduvocwordtype.h>
 #include <KDebug>
 
+
+using namespace Editor;
+
 void VocabularyMimeData::setTranslations(QList<KEduVocTranslation *> translations)
 {
     // list of pointers for drag and drop - for example to assign word types

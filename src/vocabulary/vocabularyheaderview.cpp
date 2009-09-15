@@ -14,6 +14,8 @@
 
 #include <KDebug>
 
+using namespace Editor;
+
 VocabularyHeaderView::VocabularyHeaderView(Qt::Orientation orientation, QWidget * parent)
  : QHeaderView(orientation, parent) 
 {

@@ -34,6 +34,8 @@ class KEduVocExpression;
 class KEduVocTranslation;
 class QStringListModel;
 
+namespace Editor {
+
 class MultipleChoiceWidget : public QWidget, public Ui::multipleChoiceWidget
 {
     Q_OBJECT
@@ -56,5 +58,6 @@ private:
     KEduVocTranslation* m_translation;
     QStringListModel * m_choicesModel;
 };
+}
 
 #endif

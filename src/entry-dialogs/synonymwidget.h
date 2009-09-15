@@ -22,6 +22,8 @@ class KEduVocExpression;
 class KEduVocTranslation;
 class QStringListModel;
 
+namespace Editor {
+    
 class SynonymWidget : public QWidget, public Ui::SynonymWidget
 {
     Q_OBJECT
@@ -49,5 +51,5 @@ private:
     QStringListModel * m_listModel;
     SynonymWidgetType m_type;
 };
-
+}
 #endif

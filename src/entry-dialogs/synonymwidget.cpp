@@ -20,6 +20,8 @@
 #include <QStringListModel>
 #include <QDragEnterEvent>
 
+using namespace Editor;
+
 SynonymWidget::SynonymWidget(SynonymWidgetType type, QWidget *parent) : QWidget(parent)
 {
     m_type = type;
