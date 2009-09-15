@@ -17,6 +17,8 @@
 #include <QtCore/qobject.h>
 #include <QPixmap>
 
+class KUrl;
+
 namespace Practice {
 
 class AbstractFrontend : public QObject
@@ -53,7 +55,7 @@ public:
     virtual void setFeedback(const QVariant& feedback) = 0;
     
     virtual void setHint(const QVariant& hint) = 0;
-    virtual void setQuestionImage(const QPixmap& img) = 0;
+    virtual void setQuestionImage(const KUrl& img) = 0;
     virtual void setSolutionImage(const QPixmap& img) = 0;
     virtual void setLessonName(const QString& lesson) = 0;
     virtual void setResultState(ResultState resultState) = 0;

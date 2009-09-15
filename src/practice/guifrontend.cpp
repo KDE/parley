@@ -105,12 +105,10 @@ void GuiFrontend::setFinishedWordsTotalWords(int finished, int total)
     m_ui->totalProgress->setToolTip(i18n("You answered %1 of a total of %2 words.\nYou are %3% done.", finished, total, finished/total*100));
 }
 
-void GuiFrontend::setQuestionImage(const QPixmap& image)
+void GuiFrontend::setQuestionImage(const KUrl& image)
 {
-    kDebug() << "set image";
-    QString img ("file:///home/frederik/.kde4-svn/share/apps/kvtml//en-de-es-ar-ru/Pictures/gazelle.jpg");
-    QPixmap pix(img);
-    m_ui->imageLabel->setPixmap(img);
+    QPixmap pixmap(image.path());
+    m_ui->imageWidget->setPixmap(pixmap);
 }
 
 void GuiFrontend::setHint(const QVariant& hint)

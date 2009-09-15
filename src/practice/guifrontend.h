@@ -37,7 +37,7 @@ public:
     KXmlGuiWindow* getWindow();
 
     virtual void setQuestion(const QVariant& question);
-    virtual void setQuestionImage(const QPixmap& img);
+    virtual void setQuestionImage(const KUrl& img);
     virtual void setSolution(const QVariant& solution);
     virtual void setSolutionImage(const QPixmap& img);
     virtual void setHint(const QVariant& hint);
