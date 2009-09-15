@@ -56,7 +56,10 @@ ParleyMainWindow* ParleyMainWindow::instance()
 
 ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
     :KXmlGuiWindow(0)
-    ,m_currentComponent(NoComponent), m_practiceFrontend(0), m_practiceBackend(0)
+    ,m_currentComponent(NoComponent)
+    ,m_practiceFrontend(0)
+    ,m_practiceBackend(0)
+    ,m_statisticsWidget(0)
 {
     s_instance = this;
     m_document = ParleyDocument::instance();
@@ -143,12 +146,6 @@ void ParleyMainWindow::slotUpdateWindowCaption()
     setCaption(title, modified);
 }
 
-void ParleyMainWindow::slotShowStatistics()
-{
-    StatisticsDialog statisticsDialog(m_document->document(), this, false);
-    statisticsDialog.exec();
-}
-
 void ParleyMainWindow::slotGeneralOptions()
 {
     ParleyPrefs* dialog = new ParleyPrefs(m_document->document(), this, "settings",  Prefs::self());
@@ -178,6 +175,11 @@ void ParleyMainWindow::slotCloseDocument()
     showWelcomeScreen();
 }
 
+void ParleyMainWindow::slotShowStatistics()
+{
+    showStatistics();
+}
+
 void ParleyMainWindow::configurePractice()
 {
     ConfigurePracticeDialog configurePracticeDialog(m_document->document(), this, "practice settings",  Prefs::self());
@@ -186,13 +188,6 @@ void ParleyMainWindow::configurePractice()
 
 void ParleyMainWindow::startPractice()
 {
-    StatisticsDialog *dialog = new StatisticsDialog(m_document->document(), this, true);
-    int result = dialog->exec();
-    delete dialog;
-    if(!result) {
-        return;
-    }
-
     bool newPractice = true;
     if (newPractice) {
         ///@todo: instead of creating a new instance only a new document should be set
@@ -406,6 +401,11 @@ void ParleyMainWindow::showPractice()
     switchComponent(PracticeComponent);
 }
 
+void ParleyMainWindow::showStatistics()
+{
+    switchComponent(StatisticsComponent);
+}
+
 void ParleyMainWindow::switchComponent(Component component)
 {
     kDebug() << "switch to component" << component;
@@ -421,6 +421,10 @@ void ParleyMainWindow::switchComponent(Component component)
     case WelcomeComponent:
         oldClient = 0; // The welcome screen doesn't inherit from KXMLGUIClient and doesn't have any actions
         oldWidget = m_welcomeScreen;
+        break;
+    case StatisticsComponent:
+        oldClient = 0;
+        oldWidget = m_statisticsWidget;
         break;
     case EditorComponent:
         oldClient = m_editor;
@@ -444,6 +448,16 @@ void ParleyMainWindow::switchComponent(Component component)
         newWidget = m_welcomeScreen;
         showDocumentActions(true, false);
         m_welcomeScreen->updateRecentFilesModel();
+        break;
+    case StatisticsComponent:
+        newClient = 0;
+        if (!m_statisticsWidget) {
+            m_statisticsWidget = new StatisticsWidget(m_document->document(), this);
+        } else {
+            m_statisticsWidget->setDocument(m_document->document());
+        }
+        newWidget = m_statisticsWidget;
+        showDocumentActions(true, false);
         break;
     case EditorComponent:
         newClient = m_editor;

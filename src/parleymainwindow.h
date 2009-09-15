@@ -29,6 +29,7 @@
 #include "parleydocument.h"
 
 #include <KXmlGuiWindow>
+#include "statistics-dialogs/StatisticsDialog.h"
 
 namespace Practice {
 class GuiFrontend;
@@ -66,7 +67,13 @@ public:
     ~ParleyMainWindow();
 
     /** enum for the different components that can be displayed */
-    enum Component {NoComponent, WelcomeComponent, EditorComponent, PracticeComponent};
+    enum Component {
+        NoComponent, 
+        WelcomeComponent, 
+        EditorComponent, 
+        PracticeComponent,
+        StatisticsComponent
+    };
 
     /**
      * setup the action (menus etc)
@@ -134,6 +141,7 @@ public slots:
     void showWelcomeScreen();
     void showEditor();
     void showPractice();
+    void showStatistics();
 
     void switchComponent(Component component);
 
@@ -155,6 +163,7 @@ private:
     Editor *m_editor;
     Practice::GuiFrontend *m_practiceFrontend;
     Practice::DefaultBackend *m_practiceBackend;
+    StatisticsWidget *m_statisticsWidget;
 
     KRecentFilesAction* m_recentFilesAction;
 

@@ -29,16 +29,14 @@
 #include <QLayout>
 #include <QLabel>
 
-StatisticsDialog::StatisticsDialog(KEduVocDocument *doc, QWidget *parent, bool showPracticeButtons) : KDialog(parent), m_doc(doc)
+StatisticsWidget::StatisticsWidget(KEduVocDocument *doc, QWidget *parent) 
+    :QWidget(parent)
 {
-    setModal(true);
-
-    QWidget *mainWidget = new QWidget(this);
-    setMainWidget(mainWidget);
-    mainWidget->setLayout(new QVBoxLayout());
+    setLayout(new QVBoxLayout());
     QLabel *caption = new QLabel(this);
-    mainWidget->layout()->addWidget(caption);
+    layout()->addWidget(caption);
 
+    /*
     if (showPracticeButtons) {
         // This enables the start and configure practice buttons
         setCaption(i18n("Start Practice"));
@@ -55,27 +53,29 @@ StatisticsDialog::StatisticsDialog(KEduVocDocument *doc, QWidget *parent, bool s
         setButtons(Ok);
         caption->setText(i18n("Average grades for each lesson:"));
     }
+    */
 
-    StatisticsModel *statisticsModel = new StatisticsModel(this);
-    statisticsModel->setDocument(doc);
+    m_statisticsModel = new StatisticsModel(this);
 
-    LessonStatisticsView *lessonStatistics = new LessonStatisticsView(this);
-    mainWidget->layout()->addWidget(lessonStatistics);
+    m_lessonStatistics = new LessonStatisticsView(this);
+    layout()->addWidget(m_lessonStatistics);
 
-    lessonStatistics->setModel(statisticsModel);
-    lessonStatistics->expandToDepth(0);
-
-    KConfigGroup cg(KGlobal::config(), "StatisticsDialog");
-    restoreDialogSize(cg);
+    setDocument(doc);
 }
 
-StatisticsDialog::~StatisticsDialog()
+StatisticsWidget::~StatisticsWidget()
 {
-    KConfigGroup cg(KGlobal::config(), "StatisticsDialog");
-    KDialog::saveDialogSize(cg);
 }
 
-void StatisticsDialog::configurePractice()
+void StatisticsWidget::setDocument(KEduVocDocument* doc)
+{
+    m_doc = doc;
+    m_statisticsModel->setDocument(doc);
+    m_lessonStatistics->setModel(m_statisticsModel);
+    m_lessonStatistics->expandToDepth(0);
+}
+
+void StatisticsWidget::configurePractice()
 {
     ConfigurePracticeDialog dialog(m_doc, this, "practice settings",  Prefs::self());
     dialog.exec();

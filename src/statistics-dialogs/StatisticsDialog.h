@@ -27,20 +27,26 @@
 
 #include <KDialog>
 
+class LessonStatisticsView;
+class StatisticsModel;
 class KEduVocDocument;
 
-class StatisticsDialog : public KDialog
+class StatisticsWidget : public QWidget
 {
     Q_OBJECT
 public:
-    StatisticsDialog(KEduVocDocument* doc, QWidget *parent, bool showPracticeButtons);
-    ~StatisticsDialog();
+    StatisticsWidget(KEduVocDocument* doc, QWidget *parent);
+    ~StatisticsWidget();
+    
+    void setDocument(KEduVocDocument* doc);
 
 private slots:
     void configurePractice();
 
 private:
-    KEduVocDocument *m_doc;
+    KEduVocDocument* m_doc;
+    StatisticsModel* m_statisticsModel;
+    LessonStatisticsView* m_lessonStatistics;
 };
 
 #endif

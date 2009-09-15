@@ -99,7 +99,6 @@ void WrittenBackendMode::checkAnswer()
         case SolutionShown:
             break;
     }
-    
     m_lastAnswer = answer;
 }
 

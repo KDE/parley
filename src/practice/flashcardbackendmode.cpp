@@ -50,7 +50,8 @@ void FlashCardBackendMode::continueAction()
 
 void FlashCardBackendMode::hintAction()
 {
-    m_frontend->setHint("This is a hint :P");
+    // TODO: get rid of this or make it do something useful
+    m_frontend->setHint("This is a hint.");
 }
 
 #include "flashcardbackendmode.moc"

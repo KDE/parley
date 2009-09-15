@@ -31,7 +31,7 @@ void AbstractBackendMode::setTestEntry(TestEntry* current)
     m_frontend->setSolutionSound(m_current->entry()->translation(m_practiceOptions.languageTo())->soundUrl());
     m_frontend->setQuestionPronunciation(m_current->entry()->translation(m_practiceOptions.languageFrom())->pronunciation());
     m_frontend->setSolutionPronunciation(m_current->entry()->translation(m_practiceOptions.languageTo())->pronunciation());
-        
+
     m_frontend->setResultState(AbstractFrontend::QuestionState);
 }
 
