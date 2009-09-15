@@ -27,8 +27,6 @@
 #include "vocabulary/containermodel.h"
 #include "vocabulary/lessonmodel.h"
 #include "vocabulary/wordtypemodel.h"
-#include "vocabulary/leitnerview.h"
-#include "vocabulary/leitnermodel.h"
 
 #include "entry-dialogs/multiplechoicewidget.h"
 #include "entry-dialogs/comparisonwidget.h"
@@ -59,7 +57,9 @@
 
 #include "modeltest/modeltest.h"
 
-Editor::Editor(ParleyMainWindow* parent) : KXmlGuiWindow(parent), m_mainWindow(parent)
+using namespace Editor;
+
+EditorWindow::EditorWindow(ParleyMainWindow* parent) : KXmlGuiWindow(parent), m_mainWindow(parent)
 {
     // KXmlGui
     setXMLFile("editorui.rc");
@@ -83,13 +83,13 @@ Editor::Editor(ParleyMainWindow* parent) : KXmlGuiWindow(parent), m_mainWindow(p
     connect(parent, SIGNAL(documentChanged()), this, SLOT(updateDocument()));
 }
 
-Editor::~Editor()
+EditorWindow::~EditorWindow()
 {
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     saveMainWindowSettings(cfg);
 }
 
-void Editor::updateDocument()
+void EditorWindow::updateDocument()
 {
 ///@todo we can use connect here
     m_vocabularyView->setDocument(m_mainWindow->parleyDocument()->document());
@@ -97,7 +97,6 @@ void Editor::updateDocument()
 
     m_lessonModel->setDocument(m_mainWindow->parleyDocument()->document());
     m_wordTypeModel->setDocument(m_mainWindow->parleyDocument()->document());
-    m_leitnerModel->setDocument(m_mainWindow->parleyDocument()->document());
 
     if (!m_mainWindow->parleyDocument()->document()) {
         return;
@@ -106,9 +105,6 @@ void Editor::updateDocument()
     // expand the root items
     m_lessonView->expandToDepth(0);
     m_wordTypeView->expandToDepth(0);
-
-    // the top level container of this model only holds the others
-    m_leitnerView->setRootIndex(m_leitnerModel->index(0,0));
 
     connect(m_mainWindow->parleyDocument()->document(), SIGNAL(docModified(bool)), m_mainWindow, SLOT(slotUpdateWindowCaption()));
     connect(m_vocabularyModel, SIGNAL(documentChanged(KEduVocDocument*)),
@@ -128,7 +124,7 @@ void Editor::updateDocument()
 }
 
 
-void Editor::initDockWidgets()
+void EditorWindow::initDockWidgets()
 {
 // Lesson dock
     QDockWidget *lessonDockWidget = new QDockWidget(i18n("Lessons"), this);
@@ -184,29 +180,6 @@ void Editor::initDockWidgets()
 
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         m_wordTypeView, SLOT(setTranslation(KEduVocExpression*, int)));
-
-// Leitner boxes dock
-    QDockWidget* leitnerDockWidget = new QDockWidget(i18n("Grade Boxes"), this);
-    leitnerDockWidget->setObjectName( "LeitnerDock" );
-    m_leitnerView = new LeitnerView(this);
-    leitnerDockWidget->setWidget(m_leitnerView);
-    addDockWidget( Qt::LeftDockWidgetArea, leitnerDockWidget );
-    m_dockWidgets.append(leitnerDockWidget);
-
-    m_leitnerModel = new LeitnerModel(this);
-    leitnerDockWidget->setVisible(false);
-    actionCollection()->addAction("show_leitner_dock", leitnerDockWidget->toggleViewAction());
-
-    m_leitnerView->setModel(m_leitnerModel);
-
-    connect(m_leitnerView, SIGNAL(selectedLeitnerBoxChanged(KEduVocLeitnerBox*)),
-        m_vocabularyModel, SLOT(setLeitnerBox(KEduVocLeitnerBox*)));
-
-    connect(m_leitnerView, SIGNAL(signalShowContainer(KEduVocContainer*)),
-        m_vocabularyModel, SLOT(showContainer(KEduVocContainer*)));
-
-    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-        m_leitnerView, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Conjugations
     QDockWidget *conjugationDock = new QDockWidget(i18n("Conjugation"), this);
@@ -366,10 +339,9 @@ void Editor::initDockWidgets()
 //     addDockWidget(Qt::RightDockWidgetArea, gradeDock);
 //     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_declensionWidget, SLOT(setTranslation(KEduVocTranslation*)));
 
-// actionCollection()->addAction("show_leitner_dock", ->toggleViewAction());
 }
 
-void Editor::initActions()
+void EditorWindow::initActions()
 {
     KAction* editLanguages =new KAction(this);
     actionCollection()->addAction("edit_languages", editLanguages);
@@ -457,7 +429,7 @@ void Editor::initActions()
     connect(menu_scriptManager, SIGNAL(triggered()),  this, SLOT(slotShowScriptManager()));
 }
 
-void Editor::initModel()
+void EditorWindow::initModel()
 {
     m_vocabularyModel = new VocabularyModel(this);
     m_vocabularyFilter = new VocabularyFilter(this);
@@ -472,7 +444,7 @@ void Editor::initModel()
 /**
  * This initializes the main widgets and table.
  */
-void Editor::initView()
+void EditorWindow::initView()
 {
     // Parent of all
     QStackedWidget *stackedWidget = new QStackedWidget(this);
@@ -516,29 +488,29 @@ void Editor::initView()
     topLayout->addLayout(rightLayout);
 }
 
-void Editor::slotConfigShowSearch()
+void EditorWindow::slotConfigShowSearch()
 {
     m_searchWidget->setVisible(m_searchWidget->isHidden());
     Prefs::setShowSearch(m_searchWidget->isVisible());
 }
 
-void Editor::slotShowScriptManager() {
+void EditorWindow::slotShowScriptManager() {
     ScriptDialog * dialog = new ScriptDialog(m_scriptManager);
     dialog->show();
 }
 
-void Editor::setTableFont(const QFont& font)
+void EditorWindow::setTableFont(const QFont& font)
 {
     m_vocabularyView->setFont(font);
     m_vocabularyView->reset();
 }
 
-void Editor::removeGrades()
+void EditorWindow::removeGrades()
 {
     m_mainWindow->parleyDocument()->document()->lesson()->resetGrades(-1, KEduVocContainer::Recursive);
 }
 
-void Editor::initScripts()
+void EditorWindow::initScripts()
 {
     m_scriptManager = new ScriptManager(this);
 
@@ -548,12 +520,12 @@ void Editor::initScripts()
     m_scriptManager->loadScripts();
 }
 
-void Editor::saveState()
+void EditorWindow::saveState()
 {
     m_vocabularyView->saveColumnVisibility();
 }
 
-void Editor::slotLanguageProperties()
+void EditorWindow::slotLanguageProperties()
 {
     LanguageProperties properties(this);
     if ( properties.exec() == KDialog::Accepted ) {
@@ -561,7 +533,7 @@ void Editor::slotLanguageProperties()
     }
 }
 
-void Editor::slotDocumentProperties()
+void EditorWindow::slotDocumentProperties()
 {
     DocumentProperties* titleAuthorWidget = new DocumentProperties(ParleyDocument::instance()->document(), false, this);
     KDialog* titleAuthorDialog;

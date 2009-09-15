@@ -36,26 +36,32 @@ class GuiFrontend;
 class DefaultBackend;
 }
 
+namespace Editor {
+    class VocabularyView;
+    class VocabularyModel;
+    class VocabularyFilter;
+    class LessonView;
+    class WordTypeView;
+    class LeitnerView;
+    class LessonModel;
+    class WordTypeModel;
+    class LeitnerModel;
+    class ConjugationWidget;
+    class SummaryWordWidget;
+    class EditorWindow;
+}
+
 class KRecentFilesAction;
 class KActionMenu;
 class KAction;
 class QLabel;
 class QDockWidget;
-class Editor;
+
 class WelcomeScreen;
-class VocabularyView;
-class VocabularyModel;
-class VocabularyFilter;
-class LessonView;
-class WordTypeView;
-class LeitnerView;
-class LessonModel;
-class WordTypeModel;
-class LeitnerModel;
-class ConjugationWidget;
-class SummaryWordWidget;
 class ScriptManager;
 class ParleyPracticeMainWindow;
+
+using namespace Editor;
 
 class ParleyMainWindow : public KXmlGuiWindow
 {
@@ -102,7 +108,7 @@ public:
     ParleyDocument* parleyDocument();
 
     /** return the editor instance */
-    Editor* editor();
+    Editor::EditorWindow* editor();
 
 public slots:
     /** Update the title bar of the main window with the current document */
@@ -160,7 +166,7 @@ private:
     Component m_currentComponent;
 
     WelcomeScreen *m_welcomeScreen;
-    Editor *m_editor;
+    EditorWindow *m_editor;
     Practice::GuiFrontend *m_practiceFrontend;
     Practice::DefaultBackend *m_practiceBackend;
     StatisticsWidget *m_statisticsWidget;

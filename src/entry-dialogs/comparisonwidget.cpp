@@ -22,6 +22,8 @@
 #include <KDebug>
 #include <KMessageBox>
 
+using namespace Editor;
+
 ComparisonWidget::ComparisonWidget(QWidget *parent) : QWidget(parent)
 {
     setupUi(this);

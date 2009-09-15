@@ -37,6 +37,8 @@
 #include <KIcon>
 #include <KLocale>
 
+using namespace Editor;
+
 SummaryWordWidget::SummaryWordWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent) :
     QWidget(parent)
 {

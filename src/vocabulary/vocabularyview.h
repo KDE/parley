@@ -22,23 +22,25 @@
 #include <QTableView>
 #include <QMap>
 
-class VocabularyFilter;
-class VocabularyDelegate;
 class KEduVocExpression;
 class KEduVocDocument;
 
 class KActionMenu;
 class KAction;
-class Editor;
 class KUrl;
 
 class Translator;
+
+namespace Editor {
+    class EditorWindow;
+    class VocabularyFilter;
+    class VocabularyDelegate;
 
 class VocabularyView : public QTableView
 {
     Q_OBJECT
 public:
-    VocabularyView(Editor *parent);
+    VocabularyView(EditorWindow *parent);
     KActionMenu* columnsActionMenu();
 
     void setModel(VocabularyFilter * model);
@@ -114,5 +116,7 @@ private:
     Sonnet::BackgroundChecker *spellingChecker;
     Sonnet::Dialog *spellingDialog;
 };
+
+}
 
 #endif

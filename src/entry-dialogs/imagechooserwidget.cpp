@@ -21,6 +21,8 @@
 
 #include <QDragEnterEvent>
 
+using namespace Editor;
+
 ImageChooserWidget::ImageChooserWidget(QWidget *parent) : QWidget(parent)
 {
     setupUi(this);

@@ -18,6 +18,8 @@
 
 #include "vocabulary/containermodel.h"
 
+using namespace Editor;
+
 class StatisticsModel : public ContainerModel
 {
     Q_OBJECT

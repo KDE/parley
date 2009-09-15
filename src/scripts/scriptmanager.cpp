@@ -26,7 +26,9 @@
 #include <kross/core/action.h>
 #include <kross/core/manager.h>
 
-ScriptManager::ScriptManager ( Editor * editor )
+using namespace Editor;
+
+ScriptManager::ScriptManager ( EditorWindow * editor )
         : m_editor ( editor )
 {
     //add Scripting::Parley

@@ -35,6 +35,8 @@
 #include <QMenu>
 #include <QContextMenuEvent>
 
+using namespace Editor;
+
 ContainerView::ContainerView(QWidget *parent) : QTreeView(parent)
 {
     header()->setStretchLastSection(false);

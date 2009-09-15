@@ -54,8 +54,6 @@
    <text>&amp;Practice</text>
    <Action name="practice_configure" />
    <Action name="practice_start" />
-   <Separator/>
-   <Action name="show_statistics" />
   </Menu>  
   <Menu name="scripts" >
     <text>&amp;Scripts</text>

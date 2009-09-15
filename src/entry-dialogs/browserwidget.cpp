@@ -21,6 +21,7 @@
 
 #include <QDragEnterEvent>
 
+using namespace Editor;
 
 BrowserWidget::BrowserWidget(QWidget *parent) : QWidget(parent)
 {

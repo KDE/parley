@@ -47,7 +47,9 @@
 #include <KUrl>
 #include <sonnet/backgroundchecker.h>
 
-VocabularyView::VocabularyView(Editor * parent)
+using namespace Editor;
+
+VocabularyView::VocabularyView(EditorWindow * parent)
     : QTableView(parent), m_model(0), m_doc(0),
     spellcheckRow(0), spellcheckColumn(0), spellingChecker(0), spellingDialog(0)
 {

@@ -18,19 +18,21 @@
 
 #include "vocabulary/containerview.h"
 
-class ContainerModel;
+namespace Editor {
+    class ContainerModel;
+}
 
 /**
  * View for the lesson list.
  * @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
  */
-class LessonStatisticsView : public ContainerView
+class LessonStatisticsView : public Editor::ContainerView
 {
     Q_OBJECT
 
 public:
     LessonStatisticsView(QWidget *parent);
-    void setModel(ContainerModel *model);
+    void setModel(Editor::ContainerModel *model);
 
 private Q_SLOTS:
     void removeGrades();

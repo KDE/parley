@@ -28,7 +28,9 @@
 #include <QMenu>
 #include <QContextMenuEvent>
 
-WordTypeView::WordTypeView(Editor* parent) : ContainerView(parent)
+using namespace Editor;
+
+WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
 {
     setContextMenuPolicy(Qt::DefaultContextMenu);
 

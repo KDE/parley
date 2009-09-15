@@ -29,6 +29,8 @@
 #include <QLayout>
 #include <QLabel>
 
+using namespace Editor;
+
 StatisticsWidget::StatisticsWidget(KEduVocDocument *doc, QWidget *parent) 
     :QWidget(parent)
 {

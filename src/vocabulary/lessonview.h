@@ -19,7 +19,8 @@
 #include "containerview.h"
 #include "lessonmodel.h"
 
-class Editor;
+namespace Editor {
+    class EditorWindow;
 
 /**
  * View for the lesson list.
@@ -30,7 +31,7 @@ class LessonView : public ContainerView
     Q_OBJECT
 
 public:
-    LessonView(Editor *parent);
+    LessonView(EditorWindow *parent);
 
     /** Set the model for the view.
      * @param model the model */
@@ -63,5 +64,6 @@ protected slots:
 private:
     LessonModel *m_model;
 };
+}
 
 #endif

@@ -31,6 +31,8 @@
 
 #include <QItemDelegate>
 
+using namespace Editor;
+
 class GradeDelegate: public QItemDelegate
 {
 public:

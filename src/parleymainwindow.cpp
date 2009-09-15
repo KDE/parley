@@ -69,7 +69,7 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
 
     initWelcomeScreen();
 
-    m_editor = new Editor(this);
+    m_editor = new EditorWindow(this);
     m_editor->hide();
 
     initActions();
@@ -517,7 +517,7 @@ ParleyDocument* ParleyMainWindow::parleyDocument()
     return m_document;
 }
 
-Editor* ParleyMainWindow::editor()
+EditorWindow* ParleyMainWindow::editor()
 {
     return m_editor;
 }

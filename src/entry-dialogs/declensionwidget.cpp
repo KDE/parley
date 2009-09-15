@@ -21,6 +21,8 @@
 #include <KDebug>
 #include <KMessageBox>
 
+using namespace Editor;
+
 DeclensionWidget::DeclensionWidget(QWidget *parent) : QWidget(parent)
 {
     m_doc = 0;

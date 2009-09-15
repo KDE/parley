@@ -19,6 +19,8 @@
 #include <KDebug>
 #include <KMessageBox>
 
+using namespace Editor;
+
 ConjugationWidget::ConjugationWidget(QWidget *parent) : QWidget(parent)
 {
     m_doc = 0;

@@ -25,7 +25,9 @@
 
 #include <KStandardDirs>
 
-class Editor;
+namespace Editor {
+    class EditorWindow;
+}
 class Translator;
 
 /**
@@ -206,7 +208,7 @@ namespace Scripting
                 Irregular = 0x20000000
             };
 
-            Parley ( Editor * editor );
+            Parley ( Editor::EditorWindow * editor );
 
             ~Parley();
 
@@ -395,7 +397,7 @@ namespace Scripting
         private:
             Translator* m_translator;
             Document* m_doc;
-            Editor * m_editor;
+            Editor::EditorWindow * m_editor;
     };
 
 }

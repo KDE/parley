@@ -25,26 +25,28 @@
 
 class KLineEdit;
 class KActionMenu;
-class VocabularyView;
-class VocabularyModel;
-class VocabularyFilter;
-class LessonView;
-class WordTypeView;
-class LeitnerView;
-class LessonModel;
-class WordTypeModel;
-class LeitnerModel;
-class ConjugationWidget;
-class SummaryWordWidget;
 class ScriptManager;
 
-class Editor : public KXmlGuiWindow
+namespace Editor {
+    class VocabularyView;
+    class VocabularyModel;
+    class VocabularyFilter;
+    class LessonView;
+    class WordTypeView;
+    class LeitnerView;
+    class LessonModel;
+    class WordTypeModel;
+    class LeitnerModel;
+    class ConjugationWidget;
+    class SummaryWordWidget;
+
+class EditorWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 
 public:
-    Editor(ParleyMainWindow* parent);
-    ~Editor();
+    EditorWindow(ParleyMainWindow* parent);
+    ~EditorWindow();
 
     /**
      * setup the action (menus etc)
@@ -130,9 +132,6 @@ private:
     LeitnerView *m_leitnerView;
     LeitnerModel *m_leitnerModel;
 
-    friend class ParleyDocument;
-    friend class Scripting::Parley;
-    friend class ScriptManager;
 
     ScriptManager* m_scriptManager;
 
@@ -141,7 +140,14 @@ private:
 
     QList<QDockWidget*> m_dockWidgets;
     QList<bool> m_dockWidgetVisibility;
+    
+    
+    friend class ::ParleyDocument;
+    friend class Scripting::Parley;
+    friend class ::ScriptManager;
 };
+
+}
 
 #endif // EDITOR_H
 

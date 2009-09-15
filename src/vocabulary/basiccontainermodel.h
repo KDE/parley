@@ -29,6 +29,8 @@
   * BasicContainerModel is a read only tree model.
   * @see ContainerModel for its subclass that includes more options.
   */
+namespace Editor {
+    
 class BasicContainerModel : public QAbstractItemModel
 {
     Q_OBJECT
@@ -61,5 +63,6 @@ protected:
     KEduVocDocument *m_doc;
 };
 
+}
 
 #endif

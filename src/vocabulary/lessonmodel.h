@@ -18,7 +18,7 @@
 
 #include "containermodel.h"
 
-
+namespace Editor {
 /**
   * Model for the tree of lessons.
   */
@@ -52,6 +52,6 @@ public:
 protected:
     KEduVocContainer * rootContainer() const;
 };
-
+}
 
 #endif

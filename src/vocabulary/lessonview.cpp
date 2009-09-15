@@ -25,7 +25,9 @@
 #include <KAction>
 #include <KActionCollection>
 
-LessonView::LessonView(Editor * parent) :ContainerView(parent)
+using namespace Editor;
+
+LessonView::LessonView(EditorWindow * parent) :ContainerView(parent)
 {
     KAction *actionNewLesson = new KAction(this);
     parent->actionCollection()->addAction("new_lesson", actionNewLesson);

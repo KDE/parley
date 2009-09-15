@@ -33,10 +33,13 @@
 #include <KActionCollection>
 #include <KMenuBar>
 
+
+using namespace Editor;
+
 namespace Scripting
 {
 
-    Parley::Parley ( Editor * editor ) : QObject(), m_editor ( editor )
+    Parley::Parley ( EditorWindow * editor ) : QObject(), m_editor ( editor )
     {
         m_translator = new Translator(this); //parameter has to be <this> cause it's used by Translator to access callTranslateWord
         m_doc = new Document ( ParleyDocument::instance()->document() );

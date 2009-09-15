@@ -18,9 +18,11 @@
 
 #include <QSortFilterProxyModel>
 
-class VocabularyModel;
 class KEduVocLesson;
 class KEduVocExpression;
+
+namespace Editor {
+    class VocabularyModel;
 
 class VocabularyFilter : public QSortFilterProxyModel
 {
@@ -43,5 +45,6 @@ private:
     VocabularyModel * m_model;
     QString m_filterString;
 };
+}
 
 #endif

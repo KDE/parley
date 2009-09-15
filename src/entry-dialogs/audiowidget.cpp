@@ -22,6 +22,7 @@
 #include <KIcon>
 #include <kdebug.h>
 
+using namespace Editor;
 
 AudioWidget::AudioWidget(QWidget *parent) : QWidget(parent)
 {

@@ -63,8 +63,6 @@ set(vocabulary_SRCS
     vocabulary/containermimedata.cpp
     vocabulary/lessonview.cpp
     vocabulary/wordtypeview.cpp
-    vocabulary/leitnerview.cpp
-    vocabulary/leitnermodel.cpp
     vocabulary/vocabularycolumnsdialog.cpp
 )
 
@@ -252,5 +250,8 @@ install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )
 
 # editor ui
 install( FILES editor/editorui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
+
+# statistics ui
+install( FILES statistics-dialogs/statisticsui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 
 

@@ -22,6 +22,9 @@
 class KEduVocExpression;
 class KHTMLPart;
 
+
+namespace Editor {
+    
 struct DictionaryProvider {
     QString name;
     QString url;
@@ -62,4 +65,7 @@ private:
     QList<DictionaryProvider> m_providers;
     int m_currentProvider;
 };
+
+}
+
 #endif

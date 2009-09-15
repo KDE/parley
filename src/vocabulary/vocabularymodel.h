@@ -23,6 +23,7 @@ class KEduVocDocument;
 class KEduVocLesson;
 
 
+namespace Editor {
 /**
 	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 */
@@ -139,7 +140,7 @@ private:
     KEduVocDocument *m_document;
     KEduVocContainer::EnumEntriesRecursive m_recursive;
 };
-
+}
 Q_DECLARE_METATYPE(KEduVocExpression*)
 
 #endif

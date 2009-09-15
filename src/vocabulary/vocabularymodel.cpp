@@ -29,6 +29,8 @@
 #include <KMessageBox>
 #include <QPixmap>
 
+using namespace Editor;
+
 VocabularyModel::VocabularyModel(QObject *parent)
     :QAbstractTableModel(parent),
     m_container(0), m_document(0)
