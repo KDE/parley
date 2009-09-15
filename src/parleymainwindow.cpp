@@ -454,7 +454,7 @@ void ParleyMainWindow::switchComponent(Component component)
         }
         newClient = m_statisticsWidget;
         newWidget = m_statisticsWidget;
-        showDocumentActions(true, false);
+        showDocumentActions(true, true);
         break;
     case EditorComponent:
         newClient = m_editor;

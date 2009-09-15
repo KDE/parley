@@ -101,6 +101,13 @@ void StatisticsMainWindow::setDocument(KEduVocDocument* doc)
 
 void StatisticsMainWindow::initActions()
 {
+    KAction* editDocument = new KAction(this);
+    editDocument->setText(i18n("Edit..."));
+    editDocument->setIcon(KIcon("document-edit"));
+    editDocument->setHelpText(i18n("Edit the document"));
+    actionCollection()->addAction("document_edit", editDocument);
+    connect(editDocument, SIGNAL(triggered()), m_mainWindow, SLOT(showEditor()));
+    
     KAction* startPractice = new KAction(this);
     startPractice->setText(i18n("Start Practice..."));
     startPractice->setIcon(KIcon("practice-start"));

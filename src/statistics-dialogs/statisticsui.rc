@@ -3,6 +3,10 @@
 <gui name="statistics"  version="1">
 
 <MenuBar>
+   <Menu name="file" >
+   <text>&amp;File</text>
+   <Action name="file_close" />
+  </Menu>
   <Menu name="learning" >
    <text>&amp;Practice</text>
    <Action name="practice_configure" />
@@ -12,9 +16,7 @@
 
  <ToolBar noMerge="1" name="statisticsToolBar" >
   <text>Statistics Toolbar</text>
-  <Action name="file_close" />
-  <Separator/>
-  <Action name="file_edit" />
+  <Action name="document_edit" />
   <Action name="practice_configure" />
   <Action name="practice_start" />
  </ToolBar>
