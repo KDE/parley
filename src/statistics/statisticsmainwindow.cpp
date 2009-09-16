@@ -125,7 +125,6 @@ void StatisticsMainWindow::initActions()
     configurePractice->setStatusTip(configurePractice->whatsThis());
     actionCollection()->addAction("practice_configure", configurePractice);
     connect(configurePractice, SIGNAL(triggered(bool)), m_mainWindow, SLOT(configurePractice()));
-    
 }
 
 void StatisticsMainWindow::configurePractice()

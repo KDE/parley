@@ -126,13 +126,6 @@ void ParleyMainWindow::updateRecentFilesModel()
 
 void ParleyMainWindow::saveOptions()
 {
-///@todo save selection per document
-//     if (m_tableView) {
-//         // map to original entry numbers:
-//         QModelIndex sourceIndex = m_sortFilterModel->mapToSource(m_tableView->currentIndex());
-//         Prefs::setCurrentRow(sourceIndex.row());
-//         Prefs::setCurrentCol(sourceIndex.column());
-//     }
     Prefs::self()->writeConfig();
 }
 
@@ -160,10 +153,6 @@ void ParleyMainWindow::slotGeneralOptions()
 void ParleyMainWindow::slotApplyPreferences()
 {
     m_document->enableAutoBackup((m_currentComponent != WelcomeComponent) && Prefs::autoBackup());
-
-//     if (m_pronunciationStatusBarLabel) {
-//         m_pronunciationStatusBarLabel->setFont(Prefs::iPAFont());
-//     }
     m_editor->setTableFont(Prefs::tableFont());
 }
 
@@ -172,8 +161,6 @@ void ParleyMainWindow::slotCloseDocument()
     if (!queryClose()) {
         return;
     }
-    //m_document->newDocument();
-
     m_document->close();
     emit documentChanged();
     showWelcomeScreen();
