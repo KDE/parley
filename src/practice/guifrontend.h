@@ -18,6 +18,7 @@
 #include "abstractfrontend.h"
 
 #include <KXmlGuiWindow>
+#include <KUrl>
 
 #include "practicemainwindow.h"
 
@@ -70,6 +71,7 @@ private:
     Ui::PracticeMainWindow* m_ui;
     AbstractModeWidget* m_centralWidget;
     ResultState m_resultState;
+    KUrl m_lastImage;
 };
 
 }

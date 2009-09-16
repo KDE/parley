@@ -21,7 +21,7 @@
 using namespace Practice;
 
 GuiFrontend::GuiFrontend(QObject* parent)
-    : AbstractFrontend(parent), m_centralWidget(0)
+    : AbstractFrontend(parent), m_centralWidget(0), m_lastImage("invalid")
 {
     m_mainWindow = new PracticeMainWindow();
     QWidget* centralWidget = new QWidget(m_mainWindow);
@@ -123,12 +123,17 @@ void GuiFrontend::setQuestion(const QVariant& question)
 
 void GuiFrontend::setQuestionImage(const KUrl& image)
 {
+    if (m_lastImage == image) {
+        m_lastImage = image;
+        return;
+    }
     if (image.path().isEmpty()) {
         m_ui->imageWidget->setPixmap(KIcon("parley").pixmap(256));
     } else {
         QPixmap pixmap(image.path());
         m_ui->imageWidget->setPixmap(pixmap);
     }
+    m_lastImage = image;
 }
 
 void GuiFrontend::setQuestionPronunciation(const QString& pronunciationText)
