@@ -31,7 +31,11 @@ namespace ParleyActions {
         FileProperties,
         FileClose,
         FileQuit,
-        Preferences
+        Preferences,
+        LanguagesProperties,
+        RemoveGrades,
+        CheckSpelling,
+        ToggleShowSublessons
     };
     
     KAction* create(ParleyAction id, const QObject *recvr, const char *slot,

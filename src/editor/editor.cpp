@@ -46,6 +46,7 @@
 #include "scripts/scriptdialog.h"
 #include "scripts/translator.h"
 
+#include "parleyactions.h"
 #include <KActionCollection>
 #include <KToggleAction>
 #include <KActionMenu>
@@ -344,34 +345,49 @@ void EditorWindow::initDockWidgets()
 
 void EditorWindow::initActions()
 {
-    KAction* editLanguages =new KAction(this);
-    actionCollection()->addAction("edit_languages", editLanguages);
-    editLanguages->setIcon(KIcon("set-language"));
-    editLanguages->setText(i18n("&Languages..."));
-    editLanguages->setWhatsThis(i18n("Edit which languages are in the collection and their grammar properties."));
-    editLanguages->setToolTip(editLanguages->whatsThis());
-    editLanguages->setStatusTip(editLanguages->whatsThis());
-    connect(editLanguages, SIGNAL(triggered()),  this, SLOT(slotLanguageProperties()));
-    ///@todo tooltip
+    ParleyActions::create(ParleyActions::LanguagesProperties, this, SLOT(slotLanguageProperties()), actionCollection());
+    ParleyActions::create(ParleyActions::RemoveGrades, this, SLOT(removeGrades()), actionCollection());
+    ParleyActions::create(ParleyActions::CheckSpelling, m_vocabularyView, SLOT(checkSpelling()), actionCollection());
+    ParleyActions::create(ParleyActions::ToggleShowSublessons, m_vocabularyModel, SLOT(showEntriesOfSubcontainers(bool)), actionCollection());
+    
+    /*
+    ParleyActions::create(, this, SLOT(()), actionCollection());
+    ParleyActions::create(, this, SLOT(()), actionCollection());
+    ParleyActions::create(, this, SLOT(()), actionCollection());
+    ParleyActions::create(, this, SLOT(()), actionCollection());
+    ParleyActions::create(, this, SLOT(()), actionCollection());
+    ParleyActions::create(, this, SLOT(()), actionCollection());
+    ParleyActions::create(, this, SLOT(()), actionCollection());
+    ParleyActions::create(, this, SLOT(()), actionCollection());
+    ParleyActions::create(, this, SLOT(()), actionCollection());
+     */
 
-    KAction *removeGrades = new KAction(this);
-    actionCollection()->addAction("vocab_remove_grades", removeGrades);
-    removeGrades->setIcon(KIcon("edit-clear"));
-    removeGrades->setText(i18n("Remove Grades"));
-    connect(removeGrades, SIGNAL(triggered(bool)), this, SLOT(removeGrades()));
-    removeGrades->setWhatsThis(i18n("Remove all grades from the current document"));
-    removeGrades->setToolTip(removeGrades->whatsThis());
-    removeGrades->setStatusTip(removeGrades->whatsThis());
-
-    KAction *checkSpelling = KStandardAction::spelling(m_vocabularyView, SLOT(checkSpelling()), actionCollection());
-
-    KAction *showSublessonentries = actionCollection()->add<KToggleAction>("lesson_showsublessonentries");
-    showSublessonentries->setText(i18n("Show Entries from Child Lessons"));
-    connect(showSublessonentries, SIGNAL(triggered(bool)), m_vocabularyModel, SLOT(showEntriesOfSubcontainers(bool)));
-    showSublessonentries->setWhatsThis(i18n("Enable to also see the entries of child lessons in each lesson."));
-    showSublessonentries->setToolTip(showSublessonentries->whatsThis());
-    showSublessonentries->setStatusTip(showSublessonentries->whatsThis());
-    showSublessonentries->setChecked(Prefs::showSublessonentries());
+    /*
+    pAction = Private::createCustomAction(recvr, slot, parent, 
+                                          "", i18n(""), 
+                                          i18n(""), "");
+    pAction = Private::createCustomAction(recvr, slot, parent, 
+                                          "", i18n(""), 
+                                          i18n(""), "");
+    pAction = Private::createCustomAction(recvr, slot, parent, 
+                                          "", i18n(""), 
+                                          i18n(""), "");
+    pAction = Private::createCustomAction(recvr, slot, parent, 
+                                          "", i18n(""), 
+                                          i18n(""), "");
+    pAction = Private::createCustomAction(recvr, slot, parent, 
+                                          "", i18n(""), 
+                                          i18n(""), "");
+    pAction = Private::createCustomAction(recvr, slot, parent, 
+                                          "", i18n(""), 
+                                          i18n(""), "");
+    pAction = Private::createCustomAction(recvr, slot, parent, 
+                                          "", i18n(""), 
+                                          i18n(""), "");
+    pAction = Private::createCustomAction(recvr, slot, parent, 
+                                          "", i18n(""), 
+                                          i18n(""), "");
+*/
 
     KAction *automaticTranslation = actionCollection()->add<KToggleAction>("lesson_automatictranslation");
     automaticTranslation->setText(i18n("Automatic Translation"));

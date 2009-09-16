@@ -13,10 +13,13 @@ Copyright 2009 Frederik Gladhorn <gladhorn@kde.org>
 
 #include "parleyactions.h"
 
+#include "prefs.h"
+
 #include <KStandardAction>
 #include <KLocalizedString>
 #include <KActionCollection>
 #include <knewstuff2/ui/knewstuffaction.h>
+#include <KToggleAction>
 
 namespace ParleyActions {
     namespace Private {
@@ -24,15 +27,30 @@ namespace ParleyActions {
             const QString& name,
             const QString& text,
             const QString& helpText,
-            const QString& iconName = QString())
+            const QString& iconName = QString(),
+            bool toggle = false)
         {
-            KAction* pAction = new KAction(parent);
+            // Create KAction or KToggleAction
+            KAction* pAction;
+            if (toggle) {
+                pAction = new KToggleAction(parent);
+            } else {
+                pAction = new KAction(parent);
+            }
+            // Set ObjectName, Text and HelpText
             pAction->setObjectName(name);
-            pAction->setIcon(KIcon(iconName));
             pAction->setText(text);
-            parent->connect(pAction, SIGNAL(triggered(bool)), recvr, slot);
             pAction->setHelpText(helpText);
             
+            // Icon
+            if (!iconName.isEmpty()) {
+                pAction->setIcon(KIcon(iconName));
+            }
+            
+            // Connect the action
+            pAction->connect(pAction, SIGNAL(triggered(bool)), recvr, slot);
+            
+            // If parent is a KActionCollection, add the new action to it
             KActionCollection *collection = qobject_cast<KActionCollection *>(parent);
             if (pAction && collection)
                 collection->addAction(pAction->objectName(), pAction);
@@ -90,6 +108,28 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
             pAction = KStandardAction::preferences(recvr, slot, parent);
             pAction->setHelpText(i18n("Show the configuration dialog"));
             break;
+            
+        case LanguagesProperties:            
+            pAction = Private::createCustomAction(recvr, slot, parent, 
+                                          "edit_languages", i18n("&Languages..."), 
+                                          i18n("Edit which languages are in the collection and their grammar properties."), "set-language");
+
+            break;
+        case RemoveGrades:
+            pAction = Private::createCustomAction(recvr, slot, parent, 
+                                          "vocab_remove_grades", i18n("Remove Grades"), 
+                                          i18n("Remove all grades from the current document"), "edit-clear");
+            break;
+        case CheckSpelling:
+            pAction = KStandardAction::spelling(recvr, slot, parent);
+            break;
+        case ToggleShowSublessons:
+            pAction = Private::createCustomAction(recvr, slot, parent,
+                        "lesson_showsublessonentries", i18n("Show Entries from Child Lessons"), 
+                        i18n("Enable to also see the entries of child lessons in each lesson."), 
+                        QString(), true);
+            pAction->setChecked(Prefs::showSublessonentries());
+            break;
     }
     /*
     pAction = Private::createCustomAction(recvr, slot, parent, 
@@ -99,6 +139,7 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
     Q_ASSERT(pAction);        
     return pAction;
 }
+
 
 
 KRecentFilesAction* ParleyActions::createRecentFilesAction(const QObject* recvr, const char* slot, QObject* parent)
