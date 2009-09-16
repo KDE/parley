@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
+<gui name="practice"  version="1">
+
+ <MenuBar>
+   <Menu name="file" >
+   <text>&amp;File</text>
+   <Action name="practice_stop" />
+  </Menu>
+ </MenuBar>
+
+ <ToolBar noMerge="1" name="statisticsToolBar" >
+  <text>Statistics Toolbar</text>
+  <Action name="practice_stop" />
+ </ToolBar>
+</gui>

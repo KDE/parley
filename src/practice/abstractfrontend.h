@@ -79,7 +79,8 @@ Q_SIGNALS:
     void signalContinueButton();
     void hintAction();
     void skipAction();
-    
+    /** request to stop practicing */
+    void stopPractice();
 };
 
 }

@@ -28,6 +28,10 @@ DefaultBackend::DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, 
     , m_currentMode(AbstractFrontend::Written)
     , m_mode(0)
 {
+    connect(m_frontend, SIGNAL(signalContinueButton()), m_mode, SLOT(continueAction()));
+    connect(m_frontend, SIGNAL(hintAction()), m_mode, SLOT(hintAction()));
+    connect(m_frontend, SIGNAL(skipAction()), this, SLOT(nextEntry()));
+    connect(m_frontend, SIGNAL(stopPractice()), this, SIGNAL(practiceFinished()));
 }
 
 DefaultBackend::~DefaultBackend()
@@ -68,10 +72,6 @@ void DefaultBackend::createPracticeMode()
 
     connect(m_mode, SIGNAL(currentEntryFinished()), this, SLOT(removeCurrentEntryFromPractice()));
     connect(m_mode, SIGNAL(nextEntry()), this, SLOT(nextEntry()));
-    
-    connect(m_frontend, SIGNAL(signalContinueButton()), m_mode, SLOT(continueAction()));
-    connect(m_frontend, SIGNAL(hintAction()), m_mode, SLOT(hintAction()));
-    connect(m_frontend, SIGNAL(skipAction()), this, SLOT(nextEntry()));
 }
 
 void DefaultBackend::nextEntry()

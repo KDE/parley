@@ -14,8 +14,42 @@
 #include "practicemainwindow.h"
 
 #include <KDebug>
+#include <KActionCollection>
+#include <KAction>
+#include <KLocalizedString>
+#include <KConfig>
+#include <KConfigGroup>
 
 using namespace Practice;
+
+PracticeMainWindow::PracticeMainWindow(QWidget* parent)
+    : KXmlGuiWindow(parent)
+{
+    // KXmlGui
+    setXMLFile("practiceui.rc");
+    setObjectName("Practice");
+    
+    initActions();
+    
+    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
+    applyMainWindowSettings(cfg);
+}
+
+PracticeMainWindow::~PracticeMainWindow()
+{
+    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
+    saveMainWindowSettings(cfg);
+}
+
+void PracticeMainWindow::initActions()
+{
+    KAction* stopPracticeAction = new KAction(this);
+    stopPracticeAction->setText(i18n("Stop Practice"));
+    stopPracticeAction->setIcon(KIcon("practice-stop"));
+    stopPracticeAction->setHelpText(i18n("Stop practicing"));
+    actionCollection()->addAction("practice_stop", stopPracticeAction);
+    connect(stopPracticeAction, SIGNAL(triggered()), this, SIGNAL(stopPractice()));
+}
 
 void PracticeMainWindow::keyPressEvent(QKeyEvent* e)
 {

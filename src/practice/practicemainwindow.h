@@ -22,17 +22,20 @@ namespace Practice {
 class PracticeMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
-    public:
-        PracticeMainWindow(QWidget* parent = 0, Qt::WindowFlags f = 0)
-        : KXmlGuiWindow(parent, f) {};
+public:
+    PracticeMainWindow(QWidget* parent = 0);
+    ~PracticeMainWindow();
+    
+Q_SIGNALS:
+    void enterPressed();
+    void stopPractice();
 
-    Q_SIGNALS:
-        void enterPressed();
-
-    protected:
-        virtual void keyPressEvent(QKeyEvent* e);
+protected:
+    virtual void keyPressEvent(QKeyEvent* e);
+    
+private:
+    void initActions();
 };
 }
-
 
 #endif

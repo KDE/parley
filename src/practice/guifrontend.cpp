@@ -31,6 +31,7 @@ GuiFrontend::GuiFrontend(QObject* parent)
     m_ui->centralPracticeWidget->setLayout(new QHBoxLayout(m_mainWindow));
 
     connect(m_mainWindow, SIGNAL(enterPressed()), this, SLOT(continueAction()));
+    connect(m_mainWindow, SIGNAL(stopPractice()), this, SIGNAL(stopPractice()));
     
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SIGNAL(signalContinueButton()));
     connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SIGNAL(skipAction()));

@@ -245,13 +245,10 @@ install( FILES parley.desktop DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 # hot new stuff config
 install( FILES parley.knsrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
 
-# main window ui (menus)
+# UI files - define menus and toolbars
 install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )
-
-# editor ui
 install( FILES editor/editorui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
-
-# statistics ui
 install( FILES statistics-dialogs/statisticsui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
+install( FILES practice/practiceui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 
 
