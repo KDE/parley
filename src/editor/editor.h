@@ -102,6 +102,9 @@ private slots:
      * Set the current doc (after creating a new one or opening a file)
      */
     void updateDocument();
+    
+    /** Make the search bar visible and focus it */
+    void startSearch();
 
 signals:
     void signalSetData( const QList<int>& entries, int currentTranslation);

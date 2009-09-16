@@ -349,92 +349,12 @@ void EditorWindow::initActions()
     ParleyActions::create(ParleyActions::RemoveGrades, this, SLOT(removeGrades()), actionCollection());
     ParleyActions::create(ParleyActions::CheckSpelling, m_vocabularyView, SLOT(checkSpelling()), actionCollection());
     ParleyActions::create(ParleyActions::ToggleShowSublessons, m_vocabularyModel, SLOT(showEntriesOfSubcontainers(bool)), actionCollection());
-    
-    /*
-    ParleyActions::create(, this, SLOT(()), actionCollection());
-    ParleyActions::create(, this, SLOT(()), actionCollection());
-    ParleyActions::create(, this, SLOT(()), actionCollection());
-    ParleyActions::create(, this, SLOT(()), actionCollection());
-    ParleyActions::create(, this, SLOT(()), actionCollection());
-    ParleyActions::create(, this, SLOT(()), actionCollection());
-    ParleyActions::create(, this, SLOT(()), actionCollection());
-    ParleyActions::create(, this, SLOT(()), actionCollection());
-    ParleyActions::create(, this, SLOT(()), actionCollection());
-     */
-
-    /*
-    pAction = Private::createCustomAction(recvr, slot, parent, 
-                                          "", i18n(""), 
-                                          i18n(""), "");
-    pAction = Private::createCustomAction(recvr, slot, parent, 
-                                          "", i18n(""), 
-                                          i18n(""), "");
-    pAction = Private::createCustomAction(recvr, slot, parent, 
-                                          "", i18n(""), 
-                                          i18n(""), "");
-    pAction = Private::createCustomAction(recvr, slot, parent, 
-                                          "", i18n(""), 
-                                          i18n(""), "");
-    pAction = Private::createCustomAction(recvr, slot, parent, 
-                                          "", i18n(""), 
-                                          i18n(""), "");
-    pAction = Private::createCustomAction(recvr, slot, parent, 
-                                          "", i18n(""), 
-                                          i18n(""), "");
-    pAction = Private::createCustomAction(recvr, slot, parent, 
-                                          "", i18n(""), 
-                                          i18n(""), "");
-    pAction = Private::createCustomAction(recvr, slot, parent, 
-                                          "", i18n(""), 
-                                          i18n(""), "");
-*/
-
-    KAction *automaticTranslation = actionCollection()->add<KToggleAction>("lesson_automatictranslation");
-    automaticTranslation->setText(i18n("Automatic Translation"));
-    connect(automaticTranslation, SIGNAL(triggered(bool)), m_vocabularyModel, SLOT(automaticTranslation(bool)));
-    automaticTranslation->setWhatsThis(i18n("Enable automatic translation of the lesson entries."));
-    automaticTranslation->setToolTip(automaticTranslation->whatsThis());
-    automaticTranslation->setStatusTip(automaticTranslation->whatsThis());
-    automaticTranslation->setChecked(Prefs::automaticTranslation());
-
-    KAction* startPractice = new KAction(this);
-    startPractice->setText(i18n("Start Practice..."));
-    startPractice->setIcon(KIcon("practice-start"));
-    startPractice->setWhatsThis(i18n("Start a test"));
-    startPractice->setToolTip(startPractice->whatsThis());
-    startPractice->setStatusTip(startPractice->whatsThis());
-    actionCollection()->addAction("practice_start", startPractice);
-    connect(startPractice, SIGNAL(triggered(bool)), m_mainWindow, SLOT(showStatistics()));
-
-// -- PRACTICE --------------------------------------------------
-
-    KAction* configurePractice = new KAction(this);
-    configurePractice->setText(i18n("Configure Practice..."));
-    configurePractice->setIcon(KIcon("practice-setup"));
-    configurePractice->setWhatsThis(i18n("Change practice settings"));
-    configurePractice->setToolTip(configurePractice->whatsThis());
-    configurePractice->setStatusTip(configurePractice->whatsThis());
-    actionCollection()->addAction("practice_configure", configurePractice);
-    connect(configurePractice, SIGNAL(triggered(bool)), m_mainWindow, SLOT(configurePractice()));
-
-// -- SETTINGS --------------------------------------------------
-    m_vocabShowSearchBarAction = actionCollection()->add<KToggleAction>("config_show_search");
-    m_vocabShowSearchBarAction->setText(i18n("Show Se&arch"));
-    connect(m_vocabShowSearchBarAction, SIGNAL(triggered(bool)), this, SLOT(slotConfigShowSearch()));
-    m_vocabShowSearchBarAction->setWhatsThis(i18n("Toggle display of the search bar"));
-    m_vocabShowSearchBarAction->setToolTip(m_vocabShowSearchBarAction->whatsThis());
-    m_vocabShowSearchBarAction->setStatusTip(m_vocabShowSearchBarAction->whatsThis());
-    m_vocabShowSearchBarAction->setChecked(Prefs::showSearch());
-
-    ///@todo: this action and some of the standard actions don't show up here (Cut, Copy, Paste, Select All, Deselect)
-    KAction* findVocabulary = KStandardAction::find(m_searchLine, SLOT(setFocus()), actionCollection());
-
-    //Script Manager Menu Action
-    KAction* menu_scriptManager =new KAction(this);
-    actionCollection()->addAction("show_script_manager", menu_scriptManager);
-    menu_scriptManager->setIcon(KIcon("set-language"));
-    menu_scriptManager->setText(i18n("&Script Manager"));
-    connect(menu_scriptManager, SIGNAL(triggered()),  this, SLOT(slotShowScriptManager()));
+    ParleyActions::create(ParleyActions::AutomaticTranslation, m_vocabularyModel, SLOT(automaticTranslation(bool)), actionCollection());
+    ParleyActions::create(ParleyActions::StartPractice, m_mainWindow, SLOT(showStatistics()), actionCollection());
+    ParleyActions::create(ParleyActions::ConfigurePractice, m_mainWindow, SLOT(configurePractice()), actionCollection());
+    ParleyActions::create(ParleyActions::ToggleSearchBar, this, SLOT(slotConfigShowSearch()), actionCollection());
+    ParleyActions::create(ParleyActions::SearchVocabulary, this, SLOT(startSearch()), actionCollection());
+    ParleyActions::create(ParleyActions::ShowScriptManager, this, SLOT(slotShowScriptManager()), actionCollection());                                      
 }
 
 void EditorWindow::initModel()
@@ -500,6 +420,12 @@ void EditorWindow::slotConfigShowSearch()
 {
     m_searchWidget->setVisible(m_searchWidget->isHidden());
     Prefs::setShowSearch(m_searchWidget->isVisible());
+}
+
+void EditorWindow::startSearch()
+{
+    m_searchWidget->setVisible(true);
+    m_searchLine->setFocus();
 }
 
 void EditorWindow::slotShowScriptManager() {

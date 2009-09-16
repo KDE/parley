@@ -22,20 +22,20 @@ class KActionCollection;
 namespace ParleyActions {
     enum ParleyAction {
         FileNew,
-        FileOpen,
-        FileOpenDownloaded,
-        FileOpenRecent,
-        FileSave,
-        FileSaveAs,
+        FileOpen, FileOpenDownloaded,
+        FileSave, FileSaveAs,
         FileExport,
         FileProperties,
-        FileClose,
-        FileQuit,
+        FileClose, FileQuit,
         Preferences,
         LanguagesProperties,
         RemoveGrades,
         CheckSpelling,
-        ToggleShowSublessons
+        ToggleShowSublessons,
+        AutomaticTranslation, 
+        StartPractice, ConfigurePractice,
+        ToggleSearchBar, SearchVocabulary,
+        ShowScriptManager
     };
     
     KAction* create(ParleyAction id, const QObject *recvr, const char *slot,
