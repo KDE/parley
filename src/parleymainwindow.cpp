@@ -196,6 +196,8 @@ void ParleyMainWindow::startPractice()
         
         Practice::PracticeOptions options;
         m_practiceBackend = new Practice::DefaultBackend(m_practiceFrontend, m_document, options, this);
+        // setModified - otherwise we may not ask to save progress
+        m_document->document()->setModified(true);
         
         switchComponent(PracticeComponent);
         connect(m_practiceBackend, SIGNAL(practiceFinished()), this, SLOT(practiceFinished()));
