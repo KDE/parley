@@ -104,6 +104,4 @@ void DefaultBackend::updateFrontend()
 }
 
 
-
-
 #include "defaultbackend.moc"

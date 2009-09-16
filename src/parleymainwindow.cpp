@@ -190,7 +190,6 @@ void ParleyMainWindow::startPractice()
         ///@todo: instead of creating a new instance only a new document should be set
         m_componentBeforePractice = m_currentComponent;
         switchComponent(NoComponent); // unload the last component (could be a practice window)
-//         m_practice = new ParleyPracticeMainWindow(m_document->document(), 0);
         delete m_practiceFrontend;
         delete m_practiceBackend;
         m_practiceFrontend = new Practice::GuiFrontend(this);
@@ -202,20 +201,6 @@ void ParleyMainWindow::startPractice()
         connect(m_practiceBackend, SIGNAL(practiceFinished()), this, SLOT(practiceFinished()));
         m_practiceBackend->startPractice();
         
-        
-//         m_practice->show();
-//         if (lastComponent == EditorComponent) {
-//             connect(m_practice, SIGNAL(signalPracticeFinished()), this, SLOT(showEditor()));
-//         } else {
-//             connect(m_practice, SIGNAL(signalPracticeFinished()), this, SLOT(showWelcomeScreen()));
-//         }
-        // If starting the practice fails (e.g. there are no entries selected), the signalPracticeFinished() signal
-        // is emitted in the constructor and thus before the connect
-//         if (m_practice->finished() && lastComponent == EditorComponent) {
-//             showEditor();
-//         } else if(m_practice->finished()) {
-//             showWelcomeScreen();
-//         }
    } else { // old dialog based practice
         hide();
         VocabularyPractice practice(m_document->document(), this);
