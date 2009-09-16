@@ -21,10 +21,17 @@
 #include <QStandardItemModel>
 
 WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
- : QWidget(parent), m_parleyApp(parent)
+    :KXmlGuiWindow(parent)
+    ,m_parleyApp(parent)
 {
+    // KXmlGui
+    setXMLFile("welcomescreenui.rc");
+    setObjectName("WelcomeScreen");
+    
+    QWidget *mainWidget = new QWidget(this);
     ui = new Ui::WelcomeScreen();
-    ui->setupUi(this);
+    ui->setupUi(mainWidget);
+    setCentralWidget(mainWidget);    
 
     QColor fgColor = palette().text().color();
 
@@ -59,6 +66,15 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     connect(ui->openButton, SIGNAL(clicked()), doc, SLOT(slotFileOpen()));
     connect(ui->ghnsButton, SIGNAL(clicked()), doc, SLOT(slotGHNS()));
     connect(ui->recentFiles, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(slotDoubleClicked(const QModelIndex&)));
+    
+    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
+    applyMainWindowSettings(cfg); 
+}
+
+WelcomeScreen::~WelcomeScreen()
+{
+    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
+    saveMainWindowSettings(cfg);
 }
 
 void WelcomeScreen::updateRecentFilesModel()

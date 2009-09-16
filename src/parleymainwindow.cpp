@@ -412,7 +412,7 @@ void ParleyMainWindow::switchComponent(Component component)
     QWidget *oldWidget = 0;
     switch (m_currentComponent) {
     case WelcomeComponent:
-        oldClient = 0; // The welcome screen doesn't inherit from KXMLGUIClient and doesn't have any actions
+        oldClient = m_welcomeScreen; // The welcome screen doesn't inherit from KXMLGUIClient and doesn't have any actions
         oldWidget = m_welcomeScreen;
         break;
     case StatisticsComponent:
@@ -441,7 +441,7 @@ void ParleyMainWindow::switchComponent(Component component)
     QWidget *newWidget = 0;
     switch (component) {
     case WelcomeComponent:
-        newClient = 0; // The welcome screen doesn't inherit from KXMLGUIClient and doesn't have any actions
+        newClient = m_welcomeScreen; // The welcome screen doesn't inherit from KXMLGUIClient and doesn't have any actions
         newWidget = m_welcomeScreen;
         showDocumentActions(true, false);
         m_welcomeScreen->updateRecentFilesModel();

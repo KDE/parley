@@ -16,17 +16,19 @@
 
 #include "ui_welcomescreen.h"
 
-#include <QWidget>
+#include <KXmlGuiWindow>
 
 class ParleyMainWindow;
 class KUrl;
 class QStandardItemModel;
 
-class WelcomeScreen : public QWidget
+class WelcomeScreen : public KXmlGuiWindow
 {
 Q_OBJECT
 public:
     WelcomeScreen(ParleyMainWindow *parent);
+    ~WelcomeScreen();
+
     void updateRecentFilesModel();
 
 public slots:
