@@ -90,6 +90,8 @@ void GuiFrontend::showQuestion()
     m_ui->ratingStack->setCurrentIndex(0);
     m_ui->continueButton->setFocus();
     m_centralWidget->showQuestion();
+    m_ui->answerLaterButton->setEnabled(true);
+    m_ui->hintButton->setEnabled(true);
 }
 
 void GuiFrontend::showSolution()
@@ -101,6 +103,8 @@ void GuiFrontend::showSolution()
         m_ui->correctButton->setFocus();
     }
     m_centralWidget->showSolution();
+    m_ui->answerLaterButton->setEnabled(false);
+    m_ui->hintButton->setEnabled(false);
 }
 
 void GuiFrontend::setFinishedWordsTotalWords(int finished, int total)
