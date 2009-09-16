@@ -34,6 +34,7 @@
 #include "practice/guifrontend.h"
 #include "practice/defaultbackend.h"
 #include "practice/practiceoptions.h"
+#include "practice/practicesummarycomponent.h"
 
 #include "prefs.h"
 #include "welcomescreen/welcomescreen.h"
@@ -200,7 +201,7 @@ void ParleyMainWindow::startPractice()
         m_document->document()->setModified(true);
         
         switchComponent(PracticeComponent);
-        connect(m_practiceBackend, SIGNAL(practiceFinished()), this, SLOT(practiceFinished()));
+        connect(m_practiceBackend, SIGNAL(practiceFinished()), this, SLOT(showPracticeSummary()));
         m_practiceBackend->startPractice();
         
    } else { // old dialog based practice
@@ -209,6 +210,12 @@ void ParleyMainWindow::startPractice()
         practice.startPractice();
         show();
    }
+}
+
+void ParleyMainWindow::showPracticeSummary()
+{
+    m_practiceSummary = new Practice::PracticeSummaryComponent(m_practiceBackend->getTestEntryManager(), this);
+    switchComponent(PracticeSummary);
 }
 
 void ParleyMainWindow::practiceFinished()
@@ -392,6 +399,8 @@ void ParleyMainWindow::showStatistics()
 
 void ParleyMainWindow::switchComponent(Component component)
 {
+    // TODO: the practice component keeps the enter key event filter - crash when enter is pressed after a practice!
+    
     kDebug() << "switch to component" << component;
 
     if(m_currentComponent == component) {
@@ -418,6 +427,10 @@ void ParleyMainWindow::switchComponent(Component component)
        oldClient = m_practiceFrontend->getWindow();
        oldWidget = m_practiceFrontend->getWindow();
        break;
+   case PracticeSummary:
+       oldClient = m_practiceSummary;
+       oldWidget = m_practiceSummary;
+       delete m_practiceSummary;
     default:
         break;
     }
@@ -453,6 +466,11 @@ void ParleyMainWindow::switchComponent(Component component)
        newWidget = m_practiceFrontend->getWindow();
        showDocumentActions(false, false);
        break;
+   case PracticeSummary:
+       newClient = m_practiceSummary;
+       newWidget = m_practiceSummary;
+       showDocumentActions(true, true);
+       break;   
     default:
         break;
     }

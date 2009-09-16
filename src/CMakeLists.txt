@@ -100,6 +100,7 @@ set(practice_SRCS
     #practice/multiplechoicebackendmode.cpp
     practice/imagewidget.cpp
     practice/practicemainwindow.cpp
+    practice/practicesummarycomponent.cpp
 )
 
 kde4_add_ui_files(practice_SRCS

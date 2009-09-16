@@ -31,8 +31,9 @@
 #include <KXmlGuiWindow>
 
 namespace Practice {
-class GuiFrontend;
-class DefaultBackend;
+    class GuiFrontend;
+    class DefaultBackend;
+    class PracticeSummaryComponent;
 }
 
 namespace Editor {
@@ -76,6 +77,7 @@ public:
         WelcomeComponent, 
         EditorComponent, 
         PracticeComponent,
+        PracticeSummary,
         StatisticsComponent
     };
 
@@ -128,8 +130,10 @@ public slots:
     void configurePractice();
 
     void startPractice();
+    void showPracticeSummary();
     void practiceFinished();
 
+    
     /**
      * Show the tip of the day (force it to be shown)
      */
@@ -166,7 +170,8 @@ private:
     Practice::GuiFrontend *m_practiceFrontend;
     Practice::DefaultBackend *m_practiceBackend;
     StatisticsMainWindow *m_statisticsWidget;
-
+    Practice::PracticeSummaryComponent *m_practiceSummary;
+    
     KRecentFilesAction* m_recentFilesAction;
 
     /** m_document is the current vocabulary document. */

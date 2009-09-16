@@ -103,5 +103,10 @@ void DefaultBackend::updateFrontend()
     m_frontend->setQuestionImage(imgUrl);
 }
 
+TestEntryManager DefaultBackend::getTestEntryManager()
+{
+    return m_testEntryManager;
+}
+
 
 #include "defaultbackend.moc"

@@ -82,7 +82,7 @@ StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindo
     initActions();
     
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
-    applyMainWindowSettings(cfg);    
+    applyMainWindowSettings(cfg);  
 }
 
 StatisticsMainWindow::~StatisticsMainWindow()
