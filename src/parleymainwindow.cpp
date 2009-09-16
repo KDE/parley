@@ -402,47 +402,37 @@ void ParleyMainWindow::switchComponent(Component component)
     // TODO: the practice component keeps the enter key event filter - crash when enter is pressed after a practice!
     
     kDebug() << "switch to component" << component;
-
     if(m_currentComponent == component) {
         return;
     }
 
-    // Get pointers to the old component (we need them as widgets and gui clients)
-    KXMLGUIClient *oldClient = 0;
-    QWidget *oldWidget = 0;
+    // Get pointer to the old component
+    KXmlGuiWindow *oldClient = 0;
     switch (m_currentComponent) {
     case WelcomeComponent:
-        oldClient = m_welcomeScreen; // The welcome screen doesn't inherit from KXMLGUIClient and doesn't have any actions
-        oldWidget = m_welcomeScreen;
+        oldClient = m_welcomeScreen;
         break;
     case StatisticsComponent:
         oldClient = m_statisticsWidget;
-        oldWidget = m_statisticsWidget;
         break;
     case EditorComponent:
         oldClient = m_editor;
-        oldWidget = m_editor;
         break;
    case PracticeComponent:
        oldClient = m_practiceFrontend->getWindow();
-       oldWidget = m_practiceFrontend->getWindow();
        break;
    case PracticeSummary:
        oldClient = m_practiceSummary;
-       oldWidget = m_practiceSummary;
-       delete m_practiceSummary;
     default:
         break;
     }
-    kDebug() << "old component" << oldClient << oldWidget;
+    kDebug() << "old component" << oldClient;
 
     // Get pointers to the new component (we need them as widgets and gui clients)
-    KXMLGUIClient *newClient = 0;
-    QWidget *newWidget = 0;
+    KXmlGuiWindow *newClient = 0;
     switch (component) {
     case WelcomeComponent:
-        newClient = m_welcomeScreen; // The welcome screen doesn't inherit from KXMLGUIClient and doesn't have any actions
-        newWidget = m_welcomeScreen;
+        newClient = m_welcomeScreen;
         showDocumentActions(true, false);
         m_welcomeScreen->updateRecentFilesModel();
         break;
@@ -453,47 +443,41 @@ void ParleyMainWindow::switchComponent(Component component)
             m_statisticsWidget->setDocument(m_document->document());
         }
         newClient = m_statisticsWidget;
-        newWidget = m_statisticsWidget;
         showDocumentActions(true, true);
         break;
     case EditorComponent:
         newClient = m_editor;
-        newWidget = m_editor;
         showDocumentActions(true, true);
         break;
    case PracticeComponent:
        newClient = m_practiceFrontend->getWindow();
-       newWidget = m_practiceFrontend->getWindow();
        showDocumentActions(false, false);
        break;
    case PracticeSummary:
        newClient = m_practiceSummary;
-       newWidget = m_practiceSummary;
        showDocumentActions(true, true);
        break;   
     default:
         break;
     }
-    kDebug() << "new component" << newClient << newWidget;
+    kDebug() << "new component" << newClient;
 
-    // Unload the old actions and load the new ones
+    // switch actions and widgets
     if (oldClient) {
         guiFactory()->removeClient(oldClient);
+        centralWidget()->layout()->removeWidget(oldClient);
+        oldClient->hide();
     }
     if (newClient) {
         guiFactory()->addClient(newClient);
+        centralWidget()->layout()->addWidget(newClient);
+        newClient->show();
     }
 
-    // Hide the old central widget and insert the new one
-    if (oldWidget) {
-        centralWidget()->layout()->removeWidget(oldWidget);
-        oldWidget->hide();
+    if (oldClient == m_practiceSummary) {
+        delete m_practiceSummary;
     }
-    if (newWidget) {
-        centralWidget()->layout()->addWidget(newWidget);
-        newWidget->show();
-    }
-
+    
     m_currentComponent = component;
     setupToolbarMenuActions();
 }
