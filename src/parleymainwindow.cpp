@@ -36,6 +36,8 @@
 #include "practice/practiceoptions.h"
 #include "practice/practicesummarycomponent.h"
 
+#include "parleyactions.h"
+
 #include "prefs.h"
 #include "welcomescreen/welcomescreen.h"
 
@@ -43,7 +45,6 @@
 #include <KRecentFilesAction>
 #include <KMessageBox>
 #include <KTipDialog>
-#include <knewstuff2/ui/knewstuffaction.h>
 #include <KXMLGUIFactory>
 #include <KToolBar>
 
@@ -274,99 +275,24 @@ void ParleyMainWindow::startupTipOfDay() {
 
 void ParleyMainWindow::initActions()
 {
-// -- FILE --------------------------------------------------
-    KAction* fileNew = KStandardAction::openNew(m_document, SLOT(slotFileNew()), actionCollection());
-    fileNew->setWhatsThis(i18n("Creates a new vocabulary collection"));
-    fileNew->setToolTip(fileNew->whatsThis());
-    fileNew->setStatusTip(fileNew->whatsThis());
-
-    KAction* fileOpen = KStandardAction::open(m_document, SLOT(slotFileOpen()), actionCollection());
-    fileOpen->setWhatsThis(i18n("Opens an existing vocabulary collection"));
-    fileOpen->setToolTip(fileOpen->whatsThis());
-    fileOpen->setStatusTip(fileOpen->whatsThis());
-
-    KAction* fileGHNS = KNS::standardAction(i18n("Download New Vocabularies..."), m_document, SLOT(slotGHNS()), actionCollection(), "file_ghns");
-    fileGHNS->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_G));
-    fileGHNS->setWhatsThis(i18n("Downloads new vocabulary collections"));
-    fileGHNS->setToolTip(fileGHNS->whatsThis());
-    fileGHNS->setStatusTip(fileGHNS->whatsThis());
-
-    KAction* fileOpenGHNS = new KAction(this);
-    actionCollection()->addAction("file_open_downloaded", fileOpenGHNS);
-    fileOpenGHNS->setIcon(KIcon("get-hot-new-stuff"));
-    fileOpenGHNS->setText(i18n("Open &Downloaded Vocabularies..."));
-    connect(fileOpenGHNS, SIGNAL(triggered(bool)), m_document, SLOT(openGHNS()));
-    fileOpenGHNS->setWhatsThis(i18n("Open downloaded vocabulary collections"));
-    fileOpenGHNS->setToolTip(fileOpenGHNS->whatsThis());
-    fileOpenGHNS->setStatusTip(fileOpenGHNS->whatsThis());
-
-    m_recentFilesAction = KStandardAction::openRecent(m_document, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
+    ParleyActions::create(ParleyActions::FileNew, m_document, SLOT(slotFileNew()), actionCollection());
+    ParleyActions::create(ParleyActions::FileOpen, m_document, SLOT(slotFileOpen()), actionCollection());
+    ParleyActions::createDownloadAction(m_document, SLOT(slotGHNS()), actionCollection());
+    ParleyActions::create(ParleyActions::FileOpenDownloaded, m_document, SLOT(openGHNS()), actionCollection());
+    
+    m_recentFilesAction = ParleyActions::createRecentFilesAction(
+        m_document, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
     m_recentFilesAction->loadEntries(KGlobal::config()->group("Recent Files"));
-
-    /*
-    KAction* fileMerge = new KAction(this);
-    actionCollection()->addAction("file_merge", fileMerge);
-    fileMerge->setText(i18n("&Merge..."));
-    connect(fileMerge, SIGNAL(triggered(bool)), m_document, SLOT(slotFileMerge()));
-    fileMerge->setWhatsThis(i18n("Merge an existing vocabulary document with the current one"));
-    fileMerge->setToolTip(fileMerge->whatsThis());
-    fileMerge->setStatusTip(fileMerge->whatsThis());
-    fileMerge->setEnabled(false); ///@todo merging files is horribly broken
-    */
-
-    KAction* fileSave = KStandardAction::save(m_document, SLOT(save()), actionCollection());
-    fileSave->setWhatsThis(i18n("Save the active vocabulary collection"));
-    fileSave->setToolTip(fileSave->whatsThis());
-    fileSave->setStatusTip(fileSave->whatsThis());
-
-    KAction* fileSaveAs = KStandardAction::saveAs(m_document, SLOT(saveAs()), actionCollection());
-    fileSaveAs->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
-    fileSaveAs->setWhatsThis(i18n("Save the active vocabulary collection with a different name"));
-    fileSaveAs->setToolTip(fileSaveAs->whatsThis());
-    fileSaveAs->setStatusTip(fileSaveAs->whatsThis());
-
-#ifdef HAVE_LIBXSLT
-
-// Printing would be nice, but for now html export has to suffice
-//     KAction* filePrint = KStandardAction::print(m_document, SLOT(print()), actionCollection());
-//     filePrint->setWhatsThis(i18n("Print the active vocabulary document"));
-//     filePrint->setToolTip(filePrint->whatsThis());
-//     filePrint->setStatusTip(filePrint->whatsThis());
-
-    KAction* fileExport = new KAction(this);
-    actionCollection()->addAction("file_export", fileExport);
-    fileExport->setText(i18n("&Export..."));
-    connect(fileExport, SIGNAL(triggered(bool)), m_document, SLOT(exportDialog()));
-    fileExport->setIcon(KIcon("document-export"));
-    fileExport->setWhatsThis(i18n("Export to HTML or CSV"));
-    fileExport->setToolTip(fileExport->whatsThis());
-    fileExport->setStatusTip(fileExport->whatsThis());
-#endif
-
-    KAction* fileProperties = new KAction(this);
-    actionCollection()->addAction("file_properties", fileProperties);
-    fileProperties->setText(i18n("&Properties..."));
-    connect(fileProperties, SIGNAL(triggered(bool)), m_editor, SLOT(slotDocumentProperties()));
-    fileProperties->setIcon(KIcon("document-properties"));
-    fileProperties->setWhatsThis(i18n("Edit document properties"));
-    fileProperties->setToolTip(fileProperties->whatsThis());
-    fileProperties->setStatusTip(fileProperties->whatsThis());
-
-    KAction* fileClose = KStandardAction::close(this, SLOT(slotCloseDocument()), actionCollection());
-    fileClose->setWhatsThis(i18n("Close the current collection"));
-    fileClose->setToolTip(fileClose->whatsThis());
-    fileClose->setStatusTip(fileClose->whatsThis());
-
-    KAction* fileQuit = KStandardAction::quit(this, SLOT(close()), actionCollection());
-    fileQuit->setWhatsThis(i18n("Quit Parley"));
-    fileQuit->setToolTip(fileQuit->whatsThis());
-    fileQuit->setStatusTip(fileQuit->whatsThis());
-
-// -- SETTINGS --------------------------------------------------
-    KAction* configApp = KStandardAction::preferences(this, SLOT(slotGeneralOptions()), actionCollection());
-    configApp->setWhatsThis(i18n("Show the configuration dialog"));
-    configApp->setToolTip(configApp->whatsThis());
-    configApp->setStatusTip(configApp->whatsThis());
+    
+    ParleyActions::create(ParleyActions::FileSave, m_document, SLOT(save()), actionCollection());
+    ParleyActions::create(ParleyActions::FileSaveAs, m_document, SLOT(saveAs()), actionCollection());
+    #ifdef HAVE_LIBXSLT
+    ParleyActions::create(ParleyActions::FileExport, m_document, SLOT(exportDialog()), actionCollection());
+    #endif
+    ParleyActions::create(ParleyActions::FileProperties, m_editor, SLOT(slotDocumentProperties()), actionCollection());
+    ParleyActions::create(ParleyActions::FileClose, this, SLOT(slotCloseDocument()), actionCollection());
+    ParleyActions::create(ParleyActions::FileQuit, this, SLOT(close()), actionCollection());
+    ParleyActions::create(ParleyActions::Preferences, this, SLOT(slotGeneralOptions()), actionCollection());
 
     actionCollection()->addAction(KStandardAction::TipofDay,  "help_tipofday", this, SLOT( tipOfDay() ));
 }

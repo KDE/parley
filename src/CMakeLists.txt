@@ -214,6 +214,7 @@ set(parley_SRCS
     ${welcomescreen_SRCS}
     parleydocument.cpp
     parleymainwindow.cpp
+    parleyactions.cpp
     main.cpp
     modeltest/modeltest.cpp
 )
