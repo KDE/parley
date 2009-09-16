@@ -27,7 +27,7 @@
 
 #include "../config-parley.h"
 #include "editor/editor.h"
-#include "statistics-dialogs/StatisticsDialog.h"
+#include "statistics/statisticsmainwindow.h"
 #include "settings/parleyprefs.h"
 #include "configure-practice/configurepracticedialog.h"
 #include "practiceold/vocabularypractice.h"

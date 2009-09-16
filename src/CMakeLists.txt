@@ -167,9 +167,9 @@ kde4_add_ui_files(entrydialogs_SRCS
 
 # overview over grades
 set(statisticsdialogs_SRCS
-    statistics-dialogs/statisticsmodel.cpp
-    statistics-dialogs/StatisticsDialog.cpp
-    statistics-dialogs/lessonstatistics.cpp
+    statistics/statisticsmodel.cpp
+    statistics/statisticsmainwindow.cpp
+    statistics/lessonstatistics.cpp
 )
 
 # scripting interface using kross

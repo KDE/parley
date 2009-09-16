@@ -14,7 +14,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "StatisticsDialog.h"
+#include "statisticsmainwindow.h"
 
 #include "prefs.h"
 #include "configure-practice/configurepracticedialog.h"
@@ -134,4 +134,4 @@ void StatisticsMainWindow::configurePractice()
     dialog.exec();
 }
 
-#include "StatisticsDialog.moc"
+#include "statisticsmainwindow.moc"

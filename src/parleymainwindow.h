@@ -29,7 +29,6 @@
 #include "parleydocument.h"
 
 #include <KXmlGuiWindow>
-#include "statistics-dialogs/StatisticsDialog.h"
 
 namespace Practice {
 class GuiFrontend;
@@ -58,6 +57,7 @@ class QLabel;
 class QDockWidget;
 
 class WelcomeScreen;
+    class StatisticsMainWindow;
 class ScriptManager;
 class ParleyPracticeMainWindow;
 
