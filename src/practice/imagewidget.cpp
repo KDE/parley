@@ -93,7 +93,11 @@ void ImageWidget::resizeEvent(QResizeEvent* e)
 
 void ImageWidget::scalePixmap(bool smooth)
 {
-    if (smooth) {
+    if (m_originalPixmap.width() < size().width() && m_originalPixmap.height() < size().height()) { // don't scale up
+         m_scaledPixmapOutOfDate = false;
+         m_scaledPixmap = m_originalPixmap;
+         m_scaledBackupPixmap = QPixmap();
+    } else if (smooth) {
         if (m_originalPixmap.isNull() || size().isEmpty()) {
             m_scaledPixmapOutOfDate = false;
             m_scaledPixmap = QPixmap();

@@ -128,7 +128,7 @@ void GuiFrontend::setQuestionImage(const KUrl& image)
         return;
     }
     if (image.path().isEmpty()) {
-        m_ui->imageWidget->setPixmap(KIcon("parley").pixmap(256));
+        m_ui->imageWidget->setPixmap(KIcon("parley").pixmap(128));
     } else {
         QPixmap pixmap(image.path());
         m_ui->imageWidget->setPixmap(pixmap);
