@@ -45,7 +45,7 @@ void PracticeOptions::loadPreferences()
         case Prefs::EnumTestType::ParaphraseTest:
             break;
     }
-    KDebug() << "Selected Test Types: " << m_modes;
+    kDebug() << "Selected Test Types: " << m_modes;
 }
 
 QList<AbstractFrontend::Mode> PracticeOptions::modes()
