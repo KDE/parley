@@ -28,10 +28,13 @@ void PracticeOptions::loadPreferences()
     m_languageFrom = Prefs::questionLanguage();                                                                  
     m_languageTo = Prefs::solutionLanguage();
     
-    /*
     switch ( Prefs::testType() ) {
-        case Prefs::EnumTestType::WrittenTest:
+        case Prefs::EnumTestType::FlashCardTest:
+            m_modes.append(AbstractFrontend::FlashCard);
         case Prefs::EnumTestType::MultipleChoiceTest:
+            m_modes.append(AbstractFrontend::MultipleChoice);
+        case Prefs::EnumTestType::WrittenTest:
+            m_modes.append(AbstractFrontend::Written);
         case Prefs::EnumTestType::MixedLettersTest:
         case Prefs::EnumTestType::ArticleTest:
         case Prefs::EnumTestType::ComparisonTest:
@@ -40,10 +43,9 @@ void PracticeOptions::loadPreferences()
         case Prefs::EnumTestType::AntonymTest:
         case Prefs::EnumTestType::ExampleTest:
         case Prefs::EnumTestType::ParaphraseTest:
-    */
-    
-    //m_modes.append(AbstractFrontend::FlashCard);
-    m_modes.append(AbstractFrontend::Written);
+            break;
+    }
+    KDebug() << "Selected Test Types: " << m_modes;
 }
 
 QList<AbstractFrontend::Mode> PracticeOptions::modes()

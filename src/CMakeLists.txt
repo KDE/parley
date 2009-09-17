@@ -97,7 +97,8 @@ set(practice_SRCS
     practice/writtenbackendmode.cpp
     practice/flashcardmodewidget.cpp
     practice/flashcardbackendmode.cpp
-    #practice/multiplechoicebackendmode.cpp
+    practice/multiplechoicemodewidget.cpp
+    practice/multiplechoicebackendmode.cpp
     practice/imagewidget.cpp
     practice/practicemainwindow.cpp
     practice/practicesummarycomponent.cpp
@@ -117,6 +118,7 @@ kde4_add_ui_files(practice_SRCS
 
     practice/practice_mainwindow.ui
     practice/practice_widget_written.ui
+    practice/practice_widget_multiplechoice.ui
     practice/practice_widget_flashcard.ui
 )
 

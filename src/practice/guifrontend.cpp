@@ -16,6 +16,7 @@
 
 #include <kdebug.h>
 #include "writtenpracticewidget.h"
+#include "multiplechoicemodewidget.h"
 #include "flashcardmodewidget.h"
 
 using namespace Practice;
@@ -64,6 +65,7 @@ void GuiFrontend::setMode(Mode mode)
             newWidget = new WrittenPracticeWidget(m_mainWindow);
             break;
         case MultipleChoice:
+            newWidget = new MultiplechoiceModeWidget(m_mainWindow);
             break;
         case FlashCard:
             newWidget = new FlashCardModeWidget(m_mainWindow);

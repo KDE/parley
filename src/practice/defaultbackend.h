@@ -17,6 +17,7 @@
 
 #include "parleydocument.h"
 #include "writtenbackendmode.h"
+#include "multiplechoicebackendmode.h"
 #include "flashcardbackendmode.h"
 
 #include "practiceold/testentrymanager.h"

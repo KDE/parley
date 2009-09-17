@@ -314,6 +314,7 @@
             <choice name="ConjugationTest"/>
             <choice name="SynonymTest"/>
             <choice name="AntonymTest"/>
+            <choice name="FlashCardTest"/>
         </choices>
         <label>The test type that is currently selected.</label>
         <default>WrittenTest</default>

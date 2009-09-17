@@ -50,18 +50,26 @@ void DefaultBackend::createPracticeMode()
     
     QList<AbstractFrontend::Mode> modes = m_options.modes();
     // TODO: mode needs to change at some point...
-    m_currentMode = AbstractFrontend::Written; //modes.at(0);
+    if (modes.size() == 0) {
+        kWarning() << "No practice mode selected!";
+        modes.append(AbstractFrontend::MultipleChoice);
+    }
+    m_currentMode = modes.at(0);
     m_frontend->setMode(m_currentMode);
     kDebug() << "practice mode: " << m_currentMode;
     
     switch(m_currentMode) {
-        case AbstractFrontend::Written:
-            kDebug() << "Create Written Practice";
-            m_mode = new WrittenBackendMode(m_options, m_frontend, this);
-            break;
         case AbstractFrontend::FlashCard:
             kDebug() << "Create Flash Card Practice";
             m_mode = new FlashCardBackendMode(m_options, m_frontend, this);
+            break;
+        case AbstractFrontend::MultipleChoice:
+            kDebug() << "Create MultipleChoice Practice";
+            m_mode = new MultipleChoiceBackendMode(m_options, m_frontend, this);
+            break;
+        case AbstractFrontend::Written:
+            kDebug() << "Create Written Practice";
+            m_mode = new WrittenBackendMode(m_options, m_frontend, this);
             break;
         default:
             Q_ASSERT("Implement selected Mode" == 0);
