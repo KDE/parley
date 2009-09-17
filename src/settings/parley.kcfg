@@ -302,6 +302,27 @@
       <default>0</default>
     </entry>
 
+
+    <entry name="FlashCardPractice" type="Bool">
+      <label>include this mode in the practice</label>
+      <default>true</default>
+    </entry>
+    <entry name="MixedLettersPractice" type="Bool">
+      <label>include this mode in the practice</label>
+      <default>true</default>
+    </entry>
+    <entry name="MultipleChoicePractice" type="Bool">
+      <label>include this mode in the practice</label>
+      <default>true</default>
+    </entry>
+    <entry name="WrittenPractice" type="Bool">
+      <label>include this mode in the practice</label>
+      <default>true</default>
+    </entry>
+    
+
+
+    <!-- the TestType enum can be removed in favor of the boolean mode selection which allows pratice to show the words in different forms -->
     <entry name="TestType" type="Enum">
         <choices>
             <choice name="MixedLettersTest"/>

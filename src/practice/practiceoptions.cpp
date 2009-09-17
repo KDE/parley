@@ -28,24 +28,16 @@ void PracticeOptions::loadPreferences()
     m_languageFrom = Prefs::questionLanguage();                                                                  
     m_languageTo = Prefs::solutionLanguage();
     
-    switch ( Prefs::testType() ) {
-        case Prefs::EnumTestType::FlashCardTest:
-            m_modes.append(AbstractFrontend::FlashCard);
-        case Prefs::EnumTestType::MultipleChoiceTest:
-            m_modes.append(AbstractFrontend::MultipleChoice);
-        case Prefs::EnumTestType::WrittenTest:
-            m_modes.append(AbstractFrontend::Written);
-        case Prefs::EnumTestType::MixedLettersTest:
-        case Prefs::EnumTestType::ArticleTest:
-        case Prefs::EnumTestType::ComparisonTest:
-        case Prefs::EnumTestType::ConjugationTest:
-        case Prefs::EnumTestType::SynonymTest:
-        case Prefs::EnumTestType::AntonymTest:
-        case Prefs::EnumTestType::ExampleTest:
-        case Prefs::EnumTestType::ParaphraseTest:
-            break;
+    if (Prefs::flashCardPractice()) {
+        m_modes.append(AbstractFrontend::FlashCard);
     }
-    kDebug() << "Selected Test Types: " << m_modes;
+    if (Prefs::multipleChoicePractice()) {
+        m_modes.append(AbstractFrontend::MultipleChoice);
+    }
+    if (Prefs::writtenPractice()) {
+        m_modes.append(AbstractFrontend::Written);
+    }
+    kDebug() << "Prefs::testType()" << Prefs::testType() << "Selected Test Types: " << m_modes;
 }
 
 QList<AbstractFrontend::Mode> PracticeOptions::modes()
