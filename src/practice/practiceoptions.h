@@ -24,10 +24,12 @@ class PracticeOptions
 public:  
     PracticeOptions();
     
-    int languageFrom() {return m_languageFrom;}
-    int languageTo() {return m_languageTo;}
+    int languageFrom() const {return m_languageFrom;}
+    int languageTo() const {return m_languageTo;}
     
-    QList<AbstractFrontend::Mode> modes();
+    QList<AbstractFrontend::Mode> modes() const;
+    
+    int numberMultipleChoiceAnswers() const;
     
 private:
     void loadPreferences();

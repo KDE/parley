@@ -39,7 +39,26 @@ void MultiplechoiceModeWidget::showQuestion()
 
 void MultiplechoiceModeWidget::setSolution(const QVariant& solution)
 {
-    m_ui->solutionLabel->setText(solution.toString());
+    if (!solution.canConvert(QVariant::StringList)) {
+        kWarning() << "expected stringlist";
+        return;
+        if (solution.toStringList().size() < 5) {
+            kWarning() << "stringlist too short!";
+            return;
+        }
+    }
+    kDebug() << solution;
+    
+    QStringList answers(solution.toStringList());
+    kDebug() << answers;
+    m_ui->choice1->setText(answers.at(0));
+    m_ui->choice2->setText(answers.at(1));
+    m_ui->choice3->setText(answers.at(2));
+    m_ui->choice4->setText(answers.at(3));
+    m_ui->choice5->setText(answers.at(4));
+    
+    //m_ui->solutionLabel->setText(solution.toString());
+
 }
 
 void MultiplechoiceModeWidget::showSolution()
@@ -49,6 +68,11 @@ void MultiplechoiceModeWidget::showSolution()
 
 QVariant MultiplechoiceModeWidget::userInput()
 {
+    if (m_ui->choice1->isChecked()) return 0;
+    if (m_ui->choice2->isChecked()) return 1;
+    if (m_ui->choice3->isChecked()) return 2;
+    if (m_ui->choice4->isChecked()) return 3;
+    if (m_ui->choice5->isChecked()) return 4;
     return QVariant();
 }
 

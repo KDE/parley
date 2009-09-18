@@ -40,7 +40,12 @@ void PracticeOptions::loadPreferences()
     kDebug() << "Prefs::testType()" << Prefs::testType() << "Selected Test Types: " << m_modes;
 }
 
-QList<AbstractFrontend::Mode> PracticeOptions::modes()
+QList<AbstractFrontend::Mode> PracticeOptions::modes() const
 {
     return m_modes;
+}
+
+int Practice::PracticeOptions::numberMultipleChoiceAnswers() const
+{
+    return Prefs::numberMultipleChoiceAnswers();
 }

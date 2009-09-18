@@ -80,6 +80,8 @@ public:
     int statisticTotalSkipKnown();
     int statisticTotalSkipUnknown();
 
+    QStringList randomMultipleChoiceAnswers(int numberChoices);
+    
 private:
     /**
      * Select appropriate entries for the practice (respect blocking settings etc)

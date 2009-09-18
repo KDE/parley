@@ -38,6 +38,7 @@ public:
     ~DefaultBackend();
     
     void startPractice();
+    
     /** used to show statistics after the practice. do not use otherwise. */
     TestEntryManager getTestEntryManager();
     

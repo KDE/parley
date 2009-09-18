@@ -209,3 +209,67 @@ TestEntry* TestEntryManager::getNextEntry()
         return 0;
     }
 }
+
+QStringList TestEntryManager::randomMultipleChoiceAnswers(int numberChoices)
+{
+    ///@todo this can be made much nicer...
+    
+    QStringList choices;
+    
+    KRandomSequence randomSequence (QDateTime::currentDateTime().toTime_t());
+    
+    QList<KEduVocExpression*> allEntries = m_doc->lesson()->entries(KEduVocLesson::Recursive);
+    
+    if (allEntries.count() <= numberChoices) {
+        for (int i = choices.count(); i < allEntries.count(); ++i) {
+            KEduVocExpression *act = allEntries.value(i);
+            
+            if (act != m_currentEntries.at(m_currentEntry)->entry()) {
+                choices.append(act->translation(Prefs::solutionLanguage())->text());
+            }
+        }
+    } else {
+        QList<KEduVocExpression*> exprlist;
+        
+        int count = numberChoices;
+        int numNonEmptyEntries = 0;
+        
+        // find out if we got enough non-empty entries to fill all the options
+        for(int i = 0; i < allEntries.count(); i++) {
+            if(!allEntries.value(i)->translation(Prefs::solutionLanguage())->text().isEmpty())
+                numNonEmptyEntries++;
+            if(numNonEmptyEntries >= numberChoices)
+                break;
+        }
+        
+        // gather random expressions for the choice
+        while (count > 0) {
+            int nr;
+            // if there are enough non-empty fields, fill the options only with those
+            if(numNonEmptyEntries >= numberChoices) {
+                do {
+                    nr = randomSequence.getLong(allEntries.count());
+                } while (allEntries.value(nr)->translation(Prefs::solutionLanguage())->text().isEmpty());
+            } else {
+                nr = randomSequence.getLong(allEntries.count());
+            }
+            // append if new expr found
+            bool newex = true;
+            for (int i = 0; newex && i < exprlist.count(); i++) {
+                if (exprlist[i] == allEntries.value(nr))
+                    newex = false;
+            }
+            if (newex && m_currentEntries.at(m_currentEntry)->entry() != allEntries.value(nr)) {
+                count--;
+                exprlist.append(allEntries.value(nr));
+            }
+        }
+        
+        for (int i = 0; i < exprlist.count(); i++) {
+            choices.append(exprlist[i]->translation(Prefs::solutionLanguage())->text());
+        }
+    }
+    
+    return choices;
+}
+
