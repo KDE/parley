@@ -13,6 +13,10 @@
 
 #include "practicemainwindow.h"
 
+#include "parleymainwindow.h"
+#include "guifrontend.h"
+#include "defaultbackend.h"
+
 #include <KDebug>
 #include <KActionCollection>
 #include <KAction>
@@ -22,21 +26,36 @@
 
 using namespace Practice;
 
-PracticeMainWindow::PracticeMainWindow(QWidget* parent)
+PracticeMainWindow::PracticeMainWindow(ParleyMainWindow* parent)
     : KXmlGuiWindow(parent)
 {
     // KXmlGui
     setXMLFile("practiceui.rc");
     setObjectName("Practice");
+
+    m_guiFrontend = new GuiFrontend(this);
+    setCentralWidget(m_guiFrontend->widget());
     
+    Practice::PracticeOptions options;
+    m_backend = new Practice::DefaultBackend(m_guiFrontend, parent->parleyDocument(), options, this);
+    
+    // setModified - otherwise we may not ask to save progress
+    parent->parleyDocument()->document()->setModified(true);
+
     initActions();
-    
+
+    connect(this, SIGNAL(enterPressed()), this, SLOT(continueAction()));
+    connect(this, SIGNAL(stopPractice()), this, SIGNAL(stopPractice()));
+
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
 }
 
 PracticeMainWindow::~PracticeMainWindow()
 {
+    delete m_backend;
+    delete m_guiFrontend;
+
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     saveMainWindowSettings(cfg);
 }
@@ -61,6 +80,12 @@ void PracticeMainWindow::keyPressEvent(QKeyEvent* e)
         }
     }
     KXmlGuiWindow::keyPressEvent(e);
+}
+
+
+void PracticeMainWindow::startPractice()
+{
+    m_backend->startPractice();
 }
 
 #include "practicemainwindow.moc"

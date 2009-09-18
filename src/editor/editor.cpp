@@ -83,10 +83,13 @@ EditorWindow::EditorWindow(ParleyMainWindow* parent)
     applyMainWindowSettings(cfg);
 
     connect(parent, SIGNAL(documentChanged()), this, SLOT(updateDocument()));
+    connect(parent->parleyDocument(), SIGNAL(languagesChanged()), this, SLOT(slotLanguagesChanged()));
+    connect(parent->parleyDocument(), SIGNAL(statesNeedSaving()), this, SLOT(saveState()));
 }
 
 EditorWindow::~EditorWindow()
 {
+    saveState();
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     saveMainWindowSettings(cfg);
 }
@@ -345,7 +348,6 @@ void EditorWindow::initDockWidgets()
 
 void EditorWindow::initActions()
 {
-    ParleyActions::create(ParleyActions::LanguagesProperties, this, SLOT(slotLanguageProperties()), actionCollection());
     ParleyActions::create(ParleyActions::RemoveGrades, this, SLOT(removeGrades()), actionCollection());
     ParleyActions::create(ParleyActions::CheckSpelling, m_vocabularyView, SLOT(checkSpelling()), actionCollection());
     ParleyActions::create(ParleyActions::ToggleShowSublessons, m_vocabularyModel, SLOT(showEntriesOfSubcontainers(bool)), actionCollection());
@@ -459,12 +461,9 @@ void EditorWindow::saveState()
     m_vocabularyView->saveColumnVisibility();
 }
 
-void EditorWindow::slotLanguageProperties()
+void EditorWindow::slotLanguagesChanged()
 {
-    LanguageProperties properties(this);
-    if ( properties.exec() == KDialog::Accepted ) {
-         m_vocabularyModel->resetLanguages();
-    }
+    m_vocabularyModel->resetLanguages();
 }
 
 void EditorWindow::slotDocumentProperties()

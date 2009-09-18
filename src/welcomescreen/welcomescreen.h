@@ -29,13 +29,12 @@ public:
     WelcomeScreen(ParleyMainWindow *parent);
     ~WelcomeScreen();
 
-    void updateRecentFilesModel();
-
 public slots:
     void slotOpenUrl(const KUrl& url);
     void slotPracticeUrl(const KUrl& url);
     void slotDoubleClicked(const QModelIndex& index);
-
+    void updateRecentFilesModel();
+    
 private:
     Ui::WelcomeScreen *ui;
     ParleyMainWindow *m_parleyApp;

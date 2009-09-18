@@ -21,18 +21,14 @@
 
 using namespace Practice;
 
-GuiFrontend::GuiFrontend(QObject* parent)
-    : AbstractFrontend(parent), m_centralWidget(0), m_lastImage("invalid")
+GuiFrontend::GuiFrontend(QWidget* parent)
+    : AbstractFrontend(parent), m_modeWidget(0), m_lastImage("invalid")
 {
-    m_mainWindow = new PracticeMainWindow();
-    QWidget* centralWidget = new QWidget(m_mainWindow);
-    m_mainWindow->setCentralWidget(centralWidget);
+    m_widget = new QWidget();
+    
     m_ui = new Ui::PracticeMainWindow();
-    m_ui->setupUi(centralWidget);
-    m_ui->centralPracticeWidget->setLayout(new QHBoxLayout(m_mainWindow));
-
-    connect(m_mainWindow, SIGNAL(enterPressed()), this, SLOT(continueAction()));
-    connect(m_mainWindow, SIGNAL(stopPractice()), this, SIGNAL(stopPractice()));
+    m_ui->setupUi(m_widget);
+    m_ui->centralPracticeWidget->setLayout(new QHBoxLayout(parent));
     
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SIGNAL(signalContinueButton()));
     connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SIGNAL(skipAction()));
@@ -42,14 +38,19 @@ GuiFrontend::GuiFrontend(QObject* parent)
     kDebug() << "Created GuiFrontend";
 }
 
-QVariant GuiFrontend::userInput()
+GuiFrontend::~GuiFrontend()
 {
-    return m_centralWidget->userInput();
+    delete m_widget;
 }
 
-KXmlGuiWindow* GuiFrontend::getWindow()
+QVariant GuiFrontend::userInput()
 {
-    return m_mainWindow;
+    return m_modeWidget->userInput();
+}
+
+QWidget* GuiFrontend::widget()
+{
+    return m_widget;
 }
 
 void GuiFrontend::setMode(Mode mode)
@@ -58,26 +59,26 @@ void GuiFrontend::setMode(Mode mode)
     AbstractModeWidget *newWidget = 0;
     switch(mode) {
         case Written:
-            if (/*m_centralWidget->metaObject()->className() == QLatin1String("WrittenPracticeWidget")*/false) {
+            if (/*m_modeWidget->metaObject()->className() == QLatin1String("WrittenPracticeWidget")*/false) {
                 kDebug() << "Written practice widget is already the central widget";
                 break;
             }
-            newWidget = new WrittenPracticeWidget(m_mainWindow);
+            newWidget = new WrittenPracticeWidget(m_widget);
             break;
         case MultipleChoice:
-            newWidget = new MultiplechoiceModeWidget(m_mainWindow);
+            newWidget = new MultiplechoiceModeWidget(m_widget);
             break;
         case FlashCard:
-            newWidget = new FlashCardModeWidget(m_mainWindow);
+            newWidget = new FlashCardModeWidget(m_widget);
             break;
         case MixedLetters:
             break;
     }
     if (newWidget) {
         m_ui->centralPracticeWidget->layout()->addWidget(newWidget);
-        delete m_centralWidget;
-        m_centralWidget = newWidget;
-        connect(m_centralWidget, SIGNAL(continueAction()), this, SLOT(continueAction()));
+        delete m_modeWidget;
+        m_modeWidget = newWidget;
+        connect(m_modeWidget, SIGNAL(continueAction()), this, SLOT(continueAction()));
         kDebug() << "set up frontend";
     }
 }
@@ -91,7 +92,7 @@ void GuiFrontend::showQuestion()
 {
     m_ui->ratingStack->setCurrentIndex(0);
     m_ui->continueButton->setFocus();
-    m_centralWidget->showQuestion();
+    m_modeWidget->showQuestion();
     m_ui->answerLaterButton->setEnabled(true);
     m_ui->hintButton->setEnabled(true);
 }
@@ -104,7 +105,7 @@ void GuiFrontend::showSolution()
     } else {
         m_ui->correctButton->setFocus();
     }
-    m_centralWidget->showSolution();
+    m_modeWidget->showSolution();
     m_ui->answerLaterButton->setEnabled(false);
     m_ui->hintButton->setEnabled(false);
 }
@@ -119,12 +120,12 @@ void GuiFrontend::setFinishedWordsTotalWords(int finished, int total)
 
 void GuiFrontend::setHint(const QVariant& hint)
 {
-    m_centralWidget->setHint(hint);
+    m_modeWidget->setHint(hint);
 }
 
 void GuiFrontend::setQuestion(const QVariant& question)
 {
-    m_centralWidget->setQuestion(question);
+    m_modeWidget->setQuestion(question);
 }
 
 void GuiFrontend::setQuestionImage(const KUrl& image)
@@ -144,17 +145,17 @@ void GuiFrontend::setQuestionImage(const KUrl& image)
 
 void GuiFrontend::setQuestionPronunciation(const QString& pronunciationText)
 {
-    m_centralWidget->setQuestionPronunciation(pronunciationText);
+    m_modeWidget->setQuestionPronunciation(pronunciationText);
 }
 
 void GuiFrontend::setQuestionSound(const KUrl& soundUrl)
 {
-    m_centralWidget->setQuestionSound(soundUrl);
+    m_modeWidget->setQuestionSound(soundUrl);
 }
 
 void GuiFrontend::setSolution(const QVariant& solution)
 {
-    m_centralWidget->setSolution(solution);
+    m_modeWidget->setSolution(solution);
 }
 
 void GuiFrontend::setSolutionImage(const KUrl& img)
@@ -164,17 +165,17 @@ void GuiFrontend::setSolutionImage(const KUrl& img)
 
 void GuiFrontend::setSolutionPronunciation(const QString& pronunciationText)
 {
-    m_centralWidget->setSolutionPronunciation(pronunciationText);
+    m_modeWidget->setSolutionPronunciation(pronunciationText);
 }
 
 void GuiFrontend::setSolutionSound(const KUrl& soundUrl)
 {
-    m_centralWidget->setSolutionSound(soundUrl);
+    m_modeWidget->setSolutionSound(soundUrl);
 }
 
 void GuiFrontend::setFeedback(const QVariant& feedback)
 {
-    m_centralWidget->setFeedback(feedback);
+    m_modeWidget->setFeedback(feedback);
 }
 
 void GuiFrontend::setResultState(ResultState resultState)
@@ -200,7 +201,7 @@ void GuiFrontend::setResultState(ResultState resultState)
     }
 
     m_resultState = resultState;
-    m_centralWidget->setResultState(resultState);
+    m_modeWidget->setResultState(resultState);
 }
 
 AbstractFrontend::ResultState GuiFrontend::resultState()

@@ -69,16 +69,13 @@ public:
      */
     void initScripts();
 
-    /** when closing the application, save the editor's state */
-    void saveState();
-
 public slots:
     /**
      * Edit languages contained in the document.
      * This includes adding/removing languages, 
      * editing articles, personal pronouns and tenses.
      */
-    void slotLanguageProperties();
+    void slotLanguagesChanged();
 
     /** General doc properties like title, author etc */
     void slotDocumentProperties();
@@ -96,12 +93,16 @@ public slots:
      * Removes all grading information from the current document
      */
     void removeGrades();
-
-private slots:
+    
+    /** when closing the application, save the editor's state */
+    void saveState();
+    
     /**
      * Set the current doc (after creating a new one or opening a file)
      */
     void updateDocument();
+    
+private slots:
     
     /** Make the search bar visible and focus it */
     void startSearch();

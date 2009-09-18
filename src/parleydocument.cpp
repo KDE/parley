@@ -51,6 +51,7 @@
 #include <libxslt/transform.h>
 #include <libxslt/xsltutils.h>
 #endif
+#include "settings/languageproperties.h"
 
 ParleyDocument* ParleyDocument::s_instance = 0;
 
@@ -128,16 +129,19 @@ void ParleyDocument::newDocument(bool wizard)
 
     close();
     m_doc = newDoc;
-    ParleyMainWindow::instance()->editor()->updateDocument();
-    enableAutoBackup(Prefs::autoBackup());
+    
+    //ParleyMainWindow::instance()->editor()->updateDocument();
+    
     emit documentChanged(m_doc);
+    enableAutoBackup(Prefs::autoBackup());
+    
 
     if(fetchGrammarOnline) {
         fetchGrammar(0);
         fetchGrammar(1);
     }
     if(showGrammarDialog) {
-        ParleyMainWindow::instance()->editor()->slotLanguageProperties();
+        languageProperties();
     }
 
     ParleyMainWindow::instance()->showEditor();
@@ -193,11 +197,11 @@ void ParleyDocument::open(const KUrl & url)
         m_doc->setCsvDelimiter(Prefs::separator());
         m_doc->open(url);
 
-        ParleyMainWindow::instance()->editor()->updateDocument();
+        //ParleyMainWindow::instance()->editor()->updateDocument();
         ParleyMainWindow::instance()->addRecentFile(url, m_doc->title());
-
-        enableAutoBackup(Prefs::autoBackup());
+        
         emit documentChanged(m_doc);
+        enableAutoBackup(Prefs::autoBackup());
     }
 }
 
@@ -239,7 +243,8 @@ void ParleyDocument::save()
 
     m_doc->setCsvDelimiter(Prefs::separator());
 
-    ParleyMainWindow::instance()->editor()->saveState();
+    emit statesNeedSaving();
+    
 
     int result = m_doc->saveAs(m_doc->url(), KEduVocDocument::Automatic, QString::fromLatin1("Parley ") + PARLEY_VERSION_STRING);
     if ( result != 0 ) {
@@ -292,7 +297,7 @@ void ParleyDocument::saveAs(KUrl url)
     int result = m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley");
     if (result == 0) {
         ParleyMainWindow::instance()->addRecentFile(m_doc->url(), m_doc->title());
-        ParleyMainWindow::instance()->editor()->saveState();
+        emit statesNeedSaving();
     } else {
         KMessageBox::error(ParleyMainWindow::instance(), i18n("Writing file \"%1\" resulted in an error: %2",
             m_doc->url().url(), m_doc->errorDescription(result)), i18n("Save File"));
@@ -402,6 +407,16 @@ void ParleyDocument::slotGHNS()
         ParleyMainWindow::instance()->showEditor();
     }
 }
+
+
+void ParleyDocument::languageProperties()
+{
+    LanguageProperties properties(m_parleyApp);
+    if ( properties.exec() == KDialog::Accepted ) {
+        emit languagesChanged();
+    }
+}
+
 
 void ParleyDocument::exportDialog()
 {

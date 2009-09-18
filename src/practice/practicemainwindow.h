@@ -17,14 +17,19 @@
 #include <KXmlGuiWindow>
 #include <QtGui/QKeyEvent>
 
-namespace Practice {    
+class ParleyMainWindow;
+namespace Practice {
+class DefaultBackend;
+class GuiFrontend;    
 
 class PracticeMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
-    PracticeMainWindow(QWidget* parent = 0);
+    PracticeMainWindow(ParleyMainWindow* parent = 0);
     ~PracticeMainWindow();
+    
+    void startPractice();
     
 Q_SIGNALS:
     void enterPressed();
@@ -33,8 +38,12 @@ Q_SIGNALS:
 protected:
     virtual void keyPressEvent(QKeyEvent* e);
     
-private:
+private:    
     void initActions();
+    
+    GuiFrontend* m_guiFrontend;
+    DefaultBackend* m_backend;
+    
 };
 }
 

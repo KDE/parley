@@ -33,9 +33,11 @@ class GuiFrontend : public AbstractFrontend
     Q_OBJECT
 
 public:
-    GuiFrontend(QObject* parent = 0);
+    GuiFrontend(QWidget* parent = 0);
+    virtual ~GuiFrontend();
+
     virtual QVariant userInput();
-    KXmlGuiWindow* getWindow();
+    QWidget* widget();
 
     virtual void setQuestion(const QVariant& question);
     virtual void setQuestionImage(const KUrl& img);
@@ -67,9 +69,9 @@ private Q_SLOTS:
     void continueAction();
    
 private:
-    PracticeMainWindow* m_mainWindow;
+    QWidget* m_widget;
     Ui::PracticeMainWindow* m_ui;
-    AbstractModeWidget* m_centralWidget;
+    AbstractModeWidget* m_modeWidget;
     ResultState m_resultState;
     KUrl m_lastImage;
 };

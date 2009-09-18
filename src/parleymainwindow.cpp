@@ -46,6 +46,7 @@
 #include <KMessageBox>
 #include <KTipDialog>
 #include <KXMLGUIFactory>
+#include <KXmlGuiWindow>
 #include <KToolBar>
 
 #include <QtCore/QTimer>
@@ -61,9 +62,7 @@ ParleyMainWindow* ParleyMainWindow::instance()
 ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
     :KXmlGuiWindow(0)
     ,m_currentComponent(NoComponent)
-    ,m_practiceFrontend(0)
-    ,m_practiceBackend(0)
-    ,m_statisticsWidget(0)
+    ,m_currentComponentWindow(0)
 {
     s_instance = this;
     m_document = ParleyDocument::instance();
@@ -71,14 +70,9 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
     setCentralWidget(new QWidget());
     centralWidget()->setLayout(new QHBoxLayout());
 
-    initWelcomeScreen();
-
-    m_editor = new EditorWindow(this);
-    m_editor->hide();
-
     initActions();
 
-    bool showWelcomeScreen = false;
+    bool startWithWelcomeScreen = false;
 
     setupGUI(ToolBar | Keys | StatusBar | Create);
 
@@ -90,15 +84,15 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
             && m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->isEnabled() ) {
             m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->trigger();
         } else {
-            showWelcomeScreen = true;
+            startWithWelcomeScreen = true;
         }
     }
 
     // save position of dock windows etc
     setAutoSaveSettings();
 
-    if (showWelcomeScreen) {
-        this->showWelcomeScreen();
+    if (startWithWelcomeScreen) {
+        showWelcomeScreen();
     } else {
         showEditor();
     }
@@ -109,7 +103,6 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
 
 ParleyMainWindow::~ParleyMainWindow()
 {
-    m_editor->saveState();
     ParleyDocument::destroy();
 }
 
@@ -121,7 +114,7 @@ void ParleyMainWindow::addRecentFile(const KUrl &url, const QString &name)
 
 void ParleyMainWindow::updateRecentFilesModel()
 {
-    m_welcomeScreen->updateRecentFilesModel();
+    emit recentFilesChanged();
 }
 
 void ParleyMainWindow::saveOptions()
@@ -153,7 +146,8 @@ void ParleyMainWindow::slotGeneralOptions()
 void ParleyMainWindow::slotApplyPreferences()
 {
     m_document->enableAutoBackup((m_currentComponent != WelcomeComponent) && Prefs::autoBackup());
-    m_editor->setTableFont(Prefs::tableFont());
+    // FIXME
+    //m_editor->setTableFont(Prefs::tableFont());
 }
 
 void ParleyMainWindow::slotCloseDocument()
@@ -176,34 +170,13 @@ void ParleyMainWindow::startPractice()
 {
     bool newPractice = true;
     if (newPractice) {
-        ///@todo: instead of creating a new instance only a new document should be set
-        m_componentBeforePractice = m_currentComponent;
-        switchComponent(NoComponent); // unload the last component (could be a practice window)
-        delete m_practiceFrontend;
-        delete m_practiceBackend;
-        m_practiceFrontend = new Practice::GuiFrontend(this);
-        
-        Practice::PracticeOptions options;
-        m_practiceBackend = new Practice::DefaultBackend(m_practiceFrontend, m_document, options, this);
-        // setModified - otherwise we may not ask to save progress
-        m_document->document()->setModified(true);
-        
-        switchComponent(PracticeComponent);
-        connect(m_practiceBackend, SIGNAL(practiceFinished()), this, SLOT(showPracticeSummary()));
-        m_practiceBackend->startPractice();
-        
+        switchComponent(PracticeComponent);        
    } else { // old dialog based practice
         hide();
         VocabularyPractice practice(m_document->document(), this);
         practice.startPractice();
         show();
    }
-}
-
-void ParleyMainWindow::showPracticeSummary()
-{
-    m_practiceSummary = new Practice::PracticeSummaryComponent(m_practiceBackend->getTestEntryManager(), this);
-    switchComponent(PracticeSummary);
 }
 
 void ParleyMainWindow::practiceFinished()
@@ -276,18 +249,16 @@ void ParleyMainWindow::initActions()
     #ifdef HAVE_LIBXSLT
     ParleyActions::create(ParleyActions::FileExport, m_document, SLOT(exportDialog()), actionCollection());
     #endif
-    ParleyActions::create(ParleyActions::FileProperties, m_editor, SLOT(slotDocumentProperties()), actionCollection());
+    
+    ParleyActions::create(ParleyActions::LanguagesProperties, m_document, SLOT(languageProperties()), actionCollection());
+    
+    ParleyActions::create(ParleyActions::FileProperties, m_document, SLOT(slotDocumentProperties()), actionCollection());
+
     ParleyActions::create(ParleyActions::FileClose, this, SLOT(slotCloseDocument()), actionCollection());
     ParleyActions::create(ParleyActions::FileQuit, this, SLOT(close()), actionCollection());
     ParleyActions::create(ParleyActions::Preferences, this, SLOT(slotGeneralOptions()), actionCollection());
 
     actionCollection()->addAction(KStandardAction::TipofDay,  "help_tipofday", this, SLOT( tipOfDay() ));
-}
-
-void ParleyMainWindow::initWelcomeScreen()
-{
-    m_welcomeScreen = new WelcomeScreen(this);
-    m_welcomeScreen->hide();
 }
 
 void ParleyMainWindow::showWelcomeScreen()
@@ -300,20 +271,91 @@ void ParleyMainWindow::showEditor()
     switchComponent(EditorComponent);
 }
 
-void ParleyMainWindow::showPractice()
-{
-    switchComponent(PracticeComponent);
-}
-
 void ParleyMainWindow::showStatistics()
 {
     switchComponent(StatisticsComponent);
 }
 
+void ParleyMainWindow::showPractice()
+{
+    switchComponent(PracticeComponent);
+}
+
+void ParleyMainWindow::showPracticeSummary()
+{
+    switchComponent(PracticeComponent);
+}
+
 void ParleyMainWindow::switchComponent(Component component)
 {
     // TODO: the practice component keeps the enter key event filter - crash when enter is pressed after a practice!
-    
+ 
+ 
+/*
+// this is what I want - clean up with actions and all!
+
+// ParleyDocument stays open
+// everything else goes away
+*/
+
+if (m_currentComponentWindow) {
+
+guiFactory()->removeClient(m_currentComponentWindow);
+centralWidget()->layout()->removeWidget(m_currentComponentWindow);
+delete m_currentComponentWindow;
+}
+
+switch (component) {
+    case WelcomeComponent: {
+        WelcomeScreen *welcome = new WelcomeScreen(this);
+        m_currentComponentWindow = welcome;
+        showDocumentActions(true, false);
+        welcome->updateRecentFilesModel();
+        break;
+    }
+    case StatisticsComponent: {
+        StatisticsMainWindow *statisticsWidget = new StatisticsMainWindow(m_document->document(), this);
+        m_currentComponentWindow = statisticsWidget;
+        showDocumentActions(true, true);
+        break;
+    }
+    case EditorComponent: {
+        EditorWindow *editor = new EditorWindow(this);
+        m_currentComponentWindow = editor;
+        showDocumentActions(true, true);
+        editor->updateDocument();
+        break;
+    }
+    case PracticeComponent: {
+        Practice::PracticeMainWindow *practiceWindow = new Practice::PracticeMainWindow(this);
+        connect(practiceWindow, SIGNAL(practiceFinished()), this, SLOT(showPracticeSummary()));
+        m_currentComponentWindow = practiceWindow;
+        showDocumentActions(false, false);
+        practiceWindow->startPractice();
+        break;
+    }
+    case PracticeSummary: {
+        
+        /*
+        Practice::PracticeSummaryComponent summary = new Practice::PracticeSummaryComponent(m_practiceBackend->getTestEntryManager(), this);
+        newClient = summary;
+        showDocumentActions(true, true);
+        */
+        break;
+    }
+    default:
+        break;
+}
+kDebug() << "new component" << m_currentComponentWindow;
+
+
+guiFactory()->addClient(m_currentComponentWindow);
+centralWidget()->layout()->addWidget(m_currentComponentWindow);
+m_currentComponentWindow->show();
+setupToolbarMenuActions();
+
+
+    /*
     kDebug() << "switch to component" << component;
     if(m_currentComponent == component) {
         return;
@@ -393,6 +435,7 @@ void ParleyMainWindow::switchComponent(Component component)
     
     m_currentComponent = component;
     setupToolbarMenuActions();
+    */
 }
 
 void ParleyMainWindow::showDocumentActions(bool open, bool edit)
@@ -414,11 +457,6 @@ void ParleyMainWindow::showDocumentActions(bool open, bool edit)
 ParleyDocument* ParleyMainWindow::parleyDocument()
 {
     return m_document;
-}
-
-EditorWindow* ParleyMainWindow::editor()
-{
-    return m_editor;
 }
 
 #include "parleymainwindow.moc"

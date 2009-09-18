@@ -86,9 +86,6 @@ public:
      */
     void initActions();
 
-    /** setup the welcome screen */
-    void initWelcomeScreen();
-
     /** add a new entry to the list of recent files */
     void addRecentFile(const KUrl &url, const QString &name);
 
@@ -106,9 +103,6 @@ public:
      * @return member m_document
      */
     ParleyDocument* parleyDocument();
-
-    /** return the editor instance */
-    Editor::EditorWindow* editor();
 
 public slots:
     /** Update the title bar of the main window with the current document */
@@ -158,19 +152,23 @@ public slots:
 
 signals:
     void documentChanged();
-
+    void recentFilesChanged();
+    
 private:
     ParleyMainWindow(const KUrl& filename = KUrl());
     static ParleyMainWindow *s_instance;
 
     Component m_currentComponent;
 
+    /*
     WelcomeScreen *m_welcomeScreen;
     Editor::EditorWindow *m_editor;
     Practice::GuiFrontend *m_practiceFrontend;
     Practice::DefaultBackend *m_practiceBackend;
     StatisticsMainWindow *m_statisticsWidget;
     Practice::PracticeSummaryComponent *m_practiceSummary;
+    */
+    KXmlGuiWindow* m_currentComponentWindow;
     
     KRecentFilesAction* m_recentFilesAction;
 

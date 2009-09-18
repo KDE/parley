@@ -67,8 +67,12 @@ public slots:
 
     void newDocument(bool wizard);
 
+    void languageProperties();
+    
 signals:
     void documentChanged(KEduVocDocument *newDocument);
+    void languagesChanged();
+    void statesNeedSaving();
 
 private:
     static ParleyDocument* s_instance;

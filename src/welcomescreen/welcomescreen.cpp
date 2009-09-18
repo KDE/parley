@@ -67,6 +67,8 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     connect(ui->ghnsButton, SIGNAL(clicked()), doc, SLOT(slotGHNS()));
     connect(ui->recentFiles, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(slotDoubleClicked(const QModelIndex&)));
     
+    connect(m_parleyApp, SIGNAL(recentFilesChanged()), this, SLOT(updateRecentFilesModel()));
+    
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg); 
 }
