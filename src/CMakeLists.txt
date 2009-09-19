@@ -87,6 +87,7 @@ set(practice_SRCS
     practiceold/practicesummarydialog.cpp
     practiceold/answervalidatorold.cpp
 
+    practice/testentrymanager.cpp
     practice/practiceoptions.cpp
     practice/abstractfrontend.cpp
     practice/abstractbackendmode.cpp

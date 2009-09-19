@@ -16,7 +16,7 @@
 #define MULTIPLECHOICEBACKENDMODE_H
 
 #include "abstractbackendmode.h"
-#include <practiceold/testentrymanager.h>
+#include <practice/testentrymanager.h>
 
 namespace Practice {
 
@@ -25,7 +25,7 @@ class MultipleChoiceBackendMode : public AbstractBackendMode
     Q_OBJECT
     
 public:
-    MultipleChoiceBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend, QObject *parent, const TestEntryManager& testEntryManager);
+    MultipleChoiceBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend, QObject *parent, Practice::TestEntryManager* testEntryManager);
     
     virtual void setTestEntry(TestEntry* current);
 
@@ -35,7 +35,7 @@ public Q_SLOTS:
     
 private:
     bool m_solutionVisible;
-    TestEntryManager m_testEntryManager;
+    TestEntryManager* m_testEntryManager;
     int m_correctAnswer;
     KRandomSequence m_randomSequence;
     int m_numberOfChoices;

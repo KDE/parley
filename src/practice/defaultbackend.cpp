@@ -20,11 +20,11 @@
 
 using namespace Practice;
 
-DefaultBackend::DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, const Practice::PracticeOptions& options, QObject* parent)
+DefaultBackend::DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, const Practice::PracticeOptions& options, Practice::TestEntryManager* testEntryManager, QObject* parent)
     : QObject(parent)
     , m_frontend(frontend)
     , m_options(options)
-    , m_testEntryManager(doc->document(), 0)
+    , m_testEntryManager(testEntryManager)
     , m_currentMode(AbstractFrontend::Written)
     , m_mode(0)
 {
@@ -85,7 +85,7 @@ void DefaultBackend::createPracticeMode()
 
 void DefaultBackend::nextEntry()
 {
-    m_current = m_testEntryManager.getNextEntry();
+    m_current = m_testEntryManager->getNextEntry();
     if (m_current == 0) {
         emit practiceFinished();
         return;
@@ -96,25 +96,19 @@ void DefaultBackend::nextEntry()
 
 void DefaultBackend::removeCurrentEntryFromPractice()
 {
-    m_testEntryManager.currentEntryFinished();
+    m_testEntryManager->currentEntryFinished();
 }
 
 void DefaultBackend::updateFrontend()
 {
     m_frontend->setLessonName(m_current->entry()->lesson()->name());
     m_frontend->setFinishedWordsTotalWords(
-        m_testEntryManager.totalEntryCount() - m_testEntryManager.activeEntryCount(), 
-        m_testEntryManager.totalEntryCount());
+        m_testEntryManager->totalEntryCount() - m_testEntryManager->activeEntryCount(), 
+        m_testEntryManager->totalEntryCount());
     
     QString imgUrl = m_current->entry()->translation(m_options.languageFrom())->imageUrl().url();
     kDebug() << "Show image: " << imgUrl;
     m_frontend->setQuestionImage(imgUrl);
 }
-
-TestEntryManager DefaultBackend::getTestEntryManager()
-{
-    return m_testEntryManager;
-}
-
 
 #include "defaultbackend.moc"

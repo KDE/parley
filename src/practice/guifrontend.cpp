@@ -40,7 +40,7 @@ GuiFrontend::GuiFrontend(QWidget* parent)
 
 GuiFrontend::~GuiFrontend()
 {
-    delete m_widget;
+        // FIXME delete m_widget;
 }
 
 QVariant GuiFrontend::userInput()

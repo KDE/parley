@@ -20,7 +20,7 @@
 using namespace Practice;
  
 
-MultipleChoiceBackendMode::MultipleChoiceBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent, const TestEntryManager& testEntryManager)
+MultipleChoiceBackendMode::MultipleChoiceBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent, Practice::TestEntryManager* testEntryManager)
 :AbstractBackendMode(practiceOptions, frontend, parent)
 ,m_testEntryManager(testEntryManager)
 ,m_randomSequence(QDateTime::currentDateTime().toTime_t())
@@ -34,7 +34,7 @@ void MultipleChoiceBackendMode::setTestEntry(TestEntry* current)
     m_current = current;
     
     QStringList answers;
-    answers = m_testEntryManager.randomMultipleChoiceAnswers(m_numberOfChoices-1);
+    answers = m_testEntryManager->randomMultipleChoiceAnswers(m_numberOfChoices-1);
     m_correctAnswer = m_randomSequence.getLong(m_numberOfChoices);
     answers.insert(m_correctAnswer, m_current->entry()->translation(m_practiceOptions.languageTo())->text());
     kDebug() << answers;

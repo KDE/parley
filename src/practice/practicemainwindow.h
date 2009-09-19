@@ -16,6 +16,7 @@
 
 #include <KXmlGuiWindow>
 #include <QtGui/QKeyEvent>
+#include "testentrymanager.h"
 
 class ParleyMainWindow;
 namespace Practice {
@@ -26,7 +27,7 @@ class PracticeMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
-    PracticeMainWindow(ParleyMainWindow* parent = 0);
+    PracticeMainWindow(TestEntryManager* m_testEntryManager, ParleyMainWindow* parent = 0);
     ~PracticeMainWindow();
     
     void startPractice();

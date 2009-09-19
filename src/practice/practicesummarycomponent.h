@@ -14,7 +14,7 @@
 #ifndef PRACTICESUMMARYDIALOG_H
 #define PRACTICESUMMARYDIALOG_H
 
-#include "practiceold/testentrymanager.h"
+#include "practice/testentrymanager.h"
 
 #include "ui_practicesummarywidget.h"
 #include <KXmlGuiWindow>
@@ -26,11 +26,11 @@ class PracticeSummaryComponent : public KXmlGuiWindow, Ui::PracticeSummaryWidget
     Q_OBJECT
 
 public:
-    PracticeSummaryComponent(const TestEntryManager& testEntryManager, QWidget *parent);
+    PracticeSummaryComponent(TestEntryManager* testEntryManager, QWidget *parent);
     ~PracticeSummaryComponent();
 
 private:
-    TestEntryManager m_testEntryManager;
+    TestEntryManager* m_testEntryManager;
 };
 }
 

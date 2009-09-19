@@ -63,6 +63,7 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
     :KXmlGuiWindow(0)
     ,m_currentComponent(NoComponent)
     ,m_currentComponentWindow(0)
+    ,m_testEntryManager(this)
 {
     s_instance = this;
     m_document = ParleyDocument::instance();
@@ -168,15 +169,15 @@ void ParleyMainWindow::configurePractice()
 
 void ParleyMainWindow::startPractice()
 {
-    bool newPractice = true;
-    if (newPractice) {
+#if 1
         switchComponent(PracticeComponent);        
-   } else { // old dialog based practice
+#else // old dialog based practice
         hide();
         VocabularyPractice practice(m_document->document(), this);
         practice.startPractice();
         show();
-   }
+#endif
+
 }
 
 void ParleyMainWindow::practiceFinished()
@@ -283,159 +284,63 @@ void ParleyMainWindow::showPractice()
 
 void ParleyMainWindow::showPracticeSummary()
 {
-    switchComponent(PracticeComponent);
+    switchComponent(PracticeSummary);
 }
 
 void ParleyMainWindow::switchComponent(Component component)
 {
-    // TODO: the practice component keeps the enter key event filter - crash when enter is pressed after a practice!
- 
- 
-/*
-// this is what I want - clean up with actions and all!
-
-// ParleyDocument stays open
-// everything else goes away
-*/
-
-if (m_currentComponentWindow) {
-
-guiFactory()->removeClient(m_currentComponentWindow);
-centralWidget()->layout()->removeWidget(m_currentComponentWindow);
-delete m_currentComponentWindow;
-}
-
-switch (component) {
-    case WelcomeComponent: {
-        WelcomeScreen *welcome = new WelcomeScreen(this);
-        m_currentComponentWindow = welcome;
-        showDocumentActions(true, false);
-        welcome->updateRecentFilesModel();
-        break;
-    }
-    case StatisticsComponent: {
-        StatisticsMainWindow *statisticsWidget = new StatisticsMainWindow(m_document->document(), this);
-        m_currentComponentWindow = statisticsWidget;
-        showDocumentActions(true, true);
-        break;
-    }
-    case EditorComponent: {
-        EditorWindow *editor = new EditorWindow(this);
-        m_currentComponentWindow = editor;
-        showDocumentActions(true, true);
-        editor->updateDocument();
-        break;
-    }
-    case PracticeComponent: {
-        Practice::PracticeMainWindow *practiceWindow = new Practice::PracticeMainWindow(this);
-        connect(practiceWindow, SIGNAL(practiceFinished()), this, SLOT(showPracticeSummary()));
-        m_currentComponentWindow = practiceWindow;
-        showDocumentActions(false, false);
-        practiceWindow->startPractice();
-        break;
-    }
-    case PracticeSummary: {
-        
-        /*
-        Practice::PracticeSummaryComponent summary = new Practice::PracticeSummaryComponent(m_practiceBackend->getTestEntryManager(), this);
-        newClient = summary;
-        showDocumentActions(true, true);
-        */
-        break;
-    }
-    default:
-        break;
-}
-kDebug() << "new component" << m_currentComponentWindow;
-
-
-guiFactory()->addClient(m_currentComponentWindow);
-centralWidget()->layout()->addWidget(m_currentComponentWindow);
-m_currentComponentWindow->show();
-setupToolbarMenuActions();
-
-
-    /*
-    kDebug() << "switch to component" << component;
-    if(m_currentComponent == component) {
-        return;
+    if (m_currentComponentWindow) {
+        guiFactory()->removeClient(m_currentComponentWindow);
+        centralWidget()->layout()->removeWidget(m_currentComponentWindow);
+        delete m_currentComponentWindow;
     }
 
-    // Get pointer to the old component
-    KXmlGuiWindow *oldClient = 0;
-    switch (m_currentComponent) {
-    case WelcomeComponent:
-        oldClient = m_welcomeScreen;
-        break;
-    case StatisticsComponent:
-        oldClient = m_statisticsWidget;
-        break;
-    case EditorComponent:
-        oldClient = m_editor;
-        break;
-   case PracticeComponent:
-       oldClient = m_practiceFrontend->getWindow();
-       break;
-   case PracticeSummary:
-       oldClient = m_practiceSummary;
-    default:
-        break;
-    }
-    kDebug() << "old component" << oldClient;
-
-    // Get pointers to the new component (we need them as widgets and gui clients)
-    KXmlGuiWindow *newClient = 0;
     switch (component) {
-    case WelcomeComponent:
-        newClient = m_welcomeScreen;
-        showDocumentActions(true, false);
-        m_welcomeScreen->updateRecentFilesModel();
-        break;
-    case StatisticsComponent:
-        if (!m_statisticsWidget) {
-            m_statisticsWidget = new StatisticsMainWindow(m_document->document(), this);
-        } else {
-            m_statisticsWidget->setDocument(m_document->document());
+        case WelcomeComponent: {
+            WelcomeScreen *welcome = new WelcomeScreen(this);
+            m_currentComponentWindow = welcome;
+            showDocumentActions(true, false);
+            welcome->updateRecentFilesModel();
+            break;
         }
-        newClient = m_statisticsWidget;
-        showDocumentActions(true, true);
-        break;
-    case EditorComponent:
-        newClient = m_editor;
-        showDocumentActions(true, true);
-        break;
-   case PracticeComponent:
-       newClient = m_practiceFrontend->getWindow();
-       showDocumentActions(false, false);
-       break;
-   case PracticeSummary:
-       newClient = m_practiceSummary;
-       showDocumentActions(true, true);
-       break;   
-    default:
-        break;
+        case StatisticsComponent: {
+            StatisticsMainWindow *statisticsWidget = new StatisticsMainWindow(m_document->document(), this);
+            m_currentComponentWindow = statisticsWidget;
+            showDocumentActions(true, true);
+            break;
+        }
+        case EditorComponent: {
+            EditorWindow *editor = new EditorWindow(this);
+            m_currentComponentWindow = editor;
+            showDocumentActions(true, true);
+            editor->updateDocument();
+            break;
+        }
+        case PracticeComponent: {
+            m_testEntryManager.setDocument(m_document->document());
+            Practice::PracticeMainWindow *practiceWindow = new Practice::PracticeMainWindow(&m_testEntryManager, this);
+            connect(practiceWindow, SIGNAL(stopPractice()), this, SLOT(showPracticeSummary()));
+            m_currentComponentWindow = practiceWindow;
+            showDocumentActions(false, false);
+            practiceWindow->startPractice();
+            break;
+        }
+        case PracticeSummary: {
+kDebug() << "switch to summary";
+            Practice::PracticeSummaryComponent* summary = new Practice::PracticeSummaryComponent(&m_testEntryManager, this);
+            m_currentComponentWindow = summary;
+            showDocumentActions(true, true);            
+            break;
+        }
+        default:
+            break;
     }
-    kDebug() << "new component" << newClient;
+    kDebug() << "new component" << m_currentComponentWindow;
 
-    // switch actions and widgets
-    if (oldClient) {
-        guiFactory()->removeClient(oldClient);
-        centralWidget()->layout()->removeWidget(oldClient);
-        oldClient->hide();
-    }
-    if (newClient) {
-        guiFactory()->addClient(newClient);
-        centralWidget()->layout()->addWidget(newClient);
-        newClient->show();
-    }
-
-    if (oldClient == m_practiceSummary) {
-        delete m_practiceSummary;
-    }
-    
-    m_currentComponent = component;
+    guiFactory()->addClient(m_currentComponentWindow);
+    centralWidget()->layout()->addWidget(m_currentComponentWindow);
+    m_currentComponentWindow->show();
     setupToolbarMenuActions();
-    */
 }
 
 void ParleyMainWindow::showDocumentActions(bool open, bool edit)

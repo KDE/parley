@@ -19,7 +19,7 @@
 
 using namespace Practice; 
 
-PracticeSummaryComponent::PracticeSummaryComponent(const TestEntryManager& testEntryManager, QWidget* parent)
+PracticeSummaryComponent::PracticeSummaryComponent(TestEntryManager* testEntryManager, QWidget* parent)
     :KXmlGuiWindow(parent)
     ,m_testEntryManager(testEntryManager)
 {
@@ -27,8 +27,6 @@ PracticeSummaryComponent::PracticeSummaryComponent(const TestEntryManager& testE
     setXMLFile("statisticsui.rc");
     setObjectName("Statistics");
     
-    m_testEntryManager = testEntryManager;
-
     QWidget *mainWidget = new QWidget(this);
     
     setupUi(mainWidget);
@@ -37,30 +35,30 @@ PracticeSummaryComponent::PracticeSummaryComponent(const TestEntryManager& testE
     
     //setCaption(i18n("Practice Summary"));
 
-    totalCountLineEdit->setText(QString::number(m_testEntryManager.totalEntryCount()));
-    correctLineEdit->setText(QString::number(m_testEntryManager.statisticTotalCorrectFirstAttempt()));
-    correctProgressBar->setValue(m_testEntryManager.statisticTotalCorrectFirstAttempt() * 100 / m_testEntryManager.totalEntryCount());
+    totalCountLineEdit->setText(QString::number(m_testEntryManager->totalEntryCount()));
+    correctLineEdit->setText(QString::number(m_testEntryManager->statisticTotalCorrectFirstAttempt()));
+    correctProgressBar->setValue(m_testEntryManager->statisticTotalCorrectFirstAttempt() * 100 / m_testEntryManager->totalEntryCount());
 
-    wrongLineEdit->setText(QString::number(m_testEntryManager.statisticTotalWrong()));
-    wrongProgressBar->setValue(m_testEntryManager.statisticTotalWrong() * 100 / m_testEntryManager.totalEntryCount());
+    wrongLineEdit->setText(QString::number(m_testEntryManager->statisticTotalWrong()));
+    wrongProgressBar->setValue(m_testEntryManager->statisticTotalWrong() * 100 / m_testEntryManager->totalEntryCount());
 
     if ( Prefs::skipKnownEnabled() ) {
         skipKnownLineEdit->setText(QString::number(
-            m_testEntryManager.statisticTotalSkipKnown()));
+            m_testEntryManager->statisticTotalSkipKnown()));
         skipKnownProgressBar->setValue(
-            m_testEntryManager.statisticTotalSkipKnown() * 100
-            / m_testEntryManager.totalEntryCount());
+            m_testEntryManager->statisticTotalSkipKnown() * 100
+            / m_testEntryManager->totalEntryCount());
     } else {
         skipKnownLabel->setVisible(false);
         skipKnownLineEdit->setVisible(false);
         skipKnownProgressBar->setVisible(false);
     }
 
-    skipUnknownLineEdit->setText(QString::number(m_testEntryManager.statisticTotalSkipUnknown()));
-    skipUnknownProgressBar->setValue(m_testEntryManager.statisticTotalSkipUnknown() * 100 / m_testEntryManager.totalEntryCount());
+    skipUnknownLineEdit->setText(QString::number(m_testEntryManager->statisticTotalSkipUnknown()));
+    skipUnknownProgressBar->setValue(m_testEntryManager->statisticTotalSkipUnknown() * 100 / m_testEntryManager->totalEntryCount());
 
-    notAnsweredLineEdit->setText(QString::number(m_testEntryManager.statisticTotalUnanswered()));
-    notAnsweredProgressBar->setValue(m_testEntryManager.statisticTotalUnanswered() * 100 / m_testEntryManager.totalEntryCount());
+    notAnsweredLineEdit->setText(QString::number(m_testEntryManager->statisticTotalUnanswered()));
+    notAnsweredProgressBar->setValue(m_testEntryManager->statisticTotalUnanswered() * 100 / m_testEntryManager->totalEntryCount());
     
     
     //initActions();

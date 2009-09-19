@@ -26,7 +26,7 @@
 
 using namespace Practice;
 
-PracticeMainWindow::PracticeMainWindow(ParleyMainWindow* parent)
+PracticeMainWindow::PracticeMainWindow(TestEntryManager* testEntryManager, ParleyMainWindow* parent)
     : KXmlGuiWindow(parent)
 {
     // KXmlGui
@@ -37,7 +37,7 @@ PracticeMainWindow::PracticeMainWindow(ParleyMainWindow* parent)
     setCentralWidget(m_guiFrontend->widget());
     
     Practice::PracticeOptions options;
-    m_backend = new Practice::DefaultBackend(m_guiFrontend, parent->parleyDocument(), options, this);
+    m_backend = new Practice::DefaultBackend(m_guiFrontend, parent->parleyDocument(), options, testEntryManager, this);
     
     // setModified - otherwise we may not ask to save progress
     parent->parleyDocument()->document()->setModified(true);
@@ -45,17 +45,13 @@ PracticeMainWindow::PracticeMainWindow(ParleyMainWindow* parent)
     initActions();
 
     connect(this, SIGNAL(enterPressed()), this, SLOT(continueAction()));
-    connect(this, SIGNAL(stopPractice()), this, SIGNAL(stopPractice()));
-
+    
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
 }
 
 PracticeMainWindow::~PracticeMainWindow()
 {
-    delete m_backend;
-    delete m_guiFrontend;
-
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     saveMainWindowSettings(cfg);
 }

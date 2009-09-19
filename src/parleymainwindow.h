@@ -29,6 +29,7 @@
 #include "parleydocument.h"
 
 #include <KXmlGuiWindow>
+#include "practice/testentrymanager.h"
 
 namespace Practice {
     class GuiFrontend;
@@ -178,6 +179,7 @@ private:
     /// the name of the executable
     QString m_appName;
     Component m_componentBeforePractice;
+    Practice::TestEntryManager m_testEntryManager;
 
     friend int main(int argc, char* argv[]);
 };

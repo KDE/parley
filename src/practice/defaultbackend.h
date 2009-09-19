@@ -34,13 +34,10 @@ class DefaultBackend :public QObject
     Q_OBJECT
 
 public:
-    DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, const PracticeOptions& options, QObject* parent = 0);
+    DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, const PracticeOptions& options, Practice::TestEntryManager* testEntryManager, QObject* parent = 0);
     ~DefaultBackend();
     
     void startPractice();
-    
-    /** used to show statistics after the practice. do not use otherwise. */
-    TestEntryManager getTestEntryManager();
     
 public Q_SLOTS:
     void nextEntry();
@@ -53,10 +50,10 @@ private:
     void createPracticeMode();
     void updateFrontend();
     
-    TestEntry* m_current;
     AbstractFrontend* m_frontend;
     PracticeOptions m_options;
-    TestEntryManager m_testEntryManager;
+    TestEntry* m_current;
+    TestEntryManager* m_testEntryManager;
     AbstractFrontend::Mode m_currentMode;
     AbstractBackendMode* m_mode;
 };
