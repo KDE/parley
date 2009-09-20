@@ -36,7 +36,7 @@
 #include <QClipboard>
 
 #include <KApplication>
-#include <KPassivePopup>
+#include <KNotification>
 #include <KComponentData>
 #include <KGlobalSettings>
 #include <KAction>
@@ -396,10 +396,7 @@ void VocabularyView::continueSpelling()
         spellingChecker->changeLanguage(locale);
         if (!spellingChecker->speller().isValid()) {
             kDebug() << "Invalid Language, popup here!";
-            KPassivePopup* pop = new KPassivePopup(this);
-            pop->setTimeout(10000);
-            pop->setView(i18nc("@popupmessage", "Either the language set up is incorrect or no spellchecker was installed for this locale: %1.", locale), i18nc("@title of a popup", "No Spell Checker Available"));
-            pop->show();
+            KNotification::event(KNotification::Warning, i18nc("@title of a popup", "No Spell Checker Available"), i18nc("@popupmessage", "Either the language set up is incorrect or no spellchecker was installed for this locale: %1.", locale));
 //             spellcheckRow = m_model->rowCount();
 //             spellcheckColumn++;
         }
