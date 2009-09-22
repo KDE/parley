@@ -45,6 +45,7 @@ PracticeMainWindow::PracticeMainWindow(TestEntryManager* testEntryManager, Parle
     initActions();
 
     connect(this, SIGNAL(enterPressed()), this, SLOT(continueAction()));
+    connect(m_backend, SIGNAL(practiceFinished()), this, SIGNAL(stopPractice()));
     
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
