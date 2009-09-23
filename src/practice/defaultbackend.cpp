@@ -25,8 +25,9 @@ DefaultBackend::DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, 
     , m_frontend(frontend)
     , m_options(options)
     , m_testEntryManager(testEntryManager)
-    , m_currentMode(AbstractFrontend::Written)
+    , m_currentMode(AbstractFrontend::None)
     , m_mode(0)
+    , m_current(0)
 {
     connect(m_frontend, SIGNAL(skipAction()), this, SLOT(nextEntry()));
     connect(m_frontend, SIGNAL(stopPractice()), this, SIGNAL(practiceFinished()));
@@ -39,26 +40,70 @@ DefaultBackend::~DefaultBackend()
 
 void DefaultBackend::startPractice()
 {
-    createPracticeMode();
     kDebug() << "start practice ... nextEntry";
+    
+    m_currentMode = nextPracticeMode(m_currentMode);
+    if (m_currentMode == AbstractFrontend::None) {
+        emit practiceFinished();
+        return;
+    }
+    initializePracticeMode(m_currentMode);
+    
     nextEntry();
 }
 
-void DefaultBackend::createPracticeMode()
+void DefaultBackend::nextEntry()
 {
-    delete m_mode;
+    m_current = m_testEntryManager->getNextEntry();
     
+    //after going through all words, or at the start of practice
+    if (m_current == 0) {
+        m_currentMode = nextPracticeMode(m_currentMode);
+        
+        // abort if no more modes available
+        if (m_currentMode == AbstractFrontend::None) {
+            emit practiceFinished();
+            return;
+        }
+        
+        initializePracticeMode(m_currentMode);
+        // FIXME figure out, what to do with the grades - will only the very last mode update them?
+        m_testEntryManager->startNextPracticeMode();
+        
+        m_current = m_testEntryManager->getNextEntry();
+    }
+    
+    m_mode->setTestEntry(m_current);
+    updateFrontend();
+}
+
+AbstractFrontend::Mode DefaultBackend::nextPracticeMode(AbstractFrontend::Mode currentMode)
+{
     QList<AbstractFrontend::Mode> modes = m_options.modes();
-    // TODO: mode needs to change at some point...
+    
     if (modes.size() == 0) {
         kWarning() << "No practice mode selected!";
-        modes.append(AbstractFrontend::MultipleChoice);
+        return AbstractFrontend::None;
     }
-    m_currentMode = modes.at(0);
-    m_frontend->setMode(m_currentMode);
-    kDebug() << "practice mode: " << m_currentMode;
+    int indexOfCurrent = modes.indexOf(currentMode);
     
-    switch(m_currentMode) {
+    // m_currentMode is still None, it has not been initialized
+    if (indexOfCurrent < 0) {
+        return modes.at(0);
+    }
+    // all modes are done, return None
+    if (indexOfCurrent == modes.size()-1) {
+        return AbstractFrontend::None;
+    }
+    return modes.at(indexOfCurrent+1);
+}
+
+void DefaultBackend::initializePracticeMode(AbstractFrontend::Mode mode)
+{
+    delete m_mode;
+    m_frontend->setMode(mode);
+    
+    switch(mode) {
         case AbstractFrontend::FlashCard:
             kDebug() << "Create Flash Card Practice";
             m_mode = new FlashCardBackendMode(m_options, m_frontend, this);
@@ -81,17 +126,6 @@ void DefaultBackend::createPracticeMode()
     
     connect(m_frontend, SIGNAL(signalContinueButton()), m_mode, SLOT(continueAction()));
     connect(m_frontend, SIGNAL(hintAction()), m_mode, SLOT(hintAction()));
-}
-
-void DefaultBackend::nextEntry()
-{
-    m_current = m_testEntryManager->getNextEntry();
-    if (m_current == 0) {
-        emit practiceFinished();
-        return;
-    }
-    m_mode->setTestEntry(m_current);
-    updateFrontend();
 }
 
 void DefaultBackend::removeCurrentEntryFromPractice()

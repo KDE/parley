@@ -26,6 +26,7 @@ class AbstractFrontend : public QObject
     Q_OBJECT
 public:
     enum Mode {
+        None,
         FlashCard,
         MixedLetters,
         MultipleChoice,

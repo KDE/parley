@@ -67,6 +67,8 @@ public:
     void printStatistics();
 
     void currentEntryFinished();
+    
+    void startNextPracticeMode();
 
     int statisticTotalCorrectFirstAttempt();
     int statisticTotalWrong();

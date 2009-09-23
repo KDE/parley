@@ -40,6 +40,8 @@ TestEntryManager::TestEntryManager(QWidget* parent)
 {
     TestEntry::setGradeTo(m_toTranslation);
 
+    // FIXME always set good from/to values here! Do we still have mono lingual tests?
+    
     // write grades of mono lingual tests into translation(i).gradeFrom(i)
     if ( m_testType == Prefs::EnumTestType::WrittenTest ||
         m_testType == Prefs::EnumTestType::MultipleChoiceTest) {
@@ -99,6 +101,12 @@ void TestEntryManager::filterTestEntries()
 void TestEntryManager::currentEntryFinished()
 {
     m_currentEntries.takeAt(m_currentEntry);
+}
+
+void TestEntryManager::startNextPracticeMode()
+{
+    m_notAskedTestEntries.clear();
+    m_notAskedTestEntries = m_allTestEntries;
 }
 
 void TestEntryManager::printStatistics()
