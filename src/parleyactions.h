@@ -34,6 +34,7 @@ namespace ParleyActions {
         ToggleShowSublessons,
         AutomaticTranslation, 
         StartPractice, ConfigurePractice,
+        EnterEditMode,
         ToggleSearchBar, SearchVocabulary,
         ShowScriptManager
     };

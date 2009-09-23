@@ -143,6 +143,11 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
                 "practice_configure", i18n("Configure Practice..."), 
                 i18n("Change practice settings"), "practice-setup");
             break;  
+        case EnterEditMode:
+            pAction = Private::createCustomAction(recvr, slot, parent,
+                "document_edit", i18n("Edit..."),
+                i18n("Edit the document"), "document-edit");          
+            break;
         case ToggleSearchBar:
             pAction = Private::createCustomAction(recvr, slot, parent, 
                 "config_show_search", i18n("Show Se&arch"), 

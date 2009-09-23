@@ -30,6 +30,7 @@ public:
     ~PracticeSummaryComponent();
 
 private:
+    void initActions(QWidget* parleyMainWindow);
     TestEntryManager* m_testEntryManager;
 };
 }

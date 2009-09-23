@@ -255,5 +255,6 @@ install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES editor/editorui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES statistics/statisticsui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES practice/practiceui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
+install( FILES practice/practicesummaryui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 
 

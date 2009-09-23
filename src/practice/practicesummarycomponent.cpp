@@ -14,8 +14,11 @@
 #include "practicesummarycomponent.h"
 #include "prefs.h"
 
+#include "parleyactions.h"
+
 #include <keduvocexpression.h>
 #include <KConfigGroup>
+#include <KActionCollection>
 
 using namespace Practice; 
 
@@ -60,18 +63,23 @@ PracticeSummaryComponent::PracticeSummaryComponent(TestEntryManager* testEntryMa
     notAnsweredLineEdit->setText(QString::number(m_testEntryManager->statisticTotalUnanswered()));
     notAnsweredProgressBar->setValue(m_testEntryManager->statisticTotalUnanswered() * 100 / m_testEntryManager->totalEntryCount());
     
-    
-    //initActions();
+    initActions(parent);
     
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg); 
 }
 
-
 PracticeSummaryComponent::~PracticeSummaryComponent()
 {
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     saveMainWindowSettings(cfg);
+}
+
+void PracticeSummaryComponent::initActions(QWidget* parleyMainWindow)
+{
+    ParleyActions::create(ParleyActions::EnterEditMode, parleyMainWindow, SLOT(showEditor()), actionCollection());
+    ParleyActions::create(ParleyActions::StartPractice, parleyMainWindow, SLOT(showStatistics()), actionCollection());
+    
 }
 
 
