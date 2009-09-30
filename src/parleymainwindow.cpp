@@ -104,6 +104,9 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
 
 ParleyMainWindow::~ParleyMainWindow()
 {
+    guiFactory()->removeClient(m_currentComponentWindow);
+    centralWidget()->layout()->removeWidget(m_currentComponentWindow);
+    delete m_currentComponentWindow;
     ParleyDocument::destroy();
 }
 
