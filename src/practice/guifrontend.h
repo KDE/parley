@@ -51,7 +51,7 @@ public:
     
     virtual void setHint(const QVariant& hint);
     virtual void setFeedback(const QVariant& feedback);
-       
+
     virtual void setResultState(ResultState resultState);
     virtual ResultState resultState();
 

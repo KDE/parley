@@ -44,7 +44,7 @@ private:
     
     GuiFrontend* m_guiFrontend;
     DefaultBackend* m_backend;
-    
+
 };
 }
 
