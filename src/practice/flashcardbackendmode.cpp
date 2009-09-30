@@ -43,7 +43,7 @@ void FlashCardBackendMode::continueAction()
         emit nextEntry();
         return;
     }
-    m_frontend->setResultState(AbstractFrontend::AnswerWrong);
+    m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
     m_frontend->showSolution();
     m_solutionVisible = true;
 }
