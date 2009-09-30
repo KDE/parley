@@ -213,22 +213,28 @@
        <widget class="QWidget" name="page_2">
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <widget class="QRadioButton" name="wrongButton">
-           <property name="text">
-            <string>I didn't know the answer.</string>
-           </property>
-           <property name="checked">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QRadioButton" name="correctButton">
+           <property name="focusPolicy">
+            <enum>Qt::TabFocus</enum>
+           </property>
            <property name="text">
             <string>I knew the answer.</string>
            </property>
            <property name="checked">
             <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="wrongButton">
+           <property name="focusPolicy">
+            <enum>Qt::TabFocus</enum>
+           </property>
+           <property name="text">
+            <string>I didn't know the answer.</string>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -525,7 +531,6 @@
   <tabstop>answerLaterButton</tabstop>
   <tabstop>hintButton</tabstop>
   <tabstop>wrongButton</tabstop>
-  <tabstop>correctButton</tabstop>
  </tabstops>
  <resources/>
  <connections/>
