@@ -91,10 +91,11 @@ void GuiFrontend::setLessonName(const QString& lessonName)
 void GuiFrontend::showQuestion()
 {
     m_ui->ratingStack->setCurrentIndex(0);
-    m_ui->continueButton->setFocus();
-    m_modeWidget->showQuestion();
     m_ui->answerLaterButton->setEnabled(true);
     m_ui->hintButton->setEnabled(true);
+    m_ui->continueButton->setFocus();
+    m_modeWidget->showQuestion();
+    kDebug() << "active window: " << m_ui->continueButton->isActiveWindow();
 }
 
 void GuiFrontend::showSolution()

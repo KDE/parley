@@ -16,13 +16,14 @@
 
 #include <KPageDialog>
 
+class KEduVocDocument;
 class ParleyDocument;
 
 class LanguageProperties : public KPageDialog
 {
 Q_OBJECT
 public:
-    LanguageProperties(QWidget *parent);
+    LanguageProperties(KEduVocDocument* doc, QWidget* parent);
 
 public slots:
     virtual void accept ();
@@ -36,7 +37,7 @@ private slots:
 private:
     KPageWidgetItem*  createPage(int identifierIndex);
 
-    ParleyDocument* m_doc;
+    KEduVocDocument* m_doc;
     QList<KPageWidgetItem*> m_pages;
 };
 

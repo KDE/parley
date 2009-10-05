@@ -25,6 +25,7 @@
 
 #include "documentproperties.h"
 
+#include "parleymainwindow.h"
 #include "parleydocument.h"
 
 #include <keduvocdocument.h>
@@ -33,7 +34,6 @@
 
 #include <QTextEdit>
 #include <QLabel>
-
 
 DocumentProperties::DocumentProperties(KEduVocDocument * doc, bool languageSetup, QWidget* parent)
     :QWidget(parent), m_doc(doc), m_showLanguages(languageSetup)
@@ -75,7 +75,8 @@ void DocumentProperties::prepareLanguageSelection()
 
 void DocumentProperties::accept()
 {
-    ParleyDocument::instance()->setTitle(titleLineEdit->text());
+    m_doc->setTitle(titleLineEdit->text());
+    ParleyMainWindow::instance()->slotUpdateWindowCaption();
     m_doc->setAuthor(authorLineEdit->text());
     m_doc->setAuthorContact(contactLineEdit->text());
     m_doc->setLicense(licenseComboBox->currentText());

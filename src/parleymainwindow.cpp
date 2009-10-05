@@ -66,7 +66,7 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
     ,m_testEntryManager(this)
 {
     s_instance = this;
-    m_document = ParleyDocument::instance();
+    m_document = new ParleyDocument(this);
 
     setCentralWidget(new QWidget());
     centralWidget()->setLayout(new QHBoxLayout());
@@ -107,7 +107,7 @@ ParleyMainWindow::~ParleyMainWindow()
     guiFactory()->removeClient(m_currentComponentWindow);
     centralWidget()->layout()->removeWidget(m_currentComponentWindow);
     delete m_currentComponentWindow;
-    ParleyDocument::destroy();
+    delete m_document;
 }
 
 void ParleyMainWindow::addRecentFile(const KUrl &url, const QString &name)

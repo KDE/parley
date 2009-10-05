@@ -468,14 +468,14 @@ void EditorWindow::slotLanguagesChanged()
 
 void EditorWindow::slotDocumentProperties()
 {
-    DocumentProperties* titleAuthorWidget = new DocumentProperties(ParleyDocument::instance()->document(), false, this);
+    DocumentProperties* titleAuthorWidget = new DocumentProperties(m_mainWindow->parleyDocument()->document(), false, this);
     KDialog* titleAuthorDialog;
     titleAuthorDialog = new KDialog(this);
     titleAuthorDialog->setMainWidget( titleAuthorWidget );
 
     // the language options are only shown, when this is used to create a new document.
     titleAuthorWidget->languageGroupBox->setVisible(false);
-    titleAuthorDialog->setCaption(i18nc("@title:window document properties", "Properties for %1", ParleyDocument::instance()->document()->url().url()));
+    titleAuthorDialog->setCaption(i18nc("@title:window document properties", "Properties for %1", m_mainWindow->parleyDocument()->document()->url().url()));
     connect(titleAuthorDialog, SIGNAL(accepted()), titleAuthorWidget, SLOT(accept()));
     titleAuthorDialog->exec();
     delete titleAuthorDialog;

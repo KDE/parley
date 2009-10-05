@@ -30,6 +30,8 @@ MultiplechoiceModeWidget::MultiplechoiceModeWidget (QWidget* parent )
 void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
 {
     m_ui->questionLabel->setText(question.toString());
+    
+    m_ui->choice1->setFocus();
 }
 
 void MultiplechoiceModeWidget::showQuestion()
@@ -58,7 +60,6 @@ void MultiplechoiceModeWidget::setSolution(const QVariant& solution)
     m_ui->choice5->setText(answers.at(4));
     
     //m_ui->solutionLabel->setText(solution.toString());
-
 }
 
 void MultiplechoiceModeWidget::showSolution()

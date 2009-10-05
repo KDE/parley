@@ -24,7 +24,7 @@ class LanguagePropertiesPage : public QWidget, public Ui::LanguagePropertiesPage
 {
     Q_OBJECT
 public:
-    LanguagePropertiesPage(ParleyDocument *doc, int identifierIndex, QWidget *parent = 0);
+    LanguagePropertiesPage(KEduVocDocument *doc, int identifierIndex, QWidget *parent = 0);
     void setLanguageIdentifierIndex(int newIndex);
     
 public slots:
@@ -50,12 +50,13 @@ private slots:
 
 private:
     void updateListBox(int start);
+    
+    // initialize widgets with contents
     void loadGrammarFromDocument();
 
     int m_currentTense;
     QList<int> tenseIndex;
 
-    ParleyDocument* m_parleyDocument;
     KEduVocDocument* m_doc;
     int m_identifierIndex;
 };

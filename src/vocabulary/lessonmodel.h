@@ -33,7 +33,6 @@ public:
         Random /**< Randomized */
     };
 
-
     explicit LessonModel(QObject *parent = 0);
     
     virtual Qt::ItemFlags flags(const QModelIndex &index) const;
