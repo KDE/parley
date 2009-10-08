@@ -67,7 +67,9 @@ public slots:
     void exportDialog();
 
     void newDocument(bool wizard);
-
+    
+    /** General doc properties like title, author etc */
+    void documentProperties();
     void languageProperties();
     
 signals:

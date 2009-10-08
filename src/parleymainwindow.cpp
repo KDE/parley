@@ -255,8 +255,7 @@ void ParleyMainWindow::initActions()
     #endif
     
     ParleyActions::create(ParleyActions::LanguagesProperties, m_document, SLOT(languageProperties()), actionCollection());
-    
-    ParleyActions::create(ParleyActions::FileProperties, m_document, SLOT(slotDocumentProperties()), actionCollection());
+    ParleyActions::create(ParleyActions::FileProperties, m_document, SLOT(documentProperties()), actionCollection());
 
     ParleyActions::create(ParleyActions::FileClose, this, SLOT(slotCloseDocument()), actionCollection());
     ParleyActions::create(ParleyActions::FileQuit, this, SLOT(close()), actionCollection());

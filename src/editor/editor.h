@@ -77,9 +77,6 @@ public slots:
      */
     void slotLanguagesChanged();
 
-    /** General doc properties like title, author etc */
-    void slotDocumentProperties();
-
     void slotConfigShowSearch();
 
     /**

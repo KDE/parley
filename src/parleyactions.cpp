@@ -131,7 +131,9 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
         case AutomaticTranslation:
             pAction = Private::createCustomAction(recvr, slot, parent, 
                 "lesson_automatictranslation", i18n("Automatic Translation"), 
-                i18n("Enable automatic translation of the lesson entries."));
+                i18n("Enable automatic translation of the lesson entries."),
+                QString(), true);
+            pAction->setChecked(Prefs::automaticTranslation());
             break;
         case StartPractice:
             pAction = Private::createCustomAction(recvr, slot, parent, 

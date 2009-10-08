@@ -404,7 +404,8 @@ void VocabularyModel::resetLanguages()
 
 void VocabularyModel::automaticTranslation(bool enabled)
 {
-    Prefs::setAutomaticTranslation(enabled);
+    kDebug() << "auto trans enabled: " << enabled;
+    Prefs::setAutomaticTranslation(true);
 }
 
 #include "vocabularymodel.moc"

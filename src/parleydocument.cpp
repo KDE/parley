@@ -51,8 +51,9 @@
 #include <libxslt/transform.h>
 #include <libxslt/xsltutils.h>
 #endif
-#include "settings/languageproperties.h"
 
+#include "settings/languageproperties.h"
+#include "settings/documentproperties.h"
 
 namespace DocumentHelper {
 void fetchGrammar(KEduVocDocument* doc, int languageIndex)
@@ -391,6 +392,21 @@ void ParleyDocument::slotGHNS()
         open(KUrl(fileName));
         m_parleyApp->showEditor();
     }
+}
+
+void ParleyDocument::documentProperties()
+{
+    DocumentProperties* titleAuthorWidget = new DocumentProperties(m_doc, false, m_parleyApp);
+    KDialog* titleAuthorDialog;
+    titleAuthorDialog = new KDialog(m_parleyApp);
+    titleAuthorDialog->setMainWidget( titleAuthorWidget );
+    
+    // the language options are only shown, when this is used to create a new document.
+    titleAuthorWidget->languageGroupBox->setVisible(false);
+    titleAuthorDialog->setCaption(i18nc("@title:window document properties", "Properties for %1", m_doc->url().url()));
+    connect(titleAuthorDialog, SIGNAL(accepted()), titleAuthorWidget, SLOT(accept()));
+    titleAuthorDialog->exec();
+    delete titleAuthorDialog;
 }
 
 void ParleyDocument::languageProperties()
