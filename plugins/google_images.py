@@ -43,7 +43,7 @@ class ImageDialog(KDialog):
         break
 
     if self.w is None:
-        KMessageBox.error(None, i18n("Error: Ui file not found!\nCheck your installation."), i18n("Fetch Image"))
+        KMessageBox.error(None, i18n("Error: ui file not found.\nCheck your installation."), i18n("Fetch Image"))
         return
 
     self.translation = translations[0]
