@@ -36,7 +36,7 @@ void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
 
 void MultiplechoiceModeWidget::showQuestion()
 {
-    m_ui->solutionLabel->setHidden(true);
+
 }
 
 void MultiplechoiceModeWidget::setSolution(const QVariant& solution)
@@ -64,7 +64,7 @@ void MultiplechoiceModeWidget::setSolution(const QVariant& solution)
 
 void MultiplechoiceModeWidget::showSolution()
 {
-    m_ui->solutionLabel->setHidden(false);
+
 }
 
 QVariant MultiplechoiceModeWidget::userInput()
