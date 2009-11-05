@@ -44,14 +44,14 @@ void MultiplechoiceModeWidget::setSolution(const QVariant& solution)
     if (!solution.canConvert(QVariant::StringList)) {
         kWarning() << "expected stringlist";
         return;
-        if (solution.toStringList().size() < 5) {
-            kWarning() << "stringlist too short!";
-            return;
-        }
     }
     kDebug() << solution;
     
     QStringList answers(solution.toStringList());
+    if (answers.size() < 5) {
+        kWarning() << "stringlist too short!";
+        return;
+    }
     kDebug() << answers;
     m_ui->choice1->setText(answers.at(0));
     m_ui->choice2->setText(answers.at(1));
