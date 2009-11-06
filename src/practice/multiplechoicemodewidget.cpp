@@ -17,6 +17,7 @@
 #include "ui_practice_widget_multiplechoice.h"
 
 #include <KDebug>
+#include <kcolorscheme.h>
 
 using namespace Practice;
 
@@ -26,6 +27,17 @@ MultiplechoiceModeWidget::MultiplechoiceModeWidget (QWidget* parent )
 {
     m_ui = new Ui::MultiplechoicePracticeWidget();
     m_ui->setupUi(this);
+
+    m_choiceButtons = QList<QRadioButton*>();
+    m_choiceButtons << m_ui->choice1 << m_ui->choice2 << m_ui->choice3 << m_ui->choice4 << m_ui->choice5;
+
+    KColorScheme scheme(QPalette::Active);
+    m_correctPalette = QApplication::palette();
+    m_correctPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::PositiveText).color());
+    m_correctPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::PositiveText).color());
+    m_wrongPalette = QApplication::palette();
+    m_wrongPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::NegativeText).color());
+    m_wrongPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::NegativeText).color());
 }
 
 void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
@@ -54,17 +66,23 @@ void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
 
 void MultiplechoiceModeWidget::showQuestion()
 {
-
+    foreach(QRadioButton *radio, m_choiceButtons) {
+        radio->setPalette(QApplication::palette());
+    }
 }
 
 void MultiplechoiceModeWidget::setSolution(const QVariant& solution)
 {
-
+    m_solution = solution.toInt();
 }
 
 void MultiplechoiceModeWidget::showSolution()
 {
-
+    int input = userInput().toInt();
+    m_choiceButtons[m_solution]->setPalette(m_correctPalette);
+    if (input != m_solution) {
+        m_choiceButtons[input]->setPalette(m_wrongPalette);
+    }
 }
 
 QVariant MultiplechoiceModeWidget::userInput()
