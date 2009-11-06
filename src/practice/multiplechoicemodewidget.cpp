@@ -12,6 +12,7 @@
  ***************************************************************************/
 
 #include "multiplechoicemodewidget.h"
+#include "multiplechoicedata.h"
 
 #include "ui_practice_widget_multiplechoice.h"
 
@@ -29,8 +30,25 @@ MultiplechoiceModeWidget::MultiplechoiceModeWidget (QWidget* parent )
 
 void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
 {
-    m_ui->questionLabel->setText(question.toString());
-    
+    if (!question.canConvert<MultipleChoiceData>()) {
+        kWarning() << "expected MultipleChoiceData";
+        return;
+    }
+    MultipleChoiceData data = question.value<MultipleChoiceData>();
+    m_ui->questionLabel->setText(data.question);
+
+    kDebug() << data.question << data.choices;
+
+    if (data.choices.size() < 5) {
+        kWarning() << "stringlist too short!";
+        return;
+    }
+    m_ui->choice1->setText(data.choices.at(0));
+    m_ui->choice2->setText(data.choices.at(1));
+    m_ui->choice3->setText(data.choices.at(2));
+    m_ui->choice4->setText(data.choices.at(3));
+    m_ui->choice5->setText(data.choices.at(4));
+
     m_ui->choice1->setFocus();
 }
 
@@ -41,25 +59,7 @@ void MultiplechoiceModeWidget::showQuestion()
 
 void MultiplechoiceModeWidget::setSolution(const QVariant& solution)
 {
-    if (!solution.canConvert(QVariant::StringList)) {
-        kWarning() << "expected stringlist";
-        return;
-    }
-    kDebug() << solution;
-    
-    QStringList answers(solution.toStringList());
-    if (answers.size() < 5) {
-        kWarning() << "stringlist too short!";
-        return;
-    }
-    kDebug() << answers;
-    m_ui->choice1->setText(answers.at(0));
-    m_ui->choice2->setText(answers.at(1));
-    m_ui->choice3->setText(answers.at(2));
-    m_ui->choice4->setText(answers.at(3));
-    m_ui->choice5->setText(answers.at(4));
-    
-    //m_ui->solutionLabel->setText(solution.toString());
+
 }
 
 void MultiplechoiceModeWidget::showSolution()

@@ -13,6 +13,7 @@
 
 
 #include "multiplechoicebackendmode.h"
+#include "multiplechoicedata.h"
 #include "defaultbackend.h"
 
 #include <KDebug>
@@ -33,14 +34,14 @@ void MultipleChoiceBackendMode::setTestEntry(TestEntry* current)
 {
     m_current = current;
     
-    QStringList answers;
-    answers = m_testEntryManager->randomMultipleChoiceAnswers(m_numberOfChoices-1);
+    MultipleChoiceData data;
+    data.question = m_current->entry()->translation(m_practiceOptions.languageFrom())->text();
+    data.choices = m_testEntryManager->randomMultipleChoiceAnswers(m_numberOfChoices-1);
     m_correctAnswer = m_randomSequence.getLong(m_numberOfChoices);
-    answers.insert(m_correctAnswer, m_current->entry()->translation(m_practiceOptions.languageTo())->text());
-    kDebug() << answers;
-    
-    m_frontend->setQuestion(m_current->entry()->translation(m_practiceOptions.languageFrom())->text());
-    m_frontend->setSolution(answers);
+    data.choices.insert(m_correctAnswer, m_current->entry()->translation(m_practiceOptions.languageTo())->text());
+
+    m_frontend->setQuestion(qVariantFromValue<MultipleChoiceData>(data));
+    m_frontend->setSolution(m_correctAnswer);
     m_frontend->setQuestionSound(m_current->entry()->translation(m_practiceOptions.languageFrom())->soundUrl());
     m_frontend->setSolutionSound(m_current->entry()->translation(m_practiceOptions.languageTo())->soundUrl());
     m_frontend->setQuestionPronunciation(m_current->entry()->translation(m_practiceOptions.languageFrom())->pronunciation());
