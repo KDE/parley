@@ -103,6 +103,7 @@ set(practice_SRCS
     practice/imagewidget.cpp
     practice/practicemainwindow.cpp
     practice/practicesummarycomponent.cpp
+    practice/boxeswidget.cpp
 )
 
 kde4_add_ui_files(practice_SRCS
