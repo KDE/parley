@@ -56,10 +56,15 @@ void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
         return;
     }
     m_ui->choice1->setText(data.choices.at(0));
+    m_ui->choice1->setToolTip(data.choices.at(0));
     m_ui->choice2->setText(data.choices.at(1));
+    m_ui->choice2->setToolTip(data.choices.at(1));
     m_ui->choice3->setText(data.choices.at(2));
+    m_ui->choice3->setToolTip(data.choices.at(2));
     m_ui->choice4->setText(data.choices.at(3));
+    m_ui->choice4->setToolTip(data.choices.at(3));
     m_ui->choice5->setText(data.choices.at(4));
+    m_ui->choice5->setToolTip(data.choices.at(4));
 
     m_ui->choice1->setFocus();
 }
