@@ -13,6 +13,8 @@
 
 #include "boxeswidget.h"
 
+#include <keduvoctext.h>
+
 #include <kdebug.h>
 #include <QtGui/QPainter>
 #include <qbrush.h>
@@ -23,6 +25,7 @@ BoxesWidget::BoxesWidget(QWidget* parent)
     : QWidget(parent), m_boxCount(1), m_currentBox(-1), m_lastBox(-1)
 {
     setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    setBoxCount(KV_MAX_GRADE);
 }
 
 
@@ -35,6 +38,7 @@ void BoxesWidget::setBoxCount(int boxCount)
 
 void BoxesWidget::setBoxes(int currentBox, int lastBox)
 {
+    kDebug() << "SET BOXES" << currentBox << lastBox;
     m_currentBox = currentBox;
     m_lastBox = lastBox;
     update();

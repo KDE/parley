@@ -63,6 +63,7 @@ public Q_SLOTS:
     void setMode(Mode mode);
     void showQuestion();
     void showSolution();
+    void setBoxes(int currentBox, int lastBox = -1);
 
 private Q_SLOTS:
     void resultRadioButtonsChanged();

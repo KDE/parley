@@ -75,6 +75,7 @@ public Q_SLOTS:
 
     /** switch between different modes such as written, flash card, etc */
     virtual void setMode(Mode mode) = 0;
+    virtual void setBoxes(int currentBox, int lastBox = -1) = 0;
 
 Q_SIGNALS:
     void signalContinueButton();

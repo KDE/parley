@@ -111,6 +111,11 @@ void GuiFrontend::showSolution()
     m_ui->hintButton->setEnabled(false);
 }
 
+void GuiFrontend::setBoxes(int currentBox, int lastBox)
+{
+    m_ui->boxesWidget->setBoxes(currentBox, lastBox);
+}
+
 void GuiFrontend::setFinishedWordsTotalWords(int finished, int total)
 {
     // update progress bar
