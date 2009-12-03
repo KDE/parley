@@ -53,6 +53,8 @@ public slots:
     void openGHNS();
     /** download new vocabularies */
     void slotGHNS();
+    /** upload the current file */
+    void uploadFile();
 
     void open(const KUrl &);
     void close();

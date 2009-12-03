@@ -371,6 +371,16 @@ void Editor::initDockWidgets()
 
 void Editor::initActions()
 {
+    KAction* uploadFile =new KAction(this);
+    actionCollection()->addAction("file_upload", uploadFile);
+    uploadFile->setIcon(KIcon("get-hot-new-stuff"));
+    uploadFile->setText(i18n("&Upload Vocabulary Document..."));
+    uploadFile->setWhatsThis(i18n("Share the current vocabulary collection with other users."));
+    uploadFile->setToolTip(uploadFile->whatsThis());
+    uploadFile->setStatusTip(uploadFile->whatsThis());
+    connect(uploadFile, SIGNAL(triggered()), m_mainWindow->parleyDocument(), SLOT(uploadFile()));
+
+
     KAction* editLanguages =new KAction(this);
     actionCollection()->addAction("edit_languages", editLanguages);
     editLanguages->setIcon(KIcon("set-language"));

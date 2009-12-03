@@ -3,3 +3,6 @@ ProvidersUrl=http://edu.kde.org/parley/newstuff/providers41.xml
 TargetDir=kvtml
 Uncompress=archive
 
+[KNewStuff3]
+UploadCategories=Parley
+

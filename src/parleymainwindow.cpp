@@ -39,7 +39,7 @@
 #include <KRecentFilesAction>
 #include <KMessageBox>
 #include <KTipDialog>
-#include <knewstuff2/ui/knewstuffaction.h>
+#include <knewstuff3/knewstuffaction.h>
 #include <KXMLGUIFactory>
 #include <KToolBar>
 
@@ -281,7 +281,7 @@ void ParleyMainWindow::initActions()
     fileOpen->setToolTip(fileOpen->whatsThis());
     fileOpen->setStatusTip(fileOpen->whatsThis());
 
-    KAction* fileGHNS = KNS::standardAction(i18n("Download New Vocabularies..."), m_document, SLOT(slotGHNS()), actionCollection(), "file_ghns");
+    KAction* fileGHNS = KNS3::standardAction(i18n("Download New Vocabularies..."), m_document, SLOT(slotGHNS()), actionCollection(), "file_ghns");
     fileGHNS->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_G));
     fileGHNS->setWhatsThis(i18n("Downloads new vocabulary collections"));
     fileGHNS->setToolTip(fileGHNS->whatsThis());

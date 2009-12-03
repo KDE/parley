@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="editor"  version="1">
+<gui name="editor"  version="2">
 
 <MenuBar>
+  <Menu name="file" >
+      <text>&amp;File</text>
+      <Separator/>
+      <Action name="file_upload" />
+  </Menu>
   <Menu name="edit" >
       <text>&amp;Edit</text>
       <Separator/>
       <Action name="edit_languages" />
+      <Action name="file_upload" />
       <Separator/>
       <Action name="edit_append" />
       <Action name="edit_remove_selected_area" />
