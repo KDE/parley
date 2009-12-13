@@ -1,3 +1,5 @@
+include_directories( ${LIBATTICA_INCLUDE_DIR} )
+
 # installation of kconfig files .kcfg containing app settings
 add_subdirectory( settings )
 
