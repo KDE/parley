@@ -1,6 +1,7 @@
 [KGameTheme]
 Name=Clean
 Name[ca]=Net
+Name[ca@valencia]=Net
 Name[cs]=Smazat
 Name[da]=Clean
 Name[de]=Sauber
@@ -39,6 +40,7 @@ Name[zh_CN]=简洁
 Name[zh_TW]=乾淨
 Description=Clean theme for KDE 4
 Description[ca]=Un tema net per al KDE 4
+Description[ca@valencia]=Un tema net per al KDE 4
 Description[cs]=Smazat téma určené pro KDE 4
 Description[da]=Temaet Clean til KDE 4
 Description[de]=Sauberes Thema für KDE 4

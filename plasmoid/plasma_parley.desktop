@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Parley
 Name[ca]=Parley
+Name[ca@valencia]=Parley
 Name[cs]=Parley
 Name[csb]=Parley
 Name[da]=Parley
@@ -48,6 +49,7 @@ Name[zh_CN]=Parley
 Name[zh_TW]=Parley
 Comment=Vocabulary Cards
 Comment[ca]=Fitxes de vocabulari
+Comment[ca@valencia]=Fitxes de vocabulari
 Comment[cs]=Kartičky na procvičování slovní zásoby
 Comment[da]=Ordforrådskort
 Comment[de]=Vokabelkarten
