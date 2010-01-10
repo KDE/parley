@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Parley
 Name[ca]=Parley
+Name[ca@valencia]=Parley
 Name[cs]=Parley
 Name[csb]=Parley
 Name[da]=Parley
@@ -47,6 +48,7 @@ Name[zh_CN]=Parley
 Name[zh_TW]=Parley
 Comment=Vocabulary data for Plasmoids
 Comment[ca]=Dades de vocabulari per als plasmoides
+Comment[ca@valencia]=Dades de vocabulari per als plasmoides
 Comment[cs]=Slovní zásoba pro plasmoidy
 Comment[da]=Ordforrådsdata til plasmoider
 Comment[de]=Vokabulardaten für Plasmoide

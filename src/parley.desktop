@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Parley
 Name[ca]=Parley
+Name[ca@valencia]=Parley
 Name[cs]=Parley
 Name[csb]=Parley
 Name[da]=Parley
@@ -58,6 +59,7 @@ GenericName[be]=Пашырэнне слоўнікавага запасу
 GenericName[bg]=Речникови тренировки
 GenericName[bn]=শব্দভাণ্ডার সমৃদ্ধকারী
 GenericName[ca]=Entrenador de vocabulari
+GenericName[ca@valencia]=Entrenador de vocabulari
 GenericName[cs]=Učitel slovní zásoby
 GenericName[csb]=Cwiczenczi ze słowiznë
 GenericName[cy]=Hyfforddwr Geirfa
