@@ -4,5 +4,7 @@ TargetDir=kvtml
 Uncompress=archive
 
 [KNewStuff3]
+ProvidersUrl=http://download.kde.org/ocs/providers.xml
 UploadCategories=Parley
-
+Categories=Parley
+TargetDir=kvtml
