@@ -44,14 +44,18 @@ int main(int argc, char* argv[])
                          ki18n("© 1999-2002\tEwald Arnold\n"
                                    "© 2001-2002\tThe KDE team\n"
                                    "© 2004-2007\tPeter Hedlund\n"
-                                   "© 2007-2008\tFrederik Gladhorn\n"),
+                                   "© 2007-2010\tFrederik Gladhorn\n"),
                          ki18n("Helps you train your vocabulary"),
                          "http://edu.kde.org/parley",
                          "submit@bugs.kde.org");
 
     aboutData.addAuthor(ki18n("Frederik Gladhorn"),
-                        ki18n("Current Maintainer"),
+                        ki18n("Developer and maintainer"),
                         "gladhorn@kde.org");
+
+    aboutData.addAuthor(ki18n("Daniel Laidig"),
+                        ki18n("Developer"),
+                        "d.laidig@gmx.de");
 
     aboutData.addAuthor(ki18n("David Capel"),
                         ki18n("Practice Dialogs"),
@@ -68,7 +72,6 @@ int main(int argc, char* argv[])
     aboutData.addAuthor(ki18n("Ewald Arnold"), ki18n("Original Author"),
                         "kvoctrain@ewald-arnold.de",
                         "http://www.ewald-arnold.de");
-
 
     aboutData.addCredit(ki18n("Lee Olson"),
                         ki18n("Artwork and Oxygen Icons"));
