@@ -46,7 +46,7 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
 
     // continue button
     mw->continueButton->setIcon(KIcon("dialog-ok"));
-    connect(mw->continueButton, SIGNAL(clicked()), SLOT(continueButtonClicked()));
+    connect(mw->continueButton, SIGNAL(clicked()), SLOT(continueWithNextWord()));
 
     // stop practice
     mw->stopPracticeButton->setIcon(KIcon("process-stop"));
