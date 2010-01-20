@@ -99,7 +99,6 @@ bool ParleyEngine::updateSourceEvent(const QString &source)
     QHash<QString,QVariant> data;
     for (int i = 0; i < doc->identifierCount(); i++) {
         data[doc->identifier(i).name()] = expression->translation(i)->text();
-        data["doc"] = source;
     }
     setData(source, data);
 
