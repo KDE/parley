@@ -35,8 +35,6 @@ ParleyEngine::ParleyEngine(QObject* parent, const QVariantList& args)
     KGlobal::locale()->insertCatalog("parley");
     setMinimumPollingInterval(1000);
     kDebug() << "ParleyEngine::ParleyEngine";
-    m_doc = new KEduVocDocument(this);
-    m_current = 0;
 
     m_random = new KRandomSequence( QDateTime::currentDateTime().toTime_t() );
 }
@@ -44,38 +42,39 @@ ParleyEngine::ParleyEngine(QObject* parent, const QVariantList& args)
 ParleyEngine::~ParleyEngine()
 {
     delete m_random;
-    delete m_doc;
 }
 
 void ParleyEngine::openDocument(const QString& file)
 {
     kDebug() << "Open vocabulary file: '" << file << "'";
     if (!file.isEmpty()) {
-        m_doc->open(KUrl(file));
-//         m_vocabularyCount = m_doc->lesson()->entries(KEduVocContainer::Recursive).count();
+        KEduVocDocument *doc = new KEduVocDocument(this);
+        doc->open(KUrl(file));
+
+        // check that there is at least one identifier, otherwise this won't work...
+        if (doc->identifierCount() > 0) {
+            m_docs.insert(file, doc);
+            // vocabularyCount = doc->lesson()->entries(KEduVocContainer::Recursive).count();
+        } else {
+            delete doc;
+        }
     }
 }
 
 QStringList ParleyEngine::sources() const
 {
-    QStringList list;
-    if (m_doc) {
-        for (int i = 0; i < m_doc->identifierCount(); i++) {
-            list.append(m_doc->identifier(i).name());
-        }
-    }
-    return list;
+    return m_docs.keys();
 }
 
 bool ParleyEngine::sourceRequestEvent(const QString &source)
 {
-    if (source != m_file) {
+    if (!m_docs.contains(source)) {
         kDebug() << "open file: " << source;
-        m_file = source;
         openDocument(source);
     }
-    if (m_file.isEmpty()) {
-        kDebug() << "could not open source file";
+
+    if (!m_docs.contains(source)) {
+        kDebug() << "Could not open source file: " << source;
         return false;
     }
     return updateSourceEvent(source);
@@ -83,18 +82,24 @@ bool ParleyEngine::sourceRequestEvent(const QString &source)
 
 bool ParleyEngine::updateSourceEvent(const QString &source)
 {
-    int vocabularyCount = m_doc->lesson()->entries(KEduVocContainer::Recursive).count();
-    if (!vocabularyCount) {
-        setData(source, "no language",i18n("No document set."));
-        return true;  // rather false?
+    KEduVocDocument* doc = m_docs.value(source);
+    if (!doc) {
+        return false;
     }
 
-    m_current = m_random->getLong(vocabularyCount);
-    KEduVocExpression *expression = m_doc->lesson()->entries(KEduVocContainer::Recursive).value(m_current);
+    int vocabularyCount = doc->lesson()->entries(KEduVocContainer::Recursive).count();
+    if (!vocabularyCount) {
+        setData(source, QVariant());
+        return false;
+    }
+
+    ulong current = m_random->getLong(vocabularyCount);
+    KEduVocExpression *expression = doc->lesson()->entries(KEduVocContainer::Recursive).value(current);
 
     QHash<QString,QVariant> data;
-    for (int i = 0; i < m_doc->identifierCount(); i++) {
-        data[m_doc->identifier(i).name()] = expression->translation(i)->text();
+    for (int i = 0; i < doc->identifierCount(); i++) {
+        data[doc->identifier(i).name()] = expression->translation(i)->text();
+        data["doc"] = source;
     }
     setData(source, data);
 
