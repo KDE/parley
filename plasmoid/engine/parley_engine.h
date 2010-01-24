@@ -33,15 +33,14 @@ public:
     QStringList sources() const;
 
 protected:
-    bool sourceRequestEvent(const QString &name);
+    bool sourceRequestEvent(const QString& name);
     bool updateSourceEvent(const QString& source);
 
 private:
     void openDocument(const QString& file);
-    KEduVocDocument* m_doc;
+
+    QHash<QString, KEduVocDocument*> m_docs;
     KRandomSequence *m_random;
-    QString m_file;
-    int m_current;
 };
 
 K_EXPORT_PLASMA_DATAENGINE(parley, ParleyEngine)
