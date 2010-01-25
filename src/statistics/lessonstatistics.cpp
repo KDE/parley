@@ -102,7 +102,7 @@ void LessonStatisticsView::setModel(ContainerModel *model)
     ContainerView::setModel(model);
 
 //     header()->setResizeMode(0, QHeaderView::Stretch);
-//     header()->setResizeMode(1, QHeaderView::ResizeToContents);
+    header()->setResizeMode(QHeaderView::ResizeToContents);
     for (int i = 2; i < model->columnCount(QModelIndex()); i++) {
         setItemDelegateForColumn(i, new GradeDelegate());
         setColumnWidth(i, 200);

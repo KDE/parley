@@ -3,3 +3,10 @@ ProvidersUrl=http://edu.kde.org/parley/newstuff/providers41.xml
 TargetDir=kvtml
 Uncompress=archive
 
+[KNewStuff3]
+ProvidersUrl=http://edu.kde.org/parley/newstuff/providers44.xml
+TargetDir=kvtml
+Uncompress=archive
+Categories=Parley,KWordQuiz
+UploadCategories=Parley
+

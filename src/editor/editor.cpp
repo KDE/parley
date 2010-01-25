@@ -354,7 +354,8 @@ void EditorWindow::initActions()
     ParleyActions::create(ParleyActions::ConfigurePractice, m_mainWindow, SLOT(configurePractice()), actionCollection());
     ParleyActions::create(ParleyActions::ToggleSearchBar, this, SLOT(slotConfigShowSearch()), actionCollection());
     ParleyActions::create(ParleyActions::SearchVocabulary, this, SLOT(startSearch()), actionCollection());
-    ParleyActions::create(ParleyActions::ShowScriptManager, this, SLOT(slotShowScriptManager()), actionCollection());                                      
+    ParleyActions::create(ParleyActions::ShowScriptManager, this, SLOT(slotShowScriptManager()), actionCollection());
+    ParleyActions::createUploadAction(m_mainWindow->parleyDocument(), SLOT(uploadFile()), actionCollection());
 }
 
 void EditorWindow::initModel()

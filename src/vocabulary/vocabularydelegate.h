@@ -37,15 +37,12 @@ public:
 
     void setEditorData(QWidget *editor, const QModelIndex &index) const;
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
-    void setCurrentIndex(const QModelIndex &index);
     void setTranslator(Translator * translator);
 
 public slots:
     void setDocument(KEduVocDocument *doc);
-    void commitAndCloseEditor();
 
 private:
-    QModelIndex m_currentIndex;
     KEduVocDocument *m_doc;
     Translator * m_translator;
 

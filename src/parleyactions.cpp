@@ -18,7 +18,7 @@ Copyright 2009 Frederik Gladhorn <gladhorn@kde.org>
 #include <KStandardAction>
 #include <KLocalizedString>
 #include <KActionCollection>
-#include <knewstuff2/ui/knewstuffaction.h>
+#include <knewstuff3/knewstuffaction.h>
 #include <KToggleAction>
 
 namespace ParleyActions {
@@ -171,6 +171,7 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
     return pAction;
 }
 
+
 KRecentFilesAction* ParleyActions::createRecentFilesAction(const QObject* recvr, const char* slot, QObject* parent)
 {
     return KStandardAction::openRecent(recvr, slot, parent);
@@ -178,9 +179,15 @@ KRecentFilesAction* ParleyActions::createRecentFilesAction(const QObject* recvr,
 
 KAction* ParleyActions::createDownloadAction(const QObject* recvr, const char* slot, KActionCollection* collection)
 {
-    KAction *pAction = KNS::standardAction(i18n("Download New Vocabularies..."), recvr, slot, collection, "file_ghns");
+    KAction *pAction = KNS3::standardAction(i18n("Download New Vocabularies..."), recvr, slot, collection, "file_ghns");
     pAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_G));
     pAction->setHelpText(i18n("Downloads new vocabulary collections"));
     return pAction;
 }
-    
+
+KAction* ParleyActions::createUploadAction(const QObject* recvr, const char* slot, KActionCollection* collection)
+{
+    KAction *pAction = KNS3::standardActionUpload(i18n("&Upload Vocabulary Document..."), recvr, slot, collection, "file_upload");
+    pAction->setHelpText(i18n("Share the current vocabulary collection with other users"));
+    return pAction;
+}

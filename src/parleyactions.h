@@ -48,6 +48,8 @@ namespace ParleyActions {
     KAction* createDownloadAction(const QObject *recvr, const char *slot,
                                          KActionCollection *collection);
 
+    KAction* createUploadAction(const QObject *recvr, const char *slot,
+                                         KActionCollection *collection);
 }
 
 #endif

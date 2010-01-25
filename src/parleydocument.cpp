@@ -33,10 +33,12 @@
 #include <KFileDialog>
 #include <KRecentFilesAction>
 #include <KStandardDirs>
-#include <knewstuff2/engine.h>
+#include <knewstuff3/downloaddialog.h>
+#include <knewstuff3/uploaddialog.h>
 #include <KUser>
 #include <KMessageBox>
 #include <KProcess>
+#include <KTempDir>
 
 #include <QTimer>
 #include <QtGui/QPrinter>
@@ -363,26 +365,24 @@ void ParleyDocument::setDefaultDocumentProperties(KEduVocDocument *doc)
 
 void ParleyDocument::slotGHNS()
 {
-    KNS::Entry::List entries = KNS::Engine::download();
-    int numberInstalled = 0;
     QString fileName;
-    // list of changed entries
-    foreach(KNS::Entry* entry, entries) {
-        // care only about installed ones
-        if (entry->status() == KNS::Entry::Installed) {
-            // check mime type and if kvtml, open it
-            foreach(const QString &file, entry->installedFiles()) {
-                KMimeType::Ptr mimeType = KMimeType::findByPath(file);
-                kDebug() << "KNS2 file of mime type:" << KMimeType::findByPath(file)->name();
-                if (mimeType->name() == "application/x-kvtml") {
-                    m_parleyApp->addRecentFile(file, QString()); ///@todo: title!
-		    fileName = file;
-                    ++numberInstalled;
-                }         
+
+    KNS3::DownloadDialog newStuffDialog(ParleyMainWindow::instance());
+    newStuffDialog.exec();
+    KNS3::Entry::List entries = newStuffDialog.installedEntries();
+    int numberInstalled = entries.size();
+    foreach(const KNS3::Entry& entry, entries) {
+        // check mime type and if kvtml, open it
+        foreach(const QString &file, entry.installedFiles()) {
+            KMimeType::Ptr mimeType = KMimeType::findByPath(file);
+            kDebug() << "KNS2 file of mime type:" << KMimeType::findByPath(file)->name();
+            if (mimeType->name() == "application/x-kvtml") {
+                ParleyMainWindow::instance()->addRecentFile(file, QString()); ///@todo: title!
+                fileName = file;
             }
         }
     }
-    qDeleteAll(entries);
+    
     // to enable the display in the welcome screen
     Prefs::self()->writeConfig();
     m_parleyApp->updateRecentFilesModel();
@@ -415,6 +415,26 @@ void ParleyDocument::languageProperties()
     if ( properties.exec() == KDialog::Accepted ) {
         emit languagesChanged();
     }
+}
+
+void ParleyDocument::uploadFile()
+{
+    // save file to temp location
+    KTempDir dir;
+    KUrl url(dir.name() + m_doc->url().fileName());
+    kDebug() << "save in " << url.url();
+    m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley");
+
+    KEduVocDocument tempDoc(this);
+    tempDoc.open(url);
+    // remove grades
+    tempDoc.lesson()->resetGrades(-1, KEduVocContainer::Recursive);
+    tempDoc.saveAs(url, KEduVocDocument::Automatic, "Parley");
+
+    // upload
+    KNS3::UploadDialog dialog(ParleyMainWindow::instance());
+    dialog.setUploadFile(url);
+    dialog.exec();
 }
 
 void ParleyDocument::exportDialog()

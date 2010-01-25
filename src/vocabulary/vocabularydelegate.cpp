@@ -128,7 +128,6 @@ QWidget * VocabularyDelegate::createEditor ( QWidget * parent, const QStyleOptio
                     translationCombo->setFont ( index.model()->data ( index, Qt::FontRole ).value<QFont>() );
                     translationCombo->setEditText ( index.model()->data ( index, Qt::DisplayRole ).toString() );
                     translationCombo->completionObject()->setItems ( translations.toList() );
-                    connect ( translationCombo->lineEdit(), SIGNAL ( editingFinished() ), this, SLOT ( commitAndCloseEditor() ) );
                     return translationCombo;
                 }
             }
@@ -156,7 +155,6 @@ QWidget * VocabularyDelegate::createEditor ( QWidget * parent, const QStyleOptio
                     }
                 }
             }
-            connect ( editor, SIGNAL ( editingFinished() ), this, SLOT ( commitAndCloseEditor() ) );
             return editor;
         }
     }
@@ -251,22 +249,6 @@ void VocabularyDelegate::setModelData ( QWidget * editor, QAbstractItemModel * m
             }            
         }
     }
-}
-
-void VocabularyDelegate::commitAndCloseEditor()
-{
-    kDebug() << "Committing and closing delegate";
-    QWidget *editor = qobject_cast<QWidget *>(sender());
-    if (editor) {
-        editor->setFocus();
-    }
-    emit commitData(editor);
-    emit closeEditor(editor, QAbstractItemDelegate::EditNextItem);
-}
-
-void VocabularyDelegate::setCurrentIndex(const QModelIndex & index)
-{
-    m_currentIndex = index;
 }
 
 void VocabularyDelegate::setDocument(KEduVocDocument * doc)

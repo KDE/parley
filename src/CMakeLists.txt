@@ -1,3 +1,5 @@
+include_directories( ${LIBATTICA_INCLUDE_DIR} )
+
 # installation of kconfig files .kcfg containing app settings
 add_subdirectory( settings )
 
@@ -232,7 +234,7 @@ target_link_libraries(
     parley
     keduvocdocument
     ${KDE4_KHTML_LIBS}
-    ${KDE4_KNEWSTUFF2_LIBS}
+    ${KDE4_KNEWSTUFF3_LIBS}
     ${KDE4_PHONON_LIBS}
     ${KDE4_KUTILS_LIBS} #for the KPluginSelector
     ${KDE4_KROSSCORE_LIBS} ${KDE4_KROSSUI_LIBS} #for Kross
