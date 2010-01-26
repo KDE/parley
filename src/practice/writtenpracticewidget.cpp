@@ -71,6 +71,7 @@ void WrittenPracticeWidget::showQuestion()
     m_ui->answerEdit->setFocus();
     m_ui->answerEdit->setPalette(QApplication::palette());
     m_ui->solutionLabel->setText(QString());
+    m_ui->helpLabel->clear();
 
     m_ui->questionPronunciationLabel->setVisible(m_ui->questionPronunciationLabel->isEnabled());
     m_ui->questionSoundButton->setVisible(m_ui->questionSoundButton->isEnabled());
