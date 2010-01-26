@@ -104,7 +104,14 @@ void WrittenBackendMode::checkAnswer()
 
 void WrittenBackendMode::hintAction()
 {
-    m_frontend->setHint(i18n("This is a hint...\nThe solution might be: %1", m_current->entry()->translation(m_practiceOptions.languageTo())->text()));
+    QString solution = m_current->entry()->translation(m_practiceOptions.languageTo())->text();
+    m_currentHint = solution.left(m_currentHint.size() + 1);
+    if (m_currentHint.size() == solution.size()) {
+        // show solution
+        checkAnswer();
+    } else {
+        m_frontend->setHint(i18n("The solution starts with: %1", m_currentHint));
+    }
 }
 
 

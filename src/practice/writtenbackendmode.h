@@ -41,6 +41,7 @@ private:
     };
     State m_state;
     QString m_lastAnswer;
+    QString m_currentHint;
 };
 
 }
