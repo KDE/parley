@@ -27,29 +27,10 @@ EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc) :QObject(parent
     m_doc = doc;
     m_dialog = 0;
 
-    // keep languages consistant between the edit, the filter, and practice
-    switch (Prefs::testType())
-    {
-        // bilingual mode.
-        case Prefs::EnumTestType::WrittenTest:
-        case Prefs::EnumTestType::MixedLettersTest:
-        case Prefs::EnumTestType::MultipleChoiceTest:
-//        case Prefs::EnumTestType::FlashCardsTest:
-            m_fromTranslation = Prefs::questionLanguage();
-            m_toTranslation = Prefs::solutionLanguage();
-            break;
-        // monolingual mode
-        case Prefs::EnumTestType::ArticleTest:
-        case Prefs::EnumTestType::ExampleTest:
-        case Prefs::EnumTestType::ParaphraseTest:
-        case Prefs::EnumTestType::SynonymTest:
-        case Prefs::EnumTestType::AntonymTest:
-        case Prefs::EnumTestType::ComparisonTest:
-        case Prefs::EnumTestType::ConjugationTest:
-        default:
-            m_fromTranslation = m_toTranslation = Prefs::questionLanguage();
-            break;
-    }
+    m_fromTranslation = Prefs::questionLanguage();
+    m_toTranslation = Prefs::solutionLanguage();
+
+    kWarning() << "FIXME config for practice should always enable from/to, no longer disable the to for some languages";
     expireEntries();
 }
 
