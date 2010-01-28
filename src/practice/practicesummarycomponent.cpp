@@ -16,6 +16,7 @@
 
 #include "parleyactions.h"
 
+#include <QTableWidgetItem>
 #include <keduvocexpression.h>
 #include <KConfigGroup>
 #include <KActionCollection>
@@ -31,15 +32,11 @@ PracticeSummaryComponent::PracticeSummaryComponent(TestEntryManager* testEntryMa
     setObjectName("Statistics");
     
     QWidget *mainWidget = new QWidget(this);
-    
     setupUi(mainWidget);
-    
     setCentralWidget(mainWidget);
-
 
     totalCountLineEdit->setText(QString::number(m_testEntryManager->totalEntryCount()));
     correctLineEdit->setText(QString::number(m_testEntryManager->statisticTotalCorrectFirstAttempt()));
-
 
     if (m_testEntryManager->totalEntryCount() != 0) {
         correctProgressBar->setValue(m_testEntryManager->statisticTotalCorrectFirstAttempt() * 100 / m_testEntryManager->totalEntryCount());
@@ -68,6 +65,8 @@ PracticeSummaryComponent::PracticeSummaryComponent(TestEntryManager* testEntryMa
 
     initActions(parent);
     
+    setupDetailsTable();
+
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg); 
 }
@@ -83,6 +82,32 @@ void PracticeSummaryComponent::initActions(QWidget* parleyMainWindow)
     ParleyActions::create(ParleyActions::EnterEditMode, parleyMainWindow, SLOT(showEditor()), actionCollection());
     ParleyActions::create(ParleyActions::StartPractice, parleyMainWindow, SLOT(showStatistics()), actionCollection());
     
+}
+
+void PracticeSummaryComponent::setupDetailsTable()
+{
+    tableWidget->setRowCount(m_testEntryManager->totalEntryCount());
+    int i = 0;
+    // TODO headers with languages
+    // TODO some colors, maybe an indicator icon wether the word was right/wrong
+    foreach(TestEntry* entry, m_testEntryManager->allTestEntries()) {
+        QTableWidgetItem* itemFrom = new QTableWidgetItem(
+                entry->entry()->translation(TestEntry::gradeFrom())->text());
+        QTableWidgetItem* itemTo = new QTableWidgetItem(
+                entry->entry()->translation(TestEntry::gradeTo())->text());
+
+        QTableWidgetItem* itemUserAnswer = new QTableWidgetItem(
+                entry->userAnswers().join("; "));
+
+        QTableWidgetItem* itemAttempts = new QTableWidgetItem(
+                entry->statisticBadCount());
+
+        tableWidget->setItem(i, 0, itemFrom);
+        tableWidget->setItem(i, 1, itemTo);
+        tableWidget->setItem(i, 2, itemUserAnswer);
+        tableWidget->setItem(i, 3, itemAttempts);
+        ++i;
+    }
 }
 
 

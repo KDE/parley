@@ -77,7 +77,12 @@ public:
     int statisticTotalSkipUnknown();
 
     QStringList randomMultipleChoiceAnswers(int numberChoices);
-    
+
+    /**
+     * Get a list of all entries in the test - used by the summary dialog
+     */
+    QList<TestEntry*> allTestEntries() { return m_allTestEntries; }
+
 private:
     /**
      * Select appropriate entries for the practice (respect blocking settings etc)

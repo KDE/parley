@@ -31,6 +31,8 @@ public:
 
 private:
     void initActions(QWidget* parleyMainWindow);
+    void setupDetailsTable();
+
     TestEntryManager* m_testEntryManager;
 };
 }

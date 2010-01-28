@@ -54,6 +54,8 @@ void WrittenBackendMode::continueAction()
 
 void WrittenBackendMode::checkAnswer()
 {
+    // TODO clean up this mess
+
     QString answer = m_frontend->userInput().toString();
     
     switch(m_state) {
@@ -64,6 +66,7 @@ void WrittenBackendMode::checkAnswer()
                 m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
                 m_frontend->showSolution();
                 m_current->incGoodCount();
+                m_current->addUserAnswer(answer);
                 m_state = SolutionShown;
             } else {
                 m_current->incBadCount();
@@ -71,6 +74,7 @@ void WrittenBackendMode::checkAnswer()
                     m_frontend->setFeedback(i18n("You did not answer correctly."));
                     m_state = SolutionShown;
                     m_frontend->setResultState(AbstractFrontend::AnswerWrong);
+                    m_current->addUserAnswer(answer);
                     m_frontend->showSolution();
                 } else {
                     m_frontend->setFeedback(i18n("Try again - I fear that was not right..."));
@@ -84,12 +88,14 @@ void WrittenBackendMode::checkAnswer()
                 m_frontend->setFeedback(i18n("Your answer was right... but not on the first try."));
                 m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
                 m_frontend->showSolution();
+                m_current->addUserAnswer(answer);
                 m_state = SolutionShown;                
             } else {
                 if (answer == m_lastAnswer) {
                     m_frontend->setFeedback(i18n("You did not answer correctly."));
                     m_state = SolutionShown;
                     m_frontend->setResultState(AbstractFrontend::AnswerWrong);
+                    m_current->addUserAnswer(answer);
                     m_frontend->showSolution();
                 } else {
                     m_frontend->setFeedback(i18n("Wrong. Idiot."));

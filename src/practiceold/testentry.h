@@ -63,8 +63,10 @@ public:
     void setLastPercentage(double percent);
     double lastPercentage();
 
-    int totalEntries();
+    void addUserAnswer(const QString& answer) { m_userAnswers.append(answer); }
+    QStringList userAnswers() { return m_userAnswers; }
 
+    int totalEntries();
 
     static void setGradeFrom(int from);
     static void setGradeTo(int to);
@@ -92,6 +94,8 @@ private:
 
     double m_lastPercentage;
     ErrorTypes m_lastError;
+
+    QStringList m_userAnswers;
 
     static int m_gradeTo;
     static int m_gradeFrom;
