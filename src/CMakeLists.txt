@@ -73,21 +73,8 @@ set(editor_SRCS
 )
 
 set(practice_SRCS
-    practiceold/vocabularypractice.cpp
     practiceold/testentry.cpp
-    practiceold/testentrymanager.cpp
     practiceold/entryfilter.cpp
-    practiceold/practicedialog.cpp
-    practiceold/AdjQueryDlg.cpp
-    practiceold/ArtQueryDlg.cpp
-    practiceold/MCQueryDlg.cpp
-    practiceold/writtenpracticedialog.cpp
-    practiceold/SimpleQueryDlg.cpp
-    practiceold/VerbQueryDlg.cpp
-    practiceold/mixedletterpracticedialog.cpp
-    practiceold/showsolutiondialog.cpp
-    practiceold/practicesummarydialog.cpp
-    practiceold/answervalidatorold.cpp
 
     practice/testentrymanager.cpp
     practice/practiceoptions.cpp
@@ -110,16 +97,6 @@ set(practice_SRCS
 
 kde4_add_ui_files(practice_SRCS
     practiceold/entryfilter.ui
-    practiceold/AdjQueryDlgForm.ui
-    practiceold/ArtQueryDlgForm.ui
-    practiceold/MCQueryDlgForm.ui
-    practiceold/writtenpracticedialog.ui
-    practiceold/SimpleQueryDlgForm.ui
-    practiceold/VerbQueryDlgForm.ui
-    practiceold/mixedletterpracticedialog.ui
-    practiceold/showsolutionwidget.ui
-    practiceold/practicesummarywidget.ui
-
     practice/practice_mainwindow.ui
     practice/practice_widget_written.ui
     practice/practice_widget_multiplechoice.ui

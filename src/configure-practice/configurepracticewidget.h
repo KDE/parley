@@ -53,29 +53,9 @@ public:
 private slots:
     void fromLanguageSelected(int identifierFromIndex);
 
-    void flashCardsRadioToggled(bool checked);
-    void comparisonRadioToggled(bool checked);
-    void conjugationRadioToggled(bool checked);
-    void writtenRadioToggled(bool checked);
-    void multipleChoiceRadioToggled(bool checked);
-    void otherRadioToggled(bool checked);
-
-    void monolingualPracticeSelected(bool selected);
-    void bilingualPracticeSelected(bool selected);
-
 private:
     void setupTenses();
 
-    enum StackedWidgets {
-        Empty,
-        WrittenPractice,
-        Conjugation,
-        Comparison,
-        MultipleChoice,
-        FlashCards
-    };
-    QStackedLayout* m_optionsStackedLayout;
-    Ui::ConjugationOptionsWidget m_conjugationUi;
     KEduVocDocument* m_doc;
     bool m_bilingual;
 };

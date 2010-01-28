@@ -302,53 +302,50 @@
       <default>0</default>
     </entry>
 
-
     <entry name="FlashCardPractice" type="Bool">
       <label>include this mode in the practice</label>
       <default>true</default>
     </entry>
-    <entry name="MixedLettersPractice" type="Bool">
+    <entry name="MixedLetterPractice" type="Bool">
       <label>include this mode in the practice</label>
-      <default>true</default>
+      <default>false</default>
     </entry>
     <entry name="MultipleChoicePractice" type="Bool">
       <label>include this mode in the practice</label>
-      <default>true</default>
+      <default>false</default>
     </entry>
     <entry name="WrittenPractice" type="Bool">
       <label>include this mode in the practice</label>
       <default>true</default>
     </entry>
-    
-
-
-    <!-- the TestType enum can be removed in favor of the boolean mode selection which allows pratice to show the words in different forms -->
-    <entry name="TestType" type="Enum">
-        <choices>
-            <choice name="MixedLettersTest"/>
-            <choice name="MultipleChoiceTest"/>
-            <choice name="WrittenTest"/>
-            <choice name="ExampleTest"/>
-            <choice name="ParaphraseTest"/>
-            <choice name="ArticleTest"/>
-            <choice name="ComparisonTest"/>
-            <choice name="ConjugationTest"/>
-            <choice name="SynonymTest"/>
-            <choice name="AntonymTest"/>
-            <choice name="FlashCardTest"/>
-        </choices>
-        <label>The test type that is currently selected.</label>
-        <default>WrittenTest</default>
-    </entry>
-    <entry name="ComparisonIncludeAdjective" type="Bool">
-      <label>In a comparison forms test, include adjectives.</label>
+    <entry name="ExampleSentencePractice" type="Bool">
+      <label>include this mode in the practice</label>
       <default>true</default>
     </entry>
-    <entry name="ComparisonIncludeAdverb" type="Bool">
-      <label>In a comparison forms test, include adverbs.</label>
+    <entry name="ParaphrasePractice" type="Bool">
+      <label>include this mode in the practice</label>
       <default>true</default>
     </entry>
-
+    <entry name="GenderPractice" type="Bool">
+      <label>include this mode in the practice</label>
+      <default>true</default>
+    </entry>
+    <entry name="ComparisonAdjectivePractice" type="Bool">
+      <label>include this mode in the practice</label>
+      <default>true</default>
+    </entry>
+    <entry name="ComparisonAdverbPractice" type="Bool">
+      <label>include this mode in the practice</label>
+      <default>true</default>
+    </entry>
+    <entry name="ConjugationPractice" type="Bool">
+      <label>include this mode in the practice</label>
+      <default>true</default>
+    </entry>
+    <entry name="SynonymAntonymPractice" type="Bool">
+      <label>include this mode in the practice</label>
+      <default>true</default>
+    </entry>
 
     <entry name="BlockItem$(Grade)" type="Int" key="BlockItem$(Grade)">
       <parameter name="Grade" type="Int" max="7"/>

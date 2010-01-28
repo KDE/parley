@@ -6,138 +6,230 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>617</width>
-    <height>598</height>
+    <width>594</width>
+    <height>496</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <layout class="QHBoxLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="KButtonGroup" name="kcfg_TestType">
+      <widget class="KButtonGroup" name="TestType">
        <property name="title">
         <string>Type of Test</string>
        </property>
-       <layout class="QGridLayout">
-        <item row="6" column="0">
-         <spacer>
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>0</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="0">
-         <widget class="QRadioButton" name="MixedLettersRadio">
-          <property name="text">
-           <string>Mixed Letters</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QRadioButton" name="MultipleChoiceRadio">
-          <property name="text">
-           <string>Multiple Choice</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QRadioButton" name="WrittenRadio">
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="text">
-           <string>Written</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QRadioButton" name="ExampleRadio">
-          <property name="text">
-           <string>Example Sentences</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QRadioButton" name="ParaphraseRadio">
-          <property name="text">
-           <string>Paraphrase</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QRadioButton" name="ArticleRadio">
-          <property name="text">
-           <string>Article Training</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QRadioButton" name="ComparisonRadio">
-          <property name="text">
-           <string>Comparison</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QRadioButton" name="ConjugationRadio">
-          <property name="text">
-           <string>Conjugation</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QRadioButton" name="SynonymRadio">
-          <property name="text">
-           <string>Synonym</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QRadioButton" name="AntonymRadio">
-          <property name="text">
-           <string>Antonym</string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="0">
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
          <widget class="QCheckBox" name="kcfg_FlashCardPractice">
+          <property name="toolTip">
+           <string>In this mode you see the word in one language and then see the solution.
+You then decide if you knew the solution.</string>
+          </property>
           <property name="text">
            <string>Flash Cards</string>
           </property>
          </widget>
         </item>
-        <item row="8" column="0">
+        <item>
+         <widget class="QCheckBox" name="kcfg_MixedLetterPractice">
+          <property name="text">
+           <string>Mixed Letters</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QCheckBox" name="kcfg_MultipleChoicePractice">
           <property name="text">
            <string>Multiple Choice</string>
           </property>
          </widget>
         </item>
-        <item row="9" column="0">
+        <item>
          <widget class="QCheckBox" name="kcfg_WrittenPractice">
           <property name="text">
            <string>Written</string>
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QCheckBox" name="kcfg_ExampleSentencePractice">
+          <property name="text">
+           <string>Example Sentences</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="kcfg_ParaphrasePractice">
+          <property name="text">
+           <string>Paraphrase</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="kcfg_GenderPractice">
+          <property name="text">
+           <string>Gender of Nouns</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="kcfg_ComparisonAdjectivePractice">
+          <property name="text">
+           <string>Comparison Forms (Adjectives)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="kcfg_ComparisonAdverbPractice">
+          <property name="text">
+           <string>Comparison Forms (Adverbs)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="kcfg_ConjugationPractice">
+          <property name="text">
+           <string>Conjugation</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="kcfg_SynonymAntonymPractice">
+          <property name="text">
+           <string>Synonyms and Antonyms</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
        </layout>
       </widget>
      </item>
      <item>
-      <widget class="QGroupBox" name="OptionsGroupBox">
-       <property name="title">
-        <string>Options</string>
-       </property>
-      </widget>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QGroupBox" name="OptionsGroupBox">
+         <property name="title">
+          <string>Options</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QCheckBox" name="kcfg_IgnoreAccentMistakes">
+            <property name="text">
+             <string>Ignore accent mistakes</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="kcfg_IgnoreCapitalizationMistakes">
+            <property name="text">
+             <string>Ignore capitalization mistakes</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="kcfg_FlashcardsFrontImage">
+            <property name="text">
+             <string>Show images with the question</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="kcfg_FlashcardsBackImage">
+            <property name="text">
+             <string>Show images with the solution</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Multiple Choice</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QCheckBox" name="kcfg_MultipleChoiceWordTypeConsistancy">
+            <property name="text">
+             <string>Use choices of the same word type</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="KIntSpinBox" name="kcfg_NumberMultipleChoiceAnswers">
+              <property name="maximumSize">
+               <size>
+                <width>74</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="minimum">
+               <number>2</number>
+              </property>
+              <property name="maximum">
+               <number>5</number>
+              </property>
+              <property name="value">
+               <number>5</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>Number of choices</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QTreeWidget" name="tenseSelectionTreeWidget">
+         <property name="rootIsDecorated">
+          <bool>false</bool>
+         </property>
+         <property name="itemsExpandable">
+          <bool>false</bool>
+         </property>
+         <column>
+          <property name="text">
+           <string>Conjugation Tenses</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>
@@ -190,6 +282,11 @@
   </layout>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>KIntSpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>knuminput.h</header>
+  </customwidget>
   <customwidget>
    <class>KButtonGroup</class>
    <extends>QGroupBox</extends>

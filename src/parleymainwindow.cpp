@@ -30,7 +30,6 @@
 #include "statistics/statisticsmainwindow.h"
 #include "settings/parleyprefs.h"
 #include "configure-practice/configurepracticedialog.h"
-#include "practiceold/vocabularypractice.h"
 #include "practice/guifrontend.h"
 #include "practice/defaultbackend.h"
 #include "practice/practiceoptions.h"
@@ -172,15 +171,7 @@ void ParleyMainWindow::configurePractice()
 
 void ParleyMainWindow::startPractice()
 {
-#if 1
-        switchComponent(PracticeComponent);        
-#else // old dialog based practice
-        hide();
-        VocabularyPractice practice(m_document->document(), this);
-        practice.startPractice();
-        show();
-#endif
-
+    switchComponent(PracticeComponent);
 }
 
 void ParleyMainWindow::practiceFinished()

@@ -34,21 +34,11 @@ TestEntryManager::TestEntryManager(QWidget* parent)
     :m_parent(parent)
     ,m_fromTranslation(Prefs::questionLanguage())
     ,m_toTranslation(Prefs::solutionLanguage())
-    ,m_testType(Prefs::testType())
     ,m_currentEntry(0)
     ,m_randomSequence(QDateTime::currentDateTime().toTime_t())
 {
+    TestEntry::setGradeFrom(m_fromTranslation);
     TestEntry::setGradeTo(m_toTranslation);
-
-    // FIXME always set good from/to values here! Do we still have mono lingual tests?
-    
-    // write grades of mono lingual tests into translation(i).gradeFrom(i)
-    if ( m_testType == Prefs::EnumTestType::WrittenTest ||
-        m_testType == Prefs::EnumTestType::MultipleChoiceTest) {
-        TestEntry::setGradeFrom(m_fromTranslation);
-    } else {
-        TestEntry::setGradeFrom(m_toTranslation);
-    }
 }
 
 TestEntryManager::~TestEntryManager()

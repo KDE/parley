@@ -74,7 +74,10 @@ QList<KEduVocExpression*> EntryFilter::entries()
         return m_entries.toList();
     }
 
-    if (Prefs::testType() == Prefs::EnumTestType::ArticleTest)
+    // FIXME the filtering needs to be done for each word or the grammar modes get included with written or somesuch
+
+    /* FIXME
+    if (Prefs::genderPractice())
     {
         if (m_doc->identifier(m_toTranslation).article().isEmpty())
         {
@@ -82,6 +85,7 @@ QList<KEduVocExpression*> EntryFilter::entries()
             return QList<KEduVocExpression*>();
         }
     }
+    */
 
     lessonEntries();
     wordTypeEntries();
@@ -285,6 +289,8 @@ void EntryFilter::minMaxGradeEntries()
 
 void EntryFilter::cleanupInvalid()
 {
+    // FIXME
+#if 0
     bool typeTest = Prefs::testType() == Prefs::EnumTestType::ArticleTest
             || Prefs::testType() == Prefs::EnumTestType::ComparisonTest
             || Prefs::testType() == Prefs::EnumTestType::ConjugationTest
@@ -355,6 +361,7 @@ void EntryFilter::cleanupInvalid()
             i++;
         }
     } // for
+#endif
 
     kDebug() << "Invalid items removed. Remaining: " << m_entries.count();
 }
