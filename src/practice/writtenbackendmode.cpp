@@ -66,7 +66,6 @@ void WrittenBackendMode::checkAnswer()
                 m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
                 m_frontend->showSolution();
                 m_current->incGoodCount();
-                m_current->addUserAnswer(answer);
                 m_state = SolutionShown;
             } else {
                 m_current->incBadCount();
@@ -88,7 +87,6 @@ void WrittenBackendMode::checkAnswer()
                 m_frontend->setFeedback(i18n("Your answer was right... but not on the first try."));
                 m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
                 m_frontend->showSolution();
-                m_current->addUserAnswer(answer);
                 m_state = SolutionShown;                
             } else {
                 if (answer == m_lastAnswer) {

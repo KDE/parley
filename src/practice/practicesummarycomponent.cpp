@@ -20,6 +20,7 @@
 #include <keduvocexpression.h>
 #include <KConfigGroup>
 #include <KActionCollection>
+#include <KColorScheme>
 
 using namespace Practice; 
 
@@ -87,6 +88,20 @@ void PracticeSummaryComponent::initActions(QWidget* parleyMainWindow)
 void PracticeSummaryComponent::setupDetailsTable()
 {
     tableWidget->setRowCount(m_testEntryManager->totalEntryCount());
+    tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    Qt::ItemFlags flags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+
+    KColorScheme scheme(QPalette::Active);
+    /*m_correctPalette = QApplication::palette();
+    m_correctPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::PositiveText).color());
+    m_correctPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::PositiveText).color());
+    */
+    QPalette wrongPalette = QApplication::palette();
+    wrongPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::NegativeText).color());
+    wrongPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::NegativeText).color());
+
+
     int i = 0;
     // TODO headers with languages
     // TODO some colors, maybe an indicator icon wether the word was right/wrong
@@ -98,9 +113,15 @@ void PracticeSummaryComponent::setupDetailsTable()
 
         QTableWidgetItem* itemUserAnswer = new QTableWidgetItem(
                 entry->userAnswers().join("; "));
+        itemUserAnswer->setForeground(wrongPalette.foreground());
 
         QTableWidgetItem* itemAttempts = new QTableWidgetItem(
                 entry->statisticBadCount());
+
+        itemFrom->setFlags(flags);
+        itemTo->setFlags(flags);
+        itemUserAnswer->setFlags(flags);
+        itemAttempts->setFlags(flags);
 
         tableWidget->setItem(i, 0, itemFrom);
         tableWidget->setItem(i, 1, itemTo);
@@ -108,6 +129,8 @@ void PracticeSummaryComponent::setupDetailsTable()
         tableWidget->setItem(i, 3, itemAttempts);
         ++i;
     }
+
+    tableWidget->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
 }
 
 
