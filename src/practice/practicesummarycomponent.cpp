@@ -93,10 +93,10 @@ void PracticeSummaryComponent::setupDetailsTable()
     Qt::ItemFlags flags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
     KColorScheme scheme(QPalette::Active);
-    /*m_correctPalette = QApplication::palette();
-    m_correctPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::PositiveText).color());
-    m_correctPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::PositiveText).color());
-    */
+    QPalette correctPalette = QApplication::palette();
+    correctPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::PositiveText).color());
+    correctPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::PositiveText).color());
+
     QPalette wrongPalette = QApplication::palette();
     wrongPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::NegativeText).color());
     wrongPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::NegativeText).color());
@@ -110,13 +110,16 @@ void PracticeSummaryComponent::setupDetailsTable()
                 entry->entry()->translation(TestEntry::gradeFrom())->text());
         QTableWidgetItem* itemTo = new QTableWidgetItem(
                 entry->entry()->translation(TestEntry::gradeTo())->text());
+        if (entry->statisticCorrectAtFirstAttempt()) {
+            itemTo->setForeground(correctPalette.foreground());
+        }
 
         QTableWidgetItem* itemUserAnswer = new QTableWidgetItem(
                 entry->userAnswers().join("; "));
         itemUserAnswer->setForeground(wrongPalette.foreground());
 
         QTableWidgetItem* itemAttempts = new QTableWidgetItem(
-                entry->statisticBadCount());
+                QString::number(entry->statisticBadCount()));
 
         itemFrom->setFlags(flags);
         itemTo->setFlags(flags);
@@ -131,6 +134,7 @@ void PracticeSummaryComponent::setupDetailsTable()
     }
 
     tableWidget->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+    tableWidget->setSortingEnabled(true);
 }
 
 
