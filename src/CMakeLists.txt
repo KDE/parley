@@ -97,6 +97,7 @@ set(practice_SRCS
 
 kde4_add_ui_files(practice_SRCS
     practiceold/entryfilter.ui
+    practice/practicesummarywidget.ui
     practice/practice_mainwindow.ui
     practice/practice_widget_written.ui
     practice/practice_widget_multiplechoice.ui
