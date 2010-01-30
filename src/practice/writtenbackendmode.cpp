@@ -47,6 +47,7 @@ void WrittenBackendMode::continueAction()
             if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
                 emit currentEntryFinished();
             }
+            m_currentHint = "";
             emit nextEntry();
             break;
     }
