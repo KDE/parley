@@ -73,6 +73,10 @@ void MultiplechoiceModeWidget::showQuestion()
 {
     foreach(QRadioButton *radio, m_choiceButtons) {
         radio->setPalette(QApplication::palette());
+        //necessary trick to uncheck'em all
+        radio->setAutoExclusive(false);
+        radio->setChecked(false);
+        radio->setAutoExclusive(true);
     }
 }
 
