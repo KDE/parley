@@ -6,6 +6,7 @@ ServiceTypes=KPluginInfo
 
 Name=Wiktionary Sound
 Name[ca]=So de Wiktionary
+Name[ca@valencia]=So de Wiktionary
 Name[cs]=Zvuk z Wiktionary
 Name[da]=Wiktionary-lyd
 Name[de]=Wiktionary-Klänge
@@ -40,6 +41,7 @@ Name[zh_CN]=Wiktionary 声音
 Name[zh_TW]=Wiktionary 音效
 Comment=This script fetches sound files from http://commons.wikimedia.org.
 Comment[ca]=Aquest script recupera fitxers de so des de http://commons.wikimedia.org.
+Comment[ca@valencia]=Este script recupera fitxers de so des de http://commons.wikimedia.org.
 Comment[cs]=Tento skript stahuje zvuk z  http://commons.wikimedia.org.
 Comment[da]=Dette script henter lydfiler fra http://commons.wikimedia.org.
 Comment[de]=Dieses Skript lädt Klangdateien von http://commons.wikimedia.org.
