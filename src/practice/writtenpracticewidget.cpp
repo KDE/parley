@@ -41,10 +41,6 @@ WrittenPracticeWidget::WrittenPracticeWidget(QWidget *parent)
     m_wrongPalette = QApplication::palette();
     m_wrongPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::NegativeText).color());
     m_wrongPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::NegativeText).color());
-
-    m_ui->questionSoundButton->setIcon(KIcon("media-playback-start"));
-    m_ui->questionSoundButton->setToolTip(i18n("Play"));
-    m_ui->solutionSoundButton->setIcon(KIcon("media-playback-start"));
 }
 
 void WrittenPracticeWidget::continueClicked()
@@ -116,12 +112,12 @@ void WrittenPracticeWidget::setResultState(AbstractFrontend::ResultState resultS
 
 void WrittenPracticeWidget::setQuestionSound(const KUrl& soundUrl)
 {
-    m_ui->questionSoundButton->setEnabled(soundUrl.isLocalFile());
+    m_ui->questionSoundButton->setSoundFile(soundUrl);
 }
 
 void WrittenPracticeWidget::setSolutionSound(const KUrl& soundUrl)
 {
-    m_ui->solutionSoundButton->setEnabled(soundUrl.isLocalFile());
+    m_ui->solutionSoundButton->setSoundFile(soundUrl);
 }
 
 void WrittenPracticeWidget::setSolutionPronunciation(const QString& pronunciationText)
