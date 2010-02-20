@@ -68,7 +68,8 @@ void VocabularyPractice::startPractice()
         m_practiceDialog = new SimpleQueryDlg(m_doc, m_parent);
         break;
     default:
-        kError() << "unknown test type";
+        kError() << "unknown test type" << Prefs::testType();
+        return;
     }
     connect(m_practiceDialog, SIGNAL(currentEntryFinished()), SLOT(entryDone()));
 
