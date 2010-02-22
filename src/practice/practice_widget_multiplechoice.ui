@@ -33,41 +33,6 @@
     </widget>
    </item>
    <item>
-    <widget class="QRadioButton" name="choice1">
-     <property name="text">
-      <string>Solution 1</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QRadioButton" name="choice2">
-     <property name="text">
-      <string>Solution 2</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QRadioButton" name="choice3">
-     <property name="text">
-      <string>Solution 3</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QRadioButton" name="choice4">
-     <property name="text">
-      <string>Solution 4</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QRadioButton" name="choice5">
-     <property name="text">
-      <string>Solution 5</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>

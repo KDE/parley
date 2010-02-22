@@ -47,6 +47,7 @@ public:
 public Q_SLOTS:
     virtual void showQuestion();
     virtual void showSolution();
+    virtual void setNumberOfRadioButtons(const int numberOfChoices);
     
 private:
     Ui::MultiplechoicePracticeWidget* m_ui;

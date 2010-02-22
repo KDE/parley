@@ -18,6 +18,7 @@
 
 #include <KDebug>
 #include <kcolorscheme.h>
+#include <QtGui/QRadioButton>
 
 using namespace Practice;
 
@@ -27,10 +28,6 @@ MultiplechoiceModeWidget::MultiplechoiceModeWidget (QWidget* parent )
 {
     m_ui = new Ui::MultiplechoicePracticeWidget();
     m_ui->setupUi(this);
-
-    m_choiceButtons = QList<QRadioButton*>();
-    m_choiceButtons << m_ui->choice1 << m_ui->choice2 << m_ui->choice3 << m_ui->choice4 << m_ui->choice5;
-
     KColorScheme scheme(QPalette::Active);
     m_correctPalette = QApplication::palette();
     m_correctPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::PositiveText).color());
@@ -51,22 +48,18 @@ void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
 
     kDebug() << data.question << data.choices;
 
-    if (data.choices.size() < 5) {
-        kWarning() << "stringlist too short!";
-        return;
+    if (m_choiceButtons.size() != data.choices.size()){
+        qDeleteAll(m_choiceButtons);
+        m_choiceButtons = QList<QRadioButton*>();
+        setNumberOfRadioButtons(data.choices.size());
     }
-    m_ui->choice1->setText(data.choices.at(0));
-    m_ui->choice1->setToolTip(data.choices.at(0));
-    m_ui->choice2->setText(data.choices.at(1));
-    m_ui->choice2->setToolTip(data.choices.at(1));
-    m_ui->choice3->setText(data.choices.at(2));
-    m_ui->choice3->setToolTip(data.choices.at(2));
-    m_ui->choice4->setText(data.choices.at(3));
-    m_ui->choice4->setToolTip(data.choices.at(3));
-    m_ui->choice5->setText(data.choices.at(4));
-    m_ui->choice5->setToolTip(data.choices.at(4));
 
-    m_ui->choice1->setFocus();
+    int j = 0;
+        foreach(QRadioButton *radio,m_choiceButtons){
+            radio->setText(data.choices[j]);
+            radio->setToolTip(data.choices[j]);
+            j++;
+        }
 }
 
 void MultiplechoiceModeWidget::showQuestion()
@@ -77,6 +70,15 @@ void MultiplechoiceModeWidget::showQuestion()
         radio->setAutoExclusive(false);
         radio->setChecked(false);
         radio->setAutoExclusive(true);
+    }
+}
+
+void MultiplechoiceModeWidget::setNumberOfRadioButtons(const int numberOfChoices)
+{
+    for (int i=0;i<numberOfChoices;i++){
+        QRadioButton *radio_button = new QRadioButton(this);
+        m_ui->verticalLayout->addWidget(radio_button);
+        m_choiceButtons.append(radio_button);
     }
 }
 
@@ -96,11 +98,13 @@ void MultiplechoiceModeWidget::showSolution()
 
 QVariant MultiplechoiceModeWidget::userInput()
 {
-    if (m_ui->choice1->isChecked()) return 0;
-    if (m_ui->choice2->isChecked()) return 1;
-    if (m_ui->choice3->isChecked()) return 2;
-    if (m_ui->choice4->isChecked()) return 3;
-    if (m_ui->choice5->isChecked()) return 4;
+
+    int i = 0;
+    foreach(QRadioButton *radio,m_choiceButtons){
+        if (radio->isChecked()) return i;
+        i++;
+    }
+
     return QVariant();
 }
 
