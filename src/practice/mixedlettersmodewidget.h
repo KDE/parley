@@ -41,9 +41,14 @@ public:
 public slots:
     void showQuestion();
 
+private slots:
+    void updatePixmap();
+
 private:
     QString m_mixedSolution;
     QString m_question;
+    QList<int> m_positions;
+    QPixmap m_pixmap;
 };
 
 }

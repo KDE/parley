@@ -31,6 +31,7 @@ WrittenPracticeWidget::WrittenPracticeWidget(QWidget *parent)
 {
     m_ui = new Ui::WrittenPracticeWidget();
     m_ui->setupUi(this);
+    m_ui->mixedSolutionLabel->setVisible(false);
     kDebug() << "Created WrittenPracticeWidget";
     connect(m_ui->answerEdit, SIGNAL(returnPressed()), this, SLOT(continueClicked()));
 
