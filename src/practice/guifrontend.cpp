@@ -18,6 +18,7 @@
 #include "writtenpracticewidget.h"
 #include "multiplechoicemodewidget.h"
 #include "flashcardmodewidget.h"
+#include "mixedlettersmodewidget.h"
 
 using namespace Practice;
 
@@ -72,6 +73,7 @@ void GuiFrontend::setMode(Mode mode)
             newWidget = new FlashCardModeWidget(m_widget);
             break;
         case MixedLetters:
+            newWidget = new MixedLettersModeWidget(m_widget);
             break;
     }
     if (newWidget) {

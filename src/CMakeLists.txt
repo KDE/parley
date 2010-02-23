@@ -89,6 +89,7 @@ set(practice_SRCS
     practice/flashcardbackendmode.cpp
     practice/multiplechoicemodewidget.cpp
     practice/multiplechoicebackendmode.cpp
+    practice/mixedlettersmodewidget.cpp
     practice/imagewidget.cpp
     practice/practicemainwindow.cpp
     practice/practicesummarycomponent.cpp

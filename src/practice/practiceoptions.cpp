@@ -31,6 +31,9 @@ void PracticeOptions::loadPreferences()
     if (Prefs::flashCardPractice()) {
         m_modes.append(AbstractFrontend::FlashCard);
     }
+    if (Prefs::mixedLetterPractice()) {
+        m_modes.append(AbstractFrontend::MixedLetters);
+    }
     if (Prefs::multipleChoicePractice()) {
         m_modes.append(AbstractFrontend::MultipleChoice);
     }

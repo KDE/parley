@@ -113,6 +113,7 @@ void DefaultBackend::initializePracticeMode(AbstractFrontend::Mode mode)
             m_mode = new MultipleChoiceBackendMode(m_options, m_frontend, this, m_testEntryManager);
             break;
         case AbstractFrontend::Written:
+        case AbstractFrontend::MixedLetters:
             kDebug() << "Create Written Practice";
             m_mode = new WrittenBackendMode(m_options, m_frontend, this);
             break;

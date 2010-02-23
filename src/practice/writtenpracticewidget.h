@@ -54,8 +54,10 @@ public slots:
     void showSolution();
     void continueClicked();
 
-private:
+protected:
     Ui::WrittenPracticeWidget* m_ui;
+
+private:
     QPalette m_correctPalette;
     QPalette m_wrongPalette;
     QString m_solution;
