@@ -50,7 +50,7 @@ void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
 
     if (m_choiceButtons.size() != data.choices.size()){
         qDeleteAll(m_choiceButtons);
-        m_choiceButtons = QList<QRadioButton*>();
+        m_choiceButtons.clear();
         setNumberOfRadioButtons(data.choices.size());
     }
 
