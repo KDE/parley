@@ -45,6 +45,7 @@ private slots:
     void updatePixmap();
 
 private:
+    QString m_solution;
     QString m_mixedSolution;
     QString m_question;
     QList<int> m_positions;

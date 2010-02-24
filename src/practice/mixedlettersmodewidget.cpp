@@ -22,6 +22,7 @@
 
 #include <kdebug.h>
 #include <krandomsequence.h>
+#include <kcolorscheme.h>
 
 #include <QFontMetrics>
 #include <QPainter>
@@ -32,6 +33,7 @@ MixedLettersModeWidget::MixedLettersModeWidget(QWidget *parent)
     : WrittenPracticeWidget(parent)
 {
     m_ui->mixedSolutionLabel->show();
+    connect(m_ui->answerEdit, SIGNAL(textChanged(QString)), this, SLOT(updatePixmap()));
 }
 
 void MixedLettersModeWidget::setQuestion(const QVariant& question)
@@ -44,8 +46,6 @@ void MixedLettersModeWidget::showQuestion()
 {
     WrittenPracticeWidget::showQuestion();
     updatePixmap();
-    m_ui->mixedSolutionLabel->setPixmap(m_pixmap);
-    m_ui->mixedSolutionLabel->setMinimumSize(m_pixmap.size());
 }
 
 void MixedLettersModeWidget::updatePixmap()
@@ -57,16 +57,29 @@ void MixedLettersModeWidget::updatePixmap()
     m_pixmap.fill(QColor(0,0,0,0));
 
     QPainter p(&m_pixmap);
+    KColorScheme scheme(QPalette::Active);
+    QPen defaultPen = p.pen();
+    QString enteredChars = m_ui->answerEdit->text();
     int i = 0;
     Q_FOREACH(QChar ch, m_mixedSolution) {
+        int pos = enteredChars.indexOf(ch);
+        if (pos != -1) {
+            p.setPen(scheme.foreground(KColorScheme::InactiveText).color());
+            enteredChars.remove(pos, 1);
+        } else {
+            p.setPen(defaultPen);
+        }
         p.drawText(charWidth + charWidth*i*2, charHeight+int(m_positions.at(i)*charHeight*0.25), ch);
         i++;
     }
+    m_ui->mixedSolutionLabel->setPixmap(m_pixmap);
+    m_ui->mixedSolutionLabel->setMinimumSize(m_pixmap.size());
 }
 
 void MixedLettersModeWidget::setSolution(const QVariant& solution)
 {
     WrittenPracticeWidget::setSolution(solution);
+    m_solution = solution.toString();
     QList<QChar> chars;
     Q_FOREACH(QChar ch, solution.toString()) {
         chars.append(ch);
