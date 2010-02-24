@@ -64,12 +64,14 @@ void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
 
 void MultiplechoiceModeWidget::showQuestion()
 {
+    //necessary trick to uncheck'em all
+    m_choiceButtons[0]->setChecked(true);
+    m_choiceButtons[0]->setAutoExclusive(false);
+    m_choiceButtons[0]->setChecked(false);
+    m_choiceButtons[0]->setAutoExclusive(true);
+
     foreach(QRadioButton *radio, m_choiceButtons) {
         radio->setPalette(QApplication::palette());
-        //necessary trick to uncheck'em all
-        radio->setAutoExclusive(false);
-        radio->setChecked(false);
-        radio->setAutoExclusive(true);
     }
 }
 
