@@ -1,13 +1,5 @@
 <tip category="Parley">
 <html>
-<p>You are running a version of Parley that has not officially been released yet.</p>
-<p>Please be aware that this version might be unstable, crash or forget to save your changes.</p>
-<p>Please report any issues that you encounter to improve Parley! <a href="http://bugs.kde.org">http://bugs.kde.org</a></p>
-</html>
-</tip>
-
-<tip category="Parley">
-<html>
 <p>Parley enables you to edit many additional properties of the words you enter.</p>
 <p>Use "Settings" -> "Tools" to enable different tools that will help you set additional information for your vocabulary. These include images, sound, word types and many more. Choose the ones you like.</p>
 </html>
