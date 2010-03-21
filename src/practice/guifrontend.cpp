@@ -30,7 +30,11 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     m_ui = new Ui::PracticeMainWindow();
     m_ui->setupUi(m_widget);
     m_ui->centralPracticeWidget->setLayout(new QHBoxLayout(parent));
-    
+    m_ui->centralPracticeWidget->setAutoFillBackground(true);
+    QPalette palette = m_ui->centralPracticeWidget->palette();
+    palette.setColor(QPalette::Window, Qt::white);
+    m_ui->centralPracticeWidget->setPalette(palette);
+
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SIGNAL(signalContinueButton()));
     connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SIGNAL(skipAction()));
     connect(m_ui->hintButton, SIGNAL(clicked()), this, SIGNAL(hintAction()));
