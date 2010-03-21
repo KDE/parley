@@ -108,6 +108,7 @@ void PracticeSummaryComponent::setupDetailsTable()
 
     tableWidget->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
     tableWidget->setSortingEnabled(true);
+    tableWidget->sortItems(3, Qt::DescendingOrder);
 }
 
 
