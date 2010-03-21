@@ -177,12 +177,12 @@
     <widget class="QTableWidget" name="tableWidget">
      <column>
       <property name="text">
-       <string>From</string>
+       <string>Question</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>New Column</string>
+       <string>Solution</string>
       </property>
      </column>
      <column>
