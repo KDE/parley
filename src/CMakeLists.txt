@@ -95,6 +95,7 @@ set(practice_SRCS
     practice/practicesummarycomponent.cpp
     practice/boxeswidget.cpp
     practice/audiobutton.cpp
+    practice/summarybarwidget.cpp
 )
 
 kde4_add_ui_files(practice_SRCS

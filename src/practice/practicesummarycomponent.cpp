@@ -36,37 +36,10 @@ PracticeSummaryComponent::PracticeSummaryComponent(TestEntryManager* testEntryMa
     setupUi(mainWidget);
     setCentralWidget(mainWidget);
 
-    totalCountLineEdit->setText(QString::number(m_testEntryManager->totalEntryCount()));
-    correctLineEdit->setText(QString::number(m_testEntryManager->statisticTotalCorrectFirstAttempt()));
-
-    if (m_testEntryManager->totalEntryCount() != 0) {
-        correctProgressBar->setValue(m_testEntryManager->statisticTotalCorrectFirstAttempt() * 100 / m_testEntryManager->totalEntryCount());
-
-        wrongLineEdit->setText(QString::number(m_testEntryManager->statisticTotalWrong()));
-        wrongProgressBar->setValue(m_testEntryManager->statisticTotalWrong() * 100 / m_testEntryManager->totalEntryCount());
-
-        if ( Prefs::skipKnownEnabled() ) {
-            skipKnownLineEdit->setText(QString::number(
-                    m_testEntryManager->statisticTotalSkipKnown()));
-            skipKnownProgressBar->setValue(
-                    m_testEntryManager->statisticTotalSkipKnown() * 100
-                    / m_testEntryManager->totalEntryCount());
-        } else {
-            skipKnownLabel->setVisible(false);
-            skipKnownLineEdit->setVisible(false);
-            skipKnownProgressBar->setVisible(false);
-        }
-
-        skipUnknownLineEdit->setText(QString::number(m_testEntryManager->statisticTotalSkipUnknown()));
-        skipUnknownProgressBar->setValue(m_testEntryManager->statisticTotalSkipUnknown() * 100 / m_testEntryManager->totalEntryCount());
-
-        notAnsweredLineEdit->setText(QString::number(m_testEntryManager->statisticTotalUnanswered()));
-        notAnsweredProgressBar->setValue(m_testEntryManager->statisticTotalUnanswered() * 100 / m_testEntryManager->totalEntryCount());
-    }
-
     initActions(parent);
     
     setupDetailsTable();
+    summaryBar->setStatistics(m_testEntryManager->statisticTotalCorrectFirstAttempt(), m_testEntryManager->statisticTotalWrong(), m_testEntryManager->statisticTotalUnanswered());
 
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg); 
