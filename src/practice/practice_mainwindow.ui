@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,2,0,0">
    <item>
     <widget class="QLabel" name="lessonLabel">
      <property name="text">
@@ -38,7 +38,7 @@
     </spacer>
    </item>
    <item>
-    <layout class="QGridLayout" name="gridLayout" columnstretch="1,2,1,2,1,1,1">
+    <layout class="QGridLayout" name="gridLayout" columnstretch="1,2,1,6,1,1,1">
      <item row="0" column="0">
       <spacer name="horizontalSpacer_12">
        <property name="orientation">
@@ -201,13 +201,18 @@
      </item>
      <item row="0" column="3">
       <widget class="QWidget" name="centralPracticeWidget" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="minimumSize">
         <size>
          <width>200</width>
          <height>100</height>
         </size>
        </property>
-       <zorder>pushButton</zorder>
       </widget>
      </item>
      <item row="1" column="3">
