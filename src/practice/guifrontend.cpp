@@ -34,7 +34,7 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SIGNAL(signalContinueButton()));
     connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SIGNAL(skipAction()));
     connect(m_ui->hintButton, SIGNAL(clicked()), this, SIGNAL(hintAction()));
-    connect(m_ui->correctButton, SIGNAL(toggled(bool)), this, SLOT(resultRadioButtonsChanged()));
+    connect(m_ui->toggleButton, SIGNAL(clicked()), this, SLOT(resultToggleClicked()));
 
     kDebug() << "Created GuiFrontend";
 }
@@ -92,7 +92,6 @@ void GuiFrontend::setLessonName(const QString& lessonName)
 
 void GuiFrontend::showQuestion()
 {
-    m_ui->ratingStack->setCurrentIndex(0);
     m_ui->answerLaterButton->setEnabled(true);
     m_ui->hintButton->setEnabled(true);
     m_ui->continueButton->setFocus();
@@ -102,12 +101,7 @@ void GuiFrontend::showQuestion()
 
 void GuiFrontend::showSolution()
 {
-    m_ui->ratingStack->setCurrentIndex(1);
-    if (m_ui->wrongButton->isChecked()) {
-        m_ui->wrongButton->setFocus();
-    } else {
-        m_ui->correctButton->setFocus();
-    }
+    m_ui->continueButton->setFocus();
     m_modeWidget->showSolution();
     m_ui->answerLaterButton->setEnabled(false);
     m_ui->hintButton->setEnabled(false);
@@ -193,18 +187,18 @@ void GuiFrontend::setResultState(ResultState resultState)
     switch (resultState) {
     case AbstractFrontend::QuestionState:
         m_ui->statusImageLabel->setText("?");
+        m_ui->toggleButton->setEnabled(false);
+        m_ui->toggleButton->setText(QString(0x2717)+QChar(0x2192)+QChar(0x2713));
         break;
     case AbstractFrontend::AnswerCorrect:
         m_ui->statusImageLabel->setText(QChar(0x2713));
-        if(!m_ui->correctButton->isChecked()) {
-            m_ui->correctButton->setChecked(true);
-        }
+        m_ui->toggleButton->setEnabled(true);
+        m_ui->toggleButton->setText(QString(0x2713)+QChar(0x2192)+QChar(0x2717));
         break;
     case AbstractFrontend::AnswerWrong:
         m_ui->statusImageLabel->setText(QChar(0x2717));
-        if(!m_ui->wrongButton->isChecked()) {
-            m_ui->wrongButton->setChecked(true);
-        }
+        m_ui->toggleButton->setEnabled(true);
+        m_ui->toggleButton->setText(QString(0x2717)+QChar(0x2192)+QChar(0x2713));
         break;
     }
 
@@ -217,20 +211,20 @@ AbstractFrontend::ResultState GuiFrontend::resultState()
     return m_resultState;
 }
 
-void GuiFrontend::resultRadioButtonsChanged()
-{
-    if(m_ui->correctButton->isChecked()) {
-        setResultState(AnswerCorrect);
-    } else {
-        setResultState(AnswerWrong);
-    }
-}
-
 
 void GuiFrontend::continueAction()
 {
     // animateClick emits the pushed signal
     m_ui->continueButton->animateClick();
+}
+
+void GuiFrontend::resultToggleClicked()
+{
+    if (resultState() == AnswerWrong) {
+        setResultState(AnswerCorrect);
+    } else {
+        setResultState(AnswerWrong);
+    }
 }
 
 

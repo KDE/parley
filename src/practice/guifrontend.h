@@ -66,7 +66,7 @@ public Q_SLOTS:
     void setBoxes(int currentBox, int lastBox = -1);
 
 private Q_SLOTS:
-    void resultRadioButtonsChanged();
+    void resultToggleClicked();
     void continueAction();
    
 private:
