@@ -30,6 +30,7 @@ public:
 
 protected:
     void paintEvent(QPaintEvent *event);
+    bool event(QEvent *event);
 
 private:
     int m_correct;

@@ -14,8 +14,11 @@
 #include "summarybarwidget.h"
 
 #include <kcolorscheme.h>
+#include <klocale.h>
 
 #include <QPainter>
+#include <QEvent>
+#include <QHelpEvent>
 
 using namespace Practice;
 
@@ -64,6 +67,27 @@ void SummaryBarWidget::setStatistics(int correct, int wrong, int notAnswered)
     m_wrong = wrong;
     m_notAnswered = notAnswered;
     update();
+}
+
+bool SummaryBarWidget::event(QEvent *event)
+{
+    if (event->type() == QEvent::ToolTip) {
+        QHelpEvent *helpEvent = static_cast<QHelpEvent *>(event);
+        int total = m_correct + m_wrong + m_notAnswered;
+        if (!total)
+            return QWidget::event(event);
+
+        int correctPos = int(rect().width()*double(m_correct)/total);
+        int wrongPos = correctPos+int(rect().width()*double(m_wrong)/total);
+        if (helpEvent->x() <= correctPos) {
+            setToolTip(i18n("Answered correctly on the first attempt: %1 of %2 (%3 %)", m_correct, total, m_correct*100/total));
+        } else if (helpEvent->x() <= wrongPos) {
+            setToolTip(i18n("Answered wrong on the first attempt: %1 of %2 (%3 %)", m_wrong, total, m_wrong*100/total));
+        } else {
+            setToolTip(i18n("Not answered during this practice: %1 of %2 (%3 %)", m_notAnswered, total, m_notAnswered*100/total));
+        }
+    }
+    return QWidget::event(event);
 }
 
 #include "summarybarwidget.moc"
