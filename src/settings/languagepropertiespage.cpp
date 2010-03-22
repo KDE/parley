@@ -251,7 +251,7 @@ void LanguagePropertiesPage::accept()
 
     // articles
     const KEduVocWordFlag::Flags artSing = KEduVocWordFlag::Singular;
-    const KEduVocWordFlag::Flags artDual = KEduVocWordFlag::Dual;
+//    const KEduVocWordFlag::Flags artDual = KEduVocWordFlag::Dual;
     const KEduVocWordFlag::Flags artPlur = KEduVocWordFlag::Plural;
 
     const KEduVocWordFlag::Flags artDef = KEduVocWordFlag::Definite;

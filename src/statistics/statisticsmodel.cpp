@@ -64,6 +64,7 @@ Qt::ItemFlags StatisticsModel::flags(const QModelIndex & index) const
 
 int StatisticsModel::columnCount(const QModelIndex & parent) const
 {
+    Q_UNUSED(parent)
     return m_doc->identifierCount() + 2;
 }
 

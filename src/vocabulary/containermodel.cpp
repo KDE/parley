@@ -57,7 +57,9 @@ QModelIndex ContainerModel::appendContainer(const QModelIndex& parent, const QSt
         break;
     case (KEduVocContainer::WordType):
         parentContainer->appendChildContainer(new KEduVocWordType(containerName, static_cast<KEduVocWordType*>(parentContainer)));
-    break;
+        break;
+    default:
+        break;
     }
     endInsertRows();
 

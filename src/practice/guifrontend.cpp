@@ -77,6 +77,8 @@ void GuiFrontend::setMode(Mode mode)
         case MixedLetters:
             newWidget = new MixedLettersModeWidget(m_widget);
             break;
+        default:
+            kDebug() << "Unknown/invalid mode" << mode;
     }
     if (newWidget) {
         m_ui->centralPracticeWidget->layout()->addWidget(newWidget);

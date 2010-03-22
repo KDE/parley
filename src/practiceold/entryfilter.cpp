@@ -152,6 +152,7 @@ QList<KEduVocExpression*> EntryFilter::entries()
 
 void EntryFilter::checkBoxChanged(bool filter)
 {
+    Q_UNUSED(filter)
     updateTotal();
 }
 

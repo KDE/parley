@@ -49,6 +49,7 @@ QSize BoxesWidget::minimumSizeHint() const
 
 void BoxesWidget::paintEvent(QPaintEvent* e)
 {
+    Q_UNUSED(e)
     QPainter painter(this);
     QFont font = painter.font();
     QFont boldFont = font;

@@ -439,6 +439,8 @@ bool VocabularyView::eventFilter(QObject* obj, QEvent* event) {
 
 void VocabularyView::misspelling(const QString & word, int start)
 {
+    Q_UNUSED(word)
+    Q_UNUSED(start)
     QModelIndex index = m_model->index(spellcheckRow, spellcheckColumn, QModelIndex());
     selectIndex(index);
 }

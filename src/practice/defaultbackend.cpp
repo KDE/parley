@@ -26,9 +26,10 @@ DefaultBackend::DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, 
     , m_options(options)
     , m_testEntryManager(testEntryManager)
     , m_currentMode(AbstractFrontend::None)
-    , m_mode(0)
     , m_current(0)
+    , m_mode(0)
 {
+    Q_UNUSED(doc)
     connect(m_frontend, SIGNAL(skipAction()), this, SLOT(nextEntry()));
     connect(m_frontend, SIGNAL(stopPractice()), this, SIGNAL(practiceFinished()));
 }
