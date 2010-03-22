@@ -30,9 +30,7 @@ SummaryBarWidget::SummaryBarWidget(QWidget *parent)
     setMinimumHeight(30);
     m_layout = new QHBoxLayout(this);
     setLayout(m_layout);
-    QMargins contentsMargins = layout()->contentsMargins();
-    contentsMargins.setTop(contentsMargins.top()+BAR_HEIGHT);
-    layout()->setContentsMargins(contentsMargins);
+    layout()->setContentsMargins(0, layout()->contentsMargins().top()+BAR_HEIGHT, 0, 0);
     setupCaption();
 }
 
