@@ -78,8 +78,11 @@ void SummaryBarWidget::setStatistics(int correct, int wrong, int notAnswered)
     m_total = m_correct + m_wrong + m_notAnswered;
 
     m_correctCaption->setText(i18nc("test results", "%1 % correct", m_correct*100/m_total));
+    m_correctCaption->setToolTip(correctText());
     m_wrongCaption->setText(i18nc("test results", "%1 % wrong", m_wrong*100/m_total));
+    m_wrongCaption->setToolTip(wrongText());
     m_notAnsweredCaption->setText(i18nc("test results", "%1 % not answered", m_notAnswered*100/m_total));
+    m_notAnsweredCaption->setToolTip(notAnsweredText());
 
     update();
 }
@@ -90,6 +93,10 @@ bool SummaryBarWidget::event(QEvent *event)
         QHelpEvent *helpEvent = static_cast<QHelpEvent *>(event);
         if (!m_total)
             return QWidget::event(event);
+
+        if (helpEvent->y() >= BAR_HEIGHT) {
+            return false;
+        }
 
         int correctPos = int(rect().width()*double(m_correct)/m_total);
         int wrongPos = correctPos+int(rect().width()*double(m_wrong)/m_total);
