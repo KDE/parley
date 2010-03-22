@@ -15,7 +15,6 @@
 
 #include <keduvoctext.h>
 
-#include <kdebug.h>
 #include <QtGui/QPainter>
 #include <qbrush.h>
 
@@ -38,7 +37,6 @@ void BoxesWidget::setBoxCount(int boxCount)
 
 void BoxesWidget::setBoxes(int currentBox, int lastBox)
 {
-    kDebug() << "SET BOXES" << currentBox << lastBox;
     m_currentBox = currentBox;
     m_lastBox = lastBox;
     update();

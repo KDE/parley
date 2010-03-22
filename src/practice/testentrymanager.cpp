@@ -25,6 +25,7 @@
 #include <keduvocexpression.h>
 #include <keduvocdocument.h>
 
+#include <KDebug>
 #include <KMessageBox>
 #include <QDateTime>
 
@@ -43,7 +44,7 @@ TestEntryManager::TestEntryManager(QWidget* parent)
 
 TestEntryManager::~TestEntryManager()
 {
-    kDebug() << "dtor";
+
     qDeleteAll(m_allTestEntries);
 }
 

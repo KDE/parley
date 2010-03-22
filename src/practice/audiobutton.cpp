@@ -15,7 +15,6 @@
 
 #include <kicon.h>
 #include <klocale.h>
-#include <kdebug.h>
 
 using namespace Practice;
 
@@ -37,7 +36,6 @@ void AudioButton::setSoundFile(KUrl soundFile)
 
 void AudioButton::playAudio()
 {
-    kDebug() << m_url;
     if (!m_player)
     {
         m_player = Phonon::createPlayer(Phonon::NotificationCategory, m_url);

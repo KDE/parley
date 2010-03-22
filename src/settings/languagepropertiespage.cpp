@@ -22,6 +22,7 @@
 #include <keduvocdocument.h>
 #include <keduvoclesson.h>
 
+#include <KDebug>
 #include <KLocale>
 #include <KStandardDirs>
 #include <KLineEdit>

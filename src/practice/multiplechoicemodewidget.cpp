@@ -46,8 +46,6 @@ void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
     MultipleChoiceData data = question.value<MultipleChoiceData>();
     m_ui->questionLabel->setText(data.question);
 
-    kDebug() << data.question << data.choices;
-
     if (m_choiceButtons.size() != data.choices.size()){
         qDeleteAll(m_choiceButtons);
         m_choiceButtons.clear();

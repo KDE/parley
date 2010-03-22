@@ -39,8 +39,6 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SIGNAL(skipAction()));
     connect(m_ui->hintButton, SIGNAL(clicked()), this, SIGNAL(hintAction()));
     connect(m_ui->toggleButton, SIGNAL(clicked()), this, SLOT(resultToggleClicked()));
-
-    kDebug() << "Created GuiFrontend";
 }
 
 GuiFrontend::~GuiFrontend()
@@ -60,7 +58,7 @@ QWidget* GuiFrontend::widget()
 
 void GuiFrontend::setMode(Mode mode)
 {
-    kDebug() << "setCentralWidget!" << mode;
+    kDebug() << "setCentralWidget" << mode;
     AbstractModeWidget *newWidget = 0;
     switch(mode) {
         case Written:
@@ -85,7 +83,6 @@ void GuiFrontend::setMode(Mode mode)
         delete m_modeWidget;
         m_modeWidget = newWidget;
         connect(m_modeWidget, SIGNAL(continueAction()), this, SLOT(continueAction()));
-        kDebug() << "set up frontend";
     }
 }
 
@@ -100,7 +97,6 @@ void GuiFrontend::showQuestion()
     m_ui->hintButton->setEnabled(true);
     m_ui->continueButton->setFocus();
     m_modeWidget->showQuestion();
-    kDebug() << "active window: " << m_ui->continueButton->isActiveWindow();
 }
 
 void GuiFrontend::showSolution()

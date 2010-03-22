@@ -24,7 +24,7 @@ using namespace Practice;
 WrittenBackendMode::WrittenBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent)
 :AbstractBackendMode(practiceOptions, frontend, parent)
 {
-    kDebug() << "Created WrittenBackendMode";
+
 }
 
 void WrittenBackendMode::setTestEntry(TestEntry* current)
@@ -37,7 +37,6 @@ void WrittenBackendMode::setTestEntry(TestEntry* current)
 
 void WrittenBackendMode::continueAction()
 {    
-    kDebug() << "cont -- state:" <<  m_state;
     switch (m_state) {
         case NotAnswered:
         case AnswerWasWrong:

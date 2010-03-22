@@ -21,7 +21,6 @@
 #include "writtenpracticewidget.h"
 #include "ui_practice_widget_written.h"
 
-#include <kdebug.h>
 #include <kcolorscheme.h>
 
 using namespace Practice;
@@ -32,7 +31,6 @@ WrittenPracticeWidget::WrittenPracticeWidget(QWidget *parent)
     m_ui = new Ui::WrittenPracticeWidget();
     m_ui->setupUi(this);
     m_ui->mixedSolutionLabel->setVisible(false);
-    kDebug() << "Created WrittenPracticeWidget";
     connect(m_ui->answerEdit, SIGNAL(returnPressed()), this, SLOT(continueClicked()));
 
     KColorScheme scheme(QPalette::Active);
@@ -46,7 +44,6 @@ WrittenPracticeWidget::WrittenPracticeWidget(QWidget *parent)
 
 void WrittenPracticeWidget::continueClicked()
 {
-    kDebug() << "cont";
     emit continueAction();
 }
 
@@ -62,7 +59,6 @@ void WrittenPracticeWidget::setQuestion(const QVariant& question)
 
 void WrittenPracticeWidget::showQuestion()
 {
-    kDebug() << "update display";
     m_ui->answerEdit->setEnabled(true);
     m_ui->answerEdit->clear();
     m_ui->answerEdit->setFocus();

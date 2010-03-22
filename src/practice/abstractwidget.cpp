@@ -12,16 +12,11 @@
  ***************************************************************************/
 
 #include "abstractwidget.h"
-#include <kdebug.h>
 
 using namespace Practice;
 
 AbstractModeWidget::AbstractModeWidget(QWidget* parent)
     : QWidget(parent)
 {
-    /*
-    connect(this, SIGNAL(continueAction()), backend, SLOT(continueAction()));
-    connect(this, SIGNAL(hintAction()), backend, SLOT(hintAction()));
-    connect(this, SIGNAL(skipAction()), backend, SLOT(skipAction()));
-    */
+
 }

@@ -15,7 +15,6 @@
 
 #include <keduvoctranslation.h>
 #include <keduvocexpression.h>
-#include <KDebug>
 
 #include <QStringListModel>
 #include <QDragEnterEvent>

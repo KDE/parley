@@ -319,7 +319,6 @@ void ParleyMainWindow::switchComponent(Component component)
             break;
         }
         case PracticeSummary: {
-kDebug() << "switch to summary";
             Practice::PracticeSummaryComponent* summary = new Practice::PracticeSummaryComponent(&m_testEntryManager, this);
             m_currentComponentWindow = summary;
             showDocumentActions(true, true);            

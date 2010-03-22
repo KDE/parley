@@ -18,7 +18,6 @@
 #include <keduvocwordtype.h>
 #include <keduvocdeclension.h>
 
-#include <KDebug>
 #include <KMessageBox>
 
 using namespace Editor;

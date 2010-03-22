@@ -40,8 +40,6 @@ DefaultBackend::~DefaultBackend()
 
 void DefaultBackend::startPractice()
 {
-    kDebug() << "start practice ... nextEntry";
-    
     m_currentMode = nextPracticeMode(m_currentMode);
     if (m_currentMode == AbstractFrontend::None) {
         emit practiceFinished();
@@ -105,16 +103,16 @@ void DefaultBackend::initializePracticeMode(AbstractFrontend::Mode mode)
     
     switch(mode) {
         case AbstractFrontend::FlashCard:
-            kDebug() << "Create Flash Card Practice";
+            kDebug() << "Create Flash Card Practice backend";
             m_mode = new FlashCardBackendMode(m_options, m_frontend, this);
             break;
         case AbstractFrontend::MultipleChoice:
-            kDebug() << "Create MultipleChoice Practice";
+            kDebug() << "Create MultipleChoice Practice backend";
             m_mode = new MultipleChoiceBackendMode(m_options, m_frontend, this, m_testEntryManager);
             break;
         case AbstractFrontend::Written:
         case AbstractFrontend::MixedLetters:
-            kDebug() << "Create Written Practice";
+            kDebug() << "Create Written Practice backend";
             m_mode = new WrittenBackendMode(m_options, m_frontend, this);
             break;
         default:
@@ -144,7 +142,6 @@ void DefaultBackend::updateFrontend()
     m_frontend->setBoxes(m_current->entry()->translation(m_options.languageFrom())->grade());
 
     QString imgUrl = m_current->entry()->translation(m_options.languageFrom())->imageUrl().url();
-    kDebug() << "Show image: " << imgUrl;
     m_frontend->setQuestionImage(imgUrl);
 }
 

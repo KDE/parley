@@ -15,15 +15,13 @@
 #include "flashcardbackendmode.h"
 #include "defaultbackend.h"
 
-#include <KDebug>
-
 using namespace Practice;
  
  
 FlashCardBackendMode::FlashCardBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent)
 :AbstractBackendMode(practiceOptions, frontend, parent)
 {
-    kDebug() << "Created FlashCardBackendMode";
+
 }
 
 void FlashCardBackendMode::setTestEntry(TestEntry* current)
@@ -35,7 +33,6 @@ void FlashCardBackendMode::setTestEntry(TestEntry* current)
 
 void FlashCardBackendMode::continueAction()
 {
-    kDebug() << "cont";
     if (m_solutionVisible) {        
         if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
             emit currentEntryFinished();

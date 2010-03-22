@@ -114,7 +114,6 @@ void TestEntry::incSkipKnown()
 
 void TestEntry::incBadCount()
 {
-kDebug() << "inc bad count!";
     update();
 
     // pretty hard, decrease the grade every single time

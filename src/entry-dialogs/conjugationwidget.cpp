@@ -16,7 +16,6 @@
 #include <keduvocdocument.h>
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
-#include <KDebug>
 #include <KMessageBox>
 
 using namespace Editor;

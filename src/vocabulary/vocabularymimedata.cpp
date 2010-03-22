@@ -18,8 +18,6 @@
 
 #include <keduvoctranslation.h>
 #include <keduvocwordtype.h>
-#include <KDebug>
-
 
 using namespace Editor;
 

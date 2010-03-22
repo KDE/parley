@@ -16,8 +16,6 @@
 #include "multiplechoicedata.h"
 #include "defaultbackend.h"
 
-#include <KDebug>
-
 using namespace Practice;
  
 
@@ -26,7 +24,6 @@ MultipleChoiceBackendMode::MultipleChoiceBackendMode(const PracticeOptions& prac
 ,m_testEntryManager(testEntryManager)
 ,m_randomSequence(QDateTime::currentDateTime().toTime_t())
 {
-    kDebug() << "Created MultipleChoiceBackendMode";
     m_numberOfChoices = practiceOptions.numberMultipleChoiceAnswers();
 }
 
@@ -53,7 +50,6 @@ void MultipleChoiceBackendMode::setTestEntry(TestEntry* current)
 
 void MultipleChoiceBackendMode::continueAction()
 {
-    kDebug() << "cont";
     if (m_solutionVisible) {
         if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
             emit currentEntryFinished();

@@ -21,7 +21,6 @@
 #include <KAction>
 #include <KMessageBox>
 #include <KInputDialog>
-#include <kdebug.h>
 #include <klocale.h>
 #include <kiconloader.h>
 #include <kicon.h>

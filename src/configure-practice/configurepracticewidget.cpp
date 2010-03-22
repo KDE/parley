@@ -118,7 +118,6 @@ void ConfigurePracticeWidget::updateWidgets()
 
 bool ConfigurePracticeWidget::hasChanged()
 {
-    kDebug()<< "ConfigurePracticeWidget::hasChanged()";
     int toRow = LanguageToList->currentRow();
     if ( toRow <= LanguageFromList->currentRow() ) {
         toRow++;

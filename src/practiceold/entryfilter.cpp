@@ -19,6 +19,7 @@
 #include <keduvocwordtype.h>
 #include <keduvocexpression.h>
 
+#include <KDebug>
 #include <KDialog>
 #include <KMessageBox>
 

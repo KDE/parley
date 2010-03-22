@@ -247,8 +247,6 @@ void WordTypeView::slotDeleteWordType()
 
 void WordTypeView::contextMenuEvent(QContextMenuEvent * event)
 {
-    kDebug() << "Context menu event";
-
     // check for the root element:
     QModelIndex selectedIndex = selectionModel()->currentIndex();
     m_actionRenameWordType->setEnabled(selectedIndex.parent() != QModelIndex());

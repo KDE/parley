@@ -20,7 +20,6 @@
 #include "mixedlettersmodewidget.h"
 #include "ui_practice_widget_written.h"
 
-#include <kdebug.h>
 #include <krandomsequence.h>
 #include <kcolorscheme.h>
 

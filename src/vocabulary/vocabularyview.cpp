@@ -172,8 +172,6 @@ void VocabularyView::reset()
     QTableView::reset();
     emit translationChanged(0, 0);
 
-    kDebug() << "reset";
-
     QList<int> visibleColumns;
     if (m_doc) {
         DocumentSettings ds(m_doc->url().url());

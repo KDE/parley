@@ -29,7 +29,6 @@
 #include "parleydocument.h"
 
 #include <keduvocdocument.h>
-#include <KDebug>
 #include <KLineEdit>
 
 #include <QTextEdit>

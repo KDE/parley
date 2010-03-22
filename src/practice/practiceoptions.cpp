@@ -40,7 +40,6 @@ void PracticeOptions::loadPreferences()
     if (Prefs::writtenPractice()) {
         m_modes.append(AbstractFrontend::Written);
     }
-    kDebug() << "Selected Test Types: " << m_modes;
 }
 
 QList<AbstractFrontend::Mode> PracticeOptions::modes() const

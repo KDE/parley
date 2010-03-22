@@ -17,7 +17,6 @@
 #include "guifrontend.h"
 #include "defaultbackend.h"
 
-#include <KDebug>
 #include <KActionCollection>
 #include <KAction>
 #include <KLocalizedString>
@@ -69,9 +68,9 @@ void PracticeMainWindow::initActions()
 
 void PracticeMainWindow::keyPressEvent(QKeyEvent* e)
 {
+    ///@todo: adapt to gui changes
     if (e->key() == Qt::Key_Enter || e->key() == Qt::Key_Return) {
         if (focusWidget()->metaObject()->className() == QLatin1String("QRadioButton")) {
-            kDebug() << "enter on radio";
             emit enterPressed();
             return;
         }
