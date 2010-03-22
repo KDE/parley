@@ -12,6 +12,13 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Your practice result:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="Practice::SummaryBarWidget" name="summaryBar" native="true"/>
    </item>
    <item>
