@@ -17,6 +17,9 @@
 
 #include <QtGui/QWidget>
 
+class QLabel;
+class QHBoxLayout;
+
 namespace Practice {
 
 class SummaryBarWidget : public QWidget
@@ -33,9 +36,24 @@ protected:
     bool event(QEvent *event);
 
 private:
+    void setupCaption();
+    QString correctText();
+    QString wrongText();
+    QString notAnsweredText();
+
+    QPixmap captionPixmap(QColor color);
+
     int m_correct;
     int m_wrong;
     int m_notAnswered;
+    int m_total;
+
+    QHBoxLayout *m_layout;
+    QLabel *m_correctCaption;
+    QLabel *m_wrongCaption;
+    QLabel *m_notAnsweredCaption;
+
+    static const int BAR_HEIGHT = 30;
 };
 
 }
