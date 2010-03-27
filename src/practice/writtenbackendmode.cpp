@@ -73,12 +73,12 @@ void WrittenBackendMode::checkAnswer()
                     m_frontend->setFeedback(i18n("You did not answer correctly."));
                     m_state = SolutionShown;
                     m_frontend->setResultState(AbstractFrontend::AnswerWrong);
-                    m_current->addUserAnswer(answer);
                     m_frontend->showSolution();
                 } else {
                     m_frontend->setFeedback(i18n("Try again - I fear that was not right..."));
                     m_state = AnswerWasWrong;
                     m_frontend->setResultState(AbstractFrontend::AnswerWrong);
+                    m_current->addUserAnswer(answer);
                 }
             }
             break;
@@ -93,12 +93,12 @@ void WrittenBackendMode::checkAnswer()
                     m_frontend->setFeedback(i18n("You did not answer correctly."));
                     m_state = SolutionShown;
                     m_frontend->setResultState(AbstractFrontend::AnswerWrong);
-                    m_current->addUserAnswer(answer);
                     m_frontend->showSolution();
                 } else {
-                    m_frontend->setFeedback(i18n("Wrong. Idiot."));
+                    m_frontend->setFeedback(i18n("Your answer was wrong. Please try again."));
                     m_state = AnswerWasWrong;
                     m_frontend->setResultState(AbstractFrontend::AnswerWrong);
+                    m_current->addUserAnswer(answer);
                 }
             }
             break;
