@@ -34,6 +34,7 @@
 #include <QPainter>
 #include <QResizeEvent>
 #include <QClipboard>
+#include <QTimer>
 
 #include <KApplication>
 #include <KNotification>
@@ -330,8 +331,8 @@ void VocabularyView::slotSelectionChanged(const QItemSelection &, const QItemSel
 void VocabularyView::setDocument(KEduVocDocument * doc)
 {
     m_doc = doc;
-    reset();
     m_vocabularyDelegate->setDocument(doc);
+    QTimer::singleShot(0, this, SLOT(reset()));
 }
 
 /**
