@@ -44,6 +44,7 @@ void VocabularyHeaderView::updateSorting(int index)
     }
 
     setSortIndicatorShown(false);
+    m_sortSection = -1;
     model()->sort(-1);
 }
 
