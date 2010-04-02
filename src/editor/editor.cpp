@@ -521,6 +521,7 @@ void Editor::initView()
     m_searchWidget->setVisible(Prefs::showSearch());
 
     m_vocabularyView = new VocabularyView(this);
+    m_vocabularyView->setFont(Prefs::tableFont());
     rightLayout->addWidget(m_vocabularyView, 1, 0);
 
     topLayout->addLayout(rightLayout);
