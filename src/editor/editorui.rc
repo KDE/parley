@@ -12,7 +12,6 @@
       <text>&amp;Edit</text>
       <Separator/>
       <Action name="edit_languages" />
-      <Action name="file_upload" />
       <Separator/>
       <Action name="edit_append" />
       <Action name="edit_remove_selected_area" />
