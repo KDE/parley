@@ -97,6 +97,8 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
         showEditor();
     }
 
+    connect(this, SIGNAL(preferencesChanged()), this, SLOT(slotApplyPreferences()));
+
     // finally show tip-of-day ( if the user wants it :) )
     QTimer::singleShot( 0, this, SLOT( startupTipOfDay() ) );
 }
@@ -142,15 +144,13 @@ void ParleyMainWindow::slotUpdateWindowCaption()
 void ParleyMainWindow::slotGeneralOptions()
 {
     ParleyPrefs* dialog = new ParleyPrefs(m_document->document(), this, "settings",  Prefs::self());
-    connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
+    connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SIGNAL(preferencesChanged()));
     dialog->show();
 }
 
 void ParleyMainWindow::slotApplyPreferences()
 {
     m_document->enableAutoBackup((m_currentComponent != WelcomeComponent) && Prefs::autoBackup());
-    // FIXME
-    //m_editor->setTableFont(Prefs::tableFont());
 }
 
 void ParleyMainWindow::slotCloseDocument()

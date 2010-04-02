@@ -84,7 +84,7 @@ public slots:
      */
     void slotShowScriptManager();
 
-    void setTableFont(const QFont& font);
+    void applyPrefs();
 
     /**
      * Removes all grading information from the current document

@@ -83,6 +83,7 @@ EditorWindow::EditorWindow(ParleyMainWindow* parent)
     connect(parent, SIGNAL(documentChanged()), this, SLOT(updateDocument()));
     connect(parent->parleyDocument(), SIGNAL(languagesChanged()), this, SLOT(slotLanguagesChanged()));
     connect(parent->parleyDocument(), SIGNAL(statesNeedSaving()), this, SLOT(saveState()));
+    connect(parent, SIGNAL(preferencesChanged()), this, SLOT(applyPrefs()));
 }
 
 EditorWindow::~EditorWindow()
@@ -434,9 +435,9 @@ void EditorWindow::slotShowScriptManager() {
     dialog->show();
 }
 
-void EditorWindow::setTableFont(const QFont& font)
+void EditorWindow::applyPrefs()
 {
-    m_vocabularyView->setFont(font);
+    m_vocabularyView->setFont(Prefs::tableFont());
     m_vocabularyView->reset();
 }
 
