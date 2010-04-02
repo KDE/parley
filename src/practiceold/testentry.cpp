@@ -119,16 +119,14 @@ void TestEntry::incSkipKnown()
 
 void TestEntry::incBadCount()
 {
-kDebug() << "inc bad count!";
     update();
-
-    // pretty hard, decrease the grade every single time
-    // could be changed, but maybe it's a good idea even...
-    m_entry->translation(m_gradeTo)->decGrade();
-    m_entry->translation(m_gradeTo)->incBadCount();
 
     m_statisticBadCount++;
     m_answeredCorrectInSequence = 0;
+
+    // Leitner learning system demote to minimum grade if wrong
+    m_entry->translation(m_gradeTo)->incBadCount();
+    m_entry->translation(m_gradeTo)->setGrade(KV_LEV1_GRADE);
 }
 
 void TestEntry::incTimeout()
