@@ -190,33 +190,13 @@ void ParleyMainWindow::startPractice()
         return;
     }
 
-// disable flash card mode for 4.2
-//    if (Prefs::testType() == Prefs::EnumTestType::FlashCardsTest) {
-//        // New practice modes - for now enabled only for flash cards
-//        ///@todo: instead of creating a new instance only a new document should be set
-//        Component lastComponent = m_currentComponent;
-//        switchComponent(NoComponent); // unload the last component (could be a practice window)
-//        m_practice = new ParleyPracticeMainWindow(m_document->document(), 0);
-//        switchComponent(PracticeComponent);
-//        m_practice->show();
-//        if (lastComponent == EditorComponent) {
-//            connect(m_practice, SIGNAL(signalPracticeFinished()), this, SLOT(showEditor()));
-//        } else {
-//            connect(m_practice, SIGNAL(signalPracticeFinished()), this, SLOT(showWelcomeScreen()));
-//        }
-//        // If starting the practice fails (e.g. there are no entries selected), the signalPracticeFinished() signal
-//        // is emitted in the constructor and thus before the connect
-//        if (m_practice->finished() && lastComponent == EditorComponent) {
-//            showEditor();
-//        } else if(m_practice->finished()) {
-//            showWelcomeScreen();
-//        }
-//    } else {
-        hide();
-        VocabularyPractice practice(m_document->document(), this);
-        practice.startPractice();
-        show();
-//    }
+    hide();
+    VocabularyPractice practice(m_document->document(), this);
+    practice.startPractice();
+    show();
+    if (m_currentComponent == WelcomeComponent) {
+        m_document->save();
+    }
 }
 
 bool ParleyMainWindow::queryClose()
