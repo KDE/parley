@@ -1,112 +1,113 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>AdvancedPracticeOptions</class>
- <widget class="QWidget" name="AdvancedPracticeOptions" >
-  <property name="geometry" >
+ <widget class="QWidget" name="AdvancedPracticeOptions">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>607</width>
+    <width>729</width>
     <height>449</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout">
    <item>
-    <widget class="QGroupBox" name="groupBox" >
-     <property name="title" >
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
       <string>General Options</string>
      </property>
-     <layout class="QVBoxLayout" >
+     <layout class="QVBoxLayout">
       <item>
-       <widget class="QCheckBox" name="kcfg_AltLearn" >
-        <property name="toolTip" >
-         <string>By checking this, you will use the Leitner method of learning which requires you to answer correctly to each question 3 times in a row. </string>
+       <widget class="QCheckBox" name="kcfg_AltLearn">
+        <property name="toolTip">
+         <string>By checking this, you will use the Leitner method of learning which requires you to answer correctly to each question 3 times in a row. Wrong answers causes grade to drop to 0 </string>
         </property>
-        <property name="whatsThis" >
-         <string>By checking this, you will use the Leitner method of learning which requires you to answer correctly to each question 3 times in a row. </string>
+        <property name="whatsThis">
+         <string>By checking this, you will use the Leitner method of learning which requires you to answer correctly to each question 3 times in a row. Wrong answers causes grade to drop to 0 </string>
         </property>
-        <property name="text" >
-         <string>&amp;Require 3 consecutive correct answers to count as right</string>
+        <property name="text">
+         <string>Use Leitne&amp;r method (require 3 consecutive correct answers)</string>
         </property>
        </widget>
       </item>
       <item>
-       <layout class="QGridLayout" >
-        <item row="0" column="0" >
-         <widget class="QCheckBox" name="kcfg_ShowMore" >
-          <property name="enabled" >
+       <layout class="QGridLayout">
+        <item row="0" column="0">
+         <widget class="QCheckBox" name="kcfg_ShowMore">
+          <property name="enabled">
            <bool>true</bool>
           </property>
-          <property name="toolTip" >
+          <property name="toolTip">
            <string>Enable the Show More button on the Random Query screen</string>
           </property>
-          <property name="whatsThis" >
+          <property name="whatsThis">
            <string>When this is checked, you will be able to use a Show More button which allow you to get the next letter in your answer in the query. If this is unchecked, the Show More button will not be enabled, you will not be able to use it.</string>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>Enable S&amp;how More button</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="1" >
-         <widget class="QCheckBox" name="kcfg_PracticeSoundEnabled" >
-          <property name="text" >
+        <item row="0" column="1">
+         <widget class="QCheckBox" name="kcfg_PracticeSoundEnabled">
+          <property name="text">
            <string>Enable Sound</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="0" >
-         <widget class="QCheckBox" name="kcfg_SkipKnownEnabled" >
-          <property name="enabled" >
+        <item row="1" column="0">
+         <widget class="QCheckBox" name="kcfg_SkipKnownEnabled">
+          <property name="enabled">
            <bool>true</bool>
           </property>
-          <property name="toolTip" >
+          <property name="toolTip">
            <string>Enable the I Know It button on the Random Query screen</string>
           </property>
-          <property name="whatsThis" >
+          <property name="whatsThis">
            <string>If this is checked, the I Know button will be available. It allows you to tell the query that you know the result without writing it or having it checked. This is available by default. If you uncheck this, the I Know button will not be available.</string>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>Enable Skip (I Know it) &amp;button</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="1" >
-         <widget class="QCheckBox" name="kcfg_PracticeImagesEnabled" >
-          <property name="text" >
+        <item row="1" column="1">
+         <widget class="QCheckBox" name="kcfg_PracticeImagesEnabled">
+          <property name="text">
            <string>Enable Images</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="0" >
-         <widget class="QCheckBox" name="kcfg_CountSynonymsAsCorrect" >
-          <property name="text" >
+        <item row="2" column="0">
+         <widget class="QCheckBox" name="kcfg_CountSynonymsAsCorrect">
+          <property name="text">
            <string>Accept synonyms as correct</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="1" >
-         <widget class="QCheckBox" name="kcfg_SwapDirection" >
-          <property name="enabled" >
+        <item row="2" column="1">
+         <widget class="QCheckBox" name="kcfg_SwapDirection">
+          <property name="enabled">
            <bool>false</bool>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>S&amp;wap direction randomly</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0" >
-         <widget class="QCheckBox" name="kcfg_TestOrderLesson" >
-          <property name="toolTip" >
+        <item row="3" column="0">
+         <widget class="QCheckBox" name="kcfg_TestOrderLesson">
+          <property name="toolTip">
            <string>When practicing, new words will be chosen loosely in lesson order if this is selected.  Otherwise, they will be chosen completely at random.</string>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>&amp;Practice in lesson order</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="1" >
-         <widget class="QCheckBox" name="kcfg_ShowHints" >
-          <property name="text" >
+        <item row="3" column="1">
+         <widget class="QCheckBox" name="kcfg_ShowHints">
+          <property name="text">
            <string>Enable Hints</string>
           </property>
          </widget>
@@ -114,45 +115,45 @@
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" >
+       <layout class="QHBoxLayout">
         <item>
-         <widget class="QLabel" name="label" >
-          <property name="toolTip" >
+         <widget class="QLabel" name="label">
+          <property name="toolTip">
            <string>The number of times vocabulary will show up repeatedly until it is answered correctly.</string>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>&amp;Active entries during practice:</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>kcfg_TestNumberOfEntries</cstring>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="KIntSpinBox" name="kcfg_TestNumberOfEntries" >
-          <property name="toolTip" >
+         <widget class="KIntSpinBox" name="kcfg_TestNumberOfEntries">
+          <property name="toolTip">
            <string>The number of times vocabulary will show up repeatedly until it is answered correctly.</string>
           </property>
-          <property name="suffix" >
+          <property name="suffix">
            <string/>
           </property>
-          <property name="prefix" >
+          <property name="prefix">
            <string/>
           </property>
-          <property name="minimum" >
+          <property name="minimum">
            <number>2</number>
           </property>
-          <property name="maximum" >
+          <property name="maximum">
            <number>10000</number>
           </property>
          </widget>
         </item>
         <item>
          <spacer>
-          <property name="orientation" >
+          <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
-          <property name="sizeHint" stdset="0" >
+          <property name="sizeHint" stdset="0">
            <size>
             <width>40</width>
             <height>20</height>
@@ -163,42 +164,42 @@
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" >
+       <layout class="QHBoxLayout">
         <item>
-         <widget class="QCheckBox" name="kcfg_ShowSolutionAfterAnswer" >
-          <property name="toolTip" >
+         <widget class="QCheckBox" name="kcfg_ShowSolutionAfterAnswer">
+          <property name="toolTip">
            <string>After the answer was given the solution will be shown for this long</string>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>&amp;Show solution after answering:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="KIntSpinBox" name="kcfg_ShowSolutionAfterAnswerTime" >
-          <property name="toolTip" >
+         <widget class="KIntSpinBox" name="kcfg_ShowSolutionAfterAnswerTime">
+          <property name="toolTip">
            <string>After the answer was given the solution will be shown for this long</string>
           </property>
-          <property name="specialValueText" >
+          <property name="specialValueText">
            <string>unlimited</string>
           </property>
-          <property name="suffix" >
-           <string comment="Seconds (suffix)" >s</string>
+          <property name="suffix">
+           <string comment="Seconds (suffix)">s</string>
           </property>
-          <property name="minimum" >
+          <property name="minimum">
            <number>0</number>
           </property>
-          <property name="maximum" >
+          <property name="maximum">
            <number>3600</number>
           </property>
          </widget>
         </item>
         <item>
          <spacer>
-          <property name="orientation" >
+          <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
-          <property name="sizeHint" stdset="0" >
+          <property name="sizeHint" stdset="0">
            <size>
             <width>40</width>
             <height>20</height>
@@ -212,42 +213,42 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="kcfg_PracticeTimeout" >
-     <property name="toolTip" >
+    <widget class="QGroupBox" name="kcfg_PracticeTimeout">
+     <property name="toolTip">
       <string>If a time limit is set, an answer has to have been given within the time set when practicing.</string>
      </property>
-     <property name="title" >
+     <property name="title">
       <string>&amp;Time Limit in Tests</string>
      </property>
-     <property name="checkable" >
+     <property name="checkable">
       <bool>true</bool>
      </property>
-     <property name="checked" >
+     <property name="checked">
       <bool>false</bool>
      </property>
-     <layout class="QGridLayout" >
-      <item row="0" column="0" >
-       <widget class="KButtonGroup" name="kcfg_PracticeTimeoutMode" >
-        <property name="styleSheet" >
-         <string notr="true" >QGroupBox { border-width: 0; border-style: none; }</string>
+     <layout class="QGridLayout">
+      <item row="0" column="0">
+       <widget class="KButtonGroup" name="kcfg_PracticeTimeoutMode">
+        <property name="styleSheet">
+         <string notr="true">QGroupBox { border-width: 0; border-style: none; }</string>
         </property>
-        <property name="title" >
+        <property name="title">
          <string/>
         </property>
-        <layout class="QVBoxLayout" >
-         <property name="margin" >
+        <layout class="QVBoxLayout">
+         <property name="margin">
           <number>0</number>
          </property>
          <item>
-          <widget class="QRadioButton" name="ShowSolutionRadio" >
-           <property name="text" >
+          <widget class="QRadioButton" name="ShowSolutionRadio">
+           <property name="text">
             <string>&amp;Show solution</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="ContinueRadio" >
-           <property name="text" >
+          <widget class="QRadioButton" name="ContinueRadio">
+           <property name="text">
             <string>&amp;Continue after timeout</string>
            </property>
           </widget>
@@ -255,33 +256,33 @@
         </layout>
        </widget>
       </item>
-      <item row="0" column="1" >
-       <layout class="QHBoxLayout" >
+      <item row="0" column="1">
+       <layout class="QHBoxLayout">
         <item>
-         <widget class="QLabel" name="label_mqtime" >
-          <property name="text" >
+         <widget class="QLabel" name="label_mqtime">
+          <property name="text">
            <string>Limit:</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>kcfg_PracticeTimeoutTimePerAnswer</cstring>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="KIntSpinBox" name="kcfg_PracticeTimeoutTimePerAnswer" >
-          <property name="toolTip" >
+         <widget class="KIntSpinBox" name="kcfg_PracticeTimeoutTimePerAnswer">
+          <property name="toolTip">
            <string>Set the maximum time allowed per answer.</string>
           </property>
-          <property name="whatsThis" >
+          <property name="whatsThis">
            <string>Set here the maximum time you want to allow per answer.</string>
           </property>
-          <property name="suffix" >
-           <string comment="Seconds (suffix)" >s</string>
+          <property name="suffix">
+           <string comment="Seconds (suffix)">s</string>
           </property>
-          <property name="minimum" >
+          <property name="minimum">
            <number>1</number>
           </property>
-          <property name="maximum" >
+          <property name="maximum">
            <number>6000</number>
           </property>
          </widget>
@@ -293,13 +294,13 @@
    </item>
    <item>
     <spacer>
-     <property name="orientation" >
+     <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeType" >
+     <property name="sizeType">
       <enum>QSizePolicy::Expanding</enum>
      </property>
-     <property name="sizeHint" stdset="0" >
+     <property name="sizeHint" stdset="0">
       <size>
        <width>589</width>
        <height>20</height>
@@ -311,17 +312,17 @@
   <zorder>kcfg_PracticeTimeout</zorder>
   <zorder>groupBox</zorder>
  </widget>
-  <customwidgets>
+ <customwidgets>
+  <customwidget>
+   <class>KIntSpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>knuminput.h</header>
+  </customwidget>
   <customwidget>
    <class>KButtonGroup</class>
    <extends>QGroupBox</extends>
    <header>kbuttongroup.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>KIntSpinBox</class>
-   <extends>QSpinBox</extends>
-   <header>knuminput.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
