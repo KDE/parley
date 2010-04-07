@@ -54,11 +54,11 @@ void SummaryBarWidget::paintEvent(QPaintEvent *event)
 
     double margin = double(2)/rect().width();
 
-    linearGrad.setColorAt(correctPos - margin, correctColor);
-    linearGrad.setColorAt(correctPos + margin, wrongColor);
+    linearGrad.setColorAt(qMax(correctPos - margin, 0.0), correctColor);
+    linearGrad.setColorAt(qMin(correctPos + margin, 1.0), wrongColor);
 
-    linearGrad.setColorAt(wrongPos - margin, wrongColor);
-    linearGrad.setColorAt(wrongPos + margin, notAnsweredColor);
+    linearGrad.setColorAt(qMax(wrongPos - margin, 0.0), wrongColor);
+    linearGrad.setColorAt(qMin(wrongPos + margin, 1.0), notAnsweredColor);
 
     QRect r = rect();
     r.setHeight(BAR_HEIGHT);
