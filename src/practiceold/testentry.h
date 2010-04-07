@@ -44,17 +44,12 @@ public:
 
     void incGoodCount();
     void incBadCount();
-    void incTimeout();
-    void incSkipUnknown();
-    void incSkipKnown();
+
 
     int answeredCorrectInSequence();
     int statisticCount();
     int statisticGoodCount();
     int statisticBadCount();
-    int statisticSkipKnown();
-    int statisticSkipUnknown();
-    int statisticTimeout();
     bool statisticCorrectAtFirstAttempt();
 
     void setLastErrors(ErrorTypes errorTypes);
@@ -85,11 +80,7 @@ private:
     int m_statisticCount;
     int m_statisticGoodCount;
     int m_statisticBadCount;
-    int m_statisticTimeout;
-    int m_statisticSkipUnknown;
-    int m_statisticSkipKnown;
     int m_answeredCorrectInSequence;
-    bool m_canSwitchDirection;
     bool m_correctAtFirstAttempt;
 
     double m_lastPercentage;

@@ -107,8 +107,6 @@ void TestEntryManager::printStatistics()
         kDebug()
             << " asked: " << entry->statisticCount()
             << " +" << entry->statisticGoodCount() << " -" << entry->statisticBadCount()
-            << " ->+" << entry->statisticSkipKnown() << " ->-" << entry->statisticSkipUnknown()
-            << " time:" << entry->statisticTimeout()
             << "Entry: " << entry->entry()->translation(0)->text();
     }
 }
@@ -150,28 +148,6 @@ int TestEntryManager::statisticTotalUnanswered()
     int count = 0;
     foreach(TestEntry* entry, m_allTestEntries) {
         if ( entry->statisticCount() == 0 ) {
-            count++;
-        }
-    }
-    return count;
-}
-
-int TestEntryManager::statisticTotalSkipKnown()
-{
-    int count = 0;
-    foreach(TestEntry* entry, m_allTestEntries) {
-        if ( entry->statisticSkipKnown() ) {
-            count++;
-        }
-    }
-    return count;
-}
-
-int TestEntryManager::statisticTotalSkipUnknown()
-{
-    int count = 0;
-    foreach(TestEntry* entry, m_allTestEntries) {
-        if ( entry->statisticSkipUnknown() ) {
             count++;
         }
     }

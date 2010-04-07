@@ -23,11 +23,7 @@ TestEntry::TestEntry(KEduVocExpression *entry)
     ,m_statisticCount(0)
     ,m_statisticGoodCount(0)
     ,m_statisticBadCount(0)
-    ,m_statisticTimeout(0)
-    ,m_statisticSkipUnknown(0)
-    ,m_statisticSkipKnown(0)
     ,m_answeredCorrectInSequence(0)
-    ,m_canSwitchDirection(false)
     ,m_correctAtFirstAttempt(false)
     ,m_lastPercentage(0.0)
     ,m_lastError(UnknownMistake)
@@ -58,21 +54,6 @@ int TestEntry::statisticBadCount()
     return m_statisticBadCount;
 }
 
-int TestEntry::statisticSkipKnown()
-{
-    return m_statisticSkipKnown;
-}
-
-int TestEntry::statisticSkipUnknown()
-{
-    return m_statisticSkipUnknown;
-}
-
-int TestEntry::statisticTimeout()
-{
-    return m_statisticTimeout;
-}
-
 int TestEntry::statisticGoodCount()
 {
     return m_statisticGoodCount;
@@ -96,22 +77,6 @@ void TestEntry::incGoodCount()
     }
 }
 
-void TestEntry::incSkipKnown()
-{
-    update();
-    m_statisticSkipKnown++;
-    m_answeredCorrectInSequence++;
-    // increase grade, if first time:
-    if ( !Prefs::altLearn() && m_statisticBadCount == 0 ) {
-        m_entry->translation(m_gradeTo)->incGrade();
-    } else {
-        // alt learn: 3 times right
-        if ( answeredCorrectInSequence() == 3  && m_statisticBadCount == 0 ) {
-            m_entry->translation(m_gradeTo)->incGrade();
-        }
-    }
-}
-
 void TestEntry::incBadCount()
 {
     update();
@@ -124,25 +89,6 @@ void TestEntry::incBadCount()
     m_statisticBadCount++;
     m_answeredCorrectInSequence = 0;
 }
-
-void TestEntry::incTimeout()
-{
-    update();
-    m_statisticTimeout++;
-    m_answeredCorrectInSequence = 0;
-    m_entry->translation(m_gradeTo)->decGrade();
-    m_entry->translation(m_gradeTo)->incBadCount();
-}
-
-void TestEntry::incSkipUnknown()
-{
-    update();
-    m_statisticSkipUnknown++;
-    m_answeredCorrectInSequence = 0;
-    m_entry->translation(m_gradeTo)->decGrade();
-    m_entry->translation(m_gradeTo)->incBadCount();
-}
-
 
 void TestEntry::update()
 {

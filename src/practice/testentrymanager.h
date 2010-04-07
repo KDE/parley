@@ -73,8 +73,6 @@ public:
     int statisticTotalCorrectFirstAttempt();
     int statisticTotalWrong();
     int statisticTotalUnanswered();
-    int statisticTotalSkipKnown();
-    int statisticTotalSkipUnknown();
 
     QStringList randomMultipleChoiceAnswers(int numberChoices);
 
