@@ -21,13 +21,14 @@
 class QVariant;
 
 namespace Practice {
+class GuiFrontend;
 
 class AbstractModeWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    AbstractModeWidget(QWidget* parent = 0);
+    AbstractModeWidget(GuiFrontend *frontend, QWidget* parent = 0);
     virtual ~AbstractModeWidget() {}
     
     virtual void setQuestion(const QVariant& question) = 0;
@@ -50,6 +51,9 @@ signals:
     void continueAction();
     void hintAction();
     void skipAction();
+
+protected:
+    GuiFrontend *m_frontend;
 
 };
 

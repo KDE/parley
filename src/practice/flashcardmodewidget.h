@@ -29,7 +29,7 @@ class FlashCardModeWidget: public AbstractModeWidget
     Q_OBJECT
     
 public:
-    FlashCardModeWidget(QWidget *parent = 0);
+    FlashCardModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
     virtual QVariant userInput();
     
     virtual void setQuestion(const QVariant& question);

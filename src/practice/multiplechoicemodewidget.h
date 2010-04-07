@@ -30,7 +30,7 @@ class MultiplechoiceModeWidget: public AbstractModeWidget
     Q_OBJECT
     
 public:
-    MultiplechoiceModeWidget(QWidget *parent = 0);
+    MultiplechoiceModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
     virtual QVariant userInput();
     
     virtual void setQuestion(const QVariant& question);

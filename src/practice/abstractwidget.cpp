@@ -15,8 +15,8 @@
 
 using namespace Practice;
 
-AbstractModeWidget::AbstractModeWidget(QWidget* parent)
-    : QWidget(parent)
+AbstractModeWidget::AbstractModeWidget(GuiFrontend *frontend, QWidget* parent)
+    : m_frontend(frontend), QWidget(parent)
 {
 
 }

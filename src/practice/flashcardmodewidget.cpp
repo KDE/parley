@@ -15,11 +15,13 @@
 
 #include "ui_practice_widget_flashcard.h"
 
+#include "guifrontend.h"
+
 using namespace Practice;
 
 
-FlashCardModeWidget::FlashCardModeWidget (QWidget* parent )
-    : AbstractModeWidget (parent)
+FlashCardModeWidget::FlashCardModeWidget (GuiFrontend *frontend, QWidget* parent )
+    : AbstractModeWidget (frontend, parent)
 {
     m_ui = new Ui::FlashCardPracticeWidget();
     m_ui->setupUi(this);
@@ -33,6 +35,7 @@ void FlashCardModeWidget::setQuestion(const QVariant& question)
 void FlashCardModeWidget::showQuestion()
 {
     m_ui->solutionLabel->setHidden(true);
+    m_frontend->showSetResultButtons(false);
 }
 
 void FlashCardModeWidget::setSolution(const QVariant& solution)
@@ -43,6 +46,7 @@ void FlashCardModeWidget::setSolution(const QVariant& solution)
 void FlashCardModeWidget::showSolution()
 {
     m_ui->solutionLabel->setHidden(false);
+    m_frontend->showSetResultButtons(true);
 }
 
 QVariant FlashCardModeWidget::userInput()

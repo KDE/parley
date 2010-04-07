@@ -216,16 +216,45 @@
       </widget>
      </item>
      <item row="1" column="3">
-      <widget class="QPushButton" name="continueButton">
-       <property name="text">
-        <string>Continue</string>
+      <widget class="QStackedWidget" name="buttonStack">
+       <property name="currentIndex">
+        <number>1</number>
        </property>
-       <property name="autoDefault">
-        <bool>true</bool>
-       </property>
-       <property name="default">
-        <bool>true</bool>
-       </property>
+       <widget class="QWidget" name="page">
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QPushButton" name="continueButton">
+           <property name="text">
+            <string>Continue</string>
+           </property>
+           <property name="autoDefault">
+            <bool>true</bool>
+           </property>
+           <property name="default">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="page_2">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QPushButton" name="countAsWrongButton">
+           <property name="text">
+            <string>I didn't know it</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="countAsCorrectButton">
+           <property name="text">
+            <string>I knew it</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </widget>
      </item>
     </layout>
@@ -284,9 +313,6 @@
     </layout>
    </item>
   </layout>
-  <zorder>verticalSpacer</zorder>
-  <zorder>verticalSpacer_2</zorder>
-  <zorder>lessonLabel</zorder>
  </widget>
  <customwidgets>
   <customwidget>
@@ -303,7 +329,6 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>continueButton</tabstop>
   <tabstop>answerLaterButton</tabstop>
   <tabstop>hintButton</tabstop>
  </tabstops>

@@ -25,8 +25,8 @@
 
 using namespace Practice;
 
-WrittenPracticeWidget::WrittenPracticeWidget(QWidget *parent)
-    : AbstractModeWidget(parent)
+WrittenPracticeWidget::WrittenPracticeWidget(GuiFrontend *frontend, QWidget *parent)
+    : AbstractModeWidget(frontend, parent)
 {
     m_ui = new Ui::WrittenPracticeWidget();
     m_ui->setupUi(this);

@@ -35,7 +35,7 @@ class WrittenPracticeWidget : public Practice::AbstractModeWidget
     Q_OBJECT
 
 public:
-    WrittenPracticeWidget(QWidget *parent = 0);
+    WrittenPracticeWidget(GuiFrontend *frontend, QWidget *parent = 0);
     virtual QVariant userInput();
 
     virtual void setQuestion(const QVariant& question);

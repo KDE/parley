@@ -39,6 +39,8 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SIGNAL(skipAction()));
     connect(m_ui->hintButton, SIGNAL(clicked()), this, SIGNAL(hintAction()));
     connect(m_ui->toggleButton, SIGNAL(clicked()), this, SLOT(resultToggleClicked()));
+    connect(m_ui->countAsCorrectButton, SIGNAL(clicked()), this, SLOT(countAsCorrectButtonClicked()));
+    connect(m_ui->countAsWrongButton, SIGNAL(clicked()), this, SLOT(countAsWrongButtonClicked()));
 }
 
 GuiFrontend::~GuiFrontend()
@@ -66,16 +68,16 @@ void GuiFrontend::setMode(Mode mode)
                 kDebug() << "Written practice widget is already the central widget";
                 break;
             }
-            newWidget = new WrittenPracticeWidget(m_widget);
+            newWidget = new WrittenPracticeWidget(this, m_widget);
             break;
         case MultipleChoice:
-            newWidget = new MultiplechoiceModeWidget(m_widget);
+            newWidget = new MultiplechoiceModeWidget(this, m_widget);
             break;
         case FlashCard:
-            newWidget = new FlashCardModeWidget(m_widget);
+            newWidget = new FlashCardModeWidget(this, m_widget);
             break;
         case MixedLetters:
-            newWidget = new MixedLettersModeWidget(m_widget);
+            newWidget = new MixedLettersModeWidget(this, m_widget);
             break;
         default:
             kDebug() << "Unknown/invalid mode" << mode;
@@ -86,6 +88,7 @@ void GuiFrontend::setMode(Mode mode)
         m_modeWidget = newWidget;
         connect(m_modeWidget, SIGNAL(continueAction()), this, SLOT(continueAction()));
     }
+    m_ui->buttonStack->setCurrentIndex(0);
 }
 
 void GuiFrontend::setLessonName(const QString& lessonName)
@@ -112,6 +115,14 @@ void GuiFrontend::showSolution()
 void GuiFrontend::setBoxes(int currentBox, int lastBox)
 {
     m_ui->boxesWidget->setBoxes(currentBox, lastBox);
+}
+
+void GuiFrontend::showSetResultButtons(bool show)
+{
+    m_ui->buttonStack->setCurrentIndex(int(show));
+    if (show) {
+        m_ui->countAsCorrectButton->setFocus();
+    }
 }
 
 void GuiFrontend::setFinishedWordsTotalWords(int finished, int total)
@@ -218,6 +229,18 @@ void GuiFrontend::continueAction()
 {
     // animateClick emits the pushed signal
     m_ui->continueButton->animateClick();
+}
+
+void GuiFrontend::countAsCorrectButtonClicked()
+{
+    setResultState(AnswerCorrect);
+    continueAction();
+}
+
+void GuiFrontend::countAsWrongButtonClicked()
+{
+    setResultState(AnswerWrong);
+    continueAction();
 }
 
 void GuiFrontend::resultToggleClicked()

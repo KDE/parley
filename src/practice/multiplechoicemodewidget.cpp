@@ -23,8 +23,8 @@
 using namespace Practice;
 
 
-MultiplechoiceModeWidget::MultiplechoiceModeWidget (QWidget* parent )
-    : AbstractModeWidget (parent)
+MultiplechoiceModeWidget::MultiplechoiceModeWidget (GuiFrontend *frontend, QWidget* parent )
+    : AbstractModeWidget (frontend, parent)
 {
     m_ui = new Ui::MultiplechoicePracticeWidget();
     m_ui->setupUi(this);

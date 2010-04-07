@@ -33,7 +33,7 @@ class MixedLettersModeWidget : public Practice::WrittenPracticeWidget
     Q_OBJECT
 
 public:
-    MixedLettersModeWidget(QWidget *parent = 0);
+    MixedLettersModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
 
     virtual void setQuestion(const QVariant& question);
     virtual void setSolution(const QVariant& solution);

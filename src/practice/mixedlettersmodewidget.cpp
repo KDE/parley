@@ -28,8 +28,8 @@
 
 using namespace Practice;
 
-MixedLettersModeWidget::MixedLettersModeWidget(QWidget *parent)
-    : WrittenPracticeWidget(parent)
+MixedLettersModeWidget::MixedLettersModeWidget(GuiFrontend *frontend, QWidget *parent)
+    : WrittenPracticeWidget(frontend, parent)
 {
     m_ui->mixedSolutionLabel->show();
     connect(m_ui->answerEdit, SIGNAL(textChanged(QString)), this, SLOT(updatePixmap()));

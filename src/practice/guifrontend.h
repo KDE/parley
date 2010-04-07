@@ -65,9 +65,14 @@ public Q_SLOTS:
     void showSolution();
     void setBoxes(int currentBox, int lastBox = -1);
 
+    // show two buttons (i didn't know it, i knew it) instead of the continue button and disable the correct/wrong toggle (needed for flash card mode)
+    void showSetResultButtons(bool show);
+
 private Q_SLOTS:
     void resultToggleClicked();
     void continueAction();
+    void countAsCorrectButtonClicked();
+    void countAsWrongButtonClicked();
    
 private:
     QWidget* m_widget;
