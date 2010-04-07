@@ -83,8 +83,6 @@ void ButtonDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
     QFontMetrics fm(option.font);
     QString elidedText = fm.elidedText(index.data().toString(), Qt::ElideRight, textRect.width());
     painter->drawText(textRect, Qt::AlignLeft | Qt::AlignVCenter, elidedText);
-
-    KWidgetItemDelegate::paintWidgets(painter, option, index);
 }
 
 QSize ButtonDelegate::sizeHint(const QStyleOptionViewItem &option,

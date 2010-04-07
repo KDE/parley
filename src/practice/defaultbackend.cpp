@@ -24,9 +24,9 @@ DefaultBackend::DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, 
     : QObject(parent)
     , m_frontend(frontend)
     , m_options(options)
+    , m_current(0)
     , m_testEntryManager(testEntryManager)
     , m_currentMode(AbstractFrontend::None)
-    , m_current(0)
     , m_mode(0)
 {
     Q_UNUSED(doc)
