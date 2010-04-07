@@ -51,13 +51,13 @@ public:
     bool isDefault();
 
 private slots:
-    void fromLanguageSelected(int identifierFromIndex);
+    void languagesSelected(int identifierFromIndex);
 
 private:
     void setupTenses();
 
     KEduVocDocument* m_doc;
-    bool m_bilingual;
+    int m_initalLanguageRow;
 };
 
 #endif

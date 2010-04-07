@@ -43,34 +43,56 @@
  */
 ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget * parent)
     : QWidget(parent)
+    , m_doc(doc)
+    , m_initalLanguageRow(0)
 {
-    m_doc = doc;
-    m_bilingual = true;
-
     setupUi(this);
 
-    for ( int i = 0; i < m_doc->identifierCount(); i++ ) {
-        LanguageSettings currentSettings(m_doc->identifier(i).locale());
-        currentSettings.readConfig();
-        QString icon = currentSettings.icon();
-        if (icon.isEmpty()) {
-            icon = QString("set-language");
+    kDebug() << "readQ" << Prefs::questionLanguage();
+    kDebug() << "readS" << Prefs::solutionLanguage();
+    
+
+    const int totalNumLanguages = m_doc->identifierCount();
+    for ( int i = 0; i < totalNumLanguages-1; i++ ) {
+        for (int j = i+1; j < totalNumLanguages; j++) {
+            LanguageSettings currentSettings(m_doc->identifier(i).locale());
+            currentSettings.readConfig();
+            QListWidgetItem* item = new QListWidgetItem(
+                i18nc("pair of two languages that the user chooses to practice", "%1 to %2",
+                m_doc->identifier(i).name(), m_doc->identifier(j).name()));
+            item->setData(Qt::UserRole, i);
+            item->setData(Qt::UserRole+1, j);
+            LanguageList->addItem(item);
+            if (i == Prefs::questionLanguage() && j == Prefs::solutionLanguage()) {
+                LanguageList->setCurrentItem(item);
+            }
+            
+            QListWidgetItem* item2 = new QListWidgetItem(
+                i18nc("pair of two languages that the user chooses to practice", "%1 to %2",
+                m_doc->identifier(j).name(), m_doc->identifier(i).name()));
+            item2->setData(Qt::UserRole, j);
+            item2->setData(Qt::UserRole+1, i);
+            LanguageList->addItem(item2);
+
+            if (j == Prefs::questionLanguage() && i == Prefs::solutionLanguage()) {
+                LanguageList->setCurrentItem(item);
+            }
         }
-        LanguageFromList->addItem( new QListWidgetItem( KIcon(icon), m_doc->identifier(i).name() ) );
     }
+    connect(LanguageList, SIGNAL(currentRowChanged(int)), SLOT(languagesSelected(int)));
 
-    connect(LanguageFromList, SIGNAL(currentRowChanged(int)), SLOT(fromLanguageSelected(int)));
-    LanguageFromList->setCurrentRow(Prefs::questionLanguage());
-
+    LanguageList->sortItems();
     setupTenses();
 }
 
-
 void ConfigurePracticeWidget::updateSettings()
 {
-    Prefs::setQuestionLanguage(LanguageFromList->currentRow());
-    Prefs::setSolutionLanguage(LanguageToList->currentItem()->data(Qt::UserRole).toInt());
-
+    Prefs::setQuestionLanguage(LanguageList->currentItem()->data(Qt::UserRole).toInt());
+    Prefs::setSolutionLanguage(LanguageList->currentItem()->data(Qt::UserRole+1).toInt());
+    
+    kDebug() << "setQ" << LanguageList->currentItem()->data(Qt::UserRole).toInt();
+    kDebug() << "setS" << LanguageList->currentItem()->data(Qt::UserRole+1).toInt();
+    
     QTreeWidgetItem* parentItem = tenseSelectionTreeWidget->invisibleRootItem();
     QStringList activeTenses;
     for ( int i = 0; i < parentItem->childCount(); i++ ) {
@@ -85,63 +107,34 @@ void ConfigurePracticeWidget::updateSettings()
     documentSettings.writeConfig();
 }
 
-void ConfigurePracticeWidget::fromLanguageSelected(int identifierFromIndex)
+void ConfigurePracticeWidget::languagesSelected(int identifierFromIndex)
 {
-    LanguageToList->clear();
-    for ( int i = 0; i < m_doc->identifierCount(); i++ ) {
-        if ( i != identifierFromIndex ) {
-
-            LanguageSettings currentSettings(m_doc->identifier(i).locale());
-            currentSettings.readConfig();
-            QString icon = currentSettings.icon();
-            if (icon.isEmpty()) {
-                icon = QString("set-language");
-            }
-            LanguageToList->addItem( new QListWidgetItem( KIcon(icon), m_doc->identifier(i).name() ) );
-
-            LanguageToList->item(LanguageToList->count()-1)->setData(Qt::UserRole, i);
-            if ( i == Prefs::solutionLanguage() ) {
-                LanguageToList->setCurrentRow(i);
-            }
-        }
-    }
-    if ( LanguageToList->currentRow() < 0 ) {
-        LanguageToList->setCurrentRow(0);
-    }
+    // TODO kcfg dialog changed
     setupTenses();
 }
 
 void ConfigurePracticeWidget::updateWidgets()
 {
-    LanguageFromList->setCurrentRow(Prefs::questionLanguage());
 }
 
 bool ConfigurePracticeWidget::hasChanged()
 {
-    int toRow = LanguageToList->currentRow();
-    if ( toRow <= LanguageFromList->currentRow() ) {
-        toRow++;
+    if (LanguageList->currentRow() != m_initalLanguageRow) {
+        return true;
     }
-    if (LanguageFromList->currentRow() == Prefs::questionLanguage() &&
-        toRow == Prefs::solutionLanguage())
-        return false;
 
-    return true;
-
-        /// @todo tenses
+    return false;
+    // @todo tenses
 }
 
 bool ConfigurePracticeWidget::isDefault()
 {
-    ///@todo language selection and tenses
     return true;
-//         LanguageFromList->currentRow() == 0 &&
-//         LanguageToList->currentRow() == 1;
 }
 
 void ConfigurePracticeWidget::setupTenses()
 {
-    int index = LanguageFromList->currentRow();
+    int index = LanguageList->currentItem()->data(Qt::UserRole+1).toInt();
     if (index < 0) {
         index = 0;
     }

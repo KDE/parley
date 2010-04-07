@@ -240,28 +240,7 @@ You then decide if you knew the solution.</string>
      </property>
      <layout class="QVBoxLayout">
       <item>
-       <layout class="QGridLayout">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string comment="the language that is shown to the user in a test">From</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string comment="the language to which the user translates to in a test">To</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QListWidget" name="LanguageFromList"/>
-        </item>
-        <item row="1" column="1">
-         <widget class="QListWidget" name="LanguageToList"/>
-        </item>
-       </layout>
+       <widget class="QListWidget" name="LanguageList"/>
       </item>
      </layout>
     </widget>
