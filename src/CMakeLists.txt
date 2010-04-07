@@ -237,6 +237,7 @@ install( FILES parley.knsrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
 # UI files - define menus and toolbars
 install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES editor/editorui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
+install( FILES welcomescreen/welcomescreenui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES statistics/statisticsui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES practice/practiceui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES practice/practicesummaryui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
