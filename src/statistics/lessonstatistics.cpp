@@ -97,7 +97,7 @@ LessonStatisticsView::LessonStatisticsView(QWidget * parent) :ContainerView(pare
     addAction(removeGradesAction);
 }
 
-void LessonStatisticsView::setModel(ContainerModel *model)
+void LessonStatisticsView::setModel(Editor::ContainerModel *model)
 {
     ContainerView::setModel(model);
 

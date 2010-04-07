@@ -42,6 +42,8 @@ protected:
     virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 
 private:
+    virtual void setSourceModel(QAbstractItemModel *model) { Q_UNUSED(model) }
+
     VocabularyModel * m_model;
     QString m_filterString;
 };

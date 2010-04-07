@@ -41,7 +41,7 @@ LessonView::LessonView(EditorWindow * parent) :ContainerView(parent)
     parent->actionCollection()->addAction("rename_lesson", actionRenameLesson);
     actionRenameLesson->setText(i18n("Rename Lesson"));
     actionRenameLesson->setIcon(KIcon("edit-rename"));
-    actionRenameLesson->setWhatsThis(i18n("Rename the selected lesson"));
+//    actionRenameLesson->setWhatsThis(i18n("Rename the selected lesson"));
     actionRenameLesson->setToolTip(actionRenameLesson->whatsThis());
     actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
 

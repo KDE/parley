@@ -57,6 +57,9 @@ signals:
 protected:
     /** The KVTContainerModel for this view. */
     ContainerModel *m_model;
+
+private:
+    virtual void setModel(QAbstractItemModel *model) { Q_UNUSED(model) }
 };
 
 }

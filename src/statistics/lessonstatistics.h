@@ -18,10 +18,6 @@
 
 #include "vocabulary/containerview.h"
 
-namespace Editor {
-    class ContainerModel;
-}
-
 /**
  * View for the lesson list.
  * @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
@@ -36,6 +32,9 @@ public:
 
 private Q_SLOTS:
     void removeGrades();
+
+private:
+    virtual void setModel(QAbstractItemModel *model) { Q_UNUSED(model) }
 };
 
 #endif
