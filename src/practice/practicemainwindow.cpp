@@ -43,7 +43,7 @@ PracticeMainWindow::PracticeMainWindow(TestEntryManager* testEntryManager, Parle
 
     initActions();
 
-    connect(this, SIGNAL(enterPressed()), m_guiFrontend, SIGNAL(signalContinueButton()));
+    connect(this, SIGNAL(enterPressed()), m_guiFrontend, SIGNAL(continueAction()));
     connect(m_backend, SIGNAL(practiceFinished()), this, SIGNAL(stopPractice()));
     
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());

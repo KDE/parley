@@ -78,7 +78,7 @@ public Q_SLOTS:
     virtual void setBoxes(int currentBox, int lastBox = -1) = 0;
 
 Q_SIGNALS:
-    void signalContinueButton();
+    void continueAction();
     void hintAction();
     void skipAction();
     /** request to stop practicing */

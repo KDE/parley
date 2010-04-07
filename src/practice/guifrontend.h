@@ -70,7 +70,6 @@ public Q_SLOTS:
 
 private Q_SLOTS:
     void resultToggleClicked();
-    void continueAction();
     void countAsCorrectButtonClicked();
     void countAsWrongButtonClicked();
    

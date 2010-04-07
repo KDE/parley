@@ -124,7 +124,7 @@ void DefaultBackend::initializePracticeMode(AbstractFrontend::Mode mode)
     connect(m_mode, SIGNAL(currentEntryFinished()), this, SLOT(removeCurrentEntryFromPractice()));
     connect(m_mode, SIGNAL(nextEntry()), this, SLOT(nextEntry()));
     
-    connect(m_frontend, SIGNAL(signalContinueButton()), m_mode, SLOT(continueAction()));
+    connect(m_frontend, SIGNAL(continueAction()), m_mode, SLOT(continueAction()));
     connect(m_frontend, SIGNAL(hintAction()), m_mode, SLOT(hintAction()));
 }
 

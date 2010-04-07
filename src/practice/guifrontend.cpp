@@ -35,7 +35,7 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     palette.setColor(QPalette::Window, Qt::white);
     m_ui->centralPracticeWidget->setPalette(palette);
 
-    connect(m_ui->continueButton, SIGNAL(clicked()), this, SIGNAL(signalContinueButton()));
+    connect(m_ui->continueButton, SIGNAL(clicked()), this, SIGNAL(continueAction()));
     connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SIGNAL(skipAction()));
     connect(m_ui->hintButton, SIGNAL(clicked()), this, SIGNAL(hintAction()));
     connect(m_ui->toggleButton, SIGNAL(clicked()), this, SLOT(resultToggleClicked()));
@@ -86,7 +86,7 @@ void GuiFrontend::setMode(Mode mode)
         m_ui->centralPracticeWidget->layout()->addWidget(newWidget);
         delete m_modeWidget;
         m_modeWidget = newWidget;
-        connect(m_modeWidget, SIGNAL(continueAction()), this, SLOT(continueAction()));
+        connect(m_modeWidget, SIGNAL(continueAction()), m_ui->continueButton, SLOT(animateClick()));
     }
     m_ui->buttonStack->setCurrentIndex(0);
 }
@@ -224,23 +224,16 @@ AbstractFrontend::ResultState GuiFrontend::resultState()
     return m_resultState;
 }
 
-
-void GuiFrontend::continueAction()
-{
-    // animateClick emits the pushed signal
-    m_ui->continueButton->animateClick();
-}
-
 void GuiFrontend::countAsCorrectButtonClicked()
 {
     setResultState(AnswerCorrect);
-    continueAction();
+    emit continueAction();
 }
 
 void GuiFrontend::countAsWrongButtonClicked()
 {
     setResultState(AnswerWrong);
-    continueAction();
+    emit continueAction();
 }
 
 void GuiFrontend::resultToggleClicked()
