@@ -152,7 +152,6 @@ public slots:
     void showDocumentActions(bool open, bool edit);
 
 signals:
-    void documentChanged();
     void recentFilesChanged();
     void preferencesChanged();
     

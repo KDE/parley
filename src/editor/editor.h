@@ -38,6 +38,7 @@ namespace Editor {
     class WordTypeModel;
     class LeitnerModel;
     class ConjugationWidget;
+    class ComparisonWidget;
     class SummaryWordWidget;
 
 class EditorWindow : public KXmlGuiWindow
@@ -97,7 +98,7 @@ public slots:
     /**
      * Set the current doc (after creating a new one or opening a file)
      */
-    void updateDocument();
+    void updateDocument(KEduVocDocument *doc);
     
 private slots:
     
@@ -122,6 +123,7 @@ private:
     /** Show a single conjugation and let the user edit it */
     ConjugationWidget *m_conjugationWidget;
     SummaryWordWidget *m_summaryWordWidget;
+    ComparisonWidget *m_comparisonWidget;
 
     /// dock widgets to display lessons, word types, ...
     LessonView *m_lessonView;

@@ -80,7 +80,7 @@ EditorWindow::EditorWindow(ParleyMainWindow* parent)
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
 
-    connect(parent, SIGNAL(documentChanged()), this, SLOT(updateDocument()));
+    connect(parent->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), this, SLOT(updateDocument(KEduVocDocument*)));
     connect(parent->parleyDocument(), SIGNAL(languagesChanged()), this, SLOT(slotLanguagesChanged()));
     connect(parent->parleyDocument(), SIGNAL(statesNeedSaving()), this, SLOT(saveState()));
     connect(parent, SIGNAL(preferencesChanged()), this, SLOT(applyPrefs()));
@@ -93,14 +93,17 @@ EditorWindow::~EditorWindow()
     saveMainWindowSettings(cfg);
 }
 
-void EditorWindow::updateDocument()
+void EditorWindow::updateDocument(KEduVocDocument *doc)
 {
-///@todo we can use connect here
-    m_vocabularyView->setDocument(m_mainWindow->parleyDocument()->document());
-    m_vocabularyModel->setDocument(m_mainWindow->parleyDocument()->document());
+    m_vocabularyView->setDocument(doc);
+    m_vocabularyModel->setDocument(doc);
 
-    m_lessonModel->setDocument(m_mainWindow->parleyDocument()->document());
-    m_wordTypeModel->setDocument(m_mainWindow->parleyDocument()->document());
+    m_lessonModel->setDocument(doc);
+    m_wordTypeModel->setDocument(doc);
+
+    m_summaryWordWidget->slotDocumentChanged(doc);
+    m_conjugationWidget->setDocument(doc);
+    m_comparisonWidget->setDocument(doc);
 
     if (!m_mainWindow->parleyDocument()->document()) {
         return;
@@ -111,8 +114,7 @@ void EditorWindow::updateDocument()
     m_wordTypeView->expandToDepth(0);
 
     connect(m_mainWindow->parleyDocument()->document(), SIGNAL(docModified(bool)), m_mainWindow, SLOT(slotUpdateWindowCaption()));
-    connect(m_vocabularyModel, SIGNAL(documentChanged(KEduVocDocument*)),
-            m_summaryWordWidget, SLOT(slotDocumentChanged(KEduVocDocument *)));
+
     connect(m_vocabularyView->selectionModel(), 
                 SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
             m_summaryWordWidget, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
@@ -194,8 +196,6 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(conjugationDock);
     conjugationDock->setVisible(false);
     actionCollection()->addAction("show_conjugation_dock", conjugationDock->toggleViewAction());
-    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)),
-        m_conjugationWidget, SLOT(setDocument(KEduVocDocument*)));
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         m_conjugationWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
@@ -216,15 +216,14 @@ void EditorWindow::initDockWidgets()
 // Comparison forms
     QDockWidget *comparisonDock = new QDockWidget(i18n("Comparison forms"), this);
     comparisonDock->setObjectName("ComparisonDock");
-    ComparisonWidget *comparisonWidget = new ComparisonWidget(this);
-    comparisonDock->setWidget(comparisonWidget);
+    m_comparisonWidget = new ComparisonWidget(this);
+    comparisonDock->setWidget(m_comparisonWidget);
     addDockWidget(Qt::RightDockWidgetArea, comparisonDock);
     m_dockWidgets.append(comparisonDock);
     actionCollection()->addAction("show_comparison_dock", comparisonDock->toggleViewAction());
     comparisonDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-        comparisonWidget, SLOT(setTranslation(KEduVocExpression*, int)));
-    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), comparisonWidget, SLOT(setDocument(KEduVocDocument*)));
+        m_comparisonWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Multiple choice
     QDockWidget *multipleChoiceDock = new QDockWidget(i18n("Multiple Choice"), this);
@@ -305,8 +304,6 @@ void EditorWindow::initDockWidgets()
     actionCollection()->addAction("show_summary_dock", summaryDock->toggleViewAction());
     summaryDock->setVisible(false);
     m_dockWidgets.append(summaryDock);
-    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument *)),
-            m_summaryWordWidget, SLOT(slotDocumentChanged(KEduVocDocument *)));
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
             m_summaryWordWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
@@ -366,8 +363,8 @@ void EditorWindow::initModel()
     m_vocabularyFilter->setSourceModel(m_vocabularyModel);
     m_vocabularyView->setModel(m_vocabularyFilter);
 
-    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyModel, SLOT(setDocument(KEduVocDocument*)));
-    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(setDocument(KEduVocDocument*)));
+//    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyModel, SLOT(setDocument(KEduVocDocument*)));
+//    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(setDocument(KEduVocDocument*)));
     connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_vocabularyFilter, SLOT(setSearchString(const QString&)));
 }
 

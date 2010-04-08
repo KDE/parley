@@ -159,7 +159,6 @@ void ParleyMainWindow::slotCloseDocument()
         return;
     }
     m_document->close();
-    emit documentChanged();
     showWelcomeScreen();
 }
 
@@ -306,7 +305,7 @@ void ParleyMainWindow::switchComponent(Component component)
             EditorWindow *editor = new EditorWindow(this);
             m_currentComponentWindow = editor;
             showDocumentActions(true, true);
-            editor->updateDocument();
+            editor->updateDocument(m_document->document());
             break;
         }
         case PracticeComponent: {

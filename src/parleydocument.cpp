@@ -135,8 +135,6 @@ void ParleyDocument::newDocument(bool wizard)
     close();
     m_doc = newDoc;
     
-    //m_parleyApp->editor()->updateDocument();
-    
     emit documentChanged(m_doc);
     enableAutoBackup(Prefs::autoBackup());
     
