@@ -406,7 +406,7 @@ void EditorWindow::initView()
     layout->addWidget(m_searchLine);
 
 ///@todo     centralWidget()-> delete layout
-    QVBoxLayout * rightLayout = new QVBoxLayout(mainWidget);
+    QVBoxLayout * rightLayout = new QVBoxLayout();
     rightLayout->setSpacing(KDialog::spacingHint());
     rightLayout->setMargin(0);
     rightLayout->addWidget(m_searchWidget);
