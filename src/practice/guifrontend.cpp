@@ -193,10 +193,10 @@ void GuiFrontend::setFeedback(const QVariant& feedback)
     m_modeWidget->setFeedback(feedback);
 }
 
-void GuiFrontend::setFeedbackState(ResultState resultState)
+void GuiFrontend::setFeedbackState(ResultState feedbackState)
 {
-    m_resultState = resultState;
-    m_modeWidget->setFeedbackState(resultState);
+    m_feedbackState = feedbackState;
+    m_modeWidget->setFeedbackState(feedbackState);
 }
 
 void GuiFrontend::setResultState(ResultState resultState)

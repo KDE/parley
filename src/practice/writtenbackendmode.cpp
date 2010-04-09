@@ -60,8 +60,6 @@ void WrittenBackendMode::continueAction()
 
 void WrittenBackendMode::checkAnswer()
 {
-    // TODO clean up this mess
-
     QString answer = m_frontend->userInput().toString();
     
     switch(m_state) {
@@ -117,9 +115,12 @@ void WrittenBackendMode::hintAction()
         // show solution
         m_frontend->setFeedback(i18n("You revealed the answer by using too many hints."));
         m_frontend->setResultState(AbstractFrontend::AnswerWrong);
-        m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
+        if (m_frontend->userInput().toString() == m_current->entry()->translation(m_practiceOptions.languageTo())->text()) {
+            m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
+        } else {
+            m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
+        }
         m_frontend->showSolution();
-        m_current->incBadCount();
         m_state = SolutionShown;
     } else {
         m_frontend->setHint(i18n("The solution starts with: %1", m_currentHint));
