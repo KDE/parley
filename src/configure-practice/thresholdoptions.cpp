@@ -24,7 +24,7 @@
 
 #include "thresholdoptions.h"
 
-#include "practiceold/testentrymanager.h"
+#include "practice/testentrymanager.h"
 #include "prefs.h"
 
 #include <keduvocdocument.h>

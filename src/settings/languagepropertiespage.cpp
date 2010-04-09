@@ -18,7 +18,7 @@
 #include <kinputdialog.h>
 #include <kmessagebox.h>
 
-#include "practiceold/testentrymanager.h"
+#include "practice/testentrymanager.h"
 #include <keduvocdocument.h>
 #include <keduvoclesson.h>
 

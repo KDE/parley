@@ -20,7 +20,7 @@
 #include "multiplechoicebackendmode.h"
 #include "flashcardbackendmode.h"
 
-#include "practiceold/testentrymanager.h"
+#include "practice/testentrymanager.h"
 #include "practiceold/testentry.h"
 #include "practiceoptions.h"
 
