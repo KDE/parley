@@ -58,7 +58,7 @@ public:
     void setLastPercentage(double percent);
     double lastPercentage();
 
-    void addUserAnswer(const QString& answer) { m_userAnswers.append(answer); }
+    void addUserAnswer(const QString& answer) { if (!answer.isEmpty()) m_userAnswers.append(answer); }
     QStringList userAnswers() { return m_userAnswers; }
 
     int totalEntries();
