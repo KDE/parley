@@ -77,11 +77,11 @@ void SummaryBarWidget::setStatistics(int correct, int wrong, int notAnswered)
     m_notAnswered = notAnswered;
     m_total = m_correct + m_wrong + m_notAnswered;
 
-    m_correctCaption->setText(i18nc("test results", "%1 % correct", m_correct*100/m_total));
+    m_correctCaption->setText(i18nc("test results", "%1 % correct", qRound(m_correct*100/m_total)));
     m_correctCaption->setToolTip(correctText());
-    m_wrongCaption->setText(i18nc("test results", "%1 % wrong", m_wrong*100/m_total));
+    m_wrongCaption->setText(i18nc("test results", "%1 % wrong", qRound(m_wrong*100/m_total)));
     m_wrongCaption->setToolTip(wrongText());
-    m_notAnsweredCaption->setText(i18nc("test results", "%1 % not answered", m_notAnswered*100/m_total));
+    m_notAnsweredCaption->setText(i18nc("test results", "%1 % not answered", qRound(m_notAnswered*100/m_total)));
     m_notAnsweredCaption->setToolTip(notAnsweredText());
 
     update();
@@ -140,21 +140,21 @@ QString SummaryBarWidget::correctText()
 {
     if (!m_total)
         return QString();
-    return i18n("Answered correctly on the first attempt: %1 of %2 (%3 %)", m_correct, m_total, m_correct*100/m_total);
+    return i18n("Answered correctly on the first attempt: %1 of %2 (%3 %)", m_correct, m_total, qRound(m_correct*100/m_total));
 }
 
 QString SummaryBarWidget::wrongText()
 {
     if (!m_total)
         return QString();
-    return i18n("Answered wrong on the first attempt: %1 of %2 (%3 %)", m_wrong, m_total, m_wrong*100/m_total);
+    return i18n("Answered wrong on the first attempt: %1 of %2 (%3 %)", m_wrong, m_total, qRound(m_wrong*100/m_total));
 }
 
 QString SummaryBarWidget::notAnsweredText()
 {
     if (!m_total)
         return QString();
-    return i18n("Not answered during this practice: %1 of %2 (%3 %)", m_notAnswered, m_total, m_notAnswered*100/m_total);
+    return i18n("Not answered during this practice: %1 of %2 (%3 %)", m_notAnswered, m_total, qRound(m_notAnswered*100/m_total));
 }
 
 QPixmap SummaryBarWidget::captionPixmap(QColor color)
