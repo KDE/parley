@@ -92,7 +92,7 @@ void PracticeSummaryComponent::setupDetailsTable()
         itemUserAnswer->setForeground(wrongPalette.foreground());
 
         QTableWidgetItem* itemAttempts = new QTableWidgetItem(
-                QString::number(entry->statisticBadCount()));
+                entry->statisticCount() == 0 ? "-" : QString::number(entry->statisticBadCount()));
 
         itemFrom->setFlags(flags);
         itemTo->setFlags(flags);
