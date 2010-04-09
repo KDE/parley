@@ -114,16 +114,6 @@
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="QCheckBox" name="kcfg_SwapDirection">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>S&amp;wap direction randomly</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
          <widget class="QCheckBox" name="kcfg_TestOrderLesson">
           <property name="toolTip">
            <string>When practicing, new words will be chosen loosely in lesson order if this is selected.  Otherwise, they will be chosen completely at random.</string>
@@ -133,7 +123,7 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="1">
+        <item row="5" column="0">
          <widget class="QCheckBox" name="kcfg_ShowHints">
           <property name="text">
            <string>Enable Hints</string>
@@ -400,7 +390,6 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>kcfg_SwapDirection</tabstop>
   <tabstop>kcfg_AltLearn</tabstop>
   <tabstop>kcfg_ShowMore</tabstop>
   <tabstop>kcfg_SkipKnownEnabled</tabstop>
