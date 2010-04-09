@@ -41,6 +41,8 @@ private:
     KRandomSequence m_randomSequence;
     int m_numberOfChoices;
     MultipleChoiceData m_data;
+    QList<int> m_hints;
+
 };
 
 }

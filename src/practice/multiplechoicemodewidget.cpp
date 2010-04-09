@@ -68,6 +68,8 @@ void MultiplechoiceModeWidget::showQuestion()
     m_choiceButtons[0]->setChecked(false);
     m_choiceButtons[0]->setAutoExclusive(true);
 
+    m_ui->feedbackLabel->clear();
+
     foreach(QRadioButton *radio, m_choiceButtons) {
         radio->setPalette(QApplication::palette());
         radio->setEnabled(true);
@@ -78,7 +80,7 @@ void MultiplechoiceModeWidget::setNumberOfRadioButtons(const int numberOfChoices
 {
     for (int i=0;i<numberOfChoices;i++){
         QRadioButton *radio_button = new QRadioButton(this);
-        m_ui->verticalLayout->addWidget(radio_button);
+        m_ui->verticalLayout->insertWidget(m_ui->verticalLayout->count()-1, radio_button);
         m_choiceButtons.append(radio_button);
     }
 }
@@ -86,6 +88,16 @@ void MultiplechoiceModeWidget::setNumberOfRadioButtons(const int numberOfChoices
 void MultiplechoiceModeWidget::setSolution(const QVariant& solution)
 {
     m_solution = solution.toInt();
+}
+
+void MultiplechoiceModeWidget::setHint(const QVariant& hint)
+{
+    m_choiceButtons.at(hint.toInt())->setEnabled(false);
+}
+
+void MultiplechoiceModeWidget::setFeedback(const QVariant& feedback)
+{
+    m_ui->feedbackLabel->setText(feedback.toString());
 }
 
 void MultiplechoiceModeWidget::showSolution()

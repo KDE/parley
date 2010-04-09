@@ -15,6 +15,8 @@
 #include "multiplechoicebackendmode.h"
 #include "defaultbackend.h"
 
+#include <klocale.h>
+
 using namespace Practice;
  
 
@@ -29,6 +31,7 @@ MultipleChoiceBackendMode::MultipleChoiceBackendMode(const PracticeOptions& prac
 void MultipleChoiceBackendMode::setTestEntry(TestEntry* current)
 {
     m_current = current;
+    m_hints.clear();
     
     m_data = MultipleChoiceData();
     m_data.question = m_current->entry()->translation(m_practiceOptions.languageFrom())->text();
@@ -71,8 +74,22 @@ void MultipleChoiceBackendMode::continueAction()
 
 void MultipleChoiceBackendMode::hintAction()
 {
-    // TODO: get rid of this or make it do something useful
-    m_frontend->setHint("This is a hint.");
+    if (m_data.choices.count() - m_hints.count() <= 2) {
+        // show solution
+        m_frontend->setFeedback(i18n("You revealed the answer by using too many hints."));
+        m_frontend->setResultState(AbstractFrontend::AnswerWrong);
+        m_frontend->showSolution();
+        m_solutionVisible = true;
+        return;
+    }
+
+    KRandomSequence randomSequence;
+    int hint = -1;
+    do {
+        hint = randomSequence.getLong(m_data.choices.count());
+    } while(hint == m_correctAnswer || m_hints.contains(hint));
+    m_hints.append(hint);
+    m_frontend->setHint(QVariant(hint));
 }
 
 #include "multiplechoicebackendmode.moc"

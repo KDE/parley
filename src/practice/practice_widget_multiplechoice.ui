@@ -45,6 +45,13 @@
      </property>
     </spacer>
    </item>
+   <item>
+    <widget class="QLabel" name="feedbackLabel">
+     <property name="text">
+      <string>Feedback</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>
