@@ -27,6 +27,7 @@ FlashCardBackendMode::FlashCardBackendMode(const PracticeOptions& practiceOption
 void FlashCardBackendMode::setTestEntry(TestEntry* current)
 {
     Practice::AbstractBackendMode::setTestEntry(current);
+    m_current = current;
     m_solutionVisible = false;
     m_frontend->showQuestion();
 }
@@ -36,7 +37,10 @@ void FlashCardBackendMode::continueAction()
     if (m_solutionVisible) {        
         if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
             emit currentEntryFinished();
-        }        
+            m_current->incGoodCount();
+        } else {
+            m_current->incBadCount();
+        }
         emit nextEntry();
         return;
     }
