@@ -70,6 +70,7 @@ void MultiplechoiceModeWidget::showQuestion()
 
     foreach(QRadioButton *radio, m_choiceButtons) {
         radio->setPalette(QApplication::palette());
+        radio->setEnabled(true);
     }
 }
 
@@ -93,6 +94,9 @@ void MultiplechoiceModeWidget::showSolution()
     m_choiceButtons[m_solution]->setPalette(m_correctPalette);
     if (input != m_solution) {
         m_choiceButtons[input]->setPalette(m_wrongPalette);
+    }
+    foreach(QRadioButton *radio, m_choiceButtons) {
+        radio->setEnabled(false);
     }
 }
 
