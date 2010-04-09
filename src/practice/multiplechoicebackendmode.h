@@ -16,7 +16,8 @@
 #define MULTIPLECHOICEBACKENDMODE_H
 
 #include "abstractbackendmode.h"
-#include <practice/testentrymanager.h>
+#include "multiplechoicedata.h"
+#include "practice/testentrymanager.h"
 
 namespace Practice {
 
@@ -39,6 +40,7 @@ private:
     int m_correctAnswer;
     KRandomSequence m_randomSequence;
     int m_numberOfChoices;
+    MultipleChoiceData m_data;
 };
 
 }

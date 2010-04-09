@@ -13,7 +13,6 @@
 
 
 #include "multiplechoicebackendmode.h"
-#include "multiplechoicedata.h"
 #include "defaultbackend.h"
 
 using namespace Practice;
@@ -31,13 +30,13 @@ void MultipleChoiceBackendMode::setTestEntry(TestEntry* current)
 {
     m_current = current;
     
-    MultipleChoiceData data;
-    data.question = m_current->entry()->translation(m_practiceOptions.languageFrom())->text();
-    data.choices = m_testEntryManager->randomMultipleChoiceAnswers(m_numberOfChoices-1);
+    m_data = MultipleChoiceData();
+    m_data.question = m_current->entry()->translation(m_practiceOptions.languageFrom())->text();
+    m_data.choices = m_testEntryManager->randomMultipleChoiceAnswers(m_numberOfChoices-1);
     m_correctAnswer = m_randomSequence.getLong(m_numberOfChoices);
-    data.choices.insert(m_correctAnswer, m_current->entry()->translation(m_practiceOptions.languageTo())->text());
+    m_data.choices.insert(m_correctAnswer, m_current->entry()->translation(m_practiceOptions.languageTo())->text());
 
-    m_frontend->setQuestion(qVariantFromValue<MultipleChoiceData>(data));
+    m_frontend->setQuestion(qVariantFromValue<MultipleChoiceData>(m_data));
     m_frontend->setSolution(m_correctAnswer);
     m_frontend->setQuestionSound(m_current->entry()->translation(m_practiceOptions.languageFrom())->soundUrl());
     m_frontend->setSolutionSound(m_current->entry()->translation(m_practiceOptions.languageTo())->soundUrl());
@@ -52,8 +51,11 @@ void MultipleChoiceBackendMode::continueAction()
 {
     if (m_solutionVisible) {
         if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
+            m_current->incGoodCount();
             emit currentEntryFinished();
-        }        
+        } else {
+            m_current->incBadCount();
+        }
         emit nextEntry();
         return;
     }
@@ -61,6 +63,7 @@ void MultipleChoiceBackendMode::continueAction()
         m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
     } else {
         m_frontend->setResultState(AbstractFrontend::AnswerWrong);
+        m_current->addUserAnswer(m_data.choices.at(m_frontend->userInput().toInt()));
     }
     m_frontend->showSolution();
     m_solutionVisible = true;
