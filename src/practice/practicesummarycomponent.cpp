@@ -83,7 +83,7 @@ void PracticeSummaryComponent::setupDetailsTable()
                 entry->entry()->translation(TestEntry::gradeFrom())->text());
         QTableWidgetItem* itemTo = new QTableWidgetItem(
                 entry->entry()->translation(TestEntry::gradeTo())->text());
-        if (entry->statisticCorrectAtFirstAttempt()) {
+        if (entry->statisticGoodCount() > 0) {
             itemTo->setForeground(correctPalette.foreground());
         }
 

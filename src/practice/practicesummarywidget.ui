@@ -40,7 +40,7 @@
      </column>
      <column>
       <property name="text">
-       <string>Attempts</string>
+       <string>Wrong Attempts</string>
       </property>
      </column>
     </widget>
