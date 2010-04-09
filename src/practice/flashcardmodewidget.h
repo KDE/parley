@@ -34,7 +34,7 @@ public:
     
     virtual void setQuestion(const QVariant& question);
     virtual void setSolution(const QVariant& solution);
-    virtual void setHint(const QVariant& hint) {Q_UNUSED(hint);}
+    virtual void setHint(const QVariant& hint);
     virtual void setFeedback(const QVariant& feedback) {Q_UNUSED(feedback);}
     virtual void setFeedbackState(AbstractFrontend::ResultState feedbackState) {Q_UNUSED(feedbackState);}
     virtual void setResultState(AbstractFrontend::ResultState resultState) {Q_UNUSED(resultState);}
@@ -50,6 +50,7 @@ public Q_SLOTS:
     
 private:
     Ui::FlashCardPracticeWidget* m_ui;
+    QString m_solution;
 };
 
 }

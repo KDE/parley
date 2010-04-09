@@ -35,6 +35,7 @@ public Q_SLOTS:
 private:
     bool m_solutionVisible;
     TestEntry *m_current;
+    QString m_currentHint;
 };
 
 }

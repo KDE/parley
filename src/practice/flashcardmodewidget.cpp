@@ -40,13 +40,20 @@ void FlashCardModeWidget::showQuestion()
 
 void FlashCardModeWidget::setSolution(const QVariant& solution)
 {
-    m_ui->solutionLabel->setText(solution.toString());
+    m_solution = solution.toString();
 }
 
 void FlashCardModeWidget::showSolution()
 {
     m_ui->solutionLabel->setHidden(false);
+    m_ui->solutionLabel->setText(m_solution);
     m_frontend->showSetResultButtons(true);
+}
+
+void FlashCardModeWidget::setHint(const QVariant& hint)
+{
+    m_ui->solutionLabel->setHidden(false);
+    m_ui->solutionLabel->setText(hint.toString());
 }
 
 QVariant FlashCardModeWidget::userInput()

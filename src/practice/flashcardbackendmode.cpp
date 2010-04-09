@@ -15,6 +15,8 @@
 #include "flashcardbackendmode.h"
 #include "defaultbackend.h"
 
+#include <klocale.h>
+
 using namespace Practice;
  
  
@@ -28,6 +30,7 @@ void FlashCardBackendMode::setTestEntry(TestEntry* current)
 {
     Practice::AbstractBackendMode::setTestEntry(current);
     m_current = current;
+    m_currentHint.clear();
     m_solutionVisible = false;
     m_frontend->showQuestion();
 }
@@ -44,15 +47,22 @@ void FlashCardBackendMode::continueAction()
         emit nextEntry();
         return;
     }
-    m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
+
     m_frontend->showSolution();
     m_solutionVisible = true;
 }
 
 void FlashCardBackendMode::hintAction()
 {
-    // TODO: get rid of this or make it do something useful
-    m_frontend->setHint("This is a hint.");
+    QString solution = m_current->entry()->translation(m_practiceOptions.languageTo())->text();
+    m_currentHint = solution.left(m_currentHint.size() + 1);
+    if (m_currentHint.size() == solution.size()) {
+        // show solution
+        m_frontend->showSolution();
+        m_solutionVisible = true;
+    } else {
+        m_frontend->setHint(m_currentHint);
+    }
 }
 
 #include "flashcardbackendmode.moc"
