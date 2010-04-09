@@ -16,7 +16,7 @@
      <item>
       <widget class="KButtonGroup" name="TestType">
        <property name="title">
-        <string>Type of Test</string>
+        <string>Vocabulary Training</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
@@ -64,42 +64,7 @@ You then decide if you knew the solution.</string>
            <string>Paraphrase</string>
           </property>
          </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="kcfg_GenderPractice">
-          <property name="text">
-           <string>Gender of Nouns</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="kcfg_ComparisonAdjectivePractice">
-          <property name="text">
-           <string>Comparison Forms (Adjectives)</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="kcfg_ComparisonAdverbPractice">
-          <property name="text">
-           <string>Comparison Forms (Adverbs)</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="kcfg_ConjugationPractice">
-          <property name="text">
-           <string>Conjugation</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="kcfg_SynonymAntonymPractice">
-          <property name="text">
-           <string>Synonyms and Antonyms</string>
-          </property>
-         </widget>
-        </item>
+        </item>        
         <item>
          <spacer name="verticalSpacer_2">
           <property name="orientation">
@@ -121,37 +86,44 @@ You then decide if you knew the solution.</string>
        <item>
         <widget class="QGroupBox" name="OptionsGroupBox">
          <property name="title">
-          <string>Options</string>
+          <string>Grammar Training</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
-           <widget class="QCheckBox" name="kcfg_IgnoreAccentMistakes">
+           <widget class="QCheckBox" name="kcfg_GenderPractice">
             <property name="text">
-             <string>Ignore accent mistakes</string>
+             <string>Gender of Nouns</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="kcfg_IgnoreCapitalizationMistakes">
+           <widget class="QCheckBox" name="kcfg_ComparisonAdjectivePractice">
             <property name="text">
-             <string>Ignore capitalization mistakes</string>
+             <string>Comparison Forms (Adjectives)</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="kcfg_FlashcardsFrontImage">
+           <widget class="QCheckBox" name="kcfg_ComparisonAdverbPractice">
             <property name="text">
-             <string>Show images with the question</string>
+             <string>Comparison Forms (Adverbs)</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="kcfg_FlashcardsBackImage">
+           <widget class="QCheckBox" name="kcfg_ConjugationPractice">
             <property name="text">
-             <string>Show images with the solution</string>
+             <string>Conjugation</string>
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QCheckBox" name="kcfg_SynonymAntonymPractice">
+            <property name="text">
+             <string>Synonyms and Antonyms</string>
+            </property>
+           </widget>
+          </item>          
          </layout>
         </widget>
        </item>

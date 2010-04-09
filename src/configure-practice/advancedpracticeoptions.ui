@@ -33,6 +33,34 @@
       <item>
        <layout class="QGridLayout">
         <item row="0" column="0">
+         <widget class="QCheckBox" name="kcfg_IgnoreAccentMistakes">
+          <property name="text">
+           <string>Ignore accent mistakes</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QCheckBox" name="kcfg_IgnoreCapitalizationMistakes">
+          <property name="text">
+           <string>Ignore capitalization mistakes</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QCheckBox" name="kcfg_FlashcardsFrontImage">
+          <property name="text">
+           <string>Show images with the question</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QCheckBox" name="kcfg_FlashcardsBackImage">
+          <property name="text">
+           <string>Show images with the solution</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
          <widget class="QCheckBox" name="kcfg_ShowMore">
           <property name="enabled">
            <bool>true</bool>
@@ -48,14 +76,14 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
+        <item row="2" column="1">
          <widget class="QCheckBox" name="kcfg_PracticeSoundEnabled">
           <property name="text">
            <string>Enable Sound</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
+        <item row="3" column="0">
          <widget class="QCheckBox" name="kcfg_SkipKnownEnabled">
           <property name="enabled">
            <bool>true</bool>
@@ -71,21 +99,21 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
+        <item row="3" column="1">
          <widget class="QCheckBox" name="kcfg_PracticeImagesEnabled">
           <property name="text">
            <string>Enable Images</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item row="4" column="0">
          <widget class="QCheckBox" name="kcfg_CountSynonymsAsCorrect">
           <property name="text">
            <string>Accept synonyms as correct</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
+        <item row="4" column="1">
          <widget class="QCheckBox" name="kcfg_SwapDirection">
           <property name="enabled">
            <bool>false</bool>
@@ -95,7 +123,7 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item row="5" column="0">
          <widget class="QCheckBox" name="kcfg_TestOrderLesson">
           <property name="toolTip">
            <string>When practicing, new words will be chosen loosely in lesson order if this is selected.  Otherwise, they will be chosen completely at random.</string>
@@ -105,7 +133,7 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
+        <item row="5" column="1">
          <widget class="QCheckBox" name="kcfg_ShowHints">
           <property name="text">
            <string>Enable Hints</string>
