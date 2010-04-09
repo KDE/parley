@@ -37,6 +37,9 @@ void WrittenBackendMode::setTestEntry(TestEntry* current)
 
 void WrittenBackendMode::continueAction()
 {    
+    if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
+        m_state = SolutionShown; // the user manually toggled the state, so we just count is as correct without showing the solution
+    }
     switch (m_state) {
         case NotAnswered:
         case AnswerWasWrong:
@@ -44,7 +47,10 @@ void WrittenBackendMode::continueAction()
             break;
         case SolutionShown:
             if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
+                m_current->incGoodCount();
                 emit currentEntryFinished();
+            } else {
+                m_current->incBadCount();
             }
             m_currentHint = QString();
             emit nextEntry();
@@ -64,28 +70,22 @@ void WrittenBackendMode::checkAnswer()
             if (answer == m_current->entry()->translation(m_practiceOptions.languageTo())->text()) {
                 m_frontend->setFeedback(i18n("Your answer was right on the first attempt."));
                 m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
+                m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
                 m_frontend->showSolution();
-                m_current->incGoodCount();
+
                 m_state = SolutionShown;
             } else {
-                m_current->incBadCount();
-                if (answer == m_lastAnswer) {
-                    m_frontend->setFeedback(i18n("You did not answer correctly."));
-                    m_state = SolutionShown;
-                    m_frontend->setResultState(AbstractFrontend::AnswerWrong);
-                    m_frontend->showSolution();
-                } else {
-                    m_frontend->setFeedback(i18n("Try again - I fear that was not right..."));
-                    m_state = AnswerWasWrong;
-                    m_frontend->setResultState(AbstractFrontend::AnswerWrong);
-                    m_current->addUserAnswer(answer);
-                }
+                m_frontend->setFeedback(i18n("Your answer was wrong. Please try again."));
+                m_state = AnswerWasWrong;
+                m_frontend->setResultState(AbstractFrontend::AnswerWrong);
+                m_current->addUserAnswer(answer);
             }
             break;
         case AnswerWasWrong:
             if (answer == m_current->entry()->translation(m_practiceOptions.languageTo())->text()) {
                 m_frontend->setFeedback(i18n("Your answer was right... but not on the first try."));
-                m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
+                m_frontend->setResultState(AbstractFrontend::AnswerWrong);
+                m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
                 m_frontend->showSolution();
                 m_state = SolutionShown;                
             } else {
@@ -93,6 +93,7 @@ void WrittenBackendMode::checkAnswer()
                     m_frontend->setFeedback(i18n("You did not answer correctly."));
                     m_state = SolutionShown;
                     m_frontend->setResultState(AbstractFrontend::AnswerWrong);
+                    m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
                     m_frontend->showSolution();
                 } else {
                     m_frontend->setFeedback(i18n("Your answer was wrong. Please try again."));
@@ -115,7 +116,8 @@ void WrittenBackendMode::hintAction()
     if (m_currentHint.size() == solution.size()) {
         // show solution
         m_frontend->setFeedback(i18n("You revealed the answer by using too many hints."));
-        m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
+        m_frontend->setResultState(AbstractFrontend::AnswerWrong);
+        m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
         m_frontend->showSolution();
         m_current->incBadCount();
         m_state = SolutionShown;

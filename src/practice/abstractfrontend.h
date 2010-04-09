@@ -64,6 +64,11 @@ public:
     virtual void setQuestionPronunciation(const QString& pronunciationText) = 0;
        
     virtual void setLessonName(const QString& lesson) = 0;
+    /** The feedback state tells the user if the currently entered word is correct
+        (independent of whether the word is counted as correct) **/
+    virtual void setFeedbackState(ResultState feedbackState) = 0;
+    /** The result state indicated whether a word is counted as correct (and grades are raised)
+        and can be changed by the user. **/
     virtual void setResultState(ResultState resultState) = 0;
     virtual ResultState resultState() = 0;
     

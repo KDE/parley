@@ -42,6 +42,7 @@ public:
     virtual void setSolution(const QVariant& solution);
     virtual void setHint(const QVariant& hint);
     virtual void setFeedback(const QVariant& feedback);
+    virtual void setFeedbackState(AbstractFrontend::ResultState feedbackState);
     virtual void setResultState(AbstractFrontend::ResultState resultState);
 
     virtual void setQuestionSound(const KUrl& soundUrl);
@@ -62,6 +63,7 @@ private:
     QPalette m_wrongPalette;
     QString m_solution;
     AbstractFrontend::ResultState m_resultState;
+    AbstractFrontend::ResultState m_feedbackState;
 };
 
 }

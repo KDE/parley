@@ -36,6 +36,7 @@ public:
     virtual QVariant userInput() = 0;
     virtual void setHint(const QVariant& hint) = 0;
     virtual void setFeedback(const QVariant& feedback) = 0;
+    virtual void setFeedbackState(AbstractFrontend::ResultState feedbackState) = 0;
     virtual void setResultState(AbstractFrontend::ResultState resultState) = 0;
 
     virtual void setQuestionSound(const KUrl& soundUrl) = 0;

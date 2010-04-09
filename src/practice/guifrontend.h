@@ -52,6 +52,7 @@ public:
     virtual void setHint(const QVariant& hint);
     virtual void setFeedback(const QVariant& feedback);
 
+    virtual void setFeedbackState(ResultState feedbackState);
     virtual void setResultState(ResultState resultState);
     virtual ResultState resultState();
 
@@ -78,6 +79,7 @@ private:
     Ui::PracticeMainWindow* m_ui;
     AbstractModeWidget* m_modeWidget;
     ResultState m_resultState;
+    ResultState m_feedbackState;
     KUrl m_lastImage;
 };
 

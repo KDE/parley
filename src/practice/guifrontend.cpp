@@ -193,6 +193,12 @@ void GuiFrontend::setFeedback(const QVariant& feedback)
     m_modeWidget->setFeedback(feedback);
 }
 
+void GuiFrontend::setFeedbackState(ResultState resultState)
+{
+    m_resultState = resultState;
+    m_modeWidget->setFeedbackState(resultState);
+}
+
 void GuiFrontend::setResultState(ResultState resultState)
 {
     // TODO: temporary text labels instead of graphics

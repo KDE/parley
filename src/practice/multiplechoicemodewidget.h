@@ -37,6 +37,7 @@ public:
     virtual void setSolution(const QVariant& solution);
     virtual void setHint(const QVariant& hint) {Q_UNUSED(hint);}
     virtual void setFeedback(const QVariant& feedback) {Q_UNUSED(feedback);}
+    virtual void setFeedbackState(AbstractFrontend::ResultState feedbackState) {Q_UNUSED(feedbackState);}
     virtual void setResultState(AbstractFrontend::ResultState resultState) {Q_UNUSED(resultState);}
 
     virtual void setQuestionSound(const KUrl& soundUrl);

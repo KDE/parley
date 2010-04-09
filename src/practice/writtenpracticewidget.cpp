@@ -81,7 +81,7 @@ void WrittenPracticeWidget::showSolution()
 {
     m_ui->solutionLabel->setText(m_solution);
     m_ui->answerEdit->setEnabled(false);
-    if (m_resultState == AbstractFrontend::AnswerCorrect) {
+    if (m_feedbackState == AbstractFrontend::AnswerCorrect) {
         m_ui->answerEdit->setPalette(m_correctPalette);
     } else {
         m_ui->answerEdit->setPalette(m_wrongPalette);
@@ -100,6 +100,11 @@ void WrittenPracticeWidget::setHint(const QVariant& hint)
 void WrittenPracticeWidget::setFeedback(const QVariant& feedback)
 {
     m_ui->helpLabel->setText(feedback.toString());
+}
+
+void WrittenPracticeWidget::setFeedbackState(AbstractFrontend::ResultState feedbackState)
+{
+    m_feedbackState = feedbackState;
 }
 
 void WrittenPracticeWidget::setResultState(AbstractFrontend::ResultState resultState)
