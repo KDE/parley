@@ -1,6 +1,6 @@
 /***************************************************************************
 
-    Copyright 2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2008-2010 Frederik Gladhorn <gladhorn@kde.org>
     Copyright 2008 Daniel Laidig <d.laidig@gmx.de>
 
  ***************************************************************************
@@ -33,6 +33,8 @@
 #include <QLabel>
 #include <parleyactions.h>
 
+#include "ui_statisticsmainwindow.h"
+
 using namespace Editor;
 
 StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindow* parent) 
@@ -43,45 +45,18 @@ StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindo
     // KXmlGui
     setXMLFile("statisticsui.rc");
     setObjectName("Statistics");
-    
-    QVBoxLayout *layout = new QVBoxLayout();
-    
+
     QWidget *mainWidget = new QWidget(this);
-    mainWidget->setLayout(layout);
     setCentralWidget(mainWidget);
+    m_ui = new Ui::StatisticsMainWindow;
+    m_ui->setupUi(mainWidget);
+    m_ui->caption->setText(i18nc("caption for an overview of the grades for a document", "Statistics for \"%1\"", m_doc->title()));
     
-    QLabel *caption = new QLabel(this);
-    layout->addWidget(caption);
-    caption->setText(i18n("Statistics for %1", m_doc->title()));
-
-    /*
-    if (showPracticeButtons) {
-        // This enables the start and configure practice buttons
-        setCaption(i18n("Start Practice"));
-        setWindowIcon(KIcon("practice-start"));
-        setButtons(Ok | Cancel | User1);
-        setButtonFocus(Ok);
-        setButtonGuiItem(Ok, KGuiItem(i18n("Start Practice"), KIcon("practice-start"), i18n("Start Practice")));
-        setButtonGuiItem(User1, KGuiItem(i18n("Configure Practice"), KIcon("practice-setup"), i18n("Configure practice settings")));
-        caption->setText(i18n("Select the lessons to practice:"));
-        connect(this, SIGNAL(user1Clicked()), this, SLOT(configurePractice()));
-    } else {
-        // just an ok button, no start/configure practice
-        setCaption(i18n("Document Statistics"));
-        setButtons(Ok);
-        caption->setText(i18n("Average grades for each lesson:"));
-    }
-    */
-
     m_statisticsModel = new StatisticsModel(this);
 
-    m_lessonStatistics = new LessonStatisticsView(this);
-    layout->addWidget(m_lessonStatistics);
-
     setDocument(doc);
-    
     initActions();
-    
+
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);  
 }
@@ -90,14 +65,15 @@ StatisticsMainWindow::~StatisticsMainWindow()
 {
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     saveMainWindowSettings(cfg);
+    delete m_ui;
 }
 
 void StatisticsMainWindow::setDocument(KEduVocDocument* doc)
 {
     m_doc = doc;
     m_statisticsModel->setDocument(doc);
-    m_lessonStatistics->setModel(m_statisticsModel);
-    m_lessonStatistics->expandToDepth(0);
+    m_ui->lessonStatistics->setModel(m_statisticsModel);
+    m_ui->lessonStatistics->expandToDepth(0);
 }
 
 void StatisticsMainWindow::initActions()

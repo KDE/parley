@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
-    Copyright 2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2008-2010 Frederik Gladhorn <gladhorn@kde.org>
     -----------------------------------------------------------------------
 
  ***************************************************************************
@@ -31,6 +31,9 @@ class LessonStatisticsView;
 class StatisticsModel;
 class KEduVocDocument;
 class ParleyMainWindow;
+namespace Ui {
+    class StatisticsMainWindow;
+}
 
 class StatisticsMainWindow : public KXmlGuiWindow
 {
@@ -50,7 +53,7 @@ private:
     ParleyMainWindow* m_mainWindow; 
     KEduVocDocument* m_doc;
     StatisticsModel* m_statisticsModel;
-    LessonStatisticsView* m_lessonStatistics;
+    Ui::StatisticsMainWindow* m_ui;
 };
 
 #endif

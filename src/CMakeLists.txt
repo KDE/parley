@@ -159,6 +159,9 @@ set(statisticsdialogs_SRCS
     statistics/statisticsmainwindow.cpp
     statistics/lessonstatistics.cpp
 )
+kde4_add_ui_files(statisticsdialogs_SRCS
+    statistics/statisticsmainwindow.ui
+)
 
 # scripting interface using kross
 set(scripts_SRCS
