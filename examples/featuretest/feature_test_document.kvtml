@@ -155,6 +155,12 @@
     <entry id="3">
       <translation id="0">
         <text>Baum</text>
+        <grade>
+          <currentgrade>1</currentgrade>
+          <count>1</count>
+          <errorcount>0</errorcount>
+          <date>2010-04-10T19:58:47</date>
+        </grade>
         <pronunciation>baʊ̯m</pronunciation>
         <image>tree_de.jpg</image>
         <sound>De-Baum.ogg</sound>
@@ -166,39 +172,213 @@
         <sound>En-uk-tree.ogg</sound>
       </translation>
     </entry>
+    <entry id="4">
+      <translation id="0">
+        <text>der Tisch</text>
+      </translation>
+      <translation id="1">
+        <text>table</text>
+      </translation>
+    </entry>
+    <entry id="5">
+      <translation id="0">
+        <text>der Stuhl</text>
+      </translation>
+      <translation id="1">
+        <text>chair</text>
+      </translation>
+    </entry>
+    <entry id="6">
+      <translation id="0">
+        <text>das Haus</text>
+      </translation>
+      <translation id="1">
+        <text>house</text>
+      </translation>
+    </entry>
+    <entry id="7">
+      <translation id="0">
+        <text>die Flasche</text>
+      </translation>
+      <translation id="1">
+        <text>bottle</text>
+      </translation>
+    </entry>
+    <entry id="8">
+      <translation id="0"/>
+      <translation id="1"/>
+    </entry>
+    <entry id="9">
+      <translation id="0">
+        <text>groß</text>
+        <comparison>
+          <comparative>größer</comparative>
+          <superlative>am größten</superlative>
+        </comparison>
+      </translation>
+      <translation id="1">
+        <text>big</text>
+        <comparison>
+          <comparative>bigger</comparative>
+          <superlative>the biggest</superlative>
+        </comparison>
+      </translation>
+    </entry>
+    <entry id="10">
+      <translation id="0">
+        <text>schön</text>
+        <comparison>
+          <comparative>schöner</comparative>
+          <superlative>am schönsten</superlative>
+        </comparison>
+      </translation>
+      <translation id="1">
+        <text>beautiful</text>
+        <comparison>
+          <comparative>more beautiful</comparative>
+          <superlative>the most beautiful</superlative>
+        </comparison>
+      </translation>
+    </entry>
+    <entry id="11">
+      <translation id="0">
+        <text>dick</text>
+        <grade>
+          <currentgrade>1</currentgrade>
+          <count>1</count>
+          <errorcount>0</errorcount>
+          <date>2010-04-10T20:34:37</date>
+        </grade>
+        <comparison>
+          <comparative>dicker</comparative>
+          <superlative>am dicksten</superlative>
+        </comparison>
+      </translation>
+      <translation id="1">
+        <text>thick</text>
+        <comparison>
+          <comparative>thicker</comparative>
+          <superlative>the thickest</superlative>
+        </comparison>
+      </translation>
+    </entry>
+    <entry id="12">
+      <translation id="0">
+        <text>unordentlich</text>
+        <comparison>
+          <comparative>unordentlicher</comparative>
+          <superlative>am unordentlichsten</superlative>
+        </comparison>
+      </translation>
+      <translation id="1">
+        <text>messy</text>
+        <comparison>
+          <comparative>more messy</comparative>
+          <superlative>the most messy</superlative>
+        </comparison>
+      </translation>
+    </entry>
+    <entry id="13">
+      <translation id="0">
+        <text>oft</text>
+        <grade>
+          <currentgrade>1</currentgrade>
+          <count>1</count>
+          <errorcount>0</errorcount>
+          <date>2010-04-10T20:34:23</date>
+        </grade>
+        <comparison>
+          <comparative>öfter</comparative>
+          <superlative>am öftesten</superlative>
+        </comparison>
+      </translation>
+      <translation id="1">
+        <text>often</text>
+        <comparison>
+          <comparative>more often</comparative>
+          <superlative>the most often</superlative>
+        </comparison>
+      </translation>
+    </entry>
+    <entry id="14">
+      <translation id="0">
+        <text>Müll</text>
+      </translation>
+      <translation id="1">
+        <text>trash</text>
+      </translation>
+    </entry>
+    <entry id="15">
+      <translation id="0">
+        <text>Abfall</text>
+      </translation>
+      <translation id="1">
+        <text>litter</text>
+      </translation>
+    </entry>
+    <entry id="16">
+      <translation id="0">
+        <text>Dreck</text>
+      </translation>
+      <translation id="1">
+        <text>waste</text>
+      </translation>
+    </entry>
+    <entry id="17">
+      <translation id="0"/>
+      <translation id="1"/>
+    </entry>
+    <entry id="18">
+      <translation id="0"/>
+      <translation id="1"/>
+    </entry>
+    <entry id="19">
+      <translation id="0"/>
+      <translation id="1"/>
+    </entry>
   </entries>
   <lessons>
     <container>
       <name>Normal words</name>
-      <inpractice>true</inpractice>
       <entry id="0"/>
       <entry id="1"/>
       <entry id="2"/>
     </container>
     <container>
       <name>Pronunciation, Sound, Image</name>
-      <inpractice>true</inpractice>
       <entry id="3"/>
     </container>
     <container>
       <name>Articles</name>
-      <inpractice>true</inpractice>
+      <entry id="4"/>
+      <entry id="5"/>
+      <entry id="6"/>
+      <entry id="7"/>
+      <entry id="8"/>
     </container>
     <container>
       <name>Adjectives</name>
-      <inpractice>true</inpractice>
+      <entry id="9"/>
+      <entry id="10"/>
+      <entry id="11"/>
+      <entry id="12"/>
+      <entry id="13"/>
     </container>
     <container>
       <name>Verbs and conjugations</name>
-      <inpractice>true</inpractice>
     </container>
     <container>
       <name>Example Sentences</name>
-      <inpractice>true</inpractice>
     </container>
     <container>
       <name>Synonyms</name>
       <inpractice>true</inpractice>
+      <entry id="14"/>
+      <entry id="15"/>
+      <entry id="16"/>
+      <entry id="17"/>
+      <entry id="18"/>
+      <entry id="19"/>
     </container>
   </lessons>
   <wordtypes>
@@ -211,14 +391,26 @@
         <entry id="3">
           <translation id="0"/>
         </entry>
+        <entry id="4">
+          <translation id="0"/>
+        </entry>
+        <entry id="5">
+          <translation id="0"/>
+        </entry>
       </container>
       <container>
         <name>Feminine</name>
         <specialwordtype>noun/female</specialwordtype>
+        <entry id="7">
+          <translation id="0"/>
+        </entry>
       </container>
       <container>
         <name>Neuter</name>
         <specialwordtype>noun/neutral</specialwordtype>
+        <entry id="6">
+          <translation id="0"/>
+        </entry>
       </container>
     </container>
     <container>
@@ -246,10 +438,26 @@
     <container>
       <name>Adjective</name>
       <specialwordtype>adjective</specialwordtype>
+      <entry id="9">
+        <translation id="0"/>
+        <translation id="1"/>
+      </entry>
+      <entry id="10">
+        <translation id="0"/>
+        <translation id="1"/>
+      </entry>
+      <entry id="11">
+        <translation id="0"/>
+        <translation id="1"/>
+      </entry>
     </container>
     <container>
       <name>Adverb</name>
       <specialwordtype>adverb</specialwordtype>
+      <entry id="13">
+        <translation id="0"/>
+        <translation id="1"/>
+      </entry>
     </container>
   </wordtypes>
   <leitnerboxes>
@@ -275,4 +483,48 @@
       <name>Box 1 (lowest)</name>
     </container>
   </leitnerboxes>
+  <synonym>
+    <pair>
+      <entry id="15">
+        <translation id="0"/>
+      </entry>
+    </pair>
+    <pair>
+      <entry id="14">
+        <translation id="0"/>
+      </entry>
+      <entry id="16">
+        <translation id="0"/>
+      </entry>
+    </pair>
+    <pair>
+      <entry id="16">
+        <translation id="1"/>
+      </entry>
+    </pair>
+    <pair>
+      <entry id="14">
+        <translation id="1"/>
+      </entry>
+      <entry id="15">
+        <translation id="1"/>
+      </entry>
+    </pair>
+    <pair>
+      <entry id="15">
+        <translation id="0"/>
+      </entry>
+      <entry id="16">
+        <translation id="0"/>
+      </entry>
+    </pair>
+    <pair>
+      <entry id="15">
+        <translation id="1"/>
+      </entry>
+      <entry id="16">
+        <translation id="1"/>
+      </entry>
+    </pair>
+  </synonym>
 </kvtml>
