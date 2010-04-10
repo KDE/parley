@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE kvtml PUBLIC "kvtml2.dtd" "http://edu.kde.org/kvtml/kvtml2.dtd">
+<kvtml version="2.0">
+  <information>
+    <generator>Parley 0.9.3</generator>
+    <title>Feature Test Document</title>
+    <author>Daniel Laidig, Frederik Gladhorn</author>
+    <license>GPLv2+ (GNU General Public License version 2 or later)</license>
+    <comment>This is a document created during the parley mini sprint 2010</comment>
+    <date>2010-04-10</date>
+    <category>Testing</category>
+  </information>
+  <identifiers>
+    <identifier id="0">
+      <name>German</name>
+      <locale>de</locale>
+      <article>
+        <singular>
+          <definite>
+            <male>der</male>
+            <female>die</female>
+            <neutral>das</neutral>
+          </definite>
+          <indefinite>
+            <male>ein</male>
+            <female>eine</female>
+            <neutral>ein</neutral>
+          </indefinite>
+        </singular>
+        <plural>
+          <definite>
+            <male>die</male>
+            <female>die</female>
+            <neutral>die</neutral>
+          </definite>
+        </plural>
+      </article>
+      <personalpronouns>
+        <singular>
+          <firstperson>ich</firstperson>
+          <secondperson>du</secondperson>
+          <thirdpersonneutralcommon>er/sie/es</thirdpersonneutralcommon>
+        </singular>
+        <plural>
+          <firstperson>wir</firstperson>
+          <secondperson>ihr</secondperson>
+          <thirdpersonneutralcommon>sie</thirdpersonneutralcommon>
+        </plural>
+      </personalpronouns>
+      <tense>Präteritum</tense>
+      <tense>Perfekt</tense>
+      <tense>Plusquamperfekt</tense>
+      <tense>Präsens</tense>
+      <tense>Futur I</tense>
+      <tense>Futur II</tense>
+    </identifier>
+    <identifier id="1">
+      <name>English</name>
+      <locale>en</locale>
+      <article>
+        <singular>
+          <definite>
+            <male>the</male>
+            <female>the</female>
+            <neutral>the</neutral>
+          </definite>
+          <indefinite>
+            <male>a</male>
+            <female>a</female>
+            <neutral>a</neutral>
+          </indefinite>
+        </singular>
+        <plural>
+          <definite>
+            <male>the</male>
+            <female>the</female>
+            <neutral>the</neutral>
+          </definite>
+          <indefinite>
+            <male>a</male>
+            <female>a</female>
+            <neutral>a</neutral>
+          </indefinite>
+        </plural>
+      </article>
+      <personalpronouns>
+        <singular>
+          <firstperson>I</firstperson>
+          <secondperson>you</secondperson>
+          <thirdpersonneutralcommon>he/she/it</thirdpersonneutralcommon>
+        </singular>
+        <plural>
+          <firstperson>we</firstperson>
+          <secondperson>you</secondperson>
+          <thirdpersonneutralcommon>they</thirdpersonneutralcommon>
+        </plural>
+      </personalpronouns>
+      <tense>Simple Present</tense>
+      <tense>Simple Past</tense>
+      <tense>Simple Future (will)</tense>
+      <tense>Present Perfect</tense>
+      <tense>Past Perfect</tense>
+      <tense>Future Perfect</tense>
+      <tense>Present Progressive</tense>
+      <tense>Past Progressive</tense>
+      <tense>Future Progressive</tense>
+      <tense>Present Perfect Progressive</tense>
+      <tense>Past Perfect Progressive</tense>
+      <tense>Future Perfect Progressive</tense>
+    </identifier>
+  </identifiers>
+  <entries>
+    <entry id="0">
+      <translation id="0">
+        <text>hallo</text>
+        <grade>
+          <currentgrade>1</currentgrade>
+          <count>1</count>
+          <errorcount>0</errorcount>
+          <date>2010-04-10T18:41:08</date>
+        </grade>
+      </translation>
+      <translation id="1">
+        <text>hello</text>
+      </translation>
+    </entry>
+    <entry id="1">
+      <translation id="0">
+        <text>Tisch</text>
+        <grade>
+          <currentgrade>1</currentgrade>
+          <count>1</count>
+          <errorcount>0</errorcount>
+          <date>2010-04-10T18:41:36</date>
+        </grade>
+      </translation>
+      <translation id="1">
+        <text>table</text>
+      </translation>
+    </entry>
+    <entry id="2">
+      <translation id="0">
+        <text>danke</text>
+        <grade>
+          <currentgrade>1</currentgrade>
+          <count>1</count>
+          <errorcount>0</errorcount>
+          <date>2010-04-10T18:41:17</date>
+        </grade>
+      </translation>
+      <translation id="1">
+        <text>thanks</text>
+      </translation>
+    </entry>
+    <entry id="3">
+      <translation id="0">
+        <text>Baum</text>
+        <pronunciation>baʊ̯m</pronunciation>
+        <image>tree_de.jpg</image>
+      </translation>
+      <translation id="1">
+        <text>tree</text>
+        <pronunciation>tɹiː</pronunciation>
+        <image>tree_en.jpg</image>
+        <sound>En-uk-tree.ogg</sound>
+      </translation>
+    </entry>
+  </entries>
+  <lessons>
+    <container>
+      <name>Normal words</name>
+      <inpractice>true</inpractice>
+      <entry id="0"/>
+      <entry id="1"/>
+      <entry id="2"/>
+    </container>
+    <container>
+      <name>Pronunciation, Sound, Image</name>
+      <inpractice>true</inpractice>
+      <entry id="3"/>
+    </container>
+    <container>
+      <name>Articles</name>
+      <inpractice>true</inpractice>
+    </container>
+    <container>
+      <name>Adjectives</name>
+      <inpractice>true</inpractice>
+    </container>
+    <container>
+      <name>Verbs and conjugations</name>
+      <inpractice>true</inpractice>
+    </container>
+    <container>
+      <name>Example Sentences</name>
+      <inpractice>true</inpractice>
+    </container>
+    <container>
+      <name>Synonyms</name>
+      <inpractice>true</inpractice>
+    </container>
+  </lessons>
+  <wordtypes>
+    <container>
+      <name>Noun</name>
+      <specialwordtype>noun</specialwordtype>
+      <container>
+        <name>Masculine</name>
+        <specialwordtype>noun/male</specialwordtype>
+        <entry id="3">
+          <translation id="0"/>
+        </entry>
+      </container>
+      <container>
+        <name>Feminine</name>
+        <specialwordtype>noun/female</specialwordtype>
+      </container>
+      <container>
+        <name>Neuter</name>
+        <specialwordtype>noun/neutral</specialwordtype>
+      </container>
+    </container>
+    <container>
+      <name>Verb</name>
+      <specialwordtype>verb</specialwordtype>
+      <container>
+        <name>Regular Verb</name>
+      </container>
+      <container>
+        <name>Irregular</name>
+      </container>
+      <container>
+        <name>-ar</name>
+        <entry id="2">
+          <translation id="0"/>
+        </entry>
+      </container>
+      <container>
+        <name>-er</name>
+      </container>
+      <container>
+        <name>-ir</name>
+      </container>
+    </container>
+    <container>
+      <name>Adjective</name>
+      <specialwordtype>adjective</specialwordtype>
+    </container>
+    <container>
+      <name>Adverb</name>
+      <specialwordtype>adverb</specialwordtype>
+    </container>
+  </wordtypes>
+  <leitnerboxes>
+    <container>
+      <name>Box 7 (best)</name>
+    </container>
+    <container>
+      <name>Box 6</name>
+    </container>
+    <container>
+      <name>Box 5</name>
+    </container>
+    <container>
+      <name>Box 4</name>
+    </container>
+    <container>
+      <name>Box 3</name>
+    </container>
+    <container>
+      <name>Box 2</name>
+    </container>
+    <container>
+      <name>Box 1 (lowest)</name>
+    </container>
+  </leitnerboxes>
+</kvtml>
