@@ -67,7 +67,6 @@ public:
     void printStatistics();
 
     void currentEntryFinished();
-    
     void startNextPracticeMode();
 
     int statisticTotalCorrectFirstAttempt();
@@ -87,6 +86,8 @@ private:
      * m_allTestEntries will be filled by this.
      */
     void filterTestEntries();
+
+    void setLanguages(int from, int to);
 
     KEduVocDocument *m_doc;
     QWidget *m_parent;

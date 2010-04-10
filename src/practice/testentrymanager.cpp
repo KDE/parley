@@ -33,13 +33,11 @@ using namespace Practice;
 
 TestEntryManager::TestEntryManager(QWidget* parent)
     :m_parent(parent)
-    ,m_fromTranslation(Prefs::questionLanguage())
-    ,m_toTranslation(Prefs::solutionLanguage())
     ,m_currentEntry(0)
+    ,m_fromTranslation(0)
+    ,m_toTranslation(1)
     ,m_randomSequence(QDateTime::currentDateTime().toTime_t())
 {
-    TestEntry::setGradeFrom(m_fromTranslation);
-    TestEntry::setGradeTo(m_toTranslation);
 }
 
 TestEntryManager::~TestEntryManager()
@@ -57,6 +55,18 @@ void TestEntryManager::setDocument(KEduVocDocument* doc)
 
     m_doc = doc;
 
+    // don't crash when trying to start practicing a document containing only one language
+    if (m_doc->identifierCount() < 2) {
+        KMessageBox::error(0, i18n("The vocabulary collection contains less than two languages.", i18n("Could not start practice")));
+        return;
+    }
+    if (Prefs::questionLanguage() >= m_doc->identifierCount() || Prefs::solutionLanguage() >= m_doc->identifierCount()) {
+        kDebug() << "Invalid language selection" << m_fromTranslation << " to " << m_toTranslation;
+        Prefs::setQuestionLanguage(0);
+        Prefs::setSolutionLanguage(1);
+    }
+
+    setLanguages(Prefs::questionLanguage(), Prefs::solutionLanguage());
     kDebug() << "Test from: " << m_doc->identifier(m_fromTranslation).name()
         << " to: " << m_doc->identifier(m_toTranslation).name();
 
@@ -68,11 +78,14 @@ void TestEntryManager::setDocument(KEduVocDocument* doc)
     for ( int i = 0; i < qMin(m_notAskedTestEntries.count(), Prefs::testNumberOfEntries() ); i++ ) {
         m_currentEntries.append( m_notAskedTestEntries.takeAt(0) );
     }
+}
 
-    // don't crash when trying to start practicing a document containing only one language
-    if (m_doc->identifierCount() < 2) {
-        KMessageBox::error(0, i18n("The vocabulary document contains no entries that can be used for the chosen type of practice."));
-    }
+void TestEntryManager::setLanguages(int from, int to)
+{
+    m_fromTranslation = from;
+    m_toTranslation = to;
+    TestEntry::setGradeFrom(m_fromTranslation);
+    TestEntry::setGradeTo(m_toTranslation);
 }
 
 void TestEntryManager::filterTestEntries()

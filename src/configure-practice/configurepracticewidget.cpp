@@ -48,11 +48,12 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
 {
     setupUi(this);
 
-    kDebug() << "readQ" << Prefs::questionLanguage();
-    kDebug() << "readS" << Prefs::solutionLanguage();
-    
-
     const int totalNumLanguages = m_doc->identifierCount();
+    if (Prefs::questionLanguage() >= totalNumLanguages || Prefs::solutionLanguage() >= totalNumLanguages) {
+        Prefs::setQuestionLanguage(0);
+        Prefs::setSolutionLanguage(1);
+    }
+
     for ( int i = 0; i < totalNumLanguages-1; i++ ) {
         for (int j = i+1; j < totalNumLanguages; j++) {
             LanguageSettings currentSettings(m_doc->identifier(i).locale());
@@ -63,10 +64,10 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
             item->setData(Qt::UserRole, i);
             item->setData(Qt::UserRole+1, j);
             LanguageList->addItem(item);
+
             if (i == Prefs::questionLanguage() && j == Prefs::solutionLanguage()) {
                 LanguageList->setCurrentItem(item);
             }
-            
             QListWidgetItem* item2 = new QListWidgetItem(
                 i18nc("pair of two languages that the user chooses to practice", "%1 to %2",
                 m_doc->identifier(j).name(), m_doc->identifier(i).name()));
@@ -79,6 +80,7 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
             }
         }
     }
+
     connect(LanguageList, SIGNAL(currentRowChanged(int)), SLOT(languagesSelected(int)));
 
     LanguageList->sortItems();
@@ -89,10 +91,7 @@ void ConfigurePracticeWidget::updateSettings()
 {
     Prefs::setQuestionLanguage(LanguageList->currentItem()->data(Qt::UserRole).toInt());
     Prefs::setSolutionLanguage(LanguageList->currentItem()->data(Qt::UserRole+1).toInt());
-    
-    kDebug() << "setQ" << LanguageList->currentItem()->data(Qt::UserRole).toInt();
-    kDebug() << "setS" << LanguageList->currentItem()->data(Qt::UserRole+1).toInt();
-    
+
     QTreeWidgetItem* parentItem = tenseSelectionTreeWidget->invisibleRootItem();
     QStringList activeTenses;
     for ( int i = 0; i < parentItem->childCount(); i++ ) {
