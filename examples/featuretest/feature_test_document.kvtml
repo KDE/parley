@@ -2,7 +2,7 @@
 <!DOCTYPE kvtml PUBLIC "kvtml2.dtd" "http://edu.kde.org/kvtml/kvtml2.dtd">
 <kvtml version="2.0">
   <information>
-    <generator>Parley 0.9.3</generator>
+    <generator>Parley 0.9.4</generator>
     <title>Feature Test Document</title>
     <author>Daniel Laidig, Frederik Gladhorn</author>
     <license>GPLv2+ (GNU General Public License version 2 or later)</license>
@@ -157,6 +157,7 @@
         <text>Baum</text>
         <pronunciation>baʊ̯m</pronunciation>
         <image>tree_de.jpg</image>
+        <sound>De-Baum.ogg</sound>
       </translation>
       <translation id="1">
         <text>tree</text>
