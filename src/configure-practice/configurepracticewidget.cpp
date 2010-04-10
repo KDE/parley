@@ -49,12 +49,16 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     setupUi(this);
 
     const int totalNumLanguages = m_doc->identifierCount();
-    if (Prefs::questionLanguage() >= totalNumLanguages || Prefs::solutionLanguage() >= totalNumLanguages) {
+    if (Prefs::questionLanguage() >= totalNumLanguages || Prefs::solutionLanguage() >= totalNumLanguages
+            || Prefs::solutionLanguage() == Prefs::questionLanguage()) {
         Prefs::setQuestionLanguage(0);
         Prefs::setSolutionLanguage(1);
     }
 
     for ( int i = 0; i < totalNumLanguages-1; i++ ) {
+        LanguageSettings currentSettings(m_doc->identifier(i).locale());
+        currentSettings.readConfig();
+
         for (int j = i+1; j < totalNumLanguages; j++) {
             QListWidgetItem* item = new QListWidgetItem(
                 i18nc("pair of two languages that the user chooses to practice", "%1 to %2",
@@ -104,10 +108,13 @@ void ConfigurePracticeWidget::updateSettings()
     documentSettings.writeConfig();
 }
 
-void ConfigurePracticeWidget::languagesSelected(int identifierFromIndex)
+void ConfigurePracticeWidget::languagesSelected(int selectedItem)
 {
-    // TODO kcfg dialog changed
-    setupTenses();
+    if (LanguageList->currentItem()) {
+        Prefs::setQuestionLanguage(LanguageList->currentItem()->data(Qt::UserRole).toInt());
+        Prefs::setSolutionLanguage(LanguageList->currentItem()->data(Qt::UserRole+1).toInt());
+        setupTenses();
+    }
 }
 
 void ConfigurePracticeWidget::updateWidgets()
@@ -131,6 +138,10 @@ bool ConfigurePracticeWidget::isDefault()
 
 void ConfigurePracticeWidget::setupTenses()
 {
+    if (!LanguageList->currentItem()) {
+        return;
+    }
+    
     int index = LanguageList->currentItem()->data(Qt::UserRole+1).toInt();
     if (index < 0) {
         index = 0;
