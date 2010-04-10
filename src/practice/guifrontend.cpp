@@ -19,6 +19,7 @@
 #include "multiplechoicemodewidget.h"
 #include "flashcardmodewidget.h"
 #include "mixedlettersmodewidget.h"
+#include <kcolorscheme.h>
 
 using namespace Practice;
 
@@ -30,10 +31,14 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     m_ui = new Ui::PracticeMainWindow();
     m_ui->setupUi(m_widget);
     m_ui->centralPracticeWidget->setLayout(new QHBoxLayout());
-    m_ui->centralPracticeWidget->setAutoFillBackground(true);
-    QPalette palette = m_ui->centralPracticeWidget->palette();
-    palette.setColor(QPalette::Window, Qt::white);
-    m_ui->centralPracticeWidget->setPalette(palette);
+
+
+    KColorScheme scheme(QPalette::Active, KColorScheme::View);
+
+    QPalette palette = m_widget->palette();
+    palette.setColor(QPalette::Window, scheme.background(KColorScheme::NormalBackground).color()    );
+    m_widget->setPalette(palette);
+    m_widget->setAutoFillBackground(true);
 
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SIGNAL(continueAction()));
     connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SIGNAL(skipAction()));
