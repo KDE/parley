@@ -374,12 +374,8 @@ void EditorWindow::initModel()
  */
 void EditorWindow::initView()
 {
-    // Parent of all
-    QStackedWidget *stackedWidget = new QStackedWidget(this);
-    setCentralWidget(stackedWidget);
-
     QWidget *mainWidget = new QWidget(this);
-    stackedWidget->addWidget(mainWidget);
+    setCentralWidget(mainWidget);
     QVBoxLayout *topLayout = new QVBoxLayout(mainWidget);
     topLayout->setMargin(KDialog::marginHint());
     topLayout->setSpacing(KDialog::spacingHint());
