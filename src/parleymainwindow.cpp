@@ -244,7 +244,6 @@ void ParleyMainWindow::initActions()
     ParleyActions::create(ParleyActions::FileExport, m_document, SLOT(exportDialog()), actionCollection());
     #endif
     
-    ParleyActions::create(ParleyActions::LanguagesProperties, m_document, SLOT(languageProperties()), actionCollection());
     ParleyActions::create(ParleyActions::FileProperties, m_document, SLOT(documentProperties()), actionCollection());
 
     ParleyActions::create(ParleyActions::FileClose, this, SLOT(slotCloseDocument()), actionCollection());
