@@ -51,7 +51,6 @@ StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindo
     m_ui = new Ui::StatisticsMainWindow;
     m_ui->setupUi(mainWidget);
     m_ui->caption->setText(i18nc("caption for an overview of the grades for a document", "Statistics for \"%1\"", m_doc->title()));
-    
     m_statisticsModel = new StatisticsModel(this);
 
     setDocument(doc);
@@ -97,6 +96,10 @@ void StatisticsMainWindow::initActions()
     configurePractice->setStatusTip(configurePractice->whatsThis());
     actionCollection()->addAction("practice_configure", configurePractice);
     connect(configurePractice, SIGNAL(triggered(bool)), m_mainWindow, SLOT(configurePractice()));
+
+    m_ui->startPracticeButton->setText(i18n("Start Practice..."));
+    m_ui->startPracticeButton->setIcon(KIcon("practice-start"));
+    connect(m_ui->startPracticeButton, SIGNAL(clicked()), m_mainWindow, SLOT(startPractice()));
 }
 
 void StatisticsMainWindow::configurePractice()
