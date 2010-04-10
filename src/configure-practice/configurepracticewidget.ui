@@ -64,7 +64,7 @@ You then decide if you knew the solution.</string>
            <string>Paraphrase</string>
           </property>
          </widget>
-        </item>        
+        </item>
         <item>
          <spacer name="verticalSpacer_2">
           <property name="orientation">
@@ -97,16 +97,9 @@ You then decide if you knew the solution.</string>
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="kcfg_ComparisonAdjectivePractice">
+           <widget class="QCheckBox" name="kcfg_ComparisonPractice">
             <property name="text">
-             <string>Comparison Forms (Adjectives)</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="kcfg_ComparisonAdverbPractice">
-            <property name="text">
-             <string>Comparison Forms (Adverbs)</string>
+             <string>Comparison Forms</string>
             </property>
            </widget>
           </item>
@@ -117,13 +110,6 @@ You then decide if you knew the solution.</string>
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QCheckBox" name="kcfg_SynonymAntonymPractice">
-            <property name="text">
-             <string>Synonyms and Antonyms</string>
-            </property>
-           </widget>
-          </item>          
          </layout>
         </widget>
        </item>
@@ -187,11 +173,6 @@ You then decide if you knew the solution.</string>
   </layout>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>KIntSpinBox</class>
-   <extends>QSpinBox</extends>
-   <header>knuminput.h</header>
-  </customwidget>
   <customwidget>
    <class>KButtonGroup</class>
    <extends>QGroupBox</extends>

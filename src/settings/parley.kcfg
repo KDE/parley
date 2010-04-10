@@ -330,19 +330,11 @@
       <label>include this mode in the practice</label>
       <default>true</default>
     </entry>
-    <entry name="ComparisonAdjectivePractice" type="Bool">
-      <label>include this mode in the practice</label>
-      <default>true</default>
-    </entry>
-    <entry name="ComparisonAdverbPractice" type="Bool">
+    <entry name="ComparisonPractice" type="Bool">
       <label>include this mode in the practice</label>
       <default>true</default>
     </entry>
     <entry name="ConjugationPractice" type="Bool">
-      <label>include this mode in the practice</label>
-      <default>true</default>
-    </entry>
-    <entry name="SynonymAntonymPractice" type="Bool">
       <label>include this mode in the practice</label>
       <default>true</default>
     </entry>
