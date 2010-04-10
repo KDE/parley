@@ -66,7 +66,7 @@ void AudioWidget::setTranslation(KEduVocExpression* entry, int translation)
 
 void AudioWidget::slotAudioFileChanged(const QString & url)
 {
-    if (m_currentTranslation) {
+    if (m_entry) {
         kDebug() << "Setting sound " << url;
         m_entry->translation(m_currentTranslation)->setSoundUrl( KUrl(url) );
     }
