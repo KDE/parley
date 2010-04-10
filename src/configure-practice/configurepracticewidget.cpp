@@ -56,8 +56,6 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
 
     for ( int i = 0; i < totalNumLanguages-1; i++ ) {
         for (int j = i+1; j < totalNumLanguages; j++) {
-            LanguageSettings currentSettings(m_doc->identifier(i).locale());
-            currentSettings.readConfig();
             QListWidgetItem* item = new QListWidgetItem(
                 i18nc("pair of two languages that the user chooses to practice", "%1 to %2",
                 m_doc->identifier(i).name(), m_doc->identifier(j).name()));
