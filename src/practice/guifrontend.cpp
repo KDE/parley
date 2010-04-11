@@ -28,13 +28,11 @@ using namespace Practice;
 GuiFrontend::GuiFrontend(QWidget* parent)
     : AbstractFrontend(parent), m_modeWidget(0), m_lastImage("invalid")
 {
-    m_widget = new QWidget();
+    m_widget = new ImageWidget();
     
     m_ui = new Ui::PracticeMainWindow();
     m_ui->setupUi(m_widget);
     m_ui->centralPracticeWidget->setLayout(new QHBoxLayout());
-
-    m_widget->setAutoFillBackground(true);
 
     m_themedBackgroundRenderer = new ThemedBackgroundRenderer(this);
     m_themedBackgroundRenderer->setSvgFilename(KStandardDirs::locate("data", "parley/themes/theme_reference.svg"));
@@ -126,10 +124,7 @@ void GuiFrontend::setBoxes(int currentBox, int lastBox)
 
 void GuiFrontend::backgroundChanged(const QPixmap &pixmap)
 {
-    //TODO: figure out the best way to add a background to a QWidget
-    QPalette palette = m_widget->palette();
-    palette.setBrush(QPalette::Background, QBrush(pixmap));
-    m_widget->setPalette(palette);
+    m_widget->setPixmap(pixmap);
 }
 
 void GuiFrontend::showSetResultButtons(bool show)

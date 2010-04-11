@@ -28,6 +28,7 @@ namespace Ui {
 
 namespace Practice {
 class ThemedBackgroundRenderer;
+class ImageWidget;
 
 class GuiFrontend : public AbstractFrontend
 {
@@ -78,7 +79,7 @@ private Q_SLOTS:
     void countAsWrongButtonClicked();
    
 private:
-    QWidget* m_widget;
+    ImageWidget* m_widget;
     Ui::PracticeMainWindow* m_ui;
     AbstractModeWidget* m_modeWidget;
     ResultState m_resultState;
