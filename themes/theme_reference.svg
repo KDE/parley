@@ -122,7 +122,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -132,7 +132,7 @@
      id="layer1">
     <rect
        style="fill:url(#linearGradient5040);fill-opacity:1;fill-rule:evenodd;stroke:none"
-       id="rect-bg"
+       id="rect-center"
        width="42.857143"
        height="42.857143"
        x="153.15927"
@@ -140,7 +140,7 @@
        inkscape:label="#rect2816" />
     <rect
        style="stroke:none;fill:#ff0000"
-       id="rect-ot-cs"
+       id="rect-border-top"
        width="4.1071429"
        height="1.6071428"
        x="172.53427"
@@ -148,7 +148,7 @@
        inkscape:label="#rect5063" />
     <rect
        style="stroke:none;fill:#0000ff"
-       id="rect-or-cs"
+       id="rect-border-right"
        width="4.1071429"
        height="1.6071428"
        x="414.09888"
@@ -159,7 +159,7 @@
        inkscape:transform-center-y="-5.5357143" />
     <rect
        style="stroke:none;fill:#ffff00"
-       id="rect-ol-cs"
+       id="rect-border-left"
        width="4.1071429"
        height="1.6071428"
        x="414.09888"
@@ -170,7 +170,7 @@
        inkscape:transform-center-y="-5.5357143" />
     <rect
        style="stroke:none;fill:#008000"
-       id="rect-ob-cs"
+       id="rect-border-bottom"
        width="4.1071429"
        height="1.6071428"
        x="172.53427"
@@ -179,25 +179,25 @@
     <path
        style="stroke:none;fill:#0000ff"
        d="m 153.15927,393.04178 0,1.94356 -1.93272,0 1.93272,-1.94356 z"
-       id="rect-ctl"
+       id="rect-border-topleft"
        sodipodi:nodetypes="cccc"
        inkscape:label="#rect5153" />
     <path
        style="stroke:none;fill:#008000"
        d="m 197.83415,394.72377 -1.94356,0 0,-1.93272 1.94356,1.93272 z"
-       id="rect-ctr"
+       id="rect-border-topright"
        sodipodi:nodetypes="cccc"
        inkscape:label="#rect5153" />
     <path
        style="stroke:none;fill:#ffff00"
        d="m 195.89601,439.52468 0,-1.94356 1.93272,0 -1.93272,1.94356 z"
-       id="rect-cbr"
+       id="rect-border-bottomright"
        sodipodi:nodetypes="cccc"
        inkscape:label="#rect5153" />
     <path
        style="stroke:none;fill:#ff0000"
        d="m 151.40327,437.58112 1.94356,0 0,1.93272 -1.94356,-1.93272 z"
-       id="rect-cbl"
+       id="rect-border-bottomleft"
        sodipodi:nodetypes="cccc"
        inkscape:label="#rect5153" />
   </g>
