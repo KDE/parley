@@ -28,7 +28,7 @@ public:
     ImageWidget(QWidget *parent = 0);
 
     void setPixmap(const QPixmap& pixmap);
-    void setScalingEnabled(bool scaling);
+    void setScalingEnabled(bool scaling, bool onlyDownscaling = true);
 
 protected:
     virtual void paintEvent(QPaintEvent *e);
@@ -40,6 +40,7 @@ private Q_SLOTS:
 
 private:
     bool m_scaling;
+    bool m_onlyDownscaling;
     QPixmap m_originalPixmap;
     QPixmap m_scaledPixmap;
     QPixmap m_scaledBackupPixmap;

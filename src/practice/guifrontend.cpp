@@ -29,6 +29,7 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     : AbstractFrontend(parent), m_modeWidget(0), m_lastImage("invalid")
 {
     m_widget = new ImageWidget();
+    m_widget->setScalingEnabled(true, false);
     
     m_ui = new Ui::PracticeMainWindow();
     m_ui->setupUi(m_widget);

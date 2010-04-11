@@ -12,14 +12,17 @@
  ***************************************************************************/
 
 #include "imagewidget.h"
+
 #include <QtGui/QPainter>
 #include <QtCore/QTimer>
 #include <QtCore/QTimeLine>
 
+#include <kdebug.h>
+
 using namespace Practice;
 
 ImageWidget::ImageWidget(QWidget *parent)
-    : QWidget(parent), m_scaling(true)
+    : QWidget(parent), m_scaling(true), m_onlyDownscaling(true)
 {
     m_scaleTimer = new QTimer(this);
     m_scaleTimer->setSingleShot(true);
@@ -35,6 +38,7 @@ ImageWidget::ImageWidget(QWidget *parent)
 
 void ImageWidget::setPixmap(const QPixmap& pixmap)
 {
+    kDebug() << "set new pixmap, size:" << pixmap.size();
     if (m_animation->state() == QTimeLine::Running) {
         m_animation->stop();
         animationFinished();
@@ -51,9 +55,10 @@ void ImageWidget::setPixmap(const QPixmap& pixmap)
     m_animation->start();
 }
 
-void ImageWidget::setScalingEnabled(bool scaling)
+void ImageWidget::setScalingEnabled(bool scaling, bool onlyDownscaling)
 {
     m_scaling = scaling;
+    m_onlyDownscaling = onlyDownscaling;
 }
 
 void ImageWidget::paintEvent(QPaintEvent* e)
@@ -93,11 +98,14 @@ void ImageWidget::resizeEvent(QResizeEvent* e)
 
 void ImageWidget::scalePixmap(bool smooth)
 {
-    if (m_originalPixmap.width() <= size().width() && m_originalPixmap.height() <= size().height()) { // don't scale up
-         m_scaledPixmapOutOfDate = false;
-         m_scaledPixmap = m_originalPixmap;
-         m_scaledBackupPixmap = QPixmap();
+    bool scaleUp = m_originalPixmap.width() <= size().width() && m_originalPixmap.height() <= size().height();
+    if ((m_onlyDownscaling && scaleUp) || m_originalPixmap.size() == size()) {
+        kDebug() << "no need to scale pixmap";
+        m_scaledPixmapOutOfDate = false;
+        m_scaledPixmap = m_originalPixmap;
+        m_scaledBackupPixmap = QPixmap();
     } else if (smooth) {
+        kDebug() << "smooth scaling to" << size();
         if (m_originalPixmap.isNull() || size().isEmpty()) {
             m_scaledPixmapOutOfDate = false;
             m_scaledPixmap = QPixmap();
@@ -109,6 +117,7 @@ void ImageWidget::scalePixmap(bool smooth)
         m_scaledPixmapOutOfDate = false;
         update();
     } else {
+        kDebug() << "fast scaling to" << size();
         // try to find out if it makes sense to use the scaled backup pixmap
         // if the scaled backup gets too small, we use the orignal image
         float ratio = 0;
