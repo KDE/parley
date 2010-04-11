@@ -20,6 +20,8 @@
 
 #include <ksvgrenderer.h>
 
+class QMargins;
+
 namespace Practice {
 
 class ThemedBackgroundRenderer : public QObject
@@ -54,6 +56,7 @@ public:
 
     void setSvgFilename(const QString& filename);
     QPixmap getPixmapForId(const QString& id);
+    QMargins contentMargins();
     
 public Q_SLOTS:
     void setSize(const QSize& size);

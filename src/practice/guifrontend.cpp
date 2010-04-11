@@ -275,7 +275,7 @@ void GuiFrontend::updateBackground()
     m_themedBackgroundRenderer->clearRects();
     m_themedBackgroundRenderer->addRect("image", m_ui->imageWidget->frameGeometry());
     m_themedBackgroundRenderer->addRect("central", m_ui->centralPracticeWidget->frameGeometry());
-    m_themedBackgroundRenderer->addRect("status", m_ui->rightContainer->frameGeometry());
+    m_themedBackgroundRenderer->addRect("buttons", m_ui->rightContainer->frameGeometry());
     m_themedBackgroundRenderer->updateBackground();
 }
 

@@ -18,6 +18,7 @@
 
 #include <QtConcurrentRun>
 #include <QPainter>
+#include <QMargins>
 
 using namespace Practice;
 
@@ -73,18 +74,33 @@ QPixmap ThemedBackgroundRenderer::getPixmapForId(const QString& id)
     return QPixmap();
 }
 
+QMargins ThemedBackgroundRenderer::contentMargins()
+{
+    QMargins margins;
+    if (m_renderer.elementExists("background-border-top"))
+        margins.setTop(m_renderer.boundsOnElement("background-border-top").toAlignedRect().height());
+    if (m_renderer.elementExists("background-border-bottom"))
+        margins.setBottom(m_renderer.boundsOnElement("background-border-bottom").toAlignedRect().height());
+    if (m_renderer.elementExists("background-border-left"))
+        margins.setLeft(m_renderer.boundsOnElement("background-border-left").toAlignedRect().width());
+    if (m_renderer.elementExists("background-border-right"))
+        margins.setRight(m_renderer.boundsOnElement("background-border-right").toAlignedRect().width());
+    return margins;
+}
+
 QImage ThemedBackgroundRenderer::renderBackground()
 {
     QImage image(m_size, QImage::Format_ARGB32_Premultiplied);
     image.fill(QColor(Qt::transparent).rgba());
     QPainter p(&image);
 
-    kDebug() << "foobar bounds" << m_renderer.boundsOnElement("foobar") << "rect-bg bounds" << m_renderer.boundsOnElement("rect-bg");
+    QMargins margins = contentMargins();
+    QRect backgroundRect(QPoint(margins.left(),margins.top()), m_size-QSize(margins.right()+margins.left(), margins.bottom()+margins.top()));
 
-    renderRect("rect", QRect(QPoint(0,0), m_size), &p);
+    renderRect("background", backgroundRect, &p);
     QPair<QString, QRect> rect;
     Q_FOREACH(rect, m_rects) {
-        renderRect("rect", rect.second, &p);
+        renderRect(rect.first, rect.second, &p);
     }
 
     return image;
@@ -131,7 +147,6 @@ void ThemedBackgroundRenderer::renderRect(const QString& name, const QRect& rect
 
 void ThemedBackgroundRenderer::renderItem(const QString& id, const QRect& rect, QPainter *p, ScaleBase scaleBase, Qt::AspectRatioMode aspectRatio, Edge edge, Align align, bool inside)
 {
-    kDebug() << "render item" << id << "based on rect" << rect;
     if (!m_renderer.elementExists(id))
         return;
     QRect itemRect = m_renderer.boundsOnElement(id).toAlignedRect();
