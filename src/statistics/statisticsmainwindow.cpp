@@ -135,7 +135,7 @@ void StatisticsMainWindow::initLanguages()
             }
         }
     }
-    connect(m_ui->languageList, SIGNAL(currentRowChanged()), SLOT(languagesChanged()));
+    connect(m_ui->languageList, SIGNAL(currentRowChanged(int)), SLOT(languagesChanged()));
     m_ui->languageList->sortItems();
 }
 
