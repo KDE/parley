@@ -27,6 +27,7 @@ namespace Ui {
 }
 
 namespace Practice {
+class ThemedBackgroundRenderer;
 
 class GuiFrontend : public AbstractFrontend
 {
@@ -66,6 +67,8 @@ public Q_SLOTS:
     void showSolution();
     void setBoxes(int currentBox, int lastBox = -1);
 
+    void backgroundChanged(const QPixmap& pixmap);
+
     // show two buttons (i didn't know it, i knew it) instead of the continue button and disable the correct/wrong toggle (needed for flash card mode)
     void showSetResultButtons(bool show);
 
@@ -81,6 +84,7 @@ private:
     ResultState m_resultState;
     ResultState m_feedbackState;
     KUrl m_lastImage;
+    ThemedBackgroundRenderer *m_themedBackgroundRenderer;
 };
 
 }

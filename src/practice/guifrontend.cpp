@@ -19,6 +19,7 @@
 #include "multiplechoicemodewidget.h"
 #include "flashcardmodewidget.h"
 #include "mixedlettersmodewidget.h"
+#include "themedbackgroundrenderer.h"
 #include <kcolorscheme.h>
 
 using namespace Practice;
@@ -39,6 +40,11 @@ GuiFrontend::GuiFrontend(QWidget* parent)
 
     m_widget->setPalette(palette);
     m_widget->setAutoFillBackground(true);
+
+    m_themedBackgroundRenderer = new ThemedBackgroundRenderer(this);
+    m_themedBackgroundRenderer->setSize(QSize(800, 600));
+    connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)), this, SLOT(backgroundChanged(QPixmap)));
+    m_themedBackgroundRenderer->updateBackground();
 
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SIGNAL(continueAction()));
     connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SIGNAL(skipAction()));
@@ -120,6 +126,14 @@ void GuiFrontend::showSolution()
 void GuiFrontend::setBoxes(int currentBox, int lastBox)
 {
     m_ui->boxesWidget->setBoxes(currentBox, lastBox);
+}
+
+void GuiFrontend::backgroundChanged(const QPixmap &pixmap)
+{
+    //TODO: figure out the best way to add a background to a QWidget
+    QPalette palette = m_widget->palette();
+    palette.setBrush(QPalette::Background, QBrush(pixmap));
+    m_widget->setPalette(palette);
 }
 
 void GuiFrontend::showSetResultButtons(bool show)
