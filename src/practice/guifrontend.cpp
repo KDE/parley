@@ -35,8 +35,7 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     KColorScheme scheme(QPalette::Active, KColorScheme::View);
 
     QPalette palette = m_widget->palette();
-    palette.setColor(QPalette::Window, scheme.background(KColorScheme::NormalBackground).color()    );
-    palette.setBrush(QPalette::Background, QBrush(QPixmap("/home/frederik/kde/kde/share/wallpapers/Ethais/contents/images/1280x1024.png")));
+    palette.setColor(QPalette::Window, scheme.background(KColorScheme::NormalBackground).color());
 
     m_widget->setPalette(palette);
     m_widget->setAutoFillBackground(true);
