@@ -21,6 +21,7 @@
 #include "mixedlettersmodewidget.h"
 #include "themedbackgroundrenderer.h"
 #include <kcolorscheme.h>
+#include <kstandarddirs.h>
 
 using namespace Practice;
 
@@ -33,15 +34,10 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     m_ui->setupUi(m_widget);
     m_ui->centralPracticeWidget->setLayout(new QHBoxLayout());
 
-    KColorScheme scheme(QPalette::Active, KColorScheme::View);
-
-    QPalette palette = m_widget->palette();
-    palette.setColor(QPalette::Window, scheme.background(KColorScheme::NormalBackground).color());
-
-    m_widget->setPalette(palette);
     m_widget->setAutoFillBackground(true);
 
     m_themedBackgroundRenderer = new ThemedBackgroundRenderer(this);
+    m_themedBackgroundRenderer->setSvgFilename(KStandardDirs::locate("data", "parley/themes/theme_reference.svg"));
     m_themedBackgroundRenderer->setSize(QSize(800, 600));
     connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)), this, SLOT(backgroundChanged(QPixmap)));
     m_themedBackgroundRenderer->updateBackground();

@@ -15,6 +15,8 @@
 
 #include <kdebug.h>
 
+#include <QPainter>
+
 using namespace Practice;
 
 ThemedBackgroundRenderer::ThemedBackgroundRenderer(QObject* parent)
@@ -46,7 +48,13 @@ void ThemedBackgroundRenderer::addRect(const QString& name, const QRect& rect)
 void ThemedBackgroundRenderer::updateBackground()
 {
     m_pixmap = QPixmap(m_size);
-    m_pixmap.fill(QColor(255,200,200));
+    m_pixmap.fill(QColor(0,0,0, 0));
+    QRect rect(20,20,150,150);
+
+    QPainter p(&m_pixmap);
+    m_renderer.render(&p, "rect-bg", rect);
+    kDebug() << "foobar bounds" << m_renderer.boundsOnElement("foobar") << "rect-bg bounds" << m_renderer.boundsOnElement("rect-bg");
+
     emit backgroundChanged(m_pixmap);
 }
 
