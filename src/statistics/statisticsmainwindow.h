@@ -46,9 +46,11 @@ public:
 
 private slots:
     void configurePractice();
+    void languagesChanged();
 
 private:
     void initActions();
+    void initLanguages();
     
     ParleyMainWindow* m_mainWindow; 
     KEduVocDocument* m_doc;

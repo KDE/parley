@@ -36,6 +36,10 @@ using namespace Editor;
 class GradeDelegate: public QItemDelegate
 {
 public:
+    GradeDelegate(QObject* parent = 0)
+        :QItemDelegate(parent)
+    {}
+
     virtual void paint ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const {
         QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, 0);
 
@@ -43,12 +47,8 @@ public:
         if (!index.data(StatisticsModel::TotalCount).toInt()) {
             return;
         }
-
         drawBackground(painter, option, index);
-
         painter->drawText(option.rect, Qt::AlignCenter, QString("%1%").arg(index.data(StatisticsModel::TotalPercent).toInt()));
-
-//         drawDisplay(painter, option, option.rect, index.data(Qt::DisplayRole).toString());
     }
 
 protected:
@@ -80,7 +80,10 @@ protected:
     }
 };
 
-LessonStatisticsView::LessonStatisticsView(QWidget * parent) :ContainerView(parent)
+
+
+LessonStatisticsView::LessonStatisticsView(QWidget * parent)
+    :ContainerView(parent)
 {
     header()->setVisible(true);
 
@@ -93,20 +96,24 @@ LessonStatisticsView::LessonStatisticsView(QWidget * parent) :ContainerView(pare
     removeGradesAction->setStatusTip(removeGradesAction->whatsThis());
 
     connect(removeGradesAction, SIGNAL(triggered()), SLOT(removeGrades()));
-
     addAction(removeGradesAction);
 }
 
 void LessonStatisticsView::setModel(Editor::ContainerModel *model)
 {
     ContainerView::setModel(model);
-
-//     header()->setResizeMode(0, QHeaderView::Stretch);
-    header()->setResizeMode(QHeaderView::ResizeToContents);
+    GradeDelegate* delegate = new GradeDelegate(this);
     for (int i = 2; i < model->columnCount(QModelIndex()); i++) {
-        setItemDelegateForColumn(i, new GradeDelegate());
-        setColumnWidth(i, 200);
+        setItemDelegateForColumn(i, delegate);
+        //setColumnWidth(i, 200);
     }
+    header()->resizeSections(QHeaderView::ResizeToContents);
+    header()->setResizeMode(QHeaderView::Interactive);
+}
+
+void LessonStatisticsView::showGrades(int, int)
+{
+    // TODO: only show the corresponding grades
 }
 
 void LessonStatisticsView::removeGrades()
