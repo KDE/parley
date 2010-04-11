@@ -15,7 +15,8 @@
 #define PRACTICE_THEMEDBACKGROUNDRENDERER_H
 
 #include <QObject>
-#include <QPixmap>
+#include <QFuture>
+#include <QFutureWatcher>
 
 #include <ksvgrenderer.h>
 
@@ -30,6 +31,7 @@ public:
     ~ThemedBackgroundRenderer() {}
 
     void setSvgFilename(const QString& filename);
+    QPixmap getPixmapForId(const QString& id);
     
 public Q_SLOTS:
     void setSize(const QSize& size);
@@ -37,16 +39,19 @@ public Q_SLOTS:
     void addRect(const QString& name, const QRect& rect);
     void updateBackground();
 
-    QPixmap getPixmapForId(const QString& id);
+    void renderingFinished();
 
 signals:
     void backgroundChanged(QPixmap pixmap);
    
 private:
+    QImage renderBackground();
+
+    QFuture<QImage> m_future;
+    QFutureWatcher<QImage> m_watcher;
     KSvgRenderer m_renderer;
     QSize m_size;
-    QPixmap m_pixmap;
-
+    bool m_queuedRequest;
 };
 
 }
