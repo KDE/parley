@@ -46,10 +46,12 @@ signals:
    
 private:
     QImage renderBackground();
+    void renderRect(const QString& name, const QRect& rect, QPainter *p);
 
     QFuture<QImage> m_future;
     QFutureWatcher<QImage> m_watcher;
     KSvgRenderer m_renderer;
+    QList<QPair<QString, QRect> > m_rects;
     QSize m_size;
     bool m_queuedRequest;
 };

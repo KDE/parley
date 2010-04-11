@@ -23,6 +23,8 @@
 #include <kcolorscheme.h>
 #include <kstandarddirs.h>
 
+#include <QTimer>
+
 using namespace Practice;
 
 GuiFrontend::GuiFrontend(QWidget* parent)
@@ -49,6 +51,8 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     connect(m_ui->toggleButton, SIGNAL(clicked()), this, SLOT(resultToggleClicked()));
     connect(m_ui->countAsCorrectButton, SIGNAL(clicked()), this, SLOT(countAsCorrectButtonClicked()));
     connect(m_ui->countAsWrongButton, SIGNAL(clicked()), this, SLOT(countAsWrongButtonClicked()));
+
+    QTimer::singleShot(0, this, SLOT(updateBackground()));
 }
 
 GuiFrontend::~GuiFrontend()
@@ -267,7 +271,10 @@ void GuiFrontend::resultToggleClicked()
 void GuiFrontend::updateBackground()
 {
     m_themedBackgroundRenderer->setSize(m_widget->size());
-    //TODO: update rects
+    m_themedBackgroundRenderer->clearRects();
+    m_themedBackgroundRenderer->addRect("image", m_ui->imageWidget->frameGeometry());
+    m_themedBackgroundRenderer->addRect("central", m_ui->centralPracticeWidget->frameGeometry());
+    m_themedBackgroundRenderer->addRect("status", m_ui->rightContainer->frameGeometry());
     m_themedBackgroundRenderer->updateBackground();
 }
 

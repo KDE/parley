@@ -39,12 +39,12 @@ void ThemedBackgroundRenderer::setSize(const QSize& size)
 
 void ThemedBackgroundRenderer::clearRects()
 {
-
+    m_rects.clear();
 }
 
 void ThemedBackgroundRenderer::addRect(const QString& name, const QRect& rect)
 {
-
+    m_rects.append(qMakePair<QString, QRect>(name, rect));
 }
 
 void ThemedBackgroundRenderer::updateBackground()
@@ -77,13 +77,22 @@ QImage ThemedBackgroundRenderer::renderBackground()
 {
     QImage image(m_size, QImage::Format_ARGB32_Premultiplied);
     image.fill(QColor(Qt::transparent).rgba());
-    QRect rect(QPoint(0,0), m_size);
-//    sleep(2);
     QPainter p(&image);
-    m_renderer.render(&p, "rect-bg", rect);
+
     kDebug() << "foobar bounds" << m_renderer.boundsOnElement("foobar") << "rect-bg bounds" << m_renderer.boundsOnElement("rect-bg");
 
+    renderRect("rect", QRect(QPoint(0,0), m_size), &p);
+    QPair<QString, QRect> rect;
+    Q_FOREACH(rect, m_rects) {
+        renderRect("rect", rect.second, &p);
+    }
+
     return image;
+}
+
+void ThemedBackgroundRenderer::renderRect(const QString& name, const QRect& rect, QPainter *p)
+{
+    m_renderer.render(p, name+"-bg", rect);
 }
 
 #include "themedbackgroundrenderer.moc"
