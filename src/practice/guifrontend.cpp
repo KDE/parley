@@ -39,6 +39,7 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     m_themedBackgroundRenderer->setSvgFilename(KStandardDirs::locate("data", "parley/themes/theme_reference.svg"));
     m_themedBackgroundRenderer->setSize(QSize(800, 600));
     connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)), this, SLOT(backgroundChanged(QPixmap)));
+    connect(m_widget, SIGNAL(sizeChanged()), this, SLOT(updateBackground()));
     m_themedBackgroundRenderer->updateBackground();
 
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SIGNAL(continueAction()));
@@ -262,5 +263,11 @@ void GuiFrontend::resultToggleClicked()
     }
 }
 
+void GuiFrontend::updateBackground()
+{
+    m_themedBackgroundRenderer->setSize(m_widget->size());
+    //TODO: update rects
+    m_themedBackgroundRenderer->updateBackground();
+}
 
 #include "guifrontend.moc"

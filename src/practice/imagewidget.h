@@ -34,6 +34,9 @@ protected:
     virtual void paintEvent(QPaintEvent *e);
     virtual void resizeEvent(QResizeEvent *e);
 
+signals:
+    void sizeChanged();
+
 private Q_SLOTS:
     void scalePixmap(bool smooth = true);
     void animationFinished();

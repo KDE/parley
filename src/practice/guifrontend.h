@@ -77,6 +77,7 @@ private Q_SLOTS:
     void resultToggleClicked();
     void countAsCorrectButtonClicked();
     void countAsWrongButtonClicked();
+    void updateBackground();
    
 private:
     ImageWidget* m_widget;

@@ -94,6 +94,7 @@ void ImageWidget::resizeEvent(QResizeEvent* e)
     }
     m_scaledPixmapOutOfDate = true;
     QWidget::resizeEvent(e);
+    emit sizeChanged();
 }
 
 void ImageWidget::scalePixmap(bool smooth)
