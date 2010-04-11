@@ -49,7 +49,7 @@ void ThemedBackgroundRenderer::updateBackground()
 {
     m_pixmap = QPixmap(m_size);
     m_pixmap.fill(QColor(0,0,0, 0));
-    QRect rect(20,20,150,150);
+    QRect rect(QPoint(0,0), m_size);
 
     QPainter p(&m_pixmap);
     m_renderer.render(&p, "rect-bg", rect);
