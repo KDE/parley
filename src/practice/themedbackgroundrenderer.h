@@ -27,6 +27,28 @@ class ThemedBackgroundRenderer : public QObject
     Q_OBJECT
 
 public:
+    enum ScaleBase {
+        NoScale,
+        Horizontal,
+        Vertical,
+        Rect
+    };
+
+    enum Edge {
+        Top,
+        Bottom,
+        Left,
+        Right,
+        Center
+    };
+
+    enum Align {
+        Corner,
+        LeftTop, // left or top (depending on orientation of the edge)
+        Centered,
+        RightBottom // right or bottom (depending on orientation of the edge)
+    };
+
     ThemedBackgroundRenderer(QObject* parent = 0);
     ~ThemedBackgroundRenderer() {}
 
@@ -47,6 +69,9 @@ signals:
 private:
     QImage renderBackground();
     void renderRect(const QString& name, const QRect& rect, QPainter *p);
+    void renderItem(const QString& id, const QRect& rect, QPainter *p, ScaleBase scaleBase, Qt::AspectRatioMode aspectRatio, Edge edge, Align align, bool inside);
+    QRect scaleRect(QRect itemRect, const QRect& baseRect, ScaleBase scaleBase, Qt::AspectRatioMode aspectRatio);
+    QRect alignRect(QRect itemRect, const QRect& baseRect, Edge edge, Align align, bool inside);
 
     QFuture<QImage> m_future;
     QFutureWatcher<QImage> m_watcher;
