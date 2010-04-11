@@ -29,6 +29,7 @@ public:
 
     void setPixmap(const QPixmap& pixmap);
     void setScalingEnabled(bool scaling, bool onlyDownscaling = true);
+    void setKeepAspectRatio(Qt::AspectRatioMode mode);
 
 protected:
     virtual void paintEvent(QPaintEvent *e);
@@ -44,6 +45,7 @@ private Q_SLOTS:
 private:
     bool m_scaling;
     bool m_onlyDownscaling;
+    Qt::AspectRatioMode m_keepAspectRatio;
     QPixmap m_originalPixmap;
     QPixmap m_scaledPixmap;
     QPixmap m_scaledBackupPixmap;

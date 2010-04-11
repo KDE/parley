@@ -30,6 +30,7 @@ GuiFrontend::GuiFrontend(QWidget* parent)
 {
     m_widget = new ImageWidget();
     m_widget->setScalingEnabled(true, false);
+    m_widget->setKeepAspectRatio(Qt::IgnoreAspectRatio);
     
     m_ui = new Ui::PracticeMainWindow();
     m_ui->setupUi(m_widget);

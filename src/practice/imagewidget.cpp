@@ -22,7 +22,7 @@
 using namespace Practice;
 
 ImageWidget::ImageWidget(QWidget *parent)
-    : QWidget(parent), m_scaling(true), m_onlyDownscaling(true)
+    : QWidget(parent), m_scaling(true), m_onlyDownscaling(true), m_keepAspectRatio(Qt::KeepAspectRatio)
 {
     m_scaleTimer = new QTimer(this);
     m_scaleTimer->setSingleShot(true);
@@ -59,6 +59,11 @@ void ImageWidget::setScalingEnabled(bool scaling, bool onlyDownscaling)
 {
     m_scaling = scaling;
     m_onlyDownscaling = onlyDownscaling;
+}
+
+void ImageWidget::setKeepAspectRatio(Qt::AspectRatioMode mode)
+{
+    m_keepAspectRatio = mode;
 }
 
 void ImageWidget::paintEvent(QPaintEvent* e)
@@ -113,7 +118,7 @@ void ImageWidget::scalePixmap(bool smooth)
             update();
             return;
         }
-        m_scaledPixmap = m_originalPixmap.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        m_scaledPixmap = m_originalPixmap.scaled(size(), m_keepAspectRatio, Qt::SmoothTransformation);
         m_scaledBackupPixmap = QPixmap();
         m_scaledPixmapOutOfDate = false;
         update();
@@ -127,14 +132,14 @@ void ImageWidget::scalePixmap(bool smooth)
                         float(m_scaledBackupPixmap.height())/size().height());
         }
         if (ratio > 0.4 && !m_scaledBackupPixmap.isNull()) {
-            m_scaledPixmap = m_scaledBackupPixmap.scaled(size(), Qt::KeepAspectRatio, Qt::FastTransformation);
+            m_scaledPixmap = m_scaledBackupPixmap.scaled(size(), m_keepAspectRatio, Qt::FastTransformation);
         } else {
             if (m_originalPixmap.isNull() || size().isEmpty()) {
                 m_scaledPixmap = QPixmap();
                 return;
             }
             // use the original pixmap
-            m_scaledPixmap = m_originalPixmap.scaled(size(), Qt::KeepAspectRatio, Qt::FastTransformation);
+            m_scaledPixmap = m_originalPixmap.scaled(size(), m_keepAspectRatio, Qt::FastTransformation);
             m_scaledBackupPixmap = m_scaledPixmap;
         }
         m_scaledPixmapOutOfDate = true;
