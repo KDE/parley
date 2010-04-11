@@ -93,14 +93,40 @@ QImage ThemedBackgroundRenderer::renderBackground()
 void ThemedBackgroundRenderer::renderRect(const QString& name, const QRect& rect, QPainter *p)
 {
     renderItem(name+"-center", rect, p, Rect, Qt::IgnoreAspectRatio, Center, Centered, true);
+    renderItem(name+"-center-ratio", rect, p, Rect, Qt::IgnoreAspectRatio, Center, Centered, true);
+    renderItem(name+"-center-crop", rect, p, Rect, Qt::IgnoreAspectRatio, Center, Centered, true);
+
     renderItem(name+"-border-topleft", rect, p, NoScale, Qt::IgnoreAspectRatio, Top, Corner, false);
     renderItem(name+"-border-topright", rect, p, NoScale, Qt::IgnoreAspectRatio, Right, Corner, false);
     renderItem(name+"-border-bottomleft", rect, p, NoScale, Qt::IgnoreAspectRatio, Left, Corner, false);
     renderItem(name+"-border-bottomright", rect, p, NoScale, Qt::IgnoreAspectRatio, Bottom, Corner, false);
-    renderItem(name+"-border-top", rect, p, Horizontal, Qt::IgnoreAspectRatio, Top, Centered, false);
-    renderItem(name+"-border-bottom", rect, p, Horizontal, Qt::IgnoreAspectRatio, Bottom, Centered, false);
-    renderItem(name+"-border-left", rect, p, Vertical, Qt::IgnoreAspectRatio, Left, Centered, false);
-    renderItem(name+"-border-right", rect, p, Vertical, Qt::IgnoreAspectRatio, Right, Centered, false);
+
+    QStringList edges;
+    edges << "top" << "bottom" << "left" << "right";
+    Q_FOREACH(const QString& edge, edges) {
+        ScaleBase scaleBase;
+        Edge alignEdge;
+        if(edge == QLatin1String("top")) {
+            alignEdge = Top;
+            scaleBase = Horizontal;
+        } else if(edge == QLatin1String("bottom")) {
+            alignEdge = Bottom;
+            scaleBase = Horizontal;
+        } else if(edge == QLatin1String("right")) {
+            alignEdge = Right;
+            scaleBase = Vertical;
+        } else {
+            alignEdge = Left;
+            scaleBase = Vertical;
+        }
+        for(int inside = 1; inside>=0; inside--) {
+            renderItem(name+"-"+(inside?"inside":"border")+"-"+edge,            rect, p, scaleBase, Qt::IgnoreAspectRatio, alignEdge, Centered, inside);
+            renderItem(name+"-"+(inside?"inside":"border")+"-"+edge+"-ratio",   rect, p, scaleBase, Qt::KeepAspectRatio,   alignEdge, Centered, inside);
+            renderItem(name+"-"+(inside?"inside":"border")+"-"+edge+"-noscale", rect, p, NoScale,   Qt::IgnoreAspectRatio, alignEdge, Centered, inside);
+            renderItem(name+"-"+(inside?"inside":"border")+"-"+edge+"-"+(scaleBase==Vertical?"top":"left"),     rect, p, NoScale,   Qt::IgnoreAspectRatio, alignEdge, LeftTop, inside);
+            renderItem(name+"-"+(inside?"inside":"border")+"-"+edge+"-"+(scaleBase==Vertical?"bottom":"right"), rect, p, NoScale,   Qt::IgnoreAspectRatio, alignEdge, RightBottom, inside);
+        }
+    }
 }
 
 void ThemedBackgroundRenderer::renderItem(const QString& id, const QRect& rect, QPainter *p, ScaleBase scaleBase, Qt::AspectRatioMode aspectRatio, Edge edge, Align align, bool inside)
