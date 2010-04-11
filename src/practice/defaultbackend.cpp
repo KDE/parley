@@ -41,14 +41,42 @@ DefaultBackend::~DefaultBackend()
 
 void DefaultBackend::startPractice()
 {
-    m_currentMode = nextPracticeMode(m_currentMode);
-    if (m_currentMode == AbstractFrontend::None) {
-        emit practiceFinished();
-        return;
-    }
-    initializePracticeMode(m_currentMode);
-    
+    initializePracticeMode();
     nextEntry();
+}
+
+void DefaultBackend::initializePracticeMode()
+{
+    switch(m_options.mode()) {
+        case Prefs::EnumPracticeMode::FlashCardsPractice:
+            kDebug() << "Create Flash Card Practice backend";
+            m_frontend->setMode(AbstractFrontend::FlashCard);
+            m_mode = new FlashCardBackendMode(m_options, m_frontend, this);
+            break;
+        case Prefs::EnumPracticeMode::MultipleChoicePractice:
+            kDebug() << "Create MultipleChoice Practice backend";
+            m_frontend->setMode(AbstractFrontend::MultipleChoice);
+            m_mode = new MultipleChoiceBackendMode(m_options, m_frontend, this, m_testEntryManager);
+            break;
+        case Prefs::EnumPracticeMode::MixedLettersPractice:
+            kDebug() << "Create Mixed Letters Practice backend";
+            m_frontend->setMode(AbstractFrontend::MixedLetters);
+            m_mode = new WrittenBackendMode(m_options, m_frontend, this);
+            break;
+        case Prefs::EnumPracticeMode::WrittenPractice:
+            kDebug() << "Create Written Practice backend";
+            m_frontend->setMode(AbstractFrontend::Written);
+            m_mode = new WrittenBackendMode(m_options, m_frontend, this);
+            break;
+        default:
+            Q_ASSERT("Implement selected practice mode" == 0);
+    }
+
+    connect(m_mode, SIGNAL(currentEntryFinished()), this, SLOT(removeCurrentEntryFromPractice()));
+    connect(m_mode, SIGNAL(nextEntry()), this, SLOT(nextEntry()));
+    
+    connect(m_frontend, SIGNAL(continueAction()), m_mode, SLOT(continueAction()));
+    connect(m_frontend, SIGNAL(hintAction()), m_mode, SLOT(hintAction()));
 }
 
 void DefaultBackend::nextEntry()
@@ -57,75 +85,11 @@ void DefaultBackend::nextEntry()
     
     //after going through all words, or at the start of practice
     if (m_current == 0) {
-        m_currentMode = nextPracticeMode(m_currentMode);
-        
-        // abort if no more modes available
-        if (m_currentMode == AbstractFrontend::None) {
-            emit practiceFinished();
-            return;
-        }
-        
-        initializePracticeMode(m_currentMode);
-        // FIXME figure out, what to do with the grades - will only the very last mode update them?
-        m_testEntryManager->startNextPracticeMode();
-        
-        m_current = m_testEntryManager->getNextEntry();
+        emit practiceFinished();
+        return;
     }
-    
     m_mode->setTestEntry(m_current);
     updateFrontend();
-}
-
-AbstractFrontend::Mode DefaultBackend::nextPracticeMode(AbstractFrontend::Mode currentMode)
-{
-    QList<AbstractFrontend::Mode> modes = m_options.modes();
-    
-    if (modes.size() == 0) {
-        kWarning() << "No practice mode selected!";
-        return AbstractFrontend::None;
-    }
-    int indexOfCurrent = modes.indexOf(currentMode);
-    
-    // m_currentMode is still None, it has not been initialized
-    if (indexOfCurrent < 0) {
-        return modes.at(0);
-    }
-    // all modes are done, return None
-    if (indexOfCurrent == modes.size()-1) {
-        return AbstractFrontend::None;
-    }
-    return modes.at(indexOfCurrent+1);
-}
-
-void DefaultBackend::initializePracticeMode(AbstractFrontend::Mode mode)
-{
-    delete m_mode;
-    m_frontend->setMode(mode);
-    
-    switch(mode) {
-        case AbstractFrontend::FlashCard:
-            kDebug() << "Create Flash Card Practice backend";
-            m_mode = new FlashCardBackendMode(m_options, m_frontend, this);
-            break;
-        case AbstractFrontend::MultipleChoice:
-            kDebug() << "Create MultipleChoice Practice backend";
-            m_mode = new MultipleChoiceBackendMode(m_options, m_frontend, this, m_testEntryManager);
-            break;
-        case AbstractFrontend::Written:
-        case AbstractFrontend::MixedLetters:
-            kDebug() << "Create Written Practice backend";
-            m_mode = new WrittenBackendMode(m_options, m_frontend, this);
-            break;
-        default:
-            Q_ASSERT("Implement selected Mode" == 0);
-            break;
-    }
-
-    connect(m_mode, SIGNAL(currentEntryFinished()), this, SLOT(removeCurrentEntryFromPractice()));
-    connect(m_mode, SIGNAL(nextEntry()), this, SLOT(nextEntry()));
-    
-    connect(m_frontend, SIGNAL(continueAction()), m_mode, SLOT(continueAction()));
-    connect(m_frontend, SIGNAL(hintAction()), m_mode, SLOT(hintAction()));
 }
 
 void DefaultBackend::removeCurrentEntryFromPractice()

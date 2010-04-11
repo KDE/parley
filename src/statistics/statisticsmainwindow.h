@@ -47,9 +47,11 @@ public:
 private slots:
     void configurePractice();
     void languagesChanged();
+    void practiceModeSelected(int mode);
 
 private:
     void initActions();
+    void initPracticeModeSelection();
     void initLanguages();
     
     ParleyMainWindow* m_mainWindow; 

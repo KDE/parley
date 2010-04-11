@@ -6,126 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>594</width>
-    <height>496</height>
+    <width>353</width>
+    <height>298</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="KButtonGroup" name="TestType">
-       <property name="title">
-        <string>Vocabulary Training</string>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
-        <item>
-         <widget class="QCheckBox" name="kcfg_FlashCardPractice">
-          <property name="toolTip">
-           <string>In this mode you see the word in one language and then see the solution.
-You then decide if you knew the solution.</string>
-          </property>
-          <property name="text">
-           <string>Flash Cards</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="kcfg_MixedLetterPractice">
-          <property name="text">
-           <string>Mixed Letters</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="kcfg_MultipleChoicePractice">
-          <property name="text">
-           <string>Multiple Choice</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="kcfg_WrittenPractice">
-          <property name="text">
-           <string>Written</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="kcfg_ExampleSentencePractice">
-          <property name="text">
-           <string>Example Sentences</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="kcfg_ParaphrasePractice">
-          <property name="text">
-           <string>Paraphrase</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
       <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QGroupBox" name="OptionsGroupBox">
-         <property name="title">
-          <string>Grammar Training</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
-          <item>
-           <widget class="QCheckBox" name="kcfg_GenderPractice">
-            <property name="text">
-             <string>Gender of Nouns</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="kcfg_ComparisonPractice">
-            <property name="text">
-             <string>Comparison Forms</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="kcfg_ConjugationPractice">
-            <property name="text">
-             <string>Conjugation</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
        <item>
         <widget class="QTreeWidget" name="tenseSelectionTreeWidget">
          <property name="rootIsDecorated">
@@ -146,18 +35,6 @@ You then decide if you knew the solution.</string>
     </layout>
    </item>
    <item>
-    <widget class="QGroupBox" name="languageGroupBox">
-     <property name="title">
-      <string>Languages</string>
-     </property>
-     <layout class="QVBoxLayout">
-      <item>
-       <widget class="QListWidget" name="LanguageList"/>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
     <spacer>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -172,14 +49,6 @@ You then decide if you knew the solution.</string>
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KButtonGroup</class>
-   <extends>QGroupBox</extends>
-   <header>kbuttongroup.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

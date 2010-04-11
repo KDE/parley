@@ -50,9 +50,6 @@ public:
     bool hasChanged();
     bool isDefault();
 
-private slots:
-    void languagesSelected(int identifierFromIndex);
-
 private:
     void setupTenses();
 

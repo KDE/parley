@@ -47,8 +47,7 @@ Q_SIGNALS:
     void practiceFinished();
 
 private:
-    AbstractFrontend::Mode nextPracticeMode(Practice::AbstractFrontend::Mode currentMode);
-    void initializePracticeMode(AbstractFrontend::Mode mode);
+    void initializePracticeMode();
     void updateFrontend();
     
     AbstractFrontend* m_frontend;

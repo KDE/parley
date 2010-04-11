@@ -55,45 +55,11 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
         Prefs::setSolutionLanguage(1);
     }
 
-    for ( int i = 0; i < totalNumLanguages-1; i++ ) {
-        LanguageSettings currentSettings(m_doc->identifier(i).locale());
-        currentSettings.readConfig();
-
-        for (int j = i+1; j < totalNumLanguages; j++) {
-            QListWidgetItem* item = new QListWidgetItem(
-                i18nc("pair of two languages that the user chooses to practice", "%1 to %2",
-                m_doc->identifier(i).name(), m_doc->identifier(j).name()));
-            item->setData(Qt::UserRole, i);
-            item->setData(Qt::UserRole+1, j);
-            LanguageList->addItem(item);
-
-            if (i == Prefs::questionLanguage() && j == Prefs::solutionLanguage()) {
-                LanguageList->setCurrentItem(item);
-            }
-            QListWidgetItem* item2 = new QListWidgetItem(
-                i18nc("pair of two languages that the user chooses to practice", "%1 to %2",
-                m_doc->identifier(j).name(), m_doc->identifier(i).name()));
-            item2->setData(Qt::UserRole, j);
-            item2->setData(Qt::UserRole+1, i);
-            LanguageList->addItem(item2);
-
-            if (j == Prefs::questionLanguage() && i == Prefs::solutionLanguage()) {
-                LanguageList->setCurrentItem(item);
-            }
-        }
-    }
-
-    connect(LanguageList, SIGNAL(currentRowChanged(int)), SLOT(languagesSelected(int)));
-
-    LanguageList->sortItems();
     setupTenses();
 }
 
 void ConfigurePracticeWidget::updateSettings()
 {
-    Prefs::setQuestionLanguage(LanguageList->currentItem()->data(Qt::UserRole).toInt());
-    Prefs::setSolutionLanguage(LanguageList->currentItem()->data(Qt::UserRole+1).toInt());
-
     QTreeWidgetItem* parentItem = tenseSelectionTreeWidget->invisibleRootItem();
     QStringList activeTenses;
     for ( int i = 0; i < parentItem->childCount(); i++ ) {
@@ -108,25 +74,12 @@ void ConfigurePracticeWidget::updateSettings()
     documentSettings.writeConfig();
 }
 
-void ConfigurePracticeWidget::languagesSelected(int selectedItem)
-{
-    if (LanguageList->currentItem()) {
-        Prefs::setQuestionLanguage(LanguageList->currentItem()->data(Qt::UserRole).toInt());
-        Prefs::setSolutionLanguage(LanguageList->currentItem()->data(Qt::UserRole+1).toInt());
-        setupTenses();
-    }
-}
-
 void ConfigurePracticeWidget::updateWidgets()
 {
 }
 
 bool ConfigurePracticeWidget::hasChanged()
 {
-    if (LanguageList->currentRow() != m_initalLanguageRow) {
-        return true;
-    }
-
     return false;
     // @todo tenses
 }
@@ -138,12 +91,8 @@ bool ConfigurePracticeWidget::isDefault()
 
 void ConfigurePracticeWidget::setupTenses()
 {
-    if (!LanguageList->currentItem()) {
-        return;
-    }
-    
-    int index = LanguageList->currentItem()->data(Qt::UserRole+1).toInt();
-    if (index < 0) {
+    int index = Prefs::questionLanguage();
+    if (index < 0 || index >= m_doc->identifierCount()) {
         index = 0;
     }
 

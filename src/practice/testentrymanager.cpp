@@ -33,9 +33,9 @@ using namespace Practice;
 
 TestEntryManager::TestEntryManager(QWidget* parent)
     :m_parent(parent)
-    ,m_currentEntry(0)
     ,m_fromTranslation(0)
     ,m_toTranslation(1)
+    ,m_currentEntry(0)
     ,m_randomSequence(QDateTime::currentDateTime().toTime_t())
 {
 }

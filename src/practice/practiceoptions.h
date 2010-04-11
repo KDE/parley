@@ -16,6 +16,7 @@
 #define PRACTICEOPTIONS_H
 
 #include "abstractfrontend.h"
+#include <prefs.h>
 
 namespace Practice {
     
@@ -26,19 +27,15 @@ public:
     
     int languageFrom() const {return m_languageFrom;}
     int languageTo() const {return m_languageTo;}
-    
-    QList<AbstractFrontend::Mode> modes() const;
-    
+
+    Prefs::EnumPracticeMode::type mode() const;
     int numberMultipleChoiceAnswers() const;
-    
+
 private:
     void loadPreferences();
     
     int m_languageFrom;
     int m_languageTo;
-    
-    QList<AbstractFrontend::Mode> m_modes;
-    
 };
 }
 #endif // PRACTICEOPTIONS_H

@@ -27,24 +27,11 @@ void PracticeOptions::loadPreferences()
 {
     m_languageFrom = Prefs::questionLanguage();                                                                  
     m_languageTo = Prefs::solutionLanguage();
-    
-    if (Prefs::flashCardPractice()) {
-        m_modes.append(AbstractFrontend::FlashCard);
-    }
-    if (Prefs::mixedLetterPractice()) {
-        m_modes.append(AbstractFrontend::MixedLetters);
-    }
-    if (Prefs::multipleChoicePractice()) {
-        m_modes.append(AbstractFrontend::MultipleChoice);
-    }
-    if (Prefs::writtenPractice()) {
-        m_modes.append(AbstractFrontend::Written);
-    }
 }
 
-QList<AbstractFrontend::Mode> PracticeOptions::modes() const
+Prefs::EnumPracticeMode::type PracticeOptions::mode() const
 {
-    return m_modes;
+    return Prefs::practiceMode();;
 }
 
 int Practice::PracticeOptions::numberMultipleChoiceAnswers() const
