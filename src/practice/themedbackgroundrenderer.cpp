@@ -277,7 +277,7 @@ QRect ThemedBackgroundRenderer::alignRect(QRect itemRect, const QRect &baseRect,
         }
         if ((!inside) && edge == Top) {
             y -= itemRect.height();
-        } else {
+        } else if(!inside) {
             y += itemRect.height();
         }
         itemRect.moveTo(x, y);
@@ -310,7 +310,7 @@ QRect ThemedBackgroundRenderer::alignRect(QRect itemRect, const QRect &baseRect,
         }
         if ((!inside) && edge == Left) {
             x -= itemRect.width();
-        } else {
+        } else if (!inside) {
             x += itemRect.width();
         }
         itemRect.moveTo(x, y);
