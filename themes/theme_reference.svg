@@ -103,9 +103,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="39.08347"
-     inkscape:cy="707.09414"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="264.26631"
+     inkscape:cy="566.11589"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -132,7 +132,7 @@
      id="layer1">
     <rect
        style="fill:url(#linearGradient5040);fill-opacity:1;fill-rule:evenodd;stroke:none"
-       id="rect-center"
+       id="background-center"
        width="122.85636"
        height="122.85636"
        x="156.76698"
@@ -140,7 +140,7 @@
        inkscape:label="#rect2816" />
     <rect
        style="fill:#ff0000;stroke:none"
-       id="rect-border-top"
+       id="background-border-top"
        width="11.773734"
        height="4.6071134"
        x="212.30829"
@@ -148,7 +148,7 @@
        inkscape:label="#rect5063" />
     <rect
        style="fill:#0000ff;stroke:none"
-       id="rect-border-right"
+       id="background-border-right"
        width="11.773734"
        height="4.6071134"
        x="453.87311"
@@ -159,7 +159,7 @@
        inkscape:transform-center-y="-15.868936" />
     <rect
        style="fill:#ffff00;stroke:none"
-       id="rect-border-left"
+       id="background-border-left"
        width="11.773734"
        height="4.6071134"
        x="453.87311"
@@ -170,7 +170,7 @@
        inkscape:transform-center-y="-15.868936" />
     <rect
        style="fill:#008000;stroke:none"
-       id="rect-border-bottom"
+       id="background-border-bottom"
        width="11.773734"
        height="4.6071134"
        x="212.30829"
@@ -179,25 +179,25 @@
     <path
        style="fill:#0000ff;stroke:none"
        d="m 156.76698,393.5098 0,5.57151 -5.54043,0 5.54043,-5.57151 z"
-       id="rect-border-topleft"
+       id="background-border-topleft"
        sodipodi:nodetypes="cccc"
        inkscape:label="#rect5153" />
     <path
        style="fill:#008000;stroke:none"
        d="m 284.83415,398.33148 -5.5715,0 0,-5.54043 5.5715,5.54043 z"
-       id="rect-border-topright"
+       id="background-border-topright"
        sodipodi:nodetypes="cccc"
        inkscape:label="#rect5153" />
     <path
        style="fill:#ffff00;stroke:none"
        d="m 279.27818,526.75993 0,-5.5715 5.54043,0 -5.54043,5.5715 z"
-       id="rect-border-bottomright"
+       id="background-border-bottomright"
        sodipodi:nodetypes="cccc"
        inkscape:label="#rect5153" />
     <path
        style="fill:#ff0000;stroke:none"
        d="m 151.73314,521.18843 5.57151,0 0,5.54043 -5.57151,-5.54043 z"
-       id="rect-border-bottomleft"
+       id="background-border-bottomleft"
        sodipodi:nodetypes="cccc"
        inkscape:label="#rect5153" />
   </g>
