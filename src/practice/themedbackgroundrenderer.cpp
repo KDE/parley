@@ -149,11 +149,12 @@ void ThemedBackgroundRenderer::renderItem(const QString& id, const QRect& rect, 
 {
     if (!m_renderer.elementExists(id))
         return;
-    QRect itemRect = m_renderer.boundsOnElement(id).toAlignedRect();
+    QRect itemRect = m_renderer.boundsOnElement(id).toRect();
     if (itemRect.isNull() || rect.isNull())
         return;
 
-    kDebug() << "original item rect:" << itemRect;
+    kDebug() << "render item" << id;
+    kDebug() << "original item rect:" << itemRect << m_renderer.boundsOnElement(id);
     itemRect = scaleRect(itemRect, rect, scaleBase, aspectRatio);
     kDebug() << "scaled" << itemRect;
     itemRect = alignRect(itemRect, rect, edge, align, inside);
