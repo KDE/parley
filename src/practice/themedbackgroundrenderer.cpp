@@ -24,7 +24,7 @@
 using namespace Practice;
 
 ThemedBackgroundRenderer::ThemedBackgroundRenderer(QObject* parent)
-    : QObject(parent), m_queuedRequest(false)
+    : QObject(parent), m_queuedRequest(false), m_isFastScaledRender(true)
 {
     m_cache.setSaveFilename(KStandardDirs::locateLocal("appdata", "practicethemecache.bin"));
     connect(&m_watcher, SIGNAL(finished()), this, SLOT(renderingFinished()));
@@ -57,16 +57,17 @@ void ThemedBackgroundRenderer::addRect(const QString& name, const QRect& rect)
     m_rects.append(qMakePair<QString, QRect>(name, rect));
 }
 
-void ThemedBackgroundRenderer::updateBackground()
+void ThemedBackgroundRenderer::updateBackground(bool fastScale)
 {
     if (m_size.isEmpty()) {
-        qWarning() << "trying to render with an invalid size";
+        kDebug() << "trying to render with an invalid size";
+        return;
     }
     if (m_future.isRunning()) {
         m_queuedRequest = true;
         return;
     }
-    m_future = QtConcurrent::run(this, &ThemedBackgroundRenderer::renderBackground, false);
+    m_future = QtConcurrent::run(this, &ThemedBackgroundRenderer::renderBackground, fastScale);
     m_watcher.setFuture(m_future);
 }
 
@@ -74,9 +75,15 @@ void ThemedBackgroundRenderer::renderingFinished()
 {
     emit backgroundChanged(QPixmap::fromImage(m_future.result()));
     m_future = QFuture<QImage>();
-    if (m_queuedRequest) {
+    if (m_queuedRequest) { // another request happened in the meantime
         m_queuedRequest = false;
         updateBackground();
+        return;
+    }
+    if (m_isFastScaledRender) { // the just finished rendering is based on scaled QImages, not on SVGs, so we have to render the final version
+        m_queuedRequest = false;
+        updateBackground(false); //TODO: delay with timer?
+        return;
     }
 }
 
@@ -102,6 +109,8 @@ QMargins ThemedBackgroundRenderer::contentMargins()
 
 QImage ThemedBackgroundRenderer::renderBackground(bool fastScale)
 {
+    m_isFastScaledRender = false;
+
     QTime t = QTime::currentTime();
     QImage image(m_size, QImage::Format_ARGB32_Premultiplied);
     image.fill(QColor(Qt::transparent).rgba());
@@ -184,6 +193,7 @@ void ThemedBackgroundRenderer::renderItem(const QString& id, const QRect& rect, 
     } else if(fastScale && !m_cache.imageSize(id).isEmpty()) {
         kDebug() << "FAST SCALE for:" << id;
         image = m_cache.getImage(id).scaled(itemRect.size(), Qt::IgnoreAspectRatio, Qt::FastTransformation);
+        m_isFastScaledRender = true;
     } else {
         kDebug() << "NOT IN CACHE, render svg:" << id;
         image = QImage(itemRect.size(), QImage::Format_ARGB32_Premultiplied);

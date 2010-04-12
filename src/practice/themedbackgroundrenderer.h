@@ -63,7 +63,7 @@ public Q_SLOTS:
     void setSize(const QSize& size);
     void clearRects();
     void addRect(const QString& name, const QRect& rect);
-    void updateBackground();
+    void updateBackground(bool fastScale = true);
 
     void renderingFinished();
 
@@ -84,6 +84,7 @@ private:
     QList<QPair<QString, QRect> > m_rects;
     QSize m_size;
     bool m_queuedRequest;
+    bool m_isFastScaledRender;
 };
 
 }
