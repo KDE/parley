@@ -39,8 +39,13 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     m_ui->centralPracticeWidget->setLayout(new QHBoxLayout());
 
     m_themedBackgroundRenderer = new ThemedBackgroundRenderer(this);
-    m_themedBackgroundRenderer->setSvgFilename(KStandardDirs::locate("data", "parley/themes/theme_reference.svg"));
-//    m_themedBackgroundRenderer->setSvgFilename(KStandardDirs::locate("data", "parley/themes/bees_theme.svgz"));
+    
+    
+    QString theme(KStandardDirs::locate("data", "parley/themes/" + Prefs::theme()));
+    kDebug() << "Using theme: " << theme;
+    m_themedBackgroundRenderer->setSvgFilename(theme);
+    
+    
     m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
     connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)), this, SLOT(backgroundChanged(QPixmap)));
     connect(m_widget, SIGNAL(sizeChanged()), this, SLOT(updateBackground()));
@@ -58,7 +63,7 @@ GuiFrontend::GuiFrontend(QWidget* parent)
 
 GuiFrontend::~GuiFrontend()
 {
-        // FIXME delete m_widget;
+    delete m_widget;
 }
 
 QVariant GuiFrontend::userInput()
@@ -161,20 +166,6 @@ void GuiFrontend::setQuestion(const QVariant& question)
     m_modeWidget->setQuestion(question);
 }
 
-void GuiFrontend::setQuestionImage(const KUrl& image)
-{
-    if (m_lastImage == image) {
-        m_lastImage = image;
-        return;
-    }
-    if (image.path().isEmpty()) {
-        m_ui->imageWidget->setPixmap(KIcon("parley").pixmap(128));
-    } else {
-        QPixmap pixmap(image.path());
-        m_ui->imageWidget->setPixmap(pixmap);
-    }
-    m_lastImage = image;
-}
 
 void GuiFrontend::setQuestionPronunciation(const QString& pronunciationText)
 {
@@ -191,9 +182,31 @@ void GuiFrontend::setSolution(const QVariant& solution)
     m_modeWidget->setSolution(solution);
 }
 
-void GuiFrontend::setSolutionImage(const KUrl& img)
+void GuiFrontend::setQuestionImage(const KUrl& image)
 {
-    // TODO
+    setImage(image);
+}
+
+void GuiFrontend::setSolutionImage(const KUrl& image)
+{
+    if (image.path().isEmpty()) {
+        return;
+    }
+    setImage(image);
+}
+
+void GuiFrontend::setImage(const KUrl& image)
+{
+    if (m_lastImage == image) {
+        return;
+    }    
+    QPixmap pixmap(image.path());
+    if (pixmap.isNull()) {
+        m_ui->imageWidget->setPixmap(KIcon("parley").pixmap(128));
+    } else {
+        m_ui->imageWidget->setPixmap(pixmap);
+    }
+    m_lastImage = image;
 }
 
 void GuiFrontend::setSolutionPronunciation(const QString& pronunciationText)

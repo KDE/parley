@@ -80,6 +80,8 @@ private Q_SLOTS:
     void updateBackground();
    
 private:
+    void setImage(const KUrl& image);
+    
     ImageWidget* m_widget;
     Ui::PracticeMainWindow* m_ui;
     AbstractModeWidget* m_modeWidget;
