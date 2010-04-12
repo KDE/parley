@@ -59,6 +59,9 @@ void ThemedBackgroundRenderer::addRect(const QString& name, const QRect& rect)
 
 void ThemedBackgroundRenderer::updateBackground()
 {
+    if (m_size.isEmpty()) {
+        qWarning() << "trying to render with an invalid size";
+    }
     if (m_future.isRunning()) {
         m_queuedRequest = true;
         return;

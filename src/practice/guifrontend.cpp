@@ -49,7 +49,6 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
     connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)), this, SLOT(backgroundChanged(QPixmap)));
     connect(m_widget, SIGNAL(sizeChanged()), this, SLOT(updateBackground()));
-    m_themedBackgroundRenderer->updateBackground();
 
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SIGNAL(continueAction()));
     connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SIGNAL(skipAction()));
