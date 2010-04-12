@@ -31,7 +31,6 @@ EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc) :QObject(parent
     m_fromTranslation = Prefs::questionLanguage();
     m_toTranslation = Prefs::solutionLanguage();
 
-    kWarning() << "FIXME config for practice should always enable from/to, no longer disable the to for some languages";
     expireEntries();
 }
 
@@ -194,11 +193,7 @@ void EntryFilter::lessonEntries()
             m_entriesLesson.insert(entry);
         }
     }
-
-    //if ( Prefs::testOrderLesson() ) {
-
 }
-
 
 void EntryFilter::wordTypeEntries()
 {
@@ -291,82 +286,69 @@ void EntryFilter::minMaxGradeEntries()
 
 void EntryFilter::cleanupInvalid()
 {
-    // FIXME
-#if 0
-    bool typeTest = Prefs::testType() == Prefs::EnumTestType::ArticleTest
-            || Prefs::testType() == Prefs::EnumTestType::ComparisonTest
-            || Prefs::testType() == Prefs::EnumTestType::ConjugationTest
-            || Prefs::testType() == Prefs::EnumTestType::SynonymTest
-            || Prefs::testType() == Prefs::EnumTestType::AntonymTest
-            || Prefs::testType() == Prefs::EnumTestType::ParaphraseTest
-            || Prefs::testType() == Prefs::EnumTestType::ExampleTest;
-
+    Prefs::EnumPracticeMode::type mode = Prefs::practiceMode();
+    bool wordTypeNeeded = (mode == Prefs::EnumPracticeMode::GenderPractice) ||
+        (mode == Prefs::EnumPracticeMode::ComparisonPractice) ||
+        (mode == Prefs::EnumPracticeMode::ConjugationPractice);
+    
     QSet<KEduVocExpression*>::iterator i = m_entries.begin();
     while (i != m_entries.end()) {
         // remove empty entries
         if ((*i)->translation(m_toTranslation)->text().isEmpty()
               || (*i)->translation(m_fromTranslation)->text().isEmpty()) {
             i = m_entries.erase(i);
-        } else if (typeTest) {
-            if(!(*i)->translation(m_toTranslation)->wordType()) {
-                i = m_entries.erase(i);
-            } else {
-                switch (Prefs::testType()) {
-    // if we do a grammar test, check if the grammar type is valid
-                case Prefs::EnumTestType::ArticleTest:
-                    if (! ((*i)->translation(m_toTranslation)->wordType()->wordType() & KEduVocWordFlag::Noun)) {
-                        i = m_entries.erase(i);
-                    } else i++;
-                    break;
-                case Prefs::EnumTestType::ComparisonTest:
-                    if (! ((Prefs::comparisonIncludeAdjective() &&(*i)->translation(m_toTranslation)->wordType()->wordType()
-                                == KEduVocWordFlag::Adjective)
-                           || (Prefs::comparisonIncludeAdverb() &&(*i)->translation(m_toTranslation)->wordType()->wordType()
-                           == KEduVocWordFlag::Adverb))) {
-                        i = m_entries.erase(i);
-                    } else {
-                        if ((*i)->translation(m_toTranslation)->comparative().isEmpty() &&
-                                    (*i)->translation(m_toTranslation)->superlative().isEmpty()) {
-                            i = m_entries.erase(i);
-                        } else i++;
-                    }
-                    break;
-                case Prefs::EnumTestType::ConjugationTest:
-                    if ( (*i)->translation(m_toTranslation)->wordType()->wordType() != KEduVocWordFlag::Verb || (*i)->translation(m_toTranslation)->conjugations().count() == 0) {
-                        i = m_entries.erase(i);
-                    } else i++; // conjugation
-                    break;
-
-                case Prefs::EnumTestType::SynonymTest:
-                    if ((*i)->translation(m_toTranslation)->synonyms().isEmpty()){
-                        i = m_entries.erase(i);
-                    } else i++;
-                    break;
-                case Prefs::EnumTestType::AntonymTest:
-                    if ((*i)->translation(m_toTranslation)->antonyms().isEmpty()){
-                        i = m_entries.erase(i);
-                    } else i++;
-                    break;
-                case Prefs::EnumTestType::ParaphraseTest:
-                    if ((*i)->translation(m_toTranslation)->paraphrase().isEmpty()){
-                        i = m_entries.erase(i);
-                    } else i++;
-                    break;
-                case Prefs::EnumTestType::ExampleTest:
-                    if ((*i)->translation(m_toTranslation)->example().simplified().isEmpty()){
-                        i = m_entries.erase(i);
-                    } else i++;
-                    break;
-                } // switch
-            } // type valid
-        } else { // if typeTest
-            i++;
+            continue;
         }
+               
+        // for grammar stuff we need the word to have its word type set, else continue
+        if (wordTypeNeeded && !(*i)->translation(m_toTranslation)->wordType()) {
+            i = m_entries.erase(i);
+            continue;
+        }
+        
+        // Grammar modes need different things:
+        switch (Prefs::practiceMode()) {     
+        
+        // example sentences: need the example sentence to exist
+        case Prefs::EnumPracticeMode::ExampleSentencesPractice:
+            if ((*i)->translation(m_toTranslation)->example().simplified().isEmpty()){
+                i = m_entries.erase(i);
+                continue;
+            }
+            
+        case Prefs::EnumPracticeMode::GenderPractice:
+            if (!((*i)->translation(m_toTranslation)->wordType()->wordType() & KEduVocWordFlag::Noun)) {
+                i = m_entries.erase(i);
+                continue;
+            }
+            break;
+                
+        case Prefs::EnumPracticeMode::ComparisonPractice:
+            if (
+                // only adjective/adverb
+                (((*i)->translation(m_toTranslation)->wordType()->wordType() != KEduVocWordFlag::Adjective)
+                    && ((*i)->translation(m_toTranslation)->wordType()->wordType() != KEduVocWordFlag::Adverb))
+                // at least one comparison forms is there
+                || ((*i)->translation(m_toTranslation)->comparative().isEmpty() || (*i)->translation(m_toTranslation)->superlative().isEmpty())) {
+                i = m_entries.erase(i);
+                continue;
+            }
+            break;
+                
+        case Prefs::EnumPracticeMode::ConjugationPractice:
+            if ( (*i)->translation(m_toTranslation)->wordType()->wordType() != KEduVocWordFlag::Verb 
+                || (*i)->translation(m_toTranslation)->conjugations().count() == 0) {
+                // FIXME should also check tenses
+                i = m_entries.erase(i);
+                continue;
+            } // conjugation
+            break;
+        default:
+            break;
+        } // switch
+        i++;
     } // for
-#endif
-
     kDebug() << "Invalid items removed. Remaining: " << m_entries.count();
 }
-
 
 #include "entryfilter.moc"
