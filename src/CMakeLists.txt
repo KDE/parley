@@ -85,6 +85,7 @@ set(practice_SRCS
     practice/abstractwidget.cpp
     practice/writtenpracticewidget.cpp
     practice/writtenbackendmode.cpp
+    practice/examplesentencebackendmode.cpp
     practice/flashcardmodewidget.cpp
     practice/flashcardbackendmode.cpp
     practice/multiplechoicemodewidget.cpp

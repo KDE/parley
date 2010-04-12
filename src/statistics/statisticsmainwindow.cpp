@@ -169,19 +169,20 @@ void StatisticsMainWindow::initLanguages()
         for (int j = i+1; j < totalNumLanguages; j++) {
             QListWidgetItem* item = new QListWidgetItem(
                 i18nc("pair of two languages that the user chooses to practice", "%1 to %2",
-                m_doc->identifier(j).name(), m_doc->identifier(i).name()));
-            item->setData(Qt::UserRole+1, i);
-            item->setData(Qt::UserRole, j);
+                m_doc->identifier(i).name(), m_doc->identifier(j).name()));
+            item->setData(Qt::UserRole, i);
+            item->setData(Qt::UserRole+1, j);
             m_ui->languageList->addItem(item);
 
             if (i == Prefs::questionLanguage() && j == Prefs::solutionLanguage()) {
                 m_ui->languageList->setCurrentItem(item);
             }
+
             QListWidgetItem* item2 = new QListWidgetItem(
                 i18nc("pair of two languages that the user chooses to practice", "%1 to %2",
-                m_doc->identifier(i).name(), m_doc->identifier(j).name()));
-            item2->setData(Qt::UserRole+1, j);
-            item2->setData(Qt::UserRole, i);
+                m_doc->identifier(j).name(), m_doc->identifier(i).name()));
+            item2->setData(Qt::UserRole, j);
+            item2->setData(Qt::UserRole+1, i);
             m_ui->languageList->addItem(item2);
 
             if (j == Prefs::questionLanguage() && i == Prefs::solutionLanguage()) {

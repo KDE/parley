@@ -14,9 +14,13 @@
 
 #include "defaultbackend.h"
 
+#include <QtCore/QVariant>
 #include <kdebug.h>
 
-#include <QtCore/QVariant>
+#include "examplesentencebackendmode.h"
+#include "flashcardbackendmode.h"
+#include "multiplechoicebackendmode.h"
+#include "writtenbackendmode.h"
 
 using namespace Practice;
 
@@ -67,6 +71,11 @@ void DefaultBackend::initializePracticeMode()
             kDebug() << "Create Written Practice backend";
             m_frontend->setMode(AbstractFrontend::Written);
             m_mode = new WrittenBackendMode(m_options, m_frontend, this);
+            break;
+        case Prefs::EnumPracticeMode::ExampleSentencesPractice:
+            kDebug() << "Create Written Practice backend";
+            m_frontend->setMode(AbstractFrontend::Written);
+            m_mode = new ExampleSentenceBackendMode(m_options, m_frontend, this);
             break;
         default:
             Q_ASSERT("Implement selected practice mode" == 0);

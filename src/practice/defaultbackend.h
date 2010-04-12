@@ -16,9 +16,7 @@
 #define PRACTICE_DEFAULTBACKEND_H
 
 #include "parleydocument.h"
-#include "writtenbackendmode.h"
-#include "multiplechoicebackendmode.h"
-#include "flashcardbackendmode.h"
+
 
 #include "practice/testentrymanager.h"
 #include "practiceold/testentry.h"
@@ -26,6 +24,7 @@
 
 #include "abstractfrontend.h"
 #include "guifrontend.h"
+#include "abstractbackendmode.h"
 
 namespace Practice {
 
