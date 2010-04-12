@@ -69,7 +69,7 @@ QDebug Practice::operator<<(QDebug dbg, const ImageCache &c)
     QHashIterator<QString, QImage> i(c.m_images);
     while (i.hasNext()) {
         i.next();
-        dbg.nospace() << "\n\tcontains:" << i.key().leftJustified(20) << "," << i.value().size();
+        dbg.nospace() << "\n\tcontains: " << qPrintable(i.key().leftJustified(35)) << ": " << i.value().size();
         pixels += i.value().size().width()*i.value().height();
     }
 

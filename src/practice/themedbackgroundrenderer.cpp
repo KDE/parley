@@ -105,6 +105,7 @@ QImage ThemedBackgroundRenderer::renderBackground()
         renderRect(rect.first, rect.second, &p);
     }
 
+    kDebug() << "image renderd, cache:" << m_cache;
     return image;
 }
 
@@ -155,16 +156,28 @@ void ThemedBackgroundRenderer::renderItem(const QString& id, const QRect& rect, 
     if (itemRect.isNull() || rect.isNull())
         return;
 
-    kDebug() << "render item" << id;
-    kDebug() << "original item rect:" << itemRect << m_renderer.boundsOnElement(id);
+    kDebug() << "draw item" << id;
+//    kDebug() << "original item rect:" << itemRect << m_renderer.boundsOnElement(id);
     itemRect = scaleRect(itemRect, rect, scaleBase, aspectRatio);
-    kDebug() << "scaled" << itemRect;
+//    kDebug() << "scaled" << itemRect;
     itemRect = alignRect(itemRect, rect, edge, align, inside);
-    kDebug() << "aligned" << itemRect;
+//    kDebug() << "aligned" << itemRect;
     if (aspectRatio == Qt::KeepAspectRatioByExpanding) {
         //TODO: clip painter
     }
-    m_renderer.render(p, id, itemRect);
+    QImage image;
+    if (m_cache.imageSize(id) == itemRect.size()) {
+        kDebug() << "found in cache:" << id;
+        image = m_cache.getImage(id);
+    } else {
+        kDebug() << "not in cache, render svg:" << id;
+        image = QImage(itemRect.size(), QImage::Format_ARGB32_Premultiplied);
+        image.fill(QColor(Qt::transparent).rgba());
+        QPainter painter(&image);
+        m_renderer.render(&painter, id, QRect(QPoint(0, 0), itemRect.size()));
+        m_cache.updateImage(id, image);
+    }
+    p->drawImage(itemRect.topLeft(), image);
     if (aspectRatio == Qt::KeepAspectRatioByExpanding) {
         //TODO: unclip painter
     }
