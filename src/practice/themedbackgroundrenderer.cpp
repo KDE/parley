@@ -66,7 +66,7 @@ void ThemedBackgroundRenderer::updateBackground()
         m_queuedRequest = true;
         return;
     }
-    m_future = QtConcurrent::run(this, &ThemedBackgroundRenderer::renderBackground);
+    m_future = QtConcurrent::run(this, &ThemedBackgroundRenderer::renderBackground, false);
     m_watcher.setFuture(m_future);
 }
 
@@ -100,8 +100,9 @@ QMargins ThemedBackgroundRenderer::contentMargins()
     return margins;
 }
 
-QImage ThemedBackgroundRenderer::renderBackground()
+QImage ThemedBackgroundRenderer::renderBackground(bool fastScale)
 {
+    QTime t = QTime::currentTime();
     QImage image(m_size, QImage::Format_ARGB32_Premultiplied);
     image.fill(QColor(Qt::transparent).rgba());
     QPainter p(&image);
@@ -109,26 +110,26 @@ QImage ThemedBackgroundRenderer::renderBackground()
     QMargins margins = contentMargins();
     QRect backgroundRect(QPoint(margins.left(),margins.top()), m_size-QSize(margins.right()+margins.left(), margins.bottom()+margins.top()));
 
-    renderRect("background", backgroundRect, &p);
+    renderRect("background", backgroundRect, &p, fastScale);
     QPair<QString, QRect> rect;
     Q_FOREACH(rect, m_rects) {
-        renderRect(rect.first, rect.second, &p);
+        renderRect(rect.first, rect.second, &p, fastScale);
     }
 
-    kDebug() << "image renderd, cache:" << m_cache;
+    kDebug() << "image rendered, time:" << t.elapsed();
     return image;
 }
 
-void ThemedBackgroundRenderer::renderRect(const QString& name, const QRect& rect, QPainter *p)
+void ThemedBackgroundRenderer::renderRect(const QString& name, const QRect& rect, QPainter *p, bool fastScale)
 {
-    renderItem(name+"-center", rect, p, Rect, Qt::IgnoreAspectRatio, Center, Centered, true);
-    renderItem(name+"-center-ratio", rect, p, Rect, Qt::IgnoreAspectRatio, Center, Centered, true);
-    renderItem(name+"-center-crop", rect, p, Rect, Qt::IgnoreAspectRatio, Center, Centered, true);
+    renderItem(name+"-center", rect, p, fastScale, Rect, Qt::IgnoreAspectRatio, Center, Centered, true);
+    renderItem(name+"-center-ratio", rect, p, fastScale, Rect, Qt::IgnoreAspectRatio, Center, Centered, true);
+    renderItem(name+"-center-crop", rect, p, fastScale, Rect, Qt::IgnoreAspectRatio, Center, Centered, true);
 
-    renderItem(name+"-border-topleft", rect, p, NoScale, Qt::IgnoreAspectRatio, Top, Corner, false);
-    renderItem(name+"-border-topright", rect, p, NoScale, Qt::IgnoreAspectRatio, Right, Corner, false);
-    renderItem(name+"-border-bottomleft", rect, p, NoScale, Qt::IgnoreAspectRatio, Left, Corner, false);
-    renderItem(name+"-border-bottomright", rect, p, NoScale, Qt::IgnoreAspectRatio, Bottom, Corner, false);
+    renderItem(name+"-border-topleft", rect, p, fastScale, NoScale, Qt::IgnoreAspectRatio, Top, Corner, false);
+    renderItem(name+"-border-topright", rect, p, fastScale, NoScale, Qt::IgnoreAspectRatio, Right, Corner, false);
+    renderItem(name+"-border-bottomleft", rect, p, fastScale, NoScale, Qt::IgnoreAspectRatio, Left, Corner, false);
+    renderItem(name+"-border-bottomright", rect, p, fastScale, NoScale, Qt::IgnoreAspectRatio, Bottom, Corner, false);
 
     QStringList edges;
     edges << "top" << "bottom" << "left" << "right";
@@ -149,16 +150,16 @@ void ThemedBackgroundRenderer::renderRect(const QString& name, const QRect& rect
             scaleBase = Vertical;
         }
         for(int inside = 1; inside>=0; inside--) {
-            renderItem(name+"-"+(inside?"inside":"border")+"-"+edge,            rect, p, scaleBase, Qt::IgnoreAspectRatio, alignEdge, Centered, inside);
-            renderItem(name+"-"+(inside?"inside":"border")+"-"+edge+"-ratio",   rect, p, scaleBase, Qt::KeepAspectRatio,   alignEdge, Centered, inside);
-            renderItem(name+"-"+(inside?"inside":"border")+"-"+edge+"-noscale", rect, p, NoScale,   Qt::IgnoreAspectRatio, alignEdge, Centered, inside);
-            renderItem(name+"-"+(inside?"inside":"border")+"-"+edge+"-"+(scaleBase==Vertical?"top":"left"),     rect, p, NoScale,   Qt::IgnoreAspectRatio, alignEdge, LeftTop, inside);
-            renderItem(name+"-"+(inside?"inside":"border")+"-"+edge+"-"+(scaleBase==Vertical?"bottom":"right"), rect, p, NoScale,   Qt::IgnoreAspectRatio, alignEdge, RightBottom, inside);
+            renderItem(name+"-"+(inside?"inside":"border")+"-"+edge,            rect, p, fastScale, scaleBase, Qt::IgnoreAspectRatio, alignEdge, Centered, inside);
+            renderItem(name+"-"+(inside?"inside":"border")+"-"+edge+"-ratio",   rect, p, fastScale, scaleBase, Qt::KeepAspectRatio,   alignEdge, Centered, inside);
+            renderItem(name+"-"+(inside?"inside":"border")+"-"+edge+"-noscale", rect, p, fastScale, NoScale,   Qt::IgnoreAspectRatio, alignEdge, Centered, inside);
+            renderItem(name+"-"+(inside?"inside":"border")+"-"+edge+"-"+(scaleBase==Vertical?"top":"left"),     rect, p, fastScale, NoScale,   Qt::IgnoreAspectRatio, alignEdge, LeftTop, inside);
+            renderItem(name+"-"+(inside?"inside":"border")+"-"+edge+"-"+(scaleBase==Vertical?"bottom":"right"), rect, p, fastScale, NoScale,   Qt::IgnoreAspectRatio, alignEdge, RightBottom, inside);
         }
     }
 }
 
-void ThemedBackgroundRenderer::renderItem(const QString& id, const QRect& rect, QPainter *p, ScaleBase scaleBase, Qt::AspectRatioMode aspectRatio, Edge edge, Align align, bool inside)
+void ThemedBackgroundRenderer::renderItem(const QString& id, const QRect& rect, QPainter *p, bool fastScale, ScaleBase scaleBase, Qt::AspectRatioMode aspectRatio, Edge edge, Align align, bool inside)
 {
     if (!m_renderer.elementExists(id))
         return;
@@ -175,12 +176,16 @@ void ThemedBackgroundRenderer::renderItem(const QString& id, const QRect& rect, 
     if (aspectRatio == Qt::KeepAspectRatioByExpanding) {
         //TODO: clip painter
     }
+
     QImage image;
     if (m_cache.imageSize(id) == itemRect.size()) {
         kDebug() << "found in cache:" << id;
         image = m_cache.getImage(id);
+    } else if(fastScale && !m_cache.imageSize(id).isEmpty()) {
+        kDebug() << "FAST SCALE for:" << id;
+        image = m_cache.getImage(id).scaled(itemRect.size(), Qt::IgnoreAspectRatio, Qt::FastTransformation);
     } else {
-        kDebug() << "not in cache, render svg:" << id;
+        kDebug() << "NOT IN CACHE, render svg:" << id;
         image = QImage(itemRect.size(), QImage::Format_ARGB32_Premultiplied);
         image.fill(QColor(Qt::transparent).rgba());
         QPainter painter(&image);
