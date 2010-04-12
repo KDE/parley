@@ -31,6 +31,8 @@ ThemedBackgroundRenderer::ThemedBackgroundRenderer(QObject* parent)
 void ThemedBackgroundRenderer::setSvgFilename(const QString& filename)
 {
     m_renderer.load(filename);  //TODO: error handling
+    m_cache.setFilename(filename);
+    kDebug() << m_cache;
 }
 
 void ThemedBackgroundRenderer::setSize(const QSize& size)

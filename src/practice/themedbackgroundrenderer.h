@@ -15,9 +15,10 @@
 #define PRACTICE_THEMEDBACKGROUNDRENDERER_H
 
 #include <QObject>
+
+#include "imagecache.h"
 #include <QFuture>
 #include <QFutureWatcher>
-
 #include <ksvgrenderer.h>
 
 class QMargins;
@@ -76,6 +77,7 @@ private:
     QRect scaleRect(QRect itemRect, const QRect& baseRect, ScaleBase scaleBase, Qt::AspectRatioMode aspectRatio);
     QRect alignRect(QRect itemRect, const QRect& baseRect, Edge edge, Align align, bool inside);
 
+    ImageCache m_cache;
     QFuture<QImage> m_future;
     QFutureWatcher<QImage> m_watcher;
     KSvgRenderer m_renderer;

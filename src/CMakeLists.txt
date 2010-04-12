@@ -97,6 +97,7 @@ set(practice_SRCS
     practice/audiobutton.cpp
     practice/summarybarwidget.cpp
     practice/themedbackgroundrenderer.cpp
+    practice/imagecache.cpp
 )
 
 kde4_add_ui_files(practice_SRCS
