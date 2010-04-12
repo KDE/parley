@@ -14,6 +14,7 @@
 #include "themedbackgroundrenderer.h"
 
 #include <kdebug.h>
+#include <kstandarddirs.h>
 #include <unistd.h>
 
 #include <QtConcurrentRun>
@@ -25,7 +26,13 @@ using namespace Practice;
 ThemedBackgroundRenderer::ThemedBackgroundRenderer(QObject* parent)
     : QObject(parent), m_queuedRequest(false)
 {
+    m_cache.setSaveFilename(KStandardDirs::locateLocal("appdata", "practicethemecache.bin"));
     connect(&m_watcher, SIGNAL(finished()), this, SLOT(renderingFinished()));
+}
+
+ThemedBackgroundRenderer::~ThemedBackgroundRenderer()
+{
+    m_cache.saveCache();
 }
 
 void ThemedBackgroundRenderer::setSvgFilename(const QString& filename)

@@ -53,7 +53,7 @@ public:
     };
 
     ThemedBackgroundRenderer(QObject* parent = 0);
-    ~ThemedBackgroundRenderer() {}
+    ~ThemedBackgroundRenderer();
 
     void setSvgFilename(const QString& filename);
     QPixmap getPixmapForId(const QString& id);
