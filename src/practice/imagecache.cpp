@@ -81,6 +81,11 @@ void ImageCache::openCache()
     }
     // finally load data
     stream >> m_images;
+    QHashIterator<QString, QImage> i(m_images); //TODO: do on demand
+    while (i.hasNext()) {
+        i.next();
+        m_images[i.key()] = i.value().convertToFormat(QImage::Format_ARGB32_Premultiplied);
+    }
     kDebug() << "opened cache:" << m_saveFilename;
     kDebug() << *this;
 }
