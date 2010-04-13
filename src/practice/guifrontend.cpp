@@ -31,8 +31,9 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     : AbstractFrontend(parent), m_modeWidget(0), m_lastImage("invalid")
 {
     m_widget = new ImageWidget();
-    m_widget->setScalingEnabled(true, false);
+    m_widget->setScalingEnabled(false, false);
     m_widget->setKeepAspectRatio(Qt::IgnoreAspectRatio);
+    m_widget->setFadingEnabled(false);
     
     m_ui = new Ui::PracticeMainWindow();
     m_ui->setupUi(m_widget);
@@ -303,6 +304,10 @@ void GuiFrontend::updateBackground()
     m_themedBackgroundRenderer->addRect("image", m_ui->imageWidget->frameGeometry());
     m_themedBackgroundRenderer->addRect("central", m_ui->centralPracticeWidget->frameGeometry());
     m_themedBackgroundRenderer->addRect("buttons", m_ui->rightContainer->frameGeometry());
+    QPixmap pixmap = m_themedBackgroundRenderer->getScaledBackground();
+    if (!pixmap.isNull()) {
+        m_widget->setPixmap(pixmap);
+    }
     m_themedBackgroundRenderer->updateBackground();
 }
 

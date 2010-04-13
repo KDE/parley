@@ -30,6 +30,7 @@ public:
     void setPixmap(const QPixmap& pixmap);
     void setScalingEnabled(bool scaling, bool onlyDownscaling = true);
     void setKeepAspectRatio(Qt::AspectRatioMode mode);
+    void setFadingEnabled(bool fading);
 
 protected:
     virtual void paintEvent(QPaintEvent *e);
@@ -43,6 +44,7 @@ private Q_SLOTS:
     void animationFinished();
 
 private:
+    bool m_fading;
     bool m_scaling;
     bool m_onlyDownscaling;
     Qt::AspectRatioMode m_keepAspectRatio;

@@ -22,7 +22,7 @@
 using namespace Practice;
 
 ImageWidget::ImageWidget(QWidget *parent)
-    : QWidget(parent), m_scaling(true), m_onlyDownscaling(true), m_keepAspectRatio(Qt::KeepAspectRatio)
+    : QWidget(parent), m_scaling(true), m_onlyDownscaling(true), m_keepAspectRatio(Qt::KeepAspectRatio), m_fading(true)
 {
     m_scaleTimer = new QTimer(this);
     m_scaleTimer->setSingleShot(true);
@@ -43,6 +43,7 @@ void ImageWidget::setPixmap(const QPixmap& pixmap)
         m_animation->stop();
         animationFinished();
     }
+
     m_animationPixmap = m_scaledPixmap;
     m_originalPixmap = pixmap;
     m_scaledPixmap = QPixmap();
@@ -52,7 +53,10 @@ void ImageWidget::setPixmap(const QPixmap& pixmap)
         m_scaledPixmap = pixmap;
     }
     scalePixmap(true);
-    m_animation->start();
+    if (m_fading) {
+        m_animation->start();
+    }
+    update();
 }
 
 void ImageWidget::setScalingEnabled(bool scaling, bool onlyDownscaling)
@@ -64,6 +68,11 @@ void ImageWidget::setScalingEnabled(bool scaling, bool onlyDownscaling)
 void ImageWidget::setKeepAspectRatio(Qt::AspectRatioMode mode)
 {
     m_keepAspectRatio = mode;
+}
+
+void ImageWidget::setFadingEnabled(bool fading)
+{
+    m_fading = fading;
 }
 
 void ImageWidget::paintEvent(QPaintEvent* e)

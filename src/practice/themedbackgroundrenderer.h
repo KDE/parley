@@ -19,6 +19,7 @@
 #include "imagecache.h"
 #include <QFuture>
 #include <QFutureWatcher>
+#include <QTimer>
 #include <ksvgrenderer.h>
 
 class QMargins;
@@ -58,12 +59,16 @@ public:
     void setSvgFilename(const QString& filename);
     QPixmap getPixmapForId(const QString& id);
     QMargins contentMargins();
+
+    QPixmap getScaledBackground();
     
 public Q_SLOTS:
     void setSize(const QSize& size);
     void clearRects();
     void addRect(const QString& name, const QRect& rect);
-    void updateBackground(bool fastScale = true);
+    void updateBackground();
+
+    void updateBackgroundTimeout();
 
     void renderingFinished();
 
@@ -85,6 +90,7 @@ private:
     QSize m_size;
     bool m_queuedRequest;
     bool m_isFastScaledRender;
+    QTimer m_timer;
 };
 
 }

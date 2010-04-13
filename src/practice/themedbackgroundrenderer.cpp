@@ -27,6 +27,9 @@ ThemedBackgroundRenderer::ThemedBackgroundRenderer(QObject* parent)
     : QObject(parent), m_queuedRequest(false), m_isFastScaledRender(true)
 {
     m_cache.setSaveFilename(KStandardDirs::locateLocal("appdata", "practicethemecache.bin"));
+    m_timer.setSingleShot(true);
+    m_timer.setInterval(1000);
+    connect(&m_timer, SIGNAL(timeout()), this, SLOT(updateBackgroundTimeout()));
     connect(&m_watcher, SIGNAL(finished()), this, SLOT(renderingFinished()));
 }
 
@@ -39,7 +42,6 @@ void ThemedBackgroundRenderer::setSvgFilename(const QString& filename)
 {
     m_renderer.load(filename);  //TODO: error handling
     m_cache.setFilename(filename);
-    kDebug() << m_cache;
 }
 
 void ThemedBackgroundRenderer::setSize(const QSize& size)
@@ -57,14 +59,41 @@ void ThemedBackgroundRenderer::addRect(const QString& name, const QRect& rect)
     m_rects.append(qMakePair<QString, QRect>(name, rect));
 }
 
-void ThemedBackgroundRenderer::updateBackground(bool fastScale)
+QPixmap ThemedBackgroundRenderer::getScaledBackground()
+{
+    if (m_size.isEmpty()) {
+        kDebug() << "trying to render with an invalid size";
+        return QPixmap();
+    }
+    if (m_future.isRunning()  || m_future.resultCount()) {
+        return QPixmap();
+    }
+
+    QFutureWatcher<QImage> watcher;
+    m_future = QtConcurrent::run(this, &ThemedBackgroundRenderer::renderBackground, true);
+    watcher.setFuture(m_future);
+    watcher.waitForFinished();
+
+    QPixmap result =  QPixmap::fromImage(m_future.result());
+    m_future = QFuture<QImage>();
+    return result;
+}
+
+void ThemedBackgroundRenderer::updateBackground()
 {
     if (m_size.isEmpty()) {
         kDebug() << "trying to render with an invalid size";
         return;
     }
+    m_timer.start();
+
+}
+
+void ThemedBackgroundRenderer::updateBackgroundTimeout()
+{
+    bool fastScale = false;
     if (m_future.isRunning()) {
-        m_queuedRequest = true;
+        m_timer.start(); // restart the timer again
         return;
     }
     m_future = QtConcurrent::run(this, &ThemedBackgroundRenderer::renderBackground, fastScale);
@@ -73,18 +102,12 @@ void ThemedBackgroundRenderer::updateBackground(bool fastScale)
 
 void ThemedBackgroundRenderer::renderingFinished()
 {
+    if(!m_future.resultCount()) {
+        kDebug() << "there is no image!";
+        return;
+    }
     emit backgroundChanged(QPixmap::fromImage(m_future.result()));
     m_future = QFuture<QImage>();
-    if (m_queuedRequest) { // another request happened in the meantime
-        m_queuedRequest = false;
-        updateBackground();
-        return;
-    }
-    if (m_isFastScaledRender) { // the just finished rendering is based on scaled QImages, not on SVGs, so we have to render the final version
-        m_queuedRequest = false;
-        updateBackground(false); //TODO: delay with timer?
-        return;
-    }
 }
 
 QPixmap ThemedBackgroundRenderer::getPixmapForId(const QString& id)
