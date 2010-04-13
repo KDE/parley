@@ -219,13 +219,13 @@ void ThemedBackgroundRenderer::renderItem(const QString& id, const QRect& rect, 
 {
     if (!m_renderer.elementExists(id))
         return;
-    QRect itemRect = m_renderer.boundsOnElement(id).toRect();
-    if (itemRect.isNull() || rect.isNull())
+    QRectF itemRectF = m_renderer.boundsOnElement(id);
+    if (itemRectF.isNull() || rect.isNull())
         return;
 
     kDebug() << "draw item" << id;
 //    kDebug() << "original item rect:" << itemRect << m_renderer.boundsOnElement(id);
-    itemRect = scaleRect(itemRect, rect, scaleBase, aspectRatio);
+    QRect itemRect = scaleRect(itemRectF, rect, scaleBase, aspectRatio);
 //    kDebug() << "scaled" << itemRect;
     itemRect = alignRect(itemRect, rect, edge, align, inside);
 //    kDebug() << "aligned" << itemRect;
@@ -255,41 +255,41 @@ void ThemedBackgroundRenderer::renderItem(const QString& id, const QRect& rect, 
     }
 }
 
-QRect ThemedBackgroundRenderer::scaleRect(QRect itemRect, const QRect& baseRect, ScaleBase scaleBase, Qt::AspectRatioMode aspectRatio)
+QRect ThemedBackgroundRenderer::scaleRect(QRectF itemRect, const QRect& baseRect, ScaleBase scaleBase, Qt::AspectRatioMode aspectRatio)
 {
     qreal verticalFactor = 0;
     qreal horizontalFactor = 0;
     switch (scaleBase) {
     case NoScale:
-        return itemRect;
+        return itemRect.toRect();
     case Horizontal:
         switch (aspectRatio) {
         case Qt::IgnoreAspectRatio:
             itemRect.setWidth(baseRect.width());
-            return itemRect;
+            return itemRect.toRect();
         case Qt::KeepAspectRatio:
-            horizontalFactor = qreal(baseRect.width())/itemRect.width();
+            horizontalFactor = baseRect.width()/itemRect.width();
             itemRect.setWidth(baseRect.width());
-            itemRect.setHeight(qRound(itemRect.height()*horizontalFactor));
-            return itemRect;
+            itemRect.setHeight(itemRect.height()*horizontalFactor);
+            return itemRect.toRect();
         case Qt::KeepAspectRatioByExpanding:
             kWarning() << "KeepAspectRatioByExpanding only works for the center";
-            return itemRect;
+            return itemRect.toRect();
         }
         break;
     case Vertical:
         switch (aspectRatio) {
         case Qt::IgnoreAspectRatio:
             itemRect.setHeight(baseRect.height());
-            return itemRect;
+            return itemRect.toRect();
         case Qt::KeepAspectRatio:
-            verticalFactor = qreal(baseRect.height())/itemRect.height();
+            verticalFactor = baseRect.height()/itemRect.height();
             itemRect.setHeight(baseRect.height());
-            itemRect.setWidth(qRound(itemRect.width()*verticalFactor));
-            return itemRect;
+            itemRect.setWidth(itemRect.width()*verticalFactor);
+            return itemRect.toRect();
         case Qt::KeepAspectRatioByExpanding:
             kWarning() << "KeepAspectRatioByExpanding only works for the center";
-            return itemRect;
+            return itemRect.toRect();
         }
         break;
     case Rect:
@@ -297,34 +297,34 @@ QRect ThemedBackgroundRenderer::scaleRect(QRect itemRect, const QRect& baseRect,
         case Qt::IgnoreAspectRatio:
             itemRect.setWidth(baseRect.width());
             itemRect.setHeight(baseRect.height());
-            return itemRect;
+            return itemRect.toRect();
         case Qt::KeepAspectRatio:
-            horizontalFactor = qreal(baseRect.width())/itemRect.width();
-            verticalFactor = qreal(baseRect.height())/itemRect.height();
+            horizontalFactor = baseRect.width()/itemRect.width();
+            verticalFactor = baseRect.height()/itemRect.height();
             if (verticalFactor < horizontalFactor) {
                 itemRect.setHeight(baseRect.height());
-                itemRect.setWidth(qRound(itemRect.width()*verticalFactor));
+                itemRect.setWidth(itemRect.width()*verticalFactor);
             } else {
                 itemRect.setWidth(baseRect.width());
-                itemRect.setHeight(qRound(itemRect.height()*horizontalFactor));
+                itemRect.setHeight(itemRect.height()*horizontalFactor);
             }
-            return itemRect;
+            return itemRect.toRect();
         case Qt::KeepAspectRatioByExpanding:
-            horizontalFactor = qreal(baseRect.width())/itemRect.width();
-            verticalFactor = qreal(baseRect.height())/itemRect.height();
+            horizontalFactor = baseRect.width()/itemRect.width();
+            verticalFactor = baseRect.height()/itemRect.height();
             if (verticalFactor > horizontalFactor) {
                 itemRect.setHeight(baseRect.height());
-                itemRect.setWidth(qRound(itemRect.width()*verticalFactor));
+                itemRect.setWidth(itemRect.width()*verticalFactor);
             } else {
                 itemRect.setWidth(baseRect.width());
-                itemRect.setHeight(qRound(itemRect.height()*horizontalFactor));
+                itemRect.setHeight(itemRect.height()*horizontalFactor);
             }
-            return itemRect;
+            return itemRect.toRect();
         }
         break;
     }
     kDebug() << "unhandled scaling option";
-    return itemRect;
+    return itemRect.toRect();
 }
 
 QRect ThemedBackgroundRenderer::alignRect(QRect itemRect, const QRect &baseRect, Edge edge, Align align, bool inside)

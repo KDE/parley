@@ -81,7 +81,7 @@ private:
     QImage renderBackground(bool fastScale);
     void renderRect(const QString& name, const QRect& rect, QPainter *p, bool fastScale);
     void renderItem(const QString& id, const QRect& rect, QPainter *p, bool fastScale, ScaleBase scaleBase, Qt::AspectRatioMode aspectRatio, Edge edge, Align align, bool inside);
-    QRect scaleRect(QRect itemRect, const QRect& baseRect, ScaleBase scaleBase, Qt::AspectRatioMode aspectRatio);
+    QRect scaleRect(QRectF itemRect, const QRect& baseRect, ScaleBase scaleBase, Qt::AspectRatioMode aspectRatio);
     QRect alignRect(QRect itemRect, const QRect& baseRect, Edge edge, Align align, bool inside);
 
     ImageCache m_cache;
