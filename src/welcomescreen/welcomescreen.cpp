@@ -21,10 +21,17 @@
 #include <QStandardItemModel>
 
 WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
- : QWidget(parent), m_parleyApp(parent)
+    :KXmlGuiWindow(parent)
+    ,m_parleyApp(parent)
 {
+    // KXmlGui
+    setXMLFile("welcomescreenui.rc");
+    setObjectName("WelcomeScreen");
+    
+    QWidget *mainWidget = new QWidget(this);
     ui = new Ui::WelcomeScreen();
-    ui->setupUi(this);
+    ui->setupUi(mainWidget);
+    setCentralWidget(mainWidget);    
 
     QColor fgColor = palette().text().color();
 
@@ -59,6 +66,17 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     connect(ui->openButton, SIGNAL(clicked()), doc, SLOT(slotFileOpen()));
     connect(ui->ghnsButton, SIGNAL(clicked()), doc, SLOT(slotGHNS()));
     connect(ui->recentFiles, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(slotDoubleClicked(const QModelIndex&)));
+    
+    connect(m_parleyApp, SIGNAL(recentFilesChanged()), this, SLOT(updateRecentFilesModel()));
+    
+    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
+    applyMainWindowSettings(cfg); 
+}
+
+WelcomeScreen::~WelcomeScreen()
+{
+    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
+    saveMainWindowSettings(cfg);
 }
 
 void WelcomeScreen::updateRecentFilesModel()
@@ -101,7 +119,7 @@ void WelcomeScreen::slotDoubleClicked(const QModelIndex& index)
 void WelcomeScreen::slotPracticeUrl(const KUrl & url)
 {
     m_parleyApp->parleyDocument()->open(url);
-    m_parleyApp->startPractice();
+    m_parleyApp->showStatistics();
 }
 
 #include "welcomescreen.moc"

@@ -16,7 +16,6 @@
 #define SCRIPTINGCONTAINER_H
 
 #include <QObject>
-#include <KDebug>
 
 #include <keduvoccontainer.h>
 

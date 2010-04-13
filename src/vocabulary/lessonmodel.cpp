@@ -25,6 +25,7 @@
   * Functions to create the model from the lessons of the vocabulary document.
   */
 
+using namespace Editor;
 
 LessonModel::LessonModel(QObject * parent)
     :ContainerModel(KEduVocContainer::Lesson, parent)
@@ -73,7 +74,7 @@ bool LessonModel::setData(const QModelIndex &index, const QVariant &value, int r
 {
     if (index.isValid() && !index.parent().isValid()) {
         if (index.column() == 0) {
-            ParleyDocument::instance()->setTitle(value.toString());
+            m_doc->setTitle(value.toString());
         }
     }
     

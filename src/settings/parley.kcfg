@@ -59,7 +59,7 @@
     </entry>
     <entry name="Theme" type="String">
       <label>Practice theme to use</label>
-      <default>default</default>
+      <default>theme_reference.svg</default>
     </entry>
     <entry name="Block" type="Bool">
       <label>In Blocking Query Tab Dialog, if checked then the Query is blocked</label>
@@ -302,31 +302,20 @@
       <default>0</default>
     </entry>
 
-    <entry name="TestType" type="Enum">
+    <entry name="PracticeMode" type="Enum">
         <choices>
-            <choice name="MixedLettersTest"/>
-            <choice name="MultipleChoiceTest"/>
-            <choice name="WrittenTest"/>
-            <choice name="ExampleTest"/>
-            <choice name="ParaphraseTest"/>
-            <choice name="ArticleTest"/>
-            <choice name="ComparisonTest"/>
-            <choice name="ConjugationTest"/>
-            <choice name="SynonymTest"/>
-            <choice name="AntonymTest"/>
+            <choice name="FlashCardsPractice"/>
+            <choice name="MixedLettersPractice"/>
+            <choice name="MultipleChoicePractice"/>
+            <choice name="WrittenPractice"/>
+            <choice name="ExampleSentencesPractice"/>
+            <choice name="GenderPractice"/>
+            <choice name="ComparisonPractice"/>
+            <choice name="ConjugationPractice"/>
         </choices>
-        <label>The test type that is currently selected.</label>
-        <default>WrittenTest</default>
+        <label>The practice mode that is currently selected.</label>
+        <default>FlashCardsPractice</default>
     </entry>
-    <entry name="ComparisonIncludeAdjective" type="Bool">
-      <label>In a comparison forms test, include adjectives.</label>
-      <default>true</default>
-    </entry>
-    <entry name="ComparisonIncludeAdverb" type="Bool">
-      <label>In a comparison forms test, include adverbs.</label>
-      <default>true</default>
-    </entry>
-
 
     <entry name="BlockItem$(Grade)" type="Int" key="BlockItem$(Grade)">
       <parameter name="Grade" type="Int" max="7"/>

@@ -48,7 +48,9 @@
 #include <KUrl>
 #include <sonnet/backgroundchecker.h>
 
-VocabularyView::VocabularyView(Editor * parent)
+using namespace Editor;
+
+VocabularyView::VocabularyView(EditorWindow * parent)
     : QTableView(parent), m_model(0), m_doc(0),
     spellcheckRow(0), spellcheckColumn(0), spellingChecker(0), spellingDialog(0)
 {
@@ -170,8 +172,6 @@ void VocabularyView::reset()
 {
     QTableView::reset();
     emit translationChanged(0, 0);
-
-    kDebug() << "reset";
 
     QList<int> visibleColumns;
     if (m_doc) {
@@ -440,6 +440,8 @@ bool VocabularyView::eventFilter(QObject* obj, QEvent* event) {
 
 void VocabularyView::misspelling(const QString & word, int start)
 {
+    Q_UNUSED(word)
+    Q_UNUSED(start)
     QModelIndex index = m_model->index(spellcheckRow, spellcheckColumn, QModelIndex());
     selectIndex(index);
 }

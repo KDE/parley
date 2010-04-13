@@ -25,6 +25,8 @@
 
 class KEduVocDocument;
 
+namespace Editor {
+
 class VocabularyDelegate : public QItemDelegate
 {
     Q_OBJECT
@@ -58,5 +60,7 @@ public:
 protected:
     KEduVocContainer * rootContainer() const;
 };
+
+}
 
 #endif

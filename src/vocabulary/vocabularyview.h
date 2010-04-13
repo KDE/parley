@@ -22,23 +22,25 @@
 #include <QTableView>
 #include <QMap>
 
-class VocabularyFilter;
-class VocabularyDelegate;
 class KEduVocExpression;
 class KEduVocDocument;
 
 class KActionMenu;
 class KAction;
-class Editor;
 class KUrl;
 
 class Translator;
+
+namespace Editor {
+    class EditorWindow;
+    class VocabularyFilter;
+    class VocabularyDelegate;
 
 class VocabularyView : public QTableView
 {
     Q_OBJECT
 public:
-    VocabularyView(Editor *parent);
+    VocabularyView(EditorWindow *parent);
     KActionMenu* columnsActionMenu();
 
     void setModel(VocabularyFilter * model);
@@ -96,6 +98,7 @@ private:
     void selectIndex(const QModelIndex &index);
     // trap enter presses at the end of the document to add a new entry instead of moving to the first cell
     bool eventFilter(QObject *obj, QEvent *event);
+    virtual void setModel(QAbstractItemModel *model) { Q_UNUSED(model) }
 
     KAction* m_appendEntryAction;
     KAction* m_deleteEntriesAction;
@@ -114,5 +117,7 @@ private:
     Sonnet::BackgroundChecker *spellingChecker;
     Sonnet::Dialog *spellingDialog;
 };
+
+}
 
 #endif

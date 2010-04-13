@@ -23,6 +23,7 @@ class KEduVocDocument;
 class KEduVocLesson;
 
 
+namespace Editor {
 /**
 	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 */
@@ -92,9 +93,6 @@ public:
 
     void resetLanguages();
 
-signals:
-    void documentChanged(KEduVocDocument *doc);
-
 public slots:
     void setDocument(KEduVocDocument *doc);
 
@@ -139,7 +137,7 @@ private:
     KEduVocDocument *m_document;
     KEduVocContainer::EnumEntriesRecursive m_recursive;
 };
-
+}
 Q_DECLARE_METATYPE(KEduVocExpression*)
 
 #endif

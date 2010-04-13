@@ -26,8 +26,10 @@ class QModelIndex;
 class KEduVocContainer;
 class KEduVocDocument;
 class KEduVocExpression;
-class VocabularyFilter;
 
+namespace Editor {
+    class VocabularyFilter;
+    
 /**
 * Represents the overview of a KEduVocExpression
 * Shows the language word
@@ -92,5 +94,6 @@ public:
 
     void setEditorData(QWidget *editor, const QModelIndex &index) const;
 };
+}
 
 #endif

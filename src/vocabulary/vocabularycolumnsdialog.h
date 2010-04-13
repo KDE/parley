@@ -31,6 +31,8 @@ class QStandardItemModel;
 class QVBoxLayout;
 class KEduVocDocument;
 
+namespace Editor {
+
 /**
 * Show options to enable/disable the columns for each language of the current document
 */
@@ -70,5 +72,6 @@ private:
     KEduVocDocument *m_doc;
     QMap <int, QStandardItemModel *> m_models;
 };
+}
 
 #endif

@@ -25,26 +25,29 @@
 
 class KLineEdit;
 class KActionMenu;
-class VocabularyView;
-class VocabularyModel;
-class VocabularyFilter;
-class LessonView;
-class WordTypeView;
-class LeitnerView;
-class LessonModel;
-class WordTypeModel;
-class LeitnerModel;
-class ConjugationWidget;
-class SummaryWordWidget;
 class ScriptManager;
 
-class Editor : public KXmlGuiWindow
+namespace Editor {
+    class VocabularyView;
+    class VocabularyModel;
+    class VocabularyFilter;
+    class LessonView;
+    class WordTypeView;
+    class LeitnerView;
+    class LessonModel;
+    class WordTypeModel;
+    class LeitnerModel;
+    class ConjugationWidget;
+    class ComparisonWidget;
+    class SummaryWordWidget;
+
+class EditorWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 
 public:
-    Editor(ParleyMainWindow* parent);
-    ~Editor();
+    EditorWindow(ParleyMainWindow* parent);
+    ~EditorWindow();
 
     /**
      * setup the action (menus etc)
@@ -67,19 +70,13 @@ public:
      */
     void initScripts();
 
-    /** when closing the application, save the editor's state */
-    void saveState();
-
 public slots:
     /**
      * Edit languages contained in the document.
      * This includes adding/removing languages, 
      * editing articles, personal pronouns and tenses.
      */
-    void slotLanguageProperties();
-
-    /** General doc properties like title, author etc */
-    void slotDocumentProperties();
+    void slotLanguagesChanged();
 
     void slotConfigShowSearch();
 
@@ -88,18 +85,25 @@ public slots:
      */
     void slotShowScriptManager();
 
-    void setTableFont(const QFont& font);
+    void applyPrefs();
 
     /**
      * Removes all grading information from the current document
      */
     void removeGrades();
-
-private slots:
+    
+    /** when closing the application, save the editor's state */
+    void saveState();
+    
     /**
      * Set the current doc (after creating a new one or opening a file)
      */
-    void updateDocument();
+    void updateDocument(KEduVocDocument *doc);
+    
+private slots:
+    
+    /** Make the search bar visible and focus it */
+    void startSearch();
 
 signals:
     void signalSetData( const QList<int>& entries, int currentTranslation);
@@ -113,12 +117,13 @@ private:
     VocabularyView *m_vocabularyView;
     VocabularyFilter *m_vocabularyFilter;
 
-    KLineEdit           *m_searchLine;
+    KLineEdit *m_searchLine;
     QWidget *m_searchWidget;
 
     /** Show a single conjugation and let the user edit it */
     ConjugationWidget *m_conjugationWidget;
     SummaryWordWidget *m_summaryWordWidget;
+    ComparisonWidget *m_comparisonWidget;
 
     /// dock widgets to display lessons, word types, ...
     LessonView *m_lessonView;
@@ -130,9 +135,6 @@ private:
     LeitnerView *m_leitnerView;
     LeitnerModel *m_leitnerModel;
 
-    friend class ParleyDocument;
-    friend class Scripting::Parley;
-    friend class ScriptManager;
 
     ScriptManager* m_scriptManager;
 
@@ -141,7 +143,13 @@ private:
 
     QList<QDockWidget*> m_dockWidgets;
     QList<bool> m_dockWidgetVisibility;
+    
+    friend class ::ParleyDocument;
+    friend class Scripting::Parley;
+    friend class ::ScriptManager;
 };
+
+}
 
 #endif // EDITOR_H
 

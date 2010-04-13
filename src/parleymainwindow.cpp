@@ -27,10 +27,15 @@
 
 #include "../config-parley.h"
 #include "editor/editor.h"
-#include "statistics-dialogs/StatisticsDialog.h"
+#include "statistics/statisticsmainwindow.h"
 #include "settings/parleyprefs.h"
 #include "configure-practice/configurepracticedialog.h"
-#include "practiceold/vocabularypractice.h"
+#include "practice/guifrontend.h"
+#include "practice/defaultbackend.h"
+#include "practice/practiceoptions.h"
+#include "practice/practicesummarycomponent.h"
+
+#include "parleyactions.h"
 
 #include "prefs.h"
 #include "welcomescreen/welcomescreen.h"
@@ -39,11 +44,13 @@
 #include <KRecentFilesAction>
 #include <KMessageBox>
 #include <KTipDialog>
-#include <knewstuff3/knewstuffaction.h>
 #include <KXMLGUIFactory>
+#include <KXmlGuiWindow>
 #include <KToolBar>
 
 #include <QtCore/QTimer>
+
+using namespace Editor;
 
 ParleyMainWindow* ParleyMainWindow::s_instance = 0;
 ParleyMainWindow* ParleyMainWindow::instance()
@@ -54,21 +61,18 @@ ParleyMainWindow* ParleyMainWindow::instance()
 ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
     :KXmlGuiWindow(0)
     ,m_currentComponent(NoComponent)
+    ,m_currentComponentWindow(0)
+    ,m_testEntryManager(this)
 {
     s_instance = this;
-    m_document = ParleyDocument::instance();
+    m_document = new ParleyDocument(this);
 
     setCentralWidget(new QWidget());
     centralWidget()->setLayout(new QHBoxLayout());
 
-    initWelcomeScreen();
-
-    m_editor = new Editor(this);
-    m_editor->hide();
-
     initActions();
 
-    bool showWelcomeScreen = false;
+    bool startWithWelcomeScreen = false;
 
     setupGUI(ToolBar | Keys | StatusBar | Create);
 
@@ -80,18 +84,20 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
             && m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->isEnabled() ) {
             m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->trigger();
         } else {
-            showWelcomeScreen = true;
+            startWithWelcomeScreen = true;
         }
     }
 
     // save position of dock windows etc
     setAutoSaveSettings();
 
-    if (showWelcomeScreen) {
-        this->showWelcomeScreen();
+    if (startWithWelcomeScreen) {
+        showWelcomeScreen();
     } else {
         showEditor();
     }
+
+    connect(this, SIGNAL(preferencesChanged()), this, SLOT(slotApplyPreferences()));
 
     // finally show tip-of-day ( if the user wants it :) )
     QTimer::singleShot( 0, this, SLOT( startupTipOfDay() ) );
@@ -99,8 +105,10 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
 
 ParleyMainWindow::~ParleyMainWindow()
 {
-    m_editor->saveState();
-    ParleyDocument::destroy();
+    guiFactory()->removeClient(m_currentComponentWindow);
+    centralWidget()->layout()->removeWidget(m_currentComponentWindow);
+    delete m_currentComponentWindow;
+    delete m_document;
 }
 
 void ParleyMainWindow::addRecentFile(const KUrl &url, const QString &name)
@@ -111,18 +119,11 @@ void ParleyMainWindow::addRecentFile(const KUrl &url, const QString &name)
 
 void ParleyMainWindow::updateRecentFilesModel()
 {
-    m_welcomeScreen->updateRecentFilesModel();
+    emit recentFilesChanged();
 }
 
 void ParleyMainWindow::saveOptions()
 {
-///@todo save selection per document
-//     if (m_tableView) {
-//         // map to original entry numbers:
-//         QModelIndex sourceIndex = m_sortFilterModel->mapToSource(m_tableView->currentIndex());
-//         Prefs::setCurrentRow(sourceIndex.row());
-//         Prefs::setCurrentCol(sourceIndex.column());
-//     }
     Prefs::self()->writeConfig();
 }
 
@@ -140,27 +141,16 @@ void ParleyMainWindow::slotUpdateWindowCaption()
     setCaption(title, modified);
 }
 
-void ParleyMainWindow::slotShowStatistics()
-{
-    StatisticsDialog statisticsDialog(m_document->document(), this, false);
-    statisticsDialog.exec();
-}
-
 void ParleyMainWindow::slotGeneralOptions()
 {
     ParleyPrefs* dialog = new ParleyPrefs(m_document->document(), this, "settings",  Prefs::self());
-    connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
+    connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SIGNAL(preferencesChanged()));
     dialog->show();
 }
 
 void ParleyMainWindow::slotApplyPreferences()
 {
     m_document->enableAutoBackup((m_currentComponent != WelcomeComponent) && Prefs::autoBackup());
-
-//     if (m_pronunciationStatusBarLabel) {
-//         m_pronunciationStatusBarLabel->setFont(Prefs::iPAFont());
-//     }
-    m_editor->setTableFont(Prefs::tableFont());
 }
 
 void ParleyMainWindow::slotCloseDocument()
@@ -168,10 +158,7 @@ void ParleyMainWindow::slotCloseDocument()
     if (!queryClose()) {
         return;
     }
-    //m_document->newDocument();
-
     m_document->close();
-    emit documentChanged();
     showWelcomeScreen();
 }
 
@@ -183,20 +170,12 @@ void ParleyMainWindow::configurePractice()
 
 void ParleyMainWindow::startPractice()
 {
-    StatisticsDialog *dialog = new StatisticsDialog(m_document->document(), this, true);
-    int result = dialog->exec();
-    delete dialog;
-    if(!result) {
-        return;
-    }
+    switchComponent(PracticeComponent);
+}
 
-    hide();
-    VocabularyPractice practice(m_document->document(), this);
-    practice.startPractice();
-    show();
-    if (m_currentComponent == WelcomeComponent) {
-        m_document->save();
-    }
+void ParleyMainWindow::practiceFinished()
+{
+    switchComponent(m_componentBeforePractice);
 }
 
 bool ParleyMainWindow::queryClose()
@@ -250,107 +229,29 @@ void ParleyMainWindow::startupTipOfDay() {
 
 void ParleyMainWindow::initActions()
 {
-// -- FILE --------------------------------------------------
-    KAction* fileNew = KStandardAction::openNew(m_document, SLOT(slotFileNew()), actionCollection());
-    fileNew->setWhatsThis(i18n("Creates a new vocabulary collection"));
-    fileNew->setToolTip(fileNew->whatsThis());
-    fileNew->setStatusTip(fileNew->whatsThis());
+    ParleyActions::create(ParleyActions::FileNew, m_document, SLOT(slotFileNew()), actionCollection());
+    ParleyActions::create(ParleyActions::FileOpen, m_document, SLOT(slotFileOpen()), actionCollection());
+    ParleyActions::createDownloadAction(m_document, SLOT(slotGHNS()), actionCollection());
+    ParleyActions::create(ParleyActions::FileOpenDownloaded, m_document, SLOT(openGHNS()), actionCollection());
+    
+    m_recentFilesAction = ParleyActions::createRecentFilesAction(
+        m_document, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
 
-    KAction* fileOpen = KStandardAction::open(m_document, SLOT(slotFileOpen()), actionCollection());
-    fileOpen->setWhatsThis(i18n("Opens an existing vocabulary collection"));
-    fileOpen->setToolTip(fileOpen->whatsThis());
-    fileOpen->setStatusTip(fileOpen->whatsThis());
-
-    KAction* fileGHNS = KNS3::standardAction(i18n("Download New Vocabularies..."), m_document, SLOT(slotGHNS()), actionCollection(), "file_ghns");
-    fileGHNS->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_G));
-    fileGHNS->setWhatsThis(i18n("Downloads new vocabulary collections"));
-    fileGHNS->setToolTip(fileGHNS->whatsThis());
-    fileGHNS->setStatusTip(fileGHNS->whatsThis());
-
-    KAction* fileOpenGHNS = new KAction(this);
-    actionCollection()->addAction("file_open_downloaded", fileOpenGHNS);
-    fileOpenGHNS->setIcon(KIcon("get-hot-new-stuff"));
-    fileOpenGHNS->setText(i18n("Open &Downloaded Vocabularies..."));
-    connect(fileOpenGHNS, SIGNAL(triggered(bool)), m_document, SLOT(openGHNS()));
-    fileOpenGHNS->setWhatsThis(i18n("Open downloaded vocabulary collections"));
-    fileOpenGHNS->setToolTip(fileOpenGHNS->whatsThis());
-    fileOpenGHNS->setStatusTip(fileOpenGHNS->whatsThis());
-
-    m_recentFilesAction = KStandardAction::openRecent(m_document, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
     m_recentFilesAction->loadEntries(KGlobal::config()->group("Recent Files"));
+    
+    ParleyActions::create(ParleyActions::FileSave, m_document, SLOT(save()), actionCollection());
+    ParleyActions::create(ParleyActions::FileSaveAs, m_document, SLOT(saveAs()), actionCollection());
+    #ifdef HAVE_LIBXSLT
+    ParleyActions::create(ParleyActions::FileExport, m_document, SLOT(exportDialog()), actionCollection());
+    #endif
+    
+    ParleyActions::create(ParleyActions::FileProperties, m_document, SLOT(documentProperties()), actionCollection());
 
-    /*
-    KAction* fileMerge = new KAction(this);
-    actionCollection()->addAction("file_merge", fileMerge);
-    fileMerge->setText(i18n("&Merge..."));
-    connect(fileMerge, SIGNAL(triggered(bool)), m_document, SLOT(slotFileMerge()));
-    fileMerge->setWhatsThis(i18n("Merge an existing vocabulary document with the current one"));
-    fileMerge->setToolTip(fileMerge->whatsThis());
-    fileMerge->setStatusTip(fileMerge->whatsThis());
-    fileMerge->setEnabled(false); ///@todo merging files is horribly broken
-    */
-
-    KAction* fileSave = KStandardAction::save(m_document, SLOT(save()), actionCollection());
-    fileSave->setWhatsThis(i18n("Save the active vocabulary collection"));
-    fileSave->setToolTip(fileSave->whatsThis());
-    fileSave->setStatusTip(fileSave->whatsThis());
-
-    KAction* fileSaveAs = KStandardAction::saveAs(m_document, SLOT(saveAs()), actionCollection());
-    fileSaveAs->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
-    fileSaveAs->setWhatsThis(i18n("Save the active vocabulary collection with a different name"));
-    fileSaveAs->setToolTip(fileSaveAs->whatsThis());
-    fileSaveAs->setStatusTip(fileSaveAs->whatsThis());
-
-#ifdef HAVE_LIBXSLT
-
-// Printing would be nice, but for now html export has to suffice
-//     KAction* filePrint = KStandardAction::print(m_document, SLOT(print()), actionCollection());
-//     filePrint->setWhatsThis(i18n("Print the active vocabulary document"));
-//     filePrint->setToolTip(filePrint->whatsThis());
-//     filePrint->setStatusTip(filePrint->whatsThis());
-
-    KAction* fileExport = new KAction(this);
-    actionCollection()->addAction("file_export", fileExport);
-    fileExport->setText(i18n("&Export..."));
-    connect(fileExport, SIGNAL(triggered(bool)), m_document, SLOT(exportDialog()));
-    fileExport->setIcon(KIcon("document-export"));
-    fileExport->setWhatsThis(i18n("Export to HTML or CSV"));
-    fileExport->setToolTip(fileExport->whatsThis());
-    fileExport->setStatusTip(fileExport->whatsThis());
-#endif
-
-    KAction* fileProperties = new KAction(this);
-    actionCollection()->addAction("file_properties", fileProperties);
-    fileProperties->setText(i18n("&Properties..."));
-    connect(fileProperties, SIGNAL(triggered(bool)), m_editor, SLOT(slotDocumentProperties()));
-    fileProperties->setIcon(KIcon("document-properties"));
-    fileProperties->setWhatsThis(i18n("Edit document properties"));
-    fileProperties->setToolTip(fileProperties->whatsThis());
-    fileProperties->setStatusTip(fileProperties->whatsThis());
-
-    KAction* fileClose = KStandardAction::close(this, SLOT(slotCloseDocument()), actionCollection());
-    fileClose->setWhatsThis(i18n("Close the current collection"));
-    fileClose->setToolTip(fileClose->whatsThis());
-    fileClose->setStatusTip(fileClose->whatsThis());
-
-    KAction* fileQuit = KStandardAction::quit(this, SLOT(close()), actionCollection());
-    fileQuit->setWhatsThis(i18n("Quit Parley"));
-    fileQuit->setToolTip(fileQuit->whatsThis());
-    fileQuit->setStatusTip(fileQuit->whatsThis());
-
-// -- SETTINGS --------------------------------------------------
-    KAction* configApp = KStandardAction::preferences(this, SLOT(slotGeneralOptions()), actionCollection());
-    configApp->setWhatsThis(i18n("Show the configuration dialog"));
-    configApp->setToolTip(configApp->whatsThis());
-    configApp->setStatusTip(configApp->whatsThis());
+    ParleyActions::create(ParleyActions::FileClose, this, SLOT(slotCloseDocument()), actionCollection());
+    ParleyActions::create(ParleyActions::FileQuit, this, SLOT(close()), actionCollection());
+    ParleyActions::create(ParleyActions::Preferences, this, SLOT(slotGeneralOptions()), actionCollection());
 
     actionCollection()->addAction(KStandardAction::TipofDay,  "help_tipofday", this, SLOT( tipOfDay() ));
-}
-
-void ParleyMainWindow::initWelcomeScreen()
-{
-    m_welcomeScreen = new WelcomeScreen(this);
-    m_welcomeScreen->hide();
 }
 
 void ParleyMainWindow::showWelcomeScreen()
@@ -363,84 +264,73 @@ void ParleyMainWindow::showEditor()
     switchComponent(EditorComponent);
 }
 
+void ParleyMainWindow::showStatistics()
+{
+    switchComponent(StatisticsComponent);
+}
+
 void ParleyMainWindow::showPractice()
 {
     switchComponent(PracticeComponent);
 }
 
+void ParleyMainWindow::showPracticeSummary()
+{
+    switchComponent(PracticeSummary);
+}
+
 void ParleyMainWindow::switchComponent(Component component)
 {
-    kDebug() << "switch to component" << component;
-
-    if(m_currentComponent == component) {
-        return;
+    if (m_currentComponentWindow) {
+        guiFactory()->removeClient(m_currentComponentWindow);
+        centralWidget()->layout()->removeWidget(m_currentComponentWindow);
+        m_currentComponentWindow->deleteLater();
     }
 
-    // Get pointers to the old component (we need them as widgets and gui clients)
-    KXMLGUIClient *oldClient = 0;
-    QWidget *oldWidget = 0;
-    switch (m_currentComponent) {
-    case WelcomeComponent:
-        oldClient = 0; // The welcome screen doesn't inherit from KXMLGUIClient and doesn't have any actions
-        oldWidget = m_welcomeScreen;
-        break;
-    case EditorComponent:
-        oldClient = m_editor;
-        oldWidget = m_editor;
-        break;
-//    case PracticeComponent:
-//        oldClient = m_practice;
-//        oldWidget = m_practice;
-//        break;
-    default:
-        break;
-    }
-    kDebug() << "old component" << oldClient << oldWidget;
-
-    // Get pointers to the new component (we need them as widgets and gui clients)
-    KXMLGUIClient *newClient = 0;
-    QWidget *newWidget = 0;
     switch (component) {
-    case WelcomeComponent:
-        newClient = 0; // The welcome screen doesn't inherit from KXMLGUIClient and doesn't have any actions
-        newWidget = m_welcomeScreen;
-        showDocumentActions(true, false);
-        m_welcomeScreen->updateRecentFilesModel();
-        break;
-    case EditorComponent:
-        newClient = m_editor;
-        newWidget = m_editor;
-        showDocumentActions(true, true);
-        break;
-//    case PracticeComponent:
-//        newClient = m_practice;
-//        newWidget = m_practice;
-//        showDocumentActions(false, false);
-//        break;
-    default:
-        break;
+        case WelcomeComponent: {
+            WelcomeScreen *welcome = new WelcomeScreen(this);
+            m_currentComponentWindow = welcome;
+            showDocumentActions(true, false);
+            welcome->updateRecentFilesModel();
+            break;
+        }
+        case StatisticsComponent: {
+            StatisticsMainWindow *statisticsWidget = new StatisticsMainWindow(m_document->document(), this);
+            m_currentComponentWindow = statisticsWidget;
+            showDocumentActions(true, true);
+            break;
+        }
+        case EditorComponent: {
+            EditorWindow *editor = new EditorWindow(this);
+            m_currentComponentWindow = editor;
+            showDocumentActions(true, true);
+            editor->updateDocument(m_document->document());
+            break;
+        }
+        case PracticeComponent: {
+            m_testEntryManager.setDocument(m_document->document());
+            Practice::PracticeMainWindow *practiceWindow = new Practice::PracticeMainWindow(&m_testEntryManager, this);
+            connect(practiceWindow, SIGNAL(stopPractice()), this, SLOT(showPracticeSummary()));
+            m_currentComponentWindow = practiceWindow;
+            showDocumentActions(false, false);
+            practiceWindow->startPractice();
+            break;
+        }
+        case PracticeSummary: {
+            Practice::PracticeSummaryComponent* summary = new Practice::PracticeSummaryComponent(&m_testEntryManager, this);
+            m_currentComponentWindow = summary;
+            showDocumentActions(true, true);            
+            break;
+        }
+        default:
+            break;
     }
-    kDebug() << "new component" << newClient << newWidget;
+    kDebug() << "new component" << m_currentComponentWindow;
 
-    // Unload the old actions and load the new ones
-    if (oldClient) {
-        guiFactory()->removeClient(oldClient);
-    }
-    if (newClient) {
-        guiFactory()->addClient(newClient);
-    }
-
-    // Hide the old central widget and insert the new one
-    if (oldWidget) {
-        centralWidget()->layout()->removeWidget(oldWidget);
-        oldWidget->hide();
-    }
-    if (newWidget) {
-        centralWidget()->layout()->addWidget(newWidget);
-        newWidget->show();
-    }
-
-    m_currentComponent = component;
+    guiFactory()->addClient(m_currentComponentWindow);
+    centralWidget()->layout()->addWidget(m_currentComponentWindow);
+    m_currentComponentWindow->show();
     setupToolbarMenuActions();
 }
 
@@ -463,11 +353,6 @@ void ParleyMainWindow::showDocumentActions(bool open, bool edit)
 ParleyDocument* ParleyMainWindow::parleyDocument()
 {
     return m_document;
-}
-
-Editor* ParleyMainWindow::editor()
-{
-    return m_editor;
 }
 
 #include "parleymainwindow.moc"

@@ -21,7 +21,8 @@
 class KEduVocExpression;
 class KEduVocDocument;
 
-
+namespace Editor {
+    
 class DeclensionWidget : public QWidget, public Ui::DeclensionWidget
 {
     Q_OBJECT
@@ -59,5 +60,7 @@ private:
      */
     QMap< int, KLineEdit* > m_DeclensionLineEdits;
 };
+
+}
 
 #endif

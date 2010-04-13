@@ -22,6 +22,8 @@
 
 class KEduVocTranslation;
 
+namespace Editor {
+    
 class VocabularyMimeData :public QMimeData {
     Q_OBJECT
 public:
@@ -51,6 +53,6 @@ private:
     QList <MimeExpression> m_expressions;
     QString m_text;
 };
-
+}
 
 #endif

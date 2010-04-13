@@ -65,8 +65,6 @@ set(vocabulary_SRCS
     vocabulary/containermimedata.cpp
     vocabulary/lessonview.cpp
     vocabulary/wordtypeview.cpp
-    vocabulary/leitnerview.cpp
-    vocabulary/leitnermodel.cpp
     vocabulary/vocabularycolumnsdialog.cpp
 )
 
@@ -75,34 +73,42 @@ set(editor_SRCS
 )
 
 set(practice_SRCS
-    practiceold/vocabularypractice.cpp
     practiceold/testentry.cpp
-    practiceold/testentrymanager.cpp
     practiceold/entryfilter.cpp
-    practiceold/practicedialog.cpp
-    practiceold/AdjQueryDlg.cpp
-    practiceold/ArtQueryDlg.cpp
-    practiceold/MCQueryDlg.cpp
-    practiceold/writtenpracticedialog.cpp
-    practiceold/SimpleQueryDlg.cpp
-    practiceold/VerbQueryDlg.cpp
-    practiceold/mixedletterpracticedialog.cpp
-    practiceold/showsolutiondialog.cpp
-    practiceold/practicesummarydialog.cpp
-    practiceold/answervalidatorold.cpp
+
+    practice/testentrymanager.cpp
+    practice/practiceoptions.cpp
+    practice/abstractfrontend.cpp
+    practice/abstractbackendmode.cpp
+    practice/defaultbackend.cpp
+    practice/guifrontend.cpp
+    practice/abstractwidget.cpp
+    practice/writtenpracticewidget.cpp
+    practice/writtenbackendmode.cpp
+    practice/examplesentencebackendmode.cpp
+    practice/flashcardmodewidget.cpp
+    practice/flashcardbackendmode.cpp
+    practice/multiplechoicemodewidget.cpp
+    practice/multiplechoicebackendmode.cpp
+    practice/genderbackendmode.cpp
+    practice/mixedlettersmodewidget.cpp
+    practice/imagewidget.cpp
+    practice/practicemainwindow.cpp
+    practice/practicesummarycomponent.cpp
+    practice/boxeswidget.cpp
+    practice/audiobutton.cpp
+    practice/summarybarwidget.cpp
+    practice/themedbackgroundrenderer.cpp
+    practice/imagecache.cpp
 )
 
 kde4_add_ui_files(practice_SRCS
     practiceold/entryfilter.ui
-    practiceold/AdjQueryDlgForm.ui
-    practiceold/ArtQueryDlgForm.ui
-    practiceold/MCQueryDlgForm.ui
-    practiceold/writtenpracticedialog.ui
-    practiceold/SimpleQueryDlgForm.ui
-    practiceold/VerbQueryDlgForm.ui
-    practiceold/mixedletterpracticedialog.ui
-    practiceold/showsolutionwidget.ui
-    practiceold/practicesummarywidget.ui
+    practice/practicesummarywidget.ui
+    practice/practice_mainwindow.ui
+    practice/practice_widget_written.ui
+    practice/practice_widget_multiplechoice.ui
+    practice/practice_widget_flashcard.ui
 )
 
 # settings for the practice
@@ -153,9 +159,12 @@ kde4_add_ui_files(entrydialogs_SRCS
 
 # overview over grades
 set(statisticsdialogs_SRCS
-    statistics-dialogs/statisticsmodel.cpp
-    statistics-dialogs/StatisticsDialog.cpp
-    statistics-dialogs/lessonstatistics.cpp
+    statistics/statisticsmodel.cpp
+    statistics/statisticsmainwindow.cpp
+    statistics/lessonstatistics.cpp
+)
+kde4_add_ui_files(statisticsdialogs_SRCS
+    statistics/statisticsmainwindow.ui
 )
 
 # scripting interface using kross
@@ -199,6 +208,7 @@ set(parley_SRCS
     ${welcomescreen_SRCS}
     parleydocument.cpp
     parleymainwindow.cpp
+    parleyactions.cpp
     main.cpp
     modeltest/modeltest.cpp
 )
@@ -231,10 +241,12 @@ install( FILES parley.desktop DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 # hot new stuff config
 install( FILES parley.knsrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
 
-# main window ui (menus)
+# UI files - define menus and toolbars
 install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )
-
-# editor ui
 install( FILES editor/editorui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
+install( FILES welcomescreen/welcomescreenui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
+install( FILES statistics/statisticsui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
+install( FILES practice/practiceui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
+install( FILES practice/practicesummaryui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 
 

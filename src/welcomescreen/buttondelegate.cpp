@@ -56,6 +56,7 @@ QList<QWidget*> ButtonDelegate::createItemWidgets() const
 
 void ButtonDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const
 {
+    Q_UNUSED(index)
     KPushButton *editButton = static_cast<KPushButton*>(widgets[0]);
     QSize editButtonSizeHint = editButton->sizeHint();
     editButton->resize(editButtonSizeHint);
@@ -82,14 +83,13 @@ void ButtonDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
     QFontMetrics fm(option.font);
     QString elidedText = fm.elidedText(index.data().toString(), Qt::ElideRight, textRect.width());
     painter->drawText(textRect, Qt::AlignLeft | Qt::AlignVCenter, elidedText);
-
-    KWidgetItemDelegate::paintWidgets(painter, option, index);
 }
 
 QSize ButtonDelegate::sizeHint(const QStyleOptionViewItem &option,
                 const QModelIndex &index) const
 {
     Q_UNUSED(index);
+    Q_UNUSED(option);
 
     return QSize(qMax(iconSize, m_buttonHeight), 32);
 }

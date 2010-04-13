@@ -22,6 +22,8 @@
 
 class KEduVocContainer;
 
+namespace Editor {
+    
 class ContainerMimeData :public QMimeData {
     Q_OBJECT
 public:
@@ -32,5 +34,6 @@ private:
     QList<KEduVocContainer*> m_containers;
 };
 
+}
 
 #endif

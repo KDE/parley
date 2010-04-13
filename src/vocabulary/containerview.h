@@ -18,11 +18,12 @@
 
 #include <QTreeView>
 
-class ContainerModel;
 class KEduVocContainer;
 class KEduVocExpression;
 
-
+namespace Editor {
+    class ContainerModel;
+    
 /**
  * View for containers (KEduVocContainer).
  * @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
@@ -56,6 +57,11 @@ signals:
 protected:
     /** The KVTContainerModel for this view. */
     ContainerModel *m_model;
+
+private:
+    virtual void setModel(QAbstractItemModel *model) { Q_UNUSED(model) }
 };
+
+}
 
 #endif

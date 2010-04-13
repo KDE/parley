@@ -15,10 +15,11 @@
 
 #include <keduvoctranslation.h>
 #include <keduvocexpression.h>
-#include <KDebug>
 
 #include <QStringListModel>
 #include <QDragEnterEvent>
+
+using namespace Editor;
 
 SynonymWidget::SynonymWidget(SynonymWidgetType type, QWidget *parent) : QWidget(parent)
 {

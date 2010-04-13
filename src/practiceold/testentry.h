@@ -17,7 +17,7 @@
 
 #include <QFlags>
 
-class KEduVocExpression;
+#include <keduvocexpression.h>
 
 class TestEntry
 {
@@ -44,17 +44,12 @@ public:
 
     void incGoodCount();
     void incBadCount();
-    void incTimeout();
-    void incSkipUnknown();
-    void incSkipKnown();
+
 
     int answeredCorrectInSequence();
     int statisticCount();
     int statisticGoodCount();
     int statisticBadCount();
-    int statisticSkipKnown();
-    int statisticSkipUnknown();
-    int statisticTimeout();
     bool statisticCorrectAtFirstAttempt();
 
     void setLastErrors(ErrorTypes errorTypes);
@@ -63,8 +58,10 @@ public:
     void setLastPercentage(double percent);
     double lastPercentage();
 
-    int totalEntries();
+    void addUserAnswer(const QString& answer) { if (!answer.isEmpty()) m_userAnswers.append(answer); }
+    QStringList userAnswers() { return m_userAnswers; }
 
+    int totalEntries();
 
     static void setGradeFrom(int from);
     static void setGradeTo(int to);
@@ -83,15 +80,13 @@ private:
     int m_statisticCount;
     int m_statisticGoodCount;
     int m_statisticBadCount;
-    int m_statisticTimeout;
-    int m_statisticSkipUnknown;
-    int m_statisticSkipKnown;
     int m_answeredCorrectInSequence;
-    bool m_canSwitchDirection;
     bool m_correctAtFirstAttempt;
 
     double m_lastPercentage;
     ErrorTypes m_lastError;
+
+    QStringList m_userAnswers;
 
     static int m_gradeTo;
     static int m_gradeFrom;

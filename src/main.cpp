@@ -103,10 +103,7 @@ int main(int argc, char* argv[])
     // for i18n of the lib strings
     KGlobal::locale()->insertCatalog("libkdeedu");
 
-    ParleyMainWindow *parleyApp = 0;
-
     if (app.isSessionRestored()) {
-//         kRestoreMainWindows< ParleyApp >();
         int n = 1;
         while (KMainWindow::canBeRestored(n)){
             (new ParleyMainWindow())->restore(n);

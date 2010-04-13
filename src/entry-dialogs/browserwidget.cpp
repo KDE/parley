@@ -16,11 +16,11 @@
 #include "browserwidget.h"
 
 #include <keduvocexpression.h>
-#include <kdebug.h>
 #include <KHTMLPart>
 
 #include <QDragEnterEvent>
 
+using namespace Editor;
 
 BrowserWidget::BrowserWidget(QWidget *parent) : QWidget(parent)
 {

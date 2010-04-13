@@ -15,6 +15,9 @@
 #define VOCABULARYHEADERVIEW_H
 
 #include <QHeaderView>
+
+namespace Editor {
+    
 class VocabularyHeaderView : public QHeaderView
 {
     Q_OBJECT
@@ -27,5 +30,6 @@ private slots:
 private:
     int m_sortSection;
 };
+}
 
 #endif

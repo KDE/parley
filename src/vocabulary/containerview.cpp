@@ -21,7 +21,6 @@
 #include <KAction>
 #include <KMessageBox>
 #include <KInputDialog>
-#include <kdebug.h>
 #include <klocale.h>
 #include <kiconloader.h>
 #include <kicon.h>
@@ -34,6 +33,8 @@
 #include <QHeaderView>
 #include <QMenu>
 #include <QContextMenuEvent>
+
+using namespace Editor;
 
 ContainerView::ContainerView(QWidget *parent) : QTreeView(parent)
 {

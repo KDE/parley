@@ -33,9 +33,10 @@
 #include <keduvocdocument.h>
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
-#include <KDebug>
 #include <KIcon>
 #include <KLocale>
+
+using namespace Editor;
 
 SummaryWordWidget::SummaryWordWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent) :
     QWidget(parent)
@@ -172,7 +173,6 @@ void SummaryWordDelegate::setEditorData(QWidget *editor, const QModelIndex &inde
         switch (VocabularyModel::columnType(index.column())) {
             
             case VocabularyModel::WordType:
-                kDebug() << "Lesson " << index.model()->data(index);
                 break;
 
             case VocabularyModel::Comment:

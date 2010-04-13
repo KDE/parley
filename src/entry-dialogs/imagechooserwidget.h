@@ -21,6 +21,8 @@
 
 class KEduVocExpression;
 
+namespace Editor {
+    
 class ImageChooserWidget : public QWidget, public Ui::ImageChooserWidget
 {
     Q_OBJECT
@@ -55,4 +57,5 @@ private:
     KEduVocExpression* m_entry;
 
 };
+}
 #endif

@@ -29,25 +29,37 @@
 #include "parleydocument.h"
 
 #include <KXmlGuiWindow>
+#include "practice/testentrymanager.h"
+
+namespace Practice {
+    class GuiFrontend;
+    class DefaultBackend;
+    class PracticeSummaryComponent;
+}
+
+namespace Editor {
+    class VocabularyView;
+    class VocabularyModel;
+    class VocabularyFilter;
+    class LessonView;
+    class WordTypeView;
+    class LeitnerView;
+    class LessonModel;
+    class WordTypeModel;
+    class LeitnerModel;
+    class ConjugationWidget;
+    class SummaryWordWidget;
+    class EditorWindow;
+}
 
 class KRecentFilesAction;
 class KActionMenu;
 class KAction;
 class QLabel;
 class QDockWidget;
-class Editor;
+
 class WelcomeScreen;
-class VocabularyView;
-class VocabularyModel;
-class VocabularyFilter;
-class LessonView;
-class WordTypeView;
-class LeitnerView;
-class LessonModel;
-class WordTypeModel;
-class LeitnerModel;
-class ConjugationWidget;
-class SummaryWordWidget;
+    class StatisticsMainWindow;
 class ScriptManager;
 class ParleyPracticeMainWindow;
 
@@ -61,15 +73,19 @@ public:
     ~ParleyMainWindow();
 
     /** enum for the different components that can be displayed */
-    enum Component {NoComponent, WelcomeComponent, EditorComponent, PracticeComponent};
+    enum Component {
+        NoComponent, 
+        WelcomeComponent, 
+        EditorComponent, 
+        PracticeComponent,
+        PracticeSummary,
+        StatisticsComponent
+    };
 
     /**
      * setup the action (menus etc)
      */
     void initActions();
-
-    /** setup the welcome screen */
-    void initWelcomeScreen();
 
     /** add a new entry to the list of recent files */
     void addRecentFile(const KUrl &url, const QString &name);
@@ -89,9 +105,6 @@ public:
      */
     ParleyDocument* parleyDocument();
 
-    /** return the editor instance */
-    Editor* editor();
-
 public slots:
     /** Update the title bar of the main window with the current document */
     void slotUpdateWindowCaption();
@@ -109,12 +122,13 @@ public slots:
 
     void slotCloseDocument();
 
-    void slotShowStatistics();
-
     void configurePractice();
 
     void startPractice();
+    void showPracticeSummary();
+    void practiceFinished();
 
+    
     /**
      * Show the tip of the day (force it to be shown)
      */
@@ -128,6 +142,7 @@ public slots:
     void showWelcomeScreen();
     void showEditor();
     void showPractice();
+    void showStatistics();
 
     void switchComponent(Component component);
 
@@ -137,18 +152,25 @@ public slots:
     void showDocumentActions(bool open, bool edit);
 
 signals:
-    void documentChanged();
-
+    void recentFilesChanged();
+    void preferencesChanged();
+    
 private:
     ParleyMainWindow(const KUrl& filename = KUrl());
     static ParleyMainWindow *s_instance;
 
     Component m_currentComponent;
 
+    /*
     WelcomeScreen *m_welcomeScreen;
-    Editor *m_editor;
-    //ParleyPracticeMainWindow *m_practice;
-
+    Editor::EditorWindow *m_editor;
+    Practice::GuiFrontend *m_practiceFrontend;
+    Practice::DefaultBackend *m_practiceBackend;
+    StatisticsMainWindow *m_statisticsWidget;
+    Practice::PracticeSummaryComponent *m_practiceSummary;
+    */
+    KXmlGuiWindow* m_currentComponentWindow;
+    
     KRecentFilesAction* m_recentFilesAction;
 
     /** m_document is the current vocabulary document. */
@@ -156,6 +178,8 @@ private:
 
     /// the name of the executable
     QString m_appName;
+    Component m_componentBeforePractice;
+    Practice::TestEntryManager m_testEntryManager;
 
     friend int main(int argc, char* argv[]);
 };

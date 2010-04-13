@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PracticeSummaryWidget</class>
+ <widget class="QWidget" name="PracticeSummaryWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>625</width>
+    <height>565</height>
+   </rect>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Your practice result:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="Practice::SummaryBarWidget" name="summaryBar" native="true"/>
+   </item>
+   <item>
+    <widget class="QTableWidget" name="tableWidget">
+     <column>
+      <property name="text">
+       <string>Question</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Solution</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Your Answer</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Wrong Attempts</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Practice::SummaryBarWidget</class>
+   <extends>QWidget</extends>
+   <header>practice/summarybarwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

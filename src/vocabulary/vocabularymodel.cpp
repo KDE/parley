@@ -29,6 +29,8 @@
 #include <KMessageBox>
 #include <QPixmap>
 
+using namespace Editor;
+
 VocabularyModel::VocabularyModel(QObject *parent)
     :QAbstractTableModel(parent),
     m_container(0), m_document(0)
@@ -53,8 +55,6 @@ void VocabularyModel::setDocument(KEduVocDocument * doc)
     // to get the headers right
     // (better get rid of the reset)
     reset();
-
-    emit documentChanged(doc);
 
     if ( m_document ) {
         showContainer(m_document->lesson());
@@ -402,7 +402,8 @@ void VocabularyModel::resetLanguages()
 
 void VocabularyModel::automaticTranslation(bool enabled)
 {
-    Prefs::setAutomaticTranslation(enabled);
+    kDebug() << "auto trans enabled: " << enabled;
+    Prefs::setAutomaticTranslation(true);
 }
 
 #include "vocabularymodel.moc"

@@ -33,6 +33,8 @@ class KEduVocExpression;
 class KEduVocTranslation;
 class KEduVocDocument;
 
+namespace Editor {
+    
 class ComparisonWidget : public QWidget, public Ui::comparisonWidget
 {
     Q_OBJECT
@@ -64,5 +66,7 @@ private:
     KEduVocTranslation* m_translation;
     KEduVocDocument* m_doc;
 };
+
+}
 
 #endif

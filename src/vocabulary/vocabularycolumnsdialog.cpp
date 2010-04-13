@@ -40,6 +40,8 @@
 
 const int COLUMNS_LIMIT = 1; // columns for row
 
+using namespace Editor;
+
 VocabularyColumnsDialog::VocabularyColumnsDialog(KEduVocDocument *doc, QWidget *parent)
     : KDialog(parent),
     m_models()

@@ -24,6 +24,8 @@
 #include <QStringListModel>
 #include <QDragEnterEvent>
 
+using namespace Editor;
+
 MultipleChoiceWidget::MultipleChoiceWidget(QWidget *parent) : QWidget(parent)
 {
     setupUi(this);
@@ -45,6 +47,8 @@ MultipleChoiceWidget::MultipleChoiceWidget(QWidget *parent) : QWidget(parent)
 
 void MultipleChoiceWidget::slotDataChanged( const QModelIndex & topLeft, const QModelIndex & bottomRight )
 {
+    Q_UNUSED(topLeft)
+    Q_UNUSED(bottomRight)
     m_translation->multipleChoice() = m_choicesModel->stringList();
     removeChoiceButton->setEnabled(m_translation && m_translation->multipleChoice().count() > 0);
 }

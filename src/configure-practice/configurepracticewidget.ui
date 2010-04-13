@@ -1,165 +1,45 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>ConfigurePracticeWidget</class>
- <widget class="QWidget" name="ConfigurePracticeWidget" >
-  <property name="geometry" >
+ <widget class="QWidget" name="ConfigurePracticeWidget">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>617</width>
-    <height>580</height>
+    <width>353</width>
+    <height>298</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <layout class="QHBoxLayout" >
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="KButtonGroup" name="kcfg_TestType" >
-       <property name="title" >
-        <string>Type of Test</string>
-       </property>
-       <layout class="QGridLayout" >
-        <item row="6" column="0" >
-         <spacer>
-          <property name="orientation" >
-           <enum>Qt::Vertical</enum>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QTreeWidget" name="tenseSelectionTreeWidget">
+         <property name="rootIsDecorated">
+          <bool>false</bool>
+         </property>
+         <property name="itemsExpandable">
+          <bool>false</bool>
+         </property>
+         <column>
+          <property name="text">
+           <string>Conjugation Tenses</string>
           </property>
-          <property name="sizeHint" stdset="0" >
-           <size>
-            <width>20</width>
-            <height>0</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="0" >
-         <widget class="QRadioButton" name="MixedLettersRadio" >
-          <property name="text" >
-           <string>Mixed Letters</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0" >
-         <widget class="QRadioButton" name="MultipleChoiceRadio" >
-          <property name="text" >
-           <string>Multiple Choice</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0" >
-         <widget class="QRadioButton" name="WrittenRadio" >
-          <property name="toolTip" >
-           <string/>
-          </property>
-          <property name="text" >
-           <string>Written</string>
-          </property>
-          <property name="checked" >
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0" >
-         <widget class="QRadioButton" name="ExampleRadio" >
-          <property name="text" >
-           <string>Example Sentences</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0" >
-         <widget class="QRadioButton" name="ParaphraseRadio" >
-          <property name="text" >
-           <string>Paraphrase</string>
-          </property>
-         </widget>
-        </item>
-    <item row="0" column="1" >
-        <widget class="QRadioButton" name="ArticleRadio" >
-          <property name="text" >
-           <string>Article Training</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1" >
-         <widget class="QRadioButton" name="ComparisonRadio" >
-          <property name="text" >
-           <string>Comparison</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1" >
-         <widget class="QRadioButton" name="ConjugationRadio" >
-          <property name="text" >
-           <string>Conjugation</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1" >
-         <widget class="QRadioButton" name="SynonymRadio" >
-          <property name="text" >
-           <string>Synonym</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1" >
-         <widget class="QRadioButton" name="AntonymRadio" >
-          <property name="text" >
-           <string>Antonym</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
- 
-     <item>
-      <widget class="QGroupBox" name="OptionsGroupBox" >
-       <property name="title" >
-        <string>Options</string>
-       </property>
-      </widget>
+         </column>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>
    <item>
-    <widget class="QGroupBox" name="languageGroupBox" >
-     <property name="title" >
-      <string>Languages</string>
-     </property>
-     <layout class="QVBoxLayout" >
-      <item>
-       <layout class="QGridLayout" >
-        <item row="0" column="0" >
-         <widget class="QLabel" name="label" >
-          <property name="text" >
-           <string comment="the language that is shown to the user in a test" >From</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1" >
-         <widget class="QLabel" name="label_2" >
-          <property name="text" >
-           <string comment="the language to which the user translates to in a test" >To</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0" >
-         <widget class="QListWidget" name="LanguageFromList" />
-        </item>
-        <item row="1" column="1" >
-         <widget class="QListWidget" name="LanguageToList" />
-        </item>
-       </layout>
-      </item>
-     </layout>
-     <zorder>kcfg_TestType</zorder>
-    </widget>
-   </item>
-   <item>
     <spacer>
-     <property name="orientation" >
+     <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeHint" stdset="0" >
+     <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
        <height>40</height>
@@ -169,14 +49,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KButtonGroup</class>
-   <extends>QGroupBox</extends>
-   <header>kbuttongroup.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

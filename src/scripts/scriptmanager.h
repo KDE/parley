@@ -21,6 +21,7 @@
 
 #include <QStringList>
 
+
 /**
  * This class finds the scripts installed in the application directory and manages loading and unloading of the scripts. For each script an instance of Script class is created.
  *
@@ -29,7 +30,7 @@
 class ScriptManager : public QObject
 {
     public:
-        ScriptManager ( Editor * editor );
+        ScriptManager ( Editor::EditorWindow * editor );
 
         ~ScriptManager();
 
@@ -110,7 +111,7 @@ class ScriptManager : public QObject
         Translator * translator() { return m_scriptingParley->translator(); }
 
     private:
-        Editor * m_editor;
+        Editor::EditorWindow * m_editor;
         QList<Script*> m_scripts;
         QMap<QString, QObject*> m_scriptObjects;
         QList<QAction*> m_scriptActions;

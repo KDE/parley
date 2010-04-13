@@ -30,6 +30,7 @@
   * Implementation of ContainerModel.
   * Functions to create the model from the lessons of the vocabulary document.
   */
+using namespace Editor;
 
 ContainerModel::ContainerModel(KEduVocContainer::EnumContainerType type, QObject * parent) : BasicContainerModel(type, parent)
 {
@@ -56,7 +57,9 @@ QModelIndex ContainerModel::appendContainer(const QModelIndex& parent, const QSt
         break;
     case (KEduVocContainer::WordType):
         parentContainer->appendChildContainer(new KEduVocWordType(containerName, static_cast<KEduVocWordType*>(parentContainer)));
-    break;
+        break;
+    default:
+        break;
     }
     endInsertRows();
 

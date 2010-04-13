@@ -30,15 +30,16 @@ class ParleyDocument : public QObject
 {
 Q_OBJECT
 public:
-    static ParleyDocument * instance();
-    static void destroy();
+    ParleyDocument(ParleyMainWindow* parleyMainWindow);
+    ~ParleyDocument();
+    
 
     KEduVocDocument *document();
 
     void setTitle(const QString& title);
 
     void enableAutoBackup(bool enable);
-    void fetchGrammar(int languageIndex);
+    //void fetchGrammar(int languageIndex);
 
 public slots:
     /** open a new application window */
@@ -68,15 +69,17 @@ public slots:
     void exportDialog();
 
     void newDocument(bool wizard);
-
+    
+    /** General doc properties like title, author etc */
+    void documentProperties();
+    void languageProperties();
+    
 signals:
     void documentChanged(KEduVocDocument *newDocument);
+    void languagesChanged();
+    void statesNeedSaving();
 
 private:
-    static ParleyDocument* s_instance;
-    ParleyDocument();
-    ~ParleyDocument();
-
     void initializeDefaultGrammar(KEduVocDocument *doc);
     void setDefaultDocumentProperties(KEduVocDocument *doc);
 

@@ -18,10 +18,11 @@
 #include <kinputdialog.h>
 #include <kmessagebox.h>
 
-#include "practiceold/testentrymanager.h"
+#include "practice/testentrymanager.h"
 #include <keduvocdocument.h>
 #include <keduvoclesson.h>
 
+#include <KDebug>
 #include <KLocale>
 #include <KStandardDirs>
 #include <KLineEdit>
@@ -32,11 +33,9 @@
 
 #define TENSE_TAG ". "
 
-LanguagePropertiesPage::LanguagePropertiesPage(ParleyDocument *doc, int identifierIndex, QWidget *parent)
-    :QWidget(parent), m_parleyDocument(doc), m_identifierIndex(identifierIndex)
+LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identifierIndex, QWidget *parent)
+    :QWidget(parent), m_doc(doc), m_identifierIndex(identifierIndex)
 {
-    m_doc = m_parleyDocument->document();
-
     setupUi(this);
 
     connect(localeComboBox, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(localeChanged(const QString&)));
@@ -128,9 +127,13 @@ void LanguagePropertiesPage::setLanguageIdentifierIndex(int newIndex)
     m_identifierIndex = newIndex;
 }
 
+namespace DocumentHelper {
+    void fetchGrammar(KEduVocDocument* doc, int languageIndex);
+}
+
 void LanguagePropertiesPage::downloadGrammar()
 {
-    m_parleyDocument->fetchGrammar(m_identifierIndex);
+    DocumentHelper::fetchGrammar(m_doc, m_identifierIndex);
     loadGrammarFromDocument();
 }
 
@@ -248,7 +251,7 @@ void LanguagePropertiesPage::accept()
 
     // articles
     const KEduVocWordFlag::Flags artSing = KEduVocWordFlag::Singular;
-    const KEduVocWordFlag::Flags artDual = KEduVocWordFlag::Dual;
+//    const KEduVocWordFlag::Flags artDual = KEduVocWordFlag::Dual;
     const KEduVocWordFlag::Flags artPlur = KEduVocWordFlag::Plural;
 
     const KEduVocWordFlag::Flags artDef = KEduVocWordFlag::Definite;

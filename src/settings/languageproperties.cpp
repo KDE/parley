@@ -15,14 +15,15 @@
 
 #include "languagepropertiespage.h"
 #include "languagesettings.h"
-#include "parleydocument.h"
+
+#include <keduvocdocument.h>
 
 #include <KMessageBox>
 #include <QLabel>
 #include <KLocale>
 
-LanguageProperties::LanguageProperties(QWidget * parent)
-    :KPageDialog(parent), m_doc(ParleyDocument::instance())
+LanguageProperties::LanguageProperties(KEduVocDocument* doc, QWidget * parent)
+    :KPageDialog(parent), m_doc(doc)
 {
     setCaption(i18n("Edit Languages"));
     setFaceType( List );
@@ -36,7 +37,7 @@ LanguageProperties::LanguageProperties(QWidget * parent)
     connect( this, SIGNAL(user2Clicked()), this, SLOT(slotAppendIdentifier()));
     connect( this, SIGNAL(user1Clicked()), this, SLOT(slotDeleteIdentifier()));
 
-    for ( int i = 0; i < m_doc->document()->identifierCount(); i++ ) {
+    for ( int i = 0; i < m_doc->identifierCount(); i++ ) {
         createPage(i);
     }
 }
@@ -49,9 +50,9 @@ KPageWidgetItem*  LanguageProperties::createPage(int i)
     QString currentIcon;
 
     // check if this language already exists in the doc
-    if (m_doc->document()->identifierCount() > i) {
-        name = m_doc->document()->identifier(i).name();
-        LanguageSettings currentSettings(m_doc->document()->identifier(i).locale());
+    if (m_doc->identifierCount() > i) {
+        name = m_doc->identifier(i).name();
+        LanguageSettings currentSettings(m_doc->identifier(i).locale());
         currentSettings.readConfig();
         currentIcon = currentSettings.icon();
     }
@@ -77,7 +78,7 @@ KPageWidgetItem*  LanguageProperties::createPage(int i)
 
 void LanguageProperties::accept()
 {
-    KEduVocDocument *doc = m_doc->document();
+    KEduVocDocument *doc = m_doc;
     int deleted = 0;
 
     for (int index = 0; index < m_pages.count(); index++) {

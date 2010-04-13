@@ -21,6 +21,8 @@
 class KEduVocExpression;
 class KEduVocDocument;
 
+namespace Editor {
+    
 class ConjugationWidget : public QWidget, public Ui::ConjugationWidget
 {
     Q_OBJECT
@@ -62,5 +64,7 @@ private:
      */
     QMap< KEduVocWordFlags, KLineEdit* > m_conjugationLineEdits;
 };
+
+}
 
 #endif

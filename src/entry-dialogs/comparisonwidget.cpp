@@ -19,8 +19,9 @@
 #include <keduvoctranslation.h>
 #include <keduvocexpression.h>
 #include <keduvocdocument.h>
-#include <KDebug>
 #include <KMessageBox>
+
+using namespace Editor;
 
 ComparisonWidget::ComparisonWidget(QWidget *parent) : QWidget(parent)
 {

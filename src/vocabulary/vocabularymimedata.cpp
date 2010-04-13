@@ -18,7 +18,8 @@
 
 #include <keduvoctranslation.h>
 #include <keduvocwordtype.h>
-#include <KDebug>
+
+using namespace Editor;
 
 void VocabularyMimeData::setTranslations(QList<KEduVocTranslation *> translations)
 {
@@ -71,6 +72,7 @@ QList< KEduVocTranslation * > VocabularyMimeData::translationList() const
 
 QVariant VocabularyMimeData::retrieveData(const QString & mimeType, QVariant::Type type) const
 {
+    Q_UNUSED(type)
     // only use the expression list.expressions
     // the translation list may be invalid (eg when cut it is no longer valid.
     // translations can only be used internally for drag and drop!!!

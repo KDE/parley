@@ -23,13 +23,14 @@
 #include <keduvocwordtype.h>
 #include <keduvocexpression.h>
 
-#include <KDebug>
 #include <KLocalizedString>
 
 /** @file
   * Implementation of BasicContainerModel.
   * Functions to create the model from the lessons of the vocabulary document.
   */
+
+using namespace Editor;
 
 BasicContainerModel::BasicContainerModel(KEduVocContainer::EnumContainerType type, QObject * parent) : QAbstractItemModel(parent)
 {

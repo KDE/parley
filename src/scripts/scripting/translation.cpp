@@ -70,6 +70,7 @@ namespace Scripting
 
     QStringList Translation::conjugationTexts ( const QString& tense )
     {
+        Q_UNUSED(tense)
 //         KEduVocConjugation conjug = m_translation->conjugation ( tense );
 
          QStringList list;
@@ -83,6 +84,8 @@ namespace Scripting
 
     QStringList Translation::conjugationTexts ( const QString& tense, const KEduVocWordFlags& flags )
     {
+        Q_UNUSED(tense)
+        Q_UNUSED(flags)
 //         KEduVocConjugation conjug = m_translation->conjugation ( tense );
 
          QStringList list;

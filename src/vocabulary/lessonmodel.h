@@ -18,7 +18,7 @@
 
 #include "containermodel.h"
 
-
+namespace Editor {
 /**
   * Model for the tree of lessons.
   */
@@ -32,7 +32,6 @@ public:
         Sorted,    /**< The order of the entries in the document */
         Random /**< Randomized */
     };
-
 
     explicit LessonModel(QObject *parent = 0);
     
@@ -52,6 +51,6 @@ public:
 protected:
     KEduVocContainer * rootContainer() const;
 };
-
+}
 
 #endif

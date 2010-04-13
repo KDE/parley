@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>ImageChooserWidget</class>
- <widget class="QWidget" name="ImageChooserWidget" >
-  <property name="geometry" >
+ <widget class="QWidget" name="ImageChooserWidget">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,31 +10,25 @@
     <height>130</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout">
    <item>
-    <widget class="QLabel" name="imageLabel" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+    <widget class="Practice::ImageWidget" name="imageWidget" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="minimumSize" >
+     <property name="minimumSize">
       <size>
        <width>20</width>
        <height>20</height>
       </size>
      </property>
-     <property name="text" >
-      <string/>
-     </property>
-     <property name="alignment" >
-      <set>Qt::AlignCenter</set>
-     </property>
     </widget>
    </item>
    <item>
-    <widget class="KUrlRequester" name="imageUrlRequester" />
+    <widget class="KUrlRequester" name="imageUrlRequester"/>
    </item>
   </layout>
  </widget>
@@ -42,6 +37,12 @@
    <class>KUrlRequester</class>
    <extends>QFrame</extends>
    <header>kurlrequester.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Practice::ImageWidget</class>
+   <extends>QWidget</extends>
+   <header>practice/imagewidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

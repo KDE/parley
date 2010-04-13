@@ -19,17 +19,19 @@
 #include "wordtypeview.h"
 #include "containerview.h"
 
-class Editor;
 class KAction;
 class KSelectAction;
 class KEduVocWordType;
+
+namespace Editor {
+    class EditorWindow;
 
 class WordTypeView : public ContainerView
 {
     Q_OBJECT
 
 public:
-    WordTypeView(Editor *parent);
+    WordTypeView(EditorWindow *parent);
 
 public slots:
     /** Append a word type to the model and automatically set an edit up so the user can change "New lesson" into something meaningfull.*/
@@ -74,5 +76,6 @@ private:
     KAction *m_adverbAction;
     KAction *m_verbAction;
 };
+}
 
 #endif

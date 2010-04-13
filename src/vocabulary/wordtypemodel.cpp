@@ -17,6 +17,8 @@
 
 #include <keduvocwordtype.h>
 
+using namespace Editor;
+
 WordTypeModel::WordTypeModel(QObject * parent)
     :ContainerModel(KEduVocContainer::WordType, parent)
 {

@@ -26,6 +26,8 @@ namespace Phonon
 
 class KEduVocExpression;
 
+namespace Editor {
+
 class AudioWidget : public QWidget, public Ui::AudioWidget
 {
     Q_OBJECT
@@ -54,4 +56,7 @@ private:
 
     Phonon::MediaObject* m_player;
 };
+
+}
+
 #endif

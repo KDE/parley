@@ -24,8 +24,6 @@
 #include <kross/core/action.h>
 #include <kross/core/manager.h>
 
-#include <KDebug>
-
 ScriptDialog::ScriptDialog ( ScriptManager * scriptManager )
         : KDialog()
 {

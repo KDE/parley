@@ -28,7 +28,9 @@
 #include <QMenu>
 #include <QContextMenuEvent>
 
-WordTypeView::WordTypeView(Editor* parent) : ContainerView(parent)
+using namespace Editor;
+
+WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
 {
     setContextMenuPolicy(Qt::DefaultContextMenu);
 
@@ -245,8 +247,6 @@ void WordTypeView::slotDeleteWordType()
 
 void WordTypeView::contextMenuEvent(QContextMenuEvent * event)
 {
-    kDebug() << "Context menu event";
-
     // check for the root element:
     QModelIndex selectedIndex = selectionModel()->currentIndex();
     m_actionRenameWordType->setEnabled(selectedIndex.parent() != QModelIndex());

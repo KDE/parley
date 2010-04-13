@@ -24,7 +24,7 @@
 
 #include "thresholdoptions.h"
 
-#include "practiceold/testentrymanager.h"
+#include "practice/testentrymanager.h"
 #include "prefs.h"
 
 #include <keduvocdocument.h>
@@ -116,6 +116,8 @@ bool ThresholdOptions::hasChanged()
 
 void ThresholdOptions::wordTypeItemChanged ( QTreeWidgetItem * item, int column )
 {
+    Q_UNUSED(item)
+    Q_UNUSED(column)
 //     // if it's a parent item, also change the check state of the children
 //     if ( item->parent() == 0 ) {
 //         for(int i = 0; i<item->childCount(); i++) {
