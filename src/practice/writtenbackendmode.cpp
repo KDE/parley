@@ -44,7 +44,7 @@ void WrittenBackendMode::continueAction()
     switch (m_state) {
         case NotAnswered:
         case AnswerWasWrong:
-	case AnswerWasSynonym:
+        case AnswerWasSynonym:
             checkAnswer();
             break;
         case SolutionShown:
@@ -67,26 +67,26 @@ void WrittenBackendMode::checkAnswer()
     switch(m_state) {
         // for now right/wrong is only counted on first attempt - when state is NotAnswered.
         case NotAnswered:
-	case AnswerWasSynonym:
-            if (answer == m_current->entry()->translation(m_practiceOptions.languageTo())->text()) {
+        case AnswerWasSynonym:
+            if (answer == m_current->entry()->translation(m_practiceOptions.languageTo())->text() || answer.isEmpty()) {
                 m_frontend->setFeedback(i18n("Your answer was right on the first attempt."));
                 m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
                 m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
                 m_frontend->showSolution();
 
                 m_state = SolutionShown;
-	    } else if (isSynonym(answer)) {
-	        if (m_synonyms.contains(answer)) {
-		   m_frontend->setFeedback(i18n("Your answer was an already entered synonym."));  
-		} else {
-		  m_frontend->setFeedback(i18n("Your answer was a synonym."));
-		  AbstractBackendMode::addSynonym(answer);
-		  m_frontend->setSynonym(answer);
-                  m_frontend->showSynonym();
-		}
+            } else if (isSynonym(answer)) {
+                if (m_synonyms.contains(answer)) {
+                    m_frontend->setFeedback(i18n("Your answer was an already entered synonym."));
+                } else {
+                    m_frontend->setFeedback(i18n("Your answer was a synonym."));
+                    AbstractBackendMode::addSynonym(answer);
+                    m_frontend->setSynonym(answer);
+                    m_frontend->showSynonym();
+                }
                 m_frontend->setResultState(AbstractFrontend::AnswerSynonym);
                 m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
-		
+
                 m_state = AnswerWasSynonym;
             } else {
                 m_frontend->setFeedback(i18n("Your answer was wrong. Please try again."));
@@ -143,12 +143,13 @@ void WrittenBackendMode::hintAction()
     }
 }
 
-bool WrittenBackendMode::isSynonym(QString& answer){
+bool WrittenBackendMode::isSynonym(QString& answer)
+{
     foreach(KEduVocTranslation *synonym, m_current->entry()->translation(m_practiceOptions.languageTo())->synonyms()) {
-      kDebug() << "Synonym" << synonym->text() << " answer: " << answer;
-      if (synonym->text() == answer) {
-	return true;
-      }
+        kDebug() << "Synonym" << synonym->text() << " answer: " << answer;
+        if (synonym->text() == answer) {
+            return true;
+        }
     }
     return false;
 }
