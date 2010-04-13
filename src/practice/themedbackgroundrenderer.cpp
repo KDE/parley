@@ -124,7 +124,6 @@ QSizeF ThemedBackgroundRenderer::getSizeForId(const QString& id)
 
 QPixmap ThemedBackgroundRenderer::getPixmapForId(const QString& id, QSize size)
 {
-    kDebug() << "foo" << id << size;
     if (!m_renderer.elementExists(id))
         return QPixmap();
     QRectF itemRect = m_renderer.boundsOnElement(id);

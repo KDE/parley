@@ -119,7 +119,7 @@ void DefaultBackend::updateFrontend()
         m_testEntryManager->totalEntryCount() - m_testEntryManager->activeEntryCount(), 
         m_testEntryManager->totalEntryCount());
 
-    m_frontend->setBoxes(m_current->entry()->translation(m_options.languageFrom())->grade());
+    m_frontend->setBoxes(m_current->entry()->translation(m_options.languageTo())->grade());
 
     QString imgUrl = m_current->entry()->translation(m_options.languageFrom())->imageUrl().url();
     m_frontend->setQuestionImage(imgUrl);

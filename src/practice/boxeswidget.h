@@ -1,5 +1,5 @@
 /***************************************************************************
-    Copyright 2009 Daniel Laidig <d.laidig@gmx.de>
+    Copyright 2009-2010 Daniel Laidig <d.laidig@gmx.de>
  ***************************************************************************/
 
 /***************************************************************************
@@ -14,12 +14,13 @@
 #ifndef PRACTICE_BOXESWIDGET_H
 #define PRACTICE_BOXESWIDGET_H
 
-#include <QtGui/QWidget>
-
+#include "imagewidget.h"
 
 namespace Practice {
 
-class BoxesWidget : public QWidget
+class ThemedBackgroundRenderer;
+
+class BoxesWidget : public ImageWidget
 {
     Q_OBJECT
 
@@ -27,22 +28,28 @@ public:
     BoxesWidget(QWidget* parent = 0);
     virtual QSize minimumSizeHint() const;
 
+    void setRenderer(ThemedBackgroundRenderer *renderer);
     void setBoxCount(int boxCount);
     void setBoxes(int currentBox, int lastBox = -1);
 
-protected:
-    virtual void paintEvent(QPaintEvent* e);
+    void updatePixmap();
 
 private:
     int m_boxCount;
     int m_currentBox;
     int m_lastBox;
 
-    static const int boxWidth = 20;
-    static const int boxHeight = 20;
-    static const int boxSpacing = 4;
-    static const int arrowHeight = 10;
-    static const int arrowSize = 5;
+    ThemedBackgroundRenderer *m_renderer;
+
+    QPixmap m_box;
+    QPixmap m_activeBox;
+
+    QPixmap m_arrowBegin;
+    QPixmap m_arrowCenter;
+    QPixmap m_arrowEnd;
+
+    int m_arrowHint;
+    int m_spacingHint;
 };
 
 }

@@ -1,5 +1,5 @@
 /***************************************************************************
-    Copyright 2009 Daniel Laidig <d.laidig@gmx.de>
+    Copyright 2009-2010 Daniel Laidig <d.laidig@gmx.de>
  ***************************************************************************/
 
 /***************************************************************************
@@ -13,7 +13,10 @@
 
 #include "boxeswidget.h"
 
+#include "themedbackgroundrenderer.h"
+
 #include <keduvoctext.h>
+#include <kdebug.h>
 
 #include <QtGui/QPainter>
 #include <qbrush.h>
@@ -21,69 +24,74 @@
 using namespace Practice;
 
 BoxesWidget::BoxesWidget(QWidget* parent)
-    : QWidget(parent), m_boxCount(1), m_currentBox(-1), m_lastBox(-1)
+    : ImageWidget(parent), m_boxCount(1), m_currentBox(-1), m_lastBox(-1), m_renderer(0), m_arrowHint(0), m_spacingHint(0)
 {
     setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     setBoxCount(KV_MAX_GRADE);
+    setScalingEnabled(false);
 }
 
+void BoxesWidget::setRenderer(ThemedBackgroundRenderer *renderer)
+{
+    m_renderer = renderer;
+    if(!m_renderer->getSizeForId("box").isEmpty()) {
+        m_box = m_renderer->getPixmapForId("box");
+    }
+    if(!m_renderer->getSizeForId("box-active").isEmpty()) {
+        m_activeBox = m_renderer->getPixmapForId("box-active");
+    }
+    if(!m_renderer->getSizeForId("arrow-begin").isEmpty()) {
+        m_arrowBegin = m_renderer->getPixmapForId("arrow-begin");
+    }
+    if(!m_renderer->getSizeForId("arrow-center").isEmpty()) {
+        m_arrowCenter = m_renderer->getPixmapForId("arrow-center");
+    }
+    if(!m_renderer->getSizeForId("arrow-end").isEmpty()) {
+        m_arrowEnd = m_renderer->getPixmapForId("arrow-end");
+    }
+
+    m_arrowHint = qRound(m_renderer->getSizeForId("arrow-hint").width());
+    m_spacingHint = qRound(m_renderer->getSizeForId("box-spacing-hint").width());
+    setMinimumSize(minimumSizeHint());
+    updateGeometry();
+    updatePixmap();
+}
 
 void BoxesWidget::setBoxCount(int boxCount)
 {
     m_boxCount = boxCount;
+    setMinimumSize(minimumSizeHint());
     updateGeometry();
-    update();
+    updatePixmap();
 }
 
 void BoxesWidget::setBoxes(int currentBox, int lastBox)
 {
+    kDebug() << currentBox << lastBox;
     m_currentBox = currentBox;
     m_lastBox = lastBox;
-    update();
+    updatePixmap();
 }
 
 QSize BoxesWidget::minimumSizeHint() const
 {
-    return QSize(m_boxCount*boxWidth + (m_boxCount-1)*boxSpacing+1, boxHeight+arrowHeight+1);
+    return QSize(m_boxCount*m_box.width() + (m_boxCount-1)*m_spacingHint,
+                 m_box.height()+qMax(m_arrowBegin.height(), qMax(m_arrowCenter.height(), m_arrowEnd.height())));
 }
 
-void BoxesWidget::paintEvent(QPaintEvent* e)
+void BoxesWidget::updatePixmap()
 {
-    Q_UNUSED(e)
-    QPainter painter(this);
-    QFont font = painter.font();
-    QFont boldFont = font;
-    boldFont.setWeight(QFont::Bold);
-    if (m_lastBox != -1 && m_currentBox != -1 && m_lastBox != m_currentBox) {
-        int arrowStart = (m_lastBox-1) * (boxWidth+boxSpacing) + boxWidth/2;
-        int arrowEnd = (m_currentBox-1) * (boxWidth+boxSpacing) + boxWidth/2;
-        QPolygon arrowLine;
-        arrowLine << QPoint(arrowStart, arrowHeight-arrowSize) << QPoint(arrowStart, 0) << QPoint(arrowEnd, 0) << QPoint(arrowEnd, arrowHeight);
-        painter.drawPolyline(arrowLine);
-        QPolygon arrowHead;
-        arrowHead << QPoint(arrowEnd, arrowHeight) << QPoint(arrowEnd-arrowSize, arrowHeight-arrowSize) << QPoint(arrowEnd+arrowSize, arrowHeight-arrowSize);
-        painter.setBrush(Qt::black);
-        painter.drawPolygon(arrowHead);
-    }
-    for(int i = 0; i < m_boxCount; i++) {
-        int boxBaseX = i*(boxSpacing+boxWidth);
-        int boxBaseY = arrowHeight;
-        QPolygon box;
-        box << QPoint(boxBaseX, boxBaseY) << QPoint(boxBaseX, boxBaseY+boxHeight) << QPoint(boxBaseX+boxWidth, boxBaseY+boxHeight) << QPoint(boxBaseX+boxWidth, boxBaseY);
-        QRect rect(boxBaseX, boxBaseY, boxHeight, boxWidth);
-        QLinearGradient gradient(0,boxBaseY,0,boxBaseY+boxHeight);
-        if (i+1 == m_currentBox) {
-            gradient.setColorAt(0.3, QColor(0,0,0,0));
-            gradient.setColorAt(1, QColor(0,0,0,200));
-            painter.setFont(boldFont);
-        } else {
-            gradient.setColorAt(0.3, QColor(0,0,0,0));
-            gradient.setColorAt(1, QColor(0,0,0,50));
-            painter.setFont(font);
-        }
-        painter.fillRect(rect, gradient);
-        painter.drawPolyline(box);
-        painter.drawText(rect, Qt::AlignCenter, QString::number(i+1));
-    }
-}
+    QImage image(minimumSizeHint(), QImage::Format_ARGB32_Premultiplied);
+    image.fill(QColor(Qt::transparent).rgba());
+    QPainter p(&image);
 
+    for(int i = 0; i < m_boxCount; i++) {
+        int x = i*(m_box.width() + m_spacingHint);
+        int y = image.height() - m_box.height();
+        p.drawPixmap(x, y, i+1 == m_currentBox ? m_activeBox : m_box);
+    }
+    if (m_lastBox != -1 && m_currentBox != -1 && m_lastBox != m_currentBox) {
+
+    }
+    this->setPixmap(QPixmap::fromImage(image));
+}

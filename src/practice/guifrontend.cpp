@@ -48,6 +48,7 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     
     
     m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
+    m_ui->boxesWidget->setRenderer(m_themedBackgroundRenderer);
     connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)), this, SLOT(backgroundChanged(QPixmap)));
     connect(m_widget, SIGNAL(sizeChanged()), this, SLOT(updateBackground()));
 
