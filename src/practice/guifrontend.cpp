@@ -212,7 +212,7 @@ void GuiFrontend::setImage(const KUrl& image)
     }    
     QPixmap pixmap(image.path());
     if (pixmap.isNull()) {
-        m_ui->imageWidget->setPixmap(KIcon("parley").pixmap(128));
+        m_ui->imageWidget->setPixmap(m_themedBackgroundRenderer->getPixmapForId("image-placeholder", QSize(150, 150)));
     } else {
         m_ui->imageWidget->setPixmap(pixmap);
     }

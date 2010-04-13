@@ -57,7 +57,9 @@ public:
     ~ThemedBackgroundRenderer();
 
     void setSvgFilename(const QString& filename);
-    QPixmap getPixmapForId(const QString& id);
+
+    QSizeF getSizeForId(const QString& id);
+    QPixmap getPixmapForId(const QString& id, QSize size = QSize());
     QMargins contentMargins();
 
     QPixmap getScaledBackground();

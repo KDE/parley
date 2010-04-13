@@ -110,10 +110,30 @@ void ThemedBackgroundRenderer::renderingFinished()
     m_future = QFuture<QImage>();
 }
 
-QPixmap ThemedBackgroundRenderer::getPixmapForId(const QString& id)
+QSizeF ThemedBackgroundRenderer::getSizeForId(const QString& id)
 {
-    //TODO
-    return QPixmap();
+    if (!m_renderer.elementExists(id))
+        return QSizeF();
+    return m_renderer.boundsOnElement(id).size();
+}
+
+QPixmap ThemedBackgroundRenderer::getPixmapForId(const QString& id, QSize size)
+{
+    kDebug() << "foo" << id << size;
+    if (!m_renderer.elementExists(id))
+        return QPixmap();
+    QRectF itemRect = m_renderer.boundsOnElement(id);
+    if (itemRect.isNull())
+        return QPixmap();
+    if (size.isEmpty())
+        size = itemRect.size().toSize();
+
+    QImage image(size,  QImage::Format_ARGB32_Premultiplied);
+    image.fill(QColor(Qt::transparent).rgba());
+    QPainter p(&image);
+    m_renderer.render(&p, id, QRectF(QPointF(0,0), size));
+
+    return QPixmap::fromImage(image);
 }
 
 QMargins ThemedBackgroundRenderer::contentMargins()
