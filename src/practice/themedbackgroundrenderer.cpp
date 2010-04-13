@@ -24,7 +24,7 @@
 using namespace Practice;
 
 ThemedBackgroundRenderer::ThemedBackgroundRenderer(QObject* parent)
-    : QObject(parent), m_queuedRequest(false), m_isFastScaledRender(true)
+    : QObject(parent), m_haveCache(true), m_queuedRequest(false), m_isFastScaledRender(true)
 {
     m_cache.setSaveFilename(KStandardDirs::locateLocal("appdata", "practicethemecache.bin"));
     m_timer.setSingleShot(true);
@@ -42,6 +42,7 @@ void ThemedBackgroundRenderer::setSvgFilename(const QString& filename)
 {
     m_renderer.load(filename);  //TODO: error handling
     m_cache.setFilename(filename);
+    m_haveCache = !m_cache.isEmpty();
 }
 
 void ThemedBackgroundRenderer::setSize(const QSize& size)
@@ -252,6 +253,7 @@ void ThemedBackgroundRenderer::renderItem(const QString& id, const QRect& rect, 
         QPainter painter(&image);
         m_renderer.render(&painter, id, QRect(QPoint(0, 0), itemRect.size()));
         m_cache.updateImage(id, image);
+        m_haveCache = true;
     }
     p->drawImage(itemRect.topLeft(), image);
     if (aspectRatio == Qt::KeepAspectRatioByExpanding) {

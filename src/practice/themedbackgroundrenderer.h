@@ -90,6 +90,7 @@ private:
     KSvgRenderer m_renderer;
     QList<QPair<QString, QRect> > m_rects;
     QSize m_size;
+    bool m_haveCache;
     bool m_queuedRequest;
     bool m_isFastScaledRender;
     QTimer m_timer;
