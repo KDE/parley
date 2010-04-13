@@ -31,6 +31,7 @@ public:
     void updateImage(const QString& id, const QImage& image);
     QSize imageSize(const QString& id);
     QImage getImage(const QString& id);
+    bool isEmpty() {return m_images.isEmpty();}
 
     void setSaveFilename(const QString& filename) {m_saveFilename = filename;}
     void openCache();

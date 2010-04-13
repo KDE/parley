@@ -68,6 +68,10 @@ QPixmap ThemedBackgroundRenderer::getScaledBackground()
     if (m_future.isRunning()  || m_future.resultCount()) {
         return QPixmap();
     }
+    if (m_cache.isEmpty()) {
+        m_timer.start(0);
+        return QPixmap();
+    }
 
     QFutureWatcher<QImage> watcher;
     m_future = QtConcurrent::run(this, &ThemedBackgroundRenderer::renderBackground, true);
