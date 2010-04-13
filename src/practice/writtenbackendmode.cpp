@@ -64,11 +64,14 @@ void WrittenBackendMode::checkAnswer()
 {
     QString answer = m_frontend->userInput().toString();
     
+    if(m_state == NotAnswered && answer.isEmpty())
+        m_state = AnswerWasWrong;
+
     switch(m_state) {
         // for now right/wrong is only counted on first attempt - when state is NotAnswered.
         case NotAnswered:
         case AnswerWasSynonym:
-            if (answer == m_current->entry()->translation(m_practiceOptions.languageTo())->text() || answer.isEmpty()) {
+            if (answer == m_current->entry()->translation(m_practiceOptions.languageTo())->text()) {
                 m_frontend->setFeedback(i18n("Your answer was right on the first attempt."));
                 m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
                 m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
