@@ -16,7 +16,6 @@
 #define MULTIPLECHOICEBACKENDMODE_H
 
 #include "abstractbackendmode.h"
-#include "multiplechoicedata.h"
 #include "practice/testentrymanager.h"
 
 namespace Practice {
@@ -34,15 +33,39 @@ public Q_SLOTS:
     virtual void continueAction();
     virtual void hintAction();
     
+protected:
+    /**
+     * set the list of possible answers. This function needs to call setCorrectAnswer and setChoices
+     */
+    virtual void prepareChoices(TestEntry* current);
+    
+    /**
+     * Set the question/original language
+     */
+    void setQuestion(const QString& question);
+    
+    /**
+     * This must include the correct answer. The order of the choices will be preserved.
+     */
+    void setChoices(const QStringList& choices);
+    
+    /**
+     * The correct solution, index of the choices.
+     */
+    void setCorrectAnswer(int index);
+    
+    
+    int numberOfChoices();
+
 private:
     bool m_solutionVisible;
     TestEntryManager* m_testEntryManager;
-    int m_correctAnswer;
     KRandomSequence m_randomSequence;
+    QString m_question;
     int m_numberOfChoices;
-    MultipleChoiceData m_data;
+    QStringList m_choices;
+    int m_correctAnswer;
     QList<int> m_hints;
-
 };
 
 }

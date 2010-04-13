@@ -26,7 +26,10 @@
 #include "guifrontend.h"
 #include "abstractbackendmode.h"
 
+class ParleyDocument;
+
 namespace Practice {
+    
 
 class DefaultBackend :public QObject
 {
@@ -50,6 +53,7 @@ private:
     void updateFrontend();
     
     AbstractFrontend* m_frontend;
+    ParleyDocument* m_document;
     PracticeOptions m_options;
     TestEntry* m_current;
     TestEntryManager* m_testEntryManager;

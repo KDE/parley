@@ -19,6 +19,7 @@
 
 #include "examplesentencebackendmode.h"
 #include "flashcardbackendmode.h"
+#include "genderbackendmode.h"
 #include "multiplechoicebackendmode.h"
 #include "writtenbackendmode.h"
 
@@ -27,6 +28,7 @@ using namespace Practice;
 DefaultBackend::DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, const Practice::PracticeOptions& options, Practice::TestEntryManager* testEntryManager, QObject* parent)
     : QObject(parent)
     , m_frontend(frontend)
+    , m_document(doc)
     , m_options(options)
     , m_current(0)
     , m_testEntryManager(testEntryManager)
@@ -76,6 +78,10 @@ void DefaultBackend::initializePracticeMode()
             kDebug() << "Create Written Practice backend";
             m_frontend->setMode(AbstractFrontend::Written);
             m_mode = new ExampleSentenceBackendMode(m_options, m_frontend, this);
+            break;
+        case Prefs::EnumPracticeMode::GenderPractice:
+            m_frontend->setMode(AbstractFrontend::MultipleChoice);
+            m_mode = new GenderBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
             break;
         default:
             Q_ASSERT("Implement selected practice mode" == 0);
