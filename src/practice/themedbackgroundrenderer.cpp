@@ -128,12 +128,16 @@ QPixmap ThemedBackgroundRenderer::getPixmapForId(const QString& id, QSize size)
     if (size.isEmpty())
         size = itemRect.size().toSize();
 
-    QImage image(size,  QImage::Format_ARGB32_Premultiplied);
-    image.fill(QColor(Qt::transparent).rgba());
-    QPainter p(&image);
-    m_renderer.render(&p, id, QRectF(QPointF(0,0), size));
-
-    return QPixmap::fromImage(image);
+    if (m_cache.imageSize(id) != size) {
+        QImage image(size,  QImage::Format_ARGB32_Premultiplied);
+        image.fill(QColor(Qt::transparent).rgba());
+        QPainter p(&image);
+        m_renderer.render(&p, id, QRectF(QPointF(0,0), size));
+        m_cache.updateImage(id, image);
+        return QPixmap::fromImage(image);
+    } else {
+        return QPixmap::fromImage(m_cache.getImage(id));
+    }
 }
 
 QMargins ThemedBackgroundRenderer::contentMargins()
