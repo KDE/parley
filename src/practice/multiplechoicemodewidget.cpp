@@ -85,6 +85,17 @@ void MultiplechoiceModeWidget::setNumberOfRadioButtons(const int numberOfChoices
     }
 }
 
+void MultiplechoiceModeWidget::setSynonym(const QString& entry)
+{
+  //TODO Do something here to show synonyms
+}
+
+
+void MultiplechoiceModeWidget::showSynonym()
+{
+  //TODO Do something here to show synonyms
+}
+
 void MultiplechoiceModeWidget::setSolution(const QVariant& solution)
 {
     m_solution = solution.toInt();

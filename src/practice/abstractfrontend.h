@@ -36,6 +36,7 @@ public:
     enum ResultState {
         QuestionState,
         AnswerCorrect,
+        AnswerSynonym,
         AnswerWrong
     };
     
@@ -72,12 +73,18 @@ public:
     virtual void setResultState(ResultState resultState) = 0;
     virtual ResultState resultState() = 0;
     
+    /** set a new synonym that should be shown */
+    virtual void setSynonym(const QString& entry) = 0;
+    
 public Q_SLOTS:
     /** enter question mode - the user is asked to provide the solution */
     virtual void showQuestion() = 0;
     /** enter show solution mode - the solution is shown */
     virtual void showSolution() = 0;
 
+    /** show the synonyms */
+    virtual void showSynonym() = 0;
+    
     /** switch between different modes such as written, flash card, etc */
     virtual void setMode(Mode mode) = 0;
     virtual void setBoxes(int currentBox, int lastBox = -1) = 0;

@@ -62,11 +62,16 @@ public:
     void setLessonName(const QString& lessonName);
     virtual void setFinishedWordsTotalWords(int finished, int total);
     
+    virtual void setSynonym(const QString& entry);
+
+    
 public Q_SLOTS:
     void setMode(Mode mode);
     void showQuestion();
     void showSolution();
     void setBoxes(int currentBox, int lastBox = -1);
+    
+    void showSynonym();
 
     void backgroundChanged(const QPixmap& pixmap);
 

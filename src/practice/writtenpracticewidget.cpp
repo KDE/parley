@@ -22,6 +22,7 @@
 #include "ui_practice_widget_written.h"
 
 #include <kcolorscheme.h>
+#include "guifrontend.h"
 
 using namespace Practice;
 
@@ -31,6 +32,7 @@ WrittenPracticeWidget::WrittenPracticeWidget(GuiFrontend *frontend, QWidget *par
     m_ui = new Ui::WrittenPracticeWidget();
     m_ui->setupUi(this);
     m_ui->mixedSolutionLabel->setVisible(false);
+    //m_ui->synonymList->setVisible(false);
     connect(m_ui->answerEdit, SIGNAL(returnPressed()), this, SLOT(continueClicked()));
 
     KColorScheme scheme(QPalette::Active);
@@ -65,6 +67,12 @@ void WrittenPracticeWidget::showQuestion()
     m_ui->answerEdit->setPalette(QApplication::palette());
     m_ui->solutionLabel->setText(QString());
     m_ui->helpLabel->clear();
+    
+    foreach(QWidget* child, synonymWidgets) {
+      m_ui->synonymList->removeWidget(child);
+      delete child;
+    }
+    synonymWidgets.clear();
 
     m_ui->questionPronunciationLabel->setVisible(m_ui->questionPronunciationLabel->isEnabled());
     m_ui->questionSoundButton->setVisible(m_ui->questionSoundButton->isEnabled());
@@ -90,6 +98,24 @@ void WrittenPracticeWidget::showSolution()
 
     m_ui->solutionPronunciationLabel->setVisible(m_ui->solutionPronunciationLabel->isEnabled());
     m_ui->solutionSoundButton->setVisible(m_ui->solutionSoundButton->isEnabled());
+}
+
+void WrittenPracticeWidget::setSynonym(const QString &synonym)
+{
+    m_synonym = synonym;
+}
+
+void WrittenPracticeWidget::showSynonym()
+{
+    QLabel* synonym = new QLabel();
+    QFont font;
+    font.setPointSize(9);
+    synonym->setAlignment(Qt::AlignCenter);
+    synonym->setFont(font);
+    synonym->setText(i18n("Synonym: " ) + m_synonym);
+    synonymWidgets.append(synonym);
+    m_ui->synonymList->addWidget(synonym);
+    m_ui->answerEdit->clear();
 }
 
 void WrittenPracticeWidget::setHint(const QVariant& hint)

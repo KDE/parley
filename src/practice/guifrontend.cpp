@@ -128,6 +128,16 @@ void GuiFrontend::showSolution()
     m_ui->answerLaterButton->setEnabled(false);
     m_ui->hintButton->setEnabled(false);
 }
+void GuiFrontend::setSynonym(const QString& entry)
+{
+    m_modeWidget->setSynonym(entry); 
+}
+
+void GuiFrontend::showSynonym()
+{
+    m_modeWidget->showSynonym();
+}
+
 
 void GuiFrontend::setBoxes(int currentBox, int lastBox)
 {
@@ -240,6 +250,11 @@ void GuiFrontend::setResultState(ResultState resultState)
         m_ui->toggleButton->setText(QString(0x2717)+QChar(0x2192)+QChar(0x2713));
         break;
     case AbstractFrontend::AnswerCorrect:
+        m_ui->statusImageLabel->setText(QChar(0x2713));
+        m_ui->toggleButton->setEnabled(true);
+        m_ui->toggleButton->setText(QString(0x2713)+QChar(0x2192)+QChar(0x2717));
+        break;
+    case AbstractFrontend::AnswerSynonym:
         m_ui->statusImageLabel->setText(QChar(0x2713));
         m_ui->toggleButton->setEnabled(true);
         m_ui->toggleButton->setText(QString(0x2713)+QChar(0x2192)+QChar(0x2717));

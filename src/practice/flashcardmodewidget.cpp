@@ -43,6 +43,16 @@ void FlashCardModeWidget::setSolution(const QVariant& solution)
     m_solution = solution.toString();
 }
 
+void FlashCardModeWidget::setSynonym(const QString& entry)
+{
+  //TODO Do something here to show synonyms
+}
+
+void FlashCardModeWidget::showSynonym()
+{
+  //TODO Do something here to show synonyms
+}
+
 void FlashCardModeWidget::showSolution()
 {
     m_ui->solutionLabel->setHidden(false);

@@ -44,9 +44,12 @@ public:
     virtual void setSolutionPronunciation(const QString& pronunciationText);
     virtual void setQuestionPronunciation(const QString& pronunciationText);
     
+    virtual void setSynonym(const QString& entry);
+    
 public Q_SLOTS:
     virtual void showQuestion();
     virtual void showSolution();
+    virtual void showSynonym();
     
 private:
     Ui::FlashCardPracticeWidget* m_ui;

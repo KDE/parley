@@ -44,9 +44,12 @@ public:
     virtual void setSolutionPronunciation(const QString& pronunciationText) = 0;
     virtual void setQuestionPronunciation(const QString& pronunciationText) = 0;
     
+    virtual void setSynonym(const QString& entry) = 0;
+    
 public slots:
     virtual void showQuestion() = 0;
     virtual void showSolution() = 0;
+    virtual void showSynonym() = 0;
     
 signals:
     void continueAction();
@@ -55,6 +58,7 @@ signals:
 
 protected:
     GuiFrontend *m_frontend;
+    
 
 };
 

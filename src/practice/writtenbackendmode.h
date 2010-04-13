@@ -33,10 +33,12 @@ public Q_SLOTS:
     
 private:
     void checkAnswer();
+    bool isSynonym(QString& answer);
     
     enum State {
         NotAnswered,
         AnswerWasWrong,
+        AnswerWasSynonym,
         SolutionShown
     };
     State m_state;

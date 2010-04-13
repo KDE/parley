@@ -34,6 +34,10 @@ public:
       * m_frontend->showQuestion() should be called after the initialization. */
     virtual void setTestEntry(TestEntry* current);
     
+    /** add a new synonym to the list of shown/answered synonyms depending on which mode we
+      * are in. */
+    virtual void addSynonym(const QString& entry) { if (!entry.isEmpty()) m_synonyms.append(entry); }
+    
 public Q_SLOTS:
     /** the frontend requested to continue */
     virtual void continueAction() = 0;
@@ -50,6 +54,7 @@ protected:
     PracticeOptions m_practiceOptions;
     AbstractFrontend* m_frontend;
     TestEntry* m_current;
+    QStringList m_synonyms;
 };
 
 }

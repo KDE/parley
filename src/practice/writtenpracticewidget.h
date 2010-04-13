@@ -50,10 +50,13 @@ public:
     virtual void setSolutionPronunciation(const QString& pronunciationText);
     virtual void setQuestionPronunciation(const QString& pronunciationText);
     
+    virtual void setSynonym(const QString& entry);
+        
 public slots:
     void showQuestion();
     void showSolution();
     void continueClicked();
+    void showSynonym();
 
 protected:
     Ui::WrittenPracticeWidget* m_ui;
@@ -62,8 +65,10 @@ private:
     QPalette m_correctPalette;
     QPalette m_wrongPalette;
     QString m_solution;
+    QString m_synonym;
     AbstractFrontend::ResultState m_resultState;
     AbstractFrontend::ResultState m_feedbackState;
+    QList<QWidget*> synonymWidgets;
 };
 
 }
