@@ -91,10 +91,10 @@ void MultipleChoiceBackendMode::continueAction()
 {
     if (m_solutionVisible) {
         if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-            m_current->incGoodCount();
+            userAnswerRight();
             emit currentEntryFinished();
         } else {
-            m_current->incBadCount();
+            userAnswerWrong();
         }
         emit nextEntry();
         return;
@@ -107,6 +107,16 @@ void MultipleChoiceBackendMode::continueAction()
     }
     m_frontend->showSolution();
     m_solutionVisible = true;
+}
+
+void MultipleChoiceBackendMode::userAnswerRight()
+{
+    m_current->incGoodCount();
+}
+
+void MultipleChoiceBackendMode::userAnswerWrong()
+{
+    m_current->incBadCount();
 }
 
 void MultipleChoiceBackendMode::hintAction()

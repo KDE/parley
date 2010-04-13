@@ -106,5 +106,16 @@ void GenderBackendMode::prepareChoices(TestEntry* entry)
     }
 }
 
+void GenderBackendMode::userAnswerRight()
+{
+    kDebug() << "article right";
+}
+
+void GenderBackendMode::userAnswerWrong()
+{
+    kDebug() << "article wrong";
+}
+
+
 
 #include "genderbackendmode.moc"
