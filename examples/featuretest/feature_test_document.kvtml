@@ -7,7 +7,7 @@
     <author>Daniel Laidig, Frederik Gladhorn</author>
     <license>GPLv2+ (GNU General Public License version 2 or later)</license>
     <comment>This is a document created during the parley mini sprint 2010</comment>
-    <date>2010-04-10</date>
+    <date>2010-04-13</date>
     <category>Testing</category>
   </information>
   <identifiers>
@@ -336,6 +336,164 @@
       <translation id="0"/>
       <translation id="1"/>
     </entry>
+    <entry id="20">
+      <translation id="0">
+        <text>gehen</text>
+        <conjugation>
+          <tense>Präsens</tense>
+          <singular>
+            <firstperson>
+              <text>gehe</text>
+            </firstperson>
+            <secondperson>
+              <text>gehst</text>
+            </secondperson>
+            <thirdpersonneutralcommon>
+              <text>geht</text>
+            </thirdpersonneutralcommon>
+          </singular>
+          <plural>
+            <firstperson>
+              <text>gehen</text>
+            </firstperson>
+            <secondperson>
+              <text>geht</text>
+            </secondperson>
+            <thirdpersonneutralcommon>
+              <text>gehen</text>
+            </thirdpersonneutralcommon>
+          </plural>
+        </conjugation>
+        <conjugation>
+          <tense>Präteritum</tense>
+        </conjugation>
+      </translation>
+      <translation id="1">
+        <text>to go</text>
+        <conjugation>
+          <tense>Simple Present</tense>
+          <singular>
+            <firstperson>
+              <text>go</text>
+            </firstperson>
+            <secondperson>
+              <text>go</text>
+            </secondperson>
+            <thirdpersonneutralcommon>
+              <text>goes</text>
+            </thirdpersonneutralcommon>
+          </singular>
+          <plural>
+            <firstperson>
+              <text>go</text>
+            </firstperson>
+            <secondperson>
+              <text>go</text>
+            </secondperson>
+            <thirdpersonneutralcommon>
+              <text>go</text>
+            </thirdpersonneutralcommon>
+          </plural>
+        </conjugation>
+      </translation>
+    </entry>
+    <entry id="21">
+      <translation id="0">
+        <text>sein</text>
+        <conjugation>
+          <tense>Präsens</tense>
+          <singular>
+            <firstperson>
+              <text>bin</text>
+            </firstperson>
+            <secondperson>
+              <text>bist</text>
+            </secondperson>
+            <thirdpersonneutralcommon>
+              <text>ist</text>
+            </thirdpersonneutralcommon>
+          </singular>
+          <plural>
+            <firstperson>
+              <text>sind</text>
+            </firstperson>
+            <secondperson>
+              <text>seit</text>
+            </secondperson>
+            <thirdpersonneutralcommon>
+              <text>sind</text>
+            </thirdpersonneutralcommon>
+          </plural>
+        </conjugation>
+        <conjugation>
+          <tense>Präteritum</tense>
+        </conjugation>
+      </translation>
+      <translation id="1">
+        <text>to be</text>
+        <conjugation>
+          <tense>Simple Present</tense>
+          <singular>
+            <firstperson>
+              <text>am</text>
+            </firstperson>
+            <secondperson>
+              <text>are</text>
+            </secondperson>
+            <thirdpersonneutralcommon>
+              <text>is</text>
+            </thirdpersonneutralcommon>
+          </singular>
+          <plural>
+            <firstperson>
+              <text>are</text>
+            </firstperson>
+            <secondperson>
+              <text>are</text>
+            </secondperson>
+            <thirdpersonneutralcommon>
+              <text>are</text>
+            </thirdpersonneutralcommon>
+          </plural>
+        </conjugation>
+      </translation>
+    </entry>
+    <entry id="22">
+      <translation id="0">
+        <text>schlürfen</text>
+        <conjugation>
+          <tense>Präsens</tense>
+          <singular>
+            <firstperson>
+              <text>schlürfe</text>
+            </firstperson>
+            <secondperson>
+              <text>schlürfst</text>
+            </secondperson>
+          </singular>
+        </conjugation>
+        <conjugation>
+          <tense>Präteritum</tense>
+        </conjugation>
+      </translation>
+      <translation id="1">
+        <text>to slurp</text>
+        <conjugation>
+          <tense>Simple Present</tense>
+          <singular>
+            <firstperson>
+              <text>slurp</text>
+            </firstperson>
+            <secondperson>
+              <text>slurp</text>
+            </secondperson>
+            <thirdpersonneutralcommon>
+              <text>slurps</text>
+            </thirdpersonneutralcommon>
+          </singular>
+        </conjugation>
+      </translation>
+    </entry>
   </entries>
   <lessons>
     <container>
@@ -380,6 +538,13 @@
       <entry id="18"/>
       <entry id="19"/>
     </container>
+    <container>
+      <name>Verbs, Conjugations</name>
+      <inpractice>true</inpractice>
+      <entry id="20"/>
+      <entry id="21"/>
+      <entry id="22"/>
+    </container>
   </lessons>
   <wordtypes>
     <container>
@@ -416,6 +581,18 @@
     <container>
       <name>Verb</name>
       <specialwordtype>verb</specialwordtype>
+      <entry id="20">
+        <translation id="0"/>
+        <translation id="1"/>
+      </entry>
+      <entry id="21">
+        <translation id="0"/>
+        <translation id="1"/>
+      </entry>
+      <entry id="22">
+        <translation id="0"/>
+        <translation id="1"/>
+      </entry>
       <container>
         <name>Regular Verb</name>
       </container>
@@ -485,8 +662,19 @@
   </leitnerboxes>
   <synonym>
     <pair>
+      <entry id="0">
+        <translation id="0"/>
+      </entry>
       <entry id="15">
         <translation id="0"/>
+      </entry>
+    </pair>
+    <pair>
+      <entry id="0">
+        <translation id="0"/>
+      </entry>
+      <entry id="16">
+        <translation id="1"/>
       </entry>
     </pair>
     <pair>
@@ -495,11 +683,6 @@
       </entry>
       <entry id="16">
         <translation id="0"/>
-      </entry>
-    </pair>
-    <pair>
-      <entry id="16">
-        <translation id="1"/>
       </entry>
     </pair>
     <pair>
