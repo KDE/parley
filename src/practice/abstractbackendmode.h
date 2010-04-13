@@ -14,7 +14,7 @@
 #ifndef ABSTRACTBACKENDMODE_H
 #define ABSTRACTBACKENDMODE_H
 
-#include "practiceold/testentry.h"
+#include "testentry.h"
 #include "practiceoptions.h"
 #include "abstractfrontend.h"
 

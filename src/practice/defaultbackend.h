@@ -17,9 +17,8 @@
 
 #include "parleydocument.h"
 
-
-#include "practice/testentrymanager.h"
-#include "practiceold/testentry.h"
+#include "testentrymanager.h"
+#include "testentry.h"
 #include "practiceoptions.h"
 
 #include "abstractfrontend.h"

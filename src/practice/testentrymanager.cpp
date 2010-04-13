@@ -15,7 +15,7 @@
 
 #include "testentrymanager.h"
 
-#include "practiceold/entryfilter.h"
+#include "entryfilter.h"
 
 #include <prefs.h>
 #include <klocale.h>

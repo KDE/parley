@@ -73,9 +73,8 @@ set(editor_SRCS
 )
 
 set(practice_SRCS
-    practiceold/testentry.cpp
-    practiceold/entryfilter.cpp
-
+    practice/testentry.cpp
+    practice/entryfilter.cpp
     practice/testentrymanager.cpp
     practice/practiceoptions.cpp
     practice/abstractfrontend.cpp
@@ -103,7 +102,7 @@ set(practice_SRCS
 )
 
 kde4_add_ui_files(practice_SRCS
-    practiceold/entryfilter.ui
+    practice/entryfilter.ui
     practice/practicesummarywidget.ui
     practice/practice_mainwindow.ui
     practice/practice_widget_written.ui

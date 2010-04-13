@@ -1,7 +1,7 @@
 /***************************************************************************
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
-                    (C) 2007-2009 Frederik Gladhorn <gladhorn@kde.org>
+                    (C) 2007-2010 Frederik Gladhorn <gladhorn@kde.org>
  ***************************************************************************/
 
 /***************************************************************************
@@ -16,7 +16,7 @@
 #ifndef PRACTICETESTENTRYMANAGER_H
 #define PRACTICETESTENTRYMANAGER_H
 
-#include "practiceold/testentry.h"
+#include "testentry.h"
 #include "prefs.h"
 
 #include <keduvocexpression.h>
