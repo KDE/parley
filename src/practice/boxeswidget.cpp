@@ -67,7 +67,8 @@ void BoxesWidget::setBoxCount(int boxCount)
 
 void BoxesWidget::setBoxes(int currentBox, int lastBox)
 {
-    kDebug() << currentBox << lastBox;
+    if(currentBox == m_currentBox && lastBox == m_lastBox)
+        return;
     m_currentBox = currentBox;
     m_lastBox = lastBox;
     updatePixmap();
