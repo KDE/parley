@@ -104,7 +104,7 @@ void StatusToggle::updateToggle()
         m_toggle->setPixmaps(m_toggleCorrect, m_toggleCorrectHover, m_toggleCorrectPressed);
         break;
     default:
-        m_toggle->setPixmap(QPixmap());
+        m_toggle->setPixmaps(QPixmap(), QPixmap(), QPixmap());
     }
 }
 

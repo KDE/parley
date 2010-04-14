@@ -24,12 +24,15 @@ class StatusToggleButton : public ImageWidget
     Q_OBJECT
 
 public:
-    StatusToggleButton(QWidget* parent = 0) : ImageWidget(parent), m_current(0) {};
+    StatusToggleButton(QWidget* parent = 0) : ImageWidget(parent), m_current(0) {setMouseTracking(true);}
 
     void setPixmaps(QPixmap defaultPixmap, QPixmap hoverPixmap, QPixmap pressedPixmap);
 
 protected:
     void mousePressEvent(QMouseEvent *e);
+    void mouseReleaseEvent(QMouseEvent *e);
+    void enterEvent(QEvent *);
+    void leaveEvent(QEvent *);
 
 signals:
     void clicked();
