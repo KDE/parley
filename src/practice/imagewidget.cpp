@@ -31,15 +31,11 @@
 
 using namespace Practice;
 
-// The functions centerPixmaps() and transition() are copied from kdelibs/plasma/paintutils.cpp, revision 1114033
+// The functions centerPixmaps() and transition() are copied from kdelibs/plasma/paintutils.cpp, revision 1114906
 // License: LGPLv2+
 // Copyright 2005 by Aaron Seigo <aseigo@kde.org>
 // Copyright 2008 by Andrew Lake <jamboarder@yahoo.com>
 // Don't just modify the code here, if there are issues they should probably also be fixed in libplasma.
-
-// IMPORTANT: this code contains local modifications that are not in libplasma yet:
-//-    if (from.isNull() || to.isNull()) {
-//+    if (from.isNull() && to.isNull()) {
 
 void centerPixmaps(QPixmap &from, QPixmap &to)
 {
