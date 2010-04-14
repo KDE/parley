@@ -24,6 +24,15 @@ StatusToggle::StatusToggle(QWidget* parent)
     setScalingEnabled(false);
     setMinimumSize(minimumSizeHint());
     setMaximumSize(minimumSizeHint());
+
+    QSize size = minimumSizeHint();
+    size*=0.4;
+    m_toggle = new ImageWidget(this);
+    m_toggle->setMinimumSize(size);
+    m_toggle->setMaximumSize(size);
+    m_toggle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    m_toggle->setScalingEnabled(false);
+    m_toggle->move(width()-m_toggle->width(), height()-m_toggle->height());
 }
 
 void StatusToggle::setRenderer(ThemedBackgroundRenderer *renderer)
@@ -84,5 +93,14 @@ void StatusToggle::updatePixmap()
 
 void StatusToggle::updateToggle()
 {
-
+    switch (m_resultState) {
+    case AbstractFrontend::AnswerCorrect:
+        m_toggle->setPixmap(m_toggleWrong);
+        break;
+    case AbstractFrontend::AnswerWrong:
+        m_toggle->setPixmap(m_toggleCorrect);
+        break;
+    default:
+        m_toggle->setPixmap(QPixmap());
+    }
 }

@@ -42,6 +42,8 @@ signals:
 private:
     ThemedBackgroundRenderer *m_renderer;
 
+    ImageWidget *m_toggle;
+
     AbstractFrontend::ResultState m_resultState;
     bool m_hover;
     bool m_pressed;
