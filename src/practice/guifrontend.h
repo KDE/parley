@@ -69,7 +69,7 @@ public Q_SLOTS:
     void setMode(Mode mode);
     void showQuestion();
     void showSolution();
-    void setBoxes(int currentBox, int lastBox = -1);
+    void setBoxes(int currentBox, int newBoxIfCorrect, int newBoxIfWrong);
     
     void showSynonym();
 
@@ -93,6 +93,9 @@ private:
     ResultState m_resultState;
     ResultState m_feedbackState;
     KUrl m_lastImage;
+    int m_currentBox;
+    int m_newBoxIfCorrect;
+    int m_newBoxIfWrong;
     ThemedBackgroundRenderer *m_themedBackgroundRenderer;
 };
 

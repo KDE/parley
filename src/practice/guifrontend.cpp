@@ -28,7 +28,7 @@
 using namespace Practice;
 
 GuiFrontend::GuiFrontend(QWidget* parent)
-    : AbstractFrontend(parent), m_modeWidget(0), m_lastImage("invalid")
+    : AbstractFrontend(parent), m_modeWidget(0), m_lastImage("invalid"), m_currentBox(0), m_newBoxIfCorrect(0), m_newBoxIfWrong(0)
 {
     m_widget = new ImageWidget();
     m_widget->setScalingEnabled(false, false);
@@ -141,9 +141,12 @@ void GuiFrontend::showSynonym()
 }
 
 
-void GuiFrontend::setBoxes(int currentBox, int lastBox)
+void GuiFrontend::setBoxes(int currentBox, int newBoxIfCorrect, int newBoxIfWrong)
 {
-    m_ui->boxesWidget->setBoxes(currentBox, lastBox);
+    m_ui->boxesWidget->setBoxes(currentBox, 0);
+    m_currentBox = currentBox;
+    m_newBoxIfCorrect = newBoxIfCorrect;
+    m_newBoxIfWrong = newBoxIfWrong;
 }
 
 void GuiFrontend::backgroundChanged(const QPixmap &pixmap)
@@ -250,21 +253,25 @@ void GuiFrontend::setResultState(ResultState resultState)
         m_ui->statusImageLabel->setText("?");
         m_ui->toggleButton->setEnabled(false);
         m_ui->toggleButton->setText(QString(0x2717)+QChar(0x2192)+QChar(0x2713));
+        m_ui->boxesWidget->setBoxes(m_currentBox);
         break;
     case AbstractFrontend::AnswerCorrect:
         m_ui->statusImageLabel->setText(QChar(0x2713));
         m_ui->toggleButton->setEnabled(true);
         m_ui->toggleButton->setText(QString(0x2713)+QChar(0x2192)+QChar(0x2717));
+        m_ui->boxesWidget->setBoxes(m_newBoxIfCorrect, m_currentBox);
         break;
     case AbstractFrontend::AnswerSynonym:
-        m_ui->statusImageLabel->setText(QChar(0x2713));
+        m_ui->statusImageLabel->setText("?");
         m_ui->toggleButton->setEnabled(true);
         m_ui->toggleButton->setText(QString(0x2713)+QChar(0x2192)+QChar(0x2717));
+        m_ui->boxesWidget->setBoxes(m_currentBox);
         break;
     case AbstractFrontend::AnswerWrong:
         m_ui->statusImageLabel->setText(QChar(0x2717));
         m_ui->toggleButton->setEnabled(true);
         m_ui->toggleButton->setText(QString(0x2717)+QChar(0x2192)+QChar(0x2713));
+        m_ui->boxesWidget->setBoxes(m_newBoxIfWrong, m_currentBox);
         break;
     }
 
