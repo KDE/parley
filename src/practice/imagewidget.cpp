@@ -37,6 +37,10 @@ using namespace Practice;
 // Copyright 2008 by Andrew Lake <jamboarder@yahoo.com>
 // Don't just modify the code here, if there are issues they should probably also be fixed in libplasma.
 
+// IMPORTANT: this code contains local modifications that are not in libplasma yet:
+//-    if (from.isNull() || to.isNull()) {
+//+    if (from.isNull() && to.isNull()) {
+
 void centerPixmaps(QPixmap &from, QPixmap &to)
 {
     if (from.size() == to.size()) {
@@ -72,7 +76,7 @@ void centerPixmaps(QPixmap &from, QPixmap &to)
 
 QPixmap transition(const QPixmap &from, const QPixmap &to, qreal amount)
 {
-    if (from.isNull() || to.isNull()) {
+    if (from.isNull() && to.isNull()) {
         return from;
     }
 
