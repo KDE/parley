@@ -99,6 +99,7 @@ set(practice_SRCS
     practice/summarybarwidget.cpp
     practice/themedbackgroundrenderer.cpp
     practice/imagecache.cpp
+    practice/statustoggle.cpp
 )
 
 kde4_add_ui_files(practice_SRCS

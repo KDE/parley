@@ -49,13 +49,14 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     
     m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
     m_ui->boxesWidget->setRenderer(m_themedBackgroundRenderer);
+    m_ui->statusToggle->setRenderer(m_themedBackgroundRenderer);
     connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)), this, SLOT(backgroundChanged(QPixmap)));
     connect(m_widget, SIGNAL(sizeChanged()), this, SLOT(updateBackground()));
 
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SIGNAL(continueAction()));
     connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SIGNAL(skipAction()));
     connect(m_ui->hintButton, SIGNAL(clicked()), this, SIGNAL(hintAction()));
-    connect(m_ui->toggleButton, SIGNAL(clicked()), this, SLOT(resultToggleClicked()));
+    connect(m_ui->statusToggle, SIGNAL(toggle()), this, SLOT(resultToggleClicked()));
     connect(m_ui->countAsCorrectButton, SIGNAL(clicked()), this, SLOT(countAsCorrectButtonClicked()));
     connect(m_ui->countAsWrongButton, SIGNAL(clicked()), this, SLOT(countAsWrongButtonClicked()));
 
@@ -247,30 +248,32 @@ void GuiFrontend::setFeedbackState(ResultState feedbackState)
 void GuiFrontend::setResultState(ResultState resultState)
 {
     // TODO: temporary text labels instead of graphics
-    m_ui->statusImageLabel->setFont(QFont("", 80, QFont::Bold));
+//    m_ui->statusImageLabel->setFont(QFont("", 80, QFont::Bold));
+    m_ui->statusToggle->setResultState(resultState);
     switch (resultState) {
     case AbstractFrontend::QuestionState:
-        m_ui->statusImageLabel->setText("?");
-        m_ui->toggleButton->setEnabled(false);
-        m_ui->toggleButton->setText(QString(0x2717)+QChar(0x2192)+QChar(0x2713));
+    case AbstractFrontend::AnswerSynonym:
+//        m_ui->statusImageLabel->setText("?");
+//        m_ui->toggleButton->setEnabled(false);
+//        m_ui->toggleButton->setText(QString(0x2717)+QChar(0x2192)+QChar(0x2713));
         m_ui->boxesWidget->setBoxes(m_currentBox);
         break;
     case AbstractFrontend::AnswerCorrect:
-        m_ui->statusImageLabel->setText(QChar(0x2713));
-        m_ui->toggleButton->setEnabled(true);
-        m_ui->toggleButton->setText(QString(0x2713)+QChar(0x2192)+QChar(0x2717));
+//        m_ui->statusImageLabel->setText(QChar(0x2713));
+//        m_ui->toggleButton->setEnabled(true);
+//        m_ui->toggleButton->setText(QString(0x2713)+QChar(0x2192)+QChar(0x2717));
         m_ui->boxesWidget->setBoxes(m_newBoxIfCorrect, m_currentBox);
         break;
-    case AbstractFrontend::AnswerSynonym:
-        m_ui->statusImageLabel->setText("?");
-        m_ui->toggleButton->setEnabled(true);
-        m_ui->toggleButton->setText(QString(0x2713)+QChar(0x2192)+QChar(0x2717));
-        m_ui->boxesWidget->setBoxes(m_currentBox);
-        break;
+
+//        m_ui->statusImageLabel->setText("?");
+//        m_ui->toggleButton->setEnabled(true);
+//        m_ui->toggleButton->setText(QString(0x2713)+QChar(0x2192)+QChar(0x2717));
+//        m_ui->boxesWidget->setBoxes(m_currentBox);
+//        break;
     case AbstractFrontend::AnswerWrong:
-        m_ui->statusImageLabel->setText(QChar(0x2717));
-        m_ui->toggleButton->setEnabled(true);
-        m_ui->toggleButton->setText(QString(0x2717)+QChar(0x2192)+QChar(0x2713));
+//        m_ui->statusImageLabel->setText(QChar(0x2717));
+//        m_ui->toggleButton->setEnabled(true);
+//        m_ui->toggleButton->setText(QString(0x2717)+QChar(0x2192)+QChar(0x2713));
         m_ui->boxesWidget->setBoxes(m_newBoxIfWrong, m_currentBox);
         break;
     }
@@ -286,13 +289,13 @@ AbstractFrontend::ResultState GuiFrontend::resultState()
 
 void GuiFrontend::countAsCorrectButtonClicked()
 {
-    setResultState(AnswerCorrect);
+    m_resultState = AnswerCorrect;
     emit continueAction();
 }
 
 void GuiFrontend::countAsWrongButtonClicked()
 {
-    setResultState(AnswerWrong);
+    m_resultState = AnswerWrong;
     emit continueAction();
 }
 

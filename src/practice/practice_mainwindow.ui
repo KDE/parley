@@ -84,40 +84,18 @@
         <widget class="QWidget" name="rightContainer" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QLabel" name="statusImageLabel">
+           <widget class="Practice::StatusToggle" name="statusToggle" native="true">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="minimumSize">
              <size>
               <width>128</width>
               <height>128</height>
              </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>128</width>
-              <height>128</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="pixmap">
-             <pixmap>:/newPrefix/dialog-information.png</pixmap>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="toggleButton">
-            <property name="focusPolicy">
-             <enum>Qt::TabFocus</enum>
-            </property>
-            <property name="text">
-             <string>✓ → ✗</string>
             </property>
            </widget>
           </item>
@@ -314,6 +292,12 @@
    <class>Practice::BoxesWidget</class>
    <extends>QWidget</extends>
    <header>practice/boxeswidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Practice::StatusToggle</class>
+   <extends>QWidget</extends>
+   <header>practice/statustoggle.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
