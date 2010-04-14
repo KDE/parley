@@ -14,11 +14,12 @@
 #include "statustoggle.h"
 #include "themedbackgroundrenderer.h"
 #include "abstractfrontend.h"
+#include "statustogglebutton.h"
 
 using namespace Practice;
 
 StatusToggle::StatusToggle(QWidget* parent)
-    : ImageWidget(parent), m_renderer(0), m_resultState(AbstractFrontend::QuestionState), m_hover(false), m_pressed(false)
+    : ImageWidget(parent), m_renderer(0), m_resultState(AbstractFrontend::QuestionState)
 {
     setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     setScalingEnabled(false);
@@ -27,12 +28,14 @@ StatusToggle::StatusToggle(QWidget* parent)
 
     QSize size = minimumSizeHint();
     size*=0.4;
-    m_toggle = new ImageWidget(this);
+    m_toggle = new StatusToggleButton(this);
     m_toggle->setMinimumSize(size);
     m_toggle->setMaximumSize(size);
     m_toggle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     m_toggle->setScalingEnabled(false);
     m_toggle->move(width()-m_toggle->width(), height()-m_toggle->height());
+
+    connect(m_toggle, SIGNAL(clicked()), this, SIGNAL(toggle()));
 }
 
 void StatusToggle::setRenderer(ThemedBackgroundRenderer *renderer)
@@ -95,12 +98,14 @@ void StatusToggle::updateToggle()
 {
     switch (m_resultState) {
     case AbstractFrontend::AnswerCorrect:
-        m_toggle->setPixmap(m_toggleWrong);
+        m_toggle->setPixmaps(m_toggleWrong, m_toggleWrongHover, m_toggleWrongPressed);
         break;
     case AbstractFrontend::AnswerWrong:
-        m_toggle->setPixmap(m_toggleCorrect);
+        m_toggle->setPixmaps(m_toggleCorrect, m_toggleCorrectHover, m_toggleCorrectPressed);
         break;
     default:
         m_toggle->setPixmap(QPixmap());
     }
 }
+
+#include "statustoggle.moc"

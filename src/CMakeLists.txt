@@ -100,6 +100,7 @@ set(practice_SRCS
     practice/themedbackgroundrenderer.cpp
     practice/imagecache.cpp
     practice/statustoggle.cpp
+    practice/statustogglebutton.cpp
 )
 
 kde4_add_ui_files(practice_SRCS

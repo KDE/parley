@@ -11,55 +11,34 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef PRACTICE_STATUSTOGGLE_H
-#define PRACTICE_STATUSTOGGLE_H
+#ifndef PRACTICE_STATUSTOGGLEBUTTON_H
+#define PRACTICE_STATUSTOGGLEBUTTON_H
 
 #include "imagewidget.h"
-
-#include "abstractfrontend.h"
+#include <kdebug.h> //TODO
 
 namespace Practice {
 
-class ThemedBackgroundRenderer;
-class StatusToggleButton;
-
-class StatusToggle : public ImageWidget
+class StatusToggleButton : public ImageWidget
 {
     Q_OBJECT
 
 public:
-    StatusToggle(QWidget* parent = 0);
-    virtual QSize minimumSizeHint() const;
+    StatusToggleButton(QWidget* parent = 0) : ImageWidget(parent), m_current(0) {};
 
-    void setRenderer(ThemedBackgroundRenderer *renderer);
-    void setResultState(AbstractFrontend::ResultState state);
+    void setPixmaps(QPixmap defaultPixmap, QPixmap hoverPixmap, QPixmap pressedPixmap);
 
-    void updatePixmap();
-    void updateToggle();
+protected:
+    void mousePressEvent(QMouseEvent *e);
 
 signals:
-    void toggle();
+    void clicked();
 
 private:
-    ThemedBackgroundRenderer *m_renderer;
-
-    StatusToggleButton *m_toggle;
-
-    AbstractFrontend::ResultState m_resultState;
-
-    QPixmap m_defaultStatus;
-    QPixmap m_correctStatus;
-    QPixmap m_wrongStatus;
-
-    QPixmap m_toggleCorrect;
-    QPixmap m_toggleCorrectHover;
-    QPixmap m_toggleCorrectPressed;
-
-    QPixmap m_toggleWrong;
-    QPixmap m_toggleWrongHover;
-    QPixmap m_toggleWrongPressed;
+    QPixmap m_defaultPixmap;
+    QPixmap m_hoverPixmap;
+    QPixmap m_pressedPixmap;
+    int m_current;
 };
-
 }
-
-#endif // PRACTICE_STATUSTOGGLE_H
+#endif // PRACTICE_STATUSTOGGLEBUTTON_H
