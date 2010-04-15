@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="editor"  version="3">
+<gui name="editor"  version="4">
 
 <MenuBar>
   <Menu name="file" >
