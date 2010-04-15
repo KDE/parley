@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="editor"  version="4">
+<gui name="editor"  version="5">
 
 <MenuBar>
   <Menu name="file" >
@@ -71,8 +71,6 @@
 
  <ToolBar name="editorToolBar" >
   <text>Editor Toolbar</text>
-  <Action name="file_open" />
-  <Action name="file_save" />
   <Separator/>
   <Action name="edit_copy" />
   <Action name="edit_paste" />
