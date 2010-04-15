@@ -11,13 +11,13 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string comment="KDE::DoNotExtract" >Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,2,0,0">
    <item>
     <widget class="QLabel" name="lessonLabel">
      <property name="text">
-      <string>Lesson 2: Nature Destroyed</string>
+      <string comment="KDE::DoNotExtract" >Lesson 2: Nature Destroyed</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

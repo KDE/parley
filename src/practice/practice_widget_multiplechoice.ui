@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string comment="KDE::DoNotExtract" >Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -22,7 +22,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Baum</string>
+      <string comment="KDE::DoNotExtract" >Baum</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -48,7 +48,7 @@
    <item>
     <widget class="QLabel" name="feedbackLabel">
      <property name="text">
-      <string>Feedback</string>
+      <string comment="KDE::DoNotExtract" >Feedback</string>
      </property>
     </widget>
    </item>
