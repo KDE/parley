@@ -31,6 +31,8 @@
 #include <KXmlGuiWindow>
 #include "practice/testentrymanager.h"
 
+#include <QPointer>
+
 namespace Practice {
     class GuiFrontend;
     class DefaultBackend;
@@ -151,6 +153,8 @@ public slots:
      */
     void showDocumentActions(bool open, bool edit);
 
+    void setVisibleToolbar(const QString& name);
+
 signals:
     void recentFilesChanged();
     void preferencesChanged();
@@ -180,6 +184,7 @@ private:
     QString m_appName;
     Component m_componentBeforePractice;
     Practice::TestEntryManager m_testEntryManager;
+    QList<QPointer<KToolBar> > m_hiddenToolbars;
 
     friend int main(int argc, char* argv[]);
 };

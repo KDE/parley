@@ -9,8 +9,8 @@
   </Menu>
  </MenuBar>
 
- <ToolBar noMerge="1" name="statisticsToolBar" >
-  <text>Statistics Toolbar</text>
+ <ToolBar noMerge="1" name="practiceToolBar" >
+  <text>Practice Toolbar</text>
   <Action name="practice_stop" />
  </ToolBar>
 </gui>

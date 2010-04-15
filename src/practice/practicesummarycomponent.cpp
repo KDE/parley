@@ -21,6 +21,7 @@
 #include <KConfigGroup>
 #include <KActionCollection>
 #include <KColorScheme>
+#include <KToolBar>
 
 using namespace Practice; 
 
@@ -29,7 +30,7 @@ PracticeSummaryComponent::PracticeSummaryComponent(TestEntryManager* testEntryMa
     ,m_testEntryManager(testEntryManager)
 {
     // KXmlGui
-    setXMLFile("statisticsui.rc");
+    setXMLFile("practicesummaryui.rc");
     setObjectName("Statistics");
     
     QWidget *mainWidget = new QWidget(this);
@@ -42,7 +43,7 @@ PracticeSummaryComponent::PracticeSummaryComponent(TestEntryManager* testEntryMa
     summaryBar->setStatistics(m_testEntryManager->statisticTotalCorrectFirstAttempt(), m_testEntryManager->statisticTotalWrong(), m_testEntryManager->statisticTotalUnanswered());
 
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
-    applyMainWindowSettings(cfg); 
+    applyMainWindowSettings(cfg);
 }
 
 PracticeSummaryComponent::~PracticeSummaryComponent()

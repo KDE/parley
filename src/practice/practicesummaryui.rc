@@ -14,10 +14,9 @@
   </Menu>
 </MenuBar>
 
- <ToolBar noMerge="1" name="practiceSummaryToolbar" >
-  <text>Statistics Toolbar</text>
+ <ToolBar name="practiceSummaryToolBar">
+  <text>Practice Summary Toolbar</text>
   <Action name="document_edit" />
-  <Action name="practice_configure" />
   <Action name="practice_start" />
  </ToolBar>
 </gui>

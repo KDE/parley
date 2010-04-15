@@ -69,7 +69,7 @@
   </Menu>
  </MenuBar> 
 
- <ToolBar noMerge="1" name="editorToolBar" >
+ <ToolBar name="editorToolBar" >
   <text>Editor Toolbar</text>
   <Action name="file_open" />
   <Action name="file_save" />

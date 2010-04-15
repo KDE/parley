@@ -23,4 +23,24 @@
  <ToolBar noMerge="true" noEdit="true" deleted="true" name="mainToolBar">
   <text>Main Toolbar</text>
  </ToolBar>
+ <ToolBar name="editorToolBar">
+  <text>Statistics Toolbar</text>
+  <Merge/>
+  <Action name="file_close"/>
+ </ToolBar>
+ <ToolBar name="practiceToolBar">
+  <text>Practice Toolbar</text>
+  <Merge/>
+  <Action name="file_close"/>
+ </ToolBar>
+ <ToolBar name="statisticsToolBar">
+  <text>Statistics Toolbar</text>
+  <Merge/>
+  <Action name="file_close"/>
+ </ToolBar>
+ <ToolBar name="practiceSummaryToolBar">
+  <text>Practice Summary Toolbar</text>
+  <Merge/>
+  <Action name="file_close"/>
+ </ToolBar>
 </gui>

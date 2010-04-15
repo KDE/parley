@@ -292,6 +292,7 @@ void ParleyMainWindow::switchComponent(Component component)
             WelcomeScreen *welcome = new WelcomeScreen(this);
             m_currentComponentWindow = welcome;
             showDocumentActions(true, false);
+//            setVisibleToolbar(QString());
             welcome->updateRecentFilesModel();
             break;
         }
@@ -299,6 +300,7 @@ void ParleyMainWindow::switchComponent(Component component)
             StatisticsMainWindow *statisticsWidget = new StatisticsMainWindow(m_document->document(), this);
             m_currentComponentWindow = statisticsWidget;
             showDocumentActions(true, true);
+//            setVisibleToolbar("statisticsToolBar");
             break;
         }
         case EditorComponent: {
@@ -306,6 +308,7 @@ void ParleyMainWindow::switchComponent(Component component)
             m_currentComponentWindow = editor;
             showDocumentActions(true, true);
             editor->updateDocument(m_document->document());
+//            setVisibleToolbar("editorToolBar");
             break;
         }
         case PracticeComponent: {
@@ -314,13 +317,15 @@ void ParleyMainWindow::switchComponent(Component component)
             connect(practiceWindow, SIGNAL(stopPractice()), this, SLOT(showPracticeSummary()));
             m_currentComponentWindow = practiceWindow;
             showDocumentActions(false, false);
+//            setVisibleToolbar("practiceToolBar");
             practiceWindow->startPractice();
             break;
         }
         case PracticeSummary: {
             Practice::PracticeSummaryComponent* summary = new Practice::PracticeSummaryComponent(&m_testEntryManager, this);
             m_currentComponentWindow = summary;
-            showDocumentActions(true, true);            
+            showDocumentActions(true, true);
+//            setVisibleToolbar("practiceSummaryToolBar");
             break;
         }
         default:
@@ -331,6 +336,31 @@ void ParleyMainWindow::switchComponent(Component component)
     guiFactory()->addClient(m_currentComponentWindow);
     centralWidget()->layout()->addWidget(m_currentComponentWindow);
     m_currentComponentWindow->show();
+        setupToolbarMenuActions();
+    switch (component) {
+        case WelcomeComponent: {
+            setVisibleToolbar(QString());
+            break;
+        }
+        case StatisticsComponent: {
+            setVisibleToolbar("statisticsToolBar");
+            break;
+        }
+        case EditorComponent: {
+            setVisibleToolbar("editorToolBar");
+            break;
+        }
+        case PracticeComponent: {
+            setVisibleToolbar("practiceToolBar");
+            break;
+        }
+        case PracticeSummary: {
+            setVisibleToolbar("practiceSummaryToolBar");
+            break;
+        }
+        default:
+            break;
+    }
     setupToolbarMenuActions();
 }
 
@@ -348,6 +378,23 @@ void ParleyMainWindow::showDocumentActions(bool open, bool edit)
     actionCollection()->action("file_export")->setVisible(edit);
     actionCollection()->action("file_properties")->setVisible(edit);
     actionCollection()->action("file_close")->setVisible(edit);
+}
+
+void ParleyMainWindow::setVisibleToolbar(const QString& name)
+{
+    Q_FOREACH(KToolBar *toolbar, m_hiddenToolbars) {
+        if (toolbar) {
+            toolbar->show();
+        }
+    }
+    m_hiddenToolbars.clear();
+    Q_FOREACH(KToolBar *toolbar, toolBars()) {
+        if (toolbar->objectName() != name) {
+            toolbar->hide();
+            setupToolbarMenuActions();
+            m_hiddenToolbars.append(toolbar);
+        }
+    }
 }
 
 ParleyDocument* ParleyMainWindow::parleyDocument()

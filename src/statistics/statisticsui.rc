@@ -14,7 +14,7 @@
   </Menu>
 </MenuBar>
 
- <ToolBar noMerge="1" name="statisticsToolBar" >
+ <ToolBar name="statisticsToolBar" >
   <text>Statistics Toolbar</text>
   <Action name="document_edit" />
   <Action name="practice_configure" />
