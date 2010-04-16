@@ -19,6 +19,7 @@
 #include "testentrymanager.h"
 
 class ParleyMainWindow;
+
 namespace Practice {
 class DefaultBackend;
 class GuiFrontend;    
@@ -48,6 +49,7 @@ private:
     GuiFrontend* m_guiFrontend;
     DefaultBackend* m_backend;
     ParleyMainWindow* m_parent;
+    QWidget* m_floatingToolBar;
 
 };
 }

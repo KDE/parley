@@ -26,6 +26,9 @@
 #include <KConfig>
 #include <KConfigGroup>
 
+#include <QHBoxLayout>
+#include <QToolButton>
+
 using namespace Practice;
 
 PracticeMainWindow::PracticeMainWindow(TestEntryManager* testEntryManager, ParleyMainWindow* parent)
@@ -55,6 +58,7 @@ PracticeMainWindow::PracticeMainWindow(TestEntryManager* testEntryManager, Parle
 
 PracticeMainWindow::~PracticeMainWindow()
 {
+    delete m_floatingToolBar;
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     saveMainWindowSettings(cfg);
 }
@@ -68,10 +72,28 @@ void PracticeMainWindow::initActions()
     actionCollection()->addAction("practice_stop", stopPracticeAction);
     connect(stopPracticeAction, SIGNAL(triggered()), this, SIGNAL(stopPractice()));
 
-    KStandardAction::fullScreen(this,
-                                SLOT(toggleFullScreenMode(bool)),
-                                m_parent,
-                                actionCollection());
+    KAction* fullScreenAction = KStandardAction::fullScreen(this,
+                                                            SLOT(toggleFullScreenMode(bool)),
+                                                            m_parent,
+                                                            actionCollection());
+
+    m_floatingToolBar = new QWidget(m_parent);
+    QHBoxLayout *layout = new QHBoxLayout();
+    m_floatingToolBar->setLayout(layout);
+    m_floatingToolBar->setAutoFillBackground(true);
+    QToolButton *fullScreenButton = new QToolButton(m_floatingToolBar);
+    fullScreenButton->setDefaultAction(fullScreenAction);
+    fullScreenButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    fullScreenButton->setIconSize(QSize(22,22));
+    fullScreenButton->setAutoRaise(true);
+    QToolButton *stopPracticeButton = new QToolButton(m_floatingToolBar);
+    stopPracticeButton->setDefaultAction(stopPracticeAction);
+    stopPracticeButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    stopPracticeButton->setIconSize(QSize(22,22));
+    stopPracticeButton->setAutoRaise(true);
+    layout->addWidget(fullScreenButton);
+    layout->addWidget(stopPracticeButton);
+    layout->addStretch();
 }
 
 void PracticeMainWindow::keyPressEvent(QKeyEvent* e)
@@ -97,6 +119,12 @@ void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)
     KToggleFullScreenAction::setFullScreen(m_parent, fullScreen);
     m_parent->toolBar("practiceToolBar")->setVisible(!fullScreen); //TODO: save if it was visible
     m_parent->menuBar()->setVisible(!fullScreen);
+    if (fullScreen) {
+        m_floatingToolBar->resize(m_parent->width(), m_floatingToolBar->sizeHint().height());
+        m_floatingToolBar->show();
+    } else {
+        m_floatingToolBar->hide();
+    }
 }
 
 #include "practicemainwindow.moc"
