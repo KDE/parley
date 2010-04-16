@@ -21,8 +21,8 @@
 using namespace Practice;
 
 
-ExampleSentenceBackendMode::ExampleSentenceBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent)
-:WrittenBackendMode(practiceOptions, frontend, parent)
+ExampleSentenceBackendMode::ExampleSentenceBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent, Practice::TestEntryManager* testEntryManager)
+:WrittenBackendMode(practiceOptions, frontend, parent,testEntryManager)
 {
 
 }

@@ -21,8 +21,9 @@
 using namespace Practice;
 
 
-WrittenBackendMode::WrittenBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent)
+WrittenBackendMode::WrittenBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent,Practice::TestEntryManager* testEntryManager)
 :AbstractBackendMode(practiceOptions, frontend, parent)
+,m_testEntryManager(testEntryManager)
 {
 
 }
@@ -87,6 +88,7 @@ void WrittenBackendMode::checkAnswer()
                     m_frontend->setSynonym(answer);
                     m_frontend->showSynonym();
                 }
+                markSynonymCorrect(answer);
                 m_frontend->setResultState(AbstractFrontend::AnswerSynonym);
                 m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
 
@@ -156,4 +158,17 @@ bool WrittenBackendMode::isSynonym(QString& answer)
     }
     return false;
 }
+
+void WrittenBackendMode::markSynonymCorrect(QString& synonym)
+{
+    
+    foreach(TestEntry* entry, m_testEntryManager->allUnansweredTestEntries()) {
+        if(entry->entry()->translation(m_practiceOptions.languageTo())->text()== synonym) {
+            kDebug() << entry->entry()->translation(m_practiceOptions.languageTo())->text() << "synonym is" << synonym;
+            entry->incGoodCount();
+            m_testEntryManager->entryFinished(entry);
+        }
+    }
+}
+
 #include "writtenbackendmode.moc"

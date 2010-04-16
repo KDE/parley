@@ -107,6 +107,14 @@ void TestEntryManager::currentEntryFinished()
     m_currentEntries.takeAt(m_currentEntry);
 }
 
+void TestEntryManager::entryFinished(TestEntry* entry)
+{
+    TestEntry* current = m_currentEntries.at(m_currentEntry);
+    m_currentEntries.removeOne(entry);
+    m_currentEntry = m_currentEntries.indexOf(current);
+    
+}
+
 void TestEntryManager::startNextPracticeMode()
 {
     m_notAskedTestEntries.clear();
@@ -132,6 +140,16 @@ int TestEntryManager::totalEntryCount()
 int TestEntryManager::activeEntryCount()
 {
     return m_notAskedTestEntries.count() + m_currentEntries.count();
+}
+
+QList<TestEntry*> TestEntryManager::allUnansweredTestEntries()
+{
+    QList<TestEntry*> allUnansweredEntries;
+
+    allUnansweredEntries.append(m_notAskedTestEntries);
+    allUnansweredEntries.append(m_currentEntries);
+
+    return allUnansweredEntries;
 }
 
 int TestEntryManager::statisticTotalCorrectFirstAttempt()

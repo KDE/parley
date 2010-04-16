@@ -16,14 +16,16 @@
 #define WRITTENBACKENDMODE_H
 
 #include "abstractbackendmode.h"
+#include "practice/testentrymanager.h"
 
 namespace Practice {
 
 class WrittenBackendMode : public AbstractBackendMode
 {
     Q_OBJECT
+    
 public:
-    WrittenBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend *frontend, QObject *parent);
+    WrittenBackendMode(const Practice::PracticeOptions& practiceOptions, Practice::AbstractFrontend* frontend, QObject* parent, Practice::TestEntryManager* testEntryManager);
     
     virtual void setTestEntry(TestEntry* current);
 
@@ -34,6 +36,7 @@ public Q_SLOTS:
 private:
     void checkAnswer();
     bool isSynonym(QString& answer);
+    void markSynonymCorrect(QString& synonym);
     
     enum State {
         NotAnswered,
@@ -41,9 +44,11 @@ private:
         AnswerWasSynonym,
         SolutionShown
     };
+    
     State m_state;
     QString m_lastAnswer;
     QString m_currentHint;
+    TestEntryManager* m_testEntryManager;
 };
 
 }

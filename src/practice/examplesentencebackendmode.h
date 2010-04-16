@@ -23,7 +23,7 @@ class ExampleSentenceBackendMode : public WrittenBackendMode
 {
     Q_OBJECT
 public:
-    ExampleSentenceBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend *frontend, QObject *parent);
+    ExampleSentenceBackendMode(const Practice::PracticeOptions& practiceOptions, Practice::AbstractFrontend* frontend, QObject* parent, Practice::TestEntryManager* testEntryManager);
     
     virtual void setTestEntry(TestEntry* current);
 };

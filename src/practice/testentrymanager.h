@@ -66,7 +66,12 @@ public:
      */
     void printStatistics();
 
+    /* Finish the currently active entry */
     void currentEntryFinished();
+
+    /* Finish the given entry */
+    void entryFinished(TestEntry* entry);
+    
     void startNextPracticeMode();
 
     int statisticTotalCorrectFirstAttempt();
@@ -79,6 +84,11 @@ public:
      * Get a list of all entries in the test - used by the summary dialog
      */
     QList<TestEntry*> allTestEntries() { return m_allTestEntries; }
+
+    /**
+    * Get a list of all unanswered entries in the test 
+    */
+    QList<TestEntry*> allUnansweredTestEntries();
 
 private:
     /**
