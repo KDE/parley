@@ -19,6 +19,7 @@
 
 #include <KActionCollection>
 #include <KAction>
+#include <KToggleFullScreenAction>
 #include <KLocalizedString>
 #include <KConfig>
 #include <KConfigGroup>
@@ -26,7 +27,7 @@
 using namespace Practice;
 
 PracticeMainWindow::PracticeMainWindow(TestEntryManager* testEntryManager, ParleyMainWindow* parent)
-    : KXmlGuiWindow(parent)
+    : KXmlGuiWindow(parent), m_parent(parent)
 {
     // KXmlGui
     setXMLFile("practiceui.rc");
@@ -64,6 +65,11 @@ void PracticeMainWindow::initActions()
     stopPracticeAction->setHelpText(i18n("Stop practicing"));
     actionCollection()->addAction("practice_stop", stopPracticeAction);
     connect(stopPracticeAction, SIGNAL(triggered()), this, SIGNAL(stopPractice()));
+
+    KStandardAction::fullScreen(this,
+                                SLOT(toggleFullScreenMode(bool)),
+                                m_parent,
+                                actionCollection());
 }
 
 void PracticeMainWindow::keyPressEvent(QKeyEvent* e)
@@ -82,6 +88,11 @@ void PracticeMainWindow::keyPressEvent(QKeyEvent* e)
 void PracticeMainWindow::startPractice()
 {
     m_backend->startPractice();
+}
+
+void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)
+{
+    KToggleFullScreenAction::setFullScreen(m_parent, fullScreen);
 }
 
 #include "practicemainwindow.moc"

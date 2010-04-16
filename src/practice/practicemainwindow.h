@@ -31,7 +31,10 @@ public:
     ~PracticeMainWindow();
     
     void startPractice();
-    
+
+public Q_SLOTS:
+    void toggleFullScreenMode(bool fullScreen);
+
 Q_SIGNALS:
     void enterPressed();
     void stopPractice();
@@ -44,6 +47,7 @@ private:
     
     GuiFrontend* m_guiFrontend;
     DefaultBackend* m_backend;
+    ParleyMainWindow* m_parent;
 
 };
 }
