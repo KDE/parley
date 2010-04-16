@@ -58,6 +58,7 @@ PracticeMainWindow::PracticeMainWindow(TestEntryManager* testEntryManager, Parle
 
 PracticeMainWindow::~PracticeMainWindow()
 {
+    toggleFullScreenMode(false);
     delete m_floatingToolBar;
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     saveMainWindowSettings(cfg);
