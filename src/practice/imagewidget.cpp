@@ -183,7 +183,7 @@ QPixmap transition(const QPixmap &from, const QPixmap &to, qreal amount)
 
 
 ImageWidget::ImageWidget(QWidget *parent)
-    : QWidget(parent), m_scaling(true), m_onlyDownscaling(true), m_keepAspectRatio(Qt::KeepAspectRatio), m_fading(true)
+    : QWidget(parent), m_fading(true), m_scaling(true), m_onlyDownscaling(true), m_keepAspectRatio(Qt::KeepAspectRatio)
 {
     m_scaleTimer = new QTimer(this);
     m_scaleTimer->setSingleShot(true);
