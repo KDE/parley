@@ -19,6 +19,8 @@
 
 #include <KActionCollection>
 #include <KAction>
+#include <KToolBar>
+#include <KMenuBar>
 #include <KToggleFullScreenAction>
 #include <KLocalizedString>
 #include <KConfig>
@@ -93,6 +95,8 @@ void PracticeMainWindow::startPractice()
 void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)
 {
     KToggleFullScreenAction::setFullScreen(m_parent, fullScreen);
+    m_parent->toolBar("practiceToolBar")->setVisible(!fullScreen); //TODO: save if it was visible
+    m_parent->menuBar()->setVisible(!fullScreen);
 }
 
 #include "practicemainwindow.moc"
