@@ -20,6 +20,7 @@
 
 class ParleyMainWindow;
 class KToggleFullScreenAction;
+class QPropertyAnimation;
 
 namespace Practice {
 class DefaultBackend;
@@ -54,7 +55,7 @@ private:
     ParleyMainWindow* m_parent;
     QWidget* m_floatingToolBar;
     KToggleFullScreenAction* m_fullScreenAction;
-
+    QPropertyAnimation* m_animation;
 };
 }
 

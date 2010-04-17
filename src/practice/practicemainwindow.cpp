@@ -28,6 +28,7 @@
 
 #include <QHBoxLayout>
 #include <QToolButton>
+#include <QPropertyAnimation>
 
 using namespace Practice;
 
@@ -95,6 +96,8 @@ void PracticeMainWindow::initActions()
     layout->addWidget(fullScreenButton);
     layout->addWidget(stopPracticeButton);
     layout->addStretch();
+    m_animation = new QPropertyAnimation(m_floatingToolBar, "geometry", this);
+    m_animation->setDuration(150);
 }
 
 void PracticeMainWindow::keyPressEvent(QKeyEvent* e)
@@ -112,6 +115,11 @@ void PracticeMainWindow::keyPressEvent(QKeyEvent* e)
 void PracticeMainWindow::resizeEvent(QResizeEvent *e)
 {
     m_floatingToolBar->resize(m_parent->width(), m_floatingToolBar->sizeHint().height());
+    m_animation->setStartValue(QRect(QPoint(0,-m_floatingToolBar->height()), m_floatingToolBar->size()));
+    m_animation->setEndValue(QRect(QPoint(0,0), m_floatingToolBar->size()));
+    m_animation->setDirection(QAbstractAnimation::Backward);
+    m_animation->stop();
+    m_floatingToolBar->setGeometry(m_animation->startValue().toRect());
 }
 
 bool PracticeMainWindow::event(QEvent *event)
@@ -120,13 +128,15 @@ bool PracticeMainWindow::event(QEvent *event)
     if (event->type() == QEvent::HoverMove && m_fullScreenAction->isChecked()) {
         QPoint pos = static_cast<QHoverEvent*>(event)->pos();
         kDebug() << pos;
-        if(pos.y() <= m_floatingToolBar->height()) {
-            m_floatingToolBar->show();
-            kDebug() << "SHOW";
-        } else if (pos.y() > (m_floatingToolBar->height()+20)) {
-            m_floatingToolBar->hide();
-            kDebug() << "hide";
+        if(m_animation->direction() == QAbstractAnimation::Backward && pos.y() <= m_floatingToolBar->height()) {
+            m_animation->setDirection(QAbstractAnimation::Forward);
+            m_animation->start();
         }
+        if (m_animation->direction() == QAbstractAnimation::Forward && pos.y() > (m_floatingToolBar->height()+20)) {
+            m_animation->setDirection(QAbstractAnimation::Backward);
+            m_animation->start();
+        }
+
     }
     return KXmlGuiWindow::event(event);
 }
@@ -141,6 +151,7 @@ void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)
     KToggleFullScreenAction::setFullScreen(m_parent, fullScreen);
     m_parent->toolBar("practiceToolBar")->setVisible(!fullScreen); //TODO: save if it was visible
     m_parent->menuBar()->setVisible(!fullScreen);
+    m_floatingToolBar->setVisible(fullScreen);
 }
 
 #include "practicemainwindow.moc"
