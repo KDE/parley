@@ -109,6 +109,10 @@ void PracticeMainWindow::keyPressEvent(QKeyEvent* e)
     KXmlGuiWindow::keyPressEvent(e);
 }
 
+void PracticeMainWindow::resizeEvent(QResizeEvent *e)
+{
+    m_floatingToolBar->resize(m_parent->width(), m_floatingToolBar->sizeHint().height());
+}
 
 void PracticeMainWindow::startPractice()
 {
@@ -121,7 +125,6 @@ void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)
     m_parent->toolBar("practiceToolBar")->setVisible(!fullScreen); //TODO: save if it was visible
     m_parent->menuBar()->setVisible(!fullScreen);
     if (fullScreen) {
-        m_floatingToolBar->resize(m_parent->width(), m_floatingToolBar->sizeHint().height());
         m_floatingToolBar->show();
     } else {
         m_floatingToolBar->hide();

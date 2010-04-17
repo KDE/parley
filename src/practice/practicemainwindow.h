@@ -42,6 +42,7 @@ Q_SIGNALS:
 
 protected:
     virtual void keyPressEvent(QKeyEvent* e);
+    virtual void resizeEvent(QResizeEvent *e);
     
 private:    
     void initActions();
