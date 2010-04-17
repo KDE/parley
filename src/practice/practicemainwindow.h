@@ -19,6 +19,7 @@
 #include "testentrymanager.h"
 
 class ParleyMainWindow;
+class KToggleFullScreenAction;
 
 namespace Practice {
 class DefaultBackend;
@@ -43,6 +44,7 @@ Q_SIGNALS:
 protected:
     virtual void keyPressEvent(QKeyEvent* e);
     virtual void resizeEvent(QResizeEvent *e);
+    virtual bool event(QEvent *event);
     
 private:    
     void initActions();
@@ -51,6 +53,7 @@ private:
     DefaultBackend* m_backend;
     ParleyMainWindow* m_parent;
     QWidget* m_floatingToolBar;
+    KToggleFullScreenAction* m_fullScreenAction;
 
 };
 }
