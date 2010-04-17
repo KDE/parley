@@ -47,6 +47,7 @@
 #include <KXMLGUIFactory>
 #include <KXmlGuiWindow>
 #include <KToolBar>
+#include <KMenuBar>
 
 #include <QtCore/QTimer>
 
@@ -98,6 +99,7 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
     }
 
     connect(this, SIGNAL(preferencesChanged()), this, SLOT(slotApplyPreferences()));
+    menuBar()->show();
 
     // finally show tip-of-day ( if the user wants it :) )
     QTimer::singleShot( 0, this, SLOT( startupTipOfDay() ) );
