@@ -29,7 +29,6 @@ class EntryFilter
     Q_OBJECT
 public:
     EntryFilter(QObject * parent, KEduVocDocument *doc);
-    ~EntryFilter();
 
     /**
      * Returns the list of test entries after filtering out invalid entries according to the settings.
@@ -59,7 +58,6 @@ private:
     void cleanupInvalid();
 
 private slots:
-//     void filterLesson(bool filter);
     void checkBoxChanged(bool filter);
 
 private:

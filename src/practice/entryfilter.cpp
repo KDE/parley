@@ -30,13 +30,9 @@ EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc) :QObject(parent
 
     m_fromTranslation = Prefs::questionLanguage();
     m_toTranslation = Prefs::solutionLanguage();
-kDebug() << "Filter for " << m_fromTranslation << " to " << m_toTranslation;
+    kDebug() << "Filter for " << m_fromTranslation << " to " << m_toTranslation;
 
     expireEntries();
-}
-
-EntryFilter::~ EntryFilter()
-{
 }
 
 void EntryFilter::expireEntries()
