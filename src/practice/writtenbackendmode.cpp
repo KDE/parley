@@ -49,13 +49,8 @@ void WrittenBackendMode::continueAction()
             checkAnswer();
             break;
         case SolutionShown:
-            if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-                m_current->incGoodCount();
-                emit currentEntryFinished();
-            } else {
-                m_current->incBadCount();
-            }
             m_currentHint = QString();
+            emit currentEntryFinished();
             emit nextEntry();
             break;
     }
@@ -79,7 +74,7 @@ void WrittenBackendMode::checkAnswer()
                 m_frontend->showSolution();
 
                 m_state = SolutionShown;
-            } else if (isSynonym(answer)) {
+            } else if (Prefs::countSynonymsAsCorrect()  &&  m_current->isSynonym(answer)) {
                 if (m_synonyms.contains(answer)) {
                     m_frontend->setFeedback(i18n("Your answer was an already entered synonym."));
                 } else {
@@ -93,7 +88,17 @@ void WrittenBackendMode::checkAnswer()
                 m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
 
                 m_state = AnswerWasSynonym;
-            } else {
+            } else if (Prefs::ignoreCapitalizationMistakes() &&
+                answer.toLower() == m_current->entry()->translation(m_practiceOptions.languageTo())->text().toLower()){
+                m_frontend->setFeedback(i18n("Your answer was right on the first attempt, but your capitalization was wrong."));
+                m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
+                m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
+                m_frontend->showSolution();
+            
+                m_state = SolutionShown;
+            }
+
+            else {
                 m_frontend->setFeedback(i18n("Your answer was wrong. Please try again."));
                 m_state = AnswerWasWrong;
                 m_frontend->setResultState(AbstractFrontend::AnswerWrong);
@@ -148,18 +153,7 @@ void WrittenBackendMode::hintAction()
     }
 }
 
-bool WrittenBackendMode::isSynonym(QString& answer)
-{
-    foreach(KEduVocTranslation *synonym, m_current->entry()->translation(m_practiceOptions.languageTo())->synonyms()) {
-        kDebug() << "Synonym" << synonym->text() << " answer: " << answer;
-        if (synonym->text() == answer) {
-            return true;
-        }
-    }
-    return false;
-}
-
-void WrittenBackendMode::markSynonymCorrect(QString& synonym)
+void WrittenBackendMode::markSynonymCorrect(const QString& synonym)
 {
     
     foreach(TestEntry* entry, m_testEntryManager->allUnansweredTestEntries()) {

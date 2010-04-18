@@ -92,11 +92,25 @@ void DefaultBackend::initializePracticeMode()
             Q_ASSERT("Implement selected practice mode" == 0);
     }
 
-    connect(m_mode, SIGNAL(currentEntryFinished()), this, SLOT(removeCurrentEntryFromPractice()));
+    
+    connect(m_mode, SIGNAL(currentEntryFinished()), this, SLOT(gradeCurrentEntry()));
     connect(m_mode, SIGNAL(nextEntry()), this, SLOT(nextEntry()));
     
     connect(m_frontend, SIGNAL(continueAction()), m_mode, SLOT(continueAction()));
     connect(m_frontend, SIGNAL(hintAction()), m_mode, SLOT(hintAction()));
+}
+
+void DefaultBackend::gradeCurrentEntry()
+{
+    if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
+        m_current->incGoodCount();
+        if(m_current->answeredCorrectInSequence() == 3 || !Prefs::altLearn()) {
+            removeCurrentEntryFromPractice();
+        }
+        
+    } else {
+        m_current->incBadCount();
+    }
 }
 
 void DefaultBackend::nextEntry()

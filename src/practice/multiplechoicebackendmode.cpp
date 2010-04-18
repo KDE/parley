@@ -90,12 +90,7 @@ void MultipleChoiceBackendMode::setCorrectAnswer(int index)
 void MultipleChoiceBackendMode::continueAction()
 {
     if (m_solutionVisible) {
-        if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-            userAnswerRight();
-            emit currentEntryFinished();
-        } else {
-            userAnswerWrong();
-        }
+        emit currentEntryFinished();
         emit nextEntry();
         return;
     }
@@ -107,16 +102,6 @@ void MultipleChoiceBackendMode::continueAction()
     }
     m_frontend->showSolution();
     m_solutionVisible = true;
-}
-
-void MultipleChoiceBackendMode::userAnswerRight()
-{
-    m_current->incGoodCount();
-}
-
-void MultipleChoiceBackendMode::userAnswerWrong()
-{
-    m_current->incBadCount();
 }
 
 void MultipleChoiceBackendMode::hintAction()

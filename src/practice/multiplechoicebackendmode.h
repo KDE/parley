@@ -56,18 +56,6 @@ protected:
     
     int numberOfChoices();
 
-    /**
-     * the user selected the right answer, here you can set the grade
-     * the default implementation increases the grade of the current entry
-     */
-    virtual void userAnswerRight();
-    
-    /**
-     * user selecte the wrong answer, decrease the grade in here
-     * the default implementation decreases the grade of the current entry
-     */
-    virtual void userAnswerWrong();
-
 private:
     bool m_solutionVisible;
     TestEntryManager* m_testEntryManager;

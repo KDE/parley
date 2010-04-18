@@ -35,8 +35,7 @@ public Q_SLOTS:
     
 private:
     void checkAnswer();
-    bool isSynonym(QString& answer);
-    void markSynonymCorrect(QString& synonym);
+    void markSynonymCorrect(const QString& synonym);
     
     enum State {
         NotAnswered,

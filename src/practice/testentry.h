@@ -68,6 +68,9 @@ public:
     static int gradeFrom();
     static int gradeTo();
 
+    /** Check if the answer is a synonym of the testentry */
+    bool isSynonym(const QString& answer);
+
     KEduVocExpression *entry();
 
 private:
@@ -82,6 +85,7 @@ private:
     int m_statisticBadCount;
     int m_answeredCorrectInSequence;
     bool m_correctAtFirstAttempt;
+    bool m_practiceFinished;
 
     double m_lastPercentage;
     ErrorTypes m_lastError;

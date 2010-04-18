@@ -39,10 +39,15 @@ public:
     ~DefaultBackend();
     
     void startPractice();
+    void removeCurrentEntryFromPractice();
     
 public Q_SLOTS:
+    /** Call when current entry is finished and next one should be selected */
     void nextEntry();
-    void removeCurrentEntryFromPractice();
+
+    /** Call when current entry should be graded */
+    void gradeCurrentEntry();
+    
 
 Q_SIGNALS:
     void practiceFinished();

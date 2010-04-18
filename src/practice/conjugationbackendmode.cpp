@@ -95,9 +95,7 @@ void ConjugationBackendMode::continueAction()
         checkAnswer();
         m_frontend->showSolution();
     } else {
-        if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-            emit currentEntryFinished();
-        }
+        emit currentEntryFinished();
         emit nextEntry();
     }
 }

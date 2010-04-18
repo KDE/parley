@@ -25,6 +25,7 @@ TestEntry::TestEntry(KEduVocExpression *entry)
     ,m_statisticBadCount(0)
     ,m_answeredCorrectInSequence(0)
     ,m_correctAtFirstAttempt(false)
+    ,m_practiceFinished(false)
     ,m_lastPercentage(0.0)
     ,m_lastError(UnknownMistake)
 {}
@@ -135,4 +136,15 @@ double TestEntry::lastPercentage()
 KEduVocExpression * TestEntry::entry()
 {
     return m_entry;
+}
+
+bool TestEntry::isSynonym(const QString& answer)
+{
+    foreach(KEduVocTranslation *synonym, entry()->translation(m_gradeTo)->synonyms()) {
+        kDebug() << "Synonym" << synonym->text() << " answer: " << answer;
+        if (synonym->text() == answer) {
+            return true;
+        }
+    }
+    return false;
 }

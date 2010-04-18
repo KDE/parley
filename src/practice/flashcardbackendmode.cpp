@@ -37,13 +37,8 @@ void FlashCardBackendMode::setTestEntry(TestEntry* current)
 
 void FlashCardBackendMode::continueAction()
 {
-    if (m_solutionVisible) {        
-        if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-            emit currentEntryFinished();
-            m_current->incGoodCount();
-        } else {
-            m_current->incBadCount();
-        }
+    if (m_solutionVisible) {
+        emit currentEntryFinished();
         emit nextEntry();
         return;
     }
