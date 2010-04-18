@@ -37,10 +37,6 @@
 #include <QLabel>
 #include <QtDBus>
 
-/**
- *
- * @param parent
- */
 ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget * parent)
     : QWidget(parent)
     , m_doc(doc)

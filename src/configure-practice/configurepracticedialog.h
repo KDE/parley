@@ -67,7 +67,6 @@ private:
      */
     bool isDefault();
 
-    ConfigurePracticeWidget* m_configurePracticeWidget;
     AdvancedPracticeOptions* m_advancedPracticeOptions;
     ThresholdOptions* m_thresholdOptions;
     BlockOptions* m_blockOptions;
