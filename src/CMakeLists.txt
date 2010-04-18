@@ -118,7 +118,6 @@ kde4_add_ui_files(practice_SRCS
 # settings for the practice
 set(configure-practice_SRCS
     configure-practice/configurepracticedialog.cpp
-    configure-practice/configurepracticewidget.cpp
     configure-practice/advancedpracticeoptions.cpp
     configure-practice/blockoptions.cpp
     configure-practice/thresholdoptions.cpp
@@ -128,7 +127,6 @@ kde4_add_ui_files(configure-practice_SRCS
     configure-practice/thresholdoptions.ui
     configure-practice/advancedpracticeoptions.ui
     configure-practice/blockoptions.ui
-    configure-practice/configurepracticewidget.ui
     configure-practice/comparisonoptionswidget.ui
     configure-practice/conjugationoptionswidget.ui
     configure-practice/writtenpracticeoptionswidget.ui
@@ -161,11 +159,12 @@ kde4_add_ui_files(entrydialogs_SRCS
     entry-dialogs/summarywordwidget.ui
 )
 
-# overview over grades
+# start/configure practice screen
 set(statisticsdialogs_SRCS
     statistics/statisticsmodel.cpp
     statistics/statisticsmainwindow.cpp
     statistics/lessonstatistics.cpp
+    statistics/conjugationoptions.cpp
 )
 kde4_add_ui_files(statisticsdialogs_SRCS
     statistics/statisticsmainwindow.ui

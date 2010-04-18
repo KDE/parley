@@ -36,6 +36,7 @@
 
 #include "ui_statisticsmainwindow.h"
 #include "prefs.h"
+#include "conjugationoptions.h"
 
 using namespace Editor;
 
@@ -43,6 +44,7 @@ StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindo
     :KXmlGuiWindow(parent)
     ,m_mainWindow(parent)
     ,m_doc(doc)
+    ,m_conjugationOptions(0)
 {
     // KXmlGui
     setXMLFile("statisticsui.rc");
@@ -132,6 +134,7 @@ void StatisticsMainWindow::initPracticeModeSelection()
             break;
         case Prefs::EnumPracticeMode::ConjugationPractice:
             m_ui->conjugations->setChecked(true);
+            showConjugationOptions();
             break;
         default:
             break;
@@ -196,10 +199,15 @@ void StatisticsMainWindow::initLanguages()
 
 void StatisticsMainWindow::languagesChanged()
 {
+    int questionLanguage;
+    int solutionLangauge;
     QListWidgetItem* current = m_ui->languageList->currentItem();
-    Prefs::setQuestionLanguage(current->data(Qt::UserRole).toInt());
-    Prefs::setSolutionLanguage(current->data(Qt::UserRole+1).toInt());
-    m_ui->lessonStatistics->showGrades(current->data(Qt::UserRole).toInt(), current->data(Qt::UserRole+1).toInt());
+    questionLanguage = current->data(Qt::UserRole).toInt();
+    solutionLangauge = current->data(Qt::UserRole+1).toInt();
+    Prefs::setQuestionLanguage(questionLanguage);
+    Prefs::setSolutionLanguage(solutionLangauge);
+    emit languagesChanged(questionLanguage, solutionLangauge);
+    //m_ui->lessonStatistics->showGrades(current->data(Qt::UserRole).toInt(), current->data(Qt::UserRole+1).toInt());
     kDebug() << "set languages: " << current->data(Qt::UserRole).toInt() << current->data(Qt::UserRole+1).toInt();
 }
 
@@ -207,6 +215,25 @@ void StatisticsMainWindow::practiceModeSelected(int mode)
 {
     Prefs::setPracticeMode(static_cast<Prefs::EnumPracticeMode::type>(mode));
     kDebug() << "mode: " << mode << Prefs::practiceMode();
+
+    showConjugationOptions(mode == Prefs::EnumPracticeMode::ConjugationPractice);
+}
+
+void StatisticsMainWindow::showConjugationOptions(bool visible)
+{
+    if (!m_conjugationOptions && !visible) {
+        return;
+    }
+
+    if (!m_conjugationOptions) {
+        m_conjugationOptions = new ConjugationOptions(m_doc, m_ui->modeSpecificOptions);
+        QHBoxLayout* layout = new QHBoxLayout(m_ui->modeSpecificOptions);
+        layout->setMargin(0);
+        layout->addWidget(m_conjugationOptions);
+        connect(this, SIGNAL(languagesChanged(int,int)), m_conjugationOptions, SLOT(setLanguages(int,int)));
+        m_conjugationOptions->setLanguages(Prefs::questionLanguage(), Prefs::solutionLanguage());
+    }
+    m_conjugationOptions->setVisible(visible);
 }
 
 void StatisticsMainWindow::configurePractice()

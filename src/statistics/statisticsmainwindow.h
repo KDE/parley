@@ -27,6 +27,7 @@
 
 #include <KXmlGuiWindow>
 
+class ConjugationOptions;
 class LessonStatisticsView;
 class StatisticsModel;
 class KEduVocDocument;
@@ -43,7 +44,10 @@ public:
     ~StatisticsMainWindow();
     
     void setDocument(KEduVocDocument* doc);
-
+    
+Q_SIGNALS:
+    void languagesChanged(int, int);
+    
 private slots:
     void configurePractice();
     void languagesChanged();
@@ -53,11 +57,13 @@ private:
     void initActions();
     void initPracticeModeSelection();
     void initLanguages();
+    void showConjugationOptions(bool visible = true);
     
     ParleyMainWindow* m_mainWindow; 
     KEduVocDocument* m_doc;
     StatisticsModel* m_statisticsModel;
     Ui::StatisticsMainWindow* m_ui;
+    ConjugationOptions* m_conjugationOptions;
 };
 
 #endif

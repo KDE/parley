@@ -1,11 +1,5 @@
 /***************************************************************************
-
-    -----------------------------------------------------------------------
-
-    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
-
-    -----------------------------------------------------------------------
-
+    Copyright 2007-2010 Frederik Gladhorn <gladhorn@kde.org>
  ***************************************************************************/
 
 /***************************************************************************
@@ -17,44 +11,30 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef CONFIGUREPRACTICEWIDGET_H
-#define CONFIGUREPRACTICEWIDGET_H
+#ifndef CONJUGATIONOPTIONS_H
+#define CONJUGATIONOPTIONS_H
 
-#include "ui_configurepracticewidget.h"
-#include "ui_conjugationoptionswidget.h"
+#include <QWidget>
 
 class KEduVocDocument;
-class QStackedLayout;
 class QTreeWidget;
 
-/**
- *
-	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
-*/
-class ConfigurePracticeWidget
-    : public QWidget, public Ui::ConfigurePracticeWidget
+class ConjugationOptions :public QWidget
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-    ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *parent);
+    ConjugationOptions(KEduVocDocument* doc, QWidget *parent);
 
-    /**
-     * Called when the user clicks Apply or OK.
-     */
-    void updateSettings();
-    /**
-     * Updates dialog widgets.
-     */
-    void updateWidgets();
-
-    bool hasChanged();
-    bool isDefault();
+public Q_SLOTS:
+    void setLanguages(int from, int to);
 
 private:
     void setupTenses();
+    void updateSettings();
 
     KEduVocDocument* m_doc;
-    int m_initalLanguageRow;
+    int m_language;
+    QTreeWidget* m_treeWidget;
 };
 
 #endif
