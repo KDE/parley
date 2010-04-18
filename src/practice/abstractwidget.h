@@ -58,8 +58,6 @@ signals:
 
 protected:
     GuiFrontend *m_frontend;
-    
-
 };
 
 }

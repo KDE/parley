@@ -22,6 +22,7 @@
 #include "genderbackendmode.h"
 #include "multiplechoicebackendmode.h"
 #include "writtenbackendmode.h"
+#include "conjugationbackendmode.h"
 
 using namespace Practice;
 
@@ -82,6 +83,10 @@ void DefaultBackend::initializePracticeMode()
         case Prefs::EnumPracticeMode::GenderPractice:
             m_frontend->setMode(AbstractFrontend::MultipleChoice);
             m_mode = new GenderBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
+            break;
+        case Prefs::EnumPracticeMode::ConjugationPractice:
+            m_frontend->setMode(AbstractFrontend::Conjugation);
+            m_mode = new ConjugationBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
             break;
         default:
             Q_ASSERT("Implement selected practice mode" == 0);

@@ -12,18 +12,21 @@
  ***************************************************************************/
 
 #include "guifrontend.h"
-#include "ui_practice_mainwindow.h"
 
-#include <kdebug.h>
-#include "writtenpracticewidget.h"
-#include "multiplechoicemodewidget.h"
-#include "flashcardmodewidget.h"
-#include "mixedlettersmodewidget.h"
-#include "themedbackgroundrenderer.h"
+#include <QtCore/QTimer>
+
 #include <kcolorscheme.h>
 #include <kstandarddirs.h>
+#include <kdebug.h>
 
-#include <QTimer>
+#include "ui_practice_mainwindow.h"
+
+#include "conjugationmodewidget.h"
+#include "flashcardmodewidget.h"
+#include "mixedlettersmodewidget.h"
+#include "multiplechoicemodewidget.h"
+#include "themedbackgroundrenderer.h"
+#include "writtenpracticewidget.h"
 
 using namespace Practice;
 
@@ -34,13 +37,12 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     m_widget->setScalingEnabled(false, false);
     m_widget->setKeepAspectRatio(Qt::IgnoreAspectRatio);
     m_widget->setFadingEnabled(false);
-    
+
     m_ui = new Ui::PracticeMainWindow();
     m_ui->setupUi(m_widget);
     m_ui->centralPracticeWidget->setLayout(new QHBoxLayout());
 
     m_themedBackgroundRenderer = new ThemedBackgroundRenderer(this);
-    
     
     QString theme(KStandardDirs::locate("data", "parley/themes/" + Prefs::theme()));
     kDebug() << "Using theme: " << theme;
@@ -99,8 +101,11 @@ void GuiFrontend::setMode(Mode mode)
         case MixedLetters:
             newWidget = new MixedLettersModeWidget(this, m_widget);
             break;
+        case Conjugation:
+            newWidget = new ConjugationModeWidget(this, m_widget);
+            break;
         default:
-            kDebug() << "Unknown/invalid mode" << mode;
+            Q_ASSERT("Practice Mode Invalid" == 0);
     }
     if (newWidget) {
         m_ui->centralPracticeWidget->layout()->addWidget(newWidget);

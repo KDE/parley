@@ -63,7 +63,7 @@ void ThemedBackgroundRenderer::addRect(const QString& name, const QRect& rect)
 QPixmap ThemedBackgroundRenderer::getScaledBackground()
 {
     if (m_size.isEmpty()) {
-        kDebug() << "trying to render with an invalid size";
+        //kDebug() << "trying to render with an invalid size";
         return QPixmap();
     }
     if (m_future.isRunning()  || m_future.resultCount()) {
@@ -87,7 +87,7 @@ QPixmap ThemedBackgroundRenderer::getScaledBackground()
 void ThemedBackgroundRenderer::updateBackground()
 {
     if (m_size.isEmpty()) {
-        kDebug() << "trying to render with an invalid size";
+        //kDebug() << "trying to render with an invalid size";
         return;
     }
     m_timer.start();
@@ -108,7 +108,7 @@ void ThemedBackgroundRenderer::updateBackgroundTimeout()
 void ThemedBackgroundRenderer::renderingFinished()
 {
     if(!m_future.resultCount()) {
-        kDebug() << "there is no image!";
+        //kDebug() << "there is no image!";
         return;
     }
     emit backgroundChanged(QPixmap::fromImage(m_future.result()));
@@ -176,7 +176,7 @@ QImage ThemedBackgroundRenderer::renderBackground(bool fastScale)
         renderRect(rect.first, rect.second, &p, fastScale);
     }
 
-    kDebug() << "image rendered, time:" << t.elapsed();
+    //kDebug() << "image rendered, time:" << t.elapsed();
     return image;
 }
 
@@ -227,7 +227,7 @@ void ThemedBackgroundRenderer::renderItem(const QString& id, const QRect& rect, 
     if (itemRectF.isNull() || rect.isNull())
         return;
 
-    kDebug() << "draw item" << id;
+    //kDebug() << "draw item" << id;
 //    kDebug() << "original item rect:" << itemRect << m_renderer.boundsOnElement(id);
     QRect itemRect = scaleRect(itemRectF, rect, scaleBase, aspectRatio);
 //    kDebug() << "scaled" << itemRect;
@@ -239,14 +239,14 @@ void ThemedBackgroundRenderer::renderItem(const QString& id, const QRect& rect, 
 
     QImage image;
     if (m_cache.imageSize(id) == itemRect.size()) {
-        kDebug() << "found in cache:" << id;
+       // kDebug() << "found in cache:" << id;
         image = m_cache.getImage(id);
     } else if(fastScale && !m_cache.imageSize(id).isEmpty()) {
-        kDebug() << "FAST SCALE for:" << id;
+       // kDebug() << "FAST SCALE for:" << id;
         image = m_cache.getImage(id).scaled(itemRect.size(), Qt::IgnoreAspectRatio, Qt::FastTransformation);
         m_isFastScaledRender = true;
     } else {
-        kDebug() << "NOT IN CACHE, render svg:" << id;
+       // kDebug() << "NOT IN CACHE, render svg:" << id;
         image = QImage(itemRect.size(), QImage::Format_ARGB32_Premultiplied);
         image.fill(QColor(Qt::transparent).rgba());
         QPainter painter(&image);
@@ -328,7 +328,7 @@ QRect ThemedBackgroundRenderer::scaleRect(QRectF itemRect, const QRect& baseRect
         }
         break;
     }
-    kDebug() << "unhandled scaling option";
+   // kDebug() << "unhandled scaling option";
     return itemRect.toRect();
 }
 
@@ -408,7 +408,7 @@ QRect ThemedBackgroundRenderer::alignRect(QRect itemRect, const QRect &baseRect,
         itemRect.moveTo(x, y);
         return itemRect;
     }
-    kDebug() << "unhandled alignment option";
+   // kDebug() << "unhandled alignment option";
     return itemRect;
 }
 

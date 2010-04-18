@@ -30,7 +30,8 @@ public:
         FlashCard,
         MixedLetters,
         MultipleChoice,
-        Written
+        Written,
+        Conjugation
     };
 
     enum ResultState {

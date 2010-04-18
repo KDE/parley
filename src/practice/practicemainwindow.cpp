@@ -41,10 +41,10 @@ PracticeMainWindow::PracticeMainWindow(TestEntryManager* testEntryManager, Parle
 
     m_guiFrontend = new GuiFrontend(this);
     setCentralWidget(m_guiFrontend->widget());
-    
+
     Practice::PracticeOptions options;
     m_backend = new Practice::DefaultBackend(m_guiFrontend, parent->parleyDocument(), options, testEntryManager, this);
-    
+
     // setModified - otherwise we may not ask to save progress
     parent->parleyDocument()->document()->setModified(true);
 
@@ -52,7 +52,7 @@ PracticeMainWindow::PracticeMainWindow(TestEntryManager* testEntryManager, Parle
 
     connect(this, SIGNAL(enterPressed()), m_guiFrontend, SIGNAL(continueAction()));
     connect(m_backend, SIGNAL(practiceFinished()), this, SIGNAL(stopPractice()));
-    
+
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
 }
@@ -124,10 +124,10 @@ void PracticeMainWindow::resizeEvent(QResizeEvent *e)
 
 bool PracticeMainWindow::event(QEvent *event)
 {
-    kDebug() << event << hasMouseTracking();
+    //kDebug() << event << hasMouseTracking();
     if (event->type() == QEvent::HoverMove && m_fullScreenAction->isChecked()) {
         QPoint pos = static_cast<QHoverEvent*>(event)->pos();
-        kDebug() << pos;
+        //kDebug() << pos;
         if(m_animation->direction() == QAbstractAnimation::Backward && pos.y() <= m_floatingToolBar->height()) {
             m_animation->setDirection(QAbstractAnimation::Forward);
             m_animation->start();

@@ -79,6 +79,8 @@ set(practice_SRCS
     practice/practiceoptions.cpp
     practice/abstractfrontend.cpp
     practice/abstractbackendmode.cpp
+    practice/conjugationbackendmode.cpp
+    practice/conjugationmodewidget.cpp
     practice/defaultbackend.cpp
     practice/guifrontend.cpp
     practice/abstractwidget.cpp
@@ -110,6 +112,7 @@ kde4_add_ui_files(practice_SRCS
     practice/practice_widget_written.ui
     practice/practice_widget_multiplechoice.ui
     practice/practice_widget_flashcard.ui
+    practice/practice_widget_conjugation.ui
 )
 
 # settings for the practice
