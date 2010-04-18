@@ -222,11 +222,11 @@ QSize ParleyMainWindow::sizeHint() const
 }
 
 void ParleyMainWindow::tipOfDay() {
-  KTipDialog::showTip(this, "parley/tips", true);
+    KTipDialog::showTip(this, "parley/tips", true);
 }
 
 void ParleyMainWindow::startupTipOfDay() {
-  KTipDialog::showTip(this, "parley/tips");
+    KTipDialog::showTip(this, "parley/tips");
 }
 
 void ParleyMainWindow::initActions()

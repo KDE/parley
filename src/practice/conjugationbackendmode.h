@@ -42,11 +42,11 @@ private:
     
     TestEntryManager* m_testEntryManager;
     KEduVocDocument* m_doc;
-    
-    QString m_tense;
+
+    QStringList m_tenses;
+    QString m_currentTense;
     QList<KEduVocWordFlags> m_pronounFlags;
     KEduVocConjugation m_conjugation;
-    
 };
 
 }

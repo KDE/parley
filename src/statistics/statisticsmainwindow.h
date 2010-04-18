@@ -1,16 +1,7 @@
 /***************************************************************************
-
-                        show document statistics
-
-    -----------------------------------------------------------------------
-
-    begin         : Sun Sep 19 20:50:53 MET 1999
-
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
     Copyright 2008-2010 Frederik Gladhorn <gladhorn@kde.org>
-    -----------------------------------------------------------------------
-
  ***************************************************************************
 
  ***************************************************************************
@@ -22,8 +13,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef STATISTICSDIALOG_H
-#define STATISTICSDIALOG_H
+#ifndef STATISTICSMAINWINDOW_H
+#define STATISTICSMAINWINDOW_H
 
 #include <KXmlGuiWindow>
 
@@ -42,9 +33,9 @@ class StatisticsMainWindow : public KXmlGuiWindow
 public:
     StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindow* parent);
     ~StatisticsMainWindow();
-    
+
     void setDocument(KEduVocDocument* doc);
-    
+
 Q_SIGNALS:
     void languagesChanged(int, int);
     

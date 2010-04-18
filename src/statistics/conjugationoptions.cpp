@@ -71,11 +71,13 @@ void ConjugationOptions::setupTenses()
         tenseItem->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
         m_treeWidget->addTopLevelItem( tenseItem );
     }
-    updateSettings();
+
+    connect(m_treeWidget, SIGNAL(itemChanged(QTreeWidgetItem*,int)), this, SLOT(updateSettings()));
 }
 
 void ConjugationOptions::updateSettings()
 {
+    kDebug() << "Save language selection";
     QTreeWidgetItem* parentItem = m_treeWidget->invisibleRootItem();
     QStringList activeTenses;
     for ( int i = 0; i < parentItem->childCount(); i++ ) {

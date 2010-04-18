@@ -15,8 +15,9 @@
 #include "conjugationbackendmode.h"
 #include "defaultbackend.h"
 
-#include <klocale.h>
 #include "conjugationdata.h"
+
+#include "documentsettings.h"
 
 using namespace Practice;
 
@@ -26,6 +27,9 @@ ConjugationBackendMode::ConjugationBackendMode(const PracticeOptions& practiceOp
 ,m_testEntryManager(testEntryManager)
 ,m_doc(doc)
 {
+    DocumentSettings documentSettings(m_doc->url().url());
+    documentSettings.readConfig();
+    m_tenses = documentSettings.conjugationTenses();
 }
 
 void ConjugationBackendMode::setTestEntry(TestEntry* current)
@@ -34,10 +38,30 @@ void ConjugationBackendMode::setTestEntry(TestEntry* current)
     m_current = current;
 
     // FIXME tense selection
-    m_tense = m_current->entry()->translation(m_practiceOptions.languageTo())->conjugationTenses().first();
-    kDebug() << "tenses: "  << m_current->entry()->translation(m_practiceOptions.languageTo())->conjugationTenses() << "using tense: " << m_tense;
-    data.tense = m_tense;
-    m_conjugation = m_current->entry()->translation(m_practiceOptions.languageTo())->conjugation(m_tense);
+    QStringList possibleTenses;
+    foreach(const QString& practiceTense, m_tenses) {
+        if (m_current->entry()->translation(m_practiceOptions.languageTo())
+            ->conjugationTenses().contains(practiceTense)) {
+            possibleTenses.append(practiceTense);
+        }
+    }
+    if (possibleTenses.isEmpty()) {
+        kDebug() << "No valid practice tenses in entry: " << m_current->entry()->translation(m_practiceOptions.languageTo())->text()
+            << m_current->entry()->translation(m_practiceOptions.languageTo())->conjugationTenses()
+            << m_tenses;
+        emit currentEntryFinished();
+        emit nextEntry();
+    }
+    
+    m_currentTense = possibleTenses.first();
+
+    if (!m_current->entry()->translation(m_practiceOptions.languageTo())->conjugationTenses().contains(m_currentTense)) {
+        kDebug() << "invalid tense for entry - " << m_currentTense;
+        kDebug() << "tenses: "  << m_current->entry()->translation(m_practiceOptions.languageTo())->conjugationTenses();
+    }
+
+    data.tense = m_currentTense;
+    m_conjugation = m_current->entry()->translation(m_practiceOptions.languageTo())->conjugation(m_currentTense);
     updatePronounFlags();
 
     data.questionInfinitive = m_current->entry()->translation(m_practiceOptions.languageFrom())->text();

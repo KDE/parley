@@ -22,7 +22,6 @@
 #include <KConfig>
 #include <KGlobal>
 #include <KActionCollection>
-#include <KAction>
 
 #include <keduvocdocument.h>
 #include "configure-practice/configurepracticedialog.h"
@@ -84,24 +83,8 @@ void StatisticsMainWindow::setDocument(KEduVocDocument* doc)
 void StatisticsMainWindow::initActions()
 {
     ParleyActions::create(ParleyActions::EnterEditMode, m_mainWindow, SLOT(showEditor()), actionCollection());
-    
-    KAction* startPractice = new KAction(this);
-    startPractice->setText(i18n("Start Practice..."));
-    startPractice->setIcon(KIcon("practice-start"));
-    startPractice->setWhatsThis(i18n("Start a test"));
-    startPractice->setToolTip(startPractice->whatsThis());
-    startPractice->setStatusTip(startPractice->whatsThis());
-    actionCollection()->addAction("practice_start", startPractice);
-    connect(startPractice, SIGNAL(triggered(bool)), m_mainWindow, SLOT(startPractice()));
-    
-    KAction* configurePractice = new KAction(this);
-    configurePractice->setText(i18n("Configure Practice..."));
-    configurePractice->setIcon(KIcon("practice-setup"));
-    configurePractice->setWhatsThis(i18n("Change practice settings"));
-    configurePractice->setToolTip(configurePractice->whatsThis());
-    configurePractice->setStatusTip(configurePractice->whatsThis());
-    actionCollection()->addAction("practice_configure", configurePractice);
-    connect(configurePractice, SIGNAL(triggered(bool)), m_mainWindow, SLOT(configurePractice()));
+    ParleyActions::create(ParleyActions::StartPractice, m_mainWindow, SLOT(startPractice()), actionCollection());
+    ParleyActions::create(ParleyActions::ConfigurePractice, m_mainWindow, SLOT(configurePractice()), actionCollection());
 
     m_ui->startPracticeButton->setText(i18n("Start Practice..."));
     m_ui->startPracticeButton->setIcon(KIcon("practice-start"));

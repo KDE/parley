@@ -15,16 +15,15 @@
 #ifndef PRACTICEOPTIONS_H
 #define PRACTICEOPTIONS_H
 
-#include "abstractfrontend.h"
-#include <prefs.h>
+#include "prefs.h"
 
 namespace Practice {
-    
+
 class PracticeOptions
 {
-public:  
+public:
     PracticeOptions();
-    
+
     int languageFrom() const {return m_languageFrom;}
     int languageTo() const {return m_languageTo;}
 
@@ -33,7 +32,7 @@ public:
 
 private:
     void loadPreferences();
-    
+
     int m_languageFrom;
     int m_languageTo;
 };

@@ -158,7 +158,7 @@ public slots:
 signals:
     void recentFilesChanged();
     void preferencesChanged();
-    
+
 private:
     ParleyMainWindow(const KUrl& filename = KUrl());
     static ParleyMainWindow *s_instance;

@@ -27,10 +27,10 @@ public:
 
 public Q_SLOTS:
     void setLanguages(int from, int to);
-
+    void updateSettings();
+    
 private:
     void setupTenses();
-    void updateSettings();
 
     KEduVocDocument* m_doc;
     int m_language;
