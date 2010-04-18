@@ -115,12 +115,6 @@ void TestEntryManager::entryFinished(TestEntry* entry)
     
 }
 
-void TestEntryManager::startNextPracticeMode()
-{
-    m_notAskedTestEntries.clear();
-    m_notAskedTestEntries = m_allTestEntries;
-}
-
 void TestEntryManager::printStatistics()
 {
     kDebug() << "Test statistics: ";

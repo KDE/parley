@@ -71,8 +71,6 @@ public:
 
     /* Finish the given entry */
     void entryFinished(TestEntry* entry);
-    
-    void startNextPracticeMode();
 
     int statisticTotalCorrectFirstAttempt();
     int statisticTotalWrong();
