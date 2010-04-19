@@ -7,6 +7,10 @@
   <kcfgfile name="parleyrc"/>
 
   <group name="General">
+    <entry name="Theme" type="String">
+      <label>Theme to use for practice and welcome screen</label>
+      <default>themes/theme_reference.desktop</default>
+    </entry>
     <entry name="NumPreSetting" type="Int">
       <label>Number of stored setting profiles</label>
       <default>0</default>
@@ -56,10 +60,6 @@
     <entry name="FlashcardsBackImage" type="Bool">
         <label>Show images on the back of the flashcard.</label>
         <default>false</default>
-    </entry>
-    <entry name="Theme" type="String">
-      <label>Practice theme to use</label>
-      <default>theme_reference.svgz</default>
     </entry>
     <entry name="Block" type="Bool">
       <label>In Blocking Query Tab Dialog, if checked then the Query is blocked</label>

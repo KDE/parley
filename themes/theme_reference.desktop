@@ -1,0 +1,10 @@
+[KGameTheme]
+Name=Gray
+Description=A simple gray theme.
+VersionFormat=1
+Author=Daniel Laidig
+AuthorEmail=laidig@kde.org
+Type=SVG
+FileName=theme_reference.svgz
+Preview=theme_reference_preview.jpg
+

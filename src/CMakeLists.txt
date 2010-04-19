@@ -75,6 +75,8 @@ set(parley_SRCS
     settings/documentproperties.cpp
     settings/languageproperties.cpp
     settings/languagepropertiespage.cpp
+    settings/kgametheme/kgametheme.cpp
+    settings/kgametheme/kgamethemeselector.cpp
     statistics/conjugationoptions.cpp
     statistics/lessonstatistics.cpp
     statistics/statisticsmodel.cpp
@@ -128,6 +130,7 @@ kde4_add_ui_files(parley_SRCS
     settings/generaloptionsbase.ui
     settings/languagepropertiespage.ui
     settings/documentproperties.ui
+    settings/kgametheme/kgamethemeselector.ui
     statistics/statisticsmainwindow.ui
     welcomescreen/welcomescreen.ui
 )

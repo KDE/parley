@@ -20,6 +20,7 @@
 
 #include "parleyprefs.h"
 
+#include "kgamethemeselector.h"
 #include "generaloptions.h"
 #include "viewoptions.h"
 #include <KConfigSkeleton>
@@ -33,6 +34,8 @@ ParleyPrefs::ParleyPrefs(KEduVocDocument *doc, QWidget *parent, const QString &n
 
     m_doc = doc;
     m_config = config;
+
+    addPage(new KGameThemeSelector(this, config), i18n("Theme"), "games-config-theme");
 
     m_generalOptions = new GeneralOptions(0);
     addPage(m_generalOptions, i18nc("title:window general settings", "General"), "parley", i18n("General Settings"), true);

@@ -44,7 +44,8 @@ GuiFrontend::GuiFrontend(QWidget* parent)
 
     m_themedBackgroundRenderer = new ThemedBackgroundRenderer(this);
     
-    QString theme(KStandardDirs::locate("data", "parley/themes/" + Prefs::theme()));
+//    QString theme(KStandardDirs::locate("data", "parley/themes/" + Prefs::theme()));
+    QString theme(KStandardDirs::locate("data", "parley/themes/bees_theme.svgz"));
     kDebug() << "Using theme: " << theme;
     m_themedBackgroundRenderer->setSvgFilename(theme);
     
