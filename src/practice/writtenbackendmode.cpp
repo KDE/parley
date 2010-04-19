@@ -105,12 +105,10 @@ void WrittenBackendMode::checkAnswer()
 
                     m_state = SolutionShown;
                 }
-                m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
             }
             else {
                 m_frontend->setFeedback(i18n("Your answer was wrong. Please try again."));
                 m_state = AnswerWasWrong;
-                m_frontend->setResultState(AbstractFrontend::AnswerWrong);
                 m_current->addUserAnswer(answer);
             }
             break;
@@ -131,7 +129,6 @@ void WrittenBackendMode::checkAnswer()
                 } else {
                     m_frontend->setFeedback(i18n("Your answer was wrong. Please try again."));
                     m_state = AnswerWasWrong;
-                    m_frontend->setResultState(AbstractFrontend::AnswerWrong);
                     m_current->addUserAnswer(answer);
                 }
             }
