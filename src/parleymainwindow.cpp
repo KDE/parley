@@ -286,7 +286,7 @@ void ParleyMainWindow::switchComponent(Component component)
     if (m_currentComponentWindow) {
         guiFactory()->removeClient(m_currentComponentWindow);
         centralWidget()->layout()->removeWidget(m_currentComponentWindow);
-        m_currentComponentWindow->deleteLater();
+        delete(m_currentComponentWindow);
     }
 
     switch (component) {

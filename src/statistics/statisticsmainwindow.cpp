@@ -67,6 +67,9 @@ StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindo
 
 StatisticsMainWindow::~StatisticsMainWindow()
 {
+    if (m_conjugationOptions) {
+        m_conjugationOptions->updateSettings();
+    }
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     saveMainWindowSettings(cfg);
     delete m_ui;

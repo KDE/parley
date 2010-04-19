@@ -71,8 +71,6 @@ void ConjugationOptions::setupTenses()
         tenseItem->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
         m_treeWidget->addTopLevelItem( tenseItem );
     }
-
-    connect(m_treeWidget, SIGNAL(itemChanged(QTreeWidgetItem*,int)), this, SLOT(updateSettings()));
 }
 
 void ConjugationOptions::updateSettings()
