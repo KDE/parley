@@ -86,6 +86,7 @@ private Q_SLOTS:
     void countAsCorrectButtonClicked();
     void countAsWrongButtonClicked();
     void updateBackground();
+    void setTheme();
    
 private:
     void setImage(const KUrl& image);

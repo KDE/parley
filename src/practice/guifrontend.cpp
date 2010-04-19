@@ -45,9 +45,9 @@ GuiFrontend::GuiFrontend(QWidget* parent)
 
     m_themedBackgroundRenderer = new ThemedBackgroundRenderer(this);
     
-    KGameTheme theme;
-    theme.load(Prefs::theme());
-    m_themedBackgroundRenderer->setSvgFilename(theme.graphics());
+    connect(Prefs::self(), SIGNAL(configChanged()), this, SLOT(setTheme()));
+    connect(Prefs::self(), SIGNAL(configChanged()), this, SLOT(updateBackground()));
+    setTheme();
     
     m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
     m_ui->boxesWidget->setRenderer(m_themedBackgroundRenderer);
@@ -336,6 +336,13 @@ void GuiFrontend::updateBackground()
         m_widget->setPixmap(pixmap);
     }
     m_themedBackgroundRenderer->updateBackground();
+}
+
+void GuiFrontend::setTheme()
+{
+    KGameTheme theme;
+    theme.load(Prefs::theme());
+    m_themedBackgroundRenderer->setSvgFilename(theme.graphics());
 }
 
 #include "guifrontend.moc"
