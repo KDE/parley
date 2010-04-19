@@ -128,6 +128,7 @@ void DefaultBackend::gradeCurrentEntry()
         kDebug() << "Mark " << m_current->entry()->translation(m_options.languageTo())->text() << " incorrect";
         m_current->incBadCount();
     }
+    nextEntry();
 }
 
 void DefaultBackend::nextEntry()

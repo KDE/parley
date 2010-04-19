@@ -51,7 +51,6 @@ void WrittenBackendMode::continueAction()
         case SolutionShown:
             m_currentHint = QString();
             emit currentEntryFinished();
-            emit nextEntry();
             break;
     }
 }
@@ -101,6 +100,7 @@ void WrittenBackendMode::checkAnswer()
                 } else {
                     m_frontend->setFeedback(i18n("Your answer was right on the first attempt."));
                     m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
+                    m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
                     m_frontend->showSolution();
 
                     m_state = SolutionShown;

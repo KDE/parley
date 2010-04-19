@@ -91,7 +91,6 @@ void MultipleChoiceBackendMode::continueAction()
 {
     if (m_solutionVisible) {
         emit currentEntryFinished();
-        emit nextEntry();
         return;
     }
     if (m_frontend->userInput().toInt() == m_correctAnswer) {

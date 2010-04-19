@@ -50,7 +50,6 @@ void ConjugationBackendMode::setTestEntry(TestEntry* current)
             << m_current->entry()->translation(m_practiceOptions.languageTo())->conjugationTenses()
             << m_tenses;
         emit currentEntryFinished();
-        emit nextEntry();
     }
     
     m_currentTense = possibleTenses.first();
@@ -120,7 +119,6 @@ void ConjugationBackendMode::continueAction()
         m_frontend->showSolution();
     } else {
         emit currentEntryFinished();
-        emit nextEntry();
     }
 }
 

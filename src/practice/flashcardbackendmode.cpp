@@ -39,7 +39,6 @@ void FlashCardBackendMode::continueAction()
 {
     if (m_solutionVisible) {
         emit currentEntryFinished();
-        emit nextEntry();
         return;
     }
 
