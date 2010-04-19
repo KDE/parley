@@ -19,6 +19,7 @@
 #include <KMimeType>
 
 #include <QStandardItemModel>
+#include <QTimer>
 
 WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     :KXmlGuiWindow(parent)
@@ -113,7 +114,13 @@ void WelcomeScreen::slotOpenUrl(const KUrl& url)
 void WelcomeScreen::slotDoubleClicked(const QModelIndex& index)
 {
     KUrl url = index.data(Qt::UserRole).toUrl();
-    slotOpenUrl(url);
+    m_openUrl = url;
+    QTimer::singleShot(0, this, SLOT(slotDoubleClickOpen()));
+}
+
+void WelcomeScreen::slotDoubleClickOpen()
+{
+    slotOpenUrl(m_openUrl);
 }
 
 void WelcomeScreen::slotPracticeUrl(const KUrl & url)

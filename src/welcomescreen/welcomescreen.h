@@ -33,12 +33,14 @@ public slots:
     void slotOpenUrl(const KUrl& url);
     void slotPracticeUrl(const KUrl& url);
     void slotDoubleClicked(const QModelIndex& index);
+    void slotDoubleClickOpen();
     void updateRecentFilesModel();
     
 private:
     Ui::WelcomeScreen *ui;
     ParleyMainWindow *m_parleyApp;
     QStandardItemModel *m_recentFilesModel;
+    KUrl m_openUrl;
 };
 
 #endif
