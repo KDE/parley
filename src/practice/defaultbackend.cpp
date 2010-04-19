@@ -94,21 +94,35 @@ void DefaultBackend::initializePracticeMode()
 
     
     connect(m_mode, SIGNAL(currentEntryFinished()), this, SLOT(gradeCurrentEntry()));
+    connect(m_mode, SIGNAL(gradeEntry(TestEntry*)), this, SLOT(gradeEntry(TestEntry*)));
     connect(m_mode, SIGNAL(nextEntry()), this, SLOT(nextEntry()));
     
     connect(m_frontend, SIGNAL(continueAction()), m_mode, SLOT(continueAction()));
     connect(m_frontend, SIGNAL(hintAction()), m_mode, SLOT(hintAction()));
 }
 
+void DefaultBackend::gradeEntry(TestEntry* entry)
+{
+    entry->incGoodCount();
+    kDebug() << "Mark synonym" << entry->entry()->translation(m_options.languageTo())->text() << " correct";
+    if(entry->answeredCorrectInSequence() == 3 || !Prefs::altLearn()) {
+        m_testEntryManager->entryFinished(entry);
+        kDebug() << "Removing synonym" << entry->entry()->translation(m_options.languageTo())->text() << " from practice";
+        updateFrontend();
+    }
+}
+
 void DefaultBackend::gradeCurrentEntry()
 {
     if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
         m_current->incGoodCount();
+        kDebug() << "Mark " << m_current->entry()->translation(m_options.languageTo())->text() << " correct";
         if(m_current->answeredCorrectInSequence() == 3 || !Prefs::altLearn()) {
             removeCurrentEntryFromPractice();
+            kDebug() << "Removing " << m_current->entry()->translation(m_options.languageTo())->text() << " from practice";
         }
-        
     } else {
+        kDebug() << "Mark " << m_current->entry()->translation(m_options.languageTo())->text() << " incorrect";
         m_current->incBadCount();
     }
 }

@@ -45,10 +45,14 @@ public Q_SLOTS:
     virtual void hintAction() = 0;
 
 Q_SIGNALS:
-    /** the current word is done and should not be shown again */
+    /** the current word is done. Grade it and maybe remove it */
     void currentEntryFinished();
+    
     /** ask for the next word to be practiced */
     void nextEntry();
+
+    /** the word passed is done. Grade it and maybe remove it */
+    void gradeEntry(TestEntry*);
     
 protected:
     PracticeOptions m_practiceOptions;

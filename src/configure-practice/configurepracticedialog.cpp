@@ -17,7 +17,6 @@
 
 #include "configurepracticedialog.h"
 
-#include "configurepracticewidget.h"
 #include "advancedpracticeoptions.h"
 #include "thresholdoptions.h"
 #include "blockoptions.h"

@@ -159,8 +159,7 @@ void WrittenBackendMode::markSynonymCorrect(const QString& synonym)
     foreach(TestEntry* entry, m_testEntryManager->allUnansweredTestEntries()) {
         if(entry->entry()->translation(m_practiceOptions.languageTo())->text()== synonym) {
             kDebug() << entry->entry()->translation(m_practiceOptions.languageTo())->text() << "synonym is" << synonym;
-            entry->incGoodCount();
-            m_testEntryManager->entryFinished(entry);
+            emit gradeEntry(entry);
         }
     }
 }

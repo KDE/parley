@@ -47,6 +47,8 @@ public Q_SLOTS:
 
     /** Call when current entry should be graded */
     void gradeCurrentEntry();
+
+    void gradeEntry(TestEntry*);
     
 
 Q_SIGNALS:
