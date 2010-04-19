@@ -17,6 +17,7 @@
 
 #include "abstractbackendmode.h"
 #include "practice/testentrymanager.h"
+#include "practice/writtenpracticevalidator.h"
 
 namespace Practice {
 
@@ -40,7 +41,6 @@ private:
     enum State {
         NotAnswered,
         AnswerWasWrong,
-        AnswerWasSynonym,
         SolutionShown
     };
     
@@ -48,6 +48,7 @@ private:
     QString m_lastAnswer;
     QString m_currentHint;
     TestEntryManager* m_testEntryManager;
+    WrittenPracticeValidator* m_validator;
 };
 
 }

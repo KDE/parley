@@ -25,7 +25,7 @@ WrittenBackendMode::WrittenBackendMode(const PracticeOptions& practiceOptions, A
 :AbstractBackendMode(practiceOptions, frontend, parent)
 ,m_testEntryManager(testEntryManager)
 {
-
+    m_validator = new WrittenPracticeValidator(m_practiceOptions.languageTo());
 }
 
 void WrittenBackendMode::setTestEntry(TestEntry* current)
@@ -35,6 +35,7 @@ void WrittenBackendMode::setTestEntry(TestEntry* current)
     m_frontend->showQuestion();
     m_lastAnswer.clear();
     m_synonyms.clear();
+    m_validator->setEntry(current);
 }
 
 void WrittenBackendMode::continueAction()
@@ -45,7 +46,6 @@ void WrittenBackendMode::continueAction()
     switch (m_state) {
         case NotAnswered:
         case AnswerWasWrong:
-        case AnswerWasSynonym:
             checkAnswer();
             break;
         case SolutionShown:
@@ -60,44 +60,53 @@ void WrittenBackendMode::checkAnswer()
 {
     QString answer = m_frontend->userInput().toString();
     
-    if(m_state == NotAnswered && answer.isEmpty())
+    if(m_state == NotAnswered && answer.isEmpty()) {
         m_state = AnswerWasWrong;
-
+    } else {
+        m_validator->validateAnswer(answer);
+    }
+   
     switch(m_state) {
         // for now right/wrong is only counted on first attempt - when state is NotAnswered.
         case NotAnswered:
-        case AnswerWasSynonym:
-            if (answer == m_current->entry()->translation(m_practiceOptions.languageTo())->text()) {
-                m_frontend->setFeedback(i18n("Your answer was right on the first attempt."));
-                m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
-                m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
-                m_frontend->showSolution();
+            if (m_current->lastErrors().testFlag(TestEntry::Correct)) {
 
-                m_state = SolutionShown;
-            } else if (Prefs::countSynonymsAsCorrect()  &&  m_current->isSynonym(answer)) {
-                if (m_synonyms.contains(answer)) {
-                    m_frontend->setFeedback(i18n("Your answer was an already entered synonym."));
+                if (m_current->lastErrors().testFlag(TestEntry::Synonym)){ //  &&  m_current->isSynonym(answer)) {
+                    if (m_synonyms.contains(answer)) {
+                        m_frontend->setFeedback(i18n("Your answer was an already entered synonym."));
+                    } else {
+                        m_frontend->setFeedback(i18n("Your answer was a synonym."));
+                        answer = m_validator->getCorrectedAnswer();
+                        AbstractBackendMode::addSynonym(answer);
+                        m_frontend->setSynonym(answer);
+                        m_frontend->showSynonym();
+                    }
+                    markSynonymCorrect(answer);
+
+                    m_frontend->setResultState(AbstractFrontend::AnswerSynonym);
+
+                    m_state = NotAnswered;
+                } else if (m_current->lastErrors().testFlag(TestEntry::CapitalizationMistake)){
+                    m_frontend->setFeedback(i18n("Your answer was right on the first attempt, but your capitalization was wrong."));
+                    m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
+                    m_frontend->showSolution();
+                
+                    m_state = SolutionShown;
+                } else if (m_current->lastErrors().testFlag(TestEntry::AccentMistake)){
+                    m_frontend->setFeedback(i18n("Your answer was right on the first attempt, but accents were wrong."));
+                    m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
+                    m_frontend->showSolution();
+                    
+                    m_state = SolutionShown;
                 } else {
-                    m_frontend->setFeedback(i18n("Your answer was a synonym."));
-                    AbstractBackendMode::addSynonym(answer);
-                    m_frontend->setSynonym(answer);
-                    m_frontend->showSynonym();
+                    m_frontend->setFeedback(i18n("Your answer was right on the first attempt."));
+                    m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
+                    m_frontend->showSolution();
+
+                    m_state = SolutionShown;
                 }
-                markSynonymCorrect(answer);
-                m_frontend->setResultState(AbstractFrontend::AnswerSynonym);
                 m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
-
-                m_state = AnswerWasSynonym;
-            } else if (Prefs::ignoreCapitalizationMistakes() &&
-                answer.toLower() == m_current->entry()->translation(m_practiceOptions.languageTo())->text().toLower()){
-                m_frontend->setFeedback(i18n("Your answer was right on the first attempt, but your capitalization was wrong."));
-                m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
-                m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
-                m_frontend->showSolution();
-            
-                m_state = SolutionShown;
             }
-
             else {
                 m_frontend->setFeedback(i18n("Your answer was wrong. Please try again."));
                 m_state = AnswerWasWrong;
@@ -106,12 +115,12 @@ void WrittenBackendMode::checkAnswer()
             }
             break;
         case AnswerWasWrong:
-            if (answer == m_current->entry()->translation(m_practiceOptions.languageTo())->text()) {
+            if (m_current->lastErrors().testFlag(TestEntry::Correct)) {
                 m_frontend->setFeedback(i18n("Your answer was right... but not on the first try."));
                 m_frontend->setResultState(AbstractFrontend::AnswerWrong);
                 m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
                 m_frontend->showSolution();
-                m_state = SolutionShown;                
+                m_state = SolutionShown;
             } else {
                 if (answer == m_lastAnswer) {
                     m_frontend->setFeedback(i18n("You did not answer correctly."));
@@ -129,7 +138,7 @@ void WrittenBackendMode::checkAnswer()
             break;
         case SolutionShown:
             break;
-    }
+    } 
     m_lastAnswer = answer;
 }
 

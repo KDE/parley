@@ -34,7 +34,7 @@ public:
         UnrelatedWord         = 0x100, /** < a valid word but no connection to the solution */
         Incomplete            = 0x200, /** < the part that was entered is right, but not complete */
         Correct               = 0x400, /** < no error, solution was right */
-        UnknownMistake        = 0x800  /** < no idea */
+        Wrong                 = 0x800  /** < some error, solution was somehow wrong check other bits */
     };
 
     Q_DECLARE_FLAGS(ErrorTypes, ErrorType)
@@ -68,8 +68,7 @@ public:
     static int gradeFrom();
     static int gradeTo();
 
-    /** Check if the answer is a synonym of the testentry */
-    bool isSynonym(const QString& answer);
+
 
     KEduVocExpression *entry();
 

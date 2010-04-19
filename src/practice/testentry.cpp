@@ -27,7 +27,7 @@ TestEntry::TestEntry(KEduVocExpression *entry)
     ,m_correctAtFirstAttempt(false)
     ,m_practiceFinished(false)
     ,m_lastPercentage(0.0)
-    ,m_lastError(UnknownMistake)
+    ,m_lastError(0)
 {}
 
 void TestEntry::setGradeTo(int to)
@@ -113,7 +113,7 @@ bool TestEntry::statisticCorrectAtFirstAttempt()
 }
 
 
-void TestEntry::setLastErrors(ErrorTypes errorTypes)
+void TestEntry::setLastErrors(TestEntry::ErrorTypes errorTypes)
 {
     m_lastError = errorTypes;
 }
@@ -138,13 +138,3 @@ KEduVocExpression * TestEntry::entry()
     return m_entry;
 }
 
-bool TestEntry::isSynonym(const QString& answer)
-{
-    foreach(KEduVocTranslation *synonym, entry()->translation(m_gradeTo)->synonyms()) {
-        kDebug() << "Synonym" << synonym->text() << " answer: " << answer;
-        if (synonym->text() == answer) {
-            return true;
-        }
-    }
-    return false;
-}
