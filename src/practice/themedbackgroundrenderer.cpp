@@ -43,6 +43,8 @@ void ThemedBackgroundRenderer::setSvgFilename(const QString& filename)
     m_renderer.load(filename);  //TODO: error handling
     m_cache.setFilename(filename);
     m_haveCache = !m_cache.isEmpty();
+    m_lastScaledRenderRects.clear();
+    m_lastFullRenderRects.clear();
 }
 
 void ThemedBackgroundRenderer::setSize(const QSize& size)
@@ -73,6 +75,10 @@ QPixmap ThemedBackgroundRenderer::getScaledBackground()
         m_timer.start(0);
         return QPixmap();
     }
+    if (m_lastScaledRenderRects == m_rects) {
+        // we already renderered an image with that exact sizing, no need to waste resources on it again
+        return QPixmap();
+    }
 
     QFutureWatcher<QImage> watcher;
     m_future = QtConcurrent::run(this, &ThemedBackgroundRenderer::renderBackground, true);
@@ -81,6 +87,7 @@ QPixmap ThemedBackgroundRenderer::getScaledBackground()
 
     QPixmap result =  QPixmap::fromImage(m_future.result());
     m_future = QFuture<QImage>();
+    m_lastScaledRenderRects = m_rects;
     return result;
 }
 
@@ -101,8 +108,13 @@ void ThemedBackgroundRenderer::updateBackgroundTimeout()
         m_timer.start(); // restart the timer again
         return;
     }
+    if (m_lastFullRenderRects == m_rects && m_lastFastRenderRects == m_rects) {
+        // we already renderered an image with that exact sizing, no need to waste resources on it again
+        return;
+    }
     m_future = QtConcurrent::run(this, &ThemedBackgroundRenderer::renderBackground, fastScale);
     m_watcher.setFuture(m_future);
+    m_lastFullRenderRects = m_rects;
 }
 
 void ThemedBackgroundRenderer::renderingFinished()

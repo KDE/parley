@@ -89,6 +89,8 @@ private:
     QFutureWatcher<QImage> m_watcher;
     KSvgRenderer m_renderer;
     QList<QPair<QString, QRect> > m_rects;
+    QList<QPair<QString, QRect> > m_lastScaledRenderRects; // the rects used for the last scaled render
+    QList<QPair<QString, QRect> > m_lastFullRenderRects; // the rects used for the last full render
     QSize m_size;
     bool m_haveCache;
     bool m_queuedRequest;
