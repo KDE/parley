@@ -1,5 +1,5 @@
 /***************************************************************************
-    Copyright 2008 Daniel Laidig <d.laidig@gmx.de>
+    Copyright 2008-2010 Daniel Laidig <d.laidig@gmx.de>
  ***************************************************************************/
 
 /***************************************************************************
@@ -15,6 +15,9 @@
 #include "buttondelegate.h"
 #include "parleymainwindow.h"
 #include "parleydocument.h"
+#include "practice/themedbackgroundrenderer.h"
+#include "practice/imagewidget.h"
+#include "settings/kgametheme/kgametheme.h"
 
 #include <KMimeType>
 
@@ -29,10 +32,14 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     setXMLFile("welcomescreenui.rc");
     setObjectName("WelcomeScreen");
     
-    QWidget *mainWidget = new QWidget(this);
+    m_widget = new Practice::ImageWidget(this);
+    m_widget->setScalingEnabled(false, false);
+    m_widget->setKeepAspectRatio(Qt::IgnoreAspectRatio);
+    m_widget->setFadingEnabled(false);
+
     ui = new Ui::WelcomeScreen();
-    ui->setupUi(mainWidget);
-    setCentralWidget(mainWidget);    
+    ui->setupUi(m_widget);
+    setCentralWidget(m_widget);
 
     QColor fgColor = palette().text().color();
 
@@ -71,7 +78,17 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     connect(m_parleyApp, SIGNAL(recentFilesChanged()), this, SLOT(updateRecentFilesModel()));
     
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
-    applyMainWindowSettings(cfg); 
+    applyMainWindowSettings(cfg);
+
+    m_themedBackgroundRenderer = new Practice::ThemedBackgroundRenderer(this);
+
+    connect(Prefs::self(), SIGNAL(configChanged()), this, SLOT(setTheme()));
+    connect(Prefs::self(), SIGNAL(configChanged()), this, SLOT(updateBackground()));
+    setTheme();
+
+    m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
+    connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)), this, SLOT(backgroundChanged(QPixmap)));
+    connect(m_widget, SIGNAL(sizeChanged()), this, SLOT(updateBackground()));
 }
 
 WelcomeScreen::~WelcomeScreen()
@@ -127,6 +144,30 @@ void WelcomeScreen::slotPracticeUrl(const KUrl & url)
 {
     m_parleyApp->parleyDocument()->open(url);
     m_parleyApp->showStatistics();
+}
+
+void WelcomeScreen::backgroundChanged(const QPixmap &pixmap)
+{
+    m_widget->setPixmap(pixmap);
+}
+
+void WelcomeScreen::updateBackground()
+{
+    m_themedBackgroundRenderer->setSize(m_widget->size());
+    m_themedBackgroundRenderer->clearRects();
+    m_themedBackgroundRenderer->addRect("recentfiles", ui->recentFiles->frameGeometry());
+    QPixmap pixmap = m_themedBackgroundRenderer->getScaledBackground();
+    if (!pixmap.isNull()) {
+        m_widget->setPixmap(pixmap);
+    }
+    m_themedBackgroundRenderer->updateBackground();
+}
+
+void WelcomeScreen::setTheme()
+{
+    KGameTheme theme;
+    theme.load(Prefs::theme());
+    m_themedBackgroundRenderer->setSvgFilename(theme.graphics());
 }
 
 #include "welcomescreen.moc"

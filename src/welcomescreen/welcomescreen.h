@@ -1,5 +1,5 @@
 /***************************************************************************
-    Copyright 2008 Daniel Laidig <d.laidig@gmx.de>
+    Copyright 2008-2010 Daniel Laidig <d.laidig@gmx.de>
  ***************************************************************************/
 
 /***************************************************************************
@@ -22,6 +22,11 @@ class ParleyMainWindow;
 class KUrl;
 class QStandardItemModel;
 
+namespace Practice {
+    class ThemedBackgroundRenderer;
+    class ImageWidget;
+}
+
 class WelcomeScreen : public KXmlGuiWindow
 {
 Q_OBJECT
@@ -35,12 +40,19 @@ public slots:
     void slotDoubleClicked(const QModelIndex& index);
     void slotDoubleClickOpen();
     void updateRecentFilesModel();
+
+private slots:
+    void updateBackground();
+    void setTheme();
+    void backgroundChanged(const QPixmap& pixmap);
     
 private:
     Ui::WelcomeScreen *ui;
     ParleyMainWindow *m_parleyApp;
     QStandardItemModel *m_recentFilesModel;
     KUrl m_openUrl;
+    Practice::ThemedBackgroundRenderer *m_themedBackgroundRenderer;
+    Practice::ImageWidget* m_widget;
 };
 
 #endif
