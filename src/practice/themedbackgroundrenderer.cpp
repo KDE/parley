@@ -108,7 +108,7 @@ void ThemedBackgroundRenderer::updateBackgroundTimeout()
         m_timer.start(); // restart the timer again
         return;
     }
-    if (m_lastFullRenderRects == m_rects && m_lastFastRenderRects == m_rects) {
+    if (m_lastFullRenderRects == m_rects && m_lastScaledRenderRects == m_rects) {
         // we already renderered an image with that exact sizing, no need to waste resources on it again
         return;
     }
