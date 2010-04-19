@@ -21,6 +21,7 @@
 
 #include "ui_practice_mainwindow.h"
 
+#include "settings/kgametheme/kgametheme.h"
 #include "conjugationmodewidget.h"
 #include "flashcardmodewidget.h"
 #include "mixedlettersmodewidget.h"
@@ -44,11 +45,9 @@ GuiFrontend::GuiFrontend(QWidget* parent)
 
     m_themedBackgroundRenderer = new ThemedBackgroundRenderer(this);
     
-//    QString theme(KStandardDirs::locate("data", "parley/themes/" + Prefs::theme()));
-    QString theme(KStandardDirs::locate("data", "parley/themes/bees_theme.svgz"));
-    kDebug() << "Using theme: " << theme;
-    m_themedBackgroundRenderer->setSvgFilename(theme);
-    
+    KGameTheme theme;
+    theme.load(Prefs::theme());
+    m_themedBackgroundRenderer->setSvgFilename(theme.graphics());
     
     m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
     m_ui->boxesWidget->setRenderer(m_themedBackgroundRenderer);
