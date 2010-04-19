@@ -20,7 +20,7 @@
 
 #include "parleyprefs.h"
 
-#include "kgamethemeselector.h"
+#include "kgametheme/kgamethemeselector.h"
 #include "generaloptions.h"
 #include "viewoptions.h"
 #include <KConfigSkeleton>
