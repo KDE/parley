@@ -124,10 +124,8 @@ void PracticeMainWindow::resizeEvent(QResizeEvent *e)
 
 bool PracticeMainWindow::event(QEvent *event)
 {
-    //kDebug() << event << hasMouseTracking();
     if (event->type() == QEvent::HoverMove && m_fullScreenAction->isChecked()) {
         QPoint pos = static_cast<QHoverEvent*>(event)->pos();
-        //kDebug() << pos;
         if(m_animation->direction() == QAbstractAnimation::Backward && pos.y() <= m_floatingToolBar->height()) {
             m_animation->setDirection(QAbstractAnimation::Forward);
             m_animation->start();

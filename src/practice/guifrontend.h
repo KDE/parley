@@ -78,6 +78,9 @@ public Q_SLOTS:
     // show two buttons (i didn't know it, i knew it) instead of the continue button and disable the correct/wrong toggle (needed for flash card mode)
     void showSetResultButtons(bool show);
 
+protected:
+    bool eventFilter(QObject *object, QEvent *event);
+
 private Q_SLOTS:
     void resultToggleClicked();
     void countAsCorrectButtonClicked();

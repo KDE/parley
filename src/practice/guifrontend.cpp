@@ -62,6 +62,10 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     connect(m_ui->countAsCorrectButton, SIGNAL(clicked()), this, SLOT(countAsCorrectButtonClicked()));
     connect(m_ui->countAsWrongButton, SIGNAL(clicked()), this, SLOT(countAsWrongButtonClicked()));
 
+    m_ui->centralPracticeWidget->installEventFilter(this);
+    m_ui->imageWidget->installEventFilter(this);
+    m_ui->rightContainer->installEventFilter(this);
+
     QTimer::singleShot(0, this, SLOT(updateBackground()));
 }
 
@@ -166,6 +170,13 @@ void GuiFrontend::showSetResultButtons(bool show)
     if (show) {
         m_ui->countAsCorrectButton->setFocus();
     }
+}
+
+bool GuiFrontend::eventFilter(QObject *object, QEvent *event)
+{
+    if (event->type() == QEvent::Resize)
+        updateBackground();
+    return AbstractFrontend::eventFilter(object, event);
 }
 
 void GuiFrontend::setFinishedWordsTotalWords(int finished, int total)
