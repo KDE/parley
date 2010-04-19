@@ -4,75 +4,28 @@ include_directories( ${LIBATTICA_INCLUDE_DIR} )
 add_subdirectory( settings )
 
 # libkdeedu/keduvocdocument contains the library for reading and writing vocabulary files
-include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/
-)
+include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/ )
 
-# xslt to transform the document xml to html or other
-if(HAVE_LIBXSLT)
-    include_directories( ${LIBXML2_INCLUDE_DIR} ${LIBXSLT_INCLUDE_DIR} )
-
-    set(export_SRCS
-        export/exportdialog.cpp
-    )
-
-    kde4_add_ui_files( export_SRCS
-        export/exportdialog.ui
-    )
-endif(HAVE_LIBXSLT)
-
-# create kconfig
-kde4_add_kcfg_files( settings_SKEL_SRCS
-    settings/prefs.kcfgc
-    settings/documentsettings.kcfgc
-    settings/languagesettings.kcfgc
-)
-
-# settings, document properties and grammar options
-set(settings_SRCS ${settings_SKEL_SRCS}
-# general settings dialog
-    settings/parleyprefs.cpp
-    settings/generaloptions.cpp
-    settings/viewoptions.cpp
-
-# script settings
-    settings/documentproperties.cpp
-    settings/languageproperties.cpp
-    settings/languagepropertiespage.cpp
-)
-
-# settings ui
-kde4_add_ui_files( settings_SRCS
-    settings/optionlistform.ui
-    settings/viewoptionsbase.ui
-    settings/generaloptionsbase.ui
-    settings/languagepropertiespage.ui
-    settings/documentproperties.ui
-)
-
-# views on the vocabulary files contents - lessons and the actual words
-set(vocabulary_SRCS
-    vocabulary/vocabularymodel.cpp
-    vocabulary/vocabularyview.cpp
-    vocabulary/vocabularyheaderview.cpp
-    vocabulary/vocabularydelegate.cpp
-    vocabulary/vocabularyfilter.cpp
-    vocabulary/vocabularymimedata.cpp
-    vocabulary/containermodel.cpp
-    vocabulary/basiccontainermodel.cpp
-    vocabulary/lessonmodel.cpp
-    vocabulary/wordtypemodel.cpp
-    vocabulary/containerview.cpp
-    vocabulary/containermimedata.cpp
-    vocabulary/lessonview.cpp
-    vocabulary/wordtypeview.cpp
-    vocabulary/vocabularycolumnsdialog.cpp
-)
-
-set(editor_SRCS
+set(parley_SRCS
+    main.cpp
+    parleyactions.cpp
+    parleydocument.cpp
+    parleymainwindow.cpp
+    configure-practice/configurepracticedialog.cpp
+    configure-practice/advancedpracticeoptions.cpp
+    configure-practice/blockoptions.cpp
+    configure-practice/thresholdoptions.cpp
     editor/editor.cpp
-)
-
-set(practice_SRCS
+    entry-dialogs/audiowidget.cpp
+    entry-dialogs/browserwidget.cpp
+    entry-dialogs/comparisonwidget.cpp
+    entry-dialogs/conjugationwidget.cpp
+#    entry-dialogs/declensionwidget.cpp
+    entry-dialogs/imagechooserwidget.cpp
+    entry-dialogs/multiplechoicewidget.cpp
+    entry-dialogs/summarywordwidget.cpp
+    entry-dialogs/synonymwidget.cpp
+    modeltest/modeltest.cpp
     practice/testentry.cpp
     practice/entryfilter.cpp
     practice/testentrymanager.cpp
@@ -104,75 +57,6 @@ set(practice_SRCS
     practice/imagecache.cpp
     practice/statustoggle.cpp
     practice/statustogglebutton.cpp
-)
-
-kde4_add_ui_files(practice_SRCS
-    practice/entryfilter.ui
-    practice/practicesummarywidget.ui
-    practice/practice_mainwindow.ui
-    practice/practice_widget_written.ui
-    practice/practice_widget_multiplechoice.ui
-    practice/practice_widget_flashcard.ui
-    practice/practice_widget_conjugation.ui
-)
-
-# settings for the practice
-set(configure-practice_SRCS
-    configure-practice/configurepracticedialog.cpp
-    configure-practice/advancedpracticeoptions.cpp
-    configure-practice/blockoptions.cpp
-    configure-practice/thresholdoptions.cpp
-)
-
-kde4_add_ui_files(configure-practice_SRCS
-    configure-practice/thresholdoptions.ui
-    configure-practice/advancedpracticeoptions.ui
-    configure-practice/blockoptions.ui
-    configure-practice/comparisonoptionswidget.ui
-    configure-practice/conjugationoptionswidget.ui
-    configure-practice/writtenpracticeoptionswidget.ui
-    configure-practice/multiplechoiceoptionswidget.ui
-    configure-practice/flashcardsoptionswidget.ui
-)
-
-# dock widgets to help editing vocabulary
-set(entrydialogs_SRCS
-    entry-dialogs/multiplechoicewidget.cpp
-    entry-dialogs/comparisonwidget.cpp
-    entry-dialogs/conjugationwidget.cpp
-    entry-dialogs/declensionwidget.cpp
-    entry-dialogs/imagechooserwidget.cpp
-    entry-dialogs/audiowidget.cpp
-    entry-dialogs/browserwidget.cpp
-    entry-dialogs/synonymwidget.cpp
-    entry-dialogs/summarywordwidget.cpp
-)
-
-kde4_add_ui_files(entrydialogs_SRCS
-    entry-dialogs/multiplechoicewidget.ui
-    entry-dialogs/comparisonwidget.ui
-    entry-dialogs/conjugationwidget.ui
-    entry-dialogs/declensionwidget.ui
-    entry-dialogs/imagechooserwidget.ui
-    entry-dialogs/audiowidget.ui
-    entry-dialogs/synonymwidget.ui
-    entry-dialogs/browserwidget.ui
-    entry-dialogs/summarywordwidget.ui
-)
-
-# start/configure practice screen
-set(statisticsdialogs_SRCS
-    statistics/statisticsmodel.cpp
-    statistics/statisticsmainwindow.cpp
-    statistics/lessonstatistics.cpp
-    statistics/conjugationoptions.cpp
-)
-kde4_add_ui_files(statisticsdialogs_SRCS
-    statistics/statisticsmainwindow.ui
-)
-
-# scripting interface using kross
-set(scripts_SRCS
     scripts/scriptdialog.cpp
     scripts/scriptmanager.cpp
     scripts/scripting/parley.cpp
@@ -185,37 +69,89 @@ set(scripts_SRCS
     scripts/scripting/identifier.cpp
     scripts/script.cpp
     scripts/translator.cpp
-
-)
-
-# the first thing you see when startin parley
-set(welcomescreen_SRCS
+    settings/generaloptions.cpp
+    settings/parleyprefs.cpp
+    settings/viewoptions.cpp
+    settings/documentproperties.cpp
+    settings/languageproperties.cpp
+    settings/languagepropertiespage.cpp
+    statistics/conjugationoptions.cpp
+    statistics/lessonstatistics.cpp
+    statistics/statisticsmodel.cpp
+    statistics/statisticsmainwindow.cpp
+    vocabulary/vocabularymodel.cpp
+    vocabulary/vocabularyview.cpp
+    vocabulary/vocabularyheaderview.cpp
+    vocabulary/vocabularydelegate.cpp
+    vocabulary/vocabularyfilter.cpp
+    vocabulary/vocabularymimedata.cpp
+    vocabulary/containermodel.cpp
+    vocabulary/basiccontainermodel.cpp
+    vocabulary/lessonmodel.cpp
+    vocabulary/wordtypemodel.cpp
+    vocabulary/containerview.cpp
+    vocabulary/containermimedata.cpp
+    vocabulary/lessonview.cpp
+    vocabulary/wordtypeview.cpp
+    vocabulary/vocabularycolumnsdialog.cpp
     welcomescreen/welcomescreen.cpp
     welcomescreen/buttondelegate.cpp
 )
 
-kde4_add_ui_files(welcomescreen_SRCS
+kde4_add_ui_files(parley_SRCS
+    configure-practice/advancedpracticeoptions.ui
+    configure-practice/blockoptions.ui
+    configure-practice/comparisonoptionswidget.ui
+    configure-practice/conjugationoptionswidget.ui
+    configure-practice/flashcardsoptionswidget.ui
+    configure-practice/multiplechoiceoptionswidget.ui
+    configure-practice/thresholdoptions.ui
+    configure-practice/writtenpracticeoptionswidget.ui
+    entry-dialogs/multiplechoicewidget.ui
+    entry-dialogs/comparisonwidget.ui
+    entry-dialogs/conjugationwidget.ui
+    entry-dialogs/declensionwidget.ui
+    entry-dialogs/imagechooserwidget.ui
+    entry-dialogs/audiowidget.ui
+    entry-dialogs/synonymwidget.ui
+    entry-dialogs/browserwidget.ui
+    entry-dialogs/summarywordwidget.ui
+    practice/entryfilter.ui
+    practice/practicesummarywidget.ui
+    practice/practice_mainwindow.ui
+    practice/practice_widget_conjugation.ui
+    practice/practice_widget_flashcard.ui
+    practice/practice_widget_multiplechoice.ui
+    practice/practice_widget_written.ui
+    settings/optionlistform.ui
+    settings/viewoptionsbase.ui
+    settings/generaloptionsbase.ui
+    settings/languagepropertiespage.ui
+    settings/documentproperties.ui
+    statistics/statisticsmainwindow.ui
     welcomescreen/welcomescreen.ui
 )
 
-# put it all together
-set(parley_SRCS
-    ${vocabulary_SRCS}
-    ${editor_SRCS}
-    ${settings_SRCS}
-    ${practice_SRCS}
-    ${configure-practice_SRCS}
-    ${entrydialogs_SRCS}
-    ${statisticsdialogs_SRCS}
-    ${scripts_SRCS}
-    ${export_SRCS}
-    ${welcomescreen_SRCS}
-    parleydocument.cpp
-    parleymainwindow.cpp
-    parleyactions.cpp
-    main.cpp
-    modeltest/modeltest.cpp
+kde4_add_kcfg_files(parley_SRCS
+    settings/prefs.kcfgc
+    settings/documentsettings.kcfgc
+    settings/languagesettings.kcfgc
 )
+
+#### XSLT Support ####
+# to transform the document xml to html or other
+if(HAVE_LIBXSLT)
+    include_directories( ${LIBXML2_INCLUDE_DIR} ${LIBXSLT_INCLUDE_DIR} )
+
+    set(parley_SRCS ${parley_SRCS}
+        export/exportdialog.cpp
+    )
+
+    kde4_add_ui_files(parley_SRCS
+        export/exportdialog.ui
+    )
+endif(HAVE_LIBXSLT)
+#### End XSLT Support ####
 
 kde4_add_app_icon(parley_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-parley.png")
 
