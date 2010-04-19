@@ -1,0 +1,10 @@
+All files in this directory are copied from KDE/kdegames/libkdegames. Please avoid modifying the code in here and try go get changes back into kdegames.
+
+These are the current revisions this copy is based on:
+
+svn ls -v kgametheme.h kgametheme.cpp kgamethemeselector.h kgamethemeselector.cpp kgamethemeselector.ui
+ 803944 milliams         3215 May 04  2008 kgametheme.h
+ 895543 aacid            6071 Dec 11  2008 kgametheme.cpp
+1027318 mkraus           2913 Sep 23  2009 kgamethemeselector.h
+1107042 coates           7309 Mar 24 18:16 kgamethemeselector.cpp
+ 999872 coates           7246 Jul 20  2009 kgamethemeselector.ui
