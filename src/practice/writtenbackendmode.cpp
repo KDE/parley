@@ -120,7 +120,7 @@ void WrittenBackendMode::checkAnswer()
                     m_frontend->showSolution();
                 } else {
                     if (m_current->lastErrors().testFlag(TestEntry::Synonym)){
-                        m_frontend->setFeedback(i18n("Your answer was wrong as synonyms are not accepted. Please try again. Please try again."));
+                        m_frontend->setFeedback(i18n("Your answer was wrong as synonyms are not accepted. Please try again."));
                     } else if (m_current->lastErrors().testFlag(TestEntry::CapitalizationMistake)){
                         m_frontend->setFeedback(i18n("Your answer was wrong as capitalization mistakes are not accepted. Please try again."));
                     } else if (m_current->lastErrors().testFlag(TestEntry::AccentMistake)){
