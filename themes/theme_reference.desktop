@@ -1,6 +1,8 @@
 [KGameTheme]
 Name=Gray
+Name[x-test]=xxGrayxx
 Description=A simple gray theme.
+Description[x-test]=xxA simple gray theme.xx
 VersionFormat=1
 Author=Daniel Laidig
 AuthorEmail=laidig@kde.org

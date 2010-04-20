@@ -1,6 +1,8 @@
 [KGameTheme]
 Name=Bees
+Name[x-test]=xxBeesxx
 Description=Awesome cute bees (disfigured by Parley developers).
+Description[x-test]=xxAwesome cute bees (disfigured by Parley developers).xx
 VersionFormat=1
 Author=Jarle Richard Akselsen
 AuthorEmail=jarle.r.akselsen@gmail.com
