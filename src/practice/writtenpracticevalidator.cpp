@@ -51,7 +51,6 @@ WrittenPracticeValidator::~WrittenPracticeValidator()
 void WrittenPracticeValidator::setEntry(TestEntry* entry)
 {
     m_entry = entry;
-    m_error = 0;
 }
 
 void WrittenPracticeValidator::setLanguage(int translation)
@@ -94,11 +93,16 @@ void WrittenPracticeValidator::validateAnswer(const QString& answer)
         kError() << "No entry set, cannot verify answer.";
         return;
     }
+
     QString correct = m_entry->entry()->translation(m_translation)->text();
 
     kDebug() << "Correct answer should be: " << correct;
+    m_error = 0;
 
-    if(isCorrect(answer)){
+    if( answer.isEmpty()){
+        m_error.operator|=(TestEntry::Wrong);
+        kDebug() << "Empty answer ";
+    } else if(isCorrect(answer)){
         m_error.operator|=(TestEntry::Correct);
     } else if(Prefs::ignoreCapitalizationMistakes() &&
         isCapitalizationMistake(correct,answer)) {
@@ -138,7 +142,7 @@ bool WrittenPracticeValidator::isSynonymMistake(const QString& answer)
             (Prefs::ignoreCapitalizationMistakes() && isCapitalizationMistake(synonym->text(),answer)) ||
             (Prefs::ignoreAccentMistakes() && isAccentMistake(synonym->text(),answer))) {
             kDebug() << "Synonym entered: " << synonym->text() << " answer: " << answer;
-            m_correctedAnswer = answer;
+            m_correctedAnswer = synonym->text();
             m_error = m_error|TestEntry::Synonym;
             return true;
         }
