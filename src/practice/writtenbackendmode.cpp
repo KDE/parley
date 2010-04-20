@@ -119,7 +119,15 @@ void WrittenBackendMode::checkAnswer()
                     m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
                     m_frontend->showSolution();
                 } else {
-                    m_frontend->setFeedback(i18n("Your answer was wrong. Please try again."));
+                    if (m_current->lastErrors().testFlag(TestEntry::Synonym)){
+                        m_frontend->setFeedback(i18n("Your answer was wrong as synonyms are not accepted. Please try again. Please try again."));
+                    } else if (m_current->lastErrors().testFlag(TestEntry::CapitalizationMistake)){
+                        m_frontend->setFeedback(i18n("Your answer was wrong as capitalization mistakes are not accepted. Please try again."));
+                    } else if (m_current->lastErrors().testFlag(TestEntry::AccentMistake)){
+                        m_frontend->setFeedback(i18n("Your answer was wrong as accent mistakes are not accepted. Please try again."));
+                    } else {
+                        m_frontend->setFeedback(i18n("Your answer was wrong. Please try again."));
+                    }
                     m_state = AnswerWasWrong;
                     m_current->addUserAnswer(answer);
                 }
@@ -168,7 +176,14 @@ void WrittenBackendMode::handleSynonym()
     if (m_synonyms.contains(answer)) {
         m_frontend->setFeedback(i18n("Your answer was an already entered synonym."));
     } else {
-        m_frontend->setFeedback(i18n("Your answer was a synonym."));
+        if (m_current->lastErrors().testFlag(TestEntry::CapitalizationMistake)){
+            m_frontend->setFeedback(i18n("Your answer was a synonym and your capitalization was wrong."));
+        } else if (m_current->lastErrors().testFlag(TestEntry::AccentMistake)){
+            m_frontend->setFeedback(i18n("Your answer was a synonym and accents were wrong."));
+        } else {
+            m_frontend->setFeedback(i18n("Your answer was a synonym."));
+        }
+        
         AbstractBackendMode::addSynonym(answer);
         m_frontend->setSynonym(answer);
         m_frontend->showSynonym();
