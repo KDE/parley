@@ -1,7 +1,15 @@
 [KGameTheme]
 Name=Bees
+Name[es]=Abejas
+Name[pt]=Abelhas
+Name[sv]=Bin
+Name[uk]=Бджілки
 Name[x-test]=xxBeesxx
 Description=Awesome cute bees (disfigured by Parley developers).
+Description[es]=Abejas increíblemente guapas (desfiguradas por los desarrolladores de Parley).
+Description[pt]=Abelhas giras (desfiguradas pelos programadores do Parley).
+Description[sv]=Fantastiskt söta bin (vanställda av Parleys utvecklare).
+Description[uk]=Чудові розумненькі бджілки (зіпсовані розробниками Parley).
 Description[x-test]=xxAwesome cute bees (disfigured by Parley developers).xx
 VersionFormat=1
 Author=Jarle Richard Akselsen

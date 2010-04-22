@@ -1,7 +1,15 @@
 [KGameTheme]
 Name=Gray
+Name[es]=Gris
+Name[pt]=Cinzento
+Name[sv]=Grå
+Name[uk]=Сіра
 Name[x-test]=xxGrayxx
 Description=A simple gray theme.
+Description[es]=Un sencillo tema gris.
+Description[pt]=Um tema cinzento simples.
+Description[sv]=Ett enkelt grått tema.
+Description[uk]=Проста сіра тема.
 Description[x-test]=xxA simple gray theme.xx
 VersionFormat=1
 Author=Daniel Laidig
