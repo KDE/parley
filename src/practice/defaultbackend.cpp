@@ -68,17 +68,17 @@ void DefaultBackend::initializePracticeMode()
         case Prefs::EnumPracticeMode::MixedLettersPractice:
             kDebug() << "Create Mixed Letters Practice backend";
             m_frontend->setMode(AbstractFrontend::MixedLetters);
-            m_mode = new WrittenBackendMode(m_options, m_frontend, this, m_testEntryManager);
+            m_mode = new WrittenBackendMode(m_options, m_frontend, this, m_testEntryManager,m_document->document());
             break;
         case Prefs::EnumPracticeMode::WrittenPractice:
             kDebug() << "Create Written Practice backend";
             m_frontend->setMode(AbstractFrontend::Written);
-            m_mode = new WrittenBackendMode(m_options, m_frontend, this, m_testEntryManager);
+            m_mode = new WrittenBackendMode(m_options, m_frontend, this, m_testEntryManager,m_document->document());
             break;
         case Prefs::EnumPracticeMode::ExampleSentencesPractice:
             kDebug() << "Create Written Practice backend";
             m_frontend->setMode(AbstractFrontend::Written);
-            m_mode = new ExampleSentenceBackendMode(m_options, m_frontend, this,m_testEntryManager);
+            m_mode = new ExampleSentenceBackendMode(m_options, m_frontend, this,m_testEntryManager,m_document->document());
             break;
         case Prefs::EnumPracticeMode::GenderPractice:
             m_frontend->setMode(AbstractFrontend::MultipleChoice);

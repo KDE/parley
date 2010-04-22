@@ -35,9 +35,13 @@ namespace ParleyStringHandlerOld {
     }
 }
 
-WrittenPracticeValidator::WrittenPracticeValidator(int translation)
+using namespace Practice;
+
+WrittenPracticeValidator::WrittenPracticeValidator(int translation, KEduVocDocument* doc)
 :m_entry(0),
+m_doc(doc),
 m_error(0),
+m_speller(0),
 m_spellerAvailable(false)
 {
     setLanguage(translation);
@@ -56,7 +60,7 @@ void WrittenPracticeValidator::setEntry(TestEntry* entry)
 void WrittenPracticeValidator::setLanguage(int translation)
 {
     m_translation = translation;
-    /*
+    
     // default: try locale
     if ( !m_speller ) {
         m_speller = new Sonnet::Speller(m_doc->identifier(translation).locale());
@@ -78,13 +82,12 @@ void WrittenPracticeValidator::setLanguage(int translation)
     } else {
         m_spellerAvailable = true;
     }
-    */
+    
 }
 
 bool WrittenPracticeValidator::spellcheckerAvailable()
 {
-    //return m_spellerAvailable;
-    return false;
+    return m_spellerAvailable;
 }
 
 void WrittenPracticeValidator::validateAnswer(const QString& answer)
@@ -99,23 +102,26 @@ void WrittenPracticeValidator::validateAnswer(const QString& answer)
     kDebug() << "Correct answer should be: " << correct;
     m_error = 0;
 
+    //Check for empty answers and valid answers first
     if( answer.isEmpty()){
         m_error.operator|=(TestEntry::Wrong);
         kDebug() << "Empty answer ";
     } else if(isCorrect(answer)){
         m_error.operator|=(TestEntry::Correct);
-    } else if(Prefs::ignoreCapitalizationMistakes() &&
-        isCapitalizationMistake(correct,answer)) {
-        m_error.operator|=(TestEntry::Correct);
-    } else if(Prefs::ignoreAccentMistakes() &&
-        isAccentMistake(correct,answer)) {
-        m_error.operator|=(TestEntry::Correct);
-    } else if(Prefs::countSynonymsAsCorrect() &&
-        isSynonymMistake(answer)) {
-        m_error.operator|=(TestEntry::Correct);
     } else {
-        m_error.operator|=(TestEntry::Wrong);
-        kDebug() << "Wrong answer: " << answer;
+        //Check for all valid errors to build a list of
+        //possible mistakes. This provides us with usefull informations
+        //that we can use to give feedback to the user.
+        if(isCapitalizationMistake(correct,answer)) {
+            m_error.operator|=(TestEntry::Correct);
+        } else if(isAccentMistake(correct,answer)) {
+            m_error.operator|=(TestEntry::Correct);
+        } else if(isSynonymMistake(answer)) {
+            m_error.operator|=(TestEntry::Correct);
+        } else {
+            m_error.operator|=(TestEntry::Wrong);
+            kDebug() << "Wrong answer: " << answer;
+        }
     }
     kDebug() << "Error code " << m_error;
     
@@ -144,7 +150,10 @@ bool WrittenPracticeValidator::isSynonymMistake(const QString& answer)
             kDebug() << "Synonym entered: " << synonym->text() << " answer: " << answer;
             m_correctedAnswer = synonym->text();
             m_error = m_error|TestEntry::Synonym;
-            return true;
+            //only return true if accept these kinds of mistakes
+            //otherwise just set the error flag
+            if(Prefs::countSynonymsAsCorrect())
+                return true;
         }
     }
     return false;
@@ -156,7 +165,10 @@ bool WrittenPracticeValidator::isCapitalizationMistake(const QString& original, 
         kDebug() << "CapitalizationMistake: " << original << " answer: " << answer;
         m_error.operator|=(TestEntry::CapitalizationMistake);
         m_correctedAnswer = answer;
-        return true;
+        //only return true if accept these kinds of mistakes
+        //otherwise just set the error flag
+        if(Prefs::ignoreCapitalizationMistakes())
+            return true;
     }
     return false;
 }
@@ -170,7 +182,10 @@ bool WrittenPracticeValidator::isAccentMistake(const QString& original, const QS
         kDebug() << "AccentMistake: " << original << " answer: " << answer;
         m_error.operator|=(m_error|TestEntry::AccentMistake);
         m_correctedAnswer = answer;
-        return true;
+        //only return true if accept these kinds of mistakes
+        //otherwise just set the error flag
+        if(Prefs::ignoreAccentMistakes())
+            return true;
     }
     return false;
 }

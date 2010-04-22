@@ -80,6 +80,7 @@ void TestEntryManager::setDocument(KEduVocDocument* doc)
     }
 }
 
+
 void TestEntryManager::setLanguages(int from, int to)
 {
     m_fromTranslation = from;

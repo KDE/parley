@@ -26,7 +26,7 @@ class WrittenBackendMode : public AbstractBackendMode
     Q_OBJECT
     
 public:
-    WrittenBackendMode(const Practice::PracticeOptions& practiceOptions, Practice::AbstractFrontend* frontend, QObject* parent, Practice::TestEntryManager* testEntryManager);
+    WrittenBackendMode(const Practice::PracticeOptions& practiceOptions, Practice::AbstractFrontend* frontend, QObject* parent, Practice::TestEntryManager* testEntryManager, KEduVocDocument* doc);
     
     virtual void setTestEntry(TestEntry* current);
 
@@ -37,6 +37,8 @@ public Q_SLOTS:
 private:
     void checkAnswer();
     void markSynonymCorrect(const QString& synonym);
+
+    void handleWrongAnswer();
     void handleSynonym();
     
     
@@ -51,6 +53,7 @@ private:
     QString m_currentHint;
     TestEntryManager* m_testEntryManager;
     WrittenPracticeValidator* m_validator;
+    KEduVocDocument* m_doc;
 };
 
 }

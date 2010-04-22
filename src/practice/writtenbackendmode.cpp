@@ -21,11 +21,12 @@
 using namespace Practice;
 
 
-WrittenBackendMode::WrittenBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent,Practice::TestEntryManager* testEntryManager)
+WrittenBackendMode::WrittenBackendMode(const Practice::PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent, TestEntryManager* testEntryManager, KEduVocDocument* doc)
 :AbstractBackendMode(practiceOptions, frontend, parent)
 ,m_testEntryManager(testEntryManager)
+,m_doc(doc)
 {
-    m_validator = new WrittenPracticeValidator(m_practiceOptions.languageTo());
+    m_validator = new WrittenPracticeValidator(m_practiceOptions.languageTo(),doc);
 }
 
 void WrittenBackendMode::setTestEntry(TestEntry* current)
@@ -59,9 +60,9 @@ void WrittenBackendMode::checkAnswer()
 {
     QString answer = m_frontend->userInput().toString();
     
-    if(m_state == NotAnswered && answer.isEmpty()) {
+    if(answer.isEmpty()) {
         //User gave an empty answer so we want to drop out.
-        m_lastAnswer = "";
+        m_lastAnswer = QString();
         m_state = AnswerWasWrong;
     }
 
@@ -88,8 +89,7 @@ void WrittenBackendMode::checkAnswer()
                     m_state = SolutionShown;
                 }
             } else {
-                m_frontend->setFeedback(i18n("Your answer was wrong. Please try again."));
-                m_state = AnswerWasWrong;
+                handleWrongAnswer();
                 m_current->addUserAnswer(answer);
             }
             break;
@@ -119,16 +119,7 @@ void WrittenBackendMode::checkAnswer()
                     m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
                     m_frontend->showSolution();
                 } else {
-                    if (m_current->lastErrors().testFlag(TestEntry::Synonym)){
-                        m_frontend->setFeedback(i18n("Your answer was wrong as synonyms are not accepted. Please try again."));
-                    } else if (m_current->lastErrors().testFlag(TestEntry::CapitalizationMistake)){
-                        m_frontend->setFeedback(i18n("Your answer was wrong as capitalization mistakes are not accepted. Please try again."));
-                    } else if (m_current->lastErrors().testFlag(TestEntry::AccentMistake)){
-                        m_frontend->setFeedback(i18n("Your answer was wrong as accent mistakes are not accepted. Please try again."));
-                    } else {
-                        m_frontend->setFeedback(i18n("Your answer was wrong. Please try again."));
-                    }
-                    m_state = AnswerWasWrong;
+                    handleWrongAnswer();
                     m_current->addUserAnswer(answer);
                 }
             }
@@ -168,6 +159,23 @@ void WrittenBackendMode::markSynonymCorrect(const QString& synonym)
             emit gradeEntry(entry);
         }
     }
+}
+
+void WrittenBackendMode::handleWrongAnswer()
+{
+    if (m_current->lastErrors().testFlag(TestEntry::Synonym)
+        && !Prefs::countSynonymsAsCorrect()){
+        m_frontend->setFeedback(i18n("Your answer was wrong as synonyms are not accepted. Please try again."));
+    } else if (m_current->lastErrors().testFlag(TestEntry::CapitalizationMistake)
+        && !Prefs::ignoreCapitalizationMistakes()){
+        m_frontend->setFeedback(i18n("Your answer was wrong as capitalization mistakes are not accepted. Please try again."));
+    } else if (m_current->lastErrors().testFlag(TestEntry::AccentMistake)
+        && !Prefs::ignoreAccentMistakes()){
+        m_frontend->setFeedback(i18n("Your answer was wrong as accent mistakes are not accepted. Please try again."));
+    } else {
+        m_frontend->setFeedback(i18n("Your answer was wrong. Please try again."));
+    }
+    m_state = AnswerWasWrong;
 }
 
 void WrittenBackendMode::handleSynonym()

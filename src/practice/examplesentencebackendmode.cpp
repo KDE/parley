@@ -21,8 +21,8 @@
 using namespace Practice;
 
 
-ExampleSentenceBackendMode::ExampleSentenceBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent, Practice::TestEntryManager* testEntryManager)
-:WrittenBackendMode(practiceOptions, frontend, parent,testEntryManager)
+ExampleSentenceBackendMode::ExampleSentenceBackendMode(const Practice::PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent, TestEntryManager* testEntryManager, KEduVocDocument* doc)
+:WrittenBackendMode(practiceOptions, frontend, parent,testEntryManager,doc)
 {
 
 }

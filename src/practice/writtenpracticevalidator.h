@@ -16,14 +16,21 @@
 #define WRITTENPRACTICEVALIDATOR_H
 
 #include <sonnet/speller.h>
-#include "practice/testentry.h"
+
+#include "parleydocument.h"
+
+#include "testentrymanager.h"
+#include "testentry.h"
 
 
+namespace Practice {
+    
 class WrittenPracticeValidator
 {
+
 public:
 
-    WrittenPracticeValidator(int translation);
+    WrittenPracticeValidator(int translation, KEduVocDocument* doc);
     ~WrittenPracticeValidator();
 
     void setEntry(TestEntry* entry);
@@ -51,6 +58,7 @@ private:
     bool isAccentMistake(const QString& original, const QString& answer);
     
     TestEntry* m_entry;
+    KEduVocDocument* m_doc;
     QString m_correctedAnswer;
     int m_translation;
     TestEntry::ErrorTypes m_error;
@@ -59,5 +67,7 @@ private:
     Sonnet::Speller* m_speller;
     bool m_spellerAvailable;
 };
+
+}
 
 #endif // WRITTENPRACTICEVALIDATOR_H
