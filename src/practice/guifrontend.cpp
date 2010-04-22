@@ -184,7 +184,9 @@ void GuiFrontend::setFinishedWordsTotalWords(int finished, int total)
     // update progress bar
     m_ui->totalProgress->setMaximum(total);
     m_ui->totalProgress->setValue(finished);
-    m_ui->totalProgress->setToolTip(i18n("You answered %1 of a total of %2 words.\nYou are %3% done.", finished, total, finished/total*100));
+    m_ui->totalProgress->setToolTip(i18np("You answered %2 of a total of %1 word.\nYou are %3% done.",
+                                          "You answered %2 of a total of %1 words.\nYou are %3% done.",
+                                          total, finished, finished/total*100));
 }
 
 void GuiFrontend::setHint(const QVariant& hint)

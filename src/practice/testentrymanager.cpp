@@ -57,7 +57,7 @@ void TestEntryManager::setDocument(KEduVocDocument* doc)
 
     // don't crash when trying to start practicing a document containing only one language
     if (m_doc->identifierCount() < 2) {
-        KMessageBox::error(0, i18n("The vocabulary collection contains less than two languages.", i18n("Could not start practice")));
+        KMessageBox::error(0, i18n("The vocabulary collection contains fewer than two languages.", i18n("Could not start practice")));
         return;
     }
     if (Prefs::questionLanguage() >= m_doc->identifierCount() || Prefs::solutionLanguage() >= m_doc->identifierCount()) {
