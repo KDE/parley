@@ -34,11 +34,11 @@ BoxesWidget::BoxesWidget(QWidget* parent)
 void BoxesWidget::setRenderer(ThemedBackgroundRenderer *renderer)
 {
     m_renderer = renderer;
-    if(!m_renderer->getSizeForId("box").isEmpty()) {
-        m_box = m_renderer->getPixmapForId("box");
+    if(!m_renderer->getSizeForId("box-1").isEmpty()) {
+        m_box = m_renderer->getPixmapForId("box-1");
     }
-    if(!m_renderer->getSizeForId("box-active").isEmpty()) {
-        m_activeBox = m_renderer->getPixmapForId("box-active");
+    if(!m_renderer->getSizeForId("box-1-active").isEmpty()) {
+        m_activeBox = m_renderer->getPixmapForId("box-1-active");
     }
     if(!m_renderer->getSizeForId("arrow-begin").isEmpty()) {
         m_arrowBegin = m_renderer->getPixmapForId("arrow-begin");
@@ -50,8 +50,8 @@ void BoxesWidget::setRenderer(ThemedBackgroundRenderer *renderer)
         m_arrowEnd = m_renderer->getPixmapForId("arrow-end");
     }
 
-    m_arrowHint = qRound(m_renderer->getSizeForId("arrow-hint").width());
-    m_spacingHint = qRound(m_renderer->getSizeForId("box-spacing-hint").width());
+    m_arrowHint = 1;
+    m_spacingHint = 2;
     setMinimumSize(minimumSizeHint());
     updateGeometry();
     updatePixmap();
