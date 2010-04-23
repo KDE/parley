@@ -1,11 +1,13 @@
 [KGameTheme]
 Name=Gray
+Name[en_GB]=Grey
 Name[es]=Gris
 Name[pt]=Cinzento
 Name[sv]=Grå
 Name[uk]=Сіра
 Name[x-test]=xxGrayxx
 Description=A simple gray theme.
+Description[en_GB]=A simple grey theme.
 Description[es]=Un sencillo tema gris.
 Description[pt]=Um tema cinzento simples.
 Description[sv]=Ett enkelt grått tema.
