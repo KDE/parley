@@ -34,24 +34,7 @@ BoxesWidget::BoxesWidget(QWidget* parent)
 void BoxesWidget::setRenderer(ThemedBackgroundRenderer *renderer)
 {
     m_renderer = renderer;
-    if(!m_renderer->getSizeForId("box-1").isEmpty()) {
-        m_box = m_renderer->getPixmapForId("box-1");
-    }
-    if(!m_renderer->getSizeForId("box-1-active").isEmpty()) {
-        m_activeBox = m_renderer->getPixmapForId("box-1-active");
-    }
-    if(!m_renderer->getSizeForId("arrow-begin").isEmpty()) {
-        m_arrowBegin = m_renderer->getPixmapForId("arrow-begin");
-    }
-    if(!m_renderer->getSizeForId("arrow-center").isEmpty()) {
-        m_arrowCenter = m_renderer->getPixmapForId("arrow-center");
-    }
-    if(!m_renderer->getSizeForId("arrow-end").isEmpty()) {
-        m_arrowEnd = m_renderer->getPixmapForId("arrow-end");
-    }
-
-    m_arrowHint = 1;
-    m_spacingHint = 2;
+    m_size = m_renderer->getSizeForId("boxes-noscale").toSize(); //TODO: implement scaling mode
     setMinimumSize(minimumSizeHint());
     updateGeometry();
     updatePixmap();
@@ -76,23 +59,34 @@ void BoxesWidget::setBoxes(int currentBox, int lastBox)
 
 QSize BoxesWidget::minimumSizeHint() const
 {
-    return QSize(m_boxCount*m_box.width() + (m_boxCount-1)*m_spacingHint,
-                 m_box.height()+qMax(m_arrowBegin.height(), qMax(m_arrowCenter.height(), m_arrowEnd.height())));
+    return m_size;
 }
 
 void BoxesWidget::updatePixmap()
 {
+    if(!m_renderer)
+        return;
     QImage image(minimumSizeHint(), QImage::Format_ARGB32_Premultiplied);
     image.fill(QColor(Qt::transparent).rgba());
     QPainter p(&image);
 
     for(int i = 0; i < m_boxCount; i++) {
-        int x = i*(m_box.width() + m_spacingHint);
-        int y = image.height() - m_box.height();
-        p.drawPixmap(x, y, i+1 == m_currentBox ? m_activeBox : m_box);
+        QString id = "box-"+QString::number(i+1);
+        if (i+1 == m_currentBox) {
+            id += "-active";
+        }
+        drawElement(&p, id);
     }
     if (m_lastBox != -1 && m_currentBox != -1 && m_lastBox != m_currentBox) {
-
+        drawElement(&p, "arrow-"+QString::number(m_lastBox)+"-"+QString::number(m_currentBox));
     }
-    this->setPixmap(QPixmap::fromImage(image));
+    setPixmap(QPixmap::fromImage(image));
+}
+
+void BoxesWidget::drawElement(QPainter *p, const QString& id)
+{
+    QRect container = m_renderer->getRectForId("boxes-noscale").toRect();
+    QRect rect = m_renderer->getRectForId(id).toRect();
+    QPoint pos = rect.topLeft() - container.topLeft();
+    p->drawPixmap(pos, m_renderer->getPixmapForId(id));
 }

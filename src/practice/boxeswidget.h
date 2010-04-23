@@ -35,6 +35,8 @@ public:
     void updatePixmap();
 
 private:
+    void drawElement(QPainter *p, const QString& id);
+
     int m_boxCount;
     int m_currentBox;
     int m_lastBox;
@@ -47,6 +49,8 @@ private:
     QPixmap m_arrowBegin;
     QPixmap m_arrowCenter;
     QPixmap m_arrowEnd;
+
+    QSize m_size;
 
     int m_arrowHint;
     int m_spacingHint;

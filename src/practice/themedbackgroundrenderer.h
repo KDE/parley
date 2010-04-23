@@ -59,6 +59,7 @@ public:
     void setSvgFilename(const QString& filename);
 
     QSizeF getSizeForId(const QString& id);
+    QRectF getRectForId(const QString& id);
     QPixmap getPixmapForId(const QString& id, QSize size = QSize());
     QMargins contentMargins();
 

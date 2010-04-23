@@ -134,6 +134,13 @@ QSizeF ThemedBackgroundRenderer::getSizeForId(const QString& id)
     return m_renderer.boundsOnElement(id).size();
 }
 
+QRectF ThemedBackgroundRenderer::getRectForId(const QString& id)
+{
+    if (!m_renderer.elementExists(id))
+        return QRectF();
+    return m_renderer.boundsOnElement(id);
+}
+
 QPixmap ThemedBackgroundRenderer::getPixmapForId(const QString& id, QSize size)
 {
     if (!m_renderer.elementExists(id))
