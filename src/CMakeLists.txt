@@ -175,6 +175,11 @@ if(HAVE_LIBXSLT)
     target_link_libraries(parley ${LIBXML2_LIBRARIES} ${LIBXSLT_LIBRARIES})
 endif(HAVE_LIBXSLT)
 
+if (X11_Xrender_FOUND)
+   target_link_libraries(parley ${X11_LIBRARIES} ${X11_Xrender_LIB})
+endif(X11_Xrender_FOUND)
+
+
 ########### install files ###############
 install(TARGETS parley  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
