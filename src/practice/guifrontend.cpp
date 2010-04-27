@@ -342,9 +342,7 @@ void GuiFrontend::updateBackground()
 
 void GuiFrontend::setTheme()
 {
-    KGameTheme theme;
-    theme.load(Prefs::theme());
-    m_themedBackgroundRenderer->setSvgFilename(theme.graphics());
+    m_themedBackgroundRenderer->setTheme(Prefs::theme());
 }
 
 #include "guifrontend.moc"

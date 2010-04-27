@@ -17,7 +17,6 @@
 #include "parleydocument.h"
 #include "practice/themedbackgroundrenderer.h"
 #include "practice/imagewidget.h"
-#include "settings/kgametheme/kgametheme.h"
 
 #include <KMimeType>
 
@@ -165,9 +164,7 @@ void WelcomeScreen::updateBackground()
 
 void WelcomeScreen::setTheme()
 {
-    KGameTheme theme;
-    theme.load(Prefs::theme());
-    m_themedBackgroundRenderer->setSvgFilename(theme.graphics());
+    m_themedBackgroundRenderer->setTheme(Prefs::theme());
 }
 
 #include "welcomescreen.moc"

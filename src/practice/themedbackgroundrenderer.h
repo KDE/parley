@@ -23,6 +23,7 @@
 #include <ksvgrenderer.h>
 
 class QMargins;
+class KGameTheme;
 
 namespace Practice {
 
@@ -56,7 +57,7 @@ public:
     ThemedBackgroundRenderer(QObject* parent = 0);
     ~ThemedBackgroundRenderer();
 
-    void setSvgFilename(const QString& filename);
+    void setTheme(const QString& theme);
 
     QSizeF getSizeForId(const QString& id);
     QRectF getRectForId(const QString& id);
@@ -81,13 +82,15 @@ signals:
 private:
     QImage renderBackground(bool fastScale);
     void renderRect(const QString& name, const QRect& rect, QPainter *p, bool fastScale);
-    void renderItem(const QString& id, const QRect& rect, QPainter *p, bool fastScale, ScaleBase scaleBase, Qt::AspectRatioMode aspectRatio, Edge edge, Align align, bool inside);
+    void renderItem(const QString& idBase, const QString& idSuffix, const QRect& rect, QPainter *p, bool fastScale, ScaleBase scaleBase, Qt::AspectRatioMode aspectRatio, Edge edge, Align align, bool inside);
     QRect scaleRect(QRectF itemRect, const QRect& baseRect, ScaleBase scaleBase, Qt::AspectRatioMode aspectRatio);
     QRect alignRect(QRect itemRect, const QRect& baseRect, Edge edge, Align align, bool inside);
 
     ImageCache m_cache;
     QFuture<QImage> m_future;
     QFutureWatcher<QImage> m_watcher;
+    KGameTheme *m_theme;
+    QHash<QString, QString> m_rectMappings;
     KSvgRenderer m_renderer;
     QList<QPair<QString, QRect> > m_rects;
     QList<QPair<QString, QRect> > m_lastScaledRenderRects; // the rects used for the last scaled render
