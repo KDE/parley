@@ -46,7 +46,7 @@ void ThemedBackgroundRenderer::setTheme(const QString &theme)
         kDebug() << "could not load theme" << theme;
     }
     m_renderer.load(m_theme->graphics());
-    m_cache.setFilename(m_theme->graphics());
+    m_cache.setFilenames(QStringList(m_theme->graphics()) << m_theme->path());
     m_haveCache = !m_cache.isEmpty();
     m_lastScaledRenderRects.clear();
     m_lastFullRenderRects.clear();

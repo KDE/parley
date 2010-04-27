@@ -20,22 +20,19 @@
 
 using namespace Practice;
 
-const char* identifier = "parleyimagecache1";
+const char* identifier = "parleyimagecache2";
 
-void ImageCache::setFilename(const QString& filename)
+void ImageCache::setFilenames(const QStringList& filenames)
 {
-    QFileInfo info(filename);
-    QDateTime timestamp = info.lastModified();
-    if (filename == m_filename && timestamp == m_timestamp) { // cache is up-to-date
-        return;
+    m_timestamps.clear();
+    Q_FOREACH(const QString& filename, filenames) {
+        QFileInfo info(filename);
+        m_timestamps.append(info.lastModified());
     }
-    m_timestamp = timestamp;
     m_images.clear();
-    if(m_filename.isEmpty() && !m_saveFilename.isNull()) {
-        m_filename = filename;
+    m_filenames = filenames;
+    if(!m_saveFilename.isNull()) {
         openCache();
-    } else {
-        m_filename = filename;
     }
 }
 
@@ -73,9 +70,10 @@ void ImageCache::openCache()
         return;
     }
     // check filename and timestamp, no need to load images for the wrong file or outdated images
-    QDateTime timestamp;
-    stream >> temp >> timestamp;
-    if (temp != m_filename || timestamp != m_timestamp) {
+    QStringList filenames;
+    QList<QDateTime> timestamps;
+    stream >> filenames >> timestamps;
+    if (filenames != m_filenames || timestamps != m_timestamps) {
         kDebug() << "not loading cache because it contains the wrong theme or the timestamp has changed";
         return;
     }
@@ -97,12 +95,12 @@ void ImageCache::saveCache()
     QFile file(m_saveFilename);
     file.open(QIODevice::WriteOnly);
     QDataStream stream(&file);
-    stream << QString(identifier) << m_filename << m_timestamp << m_images;
+    stream << QString(identifier) << m_filenames << m_timestamps << m_images;
 }
 
 QDebug Practice::operator<<(QDebug dbg, const ImageCache &c)
 {
-    dbg.nospace() << "(ImageCache, " << c.m_filename << ", " << c.m_timestamp << ")";
+    dbg.nospace() << "(ImageCache, " << c.m_filenames << ", " << c.m_timestamps << ")";
     int pixels = 0;
     QHashIterator<QString, QImage> i(c.m_images);
     while (i.hasNext()) {

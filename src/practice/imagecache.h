@@ -15,6 +15,7 @@
 #define PRACTICE_IMAGECACHE_H
 
 #include <QHash>
+#include <QStringList>
 #include <QDateTime>
 #include <QImage>
 
@@ -26,7 +27,8 @@ namespace Practice {
 class ImageCache {
 public:
     ImageCache() {}
-    void setFilename(const QString& filename);
+    // set a list of filenames which should be checked for timestamps
+    void setFilenames(const QStringList& filename);
 
     void updateImage(const QString& id, const QImage& image);
     QSize imageSize(const QString& id);
@@ -40,8 +42,8 @@ public:
     friend QDebug operator<<(QDebug dbg, const Practice::ImageCache &c);
 private:
     QHash<QString, QImage> m_images;
-    QDateTime m_timestamp;
-    QString m_filename;
+    QList<QDateTime> m_timestamps;
+    QStringList m_filenames;
     QString m_saveFilename;
 };
 
