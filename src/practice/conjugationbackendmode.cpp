@@ -13,6 +13,9 @@
 
 
 #include "conjugationbackendmode.h"
+
+#include <KLocalizedString>
+
 #include "defaultbackend.h"
 
 #include "conjugationdata.h"
@@ -27,7 +30,7 @@ ConjugationBackendMode::ConjugationBackendMode(const PracticeOptions& practiceOp
 ,m_testEntryManager(testEntryManager)
 ,m_doc(doc)
 {
-    DocumentSettings documentSettings(m_doc->url().url());
+    DocumentSettings documentSettings(m_doc->url().url() + QString::number(m_practiceOptions.languageTo()));
     documentSettings.readConfig();
     m_tenses = documentSettings.conjugationTenses();
 }
@@ -51,7 +54,7 @@ void ConjugationBackendMode::setTestEntry(TestEntry* current)
             << m_tenses;
         emit currentEntryFinished();
     }
-    
+
     m_currentTense = possibleTenses.first();
 
     if (!m_current->entry()->translation(m_practiceOptions.languageTo())->conjugationTenses().contains(m_currentTense)) {
@@ -127,17 +130,20 @@ void ConjugationBackendMode::checkAnswer()
     QStringList answers = m_frontend->userInput().toStringList();
 
     bool allCorrect = true;
-    
+    int numRight = 0;
     int i=0;
     foreach(const KEduVocWordFlags& key, m_pronounFlags) {
         if (answers.at(i) == m_conjugation.conjugation(key).text()) {
-            m_conjugation.conjugation(key).incGrade();
-            m_conjugation.conjugation(key).incPracticeCount();
+            m_current->entry()->translation(Prefs::solutionLanguage())->conjugation(m_currentTense).conjugation(key).incGrade();
+            m_current->entry()->translation(Prefs::solutionLanguage())->conjugation(m_currentTense).conjugation(key).incPracticeCount();
+            ++numRight;
         } else {
-            m_conjugation.conjugation(key).incBadCount();
-            m_conjugation.conjugation(key).incPracticeCount();
+            m_current->entry()->translation(Prefs::solutionLanguage())->conjugation(m_currentTense).conjugation(key).setGrade(1);
+            m_current->entry()->translation(Prefs::solutionLanguage())->conjugation(m_currentTense).conjugation(key).incPracticeCount();
+            kDebug() << "dec grade for " << m_conjugation.conjugation(key).text();
             allCorrect = false;
         }
+        m_current->entry()->translation(Prefs::solutionLanguage())->conjugation(m_currentTense).conjugation(key).setPracticeDate( QDateTime::currentDateTime() );
         ++i;
     }
 
@@ -146,9 +152,11 @@ void ConjugationBackendMode::checkAnswer()
     if (allCorrect) {
         m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerCorrect);
         m_frontend->setResultState(Practice::AbstractFrontend::AnswerCorrect);
+        m_frontend->setFeedback(i18n("All conjugation forms were right."));
     } else {
         m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerWrong);
         m_frontend->setResultState(Practice::AbstractFrontend::AnswerWrong);
+        m_frontend->setFeedback(i18nc("You did not get the conjugation forms right.", "You answered %1 conjugation forms correctly.", numRight));
     }
 }
 

@@ -51,6 +51,9 @@ public Q_SLOTS:
     virtual void showQuestion();
     virtual void showSolution();
     virtual void showSynonym() {}
+
+private Q_SLOTS:
+    void nextConjugationForm();
     
 private:
     virtual void setNumberOfConjugationWidgets(const int numberOfForms);

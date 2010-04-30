@@ -92,11 +92,10 @@ void DefaultBackend::initializePracticeMode()
             Q_ASSERT("Implement selected practice mode" == 0);
     }
 
-    
     connect(m_mode, SIGNAL(currentEntryFinished()), this, SLOT(gradeCurrentEntry()));
     connect(m_mode, SIGNAL(gradeEntry(TestEntry*)), this, SLOT(gradeEntry(TestEntry*)));
     connect(m_mode, SIGNAL(nextEntry()), this, SLOT(nextEntry()));
-    
+
     connect(m_frontend, SIGNAL(continueAction()), m_mode, SLOT(continueAction()));
     connect(m_frontend, SIGNAL(hintAction()), m_mode, SLOT(hintAction()));
 }

@@ -19,6 +19,7 @@
 #include <QtCore/QList>
 #include <QtCore/QSet>
 
+class KEduVocText;
 class KEduVocExpression;
 class KEduVocDocument;
 class KDialog;
@@ -46,6 +47,8 @@ private:
 
     void lessonEntries();
     void wordTypeEntries();
+
+    bool isBlocked(const KEduVocText* const grade);
     void blockedEntries();
     void timesWrongEntries();
     void timesPracticedEntries();

@@ -39,7 +39,6 @@ private:
     void updatePronounFlags();
     void checkAnswer();
 
-    
     TestEntryManager* m_testEntryManager;
     KEduVocDocument* m_doc;
 

@@ -14,6 +14,7 @@
 #include "entryfilter.h"
 
 #include "prefs.h"
+#include "documentsettings.h"
 
 #include <keduvocdocument.h>
 #include <keduvocwordtype.h>
@@ -207,6 +208,21 @@ void EntryFilter::wordTypeEntries()
     }
 }
 
+bool EntryFilter::isBlocked(const KEduVocText* const text)
+{
+    int grade = text->grade();
+    // always include lowest level and itemw where blocking is off
+    if (grade == KV_NORM_GRADE || Prefs::blockItem(grade) == 0) {
+        return false;
+    } else {
+        QDateTime date = text->practiceDate();
+        if (date.addSecs(Prefs::blockItem(grade)) < QDateTime::currentDateTime()) {
+            return false;
+        }
+    }
+    return true;
+}
+
 void EntryFilter::blockedEntries()
 {
     if (!Prefs::block()) {
@@ -215,14 +231,23 @@ void EntryFilter::blockedEntries()
     }
 
     foreach(KEduVocExpression* entry, m_entries) {
-        int grade = entry->translation(m_toTranslation)->grade();
-        if (grade == KV_NORM_GRADE || Prefs::blockItem(grade) == 0) {
-            m_entriesBlocked.insert(entry);
-        } else {
-            QDateTime date = entry->translation(m_toTranslation)->practiceDate();
-            if (date.addSecs(Prefs::blockItem(grade)) < QDateTime::currentDateTime()) {
-                m_entriesBlocked.insert(entry);
+        if (Prefs::practiceMode() == Prefs::EnumPracticeMode::ConjugationPractice) {
+            DocumentSettings documentSettings(m_doc->url().url());
+            documentSettings.readConfig();
+            QStringList tenses = documentSettings.conjugationTenses();
+            foreach(const QString& tense, entry->translation(m_toTranslation)->conjugationTenses()) {
+                if(tenses.contains(tense)) {
+                    QList<KEduVocWordFlags> pronouns = entry->translation(m_toTranslation)->conjugation(tense).keys();
+                    foreach(const KEduVocWordFlags& pronoun, pronouns) {
+                        if (!isBlocked(&(entry->translation(m_toTranslation)->conjugation(tense).conjugation(pronoun)))) {
+                            m_entriesBlocked.insert(entry);
+                        }
+                    }
+                }
             }
+        }
+        if (!isBlocked(entry->translation(m_toTranslation))) {
+            m_entriesBlocked.insert(entry);
         }
     }
 }
@@ -287,7 +312,7 @@ void EntryFilter::cleanupInvalid()
     bool wordTypeNeeded = (mode == Prefs::EnumPracticeMode::GenderPractice) ||
         (mode == Prefs::EnumPracticeMode::ComparisonPractice) ||
         (mode == Prefs::EnumPracticeMode::ConjugationPractice);
-    
+
     QSet<KEduVocExpression*>::iterator i = m_entries.begin();
     while (i != m_entries.end()) {
         // remove empty entries

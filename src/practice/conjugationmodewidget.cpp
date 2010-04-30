@@ -82,13 +82,19 @@ void ConjugationModeWidget::setQuestion(const QVariant& question)
     foreach(const QString& pp, data.personalPronouns) {
         m_personWidgets.at(i)->person->setText(pp);
         m_personWidgets.at(i)->input->clear();
+        m_personWidgets.at(i)->input->setPalette(QApplication::palette());
         m_personWidgets.at(i)->solution->clear();
+        connect(m_personWidgets.at(i)->input, SIGNAL(returnPressed()), this, SLOT(nextConjugationForm()));
         ++i;
     }
 }
 
 void ConjugationModeWidget::showQuestion()
-{}
+{
+    Q_ASSERT(!m_personWidgets.isEmpty());
+    m_personWidgets.at(0)->input->setFocus();
+    m_ui->feedbackLabel->setText(i18n("Enter all conjugation forms."));
+}
 
 void ConjugationModeWidget::setSolution(const QVariant& solution)
 {
@@ -103,7 +109,12 @@ void ConjugationModeWidget::setFeedback(const QVariant& feedback)
 void ConjugationModeWidget::showSolution()
 {
     for(int i = 0; i < m_solution.size() && i < m_personWidgets.size(); ++i) {
-        m_personWidgets[i]->solution->setText(m_solution.at(i));
+        m_personWidgets.at(i)->solution->setText(m_solution.at(i));
+        if(m_personWidgets.at(i)->input->text() == m_solution.at(i)) {
+            m_personWidgets.at(i)->input->setPalette(m_correctPalette);
+        } else {
+            m_personWidgets.at(i)->input->setPalette(m_wrongPalette);
+        }
     }
 }
 
@@ -129,6 +140,21 @@ void ConjugationModeWidget::setNumberOfConjugationWidgets(const int numberOfForm
     }
     for(int i = 0; i < m_personWidgets.size(); ++i) {
         m_personWidgets[i]->setVisible(i < numberOfForms);
+    }
+}
+
+void ConjugationModeWidget::nextConjugationForm()
+{
+    for(int i = 0; i < m_personWidgets.count(); ++i) {
+        if (sender() == m_personWidgets.at(i)->input) {
+            if ((i+1 < m_personWidgets.count()) && (m_personWidgets.at(i+1)->input->isVisible())) {
+                // move to the next input widget
+                m_personWidgets.at(i+1)->input->setFocus();
+            } else {
+                emit continueAction();
+            }
+            return;
+        }
     }
 }
 

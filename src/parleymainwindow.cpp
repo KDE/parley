@@ -160,8 +160,8 @@ void ParleyMainWindow::slotCloseDocument()
     if (!queryClose()) {
         return;
     }
-    m_document->close();
     showWelcomeScreen();
+    m_document->close();
 }
 
 void ParleyMainWindow::configurePractice()
@@ -311,6 +311,7 @@ void ParleyMainWindow::switchComponent(Component component)
             break;
         }
         case PracticeComponent: {
+            m_document->document()->setModified(true);
             m_testEntryManager.setDocument(m_document->document());
             Practice::PracticeMainWindow *practiceWindow = new Practice::PracticeMainWindow(&m_testEntryManager, this);
             connect(practiceWindow, SIGNAL(stopPractice()), this, SLOT(showPracticeSummary()));

@@ -55,9 +55,10 @@ void ConjugationOptions::setupTenses()
 {
     m_treeWidget->clear();
 
-    DocumentSettings currentSettings(m_doc->url().url() + QString::number(m_language));
-    currentSettings.readConfig();
-    QStringList activeTenses = currentSettings.conjugationTenses();
+    DocumentSettings documentSettings(m_doc->url().url() + QString::number(m_language));
+    documentSettings.readConfig();
+    QStringList activeTenses = documentSettings.conjugationTenses();
+    kDebug() << "activeTenses:" << activeTenses << " id tenses: " << m_doc->identifier(m_language).tenseList();
     QTreeWidgetItem* tenseItem;
 
     foreach ( const QString &tenseName, m_doc->identifier(m_language).tenseList() ) {
@@ -84,7 +85,7 @@ void ConjugationOptions::updateSettings()
             activeTenses.append(tenseItem->text(0));
         }
     }
-    DocumentSettings documentSettings(m_doc->url().url());
+    DocumentSettings documentSettings(m_doc->url().url() + QString::number(m_language));
     documentSettings.setConjugationTenses(activeTenses);
     documentSettings.writeConfig();
 }

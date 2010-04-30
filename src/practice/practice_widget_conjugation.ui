@@ -106,7 +106,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string comment="KDE::DoNotExtract">Waiting for an answer...</string>
+      <string comment="KDE::DoNotExtract"/>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
