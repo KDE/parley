@@ -156,7 +156,7 @@ void ConjugationBackendMode::checkAnswer()
     } else {
         m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerWrong);
         m_frontend->setResultState(Practice::AbstractFrontend::AnswerWrong);
-        m_frontend->setFeedback(i18nc("You did not get the conjugation forms right.", "You answered %1 conjugation forms correctly.", numRight));
+        m_frontend->setFeedback(i18ncp("You did not get the conjugation forms right.", "You answered %1 conjugation form correctly.", "You answered %1 conjugation forms correctly.", numRight));
     }
 }
 
