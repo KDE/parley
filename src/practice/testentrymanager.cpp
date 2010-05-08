@@ -91,7 +91,7 @@ void TestEntryManager::setLanguages(int from, int to)
 
 void TestEntryManager::filterTestEntries()
 {
-    EntryFilter filter(m_parent, m_doc);
+    ::EntryFilter filter(m_parent, m_doc);
     QList<KEduVocExpression*> allEntries = filter.entries();
 
     if (allEntries.count() == 0) {
