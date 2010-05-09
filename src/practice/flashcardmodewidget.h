@@ -17,6 +17,8 @@
 
 #include "abstractwidget.h"
 
+#include <QtCore/QVariant>
+
 
 namespace Ui {
     class FlashCardPracticeWidget;
