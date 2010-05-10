@@ -24,6 +24,8 @@ class KEduVocExpression;
 class KEduVocDocument;
 class KDialog;
 
+namespace Practice {
+
 class EntryFilter
     :public QObject
 {
@@ -81,6 +83,7 @@ private:
 
     KDialog *m_dialog;
 };
+}
 
 #endif
 

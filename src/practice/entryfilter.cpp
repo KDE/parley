@@ -24,6 +24,8 @@
 #include <KDialog>
 #include <KMessageBox>
 
+using namespace Practice;
+
 EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc) :QObject(parent)
 {
     m_doc = doc;
