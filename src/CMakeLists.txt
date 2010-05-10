@@ -25,6 +25,7 @@ set(parley_SRCS
     entry-dialogs/multiplechoicewidget.cpp
     entry-dialogs/summarywordwidget.cpp
     entry-dialogs/synonymwidget.cpp
+    entry-dialogs/latexwidget.cpp
     modeltest/modeltest.cpp
     practice/testentry.cpp
     practice/entryfilter.cpp
@@ -119,6 +120,7 @@ kde4_add_ui_files(parley_SRCS
     entry-dialogs/synonymwidget.ui
     entry-dialogs/browserwidget.ui
     entry-dialogs/summarywordwidget.ui
+    entry-dialogs/latexwidget.ui
     practice/entryfilter.ui
     practice/practicesummarywidget.ui
     practice/practice_mainwindow.ui

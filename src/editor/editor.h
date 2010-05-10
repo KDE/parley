@@ -40,6 +40,7 @@ namespace Editor {
     class ConjugationWidget;
     class ComparisonWidget;
     class SummaryWordWidget;
+    class LatexWidget;
 
 class EditorWindow : public KXmlGuiWindow
 {
@@ -124,6 +125,7 @@ private:
     ConjugationWidget *m_conjugationWidget;
     SummaryWordWidget *m_summaryWordWidget;
     ComparisonWidget *m_comparisonWidget;
+    LatexWidget *m_latexWidget;
 
     /// dock widgets to display lessons, word types, ...
     LessonView *m_lessonView;

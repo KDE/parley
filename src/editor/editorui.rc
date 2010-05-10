@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="editor"  version="5">
+<gui name="editor"  version="6">
 
 <MenuBar>
   <Menu name="file" >
@@ -33,6 +33,7 @@
       <Action name="show_audio_dock"/>
       <Action name="show_multiplechoice_dock"/>
       <Action name="show_pronunciation_dock"/>
+      <Action name="show_latex_dock"/>
       <Separator/>
       <Action name="show_synonym_dock"/>
       <Action name="show_antonym_dock"/>

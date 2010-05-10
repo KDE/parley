@@ -37,6 +37,7 @@
 #include "entry-dialogs/browserwidget.h"
 #include "entry-dialogs/synonymwidget.h"
 #include "entry-dialogs/summarywordwidget.h"
+#include "entry-dialogs/latexwidget.h"
 
 #include "settings/parleyprefs.h"
 #include "prefs.h"
@@ -118,6 +119,9 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
     connect(m_vocabularyView->selectionModel(), 
                 SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
             m_summaryWordWidget, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
+    connect(m_vocabularyView->selectionModel(),
+                SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
+            m_latexWidget, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
 
     setCaption(m_mainWindow->parleyDocument()->document()->url().fileName(), false);
 
@@ -331,6 +335,18 @@ void EditorWindow::initDockWidgets()
     browserDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
             htmlPart, SLOT(setTranslation(KEduVocExpression*, int)));
+
+// LaTeX
+    QDockWidget *latexDock = new QDockWidget(i18n("LaTeX"), this);
+    latexDock->setObjectName("LatexDock");
+    m_latexWidget = new LatexWidget(m_vocabularyFilter, m_mainWindow->parleyDocument()->document(), this);
+    latexDock->setWidget(m_latexWidget);
+    addDockWidget(Qt::RightDockWidgetArea, latexDock);
+    actionCollection()->addAction("show_latex_dock", latexDock->toggleViewAction());
+    latexDock->setVisible(false);
+    m_dockWidgets.append(latexDock);
+    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+            m_latexWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Grades
 //     QDockWidget *gradeDock = new QDockWidget(i18n("Grade"), this);
