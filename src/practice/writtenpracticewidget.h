@@ -21,8 +21,8 @@ namespace Ui {
 class WrittenPracticeWidget;
 }
 
-
 namespace Practice {
+class LatexRenderer;
 
 class WrittenPracticeWidget : public Practice::AbstractModeWidget
 {
@@ -63,6 +63,7 @@ private:
     AbstractFrontend::ResultState m_resultState;
     AbstractFrontend::ResultState m_feedbackState;
     QList<QWidget*> synonymWidgets;
+    LatexRenderer *m_latexRenderer;
 };
 
 }

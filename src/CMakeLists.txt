@@ -57,6 +57,7 @@ set(parley_SRCS
     practice/imagecache.cpp
     practice/statustoggle.cpp
     practice/statustogglebutton.cpp
+    practice/latexrenderer.cpp
     scripts/scriptdialog.cpp
     scripts/scriptmanager.cpp
     scripts/scripting/parley.cpp

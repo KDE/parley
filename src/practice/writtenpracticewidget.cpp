@@ -17,11 +17,12 @@
 
 #include <kcolorscheme.h>
 #include "guifrontend.h"
+#include "latexrenderer.h"
 
 using namespace Practice;
 
 WrittenPracticeWidget::WrittenPracticeWidget(GuiFrontend *frontend, QWidget *parent)
-    : AbstractModeWidget(frontend, parent)
+    : AbstractModeWidget(frontend, parent), m_latexRenderer(0)
 {
     m_ui = new Ui::WrittenPracticeWidget();
     m_ui->setupUi(this);
@@ -50,7 +51,16 @@ QVariant WrittenPracticeWidget::userInput()
 
 void WrittenPracticeWidget::setQuestion(const QVariant& question)
 {
-    m_ui->questionLabel->setText(question.toString());
+    m_ui->questionLabel->setMinimumSize(QSize());
+    if (LatexRenderer::isLatex(question.toString())) {
+        if(!m_latexRenderer) {
+            m_latexRenderer = new LatexRenderer(this);
+            m_latexRenderer->setResultLabel(m_ui->questionLabel);
+        }
+        m_latexRenderer->renderLatex(question.toString());
+    } else {
+        m_ui->questionLabel->setText(question.toString());
+    }
 }
 
 void WrittenPracticeWidget::showQuestion()
