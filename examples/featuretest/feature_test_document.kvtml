@@ -7,7 +7,7 @@
     <author>Daniel Laidig, Frederik Gladhorn</author>
     <license>GPLv2+ (GNU General Public License version 2 or later)</license>
     <comment>This is a document created during the parley mini sprint 2010</comment>
-    <date>2010-04-13</date>
+    <date>2010-05-10</date>
     <category>Testing</category>
   </information>
   <identifiers>
@@ -364,9 +364,6 @@
             </thirdpersonneutralcommon>
           </plural>
         </conjugation>
-        <conjugation>
-          <tense>Präteritum</tense>
-        </conjugation>
       </translation>
       <translation id="1">
         <text>to go</text>
@@ -425,9 +422,6 @@
             </thirdpersonneutralcommon>
           </plural>
         </conjugation>
-        <conjugation>
-          <tense>Präteritum</tense>
-        </conjugation>
       </translation>
       <translation id="1">
         <text>to be</text>
@@ -472,9 +466,6 @@
             </secondperson>
           </singular>
         </conjugation>
-        <conjugation>
-          <tense>Präteritum</tense>
-        </conjugation>
       </translation>
       <translation id="1">
         <text>to slurp</text>
@@ -492,6 +483,48 @@
             </thirdpersonneutralcommon>
           </singular>
         </conjugation>
+      </translation>
+    </entry>
+    <entry id="23">
+      <translation id="0">
+        <text>$$f(z) = \frac{1}{2\pi\mathrm{i}}\oint_{|z - \zeta| = 1}\frac{f(\zeta)}{\zeta-z}\mathrm{d}\zeta$$</text>
+      </translation>
+      <translation id="1">
+        <text>math test</text>
+        <grade>
+          <currentgrade>1</currentgrade>
+          <count>4</count>
+          <errorcount>4</errorcount>
+          <date>2010-05-10T19:13:56</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="24">
+      <translation id="0">
+        <text>§§This is a \LaTeX{} \textbf{markup} test.\\\texttt{With multiple lines.}§§</text>
+      </translation>
+      <translation id="1">
+        <text>general LaTeX test</text>
+        <grade>
+          <currentgrade>1</currentgrade>
+          <count>5</count>
+          <errorcount>5</errorcount>
+          <date>2010-05-10T20:22:03</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="25">
+      <translation id="0">
+        <text>§§This\\will\\be\\very\\long\\and\\space\\consuming\\which\\is\\not\\optimal\\for\\the\\practice\\layout.§§</text>
+      </translation>
+      <translation id="1">
+        <text>long text test</text>
+        <grade>
+          <currentgrade>1</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>2010-05-10T19:14:12</date>
+        </grade>
       </translation>
     </entry>
   </entries>
@@ -530,7 +563,6 @@
     </container>
     <container>
       <name>Synonyms</name>
-      <inpractice>true</inpractice>
       <entry id="14"/>
       <entry id="15"/>
       <entry id="16"/>
@@ -540,10 +572,16 @@
     </container>
     <container>
       <name>Verbs, Conjugations</name>
-      <inpractice>true</inpractice>
       <entry id="20"/>
       <entry id="21"/>
       <entry id="22"/>
+    </container>
+    <container>
+      <name>LaTeX</name>
+      <inpractice>true</inpractice>
+      <entry id="23"/>
+      <entry id="24"/>
+      <entry id="25"/>
     </container>
   </lessons>
   <wordtypes>

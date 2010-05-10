@@ -108,7 +108,7 @@ void LatexRenderer::convertToImage()
     pngFile.replace(".eps", ".png");
     KProcess *p=new KProcess( this );
     kDebug()<<"running:"<<"convert"<<m_latexFilename<<pngFile;
-    (*p)<<"convert"<<m_latexFilename<<pngFile;
+    (*p)<<"convert"<<"-density"<<"85"<<m_latexFilename<<pngFile;
 
     connect(p, SIGNAL( finished(int,  QProcess::ExitStatus) ), this, SLOT( latexRendered() ) );
     p->start();
