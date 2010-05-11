@@ -73,7 +73,7 @@ QVariant LessonModel::data(const QModelIndex & index, int role) const
 bool LessonModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (index.isValid() && !index.parent().isValid()) {
-        if (index.column() == 0) {
+        if (index.column() == 0 && role == Qt::DisplayRole) {
             m_doc->setTitle(value.toString());
         }
     }
