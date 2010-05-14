@@ -147,12 +147,13 @@ void StatisticsMainWindow::initPracticeModeSelection()
 
 void StatisticsMainWindow::initLanguages()
 {
-    kDebug() << "init languages: " << Prefs::solutionLanguage() << Prefs::questionLanguage();
+    kDebug() << "init languages: " << Prefs::questionLanguage() << Prefs::solutionLanguage();
     const int totalNumLanguages = m_doc->identifierCount();
     if (Prefs::questionLanguage() >= totalNumLanguages || Prefs::solutionLanguage() >= totalNumLanguages
             || Prefs::solutionLanguage() == Prefs::questionLanguage()) {
         Prefs::setQuestionLanguage(0);
         Prefs::setSolutionLanguage(1);
+        kDebug() << "Invalid language selection.";
     }
     for ( int i = 0; i < totalNumLanguages-1; i++ ) {
         for (int j = i+1; j < totalNumLanguages; j++) {
@@ -175,7 +176,7 @@ void StatisticsMainWindow::initLanguages()
             m_ui->languageList->addItem(item2);
 
             if (j == Prefs::questionLanguage() && i == Prefs::solutionLanguage()) {
-                m_ui->languageList->setCurrentItem(item);
+                m_ui->languageList->setCurrentItem(item2);
             }
         }
     }
