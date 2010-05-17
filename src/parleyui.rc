@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="parley"  version="10">
+<gui name="parley"  version="11">
 
 <MenuBar>
     <Menu name="file" >
@@ -25,11 +25,10 @@
  </ToolBar>
  <ToolBar name="editorToolBar">
   <text>Editor Toolbar</text>
+  <Action name="file_close"/>
   <Action name="file_new" />
   <Action name="file_open" />
   <Action name="file_save" />
-  <Separator/>
-  <Action name="file_close"/>
   <Merge/>
  </ToolBar>
  <ToolBar name="practiceToolBar">
@@ -38,15 +37,15 @@
  </ToolBar>
  <ToolBar name="statisticsToolBar">
   <text>Statistics Toolbar</text>
-  <Merge/>
   <Action name="file_close"/>
+  <Merge/>
   <Separator/>
   <DefineGroup name="practice" />
  </ToolBar>
  <ToolBar name="practiceSummaryToolBar">
   <text>Practice Summary Toolbar</text>
-  <Merge/>
   <Action name="file_close"/>
+  <Merge/>
   <Separator/>
   <DefineGroup name="practice" />
  </ToolBar>

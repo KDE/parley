@@ -97,8 +97,9 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
                 i18n("Edit document properties"), "document-properties");
             break;
         case FileClose:
-            pAction = KStandardAction::close(recvr, slot, parent);
-            pAction->setHelpText(i18n("Close the current collection"));
+            pAction = Private::createCustomAction(recvr, slot, parent,
+                "file_close", i18n("&Start Page"),
+                i18n("Close the current vocabulary collection and show the start page"), "go-home");
             break;
         case FileQuit: 
             pAction = KStandardAction::quit(recvr, slot, parent);
@@ -147,8 +148,8 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
             break;  
         case EnterEditMode:
             pAction = Private::createCustomAction(recvr, slot, parent,
-                "document_edit", i18n("Edit..."),
-                i18n("Edit the document"), "document-edit");          
+                "document_edit", i18n("Editor"),
+                i18n("Switch to vocabulary editor"), "document-edit");
             break;
         case ToggleSearchBar:
             pAction = Private::createCustomAction(recvr, slot, parent, 

@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="practice"  version="2">
+<gui name="practice"  version="3">
 
  <MenuBar>
    <Menu name="file" >
    <text>&amp;File</text>
    <Action name="practice_stop" />
+  </Menu>
+
+ <Menu name="view" >
+   <text>&amp;View</text>
+   <Action name="fullscreen" />
   </Menu>
  </MenuBar>
 

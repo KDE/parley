@@ -34,16 +34,18 @@ ButtonDelegate::ButtonDelegate(QAbstractItemView *itemView, WelcomeScreen *paren
 ButtonDelegate::~ButtonDelegate()
 {
 }
-    
+
 QList<QWidget*> ButtonDelegate::createItemWidgets() const
 {
     QList<QWidget*> widgetList;
     KPushButton *editButton = new KPushButton();
-    editButton->setText(i18n("&Edit"));
+    editButton->setText(i18n("&Editor"));
     editButton->setIcon(KIcon("document-edit"));
+    editButton->setToolTip(i18n("Open this vocabulary collection in the editor"));
     KPushButton *practiceButton = new KPushButton();
     practiceButton->setText(i18n("&Practice"));
     practiceButton->setIcon(KIcon("practice-start"));
+    practiceButton->setToolTip("Start a practice session for this vocabulary collection");
     m_rightMargin = editButton->sizeHint().width() + practiceButton->sizeHint().width() + 3*margin;
     m_buttonHeight = editButton->sizeHint().height();
 
