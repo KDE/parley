@@ -44,6 +44,8 @@ LatexWidget::~LatexWidget()
 
 void LatexWidget::setTranslation(KEduVocExpression *entry, int translation)
 {
+    previewLabel->clear();
+
     if (entry) {
         // we need to map the widgets relative to the translation (each translation has 9 columns)
         m_mapper->clearMapping();
@@ -51,7 +53,6 @@ void LatexWidget::setTranslation(KEduVocExpression *entry, int translation)
         m_mapper->addMapping(lineEdit,
                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Translation);
         m_translation = entry->translation(translation);
-        previewLabel->clear();
         updateLatex();
     }
 }
@@ -83,6 +84,9 @@ void LatexWidget::checkBoxToggled()
 
 void LatexWidget::updateLatex()
 {
+    if (!m_translation) {
+        return;
+    }
     if (Practice::LatexRenderer::isLatex(m_translation->text())) {
         if (!m_renderer) {
             m_renderer = new Practice::LatexRenderer(this);
