@@ -16,6 +16,8 @@
 #include "abstractfrontend.h"
 #include "statustogglebutton.h"
 
+#include <klocale.h>
+
 using namespace Practice;
 
 StatusToggle::StatusToggle(QWidget* parent)
@@ -72,6 +74,23 @@ void StatusToggle::setResultState(AbstractFrontend::ResultState state)
     if (m_resultState == state)
         return;
     m_resultState = state;
+    switch (m_resultState) {
+    case AbstractFrontend::QuestionState:
+    case AbstractFrontend::AnswerSynonym:
+        setToolTip(QString());
+        m_toggle->setToolTip(QString());
+        break;
+    case AbstractFrontend::AnswerCorrect:
+        setToolTip(i18n("This word will be counted as correct.\nWords will only be counted as correct if they are answered correctly on the first attempt."));
+        m_toggle->setToolTip(i18n("Count this word as wrong"));
+        break;
+    case AbstractFrontend::AnswerWrong:
+        setToolTip(i18n("This word will be counted as wrong.\nWords will only be counted as correct if they are answered correctly on the first attempt."));
+        m_toggle->setToolTip(i18n("Count this word as correct"));
+        break;
+    default:
+        setPixmap(QPixmap());
+    }
     updatePixmap();
     updateToggle();
 }

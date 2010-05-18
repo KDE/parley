@@ -14,7 +14,7 @@
    <item>
     <widget class="QLabel" name="lessonLabel">
      <property name="text">
-      <string comment="KDE::DoNotExtract" >Lesson 2: Nature Destroyed</string>
+      <string comment="KDE::DoNotExtract">Lesson 2: Nature Destroyed</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -100,6 +100,9 @@
            <widget class="QPushButton" name="answerLaterButton">
             <property name="focusPolicy">
              <enum>Qt::TabFocus</enum>
+            </property>
+            <property name="toolTip">
+             <string>Skip this word for now and ask again later</string>
             </property>
             <property name="text">
              <string>Answer Later</string>
