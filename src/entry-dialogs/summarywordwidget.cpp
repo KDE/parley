@@ -38,22 +38,26 @@
 
 using namespace Editor;
 
-SummaryWordWidget::SummaryWordWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent) :
-    QWidget(parent)
+SummaryWordWidget::SummaryWordWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent)
+:QWidget(parent)
+,m_doc(doc)
+,m_wordTypeModel(0)
+,m_wordTypeView(0)
+,m_entry(0)
+,m_translationId(0)
 {
-    m_doc = doc;
+    Q_ASSERT(model);
+    Q_ASSERT(m_doc);
     m_model = model;
 
     setupUi(this);
+    slotDocumentChanged(m_doc);
 
     m_mapper = new QDataWidgetMapper(this);
     m_mapper->setModel(model);
     m_mapper->setItemDelegate(new SummaryWordDelegate(this));
-}
 
-SummaryWordWidget::~SummaryWordWidget()
-{
-    delete m_mapper;
+    connect(wordTypeComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(wordTypeSelected(QString)));
 }
 
 void SummaryWordWidget::setTranslation(KEduVocExpression *entry, int translation)
@@ -64,8 +68,8 @@ void SummaryWordWidget::setTranslation(KEduVocExpression *entry, int translation
 
         m_mapper->addMapping(wordEntry, 
                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Translation);
-        m_mapper->addMapping(wordTypeComboBox, 
-                            VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::WordType);
+        //m_mapper->addMapping(wordTypeComboBox, 
+        //                    VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::WordType);
         m_mapper->addMapping(pronunciationEntry, 
                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Pronunciation);
         m_mapper->addMapping(exampleEntry, 
@@ -77,18 +81,42 @@ void SummaryWordWidget::setTranslation(KEduVocExpression *entry, int translation
 
         languageLabel->setText("<b>" + m_doc->identifier(translation).name() + "</b>");
         lessonLabel->setText(entry->lesson()->name());
-        // populateLessonList(entry);
-        populateWordTypeList(entry, translation);
-    }
-    else {
+
+        setCurrentWordType(entry, translation);
+    } else {
         clear();
     }
+
+    m_entry = entry;
+    m_translationId = translation;
 }
 
 void SummaryWordWidget::slotDocumentChanged(KEduVocDocument *doc)
 {
     m_doc = doc;
+    if (!m_doc) {
+        kDebug() << "Set invalid document";
+        delete m_wordTypeModel;
+        m_wordTypeModel = 0;
+    } else {
+        delete m_wordTypeView;
+        if (!m_wordTypeModel) {
+            kDebug() << "Create word type model for summary view";
+            m_wordTypeModel = new WordTypeModel(this);
+        }
+        m_wordTypeModel->setDocument(m_doc);
+        m_wordTypeView = new QTreeView(this);
+        m_wordTypeView->setModel(m_wordTypeModel);
+        wordTypeComboBox->setModel(m_wordTypeModel);
+        wordTypeComboBox->setView(m_wordTypeView);
+
+        m_wordTypeView->setColumnHidden(1, true);
+        m_wordTypeView->header()->setVisible(false);
+        m_wordTypeView->setRootIsDecorated(true);
+        m_wordTypeView->expandAll();
+    }
 }
+
 
 void SummaryWordWidget::slotSelectionChanged(const QItemSelection &itemSelected, 
                                              const QItemSelection &itemDeselected)
@@ -102,6 +130,7 @@ void SummaryWordWidget::slotSelectionChanged(const QItemSelection &itemSelected,
         m_mapper->setCurrentModelIndex(index);
     }
 }
+
 /*
 void SummaryWordWidget::populateLessonList(KEduVocExpression *entry)
 {
@@ -123,35 +152,27 @@ void SummaryWordWidget::populateLessonList(KEduVocExpression *entry)
     view->setCurrentIndex(basicLessonModel->index(entry->lesson()));
 }
 */
-void SummaryWordWidget::populateWordTypeList(KEduVocExpression *entry, int translation)
+
+void SummaryWordWidget::setCurrentWordType(KEduVocExpression *entry, int translation)
 {
-    wordTypeComboBox->clear();
-
-    WordTypeModel *basicWordTypeModel = new WordTypeModel(this);
-    wordTypeComboBox->setModel(basicWordTypeModel);
-    QTreeView *view = new QTreeView(this);
-
-    view->setModel(basicWordTypeModel);
-    wordTypeComboBox->setView(view);
-
-    basicWordTypeModel->setDocument(m_doc);
-
-    view->setColumnHidden(1, true);
-    view->header()->setVisible(false);
-    view->setRootIsDecorated(true);
-    view->expandAll();
-
-    view->setCurrentIndex(basicWordTypeModel->index(entry->translation(translation)->wordType()));
+    if (entry && entry->translation(translation)->wordType()) {
+        kDebug() << "Set current word type: " << entry->translation(translation)->wordType()->name();
+        // select the right word type
+        m_wordTypeView->setCurrentIndex(m_wordTypeModel->index(entry->translation(translation)->wordType()));
+    } else {
+        m_wordTypeView->setCurrentIndex(-1);
+    }
 }
 
 void SummaryWordWidget::clear()
 {
+    kDebug() << "Clear summary widget";
+
     languageLabel->setText(QString());
     wordEntry->setText(QString());
 
     // lessonComboBox->clear();
     lessonLabel->setText(QString());
-    wordTypeComboBox->clear();
 
     pronunciationEntry->setText(QString());
     exampleEntry->setText(QString());
@@ -171,7 +192,6 @@ void SummaryWordDelegate::setEditorData(QWidget *editor, const QModelIndex &inde
 
     if (editor) {
         switch (VocabularyModel::columnType(index.column())) {
-            
             case VocabularyModel::WordType:
                 break;
 
@@ -189,6 +209,22 @@ void SummaryWordDelegate::setEditorData(QWidget *editor, const QModelIndex &inde
         }
     }
 }
+
+void SummaryWordWidget::wordTypeSelected(const QString& wordTypeName)
+{
+    if (!m_doc || !m_entry) {
+        return;
+    }
+
+    KEduVocContainer* container = m_doc->wordTypeContainer()->childContainer(wordTypeName);
+    if (container) {
+        KEduVocWordType *wordType = static_cast<KEduVocWordType*>(container);
+        if (wordType) {
+            m_entry->translation(m_translationId)->setWordType(wordType);
+        }
+    }
+}
+
 
 #include "summarywordwidget.moc"
 

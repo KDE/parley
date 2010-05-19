@@ -20,6 +20,7 @@
 #include <QItemDelegate>
 #include <QWidget>
 
+class QTreeView;
 class QDataWidgetMapper;
 class QItemSelection;
 class QModelIndex;
@@ -29,7 +30,8 @@ class KEduVocExpression;
 
 namespace Editor {
     class VocabularyFilter;
-    
+    class WordTypeModel;
+
 /**
 * Represents the overview of a KEduVocExpression
 * Shows the language word
@@ -46,7 +48,6 @@ class SummaryWordWidget : public QWidget, public Ui::SummaryWordWidget
 
 public:
     SummaryWordWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent = 0);
-    ~SummaryWordWidget();
 
 public slots:
     /**
@@ -64,6 +65,8 @@ public slots:
     */
     void slotSelectionChanged(const QItemSelection &, const QItemSelection &);
 
+    void wordTypeSelected(const QString& wordTypeName);
+
 private:
     /**
     * Clears the form and the comboboxes
@@ -78,12 +81,16 @@ private:
     /**
     * Fill the word types list with the available word types of the KEduVocDocument
     */
-    void populateWordTypeList(KEduVocExpression *entry, int translation);
+    void setCurrentWordType(KEduVocExpression *entry, int translation);
 
 private:
     VocabularyFilter *m_model;
     KEduVocDocument *m_doc;
     QDataWidgetMapper *m_mapper;
+    WordTypeModel *m_wordTypeModel;
+    QTreeView *m_wordTypeView;
+    KEduVocExpression *m_entry;
+    int m_translationId;
 };
 
 class SummaryWordDelegate : public QItemDelegate

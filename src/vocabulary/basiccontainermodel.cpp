@@ -15,6 +15,9 @@
 
 #include "containermodel.h"
 
+#include <KLocalizedString>
+#include <KDebug>
+
 #include "containermimedata.h"
 #include "vocabularymimedata.h"
 
@@ -23,7 +26,6 @@
 #include <keduvocwordtype.h>
 #include <keduvocexpression.h>
 
-#include <KLocalizedString>
 
 /** @file
   * Implementation of BasicContainerModel.
@@ -32,15 +34,21 @@
 
 using namespace Editor;
 
-BasicContainerModel::BasicContainerModel(KEduVocContainer::EnumContainerType type, QObject * parent) : QAbstractItemModel(parent)
+BasicContainerModel::BasicContainerModel(KEduVocContainer::EnumContainerType type, QObject * parent)
+    : QAbstractItemModel(parent)
+    , m_type(type)
+    , m_doc(0)
 {
-    m_type = type;
-    m_doc = 0;
 }
 
 void BasicContainerModel::setDocument(KEduVocDocument * doc)
 {
-    m_doc=doc;
+    m_doc = doc;
+    if (m_doc) {
+        kDebug() << "Set Document: " << m_doc->url();
+    } else {
+        kDebug() << "Set Invalid Document";
+    }
     reset();
 }
 
@@ -58,9 +66,12 @@ QModelIndex BasicContainerModel::index(int row, int column, const QModelIndex &p
         parentContainer = static_cast<KEduVocContainer*>(parent.internalPointer());
     }
 
-    KEduVocContainer *childContainer;
+    KEduVocContainer *childContainer = 0;
     if (!parentContainer) {
         childContainer = rootContainer();
+        if (!childContainer) {
+            return QModelIndex();
+        }
     } else {
         childContainer = parentContainer->childContainer(row);
     }
