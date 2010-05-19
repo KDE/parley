@@ -23,6 +23,7 @@
 #include "multiplechoicebackendmode.h"
 #include "writtenbackendmode.h"
 #include "conjugationbackendmode.h"
+#include "comparisonbackendmode.h"
 
 using namespace Practice;
 
@@ -87,6 +88,10 @@ void DefaultBackend::initializePracticeMode()
         case Prefs::EnumPracticeMode::ConjugationPractice:
             m_frontend->setMode(AbstractFrontend::Conjugation);
             m_mode = new ConjugationBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
+            break;
+        case Prefs::EnumPracticeMode::ComparisonPractice:
+            m_frontend->setMode(AbstractFrontend::Comparison);
+            m_mode = new ComparisonBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
             break;
         default:
             Q_ASSERT("Implement selected practice mode" == 0);

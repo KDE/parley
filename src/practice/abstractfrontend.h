@@ -31,7 +31,8 @@ public:
         MixedLetters,
         MultipleChoice,
         Written,
-        Conjugation
+        Conjugation,
+        Comparison
     };
 
     enum ResultState {

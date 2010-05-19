@@ -22,6 +22,7 @@
 #include "ui_practice_mainwindow.h"
 
 #include "settings/kgametheme/kgametheme.h"
+#include "comparisonmodewidget.h"
 #include "conjugationmodewidget.h"
 #include "flashcardmodewidget.h"
 #include "mixedlettersmodewidget.h"
@@ -107,6 +108,9 @@ void GuiFrontend::setMode(Mode mode)
             break;
         case Conjugation:
             newWidget = new ConjugationModeWidget(this, m_widget);
+            break;
+        case Comparison:
+            newWidget = new ComparisonModeWidget(this, m_widget);
             break;
         default:
             Q_ASSERT("Practice Mode Invalid" == 0);

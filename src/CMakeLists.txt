@@ -33,6 +33,8 @@ set(parley_SRCS
     practice/practiceoptions.cpp
     practice/abstractfrontend.cpp
     practice/abstractbackendmode.cpp
+    practice/comparisonbackendmode.cpp
+    practice/comparisonmodewidget.cpp
     practice/conjugationbackendmode.cpp
     practice/conjugationmodewidget.cpp
     practice/defaultbackend.cpp
@@ -124,6 +126,7 @@ kde4_add_ui_files(parley_SRCS
     practice/entryfilter.ui
     practice/practicesummarywidget.ui
     practice/practice_mainwindow.ui
+    practice/practice_widget_comparison.ui
     practice/practice_widget_conjugation.ui
     practice/practice_widget_flashcard.ui
     practice/practice_widget_multiplechoice.ui
