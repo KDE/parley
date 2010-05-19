@@ -160,7 +160,7 @@ void SummaryWordWidget::setCurrentWordType(KEduVocExpression *entry, int transla
         // select the right word type
         m_wordTypeView->setCurrentIndex(m_wordTypeModel->index(entry->translation(translation)->wordType()));
     } else {
-        m_wordTypeView->setCurrentIndex(-1);
+        wordTypeComboBox->setCurrentIndex(-1);
     }
 }
 
