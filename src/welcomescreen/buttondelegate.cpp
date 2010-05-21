@@ -15,16 +15,16 @@
 #include "welcomescreen.h"
 
 #include <kwidgetitemdelegate.h>
-#include <KPushButton>
 #include <KMessageBox>
 
 #include <QStandardItemModel>
 #include <QPainter>
 #include <QAbstractItemDelegate>
 #include <QApplication>
+#include <QToolButton>
 
 const int margin = 5;
-const int iconSize = 32;
+const int iconSize = 22;
 
 ButtonDelegate::ButtonDelegate(QAbstractItemView *itemView, WelcomeScreen *parent )
         : KWidgetItemDelegate(itemView, parent), m_rightMargin(0), m_buttonHeight(0), m_welcomeScreen(parent)
@@ -38,37 +38,27 @@ ButtonDelegate::~ButtonDelegate()
 QList<QWidget*> ButtonDelegate::createItemWidgets() const
 {
     QList<QWidget*> widgetList;
-    KPushButton *editButton = new KPushButton();
-    editButton->setText(i18n("&Editor"));
+    QToolButton *editButton = new QToolButton();
     editButton->setIcon(KIcon("document-edit"));
     editButton->setToolTip(i18n("Open this vocabulary collection in the editor"));
-    KPushButton *practiceButton = new KPushButton();
-    practiceButton->setText(i18n("&Practice"));
-    practiceButton->setIcon(KIcon("practice-start"));
-    practiceButton->setToolTip("Start a practice session for this vocabulary collection");
-    m_rightMargin = editButton->sizeHint().width() + practiceButton->sizeHint().width() + 3*margin;
+    m_rightMargin = editButton->sizeHint().width() + 3*margin;
     m_buttonHeight = editButton->sizeHint().height();
 
     connect(editButton, SIGNAL(clicked()), this, SLOT(slotEdit()));
-    connect(practiceButton, SIGNAL(clicked()), this, SLOT(slotPractice()));
 
-    widgetList << editButton << practiceButton;
+    widgetList << editButton;
     return widgetList;
 }
 
 void ButtonDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const
 {
     Q_UNUSED(index)
-    KPushButton *editButton = static_cast<KPushButton*>(widgets[0]);
+    QToolButton *editButton = static_cast<QToolButton*>(widgets[0]);
     QSize editButtonSizeHint = editButton->sizeHint();
     editButton->resize(editButtonSizeHint);
-    
-    KPushButton *practiceButton = static_cast<KPushButton*>(widgets[1]);
-    QSize practiceButtonSizeHint = practiceButton->sizeHint();
-    practiceButton->resize(practiceButtonSizeHint);
-    
-    editButton->move(option.rect.width() - editButtonSizeHint.width() - practiceButtonSizeHint.width() - 2*margin, (option.rect.height() - editButtonSizeHint.height())/2);
-    practiceButton->move(option.rect.width() - practiceButtonSizeHint.width() - margin, (option.rect.height() - practiceButtonSizeHint.height())/2);  
+    editButton->setAutoRaise(true);
+
+    editButton->move(option.rect.width() - editButtonSizeHint.width() - 2*margin, (option.rect.height() - editButtonSizeHint.height())/2);
 }
 
 void ButtonDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
