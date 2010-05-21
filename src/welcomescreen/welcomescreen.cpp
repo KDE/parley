@@ -114,8 +114,7 @@ void WelcomeScreen::updateRecentFilesModel()
         item->setToolTip(nameString+" ("+url.pathOrUrl()+')');
         item->setData(QVariant(url), Qt::UserRole);
 
-        QString iconName = KMimeType::iconNameForUrl(url);
-        item->setIcon(KIcon(iconName));
+        item->setIcon(KIcon("practice-start"));
 
         m_recentFilesModel->appendRow(item);
     }
