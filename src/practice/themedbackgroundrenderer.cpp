@@ -177,14 +177,14 @@ QPixmap ThemedBackgroundRenderer::getPixmapForId(const QString& id, QSize size)
 QMargins ThemedBackgroundRenderer::contentMargins()
 {
     QMargins margins;
-    if (m_renderer.elementExists("background-border-top"))
-        margins.setTop(m_renderer.boundsOnElement("background-border-top").toAlignedRect().height());
-    if (m_renderer.elementExists("background-border-bottom"))
-        margins.setBottom(m_renderer.boundsOnElement("background-border-bottom").toAlignedRect().height());
-    if (m_renderer.elementExists("background-border-left"))
-        margins.setLeft(m_renderer.boundsOnElement("background-border-left").toAlignedRect().width());
-    if (m_renderer.elementExists("background-border-right"))
-        margins.setRight(m_renderer.boundsOnElement("background-border-right").toAlignedRect().width());
+    if (m_renderer.elementExists("background-border-topleft"))
+        margins.setTop(m_renderer.boundsOnElement("background-border-topleft").toAlignedRect().height());
+    if (m_renderer.elementExists("background-border-bottomleft"))
+        margins.setBottom(m_renderer.boundsOnElement("background-border-bottomleft").toAlignedRect().height());
+    if (m_renderer.elementExists("background-border-topleft"))
+        margins.setLeft(m_renderer.boundsOnElement("background-border-topleft").toAlignedRect().width());
+    if (m_renderer.elementExists("background-border-topright"))
+        margins.setRight(m_renderer.boundsOnElement("background-border-topright").toAlignedRect().width());
     return margins;
 }
 
