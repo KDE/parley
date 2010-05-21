@@ -51,6 +51,7 @@ public:
         Corner,
         LeftTop, // left or top (depending on orientation of the edge)
         Centered,
+        Repeated,
         RightBottom // right or bottom (depending on orientation of the edge)
     };
 

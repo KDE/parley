@@ -243,6 +243,7 @@ void ThemedBackgroundRenderer::renderRect(const QString& name, const QRect& rect
             renderItem(name, QString(inside?"inside":"border")+"-"+edge,            rect, p, fastScale, scaleBase, Qt::IgnoreAspectRatio, alignEdge, Centered, inside);
             renderItem(name, QString(inside?"inside":"border")+"-"+edge+"-ratio",   rect, p, fastScale, scaleBase, Qt::KeepAspectRatio,   alignEdge, Centered, inside);
             renderItem(name, QString(inside?"inside":"border")+"-"+edge+"-noscale", rect, p, fastScale, NoScale,   Qt::IgnoreAspectRatio, alignEdge, Centered, inside);
+            renderItem(name, QString(inside?"inside":"border")+"-"+edge+"-repeat",  rect, p, fastScale, scaleBase, Qt::IgnoreAspectRatio, alignEdge, Repeated, inside);
             renderItem(name, QString(inside?"inside":"border")+"-"+edge+"-"+(scaleBase==Vertical?"top":"left"),     rect, p, fastScale, NoScale,   Qt::IgnoreAspectRatio, alignEdge, LeftTop, inside);
             renderItem(name, QString(inside?"inside":"border")+"-"+edge+"-"+(scaleBase==Vertical?"bottom":"right"), rect, p, fastScale, NoScale,   Qt::IgnoreAspectRatio, alignEdge, RightBottom, inside);
         }
@@ -286,7 +287,14 @@ void ThemedBackgroundRenderer::renderItem(const QString& idBase, const QString& 
         image = QImage(itemRect.size(), QImage::Format_ARGB32_Premultiplied);
         image.fill(QColor(Qt::transparent).rgba());
         QPainter painter(&image);
-        m_renderer.render(&painter, mappedId, QRect(QPoint(0, 0), itemRect.size()));
+        if(align == Repeated) {
+            QImage tile(itemRectF.toRect().size(), QImage::Format_ARGB32_Premultiplied);
+            QPainter tilePainter(&tile);
+            m_renderer.render(&tilePainter, mappedId, QRect(QPoint(0, 0), tile.size()));
+            painter.fillRect(image.rect(), QBrush(tile));
+        } else {
+            m_renderer.render(&painter, mappedId, QRect(QPoint(0, 0), itemRect.size()));
+        }
         m_cache.updateImage(id, image);
         m_haveCache = true;
     }
@@ -392,6 +400,7 @@ QRect ThemedBackgroundRenderer::alignRect(QRect itemRect, const QRect &baseRect,
             x = baseRect.x();
             break;
         case Centered:
+        case Repeated:
             x = baseRect.x() + (baseRect.width()-itemRect.width())/2;
             break;
         case RightBottom:
@@ -425,6 +434,7 @@ QRect ThemedBackgroundRenderer::alignRect(QRect itemRect, const QRect &baseRect,
             y = baseRect.y();
             break;
         case Centered:
+        case Repeated:
             y = baseRect.y() + (baseRect.height()-itemRect.height())/2;
             break;
         case RightBottom:
