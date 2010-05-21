@@ -289,6 +289,7 @@ void ThemedBackgroundRenderer::renderItem(const QString& idBase, const QString& 
         QPainter painter(&image);
         if(align == Repeated) {
             QImage tile(itemRectF.toRect().size(), QImage::Format_ARGB32_Premultiplied);
+            tile.fill(QColor(Qt::transparent).rgba());
             QPainter tilePainter(&tile);
             m_renderer.render(&tilePainter, mappedId, QRect(QPoint(0, 0), tile.size()));
             painter.fillRect(image.rect(), QBrush(tile));
