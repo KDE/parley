@@ -72,8 +72,12 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     connect(ui->newButton, SIGNAL(clicked()), doc, SLOT(slotFileNew()));
     connect(ui->openButton, SIGNAL(clicked()), doc, SLOT(slotFileOpen()));
     connect(ui->ghnsButton, SIGNAL(clicked()), doc, SLOT(slotGHNS()));
-    connect(ui->recentFiles, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(slotDoubleClicked(const QModelIndex&)));
-    
+    if (KGlobalSettings::singleClick()) {
+        connect(ui->recentFiles, SIGNAL(clicked(const QModelIndex&)), this, SLOT(slotDoubleClicked(const QModelIndex&)));
+    } else {
+        connect(ui->recentFiles, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(slotDoubleClicked(const QModelIndex&)));
+    }
+
     connect(m_parleyApp, SIGNAL(recentFilesChanged()), this, SLOT(updateRecentFilesModel()));
     
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
