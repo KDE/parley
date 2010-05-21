@@ -135,7 +135,7 @@ void WelcomeScreen::slotDoubleClicked(const QModelIndex& index)
 
 void WelcomeScreen::slotDoubleClickOpen()
 {
-    slotOpenUrl(m_openUrl);
+    slotPracticeUrl(m_openUrl);
 }
 
 void WelcomeScreen::slotPracticeUrl(const KUrl & url)
