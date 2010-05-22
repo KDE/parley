@@ -55,7 +55,6 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
         .arg(fgColor.name());
     setStyleSheet(css);
 
-    ui->iconLabel->setPixmap(KIcon("parley").pixmap(128, 128));
     ui->newButton->setIcon(KIcon("document-new"));
     ui->openButton->setIcon(KIcon("document-open"));
     ui->ghnsButton->setIcon(KIcon("get-hot-new-stuff"));
