@@ -14,34 +14,38 @@
 #ifndef BUTTONDELEGATE_H
 #define BUTTONDELEGATE_H
 
-#include <kwidgetitemdelegate.h>
+#include <QStyledItemDelegate>
+
+#include <QPoint>
 
 class WelcomeScreen;
+class QToolButton;
 
 class ButtonDelegate
-    : public KWidgetItemDelegate
+    : public QStyledItemDelegate
 {
 Q_OBJECT
 public:
     ButtonDelegate(QAbstractItemView *itemView, WelcomeScreen *parent);
 
     virtual ~ButtonDelegate();
-    
-    QList<QWidget*> createItemWidgets() const;
-    void updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const;
 
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
+
+    QModelIndex hoveredIndex() const;
 
 public slots:
     void slotEdit();
     void slotPractice();
 
 private:
-    mutable int m_rightMargin;
-    mutable int m_buttonHeight;
+    int m_rightMargin;
+    int m_buttonHeight;
     WelcomeScreen *m_welcomeScreen;
+    QAbstractItemView *m_itemView;
+    QToolButton *m_editButton;
 };
 
-#endif
+#endif //BUTTONDELEGATE_H
