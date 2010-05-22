@@ -33,7 +33,8 @@ ButtonDelegate::ButtonDelegate(QAbstractItemView *itemView, WelcomeScreen *paren
     m_editButton->setToolTip(i18n("Open this vocabulary collection in the editor"));
     m_editButton->resize(m_editButton->sizeHint());
     m_editButton->setAutoRaise(true);
-    m_rightMargin = m_editButton->sizeHint().width() + 3*margin;
+    m_editButton->hide();
+    m_rightMargin = m_editButton->sizeHint().width() + margin;
     m_buttonHeight = m_editButton->sizeHint().height();
 
     connect(m_editButton, SIGNAL(clicked()), this, SLOT(slotEdit()));
