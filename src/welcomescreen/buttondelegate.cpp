@@ -14,7 +14,6 @@
 #include "buttondelegate.h"
 #include "welcomescreen.h"
 
-#include <kwidgetitemdelegate.h>
 #include <KMessageBox>
 
 #include <QStandardItemModel>
@@ -26,45 +25,35 @@
 const int margin = 5;
 const int iconSize = 22;
 
-ButtonDelegate::ButtonDelegate(QAbstractItemView *itemView, WelcomeScreen *parent )
-        : KWidgetItemDelegate(itemView, parent), m_rightMargin(0), m_buttonHeight(0), m_welcomeScreen(parent)
+ButtonDelegate::ButtonDelegate(QAbstractItemView *itemView, WelcomeScreen *parent)
+        : QStyledItemDelegate(itemView), m_rightMargin(0), m_buttonHeight(0), m_welcomeScreen(parent), m_itemView(itemView)
 {
+    m_editButton = new QToolButton(itemView->viewport());
+    m_editButton->setIcon(KIcon("document-edit"));
+    m_editButton->setToolTip(i18n("Open this vocabulary collection in the editor"));
+    m_editButton->resize(m_editButton->sizeHint());
+    m_editButton->setAutoRaise(true);
+    m_rightMargin = m_editButton->sizeHint().width() + 3*margin;
+    m_buttonHeight = m_editButton->sizeHint().height();
+
+    connect(m_editButton, SIGNAL(clicked()), this, SLOT(slotEdit()));
 }
 
 ButtonDelegate::~ButtonDelegate()
 {
 }
 
-QList<QWidget*> ButtonDelegate::createItemWidgets() const
-{
-    QList<QWidget*> widgetList;
-    QToolButton *editButton = new QToolButton();
-    editButton->setIcon(KIcon("document-edit"));
-    editButton->setToolTip(i18n("Open this vocabulary collection in the editor"));
-    m_rightMargin = editButton->sizeHint().width() + 3*margin;
-    m_buttonHeight = editButton->sizeHint().height();
-
-    connect(editButton, SIGNAL(clicked()), this, SLOT(slotEdit()));
-
-    widgetList << editButton;
-    return widgetList;
-}
-
-void ButtonDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const
-{
-    Q_UNUSED(index)
-    QToolButton *editButton = static_cast<QToolButton*>(widgets[0]);
-    QSize editButtonSizeHint = editButton->sizeHint();
-    editButton->resize(editButtonSizeHint);
-    editButton->setAutoRaise(true);
-
-    editButton->move(option.rect.width() - editButtonSizeHint.width() - 2*margin, (option.rect.height() - editButtonSizeHint.height())/2);
-}
-
 void ButtonDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, 0);
-    
+    if(option.state & QStyle::State_MouseOver) {
+        m_editButton->show();
+        m_editButton->move(QPoint(option.rect.right()-margin-m_editButton->sizeHint().width(),
+                                  option.rect.top()+(option.rect.height()-m_editButton->height())/2+1));
+    } else if (!hoveredIndex().isValid()) {
+        m_editButton->hide();
+    }
+
     QIcon icon = index.data(Qt::DecorationRole).value<QIcon>();
     int iconMargin = (option.rect.height() - iconSize)/2;
     painter->drawPixmap(option.rect.x() + iconMargin, option.rect.y() + iconMargin, icon.pixmap(iconSize, iconSize));
@@ -88,16 +77,22 @@ QSize ButtonDelegate::sizeHint(const QStyleOptionViewItem &option,
 
 void ButtonDelegate::slotEdit()
 {
-    const QModelIndex index = focusedIndex();
+    const QModelIndex index = hoveredIndex();
     KUrl url = index.data(Qt::UserRole).toUrl();
     m_welcomeScreen->slotOpenUrl(url);
 }
 
 void ButtonDelegate::slotPractice()
 {
-    const QModelIndex index = focusedIndex();
+    const QModelIndex index = hoveredIndex();
     KUrl url = index.data(Qt::UserRole).toUrl();
     m_welcomeScreen->slotPracticeUrl(url);
+}
+
+QModelIndex ButtonDelegate::hoveredIndex() const
+{
+    const QPoint pos = m_itemView->viewport()->mapFromGlobal(QCursor::pos());
+    return m_itemView->indexAt(pos);
 }
 
 #include "buttondelegate.moc"
