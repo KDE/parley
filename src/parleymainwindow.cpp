@@ -372,7 +372,9 @@ void ParleyMainWindow::showDocumentActions(bool open, bool edit)
     actionCollection()->action("file_save")->setVisible(edit);
     actionCollection()->action("file_save_as")->setVisible(edit);
     actionCollection()->action("file_close")->setVisible(edit);
+#ifdef HAVE_LIBXSLT
     actionCollection()->action("file_export")->setVisible(edit);
+#endif
     actionCollection()->action("file_properties")->setVisible(edit);
     actionCollection()->action("file_close")->setVisible(edit);
 }
