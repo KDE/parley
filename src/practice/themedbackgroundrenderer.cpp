@@ -21,6 +21,8 @@
 #include <QtConcurrentRun>
 #include <QPainter>
 #include <QMargins>
+#include <QPalette>
+#include <QApplication>
 
 using namespace Practice;
 
@@ -100,6 +102,21 @@ QPixmap ThemedBackgroundRenderer::getScaledBackground()
     m_future = QFuture<QImage>();
     m_lastScaledRenderRects = m_rects;
     return result;
+}
+
+QPalette ThemedBackgroundRenderer::fontColorPalette()
+{
+    QPalette palette = QApplication::palette();
+
+    QString text = m_theme->property("X-Parley-Font-Color");
+    if (text.length() == 6 && text.contains(QRegExp("[0-9a-f]{6}"))) {
+        QColor color = QColor(text.mid(0,2).toInt(0,16),
+                              text.mid(2,2).toInt(0,16),
+                              text.mid(4,2).toInt(0,16));
+        palette.setColor(QPalette::WindowText, color);
+    }
+
+    return palette;
 }
 
 void ThemedBackgroundRenderer::updateBackground()

@@ -58,6 +58,7 @@ void MixedLettersModeWidget::updatePixmap()
     QPainter p(&m_pixmap);
     KColorScheme scheme(QPalette::Active);
     QPen defaultPen = p.pen();
+    defaultPen.setColor(palette().color(QPalette::WindowText));
     QString enteredChars = m_ui->answerEdit->text();
     int i = 0;
     Q_FOREACH(QChar ch, m_mixedSolution) {
