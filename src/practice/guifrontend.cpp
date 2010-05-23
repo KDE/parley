@@ -347,6 +347,7 @@ void GuiFrontend::updateBackground()
 void GuiFrontend::setTheme()
 {
     m_themedBackgroundRenderer->setTheme(Prefs::theme());
+    m_widget->setPalette(m_themedBackgroundRenderer->fontColorPalette());
 }
 
 #include "guifrontend.moc"

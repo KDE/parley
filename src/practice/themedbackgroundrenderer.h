@@ -66,6 +66,8 @@ public:
     QMargins contentMargins();
 
     QPixmap getScaledBackground();
+
+    QPalette fontColorPalette();
     
 public Q_SLOTS:
     void setSize(const QSize& size);

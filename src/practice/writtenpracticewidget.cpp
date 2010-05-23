@@ -31,10 +31,10 @@ WrittenPracticeWidget::WrittenPracticeWidget(GuiFrontend *frontend, QWidget *par
     connect(m_ui->answerEdit, SIGNAL(returnPressed()), this, SLOT(continueClicked()));
 
     KColorScheme scheme(QPalette::Active);
-    m_correctPalette = QApplication::palette();
+    m_correctPalette = palette();
     m_correctPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::PositiveText).color());
     m_correctPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::PositiveText).color());
-    m_wrongPalette = QApplication::palette();
+    m_wrongPalette = palette();
     m_wrongPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::NegativeText).color());
     m_wrongPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::NegativeText).color());
 }
@@ -68,7 +68,7 @@ void WrittenPracticeWidget::showQuestion()
     m_ui->answerEdit->setEnabled(true);
     m_ui->answerEdit->clear();
     m_ui->answerEdit->setFocus();
-    m_ui->answerEdit->setPalette(QApplication::palette());
+    m_ui->answerEdit->setPalette(palette());
     m_ui->solutionLabel->setText(QString());
     m_ui->helpLabel->clear();
     
