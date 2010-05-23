@@ -193,7 +193,7 @@ install(TARGETS parley  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 install( FILES parley.desktop DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 
 # hot new stuff config
-install( FILES parley.knsrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
+install( FILES parley.knsrc parley-themes.knsrc DESTINATION  ${CONFIG_INSTALL_DIR} )
 
 # UI files - define menus and toolbars
 install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )
