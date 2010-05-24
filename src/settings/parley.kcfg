@@ -63,11 +63,11 @@
     </entry>
     <entry name="Block" type="Bool">
       <label>In Blocking Query Tab Dialog, if checked then the Query is blocked</label>
-      <default>false</default>
+      <default>true</default>
     </entry>
     <entry name="Expire" type="Bool">
       <label>In Blocking Query Tab Dialog, if checked then the Query accepts an expiring time</label>
-      <default>false</default>
+      <default>true</default>
     </entry>
     <entry name="AltLearn" type="Bool">
       <label>Use the Leitner learning method</label>
