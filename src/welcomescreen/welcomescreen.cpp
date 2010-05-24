@@ -88,7 +88,6 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     connect(Prefs::self(), SIGNAL(configChanged()), this, SLOT(updateBackground()));
     setTheme();
 
-    m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
     connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)), this, SLOT(backgroundChanged(QPixmap)));
     connect(m_widget, SIGNAL(sizeChanged()), this, SLOT(updateBackground()));
 }
@@ -167,6 +166,7 @@ void WelcomeScreen::updateBackground()
 void WelcomeScreen::setTheme()
 {
     m_themedBackgroundRenderer->setTheme(Prefs::theme());
+    m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
 }
 
 #include "welcomescreen.moc"
