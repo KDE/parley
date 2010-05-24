@@ -13,12 +13,6 @@
 
 #include "conjugationoptions.h"
 
-#include "ui_comparisonoptionswidget.h"
-#include "ui_conjugationoptionswidget.h"
-#include "ui_writtenpracticeoptionswidget.h"
-#include "ui_multiplechoiceoptionswidget.h"
-#include "ui_flashcardsoptionswidget.h"
-
 #include "languagesettings.h"
 #include "documentsettings.h"
 #include "prefs.h"
@@ -30,6 +24,7 @@
 #include <QStackedLayout>
 #include <QLabel>
 #include <QtDBus>
+#include <QTreeWidget>
 
 ConjugationOptions::ConjugationOptions(KEduVocDocument* doc, QWidget * parent)
     : QWidget(parent)

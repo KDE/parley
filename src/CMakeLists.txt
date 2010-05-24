@@ -107,12 +107,7 @@ set(parley_SRCS
 kde4_add_ui_files(parley_SRCS
     configure-practice/advancedpracticeoptions.ui
     configure-practice/blockoptions.ui
-    configure-practice/comparisonoptionswidget.ui
-    configure-practice/conjugationoptionswidget.ui
-    configure-practice/flashcardsoptionswidget.ui
-    configure-practice/multiplechoiceoptionswidget.ui
     configure-practice/thresholdoptions.ui
-    configure-practice/writtenpracticeoptionswidget.ui
     entry-dialogs/multiplechoicewidget.ui
     entry-dialogs/comparisonwidget.ui
     entry-dialogs/conjugationwidget.ui
