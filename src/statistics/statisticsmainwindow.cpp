@@ -88,10 +88,6 @@ void StatisticsMainWindow::initActions()
     ParleyActions::create(ParleyActions::EnterEditMode, m_mainWindow, SLOT(showEditor()), actionCollection());
     ParleyActions::create(ParleyActions::StartPractice, m_mainWindow, SLOT(startPractice()), actionCollection());
     ParleyActions::create(ParleyActions::ConfigurePractice, m_mainWindow, SLOT(configurePractice()), actionCollection());
-
-    m_ui->startPracticeButton->setText(i18n("Start Practice..."));
-    m_ui->startPracticeButton->setIcon(KIcon("practice-start"));
-    connect(m_ui->startPracticeButton, SIGNAL(clicked()), m_mainWindow, SLOT(startPractice()));
 }
 
 void StatisticsMainWindow::initPracticeModeSelection()
