@@ -113,9 +113,12 @@ void MultiplechoiceModeWidget::setFeedback(const QVariant& feedback)
 
 void MultiplechoiceModeWidget::showSolution()
 {
-    int input = userInput().toInt();
+    int input = -1;
+    if (userInput().isValid()) {
+        input = userInput().toInt();
+    }
     m_choiceButtons[m_solution]->setPalette(m_correctPalette);
-    if (input != m_solution) {
+    if (input != -1 && input != m_solution) {
         m_choiceButtons[input]->setPalette(m_wrongPalette);
     }
     foreach(QRadioButton *radio, m_choiceButtons) {

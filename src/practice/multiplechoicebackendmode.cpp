@@ -93,11 +93,13 @@ void MultipleChoiceBackendMode::continueAction()
         emit currentEntryFinished();
         return;
     }
-    if (m_frontend->userInput().toInt() == m_correctAnswer) {
+    if (!m_frontend->userInput().isNull() && m_frontend->userInput().toInt() == m_correctAnswer) {
         m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
     } else {
         m_frontend->setResultState(AbstractFrontend::AnswerWrong);
-        m_current->addUserAnswer(m_choices.at(m_frontend->userInput().toInt()));
+        if(!m_frontend->userInput().isNull()) {
+            m_current->addUserAnswer(m_choices.at(m_frontend->userInput().toInt()));
+        }
     }
     m_frontend->showSolution();
     m_solutionVisible = true;
