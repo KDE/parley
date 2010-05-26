@@ -7,7 +7,7 @@
     <author>Daniel Laidig, Frederik Gladhorn</author>
     <license>GPLv2+ (GNU General Public License version 2 or later)</license>
     <comment>This is a document created during the parley mini sprint 2010</comment>
-    <date>2010-05-10</date>
+    <date>2010-05-26</date>
     <category>Testing</category>
   </information>
   <identifiers>
@@ -212,15 +212,23 @@
       <translation id="0">
         <text>groß</text>
         <comparison>
-          <comparative>größer</comparative>
-          <superlative>am größten</superlative>
+          <comparative>
+            <text>größer</text>
+          </comparative>
+          <superlative>
+            <text>am größten</text>
+          </superlative>
         </comparison>
       </translation>
       <translation id="1">
         <text>big</text>
         <comparison>
-          <comparative>bigger</comparative>
-          <superlative>the biggest</superlative>
+          <comparative>
+            <text>bigger</text>
+          </comparative>
+          <superlative>
+            <text>the biggest</text>
+          </superlative>
         </comparison>
       </translation>
     </entry>
@@ -228,15 +236,23 @@
       <translation id="0">
         <text>schön</text>
         <comparison>
-          <comparative>schöner</comparative>
-          <superlative>am schönsten</superlative>
+          <comparative>
+            <text>schöner</text>
+          </comparative>
+          <superlative>
+            <text>am schönsten</text>
+          </superlative>
         </comparison>
       </translation>
       <translation id="1">
         <text>beautiful</text>
         <comparison>
-          <comparative>more beautiful</comparative>
-          <superlative>the most beautiful</superlative>
+          <comparative>
+            <text>more beautiful</text>
+          </comparative>
+          <superlative>
+            <text>the most beautiful</text>
+          </superlative>
         </comparison>
       </translation>
     </entry>
@@ -250,15 +266,23 @@
           <date>2010-04-10T20:34:37</date>
         </grade>
         <comparison>
-          <comparative>dicker</comparative>
-          <superlative>am dicksten</superlative>
+          <comparative>
+            <text>dicker</text>
+          </comparative>
+          <superlative>
+            <text>am dicksten</text>
+          </superlative>
         </comparison>
       </translation>
       <translation id="1">
         <text>thick</text>
         <comparison>
-          <comparative>thicker</comparative>
-          <superlative>the thickest</superlative>
+          <comparative>
+            <text>thicker</text>
+          </comparative>
+          <superlative>
+            <text>the thickest</text>
+          </superlative>
         </comparison>
       </translation>
     </entry>
@@ -266,15 +290,23 @@
       <translation id="0">
         <text>unordentlich</text>
         <comparison>
-          <comparative>unordentlicher</comparative>
-          <superlative>am unordentlichsten</superlative>
+          <comparative>
+            <text>unordentlicher</text>
+          </comparative>
+          <superlative>
+            <text>am unordentlichsten</text>
+          </superlative>
         </comparison>
       </translation>
       <translation id="1">
         <text>messy</text>
         <comparison>
-          <comparative>more messy</comparative>
-          <superlative>the most messy</superlative>
+          <comparative>
+            <text>more messy</text>
+          </comparative>
+          <superlative>
+            <text>the most messy</text>
+          </superlative>
         </comparison>
       </translation>
     </entry>
@@ -288,15 +320,23 @@
           <date>2010-04-10T20:34:23</date>
         </grade>
         <comparison>
-          <comparative>öfter</comparative>
-          <superlative>am öftesten</superlative>
+          <comparative>
+            <text>öfter</text>
+          </comparative>
+          <superlative>
+            <text>am öftesten</text>
+          </superlative>
         </comparison>
       </translation>
       <translation id="1">
         <text>often</text>
         <comparison>
-          <comparative>more often</comparative>
-          <superlative>the most often</superlative>
+          <comparative>
+            <text>more often</text>
+          </comparative>
+          <superlative>
+            <text>the most often</text>
+          </superlative>
         </comparison>
       </translation>
     </entry>
@@ -572,13 +612,13 @@
     </container>
     <container>
       <name>Verbs, Conjugations</name>
+      <inpractice>true</inpractice>
       <entry id="20"/>
       <entry id="21"/>
       <entry id="22"/>
     </container>
     <container>
       <name>LaTeX</name>
-      <inpractice>true</inpractice>
       <entry id="23"/>
       <entry id="24"/>
       <entry id="25"/>
