@@ -28,6 +28,7 @@ TestEntry::TestEntry(KEduVocExpression *entry)
     ,m_practiceFinished(false)
     ,m_lastPercentage(0.0)
     ,m_lastError(0)
+    ,m_changeGrades(false)
 {}
 
 void TestEntry::setGradeTo(int to)
@@ -60,41 +61,39 @@ int TestEntry::statisticGoodCount()
     return m_statisticGoodCount;
 }
 
-void TestEntry::incGoodCount()
+void TestEntry::updateStatisticsRightAnswer()
 {
-    update();
+    m_statisticCount++;
     m_statisticGoodCount++;
     m_answeredCorrectInSequence++;
+
+    if ((!Prefs::altLearn()) || m_answeredCorrectInSequence == 3) {
+        m_changeGrades = true;
+    }
+
     // increase grade, if first time:
     if ( !Prefs::altLearn() && m_statisticBadCount == 0 ) {
-        m_entry->translation(m_gradeTo)->incGrade();
         m_correctAtFirstAttempt = true;
     } else {
         // alt learn: 3 times right
         if ( answeredCorrectInSequence() == 3  && m_statisticBadCount == 0 ) {
-            m_entry->translation(m_gradeTo)->incGrade();
             m_correctAtFirstAttempt = true;
         }
     }
+
 }
 
-void TestEntry::incBadCount()
+bool TestEntry::changeGrades()
 {
-    update();
+    return m_changeGrades;
+}
 
+void TestEntry::updateStatisticsWrongAnswer()
+{
+    m_statisticCount++;
     m_statisticBadCount++;
     m_answeredCorrectInSequence = 0;
-
-    // Leitner learning system demote to minimum grade if wrong
-    m_entry->translation(m_gradeTo)->incBadCount();
-    m_entry->translation(m_gradeTo)->setGrade(KV_LEV1_GRADE);
-}
-
-void TestEntry::update()
-{
-    m_entry->translation(m_gradeTo)->incPracticeCount();
-    m_statisticCount++;
-    m_entry->translation(m_gradeTo)->setPracticeDate( QDateTime::currentDateTime() );
+    m_changeGrades = true;
 }
 
 int TestEntry::gradeFrom()
@@ -107,11 +106,10 @@ int TestEntry::gradeTo()
     return m_gradeTo;
 }
 
-bool TestEntry::statisticCorrectAtFirstAttempt()
+bool TestEntry::correctAtFirstAttempt()
 {
     return m_correctAtFirstAttempt;
 }
-
 
 void TestEntry::setLastErrors(TestEntry::ErrorTypes errorTypes)
 {

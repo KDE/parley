@@ -37,13 +37,12 @@ void FlashCardBackendMode::setTestEntry(TestEntry* current)
 
 void FlashCardBackendMode::continueAction()
 {
-    if (m_solutionVisible) {
-        emit currentEntryFinished();
-        return;
+    if (!m_solutionVisible) {
+        m_frontend->showSolution();
+        m_solutionVisible = true;
+    } else {
+        gradeEntryAndContinue();
     }
-
-    m_frontend->showSolution();
-    m_solutionVisible = true;
 }
 
 void FlashCardBackendMode::hintAction()

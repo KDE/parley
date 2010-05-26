@@ -41,7 +41,7 @@ public:
         AnswerSynonym,
         AnswerWrong
     };
-    
+
     AbstractFrontend(QObject* parent = 0);
     virtual ~AbstractFrontend() {}
 

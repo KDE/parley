@@ -37,20 +37,15 @@ class DefaultBackend :public QObject
 public:
     DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, const PracticeOptions& options, Practice::TestEntryManager* testEntryManager, QObject* parent = 0);
     ~DefaultBackend();
-    
+
     void startPractice();
-    void removeCurrentEntryFromPractice();
-    
+
 public Q_SLOTS:
     /** Call when current entry is finished and next one should be selected */
     void nextEntry();
 
-    /** Call when current entry should be graded */
-    void gradeCurrentEntry();
-
-    void gradeEntry(TestEntry*);
+    void removeEntryFromPractice();
     
-
 Q_SIGNALS:
     void practiceFinished();
 

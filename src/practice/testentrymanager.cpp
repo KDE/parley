@@ -35,7 +35,7 @@ TestEntryManager::TestEntryManager(QWidget* parent)
     :m_parent(parent)
     ,m_fromTranslation(0)
     ,m_toTranslation(1)
-    ,m_currentEntry(0)
+    ,m_currentEntry(-1)
     ,m_randomSequence(QDateTime::currentDateTime().toTime_t())
 {
 }
@@ -102,17 +102,11 @@ void TestEntryManager::filterTestEntries()
     }
 }
 
-void TestEntryManager::currentEntryFinished()
+void TestEntryManager::removeCurrentEntryFromPractice()
 {
-    m_currentEntries.takeAt(m_currentEntry);
-}
-
-void TestEntryManager::entryFinished(TestEntry* entry)
-{
-    TestEntry* current = m_currentEntries.at(m_currentEntry);
-    m_currentEntries.removeOne(entry);
-    m_currentEntry = m_currentEntries.indexOf(current);
-    
+    if (m_currentEntry >= 0) {
+        m_currentEntries.takeAt(m_currentEntry);
+    }
 }
 
 void TestEntryManager::printStatistics()
@@ -150,7 +144,7 @@ int TestEntryManager::statisticTotalCorrectFirstAttempt()
 {
     int count = 0;
     foreach(TestEntry* entry, m_allTestEntries) {
-        if ( entry->statisticCorrectAtFirstAttempt() ) {
+        if ( entry->correctAtFirstAttempt() ) {
             count++;
         }
     }

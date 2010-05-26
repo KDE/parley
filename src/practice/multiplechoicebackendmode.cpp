@@ -19,7 +19,6 @@
 #include "multiplechoicedata.h"
 
 using namespace Practice;
- 
 
 MultipleChoiceBackendMode::MultipleChoiceBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent, Practice::TestEntryManager* testEntryManager)
 : AbstractBackendMode(practiceOptions, frontend, parent)
@@ -90,7 +89,7 @@ void MultipleChoiceBackendMode::setCorrectAnswer(int index)
 void MultipleChoiceBackendMode::continueAction()
 {
     if (m_solutionVisible) {
-        emit currentEntryFinished();
+        gradeEntryAndContinue();
         return;
     }
     if (!m_frontend->userInput().isNull() && m_frontend->userInput().toInt() == m_correctAnswer) {

@@ -53,7 +53,7 @@ protected:
      * The correct solution, index of the choices.
      */
     void setCorrectAnswer(int index);
-    
+
     int numberOfChoices();
 
 private:

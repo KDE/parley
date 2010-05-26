@@ -34,6 +34,9 @@ public Q_SLOTS:
     virtual void continueAction();
     virtual void hintAction();
 
+protected:
+    virtual void updateGrades();
+
 private:
     void checkAnswer();
 

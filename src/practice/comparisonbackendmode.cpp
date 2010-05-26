@@ -58,7 +58,7 @@ void ComparisonBackendMode::continueAction()
         checkAnswer();
         m_frontend->showSolution();
     } else {
-        emit currentEntryFinished();
+        gradeEntryAndContinue();
     }
 }
 
@@ -105,5 +105,47 @@ void ComparisonBackendMode::hintAction()
 {
     // FIXME
 }
+
+
+void ComparisonBackendMode::updateGrades()
+{
+    QStringList answers = m_frontend->userInput().toStringList();
+
+    bool absoluteCorrect = answers.at(0) == m_current->entry()->translation(Prefs::solutionLanguage())->text();
+    bool comparativeCorrect = answers.at(1) == m_current->entry()->translation(Prefs::solutionLanguage())->comparative();
+    bool superlativeCorrect = answers.at(2) == m_current->entry()->translation(Prefs::solutionLanguage())->superlative();
+    
+    KEduVocTranslation* translation = m_current->entry()->translation(m_practiceOptions.languageTo());
+
+    translation->incPracticeCount();
+    translation->setPracticeDate( QDateTime::currentDateTime() );
+
+    if (absoluteCorrect) {
+        if (m_current->statisticBadCount() == 0) {
+            translation->incGrade();
+        }
+    } else {
+        translation->setGrade(KV_LEV1_GRADE);
+        translation->incBadCount();
+    }
+
+    KEduVocText comp = translation->comparativeForm();
+
+    comp.incPracticeCount();
+    comp.setPracticeDate( QDateTime::currentDateTime() );
+
+    if (comparativeCorrect) {
+        if (m_current->statisticBadCount() == 0) {
+            comp.incGrade();
+        }
+    } else {
+        comp.setGrade(KV_LEV1_GRADE);
+        comp.incBadCount();
+    }
+    translation->setComparativeForm(comp);
+
+}
+
+
 
 #include "comparisonbackendmode.moc"

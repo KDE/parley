@@ -97,48 +97,23 @@ void DefaultBackend::initializePracticeMode()
             Q_ASSERT("Implement selected practice mode" == 0);
     }
 
-    connect(m_mode, SIGNAL(currentEntryFinished()), this, SLOT(gradeCurrentEntry()));
-    connect(m_mode, SIGNAL(gradeEntry(TestEntry*)), this, SLOT(gradeEntry(TestEntry*)));
+    // To allow to skip an an entry
     connect(m_mode, SIGNAL(nextEntry()), this, SLOT(nextEntry()));
+    connect(m_mode, SIGNAL(removeCurrentEntryFromPractice()), this, SLOT(removeEntryFromPractice()));
 
     connect(m_frontend, SIGNAL(continueAction()), m_mode, SLOT(continueAction()));
     connect(m_frontend, SIGNAL(hintAction()), m_mode, SLOT(hintAction()));
 }
 
-void DefaultBackend::gradeEntry(TestEntry* entry)
+void DefaultBackend::removeEntryFromPractice()
 {
-    entry->incGoodCount();
-    kDebug() << "Mark synonym" << entry->entry()->translation(m_options.languageTo())->text() << " correct";
-    if(entry->answeredCorrectInSequence() == 3 ||
-        (!Prefs::altLearn() && entry->answeredCorrectInSequence() == 1)) {
-        m_testEntryManager->entryFinished(entry);
-        kDebug() << "Removing synonym" << entry->entry()->translation(m_options.languageTo())->text() << " from practice";
-        updateFrontend();
-    }
-}
-
-void DefaultBackend::gradeCurrentEntry()
-{
-    kDebug() << "Result is " << m_frontend->resultState();
-    if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-        m_current->incGoodCount();
-        kDebug() << "Mark " << m_current->entry()->translation(m_options.languageTo())->text() << " correct";
-        if(m_current->answeredCorrectInSequence() == 3 ||
-            (!Prefs::altLearn() && m_current->answeredCorrectInSequence() == 1)) {
-            removeCurrentEntryFromPractice();
-            kDebug() << "Removing " << m_current->entry()->translation(m_options.languageTo())->text() << " from practice";
-        }
-    } else {
-        kDebug() << "Mark " << m_current->entry()->translation(m_options.languageTo())->text() << " incorrect";
-        m_current->incBadCount();
-    }
-    nextEntry();
+    m_testEntryManager->removeCurrentEntryFromPractice();
 }
 
 void DefaultBackend::nextEntry()
 {
     m_current = m_testEntryManager->getNextEntry();
-    
+
     //after going through all words, or at the start of practice
     if (m_current == 0) {
         emit practiceFinished();
@@ -146,11 +121,6 @@ void DefaultBackend::nextEntry()
     }
     m_mode->setTestEntry(m_current);
     updateFrontend();
-}
-
-void DefaultBackend::removeCurrentEntryFromPractice()
-{
-    m_testEntryManager->currentEntryFinished();
 }
 
 void DefaultBackend::updateFrontend()

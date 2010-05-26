@@ -36,6 +36,7 @@ public:
      * @param doc
      */
     explicit TestEntryManager(QWidget *parent);
+
     /**
      * Default ctor
      */
@@ -66,11 +67,11 @@ public:
      */
     void printStatistics();
 
-    /* Finish the currently active entry */
-    void currentEntryFinished();
+    /** Finish the currently active entry */
+    void removeCurrentEntryFromPractice();
 
-    /* Finish the given entry */
-    void entryFinished(TestEntry* entry);
+    /** Finish the given entry */
+    //void entryFinished(TestEntry* entry);
 
     int statisticTotalCorrectFirstAttempt();
     int statisticTotalWrong();

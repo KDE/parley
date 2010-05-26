@@ -36,7 +36,6 @@ public Q_SLOTS:
     
 private:
     void checkAnswer();
-    void markSynonymCorrect(const QString& synonym);
 
     void handleWrongAnswer();
     void handleSynonym();

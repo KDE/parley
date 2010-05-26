@@ -51,7 +51,7 @@ void WrittenBackendMode::continueAction()
             break;
         case SolutionShown:
             m_currentHint = QString();
-            emit currentEntryFinished();
+            gradeEntryAndContinue();
             break;
     }
 }
@@ -150,17 +150,6 @@ void WrittenBackendMode::hintAction()
     }
 }
 
-void WrittenBackendMode::markSynonymCorrect(const QString& synonym)
-{
-    
-    foreach(TestEntry* entry, m_testEntryManager->allUnansweredTestEntries()) {
-        if(entry->entry()->translation(m_practiceOptions.languageTo())->text()== synonym) {
-            kDebug() << entry->entry()->translation(m_practiceOptions.languageTo())->text() << "synonym is" << synonym;
-            emit gradeEntry(entry);
-        }
-    }
-}
-
 void WrittenBackendMode::handleWrongAnswer()
 {
     if (m_current->lastErrors().testFlag(TestEntry::Synonym)
@@ -196,7 +185,7 @@ void WrittenBackendMode::handleSynonym()
         m_frontend->setSynonym(answer);
         m_frontend->showSynonym();
         
-        markSynonymCorrect(answer);
+        // FIXME that function was nonsense: markSynonymCorrect(answer);
         m_frontend->setResultState(AbstractFrontend::AnswerSynonym);
     }
 

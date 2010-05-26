@@ -52,7 +52,7 @@ void ConjugationBackendMode::setTestEntry(TestEntry* current)
         kDebug() << "No valid practice tenses in entry: " << m_current->entry()->translation(m_practiceOptions.languageTo())->text()
             << m_current->entry()->translation(m_practiceOptions.languageTo())->conjugationTenses()
             << m_tenses;
-        emit currentEntryFinished();
+        emit removeCurrentEntryFromPractice();
     }
 
     m_currentTense = possibleTenses.first();
@@ -121,13 +121,44 @@ void ConjugationBackendMode::continueAction()
         checkAnswer();
         m_frontend->showSolution();
     } else {
-        emit currentEntryFinished();
+        gradeEntryAndContinue();
     }
 }
 
 void ConjugationBackendMode::checkAnswer()
 {
     QStringList answers = m_frontend->userInput().toStringList();
+
+    bool allCorrect = true;
+    int numRight = 0;
+    int i=0;
+    foreach(const KEduVocWordFlags& key, m_pronounFlags) {
+        if (answers.at(i) == m_conjugation.conjugation(key).text()) {
+            ++numRight;
+        } else {
+            kDebug() << "dec grade for " << m_conjugation.conjugation(key).text();
+            allCorrect = false;
+        }
+        ++i;
+    }
+
+    kDebug() << "answers: " << answers;
+
+    if (allCorrect) {
+        m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerCorrect);
+        m_frontend->setResultState(Practice::AbstractFrontend::AnswerCorrect);
+        m_frontend->setFeedback(i18n("All conjugation forms were right."));
+    } else {
+        m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerWrong);
+        m_frontend->setResultState(Practice::AbstractFrontend::AnswerWrong);
+        m_frontend->setFeedback(i18ncp("You did not get the conjugation forms right.", "You answered %1 conjugation form correctly.", "You answered %1 conjugation forms correctly.", numRight));
+    }
+}
+
+void ConjugationBackendMode::updateGrades()
+{
+    kDebug() << "Grading conjugations";
+        QStringList answers = m_frontend->userInput().toStringList();
 
     bool allCorrect = true;
     int numRight = 0;
@@ -147,17 +178,6 @@ void ConjugationBackendMode::checkAnswer()
         ++i;
     }
 
-    kDebug() << "answers: " << answers;
-
-    if (allCorrect) {
-        m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerCorrect);
-        m_frontend->setResultState(Practice::AbstractFrontend::AnswerCorrect);
-        m_frontend->setFeedback(i18n("All conjugation forms were right."));
-    } else {
-        m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerWrong);
-        m_frontend->setResultState(Practice::AbstractFrontend::AnswerWrong);
-        m_frontend->setFeedback(i18ncp("You did not get the conjugation forms right.", "You answered %1 conjugation form correctly.", "You answered %1 conjugation forms correctly.", numRight));
-    }
 }
 
 void ConjugationBackendMode::hintAction()

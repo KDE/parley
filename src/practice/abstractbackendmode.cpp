@@ -35,4 +35,47 @@ void AbstractBackendMode::setTestEntry(TestEntry* current)
     m_frontend->setResultState(AbstractFrontend::QuestionState);
 }
 
+grade_t Practice::AbstractBackendMode::currentGradeForEntry()
+{
+    return m_current->entry()->translation(m_practiceOptions.languageTo())->grade();
+}
+
+void Practice::AbstractBackendMode::gradeEntryAndContinue()
+{
+    if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
+        m_current->updateStatisticsRightAnswer();
+    } else {
+        m_current->updateStatisticsWrongAnswer();
+    }
+
+    kDebug() << "entry finished: " << m_frontend->resultState() << " change grades? " << m_current->changeGrades();
+    if (m_current->changeGrades()) {
+        updateGrades();
+        if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
+            emit removeCurrentEntryFromPractice();
+        }
+    }
+    emit nextEntry();
+}
+
+void Practice::AbstractBackendMode::updateGrades()
+{
+    KEduVocTranslation* translation = m_current->entry()->translation(m_practiceOptions.languageTo());
+    kDebug() << "Update Grades Default Implementation: " << m_frontend->resultState() << " for " << translation->text()
+        << " grade: " << m_current->entry()->translation(m_practiceOptions.languageTo())->grade();
+
+    translation->incPracticeCount();
+    translation->setPracticeDate( QDateTime::currentDateTime() );
+
+    if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
+        if (m_current->statisticBadCount() == 0) {
+            translation->incGrade();
+        }
+    } else {
+        translation->setGrade(KV_LEV1_GRADE);
+        translation->incBadCount();
+    }
+    kDebug() << "new grade: " << m_current->entry()->translation(m_practiceOptions.languageTo())->grade();
+}
+
 #include "abstractbackendmode.moc"
