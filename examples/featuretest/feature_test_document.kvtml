@@ -342,13 +342,32 @@
     </entry>
     <entry id="14">
       <translation id="0">
+        <text>Kerze</text>
+      </translation>
+      <translation id="1">
+        <text>candle</text>
+        <grade>
+          <currentgrade>2</currentgrade>
+          <count>1</count>
+          <errorcount>0</errorcount>
+          <date>2010-05-26T14:51:08</date>
+        </grade>
+        <example>Like a candle in the wind.</example>
+      </translation>
+    </entry>
+    <entry id="15">
+      <translation id="0"/>
+      <translation id="1"/>
+    </entry>
+    <entry id="16">
+      <translation id="0">
         <text>Müll</text>
       </translation>
       <translation id="1">
         <text>trash</text>
       </translation>
     </entry>
-    <entry id="15">
+    <entry id="17">
       <translation id="0">
         <text>Abfall</text>
       </translation>
@@ -356,7 +375,7 @@
         <text>litter</text>
       </translation>
     </entry>
-    <entry id="16">
+    <entry id="18">
       <translation id="0">
         <text>Dreck</text>
       </translation>
@@ -364,19 +383,19 @@
         <text>waste</text>
       </translation>
     </entry>
-    <entry id="17">
-      <translation id="0"/>
-      <translation id="1"/>
-    </entry>
-    <entry id="18">
-      <translation id="0"/>
-      <translation id="1"/>
-    </entry>
     <entry id="19">
       <translation id="0"/>
       <translation id="1"/>
     </entry>
     <entry id="20">
+      <translation id="0"/>
+      <translation id="1"/>
+    </entry>
+    <entry id="21">
+      <translation id="0"/>
+      <translation id="1"/>
+    </entry>
+    <entry id="22">
       <translation id="0">
         <text>gehen</text>
         <conjugation>
@@ -434,7 +453,7 @@
         </conjugation>
       </translation>
     </entry>
-    <entry id="21">
+    <entry id="23">
       <translation id="0">
         <text>sein</text>
         <conjugation>
@@ -492,7 +511,7 @@
         </conjugation>
       </translation>
     </entry>
-    <entry id="22">
+    <entry id="24">
       <translation id="0">
         <text>schlürfen</text>
         <conjugation>
@@ -525,7 +544,7 @@
         </conjugation>
       </translation>
     </entry>
-    <entry id="23">
+    <entry id="25">
       <translation id="0">
         <text>$$f(z) = \frac{1}{2\pi\mathrm{i}}\oint_{|z - \zeta| = 1}\frac{f(\zeta)}{\zeta-z}\mathrm{d}\zeta$$</text>
       </translation>
@@ -539,7 +558,7 @@
         </grade>
       </translation>
     </entry>
-    <entry id="24">
+    <entry id="26">
       <translation id="0">
         <text>§§This is a \LaTeX{} \textbf{markup} test.\\\texttt{With multiple lines.}§§</text>
       </translation>
@@ -553,7 +572,7 @@
         </grade>
       </translation>
     </entry>
-    <entry id="25">
+    <entry id="27">
       <translation id="0">
         <text>§§This\\will\\be\\very\\long\\and\\space\\consuming\\which\\is\\not\\optimal\\for\\the\\practice\\layout.§§</text>
       </translation>
@@ -600,28 +619,31 @@
     </container>
     <container>
       <name>Example Sentences</name>
+      <inpractice>true</inpractice>
+      <entry id="14"/>
+      <entry id="15"/>
     </container>
     <container>
       <name>Synonyms</name>
-      <entry id="14"/>
-      <entry id="15"/>
       <entry id="16"/>
       <entry id="17"/>
       <entry id="18"/>
       <entry id="19"/>
+      <entry id="20"/>
+      <entry id="21"/>
     </container>
     <container>
       <name>Verbs, Conjugations</name>
       <inpractice>true</inpractice>
-      <entry id="20"/>
-      <entry id="21"/>
       <entry id="22"/>
+      <entry id="23"/>
+      <entry id="24"/>
     </container>
     <container>
       <name>LaTeX</name>
-      <entry id="23"/>
-      <entry id="24"/>
       <entry id="25"/>
+      <entry id="26"/>
+      <entry id="27"/>
     </container>
   </lessons>
   <wordtypes>
@@ -659,15 +681,15 @@
     <container>
       <name>Verb</name>
       <specialwordtype>verb</specialwordtype>
-      <entry id="20">
-        <translation id="0"/>
-        <translation id="1"/>
-      </entry>
-      <entry id="21">
-        <translation id="0"/>
-        <translation id="1"/>
-      </entry>
       <entry id="22">
+        <translation id="0"/>
+        <translation id="1"/>
+      </entry>
+      <entry id="23">
+        <translation id="0"/>
+        <translation id="1"/>
+      </entry>
+      <entry id="24">
         <translation id="0"/>
         <translation id="1"/>
       </entry>
@@ -743,7 +765,7 @@
       <entry id="0">
         <translation id="0"/>
       </entry>
-      <entry id="15">
+      <entry id="17">
         <translation id="0"/>
       </entry>
     </pair>
@@ -751,39 +773,39 @@
       <entry id="0">
         <translation id="0"/>
       </entry>
-      <entry id="16">
+      <entry id="18">
         <translation id="1"/>
       </entry>
     </pair>
     <pair>
-      <entry id="14">
+      <entry id="16">
         <translation id="0"/>
       </entry>
-      <entry id="16">
+      <entry id="18">
         <translation id="0"/>
       </entry>
     </pair>
     <pair>
-      <entry id="14">
+      <entry id="16">
         <translation id="1"/>
       </entry>
-      <entry id="15">
+      <entry id="17">
         <translation id="1"/>
       </entry>
     </pair>
     <pair>
-      <entry id="15">
+      <entry id="17">
         <translation id="0"/>
       </entry>
-      <entry id="16">
+      <entry id="18">
         <translation id="0"/>
       </entry>
     </pair>
     <pair>
-      <entry id="15">
+      <entry id="17">
         <translation id="1"/>
       </entry>
-      <entry id="16">
+      <entry id="18">
         <translation id="1"/>
       </entry>
     </pair>
