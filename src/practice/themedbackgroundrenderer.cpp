@@ -26,11 +26,11 @@
 
 using namespace Practice;
 
-ThemedBackgroundRenderer::ThemedBackgroundRenderer(QObject* parent)
+ThemedBackgroundRenderer::ThemedBackgroundRenderer(QObject* parent, const QString& cacheFilename)
     : QObject(parent), m_haveCache(true), m_queuedRequest(false), m_isFastScaledRender(true)
 {
     m_theme = new KGameTheme();
-    m_cache.setSaveFilename(KStandardDirs::locateLocal("appdata", "practicethemecache.bin"));
+    m_cache.setSaveFilename(KStandardDirs::locateLocal("appdata", cacheFilename));
     m_timer.setSingleShot(true);
     m_timer.setInterval(1000);
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(updateBackgroundTimeout()));
