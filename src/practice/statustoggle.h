@@ -44,6 +44,7 @@ private:
     ThemedBackgroundRenderer *m_renderer;
 
     StatusToggleButton *m_toggle;
+    QAction *m_toggleAction;
 
     AbstractFrontend::ResultState m_resultState;
 
