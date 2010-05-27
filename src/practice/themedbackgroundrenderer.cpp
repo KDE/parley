@@ -39,7 +39,12 @@ ThemedBackgroundRenderer::ThemedBackgroundRenderer(QObject* parent)
 
 ThemedBackgroundRenderer::~ThemedBackgroundRenderer()
 {
+    if (m_future.isRunning()) {
+        kDebug() << "Waiting for rendering to finish";
+        m_future.waitForFinished();
+    }
     m_cache.saveCache();
+    delete m_theme;
 }
 
 void ThemedBackgroundRenderer::setTheme(const QString &theme)
