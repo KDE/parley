@@ -44,7 +44,7 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     m_ui->setupUi(m_widget);
     m_ui->centralPracticeWidget->setLayout(new QHBoxLayout());
 
-    m_themedBackgroundRenderer = new ThemedBackgroundRenderer(this);
+    m_themedBackgroundRenderer = new ThemedBackgroundRenderer(this, "practicethemecache.bin");
     
     connect(Prefs::self(), SIGNAL(configChanged()), this, SLOT(setTheme()));
     setTheme();

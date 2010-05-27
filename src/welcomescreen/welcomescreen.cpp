@@ -82,7 +82,7 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
 
-    m_themedBackgroundRenderer = new Practice::ThemedBackgroundRenderer(this);
+    m_themedBackgroundRenderer = new Practice::ThemedBackgroundRenderer(this, "startpagethemecache.bin");
 
     connect(Prefs::self(), SIGNAL(configChanged()), this, SLOT(setTheme()));
     setTheme();

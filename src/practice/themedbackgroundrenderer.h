@@ -55,7 +55,7 @@ public:
         RightBottom // right or bottom (depending on orientation of the edge)
     };
 
-    ThemedBackgroundRenderer(QObject* parent = 0);
+    ThemedBackgroundRenderer(QObject* parent, const QString& cacheFilename);
     ~ThemedBackgroundRenderer();
 
     void setTheme(const QString& theme);
