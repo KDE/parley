@@ -70,7 +70,6 @@ public:
     QPalette fontColorPalette();
     
 public Q_SLOTS:
-    void setSize(const QSize& size);
     void clearRects();
     void addRect(const QString& name, const QRect& rect);
     void updateBackground();
@@ -98,7 +97,6 @@ private:
     QList<QPair<QString, QRect> > m_rects;
     QList<QPair<QString, QRect> > m_lastScaledRenderRects; // the rects used for the last scaled render
     QList<QPair<QString, QRect> > m_lastFullRenderRects; // the rects used for the last full render
-    QSize m_size;
     bool m_haveCache;
     bool m_queuedRequest;
     bool m_isFastScaledRender;

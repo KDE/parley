@@ -47,7 +47,6 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     m_themedBackgroundRenderer = new ThemedBackgroundRenderer(this);
     
     connect(Prefs::self(), SIGNAL(configChanged()), this, SLOT(setTheme()));
-    connect(Prefs::self(), SIGNAL(configChanged()), this, SLOT(updateBackground()));
     setTheme();
     
     connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)), this, SLOT(backgroundChanged(QPixmap)));
@@ -329,8 +328,8 @@ void GuiFrontend::resultToggleClicked()
 
 void GuiFrontend::updateBackground()
 {
-    m_themedBackgroundRenderer->setSize(m_widget->size());
     m_themedBackgroundRenderer->clearRects();
+    m_themedBackgroundRenderer->addRect("background", QRect(QPoint(), m_widget->size()));
     m_themedBackgroundRenderer->addRect("image", m_ui->imageWidget->frameGeometry());
     m_themedBackgroundRenderer->addRect("central", m_ui->centralPracticeWidget->frameGeometry());
     m_themedBackgroundRenderer->addRect("buttons", m_ui->rightContainer->frameGeometry());
@@ -345,6 +344,7 @@ void GuiFrontend::setTheme()
 {
     m_themedBackgroundRenderer->setTheme(Prefs::theme());
     m_widget->setPalette(m_themedBackgroundRenderer->fontColorPalette());
+    updateBackground();
     m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
     m_ui->boxesWidget->setRenderer(m_themedBackgroundRenderer);
     m_ui->statusToggle->setRenderer(m_themedBackgroundRenderer);

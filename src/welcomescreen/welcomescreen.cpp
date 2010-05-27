@@ -85,7 +85,6 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     m_themedBackgroundRenderer = new Practice::ThemedBackgroundRenderer(this);
 
     connect(Prefs::self(), SIGNAL(configChanged()), this, SLOT(setTheme()));
-    connect(Prefs::self(), SIGNAL(configChanged()), this, SLOT(updateBackground()));
     setTheme();
 
     connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)), this, SLOT(backgroundChanged(QPixmap)));
@@ -153,8 +152,8 @@ void WelcomeScreen::backgroundChanged(const QPixmap &pixmap)
 
 void WelcomeScreen::updateBackground()
 {
-    m_themedBackgroundRenderer->setSize(m_widget->size());
     m_themedBackgroundRenderer->clearRects();
+    m_themedBackgroundRenderer->addRect("startbackground", QRect(QPoint(), m_widget->size()));
     m_themedBackgroundRenderer->addRect("recentfiles", ui->recentFiles->frameGeometry());
     QPixmap pixmap = m_themedBackgroundRenderer->getScaledBackground();
     if (!pixmap.isNull()) {
@@ -166,6 +165,7 @@ void WelcomeScreen::updateBackground()
 void WelcomeScreen::setTheme()
 {
     m_themedBackgroundRenderer->setTheme(Prefs::theme());
+    updateBackground();
     m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
 }
 
