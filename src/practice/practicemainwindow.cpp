@@ -147,9 +147,10 @@ void PracticeMainWindow::startPractice()
 void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)
 {
     KToggleFullScreenAction::setFullScreen(m_parent, fullScreen);
-    m_parent->toolBar("practiceToolBar")->setVisible(!fullScreen); //TODO: save if it was visible
+    m_parent->toolBar("practiceToolBar")->setVisible(!fullScreen);
     m_parent->menuBar()->setVisible(!fullScreen);
     m_floatingToolBar->setVisible(fullScreen);
+    m_parent->setSettingsDirty();
 }
 
 #include "practicemainwindow.moc"
