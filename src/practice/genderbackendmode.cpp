@@ -109,12 +109,13 @@ void GenderBackendMode::prepareChoices(TestEntry* entry)
 void GenderBackendMode::updateGrades()
 {
     if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-        kDebug() << "article right";
+        kDebug() << "article right - old grade: " << m_current->entry()->translation(m_practiceOptions.languageTo())->article().grade();
         KEduVocText articleGrade = m_current->entry()->translation(m_practiceOptions.languageTo())->article();
         articleGrade.incGrade();
         articleGrade.incPracticeCount();
         articleGrade.setPracticeDate( QDateTime::currentDateTime() );
         m_current->entry()->translation(m_practiceOptions.languageTo())->setArticle(articleGrade);
+        kDebug() << "article right - new grade: " << m_current->entry()->translation(m_practiceOptions.languageTo())->article().grade();
     } else {
         kDebug() << "article wrong";
         KEduVocText articleGrade = m_current->entry()->translation(m_practiceOptions.languageTo())->article();

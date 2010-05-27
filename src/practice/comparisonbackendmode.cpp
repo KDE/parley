@@ -114,7 +114,9 @@ void ComparisonBackendMode::updateGrades()
     bool absoluteCorrect = answers.at(0) == m_current->entry()->translation(Prefs::solutionLanguage())->text();
     bool comparativeCorrect = answers.at(1) == m_current->entry()->translation(Prefs::solutionLanguage())->comparative();
     bool superlativeCorrect = answers.at(2) == m_current->entry()->translation(Prefs::solutionLanguage())->superlative();
-    
+
+    // TODO way too much duplicated code here
+
     KEduVocTranslation* translation = m_current->entry()->translation(m_practiceOptions.languageTo());
 
     translation->incPracticeCount();
@@ -144,6 +146,20 @@ void ComparisonBackendMode::updateGrades()
     }
     translation->setComparativeForm(comp);
 
+    KEduVocText super = translation->superlativeForm();
+
+    super.incPracticeCount();
+    super.setPracticeDate( QDateTime::currentDateTime() );
+
+    if (superlativeCorrect) {
+        if (m_current->statisticBadCount() == 0) {
+            super.incGrade();
+        }
+    } else {
+        super.setGrade(KV_LEV1_GRADE);
+        super.incBadCount();
+    }
+    translation->setSuperlativeForm(super);
 }
 
 
