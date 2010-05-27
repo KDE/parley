@@ -27,4 +27,5 @@ AuthorEmail=laidig@kde.org
 Type=SVG
 FileName=theme_reference.svgz
 Preview=theme_reference_preview.jpg
+X-Parley-startbackground=background
 X-Parley-buttons=image

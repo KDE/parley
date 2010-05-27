@@ -60,11 +60,6 @@ void ThemedBackgroundRenderer::setTheme(const QString &theme)
     m_rectMappings.clear();
 }
 
-void ThemedBackgroundRenderer::setSize(const QSize& size)
-{
-    m_size = size;
-}
-
 void ThemedBackgroundRenderer::clearRects()
 {
     m_rects.clear();
@@ -82,8 +77,7 @@ void ThemedBackgroundRenderer::addRect(const QString& name, const QRect& rect)
 
 QPixmap ThemedBackgroundRenderer::getScaledBackground()
 {
-    if (m_size.isEmpty()) {
-        //kDebug() << "trying to render with an invalid size";
+    if (m_rects.isEmpty() || m_rects[0].second.isEmpty()) {
         return QPixmap();
     }
     if (m_future.isRunning()  || m_future.resultCount()) {
@@ -126,8 +120,7 @@ QPalette ThemedBackgroundRenderer::fontColorPalette()
 
 void ThemedBackgroundRenderer::updateBackground()
 {
-    if (m_size.isEmpty()) {
-        //kDebug() << "trying to render with an invalid size";
+    if (m_rects.isEmpty() || m_rects[0].second.isEmpty()) {
         return;
     }
     m_timer.start();
@@ -198,15 +191,22 @@ QPixmap ThemedBackgroundRenderer::getPixmapForId(const QString& id, QSize size)
 
 QMargins ThemedBackgroundRenderer::contentMargins()
 {
+    QString rect;
+    if (!m_rects.empty()) {
+        rect = m_rects.at(0).first;
+    }
+    if (m_rectMappings.contains(rect)) {
+        rect = m_rectMappings.value(rect);
+    }
     QMargins margins;
-    if (m_renderer.elementExists("background-border-topleft"))
-        margins.setTop(m_renderer.boundsOnElement("background-border-topleft").toAlignedRect().height());
-    if (m_renderer.elementExists("background-border-bottomleft"))
-        margins.setBottom(m_renderer.boundsOnElement("background-border-bottomleft").toAlignedRect().height());
-    if (m_renderer.elementExists("background-border-topleft"))
-        margins.setLeft(m_renderer.boundsOnElement("background-border-topleft").toAlignedRect().width());
-    if (m_renderer.elementExists("background-border-topright"))
-        margins.setRight(m_renderer.boundsOnElement("background-border-topright").toAlignedRect().width());
+    if (m_renderer.elementExists(rect+"-border-topleft"))
+        margins.setTop(m_renderer.boundsOnElement(rect+"-border-topleft").toAlignedRect().height());
+    if (m_renderer.elementExists(rect+"-border-bottomleft"))
+        margins.setBottom(m_renderer.boundsOnElement(rect+"-border-bottomleft").toAlignedRect().height());
+    if (m_renderer.elementExists(rect+"-border-topleft"))
+        margins.setLeft(m_renderer.boundsOnElement(rect+"-border-topleft").toAlignedRect().width());
+    if (m_renderer.elementExists(rect+"-border-topright"))
+        margins.setRight(m_renderer.boundsOnElement(rect+"-border-topright").toAlignedRect().width());
     return margins;
 }
 
@@ -215,16 +215,16 @@ QImage ThemedBackgroundRenderer::renderBackground(bool fastScale)
     m_isFastScaledRender = false;
 
     QTime t = QTime::currentTime();
-    QImage image(m_size, QImage::Format_ARGB32_Premultiplied);
+    QImage image(m_rects[0].second.size(), QImage::Format_ARGB32_Premultiplied);
     image.fill(QColor(Qt::transparent).rgba());
     QPainter p(&image);
 
-    QMargins margins = contentMargins();
-    QRect backgroundRect(QPoint(margins.left(),margins.top()), m_size-QSize(margins.right()+margins.left(), margins.bottom()+margins.top()));
-
-    renderRect("background", backgroundRect, &p, fastScale);
     QPair<QString, QRect> rect;
     Q_FOREACH(rect, m_rects) {
+        if (!m_rects.isEmpty() && rect == m_rects[0]) {
+            QMargins margins = contentMargins();
+            rect.second = QRect(QPoint(margins.left(),margins.top()), rect.second.size()-QSize(margins.right()+margins.left(), margins.bottom()+margins.top()));
+        }
         renderRect(rect.first, rect.second, &p, fastScale);
     }
 
