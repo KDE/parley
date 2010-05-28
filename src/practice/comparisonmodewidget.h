@@ -56,8 +56,6 @@ private Q_SLOTS:
 
 private:
     Ui::ComparisonPracticeWidget* m_ui;
-    QPalette m_correctPalette;
-    QPalette m_wrongPalette;
     QStringList m_solution;
 };
 

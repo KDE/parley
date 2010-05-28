@@ -29,14 +29,6 @@ WrittenPracticeWidget::WrittenPracticeWidget(GuiFrontend *frontend, QWidget *par
     m_ui->mixedSolutionLabel->setVisible(false);
     //m_ui->synonymList->setVisible(false);
     connect(m_ui->answerEdit, SIGNAL(returnPressed()), this, SLOT(continueClicked()));
-
-    KColorScheme scheme(QPalette::Active);
-    m_correctPalette = palette();
-    m_correctPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::PositiveText).color());
-    m_correctPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::PositiveText).color());
-    m_wrongPalette = palette();
-    m_wrongPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::NegativeText).color());
-    m_wrongPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::NegativeText).color());
 }
 
 void WrittenPracticeWidget::continueClicked()

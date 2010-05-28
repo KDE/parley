@@ -67,7 +67,7 @@ public:
 
     QPixmap getScaledBackground();
 
-    QPalette fontColorPalette();
+    QColor fontColor(const QString& context, const QColor& fallback);
     
 public Q_SLOTS:
     void clearRects();

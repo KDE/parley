@@ -86,6 +86,7 @@ private Q_SLOTS:
     void countAsCorrectButtonClicked();
     void countAsWrongButtonClicked();
     void updateBackground();
+    void updateFontColors();
     void setTheme();
    
 private:

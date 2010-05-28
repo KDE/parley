@@ -45,6 +45,7 @@ private slots:
     void updateBackground();
     void setTheme();
     void backgroundChanged(const QPixmap& pixmap);
+    void updateFontColors();
     
 private:
     Ui::WelcomeScreen *ui;

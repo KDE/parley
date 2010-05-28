@@ -103,19 +103,17 @@ QPixmap ThemedBackgroundRenderer::getScaledBackground()
     return result;
 }
 
-QPalette ThemedBackgroundRenderer::fontColorPalette()
+QColor ThemedBackgroundRenderer::fontColor(const QString& context, const QColor& fallback)
 {
-    QPalette palette = QApplication::palette();
-
-    QString text = m_theme->property("X-Parley-Font-Color");
+    QString text = m_theme->property("X-Parley-Font-Color-"+context).toLower();
     if (text.length() == 6 && text.contains(QRegExp("[0-9a-f]{6}"))) {
-        QColor color = QColor(text.mid(0,2).toInt(0,16),
-                              text.mid(2,2).toInt(0,16),
-                              text.mid(4,2).toInt(0,16));
-        palette.setColor(QPalette::WindowText, color);
+        return QColor(text.mid(0,2).toInt(0,16),
+                      text.mid(2,2).toInt(0,16),
+                      text.mid(4,2).toInt(0,16));
+
     }
 
-    return palette;
+    return fallback;
 }
 
 void ThemedBackgroundRenderer::updateBackground()

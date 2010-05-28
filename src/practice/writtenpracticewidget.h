@@ -56,8 +56,6 @@ protected:
     Ui::WrittenPracticeWidget* m_ui;
 
 private:
-    QPalette m_correctPalette;
-    QPalette m_wrongPalette;
     QString m_solution;
     QString m_synonym;
     AbstractFrontend::ResultState m_resultState;
