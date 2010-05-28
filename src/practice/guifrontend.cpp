@@ -118,6 +118,7 @@ void GuiFrontend::setMode(Mode mode)
         connect(m_modeWidget, SIGNAL(continueAction()), m_ui->continueButton, SLOT(animateClick()));
     }
     m_ui->buttonStack->setCurrentIndex(0);
+    updateFontColors();
 }
 
 void GuiFrontend::setLessonName(const QString& lessonName)
@@ -340,10 +341,37 @@ void GuiFrontend::updateBackground()
     m_themedBackgroundRenderer->updateBackground();
 }
 
+void GuiFrontend::updateFontColors()
+{
+    QPalette p(QApplication::palette());
+    QColor c = m_themedBackgroundRenderer->fontColor("Outer", p.color(QPalette::Active, QPalette::WindowText));
+    p.setColor(QPalette::WindowText, c);
+    m_ui->lessonLabel->setPalette(p);
+
+    if (m_modeWidget) {
+        p = QApplication::palette();
+        c = m_themedBackgroundRenderer->fontColor("Central", p.color(QPalette::Active, QPalette::WindowText));
+        p.setColor(QPalette::Active, QPalette::WindowText, c);
+        m_modeWidget->setPalette(p);
+
+        KColorScheme scheme(QPalette::Active);
+        QPalette correctPalette = QApplication::palette();
+        c = m_themedBackgroundRenderer->fontColor("Correct", scheme.foreground(KColorScheme::PositiveText).color());
+        correctPalette.setColor(QPalette::WindowText, c);
+        correctPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::PositiveText).color());
+        QPalette wrongPalette = QApplication::palette();
+        c = m_themedBackgroundRenderer->fontColor("Wrong", scheme.foreground(KColorScheme::NegativeText).color());
+        wrongPalette.setColor(QPalette::WindowText, c);
+        wrongPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::NegativeText).color());
+
+        m_modeWidget->setResultPalettes(correctPalette, wrongPalette);
+    }
+}
+
 void GuiFrontend::setTheme()
 {
     m_themedBackgroundRenderer->setTheme(Prefs::theme());
-    m_widget->setPalette(m_themedBackgroundRenderer->fontColorPalette());
+    updateFontColors();
     updateBackground();
     m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
     m_ui->boxesWidget->setRenderer(m_themedBackgroundRenderer);

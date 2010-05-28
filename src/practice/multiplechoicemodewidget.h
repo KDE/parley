@@ -55,8 +55,6 @@ public Q_SLOTS:
     
 private:
     Ui::MultiplechoicePracticeWidget* m_ui;
-    QPalette m_correctPalette;
-    QPalette m_wrongPalette;
     int m_solution;
     QList<QRadioButton*> m_choiceButtons;
 };

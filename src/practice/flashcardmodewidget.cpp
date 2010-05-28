@@ -57,6 +57,7 @@ void FlashCardModeWidget::showSolution()
 {
     m_ui->solutionLabel->setHidden(false);
     m_ui->solutionLabel->setText(m_solution);
+    m_ui->solutionLabel->setPalette(m_correctPalette);
     m_frontend->showSetResultButtons(true);
 }
 

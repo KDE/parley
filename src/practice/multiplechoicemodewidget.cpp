@@ -28,13 +28,6 @@ MultiplechoiceModeWidget::MultiplechoiceModeWidget (GuiFrontend *frontend, QWidg
 {
     m_ui = new Ui::MultiplechoicePracticeWidget();
     m_ui->setupUi(this);
-    KColorScheme scheme(QPalette::Active);
-    m_correctPalette = palette();
-    m_correctPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::PositiveText).color());
-    m_correctPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::PositiveText).color());
-    m_wrongPalette = palette();
-    m_wrongPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::NegativeText).color());
-    m_wrongPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::NegativeText).color());
 }
 
 void MultiplechoiceModeWidget::setQuestion(const QVariant& question)

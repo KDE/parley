@@ -45,6 +45,8 @@ public:
     virtual void setQuestionPronunciation(const QString& pronunciationText) = 0;
     
     virtual void setSynonym(const QString& entry) = 0;
+
+    virtual void setResultPalettes(const QPalette& correctPalette, const QPalette& wrongPalette);
     
 public slots:
     virtual void showQuestion() = 0;
@@ -58,6 +60,9 @@ signals:
 
 protected:
     GuiFrontend *m_frontend;
+
+    QPalette m_correctPalette;
+    QPalette m_wrongPalette;
 };
 
 }

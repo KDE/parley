@@ -26,13 +26,6 @@ ComparisonModeWidget::ComparisonModeWidget (GuiFrontend *frontend, QWidget* pare
 {
     m_ui = new Ui::ComparisonPracticeWidget();
     m_ui->setupUi(this);
-    KColorScheme scheme(QPalette::Active);
-    m_correctPalette = QApplication::palette();
-    m_correctPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::PositiveText).color());
-    m_correctPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::PositiveText).color());
-    m_wrongPalette = QApplication::palette();
-    m_wrongPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::NegativeText).color());
-    m_wrongPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::NegativeText).color());
 
     connect(m_ui->absoluteEdit, SIGNAL(returnPressed(QString)), this, SLOT(nextComparisonForm()));
     connect(m_ui->comparativeEdit, SIGNAL(returnPressed(QString)), this, SLOT(nextComparisonForm()));

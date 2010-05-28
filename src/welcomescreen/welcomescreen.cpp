@@ -40,20 +40,9 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     ui->setupUi(m_widget);
     setCentralWidget(m_widget);
 
-    QColor fgColor = palette().text().color();
-
-    QString css = QString::fromUtf8(
-       "#recentLabel {"
-        "   font-weight: bold;"
-        "   border-bottom: 1px solid %1;"
-        "}"
-
-        "QListView {"
-        "   background-color: transparent;"
-        "}"
-        )
-        .arg(fgColor.name());
-    setStyleSheet(css);
+    QFont font = ui->recentLabel->font();
+    font.setBold(true);
+    ui->recentLabel->setFont(font);
 
     ui->newButton->setIcon(KIcon("document-new"));
     ui->openButton->setIcon(KIcon("document-open"));
@@ -163,9 +152,21 @@ void WelcomeScreen::updateBackground()
     m_themedBackgroundRenderer->updateBackground();
 }
 
+void WelcomeScreen::updateFontColors()
+{
+    QPalette p(QApplication::palette());
+    QColor c = m_themedBackgroundRenderer->fontColor("Start", p.color(QPalette::Active, QPalette::WindowText));
+    p.setColor(QPalette::Base, Qt::transparent);
+    p.setColor(QPalette::Text, c);
+    p.setColor(QPalette::WindowText, c);
+    ui->recentFiles->setPalette(p);
+    ui->recentLabel->setPalette(p);
+}
+
 void WelcomeScreen::setTheme()
 {
     m_themedBackgroundRenderer->setTheme(Prefs::theme());
+    updateFontColors();
     updateBackground();
     m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
 }

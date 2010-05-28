@@ -20,3 +20,9 @@ AbstractModeWidget::AbstractModeWidget(GuiFrontend *frontend, QWidget* parent)
 {
 
 }
+
+void AbstractModeWidget::setResultPalettes(const QPalette &correctPalette, const QPalette &wrongPalette)
+{
+    m_correctPalette = correctPalette;
+    m_wrongPalette = wrongPalette;
+}
