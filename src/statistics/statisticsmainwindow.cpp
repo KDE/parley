@@ -81,6 +81,7 @@ void StatisticsMainWindow::setDocument(KEduVocDocument* doc)
     m_statisticsModel->setDocument(doc);
     m_ui->lessonStatistics->setModel(m_statisticsModel);
     m_ui->lessonStatistics->expandToDepth(0);
+    m_ui->lessonStatistics->resizeColumnToContents(0);
 }
 
 void StatisticsMainWindow::initActions()
@@ -193,6 +194,7 @@ void StatisticsMainWindow::languagesChanged()
     emit languagesChanged(questionLanguage, solutionLangauge);
     //m_ui->lessonStatistics->showGrades(current->data(Qt::UserRole).toInt(), current->data(Qt::UserRole+1).toInt());
     kDebug() << "set languages: " << current->data(Qt::UserRole).toInt() << current->data(Qt::UserRole+1).toInt();
+    updateVisibleColumns();
 }
 
 void StatisticsMainWindow::practiceModeSelected(int mode)
@@ -201,6 +203,14 @@ void StatisticsMainWindow::practiceModeSelected(int mode)
     kDebug() << "mode: " << mode << Prefs::practiceMode();
 
     showConjugationOptions(mode == Prefs::EnumPracticeMode::ConjugationPractice);
+}
+
+void StatisticsMainWindow::updateVisibleColumns()
+{
+    int solutionLanguage = Prefs::solutionLanguage();
+    for (int i = 2; i < m_ui->lessonStatistics->header()->count(); i++) {
+        m_ui->lessonStatistics->setColumnHidden(i, (i-2) != solutionLanguage);
+    }
 }
 
 void StatisticsMainWindow::showConjugationOptions(bool visible)

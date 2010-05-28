@@ -105,15 +105,10 @@ void LessonStatisticsView::setModel(Editor::ContainerModel *model)
     GradeDelegate* delegate = new GradeDelegate(this);
     for (int i = 2; i < model->columnCount(QModelIndex()); i++) {
         setItemDelegateForColumn(i, delegate);
-        //setColumnWidth(i, 200);
+        setColumnWidth(i, 150);
     }
-    header()->resizeSections(QHeaderView::ResizeToContents);
+//    header()->resizeSections(QHeaderView::ResizeToContents);
     header()->setResizeMode(QHeaderView::Interactive);
-}
-
-void LessonStatisticsView::showGrades(int, int)
-{
-    // TODO: only show the corresponding grades
 }
 
 void LessonStatisticsView::removeGrades()

@@ -29,7 +29,6 @@ class LessonStatisticsView : public Editor::ContainerView
 public:
     LessonStatisticsView(QWidget *parent);
     void setModel(Editor::ContainerModel *model);
-    void showGrades(int languageFrom, int languageTo);
 
 private Q_SLOTS:
     void removeGrades();

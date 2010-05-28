@@ -43,6 +43,7 @@ private slots:
     void configurePractice();
     void languagesChanged();
     void practiceModeSelected(int mode);
+    void updateVisibleColumns();
 
 private:
     void initActions();
