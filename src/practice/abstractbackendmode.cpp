@@ -22,8 +22,9 @@ AbstractBackendMode::AbstractBackendMode(const PracticeOptions& practiceOptions,
     ,m_frontend(frontend)
 {}
 
-void AbstractBackendMode::setTestEntry(TestEntry* current)
+bool AbstractBackendMode::setTestEntry(TestEntry* current)
 {
+    m_state = NotAnswered;
     m_current = current;
     m_frontend->setQuestion(m_current->entry()->translation(m_practiceOptions.languageFrom())->text());
     m_frontend->setSolution(m_current->entry()->translation(m_practiceOptions.languageTo())->text());
@@ -33,6 +34,7 @@ void AbstractBackendMode::setTestEntry(TestEntry* current)
     m_frontend->setSolutionPronunciation(m_current->entry()->translation(m_practiceOptions.languageTo())->pronunciation());
 
     m_frontend->setResultState(AbstractFrontend::QuestionState);
+    return true;
 }
 
 grade_t Practice::AbstractBackendMode::currentGradeForEntry()

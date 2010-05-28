@@ -26,13 +26,14 @@ FlashCardBackendMode::FlashCardBackendMode(const PracticeOptions& practiceOption
 
 }
 
-void FlashCardBackendMode::setTestEntry(TestEntry* current)
+bool FlashCardBackendMode::setTestEntry(TestEntry* current)
 {
     Practice::AbstractBackendMode::setTestEntry(current);
     m_current = current;
     m_currentHint.clear();
     m_solutionVisible = false;
     m_frontend->showQuestion();
+    return true;
 }
 
 void FlashCardBackendMode::continueAction()

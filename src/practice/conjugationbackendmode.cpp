@@ -35,7 +35,7 @@ ConjugationBackendMode::ConjugationBackendMode(const PracticeOptions& practiceOp
     m_tenses = documentSettings.conjugationTenses();
 }
 
-void ConjugationBackendMode::setTestEntry(TestEntry* current)
+bool ConjugationBackendMode::setTestEntry(TestEntry* current)
 {
     ConjugationData data;
     m_current = current;
@@ -52,7 +52,7 @@ void ConjugationBackendMode::setTestEntry(TestEntry* current)
         kDebug() << "No valid practice tenses in entry: " << m_current->entry()->translation(m_practiceOptions.languageTo())->text()
             << m_current->entry()->translation(m_practiceOptions.languageTo())->conjugationTenses()
             << m_tenses;
-        emit removeCurrentEntryFromPractice();
+        return false;
     }
 
     m_currentTense = possibleTenses.first();
@@ -84,6 +84,7 @@ void ConjugationBackendMode::setTestEntry(TestEntry* current)
     m_frontend->setSolutionPronunciation(m_current->entry()->translation(m_practiceOptions.languageTo())->pronunciation());
     m_frontend->setResultState(AbstractFrontend::QuestionState);
     m_frontend->showQuestion();
+    return true;
 }
 
 void ConjugationBackendMode::updatePronounFlags()

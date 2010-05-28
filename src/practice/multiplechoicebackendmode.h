@@ -27,7 +27,7 @@ class MultipleChoiceBackendMode : public AbstractBackendMode
 public:
     MultipleChoiceBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend, QObject *parent, Practice::TestEntryManager* testEntryManager);
     
-    virtual void setTestEntry(TestEntry* current);
+    virtual bool setTestEntry(TestEntry* current);
 
 public Q_SLOTS:
     virtual void continueAction();

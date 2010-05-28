@@ -29,20 +29,21 @@ WrittenBackendMode::WrittenBackendMode(const Practice::PracticeOptions& practice
     m_validator = new WrittenPracticeValidator(m_practiceOptions.languageTo(),doc);
 }
 
-void WrittenBackendMode::setTestEntry(TestEntry* current)
+bool WrittenBackendMode::setTestEntry(TestEntry* current)
 {
     AbstractBackendMode::setTestEntry(current);
-    m_state = NotAnswered;
     m_frontend->showQuestion();
     m_lastAnswer.clear();
     m_synonyms.clear();
     m_validator->setEntry(current);
+    return true;
 }
 
 void WrittenBackendMode::continueAction()
-{    
+{
     if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
         m_state = SolutionShown; // the user manually toggled the state, so we just count is as correct without showing the solution
+        kDebug() << "THE WEIRD THING HAPPENED";
     }
     switch (m_state) {
         case NotAnswered:
@@ -67,7 +68,7 @@ void WrittenBackendMode::checkAnswer()
     }
 
     m_validator->validateAnswer(answer);
-    
+
     switch(m_state) {
         // right/wrong is only counted on first attempt - when state is NotAnswered.
         case NotAnswered:

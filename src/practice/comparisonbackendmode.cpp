@@ -30,9 +30,10 @@ ComparisonBackendMode::ComparisonBackendMode(const PracticeOptions& practiceOpti
 {
 }
 
-void ComparisonBackendMode::setTestEntry(TestEntry* current)
+bool ComparisonBackendMode::setTestEntry(TestEntry* current)
 {
     m_current = current;
+    m_lastAnswers.clear();
 
     int languageTo = m_practiceOptions.languageTo();
     int languageFrom = m_practiceOptions.languageFrom();
@@ -50,6 +51,7 @@ void ComparisonBackendMode::setTestEntry(TestEntry* current)
     m_frontend->setSolutionPronunciation(m_current->entry()->translation(m_practiceOptions.languageTo())->pronunciation());
     m_frontend->setResultState(AbstractFrontend::QuestionState);
     m_frontend->showQuestion();
+    return true;
 }
 
 void ComparisonBackendMode::continueAction()
@@ -69,11 +71,6 @@ void ComparisonBackendMode::checkAnswer()
     bool absoluteCorrect = answers.at(0) == m_current->entry()->translation(Prefs::solutionLanguage())->text();
     bool comparativeCorrect = answers.at(1) == m_current->entry()->translation(Prefs::solutionLanguage())->comparative();
     bool superlativeCorrect = answers.at(2) == m_current->entry()->translation(Prefs::solutionLanguage())->superlative();
-
-    // FIXME grades
-    //m_current->entry()->translation(Prefs::solutionLanguage())->incGrade();
-    //m_current->entry()->translation(Prefs::solutionLanguage())->incPracticeCount();
-    //m_current->entry()->translation(Prefs::solutionLanguage())->comparison(m_currentTense).comparison(key).setPracticeDate( QDateTime::currentDateTime() );
 
     if (absoluteCorrect && comparativeCorrect && superlativeCorrect) {
         m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerCorrect);
@@ -99,6 +96,7 @@ void ComparisonBackendMode::checkAnswer()
             }
         }
     }
+    m_lastAnswers = answers;
 }
 
 void ComparisonBackendMode::hintAction()

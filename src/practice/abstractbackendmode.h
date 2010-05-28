@@ -32,7 +32,7 @@ public:
 
     /** start practicing a new word. sets some default that can be overwritten by the modes.
       * m_frontend->showQuestion() should be called after the initialization. */
-    virtual void setTestEntry(TestEntry* current);
+    virtual bool setTestEntry(TestEntry* current);
 
     /** add a new synonym to the list of shown/answered synonyms depending on which mode we
       * are in. */
@@ -61,6 +61,15 @@ Q_SIGNALS:
     void nextEntry();
 
 protected:
+    enum State {
+        NotAnswered,
+        AnswerWasWrong,
+        SolutionShown
+    };
+
+    /** The current state: depending on the state the continue action will trigger different things */
+    State m_state;
+
     /**
      * The current word is done. Grade it and maybe remove it.
      * All subclasses of AbstractBackendMode should call this when an entry is done!

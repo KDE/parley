@@ -28,7 +28,7 @@ public:
     ComparisonBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend,
                            QObject *parent, Practice::TestEntryManager* testEntryManager, KEduVocDocument* doc);
 
-    virtual void setTestEntry(TestEntry* current);
+    virtual bool setTestEntry(TestEntry* current);
 
 public Q_SLOTS:
     virtual void continueAction();
@@ -42,7 +42,7 @@ private:
 
     TestEntryManager* m_testEntryManager;
     KEduVocDocument* m_doc;
-
+    QStringList m_lastAnswers;
 };
 
 }

@@ -28,7 +28,7 @@ MultipleChoiceBackendMode::MultipleChoiceBackendMode(const PracticeOptions& prac
     m_numberOfChoices = practiceOptions.numberMultipleChoiceAnswers();
 }
 
-void MultipleChoiceBackendMode::setTestEntry(TestEntry* current)
+bool MultipleChoiceBackendMode::setTestEntry(TestEntry* current)
 {
     m_current = current;
     m_hints.clear();
@@ -49,6 +49,7 @@ void MultipleChoiceBackendMode::setTestEntry(TestEntry* current)
     m_solutionVisible = false;
     m_frontend->setResultState(AbstractFrontend::QuestionState);
     m_frontend->showQuestion();
+    return true;
 }
 
 void MultipleChoiceBackendMode::prepareChoices(TestEntry* current)

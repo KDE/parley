@@ -26,7 +26,7 @@ class FlashCardBackendMode : public AbstractBackendMode
 public:
     FlashCardBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend, QObject *parent);
     
-    virtual void setTestEntry(TestEntry* current);
+    virtual bool setTestEntry(TestEntry* current);
 
 public Q_SLOTS:
     virtual void continueAction();

@@ -28,7 +28,7 @@ class WrittenBackendMode : public AbstractBackendMode
 public:
     WrittenBackendMode(const Practice::PracticeOptions& practiceOptions, Practice::AbstractFrontend* frontend, QObject* parent, Practice::TestEntryManager* testEntryManager, KEduVocDocument* doc);
     
-    virtual void setTestEntry(TestEntry* current);
+    virtual bool setTestEntry(TestEntry* current);
 
 public Q_SLOTS:
     virtual void continueAction();
@@ -40,14 +40,6 @@ private:
     void handleWrongAnswer();
     void handleSynonym();
     
-    
-    enum State {
-        NotAnswered,
-        AnswerWasWrong,
-        SolutionShown
-    };
-    
-    State m_state;
     QString m_lastAnswer;
     QString m_currentHint;
     TestEntryManager* m_testEntryManager;

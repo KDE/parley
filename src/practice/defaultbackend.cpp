@@ -119,8 +119,12 @@ void DefaultBackend::nextEntry()
         emit practiceFinished();
         return;
     }
-    m_mode->setTestEntry(m_current);
-    updateFrontend();
+    if (m_mode->setTestEntry(m_current)) {
+        updateFrontend();
+    } else {
+        removeEntryFromPractice();
+        nextEntry();
+    }
 }
 
 void DefaultBackend::updateFrontend()
