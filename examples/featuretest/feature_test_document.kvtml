@@ -7,7 +7,7 @@
     <author>Daniel Laidig, Frederik Gladhorn</author>
     <license>GPLv2+ (GNU General Public License version 2 or later)</license>
     <comment>This is a document created during the parley mini sprint 2010</comment>
-    <date>2010-05-10</date>
+    <date>2010-05-28</date>
     <category>Testing</category>
   </information>
   <identifiers>
@@ -212,15 +212,23 @@
       <translation id="0">
         <text>groß</text>
         <comparison>
-          <comparative>größer</comparative>
-          <superlative>am größten</superlative>
+          <comparative>
+            <text>größer</text>
+          </comparative>
+          <superlative>
+            <text>am größten</text>
+          </superlative>
         </comparison>
       </translation>
       <translation id="1">
         <text>big</text>
         <comparison>
-          <comparative>bigger</comparative>
-          <superlative>the biggest</superlative>
+          <comparative>
+            <text>bigger</text>
+          </comparative>
+          <superlative>
+            <text>the biggest</text>
+          </superlative>
         </comparison>
       </translation>
     </entry>
@@ -228,15 +236,23 @@
       <translation id="0">
         <text>schön</text>
         <comparison>
-          <comparative>schöner</comparative>
-          <superlative>am schönsten</superlative>
+          <comparative>
+            <text>schöner</text>
+          </comparative>
+          <superlative>
+            <text>am schönsten</text>
+          </superlative>
         </comparison>
       </translation>
       <translation id="1">
         <text>beautiful</text>
         <comparison>
-          <comparative>more beautiful</comparative>
-          <superlative>the most beautiful</superlative>
+          <comparative>
+            <text>more beautiful</text>
+          </comparative>
+          <superlative>
+            <text>the most beautiful</text>
+          </superlative>
         </comparison>
       </translation>
     </entry>
@@ -250,15 +266,23 @@
           <date>2010-04-10T20:34:37</date>
         </grade>
         <comparison>
-          <comparative>dicker</comparative>
-          <superlative>am dicksten</superlative>
+          <comparative>
+            <text>dicker</text>
+          </comparative>
+          <superlative>
+            <text>am dicksten</text>
+          </superlative>
         </comparison>
       </translation>
       <translation id="1">
         <text>thick</text>
         <comparison>
-          <comparative>thicker</comparative>
-          <superlative>the thickest</superlative>
+          <comparative>
+            <text>thicker</text>
+          </comparative>
+          <superlative>
+            <text>the thickest</text>
+          </superlative>
         </comparison>
       </translation>
     </entry>
@@ -266,15 +290,23 @@
       <translation id="0">
         <text>unordentlich</text>
         <comparison>
-          <comparative>unordentlicher</comparative>
-          <superlative>am unordentlichsten</superlative>
+          <comparative>
+            <text>unordentlicher</text>
+          </comparative>
+          <superlative>
+            <text>am unordentlichsten</text>
+          </superlative>
         </comparison>
       </translation>
       <translation id="1">
         <text>messy</text>
         <comparison>
-          <comparative>more messy</comparative>
-          <superlative>the most messy</superlative>
+          <comparative>
+            <text>more messy</text>
+          </comparative>
+          <superlative>
+            <text>the most messy</text>
+          </superlative>
         </comparison>
       </translation>
     </entry>
@@ -288,55 +320,100 @@
           <date>2010-04-10T20:34:23</date>
         </grade>
         <comparison>
-          <comparative>öfter</comparative>
-          <superlative>am öftesten</superlative>
+          <comparative>
+            <text>öfter</text>
+          </comparative>
+          <superlative>
+            <text>am öftesten</text>
+          </superlative>
         </comparison>
       </translation>
       <translation id="1">
         <text>often</text>
         <comparison>
-          <comparative>more often</comparative>
-          <superlative>the most often</superlative>
+          <comparative>
+            <text>more often</text>
+          </comparative>
+          <superlative>
+            <text>the most often</text>
+          </superlative>
         </comparison>
       </translation>
     </entry>
     <entry id="14">
       <translation id="0">
+        <text>Kerze</text>
+      </translation>
+      <translation id="1">
+        <text>candle</text>
+        <grade>
+          <currentgrade>2</currentgrade>
+          <count>1</count>
+          <errorcount>0</errorcount>
+          <date>2010-05-26T14:51:08</date>
+        </grade>
+        <example>Like a candle in the wind.</example>
+      </translation>
+    </entry>
+    <entry id="15">
+      <translation id="0"/>
+      <translation id="1"/>
+    </entry>
+    <entry id="16">
+      <translation id="0">
         <text>Müll</text>
       </translation>
       <translation id="1">
         <text>trash</text>
+        <grade>
+          <currentgrade>2</currentgrade>
+          <count>1</count>
+          <errorcount>0</errorcount>
+          <date>2010-05-28T23:20:53</date>
+        </grade>
       </translation>
     </entry>
-    <entry id="15">
+    <entry id="17">
       <translation id="0">
         <text>Abfall</text>
       </translation>
       <translation id="1">
         <text>litter</text>
+        <grade>
+          <currentgrade>1</currentgrade>
+          <count>2</count>
+          <errorcount>1</errorcount>
+          <date>2010-05-28T23:20:58</date>
+        </grade>
       </translation>
     </entry>
-    <entry id="16">
+    <entry id="18">
       <translation id="0">
         <text>Dreck</text>
       </translation>
       <translation id="1">
         <text>waste</text>
+        <grade>
+          <currentgrade>2</currentgrade>
+          <count>1</count>
+          <errorcount>0</errorcount>
+          <date>2010-05-28T23:20:38</date>
+        </grade>
       </translation>
-    </entry>
-    <entry id="17">
-      <translation id="0"/>
-      <translation id="1"/>
-    </entry>
-    <entry id="18">
-      <translation id="0"/>
-      <translation id="1"/>
     </entry>
     <entry id="19">
       <translation id="0"/>
       <translation id="1"/>
     </entry>
     <entry id="20">
+      <translation id="0"/>
+      <translation id="1"/>
+    </entry>
+    <entry id="21">
+      <translation id="0"/>
+      <translation id="1"/>
+    </entry>
+    <entry id="22">
       <translation id="0">
         <text>gehen</text>
         <conjugation>
@@ -394,7 +471,7 @@
         </conjugation>
       </translation>
     </entry>
-    <entry id="21">
+    <entry id="23">
       <translation id="0">
         <text>sein</text>
         <conjugation>
@@ -452,7 +529,7 @@
         </conjugation>
       </translation>
     </entry>
-    <entry id="22">
+    <entry id="24">
       <translation id="0">
         <text>schlürfen</text>
         <conjugation>
@@ -485,7 +562,7 @@
         </conjugation>
       </translation>
     </entry>
-    <entry id="23">
+    <entry id="25">
       <translation id="0">
         <text>$$f(z) = \frac{1}{2\pi\mathrm{i}}\oint_{|z - \zeta| = 1}\frac{f(\zeta)}{\zeta-z}\mathrm{d}\zeta$$</text>
       </translation>
@@ -499,7 +576,7 @@
         </grade>
       </translation>
     </entry>
-    <entry id="24">
+    <entry id="26">
       <translation id="0">
         <text>§§This is a \LaTeX{} \textbf{markup} test.\\\texttt{With multiple lines.}§§</text>
       </translation>
@@ -513,7 +590,7 @@
         </grade>
       </translation>
     </entry>
-    <entry id="25">
+    <entry id="27">
       <translation id="0">
         <text>§§This\\will\\be\\very\\long\\and\\space\\consuming\\which\\is\\not\\optimal\\for\\the\\practice\\layout.§§</text>
       </translation>
@@ -560,28 +637,30 @@
     </container>
     <container>
       <name>Example Sentences</name>
+      <entry id="14"/>
+      <entry id="15"/>
     </container>
     <container>
       <name>Synonyms</name>
-      <entry id="14"/>
-      <entry id="15"/>
+      <inpractice>true</inpractice>
       <entry id="16"/>
       <entry id="17"/>
       <entry id="18"/>
       <entry id="19"/>
+      <entry id="20"/>
+      <entry id="21"/>
     </container>
     <container>
       <name>Verbs, Conjugations</name>
-      <entry id="20"/>
-      <entry id="21"/>
       <entry id="22"/>
+      <entry id="23"/>
+      <entry id="24"/>
     </container>
     <container>
       <name>LaTeX</name>
-      <inpractice>true</inpractice>
-      <entry id="23"/>
-      <entry id="24"/>
       <entry id="25"/>
+      <entry id="26"/>
+      <entry id="27"/>
     </container>
   </lessons>
   <wordtypes>
@@ -619,15 +698,15 @@
     <container>
       <name>Verb</name>
       <specialwordtype>verb</specialwordtype>
-      <entry id="20">
-        <translation id="0"/>
-        <translation id="1"/>
-      </entry>
-      <entry id="21">
-        <translation id="0"/>
-        <translation id="1"/>
-      </entry>
       <entry id="22">
+        <translation id="0"/>
+        <translation id="1"/>
+      </entry>
+      <entry id="23">
+        <translation id="0"/>
+        <translation id="1"/>
+      </entry>
+      <entry id="24">
         <translation id="0"/>
         <translation id="1"/>
       </entry>
@@ -700,50 +779,50 @@
   </leitnerboxes>
   <synonym>
     <pair>
-      <entry id="0">
+      <entry id="16">
         <translation id="0"/>
       </entry>
-      <entry id="15">
+      <entry id="18">
         <translation id="0"/>
       </entry>
     </pair>
     <pair>
-      <entry id="0">
+      <entry id="16">
         <translation id="0"/>
       </entry>
+      <entry id="17">
+        <translation id="0"/>
+      </entry>
+    </pair>
+    <pair>
       <entry id="16">
+        <translation id="1"/>
+      </entry>
+      <entry id="17">
         <translation id="1"/>
       </entry>
     </pair>
     <pair>
-      <entry id="14">
-        <translation id="0"/>
-      </entry>
       <entry id="16">
-        <translation id="0"/>
-      </entry>
-    </pair>
-    <pair>
-      <entry id="14">
         <translation id="1"/>
       </entry>
-      <entry id="15">
+      <entry id="18">
         <translation id="1"/>
       </entry>
     </pair>
     <pair>
-      <entry id="15">
+      <entry id="17">
         <translation id="0"/>
       </entry>
-      <entry id="16">
+      <entry id="18">
         <translation id="0"/>
       </entry>
     </pair>
     <pair>
-      <entry id="15">
+      <entry id="17">
         <translation id="1"/>
       </entry>
-      <entry id="16">
+      <entry id="18">
         <translation id="1"/>
       </entry>
     </pair>
