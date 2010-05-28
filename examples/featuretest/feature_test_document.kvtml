@@ -7,7 +7,7 @@
     <author>Daniel Laidig, Frederik Gladhorn</author>
     <license>GPLv2+ (GNU General Public License version 2 or later)</license>
     <comment>This is a document created during the parley mini sprint 2010</comment>
-    <date>2010-05-26</date>
+    <date>2010-05-28</date>
     <category>Testing</category>
   </information>
   <identifiers>
@@ -365,6 +365,12 @@
       </translation>
       <translation id="1">
         <text>trash</text>
+        <grade>
+          <currentgrade>2</currentgrade>
+          <count>1</count>
+          <errorcount>0</errorcount>
+          <date>2010-05-28T23:20:53</date>
+        </grade>
       </translation>
     </entry>
     <entry id="17">
@@ -373,6 +379,12 @@
       </translation>
       <translation id="1">
         <text>litter</text>
+        <grade>
+          <currentgrade>1</currentgrade>
+          <count>2</count>
+          <errorcount>1</errorcount>
+          <date>2010-05-28T23:20:58</date>
+        </grade>
       </translation>
     </entry>
     <entry id="18">
@@ -381,6 +393,12 @@
       </translation>
       <translation id="1">
         <text>waste</text>
+        <grade>
+          <currentgrade>2</currentgrade>
+          <count>1</count>
+          <errorcount>0</errorcount>
+          <date>2010-05-28T23:20:38</date>
+        </grade>
       </translation>
     </entry>
     <entry id="19">
@@ -619,12 +637,12 @@
     </container>
     <container>
       <name>Example Sentences</name>
-      <inpractice>true</inpractice>
       <entry id="14"/>
       <entry id="15"/>
     </container>
     <container>
       <name>Synonyms</name>
+      <inpractice>true</inpractice>
       <entry id="16"/>
       <entry id="17"/>
       <entry id="18"/>
@@ -634,7 +652,6 @@
     </container>
     <container>
       <name>Verbs, Conjugations</name>
-      <inpractice>true</inpractice>
       <entry id="22"/>
       <entry id="23"/>
       <entry id="24"/>
@@ -762,22 +779,6 @@
   </leitnerboxes>
   <synonym>
     <pair>
-      <entry id="0">
-        <translation id="0"/>
-      </entry>
-      <entry id="17">
-        <translation id="0"/>
-      </entry>
-    </pair>
-    <pair>
-      <entry id="0">
-        <translation id="0"/>
-      </entry>
-      <entry id="18">
-        <translation id="1"/>
-      </entry>
-    </pair>
-    <pair>
       <entry id="16">
         <translation id="0"/>
       </entry>
@@ -787,9 +788,25 @@
     </pair>
     <pair>
       <entry id="16">
+        <translation id="0"/>
+      </entry>
+      <entry id="17">
+        <translation id="0"/>
+      </entry>
+    </pair>
+    <pair>
+      <entry id="16">
         <translation id="1"/>
       </entry>
       <entry id="17">
+        <translation id="1"/>
+      </entry>
+    </pair>
+    <pair>
+      <entry id="16">
+        <translation id="1"/>
+      </entry>
+      <entry id="18">
         <translation id="1"/>
       </entry>
     </pair>
