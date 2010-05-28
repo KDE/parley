@@ -204,64 +204,69 @@ TestEntry* TestEntryManager::getNextEntry()
 
 QStringList TestEntryManager::randomMultipleChoiceAnswers(int numberChoices)
 {
-    ///@todo this can be made much nicer...
-    
     QStringList choices;
-    
-    KRandomSequence randomSequence (QDateTime::currentDateTime().toTime_t());
-    
+    KRandomSequence randomSequence;
     QList<KEduVocExpression*> allEntries = m_doc->lesson()->entries(KEduVocLesson::Recursive);
-    
-    if (allEntries.count() <= numberChoices) {
+    int numValidEntries = 0;
+
+    // find out if we got enough valid entries to fill all the options
+    for(int i = 0; i < allEntries.count(); ++i) {
+        if(isValidMultipleChoiceAnswer(allEntries.value(i)))
+            numValidEntries++;
+        if(numValidEntries >= numberChoices)
+            break;
+    }
+
+    // if we don't have enough valid entries, just try everything and use what we can get
+    if (numValidEntries < numberChoices) {
         for (int i = choices.count(); i < allEntries.count(); ++i) {
-            KEduVocExpression *act = allEntries.value(i);
-            
-            if (act != m_currentEntries.at(m_currentEntry)->entry()) {
-                choices.append(act->translation(Prefs::solutionLanguage())->text());
+            KEduVocExpression *exp = allEntries.value(i);
+
+            if (isValidMultipleChoiceAnswer(exp)) {
+                choices.append(exp->translation(Prefs::solutionLanguage())->text());
             }
         }
     } else {
         QList<KEduVocExpression*> exprlist;
-        
         int count = numberChoices;
-        int numNonEmptyEntries = 0;
-        
-        // find out if we got enough non-empty entries to fill all the options
-        for(int i = 0; i < allEntries.count(); i++) {
-            if(!allEntries.value(i)->translation(Prefs::solutionLanguage())->text().isEmpty())
-                numNonEmptyEntries++;
-            if(numNonEmptyEntries >= numberChoices)
-                break;
-        }
-        
-        // gather random expressions for the choice
         while (count > 0) {
             int nr;
             // if there are enough non-empty fields, fill the options only with those
-            if(numNonEmptyEntries >= numberChoices) {
-                do {
-                    nr = randomSequence.getLong(allEntries.count());
-                } while (allEntries.value(nr)->translation(Prefs::solutionLanguage())->text().isEmpty());
-            } else {
+            do {
                 nr = randomSequence.getLong(allEntries.count());
-            }
-            // append if new expr found
+            } while (!isValidMultipleChoiceAnswer(allEntries.value(nr)));
+            // append if new entry found
             bool newex = true;
             for (int i = 0; newex && i < exprlist.count(); i++) {
                 if (exprlist[i] == allEntries.value(nr))
                     newex = false;
             }
-            if (newex && m_currentEntries.at(m_currentEntry)->entry() != allEntries.value(nr)) {
+            if (newex) {
                 count--;
                 exprlist.append(allEntries.value(nr));
             }
         }
-        
+
         for (int i = 0; i < exprlist.count(); i++) {
             choices.append(exprlist[i]->translation(Prefs::solutionLanguage())->text());
         }
     }
-    
+
+    kDebug() << "choices:" << choices;
     return choices;
+}
+
+bool TestEntryManager::isValidMultipleChoiceAnswer(KEduVocExpression *e)
+{
+    // entry is empty
+    if (e->translation(Prefs::solutionLanguage())->text().trimmed().isEmpty())
+        return false;
+    // entry is a synonym of the solution
+    if (e->translation(Prefs::solutionLanguage())->synonyms().contains(m_currentEntries.at(m_currentEntry)->entry()->translation(Prefs::solutionLanguage())))
+        return false;
+    // entry has the same text as the solution
+    if (e->translation(Prefs::solutionLanguage())->text().simplified() == m_currentEntries.at(m_currentEntry)->entry()->translation(Prefs::solutionLanguage())->text().simplified())
+        return false;
+    return true;
 }
 
