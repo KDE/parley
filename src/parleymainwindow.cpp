@@ -283,6 +283,14 @@ void ParleyMainWindow::showPracticeSummary()
 
 void ParleyMainWindow::switchComponent(Component component)
 {
+    if (component == PracticeComponent) {
+        // don't start a practice when there are no words to practice
+        // this has to be checked before deleting the old component
+        m_testEntryManager.setDocument(m_document->document());
+        if (!m_testEntryManager.totalEntryCount()) {
+            return;
+        }
+    }
     if (m_currentComponentWindow) {
         guiFactory()->removeClient(m_currentComponentWindow);
         centralWidget()->layout()->removeWidget(m_currentComponentWindow);
@@ -312,7 +320,6 @@ void ParleyMainWindow::switchComponent(Component component)
         }
         case PracticeComponent: {
             m_document->document()->setModified(true);
-            m_testEntryManager.setDocument(m_document->document());
             Practice::PracticeMainWindow *practiceWindow = new Practice::PracticeMainWindow(&m_testEntryManager, this);
             connect(practiceWindow, SIGNAL(stopPractice()), this, SLOT(showPracticeSummary()));
             m_currentComponentWindow = practiceWindow;
