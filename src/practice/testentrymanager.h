@@ -95,6 +95,12 @@ private:
      */
     void filterTestEntries();
 
+    /**
+     * Find out if the given expression can be used as a multiple choice answer for the current entry
+     * (i.e. if it's not the answer itself, not a synonym and has a different text)
+     */
+    bool isValidMultipleChoiceAnswer(KEduVocExpression *e);
+
     void setLanguages(int from, int to);
 
     KEduVocDocument *m_doc;
