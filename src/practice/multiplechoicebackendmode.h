@@ -29,8 +29,9 @@ public:
     
     virtual bool setTestEntry(TestEntry* current);
 
+    virtual void checkAnswer();
+
 public Q_SLOTS:
-    virtual void continueAction();
     virtual void hintAction();
     
 protected:
@@ -57,7 +58,6 @@ protected:
     int numberOfChoices();
 
 private:
-    bool m_solutionVisible;
     TestEntryManager* m_testEntryManager;
     KRandomSequence m_randomSequence;
     QString m_question;

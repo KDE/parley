@@ -1,6 +1,6 @@
 /***************************************************************************
+    Copyright 2009-2010 Frederik Gladhorn <gladhorn@kde.org>
     Copyright 2009 Daniel Laidig <d.laidig@gmx.de>
-    Copyright 2009 Frederik Gladhorn <gladhorn@kde.org>
  ***************************************************************************/
 
 /***************************************************************************
@@ -12,48 +12,44 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "defaultbackend.h"
+#include "practicestatemachine.h"
 
-#include <QtCore/QVariant>
-#include <kdebug.h>
+#include "parleydocument.h"
 
+#include "abstractbackendmode.h"
+#include "comparisonbackendmode.h"
+#include "conjugationbackendmode.h"
 #include "examplesentencebackendmode.h"
 #include "flashcardbackendmode.h"
 #include "genderbackendmode.h"
 #include "multiplechoicebackendmode.h"
 #include "writtenbackendmode.h"
-#include "conjugationbackendmode.h"
-#include "comparisonbackendmode.h"
 
 using namespace Practice;
 
-DefaultBackend::DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, const Practice::PracticeOptions& options, Practice::TestEntryManager* testEntryManager, QObject* parent)
-    : QObject(parent)
-    , m_frontend(frontend)
-    , m_document(doc)
-    , m_options(options)
-    , m_current(0)
-    , m_testEntryManager(testEntryManager)
-    , m_currentMode(AbstractFrontend::None)
-    , m_mode(0)
+PracticeStateMachine::PracticeStateMachine(AbstractFrontend* frontend, ParleyDocument* doc, const PracticeOptions& options, TestEntryManager* testEntryManager,  QObject* parent)
+:QObject(parent)
+,m_frontend(frontend)
+,m_document(doc)
+,m_options(options)
+,m_current(0)
+,m_testEntryManager(testEntryManager)
 {
-    Q_UNUSED(doc)
+    createPracticeMode();
+
+    // To allow to skip an an entry
     connect(m_frontend, SIGNAL(skipAction()), this, SLOT(nextEntry()));
     connect(m_frontend, SIGNAL(stopPractice()), this, SIGNAL(practiceFinished()));
+    connect(m_frontend, SIGNAL(hintAction()), m_mode, SLOT(hintAction()));
+
+    connect(m_frontend, SIGNAL(continueAction()), this, SLOT(continueAction()));
+
+    connect(m_mode, SIGNAL(answerRight()), this, SLOT(answerRight()));
+    connect(m_mode, SIGNAL(answerWrongRetry()), this, SLOT(answerWrongRetry()));
+    connect(m_mode, SIGNAL(answerWrongShowSolution()), this, SLOT(answerWrongShowSolution()));
 }
 
-DefaultBackend::~DefaultBackend()
-{
-    delete m_mode;
-}
-
-void DefaultBackend::startPractice()
-{
-    initializePracticeMode();
-    nextEntry();
-}
-
-void DefaultBackend::initializePracticeMode()
+void PracticeStateMachine::createPracticeMode()
 {
     switch(m_options.mode()) {
         case Prefs::EnumPracticeMode::FlashCardsPractice:
@@ -69,17 +65,17 @@ void DefaultBackend::initializePracticeMode()
         case Prefs::EnumPracticeMode::MixedLettersPractice:
             kDebug() << "Create Mixed Letters Practice backend";
             m_frontend->setMode(AbstractFrontend::MixedLetters);
-            m_mode = new WrittenBackendMode(m_options, m_frontend, this, m_testEntryManager,m_document->document());
+            m_mode = new WrittenBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
             break;
         case Prefs::EnumPracticeMode::WrittenPractice:
             kDebug() << "Create Written Practice backend";
             m_frontend->setMode(AbstractFrontend::Written);
-            m_mode = new WrittenBackendMode(m_options, m_frontend, this, m_testEntryManager,m_document->document());
+            m_mode = new WrittenBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
             break;
         case Prefs::EnumPracticeMode::ExampleSentencesPractice:
             kDebug() << "Create Written Practice backend";
             m_frontend->setMode(AbstractFrontend::Written);
-            m_mode = new ExampleSentenceBackendMode(m_options, m_frontend, this,m_testEntryManager,m_document->document());
+            m_mode = new ExampleSentenceBackendMode(m_options, m_frontend, this,m_testEntryManager, m_document->document());
             break;
         case Prefs::EnumPracticeMode::GenderPractice:
             m_frontend->setMode(AbstractFrontend::MultipleChoice);
@@ -93,26 +89,24 @@ void DefaultBackend::initializePracticeMode()
             m_frontend->setMode(AbstractFrontend::Comparison);
             m_mode = new ComparisonBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
             break;
+
         default:
             Q_ASSERT("Implement selected practice mode" == 0);
     }
-
-    // To allow to skip an an entry
-    connect(m_mode, SIGNAL(nextEntry()), this, SLOT(nextEntry()));
-    connect(m_mode, SIGNAL(removeCurrentEntryFromPractice()), this, SLOT(removeEntryFromPractice()));
-
-    connect(m_frontend, SIGNAL(continueAction()), m_mode, SLOT(continueAction()));
-    connect(m_frontend, SIGNAL(hintAction()), m_mode, SLOT(hintAction()));
 }
 
-void DefaultBackend::removeEntryFromPractice()
+void Practice::PracticeStateMachine::start()
 {
-    m_testEntryManager->removeCurrentEntryFromPractice();
+    kDebug() << "Start practice";
+    nextEntry();
 }
 
-void DefaultBackend::nextEntry()
+void PracticeStateMachine::nextEntry()
 {
+    m_state = NotAnswered;
     m_current = m_testEntryManager->getNextEntry();
+
+    kDebug() << "GETTING ENTRY - " << m_current;
 
     //after going through all words, or at the start of practice
     if (m_current == 0) {
@@ -122,16 +116,60 @@ void DefaultBackend::nextEntry()
     if (m_mode->setTestEntry(m_current)) {
         updateFrontend();
     } else {
-        removeEntryFromPractice();
+        // this is just a fall back, if an invalid entry slipped through
+        currentEntryFinished();
         nextEntry();
     }
 }
 
-void DefaultBackend::updateFrontend()
+void PracticeStateMachine::currentEntryFinished()
 {
+    m_testEntryManager->removeCurrentEntryFromPractice();
+}
+
+void PracticeStateMachine::continueAction()
+{
+    kDebug() << "continue" << m_state;
+    switch (m_state) {
+        // on continue, we check the answer, if in NotAnsweredState or AnswerWasWrongState
+        case NotAnswered:
+        case AnswerWasWrong:
+            m_mode->checkAnswer();
+            break;
+
+        case SolutionShown:
+            gradeEntryAndContinue();
+            break;
+    }
+}
+
+void PracticeStateMachine::answerRight()
+{
+    kDebug() << "ans right";
+    m_state = SolutionShown;
+    m_frontend->showSolution();
+}
+
+void PracticeStateMachine::answerWrongRetry()
+{
+    kDebug() << "wrong retr";
+    m_state = AnswerWasWrong;
+}
+
+void PracticeStateMachine::answerWrongShowSolution()
+{
+    kDebug() << "wrong sol";
+    m_state = SolutionShown;
+    m_frontend->showSolution();
+}
+
+void PracticeStateMachine::updateFrontend()
+{
+    m_frontend->setFeedbackState(AbstractFrontend::QuestionState);
+    m_frontend->setResultState(AbstractFrontend::QuestionState);
     m_frontend->setLessonName(m_current->entry()->lesson()->name());
     m_frontend->setFinishedWordsTotalWords(
-        m_testEntryManager->totalEntryCount() - m_testEntryManager->activeEntryCount(), 
+        m_testEntryManager->totalEntryCount() - m_testEntryManager->activeEntryCount(),
         m_testEntryManager->totalEntryCount());
 
     int grade = m_current->entry()->translation(m_options.languageTo())->grade();
@@ -141,4 +179,22 @@ void DefaultBackend::updateFrontend()
     m_frontend->setQuestionImage(imgUrl);
 }
 
-#include "defaultbackend.moc"
+void PracticeStateMachine::gradeEntryAndContinue()
+{
+    if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
+        m_current->updateStatisticsRightAnswer();
+    } else {
+        m_current->updateStatisticsWrongAnswer();
+    }
+
+    kDebug() << "entry finished: " << m_frontend->resultState() << " change grades? " << m_current->changeGrades();
+    if (m_current->changeGrades()) {
+        m_mode->updateGrades();
+        if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
+            currentEntryFinished();
+        }
+    }
+    emit nextEntry();
+}
+
+#include "practicestatemachine.moc"

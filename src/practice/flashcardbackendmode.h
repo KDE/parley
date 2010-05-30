@@ -22,16 +22,15 @@ namespace Practice {
 class FlashCardBackendMode : public AbstractBackendMode
 {
     Q_OBJECT
-    
+
 public:
     FlashCardBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend, QObject *parent);
-    
     virtual bool setTestEntry(TestEntry* current);
 
 public Q_SLOTS:
-    virtual void continueAction();
+    virtual void checkAnswer();
     virtual void hintAction();
-    
+
 private:
     bool m_solutionVisible;
     TestEntry *m_current;

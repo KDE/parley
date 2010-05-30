@@ -13,17 +13,14 @@
 
 
 #include "flashcardbackendmode.h"
-#include "defaultbackend.h"
 
 #include <klocale.h>
 
 using namespace Practice;
- 
- 
+
 FlashCardBackendMode::FlashCardBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent)
 :AbstractBackendMode(practiceOptions, frontend, parent)
 {
-
 }
 
 bool FlashCardBackendMode::setTestEntry(TestEntry* current)
@@ -36,14 +33,9 @@ bool FlashCardBackendMode::setTestEntry(TestEntry* current)
     return true;
 }
 
-void FlashCardBackendMode::continueAction()
+void FlashCardBackendMode::checkAnswer()
 {
-    if (!m_solutionVisible) {
-        m_frontend->showSolution();
-        m_solutionVisible = true;
-    } else {
-        gradeEntryAndContinue();
-    }
+    emit answerRight();
 }
 
 void FlashCardBackendMode::hintAction()

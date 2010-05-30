@@ -13,9 +13,10 @@
 
 #include "practicemainwindow.h"
 
-#include "parleymainwindow.h"
-#include "guifrontend.h"
-#include "defaultbackend.h"
+
+#include <QHBoxLayout>
+#include <QToolButton>
+#include <QPropertyAnimation>
 
 #include <KActionCollection>
 #include <KAction>
@@ -26,9 +27,10 @@
 #include <KConfig>
 #include <KConfigGroup>
 
-#include <QHBoxLayout>
-#include <QToolButton>
-#include <QPropertyAnimation>
+#include "parleymainwindow.h"
+#include "guifrontend.h"
+#include "practiceoptions.h"
+#include "practicestatemachine.h"
 
 using namespace Practice;
 
@@ -42,8 +44,8 @@ PracticeMainWindow::PracticeMainWindow(TestEntryManager* testEntryManager, Parle
     m_guiFrontend = new GuiFrontend(this);
     setCentralWidget(m_guiFrontend->widget());
 
-    Practice::PracticeOptions options;
-    m_backend = new Practice::DefaultBackend(m_guiFrontend, parent->parleyDocument(), options, testEntryManager, this);
+    PracticeOptions options;
+    m_stateMachine = new PracticeStateMachine(m_guiFrontend, parent->parleyDocument(), options, testEntryManager, this);
 
     // setModified - otherwise we may not ask to save progress
     parent->parleyDocument()->document()->setModified(true);
@@ -51,7 +53,7 @@ PracticeMainWindow::PracticeMainWindow(TestEntryManager* testEntryManager, Parle
     initActions();
 
     connect(this, SIGNAL(enterPressed()), m_guiFrontend, SIGNAL(continueAction()));
-    connect(m_backend, SIGNAL(practiceFinished()), this, SIGNAL(stopPractice()));
+    connect(m_stateMachine, SIGNAL(practiceFinished()), this, SLOT(practiceFinished()));
 
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
@@ -139,11 +141,6 @@ bool PracticeMainWindow::event(QEvent *event)
     return KXmlGuiWindow::event(event);
 }
 
-void PracticeMainWindow::startPractice()
-{
-    m_backend->startPractice();
-}
-
 void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)
 {
     KToggleFullScreenAction::setFullScreen(m_parent, fullScreen);
@@ -151,6 +148,18 @@ void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)
     m_parent->menuBar()->setVisible(!fullScreen);
     m_floatingToolBar->setVisible(fullScreen);
     m_parent->setSettingsDirty();
+}
+
+void PracticeMainWindow::startPractice()
+{
+    m_stateMachine->start();
+}
+
+void PracticeMainWindow::practiceFinished()
+{
+    kDebug() << "finished";
+    delete m_stateMachine;
+    emit stopPractice();
 }
 
 #include "practicemainwindow.moc"

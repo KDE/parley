@@ -30,17 +30,15 @@ public:
 
     virtual bool setTestEntry(TestEntry* current);
 
-public Q_SLOTS:
-    virtual void continueAction();
-    virtual void hintAction();
-
-protected:
     virtual void updateGrades();
+
+public Q_SLOTS:
+    virtual void hintAction();
+    virtual void checkAnswer();
 
 private:
     QStringList validPersonalPronouns();
     void updatePronounFlags();
-    void checkAnswer();
 
     TestEntryManager* m_testEntryManager;
     KEduVocDocument* m_doc;
@@ -49,6 +47,8 @@ private:
     QString m_currentTense;
     QList<KEduVocWordFlags> m_pronounFlags;
     KEduVocConjugation m_conjugation;
+
+    QStringList m_lastAnswers;
 };
 
 }

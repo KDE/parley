@@ -33,11 +33,11 @@ set(parley_SRCS
     practice/practiceoptions.cpp
     practice/abstractfrontend.cpp
     practice/abstractbackendmode.cpp
+    practice/practicestatemachine.cpp
     practice/comparisonbackendmode.cpp
     practice/comparisonmodewidget.cpp
     practice/conjugationbackendmode.cpp
     practice/conjugationmodewidget.cpp
-    practice/defaultbackend.cpp
     practice/guifrontend.cpp
     practice/abstractwidget.cpp
     practice/writtenpracticewidget.cpp

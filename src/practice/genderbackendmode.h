@@ -30,7 +30,7 @@ public:
 protected:
     virtual void prepareChoices(TestEntry* current);
     virtual void updateGrades();
-    
+
 private:
     KEduVocArticle m_articles;
     QString m_masculine;

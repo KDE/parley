@@ -14,19 +14,21 @@
 #ifndef ABSTRACTBACKENDMODE_H
 #define ABSTRACTBACKENDMODE_H
 
+#include <QVariant>
+
 #include "testentry.h"
 #include "practiceoptions.h"
 #include "abstractfrontend.h"
 
-#include <QVariant>
 
 namespace Practice {
-    
+
 class AbstractBackendMode :public QObject
 {
     Q_OBJECT
-    
+
 public:
+
     AbstractBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend *frontend, QObject *parent);
     virtual ~AbstractBackendMode() {}
 
@@ -36,7 +38,7 @@ public:
 
     /** add a new synonym to the list of shown/answered synonyms depending on which mode we
       * are in. */
-    virtual void addSynonym(const QString& entry) { if (!entry.isEmpty()) m_synonyms.append(entry); }
+    void addSynonym(const QString& entry) { if (!entry.isEmpty()) m_synonyms.append(entry); }
 
     /**
      * The grade of the current entry - this has an default implementation to return the grade for the current translation.
@@ -48,35 +50,6 @@ public:
      */
     virtual grade_t currentGradeForEntry();
 
-public Q_SLOTS:
-    /** the frontend requested to continue */
-    virtual void continueAction() = 0;
-    /** the frontend requested a hint */
-    virtual void hintAction() = 0;
-
-Q_SIGNALS:
-    void removeCurrentEntryFromPractice();
-
-    /** ask for the next word to be practiced */
-    void nextEntry();
-
-protected:
-    enum State {
-        NotAnswered,
-        AnswerWasWrong,
-        SolutionShown
-    };
-
-    /** The current state: depending on the state the continue action will trigger different things */
-    State m_state;
-
-    /**
-     * The current word is done. Grade it and maybe remove it.
-     * All subclasses of AbstractBackendMode should call this when an entry is done!
-     * this will call TestEntry::up*dateStatistics() and the updateGrades virtual function in this class.
-     */
-    void gradeEntryAndContinue();
-
     /**
      * Change the grades for the current entry.
      * The default implementation changes the grade of the current translation.
@@ -84,6 +57,27 @@ protected:
      */
     virtual void updateGrades();
 
+public Q_SLOTS:
+    /** the frontend requested a hint */
+    virtual void hintAction() = 0;
+
+    /**
+     * Check if the current answer is right.
+     * This function should emit on of these signals: answerRight, answerWrongRetry or answerWrongShowSolution
+     */
+    virtual void checkAnswer() = 0;
+
+Q_SIGNALS:
+    void removeCurrentEntryFromPractice();
+
+    /** ask for the next word to be practiced */
+    void nextEntry();
+
+    void answerRight();
+    void answerWrongRetry();
+    void answerWrongShowSolution();
+
+protected:
     PracticeOptions m_practiceOptions;
     AbstractFrontend* m_frontend;
     TestEntry* m_current;

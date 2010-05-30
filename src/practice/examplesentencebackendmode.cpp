@@ -14,17 +14,13 @@
 
 #include "examplesentencebackendmode.h"
 
-#include "defaultbackend.h"
-
 #include <KLocalizedString>
 
 using namespace Practice;
 
-
 ExampleSentenceBackendMode::ExampleSentenceBackendMode(const Practice::PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent, TestEntryManager* testEntryManager, KEduVocDocument* doc)
 :WrittenBackendMode(practiceOptions, frontend, parent,testEntryManager,doc)
 {
-
 }
 
 bool ExampleSentenceBackendMode::setTestEntry(TestEntry* current)

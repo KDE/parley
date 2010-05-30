@@ -20,12 +20,13 @@ AbstractBackendMode::AbstractBackendMode(const PracticeOptions& practiceOptions,
     :QObject(parent)
     ,m_practiceOptions(practiceOptions)
     ,m_frontend(frontend)
-{}
+{
+}
 
 bool AbstractBackendMode::setTestEntry(TestEntry* current)
 {
-    m_state = NotAnswered;
     m_current = current;
+    // this default implementation sets up the frontend with the normal word
     m_frontend->setQuestion(m_current->entry()->translation(m_practiceOptions.languageFrom())->text());
     m_frontend->setSolution(m_current->entry()->translation(m_practiceOptions.languageTo())->text());
     m_frontend->setQuestionSound(m_current->entry()->translation(m_practiceOptions.languageFrom())->soundUrl());
@@ -33,31 +34,12 @@ bool AbstractBackendMode::setTestEntry(TestEntry* current)
     m_frontend->setQuestionPronunciation(m_current->entry()->translation(m_practiceOptions.languageFrom())->pronunciation());
     m_frontend->setSolutionPronunciation(m_current->entry()->translation(m_practiceOptions.languageTo())->pronunciation());
 
-    m_frontend->setResultState(AbstractFrontend::QuestionState);
     return true;
 }
 
 grade_t Practice::AbstractBackendMode::currentGradeForEntry()
 {
     return m_current->entry()->translation(m_practiceOptions.languageTo())->grade();
-}
-
-void Practice::AbstractBackendMode::gradeEntryAndContinue()
-{
-    if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-        m_current->updateStatisticsRightAnswer();
-    } else {
-        m_current->updateStatisticsWrongAnswer();
-    }
-
-    kDebug() << "entry finished: " << m_frontend->resultState() << " change grades? " << m_current->changeGrades();
-    if (m_current->changeGrades()) {
-        updateGrades();
-        if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-            emit removeCurrentEntryFromPractice();
-        }
-    }
-    emit nextEntry();
 }
 
 void Practice::AbstractBackendMode::updateGrades()

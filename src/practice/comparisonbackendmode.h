@@ -30,15 +30,15 @@ public:
 
     virtual bool setTestEntry(TestEntry* current);
 
+    void checkAnswer();
+
 public Q_SLOTS:
-    virtual void continueAction();
     virtual void hintAction();
 
 protected:
     virtual void updateGrades();
 
 private:
-    void checkAnswer();
 
     TestEntryManager* m_testEntryManager;
     KEduVocDocument* m_doc;

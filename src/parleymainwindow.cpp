@@ -31,7 +31,6 @@
 #include "settings/parleyprefs.h"
 #include "configure-practice/configurepracticedialog.h"
 #include "practice/guifrontend.h"
-#include "practice/defaultbackend.h"
 #include "practice/practiceoptions.h"
 #include "practice/practicesummarycomponent.h"
 

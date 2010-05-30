@@ -16,8 +16,6 @@
 
 #include <KLocalizedString>
 
-#include "defaultbackend.h"
-
 #include "documentsettings.h"
 
 using namespace Practice;
@@ -54,19 +52,16 @@ bool ComparisonBackendMode::setTestEntry(TestEntry* current)
     return true;
 }
 
-void ComparisonBackendMode::continueAction()
-{
-    if (m_frontend->resultState() == AbstractFrontend::QuestionState) {
-        checkAnswer();
-        m_frontend->showSolution();
-    } else {
-        gradeEntryAndContinue();
-    }
-}
-
 void ComparisonBackendMode::checkAnswer()
 {
     QStringList answers = m_frontend->userInput().toStringList();
+
+    if (answers == m_lastAnswers) {
+        m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerCorrect);
+        m_frontend->setResultState(Practice::AbstractFrontend::AnswerWrong);
+        emit answerWrongShowSolution();
+        return;
+    }
 
     bool absoluteCorrect = answers.at(0) == m_current->entry()->translation(Prefs::solutionLanguage())->text();
     bool comparativeCorrect = answers.at(1) == m_current->entry()->translation(Prefs::solutionLanguage())->comparative();
@@ -74,11 +69,17 @@ void ComparisonBackendMode::checkAnswer()
 
     if (absoluteCorrect && comparativeCorrect && superlativeCorrect) {
         m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerCorrect);
-        m_frontend->setResultState(Practice::AbstractFrontend::AnswerCorrect);
         m_frontend->setFeedback(i18n("All comparison forms were right."));
+
+        if (m_lastAnswers.isEmpty()) {
+            m_frontend->setResultState(Practice::AbstractFrontend::AnswerCorrect);
+            emit answerRight();
+        } else {
+            m_frontend->setResultState(Practice::AbstractFrontend::AnswerWrong);
+            emit answerWrongShowSolution();
+        }
     } else {
         m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerWrong);
-        m_frontend->setResultState(Practice::AbstractFrontend::AnswerWrong);
 
         if (!absoluteCorrect) {
             m_frontend->setFeedback(i18nc("the user entered the wrong absolute form when practicing comparison forms of adjectives (the base form of the adjective is wrong)",
@@ -95,6 +96,7 @@ void ComparisonBackendMode::checkAnswer()
                                               "The superlative is wrong."));
             }
         }
+        emit answerWrongRetry();
     }
     m_lastAnswers = answers;
 }
@@ -103,7 +105,6 @@ void ComparisonBackendMode::hintAction()
 {
     // FIXME
 }
-
 
 void ComparisonBackendMode::updateGrades()
 {
