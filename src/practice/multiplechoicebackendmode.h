@@ -27,10 +27,11 @@ class MultipleChoiceBackendMode : public AbstractBackendMode
 public:
     MultipleChoiceBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend, QObject *parent, Practice::TestEntryManager* testEntryManager);
     
-    virtual void setTestEntry(TestEntry* current);
+    virtual bool setTestEntry(TestEntry* current);
+
+    virtual void checkAnswer();
 
 public Q_SLOTS:
-    virtual void continueAction();
     virtual void hintAction();
     
 protected:
@@ -53,11 +54,10 @@ protected:
      * The correct solution, index of the choices.
      */
     void setCorrectAnswer(int index);
-    
+
     int numberOfChoices();
 
 private:
-    bool m_solutionVisible;
     TestEntryManager* m_testEntryManager;
     KRandomSequence m_randomSequence;
     QString m_question;

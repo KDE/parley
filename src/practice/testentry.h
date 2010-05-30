@@ -39,18 +39,26 @@ public:
 
     Q_DECLARE_FLAGS(ErrorTypes, ErrorType)
 
-
     TestEntry(KEduVocExpression *entry);
 
-    void incGoodCount();
-    void incBadCount();
+    /// update the internal statistics for this practice with a right result
+    void updateStatisticsRightAnswer();
 
+    /// update the internal statistics for this practice with a wrong result
+    void updateStatisticsWrongAnswer();
+
+    /**
+     check if the entry was finished and the practice backend
+     may update the grades that will be saved to the file persistently
+     @return whether the entry is done
+    */
+    bool changeGrades();
 
     int answeredCorrectInSequence();
     int statisticCount();
     int statisticGoodCount();
     int statisticBadCount();
-    bool statisticCorrectAtFirstAttempt();
+    bool correctAtFirstAttempt();
 
     void setLastErrors(ErrorTypes errorTypes);
     ErrorTypes lastErrors();
@@ -68,13 +76,9 @@ public:
     static int gradeFrom();
     static int gradeTo();
 
-
-
     KEduVocExpression *entry();
 
 private:
-    void update();
-
     /// the entry itself
     KEduVocExpression *m_entry;
 
@@ -85,6 +89,7 @@ private:
     int m_answeredCorrectInSequence;
     bool m_correctAtFirstAttempt;
     bool m_practiceFinished;
+    bool m_changeGrades;
 
     double m_lastPercentage;
     ErrorTypes m_lastError;

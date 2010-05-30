@@ -196,7 +196,7 @@ void KGameThemeSelector::KGameThemeSelectorPrivate::_k_updateThemeList(const QSt
 
 void KGameThemeSelector::KGameThemeSelectorPrivate::_k_openKNewStuffDialog()
 {
-    KNS3::DownloadDialog dialog( q );
+    KNS3::DownloadDialog dialog( "parley-themes.knsrc",  q );
     dialog.exec();
     if ( !dialog.changedEntries().isEmpty() )
         findThemes( ui.kcfg_Theme->text() );

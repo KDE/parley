@@ -13,13 +13,13 @@
 
 
 #include "genderbackendmode.h"
-#include "defaultbackend.h"
 
 #include <klocale.h>
+
+#include <keduvocdocument.h>
 #include <keduvocwordtype.h>
 
 using namespace Practice;
- 
 
 GenderBackendMode::GenderBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent, Practice::TestEntryManager* testEntryManager, KEduVocDocument* doc)
 : MultipleChoiceBackendMode(practiceOptions, frontend, parent, testEntryManager)
@@ -56,7 +56,7 @@ void GenderBackendMode::prepareChoices(TestEntry* entry)
 {
     Q_ASSERT(entry->entry()->translation(m_practiceOptions.languageTo())->wordType()->wordType() & KEduVocWordFlag::Noun);
     
-    setQuestion(i18n("Choose the right article for \"%1\"", m_current->entry()->translation(m_practiceOptions.languageFrom())->text()));
+    setQuestion(i18n("Choose the right article for \"%1\"", entry->entry()->translation(m_practiceOptions.languageFrom())->text()));
         
     // set the word (possibly without the article)
     QString noun = entry->entry()->translation(Prefs::solutionLanguage())->text();
@@ -106,16 +106,25 @@ void GenderBackendMode::prepareChoices(TestEntry* entry)
     }
 }
 
-void GenderBackendMode::userAnswerRight()
+void GenderBackendMode::updateGrades()
 {
-    kDebug() << "article right";
+    if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
+        kDebug() << "article right - old grade: " << m_current->entry()->translation(m_practiceOptions.languageTo())->article().grade();
+        KEduVocText articleGrade = m_current->entry()->translation(m_practiceOptions.languageTo())->article();
+        articleGrade.incGrade();
+        articleGrade.incPracticeCount();
+        articleGrade.setPracticeDate( QDateTime::currentDateTime() );
+        m_current->entry()->translation(m_practiceOptions.languageTo())->setArticle(articleGrade);
+        kDebug() << "article right - new grade: " << m_current->entry()->translation(m_practiceOptions.languageTo())->article().grade();
+    } else {
+        kDebug() << "article wrong";
+        KEduVocText articleGrade = m_current->entry()->translation(m_practiceOptions.languageTo())->article();
+        articleGrade.setGrade(KV_LEV1_GRADE);
+        articleGrade.incPracticeCount();
+        articleGrade.incBadCount();
+        m_current->entry()->translation(m_practiceOptions.languageTo())->setArticle(articleGrade);
+    }
 }
-
-void GenderBackendMode::userAnswerWrong()
-{
-    kDebug() << "article wrong";
-}
-
 
 
 #include "genderbackendmode.moc"

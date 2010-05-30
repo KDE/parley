@@ -14,23 +14,23 @@
 
 #include "examplesentencebackendmode.h"
 
-#include "defaultbackend.h"
-
 #include <KLocalizedString>
 
 using namespace Practice;
 
-
 ExampleSentenceBackendMode::ExampleSentenceBackendMode(const Practice::PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent, TestEntryManager* testEntryManager, KEduVocDocument* doc)
 :WrittenBackendMode(practiceOptions, frontend, parent,testEntryManager,doc)
 {
-
 }
 
-void ExampleSentenceBackendMode::setTestEntry(TestEntry* current)
+bool ExampleSentenceBackendMode::setTestEntry(TestEntry* current)
 {
     Practice::WrittenBackendMode::setTestEntry(current);
     QString sentence = current->entry()->translation(m_practiceOptions.languageTo())->example();
+    if (sentence.isEmpty()) {
+        return false;
+    }
+
     QString answer = current->entry()->translation(m_practiceOptions.languageTo())->text();
     int pos = -1;
     while ((pos = sentence.indexOf(answer)) >= 0) {
@@ -38,6 +38,7 @@ void ExampleSentenceBackendMode::setTestEntry(TestEntry* current)
         sentence.insert(pos, "<font color=\"#FF0000\"><b>...</b></font>");
     }
     m_frontend->setQuestion(sentence);
+    return true;
 }
 
 #include "examplesentencebackendmode.moc"

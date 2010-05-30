@@ -28,18 +28,21 @@ public:
     ComparisonBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend,
                            QObject *parent, Practice::TestEntryManager* testEntryManager, KEduVocDocument* doc);
 
-    virtual void setTestEntry(TestEntry* current);
+    virtual bool setTestEntry(TestEntry* current);
+
+    void checkAnswer();
 
 public Q_SLOTS:
-    virtual void continueAction();
     virtual void hintAction();
 
+protected:
+    virtual void updateGrades();
+
 private:
-    void checkAnswer();
 
     TestEntryManager* m_testEntryManager;
     KEduVocDocument* m_doc;
-
+    QStringList m_lastAnswers;
 };
 
 }

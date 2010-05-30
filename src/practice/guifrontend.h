@@ -64,13 +64,12 @@ public:
     
     virtual void setSynonym(const QString& entry);
 
-    
 public Q_SLOTS:
     void setMode(Mode mode);
     void showQuestion();
     void showSolution();
     void setBoxes(int currentBox, int newBoxIfCorrect, int newBoxIfWrong);
-    
+
     void showSynonym();
 
     void backgroundChanged(const QPixmap& pixmap);

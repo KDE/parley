@@ -16,8 +16,6 @@
 
 #include <KLocalizedString>
 
-#include "defaultbackend.h"
-
 #include "documentsettings.h"
 
 using namespace Practice;
@@ -30,9 +28,10 @@ ComparisonBackendMode::ComparisonBackendMode(const PracticeOptions& practiceOpti
 {
 }
 
-void ComparisonBackendMode::setTestEntry(TestEntry* current)
+bool ComparisonBackendMode::setTestEntry(TestEntry* current)
 {
     m_current = current;
+    m_lastAnswers.clear();
 
     int languageTo = m_practiceOptions.languageTo();
     int languageFrom = m_practiceOptions.languageFrom();
@@ -50,38 +49,37 @@ void ComparisonBackendMode::setTestEntry(TestEntry* current)
     m_frontend->setSolutionPronunciation(m_current->entry()->translation(m_practiceOptions.languageTo())->pronunciation());
     m_frontend->setResultState(AbstractFrontend::QuestionState);
     m_frontend->showQuestion();
-}
-
-void ComparisonBackendMode::continueAction()
-{
-    if (m_frontend->resultState() == AbstractFrontend::QuestionState) {
-        checkAnswer();
-        m_frontend->showSolution();
-    } else {
-        emit currentEntryFinished();
-    }
+    return true;
 }
 
 void ComparisonBackendMode::checkAnswer()
 {
     QStringList answers = m_frontend->userInput().toStringList();
 
+    if (answers == m_lastAnswers) {
+        m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerCorrect);
+        m_frontend->setResultState(Practice::AbstractFrontend::AnswerWrong);
+        emit answerWrongShowSolution();
+        return;
+    }
+
     bool absoluteCorrect = answers.at(0) == m_current->entry()->translation(Prefs::solutionLanguage())->text();
     bool comparativeCorrect = answers.at(1) == m_current->entry()->translation(Prefs::solutionLanguage())->comparative();
     bool superlativeCorrect = answers.at(2) == m_current->entry()->translation(Prefs::solutionLanguage())->superlative();
 
-    // FIXME grades
-    //m_current->entry()->translation(Prefs::solutionLanguage())->incGrade();
-    //m_current->entry()->translation(Prefs::solutionLanguage())->incPracticeCount();
-    //m_current->entry()->translation(Prefs::solutionLanguage())->comparison(m_currentTense).comparison(key).setPracticeDate( QDateTime::currentDateTime() );
-
     if (absoluteCorrect && comparativeCorrect && superlativeCorrect) {
         m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerCorrect);
-        m_frontend->setResultState(Practice::AbstractFrontend::AnswerCorrect);
         m_frontend->setFeedback(i18n("All comparison forms were right."));
+
+        if (m_lastAnswers.isEmpty()) {
+            m_frontend->setResultState(Practice::AbstractFrontend::AnswerCorrect);
+            emit answerRight();
+        } else {
+            m_frontend->setResultState(Practice::AbstractFrontend::AnswerWrong);
+            emit answerWrongShowSolution();
+        }
     } else {
         m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerWrong);
-        m_frontend->setResultState(Practice::AbstractFrontend::AnswerWrong);
 
         if (!absoluteCorrect) {
             m_frontend->setFeedback(i18nc("the user entered the wrong absolute form when practicing comparison forms of adjectives (the base form of the adjective is wrong)",
@@ -98,12 +96,71 @@ void ComparisonBackendMode::checkAnswer()
                                               "The superlative is wrong."));
             }
         }
+        emit answerWrongRetry();
     }
+    m_lastAnswers = answers;
 }
 
 void ComparisonBackendMode::hintAction()
 {
     // FIXME
 }
+
+void ComparisonBackendMode::updateGrades()
+{
+    QStringList answers = m_frontend->userInput().toStringList();
+
+    bool absoluteCorrect = answers.at(0) == m_current->entry()->translation(Prefs::solutionLanguage())->text();
+    bool comparativeCorrect = answers.at(1) == m_current->entry()->translation(Prefs::solutionLanguage())->comparative();
+    bool superlativeCorrect = answers.at(2) == m_current->entry()->translation(Prefs::solutionLanguage())->superlative();
+
+    // TODO way too much duplicated code here
+
+    KEduVocTranslation* translation = m_current->entry()->translation(m_practiceOptions.languageTo());
+
+    translation->incPracticeCount();
+    translation->setPracticeDate( QDateTime::currentDateTime() );
+
+    if (absoluteCorrect) {
+        if (m_current->statisticBadCount() == 0) {
+            translation->incGrade();
+        }
+    } else {
+        translation->setGrade(KV_LEV1_GRADE);
+        translation->incBadCount();
+    }
+
+    KEduVocText comp = translation->comparativeForm();
+
+    comp.incPracticeCount();
+    comp.setPracticeDate( QDateTime::currentDateTime() );
+
+    if (comparativeCorrect) {
+        if (m_current->statisticBadCount() == 0) {
+            comp.incGrade();
+        }
+    } else {
+        comp.setGrade(KV_LEV1_GRADE);
+        comp.incBadCount();
+    }
+    translation->setComparativeForm(comp);
+
+    KEduVocText super = translation->superlativeForm();
+
+    super.incPracticeCount();
+    super.setPracticeDate( QDateTime::currentDateTime() );
+
+    if (superlativeCorrect) {
+        if (m_current->statisticBadCount() == 0) {
+            super.incGrade();
+        }
+    } else {
+        super.setGrade(KV_LEV1_GRADE);
+        super.incBadCount();
+    }
+    translation->setSuperlativeForm(super);
+}
+
+
 
 #include "comparisonbackendmode.moc"

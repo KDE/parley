@@ -28,16 +28,17 @@ public:
     ConjugationBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend,
                            QObject *parent, Practice::TestEntryManager* testEntryManager, KEduVocDocument* doc);
 
-    virtual void setTestEntry(TestEntry* current);
+    virtual bool setTestEntry(TestEntry* current);
+
+    virtual void updateGrades();
 
 public Q_SLOTS:
-    virtual void continueAction();
     virtual void hintAction();
+    virtual void checkAnswer();
 
 private:
     QStringList validPersonalPronouns();
     void updatePronounFlags();
-    void checkAnswer();
 
     TestEntryManager* m_testEntryManager;
     KEduVocDocument* m_doc;
@@ -46,6 +47,8 @@ private:
     QString m_currentTense;
     QList<KEduVocWordFlags> m_pronounFlags;
     KEduVocConjugation m_conjugation;
+
+    QStringList m_lastAnswers;
 };
 
 }

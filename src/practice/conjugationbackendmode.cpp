@@ -16,10 +16,9 @@
 
 #include <KLocalizedString>
 
-#include "defaultbackend.h"
+#include <keduvocdocument.h>
 
 #include "conjugationdata.h"
-
 #include "documentsettings.h"
 
 using namespace Practice;
@@ -35,10 +34,11 @@ ConjugationBackendMode::ConjugationBackendMode(const PracticeOptions& practiceOp
     m_tenses = documentSettings.conjugationTenses();
 }
 
-void ConjugationBackendMode::setTestEntry(TestEntry* current)
+bool ConjugationBackendMode::setTestEntry(TestEntry* current)
 {
     ConjugationData data;
     m_current = current;
+    m_lastAnswers.clear();
 
     // FIXME tense selection
     QStringList possibleTenses;
@@ -52,7 +52,7 @@ void ConjugationBackendMode::setTestEntry(TestEntry* current)
         kDebug() << "No valid practice tenses in entry: " << m_current->entry()->translation(m_practiceOptions.languageTo())->text()
             << m_current->entry()->translation(m_practiceOptions.languageTo())->conjugationTenses()
             << m_tenses;
-        emit currentEntryFinished();
+        return false;
     }
 
     m_currentTense = possibleTenses.first();
@@ -84,6 +84,7 @@ void ConjugationBackendMode::setTestEntry(TestEntry* current)
     m_frontend->setSolutionPronunciation(m_current->entry()->translation(m_practiceOptions.languageTo())->pronunciation());
     m_frontend->setResultState(AbstractFrontend::QuestionState);
     m_frontend->showQuestion();
+    return true;
 }
 
 void ConjugationBackendMode::updatePronounFlags()
@@ -115,19 +116,54 @@ QStringList ConjugationBackendMode::validPersonalPronouns()
     return pp;
 }
 
-void ConjugationBackendMode::continueAction()
-{
-    if (m_frontend->resultState() == AbstractFrontend::QuestionState) {
-        checkAnswer();
-        m_frontend->showSolution();
-    } else {
-        emit currentEntryFinished();
-    }
-}
-
 void ConjugationBackendMode::checkAnswer()
 {
     QStringList answers = m_frontend->userInput().toStringList();
+
+    bool allCorrect = true;
+    int numRight = 0;
+    int i=0;
+    foreach(const KEduVocWordFlags& key, m_pronounFlags) {
+        if (answers.at(i) == m_conjugation.conjugation(key).text()) {
+            ++numRight;
+        } else {
+            kDebug() << "dec grade for " << m_conjugation.conjugation(key).text();
+            allCorrect = false;
+        }
+        ++i;
+    }
+
+    kDebug() << "answers: " << answers;
+
+    if (allCorrect) {
+        m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerCorrect);
+        m_frontend->setFeedback(i18n("All conjugation forms were right."));
+
+        if (m_lastAnswers.isEmpty()) {
+            m_frontend->setResultState(Practice::AbstractFrontend::AnswerCorrect);
+        } else {
+            m_frontend->setResultState(Practice::AbstractFrontend::AnswerWrong);
+        }
+
+        emit answerRight();
+    } else {
+        m_frontend->setFeedback(i18ncp("You did not get the conjugation forms right.", "You answered %1 conjugation form correctly.", "You answered %1 conjugation forms correctly.", numRight));
+
+        if (answers == m_lastAnswers) {
+            m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerWrong);
+            m_frontend->setResultState(Practice::AbstractFrontend::AnswerWrong);
+            emit answerWrongShowSolution();
+        } else {
+            emit answerWrongRetry();
+        }
+        m_lastAnswers = answers;
+    }
+}
+
+void ConjugationBackendMode::updateGrades()
+{
+    kDebug() << "Grading conjugations";
+        QStringList answers = m_frontend->userInput().toStringList();
 
     bool allCorrect = true;
     int numRight = 0;
@@ -147,17 +183,6 @@ void ConjugationBackendMode::checkAnswer()
         ++i;
     }
 
-    kDebug() << "answers: " << answers;
-
-    if (allCorrect) {
-        m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerCorrect);
-        m_frontend->setResultState(Practice::AbstractFrontend::AnswerCorrect);
-        m_frontend->setFeedback(i18n("All conjugation forms were right."));
-    } else {
-        m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerWrong);
-        m_frontend->setResultState(Practice::AbstractFrontend::AnswerWrong);
-        m_frontend->setFeedback(i18ncp("You did not get the conjugation forms right.", "You answered %1 conjugation form correctly.", "You answered %1 conjugation forms correctly.", numRight));
-    }
 }
 
 void ConjugationBackendMode::hintAction()

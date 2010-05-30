@@ -23,8 +23,8 @@ class KToggleFullScreenAction;
 class QPropertyAnimation;
 
 namespace Practice {
-class DefaultBackend;
-class GuiFrontend;    
+    class PracticeStateMachine;
+    class GuiFrontend;
 
 class PracticeMainWindow : public KXmlGuiWindow
 {
@@ -32,11 +32,12 @@ class PracticeMainWindow : public KXmlGuiWindow
 public:
     PracticeMainWindow(TestEntryManager* m_testEntryManager, ParleyMainWindow* parent = 0);
     ~PracticeMainWindow();
-    
+
     void startPractice();
 
 public Q_SLOTS:
     void toggleFullScreenMode(bool fullScreen);
+    void practiceFinished();
 
 Q_SIGNALS:
     void enterPressed();
@@ -46,12 +47,12 @@ protected:
     virtual void keyPressEvent(QKeyEvent* e);
     virtual void resizeEvent(QResizeEvent *e);
     virtual bool event(QEvent *event);
-    
-private:    
+
+private:
     void initActions();
-    
+
     GuiFrontend* m_guiFrontend;
-    DefaultBackend* m_backend;
+    PracticeStateMachine* m_stateMachine;
     ParleyMainWindow* m_parent;
     QWidget* m_floatingToolBar;
     KToggleFullScreenAction* m_fullScreenAction;

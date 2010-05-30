@@ -24,8 +24,8 @@ class ExampleSentenceBackendMode : public WrittenBackendMode
     Q_OBJECT
 public:
     ExampleSentenceBackendMode(const Practice::PracticeOptions& practiceOptions, Practice::AbstractFrontend* frontend, QObject* parent, Practice::TestEntryManager* testEntryManager, KEduVocDocument* doc);
-    
-    virtual void setTestEntry(TestEntry* current);
+
+    virtual bool setTestEntry(TestEntry* current);
 };
 
 }

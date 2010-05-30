@@ -29,9 +29,8 @@ public:
 
 protected:
     virtual void prepareChoices(TestEntry* current);
-    virtual void userAnswerRight();
-    virtual void userAnswerWrong();
-    
+    virtual void updateGrades();
+
 private:
     KEduVocArticle m_articles;
     QString m_masculine;

@@ -33,11 +33,11 @@ set(parley_SRCS
     practice/practiceoptions.cpp
     practice/abstractfrontend.cpp
     practice/abstractbackendmode.cpp
+    practice/practicestatemachine.cpp
     practice/comparisonbackendmode.cpp
     practice/comparisonmodewidget.cpp
     practice/conjugationbackendmode.cpp
     practice/conjugationmodewidget.cpp
-    practice/defaultbackend.cpp
     practice/guifrontend.cpp
     practice/abstractwidget.cpp
     practice/writtenpracticewidget.cpp
@@ -188,7 +188,7 @@ install(TARGETS parley  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 install( FILES parley.desktop DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 
 # hot new stuff config
-install( FILES parley.knsrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
+install( FILES parley.knsrc parley-themes.knsrc DESTINATION  ${CONFIG_INSTALL_DIR} )
 
 # UI files - define menus and toolbars
 install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )

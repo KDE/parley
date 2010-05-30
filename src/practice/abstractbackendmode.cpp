@@ -20,11 +20,13 @@ AbstractBackendMode::AbstractBackendMode(const PracticeOptions& practiceOptions,
     :QObject(parent)
     ,m_practiceOptions(practiceOptions)
     ,m_frontend(frontend)
-{}
+{
+}
 
-void AbstractBackendMode::setTestEntry(TestEntry* current)
+bool AbstractBackendMode::setTestEntry(TestEntry* current)
 {
     m_current = current;
+    // this default implementation sets up the frontend with the normal word
     m_frontend->setQuestion(m_current->entry()->translation(m_practiceOptions.languageFrom())->text());
     m_frontend->setSolution(m_current->entry()->translation(m_practiceOptions.languageTo())->text());
     m_frontend->setQuestionSound(m_current->entry()->translation(m_practiceOptions.languageFrom())->soundUrl());
@@ -32,7 +34,32 @@ void AbstractBackendMode::setTestEntry(TestEntry* current)
     m_frontend->setQuestionPronunciation(m_current->entry()->translation(m_practiceOptions.languageFrom())->pronunciation());
     m_frontend->setSolutionPronunciation(m_current->entry()->translation(m_practiceOptions.languageTo())->pronunciation());
 
-    m_frontend->setResultState(AbstractFrontend::QuestionState);
+    return true;
+}
+
+grade_t Practice::AbstractBackendMode::currentGradeForEntry()
+{
+    return m_current->entry()->translation(m_practiceOptions.languageTo())->grade();
+}
+
+void Practice::AbstractBackendMode::updateGrades()
+{
+    KEduVocTranslation* translation = m_current->entry()->translation(m_practiceOptions.languageTo());
+    kDebug() << "Update Grades Default Implementation: " << m_frontend->resultState() << " for " << translation->text()
+        << " grade: " << m_current->entry()->translation(m_practiceOptions.languageTo())->grade();
+
+    translation->incPracticeCount();
+    translation->setPracticeDate( QDateTime::currentDateTime() );
+
+    if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
+        if (m_current->statisticBadCount() == 0) {
+            translation->incGrade();
+        }
+    } else {
+        translation->setGrade(KV_LEV1_GRADE);
+        translation->incBadCount();
+    }
+    kDebug() << "new grade: " << m_current->entry()->translation(m_practiceOptions.languageTo())->grade();
 }
 
 #include "abstractbackendmode.moc"

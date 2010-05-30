@@ -43,6 +43,9 @@ ConjugationOptions::ConjugationOptions(KEduVocDocument* doc, QWidget * parent)
 void ConjugationOptions::setLanguages(int from, int to)
 {
     Q_UNUSED(from)
+    if (to >= m_doc->identifierCount()) {
+        to = 0;
+    }
     m_language = to;
     setupTenses();
 }

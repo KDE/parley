@@ -1,6 +1,5 @@
 /***************************************************************************
-    Copyright 2009 Daniel Laidig <d.laidig@gmx.de>
-    Copyright 2009 Frederik Gladhorn <gladhorn@kde.org>
+    Copyright 2010 Frederik Gladhorn <gladhorn@kde.org>
  ***************************************************************************/
 
 /***************************************************************************
@@ -12,59 +11,63 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef PRACTICE_DEFAULTBACKEND_H
-#define PRACTICE_DEFAULTBACKEND_H
 
-#include "parleydocument.h"
+#ifndef PRACTICESTATEMACHINE_H
+#define PRACTICESTATEMACHINE_H
 
-#include "testentrymanager.h"
-#include "testentry.h"
-#include "practiceoptions.h"
+#include <QtCore/QObject>
 
-#include "abstractfrontend.h"
-#include "guifrontend.h"
 #include "abstractbackendmode.h"
 
 class ParleyDocument;
 
 namespace Practice {
-    
+    class TestEntryManager;
 
-class DefaultBackend :public QObject
+class PracticeStateMachine : public QObject
 {
     Q_OBJECT
-
 public:
-    DefaultBackend(AbstractFrontend* frontend, ParleyDocument* doc, const PracticeOptions& options, Practice::TestEntryManager* testEntryManager, QObject* parent = 0);
-    ~DefaultBackend();
-    
-    void startPractice();
-    void removeCurrentEntryFromPractice();
-    
-public Q_SLOTS:
-    /** Call when current entry is finished and next one should be selected */
-    void nextEntry();
-
-    /** Call when current entry should be graded */
-    void gradeCurrentEntry();
-
-    void gradeEntry(TestEntry*);
-    
+    PracticeStateMachine(AbstractFrontend* frontend, ParleyDocument* doc, const PracticeOptions& options, TestEntryManager* testEntryManager,  QObject* parent = 0);
+    void start();
 
 Q_SIGNALS:
     void practiceFinished();
+    void stopPractice();
+
+private Q_SLOTS:
+    /** Call when current entry is finished and next one should be selected */
+    void nextEntry();
+
+    void continueAction();
+
+    // these come from the frontend
+    void answerRight();
+    void answerWrongRetry();
+    void answerWrongShowSolution();
+
+    void gradeEntryAndContinue();
 
 private:
-    void initializePracticeMode();
+    /** Set the current word as done, so it will not be repeated */
+    void currentEntryFinished();
+    void createPracticeMode();
     void updateFrontend();
-    
+
+    enum State {
+        NotAnswered,
+        AnswerWasWrong,
+        SolutionShown
+    };
+
+    State m_state;
+
     AbstractFrontend* m_frontend;
+    AbstractBackendMode* m_mode;
     ParleyDocument* m_document;
     PracticeOptions m_options;
     TestEntry* m_current;
     TestEntryManager* m_testEntryManager;
-    AbstractFrontend::Mode m_currentMode;
-    AbstractBackendMode* m_mode;
 };
 
 }

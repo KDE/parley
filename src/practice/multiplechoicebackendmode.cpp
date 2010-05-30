@@ -13,13 +13,11 @@
 
 
 #include "multiplechoicebackendmode.h"
-#include "defaultbackend.h"
 
 #include <klocale.h>
 #include "multiplechoicedata.h"
 
 using namespace Practice;
- 
 
 MultipleChoiceBackendMode::MultipleChoiceBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent, Practice::TestEntryManager* testEntryManager)
 : AbstractBackendMode(practiceOptions, frontend, parent)
@@ -29,7 +27,7 @@ MultipleChoiceBackendMode::MultipleChoiceBackendMode(const PracticeOptions& prac
     m_numberOfChoices = practiceOptions.numberMultipleChoiceAnswers();
 }
 
-void MultipleChoiceBackendMode::setTestEntry(TestEntry* current)
+bool MultipleChoiceBackendMode::setTestEntry(TestEntry* current)
 {
     m_current = current;
     m_hints.clear();
@@ -47,15 +45,16 @@ void MultipleChoiceBackendMode::setTestEntry(TestEntry* current)
     m_frontend->setSolutionSound(m_current->entry()->translation(m_practiceOptions.languageTo())->soundUrl());
     m_frontend->setQuestionPronunciation(m_current->entry()->translation(m_practiceOptions.languageFrom())->pronunciation());
     m_frontend->setSolutionPronunciation(m_current->entry()->translation(m_practiceOptions.languageTo())->pronunciation());
-    m_solutionVisible = false;
     m_frontend->setResultState(AbstractFrontend::QuestionState);
     m_frontend->showQuestion();
+    return true;
 }
 
 void MultipleChoiceBackendMode::prepareChoices(TestEntry* current)
 {
+    Q_UNUSED(current)
     setQuestion(m_current->entry()->translation(m_practiceOptions.languageFrom())->text());
-    
+
     QStringList choices = m_testEntryManager->randomMultipleChoiceAnswers(m_numberOfChoices-1);
     foreach(const QString& choice, choices) {
         int position = m_randomSequence.getLong(m_choices.count()+1);
@@ -87,22 +86,18 @@ void MultipleChoiceBackendMode::setCorrectAnswer(int index)
     m_correctAnswer = index;
 }
 
-void MultipleChoiceBackendMode::continueAction()
+void MultipleChoiceBackendMode::checkAnswer()
 {
-    if (m_solutionVisible) {
-        emit currentEntryFinished();
-        return;
-    }
     if (!m_frontend->userInput().isNull() && m_frontend->userInput().toInt() == m_correctAnswer) {
         m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
+        emit answerRight();
     } else {
         m_frontend->setResultState(AbstractFrontend::AnswerWrong);
         if(!m_frontend->userInput().isNull()) {
             m_current->addUserAnswer(m_choices.at(m_frontend->userInput().toInt()));
         }
+        emit answerWrongShowSolution();
     }
-    m_frontend->showSolution();
-    m_solutionVisible = true;
 }
 
 void MultipleChoiceBackendMode::hintAction()
@@ -111,8 +106,7 @@ void MultipleChoiceBackendMode::hintAction()
         // show solution
         m_frontend->setFeedback(i18n("You revealed the answer by using too many hints."));
         m_frontend->setResultState(AbstractFrontend::AnswerWrong);
-        m_frontend->showSolution();
-        m_solutionVisible = true;
+        emit answerWrongShowSolution();
         return;
     }
 
