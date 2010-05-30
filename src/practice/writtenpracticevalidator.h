@@ -1,6 +1,6 @@
 /***************************************************************************
-    Copyright 2007 Benjamin Schleinzer <ben-kde@schleinzer.eu>
-    Copyright 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2010 Benjamin Schleinzer <ben-kde@schleinzer.eu>
+    Copyright 2007-2010 Frederik Gladhorn <gladhorn@kde.org>
 ***************************************************************************/
 
 /***************************************************************************
@@ -24,7 +24,7 @@
 
 
 namespace Practice {
-    
+
 class WrittenPracticeValidator
 {
 
