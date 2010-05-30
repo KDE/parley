@@ -124,7 +124,7 @@ void LatexRenderer::latexRendered()
     {
         QPixmap pixmap(pngFile);
         m_label->setPixmap(pixmap);
-        m_label->setMinimumSize(pixmap.size());
+        m_label->setMinimumSize(pixmap.size().boundedTo(QSize(600, 300)));
     } else {
         m_label->setText(i18n("LaTeX error.")); //TODO: better error handling and error messages
     }

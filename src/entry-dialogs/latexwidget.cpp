@@ -45,6 +45,7 @@ LatexWidget::~LatexWidget()
 void LatexWidget::setTranslation(KEduVocExpression *entry, int translation)
 {
     previewLabel->clear();
+    previewLabel->setMinimumSize(QSize(1, 1));
 
     if (entry) {
         // we need to map the widgets relative to the translation (each translation has 9 columns)
