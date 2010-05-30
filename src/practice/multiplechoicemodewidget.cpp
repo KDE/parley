@@ -86,6 +86,7 @@ void MultiplechoiceModeWidget::setNumberOfRadioButtons(const int numberOfChoices
         if (i < 5) {
             connect(m_actions.at(i), SIGNAL(triggered()), radio_button, SLOT(click()));
         }
+        connect(radio_button, SIGNAL(clicked()), this, SIGNAL(continueAction()));
     }
 }
 
