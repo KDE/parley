@@ -84,7 +84,8 @@ void LatexRenderer::renderLatex(QString tex)
 
 bool LatexRenderer::isLatex(const QString& tex)
 {
-    return ((tex.startsWith(QLatin1String("$$")) && tex.endsWith(QLatin1String("$$"))) ||
+    return tex.length() > 4 && tex.mid(2, tex.length()-4).simplified().length() > 0 &&
+            ((tex.startsWith(QLatin1String("$$")) && tex.endsWith(QLatin1String("$$"))) ||
             (tex.startsWith(QString::fromUtf8("§§")) && tex.endsWith(QString::fromUtf8("§§"))));
 }
 
