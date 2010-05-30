@@ -57,6 +57,7 @@ private:
     Ui::MultiplechoicePracticeWidget* m_ui;
     int m_solution;
     QList<QRadioButton*> m_choiceButtons;
+    QList<QAction*> m_actions;
 };
 
 }

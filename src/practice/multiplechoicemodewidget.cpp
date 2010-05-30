@@ -28,6 +28,14 @@ MultiplechoiceModeWidget::MultiplechoiceModeWidget (GuiFrontend *frontend, QWidg
 {
     m_ui = new Ui::MultiplechoicePracticeWidget();
     m_ui->setupUi(this);
+
+    for (int i = 0; i < 5; i++) {
+        QAction *action = new QAction(this);
+        action->setShortcut(Qt::Key_1+i);
+        addAction(action);
+        m_actions.append(action);
+    }
+
 }
 
 void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
@@ -75,6 +83,9 @@ void MultiplechoiceModeWidget::setNumberOfRadioButtons(const int numberOfChoices
         QRadioButton *radio_button = new QRadioButton(this);
         m_ui->verticalLayout->insertWidget(m_ui->verticalLayout->count()-1, radio_button);
         m_choiceButtons.append(radio_button);
+        if (i < 5) {
+            connect(m_actions.at(i), SIGNAL(triggered()), radio_button, SLOT(click()));
+        }
     }
 }
 
