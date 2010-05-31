@@ -13,27 +13,37 @@
 
 #include "entryfilter.h"
 
-#include "prefs.h"
-#include "documentsettings.h"
 
-#include <keduvocdocument.h>
-#include <keduvocwordtype.h>
-#include <keduvocexpression.h>
 
 #include <KDebug>
 #include <KDialog>
 #include <KMessageBox>
 
+#include <keduvocdocument.h>
+#include <keduvocwordtype.h>
+#include <keduvocexpression.h>
+
+#include "documentsettings.h"
+#include "testentry.h"
+
 using namespace Practice;
 
-EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc) :QObject(parent)
+EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc)
+    :QObject(parent)
+    ,m_doc(doc)
+    ,m_dialog(0)
 {
-    m_doc = doc;
-    m_dialog = 0;
-
     m_fromTranslation = Prefs::questionLanguage();
     m_toTranslation = Prefs::solutionLanguage();
     kDebug() << "Filter for " << m_fromTranslation << " to " << m_toTranslation;
+
+    m_mode = Prefs::practiceMode();
+    if (m_mode == Prefs::EnumPracticeMode::ConjugationPractice) {
+        DocumentSettings documentSettings(m_doc->url().url() + QString::number(m_toTranslation));
+        documentSettings.readConfig();
+        m_tenses = documentSettings.conjugationTenses();
+        kDebug() << "Tenses" << m_tenses;
+    }
 
     expireEntries();
 }
@@ -62,7 +72,7 @@ void EntryFilter::expireEntries()
     }
 }
 
-QList<KEduVocExpression*> EntryFilter::entries()
+QList<TestEntry*> EntryFilter::entries()
 {
     // set up the lists/sets of filtered vocabulary
     m_entries = m_doc->lesson()->entries(KEduVocLesson::Recursive).toSet();
@@ -71,7 +81,7 @@ QList<KEduVocExpression*> EntryFilter::entries()
     kDebug() << "Document contains " << m_entries.count() << " valid entries.";
     if (m_entries.count() == 0) {
         KMessageBox::error(0, i18n("The vocabulary document contains no entries that can be used for the chosen type of practice."));
-        return m_entries.toList();
+        return QList<TestEntry*>();
     }
 
     // FIXME the filtering needs to be done for each word or the grammar modes get included with written or somesuch
@@ -107,7 +117,7 @@ QList<KEduVocExpression*> EntryFilter::entries()
 
         ui.lessonLabel->setText(QString::number(m_entriesLesson.count()));
         ui.wordTypeLabel->setText(QString::number(m_entriesWordType.count()));
-        ui.blockedLabel->setText(QString::number(m_entriesBlocked.count()));
+        ui.blockedLabel->setText(QString::number(m_entriesNotBlocked.count()));
         ui.timesWrongLabel->setText(QString::number(m_entriesTimesWrong.count()));
         ui.timesPracticedLabel->setText(QString::number(m_entriesTimesPracticed.count()));
         ui.minMaxGradeLabel->setText(QString::number(m_entriesMinMaxGrade.count()));
@@ -117,13 +127,11 @@ QList<KEduVocExpression*> EntryFilter::entries()
 
         ui.lessonCheckBox->setChecked(!m_entriesLesson.count());
         ui.wordTypeCheckBox->setChecked(!m_entriesWordType.count());
-        ui.blockedCheckBox->setChecked(!m_entriesBlocked.count());
+        ui.blockedCheckBox->setChecked(!m_entriesNotBlocked.count());
         ui.timesWrongCheckBox->setChecked(!m_entriesTimesWrong.count());
         ui.timesPracticedCheckBox->setChecked(!m_entriesTimesPracticed.count());
         ui.minMaxGradeCheckBox->setChecked(!m_entriesMinMaxGrade.count());
 
-        connect( m_dialog, SIGNAL(okClicked()), this, SLOT(userSelectionAccepted()) );
-        connect( m_dialog, SIGNAL(cancelClicked()), this, SLOT(userSelectionCanceled()) );
         connect( ui.lessonCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
         connect( ui.wordTypeCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
         connect( ui.blockedCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
@@ -140,13 +148,20 @@ QList<KEduVocExpression*> EntryFilter::entries()
 
         if (m_dialog->exec() == QDialog::Rejected) {
             delete m_dialog;
-            return QList<KEduVocExpression*>();
+            return QList<TestEntry*>();
         }
         delete m_dialog;
-
     }
 
-    return m_currentSelection.toList();
+    if (m_mode == Prefs::EnumPracticeMode::ConjugationPractice) {
+        return conjugationTestEntries();
+    }
+
+    QList<TestEntry*> testEntries;
+    foreach (KEduVocExpression* entry, m_currentSelection){
+        testEntries.append(new TestEntry(entry));
+    }
+    return testEntries;
 }
 
 void EntryFilter::checkBoxChanged(bool filter)
@@ -165,7 +180,7 @@ void EntryFilter::updateTotal()
         selected = selected.intersect(m_entriesWordType);
     }
     if (!m_dialog || !ui.blockedCheckBox->isChecked()) {
-        selected = selected.intersect(m_entriesBlocked);
+        selected = selected.intersect(m_entriesNotBlocked);
     }
     if (!m_dialog || !ui.timesWrongCheckBox->isChecked()) {
         selected = selected.intersect(m_entriesTimesWrong);
@@ -210,9 +225,9 @@ void EntryFilter::wordTypeEntries()
     }
 }
 
-bool EntryFilter::isBlocked(const KEduVocText* const text)
+bool EntryFilter::isBlocked(const KEduVocText* const text) const
 {
-    int grade = text->grade();
+    grade_t grade = text->grade();
     // always include lowest level and itemw where blocking is off
     if (grade == KV_NORM_GRADE || Prefs::blockItem(grade) == 0) {
         return false;
@@ -228,28 +243,28 @@ bool EntryFilter::isBlocked(const KEduVocText* const text)
 void EntryFilter::blockedEntries()
 {
     if (!Prefs::block()) {
-        m_entriesBlocked = m_entries;
+        m_entriesNotBlocked = m_entries;
         return;
     }
 
     foreach(KEduVocExpression* entry, m_entries) {
-        if (Prefs::practiceMode() == Prefs::EnumPracticeMode::ConjugationPractice) {
-            DocumentSettings documentSettings(m_doc->url().url());
-            documentSettings.readConfig();
-            QStringList tenses = documentSettings.conjugationTenses();
+        if (m_mode == Prefs::EnumPracticeMode::ConjugationPractice) {
             foreach(const QString& tense, entry->translation(m_toTranslation)->conjugationTenses()) {
-                if(tenses.contains(tense)) {
+                kDebug() << "Check tense: " << tense << m_tenses;
+                if(m_tenses.contains(tense)) {
+                    
                     QList<KEduVocWordFlags> pronouns = entry->translation(m_toTranslation)->conjugation(tense).keys();
                     foreach(const KEduVocWordFlags& pronoun, pronouns) {
                         if (!isBlocked(&(entry->translation(m_toTranslation)->conjugation(tense).conjugation(pronoun)))) {
-                            m_entriesBlocked.insert(entry);
+                            m_entriesNotBlocked.insert(entry);
                         }
                     }
                 }
             }
-        }
-        if (!isBlocked(entry->translation(m_toTranslation))) {
-            m_entriesBlocked.insert(entry);
+        } else {
+            if (!isBlocked(entry->translation(m_toTranslation))) {
+                m_entriesNotBlocked.insert(entry);
+            }
         }
     }
 }
@@ -347,7 +362,7 @@ void EntryFilter::cleanupInvalid()
                 continue;
             }
             break;
-                
+
         case Prefs::EnumPracticeMode::ComparisonPractice:
             if (
                 // only adjective/adverb
@@ -359,7 +374,7 @@ void EntryFilter::cleanupInvalid()
                 continue;
             }
             break;
-                
+
         case Prefs::EnumPracticeMode::ConjugationPractice:
             if ( (*i)->translation(m_toTranslation)->wordType()->wordType() != KEduVocWordFlag::Verb 
                 || (*i)->translation(m_toTranslation)->conjugations().count() == 0) {
@@ -375,5 +390,47 @@ void EntryFilter::cleanupInvalid()
     } // for
     kDebug() << "Invalid items removed. Remaining: " << m_entries.count();
 }
+
+QList< TestEntry* > EntryFilter::conjugationTestEntries() const
+{
+    kDebug() << "Filtering conjugation entries for tenses... " << m_tenses;
+
+    QList<TestEntry*> testEntries;
+    foreach (KEduVocExpression* entry, m_currentSelection){
+        foreach(const QString& tense, entry->translation(m_toTranslation)->conjugationTenses()) {
+            if(m_tenses.contains(tense)) {
+                QList<KEduVocWordFlags> pronouns = entry->translation(m_toTranslation)->conjugation(tense).keys();
+                foreach(const KEduVocWordFlags& pronoun, pronouns) {
+                    if (!isBlocked(&(entry->translation(m_toTranslation)->conjugation(tense).conjugation(pronoun)))) {
+                        TestEntry* testEntry = new TestEntry(entry);
+                        testEntry->setConjugationTense(tense);
+                        testEntries.append(testEntry);
+                    }
+                }
+            }
+        }
+    }
+    return testEntries;
+    /*
+    // FIXME tense selection
+    QStringList possibleTenses;
+    foreach(const QString& practiceTense, m_tenses) {
+        if (m_current->entry()->translation(m_practiceOptions.languageTo())
+            ->conjugationTenses().contains(practiceTense)) {
+            possibleTenses.append(practiceTense);
+        }
+    }
+    if (possibleTenses.isEmpty()) {
+        kDebug() << "No valid practice tenses in entry: " << m_current->entry()->translation(m_practiceOptions.languageTo())->text()
+            << m_current->entry()->translation(m_practiceOptions.languageTo())->conjugationTenses()
+            << m_tenses;
+        return false;
+    }
+
+    m_currentTense = possibleTenses.first();
+    */
+
+}
+
 
 #include "entryfilter.moc"

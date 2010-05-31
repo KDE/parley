@@ -136,3 +136,12 @@ KEduVocExpression * TestEntry::entry()
     return m_entry;
 }
 
+QString TestEntry::conjugationTense() const
+{
+    return m_conjugationTense;
+}
+
+void TestEntry::setConjugationTense(const QString& tense)
+{
+    m_conjugationTense = tense;
+}

@@ -283,6 +283,12 @@ void ParleyMainWindow::showPracticeSummary()
 void ParleyMainWindow::switchComponent(Component component)
 {
     if (component == PracticeComponent) {
+
+        StatisticsMainWindow *statisticsWidget = qobject_cast<StatisticsMainWindow*>(m_currentComponentWindow);
+        if (statisticsWidget) {
+            statisticsWidget->syncConfig();
+        }
+
         // don't start a practice when there are no words to practice
         // this has to be checked before deleting the old component
         m_testEntryManager.setDocument(m_document->document());
