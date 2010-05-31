@@ -194,12 +194,20 @@ TestEntry* TestEntryManager::getNextEntry()
     }
 }
 
-QStringList TestEntryManager::randomMultipleChoiceAnswers(int numberChoices)
+QStringList TestEntryManager::multipleChoiceAnswers(int numberChoices)
 {
     QStringList choices;
     KRandomSequence randomSequence;
     QList<KEduVocExpression*> allEntries = m_doc->lesson()->entries(KEduVocLesson::Recursive);
     int numValidEntries = 0;
+    int count = numberChoices;
+
+    // if the current entry has predefined multiple choice entries definied, use them first
+    QStringList predefinedChoices = m_currentEntries.at(m_currentEntry)->entry()->translation(Prefs::solutionLanguage())->multipleChoice();
+    while (!predefinedChoices.isEmpty() && count > 0) {
+        choices.append(predefinedChoices.takeAt(randomSequence.getLong(predefinedChoices.count())));
+        count--;
+    }
 
     // find out if we got enough valid entries to fill all the options
     for(int i = 0; i < allEntries.count(); ++i) {
@@ -220,7 +228,6 @@ QStringList TestEntryManager::randomMultipleChoiceAnswers(int numberChoices)
         }
     } else {
         QList<KEduVocExpression*> exprlist;
-        int count = numberChoices;
         while (count > 0) {
             int nr;
             // if there are enough non-empty fields, fill the options only with those

@@ -55,7 +55,7 @@ void MultipleChoiceBackendMode::prepareChoices(TestEntry* current)
     Q_UNUSED(current)
     setQuestion(m_current->entry()->translation(m_practiceOptions.languageFrom())->text());
 
-    QStringList choices = m_testEntryManager->randomMultipleChoiceAnswers(m_numberOfChoices-1);
+    QStringList choices = m_testEntryManager->multipleChoiceAnswers(m_numberOfChoices-1);
     foreach(const QString& choice, choices) {
         int position = m_randomSequence.getLong(m_choices.count()+1);
         m_choices.insert(position, choice);
