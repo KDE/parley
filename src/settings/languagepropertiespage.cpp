@@ -40,7 +40,6 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
 
     connect(localeComboBox, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(localeChanged(const QString&)));
     connect(iconComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(iconChanged(int)));
-    connect(identifierNameLineEdit, SIGNAL(textChanged(const QString&)), this, SLOT(languageNameChanged(const QString&)));
     connect(downloadGrammarButton, SIGNAL(clicked()), this, SLOT(downloadGrammar()));
 
     QStringList languageCodes = KGlobal::locale()->allLanguagesList();
