@@ -107,6 +107,8 @@ public:
      */
     ParleyDocument* parleyDocument();
 
+    Component currentComponent();
+
 public slots:
     /** Update the title bar of the main window with the current document */
     void slotUpdateWindowCaption();

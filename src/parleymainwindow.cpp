@@ -364,6 +364,7 @@ void ParleyMainWindow::switchComponent(Component component)
         default:
             break;
     }
+    m_currentComponent = component;
     setupToolbarMenuActions();
 }
 
@@ -404,6 +405,11 @@ void ParleyMainWindow::setVisibleToolbar(const QString& name)
 ParleyDocument* ParleyMainWindow::parleyDocument()
 {
     return m_document;
+}
+
+ParleyMainWindow::Component ParleyMainWindow::currentComponent()
+{
+    return m_currentComponent;
 }
 
 #include "parleymainwindow.moc"
