@@ -108,6 +108,11 @@ void WelcomeScreen::updateRecentFilesModel()
 
         m_recentFilesModel->appendRow(item);
     }
+    if (m_recentFilesModel->rowCount(QModelIndex())) {
+        ui->recentLabel->setText(i18n("Last Opened Collections"));
+    } else {
+        ui->recentLabel->clear();
+    }
 }
 
 void WelcomeScreen::slotOpenUrl(const KUrl& url)
