@@ -57,8 +57,6 @@ void ComparisonBackendMode::checkAnswer()
     QStringList answers = m_frontend->userInput().toStringList();
 
     if (answers == m_lastAnswers) {
-        m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerCorrect);
-        m_frontend->setResultState(Practice::AbstractFrontend::AnswerWrong);
         emit answerWrongShowSolution();
         return;
     }
@@ -68,19 +66,9 @@ void ComparisonBackendMode::checkAnswer()
     bool superlativeCorrect = answers.at(2) == m_current->entry()->translation(Prefs::solutionLanguage())->superlative();
 
     if (absoluteCorrect && comparativeCorrect && superlativeCorrect) {
-        m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerCorrect);
         m_frontend->setFeedback(i18n("All comparison forms were right."));
-
-        if (m_lastAnswers.isEmpty()) {
-            m_frontend->setResultState(Practice::AbstractFrontend::AnswerCorrect);
-            emit answerRight();
-        } else {
-            m_frontend->setResultState(Practice::AbstractFrontend::AnswerWrong);
-            emit answerWrongShowSolution();
-        }
+        emit answerRight();
     } else {
-        m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerWrong);
-
         if (!absoluteCorrect) {
             m_frontend->setFeedback(i18nc("the user entered the wrong absolute form when practicing comparison forms of adjectives (the base form of the adjective is wrong)",
                                           "\"%1\" is the wrong word.", answers.at(0)));

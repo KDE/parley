@@ -56,37 +56,31 @@ void WrittenBackendMode::checkAnswer()
     QString feedbackString = getFeedbackString(isFirstAttempt, m_current->lastErrors());
     m_frontend->setFeedback(feedbackString);
 
-    if (isCorrect) {
-        m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
-        if (isFirstAttempt) {
-            m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
+    // first handle synonyms as they may be correct or not
+    if (isSynonym) {
+        addSynonym(answer);
+        m_frontend->setSynonym(answer);
+        m_frontend->showSynonym();
+
+        if (Prefs::countSynonymsAsCorrect()) {
+            // maybe change grade of synonym here
+            emit answerRight();
         } else {
-            m_frontend->setResultState(AbstractFrontend::AnswerWrong);
+            emit answerWrongRetry();
         }
+        return;
+    }
+
+    if (isCorrect) {
         emit answerRight();
     } else {
-        m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
         m_current->addUserAnswer(answer);
 
         if(answerUnchanged) {
-            //User gave an empty answer or the same answer for a second time so we want to drop out.
-            m_frontend->setResultState(AbstractFrontend::AnswerWrong);
             emit answerWrongShowSolution();
         } else {
             emit answerWrongRetry();
         }
-    }
-
-    if (isSynonym) {
-        m_frontend->setSynonym(answer);
-        m_frontend->showSynonym();
-
-        // FIXME that function was nonsense: markSynonymCorrect(answer);
-        m_frontend->setResultState(AbstractFrontend::AnswerSynonym);
-        if (!Prefs::countSynonymsAsCorrect()) {
-            m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
-        }
-        addSynonym(answer);
     }
 }
 
