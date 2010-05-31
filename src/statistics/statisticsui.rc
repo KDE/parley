@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="statistics"  version="3">
+<gui name="statistics"  version="4">
 
 <MenuBar>
    <Menu name="file" >
    <text>&amp;File</text>
+   <Action name="document_edit" />
    <Action name="file_close" />
   </Menu>
   <Menu name="learning" >
