@@ -146,6 +146,14 @@ void PracticeStateMachine::continueAction()
 void PracticeStateMachine::answerRight()
 {
     kDebug() << "ans right";
+
+    m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
+    if (m_state == NotAnswered) {
+        m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
+    } else {
+        m_frontend->setResultState(AbstractFrontend::AnswerWrong);
+    }
+
     m_state = SolutionShown;
     m_frontend->showSolution();
 }
@@ -153,12 +161,16 @@ void PracticeStateMachine::answerRight()
 void PracticeStateMachine::answerWrongRetry()
 {
     kDebug() << "wrong retr";
+    m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
     m_state = AnswerWasWrong;
 }
 
 void PracticeStateMachine::answerWrongShowSolution()
 {
     kDebug() << "wrong sol";
+    m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
+    //User gave an empty answer or the same answer for a second time so we want to drop out.
+    m_frontend->setResultState(AbstractFrontend::AnswerWrong);
     m_state = SolutionShown;
     m_frontend->showSolution();
 }

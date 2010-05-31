@@ -136,22 +136,12 @@ void ConjugationBackendMode::checkAnswer()
     kDebug() << "answers: " << answers;
 
     if (allCorrect) {
-        m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerCorrect);
         m_frontend->setFeedback(i18n("All conjugation forms were right."));
-
-        if (m_lastAnswers.isEmpty()) {
-            m_frontend->setResultState(Practice::AbstractFrontend::AnswerCorrect);
-        } else {
-            m_frontend->setResultState(Practice::AbstractFrontend::AnswerWrong);
-        }
-
         emit answerRight();
     } else {
         m_frontend->setFeedback(i18ncp("You did not get the conjugation forms right.", "You answered %1 conjugation form correctly.", "You answered %1 conjugation forms correctly.", numRight));
 
         if (answers == m_lastAnswers) {
-            m_frontend->setFeedbackState(Practice::AbstractFrontend::AnswerWrong);
-            m_frontend->setResultState(Practice::AbstractFrontend::AnswerWrong);
             emit answerWrongShowSolution();
         } else {
             emit answerWrongRetry();

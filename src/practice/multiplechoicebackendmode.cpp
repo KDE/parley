@@ -89,10 +89,8 @@ void MultipleChoiceBackendMode::setCorrectAnswer(int index)
 void MultipleChoiceBackendMode::checkAnswer()
 {
     if (!m_frontend->userInput().isNull() && m_frontend->userInput().toInt() == m_correctAnswer) {
-        m_frontend->setResultState(AbstractFrontend::AnswerCorrect);
         emit answerRight();
     } else {
-        m_frontend->setResultState(AbstractFrontend::AnswerWrong);
         if(!m_frontend->userInput().isNull()) {
             m_current->addUserAnswer(m_choices.at(m_frontend->userInput().toInt()));
         }
@@ -105,7 +103,6 @@ void MultipleChoiceBackendMode::hintAction()
     if (m_choices.count() - m_hints.count() <= 2) {
         // show solution
         m_frontend->setFeedback(i18n("You revealed the answer by using too many hints."));
-        m_frontend->setResultState(AbstractFrontend::AnswerWrong);
         emit answerWrongShowSolution();
         return;
     }

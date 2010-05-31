@@ -108,7 +108,7 @@ void WrittenPracticeWidget::showSynonym()
     font.setPointSize(9);
     synonym->setAlignment(Qt::AlignCenter);
     synonym->setFont(font);
-    synonym->setText(i18n("Synonym: " ) + m_synonym);
+    synonym->setText(i18n("Synonym: ") + m_synonym);
     synonymWidgets.append(synonym);
     m_ui->synonymList->addWidget(synonym);
     m_ui->answerEdit->clear();
