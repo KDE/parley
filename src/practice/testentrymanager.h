@@ -77,7 +77,7 @@ public:
     int statisticTotalWrong();
     int statisticTotalUnanswered();
 
-    QStringList randomMultipleChoiceAnswers(int numberChoices);
+    QStringList multipleChoiceAnswers(int numberChoices);
 
     /**
      * Get a list of all entries in the test - used by the summary dialog
