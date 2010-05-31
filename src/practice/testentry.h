@@ -60,6 +60,12 @@ public:
     int statisticBadCount();
     bool correctAtFirstAttempt();
 
+    /**
+     * in conjugation mode, use this tense for the entry
+     */
+    QString conjugationTense() const;
+    void setConjugationTense(const QString& tense);
+
     void setLastErrors(ErrorTypes errorTypes);
     ErrorTypes lastErrors();
 
@@ -81,6 +87,7 @@ public:
 private:
     /// the entry itself
     KEduVocExpression *m_entry;
+    QString m_conjugationTense;
 
     // these are for the CURRENT query only, so we can display statistics.
     int m_statisticCount;

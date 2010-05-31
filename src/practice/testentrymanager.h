@@ -88,6 +88,7 @@ public:
     * Get a list of all unanswered entries in the test 
     */
     QList<TestEntry*> allUnansweredTestEntries();
+    QString currentConjugationTense();
 
 private:
     /**

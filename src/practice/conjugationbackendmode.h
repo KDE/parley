@@ -43,7 +43,6 @@ private:
     TestEntryManager* m_testEntryManager;
     KEduVocDocument* m_doc;
 
-    QStringList m_tenses;
     QString m_currentTense;
     QList<KEduVocWordFlags> m_pronounFlags;
     KEduVocConjugation m_conjugation;

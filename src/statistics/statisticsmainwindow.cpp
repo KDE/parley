@@ -75,6 +75,14 @@ StatisticsMainWindow::~StatisticsMainWindow()
     delete m_ui;
 }
 
+void StatisticsMainWindow::syncConfig()
+{
+    kDebug() << "save tenses";
+    if (m_conjugationOptions) {
+        m_conjugationOptions->updateSettings();
+    }
+}
+
 void StatisticsMainWindow::setDocument(KEduVocDocument* doc)
 {
     m_doc = doc;

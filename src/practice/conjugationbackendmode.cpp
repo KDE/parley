@@ -29,9 +29,6 @@ ConjugationBackendMode::ConjugationBackendMode(const PracticeOptions& practiceOp
 ,m_testEntryManager(testEntryManager)
 ,m_doc(doc)
 {
-    DocumentSettings documentSettings(m_doc->url().url() + QString::number(m_practiceOptions.languageTo()));
-    documentSettings.readConfig();
-    m_tenses = documentSettings.conjugationTenses();
 }
 
 bool ConjugationBackendMode::setTestEntry(TestEntry* current)
@@ -40,22 +37,7 @@ bool ConjugationBackendMode::setTestEntry(TestEntry* current)
     m_current = current;
     m_lastAnswers.clear();
 
-    // FIXME tense selection
-    QStringList possibleTenses;
-    foreach(const QString& practiceTense, m_tenses) {
-        if (m_current->entry()->translation(m_practiceOptions.languageTo())
-            ->conjugationTenses().contains(practiceTense)) {
-            possibleTenses.append(practiceTense);
-        }
-    }
-    if (possibleTenses.isEmpty()) {
-        kDebug() << "No valid practice tenses in entry: " << m_current->entry()->translation(m_practiceOptions.languageTo())->text()
-            << m_current->entry()->translation(m_practiceOptions.languageTo())->conjugationTenses()
-            << m_tenses;
-        return false;
-    }
-
-    m_currentTense = possibleTenses.first();
+    m_currentTense = m_current->conjugationTense();
 
     if (!m_current->entry()->translation(m_practiceOptions.languageTo())->conjugationTenses().contains(m_currentTense)) {
         kDebug() << "invalid tense for entry - " << m_currentTense;
@@ -172,7 +154,6 @@ void ConjugationBackendMode::updateGrades()
         m_current->entry()->translation(Prefs::solutionLanguage())->conjugation(m_currentTense).conjugation(key).setPracticeDate( QDateTime::currentDateTime() );
         ++i;
     }
-
 }
 
 void ConjugationBackendMode::hintAction()

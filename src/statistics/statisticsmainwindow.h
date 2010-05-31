@@ -36,6 +36,8 @@ public:
 
     void setDocument(KEduVocDocument* doc);
 
+    void syncConfig();
+
 Q_SIGNALS:
     void languagesChanged(int, int);
     

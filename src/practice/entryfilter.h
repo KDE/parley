@@ -18,11 +18,13 @@
 
 #include <QtCore/QList>
 #include <QtCore/QSet>
+#include <prefs.h>
 
 class KEduVocText;
 class KEduVocExpression;
 class KEduVocDocument;
 class KDialog;
+class TestEntry;
 
 namespace Practice {
 
@@ -37,7 +39,7 @@ public:
      * Returns the list of test entries after filtering out invalid entries according to the settings.
      * @return list of entries to practice
      */
-    QList<KEduVocExpression*> entries();
+    QList<TestEntry*> entries();
 
 private:
     /**
@@ -50,7 +52,7 @@ private:
     void lessonEntries();
     void wordTypeEntries();
 
-    bool isBlocked(const KEduVocText* const grade);
+    bool isBlocked(const KEduVocText* const grade) const;
     void blockedEntries();
     void timesWrongEntries();
     void timesPracticedEntries();
@@ -62,6 +64,8 @@ private:
      */
     void cleanupInvalid();
 
+    QList<TestEntry*> conjugationTestEntries() const;
+
 private slots:
     void checkBoxChanged(bool filter);
 
@@ -71,7 +75,7 @@ private:
     QSet<KEduVocExpression*> m_entries;
     QSet<KEduVocExpression*> m_entriesLesson;
     QSet<KEduVocExpression*> m_entriesWordType;
-    QSet<KEduVocExpression*> m_entriesBlocked;
+    QSet<KEduVocExpression*> m_entriesNotBlocked;
     QSet<KEduVocExpression*> m_entriesTimesWrong;
     QSet<KEduVocExpression*> m_entriesTimesPracticed;
     QSet<KEduVocExpression*> m_entriesMinMaxGrade;
@@ -80,6 +84,8 @@ private:
     KEduVocDocument *m_doc;
     int m_fromTranslation;
     int m_toTranslation;
+    Prefs::EnumPracticeMode::type m_mode;
+    QStringList m_tenses;
 
     KDialog *m_dialog;
 };
