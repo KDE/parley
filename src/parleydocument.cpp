@@ -154,12 +154,13 @@ void ParleyDocument::slotFileOpen()
 {
     if (m_parleyApp->queryExit()) {
         QCheckBox *practiceCheckBox = new QCheckBox(i18n("Open in practice &mode"));
+        practiceCheckBox->setChecked(m_parleyApp->currentComponent() != ParleyMainWindow::EditorComponent);
         KFileDialog dialog(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), m_parleyApp, practiceCheckBox);
         dialog.setCaption(i18n("Open Vocabulary Collection"));
         if(dialog.exec() && !dialog.selectedUrl().isEmpty()) {
             open(dialog.selectedUrl());
             if(practiceCheckBox->isChecked()) {
-                m_parleyApp->startPractice();
+                m_parleyApp->showStatistics();
             } else {
                 m_parleyApp->showEditor();
             }
