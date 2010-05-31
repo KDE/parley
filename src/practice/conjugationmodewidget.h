@@ -54,13 +54,11 @@ public Q_SLOTS:
 
 private Q_SLOTS:
     void nextConjugationForm();
-    
+
 private:
     virtual void setNumberOfConjugationWidgets(const int numberOfForms);
-    
+
     Ui::ConjugationPracticeWidget* m_ui;
-    QPalette m_correctPalette;
-    QPalette m_wrongPalette;
     QStringList m_solution;
     QList<PersonConjugationSolutionWidgets*> m_personWidgets;
 };

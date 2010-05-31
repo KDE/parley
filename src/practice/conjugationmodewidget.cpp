@@ -102,11 +102,12 @@ void ConjugationModeWidget::setFeedback(const QVariant& feedback)
 void ConjugationModeWidget::showSolution()
 {
     for(int i = 0; i < m_solution.size() && i < m_personWidgets.size(); ++i) {
-        m_personWidgets.at(i)->solution->setText(m_solution.at(i));
         if(m_personWidgets.at(i)->input->text() == m_solution.at(i)) {
             m_personWidgets.at(i)->input->setPalette(m_correctPalette);
         } else {
             m_personWidgets.at(i)->input->setPalette(m_wrongPalette);
+            m_personWidgets.at(i)->solution->setPalette(m_correctPalette);
+            m_personWidgets.at(i)->solution->setText(m_solution.at(i));
         }
     }
 }
