@@ -42,11 +42,11 @@ public slots:
     void updateRecentFilesModel();
 
 private slots:
-    void updateBackground();
     void setTheme();
     void backgroundChanged(const QPixmap& pixmap);
     void updateFontColors();
-    
+    void updateBackground();
+
 private:
     Ui::WelcomeScreen *ui;
     ParleyMainWindow *m_parleyApp;

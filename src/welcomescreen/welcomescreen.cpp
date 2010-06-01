@@ -144,17 +144,12 @@ void WelcomeScreen::backgroundChanged(const QPixmap &pixmap)
     m_widget->setPixmap(pixmap);
 }
 
-void WelcomeScreen::updateBackground()
+void WelcomeScreen::setTheme()
 {
-    m_themedBackgroundRenderer->clearRects();
-    m_themedBackgroundRenderer->addRect("startbackground", QRect(QPoint(), m_widget->size()));
-    m_themedBackgroundRenderer->addRect("startheader", ui->headingLabel->frameGeometry().united(ui->recentLabel->frameGeometry()));
-    m_themedBackgroundRenderer->addRect("recentfiles", ui->recentFiles->frameGeometry());
-    QPixmap pixmap = m_themedBackgroundRenderer->getScaledBackground();
-    if (!pixmap.isNull()) {
-        m_widget->setPixmap(pixmap);
-    }
-    m_themedBackgroundRenderer->updateBackground();
+    m_themedBackgroundRenderer->setTheme(Prefs::theme());
+    updateFontColors();
+    updateBackground();
+    m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
 }
 
 void WelcomeScreen::updateFontColors()
@@ -168,12 +163,17 @@ void WelcomeScreen::updateFontColors()
     ui->recentLabel->setPalette(p);
 }
 
-void WelcomeScreen::setTheme()
+void WelcomeScreen::updateBackground()
 {
-    m_themedBackgroundRenderer->setTheme(Prefs::theme());
-    updateFontColors();
-    updateBackground();
-    m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
+    m_themedBackgroundRenderer->clearRects();
+    m_themedBackgroundRenderer->addRect("startbackground", QRect(QPoint(), m_widget->size()));
+    m_themedBackgroundRenderer->addRect("startheader", ui->headingLabel->frameGeometry().united(ui->recentLabel->frameGeometry()));
+    m_themedBackgroundRenderer->addRect("recentfiles", ui->recentFiles->frameGeometry());
+    QPixmap pixmap = m_themedBackgroundRenderer->getScaledBackground();
+    if (!pixmap.isNull()) {
+        m_widget->setPixmap(pixmap);
+    }
+    m_themedBackgroundRenderer->updateBackground();
 }
 
 #include "welcomescreen.moc"
