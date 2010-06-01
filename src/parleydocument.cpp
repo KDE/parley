@@ -344,15 +344,6 @@ void ParleyDocument::setDefaultDocumentProperties(KEduVocDocument *doc)
     KEduVocLesson* lesson = new KEduVocLesson(i18n("Lesson 1"), doc->lesson());
     doc->lesson()->appendChildContainer(lesson);
 
-    KEduVocLeitnerBox *box = doc->leitnerContainer();
-    box->appendChildContainer(new KEduVocLesson(i18n("Box 7 (best)"), box));
-    box->appendChildContainer(new KEduVocLesson(i18n("Box 6"), box));
-    box->appendChildContainer(new KEduVocLesson(i18n("Box 5"), box));
-    box->appendChildContainer(new KEduVocLesson(i18n("Box 4"), box));
-    box->appendChildContainer(new KEduVocLesson(i18n("Box 3"), box));
-    box->appendChildContainer(new KEduVocLesson(i18n("Box 2"), box));
-    box->appendChildContainer(new KEduVocLesson(i18n("Box 1 (lowest)"), box));
-
     // add some entries
     for ( int i = 0; i < 15 ; i++ ) {
         lesson->appendEntry(new KEduVocExpression());
