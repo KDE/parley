@@ -76,12 +76,12 @@ public:
 
     /** enum for the different components that can be displayed */
     enum Component {
-        NoComponent, 
-        WelcomeComponent, 
-        EditorComponent, 
+        NoComponent,
+        WelcomeComponent,
+        EditorComponent,
+        ConfigurePracticeComponent,
         PracticeComponent,
-        PracticeSummary,
-        StatisticsComponent
+        PracticeSummary
     };
 
     /**
@@ -146,7 +146,7 @@ public slots:
     void showWelcomeScreen();
     void showEditor();
     void showPractice();
-    void showStatistics();
+    void showPracticeConfiguration();
 
     void switchComponent(Component component);
 

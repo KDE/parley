@@ -160,7 +160,7 @@ void ParleyDocument::slotFileOpen()
         if(dialog.exec() && !dialog.selectedUrl().isEmpty()) {
             open(dialog.selectedUrl());
             if(practiceCheckBox->isChecked()) {
-                m_parleyApp->showStatistics();
+                m_parleyApp->showPracticeConfiguration();
             } else {
                 m_parleyApp->showEditor();
             }
@@ -213,7 +213,7 @@ void ParleyDocument::openGHNS()
                 i18n("Open Downloaded Vocabulary Collection"));
         if (!url.isEmpty()) {
             open(url);
-            m_parleyApp->showEditor();
+            m_parleyApp->showPracticeConfiguration();
         }
     }
 }
@@ -389,7 +389,7 @@ void ParleyDocument::slotGHNS()
         openGHNS();
     } else if (numberInstalled == 1) {
         open(KUrl(fileName));
-        m_parleyApp->showEditor();
+        m_parleyApp->showPracticeConfiguration();
     }
 }
 

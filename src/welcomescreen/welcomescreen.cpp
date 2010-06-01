@@ -136,7 +136,7 @@ void WelcomeScreen::slotDoubleClickOpen()
 void WelcomeScreen::slotPracticeUrl(const KUrl & url)
 {
     m_parleyApp->parleyDocument()->open(url);
-    m_parleyApp->showStatistics();
+    m_parleyApp->showPracticeConfiguration();
 }
 
 void WelcomeScreen::backgroundChanged(const QPixmap &pixmap)
