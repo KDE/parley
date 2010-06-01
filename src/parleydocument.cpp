@@ -35,7 +35,7 @@
 #include <KStandardDirs>
 #include <knewstuff3/downloaddialog.h>
 #include <knewstuff3/uploaddialog.h>
-#include <KUser>
+#include <KEMailSettings>
 #include <KMessageBox>
 #include <KProcess>
 #include <KTempDir>
@@ -232,7 +232,6 @@ void ParleyDocument::save()
     m_doc->setCsvDelimiter(Prefs::separator());
 
     emit statesNeedSaving();
-    
 
     int result = m_doc->saveAs(m_doc->url(), KEduVocDocument::Automatic, QString::fromLatin1("Parley ") + PARLEY_VERSION_STRING);
     if ( result != 0 ) {
@@ -322,15 +321,14 @@ void ParleyDocument::initializeDefaultGrammar(KEduVocDocument *doc)
     root->appendChildContainer(adverb);
 }
 
+
 void ParleyDocument::setDefaultDocumentProperties(KEduVocDocument *doc)
 {
-    // some default values
-    KUser user;
-    QString userName = user.property(KUser::FullName).toString();
-    if ( userName.isEmpty() ) {
-        userName = user.loginName();
-    }
-    doc->setAuthor( userName );
+    KEMailSettings emailSettings;
+    emailSettings.setProfile(emailSettings.defaultProfileName());
+    doc->setAuthor(emailSettings.getSetting(KEMailSettings::RealName));
+    doc->setAuthorContact(emailSettings.getSetting(KEMailSettings::EmailAddress));
+
     doc->setLicense( i18n("Public Domain") );
     doc->setCategory( i18n("Languages") );
 
