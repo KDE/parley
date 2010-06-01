@@ -201,6 +201,7 @@ void ImageWidget::setPixmap(const QPixmap& pixmap)
 {
     kDebug() << "set new pixmap, size:" << pixmap.size();
     if (m_animation->state() == QTimeLine::Running) {
+        m_scaledPixmap = transition(m_animationPixmap, m_scaledPixmap, m_animation->currentValue());
         m_animation->stop();
         animationFinished();
     }
