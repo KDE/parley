@@ -225,6 +225,54 @@ void EntryFilter::wordTypeEntries()
     }
 }
 
+void EntryFilter::blockedEntries()
+{
+    if (!Prefs::block()) {
+        m_entriesNotBlocked = m_entries;
+        return;
+    }
+
+    switch (m_mode) {
+    case (Prefs::EnumPracticeMode::ConjugationPractice):
+        foreach(KEduVocExpression* entry, m_entries) {
+            if (!isConjugationBlocked(entry->translation(m_toTranslation))) {
+                m_entriesNotBlocked.insert(entry);
+            }
+        }
+        break;
+    case (Prefs::EnumPracticeMode::GenderPractice):
+        foreach(KEduVocExpression* entry, m_entries) {
+            if (!isBlocked(&(entry->translation(m_toTranslation)->article()))) {
+                m_entriesNotBlocked.insert(entry);
+            }
+        }
+        break;
+    default:
+        foreach(KEduVocExpression* entry, m_entries) {
+            if (!isBlocked(entry->translation(m_toTranslation))) {
+                m_entriesNotBlocked.insert(entry);
+            }
+        }
+        break;
+    }
+}
+
+bool EntryFilter::isConjugationBlocked(KEduVocTranslation* translation) const
+{
+    foreach(const QString& tense, translation->conjugationTenses()) {
+        if(m_tenses.contains(tense)) {
+            QList<KEduVocWordFlags> pronouns = translation->conjugation(tense).keys();
+            foreach(const KEduVocWordFlags& pronoun, pronouns) {
+                if (!isBlocked(&(translation->conjugation(tense).conjugation(pronoun)))) {
+                    // just need to find any form that is not blocked
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
 bool EntryFilter::isBlocked(const KEduVocText* const text) const
 {
     grade_t grade = text->grade();
@@ -238,35 +286,6 @@ bool EntryFilter::isBlocked(const KEduVocText* const text) const
         }
     }
     return true;
-}
-
-void EntryFilter::blockedEntries()
-{
-    if (!Prefs::block()) {
-        m_entriesNotBlocked = m_entries;
-        return;
-    }
-
-    foreach(KEduVocExpression* entry, m_entries) {
-        if (m_mode == Prefs::EnumPracticeMode::ConjugationPractice) {
-            foreach(const QString& tense, entry->translation(m_toTranslation)->conjugationTenses()) {
-                kDebug() << "Check tense: " << tense << m_tenses;
-                if(m_tenses.contains(tense)) {
-                    
-                    QList<KEduVocWordFlags> pronouns = entry->translation(m_toTranslation)->conjugation(tense).keys();
-                    foreach(const KEduVocWordFlags& pronoun, pronouns) {
-                        if (!isBlocked(&(entry->translation(m_toTranslation)->conjugation(tense).conjugation(pronoun)))) {
-                            m_entriesNotBlocked.insert(entry);
-                        }
-                    }
-                }
-            }
-        } else {
-            if (!isBlocked(entry->translation(m_toTranslation))) {
-                m_entriesNotBlocked.insert(entry);
-            }
-        }
-    }
 }
 
 void EntryFilter::timesWrongEntries()
