@@ -364,7 +364,7 @@ void EditorWindow::initActions()
     ParleyActions::create(ParleyActions::CheckSpelling, m_vocabularyView, SLOT(checkSpelling()), actionCollection());
     ParleyActions::create(ParleyActions::ToggleShowSublessons, m_vocabularyModel, SLOT(showEntriesOfSubcontainers(bool)), actionCollection());
     ParleyActions::create(ParleyActions::AutomaticTranslation, m_vocabularyModel, SLOT(automaticTranslation(bool)), actionCollection());
-    ParleyActions::create(ParleyActions::StartPractice, m_mainWindow, SLOT(showStatistics()), actionCollection());
+    ParleyActions::create(ParleyActions::StartPractice, m_mainWindow, SLOT(showPracticeConfiguration()), actionCollection());
     actionCollection()->action("practice_start")->setText(i18n("Practice"));
     actionCollection()->action("practice_start")->setToolTip(i18n("Practice"));
     ParleyActions::create(ParleyActions::ConfigurePractice, m_mainWindow, SLOT(configurePractice()), actionCollection());
