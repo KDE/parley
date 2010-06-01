@@ -33,10 +33,8 @@ public slots:
 
 signals:
     void nameChanged(const QString&);
-    void iconSelected(const QString&);
 
 private slots:
-    void iconChanged(int iconIndex);
     void localeChanged(const QString&);
 
     // pronouns/conjugations
@@ -50,7 +48,7 @@ private slots:
 
 private:
     void updateListBox(int start);
-    
+
     // initialize widgets with contents
     void loadGrammarFromDocument();
 

@@ -7,11 +7,6 @@
     <parameter name="locale" />
   </kcfgfile>
   <group name="Locale $(locale)">
-    <entry name="Icon" type="String">
-      <label>Icon for an identifier</label>
-      <whatsthis>The icon shown for the identifier (locale)</whatsthis>
-      <default></default>
-    </entry>
     <entry name="KeyboardLayout" type="String">
       <label>Keyboard layout for this locale</label>
       <whatsthis>Keyboard layout for this locale</whatsthis>

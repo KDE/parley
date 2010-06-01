@@ -39,7 +39,6 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
     setupUi(this);
 
     connect(localeComboBox, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(localeChanged(const QString&)));
-    connect(iconComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(iconChanged(int)));
     connect(downloadGrammarButton, SIGNAL(clicked()), this, SLOT(downloadGrammar()));
 
     QStringList languageCodes = KGlobal::locale()->allLanguagesList();
@@ -54,43 +53,11 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
         localeComboBox->addItem( language, languageCodeMap.value(language) );
     }
 
-    QString currentIcon;
-
     if (m_identifierIndex < m_doc->identifierCount()) {
         localeComboBox->setCurrentIndex(localeComboBox->findData(
             m_doc->identifier(m_identifierIndex).locale()));
 
         identifierNameLineEdit->setText(m_doc->identifier(m_identifierIndex).name());
-        
-        // icons
-        LanguageSettings currentSettings(m_doc->identifier(m_identifierIndex).locale());
-        currentSettings.readConfig();
-        currentIcon = currentSettings.icon();
-    }
-
-    QStringList countrylist = KGlobal::locale()->allCountriesList();
-    foreach(const QString &code, countrylist) {
-        QString country = KGlobal::dirs()->findResource("locale",
-                QString("l10n/%1/entry.desktop").arg(code));
-        KConfig entry(country, KConfig::SimpleConfig);
-        KConfigGroup group = entry.group("KCM Locale");
-        QString name = group.readEntry("Name", i18n("without name"));
-
-        QString pixmap = country;
-        pixmap.truncate(pixmap.lastIndexOf('/'));
-        pixmap += "/flag.png";
-
-        iconComboBox->addItem(QIcon(pixmap), name, pixmap);
-    }
-    // sort the list by country name
-    iconComboBox->model()->sort(0);
-    // prepend no icon
-    iconComboBox->insertItem(0, i18n("No icon"));
-    int currentIconPosition = iconComboBox->findData(currentIcon);
-    if (currentIconPosition >= 0) {
-        iconComboBox->setCurrentIndex(currentIconPosition);
-    } else {
-        iconComboBox->setCurrentIndex(0);
     }
 
     // keyboard layout
@@ -239,10 +206,7 @@ void LanguagePropertiesPage::accept()
     m_doc->identifier(m_identifierIndex).setLocale( locale );
     m_doc->identifier(m_identifierIndex).setName( identifierNameLineEdit->text() );
 
-    QString icon = iconComboBox->itemData(iconComboBox->currentIndex()).toString();
-
     LanguageSettings settings(locale);
-    settings.setIcon(icon);
     if ( keyboardLayoutComboBox->isEnabled() ) {
         settings.setKeyboardLayout( keyboardLayoutComboBox->currentText() );
     }
@@ -352,12 +316,6 @@ void LanguagePropertiesPage::updateCheckBoxes()
         thirdN_plural->setVisible(neutral);
         dualThirdNeutralLineEdit->setVisible(dual && neutral);
     }
-}
-
-
-void LanguagePropertiesPage::iconChanged(int iconIndex)
-{
-    emit iconSelected( iconComboBox->itemData(iconIndex).toString() );
 }
 
 void LanguagePropertiesPage::localeChanged(const QString & locale)
