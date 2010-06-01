@@ -159,8 +159,7 @@ void WelcomeScreen::updateFontColors()
     p.setColor(QPalette::Base, Qt::transparent);
     p.setColor(QPalette::Text, c);
     p.setColor(QPalette::WindowText, c);
-    ui->recentFiles->setPalette(p);
-    ui->recentLabel->setPalette(p);
+    m_widget->setPalette(p);
 }
 
 void WelcomeScreen::updateBackground()
