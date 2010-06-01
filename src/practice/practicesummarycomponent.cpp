@@ -55,7 +55,7 @@ PracticeSummaryComponent::~PracticeSummaryComponent()
 void PracticeSummaryComponent::initActions(QWidget* parleyMainWindow)
 {
     ParleyActions::create(ParleyActions::EnterEditMode, parleyMainWindow, SLOT(showEditor()), actionCollection());
-    ParleyActions::create(ParleyActions::StartPractice, parleyMainWindow, SLOT(showStatistics()), actionCollection());
+    ParleyActions::create(ParleyActions::StartPractice, parleyMainWindow, SLOT(showPracticeConfiguration()), actionCollection());
     actionCollection()->action("practice_start")->setText(i18n("Practice Again"));
     actionCollection()->action("practice_start")->setToolTip(i18n("Practice Again"));
 }
