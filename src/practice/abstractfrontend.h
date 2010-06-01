@@ -14,8 +14,8 @@
 #ifndef PRACTICE_ABSTRACTFRONTEND_H
 #define PRACTICE_ABSTRACTFRONTEND_H
 
-#include <QtCore/qobject.h>
-#include <QPixmap>
+#include <QtCore/QObject>
+#include <keduvoctext.h>
 
 class KUrl;
 
@@ -91,7 +91,7 @@ public Q_SLOTS:
     
     /** switch between different modes such as written, flash card, etc */
     virtual void setMode(Mode mode) = 0;
-    virtual void setBoxes(int currentBox, int newBoxIfCorrect, int newBoxIfWrong) = 0;
+    virtual void setBoxes(grade_t currentBox, grade_t newBoxIfCorrect, grade_t newBoxIfWrong) = 0;
 
 Q_SIGNALS:
     void continueAction();
