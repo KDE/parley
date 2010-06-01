@@ -31,7 +31,7 @@
 
 using namespace Practice;
 
-// The functions centerPixmaps() and transition() are copied from kdelibs/plasma/paintutils.cpp, revision 1114906
+// The functions centerPixmaps() and transition() are copied from kdelibs/plasma/paintutils.cpp, revision 1133527
 // License: LGPLv2+
 // Copyright 2005 by Aaron Seigo <aseigo@kde.org>
 // Copyright 2008 by Andrew Lake <jamboarder@yahoo.com>
@@ -39,7 +39,7 @@ using namespace Practice;
 
 void centerPixmaps(QPixmap &from, QPixmap &to)
 {
-    if (from.size() == to.size()) {
+    if (from.size() == to.size() && from.hasAlphaChannel() && to.hasAlphaChannel()) {
         return;
     }
     QRect fromRect(from.rect());
@@ -49,7 +49,7 @@ void centerPixmaps(QPixmap &from, QPixmap &to)
     fromRect.moveCenter(actualRect.center());
     toRect.moveCenter(actualRect.center());
 
-    if (from.size() != actualRect.size()) {
+    if (from.size() != actualRect.size() || !from.hasAlphaChannel()) {
         QPixmap result(actualRect.size());
         result.fill(Qt::transparent);
         QPainter p(&result);
@@ -59,7 +59,7 @@ void centerPixmaps(QPixmap &from, QPixmap &to)
         from = result;
     }
 
-    if (to.size() != actualRect.size()) {
+    if (to.size() != actualRect.size() || !to.hasAlphaChannel()) {
         QPixmap result(actualRect.size());
         result.fill(Qt::transparent);
         QPainter p(&result);
@@ -79,7 +79,7 @@ QPixmap transition(const QPixmap &from, const QPixmap &to, qreal amount)
     QPixmap startPixmap(from);
     QPixmap targetPixmap(to);
 
-    if (from.size() != to.size()) {
+    if (from.size() != to.size() || !from.hasAlphaChannel() || !to.hasAlphaChannel()) {
         centerPixmaps(startPixmap, targetPixmap);
     }
 
