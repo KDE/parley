@@ -27,4 +27,8 @@ AuthorEmail=jarle.r.akselsen@gmail.com
 Type=SVG
 FileName=bees_theme.svgz
 Preview=bees_theme_preview.jpg
-
+X-Parley-Font-Color-Start=ffffff
+X-Parley-Font-Color-Outer=ffffff
+X-Parley-Font-Color-Central=000000
+X-Parley-Font-Color-Correct=006c00
+X-Parley-Font-Color-Wrong=bf0303
