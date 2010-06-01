@@ -100,8 +100,8 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
     connect(this, SIGNAL(preferencesChanged()), this, SLOT(slotApplyPreferences()));
     menuBar()->show();
 
-    // finally show tip-of-day ( if the user wants it :) )
-    QTimer::singleShot( 0, this, SLOT( startupTipOfDay() ) );
+    // finally show tip-of-day (if the user wants it)
+    //QTimer::singleShot( 0, this, SLOT( startupTipOfDay() ) );
 }
 
 ParleyMainWindow::~ParleyMainWindow()
