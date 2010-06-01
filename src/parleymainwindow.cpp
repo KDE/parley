@@ -265,9 +265,9 @@ void ParleyMainWindow::showEditor()
     switchComponent(EditorComponent);
 }
 
-void ParleyMainWindow::showStatistics()
+void ParleyMainWindow::showPracticeConfiguration()
 {
-    switchComponent(StatisticsComponent);
+    switchComponent(ConfigurePracticeComponent);
 }
 
 void ParleyMainWindow::showPractice()
@@ -310,7 +310,7 @@ void ParleyMainWindow::switchComponent(Component component)
             welcome->updateRecentFilesModel();
             break;
         }
-        case StatisticsComponent: {
+        case ConfigurePracticeComponent: {
             StatisticsMainWindow *statisticsWidget = new StatisticsMainWindow(m_document->document(), this);
             m_currentComponentWindow = statisticsWidget;
             showDocumentActions(true, true);
@@ -351,7 +351,7 @@ void ParleyMainWindow::switchComponent(Component component)
             setVisibleToolbar(QString());
             break;
         }
-        case StatisticsComponent: {
+        case ConfigurePracticeComponent: {
             setVisibleToolbar("statisticsToolBar");
             break;
         }
