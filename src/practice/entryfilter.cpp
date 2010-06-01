@@ -233,16 +233,29 @@ void EntryFilter::blockedEntries()
     }
 
     switch (m_mode) {
-    case (Prefs::EnumPracticeMode::ConjugationPractice):
+    case Prefs::EnumPracticeMode::ConjugationPractice:
         foreach(KEduVocExpression* entry, m_entries) {
             if (!isConjugationBlocked(entry->translation(m_toTranslation))) {
                 m_entriesNotBlocked.insert(entry);
             }
         }
         break;
-    case (Prefs::EnumPracticeMode::GenderPractice):
+    case Prefs::EnumPracticeMode::GenderPractice:
         foreach(KEduVocExpression* entry, m_entries) {
-            if (!isBlocked(&(entry->translation(m_toTranslation)->article()))) {
+            KEduVocText article = entry->translation(m_toTranslation)->article();
+            if (!isBlocked(&article)) {
+                m_entriesNotBlocked.insert(entry);
+            }
+        }
+        break;
+    case Prefs::EnumPracticeMode::ComparisonPractice:
+        foreach(KEduVocExpression* entry, m_entries) {
+            KEduVocTranslation* translation = entry->translation(m_toTranslation);
+            KEduVocText comparative = translation->comparativeForm();
+            KEduVocText superlative = translation->superlativeForm();
+            if (!isBlocked(&(comparative))
+                || !isBlocked(&(superlative)) )
+            {
                 m_entriesNotBlocked.insert(entry);
             }
         }
@@ -263,7 +276,8 @@ bool EntryFilter::isConjugationBlocked(KEduVocTranslation* translation) const
         if(m_tenses.contains(tense)) {
             QList<KEduVocWordFlags> pronouns = translation->conjugation(tense).keys();
             foreach(const KEduVocWordFlags& pronoun, pronouns) {
-                if (!isBlocked(&(translation->conjugation(tense).conjugation(pronoun)))) {
+                KEduVocText grade = translation->conjugation(tense).conjugation(pronoun);
+                if (!isBlocked(&(grade))) {
                     // just need to find any form that is not blocked
                     return false;
                 }
@@ -276,7 +290,7 @@ bool EntryFilter::isConjugationBlocked(KEduVocTranslation* translation) const
 bool EntryFilter::isBlocked(const KEduVocText* const text) const
 {
     grade_t grade = text->grade();
-    // always include lowest level and itemw where blocking is off
+    // always include lowest level and where blocking is off
     if (grade == KV_NORM_GRADE || Prefs::blockItem(grade) == 0) {
         return false;
     } else {
@@ -285,6 +299,7 @@ bool EntryFilter::isBlocked(const KEduVocText* const text) const
             return false;
         }
     }
+
     return true;
 }
 
