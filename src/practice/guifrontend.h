@@ -68,7 +68,7 @@ public Q_SLOTS:
     void setMode(Mode mode);
     void showQuestion();
     void showSolution();
-    void setBoxes(int currentBox, int newBoxIfCorrect, int newBoxIfWrong);
+    void setBoxes(grade_t currentBox, grade_t newBoxIfCorrect, grade_t newBoxIfWrong);
 
     void showSynonym();
 

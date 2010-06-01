@@ -151,8 +151,7 @@ void GuiFrontend::showSynonym()
     m_modeWidget->showSynonym();
 }
 
-
-void GuiFrontend::setBoxes(int currentBox, int newBoxIfCorrect, int newBoxIfWrong)
+void GuiFrontend::setBoxes(grade_t currentBox, grade_t newBoxIfCorrect, grade_t newBoxIfWrong)
 {
     m_ui->boxesWidget->setBoxes(currentBox, 0);
     m_currentBox = currentBox;
