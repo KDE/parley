@@ -30,6 +30,10 @@ ComparisonModeWidget::ComparisonModeWidget (GuiFrontend *frontend, QWidget* pare
     connect(m_ui->absoluteEdit, SIGNAL(returnPressed(QString)), this, SLOT(nextComparisonForm()));
     connect(m_ui->comparativeEdit, SIGNAL(returnPressed(QString)), this, SLOT(nextComparisonForm()));
     connect(m_ui->superlativeEdit, SIGNAL(returnPressed(QString)), this, SLOT(nextComparisonForm()));
+
+    m_ui->absoluteSolutionLabel->setPalette(m_correctPalette);
+    m_ui->comparativeSolutionLabel->setPalette(m_correctPalette);
+    m_ui->superlativeSolutionLabel->setPalette(m_correctPalette);
 }
 
 ComparisonModeWidget::~ComparisonModeWidget()
@@ -42,6 +46,12 @@ void ComparisonModeWidget::setQuestion(const QVariant& question)
     m_ui->absoluteEdit->clear();
     m_ui->comparativeEdit->clear();
     m_ui->superlativeEdit->clear();
+    m_ui->absoluteEdit->setPalette(QPalette());
+    m_ui->comparativeEdit->setPalette(QPalette());
+    m_ui->superlativeEdit->setPalette(QPalette());
+    m_ui->absoluteSolutionLabel->clear();
+    m_ui->comparativeSolutionLabel->clear();
+    m_ui->superlativeSolutionLabel->clear();
 }
 
 void ComparisonModeWidget::showQuestion()
@@ -66,6 +76,25 @@ void ComparisonModeWidget::setFeedback(const QVariant& feedback)
 
 void ComparisonModeWidget::showSolution()
 {
+    if (m_ui->absoluteEdit->text() == m_solution.at(0)) {
+        m_ui->absoluteEdit->setPalette(m_correctPalette);
+    } else {
+        m_ui->absoluteEdit->setPalette(m_wrongPalette);
+        m_ui->absoluteSolutionLabel->setText(m_solution.at(0));
+    }
+    if (m_ui->comparativeEdit->text() == m_solution.at(1)) {
+        m_ui->comparativeEdit->setPalette(m_correctPalette);
+    } else {
+        m_ui->comparativeEdit->setPalette(m_wrongPalette);
+        m_ui->comparativeSolutionLabel->setText(m_solution.at(1));
+    }
+
+    if (m_ui->superlativeEdit->text() == m_solution.at(2)) {
+        m_ui->superlativeEdit->setPalette(m_correctPalette);
+    } else {
+        m_ui->superlativeEdit->setPalette(m_wrongPalette);
+        m_ui->superlativeSolutionLabel->setText(m_solution.at(2));
+    }
 }
 
 QVariant ComparisonModeWidget::userInput()
