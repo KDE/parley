@@ -47,14 +47,12 @@ KPageWidgetItem*  LanguageProperties::createPage(int i)
     LanguagePropertiesPage* page = new LanguagePropertiesPage(m_doc, i, this);
 
     QString name = i18n("New Language");
-    QString currentIcon;
 
     // check if this language already exists in the doc
     if (m_doc->identifierCount() > i) {
         name = m_doc->identifier(i).name();
         LanguageSettings currentSettings(m_doc->identifier(i).locale());
         currentSettings.readConfig();
-        currentIcon = currentSettings.icon();
     }
 
     KPageWidgetItem* editPage = new KPageWidgetItem(page, name);
@@ -63,14 +61,9 @@ KPageWidgetItem*  LanguageProperties::createPage(int i)
     m_pages.append(editPage);
     addPage(editPage);
 
-    // icons
-    if (currentIcon.isEmpty()) {
-        currentIcon = QString::fromLatin1("set-language");
-    }
-    editPage->setIcon( KIcon( currentIcon ) );
+    editPage->setIcon( KIcon( "set-language" ) );
 
     connect(page->identifierNameLineEdit, SIGNAL(textChanged(const QString&)), this, SLOT(pageNameChanged(const QString&)));
-    connect(page, SIGNAL(iconSelected(const QString&)), this, SLOT(pageIconChanged(const QString&)));
     connect(this, SIGNAL(accepted()), page, SLOT(accept()));
 
     return editPage;
@@ -121,11 +114,6 @@ void LanguageProperties::slotAppendIdentifier()
 void LanguageProperties::slotDeleteIdentifier()
 {
     currentPage()->setEnabled(false);
-}
-
-void LanguageProperties::pageIconChanged(const QString & newIcon)
-{
-    currentPage()->setIcon( KIcon(newIcon) );
 }
 
 void LanguageProperties::pageNameChanged(const QString & newName)

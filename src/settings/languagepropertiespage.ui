@@ -1,86 +1,74 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>LanguagePropertiesPage</class>
- <widget class="QWidget" name="LanguagePropertiesPage" >
-  <property name="geometry" >
+ <widget class="QWidget" name="LanguagePropertiesPage">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>424</width>
-    <height>353</height>
+    <width>428</width>
+    <height>339</height>
    </rect>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout" >
+  <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <widget class="KTabWidget" name="ktabwidget" >
-     <property name="currentIndex" >
+    <widget class="KTabWidget" name="ktabwidget">
+     <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab" >
-      <attribute name="title" >
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
        <string>General</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_3" >
-       <item row="0" column="0" >
-        <widget class="QLabel" name="localeSelectionLabel" >
-         <property name="text" >
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QLabel" name="localeSelectionLabel">
+         <property name="text">
           <string>Language:</string>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
-       <item row="0" column="1" >
-        <widget class="KComboBox" name="localeComboBox" />
+       <item row="0" column="1">
+        <widget class="KComboBox" name="localeComboBox"/>
        </item>
-       <item row="1" column="0" >
-        <widget class="QLabel" name="nameLabel" >
-         <property name="text" >
+       <item row="1" column="0">
+        <widget class="QLabel" name="nameLabel">
+         <property name="text">
           <string>Name:</string>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
-         <property name="buddy" >
+         <property name="buddy">
           <cstring>identifierNameLineEdit</cstring>
          </property>
         </widget>
        </item>
-       <item row="1" column="1" >
-        <widget class="KLineEdit" name="identifierNameLineEdit" />
+       <item row="1" column="1">
+        <widget class="KLineEdit" name="identifierNameLineEdit"/>
        </item>
-       <item row="2" column="0" >
-        <widget class="QLabel" name="iconSelectionLabel" >
-         <property name="text" >
-          <string>Flag:</string>
-         </property>
-         <property name="alignment" >
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1" >
-        <widget class="KComboBox" name="iconComboBox" />
-       </item>
-       <item row="3" column="0" >
-        <widget class="QLabel" name="keyboardLayoutLabel" >
-         <property name="text" >
+       <item row="2" column="0">
+        <widget class="QLabel" name="keyboardLayoutLabel">
+         <property name="text">
           <string>Keyboard layout:</string>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
-       <item row="3" column="1" >
-        <widget class="KComboBox" name="keyboardLayoutComboBox" />
+       <item row="2" column="1">
+        <widget class="KComboBox" name="keyboardLayoutComboBox"/>
        </item>
-       <item row="4" column="1" >
-        <spacer name="spacer_2" >
-         <property name="orientation" >
+       <item row="3" column="1">
+        <spacer name="spacer_2">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>169</height>
@@ -88,138 +76,138 @@
          </property>
         </spacer>
        </item>
-       <item row="5" column="1" >
-        <widget class="QPushButton" name="downloadGrammarButton" >
-         <property name="text" >
+       <item row="4" column="1">
+        <widget class="QPushButton" name="downloadGrammarButton">
+         <property name="text">
           <string>&amp;Download Grammar</string>
          </property>
-         <property name="checkable" >
+         <property name="checkable">
           <bool>false</bool>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_2" >
-      <attribute name="title" >
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
        <string>Articles</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout" >
-       <item row="0" column="2" >
-        <widget class="QLabel" name="TextLabel3" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="2">
+        <widget class="QLabel" name="TextLabel3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="text" >
+         <property name="text">
           <string>Definite</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="3" >
-        <widget class="QLabel" name="TextLabel4" >
-         <property name="text" >
+       <item row="0" column="3">
+        <widget class="QLabel" name="TextLabel4">
+         <property name="text">
           <string>Indefinite</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0" >
-        <widget class="QLabel" name="male_label" >
-         <property name="text" >
+       <item row="1" column="0">
+        <widget class="QLabel" name="male_label">
+         <property name="text">
           <string>&amp;Male:</string>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
-         <property name="buddy" >
+         <property name="buddy">
           <cstring>def_male</cstring>
          </property>
         </widget>
        </item>
-       <item row="1" column="2" >
-        <widget class="KLineEdit" name="def_male" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="1" column="2">
+        <widget class="KLineEdit" name="def_male">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="2" column="0" >
-        <widget class="QLabel" name="female_label" >
-         <property name="text" >
+       <item row="2" column="0">
+        <widget class="QLabel" name="female_label">
+         <property name="text">
           <string>&amp;Female:</string>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
-         <property name="buddy" >
+         <property name="buddy">
           <cstring>def_female</cstring>
          </property>
         </widget>
        </item>
-       <item row="2" column="2" >
-        <widget class="KLineEdit" name="def_female" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="2" column="2">
+        <widget class="KLineEdit" name="def_female">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="2" column="3" >
-        <widget class="KLineEdit" name="indef_female" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="2" column="3">
+        <widget class="KLineEdit" name="indef_female">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="3" column="0" >
-        <widget class="QLabel" name="natural_label" >
-         <property name="text" >
+       <item row="3" column="0">
+        <widget class="QLabel" name="natural_label">
+         <property name="text">
           <string>&amp;Neutral:</string>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
-         <property name="buddy" >
+         <property name="buddy">
           <cstring>def_natural</cstring>
          </property>
         </widget>
        </item>
-       <item row="3" column="2" >
-        <widget class="KLineEdit" name="def_natural" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="3" column="2">
+        <widget class="KLineEdit" name="def_natural">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="3" column="3" >
-        <widget class="KLineEdit" name="indef_natural" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="3" column="3">
+        <widget class="KLineEdit" name="indef_natural">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="10" column="2" >
-        <spacer name="verticalSpacer" >
-         <property name="orientation" >
+       <item row="10" column="2">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>0</height>
@@ -227,170 +215,170 @@
          </property>
         </spacer>
        </item>
-       <item row="9" column="2" >
-        <widget class="KLineEdit" name="def_natural_plural" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="9" column="2">
+        <widget class="KLineEdit" name="def_natural_plural">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="8" column="2" >
-        <widget class="KLineEdit" name="def_female_plural" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="8" column="2">
+        <widget class="KLineEdit" name="def_female_plural">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="6" column="2" >
-        <widget class="KLineEdit" name="def_male_plural" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="6" column="2">
+        <widget class="KLineEdit" name="def_male_plural">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="1" column="3" >
-        <widget class="KLineEdit" name="indef_male" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="1" column="3">
+        <widget class="KLineEdit" name="indef_male">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="6" column="3" >
-        <widget class="KLineEdit" name="indef_male_plural" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="6" column="3">
+        <widget class="KLineEdit" name="indef_male_plural">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="8" column="3" >
-        <widget class="KLineEdit" name="indef_female_plural" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="8" column="3">
+        <widget class="KLineEdit" name="indef_female_plural">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="9" column="3" >
-        <widget class="KLineEdit" name="indef_natural_plural" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="9" column="3">
+        <widget class="KLineEdit" name="indef_natural_plural">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="9" column="0" >
-        <widget class="QLabel" name="natural_label_2" >
-         <property name="text" >
+       <item row="9" column="0">
+        <widget class="QLabel" name="natural_label_2">
+         <property name="text">
           <string>&amp;Neutral:</string>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
-         <property name="buddy" >
+         <property name="buddy">
           <cstring>def_natural_plural</cstring>
          </property>
         </widget>
        </item>
-       <item row="8" column="0" >
-        <widget class="QLabel" name="female_label_2" >
-         <property name="text" >
+       <item row="8" column="0">
+        <widget class="QLabel" name="female_label_2">
+         <property name="text">
           <string>&amp;Female:</string>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
-         <property name="buddy" >
+         <property name="buddy">
           <cstring>def_female_plural</cstring>
          </property>
         </widget>
        </item>
-       <item row="6" column="0" >
-        <widget class="QLabel" name="male_label_2" >
-         <property name="text" >
+       <item row="6" column="0">
+        <widget class="QLabel" name="male_label_2">
+         <property name="text">
           <string>&amp;Male:</string>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
-         <property name="buddy" >
+         <property name="buddy">
           <cstring>def_male_plural</cstring>
          </property>
         </widget>
        </item>
-       <item row="0" column="0" >
-        <widget class="QLabel" name="male_label_3" >
-         <property name="text" >
+       <item row="0" column="0">
+        <widget class="QLabel" name="male_label_3">
+         <property name="text">
           <string>Singular</string>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
-         <property name="buddy" >
+         <property name="buddy">
           <cstring></cstring>
          </property>
         </widget>
        </item>
-       <item row="5" column="0" >
-        <widget class="QLabel" name="male_label_4" >
-         <property name="text" >
+       <item row="5" column="0">
+        <widget class="QLabel" name="male_label_4">
+         <property name="text">
           <string>Plural</string>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
-         <property name="buddy" >
+         <property name="buddy">
           <cstring></cstring>
          </property>
         </widget>
        </item>
-       <item row="5" column="2" >
-        <widget class="QLabel" name="TextLabel3_2" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+       <item row="5" column="2">
+        <widget class="QLabel" name="TextLabel3_2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="text" >
+         <property name="text">
           <string>Definite</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="3" >
-        <widget class="QLabel" name="TextLabel4_2" >
-         <property name="text" >
+       <item row="5" column="3">
+        <widget class="QLabel" name="TextLabel4_2">
+         <property name="text">
           <string>Indefinite</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1" >
-        <spacer name="horizontalSpacer" >
-         <property name="orientation" >
+       <item row="0" column="1">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
-         <property name="sizeType" >
+         <property name="sizeType">
           <enum>QSizePolicy::Fixed</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>10</width>
            <height>20</height>
@@ -398,15 +386,15 @@
          </property>
         </spacer>
        </item>
-       <item row="4" column="0" >
-        <spacer name="verticalSpacer_3" >
-         <property name="orientation" >
+       <item row="4" column="0">
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeType" >
+         <property name="sizeType">
           <enum>QSizePolicy::Fixed</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>10</height>
@@ -416,20 +404,20 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_3" >
-      <attribute name="title" >
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
        <string>Personal Pronouns</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_2" >
-       <item row="0" column="0" >
-        <spacer name="spacer" >
-         <property name="orientation" >
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <spacer name="spacer">
+         <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
-         <property name="sizeType" >
+         <property name="sizeType">
           <enum>QSizePolicy::Minimum</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>61</width>
            <height>20</height>
@@ -437,12 +425,12 @@
          </property>
         </spacer>
        </item>
-       <item row="10" column="1" >
-        <spacer name="verticalSpacer_5" >
-         <property name="orientation" >
+       <item row="10" column="1">
+        <spacer name="verticalSpacer_5">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>40</height>
@@ -450,314 +438,314 @@
          </property>
         </spacer>
        </item>
-       <item row="0" column="1" >
-        <widget class="QLabel" name="TextLabel4_2_2" >
-         <property name="text" >
+       <item row="0" column="1">
+        <widget class="QLabel" name="TextLabel4_2_2">
+         <property name="text">
           <string>Singular</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="2" >
-        <widget class="QLabel" name="dualLabel" >
-         <property name="text" >
+       <item row="0" column="2">
+        <widget class="QLabel" name="dualLabel">
+         <property name="text">
           <string>Dual</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="3" >
-        <widget class="QLabel" name="TextLabel4_3" >
-         <property name="text" >
+       <item row="0" column="3">
+        <widget class="QLabel" name="TextLabel4_3">
+         <property name="text">
           <string>Plural</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0" >
-        <widget class="QLabel" name="pers1_label" >
-         <property name="text" >
+       <item row="1" column="0">
+        <widget class="QLabel" name="pers1_label">
+         <property name="text">
           <string>&amp;1. Person:</string>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
-         <property name="buddy" >
+         <property name="buddy">
           <cstring>first_singular</cstring>
          </property>
         </widget>
        </item>
-       <item row="1" column="1" >
-        <widget class="KLineEdit" name="first_singular" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="1" column="1">
+        <widget class="KLineEdit" name="first_singular">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="1" column="2" >
-        <widget class="KLineEdit" name="dualFirstLineEdit" />
+       <item row="1" column="2">
+        <widget class="KLineEdit" name="dualFirstLineEdit"/>
        </item>
-       <item row="1" column="3" >
-        <widget class="KLineEdit" name="first_plural" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="1" column="3">
+        <widget class="KLineEdit" name="first_plural">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="2" column="0" >
-        <widget class="QLabel" name="pers2_label" >
-         <property name="text" >
+       <item row="2" column="0">
+        <widget class="QLabel" name="pers2_label">
+         <property name="text">
           <string>&amp;2. Person:</string>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
-         <property name="buddy" >
+         <property name="buddy">
           <cstring>second_singular</cstring>
          </property>
         </widget>
        </item>
-       <item row="2" column="1" >
-        <widget class="KLineEdit" name="second_singular" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="2" column="1">
+        <widget class="KLineEdit" name="second_singular">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="2" column="2" >
-        <widget class="KLineEdit" name="dualSecondLineEdit" />
+       <item row="2" column="2">
+        <widget class="KLineEdit" name="dualSecondLineEdit"/>
        </item>
-       <item row="2" column="3" >
-        <widget class="KLineEdit" name="second_plural" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="2" column="3">
+        <widget class="KLineEdit" name="second_plural">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="3" column="0" >
-        <widget class="QLabel" name="pers3_label" >
-         <property name="text" >
+       <item row="3" column="0">
+        <widget class="QLabel" name="pers3_label">
+         <property name="text">
           <string>3. Person:</string>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
-       <item row="4" column="0" >
-        <widget class="QLabel" name="male_c_label" >
-         <property name="text" >
+       <item row="4" column="0">
+        <widget class="QLabel" name="male_c_label">
+         <property name="text">
           <string>M&amp;ale:</string>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
-         <property name="buddy" >
+         <property name="buddy">
           <cstring>thirdM_singular</cstring>
          </property>
         </widget>
        </item>
-       <item row="4" column="1" >
-        <widget class="KLineEdit" name="thirdM_singular" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="4" column="1">
+        <widget class="KLineEdit" name="thirdM_singular">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="4" column="2" >
-        <widget class="KLineEdit" name="dualThirdMaleLineEdit" />
+       <item row="4" column="2">
+        <widget class="KLineEdit" name="dualThirdMaleLineEdit"/>
        </item>
-       <item row="4" column="3" >
-        <widget class="KLineEdit" name="thirdM_plural" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="4" column="3">
+        <widget class="KLineEdit" name="thirdM_plural">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="5" column="0" >
-        <widget class="QLabel" name="female_c_label" >
-         <property name="text" >
+       <item row="5" column="0">
+        <widget class="QLabel" name="female_c_label">
+         <property name="text">
           <string>F&amp;emale:</string>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
-         <property name="buddy" >
+         <property name="buddy">
           <cstring>thirdF_singular</cstring>
          </property>
         </widget>
        </item>
-       <item row="5" column="1" >
-        <widget class="KLineEdit" name="thirdF_singular" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="5" column="1">
+        <widget class="KLineEdit" name="thirdF_singular">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="5" column="2" >
-        <widget class="KLineEdit" name="dualThirdFemaleLineEdit" />
+       <item row="5" column="2">
+        <widget class="KLineEdit" name="dualThirdFemaleLineEdit"/>
        </item>
-       <item row="5" column="3" >
-        <widget class="KLineEdit" name="thirdF_plural" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="5" column="3">
+        <widget class="KLineEdit" name="thirdF_plural">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="6" column="0" >
-        <widget class="QLabel" name="natural_c_label" >
-         <property name="text" >
+       <item row="6" column="0">
+        <widget class="QLabel" name="natural_c_label">
+         <property name="text">
           <string>Neu&amp;ter:</string>
          </property>
-         <property name="alignment" >
+         <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
-         <property name="buddy" >
+         <property name="buddy">
           <cstring>thirdN_singular</cstring>
          </property>
         </widget>
        </item>
-       <item row="6" column="1" >
-        <widget class="KLineEdit" name="thirdN_singular" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="6" column="1">
+        <widget class="KLineEdit" name="thirdN_singular">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="6" column="2" >
-        <widget class="KLineEdit" name="dualThirdNeutralLineEdit" />
+       <item row="6" column="2">
+        <widget class="KLineEdit" name="dualThirdNeutralLineEdit"/>
        </item>
-       <item row="6" column="3" >
-        <widget class="KLineEdit" name="thirdN_plural" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <item row="6" column="3">
+        <widget class="KLineEdit" name="thirdN_plural">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="9" column="1" >
-        <widget class="QCheckBox" name="dualCheckBox" >
-         <property name="text" >
+       <item row="9" column="1">
+        <widget class="QCheckBox" name="dualCheckBox">
+         <property name="text">
           <string>Dual conjugations</string>
          </property>
         </widget>
        </item>
-       <item row="8" column="1" colspan="2" >
-        <widget class="QCheckBox" name="neutralCheckBox" >
-         <property name="text" >
+       <item row="8" column="1" colspan="2">
+        <widget class="QCheckBox" name="neutralCheckBox">
+         <property name="text">
           <string>A neutral conjugation form exists</string>
          </property>
         </widget>
        </item>
-       <item row="7" column="1" colspan="3" >
-        <widget class="QCheckBox" name="maleFemaleDifferCheckBox" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+       <item row="7" column="1" colspan="3">
+        <widget class="QCheckBox" name="maleFemaleDifferCheckBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="text" >
+         <property name="text">
           <string>Male/female have different conjugations</string>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_4" >
-      <attribute name="title" >
+     <widget class="QWidget" name="tab_4">
+      <attribute name="title">
        <string>Tenses</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout" >
+      <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QListWidget" name="tenseList" >
-         <property name="selectionBehavior" >
+        <widget class="QListWidget" name="tenseList">
+         <property name="selectionBehavior">
           <enum>QAbstractItemView::SelectRows</enum>
          </property>
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="_2" >
-         <property name="spacing" >
+        <layout class="QHBoxLayout" name="_2">
+         <property name="spacing">
           <number>6</number>
          </property>
-         <property name="margin" >
+         <property name="margin">
           <number>0</number>
          </property>
          <item>
-          <widget class="QPushButton" name="newButton" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+          <widget class="QPushButton" name="newButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <property name="text" >
+           <property name="text">
             <string>&amp;New...</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="modifyButton" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+          <widget class="QPushButton" name="modifyButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <property name="text" >
+           <property name="text">
             <string>&amp;Modify...</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="deleteButton" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+          <widget class="QPushButton" name="deleteButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <property name="text" >
+           <property name="text">
             <string>&amp;Delete</string>
            </property>
           </widget>
          </item>
          <item>
           <spacer>
-           <property name="orientation" >
+           <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeType" >
+           <property name="sizeType">
             <enum>QSizePolicy::Expanding</enum>
            </property>
-           <property name="sizeHint" stdset="0" >
+           <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
              <height>20</height>
@@ -775,14 +763,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KComboBox</class>
-   <extends>QComboBox</extends>
-   <header>kcombobox.h</header>
-  </customwidget>
-  <customwidget>
    <class>KLineEdit</class>
    <extends>QLineEdit</extends>
    <header>klineedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KComboBox</class>
+   <extends>QComboBox</extends>
+   <header>kcombobox.h</header>
   </customwidget>
   <customwidget>
    <class>KTabWidget</class>
@@ -806,7 +794,6 @@
   <tabstop>indef_natural_plural</tabstop>
   <tabstop>localeComboBox</tabstop>
   <tabstop>identifierNameLineEdit</tabstop>
-  <tabstop>iconComboBox</tabstop>
   <tabstop>keyboardLayoutComboBox</tabstop>
   <tabstop>first_singular</tabstop>
   <tabstop>second_singular</tabstop>
