@@ -54,9 +54,16 @@ QModelIndex ContainerModel::appendContainer(const QModelIndex& parent, const QSt
     case (KEduVocContainer::Lesson):
         parentContainer->appendChildContainer(new KEduVocLesson(containerName, static_cast<KEduVocLesson*>(parentContainer)));
         break;
-    case (KEduVocContainer::WordType):
-        parentContainer->appendChildContainer(new KEduVocWordType(containerName, static_cast<KEduVocWordType*>(parentContainer)));
-    break;
+    case (KEduVocContainer::WordType): {
+        KEduVocWordType* parentWordType = static_cast<KEduVocWordType*>(parentContainer);
+        KEduVocWordType* wordTypeContainer = new KEduVocWordType(containerName, parentWordType);
+        wordTypeContainer->setWordType(parentWordType->wordType());
+        parentContainer->appendChildContainer(wordTypeContainer);
+        break;
+    }
+    default:
+        break;
+        
     }
     endInsertRows();
 
