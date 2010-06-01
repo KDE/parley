@@ -21,6 +21,7 @@
 #include <prefs.h>
 
 class KEduVocText;
+class KEduVocTranslation;
 class KEduVocExpression;
 class KEduVocDocument;
 class KDialog;
@@ -53,6 +54,7 @@ private:
     void wordTypeEntries();
 
     bool isBlocked(const KEduVocText* const grade) const;
+    bool isConjugationBlocked(KEduVocTranslation* translation) const;
     void blockedEntries();
     void timesWrongEntries();
     void timesPracticedEntries();
