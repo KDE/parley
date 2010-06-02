@@ -166,7 +166,9 @@ void WelcomeScreen::updateBackground()
 {
     m_themedBackgroundRenderer->clearRects();
     m_themedBackgroundRenderer->addRect("startbackground", QRect(QPoint(), m_widget->size()));
-    m_themedBackgroundRenderer->addRect("startheader", ui->headingLabel->frameGeometry().united(ui->recentLabel->frameGeometry()));
+    QRect headerRect = ui->headingLabel->frameGeometry();
+    headerRect.setBottom(ui->recentFiles->frameGeometry().top()-1);
+    m_themedBackgroundRenderer->addRect("startheader", headerRect);
     m_themedBackgroundRenderer->addRect("recentfiles", ui->recentFiles->frameGeometry());
     QPixmap pixmap = m_themedBackgroundRenderer->getScaledBackground();
     if (!pixmap.isNull()) {
