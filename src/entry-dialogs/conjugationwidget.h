@@ -49,6 +49,8 @@ private:
     void showConjugationEditWidgets();
     void updateVisiblePersons();
 
+    void showWidgets(bool tenses, bool singular, bool dual, bool plural, bool maleVisible, bool femaleVisible, bool neuterVisible);
+
     /**
      * Fill the line edits
      */
