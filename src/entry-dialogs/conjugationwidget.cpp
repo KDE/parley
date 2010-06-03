@@ -106,10 +106,7 @@ void ConjugationWidget::setTranslation(KEduVocExpression * entry, int identifier
     tenseComboBox->completionObject()->clear();
 
     m_entry = entry;
-//     if (m_identifier != identifier) {
-        m_identifier = identifier;
-//         updateVisiblePersons();
-//     }
+    m_identifier = identifier;
 
     if (!m_doc || !entry) {
         setEnabled(false);
@@ -129,12 +126,11 @@ void ConjugationWidget::setTranslation(KEduVocExpression * entry, int identifier
         // if it's a verb already, hide the make verb button and start editing it
         showConjugationEditWidgets();
         updateEntries();
-        updateVisiblePersons();
     } else {
+        // hide widgets
         makeVerbButton->setEnabled(true);
         showMakeVerbWidgets();
         makeVerbButton->setText(i18n("\"%1\" is a verb", m_entry->translation(m_identifier)->text()));
-// hide the other stuff
     }
 }
 
@@ -176,64 +172,28 @@ void ConjugationWidget::slotMakeVerb()
 void ConjugationWidget::showMakeVerbWidgets()
 {
     makeVerbButton->setVisible(true);
-// tense selection stuff
-    singularGroupBox->setVisible(false);
-    pluralGroupBox->setVisible(false);
-    dualGroupBox->setVisible(false);
+    showWidgets(false, false, false, false, false, false, false);
 }
 
 void ConjugationWidget::showConjugationEditWidgets()
 {
     makeVerbButton->setVisible(false);
+    updateVisiblePersons();
 }
 
 void ConjugationWidget::updateVisiblePersons()
 {
     if (m_identifier < 0) {
-        singularGroupBox->setVisible(false);
-        pluralGroupBox->setVisible(false);
-        dualGroupBox->setVisible(false);
+        showWidgets(false, false, false, false, false, false, false);
         return;
     }
 
-    singularGroupBox->setVisible(true);
-    pluralGroupBox->setVisible(true);
-    dualGroupBox->setVisible( m_doc->identifier(m_identifier).personalPronouns().dualExists() );
-
+    bool dualVisible = m_doc->identifier(m_identifier).personalPronouns().dualExists();
     bool maleFemaleDifferent = m_doc->identifier(m_identifier).personalPronouns().maleFemaleDifferent();
+    bool neutralExists = m_doc->identifier(m_identifier).personalPronouns().neutralExists();
 
-    singularThirdMalePersonLabel->setVisible(maleFemaleDifferent);
-    singularThirdMalePersonLineEdit->setVisible(maleFemaleDifferent);
-    singularThirdFemalePersonLabel->setVisible(maleFemaleDifferent);
-    singularThirdFemalePersonLineEdit->setVisible(maleFemaleDifferent);
-
-    dualThirdMalePersonLabel->setVisible(maleFemaleDifferent);
-    dualThirdMalePersonLineEdit->setVisible(maleFemaleDifferent);
-    dualThirdFemalePersonLabel->setVisible(maleFemaleDifferent);
-    dualThirdFemalePersonLineEdit->setVisible(maleFemaleDifferent);
-
-    pluralThirdMalePersonLabel->setVisible(maleFemaleDifferent);
-    pluralThirdMalePersonLineEdit->setVisible(maleFemaleDifferent);
-    pluralThirdFemalePersonLabel->setVisible(maleFemaleDifferent);
-    pluralThirdFemalePersonLineEdit->setVisible(maleFemaleDifferent);
-
-    if ( !maleFemaleDifferent ) {
-        singularThirdNeutralPersonLabel->setVisible(true);
-        singularThirdNeutralPersonLineEdit->setVisible(true);
-        dualThirdNeutralPersonLabel->setVisible(true);
-        dualThirdNeutralPersonLineEdit->setVisible(true);
-        pluralThirdNeutralPersonLabel->setVisible(true);
-        pluralThirdNeutralPersonLineEdit->setVisible(true);
-    } else {
-        bool neutralExists = m_doc->identifier(m_identifier).personalPronouns().neutralExists();
-        singularThirdNeutralPersonLabel->setVisible(neutralExists);
-        singularThirdNeutralPersonLineEdit->setVisible(neutralExists);
-        dualThirdNeutralPersonLabel->setVisible(neutralExists);
-        dualThirdNeutralPersonLineEdit->setVisible(neutralExists);
-        pluralThirdNeutralPersonLabel->setVisible(neutralExists);
-        pluralThirdNeutralPersonLineEdit->setVisible(neutralExists);
-    }
-
+    showWidgets(true, true, dualVisible, true, maleFemaleDifferent, maleFemaleDifferent, neutralExists || (!maleFemaleDifferent));
+    
     // set up the personal pronouns
     KEduVocPersonalPronoun pron = m_doc->identifier(m_identifier).personalPronouns();
 
@@ -254,6 +214,52 @@ void ConjugationWidget::updateVisiblePersons()
     pluralThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Third | KEduVocWordFlag::Masculine| KEduVocWordFlag::Plural ));
     pluralThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Third | KEduVocWordFlag::Feminine| KEduVocWordFlag::Plural ));
     pluralThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Third | KEduVocWordFlag::Neuter| KEduVocWordFlag::Plural ));
+}
+
+void ConjugationWidget::showWidgets(bool tenses, bool singular, bool dual, bool plural, bool maleVisible, bool femaleVisible, bool neuterVisible)
+{
+    tenselabel->setVisible(tenses);
+    tenseComboBox->setVisible(tenses);
+    nextTenseButton->setVisible(tenses);
+
+    singularLabel->setVisible(singular);
+    singularFirstPersonLabel->setVisible(singular);
+    singularFirstPersonLineEdit->setVisible(singular);
+    singularSecondPersonLabel->setVisible(singular);
+    singularSecondPersonLineEdit->setVisible(singular);
+
+    singularThirdMalePersonLabel->setVisible(singular && maleVisible);
+    singularThirdMalePersonLineEdit->setVisible(singular && maleVisible);
+    singularThirdFemalePersonLabel->setVisible(singular && femaleVisible);
+    singularThirdFemalePersonLineEdit->setVisible(singular && femaleVisible);
+    singularThirdNeutralPersonLabel->setVisible(singular && neuterVisible);
+    singularThirdNeutralPersonLineEdit->setVisible(singular && neuterVisible);
+
+    dualLabel->setVisible(dual);
+    dualFirstPersonLabel->setVisible(dual);
+    dualFirstPersonLineEdit->setVisible(dual);
+    dualSecondPersonLabel->setVisible(dual);
+    dualSecondPersonLineEdit->setVisible(dual);
+
+    dualThirdMalePersonLabel->setVisible(dual && maleVisible);
+    dualThirdMalePersonLineEdit->setVisible(dual && maleVisible);
+    dualThirdFemalePersonLabel->setVisible(dual && femaleVisible);
+    dualThirdFemalePersonLineEdit->setVisible(dual && femaleVisible);
+    dualThirdNeutralPersonLabel->setVisible(dual && neuterVisible);
+    dualThirdNeutralPersonLineEdit->setVisible(dual && neuterVisible);
+
+    pluralLabel->setVisible(plural);
+    pluralFirstPersonLabel->setVisible(plural);
+    pluralFirstPersonLineEdit->setVisible(plural);
+    pluralSecondPersonLabel->setVisible(plural);
+    pluralSecondPersonLineEdit->setVisible(plural);
+
+    pluralThirdMalePersonLabel->setVisible(plural && maleVisible);
+    pluralThirdMalePersonLineEdit->setVisible(plural && maleVisible);
+    pluralThirdFemalePersonLabel->setVisible(plural && femaleVisible);
+    pluralThirdFemalePersonLineEdit->setVisible(plural && femaleVisible);
+    pluralThirdNeutralPersonLabel->setVisible(plural && neuterVisible);
+    pluralThirdNeutralPersonLineEdit->setVisible(plural && neuterVisible);
 }
 
 void ConjugationWidget::tenseEditingFinished()
