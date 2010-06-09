@@ -1,0 +1,107 @@
+Steps to convert a userbase page dump to docbook:
+
+1) perl -pi -e 's/&lt;.*&gt;//g' filename
+
+2) fix heading levels
+
+3) wt2db (http://tldp.org/downloads/)
+
+4) fix empty sections
+
+5) fix itemized list markup (</para> at wrong place)
+
+6) import without wiki header and footer into template-wiki2docbook.docbook 
+   and adapt docbook header and footer
+   add the wiki <timestamp>2010-06-06T16:08:34Z</timestamp>
+   
+
+Some examples wiki markup converted with wt2db:
+
+[[Parley#Vocabulary_Collections|Vocabulary Collections]] internal link
+<filename>Vocabulary Collections</filename>
+
+[http://en.wikipedia.org/wiki/Flashcard flash card learning approach] external link
+[http://en.wikipedia.org/wiki/Flashcard flash card learning approach]
+
+''Vocabulary Collection'' (Italic)
+''Vocabulary Collection''
+
+&quot;context menu&quot;
+&quot;context menu&quot;
+
+'''Start Page''' (Bold)
+<emphasis role='bold'>Start Page</emphasis>
+
+[[Image:Parley welcome screen.png|thumb|500px]]
+<para><filename>Image:Parley welcome screen.png|thumb|500px</filename>
+</para>
+
+[[File:Parley_initial_screen_0-9-4.png|thumb|500px]]
+<para><filename>500px</filename>
+</para>
+
+[[File:Parley file select dialog 0-9-4.png|thumb|500px]]
+<para><filename>File:Parley file select dialog 0-9-4.png|thumb|500px</filename>
+</para>
+
+* The selection of languages
+* The selection of the practice mode
+* The selection of the lessons that also shows your current progress
+</para> <!-- ++ -->
+<itemizedlist>
+<listitem>
+<para>The selection of languages
+</para>
+</listitem>
+<listitem>
+<para>The selection of the practice mode
+</para>
+</listitem>
+<listitem>
+<para>The selection of the lessons that also shows your current progress
+</para>
+<!--/para -->
+
+'''''try again'''''
+<emphasis role='bold'>''try again</emphasis>''
+
+{| cellspacing=&quot;1&quot; cellpadding=&quot;1&quot; border=&quot;1&quot; style=&quot;width: 348px; height: 91px;&quot;
+|-
+| 
+| Singular 
+| Plural
+|-
+| 1st Person 
+| I 
+| we
+|-
+| 2nd Person 
+| you 
+| you
+|-
+| 3rd Person 
+| he/she/it 
+| they
+|}
+<para>{| cellspacing=&quot;1&quot; cellpadding=&quot;1&quot; border=&quot;1&quot; style=&quot;width: 348px; height: 91px;&quot;
+|- 
+| 
+| Singular 
+| Plural 
+|- 
+| 1st Person 
+| I 
+| we 
+|- 
+| 2nd Person 
+| you 
+| you 
+|- 
+| 3rd Person 
+| he/she/it 
+| they 
+|} 
+</para>
+
+''View-&amp;gt;Lessons.''
+''View-&amp;gt;Lessons.''

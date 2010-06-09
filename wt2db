@@ -1,0 +1,105 @@
+#!/usr/bin/perl
+#
+#Converts txt files into DocBook XML/SGML.
+#
+# Copyright (c) 2001, 2002, 2003 David Merrill <david@lupercalia.net>.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# 
+$VERSION = '1.0';
+
+use Wt2Db;
+$WT2DB = new Wt2Db;
+
+my $txtfile = '';
+my $dbfile = '';
+my $doctype = 0;
+my $articleclass = '';
+my $nonet = 0;
+my $encoding = 'ISO-8859-1';
+my $verbose = 0;
+my $error = 0;
+
+# read in cmd-line arguments
+#
+while (1) {
+	if($ARGV[0] eq "-s" or $ARGV[0] eq "--sgml") {
+		$doctype = 'SGML';
+		shift(@ARGV);
+	} elsif($ARGV[0] eq "-x" or $ARGV[0] eq "--xml") {
+		$doctype = 'XML';
+		shift(@ARGV);
+	} elsif($ARGV[0] eq "-f" or $ARGV[0] eq "--faq") {
+		$articleclass = 'faq';
+		shift(@ARGV);
+	} elsif($ARGV[0] eq "-e" or $ARGV[0] eq "--encoding") {
+		shift(@ARGV);
+        $encoding = $ARGV[0];
+		shift(@ARGV);
+	} elsif($ARGV[0] eq "-n" or $ARGV[0] eq "--nonet") {
+		$nonet = 1;
+		shift(@ARGV);
+	} elsif($ARGV[0] eq "-o" or $ARGV[0] eq "--output-to") {
+		shift(@ARGV);
+		$dbfile = $ARGV[0];
+		shift(@ARGV);
+	} elsif($ARGV[0] eq "-V" or $ARGV[0] eq "--verbose") {
+		$verbose++;
+		shift(@ARGV);
+	} elsif($ARGV[0] eq "-v" or $ARGV[0] eq "--version") {
+		&version();
+		exit(0);
+	} elsif($ARGV[0] eq "-h" or $ARGV[0] eq "--help") {
+		&usage();
+	} else {
+		$txtfile = $ARGV[0];
+		shift(@ARGV);
+	}
+
+	if ($ARGV[0] eq '') {
+		last;
+	}
+}
+
+$WT2DB->ProcessFile($txtfile, $dbfile, $verbose, $doctype, $articleclass, $nonet, $encoding);
+
+sub version {
+	print "wt2db version $VERSION\n";
+	print "Copyright (c) 2001, 2002, 2003, 2004, 2005 David Merrill \<david\@lupercalia.net\>.\n";
+	print "\n";
+	print "Converts a WikiText file into DocBook XML/SGML.\n";
+	print "\n";
+	print "This is free software; see the source for copying conditions. There is no\n";
+	print "warranty; not even for merchantability or fitness for a particular purpose.\n\n";
+}
+
+sub usage {
+	my $error = shift;
+	&version;
+	print "Usage: wt2db [OPTIONS] [FILE]\n";
+	print "\n";
+	print "Options:\n";
+	print "-s, --sgml         add XML DOCTYPE and article tags.\n";
+	print "-x, --xml          add SGML DOCTYPE and article tags.\n";
+	print "-f, --faq          make the article a faq.\n";
+	print "-e, --encoding     specify character encoding.\n";
+	print "-n, --nonet        do not look up documents on the net.\n";
+	print "-o, --output-to    write to the specified file.\n";
+	print "-V, --verbose      show diagnostic output.\n";
+	print "-v, --version      show program version.\n";
+	print "-h, --help         show this usage message.\n";
+	exit($error);
+}
+
