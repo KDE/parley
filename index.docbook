@@ -73,23 +73,23 @@ limited to language learning but supports a multitude of subjects.
 </bookinfo>
 
 <chapter id='introduction'><title id='introduction-title'>Introduction</title>
-<para>Parley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. You can create your own vocabulary collections with the words you need or select from a great variety of available <filename>Vocabulary Collections</filename>. There you can find collections containing language vocabulary and also anatomy, music, geography, chemistry or exam preparation.
+<para>Parley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. You can create your own vocabulary collections with the words you need or select from a great variety of available <ulink url=" http://userbase.kde.org/Parley#Vocabulary_Collections">Vocabulary Collections</ulink>. There you can find collections containing language vocabulary and also anatomy, music, geography, chemistry or exam preparation.
 </para>
-<para>Parley is very flexible and uses the [http://en.wikipedia.org/wiki/Flashcard flash card learning approach]. It automatically keeps track of your learning progress. With Parley you can arrange your vocabulary as you wish, you create your own lessons as needed. But unlike real flash cards you can use different learning methods with Parley.
+<para>Parley is very flexible and uses the <ulink url="http://en.wikipedia.org/wiki/Flashcard">flash card learning approach</ulink>. It automatically keeps track of your learning progress. With Parley you can arrange your vocabulary as you wish, you create your own lessons as needed. But unlike real flash cards you can use different learning methods with Parley.
 </para>
 <para>Flashcards contain expressions on the front side and their translation on the back. You start with a pile of cards. If you know the translation on a card, you can put it into a second pile of cards. If you did not remember it, you keep it in the first one to try again later.
 </para>
 <para>Parley's main focus is not to teach you grammar. However, there are some exercise forms which may help you in this matter.
 </para>
-<para>Parley consists of two big parts: <filename>Vocabulary Practice</filename> and <filename>#Vocabulary Editing|an Editor for Vocabulary Collections</filename>.
+<para>Parley consists of two big parts: <link linkend="practice">Vocabulary Practice</link> and an <link linkend="vocabulary-editing">Editor for Vocabulary Collections</link>.
 </para>
-<para>In this manual the term ''Vocabulary Collection'' refers to a file that contains lessons and the vocabulary in the lessons.
+<para>In this manual the term <quote>Vocabulary Collection</quote> refers to a file that contains lessons and the vocabulary in the lessons.
 </para>
-<para>Both, the Editor and the Practice can be reached from the <filename>#Start Page|Start Page</filename>.
+<para>Both, the Editor and the Practice can be reached from the <link linkend="start-page">Start Page</link>.
 </para>
-<para>The <filename>Practice</filename> consists of three parts: first the <filename>#Practice Setup|Practice Setup</filename> where you choose what to practice. From there you start the actual <filename>Practice</filename> and when you are done, you get a <filename>#Summary After Practice|Summary</filename>.
+<para>The <link linkend="practice">Practice</link> consists of three parts: first the <link linkend="practice-setup">Practice Setup</link> where you choose what to practice. From there you start the actual <link linkend="practice">Practice</link> and when you are done, you get a <link linkend="summary-after-practice">Summary</link>.
 </para>
-<para>Tip: Like in all applications try to use the right-click if you explore features and functionality in Parley. The right-click displays a &quot;context menu&quot; that shows what you can do with your present situation. Try right-clicking lessons and words to find some options.
+<para>Tip: Like in all applications try to use the right-click if you explore features and functionality in Parley. The right-click displays a <quote>context menu</quote> that shows what you can do with your present situation. Try right-clicking lessons and words to find some options.
 </para>
 </chapter>
 
@@ -112,12 +112,12 @@ At first the Start Page is empty, once you opened some vocabulary collections, i
 </para>
 <para>A vocabulary collection is a file that contains words and their translations into other languages or other pairs of words and sentences that you want to memorize. The words are organized in lessons.
 </para>
-<para>To <emphasis role='bold'>start practicing</emphasis>, click one of the vocabulary collections in the list. You are taken to the <filename>practice setup</filename>.
+<para>To <emphasis role='bold'>start practicing</emphasis>, click one of the vocabulary collections in the list. You are taken to the <link linkend="practice-setup">practice setup</link>
 </para>
 <para>Note that a small <emphasis role='bold'>Editor Icon</emphasis> appears to the right of the document name when you move the mouse over it. The Editor Icon lets you open the collection in the editor instead of practice mode.
 To <filename>edit</filename> a collection, click on the <emphasis role='bold'>Editor Icon</emphasis> on its right hand side. 
 </para>
-<para>If you'd like to start your own collection of vocabulary, click on &quot;Create a New Collection&quot;.
+<para>If you'd like to start your own collection of vocabulary, click on <guilabel>Create a New Collection</guilabel>;.
 </para>
 <para>You can also <filename>#Open an existing collection|open a collection</filename> if you have it on your computer already but it's not in the list.
 </para>
@@ -465,9 +465,7 @@ You can overrule how your answer is counted. See <filename>#Counting an Answer a
       <phrase></phrase>
     </textobject>
   </mediaobject>
-</screenshot>
-</para>
-<para>Once you have entered the solution, click on <emphasis role='bold'>Continue</emphasis> and Parley will show whether your answer was correct. Go ahead by clicking on <emphasis role='bold'>Continue</emphasis> again.
+</screenshole='bold'>Continue</emphasis> and Parley will show whether your answer was correct. Go ahead by clicking on <emphasis role='bold'>Continue</emphasis> again.
 </para>
 <para>
 <screenshot>
@@ -639,7 +637,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>The exericse requires you to enter the comparison forms for the term shown. In this case the translation of the English word <emphasis role='bold'>''old</emphasis>'' to German. The German language has three forms: ''absolute, comparative'' and ''superlative''. To go on with the exercise just click on <emphasis role='bold'>Continue</emphasis>.
+<para>The exercise requires you to enter the comparison forms for the term shown. In this case the translation of the English word <emphasis role='bold'>''old</emphasis>'' to German. The German language has three forms: ''absolute, comparative'' and ''superlative''. To go on with the exercise just click on <emphasis role='bold'>Continue</emphasis>.
 </para>
 <para>
 <screenshot>
