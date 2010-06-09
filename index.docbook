@@ -465,7 +465,9 @@ You can overrule how your answer is counted. See <filename>#Counting an Answer a
       <phrase></phrase>
     </textobject>
   </mediaobject>
-</screenshole='bold'>Continue</emphasis> and Parley will show whether your answer was correct. Go ahead by clicking on <emphasis role='bold'>Continue</emphasis> again.
+</screenshot>
+</para>
+<para>Once you have entered the solution, click on <guibutton>Continue</guibutton> and Parley will show whether your answer was correct. Go ahead by clicking on <guibutton>Continue</guibutton> again.
 </para>
 <para>
 <screenshot>
