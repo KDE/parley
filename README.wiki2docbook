@@ -17,34 +17,53 @@ Steps to convert a userbase page dump to docbook:
 
 Some examples wiki markup converted with wt2db:
 
-[[Parley#Vocabulary_Collections|Vocabulary Collections]] internal link
-<filename>Vocabulary Collections</filename>
+1) userbase internal links
+wiki [[Parley#Vocabulary_Collections|Vocabulary Collections]]
+wt2db <filename>Vocabulary Collections</filename>
+docbook <ulink url=" http://userbase.kde.org/Parley#Vocabulary_Collections">Vocabulary Collections</ulink>
 
-[http://en.wikipedia.org/wiki/Flashcard flash card learning approach] external link
-[http://en.wikipedia.org/wiki/Flashcard flash card learning approach]
+2) external link
+wiki [http://en.wikipedia.org/wiki/Flashcard flash card learning approach] (external link)
+wt2db [http://en.wikipedia.org/wiki/Flashcard flash card learning approach]
+docbook <ulink url="http://en.wikipedia.org/wiki/Flashcard">flash card learning approach</ulink>
 
-''Vocabulary Collection'' (Italic)
-''Vocabulary Collection''
+3) document internal link
+wiki [[#Vocabulary Editing|an Editor for Vocabulary Collections]]
+wt2db <filename>#Vocabulary Editing|an Editor for Vocabulary Collections</filename>
+docbook <link linkend="vocabulary-editing">Editor for Vocabulary Collections</link>
+(wt2db generates anchors from wiki "Foo Bar Biz" to "foo-bar-biz")
 
-&quot;context menu&quot;
-&quot;context menu&quot;
-
-'''Start Page''' (Bold)
-<emphasis role='bold'>Start Page</emphasis>
-
-[[Image:Parley welcome screen.png|thumb|500px]]
-<para><filename>Image:Parley welcome screen.png|thumb|500px</filename>
+4)screenshot
+wiki [[File:Parley file select dialog 0-9-4.png|thumb|500px]]
+wt2db <para><filename>File:Parley file select dialog 0-9-4.png|thumb|500px</filename>
+</para>
+docbook:
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_file_select_dialog_0-9-4.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
 </para>
 
-[[File:Parley_initial_screen_0-9-4.png|thumb|500px]]
-<para><filename>500px</filename>
+wiki [[Image:Parley welcome screen.png|thumb|500px]]
+wt2db <para><filename>Image:Parley welcome screen.png|thumb|500px</filename>
 </para>
+docbook see above
+
+wiki [[File:Parley_initial_screen_0-9-4.png|thumb|500px]]
+wt2db <para><filename>500px</filename>
+</para>
+docbook see above
 -> needs at least one space in the filename
 
-[[File:Parley file select dialog 0-9-4.png|thumb|500px]]
-<para><filename>File:Parley file select dialog 0-9-4.png|thumb|500px</filename>
-</para>
-
+5) itemizedlist, wrong placement of </para>
 * The selection of languages
 * The selection of the practice mode
 * The selection of the lessons that also shows your current progress
@@ -63,9 +82,35 @@ Some examples wiki markup converted with wt2db:
 </para>
 <!--/para -->
 
+6) menu items
+wiki ''View-&amp;gt;Lessons.''
+wt2db ''View-&amp;gt;Lessons.''
+docbook <menuchoice><guimenu>View</guimenu><guimenuitem>Lessons</guimenuitem>
+
+wiki '''File→Properties'''
+wt2db <emphasis role='bold'>File→Properties</emphasis>
+docbook <menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem>
+
+7) Italic
+''Vocabulary Collection''
+''Vocabulary Collection''
+docbook ??
+
+8) Bold (gui strings ?)
+'''Start Page'''
+<emphasis role='bold'>Start Page</emphasis>
+<gui...>Start Page</gui...>
+
+9)
+&quot;context menu&quot;
+&quot;context menu&quot;
+
+10)
 '''''try again'''''
 <emphasis role='bold'>''try again</emphasis>''
 
+11) table
+wiki
 {| cellspacing=&quot;1&quot; cellpadding=&quot;1&quot; border=&quot;1&quot; style=&quot;width: 348px; height: 91px;&quot;
 |-
 | 
@@ -84,6 +129,7 @@ Some examples wiki markup converted with wt2db:
 | he/she/it 
 | they
 |}
+wt2db
 <para>{| cellspacing=&quot;1&quot; cellpadding=&quot;1&quot; border=&quot;1&quot; style=&quot;width: 348px; height: 91px;&quot;
 |- 
 | 
@@ -103,6 +149,4 @@ Some examples wiki markup converted with wt2db:
 | they 
 |} 
 </para>
-
-''View-&amp;gt;Lessons.''
-''View-&amp;gt;Lessons.''
+docbook
