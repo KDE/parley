@@ -39,6 +39,7 @@ Some examples wiki markup converted with wt2db:
 [[File:Parley_initial_screen_0-9-4.png|thumb|500px]]
 <para><filename>500px</filename>
 </para>
+-> needs at least one space in the filename
 
 [[File:Parley file select dialog 0-9-4.png|thumb|500px]]
 <para><filename>File:Parley file select dialog 0-9-4.png|thumb|500px</filename>
