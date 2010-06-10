@@ -94,7 +94,7 @@ limited to language learning but supports a multitude of subjects.
 </chapter>
 
 <chapter id='start-page'><title id='start-page-title'>Start Page</title>
-<para>When you first launch Parley the <emphasis role='bold'>Start Page</emphasis> welcomes you.
+<para>When you first launch Parley the <guilabel>Start Page</guilabel> welcomes you.
 At first the Start Page is empty, once you opened some vocabulary collections, it shows you the ones you worked with most recently. 
 </para>
 <para>
@@ -112,18 +112,18 @@ At first the Start Page is empty, once you opened some vocabulary collections, i
 </para>
 <para>A vocabulary collection is a file that contains words and their translations into other languages or other pairs of words and sentences that you want to memorize. The words are organized in lessons.
 </para>
-<para>To <emphasis role='bold'>start practicing</emphasis>, click one of the vocabulary collections in the list. You are taken to the <link linkend="practice-setup">practice setup</link>
+<para>To <emphasis>start practicing</emphasis>, click one of the vocabulary collections in the list. You are taken to the <link linkend="practice-setup">practice setup</link>.
 </para>
-<para>Note that a small <emphasis role='bold'>Editor Icon</emphasis> appears to the right of the document name when you move the mouse over it. The Editor Icon lets you open the collection in the editor instead of practice mode.
-To <filename>edit</filename> a collection, click on the <emphasis role='bold'>Editor Icon</emphasis> on its right hand side. 
+<para>Note that a small <guilabel>Editor</guilabel> icon appears to the right of the document name when you move the mouse over it. The Editor Icon lets you open the collection in the editor instead of practice mode.
+To <emphasis>edit</emphasis> a collection, click on the <guilabel>Editor</guilabel> icon. 
 </para>
-<para>If you'd like to start your own collection of vocabulary, click on <guilabel>Create a New Collection</guilabel>;.
+<para>If you'd like to start your own collection of vocabulary, click on <guilabel>Create a New Collection</guilabel>.
 </para>
-<para>You can also <filename>#Open an existing collection|open a collection</filename> if you have it on your computer already but it's not in the list.
+<para>You can also <link linkend="open-an-existing-collection">open a collection</link> if you have it on your computer already but it's not in the list.
 </para>
 <para>The last button on the Start Page offers you to download vocabulary collections made by others. When you've created a file that you'd like to share with others, you can easily upload it from the editor.
 </para>
-<para>Parley comes with different themes, you can switch to a different graphical style in the settings. For further information, see <filename>#Configure Parley|Configure Parley</filename>.
+<para>Parley comes with different themes, you can switch to a different graphical style in the settings. For further information, see <link linkend="configure-parley-title">Configure Parley</link>.
 </para>
 </chapter>
 
@@ -145,9 +145,9 @@ To <filename>edit</filename> a collection, click on the <emphasis role='bold'>Ed
   </mediaobject>
 </screenshot>
 </para>
-<para>Click on <emphasis role='bold'>Open an Existing Collection</emphasis>.
+<para>Click on <guibutton>Open an Existing Collection</guibutton>.
 </para>
-<para>In the file selection dialog, navigate to the directory containing the data file, and select it by clicking on it. Depending on your system the file either opens immediately, or you have to click <emphasis role='bold'>OK</emphasis>
+<para>In the file selection dialog, navigate to the directory containing the data file, and select it by clicking on it. Depending on your system the file either opens immediately, or you have to click <guibutton>OK</guibutton>.
 </para>
 <para>
 <screenshot>
@@ -167,10 +167,10 @@ To <filename>edit</filename> a collection, click on the <emphasis role='bold'>Ed
 </chapter>
 
 <chapter id='vocabulary-practice'><title id='vocabulary-practice-title'>Vocabulary Practice</title>
-<para>To start practicing you select a document after starting Parley. If you have it opened in the editor already, just click <emphasis role='bold'>Practice</emphasis> in the toolbar.
+<para>To start practicing you select a document after starting Parley. If you have it opened in the editor already, just click <guibutton>Practice</guibutton> in the toolbar.
 </para>
 <sect1 id='practice-setup'><title id='practice-setup-title'>Practice Setup</title>
-<para>Before the actual practice starts, you always get to the Practice Setup page. There are three areas which allow you to choose what to practice:
+<para>Before the actual practice starts, you always get to the <guilabel>Practice Setup</guilabel> page. There are three areas which allow you to choose what to practice:
 </para> <!-- ++ -->
 <itemizedlist>
 <listitem>
@@ -200,7 +200,7 @@ To <filename>edit</filename> a collection, click on the <emphasis role='bold'>Ed
 </para>
 <para>On the left you can select the combination of languages you will practice. If you select for example English to French, you will be shown English words and Parley will ask you to enter the French translations.
 </para>
-<para>Below the language selection you choose the practice mode. <emphasis role='bold'>Practice Mode</emphasis> determines how the practice will ask you questions.
+<para>Below the language selection you choose the practice mode. <guilabel>Practice Mode</guilabel> determines how the practice will ask you questions.
 </para>
 <para>In the big part on the right, you see the lessons of the vocabulary collection. You can select which lessons you want to practice with the checkbox in front of the lesson name. The number of words that each lesson contains is shown next to its name. On the right of the name you see your current progress for the lesson.
 </para>
@@ -208,12 +208,12 @@ To <filename>edit</filename> a collection, click on the <emphasis role='bold'>Ed
 </itemizedlist>
 </sect1>
 <sect1 id='advanced-practice-configuration'><title id='advanced-practice-configuration-title'>Advanced Practice Configuration</title>
-<para>The <emphasis role='bold'>Advanced Practice Configuration</emphasis> allows you to specify more advanced settings that will affect the practice.
+<para>The <guilabel>Advanced Practice Configuration</guilabel> allows you to specify more advanced settings that will affect the practice.
 </para>
-<para>In the <filename>Practice Setup</filename> page you reach the Advanced Practice Configuration with the <emphasis role='bold'>Configure Practice</emphasis> button in the toolbar. The button with the green icon.
+<para>In the <guilabel>Practice Setup</guilabel> page you reach the <guilabel>Advanced Practice Configuration</guilabel> with the <guibutton>Configure Practice</guibutton> button in the toolbar. The button with the green icon.
 </para>
 <sect2 id='blocking'><title id='blocking-title'>Blocking</title>
-<para>If you plan to practice your vocabulary regularly, you should make sure that the ''Blocking'' feature is enabled. The Blocking options are part of the <filename>#Advanced Practice Configuration|Advanced Practice Configuration</filename>. There you go to the blocking page and tick the checkbox that says Blocking. Now you can even configure the interval in which words that you answered correctly will be repeated.
+<para>If you plan to practice your vocabulary regularly, you should make sure that the ''Blocking'' feature is enabled. The Blocking options are part of the <link linkend="advanced-practice-settings-title">Advanced Practice Configuration</link>. There you go to the blocking page and tick the checkbox that says Blocking. Now you can even configure the interval in which words that you answered correctly will be repeated.
 </para>
 <para>''Blocking'' means that words will not be asked for some period of time after the last practice. This period of time depends on how well you know the word, so that words you don't know yet will be asked more frequently.
 </para>
@@ -270,7 +270,7 @@ To <filename>edit</filename> a collection, click on the <emphasis role='bold'>Ed
 </para> <!-- ++ -->
 <itemizedlist>
 <listitem>
-<para>Ignore accent mistakes: with this option if you enter a word with <emphasis role='bold'>e</emphasis> instead of  <emphasis role='bold'>é</emphasis> it will still count as right.
+<para>Ignore accent mistakes: with this option if you enter a word with <guilabel>e</guilabel> instead of  <guilabel>é</guilabel> it will still count as right.
 </para>
 </listitem>
 <listitem>
@@ -291,9 +291,9 @@ To <filename>edit</filename> a collection, click on the <emphasis role='bold'>Ed
 </sect1>
 <sect1 id='practice'><title id='practice-title'>Practice</title>
 <sect2 id='flash-cards'><title id='flash-cards-title'>Flash Cards</title>
-<para>After having activated the <emphasis role='bold'>Flash Card</emphasis> Practice Mode and having clicked on <emphasis role='bold'>Start Practice</emphasis> the following screen shows up. The Flash Card training mode works just as if you would do it with &quot;real&quot; flash cards. You imagine the the result and should you wish some help, you can click on <emphasis role='bold'>Hint</emphasis> which will start to give you the result one letter at a time.
+<para>After having activated the <guilabel>Flash Card</guilabel> Practice Mode and having clicked on <guibutton>Start Practice</guibutton> the following screen shows up. The Flash Card training mode works just as if you would do it with &quot;real&quot; flash cards. You imagine the the result and should you wish some help, you can click on <guibutton>Hint</guibutton> which will start to give you the result one letter at a time.
 </para>
-<para>You can also decide to skip a word for now. When you click <emphasis role='bold'>Answer Later</emphasis> the word will show up again at a later time.
+<para>You can also decide to skip a word for now. When you click <guibutton>Answer Later</guibutton> the word will show up again at a later time.
 </para>
 <para>
 <screenshot>
@@ -309,10 +309,10 @@ To <filename>edit</filename> a collection, click on the <emphasis role='bold'>Ed
 </screenshot>
 </para>
 <para>Clicking on Continue reveals the solution. At this stage you then have to tell if you knew the answer.
-If you did not know it, click <emphasis role='bold'>I did not know it</emphasis>. If you did remember the answer, click <emphasis role='bold'>I knew it</emphasis>. 
+If you did not know it, click <guibutton>I did not know it</guibutton>. If you did remember the answer, click <guibutton>I knew it</guibutton>. 
 This will take you to the next question. 
 </para>
-<para>Tip: Instead of clicking Continue you can also use the <emphasis role='bold'>Spacebar</emphasis> of your keyboard.
+<para>Tip: Instead of clicking Continue you can also use the <keycap>Space</keycap> key of your keyboard.
 </para>
 <para>
 <screenshot>
@@ -327,7 +327,7 @@ This will take you to the next question.
   </mediaobject>
 </screenshot>
 </para>
-<para>You can stop practicing anytime by clicking on <emphasis role='bold'>Stop Practice</emphasis>.
+<para>You can stop practicing anytime by clicking on <guibutton>Stop Practice</guibutton>.
 </para>
 </sect2>
 <sect2 id='mixed-letters'><title id='mixed-letters-title'>Mixed Letters</title>
@@ -346,11 +346,11 @@ This will take you to the next question.
   </mediaobject>
 </screenshot>
 </para>
-<para>Should you wish some help, you can click on <emphasis role='bold'>Hint</emphasis> which will give you the solution one letter at a time. Of course you can also decide to <emphasis role='bold'>Answer Later</emphasis> by clicking on that button.
+<para>Should you wish some help, you can click on <guibutton>Hint</guibutton> which will give you the solution one letter at a time. Of course you can also decide to <guibutton>Answer Later</guibutton> by clicking on that button.
 </para>
-<para>To give the answer type it in the blank field below the mixed letters and press the <emphasis role='bold'>Enter</emphasis> key or <emphasis role='bold'>Continue</emphasis> button.
+<para>To give the answer type it in the blank field below the mixed letters and press the &Enter; key or <guibutton>Continue</guibutton> button.
 </para>
-<para>If your answer was correct Parley will tell you so and you can press <emphasis role='bold'>Enter</emphasis> again or click on <emphasis role='bold'>Continue</emphasis> to go ahead with the next question.
+<para>If your answer was correct Parley will tell you so and you can press &Enter; again or click on <guibutton>Continue</guibutton> to go ahead with the next question.
 </para>
 <para>
 <screenshot>
@@ -365,7 +365,7 @@ This will take you to the next question.
   </mediaobject>
 </screenshot>
 </para>
-<para>Should you enter a wrong answer, you will be told to <emphasis role='bold'>''try again</emphasis>'':
+<para>Should you enter a wrong answer, you will be told to <emphasis>try again</emphasis>:
 </para>
 <para>
 <screenshot>
@@ -380,7 +380,7 @@ This will take you to the next question.
   </mediaobject>
 </screenshot>
 </para>
-<para>If you don't know the answer, just click on <emphasis role='bold'>Continue</emphasis> a second time. Then the following comes up and you are shown the solution. Go ahead with <emphasis role='bold'>Continue</emphasis>.
+<para>If you don't know the answer, just click on <guibutton>Continue</guibutton> a second time. Then the following comes up and you are shown the solution. Go ahead with <guibutton>Continue</guibutton>.
 </para>
 <para>
 <screenshot>
@@ -396,11 +396,11 @@ This will take you to the next question.
 </screenshot>
 </para>
 <para>After the solution is revealed, you see a big icon on the right that indicates if your answer will count as right or wrong.
-You can overrule how your answer is counted. See <filename>#Counting an Answer as Right|Counting an Answer as Right</filename>. 
+You can overrule how your answer is counted. See <link linkend="counting-an-answer-as-right-title">Counting an Answer as Right</link>. 
 </para>
 </sect2>
 <sect2 id='multiple-choice'><title id='multiple-choice-title'>Multiple Choice</title>
-<para>In <emphasis role='bold'>Multiple Choice</emphasis> mode you are shown a number of potential answers, of which only one is correct. By clicking on <emphasis role='bold'>Hint</emphasis> Parley excludes one of the wrong answers so that your choice gets more and more restricted with each further click on <emphasis role='bold'>Hint</emphasis>. Of course you may also choose to <emphasis role='bold'>Answer Later</emphasis>.
+<para>In <guilabel>Multiple Choice</guilabel> mode you are shown a number of potential answers, of which only one is correct. By clicking on <guibutton>Hint</guibutton> Parley excludes one of the wrong answers so that your choice gets more and more restricted with each further click on <guibutton>Hint</guibutton>. Of course you may also choose to <guibutton>Answer Later</guibutton>.
 </para>
 <para>
 <screenshot>
@@ -415,7 +415,7 @@ You can overrule how your answer is counted. See <filename>#Counting an Answer a
   </mediaobject>
 </screenshot>
 </para>
-<para>Once you made your choice by clicking on what you believe to be correct, Parley shows up with the screen below if the answer was right. Go ahead with the next question by clicking on <emphasis role='bold'>Continue</emphasis>.
+<para>Once you made your choice by clicking on what you believe to be correct, Parley shows up with the screen below if the answer was right. Go ahead with the next question by clicking on <guibutton>Continue</guibutton>.
 </para>
 <para>
 <screenshot>
@@ -430,7 +430,7 @@ You can overrule how your answer is counted. See <filename>#Counting an Answer a
   </mediaobject>
 </screenshot><filename>File:Parley multiple choice 0-9-4 002.png|thumb|500px</filename>
 </para>
-<para>If your answer instead was wrong, the correct answer will be shown in green and the wrong one in red. Also here you go ahead by clicking on <emphasis role='bold'>Continue</emphasis>.
+<para>If your answer instead was wrong, the correct answer will be shown in green and the wrong one in red. Also here you go ahead by clicking on <guibutton>Continue</guibutton>.
 </para>
 <para>
 <screenshot>
@@ -446,13 +446,13 @@ You can overrule how your answer is counted. See <filename>#Counting an Answer a
 </screenshot>
 </para>
 <para>After the solution is revealed, you see a big icon on the right that indicates if your answer will count as right or wrong.
-You can overrule how your answer is counted. See <filename>#Counting an Answer as Right|Counting an Answer as Right</filename>. 
+You can overrule how your answer is counted. See <link linkend="counting-an-answer-as-right-title">Counting an Answer as Right</link>. 
 </para>
-<para>If you wish to stop practice, just click on the <emphasis role='bold'>Stop Practice</emphasis> button.
+<para>If you wish to stop practice, just click on the <guibutton>Stop Practice</guibutton> button.
 </para>
 </sect2>
 <sect2 id='written'><title id='written-title'>Written</title>
-<para>When you select the option <emphasis role='bold'>Written</emphasis> to do your practice you are supposed to type in the solution. You can use the button <emphasis role='bold'>Hint</emphasis> which will start to give you the result one letter at a time. Of course you can also decide to <emphasis role='bold'>Answer Later</emphasis> by clicking on that button.
+<para>When you select the option <guilabel>Written</guilabel> to do your practice you are supposed to type in the solution. You can use the button <guibutton>Hint</guibutton> which will start to give you the result one letter at a time. Of course you can also decide to <guibutton>Answer Later</guibutton> by clicking on that button.
 </para>
 <para>
 <screenshot>
@@ -482,7 +482,7 @@ You can overrule how your answer is counted. See <filename>#Counting an Answer a
   </mediaobject>
 </screenshot>
 </para>
-<para>Should you give a wrong answer, you may try again several times to find the right answer. If you don't try again, and just click on <emphasis role='bold'>Continue</emphasis>, the solution will be shown.
+<para>Should you give a wrong answer, you may try again several times to find the right answer. If you don't try again, and just click on <guibutton>Continue</guibutton>, the solution will be shown.
 </para>
 <para>
 <screenshot>
@@ -497,10 +497,10 @@ You can overrule how your answer is counted. See <filename>#Counting an Answer a
   </mediaobject>
 </screenshot>
 </para>
-<para>Go ahead practicing by clicking on <emphasis role='bold'>Continue</emphasis> or stop by clicking on the button <emphasis role='bold'>Stop Practice</emphasis>.
+<para>Go ahead practicing by clicking on <guibutton>Continue</guibutton> or stop by clicking on the button <guibutton>Stop Practice</guibutton>.
 </para>
 <para>When the solution is revealed, you see a big icon on the right that indicates if your answer will count as right or wrong.
-You can overrule how your answer is counted. See <filename>#Counting an Answer as Right|Counting an Answer as Right</filename>. 
+You can overrule how your answer is counted. See <link linkend="counting-an-answer-as-right-title">Counting an Answer as Right</link>. 
 </para>
 </sect2>
 <sect2 id='counting-an-answer-as-right'><title id='counting-an-answer-as-right-title'>Counting an Answer as Right</title>
@@ -539,9 +539,9 @@ If you see the big checkmark, Parley thinks you were right.
 </para>
 </sect2>
 <sect2 id='reset-practice-to-initial-state'><title id='reset-practice-to-initial-state-title'>Reset Practice to Initial State</title>
-<para>You can reset all your practice scores (remove the grades) to the initial state. When being in edit mode select <emphasis role='bold'>Edit</emphasis> from the menu bar and then <emphasis role='bold'>Remove Grades</emphasis>.
+<para>You can reset all your practice scores (remove the grades) to the initial state. When being in edit mode select <guimenu>Edit</guimenu> from the menu bar and then <guimenuitem>Remove Grades</guimenuitem>.
 </para>
-<para>Furthermore you can reset your grades for individual lessons from within the <emphasis role='bold'>Practice Setup</emphasis> by right clicking on the lesson to reset and choose <emphasis role='bold'>Remove Grades</emphasis>.
+<para>Furthermore you can reset your grades for individual lessons from within the <guilabel>Practice Setup</guilabel> by right clicking on the lesson to reset and choose <guilabel>Remove Grades</guilabel>.
 </para>
 </sect2>
 </sect1>
@@ -569,11 +569,11 @@ The words with the most mistakes are on top so you can easily see what you do no
 <para>With Parley you can also learn specific grammar structures, such as the gender of nouns, the comparison forms of adjectives and the conjugation of verbs. Let's look at some examples.
 </para>
 <sect2 id='articles-and-gender-of-nouns'><title id='articles-and-gender-of-nouns-title'>Articles and Gender of Nouns</title>
-<para>Once the practice mode <emphasis role='bold'>Gender of Nouns</emphasis> is activated, click on <emphasis role='bold'>Start Practice</emphasis>.
+<para>Once the practice mode <guilabel>Gender of Nouns</guilabel> is activated, click on <guibutton>Start Practice</guibutton>.
 </para>
-<para>In the case below we use German as language to learn and so you have three genders to choose from: masculine, feminine and neuter. By clicking on <emphasis role='bold'>Hint</emphasis> one of the wrong answers gets excluded. Of course you can also decide to <emphasis role='bold'>Answer Later</emphasis> by clicking on that button.
+<para>In the case below we use German as language to learn and so you have three genders to choose from: masculine, feminine and neuter. By clicking on <guibutton>Hint</guibutton> one of the wrong answers gets excluded. Of course you can also decide to <guibutton>Answer Later</guibutton> by clicking on that button.
 </para>
-<para>You should enter the articles for the language in the Editor to see the articles instead of the grammatical gender terms. Also note that this only works, if the gender of the words has been set up properly. See <filename>#Word Types|Word Types</filename> for more information how to change the word type to the right gender.
+<para>You should enter the articles for the language in the Editor to see the articles instead of the grammatical gender terms. Also note that this only works, if the gender of the words has been set up properly. See <link linkend="word-types-title">Word Types</link> for more information how to change the word type to the right gender.
 </para>
 <para>
 <screenshot>
@@ -588,7 +588,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>When you give the correct answer the following is shown and you go ahead practicing by clicking on <emphasis role='bold'>Continue</emphasis>.
+<para>When you give the correct answer the following is shown and you go ahead practicing by clicking on <guibutton>Continue</guibutton>.
 </para>
 <para>
 <screenshot>
@@ -603,7 +603,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Should you give the wrong answer the following is shown and you go ahead practicing by clicking on <emphasis role='bold'>Continue</emphasis>.
+<para>Should you give the wrong answer the following is shown and you go ahead practicing by clicking on <guibutton>Continue</guibutton>.
 </para>
 <para>
 <screenshot>
@@ -618,13 +618,13 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>You can stop practicing anytime by clicking on <emphasis role='bold'>Stop Practice</emphasis>.
+<para>You can stop practicing anytime by clicking on <guibutton>Stop Practice</guibutton>.
 </para>
 </sect2>
 <sect2 id='comparison-forms-of-adjectives-and-adverbs'><title id='comparison-forms-of-adjectives-and-adverbs-title'>Comparison Forms of Adjectives and Adverbs</title>
-<para>On the <emphasis role='bold'>Practice</emphasis> screen select <emphasis role='bold'>Comparison Forms</emphasis> and then click on <emphasis role='bold'>Start Practice</emphasis> to go ahead.
+<para>On the <guilabel>Practice</guilabel> screen select <guilabel>Comparison Forms</guilabel> and then click on <guibutton>Start Practice</guibutton> to go ahead.
 </para>
-<para>This only works when the conjugation forms of the word have been entered in the vocabulary collection. See <filename>#Entering Comparison Forms|Entering Comparison Forms</filename>.
+<para>This only works when the conjugation forms of the word have been entered in the vocabulary collection. See <link linkend="entering-comparison-forms-title">Entering Comparison Forms</link>.
 </para>
 <para>
 <screenshot>
@@ -639,7 +639,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>The exercise requires you to enter the comparison forms for the term shown. In this case the translation of the English word <emphasis role='bold'>''old</emphasis>'' to German. The German language has three forms: ''absolute, comparative'' and ''superlative''. To go on with the exercise just click on <emphasis role='bold'>Continue</emphasis>.
+<para>The exercise requires you to enter the comparison forms for the term shown. In this case the translation of the English word <emphasis>old</emphasis> to German. The German language has three forms: <emphasis>absolute</emphasis>, <emphasis>comparative</emphasis> and <emphasis>superlative</emphasis>. To go on with the exercise just click on <guibutton>Continue</guibutton>.
 </para>
 <para>
 <screenshot>
@@ -656,9 +656,9 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 </sect2>
 <sect2 id='conjugations'><title id='conjugations-title'>Conjugations</title>
-<para>To practice conjugations choose the <emphasis role='bold'>Conjugations</emphasis> mode and the tenses you wish to exercise.
+<para>To practice conjugations choose the <guilabel>Conjugations</guilabel> mode and the tenses you wish to exercise.
 </para>
-<para>In the document the conjugation forms of the words have to be entered in order to allow this practice mode to work. See <filename>#Entering Conjugation Forms|Entering Conjugation Forms</filename>.
+<para>In the document the conjugation forms of the words have to be entered in order to allow this practice mode to work. See <link linkend="entering-conjugation-forms-title">Entering Conjugation Forms</link>.
 </para>
 <para>
 <screenshot>
@@ -673,7 +673,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Then click on <emphasis role='bold'>Start Practice</emphasis>. You are required to enter the correct conjugation forms according to the tense shown. To go ahead click on <emphasis role='bold'>Continue</emphasis>
+<para>Then click on <guibutton>Start Practice</guibutton>. You are required to enter the correct conjugation forms according to the tense shown. To go ahead click on <guibutton>Continue</guibutton>
 </para>
 <para><screenshot>
 <screeninfo></screeninfo>
@@ -710,24 +710,24 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 <itemizedlist>
 <listitem>
-<para><emphasis role='bold'>File→Properties</emphasis> This is the place for the &quot;General Document Properties&quot;, meaning some information about your vocabulary collection and yourself.
+<para><menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice> This is the place for the <guilabel>General Document Properties</guilabel>, meaning some information about your vocabulary collection and yourself.
 </para>
 </listitem>
 <listitem>
-<para><emphasis role='bold'>Edit→Languages</emphasis> Find here settings around the languages you use
+<para><menuchoice><guimenu>Edit</guimenu><guimenuitem>Languages</guimenuitem></menuchoice> Find here settings around the languages you use
 </para>
 </listitem>
 <listitem>
-<para><emphasis role='bold'>Practice→Configure Practice</emphasis> Here are settings how you practice your vocabulary. Depending on what you want to do during the specific learning session you change them on the fly.
+<para><menuchoice><guimenu>Practice</guimenu><guimenuitem>Configure Practice</guimenuitem></menuchoice> Here are settings how you practice your vocabulary. Depending on what you want to do during the specific learning session you change them on the fly.
 </para>
 </listitem>
 <listitem>
-<para><emphasis role='bold'>Settings→Configure Parley</emphasis> For more general and display settings
+<para><menuchoice><guimenu>Settings</guimenu><guimenuitem>Configure Parley</guimenuitem></menuchoice> For more general and display settings.
 </para>
 </listitem>
 </itemizedlist>
 <sect2 id='about-the-collection'><title id='about-the-collection-title'>About the Collection</title>
-<para>Entering meta data like a title and your contact info is relevant if you plan to make your collection available for other people. Use <emphasis role='bold'>File-&amp;gt;Properties</emphasis> to edit the data.
+<para>Entering meta data like a title and your contact info is relevant if you plan to make your collection available for other people. Use <menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice> to edit the data.
 </para>
 <para>
 <screenshot>
@@ -744,7 +744,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 </sect2>
 <sect2 id='vocabulary-columns'><title id='vocabulary-columns-title'>Vocabulary Columns</title>
-<para>Depending on what your learning sessions are going to be about it can be relevant to have further Vocabulary Columns show up in your edit section. To choose these columns select <emphasis role='bold'>View</emphasis> from the Menu bar and then <emphasis role='bold'>Vocabulary Columns</emphasis>. There you can determine if the columns for <emphasis role='bold'>''Pronunciation, Word Type, Synonym, Antonym, Example, Comment</emphasis>'' and/or <emphasis role='bold'>''Paraphrase</emphasis>'' are to be shown.
+<para>Depending on what your learning sessions are going to be about it can be relevant to have further Vocabulary Columns show up in your edit section. To choose these columns select <guimenu>View</guimenu> from the menu bar and then <guimenuitem>Vocabulary Columns</guimenuitem>. There you can determine if the columns for <guilabel>Pronunciation</guilabel>, <guilabel>Word Type</guilabel>, <guilabel>Synonym</guilabel>, <guilabel>Antonym</guilabel>, <guilabel>Example</guilabel>, <guilabel>Comment</guilabel>, and/or <guilabel>Paraphrase</guilabel> are to be shown.
 </para>
 <para>
 <screenshot>
@@ -761,11 +761,11 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 </sect2>
 <sect2 id='languages-and-grammar'><title id='languages-and-grammar-title'>Languages and Grammar</title>
-<para>Set up some grammar details to let Parley help you. Use <emphasis role='bold'>Edit-&amp;gt;Languages</emphasis> to pull up the grammar dialog.
+<para>Set up some grammar details to let Parley help you. Use <menuchoice><guimenu>Edit</guimenu><guimenuitem>Languages</guimenuitem></menuchoice> to pull up the grammar dialog.
 </para>
-<para>Articles in English are simply <emphasis role='bold'>the</emphasis> which is the definite article and <emphasis role='bold'>a</emphasis> as indefinite article. Most other languages have more articles which can be filled in at the articles tab.
+<para>Articles in English are simply <guilabel>the</guilabel> which is the definite article and <guilabel>a</guilabel> as indefinite article. Most other languages have more articles which can be filled in at the articles tab.
 </para>
-<para>For conjugations the personal pronouns should be filled out. Most languages do not have different conjugation forms for he/she/it, in that case, you should ''not'' check <emphasis role='bold'>Male/Female have different conjugations</emphasis>! Simply enter the pronouns for all three forms. Personal Pronouns in English:
+<para>For conjugations the personal pronouns should be filled out. Most languages do not have different conjugation forms for he/she/it, in that case, you should <emphasis>not</emphasis> check <guilabel>Male/Female have different conjugations</guilabel>! Simply enter the pronouns for all three forms. Personal Pronouns in English:
 </para>
 <para>{| cellspacing=&quot;1&quot; cellpadding=&quot;1&quot; border=&quot;1&quot; style=&quot;width: 348px; height: 91px;&quot;
 |- 
@@ -788,26 +788,26 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 <para>Tenses: Depending on the language, you can enter the right tenses which you later want to learn how to conjugate. Examples are: Simple Present, Simple Past, Future I etc.
 </para>
-<para>Btw. by clicking on the <emphasis role='bold'>Add New Language</emphasis> button you can add an additional language to your collection.
+<para>Btw. by clicking on the <guibutton>Add New Language</guibutton> button you can add an additional language to your collection.
 </para>
 </sect2>
 <!-- rm # -->
 <sect2 id='let-and-three-nine-s-have-a-closer-look-at-spanish'><title id='let-and-three-nine-s-have-a-closer-look-at-spanish-title'>Let's Have a Closer Look at Spanish</title>
-<para>On the <emphasis role='bold'>General</emphasis> tab the basic language settings, like here
+<para>On the <guilabel>General</guilabel> tab the basic language settings, like here
 </para>
 <itemizedlist>
 <listitem>
-<para><emphasis role='bold'>Language</emphasis> = Spanish
+<para><guilabel>Language</guilabel> = Spanish
 </para>
 </listitem>
 <listitem>
-<para><emphasis role='bold'>Name</emphasis> = Spanish
+<para><guilabel>Name</guilabel> = Spanish
 </para>
 </listitem>
 <listitem>
-<para><emphasis role='bold'>Keyboard layout</emphasis> = de (for German)
+<para><guilabel>Keyboard layout</guilabel> = de (for German)
 </para>
-<para>You can leave <emphasis role='bold'>Keyboard layout</emphasis> empty if you are not sure about what you are using. Parley will then simply take the standard layout of your computer.
+<para>You can leave <guilabel>Keyboard layout</guilabel> empty if you are not sure about what you are using. Parley will then simply take the standard layout of your computer.
 </para>
 <para>
 <screenshot>
@@ -822,7 +822,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Let's have a look at the <emphasis role='bold'>Articles</emphasis> tab: Spanish knows only male and female nouns, therefore the field <emphasis role='bold'>Neutral</emphasis> remains empty.
+<para>Let's have a look at the <guilabel>Articles</guilabel> tab: Spanish knows only male and female nouns, therefore the field <guilabel>Neutral</guilabel> remains empty.
 </para>
 <para>
 <screenshot>
@@ -837,7 +837,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Spanish <emphasis role='bold'>Personal Pronouns</emphasis> have multiple forms for 3rd person singular and 1st, 2nd and 3rd person plural. To remain consistent, the possibilities should be entered with a <emphasis role='bold'>/</emphasis> between the two forms.
+<para>Spanish <guilabel>Personal Pronouns</guilabel> have multiple forms for 3rd person singular and 1st, 2nd and 3rd person plural. To remain consistent, the possibilities should be entered with a <guilabel>/</guilabel> between the two forms.
 </para>
 <para>
 <screenshot>
@@ -852,7 +852,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Under <emphasis role='bold'>Tenses</emphasis> you will find the various tenses that are available for a verb form. You can add to the tenses that are already there by clicking on <emphasis role='bold'>New</emphasis>, modify with <emphasis role='bold'>Modify</emphasis> or in case something does not actually exist simply <emphasis role='bold'>Delete</emphasis> the tense after having it selected.
+<para>Under <guilabel>Tenses</guilabel> you will find the various tenses that are available for a verb form. You can add to the tenses that are already there by clicking on <guibutton>New</guibutton>, modify with <guibutton>Modify</guibutton> or in case something does not actually exist simply <guibutton>Delete</guibutton> the tense after having it selected.
 </para>
 <para>
 <screenshot>
@@ -879,7 +879,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 <para>The check boxes in front of the lesson name show which lessons are currently included in your practice. The number next to it is the number of words in the lesson.
 </para>
 <sect2 id='new-lesson'><title id='new-lesson-title'>New Lesson</title>
-<para>Add a new lesson: Select where this lesson belongs to, for example the collection <emphasis role='bold'>My Spanish Lessons</emphasis>.
+<para>Add a new lesson: Select where this lesson belongs to, for example the collection <guilabel>My Spanish Lessons</guilabel>.
 </para>
 <para>
 <screenshot>
@@ -894,7 +894,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>In the Lesson menu, select <emphasis role='bold'>New Lesson</emphasis>.
+<para>In the <guimenu>Lesson</guimenu> menu, select <guimenuitem>New Lesson</guimenuitem>.
 </para>
 <para>
 <screenshot>
@@ -909,7 +909,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Please make sure to select the right point in the tree structure of lessons before selecting <emphasis role='bold'>New Lesson</emphasis>. In our case, wanting a <emphasis role='bold'>''Sub-Lesson</emphasis>'' of <emphasis role='bold'>Collection: My Spanish Lesson</emphasis> it is exactly that one that needs to be selected before going ahead with <emphasis role='bold'>New Lesson</emphasis>.
+<para>Please make sure to select the right point in the tree structure of lessons before selecting <guilabel>New Lesson</guilabel>. In our case, wanting a <guilabel>Sub-Lesson</guilabel> of <guilabel>Collection: My Spanish Lesson</guilabel> it is exactly that one that needs to be selected before going ahead with <guilabel>New Lesson</guilabel>.
 </para>
 </sect2>
 <sect2 id='moving-comma-renaming-and-deleting-lessons'><title id='moving-comma-renaming-and-deleting-lessons-title'>Moving, Renaming and Deleting Lessons</title>
@@ -923,14 +923,14 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 </sect2>
 <sect2 id='what-is-shown-in-the-table'><title id='what-is-shown-in-the-table-title'>What is Shown in the Table</title>
-<para>Parley shows always the words of the lesson that you have currently selected. You can enable to see the words in sub-lessons contained in this lesson also. Use <emphasis role='bold'>Lesson→Show Entries from Child Lessons</emphasis> to enable this. That way, you can browse all words by selecting the document lesson at the very top.
+<para>Parley shows always the words of the lesson that you have currently selected. You can enable to see the words in sub-lessons contained in this lesson also. Use <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Show Entries from Child Lessons</guimenuitem></menuchoice> to enable this. That way, you can browse all words by selecting the document lesson at the very top.
 </para>
 </sect2>
 </sect1>
 <sect1 id='word-types'><title id='word-types-title'>Word Types</title>
 <para>Parley lets you associate word types with the words. Word types are for example: Nouns, Verbs, Adjectives and Adverbs.
 </para>
-<para>In order to work with word types, enable the word type tool: <emphasis role='bold'>View→Word Types</emphasis>
+<para>In order to work with word types, enable the word type tool: <menuchoice><guimenu>View</guimenu><guimenuitem>Word Types</guimenuitem></menuchoice>.
 </para>
 <para>You can categorize the word types just like lessons.
 </para>
@@ -948,7 +948,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 <sect2 id='editing-words'><title id='editing-words-title'>Editing Words</title>
 <para>If you want to replace a word, select its entry and start typing. To change the word instead, double click the entry and you can change the contents of the cell without losing the old word.
 </para>
-<para>Press <emphasis role='bold'>''TAB</emphasis>'' to go to the next word. Enter leaves the editing mode. You can use the arrow keys to move around.
+<para>Press &Tab; to go to the next word. Enter leaves the editing mode. You can use the arrow keys to move around.
 </para>
 </sect2>
 </sect1>
@@ -957,7 +957,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 <itemizedlist>
 <listitem>
-<para>Use <emphasis role='bold'>View→Synonyms</emphasis> to see the synonyms tool.
+<para>Use <menuchoice><guimenu>View</guimenu><guimenuitem>Synonyms</guimenuitem></menuchoice> to see the synonyms tool.
 </para>
 </listitem>
 <listitem>
@@ -965,7 +965,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 </listitem>
 <listitem>
-<para>The button in the synonym tool changes it's text to &quot;A and B are synonyms&quot;
+<para>The button in the synonym tool changes it's text to <guilabel>A and B are synonyms</guilabel>.
 </para>
 <para>The words will now be shown as connected in the synonym tool and can be recognized as synonyms in the practice.
 </para>
@@ -973,9 +973,9 @@ The words with the most mistakes are on top so you can easily see what you do no
 </itemizedlist>
 </sect1>
 <sect1 id='adding-images'><title id='adding-images-title'>Adding Images</title>
-<para>First show the sound tool by selecting <emphasis role='bold'>View</emphasis> in the menu bar and then clicking on <emphasis role='bold'>Image</emphasis>. The checkbox in front of <emphasis role='bold'>Image</emphasis> will then be activated. This will show up the picture section on the right hand side of the Parley screen
+<para>First show the sound tool by selecting <guimenu>View</guimenu> in the menu bar and then clicking on <guimenuitem>Image</guimenuitem>. The checkbox in front of <guimenuitem>Image</guimenuitem> will then be activated. This will show up the picture section on the right hand side of the &parley; screen
 </para>
-<para>To add an image to a word make sure the word is highlighted. In the image section on the right hand side click on the <emphasis role='bold'>''Folder icon</emphasis>'' and choose the picture you wish to associate.
+<para>To add an image to a word make sure the word is highlighted. In the image section on the right hand side click on the <emphasis>Folder</emphasis> icon and choose the picture you wish to associate.
 </para>
 <para>
 <screenshot>
@@ -992,9 +992,9 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 </sect1>
 <sect1 id='adding-sound'><title id='adding-sound-title'>Adding Sound</title>
-<para>First show the sound tool by selecting <emphasis role='bold'>View</emphasis> in the menu bar and then clicking on <emphasis role='bold'>Sound</emphasis>. This will show up the sound section on the right hand side of the Parley screen.
+<para>First show the sound tool by selecting <guimenu>View</guimenu> in the menu bar and then clicking on <guimenuitem>Sound</guimenuitem>. This will show up the sound section on the right hand side of the &parley; screen.
 </para>
-<para>To add a sound to a word make sure the word is highlighted. In the sound section on the right hand side click on the <emphasis role='bold'>''Folder icon</emphasis>'' and choose the sound you wish to associate.
+<para>To add a sound to a word make sure the word is highlighted. In the sound section on the right hand side click on the <emphasis>Folder</emphasis> icon and choose the sound you wish to associate.
 </para>
 <para>
 <screenshot>
@@ -1011,7 +1011,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 </sect1>
 <sect1 id='entering-comparison-forms'><title id='entering-comparison-forms-title'>Entering Comparison Forms</title>
-<para>In order to enter comparison forms, make sure the comparison forms tool is enabled. You open it with the menu: <emphasis role='bold'>View→Comparison Forms</emphasis>
+<para>In order to enter comparison forms, make sure the comparison forms tool is enabled. You open it with the menu: <menuchoice><guimenu>View</guimenu><guimenuitem>Comparison Forms</guimenuitem></menuchoice>.
 </para>
 <para>First select a word that is an adjective or adverb.
 </para>
@@ -1028,7 +1028,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Click the <emphasis role='bold'>Adjective</emphasis> or <emphasis role='bold'>Adverb</emphasis> button in the comparison forms tool.
+<para>Click the <guibutton>Adjective</guibutton> or <guibutton>Adverb</guibutton> button in the comparison forms tool.
 </para>
 <para>
 <screenshot>
@@ -1058,11 +1058,11 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Now you can use the <filename>#Comparison Forms of Adjectives and Adverbs|Comparison Forms Practice</filename> mode.
+<para>Now you can use the <link linkend="comparison-forms-of-adjectives-and-adverbs-title">Comparison Forms Practice</link> mode.
 </para>
 </sect1>
 <sect1 id='entering-conjugation-forms'><title id='entering-conjugation-forms-title'>Entering Conjugation Forms</title>
-<para>In order to enter conjugation forms, make sure the conjugation forms tool is enabled. You open it with the menu: <emphasis role='bold'>View→Conjugation</emphasis>
+<para>In order to enter conjugation forms, make sure the conjugation forms tool is enabled. You open it with the menu: <menuchoice><guimenu>View</guimenu><guimenuitem>Conjugation</guimenuitem></menuchoice>.
 </para>
 <para>First select a word that is a verb.
 </para>
@@ -1079,7 +1079,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Click the <emphasis role='bold'>... is a Verb</emphasis> button in the conjugations tool.
+<para>Click the <guilabel>... is a Verb</guilabel> button in the conjugations tool.
 </para>
 <para>
 <screenshot>
@@ -1096,7 +1096,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 <para>After selecting the right tense in the tense selection box, enter the conjugation forms.
 </para>
-<para>The tenses can be configured for each language: <filename>#Languages and Grammar|Languages and Grammar</filename>.
+<para>The tenses can be configured for each language: <link linkend="languages-and-grammar-title">Languages and Grammar</link>.
 </para>
 <para>Now you can use the <filename>Conjugations Practice</filename> mode.
 </para>
@@ -1139,9 +1139,9 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Click on the button <emphasis role='bold'>Create a New Collection</emphasis>.
+<para>Click on the button <guibutton>Create a New Collection</guibutton>.
 </para>
-<para>The <emphasis role='bold'>General Document Properties</emphasis> page shows up which is being filled as follows (just adapt to what your file is about):
+<para>The <guilabel>General Document Properties</guilabel> page shows up which is being filled as follows (just adapt to what your file is about):
 </para>
 <para>
 <screenshot>
@@ -1156,7 +1156,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Next click on <emphasis role='bold'>OK</emphasis>. The following screen asks you to set up the language details. Here we don't want to change anything and therefore we just click on <emphasis role='bold'>OK</emphasis>.
+<para>Next click on <guibutton>OK</guibutton>. The following screen asks you to set up the language details. Here we don't want to change anything and therefore we just click on <guibutton>OK</guibutton>.
 </para>
 <para>As a first step, let's create the vocabulary part. We will think about the addition of the sound files and pictures in a second stage. This is what the lesson looks like:
 </para>
@@ -1173,7 +1173,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Before we do anything else, let's save the file to the folder with the pictures and sound-files. Click on the <emphasis role='bold'>Save</emphasis> icon and select the folder using the navigation. In this example we will call the file <emphasis role='bold'>Trainer eng-deu</emphasis> - once you entered the name just click on save.
+<para>Before we do anything else, let's save the file to the folder with the pictures and sound-files. Click on the <guibutton>Save</guibutton> icon and select the folder using the navigation. In this example we will call the file <guilabel>Trainer eng-deu</guilabel> - once you entered the name just click on save.
 </para>
 <para>
 <screenshot>
@@ -1188,13 +1188,13 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>If you now check your folder where the sound-files and pictures are, you will also find the file <emphasis role='bold'>Trainer eng-deu.kvtml</emphasis>
+<para>If you now check your folder where the sound-files and pictures are, you will also find the file <guilabel>Trainer eng-deu.kvtml</guilabel>
 </para>
-<para>Let's have a short look at the words we want to add: ''apple, bird, cat, cherry, cow, orange, pear, snake, strawberry''. We have animals and fruit and therefore we decide to create two lessons that are called: <emphasis role='bold'>Animals</emphasis> and <emphasis role='bold'>Fruit</emphasis>.
+<para>Let's have a short look at the words we want to add: ''apple, bird, cat, cherry, cow, orange, pear, snake, strawberry''. We have animals and fruit and therefore we decide to create two lessons that are called: <guilabel>Animals</guilabel> and <guilabel>Fruit</guilabel>.
 </para>
-<para>We now rename <emphasis role='bold'>Lesson 1</emphasis> to <emphasis role='bold'>Animals</emphasis> and then we add a lesson called <emphasis role='bold'>Fruit</emphasis>. Right-click on <emphasis role='bold'>Lesson 1</emphasis> and choose <emphasis role='bold'>Rename Lesson</emphasis> from the options shown. Now <emphasis role='bold'>Lesson 1</emphasis> is highlighted and you can simply overwrite it by typing in <emphasis role='bold'>Animals</emphasis>. When done, hit the return key. Now right-click on <emphasis role='bold'>Collection: Vocabulary trainer E...</emphasis> which is the root of the lesson tree and choose <emphasis role='bold'>New Lesson</emphasis> from the options shown. In the new field write <emphasis role='bold'>Fruit</emphasis> and hit the return key again.
+<para>We now rename <guilabel>Lesson 1</guilabel> to <guilabel>Animals</guilabel> and then we add a lesson called <guilabel>Fruit</guilabel>. Right-click on <guilabel>Lesson 1</guilabel> and choose <guilabel>Rename Lesson</guilabel> from the options shown. Now <guilabel>Lesson 1</guilabel> is highlighted and you can simply overwrite it by typing in <guilabel>Animals</guilabel>. When done, hit the return key. Now right-click on <guilabel>Collection: Vocabulary trainer E...</guilabel> which is the root of the lesson tree and choose <guimenuitem>New Lesson</guimenuitem> from the options shown. In the new field write <guilabel>Fruit</guilabel> and hit the return key again.
 </para>
-<para>First, let's insert the animals. Please click on the lesson <emphasis role='bold'>Animals</emphasis> and you will get an empty table you can fill in. Click with your mouse in the first field, and insert the source terms.  Then, insert the target terms in the second column. Once you've inserted all 4 English animal names with their German translation the screen looks like this:
+<para>First, let's insert the animals. Please click on the lesson <guilabel>Animals</guilabel> and you will get an empty table you can fill in. Click with your mouse in the first field, and insert the source terms.  Then, insert the target terms in the second column. Once you've inserted all 4 English animal names with their German translation the screen looks like this:
 </para>
 <para>
 <screenshot>
@@ -1209,13 +1209,13 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>In our case we want only 4 entries in the animals lesson. There are many empty lines that should be deleted. To do this click on the first empty field, and keep the shift key pressed while clicking on the last empty field. All lines to be deleted will be highlighted. Then, press the Del key and confirm the question ''Do you really want to delete the selected entries?'' by clicking on the <emphasis role='bold'>Delete</emphasis> button.
+<para>In our case we want only 4 entries in the animals lesson. There are many empty lines that should be deleted. To do this click on the first empty field, and keep the shift key pressed while clicking on the last empty field. All lines to be deleted will be highlighted. Then, press the Del key and confirm the question ''Do you really want to delete the selected entries?'' by clicking on the <guibutton>Delete</guibutton> button.
 </para>
-<para>Let's add the fruit terminology. Just click on the lesson named <emphasis role='bold'>Fruit</emphasis>. This second lesson is completely empty. Since we have five fruit terms we need to add five lines. Therefore, press the <emphasis role='bold'>Ins</emphasis> key five times, and then, just like before, we add our terminology.
+<para>Let's add the fruit terminology. Just click on the lesson named <guilabel>Fruit</guilabel>. This second lesson is completely empty. Since we have five fruit terms we need to add five lines. Therefore, press the <keycap>Insert</keycap> key five times, and then, just like before, we add our terminology.
 </para>
 <para>Don't forget to save every now and then ...
 </para>
-<para>A click on the root of our lesson tree <emphasis role='bold'>Collection: Vocabulary trainer E...</emphasis> and Parley will show us all entries that are present in the two lessons:
+<para>A click on the root of our lesson tree <guilabel>Collection: Vocabulary trainer E...</guilabel> and Parley will show us all entries that are present in the two lessons:
 </para>
 <para>
 <screenshot>
@@ -1230,7 +1230,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Time to add sound and images. First of all we need to activate the Image and Sound views. From the menu bar select <emphasis role='bold'>View</emphasis> and there click on <emphasis role='bold'>Image</emphasis> and then <emphasis role='bold'>Sound</emphasis>. Once these options are activated, two new sections are shown on the right hand side of the Parley editing screen: ''Image'' and ''Sound''.
+<para>Time to add sound and images. First of all we need to activate the Image and Sound views. From the menu bar select <guimenu>View</guimenu> and there click on <guimenuitem>Image</guimenuitem> and then <guilabel>Sound</guilabel>. Once these options are activated, two new sections are shown on the right hand side of the Parley editing screen: <guilabel>Image</guilabel> and <guilabel>Sound</guilabel>.
 </para>
 <para>
 <screenshot>
@@ -1245,11 +1245,11 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Select the English word <emphasis role='bold'>''apple</emphasis>'' by clicking on it. It is highlighted, so let's add the picture. In the image section on the right hand side click on the <emphasis role='bold'>Folder</emphasis> icon and choose the picture you wish to associate.
+<para>Select the English word <emphasis>apple</emphasis> by clicking on it. It is highlighted, so let's add the picture. In the image section on the right hand side click on the <emphasis>Folder</emphasis> icon and choose the picture you wish to associate.
 </para>
 <para>To add the pronunciation for the English apple, do the same in the Sound section, selecting the relevant sound file.
 </para>
-<para>By clicking on the <emphasis role='bold'>Play</emphasis> button in the sound tool you can listen to the pronunciation.
+<para>By clicking on the <guilabel>Play</guilabel> button in the sound tool you can listen to the pronunciation.
 </para>
 <para>The screen will then look like this:
 </para>
@@ -1267,7 +1267,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 </screenshot>
 
 </para>
-<para>Then click on the German translation <emphasis role='bold'>Apfel</emphasis>. The field is now highlighted to indicate the selection. You will note the picture with the apple is associated also to the German term. In the sound section select the pronunciation, just like before.
+<para>Then click on the German translation <guilabel>Apfel</guilabel>. The field is now highlighted to indicate the selection. You will note the picture with the apple is associated also to the German term. In the sound section select the pronunciation, just like before.
 </para>
 <para>
 <screenshot>
@@ -1284,9 +1284,9 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 <para>Just go ahead like this for all terms.
 </para>
-<para>Time to add adjectives and verbs as lessons to our project. So just do as before with the lesson <emphasis role='bold'>''Fruit</emphasis>'' and create two new lessons: <emphasis role='bold'>''Adjectives</emphasis>'' and <emphasis role='bold'>''Verbs</emphasis>''. Let's assume we will add ''big, small, old, young, narrow''' in the adjective lesson and ''to go, to come, to buy, to drink, to eat'' in the verb lesson.
+<para>Time to add adjectives and verbs as lessons to our project. So just do as before with the lesson <guilabel>Fruit</guilabel> and create two new lessons: <guilabel>Adjectives</guilabel> and <guilabel>Verbs</guilabel>. Let's assume we will add <quote>big, small, old, young, narrow</quote> in the adjective lesson and <quote>to go, to come, to buy, to drink, to eat</quote> in the verb lesson.
 </para>
-<para>The following shows a screenshot with all inserted terminology. Now, words are mixed and it would be nice to see what is a <emphasis role='bold'>''noun, adjective</emphasis>'' or <emphasis role='bold'>''verb</emphasis>''.
+<para>The following shows a screenshot with all inserted terminology. Now, words are mixed and it would be nice to see what is a <emphasis>noun</emphasis>, <emphasis>adjective</emphasis> or <emphasis>verb</emphasis>.
 </para>
 <para>
 <screenshot>
@@ -1301,7 +1301,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>As the next step we are going to show the <emphasis role='bold'>Word Type</emphasis>. Select <emphasis role='bold'>View</emphasis> in the menu bar and then select <emphasis role='bold'>Vocabulary Columns</emphasis>. We activate <emphasis role='bold'>Word Type</emphasis> for <emphasis role='bold'>''English</emphasis>'' and <emphasis role='bold'>''German</emphasis>'' by clicking on the checkbox in front of <emphasis role='bold'>Word Type</emphasis>. Then click on <emphasis role='bold'>OK</emphasis> to accept the changes.
+<para>As the next step we are going to show the <guilabel>Word Type</guilabel>. Select <guimenu>View</guimenu> in the menu bar and then select <guimenuitem>Vocabulary Columns</guimenuitem>. We activate <guilabel>Word Type</guilabel> for <guilabel>English</guilabel> and <guilabel>German</guilabel> by clicking on the checkbox in front of <guilabel>Word Type</guilabel>. Then click on <guibutton>OK</guibutton> to accept the changes.
 </para>
 <para>
 <screenshot>
@@ -1316,7 +1316,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>By clicking on the fields in the column <emphasis role='bold'>Word Type</emphasis> you can select the word type and for those languages where nouns have a gender you can also select the <emphasis role='bold'>''Noun/Gender</emphasis>'' combination. Below the <emphasis role='bold'>Word Type</emphasis> column with part of the selections already done.
+<para>By clicking on the fields in the column <guilabel>Word Type</guilabel> you can select the word type and for those languages where nouns have a gender you can also select the <guilabel>Noun/Gender</guilabel> combination. Below the <guilabel>Word Type</guilabel> column with part of the selections already done.
 </para>
 <para><screenshot>
 <screeninfo></screeninfo>
@@ -1330,7 +1330,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Once we have specified all the word types, we will first consider<emphasis role='bold'>''Adjectives</emphasis>'', adding <emphasis role='bold'>Comparison Forms</emphasis>  to them. So let's move to the <emphasis role='bold'>''Adjectives</emphasis>'' lesson only.
+<para>Once we have specified all the word types, we will first consider <guilabel>Adjectives</guilabel>, adding <guilabel>Comparison Forms</guilabel>  to them. So let's move to the <guilabel>Adjectives</guilabel> lesson only.
 </para>
 <para>
 <screenshot>
@@ -1345,7 +1345,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>To show the <emphasis role='bold'>Comparison Forms</emphasis> on the right hand side of the screen, select the <emphasis role='bold'>View</emphasis> in the menu bar and activate the <emphasis role='bold'>Comparison Forms</emphasis> checkbox.
+<para>To show the <guilabel>Comparison Forms</guilabel> on the right hand side of the screen, select the <guimenu>View</guimenu> in the menu bar and activate the <guimenuitem>Comparison Forms</guimenuitem> checkbox.
 </para>
 <para>
 <screenshot>
@@ -1360,7 +1360,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Edit the <emphasis role='bold'>''Comparison forms</emphasis>'' by adding <emphasis role='bold'>Comparative</emphasis> and <emphasis role='bold'>Superlative</emphasis> to the single adjectives. First, click on the adjective for which you wish to add the comparison forms, in our case <emphasis role='bold'>''big</emphasis>'', and add <emphasis role='bold'>''bigger</emphasis>'' and <emphasis role='bold'>''biggest</emphasis>''. Then, continue with the next adjective to complete, until all comparison forms have been entered.
+<para>Edit the <guilabel>Comparison Forms</guilabel> by adding <guilabel>Comparative</guilabel> and <guilabel>Superlative</guilabel> to the single adjectives. First, click on the adjective for which you wish to add the comparison forms, in our case <emphasis>big</emphasis>, and add <emphasis>bigger</emphasis> and <emphasis>biggest</emphasis>. Then, continue with the next adjective to complete, until all comparison forms have been entered.
 </para>
 <para>
 <screenshot>
@@ -1375,7 +1375,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Finally, let's consider the <emphasis role='bold'>Conjugation</emphasis> form of the <emphasis role='bold'>Verbs</emphasis>. Select the <emphasis role='bold'>Verbs</emphasis> lesson and then activate the conjugation section on the right hand side by selecting <emphasis role='bold'>View</emphasis> from the menu bar and activating <emphasis role='bold'>Conjugation</emphasis>. As an example we edit the present tense (<emphasis role='bold'>Präsens</emphasis>) form of <emphasis role='bold'>''gehen</emphasis>''. Please first select <emphasis role='bold'>Präsens</emphasis> from the drop down menu and then add the verb forms.
+<para>Finally, let's consider the <guilabel>Conjugation</guilabel> form of the <guilabel>Verbs</guilabel>. Select the <guilabel>Verbs</guilabel> lesson and then activate the conjugation section on the right hand side by selecting <guimenu>View</guimenu> from the menu bar and activating <guimenuitem>Conjugation</guimenuitem>. As an example we edit the present tense (<guilabel>Präsens</guilabel>) form of <emphasis>gehen</emphasis>. Please first select <guilabel>Präsens</guilabel> from the drop down menu and then add the verb forms.
 </para>
 <para>
 <screenshot>
@@ -1392,11 +1392,11 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 <para>This needs to be done for all verbs, and in all possible tenses.
 </para>
-<para>Once you are done you can start to practice by clicking on the <emphasis role='bold'><filename>#Vocabulary Practice|Practice</filename></emphasis> button.
+<para>Once you are done you can start to practice by clicking on the <link linkend="practice"><guibutton>Practice</guibutton></link> button.
 </para>
 </sect2>
 <sect2 id='new-collection:-single-names-and-collective-names'><title id='new-collection:-single-names-and-collective-names-title'>New Collection: Single Names and Collective Names</title>
-<para>This exercise was created for the 3rd class of an Italian primary school. Pupils are supposed to connect single names with collective names, such as <emphasis role='bold'>tree → woods</emphasis>
+<para>This exercise was created for the 3rd class of an Italian primary school. Pupils are supposed to connect single names with collective names, such as <emphasis>tree</emphasis> → <emphasis>woods</emphasis>
 </para>
 <para>When you start Parley you get the start page, eventually also listing some previously used files (that you cannot see here).
 </para>
@@ -1413,7 +1413,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Click on <emphasis role='bold'>Create a New Collection</emphasis> and the following screen with empty or partly filled fields will show up:
+<para>Click on <guilabel>Create a New Collection</guilabel> and the following screen with empty or partly filled fields will show up:
 </para>
 <para>
 <screenshot>
@@ -1428,9 +1428,9 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Fill in the title, here <emphasis role='bold'>nomi singoli e collettivi</emphasis>, your name, e-mail address, in the <emphasis role='bold'>Comment</emphasis> section you can write down a more detailed description, select your category and license. Then there we have something special: instead of indicating the first and second language, like it normally would happen, we added <emphasis role='bold'>nome singolo</emphasis> (single name) and <emphasis role='bold'>nome collettivo</emphasis> (collective name). <emphasis role='bold'>Setup Grammar Details</emphasis> and <emphasis role='bold'>Download Grammar</emphasis> are not needed here. In the screenshot they are still activated - please deactivate them by just clicking on the checkboxes. When you are done, please click on <emphasis role='bold'>OK</emphasis>.
+<para>Fill in the title, here <emphasis>nomi singoli e collettivi</emphasis>, your name, e-mail address, in the <emphasis>Comment</emphasis> section you can write down a more detailed description, select your category and license. Then there we have something special: instead of indicating the first and second language, like it normally would happen, we added <emphasis>nome singolo</emphasis> (single name) and <emphasis>nome collettivo</emphasis> (collective name). <emphasis>Setup Grammar Details</emphasis> and <emphasis>Download Grammar</emphasis> are not needed here. In the screenshot they are still activated - please deactivate them by just clicking on the checkboxes. When you are done, please click on <guibutton>OK</guibutton>.
 </para>
-<para>The <emphasis role='bold'>Properties page</emphasis> for <emphasis role='bold'>nome singolo</emphasis> comes up and here you see it already with the necessary changes made:
+<para>The <guilabel>Properties</guilabel> page for <emphasis>nome singolo</emphasis> comes up and here you see it already with the necessary changes made:
 </para>
 <para>
 <screenshot>
@@ -1445,9 +1445,9 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>On the left hand side you can see where the data you are adding belongs to. <emphasis role='bold'>nome singolo</emphasis>. Choose the language, here <emphasis role='bold'>Italian</emphasis> and insert <emphasis role='bold'>nome singolo</emphasis> in the following editable field. Then click on <emphasis role='bold'>OK</emphasis>.
+<para>On the left hand side you can see where the data you are adding belongs to. <emphasis>nome singolo</emphasis>. Choose the language, here <emphasis>Italian</emphasis> and insert <emphasis>nome singolo</emphasis> in the following editable field. Then click on <guibutton>OK</guibutton>.
 </para>
-<para>Now the <emphasis role='bold'>Properties page</emphasis> for <emphasis role='bold'>nome collettivo</emphasis> is shown:
+<para>Now the <guilabel>Properties</guilabel> page for <emphasis>nome collettivo</emphasis> is shown:
 </para>
 <para>
 <screenshot>
@@ -1462,7 +1462,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Like before: choose <emphasis role='bold'>Italian</emphasis> as language and insert <emphasis role='bold'>nome collettivo</emphasis> and click on <emphasis role='bold'>OK</emphasis>.
+<para>Like before: choose <guilabel>Italian</guilabel> as language and insert <emphasis>nome collettivo</emphasis> and click on <guibutton>OK</guibutton>.
 </para>
 <para>And now you can start to edit:
 </para>
@@ -1479,7 +1479,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Just insert the <emphasis role='bold'>nome singolo</emphasis> (single name) in the first column and the corresponding <emphasis role='bold'>nome collettivo</emphasis> (collective name) in the second column.
+<para>Just insert the <emphasis>nome singolo</emphasis> (single name) in the first column and the corresponding <emphasis>nome collettivo</emphasis> (collective name) in the second column.
 </para>
 <para>
 <screenshot>
@@ -1494,7 +1494,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>If the number of available fields is not enough, just right-click anywhere on the edit section and choose <emphasis role='bold'>Add New Entry</emphasis>. Don't forget to save your file every now and then. When you have finished adding all entries you will want to see if Practice mode works fine. Well just click on the <emphasis role='bold'>Practice</emphasis> button right above the edit section and the page with the practice settings comes up:
+<para>If the number of available fields is not enough, just right-click anywhere on the edit section and choose <guilabel>Add New Entry</guilabel>. Don't forget to save your file every now and then. When you have finished adding all entries you will want to see if Practice mode works fine. Well just click on the <guibutton>Practice</guibutton> button right above the edit section and the page with the practice settings comes up:
 </para>
 <para>
 <screenshot>
@@ -1509,12 +1509,12 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>In this case <emphasis role='bold'>Multiple Choice</emphasis> is a good option, but also <emphasis role='bold'>Written</emphasis> will do fine. After choosing the Practice Mode just click on <emphasis role='bold'>Start Practice</emphasis> and have fun.
+<para>In this case <guilabel>Multiple Choice</guilabel> is a good option, but also <guilabel>Written</guilabel> will do fine. After choosing the Practice Mode just click on <guibutton>Start Practice</guibutton> and have fun.
 </para>
 </sect2>
 </sect1>
 <sect1 id='getting-additional-vocabulary-collections'><title id='getting-additional-vocabulary-collections-title'>Getting Additional Vocabulary Collections</title>
-<para>When you are on the <emphasis role='bold'>Start Page</emphasis> you have the possibility to install Collections directly from the server, provided you are online. Just click on <emphasis role='bold'>Download New Collections</emphasis>.
+<para>When you are on the <guilabel>Start Page</guilabel> you have the possibility to install Collections directly from the server, provided you are online. Just click on <guibutton>Download New Collections</guibutton>.
 </para>
 <para>
 <screenshot>
@@ -1529,7 +1529,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>A window with many interesting collections opens. Just select what you find most interesting and click on <emphasis role='bold'>Install</emphasis>. Then open the file to practice or edit.
+<para>A window with many interesting collections opens. Just select what you find most interesting and click on <guibutton>Install</guibutton>. Then open the file to practice or edit.
 </para>
 <para>
 <screenshot>
@@ -1546,7 +1546,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 </sect1>
 <sect1 id='configure-parley'><title id='configure-parley-title'>Configure Parley</title>
-<para>You can configure the appearance of Parley from the <emphasis role='bold'>Start Page</emphasis> or from within the <emphasis role='bold'>Edit section</emphasis>. Select <emphasis role='bold'>Settings</emphasis> from the menu bar and then <emphasis role='bold'>Configure Parley</emphasis>.
+<para>You can configure the appearance of Parley from the <guilabel>Start Page</guilabel> or from within the <guilabel>Edit section</guilabel>. Select <guimenu>Settings</guimenu> from the menu bar and then <guimenuitem>Configure Parley</guimenuitem>.
 </para>
 <para>
 <screenshot>
@@ -1562,11 +1562,11 @@ The words with the most mistakes are on top so you can easily see what you do no
 </screenshot>
 </para>
 <sect2 id='theme-tab'><title id='theme-tab-title'>Theme Tab</title>
-<para>The configuration opens with the <emphasis role='bold'>Theme</emphasis> section. This is the place where you can choose how Parley should greet you when launching it: an elegant <emphasis role='bold'>''Grey</emphasis>'' version, the all time busy <emphasis role='bold'>''Bees</emphasis>'' or the <emphasis role='bold'>''Fluffy Bunny</emphasis>'' for all those who love pink. Note that it could well be that <emphasis role='bold'>''Fluffy Bunny</emphasis>'' is not in your version: if you want it, read the following section.
+<para>The configuration opens with the <guilabel>Theme</guilabel> section. This is the place where you can choose how Parley should greet you when launching it: an elegant <guilabel>Grey</guilabel> version, the all time busy <guilabel>Bees</guilabel> or the <guilabel>Fluffy Bunny</guilabel> for all those who love pink. Note that it could well be that <guilabel>Fluffy Bunny</guilabel> is not in your version: if you want it, read the following section.
 </para>
-<para>Once you selected your preferred theme, click on <emphasis role='bold'>OK</emphasis>.
+<para>Once you selected your preferred theme, click on <guibutton>OK</guibutton>.
 </para>
-<para>Screenshots of the <emphasis role='bold'>''Bees</emphasis>'' and <emphasis role='bold'>''Fluffy Bunny</emphasis>'' themes:
+<para>Screenshots of the <guilabel>Bees</guilabel> and <guilabel>Fluffy Bunny</guilabel> themes:
 </para>
 <para>
 <screenshot>
@@ -1592,7 +1592,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>And if these are not enough: you can click on <emphasis role='bold'>Get New Themes</emphasis> to find more themes. Over time we hope that more and more themes come along. If you know how to create SVG graphics (for example with Inkscape), you can create your own theme and share it with the world.
+<para>And if these are not enough: you can click on <guibutton>Get New Themes</guibutton> to find more themes. Over time we hope that more and more themes come along. If you know how to create SVG graphics (for example with <application>Inkscape</application>), you can create your own theme and share it with the world.
 </para>
 <para>
 <screenshot>
@@ -1607,15 +1607,15 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Additional themes can be found on [http://kde-look.org/index.php?xcontentmode=85 kde-look.org]
+<para>Additional themes can be found on <ulink href="http://kde-look.org/index.php?xcontentmode=85">kde-look.org</ulink>
 </para>
 </sect2>
 <sect2 id='general-tab'><title id='general-tab-title'>General Tab</title>
-<para>The <emphasis role='bold'>General</emphasis> tab gives you some options regarding the behavior of Parley.
+<para>The <guilabel>General</guilabel> tab gives you some options regarding the behavior of Parley.
 </para>
 </sect2>
 <sect2 id='open-slash-save-options'><title id='open-slash-save-options-title'>Open/Save options</title>
-<para><emphasis role='bold'>Always load the last opened collection on start</emphasis> will immediately take you back to the vocabulary you were learning. Often you will use this together with the second option <emphasis role='bold'>Save vocabularies on close and quit</emphasis> because it's just handy not to have always answer the same question if changes (including learning results) should be changed or not. The option <emphasis role='bold'>Create a backup every ... minutes</emphasis> can be very handy to help you save your work frequently. One less thing to think about.
+<para><guilabel>Always load the last opened collection on start</guilabel> will immediately take you back to the vocabulary you were learning. Often you will use this together with the second option <guilabel>Save vocabularies on close and quit</guilabel> because it's just handy not to have always answer the same question if changes (including learning results) should be changed or not. The option <guilabel>Create a backup every ... minutes</guilabel> can be very handy to help you save your work frequently. One less thing to think about.
 </para>
 <para>Sometimes the import and/or export of text (CSV) files can be very handy and there you need the proper separator to elaborate data afterwards or to be able to read the data you got from somewhere else. Parley allows you to choose among various separators to make sure you can re-use your data.
 </para>
@@ -1638,7 +1638,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 </sect2>
 <sect2 id='view-tab'><title id='view-tab-title'>View Tab</title>
-<para>The <emphasis role='bold'>View Settings</emphasis> allows you to change font and its size, very handy when you work on a netbook for example, and you can choose the <emphasis role='bold'>Grade Colors</emphasis> you like best.
+<para>The <guilabel>View Settings</guilabel> allows you to change font and its size, very handy when you work on a netbook for example, and you can choose the <guilabel>Grade Colors</guilabel> you like best.
 </para>
 <para>
 <screenshot>
@@ -1690,7 +1690,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 Use the upload button from the file menu in the Editor within Parley. 
 </para>
 <para>If that does not work, you can also visit [http://kde-files.org/?xcontentmode=687 kde-files.org].
-In either case the files will show up in the <emphasis role='bold'>Download New Collections</emphasis> dialog on the <emphasis role='bold'>Start Page</emphasis>. 
+In either case the files will show up in the <guilabel>Download New Collections</guilabel> dialog on the <guilabel>Start Page</guilabel>. 
 </para>
 </sect1>
 <sect1 id='file-format'><title id='file-format-title'>File format</title>
