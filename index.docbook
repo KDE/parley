@@ -1602,7 +1602,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>And if these are not enough: you can click on <guibutton>Get New Themes</guibutton> to find more themes. Over time we hope that more and more themes come along. If you know how to create SVG graphics (for example, with <ulink href="http://inkscape.org/"><application>Inkscape</application></ulink>), you can create your own theme and share it with the world.
+<para>And if these are not enough: you can click on <guibutton>Get New Themes</guibutton> to find more themes. Over time we hope that more and more themes come along. If you know how to create SVG graphics (for example, with <ulink url="http://inkscape.org/"><application>Inkscape</application></ulink>), you can create your own theme and share it with the world.
 </para>
 <para>
 <screenshot>
@@ -1617,7 +1617,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Additional themes can be found on <ulink href="http://kde-look.org/index.php?xcontentmode=85">kde-look.org</ulink>
+<para>Additional themes can be found on <ulink url="http://kde-look.org/index.php?xcontentmode=85">kde-look.org</ulink>
 </para>
 </sect2>
 <sect2 id='general-tab'><title id='general-tab-title'>General Tab</title>
@@ -1668,7 +1668,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 </chapter>
 
 <chapter id='parley-on-windows'><title id='parley-on-windows-title'>&parley; on Windows</title>
-<para>It is possible to install &parley; together with other <ulink href="http://edu.kde.org/">Educational software</ulink> on Windows systems. For further info please visit <ulink href="http://windows.kde.org">this page</ulink>.
+<para>It is possible to install &parley; together with other <ulink url="http://edu.kde.org/">Educational software</ulink> on Windows systems. For further info please visit <ulink url="http://windows.kde.org">this page</ulink>.
 </para>
 </chapter>
 
@@ -1699,13 +1699,13 @@ The words with the most mistakes are on top so you can easily see what you do no
 <para>You can upload your files and share them with others.
 Use the upload button from the file menu in the Editor within &parley;. 
 </para>
-<para>If that does not work, you can also visit <ulink href="http://kde-files.org/?xcontentmode=687">kde-files.org</ulink>.
+<para>If that does not work, you can also visit <ulink url="http://kde-files.org/?xcontentmode=687">kde-files.org</ulink>.
 In either case the files will show up in the <guilabel>Download New Collections</guilabel> dialog on the <link linkend="start-page">Start Page</link>. 
 </para>
 </sect1>
 <sect1 id='file-format'><title id='file-format-title'>File format</title>
 <para>If you are interested in the file formats that &parley; can read and stores the vocabulary collections in, visit:
-<ulink href="http://userbase.kde.org/Parley/FileFormats">&parley; File Formats on userbase.kde.org</ulink> 
+<ulink url="http://userbase.kde.org/Parley/FileFormats">&parley; File Formats on userbase.kde.org</ulink> 
 </para>
 </sect1>
 <!--
