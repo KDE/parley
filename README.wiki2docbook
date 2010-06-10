@@ -89,12 +89,12 @@ docbook <menuchoice><guimenu>View</guimenu><guimenuitem>Lessons</guimenuitem>
 
 wiki '''File→Properties'''
 wt2db <emphasis role='bold'>File→Properties</emphasis>
-docbook <menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem>
+docbook <menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice>
 
 7) Italic
 ''Vocabulary Collection''
 ''Vocabulary Collection''
-docbook ??
+docbook <emphasis>Vocabulary Collectio</emphasis>
 
 8) Bold (gui strings ?)
 '''Start Page'''
@@ -150,3 +150,32 @@ wt2db
 |} 
 </para>
 docbook
+<para>
+<table>
+  <title>Personal Pronouns in English</title>
+  <tgroup cols="3">
+  <tbody>
+  <row>
+    <entry> </entry>
+    <entry>Singular</entry>
+    <entry>Plural</entry>
+  </row>
+  <row>
+    <entry>1st Person</entry>
+    <entry>I</entry>
+    <entry>we</entry>
+  </row>
+  <row>
+    <entry>2nd Person</entry>
+    <entry>you</entry>
+    <entry>you</entry>
+  </row>
+  <row>
+    <entry>3rd Person</entry>
+    <entry>he/she/it</entry>
+    <entry>they</entry>
+  </row>
+  </tbody>
+  </tgroup>
+</table>
+</para>

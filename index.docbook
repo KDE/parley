@@ -73,7 +73,7 @@ limited to language learning but supports a multitude of subjects.
 </bookinfo>
 
 <chapter id='introduction'><title id='introduction-title'>Introduction</title>
-<para>Parley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. You can create your own vocabulary collections with the words you need or select from a great variety of available <ulink url=" http://userbase.kde.org/Parley#Vocabulary_Collections">Vocabulary Collections</ulink>. There you can find collections containing language vocabulary and also anatomy, music, geography, chemistry or exam preparation.
+<para>Parley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. You can create your own vocabulary collections with the words you need or select from a great variety of available <ulink url="http://userbase.kde.org/Parley#Vocabulary_Collections">Vocabulary Collections</ulink>. There you can find collections containing language vocabulary and also anatomy, music, geography, chemistry or exam preparation.
 </para>
 <para>Parley is very flexible and uses the <ulink url="http://en.wikipedia.org/wiki/Flashcard">flash card learning approach</ulink>. It automatically keeps track of your learning progress. With Parley you can arrange your vocabulary as you wish, you create your own lessons as needed. But unlike real flash cards you can use different learning methods with Parley.
 </para>
@@ -95,7 +95,7 @@ limited to language learning but supports a multitude of subjects.
 
 <chapter id='start-page'><title id='start-page-title'>Start Page</title>
 <para>When you first launch Parley the <guilabel>Start Page</guilabel> welcomes you.
-At first the Start Page is empty, once you opened some vocabulary collections, it shows you the ones you worked with most recently. 
+At first the <guilabel>Start Page</guilabel> is empty, once you opened some vocabulary collections, it shows you the ones you worked with most recently. 
 </para>
 <para>
 <screenshot>
@@ -121,7 +121,7 @@ To <emphasis>edit</emphasis> a collection, click on the <guilabel>Editor</guilab
 </para>
 <para>You can also <link linkend="open-an-existing-collection">open a collection</link> if you have it on your computer already but it's not in the list.
 </para>
-<para>The last button on the Start Page offers you to download vocabulary collections made by others. When you've created a file that you'd like to share with others, you can easily upload it from the editor.
+<para>The last button on the <guilabel>Start Page</guilabel> offers you to download vocabulary collections made by others. When you've created a file that you'd like to share with others, you can easily upload it from the editor.
 </para>
 <para>Parley comes with different themes, you can switch to a different graphical style in the settings. For further information, see <link linkend="configure-parley-title">Configure Parley</link>.
 </para>
@@ -213,9 +213,9 @@ To <emphasis>edit</emphasis> a collection, click on the <guilabel>Editor</guilab
 <para>In the <guilabel>Practice Setup</guilabel> page you reach the <guilabel>Advanced Practice Configuration</guilabel> with the <guibutton>Configure Practice</guibutton> button in the toolbar. The button with the green icon.
 </para>
 <sect2 id='blocking'><title id='blocking-title'>Blocking</title>
-<para>If you plan to practice your vocabulary regularly, you should make sure that the ''Blocking'' feature is enabled. The Blocking options are part of the <link linkend="advanced-practice-settings-title">Advanced Practice Configuration</link>. There you go to the blocking page and tick the checkbox that says Blocking. Now you can even configure the interval in which words that you answered correctly will be repeated.
+<para>If you plan to practice your vocabulary regularly, you should make sure that the <guilabel>Blocking</guilabel> feature is enabled. The <guilabel>Blocking</guilabel> options are part of the <link linkend="advanced-practice-settings-title">Advanced Practice Configuration</link>. There you go to the blocking page and tick the checkbox that says <guilabel>Blocking</guilabel>. Now you can even configure the interval in which words that you answered correctly will be repeated.
 </para>
-<para>''Blocking'' means that words will not be asked for some period of time after the last practice. This period of time depends on how well you know the word, so that words you don't know yet will be asked more frequently.
+<para><quote>Blocking</quote> means that words will not be asked for some period of time after the last practice. This period of time depends on how well you know the word, so that words you don't know yet will be asked more frequently.
 </para>
 <para>
 <screenshot>
@@ -428,7 +428,7 @@ You can overrule how your answer is counted. See <link linkend="counting-an-answ
       <phrase></phrase>
     </textobject>
   </mediaobject>
-</screenshot><filename>File:Parley multiple choice 0-9-4 002.png|thumb|500px</filename>
+</screenshot>
 </para>
 <para>If your answer instead was wrong, the correct answer will be shown in green and the wrong one in red. Also here you go ahead by clicking on <guibutton>Continue</guibutton>.
 </para>
@@ -765,26 +765,36 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 <para>Articles in English are simply <guilabel>the</guilabel> which is the definite article and <guilabel>a</guilabel> as indefinite article. Most other languages have more articles which can be filled in at the articles tab.
 </para>
-<para>For conjugations the personal pronouns should be filled out. Most languages do not have different conjugation forms for he/she/it, in that case, you should <emphasis>not</emphasis> check <guilabel>Male/Female have different conjugations</guilabel>! Simply enter the pronouns for all three forms. Personal Pronouns in English:
+<para>For conjugations the personal pronouns should be filled out. Most languages do not have different conjugation forms for he/she/it, in that case, you should <emphasis>not</emphasis> check <guilabel>Male/Female have different conjugations</guilabel>! Simply enter the pronouns for all three forms.
 </para>
-<para>{| cellspacing=&quot;1&quot; cellpadding=&quot;1&quot; border=&quot;1&quot; style=&quot;width: 348px; height: 91px;&quot;
-|- 
-| 
-| Singular 
-| Plural 
-|- 
-| 1st Person 
-| I 
-| we 
-|- 
-| 2nd Person 
-| you 
-| you 
-|- 
-| 3rd Person 
-| he/she/it 
-| they 
-|} 
+<para>
+<table>
+  <title>Personal Pronouns in English</title>
+  <tgroup cols="3">
+  <tbody>
+  <row>
+    <entry> </entry>
+    <entry>Singular</entry>
+    <entry>Plural</entry>
+  </row>
+  <row>
+    <entry>1st Person</entry>
+    <entry>I</entry>
+    <entry>we</entry>
+  </row>
+  <row>
+    <entry>2nd Person</entry>
+    <entry>you</entry>
+    <entry>you</entry>
+  </row>
+  <row>
+    <entry>3rd Person</entry>
+    <entry>he/she/it</entry>
+    <entry>they</entry>
+  </row>
+  </tbody>
+  </tgroup>
+  </table>
 </para>
 <para>Tenses: Depending on the language, you can enter the right tenses which you later want to learn how to conjugate. Examples are: Simple Present, Simple Past, Future I etc.
 </para>
@@ -874,7 +884,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 <sect1 id='lessons'><title id='lessons-title'>Lessons</title>
 <para>On the left you have a list of lessons. If you started a new collection, this list might be empty except for one lesson that was created by default for you.
 </para>
-<para>If you cannot see the list of lessons, you might have to enable it in the View menu - ''View-&amp;gt;Lessons.''
+<para>If you cannot see the list of lessons, you might have to enable it in the View menu &ndash; <menuchoice><guimenu>View</guimenu><guimenuitem>Lessons</guimenuitem></menuchoice>.
 </para>
 <para>The check boxes in front of the lesson name show which lessons are currently included in your practice. The number next to it is the number of words in the lesson.
 </para>
@@ -913,13 +923,13 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 </sect2>
 <sect2 id='moving-comma-renaming-and-deleting-lessons'><title id='moving-comma-renaming-and-deleting-lessons-title'>Moving, Renaming and Deleting Lessons</title>
-<para>To change the name of a lesson, double click it, or right click on the lesson and choose &quot;''rename''&quot;. You can also delete it this way (but you'll lose its contents also then).
+<para>To change the name of a lesson, double click it, or right click on the lesson and choose <guimenuitem>Rename</guimenuitem>. You can also delete it this way (but you'll lose its contents also then).
 </para>
 <para>If you don't like the arrangement of lessons, you can move a lesson with the mouse. You can drag it onto another lesson, then it will become a child of that lesson.
 </para>
 </sect2>
 <sect2 id='splitting-a-lesson'><title id='splitting-a-lesson-title'>Splitting a Lesson</title>
-<para>If your lessons grow too big, you can choose to split them up to make learning easier in small units. 20 words for a lesson is probably a good size. Right click a lesson, or use Lesson-&amp;gt;Split and the lesson will be separated into child lessons. You can choose to randomize the words that are put into the new lessons before assigning them, or to keep them in order.
+<para>If your lessons grow too big, you can choose to split them up to make learning easier in small units. 20 words for a lesson is probably a good size. Right click a lesson, or use <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Split</guimenuitem></menuchoice> and the lesson will be separated into child lessons. You can choose to randomize the words that are put into the new lessons before assigning them, or to keep them in order.
 </para>
 </sect2>
 <sect2 id='what-is-shown-in-the-table'><title id='what-is-shown-in-the-table-title'>What is Shown in the Table</title>
@@ -934,7 +944,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 <para>You can categorize the word types just like lessons.
 </para>
-<para>If you want to see all words of a certain type - e.g. all nouns, simply select the noun category, and you will see only nouns in the table.
+<para>If you want to see all words of a certain type &ndash; &eg; all nouns, simply select the noun category, and you will see only nouns in the table.
 </para>
 <para>The easiest way to set the word type, is to drag and drop a word onto its type. You can even do this with multiple words at the same time.
 </para>
@@ -942,7 +952,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 <para>added para</para>
 </sect2>
 <sect2 id='adding-new-vocabulary'><title id='adding-new-vocabulary-title'>Adding New Vocabulary</title>
-<para>Use &quot;''Add New Entry''&quot; in the toolbar to add new words. You can start typing the word in the first language right away. By default Parley lets you enter another word when you press enter in the last row, so you don't have to keep using the add button. After entering the first word, press enter or tab to go to the next language.
+<para>Use <guilabel>Add New Entry</guilabel> in the toolbar to add new words. You can start typing the word in the first language right away. By default &parley; lets you enter another word when you press enter in the last row, so you don't have to keep using the add button. After entering the first word, press enter or tab to go to the next language.
 </para>
 </sect2>
 <sect2 id='editing-words'><title id='editing-words-title'>Editing Words</title>
@@ -1098,7 +1108,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 <para>The tenses can be configured for each language: <link linkend="languages-and-grammar-title">Languages and Grammar</link>.
 </para>
-<para>Now you can use the <filename>Conjugations Practice</filename> mode.
+<para>Now you can use the <guilabel>Conjugations Practice</guilabel> mode.
 </para>
 </sect1>
 <sect1 id='creating-new-files'><title id='creating-new-files-title'>Creating New Files</title>
@@ -1107,7 +1117,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 <sect2 id='new-collection:-vocabulary-english-dash-german'><title id='new-collection:-vocabulary-english-dash-german-title'>New Collection: Vocabulary English-German</title>
 <para>In this section we describe how you can create a vocabulary training file including pictures and sound. In a second stage we will also add adjectives and verbs. This is a very complete example and therefore quite long. Eventually you will not need all points for your project.
 </para>
-<para>Since we wish to add sound-files and pictures, we should make sure that these will all be in one folder which for convenience is being called ''eng-deu''. Our data file we create with Parley will be saved in the same folder. This will help a lot when you decide to share your work with others.
+<para>Since we wish to add sound-files and pictures, we should make sure that these will all be in one folder which for convenience is being called ''eng-deu''. Our data file we create with &parley; will be saved in the same folder. This will help a lot when you decide to share your work with others.
 </para>
 <para>So this is what we have in terms of sound files and pictures:
 </para>
@@ -1124,7 +1134,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Let's start from the Start Page which is shown once you launch Parley:
+<para>Let's start from the <guilabel>Start Page</guilabel> which is shown once you launch &parley;:
 </para>
 <para>
 <screenshot>
@@ -1209,13 +1219,13 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>In our case we want only 4 entries in the animals lesson. There are many empty lines that should be deleted. To do this click on the first empty field, and keep the shift key pressed while clicking on the last empty field. All lines to be deleted will be highlighted. Then, press the Del key and confirm the question ''Do you really want to delete the selected entries?'' by clicking on the <guibutton>Delete</guibutton> button.
+<para>In our case we want only 4 entries in the animals lesson. There are many empty lines that should be deleted. To do this click on the first empty field, and keep the shift key pressed while clicking on the last empty field. All lines to be deleted will be highlighted. Then, press the <keycap>Del</keycap> key and confirm the question ''Do you really want to delete the selected entries?'' by clicking on the <guibutton>Delete</guibutton> button.
 </para>
 <para>Let's add the fruit terminology. Just click on the lesson named <guilabel>Fruit</guilabel>. This second lesson is completely empty. Since we have five fruit terms we need to add five lines. Therefore, press the <keycap>Insert</keycap> key five times, and then, just like before, we add our terminology.
 </para>
 <para>Don't forget to save every now and then ...
 </para>
-<para>A click on the root of our lesson tree <guilabel>Collection: Vocabulary trainer E...</guilabel> and Parley will show us all entries that are present in the two lessons:
+<para>A click on the root of our lesson tree <guilabel>Collection: Vocabulary trainer E...</guilabel> and &parley; will show us all entries that are present in the two lessons:
 </para>
 <para>
 <screenshot>
@@ -1230,7 +1240,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>Time to add sound and images. First of all we need to activate the Image and Sound views. From the menu bar select <guimenu>View</guimenu> and there click on <guimenuitem>Image</guimenuitem> and then <guilabel>Sound</guilabel>. Once these options are activated, two new sections are shown on the right hand side of the Parley editing screen: <guilabel>Image</guilabel> and <guilabel>Sound</guilabel>.
+<para>Time to add sound and images. First of all we need to activate the <guilabel>Image</guilabel> and <guilabel>Sound</guilabel> views. From the menu bar select <guimenu>View</guimenu> and there click on <guimenuitem>Image</guimenuitem> and then <guilabel>Sound</guilabel>. Once these options are activated, two new sections are shown on the right hand side of the &parley; editing screen: <guilabel>Image</guilabel> and <guilabel>Sound</guilabel>.
 </para>
 <para>
 <screenshot>
@@ -1398,7 +1408,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 <sect2 id='new-collection:-single-names-and-collective-names'><title id='new-collection:-single-names-and-collective-names-title'>New Collection: Single Names and Collective Names</title>
 <para>This exercise was created for the 3rd class of an Italian primary school. Pupils are supposed to connect single names with collective names, such as <emphasis>tree</emphasis> → <emphasis>woods</emphasis>
 </para>
-<para>When you start Parley you get the start page, eventually also listing some previously used files (that you cannot see here).
+<para>When you start &parley; you get the <link linkend="start-page">Start Page</link>, eventually also listing some previously used files (that you cannot see here).
 </para>
 <para>
 <screenshot>
@@ -1514,7 +1524,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 </sect2>
 </sect1>
 <sect1 id='getting-additional-vocabulary-collections'><title id='getting-additional-vocabulary-collections-title'>Getting Additional Vocabulary Collections</title>
-<para>When you are on the <guilabel>Start Page</guilabel> you have the possibility to install Collections directly from the server, provided you are online. Just click on <guibutton>Download New Collections</guibutton>.
+<para>When you are on the <link linkend="start-page">Start Page</link> you have the possibility to install Collections directly from the server, provided you are online. Just click on <guibutton>Download New Collections</guibutton>.
 </para>
 <para>
 <screenshot>
@@ -1545,8 +1555,8 @@ The words with the most mistakes are on top so you can easily see what you do no
 </screenshot>
 </para>
 </sect1>
-<sect1 id='configure-parley'><title id='configure-parley-title'>Configure Parley</title>
-<para>You can configure the appearance of Parley from the <guilabel>Start Page</guilabel> or from within the <guilabel>Edit section</guilabel>. Select <guimenu>Settings</guimenu> from the menu bar and then <guimenuitem>Configure Parley</guimenuitem>.
+<sect1 id='configure-parley'><title id='configure-parley-title'>Configure &parley;</title>
+<para>You can configure the appearance of &parley; from the <link linkend="start-page">Start Page</link> or from within the <guilabel>Edit section</guilabel>. Select <guimenu>Settings</guimenu> from the menu bar and then <guimenuitem>Configure &parley;</guimenuitem>.
 </para>
 <para>
 <screenshot>
@@ -1562,7 +1572,7 @@ The words with the most mistakes are on top so you can easily see what you do no
 </screenshot>
 </para>
 <sect2 id='theme-tab'><title id='theme-tab-title'>Theme Tab</title>
-<para>The configuration opens with the <guilabel>Theme</guilabel> section. This is the place where you can choose how Parley should greet you when launching it: an elegant <guilabel>Grey</guilabel> version, the all time busy <guilabel>Bees</guilabel> or the <guilabel>Fluffy Bunny</guilabel> for all those who love pink. Note that it could well be that <guilabel>Fluffy Bunny</guilabel> is not in your version: if you want it, read the following section.
+<para>The configuration opens with the <guilabel>Theme</guilabel> section. This is the place where you can choose how &parley; should greet you when launching it: an elegant <guilabel>Grey</guilabel> version, the all time busy <guilabel>Bees</guilabel> or the <guilabel>Fluffy Bunny</guilabel> for all those who love pink. Note that it could well be that <guilabel>Fluffy Bunny</guilabel> is not in your version: if you want it, read the following section.
 </para>
 <para>Once you selected your preferred theme, click on <guibutton>OK</guibutton>.
 </para>
@@ -1592,7 +1602,7 @@ The words with the most mistakes are on top so you can easily see what you do no
   </mediaobject>
 </screenshot>
 </para>
-<para>And if these are not enough: you can click on <guibutton>Get New Themes</guibutton> to find more themes. Over time we hope that more and more themes come along. If you know how to create SVG graphics (for example with <application>Inkscape</application>), you can create your own theme and share it with the world.
+<para>And if these are not enough: you can click on <guibutton>Get New Themes</guibutton> to find more themes. Over time we hope that more and more themes come along. If you know how to create SVG graphics (for example, with <ulink href="http://inkscape.org/"><application>Inkscape</application></ulink>), you can create your own theme and share it with the world.
 </para>
 <para>
 <screenshot>
@@ -1611,17 +1621,17 @@ The words with the most mistakes are on top so you can easily see what you do no
 </para>
 </sect2>
 <sect2 id='general-tab'><title id='general-tab-title'>General Tab</title>
-<para>The <guilabel>General</guilabel> tab gives you some options regarding the behavior of Parley.
+<para>The <guilabel>General</guilabel> tab gives you some options regarding the behavior of &parley;.
 </para>
 </sect2>
 <sect2 id='open-slash-save-options'><title id='open-slash-save-options-title'>Open/Save options</title>
 <para><guilabel>Always load the last opened collection on start</guilabel> will immediately take you back to the vocabulary you were learning. Often you will use this together with the second option <guilabel>Save vocabularies on close and quit</guilabel> because it's just handy not to have always answer the same question if changes (including learning results) should be changed or not. The option <guilabel>Create a backup every ... minutes</guilabel> can be very handy to help you save your work frequently. One less thing to think about.
 </para>
-<para>Sometimes the import and/or export of text (CSV) files can be very handy and there you need the proper separator to elaborate data afterwards or to be able to read the data you got from somewhere else. Parley allows you to choose among various separators to make sure you can re-use your data.
+<para>Sometimes the import and/or export of text (CSV) files can be very handy and there you need the proper separator to elaborate data afterwards or to be able to read the data you got from somewhere else. &parley; allows you to choose among various separators to make sure you can re-use your data.
 </para>
 </sect2>
 <sect2 id='editing-option'><title id='editing-option-title'>Editing option</title>
-<para>Here you can determine whether Parley automatically appends new rows while you are editing your vocabulary collection. This can be useful if you want to add many entries, before then splitting them up into various lessons. On the other hand, it can be good to have this option off if you want to work by creating lessons with a set maximum number of entries.
+<para>Here you can determine whether &parley; automatically appends new rows while you are editing your vocabulary collection. This can be useful if you want to add many entries, before then splitting them up into various lessons. On the other hand, it can be good to have this option off if you want to work by creating lessons with a set maximum number of entries.
 </para>
 <para>
 <screenshot>
@@ -1657,8 +1667,8 @@ The words with the most mistakes are on top so you can easily see what you do no
 </sect1>
 </chapter>
 
-<chapter id='parley-on-windows'><title id='parley-on-windows-title'>Parley on Windows</title>
-<para>It is possible to install Parley together with other Educational software on Windows systems. For further info please visit http://windows.kde.org
+<chapter id='parley-on-windows'><title id='parley-on-windows-title'>&parley; on Windows</title>
+<para>It is possible to install &parley; together with other <ulink href="http://edu.kde.org/">Educational software</ulink> on Windows systems. For further info please visit <ulink href="http://windows.kde.org">this page</ulink>.
 </para>
 </chapter>
 
@@ -1687,15 +1697,15 @@ The words with the most mistakes are on top so you can easily see what you do no
 -->
 <sect1 id='upload-and-share-collections'><title id='upload-and-share-collections-title'>Upload and Share Collections</title>
 <para>You can upload your files and share them with others.
-Use the upload button from the file menu in the Editor within Parley. 
+Use the upload button from the file menu in the Editor within &parley;. 
 </para>
-<para>If that does not work, you can also visit [http://kde-files.org/?xcontentmode=687 kde-files.org].
-In either case the files will show up in the <guilabel>Download New Collections</guilabel> dialog on the <guilabel>Start Page</guilabel>. 
+<para>If that does not work, you can also visit <ulink href="http://kde-files.org/?xcontentmode=687">kde-files.org</ulink>.
+In either case the files will show up in the <guilabel>Download New Collections</guilabel> dialog on the <link linkend="start-page">Start Page</link>. 
 </para>
 </sect1>
 <sect1 id='file-format'><title id='file-format-title'>File format</title>
-<para>If you are interested in the file formats that Parley can read and stores the vocabulary collections in, visit:
-<filename>Parley File Formats on userbase.kde.org</filename> 
+<para>If you are interested in the file formats that &parley; can read and stores the vocabulary collections in, visit:
+<ulink href="http://userbase.kde.org/Parley/FileFormats">&parley; File Formats on userbase.kde.org</ulink> 
 </para>
 </sect1>
 <!--
@@ -1715,7 +1725,7 @@ In either case the files will show up in the <guilabel>Download New Collections<
 <para>I'd like to thank the following people personally for their
 contribution to &parley;:</para>
 <itemizedlist>
-<listitem><para>Peter Hedlund who kept KVocTrain alive and started the KDE 4 port which eventually would become Parley</para></listitem>
+<listitem><para>Peter Hedlund who kept KVocTrain alive and started the KDE 4 port which eventually would become &parley;</para></listitem>
 
 <listitem><para>David Capel</para></listitem>
 <listitem><para>Avgoustinos Kadis</para></listitem>
