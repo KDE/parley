@@ -102,12 +102,12 @@ docbook <emphasis>Vocabulary Collectio</emphasis>
 <gui...>Start Page</gui...>
 
 9)
-&quot;context menu&quot;
-&quot;context menu&quot;
-
+wiki &quot;context menu&quot;
+wt2db &quot;context menu&quot;
+docbook <quote>context menu</quote>
 10)
-'''''try again'''''
-<emphasis role='bold'>''try again</emphasis>''
+wiki '''''try again''''' -> should never happen, nonsense
+wt2db <emphasis role='bold'>''try again</emphasis>''
 
 11) table
 wiki
