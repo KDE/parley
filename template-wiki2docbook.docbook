@@ -60,8 +60,8 @@ add wiki timestamp here
 
 -->
 
-<date>2003-01-10</date>
-<releaseinfo>1.01.00</releaseinfo>
+<date>2010-06-01</date>
+<releaseinfo>1.0 &kde; SC 4.5</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -81,10 +81,11 @@ Please at least include KDE, the KDE package it is in, the name
 <keyword>kdeutils</keyword>
 <keyword>Kapp</keyword>
 <keyword>nothing</keyword>
-<keyword>nothing else</keyword>
 </keywordset>
 
 </bookinfo>
+
+<!--userbase-content-->
 
 <!-- The contents of the documentation begin here.  Label
 each chapter so with the id attribute. This is necessary for two reasons: it
@@ -248,6 +249,8 @@ installed.</para>
 </qandaset>
 </chapter>
 
+<!--userbase-content-->
+
 <chapter id="credits">
 
 <!-- Include credits for the programmers, documentation writers, and
@@ -323,7 +326,7 @@ information here.
 -->
 
 <para>
-In order to successfully use &kmyapplication;, you need &kde; 1.1. Foobar.lib is
+In order to successfully use &kmyapplication;, you need &kde; 4.6. Foobar.lib is
 required in order to support the advanced &kmyapplication; features. &kmyapplication; uses
 about 5 megs of memory to run, but this may vary depending on your
 platform and configuration.

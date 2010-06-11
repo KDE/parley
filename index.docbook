@@ -44,11 +44,9 @@
 </copyright>
 <legalnotice>&FDLNotice;</legalnotice>
 
-<!-- 
-userbase timestamp
-<timestamp>2010-06-06T16:08:34Z</timestamp>
--->
+<!--userbase <timestamp>2010-06-06T16:08:34Z</timestamp>-->
 
+<!--userbase-content-->
 <date>2010-06-06</date>
 <releaseinfo>0.9.4 (&kde; SC 4.5)</releaseinfo>
 
@@ -1714,6 +1712,7 @@ In either case the files will show up in the <guilabel>Download New Collections<
 </sect1>
 -->
 </chapter>
+<!--userbase-content-->
 
 <chapter id="credits">
 
