@@ -240,11 +240,11 @@ for guimenu in such.findall(outtext):
 
 #'''File→Properties'''
 #<menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice>
-remuster=u"'{2,3}.*→.*?'{2,3}"
+remuster="'{2,3}.*?→.*?'{2,3}"
 such=re.compile(remuster)#,re.DOTALL)
 for guimenu in such.findall(outtext):
   repl=guimenu.strip("'")
-  repl=repl.split(u'→')
+  repl=repl.split('→')
   repl='<menuchoice><guimenu>%s</guimenu><guimenuitem>%s</guimenuitem></menuchoice>' %(repl[0],repl[1])
   outtext=outtext.replace(guimenu,repl)
 
@@ -310,6 +310,7 @@ for linkimage in such.findall(outtext):
     repl=repl.replace('[[File:','')
     repl=repl.replace(' ','_')
     repl=repl.rstrip(']')
+    repl=repl.capitalize()
     repl=screenshot_template %repl
     #print repl
   elif '[[Image:' in linkimage: #screenshot
@@ -317,6 +318,7 @@ for linkimage in such.findall(outtext):
     repl=repl.replace('[[Image:','')
     repl=repl.replace(' ','_')
     repl=repl.rstrip(']')
+    repl=repl.capitalize()
     repl=screenshot_template %repl
     #print repl
   elif '[[#' in linkimage: #document internal link
@@ -384,3 +386,4 @@ modifiedtext=open(filemodified,"w")
 modifiedtext.write(docbookheader+outtext+docbookfooter)
 modifiedtext.close()
 
+print "output written to %s" %filemodified
