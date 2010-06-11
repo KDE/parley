@@ -107,13 +107,16 @@ for line in textlines:
       #print headinglevels,headinglevelsconsecutive
     #print newequalcharcount,equalcharjumpstart,fixequalcharcount
     if newequalcharcount-1<=equalcharjumpstart:
+      fixequalcharcountbackstep=fixequalcharcount
       fixequalcharcount=0
       headinglevels=list(headinglevelsconsecutive)
       #print headinglevels
   #outtext+=line
   if line[0]=='=' and line[1]!='=':
     closemarkup=''
-    if level>3:closemarkup+='</%s>\n' %headinglevels[toplevel+3]
+    if level-fixequalcharcountbackstep>3:
+      #print fixequalcharcountbackstep
+      closemarkup+='</%s>\n' %headinglevels[toplevel+3]
     if level>2:closemarkup+='</%s>\n' %headinglevels[toplevel+2]
     if level>1:closemarkup+='</%s>\n' %headinglevels[toplevel+1]
     if level>0:closemarkup+='</%s>\n' %headinglevels[toplevel+0]
@@ -127,7 +130,7 @@ for line in textlines:
     outtext+='%s%s' %(closemarkup,repl)
   elif line[0:2]=='==' and line[2]!='=':
     closemarkup=''
-    if level>3:closemarkup+='</%s>\n' %headinglevels[toplevel+3]
+    if level-fixequalcharcountbackstep>3:closemarkup+='</%s>\n' %headinglevels[toplevel+3]
     if level>2:closemarkup+='</%s>\n' %headinglevels[toplevel+2]
     if level>1:closemarkup+='</%s>\n' %headinglevels[toplevel+1]
     #if level>3:closemarkup+='</sect4>\n'
@@ -139,7 +142,7 @@ for line in textlines:
     outtext+='%s%s' %(closemarkup,repl)
   elif line[0:3]=='===' and line[3]!='=':
     closemarkup=''
-    if level>3:closemarkup+='</%s>\n' %headinglevels[toplevel+3]
+    if level-fixequalcharcountbackstep>3:closemarkup+='</%s>\n' %headinglevels[toplevel+3]
     if level>2:closemarkup+='</%s>\n' %headinglevels[toplevel+2]
     #if level>3:closemarkup+='</sect4>\n'
     #if level>2:closemarkup+='</sect3>\n'
@@ -186,7 +189,7 @@ for line in textlines:
            initemizedlist=False
 #           outtext+='</itemizedlist>\n'
          outtext+='<para>%s</para>\n' %line
-
+  fixequalcharcountbackstep=0
 outtext+='</%s>\n</%s>' %(headinglevels[level-1], headinglevels[toplevel])
 #outtext+='</sect%d>\n</sect1>' %level
 #print outtext
