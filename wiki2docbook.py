@@ -314,6 +314,7 @@ for linkimage in such.findall(outtext):
     repl=repl.replace(' ','_')
     repl=repl.rstrip(']')
     repl=repl.capitalize()
+    repl=repl.replace('.jpeg','.png')
     repl=screenshot_template %repl
     #print repl
   elif '[[Image:' in linkimage: #screenshot
@@ -322,6 +323,7 @@ for linkimage in such.findall(outtext):
     repl=repl.replace(' ','_')
     repl=repl.rstrip(']')
     repl=repl.capitalize()
+    repl=repl.replace('.jpeg','.png')
     repl=screenshot_template %repl
     #print repl
   elif '[[#' in linkimage: #document internal link
