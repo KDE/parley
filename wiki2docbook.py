@@ -40,15 +40,19 @@ docbookheader,docbookfooter='',''
 if not os.path.isfile(replacefile):
   if replacefile!='':
     print 'docbook file with previous userbase page dump not found, generating a docbook with template header + footer'
+    replacefile=''
 else:
   text=open(replacefile,"r").read()
   try:
     docbookheader,userpagebody,docbookfooter=text.split(userbase_content_marker)
   except:
     print 'docbook file has no previous userbase page dump, generating a docbook with template header + footer'
+    replacefile=''
 if docbookheader=='': 
+  print 'generating a docbook with template header + footer, edit the defaults'
   text=open('/home/kdedev/svn/work/doc/parley/template-wiki2docbook.docbook',"r").read()
   docbookheader,userpagebody,docbookfooter=text.split(userbase_content_marker)
+  replacefile=''
 
 def sectionheader(text,level,beginmarkup):
   levelstr='='*level
@@ -67,9 +71,6 @@ def sectionheader(text,level,beginmarkup):
     #print text
     return text
     
-#inputfile = "/tmp/ParleyManualUserbase.original"
-#inputfile = "/tmp/ParleyManual.modifiedheadinglevels"
-
 text=open(inputfile,"r").read()
 remuster='<timestamp>.*?</timestamp>'
 such=re.compile(remuster,re.DOTALL)
@@ -103,12 +104,12 @@ for line in textlines:
       equalcharjumpstart=equalcharcount
       equalcharcount=newequalcharcount
       headinglevels.insert(equalcharjumpstart,"jump")
-      print headinglevels,headinglevelsconsecutive
+      #print headinglevels,headinglevelsconsecutive
     #print newequalcharcount,equalcharjumpstart,fixequalcharcount
     if newequalcharcount-1<=equalcharjumpstart:
       fixequalcharcount=0
       headinglevels=list(headinglevelsconsecutive)
-      print headinglevels
+      #print headinglevels
   #outtext+=line
   if line[0]=='=' and line[1]!='=':
     closemarkup=''
@@ -374,10 +375,12 @@ for section in ['chapter', 'sect1', 'sect2', 'sect3', 'sect4']:
 
 outtext+=userbase_content_marker
 
-inputfilemodified = "%s.new.docbook" %inputfile
+if replacefile!='':
+  filemodified = "%s.new.docbook" %replacefile
+else:
+ filemodified = "%s.new.docbook" %inputfile
 
-modifiedtext=open(inputfilemodified,"w")
-#modifiedtext.write(outtext)
+modifiedtext=open(filemodified,"w")
 modifiedtext.write(docbookheader+outtext+docbookfooter)
 modifiedtext.close()
 

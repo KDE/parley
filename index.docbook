@@ -44,9 +44,6 @@
 </copyright>
 <legalnotice>&FDLNotice;</legalnotice>
 
-<!--userbase <timestamp>2010-06-06T16:08:34Z</timestamp>-->
-
-<!--userbase-content-->
 <date>2010-06-06</date>
 <releaseinfo>0.9.4 (&kde; SC 4.5)</releaseinfo>
 
@@ -70,6 +67,9 @@ limited to language learning but supports a multitude of subjects.
 
 </bookinfo>
 
+<!--userbase <timestamp>2010-06-06T16:08:34Z</timestamp>-->
+
+<!--userbase-content-->
 <chapter id='introduction'><title id='introduction-title'>Introduction</title>
 <para>Parley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. You can create your own vocabulary collections with the words you need or select from a great variety of available <ulink url="http://userbase.kde.org/Parley#Vocabulary_Collections">Vocabulary Collections</ulink>. There you can find collections containing language vocabulary and also anatomy, music, geography, chemistry or exam preparation.
 </para>
