@@ -15,18 +15,20 @@ def usage():
     print '         -t, --toplevel          : toplevel heading 0=chapter  1=sect1'
     print '         -c, --check             : check heading levels and print them to stout'
     print '         -n, --noheaderfooter    : no header/footer from template'
+    print '         -u, --userbasedata      : use userbase data for a simple header and footer'
     print '         -r file, --replace file : index.docbook file with kde docbook header + footer'
     print '                                   and body from a previous userbase page dump to replace it'
     print '                                   if empty a default kde docbook header + footer is used'
     sys.exit(2)
 try:
-    opts, args = getopt.getopt(sys.argv[1:], "ht:r:cn", ["help", "toplevel=", 'replace=','check', 'noheaderfooter'])
+    opts, args = getopt.getopt(sys.argv[1:], "ht:r:cnu", ["help", "toplevel=", 'replace=','check', 'noheaderfooter', 'userbasedata'])
 except getopt.GetoptError:
     usage() # print help information and exit
 
 replacefile=''
 checklevels=False
 noheaderfooter=False
+userbasedata=False
 for o,a in opts:
     if o in ("-h", "--help"):
         usage()
@@ -38,6 +40,8 @@ for o,a in opts:
         checklevels=True
     if o in ("-n", "--noheaderfooter"):
         noheaderfooter=True
+    if o in ("-u", "--userbasedata"):
+        userbasedata=True
 
 if len(args) != 1:
     usage()
@@ -87,12 +91,33 @@ such=re.compile(remuster,re.DOTALL)
 if len(such.findall(text))!=1:
   print 'missing userbase timestamp'
   outtext=userbase_content_marker
-else: 
+else:
+  remuster='<timestamp>.*?T'
+  such=re.compile(remuster,re.DOTALL)
+  releasedate=such.findall(text)[0].replace('<timestamp>','').replace('T','')
   userbase_timestamp='<!--userbase %s-->\n' %(such.findall(text)[0])
   outtext='%s%s' %(userbase_timestamp, userbase_content_marker)
 
 if userbase_timestamp in docbookheader: # it is the same page dump version, remove it
   docbookheader=docbookheader.replace(userbase_timestamp,'')
+
+if userbasedata:
+  #userbase header scan
+  remuster='\{\|.*?\|\}'
+  such=re.compile(remuster,re.DOTALL)
+  userbase_header=such.findall(text)[0]
+  remuster="'''.*?'''"
+  such=re.compile(remuster,re.DOTALL)
+  abstracttext=such.findall(userbase_header)[0].strip("'''")
+  remuster='\[\[.*?\]\]'
+  such=re.compile(remuster,re.DOTALL)
+  abstractscreenshotlink=such.findall(userbase_header)[0].strip("[[Image:").split('|')[0]
+  docbookheader=''
+  docbookfooter=''
+print releasedate
+print userbase_header
+print abstracttext
+print abstractscreenshotlink
 
 textlines = open(inputfile,"rw").readlines()
 level=0

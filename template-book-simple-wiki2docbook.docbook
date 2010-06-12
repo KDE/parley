@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE">
+]>
+<book lang="&language;">
+<bookinfo>
+<title>The %s Handbook</title>
+<authorgroup>
+<author>
+<personname>
+<firstname>George</firstname>
+<surname>Ugnacious</surname>
+</personname>
+<email>gnu@kde.org</email>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+<!--don't need that for valid xml
+<copyright>
+<year>2010</year>
+<holder>George N. Ugnacious</holder>
+</copyright>
+-->
+<legalnotice>&FDLNotice;</legalnotice>
+
+<date>2010-06-01</date>
+<releaseinfo>&kde; SC 4.5</releaseinfo>
+
+<abstract>
+<para>This will be replaced by the data from userbase header.</para>
+<para>
+another dummy is an application specially designed to do nothing you wouldever want.
+</para>
+<para>
+<screenshot>
+<screeninfo>Here's a screenshot</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="screenshot.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase>Screenshot</phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+</abstract>
+<keywordset>
+<keyword>KDE</keyword>
+</keywordset>
+</bookinfo>
+
+<!--userbase-content-->
+
+<chapter id="introduction"><title>Introduction</title><para>dummy</para></chapter>
+
+<!--userbase-content-->
+
+<chapter id="credits">
+<title>Credits and License</title>
+<para>
+Documentation Copyright &copy; 1999 George N. Ugnacious <email>gnu@kde.org</email>
+</para>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+&underFDL;
+</chapter>
+&documentation.index;
+</book>
