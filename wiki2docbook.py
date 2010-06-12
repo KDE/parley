@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 import re, sys, os, getopt
 
-headinglevelsconsecutive=['chapter', 'sect1', 'sect2', 'sect3', 'sect4', 'sect5']
-toplevel=0 #sect1
-#toplevel=0 #chapter
+headinglevels=['chapter', 'sect1', 'sect2', 'sect3', 'sect4', 'sect5']
+#toplevel=1 #sect1
+toplevel=0 #chapter
 
 userbase_content_marker='\n<!--userbase-content-->\n'
 
@@ -13,16 +13,20 @@ def usage():
     print '       generates docbook output file with extension *.new.docbook'
     print 'Options: -h, --help              : usage'
     print '         -t, --toplevel          : toplevel heading 0=chapter  1=sect1'
+    print '         -c, --check             : check heading levels and print them to stout'
+    print '         -n, --noheaderfooter    : no header/footer from template'
     print '         -r file, --replace file : index.docbook file with kde docbook header + footer'
     print '                                   and body from a previous userbase page dump to replace it'
     print '                                   if empty a default kde docbook header + footer is used'
     sys.exit(2)
 try:
-    opts, args = getopt.getopt(sys.argv[1:], "ht:r:", ["help", "toplevel=", 'replace='])
+    opts, args = getopt.getopt(sys.argv[1:], "ht:r:cn", ["help", "toplevel=", 'replace=','check', 'noheaderfooter'])
 except getopt.GetoptError:
     usage() # print help information and exit
 
 replacefile=''
+checklevels=False
+noheaderfooter=False
 for o,a in opts:
     if o in ("-h", "--help"):
         usage()
@@ -30,6 +34,11 @@ for o,a in opts:
         toplevel=a
     if o in ("-r", "--replace"):
         replacefile=a
+    if o in ("-c", "--check"):
+        checklevels=True
+    if o in ("-n", "--noheaderfooter"):
+        noheaderfooter=True
+
 if len(args) != 1:
     usage()
 inputfile=args[0]
@@ -55,6 +64,8 @@ if docbookheader=='':
   replacefile=''
 
 def sectionheader(text,level,beginmarkup):
+  #output of headinglevels to console
+  if checklevels: print text.rstrip('\n')
   levelstr='='*level
   remuster='%s.*?%s' %(levelstr,levelstr)
   such=re.compile(remuster,re.DOTALL)
@@ -62,13 +73,12 @@ def sectionheader(text,level,beginmarkup):
     sectiontext=treffer.replace(levelstr,'')
     sectiontext=sectiontext.strip(' ')
     sectionanchor=sectiontext.replace("'",'')
+    sectionanchor=sectionanchor.replace("?",'')
     sectionanchor=sectionanchor.replace(",",'')
     sectionanchor=sectionanchor.replace("/",'-')
     sectionanchor=sectionanchor.replace(' ','-')
     sectionanchor=sectionanchor.lower()
     text=text.replace(treffer, '%s id="%s"><title>%s</title>' %(beginmarkup,sectionanchor,sectiontext))
-    #output of headinglevels
-    #print text
     return text
     
 text=open(inputfile,"r").read()
@@ -78,74 +88,73 @@ if len(such.findall(text))!=1:
   print 'missing userbase timestamp'
   outtext=userbase_content_marker
 else: 
-  outtext='<!--userbase %s-->\n%s' %(such.findall(text)[0], userbase_content_marker)
+  userbase_timestamp='<!--userbase %s-->\n' %(such.findall(text)[0])
+  outtext='%s%s' %(userbase_timestamp, userbase_content_marker)
+
+if userbase_timestamp in docbookheader: # it is the same page dump version, remove it
+  docbookheader=docbookheader.replace(userbase_timestamp,'')
 
 textlines = open(inputfile,"rw").readlines()
-#outtext=''
 level=0
-equalcharcount=1
-equalcharjumpstart=1
-fixequalcharcount=0
-headinglevels=list(headinglevelsconsecutive)
 skip=False
 initemizedlist=False
-
+minequalno=5
+#fix non consecutive heading levels
+prevno,jumpno,deltano=1,0,0
+remuster='^={1,5}'
+for i in range(0,len(textlines)):
+  line=textlines[i]
+  such=re.compile(remuster)
+  if len(such.findall(line))>0:
+    actualno=line.count('=',0,5)
+    minequalno=min(minequalno,actualno)
+    if actualno-prevno>1:
+      deltano=actualno-prevno-1
+      jumpno=prevno
+    prevno=actualno
+    if actualno<=jumpno:
+      jumpno=0
+      deltano=0
+    #print line.rstrip('\n'),actualno,jumpno,deltano,line.replace('='*actualno,'='*(actualno-deltano)).rstrip('\n')
+    if deltano>0: textlines[i]=line.replace('='*actualno,'='*(actualno-deltano))
+if minequalno>1:
+  delta=minequalno-1
+  for i in range(0,len(textlines)):
+    line=textlines[i]
+    such=re.compile(remuster)
+    if len(such.findall(line))>0:
+      actualno=line.count('=',0,5)
+      textlines[i]=line.replace('='*actualno,'='*(actualno-delta))
+      #print line,textlines[i]
 for line in textlines:
-  if '&lt;/translate&gt;' in line: skip=True
+  if '&lt;/translate&gt;' in line or '[[Category:' in line: skip=True
   #strip off: &lt;!--T:1--&gt
   remuster='&lt;.*&gt;'
   line=re.sub(remuster,'',line)
 
-  #fix non consecutive heading levels
-  if line[0]=='=':
-    newequalcharcount=line.count('=',0,5)
-    if newequalcharcount-equalcharcount>1:
-      fixequalcharcount=newequalcharcount-equalcharcount-1
-      equalcharjumpstart=equalcharcount
-      equalcharcount=newequalcharcount
-      headinglevels.insert(equalcharjumpstart,"jump")
-      #print headinglevels,headinglevelsconsecutive
-    #print newequalcharcount,equalcharjumpstart,fixequalcharcount
-    if newequalcharcount-1<=equalcharjumpstart:
-      fixequalcharcountbackstep=fixequalcharcount
-      fixequalcharcount=0
-      headinglevels=list(headinglevelsconsecutive)
-      #print headinglevels
-  #outtext+=line
-  if line[0]=='=' and line[1]!='=':
+  if line[0:1]=='=' and line[1]!='=':
     closemarkup=''
-    if level-fixequalcharcountbackstep>3:
-      #print fixequalcharcountbackstep
-      closemarkup+='</%s>\n' %headinglevels[toplevel+3]
+    if level>3:closemarkup+='</%s>\n' %headinglevels[toplevel+3]
     if level>2:closemarkup+='</%s>\n' %headinglevels[toplevel+2]
     if level>1:closemarkup+='</%s>\n' %headinglevels[toplevel+1]
     if level>0:closemarkup+='</%s>\n' %headinglevels[toplevel+0]
-    #if level>3:closemarkup+='</sect4>\n'
-    #if level>2:closemarkup+='</sect3>\n'
-    #if level>1:closemarkup+='</sect2>\n'
-    #if level>0:closemarkup+='</sect1>\n'
     level=1
     repl=sectionheader(line,1,'<%s' %headinglevels[toplevel-1+1])
     #repl=sectionheader(line,1,'<sect')
     outtext+='%s%s' %(closemarkup,repl)
   elif line[0:2]=='==' and line[2]!='=':
     closemarkup=''
-    if level-fixequalcharcountbackstep>3:closemarkup+='</%s>\n' %headinglevels[toplevel+3]
+    if level>3:closemarkup+='</%s>\n' %headinglevels[toplevel+3]
     if level>2:closemarkup+='</%s>\n' %headinglevels[toplevel+2]
     if level>1:closemarkup+='</%s>\n' %headinglevels[toplevel+1]
-    #if level>3:closemarkup+='</sect4>\n'
-    #if level>2:closemarkup+='</sect3>\n'
-    #if level>1:closemarkup+='</sect2>\n'
     level=2
     repl=sectionheader(line,2,'<%s' %headinglevels[toplevel-1+2])
     #repl=sectionheader(line,2,'<sect')
     outtext+='%s%s' %(closemarkup,repl)
   elif line[0:3]=='===' and line[3]!='=':
     closemarkup=''
-    if level-fixequalcharcountbackstep>3:closemarkup+='</%s>\n' %headinglevels[toplevel+3]
+    if level>3:closemarkup+='</%s>\n' %headinglevels[toplevel+3]
     if level>2:closemarkup+='</%s>\n' %headinglevels[toplevel+2]
-    #if level>3:closemarkup+='</sect4>\n'
-    #if level>2:closemarkup+='</sect3>\n'
     level=3
     repl=sectionheader(line,3,'<%s' %headinglevels[toplevel-1+3])
     #repl=sectionheader(line,3,'<sect')
@@ -160,7 +169,7 @@ for line in textlines:
     outtext+='%s%s' %(closemarkup,repl)
   else: #level="para"
      if line !='\n' and level!=0 and skip==False:
-       if line[0]=='*': #itemizedlist
+       if line[0]=='*' or line[0:2]==':*': #itemizedlist
          if initemizedlist==False:
            initemizedlist=True
            outtext+='<itemizedlist>\n'
@@ -187,18 +196,15 @@ for line in textlines:
        else:
          if initemizedlist==True:
            initemizedlist=False
-#           outtext+='</itemizedlist>\n'
          outtext+='<para>%s</para>\n' %line
-  fixequalcharcountbackstep=0
-outtext+='</%s>\n</%s>' %(headinglevels[level-1], headinglevels[toplevel])
-#outtext+='</sect%d>\n</sect1>' %level
-#print outtext
+outtext+='</%s>' %(headinglevels[level-1])
+if level>1: outtext+='\n</%s>' %(headinglevels[toplevel])
 
 #''''' -> '''
 outtext=outtext.replace("'''''","''")
 
 #'''[[#Vocabulary Practice|Practice]]'''
-# gui link gui not allowed in docbook
+# guilabel-link-guilabel not allowed in docbook
 # move ''' inside for document internal links
 remuster="'''\[\[#.*?\]]'''"
 such=re.compile(remuster,re.DOTALL)
@@ -240,7 +246,6 @@ for guimenu in such.findall(outtext):
   repl='<menuchoice><guimenu>%s</guimenu><guimenuitem>%s</guimenuitem></menuchoice>' %(repl[0],repl[1])
   outtext=outtext.replace(guimenu,repl)
 
-
 #'''File→Properties'''
 #<menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice>
 remuster="'{2,3}.*?→.*?'{2,3}"
@@ -251,7 +256,6 @@ for guimenu in such.findall(outtext):
   repl='<menuchoice><guimenu>%s</guimenu><guimenuitem>%s</guimenuitem></menuchoice>' %(repl[0],repl[1])
   outtext=outtext.replace(guimenu,repl)
 
-
 #'''Start Page'''
 #<guilabel>Start Page</guilabel>
 remuster="'''.*?'''"
@@ -260,7 +264,6 @@ for guilabel in such.findall(outtext):
   repl=guilabel.replace("'''",'')
   repl='<guilabel>%s</guilabel>' %(repl)
   outtext=outtext.replace(guilabel,repl)
-
 
 #''Vocabulary Collection''
 #<emphasis>Vocabulary Collection</emphasis>
@@ -313,7 +316,7 @@ for linkimage in such.findall(outtext):
     repl=repl.replace('[[File:','')
     repl=repl.replace(' ','_')
     repl=repl.rstrip(']')
-    repl=repl.capitalize()
+    repl=repl.capitalize() #falsch für k3b
     repl=repl.replace('.jpeg','.png')
     repl=screenshot_template %repl
     #print repl
@@ -362,8 +365,6 @@ for link in such.findall(outtext):
   #print repl
   outtext=outtext.replace(link,repl)
 
-#print outtext
-
 #fix empty chapter/sections
 def comment_empty_sections(outtext, sectname):
   remuster="<%s.*?</%s" %(sectname, sectname)
@@ -377,7 +378,7 @@ def comment_empty_sections(outtext, sectname):
       outtext=outtext.replace(section,repl)
   return outtext
 
-for section in ['chapter', 'sect1', 'sect2', 'sect3', 'sect4']:
+for section in headinglevels:
   outtext=comment_empty_sections(outtext, section)
 
 outtext+=userbase_content_marker
@@ -385,10 +386,13 @@ outtext+=userbase_content_marker
 if replacefile!='':
   filemodified = "%s.new.docbook" %replacefile
 else:
- filemodified = "%s.new.docbook" %inputfile
+  filemodified = "%s.new.docbook" %inputfile
 
 modifiedtext=open(filemodified,"w")
-modifiedtext.write(docbookheader+outtext+docbookfooter)
+if noheaderfooter:
+  modifiedtext.write(outtext)
+else:
+  modifiedtext.write(docbookheader+outtext+docbookfooter)
 modifiedtext.close()
 
 print "output written to %s" %filemodified
