@@ -44,7 +44,7 @@ and use `&George.N.Ugnacious; &George.N.Ugnacious.mail;' in the author element.
 </authorgroup>
 
 <copyright>
-<year>2002</year>
+<year>2010</year>
 <holder>George N. Ugnacious</holder>
 </copyright>
 <legalnotice>&FDLNotice;</legalnotice>
@@ -137,7 +137,6 @@ patent issues. -->
 <title>More &kmyapplication; features</title>
 
 <para>It slices! It dices! and it comes with a free toaster!</para>
-<para>
 
 </sect1>
 </chapter>
