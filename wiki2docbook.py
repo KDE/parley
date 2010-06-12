@@ -212,7 +212,7 @@ for guilinkgui in such.findall(outtext):
   repl=guilinkgui.replace("'''[[","[[")
   repl=repl.replace("|","|'''")
   repl=repl.replace("]]'''","''']]")
-  outtext=outtext.replace(guilinkgui,repl+'a')
+  outtext=outtext.replace(guilinkgui,repl)
 remuster="''\[\[#.*?\]]''"
 such=re.compile(remuster,re.DOTALL)
 for guilinkgui in such.findall(outtext):
@@ -233,7 +233,7 @@ remuster='&quot;.*?&quot;'
 such=re.compile(remuster)#,re.DOTALL)
 for quot in such.findall(outtext):
   repl=quot.replace('&quot;','')
-  repl='<quote>%s</quote>' %(repl)
+  repl='<quote>%s</quote>' %(repl.strip(' '))
   outtext=outtext.replace(quot,repl)
 
 #''View-&amp;gt;Lessons.''
@@ -243,7 +243,7 @@ such=re.compile(remuster)#,re.DOTALL)
 for guimenu in such.findall(outtext):
   repl=guimenu.strip("'")
   repl=repl.split('-&amp;gt;')
-  repl='<menuchoice><guimenu>%s</guimenu><guimenuitem>%s</guimenuitem></menuchoice>' %(repl[0],repl[1])
+  repl='<menuchoice><guimenu>%s</guimenu><guimenuitem>%s</guimenuitem></menuchoice>' %(repl[0].strip(' '),repl[1].strip(' '))
   outtext=outtext.replace(guimenu,repl)
 
 #'''File→Properties'''
@@ -253,7 +253,7 @@ such=re.compile(remuster)#,re.DOTALL)
 for guimenu in such.findall(outtext):
   repl=guimenu.strip("'")
   repl=repl.split('→')
-  repl='<menuchoice><guimenu>%s</guimenu><guimenuitem>%s</guimenuitem></menuchoice>' %(repl[0],repl[1])
+  repl='<menuchoice><guimenu>%s</guimenu><guimenuitem>%s</guimenuitem></menuchoice>' %(repl[0].strip(' '),repl[1].strip(' '))
   outtext=outtext.replace(guimenu,repl)
 
 #'''Start Page'''
@@ -262,7 +262,7 @@ remuster="'''.*?'''"
 such=re.compile(remuster)#,re.DOTALL)
 for guilabel in such.findall(outtext):
   repl=guilabel.replace("'''",'')
-  repl='<guilabel>%s</guilabel>' %(repl)
+  repl='<guilabel>%s</guilabel>' %(repl.strip(' '))
   outtext=outtext.replace(guilabel,repl)
 
 #''Vocabulary Collection''
@@ -271,7 +271,7 @@ remuster="''.*?''"
 such=re.compile(remuster)#,re.DOTALL)
 for guilabel in such.findall(outtext):
   repl=guilabel.replace("''",'')
-  repl='<emphasis>%s</emphasis>' %(repl)
+  repl='<emphasis>%s</emphasis>' %(repl.strip(' '))
   outtext=outtext.replace(guilabel,repl)
 
 #userbase internal link
@@ -318,7 +318,7 @@ for linkimage in such.findall(outtext):
     repl=repl.rstrip(']')
     repl=repl.capitalize() #falsch für k3b
     repl=repl.replace('.jpeg','.png')
-    repl=screenshot_template %repl
+    repl=screenshot_template %repl.strip(' ')
     #print repl
   elif '[[Image:' in linkimage: #screenshot
     repl=linkimage.split('|')[0]
@@ -327,7 +327,7 @@ for linkimage in such.findall(outtext):
     repl=repl.rstrip(']')
     repl=repl.capitalize()
     repl=repl.replace('.jpeg','.png')
-    repl=screenshot_template %repl
+    repl=screenshot_template %repl.strip(' ')
     #print repl
   elif '[[#' in linkimage: #document internal link
     linkimagesplit=linkimage.split('|')
@@ -336,7 +336,7 @@ for linkimage in such.findall(outtext):
     anchor=anchor.replace( '_','-')
     anchor=anchor.lower()
     anchortext=linkimagesplit[1].replace(']]','')
-    repl='<link linkend="%s">%s</link>' %(anchor,anchortext)
+    repl='<link linkend="%s">%s</link>' %(anchor,anchortext.strip(' '))
     #print linkimage,repl
   else:                   #userbase internal link
     linkimagesplit=linkimage.split('|')
@@ -345,7 +345,7 @@ for linkimage in such.findall(outtext):
       anchortext=linkimagesplit[1].replace(']]','')
     else:
       anchortext=''
-    repl='<ulink url="http://userbase.kde.org/%s">%s</ulink>' %(anchor,anchortext)
+    repl='<ulink url="http://userbase.kde.org/%s">%s</ulink>' %(anchor,anchortext.strip(' '))
     #print repl
   outtext=outtext.replace(linkimage,repl)
     
@@ -361,7 +361,7 @@ for link in such.findall(outtext):
   anchor = linksplit[0]
   anchortext=''
   for i in range(1,len(linksplit)): anchortext+=linksplit[i]+' '
-  repl='<ulink url="%s">%s</ulink>' %(anchor,anchortext)
+  repl='<ulink url="%s">%s</ulink>' %(anchor,anchortext.strip(' '))
   #print repl
   outtext=outtext.replace(link,repl)
 
