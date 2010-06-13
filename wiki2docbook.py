@@ -83,7 +83,7 @@ def sectionheader(text,level,beginmarkup):
     sectionid=sectionid.replace(' ','-')
     sectionid=sectionid.replace('<quote>','').replace('</quote>','')
     sectionid=sectionid.replace('&quot;','')
-    sectionid=sectionid.replace('nbsp;','')
+    sectionid=sectionid.replace('&nbsp;','')
     sectionid=sectionid.replace('&amp;','')
     sectionid=sectionid.replace('(','').replace(')','')
     sectionid=sectionid.lower()
@@ -97,10 +97,10 @@ if len(such.findall(text))!=1:
   print 'missing userbase timestamp'
   outtext=userbase_content_marker
 else:
+  userbase_timestamp='<!--userbase %s-->\n' %(such.findall(text)[0])
   remuster='<timestamp>.*?T'
   such=re.compile(remuster,re.DOTALL)
   releasedate=such.findall(text)[0].replace('<timestamp>','').replace('T','')
-  userbase_timestamp='<!--userbase %s-->\n' %(such.findall(text)[0])
   outtext='%s%s' %(userbase_timestamp, userbase_content_marker)
 
 if userbase_timestamp in docbookheader: # it is the same page dump version, remove it
@@ -108,6 +108,7 @@ if userbase_timestamp in docbookheader: # it is the same page dump version, remo
 
 if userbasedata:
   #userbase header scan
+  userbase_header,abstracttext,pagename,abstractscreenshotlink='','','',''
   remuster='\{\|.*?\|\}'
   such=re.compile(remuster,re.DOTALL)
   userbase_header=such.findall(text)[0]
@@ -117,12 +118,28 @@ if userbasedata:
   remuster='\[\[.*?\]\]'
   such=re.compile(remuster,re.DOTALL)
   abstractscreenshotlink=such.findall(userbase_header)[0].strip("[[Image:").split('|')[0]
-  docbookheader=''
-  docbookfooter=''
-  print releasedate
-  print userbase_header
-  print abstracttext
-  print abstractscreenshotlink
+  pagename=re.findall('<title>.*?</title>',text)[0].replace('<title>','').replace('</title>','')
+  authorname='This documentation was converted from the KDE UserBase '\
+    +'<ulink url=" http://userbase.kde.org/%s">%s</ulink> page.' %(pagename,pagename)
+  docbookheader='<?xml version="1.0" ?>\n'\
+    +'<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [\n'\
+    +'  <!ENTITY % addindex "IGNORE">\n  <!ENTITY % English "INCLUDE">\n]>\n<book lang="&language;">\n'
+  docbookheader+='<bookinfo>\n<title>The %s Handbook</title>\n<authorgroup>\n<author>\n<personname>\n\
+    <firstname>%s</firstname>\n<surname></surname>\n</personname>\n\
+    </author>\n<!-- TRANS:ROLES_OF_TRANSLATORS -->\n\
+    </authorgroup>\n<legalnotice>&FDLNotice;</legalnotice>\n<date>%s</date>\n\
+    <releaseinfo>&kde; SC 4.5</releaseinfo>\n<abstract>\n<para>%s</para>\n\
+    </abstract>\n\
+    <keywordset>\n<keyword>KDE</keyword>\n</keywordset>\n</bookinfo>\n' %(pagename,authorname,releasedate,abstracttext)
+  docbookfooter='<chapter id="credits">\n<title>Credits and License</title>\n\
+    <para>\nDocumentation Copyright see the UserBase \
+    <ulink url="http://userbase.kde.org/index.php?title=%s&amp;action=history">%s page history</ulink></para>\n\
+    <!-- TRANS:CREDIT_FOR_TRANSLATORS -->\n&underFDL;\n</chapter>\n&documentation.index;\n</book>' %(pagename,pagename)
+  if releasedate=='':print 'releasedate not found'
+  if userbase_header=='':print 'userbase_header not found'
+  if abstracttext=='':print 'abstracttext not found'
+  #if abstractscreenshotlink=='':print 'abstractscreenshotlink not found'
+  if pagename=='':print 'pagename not found'
 
 textlines = open(inputfile,"rw").readlines()
 level=0
@@ -243,8 +260,8 @@ for line in textlines:
 outtext+='</%s>' %(headinglevels[level-1])
 if level>1: outtext+='\n</%s>' %(headinglevels[toplevel])
 
-#''''' -> '''
-outtext=outtext.replace("'''''","''")
+#''''' -> ''' bold+italic -> gui
+outtext=outtext.replace("'''''","'''")
 
 #'''[[#Vocabulary Practice|Practice]]'''
 # guilabel-link-guilabel not allowed in docbook
@@ -278,6 +295,13 @@ for quot in such.findall(outtext):
   repl=quot.replace('&quot;','')
   repl='<quote>%s</quote>' %(repl.strip(' '))
   outtext=outtext.replace(quot,repl)
+
+#&amp;nbsp; -> &nbsp; make it a valid entity
+outtext=outtext.replace('&amp;nbsp;','&nbsp;')
+
+#-&amp;gt; -> -&gt;
+# proper fix would bee to add markup menuchoice..., but how to detect if the menu or menuitem has one or more words?
+outtext=outtext.replace('-&amp;gt;','-&gt;')
 
 #<quote> in title not allowed, strip it off
 remuster='<title>.*?</title>'
@@ -329,6 +353,8 @@ for guilabel in such.findall(outtext):
 #<ulink url=" http://userbase.kde.org/Parley#Vocabulary_Collections">Vocabulary Collections</ulink>
 #[[Parley/FileFormats|Parley File Formats on userbase.kde.org]
 #<ulink url=" http://userbase.kde.org/Parley/FileFormats">Parley File Formats on userbase.kde.org</ulink>
+#[[Akregator]]
+#<ulink url=" http://userbase.kde.org/Akregator">Akregator</ulink>
 
 #document internal link
 #[[#Vocabulary Editing|an Editor for Vocabulary Collections]]
@@ -357,7 +383,7 @@ screenshot_template='\n<screenshot>\n\
   </mediaobject>\n\
 </screenshot>'
 
-remuster='\[\[.*?\]]'
+remuster='\[\[.*?\]\]'
 such=re.compile(remuster,re.DOTALL)
 for linkimage in such.findall(outtext):
   #print linkimage
@@ -388,13 +414,16 @@ for linkimage in such.findall(outtext):
     anchortext=linkimagesplit[1].replace(']]','')
     repl='<link linkend="%s">%s</link>' %(anchor.strip(' '),anchortext.strip(' '))
     #print linkimage,repl
+  elif '[[http' in linkimage: #it is an external link, process that later
+    pass
   else:                   #userbase internal link
     linkimagesplit=linkimage.split('|')
-    anchor=linkimagesplit[0].replace('[[','')
+    anchor=linkimagesplit[0].lstrip('[')
+    anchor=anchor.rstrip(']')
     if len(linkimagesplit)>1:
       anchortext=linkimagesplit[1].replace(']]','')
     else:
-      anchortext=''
+      anchortext=anchor
     repl='<ulink url="http://userbase.kde.org/%s">%s</ulink>' %(anchor.strip(' '),anchortext.strip(' '))
     #print repl
   outtext=outtext.replace(linkimage,repl)
@@ -402,8 +431,9 @@ for linkimage in such.findall(outtext):
 #external link
 #[http://en.wikipedia.org/wiki/Flashcard flash card learning approach]
 #<ulink url="http://en.wikipedia.org/wiki/Flashcard">flash card learning approach</ulink>
-
-remuster='\[http.*\]'
+#[[https://mail.kde.org/mailman/listinfo/kdepim-users subscribe to kdepim-users]]
+#<ulink url="https://mail.kde.org/mailman/listinfo/kdepim-users">subscribe to kdepim-users</ulink>
+remuster='\[{1,2}http.*?\]{1,2}'
 such=re.compile(remuster)#,re.DOTALL)
 for link in such.findall(outtext):
   linkwobracket=link.replace('[','').replace(']','')
@@ -411,7 +441,7 @@ for link in such.findall(outtext):
   anchor = linksplit[0]
   anchortext=''
   for i in range(1,len(linksplit)): anchortext+=linksplit[i]+' '
-  repl='<ulink url="%s">%s</ulink>' %(anchor,anchortext.strip(' '))
+  repl='<ulink url="%s">%s</ulink>' %(anchor,anchortext.rstrip(' '))
   #print repl
   outtext=outtext.replace(link,repl)
 
