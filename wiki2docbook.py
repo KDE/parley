@@ -74,15 +74,20 @@ def sectionheader(text,level,beginmarkup):
   remuster='%s.*?%s' %(levelstr,levelstr)
   such=re.compile(remuster,re.DOTALL)
   for treffer in such.findall(text):
-    sectiontext=treffer.replace(levelstr,'')
-    sectiontext=sectiontext.strip(' ')
-    sectionanchor=sectiontext.replace("'",'')
-    sectionanchor=sectionanchor.replace("?",'')
-    sectionanchor=sectionanchor.replace(",",'')
-    sectionanchor=sectionanchor.replace("/",'-')
-    sectionanchor=sectionanchor.replace(' ','-')
-    sectionanchor=sectionanchor.lower()
-    text=text.replace(treffer, '%s id="%s"><title>%s</title>' %(beginmarkup,sectionanchor,sectiontext))
+    sectiontitle=treffer.replace(levelstr,'')
+    sectiontitle=sectiontitle.strip(' ')
+    sectionid=sectiontitle.replace("'",'')
+    sectionid=sectionid.replace("?",'')
+    sectionid=sectionid.replace(",",'')
+    sectionid=sectionid.replace("/",'-')
+    sectionid=sectionid.replace(' ','-')
+    sectionid=sectionid.replace('<quote>','').replace('</quote>','')
+    sectionid=sectionid.replace('&quot;','')
+    sectionid=sectionid.replace('nbsp;','')
+    sectionid=sectionid.replace('&amp;','')
+    sectionid=sectionid.replace('(','').replace(')','')
+    sectionid=sectionid.lower()
+    text=text.replace(treffer, '%s id="%s"><title>%s</title>' %(beginmarkup,sectionid,sectiontitle))
     return text
     
 text=open(inputfile,"r").read()
@@ -114,10 +119,10 @@ if userbasedata:
   abstractscreenshotlink=such.findall(userbase_header)[0].strip("[[Image:").split('|')[0]
   docbookheader=''
   docbookfooter=''
-print releasedate
-print userbase_header
-print abstracttext
-print abstractscreenshotlink
+  print releasedate
+  print userbase_header
+  print abstracttext
+  print abstractscreenshotlink
 
 textlines = open(inputfile,"rw").readlines()
 level=0
@@ -151,7 +156,13 @@ if minequalno>1:
       actualno=line.count('=',0,5)
       textlines[i]=line.replace('='*actualno,'='*(actualno-delta))
       #print line,textlines[i]
+
 for line in textlines:
+  remuster='\{\|style.*?\|\}' #geht nicht weil mit zeilenumbruch!
+  such=re.compile(remuster,re.DOTALL)
+  if len(such.findall(line))>0:print such.findall(line)
+  #line=re.sub(remuster,'',line)
+  
   if '&lt;/translate&gt;' in line or '[[Category:' in line: skip=True
   #strip off: &lt;!--T:1--&gt
   remuster='&lt;.*&gt;'
@@ -167,6 +178,7 @@ for line in textlines:
     repl=sectionheader(line,1,'<%s' %headinglevels[toplevel-1+1])
     #repl=sectionheader(line,1,'<sect')
     outtext+='%s%s' %(closemarkup,repl)
+    initemizedlist=False
   elif line[0:2]=='==' and line[2]!='=':
     closemarkup=''
     if level>3:closemarkup+='</%s>\n' %headinglevels[toplevel+3]
@@ -176,6 +188,7 @@ for line in textlines:
     repl=sectionheader(line,2,'<%s' %headinglevels[toplevel-1+2])
     #repl=sectionheader(line,2,'<sect')
     outtext+='%s%s' %(closemarkup,repl)
+    initemizedlist=False
   elif line[0:3]=='===' and line[3]!='=':
     closemarkup=''
     if level>3:closemarkup+='</%s>\n' %headinglevels[toplevel+3]
@@ -184,6 +197,7 @@ for line in textlines:
     repl=sectionheader(line,3,'<%s' %headinglevels[toplevel-1+3])
     #repl=sectionheader(line,3,'<sect')
     outtext+='%s%s' %(closemarkup,repl)
+    initemizedlist=False
   elif line[0:4]=='====' and line[4]!='=':
     closemarkup=''
     if level>3:closemarkup+='</%s>\n' %headinglevels[toplevel+3]
@@ -192,19 +206,23 @@ for line in textlines:
     repl=sectionheader(line,4,'<%s' %headinglevels[toplevel-1+4])
     #repl=sectionheader(line,4,'<sect')
     outtext+='%s%s' %(closemarkup,repl)
+    initemizedlist=False
   else: #level="para"
      if line !='\n' and level!=0 and skip==False:
+       line=line.lstrip(':') #strip off intending for the moment, how translate that to docbook?
        if line[0]=='*' or line[0:2]==':*': #itemizedlist
+         listitemtext=line.lstrip(' :*').rstrip(' ')
          if initemizedlist==False:
            initemizedlist=True
            outtext+='<itemizedlist>\n'
          else: 
            outtext=outtext.rstrip('\n')
            outtext=outtext[:-len('</itemizedlist>')]
-         outtext+='<listitem><para>%s</para></listitem>\n</itemizedlist>\n' %line[1:]
+           #alternativ outtext.relace('</itemizedlist><listitem>','<listitem>') later!!
+         outtext+='<listitem><para>%s</para></listitem>\n</itemizedlist>\n' %listitemtext
        elif line[0:2]=='{|':  #begin table
          tabletext='<para>\n<table>\n  <title> </title>\n  <tgroup cols="%d">\n  <tbody>\n'
-         #colsnumber=0
+         colsnumber=0
          rownumber=0
        elif line[0:2]=='| ':  #in table in row
          tabletext+='    <entry>%s</entry>\n' %line[1:].lstrip(' ').rstrip(' \n')
@@ -260,6 +278,13 @@ for quot in such.findall(outtext):
   repl=quot.replace('&quot;','')
   repl='<quote>%s</quote>' %(repl.strip(' '))
   outtext=outtext.replace(quot,repl)
+
+#<quote> in title not allowed, strip it off
+remuster='<title>.*?</title>'
+such=re.compile(remuster)#,re.DOTALL)
+for title in such.findall(outtext):
+  repl=title.replace('<quote>','').replace('</quote>','')
+  outtext=outtext.replace(title,repl)
 
 #''View-&amp;gt;Lessons.''
 #<menuchoice><guimenu>View</guimenu><guimenuitem>Lessons</guimenuitem></menuchoice>
@@ -361,7 +386,7 @@ for linkimage in such.findall(outtext):
     anchor=anchor.replace( '_','-')
     anchor=anchor.lower()
     anchortext=linkimagesplit[1].replace(']]','')
-    repl='<link linkend="%s">%s</link>' %(anchor,anchortext.strip(' '))
+    repl='<link linkend="%s">%s</link>' %(anchor.strip(' '),anchortext.strip(' '))
     #print linkimage,repl
   else:                   #userbase internal link
     linkimagesplit=linkimage.split('|')
@@ -370,7 +395,7 @@ for linkimage in such.findall(outtext):
       anchortext=linkimagesplit[1].replace(']]','')
     else:
       anchortext=''
-    repl='<ulink url="http://userbase.kde.org/%s">%s</ulink>' %(anchor,anchortext.strip(' '))
+    repl='<ulink url="http://userbase.kde.org/%s">%s</ulink>' %(anchor.strip(' '),anchortext.strip(' '))
     #print repl
   outtext=outtext.replace(linkimage,repl)
     
