@@ -147,12 +147,20 @@ if userbasedata:
 
 #&lt;nowiki&gt;== Subpages of {{FULLPAGENAME}}==
 #{{Special:PrefixIndex/{{FULLPAGENAME}}/}}&lt;/nowiki&gt;
+nowikimarkup_id,nowikimarkup_idtext=[],[]
+nowikimarkup_id_marker='nowikimarkup_id_marker__'
+nowikimarkup_id_number=0
 remuster='&lt;nowiki&gt;.*?&lt;/nowiki&gt;'
 such=re.compile(remuster,re.DOTALL)
 for treffer in such.findall(text):
-  repl=treffer.replace('&lt;nowiki&gt;','')
-  repl=repl.replace('&lt;/nowiki&gt;','')
-  text=text.replace(treffer,'')#'<literal>%s</literal>'%repl)
+  repl=treffer.replace('&lt;nowiki&gt;','<literal>')
+  repl=repl.replace('&lt;/nowiki&gt;','</literal>')
+  nowikimarkup_id_marker_text='nowikimarkup_id_marker__%d' %nowikimarkup_id_number
+  nowikimarkup_id.append(nowikimarkup_id_marker_text)
+  nowikimarkup_idtext.append(repl)
+  nowikimarkup_id_number+=1
+  print treffer,nowikimarkup_id_marker_text
+  text=text.replace(treffer,nowikimarkup_id_marker_text)#'<literal>%s</literal>'%repl)
   #what to do with this?
 
 #strip off some header footer stuff
@@ -218,18 +226,19 @@ remuster='\{\|.*?\|\}'
 such=re.compile(remuster,re.DOTALL)
 for treffer in such.findall(text):
   treffersplit=treffer.split('||')
-  markuptype, markuptext= treffersplit[1],treffersplit[2]
-  markuptype=markuptype.strip("'")
-  markuptext=markuptext.rstrip('|}')
-  if markuptype=='Note':
-    repl='<note><para>%s</para></note>' %markuptext
-    text=text.replace(treffer,repl)
-  elif markuptype=='Warning':
-    repl='<warning><para>%s</para></warning>' %markuptext
-    text=text.replace(treffer,repl)
-  elif markuptype=='Tip':
-    repl='<tip><para>%s</para></tip>' %markuptext
-    text=text.replace(treffer,repl)
+  if len(treffersplit)>1:
+    markuptype, markuptext= treffersplit[1],treffersplit[2]
+    markuptype=markuptype.strip("'")
+    markuptext=markuptext.rstrip('|}')
+    if markuptype=='Note':
+      repl='<note><para>%s</para></note>' %markuptext
+      text=text.replace(treffer,repl)
+    elif markuptype=='Warning':
+      repl='<warning><para>%s</para></warning>' %markuptext
+      text=text.replace(treffer,repl)
+    elif markuptype=='Tip':
+      repl='<tip><para>%s</para></tip>' %markuptext
+      text=text.replace(treffer,repl)
 
 #warning
 #{{warning|This is a very dangerous thing to do}}
@@ -240,13 +249,13 @@ remuster='\{\{.*?\}\}'
 such=re.compile(remuster,re.DOTALL)
 for treffer in such.findall(text):
   warningnote=treffer.lstrip('{').rstrip('}')
-  #print warning
+  repl=''
   warningnote,warningnotetext=warningnote.split('|')
   if warningnote=='warning':
     repl='<warning><para>%s</para></warning>' %warningnotetext
   elif warningnote=='info':
     repl='<note><para>%s</para></note>' %warningnotetext
-  text=text.replace(treffer,repl)
+  if repl!='':text=text.replace(treffer,repl)
 
 #textlines = open(inputfile,"rw").readlines()
 textlines = text.split('\n')
@@ -579,6 +588,10 @@ def comment_empty_sections(outtext, sectname):
 
 for section in headinglevels:
   outtext=comment_empty_sections(outtext, section)
+
+for i in range(0,nowikimarkup_id_number):
+  print '%s__%d' %(nowikimarkup_id_marker.split('__')[0],i), nowikimarkup_idtext[i]
+  outtext=outtext.replace('%s__%d' %(nowikimarkup_id_marker.split('__')[0],i), nowikimarkup_idtext[i])
 
 outtext+=userbase_content_marker
 
