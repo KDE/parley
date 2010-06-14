@@ -247,7 +247,7 @@ installed.</para>
 
 <!--userbase-content-->
 
-<chapter id="credits">
+<chapter id="credits-template-book-wiki2docbook.docbook">
 
 <!-- Include credits for the programmers, documentation writers, and
 contributors here. The license for your software should then be included below
@@ -293,10 +293,10 @@ Documentation Copyright &copy; 1999 George N. Ugnacious <email>gnu@kde.org</emai
 
 </chapter>
 
-<appendix id="installation">
+<appendix id="installation-template-book-wiki2docbook.docbook">
 <title>Installation</title>
 
-<sect1 id="getting-kapp">
+<sect1 id="getting-kapp-template-book-wiki2docbook.docbook">
 <title>How to obtain &kmyapplication;</title>
 
 <!-- This first entity contains boiler plate for applications that are
@@ -307,7 +307,7 @@ application -->
 
 </sect1>
 
-<sect1 id="requirements">
+<sect1 id="requirements-template-book-wiki2docbook.docbook">
 <title>Requirements</title>
 
 <!--
@@ -341,7 +341,7 @@ url="http://apps.kde.org/kapp">http://apps.kde.org/kapp</ulink>.
 </para>
 </sect1>
 
-<sect1 id="compilation">
+<sect1 id="compilation-template-book-wiki2docbook.docbook">
 <title>Compilation and Installation</title>
 
 <!-- This entity contains the boilerplate text for standard -->
@@ -352,7 +352,7 @@ url="http://apps.kde.org/kapp">http://apps.kde.org/kapp</ulink>.
 
 </sect1>
 
-<sect1 id="configuration">
+<sect1 id="configuration-template-book-wiki2docbook.docbook">
 <title>Configuration</title>
 
 <para>Don't forget to tell your system to start the <filename>dtd</filename>

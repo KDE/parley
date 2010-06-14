@@ -57,7 +57,7 @@ another dummy is an application specially designed to do nothing you wouldever w
 
 <!--userbase-content-->
 
-<chapter id="credits">
+<chapter id="credits-template-book-simple-wiki2docbook.docbook">
 <title>Credits and License</title>
 <para>
 Documentation Copyright &copy; 1999 George N. Ugnacious <email>gnu@kde.org</email>

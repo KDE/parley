@@ -114,10 +114,14 @@ if userbasedata:
   userbase_header=such.findall(text)[0]
   remuster="'''.*?'''"
   such=re.compile(remuster,re.DOTALL)
-  abstracttext=such.findall(userbase_header)[0].strip("'''")
+  if len(such.findall(userbase_header))!=1:
+    abstracttext=''
+  else:
+    abstracttext=such.findall(userbase_header)[0].strip("'''")
   remuster='\[\[.*?\]\]'
-  such=re.compile(remuster,re.DOTALL)
-  abstractscreenshotlink=such.findall(userbase_header)[0].strip("[[Image:").split('|')[0]
+  #we don't use screenshot for now
+  #such=re.compile(remuster,re.DOTALL)
+  #abstractscreenshotlink=such.findall(userbase_header)[0].strip("[[Image:").split('|')[0]
   pagename=re.findall('<title>.*?</title>',text)[0].replace('<title>','').replace('</title>','')
   authorname='This documentation was converted from the KDE UserBase '\
     +'<ulink url=" http://userbase.kde.org/%s">%s</ulink> page.' %(pagename,pagename)
@@ -141,10 +145,117 @@ if userbasedata:
   #if abstractscreenshotlink=='':print 'abstractscreenshotlink not found'
   if pagename=='':print 'pagename not found'
 
-textlines = open(inputfile,"rw").readlines()
+#&lt;nowiki&gt;== Subpages of {{FULLPAGENAME}}==
+#{{Special:PrefixIndex/{{FULLPAGENAME}}/}}&lt;/nowiki&gt;
+remuster='&lt;nowiki&gt;.*?&lt;/nowiki&gt;'
+such=re.compile(remuster,re.DOTALL)
+for treffer in such.findall(text):
+  repl=treffer.replace('&lt;nowiki&gt;','')
+  repl=repl.replace('&lt;/nowiki&gt;','')
+  text=text.replace(treffer,'')#'<literal>%s</literal>'%repl)
+  #what to do with this?
+
+#strip off some header footer stuff
+remuster='\{\|style.*?\|\}'
+such=re.compile(remuster,re.DOTALL)
+for treffer in such.findall(text):
+  text=text.replace(treffer,'')
+
+#strip off {{Construction}}
+remuster='\{\{Construction\}\}'
+such=re.compile(remuster,re.DOTALL)
+for treffer in such.findall(text):
+  text=text.replace(treffer,'')
+
+#strip off {{KDE3}} + {{KDE4}}
+remuster='\{\{KDE[34]\}\}'
+such=re.compile(remuster,re.DOTALL)
+for treffer in such.findall(text):
+  text=text.replace(treffer,'')
+
+#strip off {{Being_Edited}}
+remuster='\{\{Being_Edited\}\}'
+such=re.compile(remuster,re.DOTALL)
+for treffer in such.findall(text):
+  text=text.replace(treffer,'')
+
+#strip off {{Community-app-footnote}}
+remuster='\{\{Community-app-footnote\}\}'
+such=re.compile(remuster,re.DOTALL)
+for treffer in such.findall(text):
+  text=text.replace(treffer,'')
+
+#strip off {{Community-app}}
+remuster='\{\{Community-app\}\}'
+such=re.compile(remuster,re.DOTALL)
+for treffer in such.findall(text):
+  text=text.replace(treffer,'')
+
+#strip off {{FULLPAGENAME}}
+remuster='\{\{FULLPAGENAME\}\}'
+such=re.compile(remuster,re.DOTALL)
+for treffer in such.findall(text):
+  #print 1 ,treffer, treffer.replace(treffer,'')
+  text=text.replace(treffer,'')
+
+#{{Special:PrefixIndex/{{FULLPAGENAME}}/}} etc ???
+# FULLPAGENAME is already stripped off
+remuster='\{\{Special:PrefixIndex//\}\}'
+such=re.compile(remuster,re.DOTALL)
+for treffer in such.findall(text):
+  #print 1,treffer
+  text=text.replace(treffer,'')
+
+#note
+#::{|cellpadding="2" |[[Image:Im-status-message-edit.png]]||'''Note'''||Some important information |}
+# docbook <note>
+#warning
+#::{| |[[Image:dialog-warning.png|32px]]||'''Warning'''||This is dangerous |}
+#tip
+#::{| |[[Image:help-hint.png]]||'''Tip'''||Something useful to remember |}
+# docbook <tip>
+remuster='\{\|.*?\|\}'
+such=re.compile(remuster,re.DOTALL)
+for treffer in such.findall(text):
+  treffersplit=treffer.split('||')
+  markuptype, markuptext= treffersplit[1],treffersplit[2]
+  markuptype=markuptype.strip("'")
+  markuptext=markuptext.rstrip('|}')
+  if markuptype=='Note':
+    repl='<note><para>%s</para></note>' %markuptext
+    text=text.replace(treffer,repl)
+  elif markuptype=='Warning':
+    repl='<warning><para>%s</para></warning>' %markuptext
+    text=text.replace(treffer,repl)
+  elif markuptype=='Tip':
+    repl='<tip><para>%s</para></tip>' %markuptext
+    text=text.replace(treffer,repl)
+
+#warning
+#{{warning|This is a very dangerous thing to do}}
+# docbook <warning>
+#{{info|This is another way to display your information}}
+# docbook <note>?
+remuster='\{\{.*?\}\}'
+such=re.compile(remuster,re.DOTALL)
+for treffer in such.findall(text):
+  warningnote=treffer.lstrip('{').rstrip('}')
+  #print warning
+  warningnote,warningnotetext=warningnote.split('|')
+  if warningnote=='warning':
+    repl='<warning><para>%s</para></warning>' %warningnotetext
+  elif warningnote=='info':
+    repl='<note><para>%s</para></note>' %warningnotetext
+  text=text.replace(treffer,repl)
+
+#textlines = open(inputfile,"rw").readlines()
+textlines = text.split('\n')
+
 level=0
 skip=False
 initemizedlist=False
+intable=False
+innumberedlist=False
 minequalno=5
 #fix non consecutive heading levels
 prevno,jumpno,deltano=1,0,0
@@ -175,10 +286,11 @@ if minequalno>1:
       #print line,textlines[i]
 
 for line in textlines:
-  remuster='\{\|style.*?\|\}' #geht nicht weil mit zeilenumbruch!
-  such=re.compile(remuster,re.DOTALL)
-  if len(such.findall(line))>0:print such.findall(line)
-  #line=re.sub(remuster,'',line)
+  line=line+'\n' 
+  #need that cause switch from #textlines = open(inputfile,"rw").readlines() to textlines = text.split('\n')
+  
+  #debugging of lines
+  #print '>>\n%s<<'%line  
   
   if '&lt;/translate&gt;' in line or '[[Category:' in line: skip=True
   #strip off: &lt;!--T:1--&gt
@@ -241,18 +353,25 @@ for line in textlines:
          tabletext='<para>\n<table>\n  <title> </title>\n  <tgroup cols="%d">\n  <tbody>\n'
          colsnumber=0
          rownumber=0
+         intable=True
+         #print line
        elif line[0:2]=='| ':  #in table in row
-         tabletext+='    <entry>%s</entry>\n' %line[1:].lstrip(' ').rstrip(' \n')
-         colsnumber+=1
+         if intable:
+           tabletext+='    <entry>%s</entry>\n' %line[1:].lstrip(' ').rstrip(' \n')
+           colsnumber+=1
        elif line[0:2]=='|-': #in table new row
-         if rownumber>0:
-           tabletext+='  </row>\n'
-         rownumber+=1
-         tabletext+='  <row>\n'
-         colsnumber=0
+         if intable:
+           if rownumber>0:
+             tabletext+='  </row>\n'
+           rownumber+=1
+           tabletext+='  <row>\n'
+           colsnumber=0
        elif line[0:2]=='|}': #end table
-         tabletext=tabletext %colsnumber
-         outtext+="%s    </row>\n</tbody>\n  </tgroup>\n</table>\n</para>\n" %(tabletext)
+         #print line
+         if intable:
+           tabletext=tabletext %colsnumber
+           outtext+="%s    </row>\n</tbody>\n  </tgroup>\n</table>\n</para>\n" %(tabletext)
+           intable=False
        else:
          if initemizedlist==True:
            initemizedlist=False
