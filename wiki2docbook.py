@@ -81,6 +81,8 @@ def sectionheader(text,level,beginmarkup):
     sectionid=sectionid.replace(",",'')
     sectionid=sectionid.replace("/",'-')
     sectionid=sectionid.replace(' ','-')
+    sectionid=sectionid.replace(':','-')
+    sectionid=sectionid.replace('.','-')
     sectionid=sectionid.replace('<quote>','').replace('</quote>','')
     sectionid=sectionid.replace('&quot;','')
     sectionid=sectionid.replace('&nbsp;','')
@@ -230,13 +232,13 @@ for treffer in such.findall(text):
     markuptype, markuptext= treffersplit[1],treffersplit[2]
     markuptype=markuptype.strip("'")
     markuptext=markuptext.rstrip('|}')
-    if markuptype=='Note':
+    if markuptype.lower()=='Note':
       repl='<note><para>%s</para></note>' %markuptext
       text=text.replace(treffer,repl)
-    elif markuptype=='Warning':
+    elif markuptype.lower()=='Warning':
       repl='<warning><para>%s</para></warning>' %markuptext
       text=text.replace(treffer,repl)
-    elif markuptype=='Tip':
+    elif markuptype.lower()=='Tip':
       repl='<tip><para>%s</para></tip>' %markuptext
       text=text.replace(treffer,repl)
 
@@ -248,12 +250,15 @@ for treffer in such.findall(text):
 remuster='\{\{.*?\}\}'
 such=re.compile(remuster,re.DOTALL)
 for treffer in such.findall(text):
+  print treffer
   warningnote=treffer.lstrip('{').rstrip('}')
   repl=''
-  warningnote,warningnotetext=warningnote.split('|')
-  if warningnote=='warning':
+  warningnotesplit=warningnote.split('|')
+  warningnote,warningnotetext=warningnotesplit[0],' '.join(warningnotesplit[1:])
+  print warningnote,warningnotetext
+  if warningnote.lower()=='warning':
     repl='<warning><para>%s</para></warning>' %warningnotetext
-  elif warningnote=='info':
+  elif warningnote.lower()=='info':
     repl='<note><para>%s</para></note>' %warningnotetext
   if repl!='':text=text.replace(treffer,repl)
 
