@@ -109,6 +109,7 @@ void LessonStatisticsView::setModel(Editor::ContainerModel *model)
     }
 //    header()->resizeSections(QHeaderView::ResizeToContents);
     header()->setResizeMode(QHeaderView::Interactive);
+    header()->setStretchLastSection(true);
 }
 
 void LessonStatisticsView::removeGrades()
