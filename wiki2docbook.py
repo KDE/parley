@@ -15,20 +15,19 @@ def usage():
     print '         -t, --toplevel          : toplevel heading 0=chapter  1=sect1'
     print '         -c, --check             : check heading levels and print them to stout'
     print '         -n, --noheaderfooter    : no header/footer from template'
-    print '         -u, --userbasedata      : use userbase data for a simple header and footer'
-    print '         -r file, --replace file : index.docbook file with kde docbook header + footer'
+    print '         -r file, --replace file : *.docbook file with kde docbook header + footer'
     print '                                   and body from a previous userbase page dump to replace it'
-    print '                                   if empty a default kde docbook header + footer is used'
+    print '                                   if no replace file was found a default simple kde docbook header + footer is used'
+    print 'Default                          : try to get the userbase data and generate a docbook with a simple header and footer'
     sys.exit(2)
 try:
-    opts, args = getopt.getopt(sys.argv[1:], "ht:r:cnu", ["help", "toplevel=", 'replace=','check', 'noheaderfooter', 'userbasedata'])
+    opts, args = getopt.getopt(sys.argv[1:], "ht:r:cn", ["help", "toplevel=", 'replace=','check', 'noheaderfooter'])
 except getopt.GetoptError:
     usage() # print help information and exit
 
 replacefile=''
 checklevels=False
 noheaderfooter=False
-userbasedata=False
 for o,a in opts:
     if o in ("-h", "--help"):
         usage()
@@ -40,8 +39,6 @@ for o,a in opts:
         checklevels=True
     if o in ("-n", "--noheaderfooter"):
         noheaderfooter=True
-    if o in ("-u", "--userbasedata"):
-        userbasedata=True
 
 if len(args) != 1:
     usage()
@@ -50,22 +47,18 @@ if not os.path.isfile(inputfile):
     sys.exit('input file %s not found' %inputfile) 
 
 docbookheader,docbookfooter='',''
-if not os.path.isfile(replacefile):
-  if replacefile!='':
+
+if replacefile!='':
+  if not os.path.isfile(replacefile):
     print 'docbook file with previous userbase page dump not found, generating a docbook with template header + footer'
     replacefile=''
 else:
-  text=open(replacefile,"r").read()
   try:
+    text=open(replacefile,"r").read()
     docbookheader,userpagebody,docbookfooter=text.split(userbase_content_marker)
   except:
-    print 'docbook file has no previous userbase page dump, generating a docbook with template header + footer'
+    print 'docbook file has no previous userbase page dump, generating a docbook with simple template header + footer'
     replacefile=''
-if docbookheader=='': 
-  print 'generating a docbook with template header + footer, edit the defaults'
-  text=open('/home/kdedev/svn/work/doc/parley/template-wiki2docbook.docbook',"r").read()
-  docbookheader,userpagebody,docbookfooter=text.split(userbase_content_marker)
-  replacefile=''
 
 def sectionheader(text,level,beginmarkup):
   #output of headinglevels to console
@@ -108,12 +101,13 @@ else:
 if userbase_timestamp in docbookheader: # it is the same page dump version, remove it
   docbookheader=docbookheader.replace(userbase_timestamp,'')
 
-if userbasedata:
+userbase_header=''
+userbase_header,text = text.split('<text') #strip strip userbaser export page header off
+text=text.split('</text')[0] #strip strip userbaser export page footer off
+
+if noheaderfooter==False:
   #userbase header scan
-  userbase_header,abstracttext,pagename,abstractscreenshotlink='','','',''
-  remuster='\{\|.*?\|\}'
-  such=re.compile(remuster,re.DOTALL)
-  userbase_header=such.findall(text)[0]
+  abstracttext,pagename,abstractscreenshotlink='','',''
   remuster="'''.*?'''"
   such=re.compile(remuster,re.DOTALL)
   if len(such.findall(userbase_header))!=1:
@@ -124,7 +118,7 @@ if userbasedata:
   #we don't use screenshot for now
   #such=re.compile(remuster,re.DOTALL)
   #abstractscreenshotlink=such.findall(userbase_header)[0].strip("[[Image:").split('|')[0]
-  pagename=re.findall('<title>.*?</title>',text)[0].replace('<title>','').replace('</title>','')
+  pagename=re.findall('<title>.*?</title>',userbase_header)[0].replace('<title>','').replace('</title>','')
   authorname='This documentation was converted from the KDE UserBase '\
     +'<ulink url=" http://userbase.kde.org/%s">%s</ulink> page.' %(pagename,pagename)
   docbookheader='<?xml version="1.0" ?>\n'\
@@ -152,24 +146,55 @@ if userbasedata:
 nowikimarkup_id,nowikimarkup_idtext=[],[]
 nowikimarkup_id_marker='nowikimarkup_id_marker__'
 nowikimarkup_id_number=0
-remuster='&lt;nowiki&gt;.*?&lt;/nowiki&gt;'
+remuster='&lt;nowiki&gt;.*?&lt;/nowiki&gt;' #&lt;pre&gt; &lt;/pre&gt;
 such=re.compile(remuster,re.DOTALL)
 for treffer in such.findall(text):
-  repl=treffer.replace('&lt;nowiki&gt;','<literal>')
-  repl=repl.replace('&lt;/nowiki&gt;','</literal>')
-  nowikimarkup_id_marker_text='nowikimarkup_id_marker__%d' %nowikimarkup_id_number
+  if '\n' in treffer:
+    newmarkup='screen'
+  else:
+    newmarkup='command'#'literal'
+  repl=treffer.replace('&lt;nowiki&gt;','<%s>'%newmarkup)
+  repl=repl.replace('&lt;/nowiki&gt;','</%s>'%newmarkup)
+  nowikimarkup_id_marker_text='nowikimarkup_id_marker__%dx' %nowikimarkup_id_number
   nowikimarkup_id.append(nowikimarkup_id_marker_text)
   nowikimarkup_idtext.append(repl)
   nowikimarkup_id_number+=1
-  print treffer,nowikimarkup_id_marker_text
   text=text.replace(treffer,nowikimarkup_id_marker_text)#'<literal>%s</literal>'%repl)
   #what to do with this?
 
-#strip off some header footer stuff
+premarkup_id,premarkup_idtext=[],[]
+premarkup_id_marker='premarkup_id_marker__'
+premarkup_id_number=0
+remuster='&lt;pre&gt;.*?&lt;/pre&gt;' #&lt;pre&gt; &lt;/pre&gt;
+such=re.compile(remuster,re.DOTALL)
+for treffer in such.findall(text):
+  if '\n' in treffer:
+    newmarkup='screen'
+  else:
+    newmarkup='command'#'literal'
+  repl=treffer.replace('&lt;pre&gt;','<%s>'%newmarkup)
+  repl=repl.replace('&lt;/pre&gt;','</%s>'%newmarkup)
+  premarkup_id_marker_text='premarkup_id_marker__%dx' %premarkup_id_number
+  premarkup_id.append(premarkup_id_marker_text)
+  premarkup_idtext.append(repl)
+  premarkup_id_number+=1
+  text=text.replace(treffer,premarkup_id_marker_text)#'<literal>%s</literal>'%repl)
+  #what to do with this?
+
+#strip off some header footer stuff WRONG!!!!
 remuster='\{\|style.*?\|\}'
 such=re.compile(remuster,re.DOTALL)
 for treffer in such.findall(text):
-  text=text.replace(treffer,'')
+  if 'nowikimarkup_id_marker__' in treffer:
+    such=re.compile('nowikimarkup_id_marker__[0-9]*?x',re.DOTALL)
+    suchtext=such.findall(treffer)[0]
+    text=text.replace(treffer,'nowikimarkup_id_marker__%dx' %nowikimarkup_id.index(suchtext))
+  elif 'premarkup_id_marker__' in treffer:
+    such=re.compile('premarkup_id_marker__[0-9]*?x',re.DOTALL)
+    suchtext=such.findall(treffer)[0]
+    text=text.replace(treffer,'premarkup_id_marker__%dx' %premarkup_idtext.index(suchtext))
+  else:
+     text=text.replace(treffer,'')
 
 #strip off {{Construction}}
 remuster='\{\{Construction\}\}'
@@ -213,7 +238,6 @@ for treffer in such.findall(text):
 remuster='\{\{Special:PrefixIndex//\}\}'
 such=re.compile(remuster,re.DOTALL)
 for treffer in such.findall(text):
-  #print 1,treffer
   text=text.replace(treffer,'')
 
 #note
@@ -250,12 +274,10 @@ for treffer in such.findall(text):
 remuster='\{\{.*?\}\}'
 such=re.compile(remuster,re.DOTALL)
 for treffer in such.findall(text):
-  print treffer
   warningnote=treffer.lstrip('{').rstrip('}')
   repl=''
   warningnotesplit=warningnote.split('|')
   warningnote,warningnotetext=warningnotesplit[0],' '.join(warningnotesplit[1:])
-  print warningnote,warningnotetext
   if warningnote.lower()=='warning':
     repl='<warning><para>%s</para></warning>' %warningnotetext
   elif warningnote.lower()=='info':
@@ -304,7 +326,7 @@ for line in textlines:
   #need that cause switch from #textlines = open(inputfile,"rw").readlines() to textlines = text.split('\n')
   
   #debugging of lines
-  #print '>>\n%s<<'%line  
+  #print '>>\n%s<<'%line 
   
   if '&lt;/translate&gt;' in line or '[[Category:' in line: skip=True
   #strip off: &lt;!--T:1--&gt
@@ -319,7 +341,6 @@ for line in textlines:
     if level>0:closemarkup+='</%s>\n' %headinglevels[toplevel+0]
     level=1
     repl=sectionheader(line,1,'<%s' %headinglevels[toplevel-1+1])
-    #repl=sectionheader(line,1,'<sect')
     outtext+='%s%s' %(closemarkup,repl)
     initemizedlist=False
   elif line[0:2]=='==' and line[2]!='=':
@@ -329,7 +350,6 @@ for line in textlines:
     if level>1:closemarkup+='</%s>\n' %headinglevels[toplevel+1]
     level=2
     repl=sectionheader(line,2,'<%s' %headinglevels[toplevel-1+2])
-    #repl=sectionheader(line,2,'<sect')
     outtext+='%s%s' %(closemarkup,repl)
     initemizedlist=False
   elif line[0:3]=='===' and line[3]!='=':
@@ -338,16 +358,13 @@ for line in textlines:
     if level>2:closemarkup+='</%s>\n' %headinglevels[toplevel+2]
     level=3
     repl=sectionheader(line,3,'<%s' %headinglevels[toplevel-1+3])
-    #repl=sectionheader(line,3,'<sect')
     outtext+='%s%s' %(closemarkup,repl)
     initemizedlist=False
   elif line[0:4]=='====' and line[4]!='=':
     closemarkup=''
     if level>3:closemarkup+='</%s>\n' %headinglevels[toplevel+3]
-    #if level>3:closemarkup+='</sect4>\n'
     level=4
     repl=sectionheader(line,4,'<%s' %headinglevels[toplevel-1+4])
-    #repl=sectionheader(line,4,'<sect')
     outtext+='%s%s' %(closemarkup,repl)
     initemizedlist=False
   else: #level="para"
@@ -519,7 +536,6 @@ screenshot_template='\n<screenshot>\n\
 remuster='\[\[.*?\]\]'
 such=re.compile(remuster,re.DOTALL)
 for linkimage in such.findall(outtext):
-  #print linkimage
   if '[[File:' in linkimage: #screenshot
     repl=linkimage.split('|')[0]
     repl=repl.replace('[[File:','')
@@ -528,7 +544,6 @@ for linkimage in such.findall(outtext):
     repl=repl.capitalize() #falsch für k3b
     repl=repl.replace('.jpeg','.png')
     repl=screenshot_template %repl.strip(' ')
-    #print repl
   elif '[[Image:' in linkimage: #screenshot
     repl=linkimage.split('|')[0]
     repl=repl.replace('[[Image:','')
@@ -537,7 +552,6 @@ for linkimage in such.findall(outtext):
     repl=repl.capitalize()
     repl=repl.replace('.jpeg','.png')
     repl=screenshot_template %repl.strip(' ')
-    #print repl
   elif '[[#' in linkimage: #document internal link
     linkimagesplit=linkimage.split('|')
     anchor=linkimagesplit[0].replace('[[#','')
@@ -558,7 +572,6 @@ for linkimage in such.findall(outtext):
     else:
       anchortext=anchor
     repl='<ulink url="http://userbase.kde.org/%s">%s</ulink>' %(anchor.strip(' '),anchortext.strip(' '))
-    #print repl
   outtext=outtext.replace(linkimage,repl)
     
 #external link
@@ -575,7 +588,6 @@ for link in such.findall(outtext):
   anchortext=''
   for i in range(1,len(linksplit)): anchortext+=linksplit[i]+' '
   repl='<ulink url="%s">%s</ulink>' %(anchor,anchortext.rstrip(' '))
-  #print repl
   outtext=outtext.replace(link,repl)
 
 #fix empty chapter/sections
@@ -587,7 +599,6 @@ def comment_empty_sections(outtext, sectname):
     body=body.rstrip('</%s' %sectname)
     if ("<sect" in body or "<para" in body)==False:
       repl="\n<!-- empty %s\n%s\n--" %(sectname, section)
-      #print section,repl
       outtext=outtext.replace(section,repl)
   return outtext
 
@@ -595,8 +606,10 @@ for section in headinglevels:
   outtext=comment_empty_sections(outtext, section)
 
 for i in range(0,nowikimarkup_id_number):
-  print '%s__%d' %(nowikimarkup_id_marker.split('__')[0],i), nowikimarkup_idtext[i]
-  outtext=outtext.replace('%s__%d' %(nowikimarkup_id_marker.split('__')[0],i), nowikimarkup_idtext[i])
+  outtext=outtext.replace('%s__%dx' %(nowikimarkup_id_marker.split('__')[0],i), nowikimarkup_idtext[i])
+
+for i in range(0,premarkup_id_number):
+  outtext=outtext.replace('%s__%dx' %(premarkup_id_marker.split('__')[0],i), premarkup_idtext[i])
 
 outtext+=userbase_content_marker
 
