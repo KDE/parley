@@ -180,8 +180,10 @@ void PracticeStateMachine::updateFrontend()
     m_frontend->setFeedbackState(AbstractFrontend::QuestionState);
     m_frontend->setResultState(AbstractFrontend::QuestionState);
     m_frontend->setLessonName(m_current->entry()->lesson()->name());
+    
+    // show the word that is currently practiced in the progress bar
     m_frontend->setFinishedWordsTotalWords(
-        m_testEntryManager->totalEntryCount() - m_testEntryManager->activeEntryCount(),
+        m_testEntryManager->totalEntryCount() - m_testEntryManager->activeEntryCount() + 1,
         m_testEntryManager->totalEntryCount());
 
     int grade = m_current->entry()->translation(m_options.languageTo())->grade();
