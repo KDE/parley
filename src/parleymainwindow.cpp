@@ -74,7 +74,7 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
 
     bool startWithWelcomeScreen = false;
 
-    setupGUI(ToolBar | Keys | StatusBar | Create);
+    setupGUI(ToolBar | Keys | Create);
 
     if ( !filename.url().isEmpty() ) {
         m_document->open(filename);
