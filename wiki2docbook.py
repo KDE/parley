@@ -410,9 +410,15 @@ for line in textlines:
 outtext+='</%s>' %(headinglevels[level-1])
 if level>1: outtext+='\n</%s>' %(headinglevels[toplevel])
 
-#''''' -> ''' bold+italic -> gui
-outtext=outtext.replace("'''''","'''")
+#''''' bold+italic -> replaceable
+remuster="'''''.*?\'''''"
+such=re.compile(remuster,re.DOTALL)
+for i in such.findall(outtext):
+  repl=i.replace("'''''","")
+  repl='<replaceable>%s</replaceable>' %repl
+  outtext=outtext.replace(i,repl)
 
+outtext=outtext.replace('[[Image:Face-smile.png|16px]]',':)')
 #'''[[#Vocabulary Practice|Practice]]'''
 # guilabel-link-guilabel not allowed in docbook
 # move ''' inside for document internal links
