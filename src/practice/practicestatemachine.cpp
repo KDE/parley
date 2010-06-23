@@ -186,8 +186,13 @@ void PracticeStateMachine::updateFrontend()
         m_testEntryManager->totalEntryCount() - m_testEntryManager->activeEntryCount() + 1,
         m_testEntryManager->totalEntryCount());
 
-    int grade = m_current->entry()->translation(m_options.languageTo())->grade();
-    m_frontend->setBoxes(grade, qMin(grade+1, KV_MAX_GRADE), KV_LEV1_GRADE);
+    grade_t grade = m_current->entry()->translation(m_options.languageTo())->grade();
+    grade_t goodGrade = grade;
+    if (m_current->statisticBadCount() == 0) {
+        goodGrade = qMin(grade+1, KV_MAX_GRADE);
+    }
+
+    m_frontend->setBoxes(grade, goodGrade, KV_LEV1_GRADE);
 
     QString imgUrl = m_current->entry()->translation(m_options.languageFrom())->imageUrl().url();
     m_frontend->setQuestionImage(imgUrl);
