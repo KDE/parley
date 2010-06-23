@@ -37,6 +37,16 @@ public:
      * @param model the model */
     virtual void setModel(LessonModel *model);
 
+signals:
+    /** A lesson was selected */
+    void selectedLessonChanged(KEduVocLesson* lesson);
+
+    /** Emitted when a new container is selected. Indicates the selected container. */
+    void signalShowContainer(KEduVocContainer* selected);
+
+    /** Emitted when any of the checkboxes for the query change. */
+    void lessonsInPracticeChanged();
+
 public slots:
     /** Append a lesson to the model and automatically set an edit up so the user can change "New lesson" into something meaningfull.*/
     void slotCreateNewLesson();
@@ -54,8 +64,7 @@ public slots:
      */
     void columnsInserted();
 
-signals:
-    void selectedLessonChanged(KEduVocLesson* lesson);
+    void setTranslation(KEduVocExpression* entry, int translationId);
 
 protected slots:
     void selectionChanged ( const QItemSelection & selected, const QItemSelection & deselected );

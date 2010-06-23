@@ -111,12 +111,6 @@ public slots:
     KEduVocLesson * lesson();
 
     /**
-     * 
-     * @param wordTypeContainer 
-     */
-    void setWordType(KEduVocWordType *wordTypeContainer);
-
-    /**
      * Show the entries of child lessons in selected lessons
      * @param show
      */
@@ -132,7 +126,6 @@ public slots:
 private:
     KEduVocContainer *m_container;
     KEduVocLesson *m_lesson;
-    KEduVocWordType *m_wordType;
 
     KEduVocDocument *m_document;
     KEduVocContainer::EnumEntriesRecursive m_recursive;

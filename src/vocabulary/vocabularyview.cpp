@@ -364,6 +364,7 @@ void VocabularyView::slotShowVocabularyColumnsDialog()
 
 void VocabularyView::continueSpelling()
 {
+    kDebug() << "spellchecker: " << spellcheckRow << spellcheckColumn;
     if (spellcheckRow >= m_model->rowCount()) {
         spellcheckRow = -1;
         spellcheckColumn++;

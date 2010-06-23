@@ -15,24 +15,9 @@
 
 #include "containerview.h"
 
-#include "prefs.h"
-#include "containermodel.h"
-
-#include <KAction>
-#include <KMessageBox>
-#include <KInputDialog>
-#include <klocale.h>
-#include <kiconloader.h>
-#include <kicon.h>
-#include <kconfig.h>
-#include <keduvocdocument.h>
-#include <keduvoclesson.h>
-#include <keduvocwordtype.h>
-#include <keduvocexpression.h>
-#include <QTreeView>
 #include <QHeaderView>
-#include <QMenu>
-#include <QContextMenuEvent>
+
+#include "containermodel.h"
 
 using namespace Editor;
 
@@ -45,8 +30,6 @@ ContainerView::ContainerView(QWidget *parent) : QTreeView(parent)
 
     // show the actions added by addAction() as right click menu.
     setContextMenuPolicy(Qt::ActionsContextMenu);
-    setSelectionMode(QAbstractItemView::SingleSelection);
-    // setSelectionBehavior(QAbstractItemView::SelectRows);
 
     setDragEnabled(true);
     setAcceptDrops(true);
@@ -61,35 +44,6 @@ void ContainerView::setModel(ContainerModel *model)
 
     header()->setResizeMode(0, QHeaderView::Stretch);
     header()->setResizeMode(1, QHeaderView::ResizeToContents);
-}
-
-void ContainerView::setTranslation(KEduVocExpression * entry, int translation)
-{
-    ///@todo put into the view subclasses!
-    if (entry == 0) {
-        return;
-    }
-
-    // who am I
-    if(m_model->containerType() == KEduVocContainer::Lesson) {
-        QModelIndex current = m_model->index(entry->lesson());
-        selectionModel()->select(current, QItemSelectionModel::ClearAndSelect);
-        scrollTo(current);
-        return;
-    }
-
-    if(m_model->containerType() == KEduVocContainer::WordType) {    
-    // attempt to find the container to select
-        QModelIndex modelIndex;
-        modelIndex = m_model->index(entry->translation(translation)->wordType());
-        scrollTo(modelIndex);
-        selectionModel()->select(modelIndex, QItemSelectionModel::ClearAndSelect);
-        return;
-    }
-// leitner as well?
-
-    selectionModel()->clearSelection();
-    return;
 }
 
 void ContainerView::slotRename()

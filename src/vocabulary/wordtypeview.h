@@ -40,12 +40,10 @@ public slots:
     /** Remove a word type. */
     void slotDeleteWordType();
 
+    void setTranslation(KEduVocExpression* entry, int translationId);
+
 signals:
     void selectedWordTypeChanged(KEduVocWordType* wordType);
-
-protected slots:
-    void selectionChanged ( const QItemSelection & selected, const QItemSelection & deselected );
-    void currentChanged( const QModelIndex & current, const QModelIndex & previous );
 
 protected:
     void contextMenuEvent ( QContextMenuEvent * event );

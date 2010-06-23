@@ -182,12 +182,6 @@ void EditorWindow::initDockWidgets()
 
     m_wordTypeView->setModel(m_wordTypeModel);
 
-    connect(m_wordTypeView, SIGNAL(selectedWordTypeChanged(KEduVocWordType*)),
-        m_vocabularyModel, SLOT(setWordType(KEduVocWordType*)));
-
-    connect(m_wordTypeView, SIGNAL(signalShowContainer(KEduVocContainer*)),
-        m_vocabularyModel, SLOT(showContainer(KEduVocContainer*)));
-
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         m_wordTypeView, SLOT(setTranslation(KEduVocExpression*, int)));
 

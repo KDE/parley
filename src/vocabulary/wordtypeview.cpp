@@ -15,18 +15,21 @@
 
 #include "wordtypeview.h"
 
-#include "editor/editor.h"
-#include "containermodel.h"
-#include "keduvocwordtype.h"
-#include "prefs.h"
+#include <QContextMenuEvent>
+#include <QMenu>
+
+#include <KAction>
+#include <KIcon>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KInputDialog>
-#include <KAction>
-#include <KActionCollection>
 #include <KSelectAction>
-#include <QMenu>
-#include <QContextMenuEvent>
+
+#include <keduvocexpression.h>
+#include <keduvocwordtype.h>
+
+#include "editor/editor.h"
+#include "containermodel.h"
+#include "containerview.h"
 
 using namespace Editor;
 
@@ -153,7 +156,6 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
     connect(m_actionDeleteWordType, SIGNAL(triggered()),
             SLOT(slotDeleteWordType()));
 
-
     // right cick menu for the WordType view:
     addAction(m_actionNewWordType);
     addAction(m_actionRenameWordType);
@@ -184,31 +186,16 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
             SLOT(setWordTypeVerb()));
 }
 
-void WordTypeView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
+void WordTypeView::setTranslation(KEduVocExpression * entry, int translation)
 {
-    QTreeView::currentChanged(current, previous);
-
-    if (current.isValid()) {
-        KEduVocWordType *container = static_cast<KEduVocWordType*>(current.internalPointer());
-        if (container) {
-            emit selectedWordTypeChanged(container);
-            emit signalShowContainer(container);
-        }
-    }
-}
-
-void WordTypeView::selectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
-{
-    QTreeView::selectionChanged(selected, deselected);
-
-    if(selected.count() == 0) {
+    if (entry == 0) {
         return;
     }
 
-    KEduVocWordType *container = static_cast<KEduVocWordType*>(selected.indexes().value(0).internalPointer());
-    if (container) {
-        emit selectedWordTypeChanged(container);
-    }
+    // attempt to find the container to select
+    QModelIndex index(m_model->index(entry->translation(translation)->wordType()));
+    scrollTo(index);
+    selectionModel()->select(index, QItemSelectionModel::ClearAndSelect);
 }
 
 void WordTypeView::slotCreateNewWordType()

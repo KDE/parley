@@ -15,15 +15,18 @@
 
 #include "lessonview.h"
 
-#include "editor/editor.h"
-#include "lessonmodel.h"
-#include "keduvoclesson.h"
-#include "prefs.h"
-#include <KLocalizedString>
-#include <KMessageBox>
-#include <KInputDialog>
 #include <KAction>
 #include <KActionCollection>
+#include <KInputDialog>
+#include <KLocalizedString>
+#include <KMessageBox>
+
+#include <keduvocexpression.h>
+#include <keduvoclesson.h>
+
+#include "editor/editor.h"
+#include "lessonmodel.h"
+#include "prefs.h"
 
 using namespace Editor;
 
@@ -108,6 +111,18 @@ void LessonView::selectionChanged(const QItemSelection & selected, const QItemSe
     if (container) {
         emit selectedLessonChanged(container);
     }
+}
+
+void LessonView::setTranslation(KEduVocExpression * entry, int translation)
+{
+    if (entry == 0) {
+    selectionModel()->clearSelection();
+        return;
+    }
+
+    QModelIndex index(m_model->index(entry->lesson()));
+    selectionModel()->select(index, QItemSelectionModel::ClearAndSelect);
+    scrollTo(index);
 }
 
 void LessonView::slotCreateNewLesson()

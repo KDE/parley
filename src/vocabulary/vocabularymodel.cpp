@@ -50,7 +50,6 @@ void VocabularyModel::setDocument(KEduVocDocument * doc)
     m_document = doc;
     m_container = 0;
     m_lesson = 0;
-    m_wordType = 0;
 
     // to get the headers right
     // (better get rid of the reset)
@@ -91,11 +90,6 @@ void VocabularyModel::setLesson(KEduVocLesson * lessonContainer)
 KEduVocLesson * VocabularyModel::lesson()
 {
     return m_lesson;
-}
-
-void VocabularyModel::setWordType(KEduVocWordType * wordTypeContainer)
-{
-    m_wordType = wordTypeContainer;
 }
 
 int VocabularyModel::rowCount(const QModelIndex &index) const

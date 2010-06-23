@@ -40,25 +40,16 @@ public:
      * @param model the model */
     virtual void setModel(ContainerModel *model);
 
-
 public slots:
-    void setTranslation(KEduVocExpression*, int);
-
-    /** Create an editor to let the user type a new name for the lesson.*/
+    /** let the user type a new name for the container */
     void slotRename();
 
-signals:
-    /** Emitted when a new container is selected. Indicates the selected container. */
-    void signalShowContainer(KEduVocContainer* selected);
-
-    /** Emitted when any of the checkboxes for the query change. */
-    void lessonsInPracticeChanged();
-
 protected:
-    /** The KVTContainerModel for this view. */
+    /** ContainerModel for this view. */
     ContainerModel *m_model;
 
 private:
+    // intentionally hide this to make sure a proper model is passed
     virtual void setModel(QAbstractItemModel *model) { Q_UNUSED(model) }
 };
 
