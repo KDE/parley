@@ -84,13 +84,7 @@ QVariant ContainerModel::data(const QModelIndex & index, int role) const
         if (role == Qt::DisplayRole || role == Qt::EditRole) {
             return container->name();
         }
-        // checkboxes
-        if (role == Qt::CheckStateRole) {
-            if (container->inPractice())
-                return Qt::Checked;
-            else
-                return Qt::Unchecked;
-        }
+
 //         if (role == Qt::DecorationRole) {
 //             return KIcon("favorites");
 //         }
@@ -114,7 +108,6 @@ QVariant ContainerModel::data(const QModelIndex & index, int role) const
 
     return QVariant();
 }
-
 
 bool ContainerModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
@@ -153,13 +146,12 @@ Qt::ItemFlags ContainerModel::flags(const QModelIndex &index) const
     if (index.isValid()) {
         // the root element, not editable for now
         if (index.parent() == QModelIndex()) {
-            return (Qt::ItemIsEnabled | Qt::ItemIsSelectable
-                        | Qt::ItemIsUserCheckable );
+            return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
         }
         // the name column
         if ( index.column() == 0 ) {
             return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable
-                    | Qt::ItemIsUserCheckable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled );
+                    | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled );
         } else { // every other element
             return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsDragEnabled |  Qt::ItemIsDropEnabled );
         }

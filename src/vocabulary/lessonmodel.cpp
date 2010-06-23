@@ -45,10 +45,10 @@ Qt::ItemFlags LessonModel::flags(const QModelIndex &index) const
     if (index.isValid() && index.parent() == QModelIndex()) {
         return (Qt::ItemIsEnabled 
               | Qt::ItemIsEditable
-              | Qt::ItemIsSelectable
-              | Qt::ItemIsUserCheckable );
+              | Qt::ItemIsSelectable);
     }
 
+    // the name column should be checkable to select lessons for practice
     return  ContainerModel::flags(index);
 }
 
@@ -62,7 +62,7 @@ QVariant LessonModel::data(const QModelIndex & index, int role) const
                 case Qt::FontRole:
                     QFont f;
                     f.setBold(true);
-                    return f;                
+                    return f;
             }
         }
     }
@@ -77,7 +77,6 @@ bool LessonModel::setData(const QModelIndex &index, const QVariant &value, int r
             m_doc->setTitle(value.toString());
         }
     }
-    
     return ContainerModel::setData(index, value, role);
 }
 

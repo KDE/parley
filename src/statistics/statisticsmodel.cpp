@@ -47,13 +47,25 @@ QVariant StatisticsModel::data(const QModelIndex & index, int role) const
                 return container->expressionsOfGrade(index.column()-2, role - Grade0, KEduVocContainer::Recursive);
         }
     }
+
+    // checkboxes
+    if (index.column() == 0 && role == Qt::CheckStateRole) {
+        KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
+        if (container->inPractice()) {
+            return Qt::Checked;
+        } else {
+            return Qt::Unchecked;
+        }
+    }
+
     return ContainerModel::data(index, role);
 }
+
+
 
 Qt::ItemFlags StatisticsModel::flags(const QModelIndex & index) const
 {
     if (index.isValid()) {
-
         if (index.column() == 0) {
             return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
         }
