@@ -35,6 +35,9 @@ Q_SIGNALS:
     void practiceFinished();
     void stopPractice();
 
+public Q_SLOTS:
+    void slotPracticeFinished();
+
 private Q_SLOTS:
     /** Call when current entry is finished and next one should be selected */
     void nextEntry();

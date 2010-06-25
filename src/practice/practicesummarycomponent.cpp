@@ -42,6 +42,11 @@ PracticeSummaryComponent::PracticeSummaryComponent(TestEntryManager* testEntryMa
     setupDetailsTable();
     summaryBar->setStatistics(m_testEntryManager->statisticTotalCorrectFirstAttempt(), m_testEntryManager->statisticTotalWrong(), m_testEntryManager->statisticTotalUnanswered());
 
+    int total = m_testEntryManager->statisticTotalCorrectFirstAttempt() + m_testEntryManager->statisticTotalWrong();
+    int minutes = m_testEntryManager->totalTime();
+    testSummaryLabel->setText(i18np("One word practiced.", "%1 words practiced.", total));
+    timeSummaryLabel->setText(i18np("The practice took one second.", "The practice took %1 seconds.", minutes));
+
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
 }

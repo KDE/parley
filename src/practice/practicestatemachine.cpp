@@ -39,7 +39,7 @@ PracticeStateMachine::PracticeStateMachine(AbstractFrontend* frontend, ParleyDoc
 
     // To allow to skip an an entry
     connect(m_frontend, SIGNAL(skipAction()), this, SLOT(nextEntry()));
-    connect(m_frontend, SIGNAL(stopPractice()), this, SIGNAL(practiceFinished()));
+    connect(m_frontend, SIGNAL(stopPractice()), this, SLOT(slotPracticeFinished()));
     connect(m_frontend, SIGNAL(hintAction()), m_mode, SLOT(hintAction()));
 
     connect(m_frontend, SIGNAL(continueAction()), this, SLOT(continueAction()));
@@ -98,6 +98,7 @@ void PracticeStateMachine::createPracticeMode()
 void Practice::PracticeStateMachine::start()
 {
     kDebug() << "Start practice";
+    m_testEntryManager->practiceStarted();
     nextEntry();
 }
 
@@ -110,7 +111,7 @@ void PracticeStateMachine::nextEntry()
 
     //after going through all words, or at the start of practice
     if (m_current == 0) {
-        emit practiceFinished();
+        slotPracticeFinished();
         return;
     }
     if (m_mode->setTestEntry(m_current)) {
@@ -120,6 +121,13 @@ void PracticeStateMachine::nextEntry()
         currentEntryFinished();
         nextEntry();
     }
+}
+
+void PracticeStateMachine::slotPracticeFinished()
+{
+    kDebug() << "Stop practice";
+    m_testEntryManager->practiceFinished();
+    emit practiceFinished();
 }
 
 void PracticeStateMachine::currentEntryFinished()

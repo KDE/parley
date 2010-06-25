@@ -37,6 +37,9 @@ public:
      */
     explicit TestEntryManager(QWidget *parent);
 
+    void practiceStarted();
+    void practiceFinished();
+
     /**
      * Default ctor
      */
@@ -76,6 +79,9 @@ public:
     int statisticTotalCorrectFirstAttempt();
     int statisticTotalWrong();
     int statisticTotalUnanswered();
+
+    /** the time in seconds */
+    int totalTime();
 
     QStringList multipleChoiceAnswers(int numberChoices);
 
@@ -118,6 +124,9 @@ private:
     /// The list of entries that are being asked. If one of these is done, it can be deleted and an new one from m_notAskedTestEntries taken.
     QList<TestEntry*> m_currentEntries;
     int m_currentEntry;
+
+    QTime m_time;
+    int m_totalTime;
 
     KRandomSequence m_randomSequence;
 

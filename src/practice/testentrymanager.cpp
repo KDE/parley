@@ -36,6 +36,7 @@ TestEntryManager::TestEntryManager(QWidget* parent)
     ,m_fromTranslation(0)
     ,m_toTranslation(1)
     ,m_currentEntry(-1)
+    ,m_totalTime(0)
     ,m_randomSequence(QDateTime::currentDateTime().toTime_t())
 {
 }
@@ -110,6 +111,24 @@ void TestEntryManager::printStatistics()
             << " +" << entry->statisticGoodCount() << " -" << entry->statisticBadCount()
             << "Entry: " << entry->entry()->translation(0)->text();
     }
+}
+
+int TestEntryManager::totalTime()
+{
+    // seconds instead of ms
+    return m_totalTime / (1000);
+}
+
+void TestEntryManager::practiceStarted()
+{
+    kDebug() << "start practice timer";
+    m_time.start();
+}
+
+void TestEntryManager::practiceFinished()
+{
+    m_totalTime = m_time.elapsed();
+    kDebug() << "stop practice timer" << m_totalTime << m_time.toString();
 }
 
 int TestEntryManager::totalEntryCount()

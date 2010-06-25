@@ -74,7 +74,7 @@ void PracticeMainWindow::initActions()
     stopPracticeAction->setIcon(KIcon("practice-stop"));
     stopPracticeAction->setHelpText(i18n("Stop practicing"));
     actionCollection()->addAction("practice_stop", stopPracticeAction);
-    connect(stopPracticeAction, SIGNAL(triggered()), this, SIGNAL(stopPractice()));
+    connect(stopPracticeAction, SIGNAL(triggered()), m_stateMachine, SLOT(slotPracticeFinished()));
 
     m_fullScreenAction = KStandardAction::fullScreen(this,
                                                      SLOT(toggleFullScreenMode(bool)),
