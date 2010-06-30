@@ -1,648 +1,1736 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
-  <!ENTITY package "kdeedu">
+  <!-- Define an entity for your application if it is not part of KDE
+       CVS -->
   <!ENTITY kappname "&parley;">
+  <!ENTITY package "kdeedu">  
   <!ENTITY % addindex "IGNORE">
-  <!ENTITY % English "INCLUDE"> <!-- change language only here -->
-]>
+  <!ENTITY % English "INCLUDE">]>
 
 <book lang="&language;">
+
 <bookinfo>
 <title>The &parley; Handbook</title>
 
 <authorgroup>
 <author>
-<firstname>Ewald</firstname>
-<surname>Arnold</surname>
-<affiliation><address>&Ewald.Arnold.mail;
-</address></affiliation>
-</author>
-
-<othercredit role="reviewer">
-<firstname>Eric</firstname>
-<surname>Bischoff</surname>
-<affiliation><address>&Eric.Bischoff.mail;
-</address></affiliation>
-<contrib>Reviewer</contrib>
-</othercredit>
-
-<author>
-<firstname>Anne-Marie</firstname>
-<surname>Mahfouf</surname>
-<affiliation><address>&Anne-Marie.Mahfouf.mail;	
-</address></affiliation>
+&Frederik.Gladhorn;
+&Frederik.Gladhorn.mail;  
 </author>
 
 <author>
-<firstname>Frederik</firstname>
-<surname>Gladhorn</surname>
-<affiliation><address>&Frederik.Gladhorn.mail;	
-</address></affiliation>
+<personname><firstname>Sabine</firstname><surname>Eller</surname></personname>
+<email>s.eller@voxhumanitatis.org</email>
 </author>
 
-
+<author>
+<personname><firstname>Daniel</firstname><surname>Laidig</surname></personname>
+<email>d.laidig@gmx.de</email>
+</author>
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
 
 <copyright>
-<year>1999</year><year>2000</year><year>2001</year><year>2002</year>
-<holder>&Ewald.Arnold;</holder>
-</copyright>
-<copyright>
-<year>2005</year>
-<holder>&Anne-Marie.Mahfouf;</holder>
-</copyright>
-<copyright>
-<year>2007</year>
+<year>2010</year>
 <holder>&Frederik.Gladhorn;</holder>
+</copyright>
+<copyright>
+<year>2010</year>
+<holder>Sabine Eller</holder>
+</copyright>
+<copyright>
+<year>2010</year>
+<holder>Daniel Laidig</holder>
 </copyright>
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2007-10-01</date>
-<releaseinfo>0.9.0</releaseinfo>
+<date>2010-06-06</date>
+<releaseinfo>0.9.4 (&kde; SC 4.5)</releaseinfo>
 
-<abstract><para>&parley; is a vocabulary trainer. It helps you to memorize your vocabulary,
-for example when you are trying to learn a foreign language. &parley; is not limited to language learning but supports a multitude of subjects.</para></abstract>
+<!-- Abstract about this handbook -->
+
+<abstract>
+<para>
+Parley is a vocabulary trainer. It helps you to memorize your vocabulary,
+for example when you are trying to learn a foreign language. Parley is not 
+limited to language learning but supports a multitude of subjects.
+</para>
+</abstract>
 
 <keywordset>
 <keyword>KDE</keyword>
-<keyword>KVocTrain</keyword>
 <keyword>Parley</keyword>
 <keyword>vocabulary</keyword>
 <keyword>training</keyword>
 <keyword>learning</keyword>
 </keywordset>
+
 </bookinfo>
+<!--userbase <timestamp>2010-06-25T18:39:29Z</timestamp>-->
 
-<chapter id="introduction">
-<title>Introduction</title>
-
-<sect1 id="what-is-it">
-<title>What is it?</title>
-
-<para>&parley; is a vocabulary trainer. It helps you to memorize your vocabulary,
-for example when you are trying to learn a foreign language. You can create your
-own files with the words you need or select from a great variety of files on its 
-<ulink
-url="http://edu.kde.org/parley">homepage</ulink>.
-There you can find files containing language vocabulary and also anatomy, music, geography, chemistry or exam preparation.
+<!--userbase-content-->
+<chapter id="introduction"><title>Introduction</title> 
+<para>Parley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. You can create your own vocabulary collections with the words you need or select from a great variety of available <ulink url="http://userbase.kde.org/Parley#Vocabulary_Collections">Vocabulary Collections</ulink>. There you can find collections containing language vocabulary and also anatomy, music, geography, chemistry or exam preparation.
 </para>
-
-<para>&parley; is very flexible and uses the flash card learning approach. It automatically keeps track of your progress and lets you sort your vocabulary as you wish. But unlike real flash cards you can use different learning methods with &parley;</para>
-
-<para>Flashcards contain expressions on the front side and their translation on the back. You start with a pile of cards. If you know the translation on a card, you can put it into a second pile of cards. If you fail, you keep it in the first one to try again later.</para>
-
-<para>&parley;s main focus is not to teach you grammar or other sophisticated things. However, there are some exercise forms which may help you in this matter.</para>
-
-</sect1>
-
+<para>Parley is very flexible and uses the <ulink url="http://en.wikipedia.org/wiki/Flashcard">flash card learning approach</ulink>. It automatically keeps track of your learning progress. With Parley you can arrange your vocabulary as you wish, you create your own lessons as needed. But unlike real flash cards you can use different learning methods with Parley.
+</para>
+<para>Flashcards contain expressions on the front side and their translation on the back. You start with a pile of cards. If you know the translation on a card, you can put it into a second pile of cards. If you did not remember it, you keep it in the first one to try again later.
+</para>
+<para>Parley's main focus is not to teach you grammar. However, there are some exercise forms which may help you in this matter.
+</para>
+<para>Parley consists of two big parts: <link linkend="practice">Vocabulary Practice</link> and <link linkend="vocabulary-editing">an Editor for Vocabulary Collections</link>.
+</para>
+<para>In this manual the term <emphasis>Vocabulary Collection</emphasis> refers to a file that contains lessons and the vocabulary in the lessons.
+</para>
+<para>Both, the Editor and the Practice can be reached from the <link linkend="start-page">Start Page</link>.
+</para>
+<para>The <link linkend="practice">Practice</link> consists of three parts: first the <link linkend="practice-setup">Practice Setup</link> where you choose what to practice. From there you start the actual <link linkend="practice">Practice</link> and when you are done, you get a <link linkend="summary-after-practice">Summary</link>.
+</para>
+<para>Tip: Like in all applications try to use the right-click if you explore features and functionality in Parley. The right-click displays a <quote>context menu</quote> that shows what you can do with your present situation. Try right-clicking lessons and words to find some options.
+</para>
 </chapter>
-
-<chapter id="quick-start">
-<title>Quick Start to &parley;</title>
-
-<screenshot>
-<screeninfo>&parley; main window</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="parley-quick-start-first-start.png" format="PNG" /></imageobject>
-<textobject><phrase>&parley; main window</phrase></textobject>
-</mediaobject>
-</screenshot>
-
-<para>
-For a start you could download vocabulary files directly from the Internet using <guimenu>File</guimenu> <guimenuitem>Download New Vocabularies...</guimenuitem>.
+<chapter id="start-page"><title>Start Page</title> 
+<para>When you first launch Parley the <guilabel>Start Page</guilabel> welcomes you.
 </para>
-
+<para>At first the Start Page is empty, once you opened some vocabulary collections, it shows you the ones you worked with most recently. 
+</para>
+<para>
 <screenshot>
-<screeninfo>Get Vocabularies dialog</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="parley-download-new.png" format="PNG" /></imageobject>
-<textobject><phrase>Get Vocabularies dialog</phrase></textobject>
-</mediaobject>
-</screenshot>
-
-<para>Here, for example, I choose the file "Basic vocabulary German-English" with a click on the <guibutton>Install</guibutton> button in the dialog, the file is saved in your home folder <filename>~/share/apps/kvtml</filename>.</para>
-
-<screenshot>
-<screeninfo>The Basic vocabulary German-English file</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="parley-download-basic-file.png" format="PNG" /></imageobject>
-<textobject><phrase>The vocabulary file</phrase></textobject>
-</mediaobject>
-</screenshot>
-<para>On the left of the main window you see a list of lessons. To select a lesson for training tick the box in front of it. After selecting one or more lessons let's start learning by clicking <guibutton>Start Practice</guibutton> in the toolbar.</para>
-
-<screenshot>
-<screeninfo>Written Practice Dialog</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="parley-download-basic-file-survival-training-written-practice.png" format="PNG" /></imageobject>
-<textobject><phrase>Written Practice Dialog</phrase></textobject>
-</mediaobject>
-</screenshot>
-<para>After starting the practice &parley; asks you to enter a translation. Let's assume that you are not too sure about it. Just click once on <guibutton>Show More</guibutton> and the first letter of the word appears in the entry box. Click again and the second letter shows up. If you prefer to see the word completely, click on the <guibutton>Show Solution</guibutton> button.
-
-If you want to check your answer click on <guibutton>Verify</guibutton>.
-
-To ignore words or to mark them as known without entering them, click on the <guibutton>Skip (Do Not Know)</guibutton> or <guibutton>Skip (I know It)</guibutton> buttons respectively.
-
-In the progress box you can see the number of words you have answered correctly and the seconds remaining for your answer. You can configure this option on the <guilabel>Advanced</guilabel> page in the <guilabel>Configure Practice</guilabel> settings.</para>
-
-<para>In case you find writing the words too hard, why not try a multiple choice test? After stopping the practice click on <guimenuitem>Configure Practice</guimenuitem> and choose a different practice method. You can also change the order of languages.</para>
-
-<screenshot>
-<screeninfo>Configure Practice Dialog</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="parley-configure-practice.png" format="PNG" /></imageobject>
-<textobject><phrase>Configure Practice Dialog</phrase></textobject>
-</mediaobject>
-</screenshot>
-<para>This is how a <guilabel>Multiple Choice</guilabel> test looks like:</para>
-<screenshot>
-<screeninfo>Multiple Choice Practice Dialog</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="parley-practice-multiple-choice.png" format="PNG" /></imageobject>
-<textobject><phrase>Multiple Choice Practice Dialog</phrase></textobject>
-</mediaobject>
-</screenshot>
-
-
-<!-- This chapter should tell the user how to quickly start using your app.  It should include screenshots 
-with short explanations in a Step 1, Step 2 way maybe.-->
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_welcome_screen.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot> 
+</para>
+<para>A vocabulary collection is a file that contains words and their translations into other languages or other pairs of words and sentences that you want to memorize. The words are organized in lessons.
+</para>
+<para>To <emphasis>start practicing</emphasis>, click one of the vocabulary collections in the list. You are taken to the <link linkend="practice-setup">practice setup</link>.
+</para>
+<para>Note that a small <guilabel>Editor Icon</guilabel> appears to the right of the document name when you move the mouse over it. The <guilabel>Editor Icon</guilabel> lets you open the collection in the editor instead of practice mode.
+</para>
+<para>To <link linkend="vocabulary-editing">edit</link> a collection, click on the <guilabel>Editor Icon</guilabel> on its right hand side.
+</para>
+<para>If you'd like to start your own collection of vocabulary, click on <guilabel>Create a New Collection</guilabel>. 
+</para>
+<para>You can also <link linkend="open-an-existing-collection">open a collection</link> if you have it on your computer already but it's not in the list.
+</para>
+<para>The last button on the <guilabel>Start Page</guilabel> offers you to download vocabulary collections made by others. When you've created a file that you'd like to share with others, you can easily upload it from the editor.
+</para>
+<para>Parley comes with different themes, you can switch to a different graphical style in the settings. For further information, see <link linkend="configure-parley">Configure Parley</link>.
+</para>
 </chapter>
-
-<chapter id="usage">
-<title>Using &parley;</title>
-
-<sect1 id="overview">
-<title>Overview</title>
-
+<chapter id="open-an-existing-collection"><title>Open an existing collection</title> 
+<para>Let's suppose your collection is already on your hard disk.
+</para>
+<para>This is what the screen will look like the first time you start Parley:
+</para>
 <para>
-This is the main window of &parley;. It consists of two areas: the lesson list in the left third of the window and the current vocabulary list in the other two thirds.
-
 <screenshot>
-<mediaobject>
-<imageobject><imagedata fileref="parley-main-water.png" format="PNG"/></imageobject>
-<textobject><phrase>Screenshot</phrase></textobject>
-</mediaobject>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_initial_screen_0-9-4.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
 </screenshot>
 </para>
-
-<sect2>
-<title>The lesson list</title>
-<para>The lesson list on the left shows all lessons in your vocabulary file. If you mark a lesson, it will become the current one. In this case it is survival training.</para>
-<para>The ticked box left of the name of each lesson indicates that it is to be included in the practice. You may choose as many lessons for a test as you like.</para>
-</sect2>
-
-<sect2>
-<title>The vocabulary list</title>
-<para>
-Depending on your selection, one or more lessons are displayed on the right side of the screen.
+<para>Click on <guilabel>Open an Existing Collection</guilabel>.
 </para>
-
-<para>If you mark a range of entries to work with, their background color changes. Many editing functions work for multiple entries simultaneously.</para>
-
-<para>The color in the column with the original will vary if you have
-two or more columns with translations. If the cursor is in one of the
-translations the color represents its grade <quote>to the
-original</quote>. See section <link linkend="general-settings">entry
-dialog</link> for more on this.</para>
-
-</sect2>
-
-<sect2>
-<title>The search bar</title>
-<para>The search bar is located above the vocabulary table.</para>
-<para>You can use the search bar to filter your vocabulary. If you type in a string, you will only see entries with this string in the vocabulary table.</para>
+<para>In the file selection dialog, navigate to the directory containing the data file, and select it by clicking on it. Depending on your system the file either opens immediately, or you have to click <guilabel>OK</guilabel>
+</para>
+<para>
 <screenshot>
-<mediaobject>
-<imageobject><imagedata fileref="parley-search.png" format="PNG"/></imageobject>
-<textobject><phrase>Screenshot</phrase></textobject>
-</mediaobject>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_file_select_dialog_0-9-4.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
 </screenshot>
-</sect2>
-
-<sect2>
-<title>The status bar</title>
-<para>The status bar is located at the bottom of the main window. It is empty at the moment.</para>
-</sect2>
-
-</sect1>
-
-<sect1 id="file-formats">
-<title>Available file formats</title>
-
-<para>&parley; can read and write the following file formats:</para>
-
+</para>
+<para>Now, the file is loaded, and you move on to the <guilabel>Practice Setup</guilabel> screen: see the following section for further details.
+</para>
+</chapter>
+<chapter id="vocabulary-practice"><title>Vocabulary Practice</title> 
+<para>To start practicing you select a document after starting Parley. If you have it opened in the editor already, just click <guilabel>Practice</guilabel> in the toolbar. 
+</para>
+<sect1 id="practice-setup"><title>Practice Setup</title> 
+<para>Before the actual practice starts, you always get to the Practice Setup page. There are three areas which allow you to choose what to practice:
+</para>
 <itemizedlist>
-<listitem><para>its native xml-style document type with the extension
-<literal role="extension">.kvtml</literal>.</para>
-
-<para>If you want to share documents with others, use this format as it is
-the only file format that is capable of storing
-<emphasis>all</emphasis> properties in
-&parley;.</para></listitem>
-
-<listitem><para>simple text files with special delimiters between the
-entries which are also used by simple database programs. The
-extension is <literal role="extension">.csv</literal> in this
-case.</para>
-
-<para>There are a lot of files on the Internet which use the
-tab stops or one or two colons to separate the languages. To select this separator use the tab for setting the <link linkend="general-settings"><guilabel>Open/Save</guilabel> options</link> in the <guilabel>General</guilabel> page of the <guilabel>Configure -  &parley;</guilabel> dialog.</para></listitem>
-
+<listitem><para> The selection of languages
+</para></listitem>
+<listitem><para> The selection of the practice mode
+</para></listitem>
+<listitem><para> The selection of the lessons that also shows your current progress
+</para></listitem>
 </itemizedlist>
-
-<para>&parley; reads the first few bytes of a file and guesses its file format. If none of the special types like 
-<literal role="extension">.kvtml</literal> or <literal
-role="extension">.lex</literal> are recognized, it will try the <literal
-role="extension">.csv</literal> format.</para>
-
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Configure_practice.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>On the left you can select the combination of languages you will practice. If you select for example English to French, you will be shown English words and Parley will ask you to enter the French translations.
+</para>
+<para>Below the language selection you choose the practice mode. <guilabel>Practice Mode</guilabel> determines how the practice will ask you questions.
+</para>
+<para>In the big part on the right, you see the lessons of the vocabulary collection. You can select which lessons you want to practice with the checkbox in front of the lesson name. The number of words that each lesson contains is shown next to its name. On the right of the name you see your current progress for the lesson.
+</para>
 </sect1>
-
-<sect1 id="types">
-<title>Available word types</title>
-
-<para>&parley; has the following internal word types. Furthermore
-every document can contain user defined types.</para>
-
-<informaltable><tgroup cols="3">
-<thead>
-<row>
-<entry>Type name</entry>
-<entry>Description</entry>
-<entry>Example</entry>
-</row>
-</thead>
-
-<tbody>
-<row>
-<entry>Adjective</entry>
-<entry>describing the properties of things or persons</entry>
-<entry>expensive, good</entry>
-</row>
-
-<row>
-<entry>Adverb</entry>
-<entry>tells you when, how, where .. something is happening</entry>
-<entry>today, strongly</entry>
-</row>
-
-<row>
-<entry><para>Article
-  <itemizedlist>
-     <listitem><para>definite article</para></listitem>
-     <listitem><para>indefinite article</para></listitem>
-  </itemizedlist></para></entry>
-<entry><para><!-- empty description --></para></entry>
-<entry><para>
-  <itemizedlist>
-     <listitem><para>a, an</para></listitem>
-     <listitem><para>the</para></listitem>
-  </itemizedlist></para></entry>
-</row>
-
-<row>
-<entry><para>Conjunction</para></entry>
-<entry><para>serves to bind words or sentences</para></entry>
-<entry><para>and, but</para></entry>
-</row>
-
-<row>
-<entry><para>Proper Noun</para></entry>
-<!-- This was name - does this need changing in the app too? -->
-<entry><para>names of a person, a creature, sometimes a
- thing</para></entry>
-<entry><para>Big Ben, Tom</para></entry>
-</row>
-
-<row>
-<entry><para>Noun          
-  <itemizedlist>
-     <listitem><para>male</para></listitem>
-     <listitem><para>female</para></listitem>
-     <listitem><para>neutral</para></listitem>
-  </itemizedlist></para></entry>
-<entry><para>names of things, feelings</para></entry>
-<entry><para>table, coffee (there is no distinction of genders in English)</para></entry>
-</row>
-
-<row>
-<entry><para>Numeral        
-  <itemizedlist>
-     <listitem><para>ordinal</para></listitem>
-     <listitem><para>cardinal</para></listitem>
-  </itemizedlist></para></entry>
-<entry><para>counting or numbering of things</para></entry>
-<entry><para>
-  <itemizedlist>
-     <listitem><para>first, second</para></listitem>
-     <listitem><para>one, two</para></listitem>
-  </itemizedlist></para></entry>
-</row>
-    
-<row>
-<entry><para>Phrase</para></entry>
-<entry><para>special combination of words</para></entry>
-<entry><para>to kill two birds with one stone</para></entry>
-</row>
-
-<row>
-<entry><para>Preposition</para></entry>
-<entry><para>tells you about the relationship or location</para></entry>
-<entry><para>behind, between</para></entry>
-</row>
-
-<row>
-<entry><para>Pronoun
-  <itemizedlist>
-      <listitem><para>Possessive pronoun</para></listitem>
-      <listitem><para>Personal pronoun</para></listitem>
-   </itemizedlist></para></entry>
-<entry><para>
-  <itemizedlist>
-      <listitem><para>tells about the ownership of
- something</para></listitem>
-      <listitem><para>stands as a replacement for a
- noun</para></listitem>
-  </itemizedlist></para></entry>
-<entry><para>
-  <itemizedlist>
-     <listitem><para>my, your</para></listitem>
-     <listitem><para>you, she</para></listitem>
-  </itemizedlist></para></entry>
-</row>
-
-<row>
-<entry><para>Interrogatory</para></entry>
-<entry><para>introduces questions</para></entry>
-<entry><para>who, what</para></entry>
-</row>
-
-<row>
-<entry><para>Verb           
-  <itemizedlist>
-     <listitem><para>regular verb</para></listitem>
-     <listitem><para>irregular verb</para></listitem>
-  </itemizedlist></para></entry>
-<entry><para>who is doing something or what is happening</para></entry>
-<entry><para>
-   <itemizedlist>
-     <listitem><para>to cook, cooked, cooked</para></listitem>
-     <listitem><para>to go, went, gone</para></listitem>
-    </itemizedlist></para></entry>
-</row>
-
+<sect1 id="advanced-practice-configuration"><title>Advanced Practice Configuration</title> 
+<para>The <guilabel>Advanced Practice Configuration</guilabel> allows you to specify more advanced settings that will affect the practice.
+</para>
+<para>In the <link linkend="practice-setup">Practice Setup</link> page you reach the <guilabel>Advanced Practice Configuration</guilabel> with the <guilabel>Configure Practice</guilabel> button in the toolbar. The button with the green icon.
+</para>
+<sect2 id="blocking"><title>Blocking</title> 
+<para>If you plan to practice your vocabulary regularly, you should make sure that the <emphasis>Blocking</emphasis> feature is enabled. The <guilabel>Blocking</guilabel> options are part of the <link linkend="advanced-practice-configuration">Advanced Practice Configuration</link>. There you go to the blocking page and tick the checkbox that says <guilabel>Blocking</guilabel>. Now you can even configure the interval in which words that you answered correctly will be repeated.
+</para>
+<para><emphasis>Blocking</emphasis> means that words will not be asked for some period of time after the last practice. This period of time depends on how well you know the word, so that words you don't know yet will be asked more frequently.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Configure_blocking.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+</sect2>
+<sect2 id="thresholds"><title>Thresholds</title> 
+<para>Thresholds are another way of limiting what you want to practice. 
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_configure_thresholds.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>You can decide to practice only words that you know better or less well than some grade. Or you can select only words that you have practiced a certain number of times. With the word type selection you can choose to only practice some word types, for example nouns or verbs.
+</para>
+</sect2>
+<sect2 id="advanced-practice-settings"><title>Advanced Practice Settings</title> 
+<para>You can find several more configuration options for the practice in the advanced settings page.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_configure_advanced.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>The most important options are:
+</para>
+<itemizedlist>
+<listitem><para> Ignore accent mistakes: with this option if you enter a word with <guilabel>e</guilabel> instead of  <guilabel>é</guilabel> it will still count as right.
+</para></listitem>
+<listitem><para> Ignore capitalization mistakes: this option allows you to ignore capitalization when you enter words.
+</para></listitem>
+<listitem><para> Enable Images: if this is on, images will be displayed during the practice, if they are available.
+</para></listitem>
+<listitem><para> Active entries during practice: how many words will be asked repeatedly, before adding a new word. That means, if you set it to a low number, words will show up again faster, while with a high setting, the distance before you see the same word again is higher.
+</para></listitem>
+</itemizedlist>
+</sect2>
+</sect1>
+<sect1 id="practice"><title>Practice</title> 
+<sect2 id="flash-cards"><title>Flash Cards</title>
+<para>After having activated the <guilabel>Flash Card</guilabel> Practice Mode and having clicked on <guilabel>Start Practice</guilabel> the following screen shows up. The Flash Card training mode works just as if you would do it with <quote>real</quote> flash cards. You imagine the the result and should you wish some help, you can click on <guilabel>Hint</guilabel> which will start to give you the result one letter at a time.
+</para>
+<para>You can also decide to skip a word for now. When you click <guilabel>Answer Later</guilabel> the word will show up again at a later time.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_practice_grey_flash.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Clicking on Continue reveals the solution. At this stage you then have to tell if you knew the answer.
+</para>
+<para>If you did not know it, click <guilabel>I did not know it</guilabel>. If you did remember the answer, click <guilabel>I knew it</guilabel>.
+</para>
+<para>This will take you to the next question.
+</para>
+<para>On the left hand side bottom of the screen you have 7 boxes that show how good you know the vocabulary. These 7 boxes correspond to the blocking levels set under <link linkend="blocking"><guilabel>Blocking</guilabel></link> in the <guilabel>Advanced Practice Configuration</guilabel>
+</para>
+<tip><para>Instead of clicking <guilabel>Continue</guilabel> you can also use the <keycap>Spacebar</keycap> of your keyboard.
+</para></tip>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_practice_grey_flash_solution.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>You can stop practicing anytime by clicking on <guilabel>Stop Practice</guilabel>.
+</para>
+</sect2>
+<sect2 id="mixed-letters"><title>Mixed Letters</title> 
+<para>Mixed Letters is a training method that provides you with an immediate help: all letters that are part of the solution are shown mixed up:
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_mixed_letters_0-9-4_001.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Should you wish some help, you can click on <guilabel>Hint</guilabel> which will give you the solution one letter at a time. Of course you can also decide to <guilabel>Answer Later</guilabel> by clicking on that button. 
+</para>
+<para>To give the answer type it in the blank field below the mixed letters and press the &Enter; key or <guilabel>Continue</guilabel> button.
+</para>
+<para>If your answer was correct Parley will tell you so and you can press &Enter; again or click on <guilabel>Continue</guilabel> to go ahead with the next question.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_mixed_letters_0-9-4_002.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Should you enter a wrong answer, you will be told to <emphasis>try again</emphasis>:
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_mixed_letters_0-9-4_003.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>If you don't know the answer, just click on <guilabel>Continue</guilabel> a second time. Then the following comes up and you are shown the solution. Go ahead with <guilabel>Continue</guilabel>.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_mixed_letters_0-9-4_004.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>After the solution is revealed, you see a big icon on the right that indicates if your answer will count as right or wrong.
+</para>
+<para>You can overrule how your answer is counted. See <link linkend="counting-an-answer-as-right">Counting an Answer as Right</link>.
+</para>
+</sect2>
+<sect2 id="multiple-choice"><title>Multiple Choice</title> 
+<sect3 id="automatic-selection-of-the-possible-answers"><title>Automatic selection of the possible answers</title> 
+<para>In <guilabel>Multiple Choice</guilabel> mode you are shown a number of potential answers, of which only one is correct. By clicking on <guilabel>Hint</guilabel> Parley excludes one of the wrong answers so that your choice gets more and more restricted with each further click on <guilabel>Hint</guilabel>. Of course you may also choose to <guilabel>Answer Later</guilabel>.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_multiple_choice_0-9-4_001.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Once you made your choice by clicking on what you believe to be correct, Parley shows up with the screen below if the answer was right. Go ahead with the next question by clicking on <guilabel>Continue</guilabel>.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_multiple_choice_0-9-4_002.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>If your answer instead was wrong, the correct answer will be shown in green and the wrong one in red. Also here you go ahead by clicking on <guilabel>Continue</guilabel>.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_multiple_choice_0-9-4_003.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>After the solution is revealed, you see a big icon on the right that indicates if your answer will count as right or wrong.
+</para>
+<para>You can overrule how your answer is counted. See <link linkend="counting-an-answer-as-right">Counting an Answer as Right</link>.
+</para>
+<para>If you wish to stop practice, just click on the <guilabel>Stop Practice</guilabel> button.
+</para>
+</sect3>
+<sect3 id="with-yes-no-answers"><title>With yes/no answers</title> 
+<para>Normally Parley automatically proposes one correct and several wrong answers in Multiple Choice mode. For some exercises instead you will have preset answers like yes/no or similar. And for these you have to configure the practice by clicking on <link linkend="advanced-practice-configuration"><guilabel>Configure Practice</guilabel></link>.
+</para>
+<para>Select the tab <guilabel>Advanced</guilabel> and you will get something very similar to the following screenshot:
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_configure_advanced.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>If you have just <emphasis>two choices</emphasis> like <emphasis>yes/no</emphasis> in the section <guilabel>Multiple Choice</guilabel> set the <guilabel>Number of choices</guilabel> to <guilabel>2</guilabel>.
+</para>
+</sect3>
+</sect2>
+<sect2 id="written"><title>Written</title> 
+<para>When you select the option <guilabel>Written</guilabel> to do your practice you are supposed to type in the solution. You can use the button <guilabel>Hint</guilabel> which will start to give you the result one letter at a time. Of course you can also decide to <guilabel>Answer Later</guilabel> by clicking on that button. 
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_practice_grey_written.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Once you have entered the solution, click on <guilabel>Continue</guilabel> and Parley will show whether your answer was correct. Go ahead by clicking on <guilabel>Continue</guilabel> again.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_practice_grey_written_right.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Should you give a wrong answer, you may try again several times to find the right answer. If you don't try again, and just click on <guilabel>Continue</guilabel>, the solution will be shown.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_practice_grey_written_wrong.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Go ahead practicing by clicking on <guilabel>Continue</guilabel> or stop by clicking on the button <guilabel>Stop Practice</guilabel>.
+</para>
+<para>When the solution is revealed, you see a big icon on the right that indicates if your answer will count as right or wrong.
+</para>
+<para>You can overrule how your answer is counted. See <link linkend="counting-an-answer-as-right">Counting an Answer as Right</link>.
+</para>
+</sect2>
+<sect2 id="counting-an-answer-as-right"><title>Counting an Answer as Right</title> 
+<para>After the solution is revealed, you see a big icon on the right that indicates if your answer will count as right or wrong.
+</para>
+<para>If you see the big checkmark, Parley thinks you were right.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_practice_icon_right.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>If you needed more than one attempt to answer correctly, your answer will be counted as wrong.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_practice_icon_wrong.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>You can click the small icon next to the indicator to change how your answer is counted. The big symbol always indicates how the answer is counted.
+</para>
+</sect2>
+<sect2 id="reset-practice-to-initial-state"><title>Reset Practice to Initial State</title> 
+<para>You can reset all your practice scores (remove the grades) to the initial state. When being in edit mode select <guilabel>Edit</guilabel> from the menu bar and then <guilabel>Remove Grades</guilabel>.
+</para>
+<para>Furthermore you can reset your grades for individual lessons from within the <guilabel>Practice Setup</guilabel> by right clicking on the lesson to reset and choose <guilabel>Remove Grades</guilabel>.
+</para>
+</sect2>
+</sect1>
+<sect1 id="summary-after-practice"><title>Summary After Practice</title> 
+<para>The summary shows up when you finish a learning session. In the big bar on the top it shows you how well you did.
+</para>
+<para>Below is a table with all the words you practiced, together with the mistakes you made.
+</para>
+<para>The words with the most mistakes are on top so you can easily see what you do not know yet.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_practice_summary.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+</sect1>
+<sect1 id="grammar-practice-modes"><title>Grammar Practice Modes</title> 
+<para>With Parley you can also learn specific grammar structures, such as the gender of nouns, the comparison forms of adjectives and the conjugation of verbs. Let's look at some examples.
+</para>
+<sect2 id="articles-and-gender-of-nouns"><title>Articles and Gender of Nouns</title> 
+<para>Once the practice mode <guilabel>Gender of Nouns</guilabel> is activated, click on <guilabel>Start Practice</guilabel>.
+</para>
+<para>In the case below we use German as language to learn and so you have three genders to choose from: masculine, feminine and neuter. By clicking on <guilabel>Hint</guilabel> one of the wrong answers gets excluded. Of course you can also decide to <guilabel>Answer Later</guilabel> by clicking on that button.
+</para>
+<para>You should enter the articles for the language in the Editor to see the articles instead of the grammatical gender terms. Also note that this only works, if the gender of the words has been set up properly. See <link linkend="word-types">Word Types</link> for more information how to change the word type to the right gender.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_articles_and_gender_0-9-4_001.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>When you give the correct answer the following is shown and you go ahead practicing by clicking on <guilabel>Continue</guilabel>.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_articles_and_gender_0-9-4_002.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Should you give the wrong answer the following is shown and you go ahead practicing by clicking on <guilabel>Continue</guilabel>.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_articles_and_gender_0-9-4_003.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>You can stop practicing anytime by clicking on <guilabel>Stop Practice</guilabel>.
+</para>
+</sect2>
+<sect2 id="comparison-forms-of-adjectives-and-adverbs"><title>Comparison Forms of Adjectives and Adverbs</title>
+<para>On the <guilabel>Practice</guilabel> screen select <guilabel>Comparison Forms</guilabel> and then click on <guilabel>Start Practice</guilabel> to go ahead.
+</para>
+<para>This only works when the conjugation forms of the word have been entered in the vocabulary collection. See <link linkend="entering-comparison-forms">Entering Comparison Forms</link>.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_comparison_eng-deu_0-9-4_002.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>The exercise requires you to enter the comparison forms for the term shown. In this case the translation of the English word <emphasis>old</emphasis> to German. The German language has three forms: <emphasis>absolute, comparative</emphasis> and <emphasis>superlative</emphasis>. To go on with the exercise just click on <guilabel>Continue</guilabel>.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_comparison_eng-deu_0-9-4_003.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+</sect2>
+<sect2 id="conjugations"><title>Conjugations</title> 
+<para>To practice conjugations choose the <guilabel>Conjugations</guilabel> mode and the tenses you wish to exercise.
+</para>
+<para>In the document the conjugation forms of the words have to be entered in order to allow this practice mode to work. See <link linkend="entering-conjugation-forms">Entering Conjugation Forms</link>.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Configure_practice_conjugation.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Then click on <guilabel>Start Practice</guilabel>. You are required to enter the correct conjugation forms according to the tense shown. To go ahead click on <guilabel>Continue</guilabel>
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_practice_conjugation.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+</sect2>
+</sect1>
+</chapter>
+<chapter id="vocabulary-editing"><title>Vocabulary Editing</title> 
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_edit_main.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot> 
+</para>
+<sect1 id="setup"><title>Setup</title> 
+<para>Before you start using a vocabulary collection or create your own it is helpful to understand the different elements in Parley and configure them accordingly. The next sections will guide you step by step through this process. There are several locations in Parley for settings: 
+</para>
+<itemizedlist>
+<listitem><para><menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice> This is the place for the <quote>General Document Properties</quote>, meaning some information about your vocabulary collection and yourself. 
+</para></listitem>
+<listitem><para><menuchoice><guimenu>Edit</guimenu><guimenuitem>Languages</guimenuitem></menuchoice> Find here settings around the languages you use 
+</para></listitem>
+<listitem><para><menuchoice><guimenu>Practice</guimenu><guimenuitem>Configure Practice</guimenuitem></menuchoice> Here are settings how you practice your vocabulary. Depending on what you want to do during the specific learning session you change them on the fly. 
+</para></listitem>
+<listitem><para><menuchoice><guimenu>Settings</guimenu><guimenuitem>Configure Parley</guimenuitem></menuchoice> For more general and display settings
+</para></listitem>
+</itemizedlist>
+<sect2 id="about-the-collection"><title>About the Collection</title> 
+<para>Entering meta data like a title and your contact info is relevant if you plan to make your collection available for other people. Use <menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice> to edit the data. 
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_document_properties.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+</sect2>
+<sect2 id="vocabulary-columns"><title>Vocabulary Columns</title> 
+<para>Depending on what your learning sessions are going to be about it can be relevant to have further Vocabulary Columns show up in your edit section. To choose these columns select <guilabel>View</guilabel> from the Menu bar and then <guilabel>Vocabulary Columns</guilabel>. There you can determine if the columns for <emphasis>Pronunciation, Word Type, Synonym, Antonym, Example, Comment</emphasis> and/or <emphasis>Paraphrase</emphasis> are to be shown.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_010.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+</sect2>
+<sect2 id="languages-and-grammar"><title>Languages and Grammar</title> 
+<para>Set up some grammar details to let Parley help you. Use <menuchoice><guimenu>Edit</guimenu><guimenuitem>Languages</guimenuitem></menuchoice> to pull up the grammar dialog. 
+</para>
+<para>Articles in English are simply <guilabel>the</guilabel> which is the definite article and <guilabel>a</guilabel> as indefinite article. Most other languages have more articles which can be filled in at the articles tab. 
+</para>
+<para>For conjugations the personal pronouns should be filled out. Most languages do not have different conjugation forms for he/she/it, in that case, you should <emphasis>not</emphasis> check <guilabel>Male/Female have different conjugations</guilabel>! Simply enter the pronouns for all three forms. 
+</para>
+<para>
+<table>
+  <title>Personal Pronouns in English</title>
+  <tgroup cols="3">
+  <tbody>
+  <row>
+    <entry></entry>
+    <entry>Singular</entry>
+    <entry>Plural</entry>
+  </row>
+  <row>
+    <entry>1st Person</entry>
+    <entry>I</entry>
+    <entry>we</entry>
+  </row>
+  <row>
+    <entry>2nd Person</entry>
+    <entry>you</entry>
+    <entry>you</entry>
+  </row>
+  <row>
+    <entry>3rd Person</entry>
+    <entry>he/she/it</entry>
+    <entry>they</entry>
+    </row>
 </tbody>
-</tgroup></informaltable>
-</sect1>
-
-
-<sect1 id="learning">
-<title>How should I learn?</title>
-
-<para>The usual way to learn with &parley; is to use one of its practice modes.</para>
-
-<para>It keeps track of your knowledge of the expressions by assigning
-them to one of seven levels ranging from <quote>Level 1</quote> to
-<quote>Level 7</quote>.</para>
-
-<para>Several options are implemented which can be configured in
-the dialog for the practice options.</para>
-
+  </tgroup>
+</table>
+</para>
+<para>Tenses: Depending on the language, you can enter the right tenses which you later want to learn how to conjugate. Examples are: Simple Present, Simple Past, Future I etc. 
+</para>
+<para>Btw. by clicking on the <guilabel>Add New Language</guilabel> button you can add an additional language to your collection.
+</para>
+<sect3 id="lets-have-a-closer-look-at-spanish"><title>Let's Have a Closer Look at Spanish</title>
+<para>On the <guilabel>General</guilabel> tab the basic language settings, like here 
+</para>
 <itemizedlist>
-<listitem><para>To keep the amount of expressions in a query in a reasonable range, you may restrict
-it to one lesson and/or a certain word type. Research in psychology of learning suggests that the number of entries in one lesson should not exceed about 30.</para></listitem>
-
-<listitem><para>The range of a query can depend on the current grade, the number of queries and the last query date.</para></listitem>
-
-<listitem><para>Learning is efficient if you repeat new vocabulary in growing intervals. There is a blocking and expiring mechanism for that case, so that you are not obliged to modify the settings after each cycle. Correctly answered expressions are blocked at least for the given time and
-will only be shown after the period of time defined as expiration time.</para></listitem>
-
-<listitem><para>For your personal taste or just for becoming
-acquainted with a new word, you may choose a query that shows the
-solution together with several other randomly chosen words. This is called
-multiple choice query.</para></listitem>
-
-<listitem><para>Special word types need special queries. For this reason there are queries for the conjugation of verbs, comparison form of adjectives and the articles of nouns.</para></listitem>
+<listitem><para><guilabel>Language</guilabel> = Spanish
+</para></listitem>
+<listitem><para><guilabel>Name</guilabel> = Spanish
+</para></listitem>
+<listitem><para><guilabel>Keyboard layout</guilabel> = de (for German)
+</para></listitem>
 </itemizedlist>
-
-<para>When querying, &parley; shows the expressions in random order
-until you confirm all as <quote>known</quote>. If you did not select a
-special lesson, all lessons are queried one after the other.</para>
-
-<para>When you leave &parley;, expressions left in a running query are stored accordingly. At a later restart you can resume the query (this does not apply to special queries
-with verbs, articles and comparisons at the moment). Those expressions are marked with a
-green check mark in the <link linkend="overview">main view</link>.</para>
-
-</sect1>
-</chapter>
-
-<chapter id="dictionaries">
-<title>Sharing files and downloading dictionaries</title>
-
-<sect1 id="dictionary">
-<title>Contributing your files to &parley;</title>
-
-<para>If you have created a kvtml file, please send an email to
-&Anne-Marie.Mahfouf.mail; with the file attached and I will put the file in the <ulink url="http://edu.kde.org/contrib/kvtml.php">contributed kvtml files</ulink> on <ulink url="http://edu.kde.org">the &kde;-Edu website</ulink> so other people will be able to use it.</para>
-
-<para>If you modify existing files or create
-new files based on copyrighted material you must ask the author for
-permission. Even taking literal examples from schoolbooks might be
-problematic! The files must be licensed under a free license, please indicate it in your mail when you send the file.</para>
-
-</sect1>
-
-<sect1 id="new-stuff">
-<title>Downloading and installing existing files</title>
-
-<para>You can easily get and install existing files using the <menuchoice><guimenu>File</guimenu> <guimenuitem>Get New Vocabularies...</guimenuitem> </menuchoice> menu, provided you have an Internet connection. The following dialog is then displayed:</para>
-
+<para>You can leave <guilabel>Keyboard layout</guilabel> empty if you are not sure about what you are using. Parley will then simply take the standard layout of your computer.
+</para>
+<para>
 <screenshot>
-<screeninfo>Get New Vocabularies... dialog</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="get-new-stuff.png" format="PNG" /></imageobject>
-<textobject><phrase>Get New Vocabularies... dialog</phrase></textobject>
-</mediaobject>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_new_document_lang_general.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
 </screenshot>
-
-<para>Choose the file you want to get and click the <guibutton>Install</guibutton> button. The file is then downloaded from its location on the Internet, saved on your hard disk and opened in &parley; current window.
+</para>
+<para>Let's have a look at the <guilabel>Articles</guilabel> tab: Spanish knows only male and female nouns, therefore the field <guilabel>Neutral</guilabel> remains empty.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_new_document_lang_articles.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Spanish <guilabel>Personal Pronouns</guilabel> have multiple forms for 3rd person singular and 1st, 2nd and 3rd person plural. To remain consistent, the possibilities should be entered with a <guilabel>/</guilabel> between the two forms.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_new_document_lang_personalpronouns.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Under <guilabel>Tenses</guilabel> you will find the various tenses that are available for a verb form. You can add to the tenses that are already there by clicking on <guilabel>New</guilabel>, modify with <guilabel>Modify</guilabel> or in case something does not actually exist simply <guilabel>Delete</guilabel> the tense after having it selected.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_new_document_lang_tenses.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+</sect2>
+</sect1>
+<sect1 id="lessons"><title>Lessons</title> 
+<para>On the left you have a list of lessons. If you started a new collection, this list might be empty except for one lesson that was created by default for you. 
+</para>
+<para>If you cannot see the list of lessons, you might have to enable it in the View menu - <menuchoice><guimenu>View</guimenu><guimenuitem>Lessons</guimenuitem></menuchoice>. 
+</para>
+<para>The check boxes in front of the lesson name show which lessons are currently included in your practice. The number next to it is the number of words in the lesson. 
+</para>
+<sect2 id="new-lesson"><title>New Lesson</title> 
+<para>Add a new lesson: Select where this lesson belongs to, for example the collection <guilabel>My Spanish Lessons</guilabel>.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_new_lesson1.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>In the Lesson menu, select <guilabel>New Lesson</guilabel>.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_new_lesson2.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Please make sure to select the right point in the tree structure of lessons before selecting <guilabel>New Lesson</guilabel>. In our case, wanting a <emphasis>Sub-Lesson</emphasis> of <guilabel>Collection: My Spanish Lesson</guilabel> it is exactly that one that needs to be selected before going ahead with <guilabel>New Lesson</guilabel>.
+</para>
+</sect2>
+<sect2 id="moving-renaming-and-deleting-lessons"><title>Moving, Renaming and Deleting Lessons</title> 
+<para>To change the name of a lesson, double click it, or right click on the lesson and choose <quote><emphasis>rename</emphasis></quote>. You can also delete it this way (but you'll lose its contents also then). 
+</para>
+<para>If you don't like the arrangement of lessons, you can move a lesson with the mouse. You can drag it onto another lesson, then it will become a child of that lesson.
+</para>
+</sect2>
+<sect2 id="splitting-a-lesson"><title>Splitting a Lesson</title> 
+<para>If your lessons grow too big, you can choose to split them up to make learning easier in small units. 20 words for a lesson is probably a good size. Right click a lesson, or use <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Split</guimenuitem></menuchoice> and the lesson will be separated into child lessons. You can choose to randomize the words that are put into the new lessons before assigning them, or to keep them in order.
+</para>
+</sect2>
+<sect2 id="what-is-shown-in-the-table"><title>What is Shown in the Table</title> 
+<para>Parley shows always the words of the lesson that you have currently selected. You can enable to see the words in sub-lessons contained in this lesson also. Use <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Show Entries from Child Lessons</guimenuitem></menuchoice> to enable this. That way, you can browse all words by selecting the document lesson at the very top. 
+</para>
+</sect2>
+</sect1>
+<sect1 id="word-types"><title>Word Types</title> 
+<para>Parley lets you associate word types with the words. Word types are for example: Nouns, Verbs, Adjectives and Adverbs. 
+</para>
+<para>In order to work with word types, enable the word type tool: <menuchoice><guimenu>View</guimenu><guimenuitem>Word Types</guimenuitem></menuchoice>.
+</para>
+<para>You can categorize the word types just like lessons. 
+</para>
+<para>If you want to see all words of a certain type - e.g. all nouns, simply select the noun category, and you will see only nouns in the table. 
+</para>
+<para>The easiest way to set the word type, is to drag and drop a word onto its type. You can even do this with multiple words at the same time. 
 </para>
 
-<note><para>The files you download are saved in your home folder <filename>~/share/apps/kvtml</filename>.</para></note>
+<!-- empty sect2
+<sect2 id="words-or-sentences"><title>Words or Sentences</title> 
+</sect2
+-->
+<sect2 id="adding-new-vocabulary"><title>Adding New Vocabulary</title>
+<para>Use <guilabel>Add New Entry</guilabel> in the toolbar to add new words. You can start typing the word in the first language right away. By default Parley lets you enter another word when you press &Enter; in the last row, so you don't have to keep using the <guilabel>Add</guilabel> button. After entering the first word, press &Enter; or &Tab; to go to the next language. 
+</para>
+</sect2>
+<sect2 id="editing-words"><title>Editing Words</title> 
+<para>If you want to replace a word, select its entry and start typing. To change the word instead, double click the entry and you can change the contents of the cell without losing the old word. 
+</para>
+<para>Press &Tab; to go to the next word. Enter leaves the editing mode. You can use the arrow keys to move around.
+</para>
+</sect2>
 </sect1>
-
-<sect1 id="other-dict">
-<title>Other dictionaries on the web</title>
-
+<sect1 id="synonyms"><title>Synonyms</title> 
+<para>Synonyms are hard to set up and do not always work really well. Here is how you set them up in any case: 
+</para>
 <itemizedlist>
-<listitem><para>If you are German an want to learn English
-(or vice versa) you can download the monthly vocabulary
-list provided by the German magazine <ulink url="http://www.spotlight-online.de">Spotlight-Online</ulink>.</para>
-<para>The &parley; distribution contains an executable called
-<command>spotlight2kvtml</command> to transform those lists
-in kvtml format. The original files come as &Windows; Word DOC-files
-so you have to save them as ANSI-TXT files before starting
-conversion. <application>StarOffice</application> or <application>kword</application>
-can do this job.</para>
-<para><command>spotlight2kvtml</command> needs the 3 parameters
-<parameter>filename</parameter>, <parameter>month</parameter> and
-<parameter>year</parameter> and produces a file in the same folder
-with the same name and the extension <literal role="extension">kvtml</literal>:</para>
-<para><userinput><command>spotlight2kvtml</command>
-<replaceable>0199.txt 01 99</replaceable></userinput></para></listitem>
-
-<listitem>
-<para>Thanks to a contribution by Andreas Neuper you
-can download files from
-<ulink url="http://www.vokabeln.de/files.htm">Langenscheidt</ulink>.
-This is a german site and contains files in several languages.
-This distribution contains his perl script
-<command>langen2kvtml</command> to transform those lists
-in kvtml format.</para>
-
-<para><command>langen2kvtml</command> needs only the original filename as parameter
-and tries to extract as much information as possible from the source file.
-For example is keeps the lesson names, conjugations and articles.</para>
-
-<para>It produces a file in the same folder
-with the same name and the extension <literal role="extension">kvtml</literal>.</para>
-</listitem>
-
-<listitem><para>Files in kvtml format are available at:</para>
-  <itemizedlist>
-<listitem><para>
-  <ulink
- url="http://edu.kde.org/contrib/kvtml.php">
- &kde;-Edu Contributed Learning Files</ulink>
-  </para></listitem>
+<listitem><para>Use <menuchoice><guimenu>View</guimenu><guimenuitem>Synonyms</guimenuitem></menuchoice> to see the synonyms tool. 
+</para></listitem>
+<listitem><para>Select first word (A) you want to make synonyms, then click on the second word (B) 
+</para></listitem>
+<listitem><para>The button in the synonym tool changes it's text to <guilabel>A and B are synonyms</guilabel>
+</para></listitem>
 </itemizedlist>
-</listitem>
-
-<listitem><para>Dictionaries in ascii-format are for example available
- at:</para>
-  <itemizedlist>
-  <listitem><para>
-  <ulink
- url="ftp://ftp.gwdg.de/pub/misc/dictionary/english/words.gz">ftp.gwdg.d
-e/pub/misc/dictionary/english/words.gz</ulink> (approx. 1035 kB)
-  </para></listitem>
-  </itemizedlist>
-</listitem>
-
-<listitem><para>Dictionaries from the
-<ulink url="http://www3.futureware.at/kquick.htm">*Quick project</ulink> in
-<quote>CSV</quote> format but encoded in <quote>UTF8</quote> so you should have
-all characters rendered correctly. The files are available from its
-<ulink url="http://www3.futureware.at/1dim.htm">download section</ulink>.
-They are in compressed &Windows; <literal role="extension">.EXE</literal>
-format so you have
-to use <application>unzip</application> to extract the files.</para>
-</listitem>
-
-</itemizedlist>
-
-<para>If you know another source please tell
-<ulink url="mailto:annma@kde.org">me</ulink>
-to include it here.</para>
+<para>The words will now be shown as connected in the synonym tool and can be recognized as synonyms in the practice.
+</para>
 </sect1>
-
-<sect1 id="translators">
-<title>Translator applications</title>
-
-<para>If you do not want to learn but just need quick translations of
-expressions in larger dictionaries you might be unhappy with &parley;
-if your computer doesn't have much memory and MHz. A 150000 entry
-file consumes about 60M and takes ages to load if your system is short of memory.</para>
-
-<para>In this case  you might want to try one of the following:</para>
-<itemizedlist>
-<listitem><para>
-<ulink url="http://www.franken.de/users/duffy1/rjakob/">kdsing</ulink>
- (&kde;).
-</para></listitem>
-
-<listitem><para>
-<ulink
- url="http://www.tm.informatik.uni-frankfurt.de/~razi/steak/steak.html">
-steak/xsteak</ulink> (console/X).
-</para></listitem>
-
-<listitem><para>
-<ulink
- url="http://dict.tu-chemnitz.de/">Ding</ulink>
- (TCL).
-</para></listitem>
-
-</itemizedlist>
-
+<sect1 id="adding-images"><title>Adding Images</title> 
+<para>First show the sound tool by selecting <guilabel>View</guilabel> in the menu bar and then clicking on <guilabel>Image</guilabel>. The checkbox in front of <guilabel>Image</guilabel> will then be activated. This will show up the picture section on the right hand side of the Parley screen
+</para>
+<para>To add an image to a word make sure the word is highlighted. In the image section on the right hand side click on the <emphasis>Folder icon</emphasis> and choose the picture you wish to associate. 
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_006.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+</sect1>
+<sect1 id="adding-sound"><title>Adding Sound</title> 
+<para>First show the sound tool by selecting <guilabel>View</guilabel> in the menu bar and then clicking on <guilabel>Sound</guilabel>. This will show up the sound section on the right hand side of the Parley screen.
+</para>
+<para>To add a sound to a word make sure the word is highlighted. In the sound section on the right hand side click on the <emphasis>Folder icon</emphasis> and choose the sound you wish to associate. 
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_007.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+</sect1>
+<sect1 id="entering-comparison-forms"><title>Entering Comparison Forms</title> 
+<para>In order to enter comparison forms, make sure the comparison forms tool is enabled. You open it with the menu: <menuchoice><guimenu>View</guimenu><guimenuitem>Comparison Forms</guimenuitem></menuchoice>.
+</para>
+<para>First select a word that is an adjective or adverb.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_edit_comparison_form_1.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Click the <guilabel>Adjective</guilabel> or <guilabel>Adverb</guilabel> button in the comparison forms tool.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_edit_comparison_form_2.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Enter the comparison forms.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_edit_comparison_form_3.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Now you can use the <link linkend="comparison-forms-of-adjectives-and-adverbs">Comparison Forms Practice</link> mode.
+</para>
+</sect1>
+<sect1 id="entering-conjugation-forms"><title>Entering Conjugation Forms</title> 
+<para>In order to enter conjugation forms, make sure the conjugation forms tool is enabled. You open it with the menu: <menuchoice><guimenu>View</guimenu><guimenuitem>Conjugation</guimenuitem></menuchoice>.
+</para>
+<para>First select a word that is a verb.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_edit_conjugation_1.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Click the <guilabel>... is a Verb</guilabel> button in the conjugations tool.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_edit_conjugation_2.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>After selecting the right tense in the tense selection box, enter the conjugation forms.
+</para>
+<para>The tenses can be configured for each language: <link linkend="languages-and-grammar">Languages and Grammar</link>.
+</para>
+<para>Now you can use the <link linkend="conjugations">Conjugations Practice</link> mode.
+</para>
+</sect1>
+<sect1 id="creating-new-files"><title>Creating New Files</title> 
+<para>In this section we will describe how to create new files and this not only with the usual vocabulary learning part, but also for grammar exercises, mathematics etc.
+</para>
+<sect2 id="new-collection--vocabulary-english-german"><title>New Collection: Vocabulary English-German</title> 
+<para>In this section we describe how you can create a vocabulary training file including pictures and sound. In a second stage we will also add adjectives and verbs. This is a very complete example and therefore quite long. Eventually you will not need all points for your project.
+</para>
+<para>Since we wish to add sound-files and pictures, we should make sure that these will all be in one folder which for convenience is being called <emphasis>eng-deu</emphasis>. Our data file we create with Parley will be saved in the same folder. This will help a lot when you decide to share your work with others.
+</para>
+<para>So this is what we have in terms of sound files and pictures:
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Folder_with_sound_and_pictures.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Let's start from the Start Page which is shown once you launch Parley:
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_initial_screen_0-9-4.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Click on the button <guilabel>Create a New Collection</guilabel>.
+</para>
+<para>The <guilabel>General Document Properties</guilabel> page shows up which is being filled as follows (just adapt to what your file is about):
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_001.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Next click on <guilabel>OK</guilabel>. The following screen asks you to set up the language details. Here we don't want to change anything and therefore we just click on <guilabel>OK</guilabel>.
+</para>
+<para>As a first step, let's create the vocabulary part. We will think about the addition of the sound files and pictures in a second stage. This is what the lesson looks like:
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_002.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Before we do anything else, let's save the file to the folder with the pictures and sound-files. Click on the <guilabel>Save</guilabel> icon and select the folder using the navigation. In this example we will call the file <guilabel>Trainer eng-deu</guilabel> - once you entered the name just click on save.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_003.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>If you now check your folder where the sound-files and pictures are, you will also find the file <guilabel>Trainer eng-deu.kvtml</guilabel>
+</para>
+<para>Let's have a short look at the words we want to add: <emphasis>apple, bird, cat, cherry, cow, orange, pear, snake, strawberry</emphasis>. We have animals and fruit and therefore we decide to create two lessons that are called: <guilabel>Animals</guilabel> and <guilabel>Fruit</guilabel>.
+</para>
+<para>We now rename <guilabel>Lesson 1</guilabel> to <guilabel>Animals</guilabel> and then we add a lesson called <guilabel>Fruit</guilabel>. Right-click on <guilabel>Lesson 1</guilabel> and choose <guilabel>Rename Lesson</guilabel> from the options shown. Now <guilabel>Lesson 1</guilabel> is highlighted and you can simply overwrite it by typing in <guilabel>Animals</guilabel>. When done, hit the return key. Now right-click on <guilabel>Collection: Vocabulary trainer E...</guilabel> which is the root of the lesson tree and choose <guilabel>New Lesson</guilabel> from the options shown. In the new field write <guilabel>Fruit</guilabel> and hit the return key again.
+</para>
+<para>First, let's insert the animals. Please click on the lesson <guilabel>Animals</guilabel> and you will get an empty table you can fill in. Click with your mouse in the first field, and insert the source terms.  Then, insert the target terms in the second column. Once you've inserted all 4 English animal names with their German translation the screen looks like this:
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_004.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>In our case we want only 4 entries in the animals lesson. There are many empty lines that should be deleted. To do this click on the first empty field, and keep the shift key pressed while clicking on the last empty field. All lines to be deleted will be highlighted. Then, press the <keycap>Del</keycap> key and confirm the question <emphasis>Do you really want to delete the selected entries?</emphasis> by clicking on the <guilabel>Delete</guilabel> button.
+</para>
+<para>Let's add the fruit terminology. Just click on the lesson named <guilabel>Fruit</guilabel>. This second lesson is completely empty. Since we have five fruit terms we need to add five lines. Therefore, press the <keycap>Ins</keycap> key five times, and then, just like before, we add our terminology.
+</para>
+<para>Don't forget to save every now and then ...
+</para>
+<para>A click on the root of our lesson tree <guilabel>Collection: Vocabulary trainer E...</guilabel> and Parley will show us all entries that are present in the two lessons:
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_005.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Time to add sound and images. First of all we need to activate the Image and Sound views. From the menu bar select <guilabel>View</guilabel> and there click on <guilabel>Image</guilabel> and then <guilabel>Sound</guilabel>. Once these options are activated, two new sections are shown on the right hand side of the Parley editing screen: <emphasis>Image</emphasis> and <emphasis>Sound</emphasis>.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_006.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Select the English word <emphasis>apple</emphasis> by clicking on it. It is highlighted, so let's add the picture. In the image section on the right hand side click on the <guilabel>Folder</guilabel> icon and choose the picture you wish to associate.
+</para>
+<para>To add the pronunciation for the English apple, do the same in the Sound section, selecting the relevant sound file.
+</para>
+<para>By clicking on the <guilabel>Play</guilabel> button in the sound tool you can listen to the pronunciation.
+</para>
+<para>The screen will then look like this:
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_007.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Then click on the German translation <guilabel>Apfel</guilabel>. The field is now highlighted to indicate the selection. You will note the picture with the apple is associated also to the German term. In the sound section select the pronunciation, just like before.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_008.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Just go ahead like this for all terms. 
+</para>
+<para>Time to add adjectives and verbs as lessons to our project. So just do as before with the lesson <emphasis>Fruit</emphasis> and create two new lessons: <emphasis>Adjectives</emphasis> and <emphasis>Verbs</emphasis>. Let's assume we will add <emphasis>big, small, old, young, narrow</emphasis>' in the adjective lesson and <emphasis>to go, to come, to buy, to drink, to eat</emphasis> in the verb lesson.
+</para>
+<para>The following shows a screenshot with all inserted terminology. Now, words are mixed and it would be nice to see what is a <emphasis>noun, adjective</emphasis> or <emphasis>verb</emphasis>.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_009.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>As the next step we are going to show the <guilabel>Word Type</guilabel>. Select <guilabel>View</guilabel> in the menu bar and then select <guilabel>Vocabulary Columns</guilabel>. We activate <guilabel>Word Type</guilabel> for <emphasis>English</emphasis> and <emphasis>German</emphasis> by clicking on the checkbox in front of <guilabel>Word Type</guilabel>. Then click on <guilabel>OK</guilabel> to accept the changes.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_010.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>By clicking on the fields in the column <guilabel>Word Type</guilabel> you can select the word type and for those languages where nouns have a gender you can also select the <emphasis>Noun/Gender</emphasis> combination. Below the <guilabel>Word Type</guilabel> column with part of the selections already done.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_011.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Once we have specified all the word types, we will first consider<emphasis>Adjectives</emphasis>, adding <guilabel>Comparison Forms</guilabel>  to them. So let's move to the <emphasis>Adjectives</emphasis> lesson only. 
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_012.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>To show the <guilabel>Comparison Forms</guilabel> on the right hand side of the screen, select the <guilabel>View</guilabel> in the menu bar and activate the <guilabel>Comparison Forms</guilabel> checkbox.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_013.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Edit the <guilabel>Comparison Forms</guilabel> by adding <guilabel>Comparative</guilabel> and <guilabel>Superlative</guilabel> to the single adjectives. First, click on the adjective for which you wish to add the comparison forms, in our case <emphasis>big</emphasis>, and add <emphasis>bigger</emphasis> and <emphasis>biggest</emphasis>. Then, continue with the next adjective to complete, until all comparison forms have been entered.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_014.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Finally, let's consider the <guilabel>Conjugation</guilabel> form of the <guilabel>Verbs</guilabel>. Select the <guilabel>Verbs</guilabel> lesson and then activate the conjugation section on the right hand side by selecting <guilabel>View</guilabel> from the menu bar and activating <guilabel>Conjugation</guilabel>. As an example we edit the present tense (<guilabel>Präsens</guilabel>) form of <emphasis>gehen</emphasis>. Please first select <guilabel>Präsens</guilabel> from the drop down menu and then add the verb forms.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_015.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>This needs to be done for all verbs, and in all possible tenses.
+</para>
+<para>Once you are done you can start to practice by clicking on the <link linkend="vocabulary-practice"><guilabel>Practice</guilabel></link> button.
+</para>
+</sect2>
+<sect2 id="new-collection:-single-names-and-collective-names"><title>New Collection: Single Names and Collective Names</title> 
+<para>This exercise was created for the 3rd class of an Italian primary school. Pupils are supposed to connect single names with collective names, such as <emphasis>tree</emphasis> → <emphasis>woods</emphasis>
+</para>
+<para>When you start Parley you get the start page, eventually also listing some previously used files (that you cannot see here).
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_initial_screen_0-9-4.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Click on <guilabel>Create a New Collection</guilabel> and the following screen with empty or partly filled fields will show up:
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_create_new_exercise_collective_names1.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Fill in the title, here <guilabel>nomi singoli e collettivi</guilabel>, your name, e-mail address, in the <guilabel>Comment</guilabel> section you can write down a more detailed description, select your category and license. Then there we have something special: instead of indicating the first and second language, like it normally would happen, we added <emphasis>nome singolo</emphasis> (single name) and <emphasis>nome collettivo</emphasis> (collective name). <guilabel>Setup Grammar Details</guilabel> and <guilabel>Download Grammar</guilabel> are not needed here. In the screenshot they are still activated - please deactivate them by just clicking on the checkboxes. When you are done, please click on <guilabel>OK</guilabel>.
+</para>
+<para>The <guilabel>Properties</guilabel> page for <emphasis>nome singolo</emphasis> comes up and here you see it already with the necessary changes made:
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_create_new_exercise_collective_names4.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>On the left hand side you can see where the data you are adding belongs to. <emphasis>nome singolo</emphasis>. Choose the language, here <emphasis>Italian</emphasis> and insert <emphasis>nome singolo</emphasis> in the following editable field. Then click on <guilabel>OK</guilabel>.
+</para>
+<para>Now the <guilabel>Properties</guilabel> page for <emphasis>nome collettivo</emphasis> is shown:
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_create_new_exercise_collective_names5.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Like before: choose <guilabel>Italian</guilabel> as language and insert <emphasis>nome collettivo</emphasis> and click on <guilabel>OK</guilabel>.
+</para>
+<para>And now you can start to edit:
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_create_new_exercise_collective_names7.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Just insert the <emphasis>nome singolo</emphasis> (single name) in the first column and the corresponding <emphasis>nome collettivo</emphasis> (collective name) in the second column.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_create_new_exercise_collective_names8.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>If the number of available fields is not enough, just right-click anywhere on the edit section and choose <guilabel>Add New Entry</guilabel>. Don't forget to save your file every now and then. When you have finished adding all entries you will want to see if Practice mode works fine. Well just click on the <guilabel>Practice</guilabel> button right above the edit section and the page with the practice settings comes up:
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_create_new_exercise_collective_names10.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>In this case <guilabel>Multiple Choice</guilabel> is a good option, but also <guilabel>Written</guilabel> will do fine. After choosing the Practice Mode just click on <guilabel>Start Practice</guilabel> and have fun.
+</para>
+</sect2>
+</sect1>
+<sect1 id="getting-additional-collections"><title>Getting Additional Collections</title> 
+<para>When you are on the <guilabel>Start Page</guilabel> you have the possibility to install Collections directly from the server, provided you are online. Just click on <guilabel>Download New Collections</guilabel>.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_welcome_screen.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>A window with many interesting collections opens. Just select what you find most interesting and click on <guilabel>Install</guilabel>. Then open the file to practice or edit.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_get_new_stuff_0-9-4_001.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+</sect1>
+<sect1 id="configure-parley"><title>Configure Parley</title> 
+<para>You can configure the appearance of Parley from the <guilabel>Start Page</guilabel> or from within the <guilabel>Edit section</guilabel>. Select <guilabel>Settings</guilabel> from the menu bar and then <guilabel>Configure Parley</guilabel>.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_configure_parley_0-9-4_001.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<sect2 id="theme-tab"><title>Theme Tab</title>
+<para>The configuration opens with the <guilabel>Theme</guilabel> section. This is the place where you can choose how Parley should greet you when launching it: an elegant <guilabel>Grey</guilabel> version, the all time busy <guilabel>Bees</guilabel> or the <guilabel>Fluffy Bunny</guilabel> for all those who love pink. Note that it could well be that <guilabel>Fluffy Bunny</guilabel> is not in your version: if you want it, read the following section.
+</para>
+<para>Once you selected your preferred theme, click on <guilabel>OK</guilabel>.
+</para>
+<para>Screenshots of the <guilabel>Bees</guilabel> and <guilabel>Fluffy Bunny</guilabel> themes:
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_practice_bees.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_practice_fluffy.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>And if these are not enough: you can click on <guilabel>Get New Themes</guilabel> to find more themes. Over time we hope that more and more themes come along. If you know how to create SVG graphics (for example with <ulink url="http://inkscape.org"><application>Inkscape</application></ulink>), you can create your own theme and share it with the world.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_configure_parley_0-9-4_002.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>Additional themes can be found on <ulink url="http://kde-look.org/index.php?xcontentmode=85">kde-look.org </ulink>
+</para>
+</sect2>
+<sect2 id="general-tab"><title>General Tab</title>
+<para>The <guilabel>General</guilabel> tab gives you some options regarding the behavior of Parley. 
+</para>
+<sect3 id="open-save-options"><title>Open/Save options</title>
+<para><guilabel>Always load the last opened collection on start</guilabel> will immediately take you back to the vocabulary you were learning. Often you will use this together with the second option <guilabel>Save vocabularies on close and quit</guilabel> because it's just handy not to have always answer the same question if changes (including learning results) should be changed or not. The option <guilabel>Create a backup every ... minutes</guilabel> can be very handy to help you save your work frequently. One less thing to think about.
+</para>
+<para>Sometimes the import and/or export of text (CSV) files can be very handy and there you need the proper separator to elaborate data afterwards or to be able to read the data you got from somewhere else. Parley allows you to choose among various separators to make sure you can re-use your data.
+</para>
+</sect3>
+<sect3 id="editing-option"><title>Editing option</title> 
+<para>Here you can determine whether Parley automatically appends new rows while you are editing your vocabulary collection. This can be useful if you want to add many entries, before then splitting them up into various lessons. On the other hand, it can be good to have this option off if you want to work by creating lessons with a set maximum number of entries. 
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_configure_parley_0-9-4_003.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+</sect2>
+<sect2 id="view-tab"><title>View Tab</title> 
+<para>The <guilabel>View Settings</guilabel> allows you to change font and its size, very handy when you work on a netbook for example, and you can choose the <guilabel>Grade Colors</guilabel> you like best.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_configure_parley_0-9-4_004.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+</sect2>
 </sect1>
 </chapter>
-
-<chapter id="links">
-<title>Interesting links</title>
-
-<sect1 id="similar">
-<title>Similar projects</title>
-
-<para>You might also want to try one of the other vocabulary trainers
-I have found (sorted by the time when I found them):</para>
+<chapter id="parley-on-windows"><title>Parley on Windows</title> 
+<para>It is possible to install Parley together with other <ulink url="http://edu.kde.org">Educational software</ulink> on Windows systems. For further info please visit <ulink url="http://windows.kde.org">windows.kde.org</ulink>.
+</para>
+<para>The steps to be followed in short:
+</para>
+<para>Download the installer <ulink url="http://windows.kde.org/download.php">here</ulink>
+</para>
+<para>Then follow the installation procedure like for any other Windows software - screenshots are <ulink url="http://www.winkde.org/pub/kde/ports/win32/installer/manual/">here</ulink>.
+</para>
+<para>When you come to the <guilabel>Package selection screen</guilabel>, select the language(s) you wish the software to be available in <emphasis>and</emphasis> the package - in this case <guilabel>kdeedu</guilabel>. If you don't select any language you will automatically get English.
+</para>
+<para>Then finish the installation process by clicking on next, following the coming screens just like you normally do with other windows software.
+</para>
+<para>Please note that the Parley team does not deal with the Windows-Installer and therefore we cannot easily answer your questions. Should you have difficulties, please contact the KDE-Windows team directly. You can do so by subscribing to the mailing list <ulink url="https://mail.kde.org/mailman/listinfo/kde-windows">here</ulink> or join them on IRC at irc://freenode.net Channel: #kde-windows.
+</para>
+</chapter>
+<chapter id="notes-for-advanced-users"><title>Notes For Advanced Users</title>
+<!--
+<sect1 id="using-parley-for-exam-preparation"><title>Using Parley for Exam Preparation</title> 
 <itemizedlist>
-<listitem><para><ulink
-url="http://edu.kde.org/kwordquiz/">&kwordquiz;</ulink> (&kde;)</para></listitem>
-
-<listitem><para><ulink
-url="http://members.tripod.com/~planetphil/svt.html">SVT</ulink>
-(console)</para></listitem>
+<listitem><para> what to bear in mind with long questions / answers?
+</para></listitem>
+<listitem><para> how to start  with a new Exam
+</para></listitem>
+<listitem><para>example 1 with capitals
+</para></listitem>
+<listitem><para> example 2 with sentence
+</para></listitem>
 </itemizedlist>
 </sect1>
-
-<sect1 id="other-links">
-<title>Other interesting links</title>
-
-<para>Maybe you are interested in the one or the other links I found
-while working on &parley;.</para>
-<itemizedlist>
-<listitem><para><ulink url="http://czyborra.com/unifont/">&GNU; Unifont
-Projekt</ulink></para></listitem>
-
-<listitem><para><ulink url="http://www.seul.org/edu/projects.html">SEUL
-Educational Projects</ulink></para></listitem>
-
-<listitem><para><ulink url="http://esl.about.com/library/weekly/aa040998.htm">
-Reference and Introduction to Phonetic Symbols</ulink></para></listitem>
-
-<listitem><para><ulink url="http://www2.arts.gla.ac.uk/IPA/ipa.html">
-The International Phonetic Association</ulink></para></listitem>
-
-</itemizedlist>
-
+-->
+<sect1 id="upload-and-share-collections"><title>Upload and Share Collections</title> 
+<para>You can upload your files and share them with others.
+</para>
+<para>Use the upload button from the file menu in the Editor within Parley.
+</para>
+<para>If that does not work, you can also visit <ulink url="http://kde-files.org/?xcontentmode=687">kde-files.org</ulink>.
+</para>
+<para>In either case the files will show up in the <guilabel>Download New Collections</guilabel> dialog on the <guilabel>Start Page</guilabel>.
+</para>
 </sect1>
-</chapter>
-
-<chapter id="configuring">
-<title>Configuring &parley;</title>
-
-<sect1 id="general-settings">
-<title>&parley; settings for all documents.</title>
-<para>TODO</para>
+<sect1 id="file-format"><title>File format</title> 
+<para>If you are interested in the file formats that Parley can read and stores the vocabulary collections in, visit:
+</para>
+<para><ulink url="http://userbase.kde.org/Parley/FileFormats">Parley File Formats on userbase.kde.org</ulink>
+</para>
 </sect1>
-</chapter>
 
-<chapter id="credits-and-license">
+<!-- empty sect1
+<sect1 id="scripting"><title>Scripting</title>
+</sect1
+-->
+</chapter>
+<!--userbase-content-->
+
+<chapter id="credits">
+
 <title>Credits and License</title>
 
-<sect1 id="credits">
+<sect1 id="thanks">
 <title>Thanks</title>
 
 <para>I'd like to thank the following people personally for their
-contribution to &parley;:</para>
+contribution to Parley:</para>
 <itemizedlist>
 <listitem><para>Peter Hedlund who kept KVocTrain alive and started the KDE 4 port which eventually would become Parley</para></listitem>
 
 <listitem><para>David Capel</para></listitem>
 <listitem><para>Avgoustinos Kadis</para></listitem>
-<listitem><para>Daniel Laiding</para></listitem>
+<listitem><para>Daniel Laidig</para></listitem>
 <listitem><para>Johannes Simon</para></listitem>
 </itemizedlist>
 
@@ -655,11 +1743,13 @@ whole &kde; team, for their help, constructive criticism, suggestions or bug-rep
 <title>Copyright</title>
 
 <para>
-&parley; copyright 2007-2008 &Frederik.Gladhorn;
+Parley copyright 2007-2010 &Frederik.Gladhorn;
 &Frederik.Gladhorn.mail;
 </para>
 
-<para>Documentation copyright 2007-2008 &Frederik.Gladhorn; &Frederik.Gladhorn.mail;
+<para>Documentation copyright 2010 &Frederik.Gladhorn; &Frederik.Gladhorn.mail;, 
+Sabine Eller <email>s.eller@voxhumanitatis.org</email>, 
+Daniel Laidig <email>d.laidig@gmx.de</email>
 </para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
@@ -668,21 +1758,40 @@ whole &kde; team, for their help, constructive criticism, suggestions or bug-rep
 &underGPL;
 
 </sect1>
+
 </chapter>
 
 <appendix id="installation">
 <title>Installation</title>
 
-<sect1 id="obtaining">
-<title>How to obtain &parley;</title>
+<sect1 id="getting-kapp">
+<title>How to obtain Parley</title>
 
-<para>Please visit the <ulink url="http://edu.kde.org/parley/">&parley; homepage</ulink> to learn how to obtain Parley.</para>
 &install.intro.documentation;
+
+</sect1>
+
+<sect1 id="compilation">
+<title>Compilation and Installation</title>
+
+&install.compile.documentation;
 
 </sect1>
 
 </appendix>
 
 &documentation.index;
-
 </book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->
