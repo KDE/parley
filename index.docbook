@@ -66,7 +66,7 @@ limited to language learning but supports a multitude of subjects.
 </keywordset>
 
 </bookinfo>
-<!--userbase <timestamp>2010-06-06T16:08:34Z</timestamp>-->
+<!--userbase <timestamp>2010-06-25T18:39:29Z</timestamp>-->
 
 <!--userbase-content-->
 <chapter id="introduction"><title>Introduction</title> 
@@ -294,8 +294,10 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>This will take you to the next question.
 </para>
-<para>Tip: Instead of clicking Continue you can also use the <keycap>Spacebar</keycap> of your keyboard.
+<para>On the left hand side bottom of the screen you have 7 boxes that show how good you know the vocabulary. These 7 boxes correspond to the blocking levels set under <link linkend="blocking"><guilabel>Blocking</guilabel></link> in the <guilabel>Advanced Practice Configuration</guilabel>
 </para>
+<tip><para>Instead of clicking <guilabel>Continue</guilabel> you can also use the <keycap>Spacebar</keycap> of your keyboard.
+</para></tip>
 <para>
 <screenshot>
 <screeninfo></screeninfo>
@@ -383,6 +385,7 @@ limited to language learning but supports a multitude of subjects.
 </para>
 </sect2>
 <sect2 id="multiple-choice"><title>Multiple Choice</title> 
+<sect3 id="automatic-selection-of-the-possible-answers"><title>Automatic selection of the possible answers</title> 
 <para>In <guilabel>Multiple Choice</guilabel> mode you are shown a number of potential answers, of which only one is correct. By clicking on <guilabel>Hint</guilabel> Parley excludes one of the wrong answers so that your choice gets more and more restricted with each further click on <guilabel>Hint</guilabel>. Of course you may also choose to <guilabel>Answer Later</guilabel>.
 </para>
 <para>
@@ -434,6 +437,28 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>If you wish to stop practice, just click on the <guilabel>Stop Practice</guilabel> button.
 </para>
+</sect3>
+<sect3 id="with-yes-no-answers"><title>With yes/no answers</title> 
+<para>Normally Parley automatically proposes one correct and several wrong answers in Multiple Choice mode. For some exercises instead you will have preset answers like yes/no or similar. And for these you have to configure the practice by clicking on <link linkend="advanced-practice-configuration"><guilabel>Configure Practice</guilabel></link>.
+</para>
+<para>Select the tab <guilabel>Advanced</guilabel> and you will get something very similar to the following screenshot:
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_configure_advanced.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>If you have just <emphasis>two choices</emphasis> like <emphasis>yes/no</emphasis> in the section <guilabel>Multiple Choice</guilabel> set the <guilabel>Number of choices</guilabel> to <guilabel>2</guilabel>.
+</para>
+</sect3>
 </sect2>
 <sect2 id="written"><title>Written</title> 
 <para>When you select the option <guilabel>Written</guilabel> to do your practice you are supposed to type in the solution. You can use the button <guilabel>Hint</guilabel> which will start to give you the result one letter at a time. Of course you can also decide to <guilabel>Answer Later</guilabel> by clicking on that button. 
@@ -926,7 +951,7 @@ limited to language learning but supports a multitude of subjects.
 </sect2
 -->
 <sect2 id="adding-new-vocabulary"><title>Adding New Vocabulary</title>
-<para>Use <quote><emphasis>Add New Entry</emphasis></quote> in the toolbar to add new words. You can start typing the word in the first language right away. By default Parley lets you enter another word when you press enter in the last row, so you don't have to keep using the add button. After entering the first word, press enter or tab to go to the next language. 
+<para>Use <guilabel>Add New Entry</guilabel> in the toolbar to add new words. You can start typing the word in the first language right away. By default Parley lets you enter another word when you press &Enter; in the last row, so you don't have to keep using the <guilabel>Add</guilabel> button. After entering the first word, press &Enter; or &Tab; to go to the next language. 
 </para>
 </sect2>
 <sect2 id="editing-words"><title>Editing Words</title> 
@@ -944,7 +969,7 @@ limited to language learning but supports a multitude of subjects.
 </para></listitem>
 <listitem><para>Select first word (A) you want to make synonyms, then click on the second word (B) 
 </para></listitem>
-<listitem><para>The button in the synonym tool changes it's text to <quote>A and B are synonyms</quote>
+<listitem><para>The button in the synonym tool changes it's text to <guilabel>A and B are synonyms</guilabel>
 </para></listitem>
 </itemizedlist>
 <para>The words will now be shown as connected in the synonym tool and can be recognized as synonyms in the practice.
@@ -960,7 +985,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_007.png" format="PNG"/>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_006.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -1082,7 +1107,7 @@ limited to language learning but supports a multitude of subjects.
 <sect1 id="creating-new-files"><title>Creating New Files</title> 
 <para>In this section we will describe how to create new files and this not only with the usual vocabulary learning part, but also for grammar exercises, mathematics etc.
 </para>
-<sect2 id="new-collection:-vocabulary-english-german"><title>New Collection: Vocabulary English-German</title> 
+<sect2 id="new-collection--vocabulary-english-german"><title>New Collection: Vocabulary English-German</title> 
 <para>In this section we describe how you can create a vocabulary training file including pictures and sound. In a second stage we will also add adjectives and verbs. This is a very complete example and therefore quite long. Eventually you will not need all points for your project.
 </para>
 <para>Since we wish to add sound-files and pictures, we should make sure that these will all be in one folder which for convenience is being called <emphasis>eng-deu</emphasis>. Our data file we create with Parley will be saved in the same folder. This will help a lot when you decide to share your work with others.
@@ -1491,7 +1516,7 @@ limited to language learning but supports a multitude of subjects.
 </para>
 </sect2>
 </sect1>
-<sect1 id="getting-additional-vocabulary-collections"><title>Getting Additional Vocabulary Collections</title>
+<sect1 id="getting-additional-collections"><title>Getting Additional Collections</title> 
 <para>When you are on the <guilabel>Start Page</guilabel> you have the possibility to install Collections directly from the server, provided you are online. Just click on <guilabel>Download New Collections</guilabel>.
 </para>
 <para>
@@ -1633,13 +1658,23 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>  
-</para>
 </sect2>
 </sect1>
 </chapter>
 <chapter id="parley-on-windows"><title>Parley on Windows</title> 
-<para>It is possible to install Parley together with other <ulink url="http://edu.kde.org">Educational software</ulink> on Windows systems. For further info please visit <ulink url="http://windows.kde.org">this page</ulink>.
+<para>It is possible to install Parley together with other <ulink url="http://edu.kde.org">Educational software</ulink> on Windows systems. For further info please visit <ulink url="http://windows.kde.org">windows.kde.org</ulink>.
+</para>
+<para>The steps to be followed in short:
+</para>
+<para>Download the installer <ulink url="http://windows.kde.org/download.php">here</ulink>
+</para>
+<para>Then follow the installation procedure like for any other Windows software - screenshots are <ulink url="http://www.winkde.org/pub/kde/ports/win32/installer/manual/">here</ulink>.
+</para>
+<para>When you come to the <guilabel>Package selection screen</guilabel>, select the language(s) you wish the software to be available in <emphasis>and</emphasis> the package - in this case <guilabel>kdeedu</guilabel>. If you don't select any language you will automatically get English.
+</para>
+<para>Then finish the installation process by clicking on next, following the coming screens just like you normally do with other windows software.
+</para>
+<para>Please note that the Parley team does not deal with the Windows-Installer and therefore we cannot easily answer your questions. Should you have difficulties, please contact the KDE-Windows team directly. You can do so by subscribing to the mailing list <ulink url="https://mail.kde.org/mailman/listinfo/kde-windows">here</ulink> or join them on IRC at irc://freenode.net Channel: #kde-windows.
 </para>
 </chapter>
 <chapter id="notes-for-advanced-users"><title>Notes For Advanced Users</title>
@@ -1650,7 +1685,7 @@ limited to language learning but supports a multitude of subjects.
 </para></listitem>
 <listitem><para> how to start  with a new Exam
 </para></listitem>
-<listitem><para> example 1 with capitols
+<listitem><para>example 1 with capitals
 </para></listitem>
 <listitem><para> example 2 with sentence
 </para></listitem>
