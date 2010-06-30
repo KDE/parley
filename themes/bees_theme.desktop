@@ -1,5 +1,6 @@
 [KGameTheme]
 Name=Bees
+Name[ca]=Abelles
 Name[da]=Bier
 Name[de]=Bienen
 Name[en_GB]=Bees
@@ -15,6 +16,7 @@ Name[uk]=Бджілки
 Name[x-test]=xxBeesxx
 Name[zh_TW]=蜜蜂
 Description=Awesome cute bees (disfigured by Parley developers).
+Description[ca]=Abelles súperbufones (desfigurades pels desenvolupadors del Parley).
 Description[da]=Enormt søde bier (vansiret af Parley-udviklerne).
 Description[de]=Tolle süße Bienen (verunstaltet von den Parley-Entwicklern).
 Description[en_GB]=Awesome cute bees (disfigured by Parley developers).
