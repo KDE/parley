@@ -86,13 +86,15 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>The <link linkend="practice">Practice</link> consists of three parts: first the <link linkend="practice-setup">Practice Setup</link> where you choose what to practice. From there you start the actual <link linkend="practice">Practice</link> and when you are done, you get a <link linkend="summary-after-practice">Summary</link>.
 </para>
-<para>Tip: Like in all applications try to use the right-click if you explore features and functionality in Parley. The right-click displays a <quote>context menu</quote> that shows what you can do with your present situation. Try right-clicking lessons and words to find some options.
+<tip>
+<para>Like in all applications try to use the right-click if you explore features and functionality in Parley. The right-click displays a <quote>context menu</quote> that shows what you can do with your present situation. Try right-clicking lessons and words to find some options.
 </para>
+</tip>
 </chapter>
 <chapter id="start-page"><title>Start Page</title> 
 <para>When you first launch Parley the <guilabel>Start Page</guilabel> welcomes you.
 </para>
-<para>At first the Start Page is empty, once you opened some vocabulary collections, it shows you the ones you worked with most recently. 
+<para>At first the <guilabel>Start Page</guilabel> is empty, once you opened some vocabulary collections, it shows you the ones you worked with most recently. 
 </para>
 <para>
 <screenshot>
@@ -1127,7 +1129,7 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>Let's start from the Start Page which is shown once you launch Parley:
+<para>Let's start from the <guilabel>Start Page</guilabel> which is shown once you launch Parley:
 </para>
 <para>
 <screenshot>
@@ -1662,7 +1664,7 @@ limited to language learning but supports a multitude of subjects.
 </sect1>
 </chapter>
 <chapter id="parley-on-windows"><title>Parley on Windows</title> 
-<para>It is possible to install Parley together with other <ulink url="http://edu.kde.org">Educational software</ulink> on Windows systems. For further info please visit <ulink url="http://windows.kde.org">windows.kde.org</ulink>.
+<para>It is possible to install Parley together with other <ulink url="http://edu.kde.org">Educational software</ulink> on Windows systems. For further info please visit <ulink url="http://windows.kde.org">this page</ulink>.
 </para>
 <para>The steps to be followed in short:
 </para>
