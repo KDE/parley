@@ -1,6 +1,7 @@
 [KGameTheme]
 Name=Gray
 Name[ca]=Gris
+Name[ca@valencia]=Gris
 Name[da]=Gråt
 Name[de]=Grau
 Name[en_GB]=Grey
@@ -17,6 +18,7 @@ Name[x-test]=xxGrayxx
 Name[zh_TW]=灰
 Description=A simple gray theme.
 Description[ca]=Un tema gris senzill.
+Description[ca@valencia]=Un tema gris senzill.
 Description[da]=Et simpelt gråt tema.
 Description[de]=Ein einfaches graues Design.
 Description[en_GB]=A simple grey theme.
