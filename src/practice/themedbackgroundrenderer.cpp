@@ -234,7 +234,7 @@ void ThemedBackgroundRenderer::renderRect(const QString& name, const QRect& rect
 {
     renderItem(name, "center", rect, p, fastScale, Rect, Qt::IgnoreAspectRatio, Center, Centered, true);
     renderItem(name, "center-ratio", rect, p, fastScale, Rect, Qt::IgnoreAspectRatio, Center, Centered, true);
-    renderItem(name, "center-crop", rect, p, fastScale, Rect, Qt::IgnoreAspectRatio, Center, Centered, true);
+    renderItem(name, "center-noscale", rect, p, fastScale, NoScale, Qt::IgnoreAspectRatio, Center, Centered, true);
 
     renderItem(name, "border-topleft", rect, p, fastScale, NoScale, Qt::IgnoreAspectRatio, Top, Corner, false);
     renderItem(name, "border-topright", rect, p, fastScale, NoScale, Qt::IgnoreAspectRatio, Right, Corner, false);
@@ -290,9 +290,6 @@ void ThemedBackgroundRenderer::renderItem(const QString& idBase, const QString& 
 //    kDebug() << "scaled" << itemRect;
     itemRect = alignRect(itemRect, rect, edge, align, inside);
 //    kDebug() << "aligned" << itemRect;
-    if (aspectRatio == Qt::KeepAspectRatioByExpanding) {
-        //TODO: clip painter
-    }
 
     QImage image;
     if (m_cache.imageSize(id) == itemRect.size()) {
@@ -313,6 +310,12 @@ void ThemedBackgroundRenderer::renderItem(const QString& idBase, const QString& 
             QPainter tilePainter(&tile);
             m_renderer.render(&tilePainter, mappedId, QRect(QPoint(0, 0), tile.size()));
             painter.fillRect(image.rect(), QBrush(tile));
+        } else if(aspectRatio == Qt::KeepAspectRatioByExpanding)  {
+            m_renderer.render(&painter, mappedId, QRect(QPoint(0, 0), itemRect.size()));
+            painter.end();
+            QRect croppedRect = rect;
+            croppedRect.moveCenter(itemRect.center());
+            image = image.copy(croppedRect);
         } else {
             m_renderer.render(&painter, mappedId, QRect(QPoint(0, 0), itemRect.size()));
         }
@@ -320,9 +323,6 @@ void ThemedBackgroundRenderer::renderItem(const QString& idBase, const QString& 
         m_haveCache = true;
     }
     p->drawImage(itemRect.topLeft(), image);
-    if (aspectRatio == Qt::KeepAspectRatioByExpanding) {
-        //TODO: unclip painter
-    }
 }
 
 QRect ThemedBackgroundRenderer::scaleRect(QRectF itemRect, const QRect& baseRect, ScaleBase scaleBase, Qt::AspectRatioMode aspectRatio)
