@@ -63,7 +63,7 @@ public Q_SLOTS:
 
     /**
      * Check if the current answer is right.
-     * This function should emit on of these signals: answerRight, answerWrongRetry or answerWrongShowSolution
+     * This function should emit one of these signals: answerRight, answerWrongRetry, answerWrongShowSolution or showSolution
      */
     virtual void checkAnswer() = 0;
 
@@ -76,6 +76,7 @@ Q_SIGNALS:
     void answerRight();
     void answerWrongRetry();
     void answerWrongShowSolution();
+    void showSolution();
 
 protected:
     PracticeOptions m_practiceOptions;

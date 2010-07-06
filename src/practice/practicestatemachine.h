@@ -41,10 +41,11 @@ private Q_SLOTS:
 
     void continueAction();
 
-    // these come from the frontend
+    // these come from the mode
     void answerRight();
     void answerWrongRetry();
     void answerWrongShowSolution();
+    void showSolution();
 
     void gradeEntryAndContinue();
 

@@ -35,7 +35,7 @@ bool FlashCardBackendMode::setTestEntry(TestEntry* current)
 
 void FlashCardBackendMode::checkAnswer()
 {
-    emit answerRight();
+    emit showSolution();
 }
 
 void FlashCardBackendMode::hintAction()
