@@ -47,6 +47,7 @@ PracticeStateMachine::PracticeStateMachine(AbstractFrontend* frontend, ParleyDoc
     connect(m_mode, SIGNAL(answerRight()), this, SLOT(answerRight()));
     connect(m_mode, SIGNAL(answerWrongRetry()), this, SLOT(answerWrongRetry()));
     connect(m_mode, SIGNAL(answerWrongShowSolution()), this, SLOT(answerWrongShowSolution()));
+    connect(m_mode, SIGNAL(showSolution()), this, SLOT(showSolution()));
 }
 
 void PracticeStateMachine::createPracticeMode()
@@ -179,6 +180,13 @@ void PracticeStateMachine::answerWrongShowSolution()
     m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
     //User gave an empty answer or the same answer for a second time so we want to drop out.
     m_frontend->setResultState(AbstractFrontend::AnswerWrong);
+    m_state = SolutionShown;
+    m_frontend->showSolution();
+}
+
+void PracticeStateMachine::showSolution()
+{
+    kDebug() << "show solution";
     m_state = SolutionShown;
     m_frontend->showSolution();
 }
