@@ -19,32 +19,34 @@
 #include <kdebug.h>
 
 #include <QtGui/QPainter>
-#include <qbrush.h>
+#include <QBrush>
+#include <QEvent>
 
 using namespace Practice;
 
 BoxesWidget::BoxesWidget(QWidget* parent)
-    : ImageWidget(parent), m_boxCount(1), m_currentBox(-1), m_lastBox(-1), m_renderer(0), m_arrowHint(0), m_spacingHint(0)
+    : ImageWidget(parent), m_boxCount(1), m_currentBox(-1), m_lastBox(-1), m_renderer(0), m_fixedSize(true), m_arrowHint(0), m_spacingHint(0)
 {
-    setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     setBoxCount(KV_MAX_GRADE);
     setScalingEnabled(false);
+    setAlignment(Qt::AlignLeft | Qt::AlignBottom);
 }
 
 void BoxesWidget::setRenderer(ThemedBackgroundRenderer *renderer)
 {
     m_renderer = renderer;
-    m_size = m_renderer->getSizeForId("boxes-noscale").toSize(); //TODO: implement scaling mode
-    setMinimumSize(minimumSizeHint());
-    updateGeometry();
+    m_rect = m_renderer->getRectForId("boxes-noscale").toRect();
+    m_fixedSize = true;
+    if (!m_rect.isValid()) {
+        m_rect = m_renderer->getRectForId("boxes").toRect();
+        m_fixedSize = false;
+    }
     updatePixmap();
 }
 
 void BoxesWidget::setBoxCount(int boxCount)
 {
     m_boxCount = boxCount;
-    setMinimumSize(minimumSizeHint());
-    updateGeometry();
     updatePixmap();
 }
 
@@ -59,14 +61,22 @@ void BoxesWidget::setBoxes(int currentBox, int lastBox)
 
 QSize BoxesWidget::minimumSizeHint() const
 {
-    return m_size;
+    if (m_fixedSize) {
+        return m_rect.size();
+    }
+    return ImageWidget::minimumSizeHint();
 }
 
 void BoxesWidget::updatePixmap()
 {
     if(!m_renderer)
         return;
-    QImage image(minimumSizeHint(), QImage::Format_ARGB32_Premultiplied);
+
+    QSize imageSize = m_rect.size();
+    if (!m_fixedSize) {
+        imageSize.scale(size(), Qt::KeepAspectRatio);
+    }
+    QImage image(imageSize, QImage::Format_ARGB32_Premultiplied);
     image.fill(QColor(Qt::transparent).rgba());
     QPainter p(&image);
 
@@ -83,10 +93,26 @@ void BoxesWidget::updatePixmap()
     setPixmap(QPixmap::fromImage(image));
 }
 
+bool BoxesWidget::event(QEvent *e)
+{
+    if (e->type() == QEvent::Resize)
+        updatePixmap();
+    return ImageWidget::event(e);
+}
+
 void BoxesWidget::drawElement(QPainter *p, const QString& id)
 {
-    QRect container = m_renderer->getRectForId("boxes-noscale").toRect();
     QRect rect = m_renderer->getRectForId(id).toRect();
-    QPoint pos = rect.topLeft() - container.topLeft();
-    p->drawPixmap(pos, m_renderer->getPixmapForId(id));
+    QPoint pos = rect.topLeft() - m_rect.topLeft();
+    if(!m_fixedSize) {
+        QSize scaledSize = m_rect.size();
+        scaledSize.scale(size(), Qt::KeepAspectRatio);
+        qreal scale = qreal(scaledSize.width())/m_rect.width();
+        rect.setWidth(rect.width()*scale);
+        rect.setHeight(rect.height()*scale);
+        pos.setX(pos.x()*scale);
+        pos.setY(pos.y()*scale);
+    }
+
+    p->drawPixmap(pos, m_renderer->getPixmapForId(id, rect.size()));
 }

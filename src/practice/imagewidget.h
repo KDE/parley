@@ -31,6 +31,7 @@ public:
     void setScalingEnabled(bool scaling, bool onlyDownscaling = true);
     void setKeepAspectRatio(Qt::AspectRatioMode mode);
     void setFadingEnabled(bool fading);
+    void setAlignment(Qt::Alignment alignment);
 
 protected:
     virtual void paintEvent(QPaintEvent *e);
@@ -48,6 +49,7 @@ private:
     bool m_scaling;
     bool m_onlyDownscaling;
     Qt::AspectRatioMode m_keepAspectRatio;
+    Qt::Alignment m_alignment;
     QPixmap m_originalPixmap;
     QPixmap m_scaledPixmap;
     QPixmap m_scaledBackupPixmap;
