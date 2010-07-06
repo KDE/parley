@@ -183,7 +183,7 @@ QPixmap transition(const QPixmap &from, const QPixmap &to, qreal amount)
 
 
 ImageWidget::ImageWidget(QWidget *parent)
-    : QWidget(parent), m_fading(true), m_scaling(true), m_onlyDownscaling(true), m_keepAspectRatio(Qt::KeepAspectRatio)
+    : QWidget(parent), m_fading(true), m_scaling(true), m_onlyDownscaling(true), m_keepAspectRatio(Qt::KeepAspectRatio), m_alignment(Qt::AlignCenter)
 {
     m_scaleTimer = new QTimer(this);
     m_scaleTimer->setSingleShot(true);
@@ -237,6 +237,11 @@ void ImageWidget::setFadingEnabled(bool fading)
     m_fading = fading;
 }
 
+void ImageWidget::setAlignment(Qt::Alignment alignment)
+{
+    m_alignment = alignment;
+}
+
 void ImageWidget::paintEvent(QPaintEvent* e)
 {
     QWidget::paintEvent(e);
@@ -251,7 +256,17 @@ void ImageWidget::paintEvent(QPaintEvent* e)
     }
 
     int x = (size().width() - pm.width()) / 2;
+    if (m_alignment.testFlag(Qt::AlignLeft)) {
+        x = 0;
+    } else if (m_alignment.testFlag(Qt::AlignRight)) {
+        x = size().width() - pm.width();
+    }
     int y = (size().height() - pm.height()) / 2;
+    if (m_alignment.testFlag(Qt::AlignTop)) {
+        y = 0;
+    } else if (m_alignment.testFlag(Qt::AlignBottom)) {
+        y = size().height() - pm.height();
+    }
     painter.drawPixmap(x, y, pm);
 }
 

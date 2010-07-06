@@ -34,6 +34,9 @@ public:
 
     void updatePixmap();
 
+protected:
+    bool event(QEvent *e);
+
 private:
     void drawElement(QPainter *p, const QString& id);
 
@@ -50,7 +53,8 @@ private:
     QPixmap m_arrowCenter;
     QPixmap m_arrowEnd;
 
-    QSize m_size;
+    QRect m_rect;
+    bool m_fixedSize;
 
     int m_arrowHint;
     int m_spacingHint;
