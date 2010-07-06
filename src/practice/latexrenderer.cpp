@@ -23,6 +23,8 @@
 #include <QLabel>
 #include <QProcess>
 #include <QFileInfo>
+#include <QColor>
+#include <complex>
 
 using namespace Practice;
 
@@ -32,9 +34,12 @@ const char* texTemplate = "\\documentclass[12pt,fleqn]{article}          \n "\
                           "\\setlength\\textwidth{5in}                   \n "\
                           "\\setlength{\\parindent}{0pt}                 \n "\
                           "\\usepackage{amsmath}                         \n "\
+                          "\\usepackage{color}                           \n "\
                           "\\pagestyle{empty}                            \n "\
                           "\\begin{document}                             \n "\
-                          "%1                                            \n "\
+                          "{\\definecolor{mycolor}{rgb}{%1}              \n "\
+                          "{\\color{mycolor}                             \n "\
+                          "%2 }                                          \n "\
                           "\\end{document}\n";
 
 LatexRenderer::LatexRenderer(QObject* parent)
@@ -49,6 +54,7 @@ void LatexRenderer::renderLatex(QString tex)
         m_label->setText(i18n("Rendering..."));
         m_label->setToolTip(tex);
     }
+
     if (tex.startsWith(QLatin1String("$$"))) {
         tex.replace(0,2,"\\begin{eqnarray*}").remove(-2,2).append("\\end{eqnarray*}");
     } else {
@@ -64,7 +70,11 @@ void LatexRenderer::renderLatex(QString tex)
     texFile->setSuffix( ".tex" );
     texFile->open();
 
-    QString expressionTex=QString(texTemplate).arg(tex.trimmed());
+    QColor color = m_label->palette().color(QPalette::WindowText);
+    QString colorString = QString::number(color.redF()) + ','
+        + QString::number(color.greenF()) + ','
+        + QString::number(color.blueF());
+    QString expressionTex = QString(texTemplate).arg(colorString, tex.trimmed());
 
     texFile->write(expressionTex.toUtf8());
     texFile->flush();
