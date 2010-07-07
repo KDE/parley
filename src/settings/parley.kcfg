@@ -59,7 +59,7 @@
     </entry>
     <entry name="FlashcardsBackImage" type="Bool">
         <label>Show images on the back of the flashcard.</label>
-        <default>false</default>
+        <default>true</default>
     </entry>
     <entry name="Block" type="Bool">
       <label>In Blocking Query Tab Dialog, if checked then the Query is blocked</label>
