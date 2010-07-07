@@ -20,13 +20,13 @@
       <item>
        <widget class="QCheckBox" name="kcfg_AltLearn">
         <property name="toolTip">
-         <string>By checking this, you will use the Leitner method of learning which requires you to answer correctly to each question 3 times in a row. Wrong answers causes grade to drop to 0 </string>
+         <string>Requires you to answer each question correctly 3 times in a row for it to be counted as correct.</string>
         </property>
         <property name="whatsThis">
-         <string>By checking this, you will use the Leitner method of learning which requires you to answer correctly to each question 3 times in a row. Wrong answers causes grade to drop to 0 </string>
+         <string>Requires you to answer each question correctly 3 times in a row for it to be counted as correct.</string>
         </property>
         <property name="text">
-         <string>Use Leitne&amp;r method (require 3 consecutive correct answers)</string>
+         <string>Require 3 consecutive correct answers</string>
         </property>
        </widget>
       </item>
