@@ -42,9 +42,6 @@ public:
     bool isDefault();
     void updateSettings();
 
-private slots:
-    void wordTypeItemChanged ( QTreeWidgetItem * item, int column );
-
 private:
     KEduVocDocument *m_doc;
     KConfigSkeleton* m_config;

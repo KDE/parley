@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>ThresholdOptions</class>
- <widget class="QWidget" name="ThresholdOptions" >
-  <property name="geometry" >
+ <widget class="QWidget" name="ThresholdOptions">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,137 +10,137 @@
     <height>395</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout">
    <item>
-    <widget class="QLabel" name="label_8" >
-     <property name="text" >
+    <widget class="QLabel" name="label_8">
+     <property name="text">
       <string>Only practice vocabulary that fulfills the following conditions:</string>
      </property>
     </widget>
    </item>
    <item>
-    <layout class="QGridLayout" >
-     <item row="0" column="1" >
-      <widget class="QLabel" name="label_2" >
-       <property name="text" >
+    <layout class="QGridLayout">
+     <item row="0" column="1">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
         <string>At least</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="2" >
-      <widget class="QLabel" name="label_3" >
-       <property name="text" >
+     <item row="0" column="2">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
         <string>At most</string>
        </property>
-       <property name="alignment" >
+       <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </item>
-     <item row="1" column="0" >
-      <widget class="QLabel" name="label" >
-       <property name="text" >
+     <item row="1" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
         <string>Grade</string>
        </property>
-       <property name="alignment" >
+       <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </item>
-     <item row="2" column="0" >
-      <widget class="QLabel" name="label_4" >
-       <property name="text" >
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
         <string>Times practiced</string>
        </property>
-       <property name="alignment" >
+       <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </item>
-     <item row="2" column="1" >
-      <widget class="KIntSpinBox" name="kcfg_PracticeMinimumTimesAsked" >
-       <property name="maximum" >
+     <item row="2" column="1">
+      <widget class="KIntSpinBox" name="kcfg_PracticeMinimumTimesAsked">
+       <property name="maximum">
         <number>1000</number>
        </property>
       </widget>
      </item>
-     <item row="2" column="2" >
-      <widget class="KIntSpinBox" name="kcfg_PracticeMaximumTimesAsked" >
-       <property name="maximum" >
+     <item row="2" column="2">
+      <widget class="KIntSpinBox" name="kcfg_PracticeMaximumTimesAsked">
+       <property name="maximum">
         <number>1000</number>
        </property>
-       <property name="value" >
+       <property name="value">
         <number>1000</number>
        </property>
       </widget>
      </item>
-     <item row="3" column="0" >
-      <widget class="QLabel" name="label_6" >
-       <property name="text" >
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_6">
+       <property name="text">
         <string>Answered incorrectly</string>
        </property>
-       <property name="alignment" >
+       <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </item>
-     <item row="3" column="1" >
-      <widget class="KIntSpinBox" name="kcfg_PracticeMinimumWrongCount" >
-       <property name="maximum" >
+     <item row="3" column="1">
+      <widget class="KIntSpinBox" name="kcfg_PracticeMinimumWrongCount">
+       <property name="maximum">
         <number>1000</number>
        </property>
       </widget>
      </item>
-     <item row="3" column="2" >
-      <widget class="KIntSpinBox" name="kcfg_PracticeMaximumWrongCount" >
-       <property name="maximum" >
+     <item row="3" column="2">
+      <widget class="KIntSpinBox" name="kcfg_PracticeMaximumWrongCount">
+       <property name="maximum">
         <number>1000</number>
        </property>
-       <property name="value" >
+       <property name="value">
         <number>1000</number>
        </property>
       </widget>
      </item>
-     <item row="1" column="1" >
-      <widget class="QSlider" name="kcfg_PracticeMinimumGrade" >
-       <property name="maximum" >
+     <item row="1" column="1">
+      <widget class="QSlider" name="kcfg_PracticeMinimumGrade">
+       <property name="maximum">
         <number>7</number>
        </property>
-       <property name="pageStep" >
+       <property name="pageStep">
         <number>8</number>
        </property>
-       <property name="sliderPosition" >
+       <property name="sliderPosition">
         <number>0</number>
        </property>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="tickPosition" >
+       <property name="tickPosition">
         <enum>QSlider::TicksBelow</enum>
        </property>
-       <property name="tickInterval" >
+       <property name="tickInterval">
         <number>1</number>
        </property>
       </widget>
      </item>
-     <item row="1" column="2" >
-      <widget class="QSlider" name="kcfg_PracticeMaximumGrade" >
-       <property name="maximum" >
+     <item row="1" column="2">
+      <widget class="QSlider" name="kcfg_PracticeMaximumGrade">
+       <property name="maximum">
         <number>7</number>
        </property>
-       <property name="pageStep" >
+       <property name="pageStep">
         <number>8</number>
        </property>
-       <property name="value" >
+       <property name="value">
         <number>7</number>
        </property>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="tickPosition" >
+       <property name="tickPosition">
         <enum>QSlider::TicksBelow</enum>
        </property>
-       <property name="tickInterval" >
+       <property name="tickInterval">
         <number>1</number>
        </property>
       </widget>
@@ -147,24 +148,21 @@
     </layout>
    </item>
    <item>
-    <widget class="QCheckBox" name="kcfg_WordTypesInPracticeEnabled" >
-     <property name="text" >
-      <string>Enable word type selection</string>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
      </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QTreeWidget" name="PracticeWordTypesTreeWidget" >
-     <column>
-      <property name="text" >
-       <string>Word Types</string>
-      </property>
-     </column>
-    </widget>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>
-  <customwidgets>
+ <customwidgets>
   <customwidget>
    <class>KIntSpinBox</class>
    <extends>QSpinBox</extends>

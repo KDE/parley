@@ -34,43 +34,6 @@ ThresholdOptions::ThresholdOptions(KEduVocDocument* doc, QWidget* parent) : QWid
 {
     setupUi(this);
     m_doc = doc;
-
-/*
-    connect(kcfg_WordTypesInPracticeEnabled, SIGNAL(toggled(bool)), PracticeWordTypesTreeWidget, SLOT(setEnabled(bool)));
-
-    PracticeWordTypesTreeWidget->setEnabled(Prefs::wordTypesInPracticeEnabled());
-
-    /// @todo the checking should move into updateWidgets() !
-    QStringList activeWordTypes = Prefs::wordTypesInPractice();
-    QStringList activeSubWordTypes = Prefs::subWordTypesInPractice();
-
-    QTreeWidgetItem* typeItem;
-    QTreeWidgetItem* subTypeItem;
-    foreach ( const QString &typeName, m_doc->wordTypes().typeNameList() ) {
-        typeItem = new QTreeWidgetItem(PracticeWordTypesTreeWidget);
-        typeItem->setText(0, typeName);
-        if ( activeWordTypes.contains( typeName ) ) {
-            typeItem->setCheckState(0, Qt::Checked);
-        } else {
-            typeItem->setCheckState(0, Qt::Unchecked);
-        }
-        typeItem->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
-        PracticeWordTypesTreeWidget->addTopLevelItem( typeItem );
-        // subtypes
-        foreach ( const QString &subTypeName, m_doc->wordTypes().subTypeNameList(typeName) ) {
-            subTypeItem = new QTreeWidgetItem(typeItem);
-            subTypeItem->setText(0, subTypeName);
-            if ( activeSubWordTypes.contains( subTypeName ) ) {
-                subTypeItem->setCheckState(0, Qt::Checked);
-            } else {
-                subTypeItem->setCheckState(0, Qt::Unchecked);
-            }
-            subTypeItem->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
-            typeItem->addChild(subTypeItem);
-        }
-    }
-    connect(PracticeWordTypesTreeWidget, SIGNAL(  itemChanged ( QTreeWidgetItem *, int)), SLOT( wordTypeItemChanged ( QTreeWidgetItem *, int )));
-*/
 }
 
 
@@ -88,42 +51,12 @@ bool ThresholdOptions::isDefault()
 
 void ThresholdOptions::updateSettings()
 {
-/*
-    QStringList activeWordTypes;
-    QStringList activeSubWordTypes;
-    QTreeWidgetItem* parentItem = PracticeWordTypesTreeWidget->invisibleRootItem();
-    for ( int i = 0; i < parentItem->childCount(); i++ ) {
-        QTreeWidgetItem* typeItem = parentItem->child(i);
-        if ( typeItem->checkState(0) == Qt::Checked ) {
-            activeWordTypes.append(typeItem->text(0));
-            // subtypes
-            for ( int j = 0; j < typeItem->childCount(); j++ ) {
-                QTreeWidgetItem* subTypeItem = typeItem->child(j);
-                if ( subTypeItem->checkState(0) == Qt::Checked ) {
-                    activeSubWordTypes.append(subTypeItem->text(0));
-                }
-            }
-        }
-    }
-    Prefs::setWordTypesInPractice(activeWordTypes);
-    Prefs::setSubWordTypesInPractice(activeSubWordTypes);*/
+
 }
 
 bool ThresholdOptions::hasChanged()
 {
     return false;
-}
-
-void ThresholdOptions::wordTypeItemChanged ( QTreeWidgetItem * item, int column )
-{
-    Q_UNUSED(item)
-    Q_UNUSED(column)
-//     // if it's a parent item, also change the check state of the children
-//     if ( item->parent() == 0 ) {
-//         for(int i = 0; i<item->childCount(); i++) {
-//             item->child(i)->setCheckState(0, item->checkState(0));
-//         }
-//     }
 }
 
 
