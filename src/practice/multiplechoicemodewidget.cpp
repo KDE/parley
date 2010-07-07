@@ -13,6 +13,7 @@
 
 #include "multiplechoicemodewidget.h"
 #include "multiplechoicedata.h"
+#include "latexrenderer.h"
 
 #include "ui_practice_widget_multiplechoice.h"
 
@@ -24,7 +25,7 @@ using namespace Practice;
 
 
 MultiplechoiceModeWidget::MultiplechoiceModeWidget (GuiFrontend *frontend, QWidget* parent )
-    : AbstractModeWidget (frontend, parent)
+    : AbstractModeWidget (frontend, parent), m_latexRenderer(0)
 {
     m_ui = new Ui::MultiplechoicePracticeWidget();
     m_ui->setupUi(this);
@@ -45,7 +46,17 @@ void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
         return;
     }
     MultipleChoiceData data = question.value<MultipleChoiceData>();
-    m_ui->questionLabel->setText(data.question);
+
+    m_ui->questionLabel->setMinimumSize(QSize(0, 0));
+    if (LatexRenderer::isLatex(data.question)) {
+        if(!m_latexRenderer) {
+            m_latexRenderer = new LatexRenderer(this);
+            m_latexRenderer->setResultLabel(m_ui->questionLabel);
+        }
+        m_latexRenderer->renderLatex(data.question);
+    } else {
+        m_ui->questionLabel->setText(data.question);
+    }
 
     if (m_choiceButtons.size() != data.choices.size()){
         qDeleteAll(m_choiceButtons);

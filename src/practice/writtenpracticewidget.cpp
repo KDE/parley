@@ -43,7 +43,7 @@ QVariant WrittenPracticeWidget::userInput()
 
 void WrittenPracticeWidget::setQuestion(const QVariant& question)
 {
-    m_ui->questionLabel->setMinimumSize(QSize());
+    m_ui->questionLabel->setMinimumSize(QSize(0, 0));
     if (LatexRenderer::isLatex(question.toString())) {
         if(!m_latexRenderer) {
             m_latexRenderer = new LatexRenderer(this);

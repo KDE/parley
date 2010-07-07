@@ -24,6 +24,7 @@ namespace Ui {
 class QRadioButton;
 
 namespace Practice {
+class LatexRenderer;
     
 class MultiplechoiceModeWidget: public AbstractModeWidget
 {    
@@ -58,6 +59,7 @@ private:
     int m_solution;
     QList<QRadioButton*> m_choiceButtons;
     QList<QAction*> m_actions;
+    LatexRenderer *m_latexRenderer;
 };
 
 }
