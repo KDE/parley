@@ -132,6 +132,7 @@ void GuiFrontend::showQuestion()
     m_ui->hintButton->setEnabled(true);
     m_ui->continueButton->setFocus();
     m_modeWidget->showQuestion();
+    setImage(m_questionImage);
 }
 
 void GuiFrontend::showSolution()
@@ -140,6 +141,7 @@ void GuiFrontend::showSolution()
     m_modeWidget->showSolution();
     m_ui->answerLaterButton->setEnabled(false);
     m_ui->hintButton->setEnabled(false);
+    setImage(m_solutionImage);
 }
 void GuiFrontend::setSynonym(const QString& entry)
 {
@@ -217,15 +219,12 @@ void GuiFrontend::setSolution(const QVariant& solution)
 
 void GuiFrontend::setQuestionImage(const KUrl& image)
 {
-    setImage(image);
+    m_questionImage = image;
 }
 
 void GuiFrontend::setSolutionImage(const KUrl& image)
 {
-    if (image.path().isEmpty()) {
-        return;
-    }
-    setImage(image);
+    m_solutionImage = image;
 }
 
 void GuiFrontend::setImage(const KUrl& image)

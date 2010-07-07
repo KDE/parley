@@ -115,9 +115,8 @@ void PracticeStateMachine::nextEntry()
         slotPracticeFinished();
         return;
     }
-    if (m_mode->setTestEntry(m_current)) {
-        updateFrontend();
-    } else {
+    updateFrontend();
+    if (!m_mode->setTestEntry(m_current)) {
         // this is just a fall back, if an invalid entry slipped through
         currentEntryFinished();
         nextEntry();
@@ -210,8 +209,20 @@ void PracticeStateMachine::updateFrontend()
 
     m_frontend->setBoxes(grade, goodGrade, KV_LEV1_GRADE);
 
-    QString imgUrl = m_current->entry()->translation(m_options.languageFrom())->imageUrl().url();
-    m_frontend->setQuestionImage(imgUrl);
+    QString imgFrom = m_current->entry()->translation(m_options.languageFrom())->imageUrl().url();
+    QString imgTo = m_current->entry()->translation(m_options.languageTo())->imageUrl().url();
+    if (imgFrom.isEmpty()) {
+        imgFrom = imgTo;
+    }
+    if (imgTo.isEmpty()) {
+        imgTo = imgFrom;
+    }
+    if (Prefs::flashcardsFrontImage()) {
+        m_frontend->setQuestionImage(imgFrom);
+    }
+    if (Prefs::flashcardsBackImage()) {
+        m_frontend->setSolutionImage(imgTo);
+    }
 }
 
 void PracticeStateMachine::gradeEntryAndContinue()
