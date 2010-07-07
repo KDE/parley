@@ -66,6 +66,7 @@ void FlashCardModeWidget::showSynonym()
 void FlashCardModeWidget::showSolution()
 {
     m_ui->solutionLabel->setHidden(false);
+    m_ui->solutionLabel->setPalette(m_correctPalette);
 
     m_ui->solutionLabel->setMinimumSize(QSize(0, 0));
     if (LatexRenderer::isLatex(m_solution)) {
@@ -78,7 +79,6 @@ void FlashCardModeWidget::showSolution()
         m_ui->solutionLabel->setText(m_solution);
     }
 
-    m_ui->solutionLabel->setPalette(m_correctPalette);
     m_frontend->showSetResultButtons(true);
 }
 
