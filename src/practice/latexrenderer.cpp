@@ -89,6 +89,7 @@ void LatexRenderer::renderLatex(QString tex)
     (*p)<<"latex"<<"-interaction=batchmode"<<"-halt-on-error"<<fileName;
 
     connect(p, SIGNAL( finished(int,  QProcess::ExitStatus) ), this, SLOT( convertToPs() ) );
+    connect(p, SIGNAL( error(QProcess::ProcessError) ), this, SLOT( latexRendered() ) );
     p->start();
 }
 
@@ -109,6 +110,7 @@ void LatexRenderer::convertToPs()
     (*p)<<"dvips"<<"-E"<<"-o"<<m_latexFilename<<dviFile;
 
     connect(p, SIGNAL( finished(int,  QProcess::ExitStatus) ), this, SLOT( convertToImage() ) );
+    connect(p, SIGNAL( error(QProcess::ProcessError) ), this, SLOT( latexRendered() ) );
     p->start();
 }
 
@@ -122,6 +124,7 @@ void LatexRenderer::convertToImage()
     (*p)<<"convert"<<"-density"<<"85"<<m_latexFilename<<pngFile;
 
     connect(p, SIGNAL( finished(int,  QProcess::ExitStatus) ), this, SLOT( latexRendered() ) );
+    connect(p, SIGNAL( error(QProcess::ProcessError) ), this, SLOT( latexRendered() ) );
     p->start();
 }
 
