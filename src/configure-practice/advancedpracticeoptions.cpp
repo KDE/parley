@@ -30,7 +30,7 @@ AdvancedPracticeOptions::AdvancedPracticeOptions(QWidget* parent) : QWidget(pare
 {
     setupUi(this);
 
-    connect(kcfg_ShowSolutionAfterAnswer, SIGNAL(toggled(bool)), kcfg_ShowSolutionAfterAnswerTime, SLOT(setEnabled(bool)));
+    //connect(kcfg_ShowSolutionAfterAnswer, SIGNAL(toggled(bool)), kcfg_ShowSolutionAfterAnswerTime, SLOT(setEnabled(bool)));
 }
 
 
