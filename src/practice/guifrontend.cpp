@@ -351,6 +351,7 @@ void GuiFrontend::updateFontColors()
         p = QApplication::palette();
         c = m_themedBackgroundRenderer->fontColor("Central", p.color(QPalette::Active, QPalette::WindowText));
         p.setColor(QPalette::Active, QPalette::WindowText, c);
+        p.setColor(QPalette::Inactive, QPalette::WindowText, c);
         m_modeWidget->setPalette(p);
 
         KColorScheme scheme(QPalette::Active);
