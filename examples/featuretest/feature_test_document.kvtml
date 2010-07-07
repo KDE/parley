@@ -7,7 +7,7 @@
     <author>Daniel Laidig, Frederik Gladhorn</author>
     <license>GPLv2+ (GNU General Public License version 2 or later)</license>
     <comment>This is a document created during the parley mini sprint 2010</comment>
-    <date>2010-05-28</date>
+    <date>2010-07-07</date>
     <category>Testing</category>
   </information>
   <identifiers>
@@ -604,6 +604,18 @@
         </grade>
       </translation>
     </entry>
+    <entry id="28">
+      <translation id="0">
+        <text>$$\frac{3}{6}$$</text>
+      </translation>
+      <translation id="1">
+        <text>$$\frac{1}{2}$$</text>
+      </translation>
+    </entry>
+    <entry id="29">
+      <translation id="0"/>
+      <translation id="1"/>
+    </entry>
   </entries>
   <lessons>
     <container>
@@ -642,7 +654,6 @@
     </container>
     <container>
       <name>Synonyms</name>
-      <inpractice>true</inpractice>
       <entry id="16"/>
       <entry id="17"/>
       <entry id="18"/>
@@ -658,9 +669,12 @@
     </container>
     <container>
       <name>LaTeX</name>
+      <inpractice>true</inpractice>
       <entry id="25"/>
       <entry id="26"/>
       <entry id="27"/>
+      <entry id="28"/>
+      <entry id="29"/>
     </container>
   </lessons>
   <wordtypes>

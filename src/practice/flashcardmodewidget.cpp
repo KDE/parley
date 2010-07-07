@@ -16,12 +16,13 @@
 #include "ui_practice_widget_flashcard.h"
 
 #include "guifrontend.h"
+#include "latexrenderer.h"
 
 using namespace Practice;
 
 
 FlashCardModeWidget::FlashCardModeWidget (GuiFrontend *frontend, QWidget* parent )
-    : AbstractModeWidget (frontend, parent)
+    : AbstractModeWidget (frontend, parent), m_questionLatexRenderer(0), m_solutionLatexRenderer(0)
 {
     m_ui = new Ui::FlashCardPracticeWidget();
     m_ui->setupUi(this);
@@ -29,7 +30,16 @@ FlashCardModeWidget::FlashCardModeWidget (GuiFrontend *frontend, QWidget* parent
 
 void FlashCardModeWidget::setQuestion(const QVariant& question)
 {
-    m_ui->questionLabel->setText(question.toString());
+    m_ui->questionLabel->setMinimumSize(QSize(0, 0));
+    if (LatexRenderer::isLatex(question.toString())) {
+        if(!m_questionLatexRenderer) {
+            m_questionLatexRenderer = new LatexRenderer(this);
+            m_questionLatexRenderer->setResultLabel(m_ui->questionLabel);
+        }
+        m_questionLatexRenderer->renderLatex(question.toString());
+    } else {
+        m_ui->questionLabel->setText(question.toString());
+    }
 }
 
 void FlashCardModeWidget::showQuestion()
@@ -56,7 +66,18 @@ void FlashCardModeWidget::showSynonym()
 void FlashCardModeWidget::showSolution()
 {
     m_ui->solutionLabel->setHidden(false);
-    m_ui->solutionLabel->setText(m_solution);
+
+    m_ui->solutionLabel->setMinimumSize(QSize(0, 0));
+    if (LatexRenderer::isLatex(m_solution)) {
+        if(!m_solutionLatexRenderer) {
+            m_solutionLatexRenderer = new LatexRenderer(this);
+            m_solutionLatexRenderer->setResultLabel(m_ui->solutionLabel);
+        }
+        m_solutionLatexRenderer->renderLatex(m_solution);
+    } else {
+        m_ui->solutionLabel->setText(m_solution);
+    }
+
     m_ui->solutionLabel->setPalette(m_correctPalette);
     m_frontend->showSetResultButtons(true);
 }
