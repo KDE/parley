@@ -97,6 +97,8 @@ private:
     ResultState m_resultState;
     ResultState m_feedbackState;
     KUrl m_lastImage;
+    KUrl m_questionImage;
+    KUrl m_solutionImage;
     int m_currentBox;
     int m_newBoxIfCorrect;
     int m_newBoxIfWrong;
