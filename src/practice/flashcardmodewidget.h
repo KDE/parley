@@ -25,7 +25,9 @@ namespace Ui {
 }
 
 namespace Practice {
-    
+class LatexRenderer;
+
+
 class FlashCardModeWidget: public AbstractModeWidget
 {    
     Q_OBJECT
@@ -56,6 +58,8 @@ public Q_SLOTS:
 private:
     Ui::FlashCardPracticeWidget* m_ui;
     QString m_solution;
+    LatexRenderer *m_questionLatexRenderer;
+    LatexRenderer *m_solutionLatexRenderer;
 };
 
 }
