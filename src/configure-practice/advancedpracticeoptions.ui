@@ -149,181 +149,55 @@
         </item>
        </layout>
       </item>
-      <item>
-       <layout class="QHBoxLayout">
-        <item>
-         <widget class="QCheckBox" name="kcfg_ShowSolutionAfterAnswer">
-          <property name="toolTip">
-           <string>After the answer was given the solution will be shown for this long</string>
-          </property>
-          <property name="text">
-           <string>&amp;Show solution after answering:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="KIntSpinBox" name="kcfg_ShowSolutionAfterAnswerTime">
-          <property name="toolTip">
-           <string>After the answer was given the solution will be shown for this long</string>
-          </property>
-          <property name="specialValueText">
-           <string>unlimited</string>
-          </property>
-          <property name="suffix">
-           <string comment="Seconds (suffix)">s</string>
-          </property>
-          <property name="minimum">
-           <number>0</number>
-          </property>
-          <property name="maximum">
-           <number>3600</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="kcfg_PracticeTimeout">
-     <property name="toolTip">
-      <string>If a time limit is set, an answer has to have been given within the time set when practicing.</string>
-     </property>
-     <property name="title">
-      <string>&amp;Time Limit in Tests</string>
-     </property>
-     <property name="checkable">
-      <bool>true</bool>
-     </property>
-     <property name="checked">
-      <bool>false</bool>
-     </property>
-     <layout class="QGridLayout">
-      <item row="0" column="0">
-       <widget class="KButtonGroup" name="kcfg_PracticeTimeoutMode">
-        <property name="styleSheet">
-         <string notr="true">QGroupBox { border-width: 0; border-style: none; }</string>
-        </property>
-        <property name="title">
-         <string/>
-        </property>
-        <layout class="QVBoxLayout">
-         <property name="margin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QRadioButton" name="ShowSolutionRadio">
-           <property name="text">
-            <string>&amp;Show solution</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="ContinueRadio">
-           <property name="text">
-            <string>&amp;Continue after timeout</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <layout class="QHBoxLayout">
-        <item>
-         <widget class="QLabel" name="label_mqtime">
-          <property name="text">
-           <string>Limit:</string>
-          </property>
-          <property name="buddy">
-           <cstring>kcfg_PracticeTimeoutTimePerAnswer</cstring>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="KIntSpinBox" name="kcfg_PracticeTimeoutTimePerAnswer">
-          <property name="toolTip">
-           <string>Set the maximum time allowed per answer.</string>
-          </property>
-          <property name="whatsThis">
-           <string>Set here the maximum time you want to allow per answer.</string>
-          </property>
-          <property name="suffix">
-           <string comment="Seconds (suffix)">s</string>
-          </property>
-          <property name="minimum">
-           <number>1</number>
-          </property>
-          <property name="maximum">
-           <number>6000</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
      </layout>
     </widget>
    </item>
    <item>
     <widget class="QGroupBox" name="groupBox2">
      <property name="title">
-       <string>Multiple Choice</string>
+      <string>Multiple Choice</string>
      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_5">
-       <item>
-        <widget class="QCheckBox" name="kcfg_MultipleChoiceWordTypeConsistancy">
-         <property name="text">
-          <string>Use choices of the same word type</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="KIntSpinBox" name="kcfg_NumberMultipleChoiceAnswers">
-           <property name="maximumSize">
-            <size>
-             <width>74</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="minimum">
-            <number>2</number>
-           </property>
-           <property name="maximum">
-            <number>5</number>
-           </property>
-           <property name="value">
-            <number>5</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>Number of choices</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <widget class="QCheckBox" name="kcfg_MultipleChoiceWordTypeConsistancy">
+        <property name="text">
+         <string>Use choices of the same word type</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="KIntSpinBox" name="kcfg_NumberMultipleChoiceAnswers">
+          <property name="maximumSize">
+           <size>
+            <width>74</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="minimum">
+           <number>2</number>
+          </property>
+          <property name="maximum">
+           <number>5</number>
+          </property>
+          <property name="value">
+           <number>5</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Number of choices</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
      </layout>
     </widget>
-   </item>    
+   </item>
    <item>
     <spacer>
      <property name="orientation">
@@ -341,7 +215,7 @@
     </spacer>
    </item>
   </layout>
-  <zorder>kcfg_PracticeTimeout</zorder>
+  <zorder>groupBox2</zorder>
   <zorder>groupBox</zorder>
  </widget>
  <customwidgets>
@@ -349,12 +223,6 @@
    <class>KIntSpinBox</class>
    <extends>QSpinBox</extends>
    <header>knuminput.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KButtonGroup</class>
-   <extends>QGroupBox</extends>
-   <header>kbuttongroup.h</header>
-   <container>1</container>
   </customwidget>
  </customwidgets>
  <tabstops>
