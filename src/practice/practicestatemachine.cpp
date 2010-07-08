@@ -194,9 +194,9 @@ void PracticeStateMachine::updateFrontend()
         m_testEntryManager->totalEntryCount());
 
     grade_t grade = m_current->entry()->translation(m_options.languageTo())->grade();
-    grade_t goodGrade = grade;
+    grade_t goodGrade = qMax(grade, grade_t(KV_LEV1_GRADE)); // if the word hasn't been practiced yet, use grade 1 as a base
     if (m_current->statisticBadCount() == 0) {
-        goodGrade = qMin(grade+1, KV_MAX_GRADE);
+        goodGrade = KV_LEV2_GRADE, qMin(grade+1, KV_MAX_GRADE);
     }
 
     m_frontend->setBoxes(grade, goodGrade, KV_LEV1_GRADE);
