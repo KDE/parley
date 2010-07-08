@@ -36,10 +36,11 @@ public Q_SLOTS:
     virtual void hintAction();
 
 private:
-    QString getFeedbackString(bool isFirstAttempt, TestEntry::ErrorTypes error);
+    QString getFeedbackString(TestEntry::ErrorTypes error);
 
     QString m_lastAnswer;
     QString m_currentHint;
+    bool m_firstAttempt;
     TestEntryManager* m_testEntryManager;
     WrittenPracticeValidator* m_validator;
     KEduVocDocument* m_doc;
