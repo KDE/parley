@@ -29,6 +29,7 @@ WrittenBackendMode::WrittenBackendMode(const Practice::PracticeOptions& practice
 bool WrittenBackendMode::setTestEntry(TestEntry* current)
 {
     AbstractBackendMode::setTestEntry(current);
+    m_firstAttempt = true;
     m_frontend->showQuestion();
     m_lastAnswer.clear();
     m_synonyms.clear();
@@ -41,9 +42,6 @@ void WrittenBackendMode::checkAnswer()
     kDebug() << "check";
     QString answer = m_frontend->userInput().toString();
 
-    // if the state is correct, this must be the first attempt
-    bool isFirstAttempt = m_lastAnswer.isEmpty();
-
     // move on, the user has not changed anything or pressed enter with no answer
     bool answerUnchanged = (answer == m_lastAnswer) || answer.isEmpty();
     m_lastAnswer = answer;
@@ -53,8 +51,10 @@ void WrittenBackendMode::checkAnswer()
     bool isCorrect = m_current->lastErrors() & TestEntry::Correct;
     bool isSynonym = m_current->lastErrors() & TestEntry::Synonym;
 
-    QString feedbackString = getFeedbackString(isFirstAttempt, m_current->lastErrors());
+    QString feedbackString = getFeedbackString(m_current->lastErrors());
     m_frontend->setFeedback(feedbackString);
+
+    m_firstAttempt = m_firstAttempt && isSynonym; // don't count the answer as wrong if you only enter valid synonyms
 
     // first handle synonyms as they may be correct or not
     if (isSynonym) {
@@ -84,7 +84,7 @@ void WrittenBackendMode::checkAnswer()
     }
 }
 
-QString WrittenBackendMode::getFeedbackString(bool isFirstAttempt, TestEntry::ErrorTypes error)
+QString WrittenBackendMode::getFeedbackString(TestEntry::ErrorTypes error)
 {
     // The user entered a synonym
     if (error & TestEntry::Synonym) {
@@ -117,7 +117,7 @@ QString WrittenBackendMode::getFeedbackString(bool isFirstAttempt, TestEntry::Er
     }
 
     // The answer was right
-    if (isFirstAttempt) {
+    if (m_firstAttempt) {
         if ((error & TestEntry::CapitalizationMistake)){
             return i18n("Your answer was right on the first attempt, but your capitalization was wrong.");
         } else if ((error & TestEntry::AccentMistake)){
