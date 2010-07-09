@@ -18,6 +18,7 @@
 #include <KDebug>
 #include <kcolorscheme.h>
 #include <QtGui/QRadioButton>
+#include <QTimer>
 
 using namespace Practice;
 
@@ -56,7 +57,7 @@ void ComparisonModeWidget::setQuestion(const QVariant& question)
 
 void ComparisonModeWidget::showQuestion()
 {
-    m_ui->absoluteEdit->setFocus();
+    QTimer::singleShot(0, m_ui->absoluteEdit, SLOT(setFocus()));
     m_ui->feedbackLabel->setText(i18n("Enter the comparison forms."));
 }
 

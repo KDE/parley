@@ -19,6 +19,7 @@
 #include <KDebug>
 #include <kcolorscheme.h>
 #include <QtGui/QRadioButton>
+#include <QTimer>
 
 namespace Practice {
     struct PersonConjugationSolutionWidgets {
@@ -85,7 +86,7 @@ void ConjugationModeWidget::setQuestion(const QVariant& question)
 void ConjugationModeWidget::showQuestion()
 {
     Q_ASSERT(!m_personWidgets.isEmpty());
-    m_personWidgets.at(0)->input->setFocus();
+    QTimer::singleShot(0, m_personWidgets.at(0)->input, SLOT(setFocus()));
     m_ui->feedbackLabel->setText(i18n("Enter all conjugation forms."));
 }
 
