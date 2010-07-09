@@ -44,7 +44,6 @@ Q_SIGNALS:
     void stopPractice();
 
 protected:
-    virtual void keyPressEvent(QKeyEvent* e);
     virtual void resizeEvent(QResizeEvent *e);
     virtual bool event(QEvent *event);
 

@@ -102,18 +102,6 @@ void PracticeMainWindow::initActions()
     m_animation->setDuration(150);
 }
 
-void PracticeMainWindow::keyPressEvent(QKeyEvent* e)
-{
-    ///@todo: adapt to gui changes
-    if (e->key() == Qt::Key_Enter || e->key() == Qt::Key_Return) {
-        if (focusWidget()->metaObject()->className() == QLatin1String("QRadioButton")) {
-            emit enterPressed();
-            return;
-        }
-    }
-    KXmlGuiWindow::keyPressEvent(e);
-}
-
 void PracticeMainWindow::resizeEvent(QResizeEvent *e)
 {
     m_floatingToolBar->resize(m_parent->width(), m_floatingToolBar->sizeHint().height());
