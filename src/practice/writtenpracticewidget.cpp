@@ -15,9 +15,12 @@
 #include "writtenpracticewidget.h"
 #include "ui_practice_widget_written.h"
 
-#include <kcolorscheme.h>
 #include "guifrontend.h"
 #include "latexrenderer.h"
+
+#include <kcolorscheme.h>
+
+#include <QTimer>
 
 using namespace Practice;
 
@@ -59,7 +62,7 @@ void WrittenPracticeWidget::showQuestion()
 {
     m_ui->answerEdit->setEnabled(true);
     m_ui->answerEdit->clear();
-    m_ui->answerEdit->setFocus();
+    QTimer::singleShot(0, m_ui->answerEdit, SLOT(setFocus()));
     m_ui->answerEdit->setPalette(palette());
     m_ui->solutionLabel->setText(QString());
     m_ui->helpLabel->clear();

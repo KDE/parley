@@ -20,6 +20,7 @@
 #include <KDebug>
 #include <kcolorscheme.h>
 #include <QtGui/QRadioButton>
+#include <QTimer>
 
 using namespace Practice;
 
@@ -65,11 +66,11 @@ void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
     }
 
     int j = 0;
-        foreach(QRadioButton *radio,m_choiceButtons){
-            radio->setText(data.choices[j]);
-            radio->setToolTip(data.choices[j]);
-            j++;
-        }
+    foreach(QRadioButton *radio,m_choiceButtons){
+        radio->setText(data.choices[j]);
+        radio->setToolTip(data.choices[j]);
+        j++;
+    }
 }
 
 void MultiplechoiceModeWidget::showQuestion()
@@ -86,6 +87,9 @@ void MultiplechoiceModeWidget::showQuestion()
         radio->setPalette(palette());
         radio->setEnabled(true);
     }
+
+
+    QTimer::singleShot(0, m_choiceButtons[0], SLOT(setFocus()));
 }
 
 void MultiplechoiceModeWidget::setNumberOfRadioButtons(const int numberOfChoices)
