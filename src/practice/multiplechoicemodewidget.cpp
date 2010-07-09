@@ -21,6 +21,7 @@
 #include <kcolorscheme.h>
 #include <QtGui/QRadioButton>
 #include <QTimer>
+#include <QKeyEvent>
 
 using namespace Practice;
 
@@ -102,6 +103,7 @@ void MultiplechoiceModeWidget::setNumberOfRadioButtons(const int numberOfChoices
             connect(m_actions.at(i), SIGNAL(triggered()), radio_button, SLOT(click()));
         }
         connect(radio_button, SIGNAL(clicked()), this, SIGNAL(continueAction()));
+        radio_button->installEventFilter(this);
     }
 }
 
@@ -114,6 +116,23 @@ void MultiplechoiceModeWidget::setSynonym(const QString& entry)
 void MultiplechoiceModeWidget::showSynonym()
 {
   //TODO Do something here to show synonyms
+}
+
+bool MultiplechoiceModeWidget::eventFilter(QObject *obj, QEvent *event)
+{
+    // make it possible to use the enter key to select multiple choice options
+    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+        if (keyEvent->key() == Qt::Key_Enter || keyEvent->key() == Qt::Key_Return) {
+            QRadioButton *radioButton = qobject_cast<QRadioButton*>(obj);
+            if (radioButton) {
+                radioButton->click();
+                return true;
+            }
+        }
+    }
+
+    return QObject::eventFilter(obj, event);
 }
 
 void MultiplechoiceModeWidget::setSolution(const QVariant& solution)

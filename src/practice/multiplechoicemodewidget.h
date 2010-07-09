@@ -54,6 +54,8 @@ public Q_SLOTS:
     virtual void setNumberOfRadioButtons(const int numberOfChoices);
     virtual void showSynonym();
     
+protected:
+    virtual bool eventFilter(QObject *obj, QEvent *event);
 private:
     Ui::MultiplechoicePracticeWidget* m_ui;
     int m_solution;
