@@ -130,7 +130,7 @@ void GuiFrontend::showQuestion()
 {
     m_ui->answerLaterButton->setEnabled(true);
     m_ui->hintButton->setEnabled(true);
-    m_ui->continueButton->setFocus();
+    QTimer::singleShot(0, m_ui->continueButton, SLOT(setFocus()));
     m_modeWidget->showQuestion();
     setImage(m_questionImage);
 }
