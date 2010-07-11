@@ -273,7 +273,7 @@ limited to language learning but supports a multitude of subjects.
 </sect1>
 <sect1 id="practice"><title>Practice</title> 
 <sect2 id="flash-cards"><title>Flash Cards</title>
-<para>After having activated the <guilabel>Flash Card</guilabel> Practice Mode and having clicked on <guilabel>Start Practice</guilabel> the following screen shows up. The Flash Card training mode works just as if you would do it with <quote>real</quote> flash cards. You imagine the the result and should you wish some help, you can click on <guilabel>Hint</guilabel> which will start to give you the result one letter at a time.
+<para>After having activated the <guilabel>Flash Card</guilabel> Practice Mode and having clicked on <guilabel>Start Practice</guilabel> the following screen shows up. The Flash Card training mode works just as if you would do it with <quote>real</quote> flash cards. You imagine the result and should you wish some help, you can click on <guilabel>Hint</guilabel> which will start to give you the result one letter at a time.
 </para>
 <para>You can also decide to skip a word for now. When you click <guilabel>Answer Later</guilabel> the word will show up again at a later time.
 </para>
@@ -290,7 +290,7 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>Clicking on Continue reveals the solution. At this stage you then have to tell if you knew the answer.
+<para>Clicking on <guilabel>Continue</guilabel> reveals the solution. At this stage you then have to tell if you knew the answer.
 </para>
 <para>If you did not know it, click <guilabel>I did not know it</guilabel>. If you did remember the answer, click <guilabel>I knew it</guilabel>.
 </para>
