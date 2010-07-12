@@ -918,17 +918,17 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>Please make sure to select the right point in the tree structure of lessons before selecting <guilabel>New Lesson</guilabel>. In our case, wanting a <emphasis>Sub-Lesson</emphasis> of <guilabel>Collection: My Spanish Lesson</guilabel> it is exactly that one that needs to be selected before going ahead with <guilabel>New Lesson</guilabel>.
+<para>Please make sure to select the right point in the tree structure of lessons before selecting <guilabel>New Lesson</guilabel>. In our case, wanting a <emphasis>Sub-Lesson</emphasis> of <guilabel>Collection: My Spanish Lessons</guilabel> it is exactly that one that needs to be selected before going ahead with <guilabel>New Lesson</guilabel>.
 </para>
 </sect2>
 <sect2 id="moving-renaming-and-deleting-lessons"><title>Moving, Renaming and Deleting Lessons</title> 
-<para>To change the name of a lesson, double click it, or right click on the lesson and choose <quote><emphasis>rename</emphasis></quote>. You can also delete it this way (but you'll lose its contents also then). 
+<para>To change the name of a lesson, double click it, or right click on the lesson and choose <guilabel>Rename</guilabel>. You can also delete it this way (but you'll lose its contents also then). 
 </para>
 <para>If you don't like the arrangement of lessons, you can move a lesson with the mouse. You can drag it onto another lesson, then it will become a child of that lesson.
 </para>
 </sect2>
 <sect2 id="splitting-a-lesson"><title>Splitting a Lesson</title> 
-<para>If your lessons grow too big, you can choose to split them up to make learning easier in small units. 20 words for a lesson is probably a good size. Right click a lesson, or use <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Split</guimenuitem></menuchoice> and the lesson will be separated into child lessons. You can choose to randomize the words that are put into the new lessons before assigning them, or to keep them in order.
+<para>If your lessons grow too big, you can choose to split them up to make learning easier in small units. 20 words for a lesson is probably a good size. Right click a lesson, or use <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Split Lesson into Smaller Lessons</guimenuitem></menuchoice> and the lesson will be separated into child lessons. You can choose to randomize the words that are put into the new lessons before assigning them, or to keep them in order.
 </para>
 </sect2>
 <sect2 id="what-is-shown-in-the-table"><title>What is Shown in the Table</title> 
@@ -959,7 +959,7 @@ limited to language learning but supports a multitude of subjects.
 <sect2 id="editing-words"><title>Editing Words</title> 
 <para>If you want to replace a word, select its entry and start typing. To change the word instead, double click the entry and you can change the contents of the cell without losing the old word. 
 </para>
-<para>Press &Tab; to go to the next word. Enter leaves the editing mode. You can use the arrow keys to move around.
+<para>Press &Tab; to go to the next word. &Enter; leaves the editing mode. You can use the arrow keys to move around.
 </para>
 </sect2>
 </sect1>
@@ -978,7 +978,7 @@ limited to language learning but supports a multitude of subjects.
 </para>
 </sect1>
 <sect1 id="adding-images"><title>Adding Images</title> 
-<para>First show the sound tool by selecting <guilabel>View</guilabel> in the menu bar and then clicking on <guilabel>Image</guilabel>. The checkbox in front of <guilabel>Image</guilabel> will then be activated. This will show up the picture section on the right hand side of the Parley screen
+<para>First show the image tool by selecting <guilabel>View</guilabel> in the menu bar and then clicking on <guilabel>Image</guilabel>. The checkbox in front of <guilabel>Image</guilabel> will then be activated. This will show up the picture section on the right hand side of the Parley screen
 </para>
 <para>To add an image to a word make sure the word is highlighted. In the image section on the right hand side click on the <emphasis>Folder icon</emphasis> and choose the picture you wish to associate. 
 </para>
@@ -1335,7 +1335,7 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>Once we have specified all the word types, we will first consider<emphasis>Adjectives</emphasis>, adding <guilabel>Comparison Forms</guilabel>  to them. So let's move to the <emphasis>Adjectives</emphasis> lesson only. 
+<para>Once we have specified all the word types, we will first consider <emphasis>Adjectives</emphasis>, adding <guilabel>Comparison Forms</guilabel>  to them. So let's move to the <emphasis>Adjectives</emphasis> lesson only. 
 </para>
 <para>
 <screenshot>
