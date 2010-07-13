@@ -1197,7 +1197,7 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>Let's have a short look at the words we want to add: <emphasis>apple, bird, cat, cherry, cow, orange, pear, snake, strawberry</emphasis>. We have animals and fruit and therefore we decide to create two lessons that are called: <guilabel>Animals</guilabel> and <guilabel>Fruit</guilabel>.
 </para>
-<para>We now rename <guilabel>Lesson 1</guilabel> to <guilabel>Animals</guilabel> and then we add a lesson called <guilabel>Fruit</guilabel>. Right-click on <guilabel>Lesson 1</guilabel> and choose <guilabel>Rename Lesson</guilabel> from the options shown. Now <guilabel>Lesson 1</guilabel> is highlighted and you can simply overwrite it by typing in <guilabel>Animals</guilabel>. When done, hit the return key. Now right-click on <guilabel>Collection: Vocabulary trainer E...</guilabel> which is the root of the lesson tree and choose <guilabel>New Lesson</guilabel> from the options shown. In the new field write <guilabel>Fruit</guilabel> and hit the return key again.
+<para>We now rename <guilabel>Lesson 1</guilabel> to <guilabel>Animals</guilabel> and then we add a lesson called <guilabel>Fruit</guilabel>. Right-click on <guilabel>Lesson 1</guilabel> and choose <guilabel>Rename Lesson</guilabel> from the options shown. Now <guilabel>Lesson 1</guilabel> is highlighted and you can simply overwrite it by typing in <guilabel>Animals</guilabel>. When done, hit the &Enter; key. Now right-click on <guilabel>Collection: Vocabulary trainer E...</guilabel> which is the root of the lesson tree and choose <guilabel>New Lesson</guilabel> from the options shown. In the new field write <guilabel>Fruit</guilabel> and hit the &Enter; key again.
 </para>
 <para>First, let's insert the animals. Please click on the lesson <guilabel>Animals</guilabel> and you will get an empty table you can fill in. Click with your mouse in the first field, and insert the source terms.  Then, insert the target terms in the second column. Once you've inserted all 4 English animal names with their German translation the screen looks like this:
 </para>
@@ -1214,7 +1214,7 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>In our case we want only 4 entries in the animals lesson. There are many empty lines that should be deleted. To do this click on the first empty field, and keep the shift key pressed while clicking on the last empty field. All lines to be deleted will be highlighted. Then, press the <keycap>Del</keycap> key and confirm the question <emphasis>Do you really want to delete the selected entries?</emphasis> by clicking on the <guilabel>Delete</guilabel> button.
+<para>In our case we want only 4 entries in the animals lesson. There are many empty lines that should be deleted. To do this click on the first empty field, and keep the &Shift; key pressed while clicking on the last empty field. All lines to be deleted will be highlighted. Then, press the <keycap>Del</keycap> key and confirm the question <emphasis>Do you really want to delete the selected entries?</emphasis> by clicking on the <guilabel>Delete</guilabel> button.
 </para>
 <para>Let's add the fruit terminology. Just click on the lesson named <guilabel>Fruit</guilabel>. This second lesson is completely empty. Since we have five fruit terms we need to add five lines. Therefore, press the <keycap>Ins</keycap> key five times, and then, just like before, we add our terminology.
 </para>
@@ -1519,7 +1519,7 @@ limited to language learning but supports a multitude of subjects.
 </sect2>
 </sect1>
 <sect1 id="getting-additional-collections"><title>Getting Additional Collections</title> 
-<para>When you are on the <guilabel>Start Page</guilabel> you have the possibility to install Collections directly from the server, provided you are online. Just click on <guilabel>Download New Collections</guilabel>.
+<para>When you are on the <guilabel>Start Page</guilabel> you have the possibility to install collections directly from the server, provided you are online. Just click on <guilabel>Download New Collections</guilabel>.
 </para>
 <para>
 <screenshot>
@@ -1621,7 +1621,7 @@ limited to language learning but supports a multitude of subjects.
 <para>The <guilabel>General</guilabel> tab gives you some options regarding the behavior of Parley. 
 </para>
 <sect3 id="open-save-options"><title>Open/Save options</title>
-<para><guilabel>Always load the last opened collection on start</guilabel> will immediately take you back to the vocabulary you were learning. Often you will use this together with the second option <guilabel>Save vocabularies on close and quit</guilabel> because it's just handy not to have always answer the same question if changes (including learning results) should be changed or not. The option <guilabel>Create a backup every ... minutes</guilabel> can be very handy to help you save your work frequently. One less thing to think about.
+<para><guilabel>Always load the last opened collection on start</guilabel> will immediately take you back to the vocabulary you were learning. Often you will use this together with the second option <guilabel>Save vocabularies automatically on close and quit</guilabel> because it's just handy not to have always answer the same question if changes (including learning results) should be changed or not. The option <guilabel>Create a backup every ... minutes</guilabel> can be very handy to help you save your work frequently. One less thing to think about.
 </para>
 <para>Sometimes the import and/or export of text (CSV) files can be very handy and there you need the proper separator to elaborate data afterwards or to be able to read the data you got from somewhere else. Parley allows you to choose among various separators to make sure you can re-use your data.
 </para>
