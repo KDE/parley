@@ -56,22 +56,20 @@ protected:
         QLinearGradient linearGrad(QPointF(option.rect.x(), 0), QPointF(option.rect.x() + option.rect.width(), 0));
 
         int total = index.data(StatisticsModel::TotalCount).toInt();
-
+        linearGrad.setColorAt(0.0, QColor(255, 255, 255, 0));
+        
         int sum = 0;
         for (int i = 7; i >= 1; i--) {
             int count = index.data(StatisticsModel::Grade0 + i).toInt();
             if (count) {
                 sum += count;
-                linearGrad.setColorAt(((double)sum)/total, Prefs::gradeColor(i));
+                linearGrad.setColorAt(((double)(total-sum))/total, Prefs::gradeColor(i));
             }
         }
-
-        if (sum == 0) {
-            return;
-        }
+        
 
         QRect rect(option.rect);
-        rect.adjust(1, 1, -(rect.width()-rect.width()*sum/total)-1, -1);
+        rect.adjust(1, 1, -1, -1);
 
         QPainterPath path;
         path.addRoundedRect( rect, 2.0, 2.0 );
