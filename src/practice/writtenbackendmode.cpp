@@ -33,6 +33,7 @@ bool WrittenBackendMode::setTestEntry(TestEntry* current)
     m_frontend->showQuestion();
     m_lastAnswer.clear();
     m_synonyms.clear();
+    m_currentHint.clear();
     m_validator->setEntry(current);
     return true;
 }
