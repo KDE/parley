@@ -44,7 +44,9 @@ QVariant StatisticsModel::data(const QModelIndex & index, int role) const
             case TotalCount:
                 return container->entryCount(KEduVocContainer::Recursive);
             default:
-                return container->expressionsOfGrade(index.column()-2, role - Grade0, KEduVocContainer::Recursive);
+                if (role >= Qt::UserRole) {
+                    return container->expressionsOfGrade(index.column()-2, role - Grade0, KEduVocContainer::Recursive);
+                }
         }
     }
 
