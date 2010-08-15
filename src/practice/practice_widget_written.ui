@@ -26,105 +26,7 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout" columnstretch="1,0,0">
-     <item row="1" column="1">
-      <widget class="QLabel" name="questionPronunciationLabel">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string comment="KDE::DoNotExtract" >[foo]</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="Practice::AudioButton" name="questionSoundButton">
-       <property name="text">
-        <string comment="KDE::DoNotExtract" >...</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0">
-      <widget class="KLineEdit" name="answerEdit">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string comment="KDE::DoNotExtract" >tree</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <property name="trapEnterKeyEvent" stdset="0">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="0">
-      <widget class="QLabel" name="solutionLabel">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string comment="KDE::DoNotExtract" >tree</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="1">
-      <widget class="QLabel" name="solutionPronunciationLabel">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string comment="KDE::DoNotExtract" >[foo]</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="2">
-      <widget class="Practice::AudioButton" name="solutionSoundButton">
-       <property name="text">
-        <string comment="KDE::DoNotExtract" >...</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="mixedSolutionLabel">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string comment="KDE::DoNotExtract" >Baum</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
+     <item row="0" column="0">
       <widget class="QLabel" name="questionLabel">
        <property name="font">
         <font>
@@ -132,7 +34,47 @@
         </font>
        </property>
        <property name="text">
-        <string comment="KDE::DoNotExtract" >Baum</string>
+        <string comment="KDE::DoNotExtract">Baum</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="questionPronunciationLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string comment="KDE::DoNotExtract">[foo]</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="Practice::AudioButton" name="questionSoundButton">
+       <property name="text">
+        <string comment="KDE::DoNotExtract">...</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="mixedSolutionLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string comment="KDE::DoNotExtract">Baum</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -143,7 +85,65 @@
       </widget>
      </item>
      <item row="2" column="0">
+      <widget class="QLabel" name="solutionLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string comment="KDE::DoNotExtract">tree</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="solutionPronunciationLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string comment="KDE::DoNotExtract">[foo]</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="Practice::AudioButton" name="solutionSoundButton">
+       <property name="text">
+        <string comment="KDE::DoNotExtract">...</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
       <layout class="QVBoxLayout" name="synonymList"/>
+     </item>
+     <item row="4" column="0">
+      <widget class="KLineEdit" name="answerEdit">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string comment="KDE::DoNotExtract">tree</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="trapEnterKeyEvent" stdset="0">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -156,7 +156,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string comment="KDE::DoNotExtract" >Waiting for an answer...</string>
+      <string comment="KDE::DoNotExtract">Waiting for an answer...</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
