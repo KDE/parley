@@ -85,7 +85,6 @@ void PracticeSummaryComponent::setupDetailsTable()
     wrongPalette.setColor(QPalette::WindowText, scheme.foreground(KColorScheme::NegativeText).color());
     wrongPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::NegativeText).color());
 
-
     int i = 0;
     // TODO headers with languages
     // TODO some colors, maybe an indicator icon wether the word was right/wrong
@@ -102,24 +101,35 @@ void PracticeSummaryComponent::setupDetailsTable()
                 entry->userAnswers().join("; "));
         itemUserAnswer->setForeground(wrongPalette.foreground());
 
-        QTableWidgetItem* itemAttempts = new QTableWidgetItem(
-                entry->statisticCount() == 0 ? "-" : QString::number(entry->statisticBadCount()));
+        QTableWidgetItem* itemAttempts = new QTableWidgetItem();
+        itemAttempts->setData(Qt::DisplayRole, entry->statisticCount());
+        itemAttempts->setTextAlignment(Qt::AlignRight);
 
         itemFrom->setFlags(flags);
         itemTo->setFlags(flags);
         itemUserAnswer->setFlags(flags);
         itemAttempts->setFlags(flags);
 
-        tableWidget->setItem(i, 0, itemFrom);
-        tableWidget->setItem(i, 1, itemTo);
-        tableWidget->setItem(i, 2, itemUserAnswer);
-        tableWidget->setItem(i, 3, itemAttempts);
+        if (entry->correctAtFirstAttempt()) {
+            itemUserAnswer->setIcon(KIcon("dialog-ok-apply"));
+        } else if (entry->statisticGoodCount() > 0) {
+            itemUserAnswer->setIcon(KIcon("task-attempt"));
+        } else if (entry->statisticCount() > 0) {
+            itemUserAnswer->setIcon(KIcon("dialog-error"));
+        } else {
+            itemUserAnswer->setIcon(KIcon("task-attempt"));
+        }
+
+        tableWidget->setItem(i, 0, itemAttempts);
+        tableWidget->setItem(i, 1, itemFrom);
+        tableWidget->setItem(i, 2, itemTo);
+        tableWidget->setItem(i, 3, itemUserAnswer);
         ++i;
     }
 
     tableWidget->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
     tableWidget->setSortingEnabled(true);
-    tableWidget->sortItems(3, Qt::DescendingOrder);
+    tableWidget->sortItems(0, Qt::DescendingOrder);
 }
 
 

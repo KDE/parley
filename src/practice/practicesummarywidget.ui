@@ -25,6 +25,11 @@
     <widget class="QTableWidget" name="tableWidget">
      <column>
       <property name="text">
+       <string>Attempts</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
        <string>Question</string>
       </property>
      </column>
@@ -36,11 +41,6 @@
      <column>
       <property name="text">
        <string>Your Answer</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Wrong Attempts</string>
       </property>
      </column>
     </widget>
