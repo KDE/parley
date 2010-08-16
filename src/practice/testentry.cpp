@@ -26,9 +26,9 @@ TestEntry::TestEntry(KEduVocExpression *entry)
     ,m_answeredCorrectInSequence(0)
     ,m_correctAtFirstAttempt(false)
     ,m_practiceFinished(false)
+    ,m_changeGrades(false)
     ,m_lastPercentage(0.0)
     ,m_lastError(0)
-    ,m_changeGrades(false)
 {}
 
 void TestEntry::setGradeTo(int to)
