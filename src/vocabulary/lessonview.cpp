@@ -115,6 +115,8 @@ void LessonView::selectionChanged(const QItemSelection & selected, const QItemSe
 
 void LessonView::setTranslation(KEduVocExpression * entry, int translation)
 {
+    Q_UNUSED(translation)
+
     if (entry == 0) {
     selectionModel()->clearSelection();
         return;
