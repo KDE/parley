@@ -16,16 +16,16 @@ set(parley_SRCS
     configure-practice/blockoptions.cpp
     configure-practice/thresholdoptions.cpp
     editor/editor.cpp
-    entry-dialogs/audiowidget.cpp
-    entry-dialogs/browserwidget.cpp
-    entry-dialogs/comparisonwidget.cpp
-    entry-dialogs/conjugationwidget.cpp
-#    entry-dialogs/declensionwidget.cpp
-    entry-dialogs/imagechooserwidget.cpp
-    entry-dialogs/multiplechoicewidget.cpp
-    entry-dialogs/summarywordwidget.cpp
-    entry-dialogs/synonymwidget.cpp
-    entry-dialogs/latexwidget.cpp
+    editor/audiowidget.cpp
+    editor/browserwidget.cpp
+    editor/comparisonwidget.cpp
+    editor/conjugationwidget.cpp
+#    editor/declensionwidget.cpp
+    editor/imagechooserwidget.cpp
+    editor/multiplechoicewidget.cpp
+    editor/summarywordwidget.cpp
+    editor/synonymwidget.cpp
+    editor/latexwidget.cpp
     modeltest/modeltest.cpp
     practice/testentry.cpp
     practice/entryfilter.cpp
@@ -108,16 +108,16 @@ kde4_add_ui_files(parley_SRCS
     configure-practice/advancedpracticeoptions.ui
     configure-practice/blockoptions.ui
     configure-practice/thresholdoptions.ui
-    entry-dialogs/multiplechoicewidget.ui
-    entry-dialogs/comparisonwidget.ui
-    entry-dialogs/conjugationwidget.ui
-    entry-dialogs/declensionwidget.ui
-    entry-dialogs/imagechooserwidget.ui
-    entry-dialogs/audiowidget.ui
-    entry-dialogs/synonymwidget.ui
-    entry-dialogs/browserwidget.ui
-    entry-dialogs/summarywordwidget.ui
-    entry-dialogs/latexwidget.ui
+    editor/multiplechoicewidget.ui
+    editor/comparisonwidget.ui
+    editor/conjugationwidget.ui
+    editor/declensionwidget.ui
+    editor/imagechooserwidget.ui
+    editor/audiowidget.ui
+    editor/synonymwidget.ui
+    editor/browserwidget.ui
+    editor/summarywordwidget.ui
+    editor/latexwidget.ui
     practice/entryfilter.ui
     practice/practicesummarywidget.ui
     practice/practice_mainwindow.ui
