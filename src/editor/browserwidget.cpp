@@ -109,6 +109,12 @@ void BrowserWidget::setupProviders()
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
+    provider.name="Heinzelnisse";
+    provider.url="http://heinzelnisse.info/dict?setOptions=true&searchItem=\\{@}&dictDeNoSearch=on&dictNoDeSearch=on&dictExactSearch=on&dictPhoneticSearch=on&wikiSearch=on&dictNynorskSearch=on&dictBokmaalSearch=checked&forumKeywordSearch=on&suggestion=on";
+    provider.languages << "no" << "de";
+    m_providers.append(provider);
+    providerComboBox->addItem(provider.name);
+
 }
 
 void BrowserWidget::setTranslation(KEduVocExpression* entry, int translation)
@@ -126,7 +132,9 @@ void BrowserWidget::showCurrentTranslation()
     if (m_entry) {
         if (m_entry->translation(m_currentTranslation)) {
             QString text = m_entry->translation(m_currentTranslation)->text();
-            m_htmlPart->openUrl(KUrl(QString(m_providers.value(m_currentProvider).url.replace("\\{@}", text))));
+            if (!text.isEmpty()) {
+                m_htmlPart->openUrl(KUrl(QString(m_providers.value(m_currentProvider).url.replace("\\{@}", text))));
+            }
         }
     }
 }
