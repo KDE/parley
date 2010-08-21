@@ -6,17 +6,56 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>729</width>
-    <height>449</height>
+    <width>585</width>
+    <height>413</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout">
-   <item>
-    <widget class="QGroupBox" name="groupBox">
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" rowspan="2">
+    <widget class="QGroupBox" name="groupBox_3">
      <property name="title">
-      <string>General Options</string>
+      <string>Correction</string>
      </property>
-     <layout class="QVBoxLayout">
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <widget class="QCheckBox" name="kcfg_IgnoreAccentMistakes">
+        <property name="toolTip">
+         <string>Answers with wrong accents are still counted as correct.</string>
+        </property>
+        <property name="text">
+         <string>Ignore Accents</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="kcfg_IgnoreCapitalizationMistakes">
+        <property name="toolTip">
+         <string>Any captitalization in the answer is counted as correct.</string>
+        </property>
+        <property name="text">
+         <string>Ignore Capitalization</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="kcfg_ShowHints">
+        <property name="toolTip">
+         <string>During the practice you can use the hint button to see parts of the solution.</string>
+        </property>
+        <property name="text">
+         <string>Enable Hints</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
       <item>
        <widget class="QCheckBox" name="kcfg_AltLearn">
         <property name="toolTip">
@@ -30,136 +69,133 @@
         </property>
        </widget>
       </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1" rowspan="2">
+    <widget class="QGroupBox" name="groupBox_4">
+     <property name="title">
+      <string>Images and Sound</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
       <item>
-       <layout class="QGridLayout">
-        <item row="0" column="0">
-         <widget class="QCheckBox" name="kcfg_IgnoreAccentMistakes">
-          <property name="text">
-           <string>Ignore accent mistakes</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QCheckBox" name="kcfg_IgnoreCapitalizationMistakes">
-          <property name="text">
-           <string>Ignore capitalization mistakes</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QCheckBox" name="kcfg_FlashcardsFrontImage">
-          <property name="text">
-           <string>Show images with the question</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QCheckBox" name="kcfg_FlashcardsBackImage">
-          <property name="text">
-           <string>Show images with the solution</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QCheckBox" name="kcfg_ShowHints">
-          <property name="text">
-           <string>Enable Hints</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QCheckBox" name="kcfg_PracticeSoundEnabled">
-          <property name="text">
-           <string>Enable Sound</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QCheckBox" name="kcfg_CountSynonymsAsCorrect">
-          <property name="text">
-           <string>Accept synonyms as correct</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QCheckBox" name="kcfg_TestOrderLesson">
-          <property name="toolTip">
-           <string>When practicing, new words will be chosen loosely in lesson order if this is selected.  Otherwise, they will be chosen completely at random.</string>
-          </property>
-          <property name="text">
-           <string>&amp;Practice in lesson order</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <widget class="QCheckBox" name="kcfg_FlashcardsFrontImage">
+        <property name="toolTip">
+         <string>During the practice, images are shown for the question.</string>
+        </property>
+        <property name="text">
+         <string>Image for Question</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
       <item>
-       <layout class="QHBoxLayout">
-        <item>
-         <widget class="QLabel" name="label">
-          <property name="toolTip">
-           <string>The number of times vocabulary will show up repeatedly until it is answered correctly.</string>
-          </property>
-          <property name="text">
-           <string>&amp;Active entries during practice:</string>
-          </property>
-          <property name="buddy">
-           <cstring>kcfg_TestNumberOfEntries</cstring>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="KIntSpinBox" name="kcfg_TestNumberOfEntries">
-          <property name="toolTip">
-           <string>The number of times vocabulary will show up repeatedly until it is answered correctly.</string>
-          </property>
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="minimum">
-           <number>2</number>
-          </property>
-          <property name="maximum">
-           <number>10000</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
+       <widget class="QCheckBox" name="kcfg_FlashcardsBackImage">
+        <property name="toolTip">
+         <string>During the practice, images are shown for the solution.</string>
+        </property>
+        <property name="text">
+         <string>Image for Solution</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="kcfg_PracticeSoundEnabled">
+        <property name="toolTip">
+         <string>Enable playing of pronunciation sound files during the practice.</string>
+        </property>
+        <property name="text">
+         <string>Sound</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Minimum</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>0</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </widget>
    </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox2">
+   <item row="2" column="0" colspan="2">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Synonyms</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>By default you are asked to enter synonyms until you enter the one that is associated directly with the current word. With this option enabled any synonym is accepted.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="kcfg_CountSynonymsAsCorrect">
+        <property name="text">
+         <string>Accept any Synonym</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QGroupBox" name="groupBox_2">
      <property name="title">
       <string>Multiple Choice</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_5">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QCheckBox" name="kcfg_MultipleChoiceWordTypeConsistancy">
+        <property name="toolTip">
+         <string>When creating multiple choice practices, try to show answers of the same word type.</string>
+        </property>
         <property name="text">
          <string>Use choices of the same word type</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="lineWidth">
+           <number>1</number>
+          </property>
+          <property name="text">
+           <string>Number of choices:</string>
+          </property>
+          <property name="indent">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
         <item>
          <widget class="KIntSpinBox" name="kcfg_NumberMultipleChoiceAnswers">
           <property name="maximumSize">
@@ -180,36 +216,37 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_3">
-          <property name="text">
-           <string>Number of choices</string>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
-         </widget>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>0</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </item>
      </layout>
     </widget>
    </item>
-   <item>
-    <spacer>
+   <item row="4" column="0" colspan="2">
+    <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>589</width>
-       <height>20</height>
+       <width>20</width>
+       <height>0</height>
       </size>
      </property>
     </spacer>
    </item>
   </layout>
-  <zorder>groupBox2</zorder>
-  <zorder>groupBox</zorder>
  </widget>
  <customwidgets>
   <customwidget>
@@ -218,9 +255,6 @@
    <header>knuminput.h</header>
   </customwidget>
  </customwidgets>
- <tabstops>
-  <tabstop>kcfg_AltLearn</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>
