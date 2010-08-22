@@ -25,6 +25,17 @@
 
 using namespace Practice; 
 
+class PracticeSummaryComponent::SortedAttemptTableWidgetItem: public QTableWidgetItem
+{
+    virtual bool operator<(const QTableWidgetItem &other) const
+    {
+        if (data(Qt::DisplayRole).toInt() == other.data(Qt::DisplayRole).toInt()) {
+            return data(Qt::UserRole).toInt() < other.data(Qt::UserRole).toInt();
+        }
+        return data(Qt::DisplayRole).toInt() < other.data(Qt::DisplayRole).toInt();
+    }
+};
+
 PracticeSummaryComponent::PracticeSummaryComponent(TestEntryManager* testEntryManager, QWidget* parent)
     :KXmlGuiWindow(parent)
     ,m_testEntryManager(testEntryManager)
@@ -101,8 +112,9 @@ void PracticeSummaryComponent::setupDetailsTable()
                 entry->userAnswers().join("; "));
         itemUserAnswer->setForeground(wrongPalette.foreground());
 
-        QTableWidgetItem* itemAttempts = new QTableWidgetItem();
+        SortedAttemptTableWidgetItem* itemAttempts = new SortedAttemptTableWidgetItem();
         itemAttempts->setData(Qt::DisplayRole, entry->statisticCount());
+        itemAttempts->setData(Qt::UserRole, entry->statisticBadCount());
         itemAttempts->setTextAlignment(Qt::AlignRight);
 
         itemFrom->setFlags(flags);

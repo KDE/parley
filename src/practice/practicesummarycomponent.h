@@ -34,6 +34,8 @@ private:
     void setupDetailsTable();
 
     TestEntryManager* m_testEntryManager;
+
+    class SortedAttemptTableWidgetItem;
 };
 }
 
