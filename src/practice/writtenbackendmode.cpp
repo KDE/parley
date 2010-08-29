@@ -93,7 +93,7 @@ QString WrittenBackendMode::getFeedbackString(TestEntry::ErrorTypes error)
     // The user entered a synonym
     if (error & TestEntry::Synonym) {
         if (!Prefs::countSynonymsAsCorrect()) {
-            return i18n("Your answer was wrong as synonyms are not accepted. Please try again.");
+            return i18n("Your answer was a synonyms. Please enter another word with the same translation.");
         }
         const QString answer = m_validator->getCorrectedAnswer();
         if (m_synonyms.contains(answer)) {
