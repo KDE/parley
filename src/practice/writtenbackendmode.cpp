@@ -64,10 +64,9 @@ void WrittenBackendMode::checkAnswer()
         m_frontend->showSynonym();
 
         if (Prefs::countSynonymsAsCorrect()) {
-            // maybe change grade of synonym here
+            // any of the synonyms is automatically counted as right
+            // otherwise do nothing to give the user another chance
             emit answerRight();
-        } else {
-            emit answerWrongRetry();
         }
         return;
     }
