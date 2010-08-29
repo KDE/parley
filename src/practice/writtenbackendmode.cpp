@@ -77,10 +77,7 @@ void WrittenBackendMode::checkAnswer()
         m_current->addUserAnswer(answer);
 
         if(answerUnchanged) {
-            /// @todo: temporary solution: don't show any feedback string instead of "Your answer was wrong, please try again"
-            /// when the user can't input anything anymore
-            /// in the long term, just "Your answer was wrong." should be set as the feedback string
-            m_frontend->setFeedback(QString());
+            m_frontend->setFeedback(i18n("Your answer was wrong."));
             emit answerWrongShowSolution();
         } else {
             emit answerWrongRetry();
@@ -93,7 +90,7 @@ QString WrittenBackendMode::getFeedbackString(TestEntry::ErrorTypes error)
     // The user entered a synonym
     if (error & TestEntry::Synonym) {
         if (!Prefs::countSynonymsAsCorrect()) {
-            return i18n("Your answer was a synonyms. Please enter another word with the same translation.");
+            return i18n("Your answer was a synonym. Please enter another word with the same translation.");
         }
         const QString answer = m_validator->getCorrectedAnswer();
         if (m_synonyms.contains(answer)) {
