@@ -74,8 +74,6 @@ void WrittenBackendMode::checkAnswer()
     if (isCorrect) {
         emit answerRight();
     } else {
-        m_current->addUserAnswer(answer);
-
         if(answerUnchanged) {
             /// @todo: temporary solution: don't show any feedback string instead of "Your answer was wrong, please try again"
             /// when the user can't input anything anymore
@@ -83,6 +81,7 @@ void WrittenBackendMode::checkAnswer()
             m_frontend->setFeedback(QString());
             emit answerWrongShowSolution();
         } else {
+            m_current->addUserAnswer(answer);
             emit answerWrongRetry();
         }
     }
