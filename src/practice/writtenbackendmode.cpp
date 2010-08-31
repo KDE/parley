@@ -74,12 +74,11 @@ void WrittenBackendMode::checkAnswer()
     if (isCorrect) {
         emit answerRight();
     } else {
-        m_current->addUserAnswer(answer);
-
         if(answerUnchanged) {
             m_frontend->setFeedback(i18n("Your answer was wrong."));
             emit answerWrongShowSolution();
         } else {
+            m_current->addUserAnswer(answer);
             emit answerWrongRetry();
         }
     }
@@ -151,7 +150,6 @@ void WrittenBackendMode::hintAction()
             m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
         }
         m_frontend->showSolution();
-       // m_state = SolutionShown;
     } else {
         m_frontend->setHint(i18n("The solution starts with: %1", m_currentHint));
     }
