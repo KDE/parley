@@ -53,6 +53,7 @@ class ParleyPlasma : public Plasma::Applet
         void dataUpdated(const QString &name, const Plasma::DataEngine::Data &data);
         // in the config dialog a file was selected
         void urlSelected (const KUrl &file);
+        void configChanged();
     protected:
         virtual void hoverEnterEvent ( QGraphicsSceneHoverEvent * event );
         virtual void hoverLeaveEvent ( QGraphicsSceneHoverEvent * event );

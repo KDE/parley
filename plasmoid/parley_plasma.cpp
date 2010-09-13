@@ -47,12 +47,8 @@ void ParleyPlasma::init()
 {
     m_theme->size().height();
 
-    KConfigGroup cg = config();
-    m_updateInterval = cg.readEntry("updateInterval", 10000);
-    m_solutionType = cg.readEntry("Solution", 0);
-
-    m_lang1 = cg.readEntry("Top Language", 0);
-    m_lang2 = cg.readEntry("Bottom Language", 1);
+    configChanged();
+    
 
     m_engine = dataEngine("parley");
 
@@ -60,9 +56,22 @@ void ParleyPlasma::init()
     m_label2 = new QGraphicsTextItem(this);
     m_label1->setPos( m_theme->elementRect( "translation1" ).topLeft() );
     m_label2->setPos( m_theme->elementRect( "translation2" ).topLeft() );
-    m_label1->setFont(cg.readEntry("font",m_font));
-    m_label2->setFont(cg.readEntry("font",m_font));
+    m_label1->setFont(m_font);
+    m_label2->setFont(m_font);
 
+    m_engine->connectSource(m_sourceFile.url(), this, m_updateInterval);
+}
+
+void ParleyPlasma::configChanged()
+{
+    KConfigGroup cg = config();
+    m_updateInterval = cg.readEntry("updateInterval", 10000);
+    m_solutionType = cg.readEntry("Solution", 0);
+
+    m_lang1 = cg.readEntry("Top Language", 0);
+    m_lang2 = cg.readEntry("Bottom Language", 1);
+    m_font = cg.readEntry("font", QFont());
+    
     m_sourceFile.setUrl(cg.readEntry("File Name"));
     if (m_sourceFile.isEmpty()) {
         kDebug() << "open file from parleyrc";
@@ -73,7 +82,6 @@ void ParleyPlasma::init()
         m_sourceFile = recentFilesGroup.readEntry( recentFilesGroup.keyList().value(recentFilesGroup.keyList().count()/2-1), QString() );
         kDebug() << "open file: " << m_sourceFile;
     }
-    m_engine->connectSource(m_sourceFile.url(), this, m_updateInterval);
 }
 
 void ParleyPlasma::constraintsEvent(Plasma::Constraints constraints)
