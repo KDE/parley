@@ -148,7 +148,7 @@ QWidget * VocabularyDelegate::createEditor ( QWidget * parent, const QStyleOptio
                 QString layout = settings.keyboardLayout();
                 if ( !layout.isEmpty() )
                 {
-                    QDBusInterface kxkb ( "org.kde.kxkb", "/kxkb", "org.kde.KXKB" );
+                    QDBusInterface kxkb ( "org.kde.keyboard", "/Layouts", "org.kde.KeyboardLayouts" );
                     if ( kxkb.isValid() )
                     {
                         kxkb.call ( "setLayout", layout );
