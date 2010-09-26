@@ -88,7 +88,7 @@ void StatisticsMainWindow::setDocument(KEduVocDocument* doc)
     m_doc = doc;
     m_statisticsModel->setDocument(doc);
     m_ui->lessonStatistics->setModel(m_statisticsModel);
-    m_ui->lessonStatistics->expandToDepth(0);
+    m_ui->lessonStatistics->expandAll();
     m_ui->lessonStatistics->resizeColumnToContents(0);
 }
 
