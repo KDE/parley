@@ -51,7 +51,7 @@ void VocabularyFilter::setSourceModel(VocabularyModel * model)
 void VocabularyFilter::setSearchString(const QString & expression)
 {
     m_filterString = expression;
-    reset();
+    invalidateFilter();
 }
 
 bool VocabularyFilter::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
