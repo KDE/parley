@@ -185,7 +185,7 @@ endif(X11_Xrender_FOUND)
 install(TARGETS parley  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 # desktop files appear in the menus
-install( FILES parley.desktop DESTINATION  ${XDG_APPS_INSTALL_DIR} )
+install( PROGRAMS parley.desktop DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 
 # hot new stuff config
 install( FILES parley.knsrc parley-themes.knsrc DESTINATION  ${CONFIG_INSTALL_DIR} )
