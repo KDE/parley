@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=Parley
+Name[ast]=Parley
 Name[ca]=Parley
 Name[ca@valencia]=Parley
 Name[cs]=Parley
@@ -56,6 +57,7 @@ Terminal=false
 Categories=Qt;KDE;Education;Languages;
 GenericName=Vocabulary Trainer
 GenericName[af]=Woordeskat-afrigter
+GenericName[ast]=Tutor de vocabulariu
 GenericName[be]=Пашырэнне слоўнікавага запасу
 GenericName[bg]=Речникови тренировки
 GenericName[bn]=শব্দভাণ্ডার সমৃদ্ধকারী

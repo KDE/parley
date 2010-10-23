@@ -7,6 +7,7 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Testing Purposes Script
+Name[ast]=Guión pa facer pruebes
 Name[ca]=Script de prova
 Name[ca@valencia]=Script de prova
 Name[cs]=Skript určený pro zkoušení
@@ -45,6 +46,7 @@ Name[x-test]=xxTesting Purposes Scriptxx
 Name[zh_CN]=测试目的脚本
 Name[zh_TW]=測試目的文稿
 Comment=Description of what the plugin does
+Comment[ast]=Descripción de lo que fai el complementu
 Comment[ca]=Descripció de què fa l'endollable
 Comment[ca@valencia]=Descripció de què fa l'endollable
 Comment[cs]=Popis toho, co ten přídavný modul vlastně dělá
