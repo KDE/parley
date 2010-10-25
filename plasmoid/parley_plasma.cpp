@@ -41,6 +41,7 @@ ParleyPlasma::ParleyPlasma(QObject *parent, const QVariantList &args)
     m_theme->setImagePath("widgets/parley_plasma_card");
     m_theme->setContainsMultipleImages(false);
     m_theme->resize(size());
+    setAssociatedApplication("parley");
 }
 
 void ParleyPlasma::init()
