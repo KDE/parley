@@ -28,11 +28,6 @@
     <layout class="QGridLayout" name="gridLayout" columnstretch="1,0,0">
      <item row="1" column="1">
       <widget class="QLabel" name="questionPronunciationLabel">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string comment="KDE::DoNotExtract" >[foo]</string>
        </property>
@@ -50,11 +45,6 @@
      </item>
      <item row="5" column="0">
       <widget class="KLineEdit" name="answerEdit">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string comment="KDE::DoNotExtract" >tree</string>
        </property>
@@ -68,11 +58,6 @@
      </item>
      <item row="7" column="0">
       <widget class="QLabel" name="solutionLabel">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string comment="KDE::DoNotExtract" >tree</string>
        </property>
@@ -86,11 +71,6 @@
      </item>
      <item row="7" column="1">
       <widget class="QLabel" name="solutionPronunciationLabel">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string comment="KDE::DoNotExtract" >[foo]</string>
        </property>
@@ -108,11 +88,6 @@
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="mixedSolutionLabel">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string comment="KDE::DoNotExtract" >Baum</string>
        </property>
@@ -126,11 +101,6 @@
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="questionLabel">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string comment="KDE::DoNotExtract" >Baum</string>
        </property>

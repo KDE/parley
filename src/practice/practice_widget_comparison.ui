@@ -13,11 +13,6 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="questionLabel">
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
      <property name="text">
       <string/>
      </property>
@@ -33,11 +28,6 @@
     <layout class="QGridLayout" name="conjugationsLayout">
      <item row="1" column="0">
       <widget class="QLabel" name="absoluteLabel">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string>absolute</string>
        </property>
@@ -51,11 +41,6 @@
      </item>
      <item row="1" column="2">
       <widget class="KLineEdit" name="absoluteEdit">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string comment="KDE::DoNotExtract">good</string>
        </property>
@@ -72,11 +57,6 @@
      </item>
      <item row="1" column="3">
       <widget class="QLabel" name="absoluteSolutionLabel">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string comment="KDE::DoNotExtract"/>
        </property>
@@ -90,11 +70,6 @@
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="comparativeLabel">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string>comparative</string>
        </property>
@@ -108,11 +83,6 @@
      </item>
      <item row="2" column="2">
       <widget class="KLineEdit" name="comparativeEdit">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string comment="KDE::DoNotExtract">better</string>
        </property>
@@ -129,11 +99,6 @@
      </item>
      <item row="2" column="3">
       <widget class="QLabel" name="comparativeSolutionLabel">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string comment="KDE::DoNotExtract"/>
        </property>
@@ -147,11 +112,6 @@
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="superlativeLabel">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string>superlative</string>
        </property>
@@ -165,11 +125,6 @@
      </item>
      <item row="3" column="2">
       <widget class="KLineEdit" name="superlativeEdit">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string comment="KDE::DoNotExtract">best</string>
        </property>
@@ -186,11 +141,6 @@
      </item>
      <item row="3" column="3">
       <widget class="QLabel" name="superlativeSolutionLabel">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string comment="KDE::DoNotExtract"/>
        </property>
