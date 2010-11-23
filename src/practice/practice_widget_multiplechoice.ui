@@ -13,11 +13,6 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="questionLabel">
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
      <property name="text">
       <string comment="KDE::DoNotExtract" >Baum</string>
      </property>

@@ -13,11 +13,6 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="tenseLabel">
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
      <property name="text">
       <string comment="KDE::DoNotExtract">Präsens</string>
      </property>
@@ -33,11 +28,6 @@
     <layout class="QGridLayout" name="conjugationsLayout">
      <item row="1" column="0">
       <widget class="QLabel" name="questionLabel">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string comment="KDE::DoNotExtract">to go</string>
        </property>
@@ -51,11 +41,6 @@
      </item>
      <item row="1" column="1">
       <widget class="KLineEdit" name="infinitiveEdit">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string comment="KDE::DoNotExtract">gehen</string>
        </property>
@@ -72,11 +57,6 @@
      </item>
      <item row="1" column="2">
       <widget class="QLabel" name="solutionLabel">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string comment="KDE::DoNotExtract"/>
        </property>

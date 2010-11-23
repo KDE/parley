@@ -108,7 +108,8 @@ void WrittenPracticeWidget::showSynonym()
 {
     QLabel* synonym = new QLabel();
     QFont font;
-    font.setPointSize(9);
+    //TODO: use slightly smaller font for synonyms
+    //font.setPointSize(9);
     synonym->setAlignment(Qt::AlignCenter);
     synonym->setFont(font);
     synonym->setText(i18n("Synonym: ") + m_synonym);
