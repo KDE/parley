@@ -188,9 +188,7 @@ KAction* ParleyActions::createDownloadAction(const QObject* recvr, const char* s
 
 KAction* ParleyActions::createUploadAction(const QObject* recvr, const char* slot, KActionCollection* collection)
 {
-    /*
     KAction *pAction = KNS3::standardActionUpload(i18n("&Upload Vocabulary Document..."), recvr, slot, collection, "file_upload");
     pAction->setHelpText(i18n("Share the current vocabulary collection with other users"));
     return pAction;
-    */
 }

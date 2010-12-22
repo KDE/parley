@@ -1,7 +1,7 @@
 project(plasma-parley)
 add_subdirectory( engine )
 
-include_directories( ${LIBKDEEDU_INCLUDE_DIR} )
+include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/   )
 set(parley_plasma_SRCS
     parley_plasma.cpp
     )
@@ -11,7 +11,7 @@ kde4_add_ui_files(parley_plasma_SRCS config.ui)
 kde4_add_plugin(plasma_applet_parley ${parley_plasma_SRCS})
 target_link_libraries(plasma_applet_parley
     plasma ${KDE4_KIO_LIBS}
-    ${LIBKDEEDU_KDEUVOCDOCUMENT_LIBRARIES}
+    keduvocdocument
     )
 
 install(

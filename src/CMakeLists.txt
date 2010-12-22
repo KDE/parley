@@ -4,7 +4,7 @@ include_directories( ${LIBATTICA_INCLUDE_DIR} )
 add_subdirectory( settings )
 
 # libkdeedu/keduvocdocument contains the library for reading and writing vocabulary files
-include_directories( ${LIBKDEEDU_INCLUDE_DIR} )
+include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/ )
 
 set(parley_SRCS
     main.cpp
@@ -164,7 +164,7 @@ kde4_install_icons( ${ICON_INSTALL_DIR} )
 
 target_link_libraries(
     parley
-    ${LIBKDEEDU_KDEUVOCDOCUMENT_LIBRARIES}
+    keduvocdocument
     ${KDE4_KHTML_LIBS}
     ${KDE4_KNEWSTUFF3_LIBS}
     ${KDE4_PHONON_LIBS}
