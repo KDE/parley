@@ -1,6 +1,7 @@
 [KGameTheme]
 Name=Bees
 Name[ca]=Abelles
+Name[ca@valencia]=Abelles
 Name[cs]=Včely
 Name[da]=Bier
 Name[de]=Bienen
@@ -26,6 +27,7 @@ Name[zh_CN]=蜜蜂
 Name[zh_TW]=蜜蜂
 Description=Awesome cute bees
 Description[ca]=Abelles superbufones
+Description[ca@valencia]=Abelles superbufones
 Description[cs]=Úžasně roztomilé včely
 Description[da]=Ufatteligt nuttede bier
 Description[de]=Tolle süße Bienen
