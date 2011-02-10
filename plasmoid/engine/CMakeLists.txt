@@ -2,12 +2,12 @@ set(parley_engine_SRCS
     parley_engine.cpp
 )
 
-include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/ )
+include_directories( ${LIBKDEEDU_INCLUDE_DIR} )
 
 kde4_add_plugin(plasma_engine_parley ${parley_engine_SRCS})
 target_link_libraries(plasma_engine_parley ${KDE4_KDECORE_LIBS}
   plasma
-  keduvocdocument
+  ${LIBKDEEDU_KEDUVOCDOCUMENT_LIBRARIES}
 )
 
 install(TARGETS plasma_engine_parley DESTINATION ${PLUGIN_INSTALL_DIR})
