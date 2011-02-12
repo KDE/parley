@@ -199,6 +199,12 @@ void ParleyPlasma::createConfigurationInterface(KConfigDialog * parent)
         ui.solutionAlways->setChecked(true);
         break;
     }
+    
+    connect (ui.fontSelectButton, SIGNAL(clicked()), parent, SLOT(settingsModified()));
+    connect (ui.solutionOnHover, SIGNAL(toggled(bool)), parent, SLOT(settingsModified()));
+    connect (ui.solutionAlways, SIGNAL(toggled(bool)), parent, SLOT(settingsModified()));
+    connect(ui.filechooser, SIGNAL(urlSelected (const KUrl &)), parent, SLOT(settingsModified()));
+    connect(ui.updateIntervalSpinBox, SIGNAL(valueChanged(int)), parent, SLOT(settingsModified()));
 }
 
 void ParleyPlasma::urlSelected (const KUrl &file)
