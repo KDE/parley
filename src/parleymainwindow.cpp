@@ -69,6 +69,7 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
 
     setCentralWidget(new QWidget());
     centralWidget()->setLayout(new QHBoxLayout());
+    centralWidget()->layout()->setMargin(0);
 
     initActions();
 
