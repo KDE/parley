@@ -55,7 +55,7 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     connect(m_ui->continueButton, SIGNAL(clicked()), this, SIGNAL(continueAction()));
     connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SIGNAL(skipAction()));
     connect(m_ui->hintButton, SIGNAL(clicked()), this, SIGNAL(hintAction()));
-    connect(m_ui->statusToggle, SIGNAL(toggle()), this, SLOT(resultToggleClicked()));
+    connect(m_ui->statusToggle, SIGNAL(toggle()), this, SLOT(toggleResultState()));
     connect(m_ui->countAsCorrectButton, SIGNAL(clicked()), this, SLOT(countAsCorrectButtonClicked()));
     connect(m_ui->countAsWrongButton, SIGNAL(clicked()), this, SLOT(countAsWrongButtonClicked()));
 
@@ -316,7 +316,7 @@ void GuiFrontend::countAsWrongButtonClicked()
     emit continueAction();
 }
 
-void GuiFrontend::resultToggleClicked()
+void GuiFrontend::toggleResultState()
 {
     if (resultState() == AnswerWrong) {
         setResultState(AnswerCorrect);

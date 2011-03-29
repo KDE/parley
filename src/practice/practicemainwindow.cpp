@@ -81,6 +81,13 @@ void PracticeMainWindow::initActions()
                                                      m_parent,
                                                      actionCollection());
 
+    KAction* toggleAnswerState = new KAction(this);
+    toggleAnswerState->setText(i18n("Change answer to right/wrong"));
+    toggleAnswerState->setHelpText(i18n("When you answered, Parley will display that the answer was right or wrong.\nThis shortcut changes how the answer is counted."));
+    actionCollection()->addAction("toggle_answer_state", toggleAnswerState);
+    toggleAnswerState->setShortcut(Qt::CTRL + Qt::Key_Space);
+    connect(toggleAnswerState, SIGNAL(triggered()), m_guiFrontend, SLOT(resultToggleClicked()));
+
     m_floatingToolBar = new QWidget(m_parent);
     QHBoxLayout *layout = new QHBoxLayout();
     m_floatingToolBar->setLayout(layout);
@@ -102,7 +109,7 @@ void PracticeMainWindow::initActions()
     m_animation->setDuration(150);
 }
 
-void PracticeMainWindow::resizeEvent(QResizeEvent *e)
+void PracticeMainWindow::resizeEvent(QResizeEvent *)
 {
     m_floatingToolBar->resize(m_parent->width(), m_floatingToolBar->sizeHint().height());
     m_animation->setStartValue(QRect(QPoint(0,-m_floatingToolBar->height()), m_floatingToolBar->size()));

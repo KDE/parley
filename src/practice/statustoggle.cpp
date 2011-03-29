@@ -38,10 +38,6 @@ StatusToggle::StatusToggle(QWidget* parent)
     m_toggle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     m_toggle->setScalingEnabled(false);
     m_toggle->move(width()-m_toggle->width(), height()-m_toggle->height());
-    m_toggleAction = new QAction(m_toggle);
-    m_toggleAction->setShortcut(Qt::ALT + Qt::Key_T);
-    connect(m_toggleAction, SIGNAL(triggered()), this, SIGNAL(toggle()));
-    addAction(m_toggleAction);
 
     connect(m_toggle, SIGNAL(clicked()), this, SIGNAL(toggle()));
 }
@@ -87,12 +83,12 @@ void StatusToggle::setResultState(AbstractFrontend::ResultState state)
         m_toggle->setToolTip(QString());
         break;
     case AbstractFrontend::AnswerCorrect:
-        setToolTip(i18n("This word will be counted as correct.\nWords will only be counted as correct if they are answered correctly on the first attempt."));
-        m_toggle->setToolTip(i18n("Count this word as wrong")+"\n"+m_toggleAction->shortcut().toString());
+        setToolTip(i18n("This answer will be counted as correct.\nWords will only be counted as correct if they are answered correctly on the first attempt."));
+        m_toggle->setToolTip(i18n("Count this answer as wrong"));
         break;
     case AbstractFrontend::AnswerWrong:
-        setToolTip(i18n("This word will be counted as wrong.\nWords will only be counted as correct if they are answered correctly on the first attempt."));
-        m_toggle->setToolTip(i18n("Count this word as correct")+"\n"+m_toggleAction->shortcut().toString());
+        setToolTip(i18n("This answer will be counted as wrong.\nWords will only be counted as correct if they are answered correctly on the first attempt."));
+        m_toggle->setToolTip(i18n("Count this answer as correct"));
         break;
     default:
         setPixmap(QPixmap());
