@@ -1,0 +1,4 @@
+# Ignore generated files
+CMakeLists.txt.user
+parley.kdev4
+build/
