@@ -119,11 +119,11 @@ QString WrittenBackendMode::getFeedbackString(TestEntry::ErrorTypes error)
     // The answer was right
     if (m_firstAttempt) {
         if ((error & TestEntry::CapitalizationMistake)){
-            return i18n("Your answer was right on the first attempt, but your capitalization was wrong.");
+            return i18n("Your answer was right, but your capitalization was wrong.");
         } else if ((error & TestEntry::AccentMistake)){
-            return i18n("Your answer was right on the first attempt, but accents were wrong.");
+            return i18n("Your answer was right, but accents were wrong.");
         } else {
-            return i18n("Your answer was right on the first attempt.");
+            return i18n("Your answer was right.");
         }
     } else {
         if ((error & TestEntry::CapitalizationMistake)){
