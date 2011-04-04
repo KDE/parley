@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
-      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
-  <kcfgfile name="parleyrc">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+    http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+<kcfgfile name="parleyrc">
     <parameter name="locale" />
-  </kcfgfile>
-  <group name="Locale $(locale)">
+</kcfgfile>
+<group name="Locale $(locale)">
     <entry name="KeyboardLayout" type="String">
-      <label>Keyboard layout for this locale</label>
-      <whatsthis>Keyboard layout for this locale</whatsthis>
-      <default></default>
-      </entry>
-      <entry name="ConjugationTenses" type="StringList">
+        <label>Keyboard layout for this locale</label>
+        <whatsthis>Keyboard layout for this locale</whatsthis>
+        <default></default>
+    </entry>
+    <entry name="SpellChecker" type="String">
+        <label>Spell checker for this language</label>
+        <whatsthis>Spell checker for this language</whatsthis>
+        <default>
+        </default>
+    </entry>
+    <entry name="ConjugationTenses" type="StringList">
         <label>Selected tenses for conjugation practice.</label>
         <whatsthis>Selected tenses for conjugation practice.</whatsthis>
         <default></default>
-      </entry>
-      <entry name="VisibleColumns" type="IntList">
-    	<label>Visible columns in the main editor window.</label>
-    	<whatsthis>Visible columns in the main editor window.</whatsthis>
-	</entry>
-  </group>
+    </entry>
+    <entry name="VisibleColumns" type="IntList">
+        <label>Visible columns in the main editor window.</label>
+        <whatsthis>Visible columns in the main editor window.</whatsthis>
+    </entry>
+</group>
 </kcfg>

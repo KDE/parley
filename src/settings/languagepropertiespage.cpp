@@ -18,10 +18,6 @@
 #include <kinputdialog.h>
 #include <kmessagebox.h>
 
-#include "practice/testentrymanager.h"
-#include <keduvocdocument.h>
-#include <keduvoclesson.h>
-
 #include <KDebug>
 #include <KLocale>
 #include <KStandardDirs>
@@ -29,6 +25,12 @@
 #include <QCheckBox>
 #include <QLabel>
 #include <QtDBus>
+#include <sonnet/speller.h>
+
+#include "practice/testentrymanager.h"
+#include <keduvocdocument.h>
+#include <keduvoclesson.h>
+
 #include <parleydocument.h>
 
 #define TENSE_TAG ". "
@@ -49,8 +51,8 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
         languageCodeMap[KGlobal::locale()->languageCodeToName(code)] = code;
     }
     // add the language, but also it's code as data
-    foreach ( const QString &language, languageCodeMap.keys() ) {
-        localeComboBox->addItem( language, languageCodeMap.value(language) );
+    foreach (const QString &language, languageCodeMap.keys()) {
+        localeComboBox->addItem(language, languageCodeMap.value(language));
     }
 
     if (m_identifierIndex < m_doc->identifierCount()) {
@@ -59,6 +61,9 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
 
         identifierNameLineEdit->setText(m_doc->identifier(m_identifierIndex).name());
     }
+
+    LanguageSettings settings(m_doc->identifier(m_identifierIndex).locale());
+    settings.readConfig();
 
     // keyboard layout
     // try to talk to kxbk - get a list of keyboard layouts
@@ -74,17 +79,25 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
         QDBusReply<QString> currentLayout = kxbk.call("getCurrentLayout");
         keyboardLayoutComboBox->setCurrentIndex(keyboardLayoutComboBox->findText(currentLayout));
         if (m_identifierIndex < m_doc->identifierCount()) {
-            LanguageSettings settings(m_doc->identifier(m_identifierIndex).locale());
-            settings.readConfig();
             if (!settings.keyboardLayout().isEmpty()) {
                 keyboardLayoutComboBox->setCurrentIndex(keyboardLayoutComboBox->findText(settings.keyboardLayout()));
-	    }
+            }
         }
     } else {
         kDebug() << "kxkb dbus error";
         keyboardLayoutComboBox->setEnabled(false);
+        keyboardLayoutComboBox->addItem(i18n("No KDE keyboard selector found."));
     }
 
+    Sonnet::Speller speller;
+    QMap<QString, QString> dicts = speller.availableDictionaries();
+    QMap<QString, QString>::const_iterator iter = dicts.constBegin();
+    while (iter != dicts.constEnd()) {
+        spellcheckerComboBox->addItem(iter.key(), iter.value());
+        ++iter;
+    }
+    spellcheckerComboBox->model()->sort(0);
+    spellcheckerComboBox->setCurrentIndex(spellcheckerComboBox->findData(settings.spellChecker()));
     loadGrammarFromDocument();
 }
 
@@ -210,6 +223,8 @@ void LanguagePropertiesPage::accept()
     if ( keyboardLayoutComboBox->isEnabled() ) {
         settings.setKeyboardLayout( keyboardLayoutComboBox->currentText() );
     }
+    int index = spellcheckerComboBox->currentIndex();
+    settings.setSpellChecker(spellcheckerComboBox->itemData(index).toString());
     settings.writeConfig();
 
     // articles

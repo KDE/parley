@@ -41,6 +41,8 @@ class VocabularyView : public QTableView
     Q_OBJECT
 public:
     VocabularyView(EditorWindow *parent);
+    virtual ~VocabularyView() {}
+
     KActionMenu* columnsActionMenu();
 
     void setModel(VocabularyFilter * model);
@@ -112,10 +114,10 @@ private:
     VocabularyDelegate* m_vocabularyDelegate;
     KEduVocDocument *m_doc;
 
-    int spellcheckRow;
-    int spellcheckColumn;
-    Sonnet::BackgroundChecker *spellingChecker;
-    Sonnet::Dialog *spellingDialog;
+    int m_spellColumn;
+    int m_spellRow;
+    Sonnet::BackgroundChecker *m_spellChecker;
+    Sonnet::Dialog *m_spellDialog;
 };
 
 }
