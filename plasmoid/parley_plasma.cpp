@@ -207,7 +207,7 @@ void ParleyPlasma::createConfigurationInterface(KConfigDialog * parent)
     connect(ui.updateIntervalSpinBox, SIGNAL(valueChanged(int)), parent, SLOT(settingsModified()));
 }
 
-void ParleyPlasma::urlSelected (const KUrl &file)
+void ParleyPlasma::urlSelected (const KUrl &)
 {
     // turn off old engine
     m_engine->disconnectSource(m_sourceFile.url(), this);
