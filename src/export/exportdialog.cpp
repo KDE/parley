@@ -86,7 +86,7 @@ void ExportDialog::accept()
     doc = xmlParseDoc( (const xmlChar*) m_doc->document()->toByteArray(m_doc->document()->generator()).constData() );
 
     res = xsltApplyStylesheet(cur, doc, 0);
-    FILE* result = fopen( (const char*) filename.toLocalFile().toLatin1(), "w");
+    FILE* result = fopen(QFile::encodeName(filename.toLocalFile()).constData(), "w");
     xsltSaveResultToFile(result, res, cur);
     fclose(result);
 
@@ -102,8 +102,7 @@ void ExportDialog::accept()
 
 KUrl ExportDialog::getFileName(const QString& filter)
 {
-
-    KFileDialog dlg( (m_doc->document()->url().fileName() == i18n("Untitled")) ? "": m_doc->document()->url().toLocalFile(), filter, m_parent );
+    KFileDialog dlg((m_doc->document()->url().fileName() == i18n("Untitled")) ? "": m_doc->document()->url().toLocalFile(), filter, m_parent );
     dlg.setOperationMode( KFileDialog::Saving );
     dlg.setMode( KFile::File );
     dlg.setWindowTitle(i18n("Export As"));
