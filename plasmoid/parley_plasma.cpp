@@ -73,14 +73,14 @@ void ParleyPlasma::configChanged()
     m_lang2 = cg.readEntry("Bottom Language", 1);
     m_font = cg.readEntry("font", QFont());
     
-    m_sourceFile.setUrl(cg.readEntry("File Name"));
+    m_sourceFile = cg.readEntry("File Name", KUrl());
     if (m_sourceFile.isEmpty()) {
         kDebug() << "open file from parleyrc";
         KConfig parleyConfig("parleyrc");
         kDebug() << parleyConfig.groupList();
         KConfigGroup recentFilesGroup( &parleyConfig, "Recent Files" );
         // take the last file, but there are File1..n and Name1..n entries..
-        m_sourceFile = recentFilesGroup.readEntry( recentFilesGroup.keyList().value(recentFilesGroup.keyList().count()/2-1), QString() );
+        m_sourceFile = recentFilesGroup.readEntry( recentFilesGroup.keyList().value(recentFilesGroup.keyList().count()/2-1), KUrl() );
         kDebug() << "open file: " << m_sourceFile;
     }
 }
