@@ -17,20 +17,26 @@
 #ifndef EDITOR_H
 #define EDITOR_H
 
-#include "parleydocument.h"
-
-#include "scripts/scripting/parley.h"
+#include <QtCore/QModelIndexList>
 
 #include <KXmlGuiWindow>
 
+#include "parleydocument.h"
+#include "scripts/scripting/parley.h"
+
+
+class QStackedWidget;
 class KLineEdit;
 class KActionMenu;
 class ScriptManager;
+class KEduVocExpression;
 
 namespace Editor {
-    class VocabularyView;
+
+    class SimpleEditor;
+    class TableEditor;
+
     class VocabularyModel;
-    class VocabularyFilter;
     class LessonView;
     class WordTypeView;
     class LeitnerView;
@@ -55,9 +61,6 @@ public:
      */
     void initActions();
 
-    /** setup the main model*/
-    void initModel();
-
     /** setup the main view*/
     void initView();
 
@@ -71,7 +74,7 @@ public:
      */
     void initScripts();
 
-public slots:
+public Q_SLOTS:
     /**
      * Edit languages contained in the document.
      * This includes adding/removing languages, 
@@ -79,14 +82,10 @@ public slots:
      */
     void slotLanguagesChanged();
 
-    void slotConfigShowSearch();
-
     /**
      *  Display script manager (open a new window / or Settings window)
      */
     void slotShowScriptManager();
-
-    void applyPrefs();
 
     /**
      * Removes all grading information from the current document
@@ -100,30 +99,31 @@ public slots:
      * Set the current doc (after creating a new one or opening a file)
      */
     void updateDocument(KEduVocDocument *doc);
+
+    /** Insert letter from KCharSelect widget */
+    void appendChar(const QChar& newChar);
+
+    QModelIndexList selectedIndexes() const;
     
 private slots:
     
     /** Make the search bar visible and focus it */
     void startSearch();
 
-signals:
-    void signalSetData( const QList<int>& entries, int currentTranslation);
-
+    void toggleTableEditor(bool table);
+    
+    void setCurrentIndex(const QModelIndex& index);
+    
+Q_SIGNALS:
+    void currentChanged(const QModelIndex& index);
+    void translationChanged(KEduVocExpression*, int);
+    
 private:
     ParleyMainWindow* m_mainWindow;
-
-    KAction* m_vocabShowSearchBarAction;
-
     VocabularyModel *m_vocabularyModel;
-    VocabularyView *m_vocabularyView;
-    VocabularyFilter *m_vocabularyFilter;
-
-    KLineEdit *m_searchLine;
-    QWidget *m_searchWidget;
 
     /** Show a single conjugation and let the user edit it */
     ConjugationWidget *m_conjugationWidget;
-    SummaryWordWidget *m_summaryWordWidget;
     ComparisonWidget *m_comparisonWidget;
     LatexWidget *m_latexWidget;
 
@@ -134,10 +134,6 @@ private:
     WordTypeView *m_wordTypeView;
     WordTypeModel *m_wordTypeModel;
 
-    LeitnerView *m_leitnerView;
-    LeitnerModel *m_leitnerModel;
-
-
     ScriptManager* m_scriptManager;
 
     ///stores all the translations of a vocabulary word
@@ -145,7 +141,13 @@ private:
 
     QList<QDockWidget*> m_dockWidgets;
     QList<bool> m_dockWidgetVisibility;
-    
+
+    QStackedWidget* editorStack;
+    SimpleEditor* simpleEditor;
+    TableEditor* tableEditor;
+    KAction* m_toggleTableEditorAction;
+    KAction *m_vocabularyColumnsDialogAction;
+
     friend class ::ParleyDocument;
     friend class Scripting::Parley;
     friend class ::ScriptManager;

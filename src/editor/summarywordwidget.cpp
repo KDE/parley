@@ -179,7 +179,7 @@ void SummaryWordWidget::clear()
     paraphraseEntry->setText(QString());
     commentEntry->setText(QString());
 }
-
+/*
 SummaryWordDelegate::SummaryWordDelegate(QObject *parent) : QItemDelegate(parent)
 {
 }
@@ -208,7 +208,7 @@ void SummaryWordDelegate::setEditorData(QWidget *editor, const QModelIndex &inde
                 break;
         }
     }
-}
+}*/
 
 void SummaryWordWidget::wordTypeSelected(const QString& wordTypeName)
 {

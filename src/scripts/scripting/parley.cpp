@@ -92,7 +92,7 @@ namespace Scripting
         QVariantList entries;
 
         //get selected indexes and active lesson
-        QModelIndexList indexes = m_editor->m_vocabularyView->getSelectedIndexes();
+        QModelIndexList indexes = m_editor->selectedIndexes();
 
         //get the unique selected entries
         QSet<KEduVocExpression*> kentries;
@@ -118,7 +118,7 @@ namespace Scripting
         QVariantList translations;
 
         //get selected indexes and active lesson
-        QModelIndexList indexes = m_editor->m_vocabularyView->getSelectedIndexes();
+        QModelIndexList indexes = m_editor->selectedIndexes();
 
         //get the unique selected entries
         QSet<KEduVocTranslation*> ktranslations;

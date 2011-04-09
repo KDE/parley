@@ -151,13 +151,6 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
                 "document_edit", i18n("Editor"),
                 i18n("Switch to vocabulary editor"), "document-edit");
             break;
-        case ToggleSearchBar:
-            pAction = Private::createCustomAction(recvr, slot, parent, 
-                "config_show_search", i18n("Show Se&arch"), 
-                i18n("Toggle display of the search bar"),
-                QString(), true);
-            pAction->setChecked(Prefs::showSearch());
-            break;
         case SearchVocabulary:
             pAction = KStandardAction::find(recvr, slot, parent);
             break;       
@@ -165,6 +158,13 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
             pAction = Private::createCustomAction(recvr, slot, parent, 
                 "show_script_manager", i18n("&Script Manager"), 
                 i18n("Enable and disable scripts"), "set-language");                              
+            break;
+        case TableEditor:
+            pAction = Private::createCustomAction(recvr, slot, parent,
+                "show_table_editor", i18n("Table Editor"),
+                i18n("Edit the vocabulary in a table."), "view-form-table",
+                true);
+            pAction->setChecked(Prefs::editorTable());
             break;
     }
 

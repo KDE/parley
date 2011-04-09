@@ -19,14 +19,15 @@
 #include "../config-parley.h"
 
 #include "vocabulary/vocabularymodel.h"
-#include "vocabulary/vocabularyview.h"
-#include "vocabulary/vocabularyfilter.h"
 #include "vocabulary/containerview.h"
 #include "vocabulary/lessonview.h"
 #include "vocabulary/wordtypeview.h"
 #include "vocabulary/containermodel.h"
 #include "vocabulary/lessonmodel.h"
 #include "vocabulary/wordtypemodel.h"
+
+#include "simpleeditor.h"
+#include "tableeditor.h"
 
 #include "multiplechoicewidget.h"
 #include "comparisonwidget.h"
@@ -36,7 +37,6 @@
 #include "audiowidget.h"
 #include "browserwidget.h"
 #include "synonymwidget.h"
-#include "summarywordwidget.h"
 #include "latexwidget.h"
 
 #include "settings/parleyprefs.h"
@@ -47,6 +47,7 @@
 
 #include "parleyactions.h"
 #include <KActionCollection>
+#include <KAction>
 #include <KToggleAction>
 #include <KActionMenu>
 #include <KCharSelect>
@@ -72,7 +73,6 @@ EditorWindow::EditorWindow(ParleyMainWindow* parent)
     setCorner(Qt::BottomRightCorner, Qt::RightDockWidgetArea);
 
     initView();
-    initModel();
 
     initDockWidgets();
     initActions();
@@ -84,7 +84,7 @@ EditorWindow::EditorWindow(ParleyMainWindow* parent)
     connect(parent->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), this, SLOT(updateDocument(KEduVocDocument*)));
     connect(parent->parleyDocument(), SIGNAL(languagesChanged()), this, SLOT(slotLanguagesChanged()));
     connect(parent->parleyDocument(), SIGNAL(statesNeedSaving()), this, SLOT(saveState()));
-    connect(parent, SIGNAL(preferencesChanged()), this, SLOT(applyPrefs()));
+    connect(parent, SIGNAL(preferencesChanged()), tableEditor, SLOT(applyPrefs()));
 }
 
 EditorWindow::~EditorWindow()
@@ -96,13 +96,13 @@ EditorWindow::~EditorWindow()
 
 void EditorWindow::updateDocument(KEduVocDocument *doc)
 {
-    m_vocabularyView->setDocument(doc);
     m_vocabularyModel->setDocument(doc);
+    simpleEditor->setDocument(doc);
+    tableEditor->setDocument(doc);
 
     m_lessonModel->setDocument(doc);
     m_wordTypeModel->setDocument(doc);
 
-    m_summaryWordWidget->slotDocumentChanged(doc);
     m_conjugationWidget->setDocument(doc);
     m_comparisonWidget->setDocument(doc);
 
@@ -116,21 +116,14 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
 
     connect(m_mainWindow->parleyDocument()->document(), SIGNAL(docModified(bool)), m_mainWindow, SLOT(slotUpdateWindowCaption()));
 
-    connect(m_vocabularyView->selectionModel(), 
-                SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
-            m_summaryWordWidget, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
-    connect(m_vocabularyView->selectionModel(),
-                SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
-            m_latexWidget, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
+    // FIXME that latex thingy
+//     connect(m_vocabularyView->selectionModel(),
+//                 SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
+//             m_latexWidget, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
 
     setCaption(m_mainWindow->parleyDocument()->document()->url().fileName(), false);
 
     m_mainWindow->slotUpdateWindowCaption();
-
-///@todo remove this!
-// at the moment creates a new test every time a model is created. this is good because we get the basic sanity check then.
-// temporarily disabled because somehow with the welcome screen this crashes Parley when using open recent
-//     new ModelTest(m_vocabularyModel, this);
 }
 
 
@@ -146,9 +139,6 @@ void EditorWindow::initDockWidgets()
     actionCollection()->addAction("show_lesson_dock", lessonDockWidget->toggleViewAction());
 
     m_lessonModel = new LessonModel(this);
-///@todo remove before release
-    new ModelTest(m_lessonModel, this);
-
     m_lessonView->setModel(m_lessonModel);
     m_lessonView->setToolTip(i18n("Right click to add, delete, or rename lessons. \n"
             "With the checkboxes you can select which lessons you want to practice. \n"
@@ -160,7 +150,7 @@ void EditorWindow::initDockWidgets()
     connect(m_lessonView, SIGNAL(signalShowContainer(KEduVocContainer*)),
         m_vocabularyModel, SLOT(showContainer(KEduVocContainer*)));
 
-    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+    connect(this, SIGNAL(translationChanged(KEduVocExpression*, int)),
         m_lessonView, SLOT(setTranslation(KEduVocExpression*, int)));
 
 
@@ -176,13 +166,9 @@ void EditorWindow::initDockWidgets()
     wordTypeDockWidget->setVisible(false);
     actionCollection()->addAction("show_wordtype_dock", wordTypeDockWidget->toggleViewAction());
 
-///@todo test, should be fixed with the lesson one though
-///@todo remove before release
-//     new ModelTest(m_wordTypeModel, this);
-
     m_wordTypeView->setModel(m_wordTypeModel);
 
-    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+    connect(this, SIGNAL(translationChanged(KEduVocExpression*, int)),
         m_wordTypeView, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Conjugations
@@ -194,7 +180,7 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(conjugationDock);
     conjugationDock->setVisible(false);
     actionCollection()->addAction("show_conjugation_dock", conjugationDock->toggleViewAction());
-    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+    connect(this, SIGNAL(translationChanged(KEduVocExpression*, int)),
         m_conjugationWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Declensions
@@ -208,7 +194,7 @@ void EditorWindow::initDockWidgets()
 //     declensionDock->setVisible(false);
 //     connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)),
 //             declensionWidget, SLOT(setDocument(KEduVocDocument*)));
-//     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+//     connect(this, SIGNAL(translationChanged(KEduVocExpression*, int)),
 //             declensionWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Comparison forms
@@ -220,7 +206,7 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(comparisonDock);
     actionCollection()->addAction("show_comparison_dock", comparisonDock->toggleViewAction());
     comparisonDock->setVisible(false);
-    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+    connect(this, SIGNAL(translationChanged(KEduVocExpression*, int)),
         m_comparisonWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Multiple choice
@@ -232,7 +218,7 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(multipleChoiceDock);
     actionCollection()->addAction("show_multiplechoice_dock", multipleChoiceDock->toggleViewAction());
     multipleChoiceDock->setVisible(false);
-    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+    connect(this, SIGNAL(translationChanged(KEduVocExpression*, int)),
         multipleChoiceWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Synonym (and the same for antonym and false friends)
@@ -244,7 +230,7 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(synonymDock);
     actionCollection()->addAction("show_synonym_dock", synonymDock->toggleViewAction());
     synonymDock->setVisible(false);
-    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+    connect(this, SIGNAL(translationChanged(KEduVocExpression*, int)),
             synonymWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
     QDockWidget *antonymDock = new QDockWidget(i18n("Antonyms"), this);
@@ -255,7 +241,7 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(antonymDock);
     actionCollection()->addAction("show_antonym_dock", antonymDock->toggleViewAction());
     antonymDock->setVisible(false);
-    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+    connect(this, SIGNAL(translationChanged(KEduVocExpression*, int)),
             antonymWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
     QDockWidget *falseFriendDock = new QDockWidget(i18n("False Friends"), this);
@@ -266,7 +252,7 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(falseFriendDock);
     actionCollection()->addAction("show_falsefriend_dock", falseFriendDock->toggleViewAction());
     falseFriendDock->setVisible(false);
-    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+    connect(this, SIGNAL(translationChanged(KEduVocExpression*, int)),
             falseFriendWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Pronunciation symbols - Use KCharSelect
@@ -279,7 +265,7 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(charSelectDock);
     actionCollection()->addAction("show_pronunciation_dock", charSelectDock->toggleViewAction());
     charSelectDock->setVisible(false);
-    connect(charSelectWidget, SIGNAL(charSelected(const QChar &)), m_vocabularyView, SLOT(appendChar(const QChar &)));
+    connect(charSelectWidget, SIGNAL(charSelected(const QChar &)), this, SLOT(appendChar(const QChar &)));
 
 // Image
     QDockWidget *imageDock = new QDockWidget(i18n("Image"), this);
@@ -290,20 +276,8 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(imageDock);
     actionCollection()->addAction("show_image_dock", imageDock->toggleViewAction());
     imageDock->setVisible(false);
-    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+    connect(this, SIGNAL(translationChanged(KEduVocExpression*, int)),
         imageChooserWidget, SLOT(setTranslation(KEduVocExpression*, int)));
-
-// Summary word
-    QDockWidget *summaryDock = new QDockWidget(i18n("Summary"), this);
-    summaryDock->setObjectName("SummaryDock");
-    m_summaryWordWidget = new SummaryWordWidget(m_vocabularyFilter, m_mainWindow->parleyDocument()->document(), this);
-    summaryDock->setWidget(m_summaryWordWidget);
-    addDockWidget(Qt::RightDockWidgetArea, summaryDock);
-    actionCollection()->addAction("show_summary_dock", summaryDock->toggleViewAction());
-    summaryDock->setVisible(false);
-    m_dockWidgets.append(summaryDock);
-    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-            m_summaryWordWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Sound
     QDockWidget *audioDock = new QDockWidget(i18n("Sound"), this);
@@ -314,7 +288,7 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(audioDock);
     actionCollection()->addAction("show_audio_dock", audioDock->toggleViewAction());
     audioDock->setVisible(false);
-    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+    connect(this, SIGNAL(translationChanged(KEduVocExpression*, int)),
         audioWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // browser
@@ -327,20 +301,20 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(browserDock);
     actionCollection()->addAction("show_browser_dock", browserDock->toggleViewAction());
     browserDock->setVisible(false);
-    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+    connect(this, SIGNAL(translationChanged(KEduVocExpression*, int)),
             htmlPart, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // LaTeX
-    QDockWidget *latexDock = new QDockWidget(i18n("LaTeX"), this);
-    latexDock->setObjectName("LatexDock");
-    m_latexWidget = new LatexWidget(m_vocabularyFilter, m_mainWindow->parleyDocument()->document(), this);
-    latexDock->setWidget(m_latexWidget);
-    addDockWidget(Qt::RightDockWidgetArea, latexDock);
-    actionCollection()->addAction("show_latex_dock", latexDock->toggleViewAction());
-    latexDock->setVisible(false);
-    m_dockWidgets.append(latexDock);
-    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-            m_latexWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+//     QDockWidget *latexDock = new QDockWidget(i18n("LaTeX"), this);
+//     latexDock->setObjectName("LatexDock");
+//     m_latexWidget = new LatexWidget(m_vocabularyFilter, m_mainWindow->parleyDocument()->document(), this);
+//     latexDock->setWidget(m_latexWidget);
+//     addDockWidget(Qt::RightDockWidgetArea, latexDock);
+//     actionCollection()->addAction("show_latex_dock", latexDock->toggleViewAction());
+//     latexDock->setVisible(false);
+//     m_dockWidgets.append(latexDock);
+//     connect(this, SIGNAL(translationChanged(KEduVocExpression*, int)),
+//             m_latexWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Grades
 //     QDockWidget *gradeDock = new QDockWidget(i18n("Grade"), this);
@@ -354,31 +328,94 @@ void EditorWindow::initDockWidgets()
 
 void EditorWindow::initActions()
 {
+    m_toggleTableEditorAction = ParleyActions::create(ParleyActions::TableEditor, this, SLOT(toggleTableEditor(bool)), actionCollection());
     ParleyActions::create(ParleyActions::RemoveGrades, this, SLOT(removeGrades()), actionCollection());
-    ParleyActions::create(ParleyActions::CheckSpelling, m_vocabularyView, SLOT(checkSpelling()), actionCollection());
+//FIXME
+    //    ParleyActions::create(ParleyActions::CheckSpelling, m_vocabularyView, SLOT(checkSpelling()), actionCollection());
     ParleyActions::create(ParleyActions::ToggleShowSublessons, m_vocabularyModel, SLOT(showEntriesOfSubcontainers(bool)), actionCollection());
     ParleyActions::create(ParleyActions::AutomaticTranslation, m_vocabularyModel, SLOT(automaticTranslation(bool)), actionCollection());
     ParleyActions::create(ParleyActions::StartPractice, m_mainWindow, SLOT(showPracticeConfiguration()), actionCollection());
     actionCollection()->action("practice_start")->setText(i18n("Practice"));
     actionCollection()->action("practice_start")->setToolTip(i18n("Practice"));
     ParleyActions::create(ParleyActions::ConfigurePractice, m_mainWindow, SLOT(configurePractice()), actionCollection());
-    ParleyActions::create(ParleyActions::ToggleSearchBar, this, SLOT(slotConfigShowSearch()), actionCollection());
     ParleyActions::create(ParleyActions::SearchVocabulary, this, SLOT(startSearch()), actionCollection());
     ParleyActions::create(ParleyActions::ShowScriptManager, this, SLOT(slotShowScriptManager()), actionCollection());
     ParleyActions::create(ParleyActions::LanguagesProperties, m_mainWindow->parleyDocument(), SLOT(languageProperties()), actionCollection());
     ParleyActions::createUploadAction(m_mainWindow->parleyDocument(), SLOT(uploadFile()), actionCollection());
-}
-
-void EditorWindow::initModel()
-{
-    m_vocabularyModel = new VocabularyModel(this);
-    m_vocabularyFilter = new VocabularyFilter(this);
-    m_vocabularyFilter->setSourceModel(m_vocabularyModel);
-    m_vocabularyView->setModel(m_vocabularyFilter);
-
-//    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyModel, SLOT(setDocument(KEduVocDocument*)));
-//    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(setDocument(KEduVocDocument*)));
-    connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_vocabularyFilter, SLOT(setSearchString(const QString&)));
+    
+    KAction* m_appendEntryAction;
+    KAction* m_deleteEntriesAction;
+    KAction* m_copyAction;
+    KAction* m_cutAction;
+    KAction* m_pasteAction;
+    KAction* m_selectAllAction;
+    KAction* m_clearSelectionAction;
+    
+    m_appendEntryAction = new KAction(this);
+    actionCollection()->addAction("edit_append", m_appendEntryAction);
+    m_appendEntryAction->setIcon(KIcon("list-add-card"));
+    m_appendEntryAction->setText(i18n("&Add New Entry"));
+    connect(m_appendEntryAction, SIGNAL(triggered(bool)), SLOT(appendEntry()));
+    m_appendEntryAction->setShortcut(QKeySequence(Qt::Key_Insert));
+    m_appendEntryAction->setWhatsThis(i18n("Append a new row to the vocabulary"));
+    m_appendEntryAction->setToolTip(m_appendEntryAction->whatsThis());
+    m_appendEntryAction->setStatusTip(m_appendEntryAction->whatsThis());
+    addAction(m_appendEntryAction);
+    
+    m_deleteEntriesAction = new KAction(this);
+    actionCollection()->addAction("edit_remove_selected_area", m_deleteEntriesAction);
+    m_deleteEntriesAction->setIcon(KIcon("list-remove-card"));
+    m_deleteEntriesAction->setText(i18n("&Delete Entry"));
+    connect(m_deleteEntriesAction, SIGNAL(triggered(bool)), this, SLOT(deleteSelectedEntries()));
+    m_deleteEntriesAction->setShortcut(QKeySequence(Qt::Key_Delete));
+    m_deleteEntriesAction->setWhatsThis(i18n("Delete the selected rows"));
+    m_deleteEntriesAction->setToolTip(m_deleteEntriesAction->whatsThis());
+    m_deleteEntriesAction->setStatusTip(m_deleteEntriesAction->whatsThis());
+    addAction(m_deleteEntriesAction);
+    
+    QAction* separator = new QAction(this);
+    separator->setSeparator(true);
+    addAction(separator);
+    
+    m_copyAction = KStandardAction::copy(this, SLOT(slotEditCopy()), actionCollection());
+    m_copyAction->setWhatsThis(i18n("Copy"));
+    m_copyAction->setToolTip(m_copyAction->whatsThis());
+    m_copyAction->setStatusTip(m_copyAction->whatsThis());
+    addAction(m_copyAction);
+    
+    m_cutAction = KStandardAction::cut(this, SLOT(slotCutEntry()), actionCollection());
+    m_cutAction->setWhatsThis(i18n("Cut"));
+    m_cutAction->setToolTip(m_cutAction->whatsThis());
+    m_cutAction->setStatusTip(m_cutAction->whatsThis());
+    addAction(m_cutAction);
+    
+    m_pasteAction = KStandardAction::paste(this, SLOT(slotEditPaste()), actionCollection());
+    m_pasteAction->setWhatsThis(i18n("Paste"));
+    m_pasteAction->setToolTip(m_pasteAction->whatsThis());
+    m_pasteAction->setStatusTip(m_pasteAction->whatsThis());
+    addAction(m_pasteAction);
+    
+    m_selectAllAction = KStandardAction::selectAll(this, SLOT(selectAll()), actionCollection());
+    m_selectAllAction->setWhatsThis(i18n("Select all rows"));
+    m_selectAllAction->setToolTip(m_selectAllAction->whatsThis());
+    m_selectAllAction->setStatusTip(m_selectAllAction->whatsThis());
+    
+    m_clearSelectionAction = KStandardAction::deselect(this, SLOT(clearSelection()), actionCollection());
+    m_clearSelectionAction->setWhatsThis(i18n("Deselect all rows"));
+    m_clearSelectionAction->setToolTip(m_clearSelectionAction->whatsThis());
+    m_clearSelectionAction->setStatusTip(m_clearSelectionAction->whatsThis());
+    
+    // vocabulary columns dialog
+    m_vocabularyColumnsDialogAction = new KAction(this);
+    actionCollection()->addAction("show_vocabulary_columns_dialog", m_vocabularyColumnsDialogAction);
+    m_vocabularyColumnsDialogAction->setIcon(KIcon("view-file-columns"));
+    m_vocabularyColumnsDialogAction->setText(i18n("Vocabulary Columns..."));
+    m_vocabularyColumnsDialogAction->setWhatsThis(i18n("Toggle display of individual vocabulary columns"));
+    m_vocabularyColumnsDialogAction->setToolTip(m_vocabularyColumnsDialogAction->whatsThis());
+    m_vocabularyColumnsDialogAction->setStatusTip(m_vocabularyColumnsDialogAction->whatsThis());
+    tableEditor->addActionToHeader(m_vocabularyColumnsDialogAction);
+    addAction(m_vocabularyColumnsDialogAction);
+    connect(m_vocabularyColumnsDialogAction, SIGNAL(triggered(bool)), tableEditor, SLOT(slotShowVocabularyColumnsDialog()));
 }
 
 /**
@@ -386,66 +423,57 @@ void EditorWindow::initModel()
  */
 void EditorWindow::initView()
 {
-    QWidget *mainWidget = new QWidget(this);
-    setCentralWidget(mainWidget);
-    QVBoxLayout *topLayout = new QVBoxLayout(mainWidget);
-    topLayout->setMargin(KDialog::marginHint());
-    topLayout->setSpacing(KDialog::spacingHint());
+    m_vocabularyModel = new VocabularyModel(this);
+    tableEditor = new TableEditor(m_vocabularyModel, this);
+    simpleEditor = new SimpleEditor(m_vocabularyModel, this);
+    
+    connect(tableEditor, SIGNAL(currentChanged(QModelIndex)),
+            SLOT(setCurrentIndex(QModelIndex)));
+    connect(simpleEditor, SIGNAL(translationChanged(KEduVocExpression*,int)),
+            SIGNAL(translationChanged(KEduVocExpression*,int)));
 
-    m_searchLine = new KLineEdit(this);
-    m_searchLine->show();
-    m_searchLine->setFocusPolicy(Qt::ClickFocus);
-    m_searchLine->setClearButtonShown(true);
-    m_searchLine->setClickMessage(i18n("Enter search terms here"));
+    connect(this, SIGNAL(currentChanged(QModelIndex)),
+        simpleEditor, SLOT(setCurrentIndex(QModelIndex)));
 
-//     m_searchLine->setToolTip(i18n("Search your vocabuary"));
+    editorStack = new QStackedWidget(this);
+    setCentralWidget(editorStack);
 
-    QLabel *label = new QLabel(i18n("S&earch:"), this);
-    label->setBuddy(m_searchLine);
-    label->show();
-
-    m_searchWidget = new QWidget(this);
-    QHBoxLayout* layout = new QHBoxLayout(m_searchWidget);
-    layout->setSpacing(KDialog::spacingHint());
-    layout->setMargin(0);
-    layout->addWidget(label);
-    layout->addWidget(m_searchLine);
-
-///@todo     centralWidget()-> delete layout
-    QVBoxLayout * rightLayout = new QVBoxLayout();
-    rightLayout->setSpacing(KDialog::spacingHint());
-    rightLayout->setMargin(0);
-    rightLayout->addWidget(m_searchWidget);
-    m_searchWidget->setVisible(Prefs::showSearch());
-
-    m_vocabularyView = new VocabularyView(this);
-    m_vocabularyView->setFont(Prefs::tableFont());
-    rightLayout->addWidget(m_vocabularyView, 1, 0);
-
-    topLayout->addLayout(rightLayout);
+    editorStack->addWidget(tableEditor);
+    editorStack->addWidget(simpleEditor);
+    editorStack->setCurrentIndex(Prefs::editorTable()?0:1);
 }
 
-void EditorWindow::slotConfigShowSearch()
+void EditorWindow::setCurrentIndex(const QModelIndex& index)
 {
-    m_searchWidget->setVisible(m_searchWidget->isHidden());
-    Prefs::setShowSearch(m_searchWidget->isVisible());
+    emit currentChanged(index);
+    
+    if (!index.isValid()) {
+        emit translationChanged(0, 0);
+    }
+    KEduVocExpression* entry;
+    entry = m_vocabularyModel->data(index, VocabularyModel::EntryRole).value<KEduVocExpression*>();
+    emit translationChanged(entry, VocabularyModel::translation(index.column()));
+}
+
+void EditorWindow::toggleTableEditor(bool table)
+{
+    m_vocabularyColumnsDialogAction->setVisible(table);
+    editorStack->setCurrentIndex(table?0:1);
+    Prefs::setEditorTable(table);
+
+    // FIXME hide/show actions here if they are table specific
 }
 
 void EditorWindow::startSearch()
 {
-    m_searchWidget->setVisible(true);
-    m_searchLine->setFocus();
+    m_toggleTableEditorAction->setChecked(true);
+    toggleTableEditor(true);
+    tableEditor->focusSearch();
 }
 
 void EditorWindow::slotShowScriptManager() {
     ScriptDialog * dialog = new ScriptDialog(m_scriptManager);
     dialog->show();
-}
-
-void EditorWindow::applyPrefs()
-{
-    m_vocabularyView->setFont(Prefs::tableFont());
-    m_vocabularyView->reset();
 }
 
 void EditorWindow::removeGrades()
@@ -455,22 +483,33 @@ void EditorWindow::removeGrades()
 
 void EditorWindow::initScripts()
 {
-    m_scriptManager = new ScriptManager(this);
-
-    m_vocabularyView->setTranslator(m_scriptManager->translator());
-
-    //Load scripts
-    m_scriptManager->loadScripts();
+    // FIXME
+//     m_scriptManager = new ScriptManager(this);
+//     m_vocabularyView->setTranslator(m_scriptManager->translator());
+//     //Load scripts
+//     m_scriptManager->loadScripts();
 }
 
 void EditorWindow::saveState()
 {
-    m_vocabularyView->saveColumnVisibility();
+    tableEditor->saveState();
 }
 
 void EditorWindow::slotLanguagesChanged()
 {
     m_vocabularyModel->resetLanguages();
 }
+
+void EditorWindow::appendChar(const QChar& newChar)
+{
+        // FIXME
+        qWarning() << "Implement me: EditorWindow::appendChar";
+}
+
+QModelIndexList EditorWindow::selectedIndexes() const
+{
+    return tableEditor->selectedIndexes();
+}
+
 
 #include "editor.moc"

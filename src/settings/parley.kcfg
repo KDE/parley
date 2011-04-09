@@ -173,11 +173,11 @@
   </group>
 
   <group name="Appearance">
-    <entry name="ShowSearch" type="Bool">
-      <label>Toggle display of the search bar.</label>
-      <default>true</default>
+    <entry name="EditorTable" type="Bool">
+      <label>Show the table view of the editor.</label>
+      <default>false</default>
     </entry>
-
+   
     <entry name="ShowSublessonentries" type="Bool">
       <label>When enabled a lesson also shows entries from its sublessons.</label>
       <default>true</default>

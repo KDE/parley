@@ -93,14 +93,14 @@ private:
     int m_translationId;
 };
 
-class SummaryWordDelegate : public QItemDelegate
-{
-    Q_OBJECT
-public:
-    SummaryWordDelegate(QObject *parent = 0);
-
-    void setEditorData(QWidget *editor, const QModelIndex &index) const;
-};
+// class SummaryWordDelegate : public QItemDelegate
+// {
+//     Q_OBJECT
+// public:
+//     SummaryWordDelegate(QObject *parent = 0);
+// 
+//     void setEditorData(QWidget *editor, const QModelIndex &index) const;
+// };
 }
 
 #endif

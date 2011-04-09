@@ -35,8 +35,9 @@ namespace ParleyActions {
         AutomaticTranslation, 
         StartPractice, ConfigurePractice,
         EnterEditMode,
-        ToggleSearchBar, SearchVocabulary,
-        ShowScriptManager
+        SearchVocabulary,
+        ShowScriptManager,
+        TableEditor
     };
     
     KAction* create(ParleyAction id, const QObject *recvr, const char *slot,

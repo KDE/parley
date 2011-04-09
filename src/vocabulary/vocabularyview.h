@@ -40,7 +40,7 @@ class VocabularyView : public QTableView
 {
     Q_OBJECT
 public:
-    VocabularyView(EditorWindow *parent);
+    VocabularyView(QWidget* parent);
     virtual ~VocabularyView() {}
 
     KActionMenu* columnsActionMenu();
@@ -50,7 +50,7 @@ public:
     /** Save column visibility settings */
     void saveColumnVisibility() const;
 
-    QModelIndexList getSelectedIndexes() const;
+    QModelIndexList selectedIndexes() const;
 
 public slots:
     void reset();
@@ -85,11 +85,7 @@ public slots:
     */
     void slotShowVocabularyColumnsDialog();
 
-signals:
-    void translationChanged(KEduVocExpression*, int);
-
 private slots:
-    void slotCurrentChanged(const QModelIndex& current, const QModelIndex& previous);
     void slotSelectionChanged(const QItemSelection&, const QItemSelection&);
 
     void continueSpelling();
@@ -101,14 +97,6 @@ private:
     // trap enter presses at the end of the document to add a new entry instead of moving to the first cell
     bool eventFilter(QObject *obj, QEvent *event);
     virtual void setModel(QAbstractItemModel *model) { Q_UNUSED(model) }
-
-    KAction* m_appendEntryAction;
-    KAction* m_deleteEntriesAction;
-    KAction* m_copyAction;
-    KAction* m_cutAction;
-    KAction* m_pasteAction;
-    KAction* m_selectAllAction;
-    KAction* m_clearSelectionAction;
 
     VocabularyFilter* m_model;
     VocabularyDelegate* m_vocabularyDelegate;

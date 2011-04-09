@@ -21,6 +21,7 @@
   </Menu>
   <Menu name="view" >
       <text>&amp;View</text>
+      <Action name="show_table_editor" />
       <Action name="show_vocabulary_columns_menu" />
       <Action name="show_vocabulary_columns_dialog" />
       <Separator/>
@@ -44,7 +45,6 @@
       <Action name="show_declension_dock"/>
       <Separator/>
       <Action name="show_browser_dock"/>
-      <Action name="config_show_search" />
   </Menu>
   <Menu name="lesson" >
    <text>&amp;Lesson</text>
@@ -72,6 +72,7 @@
 
  <ToolBar name="editorToolBar" >
   <text>Editor Toolbar</text>
+  <Action name="show_table_editor" />
   <Separator/>
   <Action name="edit_copy" />
   <Action name="edit_paste" />

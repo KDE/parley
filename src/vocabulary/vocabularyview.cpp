@@ -51,7 +51,7 @@
 
 using namespace Editor;
 
-VocabularyView::VocabularyView(EditorWindow * parent)
+VocabularyView::VocabularyView(QWidget* parent)
     : QTableView(parent), m_model(0), m_doc(0),
     m_spellChecker(0), m_spellDialog(0)
 {
@@ -80,99 +80,23 @@ VocabularyView::VocabularyView(EditorWindow * parent)
 
     // smooth scrolling horizontally, otherwise it tries to jump from item to item.
     setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
-
-    m_appendEntryAction = new KAction(this);
-    parent->actionCollection()->addAction("edit_append", m_appendEntryAction);
-    m_appendEntryAction->setIcon(KIcon("list-add-card"));
-    m_appendEntryAction->setText(i18n("&Add New Entry"));
-    connect(m_appendEntryAction, SIGNAL(triggered(bool)), SLOT(appendEntry()));
-    m_appendEntryAction->setShortcut(QKeySequence(Qt::Key_Insert));
-    m_appendEntryAction->setWhatsThis(i18n("Append a new row to the vocabulary"));
-    m_appendEntryAction->setToolTip(m_appendEntryAction->whatsThis());
-    m_appendEntryAction->setStatusTip(m_appendEntryAction->whatsThis());
-    addAction(m_appendEntryAction);
-
-    m_deleteEntriesAction = new KAction(this);
-    parent->actionCollection()->addAction("edit_remove_selected_area", m_deleteEntriesAction);
-    m_deleteEntriesAction->setIcon(KIcon("list-remove-card"));
-    m_deleteEntriesAction->setText(i18n("&Delete Entry"));
-    connect(m_deleteEntriesAction, SIGNAL(triggered(bool)), this, SLOT(deleteSelectedEntries()));
-    m_deleteEntriesAction->setShortcut(QKeySequence(Qt::Key_Delete));
-    m_deleteEntriesAction->setWhatsThis(i18n("Delete the selected rows"));
-    m_deleteEntriesAction->setToolTip(m_deleteEntriesAction->whatsThis());
-    m_deleteEntriesAction->setStatusTip(m_deleteEntriesAction->whatsThis());
-    addAction(m_deleteEntriesAction);
-
-    QAction* separator = new QAction(this);
-    separator->setSeparator(true);
-    addAction(separator);
-
-    m_copyAction = KStandardAction::copy(this, SLOT(slotEditCopy()), parent->actionCollection());
-    m_copyAction->setWhatsThis(i18n("Copy"));
-    m_copyAction->setToolTip(m_copyAction->whatsThis());
-    m_copyAction->setStatusTip(m_copyAction->whatsThis());
-    addAction(m_copyAction);
-
-    m_cutAction = KStandardAction::cut(this, SLOT(slotCutEntry()), parent->actionCollection());
-    m_cutAction->setWhatsThis(i18n("Cut"));
-    m_cutAction->setToolTip(m_cutAction->whatsThis());
-    m_cutAction->setStatusTip(m_cutAction->whatsThis());
-    addAction(m_cutAction);
-
-    m_pasteAction = KStandardAction::paste(this, SLOT(slotEditPaste()), parent->actionCollection());
-    m_pasteAction->setWhatsThis(i18n("Paste"));
-    m_pasteAction->setToolTip(m_pasteAction->whatsThis());
-    m_pasteAction->setStatusTip(m_pasteAction->whatsThis());
-    addAction(m_pasteAction);
-
-    m_selectAllAction = KStandardAction::selectAll(this, SLOT(selectAll()), parent->actionCollection());
-    m_selectAllAction->setWhatsThis(i18n("Select all rows"));
-    m_selectAllAction->setToolTip(m_selectAllAction->whatsThis());
-    m_selectAllAction->setStatusTip(m_selectAllAction->whatsThis());
-
-    m_clearSelectionAction = KStandardAction::deselect(this, SLOT(clearSelection()), parent->actionCollection());
-    m_clearSelectionAction->setWhatsThis(i18n("Deselect all rows"));
-    m_clearSelectionAction->setToolTip(m_clearSelectionAction->whatsThis());
-    m_clearSelectionAction->setStatusTip(m_clearSelectionAction->whatsThis());
-
-    // vocabulary columns dialog
-    KAction *vocabularyColumnsDialogAction = new KAction(this);
-    parent->actionCollection()->addAction("show_vocabulary_columns_dialog", vocabularyColumnsDialogAction);
-    vocabularyColumnsDialogAction->setIcon(KIcon("view-file-columns"));
-    vocabularyColumnsDialogAction->setText(i18n("Vocabulary Columns..."));
-    vocabularyColumnsDialogAction->setWhatsThis(i18n("Toggle display of individual vocabulary columns"));
-    vocabularyColumnsDialogAction->setToolTip(vocabularyColumnsDialogAction->whatsThis());
-    vocabularyColumnsDialogAction->setStatusTip(vocabularyColumnsDialogAction->whatsThis());
-    horizontalHeader()->addAction(vocabularyColumnsDialogAction);
-    addAction(vocabularyColumnsDialogAction);
-    connect(vocabularyColumnsDialogAction, SIGNAL(triggered(bool)), this, SLOT(slotShowVocabularyColumnsDialog()));
 }
 
 void VocabularyView::setModel(VocabularyFilter * model)
 {
     QTableView::setModel(model);
     m_model = model;
-    connect(selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
-        SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
-    connect(selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
-        SLOT(slotSelectionChanged(const QItemSelection&, const QItemSelection&)));
+    connect(selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+        SLOT(slotSelectionChanged(QItemSelection,QItemSelection)));
     slotSelectionChanged(QItemSelection(), QItemSelection());
-}
-
-void VocabularyView::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous)
-{
-    Q_UNUSED(previous);
-    KEduVocExpression* entry = 0;
-    if ( current.isValid() ) {
-        entry =  model()->data(current, VocabularyModel::EntryRole).value<KEduVocExpression*>();
-    }
-    emit translationChanged(entry, VocabularyModel::translation(current.column()));
 }
 
 void VocabularyView::reset()
 {
+    if (!m_model)
+        return;
+
     QTableView::reset();
-    emit translationChanged(0, 0);
 
     QList<int> visibleColumns;
     if (m_doc) {
@@ -252,7 +176,6 @@ void VocabularyView::deleteSelectedEntries(bool askConfirmation)
     }
 
     if (del) {
-        emit translationChanged(0, 0);
         while (!selectionModel()->selectedIndexes().isEmpty()) {
             m_model->removeRows(selectionModel()->selectedIndexes()[0].row(), 1, QModelIndex());
         }
@@ -323,10 +246,11 @@ void VocabularyView::slotCutEntry()
 void VocabularyView::slotSelectionChanged(const QItemSelection &, const QItemSelection &)
 {
     bool hasSelection = selectionModel()->hasSelection();
-    m_deleteEntriesAction->setEnabled(hasSelection);
-    m_clearSelectionAction->setEnabled(hasSelection);
-    m_copyAction->setEnabled(hasSelection);
-    m_cutAction->setEnabled(hasSelection);
+    // FIXME
+//     m_deleteEntriesAction->setEnabled(hasSelection);
+//     m_clearSelectionAction->setEnabled(hasSelection);
+//     m_copyAction->setEnabled(hasSelection);
+//     m_cutAction->setEnabled(hasSelection);
 }
 
 void VocabularyView::setDocument(KEduVocDocument * doc)
@@ -442,7 +366,7 @@ void VocabularyView::spellingReplace(const QString & oldWord, int start, const Q
     m_model->setData(index, newData);
 }
 
-QModelIndexList VocabularyView::getSelectedIndexes() const 
+QModelIndexList VocabularyView::selectedIndexes() const
 {
     return selectionModel()->selectedIndexes();
 }

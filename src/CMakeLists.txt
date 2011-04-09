@@ -23,8 +23,9 @@ set(parley_SRCS
 #    editor/declensionwidget.cpp
     editor/imagechooserwidget.cpp
     editor/multiplechoicewidget.cpp
-    editor/summarywordwidget.cpp
+    editor/simpleeditor.cpp
     editor/synonymwidget.cpp
+    editor/tableeditor.cpp
     editor/latexwidget.cpp
     modeltest/modeltest.cpp
     practice/testentry.cpp
@@ -116,6 +117,8 @@ kde4_add_ui_files(parley_SRCS
     editor/audiowidget.ui
     editor/synonymwidget.ui
     editor/browserwidget.ui
+    editor/simpleeditor.ui
+    editor/tableeditor.ui
     editor/summarywordwidget.ui
     editor/latexwidget.ui
     practice/entryfilter.ui
