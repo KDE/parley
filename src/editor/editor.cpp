@@ -379,6 +379,7 @@ void EditorWindow::initModel()
 //    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyModel, SLOT(setDocument(KEduVocDocument*)));
 //    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(setDocument(KEduVocDocument*)));
     connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_vocabularyFilter, SLOT(setSearchString(const QString&)));
+    connect(m_vocabularyView, SIGNAL(clearSearch()), m_searchLine, SLOT(clear()));
 }
 
 /**
@@ -397,8 +398,6 @@ void EditorWindow::initView()
     m_searchLine->setFocusPolicy(Qt::ClickFocus);
     m_searchLine->setClearButtonShown(true);
     m_searchLine->setClickMessage(i18n("Enter search terms here"));
-
-//     m_searchLine->setToolTip(i18n("Search your vocabuary"));
 
     QLabel *label = new QLabel(i18n("S&earch:"), this);
     label->setBuddy(m_searchLine);

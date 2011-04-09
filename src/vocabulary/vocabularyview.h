@@ -87,6 +87,7 @@ public slots:
 
 signals:
     void translationChanged(KEduVocExpression*, int);
+    void clearSearch();
 
 private slots:
     void slotCurrentChanged(const QModelIndex& current, const QModelIndex& previous);

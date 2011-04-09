@@ -225,6 +225,7 @@ void VocabularyView::saveColumnVisibility() const
 
 void VocabularyView::appendEntry()
 {
+    emit clearSearch();
     QModelIndex newIndex = m_model->appendEntry();
     scrollTo(newIndex);
     selectionModel()->clear(); // otherwise proxy mapping gets screwed for some reason
