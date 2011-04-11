@@ -45,11 +45,13 @@ public:
     virtual void setQuestionImage(const KUrl& img);
     virtual void setQuestionPronunciation(const QString& pronunciationText);
     virtual void setQuestionSound(const KUrl& soundUrl);
+    virtual void setQuestionFont(const QFont& font);
     
     virtual void setSolution(const QVariant& solution);
     virtual void setSolutionImage(const KUrl& img);
     virtual void setSolutionPronunciation(const QString& pronunciationText);
     virtual void setSolutionSound(const KUrl& soundUrl);
+    virtual void setSolutionFont(const QFont& font);
     
     virtual void setHint(const QVariant& hint);
     virtual void setFeedback(const QVariant& feedback);

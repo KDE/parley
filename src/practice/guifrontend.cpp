@@ -227,6 +227,16 @@ void GuiFrontend::setSolutionImage(const KUrl& image)
     m_solutionImage = image;
 }
 
+void GuiFrontend::setQuestionFont(const QFont& font)
+{
+    m_modeWidget->setQuestionFont(font);
+}
+
+void GuiFrontend::setSolutionFont(const QFont& font)
+{
+    m_modeWidget->setSolutionFont(font);
+}
+
 void GuiFrontend::setImage(const KUrl& image)
 {
     if (m_lastImage == image) {
