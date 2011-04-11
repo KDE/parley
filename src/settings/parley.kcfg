@@ -207,6 +207,10 @@
       <label>How the main window is divided.</label>
       <default>150, 400</default>
     </entry>
+    <entry name="PracticeFont" type="Font">
+      <label>The font used in the vocabulary table</label>
+      <default code="true">KGlobalSettings::generalFont()</default>
+    </entry>
     <entry name="TableFont" type="Font">
       <label>The font used in the vocabulary table</label>
       <default code="true">KGlobalSettings::generalFont()</default>

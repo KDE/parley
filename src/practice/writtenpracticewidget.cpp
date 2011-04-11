@@ -18,6 +18,8 @@
 #include "guifrontend.h"
 #include "latexrenderer.h"
 
+#include "prefs.h"
+
 #include <kcolorscheme.h>
 
 #include <QTimer>
@@ -30,7 +32,8 @@ WrittenPracticeWidget::WrittenPracticeWidget(GuiFrontend *frontend, QWidget *par
     m_ui = new Ui::WrittenPracticeWidget();
     m_ui->setupUi(this);
     m_ui->mixedSolutionLabel->setVisible(false);
-    //m_ui->synonymList->setVisible(false);
+    m_ui->questionLabel->setFont(Prefs::practiceFont());
+    m_ui->answerEdit->setFont(Prefs::practiceFont());
     connect(m_ui->answerEdit, SIGNAL(returnPressed()), this, SLOT(continueClicked()));
 }
 
