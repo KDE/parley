@@ -160,7 +160,7 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
             break;
         case SearchVocabulary:
             pAction = KStandardAction::find(recvr, slot, parent);
-            break;       
+            break;
         case ShowScriptManager:
             pAction = Private::createCustomAction(recvr, slot, parent, 
                 "show_script_manager", i18n("&Script Manager"), 
