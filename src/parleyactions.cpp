@@ -77,7 +77,7 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
                 "file_open_downloaded", i18n("Open &Downloaded Vocabularies..."), 
                 i18n("Open downloaded vocabulary collections"), "get-hot-new-stuff");
             break;
-        case FileSave:            
+        case FileSave:
             pAction = KStandardAction::save(recvr, slot, parent);
             pAction->setHelpText(i18n("Save the active vocabulary collection"));
             break;
@@ -109,7 +109,7 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
             pAction = KStandardAction::preferences(recvr, slot, parent);
             pAction->setHelpText(i18n("Show the configuration dialog"));
             break;
-        case LanguagesProperties:            
+        case LanguagesProperties:
             pAction = Private::createCustomAction(recvr, slot, parent, 
                 "edit_languages", i18n("&Languages..."), 
                 i18n("Edit which languages are in the collection and their grammar properties."), "set-language");
@@ -140,12 +140,12 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
             pAction = Private::createCustomAction(recvr, slot, parent, 
                 "practice_start", i18n("Start Practice..."), 
                 i18n("Start practicing"), "practice-start");
-            break;           
+            break;
         case ConfigurePractice:
             pAction = Private::createCustomAction(recvr, slot, parent, 
                 "practice_configure", i18n("Configure Practice..."), 
                 i18n("Change practice settings"), "practice-setup");
-            break;  
+            break;
         case EnterEditMode:
             pAction = Private::createCustomAction(recvr, slot, parent,
                 "document_edit", i18n("Editor"),
@@ -164,11 +164,11 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
         case ShowScriptManager:
             pAction = Private::createCustomAction(recvr, slot, parent, 
                 "show_script_manager", i18n("&Script Manager"), 
-                i18n("Enable and disable scripts"), "set-language");                              
+                i18n("Enable and disable scripts"), "set-language");
             break;
     }
 
-    Q_ASSERT(pAction);        
+    Q_ASSERT(pAction);
     return pAction;
 }
 
