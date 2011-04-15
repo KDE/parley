@@ -66,7 +66,6 @@ private:
     VocabularyModel* m_vocabularyModel;
     QDataWidgetMapper *m_mapper;
     WordTypeModel *m_wordTypeModel;
-    QTreeView *m_wordTypeView;
     
     Ui::Editor* ui;    
 };

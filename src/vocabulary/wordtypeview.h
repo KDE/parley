@@ -16,22 +16,24 @@
 #ifndef WORDTYPEVIEW_H
 #define WORDTYPEVIEW_H
 
-#include "wordtypeview.h"
-#include "containerview.h"
+#include <QtGui/QTreeView>
 
 class KAction;
 class KSelectAction;
 class KEduVocWordType;
+class KEduVocExpression;
 
 namespace Editor {
     class EditorWindow;
+    class WordTypeModel;
 
-class WordTypeView : public ContainerView
+class WordTypeView :public QTreeView
 {
     Q_OBJECT
 
 public:
-    WordTypeView(EditorWindow *parent);
+    WordTypeView(QWidget *parent = 0);
+    void setModel(WordTypeModel* model);
 
 public slots:
     /** Append a word type to the model and automatically set an edit up so the user can change "New lesson" into something meaningfull.*/
@@ -73,6 +75,11 @@ private:
     KAction *m_adjectiveAction;
     KAction *m_adverbAction;
     KAction *m_verbAction;
+
+    WordTypeModel* m_model;
+    
+    // intentionally hide this to make sure a proper model is passed
+    virtual void setModel(QAbstractItemModel *model) { Q_UNUSED(model) }
 };
 }
 

@@ -41,12 +41,13 @@
 #include <keduvocwordtype.h>
 #include <KIcon>
 #include <KLocale>
+#include <vocabulary/wordtypeview.h>
 
 
 using namespace Editor;
 
 SimpleEditor::SimpleEditor(VocabularyModel* model, QWidget* parent)
-: QWidget(parent), m_vocabularyModel(model), m_wordTypeModel(0), m_wordTypeView(0)
+: QWidget(parent), m_vocabularyModel(model), m_wordTypeModel(0)
 {
     ui = new Ui::Editor;
     ui->setupUi(this);
@@ -72,7 +73,7 @@ SimpleEditor::SimpleEditor(VocabularyModel* model, QWidget* parent)
                          firstColumn + VocabularyModel::Comment);
 
     
-    connect(ui->wordTypeComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(wordTypeSelected(QString)));
+    
     connect(ui->newButton, SIGNAL(clicked()), this, SLOT(addNewEntry()));
 
     connect(ui->nextButton, SIGNAL(clicked()), m_mapper, SLOT(toNext()));
@@ -116,23 +117,20 @@ void SimpleEditor::setDocument(KEduVocDocument* doc)
     m_doc = doc;
     if (!m_doc) {
         kDebug() << "Set invalid document";
+        ui->wordTypeView->setModel((WordTypeModel*)0);
         delete m_wordTypeModel;
         m_wordTypeModel = 0;
     } else {
-        delete m_wordTypeView;
         if (!m_wordTypeModel) {
             m_wordTypeModel = new WordTypeModel(this);
         }
         m_wordTypeModel->setDocument(m_doc);
-        m_wordTypeView = new QTreeView(this);
-        m_wordTypeView->setModel(m_wordTypeModel);
-        ui->wordTypeComboBox->setModel(m_wordTypeModel);
-        ui->wordTypeComboBox->setView(m_wordTypeView);
+        ui->wordTypeView->setModel(m_wordTypeModel);
 
-        m_wordTypeView->setColumnHidden(1, true);
-        m_wordTypeView->header()->setVisible(false);
-        m_wordTypeView->setRootIsDecorated(true);
-        m_wordTypeView->expandAll();
+        ui->wordTypeView->setColumnHidden(1, true);
+        ui->wordTypeView->header()->setVisible(false);
+        ui->wordTypeView->setRootIsDecorated(true);
+        ui->wordTypeView->expandAll();
     }
 }
 
@@ -158,14 +156,14 @@ void SimpleEditor::setCurrentIndex(const QModelIndex& index)
         kDebug() << "Selected: " << m_vocabularyModel->data(index, 0);
         m_mapper->setCurrentIndex(index.row());
 
-        ui->wordTypeComboBox->setEnabled(true);
+        ui->wordTypeView->setEnabled(true);
 //         KEduVocExpression* entry;
 //         entry = m_vocabularyModel->data(index, VocabularyModel::EntryRole).value<KEduVocExpression*>();
 //         setCurrentWordType(entry, translation);
 //         ui->lessonLabel->setText(entry->lesson()->name());
     } else {
         clear();
-        ui->wordTypeComboBox->setEnabled(false);
+        ui->wordTypeView->setEnabled(false);
     }
 }
 
@@ -174,9 +172,9 @@ void SimpleEditor::setCurrentWordType(KEduVocExpression *entry, int translation)
     if (entry && entry->translation(translation)->wordType()) {
         kDebug() << "Set current word type: " << entry->translation(translation)->wordType()->name();
         // select the right word type
-        m_wordTypeView->setCurrentIndex(m_wordTypeModel->index(entry->translation(translation)->wordType()));
+        ui->wordTypeView->setCurrentIndex(m_wordTypeModel->index(entry->translation(translation)->wordType()));
     } else {
-        ui->wordTypeComboBox->setCurrentIndex(-1);
+        ui->wordTypeView->selectionModel();
     }
 }
 

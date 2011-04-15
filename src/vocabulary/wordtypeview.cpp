@@ -15,6 +15,7 @@
 
 #include "wordtypeview.h"
 
+#include <QHeaderView>
 #include <QContextMenuEvent>
 #include <QMenu>
 
@@ -27,14 +28,26 @@
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
 
-#include "editor/editor.h"
-#include "containermodel.h"
-#include "containerview.h"
+#include "wordtypemodel.h"
 
 using namespace Editor;
 
-WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
+WordTypeView::WordTypeView(QWidget* parent)
+: QTreeView(parent)
 {
+    header()->setStretchLastSection(false);
+    header()->setVisible(false);
+    
+    setAlternatingRowColors(true);
+    
+    // show the actions added by addAction() as right click menu.
+    setContextMenuPolicy(Qt::ActionsContextMenu);
+    
+    setDragEnabled(true);
+    setAcceptDrops(true);
+    setDropIndicatorShown(true);
+    setDragDropMode(QAbstractItemView::DragDrop);
+    
     setContextMenuPolicy(Qt::DefaultContextMenu);
 
     m_actionNewWordType = new KAction(this);
@@ -184,6 +197,21 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
             SLOT(setWordTypeAdverb()));
     connect(m_verbAction, SIGNAL(triggered()),
             SLOT(setWordTypeVerb()));
+}
+
+
+void WordTypeView::setModel(WordTypeModel *model)
+{
+    QTreeView::setModel(model);
+    m_model = model;
+    if (!model) {
+        return;
+    }
+    
+    header()->setResizeMode(0, QHeaderView::Stretch);
+    header()->setResizeMode(1, QHeaderView::ResizeToContents);
+
+    setRootIndex(m_model->index(0,0));
 }
 
 void WordTypeView::setTranslation(KEduVocExpression * entry, int translation)
