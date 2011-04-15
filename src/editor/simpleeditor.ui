@@ -136,6 +136,21 @@
      <item row="7" column="1">
       <widget class="Editor::WordTypeView" name="wordTypeView"/>
      </item>
+     <item row="3" column="2">
+      <widget class="KLineEdit" name="pronunciationEntry_2"/>
+     </item>
+     <item row="4" column="2">
+      <widget class="KLineEdit" name="exampleEntry_2"/>
+     </item>
+     <item row="5" column="2">
+      <widget class="KLineEdit" name="paraphraseEntry_2"/>
+     </item>
+     <item row="6" column="2">
+      <widget class="KLineEdit" name="commentEntry_2"/>
+     </item>
+     <item row="7" column="2">
+      <widget class="Editor::WordTypeView" name="wordTypeView_2"/>
+     </item>
     </layout>
    </item>
    <item>
@@ -238,8 +253,22 @@
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>wordEntry</tabstop>
+  <tabstop>translationEntry</tabstop>
+  <tabstop>pronunciationEntry</tabstop>
+  <tabstop>pronunciationEntry_2</tabstop>
+  <tabstop>exampleEntry</tabstop>
+  <tabstop>exampleEntry_2</tabstop>
+  <tabstop>paraphraseEntry</tabstop>
+  <tabstop>paraphraseEntry_2</tabstop>
+  <tabstop>commentEntry</tabstop>
+  <tabstop>commentEntry_2</tabstop>
+  <tabstop>wordTypeView</tabstop>
+  <tabstop>wordTypeView_2</tabstop>
   <tabstop>previousButton</tabstop>
+  <tabstop>currentIndex</tabstop>
   <tabstop>nextButton</tabstop>
+  <tabstop>newButton</tabstop>
  </tabstops>
  <resources/>
  <connections/>
