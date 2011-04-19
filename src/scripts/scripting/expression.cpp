@@ -100,7 +100,7 @@ namespace Scripting
 
     void Expression::setTranslations ( QStringList translations )
     {
-        if ( m_expression ) delete m_expression;
+        delete m_expression;
         m_expression = new KEduVocExpression ( translations );
     }
 

@@ -29,8 +29,7 @@ Script::Script ( QString file )
 
 Script::~Script()
 {
-    if (m_object)
-        delete  m_object;
+    delete  m_object;
 }
 
 
@@ -93,8 +92,7 @@ void Script::activate()
 
 void Script::deactivate()
 {
-    if ( m_object )
-        delete m_object;
+    delete m_object;
     m_activated = false;
 }
 
