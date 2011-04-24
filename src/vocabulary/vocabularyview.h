@@ -78,7 +78,7 @@ public slots:
 
     void setTranslator(Translator* translator);
 
-    void checkSpelling();
+    void checkSpelling(int language);
 
     /**
     * Show the vocabulary columns dialog to enable or disable the columns in the view

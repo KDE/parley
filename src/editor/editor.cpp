@@ -51,11 +51,11 @@
 #include <KActionMenu>
 #include <KCharSelect>
 
+#include <QtCore/QSignalMapper>
 #include <QtGui/QDockWidget>
 #include <QtGui/QHeaderView>
+#include <QtGui/QMenu>
 #include <QtGui/QStackedWidget>
-
-#include "modeltest/modeltest.h"
 
 using namespace Editor;
 
@@ -96,6 +96,7 @@ EditorWindow::~EditorWindow()
 
 void EditorWindow::updateDocument(KEduVocDocument *doc)
 {
+
     m_vocabularyView->setDocument(doc);
     m_vocabularyModel->setDocument(doc);
 
@@ -123,14 +124,17 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
                 SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
             m_latexWidget, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
 
-    setCaption(m_mainWindow->parleyDocument()->document()->url().fileName(), false);
+    setCaption(doc->url().fileName(), false);
 
     m_mainWindow->slotUpdateWindowCaption();
 
-///@todo remove this!
-// at the moment creates a new test every time a model is created. this is good because we get the basic sanity check then.
-// temporarily disabled because somehow with the welcome screen this crashes Parley when using open recent
-//     new ModelTest(m_vocabularyModel, this);
+    m_spellCheckMenu->menu()->clear();
+    for(int i = 0; i < doc->identifierCount(); ++i) {
+        KAction* languageSpellCheck = new KAction(doc->identifier(i).name(), m_spellCheckMenu->menu());
+        m_spellCheckMenu->menu()->addAction(languageSpellCheck);
+        m_spellCheckMapper->setMapping(languageSpellCheck, i);
+        connect(languageSpellCheck, SIGNAL(triggered()), m_spellCheckMapper, SLOT(map()));
+    }
 }
 
 
@@ -146,9 +150,6 @@ void EditorWindow::initDockWidgets()
     actionCollection()->addAction("show_lesson_dock", lessonDockWidget->toggleViewAction());
 
     m_lessonModel = new LessonModel(this);
-///@todo remove before release
-    new ModelTest(m_lessonModel, this);
-
     m_lessonView->setModel(m_lessonModel);
     m_lessonView->setToolTip(i18n("Right click to add, delete, or rename lessons. \n"
             "With the checkboxes you can select which lessons you want to practice. \n"
@@ -355,7 +356,11 @@ void EditorWindow::initDockWidgets()
 void EditorWindow::initActions()
 {
     ParleyActions::create(ParleyActions::RemoveGrades, this, SLOT(removeGrades()), actionCollection());
-    ParleyActions::create(ParleyActions::CheckSpelling, m_vocabularyView, SLOT(checkSpelling()), actionCollection());
+    m_spellCheckMenu = ParleyActions::create(ParleyActions::CheckSpelling, 0, "", actionCollection());
+    m_spellCheckMenu->setMenu(new QMenu(this));
+    m_spellCheckMapper = new QSignalMapper(this);
+    connect(m_spellCheckMapper, SIGNAL(mapped(int)), m_vocabularyView, SLOT(checkSpelling(int)));
+    
     ParleyActions::create(ParleyActions::ToggleShowSublessons, m_vocabularyModel, SLOT(showEntriesOfSubcontainers(bool)), actionCollection());
     ParleyActions::create(ParleyActions::AutomaticTranslation, m_vocabularyModel, SLOT(automaticTranslation(bool)), actionCollection());
     ParleyActions::create(ParleyActions::StartPractice, m_mainWindow, SLOT(showPracticeConfiguration()), actionCollection());

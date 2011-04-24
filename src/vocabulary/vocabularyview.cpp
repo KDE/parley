@@ -354,7 +354,7 @@ void VocabularyView::slotShowVocabularyColumnsDialog()
     }
 }
 
-void VocabularyView::checkSpelling()
+void VocabularyView::checkSpelling(int language)
 {
     if (!m_model->rowCount()) {
         KMessageBox::information(this, i18n("Nothing to spell check."));
@@ -369,14 +369,14 @@ void VocabularyView::checkSpelling()
         connect(m_spellDialog, SIGNAL(replace(const QString&, int, const QString&)), this, SLOT(spellingReplace(const QString&, int, const QString&)));
     }
 
-    m_spellColumn = selectionModel()->currentIndex().column();
+    m_spellColumn = language * VocabularyModel::EntryColumnsMAX;
     m_spellRow = -1;
     if (m_spellColumn < 0) {
         return;
     }
 
     QModelIndex index = m_model->index(0, m_spellColumn);
-    QString locale = m_model->data(index, VocabularyModel::LocaleRole).toString();
+    QString locale = m_doc->identifier(language).locale();
     LanguageSettings settings(locale);
     QString spellCode = settings.spellChecker().isEmpty() ? locale : settings.spellChecker();
     m_spellChecker->changeLanguage(spellCode);
