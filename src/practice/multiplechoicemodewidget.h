@@ -41,6 +41,8 @@ public:
     virtual void setFeedbackState(AbstractFrontend::ResultState feedbackState) {Q_UNUSED(feedbackState);}
     virtual void setResultState(AbstractFrontend::ResultState resultState) {Q_UNUSED(resultState);}
 
+    virtual void setQuestionFont(const QFont& font);
+    virtual void setSolutionFont(const QFont& font);
     virtual void setQuestionSound(const KUrl& soundUrl);
     virtual void setSolutionSound(const KUrl& soundUrl);
     virtual void setSolutionPronunciation(const QString& pronunciationText);
@@ -53,7 +55,7 @@ public Q_SLOTS:
     virtual void showSolution();
     virtual void setNumberOfRadioButtons(const int numberOfChoices);
     virtual void showSynonym();
-    
+
 protected:
     virtual bool eventFilter(QObject *obj, QEvent *event);
 private:
@@ -62,6 +64,7 @@ private:
     QList<QRadioButton*> m_choiceButtons;
     QList<QAction*> m_actions;
     LatexRenderer *m_latexRenderer;
+    QFont m_solutionFont;
 };
 
 }

@@ -22,8 +22,8 @@
 
 using namespace Practice;
 
-ComparisonModeWidget::ComparisonModeWidget (GuiFrontend *frontend, QWidget* parent )
-    : AbstractModeWidget (frontend, parent)
+ComparisonModeWidget::ComparisonModeWidget(GuiFrontend *frontend, QWidget* parent)
+    : AbstractModeWidget(frontend, parent)
 {
     m_ui = new Ui::ComparisonPracticeWidget();
     m_ui->setupUi(this);
@@ -37,8 +37,19 @@ ComparisonModeWidget::ComparisonModeWidget (GuiFrontend *frontend, QWidget* pare
     m_ui->superlativeSolutionLabel->setPalette(m_correctPalette);
 }
 
-ComparisonModeWidget::~ComparisonModeWidget()
+void ComparisonModeWidget::setQuestionFont(const QFont& font)
 {
+    m_ui->questionLabel->setFont(font);
+}
+
+void ComparisonModeWidget::setSolutionFont(const QFont& font)
+{
+    m_ui->absoluteSolutionLabel->setFont(font);
+    m_ui->comparativeSolutionLabel->setFont(font);
+    m_ui->superlativeSolutionLabel->setFont(font);
+    m_ui->absoluteEdit->setFont(font);
+    m_ui->comparativeEdit->setFont(font);
+    m_ui->superlativeEdit->setFont(font);
 }
 
 void ComparisonModeWidget::setQuestion(const QVariant& question)

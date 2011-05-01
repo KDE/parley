@@ -44,8 +44,8 @@ public:
     virtual void setSolutionPronunciation(const QString& pronunciationText) = 0;
     virtual void setQuestionPronunciation(const QString& pronunciationText) = 0;
     
-    virtual void setQuestionFont(const QFont& font) {}
-    virtual void setSolutionFont(const QFont& font) {}
+    virtual void setQuestionFont(const QFont& font) = 0;
+    virtual void setSolutionFont(const QFont& font) = 0;
     
     virtual void setSynonym(const QString& entry) = 0;
 

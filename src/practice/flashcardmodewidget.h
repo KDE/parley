@@ -38,6 +38,8 @@ public:
     
     virtual void setQuestion(const QVariant& question);
     virtual void setSolution(const QVariant& solution);
+    virtual void setQuestionFont(const QFont& font);
+    virtual void setSolutionFont(const QFont& font);
     virtual void setHint(const QVariant& hint);
     virtual void setFeedback(const QVariant& feedback) {Q_UNUSED(feedback);}
     virtual void setFeedbackState(AbstractFrontend::ResultState feedbackState) {Q_UNUSED(feedbackState);}

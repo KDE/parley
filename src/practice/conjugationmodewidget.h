@@ -41,6 +41,8 @@ public:
     virtual void setFeedbackState(AbstractFrontend::ResultState feedbackState) {Q_UNUSED(feedbackState);}
     virtual void setResultState(AbstractFrontend::ResultState resultState) {Q_UNUSED(resultState);}
 
+    virtual void setQuestionFont(const QFont& font);
+    virtual void setSolutionFont(const QFont& font);
     virtual void setQuestionSound(const KUrl& soundUrl);
     virtual void setSolutionSound(const KUrl& soundUrl);
     virtual void setSolutionPronunciation(const QString& pronunciationText);
@@ -61,6 +63,7 @@ private:
     Ui::ConjugationPracticeWidget* m_ui;
     QStringList m_solution;
     QList<PersonConjugationSolutionWidgets*> m_personWidgets;
+    QFont m_solutionFont;
 };
 
 }

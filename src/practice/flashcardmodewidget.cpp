@@ -28,6 +28,16 @@ FlashCardModeWidget::FlashCardModeWidget (GuiFrontend *frontend, QWidget* parent
     m_ui->setupUi(this);
 }
 
+void FlashCardModeWidget::setQuestionFont(const QFont& font)
+{
+    m_ui->questionLabel->setFont(font);
+}
+
+void FlashCardModeWidget::setSolutionFont(const QFont& font)
+{
+    m_ui->solutionLabel->setFont(font);
+}
+
 void FlashCardModeWidget::setQuestion(const QVariant& question)
 {
     m_ui->questionLabel->setMinimumSize(QSize(0, 0));
