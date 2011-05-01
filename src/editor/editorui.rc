@@ -73,9 +73,6 @@
  <ToolBar name="editorToolBar" >
   <text>Editor Toolbar</text>
   <Separator/>
-  <Action name="edit_copy" />
-  <Action name="edit_paste" />
-  <Separator/>
   <Action name="new_lesson" />
   <Action name="edit_append" />
   <Separator/>

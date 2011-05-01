@@ -3,6 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
     http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+<include>kglobalsettings.h</include>
 <kcfgfile name="parleyrc">
     <parameter name="locale" />
 </kcfgfile>
@@ -26,6 +27,14 @@
     <entry name="VisibleColumns" type="IntList">
         <label>Visible columns in the main editor window.</label>
         <whatsthis>Visible columns in the main editor window.</whatsthis>
+    </entry>
+    <entry name="PracticeFont" type="Font">
+        <label>The font used during practice</label>
+        <default code="true">KGlobalSettings::generalFont()</default>
+    </entry>
+    <entry name="EditorFont" type="Font">
+        <label>The font used in the editor</label>
+        <default code="true">KGlobalSettings::generalFont()</default>
     </entry>
 </group>
 </kcfg>

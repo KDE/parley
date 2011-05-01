@@ -16,6 +16,7 @@
 
 #include <QtCore/QObject>
 #include <keduvoctext.h>
+#include <QFont>
 
 class KUrl;
 
@@ -57,6 +58,9 @@ public:
     virtual void setQuestion(const QVariant& question) = 0;
     virtual void setSolution(const QVariant& solution) = 0;
     virtual void setFeedback(const QVariant& feedback) = 0;
+    
+    virtual void setQuestionFont(const QFont& font) = 0;
+    virtual void setSolutionFont(const QFont& font) = 0;
     
     virtual void setHint(const QVariant& hint) = 0;
     virtual void setQuestionImage(const KUrl& img) = 0;

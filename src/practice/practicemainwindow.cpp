@@ -31,6 +31,7 @@
 #include "guifrontend.h"
 #include "practiceoptions.h"
 #include "practicestatemachine.h"
+#include <languagesettings.h>
 
 using namespace Practice;
 
@@ -147,6 +148,18 @@ void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)
 
 void PracticeMainWindow::startPractice()
 {
+    QString questionLocale = m_parent->parleyDocument()->document()->identifier(Prefs::questionLanguage()).locale();
+    LanguageSettings questionLanguageSettings(questionLocale);
+    questionLanguageSettings.readConfig();
+    QFont questionFont = questionLanguageSettings.practiceFont();
+    m_guiFrontend->setQuestionFont(questionFont);
+
+    QString solutionLocale = m_parent->parleyDocument()->document()->identifier(Prefs::solutionLanguage()).locale();
+    LanguageSettings solutionLanguageSettings(solutionLocale);
+    solutionLanguageSettings.readConfig();
+    QFont solutionFont = solutionLanguageSettings.practiceFont();
+    m_guiFrontend->setSolutionFont(solutionFont);
+
     m_stateMachine->start();
 }
 

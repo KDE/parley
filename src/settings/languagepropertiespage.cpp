@@ -65,6 +65,10 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
     LanguageSettings settings(m_doc->identifier(m_identifierIndex).locale());
     settings.readConfig();
 
+    // fonts
+    editorFont->setFont(settings.editorFont());
+    practiceFont->setFont(settings.practiceFont());
+    
     // keyboard layout
     // try to talk to kxbk - get a list of keyboard layouts
     QDBusInterface kxbk("org.kde.keyboard", "/Layouts", "org.kde.KeyboardLayouts");
@@ -220,6 +224,10 @@ void LanguagePropertiesPage::accept()
     m_doc->identifier(m_identifierIndex).setName( identifierNameLineEdit->text() );
 
     LanguageSettings settings(locale);
+
+    settings.setEditorFont(editorFont->font());
+    settings.setPracticeFont(practiceFont->font());
+    
     if ( keyboardLayoutComboBox->isEnabled() ) {
         settings.setKeyboardLayout( keyboardLayoutComboBox->currentText() );
     }

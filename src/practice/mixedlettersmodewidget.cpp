@@ -35,6 +35,12 @@ MixedLettersModeWidget::MixedLettersModeWidget(GuiFrontend *frontend, QWidget *p
     connect(m_ui->answerEdit, SIGNAL(textChanged(QString)), this, SLOT(updatePixmap()));
 }
 
+void MixedLettersModeWidget::setSolutionFont(const QFont& font)
+{
+    m_solutionFont = font;
+    WrittenPracticeWidget::setSolutionFont(font);
+}
+
 void MixedLettersModeWidget::setQuestion(const QVariant& question)
 {
     m_question = question.toString();
@@ -49,13 +55,14 @@ void MixedLettersModeWidget::showQuestion()
 
 void MixedLettersModeWidget::updatePixmap()
 {
-    QFontMetrics fm(font());
+    QFontMetrics fm(m_solutionFont);
     int charHeight = fm.height();
     int charWidth = fm.averageCharWidth();
     m_pixmap = QPixmap(charWidth*m_mixedSolution.length()*2 + charWidth, charHeight*3);
     m_pixmap.fill(QColor(0,0,0,0));
 
     QPainter p(&m_pixmap);
+    p.setFont(m_solutionFont);
     KColorScheme scheme(QPalette::Active);
     QPen defaultPen = p.pen();
     defaultPen.setColor(palette().color(QPalette::WindowText));

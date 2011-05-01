@@ -60,6 +60,17 @@ ConjugationModeWidget::~ConjugationModeWidget()
     qDeleteAll(m_personWidgets);
 }
 
+void ConjugationModeWidget::setQuestionFont(const QFont& font)
+{
+    m_ui->questionLabel->setFont(font);
+}
+
+void ConjugationModeWidget::setSolutionFont(const QFont& font)
+{
+    m_ui->infinitiveEdit->setFont(font);
+    m_solutionFont = font;
+}
+
 void ConjugationModeWidget::setQuestion(const QVariant& question)
 {
     if (!question.canConvert<ConjugationData>()) {
@@ -75,9 +86,12 @@ void ConjugationModeWidget::setQuestion(const QVariant& question)
     int i = 0;
     foreach(const QString& pp, data.personalPronouns) {
         m_personWidgets.at(i)->person->setText(pp);
+        m_personWidgets.at(i)->person->setFont(m_solutionFont);
         m_personWidgets.at(i)->input->clear();
         m_personWidgets.at(i)->input->setPalette(QApplication::palette());
+        m_personWidgets.at(i)->input->setFont(m_solutionFont);
         m_personWidgets.at(i)->solution->clear();
+        m_personWidgets.at(i)->solution->setFont(m_solutionFont);
         connect(m_personWidgets.at(i)->input, SIGNAL(returnPressed()), this, SLOT(nextConjugationForm()));
         ++i;
     }

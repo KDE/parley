@@ -34,6 +34,9 @@ public:
 
     virtual void setQuestion(const QVariant& question);
     virtual void setSolution(const QVariant& solution);
+    
+    virtual void setQuestionFont(const QFont& font);
+    virtual void setSolutionFont(const QFont& font);
     virtual void setHint(const QVariant& hint);
     virtual void setFeedback(const QVariant& feedback);
     virtual void setFeedbackState(AbstractFrontend::ResultState feedbackState);
@@ -45,7 +48,7 @@ public:
     virtual void setQuestionPronunciation(const QString& pronunciationText);
     
     virtual void setSynonym(const QString& entry);
-        
+
 public slots:
     void showQuestion();
     void showSolution();

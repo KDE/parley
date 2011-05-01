@@ -37,6 +37,7 @@ public:
 
     virtual void setQuestion(const QVariant& question);
     virtual void setSolution(const QVariant& solution);
+    virtual void setSolutionFont(const QFont& font);
 
 public slots:
     void showQuestion();
@@ -50,6 +51,7 @@ private:
     QString m_question;
     QList<int> m_positions;
     QPixmap m_pixmap;
+    QFont m_solutionFont;
 };
 
 }

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>428</width>
-    <height>339</height>
+    <width>631</width>
+    <height>556</height>
    </rect>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
@@ -21,17 +21,7 @@
        <string>General</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="0">
-        <widget class="QLabel" name="localeSelectionLabel">
-         <property name="text">
-          <string>Language:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
+       <item row="0" column="2" colspan="2">
         <widget class="KComboBox" name="localeComboBox"/>
        </item>
        <item row="1" column="0">
@@ -47,10 +37,10 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
+       <item row="1" column="2" colspan="2">
         <widget class="KLineEdit" name="identifierNameLineEdit"/>
        </item>
-       <item row="2" column="0">
+       <item row="4" column="0">
         <widget class="QLabel" name="keyboardLayoutLabel">
          <property name="text">
           <string>Keyboard layout:</string>
@@ -58,12 +48,15 @@
          <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
+         <property name="buddy">
+          <cstring>keyboardLayoutComboBox</cstring>
+         </property>
         </widget>
        </item>
-       <item row="2" column="2">
+       <item row="4" column="2" colspan="2">
         <widget class="KComboBox" name="keyboardLayoutComboBox"/>
        </item>
-       <item row="5" column="2">
+       <item row="9" column="2">
         <spacer name="spacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -76,7 +69,7 @@
          </property>
         </spacer>
        </item>
-       <item row="6" column="2">
+       <item row="10" column="2">
         <widget class="QPushButton" name="downloadGrammarButton">
          <property name="text">
           <string>&amp;Download Grammar</string>
@@ -86,10 +79,10 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="2">
+       <item row="6" column="2" colspan="2">
         <widget class="KComboBox" name="spellcheckerComboBox"/>
        </item>
-       <item row="4" column="0">
+       <item row="6" column="0">
         <widget class="QLabel" name="spellcheckerLabel">
          <property name="text">
           <string>Spell checker:</string>
@@ -97,7 +90,49 @@
          <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
+         <property name="buddy">
+          <cstring>spellcheckerComboBox</cstring>
+         </property>
         </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="localeSelectionLabel">
+         <property name="text">
+          <string>Language:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="buddy">
+          <cstring>localeComboBox</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="KFontRequester" name="practiceFont"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="fontLabel_2">
+         <property name="text">
+          <string>Font (practice):</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="fontLabel_3">
+         <property name="text">
+          <string>Font (editor):</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="KFontRequester" name="editorFont"/>
        </item>
       </layout>
      </widget>
@@ -776,6 +811,11 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>KFontRequester</class>
+   <extends>QWidget</extends>
+   <header>kfontrequester.h</header>
+  </customwidget>
+  <customwidget>
    <class>KLineEdit</class>
    <extends>QLineEdit</extends>
    <header>klineedit.h</header>
@@ -793,6 +833,15 @@
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>newButton</tabstop>
+  <tabstop>modifyButton</tabstop>
+  <tabstop>deleteButton</tabstop>
+  <tabstop>ktabwidget</tabstop>
+  <tabstop>localeComboBox</tabstop>
+  <tabstop>identifierNameLineEdit</tabstop>
+  <tabstop>keyboardLayoutComboBox</tabstop>
+  <tabstop>spellcheckerComboBox</tabstop>
+  <tabstop>downloadGrammarButton</tabstop>
   <tabstop>def_male</tabstop>
   <tabstop>def_female</tabstop>
   <tabstop>def_natural</tabstop>
@@ -805,9 +854,6 @@
   <tabstop>indef_male_plural</tabstop>
   <tabstop>indef_female_plural</tabstop>
   <tabstop>indef_natural_plural</tabstop>
-  <tabstop>localeComboBox</tabstop>
-  <tabstop>identifierNameLineEdit</tabstop>
-  <tabstop>keyboardLayoutComboBox</tabstop>
   <tabstop>first_singular</tabstop>
   <tabstop>second_singular</tabstop>
   <tabstop>thirdM_singular</tabstop>
@@ -826,11 +872,7 @@
   <tabstop>maleFemaleDifferCheckBox</tabstop>
   <tabstop>neutralCheckBox</tabstop>
   <tabstop>dualCheckBox</tabstop>
-  <tabstop>ktabwidget</tabstop>
   <tabstop>tenseList</tabstop>
-  <tabstop>newButton</tabstop>
-  <tabstop>modifyButton</tabstop>
-  <tabstop>deleteButton</tabstop>
  </tabstops>
  <resources/>
  <connections/>

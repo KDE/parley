@@ -41,6 +41,16 @@ MultiplechoiceModeWidget::MultiplechoiceModeWidget (GuiFrontend *frontend, QWidg
 
 }
 
+void MultiplechoiceModeWidget::setQuestionFont ( const QFont& font )
+{
+    m_ui->questionLabel->setFont(font);
+}
+
+void MultiplechoiceModeWidget::setSolutionFont ( const QFont& font )
+{
+    m_solutionFont = font;
+}
+
 void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
 {
     if (!question.canConvert<MultipleChoiceData>()) {
@@ -70,6 +80,7 @@ void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
     foreach(QRadioButton *radio,m_choiceButtons){
         radio->setText(data.choices[j]);
         radio->setToolTip(data.choices[j]);
+        radio->setFont(m_solutionFont);
         j++;
     }
 }
@@ -88,7 +99,6 @@ void MultiplechoiceModeWidget::showQuestion()
         radio->setPalette(palette());
         radio->setEnabled(true);
     }
-
 
     QTimer::singleShot(0, m_choiceButtons[0], SLOT(setFocus()));
 }

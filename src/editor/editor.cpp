@@ -424,7 +424,6 @@ void EditorWindow::initView()
     m_searchWidget->setVisible(Prefs::showSearch());
 
     m_vocabularyView = new VocabularyView(this);
-    m_vocabularyView->setFont(Prefs::tableFont());
     rightLayout->addWidget(m_vocabularyView, 1, 0);
 
     topLayout->addLayout(rightLayout);
@@ -449,7 +448,6 @@ void EditorWindow::slotShowScriptManager() {
 
 void EditorWindow::applyPrefs()
 {
-    m_vocabularyView->setFont(Prefs::tableFont());
     m_vocabularyView->reset();
 }
 

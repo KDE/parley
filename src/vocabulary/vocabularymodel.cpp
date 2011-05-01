@@ -16,6 +16,7 @@
 
 #include "parleydocument.h"
 #include "prefs.h"
+#include "languagesettings.h"
 
 #include <keduvoclesson.h>
 #include <keduvocwordtype.h>
@@ -170,6 +171,14 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
             return QVariant();
         }
         break;
+    case Qt::FontRole:
+        if (entryColumn == Translation) {
+            QString locale = m_document->identifier(translationId).locale();
+            LanguageSettings ls(locale);
+            ls.readConfig();
+            return ls.editorFont();
+        }
+        return QVariant();
     case Qt::TextColorRole:
         if (Prefs::useGradeColors() && entryColumn == Translation) {
             int grade = m_container->entry(index.row(), m_recursive)->translation(translationId)->grade();
