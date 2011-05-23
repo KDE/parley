@@ -6,7 +6,12 @@ include_directories (${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES})
 
 set(CMAKE_MODULE_PATH ${parley_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 
-find_package(LibKdeEdu REQUIRED)
+if(${CMAKE_SOURCE_DIR} STREQUAL ${parley_SOURCE_DIR})
+    find_package(LibKdeEdu REQUIRED)
+else()
+    set(LIBKDEEDU_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument") # this is hackish
+    set(LIBKDEEDU_KEDUVOCDOCUMENT_LIBRARIES keduvocdocument)
+endif()
 
 
 macro_optional_find_package(LibXslt)
