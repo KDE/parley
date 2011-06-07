@@ -137,9 +137,9 @@ void LatexDelegate::setModelData(QWidget * editor, QAbstractItemModel * model, c
         if (entry) {
             QString text = entry->text();
             if (m_checkBox->isChecked()) {
-                model->setData(index, "$$"+text+"$$");
+                model->setData(index, QString("$$"+text+"$$"));
             } else {
-                model->setData(index, QString::fromUtf8("§§")+text+QString::fromUtf8("§§"));
+                model->setData(index, QString(QString::fromUtf8("§§")+text+QString::fromUtf8("§§")));
             }
         }
     }

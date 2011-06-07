@@ -236,7 +236,7 @@ void VocabularyView::appendEntry()
 void VocabularyView::appendChar(const QChar &c)
 {
     const QModelIndex &index = selectionModel()->currentIndex();
-    m_model->setData(index, m_model->data(index).toString() + c);
+    m_model->setData(index, QString(m_model->data(index).toString() + c));
 }
 
 void VocabularyView::deleteSelectedEntries(bool askConfirmation)

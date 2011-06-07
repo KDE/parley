@@ -8,6 +8,7 @@ set(CMAKE_MODULE_PATH ${parley_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 
 find_package(LibKdeEdu REQUIRED)
 
+add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
 
 macro_optional_find_package(LibXslt)
 macro_optional_find_package(LibXml2)
