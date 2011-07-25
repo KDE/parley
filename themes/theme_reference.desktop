@@ -1,5 +1,6 @@
 [KGameTheme]
 Name=Gray
+Name[bg]=Сиво
 Name[bs]=Siva
 Name[ca]=Gris
 Name[ca@valencia]=Gris
@@ -31,6 +32,7 @@ Name[x-test]=xxGrayxx
 Name[zh_CN]=灰色
 Name[zh_TW]=灰
 Description=A simple gray theme.
+Description[bg]=Проста сива тема
 Description[ca]=Un tema gris senzill.
 Description[ca@valencia]=Un tema gris senzill.
 Description[cs]=Jednoduché šedé téma.

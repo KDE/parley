@@ -6,6 +6,7 @@ ServiceTypes=KPluginInfo
 
 Name=Google Images (online image fetching)
 Name[ast]=Imaxes de Google (algamar imaxes en llinia)
+Name[bg]=Изображения в Google (изтегляне на изображения от мрежата)
 Name[ca]=Imatges de Google (recull imatges en línia)
 Name[ca@valencia]=Imatges de Google (recull imatges en línia)
 Name[cs]=Obrázky Google (získávání obrázků z internetu)

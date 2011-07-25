@@ -8,6 +8,7 @@ ServiceTypes=KPluginInfo
 
 Name=Google Dictionary (translation)
 Name[ast]=Diccionariu de Google (traducción)
+Name[bg]=Речник на Google (превод)
 Name[ca]=Diccionari de Google (traducció)
 Name[ca@valencia]=Diccionari de Google (traducció)
 Name[cs]=Slovník Google (překlad)
@@ -50,6 +51,7 @@ Name[zh_CN]=Google 词典(翻译)
 Name[zh_TW]=Google 字典（翻譯）
 Comment=Uses Google Dictionary (translate.google.com) to translate words
 Comment[ast]=Usa'l diccionariu de Google (translate.google.com) pa tornar pallabres
+Comment[bg]=Използване на речника на Google (translate.google.com) за превод на думи
 Comment[ca]=Utilitza el diccionari de Google (translate.google.com) per a traduir mots
 Comment[ca@valencia]=Utilitza el diccionari de Google (translate.google.com) per a traduir mots
 Comment[cs]=Používá slovník Google (translate.google.com) pro překlad slov

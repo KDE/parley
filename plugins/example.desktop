@@ -6,6 +6,7 @@ ServiceTypes=KPluginInfo
 
 Name=Example Parley Script
 Name[ast]=Guión Parley d'exemplu
+Name[bg]=Примерен скрипт за Parley
 Name[ca]=Exemple d'script de Parley
 Name[ca@valencia]=Exemple d'script de Parley
 Name[cs]=Skript Parley jako příklad
