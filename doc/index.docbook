@@ -44,8 +44,8 @@
 </copyright>
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2010-06-06</date>
-<releaseinfo>0.9.4 (&kde; SC 4.5)</releaseinfo>
+<date>2011-09-26</date>
+<releaseinfo>0.9.4 (&kde; SC 4.7)</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -238,7 +238,7 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>You can decide to practice only words that you know better or less well than some grade. Or you can select only words that you have practiced a certain number of times. With the word type selection you can choose to only practice some word types, for example nouns or verbs.
+<para>You can decide to practice only words that you know better or less well than some grade. Or you can select only words that you have practiced a certain number of times. 
 </para>
 </sect2>
 <sect2 id="advanced-practice-settings"><title>Advanced Practice Settings</title> 
@@ -260,13 +260,11 @@ limited to language learning but supports a multitude of subjects.
 <para>The most important options are:
 </para>
 <itemizedlist>
-<listitem><para> Ignore accent mistakes: with this option if you enter a word with <guilabel>e</guilabel> instead of  <guilabel>é</guilabel> it will still count as right.
+<listitem><para> Ignore Accents: with this option if you enter a word with <guilabel>e</guilabel> instead of  <guilabel>é</guilabel> it will still count as right.
 </para></listitem>
-<listitem><para> Ignore capitalization mistakes: this option allows you to ignore capitalization when you enter words.
+<listitem><para> Ignore Capitalization: this option allows you to ignore capitalization when you enter words.
 </para></listitem>
-<listitem><para> Enable Images: if this is on, images will be displayed during the practice, if they are available.
-</para></listitem>
-<listitem><para> Active entries during practice: how many words will be asked repeatedly, before adding a new word. That means, if you set it to a low number, words will show up again faster, while with a high setting, the distance before you see the same word again is higher.
+<listitem><para> Images and Sound: if you enable images they will be displayed during the practice, if they are available. Same applies to Sound.
 </para></listitem>
 </itemizedlist>
 </sect2>
@@ -922,7 +920,7 @@ limited to language learning but supports a multitude of subjects.
 </para>
 </sect2>
 <sect2 id="moving-renaming-and-deleting-lessons"><title>Moving, Renaming and Deleting Lessons</title> 
-<para>To change the name of a lesson, double click it, or right click on the lesson and choose <guilabel>Rename</guilabel>. You can also delete it this way (but you'll lose its contents also then). 
+<para>To change the name of a lesson, double click it, or right click on the lesson and choose <guilabel>Rename Lesson</guilabel>. You can also delete it this way (but you'll lose its contents also then). 
 </para>
 <para>If you don't like the arrangement of lessons, you can move a lesson with the mouse. You can drag it onto another lesson, then it will become a child of that lesson.
 </para>
@@ -953,7 +951,7 @@ limited to language learning but supports a multitude of subjects.
 </sect2
 -->
 <sect2 id="adding-new-vocabulary"><title>Adding New Vocabulary</title>
-<para>Use <guilabel>Add New Entry</guilabel> in the toolbar to add new words. You can start typing the word in the first language right away. By default Parley lets you enter another word when you press &Enter; in the last row, so you don't have to keep using the <guilabel>Add</guilabel> button. After entering the first word, press &Enter; or &Tab; to go to the next language. 
+<para>Use <guilabel>Add New Entry</guilabel> in the toolbar to add new words. You can start typing the word in the first language right away. By default Parley lets you enter another word when you press &Enter; in the last row, so you don't have to keep using the <guilabel>Add</guilabel> button. After entering the first word, press &Tab; to go to the next language. 
 </para>
 </sect2>
 <sect2 id="editing-words"><title>Editing Words</title> 
@@ -1288,7 +1286,7 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>Just go ahead like this for all terms. 
 </para>
-<para>Time to add adjectives and verbs as lessons to our project. So just do as before with the lesson <emphasis>Fruit</emphasis> and create two new lessons: <emphasis>Adjectives</emphasis> and <emphasis>Verbs</emphasis>. Let's assume we will add <emphasis>big, small, old, young, narrow</emphasis>' in the adjective lesson and <emphasis>to go, to come, to buy, to drink, to eat</emphasis> in the verb lesson.
+<para>Time to add adjectives and verbs as lessons to our project. So just do as before with the lesson <emphasis>Fruit</emphasis> and create two new lessons: <emphasis>Adjectives</emphasis> and <emphasis>Verbs</emphasis>. Let's assume we will add <emphasis>big, small, old, young, narrow</emphasis> in the adjective lesson and <emphasis>to go, to come, to buy, to drink, to eat</emphasis> in the verb lesson.
 </para>
 <para>The following shows a screenshot with all inserted terminology. Now, words are mixed and it would be nice to see what is a <emphasis>noun, adjective</emphasis> or <emphasis>verb</emphasis>.
 </para>
@@ -1645,7 +1643,7 @@ limited to language learning but supports a multitude of subjects.
 </sect3>
 </sect2>
 <sect2 id="view-tab"><title>View Tab</title> 
-<para>The <guilabel>View Settings</guilabel> allows you to change font and its size, very handy when you work on a netbook for example, and you can choose the <guilabel>Grade Colors</guilabel> you like best.
+<para>The <guilabel>View Settings</guilabel> allows you to change font and size for the pronunciation symbols, and you can choose the <guilabel>Grade Colors</guilabel> you like best.
 </para>
 <para>
 <screenshot>
