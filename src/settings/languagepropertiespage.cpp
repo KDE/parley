@@ -62,13 +62,14 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
         identifierNameLineEdit->setText(m_doc->identifier(m_identifierIndex).name());
     }
 
-    LanguageSettings settings(m_doc->identifier(m_identifierIndex).locale());
+    int index = (m_identifierIndex < m_doc->identifierCount() ? m_identifierIndex : 0);
+    LanguageSettings settings(m_doc->identifier(index).locale());
     settings.readConfig();
 
     // fonts
     editorFont->setFont(settings.editorFont());
     practiceFont->setFont(settings.practiceFont());
-    
+
     // keyboard layout
     // try to talk to kxbk - get a list of keyboard layouts
     QDBusInterface kxbk("org.kde.keyboard", "/Layouts", "org.kde.KeyboardLayouts");
@@ -227,7 +228,7 @@ void LanguagePropertiesPage::accept()
 
     settings.setEditorFont(editorFont->font());
     settings.setPracticeFont(practiceFont->font());
-    
+
     if ( keyboardLayoutComboBox->isEnabled() ) {
         settings.setKeyboardLayout( keyboardLayoutComboBox->currentText() );
     }
