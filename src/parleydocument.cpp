@@ -319,6 +319,10 @@ void ParleyDocument::initializeDefaultGrammar(KEduVocDocument *doc)
     KEduVocWordType *adverb = new KEduVocWordType(i18n("Adverb"), root);
     adverb->setWordType(KEduVocWordFlag::Adverb);
     root->appendChildContainer(adverb);
+
+    KEduVocWordType *conjunction = new KEduVocWordType(i18n("Conjunction"), root);
+    conjunction->setWordType(KEduVocWordFlag::Conjunction);
+    root->appendChildContainer(conjunction);
 }
 
 

@@ -57,6 +57,7 @@ private slots:
     void setWordTypeAdjective();
     void setWordTypeAdverb();
     void setWordTypeVerb();
+    void setWordTypeConjunction();
 
 private:
     KAction *m_actionNewWordType;
@@ -73,6 +74,7 @@ private:
     KAction *m_adjectiveAction;
     KAction *m_adverbAction;
     KAction *m_verbAction;
+    KAction *m_conjunctionAction;
 };
 }
 

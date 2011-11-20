@@ -127,6 +127,14 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
     m_verbAction->setStatusTip(m_verbAction->whatsThis());
     m_verbAction->setStatusTip(m_verbAction->whatsThis());
 
+    m_conjunctionAction = new KAction(this);
+    m_conjunctionAction->setText(i18n("Conjunction"));
+    m_conjunctionAction->setCheckable(true);
+    m_conjunctionAction->setWhatsThis(i18n("This word type folder contains conjunctions."));
+    m_conjunctionAction->setToolTip(m_conjunctionAction->whatsThis());
+    m_conjunctionAction->setStatusTip(m_conjunctionAction->whatsThis());
+    m_conjunctionAction->setStatusTip(m_conjunctionAction->whatsThis());
+
     m_noneAction = new KAction(this);
     m_noneAction->setText(i18n("No Special Type"));
     m_noneAction->setCheckable(true);
@@ -148,6 +156,7 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
     m_actionSpecialTypeMenu->addAction(m_adjectiveAction);
     m_actionSpecialTypeMenu->addAction(m_adverbAction);
     m_actionSpecialTypeMenu->addAction(m_verbAction);
+    m_actionSpecialTypeMenu->addAction(m_conjunctionAction);
 
     connect(m_actionNewWordType, SIGNAL(triggered()),
             SLOT(slotCreateNewWordType()));
@@ -184,6 +193,8 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
             SLOT(setWordTypeAdverb()));
     connect(m_verbAction, SIGNAL(triggered()),
             SLOT(setWordTypeVerb()));
+    connect(m_conjunctionAction, SIGNAL(triggered()),
+            SLOT(setWordTypeConjunction()));
 }
 
 void WordTypeView::setTranslation(KEduVocExpression * entry, int translation)
@@ -266,6 +277,9 @@ void WordTypeView::contextMenuEvent(QContextMenuEvent * event)
 
         else if (t.testFlag(KEduVocWordFlag::Verb))
             m_verbAction->setChecked(true);
+
+        else if (t.testFlag(KEduVocWordFlag::Conjunction))
+            m_conjunctionAction->setChecked(true);
     }
 
     QMenu::exec(actions(), event->globalPos());
@@ -317,6 +331,13 @@ void WordTypeView::setWordTypeVerb()
 {
     KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
     wordType->setWordType(KEduVocWordFlag::Verb);
+}
+
+
+void WordTypeView::setWordTypeConjunction()
+{
+    KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
+    wordType->setWordType(KEduVocWordFlag::Conjunction);
 }
 
 
