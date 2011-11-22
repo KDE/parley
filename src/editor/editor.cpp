@@ -111,6 +111,10 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
         return;
     }
 
+    if (!doc) {
+        return;
+    }
+
     // expand the root items
     m_lessonView->expandToDepth(0);
     m_wordTypeView->expandToDepth(0);
