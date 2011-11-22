@@ -186,7 +186,6 @@ private:
     QString m_appName;
     Component m_componentBeforePractice;
     Practice::TestEntryManager m_testEntryManager;
-    QList<QPointer<KToolBar> > m_hiddenToolbars;
 
     friend int main(int argc, char* argv[]);
 };
