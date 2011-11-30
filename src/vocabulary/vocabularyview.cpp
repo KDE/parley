@@ -416,7 +416,7 @@ bool VocabularyView::eventFilter(QObject* obj, QEvent* event) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         if (keyEvent->key() == Qt::Key_Return || keyEvent->key() == Qt::Key_Enter) {
             if (selectionModel()->currentIndex().row() == m_model->rowCount() - 1) {
-                m_model->appendEntry();
+                appendEntry();
             }
         }
     }
