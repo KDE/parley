@@ -38,7 +38,7 @@ namespace Editor {
     class LessonModel;
     class WordTypeModel;
     class LeitnerModel;
-    class ConjugationWidget;
+    class InflectionWidget;
     class ComparisonWidget;
     class SummaryWordWidget;
     class LatexWidget;
@@ -125,7 +125,7 @@ private:
     QSignalMapper *m_spellCheckMapper;
     
     /** Show a single conjugation and let the user edit it */
-    ConjugationWidget *m_conjugationWidget;
+    InflectionWidget *m_inflectionWidget;
     SummaryWordWidget *m_summaryWordWidget;
     ComparisonWidget *m_comparisonWidget;
     LatexWidget *m_latexWidget;

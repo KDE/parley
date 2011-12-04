@@ -1,5 +1,6 @@
 /***************************************************************************
     Copyright 2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2011 Jan Gerrit Marker <jangerrit@weiler-marker.com>
  ***************************************************************************/
 
 /***************************************************************************
@@ -30,54 +31,14 @@ DeclensionWidget::DeclensionWidget(QWidget *parent) : QWidget(parent)
 
     setupUi(this);
 
-    connect(makeNounButton, SIGNAL(clicked()), SLOT(slotMakeNoun()));
+    numberSelection->setItemData(0, KEduVocWordFlag::Singular);
+    numberSelection->setItemData(1, KEduVocWordFlag::Dual);
+    numberSelection->setItemData(2, KEduVocWordFlag::Plural);
+    connect(numberSelection, SIGNAL(currentIndexChanged(int)), this, SLOT(updateEntries()));
 
-    showMakeNounWidgets();
-    makeNounButton->setEnabled(false);
+    connect(nextButton, SIGNAL(clicked(bool)), this, SLOT(nextNumber()));
 
-    m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Nominative] = singular_1;
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Genitive] = singular_2;
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Dative] = singular_3;
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Accusative] = singular_4;
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Ablative] = singular_5;
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Locative] = singular_6;
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Vocative] = singular_7;
-
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Nominative] = dual_1;
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Genitive] = dual_2;
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Dative] = dual_3;
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Accusative] = dual_4;
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Ablative] = dual_5;
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Locative] = dual_6;
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Vocative] = dual_7;
-
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Nominative] = plural_1;
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Genitive] = plural_2;
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Dative] = plural_3;
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Accusative] = plural_4;
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Ablative] = plural_5;
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Locative] = plural_6;
-
-    m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Vocative] = plural_7;
+    setupLineEdits();
 
     foreach(int index, m_DeclensionLineEdits.keys()) {
         connect(m_DeclensionLineEdits.value(index), SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
@@ -88,7 +49,7 @@ DeclensionWidget::DeclensionWidget(QWidget *parent) : QWidget(parent)
 void DeclensionWidget::textChanged(const QString& text)
 {
     int valueIndex = m_DeclensionLineEdits.values().indexOf(qobject_cast<KLineEdit*>(sender()));
-    int key = m_DeclensionLineEdits.keys().value(valueIndex);
+    int key = m_DeclensionLineEdits.keys().value(valueIndex) | currentAdditionalWordFlag();
     m_entry->translation(m_identifier)->declension()->setDeclension(text, (KEduVocWordFlag::Flags)key);
     emit sigModified();
 }
@@ -97,7 +58,7 @@ void DeclensionWidget::textChanged(const QString& text)
 void DeclensionWidget::updateEntries()
 {
     foreach(int key, m_DeclensionLineEdits.keys()) {
-        m_DeclensionLineEdits.value(key)->setText(m_entry->translation(m_identifier)->declension()->declension((KEduVocWordFlag::Flags)key).text());
+        m_DeclensionLineEdits.value(key)->setText(m_entry->translation(m_identifier)->declension()->declension((KEduVocWordFlag::Flags)(key|currentAdditionalWordFlag())).text());
     }
 }
 
@@ -110,20 +71,19 @@ void DeclensionWidget::setTranslation(KEduVocExpression * entry, int identifier)
     m_entry = entry;
     if (m_identifier != identifier) {
         m_identifier = identifier;
-        updateVisiblePersons();
     }
 
     if (!entry) {
         setEnabled(false);
-        showMakeNounWidgets();
-        makeNounButton->setEnabled(false);
         return;
     }
+
+    setupLineEdits();
 
     setEnabled(true);
     if (entry->translation(m_identifier)->wordType()) {
         KEduVocWordFlags wordType = entry->translation(m_identifier)->wordType()->wordType();
-        if (wordType & KEduVocWordFlag::Noun) {
+        if (wordType & KEduVocWordFlag::Noun || wordType & KEduVocWordFlag::Adjective) {
 
             // we create declensions on demand. if empty it will simply not be saved.
             // very little memory overhead, comfy to use ;)
@@ -131,15 +91,8 @@ void DeclensionWidget::setTranslation(KEduVocExpression * entry, int identifier)
                 entry->translation(m_identifier)->setDeclension(new KEduVocDeclension);
             }
 
-            // if it's a noun already, hide the make noun button and start editing it
-            showDeclensionEditWidgets();
             updateEntries();
         }
-    } else {
-        makeNounButton->setEnabled(true);
-        showMakeNounWidgets();
-        makeNounButton->setText(i18n("\"%1\" is a noun", m_entry->translation(m_identifier)->text()));
-// hide the other stuff
     }
 }
 
@@ -148,108 +101,107 @@ void DeclensionWidget::setDocument(KEduVocDocument * doc)
     m_doc = doc;
 }
 
-void DeclensionWidget::slotMakeNoun()
+int DeclensionWidget::currentAdditionalWordFlag()
 {
-    if(!m_doc) {
-        return;
+    if (m_entry->translation(m_identifier)->wordType()->wordType() & KEduVocWordFlag::Noun)
+    {///@todo easier and better way to get gender?
+        if (m_entry->translation(m_identifier)->wordType()->wordType() & KEduVocWordFlag::Feminine)
+            return KEduVocWordFlag::Feminine;
+        if (m_entry->translation(m_identifier)->wordType()->wordType() & KEduVocWordFlag::Masculine)
+            return KEduVocWordFlag::Masculine;
+        if (m_entry->translation(m_identifier)->wordType()->wordType() & KEduVocWordFlag::Neuter)
+            return KEduVocWordFlag::Neuter;
     }
 
-    ///@todo allow to choose the type of noun
-
-    // find a noun container
-    KEduVocWordType* container = m_doc->wordTypeContainer()->childOfType(KEduVocWordFlag::Noun);
-    if (container) {
-        m_entry->translation(m_identifier)->setWordType(container);
-        showDeclensionEditWidgets();
-    } else {
-        ///@todo better message
-        KMessageBox::information(this, i18n("Could not determine word type of nouns"));
-    }
-    setTranslation(m_entry, m_identifier);
+    return numberSelection->itemData(numberSelection->currentIndex()).toInt();
 }
 
-void DeclensionWidget::showMakeNounWidgets()
+void DeclensionWidget::nextNumber()
 {
-    makeNounButton->setVisible(true);
-    declensionGroupBox->setVisible(false);
+    int newIndex = numberSelection->currentIndex()+1;
+    if (newIndex >= numberSelection->count())
+        newIndex = 0;
+
+    numberSelection->setCurrentIndex(newIndex);
 }
 
-void DeclensionWidget::showDeclensionEditWidgets()
+void DeclensionWidget::setupLineEdits()
 {
-    makeNounButton->setVisible(false);
-    declensionGroupBox->setVisible(true);
-}
+    m_DeclensionLineEdits.clear();
 
-void DeclensionWidget::updateVisiblePersons()
-{
-    /*
-    if (m_identifier < 0) {
-        singularGroupBox->setVisible(false);
-        pluralGroupBox->setVisible(false);
-        dualGroupBox->setVisible(false);
-        return;
+    if (m_entry == 0 || !m_entry->translation(m_identifier) || !m_entry->translation(m_identifier)->wordType()
+        || m_entry->translation(m_identifier)->wordType()->wordType() & KEduVocWordFlag::Noun)
+    {
+        label_3->setText(i18n("Singular"));
+        label_4->setText(i18n("Dual"));
+        label_5->setText(i18n("Plural"));
+
+        /* Hide the GUI elements which are needed to switch the number */
+        for (int i = 0; i < numberLayout->count(); ++i)
+        {
+            numberLayout->itemAt(i)->widget()->hide();
+        }
+
+        m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Nominative] = masculine_1;
+        m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Genitive] = masculine_2;
+        m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Dative] = masculine_3;
+        m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Accusative] = masculine_4;
+        m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Ablative] = masculine_5;
+        m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Locative] = masculine_6;
+        m_DeclensionLineEdits[KEduVocWordFlag::Singular | KEduVocWordFlag::Vocative] = masculine_7;
+
+        m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Nominative] = feminine_1;
+        m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Genitive] = feminine_2;
+        m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Dative] = feminine_3;
+        m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Accusative] = feminine_4;
+        m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Ablative] = feminine_5;
+        m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Locative] = feminine_6;
+        m_DeclensionLineEdits[KEduVocWordFlag::Dual | KEduVocWordFlag::Vocative] = feminine_7;
+
+        m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Nominative] = neuter_1;
+        m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Genitive] = neuter_2;
+        m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Dative] = neuter_3;
+        m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Accusative] = neuter_4;
+        m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Ablative] = neuter_5;
+        m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Locative] = neuter_6;
+        m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Vocative] = neuter_7;
     }
+    else
+    {
+        label_3->setText(i18n("Masculine"));
+        label_4->setText(i18n("Feminine"));
+        label_5->setText(i18n("Neuter"));
 
-    singularGroupBox->setVisible(true);
-    pluralGroupBox->setVisible(true);
-    dualGroupBox->setVisible( m_doc->identifier(m_identifier).personalPronouns().dualExists() );
+        /* Show the GUI elements which are needed to switch the number */
+        for (int i = 0; i < numberLayout->count(); ++i)
+        {
+            numberLayout->itemAt(i)->widget()->show();
+        }
 
-    bool maleFemaleDifferent = m_doc->identifier(m_identifier).personalPronouns().maleFemaleDifferent();
+        m_DeclensionLineEdits[KEduVocWordFlag::Masculine | KEduVocWordFlag::Nominative] = masculine_1;
+        m_DeclensionLineEdits[KEduVocWordFlag::Masculine | KEduVocWordFlag::Genitive] = masculine_2;
+        m_DeclensionLineEdits[KEduVocWordFlag::Masculine | KEduVocWordFlag::Dative] = masculine_3;
+        m_DeclensionLineEdits[KEduVocWordFlag::Masculine | KEduVocWordFlag::Accusative] = masculine_4;
+        m_DeclensionLineEdits[KEduVocWordFlag::Masculine | KEduVocWordFlag::Ablative] = masculine_5;
+        m_DeclensionLineEdits[KEduVocWordFlag::Masculine | KEduVocWordFlag::Locative] = masculine_6;
+        m_DeclensionLineEdits[KEduVocWordFlag::Masculine | KEduVocWordFlag::Vocative] = masculine_7;
 
-    singularThirdMalePersonLabel->setVisible(maleFemaleDifferent);
-    singularThirdMalePersonLineEdit->setVisible(maleFemaleDifferent);
-    singularThirdFemalePersonLabel->setVisible(maleFemaleDifferent);
-    singularThirdFemalePersonLineEdit->setVisible(maleFemaleDifferent);
+        m_DeclensionLineEdits[KEduVocWordFlag::Feminine | KEduVocWordFlag::Nominative] = feminine_1;
+        m_DeclensionLineEdits[KEduVocWordFlag::Feminine | KEduVocWordFlag::Genitive] = feminine_2;
+        m_DeclensionLineEdits[KEduVocWordFlag::Feminine | KEduVocWordFlag::Dative] = feminine_3;
+        m_DeclensionLineEdits[KEduVocWordFlag::Feminine | KEduVocWordFlag::Accusative] = feminine_4;
+        m_DeclensionLineEdits[KEduVocWordFlag::Feminine | KEduVocWordFlag::Ablative] = feminine_5;
+        m_DeclensionLineEdits[KEduVocWordFlag::Feminine | KEduVocWordFlag::Locative] = feminine_6;
+        m_DeclensionLineEdits[KEduVocWordFlag::Feminine | KEduVocWordFlag::Vocative] = feminine_7;
 
-    dualThirdMalePersonLabel->setVisible(maleFemaleDifferent);
-    dualThirdMalePersonLineEdit->setVisible(maleFemaleDifferent);
-    dualThirdFemalePersonLabel->setVisible(maleFemaleDifferent);
-    dualThirdFemalePersonLineEdit->setVisible(maleFemaleDifferent);
-
-    pluralThirdMalePersonLabel->setVisible(maleFemaleDifferent);
-    pluralThirdMalePersonLineEdit->setVisible(maleFemaleDifferent);
-    pluralThirdFemalePersonLabel->setVisible(maleFemaleDifferent);
-    pluralThirdFemalePersonLineEdit->setVisible(maleFemaleDifferent);
-
-    if ( !maleFemaleDifferent ) {
-        singularThirdNeutralPersonLabel->setVisible(true);
-        singularThirdNeutralPersonLineEdit->setVisible(true);
-        dualThirdNeutralPersonLabel->setVisible(true);
-        dualThirdNeutralPersonLineEdit->setVisible(true);
-        pluralThirdNeutralPersonLabel->setVisible(true);
-        pluralThirdNeutralPersonLineEdit->setVisible(true);
-    } else {
-        bool neutralExists = m_doc->identifier(m_identifier).personalPronouns().neutralExists();
-        singularThirdNeutralPersonLabel->setVisible(neutralExists);
-        singularThirdNeutralPersonLineEdit->setVisible(neutralExists);
-        dualThirdNeutralPersonLabel->setVisible(neutralExists);
-        dualThirdNeutralPersonLineEdit->setVisible(neutralExists);
-        pluralThirdNeutralPersonLabel->setVisible(neutralExists);
-        pluralThirdNeutralPersonLineEdit->setVisible(neutralExists);
+        m_DeclensionLineEdits[KEduVocWordFlag::Neuter | KEduVocWordFlag::Nominative] = neuter_1;
+        m_DeclensionLineEdits[KEduVocWordFlag::Neuter | KEduVocWordFlag::Genitive] = neuter_2;
+        m_DeclensionLineEdits[KEduVocWordFlag::Neuter | KEduVocWordFlag::Dative] = neuter_3;
+        m_DeclensionLineEdits[KEduVocWordFlag::Neuter | KEduVocWordFlag::Accusative] = neuter_4;
+        m_DeclensionLineEdits[KEduVocWordFlag::Neuter | KEduVocWordFlag::Ablative] = neuter_5;
+        m_DeclensionLineEdits[KEduVocWordFlag::Neuter | KEduVocWordFlag::Locative] = neuter_6;
+        m_DeclensionLineEdits[KEduVocWordFlag::Neuter | KEduVocWordFlag::Vocative] = neuter_7;
     }
-
-    // set up the personal pronouns
-    KEduVocPersonalPronoun pron = m_doc->identifier(m_identifier).personalPronouns();
-
-    singularFirstPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::First, KEduVocWordFlag::Singular ));
-    singularSecondPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Second, KEduVocWordFlag::Singular ));
-    singularThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdMale, KEduVocWordFlag::Singular ));
-    singularThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdFemale, KEduVocWordFlag::Singular ));
-    singularThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdNeutralCommon, KEduVocWordFlag::Singular ));
-
-    dualFirstPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::First, KEduVocWordFlag::Dual ));
-    dualSecondPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Second, KEduVocWordFlag::Dual ));
-    dualThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdMale, KEduVocWordFlag::Dual ));
-    dualThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdFemale, KEduVocWordFlag::Dual ));
-    dualThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdNeutralCommon, KEduVocWordFlag::Dual ));
-
-    pluralFirstPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::First, KEduVocWordFlag::Plural ));
-    pluralSecondPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Second, KEduVocWordFlag::Plural ));
-    pluralThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdMale, KEduVocWordFlag::Plural ));
-    pluralThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdFemale, KEduVocWordFlag::Plural ));
-    pluralThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::ThirdNeutralCommon, KEduVocWordFlag::Plural ));
-    */
 }
-
 
 #include "declensionwidget.moc"

@@ -40,8 +40,7 @@
       <Action name="show_falsefriend_dock"/>
       <Separator/>
       <Action name="show_comparison_dock"/>
-      <Action name="show_conjugation_dock"/>
-      <Action name="show_declension_dock"/>
+      <Action name="show_inflection_dock"/>
       <Separator/>
       <Action name="show_browser_dock"/>
       <Action name="config_show_search" />

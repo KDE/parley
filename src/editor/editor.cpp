@@ -30,8 +30,7 @@
 
 #include "multiplechoicewidget.h"
 #include "comparisonwidget.h"
-#include "conjugationwidget.h"
-#include "declensionwidget.h"
+#include "inflectionwidget.h"
 #include "imagechooserwidget.h"
 #include "audiowidget.h"
 #include "browserwidget.h"
@@ -104,7 +103,7 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
     m_wordTypeModel->setDocument(doc);
 
     m_summaryWordWidget->slotDocumentChanged(doc);
-    m_conjugationWidget->setDocument(doc);
+    m_inflectionWidget->setDocument(doc);
     m_comparisonWidget->setDocument(doc);
 
     if (!m_mainWindow->parleyDocument()->document()) {
@@ -121,7 +120,7 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
 
     connect(m_mainWindow->parleyDocument()->document(), SIGNAL(docModified(bool)), m_mainWindow, SLOT(slotUpdateWindowCaption()));
 
-    connect(m_vocabularyView->selectionModel(), 
+    connect(m_vocabularyView->selectionModel(),
                 SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
             m_summaryWordWidget, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
     connect(m_vocabularyView->selectionModel(),
@@ -190,31 +189,18 @@ void EditorWindow::initDockWidgets()
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         m_wordTypeView, SLOT(setTranslation(KEduVocExpression*, int)));
 
-// Conjugations
-    QDockWidget *conjugationDock = new QDockWidget(i18n("Conjugation"), this);
-    conjugationDock->setObjectName("ConjugationDock");
-    m_conjugationWidget = new ConjugationWidget(this);
-    conjugationDock->setWidget(m_conjugationWidget);
-    addDockWidget(Qt::RightDockWidgetArea, conjugationDock);
-    m_dockWidgets.append(conjugationDock);
-    conjugationDock->setVisible(false);
-    actionCollection()->addAction("show_conjugation_dock", conjugationDock->toggleViewAction());
+// Inflections
+    QDockWidget *inflectionDock = new QDockWidget(i18n("Inflection (verbs, adjectives, nouns)"), this);
+    inflectionDock->setObjectName("InflectionDock");
+    m_inflectionWidget = new InflectionWidget(this);
+    inflectionDock->setWidget(m_inflectionWidget);
+    addDockWidget(Qt::RightDockWidgetArea, inflectionDock);
+    m_dockWidgets.append(inflectionDock);
+    actionCollection()->addAction("show_inflection_dock", inflectionDock->toggleViewAction());
+    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)),
+            m_inflectionWidget, SLOT(setDocument(KEduVocDocument*)));
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-        m_conjugationWidget, SLOT(setTranslation(KEduVocExpression*, int)));
-
-// Declensions
-//     QDockWidget *declensionDock = new QDockWidget(i18n("Declension"), this);
-//     declensionDock->setObjectName("DeclensionDock");
-//     DeclensionWidget *declensionWidget = new DeclensionWidget(this);
-//     declensionDock->setWidget(declensionWidget);
-//     addDockWidget(Qt::RightDockWidgetArea, declensionDock);
-//     m_dockWidgets.append(declensionDock);
-//     actionCollection()->addAction("show_declension_dock", declensionDock->toggleViewAction());
-//     declensionDock->setVisible(false);
-//     connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)),
-//             declensionWidget, SLOT(setDocument(KEduVocDocument*)));
-//     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-//             declensionWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+            m_inflectionWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Comparison forms
     QDockWidget *comparisonDock = new QDockWidget(i18n("Comparison forms"), this);

@@ -19,8 +19,9 @@ set(parley_SRCS
     editor/audiowidget.cpp
     editor/browserwidget.cpp
     editor/comparisonwidget.cpp
+    editor/inflectionwidget.cpp
     editor/conjugationwidget.cpp
-#    editor/declensionwidget.cpp
+    editor/declensionwidget.cpp
     editor/imagechooserwidget.cpp
     editor/multiplechoicewidget.cpp
     editor/summarywordwidget.cpp

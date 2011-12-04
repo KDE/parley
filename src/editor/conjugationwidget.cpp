@@ -28,13 +28,9 @@ ConjugationWidget::ConjugationWidget(QWidget *parent) : QWidget(parent)
 
     setupUi(this);
 
-    connect(makeVerbButton, SIGNAL(clicked()), SLOT(slotMakeVerb()));
     connect(nextTenseButton, SIGNAL(clicked()), SLOT(slotNextTense()));
     connect(tenseComboBox, SIGNAL(activated(int)), SLOT(slotTenseSelected(int)));
     connect(tenseComboBox->lineEdit(), SIGNAL(editingFinished()), SLOT(tenseEditingFinished()));
-
-    showMakeVerbWidgets();
-    makeVerbButton->setEnabled(false);
 
     m_conjugationLineEdits[KEduVocWordFlag::First | KEduVocWordFlag::Singular]
         = singularFirstPersonLineEdit;
@@ -110,8 +106,6 @@ void ConjugationWidget::setTranslation(KEduVocExpression * entry, int identifier
 
     if (!m_doc || !entry) {
         setEnabled(false);
-        showMakeVerbWidgets();
-        makeVerbButton->setEnabled(false);
         return;
     }
 
@@ -123,14 +117,8 @@ void ConjugationWidget::setTranslation(KEduVocExpression * entry, int identifier
     setEnabled(true);
     if (entry->translation(m_identifier)->wordType()
             && entry->translation(m_identifier)->wordType()->wordType() & KEduVocWordFlag::Verb) {
-        // if it's a verb already, hide the make verb button and start editing it
-        showConjugationEditWidgets();
+        updateVisiblePersons();
         updateEntries();
-    } else {
-        // hide widgets
-        makeVerbButton->setEnabled(true);
-        showMakeVerbWidgets();
-        makeVerbButton->setText(i18n("\"%1\" is a verb", m_entry->translation(m_identifier)->text()));
     }
 }
 
@@ -151,36 +139,6 @@ void ConjugationWidget::slotNextTense()
     updateEntries();
 }
 
-void ConjugationWidget::slotMakeVerb()
-{
-    if(!m_doc) {
-        return;
-    }
-
-    // find an adverb container
-    KEduVocWordType* container = m_doc->wordTypeContainer()->childOfType(KEduVocWordFlag::Verb);
-    if (container) {
-        m_entry->translation(m_identifier)->setWordType(container);
-        showConjugationEditWidgets();
-    } else {
-        ///@todo better message
-        KMessageBox::information(this, i18n("Could not determine word type of verbs"));
-    }
-    setTranslation(m_entry, m_identifier);
-}
-
-void ConjugationWidget::showMakeVerbWidgets()
-{
-    makeVerbButton->setVisible(true);
-    showWidgets(false, false, false, false, false, false, false);
-}
-
-void ConjugationWidget::showConjugationEditWidgets()
-{
-    makeVerbButton->setVisible(false);
-    updateVisiblePersons();
-}
-
 void ConjugationWidget::updateVisiblePersons()
 {
     if (m_identifier < 0) {
@@ -193,7 +151,7 @@ void ConjugationWidget::updateVisiblePersons()
     bool neutralExists = m_doc->identifier(m_identifier).personalPronouns().neutralExists();
 
     showWidgets(true, true, dualVisible, true, maleFemaleDifferent, maleFemaleDifferent, neutralExists || (!maleFemaleDifferent));
-    
+
     // set up the personal pronouns
     KEduVocPersonalPronoun pron = m_doc->identifier(m_identifier).personalPronouns();
 

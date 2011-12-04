@@ -34,22 +34,22 @@ public slots:
     void setDocument(KEduVocDocument* doc);
     void setTranslation(KEduVocExpression* entry, int translation);
 
+    /**
+     * Fill the line edits
+     */
+    void updateEntries();
+
+    void nextNumber();
+
 signals:
     void sigModified();
 
 private slots:
     void textChanged(const QString&);
-    void slotMakeNoun();
 
 private:
-    void showMakeNounWidgets();
-    void showDeclensionEditWidgets();
-    void updateVisiblePersons();
-
-    /**
-     * Fill the line edits
-     */
-    void updateEntries();
+    int currentAdditionalWordFlag();
+    void setupLineEdits();
 
     int m_identifier;
     KEduVocExpression* m_entry;

@@ -1,5 +1,6 @@
 /***************************************************************************
     Copyright 2008 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    Copyright 2011 Jan Gerrit Marker <jangerrit@weiler-marker.com>
  ***************************************************************************/
 
 /***************************************************************************
@@ -11,57 +12,42 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef CONJUGATIONWIDGET_H
-#define CONJUGATIONWIDGET_H
+#ifndef INFLECTIONWIDGET_H
+#define INFLECTIONWIDGET_H
 
-#include "ui_conjugationwidget.h"
+#include <QStackedWidget>
 
-#include <keduvocwordflags.h>
+#include <keduvocdeclension.h>
 
 class KEduVocExpression;
 class KEduVocDocument;
 
 namespace Editor {
-    
-class ConjugationWidget : public QWidget, public Ui::ConjugationWidget
+    class DeclensionWidget;
+    class ConjugationWidget;
+
+class InflectionWidget : public QStackedWidget
 {
     Q_OBJECT
 
 public:
-    explicit ConjugationWidget(QWidget *parent = 0);
+    explicit InflectionWidget(QWidget *parent = 0);
 
 public slots:
     void setDocument(KEduVocDocument* doc);
     void setTranslation(KEduVocExpression* entry, int translation);
 
-signals:
-    void sigModified();
-
 private slots:
-    void textChanged(const QString&);
-    void slotTenseSelected(int);
-    void slotNextTense();
-    void tenseEditingFinished();
+    void setWordType();
 
 private:
-    void updateVisiblePersons();
+    QWidget *m_wordTypeWidget;
+    DeclensionWidget *m_declensionWidget;
+    ConjugationWidget *m_conjugationWidget;
 
-    void showWidgets(bool tenses, bool singular, bool dual, bool plural, bool maleVisible, bool femaleVisible, bool neuterVisible);
-
-    /**
-     * Fill the line edits
-     */
-    void updateEntries();
-
-    QString m_lastSelection;
-    int m_identifier;
-    KEduVocExpression* m_entry;
-    KEduVocDocument* m_doc;
-
-    /**
-     * All line edits and labels, index corresponding to KEduVocWordFlag::indexOf
-     */
-    QMap< KEduVocWordFlags, KLineEdit* > m_conjugationLineEdits;
+    KEduVocDocument *m_doc;
+    KEduVocExpression *m_entry;
+    int m_translation;
 };
 
 }
