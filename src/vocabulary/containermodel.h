@@ -43,10 +43,10 @@ public:
                         int role = Qt::DisplayRole) const;
     virtual int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
-    Qt::DropActions supportedDropActions () const;
-    QStringList mimeTypes() const;
-    QMimeData * mimeData(const QModelIndexList &indexes) const;
-    bool dropMimeData(const QMimeData *data, Qt::DropAction action,
+    virtual Qt::DropActions supportedDropActions () const;
+    virtual QStringList mimeTypes() const;
+    virtual QMimeData * mimeData(const QModelIndexList &indexes) const;
+    virtual bool dropMimeData(const QMimeData *data, Qt::DropAction action,
         int row, int column, const QModelIndex &parent);
 
     /** Change the name or checkbox of a lesson.

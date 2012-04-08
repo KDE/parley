@@ -41,12 +41,12 @@ public:
     virtual QVariant data(const QModelIndex &index, int role) const;
     virtual Qt::ItemFlags flags(const QModelIndex &index) const;
 
-    QModelIndex index(int row, int column,
+    virtual QModelIndex index(int row, int column,
                     const QModelIndex &parent = QModelIndex()) const;
 
     QModelIndex index(KEduVocContainer* container) const;
 
-    QModelIndex parent(const QModelIndex &index) const;
+    virtual QModelIndex parent(const QModelIndex &index) const;
     virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
     virtual int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
