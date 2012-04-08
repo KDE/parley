@@ -20,6 +20,7 @@ AbstractBackendMode::AbstractBackendMode(const PracticeOptions& practiceOptions,
     :QObject(parent)
     ,m_practiceOptions(practiceOptions)
     ,m_frontend(frontend)
+    ,m_current(0)
 {
 }
 
