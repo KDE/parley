@@ -9,7 +9,13 @@
     <height>470</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" >
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <layout class="QVBoxLayout">
    <item>
     <widget class="QLabel" name="label" >
      <property name="text" >
@@ -149,7 +155,7 @@
       <item row="0" column="1" >
        <widget class="QLabel" name="lessonLabel_2" >
         <property name="text" >
-         <string>Words</string>
+         <string>Number of Affected Words</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

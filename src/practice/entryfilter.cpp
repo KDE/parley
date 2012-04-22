@@ -120,12 +120,12 @@ QList<TestEntry*> EntryFilter::entries()
         m_dialog->setMainWidget(widget);
         m_dialog->setButtons( KDialog::Ok | KDialog::Cancel );
 
-        ui.lessonLabel->setText(QString::number(m_entriesLesson.count()));
-        ui.wordTypeLabel->setText(QString::number(m_entriesWordType.count()));
-        ui.blockedLabel->setText(QString::number(m_entriesNotBlocked.count()));
-        ui.timesWrongLabel->setText(QString::number(m_entriesTimesWrong.count()));
-        ui.timesPracticedLabel->setText(QString::number(m_entriesTimesPracticed.count()));
-        ui.minMaxGradeLabel->setText(QString::number(m_entriesMinMaxGrade.count()));
+        ui.lessonLabel        ->setText(QString::number(m_entries.count() - m_entriesLesson.count()));
+        ui.wordTypeLabel      ->setText(QString::number(m_entries.count() - m_entriesWordType.count()));
+        ui.blockedLabel       ->setText(QString::number(m_entries.count() - m_entriesNotBlocked.count()));
+        ui.timesWrongLabel    ->setText(QString::number(m_entries.count() - m_entriesTimesWrong.count()));
+        ui.timesPracticedLabel->setText(QString::number(m_entries.count() - m_entriesTimesPracticed.count()));
+        ui.minMaxGradeLabel   ->setText(QString::number(m_entries.count() - m_entriesMinMaxGrade.count()));
 
         ui.documentTotalLabel->setText(QString::number(m_entries.count()));
         updateTotal();
