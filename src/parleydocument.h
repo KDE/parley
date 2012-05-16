@@ -57,7 +57,8 @@ public slots:
     /** upload the current file */
     void uploadFile();
 
-    void open(const KUrl &);
+    /** Opens the given url, displays an error message and returns false on failure */
+    bool open(const KUrl &);
     void close();
 
     /** merge a document */

@@ -117,7 +117,9 @@ void WelcomeScreen::updateRecentFilesModel()
 
 void WelcomeScreen::slotOpenUrl(const KUrl& url)
 {
-    m_parleyApp->parleyDocument()->open(url);
+    if (!m_parleyApp->parleyDocument()->open(url)) {
+        return;
+    }
     m_parleyApp->showEditor();
 }
 
@@ -135,7 +137,9 @@ void WelcomeScreen::slotDoubleClickOpen()
 
 void WelcomeScreen::slotPracticeUrl(const KUrl & url)
 {
-    m_parleyApp->parleyDocument()->open(url);
+    if (!m_parleyApp->parleyDocument()->open(url)) {
+        return;
+    }
     m_parleyApp->showPracticeConfiguration();
 }
 

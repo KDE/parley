@@ -176,20 +176,31 @@ void ParleyDocument::slotFileOpenRecent(const KUrl& url)
     }
 }
 
-void ParleyDocument::open(const KUrl & url)
+bool ParleyDocument::open(const KUrl & url)
 {
-    if (!url.path().isEmpty()) {
-        close();
-        m_doc = new KEduVocDocument(this);
-        m_doc->setCsvDelimiter(Prefs::separator());
-        m_doc->open(url);
-
-        //m_parleyApp->editor()->updateDocument();
-        m_parleyApp->addRecentFile(url, m_doc->title());
-        
-        emit documentChanged(m_doc);
-        enableAutoBackup(Prefs::autoBackup());
+    if (url.path().isEmpty()) {
+        return false;
     }
+    
+    close();
+    m_doc = new KEduVocDocument(this);
+    m_doc->setCsvDelimiter(Prefs::separator());
+    int ret = m_doc->open(url);
+    if (ret != KEduVocDocument::NoError) {
+        KMessageBox::error(
+            m_parleyApp, i18n("Could not read collection from \"%1\"", url.url(), i18n("Open Collection")));
+        delete m_doc;
+        m_doc = 0;
+        return false;
+    }
+
+    //m_parleyApp->editor()->updateDocument();
+    m_parleyApp->addRecentFile(url, m_doc->title());
+        
+    emit documentChanged(m_doc);
+    enableAutoBackup(Prefs::autoBackup());
+
+    return true;
 }
 
 void ParleyDocument::close() {
