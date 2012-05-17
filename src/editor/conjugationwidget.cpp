@@ -91,8 +91,14 @@ void ConjugationWidget::slotTenseSelected(int sel)
 
 void ConjugationWidget::updateEntries()
 {
-    foreach(int key, m_conjugationLineEdits.keys()) {
-        m_conjugationLineEdits.value((KEduVocWordFlag::Flags)key)->setText(m_entry->translation(m_identifier)->conjugation(tenseComboBox->currentText()).conjugation((KEduVocWordFlag::Flags)key).text());
+    KEduVocConjugation& conjugation = m_entry->translation(m_identifier)->conjugation(tenseComboBox->currentText());
+    foreach(KEduVocWordFlags flags, m_conjugationLineEdits.keys()) {
+        QString text;
+        if (conjugation.keys().contains(flags)) {
+            text = conjugation.conjugation(flags).text();
+        }
+
+        m_conjugationLineEdits[flags]->setText(text);
     }
 }
 
