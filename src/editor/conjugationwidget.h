@@ -53,7 +53,7 @@ private:
      */
     void updateEntries();
 
-    QString m_lastSelection;
+    QString m_lastTenseSelection;
     int m_identifier;
     KEduVocExpression* m_entry;
     KEduVocDocument* m_doc;

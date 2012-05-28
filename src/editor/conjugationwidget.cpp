@@ -91,7 +91,8 @@ void ConjugationWidget::slotTenseSelected(int sel)
 
 void ConjugationWidget::updateEntries()
 {
-    KEduVocConjugation& conjugation = m_entry->translation(m_identifier)->conjugation(tenseComboBox->currentText());
+    m_lastTenseSelection = tenseComboBox->currentText();
+    KEduVocConjugation& conjugation = m_entry->translation(m_identifier)->conjugation(m_lastTenseSelection);
     foreach(KEduVocWordFlags flags, m_conjugationLineEdits.keys()) {
         QString text;
         if (conjugation.keys().contains(flags)) {
@@ -118,7 +119,11 @@ void ConjugationWidget::setTranslation(KEduVocExpression * entry, int identifier
     // init tenses per language
     tenseComboBox->addItems(m_doc->identifier(identifier).tenseList());
     tenseComboBox->completionObject()->insertItems(m_doc->identifier(identifier).tenseList());
-    tenseComboBox->setCurrentIndex(0);
+    if (tenseComboBox->contains(m_lastTenseSelection)) {
+        tenseComboBox->setCurrentItem(m_lastTenseSelection);
+    } else {
+        tenseComboBox->setCurrentIndex(0);
+    }
 
     setEnabled(true);
     if (entry->translation(m_identifier)->wordType()
