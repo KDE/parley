@@ -188,7 +188,7 @@ bool ParleyDocument::open(const KUrl & url)
     int ret = m_doc->open(url);
     if (ret != KEduVocDocument::NoError) {
         KMessageBox::error(
-            m_parleyApp, i18n("Could not read collection from \"%1\"", url.url(), i18n("Open Collection")));
+            m_parleyApp, i18n("Could not read collection from \"%1\"", url.url()), i18nc("@title:window", "Open Collection"));
         delete m_doc;
         m_doc = 0;
         return false;
@@ -248,7 +248,7 @@ void ParleyDocument::save()
     if ( result != 0 ) {
         KMessageBox::error(m_parleyApp,
                 i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(),
-                        m_doc->errorDescription(result)), i18n("Save File"));
+                     m_doc->errorDescription(result)), i18nc("@title:window", "Save File"));
         saveAs();
         return;
     }
@@ -298,7 +298,7 @@ void ParleyDocument::saveAs(KUrl url)
         emit statesNeedSaving();
     } else {
         KMessageBox::error(m_parleyApp, i18n("Writing file \"%1\" resulted in an error: %2",
-            m_doc->url().url(), m_doc->errorDescription(result)), i18n("Save File"));
+            m_doc->url().url(), m_doc->errorDescription(result)), i18nc("@title:window", "Save File"));
     }
 }
 
