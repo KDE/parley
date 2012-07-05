@@ -87,7 +87,7 @@ void PracticeMainWindow::initActions()
     toggleAnswerState->setHelpText(i18n("When you answered, Parley will display that the answer was right or wrong.\nThis shortcut changes how the answer is counted."));
     actionCollection()->addAction("toggle_answer_state", toggleAnswerState);
     toggleAnswerState->setShortcut(Qt::CTRL + Qt::Key_Space);
-    connect(toggleAnswerState, SIGNAL(triggered()), m_guiFrontend, SLOT(resultToggleClicked()));
+    connect(toggleAnswerState, SIGNAL(triggered()), m_guiFrontend, SLOT(toggleResultState()));
 
     m_floatingToolBar = new QWidget(m_parent);
     QHBoxLayout *layout = new QHBoxLayout();
