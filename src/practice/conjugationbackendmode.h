@@ -30,6 +30,9 @@ public:
 
     virtual bool setTestEntry(TestEntry* current);
 
+    /** Return the worst grade for any pronoun of the current entry */
+    virtual grade_t currentGradeForEntry();
+
     virtual void updateGrades();
 
 public Q_SLOTS:
@@ -38,7 +41,6 @@ public Q_SLOTS:
 
 private:
     QStringList validPersonalPronouns();
-    void updatePronounFlags();
 
     TestEntryManager* m_testEntryManager;
     KEduVocDocument* m_doc;

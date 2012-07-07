@@ -46,7 +46,7 @@ bool ConjugationBackendMode::setTestEntry(TestEntry* current)
 
     data.tense = m_currentTense;
     m_conjugation = m_current->entry()->translation(m_practiceOptions.languageTo())->conjugation(m_currentTense);
-    updatePronounFlags();
+    m_pronounFlags = current->conjugationPronouns();
 
     data.questionInfinitive = m_current->entry()->translation(m_practiceOptions.languageFrom())->text();
     data.solutionInfinitive = m_current->entry()->translation(m_practiceOptions.languageTo())->text();
@@ -67,25 +67,6 @@ bool ConjugationBackendMode::setTestEntry(TestEntry* current)
     m_frontend->setResultState(AbstractFrontend::QuestionState);
     m_frontend->showQuestion();
     return true;
-}
-
-void ConjugationBackendMode::updatePronounFlags()
-{
-    m_pronounFlags.clear();
-    for (int num = KEduVocWordFlag::Singular; num <= KEduVocWordFlag::Plural; num += KEduVocWordFlag::Singular) {
-        for (int pers = KEduVocWordFlag::First; pers <= KEduVocWordFlag::Third; pers += KEduVocWordFlag::First) {
-            if (m_conjugation.keys().contains(KEduVocWordFlags(num|pers))) {
-                kDebug() << "no gender " << num << pers;
-                m_pronounFlags.append(KEduVocWordFlags(num|pers));
-            }
-            for (int gender = KEduVocWordFlag::Masculine; gender <= KEduVocWordFlag::Neuter; gender += KEduVocWordFlag::Masculine) {
-                if (m_conjugation.keys().contains(KEduVocWordFlags(num|pers|gender))) {
-                    kDebug() << "gender " << num << pers << gender;
-                    m_pronounFlags.append(KEduVocWordFlags(num|pers|gender));
-                }
-            }
-        }
-    }
 }
 
 QStringList ConjugationBackendMode::validPersonalPronouns()
@@ -132,27 +113,40 @@ void ConjugationBackendMode::checkAnswer()
     }
 }
 
+grade_t ConjugationBackendMode::currentGradeForEntry()
+{
+    Q_ASSERT(m_current != 0);
+    KEduVocTranslation* trans = m_current->entry()->translation(m_practiceOptions.languageTo());
+    KEduVocConjugation& conj = trans->conjugation(m_current->conjugationTense());
+    QList<KEduVocWordFlags> keys = conj.keys();
+
+    grade_t min_grade = KV_MAX_GRADE;
+    foreach(KEduVocWordFlags key, keys) {
+        min_grade = qMin(conj.conjugation(key).grade(), min_grade);
+    }
+    
+    return min_grade;
+}
+
 void ConjugationBackendMode::updateGrades()
 {
     kDebug() << "Grading conjugations";
-        QStringList answers = m_frontend->userInput().toStringList();
 
-    bool allCorrect = true;
-    int numRight = 0;
-    int i=0;
     foreach(const KEduVocWordFlags& key, m_pronounFlags) {
-        if (answers.at(i) == m_conjugation.conjugation(key).text()) {
-            m_current->entry()->translation(Prefs::solutionLanguage())->conjugation(m_currentTense).conjugation(key).incGrade();
-            m_current->entry()->translation(Prefs::solutionLanguage())->conjugation(m_currentTense).conjugation(key).incPracticeCount();
-            ++numRight;
+        KEduVocText& text = m_current->entry()->translation(Prefs::solutionLanguage())->
+                conjugation(m_currentTense).conjugation(key);
+
+        text.incPracticeCount();
+        text.setPracticeDate(QDateTime::currentDateTime());
+        
+        if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
+            if (m_current->statisticBadCount() == 0) {
+                text.incGrade();
+            }
         } else {
-            m_current->entry()->translation(Prefs::solutionLanguage())->conjugation(m_currentTense).conjugation(key).setGrade(1);
-            m_current->entry()->translation(Prefs::solutionLanguage())->conjugation(m_currentTense).conjugation(key).incPracticeCount();
-            kDebug() << "dec grade for " << m_conjugation.conjugation(key).text();
-            allCorrect = false;
+            text.setGrade(KV_LEV1_GRADE);
+            text.incBadCount();
         }
-        m_current->entry()->translation(Prefs::solutionLanguage())->conjugation(m_currentTense).conjugation(key).setPracticeDate( QDateTime::currentDateTime() );
-        ++i;
     }
 }
 

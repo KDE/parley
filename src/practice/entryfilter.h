@@ -66,7 +66,14 @@ private:
      */
     void cleanupInvalid();
 
-    QList<TestEntry*> conjugationTestEntries() const;
+    /**
+     * In conjugation practice mode, creates more than one test entry per verb if necessary.
+     * This depends on the number of tenses and on the practice mode selected (every pronoun
+     * separately, or grouped by tense).
+     */
+    QList<TestEntry*> conjugationTestEntries(bool ignoreBlocked) const;
+
+    static void randomizedInsert(QList<TestEntry*>& list, TestEntry* entry);
 
 private slots:
     void checkBoxChanged(bool filter);
@@ -86,7 +93,7 @@ private:
     KEduVocDocument *m_doc;
     int m_fromTranslation;
     int m_toTranslation;
-    Prefs::EnumPracticeMode::type m_mode;
+    // The tenses selected by the user for practice
     QStringList m_tenses;
 
     KDialog *m_dialog;

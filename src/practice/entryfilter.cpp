@@ -14,6 +14,7 @@
 #include "entryfilter.h"
 
 
+#include <krandom.h>
 
 #include <KDebug>
 #include <KDialog>
@@ -37,8 +38,7 @@ EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc)
     m_toTranslation = Prefs::solutionLanguage();
     kDebug() << "Filter for " << m_fromTranslation << " to " << m_toTranslation;
 
-    m_mode = Prefs::practiceMode();
-    if (m_mode == Prefs::EnumPracticeMode::ConjugationPractice) {
+    if (Prefs::practiceMode() == Prefs::EnumPracticeMode::ConjugationPractice) {
         DocumentSettings documentSettings(m_doc->url().url() + QString::number(m_toTranslation));
         documentSettings.readConfig();
         m_tenses = documentSettings.conjugationTenses();
@@ -78,9 +78,13 @@ QList<TestEntry*> EntryFilter::entries()
     m_entries = m_doc->lesson()->entries(KEduVocLesson::Recursive).toSet();
     cleanupInvalid();
 
+    static QString noEntriesError =
+            i18n("The vocabulary document contains no entries that can be used for the chosen type"
+                    " of practice.");
+
     kDebug() << "Document contains " << m_entries.count() << " valid entries.";
     if (m_entries.count() == 0) {
-        KMessageBox::error(0, i18n("The vocabulary document contains no entries that can be used for the chosen type of practice."));
+        KMessageBox::error(0, noEntriesError);
         return QList<TestEntry*>();
     }
 
@@ -106,6 +110,7 @@ QList<TestEntry*> EntryFilter::entries()
 
     updateTotal();
 
+    bool ignoreBlocked = false;
     if (m_currentSelection.count() == 0) {
         kDebug() << "Creating practice filter dialog.";
         m_dialog = new KDialog;
@@ -150,18 +155,23 @@ QList<TestEntry*> EntryFilter::entries()
             delete m_dialog;
             return QList<TestEntry*>();
         }
+        ignoreBlocked = ui.blockedCheckBox->isChecked();
         delete m_dialog;
     }
 
-    if (m_mode == Prefs::EnumPracticeMode::ConjugationPractice) {
-        return conjugationTestEntries();
+    if (Prefs::practiceMode() == Prefs::EnumPracticeMode::ConjugationPractice) {
+        QList< TestEntry* > ret = conjugationTestEntries(ignoreBlocked);
+        if (ret.count() == 0) {
+            KMessageBox::error(0, noEntriesError);
+        }
+        return ret;
+    } else {
+        QList<TestEntry*> testEntries;
+        foreach (KEduVocExpression* entry, m_currentSelection){
+            randomizedInsert(testEntries, new TestEntry(entry));
+        }
+        return testEntries;
     }
-
-    QList<TestEntry*> testEntries;
-    foreach (KEduVocExpression* entry, m_currentSelection){
-        testEntries.append(new TestEntry(entry));
-    }
-    return testEntries;
 }
 
 void EntryFilter::checkBoxChanged(bool filter)
@@ -202,7 +212,6 @@ void EntryFilter::updateTotal()
 
 void EntryFilter::lessonEntries()
 {
-    /// @todo maybe randomize
     foreach(KEduVocExpression* entry, m_entries) {
         if (entry->lesson()->inPractice()) {
             m_entriesLesson.insert(entry);
@@ -232,7 +241,7 @@ void EntryFilter::blockedEntries()
         return;
     }
 
-    switch (m_mode) {
+    switch (Prefs::practiceMode()) {
     case Prefs::EnumPracticeMode::ConjugationPractice:
         foreach(KEduVocExpression* entry, m_entries) {
             if (!isConjugationBlocked(entry->translation(m_toTranslation))) {
@@ -278,7 +287,8 @@ bool EntryFilter::isConjugationBlocked(KEduVocTranslation* translation) const
             foreach(const KEduVocWordFlags& pronoun, pronouns) {
                 KEduVocText grade = translation->conjugation(tense).conjugation(pronoun);
                 if (!isBlocked(&(grade))) {
-                    // just need to find any form that is not blocked
+                    // just need to find any form that is not blocked for generating test entries
+                    // exact filtering is done later in conjugationTestEntries
                     return false;
                 }
             }
@@ -409,14 +419,31 @@ void EntryFilter::cleanupInvalid()
             }
             break;
 
-        case Prefs::EnumPracticeMode::ConjugationPractice:
-            if ( (*i)->translation(m_toTranslation)->wordType()->wordType() != KEduVocWordFlag::Verb 
-                || (*i)->translation(m_toTranslation)->conjugations().count() == 0) {
-                // FIXME should also check tenses
+        case Prefs::EnumPracticeMode::ConjugationPractice: {
+            KEduVocTranslation* translation = (*i)->translation(m_toTranslation);
+            bool erase = false;
+
+            // Remove entries which are not verbs
+            if (translation->wordType()->wordType() != KEduVocWordFlag::Verb) {
+                erase = true;
+            }
+
+            // Remove entries which don't have any of the tenses which are configured for practice
+            QSet<QString> practice_tenses = QSet<QString>::fromList(m_tenses);
+            QSet<QString> existing_tenses;
+            foreach(const QString& tense, translation->conjugationTenses()) {
+                if (!translation->conjugation(tense).isEmpty()) {
+                    existing_tenses << tense;
+                }
+            }
+            if (existing_tenses.intersect(practice_tenses).isEmpty()) erase = true;
+
+            if (erase) {
                 i = m_entries.erase(i);
                 continue;
-            } // conjugation
+            }
             break;
+        }
         default:
             break;
         } // switch
@@ -425,46 +452,65 @@ void EntryFilter::cleanupInvalid()
     kDebug() << "Invalid items removed. Remaining: " << m_entries.count();
 }
 
-QList< TestEntry* > EntryFilter::conjugationTestEntries() const
+QList< TestEntry* > EntryFilter::conjugationTestEntries(bool ignoreBlocked) const
 {
     kDebug() << "Filtering conjugation entries for tenses... " << m_tenses;
 
+    // TODO CM make this configurable
+    enum MODE
+    {
+        M_SEPARATE,
+        M_COMPLETE
+    };
+    MODE mode = M_SEPARATE;
+
     QList<TestEntry*> testEntries;
-    foreach (KEduVocExpression* entry, m_currentSelection){
+    foreach (KEduVocExpression* entry, m_currentSelection) {
         foreach(const QString& tense, entry->translation(m_toTranslation)->conjugationTenses()) {
-            if(m_tenses.contains(tense)) {
-                QList<KEduVocWordFlags> pronouns = entry->translation(m_toTranslation)->conjugation(tense).keys();
-                foreach(const KEduVocWordFlags& pronoun, pronouns) {
-                    if (!isBlocked(&(entry->translation(m_toTranslation)->conjugation(tense).conjugation(pronoun)))) {
+
+            // Only include tenses which are both non-empty and which should be practiced
+            if (!m_tenses.contains(tense)) {
+                continue;
+            }
+            KEduVocConjugation& conjugation = entry->translation(m_toTranslation)->conjugation(tense);
+            if (conjugation.isEmpty()) {
+                continue;
+            }
+
+            bool blocked = true;
+            QList<KEduVocWordFlags> pronouns = conjugation.keys();
+            foreach(const KEduVocWordFlags& pronoun, pronouns) {
+                KEduVocText* grade = &conjugation.conjugation(pronoun);
+                if (ignoreBlocked || !isBlocked(grade)) {
+                    blocked = false;
+
+                    if (mode == M_SEPARATE)
+                    {
                         TestEntry* testEntry = new TestEntry(entry);
                         testEntry->setConjugationTense(tense);
-                        testEntries.append(testEntry);
+                        QList<KEduVocWordFlags> list;
+                        list << pronoun;
+                        testEntry->setConjugationPronouns(list);
+                        randomizedInsert(testEntries, testEntry);
                     }
                 }
+            }
+
+            if (!blocked && mode == M_COMPLETE) {
+                TestEntry* testEntry = new TestEntry(entry);
+                testEntry->setConjugationTense(tense);
+                testEntry->setConjugationPronouns(pronouns);
+                randomizedInsert(testEntries, testEntry);
             }
         }
     }
     return testEntries;
-    /*
-    // FIXME tense selection
-    QStringList possibleTenses;
-    foreach(const QString& practiceTense, m_tenses) {
-        if (m_current->entry()->translation(m_practiceOptions.languageTo())
-            ->conjugationTenses().contains(practiceTense)) {
-            possibleTenses.append(practiceTense);
-        }
-    }
-    if (possibleTenses.isEmpty()) {
-        kDebug() << "No valid practice tenses in entry: " << m_current->entry()->translation(m_practiceOptions.languageTo())->text()
-            << m_current->entry()->translation(m_practiceOptions.languageTo())->conjugationTenses()
-            << m_tenses;
-        return false;
-    }
-
-    m_currentTense = possibleTenses.first();
-    */
-
 }
 
+
+void EntryFilter::randomizedInsert(QList<TestEntry*>& list, TestEntry* entry)
+{
+    list.insert(KRandom::random() % (list.size()+1), entry);
+}
 
 #include "entryfilter.moc"

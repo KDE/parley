@@ -78,13 +78,24 @@ void ConjugationModeWidget::setQuestion(const QVariant& question)
         return;
     }
     ConjugationData data = question.value<ConjugationData>();
-    m_ui->tenseLabel->setText(data.tense);
+
+    // It's annoying to have to search for information, so put everything into one place if
+    // there`s only one pronoun
+    if (data.personalPronouns.size() > 1) {
+        m_ui->tenseLabel->setText(data.tense);
+    } else {
+        m_ui->tenseLabel->clear();
+    }
+
     m_ui->questionLabel->setText(data.questionInfinitive);
     m_ui->infinitiveEdit->setText(data.solutionInfinitive);
 
     setNumberOfConjugationWidgets(data.personalPronouns.size());
     int i = 0;
-    foreach(const QString& pp, data.personalPronouns) {
+    foreach(QString pp, data.personalPronouns) {
+        if (data.personalPronouns.size() == 1) {
+            pp += " (" + data.tense + ")";
+        }
         m_personWidgets.at(i)->person->setText(pp);
         m_personWidgets.at(i)->person->setFont(m_solutionFont);
         m_personWidgets.at(i)->input->clear();

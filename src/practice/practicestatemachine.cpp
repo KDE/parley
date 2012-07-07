@@ -115,12 +115,12 @@ void PracticeStateMachine::nextEntry()
         slotPracticeFinished();
         return;
     }
-    updateFrontend();
     if (!m_mode->setTestEntry(m_current)) {
         // this is just a fall back, if an invalid entry slipped through
         currentEntryFinished();
         nextEntry();
     }
+    updateFrontend();
 }
 
 void PracticeStateMachine::slotPracticeFinished()
@@ -201,7 +201,7 @@ void PracticeStateMachine::updateFrontend()
         m_testEntryManager->totalEntryCount() - m_testEntryManager->activeEntryCount() + 1,
         m_testEntryManager->totalEntryCount());
 
-    grade_t grade = m_current->entry()->translation(m_options.languageTo())->grade();
+    grade_t grade = m_mode->currentGradeForEntry();
     grade_t goodGrade = qMax(grade, grade_t(KV_LEV1_GRADE)); // if the word hasn't been practiced yet, use grade 1 as a base
     if (m_current->statisticBadCount() == 0) {
         goodGrade = qMax(KV_LEV2_GRADE, qMin(grade+1, KV_MAX_GRADE));

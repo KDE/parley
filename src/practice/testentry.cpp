@@ -145,3 +145,13 @@ void TestEntry::setConjugationTense(const QString& tense)
 {
     m_conjugationTense = tense;
 }
+
+QList<KEduVocWordFlags> TestEntry::conjugationPronouns() const
+{
+    return m_conjugationPronouns;
+}
+
+void TestEntry::setConjugationPronouns(const QList<KEduVocWordFlags>& flags)
+{
+    m_conjugationPronouns = flags;
+}

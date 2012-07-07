@@ -61,10 +61,16 @@ public:
     bool correctAtFirstAttempt();
 
     /**
-     * in conjugation mode, use this tense for the entry
+     * In conjugation mode, use this tense for the entry.
      */
     QString conjugationTense() const;
     void setConjugationTense(const QString& tense);
+
+    /**
+     * In conjugation mode, use these pronouns for the entry.
+     */
+    QList<KEduVocWordFlags> conjugationPronouns() const;
+    void setConjugationPronouns(const QList<KEduVocWordFlags>& flags);
 
     void setLastErrors(ErrorTypes errorTypes);
     ErrorTypes lastErrors();
@@ -74,8 +80,6 @@ public:
 
     void addUserAnswer(const QString& answer) { if (!answer.isEmpty()) m_userAnswers.append(answer); }
     QStringList userAnswers() { return m_userAnswers; }
-
-    int totalEntries();
 
     static void setGradeFrom(int from);
     static void setGradeTo(int to);
@@ -87,7 +91,11 @@ public:
 private:
     /// the entry itself
     KEduVocExpression *m_entry;
-    QString m_conjugationTense;
+
+    //! Only affects conjugation training.
+    QString                 m_conjugationTense;
+    //! Only affects conjugation training.
+    QList<KEduVocWordFlags> m_conjugationPronouns;
 
     // these are for the CURRENT query only, so we can display statistics.
     int m_statisticCount;
