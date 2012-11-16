@@ -88,9 +88,6 @@
           <property name="text" >
            <string>minutes</string>
           </property>
-          <property name="buddy" >
-           <cstring>kIntSpinBox1</cstring>
-          </property>
          </widget>
         </item>
        </layout>
