@@ -2,6 +2,7 @@
 Name=Parley
 Name[ast]=Parley
 Name[bg]=Parley
+Name[bs]=Parley
 Name[ca]=Parley
 Name[ca@valencia]=Parley
 Name[cs]=Parley
@@ -55,6 +56,7 @@ Name[zh_TW]=語言_Parley
 Comment=Vocabulary data for Plasmoids
 Comment[ast]=Datos de vocabulariu pa los Plasmoides
 Comment[bg]=Речникови данни за плазмоиди
+Comment[bs]=Rječnički podaci za plazmoide
 Comment[ca]=Dades de vocabulari per als plasmoides
 Comment[ca@valencia]=Dades de vocabulari per als plasmoides
 Comment[cs]=Slovní zásoba pro plasmoidy
