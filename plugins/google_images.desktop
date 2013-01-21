@@ -62,6 +62,7 @@ Comment[sk]=Tento skript automaticky stiahne obrázky z images.google.com pre vy
 Comment[sv]=Skriptet hämtar automatiskt bilder från images.google.com för det valda ordet. Sökspråk beror på det valda ordet. Nerladdade bilder lagras i katalogen <<dokumentfilnamn>>_files intill dokumentfilen. Kräver PyQt4.
 Comment[uk]=Цей скрипт автоматично отримує зображення з images.google.com за вибраним словом. Мова пошуку залежить від вибраного слова. Звантажені зображення зберігаються у теці <<назва файла документа>>_files поряд з файлом документа. Потрібен PyQt4.
 Comment[x-test]=xxThis script automatically fetches images from images.google.com for the selected word. The search language depends on the selected word. Downloaded images are stored in a <<document file name>>_files folder next to the document file. Requires PyQt4.xx
+Comment[zh_TW]=此文稿會自動為選取的字從 images.google.com 抓取影像。搜尋語言與選取的單字有關。下載的影像會放在 <<文件檔名>>_files 的資料夾中。此文稿需要使用 PyQt4。
 Script=google_images.py
 
 X-KDE-PluginInfo-Author=Avgoustinos Kadis
