@@ -3,7 +3,7 @@
   <!-- Define an entity for your application if it is not part of KDE
        CVS -->
   <!ENTITY kappname "&parley;">
-  <!ENTITY package "kdeedu">  
+  <!ENTITY package "parley">  
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE">]>
 
@@ -44,8 +44,8 @@
 </copyright>
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2011-09-26</date>
-<releaseinfo>0.9.4 (&kde; SC 4.7)</releaseinfo>
+<date>2013-07-09</date>
+<releaseinfo>0.9.4 (&kde; SC 4.11)</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -670,7 +670,7 @@ limited to language learning but supports a multitude of subjects.
 <sect2 id="conjugations"><title>Conjugations</title> 
 <para>To practice conjugations choose the <guilabel>Conjugations</guilabel> mode and the tenses you wish to exercise.
 </para>
-<para>In the document the conjugation forms of the words have to be entered in order to allow this practice mode to work. See <link linkend="entering-conjugation-forms">Entering Conjugation Forms</link>.
+<para>In the document the conjugation forms of the words have to be entered in order to allow this practice mode to work. See <link linkend="entering-inflection-forms">Entering Inflection Forms</link>.
 </para>
 <para>
 <screenshot>
@@ -802,7 +802,7 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>Tenses: Depending on the language, you can enter the right tenses which you later want to learn how to conjugate. Examples are: Simple Present, Simple Past, Future I etc. 
 </para>
-<para>Btw. by clicking on the <guilabel>Add New Language</guilabel> button you can add an additional language to your collection.
+<para>Btw. by clicking on the <guilabel>Add Language</guilabel> button you can add an additional language to your collection.
 </para>
 <sect3 id="lets-have-a-closer-look-at-spanish"><title>Let's Have a Closer Look at Spanish</title>
 <para>On the <guilabel>General</guilabel> tab the basic language settings, like here 
@@ -957,7 +957,7 @@ limited to language learning but supports a multitude of subjects.
 <sect2 id="editing-words"><title>Editing Words</title> 
 <para>If you want to replace a word, select its entry and start typing. To change the word instead, double click the entry and you can change the contents of the cell without losing the old word. 
 </para>
-<para>Press &Tab; to go to the next word. &Enter; leaves the editing mode. You can use the arrow keys to move around.
+<para>Press &Tab; to go to the next word while staying in editing mode. &Enter; leaves this mode. You can use the arrow keys to move around.
 </para>
 </sect2>
 </sect1>
@@ -1033,7 +1033,7 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>Click the <guilabel>Adjective</guilabel> or <guilabel>Adverb</guilabel> button in the comparison forms tool.
 </para>
-<para>
+<!--para>
 <screenshot>
 <screeninfo></screeninfo>
   <mediaobject>
@@ -1045,7 +1045,7 @@ limited to language learning but supports a multitude of subjects.
     </textobject>
   </mediaobject>
 </screenshot>
-</para>
+</para-->
 <para>Enter the comparison forms.
 </para>
 <para>
@@ -1064,8 +1064,8 @@ limited to language learning but supports a multitude of subjects.
 <para>Now you can use the <link linkend="comparison-forms-of-adjectives-and-adverbs">Comparison Forms Practice</link> mode.
 </para>
 </sect1>
-<sect1 id="entering-conjugation-forms"><title>Entering Conjugation Forms</title> 
-<para>In order to enter conjugation forms, make sure the conjugation forms tool is enabled. You open it with the menu: <menuchoice><guimenu>View</guimenu><guimenuitem>Conjugation</guimenuitem></menuchoice>.
+<sect1 id="entering-inflection-forms"><title>Entering Inflection Forms</title> 
+<para>In order to enter inflection forms, make sure the inflection forms tool is enabled. You open it with the menu: <menuchoice><guimenu>View</guimenu><guimenuitem>Inflection (verbs, adjectives, nouns)</guimenuitem></menuchoice>.
 </para>
 <para>First select a word that is a verb.
 </para>
@@ -1082,7 +1082,7 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>Click the <guilabel>... is a Verb</guilabel> button in the conjugations tool.
+<para>Click the <guilabel>Verb</guilabel> button in the inflections tool.
 </para>
 <para>
 <screenshot>
@@ -1103,7 +1103,8 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>Now you can use the <link linkend="conjugations">Conjugations Practice</link> mode.
 </para>
-</sect1>
+<para>Use the <guibutton>Noun</guibutton> or <guibutton>Adjective</guibutton> button to add declension forms to your vocabulary.
+</para></sect1>
 <sect1 id="creating-new-files"><title>Creating New Files</title> 
 <para>In this section we will describe how to create new files and this not only with the usual vocabulary learning part, but also for grammar exercises, mathematics etc.
 </para>
@@ -1183,7 +1184,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_003.png" format="PNG"/>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_003.png" format="PNG"/> <!--FIXME Lessons wrong in png-->
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -1204,7 +1205,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_004.png" format="PNG"/>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_004.png" format="PNG"/> <!--FIXME Lessons wrong in png-->
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -1318,7 +1319,7 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>By clicking on the fields in the column <guilabel>Word Type</guilabel> you can select the word type and for those languages where nouns have a gender you can also select the <emphasis>Noun/Gender</emphasis> combination. Below the <guilabel>Word Type</guilabel> column with part of the selections already done.
+<para>By clicking on the fields in the column <guilabel>Word Type</guilabel> you can select the word type and for those languages where nouns have a gender you can also select the <emphasis>Noun/Gender</emphasis> combination. Alternatively start to type the first characters of a word type to select it. Below the <guilabel>Word Type</guilabel> column with part of the selections already done.
 </para>
 <para>
 <screenshot>
@@ -1433,7 +1434,7 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>Fill in the title, here <guilabel>nomi singoli e collettivi</guilabel>, your name, e-mail address, in the <guilabel>Comment</guilabel> section you can write down a more detailed description, select your category and license. Then there we have something special: instead of indicating the first and second language, like it normally would happen, we added <emphasis>nome singolo</emphasis> (single name) and <emphasis>nome collettivo</emphasis> (collective name). <guilabel>Setup Grammar Details</guilabel> and <guilabel>Download Grammar</guilabel> are not needed here. In the screenshot they are still activated - please deactivate them by just clicking on the checkboxes. When you are done, please click on <guilabel>OK</guilabel>.
 </para>
-<para>The <guilabel>Properties</guilabel> page for <emphasis>nome singolo</emphasis> comes up and here you see it already with the necessary changes made:
+<para>Select <menuchoice><guimenu>View</guimenu><guimenuitem>Languages</guimenuitem></menuchoice> and the <guilabel>Properties for nome singolo</guilabel> page comes up and here you see it already with the necessary changes made:
 </para>
 <para>
 <screenshot>
@@ -1450,7 +1451,7 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>On the left hand side you can see where the data you are adding belongs to. <emphasis>nome singolo</emphasis>. Choose the language, here <emphasis>Italian</emphasis> and insert <emphasis>nome singolo</emphasis> in the following editable field. Then click on <guilabel>OK</guilabel>.
 </para>
-<para>Now the <guilabel>Properties</guilabel> page for <emphasis>nome collettivo</emphasis> is shown:
+<para>Now the <guilabel>Properties for nome collettivo</guilabel> page is shown:
 </para>
 <para>
 <screenshot>
@@ -1695,7 +1696,7 @@ limited to language learning but supports a multitude of subjects.
 <sect1 id="upload-and-share-collections"><title>Upload and Share Collections</title> 
 <para>You can upload your files and share them with others.
 </para>
-<para>Use the upload button from the file menu in the Editor within Parley.
+<para>Use <guimenuitem>Upload Vocabulary Document</guimenuitem> from the file menu in the Editor within Parley.
 </para>
 <para>If that does not work, you can also visit <ulink url="http://kde-files.org/?xcontentmode=687">kde-files.org</ulink>.
 </para>
