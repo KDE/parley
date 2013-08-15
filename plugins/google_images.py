@@ -247,6 +247,6 @@ def fetchImage():
 
 #create a new action for the Scripts menu (action1)
 action1 = Parley.newAction("example_action1", i18n("Fetch Image"))
-action1.statusTip = str(i18n("Fetches an image for the selected translation"))
+action1.statusTip = str(i18n("Fetches an image for the selected translation").toUtf8())
 Parley.connect(action1,"triggered()",fetchImage)
 
