@@ -77,7 +77,10 @@ void fetchGrammar(KEduVocDocument* doc, int languageIndex)
 } // namespace DocumentHelper
 
 ParleyDocument::ParleyDocument(ParleyMainWindow* parleyMainWindow)
-    :QObject(parleyMainWindow), m_parleyApp(parleyMainWindow), m_doc(new KEduVocDocument(this)), m_backupTimer(0)
+    : QObject(parleyMainWindow)
+    , m_parleyApp(parleyMainWindow)
+    , m_doc(new KEduVocDocument(this))
+    , m_backupTimer(0)
 {
 }
 
@@ -203,7 +206,8 @@ bool ParleyDocument::open(const KUrl & url)
     return true;
 }
 
-void ParleyDocument::close() {
+void ParleyDocument::close()
+{
     kDebug() << "Close Document";
     enableAutoBackup(false);
     emit documentChanged(0);

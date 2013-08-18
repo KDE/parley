@@ -61,7 +61,7 @@ class QLabel;
 class QDockWidget;
 
 class WelcomeScreen;
-    class StatisticsMainWindow;
+class StatisticsMainWindow;
 class ScriptManager;
 class ParleyPracticeMainWindow;
 

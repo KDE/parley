@@ -221,11 +221,13 @@ QSize ParleyMainWindow::sizeHint() const
     return QSize(800, 600).expandedTo(KXmlGuiWindow::minimumSizeHint());
 }
 
-void ParleyMainWindow::tipOfDay() {
+void ParleyMainWindow::tipOfDay()
+{
     KTipDialog::showTip(this, "parley/tips", true);
 }
 
-void ParleyMainWindow::startupTipOfDay() {
+void ParleyMainWindow::startupTipOfDay()
+{
     KTipDialog::showTip(this, "parley/tips");
 }
 
@@ -290,13 +292,15 @@ void ParleyMainWindow::switchComponent(Component component)
             statisticsWidget->syncConfig();
         }
 
-        // don't start a practice when there are no words to practice
-        // this has to be checked before deleting the old component
+        // Don't start a practice when there are no words to practice.
+        // This has to be checked before deleting the old component.
         m_testEntryManager.setDocument(m_document->document());
         if (!m_testEntryManager.totalEntryCount()) {
             return;
         }
     }
+
+    // Remove and delete the old component window if there is one active.
     if (m_currentComponentWindow) {
         guiFactory()->removeClient(m_currentComponentWindow);
         centralWidget()->layout()->removeWidget(m_currentComponentWindow);
@@ -342,7 +346,7 @@ void ParleyMainWindow::switchComponent(Component component)
         default:
             break;
     }
-    kDebug() << "new component" << m_currentComponentWindow;
+    //kDebug() << "new component" << m_currentComponentWindow;
 
     guiFactory()->addClient(m_currentComponentWindow);
     centralWidget()->layout()->addWidget(m_currentComponentWindow);

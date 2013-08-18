@@ -43,13 +43,13 @@ namespace ParleyActions {
                     QObject *parent);
                     
     KRecentFilesAction* createRecentFilesAction(const QObject *recvr, const char *slot,
-                    QObject *parent);
+                                                QObject *parent);
                     
     KAction* createDownloadAction(const QObject *recvr, const char *slot,
-                                         KActionCollection *collection);
+                                  KActionCollection *collection);
 
     KAction* createUploadAction(const QObject *recvr, const char *slot,
-                                         KActionCollection *collection);
+                                KActionCollection *collection);
 }
 
 #endif
