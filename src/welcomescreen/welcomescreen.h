@@ -49,7 +49,7 @@ private slots:
 
 private:
     Ui::WelcomeScreen *ui;
-    ParleyMainWindow *m_parleyApp;
+    ParleyMainWindow *m_mainWindow;
     QStandardItemModel *m_recentFilesModel;
     KUrl m_openUrl;
     Practice::ThemedBackgroundRenderer *m_themedBackgroundRenderer;

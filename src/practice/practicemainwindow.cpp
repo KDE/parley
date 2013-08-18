@@ -35,8 +35,9 @@
 
 using namespace Practice;
 
-PracticeMainWindow::PracticeMainWindow(TestEntryManager* testEntryManager, ParleyMainWindow* parent)
-    : KXmlGuiWindow(parent), m_parent(parent)
+PracticeMainWindow::PracticeMainWindow(TestEntryManager* testEntryManager,
+                                       ParleyMainWindow* mainWindow)
+    : KXmlGuiWindow(mainWindow), m_mainWindow(mainWindow)
 {
     // KXmlGui
     setXMLFile("practiceui.rc");
@@ -46,10 +47,10 @@ PracticeMainWindow::PracticeMainWindow(TestEntryManager* testEntryManager, Parle
     setCentralWidget(m_guiFrontend->widget());
 
     PracticeOptions options;
-    m_stateMachine = new PracticeStateMachine(m_guiFrontend, parent->parleyDocument(), options, testEntryManager, this);
+    m_stateMachine = new PracticeStateMachine(m_guiFrontend, mainWindow->parleyDocument(), options, testEntryManager, this);
 
     // setModified - otherwise we may not ask to save progress
-    parent->parleyDocument()->document()->setModified(true);
+    mainWindow->parleyDocument()->document()->setModified(true);
 
     initActions();
 
@@ -79,7 +80,7 @@ void PracticeMainWindow::initActions()
 
     m_fullScreenAction = KStandardAction::fullScreen(this,
                                                      SLOT(toggleFullScreenMode(bool)),
-                                                     m_parent,
+                                                     m_mainWindow,
                                                      actionCollection());
 
     KAction* toggleAnswerState = new KAction(this);
@@ -89,7 +90,7 @@ void PracticeMainWindow::initActions()
     toggleAnswerState->setShortcut(Qt::CTRL + Qt::Key_Space);
     connect(toggleAnswerState, SIGNAL(triggered()), m_guiFrontend, SLOT(toggleResultState()));
 
-    m_floatingToolBar = new QWidget(m_parent);
+    m_floatingToolBar = new QWidget(m_mainWindow);
     QHBoxLayout *layout = new QHBoxLayout();
     m_floatingToolBar->setLayout(layout);
     m_floatingToolBar->setAutoFillBackground(true);
@@ -112,7 +113,7 @@ void PracticeMainWindow::initActions()
 
 void PracticeMainWindow::resizeEvent(QResizeEvent *)
 {
-    m_floatingToolBar->resize(m_parent->width(), m_floatingToolBar->sizeHint().height());
+    m_floatingToolBar->resize(m_mainWindow->width(), m_floatingToolBar->sizeHint().height());
     m_animation->setStartValue(QRect(QPoint(0,-m_floatingToolBar->height()), m_floatingToolBar->size()));
     m_animation->setEndValue(QRect(QPoint(0,0), m_floatingToolBar->size()));
     m_animation->setDirection(QAbstractAnimation::Backward);
@@ -139,22 +140,22 @@ bool PracticeMainWindow::event(QEvent *event)
 
 void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)
 {
-    KToggleFullScreenAction::setFullScreen(m_parent, fullScreen);
-    m_parent->toolBar("practiceToolBar")->setVisible(!fullScreen);
-    m_parent->menuBar()->setVisible(!fullScreen);
+    KToggleFullScreenAction::setFullScreen(m_mainWindow, fullScreen);
+    m_mainWindow->toolBar("practiceToolBar")->setVisible(!fullScreen);
+    m_mainWindow->menuBar()->setVisible(!fullScreen);
     m_floatingToolBar->setVisible(fullScreen);
-    m_parent->setSettingsDirty();
+    m_mainWindow->setSettingsDirty();
 }
 
 void PracticeMainWindow::startPractice()
 {
-    QString questionLocale = m_parent->parleyDocument()->document()->identifier(Prefs::questionLanguage()).locale();
+    QString questionLocale = m_mainWindow->parleyDocument()->document()->identifier(Prefs::questionLanguage()).locale();
     LanguageSettings questionLanguageSettings(questionLocale);
     questionLanguageSettings.readConfig();
     QFont questionFont = questionLanguageSettings.practiceFont();
     m_guiFrontend->setQuestionFont(questionFont);
 
-    QString solutionLocale = m_parent->parleyDocument()->document()->identifier(Prefs::solutionLanguage()).locale();
+    QString solutionLocale = m_mainWindow->parleyDocument()->document()->identifier(Prefs::solutionLanguage()).locale();
     LanguageSettings solutionLanguageSettings(solutionLocale);
     solutionLanguageSettings.readConfig();
     QFont solutionFont = solutionLanguageSettings.practiceFont();

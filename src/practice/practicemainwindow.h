@@ -30,7 +30,7 @@ class PracticeMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
-    PracticeMainWindow(TestEntryManager* m_testEntryManager, ParleyMainWindow* parent = 0);
+    PracticeMainWindow(TestEntryManager* m_testEntryManager, ParleyMainWindow* mainWindow = 0);
     ~PracticeMainWindow();
 
     void startPractice();
@@ -52,7 +52,7 @@ private:
 
     GuiFrontend* m_guiFrontend;
     PracticeStateMachine* m_stateMachine;
-    ParleyMainWindow* m_parent;
+    ParleyMainWindow* m_mainWindow;
     QWidget* m_floatingToolBar;
     KToggleFullScreenAction* m_fullScreenAction;
     QPropertyAnimation* m_animation;

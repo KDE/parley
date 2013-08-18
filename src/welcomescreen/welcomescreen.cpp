@@ -25,7 +25,7 @@
 
 WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     :KXmlGuiWindow(parent)
-    ,m_parleyApp(parent)
+    ,m_mainWindow(parent)
 {
     // KXmlGui
     setXMLFile("welcomescreenui.rc");
@@ -56,7 +56,7 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     ButtonDelegate* delegate = new ButtonDelegate(ui->recentFiles, this);
     ui->recentFiles->setItemDelegate(delegate);
 
-    ParleyDocument* doc = m_parleyApp->parleyDocument();
+    ParleyDocument* doc = m_mainWindow->parleyDocument();
     connect(ui->newButton, SIGNAL(clicked()), doc, SLOT(slotFileNew()));
     connect(ui->openButton, SIGNAL(clicked()), doc, SLOT(slotFileOpen()));
     connect(ui->ghnsButton, SIGNAL(clicked()), doc, SLOT(slotGHNS()));
@@ -66,7 +66,7 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
         connect(ui->recentFiles, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(slotDoubleClicked(const QModelIndex&)));
     }
 
-    connect(m_parleyApp, SIGNAL(recentFilesChanged()), this, SLOT(updateRecentFilesModel()));
+    connect(m_mainWindow, SIGNAL(recentFilesChanged()), this, SLOT(updateRecentFilesModel()));
     
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
@@ -117,10 +117,10 @@ void WelcomeScreen::updateRecentFilesModel()
 
 void WelcomeScreen::slotOpenUrl(const KUrl& url)
 {
-    if (!m_parleyApp->parleyDocument()->open(url)) {
+    if (!m_mainWindow->parleyDocument()->open(url)) {
         return;
     }
-    m_parleyApp->showEditor();
+    m_mainWindow->showEditor();
 }
 
 void WelcomeScreen::slotDoubleClicked(const QModelIndex& index)
@@ -137,10 +137,10 @@ void WelcomeScreen::slotDoubleClickOpen()
 
 void WelcomeScreen::slotPracticeUrl(const KUrl & url)
 {
-    if (!m_parleyApp->parleyDocument()->open(url)) {
+    if (!m_mainWindow->parleyDocument()->open(url)) {
         return;
     }
-    m_parleyApp->showPracticeConfiguration();
+    m_mainWindow->showPracticeConfiguration();
 }
 
 void WelcomeScreen::backgroundChanged(const QPixmap &pixmap)
