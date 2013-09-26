@@ -179,13 +179,13 @@ def getImageUrls(data):
   print "Parsing data"
   imageurls = []
   imageextensions=[".jpg",".png",".bmp",".jif"]
-  print data
+  #print data
   for d in data.split('"'):
-    if d.startswith('http://'):
+    if 'imgurl=' in d:
       
-      if (d[-4:]).lower() in imageextensions:
-        print d
-        imageurls.append(d)
+      dcutted=d.split('imgurl=')[1].split('&')[0]
+      if (dcutted[-4:]).lower() in imageextensions:
+        imageurls.append(dcutted)
   return imageurls
   
 
