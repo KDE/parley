@@ -6,7 +6,7 @@ from PyQt4 import QtGui
 from PyQt4 import QtCore
 from PyQt4 import uic
 # for localization (i18n)
-from PyKDE4.kdecore import *
+import Kross
 from PyKDE4.kdeui import KIcon
 from PyKDE4.kdeui import KDialog
 from PyKDE4.kdeui import KMessageBox
@@ -17,6 +17,7 @@ import urllib2
 import urllib
 from sgmllib import SGMLParser
 
+T = Kross.module("kdetranslation")
 
 # TODO
 # + Fetch more images (get the next results page)
@@ -43,7 +44,7 @@ class ImageDialog(KDialog):
         break
 
     if self.w is None:
-        KMessageBox.error(None, i18n("Error: ui file not found.\nCheck your installation."), i18n("Fetch Image"))
+        KMessageBox.error(None, T.i18n("Error: ui file not found.\nCheck your installation."), T.i18n("Fetch Image"))
         return
 
     self.translation = translations[0]
@@ -240,13 +241,13 @@ def fetchImage():
     m.exec_()
 
   else:
-    KMessageBox.error(None, i18n("No Selection:\nSelect a word to fetch an image for it"), i18n("Fetch Image"))
+    KMessageBox.error(None, T.i18n("No Selection:\nSelect a word to fetch an image for it"), T.i18n("Fetch Image"))
 
 
 #SCRIPT MENU
 
 #create a new action for the Scripts menu (action1)
-action1 = Parley.newAction("example_action1", i18n("Fetch Image"))
-action1.statusTip = str(i18n("Fetches an image for the selected translation"))
+action1 = Parley.newAction("example_action1", T.i18n("Fetch Image"))
+action1.statusTip = T.i18n("Fetches an image for the selected translation")
 Parley.connect(action1,"triggered()",fetchImage)
 

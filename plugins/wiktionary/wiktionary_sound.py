@@ -16,6 +16,9 @@ import sys
 import os
 from os import path
 import string
+import Kross
+
+T = Kross.module("kdetranslation")
 
 # Connected to the action menu
 def fetchSound():
@@ -106,6 +109,6 @@ def getTargetDirectory():
     return filesdir
 
 #create a new action in Parley's script menu
-action = Parley.newAction("fetch_sound","Fetch Sound")
-action.statusTip="Fetches a sound file from commons.wikimedia.org for the selected word"
+action = Parley.newAction("fetch_sound",T.i18n("Fetch Sound"))
+action.statusTip=T.i18n("Fetches a sound file from commons.wikimedia.org for the selected word")
 Parley.connect(action,"triggered()",fetchSound)
