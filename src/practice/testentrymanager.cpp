@@ -81,6 +81,11 @@ void TestEntryManager::setDocument(KEduVocDocument* doc)
     }
 }
 
+QString TestEntryManager::title() const
+{
+    return m_doc->title();
+}
+
 void TestEntryManager::setLanguages(int from, int to)
 {
     m_fromTranslation = from;

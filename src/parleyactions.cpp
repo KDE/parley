@@ -146,6 +146,11 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
                 "practice_configure", i18n("Configure Practice..."), 
                 i18n("Change practice settings"), "practice-setup");
             break;
+        case ExportPracticeResults:
+            pAction = Private::createCustomAction(recvr, slot, parent, 
+                "practice_export", i18n("Export results..."), 
+                i18n("Write a file with the results of the practice"), "document-export");
+            break;
         case EnterEditMode:
             pAction = Private::createCustomAction(recvr, slot, parent,
                 "document_edit", i18n("Editor"),

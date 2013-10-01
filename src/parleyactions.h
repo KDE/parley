@@ -33,7 +33,7 @@ namespace ParleyActions {
         CheckSpelling,
         ToggleShowSublessons,
         AutomaticTranslation, 
-        StartPractice, ConfigurePractice,
+        StartPractice, ConfigurePractice, ExportPracticeResults,
         EnterEditMode,
         ToggleSearchBar, SearchVocabulary,
         ShowScriptManager

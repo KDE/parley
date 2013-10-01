@@ -29,6 +29,9 @@ public:
     PracticeSummaryComponent(TestEntryManager* testEntryManager, QWidget *parent);
     ~PracticeSummaryComponent();
 
+public slots:
+    void exportResults();
+
 private:
     void initActions(QWidget* parleyMainWindow);
     void setupDetailsTable();

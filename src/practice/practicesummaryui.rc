@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="practicesummary" version="4">
+<gui name="practicesummary" version="5">
 
 <MenuBar>
    <Menu name="file" >
@@ -11,6 +11,7 @@
   <Menu name="learning" >
    <text>&amp;Practice</text>
    <Action name="practice_configure" />
+   <Action name="practice_export" />
    <Action name="practice_start" />
   </Menu>
 </MenuBar>
@@ -19,5 +20,6 @@
   <text>Practice Summary Toolbar</text>
   <Action name="document_edit" />
   <Action name="practice_start" group="practice" />
+  <Action name="practice_export" group="practice" />
  </ToolBar>
 </gui>

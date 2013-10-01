@@ -96,6 +96,8 @@ public:
     QList<TestEntry*> allUnansweredTestEntries();
     QString currentConjugationTense();
 
+    QString title() const;
+
 private:
     /**
      * Select appropriate entries for the practice (respect blocking settings etc)
