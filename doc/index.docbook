@@ -44,7 +44,7 @@
 </copyright>
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2013-07-09</date>
+<date>2013-10-06</date>
 <releaseinfo>0.9.4 (&kde; SC 4.11)</releaseinfo>
 
 <!-- Abstract about this handbook -->
@@ -993,6 +993,42 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
+<para>
+The needed images can be obtained from Google search using &parley; inbuilt scripts. 
+</para>
+<para>
+To activate scripts choose <menuchoice><guimenu>Scripts</guimenu><guimenuitem>Script Manager</guimenuitem></menuchoice> from the &parley; menu. Check (or uncheck) the <guilabel>Example Parley Script</guilabel> checkbox then click on <guibutton>OK</guibutton>.
+</para>
+<para>
+To obtain the image highlight a word in the list then choose <menuchoice><guimenu>Scripts</guimenu><guimenuitem>Fetch Image</guimenuitem></menuchoice> from the &parley; menu.
+</para>
+<para>
+<screenshot>
+<screeninfo>Obtaining images from the Internet</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_006b.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase>Obtaining images from the Internet</phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>
+Choose the right image using <guibutton>Next</guibutton> and <guibutton>Previous</guibutton>. You can correct the search criteria for the images using the corresponding text box.
+</para>
+<para>
+If you prefer only free images check the corresponding checkbox.
+</para>
+<para>
+When the selection is finished just click on <guibutton>OK</guibutton> and the image will be saved next to the current vocabulary file in the <filename role="directory"><replaceable>name_of_vocabulary</replaceable>_files</filename> subfolder.
+</para>
+<warning>
+<para>
+Due to the current script limitations the image files cannot be saved in the paths with Unicode symbols in the names of folders and files.
+</para>
+</warning>
 </sect1>
 <sect1 id="adding-sound"><title>Adding Sound</title> 
 <para>First show the sound tool by selecting <guilabel>View</guilabel> in the menu bar and then clicking on <guilabel>Sound</guilabel>. This will show up the sound section on the right hand side of the Parley screen.
@@ -1011,6 +1047,18 @@ limited to language learning but supports a multitude of subjects.
     </textobject>
   </mediaobject>
 </screenshot>
+</para>
+<para>
+The needed sound files can be obtained from Wiktionary using &parley; inbuilt scripts. 
+</para>
+<para>
+To activate scripts choose <menuchoice><guimenu>Scripts</guimenu><guimenuitem>Script Manager</guimenuitem></menuchoice> from the &parley; menu. Check (or uncheck) the <guilabel>Example Parley Script</guilabel> checkbox then click on <guibutton>OK</guibutton>.
+</para>
+<para>
+To obtain the sound file highlight a word in the list then choose <menuchoice><guimenu>Scripts</guimenu><guimenuitem>Fetch Sound</guimenuitem></menuchoice> from the &parley; menu.
+</para>
+<para>
+The sound file will be saved next to the current vocabulary file in the <filename role="directory"><replaceable>name_of_vocabulary</replaceable>_files</filename> subfolder.
 </para>
 </sect1>
 <sect1 id="entering-comparison-forms"><title>Entering Comparison Forms</title> 
