@@ -21,6 +21,7 @@
 #include <KUrl>
 #include <KDebug>
 #include <KFileDialog>
+#include <KMessageBox>
 
 #include <string.h>
 #include <libxml/xmlmemory.h>
@@ -87,8 +88,12 @@ void ExportDialog::accept()
 
     res = xsltApplyStylesheet(cur, doc, 0);
     FILE* result = fopen(QFile::encodeName(filename.toLocalFile()).constData(), "w");
-    xsltSaveResultToFile(result, res, cur);
-    fclose(result);
+    if ( result != NULL) {
+        xsltSaveResultToFile(result, res, cur);
+        fclose(result);
+    } else {
+        KMessageBox::error(this, i18n("Could not write to file \"%1\"", filename.toLocalFile()));
+    }
 
     xsltFreeStylesheet(cur);
     xmlFreeDoc(res);
