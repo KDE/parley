@@ -102,15 +102,8 @@ void ExportDialog::accept()
 
 KUrl ExportDialog::getFileName(const QString& filter)
 {
-    KFileDialog dlg((m_doc->document()->url().fileName() == i18n("Untitled")) ? "": m_doc->document()->url().toLocalFile(), filter, m_parent );
-    dlg.setOperationMode( KFileDialog::Saving );
-    dlg.setMode( KFile::File );
-    dlg.setWindowTitle(i18n("Export As"));
-    if (dlg.exec() != QDialog::Accepted) {
-        return KUrl();
-    }
-
-    return dlg.selectedFile();
+    return KFileDialog::getSaveUrl((m_doc->document()->url().fileName() == i18n("Untitled")) ? "": m_doc->document()->url().toLocalFile(),
+        filter, m_parent, i18n("Export As"), KFileDialog::ConfirmOverwrite );
 }
 
 #include "exportdialog.moc"
