@@ -222,8 +222,7 @@ void ParleyDocument::openGHNS()
                 KEduVocDocument::pattern(KEduVocDocument::Reading),
                 m_parleyApp,
                 i18n("Open Downloaded Vocabulary Collection"));
-        if (!url.isEmpty()) {
-            open(url);
+        if ( open(url) ) {
             m_parleyApp->showPracticeConfiguration();
         }
     }
@@ -392,8 +391,10 @@ void ParleyDocument::slotGHNS()
     if (numberInstalled > 1) {
         openGHNS();
     } else if (numberInstalled == 1) {
-        open(KUrl(fileName));
-        m_parleyApp->showPracticeConfiguration();
+        if (open(KUrl(fileName)))
+            m_parleyApp->showPracticeConfiguration();
+        else
+            KMessageBox::error(m_parleyApp, i18n("Could not open vocabulary collection \"%1\"", entries.first().name()));
     }
 }
 
