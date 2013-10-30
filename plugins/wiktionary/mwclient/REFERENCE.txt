@@ -1,5 +1,5 @@
 This file is intended to be a reference to mwclient. The current version is 
-mwclient 0.6.1.
+mwclient 0.6.5.
 
 The mwclient framework provides an access to the MediaWiki API. It provides the
 functions of the MediaWiki API in a Pythonic manner.
@@ -79,7 +79,8 @@ their two letter prefix Exceptions:
 Properties and generators are implemented as Python generators. Their limit 
 parameter is only an indication of the number of items in one chunk. It is not
 the total limit. Doing list(generator(limit = limit)) will return ALL items of 
-generator, and not be limitted by the limit value.
+generator, and not be limitted by the limit value. Use list(generator(
+max_items = max_items)) to limit the amount of items returned.
 Default chunk size is generally the maximum chunk size.
 
 == Links ==

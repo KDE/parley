@@ -1,12 +1,16 @@
-__ver__ = '0.6.1'
+__ver__ = '0.6.5'
 
 import urllib, urlparse
 import time, random
 import sys, weakref
 import socket
 
-import simplejson
+try:
+	import json
+except ImportError:
+	import simplejson as json
 import http
+import upload
 
 import errors
 import listing, page
@@ -37,6 +41,7 @@ class Site(object):
 	def __init__(self, host, path = '/w/', ext = '.php', pool = None, retry_timeout = 30, 
 			max_retries = 25, wait_callback = lambda *x: None, 
 			max_lag = 3, compress = True, force_login = True, do_init = True):
+		# Setup member variables
 		self.host = host
 		self.path = path
 		self.ext = ext
@@ -47,30 +52,39 @@ class Site(object):
 		self.max_retries = max_retries
 		self.wait_callback = wait_callback
 		self.max_lag = str(max_lag)
-		
-		self.wait_tokens = weakref.WeakKeyDictionary()
-			
-		self.blocked = False
-		self.hasmsg = False
-		self.groups = []
-		self.rights = []
-		self.tokens = {}
 		self.force_login = force_login
+				
+		# The token string => token object mapping
+		self.wait_tokens = weakref.WeakKeyDictionary()
 		
+		# Site properties
+		self.blocked = False	# Whether current user is blocked
+		self.hasmsg = False	# Whether current user has new messages
+		self.groups = []	# Groups current user belongs to
+		self.rights = []	# Rights current user has
+		self.tokens = {}	# Edit tokens of the current user
+		self.version = None
+		
+		self.namespaces = self.default_namespaces
+		self.writeapi = False
+			
+		# Setup connection
 		if pool is None:
 			self.connection = http.HTTPPool()
 		else:
 			self.connection = pool
-			
-		self.version = None
-			
-		self.Pages = listing.PageList(self)
-		self.Categories = listing.PageList(self, namespace = 14)
-		self.Images = listing.PageList(self, namespace = 6)
 		
-		self.namespaces = self.default_namespaces
-		self.writeapi = False
+		# Page generators
+		self.pages = listing.PageList(self)
+		self.categories = listing.PageList(self, namespace = 14)
+		self.images = listing.PageList(self, namespace = 6)
 		
+		# Compat page generators
+		self.Pages = self.pages
+		self.Categories = self.categories
+		self.Images = self.images
+		
+		# Initialization status
 		self.initialized = False
 		
 		if do_init:
@@ -78,31 +92,42 @@ class Site(object):
 				self.site_init()
 			except errors.APIError, e:
 				# Private wiki, do init after login
-				if e[0] != u'unknown_action': raise
+				if e[0] not in (u'unknown_action', u'readapidenied'): 
+					raise
 				
 			
 	def site_init(self):
 		meta = self.api('query', meta = 'siteinfo|userinfo', 
 			siprop = 'general|namespaces', uiprop = 'groups|rights')
+		
+		# Extract site info
 		self.site = meta['query']['general']
 		self.namespaces = dict(((i['id'], i.get('*', '')) for i in meta['query']['namespaces'].itervalues()))
 		self.writeapi = 'writeapi' in self.site
-			
+		
+		# Determine version
 		if self.site['generator'].startswith('MediaWiki '):
 			version = self.site['generator'][10:].split('.')
-			if len(version) == 2 and version[1].endswith('alpha'):
-				self.version = (int(version[0]), int(version[1][:-5]), 'alpha')
-			if len(version) == 2 and version[1].endswith('alpha-wmf'):
-				self.version = (int(version[0]), int(version[1][:-9]), 'alpha-wmf')
-			elif len(version) == 3:
-				self.version = (int(version[0]), int(version[1]), int(version[2]))
-			else:
+			def split_num(s):
+				i = 0
+				while i < len(s):
+					if s[i] < '0' or s[i] > '9':
+						break
+					i += 1
+				if s[i:]:
+					return (int(s[:i]), s[i:], )
+				else:
+					return (int(s[:i]), )
+			self.version = sum((split_num(s) for s in version), ())
+			
+			if len(self.version) < 2:
 				raise errors.MediaWikiVersionError('Unknown MediaWiki %s' % '.'.join(version))
 		else:
 			raise errors.MediaWikiVersionError('Unknown generator %s' % self.site['generator'])
 		# Require 1.11 until some compatibility issues are fixed
 		self.require(1, 11)
-			
+		
+		# User info	
 		userinfo = compatibility.userinfo(meta, self.require(1, 12, raise_error = False))
 		self.username = userinfo['name']
 		self.groups = userinfo.get('groups', [])
@@ -119,6 +144,7 @@ class Site(object):
 		
 	
 	def api(self, action, *args, **kwargs):
+		""" An API call. Handles errors and returns dict object. """
 		kwargs.update(args)
 		if action == 'query':
 			if 'meta' in kwargs:
@@ -134,24 +160,35 @@ class Site(object):
 		while True:
 			info = self.raw_api(action, **kwargs)
 			if not info: info = {}
+			res = self.handle_api_result(info, token = token)
+			if res:
+				return info
 				
-			try:
-				userinfo = compatibility.userinfo(info, self.require(1, 12, raise_error = None))
-			except KeyError:
-				userinfo = ()
-			if 'blockedby' in userinfo:
-				self.blocked = (userinfo['blockedby'], userinfo.get('blockreason', u''))
-			else:
-				self.blocked = False
-			self.hasmsg = 'message' in userinfo
-			self.logged_in = 'anon' not in userinfo
-			if 'error' in info:
-				if info['error']['code'] in (u'internal_api_error_DBConnectionError', ):
-					self.wait(token)
-					continue
+	
+	def handle_api_result(self, info, kwargs = None, token = None):
+		if token is None:
+			token = self.wait_token()
+		
+		try:
+			userinfo = compatibility.userinfo(info, self.require(1, 12, raise_error = None))
+		except KeyError:
+			userinfo = ()
+		if 'blockedby' in userinfo:
+			self.blocked = (userinfo['blockedby'], userinfo.get('blockreason', u''))
+		else:
+			self.blocked = False
+		self.hasmsg = 'message' in userinfo
+		self.logged_in = 'anon' not in userinfo
+		if 'error' in info:
+			if info['error']['code'] in (u'internal_api_error_DBConnectionError', ):
+				self.wait(token)
+				return False
+			if '*' in info['error']:
 				raise errors.APIError(info['error']['code'],
+					info['error']['info'], info['error']['*'])
+			raise errors.APIError(info['error']['code'],
 					info['error']['info'], kwargs)
-			return info
+		return True
 		
 	@staticmethod
 	def _to_str(data):
@@ -169,7 +206,9 @@ class Site(object):
 		
 	def raw_call(self, script, data):
 		url = self.path + script + self.ext
-		headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+		headers = {}
+		if not issubclass(data.__class__, upload.Upload):
+			headers['Content-Type'] = 'application/x-www-form-urlencoded'
 		if self.compress and gzip:
 			headers['Accept-Encoding'] = 'gzip'
 		
@@ -191,6 +230,8 @@ class Site(object):
 					raise
 				else:
 					self.wait(token)
+			except errors.HTTPRedirectError:
+				raise
 			except errors.HTTPError:
 				self.wait(token)
 			except ValueError:
@@ -200,7 +241,13 @@ class Site(object):
 		kwargs['action'] = action
 		kwargs['format'] = 'json'
 		data = self._query_string(*args, **kwargs)
-		return simplejson.load(self.raw_call('api', data))
+		json_data = self.raw_call('api', data).read()
+		try:
+			return json.loads(json_data)
+		except ValueError:
+			if json_data.startswith('MediaWiki API is not enabled for this site.'):
+				raise errors.APIDisabledError
+			raise
 				
 	def raw_index(self, action, *args, **kwargs):
 		kwargs['action'] = action
@@ -243,6 +290,7 @@ class Site(object):
 
 	# Actions
 	def email(self, user, text, subject, cc = False):
+		#TODO: Use api!
 		postdata = {}
 		postdata['wpSubject'] = subject
 		postdata['wpText'] = text
@@ -251,7 +299,7 @@ class Site(object):
 		postdata['uselang'] = 'en'
 		postdata['title'] = u'Special:Emailuser/' + user
 
-		data = self.raw_index('submit', postdata)
+		data = self.raw_index('submit', **postdata)
 		if 'var wgAction = "success";' not in data:
 			if 'This user has not specified a valid e-mail address' in data:
 				# Dirty hack
@@ -259,20 +307,34 @@ class Site(object):
 			raise errors.EmailError, data
 
 
-	def login(self, username = None, password = None, cookies = None):
+	def login(self, username = None, password = None, cookies = None, domain = None):
 		if self.initialized: self.require(1, 10)
 		
 		if username and password: 
-			self.credentials = (username, password)
+			self.credentials = (username, password, domain)
 		if cookies:
 			if self.host not in self.conn.cookies:
 				self.conn.cookies[self.host] = http.CookieJar()
 			self.conn.cookies[self.host].update(cookies)
 			
 		if self.credentials:
-			login = self.api('login', lgname = self.credentials[0], lgpassword = self.credentials[1])
-			if login['login']['result'] != 'Success':
-				raise errors.LoginError(self, login['login'])
+			wait_token = self.wait_token()
+			kwargs = {
+				'lgname': self.credentials[0],
+				'lgpassword': self.credentials[1]
+				}
+			if self.credentials[2]:
+				kwargs['lgdomain'] = self.credentials[2]
+			while True:
+				login = self.api('login', **kwargs)
+				if login['login']['result'] == 'Success':
+					break
+				elif login['login']['result'] == 'NeedToken':
+					kwargs['lgtoken'] = login['login']['token']
+				elif login['login']['result'] == 'Throttled':
+					self.wait(wait_token, login['login'].get('wait', 5))
+				else:
+					raise errors.LoginError(self, login['login'])
 				
 		if self.initialized:				
 			info = self.api('query', meta = 'userinfo', uiprop = 'groups|rights')
@@ -285,67 +347,55 @@ class Site(object):
 			self.site_init()
 
 
-	def upload(self, file, filename, description, license = '', ignore = False, file_size = None): 
+	def upload(self, file = None, filename = None, description = '', ignore = False, file_size = None,
+			url = None, session_key = None):
+		if self.version[:2] < (1, 16):
+			return compatibility.old_upload(self, file = file, filename = filename, 
+						description = description, ignore = ignore, 
+						file_size = file_size)
+		
 		image = self.Images[filename]
 		if not image.can('upload'):
 			raise errors.InsufficientPermission(filename)
-		if image.exists and not ignore:
-			raise errors.FileExists(filename)
 		
-		if type(file) is str:
-			file_size = len(file)
-			file = StringIO(file)
-		if file_size is None:
-			file.seek(0, 2)
-			file_size = file.tell()
-			file.seek(0, 0)
+
 		
 		predata = {}
-		predata['wpDestFile'] = filename
-		predata['wpUploadDescription'] = description
-		predata['wpLicense'] = license
-		if ignore: predata['wpIgnoreWarning'] = 'true'
-		predata['wpUpload'] = 'Upload file'
-		predata['wpSourceType'] = 'file'
-	
-		boundary = '----%s----' % ''.join((random.choice(
-			'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') 
-			for i in xrange(32)))
-		data_header = []
-		for name, value in predata.iteritems():
-			data_header.append('--' + boundary) 
-			data_header.append('Content-Disposition: form-data; name="%s"' % name)
-			data_header.append('')
-			data_header.append(value.encode('utf-8'))
-			
-		data_header.append('--' + boundary) 
-		data_header.append('Content-Disposition: form-data; name="wpUploadFile"; filename="%s"' % \
-			filename.encode('utf-8'))
-		data_header.append('Content-Type: application/octet-stream')
-		data_header.append('')
-		data_header.append('')
 		
-		postdata = '\r\n'.join(data_header)
-		content_length = len(postdata) + file_size + 2 + (4 + len(boundary)) + 2
+		predata['comment'] = description
+		if ignore: 
+			predata['ignorewarnings'] = 'true'
+		predata['token'] = image.get_token('edit')
+		predata['action'] = 'upload'
+		predata['format'] = 'json'
+		predata['filename'] = filename
+		if url:
+			predata['url'] = url
+		if session_key:
+			predata['session_key'] = session_key 
 		
-		def iterator():
-			yield postdata
-			while True:
-				chunk = file.read(32768)
-				if not chunk: break
-				yield chunk
-			yield '\r\n'
-			yield '--%s--' % boundary
-			yield '\r\n'
+		if file is None:
+			postdata = self._query_string(predata)
+		else:			
+			if type(file) is str:
+				file_size = len(file)
+				file = StringIO(file)
+			if file_size is None:
+				file.seek(0, 2)
+				file_size = file.tell()
+				file.seek(0, 0)
+				
+			postdata = upload.UploadFile('file', filename, file_size, file, predata)
 		
 		wait_token = self.wait_token()
 		while True:
 			try:
-				self.connection.post(self.host,
-					self.path + 'index.php?title=Special:Upload&maxlag=' + self.max_lag,
-					headers = {'Content-Type': 'multipart/form-data; boundary=' + boundary,
-						'Content-Length': str(content_length)},
-					stream_iter = iterator()).read()
+				data = self.raw_call('api', postdata).read()
+				info = json.loads(data)
+				if not info:
+					info = {}
+				if self.handle_api_result(info, kwargs = predata):
+					return info.get('upload', {})
 			except errors.HTTPStatusError, e:
 				if e[0] == 503 and e[1].getheader('X-Database-Lag'):
 					self.wait(wait_token, int(e[1].getheader('Retry-After')))
@@ -355,9 +405,18 @@ class Site(object):
 					self.wait(wait_token)
 			except errors.HTTPError:
 				self.wait(wait_token)
-			else:
-				return
 			file.seek(0, 0)
+			
+	def parse(self, text, title = None):
+		kwargs = {'text': text}
+		if title is not None: kwargs['title'] = title
+		result = self.api('parse', **kwargs)
+		return result['parse']
+	
+	# def block: requires 1.12
+	# def unblock: requires 1.12
+	# def patrol: requires 1.14
+	# def import: requires 1.15
 			
 	# Lists
 	def allpages(self, start = None, prefix = None, namespace = '0', filterredir = 'all',
@@ -371,6 +430,8 @@ class Site(object):
 			namespace = namespace, filterredir = filterredir, dir = dir, 
 			filterlanglinks = filterlanglinks))
 		return listing.List.get_list(generator)(self, 'allpages', 'ap', limit = limit, return_values = 'title', **kwargs)
+	# def allimages(self): requires 1.12
+	# TODO!
 
 	def alllinks(self, start = None, prefix = None, unique = False, prop = 'title',
 			namespace = '0', limit = None, generator = True):
@@ -423,6 +484,7 @@ class Site(object):
 		kwargs = dict(listing.List.generate_kwargs('le', prop = prop, type = type, start = start,
 			end = end, dir = dir, user = user, title = title))
 		return listing.List(self, 'logevents', 'le', limit = limit, **kwargs)
+	# def protectedtitles requires 1.15
 	def random(self, namespace, limit = 20):
 		self.require(1, 12)
 		
