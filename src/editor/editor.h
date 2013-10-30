@@ -67,12 +67,12 @@ public:
     /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
     void updateTableFilter();
 
+public slots:
     /**
      * Load enabled scripts (from configuration parleyrc)
      */
     void initScripts();
 
-public slots:
     /**
      * Edit languages contained in the document.
      * This includes adding/removing languages, 
