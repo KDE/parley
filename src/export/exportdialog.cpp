@@ -21,6 +21,7 @@
 #include <KUrl>
 #include <KDebug>
 #include <KFileDialog>
+#include <KMessageBox>
 
 #include <string.h>
 #include <libxml/xmlmemory.h>
@@ -87,8 +88,12 @@ void ExportDialog::accept()
 
     res = xsltApplyStylesheet(cur, doc, 0);
     FILE* result = fopen(QFile::encodeName(filename.toLocalFile()).constData(), "w");
-    xsltSaveResultToFile(result, res, cur);
-    fclose(result);
+    if ( result != NULL) {
+        xsltSaveResultToFile(result, res, cur);
+        fclose(result);
+    } else {
+        KMessageBox::error(this, i18n("Could not write to file \"%1\"", filename.toLocalFile()));
+    }
 
     xsltFreeStylesheet(cur);
     xmlFreeDoc(res);
@@ -102,15 +107,8 @@ void ExportDialog::accept()
 
 KUrl ExportDialog::getFileName(const QString& filter)
 {
-    KFileDialog dlg((m_doc->document()->url().fileName() == i18n("Untitled")) ? "": m_doc->document()->url().toLocalFile(), filter, m_parent );
-    dlg.setOperationMode( KFileDialog::Saving );
-    dlg.setMode( KFile::File );
-    dlg.setWindowTitle(i18n("Export As"));
-    if (dlg.exec() != QDialog::Accepted) {
-        return KUrl();
-    }
-
-    return dlg.selectedFile();
+    return KFileDialog::getSaveUrl((m_doc->document()->url().fileName() == i18n("Untitled")) ? "": m_doc->document()->url().toLocalFile(),
+        filter, m_parent, i18n("Export As"), KFileDialog::ConfirmOverwrite );
 }
 
 #include "exportdialog.moc"

@@ -50,6 +50,7 @@
 #include <KActionMenu>
 #include <KCharSelect>
 
+#include <QtCore/QTimer>
 #include <QtCore/QSignalMapper>
 #include <QtGui/QDockWidget>
 #include <QtGui/QHeaderView>
@@ -75,7 +76,6 @@ EditorWindow::EditorWindow(ParleyMainWindow* parent)
 
     initDockWidgets();
     initActions();
-    initScripts();
 
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
@@ -84,6 +84,8 @@ EditorWindow::EditorWindow(ParleyMainWindow* parent)
     connect(parent->parleyDocument(), SIGNAL(languagesChanged()), this, SLOT(slotLanguagesChanged()));
     connect(parent->parleyDocument(), SIGNAL(statesNeedSaving()), this, SLOT(saveState()));
     connect(parent, SIGNAL(preferencesChanged()), this, SLOT(applyPrefs()));
+
+    QTimer::singleShot( 0, this, SLOT(initScripts()) );
 }
 
 EditorWindow::~EditorWindow()

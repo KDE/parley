@@ -13,6 +13,7 @@ install(FILES
     mwclient/listing.py  
     mwclient/page_nowriteapi.py  
     mwclient/page.py
+    mwclient/upload.py
     mwclient/README.txt
     DESTINATION ${DATA_INSTALL_DIR}/parley/plugins/mwclient)
 
@@ -22,4 +23,6 @@ install(FILES
     mwclient/simplejson/encoder.py    
     mwclient/simplejson/jsonfilter.py  
     mwclient/simplejson/scanner.py
+    mwclient/simplejson/ordered_dict.py
+    mwclient/simplejson/tool.py
     DESTINATION ${DATA_INSTALL_DIR}/parley/plugins/mwclient/simplejson)

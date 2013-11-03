@@ -39,6 +39,7 @@ class Page(object):
 		self.protection = dict([(i['type'], (i['level'], i['expiry'])) for i in info.get('protection', ()) if i])
 		self.redirect = 'redirect' in info
 		
+		self.last_rev_time = None
 		self.edit_time = None
 			
 	def __repr__(self):
@@ -54,10 +55,10 @@ class Page(object):
 	@staticmethod
 	def normalize_title(title):
 		# TODO: Make site dependent
+		title = title.strip()		
 		if title[0] == ':':
-			title[0] = title[1:]
+			title = title[1:]
 		title = title[0].upper() + title[1:]
-		title = title.strip()
 		title = title.replace(' ', '_')
 		return title
 
@@ -100,13 +101,14 @@ class Page(object):
 		try:
 			rev = revs.next()
 			self.text = rev['*']
-			self.edit_time = rev['timestamp']
+			self.last_rev_time = rev['timestamp']
 		except StopIteration:
 			self.text = u''
 			self.edit_time = None
+		self.edit_time = time.gmtime()
 		return self.text
 	
-	def save(self, text = u'', summary = u'', minor = False):
+	def save(self, text = u'', summary = u'', minor = False, bot = True, **kwargs):
 		if not self.site.logged_in and self.site.force_login:
 			# Should we really check for this?
 			raise errors.LoginError(self.site)
@@ -123,22 +125,44 @@ class Page(object):
 		data = {}
 		if minor: data['minor'] = '1'
 		if not minor: data['notminor'] = '1'
-		if self.edit_time: data['basetimestamp'] = time.strftime('%Y%m%d%H%M%S', self.edit_time)
+		if self.last_rev_time: data['basetimestamp'] = time.strftime('%Y%m%d%H%M%S', self.last_rev_time)
+		if self.edit_time: data['starttimestamp'] = time.strftime('%Y%m%d%H%M%S', self.edit_time)
+		if bot: data['bot'] = '1'
 		
-		try:
+		data.update(kwargs)
+		
+		def do_edit():
 			result = self.site.api('edit', title = self.name, text = text, 
 					summary = summary, token = self.get_token('edit'), 
-					**data)
+					**data)		
 			if result['edit'].get('result').lower() == 'failure':
-				raise errors.EditError(self, result['edit']['result'])
+				raise errors.EditError(self, result['edit'])
+			return result	
+		try:
+			result = do_edit()
 		except errors.APIError, e:
-			if e.code == 'editconflict':
-				raise errors.EditError(self, text, summary, e.info)
-			elif e.code in ('protectedtitle', 'cantcreate', 'cantcreate-anon', 'noimageredirect-anon', 
-				    'noimageredirect', 'noedit-anon', 'noedit'):
-				raise errors.ProtectedPageError(self, e.code, e.info)
+			if e.code == 'badtoken':
+				# Retry, but only once to avoid an infinite loop
+				self.get_token('edit', force = True)
+				try:
+					result = do_edit()
+				except errors.APIError, e:
+					self.handle_edit_error(e, summary)
 			else:
-				raise
+				self.handle_edit_error(e, summary)
+
+		if result['edit'] == 'Success':
+			self.last_rev_time = client.parse_timestamp(result['newtimestamp'])
+		return result['edit']
+	
+	def handle_edit_error(self, e,  summary):
+		if e.code == 'editconflict':
+			raise errors.EditError(self, summary, e.info)
+		elif e.code in ('protectedtitle', 'cantcreate', 'cantcreate-anon', 'noimageredirect-anon', 
+			    'noimageredirect', 'noedit-anon', 'noedit'):
+			raise errors.ProtectedPageError(self, e.code, e.info)
+		else:
+			raise		
 
 	def get_expanded(self):
 		self.site.require(1, 12)
@@ -149,7 +173,7 @@ class Page(object):
 		except StopIteration:
 			return u''
 			
-	def move(self, new_title, reason = '', move_talk = True):
+	def move(self, new_title, reason = '', move_talk = True, no_redirect = False):
 		if not self.can('move'): raise errors.InsufficientPermission(self)
 		
 		if not self.site.writeapi:
@@ -158,9 +182,10 @@ class Page(object):
 		
 		data = {}
 		if move_talk: data['movetalk'] = '1'
-		result = self.site.api(('from', self.name), to = new_title, 
+		if no_redirect: data['noredirect'] = '1'
+		result = self.site.api('move', ('from', self.name), to = new_title, 
 			token = self.get_token('move'), reason = reason, **data)
-		
+		return result['move']
 		
 			
 	def delete(self, reason = '', watch = False, unwatch = False, oldimage = False):
@@ -176,12 +201,12 @@ class Page(object):
 		result = self.site.api('delete', title = self.name, 
 				token = self.get_token('delete'), 
 				reason = reason, **data)
-		
-
-
+		return result['delete']
 		
 	def purge(self):
 		self.site.raw_index('purge', title = self.name)
+		
+	# def watch: requires 1.14
 		
 	# Properties
 	def backlinks(self, namespace = None, filterredir = 'all', redirect = False, limit = None, generator = True):
@@ -241,7 +266,7 @@ class Page(object):
 		kwargs['rvprop'] = prop
 		if expandtemplates: kwargs['rvexpandtemplates'] = '1'
 		
-		return listing.PageProperty(self, 'revisions', 'rv', limit = limit, **kwargs)
+		return listing.RevisionsIterator(self, 'revisions', 'rv', limit = limit, **kwargs)
 	def templates(self, namespace = None, generator = True):
 		self.site.require(1, 8)
 		kwargs = dict(listing.List.generate_kwargs('tl', namespace = namespace))
@@ -272,6 +297,10 @@ class Image(Page):
 		if redirect: kwargs['%sredirect' % prefix] = '1'
 		return listing.List.get_list(generator)(self.site, 'imageusage', 'iu', 
 			limit = limit, return_values = 'title', **kwargs)
+	def duplicatefiles(self, limit = None):
+		self.require(1, 14)
+		return listing.PageProperty(self, 'duplicatefiles', 'df',
+			dflimit = limit)
 
 	def download(self):
 		url = self.imageinfo['url']
