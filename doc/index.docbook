@@ -44,8 +44,8 @@
 </copyright>
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2013-10-06</date>
-<releaseinfo>0.9.4 (&kde; SC 4.11)</releaseinfo>
+<date>2013-11-04</date>
+<releaseinfo>0.9.4 (&kde; SC 4.12)</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -997,9 +997,6 @@ limited to language learning but supports a multitude of subjects.
 The needed images can be obtained from Google search using &parley; inbuilt scripts. 
 </para>
 <para>
-To activate scripts choose <menuchoice><guimenu>Scripts</guimenu><guimenuitem>Script Manager</guimenuitem></menuchoice> from the &parley; menu. Check (or uncheck) the <guilabel>Example &parley; Script</guilabel> check box then click on <guibutton>OK</guibutton>.
-</para>
-<para>
 To obtain the image highlight a word in the list then choose <menuchoice><guimenu>Scripts</guimenu><guimenuitem>Fetch Image</guimenuitem></menuchoice> from the &parley; menu.
 </para>
 <para>
@@ -1050,9 +1047,6 @@ Due to the current script limitations the image files cannot be saved in the pat
 </para>
 <para>
 The needed sound files can be obtained from Wiktionary using &parley; inbuilt scripts. 
-</para>
-<para>
-To activate scripts choose <menuchoice><guimenu>Scripts</guimenu><guimenuitem>Script Manager</guimenuitem></menuchoice> from the &parley; menu. Check (or uncheck) the <guilabel>Example Parley Script</guilabel> check box then click on <guibutton>OK</guibutton>.
 </para>
 <para>
 To obtain the sound file highlight a word in the list then choose <menuchoice><guimenu>Scripts</guimenu><guimenuitem>Fetch Sound</guimenuitem></menuchoice> from the &parley; menu.
