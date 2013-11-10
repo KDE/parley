@@ -44,8 +44,8 @@
 </copyright>
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2013-11-04</date>
-<releaseinfo>0.9.4 (&kde; SC 4.12)</releaseinfo>
+<date>2013-11-10</date>
+<releaseinfo>0.9.4 (&kde; SC 4.13)</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -562,6 +562,8 @@ limited to language learning but supports a multitude of subjects.
 <para>Below is a table with all the words you practiced, together with the mistakes you made.
 </para>
 <para>The words with the most mistakes are on top so you can easily see what you do not know yet.
+</para>
+<para>Press the <guibutton>Export results</guibutton> button or use <menuchoice><guimenu>Practice</guimenu><guimenuitem>Export results...</guimenuitem></menuchoice> menu item to export practice results as &HTML; or OpenDocument text file (<filename role="extension">.odt</filename>).
 </para>
 <para>
 <screenshot>
