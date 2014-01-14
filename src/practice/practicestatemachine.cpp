@@ -219,10 +219,15 @@ void PracticeStateMachine::updateFrontend()
     }
     if (Prefs::flashcardsFrontImage()) {
         m_frontend->setQuestionImage(imgFrom);
+    } else {
+        m_frontend->setQuestionImage(QString());
     }
     if (Prefs::flashcardsBackImage()) {
         m_frontend->setSolutionImage(imgTo);
+    } else {
+        m_frontend->setSolutionImage(QString());
     }
+    m_frontend->showQuestion();
 }
 
 void PracticeStateMachine::gradeEntryAndContinue()
