@@ -1,459 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ViewOptionsBase</class>
- <widget class="QWidget" name="ViewOptionsBase">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>377</width>
-    <height>381</height>
-   </rect>
-  </property>
-  <layout class="QGridLayout">
-   <property name="margin">
-    <number>0</number>
-   </property>
-   <property name="spacing">
-    <number>6</number>
-   </property>
-   <item row="2" column="0" colspan="2">
-    <spacer>
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>291</width>
-       <height>16</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="0" column="0" colspan="2">
+  <class>ViewOptionsBase</class>
+  <widget class="QWidget" name="ViewOptionsBase">
+    <property name="geometry">
+      <rect>
+	<x>0</x>
+	<y>0</y>
+	<width>377</width>
+	<height>381</height>
+      </rect>
+    </property>
     <layout class="QGridLayout">
-     <property name="margin">
-      <number>0</number>
-     </property>
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <item row="0" column="1">
-      <widget class="KFontRequester" name="kcfg_IPAFont">
-       <property name="whatsThis">
-        <string>Specify which font to use for displaying pronunciations using phonetic symbols.</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="IPAFontLabel">
-       <property name="text">
-        <string>&amp;Pronunciation symbols font:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-       <property name="buddy">
-        <cstring>kcfg_IPAFont</cstring>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="1" column="0" colspan="2">
-    <widget class="QGroupBox" name="gradegroup">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="title">
-      <string>Grade Colors</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout2">
+      <property name="margin">
+	<number>0</number>
+      </property>
+      <property name="spacing">
+	<number>6</number>
+      </property>
+      <item row="2" column="0" colspan="2">
+	<spacer>
+	  <property name="orientation">
+	    <enum>Qt::Vertical</enum>
+	  </property>
+	  <property name="sizeType">
+	    <enum>QSizePolicy::Expanding</enum>
+	  </property>
+	  <property name="sizeHint" stdset="0">
+	    <size>
+	      <width>291</width>
+	      <height>16</height>
+	    </size>
+	  </property>
+	</spacer>
+      </item>
       <item row="0" column="0" colspan="2">
-       <widget class="QCheckBox" name="kcfg_UseGradeColors">
-        <property name="toolTip">
-         <string>If it is unchecked, you will just have black on white for the grades; if it is checked, the colors below will be chosen.</string>
-        </property>
-        <property name="whatsThis">
-         <string>If it is unchecked, you will just have black on white for the grades; if it is checked, the colors below will be chosen.</string>
-        </property>
-        <property name="text">
-         <string>&amp;Use colors</string>
-        </property>
-       </widget>
+	<layout class="QGridLayout">
+	  <property name="margin">
+	    <number>0</number>
+	  </property>
+	  <property name="spacing">
+	    <number>6</number>
+	  </property>
+	  <item row="0" column="1">
+	    <widget class="KFontRequester" name="kcfg_IPAFont">
+	      <property name="whatsThis">
+		<string>Specify which font to use for displaying pronunciations using phonetic symbols.</string>
+	      </property>
+	    </widget>
+	  </item>
+	  <item row="0" column="0">
+	    <widget class="QLabel" name="IPAFontLabel">
+	      <property name="text">
+		<string>&amp;Pronunciation symbols font:</string>
+	      </property>
+	      <property name="alignment">
+		<set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+	      </property>
+	      <property name="buddy">
+		<cstring>kcfg_IPAFont</cstring>
+	      </property>
+	    </widget>
+	  </item>
+	</layout>
       </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="l_lev7">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Level &amp;7:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="buddy">
-         <cstring>kcfg_GradeColor7</cstring>
-        </property>
-       </widget>
+      <item row="1" column="0" colspan="2">
+	<layout class="QGridLayout" name="gridLayout2">
+	  <property name="margin">
+	    <number>0</number>
+	  </property>
+	  <property name="spacing">
+	    <number>6</number>
+	  </property>
+	  <item row="0" column="0">
+	    <widget class="QLabel" name="gradeColorLabel">
+	      <property name="sizePolicy">
+		<sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+		  <horstretch>0</horstretch>
+		  <verstretch>0</verstretch>
+		</sizepolicy>
+	      </property>
+	      <property name="text">
+		<string>Base color for displaying grades:</string>
+	      </property>
+	      <property name="alignment">
+		<set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+	      </property>
+	      <property name="buddy">
+		<cstring>kcfg_GradeColor</cstring>
+	      </property>
+	    </widget>
+	  </item>
+	  <item row="0" column="1">
+	    <widget class="KColorButton" name="kcfg_GradeColor">
+	      <property name="sizePolicy">
+		<sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+		  <horstretch>0</horstretch>
+		  <verstretch>0</verstretch>
+		</sizepolicy>
+	      </property>
+	      <property name="toolTip">
+		<string>Color used to display the grades</string>
+	      </property>
+	      <property name="whatsThis">
+		<string>Click here to change the color used to display the grades.</string>
+	      </property>
+	      <property name="text">
+		<string>&amp;Base</string>
+	      </property>
+	      <property name="shortcut">
+		<string>Alt+0</string>
+	      </property>
+	      <property name="flat">
+		<bool>false</bool>
+	      </property>
+	    </widget>
+	  </item>
+	  <item row="1" column="2">
+	    <spacer name="horizontalSpacer">
+	      <property name="orientation">
+		<enum>Qt::Horizontal</enum>
+	      </property>
+	      <property name="sizeHint" stdset="0">
+		<size>
+		  <width>40</width>
+		  <height>20</height>
+		</size>
+	      </property>
+	    </spacer>
+	  </item>
+	</layout>
       </item>
-      <item row="1" column="1">
-       <widget class="KColorButton" name="kcfg_GradeColor7">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Color for the grade 7</string>
-        </property>
-        <property name="whatsThis">
-         <string>Click here to change the color for grade 7.</string>
-        </property>
-        <property name="text">
-         <string>&amp;7</string>
-        </property>
-        <property name="shortcut">
-         <string>Alt+7</string>
-        </property>
-        <property name="flat">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="l_lev6">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Level &amp;6:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="buddy">
-         <cstring>kcfg_GradeColor6</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="KColorButton" name="kcfg_GradeColor6">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Color for the grade 6</string>
-        </property>
-        <property name="whatsThis">
-         <string>Click here to change the color for grade 6.</string>
-        </property>
-        <property name="text">
-         <string>&amp;6</string>
-        </property>
-        <property name="shortcut">
-         <string>Alt+6</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="l_lev5">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Level &amp;5:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="buddy">
-         <cstring>kcfg_GradeColor5</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="KColorButton" name="kcfg_GradeColor5">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Color for the grade 5</string>
-        </property>
-        <property name="whatsThis">
-         <string>Click here to change the color for grade 5.</string>
-        </property>
-        <property name="text">
-         <string>&amp;5</string>
-        </property>
-        <property name="shortcut">
-         <string>Alt+5</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="l_lev4">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Level &amp;4:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="buddy">
-         <cstring>kcfg_GradeColor4</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="KColorButton" name="kcfg_GradeColor4">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Color for the grade 4</string>
-        </property>
-        <property name="whatsThis">
-         <string>Click here to change the color for grade 4.</string>
-        </property>
-        <property name="text">
-         <string>&amp;4</string>
-        </property>
-        <property name="shortcut">
-         <string>Alt+4</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="l_lev3">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Level &amp;3:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="buddy">
-         <cstring>kcfg_GradeColor3</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="KColorButton" name="kcfg_GradeColor3">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Color for the grade 3</string>
-        </property>
-        <property name="whatsThis">
-         <string>Click here to change the color for grade 3.</string>
-        </property>
-        <property name="text">
-         <string>&amp;3</string>
-        </property>
-        <property name="shortcut">
-         <string>Alt+3</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0">
-       <widget class="QLabel" name="l_lev2">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Level &amp;2:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="buddy">
-         <cstring>kcfg_GradeColor2</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="1">
-       <widget class="KColorButton" name="kcfg_GradeColor2">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Color for the grade 2</string>
-        </property>
-        <property name="whatsThis">
-         <string>Click here to change the color for grade 2.</string>
-        </property>
-        <property name="text">
-         <string>&amp;2</string>
-        </property>
-        <property name="shortcut">
-         <string>Alt+2</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="l_lev1">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Level &amp;1:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="buddy">
-         <cstring>kcfg_GradeColor1</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="1">
-       <widget class="KColorButton" name="kcfg_GradeColor1">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Color for the grade 1</string>
-        </property>
-        <property name="whatsThis">
-         <string>Click here to change the color for grade 1.</string>
-        </property>
-        <property name="text">
-         <string>&amp;1</string>
-        </property>
-        <property name="shortcut">
-         <string>Alt+1</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="0">
-       <widget class="QLabel" name="l_lev0">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Not &amp;practiced:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="buddy">
-         <cstring>kcfg_GradeColor0</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="1">
-       <widget class="KColorButton" name="kcfg_GradeColor0">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>&amp;N</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </widget>
-   </item>
-  </layout>
- </widget>
- <customwidgets>
-  <customwidget>
-   <class>KFontRequester</class>
-   <extends>QWidget</extends>
-   <header>kfontrequester.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KColorButton</class>
-   <extends>QPushButton</extends>
-   <header>kcolorbutton.h</header>
-  </customwidget>
- </customwidgets>
- <tabstops>
-  <tabstop>kcfg_UseGradeColors</tabstop>
-  <tabstop>kcfg_GradeColor7</tabstop>
-  <tabstop>kcfg_GradeColor6</tabstop>
-  <tabstop>kcfg_GradeColor5</tabstop>
-  <tabstop>kcfg_GradeColor4</tabstop>
-  <tabstop>kcfg_GradeColor3</tabstop>
-  <tabstop>kcfg_GradeColor2</tabstop>
-  <tabstop>kcfg_GradeColor1</tabstop>
-  <tabstop>kcfg_GradeColor0</tabstop>
- </tabstops>
- <includes>
-  <include location="global">kcolorbutton.h</include>
- </includes>
- <resources/>
- <connections/>
+    </layout>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>KFontRequester</class>
+      <extends>QWidget</extends>
+      <header>kfontrequester.h</header>
+    </customwidget>
+    <customwidget>
+      <class>KColorButton</class>
+      <extends>QPushButton</extends>
+      <header>kcolorbutton.h</header>
+    </customwidget>
+  </customwidgets>
+  <tabstops>
+    <tabstop>kcfg_GradeColor</tabstop>
+  </tabstops>
+  <includes>
+    <include location="global">kcolorbutton.h</include>
+  </includes>
+  <resources/>
+  <connections/>
 </ui>

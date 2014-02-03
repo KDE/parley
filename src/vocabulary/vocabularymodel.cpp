@@ -179,13 +179,6 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
             return ls.editorFont();
         }
         return QVariant();
-    case Qt::TextColorRole:
-        if (Prefs::useGradeColors() && entryColumn == Translation) {
-            int grade = m_container->entry(index.row(), m_recursive)->translation(translationId)->grade();
-            return Prefs::gradeColor(grade);
-        } else {
-            return QVariant();
-        }
     case LocaleRole:
         return QVariant(m_document->identifier(translationId).locale());
     case EntryRole: {

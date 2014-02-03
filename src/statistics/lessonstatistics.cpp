@@ -52,29 +52,40 @@ public:
     }
 
 protected:
-    void drawBackground ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const {
-        QLinearGradient linearGrad(QPointF(option.rect.x(), 0), QPointF(option.rect.x() + option.rect.width(), 0));
+    void drawBackground ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const {
+        // Create the outer rounded rectangle.
+        QRect roundedRect(option.rect);
+        roundedRect.adjust(1, 1, -1, -1);
+        QPainterPath roundedPath;
+        roundedPath.addRoundedRect(roundedRect, 2.0, 2.0);
 
-        int total = index.data(StatisticsModel::TotalCount).toInt();
-        linearGrad.setColorAt(0.0, QColor(255, 255, 255, 0));
-        
-        int sum = 0;
-        for (int i = 7; i >= 1; i--) {
+        qreal total = index.data(StatisticsModel::TotalCount).toInt();
+        int xPosition = 0;
+        // Create the inner, grades' rectangles.
+        for (int i = 7; i >= 0; i--) {
             int count = index.data(StatisticsModel::Grade0 + i).toInt();
-            if (count) {
-                sum += count;
-                linearGrad.setColorAt(((double)(total-sum))/total, Prefs::gradeColor(i));
+            int barElementWidth = (double)(count / total) * option.rect.width();
+            QRectF barElement(option.rect.x() + xPosition, option.rect.y(), barElementWidth, option.rect.height());
+            QPainterPath barElementPath;
+            barElementPath.addRect(barElement);
+            xPosition += barElementWidth;
+            // Intersect the QPainterPath of inner rectangle with outer,
+            // so that the inner rectangle takes the shape of the outer rounded rectangle.
+            QPainterPath barElementIntersectedPath = roundedPath.intersected(barElementPath);
+            // Display empty rectangle (white) for Grade 0 and color for others.
+            QColor color = Prefs::gradeColor();
+            // 255 being the max alpha, ie the darkest shade. As grades become lower,
+            // the alpha value gets decremented by 35 for every decrement in grade by 1.
+            // Here 7 => No. of grades. 35 => arbitrary number for a good difference in alpha values for
+            // consecutive grades, also such that for grade 1, the alpha value isn't too low.
+            color.setAlpha(255 - (7 - i) * 35);
+            if (i != 0) {
+                painter->setBrush(QBrush(color));
+            } else {
+                painter->setBrush(QBrush(QColor(255, 255, 255, 0)));
             }
+            painter->drawPath(barElementIntersectedPath);
         }
-        
-
-        QRect rect(option.rect);
-        rect.adjust(1, 1, -1, -1);
-
-        QPainterPath path;
-        path.addRoundedRect( rect, 2.0, 2.0 );
-        painter->setBrush(QBrush(linearGrad));
-        painter->drawPath(path);
     }
 };
 
