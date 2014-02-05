@@ -183,12 +183,13 @@ bool GuiFrontend::eventFilter(QObject *object, QEvent *event)
 
 void GuiFrontend::setFinishedWordsTotalWords(int finished, int total)
 {
+    int finishedPercentage = 1.0 * finished / total * 100;
     // update progress bar
     m_ui->totalProgress->setMaximum(total);
     m_ui->totalProgress->setValue(finished);
-    m_ui->totalProgress->setToolTip(i18np("You answered %2 of a total of %1 word.\nYou are %3% done.",
-                                          "You answered %2 of a total of %1 words.\nYou are %3% done.",
-                                          total, finished, finished/total*100));
+    m_ui->totalProgress->setToolTip(i18np("You answered correctly %2 of a total of %1 word.\nYou are %3% done.",
+                                          "You answered correctly %2 of a total of %1 words.\nYou are %3% done.",
+                                          total, finished, finishedPercentage));
 }
 
 void GuiFrontend::setHint(const QVariant& hint)

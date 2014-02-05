@@ -198,7 +198,7 @@ void PracticeStateMachine::updateFrontend()
     
     // show the word that is currently practiced in the progress bar
     m_frontend->setFinishedWordsTotalWords(
-        m_testEntryManager->totalEntryCount() - m_testEntryManager->activeEntryCount() + 1,
+        m_testEntryManager->totalEntryCount() - m_testEntryManager->activeEntryCount(),
         m_testEntryManager->totalEntryCount());
 
     grade_t grade = m_mode->currentGradeForEntry();
