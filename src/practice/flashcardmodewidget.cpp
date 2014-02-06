@@ -75,6 +75,7 @@ void FlashCardModeWidget::showSynonym()
 
 void FlashCardModeWidget::showSolution()
 {
+    m_ui->solutionLabel->setHidden(true);
     m_ui->solutionLabel->setPalette(m_correctPalette);
 
     m_ui->solutionLabel->setMinimumSize(QSize(0, 0));
@@ -94,8 +95,9 @@ void FlashCardModeWidget::showSolution()
 
 void FlashCardModeWidget::setHint(const QVariant& hint)
 {
-    m_ui->solutionLabel->setHidden(false);
+    m_ui->solutionLabel->setHidden(true);
     m_ui->solutionLabel->setText(hint.toString());
+    m_ui->solutionLabel->setHidden(false);
 }
 
 QVariant FlashCardModeWidget::userInput()
