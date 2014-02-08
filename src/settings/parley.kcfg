@@ -162,7 +162,7 @@
       <label>Enable sound playback in the practice dialogs.</label>
       <default>true</default>
     </entry>
-    <entry name="MultipleChoiceWordTypeConsistancy" type="Bool">"
+    <entry name="MultipleChoiceWordTypeConsistancy" type="Bool">
         <label>Use the same word type as the solution for the incorrect answers in a multiple choice practice.</label>
         <default>true</default>
     </entry>
