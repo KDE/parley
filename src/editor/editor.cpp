@@ -60,7 +60,7 @@
 using namespace Editor;
 
 EditorWindow::EditorWindow(ParleyMainWindow* parent)
-    :KXmlGuiWindow(parent), m_mainWindow(parent)
+    : KXmlGuiWindow(parent), m_mainWindow(parent)
 {
     // KXmlGui
     setXMLFile("editorui.rc");
@@ -85,7 +85,7 @@ EditorWindow::EditorWindow(ParleyMainWindow* parent)
     connect(parent->parleyDocument(), SIGNAL(statesNeedSaving()), this, SLOT(saveState()));
     connect(parent, SIGNAL(preferencesChanged()), this, SLOT(applyPrefs()));
 
-    QTimer::singleShot( 0, this, SLOT(initScripts()) );
+    QTimer::singleShot(0, this, SLOT(initScripts()));
 }
 
 EditorWindow::~EditorWindow()
@@ -123,10 +123,10 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
     connect(m_mainWindow->parleyDocument()->document(), SIGNAL(docModified(bool)), m_mainWindow, SLOT(slotUpdateWindowCaption()));
 
     connect(m_vocabularyView->selectionModel(),
-                SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
+            SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
             m_summaryWordWidget, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
     connect(m_vocabularyView->selectionModel(),
-                SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
+            SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
             m_latexWidget, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
 
     setCaption(doc->url().fileName(), false);
@@ -134,7 +134,7 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
     m_mainWindow->slotUpdateWindowCaption();
 
     m_spellCheckMenu->menu()->clear();
-    for(int i = 0; i < doc->identifierCount(); ++i) {
+    for (int i = 0; i < doc->identifierCount(); ++i) {
         KAction* languageSpellCheck = new KAction(doc->identifier(i).name(), m_spellCheckMenu->menu());
         m_spellCheckMenu->menu()->addAction(languageSpellCheck);
         m_spellCheckMapper->setMapping(languageSpellCheck, i);
@@ -157,25 +157,25 @@ void EditorWindow::initDockWidgets()
     m_lessonModel = new LessonModel(this);
     m_lessonView->setModel(m_lessonModel);
     m_lessonView->setToolTip(i18n("Right click to add, delete, or rename lessons. \n"
-            "With the checkboxes you can select which lessons you want to practice. \n"
-            "Only checked lessons [x] will be asked in the tests!"));
+                                  "With the checkboxes you can select which lessons you want to practice. \n"
+                                  "Only checked lessons [x] will be asked in the tests!"));
 
     connect(m_lessonView, SIGNAL(selectedLessonChanged(KEduVocLesson*)),
-        m_vocabularyModel, SLOT(setLesson(KEduVocLesson*)));
+            m_vocabularyModel, SLOT(setLesson(KEduVocLesson*)));
 
     connect(m_lessonView, SIGNAL(signalShowContainer(KEduVocContainer*)),
-        m_vocabularyModel, SLOT(showContainer(KEduVocContainer*)));
+            m_vocabularyModel, SLOT(showContainer(KEduVocContainer*)));
 
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-        m_lessonView, SLOT(setTranslation(KEduVocExpression*, int)));
+            m_lessonView, SLOT(setTranslation(KEduVocExpression*, int)));
 
 
 // Word types dock
     QDockWidget* wordTypeDockWidget = new QDockWidget(i18n("Word Types"), this);
-    wordTypeDockWidget->setObjectName( "WordTypeDock" );
+    wordTypeDockWidget->setObjectName("WordTypeDock");
     m_wordTypeView = new WordTypeView(this);
     wordTypeDockWidget->setWidget(m_wordTypeView);
-    addDockWidget( Qt::LeftDockWidgetArea, wordTypeDockWidget );
+    addDockWidget(Qt::LeftDockWidgetArea, wordTypeDockWidget);
     m_dockWidgets.append(wordTypeDockWidget);
 
     m_wordTypeModel = new WordTypeModel(this);
@@ -189,7 +189,7 @@ void EditorWindow::initDockWidgets()
     m_wordTypeView->setModel(m_wordTypeModel);
 
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-        m_wordTypeView, SLOT(setTranslation(KEduVocExpression*, int)));
+            m_wordTypeView, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Inflections
     QDockWidget *inflectionDock = new QDockWidget(i18n("Inflection (verbs, adjectives, nouns)"), this);
@@ -214,7 +214,7 @@ void EditorWindow::initDockWidgets()
     actionCollection()->addAction("show_comparison_dock", comparisonDock->toggleViewAction());
     comparisonDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-        m_comparisonWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+            m_comparisonWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Multiple choice
     QDockWidget *multipleChoiceDock = new QDockWidget(i18n("Multiple Choice"), this);
@@ -226,7 +226,7 @@ void EditorWindow::initDockWidgets()
     actionCollection()->addAction("show_multiplechoice_dock", multipleChoiceDock->toggleViewAction());
     multipleChoiceDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-        multipleChoiceWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+            multipleChoiceWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Synonym (and the same for antonym and false friends)
     QDockWidget *synonymDock = new QDockWidget(i18n("Synonyms"), this);
@@ -284,7 +284,7 @@ void EditorWindow::initDockWidgets()
     actionCollection()->addAction("show_image_dock", imageDock->toggleViewAction());
     imageDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-        imageChooserWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+            imageChooserWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Summary word
     QDockWidget *summaryDock = new QDockWidget(i18n("Summary"), this);
@@ -308,7 +308,7 @@ void EditorWindow::initDockWidgets()
     actionCollection()->addAction("show_audio_dock", audioDock->toggleViewAction());
     audioDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-        audioWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+            audioWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // browser
     QDockWidget *browserDock = new QDockWidget(i18n("Internet"), this);
@@ -352,7 +352,7 @@ void EditorWindow::initActions()
     m_spellCheckMenu->setMenu(new QMenu(this));
     m_spellCheckMapper = new QSignalMapper(this);
     connect(m_spellCheckMapper, SIGNAL(mapped(int)), m_vocabularyView, SLOT(checkSpelling(int)));
-    
+
     ParleyActions::create(ParleyActions::ToggleShowSublessons, m_vocabularyModel, SLOT(showEntriesOfSubcontainers(bool)), actionCollection());
     ParleyActions::create(ParleyActions::AutomaticTranslation, m_vocabularyModel, SLOT(automaticTranslation(bool)), actionCollection());
     ParleyActions::create(ParleyActions::StartPractice, m_mainWindow, SLOT(showPracticeConfiguration()), actionCollection());
@@ -433,7 +433,8 @@ void EditorWindow::startSearch()
     m_searchLine->setFocus();
 }
 
-void EditorWindow::slotShowScriptManager() {
+void EditorWindow::slotShowScriptManager()
+{
     ScriptDialog * dialog = new ScriptDialog(m_scriptManager);
     dialog->show();
 }

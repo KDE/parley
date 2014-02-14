@@ -21,8 +21,9 @@
 
 class KEduVocExpression;
 
-namespace Editor {
-    
+namespace Editor
+{
+
 class ImageChooserWidget : public QWidget, public Ui::ImageChooserWidget
 {
     Q_OBJECT
@@ -32,15 +33,15 @@ public:
 public slots:
     /**
      * Update the word
-     * @param entry 
-     * @param translation 
+     * @param entry
+     * @param translation
      */
     void setTranslation(KEduVocExpression* entry, int translation);
 
 // signals:
 //     /**
 //      * Important to let other widgets know that a certain word type is edited (might make conjugations/comparison/declension appear)
-//      * @param  
+//      * @param
 //      */
 //     void imageChanged(const QString&);
 

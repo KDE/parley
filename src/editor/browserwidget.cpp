@@ -35,8 +35,8 @@ BrowserWidget::BrowserWidget(QWidget *parent) : QWidget(parent)
     layout->addWidget(m_htmlPart->widget());
 
     connect(m_htmlPart->browserExtension(),
-    SIGNAL(openUrlRequest(const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)),
-    this, SLOT(openUrl(const KUrl&)));
+            SIGNAL(openUrlRequest(const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)),
+            this, SLOT(openUrl(const KUrl&)));
 
     connect(showCurrentButton, SIGNAL(clicked()), SLOT(showCurrentTranslation()));
 
@@ -55,62 +55,62 @@ void BrowserWidget::setupProviders()
     providerComboBox->clear();
 
     DictionaryProvider provider;
-    provider.name="De-Es Beolingus";
-    provider.url="http://beolingus.org/dings.cgi?service=dees&query=\\{@}";
+    provider.name = "De-Es Beolingus";
+    provider.url = "http://beolingus.org/dings.cgi?service=dees&query=\\{@}";
     provider.languages << "de" << "es";
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
-    provider.name="De-En Beolingus";
-    provider.url="http://beolingus.org/dings.cgi?query=\\{@}";
+    provider.name = "De-En Beolingus";
+    provider.url = "http://beolingus.org/dings.cgi?query=\\{@}";
     provider.languages << "de" << "en";
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
-    provider.name="De-En Leo";
-    provider.url="http://dict.leo.org/?search=\\{@}";
+    provider.name = "De-En Leo";
+    provider.url = "http://dict.leo.org/?search=\\{@}";
     provider.languages << "de" << "en";
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
-    provider.name="De-Es Leo";
-    provider.url="http://dict.leo.org/?lp=esde&search=\\{@}";
+    provider.name = "De-Es Leo";
+    provider.url = "http://dict.leo.org/?lp=esde&search=\\{@}";
     provider.languages << "de" << "es";
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
-    provider.name="De-Fr Leo";
-    provider.url="http://dict.leo.org/?lp=frde&search=\\{@}";
+    provider.name = "De-Fr Leo";
+    provider.url = "http://dict.leo.org/?lp=frde&search=\\{@}";
     provider.languages << "de" << "fr";
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
-    provider.name="De-Es Pons";
-    provider.url="http://www.ponsline.de/cgi-bin/wb/w.pl?von=pons.de&Richtung=Spanisch&Begriff=\\{@}";
+    provider.name = "De-Es Pons";
+    provider.url = "http://www.ponsline.de/cgi-bin/wb/w.pl?von=pons.de&Richtung=Spanisch&Begriff=\\{@}";
     provider.languages << "de" << "es";
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
-    provider.name="Ru-En Multitran";
-    provider.url="http://multitran.ru/c/m.exe?SHL=1&CL=1&l1=1&s=\\{@}";
+    provider.name = "Ru-En Multitran";
+    provider.url = "http://multitran.ru/c/m.exe?SHL=1&CL=1&l1=1&s=\\{@}";
     provider.languages << "ru" << "en";
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
-    provider.name="Ru-De Multitran";
-    provider.url="http://multitran.ru/c/m.exe?SHL=1&CL=1&l1=3&s=\\{@}";
+    provider.name = "Ru-De Multitran";
+    provider.url = "http://multitran.ru/c/m.exe?SHL=1&CL=1&l1=3&s=\\{@}";
     provider.languages << "ru" << "de";
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
-    provider.name="Ru-Fr Multitran";
-    provider.url="http://multitran.ru/c/m.exe?SHL=1&CL=1&l1=4&s=\\{@}";
+    provider.name = "Ru-Fr Multitran";
+    provider.url = "http://multitran.ru/c/m.exe?SHL=1&CL=1&l1=4&s=\\{@}";
     provider.languages << "ru" << "fr";
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
-    provider.name="Heinzelnisse";
-    provider.url="http://heinzelnisse.info/dict?setOptions=true&searchItem=\\{@}&dictDeNoSearch=on&dictNoDeSearch=on&dictExactSearch=on&dictPhoneticSearch=on&wikiSearch=on&dictNynorskSearch=on&dictBokmaalSearch=checked&forumKeywordSearch=on&suggestion=on";
+    provider.name = "Heinzelnisse";
+    provider.url = "http://heinzelnisse.info/dict?setOptions=true&searchItem=\\{@}&dictDeNoSearch=on&dictNoDeSearch=on&dictExactSearch=on&dictPhoneticSearch=on&wikiSearch=on&dictNynorskSearch=on&dictBokmaalSearch=checked&forumKeywordSearch=on&suggestion=on";
     provider.languages << "no" << "de";
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);

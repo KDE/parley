@@ -68,7 +68,7 @@ void AudioWidget::setTranslation(KEduVocExpression* entry, int translation)
 void AudioWidget::slotAudioFileChanged(const QString & url)
 {
     if (m_entry) {
-        m_entry->translation(m_currentTranslation)->setSoundUrl( KUrl(url) );
+        m_entry->translation(m_currentTranslation)->setSoundUrl(KUrl(url));
     }
     playButton->setEnabled(!url.isEmpty());
 }
@@ -77,8 +77,7 @@ void AudioWidget::playAudio()
 {
     KUrl soundFile = m_entry->translation(m_currentTranslation)->soundUrl();
 
-    if (!m_player)
-    {
+    if (!m_player) {
         m_player = Phonon::createPlayer(Phonon::NotificationCategory, soundFile);
         m_player->setParent(this);
         connect(m_player, SIGNAL(finished()), SLOT(slotPlaybackFinished()));

@@ -54,7 +54,7 @@ void ImageChooserWidget::setTranslation(KEduVocExpression* entry, int translatio
 
 void ImageChooserWidget::slotImageChanged(const QString & url)
 {
-    if ( !url.isEmpty() ) {
+    if (!url.isEmpty()) {
         QPixmap pixmap(url);
         imageWidget->setPixmap(pixmap);
     } else {
@@ -63,10 +63,10 @@ void ImageChooserWidget::slotImageChanged(const QString & url)
     }
 
     if (m_entry) {
-        m_entry->translation(m_currentTranslation)->setImageUrl( KUrl(url) );
-        foreach (int j, m_entry->translationIndices()) {
-            if ( m_entry->translation(j)->imageUrl().isEmpty() ) {
-                m_entry->translation(j)->setImageUrl( imageUrlRequester->url() );
+        m_entry->translation(m_currentTranslation)->setImageUrl(KUrl(url));
+        foreach(int j, m_entry->translationIndices()) {
+            if (m_entry->translation(j)->imageUrl().isEmpty()) {
+                m_entry->translation(j)->setImageUrl(imageUrlRequester->url());
             }
         }
     }
@@ -96,7 +96,7 @@ bool ImageChooserWidget::eventFilter(QObject * obj, QEvent * event)
             if (dragEnterEvent->provides("text/uri-list")) {
                 kDebug() << KMimeType::findByUrl(dragEnterEvent->mimeData()->urls()[0])->name();
 
-                if(KMimeType::findByUrl(dragEnterEvent->mimeData()->urls()[0])->name().startsWith("image")) {
+                if (KMimeType::findByUrl(dragEnterEvent->mimeData()->urls()[0])->name().startsWith("image")) {
                     kDebug() << "text/uri-list contains image";
                     event->accept();
                     return true;

@@ -19,7 +19,7 @@
 class KEduVocDocument;
 class QTreeWidget;
 
-class ConjugationOptions :public QWidget
+class ConjugationOptions : public QWidget
 {
     Q_OBJECT
 public:
@@ -28,7 +28,7 @@ public:
 public Q_SLOTS:
     void setLanguages(int from, int to);
     void updateSettings();
-    
+
 private:
     void setupTenses();
 

@@ -60,16 +60,16 @@ void ConjugationOptions::setupTenses()
     kDebug() << "activeTenses:" << activeTenses << " id tenses: " << m_doc->identifier(m_language).tenseList();
     QTreeWidgetItem* tenseItem;
 
-    foreach ( const QString &tenseName, m_doc->identifier(m_language).tenseList() ) {
+    foreach(const QString & tenseName, m_doc->identifier(m_language).tenseList()) {
         tenseItem = new QTreeWidgetItem(m_treeWidget);
         tenseItem->setText(0, tenseName);
-        if ( activeTenses.contains( tenseName ) ) {
+        if (activeTenses.contains(tenseName)) {
             tenseItem->setCheckState(0, Qt::Checked);
         } else {
             tenseItem->setCheckState(0, Qt::Unchecked);
         }
         tenseItem->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
-        m_treeWidget->addTopLevelItem( tenseItem );
+        m_treeWidget->addTopLevelItem(tenseItem);
     }
 }
 
@@ -78,9 +78,9 @@ void ConjugationOptions::updateSettings()
     kDebug() << "Save language selection";
     QTreeWidgetItem* parentItem = m_treeWidget->invisibleRootItem();
     QStringList activeTenses;
-    for ( int i = 0; i < parentItem->childCount(); i++ ) {
+    for (int i = 0; i < parentItem->childCount(); i++) {
         QTreeWidgetItem* tenseItem = parentItem->child(i);
-        if ( tenseItem->checkState(0) == Qt::Checked ) {
+        if (tenseItem->checkState(0) == Qt::Checked) {
             activeTenses.append(tenseItem->text(0));
         }
     }

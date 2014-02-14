@@ -45,10 +45,10 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     m_ui->centralPracticeWidget->setLayout(new QHBoxLayout());
 
     m_themedBackgroundRenderer = new ThemedBackgroundRenderer(this, "practicethemecache.bin");
-    
+
     connect(Prefs::self(), SIGNAL(configChanged()), this, SLOT(setTheme()));
     setTheme();
-    
+
     connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)), this, SLOT(backgroundChanged(QPixmap)));
     connect(m_widget, SIGNAL(sizeChanged()), this, SLOT(updateBackground()));
 
@@ -85,31 +85,31 @@ void GuiFrontend::setMode(Mode mode)
 {
     kDebug() << "setCentralWidget" << mode;
     AbstractModeWidget *newWidget = 0;
-    switch(mode) {
-        case Written:
-            if (/*m_modeWidget->metaObject()->className() == QLatin1String("WrittenPracticeWidget")*/false) {
-                kDebug() << "Written practice widget is already the central widget";
-                break;
-            }
-            newWidget = new WrittenPracticeWidget(this, m_widget);
+    switch (mode) {
+    case Written:
+        if (/*m_modeWidget->metaObject()->className() == QLatin1String("WrittenPracticeWidget")*/false) {
+            kDebug() << "Written practice widget is already the central widget";
             break;
-        case MultipleChoice:
-            newWidget = new MultiplechoiceModeWidget(this, m_widget);
-            break;
-        case FlashCard:
-            newWidget = new FlashCardModeWidget(this, m_widget);
-            break;
-        case MixedLetters:
-            newWidget = new MixedLettersModeWidget(this, m_widget);
-            break;
-        case Conjugation:
-            newWidget = new ConjugationModeWidget(this, m_widget);
-            break;
-        case Comparison:
-            newWidget = new ComparisonModeWidget(this, m_widget);
-            break;
-        default:
-            Q_ASSERT("Practice Mode Invalid" == 0);
+        }
+        newWidget = new WrittenPracticeWidget(this, m_widget);
+        break;
+    case MultipleChoice:
+        newWidget = new MultiplechoiceModeWidget(this, m_widget);
+        break;
+    case FlashCard:
+        newWidget = new FlashCardModeWidget(this, m_widget);
+        break;
+    case MixedLetters:
+        newWidget = new MixedLettersModeWidget(this, m_widget);
+        break;
+    case Conjugation:
+        newWidget = new ConjugationModeWidget(this, m_widget);
+        break;
+    case Comparison:
+        newWidget = new ComparisonModeWidget(this, m_widget);
+        break;
+    default:
+        Q_ASSERT("Practice Mode Invalid" == 0);
     }
     if (newWidget) {
         m_ui->centralPracticeWidget->layout()->addWidget(newWidget);
@@ -145,7 +145,7 @@ void GuiFrontend::showSolution()
 }
 void GuiFrontend::setSynonym(const QString& entry)
 {
-    m_modeWidget->setSynonym(entry); 
+    m_modeWidget->setSynonym(entry);
 }
 
 void GuiFrontend::showSynonym()
@@ -242,7 +242,7 @@ void GuiFrontend::setImage(const KUrl& image)
 {
     if (m_lastImage == image) {
         return;
-    }    
+    }
     QPixmap pixmap(image.path());
     if (pixmap.isNull()) {
         m_ui->imageWidget->setPixmap(m_themedBackgroundRenderer->getPixmapForId("image-placeholder", QSize(150, 150)));

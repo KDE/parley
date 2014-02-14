@@ -26,7 +26,8 @@
 class KEduVocDocument;
 class PracticeDialog;
 
-namespace Practice {
+namespace Practice
+{
 
 class TestEntryManager
 {
@@ -45,7 +46,7 @@ public:
      */
     ~TestEntryManager();
 
-    void setDocument(KEduVocDocument *doc); 
+    void setDocument(KEduVocDocument *doc);
 
     /**
      * Get the next entry to show to the user.
@@ -88,10 +89,12 @@ public:
     /**
      * Get a list of all entries in the test - used by the summary dialog
      */
-    QList<TestEntry*> allTestEntries() { return m_allTestEntries; }
+    QList<TestEntry*> allTestEntries() {
+        return m_allTestEntries;
+    }
 
     /**
-    * Get a list of all unanswered entries in the test 
+    * Get a list of all unanswered entries in the test
     */
     QList<TestEntry*> allUnansweredTestEntries();
     QString currentConjugationTense();
@@ -132,7 +135,7 @@ private:
 
     KRandomSequence m_randomSequence;
 
-friend class EntryFilter;
+    friend class EntryFilter;
 };
 
 }

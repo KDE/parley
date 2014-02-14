@@ -16,7 +16,8 @@
 
 #include "imagewidget.h"
 
-namespace Practice {
+namespace Practice
+{
 
 class ThemedBackgroundRenderer;
 

@@ -39,12 +39,12 @@
 using namespace Editor;
 
 SummaryWordWidget::SummaryWordWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent)
-:QWidget(parent)
-,m_doc(doc)
-,m_wordTypeModel(0)
-,m_wordTypeView(0)
-,m_entry(0)
-,m_translationId(0)
+    : QWidget(parent)
+    , m_doc(doc)
+    , m_wordTypeModel(0)
+    , m_wordTypeView(0)
+    , m_entry(0)
+    , m_translationId(0)
 {
     Q_ASSERT(model);
     Q_ASSERT(m_doc);
@@ -66,18 +66,18 @@ void SummaryWordWidget::setTranslation(KEduVocExpression *entry, int translation
         // we need to map the widgets relative to the translation (each translation has 9 columns)
         m_mapper->clearMapping();
 
-        m_mapper->addMapping(wordEntry, 
-                            VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Translation);
-        //m_mapper->addMapping(wordTypeComboBox, 
+        m_mapper->addMapping(wordEntry,
+                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Translation);
+        //m_mapper->addMapping(wordTypeComboBox,
         //                    VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::WordType);
-        m_mapper->addMapping(pronunciationEntry, 
-                            VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Pronunciation);
-        m_mapper->addMapping(exampleEntry, 
-                            VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Example);
-        m_mapper->addMapping(paraphraseEntry, 
-                            VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Paraphrase);
-        m_mapper->addMapping(commentEntry, 
-                            VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Comment);
+        m_mapper->addMapping(pronunciationEntry,
+                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Pronunciation);
+        m_mapper->addMapping(exampleEntry,
+                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Example);
+        m_mapper->addMapping(paraphraseEntry,
+                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Paraphrase);
+        m_mapper->addMapping(commentEntry,
+                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Comment);
 
         languageLabel->setText("<b>" + m_doc->identifier(translation).name() + "</b>");
         lessonLabel->setText(entry->lesson()->name());
@@ -118,14 +118,14 @@ void SummaryWordWidget::slotDocumentChanged(KEduVocDocument *doc)
 }
 
 
-void SummaryWordWidget::slotSelectionChanged(const QItemSelection &itemSelected, 
-                                             const QItemSelection &itemDeselected)
+void SummaryWordWidget::slotSelectionChanged(const QItemSelection &itemSelected,
+        const QItemSelection &itemDeselected)
 {
     Q_UNUSED(itemDeselected)
 
     if (itemSelected.indexes().size() >= 1) {
         // the selected index belongs to VocabularyFilter, when we need it from the vocabulary model
-        QModelIndex index = m_model->index(itemSelected.indexes().at(0).row(), 
+        QModelIndex index = m_model->index(itemSelected.indexes().at(0).row(),
                                            itemSelected.indexes().at(0).column());
         m_mapper->setCurrentModelIndex(index);
     }
@@ -192,20 +192,20 @@ void SummaryWordDelegate::setEditorData(QWidget *editor, const QModelIndex &inde
 
     if (editor) {
         switch (VocabularyModel::columnType(index.column())) {
-            case VocabularyModel::WordType:
-                break;
+        case VocabularyModel::WordType:
+            break;
 
-            case VocabularyModel::Comment:
-            case VocabularyModel::Pronunciation:
-            case VocabularyModel::Translation:
-            case VocabularyModel::Example:
-            case VocabularyModel::Paraphrase:
+        case VocabularyModel::Comment:
+        case VocabularyModel::Pronunciation:
+        case VocabularyModel::Translation:
+        case VocabularyModel::Example:
+        case VocabularyModel::Paraphrase:
 
-                KLineEdit *entry = static_cast <KLineEdit *> (editor);
-                if (entry) {
-                    entry->setText(index.model()->data(index).toString());
-                }
-                break;
+            KLineEdit *entry = static_cast <KLineEdit *>(editor);
+            if (entry) {
+                entry->setText(index.model()->data(index).toString());
+            }
+            break;
         }
     }
 }

@@ -19,8 +19,9 @@
 #include "containerview.h"
 #include "lessonmodel.h"
 
-namespace Editor {
-    class EditorWindow;
+namespace Editor
+{
+class EditorWindow;
 
 /**
  * View for the lesson list.
@@ -67,12 +68,16 @@ public slots:
     void setTranslation(KEduVocExpression* entry, int translationId);
 
 protected slots:
-    void selectionChanged ( const QItemSelection & selected, const QItemSelection & deselected );
-    void currentChanged( const QModelIndex & current, const QModelIndex & previous );
+    void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected);
+    void currentChanged(const QModelIndex & current, const QModelIndex & previous);
 
 private:
-    virtual void setModel(ContainerModel *model) { Q_UNUSED(model) }
-    virtual void setModel(QAbstractItemModel *model) { Q_UNUSED(model) }
+    virtual void setModel(ContainerModel *model) {
+        Q_UNUSED(model)
+    }
+    virtual void setModel(QAbstractItemModel *model) {
+        Q_UNUSED(model)
+    }
 
     LessonModel *m_model;
 };

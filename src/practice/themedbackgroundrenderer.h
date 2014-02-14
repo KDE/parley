@@ -25,7 +25,8 @@
 class QMargins;
 class KGameTheme;
 
-namespace Practice {
+namespace Practice
+{
 
 class ThemedBackgroundRenderer : public QObject
 {
@@ -68,7 +69,7 @@ public:
     QPixmap getScaledBackground();
 
     QColor fontColor(const QString& context, const QColor& fallback);
-    
+
 public Q_SLOTS:
     void clearRects();
     void addRect(const QString& name, const QRect& rect);
@@ -80,7 +81,7 @@ public Q_SLOTS:
 
 signals:
     void backgroundChanged(QPixmap pixmap);
-   
+
 private:
     QImage renderBackground(bool fastScale);
     void renderRect(const QString& name, const QRect& rect, QPainter *p, bool fastScale);

@@ -18,7 +18,8 @@
 
 class QTimeLine;
 
-namespace Practice {
+namespace Practice
+{
 
 class ImageWidget : public QWidget
 {

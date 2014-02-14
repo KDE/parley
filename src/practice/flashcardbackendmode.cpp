@@ -19,7 +19,7 @@
 using namespace Practice;
 
 FlashCardBackendMode::FlashCardBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent)
-:AbstractBackendMode(practiceOptions, frontend, parent)
+    : AbstractBackendMode(practiceOptions, frontend, parent)
 {
 }
 

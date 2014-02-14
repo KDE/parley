@@ -28,12 +28,12 @@
 
 using namespace Editor;
 
-ScriptManager::ScriptManager ( EditorWindow * editor )
-        : m_editor ( editor )
+ScriptManager::ScriptManager(EditorWindow * editor)
+    : m_editor(editor)
 {
     //add Scripting::Parley
-    m_scriptingParley = new Scripting::Parley ( editor );
-    addObject ( m_scriptingParley,"Parley" );
+    m_scriptingParley = new Scripting::Parley(editor);
+    addObject(m_scriptingParley, "Parley");
 }
 
 
@@ -45,9 +45,9 @@ ScriptManager::~ScriptManager()
 QStringList ScriptManager::getDesktopFiles()
 {
 //     QStringList scriptsAvailable;
-    return KGlobal::dirs()->findAllResources (
+    return KGlobal::dirs()->findAllResources(
                "appdata",
-               QString ( "plugins/*.desktop" ),
+               QString("plugins/*.desktop"),
                KStandardDirs::Recursive
                /*, scriptsAvailable*/
            );
@@ -62,19 +62,19 @@ QMap<QString, QString> ScriptManager::categories()
 }
 
 
-QString ScriptManager::getScriptEntry ( QString desktopFile )
+QString ScriptManager::getScriptEntry(QString desktopFile)
 {
     //open it as a raw configuration file and read the script entry
-    KConfig scriptconfig ( desktopFile, KConfig::SimpleConfig );
-    KConfigGroup group = scriptconfig.group ( "Desktop Entry" );
-    return group.readEntry ( "Script" );
+    KConfig scriptconfig(desktopFile, KConfig::SimpleConfig);
+    KConfigGroup group = scriptconfig.group("Desktop Entry");
+    return group.readEntry("Script");
 }
 
 
-QString ScriptManager::getScriptFileName ( QString desktopFile )
+QString ScriptManager::getScriptFileName(QString desktopFile)
 {
-    QFileInfo desktopFileInfo ( desktopFile );
-    return desktopFileInfo.absolutePath() + '/' + ScriptManager::getScriptEntry ( desktopFile );
+    QFileInfo desktopFileInfo(desktopFile);
+    return desktopFileInfo.absolutePath() + '/' + ScriptManager::getScriptEntry(desktopFile);
 }
 
 
@@ -82,31 +82,30 @@ QStringList ScriptManager::enabledScripts()
 {
     QStringList enabledScripts;
     // Open parleyrc to read the state of the plugins (enabled/disabled)
-    KConfigGroup cfg ( KSharedConfig::openConfig ( "parleyrc" ),"Plugins" );
+    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), "Plugins");
     // Get list of KPluginInfo for each of the desktop files found
-    QList<KPluginInfo> pluginsInfoList = KPluginInfo::fromFiles ( getDesktopFiles() );
+    QList<KPluginInfo> pluginsInfoList = KPluginInfo::fromFiles(getDesktopFiles());
     // Find which plugins are enabled and add them to enabledScripts list
     KPluginInfo inf;
-    foreach ( inf, pluginsInfoList )
-    {
-        inf.load ( cfg );
-        if ( inf.isPluginEnabled() )
-            enabledScripts.push_back ( inf.entryPath() );
+    foreach(inf, pluginsInfoList) {
+        inf.load(cfg);
+        if (inf.isPluginEnabled())
+            enabledScripts.push_back(inf.entryPath());
 //         kDebug() << inf.name() << inf.isPluginEnabled() << inf.pluginName();
     }
     return enabledScripts;
 }
 
 
-void ScriptManager::disablePlugin ( QString desktopFile )
+void ScriptManager::disablePlugin(QString desktopFile)
 {
-    KConfigGroup cfg ( KSharedConfig::openConfig ( "parleyrc" ),"Plugins" );
-    KPluginInfo inf ( desktopFile );
+    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), "Plugins");
+    KPluginInfo inf(desktopFile);
     //load parleyrc enabled value
-    inf.load ( cfg );
-    inf.setPluginEnabled ( false );
+    inf.load(cfg);
+    inf.setPluginEnabled(false);
     //save enabled=true in parleyrc
-    inf.save ( cfg );
+    inf.save(cfg);
 }
 
 
@@ -115,29 +114,28 @@ void ScriptManager::loadScripts()
     QStringList scripts = enabledScripts();
     QStringList failed;
     QStringList errorDetails;
-    foreach ( const QString& script, scripts )
-    {
+    foreach(const QString & script, scripts) {
         //create a new Script and add it to the m_scripts list
-        Script * s = new Script ( getScriptFileName (script) );
-        s->addObjects ( m_scriptObjects );
+        Script * s = new Script(getScriptFileName(script));
+        s->addObjects(m_scriptObjects);
         s->activate();
-        m_scripts.push_back ( s );
-        if ( !s->isActivated() ) {
-            failed << getScriptFileName (script); //TODO: real name?
+        m_scripts.push_back(s);
+        if (!s->isActivated()) {
+            failed << getScriptFileName(script);  //TODO: real name?
             errorDetails << s->errorMessage();
             disablePlugin(script);
         }
     }
     //inform with a message box when a script could not be activated
     if (!failed.empty()) {
-        QString errorMessage = "<p>"+i18np("A script could not be activated and has been disabled.", "%1 scripts could not be activated and have been disabled.", failed.count())+' '+i18n("This probably means that there are errors in the script or that the required packages are not installed.")+"</p>";
-        errorMessage += "<ul><li>"+failed.join("</li><li>")+"</li></ul>";
+        QString errorMessage = "<p>" + i18np("A script could not be activated and has been disabled.", "%1 scripts could not be activated and have been disabled.", failed.count()) + ' ' + i18n("This probably means that there are errors in the script or that the required packages are not installed.") + "</p>";
+        errorMessage += "<ul><li>" + failed.join("</li><li>") + "</li></ul>";
         KMessageBox::detailedError(m_editor, errorMessage, errorDetails.join("<hr/>"), i18n("Script Activation"));
     }
 }
 
 
-void ScriptManager::addObject ( QObject * obj, const QString & name )
+void ScriptManager::addObject(QObject * obj, const QString & name)
 {
     m_scriptObjects[name] = obj;
 }
@@ -146,34 +144,33 @@ void ScriptManager::addObject ( QObject * obj, const QString & name )
 void ScriptManager::reloadScripts()
 {
     //deactivate (delete) all the active scripts
-    foreach ( Script * s, m_scripts )
-    {
-        if ( s ) delete s;
+    foreach(Script * s, m_scripts) {
+        if (s) delete s;
     }
     m_scripts.clear();
 
     //reload the scripts menu
-    m_editor->unplugActionList ( "scripts_actionlist" );
+    m_editor->unplugActionList("scripts_actionlist");
     m_scriptActions.clear();
-    m_editor->plugActionList ( "scripts_actionlist",m_scriptActions );
+    m_editor->plugActionList("scripts_actionlist", m_scriptActions);
 
     //load all the enabled scripts
     loadScripts();
 }
 
 
-void ScriptManager::addScriptAction ( const QString & name, KAction * action )
+void ScriptManager::addScriptAction(const QString & name, KAction * action)
 {
     //unplug action list (orelse it will add twice the same entries
-    m_editor->unplugActionList ( "scripts_actionlist" );
+    m_editor->unplugActionList("scripts_actionlist");
 
     //add to action collection
-    m_editor->actionCollection()->addAction ( name,action );
+    m_editor->actionCollection()->addAction(name, action);
 
     //add it to actions menu list
-    m_editor->m_scriptManager->m_scriptActions.push_back ( action );
+    m_editor->m_scriptManager->m_scriptActions.push_back(action);
 
     //plug the action list
-    m_editor->plugActionList ( "scripts_actionlist",m_scriptActions );
+    m_editor->plugActionList("scripts_actionlist", m_scriptActions);
 
 }

@@ -21,12 +21,12 @@ class ParleyDocument;
 
 class LanguageProperties : public KPageDialog
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     LanguageProperties(KEduVocDocument* doc, QWidget* parent);
 
 public slots:
-    virtual void accept ();
+    virtual void accept();
 
 private slots:
     void slotAppendIdentifier();

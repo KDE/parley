@@ -25,7 +25,7 @@ class KEduVocDocument;
 
 class ParleyEngine : public Plasma::DataEngine
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
     ParleyEngine(QObject* parent, const QVariantList& args);

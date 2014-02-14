@@ -19,7 +19,7 @@
 
 TranslationScript::TranslationScript(QString filename)
 {
-    action = new Kross::Action(this,"Action");
+    action = new Kross::Action(this, "Action");
     action->setFile(filename);
 }
 
@@ -35,7 +35,7 @@ void TranslationScript::getLanguagePairs()
 {
     QVariant script_result = action->callFunction("getLanguagePairs");
 
-    foreach(const QVariant &langpair, script_result.toList()) {
+    foreach(const QVariant & langpair, script_result.toList()) {
         QVariantList pair = langpair.toList();
         QString from = pair[0].toString();
         QString to = pair[1].toString();
@@ -50,7 +50,7 @@ QStringList TranslationScript::translateWord(QString word, QString from, QString
 {
     QVariantList args;
     args << word << from << to;
-    QVariant script_result = action->callFunction("fetchTranslation",args);
+    QVariant script_result = action->callFunction("fetchTranslation", args);
     QList<QVariant> translations = script_result.toList();
 
     QStringList result;

@@ -36,7 +36,7 @@ MultipleChoiceWidget::MultipleChoiceWidget(QWidget *parent) : QWidget(parent)
     m_choicesModel = new QStringListModel(this);
     multipleChoiceListView->setModel(m_choicesModel);
 
-    connect(m_choicesModel, SIGNAL(dataChanged ( const QModelIndex &, const QModelIndex & )), SLOT(slotDataChanged( const QModelIndex &, const QModelIndex & )));
+    connect(m_choicesModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), SLOT(slotDataChanged(const QModelIndex &, const QModelIndex &)));
 
     multipleChoiceListView->setAcceptDrops(true);
     multipleChoiceListView->installEventFilter(this);
@@ -45,7 +45,7 @@ MultipleChoiceWidget::MultipleChoiceWidget(QWidget *parent) : QWidget(parent)
 }
 
 
-void MultipleChoiceWidget::slotDataChanged( const QModelIndex & topLeft, const QModelIndex & bottomRight )
+void MultipleChoiceWidget::slotDataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight)
 {
     Q_UNUSED(topLeft)
     Q_UNUSED(bottomRight)
@@ -119,9 +119,9 @@ bool MultipleChoiceWidget::eventFilter(QObject * obj, QEvent * event)
             kDebug() << "You dropped onto me: " << dropEvent->mimeData()->text();
 
             QStringList choices = dropEvent->mimeData()->text().split('\n');
-            foreach(const QString &choice, choices) {
+            foreach(const QString & choice, choices) {
                 m_choicesModel->insertRow(multipleChoiceListView->model()->rowCount());
-                m_choicesModel->setData(m_choicesModel->index(multipleChoiceListView->model()->rowCount()-1), choice);
+                m_choicesModel->setData(m_choicesModel->index(multipleChoiceListView->model()->rowCount() - 1), choice);
             }
             return true;
         }

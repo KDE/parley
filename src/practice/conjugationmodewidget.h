@@ -18,28 +18,34 @@
 #include "abstractwidget.h"
 
 
-namespace Ui {
-    class ConjugationPracticeWidget;
+namespace Ui
+{
+class ConjugationPracticeWidget;
 }
 
-namespace Practice {
-    class PersonConjugationSolutionWidgets;
+namespace Practice
+{
+class PersonConjugationSolutionWidgets;
 
 class ConjugationModeWidget: public AbstractModeWidget
-{    
+{
     Q_OBJECT
-    
+
 public:
     ConjugationModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
     virtual ~ConjugationModeWidget();
     virtual QVariant userInput();
-    
+
     virtual void setQuestion(const QVariant& question);
     virtual void setSolution(const QVariant& solution);
     virtual void setHint(const QVariant& hint);
     virtual void setFeedback(const QVariant& feedback);
-    virtual void setFeedbackState(AbstractFrontend::ResultState feedbackState) {Q_UNUSED(feedbackState);}
-    virtual void setResultState(AbstractFrontend::ResultState resultState) {Q_UNUSED(resultState);}
+    virtual void setFeedbackState(AbstractFrontend::ResultState feedbackState) {
+        Q_UNUSED(feedbackState);
+    }
+    virtual void setResultState(AbstractFrontend::ResultState resultState) {
+        Q_UNUSED(resultState);
+    }
 
     virtual void setQuestionFont(const QFont& font);
     virtual void setSolutionFont(const QFont& font);

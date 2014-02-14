@@ -16,85 +16,85 @@
 
 namespace Scripting
 {
-    Translation::Translation ( Expression * entry )
-    {
-        m_translation = new KEduVocTranslation ( entry->kEduVocExpression() );
-        m_text = m_translation;
+Translation::Translation(Expression * entry)
+{
+    m_translation = new KEduVocTranslation(entry->kEduVocExpression());
+    m_text = m_translation;
+}
+
+Translation::Translation(Expression * entry, const QString & translation)
+{
+    m_translation = new KEduVocTranslation(entry->kEduVocExpression(), translation);
+    m_text = m_translation;
+}
+
+Translation::Translation(KEduVocTranslation * translation)
+    : Text(translation), m_translation(translation)
+{
+}
+
+Translation::~Translation()
+{
+}
+
+QString Translation::wordType() const
+{
+    if (m_translation->wordType())
+        return m_translation->wordType()->name();
+    return QString();
+}
+
+void Translation::setConjugationText(const QString& conjugation, const QString& tense, const KEduVocWordFlags& flags)
+{
+    KEduVocConjugation & conjug = m_translation->conjugation(tense);
+    conjug.setConjugation(conjugation, flags);
+    m_translation->setConjugation(tense, conjug);
+}
+
+QObject * Translation::conjugation(const QString & tense, const KEduVocWordFlags& flags)
+{
+    KEduVocConjugation conjug = m_translation->conjugation(tense);
+    return new Text(conjug.conjugation(flags));
+}
+
+void Translation::setConjugation(QObject * conjugation, const QString& tense, const KEduVocWordFlags& flags)
+{
+    Text * txt = dynamic_cast<Text*>(conjugation);
+    if (txt) {
+        KEduVocConjugation & conjug = m_translation->conjugation(tense);
+        conjug.setConjugation(*(txt->kEduVocText()), flags);
+        m_translation->setConjugation(tense, conjug);
     }
-
-    Translation::Translation ( Expression * entry, const QString & translation )
-    {
-        m_translation = new KEduVocTranslation ( entry->kEduVocExpression(),translation );
-        m_text = m_translation;
-    }
-
-    Translation::Translation ( KEduVocTranslation * translation )
-            : Text ( translation ), m_translation ( translation )
-    {
-    }
-
-    Translation::~Translation()
-    {
-    }
-
-    QString Translation::wordType() const
-    {
-        if ( m_translation->wordType() )
-            return m_translation->wordType()->name();
-        return QString();
-    }
-
-    void Translation::setConjugationText ( const QString& conjugation, const QString& tense, const KEduVocWordFlags& flags )
-    {
-        KEduVocConjugation & conjug = m_translation->conjugation ( tense );
-        conjug.setConjugation ( conjugation, flags );
-        m_translation->setConjugation ( tense, conjug );
-    }
-
-    QObject * Translation::conjugation ( const QString & tense, const KEduVocWordFlags& flags )
-    {
-        KEduVocConjugation conjug = m_translation->conjugation ( tense );
-        return new Text ( conjug.conjugation ( flags ) );
-    }
-
-    void Translation::setConjugation ( QObject * conjugation, const QString& tense, const KEduVocWordFlags& flags )
-    {
-        Text * txt = dynamic_cast<Text*>(conjugation);
-        if (txt) {
-            KEduVocConjugation & conjug = m_translation->conjugation ( tense );
-            conjug.setConjugation ( *(txt->kEduVocText()), flags);
-            m_translation->setConjugation ( tense, conjug );
-        }
-    }
+}
 
 
-    QStringList Translation::conjugationTexts ( const QString& tense )
-    {
-        Q_UNUSED(tense)
+QStringList Translation::conjugationTexts(const QString& tense)
+{
+    Q_UNUSED(tense)
 //         KEduVocConjugation conjug = m_translation->conjugation ( tense );
 
-         QStringList list;
+    QStringList list;
 
 //         for ( int n = 0; n <= KEduVocConjugation::Plural; n++ )
 //             for ( int p = 0; p <= KEduVocConjugation::ThirdNeutralCommon; p++ )
 //                 list << conjug.conjugation ( ( KEduVocConjugation::ConjugationPerson ) p, ( KEduVocConjugation::ConjugationNumber ) n ).text();
 
-         return list;
-    }
+    return list;
+}
 
-    QStringList Translation::conjugationTexts ( const QString& tense, const KEduVocWordFlags& flags )
-    {
-        Q_UNUSED(tense)
-        Q_UNUSED(flags)
+QStringList Translation::conjugationTexts(const QString& tense, const KEduVocWordFlags& flags)
+{
+    Q_UNUSED(tense)
+    Q_UNUSED(flags)
 //         KEduVocConjugation conjug = m_translation->conjugation ( tense );
 
-         QStringList list;
+    QStringList list;
 
 //         for ( int p = 0; p <= KEduVocConjugation::ThirdNeutralCommon; p++ )
 //             list << conjug.conjugation ( ( KEduVocConjugation::ConjugationPerson ) p, number ).text();
 
-         return list;
-    }
+    return list;
+}
 
 
 //     QObject * Translation::declension ( KEduVocWordFlag::DeclensionNumber number, KEduVocWordFlag::DeclensionCase decCase )

@@ -18,7 +18,8 @@
 
 #include "containermodel.h"
 
-namespace Editor {
+namespace Editor
+{
 /**
   * Model for the tree of word types.
   */

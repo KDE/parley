@@ -53,7 +53,7 @@ using namespace Editor;
 
 VocabularyView::VocabularyView(EditorWindow * parent)
     : QTableView(parent), m_model(0), m_doc(0),
-    m_spellChecker(0), m_spellDialog(0)
+      m_spellChecker(0), m_spellDialog(0)
 {
     installEventFilter(this);
 
@@ -153,9 +153,9 @@ void VocabularyView::setModel(VocabularyFilter * model)
     QTableView::setModel(model);
     m_model = model;
     connect(selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
-        SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
+            SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
     connect(selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
-        SLOT(slotSelectionChanged(const QItemSelection&, const QItemSelection&)));
+            SLOT(slotSelectionChanged(const QItemSelection&, const QItemSelection&)));
     slotSelectionChanged(QItemSelection(), QItemSelection());
 }
 
@@ -163,7 +163,7 @@ void VocabularyView::slotCurrentChanged(const QModelIndex & current, const QMode
 {
     Q_UNUSED(previous);
     KEduVocExpression* entry = 0;
-    if ( current.isValid() ) {
+    if (current.isValid()) {
         entry =  model()->data(current, VocabularyModel::EntryRole).value<KEduVocExpression*>();
     }
     emit translationChanged(entry, VocabularyModel::translation(current.column()));
@@ -181,15 +181,15 @@ void VocabularyView::reset()
         visibleColumns = ds.visibleColumns();
 
         KConfig parleyConfig("parleyrc");
-        KConfigGroup documentGroup( &parleyConfig, "Document " + m_doc->url().url() );
-        QByteArray state = documentGroup.readEntry( "VocabularyColumns", QByteArray() );
+        KConfigGroup documentGroup(&parleyConfig, "Document " + m_doc->url().url());
+        QByteArray state = documentGroup.readEntry("VocabularyColumns", QByteArray());
 
         if (!horizontalHeader()->restoreState(state)) {
             resizeColumnsToContents();
         }
     }
 
-    for( int i = 0; i < model()->columnCount(QModelIndex()); i++) {
+    for (int i = 0; i < model()->columnCount(QModelIndex()); i++) {
         if (i < visibleColumns.size()) {
             setColumnHidden(i, !visibleColumns.value(i));
         } else {
@@ -202,14 +202,13 @@ void VocabularyView::reset()
 
 void VocabularyView::saveColumnVisibility() const
 {
-    if(!m_doc) {
+    if (!m_doc) {
         return;
     }
 
     // Generate a QList<int> for saving
     QList<int> visibleList;
-    for (int i = 0; i < m_model->columnCount(); ++i)
-    {
+    for (int i = 0; i < m_model->columnCount(); ++i) {
         visibleList.append(static_cast<int>(!isColumnHidden(i)));
     }
 
@@ -219,8 +218,8 @@ void VocabularyView::saveColumnVisibility() const
 
     QByteArray saveState = horizontalHeader()->saveState();
     KConfig parleyConfig("parleyrc");
-    KConfigGroup documentGroup( &parleyConfig, "Document " + m_doc->url().url() );
-    documentGroup.writeEntry( "VocabularyColumns", horizontalHeader()->saveState() );
+    KConfigGroup documentGroup(&parleyConfig, "Document " + m_doc->url().url());
+    documentGroup.writeEntry("VocabularyColumns", horizontalHeader()->saveState());
 }
 
 void VocabularyView::appendEntry()
@@ -242,7 +241,7 @@ void VocabularyView::appendChar(const QChar &c)
 void VocabularyView::deleteSelectedEntries(bool askConfirmation)
 {
     QSet<int> rows;
-    foreach (const QModelIndex &index, selectionModel()->selectedIndexes()) {
+    foreach(const QModelIndex & index, selectionModel()->selectedIndexes()) {
         rows.insert(index.row());
     }
 
@@ -276,15 +275,15 @@ void VocabularyView::slotEditPaste()
     const VocabularyMimeData *vocMimeData = qobject_cast<const VocabularyMimeData *>(mimeData);
     if (vocMimeData) {
         kDebug() << "Clipboard contains vocabulary mime data.";
-        foreach(const VocabularyMimeData::MimeExpression &mimeEntry, vocMimeData->expressionList()) {
+        foreach(const VocabularyMimeData::MimeExpression & mimeEntry, vocMimeData->expressionList()) {
             KEduVocExpression *pasteExpression = new KEduVocExpression(mimeEntry.expression);
             m_model->appendEntry(pasteExpression);
 
             // find word type (create if not found)
             KEduVocWordType *type = m_doc->wordTypeContainer();
-            foreach (int translation, mimeEntry.wordTypes.keys()) {
+            foreach(int translation, mimeEntry.wordTypes.keys()) {
                 // append if needed
-                foreach (const QString& typeName, mimeEntry.wordTypes.value(translation).wordType) {
+                foreach(const QString & typeName, mimeEntry.wordTypes.value(translation).wordType) {
                     kDebug() << mimeEntry.wordTypes.value(translation).wordType;
                     KEduVocContainer *childType = type->childContainer(typeName);
                     if (!childType) {
@@ -349,7 +348,7 @@ void VocabularyView::slotShowVocabularyColumnsDialog()
 {
     VocabularyColumnsDialog *dialog = new VocabularyColumnsDialog(m_doc, this);
 
-    if ( dialog->exec() == KDialog::Accepted ) {
+    if (dialog->exec() == KDialog::Accepted) {
         reset();
     }
 }
@@ -411,7 +410,8 @@ void VocabularyView::selectIndex(const QModelIndex &newIndex)
     scrollTo(newIndex);
 }
 
-bool VocabularyView::eventFilter(QObject* obj, QEvent* event) {
+bool VocabularyView::eventFilter(QObject* obj, QEvent* event)
+{
     if (event->type() == QEvent::KeyPress && Prefs::smartAppend()) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         if (keyEvent->key() == Qt::Key_Return || keyEvent->key() == Qt::Key_Enter) {
@@ -442,7 +442,7 @@ void VocabularyView::spellingReplace(const QString & oldWord, int start, const Q
     m_model->setData(index, newData);
 }
 
-QModelIndexList VocabularyView::getSelectedIndexes() const 
+QModelIndexList VocabularyView::getSelectedIndexes() const
 {
     return selectionModel()->selectedIndexes();
 }

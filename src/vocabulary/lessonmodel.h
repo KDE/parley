@@ -18,7 +18,8 @@
 
 #include "containermodel.h"
 
-namespace Editor {
+namespace Editor
+{
 /**
   * Model for the tree of lessons.
   */
@@ -34,11 +35,11 @@ public:
     };
 
     explicit LessonModel(QObject *parent = 0);
-    
+
     virtual Qt::ItemFlags flags(const QModelIndex &index) const;
     virtual QVariant data(const QModelIndex &index, int role) const;
     virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
-    
+
     /**
      * Divide a lesson into smaller ones.
      * Tip: If you create a lesson that is >= the original one and use random order, you get your lesson reshuffled. Maybe that is sometimes useful. For now the lessons are appended at the end.

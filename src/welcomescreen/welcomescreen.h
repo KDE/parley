@@ -22,14 +22,15 @@ class ParleyMainWindow;
 class KUrl;
 class QStandardItemModel;
 
-namespace Practice {
-    class ThemedBackgroundRenderer;
-    class ImageWidget;
+namespace Practice
+{
+class ThemedBackgroundRenderer;
+class ImageWidget;
 }
 
 class WelcomeScreen : public KXmlGuiWindow
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     WelcomeScreen(ParleyMainWindow *parent);
     ~WelcomeScreen();

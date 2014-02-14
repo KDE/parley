@@ -44,14 +44,14 @@ using namespace Editor;
 
 VocabularyColumnsDialog::VocabularyColumnsDialog(KEduVocDocument *doc, QWidget *parent)
     : KDialog(parent),
-    m_models()
+      m_models()
 {
     m_box = new QGridLayout();
     m_doc = doc;
     m_settings = new DocumentSettings(m_doc->url().url());
 
     setCaption(i18n("Vocabulary Columns"));
-    setButtons(Ok|Cancel);
+    setButtons(Ok | Cancel);
 
     QWidget *main_widget = new QWidget(this);
     main_widget->setLayout(m_box);
@@ -81,7 +81,7 @@ void VocabularyColumnsDialog::createLanguagesLayout()
 {
     int row = 1;
     int column = 0;
-    for (int i = 0; i < m_doc->identifierCount(); i++ ) {
+    for (int i = 0; i < m_doc->identifierCount(); i++) {
         m_models [i] = new QStandardItemModel(this);
 
         QGroupBox *box = new QGroupBox(m_doc->identifier(i).name(), 0);
@@ -91,8 +91,7 @@ void VocabularyColumnsDialog::createLanguagesLayout()
 
         if (column < COLUMNS_LIMIT) {
             column ++;
-        }
-        else {
+        } else {
             row ++;
             column = 0;
         }
@@ -105,19 +104,19 @@ void VocabularyColumnsDialog::createLanguagesLayout()
 
 void VocabularyColumnsDialog::addLanguage(int i, QVBoxLayout *parent)
 {
-    for(int c=1; c<VocabularyModel::EntryColumnsMAX; c++) {
+    for (int c = 1; c < VocabularyModel::EntryColumnsMAX; c++) {
         QStandardItem *item_data = new QStandardItem(VocabularyModel::columnTitle(m_doc, i, c));
-        item_data->setData(QVariant(c-1), VocabularyColumnsDialog::ColumnRole);
+        item_data->setData(QVariant(c - 1), VocabularyColumnsDialog::ColumnRole);
         item_data->setData(QVariant(i), VocabularyColumnsDialog::LanguageRole);
         item_data->setCheckable(true);
         item_data->setEditable(false);
 
         // check if the column is active
-        if (m_settings->visibleColumns().size() >= (i*8 + c)) {
-            item_data->setCheckState(m_settings->visibleColumns().at(i*8 + c) == 1 ? Qt::Checked : Qt::Unchecked);
+        if (m_settings->visibleColumns().size() >= (i * 8 + c)) {
+            item_data->setCheckState(m_settings->visibleColumns().at(i * 8 + c) == 1 ? Qt::Checked : Qt::Unchecked);
         }
 
-        m_models [i]->insertRow(c-1, item_data);
+        m_models [i]->insertRow(c - 1, item_data);
     }
 
     QTreeView *treeView = new QTreeView(this);
@@ -131,7 +130,7 @@ void VocabularyColumnsDialog::saveVisibleColumns()
 {
     QList <int> columns;
 
-    for (int i = 0; i < m_doc->identifierCount(); i++ ) { // each model for every language
+    for (int i = 0; i < m_doc->identifierCount(); i++) {  // each model for every language
         columns << 1;
         for (int row = 0; row < m_models [i]->rowCount(); row++) { // the columns for one language
             int enabled = (m_models [i]->item(row)->checkState() == Qt::Checked) ? 1 : 0;

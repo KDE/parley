@@ -22,9 +22,11 @@
 
 class KEduVocContainer;
 
-namespace Editor {
-    
-class ContainerMimeData :public QMimeData {
+namespace Editor
+{
+
+class ContainerMimeData : public QMimeData
+{
     Q_OBJECT
 public:
     void addContainer(KEduVocContainer* container);

@@ -60,33 +60,33 @@ void SynonymWidget::updateList()
         synonymButton->setText(i18n("Select Synonyms"));
     } else {
         synonymButton->setEnabled(true);
-        switch(m_type) {
-            case Synonym:
-                if (m_currentTranslation->synonyms().contains(m_lastTranslation)) {
-                    synonymButton->setText(i18n("%1 and %2 are not Synonyms", m_currentTranslation->text(), m_lastTranslation->text()));
-                } else {
-                    synonymButton->setText(i18n("%1 and %2 are Synonyms", m_currentTranslation->text(), m_lastTranslation->text()));
-                }
-                break;
-            case Antonym:
-                if (m_currentTranslation->antonyms().contains(m_lastTranslation)) {
-                    synonymButton->setText(i18n("%1 and %2 are not Antonyms", m_currentTranslation->text(), m_lastTranslation->text()));
-                } else {
-                    synonymButton->setText(i18n("%1 and %2 are Antonyms", m_currentTranslation->text(), m_lastTranslation->text()));
-                }
-                break;
-            case FalseFriend:
-                if (m_currentTranslation->falseFriends().contains(m_lastTranslation)) {
-                    synonymButton->setText(i18n("%1 and %2 are not False Friends", m_currentTranslation->text(), m_lastTranslation->text()));
-                } else {
-                    synonymButton->setText(i18n("%1 and %2 are False Friends", m_currentTranslation->text(), m_lastTranslation->text()));
-                }
-                break;
+        switch (m_type) {
+        case Synonym:
+            if (m_currentTranslation->synonyms().contains(m_lastTranslation)) {
+                synonymButton->setText(i18n("%1 and %2 are not Synonyms", m_currentTranslation->text(), m_lastTranslation->text()));
+            } else {
+                synonymButton->setText(i18n("%1 and %2 are Synonyms", m_currentTranslation->text(), m_lastTranslation->text()));
+            }
+            break;
+        case Antonym:
+            if (m_currentTranslation->antonyms().contains(m_lastTranslation)) {
+                synonymButton->setText(i18n("%1 and %2 are not Antonyms", m_currentTranslation->text(), m_lastTranslation->text()));
+            } else {
+                synonymButton->setText(i18n("%1 and %2 are Antonyms", m_currentTranslation->text(), m_lastTranslation->text()));
+            }
+            break;
+        case FalseFriend:
+            if (m_currentTranslation->falseFriends().contains(m_lastTranslation)) {
+                synonymButton->setText(i18n("%1 and %2 are not False Friends", m_currentTranslation->text(), m_lastTranslation->text()));
+            } else {
+                synonymButton->setText(i18n("%1 and %2 are False Friends", m_currentTranslation->text(), m_lastTranslation->text()));
+            }
+            break;
         }
     }
 
     if (m_currentTranslation) {
-        switch(m_type) {
+        switch (m_type) {
         case Synonym:
             synonymLabel->setText(i18nc("Title for a list of synonyms for a word", "Synonyms of %1:", m_currentTranslation->text()));
             break;
@@ -100,7 +100,7 @@ void SynonymWidget::updateList()
 
         // load list of synonyms/antonyms/ffs
         QList< KEduVocTranslation* > list;
-        switch(m_type) {
+        switch (m_type) {
         case Synonym:
             list = m_currentTranslation->synonyms();
             break;
@@ -111,7 +111,7 @@ void SynonymWidget::updateList()
             list = m_currentTranslation->falseFriends();
             break;
         }
-        foreach (KEduVocTranslation* translation, list) {
+        foreach(KEduVocTranslation * translation, list) {
             int row = m_listModel->rowCount();
             m_listModel->insertRow(row);
             m_listModel->setData(m_listModel->index(row), translation->text());
@@ -124,7 +124,7 @@ void SynonymWidget::updateList()
 void SynonymWidget::togglePair()
 {
     // pair them up
-    switch(m_type) {
+    switch (m_type) {
     case Synonym:
         if (m_currentTranslation->synonyms().contains(m_lastTranslation)) {
             m_currentTranslation->removeSynonym(m_lastTranslation);

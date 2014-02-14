@@ -21,7 +21,7 @@ Translator::Translator()
 {
 }
 
-Translator::Translator( QObject * parent )
+Translator::Translator(QObject * parent)
     : m_parent(parent)
 {
 }
@@ -30,34 +30,34 @@ Translator::~Translator()
 {
 }
 
-void Translator::addTranslation ( QString word, QString fromLanguage, QString toLanguage, QString translation )
+void Translator::addTranslation(QString word, QString fromLanguage, QString toLanguage, QString translation)
 {
-    if ( word.trimmed() == "" ) return;
+    if (word.trimmed() == "") return;
 
-    QString t = word+fromLanguage+toLanguage;
-    kDebug() << "Translation for " << word << "in cache: " << m_translations.contains ( t );
-    if ( !m_translations.contains ( t ) ) {
+    QString t = word + fromLanguage + toLanguage;
+    kDebug() << "Translation for " << word << "in cache: " << m_translations.contains(t);
+    if (!m_translations.contains(t)) {
         m_translations[t] = new QSet<QString>();
     }
-    m_translations[t]->insert ( translation.simplified() );
+    m_translations[t]->insert(translation.simplified());
 }
 
-QSet<QString>* Translator::getTranslation ( QString word, QString fromLanguage, QString toLanguage )
+QSet<QString>* Translator::getTranslation(QString word, QString fromLanguage, QString toLanguage)
 {
     if (word.isEmpty() || fromLanguage.isEmpty() || toLanguage.isEmpty()) return 0;
 
-    QString t = word+fromLanguage+toLanguage;
+    QString t = word + fromLanguage + toLanguage;
     kDebug() << "Fetch translation " << word << "(" << fromLanguage << "to" << toLanguage << ")"
              << "already in cache:" << m_translations.contains(t);
     if (!m_translations.contains(t)) {
         Scripting::Parley * p = dynamic_cast<Scripting::Parley*>(m_parent);
         if (p) {
-            p->callTranslateWord(word,fromLanguage,toLanguage);
+            p->callTranslateWord(word, fromLanguage, toLanguage);
         }
     }
 
-    if ( m_translations.contains ( t ) )
-        return m_translations.value ( t );
+    if (m_translations.contains(t))
+        return m_translations.value(t);
     else
         return 0;
 }

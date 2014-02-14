@@ -59,10 +59,10 @@ ParleyMainWindow* ParleyMainWindow::instance()
 }
 
 ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
-    :KXmlGuiWindow(0)
-    ,m_currentComponent(NoComponent)
-    ,m_currentComponentWindow(0)
-    ,m_testEntryManager(this)
+    : KXmlGuiWindow(0)
+    , m_currentComponent(NoComponent)
+    , m_currentComponentWindow(0)
+    , m_testEntryManager(this)
 {
     s_instance = this;
     m_document = new ParleyDocument(this);
@@ -77,13 +77,13 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
 
     setupGUI(ToolBar | Keys | Create);
 
-    if ( !filename.url().isEmpty() ) {
+    if (!filename.url().isEmpty()) {
         m_document->open(filename);
     } else {
         bool openLastFile = Prefs::autoOpenLast();
         if (openLastFile && m_recentFilesAction->actions().count() > 0
-            && m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->isEnabled() ) {
-            m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->trigger();
+                && m_recentFilesAction->action(m_recentFilesAction->actions().count() - 1)->isEnabled()) {
+            m_recentFilesAction->action(m_recentFilesAction->actions().count() - 1)->trigger();
         } else {
             startWithWelcomeScreen = true;
         }
@@ -200,7 +200,7 @@ bool ParleyMainWindow::queryExit()
 
     if (!save) {
         int exit = KMessageBox::warningYesNoCancel(this, i18n("Vocabulary is modified.\n\nSave file before exit?\n"),
-                "", KStandardGuiItem::save(), KStandardGuiItem::discard());
+                   "", KStandardGuiItem::save(), KStandardGuiItem::discard());
         if (exit == KMessageBox::Yes) {
             save = true;   // save and exit
         } else if (exit == KMessageBox::No) {
@@ -237,25 +237,25 @@ void ParleyMainWindow::initActions()
     ParleyActions::create(ParleyActions::FileOpen, m_document, SLOT(slotFileOpen()), actionCollection());
     ParleyActions::createDownloadAction(m_document, SLOT(slotGHNS()), actionCollection());
     ParleyActions::create(ParleyActions::FileOpenDownloaded, m_document, SLOT(openGHNS()), actionCollection());
-    
+
     m_recentFilesAction = ParleyActions::createRecentFilesAction(
-        m_document, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
+                              m_document, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
 
     m_recentFilesAction->loadEntries(KGlobal::config()->group("Recent Files"));
-    
+
     ParleyActions::create(ParleyActions::FileSave, m_document, SLOT(save()), actionCollection());
     ParleyActions::create(ParleyActions::FileSaveAs, m_document, SLOT(saveAs()), actionCollection());
-    #ifdef HAVE_LIBXSLT
+#ifdef HAVE_LIBXSLT
     ParleyActions::create(ParleyActions::FileExport, m_document, SLOT(exportDialog()), actionCollection());
-    #endif
-    
+#endif
+
     ParleyActions::create(ParleyActions::FileProperties, m_document, SLOT(documentProperties()), actionCollection());
 
     ParleyActions::create(ParleyActions::FileClose, this, SLOT(slotCloseDocument()), actionCollection());
     ParleyActions::create(ParleyActions::FileQuit, this, SLOT(close()), actionCollection());
     ParleyActions::create(ParleyActions::Preferences, this, SLOT(slotGeneralOptions()), actionCollection());
 
-    actionCollection()->addAction(KStandardAction::TipofDay,  "help_tipofday", this, SLOT( tipOfDay() ));
+    actionCollection()->addAction(KStandardAction::TipofDay,  "help_tipofday", this, SLOT(tipOfDay()));
 }
 
 void ParleyMainWindow::showWelcomeScreen()
@@ -308,43 +308,43 @@ void ParleyMainWindow::switchComponent(Component component)
     }
 
     switch (component) {
-        case WelcomeComponent: {
-            WelcomeScreen *welcome = new WelcomeScreen(this);
-            m_currentComponentWindow = welcome;
-            showDocumentActions(true, false);
-            welcome->updateRecentFilesModel();
-            break;
-        }
-        case ConfigurePracticeComponent: {
-            StatisticsMainWindow *statisticsWidget = new StatisticsMainWindow(m_document->document(), this);
-            m_currentComponentWindow = statisticsWidget;
-            showDocumentActions(true, true);
-            break;
-        }
-        case EditorComponent: {
-            EditorWindow *editor = new EditorWindow(this);
-            m_currentComponentWindow = editor;
-            showDocumentActions(true, true);
-            editor->updateDocument(m_document->document());
-            break;
-        }
-        case PracticeComponent: {
-            m_document->document()->setModified(true);
-            Practice::PracticeMainWindow *practiceWindow = new Practice::PracticeMainWindow(&m_testEntryManager, this);
-            connect(practiceWindow, SIGNAL(stopPractice()), this, SLOT(showPracticeSummary()));
-            m_currentComponentWindow = practiceWindow;
-            showDocumentActions(false, false);
-            practiceWindow->startPractice();
-            break;
-        }
-        case PracticeSummary: {
-            Practice::PracticeSummaryComponent* summary = new Practice::PracticeSummaryComponent(&m_testEntryManager, this);
-            m_currentComponentWindow = summary;
-            showDocumentActions(true, true);
-            break;
-        }
-        default:
-            break;
+    case WelcomeComponent: {
+        WelcomeScreen *welcome = new WelcomeScreen(this);
+        m_currentComponentWindow = welcome;
+        showDocumentActions(true, false);
+        welcome->updateRecentFilesModel();
+        break;
+    }
+    case ConfigurePracticeComponent: {
+        StatisticsMainWindow *statisticsWidget = new StatisticsMainWindow(m_document->document(), this);
+        m_currentComponentWindow = statisticsWidget;
+        showDocumentActions(true, true);
+        break;
+    }
+    case EditorComponent: {
+        EditorWindow *editor = new EditorWindow(this);
+        m_currentComponentWindow = editor;
+        showDocumentActions(true, true);
+        editor->updateDocument(m_document->document());
+        break;
+    }
+    case PracticeComponent: {
+        m_document->document()->setModified(true);
+        Practice::PracticeMainWindow *practiceWindow = new Practice::PracticeMainWindow(&m_testEntryManager, this);
+        connect(practiceWindow, SIGNAL(stopPractice()), this, SLOT(showPracticeSummary()));
+        m_currentComponentWindow = practiceWindow;
+        showDocumentActions(false, false);
+        practiceWindow->startPractice();
+        break;
+    }
+    case PracticeSummary: {
+        Practice::PracticeSummaryComponent* summary = new Practice::PracticeSummaryComponent(&m_testEntryManager, this);
+        m_currentComponentWindow = summary;
+        showDocumentActions(true, true);
+        break;
+    }
+    default:
+        break;
     }
     //kDebug() << "new component" << m_currentComponentWindow;
 
@@ -352,28 +352,28 @@ void ParleyMainWindow::switchComponent(Component component)
     centralWidget()->layout()->addWidget(m_currentComponentWindow);
     m_currentComponentWindow->show();
     switch (component) {
-        case WelcomeComponent: {
-            setVisibleToolbar(QString());
-            break;
-        }
-        case ConfigurePracticeComponent: {
-            setVisibleToolbar("statisticsToolBar");
-            break;
-        }
-        case EditorComponent: {
-            setVisibleToolbar("editorToolBar");
-            break;
-        }
-        case PracticeComponent: {
-            setVisibleToolbar("practiceToolBar");
-            break;
-        }
-        case PracticeSummary: {
-            setVisibleToolbar("practiceSummaryToolBar");
-            break;
-        }
-        default:
-            break;
+    case WelcomeComponent: {
+        setVisibleToolbar(QString());
+        break;
+    }
+    case ConfigurePracticeComponent: {
+        setVisibleToolbar("statisticsToolBar");
+        break;
+    }
+    case EditorComponent: {
+        setVisibleToolbar("editorToolBar");
+        break;
+    }
+    case PracticeComponent: {
+        setVisibleToolbar("practiceToolBar");
+        break;
+    }
+    case PracticeSummary: {
+        setVisibleToolbar("practiceSummaryToolBar");
+        break;
+    }
+    default:
+        break;
     }
     m_currentComponent = component;
     setupToolbarMenuActions();
@@ -399,11 +399,10 @@ void ParleyMainWindow::showDocumentActions(bool open, bool edit)
 
 void ParleyMainWindow::setVisibleToolbar(const QString& name)
 {
-    Q_FOREACH(KToolBar *toolbar, toolBars()) {
+    Q_FOREACH(KToolBar * toolbar, toolBars()) {
         if (toolbar && toolbar->objectName() == name) {
             toolbar->show();
-        }
-        else if (toolbar) {
+        } else if (toolbar) {
             toolbar->hide();
         }
     }

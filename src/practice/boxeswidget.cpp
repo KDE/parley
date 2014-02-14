@@ -52,7 +52,7 @@ void BoxesWidget::setBoxCount(int boxCount)
 
 void BoxesWidget::setBoxes(int currentBox, int lastBox)
 {
-    if(currentBox == m_currentBox && lastBox == m_lastBox)
+    if (currentBox == m_currentBox && lastBox == m_lastBox)
         return;
     m_currentBox = currentBox;
     m_lastBox = lastBox;
@@ -69,7 +69,7 @@ QSize BoxesWidget::minimumSizeHint() const
 
 void BoxesWidget::updatePixmap()
 {
-    if(!m_renderer)
+    if (!m_renderer)
         return;
 
     QSize imageSize = m_rect.size();
@@ -80,15 +80,15 @@ void BoxesWidget::updatePixmap()
     image.fill(QColor(Qt::transparent).rgba());
     QPainter p(&image);
 
-    for(int i = 0; i < m_boxCount; i++) {
-        QString id = "box-"+QString::number(i+1);
-        if (i+1 == m_currentBox) {
+    for (int i = 0; i < m_boxCount; i++) {
+        QString id = "box-" + QString::number(i + 1);
+        if (i + 1 == m_currentBox) {
             id += "-active";
         }
         drawElement(&p, id);
     }
     if (m_lastBox != -1 && m_currentBox != -1 && m_lastBox != m_currentBox) {
-        drawElement(&p, "arrow-"+QString::number(m_lastBox)+"-"+QString::number(m_currentBox));
+        drawElement(&p, "arrow-" + QString::number(m_lastBox) + "-" + QString::number(m_currentBox));
     }
     setPixmap(QPixmap::fromImage(image));
 }
@@ -104,10 +104,10 @@ void BoxesWidget::drawElement(QPainter *p, const QString& id)
 {
     QRect rect = m_renderer->getRectForId(id).toRect();
     QPoint pos = rect.topLeft() - m_rect.topLeft();
-    if(!m_fixedSize) {
+    if (!m_fixedSize) {
         QSize scaledSize = m_rect.size();
         scaledSize.scale(size(), Qt::KeepAspectRatio);
-        qreal scale = qreal(scaledSize.width())/m_rect.width();
+        qreal scale = qreal(scaledSize.width()) / m_rect.width();
         rect.setWidth(rect.width()*scale);
         rect.setHeight(rect.height()*scale);
         pos.setX(pos.x()*scale);

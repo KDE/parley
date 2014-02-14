@@ -36,11 +36,11 @@ using namespace Editor;
 class GradeDelegate: public QItemDelegate
 {
 public:
-    GradeDelegate(QObject* parent = 0)
-        :QItemDelegate(parent)
-    {}
+    GradeDelegate(QObject *parent = 0)
+        : QItemDelegate(parent) {
+    }
 
-    virtual void paint ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const {
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const {
         QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, 0);
 
         // empty lesson
@@ -52,7 +52,7 @@ public:
     }
 
 protected:
-    void drawBackground ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const {
+    void drawBackground(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const {
         // Create the outer rounded rectangle.
         QRect roundedRect(option.rect);
         roundedRect.adjust(1, 1, -1, -1);
@@ -91,8 +91,8 @@ protected:
 
 
 
-LessonStatisticsView::LessonStatisticsView(QWidget * parent)
-    :ContainerView(parent)
+LessonStatisticsView::LessonStatisticsView(QWidget *parent)
+    : ContainerView(parent)
 {
     header()->setVisible(true);
 
@@ -111,7 +111,7 @@ LessonStatisticsView::LessonStatisticsView(QWidget * parent)
 void LessonStatisticsView::setModel(Editor::ContainerModel *model)
 {
     ContainerView::setModel(model);
-    GradeDelegate* delegate = new GradeDelegate(this);
+    GradeDelegate *delegate = new GradeDelegate(this);
     for (int i = 2; i < model->columnCount(QModelIndex()); i++) {
         setItemDelegateForColumn(i, delegate);
         setColumnWidth(i, 150);
@@ -124,7 +124,7 @@ void LessonStatisticsView::setModel(Editor::ContainerModel *model)
 void LessonStatisticsView::removeGrades()
 {
     QModelIndex selectedIndex = selectionModel()->currentIndex();
-    KEduVocLesson* lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
+    KEduVocLesson *lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
     lesson->resetGrades(-1, KEduVocContainer::NotRecursive);
 }
 

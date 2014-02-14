@@ -20,7 +20,8 @@
 class QLabel;
 class QHBoxLayout;
 
-namespace Practice {
+namespace Practice
+{
 
 class SummaryBarWidget : public QWidget
 {

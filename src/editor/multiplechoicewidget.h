@@ -34,7 +34,8 @@ class KEduVocExpression;
 class KEduVocTranslation;
 class QStringListModel;
 
-namespace Editor {
+namespace Editor
+{
 
 class MultipleChoiceWidget : public QWidget, public Ui::multipleChoiceWidget
 {
@@ -50,7 +51,7 @@ protected:
     bool eventFilter(QObject *obj, QEvent *event);
 
 private slots:
-    void slotDataChanged( const QModelIndex & topLeft, const QModelIndex & bottomRight );
+    void slotDataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight);
     void slotAddChoiceButton();
     void slotRemoveChoiceButton();
 

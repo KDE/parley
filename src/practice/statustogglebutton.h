@@ -17,14 +17,17 @@
 #include "imagewidget.h"
 #include <kdebug.h> //TODO
 
-namespace Practice {
+namespace Practice
+{
 
 class StatusToggleButton : public ImageWidget
 {
     Q_OBJECT
 
 public:
-    StatusToggleButton(QWidget* parent = 0) : ImageWidget(parent), m_current(0) {setMouseTracking(true);}
+    StatusToggleButton(QWidget* parent = 0) : ImageWidget(parent), m_current(0) {
+        setMouseTracking(true);
+    }
 
     void setPixmaps(QPixmap defaultPixmap, QPixmap hoverPixmap, QPixmap pressedPixmap);
 

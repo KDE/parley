@@ -30,7 +30,7 @@
 
 using namespace Editor;
 
-LessonView::LessonView(EditorWindow * parent) :ContainerView(parent)
+LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
 {
     KAction *actionNewLesson = new KAction(this);
     parent->actionCollection()->addAction("new_lesson", actionNewLesson);
@@ -103,7 +103,7 @@ void LessonView::selectionChanged(const QItemSelection & selected, const QItemSe
 {
     QTreeView::selectionChanged(selected, deselected);
 
-    if(selected.count() == 0) {
+    if (selected.count() == 0) {
         return;
     }
 
@@ -118,7 +118,7 @@ void LessonView::setTranslation(KEduVocExpression * entry, int translation)
     Q_UNUSED(translation)
 
     if (entry == 0) {
-    selectionModel()->clearSelection();
+        selectionModel()->clearSelection();
         return;
     }
 
@@ -155,8 +155,8 @@ void LessonView::slotDeleteLesson()
 
     int count = lesson->entryCount(KEduVocLesson::Recursive);
 
-    if ( count == 0 ||
-         KMessageBox::warningYesNo(this, i18np("There is %1 word left in this lesson. Do you want to delete it?", "There are %1 words left in this lesson. Do you want to delete them?", count)) == KMessageBox::Yes) {
+    if (count == 0 ||
+            KMessageBox::warningYesNo(this, i18np("There is %1 word left in this lesson. Do you want to delete it?", "There are %1 words left in this lesson. Do you want to delete them?", count)) == KMessageBox::Yes) {
         m_model->deleteContainer(selectedIndex);
     }
 }
@@ -183,15 +183,15 @@ void LessonView::setModel(LessonModel * model)
 {
     m_model = model;
     ContainerView::setModel(model);
-    connect(model, SIGNAL(columnsInserted ( const QModelIndex &, int, int )), this, SLOT(columnsInserted()));
-    for (int i = 2; i< model->columnCount(QModelIndex()); i++) {
+    connect(model, SIGNAL(columnsInserted(const QModelIndex &, int, int)), this, SLOT(columnsInserted()));
+    for (int i = 2; i < model->columnCount(QModelIndex()); i++) {
         setColumnHidden(i, true);
     }
 }
 
 void LessonView::columnsInserted()
 {
-    for (int i = 2; i< m_model->columnCount(QModelIndex()); i++) {
+    for (int i = 2; i < m_model->columnCount(QModelIndex()); i++) {
         setColumnHidden(i, true);
     }
 }

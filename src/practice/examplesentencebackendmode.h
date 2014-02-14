@@ -17,7 +17,8 @@
 
 #include "writtenbackendmode.h"
 
-namespace Practice {
+namespace Practice
+{
 
 class ExampleSentenceBackendMode : public WrittenBackendMode
 {

@@ -35,50 +35,50 @@ class ParleyPlasma : public Plasma::Applet
 {
     Q_OBJECT
 
-    public:
-        ParleyPlasma(QObject *parent, const QVariantList &args);
-        ~ParleyPlasma();
-        void init();
-        void setContentSize(const QSizeF& size);
-        QSizeF contentSizeHint() const;
-        void paintInterface(QPainter *painter,
-                            const QStyleOptionGraphicsItem *option,
-                            const QRect& contentsRect);
-        void constraintsEvent(Plasma::Constraints constraints);
+public:
+    ParleyPlasma(QObject *parent, const QVariantList &args);
+    ~ParleyPlasma();
+    void init();
+    void setContentSize(const QSizeF& size);
+    QSizeF contentSizeHint() const;
+    void paintInterface(QPainter *painter,
+                        const QStyleOptionGraphicsItem *option,
+                        const QRect& contentsRect);
+    void constraintsEvent(Plasma::Constraints constraints);
 
-    public slots:
-        void createConfigurationInterface(KConfigDialog *parent);
-        void configAccepted();
-        void showFontSelectDlg();
-        void dataUpdated(const QString &name, const Plasma::DataEngine::Data &data);
-        // in the config dialog a file was selected
-        void urlSelected (const KUrl &file);
-        void configChanged();
-    protected:
-        virtual void hoverEnterEvent ( QGraphicsSceneHoverEvent * event );
-        virtual void hoverLeaveEvent ( QGraphicsSceneHoverEvent * event );
+public slots:
+    void createConfigurationInterface(KConfigDialog *parent);
+    void configAccepted();
+    void showFontSelectDlg();
+    void dataUpdated(const QString &name, const Plasma::DataEngine::Data &data);
+    // in the config dialog a file was selected
+    void urlSelected(const KUrl &file);
+    void configChanged();
+protected:
+    virtual void hoverEnterEvent(QGraphicsSceneHoverEvent * event);
+    virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent * event);
 
-    private:
-        enum ShowSolution {
-            Hover = 0,
-            Always
-        };
-        Plasma::Svg *m_theme;
-        QGraphicsTextItem *m_label1;
-        QGraphicsTextItem *m_label2;
+private:
+    enum ShowSolution {
+        Hover = 0,
+        Always
+    };
+    Plasma::Svg *m_theme;
+    QGraphicsTextItem *m_label1;
+    QGraphicsTextItem *m_label2;
 
-        Ui::config ui;
+    Ui::config ui;
 
-        QFont m_font;
-        QSizeF m_size;
+    QFont m_font;
+    QSizeF m_size;
 
-        Plasma::DataEngine* m_engine;
-        KUrl m_sourceFile;
-        QStringList m_languages;
-        int m_solutionType;
-        int m_lang1;
-        int m_lang2;
-        int m_updateInterval;
+    Plasma::DataEngine* m_engine;
+    KUrl m_sourceFile;
+    QStringList m_languages;
+    int m_solutionType;
+    int m_lang1;
+    int m_lang2;
+    int m_updateInterval;
 };
 
 K_EXPORT_PLASMA_APPLET(parley, ParleyPlasma)

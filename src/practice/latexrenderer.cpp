@@ -56,86 +56,85 @@ void LatexRenderer::renderLatex(QString tex)
     }
 
     if (tex.startsWith(QLatin1String("$$"))) {
-        tex.replace(0,2,"\\begin{eqnarray*}").remove(-2,2).append("\\end{eqnarray*}");
+        tex.replace(0, 2, "\\begin{eqnarray*}").remove(-2, 2).append("\\end{eqnarray*}");
     } else {
-        tex.remove(0,2).remove(-2,2);
+        tex.remove(0, 2).remove(-2, 2);
     }
-    kDebug()<<"rendering as latex";
+    kDebug() << "rendering as latex";
 
-    QString dir=KGlobal::dirs()->saveLocation("tmp", "parley/");
+    QString dir = KGlobal::dirs()->saveLocation("tmp", "parley/");
 
     //Check if the parley subdir exists, if not, create it
-    KTemporaryFile *texFile=new KTemporaryFile();
-    texFile->setPrefix( "parley/" );
-    texFile->setSuffix( ".tex" );
+    KTemporaryFile *texFile = new KTemporaryFile();
+    texFile->setPrefix("parley/");
+    texFile->setSuffix(".tex");
     texFile->open();
 
     QColor color = m_label->palette().color(QPalette::WindowText);
     QString colorString = QString::number(color.redF()) + ','
-        + QString::number(color.greenF()) + ','
-        + QString::number(color.blueF());
+                          + QString::number(color.greenF()) + ','
+                          + QString::number(color.blueF());
     QString expressionTex = QString(texTemplate).arg(colorString, tex.trimmed());
 
     texFile->write(expressionTex.toUtf8());
     texFile->flush();
 
     QString fileName = texFile->fileName();
-    kDebug()<<"fileName: "<<fileName;
-    m_latexFilename=fileName;
+    kDebug() << "fileName: " << fileName;
+    m_latexFilename = fileName;
     m_latexFilename.replace(".tex", ".eps");
-    KProcess *p=new KProcess( this );
+    KProcess *p = new KProcess(this);
     p->setWorkingDirectory(dir);
 
-    (*p)<<"latex"<<"-interaction=batchmode"<<"-halt-on-error"<<fileName;
+    (*p) << "latex" << "-interaction=batchmode" << "-halt-on-error" << fileName;
 
-    connect(p, SIGNAL( finished(int,  QProcess::ExitStatus) ), this, SLOT( convertToPs() ) );
-    connect(p, SIGNAL( error(QProcess::ProcessError) ), this, SLOT( latexRendered() ) );
+    connect(p, SIGNAL(finished(int,  QProcess::ExitStatus)), this, SLOT(convertToPs()));
+    connect(p, SIGNAL(error(QProcess::ProcessError)), this, SLOT(latexRendered()));
     p->start();
 }
 
 bool LatexRenderer::isLatex(const QString& tex)
 {
-    return tex.length() > 4 && tex.mid(2, tex.length()-4).simplified().length() > 0 &&
-            ((tex.startsWith(QLatin1String("$$")) && tex.endsWith(QLatin1String("$$"))) ||
+    return tex.length() > 4 && tex.mid(2, tex.length() - 4).simplified().length() > 0 &&
+           ((tex.startsWith(QLatin1String("$$")) && tex.endsWith(QLatin1String("$$"))) ||
             (tex.startsWith(QString::fromUtf8("§§")) && tex.endsWith(QString::fromUtf8("§§"))));
 }
 
 void LatexRenderer::convertToPs()
 {
-    kDebug()<<"converting to ps";
-    QString dviFile=m_latexFilename;
+    kDebug() << "converting to ps";
+    QString dviFile = m_latexFilename;
     dviFile.replace(".eps", ".dvi");
-    KProcess *p=new KProcess( this );
-    kDebug()<<"running: "<<"dvips"<<"-E"<<"-o"<<m_latexFilename<<dviFile;
-    (*p)<<"dvips"<<"-E"<<"-o"<<m_latexFilename<<dviFile;
+    KProcess *p = new KProcess(this);
+    kDebug() << "running: " << "dvips" << "-E" << "-o" << m_latexFilename << dviFile;
+    (*p) << "dvips" << "-E" << "-o" << m_latexFilename << dviFile;
 
-    connect(p, SIGNAL( finished(int,  QProcess::ExitStatus) ), this, SLOT( convertToImage() ) );
-    connect(p, SIGNAL( error(QProcess::ProcessError) ), this, SLOT( latexRendered() ) );
+    connect(p, SIGNAL(finished(int,  QProcess::ExitStatus)), this, SLOT(convertToImage()));
+    connect(p, SIGNAL(error(QProcess::ProcessError)), this, SLOT(latexRendered()));
     p->start();
 }
 
 void LatexRenderer::convertToImage()
 {
-    kDebug()<<"converting to ps";
-    QString pngFile=m_latexFilename;
+    kDebug() << "converting to ps";
+    QString pngFile = m_latexFilename;
     pngFile.replace(".eps", ".png");
-    KProcess *p=new KProcess( this );
-    kDebug()<<"running:"<<"convert"<<m_latexFilename<<pngFile;
-    (*p)<<"convert"<<"-density"<<"85"<<m_latexFilename<<pngFile;
+    KProcess *p = new KProcess(this);
+    kDebug() << "running:" << "convert" << m_latexFilename << pngFile;
+    (*p) << "convert" << "-density" << "85" << m_latexFilename << pngFile;
 
-    connect(p, SIGNAL( finished(int,  QProcess::ExitStatus) ), this, SLOT( latexRendered() ) );
-    connect(p, SIGNAL( error(QProcess::ProcessError) ), this, SLOT( latexRendered() ) );
+    connect(p, SIGNAL(finished(int,  QProcess::ExitStatus)), this, SLOT(latexRendered()));
+    connect(p, SIGNAL(error(QProcess::ProcessError)), this, SLOT(latexRendered()));
     p->start();
 }
 
 void LatexRenderer::latexRendered()
 {
-    kDebug()<<"rendered file "<<m_latexFilename;
+    kDebug() << "rendered file " << m_latexFilename;
 
-    QString pngFile=m_latexFilename;
+    QString pngFile = m_latexFilename;
     pngFile.replace(".eps", ".png");
-    if(QFileInfo(pngFile).exists())
-    {
+    if (QFileInfo(pngFile).exists()) {
         QPixmap pixmap(pngFile);
         m_label->setPixmap(pixmap);
         m_label->setMinimumSize(pixmap.size().boundedTo(QSize(600, 300)));
@@ -144,12 +143,11 @@ void LatexRenderer::latexRendered()
     }
 
     //cleanup the temp directory a bit...
-    QString dir=KGlobal::dirs()->saveLocation("tmp", "parley/");
+    QString dir = KGlobal::dirs()->saveLocation("tmp", "parley/");
     QStringList extensions;
-    extensions<<".log"<<".aux"<<".tex"<<".dvi"<<".eps"<<".png";
-    foreach(const QString& ext, extensions)
-    {
-        QString s=m_latexFilename;
+    extensions << ".log" << ".aux" << ".tex" << ".dvi" << ".eps" << ".png";
+    foreach(const QString & ext, extensions) {
+        QString s = m_latexFilename;
         s.replace(".eps", ext);
         QFile f(s);
         f.remove();

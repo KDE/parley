@@ -23,7 +23,7 @@ class KUrl;
 
 class ExportDialog : public KDialog
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     ExportDialog(ParleyDocument *doc, QWidget *parent = 0);
 

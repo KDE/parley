@@ -24,18 +24,20 @@
 
 /// temporary namespace for string manipulation functions
 /// could move into KStringHandler eventually
-namespace ParleyStringHandlerOld {
-    QString stripAccents(const QString& original){
-        QString noAccents;
-        QString decomposed = original.normalized(QString::NormalizationForm_D);
-        for (int i = 0; i < decomposed.length(); ++i) {
-            if ( decomposed[i].category() != 1 ) {
-                noAccents.append(decomposed[i]);
-            }
+namespace ParleyStringHandlerOld
+{
+QString stripAccents(const QString& original)
+{
+    QString noAccents;
+    QString decomposed = original.normalized(QString::NormalizationForm_D);
+    for (int i = 0; i < decomposed.length(); ++i) {
+        if (decomposed[i].category() != 1) {
+            noAccents.append(decomposed[i]);
         }
-kDebug() << original << " without accents: " << noAccents;
-        return noAccents;
     }
+    kDebug() << original << " without accents: " << noAccents;
+    return noAccents;
+}
 }
 
 
@@ -66,22 +68,22 @@ void AnswerValidatorOld::setLanguage(int translation)
     m_translation = translation;
 
     // default: try locale
-    if ( !m_speller ) {
+    if (!m_speller) {
         m_speller = new Sonnet::Speller(m_doc->identifier(translation).locale());
     } else {
         m_speller->setLanguage(m_doc->identifier(translation).locale());
     }
 
     // we might succeed with language name instead.
-    if ( !m_speller->isValid() ) {
+    if (!m_speller->isValid()) {
         m_speller->setLanguage(m_doc->identifier(translation).name());
     }
 
-    if ( !m_speller->isValid() ) {
+    if (!m_speller->isValid()) {
         kDebug() << "No spellchecker for current language found: " << m_doc->identifier(m_translation).locale();
         kDebug() << "Available dictionaries: " << m_speller->availableLanguages()
-                << "\n names: " << m_speller->availableLanguageNames()
-                << "\n backends: " << m_speller->availableBackends();
+                 << "\n names: " << m_speller->availableLanguageNames()
+                 << "\n backends: " << m_speller->availableBackends();
         m_spellerAvailable = false;
     } else {
         m_spellerAvailable = true;
@@ -102,41 +104,40 @@ int AnswerValidatorOld::levenshteinDistance(const QString& s, const QString& t)
     int m = s.length();
     int n = t.length();
 
-    int dWidth = m+1 ;
+    int dWidth = m + 1 ;
 
     // make sure the matrix is big enough
-    if( m_d.size() < (m+1) * (n+1)) {
-        m_d.resize( (m+1) * (n+1) );
+    if (m_d.size() < (m + 1) * (n + 1)) {
+        m_d.resize((m + 1) * (n + 1));
     }
 
     int i;
     int j;
 
     // init 0..m, 0..n as starting values - distance to ""
-    for ( i = 0; i <= m; i++ )
-    {
-        m_d[i + 0*dWidth] = i;
+    for (i = 0; i <= m; i++) {
+        m_d[i + 0 * dWidth] = i;
     }
-    for ( j = 0; j <= n; j++ ) {
-        m_d[0 + j*dWidth] = j;
+    for (j = 0; j <= n; j++) {
+        m_d[0 + j * dWidth] = j;
     }
 
     int cost;
     for (i = 1; i <= m; i++) {
         for (j = 1; j <= n; j++) {
-            if ( s[i-1] == t[j-1] ) {
+            if (s[i - 1] == t[j - 1]) {
                 // if current char is equal, no cost for substitution
                 cost = 0;
             } else {
                 cost = 1;
             }
-            m_d[i + j*dWidth] = qMin( qMin ( // min of three possibilities
-                      m_d[i-1 + (j  )*dWidth] + 1,     // deletion
-                      m_d[i   + (j-1)*dWidth] + 1),     // insertion
-                      m_d[i-1 + (j-1)*dWidth] + cost);   // substitution
+            m_d[i + j * dWidth] = qMin(qMin( // min of three possibilities
+                                           m_d[i - 1 + (j) * dWidth] + 1,   // deletion
+                                           m_d[i   + (j - 1) * dWidth] + 1), // insertion
+                                       m_d[i - 1 + (j - 1) * dWidth] + cost); // substitution
         }
     }
-    return m_d[m + n*dWidth];
+    return m_d[m + n * dWidth];
 }
 
 bool AnswerValidatorOld::spellcheckerMisspelled(const QString& userAnswer)
@@ -149,13 +150,13 @@ bool AnswerValidatorOld::spellcheckerMisspelled(const QString& userAnswer)
 
 bool AnswerValidatorOld::spellcheckerInSuggestionList(const QString& solution, const QString& userAnswer)
 {
-    if ( !m_spellerAvailable ) {
+    if (!m_spellerAvailable) {
         return false;
     }
 
     kDebug() << "entered: " << userAnswer << " misspelled: " << m_speller->isMisspelled(userAnswer) << " suggestions: " << m_speller->suggest(userAnswer);
 
-    if ( m_speller->suggest(userAnswer).contains(solution) ) {
+    if (m_speller->suggest(userAnswer).contains(solution)) {
         kDebug() << "I think this is a spelling error.";
         return true;
     } else {
@@ -167,27 +168,27 @@ bool AnswerValidatorOld::spellcheckerInSuggestionList(const QString& solution, c
 
 void AnswerValidatorOld::simpleCorrector()
 {
-kDebug() << "simpleCorrector";
-    if ( m_entry == 0 ) {
+    kDebug() << "simpleCorrector";
+    if (m_entry == 0) {
         kError() << "No entry set, cannot verify answer.";
         return;
     }
 
     ///@todo can solution.length() be zero? *should* be caught by Parley
-    if ( m_solution == m_userAnswer ) {
+    if (m_solution == m_userAnswer) {
         m_entry->setLastErrors(TestEntry::Correct);
         m_entry->setLastPercentage(1.0);
 //         m_htmlCorrection = i18n("Your answer is right!");
-kDebug() << "right";
+        kDebug() << "right";
         return;
     }
 
     TestEntry::ErrorTypes errorTypes = TestEntry::UnknownMistake;
 
-    foreach(KEduVocTranslation *synonym, m_entry->entry()->translation(m_translation)->synonyms()) {
+    foreach(KEduVocTranslation * synonym, m_entry->entry()->translation(m_translation)->synonyms()) {
         if (synonym->text() == m_userAnswer) {
             m_entry->setLastErrors(TestEntry::Synonym);
-            if ( Prefs::countSynonymsAsCorrect() ) {
+            if (Prefs::countSynonymsAsCorrect()) {
                 m_entry->setLastPercentage(1.0);
             } else {
                 m_entry->setLastPercentage(0.0); // bit harsh maybe
@@ -196,9 +197,9 @@ kDebug() << "right";
         }
     }
 
-    int levensthein = levenshteinDistance( m_solution, m_userAnswer );
+    int levensthein = levenshteinDistance(m_solution, m_userAnswer);
 
-    m_entry->setLastPercentage(1.0 - ((double)levensthein/ qMax(m_solution.length(), m_userAnswer.length())));
+    m_entry->setLastPercentage(1.0 - ((double)levensthein / qMax(m_solution.length(), m_userAnswer.length())));
 
     kDebug() << "simpleCorrector" << m_userAnswer << "-" << m_solution << "has levensthein distance: " << levensthein << " grade: " << m_entry->lastPercentage();
 }
@@ -208,19 +209,19 @@ void AnswerValidatorOld::defaultCorrector()
 {
     ///@todo does not work completely yet.
     ///@todo can solution.length() be zero? *should* be caught by Parley
-    if ( m_solution == m_userAnswer ) {
+    if (m_solution == m_userAnswer) {
         m_entry->setLastErrors(TestEntry::Correct);
         m_entry->setLastPercentage(1.0);
         return;
     }
 
-    if ( m_userAnswer.isEmpty() ) {
+    if (m_userAnswer.isEmpty()) {
         m_entry->setLastErrors(TestEntry::Empty);
         m_entry->setLastPercentage(0.0);
         return;
     }
 
-    if ( m_solution.toLower() == m_userAnswer.toLower() ) {
+    if (m_solution.toLower() == m_userAnswer.toLower()) {
         if (Prefs::ignoreCapitalizationMistakes()) {
             m_entry->setLastPercentage(1.0);
         } else {
@@ -230,7 +231,7 @@ void AnswerValidatorOld::defaultCorrector()
         return ;
     }
 
-    if ( ParleyStringHandlerOld::stripAccents(m_solution) == ParleyStringHandlerOld::stripAccents(m_userAnswer) ) {
+    if (ParleyStringHandlerOld::stripAccents(m_solution) == ParleyStringHandlerOld::stripAccents(m_userAnswer)) {
         if (Prefs::ignoreAccentMistakes()) {
             m_entry->setLastPercentage(1.0);
         } else {
@@ -240,10 +241,10 @@ void AnswerValidatorOld::defaultCorrector()
         return ;
     }
 
-    foreach(KEduVocTranslation *synonym, m_entry->entry()->translation(m_translation)->synonyms()) {
+    foreach(KEduVocTranslation * synonym, m_entry->entry()->translation(m_translation)->synonyms()) {
         if (synonym->text() == m_userAnswer) {
             m_entry->setLastErrors(TestEntry::Synonym);
-            if ( Prefs::countSynonymsAsCorrect() ) {
+            if (Prefs::countSynonymsAsCorrect()) {
                 m_entry->setLastPercentage(1.0);
             } else {
                 m_entry->setLastPercentage(0.0); // bit harsh maybe
@@ -255,7 +256,7 @@ void AnswerValidatorOld::defaultCorrector()
     int numberSolutionWords = m_solution.simplified().split(' ').count();
     int numberAnswerWords = m_userAnswer.simplified().split(' ').count();
 
-    if ( numberSolutionWords == 1 ) {
+    if (numberSolutionWords == 1) {
         double grade;
         TestEntry::ErrorTypes errors;
         wordCompare(m_solution, m_userAnswer, grade, errors);
@@ -264,32 +265,32 @@ void AnswerValidatorOld::defaultCorrector()
         return;
     }
 
-    if ( numberSolutionWords == 2 ) {
+    if (numberSolutionWords == 2) {
         // could be noun + article
         QStringList solutionWords = m_solution.simplified().split(' ');
 
-        if ( m_translation >= 0 ) {
-            if (m_doc->identifier(m_translation).article().isArticle(solutionWords.value(0)) ) {
+        if (m_translation >= 0) {
+            if (m_doc->identifier(m_translation).article().isArticle(solutionWords.value(0))) {
                 // yes, the answer is an article + noun
-                if ( numberAnswerWords == 1 ) {
+                if (numberAnswerWords == 1) {
                     double percent;
                     TestEntry::ErrorTypes errors;
                     wordCompare(solutionWords.value(1), m_userAnswer.simplified(), percent, errors);
-                    m_entry->setLastPercentage(qMax(percent-WRONG_ARTICLE_PUNISHMENT, 0.0));
-                    m_entry->setLastErrors(errors|TestEntry::ArticleMissing);
+                    m_entry->setLastPercentage(qMax(percent - WRONG_ARTICLE_PUNISHMENT, 0.0));
+                    m_entry->setLastErrors(errors | TestEntry::ArticleMissing);
                     return;
                 }
-                if ( numberAnswerWords == 2 ) {
+                if (numberAnswerWords == 2) {
                     double percent;
                     TestEntry::ErrorTypes errors;
-                    wordCompare(solutionWords.value(1), m_userAnswer.simplified().split(' ').value(1), percent, 
-errors);
+                    wordCompare(solutionWords.value(1), m_userAnswer.simplified().split(' ').value(1), percent,
+                                errors);
 
-                    if ( m_userAnswer.simplified().split(' ').value(0) == solutionWords.value(0) ) {
+                    if (m_userAnswer.simplified().split(' ').value(0) == solutionWords.value(0)) {
                         m_entry->setLastErrors(errors);
                     } else {
-                        m_entry->setLastPercentage(qMax(percent-WRONG_ARTICLE_PUNISHMENT, 0.0));
-                        m_entry->setLastErrors(errors|TestEntry::ArticleWrong);
+                        m_entry->setLastPercentage(qMax(percent - WRONG_ARTICLE_PUNISHMENT, 0.0));
+                        m_entry->setLastErrors(errors | TestEntry::ArticleWrong);
                     }
                     return;
                 }
@@ -306,7 +307,7 @@ errors);
 
 void AnswerValidatorOld::checkUserAnswer(const QString & userAnswer)
 {
-    if ( m_entry == 0 ) {
+    if (m_entry == 0) {
         kError() << "Error: no entry set for validator.";
         return;
     }
@@ -319,8 +320,8 @@ void AnswerValidatorOld::checkUserAnswer(const QString & userAnswer)
 
 void AnswerValidatorOld::checkUserAnswer(const QString & solution, const QString & userAnswer, const QString& language)
 {
-kDebug() << "CheckUserAnswer with two strings. The one string version is preferred.";
-    if ( !language.isEmpty() ) {
+    kDebug() << "CheckUserAnswer with two strings. The one string version is preferred.";
+    if (!language.isEmpty()) {
 
     } else {
         m_spellerAvailable = false;
@@ -337,13 +338,13 @@ void AnswerValidatorOld::wordCompare(const QString & solution, const QString & u
     ///@todo add to other errors... ?
 
     // nothing to be done here if it's right
-    if ( solution == userWord ) {
+    if (solution == userWord) {
         grade = 1.0;
         errorTypes = TestEntry::Correct;
         return;
     }
 
-    if ( solution.toLower() == userWord.toLower() ) {
+    if (solution.toLower() == userWord.toLower()) {
         if (Prefs::ignoreCapitalizationMistakes()) {
             grade = 1.0;
         } else {
@@ -353,7 +354,7 @@ void AnswerValidatorOld::wordCompare(const QString & solution, const QString & u
         return ;
     }
 
-    if ( ParleyStringHandlerOld::stripAccents(solution) == ParleyStringHandlerOld::stripAccents(userWord) ) {
+    if (ParleyStringHandlerOld::stripAccents(solution) == ParleyStringHandlerOld::stripAccents(userWord)) {
         if (Prefs::ignoreAccentMistakes()) {
             grade = 1.0;
         } else {
@@ -365,35 +366,35 @@ void AnswerValidatorOld::wordCompare(const QString & solution, const QString & u
 
     int levenshtein = levenshteinDistance(solution, userWord);
 
-    if ( m_spellerAvailable ) {
+    if (m_spellerAvailable) {
         bool inSuggestions = false;
-        bool isMisspelled = m_speller->isMisspelled( userWord );
-        if ( m_speller->suggest(userWord).contains(solution) ) {
+        bool isMisspelled = m_speller->isMisspelled(userWord);
+        if (m_speller->suggest(userWord).contains(solution)) {
             inSuggestions = true;
         }
         // probably misspelled
-        if ( isMisspelled && inSuggestions ) {
-            grade = 1.0 - qMax (levenshtein * SPELLING_MISTAKE_PER_LETTER_PUNISHMENT, 1.0);
+        if (isMisspelled && inSuggestions) {
+            grade = 1.0 - qMax(levenshtein * SPELLING_MISTAKE_PER_LETTER_PUNISHMENT, 1.0);
             errorTypes = TestEntry::SpellingMistake;
             return;
         }
         // this is a different word but sounds similar!
-        if ( !isMisspelled && inSuggestions ) {
+        if (!isMisspelled && inSuggestions) {
             grade = FALSE_FRIEND_GRADE;
 //             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">NOOOO! That was a false friend!</font> ");
             errorTypes = errorTypes = TestEntry::FalseFriend;
             return ;
         }
         // unrelated word
-        if ( !isMisspelled && !inSuggestions ) {
+        if (!isMisspelled && !inSuggestions) {
             grade = UNRELATED_WORD_GRADE;
 //             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">Do you have any idea what you are talking about? (Wrong word, you spelled it correct I guess.)</font> ");
             errorTypes = TestEntry::UnrelatedWord;
             return;
         }
         // complete nonsense, unless levenshtein comes to the rescue
-        if ( isMisspelled && !inSuggestions ) {
-            if ( ((double)levenshtein/ qMax(solution.length(), userWord.length())) < LEVENSHTEIN_THRESHOLD ) {
+        if (isMisspelled && !inSuggestions) {
+            if (((double)levenshtein / qMax(solution.length(), userWord.length())) < LEVENSHTEIN_THRESHOLD) {
 //                 htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">Seems like you got the spellig wrong.</font> ");
                 errorTypes = TestEntry::SpellingMistake;
                 return;
@@ -404,13 +405,13 @@ void AnswerValidatorOld::wordCompare(const QString & solution, const QString & u
             }
         }
     } else {
-        if ( ((double)levenshtein/ qMax(solution.length(), userWord.length())) < LEVENSHTEIN_THRESHOLD ) {
-            grade = 1.0 - ((double)levenshtein/ qMax(solution.length(), userWord.length()));
+        if (((double)levenshtein / qMax(solution.length(), userWord.length())) < LEVENSHTEIN_THRESHOLD) {
+            grade = 1.0 - ((double)levenshtein / qMax(solution.length(), userWord.length()));
 //             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">No spellchecker, but seems like a spelling error.</font> ");
             errorTypes = TestEntry::SpellingMistake;
             return;
         } else {
-            grade = 1.0 - ((double)levenshtein/ qMax(solution.length(), userWord.length()));
+            grade = 1.0 - ((double)levenshtein / qMax(solution.length(), userWord.length()));
 //             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">No dictionary and no clue.</font> ");
             errorTypes = TestEntry::UnknownMistake;
             return;
@@ -436,9 +437,9 @@ void AnswerValidatorOld::sentenceAnalysis()
     QStringList correctWords;
     QStringList wrongWords;
 
-    for ( int i = 0; i < userAnswerWords.count(); i++ ) {
-        int pos = solutionWords.indexOf( userAnswerWords.value(i) );
-        if ( pos >= 0 ) {
+    for (int i = 0; i < userAnswerWords.count(); i++) {
+        int pos = solutionWords.indexOf(userAnswerWords.value(i));
+        if (pos >= 0) {
             correctWords.append(userAnswerWords.value(i));
             solutionWords.removeAt(pos);
             userAnswerWords.removeAt(i);
@@ -448,23 +449,23 @@ void AnswerValidatorOld::sentenceAnalysis()
     }
 
     kDebug() << " remaining: solution: " << solutionWords.count()
-            << "user: " << userAnswerWords.count();
+             << "user: " << userAnswerWords.count();
 
     QList< QPair<QString, QString> > pairs = bestPairs(solutionWords, userAnswerWords);
 
-    for ( int i = 0; i < pairs.count(); i++ ) {
+    for (int i = 0; i < pairs.count(); i++) {
         kDebug() << "Possible pair: " << pairs.value(i).first << " and " << pairs.value(i).second;
     }
 
 
     QString correction;
     correction.append("Correct: ");
-    foreach (const QString &correctWord, correctWords) {
+    foreach(const QString & correctWord, correctWords) {
         correction.append(QString::fromLatin1("<font color=\"#188C18\">") + correctWord + QString::fromLatin1("</font> "));
     }
 
     correction.append(" Wrong: ");
-    foreach (const QString &wrongWord, wrongWords) {
+    foreach(const QString & wrongWord, wrongWords) {
         correction.append(QString::fromLatin1("<font color=\"#8C1818\">") + wrongWord + QString::fromLatin1("</font> "));
     }
 
@@ -472,25 +473,25 @@ void AnswerValidatorOld::sentenceAnalysis()
 
     kDebug() << correction;
     kDebug() << "IMPLEMENT ME TO ACTUALLY EVALUATE THE ABOVE AND GENERATE A GRADE!";
-    m_entry->setLastPercentage(1.0 - ((double)levenshtein/ qMax(m_solution.length(), m_userAnswer.length())));
+    m_entry->setLastPercentage(1.0 - ((double)levenshtein / qMax(m_solution.length(), m_userAnswer.length())));
     m_entry->setLastErrors(TestEntry::UnknownMistake);
 }
 
 
-QList< QPair < QString , QString > > AnswerValidatorOld::bestPairs(const QStringList& solutionWords , const QStringList& userAnswerWords )
+QList< QPair < QString , QString > > AnswerValidatorOld::bestPairs(const QStringList& solutionWords , const QStringList& userAnswerWords)
 {
     int nSol = solutionWords.count();
     int nUser = userAnswerWords.count();
 
     QByteArray d;
-    d.resize( nSol * nUser );
+    d.resize(nSol * nUser);
 
     QList< QPair < QString , QString > > pairList;
 
     // matrix of levenshteinDistances
-    for ( int i = 0; i < nSol; i++) {
-        for ( int j = 0; j < nUser; j++) {
-            d[i + nSol*j] = levenshteinDistance(solutionWords.value(i), userAnswerWords.value(j));
+    for (int i = 0; i < nSol; i++) {
+        for (int j = 0; j < nUser; j++) {
+            d[i + nSol * j] = levenshteinDistance(solutionWords.value(i), userAnswerWords.value(j));
         }
     }
 
@@ -502,22 +503,22 @@ QList< QPair < QString , QString > > AnswerValidatorOld::bestPairs(const QString
     int posUser = -1;
     do {
         min = MAX_LEVENSHTEIN;
-        for ( int i = 0; i < nSol; i++ ) {
-            for ( int j = 0; j < nUser; j++) {
-                if ( d.at(i + j*nSol ) < min ) {
-                    min = d.at(i + j*nSol );
+        for (int i = 0; i < nSol; i++) {
+            for (int j = 0; j < nUser; j++) {
+                if (d.at(i + j * nSol) < min) {
+                    min = d.at(i + j * nSol);
                     posSol = i;
                     posUser = j;
                 }
             }
         }
-        if ( min < MAX_LEVENSHTEIN && posUser != -1 && posSol != -1) {
-            pairList.append( qMakePair(solutionWords.value(posSol), userAnswerWords.value(posUser)) );
+        if (min < MAX_LEVENSHTEIN && posUser != -1 && posSol != -1) {
+            pairList.append(qMakePair(solutionWords.value(posSol), userAnswerWords.value(posUser)));
 
             // taken
-            d[posSol + posUser*nSol] = MAX_LEVENSHTEIN;
+            d[posSol + posUser * nSol] = MAX_LEVENSHTEIN;
         }
-    } while ( min < MAX_LEVENSHTEIN );
+    } while (min < MAX_LEVENSHTEIN);
 
     return pairList;
 }
@@ -525,5 +526,5 @@ QList< QPair < QString , QString > > AnswerValidatorOld::bestPairs(const QString
 
 bool AnswerValidatorOld::spellcheckerAvailable()
 {
-        return m_spellerAvailable;
+    return m_spellerAvailable;
 }

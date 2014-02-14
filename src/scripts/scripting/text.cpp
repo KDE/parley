@@ -17,26 +17,26 @@
 namespace Scripting
 {
 
-    Text::Text ( const QString& text )
-            : QObject()
-    {
-        m_text = new KEduVocText ( text );
-    }
+Text::Text(const QString& text)
+    : QObject()
+{
+    m_text = new KEduVocText(text);
+}
 
-    Text::Text ( KEduVocText * text )
-            : m_text ( text )
-    {
-    }
+Text::Text(KEduVocText * text)
+    : m_text(text)
+{
+}
 
-    Text::Text (const KEduVocText & text )
-    {
-        m_text = new KEduVocText ( text );
-    }
+Text::Text(const KEduVocText & text)
+{
+    m_text = new KEduVocText(text);
+}
 
 
-    Text::~Text()
-    {
-    }
+Text::~Text()
+{
+}
 
 
 }

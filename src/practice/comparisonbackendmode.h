@@ -18,7 +18,8 @@
 #include "abstractbackendmode.h"
 #include "practice/testentrymanager.h"
 
-namespace Practice {
+namespace Practice
+{
 
 class ComparisonBackendMode : public AbstractBackendMode
 {
@@ -26,7 +27,7 @@ class ComparisonBackendMode : public AbstractBackendMode
 
 public:
     ComparisonBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend,
-                           QObject *parent, Practice::TestEntryManager* testEntryManager, KEduVocDocument* doc);
+                          QObject *parent, Practice::TestEntryManager* testEntryManager, KEduVocDocument* doc);
 
     virtual bool setTestEntry(TestEntry* current);
 

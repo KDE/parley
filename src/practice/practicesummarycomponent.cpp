@@ -29,12 +29,11 @@
 #include <KToolBar>
 #include <KFileDialog>
 
-using namespace Practice; 
+using namespace Practice;
 
 class PracticeSummaryComponent::SortedAttemptTableWidgetItem: public QTableWidgetItem
 {
-    virtual bool operator<(const QTableWidgetItem &other) const
-    {
+    virtual bool operator<(const QTableWidgetItem &other) const {
         if (data(Qt::DisplayRole).toInt() == other.data(Qt::DisplayRole).toInt()) {
             return data(Qt::UserRole).toInt() < other.data(Qt::UserRole).toInt();
         }
@@ -43,31 +42,31 @@ class PracticeSummaryComponent::SortedAttemptTableWidgetItem: public QTableWidge
 };
 
 PracticeSummaryComponent::PracticeSummaryComponent(TestEntryManager* testEntryManager, QWidget* parent)
-    :KXmlGuiWindow(parent)
-    ,m_testEntryManager(testEntryManager)
+    : KXmlGuiWindow(parent)
+    , m_testEntryManager(testEntryManager)
 {
     // KXmlGui
     setXMLFile("practicesummaryui.rc");
     setObjectName("Statistics");
-    
+
     QWidget *mainWidget = new QWidget(this);
     setupUi(mainWidget);
     setCentralWidget(mainWidget);
 
     initActions(parent);
-    
+
     setupDetailsTable();
     summaryBar->setStatistics(m_testEntryManager->statisticTotalCorrectFirstAttempt(), m_testEntryManager->statisticTotalWrong(), m_testEntryManager->statisticTotalUnanswered());
 
     int total = m_testEntryManager->statisticTotalCorrectFirstAttempt() + m_testEntryManager->statisticTotalWrong();
     int minutes = m_testEntryManager->totalTime() / 60;
     int seconds = m_testEntryManager->totalTime() % 60;
-    
+
     testSummaryLabel->setText(i18nc("number of words, minutes, seconds", "You practiced %1 in %2 and %3.",
                                     i18np("one word", "%1 words", total),
                                     i18np("one minute", "%1 minutes", minutes),
                                     i18np("one second", "%1 seconds", seconds)));
-    
+
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
 }
@@ -106,17 +105,17 @@ void PracticeSummaryComponent::setupDetailsTable()
     int i = 0;
     // TODO headers with languages
     // TODO some colors, maybe an indicator icon wether the word was right/wrong
-    foreach(TestEntry* entry, m_testEntryManager->allTestEntries()) {
+    foreach(TestEntry * entry, m_testEntryManager->allTestEntries()) {
         QTableWidgetItem* itemFrom = new QTableWidgetItem(
-                entry->entry()->translation(TestEntry::gradeFrom())->text());
+            entry->entry()->translation(TestEntry::gradeFrom())->text());
         QTableWidgetItem* itemTo = new QTableWidgetItem(
-                entry->entry()->translation(TestEntry::gradeTo())->text());
+            entry->entry()->translation(TestEntry::gradeTo())->text());
         if (entry->statisticGoodCount() > 0) {
             itemTo->setForeground(correctPalette.foreground());
         }
 
         QTableWidgetItem* itemUserAnswer = new QTableWidgetItem(
-                entry->userAnswers().join("; "));
+            entry->userAnswers().join("; "));
         itemUserAnswer->setForeground(wrongPalette.foreground());
 
         SortedAttemptTableWidgetItem* itemAttempts = new SortedAttemptTableWidgetItem();
@@ -180,7 +179,7 @@ void PracticeSummaryComponent::exportResults()
     table->cellAt(0, 2).firstCursorPosition().insertHtml(i18n("<b>Correct answer</b>"));
     table->cellAt(0, 3).firstCursorPosition().insertHtml(i18n("<b>Your errors</b>"));
 
-    foreach(TestEntry* entry, m_testEntryManager->allTestEntries()) {
+    foreach(TestEntry * entry, m_testEntryManager->allTestEntries()) {
         table->appendRows(1);
         int newRow = table->rows() - 1;
         table->cellAt(newRow, 0).firstCursorPosition().insertText(QString::number(entry->statisticCount()));
@@ -192,8 +191,8 @@ void PracticeSummaryComponent::exportResults()
     QTextDocumentWriter writer(fileName);
 
     if (!writer.write(&doc)) {
-        KMessageBox::error (this, i18n("Could not write to %1", fileName),
-                            i18n("Could not write file"));
+        KMessageBox::error(this, i18n("Could not write to %1", fileName),
+                           i18n("Could not write file"));
         return;
     }
 }

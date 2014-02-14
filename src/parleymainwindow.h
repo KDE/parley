@@ -33,25 +33,27 @@
 
 #include <QPointer>
 
-namespace Practice {
-    class GuiFrontend;
-    class DefaultBackend;
-    class PracticeSummaryComponent;
+namespace Practice
+{
+class GuiFrontend;
+class DefaultBackend;
+class PracticeSummaryComponent;
 }
 
-namespace Editor {
-    class VocabularyView;
-    class VocabularyModel;
-    class VocabularyFilter;
-    class LessonView;
-    class WordTypeView;
-    class LeitnerView;
-    class LessonModel;
-    class WordTypeModel;
-    class LeitnerModel;
-    class ConjugationWidget;
-    class SummaryWordWidget;
-    class EditorWindow;
+namespace Editor
+{
+class VocabularyView;
+class VocabularyModel;
+class VocabularyFilter;
+class LessonView;
+class WordTypeView;
+class LeitnerView;
+class LessonModel;
+class WordTypeModel;
+class LeitnerModel;
+class ConjugationWidget;
+class SummaryWordWidget;
+class EditorWindow;
 }
 
 class KRecentFilesAction;
@@ -132,7 +134,7 @@ public slots:
     void showPracticeSummary();
     void practiceFinished();
 
-    
+
     /**
      * Show the tip of the day (force it to be shown)
      */
@@ -176,7 +178,7 @@ private:
     Practice::PracticeSummaryComponent *m_practiceSummary;
     */
     KXmlGuiWindow* m_currentComponentWindow;
-    
+
     KRecentFilesAction* m_recentFilesAction;
 
     /** m_document is the current vocabulary document. */

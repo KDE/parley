@@ -20,7 +20,8 @@
 
 class KUrl;
 
-namespace Practice {
+namespace Practice
+{
 
 class AbstractFrontend : public QObject
 {
@@ -51,17 +52,17 @@ public:
      * This is queried by the backend when it needs to evaluate the input.
      */
     virtual QVariant userInput() = 0;
-    
+
     /** The status such as lesson or number of words has changed */
     virtual void setFinishedWordsTotalWords(int finished, int total) = 0;
 
     virtual void setQuestion(const QVariant& question) = 0;
     virtual void setSolution(const QVariant& solution) = 0;
     virtual void setFeedback(const QVariant& feedback) = 0;
-    
+
     virtual void setQuestionFont(const QFont& font) = 0;
     virtual void setSolutionFont(const QFont& font) = 0;
-    
+
     virtual void setHint(const QVariant& hint) = 0;
     virtual void setQuestionImage(const KUrl& img) = 0;
     virtual void setSolutionImage(const KUrl& img) = 0;
@@ -69,7 +70,7 @@ public:
     virtual void setSolutionSound(const KUrl& soundUrl) = 0;
     virtual void setSolutionPronunciation(const QString& pronunciationText) = 0;
     virtual void setQuestionPronunciation(const QString& pronunciationText) = 0;
-       
+
     virtual void setLessonName(const QString& lesson) = 0;
 
     /** The feedback state tells the user if the currently entered word is correct
@@ -92,7 +93,7 @@ public Q_SLOTS:
 
     /** show the synonyms */
     virtual void showSynonym() = 0;
-    
+
     /** switch between different modes such as written, flash card, etc */
     virtual void setMode(Mode mode) = 0;
     virtual void setBoxes(grade_t currentBox, grade_t newBoxIfCorrect, grade_t newBoxIfWrong) = 0;

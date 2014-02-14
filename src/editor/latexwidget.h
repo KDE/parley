@@ -23,11 +23,13 @@ class KEduVocDocument;
 class KEduVocExpression;
 class KEduVocTranslation;
 
-namespace Practice {
-    class LatexRenderer;
+namespace Practice
+{
+class LatexRenderer;
 }
 
-namespace Editor {
+namespace Editor
+{
 class VocabularyFilter;
 
 class LatexWidget : public QWidget, public Ui::LatexWidget
@@ -75,7 +77,9 @@ public:
 
     void setEditorData(QWidget *editor, const QModelIndex &index) const;
     void setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const;
-    void setMathModeCheckBox(QCheckBox *checkBox) {m_checkBox = checkBox;}
+    void setMathModeCheckBox(QCheckBox *checkBox) {
+        m_checkBox = checkBox;
+    }
 
 private:
     QCheckBox *m_checkBox;

@@ -36,7 +36,7 @@
 #define TENSE_TAG ". "
 
 LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identifierIndex, QWidget *parent)
-    :QWidget(parent), m_doc(doc), m_identifierIndex(identifierIndex)
+    : QWidget(parent), m_doc(doc), m_identifierIndex(identifierIndex)
 {
     setupUi(this);
 
@@ -47,17 +47,17 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
 
     // qmap automatically sorts by keys
     QMap<QString, QString> languageCodeMap;
-    foreach (const QString &code, languageCodes){
+    foreach(const QString & code, languageCodes) {
         languageCodeMap[KGlobal::locale()->languageCodeToName(code)] = code;
     }
     // add the language, but also it's code as data
-    foreach (const QString &language, languageCodeMap.keys()) {
+    foreach(const QString & language, languageCodeMap.keys()) {
         localeComboBox->addItem(language, languageCodeMap.value(language));
     }
 
     if (m_identifierIndex < m_doc->identifierCount()) {
         localeComboBox->setCurrentIndex(localeComboBox->findData(
-            m_doc->identifier(m_identifierIndex).locale()));
+                                            m_doc->identifier(m_identifierIndex).locale()));
 
         identifierNameLineEdit->setText(m_doc->identifier(m_identifierIndex).name());
     }
@@ -111,8 +111,9 @@ void LanguagePropertiesPage::setLanguageIdentifierIndex(int newIndex)
     m_identifierIndex = newIndex;
 }
 
-namespace DocumentHelper {
-    void fetchGrammar(KEduVocDocument* doc, int languageIndex);
+namespace DocumentHelper
+{
+void fetchGrammar(KEduVocDocument* doc, int languageIndex);
 }
 
 void LanguagePropertiesPage::downloadGrammar()
@@ -127,24 +128,24 @@ void LanguagePropertiesPage::loadGrammarFromDocument()
         // articles
         KEduVocArticle articles = m_doc->identifier(m_identifierIndex).article();
 
-        def_male->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Definite | KEduVocWordFlag::Masculine ));
-        indef_male->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Masculine ));
+        def_male->setText(articles.article(KEduVocWordFlag::Singular | KEduVocWordFlag::Definite | KEduVocWordFlag::Masculine));
+        indef_male->setText(articles.article(KEduVocWordFlag::Singular | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Masculine));
 
-        def_female->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Definite | KEduVocWordFlag::Feminine ));
-        indef_female->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Feminine ));
+        def_female->setText(articles.article(KEduVocWordFlag::Singular | KEduVocWordFlag::Definite | KEduVocWordFlag::Feminine));
+        indef_female->setText(articles.article(KEduVocWordFlag::Singular | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Feminine));
 
-        def_natural->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Definite | KEduVocWordFlag::Neuter ));
-        indef_natural->setText(articles.article( KEduVocWordFlag::Singular | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Neuter ));
+        def_natural->setText(articles.article(KEduVocWordFlag::Singular | KEduVocWordFlag::Definite | KEduVocWordFlag::Neuter));
+        indef_natural->setText(articles.article(KEduVocWordFlag::Singular | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Neuter));
 
 
-        def_male_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Definite | KEduVocWordFlag::Masculine ));
-        indef_male_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Masculine ));
+        def_male_plural->setText(articles.article(KEduVocWordFlag::Plural | KEduVocWordFlag::Definite | KEduVocWordFlag::Masculine));
+        indef_male_plural->setText(articles.article(KEduVocWordFlag::Plural | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Masculine));
 
-        def_female_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Definite | KEduVocWordFlag::Feminine ));
-        indef_female_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Feminine ));
+        def_female_plural->setText(articles.article(KEduVocWordFlag::Plural | KEduVocWordFlag::Definite | KEduVocWordFlag::Feminine));
+        indef_female_plural->setText(articles.article(KEduVocWordFlag::Plural | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Feminine));
 
-        def_natural_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Definite | KEduVocWordFlag::Neuter ));
-        indef_natural_plural->setText(articles.article( KEduVocWordFlag::Plural | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Neuter ));
+        def_natural_plural->setText(articles.article(KEduVocWordFlag::Plural | KEduVocWordFlag::Definite | KEduVocWordFlag::Neuter));
+        indef_natural_plural->setText(articles.article(KEduVocWordFlag::Plural | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Neuter));
 
         // personal pronouns
         const KEduVocWordFlags numS = KEduVocWordFlag::Singular;
@@ -191,7 +192,7 @@ void LanguagePropertiesPage::loadGrammarFromDocument()
 
     if (m_identifierIndex < m_doc->identifierCount()) {
         int i = 1;
-        foreach(const QString &tenseName, m_doc->identifier(m_identifierIndex).tenseList()) {
+        foreach(const QString & tenseName, m_doc->identifier(m_identifierIndex).tenseList()) {
             tenseList->addItem(QString("%1").arg(i++, 2).append(TENSE_TAG).append(tenseName));
             tenseIndex.append(i);
         }
@@ -221,16 +222,16 @@ void LanguagePropertiesPage::accept()
     if (locale.isEmpty()) {
         locale = identifierNameLineEdit->text();
     }
-    m_doc->identifier(m_identifierIndex).setLocale( locale );
-    m_doc->identifier(m_identifierIndex).setName( identifierNameLineEdit->text() );
+    m_doc->identifier(m_identifierIndex).setLocale(locale);
+    m_doc->identifier(m_identifierIndex).setName(identifierNameLineEdit->text());
 
     LanguageSettings settings(locale);
 
     settings.setEditorFont(editorFont->font());
     settings.setPracticeFont(practiceFont->font());
 
-    if ( keyboardLayoutComboBox->isEnabled() ) {
-        settings.setKeyboardLayout( keyboardLayoutComboBox->currentText() );
+    if (keyboardLayoutComboBox->isEnabled()) {
+        settings.setKeyboardLayout(keyboardLayoutComboBox->currentText());
     }
     int index = spellcheckerComboBox->currentIndex();
     settings.setSpellChecker(spellcheckerComboBox->itemData(index).toString());
@@ -246,22 +247,22 @@ void LanguagePropertiesPage::accept()
 
     KEduVocArticle article;
 
-    article.setArticle( def_male->text(),  artSing | artDef | KEduVocWordFlag::Masculine );
-    article.setArticle( indef_male->text(),  artSing | artIndef | KEduVocWordFlag::Masculine );
-    article.setArticle( def_female->text(),  artSing | artDef | KEduVocWordFlag::Feminine );
-    article.setArticle( indef_female->text(),  artSing | artIndef | KEduVocWordFlag::Feminine );
-    article.setArticle( def_natural->text(),  artSing | artDef | KEduVocWordFlag::Neuter );
-    article.setArticle( indef_natural->text(),  artSing | artIndef | KEduVocWordFlag::Neuter );
+    article.setArticle(def_male->text(),  artSing | artDef | KEduVocWordFlag::Masculine);
+    article.setArticle(indef_male->text(),  artSing | artIndef | KEduVocWordFlag::Masculine);
+    article.setArticle(def_female->text(),  artSing | artDef | KEduVocWordFlag::Feminine);
+    article.setArticle(indef_female->text(),  artSing | artIndef | KEduVocWordFlag::Feminine);
+    article.setArticle(def_natural->text(),  artSing | artDef | KEduVocWordFlag::Neuter);
+    article.setArticle(indef_natural->text(),  artSing | artIndef | KEduVocWordFlag::Neuter);
 
 
-    article.setArticle( def_male_plural->text(),  artPlur | artDef | KEduVocWordFlag::Masculine );
-    article.setArticle( indef_male_plural->text(),  artPlur | artIndef | KEduVocWordFlag::Masculine );
-    article.setArticle( def_female_plural->text(),  artPlur | artDef | KEduVocWordFlag::Feminine );
-    article.setArticle( indef_female_plural->text(),  artPlur | artIndef | KEduVocWordFlag::Feminine );
-    article.setArticle( def_natural_plural->text(),  artPlur | artDef | KEduVocWordFlag::Neuter );
-    article.setArticle( indef_natural_plural->text(),  artPlur | artIndef | KEduVocWordFlag::Neuter );
+    article.setArticle(def_male_plural->text(),  artPlur | artDef | KEduVocWordFlag::Masculine);
+    article.setArticle(indef_male_plural->text(),  artPlur | artIndef | KEduVocWordFlag::Masculine);
+    article.setArticle(def_female_plural->text(),  artPlur | artDef | KEduVocWordFlag::Feminine);
+    article.setArticle(indef_female_plural->text(),  artPlur | artIndef | KEduVocWordFlag::Feminine);
+    article.setArticle(def_natural_plural->text(),  artPlur | artDef | KEduVocWordFlag::Neuter);
+    article.setArticle(indef_natural_plural->text(),  artPlur | artIndef | KEduVocWordFlag::Neuter);
 
-    m_doc->identifier(m_identifierIndex).setArticle( article );
+    m_doc->identifier(m_identifierIndex).setArticle(article);
 
     // personal pronouns
     KEduVocPersonalPronoun pronoun;
@@ -270,7 +271,7 @@ void LanguagePropertiesPage::accept()
     const KEduVocWordFlags numP = KEduVocWordFlag::Plural;
 
     pronoun.setPersonalPronoun(first_singular->text(),  KEduVocWordFlag::First | numS);
-    pronoun.setPersonalPronoun(second_singular->text(), KEduVocWordFlag::Second| numS);
+    pronoun.setPersonalPronoun(second_singular->text(), KEduVocWordFlag::Second | numS);
     pronoun.setPersonalPronoun(thirdM_singular->text(), KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | numS);
     pronoun.setPersonalPronoun(thirdF_singular->text(), KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | numS);
     pronoun.setPersonalPronoun(thirdN_singular->text(), KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | numS);
@@ -279,7 +280,7 @@ void LanguagePropertiesPage::accept()
     pronoun.setPersonalPronoun(dualSecondLineEdit->text(), KEduVocWordFlag::Second | numD);
     pronoun.setPersonalPronoun(dualThirdMaleLineEdit->text(), KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | numD);
     pronoun.setPersonalPronoun(dualThirdFemaleLineEdit->text(), KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | numD);
-    pronoun.setPersonalPronoun(dualThirdNeutralLineEdit->text(), KEduVocWordFlag::Third | KEduVocWordFlag::Neuter| numD);
+    pronoun.setPersonalPronoun(dualThirdNeutralLineEdit->text(), KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | numD);
 
     pronoun.setPersonalPronoun(first_plural->text(), KEduVocWordFlag::First | numP);
     pronoun.setPersonalPronoun(second_plural->text(), KEduVocWordFlag::Second |  numP);
@@ -291,7 +292,7 @@ void LanguagePropertiesPage::accept()
     pronoun.setNeutralExists(neutralCheckBox->isChecked());
     pronoun.setDualExists(dualCheckBox->isChecked());
 
-    m_doc->identifier(m_identifierIndex).setPersonalPronouns( pronoun );
+    m_doc->identifier(m_identifierIndex).setPersonalPronouns(pronoun);
 
 
     // tenses
@@ -329,7 +330,7 @@ void LanguagePropertiesPage::updateCheckBoxes()
     dualThirdMaleLineEdit->setVisible(dual && maleFemale);
     dualThirdFemaleLineEdit->setVisible(dual && maleFemale);
 
-    if ( !maleFemale ) {
+    if (!maleFemale) {
         natural_c_label->setVisible(false);
         thirdN_singular->setVisible(true);
         thirdN_plural->setVisible(true);
@@ -344,7 +345,7 @@ void LanguagePropertiesPage::updateCheckBoxes()
 
 void LanguagePropertiesPage::localeChanged(const QString & locale)
 {
-    identifierNameLineEdit->setText( locale );
+    identifierNameLineEdit->setText(locale);
 }
 
 
@@ -406,11 +407,11 @@ void LanguagePropertiesPage::slotDeleteTense()
 
         QString t = tenseList->item(act)->text();
 
-        foreach (KEduVocExpression *exp, m_doc->lesson()->entries(KEduVocLesson::Recursive)) {
+        foreach(KEduVocExpression * exp, m_doc->lesson()->entries(KEduVocLesson::Recursive)) {
             for (int lang = 0; lang < m_doc->identifierCount(); lang++) {
-                if ( exp->translation(lang)->conjugationTenses().contains(t)) {
-                        KMessageBox::information(this, i18n("The selected user defined tense could not be deleted\nbecause it is in use."),    i18n("Deleting Tense Description"));
-                        return;
+                if (exp->translation(lang)->conjugationTenses().contains(t)) {
+                    KMessageBox::information(this, i18n("The selected user defined tense could not be deleted\nbecause it is in use."),    i18n("Deleting Tense Description"));
+                    return;
                 }
             }
         }

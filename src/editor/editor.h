@@ -28,20 +28,21 @@ class KLineEdit;
 class KActionMenu;
 class ScriptManager;
 
-namespace Editor {
-    class VocabularyView;
-    class VocabularyModel;
-    class VocabularyFilter;
-    class LessonView;
-    class WordTypeView;
-    class LeitnerView;
-    class LessonModel;
-    class WordTypeModel;
-    class LeitnerModel;
-    class InflectionWidget;
-    class ComparisonWidget;
-    class SummaryWordWidget;
-    class LatexWidget;
+namespace Editor
+{
+class VocabularyView;
+class VocabularyModel;
+class VocabularyFilter;
+class LessonView;
+class WordTypeView;
+class LeitnerView;
+class LessonModel;
+class WordTypeModel;
+class LeitnerModel;
+class InflectionWidget;
+class ComparisonWidget;
+class SummaryWordWidget;
+class LatexWidget;
 
 class EditorWindow : public KXmlGuiWindow
 {
@@ -75,7 +76,7 @@ public slots:
 
     /**
      * Edit languages contained in the document.
-     * This includes adding/removing languages, 
+     * This includes adding/removing languages,
      * editing articles, personal pronouns and tenses.
      */
     void slotLanguagesChanged();
@@ -93,22 +94,22 @@ public slots:
      * Removes all grading information from the current document
      */
     void removeGrades();
-    
+
     /** when closing the application, save the editor's state */
     void saveState();
-    
+
     /**
      * Set the current doc (after creating a new one or opening a file)
      */
     void updateDocument(KEduVocDocument *doc);
-    
+
 private slots:
-    
+
     /** Make the search bar visible and focus it */
     void startSearch();
 
 signals:
-    void signalSetData( const QList<int>& entries, int currentTranslation);
+    void signalSetData(const QList<int>& entries, int currentTranslation);
 
 private:
     ParleyMainWindow* m_mainWindow;
@@ -123,7 +124,7 @@ private:
     QWidget *m_searchWidget;
     KAction *m_spellCheckMenu;
     QSignalMapper *m_spellCheckMapper;
-    
+
     /** Show a single conjugation and let the user edit it */
     InflectionWidget *m_inflectionWidget;
     SummaryWordWidget *m_summaryWordWidget;
@@ -148,7 +149,7 @@ private:
 
     QList<QDockWidget*> m_dockWidgets;
     QList<bool> m_dockWidgetVisibility;
-    
+
     friend class ::ParleyDocument;
     friend class Scripting::Parley;
     friend class ::ScriptManager;

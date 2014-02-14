@@ -21,9 +21,10 @@
 class KEduVocContainer;
 class KEduVocExpression;
 
-namespace Editor {
-    class ContainerModel;
-    
+namespace Editor
+{
+class ContainerModel;
+
 /**
  * View for containers (KEduVocContainer).
  * @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
@@ -50,7 +51,9 @@ protected:
 
 private:
     // intentionally hide this to make sure a proper model is passed
-    virtual void setModel(QAbstractItemModel *model) { Q_UNUSED(model) }
+    virtual void setModel(QAbstractItemModel *model) {
+        Q_UNUSED(model)
+    }
 };
 
 }

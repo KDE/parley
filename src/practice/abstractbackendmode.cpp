@@ -17,10 +17,10 @@ Copyright 2009 Frederik Gladhorn <gladhorn@kde.org>
 using namespace Practice;
 
 AbstractBackendMode::AbstractBackendMode(const PracticeOptions& practiceOptions, Practice::AbstractFrontend* frontend, QObject *parent)
-    :QObject(parent)
-    ,m_practiceOptions(practiceOptions)
-    ,m_frontend(frontend)
-    ,m_current(0)
+    : QObject(parent)
+    , m_practiceOptions(practiceOptions)
+    , m_frontend(frontend)
+    , m_current(0)
 {
 }
 
@@ -47,10 +47,10 @@ void Practice::AbstractBackendMode::updateGrades()
 {
     KEduVocTranslation* translation = m_current->entry()->translation(m_practiceOptions.languageTo());
     kDebug() << "Update Grades Default Implementation: " << m_frontend->resultState() << " for " << translation->text()
-        << " grade: " << m_current->entry()->translation(m_practiceOptions.languageTo())->grade();
+             << " grade: " << m_current->entry()->translation(m_practiceOptions.languageTo())->grade();
 
     translation->incPracticeCount();
-    translation->setPracticeDate( QDateTime::currentDateTime() );
+    translation->setPracticeDate(QDateTime::currentDateTime());
 
     if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
         if (m_current->statisticBadCount() == 0) {

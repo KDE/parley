@@ -25,9 +25,9 @@ using namespace Practice;
 
 ConjugationBackendMode::ConjugationBackendMode(const PracticeOptions& practiceOptions,
         AbstractFrontend* frontend, QObject* parent, Practice::TestEntryManager* testEntryManager, KEduVocDocument* doc)
-: AbstractBackendMode(practiceOptions, frontend, parent)
-,m_testEntryManager(testEntryManager)
-,m_doc(doc)
+    : AbstractBackendMode(practiceOptions, frontend, parent)
+    , m_testEntryManager(testEntryManager)
+    , m_doc(doc)
 {
 }
 
@@ -55,7 +55,7 @@ bool ConjugationBackendMode::setTestEntry(TestEntry* current)
 
     m_frontend->setQuestion(qVariantFromValue<ConjugationData>(data));
     QStringList answers;
-    foreach (const KEduVocWordFlags& key, m_pronounFlags) {
+    foreach(const KEduVocWordFlags & key, m_pronounFlags) {
         answers.append(m_conjugation.conjugation(key).text());
     }
     m_frontend->setSolution(answers);
@@ -72,7 +72,7 @@ bool ConjugationBackendMode::setTestEntry(TestEntry* current)
 QStringList ConjugationBackendMode::validPersonalPronouns()
 {
     QStringList pp;
-    foreach (const KEduVocWordFlags& person, m_pronounFlags) {
+    foreach(const KEduVocWordFlags & person, m_pronounFlags) {
         pp.append(m_doc->identifier(m_practiceOptions.languageTo()).personalPronouns().personalPronoun(person));
     }
     kDebug() << "PP: " << pp.size() << pp;
@@ -85,8 +85,8 @@ void ConjugationBackendMode::checkAnswer()
 
     bool allCorrect = true;
     int numRight = 0;
-    int i=0;
-    foreach(const KEduVocWordFlags& key, m_pronounFlags) {
+    int i = 0;
+    foreach(const KEduVocWordFlags & key, m_pronounFlags) {
         if (answers.at(i) == m_conjugation.conjugation(key).text()) {
             ++numRight;
         } else {
@@ -124,7 +124,7 @@ grade_t ConjugationBackendMode::currentGradeForEntry()
     foreach(KEduVocWordFlags key, keys) {
         min_grade = qMin(conj.conjugation(key).grade(), min_grade);
     }
-    
+
     return min_grade;
 }
 
@@ -132,13 +132,13 @@ void ConjugationBackendMode::updateGrades()
 {
     kDebug() << "Grading conjugations";
 
-    foreach(const KEduVocWordFlags& key, m_pronounFlags) {
+    foreach(const KEduVocWordFlags & key, m_pronounFlags) {
         KEduVocText& text = m_current->entry()->translation(Prefs::solutionLanguage())->
-                conjugation(m_currentTense).conjugation(key);
+                            conjugation(m_currentTense).conjugation(key);
 
         text.incPracticeCount();
         text.setPracticeDate(QDateTime::currentDateTime());
-        
+
         if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
             if (m_current->statisticBadCount() == 0) {
                 text.incGrade();

@@ -18,69 +18,66 @@
 namespace Scripting
 {
 
-    Expression::Expression()
-    {
-        m_expression = new KEduVocExpression();
-    }
+Expression::Expression()
+{
+    m_expression = new KEduVocExpression();
+}
 
-    Expression::Expression ( const QString & expression )
-    {
-        m_expression = new KEduVocExpression ( expression );
-    }
+Expression::Expression(const QString & expression)
+{
+    m_expression = new KEduVocExpression(expression);
+}
 
-    Expression::Expression ( const QStringList & translations )
-    {
-        m_expression = new KEduVocExpression ( translations );
-    }
+Expression::Expression(const QStringList & translations)
+{
+    m_expression = new KEduVocExpression(translations);
+}
 
-    Expression::Expression ( KEduVocExpression * expression )
-            : QObject(), m_expression ( expression )
-    {
-    }
+Expression::Expression(KEduVocExpression * expression)
+    : QObject(), m_expression(expression)
+{
+}
 
-    Expression::Expression ( const Expression & other ) : QObject()
-    {
-        m_expression = other.kEduVocExpression();
-    }
+Expression::Expression(const Expression & other) : QObject()
+{
+    m_expression = other.kEduVocExpression();
+}
 
-    Expression::~Expression()
-    {
-    }
+Expression::~Expression()
+{
+}
 
-    QVariantList Expression::translationIndices() const
-    {
-        QVariantList vlist;
-        foreach ( int k, m_expression->translationIndices() )
-        {
-            vlist.push_back ( QVariant ( k ) );
-        }
-        return vlist;
+QVariantList Expression::translationIndices() const
+{
+    QVariantList vlist;
+    foreach(int k, m_expression->translationIndices()) {
+        vlist.push_back(QVariant(k));
     }
+    return vlist;
+}
 
-    QVariantList Expression::translations() const
-    {
-        //build a list of all the translations
-        QList<KEduVocTranslation *> translations;
-        foreach ( int k, m_expression->translationIndices() )
-        {
-            if ( m_expression->translation ( k ) )
-                translations.push_back ( m_expression->translation ( k ) );
-        }
-        //convert it to QVariantList and return it
-        return toVariantList<KEduVocTranslation,Translation> ( translations );
+QVariantList Expression::translations() const
+{
+    //build a list of all the translations
+    QList<KEduVocTranslation *> translations;
+    foreach(int k, m_expression->translationIndices()) {
+        if (m_expression->translation(k))
+            translations.push_back(m_expression->translation(k));
     }
+    //convert it to QVariantList and return it
+    return toVariantList<KEduVocTranslation, Translation> (translations);
+}
 
-    QStringList Expression::translationTexts() const
-    {
-        //build a list of all the translation texts
-        QStringList list;
-        foreach ( int k, m_expression->translationIndices() )
-        {
-            if ( m_expression->translation ( k ) )
-                list << m_expression->translation(k)->text();
-        }
-        return list;
+QStringList Expression::translationTexts() const
+{
+    //build a list of all the translation texts
+    QStringList list;
+    foreach(int k, m_expression->translationIndices()) {
+        if (m_expression->translation(k))
+            list << m_expression->translation(k)->text();
     }
+    return list;
+}
 
 //     Expression & Expression::operator= ( const Expression &other )
 //     {
@@ -98,16 +95,16 @@ namespace Scripting
 //         m_expression->setTranslation(index,t->kEduVocTranslation());
 //     }
 
-    void Expression::setTranslations ( QStringList translations )
-    {
-        delete m_expression;
-        m_expression = new KEduVocExpression ( translations );
-    }
+void Expression::setTranslations(QStringList translations)
+{
+    delete m_expression;
+    m_expression = new KEduVocExpression(translations);
+}
 
-    QObject* Expression::translation ( int index ) const
-    {
-        return new Translation ( m_expression->translation ( index ) );
-    }
+QObject* Expression::translation(int index) const
+{
+    return new Translation(m_expression->translation(index));
+}
 }
 
 

@@ -28,12 +28,12 @@
 using namespace Practice;
 
 PracticeStateMachine::PracticeStateMachine(AbstractFrontend* frontend, ParleyDocument* doc, const PracticeOptions& options, TestEntryManager* testEntryManager,  QObject* parent)
-:QObject(parent)
-,m_frontend(frontend)
-,m_document(doc)
-,m_options(options)
-,m_current(0)
-,m_testEntryManager(testEntryManager)
+    : QObject(parent)
+    , m_frontend(frontend)
+    , m_document(doc)
+    , m_options(options)
+    , m_current(0)
+    , m_testEntryManager(testEntryManager)
 {
     createPracticeMode();
 
@@ -52,47 +52,47 @@ PracticeStateMachine::PracticeStateMachine(AbstractFrontend* frontend, ParleyDoc
 
 void PracticeStateMachine::createPracticeMode()
 {
-    switch(m_options.mode()) {
-        case Prefs::EnumPracticeMode::FlashCardsPractice:
-            kDebug() << "Create Flash Card Practice backend";
-            m_frontend->setMode(AbstractFrontend::FlashCard);
-            m_mode = new FlashCardBackendMode(m_options, m_frontend, this);
-            break;
-        case Prefs::EnumPracticeMode::MultipleChoicePractice:
-            kDebug() << "Create MultipleChoice Practice backend";
-            m_frontend->setMode(AbstractFrontend::MultipleChoice);
-            m_mode = new MultipleChoiceBackendMode(m_options, m_frontend, this, m_testEntryManager);
-            break;
-        case Prefs::EnumPracticeMode::MixedLettersPractice:
-            kDebug() << "Create Mixed Letters Practice backend";
-            m_frontend->setMode(AbstractFrontend::MixedLetters);
-            m_mode = new WrittenBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
-            break;
-        case Prefs::EnumPracticeMode::WrittenPractice:
-            kDebug() << "Create Written Practice backend";
-            m_frontend->setMode(AbstractFrontend::Written);
-            m_mode = new WrittenBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
-            break;
-        case Prefs::EnumPracticeMode::ExampleSentencesPractice:
-            kDebug() << "Create Written Practice backend";
-            m_frontend->setMode(AbstractFrontend::Written);
-            m_mode = new ExampleSentenceBackendMode(m_options, m_frontend, this,m_testEntryManager, m_document->document());
-            break;
-        case Prefs::EnumPracticeMode::GenderPractice:
-            m_frontend->setMode(AbstractFrontend::MultipleChoice);
-            m_mode = new GenderBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
-            break;
-        case Prefs::EnumPracticeMode::ConjugationPractice:
-            m_frontend->setMode(AbstractFrontend::Conjugation);
-            m_mode = new ConjugationBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
-            break;
-        case Prefs::EnumPracticeMode::ComparisonPractice:
-            m_frontend->setMode(AbstractFrontend::Comparison);
-            m_mode = new ComparisonBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
-            break;
+    switch (m_options.mode()) {
+    case Prefs::EnumPracticeMode::FlashCardsPractice:
+        kDebug() << "Create Flash Card Practice backend";
+        m_frontend->setMode(AbstractFrontend::FlashCard);
+        m_mode = new FlashCardBackendMode(m_options, m_frontend, this);
+        break;
+    case Prefs::EnumPracticeMode::MultipleChoicePractice:
+        kDebug() << "Create MultipleChoice Practice backend";
+        m_frontend->setMode(AbstractFrontend::MultipleChoice);
+        m_mode = new MultipleChoiceBackendMode(m_options, m_frontend, this, m_testEntryManager);
+        break;
+    case Prefs::EnumPracticeMode::MixedLettersPractice:
+        kDebug() << "Create Mixed Letters Practice backend";
+        m_frontend->setMode(AbstractFrontend::MixedLetters);
+        m_mode = new WrittenBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
+        break;
+    case Prefs::EnumPracticeMode::WrittenPractice:
+        kDebug() << "Create Written Practice backend";
+        m_frontend->setMode(AbstractFrontend::Written);
+        m_mode = new WrittenBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
+        break;
+    case Prefs::EnumPracticeMode::ExampleSentencesPractice:
+        kDebug() << "Create Written Practice backend";
+        m_frontend->setMode(AbstractFrontend::Written);
+        m_mode = new ExampleSentenceBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
+        break;
+    case Prefs::EnumPracticeMode::GenderPractice:
+        m_frontend->setMode(AbstractFrontend::MultipleChoice);
+        m_mode = new GenderBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
+        break;
+    case Prefs::EnumPracticeMode::ConjugationPractice:
+        m_frontend->setMode(AbstractFrontend::Conjugation);
+        m_mode = new ConjugationBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
+        break;
+    case Prefs::EnumPracticeMode::ComparisonPractice:
+        m_frontend->setMode(AbstractFrontend::Comparison);
+        m_mode = new ComparisonBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
+        break;
 
-        default:
-            Q_ASSERT("Implement selected practice mode" == 0);
+    default:
+        Q_ASSERT("Implement selected practice mode" == 0);
     }
 }
 
@@ -140,14 +140,14 @@ void PracticeStateMachine::continueAction()
     kDebug() << "continue" << m_state;
     switch (m_state) {
         // on continue, we check the answer, if in NotAnsweredState or AnswerWasWrongState
-        case NotAnswered:
-        case AnswerWasWrong:
-            m_mode->checkAnswer();
-            break;
+    case NotAnswered:
+    case AnswerWasWrong:
+        m_mode->checkAnswer();
+        break;
 
-        case SolutionShown:
-            gradeEntryAndContinue();
-            break;
+    case SolutionShown:
+        gradeEntryAndContinue();
+        break;
     }
 }
 
@@ -195,7 +195,7 @@ void PracticeStateMachine::updateFrontend()
     m_frontend->setFeedbackState(AbstractFrontend::QuestionState);
     m_frontend->setResultState(AbstractFrontend::QuestionState);
     m_frontend->setLessonName(m_current->entry()->lesson()->name());
-    
+
     // show the word that is currently practiced in the progress bar
     m_frontend->setFinishedWordsTotalWords(
         m_testEntryManager->totalEntryCount() - m_testEntryManager->activeEntryCount(),
@@ -204,7 +204,7 @@ void PracticeStateMachine::updateFrontend()
     grade_t grade = m_mode->currentGradeForEntry();
     grade_t goodGrade = qMax(grade, grade_t(KV_LEV1_GRADE)); // if the word hasn't been practiced yet, use grade 1 as a base
     if (m_current->statisticBadCount() == 0) {
-        goodGrade = qMax(KV_LEV2_GRADE, qMin(grade+1, KV_MAX_GRADE));
+        goodGrade = qMax(KV_LEV2_GRADE, qMin(grade + 1, KV_MAX_GRADE));
     }
 
     m_frontend->setBoxes(grade, goodGrade, KV_LEV1_GRADE);

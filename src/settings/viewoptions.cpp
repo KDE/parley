@@ -25,7 +25,7 @@
 
 #include <QCheckBox>
 
-ViewOptions::ViewOptions(QWidget* parent) : QWidget(parent)
+ViewOptions::ViewOptions(QWidget *parent) : QWidget(parent)
 {
     setupUi(this);
 }

@@ -29,8 +29,9 @@
   * BasicContainerModel is a read only tree model.
   * @see ContainerModel for its subclass that includes more options.
   */
-namespace Editor {
-    
+namespace Editor
+{
+
 class BasicContainerModel : public QAbstractItemModel
 {
     Q_OBJECT
@@ -42,7 +43,7 @@ public:
     virtual Qt::ItemFlags flags(const QModelIndex &index) const;
 
     virtual QModelIndex index(int row, int column,
-                    const QModelIndex &parent = QModelIndex()) const;
+                              const QModelIndex &parent = QModelIndex()) const;
 
     QModelIndex index(KEduVocContainer* container) const;
 

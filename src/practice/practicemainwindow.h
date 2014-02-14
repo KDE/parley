@@ -22,9 +22,10 @@ class ParleyMainWindow;
 class KToggleFullScreenAction;
 class QPropertyAnimation;
 
-namespace Practice {
-    class PracticeStateMachine;
-    class GuiFrontend;
+namespace Practice
+{
+class PracticeStateMachine;
+class GuiFrontend;
 
 class PracticeMainWindow : public KXmlGuiWindow
 {

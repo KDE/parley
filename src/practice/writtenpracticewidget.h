@@ -17,11 +17,13 @@
 
 #include "abstractwidget.h"
 
-namespace Ui {
+namespace Ui
+{
 class WrittenPracticeWidget;
 }
 
-namespace Practice {
+namespace Practice
+{
 class LatexRenderer;
 
 class WrittenPracticeWidget : public Practice::AbstractModeWidget
@@ -34,7 +36,7 @@ public:
 
     virtual void setQuestion(const QVariant& question);
     virtual void setSolution(const QVariant& solution);
-    
+
     virtual void setQuestionFont(const QFont& font);
     virtual void setSolutionFont(const QFont& font);
     virtual void setHint(const QVariant& hint);
@@ -46,7 +48,7 @@ public:
     virtual void setSolutionSound(const KUrl& soundUrl);
     virtual void setSolutionPronunciation(const QString& pronunciationText);
     virtual void setQuestionPronunciation(const QString& pronunciationText);
-    
+
     virtual void setSynonym(const QString& entry);
 
 public slots:

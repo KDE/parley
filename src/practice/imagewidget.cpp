@@ -45,7 +45,7 @@ void centerPixmaps(QPixmap &from, QPixmap &to)
     QRect fromRect(from.rect());
     QRect toRect(to.rect());
 
-    QRect actualRect = QRect(QPoint(0,0), fromRect.size().expandedTo(toRect.size()));
+    QRect actualRect = QRect(QPoint(0, 0), fromRect.size().expandedTo(toRect.size()));
     fromRect.moveCenter(actualRect.center());
     toRect.moveCenter(actualRect.center());
 
@@ -93,8 +93,8 @@ QPixmap transition(const QPixmap &from, const QPixmap &to, qreal amount)
     // If the native paint engine supports Porter/Duff compositing and CompositionMode_Plus
     QPaintEngine *paintEngine = from.paintEngine();
     if (paintEngine &&
-        paintEngine->hasFeature(QPaintEngine::PorterDuff) &&
-        paintEngine->hasFeature(QPaintEngine::BlendModes)) {
+            paintEngine->hasFeature(QPaintEngine::PorterDuff) &&
+            paintEngine->hasFeature(QPaintEngine::BlendModes)) {
 
         QPainter p;
         p.begin(&targetPixmap);
@@ -311,8 +311,8 @@ void ImageWidget::scalePixmap(bool smooth)
         // if the scaled backup gets too small, we use the orignal image
         float ratio = 0;
         if (!size().isEmpty()) {
-            ratio = qMin(float(m_scaledBackupPixmap.width())/size().width(),
-                        float(m_scaledBackupPixmap.height())/size().height());
+            ratio = qMin(float(m_scaledBackupPixmap.width()) / size().width(),
+                         float(m_scaledBackupPixmap.height()) / size().height());
         }
         if (ratio > 0.4 && !m_scaledBackupPixmap.isNull()) {
             m_scaledPixmap = m_scaledBackupPixmap.scaled(size(), m_keepAspectRatio, Qt::FastTransformation);

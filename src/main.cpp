@@ -42,9 +42,9 @@ int main(int argc, char* argv[])
                          ki18n(description),
                          KAboutData::License_GPL,
                          ki18n("© 1999-2002\tEwald Arnold\n"
-                                   "© 2001-2002\tThe KDE team\n"
-                                   "© 2004-2007\tPeter Hedlund\n"
-                                   "© 2007-2010\tFrederik Gladhorn\n"),
+                               "© 2001-2002\tThe KDE team\n"
+                               "© 2004-2007\tPeter Hedlund\n"
+                               "© 2007-2010\tFrederik Gladhorn\n"),
                          ki18n("Helps you train your vocabulary"),
                          "http://edu.kde.org/parley",
                          "submit@bugs.kde.org");
@@ -105,7 +105,7 @@ int main(int argc, char* argv[])
 
     if (app.isSessionRestored()) {
         int n = 1;
-        while (KMainWindow::canBeRestored(n)){
+        while (KMainWindow::canBeRestored(n)) {
             (new ParleyMainWindow())->restore(n);
             n++;
         }
@@ -129,7 +129,7 @@ int main(int argc, char* argv[])
 //            if (practiceMode) {
 //                parleyApp = new ParleyPracticeMainWindow();
 //            } else {
-                parleyApp = new ParleyMainWindow();
+            parleyApp = new ParleyMainWindow();
 //            }
         }
         if (args) {

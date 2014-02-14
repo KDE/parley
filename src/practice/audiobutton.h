@@ -19,7 +19,8 @@
 
 #include <Phonon/MediaObject>
 
-namespace Practice {
+namespace Practice
+{
 
 class AudioButton : public QToolButton
 {

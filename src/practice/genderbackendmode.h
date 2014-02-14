@@ -18,12 +18,13 @@
 #include "multiplechoicebackendmode.h"
 #include "practice/testentrymanager.h"
 
-namespace Practice {
+namespace Practice
+{
 
 class GenderBackendMode : public MultipleChoiceBackendMode
 {
     Q_OBJECT
-    
+
 public:
     GenderBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend, QObject *parent, Practice::TestEntryManager* testEntryManager, KEduVocDocument* doc);
 

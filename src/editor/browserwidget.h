@@ -23,8 +23,9 @@ class KEduVocExpression;
 class KHTMLPart;
 
 
-namespace Editor {
-    
+namespace Editor
+{
+
 struct DictionaryProvider {
     QString name;
     QString url;
@@ -40,8 +41,8 @@ public:
 public slots:
     /**
      * Update the word
-     * @param entry 
-     * @param translation 
+     * @param entry
+     * @param translation
      */
     void setTranslation(KEduVocExpression* entry, int translation);
 

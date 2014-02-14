@@ -24,9 +24,10 @@
 /**
 Class used to load and use a translation script
 
-	@author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
+    @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
 */
-class TranslationScript : public QObject {
+class TranslationScript : public QObject
+{
     Kross::Action* action;
 public:
     TranslationScript(QString filename);

@@ -22,9 +22,10 @@
 class KEduVocExpression;
 class KEduVocDocument;
 
-namespace Editor {
-    class DeclensionWidget;
-    class ConjugationWidget;
+namespace Editor
+{
+class DeclensionWidget;
+class ConjugationWidget;
 
 class InflectionWidget : public QStackedWidget
 {

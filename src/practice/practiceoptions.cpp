@@ -25,7 +25,7 @@ PracticeOptions::PracticeOptions()
 
 void PracticeOptions::loadPreferences()
 {
-    m_languageFrom = Prefs::questionLanguage();                                                                  
+    m_languageFrom = Prefs::questionLanguage();
     m_languageTo = Prefs::solutionLanguage();
 }
 

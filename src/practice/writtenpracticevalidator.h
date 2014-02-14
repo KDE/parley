@@ -23,7 +23,8 @@
 #include "testentry.h"
 
 
-namespace Practice {
+namespace Practice
+{
 
 class WrittenPracticeValidator
 {
@@ -41,22 +42,22 @@ public:
 private:
 
     void setLanguage(int translation);
-    
+
     /** Simple check if the words are the same */
     bool isCorrect(const QString& answer);
-    
+
     /** Check if the answer is a synonym of the testentry
       *  also check for capitalization mistakes and accent mistakes
       *  if the option is set */
     bool isSynonymMistake(const QString& answer);
-    
+
     /** Check if the answer is a capitalization mistakes */
     bool isCapitalizationMistake(const QString& original, const QString& answer);
 
     /** Check is an accent mistake was made. Take capitalization into account
       * if the option was set in the preferences */
     bool isAccentMistake(const QString& original, const QString& answer);
-    
+
     TestEntry* m_entry;
     KEduVocDocument* m_doc;
     QString m_correctedAnswer;

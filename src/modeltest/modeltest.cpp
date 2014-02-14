@@ -48,9 +48,9 @@ ModelTest::ModelTest(QAbstractItemModel *_model, QObject *parent) : QObject(pare
             this, SLOT(runAllTests()));
     connect(model, SIGNAL(headerDataChanged(Qt::Orientation, int, int)),
             this, SLOT(runAllTests()));
-    connect(model, SIGNAL(layoutAboutToBeChanged ()), this, SLOT(runAllTests()));
-    connect(model, SIGNAL(layoutChanged ()), this, SLOT(runAllTests()));
-    connect(model, SIGNAL(modelReset ()), this, SLOT(runAllTests()));
+    connect(model, SIGNAL(layoutAboutToBeChanged()), this, SLOT(runAllTests()));
+    connect(model, SIGNAL(layoutChanged()), this, SLOT(runAllTests()));
+    connect(model, SIGNAL(modelReset()), this, SLOT(runAllTests()));
     connect(model, SIGNAL(rowsAboutToBeInserted(const QModelIndex &, int, int)),
             this, SLOT(runAllTests()));
     connect(model, SIGNAL(rowsAboutToBeRemoved(const QModelIndex &, int, int)),
@@ -266,13 +266,13 @@ void ModelTest::parent()
 
 /*!
     Called from the parent() test.
- 
+
     A model that returns an index of parent X should also return X when asking
     for the parent of the index.
- 
+
     This recursive function does pretty extensive testing on the whole model in an
     effort to catch edge cases.
- 
+
     This function assumes that rowCount(), columnCount() and index() already work.
     If they have a bug it will point it out, but the above tests should have already
     found the basic bugs because it is easier to figure out the problem in
@@ -356,7 +356,7 @@ void ModelTest::checkChildren(const QModelIndex &parent, int currentDepth)
             Q_ASSERT(model->parent(index) == parent);
 
             // recursively go down the children
-            if (model->hasChildren(index) && currentDepth < 10 ) {
+            if (model->hasChildren(index) && currentDepth < 10) {
                 //qDebug() << r << c << "has children" << model->rowCount(index);
                 checkChildren(index, ++currentDepth);
             }/* else { if (currentDepth >= 10) qDebug() << "checked 10 deep"; };*/
@@ -451,7 +451,7 @@ void ModelTest::data()
 
 /*!
     Store what is about to be inserted to make sure it actually happens
- 
+
     \sa rowsInserted()
  */
 void ModelTest::rowsAboutToBeInserted(const QModelIndex &parent, int start, int end)
@@ -467,7 +467,7 @@ void ModelTest::rowsAboutToBeInserted(const QModelIndex &parent, int start, int 
 
 /*!
     Confirm that what was said was going to happen actually did
- 
+
     \sa rowsAboutToBeInserted()
  */
 void ModelTest::rowsInserted(const QModelIndex & parent, int start, int end)
@@ -489,7 +489,7 @@ void ModelTest::rowsInserted(const QModelIndex & parent, int start, int end)
 
 /*!
     Store what is about to be inserted to make sure it actually happens
- 
+
     \sa rowsRemoved()
  */
 void ModelTest::rowsAboutToBeRemoved(const QModelIndex &parent, int start, int end)
@@ -504,7 +504,7 @@ void ModelTest::rowsAboutToBeRemoved(const QModelIndex &parent, int start, int e
 
 /*!
     Confirm that what was said was going to happen actually did
- 
+
     \sa rowsAboutToBeRemoved()
  */
 void ModelTest::rowsRemoved(const QModelIndex & parent, int start, int end)

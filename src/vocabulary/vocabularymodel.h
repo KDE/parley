@@ -23,13 +23,14 @@ class KEduVocDocument;
 class KEduVocLesson;
 
 
-namespace Editor {
+namespace Editor
+{
 /**
-	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 */
 class VocabularyModel : public QAbstractTableModel
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     enum entryColumns {
         Translation = 0,
@@ -43,7 +44,7 @@ public:
 //         Audio,
 //         Image,
         EntryColumnsMAX
-        
+
     };
 
     enum roles {
@@ -63,10 +64,10 @@ public:
     bool setData(const QModelIndex &index, const QVariant &value, int role);
     Qt::ItemFlags flags(const QModelIndex &index) const;
 
-    QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
 
     /**
-    * Returns the name of the entryColumns column 
+    * Returns the name of the entryColumns column
     */
     static QString columnTitle(KEduVocDocument *document, int translation, int column);
 
@@ -84,7 +85,7 @@ public:
 
     QModelIndex appendEntry(KEduVocExpression *expression = 0);
 
-    bool removeRows ( int row, int count, const QModelIndex & parent = QModelIndex() );
+    bool removeRows(int row, int count, const QModelIndex & parent = QModelIndex());
 
     QStringList mimeTypes() const;
     QMimeData * mimeData(const QModelIndexList &indexes) const;
@@ -98,13 +99,13 @@ public slots:
 
     /**
      * Whatever the contents, the model will now display it.
-     * @param container 
+     * @param container
      */
     void showContainer(KEduVocContainer *container);
 
     /**
-     * 
-     * @param lessonContainer 
+     *
+     * @param lessonContainer
      */
     void setLesson(KEduVocLesson *lessonContainer);
 

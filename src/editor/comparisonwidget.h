@@ -33,8 +33,9 @@ class KEduVocExpression;
 class KEduVocTranslation;
 class KEduVocDocument;
 
-namespace Editor {
-    
+namespace Editor
+{
+
 class ComparisonWidget : public QWidget, public Ui::comparisonWidget
 {
     Q_OBJECT
@@ -45,13 +46,13 @@ public:
 public slots:
     /**
      * To know about word types that are currently defined.
-     * @param doc 
+     * @param doc
      */
     void setDocument(KEduVocDocument* doc);
     /**
      * Update the word
-     * @param entry 
-     * @param translation 
+     * @param entry
+     * @param translation
      */
     void setTranslation(KEduVocExpression* entry, int translation);
 

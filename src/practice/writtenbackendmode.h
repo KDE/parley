@@ -19,12 +19,13 @@
 #include "practice/testentrymanager.h"
 #include "practice/writtenpracticevalidator.h"
 
-namespace Practice {
+namespace Practice
+{
 
 class WrittenBackendMode : public AbstractBackendMode
 {
     Q_OBJECT
-    
+
 public:
     WrittenBackendMode(const Practice::PracticeOptions& practiceOptions, Practice::AbstractFrontend* frontend, QObject* parent, Practice::TestEntryManager* testEntryManager, KEduVocDocument* doc);
 

@@ -30,10 +30,10 @@ void ScriptTest::test()
 //    foreach(QString s, Kross::Manager::self().interpreters())
 //        kDebug() << s;
 
-    Kross::Action action(this,"MyScript");
+    Kross::Action action(this, "MyScript");
     action.setFile("myscript.py");
     QVariantList args;
-    QVariant result = action.callFunction("testTuple",args);
+    QVariant result = action.callFunction("testTuple", args);
     kDebug() << result;
 
 
@@ -65,10 +65,10 @@ void ScriptTest::test()
  */
 void ScriptTest::testJS()
 {
-    Kross::Action action(this,"MyJSScript");
+    Kross::Action action(this, "MyJSScript");
     action.setFile("myscript.js");
     QVariantList args;
     args << "hello";
-    QVariant script_result = action.callFunction("fetchTranslation",args);
+    QVariant script_result = action.callFunction("fetchTranslation", args);
     kDebug() << script_result;
 }

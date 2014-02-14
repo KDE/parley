@@ -56,7 +56,7 @@ void ExportDialog::accept()
         QStringList defaultFilters = KEduVocDocument::pattern(KEduVocDocument::Writing).split('\n');
         QString filter = defaultFilters.filter("csv").join("\n");
         KUrl filename = getFileName(filter);
-        if(filename != KUrl()) {
+        if (filename != KUrl()) {
             m_doc->saveAs(filename);
         }
         return;
@@ -64,14 +64,14 @@ void ExportDialog::accept()
 
     QString xslFile;
     if (ui->flashCardRadio->isChecked()) {
-        xslFile = KStandardDirs::locate( "data", "parley/xslt/flashcards.xsl");
+        xslFile = KStandardDirs::locate("data", "parley/xslt/flashcards.xsl");
     } else {
-        xslFile = KStandardDirs::locate( "data", "parley/xslt/table.xsl");
+        xslFile = KStandardDirs::locate("data", "parley/xslt/table.xsl");
     }
 
     QString filter = "*.html|" + i18n("HTML document");
     KUrl filename = getFileName(filter);
-    if(filename == KUrl()) {
+    if (filename == KUrl()) {
         return;
     }
 
@@ -84,11 +84,11 @@ void ExportDialog::accept()
     xmlLoadExtDtdDefaultValue = 1;
     cur = xsltParseStylesheetFile((const xmlChar*) xslFile.toLatin1().constData());
 
-    doc = xmlParseDoc( (const xmlChar*) m_doc->document()->toByteArray(m_doc->document()->generator()).constData() );
+    doc = xmlParseDoc((const xmlChar*) m_doc->document()->toByteArray(m_doc->document()->generator()).constData());
 
     res = xsltApplyStylesheet(cur, doc, 0);
     FILE* result = fopen(QFile::encodeName(filename.toLocalFile()).constData(), "w");
-    if ( result != NULL) {
+    if (result != NULL) {
         xsltSaveResultToFile(result, res, cur);
         fclose(result);
     } else {
@@ -107,8 +107,8 @@ void ExportDialog::accept()
 
 KUrl ExportDialog::getFileName(const QString& filter)
 {
-    return KFileDialog::getSaveUrl((m_doc->document()->url().fileName() == i18n("Untitled")) ? "": m_doc->document()->url().toLocalFile(),
-        filter, m_parent, i18n("Export As"), KFileDialog::ConfirmOverwrite );
+    return KFileDialog::getSaveUrl((m_doc->document()->url().fileName() == i18n("Untitled")) ? "" : m_doc->document()->url().toLocalFile(),
+                                   filter, m_parent, i18n("Export As"), KFileDialog::ConfirmOverwrite);
 }
 
 #include "exportdialog.moc"

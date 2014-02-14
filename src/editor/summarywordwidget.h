@@ -28,9 +28,10 @@ class KEduVocContainer;
 class KEduVocDocument;
 class KEduVocExpression;
 
-namespace Editor {
-    class VocabularyFilter;
-    class WordTypeModel;
+namespace Editor
+{
+class VocabularyFilter;
+class WordTypeModel;
 
 /**
 * Represents the overview of a KEduVocExpression
@@ -75,7 +76,7 @@ private:
 
     /**
     * Fill the lesson combobox with the available lessons of the KEduVocDocument
-    
+
     void populateLessonList(KEduVocExpression *entry);
     */
     /**

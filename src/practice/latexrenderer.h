@@ -21,7 +21,8 @@
 
 class QLabel;
 
-namespace Practice {
+namespace Practice
+{
 
 class LatexRenderer : public QObject
 {
@@ -29,7 +30,9 @@ class LatexRenderer : public QObject
 
 public:
     LatexRenderer(QObject* parent = 0);
-    void setResultLabel(QLabel *label) {m_label = label;}
+    void setResultLabel(QLabel *label) {
+        m_label = label;
+    }
     void renderLatex(QString tex);
 
     static bool isLatex(const QString& tex);

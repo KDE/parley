@@ -25,12 +25,12 @@
 
 ParleyPlasma::ParleyPlasma(QObject *parent, const QVariantList &args)
     : Plasma::Applet(parent, args),
-    m_label1(0),
-    m_label2(0),
-    m_font(QFont())
+      m_label1(0),
+      m_label2(0),
+      m_font(QFont())
 {
     KGlobal::locale()->insertCatalog("parley");
-    resize(256,160);
+    resize(256, 160);
     setHasConfigurationInterface(true);
     setAcceptDrops(false);
     setAcceptsHoverEvents(true);
@@ -49,14 +49,14 @@ void ParleyPlasma::init()
     m_theme->size().height();
 
     configChanged();
-    
+
 
     m_engine = dataEngine("parley");
 
     m_label1 = new QGraphicsTextItem(this);
     m_label2 = new QGraphicsTextItem(this);
-    m_label1->setPos( m_theme->elementRect( "translation1" ).topLeft() );
-    m_label2->setPos( m_theme->elementRect( "translation2" ).topLeft() );
+    m_label1->setPos(m_theme->elementRect("translation1").topLeft());
+    m_label2->setPos(m_theme->elementRect("translation2").topLeft());
     m_label1->setFont(m_font);
     m_label2->setFont(m_font);
 
@@ -72,15 +72,15 @@ void ParleyPlasma::configChanged()
     m_lang1 = cg.readEntry("Top Language", 0);
     m_lang2 = cg.readEntry("Bottom Language", 1);
     m_font = cg.readEntry("font", QFont());
-    
+
     m_sourceFile = cg.readEntry("File Name", KUrl());
     if (m_sourceFile.isEmpty()) {
         kDebug() << "open file from parleyrc";
         KConfig parleyConfig("parleyrc");
         kDebug() << parleyConfig.groupList();
-        KConfigGroup recentFilesGroup( &parleyConfig, "Recent Files" );
+        KConfigGroup recentFilesGroup(&parleyConfig, "Recent Files");
         // take the last file, but there are File1..n and Name1..n entries..
-        m_sourceFile = recentFilesGroup.readEntry( recentFilesGroup.keyList().value(recentFilesGroup.keyList().count()/2-1), KUrl() );
+        m_sourceFile = recentFilesGroup.readEntry(recentFilesGroup.keyList().value(recentFilesGroup.keyList().count() / 2 - 1), KUrl());
         kDebug() << "open file: " << m_sourceFile;
     }
 }
@@ -92,7 +92,7 @@ void ParleyPlasma::constraintsEvent(Plasma::Constraints constraints)
     }
 
     if (constraints & Plasma::SizeConstraint) {
-        double aspect = 256.0/160.0; // original aspect ratio
+        double aspect = 256.0 / 160.0; // original aspect ratio
         if (formFactor() == Plasma::Horizontal) {
             // We have a fixed height, set some sensible width
             setMinimumWidth(contentsRect().height() * aspect);
@@ -101,14 +101,14 @@ void ParleyPlasma::constraintsEvent(Plasma::Constraints constraints)
             setMinimumHeight((int)contentsRect().width() / aspect);
         }
 
-        m_label1->setPos( m_theme->elementRect( "translation1" ).topLeft() );
-        m_label1->setFont( m_font );
-        double scale = qMin(m_theme->elementRect( "translation1" ).width()/m_label1->boundingRect().width(), m_theme->elementRect( "translation1" ).height()/m_label1->boundingRect().height());
+        m_label1->setPos(m_theme->elementRect("translation1").topLeft());
+        m_label1->setFont(m_font);
+        double scale = qMin(m_theme->elementRect("translation1").width() / m_label1->boundingRect().width(), m_theme->elementRect("translation1").height() / m_label1->boundingRect().height());
         m_label1->setTransform(QTransform().scale(scale, scale));
 
-        m_label2->setPos( m_theme->elementRect( "translation2" ).topLeft() );
-        m_label2->setFont( m_font );
-        scale = qMin(m_theme->elementRect( "translation2" ).width()/m_label2->boundingRect().width(), m_theme->elementRect( "translation2" ).height()/m_label2->boundingRect().height());
+        m_label2->setPos(m_theme->elementRect("translation2").topLeft());
+        m_label2->setFont(m_font);
+        scale = qMin(m_theme->elementRect("translation2").width() / m_label2->boundingRect().width(), m_theme->elementRect("translation2").height() / m_label2->boundingRect().height());
         m_label2->setTransform(QTransform().scale(scale, scale));
     }
 }
@@ -123,26 +123,26 @@ void ParleyPlasma::dataUpdated(const QString& source, const Plasma::DataEngine::
 
     m_languages = data.keys();
 
-    if ( m_label1) {
+    if (m_label1) {
         m_label1->setPlainText(data[m_languages.value(m_lang1)].toString());
-        double scale = qMin(m_theme->elementRect( "translation1" ).width()/m_label1->boundingRect().width(), m_theme->elementRect( "translation1" ).height()/m_label1->boundingRect().height());
+        double scale = qMin(m_theme->elementRect("translation1").width() / m_label1->boundingRect().width(), m_theme->elementRect("translation1").height() / m_label1->boundingRect().height());
         m_label1->setTransform(QTransform().scale(scale, scale));
-        m_label1->setPos(m_theme->elementRect( "translation1" ).topLeft()
-                + QPointF(
-                    (m_theme->elementRect("translation1").width()-m_label1->boundingRect().width()*scale)/2.0,
-                    (m_theme->elementRect("translation1").height()-m_label1->boundingRect().height()*scale)/2.0));
+        m_label1->setPos(m_theme->elementRect("translation1").topLeft()
+                         + QPointF(
+                             (m_theme->elementRect("translation1").width() - m_label1->boundingRect().width()*scale) / 2.0,
+                             (m_theme->elementRect("translation1").height() - m_label1->boundingRect().height()*scale) / 2.0));
 
         if (m_languages.size() > 1) {
-        m_label2->setPlainText(data[m_languages.value(m_lang2)].toString());
-        scale = qMin(m_theme->elementRect( "translation2" ).width()/m_label2->boundingRect().width(), m_theme->elementRect( "translation2" ).height()/m_label2->boundingRect().height());
-        m_label2->setTransform(QTransform().scale(scale, scale));
-        if (m_solutionType == Hover) {
-            m_label2->hide();
-        }
-        m_label2->setPos(m_theme->elementRect( "translation2" ).topLeft()
-                + QPointF(
-                            (m_theme->elementRect("translation2").width()-m_label2->boundingRect().width()*scale)/2.0,
-                            (m_theme->elementRect("translation2").height()-m_label2->boundingRect().height()*scale)/2.0));
+            m_label2->setPlainText(data[m_languages.value(m_lang2)].toString());
+            scale = qMin(m_theme->elementRect("translation2").width() / m_label2->boundingRect().width(), m_theme->elementRect("translation2").height() / m_label2->boundingRect().height());
+            m_label2->setTransform(QTransform().scale(scale, scale));
+            if (m_solutionType == Hover) {
+                m_label2->hide();
+            }
+            m_label2->setPos(m_theme->elementRect("translation2").topLeft()
+                             + QPointF(
+                                 (m_theme->elementRect("translation2").width() - m_label2->boundingRect().width()*scale) / 2.0,
+                                 (m_theme->elementRect("translation2").height() - m_label2->boundingRect().height()*scale) / 2.0));
         }
     }
 }
@@ -158,8 +158,8 @@ QSizeF ParleyPlasma::contentSizeHint() const
 }
 
 void ParleyPlasma::paintInterface(QPainter *p,
-                           const QStyleOptionGraphicsItem *option,
-                           const QRect &contentsRect)
+                                  const QStyleOptionGraphicsItem *option,
+                                  const QRect &contentsRect)
 {
     Q_UNUSED(option);
 
@@ -173,19 +173,19 @@ void ParleyPlasma::createConfigurationInterface(KConfigDialog * parent)
     QWidget *widget = new QWidget();
     ui.setupUi(widget);
     parent->addPage(widget, parent->windowTitle(), icon());
-    parent->setButtons( KDialog::Ok | KDialog::Cancel | KDialog::Apply );
+    parent->setButtons(KDialog::Ok | KDialog::Cancel | KDialog::Apply);
     connect(parent, SIGNAL(applyClicked()), this, SLOT(configAccepted()));
     connect(parent, SIGNAL(okClicked()), this, SLOT(configAccepted()));
 
-    connect( ui.fontSelectButton, SIGNAL(clicked()), this, SLOT(showFontSelectDlg()) );
+    connect(ui.fontSelectButton, SIGNAL(clicked()), this, SLOT(showFontSelectDlg()));
 
-    ui.updateIntervalSpinBox->setValue(m_updateInterval/1000);
+    ui.updateIntervalSpinBox->setValue(m_updateInterval / 1000);
     ui.updateIntervalSpinBox->setSuffix(ki18np(" second", " seconds"));
     KConfigGroup cg = config();
 
     ui.filechooser->setUrl(m_sourceFile);
     ui.filechooser->setFilter(i18n("*.kvtml|Vocabulary Collections"));
-    connect(ui.filechooser, SIGNAL(urlSelected (const KUrl &)), this, SLOT(urlSelected (const KUrl &)));
+    connect(ui.filechooser, SIGNAL(urlSelected(const KUrl &)), this, SLOT(urlSelected(const KUrl &)));
     ui.language1->addItems(m_languages);
     ui.language2->addItems(m_languages);
     ui.language1->setCurrentIndex(m_lang1);
@@ -199,15 +199,15 @@ void ParleyPlasma::createConfigurationInterface(KConfigDialog * parent)
         ui.solutionAlways->setChecked(true);
         break;
     }
-    
-    connect (ui.fontSelectButton, SIGNAL(clicked()), parent, SLOT(settingsModified()));
-    connect (ui.solutionOnHover, SIGNAL(toggled(bool)), parent, SLOT(settingsModified()));
-    connect (ui.solutionAlways, SIGNAL(toggled(bool)), parent, SLOT(settingsModified()));
-    connect(ui.filechooser, SIGNAL(urlSelected (const KUrl &)), parent, SLOT(settingsModified()));
+
+    connect(ui.fontSelectButton, SIGNAL(clicked()), parent, SLOT(settingsModified()));
+    connect(ui.solutionOnHover, SIGNAL(toggled(bool)), parent, SLOT(settingsModified()));
+    connect(ui.solutionAlways, SIGNAL(toggled(bool)), parent, SLOT(settingsModified()));
+    connect(ui.filechooser, SIGNAL(urlSelected(const KUrl &)), parent, SLOT(settingsModified()));
     connect(ui.updateIntervalSpinBox, SIGNAL(valueChanged(int)), parent, SLOT(settingsModified()));
 }
 
-void ParleyPlasma::urlSelected (const KUrl &)
+void ParleyPlasma::urlSelected(const KUrl &)
 {
     // turn off old engine
     m_engine->disconnectSource(m_sourceFile.url(), this);
@@ -240,7 +240,7 @@ void ParleyPlasma::configAccepted()
     cg.writeEntry("font", m_font);
     m_label1->setFont(m_font);
     m_label2->setFont(m_font);
-    m_updateInterval = ui.updateIntervalSpinBox->value()*1000;
+    m_updateInterval = ui.updateIntervalSpinBox->value() * 1000;
     cg.writeEntry("updateInterval", m_updateInterval);
 
     m_engine->disconnectSource(m_sourceFile.url(), this);

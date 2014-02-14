@@ -26,9 +26,9 @@
 #include <KConfigSkeleton>
 
 ParleyPrefs::ParleyPrefs(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config)
-  : KConfigDialog(parent, name, config)
+    : KConfigDialog(parent, name, config)
 {
-    setButtons(Default|Ok|Apply|Cancel|Help);
+    setButtons(Default | Ok | Apply | Cancel | Help);
     setDefaultButton(Ok);
     setModal(true);
 
@@ -42,7 +42,7 @@ ParleyPrefs::ParleyPrefs(KEduVocDocument *doc, QWidget *parent, const QString &n
 
     m_viewOptions = new ViewOptions(0);
     addPage(m_viewOptions, i18n("View"), "view-choose", i18n("View Settings"), true);
-    setHelp(QString(),"parley");
+    setHelp(QString(), "parley");
 }
 
 bool ParleyPrefs::hasChanged()

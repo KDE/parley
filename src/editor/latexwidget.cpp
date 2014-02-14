@@ -52,7 +52,7 @@ void LatexWidget::setTranslation(KEduVocExpression *entry, int translation)
         m_mapper->clearMapping();
 
         m_mapper->addMapping(lineEdit,
-                            VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Translation);
+                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Translation);
         m_translation = entry->translation(translation);
         updateLatex();
     }
@@ -64,7 +64,7 @@ void LatexWidget::slotDocumentChanged(KEduVocDocument *doc)
 }
 
 void LatexWidget::slotSelectionChanged(const QItemSelection &itemSelected,
-                                             const QItemSelection &itemDeselected)
+                                       const QItemSelection &itemDeselected)
 {
     Q_UNUSED(itemDeselected)
 
@@ -109,14 +109,14 @@ void LatexDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
     }
 
     if (editor) {
-        KLineEdit *entry = static_cast <KLineEdit *> (editor);
+        KLineEdit *entry = static_cast <KLineEdit *>(editor);
         if (entry) {
             QString text = index.model()->data(index).toString();
             if (text.startsWith(QLatin1String("$$")) && text.endsWith(QLatin1String("$$"))) {
-                entry->setText(text.mid(2, text.count()-4));
+                entry->setText(text.mid(2, text.count() - 4));
                 m_checkBox->setChecked(true);
-            } else if(text.startsWith(QString::fromUtf8("§§")) && text.endsWith(QString::fromUtf8("§§"))) {
-                entry->setText(text.mid(2, text.count()-4));
+            } else if (text.startsWith(QString::fromUtf8("§§")) && text.endsWith(QString::fromUtf8("§§"))) {
+                entry->setText(text.mid(2, text.count() - 4));
                 m_checkBox->setChecked(false);
             } else {
                 entry->setText(QString());
@@ -133,13 +133,13 @@ void LatexDelegate::setModelData(QWidget * editor, QAbstractItemModel * model, c
     }
 
     if (editor) {
-        KLineEdit *entry = static_cast <KLineEdit *> (editor);
+        KLineEdit *entry = static_cast <KLineEdit *>(editor);
         if (entry) {
             QString text = entry->text();
             if (m_checkBox->isChecked()) {
-                model->setData(index, QString("$$"+text+"$$"));
+                model->setData(index, QString("$$" + text + "$$"));
             } else {
-                model->setData(index, QString(QString::fromUtf8("§§")+text+QString::fromUtf8("§§")));
+                model->setData(index, QString(QString::fromUtf8("§§") + text + QString::fromUtf8("§§")));
             }
         }
     }

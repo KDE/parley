@@ -25,7 +25,8 @@
 
 class KEduVocDocument;
 
-namespace Editor {
+namespace Editor
+{
 
 class VocabularyDelegate : public QItemDelegate
 {
@@ -53,7 +54,7 @@ private:
     class WordTypeBasicModel;
 };
 
-class VocabularyDelegate::WordTypeBasicModel :public BasicContainerModel
+class VocabularyDelegate::WordTypeBasicModel : public BasicContainerModel
 {
 public:
     explicit WordTypeBasicModel(QObject *parent = 0);

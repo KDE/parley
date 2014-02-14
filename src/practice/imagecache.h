@@ -22,9 +22,11 @@
 class QSize;
 class QDebug;
 
-namespace Practice {
+namespace Practice
+{
 
-class ImageCache {
+class ImageCache
+{
 public:
     ImageCache() {}
     // set a list of filenames which should be checked for timestamps
@@ -33,9 +35,13 @@ public:
     void updateImage(const QString& id, const QImage& image);
     QSize imageSize(const QString& id);
     QImage getImage(const QString& id);
-    bool isEmpty() {return m_images.isEmpty();}
+    bool isEmpty() {
+        return m_images.isEmpty();
+    }
 
-    void setSaveFilename(const QString& filename) {m_saveFilename = filename;}
+    void setSaveFilename(const QString& filename) {
+        m_saveFilename = filename;
+    }
     void openCache();
     void saveCache();
 

@@ -22,9 +22,9 @@ using namespace Practice;
 
 ComparisonBackendMode::ComparisonBackendMode(const PracticeOptions& practiceOptions,
         AbstractFrontend* frontend, QObject* parent, Practice::TestEntryManager* testEntryManager, KEduVocDocument* doc)
-: AbstractBackendMode(practiceOptions, frontend, parent)
-,m_testEntryManager(testEntryManager)
-,m_doc(doc)
+    : AbstractBackendMode(practiceOptions, frontend, parent)
+    , m_testEntryManager(testEntryManager)
+    , m_doc(doc)
 {
 }
 
@@ -107,7 +107,7 @@ void ComparisonBackendMode::updateGrades()
     KEduVocTranslation* translation = m_current->entry()->translation(m_practiceOptions.languageTo());
 
     translation->incPracticeCount();
-    translation->setPracticeDate( QDateTime::currentDateTime() );
+    translation->setPracticeDate(QDateTime::currentDateTime());
 
     if (absoluteCorrect) {
         if (m_current->statisticBadCount() == 0) {
@@ -121,7 +121,7 @@ void ComparisonBackendMode::updateGrades()
     KEduVocText comp = translation->comparativeForm();
 
     comp.incPracticeCount();
-    comp.setPracticeDate( QDateTime::currentDateTime() );
+    comp.setPracticeDate(QDateTime::currentDateTime());
 
     if (comparativeCorrect) {
         if (m_current->statisticBadCount() == 0) {
@@ -136,7 +136,7 @@ void ComparisonBackendMode::updateGrades()
     KEduVocText super = translation->superlativeForm();
 
     super.incPracticeCount();
-    super.setPracticeDate( QDateTime::currentDateTime() );
+    super.setPracticeDate(QDateTime::currentDateTime());
 
     if (superlativeCorrect) {
         if (m_current->statisticBadCount() == 0) {

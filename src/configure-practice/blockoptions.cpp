@@ -37,42 +37,41 @@ struct ListRef
     long int num;
 };
 
-static ListRef date_itemlist [] =
+static ListRef date_itemlist [] = {
     {
-        {
-            I18N_NOOP("Do not Care"),    0
-        },
+        I18N_NOOP("Do not Care"),    0
+    },
 
-        {I18N_NOOP("30 Min"),        30*60},
-        {I18N_NOOP("1 Hour"),    1 * 60*60},
-        {I18N_NOOP("2 Hours"),   2 * 60*60},
-        {I18N_NOOP("4 Hours"),   4 * 60*60},
-        {I18N_NOOP("8 Hours"),   8 * 60*60},
-        {I18N_NOOP("12 Hours"), 12 * 60*60},
-        {I18N_NOOP("18 Hours"), 18 * 60*60},
+    {I18N_NOOP("30 Min"),        30 * 60},
+    {I18N_NOOP("1 Hour"),    1 * 60 * 60},
+    {I18N_NOOP("2 Hours"),   2 * 60 * 60},
+    {I18N_NOOP("4 Hours"),   4 * 60 * 60},
+    {I18N_NOOP("8 Hours"),   8 * 60 * 60},
+    {I18N_NOOP("12 Hours"), 12 * 60 * 60},
+    {I18N_NOOP("18 Hours"), 18 * 60 * 60},
 
-        {I18N_NOOP("1 Day"),    1 * 60*60*24},
-        {I18N_NOOP("2 Days"),   2 * 60*60*24},
-        {I18N_NOOP("3 Days"),   3 * 60*60*24},
-        {I18N_NOOP("4 Days"),   4 * 60*60*24},
-        {I18N_NOOP("5 Days"),   5 * 60*60*24},
-        {I18N_NOOP("6 Days"),   6 * 60*60*24},
+    {I18N_NOOP("1 Day"),    1 * 60 * 60 * 24},
+    {I18N_NOOP("2 Days"),   2 * 60 * 60 * 24},
+    {I18N_NOOP("3 Days"),   3 * 60 * 60 * 24},
+    {I18N_NOOP("4 Days"),   4 * 60 * 60 * 24},
+    {I18N_NOOP("5 Days"),   5 * 60 * 60 * 24},
+    {I18N_NOOP("6 Days"),   6 * 60 * 60 * 24},
 
-        {I18N_NOOP("1 Week"),   1 * 60*60*24*7},
-        {I18N_NOOP("2 Weeks"),  2 * 60*60*24*7},
-        {I18N_NOOP("3 Weeks"),  3 * 60*60*24*7},
-        {I18N_NOOP("4 Weeks"),  4 * 60*60*24*7},
+    {I18N_NOOP("1 Week"),   1 * 60 * 60 * 24 * 7},
+    {I18N_NOOP("2 Weeks"),  2 * 60 * 60 * 24 * 7},
+    {I18N_NOOP("3 Weeks"),  3 * 60 * 60 * 24 * 7},
+    {I18N_NOOP("4 Weeks"),  4 * 60 * 60 * 24 * 7},
 
-        {I18N_NOOP("1 Month"),  1 * 60*60*24*30},
-        {I18N_NOOP("2 Months"), 2 * 60*60*24*30},
-        {I18N_NOOP("3 Months"), 3 * 60*60*24*30},
-        {I18N_NOOP("4 Months"), 4 * 60*60*24*30},
-        {I18N_NOOP("5 Months"), 5 * 60*60*24*30},
-        {I18N_NOOP("6 Months"), 6 * 60*60*24*30},
-        {I18N_NOOP("10 Months"), 10 * 60*60*24*30},
-        {I18N_NOOP("12 Months"), 12 * 60*60*24*30},
-        {0 ,  0}
-    };
+    {I18N_NOOP("1 Month"),  1 * 60 * 60 * 24 * 30},
+    {I18N_NOOP("2 Months"), 2 * 60 * 60 * 24 * 30},
+    {I18N_NOOP("3 Months"), 3 * 60 * 60 * 24 * 30},
+    {I18N_NOOP("4 Months"), 4 * 60 * 60 * 24 * 30},
+    {I18N_NOOP("5 Months"), 5 * 60 * 60 * 24 * 30},
+    {I18N_NOOP("6 Months"), 6 * 60 * 60 * 24 * 30},
+    {I18N_NOOP("10 Months"), 10 * 60 * 60 * 24 * 30},
+    {I18N_NOOP("12 Months"), 12 * 60 * 60 * 24 * 30},
+    {0 ,  0}
+};
 
 
 BlockOptions::BlockOptions(QWidget* parent): QWidget(parent)
@@ -341,21 +340,21 @@ void BlockOptions::updateSettings()
             expire1->currentIndex() < 0)
         return;
 
-    Prefs::setBlockItem(KV_LEV7_GRADE, date_itemlist[qMax(block7->currentIndex(),0)].num);
-    Prefs::setBlockItem(KV_LEV6_GRADE, date_itemlist[qMax(block6->currentIndex(),0)].num);
-    Prefs::setBlockItem(KV_LEV5_GRADE, date_itemlist[qMax(block5->currentIndex(),0)].num);
-    Prefs::setBlockItem(KV_LEV4_GRADE, date_itemlist[qMax(block4->currentIndex(),0)].num);
-    Prefs::setBlockItem(KV_LEV3_GRADE, date_itemlist[qMax(block3->currentIndex(),0)].num);
-    Prefs::setBlockItem(KV_LEV2_GRADE, date_itemlist[qMax(block2->currentIndex(),0)].num);
-    Prefs::setBlockItem(KV_LEV1_GRADE, date_itemlist[qMax(block1->currentIndex(),0)].num);
+    Prefs::setBlockItem(KV_LEV7_GRADE, date_itemlist[qMax(block7->currentIndex(), 0)].num);
+    Prefs::setBlockItem(KV_LEV6_GRADE, date_itemlist[qMax(block6->currentIndex(), 0)].num);
+    Prefs::setBlockItem(KV_LEV5_GRADE, date_itemlist[qMax(block5->currentIndex(), 0)].num);
+    Prefs::setBlockItem(KV_LEV4_GRADE, date_itemlist[qMax(block4->currentIndex(), 0)].num);
+    Prefs::setBlockItem(KV_LEV3_GRADE, date_itemlist[qMax(block3->currentIndex(), 0)].num);
+    Prefs::setBlockItem(KV_LEV2_GRADE, date_itemlist[qMax(block2->currentIndex(), 0)].num);
+    Prefs::setBlockItem(KV_LEV1_GRADE, date_itemlist[qMax(block1->currentIndex(), 0)].num);
 
-    Prefs::setExpireItem(KV_LEV7_GRADE, date_itemlist[qMax(expire7->currentIndex(),0)].num);
-    Prefs::setExpireItem(KV_LEV6_GRADE, date_itemlist[qMax(expire6->currentIndex(),0)].num);
-    Prefs::setExpireItem(KV_LEV5_GRADE, date_itemlist[qMax(expire5->currentIndex(),0)].num);
-    Prefs::setExpireItem(KV_LEV4_GRADE, date_itemlist[qMax(expire4->currentIndex(),0)].num);
-    Prefs::setExpireItem(KV_LEV3_GRADE, date_itemlist[qMax(expire3->currentIndex(),0)].num);
-    Prefs::setExpireItem(KV_LEV2_GRADE, date_itemlist[qMax(expire2->currentIndex(),0)].num);
-    Prefs::setExpireItem(KV_LEV1_GRADE, date_itemlist[qMax(expire1->currentIndex(),0)].num);
+    Prefs::setExpireItem(KV_LEV7_GRADE, date_itemlist[qMax(expire7->currentIndex(), 0)].num);
+    Prefs::setExpireItem(KV_LEV6_GRADE, date_itemlist[qMax(expire6->currentIndex(), 0)].num);
+    Prefs::setExpireItem(KV_LEV5_GRADE, date_itemlist[qMax(expire5->currentIndex(), 0)].num);
+    Prefs::setExpireItem(KV_LEV4_GRADE, date_itemlist[qMax(expire4->currentIndex(), 0)].num);
+    Prefs::setExpireItem(KV_LEV3_GRADE, date_itemlist[qMax(expire3->currentIndex(), 0)].num);
+    Prefs::setExpireItem(KV_LEV2_GRADE, date_itemlist[qMax(expire2->currentIndex(), 0)].num);
+    Prefs::setExpireItem(KV_LEV1_GRADE, date_itemlist[qMax(expire1->currentIndex(), 0)].num);
 }
 
 bool BlockOptions::hasChanged()

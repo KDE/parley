@@ -79,10 +79,10 @@ void InflectionWidget::setTranslation(KEduVocExpression* entry, int translation)
         return;
     }
     if (!entry->translation(translation)->wordType() ||
-        !(entry->translation(translation)->wordType()->wordType() & KEduVocWordFlag::Verb
-         || entry->translation(translation)->wordType()->wordType() & KEduVocWordFlag::Noun
-         || entry->translation(translation)->wordType()->wordType() & KEduVocWordFlag::Adjective
-        )
+            !(entry->translation(translation)->wordType()->wordType() & KEduVocWordFlag::Verb
+              || entry->translation(translation)->wordType()->wordType() & KEduVocWordFlag::Noun
+              || entry->translation(translation)->wordType()->wordType() & KEduVocWordFlag::Adjective
+             )
        ) {
         qobject_cast<QLabel*>(m_wordTypeWidget->layout()->itemAt(0)->widget())->setText(i18n("\"%1\" is a:", entry->translation(translation)->text()));
         m_wordTypeWidget->setEnabled(true);
@@ -95,8 +95,7 @@ void InflectionWidget::setTranslation(KEduVocExpression* entry, int translation)
 
     if (entry->translation(translation)->wordType()->wordType() & KEduVocWordFlag::Verb) {
         setCurrentWidget(m_conjugationWidget);
-    }
-    else {
+    } else {
         setCurrentWidget(m_declensionWidget);
     }
 }
@@ -111,8 +110,7 @@ void InflectionWidget::setWordType()
 
     if (sender()->objectName() == "toVerb") {
         container = m_doc->wordTypeContainer()->childOfType(KEduVocWordFlag::Verb);
-    }
-    else if (sender()->objectName() == "toNoun") {
+    } else if (sender()->objectName() == "toNoun") {
         KEduVocWordFlags type = KEduVocWordFlag::Noun;
 
         QPointer<KDialog> getGenderDialog = new KDialog(this);
@@ -126,16 +124,14 @@ void InflectionWidget::setWordType()
 
         getGenderDialog->setMainWidget(genderComboBox);
 
-        if (getGenderDialog->exec() == KDialog::Accepted)
-        {
-            type = (KEduVocWordFlags)(type|genderComboBox->itemData(genderComboBox->currentIndex()).toInt());
+        if (getGenderDialog->exec() == KDialog::Accepted) {
+            type = (KEduVocWordFlags)(type | genderComboBox->itemData(genderComboBox->currentIndex()).toInt());
         }
 
         delete getGenderDialog;
 
         container = m_doc->wordTypeContainer()->childOfType(type);
-    }
-    else if (sender()->objectName() == "toAdjective") {
+    } else if (sender()->objectName() == "toAdjective") {
         container = m_doc->wordTypeContainer()->childOfType(KEduVocWordFlag::Adjective);
     }
 

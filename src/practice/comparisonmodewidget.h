@@ -18,26 +18,32 @@
 #include "abstractwidget.h"
 
 
-namespace Ui {
-    class ComparisonPracticeWidget;
+namespace Ui
+{
+class ComparisonPracticeWidget;
 }
 
-namespace Practice {
+namespace Practice
+{
 
 class ComparisonModeWidget: public AbstractModeWidget
-{    
+{
     Q_OBJECT
-    
+
 public:
     ComparisonModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
     virtual QVariant userInput();
-    
+
     virtual void setQuestion(const QVariant& question);
     virtual void setSolution(const QVariant& solution);
     virtual void setHint(const QVariant& hint);
     virtual void setFeedback(const QVariant& feedback);
-    virtual void setFeedbackState(AbstractFrontend::ResultState feedbackState) {Q_UNUSED(feedbackState);}
-    virtual void setResultState(AbstractFrontend::ResultState resultState) {Q_UNUSED(resultState);}
+    virtual void setFeedbackState(AbstractFrontend::ResultState feedbackState) {
+        Q_UNUSED(feedbackState);
+    }
+    virtual void setResultState(AbstractFrontend::ResultState resultState) {
+        Q_UNUSED(resultState);
+    }
 
     virtual void setQuestionFont(const QFont& font);
     virtual void setSolutionFont(const QFont& font);

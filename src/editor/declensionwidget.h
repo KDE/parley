@@ -21,8 +21,9 @@
 class KEduVocExpression;
 class KEduVocDocument;
 
-namespace Editor {
-    
+namespace Editor
+{
+
 class DeclensionWidget : public QWidget, public Ui::DeclensionWidget
 {
     Q_OBJECT

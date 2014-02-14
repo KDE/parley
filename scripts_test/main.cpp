@@ -21,7 +21,8 @@
 
 #include <KDebug>
 
-int main() {
+int main()
+{
     //QTextCodec* Utf8Codec  = QTextCodec::codecForName("utf-8");
 
     //TranslationScript script("google_translation.py");
@@ -30,8 +31,8 @@ int main() {
 
     TranslationScript s("ectaco.py");
 //     kDebug() << s.translateWord("test","en","pl");
-    foreach(const QString &word, s.translateWord("test","en","pl"))
-        kDebug() << "trns: " << word;
+    foreach(const QString & word, s.translateWord("test", "en", "pl"))
+    kDebug() << "trns: " << word;
 
     return 0;
-} 
+}

@@ -19,16 +19,18 @@
 #include <QtCore/QPair>
 
 class KEduVocDocument;
-namespace Sonnet {
-    class Speller;
+namespace Sonnet
+{
+class Speller;
 }
 
 /**
 Provides different comparison methods to determine the quality of the answer.
 
-	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 */
-class AnswerValidatorOld{
+class AnswerValidatorOld
+{
 public:
     AnswerValidatorOld(KEduVocDocument* doc);
 
@@ -44,7 +46,7 @@ public:
 
     /**
      * Set the language for the spell checker. (Identifierindex)
-     * @param translation 
+     * @param translation
      */
     void setLanguage(int translation);
 
@@ -102,7 +104,7 @@ private:
      * @param
      * @return
      */
-    QList< QPair < QString, QString > > bestPairs(const QStringList& solutionWords , const QStringList& userAnswerWords );
+    QList< QPair < QString, QString > > bestPairs(const QStringList& solutionWords , const QStringList& userAnswerWords);
 
     /// document for language and articles
     KEduVocDocument* m_doc;

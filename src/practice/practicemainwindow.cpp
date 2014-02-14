@@ -79,9 +79,9 @@ void PracticeMainWindow::initActions()
     connect(stopPracticeAction, SIGNAL(triggered()), m_stateMachine, SLOT(slotPracticeFinished()));
 
     m_fullScreenAction = KStandardAction::fullScreen(this,
-                                                     SLOT(toggleFullScreenMode(bool)),
-                                                     m_mainWindow,
-                                                     actionCollection());
+                         SLOT(toggleFullScreenMode(bool)),
+                         m_mainWindow,
+                         actionCollection());
 
     KAction* toggleAnswerState = new KAction(this);
     toggleAnswerState->setText(i18n("Change answer to right/wrong"));
@@ -97,12 +97,12 @@ void PracticeMainWindow::initActions()
     QToolButton *fullScreenButton = new QToolButton(m_floatingToolBar);
     fullScreenButton->setDefaultAction(m_fullScreenAction);
     fullScreenButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    fullScreenButton->setIconSize(QSize(22,22));
+    fullScreenButton->setIconSize(QSize(22, 22));
     fullScreenButton->setAutoRaise(true);
     QToolButton *stopPracticeButton = new QToolButton(m_floatingToolBar);
     stopPracticeButton->setDefaultAction(stopPracticeAction);
     stopPracticeButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    stopPracticeButton->setIconSize(QSize(22,22));
+    stopPracticeButton->setIconSize(QSize(22, 22));
     stopPracticeButton->setAutoRaise(true);
     layout->addWidget(fullScreenButton);
     layout->addWidget(stopPracticeButton);
@@ -114,8 +114,8 @@ void PracticeMainWindow::initActions()
 void PracticeMainWindow::resizeEvent(QResizeEvent *)
 {
     m_floatingToolBar->resize(m_mainWindow->width(), m_floatingToolBar->sizeHint().height());
-    m_animation->setStartValue(QRect(QPoint(0,-m_floatingToolBar->height()), m_floatingToolBar->size()));
-    m_animation->setEndValue(QRect(QPoint(0,0), m_floatingToolBar->size()));
+    m_animation->setStartValue(QRect(QPoint(0, -m_floatingToolBar->height()), m_floatingToolBar->size()));
+    m_animation->setEndValue(QRect(QPoint(0, 0), m_floatingToolBar->size()));
     m_animation->setDirection(QAbstractAnimation::Backward);
     m_animation->stop();
     m_floatingToolBar->setGeometry(m_animation->startValue().toRect());
@@ -125,11 +125,11 @@ bool PracticeMainWindow::event(QEvent *event)
 {
     if (event->type() == QEvent::HoverMove && m_fullScreenAction->isChecked()) {
         QPoint pos = static_cast<QHoverEvent*>(event)->pos();
-        if(m_animation->direction() == QAbstractAnimation::Backward && pos.y() <= m_floatingToolBar->height()) {
+        if (m_animation->direction() == QAbstractAnimation::Backward && pos.y() <= m_floatingToolBar->height()) {
             m_animation->setDirection(QAbstractAnimation::Forward);
             m_animation->start();
         }
-        if (m_animation->direction() == QAbstractAnimation::Forward && pos.y() > (m_floatingToolBar->height()+20)) {
+        if (m_animation->direction() == QAbstractAnimation::Forward && pos.y() > (m_floatingToolBar->height() + 20)) {
             m_animation->setDirection(QAbstractAnimation::Backward);
             m_animation->start();
         }

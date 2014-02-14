@@ -19,37 +19,38 @@
 
 class KActionCollection;
 
-namespace ParleyActions {
-    enum ParleyAction {
-        FileNew,
-        FileOpen, FileOpenDownloaded,
-        FileSave, FileSaveAs,
-        FileExport,
-        FileProperties,
-        FileClose, FileQuit,
-        Preferences,
-        LanguagesProperties,
-        RemoveGrades,
-        CheckSpelling,
-        ToggleShowSublessons,
-        AutomaticTranslation, 
-        StartPractice, ConfigurePractice, ExportPracticeResults,
-        EnterEditMode,
-        ToggleSearchBar, SearchVocabulary,
-        ShowScriptManager
-    };
-    
-    KAction* create(ParleyAction id, const QObject *recvr, const char *slot,
-                    QObject *parent);
-                    
-    KRecentFilesAction* createRecentFilesAction(const QObject *recvr, const char *slot,
-                                                QObject *parent);
-                    
-    KAction* createDownloadAction(const QObject *recvr, const char *slot,
-                                  KActionCollection *collection);
+namespace ParleyActions
+{
+enum ParleyAction {
+    FileNew,
+    FileOpen, FileOpenDownloaded,
+    FileSave, FileSaveAs,
+    FileExport,
+    FileProperties,
+    FileClose, FileQuit,
+    Preferences,
+    LanguagesProperties,
+    RemoveGrades,
+    CheckSpelling,
+    ToggleShowSublessons,
+    AutomaticTranslation,
+    StartPractice, ConfigurePractice, ExportPracticeResults,
+    EnterEditMode,
+    ToggleSearchBar, SearchVocabulary,
+    ShowScriptManager
+};
 
-    KAction* createUploadAction(const QObject *recvr, const char *slot,
-                                KActionCollection *collection);
+KAction* create(ParleyAction id, const QObject *recvr, const char *slot,
+                QObject *parent);
+
+KRecentFilesAction* createRecentFilesAction(const QObject *recvr, const char *slot,
+        QObject *parent);
+
+KAction* createDownloadAction(const QObject *recvr, const char *slot,
+                              KActionCollection *collection);
+
+KAction* createUploadAction(const QObject *recvr, const char *slot,
+                            KActionCollection *collection);
 }
 
 #endif

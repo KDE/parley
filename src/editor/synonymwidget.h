@@ -22,8 +22,9 @@ class KEduVocExpression;
 class KEduVocTranslation;
 class QStringListModel;
 
-namespace Editor {
-    
+namespace Editor
+{
+
 class SynonymWidget : public QWidget, public Ui::SynonymWidget
 {
     Q_OBJECT

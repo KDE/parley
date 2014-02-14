@@ -16,13 +16,14 @@
 
 #include <QHeaderView>
 
-namespace Editor {
-    
+namespace Editor
+{
+
 class VocabularyHeaderView : public QHeaderView
 {
     Q_OBJECT
 public:
-    explicit VocabularyHeaderView ( Qt::Orientation orientation, QWidget * parent = 0 );
+    explicit VocabularyHeaderView(Qt::Orientation orientation, QWidget * parent = 0);
 
 private slots:
     void updateSorting(int);

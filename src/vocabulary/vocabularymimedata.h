@@ -22,9 +22,11 @@
 
 class KEduVocTranslation;
 
-namespace Editor {
-    
-class VocabularyMimeData :public QMimeData {
+namespace Editor
+{
+
+class VocabularyMimeData : public QMimeData
+{
     Q_OBJECT
 public:
     struct MimeExpression {
@@ -43,9 +45,9 @@ public:
     QList<KEduVocTranslation *> translationList() const;
     QList<VocabularyMimeData::MimeExpression> expressionList() const;
 
-    QVariant retrieveData ( const QString & mimeType, QVariant::Type type ) const;
+    QVariant retrieveData(const QString & mimeType, QVariant::Type type) const;
 
-    QStringList formats () const;
+    QStringList formats() const;
 
 
 private:

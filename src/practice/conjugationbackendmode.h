@@ -18,7 +18,8 @@
 #include "abstractbackendmode.h"
 #include "practice/testentrymanager.h"
 
-namespace Practice {
+namespace Practice
+{
 
 class ConjugationBackendMode : public AbstractBackendMode
 {

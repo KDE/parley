@@ -26,7 +26,8 @@
 #include <keduvocdocument.h>
 #include <keduvoclesson.h>
 
-namespace Editor {
+namespace Editor
+{
 /**
   * Model for the tree of containers (lessons, word types).
   */
@@ -40,14 +41,14 @@ public:
     virtual QVariant data(const QModelIndex &index, int role) const;
     virtual Qt::ItemFlags flags(const QModelIndex &index) const;
     virtual QVariant headerData(int section, Qt::Orientation orientation,
-                        int role = Qt::DisplayRole) const;
+                                int role = Qt::DisplayRole) const;
     virtual int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
-    virtual Qt::DropActions supportedDropActions () const;
+    virtual Qt::DropActions supportedDropActions() const;
     virtual QStringList mimeTypes() const;
     virtual QMimeData * mimeData(const QModelIndexList &indexes) const;
     virtual bool dropMimeData(const QMimeData *data, Qt::DropAction action,
-        int row, int column, const QModelIndex &parent);
+                              int row, int column, const QModelIndex &parent);
 
     /** Change the name or checkbox of a lesson.
      * @param index which lesson

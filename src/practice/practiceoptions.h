@@ -17,15 +17,20 @@
 
 #include "prefs.h"
 
-namespace Practice {
+namespace Practice
+{
 
 class PracticeOptions
 {
 public:
     PracticeOptions();
 
-    int languageFrom() const {return m_languageFrom;}
-    int languageTo() const {return m_languageTo;}
+    int languageFrom() const {
+        return m_languageFrom;
+    }
+    int languageTo() const {
+        return m_languageTo;
+    }
 
     Prefs::EnumPracticeMode::type mode() const;
     int numberMultipleChoiceAnswers() const;

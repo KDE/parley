@@ -21,12 +21,13 @@
 class KEduVocLesson;
 class KEduVocExpression;
 
-namespace Editor {
-    class VocabularyModel;
+namespace Editor
+{
+class VocabularyModel;
 
 class VocabularyFilter : public QSortFilterProxyModel
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     VocabularyFilter(QObject *parent = 0);
 
@@ -42,7 +43,9 @@ protected:
     virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 
 private:
-    virtual void setSourceModel(QAbstractItemModel *model) { Q_UNUSED(model) }
+    virtual void setSourceModel(QAbstractItemModel *model) {
+        Q_UNUSED(model)
+    }
 
     VocabularyModel * m_model;
     QString m_filterString;

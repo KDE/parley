@@ -24,30 +24,30 @@
 #include <kross/core/action.h>
 #include <kross/core/manager.h>
 
-ScriptDialog::ScriptDialog ( ScriptManager * scriptManager )
-        : KDialog()
+ScriptDialog::ScriptDialog(ScriptManager * scriptManager)
+    : KDialog()
 {
     m_scriptManager = scriptManager;
 
     //Configure window
-    setCaption ( i18n ( "Script Dialog" ) );
-    setButtons ( Ok|Cancel );
+    setCaption(i18n("Script Dialog"));
+    setButtons(Ok | Cancel);
 
     //Add KPluginSelector as the main widget of the dialog
-    m_kps = new KPluginSelector ( 0 );
-    m_kps->setMinimumSize ( 500,500 );
+    m_kps = new KPluginSelector(0);
+    m_kps->setMinimumSize(500, 500);
 
-    setMainWidget ( m_kps );
+    setMainWidget(m_kps);
 
     //Load available plugins
-    pluginsInfoList = KPluginInfo::fromFiles ( ScriptManager::getDesktopFiles() );
+    pluginsInfoList = KPluginInfo::fromFiles(ScriptManager::getDesktopFiles());
 
 //     m_kps->addPlugins ( pluginsInfoList,KPluginSelector::ReadConfigFile,i18n ( "Playlist" ),QString ( "playlist" ),KSharedConfig::openConfig ( "parleyrc" ) );
-    m_kps->addPlugins ( pluginsInfoList,
-                        KPluginSelector::ReadConfigFile,
-                        QString(),
-                        QString (),
-                        KSharedConfig::openConfig ( "parleyrc" ) );
+    m_kps->addPlugins(pluginsInfoList,
+                      KPluginSelector::ReadConfigFile,
+                      QString(),
+                      QString(),
+                      KSharedConfig::openConfig("parleyrc"));
 }
 
 ScriptDialog::~ScriptDialog()
@@ -67,5 +67,5 @@ void ScriptDialog::accept()
     m_scriptManager->reloadScripts();
 
     //Close dialog
-    done ( 0 );
+    done(0);
 }

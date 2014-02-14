@@ -57,13 +57,14 @@
 #include "settings/languageproperties.h"
 #include "settings/documentproperties.h"
 
-namespace DocumentHelper {
+namespace DocumentHelper
+{
 void fetchGrammar(KEduVocDocument* doc, int languageIndex)
 {
     QString locale = doc->identifier(languageIndex).locale();
-    
+
     KUrl location(QString("http://edu.kde.org/parley/locale/") + locale + QString(".kvtml"));
-    
+
     KEduVocDocument grammarDoc;
     if (grammarDoc.open(location) == KEduVocDocument::NoError) {
         doc->identifier(languageIndex).setArticle(grammarDoc.identifier(0).article());
@@ -112,7 +113,7 @@ void ParleyDocument::slotFileNew()
 void ParleyDocument::newDocument(bool wizard)
 {
     KEduVocDocument *newDoc = new KEduVocDocument();
-    
+
     initializeDefaultGrammar(newDoc);
     setDefaultDocumentProperties(newDoc);
     bool showGrammarDialog = false;
@@ -121,10 +122,10 @@ void ParleyDocument::newDocument(bool wizard)
         DocumentProperties* titleAuthorWidget = new DocumentProperties(newDoc, true, m_parleyApp);
         KDialog* titleAuthorDialog;
         titleAuthorDialog = new KDialog(m_parleyApp);
-        titleAuthorDialog->setMainWidget( titleAuthorWidget );
+        titleAuthorDialog->setMainWidget(titleAuthorWidget);
         titleAuthorDialog->setCaption(i18nc("@title:window document properties", "Properties for %1", newDoc->url().url()));
         connect(titleAuthorDialog, SIGNAL(accepted()), titleAuthorWidget, SLOT(accept()));
-        if(titleAuthorDialog->exec()) {
+        if (titleAuthorDialog->exec()) {
             showGrammarDialog = titleAuthorWidget->grammarCheckBox->isChecked();
             fetchGrammarOnline = titleAuthorWidget->downloadGrammarCheckBox->isChecked();
             delete titleAuthorDialog;
@@ -137,16 +138,16 @@ void ParleyDocument::newDocument(bool wizard)
 
     close();
     m_doc = newDoc;
-    
+
     emit documentChanged(m_doc);
     enableAutoBackup(Prefs::autoBackup());
-    
 
-    if(fetchGrammarOnline) {
+
+    if (fetchGrammarOnline) {
         DocumentHelper::fetchGrammar(m_doc, 0);
         DocumentHelper::fetchGrammar(m_doc, 1);
     }
-    if(showGrammarDialog) {
+    if (showGrammarDialog) {
         languageProperties();
     }
 
@@ -160,9 +161,9 @@ void ParleyDocument::slotFileOpen()
         practiceCheckBox->setChecked(m_parleyApp->currentComponent() != ParleyMainWindow::EditorComponent);
         KFileDialog dialog(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), m_parleyApp, practiceCheckBox);
         dialog.setCaption(i18n("Open Vocabulary Collection"));
-        if(dialog.exec() && !dialog.selectedUrl().isEmpty()) {
+        if (dialog.exec() && !dialog.selectedUrl().isEmpty()) {
             open(dialog.selectedUrl());
-            if(practiceCheckBox->isChecked()) {
+            if (practiceCheckBox->isChecked()) {
                 m_parleyApp->showPracticeConfiguration();
             } else {
                 m_parleyApp->showEditor();
@@ -184,7 +185,7 @@ bool ParleyDocument::open(const KUrl & url)
     if (url.path().isEmpty()) {
         return false;
     }
-    
+
     close();
     m_doc = new KEduVocDocument(this);
     m_doc->setCsvDelimiter(Prefs::separator());
@@ -199,7 +200,7 @@ bool ParleyDocument::open(const KUrl & url)
 
     //m_parleyApp->editor()->updateDocument();
     m_parleyApp->addRecentFile(url, m_doc->title());
-        
+
     emit documentChanged(m_doc);
     enableAutoBackup(Prefs::autoBackup());
 
@@ -222,11 +223,11 @@ void ParleyDocument::openGHNS()
     if (m_parleyApp->queryExit()) {
         QString downloadDir = KStandardDirs::locateLocal("data", "kvtml/");
         KUrl url = KFileDialog::getOpenUrl(
-                downloadDir,
-                KEduVocDocument::pattern(KEduVocDocument::Reading),
-                m_parleyApp,
-                i18n("Open Downloaded Vocabulary Collection"));
-        if ( open(url) ) {
+                       downloadDir,
+                       KEduVocDocument::pattern(KEduVocDocument::Reading),
+                       m_parleyApp,
+                       i18n("Open Downloaded Vocabulary Collection"));
+        if (open(url)) {
             m_parleyApp->showPracticeConfiguration();
         }
     }
@@ -240,18 +241,18 @@ void ParleyDocument::save()
     }
 
     // remove previous backup
-    QFile::remove(m_doc->url().toLocalFile()+'~');
-    ::rename(QFile::encodeName(m_doc->url().toLocalFile()), QFile::encodeName(m_doc->url().toLocalFile()+'~'));
+    QFile::remove(m_doc->url().toLocalFile() + '~');
+    ::rename(QFile::encodeName(m_doc->url().toLocalFile()), QFile::encodeName(m_doc->url().toLocalFile() + '~'));
 
     m_doc->setCsvDelimiter(Prefs::separator());
 
     emit statesNeedSaving();
 
     int result = m_doc->saveAs(m_doc->url(), KEduVocDocument::Automatic, QString::fromLatin1("Parley ") + PARLEY_VERSION_STRING);
-    if ( result != 0 ) {
+    if (result != 0) {
         KMessageBox::error(m_parleyApp,
-                i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(),
-                     m_doc->errorDescription(result)), i18nc("@title:window", "Save File"));
+                           i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(),
+                                m_doc->errorDescription(result)), i18nc("@title:window", "Save File"));
         saveAs();
         return;
     }
@@ -267,31 +268,31 @@ void ParleyDocument::saveAs(KUrl url)
 
     if (url.isEmpty()) {
         url = KFileDialog::getSaveUrl(QString(),
-            KEduVocDocument::pattern(KEduVocDocument::Writing),
-            m_parleyApp->parentWidget(),
-            i18n("Save Vocabulary As"));
+                                      KEduVocDocument::pattern(KEduVocDocument::Writing),
+                                      m_parleyApp->parentWidget(),
+                                      i18n("Save Vocabulary As"));
     }
     if (url.isEmpty()) {
         return;
     }
-    
+
     QFileInfo fileinfo(url.toLocalFile());
     if (fileinfo.exists()) {
-        if(KMessageBox::warningContinueCancel(0,
-                i18n("<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>",
-                url.toLocalFile()),QString(),KStandardGuiItem::overwrite()) == KMessageBox::Cancel) {
+        if (KMessageBox::warningContinueCancel(0,
+                                               i18n("<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>",
+                                                       url.toLocalFile()), QString(), KStandardGuiItem::overwrite()) == KMessageBox::Cancel) {
             return;
         }
     }
 
     QString msg = i18nc("@info:status saving a file", "Saving %1", url.toLocalFile());
 
-    QFile::remove(url.toLocalFile()+'~'); // remove previous backup
-    QFile::rename(QFile::encodeName(url.toLocalFile()), QFile::encodeName(QString(url.toLocalFile()+'~')));
+    QFile::remove(url.toLocalFile() + '~'); // remove previous backup
+    QFile::rename(QFile::encodeName(url.toLocalFile()), QFile::encodeName(QString(url.toLocalFile() + '~')));
 
     m_doc->setCsvDelimiter(Prefs::separator());
 
-    if ( !url.fileName().contains('.') ) {
+    if (!url.fileName().contains('.')) {
         url.setFileName(url.fileName() + QString::fromLatin1(".kvtml"));
     }
 
@@ -301,7 +302,7 @@ void ParleyDocument::saveAs(KUrl url)
         emit statesNeedSaving();
     } else {
         KMessageBox::error(m_parleyApp, i18n("Writing file \"%1\" resulted in an error: %2",
-            m_doc->url().url(), m_doc->errorDescription(result)), i18nc("@title:window", "Save File"));
+                                             m_doc->url().url(), m_doc->errorDescription(result)), i18nc("@title:window", "Save File"));
     }
 }
 
@@ -347,23 +348,23 @@ void ParleyDocument::setDefaultDocumentProperties(KEduVocDocument *doc)
     doc->setAuthor(emailSettings.getSetting(KEMailSettings::RealName));
     doc->setAuthorContact(emailSettings.getSetting(KEMailSettings::EmailAddress));
 
-    doc->setLicense( i18n("Public Domain") );
-    doc->setCategory( i18n("Languages") );
+    doc->setLicense(i18n("Public Domain"));
+    doc->setCategory(i18n("Languages"));
 
     QString locale = KGlobal::locale()->language();
 
     doc->appendIdentifier();
     doc->appendIdentifier();
-    doc->identifier(0).setName( KGlobal::locale()->languageCodeToName( locale) );
-    doc->identifier(0).setLocale( locale );
-    doc->identifier(1).setName( i18n("A Second Language") );
-    doc->identifier(1).setLocale( locale );
+    doc->identifier(0).setName(KGlobal::locale()->languageCodeToName(locale));
+    doc->identifier(0).setLocale(locale);
+    doc->identifier(1).setName(i18n("A Second Language"));
+    doc->identifier(1).setLocale(locale);
 
     KEduVocLesson* lesson = new KEduVocLesson(i18n("Lesson 1"), doc->lesson());
     doc->lesson()->appendChildContainer(lesson);
 
     // add some entries
-    for ( int i = 0; i < 15 ; i++ ) {
+    for (int i = 0; i < 15 ; i++) {
         lesson->appendEntry(new KEduVocExpression());
     }
 
@@ -377,9 +378,9 @@ void ParleyDocument::slotGHNS()
     newStuffDialog.exec();
     KNS3::Entry::List entries = newStuffDialog.installedEntries();
     int numberInstalled = entries.size();
-    foreach(const KNS3::Entry& entry, entries) {
+    foreach (const KNS3::Entry & entry, entries) {
         // check mime type and if kvtml, open it
-        foreach(const QString &file, entry.installedFiles()) {
+        foreach (const QString & file, entry.installedFiles()) {
             KMimeType::Ptr mimeType = KMimeType::findByPath(file);
             kDebug() << "KNS2 file of mime type:" << KMimeType::findByPath(file)->name();
             if (mimeType->is("application/x-kvtml")) {
@@ -388,7 +389,7 @@ void ParleyDocument::slotGHNS()
             }
         }
     }
-    
+
     // to enable the display in the welcome screen
     Prefs::self()->writeConfig();
     m_parleyApp->updateRecentFilesModel();
@@ -407,8 +408,8 @@ void ParleyDocument::documentProperties()
     DocumentProperties* titleAuthorWidget = new DocumentProperties(m_doc, false, m_parleyApp);
     KDialog* titleAuthorDialog;
     titleAuthorDialog = new KDialog(m_parleyApp);
-    titleAuthorDialog->setMainWidget( titleAuthorWidget );
-    
+    titleAuthorDialog->setMainWidget(titleAuthorWidget);
+
     // the language options are only shown, when this is used to create a new document.
     titleAuthorWidget->languageGroupBox->setVisible(false);
     titleAuthorDialog->setCaption(i18nc("@title:window document properties", "Properties for %1", m_doc->url().url()));
@@ -420,7 +421,7 @@ void ParleyDocument::documentProperties()
 void ParleyDocument::languageProperties()
 {
     LanguageProperties properties(m_doc, m_parleyApp);
-    if ( properties.exec() == KDialog::Accepted ) {
+    if (properties.exec() == KDialog::Accepted) {
         emit languagesChanged();
     }
 }
@@ -481,12 +482,12 @@ void ParleyDocument::slotFileMerge()
 
 void ParleyDocument::enableAutoBackup(bool enable)
 {
-    if ( !enable ) {
-        if ( m_backupTimer ) {
+    if (!enable) {
+        if (m_backupTimer) {
             m_backupTimer->stop();
         }
     } else {
-        if ( !m_backupTimer ) {
+        if (!m_backupTimer) {
             m_backupTimer = new QTimer(this);
             connect(m_backupTimer, SIGNAL(timeout()), this, SLOT(save()));
         }

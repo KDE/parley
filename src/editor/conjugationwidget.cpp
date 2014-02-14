@@ -68,7 +68,7 @@ ConjugationWidget::ConjugationWidget(QWidget *parent) : QWidget(parent)
     m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | KEduVocWordFlag::Plural]
         = pluralThirdNeutralPersonLineEdit;
 
-    foreach(const KEduVocWordFlags &index, m_conjugationLineEdits.keys()) {
+    foreach(const KEduVocWordFlags & index, m_conjugationLineEdits.keys()) {
         connect(m_conjugationLineEdits.value(index), SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
     }
 }
@@ -166,23 +166,23 @@ void ConjugationWidget::updateVisiblePersons()
     // set up the personal pronouns
     KEduVocPersonalPronoun pron = m_doc->identifier(m_identifier).personalPronouns();
 
-    singularFirstPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::First | KEduVocWordFlag::Singular ));
-    singularSecondPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Second | KEduVocWordFlag::Singular ));
-    singularThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Third | KEduVocWordFlag::Masculine| KEduVocWordFlag::Singular ));
-    singularThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Third | KEduVocWordFlag::Feminine| KEduVocWordFlag::Singular ));
-    singularThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Third | KEduVocWordFlag::Neuter| KEduVocWordFlag::Singular ));
+    singularFirstPersonLabel->setText(pron.personalPronoun(KEduVocWordFlag::First | KEduVocWordFlag::Singular));
+    singularSecondPersonLabel->setText(pron.personalPronoun(KEduVocWordFlag::Second | KEduVocWordFlag::Singular));
+    singularThirdMalePersonLabel->setText(pron.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | KEduVocWordFlag::Singular));
+    singularThirdFemalePersonLabel->setText(pron.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | KEduVocWordFlag::Singular));
+    singularThirdNeutralPersonLabel->setText(pron.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | KEduVocWordFlag::Singular));
 
-    dualFirstPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::First| KEduVocWordFlag::Dual ));
-    dualSecondPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Second| KEduVocWordFlag::Dual ));
-    dualThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Third | KEduVocWordFlag::Masculine| KEduVocWordFlag::Dual ));
-    dualThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Third | KEduVocWordFlag::Feminine| KEduVocWordFlag::Dual ));
-    dualThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Third | KEduVocWordFlag::Neuter| KEduVocWordFlag::Dual ));
+    dualFirstPersonLabel->setText(pron.personalPronoun(KEduVocWordFlag::First | KEduVocWordFlag::Dual));
+    dualSecondPersonLabel->setText(pron.personalPronoun(KEduVocWordFlag::Second | KEduVocWordFlag::Dual));
+    dualThirdMalePersonLabel->setText(pron.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | KEduVocWordFlag::Dual));
+    dualThirdFemalePersonLabel->setText(pron.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | KEduVocWordFlag::Dual));
+    dualThirdNeutralPersonLabel->setText(pron.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | KEduVocWordFlag::Dual));
 
-    pluralFirstPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::First| KEduVocWordFlag::Plural ));
-    pluralSecondPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Second| KEduVocWordFlag::Plural ));
-    pluralThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Third | KEduVocWordFlag::Masculine| KEduVocWordFlag::Plural ));
-    pluralThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Third | KEduVocWordFlag::Feminine| KEduVocWordFlag::Plural ));
-    pluralThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocWordFlag::Third | KEduVocWordFlag::Neuter| KEduVocWordFlag::Plural ));
+    pluralFirstPersonLabel->setText(pron.personalPronoun(KEduVocWordFlag::First | KEduVocWordFlag::Plural));
+    pluralSecondPersonLabel->setText(pron.personalPronoun(KEduVocWordFlag::Second | KEduVocWordFlag::Plural));
+    pluralThirdMalePersonLabel->setText(pron.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | KEduVocWordFlag::Plural));
+    pluralThirdFemalePersonLabel->setText(pron.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | KEduVocWordFlag::Plural));
+    pluralThirdNeutralPersonLabel->setText(pron.personalPronoun(KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | KEduVocWordFlag::Plural));
 }
 
 void ConjugationWidget::showWidgets(bool tenses, bool singular, bool dual, bool plural, bool maleVisible, bool femaleVisible, bool neuterVisible)

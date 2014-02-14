@@ -29,13 +29,13 @@ void VocabularyMimeData::setTranslations(QList<KEduVocTranslation *> translation
     // sort the translations into entries to make deep copies for real copy and paste
     // to only include each expression once
     QList<KEduVocExpression *> expressions;
-    foreach (KEduVocTranslation * translation, m_translations) {
+    foreach(KEduVocTranslation * translation, m_translations) {
         if (!expressions.contains(translation->entry())) {
             expressions.append(translation->entry());
         }
     }
 
-    foreach (KEduVocExpression * expression, expressions) {
+    foreach(KEduVocExpression * expression, expressions) {
         MimeExpression exp;
         // deep copy
         exp.expression = KEduVocExpression(*expression);

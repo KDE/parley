@@ -30,7 +30,7 @@ SummaryBarWidget::SummaryBarWidget(QWidget *parent)
     setMinimumHeight(30);
     m_layout = new QHBoxLayout(this);
     setLayout(m_layout);
-    layout()->setContentsMargins(0, layout()->contentsMargins().top()+BAR_HEIGHT, 0, 0);
+    layout()->setContentsMargins(0, layout()->contentsMargins().top() + BAR_HEIGHT, 0, 0);
     setupCaption();
 }
 
@@ -49,10 +49,10 @@ void SummaryBarWidget::paintEvent(QPaintEvent *event)
     if (!m_total) {
         return;
     }
-    double correctPos = double(m_correct)/m_total;
-    double wrongPos = correctPos + double(m_wrong)/m_total;
+    double correctPos = double(m_correct) / m_total;
+    double wrongPos = correctPos + double(m_wrong) / m_total;
 
-    double margin = double(2)/rect().width();
+    double margin = double(2) / rect().width();
 
     if (m_correct > 0) {
         linearGrad.setColorAt(qMax(correctPos - margin, 0.0), correctColor);
@@ -70,7 +70,7 @@ void SummaryBarWidget::paintEvent(QPaintEvent *event)
     r.adjust(1, 1, -1, -1);
 
     QPainterPath path;
-    path.addRoundedRect( r, 3.0, 3.0 );
+    path.addRoundedRect(r, 3.0, 3.0);
     painter.setBrush(QBrush(linearGrad));
     painter.drawPath(path);
 }
@@ -82,11 +82,11 @@ void SummaryBarWidget::setStatistics(int correct, int wrong, int notAnswered)
     m_notAnswered = notAnswered;
     m_total = m_correct + m_wrong + m_notAnswered;
 
-    m_correctCaption->setText(i18nc("test results", "%1 % correct", qRound(m_correct*100.0/m_total)));
+    m_correctCaption->setText(i18nc("test results", "%1 % correct", qRound(m_correct * 100.0 / m_total)));
     m_correctCaption->setToolTip(correctText());
-    m_wrongCaption->setText(i18nc("test results", "%1 % wrong", qRound(m_wrong*100.0/m_total)));
+    m_wrongCaption->setText(i18nc("test results", "%1 % wrong", qRound(m_wrong * 100.0 / m_total)));
     m_wrongCaption->setToolTip(wrongText());
-    m_notAnsweredCaption->setText(i18nc("test results", "%1 % not answered", qRound(m_notAnswered*100.0/m_total)));
+    m_notAnsweredCaption->setText(i18nc("test results", "%1 % not answered", qRound(m_notAnswered * 100.0 / m_total)));
     m_notAnsweredCaption->setToolTip(notAnsweredText());
 
     update();
@@ -103,8 +103,8 @@ bool SummaryBarWidget::event(QEvent *event)
             return false;
         }
 
-        int correctPos = int(rect().width()*double(m_correct)/m_total);
-        int wrongPos = correctPos+int(rect().width()*double(m_wrong)/m_total);
+        int correctPos = int(rect().width() * double(m_correct) / m_total);
+        int wrongPos = correctPos + int(rect().width() * double(m_wrong) / m_total);
         if (helpEvent->x() <= correctPos) {
             setToolTip(correctText());
         } else if (helpEvent->x() <= wrongPos) {
@@ -145,21 +145,21 @@ QString SummaryBarWidget::correctText()
 {
     if (!m_total)
         return QString();
-    return i18n("Answered correctly on the first attempt: %1 of %2 (%3 %)", m_correct, m_total, qRound(m_correct*100.0/m_total));
+    return i18n("Answered correctly on the first attempt: %1 of %2 (%3 %)", m_correct, m_total, qRound(m_correct * 100.0 / m_total));
 }
 
 QString SummaryBarWidget::wrongText()
 {
     if (!m_total)
         return QString();
-    return i18n("Answered wrong on the first attempt: %1 of %2 (%3 %)", m_wrong, m_total, qRound(m_wrong*100.0/m_total));
+    return i18n("Answered wrong on the first attempt: %1 of %2 (%3 %)", m_wrong, m_total, qRound(m_wrong * 100.0 / m_total));
 }
 
 QString SummaryBarWidget::notAnsweredText()
 {
     if (!m_total)
         return QString();
-    return i18n("Not answered during this practice: %1 of %2 (%3 %)", m_notAnswered, m_total, qRound(m_notAnswered*100.0/m_total));
+    return i18n("Not answered during this practice: %1 of %2 (%3 %)", m_notAnswered, m_total, qRound(m_notAnswered * 100.0 / m_total));
 }
 
 QPixmap SummaryBarWidget::captionPixmap(QColor color)

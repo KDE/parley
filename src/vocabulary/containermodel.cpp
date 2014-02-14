@@ -50,8 +50,8 @@ QModelIndex ContainerModel::appendContainer(const QModelIndex& parent, const QSt
     }
 
     beginInsertRows(parent, parentContainer->childContainerCount(),
-                    parentContainer->childContainerCount() );
-    switch (m_type){
+                    parentContainer->childContainerCount());
+    switch (m_type) {
     case (KEduVocContainer::Lesson):
         parentContainer->appendChildContainer(new KEduVocLesson(containerName, static_cast<KEduVocLesson*>(parentContainer)));
         break;
@@ -74,12 +74,12 @@ QModelIndex ContainerModel::appendContainer(const QModelIndex& parent, const QSt
 QVariant ContainerModel::data(const QModelIndex & index, int role) const
 {
     if (!index.isValid()) {
-         return QVariant();
+        return QVariant();
     }
 
     KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
 
-    switch (index.column()){
+    switch (index.column()) {
     case 0: // Container name
         if (role == Qt::DisplayRole || role == Qt::EditRole) {
             return container->name();
@@ -115,7 +115,7 @@ bool ContainerModel::setData(const QModelIndex &index, const QVariant &value, in
         return false;
     }
 
-    if ( index.column() == 0 ) {
+    if (index.column() == 0) {
         KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
         // rename a lesson
         if (role == Qt::EditRole) {
@@ -149,11 +149,11 @@ Qt::ItemFlags ContainerModel::flags(const QModelIndex &index) const
             return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
         }
         // the name column
-        if ( index.column() == 0 ) {
+        if (index.column() == 0) {
             return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable
-                    | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled );
+                    | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled);
         } else { // every other element
-            return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsDragEnabled |  Qt::ItemIsDropEnabled );
+            return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsDragEnabled |  Qt::ItemIsDropEnabled);
         }
     }
     return  Qt::ItemIsDropEnabled;
@@ -166,15 +166,15 @@ QVariant ContainerModel::headerData(int section, Qt::Orientation orientation, in
     if (orientation == Qt::Horizontal) {
         switch (section) {
         case 0:
-            if(role == Qt::DisplayRole) {
+            if (role == Qt::DisplayRole) {
                 return i18n("Lesson");
             }
             break;
         case 1:
-            if(role == Qt::DisplayRole) {
+            if (role == Qt::DisplayRole) {
                 return QVariant();
             }
-            if(role == Qt::ToolTipRole) {
+            if (role == Qt::ToolTipRole) {
                 return i18n("Number of entries in this lesson.");
             }
             break;
@@ -224,10 +224,10 @@ QStringList ContainerModel::mimeTypes() const
 
 QMimeData * ContainerModel::mimeData(const QModelIndexList &indexes) const
 {
-     ContainerMimeData *mimeData = new ContainerMimeData();
+    ContainerMimeData *mimeData = new ContainerMimeData();
 //      QByteArray encodedData;
 
-    foreach (const QModelIndex &index, indexes) {
+    foreach(const QModelIndex & index, indexes) {
         mimeData->addContainer(static_cast<KEduVocContainer*>(index.internalPointer()));
     }
     mimeData->setText("Parley lesson");
@@ -251,15 +251,15 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
     Q_UNUSED(column)
 
     if (action == Qt::IgnoreAction) {
-         return true;
+        return true;
     }
 
     // if it's internal, get the pointers
     const ContainerMimeData * containerData =
-             qobject_cast<const ContainerMimeData *>(data);
+        qobject_cast<const ContainerMimeData *>(data);
 
     if (containerData) {
-        foreach (KEduVocContainer* container, containerData->containerList()) {
+        foreach(KEduVocContainer * container, containerData->containerList()) {
             // no way to move a word type to a lesson for now
             if (container->containerType() != m_type) {
                 return false;
@@ -313,29 +313,29 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
 
     // if it's a translation, get the pointers
     const VocabularyMimeData * translationData =
-             qobject_cast<const VocabularyMimeData *>(data);
+        qobject_cast<const VocabularyMimeData *>(data);
 
     if (translationData) {
-        if(!parent.isValid()) {
+        if (!parent.isValid()) {
             return false;
         }
         if (containerType() == KEduVocContainer::Lesson) {
             // Create a list of the entries associated with the translations being copied. This prevents duplicates if they highlighted several columns.
             QList<KEduVocExpression*> entries;
 
-            foreach (KEduVocTranslation* translation, translationData->translationList()) {
+            foreach(KEduVocTranslation * translation, translationData->translationList()) {
                 if (!entries.contains(translation->entry())) {
                     entries << translation->entry();
                 }
             }
 
-            foreach (KEduVocExpression* entry, entries) {
+            foreach(KEduVocExpression * entry, entries) {
                 static_cast<KEduVocLesson*>(parent.internalPointer())->appendEntry(new KEduVocExpression(*entry));
             }
         }
 
         if (containerType() == KEduVocContainer::WordType) {
-            foreach (KEduVocTranslation* translation, translationData->translationList()) {
+            foreach(KEduVocTranslation * translation, translationData->translationList()) {
                 translation->setWordType(
                     static_cast<KEduVocWordType*>(parent.internalPointer()));
             }
@@ -345,17 +345,17 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
 
 
     kDebug() << data->formats();
-/*
-    if (data->hasText()) {
-        if (action == Qt::CopyAction | action == Qt::MoveAction) {
-            QString name;
-            name = data->text();
-            kDebug() << "Copy lesson " << name;
+    /*
+        if (data->hasText()) {
+            if (action == Qt::CopyAction | action == Qt::MoveAction) {
+                QString name;
+                name = data->text();
+                kDebug() << "Copy lesson " << name;
 
-            appendLesson(parent, name);
-            return true;
-        }
-    }*/
+                appendLesson(parent, name);
+                return true;
+            }
+        }*/
 
     return false;
 }

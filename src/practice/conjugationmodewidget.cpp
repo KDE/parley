@@ -21,35 +21,36 @@
 #include <QtGui/QRadioButton>
 #include <QTimer>
 
-namespace Practice {
-    struct PersonConjugationSolutionWidgets {
-        QLabel* person;
-        QLineEdit* input;
-        QLabel* solution;
+namespace Practice
+{
+struct PersonConjugationSolutionWidgets {
+    QLabel* person;
+    QLineEdit* input;
+    QLabel* solution;
 
-        PersonConjugationSolutionWidgets(QGridLayout* layout, QWidget* parent = 0) {
-            person = new QLabel(parent);
-            person->setAlignment(Qt::AlignRight);
-            input = new QLineEdit(parent);
-            solution = new QLabel(parent);
-            int row = layout->rowCount();
-            layout->addWidget(person, row, 0);
-            layout->addWidget(input, row, 1);
-            layout->addWidget(solution, row, 2);
-        }
+    PersonConjugationSolutionWidgets(QGridLayout* layout, QWidget* parent = 0) {
+        person = new QLabel(parent);
+        person->setAlignment(Qt::AlignRight);
+        input = new QLineEdit(parent);
+        solution = new QLabel(parent);
+        int row = layout->rowCount();
+        layout->addWidget(person, row, 0);
+        layout->addWidget(input, row, 1);
+        layout->addWidget(solution, row, 2);
+    }
 
-        void setVisible(bool visible) {
-            person->setVisible(visible);
-            input->setVisible(visible);
-            solution->setVisible(visible);
-        }
-    };
+    void setVisible(bool visible) {
+        person->setVisible(visible);
+        input->setVisible(visible);
+        solution->setVisible(visible);
+    }
+};
 }
 
 using namespace Practice;
 
-ConjugationModeWidget::ConjugationModeWidget (GuiFrontend *frontend, QWidget* parent )
-    : AbstractModeWidget (frontend, parent)
+ConjugationModeWidget::ConjugationModeWidget(GuiFrontend *frontend, QWidget* parent)
+    : AbstractModeWidget(frontend, parent)
 {
     m_ui = new Ui::ConjugationPracticeWidget();
     m_ui->setupUi(this);
@@ -127,8 +128,8 @@ void ConjugationModeWidget::setFeedback(const QVariant& feedback)
 
 void ConjugationModeWidget::showSolution()
 {
-    for(int i = 0; i < m_solution.size() && i < m_personWidgets.size(); ++i) {
-        if(m_personWidgets.at(i)->input->text() == m_solution.at(i)) {
+    for (int i = 0; i < m_solution.size() && i < m_personWidgets.size(); ++i) {
+        if (m_personWidgets.at(i)->input->text() == m_solution.at(i)) {
             m_personWidgets.at(i)->input->setPalette(m_correctPalette);
         } else {
             m_personWidgets.at(i)->input->setPalette(m_wrongPalette);
@@ -141,7 +142,7 @@ void ConjugationModeWidget::showSolution()
 QVariant ConjugationModeWidget::userInput()
 {
     QStringList answers;
-    for(int i = 0; i < m_personWidgets.size(); ++i) {
+    for (int i = 0; i < m_personWidgets.size(); ++i) {
         answers.append(m_personWidgets.at(i)->input->text());
     }
     return answers;
@@ -158,18 +159,18 @@ void ConjugationModeWidget::setNumberOfConjugationWidgets(const int numberOfForm
         PersonConjugationSolutionWidgets* w = new PersonConjugationSolutionWidgets(m_ui->conjugationsLayout, this);
         m_personWidgets.append(w);
     }
-    for(int i = 0; i < m_personWidgets.size(); ++i) {
+    for (int i = 0; i < m_personWidgets.size(); ++i) {
         m_personWidgets[i]->setVisible(i < numberOfForms);
     }
 }
 
 void ConjugationModeWidget::nextConjugationForm()
 {
-    for(int i = 0; i < m_personWidgets.count(); ++i) {
+    for (int i = 0; i < m_personWidgets.count(); ++i) {
         if (sender() == m_personWidgets.at(i)->input) {
-            if ((i+1 < m_personWidgets.count()) && (m_personWidgets.at(i+1)->input->isVisible())) {
+            if ((i + 1 < m_personWidgets.count()) && (m_personWidgets.at(i + 1)->input->isVisible())) {
                 // move to the next input widget
-                m_personWidgets.at(i+1)->input->setFocus();
+                m_personWidgets.at(i + 1)->input->setFocus();
             } else {
                 emit continueAction();
             }

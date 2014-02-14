@@ -20,9 +20,9 @@
 using namespace Practice;
 
 MultipleChoiceBackendMode::MultipleChoiceBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent, Practice::TestEntryManager* testEntryManager)
-: AbstractBackendMode(practiceOptions, frontend, parent)
-,m_testEntryManager(testEntryManager)
-,m_randomSequence(QDateTime::currentDateTime().toTime_t())
+    : AbstractBackendMode(practiceOptions, frontend, parent)
+    , m_testEntryManager(testEntryManager)
+    , m_randomSequence(QDateTime::currentDateTime().toTime_t())
 {
     m_numberOfChoices = practiceOptions.numberMultipleChoiceAnswers();
 }
@@ -33,7 +33,7 @@ bool MultipleChoiceBackendMode::setTestEntry(TestEntry* current)
     m_hints.clear();
     m_choices.clear();
     m_question.clear();
-    
+
     prepareChoices(current);
     MultipleChoiceData data;
     data.question = m_question;
@@ -55,12 +55,12 @@ void MultipleChoiceBackendMode::prepareChoices(TestEntry* current)
     Q_UNUSED(current)
     setQuestion(m_current->entry()->translation(m_practiceOptions.languageFrom())->text());
 
-    QStringList choices = m_testEntryManager->multipleChoiceAnswers(m_numberOfChoices-1);
-    foreach(const QString& choice, choices) {
-        int position = m_randomSequence.getLong(m_choices.count()+1);
+    QStringList choices = m_testEntryManager->multipleChoiceAnswers(m_numberOfChoices - 1);
+    foreach(const QString & choice, choices) {
+        int position = m_randomSequence.getLong(m_choices.count() + 1);
         m_choices.insert(position, choice);
     }
-    int correctAnswer = m_randomSequence.getLong(m_choices.count()+1);
+    int correctAnswer = m_randomSequence.getLong(m_choices.count() + 1);
     m_choices.insert(correctAnswer, m_current->entry()->translation(m_practiceOptions.languageTo())->text());
     setCorrectAnswer(correctAnswer);
 }
@@ -91,7 +91,7 @@ void MultipleChoiceBackendMode::checkAnswer()
     if (!m_frontend->userInput().isNull() && m_frontend->userInput().toInt() == m_correctAnswer) {
         emit answerRight();
     } else {
-        if(!m_frontend->userInput().isNull()) {
+        if (!m_frontend->userInput().isNull()) {
             m_current->addUserAnswer(m_choices.at(m_frontend->userInput().toInt()));
         }
         emit answerWrongShowSolution();
@@ -111,7 +111,7 @@ void MultipleChoiceBackendMode::hintAction()
     int hint = -1;
     do {
         hint = randomSequence.getLong(m_choices.count());
-    } while(hint == m_correctAnswer || m_hints.contains(hint));
+    } while (hint == m_correctAnswer || m_hints.contains(hint));
     m_hints.append(hint);
     m_frontend->setHint(QVariant(hint));
 }

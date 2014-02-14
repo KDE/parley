@@ -23,8 +23,9 @@ class KAction;
 class KSelectAction;
 class KEduVocWordType;
 
-namespace Editor {
-    class EditorWindow;
+namespace Editor
+{
+class EditorWindow;
 
 class WordTypeView : public ContainerView
 {
@@ -46,7 +47,7 @@ signals:
     void selectedWordTypeChanged(KEduVocWordType* wordType);
 
 protected:
-    void contextMenuEvent ( QContextMenuEvent * event );
+    void contextMenuEvent(QContextMenuEvent * event);
 
 private slots:
     void setWordTypeNone();

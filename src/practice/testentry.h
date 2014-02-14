@@ -78,8 +78,12 @@ public:
     void setLastPercentage(double percent);
     double lastPercentage();
 
-    void addUserAnswer(const QString& answer) { if (!answer.isEmpty()) m_userAnswers.append(answer); }
-    QStringList userAnswers() { return m_userAnswers; }
+    void addUserAnswer(const QString& answer) {
+        if (!answer.isEmpty()) m_userAnswers.append(answer);
+    }
+    QStringList userAnswers() {
+        return m_userAnswers;
+    }
 
     static void setGradeFrom(int from);
     static void setGradeTo(int to);

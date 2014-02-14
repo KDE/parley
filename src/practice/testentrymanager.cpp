@@ -32,12 +32,12 @@
 using namespace Practice;
 
 TestEntryManager::TestEntryManager(QWidget* parent)
-    :m_parent(parent)
-    ,m_fromTranslation(0)
-    ,m_toTranslation(1)
-    ,m_currentEntry(-1)
-    ,m_totalTime(0)
-    ,m_randomSequence(QDateTime::currentDateTime().toTime_t())
+    : m_parent(parent)
+    , m_fromTranslation(0)
+    , m_toTranslation(1)
+    , m_currentEntry(-1)
+    , m_totalTime(0)
+    , m_randomSequence(QDateTime::currentDateTime().toTime_t())
 {
 }
 
@@ -69,15 +69,15 @@ void TestEntryManager::setDocument(KEduVocDocument* doc)
 
     setLanguages(Prefs::questionLanguage(), Prefs::solutionLanguage());
     kDebug() << "Test from: " << m_doc->identifier(m_fromTranslation).name()
-        << " to: " << m_doc->identifier(m_toTranslation).name();
+             << " to: " << m_doc->identifier(m_toTranslation).name();
 
     filterTestEntries();
     kDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
 
     m_notAskedTestEntries = m_allTestEntries;
 
-    for ( int i = 0; i < qMin(m_notAskedTestEntries.count(), Prefs::testNumberOfEntries() ); i++ ) {
-        m_currentEntries.append( m_notAskedTestEntries.takeAt(0) );
+    for (int i = 0; i < qMin(m_notAskedTestEntries.count(), Prefs::testNumberOfEntries()); i++) {
+        m_currentEntries.append(m_notAskedTestEntries.takeAt(0));
     }
 }
 
@@ -110,11 +110,11 @@ void TestEntryManager::removeCurrentEntryFromPractice()
 void TestEntryManager::printStatistics()
 {
     kDebug() << "Test statistics: ";
-    foreach ( TestEntry* entry, m_allTestEntries ) {
+    foreach(TestEntry * entry, m_allTestEntries) {
         kDebug()
-            << " asked: " << entry->statisticCount()
-            << " +" << entry->statisticGoodCount() << " -" << entry->statisticBadCount()
-            << "Entry: " << entry->entry()->translation(0)->text();
+                << " asked: " << entry->statisticCount()
+                << " +" << entry->statisticGoodCount() << " -" << entry->statisticBadCount()
+                << "Entry: " << entry->entry()->translation(0)->text();
     }
 }
 
@@ -159,8 +159,8 @@ QList<TestEntry*> TestEntryManager::allUnansweredTestEntries()
 int TestEntryManager::statisticTotalCorrectFirstAttempt()
 {
     int count = 0;
-    foreach(TestEntry* entry, m_allTestEntries) {
-        if ( entry->correctAtFirstAttempt() ) {
+    foreach(TestEntry * entry, m_allTestEntries) {
+        if (entry->correctAtFirstAttempt()) {
             count++;
         }
     }
@@ -170,8 +170,8 @@ int TestEntryManager::statisticTotalCorrectFirstAttempt()
 int TestEntryManager::statisticTotalWrong()
 {
     int count = 0;
-    foreach(TestEntry* entry, m_allTestEntries) {
-        if ( entry->statisticBadCount() ) {
+    foreach(TestEntry * entry, m_allTestEntries) {
+        if (entry->statisticBadCount()) {
             count++;
         }
     }
@@ -181,8 +181,8 @@ int TestEntryManager::statisticTotalWrong()
 int TestEntryManager::statisticTotalUnanswered()
 {
     int count = 0;
-    foreach(TestEntry* entry, m_allTestEntries) {
-        if ( entry->statisticCount() == 0 ) {
+    foreach(TestEntry * entry, m_allTestEntries) {
+        if (entry->statisticCount() == 0) {
             count++;
         }
     }
@@ -193,19 +193,19 @@ int TestEntryManager::statisticTotalUnanswered()
 TestEntry* TestEntryManager::getNextEntry()
 {
     // refill current entries
-    while ( m_currentEntries.count() < Prefs::testNumberOfEntries() &&
-            m_notAskedTestEntries.count() > 0 ) {
-        m_currentEntries.append( m_notAskedTestEntries.takeAt(0) );
+    while (m_currentEntries.count() < Prefs::testNumberOfEntries() &&
+            m_notAskedTestEntries.count() > 0) {
+        m_currentEntries.append(m_notAskedTestEntries.takeAt(0));
     }
 
     int lastEntry = m_currentEntry;
     // return one of the current entries
-    if ( m_currentEntries.count() > 0 ) {
+    if (m_currentEntries.count() > 0) {
         // one of the current words (by random)
         m_currentEntry = m_randomSequence.getLong(m_currentEntries.count());
         // do not allow to ask the same entry twice in a row
-        if ( m_currentEntries.count() > 1 ) {
-            while ( m_currentEntry == lastEntry ) {
+        if (m_currentEntries.count() > 1) {
+            while (m_currentEntry == lastEntry) {
                 m_currentEntry = m_randomSequence.getLong(m_currentEntries.count());
             }
         }
@@ -234,10 +234,10 @@ QStringList TestEntryManager::multipleChoiceAnswers(int numberChoices)
     }
 
     // find out if we got enough valid entries to fill all the options
-    for(int i = 0; i < allEntries.count(); ++i) {
-        if(isValidMultipleChoiceAnswer(allEntries.value(i)))
+    for (int i = 0; i < allEntries.count(); ++i) {
+        if (isValidMultipleChoiceAnswer(allEntries.value(i)))
             numValidEntries++;
-        if(numValidEntries >= numberChoices)
+        if (numValidEntries >= numberChoices)
             break;
     }
 

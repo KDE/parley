@@ -21,8 +21,9 @@
 class KEduVocExpression;
 class KEduVocDocument;
 
-namespace Editor {
-    
+namespace Editor
+{
+
 class ConjugationWidget : public QWidget, public Ui::ConjugationWidget
 {
     Q_OBJECT

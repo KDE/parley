@@ -19,7 +19,8 @@
 #include "ui_practicesummarywidget.h"
 #include <KXmlGuiWindow>
 
-namespace Practice {
+namespace Practice
+{
 
 class PracticeSummaryComponent : public KXmlGuiWindow, Ui::PracticeSummaryWidget
 {

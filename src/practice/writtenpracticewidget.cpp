@@ -62,7 +62,7 @@ void WrittenPracticeWidget::setQuestion(const QVariant& question)
 {
     m_ui->questionLabel->setMinimumSize(QSize(0, 0));
     if (LatexRenderer::isLatex(question.toString())) {
-        if(!m_latexRenderer) {
+        if (!m_latexRenderer) {
             m_latexRenderer = new LatexRenderer(this);
             m_latexRenderer->setResultLabel(m_ui->questionLabel);
         }
@@ -80,10 +80,10 @@ void WrittenPracticeWidget::showQuestion()
     m_ui->answerEdit->setPalette(palette());
     m_ui->solutionLabel->setText(QString());
     m_ui->helpLabel->clear();
-    
-    foreach(QWidget* child, synonymWidgets) {
-      m_ui->synonymList->removeWidget(child);
-      delete child;
+
+    foreach(QWidget * child, synonymWidgets) {
+        m_ui->synonymList->removeWidget(child);
+        delete child;
     }
     synonymWidgets.clear();
 
@@ -164,13 +164,13 @@ void WrittenPracticeWidget::setSolutionSound(const KUrl& soundUrl)
 
 void WrittenPracticeWidget::setSolutionPronunciation(const QString& pronunciationText)
 {
-    m_ui->solutionPronunciationLabel->setText('['+pronunciationText+']');
+    m_ui->solutionPronunciationLabel->setText('[' + pronunciationText + ']');
     m_ui->solutionPronunciationLabel->setEnabled(!pronunciationText.isNull());
 }
 
 void WrittenPracticeWidget::setQuestionPronunciation(const QString& pronunciationText)
 {
-    m_ui->questionPronunciationLabel->setText('['+pronunciationText+']');
+    m_ui->questionPronunciationLabel->setText('[' + pronunciationText + ']');
     m_ui->questionPronunciationLabel->setEnabled(!pronunciationText.isNull());
 }
 

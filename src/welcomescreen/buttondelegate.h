@@ -24,7 +24,7 @@ class QToolButton;
 class ButtonDelegate
     : public QStyledItemDelegate
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     ButtonDelegate(QAbstractItemView *itemView, WelcomeScreen *parent);
 

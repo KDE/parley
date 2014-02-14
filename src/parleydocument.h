@@ -24,15 +24,15 @@ class ParleyMainWindow;
 class QTimer;
 
 /**
-	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 */
 class ParleyDocument : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     ParleyDocument(ParleyMainWindow* parleyMainWindow);
     ~ParleyDocument();
-    
+
 
     KEduVocDocument *document();
 
@@ -70,11 +70,11 @@ public slots:
     void exportDialog();
 
     void newDocument(bool wizard);
-    
+
     /** General doc properties like title, author etc */
     void documentProperties();
     void languageProperties();
-    
+
 signals:
     void documentChanged(KEduVocDocument *newDocument);
     void languagesChanged();

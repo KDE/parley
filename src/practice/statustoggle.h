@@ -18,7 +18,8 @@
 
 #include "abstractfrontend.h"
 
-namespace Practice {
+namespace Practice
+{
 
 class ThemedBackgroundRenderer;
 class StatusToggleButton;

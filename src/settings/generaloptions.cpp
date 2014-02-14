@@ -30,19 +30,18 @@
 
 #include "prefs.h"
 
-static const char *separator_id[] =
-    {
-        ";",              // 0
-        "#",              // 1
-        "!",              // 2
-        "|",              // 3
-        ",",              // 4
-        "\t",             // 5
-        "  ",             // 6
-        ":",              // 7
-        "::",             // 8
-        0
-    };
+static const char *separator_id[] = {
+    ";",              // 0
+    "#",              // 1
+    "!",              // 2
+    "|",              // 3
+    ",",              // 4
+    "\t",             // 5
+    "  ",             // 6
+    ":",              // 7
+    "::",             // 8
+    0
+};
 
 GeneralOptions::GeneralOptions(QWidget* parent) : QWidget(parent)
 {

@@ -19,7 +19,8 @@
 #include <QtCore/QString>
 #include <QtCore/QMetaType>
 
-namespace Practice {
+namespace Practice
+{
 
 struct MultipleChoiceData {
     QString question;

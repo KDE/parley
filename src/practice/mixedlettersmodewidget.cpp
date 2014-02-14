@@ -58,8 +58,8 @@ void MixedLettersModeWidget::updatePixmap()
     QFontMetrics fm(m_solutionFont);
     int charHeight = fm.height();
     int charWidth = fm.averageCharWidth();
-    m_pixmap = QPixmap(charWidth*m_mixedSolution.length()*2 + charWidth, charHeight*3);
-    m_pixmap.fill(QColor(0,0,0,0));
+    m_pixmap = QPixmap(charWidth * m_mixedSolution.length() * 2 + charWidth, charHeight * 3);
+    m_pixmap.fill(QColor(0, 0, 0, 0));
 
     QPainter p(&m_pixmap);
     p.setFont(m_solutionFont);
@@ -76,7 +76,7 @@ void MixedLettersModeWidget::updatePixmap()
         } else {
             p.setPen(defaultPen);
         }
-        p.drawText(charWidth + charWidth*i*2, charHeight+int(m_positions.at(i)*charHeight*0.25), ch);
+        p.drawText(charWidth + charWidth * i * 2, charHeight + int(m_positions.at(i)*charHeight * 0.25), ch);
         i++;
     }
     m_ui->mixedSolutionLabel->setPixmap(m_pixmap);

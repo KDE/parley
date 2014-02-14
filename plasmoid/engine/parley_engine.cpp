@@ -36,7 +36,7 @@ ParleyEngine::ParleyEngine(QObject* parent, const QVariantList& args)
     setMinimumPollingInterval(1000);
     kDebug() << "ParleyEngine::ParleyEngine";
 
-    m_random = new KRandomSequence( QDateTime::currentDateTime().toTime_t() );
+    m_random = new KRandomSequence(QDateTime::currentDateTime().toTime_t());
 }
 
 ParleyEngine::~ParleyEngine()
@@ -96,7 +96,7 @@ bool ParleyEngine::updateSourceEvent(const QString &source)
     ulong current = m_random->getLong(vocabularyCount);
     KEduVocExpression *expression = doc->lesson()->entries(KEduVocContainer::Recursive).value(current);
 
-    QHash<QString,QVariant> data;
+    QHash<QString, QVariant> data;
     for (int i = 0; i < doc->identifierCount(); i++) {
         data[doc->identifier(i).name()] = expression->translation(i)->text();
     }

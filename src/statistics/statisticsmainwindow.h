@@ -23,8 +23,9 @@ class LessonStatisticsView;
 class StatisticsModel;
 class KEduVocDocument;
 class ParleyMainWindow;
-namespace Ui {
-    class StatisticsMainWindow;
+namespace Ui
+{
+class StatisticsMainWindow;
 }
 
 class StatisticsMainWindow : public KXmlGuiWindow
@@ -40,7 +41,7 @@ public:
 
 Q_SIGNALS:
     void languagesChanged(int, int);
-    
+
 private slots:
     void configurePractice();
     void languagesChanged();
@@ -52,8 +53,8 @@ private:
     void initPracticeModeSelection();
     void initLanguages();
     void showConjugationOptions(bool visible = true);
-    
-    ParleyMainWindow* m_mainWindow; 
+
+    ParleyMainWindow* m_mainWindow;
     KEduVocDocument* m_doc;
     StatisticsModel* m_statisticsModel;
     Ui::StatisticsMainWindow* m_ui;

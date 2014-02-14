@@ -24,12 +24,12 @@
 #include <KLocale>
 
 ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config)
-    :KConfigDialog(parent, name, config)
+    : KConfigDialog(parent, name, config)
 {
     m_config = config;
 
     setCaption(i18nc("@title:window", "Configure Practice"));
-    setButtons(Default|Ok|Apply|Cancel|Help);
+    setButtons(Default | Ok | Apply | Cancel | Help);
     setDefaultButton(Ok);
 
     m_blockOptions = new BlockOptions(this);
@@ -40,7 +40,7 @@ ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *
 
     m_advancedPracticeOptions = new AdvancedPracticeOptions(this);
     addPage(m_advancedPracticeOptions, i18nc("@title:group Configure advanced settings for practicing vocabulary, short title in config dialog.", "Advanced"), "advanced-setup", i18nc("Configure advanced settings for practicing vocabulary.", "Advanced Practice Settings"), true);
-    setHelp(QString(),"parley");
+    setHelp(QString(), "parley");
 
     KConfigGroup cg(KSharedConfig::openConfig("parleyrc"), "ConfigurePracticeDialog");
     KDialog::restoreDialogSize(cg);

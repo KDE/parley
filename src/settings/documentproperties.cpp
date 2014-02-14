@@ -35,7 +35,7 @@
 #include <QLabel>
 
 DocumentProperties::DocumentProperties(KEduVocDocument * doc, bool languageSetup, QWidget* parent)
-    :QWidget(parent), m_doc(doc), m_showLanguages(languageSetup)
+    : QWidget(parent), m_doc(doc), m_showLanguages(languageSetup)
 {
     setupUi(this);
 
@@ -57,8 +57,8 @@ void DocumentProperties::prepareLanguageSelection()
 {
     QStringList codes = KGlobal::locale()->allLanguagesList();
     QStringList languageNames;
-    foreach (const QString &code, codes){
-        languageNames.append( KGlobal::locale()->languageCodeToName(code) );
+    foreach(const QString & code, codes) {
+        languageNames.append(KGlobal::locale()->languageCodeToName(code));
     }
     languageNames.sort();
 
@@ -95,11 +95,11 @@ void DocumentProperties::acceptLanguageConfiguration()
     QString secondLocale;
 
     // ugly but works for now: iterate over languages to check which code we have
-    foreach ( const QString &code, KGlobal::locale()->allLanguagesList() ) {
-        if ( firstLanguage == KGlobal::locale()->languageCodeToName(code) ) {
+    foreach(const QString & code, KGlobal::locale()->allLanguagesList()) {
+        if (firstLanguage == KGlobal::locale()->languageCodeToName(code)) {
             firstLocale = code;
         }
-        if ( secondLanguage == KGlobal::locale()->languageCodeToName(code) ) {
+        if (secondLanguage == KGlobal::locale()->languageCodeToName(code)) {
             secondLocale = code;
         }
     }

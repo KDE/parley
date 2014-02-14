@@ -26,27 +26,27 @@
 using namespace Practice;
 
 
-MultiplechoiceModeWidget::MultiplechoiceModeWidget (GuiFrontend *frontend, QWidget* parent )
-    : AbstractModeWidget (frontend, parent), m_latexRenderer(0)
+MultiplechoiceModeWidget::MultiplechoiceModeWidget(GuiFrontend *frontend, QWidget* parent)
+    : AbstractModeWidget(frontend, parent), m_latexRenderer(0)
 {
     m_ui = new Ui::MultiplechoicePracticeWidget();
     m_ui->setupUi(this);
 
     for (int i = 0; i < 5; i++) {
         QAction *action = new QAction(this);
-        action->setShortcut(Qt::Key_1+i);
+        action->setShortcut(Qt::Key_1 + i);
         addAction(action);
         m_actions.append(action);
     }
 
 }
 
-void MultiplechoiceModeWidget::setQuestionFont ( const QFont& font )
+void MultiplechoiceModeWidget::setQuestionFont(const QFont& font)
 {
     m_ui->questionLabel->setFont(font);
 }
 
-void MultiplechoiceModeWidget::setSolutionFont ( const QFont& font )
+void MultiplechoiceModeWidget::setSolutionFont(const QFont& font)
 {
     m_solutionFont = font;
 }
@@ -61,7 +61,7 @@ void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
 
     m_ui->questionLabel->setMinimumSize(QSize(0, 0));
     if (LatexRenderer::isLatex(data.question)) {
-        if(!m_latexRenderer) {
+        if (!m_latexRenderer) {
             m_latexRenderer = new LatexRenderer(this);
             m_latexRenderer->setResultLabel(m_ui->questionLabel);
         }
@@ -70,14 +70,14 @@ void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
         m_ui->questionLabel->setText(data.question);
     }
 
-    if (m_choiceButtons.size() != data.choices.size()){
+    if (m_choiceButtons.size() != data.choices.size()) {
         qDeleteAll(m_choiceButtons);
         m_choiceButtons.clear();
         setNumberOfRadioButtons(data.choices.size());
     }
 
     int j = 0;
-    foreach(QRadioButton *radio,m_choiceButtons){
+    foreach(QRadioButton * radio, m_choiceButtons) {
         radio->setText(data.choices[j]);
         radio->setToolTip(data.choices[j]);
         radio->setFont(m_solutionFont);
@@ -95,7 +95,7 @@ void MultiplechoiceModeWidget::showQuestion()
 
     m_ui->feedbackLabel->clear();
 
-    foreach(QRadioButton *radio, m_choiceButtons) {
+    foreach(QRadioButton * radio, m_choiceButtons) {
         radio->setPalette(palette());
         radio->setEnabled(true);
     }
@@ -105,9 +105,9 @@ void MultiplechoiceModeWidget::showQuestion()
 
 void MultiplechoiceModeWidget::setNumberOfRadioButtons(const int numberOfChoices)
 {
-    for (int i=0;i<numberOfChoices;i++){
+    for (int i = 0; i < numberOfChoices; i++) {
         QRadioButton *radio_button = new QRadioButton(this);
-        m_ui->verticalLayout->insertWidget(m_ui->verticalLayout->count()-1, radio_button);
+        m_ui->verticalLayout->insertWidget(m_ui->verticalLayout->count() - 1, radio_button);
         m_choiceButtons.append(radio_button);
         if (i < 5) {
             connect(m_actions.at(i), SIGNAL(triggered()), radio_button, SLOT(click()));
@@ -119,13 +119,13 @@ void MultiplechoiceModeWidget::setNumberOfRadioButtons(const int numberOfChoices
 
 void MultiplechoiceModeWidget::setSynonym(const QString& entry)
 {
-  //TODO Do something here to show synonyms
+    //TODO Do something here to show synonyms
 }
 
 
 void MultiplechoiceModeWidget::showSynonym()
 {
-  //TODO Do something here to show synonyms
+    //TODO Do something here to show synonyms
 }
 
 bool MultiplechoiceModeWidget::eventFilter(QObject *obj, QEvent *event)
@@ -170,7 +170,7 @@ void MultiplechoiceModeWidget::showSolution()
     if (input != -1 && input != m_solution) {
         m_choiceButtons[input]->setPalette(m_wrongPalette);
     }
-    foreach(QRadioButton *radio, m_choiceButtons) {
+    foreach(QRadioButton * radio, m_choiceButtons) {
         radio->setEnabled(false);
     }
 }
@@ -179,7 +179,7 @@ QVariant MultiplechoiceModeWidget::userInput()
 {
 
     int i = 0;
-    foreach(QRadioButton *radio,m_choiceButtons){
+    foreach(QRadioButton * radio, m_choiceButtons) {
         if (radio->isChecked()) return i;
         i++;
     }

@@ -19,11 +19,11 @@
 using namespace Practice;
 
 WrittenBackendMode::WrittenBackendMode(const Practice::PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent, TestEntryManager* testEntryManager, KEduVocDocument* doc)
-:AbstractBackendMode(practiceOptions, frontend, parent)
-,m_testEntryManager(testEntryManager)
-,m_doc(doc)
+    : AbstractBackendMode(practiceOptions, frontend, parent)
+    , m_testEntryManager(testEntryManager)
+    , m_doc(doc)
 {
-    m_validator = new WrittenPracticeValidator(m_practiceOptions.languageTo(),doc);
+    m_validator = new WrittenPracticeValidator(m_practiceOptions.languageTo(), doc);
 }
 
 bool WrittenBackendMode::setTestEntry(TestEntry* current)
@@ -74,7 +74,7 @@ void WrittenBackendMode::checkAnswer()
     if (isCorrect) {
         emit answerRight();
     } else {
-        if(answerUnchanged) {
+        if (answerUnchanged) {
             m_frontend->setFeedback(i18n("Your answer was wrong."));
             emit answerWrongShowSolution();
         } else {
@@ -95,9 +95,9 @@ QString WrittenBackendMode::getFeedbackString(TestEntry::ErrorTypes error)
         if (m_synonyms.contains(answer)) {
             return i18n("Your answer was an already entered synonym.");
         } else {
-            if (error & TestEntry::CapitalizationMistake){
+            if (error & TestEntry::CapitalizationMistake) {
                 return i18n("Your answer was a synonym and your capitalization was wrong.");
-            } else if (error & TestEntry::AccentMistake){
+            } else if (error & TestEntry::AccentMistake) {
                 return i18n("Your answer was a synonym and accents were wrong.");
             } else {
                 return i18n("Your answer was a synonym.");
@@ -109,7 +109,7 @@ QString WrittenBackendMode::getFeedbackString(TestEntry::ErrorTypes error)
     if (error & TestEntry::Wrong) {
         if ((error & TestEntry::CapitalizationMistake) && !Prefs::ignoreCapitalizationMistakes()) {
             return i18n("Your answer was wrong as capitalization mistakes are not accepted. Please try again.");
-        } else if ((error & TestEntry::AccentMistake) && !Prefs::ignoreAccentMistakes()){
+        } else if ((error & TestEntry::AccentMistake) && !Prefs::ignoreAccentMistakes()) {
             return i18n("Your answer was wrong as accent mistakes are not accepted. Please try again.");
         } else {
             return i18n("Your answer was wrong. Please try again.");
@@ -118,17 +118,17 @@ QString WrittenBackendMode::getFeedbackString(TestEntry::ErrorTypes error)
 
     // The answer was right
     if (m_firstAttempt) {
-        if ((error & TestEntry::CapitalizationMistake)){
+        if ((error & TestEntry::CapitalizationMistake)) {
             return i18n("Your answer was right, but your capitalization was wrong.");
-        } else if ((error & TestEntry::AccentMistake)){
+        } else if ((error & TestEntry::AccentMistake)) {
             return i18n("Your answer was right, but accents were wrong.");
         } else {
             return i18n("Your answer was right.");
         }
     } else {
-        if ((error & TestEntry::CapitalizationMistake)){
+        if ((error & TestEntry::CapitalizationMistake)) {
             return i18n("Your answer was right... but not on the first try and your capitalization was wrong.");
-        } else if ((error & TestEntry::AccentMistake)){
+        } else if ((error & TestEntry::AccentMistake)) {
             return i18n("Your answer was right... but not on the first try and accents were wrong.");
         } else {
             return i18n("Your answer was right... but not on the first try.");

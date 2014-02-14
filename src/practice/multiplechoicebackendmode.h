@@ -18,38 +18,39 @@
 #include "abstractbackendmode.h"
 #include "practice/testentrymanager.h"
 
-namespace Practice {
+namespace Practice
+{
 
 class MultipleChoiceBackendMode : public AbstractBackendMode
 {
     Q_OBJECT
-    
+
 public:
     MultipleChoiceBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend, QObject *parent, Practice::TestEntryManager* testEntryManager);
-    
+
     virtual bool setTestEntry(TestEntry* current);
 
     virtual void checkAnswer();
 
 public Q_SLOTS:
     virtual void hintAction();
-    
+
 protected:
     /**
      * set the list of possible answers. This function needs to call setCorrectAnswer and setChoices
      */
     virtual void prepareChoices(TestEntry* current);
-    
+
     /**
      * Set the question/original language
      */
     void setQuestion(const QString& question);
-    
+
     /**
      * This must include the correct answer. The order of the choices will be preserved.
      */
     void setChoices(const QStringList& choices);
-    
+
     /**
      * The correct solution, index of the choices.
      */

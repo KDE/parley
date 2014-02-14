@@ -107,7 +107,7 @@ void FromToEntryPage::slotFalseFriendChanged(const QString& s)
 
 void FromToEntryPage::slotGradeSelected(int g)
 {
-    m_gradeChanged=true;
+    m_gradeChanged = true;
     Q_UNUSED(g)
     emit sigModified();
 }
@@ -115,7 +115,7 @@ void FromToEntryPage::slotGradeSelected(int g)
 
 void FromToEntryPage::slotToday()
 {
-    m_practiceDateChanged=true;
+    m_practiceDateChanged = true;
     queryDateEdit->setDateTime(QDateTime::currentDateTime());
     emit sigModified();
 }
@@ -123,7 +123,7 @@ void FromToEntryPage::slotToday()
 
 void FromToEntryPage::slotNever()
 {
-    m_practiceDateChanged=true;
+    m_practiceDateChanged = true;
     queryDateEdit->setDate(queryDateEdit->minimumDate());
     queryDateEdit->setTime(queryDateEdit->minimumTime());
     emit sigModified();
@@ -132,21 +132,21 @@ void FromToEntryPage::slotNever()
 
 void FromToEntryPage::slotDateChanged(const QDate & d)
 {
-    m_practiceDateChanged=true;
+    m_practiceDateChanged = true;
     Q_UNUSED(d)
     emit sigModified();
 }
 
 void FromToEntryPage::totalCountChanged(int count)
 {
-    m_totalCountChanged=true;
+    m_totalCountChanged = true;
     Q_UNUSED(count)
     emit sigModified();
 }
 
 void FromToEntryPage::badCountChanged(int count)
 {
-    m_wrongCountChanged=true;
+    m_wrongCountChanged = true;
     Q_UNUSED(count)
     emit sigModified();
 }
@@ -163,7 +163,7 @@ void FromToEntryPage::setData(const QList<int>& entries)
 
     queryDateEdit->setDateTime(
         firstEntry->translation(m_translationTo)
-        .gradeFrom(m_translationFrom).practiceDate() );
+        .gradeFrom(m_translationFrom).practiceDate());
 
     gradebox->setCurrentIndex(firstEntry->translation(m_translationTo).gradeFrom(m_translationFrom).grade());
 
@@ -171,39 +171,39 @@ void FromToEntryPage::setData(const QList<int>& entries)
 
     badCountEdit->setValue(firstEntry->translation(m_translationTo).gradeFrom(m_translationFrom).badCount());
 
-    if ( m_entries.count() > 1 ) {
+    if (m_entries.count() > 1) {
         // fill enabled fields if equal for all edited entries, otherwise empty.
-        foreach ( int entry, m_entries) {
+        foreach(int entry, m_entries) {
             // grade
             KEduVocExpression *currentEntry = m_doc->entry(entry);
-            if ( firstEntry->translation(m_translationTo)
+            if (firstEntry->translation(m_translationTo)
                     .gradeFrom(m_translationFrom).grade()
                     != currentEntry->translation(m_translationTo)
-                    .gradeFrom(m_translationFrom).grade() ) {
+                    .gradeFrom(m_translationFrom).grade()) {
                 gradebox->setCurrentIndex(-1);
             }
             // date
-            if ( firstEntry->translation(m_translationTo)
+            if (firstEntry->translation(m_translationTo)
                     .gradeFrom(m_translationFrom).practiceDate()
                     != currentEntry->translation(m_translationTo)
-                    .gradeFrom(m_translationFrom).practiceDate() ) {
+                    .gradeFrom(m_translationFrom).practiceDate()) {
                 queryDateEdit->setDate(queryDateEdit->minimumDate());
                 queryDateEdit->setTime(queryDateEdit->minimumTime());
             }
 
             // total count
-            if ( firstEntry->translation(m_translationTo)
+            if (firstEntry->translation(m_translationTo)
                     .gradeFrom(m_translationFrom).practiceCount()
                     != currentEntry->translation(m_translationTo)
-                    .gradeFrom(m_translationFrom).practiceCount() ) {
+                    .gradeFrom(m_translationFrom).practiceCount()) {
                 totalCountEdit->clear();
             }
 
             // wrong count
-            if ( firstEntry->translation(m_translationTo)
+            if (firstEntry->translation(m_translationTo)
                     .gradeFrom(m_translationFrom).badCount()
                     != currentEntry->translation(m_translationTo)
-                    .gradeFrom(m_translationFrom).badCount() ) {
+                    .gradeFrom(m_translationFrom).badCount()) {
                 badCountEdit->clear();
             }
 
@@ -212,38 +212,38 @@ void FromToEntryPage::setData(const QList<int>& entries)
         fauxami_line->setText(QString());
     } else {
         fauxami_line->setEnabled(true);
-        fauxami_line->setText(firstEntry->translation( m_translationTo ).falseFriend( m_translationFrom ) );
+        fauxami_line->setText(firstEntry->translation(m_translationTo).falseFriend(m_translationFrom));
     }
 
-    m_gradeChanged=false;
-    m_practiceDateChanged=false;
-    m_totalCountChanged=false;
-    m_wrongCountChanged=false;
+    m_gradeChanged = false;
+    m_practiceDateChanged = false;
+    m_totalCountChanged = false;
+    m_wrongCountChanged = false;
 
 }
 
 void FromToEntryPage::commitData()
 {
-kDebug() << "Grade page commit data: " << m_translationFrom << m_translationTo;
-    if ( m_entries.count() == 1 ) {
-    // these things are only changed when editing a single entry
+    kDebug() << "Grade page commit data: " << m_translationFrom << m_translationTo;
+    if (m_entries.count() == 1) {
+        // these things are only changed when editing a single entry
         KEduVocTranslation * trans = &m_doc->entry(m_entries.value(0))->translation(m_translationTo);
         trans->setFalseFriend(m_translationFrom, fauxami_line->text());
     }
 
     // things that are changed for multiple or single entries
     foreach(int entry, m_entries) {
-        if ( m_gradeChanged ) {
-            m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setGrade( gradebox->currentIndex() );
+        if (m_gradeChanged) {
+            m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setGrade(gradebox->currentIndex());
         }
-        if ( m_totalCountChanged ) {
-            m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setPracticeCount( totalCountEdit->value() );
+        if (m_totalCountChanged) {
+            m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setPracticeCount(totalCountEdit->value());
         }
-        if ( m_wrongCountChanged ) {
-            m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setBadCount( badCountEdit->value() );
+        if (m_wrongCountChanged) {
+            m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setBadCount(badCountEdit->value());
         }
-        if ( m_practiceDateChanged ) {
-            m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setPracticeDate( queryDateEdit->dateTime() );
+        if (m_practiceDateChanged) {
+            m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setPracticeDate(queryDateEdit->dateTime());
         }
     }
 }
@@ -257,10 +257,10 @@ void FromToEntryPage::slotResetGrades()
     totalCountEdit->setValue(0);
     badCountEdit->setValue(0);
 
-    m_gradeChanged=true;
-    m_practiceDateChanged=true;
-    m_totalCountChanged=true;
-    m_wrongCountChanged=true;
+    m_gradeChanged = true;
+    m_practiceDateChanged = true;
+    m_totalCountChanged = true;
+    m_wrongCountChanged = true;
 
 //     emit sigModified();
 }

@@ -22,11 +22,13 @@
 
 #include "writtenpracticewidget.h"
 
-namespace Ui {
+namespace Ui
+{
 class WrittenPracticeWidget;
 }
 
-namespace Practice {
+namespace Practice
+{
 
 class MixedLettersModeWidget : public Practice::WrittenPracticeWidget
 {

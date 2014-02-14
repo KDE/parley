@@ -20,7 +20,7 @@
 using namespace Editor;
 
 WordTypeModel::WordTypeModel(QObject * parent)
-    :ContainerModel(KEduVocContainer::WordType, parent)
+    : ContainerModel(KEduVocContainer::WordType, parent)
 {
 }
 

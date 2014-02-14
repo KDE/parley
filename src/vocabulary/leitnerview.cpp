@@ -25,46 +25,46 @@
 #include <KAction>
 #include <KActionCollection>
 
-LeitnerView::LeitnerView(Editor *parent) :QListView(parent)
+LeitnerView::LeitnerView(Editor *parent) : QListView(parent)
 {
-/*
-    KAction *actionNewLesson = new KAction(this);
-    parent->actionCollection()->addAction("new_lesson", actionNewLesson);
-    actionNewLesson->setText(i18n("New Lesson"));
-    actionNewLesson->setIcon(KIcon("lesson-add"));
-    actionNewLesson->setWhatsThis(i18n("Add a new lesson to your document"));
-    actionNewLesson->setToolTip(actionNewLesson->whatsThis());
-    actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
+    /*
+        KAction *actionNewLesson = new KAction(this);
+        parent->actionCollection()->addAction("new_lesson", actionNewLesson);
+        actionNewLesson->setText(i18n("New Lesson"));
+        actionNewLesson->setIcon(KIcon("lesson-add"));
+        actionNewLesson->setWhatsThis(i18n("Add a new lesson to your document"));
+        actionNewLesson->setToolTip(actionNewLesson->whatsThis());
+        actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
 
-    KAction *actionRenameLesson = new KAction(this);
-    parent->actionCollection()->addAction("rename_lesson", actionRenameLesson);
-    actionRenameLesson->setText(i18n("Rename Lesson"));
-    actionRenameLesson->setIcon(KIcon("edit-rename"));
-    actionRenameLesson->setWhatsThis(i18n("Rename the selected lesson"));
-    actionRenameLesson->setToolTip(actionRenameLesson->whatsThis());
-    actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
+        KAction *actionRenameLesson = new KAction(this);
+        parent->actionCollection()->addAction("rename_lesson", actionRenameLesson);
+        actionRenameLesson->setText(i18n("Rename Lesson"));
+        actionRenameLesson->setIcon(KIcon("edit-rename"));
+        actionRenameLesson->setWhatsThis(i18n("Rename the selected lesson"));
+        actionRenameLesson->setToolTip(actionRenameLesson->whatsThis());
+        actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
 
-    KAction *actionDeleteLesson = new KAction(this);
-    parent->actionCollection()->addAction("delete_lesson", actionDeleteLesson);
-    actionDeleteLesson->setText(i18n("Delete Lesson"));
-    actionDeleteLesson->setIcon(KIcon("lesson-remove"));
-    actionDeleteLesson->setWhatsThis(i18n("Delete the selected lesson."));
-    actionDeleteLesson->setToolTip(actionDeleteLesson->whatsThis());
-    actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
+        KAction *actionDeleteLesson = new KAction(this);
+        parent->actionCollection()->addAction("delete_lesson", actionDeleteLesson);
+        actionDeleteLesson->setText(i18n("Delete Lesson"));
+        actionDeleteLesson->setIcon(KIcon("lesson-remove"));
+        actionDeleteLesson->setWhatsThis(i18n("Delete the selected lesson."));
+        actionDeleteLesson->setToolTip(actionDeleteLesson->whatsThis());
+        actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
 
 
-    connect(actionNewLesson, SIGNAL(triggered()),
-            SLOT(slotCreateNewLesson()));
-    connect(actionRenameLesson, SIGNAL(triggered()),
-            SLOT(slotRename()));
-    connect(actionDeleteLesson, SIGNAL(triggered()),
-            SLOT(slotDeleteLesson()));
+        connect(actionNewLesson, SIGNAL(triggered()),
+                SLOT(slotCreateNewLesson()));
+        connect(actionRenameLesson, SIGNAL(triggered()),
+                SLOT(slotRename()));
+        connect(actionDeleteLesson, SIGNAL(triggered()),
+                SLOT(slotDeleteLesson()));
 
-    // right cick menu for the lesson view:
-    addAction(actionNewLesson);
-    addAction(actionRenameLesson);
-    addAction(actionDeleteLesson);
-*/
+        // right cick menu for the lesson view:
+        addAction(actionNewLesson);
+        addAction(actionRenameLesson);
+        addAction(actionDeleteLesson);
+    */
 }
 
 void LeitnerView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
@@ -84,7 +84,7 @@ void LeitnerView::selectionChanged(const QItemSelection & selected, const QItemS
 {
     QListView::selectionChanged(selected, deselected);
 
-    if(selected.count() == 0) {
+    if (selected.count() == 0) {
         return;
     }
 
@@ -122,8 +122,8 @@ void LeitnerView::slotDeleteLeitnerBox()
 
     int count = lesson->entryCount(KEduVocLesson::Recursive);
 
-    if ( count == 0 ||
-         KMessageBox::warningYesNo(this, i18np("There is %1 word left in this lesson. Do you want to delete it?", "There are %1 words left in this lesson. Do you want to delete them?", count)) == KMessageBox::Yes) {
+    if (count == 0 ||
+            KMessageBox::warningYesNo(this, i18np("There is %1 word left in this lesson. Do you want to delete it?", "There are %1 words left in this lesson. Do you want to delete them?", count)) == KMessageBox::Yes) {
         m_model->deleteContainer(selectedIndex);
     }
 }
@@ -132,7 +132,7 @@ void LeitnerView::setModel(LeitnerModel * model)
 {
     QListView::setModel(model);
     m_model = model;
-    setRootIndex(model->index(0,0, model->index(0,0, QModelIndex())));
+    setRootIndex(model->index(0, 0, model->index(0, 0, QModelIndex())));
 }
 
 #include "leitnerview.moc"

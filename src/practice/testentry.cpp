@@ -19,16 +19,16 @@ int TestEntry::m_gradeFrom = 0;
 int TestEntry::m_gradeTo = 1;
 
 TestEntry::TestEntry(KEduVocExpression *entry)
-    :m_entry(entry)
-    ,m_statisticCount(0)
-    ,m_statisticGoodCount(0)
-    ,m_statisticBadCount(0)
-    ,m_answeredCorrectInSequence(0)
-    ,m_correctAtFirstAttempt(false)
-    ,m_practiceFinished(false)
-    ,m_changeGrades(false)
-    ,m_lastPercentage(0.0)
-    ,m_lastError(0)
+    : m_entry(entry)
+    , m_statisticCount(0)
+    , m_statisticGoodCount(0)
+    , m_statisticBadCount(0)
+    , m_answeredCorrectInSequence(0)
+    , m_correctAtFirstAttempt(false)
+    , m_practiceFinished(false)
+    , m_changeGrades(false)
+    , m_lastPercentage(0.0)
+    , m_lastError(0)
 {}
 
 void TestEntry::setGradeTo(int to)
@@ -72,11 +72,11 @@ void TestEntry::updateStatisticsRightAnswer()
     }
 
     // increase grade, if first time:
-    if ( !Prefs::altLearn() && m_statisticBadCount == 0 ) {
+    if (!Prefs::altLearn() && m_statisticBadCount == 0) {
         m_correctAtFirstAttempt = true;
     } else {
         // alt learn: 3 times right
-        if ( answeredCorrectInSequence() == 3  && m_statisticBadCount == 0 ) {
+        if (answeredCorrectInSequence() == 3  && m_statisticBadCount == 0) {
             m_correctAtFirstAttempt = true;
         }
     }

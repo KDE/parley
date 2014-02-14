@@ -21,7 +21,8 @@
 
 #include <keduvocconjugation.h>
 
-namespace Practice {
+namespace Practice
+{
 
 struct ConjugationData {
     QString questionInfinitive;

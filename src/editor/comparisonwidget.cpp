@@ -53,9 +53,9 @@ void ComparisonWidget::setTranslation(KEduVocExpression * entry, int translation
         absoluteEntryLabel->setText(m_translation->text());
         setEnabled(true);
 
-        if(m_translation->wordType()) {
-            if(m_translation->wordType()->wordType() & KEduVocWordFlag::Adjective
-                || m_translation->wordType()->wordType() & KEduVocWordFlag::Adverb) {
+        if (m_translation->wordType()) {
+            if (m_translation->wordType()->wordType() & KEduVocWordFlag::Adjective
+                    || m_translation->wordType()->wordType() & KEduVocWordFlag::Adverb) {
                 comparativeLineEdit->setEnabled(true);
                 superlativeLineEdit->setEnabled(true);
 
@@ -71,7 +71,7 @@ void ComparisonWidget::setTranslation(KEduVocExpression * entry, int translation
 
 void ComparisonWidget::slotMakeAdjectiveButton()
 {
-    if(!m_doc) {
+    if (!m_doc) {
         return;
     }
 
@@ -90,7 +90,7 @@ void ComparisonWidget::slotMakeAdjectiveButton()
 
 void ComparisonWidget::slotMakeAdverbButton()
 {
-    if(!m_doc) {
+    if (!m_doc) {
         return;
     }
 
@@ -109,7 +109,7 @@ void ComparisonWidget::slotMakeAdverbButton()
 
 void ComparisonWidget::setDocument(KEduVocDocument * doc)
 {
-    m_doc=doc;
+    m_doc = doc;
 }
 
 void ComparisonWidget::slotComparativeChanged()
@@ -119,7 +119,7 @@ void ComparisonWidget::slotComparativeChanged()
 
 void ComparisonWidget::slotSuperlativeChanged()
 {
-     m_translation->setSuperlative(superlativeLineEdit->text());
+    m_translation->setSuperlative(superlativeLineEdit->text());
 }
 
 

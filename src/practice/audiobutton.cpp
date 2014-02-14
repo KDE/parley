@@ -19,7 +19,7 @@
 using namespace Practice;
 
 AudioButton::AudioButton(QWidget *parent)
- : QToolButton(parent), m_player(0)
+    : QToolButton(parent), m_player(0)
 {
     setEnabled(false);
     setIcon(KIcon("media-playback-start"));
@@ -36,11 +36,10 @@ void AudioButton::setSoundFile(KUrl soundFile)
 
 void AudioButton::playAudio()
 {
-    if (!m_player)
-    {
+    if (!m_player) {
         m_player = Phonon::createPlayer(Phonon::NotificationCategory, m_url);
         m_player->setParent(this);
-        connect(m_player, SIGNAL(stateChanged(Phonon::State,Phonon::State)), this, SLOT(playerStateChanged(Phonon::State)));
+        connect(m_player, SIGNAL(stateChanged(Phonon::State, Phonon::State)), this, SLOT(playerStateChanged(Phonon::State)));
     } else {
         if (m_player->state() == Phonon::PlayingState) {
             m_player->stop();
@@ -53,7 +52,7 @@ void AudioButton::playAudio()
 
 void AudioButton::playerStateChanged(Phonon::State newState)
 {
-    switch(newState) {
+    switch (newState) {
     case Phonon::LoadingState: case Phonon::BufferingState: case Phonon::PlayingState:
         setIcon(KIcon("media-playback-stop"));
         setText(i18n("Stop"));

@@ -80,7 +80,7 @@ QModelIndex BasicContainerModel::index(int row, int column, const QModelIndex &p
 
 QModelIndex BasicContainerModel::index(KEduVocContainer * container) const
 {
-    if(!container) {
+    if (!container) {
         return QModelIndex();
     }
 
@@ -133,12 +133,12 @@ int BasicContainerModel::rowCount(const QModelIndex &parent) const
 QVariant BasicContainerModel::data(const QModelIndex & index, int role) const
 {
     if (!index.isValid()) {
-         return QVariant();
+        return QVariant();
     }
 
     KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
 
-    switch (index.column()){
+    switch (index.column()) {
     case 0: // Container name
         if (role == Qt::DisplayRole || role == Qt::EditRole) {
             if (index.parent() == QModelIndex()) {
@@ -163,7 +163,7 @@ Qt::ItemFlags BasicContainerModel::flags(const QModelIndex &index) const
             return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
         }
         // the name column
-        if ( index.column() == 0 ) {
+        if (index.column() == 0) {
             return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
         } else { // every other element
             return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);

@@ -22,11 +22,13 @@
 
 #include "practicemainwindow.h"
 
-namespace Ui {
-    class PracticeMainWindow;
+namespace Ui
+{
+class PracticeMainWindow;
 }
 
-namespace Practice {
+namespace Practice
+{
 class ThemedBackgroundRenderer;
 class ImageWidget;
 
@@ -46,13 +48,13 @@ public:
     virtual void setQuestionPronunciation(const QString& pronunciationText);
     virtual void setQuestionSound(const KUrl& soundUrl);
     virtual void setQuestionFont(const QFont& font);
-    
+
     virtual void setSolution(const QVariant& solution);
     virtual void setSolutionImage(const KUrl& img);
     virtual void setSolutionPronunciation(const QString& pronunciationText);
     virtual void setSolutionSound(const KUrl& soundUrl);
     virtual void setSolutionFont(const QFont& font);
-    
+
     virtual void setHint(const QVariant& hint);
     virtual void setFeedback(const QVariant& feedback);
 
@@ -63,7 +65,7 @@ public:
     /// update lesson label
     void setLessonName(const QString& lessonName);
     virtual void setFinishedWordsTotalWords(int finished, int total);
-    
+
     virtual void setSynonym(const QString& entry);
 
 public Q_SLOTS:
@@ -89,10 +91,10 @@ private Q_SLOTS:
     void updateBackground();
     void updateFontColors();
     void setTheme();
-   
+
 private:
     void setImage(const KUrl& image);
-    
+
     ImageWidget* m_widget;
     Ui::PracticeMainWindow* m_ui;
     AbstractModeWidget* m_modeWidget;

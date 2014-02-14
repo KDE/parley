@@ -21,8 +21,8 @@
 using namespace Practice;
 
 
-FlashCardModeWidget::FlashCardModeWidget (GuiFrontend *frontend, QWidget* parent )
-    : AbstractModeWidget (frontend, parent), m_questionLatexRenderer(0), m_solutionLatexRenderer(0)
+FlashCardModeWidget::FlashCardModeWidget(GuiFrontend *frontend, QWidget* parent)
+    : AbstractModeWidget(frontend, parent), m_questionLatexRenderer(0), m_solutionLatexRenderer(0)
 {
     m_ui = new Ui::FlashCardPracticeWidget();
     m_ui->setupUi(this);
@@ -42,7 +42,7 @@ void FlashCardModeWidget::setQuestion(const QVariant& question)
 {
     m_ui->questionLabel->setMinimumSize(QSize(0, 0));
     if (LatexRenderer::isLatex(question.toString())) {
-        if(!m_questionLatexRenderer) {
+        if (!m_questionLatexRenderer) {
             m_questionLatexRenderer = new LatexRenderer(this);
             m_questionLatexRenderer->setResultLabel(m_ui->questionLabel);
         }
@@ -65,12 +65,12 @@ void FlashCardModeWidget::setSolution(const QVariant& solution)
 
 void FlashCardModeWidget::setSynonym(const QString& entry)
 {
-  //TODO Do something here to show synonyms
+    //TODO Do something here to show synonyms
 }
 
 void FlashCardModeWidget::showSynonym()
 {
-  //TODO Do something here to show synonyms
+    //TODO Do something here to show synonyms
 }
 
 void FlashCardModeWidget::showSolution()
@@ -80,7 +80,7 @@ void FlashCardModeWidget::showSolution()
 
     m_ui->solutionLabel->setMinimumSize(QSize(0, 0));
     if (LatexRenderer::isLatex(m_solution)) {
-        if(!m_solutionLatexRenderer) {
+        if (!m_solutionLatexRenderer) {
             m_solutionLatexRenderer = new LatexRenderer(this);
             m_solutionLatexRenderer->setResultLabel(m_ui->solutionLabel);
         }

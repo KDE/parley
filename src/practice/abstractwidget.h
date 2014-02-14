@@ -20,7 +20,8 @@
 
 class QVariant;
 
-namespace Practice {
+namespace Practice
+{
 class GuiFrontend;
 
 class AbstractModeWidget : public QWidget
@@ -30,7 +31,7 @@ class AbstractModeWidget : public QWidget
 public:
     AbstractModeWidget(GuiFrontend *frontend, QWidget* parent = 0);
     virtual ~AbstractModeWidget() {}
-    
+
     virtual void setQuestion(const QVariant& question) = 0;
     virtual void setSolution(const QVariant& solution) = 0;
     virtual QVariant userInput() = 0;
@@ -43,19 +44,19 @@ public:
     virtual void setSolutionSound(const KUrl& soundUrl) = 0;
     virtual void setSolutionPronunciation(const QString& pronunciationText) = 0;
     virtual void setQuestionPronunciation(const QString& pronunciationText) = 0;
-    
+
     virtual void setQuestionFont(const QFont& font) = 0;
     virtual void setSolutionFont(const QFont& font) = 0;
-    
+
     virtual void setSynonym(const QString& entry) = 0;
 
     virtual void setResultPalettes(const QPalette& correctPalette, const QPalette& wrongPalette);
-    
+
 public slots:
     virtual void showQuestion() = 0;
     virtual void showSolution() = 0;
     virtual void showSynonym() = 0;
-    
+
 signals:
     void continueAction();
     void hintAction();

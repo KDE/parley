@@ -17,7 +17,8 @@
 
 #include "abstractbackendmode.h"
 
-namespace Practice {
+namespace Practice
+{
 
 class FlashCardBackendMode : public AbstractBackendMode
 {

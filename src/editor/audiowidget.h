@@ -21,12 +21,13 @@
 
 namespace Phonon
 {
-    class MediaObject;
+class MediaObject;
 }
 
 class KEduVocExpression;
 
-namespace Editor {
+namespace Editor
+{
 
 class AudioWidget : public QWidget, public Ui::AudioWidget
 {
@@ -37,8 +38,8 @@ public:
 public slots:
     /**
      * Update the word
-     * @param entry 
-     * @param translation 
+     * @param entry
+     * @param translation
      */
     void setTranslation(KEduVocExpression* entry, int translation);
 

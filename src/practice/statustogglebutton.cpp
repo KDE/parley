@@ -31,7 +31,7 @@ void StatusToggleButton::setPixmaps(QPixmap defaultPixmap, QPixmap hoverPixmap, 
 
 void StatusToggleButton::mousePressEvent(QMouseEvent *e)
 {
-    if(e->button() == Qt::LeftButton) {
+    if (e->button() == Qt::LeftButton) {
         this->setFadingEnabled(false);
         setPixmap(m_pressedPixmap);
     }

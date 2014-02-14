@@ -21,9 +21,10 @@
 #include "abstractfrontend.h"
 
 
-namespace Practice {
+namespace Practice
+{
 
-class AbstractBackendMode :public QObject
+class AbstractBackendMode : public QObject
 {
     Q_OBJECT
 
@@ -38,7 +39,9 @@ public:
 
     /** add a new synonym to the list of shown/answered synonyms depending on which mode we
       * are in. */
-    void addSynonym(const QString& entry) { if (!entry.isEmpty()) m_synonyms.append(entry); }
+    void addSynonym(const QString& entry) {
+        if (!entry.isEmpty()) m_synonyms.append(entry);
+    }
 
     /**
      * The grade of the current entry - this has an default implementation to return the grade for the current translation.

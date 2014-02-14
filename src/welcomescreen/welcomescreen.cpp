@@ -24,13 +24,13 @@
 #include <QTimer>
 
 WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
-    :KXmlGuiWindow(parent)
-    ,m_mainWindow(parent)
+    : KXmlGuiWindow(parent)
+    , m_mainWindow(parent)
 {
     // KXmlGui
     setXMLFile("welcomescreenui.rc");
     setObjectName("WelcomeScreen");
-    
+
     m_widget = new Practice::ImageWidget(this);
     m_widget->setScalingEnabled(false, false);
     m_widget->setKeepAspectRatio(Qt::IgnoreAspectRatio);
@@ -67,7 +67,7 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     }
 
     connect(m_mainWindow, SIGNAL(recentFilesChanged()), this, SLOT(updateRecentFilesModel()));
-    
+
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
 
@@ -93,15 +93,15 @@ void WelcomeScreen::updateRecentFilesModel()
 
     m_recentFilesModel->clear();
     for (int i = recentFilesGroup.keyList().count() / 2; i > 0 ; i--) {
-        QString urlString = recentFilesGroup.readPathEntry("File"+QString::number(i), QString());
-        QString nameString = recentFilesGroup.readEntry("Name"+QString::number(i), QString());
+        QString urlString = recentFilesGroup.readPathEntry("File" + QString::number(i), QString());
+        QString nameString = recentFilesGroup.readEntry("Name" + QString::number(i), QString());
 
         KUrl url(urlString);
 
         QStandardItem* item = new QStandardItem;
         item->setEditable(false);
-        item->setText(nameString+" ("+url.fileName()+')');
-        item->setToolTip(nameString+" ("+url.pathOrUrl()+')');
+        item->setText(nameString + " (" + url.fileName() + ')');
+        item->setToolTip(nameString + " (" + url.pathOrUrl() + ')');
         item->setData(QVariant(url), Qt::UserRole);
 
         item->setIcon(KIcon("practice-start"));
@@ -171,7 +171,7 @@ void WelcomeScreen::updateBackground()
     m_themedBackgroundRenderer->clearRects();
     m_themedBackgroundRenderer->addRect("startbackground", QRect(QPoint(), m_widget->size()));
     QRect headerRect = ui->headingLabel->frameGeometry();
-    headerRect.setBottom(ui->recentFiles->frameGeometry().top()-1);
+    headerRect.setBottom(ui->recentFiles->frameGeometry().top() - 1);
     m_themedBackgroundRenderer->addRect("startheader", headerRect);
     m_themedBackgroundRenderer->addRect("recentfiles", ui->recentFiles->frameGeometry());
     QPixmap pixmap = m_themedBackgroundRenderer->getScaledBackground();

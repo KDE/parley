@@ -49,7 +49,7 @@ ThemedBackgroundRenderer::~ThemedBackgroundRenderer()
 
 void ThemedBackgroundRenderer::setTheme(const QString &theme)
 {
-    if(!m_theme->load(theme)) {
+    if (!m_theme->load(theme)) {
         kDebug() << "could not load theme" << theme;
     }
     m_renderer.load(m_theme->graphics());
@@ -70,7 +70,7 @@ void ThemedBackgroundRenderer::addRect(const QString& name, const QRect& rect)
 {
     m_rects.append(qMakePair<QString, QRect>(name, rect));
     if (!m_rectMappings.contains(name)) {
-        QString mapped = m_theme->property("X-Parley-"+name);
+        QString mapped = m_theme->property("X-Parley-" + name);
         m_rectMappings[name] = mapped.isEmpty() ? name : mapped;
     }
 }
@@ -105,11 +105,11 @@ QPixmap ThemedBackgroundRenderer::getScaledBackground()
 
 QColor ThemedBackgroundRenderer::fontColor(const QString& context, const QColor& fallback)
 {
-    QString text = m_theme->property("X-Parley-Font-Color-"+context).toLower();
+    QString text = m_theme->property("X-Parley-Font-Color-" + context).toLower();
     if (text.length() == 6 && text.contains(QRegExp("[0-9a-f]{6}"))) {
-        return QColor(text.mid(0,2).toInt(0,16),
-                      text.mid(2,2).toInt(0,16),
-                      text.mid(4,2).toInt(0,16));
+        return QColor(text.mid(0, 2).toInt(0, 16),
+                      text.mid(2, 2).toInt(0, 16),
+                      text.mid(4, 2).toInt(0, 16));
 
     }
 
@@ -143,7 +143,7 @@ void ThemedBackgroundRenderer::updateBackgroundTimeout()
 
 void ThemedBackgroundRenderer::renderingFinished()
 {
-    if(!m_future.resultCount()) {
+    if (!m_future.resultCount()) {
         //kDebug() << "there is no image!";
         return;
     }
@@ -179,7 +179,7 @@ QPixmap ThemedBackgroundRenderer::getPixmapForId(const QString& id, QSize size)
         QImage image(size,  QImage::Format_ARGB32_Premultiplied);
         image.fill(QColor(Qt::transparent).rgba());
         QPainter p(&image);
-        m_renderer.render(&p, id, QRectF(QPointF(0,0), size));
+        m_renderer.render(&p, id, QRectF(QPointF(0, 0), size));
         m_cache.updateImage(id, image);
         return QPixmap::fromImage(image);
     } else {
@@ -197,14 +197,14 @@ QMargins ThemedBackgroundRenderer::contentMargins()
         rect = m_rectMappings.value(rect);
     }
     QMargins margins;
-    if (m_renderer.elementExists(rect+"-border-topleft"))
-        margins.setTop(m_renderer.boundsOnElement(rect+"-border-topleft").toAlignedRect().height());
-    if (m_renderer.elementExists(rect+"-border-bottomleft"))
-        margins.setBottom(m_renderer.boundsOnElement(rect+"-border-bottomleft").toAlignedRect().height());
-    if (m_renderer.elementExists(rect+"-border-topleft"))
-        margins.setLeft(m_renderer.boundsOnElement(rect+"-border-topleft").toAlignedRect().width());
-    if (m_renderer.elementExists(rect+"-border-topright"))
-        margins.setRight(m_renderer.boundsOnElement(rect+"-border-topright").toAlignedRect().width());
+    if (m_renderer.elementExists(rect + "-border-topleft"))
+        margins.setTop(m_renderer.boundsOnElement(rect + "-border-topleft").toAlignedRect().height());
+    if (m_renderer.elementExists(rect + "-border-bottomleft"))
+        margins.setBottom(m_renderer.boundsOnElement(rect + "-border-bottomleft").toAlignedRect().height());
+    if (m_renderer.elementExists(rect + "-border-topleft"))
+        margins.setLeft(m_renderer.boundsOnElement(rect + "-border-topleft").toAlignedRect().width());
+    if (m_renderer.elementExists(rect + "-border-topright"))
+        margins.setRight(m_renderer.boundsOnElement(rect + "-border-topright").toAlignedRect().width());
     return margins;
 }
 
@@ -221,7 +221,7 @@ QImage ThemedBackgroundRenderer::renderBackground(bool fastScale)
     Q_FOREACH(rect, m_rects) {
         if (!m_rects.isEmpty() && rect == m_rects[0]) {
             QMargins margins = contentMargins();
-            rect.second = QRect(QPoint(margins.left(),margins.top()), rect.second.size()-QSize(margins.right()+margins.left(), margins.bottom()+margins.top()));
+            rect.second = QRect(QPoint(margins.left(), margins.top()), rect.second.size() - QSize(margins.right() + margins.left(), margins.bottom() + margins.top()));
         }
         renderRect(rect.first, rect.second, &p, fastScale);
     }
@@ -243,29 +243,29 @@ void ThemedBackgroundRenderer::renderRect(const QString& name, const QRect& rect
 
     QStringList edges;
     edges << "top" << "bottom" << "left" << "right";
-    Q_FOREACH(const QString& edge, edges) {
+    Q_FOREACH(const QString & edge, edges) {
         ScaleBase scaleBase;
         Edge alignEdge;
-        if(edge == QLatin1String("top")) {
+        if (edge == QLatin1String("top")) {
             alignEdge = Top;
             scaleBase = Horizontal;
-        } else if(edge == QLatin1String("bottom")) {
+        } else if (edge == QLatin1String("bottom")) {
             alignEdge = Bottom;
             scaleBase = Horizontal;
-        } else if(edge == QLatin1String("right")) {
+        } else if (edge == QLatin1String("right")) {
             alignEdge = Right;
             scaleBase = Vertical;
         } else {
             alignEdge = Left;
             scaleBase = Vertical;
         }
-        for(int inside = 1; inside>=0; inside--) {
-            renderItem(name, QString(inside?"inside":"border")+"-"+edge,            rect, p, fastScale, scaleBase, Qt::IgnoreAspectRatio, alignEdge, Centered, inside);
-            renderItem(name, QString(inside?"inside":"border")+"-"+edge+"-ratio",   rect, p, fastScale, scaleBase, Qt::KeepAspectRatio,   alignEdge, Centered, inside);
-            renderItem(name, QString(inside?"inside":"border")+"-"+edge+"-noscale", rect, p, fastScale, NoScale,   Qt::IgnoreAspectRatio, alignEdge, Centered, inside);
-            renderItem(name, QString(inside?"inside":"border")+"-"+edge+"-repeat",  rect, p, fastScale, scaleBase, Qt::IgnoreAspectRatio, alignEdge, Repeated, inside);
-            renderItem(name, QString(inside?"inside":"border")+"-"+edge+"-"+(scaleBase==Vertical?"top":"left"),     rect, p, fastScale, NoScale,   Qt::IgnoreAspectRatio, alignEdge, LeftTop, inside);
-            renderItem(name, QString(inside?"inside":"border")+"-"+edge+"-"+(scaleBase==Vertical?"bottom":"right"), rect, p, fastScale, NoScale,   Qt::IgnoreAspectRatio, alignEdge, RightBottom, inside);
+        for (int inside = 1; inside >= 0; inside--) {
+            renderItem(name, QString(inside ? "inside" : "border") + "-" + edge,            rect, p, fastScale, scaleBase, Qt::IgnoreAspectRatio, alignEdge, Centered, inside);
+            renderItem(name, QString(inside ? "inside" : "border") + "-" + edge + "-ratio",   rect, p, fastScale, scaleBase, Qt::KeepAspectRatio,   alignEdge, Centered, inside);
+            renderItem(name, QString(inside ? "inside" : "border") + "-" + edge + "-noscale", rect, p, fastScale, NoScale,   Qt::IgnoreAspectRatio, alignEdge, Centered, inside);
+            renderItem(name, QString(inside ? "inside" : "border") + "-" + edge + "-repeat",  rect, p, fastScale, scaleBase, Qt::IgnoreAspectRatio, alignEdge, Repeated, inside);
+            renderItem(name, QString(inside ? "inside" : "border") + "-" + edge + "-" + (scaleBase == Vertical ? "top" : "left"),     rect, p, fastScale, NoScale,   Qt::IgnoreAspectRatio, alignEdge, LeftTop, inside);
+            renderItem(name, QString(inside ? "inside" : "border") + "-" + edge + "-" + (scaleBase == Vertical ? "bottom" : "right"), rect, p, fastScale, NoScale,   Qt::IgnoreAspectRatio, alignEdge, RightBottom, inside);
         }
     }
 }
@@ -274,9 +274,9 @@ void ThemedBackgroundRenderer::renderItem(const QString& idBase, const QString& 
 {
     // the id without the mapping, which we need to use for caching
     // (otherwise, images could share a place in the cache which makes it useless if they have different sizes)
-    QString id = idBase+'-'+idSuffix;
+    QString id = idBase + '-' + idSuffix;
     // the id according to the mapping specified in the desktop file
-    QString mappedId = m_rectMappings.contains(idBase)? m_rectMappings.value(idBase)+'-'+idSuffix : id;
+    QString mappedId = m_rectMappings.contains(idBase) ? m_rectMappings.value(idBase) + '-' + idSuffix : id;
 
     if (!m_renderer.elementExists(mappedId))
         return;
@@ -293,24 +293,24 @@ void ThemedBackgroundRenderer::renderItem(const QString& idBase, const QString& 
 
     QImage image;
     if (m_cache.imageSize(id) == itemRect.size()) {
-       // kDebug() << "found in cache:" << id;
+        // kDebug() << "found in cache:" << id;
         image = m_cache.getImage(id);
-    } else if(fastScale && !m_cache.imageSize(id).isEmpty()) {
-       // kDebug() << "FAST SCALE for:" << id;
+    } else if (fastScale && !m_cache.imageSize(id).isEmpty()) {
+        // kDebug() << "FAST SCALE for:" << id;
         image = m_cache.getImage(id).scaled(itemRect.size(), Qt::IgnoreAspectRatio, Qt::FastTransformation);
         m_isFastScaledRender = true;
     } else {
-       // kDebug() << "NOT IN CACHE, render svg:" << id;
+        // kDebug() << "NOT IN CACHE, render svg:" << id;
         image = QImage(itemRect.size(), QImage::Format_ARGB32_Premultiplied);
         image.fill(QColor(Qt::transparent).rgba());
         QPainter painter(&image);
-        if(align == Repeated) {
+        if (align == Repeated) {
             QImage tile(itemRectF.toRect().size(), QImage::Format_ARGB32_Premultiplied);
             tile.fill(QColor(Qt::transparent).rgba());
             QPainter tilePainter(&tile);
             m_renderer.render(&tilePainter, mappedId, QRect(QPoint(0, 0), tile.size()));
             painter.fillRect(image.rect(), QBrush(tile));
-        } else if(aspectRatio == Qt::KeepAspectRatioByExpanding)  {
+        } else if (aspectRatio == Qt::KeepAspectRatioByExpanding)  {
             m_renderer.render(&painter, mappedId, QRect(QPoint(0, 0), itemRect.size()));
             painter.end();
             QRect croppedRect = rect;
@@ -338,7 +338,7 @@ QRect ThemedBackgroundRenderer::scaleRect(QRectF itemRect, const QRect& baseRect
             itemRect.setWidth(baseRect.width());
             return itemRect.toRect();
         case Qt::KeepAspectRatio:
-            horizontalFactor = baseRect.width()/itemRect.width();
+            horizontalFactor = baseRect.width() / itemRect.width();
             itemRect.setWidth(baseRect.width());
             itemRect.setHeight(itemRect.height()*horizontalFactor);
             return itemRect.toRect();
@@ -353,7 +353,7 @@ QRect ThemedBackgroundRenderer::scaleRect(QRectF itemRect, const QRect& baseRect
             itemRect.setHeight(baseRect.height());
             return itemRect.toRect();
         case Qt::KeepAspectRatio:
-            verticalFactor = baseRect.height()/itemRect.height();
+            verticalFactor = baseRect.height() / itemRect.height();
             itemRect.setHeight(baseRect.height());
             itemRect.setWidth(itemRect.width()*verticalFactor);
             return itemRect.toRect();
@@ -369,8 +369,8 @@ QRect ThemedBackgroundRenderer::scaleRect(QRectF itemRect, const QRect& baseRect
             itemRect.setHeight(baseRect.height());
             return itemRect.toRect();
         case Qt::KeepAspectRatio:
-            horizontalFactor = baseRect.width()/itemRect.width();
-            verticalFactor = baseRect.height()/itemRect.height();
+            horizontalFactor = baseRect.width() / itemRect.width();
+            verticalFactor = baseRect.height() / itemRect.height();
             if (verticalFactor < horizontalFactor) {
                 itemRect.setHeight(baseRect.height());
                 itemRect.setWidth(itemRect.width()*verticalFactor);
@@ -380,8 +380,8 @@ QRect ThemedBackgroundRenderer::scaleRect(QRectF itemRect, const QRect& baseRect
             }
             return itemRect.toRect();
         case Qt::KeepAspectRatioByExpanding:
-            horizontalFactor = baseRect.width()/itemRect.width();
-            verticalFactor = baseRect.height()/itemRect.height();
+            horizontalFactor = baseRect.width() / itemRect.width();
+            verticalFactor = baseRect.height() / itemRect.height();
             if (verticalFactor > horizontalFactor) {
                 itemRect.setHeight(baseRect.height());
                 itemRect.setWidth(itemRect.width()*verticalFactor);
@@ -393,15 +393,15 @@ QRect ThemedBackgroundRenderer::scaleRect(QRectF itemRect, const QRect& baseRect
         }
         break;
     }
-   // kDebug() << "unhandled scaling option";
+    // kDebug() << "unhandled scaling option";
     return itemRect.toRect();
 }
 
 QRect ThemedBackgroundRenderer::alignRect(QRect itemRect, const QRect &baseRect, Edge edge, Align align, bool inside)
 {
     if (edge == Center) {
-        int x = baseRect.x() + (baseRect.width()-itemRect.width())/2;
-        int y = baseRect.y() + (baseRect.height()-itemRect.height())/2;
+        int x = baseRect.x() + (baseRect.width() - itemRect.width()) / 2;
+        int y = baseRect.y() + (baseRect.height() - itemRect.height()) / 2;
         itemRect.moveTo(x, y);
         return itemRect;
     }
@@ -409,7 +409,7 @@ QRect ThemedBackgroundRenderer::alignRect(QRect itemRect, const QRect &baseRect,
     if (edge == Top || edge == Bottom) {
         // set x coordinate
         int x = 0;
-        switch(align) {
+        switch (align) {
         case Corner:
             if (edge == Top) {
                 x = baseRect.x() - itemRect.width();
@@ -422,7 +422,7 @@ QRect ThemedBackgroundRenderer::alignRect(QRect itemRect, const QRect &baseRect,
             break;
         case Centered:
         case Repeated:
-            x = baseRect.x() + (baseRect.width()-itemRect.width())/2;
+            x = baseRect.x() + (baseRect.width() - itemRect.width()) / 2;
             break;
         case RightBottom:
             x = baseRect.x() + baseRect.width() - itemRect.width();
@@ -431,11 +431,11 @@ QRect ThemedBackgroundRenderer::alignRect(QRect itemRect, const QRect &baseRect,
         // set y coordinate
         int y = baseRect.y();
         if (edge == Bottom) {
-            y += baseRect.height()-itemRect.height();
+            y += baseRect.height() - itemRect.height();
         }
         if ((!inside) && edge == Top) {
             y -= itemRect.height();
-        } else if(!inside) {
+        } else if (!inside) {
             y += itemRect.height();
         }
         itemRect.moveTo(x, y);
@@ -443,7 +443,7 @@ QRect ThemedBackgroundRenderer::alignRect(QRect itemRect, const QRect &baseRect,
     } else if (edge == Left || edge == Right) {
         // set y coordinate
         int y = 0;
-        switch(align) {
+        switch (align) {
         case Corner:
             if (edge == Right) {
                 y = baseRect.y() - itemRect.height();
@@ -456,7 +456,7 @@ QRect ThemedBackgroundRenderer::alignRect(QRect itemRect, const QRect &baseRect,
             break;
         case Centered:
         case Repeated:
-            y = baseRect.y() + (baseRect.height()-itemRect.height())/2;
+            y = baseRect.y() + (baseRect.height() - itemRect.height()) / 2;
             break;
         case RightBottom:
             y = baseRect.y() + baseRect.height() - itemRect.height();
@@ -465,7 +465,7 @@ QRect ThemedBackgroundRenderer::alignRect(QRect itemRect, const QRect &baseRect,
         // set x coordinate
         int x = baseRect.x();
         if (edge == Right) {
-            x += baseRect.width()-itemRect.width();
+            x += baseRect.width() - itemRect.width();
         }
         if ((!inside) && edge == Left) {
             x -= itemRect.width();
@@ -475,7 +475,7 @@ QRect ThemedBackgroundRenderer::alignRect(QRect itemRect, const QRect &baseRect,
         itemRect.moveTo(x, y);
         return itemRect;
     }
-   // kDebug() << "unhandled alignment option";
+    // kDebug() << "unhandled alignment option";
     return itemRect;
 }
 

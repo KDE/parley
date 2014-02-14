@@ -21,8 +21,9 @@
 
 class ParleyDocument;
 
-namespace Practice {
-    class TestEntryManager;
+namespace Practice
+{
+class TestEntryManager;
 
 class PracticeStateMachine : public QObject
 {

@@ -73,35 +73,35 @@ Keeps the translated words
 */
 class Translator
 {
-    public:
-        Translator();
-        Translator ( QObject * parent );
+public:
+    Translator();
+    Translator(QObject * parent);
 
-        ~Translator();
+    ~Translator();
 
-        /**
-         * Stores the translation of @p word from language @p fromLanguage, to language @p toLanguage.
-         * @param word word that was translated
-         * @param fromLanguage language of @p word
-         * @param toLanguage language of @p translation
-         * @param translation translation of @p word
-         */
-        void addTranslation ( QString word, QString fromLanguage, QString toLanguage, QString translation );
+    /**
+     * Stores the translation of @p word from language @p fromLanguage, to language @p toLanguage.
+     * @param word word that was translated
+     * @param fromLanguage language of @p word
+     * @param toLanguage language of @p translation
+     * @param translation translation of @p word
+     */
+    void addTranslation(QString word, QString fromLanguage, QString toLanguage, QString translation);
 
-        /**
-         * Returns a QStringList with all the translations of @p word from @p fromLanguage to @p toLanguage.
-         * This function will call the translateWord function of the translation scripts if this word
-         * wasn't translated before.
-         * @param word
-         * @param fromLanguage
-         * @param toLanguage
-         * @return QStringList with the translations (or an empty QStringList if no translations found)
-         */
-        QSet<QString>* getTranslation ( QString word, QString fromLanguage, QString toLanguage );
+    /**
+     * Returns a QStringList with all the translations of @p word from @p fromLanguage to @p toLanguage.
+     * This function will call the translateWord function of the translation scripts if this word
+     * wasn't translated before.
+     * @param word
+     * @param fromLanguage
+     * @param toLanguage
+     * @return QStringList with the translations (or an empty QStringList if no translations found)
+     */
+    QSet<QString>* getTranslation(QString word, QString fromLanguage, QString toLanguage);
 
-    private:
-        QMap<QString,QSet<QString>*> m_translations;
-        QObject * m_parent;
+private:
+    QMap<QString, QSet<QString>*> m_translations;
+    QObject * m_parent;
 };
 
 #endif

@@ -58,7 +58,7 @@ void DeclensionWidget::textChanged(const QString& text)
 void DeclensionWidget::updateEntries()
 {
     foreach(int key, m_DeclensionLineEdits.keys()) {
-        m_DeclensionLineEdits.value(key)->setText(m_entry->translation(m_identifier)->declension()->declension((KEduVocWordFlag::Flags)(key|currentAdditionalWordFlag())).text());
+        m_DeclensionLineEdits.value(key)->setText(m_entry->translation(m_identifier)->declension()->declension((KEduVocWordFlag::Flags)(key | currentAdditionalWordFlag())).text());
     }
 }
 
@@ -103,8 +103,8 @@ void DeclensionWidget::setDocument(KEduVocDocument * doc)
 
 int DeclensionWidget::currentAdditionalWordFlag()
 {
-    if (m_entry->translation(m_identifier)->wordType()->wordType() & KEduVocWordFlag::Noun)
-    {///@todo easier and better way to get gender?
+    if (m_entry->translation(m_identifier)->wordType()->wordType() & KEduVocWordFlag::Noun) {
+        ///@todo easier and better way to get gender?
         if (m_entry->translation(m_identifier)->wordType()->wordType() & KEduVocWordFlag::Feminine)
             return KEduVocWordFlag::Feminine;
         if (m_entry->translation(m_identifier)->wordType()->wordType() & KEduVocWordFlag::Masculine)
@@ -118,7 +118,7 @@ int DeclensionWidget::currentAdditionalWordFlag()
 
 void DeclensionWidget::nextNumber()
 {
-    int newIndex = numberSelection->currentIndex()+1;
+    int newIndex = numberSelection->currentIndex() + 1;
     if (newIndex >= numberSelection->count())
         newIndex = 0;
 
@@ -130,15 +130,13 @@ void DeclensionWidget::setupLineEdits()
     m_DeclensionLineEdits.clear();
 
     if (m_entry == 0 || !m_entry->translation(m_identifier) || !m_entry->translation(m_identifier)->wordType()
-        || m_entry->translation(m_identifier)->wordType()->wordType() & KEduVocWordFlag::Noun)
-    {
+            || m_entry->translation(m_identifier)->wordType()->wordType() & KEduVocWordFlag::Noun) {
         label_3->setText(i18n("Singular"));
         label_4->setText(i18n("Dual"));
         label_5->setText(i18n("Plural"));
 
         /* Hide the GUI elements which are needed to switch the number */
-        for (int i = 0; i < numberLayout->count(); ++i)
-        {
+        for (int i = 0; i < numberLayout->count(); ++i) {
             numberLayout->itemAt(i)->widget()->hide();
         }
 
@@ -165,16 +163,13 @@ void DeclensionWidget::setupLineEdits()
         m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Ablative] = neuter_5;
         m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Locative] = neuter_6;
         m_DeclensionLineEdits[KEduVocWordFlag::Plural | KEduVocWordFlag::Vocative] = neuter_7;
-    }
-    else
-    {
+    } else {
         label_3->setText(i18n("Masculine"));
         label_4->setText(i18n("Feminine"));
         label_5->setText(i18n("Neuter"));
 
         /* Show the GUI elements which are needed to switch the number */
-        for (int i = 0; i < numberLayout->count(); ++i)
-        {
+        for (int i = 0; i < numberLayout->count(); ++i) {
             numberLayout->itemAt(i)->widget()->show();
         }
 

@@ -34,7 +34,9 @@ private Q_SLOTS:
     void removeGrades();
 
 private:
-    virtual void setModel(QAbstractItemModel *model) { Q_UNUSED(model) }
+    virtual void setModel(QAbstractItemModel *model) {
+        Q_UNUSED(model)
+    }
 };
 
 #endif

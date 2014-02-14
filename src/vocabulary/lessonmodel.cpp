@@ -28,7 +28,7 @@
 using namespace Editor;
 
 LessonModel::LessonModel(QObject * parent)
-    :ContainerModel(KEduVocContainer::Lesson, parent)
+    : ContainerModel(KEduVocContainer::Lesson, parent)
 {
 }
 
@@ -43,9 +43,9 @@ KEduVocContainer * LessonModel::rootContainer() const
 Qt::ItemFlags LessonModel::flags(const QModelIndex &index) const
 {
     if (index.isValid() && index.parent() == QModelIndex()) {
-        return (Qt::ItemIsEnabled 
-              | Qt::ItemIsEditable
-              | Qt::ItemIsSelectable);
+        return (Qt::ItemIsEnabled
+                | Qt::ItemIsEditable
+                | Qt::ItemIsSelectable);
     }
 
     // the name column should be checkable to select lessons for practice
@@ -57,12 +57,12 @@ QVariant LessonModel::data(const QModelIndex & index, int role) const
     if (index.isValid() && !index.parent().isValid()) {
         if (index.column() == 0) {
             switch (role) {
-                case Qt::DisplayRole:
-                    return i18nc("display of the name of the vocabulary collection", "Collection: %1", ContainerModel::data(index, role).toString());
-                case Qt::FontRole:
-                    QFont f;
-                    f.setBold(true);
-                    return f;
+            case Qt::DisplayRole:
+                return i18nc("display of the name of the vocabulary collection", "Collection: %1", ContainerModel::data(index, role).toString());
+            case Qt::FontRole:
+                QFont f;
+                f.setBold(true);
+                return f;
             }
         }
     }
@@ -94,12 +94,12 @@ void LessonModel::splitLesson(const QModelIndex& containerIndex, int entriesPerL
 
     int numNewLessons = parentLesson->entryCount() / entriesPerLesson;
     // modulo - fraction lesson if not 0 we need one more
-    if (parentLesson->entryCount()%entriesPerLesson) {
+    if (parentLesson->entryCount() % entriesPerLesson) {
         numNewLessons++;
     }
 
     while (parentLesson->entryCount() > 0) {
-        beginInsertRows(containerIndex, parentLesson->entryCount(), parentLesson->entryCount() );
+        beginInsertRows(containerIndex, parentLesson->entryCount(), parentLesson->entryCount());
         KEduVocLesson* child = new KEduVocLesson(parentLesson->name()
                 + QString(" %1").arg(parentLesson->childContainerCount() + 1), parentLesson);
         parentLesson->appendChildContainer(child);
@@ -107,7 +107,7 @@ void LessonModel::splitLesson(const QModelIndex& containerIndex, int entriesPerL
 
         while (parentLesson->entryCount() > 0 && child->entryCount() < entriesPerLesson) {
             // next entry to be assigned to one of the new lessons
-            int nextEntry=0;
+            int nextEntry = 0;
             if (order == Random) {
                 nextEntry = KRandom::random() % parentLesson->entryCount();
                 child->appendEntry(parentLesson->entry(nextEntry));

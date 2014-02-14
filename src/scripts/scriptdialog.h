@@ -25,21 +25,21 @@
 */
 class ScriptDialog : public KDialog
 {
-    public:
-        ScriptDialog ( ScriptManager* scriptManager );
-        ~ScriptDialog();
-        /**
-         * Executed when user clicks OK button.
-         * Saves the state of the plugins (which ones are loaded) in the config file
-         * and makes the necessary loads/unloads of plugins
-         */
-        void accept();
+public:
+    ScriptDialog(ScriptManager* scriptManager);
+    ~ScriptDialog();
+    /**
+     * Executed when user clicks OK button.
+     * Saves the state of the plugins (which ones are loaded) in the config file
+     * and makes the necessary loads/unloads of plugins
+     */
+    void accept();
 
-    private:
-        KPluginSelector* m_kps;
-        QList<KPluginInfo> pluginsInfoList;
-        KConfigGroup* scriptsConfigGroup;
-        ScriptManager* m_scriptManager;
+private:
+    KPluginSelector* m_kps;
+    QList<KPluginInfo> pluginsInfoList;
+    KConfigGroup* scriptsConfigGroup;
+    ScriptManager* m_scriptManager;
 
 };
 

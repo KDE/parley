@@ -31,13 +31,13 @@ StatusToggle::StatusToggle(QWidget* parent)
     setMaximumSize(minimumSizeHint());
 
     QSize size = minimumSizeHint();
-    size*=0.4;
+    size *= 0.4;
     m_toggle = new StatusToggleButton(this);
     m_toggle->setMinimumSize(size);
     m_toggle->setMaximumSize(size);
     m_toggle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     m_toggle->setScalingEnabled(false);
-    m_toggle->move(width()-m_toggle->width(), height()-m_toggle->height());
+    m_toggle->move(width() - m_toggle->width(), height() - m_toggle->height());
 
     connect(m_toggle, SIGNAL(clicked()), this, SIGNAL(toggle()));
 }
@@ -52,7 +52,7 @@ void StatusToggle::setRenderer(ThemedBackgroundRenderer *renderer)
     m_correctStatus = m_renderer->getPixmapForId("status-correct", size);
     m_wrongStatus = m_renderer->getPixmapForId("status-wrong", size);
 
-    size = size*0.4;
+    size = size * 0.4;
 
     m_toggleCorrect = m_renderer->getPixmapForId("toggle-correct", size);
     m_toggleCorrectHover = m_renderer->getPixmapForId("toggle-correct-hover", size);
@@ -68,7 +68,7 @@ void StatusToggle::setRenderer(ThemedBackgroundRenderer *renderer)
 
 QSize StatusToggle::minimumSizeHint() const
 {
-    return QSize(128,128);
+    return QSize(128, 128);
 }
 
 void StatusToggle::setResultState(AbstractFrontend::ResultState state)

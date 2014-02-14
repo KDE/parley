@@ -39,11 +39,11 @@
 
 using namespace Editor;
 
-StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindow* parent) 
-    :KXmlGuiWindow(parent)
-    ,m_mainWindow(parent)
-    ,m_doc(doc)
-    ,m_conjugationOptions(0)
+StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindow* parent)
+    : KXmlGuiWindow(parent)
+    , m_mainWindow(parent)
+    , m_doc(doc)
+    , m_conjugationOptions(0)
 {
     // KXmlGui
     setXMLFile("statisticsui.rc");
@@ -62,7 +62,7 @@ StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindo
     initLanguages();
 
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
-    applyMainWindowSettings(cfg);  
+    applyMainWindowSettings(cfg);
 }
 
 StatisticsMainWindow::~StatisticsMainWindow()
@@ -102,33 +102,33 @@ void StatisticsMainWindow::initActions()
 void StatisticsMainWindow::initPracticeModeSelection()
 {
     switch (Prefs::practiceMode()) {
-        case Prefs::EnumPracticeMode::FlashCardsPractice:
-            m_ui->flashCard->setChecked(true);
-            break;
-        case Prefs::EnumPracticeMode::MixedLettersPractice:
-            m_ui->mixedLetters->setChecked(true);
-            break;
-        case Prefs::EnumPracticeMode::MultipleChoicePractice:
-            m_ui->multipleChoice->setChecked(true);
-            break;
-        case Prefs::EnumPracticeMode::WrittenPractice:
-            m_ui->written->setChecked(true);
-            break;
-        case Prefs::EnumPracticeMode::ExampleSentencesPractice:
-            m_ui->exampleSentence->setChecked(true);
-            break;
-        case Prefs::EnumPracticeMode::GenderPractice:
-            m_ui->gender->setChecked(true);
-            break;
-        case Prefs::EnumPracticeMode::ComparisonPractice:
-            m_ui->comparisonForms->setChecked(true);
-            break;
-        case Prefs::EnumPracticeMode::ConjugationPractice:
-            m_ui->conjugations->setChecked(true);
-            showConjugationOptions();
-            break;
-        default:
-            break;
+    case Prefs::EnumPracticeMode::FlashCardsPractice:
+        m_ui->flashCard->setChecked(true);
+        break;
+    case Prefs::EnumPracticeMode::MixedLettersPractice:
+        m_ui->mixedLetters->setChecked(true);
+        break;
+    case Prefs::EnumPracticeMode::MultipleChoicePractice:
+        m_ui->multipleChoice->setChecked(true);
+        break;
+    case Prefs::EnumPracticeMode::WrittenPractice:
+        m_ui->written->setChecked(true);
+        break;
+    case Prefs::EnumPracticeMode::ExampleSentencesPractice:
+        m_ui->exampleSentence->setChecked(true);
+        break;
+    case Prefs::EnumPracticeMode::GenderPractice:
+        m_ui->gender->setChecked(true);
+        break;
+    case Prefs::EnumPracticeMode::ComparisonPractice:
+        m_ui->comparisonForms->setChecked(true);
+        break;
+    case Prefs::EnumPracticeMode::ConjugationPractice:
+        m_ui->conjugations->setChecked(true);
+        showConjugationOptions();
+        break;
+    default:
+        break;
     }
     QSignalMapper* mapper = new QSignalMapper(this);
     mapper->setMapping(m_ui->flashCard, Prefs::EnumPracticeMode::FlashCardsPractice);
@@ -160,13 +160,13 @@ void StatisticsMainWindow::initLanguages()
         Prefs::setSolutionLanguage(1);
         kDebug() << "Invalid language selection.";
     }
-    for ( int i = 0; i < totalNumLanguages-1; i++ ) {
-        for (int j = i+1; j < totalNumLanguages; j++) {
+    for (int i = 0; i < totalNumLanguages - 1; i++) {
+        for (int j = i + 1; j < totalNumLanguages; j++) {
             QListWidgetItem* item = new QListWidgetItem(
                 i18nc("pair of two languages that the user chooses to practice", "%1 to %2",
-                m_doc->identifier(i).name(), m_doc->identifier(j).name()));
+                      m_doc->identifier(i).name(), m_doc->identifier(j).name()));
             item->setData(Qt::UserRole, i);
-            item->setData(Qt::UserRole+1, j);
+            item->setData(Qt::UserRole + 1, j);
             m_ui->languageList->addItem(item);
 
             if (i == Prefs::questionLanguage() && j == Prefs::solutionLanguage()) {
@@ -175,9 +175,9 @@ void StatisticsMainWindow::initLanguages()
 
             QListWidgetItem* item2 = new QListWidgetItem(
                 i18nc("pair of two languages that the user chooses to practice", "%1 to %2",
-                m_doc->identifier(j).name(), m_doc->identifier(i).name()));
+                      m_doc->identifier(j).name(), m_doc->identifier(i).name()));
             item2->setData(Qt::UserRole, j);
-            item2->setData(Qt::UserRole+1, i);
+            item2->setData(Qt::UserRole + 1, i);
             m_ui->languageList->addItem(item2);
 
             if (j == Prefs::questionLanguage() && i == Prefs::solutionLanguage()) {
@@ -196,12 +196,12 @@ void StatisticsMainWindow::languagesChanged()
     int solutionLangauge;
     QListWidgetItem* current = m_ui->languageList->currentItem();
     questionLanguage = current->data(Qt::UserRole).toInt();
-    solutionLangauge = current->data(Qt::UserRole+1).toInt();
+    solutionLangauge = current->data(Qt::UserRole + 1).toInt();
     Prefs::setQuestionLanguage(questionLanguage);
     Prefs::setSolutionLanguage(solutionLangauge);
     emit languagesChanged(questionLanguage, solutionLangauge);
     //m_ui->lessonStatistics->showGrades(current->data(Qt::UserRole).toInt(), current->data(Qt::UserRole+1).toInt());
-    kDebug() << "set languages: " << current->data(Qt::UserRole).toInt() << current->data(Qt::UserRole+1).toInt();
+    kDebug() << "set languages: " << current->data(Qt::UserRole).toInt() << current->data(Qt::UserRole + 1).toInt();
     updateVisibleColumns();
 }
 
@@ -217,7 +217,7 @@ void StatisticsMainWindow::updateVisibleColumns()
 {
     int solutionLanguage = Prefs::solutionLanguage();
     for (int i = 2; i < m_ui->lessonStatistics->header()->count(); i++) {
-        m_ui->lessonStatistics->setColumnHidden(i, (i-2) != solutionLanguage);
+        m_ui->lessonStatistics->setColumnHidden(i, (i - 2) != solutionLanguage);
     }
 }
 
@@ -232,7 +232,7 @@ void StatisticsMainWindow::showConjugationOptions(bool visible)
         QHBoxLayout* layout = new QHBoxLayout(m_ui->modeSpecificOptions);
         layout->setMargin(0);
         layout->addWidget(m_conjugationOptions);
-        connect(this, SIGNAL(languagesChanged(int,int)), m_conjugationOptions, SLOT(setLanguages(int,int)));
+        connect(this, SIGNAL(languagesChanged(int, int)), m_conjugationOptions, SLOT(setLanguages(int, int)));
         m_conjugationOptions->setLanguages(Prefs::questionLanguage(), Prefs::solutionLanguage());
     }
     m_conjugationOptions->setVisible(visible);
