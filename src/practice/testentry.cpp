@@ -27,6 +27,7 @@ TestEntry::TestEntry(KEduVocExpression *entry)
     , m_correctAtFirstAttempt(false)
     , m_practiceFinished(false)
     , m_changeGrades(false)
+    , m_isUnseenQuestion(false)
     , m_lastPercentage(0.0)
     , m_lastError(0)
 {}
@@ -61,17 +62,23 @@ int TestEntry::statisticGoodCount()
     return m_statisticGoodCount;
 }
 
-void TestEntry::updateStatisticsRightAnswer()
+void TestEntry::updateStatisticsRightAnswer(grade_t currentGrade)
 {
     m_statisticCount++;
     m_statisticGoodCount++;
     m_answeredCorrectInSequence++;
+    m_isUnseenQuestion = false;
+
+    // Check if this is the first time the user is seeing this question (not practiced).
+    if (currentGrade == KV_NORM_GRADE) {
+        m_isUnseenQuestion = true;
+    }
 
     if ((!Prefs::altLearn()) || m_answeredCorrectInSequence == 3) {
         m_changeGrades = true;
     }
 
-    // increase grade, if first time:
+    // Make changes in statistics if answered correctly and not answered wrong in current test
     if (!Prefs::altLearn() && m_statisticBadCount == 0) {
         m_correctAtFirstAttempt = true;
     } else {
@@ -88,12 +95,17 @@ bool TestEntry::changeGrades()
     return m_changeGrades;
 }
 
-void TestEntry::updateStatisticsWrongAnswer()
+void TestEntry::updateStatisticsWrongAnswer(grade_t currentGrade)
 {
     m_statisticCount++;
     m_statisticBadCount++;
     m_answeredCorrectInSequence = 0;
     m_changeGrades = true;
+    m_isUnseenQuestion = false;
+
+    if (currentGrade == KV_NORM_GRADE) {
+	m_isUnseenQuestion = true;
+    }
 }
 
 int TestEntry::gradeFrom()
@@ -104,6 +116,11 @@ int TestEntry::gradeFrom()
 int TestEntry::gradeTo()
 {
     return m_gradeTo;
+}
+
+bool TestEntry::isUnseenQuestion() const
+{
+    return m_isUnseenQuestion;
 }
 
 bool TestEntry::correctAtFirstAttempt()

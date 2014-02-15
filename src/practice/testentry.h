@@ -42,10 +42,10 @@ public:
     TestEntry(KEduVocExpression *entry);
 
     /// update the internal statistics for this practice with a right result
-    void updateStatisticsRightAnswer();
+    void updateStatisticsRightAnswer(grade_t currentGrade);
 
     /// update the internal statistics for this practice with a wrong result
-    void updateStatisticsWrongAnswer();
+    void updateStatisticsWrongAnswer(grade_t currentGrade);
 
     /**
      check if the entry was finished and the practice backend
@@ -59,6 +59,7 @@ public:
     int statisticGoodCount();
     int statisticBadCount();
     bool correctAtFirstAttempt();
+    bool isUnseenQuestion() const;
 
     /**
      * In conjugation mode, use this tense for the entry.
@@ -109,6 +110,7 @@ private:
     bool m_correctAtFirstAttempt;
     bool m_practiceFinished;
     bool m_changeGrades;
+    bool m_isUnseenQuestion;
 
     double m_lastPercentage;
     ErrorTypes m_lastError;
