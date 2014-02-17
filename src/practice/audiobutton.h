@@ -31,6 +31,7 @@ public:
 
 private Q_SLOTS:
     void playAudio();
+    void stopAudio();
     void playerStateChanged(Phonon::State newState);
 
 private:

@@ -26,6 +26,7 @@ AudioButton::AudioButton(QWidget *parent)
     setText(i18n("Play"));
     setToolTip(i18n("Play"));
     connect(this, SIGNAL(clicked(bool)), this, SLOT(playAudio()));
+    connect(parent, SIGNAL(stopAudio()), this, SLOT(stopAudio()));
 }
 
 void AudioButton::setSoundFile(KUrl soundFile)
@@ -48,6 +49,13 @@ void AudioButton::playAudio()
         m_player->setCurrentSource(m_url);
     }
     m_player->play();
+}
+
+void AudioButton::stopAudio()
+{
+    if (m_player && m_player->state() == Phonon::PlayingState) {
+        m_player->stop();
+    }
 }
 
 void AudioButton::playerStateChanged(Phonon::State newState)

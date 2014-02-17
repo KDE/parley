@@ -33,6 +33,7 @@ WrittenPracticeWidget::WrittenPracticeWidget(GuiFrontend *frontend, QWidget *par
     m_ui->setupUi(this);
     m_ui->mixedSolutionLabel->setVisible(false);
     connect(m_ui->answerEdit, SIGNAL(returnPressed()), this, SLOT(continueClicked()));
+    connect(frontend, SIGNAL(continueAction()), this, SIGNAL(stopAudio()));
 }
 
 

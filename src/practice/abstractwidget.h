@@ -59,6 +59,7 @@ public slots:
 
 signals:
     void continueAction();
+    void stopAudio();
     void hintAction();
     void skipAction();
 
