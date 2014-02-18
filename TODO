@@ -61,9 +61,9 @@ Open issues
       maybe 10-20 questions. It is automatically generated when the
       user starts to practice a lesson and is never saved anywhere.
       The reason we want this is that you will get a greater sense of
-      achievement when you are done with a lesson than when you have
+      achievement when you are done with a session than when you have
       just practiced 5% of the words in a big lesson.  It should also
-      limit the number of new words in each session.
+      limit the number of new words in each session (5?).
       See thaipod101.com for this.
     + Mixed mode in all practice methods.
       This means that not just one direction is practiced, but
