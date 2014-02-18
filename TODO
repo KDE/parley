@@ -1,17 +1,118 @@
 Things to improve in parley
 ---------------------------
 
+----------------------------------------------------------------
+Before the release.  These are picked from the ones below.
+
+ * Editor
+    + indicators in the table for words whether they have an image      ----
+      and/or a sound.
+
+ * Practice
+    + Enable sound in all practice modes (or at least flashcards)
+
+ * Release work
+    + Update the version!
+
+----------------------------------------------------------------
+Open issues
+
+ OVERALL GOAL: 
+   Make the program more focussed around the learning process.
+   Learning is the purpose of the program. All other functions are
+   just to support that goal.
+
+ * General
+    + A library of active collections.
+      Right now we only have a list of files. There is no concept of
+      active collections/lessons (i.e. those you are studying) and
+      ones that are just lying around.  See also the dashboard below.
+
+    + A dashboard where you can see the status of your learning.
+      It should contain info on all your active collections or lessons
+      with how many cards they have, your learning status (percentage)
+      and how many cards are due to practice right now. 
+      See thaipod101.com for this.
+
+ * Usability
+    + Set language you are learning and languages you know instead of
+      language to language.
+    + Disable those practice modes in the GUI that are not supported
+      by the data in the selected lessons. This would be better than
+      having all of them enabled and popping up a big warning dialog
+      when the user starts the practice.
+
+ * Practice
+    + Enable sound in all practice modes (or at least flashcards)
+    + Extended Leitner box method -OR- move to time based card selection.
+
+      The Leitner box system that is currently implemented is not very
+      good at the very beginning of the study. When you have a lot of
+      new words to learn just getting it right once is not enough to
+      solidify the knowledge. So instead of having a repeat time of 1
+      day for the first box we should have system based on time that
+      starts with just a few minutes until the card is shown next time
+      and then moves up to a full day when you have shown that you
+      know the words well.  Alternatively skip the concept of boxes
+      altogether and have a purely time based system (which the
+      leitner boxes are trying to emulate anyway).
+      thaipod101.com uses this system and it works very well. 
+    + Sessions.  A session is a byte sized part of a lesson containing
+      maybe 10-20 questions. It is automatically generated when the
+      user starts to practice a lesson and is never saved anywhere.
+      The reason we want this is that you will get a greater sense of
+      achievement when you are done with a lesson than when you have
+      just practiced 5% of the words in a big lesson.  It should also
+      limit the number of new words in each session.
+      See thaipod101.com for this.
+    + Mixed mode in all practice methods.
+      This means that not just one direction is practiced, but
+      known->learning, learning->known and maybe even sound of
+      learning -> known
+      See thaipod101.com for this (again! - that system is awesome).
+
+ * Editor
+    + indicators in the table for words whether they have an image      ----
+      and/or a sound.
+    + Drag & drop for images from other applications
+    + Select whole regions of a table so that you can 
+    + Smaller issues                                                    ----
+       - Buttons to open/close all lessons (wish in bugzilla)           ----
+       - Button to remove all empty lines.
+       - Button (menu entry) to check for duplicates
+    + Always keep the primary (to be learned) language visible?
+
+ * File formats
+    + Allow one image for an entry, not just for a word.
+      After all, all the translations in an entry mean the same thing.
+    + (Big) New container format with kvtml and all the
+      images/sounds/whatever.  This should be modeled after ODF files
+      and use a zip container, manifest, etc.  Lots of code for this
+      in Calligra.
+    + 
+
+================================================================
+
+Below is old stuff, most of which is outdated (refers to KDE 4.1).
+We will move appropriate ones up to the current ones above.
+
+================================================================
+
 Before releases:
  * Remove ModelTest!
- * Check that changes to the document result in a modified state!!!! Ask when quitting Parley!!!
+ * Check that changes to the document result in a modified state!!!!
+   Ask when quitting Parley!!!
  * Set version number to something not svn
- * Reenable synonym, false friend and antonym practices and synonym check in written practice! check if deletion of one of two synonyms crashes
+ * Reenable synonym, false friend and antonym practices and synonym
+   check in written practice! check if deletion of one of two synonyms
+   crashes
 
 When time permits:
  * update the dtd and validate some documents
  * write more unit tests
-
- * Add the ability to record sound files with phonon to a dock if possible. This depends on the state of Phonon - might be ready for 4.1.
+ * Add the ability to record sound files with phonon to a dock if
+   possible. This depends on the state of Phonon - might be ready for
+   4.1.
  * Use the container/lesson class for the leitner implementation
  * Drag and drop for several things:
    - Sound
@@ -19,7 +120,9 @@ When time permits:
  * Give containers an image tag and display images in the lesson view
 
 Gui
- * shortcut keys are badly assigned, they do not respect the focus (pressing del when a lesson was selected will attempt to delete a word anyways)
+ * shortcut keys are badly assigned, they do not respect the focus
+   (pressing del when a lesson was selected will attempt to delete a
+   word anyways)
  * Image file open dialog: filter and preview. Maybe restrict to image files?
  * Sound file open dialog: filter and preview
  * Navigation (editing vocabulary).
@@ -28,11 +131,16 @@ Gui
      Shift+Enter -> move up.
      Tab         -> move right.
      Shift+Tab   -> move left.
- * Improve the search somehow to let the user continue typing instead of blocking (also not trivial?) - somewhat improved by performance gain - still desireable?
+ * Improve the search somehow to let the user continue typing instead
+   of blocking (also not trivial?) - somewhat improved by performance
+   gain - still desireable?
  * Enable the active field again? If the active field stays, use checkboxes
- * For some languages (with signs like chinese) it would be nice to have different font sizes in the columns
-Validator/correction of user answers
- * Seperators need to be implemented with the new corrector class. Possibly giving the user the chance to add more words when entering right answers but not all of them.
+ * For some languages (with signs like chinese) it would be nice to
+   have different font sizes in the columns
+ * Validator/correction of user answers
+ * Separators need to be implemented with the new corrector
+   class. Possibly giving the user the chance to add more words when
+   entering right answers but not all of them.
  * Analysis of sentences could be improved a lot
 
 General
@@ -54,6 +162,7 @@ General
 
 Pronunciation
  * option to display it along in the practice dialogs
- * is a pronunciation practice desirable? maybe together with sound (write after listening) also very much for chinese I'm told.
+ * is a pronunciation practice desirable? maybe together with sound
+   (write after listening) also very much for chinese I'm told.
 
 
