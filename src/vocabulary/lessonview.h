@@ -60,6 +60,12 @@ public slots:
      */
     void slotSplitLesson();
 
+    /** Remove the grades for the selected lesson.  */
+    void slotRemoveGradesLesson();
+
+    /** Remove the grades for the selected lesson and its children.  */
+    void slotRemoveGradesLessonChildren();
+
     /**
      * get notified of new columns only to hide them (grades not shown by default).
      */

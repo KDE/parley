@@ -53,6 +53,9 @@
    <Separator/>
    <Action name="split_lesson" />
    <Separator/>
+   <Action name="remove_grades_lesson" />
+   <Action name="remove_grades_lesson_children" />
+   <Separator/>
    <Action name="lesson_showsublessonentries" />
   </Menu>
   <Menu name="learning" >

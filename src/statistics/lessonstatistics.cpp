@@ -98,14 +98,24 @@ LessonStatisticsView::LessonStatisticsView(QWidget *parent)
 
     // inherits context menu policy - so action will show up in right click menu
     KAction *removeGradesAction = new KAction(this);
-    removeGradesAction->setText(i18n("Remove &Grades"));
+    removeGradesAction->setText(i18n("Remove &Grades from this lesson"));
     removeGradesAction->setIcon(KIcon("edit-clear"));
-    removeGradesAction->setWhatsThis(i18n("Remove all grades from this lesson"));
+    removeGradesAction->setWhatsThis(i18n("Remove grades from this lesson"));
     removeGradesAction->setToolTip(removeGradesAction->whatsThis());
     removeGradesAction->setStatusTip(removeGradesAction->whatsThis());
 
     connect(removeGradesAction, SIGNAL(triggered()), SLOT(removeGrades()));
     addAction(removeGradesAction);
+
+    KAction *removeGradesChildrenAction = new KAction(this);
+    removeGradesChildrenAction->setText(i18n("Remove &Grades from this lesson and all sub-lessons"));
+    removeGradesChildrenAction->setIcon(KIcon("edit-clear"));
+    removeGradesChildrenAction->setWhatsThis(i18n("Remove grades from this lesson and all sub-lessons"));
+    removeGradesChildrenAction->setToolTip(removeGradesChildrenAction->whatsThis());
+    removeGradesChildrenAction->setStatusTip(removeGradesChildrenAction->whatsThis());
+
+    connect(removeGradesChildrenAction, SIGNAL(triggered()), SLOT(removeGradesChildren()));
+    addAction(removeGradesChildrenAction);
 }
 
 void LessonStatisticsView::setModel(Editor::ContainerModel *model)
@@ -126,6 +136,13 @@ void LessonStatisticsView::removeGrades()
     QModelIndex selectedIndex = selectionModel()->currentIndex();
     KEduVocLesson *lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
     lesson->resetGrades(-1, KEduVocContainer::NotRecursive);
+}
+
+void LessonStatisticsView::removeGradesChildren()
+{
+    QModelIndex selectedIndex = selectionModel()->currentIndex();
+    KEduVocLesson *lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
+    lesson->resetGrades(-1, KEduVocContainer::Recursive);
 }
 
 #include "lessonstatistics.moc"

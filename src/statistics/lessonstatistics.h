@@ -32,6 +32,7 @@ public:
 
 private Q_SLOTS:
     void removeGrades();
+    void removeGradesChildren();
 
 private:
     virtual void setModel(QAbstractItemModel *model) {

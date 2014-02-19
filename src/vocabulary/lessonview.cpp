@@ -64,6 +64,22 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
     actionSplitLesson->setToolTip(actionSplitLesson->whatsThis());
     actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
 
+    KAction *actionRemoveGradesLesson = new KAction(this);
+    parent->actionCollection()->addAction("remove_grades_lesson", actionRemoveGradesLesson);
+    actionRemoveGradesLesson->setText(i18n("Remove Grades from this Lesson"));
+    actionRemoveGradesLesson->setIcon(KIcon("edit-clear")); /// @todo better icon
+    actionRemoveGradesLesson->setWhatsThis(i18n("Remove grades from this lesson."));
+    actionRemoveGradesLesson->setToolTip(actionRemoveGradesLesson->whatsThis());
+    actionRemoveGradesLesson->setStatusTip(actionRemoveGradesLesson->whatsThis());
+
+    KAction *actionRemoveGradesLessonChildren = new KAction(this);
+    parent->actionCollection()->addAction("remove_grades_lesson_children", actionRemoveGradesLessonChildren);
+    actionRemoveGradesLessonChildren->setText(i18n("Remove Grades from this Lesson and all Sub-Lessons"));
+    actionRemoveGradesLessonChildren->setIcon(KIcon("edit-clear"));
+    actionRemoveGradesLessonChildren->setWhatsThis(i18n("Remove grades from this lesson and all sub-lessons."));
+    actionRemoveGradesLessonChildren->setToolTip(actionRemoveGradesLessonChildren->whatsThis());
+    actionRemoveGradesLessonChildren->setStatusTip(actionRemoveGradesLessonChildren->whatsThis());
+
     connect(actionNewLesson, SIGNAL(triggered()),
             SLOT(slotCreateNewLesson()));
     connect(actionRenameLesson, SIGNAL(triggered()),
@@ -72,6 +88,10 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
             SLOT(slotDeleteLesson()));
     connect(actionSplitLesson, SIGNAL(triggered()),
             SLOT(slotSplitLesson()));
+    connect(actionRemoveGradesLesson, SIGNAL(triggered()),
+            SLOT(slotRemoveGradesLesson()));
+    connect(actionRemoveGradesLessonChildren, SIGNAL(triggered()),
+            SLOT(slotRemoveGradesLessonChildren()));
 
     // right cick menu for the lesson view:
     addAction(actionNewLesson);
@@ -80,6 +100,8 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
     QAction* separator = new QAction(this);
     separator->setSeparator(true);
     addAction(separator);
+    addAction(actionRemoveGradesLesson);
+    addAction(actionRemoveGradesLessonChildren);
     separator = new QAction(this);
     separator->setSeparator(true);
     addAction(separator);
@@ -177,6 +199,22 @@ void LessonView::slotSplitLesson()
     Prefs::setEntriesPerLesson(numEntries);
     m_model->splitLesson(selectionModel()->currentIndex(), numEntries, LessonModel::Random);
     setExpanded(selectionModel()->currentIndex(), true);
+}
+
+void LessonView::slotRemoveGradesLesson()
+{
+    QModelIndex selectedIndex = selectionModel()->currentIndex();
+    KEduVocLesson* lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
+    lesson->resetGrades(-1, KEduVocContainer::NotRecursive);
+    emit signalShowContainer(lesson);
+}
+
+void LessonView::slotRemoveGradesLessonChildren()
+{
+    QModelIndex selectedIndex = selectionModel()->currentIndex();
+    KEduVocLesson* lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
+    lesson->resetGrades(-1, KEduVocContainer::Recursive);
+    emit signalShowContainer(lesson);
 }
 
 void LessonView::setModel(LessonModel * model)
