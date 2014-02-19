@@ -56,6 +56,11 @@ void FlashCardModeWidget::showQuestion()
 {
     m_ui->solutionLabel->setHidden(true);
     m_frontend->showSetResultButtons(false);
+
+    m_ui->questionPronunciationLabel->setVisible(m_ui->questionPronunciationLabel->isEnabled());
+    m_ui->questionSoundButton->setVisible(m_ui->questionSoundButton->isEnabled());
+    m_ui->solutionPronunciationLabel->setVisible(false);
+    m_ui->solutionSoundButton->setVisible(false);
 }
 
 void FlashCardModeWidget::setSolution(const QVariant& solution)
@@ -91,6 +96,9 @@ void FlashCardModeWidget::showSolution()
 
     m_ui->solutionLabel->setHidden(false);
     m_frontend->showSetResultButtons(true);
+
+    m_ui->solutionPronunciationLabel->setVisible(m_ui->solutionPronunciationLabel->isEnabled());
+    m_ui->solutionSoundButton->setVisible(m_ui->solutionSoundButton->isEnabled());
 }
 
 void FlashCardModeWidget::setHint(const QVariant& hint)
@@ -107,22 +115,24 @@ QVariant FlashCardModeWidget::userInput()
 
 void FlashCardModeWidget::setQuestionSound(const KUrl& soundUrl)
 {
-
+    m_ui->questionSoundButton->setSoundFile(soundUrl);
 }
 
 void FlashCardModeWidget::setSolutionSound(const KUrl& soundUrl)
 {
-
+    m_ui->solutionSoundButton->setSoundFile(soundUrl);
 }
 
 void FlashCardModeWidget::setSolutionPronunciation(const QString& pronunciationText)
 {
-
+    m_ui->solutionPronunciationLabel->setText('[' + pronunciationText + ']');
+    m_ui->solutionPronunciationLabel->setEnabled(!pronunciationText.isNull());
 }
 
 void FlashCardModeWidget::setQuestionPronunciation(const QString& pronunciationText)
 {
-
+    m_ui->questionPronunciationLabel->setText('[' + pronunciationText + ']');
+    m_ui->questionPronunciationLabel->setEnabled(!pronunciationText.isNull());
 }
 
 #include "flashcardmodewidget.moc"
