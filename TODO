@@ -2,25 +2,62 @@ Things to improve in parley
 ---------------------------
 
 ----------------------------------------------------------------
-Before the release.  These are picked from the ones below.
+Before the freeze (features).  These are picked from the ones below.
+
 
  * Editor
     + indicators in the table for words whether they have an image      ----
       and/or a sound.
 
  * Practice
-    + Enable sound in all practice modes (or at least flashcards)
+    + Enable sound in all practice modes (or at least flashcards)       ----
+       - Flashcards                                                     done
+         https://bugs.kde.org/show_bug.cgi?id=292709
+       - Mixed letters                                                  ----
+       - Multiple choice                                                ----
+       - Example sentences                                              ----
+      Suggestion:
+      Always show the sound button if it's enabled in the practice
+      config and never otherwise. If no sound for this word, disable
+      the sound button instead of hiding it.
+
+ * Wishes from bugzilla
+    + Legend for the statistics                                         ----
+      https://bugs.kde.org/show_bug.cgi?id=228634
+
+ * To investigate
+    + Show pronounciation in the training
+      https://bugs.kde.org/show_bug.cgi?id=150923
+    + Impossible to remove images
+      https://bugs.kde.org/show_bug.cgi?id=263836
+    + Removing grades can lead to misunderstanding
+      https://bugs.kde.org/show_bug.cgi?id=312995
+
+
+----------------------------------------------------------------
+Before the release (bugs).  These are picked from the ones below.
+
+
+ * Misfeatures
+    + There seems to be no way to change the title.                     ----
+      It works in the editor but it is never saved.
+
+ * Bugzilla bugs
+    + ...  (select the most important ones here)
 
  * Release work
     + Update the version!
 
-----------------------------------------------------------------
-Open issues
+
+================================================================
+                            Open issues
+
 
  OVERALL GOAL: 
    Make the program more focussed around the learning process.
    Learning is the purpose of the program. All other functions are
    just to support that goal.
+
 
  * General
     + A library of active collections.
@@ -74,8 +111,10 @@ Open issues
  * Editor
     + indicators in the table for words whether they have an image      ----
       and/or a sound.
-    + Drag & drop for images from other applications
-    + Select whole regions of a table so that you can 
+    + Drag & drop of images from other applications                     ----
+    + Select whole regions of a table so that you can cut&paste them    ----
+      into another parley or something else. Also support paste into
+      lessons of a group of words.
     + Smaller issues                                                    ----
        - Buttons to open/close all lessons (wish in bugzilla)           ----
        - Button to remove all empty lines.
@@ -83,9 +122,9 @@ Open issues
     + Always keep the primary (to be learned) language visible?
 
  * File formats
-    + Allow one image for an entry, not just for a word.
+    + Allow one image for a whole entry, not just for a word.           ----
       After all, all the translations in an entry mean the same thing.
-    + (Big) New container format with kvtml and all the
+    + (Big) New container format with kvtml and all the                 ----
       images/sounds/whatever.  This should be modeled after ODF files
       and use a zip container, manifest, etc.  Lots of code for this
       in Calligra.
@@ -94,7 +133,7 @@ Open issues
 ================================================================
 
 Below is old stuff, most of which is outdated (refers to KDE 4.1).
-We will move appropriate ones up to the current ones above.
+We will move appropriate issues up to the current ones above.
 
 ================================================================
 
