@@ -44,7 +44,7 @@
 </copyright>
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2013-11-10</date>
+<date>2014-02-19</date>
 <releaseinfo>0.9.4 (&kde; SC 4.13)</releaseinfo>
 
 <!-- Abstract about this handbook -->
@@ -1688,7 +1688,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </sect3>
 </sect2>
 <sect2 id="view-tab"><title>View Tab</title> 
-<para>The <guilabel>View Settings</guilabel> allows you to change font and size for the pronunciation symbols, and you can choose the <guilabel>Grade Colors</guilabel> you like best.
+<para>The <guilabel>View Settings</guilabel> allows you to change font and size for the pronunciation symbols, and you can choose the <guilabel>Base color for displaying grades</guilabel> you like best.
 </para>
 <para>
 <screenshot>
