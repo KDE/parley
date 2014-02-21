@@ -78,6 +78,7 @@ Before the release (bugs).  These are picked from the ones below.
       by the data in the selected lessons. This would be better than
       having all of them enabled and popping up a big warning dialog
       when the user starts the practice.
+    + Bigger default font for practice contents
 
  * Practice
     + Enable sound in all practice modes (or at least flashcards)
@@ -122,13 +123,14 @@ Before the release (bugs).  These are picked from the ones below.
     + Always keep the primary (to be learned) language visible?
 
  * File formats
-    + Allow one image for a whole entry, not just for a word.           ----
-      After all, all the translations in an entry mean the same thing.
     + (Big) New container format with kvtml and all the                 ----
       images/sounds/whatever.  This should be modeled after ODF files
       and use a zip container, manifest, etc.  Lots of code for this
       in Calligra.
-    + 
+    + Enhancements in KVTML
+       - Allow one image for a whole entry, not just for a word.           ----
+         After all, all the translations in an entry mean the same thing.
+       - Field for transcription of non-western scripts 
 
 ================================================================
 
