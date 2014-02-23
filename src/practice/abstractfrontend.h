@@ -34,7 +34,8 @@ public:
         MultipleChoice,
         Written,
         Conjugation,
-        Comparison
+        Comparison,
+        ExampleSentence
     };
 
     enum ResultState {

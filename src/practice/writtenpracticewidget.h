@@ -31,7 +31,7 @@ class WrittenPracticeWidget : public Practice::AbstractModeWidget
     Q_OBJECT
 
 public:
-    WrittenPracticeWidget(GuiFrontend *frontend, QWidget *parent = 0);
+    WrittenPracticeWidget(GuiFrontend *frontend, QWidget *parent = 0, bool isExampleSentenceMode = false);
     virtual QVariant userInput();
 
     virtual void setQuestion(const QVariant& question);
@@ -67,6 +67,7 @@ private:
     AbstractFrontend::ResultState m_feedbackState;
     QList<QWidget*> synonymWidgets;
     LatexRenderer *m_latexRenderer;
+    bool isExampleSentenceMode;
 };
 
 }

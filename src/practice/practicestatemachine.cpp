@@ -76,7 +76,7 @@ void PracticeStateMachine::createPracticeMode()
         break;
     case Prefs::EnumPracticeMode::ExampleSentencesPractice:
         kDebug() << "Create Written Practice backend";
-        m_frontend->setMode(AbstractFrontend::Written);
+        m_frontend->setMode(AbstractFrontend::ExampleSentence);
         m_mode = new ExampleSentenceBackendMode(m_options, m_frontend, this, m_testEntryManager, m_document->document());
         break;
     case Prefs::EnumPracticeMode::GenderPractice:

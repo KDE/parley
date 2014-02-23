@@ -108,6 +108,9 @@ void GuiFrontend::setMode(Mode mode)
     case Comparison:
         newWidget = new ComparisonModeWidget(this, m_widget);
         break;
+    case ExampleSentence:
+        newWidget = new WrittenPracticeWidget(this, m_widget, true);
+        break;
     default:
         Q_ASSERT("Practice Mode Invalid" == 0);
     }

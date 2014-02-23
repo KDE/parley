@@ -14,6 +14,7 @@
 #include "multiplechoicemodewidget.h"
 #include "multiplechoicedata.h"
 #include "latexrenderer.h"
+#include "guifrontend.h"
 
 #include "ui_practice_widget_multiplechoice.h"
 
@@ -22,6 +23,7 @@
 #include <QtGui/QRadioButton>
 #include <QTimer>
 #include <QKeyEvent>
+#include <QVBoxLayout>
 
 using namespace Practice;
 
@@ -38,6 +40,8 @@ MultiplechoiceModeWidget::MultiplechoiceModeWidget(GuiFrontend *frontend, QWidge
         addAction(action);
         m_actions.append(action);
     }
+    connect(frontend, SIGNAL(continueAction()), this, SIGNAL(stopAudio()));
+    connect(frontend, SIGNAL(skipAction()), this, SIGNAL(stopAudio()));
 
 }
 
@@ -93,6 +97,10 @@ void MultiplechoiceModeWidget::showQuestion()
     m_choiceButtons[0]->setChecked(false);
     m_choiceButtons[0]->setAutoExclusive(true);
 
+    m_ui->questionPronunciationLabel->setVisible(m_ui->questionPronunciationLabel->isEnabled());
+    m_ui->questionSoundButton->setVisible(true); // TODO: Use Configuration's Sound Enable QCheckbox
+    m_ui->solutionPronunciationLabel->setVisible(false);
+    m_ui->solutionSoundButton->setVisible(false);
     m_ui->feedbackLabel->clear();
 
     foreach(QRadioButton * radio, m_choiceButtons) {
@@ -105,9 +113,12 @@ void MultiplechoiceModeWidget::showQuestion()
 
 void MultiplechoiceModeWidget::setNumberOfRadioButtons(const int numberOfChoices)
 {
+    QVBoxLayout *verticalLayout = new QVBoxLayout();
+    m_ui->gridLayout->addLayout(verticalLayout, 2, 0);
+
     for (int i = 0; i < numberOfChoices; i++) {
         QRadioButton *radio_button = new QRadioButton(this);
-        m_ui->verticalLayout->insertWidget(m_ui->verticalLayout->count() - 1, radio_button);
+        verticalLayout->addWidget(radio_button);
         m_choiceButtons.append(radio_button);
         if (i < 5) {
             connect(m_actions.at(i), SIGNAL(triggered()), radio_button, SLOT(click()));
@@ -173,6 +184,8 @@ void MultiplechoiceModeWidget::showSolution()
     foreach(QRadioButton * radio, m_choiceButtons) {
         radio->setEnabled(false);
     }
+    m_ui->solutionPronunciationLabel->setVisible(m_ui->solutionPronunciationLabel->isEnabled());
+    m_ui->solutionSoundButton->setVisible(true); // TODO: Use Configuration's Sound Enable QCheckbox
 }
 
 QVariant MultiplechoiceModeWidget::userInput()
@@ -189,22 +202,24 @@ QVariant MultiplechoiceModeWidget::userInput()
 
 void MultiplechoiceModeWidget::setQuestionSound(const KUrl& soundUrl)
 {
-
+    m_ui->questionSoundButton->setSoundFile(soundUrl);
 }
 
 void MultiplechoiceModeWidget::setSolutionSound(const KUrl& soundUrl)
 {
-
+    m_ui->solutionSoundButton->setSoundFile(soundUrl);
 }
 
 void MultiplechoiceModeWidget::setSolutionPronunciation(const QString& pronunciationText)
 {
-
+    m_ui->solutionPronunciationLabel->setText('[' + pronunciationText + ']');
+    m_ui->solutionPronunciationLabel->setEnabled(!pronunciationText.isNull());
 }
 
 void MultiplechoiceModeWidget::setQuestionPronunciation(const QString& pronunciationText)
 {
-
+    m_ui->questionPronunciationLabel->setText('[' + pronunciationText + ']');
+    m_ui->questionPronunciationLabel->setEnabled(!pronunciationText.isNull());
 }
 
 #include "multiplechoicemodewidget.moc"

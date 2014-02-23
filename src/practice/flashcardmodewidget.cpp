@@ -26,6 +26,8 @@ FlashCardModeWidget::FlashCardModeWidget(GuiFrontend *frontend, QWidget* parent)
 {
     m_ui = new Ui::FlashCardPracticeWidget();
     m_ui->setupUi(this);
+    connect(frontend, SIGNAL(continueAction()), this, SIGNAL(stopAudio()));
+    connect(frontend, SIGNAL(skipAction()), this, SIGNAL(stopAudio()));
 }
 
 void FlashCardModeWidget::setQuestionFont(const QFont& font)
@@ -58,7 +60,7 @@ void FlashCardModeWidget::showQuestion()
     m_frontend->showSetResultButtons(false);
 
     m_ui->questionPronunciationLabel->setVisible(m_ui->questionPronunciationLabel->isEnabled());
-    m_ui->questionSoundButton->setVisible(m_ui->questionSoundButton->isEnabled());
+    m_ui->questionSoundButton->setVisible(true); // TODO: Use Configuration's Sound Enable QCheckbox
     m_ui->solutionPronunciationLabel->setVisible(false);
     m_ui->solutionSoundButton->setVisible(false);
 }
@@ -98,7 +100,7 @@ void FlashCardModeWidget::showSolution()
     m_frontend->showSetResultButtons(true);
 
     m_ui->solutionPronunciationLabel->setVisible(m_ui->solutionPronunciationLabel->isEnabled());
-    m_ui->solutionSoundButton->setVisible(m_ui->solutionSoundButton->isEnabled());
+    m_ui->solutionSoundButton->setVisible(true); // TODO: Use Configuration's Sound Enable QCheckbox
 }
 
 void FlashCardModeWidget::setHint(const QVariant& hint)

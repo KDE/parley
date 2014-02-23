@@ -23,17 +23,20 @@
 #include <kcolorscheme.h>
 
 #include <QTimer>
+#include <QDebug>
 
 using namespace Practice;
 
-WrittenPracticeWidget::WrittenPracticeWidget(GuiFrontend *frontend, QWidget *parent)
+WrittenPracticeWidget::WrittenPracticeWidget(GuiFrontend *frontend, QWidget *parent, bool isExampleSentenceMode)
     : AbstractModeWidget(frontend, parent), m_latexRenderer(0)
 {
     m_ui = new Ui::WrittenPracticeWidget();
     m_ui->setupUi(this);
     m_ui->mixedSolutionLabel->setVisible(false);
+    this->isExampleSentenceMode = isExampleSentenceMode;
     connect(m_ui->answerEdit, SIGNAL(returnPressed()), this, SLOT(continueClicked()));
     connect(frontend, SIGNAL(continueAction()), this, SIGNAL(stopAudio()));
+    connect(frontend, SIGNAL(skipAction()), this, SIGNAL(stopAudio()));
 }
 
 
@@ -88,8 +91,13 @@ void WrittenPracticeWidget::showQuestion()
     }
     synonymWidgets.clear();
 
-    m_ui->questionPronunciationLabel->setVisible(m_ui->questionPronunciationLabel->isEnabled());
-    m_ui->questionSoundButton->setVisible(m_ui->questionSoundButton->isEnabled());
+    if (isExampleSentenceMode == false) {
+        m_ui->questionPronunciationLabel->setVisible(m_ui->questionPronunciationLabel->isEnabled());
+        m_ui->questionSoundButton->setVisible(true); // TODO: Use Configuration's Sound Enable QCheckbox
+    } else {
+        m_ui->questionPronunciationLabel->setVisible(false);
+        m_ui->questionSoundButton->setVisible(false);
+    }
     m_ui->solutionPronunciationLabel->setVisible(false);
     m_ui->solutionSoundButton->setVisible(false);
 }
@@ -111,7 +119,7 @@ void WrittenPracticeWidget::showSolution()
     m_ui->solutionLabel->setPalette(m_correctPalette);
 
     m_ui->solutionPronunciationLabel->setVisible(m_ui->solutionPronunciationLabel->isEnabled());
-    m_ui->solutionSoundButton->setVisible(m_ui->solutionSoundButton->isEnabled());
+    m_ui->solutionSoundButton->setVisible(true); // TODO: Use Configuration's Sound Enable QCheckbox
 }
 
 void WrittenPracticeWidget::setSynonym(const QString &synonym)
