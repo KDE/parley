@@ -1,7 +1,8 @@
-Things to improve in parley
----------------------------
+                     Things to improve in parley
+                     ---------------------------
 
-----------------------------------------------------------------
+
+================================================================
 Before the freeze (features).  These are picked from the ones below.
 
 
@@ -25,6 +26,12 @@ Before the freeze (features).  These are picked from the ones below.
     + Legend for the statistics                                         ----
       https://bugs.kde.org/show_bug.cgi?id=228634
 
+ * Bugs from bugzilla   
+    + Vocabulary does not expire                                        ----
+      https://bugs.kde.org/show_bug.cgi?id=261396
+    + Synonyms are not checked case-insensitively
+      https://bugs.kde.org/show_bug.cgi?id=302733
+
  * To investigate
     + Show pronounciation in the training
       https://bugs.kde.org/show_bug.cgi?id=150923
@@ -41,6 +48,7 @@ Before the release (bugs).  These are picked from the ones below.
  * Misfeatures
     + There seems to be no way to change the title.                     ----
       It works in the editor but it is never saved.
+      Note: It can be changed in the menu, though.
 
  * Bugzilla bugs
     + ...  (select the most important ones here)
