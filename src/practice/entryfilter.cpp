@@ -375,9 +375,14 @@ void EntryFilter::cleanupInvalid()
 
     QSet<KEduVocExpression*>::iterator i = m_entries.begin();
     while (i != m_entries.end()) {
+        KEduVocTranslation  *fromTranslation = (*i)->translation(m_fromTranslation);
+        KEduVocTranslation  *toTranslation = (*i)->translation(m_toTranslation);
+
         // remove empty entries
-        if ((*i)->translation(m_toTranslation)->text().isEmpty()
-                || (*i)->translation(m_fromTranslation)->text().isEmpty()) {
+        if (   (fromTranslation->text().isEmpty()
+                && (!Prefs::allowImageInsteadOfWord()
+                    && fromTranslation->imageUrl().isEmpty()))
+            || toTranslation->text().isEmpty() ) {
             i = m_entries.erase(i);
             continue;
         }

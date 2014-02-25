@@ -11,26 +11,24 @@ Before the freeze (features).  These are picked from the ones below.
       and/or a sound.
 
  * Practice
-    + Enable sound in all practice modes (or at least flashcards)       ----
+    + Enable sound in all practice modes (or at least flashcards)       Done
        - Flashcards                                                     done
          https://bugs.kde.org/show_bug.cgi?id=292709
-       - Mixed letters                                                  ----
-       - Multiple choice                                                ----
-       - Example sentences                                              ----
+       - Mixed letters                                                  done
+       - Multiple choice                                                done
+       - Example sentences                                              done
       Suggestion:
       Always show the sound button if it's enabled in the practice
       config and never otherwise. If no sound for this word, disable
       the sound button instead of hiding it.
+      Check: https://bugs.kde.org/show_bug.cgi?id=263835
 
  * Wishes from bugzilla
     + Legend for the statistics                                         ----
       https://bugs.kde.org/show_bug.cgi?id=228634
-
- * Bugs from bugzilla   
-    + Vocabulary does not expire                                        ----
-      https://bugs.kde.org/show_bug.cgi?id=261396
-    + Synonyms are not checked case-insensitively
-      https://bugs.kde.org/show_bug.cgi?id=302733
+    + Use images instead of words in flashcards                         Done
+      https://bugs.kde.org/show_bug.cgi?id=281120
+      https://bugs.kde.org/show_bug.cgi?id=168672 (← Check this one)
 
  * To investigate
     + Show pronounciation in the training
@@ -51,7 +49,10 @@ Before the release (bugs).  These are picked from the ones below.
       Note: It can be changed in the menu, though.
 
  * Bugzilla bugs
-    + ...  (select the most important ones here)
+    + Vocabulary does not expire                                        ----
+      https://bugs.kde.org/show_bug.cgi?id=261396
+    + Synonyms are not checked case-insensitively
+      https://bugs.kde.org/show_bug.cgi?id=302733
 
  * Release work
     + Update the version!

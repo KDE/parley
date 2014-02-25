@@ -28,7 +28,12 @@ bool AbstractBackendMode::setTestEntry(TestEntry* current)
 {
     m_current = current;
     // this default implementation sets up the frontend with the normal word
-    m_frontend->setQuestion(m_current->entry()->translation(m_practiceOptions.languageFrom())->text());
+    KEduVocTranslation *translation = m_current->entry()->translation(m_practiceOptions.languageFrom());
+    if (!translation->text().isEmpty()) {
+        m_frontend->setQuestion(translation->text());
+    } else if (!translation->imageUrl().isEmpty()) {
+        m_frontend->setQuestion(translation->imageUrl());
+    }
     m_frontend->setSolution(m_current->entry()->translation(m_practiceOptions.languageTo())->text());
     m_frontend->setQuestionSound(m_current->entry()->translation(m_practiceOptions.languageFrom())->soundUrl());
     m_frontend->setSolutionSound(m_current->entry()->translation(m_practiceOptions.languageTo())->soundUrl());

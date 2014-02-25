@@ -15,6 +15,8 @@
 
 #include "ui_practice_widget_flashcard.h"
 
+#include <KUrl>
+
 #include "guifrontend.h"
 #include "latexrenderer.h"
 
@@ -49,7 +51,19 @@ void FlashCardModeWidget::setQuestion(const QVariant& question)
             m_questionLatexRenderer->setResultLabel(m_ui->questionLabel);
         }
         m_questionLatexRenderer->renderLatex(question.toString());
+    } else if (question.canConvert<KUrl>()) {
+        // A KUrl means an image.
+        QPixmap pixmap(question.value<KUrl>().path());
+        if (pixmap.isNull()) {
+            // Couldn't create the pixmap from the path.  This should not happen!
+            // FIXME: Do something here (the line below is stolen from guifrontend.cpp
+            //m_ui->questionLabel->setPixmap(m_themedBackgroundRenderer->getPixmapForId("image-placeholder", QSize(150, 150)));
+        } else {
+            m_ui->questionLabel->setPixmap(pixmap.scaled(m_ui->questionLabel->size(),
+                                                         Qt::KeepAspectRatio ));
+        }
     } else {
+        // A normal text.
         m_ui->questionLabel->setText(question.toString());
     }
 }
