@@ -56,6 +56,7 @@
 #include <QtGui/QHeaderView>
 #include <QtGui/QMenu>
 #include <QtGui/QStackedWidget>
+#include <QScrollArea>
 
 using namespace Editor;
 
@@ -195,7 +196,10 @@ void EditorWindow::initDockWidgets()
     QDockWidget *inflectionDock = new QDockWidget(i18n("Inflection (verbs, adjectives, nouns)"), this);
     inflectionDock->setObjectName("InflectionDock");
     m_inflectionWidget = new InflectionWidget(this);
-    inflectionDock->setWidget(m_inflectionWidget);
+    QScrollArea *inflectionScrollArea = new QScrollArea(this);
+    inflectionScrollArea->setWidgetResizable(true);
+    inflectionScrollArea->setWidget(m_inflectionWidget);
+    inflectionDock->setWidget(inflectionScrollArea);
     addDockWidget(Qt::RightDockWidgetArea, inflectionDock);
     m_dockWidgets.append(inflectionDock);
     actionCollection()->addAction("show_inflection_dock", inflectionDock->toggleViewAction());
@@ -208,19 +212,26 @@ void EditorWindow::initDockWidgets()
     QDockWidget *comparisonDock = new QDockWidget(i18n("Comparison forms"), this);
     comparisonDock->setObjectName("ComparisonDock");
     m_comparisonWidget = new ComparisonWidget(this);
-    comparisonDock->setWidget(m_comparisonWidget);
+    QScrollArea *comparisonScrollArea = new QScrollArea(this);
+    comparisonScrollArea->setWidgetResizable(true);
+    comparisonScrollArea->setWidget(m_comparisonWidget);
+    inflectionDock->setWidget(comparisonScrollArea);
     addDockWidget(Qt::RightDockWidgetArea, comparisonDock);
     m_dockWidgets.append(comparisonDock);
     actionCollection()->addAction("show_comparison_dock", comparisonDock->toggleViewAction());
     comparisonDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
             m_comparisonWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+    tabifyDockWidget(comparisonDock,inflectionDock);
 
 // Multiple choice
     QDockWidget *multipleChoiceDock = new QDockWidget(i18n("Multiple Choice"), this);
     multipleChoiceDock->setObjectName("MultipleChoiceDock");
     MultipleChoiceWidget *multipleChoiceWidget = new MultipleChoiceWidget(this);
-    multipleChoiceDock->setWidget(multipleChoiceWidget);
+    QScrollArea *multipleChoiceScrollArea = new QScrollArea(this);
+    multipleChoiceScrollArea->setWidgetResizable(true);
+    multipleChoiceScrollArea->setWidget(multipleChoiceWidget);
+    multipleChoiceDock->setWidget(multipleChoiceScrollArea);
     addDockWidget(Qt::RightDockWidgetArea, multipleChoiceDock);
     m_dockWidgets.append(multipleChoiceDock);
     actionCollection()->addAction("show_multiplechoice_dock", multipleChoiceDock->toggleViewAction());
@@ -232,7 +243,10 @@ void EditorWindow::initDockWidgets()
     QDockWidget *synonymDock = new QDockWidget(i18n("Synonyms"), this);
     synonymDock->setObjectName("SynonymDock");
     SynonymWidget *synonymWidget = new SynonymWidget(SynonymWidget::Synonym, this);
-    synonymDock->setWidget(synonymWidget);
+    QScrollArea *synonymScrollArea = new QScrollArea(this);
+    synonymScrollArea->setWidgetResizable(true);
+    synonymScrollArea->setWidget(synonymWidget);
+    synonymDock->setWidget(synonymScrollArea);
     addDockWidget(Qt::RightDockWidgetArea, synonymDock);
     m_dockWidgets.append(synonymDock);
     actionCollection()->addAction("show_synonym_dock", synonymDock->toggleViewAction());
@@ -243,31 +257,42 @@ void EditorWindow::initDockWidgets()
     QDockWidget *antonymDock = new QDockWidget(i18n("Antonyms"), this);
     antonymDock->setObjectName("AntonymDock");
     SynonymWidget *antonymWidget = new SynonymWidget(SynonymWidget::Antonym, this);
-    antonymDock->setWidget(antonymWidget);
+    QScrollArea *antonymScrollArea = new QScrollArea(this);
+    antonymScrollArea->setWidgetResizable(true);
+    antonymScrollArea->setWidget(antonymWidget);
+    antonymDock->setWidget(antonymScrollArea);
     addDockWidget(Qt::RightDockWidgetArea, antonymDock);
     m_dockWidgets.append(antonymDock);
     actionCollection()->addAction("show_antonym_dock", antonymDock->toggleViewAction());
     antonymDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
             antonymWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+    tabifyDockWidget(synonymDock,antonymDock);
 
     QDockWidget *falseFriendDock = new QDockWidget(i18n("False Friends"), this);
     falseFriendDock->setObjectName("FalseFriendDock");
     SynonymWidget *falseFriendWidget = new SynonymWidget(SynonymWidget::FalseFriend, this);
-    falseFriendDock->setWidget(falseFriendWidget);
+    QScrollArea *falseFriendScrollArea = new QScrollArea(this);
+    falseFriendScrollArea->setWidgetResizable(true);
+    falseFriendScrollArea->setWidget(falseFriendWidget);
+    falseFriendDock->setWidget(falseFriendScrollArea);
     addDockWidget(Qt::RightDockWidgetArea, falseFriendDock);
     m_dockWidgets.append(falseFriendDock);
     actionCollection()->addAction("show_falsefriend_dock", falseFriendDock->toggleViewAction());
     falseFriendDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
             falseFriendWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+    tabifyDockWidget(antonymDock,falseFriendDock);
 
 // Pronunciation symbols - Use KCharSelect
     QDockWidget *charSelectDock = new QDockWidget(i18n("Phonetic Symbols"), this);
     charSelectDock->setObjectName("IPADock");
     KCharSelect *charSelectWidget = new KCharSelect(this, 0, KCharSelect::SearchLine | KCharSelect::BlockCombos | KCharSelect::CharacterTable);
     charSelectWidget->setCurrentChar(0x0250);
-    charSelectDock->setWidget(charSelectWidget);
+    QScrollArea *charSelectScrollArea = new QScrollArea(this);
+    charSelectScrollArea->setWidgetResizable(true);
+    charSelectScrollArea->setWidget(charSelectWidget);
+    charSelectDock->setWidget(charSelectScrollArea);
     addDockWidget(Qt::BottomDockWidgetArea, charSelectDock);
     m_dockWidgets.append(charSelectDock);
     actionCollection()->addAction("show_pronunciation_dock", charSelectDock->toggleViewAction());
@@ -278,20 +303,27 @@ void EditorWindow::initDockWidgets()
     QDockWidget *imageDock = new QDockWidget(i18n("Image"), this);
     imageDock->setObjectName("ImageDock");
     ImageChooserWidget *imageChooserWidget = new ImageChooserWidget(this);
-    imageDock->setWidget(imageChooserWidget);
+    QScrollArea *imageScrollArea = new QScrollArea(this);
+    imageScrollArea->setWidgetResizable(true);
+    imageScrollArea->setWidget(imageChooserWidget);
+    imageDock->setWidget(imageScrollArea);
     addDockWidget(Qt::RightDockWidgetArea, imageDock);
     m_dockWidgets.append(imageDock);
     actionCollection()->addAction("show_image_dock", imageDock->toggleViewAction());
     imageDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
             imageChooserWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+    tabifyDockWidget(multipleChoiceDock,imageDock);
 
 // Summary word
     QDockWidget *summaryDock = new QDockWidget(i18n("Summary"), this);
     summaryDock->setObjectName("SummaryDock");
     m_summaryWordWidget = new SummaryWordWidget(m_vocabularyFilter, m_mainWindow->parleyDocument()->document(), this);
-    summaryDock->setWidget(m_summaryWordWidget);
-    addDockWidget(Qt::RightDockWidgetArea, summaryDock);
+    QScrollArea *summaryScrollArea = new QScrollArea(this);
+    summaryScrollArea->setWidgetResizable(true);
+    summaryScrollArea->setWidget(m_summaryWordWidget);
+    summaryDock->setWidget(summaryScrollArea);
+    addDockWidget(Qt::BottomDockWidgetArea, summaryDock);
     actionCollection()->addAction("show_summary_dock", summaryDock->toggleViewAction());
     summaryDock->setVisible(false);
     m_dockWidgets.append(summaryDock);
@@ -302,38 +334,50 @@ void EditorWindow::initDockWidgets()
     QDockWidget *audioDock = new QDockWidget(i18n("Sound"), this);
     audioDock->setObjectName("AudioDock");
     AudioWidget *audioWidget = new AudioWidget(this);
-    audioDock->setWidget(audioWidget);
+    QScrollArea *audioScrollArea = new QScrollArea(this);
+    audioScrollArea->setWidgetResizable(true);
+    audioScrollArea->setWidget(audioWidget);
+    audioDock->setWidget(audioScrollArea);
     addDockWidget(Qt::RightDockWidgetArea, audioDock);
     m_dockWidgets.append(audioDock);
     actionCollection()->addAction("show_audio_dock", audioDock->toggleViewAction());
     audioDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
             audioWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+    tabifyDockWidget(imageDock,audioDock);
 
 // browser
     QDockWidget *browserDock = new QDockWidget(i18n("Internet"), this);
     browserDock->setObjectName("BrowserDock");
     //TinyWebBrowser *browserWidget = new TinyWebBrowser(this);
     BrowserWidget *htmlPart = new BrowserWidget(browserDock);
-    browserDock->setWidget(htmlPart);
-    addDockWidget(Qt::RightDockWidgetArea, browserDock);
+    QScrollArea *browserScrollArea = new QScrollArea(this);
+    browserScrollArea->setWidgetResizable(true);
+    browserScrollArea->setWidget(htmlPart);
+    browserDock->setWidget(browserScrollArea);
+    addDockWidget(Qt::BottomDockWidgetArea, browserDock);
     m_dockWidgets.append(browserDock);
     actionCollection()->addAction("show_browser_dock", browserDock->toggleViewAction());
     browserDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
             htmlPart, SLOT(setTranslation(KEduVocExpression*, int)));
+    tabifyDockWidget(summaryDock,browserDock);
 
 // LaTeX
     QDockWidget *latexDock = new QDockWidget(i18n("LaTeX"), this);
     latexDock->setObjectName("LatexDock");
     m_latexWidget = new LatexWidget(m_vocabularyFilter, m_mainWindow->parleyDocument()->document(), this);
-    latexDock->setWidget(m_latexWidget);
+    QScrollArea *latexScrollArea = new QScrollArea(this);
+    latexScrollArea->setWidgetResizable(true);
+    latexScrollArea->setWidget(m_latexWidget);
+    latexDock->setWidget(latexScrollArea);
     addDockWidget(Qt::RightDockWidgetArea, latexDock);
     actionCollection()->addAction("show_latex_dock", latexDock->toggleViewAction());
     latexDock->setVisible(false);
     m_dockWidgets.append(latexDock);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
             m_latexWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+    tabifyDockWidget(audioDock,latexDock);
 
 // Grades
 //     QDockWidget *gradeDock = new QDockWidget(i18n("Grade"), this);
