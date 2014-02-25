@@ -192,11 +192,13 @@ void StatisticsMainWindow::initLanguages()
 
 void StatisticsMainWindow::languagesChanged()
 {
-    int questionLanguage;
-    int solutionLangauge;
     QListWidgetItem* current = m_ui->languageList->currentItem();
-    questionLanguage = current->data(Qt::UserRole).toInt();
-    solutionLangauge = current->data(Qt::UserRole + 1).toInt();
+    if (!current) {
+        return;
+    }
+
+    int questionLanguage = current->data(Qt::UserRole).toInt();
+    int solutionLangauge = current->data(Qt::UserRole + 1).toInt();
     Prefs::setQuestionLanguage(questionLanguage);
     Prefs::setSolutionLanguage(solutionLangauge);
     emit languagesChanged(questionLanguage, solutionLangauge);
