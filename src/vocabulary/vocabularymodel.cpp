@@ -181,6 +181,10 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
         return QVariant();
     case LocaleRole:
         return QVariant(m_document->identifier(translationId).locale());
+    case AudioRole:
+        return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->soundUrl());
+    case ImageRole:
+        return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->imageUrl());
     case EntryRole: {
         QVariant v;
         v.setValue(m_container->entry(index.row(), m_recursive));

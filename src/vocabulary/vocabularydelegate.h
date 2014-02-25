@@ -32,16 +32,41 @@ class VocabularyDelegate : public QItemDelegate
 {
     Q_OBJECT
 public:
+    enum entryColumns {
+        Translation = 0,
+        Pronunciation,
+        WordType,
+        Synonym,
+        Antonym,
+        Example,
+        Comment,
+        Paraphrase,
+//         Audio,
+//         Image,
+        EntryColumnsMAX
+    };
+
     VocabularyDelegate(QObject *parent = 0);
 
     QWidget * createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
     void setEditorData(QWidget *editor, const QModelIndex &index) const;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
     void setTranslator(Translator * translator);
 
+    static int columnType(int column);
+
+    bool hasAudio(const QModelIndex &index) const;
+    bool hasImage(const QModelIndex &index) const;
+    QString audioUrl(const QModelIndex &index) const;
+    QString imageUrl(const QModelIndex &index) const;
+    QPolygon audioPolygon(const QStyleOptionViewItem &option) const;
+    QPolygon imagePolygon(const QStyleOptionViewItem &option) const;
+
 public slots:
     void setDocument(KEduVocDocument *doc);
+    bool helpEvent(QHelpEvent *event, QAbstractItemView *view, const QStyleOptionViewItem &option, const QModelIndex &index );
 
 private:
     KEduVocDocument *m_doc;

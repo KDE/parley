@@ -33,7 +33,7 @@
 #include <QHeaderView>
 #include <QDBusInterface>
 #include <QKeyEvent>
-
+#include <QtGui>
 
 using namespace Editor;
 
@@ -145,6 +145,100 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
         return editor;
     }
     }
+}
+
+bool VocabularyDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, const QStyleOptionViewItem &option, const QModelIndex &index)
+{
+    if (event->type() == QEvent::ToolTip) {
+        QPainterPath audioPainterPath;
+        QPainterPath imagePainterPath;
+        audioPainterPath.addPolygon(audioPolygon(option));
+        imagePainterPath.addPolygon(imagePolygon(option));
+
+        int column = columnType(index.column());
+
+        if (audioPainterPath.contains(event->pos()) && hasAudio(index) && (column == Translation || column == Pronunciation)) {
+            QToolTip::showText(event->globalPos(), "Sound file selected: " + audioUrl(index));
+        }
+        else if (imagePainterPath.contains(event->pos()) && hasImage(index) && (column == Translation || column == Pronunciation)) {
+            QToolTip::showText(event->globalPos(), "Image file selected: " + imageUrl(index));
+        }
+        else {
+            QToolTip::hideText();
+            event->ignore();
+        }
+        return true;
+    }
+    return false;
+}
+
+QPolygon VocabularyDelegate::audioPolygon(const QStyleOptionViewItem &option) const
+{
+    QRect rect = option.rect;
+    QPolygon polygon;
+    polygon << QPoint(rect.x() + rect.width() - 10, rect.y());
+    polygon << QPoint(rect.x() + rect.width(), rect.y());
+    polygon << QPoint(rect.x() + rect.width(), rect.y() + 10);
+    return polygon;
+}
+
+QPolygon VocabularyDelegate::imagePolygon(const QStyleOptionViewItem &option) const
+{
+    QRect rect = option.rect;
+    QPolygon polygon;
+    polygon << QPoint(rect.x() + rect.width() - 10, rect.y() + rect.height());
+    polygon << QPoint(rect.x() + rect.width(), rect.y() + rect.height());
+    polygon << QPoint(rect.x() + rect.width(), rect.y() + rect.height() - 10);
+    return polygon;
+}
+
+bool VocabularyDelegate::hasAudio(const QModelIndex &index) const
+{
+    return !audioUrl(index).isEmpty();
+}
+
+bool VocabularyDelegate::hasImage(const QModelIndex &index) const
+{
+    return !imageUrl(index).isEmpty();
+}
+
+QString VocabularyDelegate::audioUrl(const QModelIndex &index) const
+{
+    QVariant audioVar = index.data(VocabularyModel::AudioRole);
+    QString audioUrl = audioVar.toString();
+    return audioUrl;
+}
+
+QString VocabularyDelegate::imageUrl(const QModelIndex &index) const
+{
+    QVariant imageVar = index.data(VocabularyModel::ImageRole);
+    QString imageUrl = imageVar.toString();
+    return imageUrl;
+}
+
+int VocabularyDelegate::columnType(int column)
+{
+    return column % EntryColumnsMAX;
+}
+
+void VocabularyDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+    QItemDelegate::paint(painter, option, index);
+    painter->save();
+
+    int column = columnType(index.column());
+
+    if (hasAudio(index) == true && (column == Translation || column == Pronunciation)) {
+        painter->setPen(QPen(Qt::red));
+        painter->setBrush(QBrush(Qt::red));
+        painter->drawPolygon(audioPolygon(option));
+    }
+    if (hasImage(index) == true && (column == Translation || column == Pronunciation)) {
+        painter->setPen(QPen(Qt::blue));
+        painter->setBrush(QBrush(Qt::blue));
+        painter->drawPolygon(imagePolygon(option));
+    }
+    painter->restore();
 }
 
 void VocabularyDelegate::setEditorData(QWidget * editor, const QModelIndex & index) const
