@@ -12,23 +12,18 @@ Before the freeze (features).  These are picked from the ones below.
 
  * Practice
     + Enable sound in all practice modes (or at least flashcards)       Done
-       - Flashcards                                                     done
-         https://bugs.kde.org/show_bug.cgi?id=292709
-       - Mixed letters                                                  done
-       - Multiple choice                                                done
-       - Example sentences                                              done
+      https://bugs.kde.org/show_bug.cgi?id=263835
       Suggestion:
       Always show the sound button if it's enabled in the practice
       config and never otherwise. If no sound for this word, disable
       the sound button instead of hiding it.
-      Check: https://bugs.kde.org/show_bug.cgi?id=263835
 
  * Wishes from bugzilla
     + Legend for the statistics                                         ----
       https://bugs.kde.org/show_bug.cgi?id=228634
     + Use images instead of words in flashcards                         Done
       https://bugs.kde.org/show_bug.cgi?id=281120
-      https://bugs.kde.org/show_bug.cgi?id=168672 (← Check this one)
+      https://bugs.kde.org/show_bug.cgi?id=168672
 
  * To investigate
     + Show pronounciation in the training
@@ -37,6 +32,8 @@ Before the freeze (features).  These are picked from the ones below.
       https://bugs.kde.org/show_bug.cgi?id=263836
     + Removing grades can lead to misunderstanding
       https://bugs.kde.org/show_bug.cgi?id=312995
+    + Vocabulary does not expire after a given time
+      https://bugs.kde.org/show_bug.cgi?id=261396
 
 
 ----------------------------------------------------------------
