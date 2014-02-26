@@ -7,7 +7,7 @@ Before the freeze (features).  These are picked from the ones below.
 
 
  * Editor
-    + indicators in the table for words whether they have an image      ----
+    + indicators in the table for words whether they have an image      Done
       and/or a sound.
 
  * Practice
@@ -19,7 +19,7 @@ Before the freeze (features).  These are picked from the ones below.
       the sound button instead of hiding it.
 
  * Wishes from bugzilla
-    + Legend for the statistics                                         ----
+    + Legend for the statistics                                         Done
       https://bugs.kde.org/show_bug.cgi?id=228634
     + Use images instead of words in flashcards                         Done
       https://bugs.kde.org/show_bug.cgi?id=281120
@@ -63,7 +63,7 @@ Before the release (bugs).
                             Open issues
 
 
- OVERALL GOAL: 
+ OVERALL GOAL:
    Make the program more focussed around the learning process.
    Learning is the purpose of the program. All other functions are
    just to support that goal.
@@ -78,7 +78,7 @@ Before the release (bugs).
     + A dashboard where you can see the status of your learning.
       It should contain info on all your active collections or lessons
       with how many cards they have, your learning status (percentage)
-      and how many cards are due to practice right now. 
+      and how many cards are due to practice right now.
       See thaipod101.com for this.
 
  * Usability
@@ -104,7 +104,7 @@ Before the release (bugs).
       know the words well.  Alternatively skip the concept of boxes
       altogether and have a purely time based system (which the
       leitner boxes are trying to emulate anyway).
-      thaipod101.com uses this system and it works very well. 
+      thaipod101.com uses this system and it works very well.
     + Sessions.  A session is a byte sized part of a lesson containing
       maybe 10-20 questions. It is automatically generated when the
       user starts to practice a lesson and is never saved anywhere.
@@ -140,7 +140,7 @@ Before the release (bugs).
     + Enhancements in KVTML
        - Allow one image for a whole entry, not just for a word.           ----
          After all, all the translations in an entry mean the same thing.
-       - Field for transcription of non-western scripts 
+       - Field for transcription of non-western scripts
 
 ================================================================
 
