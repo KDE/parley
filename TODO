@@ -25,6 +25,11 @@ Before the freeze (features).  These are picked from the ones below.
       https://bugs.kde.org/show_bug.cgi?id=281120
       https://bugs.kde.org/show_bug.cgi?id=168672
 
+
+----------------------------------------------------------------
+Before the release (bugs).
+
+
  * To investigate
     + Show pronounciation in the training
       https://bugs.kde.org/show_bug.cgi?id=150923
@@ -35,17 +40,16 @@ Before the freeze (features).  These are picked from the ones below.
     + Vocabulary does not expire after a given time
       https://bugs.kde.org/show_bug.cgi?id=261396
 
-
-----------------------------------------------------------------
-Before the release (bugs).  These are picked from the ones below.
-
+ * All crashes
+    + parley crash when opening csv files                               ----
+      https://bugs.kde.org/show_bug.cgi?id=268241
 
  * Misfeatures
     + There seems to be no way to change the title.                     ----
       It works in the editor but it is never saved.
       Note: It can be changed in the menu, though.
 
- * Bugzilla bugs
+ * Normal bugzilla bugs
     + Vocabulary does not expire                                        ----
       https://bugs.kde.org/show_bug.cgi?id=261396
     + Synonyms are not checked case-insensitively
