@@ -49,8 +49,16 @@ int main(int argc, char* argv[])
                          "http://edu.kde.org/parley",
                          "submit@bugs.kde.org");
 
+    aboutData.addAuthor(ki18n("Inge Wallin"),
+                        ki18n("Developer and Co-maintainer"),
+                        "inge@lysator.liu.se");
+
+    aboutData.addAuthor(ki18n("Amarvir Singh"),
+                        ki18n("Developer and Co-maintainer"),
+                        "amarvir.ammu.93@gmail.com");
+
     aboutData.addAuthor(ki18n("Frederik Gladhorn"),
-                        ki18n("Developer and maintainer"),
+                        ki18n("Developer, former maintainer"),
                         "gladhorn@kde.org");
 
     aboutData.addAuthor(ki18n("Daniel Laidig"),
