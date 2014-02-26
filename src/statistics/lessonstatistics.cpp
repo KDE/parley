@@ -90,11 +90,65 @@ protected:
 };
 
 
+class LessonStatisticsHeader : public QHeaderView
+{
+public:
+    LessonStatisticsHeader(Qt::Orientation orientation, QWidget *parent = 0) : QHeaderView(orientation, parent)
+    {
+    }
+
+protected:
+    void paintSection(QPainter *painter, const QRect &rect, int logicalIndex) const
+    {
+        painter->save();
+        QHeaderView::paintSection(painter, rect, logicalIndex);
+        painter->restore();
+
+        if (logicalIndex >= 2) {
+            QRect roundedRect(rect.x() + (rect.width() / 2) - 160, rect.y() + 10, 320, 30);
+            roundedRect.adjust(1, 1, -1, -1);
+            QPainterPath roundedPath;
+            roundedPath.addRoundedRect(roundedRect, 2.0, 2.0);
+
+            for (int i = 7; i >= 0; i--) {
+                QRectF barElement(rect.x() + (rect.width() / 2) - 160 + (7 - i) * 40, rect.y() + 10, 40, 30);
+                QPainterPath barElementPath;
+                barElementPath.addRect(barElement);
+                QPainterPath barElementIntersectedPath = roundedPath.intersected(barElementPath);
+                QColor color = Prefs::gradeColor();
+                color.setAlpha(255 - (7 - i) * 35);
+                if (i != 0) {
+                    painter->setBrush(QBrush(color));
+                } else {
+                    painter->setBrush(QBrush(QColor(255, 255, 255, 0)));
+                }
+                painter->drawPath(barElementIntersectedPath);
+            }
+
+            painter->setPen(Qt::black);
+            painter->drawText(QRect(rect.x() + (rect.width() / 2) - 240, rect.y() + 10, 100, 40), Qt::AlignLeft | Qt::AlignVCenter, i18nc("adjective, The word has been properly and fully learned by the user","Fully learned"));
+            painter->drawText(QRect(rect.x() + (rect.width() / 2) + 170, rect.y() + 10, 100, 40), Qt::AlignLeft | Qt::AlignVCenter, i18nc("adjective, The word has not even been practiced once by the user","Not practiced"));
+        }
+    }
+
+    QSize sizeHint() const
+    {
+        // Get the base implementation size.
+        QSize baseSize = QHeaderView::sizeHint();
+        // Override the height with a custom value.
+        baseSize.setHeight(50);
+        return baseSize;
+    }
+};
+
 
 LessonStatisticsView::LessonStatisticsView(QWidget *parent)
     : ContainerView(parent)
 {
+    LessonStatisticsHeader *lessonStatisticsHeader = new LessonStatisticsHeader(Qt::Horizontal, this);
+    setHeader(lessonStatisticsHeader);
     header()->setVisible(true);
+    header()->setDefaultAlignment(Qt::AlignLeft | Qt::AlignBottom);
 
     // inherits context menu policy - so action will show up in right click menu
     KAction *removeGradesAction = new KAction(this);
