@@ -552,7 +552,7 @@ limited to language learning but supports a multitude of subjects.
 <sect2 id="reset-practice-to-initial-state"><title>Reset Practice to Initial State</title> 
 <para>You can reset all your practice scores (remove the grades) to the initial state. When being in edit mode select <guilabel>Edit</guilabel> from the menubar and then <guilabel>Remove Grades</guilabel>.
 </para>
-<para>Furthermore you can reset your grades for individual lessons from within the <guilabel>Practice Setup</guilabel> by right clicking on the lesson to reset and choose <guilabel>Remove Grades</guilabel> or by choosing <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Remove Grades from this Lesson</guimenuitem></menuchoice> <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Remove Grades from this Lesson and all Sub-Lessons</guimenuitem></menuchoice> menu items when being in edit mode.
+<para>Furthermore you can reset your grades for individual lessons from within the <guilabel>Practice Setup</guilabel> by right clicking on the lesson to reset and choose <guilabel>Remove Grades from this Lesson</guilabel> or by choosing <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Remove Grades from this Lesson</guimenuitem></menuchoice> or <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Remove Grades from this Lesson and all Sub-Lessons</guimenuitem></menuchoice> menu items when being in edit mode.
 </para>
 </sect2>
 </sect1>
