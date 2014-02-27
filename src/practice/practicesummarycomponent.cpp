@@ -104,7 +104,7 @@ void PracticeSummaryComponent::setupDetailsTable()
 
     int i = 0;
     // TODO headers with languages
-    // TODO some colors, maybe an indicator icon wether the word was right/wrong
+    // TODO some colors, maybe an indicator icon whether the word was right/wrong
     foreach(TestEntry * entry, m_testEntryManager->allTestEntries()) {
         QTableWidgetItem* itemFrom = new QTableWidgetItem(
             entry->entry()->translation(TestEntry::gradeFrom())->text());

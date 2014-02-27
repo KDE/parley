@@ -111,7 +111,7 @@ void WrittenPracticeValidator::validateAnswer(const QString& answer)
         m_error |= TestEntry::Correct;
     } else {
         //Check for all valid errors to build a list of
-        //possible mistakes. This provides us with usefull informations
+        //possible mistakes. This provides us with useful information
         //that we can use to give feedback to the user.
         if (isCapitalizationMistake(correct, answer)) {
             m_error |= TestEntry::Correct;

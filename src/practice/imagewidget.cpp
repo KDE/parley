@@ -308,7 +308,7 @@ void ImageWidget::scalePixmap(bool smooth)
     } else {
         kDebug() << "fast scaling to" << size();
         // try to find out if it makes sense to use the scaled backup pixmap
-        // if the scaled backup gets too small, we use the orignal image
+        // if the scaled backup gets too small, we use the original image
         float ratio = 0;
         if (!size().isEmpty()) {
             ratio = qMin(float(m_scaledBackupPixmap.width()) / size().width(),
