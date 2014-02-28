@@ -39,7 +39,7 @@ Before the release (bugs).
       https://bugs.kde.org/show_bug.cgi?id=238893
     + Impossible to remove images
       https://bugs.kde.org/show_bug.cgi?id=263836
-    + Removing grades can lead to misunderstanding
+    + Removing grades can lead to misunderstanding			Done
       https://bugs.kde.org/show_bug.cgi?id=312995
     + Vocabulary does not expire after a given time
       https://bugs.kde.org/show_bug.cgi?id=261396
