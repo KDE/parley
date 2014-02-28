@@ -33,6 +33,10 @@ Before the release (bugs).
  * To investigate
     + Show pronounciation in the training
       https://bugs.kde.org/show_bug.cgi?id=150923
+      This can be extended for other fields like
+      comments, too.
+      https://bugs.kde.org/show_bug.cgi?id=175241
+      https://bugs.kde.org/show_bug.cgi?id=238893
     + Impossible to remove images
       https://bugs.kde.org/show_bug.cgi?id=263836
     + Removing grades can lead to misunderstanding
@@ -41,8 +45,20 @@ Before the release (bugs).
       https://bugs.kde.org/show_bug.cgi?id=261396
 
  * All crashes
-    + parley crash when opening csv files                               ----
+    + parley crash when opening csv files                               Done
       https://bugs.kde.org/show_bug.cgi?id=268241
+    + Parley crash while adding choice in multiple			----
+      choice mode in editor (investigate)
+      https://bugs.kde.org/show_bug.cgi?id=255647
+    + Scripts need to sandboxed or atleast check 			----
+      if data can be fetched and stop gracefully. Eg:
+      https://bugs.kde.org/show_bug.cgi?id=252696
+    + Investigate - large list causes crash?				----
+      https://bugs.kde.org/show_bug.cgi?id=271695
+
+ * Data loss
+    + Second instance causes data overwriting.                          ----
+      https://bugs.kde.org/show_bug.cgi?id=240552
 
  * Misfeatures
     + There seems to be no way to change the title.                     ----
