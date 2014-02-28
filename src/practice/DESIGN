@@ -1,0 +1,43 @@
+Each practice mode has 3 classes:
+ - a frontend
+ - a backend
+ - a widget
+
+The frontend controls what is visible to the user.  There is a
+AbstractFrontend which defines the API to the frontend and an actual
+frontend called GuiFrontend. The GuiFrontend owns and controls the
+main practice window and connects all the buttons (the answer buttosn,
+"answer later", "hint", etc), and the image widget.  It also creates
+and destroys the practice widget depending on which practice mode that
+is chosen at every given time.
+
+Furthermore, it fills the widget with data and extracts the answer
+that the user replied.  It also animates the leitner boxes in the
+practice modes that use them.
+
+The backend controls the practice. It selects the next entry to
+practice, it extracts the user's answer from the frontend, analyzes it
+and updates the grades.  
+
+There is one concrete frontend - the Gui frontend - but there is one
+concrete backend class per practice mode.  The abstract backend class,
+AbstractBackend, also has lots of default implementations for the
+methods, and is therefore more of a base class rather than an abstract
+class / Interface.
+
+The widget shows the question to the user and also the answer.  Many
+of the widgets contain sound buttons for question and answer and also
+pronounciation labels.
+
+
+Questions
+---------
+
+ * It is a bit unclear why the frontend needs to define an API.  After
+   all there is only one concrete frontend, the GuiFrontend.  Is
+   another possible frontend a touch based frontend?  Should the
+   GuiFrontend really be called DesktopFrontend or MouseFrontend
+   instead?
+
+ * ...
+
