@@ -15,7 +15,7 @@ from os import path
 from os import mkdir
 import urllib2
 import urllib
-from sgmllib import SGMLParser
+import simplejson
 
 T = Kross.module("kdetranslation")
 
@@ -25,6 +25,7 @@ T = Kross.module("kdetranslation")
 # + comment out the code!
 # + improve getIdentifier function (maybe by adding a new C++ function)
 # + add "Alert" message box when no translation was selected
+
 
 #GUI
 uiFile = "google_images.ui"
@@ -146,26 +147,28 @@ class ImageDialog(KDialog):
     self.close()
 
 
-  # fetches the html document for the given word and language pair
+  # fetches the json document for the given word and language pair
   def fetchData(self):
     timeout = 10.0
     socket.setdefaulttimeout(timeout)
 
-    url = "http://images.google.com/images"
+    url = "https://ajax.googleapis.com/ajax/services/search/images"
     user_agent = 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008072820 Firefox/3.0.1'
     #params = [("gbv","2"),("hl",lang),("safe","active"),("q",word),("sa","2"),("btnG","Bilder-Suche")]
-    params = {"q":self.w.searchEdit.text(), "hl":self.locale, "safe":"active"}
+    params = {"v":"1.0", "start":"0", "q":self.w.searchEdit.text(), "hl":self.locale, "safe":"active"}
     if self.w.freeImageCheckBox.isChecked():
       params["as_rights"]="(cc_publicdomain|cc_attribute|cc_sharealike|cc_noncommercial|cc_nonderived)"
 
     headrs = { 'User-Agent' : user_agent }
     request_url = url + "?" + urllib.urlencode(params)
+
+
     req = urllib2.Request(url = request_url, headers=headrs)
     
     try:
       response = urllib2.urlopen(req)
       #print response.read()
-      return response.read()
+      return response
     except:
       #in case of error not to return incompleted results
       print "error on fetching online data"
@@ -175,20 +178,21 @@ class ImageDialog(KDialog):
 #FUNCTIONS
 
 
-#parses the data (html) and returns all the links to images
-def getImageUrls(data):
+#parses the response (json) and returns all the links to images
+def getImageUrls(response):
   print "Parsing data"
-  imageurls = []
-  imageextensions=[".jpg",".png",".bmp",".jif"]
-  #print data
-  for d in data.split('"'):
-    if 'imgurl=' in d:
-      
-      dcutted=d.split('imgurl=')[1].split('&')[0]
-      if (dcutted[-4:]).lower() in imageextensions:
-        imageurls.append(dcutted)
-  return imageurls
-  
+  search_res = simplejson.load(response)
+ # print data
+  print(search_res)
+  results = []
+  for result in search_res['responseData']['results']:
+        href = result['originalContextUrl']
+        title = result['title']
+        if not result['url']:
+            continue
+        results.append(result['url'])
+  return results
+
 
 #downloads image from the url given and returns the data (array of chars)
 def downloadImage(url):
