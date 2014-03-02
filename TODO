@@ -45,7 +45,6 @@ Before the release (bugs).
       they be disabled for now? (PS: If yes, also
       change the marketing for Parley to not
       include "8" modes in the tag line)
-      https://bugs.kde.org/show_bug.cgi?id=263836
     + Removing grades can lead to misunderstanding			Done
       https://bugs.kde.org/show_bug.cgi?id=312995
     + Vocabulary does not expire after a given time
