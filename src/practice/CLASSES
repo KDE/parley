@@ -1,0 +1,87 @@
+GUI in general
+--------------
+abstractfrontend                API of the frontend
+guifrontend                     The desktop UI
+practicemainwindow
+practice_mainwindow.ui
+themedbackgroundrenderer
+practiceui.rc
+
+
+Practice Control
+----------------
+practiceoptions.cpp
+practiceoptions.h
+practicestatemachine.cpp
+practicestatemachine.h
+testentry.cpp
+testentry.h
+testentrymanager.cpp
+testentrymanager.h
+entryfilter.cpp
+entryfilter.h
+entryfilter.ui
+
+
+Practice Modes
+--------------
+abstractbackendmode
+abstractwidget
+
+comparisonbackendmode
+comparisonmodewidget
+practice_widget_comparison.ui
+
+conjugationbackendmode
+conjugationmodewidget
+conjugationdata
+practice_widget_conjugation.ui
+
+examplesentencebackendmode
+
+flashcardbackendmode
+flashcardmodewidget
+practice_widget_flashcard.ui
+
+genderbackendmode
+
+mixedlettersmodewidget
+
+multiplechoicebackendmode
+multiplechoicemodewidget
+multiplechoicedata
+practice_widget_multiplechoice.ui
+
+writtenbackendmode
+writtenpracticewidget
+writtenpracticevalidator
+practice_widget_written.ui
+
+
+Practice Summary (shown after practice is finished)
+----------------
+practicesummarycomponent.cpp
+practicesummarycomponent.h
+practicesummaryui.rc
+practicesummarywidget.ui
+
+
+GUI elements
+------------
+audiobutton
+imagewidget
+boxeswidget
+summarybarwidget
+
+
+Utilities / Special features
+----------------------------
+imagecache
+latexrenderer
+
+
+Unused?
+-------
+answervalidatorold
+statustogglebutton
+statustoggle
