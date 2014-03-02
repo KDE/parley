@@ -39,6 +39,13 @@ Before the release (bugs).
       https://bugs.kde.org/show_bug.cgi?id=238893
     + Impossible to remove images
       https://bugs.kde.org/show_bug.cgi?id=263836
+    + Modes like Conjugation, Gender etc. and				----
+      Widgets like inflection, comparision forms
+      haven't been implemented properly. Should
+      they be disabled for now? (PS: If yes, also
+      change the marketing for Parley to not
+      include "8" modes in the tag line)
+      https://bugs.kde.org/show_bug.cgi?id=263836
     + Removing grades can lead to misunderstanding			Done
       https://bugs.kde.org/show_bug.cgi?id=312995
     + Vocabulary does not expire after a given time
