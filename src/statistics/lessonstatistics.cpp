@@ -100,34 +100,45 @@ public:
 protected:
     void paintSection(QPainter *painter, const QRect &rect, int logicalIndex) const
     {
+        // Paints the legend in the header.
         painter->save();
         QHeaderView::paintSection(painter, rect, logicalIndex);
         painter->restore();
 
+        const int legendWidth = 320;
+        const int legendHeight = 30;
+        const int legendOffsetY = 10;
+        const int legendOffsetX = (rect.width() / 2) - (legendWidth / 2);
+        const int gradeBarWidth = 40;
+        const int alphaValueIncrement = 35;
+
         if (logicalIndex >= 2) {
-            QRect roundedRect(rect.x() + (rect.width() / 2) - 160, rect.y() + 10, 320, 30);
+            QRect roundedRect(rect.x() + legendOffsetX, rect.y() + legendOffsetY, legendWidth, legendHeight);
             roundedRect.adjust(1, 1, -1, -1);
             QPainterPath roundedPath;
             roundedPath.addRoundedRect(roundedRect, 2.0, 2.0);
 
             for (int i = 7; i >= 0; i--) {
-                QRectF barElement(rect.x() + (rect.width() / 2) - 160 + (7 - i) * 40, rect.y() + 10, 40, 30);
+                QRectF barElement(rect.x() + legendOffsetX + (7 - i) * gradeBarWidth, rect.y() + legendOffsetY, gradeBarWidth, legendHeight);
                 QPainterPath barElementPath;
                 barElementPath.addRect(barElement);
                 QPainterPath barElementIntersectedPath = roundedPath.intersected(barElementPath);
                 QColor color = Prefs::gradeColor();
-                color.setAlpha(255 - (7 - i) * 35);
+                color.setAlpha(255 - (7 - i) * alphaValueIncrement);
                 if (i != 0) {
                     painter->setBrush(QBrush(color));
                 } else {
-                    painter->setBrush(QBrush(QColor(255, 255, 255, 0)));
+                    painter->setBrush(QBrush(QColor(255, 255, 255, 200))); // White for the 'not learned' grade box in the legend.
                 }
                 painter->drawPath(barElementIntersectedPath);
             }
 
+            painter->drawLine(QLine(rect.x() + legendOffsetX + 7 * gradeBarWidth, rect.y() + legendOffsetY + 1, rect.x() + legendOffsetX + 7 * gradeBarWidth, rect.y() + legendHeight + legendOffsetY - 1)); // Necessary hack to get the border on white.
             painter->setPen(Qt::black);
-            painter->drawText(QRect(rect.x() + (rect.width() / 2) - 240, rect.y() + 10, 100, 40), Qt::AlignLeft | Qt::AlignVCenter, i18nc("adjective, The word has been properly and fully learned by the user","Fully learned"));
-            painter->drawText(QRect(rect.x() + (rect.width() / 2) + 170, rect.y() + 10, 100, 40), Qt::AlignLeft | Qt::AlignVCenter, i18nc("adjective, The word has not even been practiced once by the user","Not practiced"));
+            const int textBoxWidth = 100;
+            const int textBoxHeight = 40;
+            painter->drawText(QRect(rect.x() + legendOffsetX - 80, rect.y() + legendOffsetY, textBoxWidth, textBoxHeight), Qt::AlignLeft | Qt::AlignVCenter, i18nc("adjective, The word has been properly and fully learned by the user","Fully learned"));
+            painter->drawText(QRect(rect.x() + legendOffsetX + 330, rect.y() + legendOffsetY, textBoxWidth, textBoxHeight), Qt::AlignLeft | Qt::AlignVCenter, i18nc("adjective, The word has not even been practiced once by the user","Not practiced"));
         }
     }
 
@@ -136,7 +147,7 @@ protected:
         // Get the base implementation size.
         QSize baseSize = QHeaderView::sizeHint();
         // Override the height with a custom value.
-        baseSize.setHeight(50);
+        baseSize.setHeight(70);
         return baseSize;
     }
 };
