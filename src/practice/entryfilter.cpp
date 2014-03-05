@@ -378,16 +378,17 @@ void EntryFilter::cleanupInvalid()
         KEduVocTranslation  *fromTranslation = (*i)->translation(m_fromTranslation);
         KEduVocTranslation  *toTranslation = (*i)->translation(m_toTranslation);
 
-        // remove empty entries
-        if (   (fromTranslation->text().isEmpty()
-                && (!Prefs::allowImageInsteadOfWord()
-                    && fromTranslation->imageUrl().isEmpty()))
-            || toTranslation->text().isEmpty() ) {
+        // Remove empty entries.
+        bool  keep = ((!fromTranslation->text().isEmpty()
+                       || (Prefs::allowImageInsteadOfWord()
+                           && !fromTranslation->imageUrl().isEmpty()))
+                      && !toTranslation->text().isEmpty());
+        if (!keep) {
             i = m_entries.erase(i);
             continue;
         }
 
-        // for grammar stuff we need the word to have its word type set, else continue
+        // For grammar stuff we need the word to have its word type set, else continue
         if (wordTypeNeeded && !(*i)->translation(m_toTranslation)->wordType()) {
             i = m_entries.erase(i);
             continue;
