@@ -28,7 +28,9 @@ Before the freeze (features).  These are picked from the ones below.
 
 ----------------------------------------------------------------
 Before the release (bugs).
-
+NOTE:  DO NOT CHANGE THESE HERE.
+       Instead, change them in the branch and merge the branch into
+       master.
 
  * To investigate
     + Show pronounciation in the training
