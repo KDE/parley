@@ -1,33 +1,66 @@
-Each practice mode has 3 classes:
- - a frontend
- - a backend
- - a widget
+Overview
+---------
 
-The frontend controls what is visible to the user.  There is a
-AbstractFrontend which defines the API to the frontend and an actual
-frontend called GuiFrontend. The GuiFrontend owns and controls the
-main practice window and connects all the buttons (the answer buttosn,
-"answer later", "hint", etc), and the image widget.  It also creates
-and destroys the practice widget depending on which practice mode that
-is chosen at every given time.
+The top of the practice window hierarchy is the
+PracticeMainWindow. This class owns a few other important classes:
+ - a GuiFrontend
+ - a PracticeStateMachine
+
+The practice frontend controls what is visible to the user.  There is
+an AbstractFrontend which defines the API to the frontend and an
+actual frontend called GuiFrontend. The GuiFrontend owns and controls
+the main practice window and connects all the buttons (the answer
+buttosn, "answer later", "hint", etc), and the image widget.  It also
+creates and destroys the practice widget depending on which practice
+mode that is chosen at every given time.
 
 Furthermore, it fills the widget with data and extracts the answer
 that the user replied.  It also animates the leitner boxes in the
 practice modes that use them.
 
-The backend controls the practice. It selects the next entry to
-practice, it extracts the user's answer from the frontend, analyzes it
-and updates the grades.  
+The practice itself is controlled by the PracticeStateMachine.  It
+connects the frontend, the backend and uses a TestEntryManager to keep
+track of the entries that are being practiced and also selects their
+order.
 
-There is one concrete frontend - the Gui frontend - but there is one
-concrete backend class per practice mode.  The abstract backend class,
-AbstractBackend, also has lots of default implementations for the
-methods, and is therefore more of a base class rather than an abstract
-class / Interface.
+The current implementation uses a method where the TestEntryManager
+selects the entries that will be practiced, limited by the options,
+the last time each entry was practiced and which Leitner box it is
+in. It keeps a list of entries which are practiced right now, called
+the "current entries", and these are shown to the user until s/he gets
+it right. When a test entry is correctly answered it is removed from
+the current entries list and a new one is entered.
+
+In the future, when we use Sessions, the set of entries in the session
+will be determined from the start and no new ones will be added after
+the creation.
+
+
+Practice modes
+--------------
+
+Each practice mode has 2 classes:
+ - a backend
+ - a widget
+
+The backend implements the methods used by the TestEntryManager to
+control the practice. It does control the flow for one test entry,
+e.g. giving hints and determining if an answer is correct or not. It
+also extracts the user's answer from the frontend, analyzes it and
+updates the grades.
+
+There is one concrete backend class per practice mode.  The abstract
+backend class, AbstractBackend, also has lots of default
+implementations for the methods, and is therefore more of a base class
+rather than an abstract class / interface.
 
 The widget shows the question to the user and also the answer.  Many
 of the widgets contain sound buttons for question and answer and also
 pronounciation labels.
+
+Not all practice modes have their own widgets. Some practice modes
+reuse the widget from other modes instead. All modes seems to have
+their own backend, though.
 
 
 Questions
