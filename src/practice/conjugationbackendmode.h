@@ -16,7 +16,7 @@
 #define CONJUGATIONBACKENDMODE_H
 
 #include "abstractbackendmode.h"
-#include "practice/testentrymanager.h"
+#include "practice/sessionmanager.h"
 
 namespace Practice
 {
@@ -27,7 +27,7 @@ class ConjugationBackendMode : public AbstractBackendMode
 
 public:
     ConjugationBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend,
-                           QObject *parent, Practice::TestEntryManager* testEntryManager, KEduVocDocument* doc);
+                           QObject *parent, Practice::SessionManager* sessionManager, KEduVocDocument* doc);
 
     virtual bool setTestEntry(TestEntry* current);
 
@@ -43,7 +43,7 @@ public Q_SLOTS:
 private:
     QStringList validPersonalPronouns();
 
-    TestEntryManager* m_testEntryManager;
+    SessionManager* m_sessionManager;
     KEduVocDocument* m_doc;
 
     QString m_currentTense;

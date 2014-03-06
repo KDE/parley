@@ -35,7 +35,7 @@
 
 using namespace Practice;
 
-PracticeMainWindow::PracticeMainWindow(TestEntryManager* testEntryManager,
+PracticeMainWindow::PracticeMainWindow(SessionManager* sessionManager,
                                        ParleyMainWindow* mainWindow)
     : KXmlGuiWindow(mainWindow), m_mainWindow(mainWindow)
 {
@@ -47,7 +47,7 @@ PracticeMainWindow::PracticeMainWindow(TestEntryManager* testEntryManager,
     setCentralWidget(m_guiFrontend->widget());
 
     PracticeOptions options;
-    m_stateMachine = new PracticeStateMachine(m_guiFrontend, mainWindow->parleyDocument(), options, testEntryManager, this);
+    m_stateMachine = new PracticeStateMachine(m_guiFrontend, mainWindow->parleyDocument(), options, sessionManager, this);
 
     // setModified - otherwise we may not ask to save progress
     mainWindow->parleyDocument()->document()->setModified(true);

@@ -21,8 +21,10 @@
 
 using namespace Practice;
 
-GenderBackendMode::GenderBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent, Practice::TestEntryManager* testEntryManager, KEduVocDocument* doc)
-    : MultipleChoiceBackendMode(practiceOptions, frontend, parent, testEntryManager)
+GenderBackendMode::GenderBackendMode(const PracticeOptions& practiceOptions,
+                                     AbstractFrontend* frontend, QObject* parent,
+                                     Practice::SessionManager* sessionManager, KEduVocDocument* doc)
+    : MultipleChoiceBackendMode(practiceOptions, frontend, parent, sessionManager)
 {
     m_articles = doc->identifier(Prefs::solutionLanguage()).article();
 

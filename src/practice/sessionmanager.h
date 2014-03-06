@@ -13,8 +13,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef PRACTICETESTENTRYMANAGER_H
-#define PRACTICETESTENTRYMANAGER_H
+#ifndef PRACTICESESSIONMANAGER_H
+#define PRACTICESESSIONMANAGER_H
 
 #include "testentry.h"
 #include "prefs.h"
@@ -29,14 +29,14 @@ class PracticeDialog;
 namespace Practice
 {
 
-class TestEntryManager
+class SessionManager
 {
 public:
     /**
      * Create a collection of entries to be practiced.
      * @param doc
      */
-    explicit TestEntryManager(QWidget *parent);
+    explicit SessionManager(QWidget *parent);
 
     void practiceStarted();
     void practiceFinished();
@@ -44,7 +44,7 @@ public:
     /**
      * Default ctor
      */
-    ~TestEntryManager();
+    ~SessionManager();
 
     void setDocument(KEduVocDocument *doc);
 

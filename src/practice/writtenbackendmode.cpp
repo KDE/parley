@@ -18,9 +18,9 @@
 
 using namespace Practice;
 
-WrittenBackendMode::WrittenBackendMode(const Practice::PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent, TestEntryManager* testEntryManager, KEduVocDocument* doc)
+WrittenBackendMode::WrittenBackendMode(const Practice::PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent, SessionManager* sessionManager, KEduVocDocument* doc)
     : AbstractBackendMode(practiceOptions, frontend, parent)
-    , m_testEntryManager(testEntryManager)
+    , m_sessionManager(sessionManager)
     , m_doc(doc)
 {
     m_validator = new WrittenPracticeValidator(m_practiceOptions.languageTo(), doc);

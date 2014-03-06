@@ -16,7 +16,7 @@
 
 #include <KXmlGuiWindow>
 #include <QtGui/QKeyEvent>
-#include "testentrymanager.h"
+#include "sessionmanager.h"
 
 class ParleyMainWindow;
 class KToggleFullScreenAction;
@@ -31,7 +31,7 @@ class PracticeMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
-    PracticeMainWindow(TestEntryManager* m_testEntryManager, ParleyMainWindow* mainWindow = 0);
+    PracticeMainWindow(SessionManager* sessionManager, ParleyMainWindow* mainWindow = 0);
     ~PracticeMainWindow();
 
     void startPractice();

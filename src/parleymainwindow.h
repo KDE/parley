@@ -29,7 +29,7 @@
 #include "parleydocument.h"
 
 #include <KXmlGuiWindow>
-#include "practice/testentrymanager.h"
+#include "practice/sessionmanager.h"
 
 #include <QPointer>
 
@@ -187,7 +187,7 @@ private:
     /// the name of the executable
     QString m_appName;
     Component m_componentBeforePractice;
-    Practice::TestEntryManager m_testEntryManager;
+    Practice::SessionManager m_sessionManager;
 
     friend int main(int argc, char* argv[]);
 };
