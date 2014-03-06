@@ -62,7 +62,7 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
     : KXmlGuiWindow(0)
     , m_currentComponent(NoComponent)
     , m_currentComponentWindow(0)
-    , m_testEntryManager(this)
+    , m_sessionManager(this)
 {
     s_instance = this;
     m_document = new ParleyDocument(this);
@@ -294,8 +294,8 @@ void ParleyMainWindow::switchComponent(Component component)
 
         // Don't start a practice when there are no words to practice.
         // This has to be checked before deleting the old component.
-        m_testEntryManager.setDocument(m_document->document());
-        if (!m_testEntryManager.totalEntryCount()) {
+        m_sessionManager.setDocument(m_document->document());
+        if (!m_sessionManager.totalEntryCount()) {
             return;
         }
     }
@@ -330,7 +330,7 @@ void ParleyMainWindow::switchComponent(Component component)
     }
     case PracticeComponent: {
         m_document->document()->setModified(true);
-        Practice::PracticeMainWindow *practiceWindow = new Practice::PracticeMainWindow(&m_testEntryManager, this);
+        Practice::PracticeMainWindow *practiceWindow = new Practice::PracticeMainWindow(&m_sessionManager, this);
         connect(practiceWindow, SIGNAL(stopPractice()), this, SLOT(showPracticeSummary()));
         m_currentComponentWindow = practiceWindow;
         showDocumentActions(false, false);
@@ -338,7 +338,7 @@ void ParleyMainWindow::switchComponent(Component component)
         break;
     }
     case PracticeSummary: {
-        Practice::PracticeSummaryComponent* summary = new Practice::PracticeSummaryComponent(&m_testEntryManager, this);
+        Practice::PracticeSummaryComponent* summary = new Practice::PracticeSummaryComponent(&m_sessionManager, this);
         m_currentComponentWindow = summary;
         showDocumentActions(true, true);
         break;

@@ -41,9 +41,9 @@ class PracticeSummaryComponent::SortedAttemptTableWidgetItem: public QTableWidge
     }
 };
 
-PracticeSummaryComponent::PracticeSummaryComponent(TestEntryManager* testEntryManager, QWidget* parent)
+PracticeSummaryComponent::PracticeSummaryComponent(SessionManager* sessionManager, QWidget* parent)
     : KXmlGuiWindow(parent)
-    , m_testEntryManager(testEntryManager)
+    , m_sessionManager(sessionManager)
 {
     // KXmlGui
     setXMLFile("practicesummaryui.rc");
@@ -56,11 +56,11 @@ PracticeSummaryComponent::PracticeSummaryComponent(TestEntryManager* testEntryMa
     initActions(parent);
 
     setupDetailsTable();
-    summaryBar->setStatistics(m_testEntryManager->statisticTotalCorrectFirstAttempt(), m_testEntryManager->statisticTotalWrong(), m_testEntryManager->statisticTotalUnanswered());
+    summaryBar->setStatistics(m_sessionManager->statisticTotalCorrectFirstAttempt(), m_sessionManager->statisticTotalWrong(), m_sessionManager->statisticTotalUnanswered());
 
-    int total = m_testEntryManager->statisticTotalCorrectFirstAttempt() + m_testEntryManager->statisticTotalWrong();
-    int minutes = m_testEntryManager->totalTime() / 60;
-    int seconds = m_testEntryManager->totalTime() % 60;
+    int total = m_sessionManager->statisticTotalCorrectFirstAttempt() + m_sessionManager->statisticTotalWrong();
+    int minutes = m_sessionManager->totalTime() / 60;
+    int seconds = m_sessionManager->totalTime() % 60;
 
     testSummaryLabel->setText(i18nc("number of words, minutes, seconds", "You practiced %1 in %2 and %3.",
                                     i18np("one word", "%1 words", total),
@@ -88,7 +88,7 @@ void PracticeSummaryComponent::initActions(QWidget* parleyMainWindow)
 
 void PracticeSummaryComponent::setupDetailsTable()
 {
-    tableWidget->setRowCount(m_testEntryManager->totalEntryCount());
+    tableWidget->setRowCount(m_sessionManager->totalEntryCount());
     tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     Qt::ItemFlags flags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
@@ -105,7 +105,7 @@ void PracticeSummaryComponent::setupDetailsTable()
     int i = 0;
     // TODO headers with languages
     // TODO some colors, maybe an indicator icon whether the word was right/wrong
-    foreach(TestEntry * entry, m_testEntryManager->allTestEntries()) {
+    foreach(TestEntry * entry, m_sessionManager->allTestEntries()) {
         QTableWidgetItem* itemFrom = new QTableWidgetItem(
             entry->entry()->translation(TestEntry::gradeFrom())->text());
         QTableWidgetItem* itemTo = new QTableWidgetItem(
@@ -163,11 +163,11 @@ void PracticeSummaryComponent::exportResults()
     doc.setHtml("<html><head><title>" + i18n("Practice results") + "</title></body></html>");
     QTextCursor cursor(&doc);
 
-    cursor.insertHtml("<h1>" + m_testEntryManager->title() + "</h1><br />");
+    cursor.insertHtml("<h1>" + m_sessionManager->title() + "</h1><br />");
 
-    cursor.insertText(i18n("Answered questions: %1\n", m_testEntryManager->totalEntryCount()));
-    cursor.insertText(i18n("Correct answers: %1\n", m_testEntryManager->statisticTotalCorrectFirstAttempt()));
-    cursor.insertText(i18n("Wrong answers: %1\n", m_testEntryManager->statisticTotalWrong()));
+    cursor.insertText(i18n("Answered questions: %1\n", m_sessionManager->totalEntryCount()));
+    cursor.insertText(i18n("Correct answers: %1\n", m_sessionManager->statisticTotalCorrectFirstAttempt()));
+    cursor.insertText(i18n("Wrong answers: %1\n", m_sessionManager->statisticTotalWrong()));
 
     QTextTableFormat tableFormat;
     tableFormat.setBorderStyle(QTextFrameFormat::BorderStyle_Solid);
@@ -179,7 +179,7 @@ void PracticeSummaryComponent::exportResults()
     table->cellAt(0, 2).firstCursorPosition().insertHtml(i18n("<b>Correct answer</b>"));
     table->cellAt(0, 3).firstCursorPosition().insertHtml(i18n("<b>Your errors</b>"));
 
-    foreach(TestEntry * entry, m_testEntryManager->allTestEntries()) {
+    foreach(TestEntry * entry, m_sessionManager->allTestEntries()) {
         table->appendRows(1);
         int newRow = table->rows() - 1;
         table->cellAt(newRow, 0).firstCursorPosition().insertText(QString::number(entry->statisticCount()));

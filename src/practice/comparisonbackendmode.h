@@ -16,7 +16,7 @@
 #define COMPARISONBACKENDMODE_H
 
 #include "abstractbackendmode.h"
-#include "practice/testentrymanager.h"
+#include "practice/sessionmanager.h"
 
 namespace Practice
 {
@@ -27,7 +27,7 @@ class ComparisonBackendMode : public AbstractBackendMode
 
 public:
     ComparisonBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend,
-                          QObject *parent, Practice::TestEntryManager* testEntryManager, KEduVocDocument* doc);
+                          QObject *parent, Practice::SessionManager* sessionManager, KEduVocDocument* doc);
 
     virtual bool setTestEntry(TestEntry* current);
 
@@ -41,7 +41,7 @@ protected:
 
 private:
 
-    TestEntryManager* m_testEntryManager;
+    SessionManager* m_sessionManager;
     KEduVocDocument* m_doc;
     QStringList m_lastAnswers;
 };

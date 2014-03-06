@@ -16,7 +16,7 @@
 #define WRITTENBACKENDMODE_H
 
 #include "abstractbackendmode.h"
-#include "practice/testentrymanager.h"
+#include "practice/sessionmanager.h"
 #include "practice/writtenpracticevalidator.h"
 
 namespace Practice
@@ -27,7 +27,7 @@ class WrittenBackendMode : public AbstractBackendMode
     Q_OBJECT
 
 public:
-    WrittenBackendMode(const Practice::PracticeOptions& practiceOptions, Practice::AbstractFrontend* frontend, QObject* parent, Practice::TestEntryManager* testEntryManager, KEduVocDocument* doc);
+    WrittenBackendMode(const Practice::PracticeOptions& practiceOptions, Practice::AbstractFrontend* frontend, QObject* parent, Practice::SessionManager* sessionManager, KEduVocDocument* doc);
 
     virtual bool setTestEntry(TestEntry* current);
 
@@ -42,7 +42,7 @@ private:
     QString m_lastAnswer;
     QString m_currentHint;
     bool m_firstAttempt;
-    TestEntryManager* m_testEntryManager;
+    SessionManager* m_sessionManager;
     WrittenPracticeValidator* m_validator;
     KEduVocDocument* m_doc;
 };

@@ -27,7 +27,7 @@
 #include <QtDBus>
 #include <sonnet/speller.h>
 
-#include "practice/testentrymanager.h"
+#include "practice/sessionmanager.h"
 #include <keduvocdocument.h>
 #include <keduvoclesson.h>
 

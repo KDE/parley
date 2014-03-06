@@ -13,7 +13,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "testentrymanager.h"
+#include "sessionmanager.h"
 
 #include "entryfilter.h"
 
@@ -31,7 +31,7 @@
 
 using namespace Practice;
 
-TestEntryManager::TestEntryManager(QWidget* parent)
+SessionManager::SessionManager(QWidget* parent)
     : m_parent(parent)
     , m_fromTranslation(0)
     , m_toTranslation(1)
@@ -41,13 +41,13 @@ TestEntryManager::TestEntryManager(QWidget* parent)
 {
 }
 
-TestEntryManager::~TestEntryManager()
+SessionManager::~SessionManager()
 {
 
     qDeleteAll(m_allTestEntries);
 }
 
-void TestEntryManager::setDocument(KEduVocDocument* doc)
+void SessionManager::setDocument(KEduVocDocument* doc)
 {
     qDeleteAll(m_allTestEntries);
     m_allTestEntries.clear();
@@ -81,12 +81,12 @@ void TestEntryManager::setDocument(KEduVocDocument* doc)
     }
 }
 
-QString TestEntryManager::title() const
+QString SessionManager::title() const
 {
     return m_doc->title();
 }
 
-void TestEntryManager::setLanguages(int from, int to)
+void SessionManager::setLanguages(int from, int to)
 {
     m_fromTranslation = from;
     m_toTranslation = to;
@@ -94,20 +94,20 @@ void TestEntryManager::setLanguages(int from, int to)
     TestEntry::setGradeTo(m_toTranslation);
 }
 
-void TestEntryManager::filterTestEntries()
+void SessionManager::filterTestEntries()
 {
     EntryFilter filter(m_parent, m_doc);
     m_allTestEntries = filter.entries();
 }
 
-void TestEntryManager::removeCurrentEntryFromPractice()
+void SessionManager::removeCurrentEntryFromPractice()
 {
     if (m_currentEntry >= 0) {
         m_currentEntries.takeAt(m_currentEntry);
     }
 }
 
-void TestEntryManager::printStatistics()
+void SessionManager::printStatistics()
 {
     kDebug() << "Test statistics: ";
     foreach(TestEntry * entry, m_allTestEntries) {
@@ -118,35 +118,35 @@ void TestEntryManager::printStatistics()
     }
 }
 
-int TestEntryManager::totalTime()
+int SessionManager::totalTime()
 {
     // seconds instead of ms
     return m_totalTime / (1000);
 }
 
-void TestEntryManager::practiceStarted()
+void SessionManager::practiceStarted()
 {
     kDebug() << "start practice timer";
     m_time.start();
 }
 
-void TestEntryManager::practiceFinished()
+void SessionManager::practiceFinished()
 {
     m_totalTime = m_time.elapsed();
     kDebug() << "stop practice timer" << m_totalTime << m_time.toString();
 }
 
-int TestEntryManager::totalEntryCount()
+int SessionManager::totalEntryCount()
 {
     return m_allTestEntries.count();
 }
 
-int TestEntryManager::activeEntryCount()
+int SessionManager::activeEntryCount()
 {
     return m_notAskedTestEntries.count() + m_currentEntries.count();
 }
 
-QList<TestEntry*> TestEntryManager::allUnansweredTestEntries()
+QList<TestEntry*> SessionManager::allUnansweredTestEntries()
 {
     QList<TestEntry*> allUnansweredEntries;
 
@@ -156,7 +156,7 @@ QList<TestEntry*> TestEntryManager::allUnansweredTestEntries()
     return allUnansweredEntries;
 }
 
-int TestEntryManager::statisticTotalCorrectFirstAttempt()
+int SessionManager::statisticTotalCorrectFirstAttempt()
 {
     int count = 0;
     foreach(TestEntry * entry, m_allTestEntries) {
@@ -167,7 +167,7 @@ int TestEntryManager::statisticTotalCorrectFirstAttempt()
     return count;
 }
 
-int TestEntryManager::statisticTotalWrong()
+int SessionManager::statisticTotalWrong()
 {
     int count = 0;
     foreach(TestEntry * entry, m_allTestEntries) {
@@ -178,7 +178,7 @@ int TestEntryManager::statisticTotalWrong()
     return count;
 }
 
-int TestEntryManager::statisticTotalUnanswered()
+int SessionManager::statisticTotalUnanswered()
 {
     int count = 0;
     foreach(TestEntry * entry, m_allTestEntries) {
@@ -190,7 +190,7 @@ int TestEntryManager::statisticTotalUnanswered()
 }
 
 
-TestEntry* TestEntryManager::getNextEntry()
+TestEntry* SessionManager::getNextEntry()
 {
     // refill current entries
     while (m_currentEntries.count() < Prefs::testNumberOfEntries() &&
@@ -218,7 +218,7 @@ TestEntry* TestEntryManager::getNextEntry()
     }
 }
 
-QStringList TestEntryManager::multipleChoiceAnswers(int numberChoices)
+QStringList SessionManager::multipleChoiceAnswers(int numberChoices)
 {
     QStringList choices;
     KRandomSequence randomSequence;
@@ -279,7 +279,7 @@ QStringList TestEntryManager::multipleChoiceAnswers(int numberChoices)
     return choices;
 }
 
-bool TestEntryManager::isValidMultipleChoiceAnswer(KEduVocExpression *e)
+bool SessionManager::isValidMultipleChoiceAnswer(KEduVocExpression *e)
 {
     // entry is empty
     if (e->translation(Prefs::solutionLanguage())->text().trimmed().isEmpty())
