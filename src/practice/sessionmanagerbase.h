@@ -2,6 +2,7 @@
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
                     (C) 2007-2010 Frederik Gladhorn <gladhorn@kde.org>
+                    (C) 2014      Inge Wallin <inge@lysator.liu.se>
  ***************************************************************************/
 
 /***************************************************************************
@@ -13,15 +14,22 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef PRACTICESESSIONMANAGER_H
-#define PRACTICESESSIONMANAGER_H
+#ifndef PRACTICESESSIONMANAGERBASE_H
+#define PRACTICESESSIONMANAGERBASE_H
 
+// Qt
+#include <QVector>
+
+// kdelibs
+#include <KRandomSequence>
+
+// kdeedulibs
+#include <keduvocexpression.h>
+
+// Parley
 #include "testentry.h"
 #include "prefs.h"
 
-#include <keduvocexpression.h>
-#include <KRandomSequence>
-#include <QVector>
 
 class KEduVocDocument;
 class PracticeDialog;
@@ -29,36 +37,48 @@ class PracticeDialog;
 namespace Practice
 {
 
-class SessionManager
+class SessionManagerBase
 {
 public:
     /**
      * Create a collection of entries to be practiced.
      * @param doc
      */
-    explicit SessionManager(QWidget *parent);
-
-    void practiceStarted();
-    void practiceFinished();
+    explicit SessionManagerBase(QWidget *parent);
 
     /**
-     * Default ctor
+     * Default destructor
      */
-    ~SessionManager();
+    ~SessionManagerBase();
 
+    /**
+     * Prepare for practice using the entries in this document.
+     */
     void setDocument(KEduVocDocument *doc);
+
+    // Should be called when starting and ending the practice session respectively.
+    void practiceStarted();
+    void practiceFinished();
 
     /**
      * Get the next entry to show to the user.
      * @return TestEntry* the entry
      */
-    TestEntry* getNextEntry();
+    TestEntry* nextTrainingEntry();
 
     /**
-     * The number of entries in the practice
+     * Get a list of all entries in the test - used by the summary dialog
+     */
+    QList<TestEntry*> allTestEntries() {
+        return m_allTestEntries;
+    }
+
+    /**
+     * The number of entries available for the practice session.
+     * The actual session may be smaller.
      * @return
      */
-    int totalEntryCount();
+    int allEntryCount();
 
     /**
      * The number of entries that are still to be practiced
@@ -85,13 +105,6 @@ public:
     int totalTime();
 
     QStringList multipleChoiceAnswers(int numberChoices);
-
-    /**
-     * Get a list of all entries in the test - used by the summary dialog
-     */
-    QList<TestEntry*> allTestEntries() {
-        return m_allTestEntries;
-    }
 
     /**
     * Get a list of all unanswered entries in the test

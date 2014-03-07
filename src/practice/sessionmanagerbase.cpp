@@ -2,6 +2,7 @@
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
                     (C) 2007-2009 Frederik Gladhorn <gladhorn@kde.org>
+                    (C) 2014      Inge Wallin <inge@lysator.liu.se>
  ***************************************************************************/
 
 /***************************************************************************
@@ -13,7 +14,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "sessionmanager.h"
+#include "sessionmanagerbase.h"
 
 #include "entryfilter.h"
 
@@ -31,7 +32,7 @@
 
 using namespace Practice;
 
-SessionManager::SessionManager(QWidget* parent)
+SessionManagerBase::SessionManagerBase(QWidget* parent)
     : m_parent(parent)
     , m_fromTranslation(0)
     , m_toTranslation(1)
@@ -41,13 +42,13 @@ SessionManager::SessionManager(QWidget* parent)
 {
 }
 
-SessionManager::~SessionManager()
+SessionManagerBase::~SessionManagerBase()
 {
 
     qDeleteAll(m_allTestEntries);
 }
 
-void SessionManager::setDocument(KEduVocDocument* doc)
+void SessionManagerBase::setDocument(KEduVocDocument* doc)
 {
     qDeleteAll(m_allTestEntries);
     m_allTestEntries.clear();
@@ -56,12 +57,14 @@ void SessionManager::setDocument(KEduVocDocument* doc)
 
     m_doc = doc;
 
-    // don't crash when trying to start practicing a document containing only one language
+    // Don't crash when trying to start practicing a document with only one language
     if (m_doc->identifierCount() < 2) {
-        KMessageBox::error(0, i18n("The vocabulary collection contains fewer than two languages.", i18n("Could not start practice")));
+        KMessageBox::error(0, i18n("The vocabulary collection contains fewer than two languages.",
+                                   i18n("Could not start practice")));
         return;
     }
-    if (Prefs::questionLanguage() >= m_doc->identifierCount() || Prefs::solutionLanguage() >= m_doc->identifierCount()) {
+    if (Prefs::questionLanguage() >= m_doc->identifierCount()
+        || Prefs::solutionLanguage() >= m_doc->identifierCount()) {
         kDebug() << "Invalid language selection" << m_fromTranslation << " to " << m_toTranslation;
         Prefs::setQuestionLanguage(0);
         Prefs::setSolutionLanguage(1);
@@ -81,12 +84,12 @@ void SessionManager::setDocument(KEduVocDocument* doc)
     }
 }
 
-QString SessionManager::title() const
+QString SessionManagerBase::title() const
 {
     return m_doc->title();
 }
 
-void SessionManager::setLanguages(int from, int to)
+void SessionManagerBase::setLanguages(int from, int to)
 {
     m_fromTranslation = from;
     m_toTranslation = to;
@@ -94,20 +97,20 @@ void SessionManager::setLanguages(int from, int to)
     TestEntry::setGradeTo(m_toTranslation);
 }
 
-void SessionManager::filterTestEntries()
+void SessionManagerBase::filterTestEntries()
 {
     EntryFilter filter(m_parent, m_doc);
     m_allTestEntries = filter.entries();
 }
 
-void SessionManager::removeCurrentEntryFromPractice()
+void SessionManagerBase::removeCurrentEntryFromPractice()
 {
     if (m_currentEntry >= 0) {
         m_currentEntries.takeAt(m_currentEntry);
     }
 }
 
-void SessionManager::printStatistics()
+void SessionManagerBase::printStatistics()
 {
     kDebug() << "Test statistics: ";
     foreach(TestEntry * entry, m_allTestEntries) {
@@ -118,35 +121,35 @@ void SessionManager::printStatistics()
     }
 }
 
-int SessionManager::totalTime()
+int SessionManagerBase::totalTime()
 {
     // seconds instead of ms
     return m_totalTime / (1000);
 }
 
-void SessionManager::practiceStarted()
+void SessionManagerBase::practiceStarted()
 {
     kDebug() << "start practice timer";
     m_time.start();
 }
 
-void SessionManager::practiceFinished()
+void SessionManagerBase::practiceFinished()
 {
     m_totalTime = m_time.elapsed();
     kDebug() << "stop practice timer" << m_totalTime << m_time.toString();
 }
 
-int SessionManager::totalEntryCount()
+int SessionManagerBase::allEntryCount()
 {
     return m_allTestEntries.count();
 }
 
-int SessionManager::activeEntryCount()
+int SessionManagerBase::activeEntryCount()
 {
     return m_notAskedTestEntries.count() + m_currentEntries.count();
 }
 
-QList<TestEntry*> SessionManager::allUnansweredTestEntries()
+QList<TestEntry*> SessionManagerBase::allUnansweredTestEntries()
 {
     QList<TestEntry*> allUnansweredEntries;
 
@@ -156,7 +159,7 @@ QList<TestEntry*> SessionManager::allUnansweredTestEntries()
     return allUnansweredEntries;
 }
 
-int SessionManager::statisticTotalCorrectFirstAttempt()
+int SessionManagerBase::statisticTotalCorrectFirstAttempt()
 {
     int count = 0;
     foreach(TestEntry * entry, m_allTestEntries) {
@@ -167,7 +170,7 @@ int SessionManager::statisticTotalCorrectFirstAttempt()
     return count;
 }
 
-int SessionManager::statisticTotalWrong()
+int SessionManagerBase::statisticTotalWrong()
 {
     int count = 0;
     foreach(TestEntry * entry, m_allTestEntries) {
@@ -178,7 +181,7 @@ int SessionManager::statisticTotalWrong()
     return count;
 }
 
-int SessionManager::statisticTotalUnanswered()
+int SessionManagerBase::statisticTotalUnanswered()
 {
     int count = 0;
     foreach(TestEntry * entry, m_allTestEntries) {
@@ -190,9 +193,9 @@ int SessionManager::statisticTotalUnanswered()
 }
 
 
-TestEntry* SessionManager::getNextEntry()
+TestEntry* SessionManagerBase::nextTrainingEntry()
 {
-    // refill current entries
+    // Refill current entries.
     while (m_currentEntries.count() < Prefs::testNumberOfEntries() &&
             m_notAskedTestEntries.count() > 0) {
         m_currentEntries.append(m_notAskedTestEntries.takeAt(0));
@@ -218,7 +221,12 @@ TestEntry* SessionManager::getNextEntry()
     }
 }
 
-QStringList SessionManager::multipleChoiceAnswers(int numberChoices)
+
+// ----------------------------------------------------------------
+//                 Multiple choice questions
+
+
+QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
 {
     QStringList choices;
     KRandomSequence randomSequence;
@@ -279,7 +287,7 @@ QStringList SessionManager::multipleChoiceAnswers(int numberChoices)
     return choices;
 }
 
-bool SessionManager::isValidMultipleChoiceAnswer(KEduVocExpression *e)
+bool SessionManagerBase::isValidMultipleChoiceAnswer(KEduVocExpression *e)
 {
     // entry is empty
     if (e->translation(Prefs::solutionLanguage())->text().trimmed().isEmpty())
@@ -292,4 +300,3 @@ bool SessionManager::isValidMultipleChoiceAnswer(KEduVocExpression *e)
         return false;
     return true;
 }
-

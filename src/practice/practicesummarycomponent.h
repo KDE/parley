@@ -14,7 +14,7 @@
 #ifndef PRACTICESUMMARYDIALOG_H
 #define PRACTICESUMMARYDIALOG_H
 
-#include "practice/sessionmanager.h"
+#include "practice/sessionmanagerbase.h"
 
 #include "ui_practicesummarywidget.h"
 #include <KXmlGuiWindow>
@@ -27,7 +27,7 @@ class PracticeSummaryComponent : public KXmlGuiWindow, Ui::PracticeSummaryWidget
     Q_OBJECT
 
 public:
-    PracticeSummaryComponent(SessionManager* sessionManager, QWidget *parent);
+    PracticeSummaryComponent(SessionManagerBase* sessionManager, QWidget *parent);
     ~PracticeSummaryComponent();
 
 public slots:
@@ -37,7 +37,7 @@ private:
     void initActions(QWidget* parleyMainWindow);
     void setupDetailsTable();
 
-    SessionManager* m_sessionManager;
+    SessionManagerBase* m_sessionManager;
 
     class SortedAttemptTableWidgetItem;
 };

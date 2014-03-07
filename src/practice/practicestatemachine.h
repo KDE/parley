@@ -23,14 +23,14 @@ class ParleyDocument;
 
 namespace Practice
 {
-class SessionManager;
+class SessionManagerBase;
 
 class PracticeStateMachine : public QObject
 {
     Q_OBJECT
 public:
     PracticeStateMachine(AbstractFrontend* frontend, ParleyDocument* doc,
-                         const PracticeOptions& options, SessionManager* sessionManager,
+                         const PracticeOptions& options, SessionManagerBase* sessionManager,
                          QObject* parent = 0);
     void start();
 
@@ -74,7 +74,7 @@ private:
     ParleyDocument* m_document;
     PracticeOptions m_options;
     TestEntry* m_current;
-    SessionManager* m_sessionManager;
+    SessionManagerBase* m_sessionManager;
 };
 
 }

@@ -30,7 +30,7 @@ using namespace Practice;
 
 PracticeStateMachine::PracticeStateMachine(AbstractFrontend* frontend, ParleyDocument* doc,
                                            const PracticeOptions& options,
-                                           SessionManager* sessionManager,  QObject* parent)
+                                           SessionManagerBase* sessionManager,  QObject* parent)
     : QObject(parent)
     , m_frontend(frontend)
     , m_document(doc)
@@ -109,7 +109,7 @@ void Practice::PracticeStateMachine::start()
 void PracticeStateMachine::nextEntry()
 {
     m_state = NotAnswered;
-    m_current = m_sessionManager->getNextEntry();
+    m_current = m_sessionManager->nextTrainingEntry();
 
     kDebug() << "GETTING ENTRY - " << m_current;
 
@@ -201,8 +201,8 @@ void PracticeStateMachine::updateFrontend()
 
     // show the word that is currently practiced in the progress bar
     m_frontend->setFinishedWordsTotalWords(
-        m_sessionManager->totalEntryCount() - m_sessionManager->activeEntryCount(),
-        m_sessionManager->totalEntryCount());
+        m_sessionManager->allEntryCount() - m_sessionManager->activeEntryCount(),
+        m_sessionManager->allEntryCount());
 
     grade_t grade = m_mode->currentGradeForEntry();
     grade_t goodGrade = qMax(grade, grade_t(KV_LEV1_GRADE)); // if the word hasn't been practiced yet, use grade 1 as a base

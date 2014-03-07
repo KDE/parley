@@ -41,7 +41,7 @@ class PracticeSummaryComponent::SortedAttemptTableWidgetItem: public QTableWidge
     }
 };
 
-PracticeSummaryComponent::PracticeSummaryComponent(SessionManager* sessionManager, QWidget* parent)
+PracticeSummaryComponent::PracticeSummaryComponent(SessionManagerBase* sessionManager, QWidget* parent)
     : KXmlGuiWindow(parent)
     , m_sessionManager(sessionManager)
 {
@@ -88,7 +88,7 @@ void PracticeSummaryComponent::initActions(QWidget* parleyMainWindow)
 
 void PracticeSummaryComponent::setupDetailsTable()
 {
-    tableWidget->setRowCount(m_sessionManager->totalEntryCount());
+    tableWidget->setRowCount(m_sessionManager->allEntryCount());
     tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     Qt::ItemFlags flags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
@@ -165,7 +165,7 @@ void PracticeSummaryComponent::exportResults()
 
     cursor.insertHtml("<h1>" + m_sessionManager->title() + "</h1><br />");
 
-    cursor.insertText(i18n("Answered questions: %1\n", m_sessionManager->totalEntryCount()));
+    cursor.insertText(i18n("Answered questions: %1\n", m_sessionManager->allEntryCount()));
     cursor.insertText(i18n("Correct answers: %1\n", m_sessionManager->statisticTotalCorrectFirstAttempt()));
     cursor.insertText(i18n("Wrong answers: %1\n", m_sessionManager->statisticTotalWrong()));
 

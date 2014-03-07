@@ -18,7 +18,9 @@
 
 using namespace Practice;
 
-WrittenBackendMode::WrittenBackendMode(const Practice::PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent, SessionManager* sessionManager, KEduVocDocument* doc)
+WrittenBackendMode::WrittenBackendMode(const Practice::PracticeOptions& practiceOptions,
+                                       AbstractFrontend* frontend, QObject* parent,
+                                       SessionManagerBase* sessionManager, KEduVocDocument* doc)
     : AbstractBackendMode(practiceOptions, frontend, parent)
     , m_sessionManager(sessionManager)
     , m_doc(doc)

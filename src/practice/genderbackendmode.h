@@ -16,7 +16,7 @@
 #define GENDERBACKENDMODE_H
 
 #include "multiplechoicebackendmode.h"
-#include "practice/sessionmanager.h"
+#include "practice/sessionmanagerbase.h"
 
 namespace Practice
 {
@@ -26,7 +26,9 @@ class GenderBackendMode : public MultipleChoiceBackendMode
     Q_OBJECT
 
 public:
-    GenderBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend, QObject *parent, Practice::SessionManager* sessionManager, KEduVocDocument* doc);
+    GenderBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend,
+                      QObject *parent, Practice::SessionManagerBase* sessionManager,
+                      KEduVocDocument* doc);
 
 protected:
     virtual void prepareChoices(TestEntry* current);

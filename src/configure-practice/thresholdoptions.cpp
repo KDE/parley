@@ -24,7 +24,7 @@
 
 #include "thresholdoptions.h"
 
-#include "practice/sessionmanager.h"
+//#include "practice/sessionmanagerbase.h"
 #include "prefs.h"
 
 #include <keduvocdocument.h>

@@ -27,8 +27,8 @@
 #include <QtDBus>
 #include <sonnet/speller.h>
 
-#include "practice/sessionmanager.h"
 #include <keduvocdocument.h>
+#include <keduvocexpression.h>
 #include <keduvoclesson.h>
 
 #include <parleydocument.h>
