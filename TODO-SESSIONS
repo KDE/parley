@@ -1,0 +1,18 @@
+
+* Coding
+   + Rename TestEntryManager into SessionManager (done in master)       Done
+   + Make SessionManager into a base class                              Done
+   + Separate the specific session parameters of the current session    ----
+     type (continuous) into its own class.
+   + Write a new session type with a limited of questions (default 20)  ----
+   + Create config options for the sessions
+
+* Decisions
+   + Decide how to prioritize entries between those that have a high
+     grade and those that have a lower grade.
+   + Shall we create a session presentation screen that is shown
+     before the session starts?
+
+
+* Documentation
+   + Document the new session system in DESIGN                          ----
