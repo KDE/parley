@@ -19,21 +19,26 @@ that the user replied.  It also animates the leitner boxes in the
 practice modes that use them.
 
 The practice itself is controlled by the PracticeStateMachine.  It
-connects the frontend, the backend and uses a TestEntryManager to keep
+connects the frontend, the backend and uses a SessionManager to keep
 track of the entries that are being practiced and also selects their
 order.
 
-The current implementation uses a method where the TestEntryManager
-selects the entries that will be practiced, limited by the options,
-the last time each entry was practiced and which Leitner box it is
-in. It keeps a list of entries which are practiced right now, called
-the "current entries", and these are shown to the user until s/he gets
-it right. When a test entry is correctly answered it is removed from
-the current entries list and a new one is entered.
+In general the SessionManager selects the entries that will be
+practiced, limited by the options, the last time each entry was
+practiced and which Leitner box it is in. It keeps a list of entries
+which are practiced right now, called the "current entries", and these
+are shown to the user until s/he gets it right. When a test entry is
+correctly answered it is removed from the current entries list and a
+new one is entered.
 
-In the future, when we use Sessions, the set of entries in the session
-will be determined from the start and no new ones will be added after
-the creation.
+There are currently two different SessionManagers to choose from:
+SessionManagerContinuous and SessionManagerFixed. The continuous one
+keeps a list of active entries and iterates between them until the
+user gets one right.  Then it removes this entry from the active set
+and includes a new one. The fixed session manager selects a set of
+words at the beginning of the training and just shows those. When the
+user has gotten all entries right it ends the session and returns to
+the main training window.
 
 
 Practice modes
