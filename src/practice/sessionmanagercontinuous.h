@@ -58,6 +58,12 @@ public:
      */
     void setDocument(KEduVocDocument *doc);
 
+    /**
+     * Initialize the lists of entries that will be used in the
+     * training from the full set of available entries.
+     */
+    virtual void initializeTraining();
+
 
     // Not reimplemented.  The default version does what is needed.
     //virtual TestEntry* nextTrainingEntry();

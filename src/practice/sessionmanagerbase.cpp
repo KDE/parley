@@ -49,7 +49,6 @@ SessionManagerBase::SessionManagerBase(QWidget* parent)
 
 SessionManagerBase::~SessionManagerBase()
 {
-
     qDeleteAll(m_allTestEntries);
 }
 
@@ -82,12 +81,7 @@ void SessionManagerBase::setDocument(KEduVocDocument* doc)
     filterTestEntries();
     kDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
 
-    m_notAskedTestEntries = m_allTestEntries;
-
-    // FIXME: make this into it's own virtual method
-    for (int i = 0; i < qMin(m_notAskedTestEntries.count(), Prefs::testNumberOfEntries()); i++) {
-        m_currentEntries.append(m_notAskedTestEntries.takeAt(0));
-    }
+    initializeTraining();
 }
 
 QString SessionManagerBase::title() const

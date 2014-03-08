@@ -53,8 +53,19 @@ public:
 
     /**
      * Prepare for practice using the entries in this document.
+     *
+     * The default implementation selects all available entries in the
+     * document into the list allTestEntries and then calls
+     * initializeTraining().
      */
     virtual void setDocument(KEduVocDocument *doc);
+
+    /**
+     * Initialize the lists of entries that will be used in the
+     * training from the full set of available entries. Reimplement
+     * this to create other types of training sessions.
+     */
+    virtual void initializeTraining() = 0;
 
     /**
      * Retun the title of the document.
