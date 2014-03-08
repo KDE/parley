@@ -30,6 +30,7 @@
 
 #include <KXmlGuiWindow>
 #include "practice/sessionmanagercontinuous.h"
+#include "practice/sessionmanagerfixed.h"
 
 #include <QPointer>
 
@@ -187,7 +188,8 @@ private:
     /// the name of the executable
     QString m_appName;
     Component m_componentBeforePractice;
-    Practice::SessionManagerContinuous m_sessionManager;
+    //Practice::SessionManagerContinuous m_sessionManager;
+    Practice::SessionManagerFixed m_sessionManager;
 
     friend int main(int argc, char* argv[]);
 };
