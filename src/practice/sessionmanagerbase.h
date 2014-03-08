@@ -102,7 +102,7 @@ public:
 
     /**
      * The number of entries available for the practice session.
-     * The actual session may be smaller.
+     * This is used for statistics at the end of the session.
      * @return
      */
     int allEntryCount() const;

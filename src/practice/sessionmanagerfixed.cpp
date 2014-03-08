@@ -66,14 +66,25 @@ void SessionManagerFixed::initializeTraining()
     }
 
     // Pick the rest of the words from the already practiced ones.
-    // FIXME: Add prioritization
-    i = 0;
-    while (i < m_allTestEntries.count() && m_currentEntries.count() < MaxEntries) {
-        if (m_allTestEntries.at(i)->entry()->translation(m_toTranslation)->grade() > 0) {
-            m_currentEntries.append(m_allTestEntries.at(i));
-            numNewWords++;
+    // Use higher graded entries before lower graded ones.
+    for (int grade = KV_MAX_GRADE; grade > 0 ; --grade) {
+        if (m_currentEntries.count() >= MaxEntries) {
+            break;
         }
 
-        ++i;
+        // Step through all entries and collect those at the current
+        // grade until the session is filled.
+        foreach (TestEntry *entry, m_allTestEntries) {
+            if (entry->entry()->translation(m_toTranslation)->grade() == grade) {
+                m_currentEntries.append(entry);
+            }
+            if (m_currentEntries.count() >= MaxEntries) {
+                break;
+            }
+        }
     }
+
+    // Now we have decided exactly which ones to use.
+    // We need to keep this for statistics reporting at the end.
+    m_allTestEntries = m_currentEntries;
 }
