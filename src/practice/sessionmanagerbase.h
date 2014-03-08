@@ -47,38 +47,51 @@ public:
     explicit SessionManagerBase(QWidget *parent);
 
     /**
-     * Default destructor
+     * destructor
      */
-    ~SessionManagerBase();
+    virtual ~SessionManagerBase();
 
     /**
      * Prepare for practice using the entries in this document.
      */
     void setDocument(KEduVocDocument *doc);
 
+    /**
+     * Retun the title of the document.
+     */
+    QString title() const;
+
+
     // Should be called when starting and ending the practice session respectively.
+    // The default implementations only start and stop the practice timer.
     void practiceStarted();
     void practiceFinished();
+
+    /** the time in seconds */
+    int totalTime();
+
 
     /**
      * Get the next entry to show to the user.
      * @return TestEntry* the entry
      */
-    TestEntry* nextTrainingEntry();
+    virtual TestEntry* nextTrainingEntry();
+
+    /** Finish the currently active entry */
+    virtual void removeCurrentEntryFromPractice();
+
 
     /**
      * Get a list of all entries in the test - used by the summary dialog
      */
-    QList<TestEntry*> allTestEntries() {
-        return m_allTestEntries;
-    }
+    QList<TestEntry*> allTestEntries() const;
 
     /**
      * The number of entries available for the practice session.
      * The actual session may be smaller.
      * @return
      */
-    int allEntryCount();
+    int allEntryCount() const;
 
     /**
      * The number of entries that are still to be practiced
@@ -87,39 +100,36 @@ public:
     int activeEntryCount();
 
     /**
-     * Puts some grades on the shell
-     */
-    void printStatistics();
+    * Get a list of all unanswered entries in the test
+    */
+    QList<TestEntry*> allUnansweredTestEntries();
 
-    /** Finish the currently active entry */
-    void removeCurrentEntryFromPractice();
-
-    /** Finish the given entry */
-    //void entryFinished(TestEntry* entry);
-
+    // ----------------------------------------------------------------
+    // Statistics
     int statisticTotalCorrectFirstAttempt();
     int statisticTotalWrong();
     int statisticTotalUnanswered();
 
-    /** the time in seconds */
-    int totalTime();
+    /**
+     * Puts some grades on the shell
+     */
+    void printStatistics();
+
 
     QStringList multipleChoiceAnswers(int numberChoices);
 
-    /**
-    * Get a list of all unanswered entries in the test
-    */
-    QList<TestEntry*> allUnansweredTestEntries();
-    QString currentConjugationTense();
+    //QString currentConjugationTense();
 
-    QString title() const;
+ private:  // methods
 
-private:
+
     /**
      * Select appropriate entries for the practice (respect blocking settings etc)
      * m_allTestEntries will be filled by this.
      */
     void filterTestEntries();
+
+    void setLanguages(int from, int to);
 
     /**
      * Find out if the given expression can be used as a multiple choice answer for the current entry
@@ -127,7 +137,7 @@ private:
      */
     bool isValidMultipleChoiceAnswer(KEduVocExpression *e);
 
-    void setLanguages(int from, int to);
+ private:  // data
 
     KEduVocDocument *m_doc;
     QWidget *m_parent;
@@ -137,8 +147,10 @@ private:
 
     /// All entries in the test.
     QList<TestEntry*> m_allTestEntries;
+
     /// All entries that have not been asked.
     QList<TestEntry*> m_notAskedTestEntries;
+
     /// The list of entries that are being asked. If one of these is done, it can be deleted and an new one from m_notAskedTestEntries taken.
     QList<TestEntry*> m_currentEntries;
     int m_currentEntry;

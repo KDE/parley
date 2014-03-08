@@ -16,19 +16,24 @@
 
 #include "sessionmanagerbase.h"
 
-#include "entryfilter.h"
+// Qt
+#include <QDateTime>
 
-#include <prefs.h>
+// kdelibs
 #include <klocale.h>
 #include <kconfig.h>
+#include <KDebug>
+#include <KMessageBox>
 
+// kdeedulibs
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>
 #include <keduvocdocument.h>
 
-#include <KDebug>
-#include <KMessageBox>
-#include <QDateTime>
+// parley
+#include "entryfilter.h"
+#include <prefs.h>
+
 
 using namespace Practice;
 
@@ -79,6 +84,7 @@ void SessionManagerBase::setDocument(KEduVocDocument* doc)
 
     m_notAskedTestEntries = m_allTestEntries;
 
+    // FIXME: make this into it's own virtual method
     for (int i = 0; i < qMin(m_notAskedTestEntries.count(), Prefs::testNumberOfEntries()); i++) {
         m_currentEntries.append(m_notAskedTestEntries.takeAt(0));
     }
@@ -87,44 +93,6 @@ void SessionManagerBase::setDocument(KEduVocDocument* doc)
 QString SessionManagerBase::title() const
 {
     return m_doc->title();
-}
-
-void SessionManagerBase::setLanguages(int from, int to)
-{
-    m_fromTranslation = from;
-    m_toTranslation = to;
-    TestEntry::setGradeFrom(m_fromTranslation);
-    TestEntry::setGradeTo(m_toTranslation);
-}
-
-void SessionManagerBase::filterTestEntries()
-{
-    EntryFilter filter(m_parent, m_doc);
-    m_allTestEntries = filter.entries();
-}
-
-void SessionManagerBase::removeCurrentEntryFromPractice()
-{
-    if (m_currentEntry >= 0) {
-        m_currentEntries.takeAt(m_currentEntry);
-    }
-}
-
-void SessionManagerBase::printStatistics()
-{
-    kDebug() << "Test statistics: ";
-    foreach(TestEntry * entry, m_allTestEntries) {
-        kDebug()
-                << " asked: " << entry->statisticCount()
-                << " +" << entry->statisticGoodCount() << " -" << entry->statisticBadCount()
-                << "Entry: " << entry->entry()->translation(0)->text();
-    }
-}
-
-int SessionManagerBase::totalTime()
-{
-    // seconds instead of ms
-    return m_totalTime / (1000);
 }
 
 void SessionManagerBase::practiceStarted()
@@ -139,7 +107,54 @@ void SessionManagerBase::practiceFinished()
     kDebug() << "stop practice timer" << m_totalTime << m_time.toString();
 }
 
-int SessionManagerBase::allEntryCount()
+int SessionManagerBase::totalTime()
+{
+    // seconds instead of ms
+    return m_totalTime / (1000);
+}
+
+TestEntry* SessionManagerBase::nextTrainingEntry()
+{
+    // Refill current entries.
+    while (m_currentEntries.count() < Prefs::testNumberOfEntries() &&
+            m_notAskedTestEntries.count() > 0) {
+        m_currentEntries.append(m_notAskedTestEntries.takeAt(0));
+    }
+
+    int lastEntry = m_currentEntry;
+    // return one of the current entries
+    if (m_currentEntries.count() > 0) {
+        // one of the current words (by random)
+        m_currentEntry = m_randomSequence.getLong(m_currentEntries.count());
+        // do not allow to ask the same entry twice in a row
+        if (m_currentEntries.count() > 1) {
+            while (m_currentEntry == lastEntry) {
+                m_currentEntry = m_randomSequence.getLong(m_currentEntries.count());
+            }
+        }
+
+        kDebug() << "nextEntry: " << m_currentEntry << " = " << m_currentEntries.value(m_currentEntry)->entry()->translation(0)->text() << " (" << m_currentEntries.count() + m_notAskedTestEntries.count() << "entries remaining)";
+
+        return m_currentEntries.value(m_currentEntry);
+    } else {
+        return 0;
+    }
+}
+
+
+void SessionManagerBase::removeCurrentEntryFromPractice()
+{
+    if (m_currentEntry >= 0) {
+        m_currentEntries.takeAt(m_currentEntry);
+    }
+}
+
+QList<TestEntry*> SessionManagerBase::allTestEntries() const
+{
+    return m_allTestEntries;
+}
+
+int SessionManagerBase::allEntryCount() const
 {
     return m_allTestEntries.count();
 }
@@ -158,6 +173,10 @@ QList<TestEntry*> SessionManagerBase::allUnansweredTestEntries()
 
     return allUnansweredEntries;
 }
+
+// ----------------------------------------------------------------
+//                         Statistics
+
 
 int SessionManagerBase::statisticTotalCorrectFirstAttempt()
 {
@@ -192,32 +211,14 @@ int SessionManagerBase::statisticTotalUnanswered()
     return count;
 }
 
-
-TestEntry* SessionManagerBase::nextTrainingEntry()
+void SessionManagerBase::printStatistics()
 {
-    // Refill current entries.
-    while (m_currentEntries.count() < Prefs::testNumberOfEntries() &&
-            m_notAskedTestEntries.count() > 0) {
-        m_currentEntries.append(m_notAskedTestEntries.takeAt(0));
-    }
-
-    int lastEntry = m_currentEntry;
-    // return one of the current entries
-    if (m_currentEntries.count() > 0) {
-        // one of the current words (by random)
-        m_currentEntry = m_randomSequence.getLong(m_currentEntries.count());
-        // do not allow to ask the same entry twice in a row
-        if (m_currentEntries.count() > 1) {
-            while (m_currentEntry == lastEntry) {
-                m_currentEntry = m_randomSequence.getLong(m_currentEntries.count());
-            }
-        }
-
-        kDebug() << "nextEntry: " << m_currentEntry << " = " << m_currentEntries.value(m_currentEntry)->entry()->translation(0)->text() << " (" << m_currentEntries.count() + m_notAskedTestEntries.count() << "entries remaining)";
-
-        return m_currentEntries.value(m_currentEntry);
-    } else {
-        return 0;
+    kDebug() << "Test statistics: ";
+    foreach(TestEntry * entry, m_allTestEntries) {
+        kDebug()
+                << " asked: " << entry->statisticCount()
+                << " +" << entry->statisticGoodCount() << " -" << entry->statisticBadCount()
+                << "Entry: " << entry->entry()->translation(0)->text();
     }
 }
 
@@ -287,6 +288,25 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
     return choices;
 }
 
+
+// ----------------------------------------------------------------
+//                         Private methods
+
+
+void SessionManagerBase::filterTestEntries()
+{
+    EntryFilter filter(m_parent, m_doc);
+    m_allTestEntries = filter.entries();
+}
+
+void SessionManagerBase::setLanguages(int from, int to)
+{
+    m_fromTranslation = from;
+    m_toTranslation = to;
+    TestEntry::setGradeFrom(m_fromTranslation);
+    TestEntry::setGradeTo(m_toTranslation);
+}
+
 bool SessionManagerBase::isValidMultipleChoiceAnswer(KEduVocExpression *e)
 {
     // entry is empty
@@ -300,3 +320,4 @@ bool SessionManagerBase::isValidMultipleChoiceAnswer(KEduVocExpression *e)
         return false;
     return true;
 }
+
