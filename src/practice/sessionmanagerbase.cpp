@@ -133,7 +133,10 @@ TestEntry* SessionManagerBase::nextTrainingEntry()
             }
         }
 
-        kDebug() << "nextEntry: " << m_currentEntry << " = " << m_currentEntries.value(m_currentEntry)->entry()->translation(0)->text() << " (" << m_currentEntries.count() + m_notAskedTestEntries.count() << "entries remaining)";
+        kDebug() << "nextTrainingEntry:"
+                 << m_currentEntry << " = " << m_currentEntries.value(m_currentEntry)->entry()->translation(0)->text()
+                 << " (" << m_currentEntries.count() + m_notAskedTestEntries.count()
+                 << "entries remaining)";
 
         return m_currentEntries.value(m_currentEntry);
     } else {
@@ -166,12 +169,12 @@ int SessionManagerBase::activeEntryCount()
 
 QList<TestEntry*> SessionManagerBase::allUnansweredTestEntries()
 {
-    QList<TestEntry*> allUnansweredEntries;
+    QList<TestEntry*> result;
 
-    allUnansweredEntries.append(m_notAskedTestEntries);
-    allUnansweredEntries.append(m_currentEntries);
+    result.append(m_notAskedTestEntries);
+    result.append(m_currentEntries);
 
-    return allUnansweredEntries;
+    return result;
 }
 
 // ----------------------------------------------------------------
@@ -290,7 +293,7 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
 
 
 // ----------------------------------------------------------------
-//                         Private methods
+//                         Protected methods
 
 
 void SessionManagerBase::filterTestEntries()

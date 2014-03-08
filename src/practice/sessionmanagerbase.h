@@ -54,7 +54,7 @@ public:
     /**
      * Prepare for practice using the entries in this document.
      */
-    void setDocument(KEduVocDocument *doc);
+    virtual void setDocument(KEduVocDocument *doc);
 
     /**
      * Retun the title of the document.
@@ -64,16 +64,19 @@ public:
 
     // Should be called when starting and ending the practice session respectively.
     // The default implementations only start and stop the practice timer.
-    void practiceStarted();
-    void practiceFinished();
+    virtual void practiceStarted();
+    virtual void practiceFinished();
 
     /** the time in seconds */
     int totalTime();
 
 
     /**
-     * Get the next entry to show to the user.
-     * @return TestEntry* the entry
+     * Get the next entry to show to the user. The default
+     * implementation refills the active entries up to the max number
+     * and selects a random entry from them.
+     *
+     * @return TestEntry* the next entry to be practiced
      */
     virtual TestEntry* nextTrainingEntry();
 
@@ -120,8 +123,7 @@ public:
 
     //QString currentConjugationTense();
 
- private:  // methods
-
+ protected:  // methods
 
     /**
      * Select appropriate entries for the practice (respect blocking settings etc)
@@ -137,7 +139,7 @@ public:
      */
     bool isValidMultipleChoiceAnswer(KEduVocExpression *e);
 
- private:  // data
+protected:  // data
 
     KEduVocDocument *m_doc;
     QWidget *m_parent;
@@ -145,14 +147,23 @@ public:
     int m_toTranslation;
     int m_testType;
 
-    /// All entries in the test.
+    // ----------------------------------------------------------------
+    // The following entries define the training
+
+    /// All entries available in the document that fulfill the
+    /// requirements set in the configuration and the grades in the
+    /// entries themselves.
     QList<TestEntry*> m_allTestEntries;
 
-    /// All entries that have not been asked.
+    /// All entries that have not been entered into the active set.
     QList<TestEntry*> m_notAskedTestEntries;
 
-    /// The list of entries that are being asked. If one of these is done, it can be deleted and an new one from m_notAskedTestEntries taken.
+    /// The list of entries that are being asked. If one of these is
+    /// done, it can be deleted and an new one from
+    /// m_notAskedTestEntries taken.
     QList<TestEntry*> m_currentEntries;
+
+    // The index of the current entry in m_currentEntries.
     int m_currentEntry;
 
     QTime m_time;

@@ -2,16 +2,36 @@
 * Coding
    + Rename TestEntryManager into SessionManager (done in master)       Done
    + Make SessionManager into a base class                              Done
-   + Separate the specific session parameters of the current session    ----
+   + Separate the specific session parameters of the current session    Done
      type (continuous) into its own class.
    + Write a new session type with a limited of questions (default 20)  ----
-   + Create config options for the sessions
 
 * Decisions
-   + Decide how to prioritize entries between those that have a high
+   + Decide how to prioritize entries between those that have a high    Done
      grade and those that have a lower grade.
-   + Shall we create a session presentation screen that is shown
+     Answer: prioritize those entries with a higher grade first.
+   + Shall we create a session presentation screen that is shown        Done
      before the session starts?
+     Answer: Yes, but not before the rest is working. See milestone 3
 
 * Documentation
    + Document the new session system in DESIGN                          ----
+
+
+// ================================================================
+// Milestone 1: Merge working session
+
+* Coding
+   + Create config options for the sessions                             ----
+
+// ================================================================
+// Milestone 2: Merge configurable session
+
+
+* Coding
+   + Create session overview pane
+
+
+// ================================================================
+// Milestone 3: Sessions finished
+
