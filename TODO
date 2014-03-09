@@ -140,7 +140,7 @@ NOTE:  DO NOT CHANGE THESE HERE.
       altogether and have a purely time based system (which the
       leitner boxes are trying to emulate anyway).
       thaipod101.com uses this system and it works very well.
-    + Sessions.  A session is a byte sized part of a lesson containing
+    + Sessions.  A session is a byte sized part of a lesson containing  Done (4.14)
       maybe 10-20 questions. It is automatically generated when the
       user starts to practice a lesson and is never saved anywhere.
       The reason we want this is that you will get a greater sense of
@@ -148,7 +148,7 @@ NOTE:  DO NOT CHANGE THESE HERE.
       just practiced 5% of the words in a big lesson.  It should also
       limit the number of new words in each session (5?).
       See thaipod101.com for this.
-    + Mixed mode in all practice methods.
+    + Mixed mode in all practice methods.                               ----
       This means that not just one direction is practiced, but
       known->learning, learning->known and maybe even sound of
       learning -> known
@@ -173,9 +173,9 @@ NOTE:  DO NOT CHANGE THESE HERE.
       and use a zip container, manifest, etc.  Lots of code for this
       in Calligra.
     + Enhancements in KVTML
-       - Allow one image for a whole entry, not just for a word.           ----
+       - Allow one image for a whole entry, not just for a word.        ----
          After all, all the translations in an entry mean the same thing.
-       - Field for transcription of non-western scripts
+       - Field for transcription of non-western scripts                 ----
 
 
 ================================================================

@@ -19,7 +19,6 @@
 
 #include "parleydocument.h"
 
-#include "sessionmanager.h"
 #include "testentry.h"
 
 

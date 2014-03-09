@@ -16,7 +16,7 @@
 #define MULTIPLECHOICEBACKENDMODE_H
 
 #include "abstractbackendmode.h"
-#include "practice/sessionmanager.h"
+#include "practice/sessionmanagerbase.h"
 
 namespace Practice
 {
@@ -26,7 +26,7 @@ class MultipleChoiceBackendMode : public AbstractBackendMode
     Q_OBJECT
 
 public:
-    MultipleChoiceBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend, QObject *parent, Practice::SessionManager* sessionManager);
+    MultipleChoiceBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend, QObject *parent, Practice::SessionManagerBase* sessionManager);
 
     virtual bool setTestEntry(TestEntry* current);
 
@@ -59,7 +59,7 @@ protected:
     int numberOfChoices();
 
 private:
-    SessionManager* m_sessionManager;
+    SessionManagerBase* m_sessionManager;
     KRandomSequence m_randomSequence;
     QString m_question;
     int m_numberOfChoices;

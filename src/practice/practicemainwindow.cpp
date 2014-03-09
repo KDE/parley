@@ -35,7 +35,7 @@
 
 using namespace Practice;
 
-PracticeMainWindow::PracticeMainWindow(SessionManager* sessionManager,
+PracticeMainWindow::PracticeMainWindow(SessionManagerBase* sessionManager,
                                        ParleyMainWindow* mainWindow)
     : KXmlGuiWindow(mainWindow), m_mainWindow(mainWindow)
 {

@@ -295,7 +295,7 @@ void ParleyMainWindow::switchComponent(Component component)
         // Don't start a practice when there are no words to practice.
         // This has to be checked before deleting the old component.
         m_sessionManager.setDocument(m_document->document());
-        if (!m_sessionManager.totalEntryCount()) {
+        if (!m_sessionManager.allEntryCount()) {
             return;
         }
     }

@@ -20,7 +20,8 @@ using namespace Practice;
 
 ExampleSentenceBackendMode::ExampleSentenceBackendMode(const Practice::PracticeOptions& practiceOptions,
                                                        AbstractFrontend* frontend, QObject* parent,
-                                                       SessionManager* sessionManager, KEduVocDocument* doc)
+                                                       SessionManagerBase* sessionManager,
+                                                       KEduVocDocument* doc)
     : WrittenBackendMode(practiceOptions, frontend, parent, sessionManager, doc)
 {
 }

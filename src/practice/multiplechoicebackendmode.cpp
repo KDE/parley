@@ -21,7 +21,7 @@ using namespace Practice;
 
 MultipleChoiceBackendMode::MultipleChoiceBackendMode(const PracticeOptions& practiceOptions,
                                                      AbstractFrontend* frontend, QObject* parent,
-                                                     Practice::SessionManager* sessionManager)
+                                                     Practice::SessionManagerBase* sessionManager)
     : AbstractBackendMode(practiceOptions, frontend, parent)
     , m_sessionManager(sessionManager)
     , m_randomSequence(QDateTime::currentDateTime().toTime_t())

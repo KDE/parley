@@ -27,7 +27,7 @@
 #include <QList>
 
 #include "ui_blockoptions.h"
-#include "practice/sessionmanager.h"
+#include "practice/sessionmanagerbase.h"
 
 class KComboBox;
 

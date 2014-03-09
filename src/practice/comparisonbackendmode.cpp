@@ -21,7 +21,7 @@
 using namespace Practice;
 
 ComparisonBackendMode::ComparisonBackendMode(const PracticeOptions& practiceOptions,
-        AbstractFrontend* frontend, QObject* parent, Practice::SessionManager* sessionManager, KEduVocDocument* doc)
+        AbstractFrontend* frontend, QObject* parent, Practice::SessionManagerBase* sessionManager, KEduVocDocument* doc)
     : AbstractBackendMode(practiceOptions, frontend, parent)
     , m_sessionManager(sessionManager)
     , m_doc(doc)
