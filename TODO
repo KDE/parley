@@ -3,30 +3,6 @@
 
 
 ================================================================
-Before the 4.13 freeze (features).  These are picked from the ones below.
-
-
- * Editor
-    + indicators in the table for words whether they have an image      Done
-      and/or a sound.
-
- * Practice
-    + Enable sound in all practice modes (or at least flashcards)       Done
-      https://bugs.kde.org/show_bug.cgi?id=263835
-      Suggestion:
-      Always show the sound button if it's enabled in the practice
-      config and never otherwise. If no sound for this word, disable
-      the sound button instead of hiding it.
-
- * Wishes from bugzilla
-    + Legend for the statistics                                         Done
-      https://bugs.kde.org/show_bug.cgi?id=228634
-    + Use images instead of words in flashcards                         Done
-      https://bugs.kde.org/show_bug.cgi?id=281120
-      https://bugs.kde.org/show_bug.cgi?id=168672
-
-
-----------------------------------------------------------------
 Before the 4.13 release (bugs).
 NOTE:  DO NOT CHANGE THESE HERE.
        Instead, change them in the branch and merge the branch into master.
@@ -91,6 +67,31 @@ NOTE:  DO NOT CHANGE THESE HERE.
 
  * Release work
     + Update the version! (To what?)
+
+
+================================================================
+Before the 4.14 freeze (features).  These are picked from the ones below.
+
+
+ * Editor
+    + 
+
+ * Practice
+    + Sessions.  A session is a byte sized part of a lesson containing  ----
+      maybe 10-20 questions. It is automatically generated when the
+      user starts to practice a lesson and is never saved anywhere.
+      The reason we want this is that you will get a greater sense of
+      achievement when you are done with a session than when you have
+      just practiced 5% of the words in a big lesson.  It should also
+      limit the number of new words in each session (5?).
+      See thaipod101.com for this.
+       - Milestone 1: (Working sessions)                                Done
+       - Milestone 2: Configurable values                               ----
+       - Milestone 3: Nice summary before the start                     ----
+    + 
+
+ * Wishes from bugzilla
+    + 
 
 
 ================================================================
