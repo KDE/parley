@@ -41,7 +41,7 @@ void SessionManagerFixed::initializeTraining()
 {
 #if 0 // FIXME: Use smaller numbers during debugging
     const int MaxEntries  = Prefs::testNumberOfEntries();
-    const int MaxNewWords = 5;      // FIXME: Make this a config option. 
+    const int MaxNewWords = 5;      // FIXME: Make this a config option.
 #else
     const int MaxEntries = 7;
     const int MaxNewWords = 3;
@@ -53,7 +53,7 @@ void SessionManagerFixed::initializeTraining()
     // Pick N new words if there are any into the active set.
     int numNewWords = 0;
     int i = 0;
-    while (i < m_allTestEntries.count() 
+    while (i < m_allTestEntries.count()
            && numNewWords < MaxNewWords
            && m_currentEntries.count() < MaxEntries)
     {
