@@ -993,7 +993,7 @@ limited to language learning but supports a multitude of subjects.
 <sect1 id="adding-images"><title>Adding Images</title>
 <para>First show the image tool by selecting <guilabel>View</guilabel> in the menubar and then clicking on <guilabel>Image</guilabel>. The check box in front of <guilabel>Image</guilabel> will then be activated. This will show up the picture section on the right hand side of the &parley; screen
 </para>
-<para>To add an image to a word make sure the word is highlighted. In the image section on the right hand side click on the <emphasis>Folder icon</emphasis> and choose the picture you wish to associate. On selecting an image for a pair of translations, the bottom left corners of the cells of both the words would be marked with a blue flag. Hovering over this flag with the mouse cursor shows the name and path of the image file.
+<para>To add an image to a word make sure the word is highlighted. In the image section on the right hand side click on the <emphasis>Folder icon</emphasis> and choose the picture you wish to associate. On selecting an image for a pair of translations, the bottom right corners of the cells of both the words would be marked with a blue flag. Hovering over this flag with the mouse cursor shows the name and path of the image file.
 </para>
 <para>
 <screenshot>
@@ -1045,7 +1045,7 @@ Due to the current script limitations the image files cannot be saved in the pat
 <sect1 id="adding-sound"><title>Adding Sound</title>
 <para>First show the sound tool by selecting <guilabel>View</guilabel> in the menubar and then clicking on <guilabel>Sound</guilabel>. This will show up the sound section on the right hand side of the &parley; screen.
 </para>
-<para>To add a sound to a word make sure the word is highlighted. In the sound section on the right hand side click on the <emphasis>Folder icon</emphasis> and choose the sound you wish to associate. On selecting a sound file for a word, the top left corner of the cell of that word would be marked with a red flag. Hovering over this flag with the mouse cursor shows the name and path of the sound file.
+<para>To add a sound to a word make sure the word is highlighted. In the sound section on the right hand side click on the <emphasis>Folder icon</emphasis> and choose the sound you wish to associate. On selecting a sound file for a word, the top right corner of the cell of that word would be marked with a red flag. Hovering over this flag with the mouse cursor shows the name and path of the sound file.
 </para>
 <para>
 <screenshot>
