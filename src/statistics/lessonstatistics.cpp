@@ -135,10 +135,23 @@ protected:
 
             painter->drawLine(QLine(rect.x() + legendOffsetX + 7 * gradeBarWidth, rect.y() + legendOffsetY + 1, rect.x() + legendOffsetX + 7 * gradeBarWidth, rect.y() + legendHeight + legendOffsetY - 1)); // Necessary hack to get the border on white.
             painter->setPen(Qt::black);
-            const int textBoxWidth = 100;
-            const int textBoxHeight = 40;
-            painter->drawText(QRect(rect.x() + legendOffsetX - 80, rect.y() + legendOffsetY, textBoxWidth, textBoxHeight), Qt::AlignLeft | Qt::AlignVCenter, i18nc("adjective, The word has been properly and fully learned by the user","Fully learned"));
-            painter->drawText(QRect(rect.x() + legendOffsetX + 330, rect.y() + legendOffsetY, textBoxWidth, textBoxHeight), Qt::AlignLeft | Qt::AlignVCenter, i18nc("adjective, The word has not even been practiced once by the user","Not practiced"));
+            QString leftString = i18nc("adjective, The word has been properly and fully learned by the user","Fully learned");
+            QString rightString = i18nc("adjective, The word has not even been practiced once by the user","Not practiced");
+            const int extraRoomInRectSize = 10;
+            const int horizontalDistanceFromLegend = 10;
+            QFontMetrics fontMetrics(painter->font());
+            // Calculate the size and position of the rectangle that will contain the string on the left side of the legend
+            QRect leftRect = fontMetrics.boundingRect(leftString);
+            leftRect.setWidth(leftRect.width() + extraRoomInRectSize);
+            leftRect.setHeight(leftRect.height() + extraRoomInRectSize);
+            leftRect.moveBottomRight(QPoint(rect.x() + legendOffsetX - horizontalDistanceFromLegend, rect.y() + legendOffsetY + legendHeight));
+            // Calculate the size and position of the rectangle that will contain the string on the right side of the legend
+            QRect rightRect = fontMetrics.boundingRect(rightString);
+            rightRect.setWidth(rightRect.width() + extraRoomInRectSize);
+            rightRect.setHeight(rightRect.height() + extraRoomInRectSize);
+            rightRect.moveBottomLeft(QPoint(rect.x() + legendOffsetX + legendWidth + horizontalDistanceFromLegend, rect.y() + legendOffsetY + legendHeight));
+            painter->drawText(leftRect, Qt::AlignRight | Qt::AlignVCenter, leftString);
+            painter->drawText(rightRect, Qt::AlignLeft | Qt::AlignVCenter, rightString);
         }
     }
 
