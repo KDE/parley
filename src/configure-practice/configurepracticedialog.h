@@ -21,6 +21,7 @@
 #include <keduvocdocument.h>
 #include <KConfigDialog>
 
+class GeneralPracticeOptions;
 class ConfigurePracticeWidget;
 class AdvancedPracticeOptions;
 class ThresholdOptions;
@@ -67,11 +68,12 @@ private:
      */
     bool isDefault();
 
-    AdvancedPracticeOptions* m_advancedPracticeOptions;
-    ThresholdOptions* m_thresholdOptions;
-    BlockOptions* m_blockOptions;
+    GeneralPracticeOptions  *m_generalPracticeOptions;
+    BlockOptions            *m_blockOptions;
+    ThresholdOptions        *m_thresholdOptions;
+    AdvancedPracticeOptions *m_advancedPracticeOptions;
 
-    KConfigSkeleton* m_config;
+    KConfigSkeleton *m_config;
 };
 
 #endif // ConfigurePracticeDialog_included

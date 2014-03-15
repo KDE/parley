@@ -10,7 +10,7 @@
     <height>685</height>
    </rect>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>4</x>
@@ -239,7 +239,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KIntSpinBox" name="kcfg_NumberMultipleChoiceAnswers_2">
+          <widget class="KIntSpinBox" name="kcfg_SessionMaxNewWords">
            <property name="maximumSize">
             <size>
              <width>74</width>
