@@ -143,32 +143,6 @@
      </widget>
     </item>
     <item row="1" column="0" colspan="2">
-     <widget class="QGroupBox" name="groupBox">
-      <property name="title">
-       <string>Synonyms</string>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>By default you are asked to enter synonyms until you enter the one that is associated directly with the current word. With this option enabled any synonym is accepted.</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="kcfg_CountSynonymsAsCorrect">
-         <property name="text">
-          <string>Accept any Synonym</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item row="2" column="0" colspan="2">
      <widget class="QGroupBox" name="groupBox_2">
       <property name="title">
        <string>Sessions</string>
@@ -271,6 +245,32 @@
           </spacer>
          </item>
         </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="2" column="0" colspan="2">
+     <widget class="QGroupBox" name="groupBox">
+      <property name="title">
+       <string>Synonyms</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>By default you are asked to enter synonyms until you enter the one that is associated directly with the current word. With this option enabled any synonym is accepted.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="kcfg_CountSynonymsAsCorrect">
+         <property name="text">
+          <string>Accept any Synonym</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
