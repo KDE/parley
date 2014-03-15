@@ -15,7 +15,7 @@ set(parley_SRCS
     configure-practice/generalpracticeoptions.cpp
     configure-practice/blockoptions.cpp
     configure-practice/thresholdoptions.cpp
-    configure-practice/advancedpracticeoptions.cpp
+    configure-practice/specificpracticeoptions.cpp
     editor/editor.cpp
     editor/audiowidget.cpp
     editor/browserwidget.cpp
@@ -112,7 +112,7 @@ kde4_add_ui_files(parley_SRCS
     configure-practice/generalpracticeoptions.ui
     configure-practice/blockoptions.ui
     configure-practice/thresholdoptions.ui
-    configure-practice/advancedpracticeoptions.ui
+    configure-practice/specificpracticeoptions.ui
     editor/multiplechoicewidget.ui
     editor/comparisonwidget.ui
     editor/conjugationwidget.ui

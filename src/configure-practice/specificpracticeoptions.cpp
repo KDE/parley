@@ -8,6 +8,7 @@
 
     copyright            :(C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
                           (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+                          (C) 2014 Inge Wallin       <inge@lysator.liu.se>
 
     -----------------------------------------------------------------------
 
@@ -22,11 +23,11 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "advancedpracticeoptions.h"
+#include "specificpracticeoptions.h"
 
 #include "prefs.h"
 
-AdvancedPracticeOptions::AdvancedPracticeOptions(QWidget* parent) : QWidget(parent)
+SpecificPracticeOptions::SpecificPracticeOptions(QWidget* parent) : QWidget(parent)
 {
     setupUi(this);
 
@@ -34,4 +35,4 @@ AdvancedPracticeOptions::AdvancedPracticeOptions(QWidget* parent) : QWidget(pare
 }
 
 
-#include "advancedpracticeoptions.moc"
+#include "specificpracticeoptions.moc"

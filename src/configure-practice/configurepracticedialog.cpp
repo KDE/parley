@@ -1,6 +1,7 @@
 /***************************************************************************
 
     copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+                    (C) 2014 Inge Wallin       <inge@lysator.liu.se>
 
     -----------------------------------------------------------------------
 
@@ -20,7 +21,7 @@
 #include "generalpracticeoptions.h"
 #include "blockoptions.h"
 #include "thresholdoptions.h"
-#include "advancedpracticeoptions.h"
+#include "specificpracticeoptions.h"
 
 #include <KLocale>
 
@@ -46,8 +47,8 @@ ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *
     m_thresholdOptions = new ThresholdOptions(doc, this);
     addPage(m_thresholdOptions, i18nc("@title:group ignore vocabulary based on some properties like word type", "Thresholds"), "practice-setup", i18n("Threshold Settings"), true);
 
-    m_advancedPracticeOptions = new AdvancedPracticeOptions(this);
-    addPage(m_advancedPracticeOptions, i18nc("@title:group Configure advanced settings for practicing vocabulary, short title in config dialog.", "Advanced"), "advanced-setup", i18nc("Configure advanced settings for practicing vocabulary.", "Advanced Practice Settings"), true);
+    m_specificPracticeOptions = new SpecificPracticeOptions(this);
+    addPage(m_specificPracticeOptions, i18nc("@title:group Configure specific settings for practicing vocabulary, short title in config dialog.", "Specific"), "specific-setup", i18nc("Configure specific settings for practicing vocabulary.", "Specific Practice Settings"), true);
 
     setHelp(QString(), "parley");
 

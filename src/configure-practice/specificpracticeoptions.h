@@ -22,16 +22,16 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef ADVANCEDPRACTICEOPTIONS_H
-#define ADVANCEDPRACTICEOPTIONS_H
+#ifndef SPECIFICPRACTICEOPTIONS_H
+#define SPECIFICPRACTICEOPTIONS_H
 
-#include "ui_advancedpracticeoptions.h"
+#include "ui_specificpracticeoptions.h"
 
-class AdvancedPracticeOptions : public QWidget, public Ui::AdvancedPracticeOptions
+class SpecificPracticeOptions : public QWidget, public Ui::SpecificPracticeOptions
 {
     Q_OBJECT
 public:
-    AdvancedPracticeOptions(QWidget* parent = 0);
+    SpecificPracticeOptions(QWidget* parent = 0);
 };
 
 #endif

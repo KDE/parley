@@ -1,6 +1,7 @@
 /***************************************************************************
 
     copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+                    (C) 2014 Inge Wallin       <inge@lysator.liu.se>
 
     -----------------------------------------------------------------------
 
@@ -23,7 +24,7 @@
 
 class GeneralPracticeOptions;
 class ConfigurePracticeWidget;
-class AdvancedPracticeOptions;
+class SpecificPracticeOptions;
 class ThresholdOptions;
 class BlockOptions;
 
@@ -71,7 +72,7 @@ private:
     GeneralPracticeOptions  *m_generalPracticeOptions;
     BlockOptions            *m_blockOptions;
     ThresholdOptions        *m_thresholdOptions;
-    AdvancedPracticeOptions *m_advancedPracticeOptions;
+    SpecificPracticeOptions *m_specificPracticeOptions;
 
     KConfigSkeleton *m_config;
 };
