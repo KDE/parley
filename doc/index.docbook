@@ -3,7 +3,7 @@
   <!-- Define an entity for your application if it is not part of KDE
        CVS -->
   <!ENTITY kappname "&parley;">
-  <!ENTITY package "parley">  
+  <!ENTITY package "parley">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE">]>
 
@@ -15,7 +15,7 @@
 <authorgroup>
 <author>
 &Frederik.Gladhorn;
-&Frederik.Gladhorn.mail;  
+&Frederik.Gladhorn.mail;
 </author>
 
 <author>
@@ -26,6 +26,11 @@
 <author>
 <personname><firstname>Daniel</firstname><surname>Laidig</surname></personname>
 <email>d.laidig@gmx.de</email>
+</author>
+
+<author>
+<personname><firstname>Amarvir</firstname><surname>Singh</surname></personname>
+<email>amarvir.ammu.93@gmail.com</email>
 </author>
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
@@ -42,17 +47,21 @@
 <year>2010</year>
 <holder>Daniel Laidig</holder>
 </copyright>
+<copyright>
+<year>2014</year>
+<holder>Amarvir Singh</holder>
+</copyright>
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2014-02-26</date>
-<releaseinfo>0.9.4 (&kde; SC 4.13)</releaseinfo>
+<date>2014-03-11</date>
+<releaseinfo>1.0.0 (&kde; SC 4.13)</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
 <abstract>
 <para>
 &parley; is a vocabulary trainer. It helps you to memorize your vocabulary,
-for example when you are trying to learn a foreign language. &parley; is not 
+for example when you are trying to learn a foreign language. &parley; is not
 limited to language learning but supports a multitude of subjects.
 </para>
 </abstract>
@@ -69,7 +78,7 @@ limited to language learning but supports a multitude of subjects.
 <!--userbase <timestamp>2010-06-25T18:39:29Z</timestamp>-->
 
 <!--userbase-content-->
-<chapter id="introduction"><title>Introduction</title> 
+<chapter id="introduction"><title>Introduction</title>
 <para>&parley; is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. You can create your own vocabulary collections with the words you need or select from a great variety of available <ulink url="http://userbase.kde.org/Parley#Vocabulary_Collections">Vocabulary Collections</ulink>. There you can find collections containing language vocabulary and also anatomy, music, geography, chemistry or exam preparation.
 </para>
 <para>&parley; is very flexible and uses the <ulink url="http://en.wikipedia.org/wiki/Flashcard">flash card learning approach</ulink>. It automatically keeps track of your learning progress. With &parley; you can arrange your vocabulary as you wish, you create your own lessons as needed. But unlike real flash cards you can use different learning methods with &parley;.
@@ -91,10 +100,10 @@ limited to language learning but supports a multitude of subjects.
 </para>
 </tip>
 </chapter>
-<chapter id="start-page"><title>Start Page</title> 
+<chapter id="start-page"><title>Start Page</title>
 <para>When you first launch &parley; the <guilabel>Start Page</guilabel> welcomes you.
 </para>
-<para>At first the <guilabel>Start Page</guilabel> is empty, once you opened some vocabulary collections, it shows you the ones you worked with most recently. 
+<para>At first the <guilabel>Start Page</guilabel> is empty, once you opened some vocabulary collections, it shows you the ones you worked with most recently.
 </para>
 <para>
 <screenshot>
@@ -107,7 +116,7 @@ limited to language learning but supports a multitude of subjects.
       <phrase></phrase>
     </textobject>
   </mediaobject>
-</screenshot> 
+</screenshot>
 </para>
 <para>A vocabulary collection is a file that contains words and their translations into other languages or other pairs of words and sentences that you want to memorize. The words are organized in lessons.
 </para>
@@ -117,7 +126,7 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>To <link linkend="vocabulary-editing">edit</link> a collection, click on the <guilabel>Editor Icon</guilabel> on its right hand side.
 </para>
-<para>If you'd like to start your own collection of vocabulary, click on <guilabel>Create a New Collection</guilabel>. 
+<para>If you'd like to start your own collection of vocabulary, click on <guilabel>Create a New Collection</guilabel>.
 </para>
 <para>You can also <link linkend="open-an-existing-collection">open a collection</link> if you have it on your computer already but it's not in the list.
 </para>
@@ -126,7 +135,7 @@ limited to language learning but supports a multitude of subjects.
 <para>&parley; comes with different themes, you can switch to a different graphical style in the settings. For further information, see <link linkend="configure-parley">Configure &parley;</link>.
 </para>
 </chapter>
-<chapter id="open-an-existing-collection"><title>Open an existing collection</title> 
+<chapter id="open-an-existing-collection"><title>Open an existing collection</title>
 <para>Let's suppose your collection is already on your hard disk.
 </para>
 <para>This is what the screen will look like the first time you start &parley;:
@@ -164,10 +173,10 @@ limited to language learning but supports a multitude of subjects.
 <para>Now, the file is loaded, and you move on to the <guilabel>Practice Setup</guilabel> screen: see the following section for further details.
 </para>
 </chapter>
-<chapter id="vocabulary-practice"><title>Vocabulary Practice</title> 
-<para>To start practicing you select a document after starting &parley;. If you have it opened in the editor already, just click <guilabel>Practice</guilabel> in the toolbar. 
+<chapter id="vocabulary-practice"><title>Vocabulary Practice</title>
+<para>To start practicing you select a document after starting &parley;. If you have it opened in the editor already, just click <guilabel>Practice</guilabel> in the toolbar.
 </para>
-<sect1 id="practice-setup"><title>Practice Setup</title> 
+<sect1 id="practice-setup"><title>Practice Setup</title>
 <para>Before the actual practice starts, you always get to the Practice Setup page. There are three areas which allow you to choose what to practice:
 </para>
 <itemizedlist>
@@ -197,13 +206,15 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>In the big part on the right, you see the lessons of the vocabulary collection. You can select which lessons you want to practice with the check box in front of the lesson name. The number of words that each lesson contains is shown next to its name. On the right of the name you see your current progress for the lesson.
 </para>
+<para>The progress for each lesson is displayed as the percentage of the lesson completed and the multi-shaded progress bars. The percentage is calculated based on the total number of words in that lesson and the grades of each word. The progress bars depict the number of words in each grade, with a darker shade depicting a higher grade. A legend can also be seen at the top of the lesson selections, in the header. The colors in this legend depict the corresponding colors of the progress bars, from the fully learned words to the words not yet practiced.
+</para>
 </sect1>
-<sect1 id="advanced-practice-configuration"><title>Advanced Practice Configuration</title> 
+<sect1 id="advanced-practice-configuration"><title>Advanced Practice Configuration</title>
 <para>The <guilabel>Advanced Practice Configuration</guilabel> allows you to specify more advanced settings that will affect the practice.
 </para>
 <para>In the <link linkend="practice-setup">Practice Setup</link> page you reach the <guilabel>Advanced Practice Configuration</guilabel> with the <guilabel>Configure Practice</guilabel> button in the toolbar. The button with the green icon.
 </para>
-<sect2 id="blocking"><title>Blocking</title> 
+<sect2 id="blocking"><title>Blocking</title>
 <para>If you plan to practice your vocabulary regularly, you should make sure that the <emphasis>Blocking</emphasis> feature is enabled. The <guilabel>Blocking</guilabel> options are part of the <link linkend="advanced-practice-configuration">Advanced Practice Configuration</link>. There you go to the blocking page and tick the check box that says <guilabel>Blocking</guilabel>. Now you can even configure the interval in which words that you answered correctly will be repeated.
 </para>
 <para><emphasis>Blocking</emphasis> means that words will not be asked for some period of time after the last practice. This period of time depends on how well you know the word, so that words you don't know yet will be asked more frequently.
@@ -222,8 +233,8 @@ limited to language learning but supports a multitude of subjects.
 </screenshot>
 </para>
 </sect2>
-<sect2 id="thresholds"><title>Thresholds</title> 
-<para>Thresholds are another way of limiting what you want to practice. 
+<sect2 id="thresholds"><title>Thresholds</title>
+<para>Thresholds are another way of limiting what you want to practice.
 </para>
 <para>
 <screenshot>
@@ -238,10 +249,10 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>You can decide to practice only words that you know better or less well than some grade. Or you can select only words that you have practiced a certain number of times. 
+<para>You can decide to practice only words that you know better or less well than some grade. Or you can select only words that you have practiced a certain number of times.
 </para>
 </sect2>
-<sect2 id="advanced-practice-settings"><title>Advanced Practice Settings</title> 
+<sect2 id="advanced-practice-settings"><title>Advanced Practice Settings</title>
 <para>You can find several more configuration options for the practice in the advanced settings page.
 </para>
 <para>
@@ -266,10 +277,12 @@ limited to language learning but supports a multitude of subjects.
 </para></listitem>
 <listitem><para> Images and Sound: if you enable images they will be displayed during the practice, if they are available. Same applies to Sound.
 </para></listitem>
+<listitem><para> Allow images instead of words: if you enable this option, it will allow an image to be used as the question during practice, provided a translation is not set for that target language's word.
+</para></listitem>
 </itemizedlist>
 </sect2>
 </sect1>
-<sect1 id="practice"><title>Practice</title> 
+<sect1 id="practice"><title>Practice</title>
 <sect2 id="flash-cards"><title>Flash Cards</title>
 <para>After having activated the <guilabel>Flash Card</guilabel> Practice Mode and having clicked on <guilabel>Start Practice</guilabel> the following screen shows up. The Flash Card training mode works just as if you would do it with <quote>real</quote> flash cards. You imagine the result and should you wish some help, you can click on <guilabel>Hint</guilabel> which will start to give you the result one letter at a time.
 </para>
@@ -314,7 +327,7 @@ limited to language learning but supports a multitude of subjects.
 <para>You can stop practicing anytime by clicking on <guilabel>Stop Practice</guilabel>.
 </para>
 </sect2>
-<sect2 id="mixed-letters"><title>Mixed Letters</title> 
+<sect2 id="mixed-letters"><title>Mixed Letters</title>
 <para>Mixed Letters is a training method that provides you with an immediate help: all letters that are part of the solution are shown mixed up:
 </para>
 <para>
@@ -330,7 +343,7 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>Should you wish some help, you can click on <guilabel>Hint</guilabel> which will give you the solution one letter at a time. Of course you can also decide to <guilabel>Answer Later</guilabel> by clicking on that button. 
+<para>Should you wish some help, you can click on <guilabel>Hint</guilabel> which will give you the solution one letter at a time. Of course you can also decide to <guilabel>Answer Later</guilabel> by clicking on that button.
 </para>
 <para>To give the answer type it in the blank field below the mixed letters and press the &Enter; key or <guilabel>Continue</guilabel> button.
 </para>
@@ -384,8 +397,8 @@ limited to language learning but supports a multitude of subjects.
 <para>You can overrule how your answer is counted. See <link linkend="counting-an-answer-as-right">Counting an Answer as Right</link>.
 </para>
 </sect2>
-<sect2 id="multiple-choice"><title>Multiple Choice</title> 
-<sect3 id="automatic-selection-of-the-possible-answers"><title>Automatic selection of the possible answers</title> 
+<sect2 id="multiple-choice"><title>Multiple Choice</title>
+<sect3 id="automatic-selection-of-the-possible-answers"><title>Automatic selection of the possible answers</title>
 <para>In <guilabel>Multiple Choice</guilabel> mode you are shown a number of potential answers, of which only one is correct. By clicking on <guilabel>Hint</guilabel> &parley; excludes one of the wrong answers so that your choice gets more and more restricted with each further click on <guilabel>Hint</guilabel>. Of course you may also choose to <guilabel>Answer Later</guilabel>.
 </para>
 <para>
@@ -438,7 +451,7 @@ limited to language learning but supports a multitude of subjects.
 <para>If you wish to stop practice, just click on the <guilabel>Stop Practice</guilabel> button.
 </para>
 </sect3>
-<sect3 id="with-yes-no-answers"><title>With yes/no answers</title> 
+<sect3 id="with-yes-no-answers"><title>With yes/no answers</title>
 <para>Normally &parley; automatically proposes one correct and several wrong answers in Multiple Choice mode. For some exercises instead you will have preset answers like yes/no or similar. And for these you have to configure the practice by clicking on <link linkend="advanced-practice-configuration"><guilabel>Configure Practice</guilabel></link>.
 </para>
 <para>Select the tab <guilabel>Advanced</guilabel> and you will get something very similar to the following screenshot:
@@ -460,8 +473,8 @@ limited to language learning but supports a multitude of subjects.
 </para>
 </sect3>
 </sect2>
-<sect2 id="written"><title>Written</title> 
-<para>When you select the option <guilabel>Written</guilabel> to do your practice you are supposed to type in the solution. You can use the button <guilabel>Hint</guilabel> which will start to give you the result one letter at a time. Of course you can also decide to <guilabel>Answer Later</guilabel> by clicking on that button. 
+<sect2 id="written"><title>Written</title>
+<para>When you select the option <guilabel>Written</guilabel> to do your practice you are supposed to type in the solution. You can use the button <guilabel>Hint</guilabel> which will start to give you the result one letter at a time. Of course you can also decide to <guilabel>Answer Later</guilabel> by clicking on that button.
 </para>
 <para>
 <screenshot>
@@ -513,7 +526,7 @@ limited to language learning but supports a multitude of subjects.
 <para>You can overrule how your answer is counted. See <link linkend="counting-an-answer-as-right">Counting an Answer as Right</link>.
 </para>
 </sect2>
-<sect2 id="counting-an-answer-as-right"><title>Counting an Answer as Right</title> 
+<sect2 id="counting-an-answer-as-right"><title>Counting an Answer as Right</title>
 <para>After the solution is revealed, you see a big icon on the right that indicates if your answer will count as right or wrong.
 </para>
 <para>If you see the big checkmark, &parley; thinks you were right.
@@ -549,14 +562,14 @@ limited to language learning but supports a multitude of subjects.
 <para>You can click the small icon next to the indicator to change how your answer is counted. The big symbol always indicates how the answer is counted.
 </para>
 </sect2>
-<sect2 id="reset-practice-to-initial-state"><title>Reset Practice to Initial State</title> 
+<sect2 id="reset-practice-to-initial-state"><title>Reset Practice to Initial State</title>
 <para>You can reset all your practice scores (remove the grades) to the initial state. When being in edit mode select <guilabel>Edit</guilabel> from the menubar and then <guilabel>Remove Grades</guilabel>.
 </para>
-<para>Furthermore you can reset your grades for individual lessons from within the <guilabel>Practice Setup</guilabel> by right clicking on the lesson to reset and choose <guilabel>Remove Grades from this Lesson</guilabel> or by choosing <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Remove Grades from this Lesson</guimenuitem></menuchoice> or <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Remove Grades from this Lesson and all Sub-Lessons</guimenuitem></menuchoice> menu items when being in edit mode.
+<para>Furthermore you can reset your grades for individual lessons from within the <guilabel>Practice Setup</guilabel> by right clicking on the lesson to reset and choosing <guilabel>Remove Grades from this Lesson</guilabel> or by choosing <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Remove Grades from this Lesson</guimenuitem></menuchoice> or <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Remove Grades from this Lesson and all Sub-Lessons</guimenuitem></menuchoice> menu items when being in edit mode.
 </para>
 </sect2>
 </sect1>
-<sect1 id="summary-after-practice"><title>Summary After Practice</title> 
+<sect1 id="summary-after-practice"><title>Summary After Practice</title>
 <para>The summary shows up when you finish a learning session. In the big bar on the top it shows you how well you did.
 </para>
 <para>Below is a table with all the words you practiced, together with the mistakes you made.
@@ -579,10 +592,10 @@ limited to language learning but supports a multitude of subjects.
 </screenshot>
 </para>
 </sect1>
-<sect1 id="grammar-practice-modes"><title>Grammar Practice Modes</title> 
+<sect1 id="grammar-practice-modes"><title>Grammar Practice Modes</title>
 <para>With &parley; you can also learn specific grammar structures, such as the gender of nouns, the comparison forms of adjectives and the conjugation of verbs. Let's look at some examples.
 </para>
-<sect2 id="articles-and-gender-of-nouns"><title>Articles and Gender of Nouns</title> 
+<sect2 id="articles-and-gender-of-nouns"><title>Articles and Gender of Nouns</title>
 <para>Once the practice mode <guilabel>Gender of Nouns</guilabel> is activated, click on <guilabel>Start Practice</guilabel>.
 </para>
 <para>In the case below we use German as language to learn and so you have three genders to choose from: masculine, feminine and neuter. By clicking on <guilabel>Hint</guilabel> one of the wrong answers gets excluded. Of course you can also decide to <guilabel>Answer Later</guilabel> by clicking on that button.
@@ -669,7 +682,7 @@ limited to language learning but supports a multitude of subjects.
 </screenshot>
 </para>
 </sect2>
-<sect2 id="conjugations"><title>Conjugations</title> 
+<sect2 id="conjugations"><title>Conjugations</title>
 <para>To practice conjugations choose the <guilabel>Conjugations</guilabel> mode and the tenses you wish to exercise.
 </para>
 <para>In the document the conjugation forms of the words have to be entered in order to allow this practice mode to work. See <link linkend="entering-inflection-forms">Entering Inflection Forms</link>.
@@ -705,7 +718,7 @@ limited to language learning but supports a multitude of subjects.
 </sect2>
 </sect1>
 </chapter>
-<chapter id="vocabulary-editing"><title>Vocabulary Editing</title> 
+<chapter id="vocabulary-editing"><title>Vocabulary Editing</title>
 <para>
 <screenshot>
 <screeninfo></screeninfo>
@@ -717,23 +730,23 @@ limited to language learning but supports a multitude of subjects.
       <phrase></phrase>
     </textobject>
   </mediaobject>
-</screenshot> 
+</screenshot>
 </para>
-<sect1 id="setup"><title>Setup</title> 
-<para>Before you start using a vocabulary collection or create your own it is helpful to understand the different elements in &parley; and configure them accordingly. The next sections will guide you step by step through this process. There are several locations in &parley; for settings: 
+<sect1 id="setup"><title>Setup</title>
+<para>Before you start using a vocabulary collection or create your own it is helpful to understand the different elements in &parley; and configure them accordingly. The next sections will guide you step by step through this process. There are several locations in &parley; for settings:
 </para>
 <itemizedlist>
-<listitem><para><menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice> This is the place for the <quote>General Document Properties</quote>, meaning some information about your vocabulary collection and yourself. 
+<listitem><para><menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice> This is the place for the <quote>General Document Properties</quote>, meaning some information about your vocabulary collection and yourself.
 </para></listitem>
-<listitem><para><menuchoice><guimenu>Edit</guimenu><guimenuitem>Languages</guimenuitem></menuchoice> Find here settings around the languages you use 
+<listitem><para><menuchoice><guimenu>Edit</guimenu><guimenuitem>Languages</guimenuitem></menuchoice> Find here settings around the languages you use
 </para></listitem>
-<listitem><para><menuchoice><guimenu>Practice</guimenu><guimenuitem>Configure Practice</guimenuitem></menuchoice> Here are settings how you practice your vocabulary. Depending on what you want to do during the specific learning session you change them on the fly. 
+<listitem><para><menuchoice><guimenu>Practice</guimenu><guimenuitem>Configure Practice</guimenuitem></menuchoice> Here are settings how you practice your vocabulary. Depending on what you want to do during the specific learning session you change them on the fly.
 </para></listitem>
 <listitem><para><menuchoice><guimenu>Settings</guimenu><guimenuitem>Configure &parley;</guimenuitem></menuchoice> For more general and display settings
 </para></listitem>
 </itemizedlist>
-<sect2 id="about-the-collection"><title>About the Collection</title> 
-<para>Entering meta data like a title and your contact info is relevant if you plan to make your collection available for other people. Use <menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice> to edit the data. 
+<sect2 id="about-the-collection"><title>About the Collection</title>
+<para>Entering meta data like a title and your contact info is relevant if you plan to make your collection available for other people. Use <menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice> to edit the data.
 </para>
 <para>
 <screenshot>
@@ -749,7 +762,7 @@ limited to language learning but supports a multitude of subjects.
 </screenshot>
 </para>
 </sect2>
-<sect2 id="vocabulary-columns"><title>Vocabulary Columns</title> 
+<sect2 id="vocabulary-columns"><title>Vocabulary Columns</title>
 <para>Depending on what your learning sessions are going to be about it can be relevant to have further Vocabulary Columns show up in your edit section. To choose these columns select <guilabel>View</guilabel> from the menubar and then <guilabel>Vocabulary Columns</guilabel>. There you can determine if the columns for <emphasis>Pronunciation, Word Type, Synonym, Antonym, Example, Comment</emphasis> and/or <emphasis>Paraphrase</emphasis> are to be shown.
 </para>
 <para>
@@ -766,12 +779,12 @@ limited to language learning but supports a multitude of subjects.
 </screenshot>
 </para>
 </sect2>
-<sect2 id="languages-and-grammar"><title>Languages and Grammar</title> 
-<para>Set up some grammar details to let &parley; help you. Use <menuchoice><guimenu>Edit</guimenu><guimenuitem>Languages</guimenuitem></menuchoice> to pull up the grammar dialog. 
+<sect2 id="languages-and-grammar"><title>Languages and Grammar</title>
+<para>Set up some grammar details to let &parley; help you. Use <menuchoice><guimenu>Edit</guimenu><guimenuitem>Languages</guimenuitem></menuchoice> to pull up the grammar dialog.
 </para>
-<para>Articles in English are simply <guilabel>the</guilabel> which is the definite article and <guilabel>a</guilabel> as indefinite article. Most other languages have more articles which can be filled in at the articles tab. 
+<para>Articles in English are simply <guilabel>the</guilabel> which is the definite article and <guilabel>a</guilabel> as indefinite article. Most other languages have more articles which can be filled in at the articles tab.
 </para>
-<para>For conjugations the personal pronouns should be filled out. Most languages do not have different conjugation forms for he/she/it, in that case, you should <emphasis>not</emphasis> check <guilabel>Male/Female have different conjugations</guilabel>! Simply enter the pronouns for all three forms. 
+<para>For conjugations the personal pronouns should be filled out. Most languages do not have different conjugation forms for he/she/it, in that case, you should <emphasis>not</emphasis> check <guilabel>Male/Female have different conjugations</guilabel>! Simply enter the pronouns for all three forms.
 </para>
 <para>
 <table>
@@ -802,12 +815,12 @@ limited to language learning but supports a multitude of subjects.
   </tgroup>
 </table>
 </para>
-<para>Tenses: Depending on the language, you can enter the right tenses which you later want to learn how to conjugate. Examples are: Simple Present, Simple Past, Future I etc. 
+<para>Tenses: Depending on the language, you can enter the right tenses which you later want to learn how to conjugate. Examples are: Simple Present, Simple Past, Future I etc.
 </para>
 <para>Btw. by clicking on the <guilabel>Add Language</guilabel> button you can add an additional language to your collection.
 </para>
 <sect3 id="lets-have-a-closer-look-at-spanish"><title>Let's Have a Closer Look at Spanish</title>
-<para>On the <guilabel>General</guilabel> tab the basic language settings, like here 
+<para>On the <guilabel>General</guilabel> tab the basic language settings, like here
 </para>
 <itemizedlist>
 <listitem><para><guilabel>Language</guilabel> = Spanish
@@ -880,14 +893,14 @@ limited to language learning but supports a multitude of subjects.
 </sect3>
 </sect2>
 </sect1>
-<sect1 id="lessons"><title>Lessons</title> 
-<para>On the left you have a list of lessons. If you started a new collection, this list might be empty except for one lesson that was created by default for you. 
+<sect1 id="lessons"><title>Lessons</title>
+<para>On the left you have a list of lessons. If you started a new collection, this list might be empty except for one lesson that was created by default for you.
 </para>
-<para>If you cannot see the list of lessons, you might have to enable it in the View menu - <menuchoice><guimenu>View</guimenu><guimenuitem>Lessons</guimenuitem></menuchoice>. 
+<para>If you cannot see the list of lessons, you might have to enable it in the View menu - <menuchoice><guimenu>View</guimenu><guimenuitem>Lessons</guimenuitem></menuchoice>.
 </para>
-<para>The check boxes in front of the lesson name show which lessons are currently included in your practice. The number next to it is the number of words in the lesson. 
+<para>The check boxes in front of the lesson name show which lessons are currently included in your practice. The number next to it is the number of words in the lesson.
 </para>
-<sect2 id="new-lesson"><title>New Lesson</title> 
+<sect2 id="new-lesson"><title>New Lesson</title>
 <para>Add a new lesson: Select where this lesson belongs to, for example the collection <guilabel>My Spanish Lessons</guilabel>.
 </para>
 <para>
@@ -921,55 +934,55 @@ limited to language learning but supports a multitude of subjects.
 <para>Please make sure to select the right point in the tree structure of lessons before selecting <guilabel>New Lesson</guilabel>. In our case, wanting a <emphasis>Sub-Lesson</emphasis> of <guilabel>Collection: My Spanish Lessons</guilabel> it is exactly that one that needs to be selected before going ahead with <guilabel>New Lesson</guilabel>.
 </para>
 </sect2>
-<sect2 id="moving-renaming-and-deleting-lessons"><title>Moving, Renaming and Deleting Lessons</title> 
-<para>To change the name of a lesson, double click it, or right click on the lesson and choose <guilabel>Rename Lesson</guilabel>. You can also delete it this way (but you'll lose its contents also then). 
+<sect2 id="moving-renaming-and-deleting-lessons"><title>Moving, Renaming and Deleting Lessons</title>
+<para>To change the name of a lesson, double click it, or right click on the lesson and choose <guilabel>Rename Lesson</guilabel>. You can also delete it this way (but you'll lose its contents also then).
 </para>
 <para>If you don't like the arrangement of lessons, you can move a lesson with the mouse. You can drag it onto another lesson, then it will become a child of that lesson.
 </para>
 </sect2>
-<sect2 id="splitting-a-lesson"><title>Splitting a Lesson</title> 
+<sect2 id="splitting-a-lesson"><title>Splitting a Lesson</title>
 <para>If your lessons grow too big, you can choose to split them up to make learning easier in small units. 20 words for a lesson is probably a good size. Right click a lesson, or use <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Split Lesson into Smaller Lessons</guimenuitem></menuchoice> and the lesson will be separated into child lessons. You can choose to randomize the words that are put into the new lessons before assigning them, or to keep them in order.
 </para>
 </sect2>
-<sect2 id="what-is-shown-in-the-table"><title>What is Shown in the Table</title> 
-<para>&parley; shows always the words of the lesson that you have currently selected. You can enable to see the words in sub-lessons contained in this lesson also. Use <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Show Entries from Child Lessons</guimenuitem></menuchoice> to enable this. That way, you can browse all words by selecting the document lesson at the very top. 
+<sect2 id="what-is-shown-in-the-table"><title>What is Shown in the Table</title>
+<para>&parley; shows always the words of the lesson that you have currently selected. You can enable to see the words in sub-lessons contained in this lesson also. Use <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Show Entries from Child Lessons</guimenuitem></menuchoice> to enable this. That way, you can browse all words by selecting the document lesson at the very top.
 </para>
 </sect2>
 </sect1>
-<sect1 id="word-types"><title>Word Types</title> 
-<para>&parley; lets you associate word types with the words. Word types are for example: Nouns, Verbs, Adjectives and Adverbs. 
+<sect1 id="word-types"><title>Word Types</title>
+<para>&parley; lets you associate word types with the words. Word types are for example: Nouns, Verbs, Adjectives and Adverbs.
 </para>
 <para>In order to work with word types, enable the word type tool: <menuchoice><guimenu>View</guimenu><guimenuitem>Word Types</guimenuitem></menuchoice>.
 </para>
-<para>You can categorize the word types just like lessons. 
+<para>You can categorize the word types just like lessons.
 </para>
-<para>If you want to see all words of a certain type - &eg; all nouns, simply select the noun category, and you will see only nouns in the table. 
+<para>If you want to see all words of a certain type - &eg; all nouns, simply select the noun category, and you will see only nouns in the table.
 </para>
-<para>The easiest way to set the word type, is to drag and drop a word onto its type. You can even do this with multiple words at the same time. 
+<para>The easiest way to set the word type, is to drag and drop a word onto its type. You can even do this with multiple words at the same time.
 </para>
 
 <!-- empty sect2
-<sect2 id="words-or-sentences"><title>Words or Sentences</title> 
+<sect2 id="words-or-sentences"><title>Words or Sentences</title>
 </sect2
 -->
 <sect2 id="adding-new-vocabulary"><title>Adding New Vocabulary</title>
-<para>Use <guilabel>Add New Entry</guilabel> in the toolbar to add new words. You can start typing the word in the first language right away. By default &parley; lets you enter another word when you press &Enter; in the last row, so you don't have to keep using the <guilabel>Add</guilabel> button. After entering the first word, press &Tab; to go to the next language. 
+<para>Use <guilabel>Add New Entry</guilabel> in the toolbar to add new words. You can start typing the word in the first language right away. By default &parley; lets you enter another word when you press &Enter; in the last row, so you don't have to keep using the <guilabel>Add</guilabel> button. After entering the first word, press &Tab; to go to the next language.
 </para>
 </sect2>
-<sect2 id="editing-words"><title>Editing Words</title> 
-<para>If you want to replace a word, select its entry and start typing. To change the word instead, double click the entry and you can change the contents of the cell without losing the old word. 
+<sect2 id="editing-words"><title>Editing Words</title>
+<para>If you want to replace a word, select its entry and start typing. To change the word instead, double click the entry and you can change the contents of the cell without losing the old word.
 </para>
 <para>Press &Tab; to go to the next word while staying in editing mode. &Enter; leaves this mode. You can use the arrow keys to move around.
 </para>
 </sect2>
 </sect1>
-<sect1 id="synonyms"><title>Synonyms</title> 
-<para>Synonyms are hard to set up and do not always work really well. Here is how you set them up in any case: 
+<sect1 id="synonyms"><title>Synonyms</title>
+<para>Synonyms are hard to set up and do not always work really well. Here is how you set them up in any case:
 </para>
 <itemizedlist>
-<listitem><para>Use <menuchoice><guimenu>View</guimenu><guimenuitem>Synonyms</guimenuitem></menuchoice> to see the synonyms tool. 
+<listitem><para>Use <menuchoice><guimenu>View</guimenu><guimenuitem>Synonyms</guimenuitem></menuchoice> to see the synonyms tool.
 </para></listitem>
-<listitem><para>Select first word (A) you want to make synonyms, then click on the second word (B) 
+<listitem><para>Select first word (A) you want to make synonyms, then click on the second word (B)
 </para></listitem>
 <listitem><para>The button in the synonym tool changes it's text to <guilabel>A and B are synonyms</guilabel>
 </para></listitem>
@@ -977,10 +990,10 @@ limited to language learning but supports a multitude of subjects.
 <para>The words will now be shown as connected in the synonym tool and can be recognized as synonyms in the practice.
 </para>
 </sect1>
-<sect1 id="adding-images"><title>Adding Images</title> 
+<sect1 id="adding-images"><title>Adding Images</title>
 <para>First show the image tool by selecting <guilabel>View</guilabel> in the menubar and then clicking on <guilabel>Image</guilabel>. The check box in front of <guilabel>Image</guilabel> will then be activated. This will show up the picture section on the right hand side of the &parley; screen
 </para>
-<para>To add an image to a word make sure the word is highlighted. In the image section on the right hand side click on the <emphasis>Folder icon</emphasis> and choose the picture you wish to associate. 
+<para>To add an image to a word make sure the word is highlighted. In the image section on the right hand side click on the <emphasis>Folder icon</emphasis> and choose the picture you wish to associate. On selecting an image for a pair of translations, the bottom right corners of the cells of both the words would be marked with a blue flag. Hovering over this flag with the mouse cursor shows the name and path of the image file.
 </para>
 <para>
 <screenshot>
@@ -996,7 +1009,7 @@ limited to language learning but supports a multitude of subjects.
 </screenshot>
 </para>
 <para>
-The needed images can be obtained from Google search using &parley; inbuilt scripts. 
+The needed images can be obtained from Google search using &parley; inbuilt scripts.
 </para>
 <para>
 To obtain the image highlight a word in the list then choose <menuchoice><guimenu>Scripts</guimenu><guimenuitem>Fetch Image</guimenuitem></menuchoice> from the &parley; menu.
@@ -1029,10 +1042,10 @@ Due to the current script limitations the image files cannot be saved in the pat
 </para>
 </warning>
 </sect1>
-<sect1 id="adding-sound"><title>Adding Sound</title> 
+<sect1 id="adding-sound"><title>Adding Sound</title>
 <para>First show the sound tool by selecting <guilabel>View</guilabel> in the menubar and then clicking on <guilabel>Sound</guilabel>. This will show up the sound section on the right hand side of the &parley; screen.
 </para>
-<para>To add a sound to a word make sure the word is highlighted. In the sound section on the right hand side click on the <emphasis>Folder icon</emphasis> and choose the sound you wish to associate. 
+<para>To add a sound to a word make sure the word is highlighted. In the sound section on the right hand side click on the <emphasis>Folder icon</emphasis> and choose the sound you wish to associate. On selecting a sound file for a word, the top right corner of the cell of that word would be marked with a red flag. Hovering over this flag with the mouse cursor shows the name and path of the sound file.
 </para>
 <para>
 <screenshot>
@@ -1048,7 +1061,7 @@ Due to the current script limitations the image files cannot be saved in the pat
 </screenshot>
 </para>
 <para>
-The needed sound files can be obtained from Wiktionary using &parley; inbuilt scripts. 
+The needed sound files can be obtained from Wiktionary using &parley; inbuilt scripts.
 </para>
 <para>
 To obtain the sound file highlight a word in the list then choose <menuchoice><guimenu>Scripts</guimenu><guimenuitem>Fetch Sound</guimenuitem></menuchoice> from the &parley; menu.
@@ -1057,7 +1070,7 @@ To obtain the sound file highlight a word in the list then choose <menuchoice><g
 The sound file will be saved next to the current vocabulary file in the <filename role="directory"><replaceable>name_of_vocabulary</replaceable>_files</filename> subfolder.
 </para>
 </sect1>
-<sect1 id="entering-comparison-forms"><title>Entering Comparison Forms</title> 
+<sect1 id="entering-comparison-forms"><title>Entering Comparison Forms</title>
 <para>In order to enter comparison forms, make sure the comparison forms tool is enabled. You open it with the menu: <menuchoice><guimenu>View</guimenu><guimenuitem>Comparison Forms</guimenuitem></menuchoice>.
 </para>
 <para>First select a word that is an adjective or adverb.
@@ -1108,7 +1121,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 <para>Now you can use the <link linkend="comparison-forms-of-adjectives-and-adverbs">Comparison Forms Practice</link> mode.
 </para>
 </sect1>
-<sect1 id="entering-inflection-forms"><title>Entering Inflection Forms</title> 
+<sect1 id="entering-inflection-forms"><title>Entering Inflection Forms</title>
 <para>In order to enter inflection forms, make sure the inflection forms tool is enabled. You open it with the menu: <menuchoice><guimenu>View</guimenu><guimenuitem>Inflection (verbs, adjectives, nouns)</guimenuitem></menuchoice>.
 </para>
 <para>First select a word that is a verb.
@@ -1149,10 +1162,10 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </para>
 <para>Use the <guibutton>Noun</guibutton> or <guibutton>Adjective</guibutton> button to add declension forms to your vocabulary.
 </para></sect1>
-<sect1 id="creating-new-files"><title>Creating New Files</title> 
+<sect1 id="creating-new-files"><title>Creating New Files</title>
 <para>In this section we will describe how to create new files and this not only with the usual vocabulary learning part, but also for grammar exercises, mathematics etc.
 </para>
-<sect2 id="new-collection--vocabulary-english-german"><title>New Collection: Vocabulary English-German</title> 
+<sect2 id="new-collection--vocabulary-english-german"><title>New Collection: Vocabulary English-German</title>
 <para>In this section we describe how you can create a vocabulary training file including pictures and sound. In a second stage we will also add adjectives and verbs. This is a very complete example and therefore quite long. Eventually you will not need all points for your project.
 </para>
 <para>Since we wish to add sound-files and pictures, we should make sure that these will all be in one folder which for convenience is being called <emphasis>eng-deu</emphasis>. Our data file we create with Parley will be saved in the same folder. This will help a lot when you decide to share your work with others.
@@ -1329,7 +1342,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
   </mediaobject>
 </screenshot>
 </para>
-<para>Just go ahead like this for all terms. 
+<para>Just go ahead like this for all terms.
 </para>
 <para>Time to add adjectives and verbs as lessons to our project. So just do as before with the lesson <emphasis>Fruit</emphasis> and create two new lessons: <emphasis>Adjectives</emphasis> and <emphasis>Verbs</emphasis>. Let's assume we will add <emphasis>big, small, old, young, narrow</emphasis> in the adjective lesson and <emphasis>to go, to come, to buy, to drink, to eat</emphasis> in the verb lesson.
 </para>
@@ -1378,7 +1391,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
   </mediaobject>
 </screenshot>
 </para>
-<para>Once we have specified all the word types, we will first consider <emphasis>Adjectives</emphasis>, adding <guilabel>Comparison Forms</guilabel>  to them. So let's move to the <emphasis>Adjectives</emphasis> lesson only. 
+<para>Once we have specified all the word types, we will first consider <emphasis>Adjectives</emphasis>, adding <guilabel>Comparison Forms</guilabel>  to them. So let's move to the <emphasis>Adjectives</emphasis> lesson only.
 </para>
 <para>
 <screenshot>
@@ -1443,7 +1456,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 <para>Once you are done you can start to practice by clicking on the <link linkend="vocabulary-practice"><guilabel>Practice</guilabel></link> button.
 </para>
 </sect2>
-<sect2 id="new-collection:-single-names-and-collective-names"><title>New Collection: Single Names and Collective Names</title> 
+<sect2 id="new-collection:-single-names-and-collective-names"><title>New Collection: Single Names and Collective Names</title>
 <para>This exercise was created for the 3rd class of an Italian primary school. Pupils are supposed to connect single names with collective names, such as <emphasis>tree</emphasis> → <emphasis>woods</emphasis>
 </para>
 <para>When you start Parley you get the start page, eventually also listing some previously used files (that you cannot see here).
@@ -1561,7 +1574,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </para>
 </sect2>
 </sect1>
-<sect1 id="getting-additional-collections"><title>Getting Additional Collections</title> 
+<sect1 id="getting-additional-collections"><title>Getting Additional Collections</title>
 <para>When you are on the <guilabel>Start Page</guilabel> you have the possibility to install collections directly from the server, provided you are online. Just click on <guilabel>Download New Collections</guilabel>.
 </para>
 <para>
@@ -1593,7 +1606,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </screenshot>
 </para>
 </sect1>
-<sect1 id="configure-parley"><title>Configure Parley</title> 
+<sect1 id="configure-parley"><title>Configure Parley</title>
 <para>You can configure the appearance of Parley from the <guilabel>Start Page</guilabel> or from within the <guilabel>Edit section</guilabel>. Select <guilabel>Settings</guilabel> from the menubar and then <guilabel>Configure &parley;</guilabel>.
 </para>
 <para>
@@ -1661,7 +1674,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </para>
 </sect2>
 <sect2 id="general-tab"><title>General Tab</title>
-<para>The <guilabel>General</guilabel> tab gives you some options regarding the behavior of Parley. 
+<para>The <guilabel>General</guilabel> tab gives you some options regarding the behavior of Parley.
 </para>
 <sect3 id="open-save-options"><title>Open/Save options</title>
 <para><guilabel>Always load the last opened collection on start</guilabel> will immediately take you back to the vocabulary you were learning. Often you will use this together with the second option <guilabel>Save vocabularies automatically on close and quit</guilabel> because it's just handy not to have always answer the same question if changes (including learning results) should be changed or not. The option <guilabel>Create a backup every ... minutes</guilabel> can be very handy to help you save your work frequently. One less thing to think about.
@@ -1669,8 +1682,8 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 <para>Sometimes the import and/or export of text (CSV) files can be very handy and there you need the proper separator to elaborate data afterwards or to be able to read the data you got from somewhere else. Parley allows you to choose among various separators to make sure you can re-use your data.
 </para>
 </sect3>
-<sect3 id="editing-option"><title>Editing option</title> 
-<para>Here you can determine whether Parley automatically appends new rows while you are editing your vocabulary collection. This can be useful if you want to add many entries, before then splitting them up into various lessons. On the other hand, it can be good to have this option off if you want to work by creating lessons with a set maximum number of entries. 
+<sect3 id="editing-option"><title>Editing option</title>
+<para>Here you can determine whether Parley automatically appends new rows while you are editing your vocabulary collection. This can be useful if you want to add many entries, before then splitting them up into various lessons. On the other hand, it can be good to have this option off if you want to work by creating lessons with a set maximum number of entries.
 </para>
 <para>
 <screenshot>
@@ -1687,7 +1700,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </para>
 </sect3>
 </sect2>
-<sect2 id="view-tab"><title>View Tab</title> 
+<sect2 id="view-tab"><title>View Tab</title>
 <para>The <guilabel>View Settings</guilabel> allows you to change font and size for the pronunciation symbols, and you can choose the <guilabel>Base color for displaying grades</guilabel> you like best.
 </para>
 <para>
@@ -1706,7 +1719,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </sect2>
 </sect1>
 </chapter>
-<chapter id="parley-on-windows"><title>Parley on Windows</title> 
+<chapter id="parley-on-windows"><title>Parley on Windows</title>
 <para>It is possible to install Parley together with other <ulink url="http://edu.kde.org">Educational software</ulink> on Windows systems. For further info please visit <ulink url="http://windows.kde.org">this page</ulink>.
 </para>
 <para>The steps to be followed in short:
@@ -1724,7 +1737,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </chapter>
 <chapter id="notes-for-advanced-users"><title>Notes For Advanced Users</title>
 <!--
-<sect1 id="using-parley-for-exam-preparation"><title>Using Parley for Exam Preparation</title> 
+<sect1 id="using-parley-for-exam-preparation"><title>Using Parley for Exam Preparation</title>
 <itemizedlist>
 <listitem><para> what to bear in mind with long questions / answers?
 </para></listitem>
@@ -1737,7 +1750,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </itemizedlist>
 </sect1>
 -->
-<sect1 id="upload-and-share-collections"><title>Upload and Share Collections</title> 
+<sect1 id="upload-and-share-collections"><title>Upload and Share Collections</title>
 <para>You can upload your files and share them with others.
 </para>
 <para>Use <guimenuitem>Upload Vocabulary Document</guimenuitem> from the file menu in the Editor within Parley.
@@ -1747,7 +1760,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 <para>In either case the files will show up in the <guilabel>Download New Collections</guilabel> dialog on the <guilabel>Start Page</guilabel>.
 </para>
 </sect1>
-<sect1 id="file-format"><title>File format</title> 
+<sect1 id="file-format"><title>File format</title>
 <para>If you are interested in the file formats that Parley can read and stores the vocabulary collections in, visit:
 </para>
 <para><ulink url="http://userbase.kde.org/Parley/FileFormats">Parley File Formats on userbase.kde.org</ulink>
@@ -1792,9 +1805,10 @@ Parley copyright 2007-2010 &Frederik.Gladhorn;
 &Frederik.Gladhorn.mail;
 </para>
 
-<para>Documentation copyright 2010 &Frederik.Gladhorn; &Frederik.Gladhorn.mail;, 
-Sabine Eller <email>s.eller@voxhumanitatis.org</email>, 
-Daniel Laidig <email>d.laidig@gmx.de</email>
+<para>Documentation copyright 2010 &Frederik.Gladhorn; &Frederik.Gladhorn.mail;,
+Sabine Eller <email>s.eller@voxhumanitatis.org</email>,
+Daniel Laidig <email>d.laidig@gmx.de</email>;
+2014 Amarvir Singh <email>amarvir.ammu.93@gmail.com</email>
 </para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->

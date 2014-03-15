@@ -3,34 +3,9 @@
 
 
 ================================================================
-Before the freeze (features).  These are picked from the ones below.
-
-
- * Editor
-    + indicators in the table for words whether they have an image      Done
-      and/or a sound.
-
- * Practice
-    + Enable sound in all practice modes (or at least flashcards)       Done
-      https://bugs.kde.org/show_bug.cgi?id=263835
-      Suggestion:
-      Always show the sound button if it's enabled in the practice
-      config and never otherwise. If no sound for this word, disable
-      the sound button instead of hiding it.
-
- * Wishes from bugzilla
-    + Legend for the statistics                                         Done
-      https://bugs.kde.org/show_bug.cgi?id=228634
-    + Use images instead of words in flashcards                         Done
-      https://bugs.kde.org/show_bug.cgi?id=281120
-      https://bugs.kde.org/show_bug.cgi?id=168672
-
-
-----------------------------------------------------------------
-Before the release (bugs).
+Before the 4.13 release (bugs).
 NOTE:  DO NOT CHANGE THESE HERE.
-       Instead, change them in the branch and merge the branch into
-       master.
+       Instead, change them in the branch and merge the branch into master.
 
  * To investigate
     + Show pronounciation in the training
@@ -47,8 +22,6 @@ NOTE:  DO NOT CHANGE THESE HERE.
       they be disabled for now? (PS: If yes, also
       change the marketing for Parley to not
       include "8" modes in the tag line)
-    + Removing grades can lead to misunderstanding			Done
-      https://bugs.kde.org/show_bug.cgi?id=312995
     + Vocabulary does not expire after a given time
       https://bugs.kde.org/show_bug.cgi?id=261396
 
@@ -79,8 +52,46 @@ NOTE:  DO NOT CHANGE THESE HERE.
     + Synonyms are not checked case-insensitively
       https://bugs.kde.org/show_bug.cgi?id=302733
 
+ * Usability
+    + Removing grades can lead to misunderstanding			Done
+      https://bugs.kde.org/show_bug.cgi?id=312995
+
+ * Bugs without a bugzilla bug
+    + If a card only has a translation, i.e. no word in the             ----
+      from language, the word in the card is not cleared during
+      practice. Instead, the last word is shown.
+      (Bug in entryfilter: if ther is no from word or image it should
+      be removed from the training.)
+    + The legend doesn't show white, i.e actually not practiced.        Done
+    + The legend overlaps the table headers                             Done
+
  * Release work
-    + Update the version!
+    + Update the version! (To what?)
+
+
+================================================================
+Before the 4.14 freeze (features).  These are picked from the ones below.
+
+
+ * Editor
+    + 
+
+ * Practice
+    + Sessions.  A session is a byte sized part of a lesson containing  ----
+      maybe 10-20 questions. It is automatically generated when the
+      user starts to practice a lesson and is never saved anywhere.
+      The reason we want this is that you will get a greater sense of
+      achievement when you are done with a session than when you have
+      just practiced 5% of the words in a big lesson.  It should also
+      limit the number of new words in each session (5?).
+      See thaipod101.com for this.
+       - Milestone 1: (Working sessions)                                Done
+       - Milestone 2: Configurable values                               ----
+       - Milestone 3: Nice summary before the start                     ----
+    + 
+
+ * Wishes from bugzilla
+    + 
 
 
 ================================================================
@@ -115,8 +126,9 @@ NOTE:  DO NOT CHANGE THESE HERE.
     + Bigger default font for practice contents
 
  * Practice
-    + Enable sound in all practice modes (or at least flashcards)
-    + Extended Leitner box method -OR- move to time based card selection.
+    + Enable sound in all practice modes (or at least flashcards)       Done (4.13)
+    + Extended Leitner box method -OR- move to time based card          ----
+      selection.
 
       The Leitner box system that is currently implemented is not very
       good at the very beginning of the study. When you have a lot of
@@ -129,7 +141,7 @@ NOTE:  DO NOT CHANGE THESE HERE.
       altogether and have a purely time based system (which the
       leitner boxes are trying to emulate anyway).
       thaipod101.com uses this system and it works very well.
-    + Sessions.  A session is a byte sized part of a lesson containing
+    + Sessions.  A session is a byte sized part of a lesson containing  Done (4.14)
       maybe 10-20 questions. It is automatically generated when the
       user starts to practice a lesson and is never saved anywhere.
       The reason we want this is that you will get a greater sense of
@@ -137,14 +149,14 @@ NOTE:  DO NOT CHANGE THESE HERE.
       just practiced 5% of the words in a big lesson.  It should also
       limit the number of new words in each session (5?).
       See thaipod101.com for this.
-    + Mixed mode in all practice methods.
+    + Mixed mode in all practice methods.                               ----
       This means that not just one direction is practiced, but
       known->learning, learning->known and maybe even sound of
       learning -> known
       See thaipod101.com for this (again! - that system is awesome).
 
  * Editor
-    + indicators in the table for words whether they have an image      ----
+    + indicators in the table for words whether they have an image      Done (4.13)
       and/or a sound.
     + Drag & drop of images from other applications                     ----
     + Select whole regions of a table so that you can cut&paste them    ----
@@ -162,9 +174,10 @@ NOTE:  DO NOT CHANGE THESE HERE.
       and use a zip container, manifest, etc.  Lots of code for this
       in Calligra.
     + Enhancements in KVTML
-       - Allow one image for a whole entry, not just for a word.           ----
+       - Allow one image for a whole entry, not just for a word.        ----
          After all, all the translations in an entry mean the same thing.
-       - Field for transcription of non-western scripts
+       - Field for transcription of non-western scripts                 ----
+
 
 ================================================================
 
@@ -177,7 +190,6 @@ Before releases:
  * Remove ModelTest!
  * Check that changes to the document result in a modified state!!!!
    Ask when quitting Parley!!!
- * Set version number to something not svn
  * Reenable synonym, false friend and antonym practices and synonym
    check in written practice! check if deletion of one of two synonyms
    crashes
@@ -192,7 +204,6 @@ When time permits:
  * Drag and drop for several things:
    - Sound
    - Accept text drops (as new vocabulary?)
- * Give containers an image tag and display images in the lesson view
 
 Gui
  * shortcut keys are badly assigned, they do not respect the focus
@@ -239,5 +250,3 @@ Pronunciation
  * option to display it along in the practice dialogs
  * is a pronunciation practice desirable? maybe together with sound
    (write after listening) also very much for chinese I'm told.
-
-

@@ -158,10 +158,10 @@ bool VocabularyDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, c
         int column = columnType(index.column());
 
         if (audioPainterPath.contains(event->pos()) && hasAudio(index) && (column == Translation || column == Pronunciation)) {
-            QToolTip::showText(event->globalPos(), "Sound file selected: " + audioUrl(index));
+            QToolTip::showText(event->globalPos(), i18n("Sound file selected: %1", audioUrl(index)));
         }
         else if (imagePainterPath.contains(event->pos()) && hasImage(index) && (column == Translation || column == Pronunciation)) {
-            QToolTip::showText(event->globalPos(), "Image file selected: " + imageUrl(index));
+            QToolTip::showText(event->globalPos(), i18n("Image file selected: %1", imageUrl(index)));
         }
         else {
             QToolTip::hideText();
