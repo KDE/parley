@@ -163,17 +163,29 @@
       <default>true</default>
     </entry>
     <entry name="AllowImageInsteadOfWord" type="Bool">
-      <label>Check this if you want to practice with images instead of words in flashcards.</label>
+      <label>Allow using images instead of words in flashcards. This will only be done if there is no word in the entry.</label>
       <default>false</default>
     </entry>
+
+    <!-- Sessions -->
+    <entry name="SessionMaxSize" type="Int">
+        <label>The maximum number of words that will be practiced in a training session.</label>
+        <default>20</default>
+    </entry>
+    <entry name="SessionMaxNewWords" type="Int">
+        <label>The maximum number of new (untrained) words that will be used in a training session.</label>
+        <default>5</default>
+    </entry>
+
+    <!-- Multiple choice -->
     <entry name="MultipleChoiceWordTypeConsistancy" type="Bool">
-        <label>Use the same word type as the solution for the incorrect answers in a multiple choice practice.</label>
-        <default>true</default>
+      <label>Use the same word type as the solution for the incorrect answers in a multiple choice practice.</label>
+      <default>true</default>
     </entry>
     <entry name="NumberMultipleChoiceAnswers" type="Int">
-        <label>How many answers are provided for a multiple choice question, including the correct answer.</label>
-        <default>5</default>
-     </entry>
+      <label>How many answers are provided for a multiple choice question, including the correct answer.</label>
+      <default>5</default>
+    </entry>
   </group>
 
   <group name="Appearance">
