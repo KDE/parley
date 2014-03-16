@@ -84,7 +84,7 @@ void FlashCardModeWidget::setSolution(const QVariant& solution)
     m_solution = solution.toString();
 }
 
-void FlashCardModeWidget::setSynonym(const QString& entry)
+void FlashCardModeWidget::setSynonym(const QString& /*entry*/)
 {
     //TODO Do something here to show synonyms
 }

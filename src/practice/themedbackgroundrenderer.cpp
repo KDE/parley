@@ -212,7 +212,6 @@ QImage ThemedBackgroundRenderer::renderBackground(bool fastScale)
 {
     m_isFastScaledRender = false;
 
-    QTime t = QTime::currentTime();
     QImage image(m_rects[0].second.size(), QImage::Format_ARGB32_Premultiplied);
     image.fill(QColor(Qt::transparent).rgba());
     QPainter p(&image);
