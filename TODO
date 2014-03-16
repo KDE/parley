@@ -57,7 +57,7 @@ NOTE:  DO NOT CHANGE THESE HERE.
       https://bugs.kde.org/show_bug.cgi?id=312995
 
  * Bugs without a bugzilla bug
-    + If a card only has a translation, i.e. no word in the             ----
+    + If a card only has a translation, i.e. no word in the             Done
       from language, the word in the card is not cleared during
       practice. Instead, the last word is shown.
       (Bug in entryfilter: if ther is no from word or image it should
@@ -119,7 +119,6 @@ Before the 4.14 freeze (features).  These are picked from the ones below.
     + Bigger default font for practice contents
 
  * Practice
-    + Enable sound in all practice modes (or at least flashcards)       Done (4.13)
     + Extended Leitner box method -OR- move to time based card          ----
       selection.
 
@@ -151,8 +150,6 @@ Before the 4.14 freeze (features).  These are picked from the ones below.
       See thaipod101.com for this (again! - that system is awesome).
 
  * Editor
-    + indicators in the table for words whether they have an image      Done (4.13)
-      and/or a sound.
     + Drag & drop of images from other applications                     ----
     + Select whole regions of a table so that you can cut&paste them    ----
       into another parley or something else. Also support paste into
