@@ -1,6 +1,7 @@
 /***************************************************************************
 
     copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+                    (C) 2014 Inge Wallin       <inge@lysator.liu.se>
 
     -----------------------------------------------------------------------
 
@@ -21,8 +22,9 @@
 #include <keduvocdocument.h>
 #include <KConfigDialog>
 
+class GeneralPracticeOptions;
 class ConfigurePracticeWidget;
-class AdvancedPracticeOptions;
+class SpecificPracticeOptions;
 class ThresholdOptions;
 class BlockOptions;
 
@@ -67,11 +69,12 @@ private:
      */
     bool isDefault();
 
-    AdvancedPracticeOptions* m_advancedPracticeOptions;
-    ThresholdOptions* m_thresholdOptions;
-    BlockOptions* m_blockOptions;
+    GeneralPracticeOptions  *m_generalPracticeOptions;
+    BlockOptions            *m_blockOptions;
+    ThresholdOptions        *m_thresholdOptions;
+    SpecificPracticeOptions *m_specificPracticeOptions;
 
-    KConfigSkeleton* m_config;
+    KConfigSkeleton *m_config;
 };
 
 #endif // ConfigurePracticeDialog_included

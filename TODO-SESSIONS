@@ -26,8 +26,12 @@
 // Milestone 1: Merge working session
 
 
-* Coding
-   + Create config options for the sessions                             ----
+* Coding                                                                DONE
+   + Create config options for the sessions                             Done
+   + Use them when setting up a session                                 Done
+
+* Graphics
+   + Icon for the general settions tab                                  ----
 
 
 // ================================================================
@@ -40,4 +44,3 @@
 
 // ================================================================
 // Milestone 3: Sessions finished
-

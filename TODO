@@ -77,18 +77,11 @@ Before the 4.14 freeze (features).  These are picked from the ones below.
     + 
 
  * Practice
-    + Sessions.  A session is a byte sized part of a lesson containing  ----
-      maybe 10-20 questions. It is automatically generated when the
-      user starts to practice a lesson and is never saved anywhere.
-      The reason we want this is that you will get a greater sense of
-      achievement when you are done with a session than when you have
-      just practiced 5% of the words in a big lesson.  It should also
-      limit the number of new words in each session (5?).
-      See thaipod101.com for this.
+    + Sessions.  For details, see below.                                ----
        - Milestone 1: (Working sessions)                                Done
-       - Milestone 2: Configurable values                               ----
+       - Milestone 2: Configurable values                               Done
        - Milestone 3: Nice summary before the start                     ----
-    + 
+    + Mixed mode. For details see below                                 ----
 
  * Wishes from bugzilla
     + 
@@ -141,7 +134,8 @@ Before the 4.14 freeze (features).  These are picked from the ones below.
       altogether and have a purely time based system (which the
       leitner boxes are trying to emulate anyway).
       thaipod101.com uses this system and it works very well.
-    + Sessions.  A session is a byte sized part of a lesson containing  Done (4.14)
+
+    + Sessions.  A session is a byte sized part of a lesson containing  ----
       maybe 10-20 questions. It is automatically generated when the
       user starts to practice a lesson and is never saved anywhere.
       The reason we want this is that you will get a greater sense of
@@ -149,6 +143,7 @@ Before the 4.14 freeze (features).  These are picked from the ones below.
       just practiced 5% of the words in a big lesson.  It should also
       limit the number of new words in each session (5?).
       See thaipod101.com for this.
+
     + Mixed mode in all practice methods.                               ----
       This means that not just one direction is practiced, but
       known->learning, learning->known and maybe even sound of

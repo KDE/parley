@@ -1,6 +1,7 @@
 /***************************************************************************
 
     copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+                    (C) 2014 Inge Wallin       <inge@lysator.liu.se>
 
     -----------------------------------------------------------------------
 
@@ -17,13 +18,15 @@
 
 #include "configurepracticedialog.h"
 
-#include "advancedpracticeoptions.h"
-#include "thresholdoptions.h"
+#include "generalpracticeoptions.h"
 #include "blockoptions.h"
+#include "thresholdoptions.h"
+#include "specificpracticeoptions.h"
 
 #include <KLocale>
 
-ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config)
+ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *parent,
+                                                 const QString &name, KConfigSkeleton *config)
     : KConfigDialog(parent, name, config)
 {
     m_config = config;
@@ -32,14 +35,21 @@ ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *
     setButtons(Default | Ok | Apply | Cancel | Help);
     setDefaultButton(Ok);
 
+    m_generalPracticeOptions = new GeneralPracticeOptions(this);
+    addPage(m_generalPracticeOptions, 
+            i18nc("@title:group Configure general settings for practicing vocabulary, short title in config dialog.", "General"),
+            "general-setup", i18nc("Configure general settings for practicing vocabulary.", "General Practice Settings"),
+            true);
+
     m_blockOptions = new BlockOptions(this);
     addPage(m_blockOptions, i18nc("@title:group vocabulary can be set to be blocked for a certain amount of time", "Blocking"), "cards-block", i18n("Blocking Settings"), true);
 
     m_thresholdOptions = new ThresholdOptions(doc, this);
     addPage(m_thresholdOptions, i18nc("@title:group ignore vocabulary based on some properties like word type", "Thresholds"), "practice-setup", i18n("Threshold Settings"), true);
 
-    m_advancedPracticeOptions = new AdvancedPracticeOptions(this);
-    addPage(m_advancedPracticeOptions, i18nc("@title:group Configure advanced settings for practicing vocabulary, short title in config dialog.", "Advanced"), "advanced-setup", i18nc("Configure advanced settings for practicing vocabulary.", "Advanced Practice Settings"), true);
+    m_specificPracticeOptions = new SpecificPracticeOptions(this);
+    addPage(m_specificPracticeOptions, i18nc("@title:group Configure specific settings for practicing vocabulary, short title in config dialog.", "Specific"), "specific-setup", i18nc("Configure specific settings for practicing vocabulary.", "Specific Practice Settings"), true);
+
     setHelp(QString(), "parley");
 
     KConfigGroup cg(KSharedConfig::openConfig("parleyrc"), "ConfigurePracticeDialog");

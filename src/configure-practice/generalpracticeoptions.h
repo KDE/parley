@@ -8,6 +8,7 @@
 
     copyright            :(C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
                           (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+                          (C) 2014 Inge Wallin <inge@lysator.liu.se>
 
     -----------------------------------------------------------------------
 
@@ -22,16 +23,16 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "advancedpracticeoptions.h"
+#ifndef GENERALPRACTICEOPTIONS_H
+#define GENERALPRACTICEOPTIONS_H
 
-#include "prefs.h"
+#include "ui_generalpracticeoptions.h"
 
-AdvancedPracticeOptions::AdvancedPracticeOptions(QWidget* parent) : QWidget(parent)
+class GeneralPracticeOptions : public QWidget, public Ui::GeneralPracticeOptions
 {
-    setupUi(this);
+    Q_OBJECT
+public:
+    GeneralPracticeOptions(QWidget* parent = 0);
+};
 
-    //connect(kcfg_ShowSolutionAfterAnswer, SIGNAL(toggled(bool)), kcfg_ShowSolutionAfterAnswerTime, SLOT(setEnabled(bool)));
-}
-
-
-#include "advancedpracticeoptions.moc"
+#endif

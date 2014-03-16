@@ -39,13 +39,8 @@ SessionManagerFixed::~SessionManagerFixed()
 
 void SessionManagerFixed::initializeTraining()
 {
-#if 0 // FIXME: Use smaller numbers during debugging
-    const int MaxEntries  = Prefs::testNumberOfEntries();
-    const int MaxNewWords = 5;      // FIXME: Make this a config option.
-#else
-    const int MaxEntries = 7;
-    const int MaxNewWords = 3;
-#endif
+    const int MaxEntries  = Prefs::sessionMaxSize();
+    const int MaxNewWords = Prefs::sessionMaxNewWords();
 
     // We will never add anything to the session after it's initialized.
     m_notAskedTestEntries.clear();
