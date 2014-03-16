@@ -128,7 +128,7 @@ void MultiplechoiceModeWidget::setNumberOfRadioButtons(const int numberOfChoices
     }
 }
 
-void MultiplechoiceModeWidget::setSynonym(const QString& entry)
+void MultiplechoiceModeWidget::setSynonym(const QString& /*entry*/)
 {
     //TODO Do something here to show synonyms
 }

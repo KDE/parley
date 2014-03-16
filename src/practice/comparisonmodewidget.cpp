@@ -118,7 +118,7 @@ QVariant ComparisonModeWidget::userInput()
     return answers;
 }
 
-void ComparisonModeWidget::setHint(const QVariant& hint)
+void ComparisonModeWidget::setHint(const QVariant& /*hint*/)
 {
 
 }
@@ -134,22 +134,22 @@ void ComparisonModeWidget::nextComparisonForm()
     }
 }
 
-void ComparisonModeWidget::setQuestionPronunciation(const QString& pronunciationText)
+void ComparisonModeWidget::setQuestionPronunciation(const QString& /*pronunciationText*/)
 {
-
 }
-void ComparisonModeWidget::setSolutionPronunciation(const QString& pronunciationText)
+
+void ComparisonModeWidget::setSolutionPronunciation(const QString& /*pronunciationText*/)
 {
-
 }
-void ComparisonModeWidget::setQuestionSound(const KUrl& soundUrl)
+
+void ComparisonModeWidget::setQuestionSound(const KUrl& /*soundUrl*/)
 {
-
 }
-void ComparisonModeWidget::setSolutionSound(const KUrl& soundUrl)
+
+void ComparisonModeWidget::setSolutionSound(const KUrl& /*soundUrl*/)
 {
-
 }
+
 
 
 #include "comparisonmodewidget.moc"

@@ -148,9 +148,8 @@ QVariant ConjugationModeWidget::userInput()
     return answers;
 }
 
-void ConjugationModeWidget::setHint(const QVariant& hint)
+void ConjugationModeWidget::setHint(const QVariant& /*hint*/)
 {
-
 }
 
 void ConjugationModeWidget::setNumberOfConjugationWidgets(const int numberOfForms)
@@ -179,21 +178,20 @@ void ConjugationModeWidget::nextConjugationForm()
     }
 }
 
-void ConjugationModeWidget::setQuestionPronunciation(const QString& pronunciationText)
+void ConjugationModeWidget::setQuestionPronunciation(const QString& /*pronunciationText*/)
+{
+}
+
+void ConjugationModeWidget::setSolutionPronunciation(const QString& /*pronunciationText*/)
+{
+}
+
+void ConjugationModeWidget::setQuestionSound(const KUrl& /*soundUrl*/)
 {
 
 }
-void ConjugationModeWidget::setSolutionPronunciation(const QString& pronunciationText)
+void ConjugationModeWidget::setSolutionSound(const KUrl& /*soundUrl*/)
 {
-
-}
-void ConjugationModeWidget::setQuestionSound(const KUrl& soundUrl)
-{
-
-}
-void ConjugationModeWidget::setSolutionSound(const KUrl& soundUrl)
-{
-
 }
 
 

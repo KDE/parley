@@ -147,8 +147,11 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
     }
 }
 
-bool VocabularyDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, const QStyleOptionViewItem &option, const QModelIndex &index)
+bool VocabularyDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view,
+                                   const QStyleOptionViewItem &option, const QModelIndex &index)
 {
+    Q_UNUSED(view);
+
     if (event->type() == QEvent::ToolTip) {
         QPainterPath audioPainterPath;
         QPainterPath imagePainterPath;

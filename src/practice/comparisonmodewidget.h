@@ -51,7 +51,7 @@ public:
     virtual void setSolutionSound(const KUrl& soundUrl);
     virtual void setSolutionPronunciation(const QString& pronunciationText);
     virtual void setQuestionPronunciation(const QString& pronunciationText);
-    virtual void setSynonym(const QString& entry) {}
+    virtual void setSynonym(const QString& /*entry*/) {}
 
 public Q_SLOTS:
     virtual void showQuestion();
