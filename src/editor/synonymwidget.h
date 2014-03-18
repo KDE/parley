@@ -20,6 +20,7 @@
 
 class KEduVocExpression;
 class KEduVocTranslation;
+class KEduVocDocument;
 class QStringListModel;
 
 namespace Editor
@@ -38,6 +39,12 @@ public:
     explicit SynonymWidget(SynonymWidgetType type, QWidget *parent = 0);
 
 public slots:
+    /**
+     * Register the document inside the widget so that it can be marked as modified.
+     * @param doc
+     */
+    void setDocument(KEduVocDocument *doc);
+
     void setTranslation(KEduVocExpression* entry, int translation);
 
 private slots:
@@ -45,6 +52,8 @@ private slots:
     void updateList();
 
 private:
+    KEduVocDocument  *m_doc;
+
     // the one that was selected before
     KEduVocTranslation* m_lastTranslation;
     // the one the user clicked on latest
