@@ -233,6 +233,13 @@ void ParleyDocument::openGHNS()
     }
 }
 
+void ParleyDocument::autoSave()
+{
+    if (m_doc->isModified()) {
+        save();
+    }
+}
+
 void ParleyDocument::save()
 {
     if (m_doc->url().fileName() == i18n("Untitled")) {
@@ -489,7 +496,7 @@ void ParleyDocument::enableAutoBackup(bool enable)
     } else {
         if (!m_backupTimer) {
             m_backupTimer = new QTimer(this);
-            connect(m_backupTimer, SIGNAL(timeout()), this, SLOT(save()));
+            connect(m_backupTimer, SIGNAL(timeout()), this, SLOT(autoSave()));
         }
         m_backupTimer->start(Prefs::backupTime() * 60 * 1000);
     }

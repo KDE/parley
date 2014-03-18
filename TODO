@@ -53,7 +53,9 @@ Before the release (bugs).
     + Synonyms are not checked case-insensitively
       https://bugs.kde.org/show_bug.cgi?id=302733
     + Making two words synonyms does not mark file as modified          Done
-      https://bugs.kde.org/show_bug.cgi?id=246198
+      https://bugs.kde.org/show_bug.cgi?id=246189
+    + Parley autosaves even when there is no change                     Done
+      https://bugs.kde.org/show_bug.cgi?id=326429
 
  * Release work
     + Update the version!

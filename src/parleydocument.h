@@ -63,6 +63,8 @@ public slots:
 
     /** merge a document */
     void slotFileMerge();
+    /** save a document if it has changed. Used for automatic saving of backup files.  */
+    void autoSave();
     /** save a document */
     void save();
     void saveAs(KUrl file = KUrl());
