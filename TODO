@@ -51,6 +51,8 @@ NOTE:  DO NOT CHANGE THESE HERE.
       https://bugs.kde.org/show_bug.cgi?id=261396
     + Synonyms are not checked case-insensitively
       https://bugs.kde.org/show_bug.cgi?id=302733
+    + Making two words synonyms does not mark file as modified          Done
+      https://bugs.kde.org/show_bug.cgi?id=246198
 
  * Usability
     + Removing grades can lead to misunderstanding			Done

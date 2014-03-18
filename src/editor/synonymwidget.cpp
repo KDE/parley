@@ -13,6 +13,7 @@
 
 #include "synonymwidget.h"
 
+#include <keduvocdocument.h>
 #include <keduvoctranslation.h>
 #include <keduvocexpression.h>
 
@@ -32,6 +33,11 @@ SynonymWidget::SynonymWidget(SynonymWidgetType type, QWidget *parent) : QWidget(
     m_listModel = new QStringListModel(this);     listView->setModel(m_listModel);
 
     updateList();
+}
+
+void SynonymWidget::setDocument(KEduVocDocument *doc)
+{
+    m_doc = doc;
 }
 
 void SynonymWidget::setTranslation(KEduVocExpression * entry, int translation)
@@ -153,6 +159,9 @@ void SynonymWidget::togglePair()
         }
         break;
     }
+
+    m_doc->setModified(true);
+
     updateList();
 }
 

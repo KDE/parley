@@ -43,6 +43,7 @@ class InflectionWidget;
 class ComparisonWidget;
 class SummaryWordWidget;
 class LatexWidget;
+class SynonymWidget;
 
 class EditorWindow : public KXmlGuiWindow
 {
@@ -112,7 +113,7 @@ signals:
     void signalSetData(const QList<int>& entries, int currentTranslation);
 
 private:
-    ParleyMainWindow* m_mainWindow;
+    ParleyMainWindow  *m_mainWindow;
 
     KAction* m_vocabShowSearchBarAction;
 
@@ -130,6 +131,7 @@ private:
     SummaryWordWidget *m_summaryWordWidget;
     ComparisonWidget *m_comparisonWidget;
     LatexWidget *m_latexWidget;
+    SynonymWidget *m_synonymWidget;
 
     /// dock widgets to display lessons, word types, ...
     LessonView *m_lessonView;

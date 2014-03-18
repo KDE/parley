@@ -81,8 +81,10 @@ EditorWindow::EditorWindow(ParleyMainWindow* parent)
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
 
-    connect(parent->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), this, SLOT(updateDocument(KEduVocDocument*)));
-    connect(parent->parleyDocument(), SIGNAL(languagesChanged()), this, SLOT(slotLanguagesChanged()));
+    connect(parent->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)),
+            this,                     SLOT(updateDocument(KEduVocDocument*)));
+    connect(parent->parleyDocument(), SIGNAL(languagesChanged()),
+            this,                     SLOT(slotLanguagesChanged()));
     connect(parent->parleyDocument(), SIGNAL(statesNeedSaving()), this, SLOT(saveState()));
     connect(parent, SIGNAL(preferencesChanged()), this, SLOT(applyPrefs()));
 
@@ -108,6 +110,7 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
     m_summaryWordWidget->slotDocumentChanged(doc);
     m_inflectionWidget->setDocument(doc);
     m_comparisonWidget->setDocument(doc);
+    m_synonymWidget->setDocument(doc);
 
     if (!m_mainWindow->parleyDocument()->document()) {
         return;
@@ -121,7 +124,8 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
     m_lessonView->expandToDepth(0);
     m_wordTypeView->expandToDepth(0);
 
-    connect(m_mainWindow->parleyDocument()->document(), SIGNAL(docModified(bool)), m_mainWindow, SLOT(slotUpdateWindowCaption()));
+    connect(m_mainWindow->parleyDocument()->document(), SIGNAL(docModified(bool)),
+            m_mainWindow,                               SLOT(slotUpdateWindowCaption()));
 
     connect(m_vocabularyView->selectionModel(),
             SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
@@ -242,17 +246,17 @@ void EditorWindow::initDockWidgets()
 // Synonym (and the same for antonym and false friends)
     QDockWidget *synonymDock = new QDockWidget(i18n("Synonyms"), this);
     synonymDock->setObjectName("SynonymDock");
-    SynonymWidget *synonymWidget = new SynonymWidget(SynonymWidget::Synonym, this);
+    m_synonymWidget = new SynonymWidget(SynonymWidget::Synonym, this);
     QScrollArea *synonymScrollArea = new QScrollArea(this);
     synonymScrollArea->setWidgetResizable(true);
-    synonymScrollArea->setWidget(synonymWidget);
+    synonymScrollArea->setWidget(m_synonymWidget);
     synonymDock->setWidget(synonymScrollArea);
     addDockWidget(Qt::RightDockWidgetArea, synonymDock);
     m_dockWidgets.append(synonymDock);
     actionCollection()->addAction("show_synonym_dock", synonymDock->toggleViewAction());
     synonymDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-            synonymWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+            m_synonymWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
     QDockWidget *antonymDock = new QDockWidget(i18n("Antonyms"), this);
     antonymDock->setObjectName("AntonymDock");
