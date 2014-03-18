@@ -3,30 +3,6 @@
 
 
 ================================================================
-Before the freeze (features).  These are picked from the ones below.
-
-
- * Editor
-    + indicators in the table for words whether they have an image      Done
-      and/or a sound.
-
- * Practice
-    + Enable sound in all practice modes (or at least flashcards)       Done
-      https://bugs.kde.org/show_bug.cgi?id=263835
-      Suggestion:
-      Always show the sound button if it's enabled in the practice
-      config and never otherwise. If no sound for this word, disable
-      the sound button instead of hiding it.
-
- * Wishes from bugzilla
-    + Legend for the statistics                                         Done
-      https://bugs.kde.org/show_bug.cgi?id=228634
-    + Use images instead of words in flashcards                         Done
-      https://bugs.kde.org/show_bug.cgi?id=281120
-      https://bugs.kde.org/show_bug.cgi?id=168672
-
-
-----------------------------------------------------------------
 Before the release (bugs).
 
 
