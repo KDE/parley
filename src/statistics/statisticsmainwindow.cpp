@@ -154,12 +154,25 @@ void StatisticsMainWindow::initLanguages()
 {
     kDebug() << "init languages: " << Prefs::questionLanguage() << Prefs::solutionLanguage();
     const int totalNumLanguages = m_doc->identifierCount();
-    if (Prefs::questionLanguage() >= totalNumLanguages || Prefs::solutionLanguage() >= totalNumLanguages
-            || Prefs::solutionLanguage() == Prefs::questionLanguage()) {
+    if (Prefs::questionLanguage() >= totalNumLanguages
+        || Prefs::solutionLanguage() >= totalNumLanguages
+        || Prefs::solutionLanguage() == Prefs::questionLanguage())
+    {
         Prefs::setQuestionLanguage(0);
         Prefs::setSolutionLanguage(1);
         kDebug() << "Invalid language selection.";
     }
+
+    // Insert data into the comboboxes.
+    for (int i = 0; i < totalNumLanguages; ++i) {
+        m_ui->learnedLanguage->insertItem(i, m_doc->identifier(i).name());
+        m_ui->knownLanguage->insertItem(i, m_doc->identifier(i).name());
+    }
+    m_ui->learnedLanguage->setCurrentIndex(Prefs::solutionLanguage());
+    m_ui->knownLanguage->setCurrentIndex(Prefs::questionLanguage());
+    
+
+    // Insert data into the language listview
     for (int i = 0; i < totalNumLanguages - 1; i++) {
         for (int j = i + 1; j < totalNumLanguages; j++) {
             QListWidgetItem* item = new QListWidgetItem(
@@ -187,6 +200,10 @@ void StatisticsMainWindow::initLanguages()
     }
     connect(m_ui->languageList, SIGNAL(currentRowChanged(int)), SLOT(languagesChanged()));
     m_ui->languageList->sortItems();
+
+    connect(m_ui->learnedLanguage, SIGNAL(currentIndexChanged(int)), SLOT(languagesChanged2()));
+    connect(m_ui->knownLanguage, SIGNAL(currentIndexChanged(int)), SLOT(languagesChanged2()));
+
     languagesChanged();
 }
 
@@ -205,6 +222,16 @@ void StatisticsMainWindow::languagesChanged()
     //m_ui->lessonStatistics->showGrades(current->data(Qt::UserRole).toInt(), current->data(Qt::UserRole+1).toInt());
     kDebug() << "set languages: " << current->data(Qt::UserRole).toInt() << current->data(Qt::UserRole + 1).toInt();
     updateVisibleColumns();
+}
+
+void StatisticsMainWindow::languagesChanged2()
+{
+    int questionLanguage = m_ui->knownLanguage->currentIndex();
+    int solutionLanguage = m_ui->learnedLanguage->currentIndex();
+    Prefs::setSolutionLanguage(solutionLanguage);
+    Prefs::setQuestionLanguage(questionLanguage);
+
+    emit languagesChanged(questionLanguage, solutionLanguage);
 }
 
 void StatisticsMainWindow::practiceModeSelected(int mode)

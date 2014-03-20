@@ -45,6 +45,7 @@ Q_SIGNALS:
 private slots:
     void configurePractice();
     void languagesChanged();
+    void languagesChanged2();
     void practiceModeSelected(int mode);
     void updateVisibleColumns();
 
