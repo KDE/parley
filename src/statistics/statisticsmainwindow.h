@@ -47,12 +47,14 @@ private slots:
     void languagesChanged();
     void languagesChanged2();
     void practiceModeSelected(int mode);
+    void practiceModeChanged(int mode);
     void updateVisibleColumns();
 
 private:
     void initActions();
     void initPracticeModeSelection();
     void initLanguages();
+    void initPracticeMode();
     void showConjugationOptions(bool visible = true);
 
     ParleyMainWindow* m_mainWindow;

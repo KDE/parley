@@ -40,7 +40,7 @@
    <item row="1" column="0">
     <widget class="QComboBox" name="learnedLanguage"/>
    </item>
-   <item row="1" column="1" rowspan="16">
+   <item row="1" column="1" rowspan="18">
     <widget class="LessonStatisticsView" name="lessonStatistics" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -101,7 +101,7 @@
    <item row="6" column="0">
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Practice Mode:</string>
+      <string>Practice Method:</string>
      </property>
     </widget>
    </item>
@@ -213,6 +213,16 @@
     </layout>
    </item>
    <item row="16" column="0">
+    <widget class="QLabel" name="label3">
+     <property name="text">
+      <string>Practice Mode</string>
+     </property>
+    </widget>
+   </item>
+   <item row="17" column="0">
+    <widget class="QComboBox" name="practiceMode"/>
+   </item>
+   <item row="18" column="0">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>

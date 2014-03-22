@@ -60,6 +60,7 @@ StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindo
     initActions();
     initPracticeModeSelection();
     initLanguages();
+    initPracticeMode();
 
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
@@ -207,6 +208,7 @@ void StatisticsMainWindow::initLanguages()
     languagesChanged();
 }
 
+// FIXME: To be removed:
 void StatisticsMainWindow::languagesChanged()
 {
     QListWidgetItem* current = m_ui->languageList->currentItem();
@@ -224,6 +226,7 @@ void StatisticsMainWindow::languagesChanged()
     updateVisibleColumns();
 }
 
+// FIXME: To be renamed to languagesChanged()
 void StatisticsMainWindow::languagesChanged2()
 {
     int questionLanguage = m_ui->knownLanguage->currentIndex();
@@ -234,12 +237,47 @@ void StatisticsMainWindow::languagesChanged2()
     emit languagesChanged(questionLanguage, solutionLanguage);
 }
 
+void StatisticsMainWindow::initPracticeMode()
+{
+    m_ui->practiceMode->insertItem(0, i18n("Known to Learning"));
+    m_ui->practiceMode->insertItem(1, i18n("Learning to Known"));
+    m_ui->practiceMode->insertItem(2, i18n("Mixed Mode"));
+    //m_ui->practiceMode->insertItem(3, i18n("Mixed Mode with Sound"));
+
+    if (Prefs::practiceMode2() < 0 || 3 < Prefs::practiceMode2())
+        Prefs::setPracticeMode2(Prefs::EnumPracticeMode2::MixedModeWordsOnly);
+
+    m_ui->practiceMode->setCurrentIndex(Prefs::practiceMode2());
+
+    connect(m_ui->practiceMode, SIGNAL(currentIndexChanged(int)),
+            this,               SLOT(practiceModeChanged(int)));
+}
+
 void StatisticsMainWindow::practiceModeSelected(int mode)
 {
     Prefs::setPracticeMode(static_cast<Prefs::EnumPracticeMode::type>(mode));
     kDebug() << "mode: " << mode << Prefs::practiceMode();
 
     showConjugationOptions(mode == Prefs::EnumPracticeMode::ConjugationPractice);
+}
+
+void StatisticsMainWindow::practiceModeChanged(int mode)
+{
+    qDebug() << "new practice mode:" << mode;
+#if 0
+    switch (mode) {
+    case 0: Prefs::setPracticeMode2(Prefs::EnumPracticeMode2::KnownToLearning);    break;
+    case 1: Prefs::setPracticeMode2(Prefs::EnumPracticeMode2::LearningToKnown);    break;
+    case 2: Prefs::setPracticeMode2(Prefs::EnumPracticeMode2::MixedModeWordsOnly); break;
+    case 3: Prefs::setPracticeMode2(Prefs::EnumPracticeMode2::MixedModeWithSound); break;
+    default:
+        // This is the default.
+        Prefs::setPracticeMode2(Prefs::EnumPracticeMode2::MixedModeWordsOnly);
+        break;
+    };
+#else
+    Prefs::setPracticeMode2(static_cast<Prefs::EnumPracticeMode2::type>(mode));
+#endif
 }
 
 void StatisticsMainWindow::updateVisibleColumns()
