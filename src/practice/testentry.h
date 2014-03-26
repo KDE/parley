@@ -97,11 +97,6 @@ private:
     /// the entry itself
     KEduVocExpression *m_entry;
 
-    //! Only affects conjugation training.
-    QString                 m_conjugationTense;
-    //! Only affects conjugation training.
-    QList<KEduVocWordFlags> m_conjugationPronouns;
-
     // these are for the CURRENT query only, so we can display statistics.
     int m_statisticCount;
     int m_statisticGoodCount;
@@ -116,6 +111,11 @@ private:
     ErrorTypes m_lastError;
 
     QStringList m_userAnswers;
+
+    //! Only affects conjugation training.
+    QString                 m_conjugationTense;
+    //! Only affects conjugation training.
+    QList<KEduVocWordFlags> m_conjugationPronouns;
 
     static int m_gradeTo;
     static int m_gradeFrom;

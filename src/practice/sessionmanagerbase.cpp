@@ -109,18 +109,22 @@ int SessionManagerBase::totalTime()
 
 TestEntry* SessionManagerBase::nextTrainingEntry()
 {
-    // Refill current entries.
+    // In some session types an entry will move out of the "current
+    // entries" when they are correctly answered and then we need to
+    // refill.
     while (m_currentEntries.count() < Prefs::testNumberOfEntries() &&
             m_notAskedTestEntries.count() > 0) {
         m_currentEntries.append(m_notAskedTestEntries.takeAt(0));
     }
 
+    // Return one of the current entries, but not the same as last
+    // time if posible.
     int lastEntry = m_currentEntry;
-    // return one of the current entries
     if (m_currentEntries.count() > 0) {
-        // one of the current words (by random)
+        // Choose one of the current entries randomly.
         m_currentEntry = m_randomSequence.getLong(m_currentEntries.count());
-        // do not allow to ask the same entry twice in a row
+
+        // Do not allow to ask the same entry twice in a row.
         if (m_currentEntries.count() > 1) {
             while (m_currentEntry == lastEntry) {
                 m_currentEntry = m_randomSequence.getLong(m_currentEntries.count());
@@ -300,6 +304,8 @@ void SessionManagerBase::setLanguages(int from, int to)
 {
     m_fromTranslation = from;
     m_toTranslation = to;
+
+    // FIXME: This must be done for each individual entry for mixed mode training.
     TestEntry::setGradeFrom(m_fromTranslation);
     TestEntry::setGradeTo(m_toTranslation);
 }
@@ -309,11 +315,17 @@ bool SessionManagerBase::isValidMultipleChoiceAnswer(KEduVocExpression *e)
     // entry is empty
     if (e->translation(Prefs::solutionLanguage())->text().trimmed().isEmpty())
         return false;
+
+    // FIXME: Must test individual solution & question languages per
+    // entry in mixed mode training.
+    //
     // entry is a synonym of the solution
     if (e->translation(Prefs::solutionLanguage())->synonyms().contains(m_currentEntries.at(m_currentEntry)->entry()->translation(Prefs::solutionLanguage())))
         return false;
-    // entry has the same text as the solution
-    if (e->translation(Prefs::solutionLanguage())->text().simplified() == m_currentEntries.at(m_currentEntry)->entry()->translation(Prefs::solutionLanguage())->text().simplified())
+
+    // Entry has the same text as the solution.
+    if (e->translation(Prefs::solutionLanguage())->text().simplified()
+        == m_currentEntries.at(m_currentEntry)->entry()->translation(Prefs::solutionLanguage())->text().simplified())
         return false;
     return true;
 }

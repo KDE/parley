@@ -172,7 +172,7 @@ void ParleyMainWindow::configurePractice()
 
 void ParleyMainWindow::startPractice()
 {
-    if (Prefs::solutionLanguage() == Prefs::questionLanguage()) {
+    if (Prefs::learningLanguage() == Prefs::knownLanguage()) {
         KMessageBox::sorry(this,
                            i18n("You cannot start to practice when the known language is the same as the language to learn."),
                            i18n("Select languages"));
