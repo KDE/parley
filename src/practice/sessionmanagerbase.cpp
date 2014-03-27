@@ -67,16 +67,34 @@ void SessionManagerBase::setDocument(KEduVocDocument* doc)
                                    i18n("Could not start practice")));
         return;
     }
+
+#if 0
     if (Prefs::questionLanguage() >= m_doc->identifierCount()
         || Prefs::solutionLanguage() >= m_doc->identifierCount()) {
         kDebug() << "Invalid language selection" << m_fromTranslation << " to " << m_toTranslation;
         Prefs::setQuestionLanguage(0);
         Prefs::setSolutionLanguage(1);
     }
+#else
+    // FIXME: Is this relevant?  The code in entryfilter seems to ignore settings here.
+    if (Prefs::learningLanguage() >= m_doc->identifierCount()
+        || Prefs::knownLanguage() >= m_doc->identifierCount()) {
+        kDebug() << "Invalid language selection" << m_fromTranslation
+                 << " to " << m_toTranslation;
+        Prefs::setLearningLanguage(0);
+        Prefs::setKnownLanguage(1);
+    }
+#endif
 
+#if 0
     setLanguages(Prefs::questionLanguage(), Prefs::solutionLanguage());
     kDebug() << "Test from: " << m_doc->identifier(m_fromTranslation).name()
              << " to: " << m_doc->identifier(m_toTranslation).name();
+#else
+    setLanguages(Prefs::knownLanguage(), Prefs::learningLanguage());
+    kDebug() << "Practice: learning language: " << m_doc->identifier(m_fromTranslation).name()
+             << " known language: " << m_doc->identifier(m_toTranslation).name();
+#endif
 
     filterTestEntries();
     kDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
@@ -304,10 +322,6 @@ void SessionManagerBase::setLanguages(int from, int to)
 {
     m_fromTranslation = from;
     m_toTranslation = to;
-
-    // FIXME: This must be done for each individual entry for mixed mode training.
-    TestEntry::setGradeFrom(m_fromTranslation);
-    TestEntry::setGradeTo(m_toTranslation);
 }
 
 bool SessionManagerBase::isValidMultipleChoiceAnswer(KEduVocExpression *e)

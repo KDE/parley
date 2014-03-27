@@ -107,9 +107,9 @@ void PracticeSummaryComponent::setupDetailsTable()
     // TODO some colors, maybe an indicator icon whether the word was right/wrong
     foreach(TestEntry * entry, m_sessionManager->allTestEntries()) {
         QTableWidgetItem* itemFrom = new QTableWidgetItem(
-            entry->entry()->translation(TestEntry::gradeFrom())->text());
+            entry->entry()->translation(entry->TestEntry::languageFrom())->text());
         QTableWidgetItem* itemTo = new QTableWidgetItem(
-            entry->entry()->translation(TestEntry::gradeTo())->text());
+            entry->entry()->translation(entry->languageTo())->text());
         if (entry->statisticGoodCount() > 0) {
             itemTo->setForeground(correctPalette.foreground());
         }
@@ -183,8 +183,8 @@ void PracticeSummaryComponent::exportResults()
         table->appendRows(1);
         int newRow = table->rows() - 1;
         table->cellAt(newRow, 0).firstCursorPosition().insertText(QString::number(entry->statisticCount()));
-        table->cellAt(newRow, 1).firstCursorPosition().insertText(entry->entry()->translation(TestEntry::gradeFrom())->text());
-        table->cellAt(newRow, 2).firstCursorPosition().insertText(entry->entry()->translation(TestEntry::gradeTo())->text());
+        table->cellAt(newRow, 1).firstCursorPosition().insertText(entry->entry()->translation(entry->languageFrom())->text());
+        table->cellAt(newRow, 2).firstCursorPosition().insertText(entry->entry()->translation(entry->languageTo())->text());
         table->cellAt(newRow, 3).firstCursorPosition().insertText(entry->userAnswers().join("; "));
     }
 

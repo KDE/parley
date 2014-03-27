@@ -34,8 +34,27 @@ EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc)
     , m_doc(doc)
     , m_dialog(0)
 {
-    m_fromTranslation = Prefs::questionLanguage();
-    m_toTranslation = Prefs::solutionLanguage();
+    switch (Prefs::practiceMode2()) {
+    case Prefs::EnumPracticeMode2::KnownToLearning:
+        m_fromTranslation = Prefs::knownLanguage();
+        m_toTranslation = Prefs::learningLanguage();
+        break;
+    case Prefs::EnumPracticeMode2::LearningToKnown:
+        m_fromTranslation = Prefs::learningLanguage();
+        m_toTranslation = Prefs::knownLanguage();
+        break;
+    case Prefs::EnumPracticeMode2::MixedModeWordsOnly:
+        // FIXME: Not yet supported. Use KnownToLearning
+        m_fromTranslation = Prefs::knownLanguage();
+        m_toTranslation = Prefs::learningLanguage();
+        break;
+    case Prefs::EnumPracticeMode2::MixedModeWithSound:
+        // FIXME: Not yet supported. Use KnownToLearning
+    default:
+        m_fromTranslation = Prefs::knownLanguage();
+        m_toTranslation = Prefs::learningLanguage();
+        break;
+    }
     kDebug() << "Filter for " << m_fromTranslation << " to " << m_toTranslation;
 
     if (Prefs::practiceMode() == Prefs::EnumPracticeMode::ConjugationPractice) {
@@ -168,7 +187,15 @@ QList<TestEntry*> EntryFilter::entries()
     } else {
         QList<TestEntry*> testEntries;
         foreach(KEduVocExpression * entry, m_currentSelection) {
-            randomizedInsert(testEntries, new TestEntry(entry));
+            // Set the from and to translation for the entry itself.
+            //
+            // FIXME: When we support mixed mode this must be done
+            //        much earlier since we can have the same KEduVoc
+            //        entry with 2 or even more test entries.
+            TestEntry *testEntry = new TestEntry(entry);
+            testEntry->setLanguageFrom(m_fromTranslation);
+            testEntry->setLanguageTo(m_toTranslation);
+            randomizedInsert(testEntries, testEntry);
         }
         return testEntries;
     }

@@ -142,7 +142,7 @@ public:
      */
     void filterTestEntries();
 
-    void setLanguages(int from, int to);
+    void setLanguages(int learning, int known);
 
     /**
      * Find out if the given expression can be used as a multiple choice answer for the current entry

@@ -15,8 +15,10 @@
 
 #include "prefs.h"
 
+#if 0
 int TestEntry::m_gradeFrom = 0;
 int TestEntry::m_gradeTo = 1;
+#endif
 
 TestEntry::TestEntry(KEduVocExpression *entry)
     : m_entry(entry)
@@ -25,13 +27,16 @@ TestEntry::TestEntry(KEduVocExpression *entry)
     , m_statisticBadCount(0)
     , m_answeredCorrectInSequence(0)
     , m_correctAtFirstAttempt(false)
-    , m_practiceFinished(false)
+      //, m_practiceFinished(false)
     , m_changeGrades(false)
     , m_isUnseenQuestion(false)
     , m_lastPercentage(0.0)
     , m_lastError(0)
+    , m_languageFrom(98)        // Bogus number to make sure that it's set correctly later
+    , m_languageTo(99)
 {}
 
+#if 0
 void TestEntry::setGradeTo(int to)
 {
     m_gradeTo = to;
@@ -41,6 +46,17 @@ void TestEntry::setGradeFrom(int from)
 {
     m_gradeFrom = from;
 }
+#else
+void TestEntry::setLanguageFrom(int from)
+{
+    m_languageFrom = from;
+}
+
+void TestEntry::setLanguageTo(int to)
+{
+    m_languageTo = to;
+}
+#endif
 
 int TestEntry::answeredCorrectInSequence()
 {
@@ -108,6 +124,7 @@ void TestEntry::updateStatisticsWrongAnswer(grade_t currentGrade)
     }
 }
 
+#if 0
 int TestEntry::gradeFrom()
 {
     return m_gradeFrom;
@@ -117,6 +134,17 @@ int TestEntry::gradeTo()
 {
     return m_gradeTo;
 }
+#else
+int TestEntry::languageFrom() const
+{
+    return m_languageFrom;
+}
+
+int TestEntry::languageTo() const
+{
+    return m_languageTo;
+}
+#endif
 
 bool TestEntry::isUnseenQuestion() const
 {

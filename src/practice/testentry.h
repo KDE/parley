@@ -86,10 +86,17 @@ public:
         return m_userAnswers;
     }
 
+#if 0
     static void setGradeFrom(int from);
     static void setGradeTo(int to);
     static int gradeFrom();
     static int gradeTo();
+#else
+    void setLanguageFrom(int from);
+    void setLanguageTo(int to);
+    int languageFrom() const;
+    int languageTo() const;
+#endif
 
     KEduVocExpression *entry();
 
@@ -97,15 +104,15 @@ private:
     /// the entry itself
     KEduVocExpression *m_entry;
 
-    // these are for the CURRENT query only, so we can display statistics.
+    // These are for the current entry only, so that we can display
+    // statistics about it after the training session is finished..
     int m_statisticCount;
     int m_statisticGoodCount;
     int m_statisticBadCount;
     int m_answeredCorrectInSequence;
     bool m_correctAtFirstAttempt;
-    bool m_practiceFinished;
-    bool m_changeGrades;
-    bool m_isUnseenQuestion;
+    bool m_changeGrades;        // Set to true when grades should be changed after the practice
+    bool m_isUnseenQuestion;    // Is set to true for questions never seen before.
 
     double m_lastPercentage;
     ErrorTypes m_lastError;
@@ -117,8 +124,13 @@ private:
     //! Only affects conjugation training.
     QList<KEduVocWordFlags> m_conjugationPronouns;
 
+#if 0
     static int m_gradeTo;
     static int m_gradeFrom;
+#else
+    int  m_languageFrom;   // Index of the language this entry is from
+    int  m_languageTo;     // Index of the language this entry is from
+#endif
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(TestEntry::ErrorTypes)
