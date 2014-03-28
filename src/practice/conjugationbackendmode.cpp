@@ -135,7 +135,7 @@ void ConjugationBackendMode::updateGrades()
     kDebug() << "Grading conjugations";
 
     foreach(const KEduVocWordFlags & key, m_pronounFlags) {
-        KEduVocText& text = m_current->entry()->translation(Prefs::solutionLanguage())->
+        KEduVocText& text = m_current->entry()->translation(m_current->languageTo())->
                             conjugation(m_currentTense).conjugation(key);
 
         text.incPracticeCount();

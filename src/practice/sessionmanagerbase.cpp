@@ -86,15 +86,9 @@ void SessionManagerBase::setDocument(KEduVocDocument* doc)
     }
 #endif
 
-#if 0
-    setLanguages(Prefs::questionLanguage(), Prefs::solutionLanguage());
-    kDebug() << "Test from: " << m_doc->identifier(m_fromTranslation).name()
-             << " to: " << m_doc->identifier(m_toTranslation).name();
-#else
     setLanguages(Prefs::knownLanguage(), Prefs::learningLanguage());
     kDebug() << "Practice: learning language: " << m_doc->identifier(m_fromTranslation).name()
              << " known language: " << m_doc->identifier(m_toTranslation).name();
-#endif
 
     filterTestEntries();
     kDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
@@ -255,7 +249,8 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
     int count = numberChoices;
 
     // if the current entry has predefined multiple choice entries definied, use them first
-    QStringList predefinedChoices = m_currentEntries.at(m_currentEntry)->entry()->translation(Prefs::solutionLanguage())->multipleChoice();
+    TestEntry *currentEntry = m_currentEntries.at(m_currentEntry);
+    QStringList predefinedChoices = currentEntry->entry()->translation(currentEntry->languageTo())->multipleChoice();
     while (!predefinedChoices.isEmpty() && count > 0) {
         choices.append(predefinedChoices.takeAt(randomSequence.getLong(predefinedChoices.count())));
         count--;
@@ -275,7 +270,7 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
             KEduVocExpression *exp = allEntries.value(i);
 
             if (isValidMultipleChoiceAnswer(exp)) {
-                choices.append(exp->translation(Prefs::solutionLanguage())->text());
+                choices.append(exp->translation(m_toTranslation)->text());
             }
         }
     } else {
@@ -299,7 +294,7 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
         }
 
         for (int i = 0; i < exprlist.count(); i++) {
-            choices.append(exprlist[i]->translation(Prefs::solutionLanguage())->text());
+            choices.append(exprlist[i]->translation(m_toTranslation)->text());
         }
     }
 
@@ -327,19 +322,19 @@ void SessionManagerBase::setLanguages(int from, int to)
 bool SessionManagerBase::isValidMultipleChoiceAnswer(KEduVocExpression *e)
 {
     // entry is empty
-    if (e->translation(Prefs::solutionLanguage())->text().trimmed().isEmpty())
+    if (e->translation(m_toTranslation)->text().trimmed().isEmpty())
         return false;
 
     // FIXME: Must test individual solution & question languages per
     // entry in mixed mode training.
     //
     // entry is a synonym of the solution
-    if (e->translation(Prefs::solutionLanguage())->synonyms().contains(m_currentEntries.at(m_currentEntry)->entry()->translation(Prefs::solutionLanguage())))
+    if (e->translation(m_toTranslation)->synonyms().contains(m_currentEntries.at(m_currentEntry)->entry()->translation(m_toTranslation)))
         return false;
 
     // Entry has the same text as the solution.
-    if (e->translation(Prefs::solutionLanguage())->text().simplified()
-        == m_currentEntries.at(m_currentEntry)->entry()->translation(Prefs::solutionLanguage())->text().simplified())
+    if (e->translation(m_toTranslation)->text().simplified()
+        == m_currentEntries.at(m_currentEntry)->entry()->translation(m_toTranslation)->text().simplified())
         return false;
     return true;
 }

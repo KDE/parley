@@ -27,7 +27,7 @@ GenderBackendMode::GenderBackendMode(const PracticeOptions& practiceOptions,
                                      KEduVocDocument* doc)
     : MultipleChoiceBackendMode(practiceOptions, frontend, parent, sessionManager)
 {
-    m_articles = doc->identifier(Prefs::solutionLanguage()).article();
+    m_articles = doc->identifier(m_current->languageTo()).article();
 
     KEduVocWordFlag::Flags singular = KEduVocWordFlag::Singular;
     KEduVocWordFlag::Flags definite = KEduVocWordFlag::Definite;
@@ -62,7 +62,7 @@ void GenderBackendMode::prepareChoices(TestEntry* entry)
     setQuestion(i18n("Choose the right article for \"%1\"", entry->entry()->translation(m_practiceOptions.languageFrom())->text()));
 
     // set the word (possibly without the article)
-    QString noun = entry->entry()->translation(Prefs::solutionLanguage())->text();
+    QString noun = entry->entry()->translation(m_current->languageTo())->text();
 
     // strip the article
     QStringList qsl = noun.split(QRegExp("\\s"), QString::SkipEmptyParts);

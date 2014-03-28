@@ -153,14 +153,14 @@ void StatisticsMainWindow::initPracticeModeSelection()
 
 void StatisticsMainWindow::initLanguages()
 {
-    kDebug() << "init languages: " << Prefs::questionLanguage() << Prefs::solutionLanguage();
+    kDebug() << "init languages: " << Prefs::learningLanguage() << Prefs::knownLanguage();
     const int totalNumLanguages = m_doc->identifierCount();
-    if (Prefs::questionLanguage() >= totalNumLanguages
-        || Prefs::solutionLanguage() >= totalNumLanguages
-        || Prefs::solutionLanguage() == Prefs::questionLanguage())
+    if (Prefs::knownLanguage() >= totalNumLanguages
+        || Prefs::learningLanguage() >= totalNumLanguages
+        || Prefs::learningLanguage() == Prefs::knownLanguage())
     {
-        Prefs::setQuestionLanguage(0);
-        Prefs::setSolutionLanguage(1);
+        Prefs::setKnownLanguage(0);
+        Prefs::setLearningLanguage(1);
         kDebug() << "Invalid language selection.";
     }
 
@@ -169,8 +169,8 @@ void StatisticsMainWindow::initLanguages()
         m_ui->learnedLanguage->insertItem(i, m_doc->identifier(i).name());
         m_ui->knownLanguage->insertItem(i, m_doc->identifier(i).name());
     }
-    m_ui->learnedLanguage->setCurrentIndex(Prefs::solutionLanguage());
-    m_ui->knownLanguage->setCurrentIndex(Prefs::questionLanguage());
+    m_ui->learnedLanguage->setCurrentIndex(Prefs::learningLanguage());
+    m_ui->knownLanguage->setCurrentIndex(Prefs::knownLanguage());
     
 
     // Insert data into the language listview
@@ -183,7 +183,7 @@ void StatisticsMainWindow::initLanguages()
             item->setData(Qt::UserRole + 1, j);
             m_ui->languageList->addItem(item);
 
-            if (i == Prefs::questionLanguage() && j == Prefs::solutionLanguage()) {
+            if (i == Prefs::knownLanguage() && j == Prefs::learningLanguage()) {
                 m_ui->languageList->setCurrentItem(item);
             }
 
@@ -194,7 +194,7 @@ void StatisticsMainWindow::initLanguages()
             item2->setData(Qt::UserRole + 1, i);
             m_ui->languageList->addItem(item2);
 
-            if (j == Prefs::questionLanguage() && i == Prefs::solutionLanguage()) {
+            if (j == Prefs::knownLanguage() && i == Prefs::learningLanguage()) {
                 m_ui->languageList->setCurrentItem(item2);
             }
         }
@@ -216,11 +216,11 @@ void StatisticsMainWindow::languagesChanged()
         return;
     }
 
-    int questionLanguage = current->data(Qt::UserRole).toInt();
-    int solutionLangauge = current->data(Qt::UserRole + 1).toInt();
-    Prefs::setQuestionLanguage(questionLanguage);
-    Prefs::setSolutionLanguage(solutionLangauge);
-    emit languagesChanged(questionLanguage, solutionLangauge);
+    int knownLanguage = current->data(Qt::UserRole).toInt();
+    int learningLangauge = current->data(Qt::UserRole + 1).toInt();
+    Prefs::setKnownLanguage(knownLanguage);
+    Prefs::setLearningLanguage(learningLangauge);
+    emit languagesChanged(knownLanguage, learningLangauge);
     //m_ui->lessonStatistics->showGrades(current->data(Qt::UserRole).toInt(), current->data(Qt::UserRole+1).toInt());
     kDebug() << "set languages: " << current->data(Qt::UserRole).toInt() << current->data(Qt::UserRole + 1).toInt();
     updateVisibleColumns();
@@ -229,12 +229,12 @@ void StatisticsMainWindow::languagesChanged()
 // FIXME: To be renamed to languagesChanged()
 void StatisticsMainWindow::languagesChanged2()
 {
-    int questionLanguage = m_ui->knownLanguage->currentIndex();
-    int solutionLanguage = m_ui->learnedLanguage->currentIndex();
-    Prefs::setSolutionLanguage(solutionLanguage);
-    Prefs::setQuestionLanguage(questionLanguage);
+    int knownLanguage = m_ui->knownLanguage->currentIndex();
+    int learningLanguage = m_ui->learnedLanguage->currentIndex();
+    Prefs::setLearningLanguage(learningLanguage);
+    Prefs::setKnownLanguage(knownLanguage);
 
-    emit languagesChanged(questionLanguage, solutionLanguage);
+    emit languagesChanged(knownLanguage, learningLanguage);
 }
 
 void StatisticsMainWindow::initPracticeMode()
@@ -282,9 +282,9 @@ void StatisticsMainWindow::practiceModeChanged(int mode)
 
 void StatisticsMainWindow::updateVisibleColumns()
 {
-    int solutionLanguage = Prefs::solutionLanguage();
+    int learningLanguage = Prefs::learningLanguage();
     for (int i = 2; i < m_ui->lessonStatistics->header()->count(); i++) {
-        m_ui->lessonStatistics->setColumnHidden(i, (i - 2) != solutionLanguage);
+        m_ui->lessonStatistics->setColumnHidden(i, (i - 2) != learningLanguage);
     }
 }
 
@@ -300,7 +300,7 @@ void StatisticsMainWindow::showConjugationOptions(bool visible)
         layout->setMargin(0);
         layout->addWidget(m_conjugationOptions);
         connect(this, SIGNAL(languagesChanged(int, int)), m_conjugationOptions, SLOT(setLanguages(int, int)));
-        m_conjugationOptions->setLanguages(Prefs::questionLanguage(), Prefs::solutionLanguage());
+        m_conjugationOptions->setLanguages(Prefs::knownLanguage(), Prefs::learningLanguage());
     }
     m_conjugationOptions->setVisible(visible);
 }

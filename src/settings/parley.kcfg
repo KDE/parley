@@ -288,16 +288,6 @@
   </group>
 
   <group name="PracticeManager">
-    <!-- QuestionLanguage and SolutionLanguage will be deprecated -->
-    <entry name="QuestionLanguage" type="Int">
-      <label>The language that is displayed in a test.</label>
-      <default>0</default>
-    </entry>
-    <entry name="SolutionLanguage" type="Int">
-      <label>The language in which the user has to answer.</label>
-      <default>1</default>
-    </entry>
-
     <!-- These numbers are indices into the kvtml file. Obviously they may change between files. -->
     <entry name="LearningLanguage" type="Int">
       <label>The language that you are learning.</label>

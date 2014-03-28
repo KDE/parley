@@ -149,13 +149,19 @@ void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)
 
 void PracticeMainWindow::startPractice()
 {
-    QString questionLocale = m_mainWindow->parleyDocument()->document()->identifier(Prefs::questionLanguage()).locale();
+    // FIXME: This really needs changing in mixed mode.
+    //        Even in one-directional practice it eeds change. 
+    //        We need to call the practice manager to find out this.
+    //
+    // As a quick workaround we use learningLanguage as
+    // solutionLanguage and knownLanguage as questionLanguage.
+    QString questionLocale = m_mainWindow->parleyDocument()->document()->identifier(Prefs::knownLanguage()).locale();
     LanguageSettings questionLanguageSettings(questionLocale);
     questionLanguageSettings.readConfig();
     QFont questionFont = questionLanguageSettings.practiceFont();
     m_guiFrontend->setQuestionFont(questionFont);
 
-    QString solutionLocale = m_mainWindow->parleyDocument()->document()->identifier(Prefs::solutionLanguage()).locale();
+    QString solutionLocale = m_mainWindow->parleyDocument()->document()->identifier(Prefs::learningLanguage()).locale();
     LanguageSettings solutionLanguageSettings(solutionLocale);
     solutionLanguageSettings.readConfig();
     QFont solutionFont = solutionLanguageSettings.practiceFont();

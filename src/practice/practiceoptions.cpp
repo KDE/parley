@@ -25,8 +25,9 @@ PracticeOptions::PracticeOptions()
 
 void PracticeOptions::loadPreferences()
 {
-    m_languageFrom = Prefs::questionLanguage();
-    m_languageTo = Prefs::solutionLanguage();
+    // FIXME: Look into if this is needed at all.  It looks like they are never used.
+    m_languageFrom = Prefs::knownLanguage();
+    m_languageTo = Prefs::learningLanguage();
 }
 
 Prefs::EnumPracticeMode::type PracticeOptions::mode() const

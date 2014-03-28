@@ -61,9 +61,9 @@ void ComparisonBackendMode::checkAnswer()
         return;
     }
 
-    bool absoluteCorrect = answers.at(0) == m_current->entry()->translation(Prefs::solutionLanguage())->text();
-    bool comparativeCorrect = answers.at(1) == m_current->entry()->translation(Prefs::solutionLanguage())->comparative();
-    bool superlativeCorrect = answers.at(2) == m_current->entry()->translation(Prefs::solutionLanguage())->superlative();
+    bool absoluteCorrect = answers.at(0) == m_current->entry()->translation(m_current->languageTo())->text();
+    bool comparativeCorrect = answers.at(1) == m_current->entry()->translation(m_current->languageTo())->comparative();
+    bool superlativeCorrect = answers.at(2) == m_current->entry()->translation(m_current->languageTo())->superlative();
 
     if (absoluteCorrect && comparativeCorrect && superlativeCorrect) {
         m_frontend->setFeedback(i18n("All comparison forms were right."));
@@ -98,9 +98,9 @@ void ComparisonBackendMode::updateGrades()
 {
     QStringList answers = m_frontend->userInput().toStringList();
 
-    bool absoluteCorrect = answers.at(0) == m_current->entry()->translation(Prefs::solutionLanguage())->text();
-    bool comparativeCorrect = answers.at(1) == m_current->entry()->translation(Prefs::solutionLanguage())->comparative();
-    bool superlativeCorrect = answers.at(2) == m_current->entry()->translation(Prefs::solutionLanguage())->superlative();
+    bool absoluteCorrect = answers.at(0) == m_current->entry()->translation(m_current->languageTo())->text();
+    bool comparativeCorrect = answers.at(1) == m_current->entry()->translation(m_current->languageTo())->comparative();
+    bool superlativeCorrect = answers.at(2) == m_current->entry()->translation(m_current->languageTo())->superlative();
 
     // TODO way too much duplicated code here
 
