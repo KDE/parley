@@ -137,12 +137,6 @@ public:
  protected:  // methods
 
     /**
-     * Select appropriate entries for the practice (respect blocking settings etc)
-     * m_allTestEntries will be filled by this.
-     */
-    void filterTestEntries();
-
-    /**
      * Find out if the given expression can be used as a multiple choice answer for the current entry
      * (i.e. if it's not the answer itself, not a synonym and has a different text)
      */

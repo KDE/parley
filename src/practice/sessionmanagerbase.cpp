@@ -78,13 +78,23 @@ void SessionManagerBase::setDocument(KEduVocDocument* doc)
     }
 
     m_learningLanguageIndex = Prefs::learningLanguage();
-    m_knownLanguageIndex = Prefs::knownLanguage();
-    kDebug() << "Practice: learning language: " << m_doc->identifier(m_learningLanguageIndex).name()
-             << " known language: " << m_doc->identifier(m_knownLanguageIndex).name();
+    m_knownLanguageIndex    = Prefs::knownLanguage();
+    kDebug() << "Practice: learning language:" << m_doc->identifier(m_learningLanguageIndex).name()
+             << " known language:" << m_doc->identifier(m_knownLanguageIndex).name();
 
-    filterTestEntries();
+    // Create the list of available entries for this training session.
+    EntryFilter filter(m_parent, m_doc);
+    m_allTestEntries = filter.entries();
     kDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
 
+    kDebug() << "Entries: ----------------";
+    foreach (TestEntry *entry, m_allTestEntries) {
+        kDebug() << "Entry: " << entry->languageFrom() << "to" << entry->languageTo();
+    }
+
+    // Create the list actual entries in this training session.  This
+    // is a pure virtual function and must be implemented by the
+    // concrete session managers.
     initializeTraining();
 }
 
@@ -301,12 +311,14 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
 //                         Protected methods
 
 
+#if 0
 void SessionManagerBase::filterTestEntries()
 {
     EntryFilter filter(m_parent, m_doc);
     m_allTestEntries = filter.entries();
-}
 
+}
+#endif
 bool SessionManagerBase::isValidMultipleChoiceAnswer(KEduVocExpression *e)
 {
     // entry is empty

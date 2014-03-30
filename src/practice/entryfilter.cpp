@@ -37,16 +37,16 @@ EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc)
     switch (Prefs::practiceMode2()) {
     case Prefs::EnumPracticeMode2::KnownToLearning:
         m_fromTranslation = Prefs::knownLanguage();
-        m_toTranslation = Prefs::learningLanguage();
+        m_toTranslation   = Prefs::learningLanguage();
         break;
     case Prefs::EnumPracticeMode2::LearningToKnown:
         m_fromTranslation = Prefs::learningLanguage();
-        m_toTranslation = Prefs::knownLanguage();
+        m_toTranslation   = Prefs::knownLanguage();
         break;
     case Prefs::EnumPracticeMode2::MixedModeWordsOnly:
         // FIXME: Not yet supported. Use KnownToLearning
         m_fromTranslation = Prefs::knownLanguage();
-        m_toTranslation = Prefs::learningLanguage();
+        m_toTranslation   = Prefs::learningLanguage();
         break;
     case Prefs::EnumPracticeMode2::MixedModeWithSound:
         // FIXME: Not yet supported. Use KnownToLearning
