@@ -39,8 +39,8 @@ using namespace Practice;
 
 SessionManagerBase::SessionManagerBase(QWidget* parent)
     : m_parent(parent)
-    , m_fromTranslation(0)
-    , m_toTranslation(1)
+    , m_learningLanguageIndex(0)
+    , m_knownLanguageIndex(1)
     , m_currentEntry(-1)
     , m_totalTime(0)
     , m_randomSequence(QDateTime::currentDateTime().toTime_t())
@@ -68,27 +68,19 @@ void SessionManagerBase::setDocument(KEduVocDocument* doc)
         return;
     }
 
-#if 0
-    if (Prefs::questionLanguage() >= m_doc->identifierCount()
-        || Prefs::solutionLanguage() >= m_doc->identifierCount()) {
-        kDebug() << "Invalid language selection" << m_fromTranslation << " to " << m_toTranslation;
-        Prefs::setQuestionLanguage(0);
-        Prefs::setSolutionLanguage(1);
-    }
-#else
     // FIXME: Is this relevant?  The code in entryfilter seems to ignore settings here.
     if (Prefs::learningLanguage() >= m_doc->identifierCount()
-        || Prefs::knownLanguage() >= m_doc->identifierCount()) {
-        kDebug() << "Invalid language selection" << m_fromTranslation
-                 << " to " << m_toTranslation;
+        || Prefs::knownLanguage() >= m_doc->identifierCount())
+    {
+        // FIXME: What happens if there is only 1 language?  Or worse, none?
         Prefs::setLearningLanguage(0);
         Prefs::setKnownLanguage(1);
     }
-#endif
 
-    setLanguages(Prefs::knownLanguage(), Prefs::learningLanguage());
-    kDebug() << "Practice: learning language: " << m_doc->identifier(m_fromTranslation).name()
-             << " known language: " << m_doc->identifier(m_toTranslation).name();
+    m_learningLanguageIndex = Prefs::learningLanguage();
+    m_knownLanguageIndex = Prefs::knownLanguage();
+    kDebug() << "Practice: learning language: " << m_doc->identifier(m_learningLanguageIndex).name()
+             << " known language: " << m_doc->identifier(m_knownLanguageIndex).name();
 
     filterTestEntries();
     kDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
@@ -269,8 +261,9 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
         for (int i = choices.count(); i < allEntries.count(); ++i) {
             KEduVocExpression *exp = allEntries.value(i);
 
+            // FIXME: Use trainingmode2 also here!
             if (isValidMultipleChoiceAnswer(exp)) {
-                choices.append(exp->translation(m_toTranslation)->text());
+                choices.append(exp->translation(m_learningLanguageIndex)->text());
             }
         }
     } else {
@@ -293,8 +286,9 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
             }
         }
 
+        // FIXME: Use trainingmode2 too here
         for (int i = 0; i < exprlist.count(); i++) {
-            choices.append(exprlist[i]->translation(m_toTranslation)->text());
+            choices.append(exprlist[i]->translation(m_learningLanguageIndex)->text());
         }
     }
 
@@ -313,29 +307,24 @@ void SessionManagerBase::filterTestEntries()
     m_allTestEntries = filter.entries();
 }
 
-void SessionManagerBase::setLanguages(int from, int to)
-{
-    m_fromTranslation = from;
-    m_toTranslation = to;
-}
-
 bool SessionManagerBase::isValidMultipleChoiceAnswer(KEduVocExpression *e)
 {
     // entry is empty
-    if (e->translation(m_toTranslation)->text().trimmed().isEmpty())
+    if (e->translation(m_learningLanguageIndex)->text().trimmed().isEmpty())
         return false;
 
     // FIXME: Must test individual solution & question languages per
     // entry in mixed mode training.
     //
     // entry is a synonym of the solution
-    if (e->translation(m_toTranslation)->synonyms().contains(m_currentEntries.at(m_currentEntry)->entry()->translation(m_toTranslation)))
+    if (e->translation(m_learningLanguageIndex)->synonyms().contains(m_currentEntries.at(m_currentEntry)->entry()->translation(m_learningLanguageIndex)))
         return false;
 
     // Entry has the same text as the solution.
-    if (e->translation(m_toTranslation)->text().simplified()
-        == m_currentEntries.at(m_currentEntry)->entry()->translation(m_toTranslation)->text().simplified())
+    if (e->translation(m_learningLanguageIndex)->text().simplified()
+        == m_currentEntries.at(m_currentEntry)->entry()->translation(m_learningLanguageIndex)->text().simplified())
         return false;
+
     return true;
 }
 

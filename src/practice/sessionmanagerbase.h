@@ -142,8 +142,6 @@ public:
      */
     void filterTestEntries();
 
-    void setLanguages(int learning, int known);
-
     /**
      * Find out if the given expression can be used as a multiple choice answer for the current entry
      * (i.e. if it's not the answer itself, not a synonym and has a different text)
@@ -154,8 +152,8 @@ protected:  // data
 
     KEduVocDocument *m_doc;
     QWidget *m_parent;
-    int m_fromTranslation;
-    int m_toTranslation;
+    int m_learningLanguageIndex;
+    int m_knownLanguageIndex;
     int m_testType;
 
     // ----------------------------------------------------------------
