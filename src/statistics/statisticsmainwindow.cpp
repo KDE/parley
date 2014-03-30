@@ -172,62 +172,13 @@ void StatisticsMainWindow::initLanguages()
     m_ui->learnedLanguage->setCurrentIndex(Prefs::learningLanguage());
     m_ui->knownLanguage->setCurrentIndex(Prefs::knownLanguage());
     
-
-    // Insert data into the language listview
-    for (int i = 0; i < totalNumLanguages - 1; i++) {
-        for (int j = i + 1; j < totalNumLanguages; j++) {
-            QListWidgetItem* item = new QListWidgetItem(
-                i18nc("pair of two languages that the user chooses to practice", "%1 to %2",
-                      m_doc->identifier(i).name(), m_doc->identifier(j).name()));
-            item->setData(Qt::UserRole, i);
-            item->setData(Qt::UserRole + 1, j);
-            m_ui->languageList->addItem(item);
-
-            if (i == Prefs::knownLanguage() && j == Prefs::learningLanguage()) {
-                m_ui->languageList->setCurrentItem(item);
-            }
-
-            QListWidgetItem* item2 = new QListWidgetItem(
-                i18nc("pair of two languages that the user chooses to practice", "%1 to %2",
-                      m_doc->identifier(j).name(), m_doc->identifier(i).name()));
-            item2->setData(Qt::UserRole, j);
-            item2->setData(Qt::UserRole + 1, i);
-            m_ui->languageList->addItem(item2);
-
-            if (j == Prefs::knownLanguage() && i == Prefs::learningLanguage()) {
-                m_ui->languageList->setCurrentItem(item2);
-            }
-        }
-    }
-    connect(m_ui->languageList, SIGNAL(currentRowChanged(int)), SLOT(languagesChanged()));
-    m_ui->languageList->sortItems();
-
-    connect(m_ui->learnedLanguage, SIGNAL(currentIndexChanged(int)), SLOT(languagesChanged2()));
-    connect(m_ui->knownLanguage, SIGNAL(currentIndexChanged(int)), SLOT(languagesChanged2()));
+    connect(m_ui->learnedLanguage, SIGNAL(currentIndexChanged(int)), SLOT(languagesChanged()));
+    connect(m_ui->knownLanguage, SIGNAL(currentIndexChanged(int)), SLOT(languagesChanged()));
 
     languagesChanged();
 }
 
-// FIXME: To be removed:
 void StatisticsMainWindow::languagesChanged()
-{
-    QListWidgetItem* current = m_ui->languageList->currentItem();
-    if (!current) {
-        return;
-    }
-
-    int knownLanguage = current->data(Qt::UserRole).toInt();
-    int learningLangauge = current->data(Qt::UserRole + 1).toInt();
-    Prefs::setKnownLanguage(knownLanguage);
-    Prefs::setLearningLanguage(learningLangauge);
-    emit languagesChanged(knownLanguage, learningLangauge);
-    //m_ui->lessonStatistics->showGrades(current->data(Qt::UserRole).toInt(), current->data(Qt::UserRole+1).toInt());
-    kDebug() << "set languages: " << current->data(Qt::UserRole).toInt() << current->data(Qt::UserRole + 1).toInt();
-    updateVisibleColumns();
-}
-
-// FIXME: To be renamed to languagesChanged()
-void StatisticsMainWindow::languagesChanged2()
 {
     int knownLanguage = m_ui->knownLanguage->currentIndex();
     int learningLanguage = m_ui->learnedLanguage->currentIndex();
@@ -235,6 +186,8 @@ void StatisticsMainWindow::languagesChanged2()
     Prefs::setKnownLanguage(knownLanguage);
 
     emit languagesChanged(knownLanguage, learningLanguage);
+
+    updateVisibleColumns();
 }
 
 void StatisticsMainWindow::initPracticeMode()

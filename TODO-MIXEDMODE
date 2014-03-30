@@ -3,9 +3,9 @@
    + Use known / learningTranslation instead of from/toTranslation      Done
      in the sessionmanager.
    + Remove question/solutionLanguage altogether                        Done
-   + Remove the old language selector from the UI                       ---- <-- Doing next
+   + Remove the old language selector from the UI                       Done
    + Use grade to/from in each testentry instead of as static           Done
      variables in the session manager.
-   + Fix bug in single direction training (learning to known)           ----
+   + Fix bug in single direction training (learning to known)           ---- <-- Doing next
    + PracticeMainWindow::startPractice font issue                       ----
    + Implement actual mixed mode                                        ----
