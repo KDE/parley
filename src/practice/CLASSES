@@ -10,8 +10,6 @@ practiceui.rc
 
 Practice Control
 ----------------
-practiceoptions.cpp
-practiceoptions.h
 practicestatemachine.cpp
 practicestatemachine.h
 testentry.cpp

@@ -30,7 +30,7 @@ class PracticeStateMachine : public QObject
     Q_OBJECT
 public:
     PracticeStateMachine(AbstractFrontend* frontend, ParleyDocument* doc,
-                         const PracticeOptions& options, SessionManagerBase* sessionManager,
+                         SessionManagerBase* sessionManager,
                          QObject* parent = 0);
     void start();
 
@@ -72,7 +72,6 @@ private:
     AbstractFrontend* m_frontend;
     AbstractBackendMode* m_mode;
     ParleyDocument* m_document;
-    PracticeOptions m_options;
     TestEntry* m_current;
     SessionManagerBase* m_sessionManager;
 };

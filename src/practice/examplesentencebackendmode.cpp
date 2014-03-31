@@ -18,23 +18,22 @@
 
 using namespace Practice;
 
-ExampleSentenceBackendMode::ExampleSentenceBackendMode(const Practice::PracticeOptions& practiceOptions,
-                                                       AbstractFrontend* frontend, QObject* parent,
+ExampleSentenceBackendMode::ExampleSentenceBackendMode(AbstractFrontend* frontend, QObject* parent,
                                                        SessionManagerBase* sessionManager,
                                                        KEduVocDocument* doc)
-    : WrittenBackendMode(practiceOptions, frontend, parent, sessionManager, doc)
+    : WrittenBackendMode(frontend, parent, sessionManager, doc)
 {
 }
 
 bool ExampleSentenceBackendMode::setTestEntry(TestEntry* current)
 {
     Practice::WrittenBackendMode::setTestEntry(current);
-    QString sentence = current->entry()->translation(m_practiceOptions.languageTo())->example();
+    QString sentence = current->entry()->translation(current->languageTo())->example();
     if (sentence.isEmpty()) {
         return false;
     }
 
-    QString answer = current->entry()->translation(m_practiceOptions.languageTo())->text();
+    QString answer = current->entry()->translation(current->languageTo())->text();
     int pos = -1;
     while ((pos = sentence.indexOf(answer)) >= 0) {
         sentence.remove(pos, answer.length());

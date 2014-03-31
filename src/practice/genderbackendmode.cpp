@@ -21,11 +21,10 @@
 
 using namespace Practice;
 
-GenderBackendMode::GenderBackendMode(const PracticeOptions& practiceOptions,
-                                     AbstractFrontend* frontend, QObject* parent,
+GenderBackendMode::GenderBackendMode(AbstractFrontend* frontend, QObject* parent,
                                      Practice::SessionManagerBase* sessionManager,
                                      KEduVocDocument* doc)
-    : MultipleChoiceBackendMode(practiceOptions, frontend, parent, sessionManager)
+    : MultipleChoiceBackendMode(frontend, parent, sessionManager)
 {
     m_articles = doc->identifier(m_current->languageTo()).article();
 
@@ -57,9 +56,9 @@ GenderBackendMode::GenderBackendMode(const PracticeOptions& practiceOptions,
 
 void GenderBackendMode::prepareChoices(TestEntry* entry)
 {
-    Q_ASSERT(entry->entry()->translation(m_practiceOptions.languageTo())->wordType()->wordType() & KEduVocWordFlag::Noun);
+    Q_ASSERT(entry->entry()->translation(entry->languageTo())->wordType()->wordType() & KEduVocWordFlag::Noun);
 
-    setQuestion(i18n("Choose the right article for \"%1\"", entry->entry()->translation(m_practiceOptions.languageFrom())->text()));
+    setQuestion(i18n("Choose the right article for \"%1\"", entry->entry()->translation(entry->languageFrom())->text()));
 
     // set the word (possibly without the article)
     QString noun = entry->entry()->translation(m_current->languageTo())->text();
@@ -96,11 +95,11 @@ void GenderBackendMode::prepareChoices(TestEntry* entry)
 
     setChoices(choices);
 
-    kDebug() << entry->entry()->translation(m_practiceOptions.languageTo())->wordType()->wordType();
-    if (entry->entry()->translation(m_practiceOptions.languageTo())->wordType()->wordType() & KEduVocWordFlag::Masculine) {
+    kDebug() << entry->entry()->translation(entry->languageTo())->wordType()->wordType();
+    if (entry->entry()->translation(entry->languageTo())->wordType()->wordType() & KEduVocWordFlag::Masculine) {
         setCorrectAnswer(0);
         kDebug() << "male";
-    } else if (entry->entry()->translation(m_practiceOptions.languageTo())->wordType()->wordType() & KEduVocWordFlag::Feminine) {
+    } else if (entry->entry()->translation(entry->languageTo())->wordType()->wordType() & KEduVocWordFlag::Feminine) {
         setCorrectAnswer(1);
         kDebug() << "female";
     } else {
@@ -112,20 +111,20 @@ void GenderBackendMode::prepareChoices(TestEntry* entry)
 void GenderBackendMode::updateGrades()
 {
     if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-        kDebug() << "article right - old grade: " << m_current->entry()->translation(m_practiceOptions.languageTo())->article().grade();
-        KEduVocText articleGrade = m_current->entry()->translation(m_practiceOptions.languageTo())->article();
+        kDebug() << "article right - old grade: " << m_current->entry()->translation(m_current->languageTo())->article().grade();
+        KEduVocText articleGrade = m_current->entry()->translation(m_current->languageTo())->article();
         articleGrade.incGrade();
         articleGrade.incPracticeCount();
         articleGrade.setPracticeDate(QDateTime::currentDateTime());
-        m_current->entry()->translation(m_practiceOptions.languageTo())->setArticle(articleGrade);
-        kDebug() << "article right - new grade: " << m_current->entry()->translation(m_practiceOptions.languageTo())->article().grade();
+        m_current->entry()->translation(m_current->languageTo())->setArticle(articleGrade);
+        kDebug() << "article right - new grade: " << m_current->entry()->translation(m_current->languageTo())->article().grade();
     } else {
         kDebug() << "article wrong";
-        KEduVocText articleGrade = m_current->entry()->translation(m_practiceOptions.languageTo())->article();
+        KEduVocText articleGrade = m_current->entry()->translation(m_current->languageTo())->article();
         articleGrade.setGrade(KV_LEV1_GRADE);
         articleGrade.incPracticeCount();
         articleGrade.incBadCount();
-        m_current->entry()->translation(m_practiceOptions.languageTo())->setArticle(articleGrade);
+        m_current->entry()->translation(m_current->languageTo())->setArticle(articleGrade);
     }
 }
 

@@ -29,12 +29,10 @@
 using namespace Practice;
 
 PracticeStateMachine::PracticeStateMachine(AbstractFrontend* frontend, ParleyDocument* doc,
-                                           const PracticeOptions& options,
                                            SessionManagerBase* sessionManager,  QObject* parent)
     : QObject(parent)
     , m_frontend(frontend)
     , m_document(doc)
-    , m_options(options)
     , m_current(0)
     , m_sessionManager(sessionManager)
 {
@@ -55,43 +53,43 @@ PracticeStateMachine::PracticeStateMachine(AbstractFrontend* frontend, ParleyDoc
 
 void PracticeStateMachine::createPracticeMode()
 {
-    switch (m_options.mode()) {
+    switch (Prefs::practiceMode()) {
     case Prefs::EnumPracticeMode::FlashCardsPractice:
         kDebug() << "Create Flash Card Practice backend";
         m_frontend->setMode(AbstractFrontend::FlashCard);
-        m_mode = new FlashCardBackendMode(m_options, m_frontend, this);
+        m_mode = new FlashCardBackendMode(m_frontend, this);
         break;
     case Prefs::EnumPracticeMode::MultipleChoicePractice:
         kDebug() << "Create MultipleChoice Practice backend";
         m_frontend->setMode(AbstractFrontend::MultipleChoice);
-        m_mode = new MultipleChoiceBackendMode(m_options, m_frontend, this, m_sessionManager);
+        m_mode = new MultipleChoiceBackendMode(m_frontend, this, m_sessionManager);
         break;
     case Prefs::EnumPracticeMode::MixedLettersPractice:
         kDebug() << "Create Mixed Letters Practice backend";
         m_frontend->setMode(AbstractFrontend::MixedLetters);
-        m_mode = new WrittenBackendMode(m_options, m_frontend, this, m_sessionManager, m_document->document());
+        m_mode = new WrittenBackendMode(m_frontend, this, m_sessionManager, m_document->document());
         break;
     case Prefs::EnumPracticeMode::WrittenPractice:
         kDebug() << "Create Written Practice backend";
         m_frontend->setMode(AbstractFrontend::Written);
-        m_mode = new WrittenBackendMode(m_options, m_frontend, this, m_sessionManager, m_document->document());
+        m_mode = new WrittenBackendMode(m_frontend, this, m_sessionManager, m_document->document());
         break;
     case Prefs::EnumPracticeMode::ExampleSentencesPractice:
         kDebug() << "Create Written Practice backend";
         m_frontend->setMode(AbstractFrontend::ExampleSentence);
-        m_mode = new ExampleSentenceBackendMode(m_options, m_frontend, this, m_sessionManager, m_document->document());
+        m_mode = new ExampleSentenceBackendMode(m_frontend, this, m_sessionManager, m_document->document());
         break;
     case Prefs::EnumPracticeMode::GenderPractice:
         m_frontend->setMode(AbstractFrontend::MultipleChoice);
-        m_mode = new GenderBackendMode(m_options, m_frontend, this, m_sessionManager, m_document->document());
+        m_mode = new GenderBackendMode(m_frontend, this, m_sessionManager, m_document->document());
         break;
     case Prefs::EnumPracticeMode::ConjugationPractice:
         m_frontend->setMode(AbstractFrontend::Conjugation);
-        m_mode = new ConjugationBackendMode(m_options, m_frontend, this, m_sessionManager, m_document->document());
+        m_mode = new ConjugationBackendMode(m_frontend, this, m_sessionManager, m_document->document());
         break;
     case Prefs::EnumPracticeMode::ComparisonPractice:
         m_frontend->setMode(AbstractFrontend::Comparison);
-        m_mode = new ComparisonBackendMode(m_options, m_frontend, this, m_sessionManager, m_document->document());
+        m_mode = new ComparisonBackendMode(m_frontend, this, m_sessionManager, m_document->document());
         break;
 
     default:
@@ -216,8 +214,8 @@ void PracticeStateMachine::updateFrontend()
 
     m_frontend->setBoxes(grade, goodGrade, KV_LEV1_GRADE);
 
-    QString imgFrom = m_current->entry()->translation(m_options.languageFrom())->imageUrl().url();
-    QString imgTo = m_current->entry()->translation(m_options.languageTo())->imageUrl().url();
+    QString imgFrom = m_current->entry()->translation(m_current->languageFrom())->imageUrl().url();
+    QString imgTo = m_current->entry()->translation(m_current->languageTo())->imageUrl().url();
     if (imgFrom.isEmpty()) {
         imgFrom = imgTo;
     }

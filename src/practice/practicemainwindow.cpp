@@ -29,7 +29,6 @@
 
 #include "parleymainwindow.h"
 #include "guifrontend.h"
-#include "practiceoptions.h"
 #include "practicestatemachine.h"
 #include <languagesettings.h>
 
@@ -46,8 +45,7 @@ PracticeMainWindow::PracticeMainWindow(SessionManagerBase* sessionManager,
     m_guiFrontend = new GuiFrontend(this);
     setCentralWidget(m_guiFrontend->widget());
 
-    PracticeOptions options;
-    m_stateMachine = new PracticeStateMachine(m_guiFrontend, mainWindow->parleyDocument(), options, sessionManager, this);
+    m_stateMachine = new PracticeStateMachine(m_guiFrontend, mainWindow->parleyDocument(), sessionManager, this);
 
     // setModified - otherwise we may not ask to save progress
     mainWindow->parleyDocument()->document()->setModified(true);

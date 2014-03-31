@@ -17,7 +17,6 @@
 #include <QVariant>
 
 #include "testentry.h"
-#include "practiceoptions.h"
 #include "abstractfrontend.h"
 
 
@@ -30,7 +29,7 @@ class AbstractBackendMode : public QObject
 
 public:
 
-    AbstractBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend *frontend, QObject *parent);
+    AbstractBackendMode(AbstractFrontend *frontend, QObject *parent);
     virtual ~AbstractBackendMode() {}
 
     /** start practicing a new word. sets some default that can be overwritten by the modes.
@@ -82,7 +81,6 @@ Q_SIGNALS:
     void showSolution();
 
 protected:
-    PracticeOptions m_practiceOptions;
     AbstractFrontend* m_frontend;
     TestEntry* m_current;
     QStringList m_synonyms;

@@ -19,14 +19,13 @@
 
 using namespace Practice;
 
-MultipleChoiceBackendMode::MultipleChoiceBackendMode(const PracticeOptions& practiceOptions,
-                                                     AbstractFrontend* frontend, QObject* parent,
+MultipleChoiceBackendMode::MultipleChoiceBackendMode(AbstractFrontend* frontend, QObject* parent,
                                                      Practice::SessionManagerBase* sessionManager)
-    : AbstractBackendMode(practiceOptions, frontend, parent)
+    : AbstractBackendMode(frontend, parent)
     , m_sessionManager(sessionManager)
     , m_randomSequence(QDateTime::currentDateTime().toTime_t())
 {
-    m_numberOfChoices = practiceOptions.numberMultipleChoiceAnswers();
+    m_numberOfChoices = Prefs::numberMultipleChoiceAnswers();
 }
 
 bool MultipleChoiceBackendMode::setTestEntry(TestEntry* current)
@@ -43,10 +42,10 @@ bool MultipleChoiceBackendMode::setTestEntry(TestEntry* current)
 
     m_frontend->setQuestion(qVariantFromValue<MultipleChoiceData>(data));
     m_frontend->setSolution(m_correctAnswer);
-    m_frontend->setQuestionSound(m_current->entry()->translation(m_practiceOptions.languageFrom())->soundUrl());
-    m_frontend->setSolutionSound(m_current->entry()->translation(m_practiceOptions.languageTo())->soundUrl());
-    m_frontend->setQuestionPronunciation(m_current->entry()->translation(m_practiceOptions.languageFrom())->pronunciation());
-    m_frontend->setSolutionPronunciation(m_current->entry()->translation(m_practiceOptions.languageTo())->pronunciation());
+    m_frontend->setQuestionSound(m_current->entry()->translation(m_current->languageFrom())->soundUrl());
+    m_frontend->setSolutionSound(m_current->entry()->translation(m_current->languageTo())->soundUrl());
+    m_frontend->setQuestionPronunciation(m_current->entry()->translation(m_current->languageFrom())->pronunciation());
+    m_frontend->setSolutionPronunciation(m_current->entry()->translation(m_current->languageTo())->pronunciation());
     m_frontend->setResultState(AbstractFrontend::QuestionState);
     m_frontend->showQuestion();
     return true;
@@ -55,7 +54,7 @@ bool MultipleChoiceBackendMode::setTestEntry(TestEntry* current)
 void MultipleChoiceBackendMode::prepareChoices(TestEntry* current)
 {
     Q_UNUSED(current)
-    setQuestion(m_current->entry()->translation(m_practiceOptions.languageFrom())->text());
+    setQuestion(m_current->entry()->translation(m_current->languageFrom())->text());
 
     QStringList choices = m_sessionManager->multipleChoiceAnswers(m_numberOfChoices - 1);
     foreach(const QString & choice, choices) {
@@ -63,7 +62,7 @@ void MultipleChoiceBackendMode::prepareChoices(TestEntry* current)
         m_choices.insert(position, choice);
     }
     int correctAnswer = m_randomSequence.getLong(m_choices.count() + 1);
-    m_choices.insert(correctAnswer, m_current->entry()->translation(m_practiceOptions.languageTo())->text());
+    m_choices.insert(correctAnswer, m_current->entry()->translation(m_current->languageTo())->text());
     setCorrectAnswer(correctAnswer);
 }
 

@@ -6,6 +6,7 @@
    + Remove the old language selector from the UI                       Done
    + Use grade to/from in each testentry instead of as static           Done
      variables in the session manager.
-   + Fix bug in single direction training (learning to known)           ---- <-- Doing next
-   + PracticeMainWindow::startPractice font issue                       ----
+   + Remove PracticeOptions - they are worthless right now              Done
+   + Fix bug in single direction training (learning to known)           Done
+   + PracticeMainWindow::startPractice font issue                       ---- <-- Doing next
    + Implement actual mixed mode                                        ----
