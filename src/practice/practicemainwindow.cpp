@@ -148,7 +148,7 @@ void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)
 void PracticeMainWindow::startPractice()
 {
     // FIXME: This really needs changing in mixed mode.
-    //        Even in one-directional practice it eeds change. 
+    //        Even in one-directional practice it needs change. 
     //        We need to call the practice manager to find out this.
     //
     // As a quick workaround we use learningLanguage as

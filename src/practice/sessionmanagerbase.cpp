@@ -311,14 +311,6 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
 //                         Protected methods
 
 
-#if 0
-void SessionManagerBase::filterTestEntries()
-{
-    EntryFilter filter(m_parent, m_doc);
-    m_allTestEntries = filter.entries();
-
-}
-#endif
 bool SessionManagerBase::isValidMultipleChoiceAnswer(KEduVocExpression *e)
 {
     // entry is empty
