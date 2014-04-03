@@ -44,28 +44,31 @@ public:
     QList<TestEntry*> entries();
 
 private:
+    void entries2(int setNo);
+
     /**
      * Called when starting a practice.
      * Looks if the time is up, if the work has been praced too long ago, it will drop in grade.
      * Only if expiring is activated in prefs.
      */
-    void expireEntries();
+    void expireEntries(int setNo);
 
-    void lessonEntries();
-    void wordTypeEntries();
+    void lessonEntries(int setNo);
+    void wordTypeEntries(int setNo);
 
     bool isBlocked(const KEduVocText* const grade) const;
     bool isConjugationBlocked(KEduVocTranslation* translation) const;
-    void blockedEntries();
-    void timesWrongEntries();
-    void timesPracticedEntries();
-    void minMaxGradeEntries();
+    void blockedEntries(int setNo);
+    void timesWrongEntries(int setNo);
+    void timesPracticedEntries(int setNo);
+    void minMaxGradeEntries(int setNo);
+
     void updateTotal();
 
     /**
      * Remove entries that are empty or not of the right type for the specific test type
      */
-    void cleanupInvalid();
+    void cleanupInvalid(int setNo);
 
     /**
      * In conjugation practice mode, creates more than one test entry per verb if necessary.
@@ -81,23 +84,29 @@ private slots:
 
 private:
     Ui::EntryFilter ui;
-
-    QSet<KEduVocExpression*> m_entries;
-    QSet<KEduVocExpression*> m_entriesLesson;
-    QSet<KEduVocExpression*> m_entriesWordType;
-    QSet<KEduVocExpression*> m_entriesNotBlocked;
-    QSet<KEduVocExpression*> m_entriesTimesWrong;
-    QSet<KEduVocExpression*> m_entriesTimesPracticed;
-    QSet<KEduVocExpression*> m_entriesMinMaxGrade;
-    QSet<KEduVocExpression*> m_currentSelection;
-
     KEduVocDocument *m_doc;
+
+    // All entries that are valid given all criteria
+    QSet<KEduVocExpression*> m_entries[2];
+
+    // Various sets of entries that are valid given only one criterium each.
+    // These are used in the selection dialog if there are no totally valid entries.
+    QSet<KEduVocExpression*> m_entriesLesson[2];
+    QSet<KEduVocExpression*> m_entriesWordType[2];
+    QSet<KEduVocExpression*> m_entriesNotBlocked[2];
+    QSet<KEduVocExpression*> m_entriesTimesWrong[2];
+    QSet<KEduVocExpression*> m_entriesTimesPracticed[2];
+    QSet<KEduVocExpression*> m_entriesMinMaxGrade[2];
+
+    int m_numSets;
     int m_fromTranslation;
     int m_toTranslation;
+
     // The tenses selected by the user for practice
     QStringList m_tenses;
 
     KDialog *m_dialog;
+    QSet<KEduVocExpression*> m_currentSelection[2];
 };
 }
 

@@ -61,18 +61,17 @@ void SessionManagerBase::setDocument(KEduVocDocument* doc)
 
     m_doc = doc;
 
-    // Don't crash when trying to start practicing a document with only one language
+    // Make sure that there are at least 2 languages in the file before
+    // starting the practice. If we don't do this, it will crash later.
     if (m_doc->identifierCount() < 2) {
         KMessageBox::error(0, i18n("The vocabulary collection contains fewer than two languages.",
                                    i18n("Could not start practice")));
         return;
     }
 
-    // FIXME: Is this relevant?  The code in entryfilter seems to ignore settings here.
     if (Prefs::learningLanguage() >= m_doc->identifierCount()
         || Prefs::knownLanguage() >= m_doc->identifierCount())
     {
-        // FIXME: What happens if there is only 1 language?  Or worse, none?
         Prefs::setLearningLanguage(0);
         Prefs::setKnownLanguage(1);
     }

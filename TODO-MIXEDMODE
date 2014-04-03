@@ -9,4 +9,4 @@
    + Remove PracticeOptions - they are worthless right now              Done
    + Fix bug in single direction training (learning to known)           Done
    + PracticeMainWindow::startPractice font issue                       ---- <-- Doing next
-   + Implement actual mixed mode                                        ----
+   + Implement actual mixed mode                                        Done
