@@ -195,8 +195,8 @@ void StatisticsMainWindow::initPracticeMode()
 {
     m_ui->practiceMode2->insertItem(0, i18n("Known to Learning"));
     m_ui->practiceMode2->insertItem(1, i18n("Learning to Known"));
-    m_ui->practiceMode2->insertItem(2, i18n("Mixed Mode"));
-    //m_ui->practiceMode2->insertItem(3, i18n("Mixed Mode with Sound"));
+    m_ui->practiceMode2->insertItem(2, i18n("Mixed Directions"));
+    //m_ui->practiceMode2->insertItem(3, i18n("Mixed Directions with Sound"));
 
     if (Prefs::practiceMode2() < 0 || 3 < Prefs::practiceMode2())
         Prefs::setPracticeMode2(Prefs::EnumPracticeMode2::MixedModeWordsOnly);
