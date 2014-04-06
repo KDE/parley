@@ -13,8 +13,10 @@
 
 * Review fixes
    + Fix strings ("training mode" for the old mode)                     Done
-   + Move down left side one step.                                      ---- <-- Doing next
+   + Move down left side one step.                                      Done
    + Fix resize when conjugation is chosen                              ----
+   + Make the conjugation details widget not shown when conjugation     ---- <-- Doing next
+     mode is not active.
 
 * Bugs
    + Bug with comparition (which testfile?)                             ----

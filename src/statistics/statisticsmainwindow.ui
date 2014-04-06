@@ -20,27 +20,14 @@
    <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Language to be Learned</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QLabel" name="caption">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string/>
+      <string>Language to Learn</string>
      </property>
     </widget>
    </item>
    <item row="1" column="0">
     <widget class="QComboBox" name="learnedLanguage"/>
    </item>
-   <item row="1" column="1" rowspan="17">
+   <item row="0" column="1" rowspan="18">
     <widget class="LessonStatisticsView" name="lessonStatistics" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
