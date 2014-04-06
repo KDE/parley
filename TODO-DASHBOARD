@@ -1,0 +1,14 @@
+* Decisions
+   + Create a map of Parley for the components                          ----
+
+* Library (word bank)                                                   ----
+   + Create a class that wraps a collection                             ----
+   + Code to analyse a collection (#words due, etc)                     ----
+
+* Visual Library Manager                                                ----
+   + Dialog?
+
+* Dashboard                                                             ----
+   + Parley component                                                   ----
+   + Class to view data about one collection                            ----
+   + Overview over one 
