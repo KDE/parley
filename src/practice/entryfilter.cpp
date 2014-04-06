@@ -44,23 +44,23 @@ EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc)
 
 QList<TestEntry*> EntryFilter::entries()
 {
-    switch (Prefs::practiceMode2()) {
-    case Prefs::EnumPracticeMode2::KnownToLearning:
+    switch (Prefs::practiceDirection()) {
+    case Prefs::EnumPracticeDirection::KnownToLearning:
         m_numSets = 1;
         m_fromTranslation = Prefs::knownLanguage();
         m_toTranslation   = Prefs::learningLanguage();
         break;
-    case Prefs::EnumPracticeMode2::LearningToKnown:
+    case Prefs::EnumPracticeDirection::LearningToKnown:
         m_numSets = 1;
         m_fromTranslation = Prefs::learningLanguage();
         m_toTranslation   = Prefs::knownLanguage();
         break;
-    case Prefs::EnumPracticeMode2::MixedModeWordsOnly:
+    case Prefs::EnumPracticeDirection::MixedDirectionsWordsOnly:
         m_numSets = 2;
         m_fromTranslation = Prefs::knownLanguage();
         m_toTranslation   = Prefs::learningLanguage();
         break;
-    case Prefs::EnumPracticeMode2::MixedModeWithSound:
+    case Prefs::EnumPracticeDirection::MixedDirectionsWithSound:
         // FIXME: Not yet supported. Use same settings as MixedModeWordsOnly
         m_numSets = 2;
         m_fromTranslation = Prefs::knownLanguage();

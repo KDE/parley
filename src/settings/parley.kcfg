@@ -322,15 +322,15 @@
         <default>FlashCardsPractice</default>
     </entry>
 
-    <entry name="PracticeMode2" type="Enum">
+    <entry name="PracticeDirection" type="Enum">
         <choices>
             <choice name="KnownToLearning"/>
             <choice name="LearningToKnown"/>
-            <choice name="MixedModeWordsOnly"/>
-            <choice name="MixedModeWithSound"/>
+            <choice name="MixedDirectionsWordsOnly"/>
+            <choice name="MixedDirectionsWithSound"/>
         </choices>
         <label>The practice mode that is currently selected.</label>
-        <default>MixedModeWordsOnly</default>
+        <default>MixedDirectionsWordsOnly</default>
     </entry>
 
     <entry name="BlockItem$(Grade)" type="Int" key="BlockItem$(Grade)">

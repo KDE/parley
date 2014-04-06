@@ -193,18 +193,18 @@ void StatisticsMainWindow::languagesChanged()
 
 void StatisticsMainWindow::initPracticeMode()
 {
-    m_ui->practiceMode2->insertItem(0, i18n("Known to Learning"));
-    m_ui->practiceMode2->insertItem(1, i18n("Learning to Known"));
-    m_ui->practiceMode2->insertItem(2, i18n("Mixed Directions"));
-    //m_ui->practiceMode2->insertItem(3, i18n("Mixed Directions with Sound"));
+    m_ui->practiceDirection->insertItem(0, i18n("Known to Learning"));
+    m_ui->practiceDirection->insertItem(1, i18n("Learning to Known"));
+    m_ui->practiceDirection->insertItem(2, i18n("Mixed Directions"));
+    //m_ui->practiceDirection->insertItem(3, i18n("Mixed Directions with Sound"));
 
-    if (Prefs::practiceMode2() < 0 || 3 < Prefs::practiceMode2())
-        Prefs::setPracticeMode2(Prefs::EnumPracticeMode2::MixedModeWordsOnly);
+    if (Prefs::practiceDirection() < 0 || 3 < Prefs::practiceDirection())
+        Prefs::setPracticeDirection(Prefs::EnumPracticeDirection::MixedDirectionsWordsOnly);
 
-    m_ui->practiceMode2->setCurrentIndex(Prefs::practiceMode2());
+    m_ui->practiceDirection->setCurrentIndex(Prefs::practiceDirection());
 
-    connect(m_ui->practiceMode2, SIGNAL(currentIndexChanged(int)),
-            this,                SLOT(practiceMode2Changed(int)));
+    connect(m_ui->practiceDirection, SIGNAL(currentIndexChanged(int)),
+            this,                    SLOT(practiceDirectionChanged(int)));
 }
 
 void StatisticsMainWindow::practiceModeSelected(int mode)
@@ -215,22 +215,22 @@ void StatisticsMainWindow::practiceModeSelected(int mode)
     showConjugationOptions(mode == Prefs::EnumPracticeMode::ConjugationPractice);
 }
 
-void StatisticsMainWindow::practiceMode2Changed(int mode)
+void StatisticsMainWindow::practiceDirectionChanged(int mode)
 {
     qDebug() << "new practice mode:" << mode;
 #if 0
     switch (mode) {
-    case 0: Prefs::setPracticeMode2(Prefs::EnumPracticeMode2::KnownToLearning);    break;
-    case 1: Prefs::setPracticeMode2(Prefs::EnumPracticeMode2::LearningToKnown);    break;
-    case 2: Prefs::setPracticeMode2(Prefs::EnumPracticeMode2::MixedModeWordsOnly); break;
-    case 3: Prefs::setPracticeMode2(Prefs::EnumPracticeMode2::MixedModeWithSound); break;
+    case 0: Prefs::setPracticeDirection(Prefs::EnumPracticeDirection::KnownToLearning);    break;
+    case 1: Prefs::setPracticeDirection(Prefs::EnumPracticeDirection::LearningToKnown);    break;
+    case 2: Prefs::setPracticeDirection(Prefs::EnumPracticeDirection::MixedDirectionsWordsOnly); break;
+    case 3: Prefs::setPracticeDirection(Prefs::EnumPracticeDirection::MixedDirectionsWithSound); break;
     default:
         // This is the default.
-        Prefs::setPracticeMode2(Prefs::EnumPracticeMode2::MixedModeWordsOnly);
+        Prefs::setPracticeDirection(Prefs::EnumPracticeDirection::MixedDirectionsWordsOnly);
         break;
     };
 #else
-    Prefs::setPracticeMode2(static_cast<Prefs::EnumPracticeMode2::type>(mode));
+    Prefs::setPracticeDirection(static_cast<Prefs::EnumPracticeDirection::type>(mode));
 #endif
 }
 

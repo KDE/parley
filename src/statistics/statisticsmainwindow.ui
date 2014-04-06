@@ -185,7 +185,7 @@
     </widget>
    </item>
    <item row="16" column="0">
-    <widget class="QComboBox" name="practiceMode2"/>
+    <widget class="QComboBox" name="practiceDirection"/>
    </item>
    <item row="17" column="0">
     <spacer name="verticalSpacer">
