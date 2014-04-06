@@ -61,8 +61,13 @@ QList<TestEntry*> EntryFilter::entries()
         m_toTranslation   = Prefs::learningLanguage();
         break;
     case Prefs::EnumPracticeMode2::MixedModeWithSound:
-        // FIXME: Not yet supported. Use KnownToLearning
+        // FIXME: Not yet supported. Use same settings as MixedModeWordsOnly
+        m_numSets = 2;
+        m_fromTranslation = Prefs::knownLanguage();
+        m_toTranslation   = Prefs::learningLanguage();
+        break;
     default:
+        // Use KnownToLearning as default.
         m_numSets = 1;
         m_fromTranslation = Prefs::knownLanguage();
         m_toTranslation   = Prefs::learningLanguage();
@@ -168,21 +173,17 @@ QList<TestEntry*> EntryFilter::entries()
         return ret;
     } else {
         QList<TestEntry*> testEntries;
-        for (int i = 0; i < m_numSets; ++i) {
-            foreach(KEduVocExpression * entry, m_currentSelection[i]) {
+        for (int setNo = 0; setNo < m_numSets; ++setNo) {
+            foreach(KEduVocExpression * entry, m_currentSelection[setNo]) {
                 // Set the from and to translation for the entry itself.
-                //
-                // FIXME: When we support mixed mode this must be done
-                //        much earlier since we can have the same KEduVoc
-                //        entry with 2 or even more test entries.
                 TestEntry *testEntry = new TestEntry(entry);
 
-                if (i == 0) {
+                if (setNo == 0) {
                     // one-directional practice or the first part of mixed mode.
                     testEntry->setLanguageFrom(m_fromTranslation);
                     testEntry->setLanguageTo(m_toTranslation);
                 }
-                else if (i == 1) {
+                else if (setNo == 1) {
                     // The second part of mixed mode
                     testEntry->setLanguageFrom(m_toTranslation);
                     testEntry->setLanguageTo(m_fromTranslation);
