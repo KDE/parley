@@ -192,18 +192,18 @@ void StatisticsMainWindow::languagesChanged()
 
 void StatisticsMainWindow::initPracticeMode()
 {
-    m_ui->practiceMode->insertItem(0, i18n("Known to Learning"));
-    m_ui->practiceMode->insertItem(1, i18n("Learning to Known"));
-    m_ui->practiceMode->insertItem(2, i18n("Mixed Mode"));
-    //m_ui->practiceMode->insertItem(3, i18n("Mixed Mode with Sound"));
+    m_ui->practiceMode2->insertItem(0, i18n("Known to Learning"));
+    m_ui->practiceMode2->insertItem(1, i18n("Learning to Known"));
+    m_ui->practiceMode2->insertItem(2, i18n("Mixed Mode"));
+    //m_ui->practiceMode2->insertItem(3, i18n("Mixed Mode with Sound"));
 
     if (Prefs::practiceMode2() < 0 || 3 < Prefs::practiceMode2())
         Prefs::setPracticeMode2(Prefs::EnumPracticeMode2::MixedModeWordsOnly);
 
-    m_ui->practiceMode->setCurrentIndex(Prefs::practiceMode2());
+    m_ui->practiceMode2->setCurrentIndex(Prefs::practiceMode2());
 
-    connect(m_ui->practiceMode, SIGNAL(currentIndexChanged(int)),
-            this,               SLOT(practiceModeChanged(int)));
+    connect(m_ui->practiceMode2, SIGNAL(currentIndexChanged(int)),
+            this,                SLOT(practiceMode2Changed(int)));
 }
 
 void StatisticsMainWindow::practiceModeSelected(int mode)
@@ -214,7 +214,7 @@ void StatisticsMainWindow::practiceModeSelected(int mode)
     showConjugationOptions(mode == Prefs::EnumPracticeMode::ConjugationPractice);
 }
 
-void StatisticsMainWindow::practiceModeChanged(int mode)
+void StatisticsMainWindow::practiceMode2Changed(int mode)
 {
     qDebug() << "new practice mode:" << mode;
 #if 0

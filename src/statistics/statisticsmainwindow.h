@@ -46,7 +46,7 @@ private slots:
     void configurePractice();
     void languagesChanged();
     void practiceModeSelected(int mode);
-    void practiceModeChanged(int mode);
+    void practiceMode2Changed(int mode);
     void updateVisibleColumns();
 
 private:

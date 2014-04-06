@@ -79,7 +79,7 @@
    <item row="5" column="0">
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Practice Method:</string>
+      <string>Practice Mode:</string>
      </property>
     </widget>
    </item>
@@ -193,12 +193,12 @@
    <item row="15" column="0">
     <widget class="QLabel" name="label3">
      <property name="text">
-      <string>Practice Mode</string>
+      <string>Practice Direction</string>
      </property>
     </widget>
    </item>
    <item row="16" column="0">
-    <widget class="QComboBox" name="practiceMode"/>
+    <widget class="QComboBox" name="practiceMode2"/>
    </item>
    <item row="17" column="0">
     <spacer name="verticalSpacer">
