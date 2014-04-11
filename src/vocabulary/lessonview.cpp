@@ -80,6 +80,22 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
     actionRemoveGradesLessonChildren->setToolTip(actionRemoveGradesLessonChildren->whatsThis());
     actionRemoveGradesLessonChildren->setStatusTip(actionRemoveGradesLessonChildren->whatsThis());
 
+    KAction *actionExpandAll = new KAction(this);
+    parent->actionCollection()->addAction("expand_all_lesson_children", actionExpandAll);
+    actionExpandAll->setText(i18n("Expand all lessons and sub-lessons"));
+    actionExpandAll->setIcon(KIcon("go-down-search"));
+    actionExpandAll->setWhatsThis(i18n("Expand all lessons and sub-lessons."));
+    actionExpandAll->setToolTip(actionExpandAll->whatsThis());
+    actionExpandAll->setStatusTip(actionExpandAll->whatsThis());
+
+    KAction *actionCollapseAll = new KAction(this);
+    parent->actionCollection()->addAction("collapse_all_lesson_children", actionExpandAll);
+    actionCollapseAll->setText(i18n("Collapse all lessons and sub-lessons"));
+    actionCollapseAll->setIcon(KIcon("go-up-search"));
+    actionCollapseAll->setWhatsThis(i18n("Collapse all lessons and sub-lessons."));
+    actionCollapseAll->setToolTip(actionCollapseAll->whatsThis());
+    actionCollapseAll->setStatusTip(actionCollapseAll->whatsThis());
+
     connect(actionNewLesson, SIGNAL(triggered()),
             SLOT(slotCreateNewLesson()));
     connect(actionRenameLesson, SIGNAL(triggered()),
@@ -92,6 +108,10 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
             SLOT(slotRemoveGradesLesson()));
     connect(actionRemoveGradesLessonChildren, SIGNAL(triggered()),
             SLOT(slotRemoveGradesLessonChildren()));
+    connect(actionExpandAll, SIGNAL(triggered()),
+            SLOT(expandAllLesson()));
+    connect(actionCollapseAll, SIGNAL(triggered()),
+            SLOT(collapseAllLesson()));
 
     // right cick menu for the lesson view:
     addAction(actionNewLesson);
@@ -106,6 +126,8 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
     separator->setSeparator(true);
     addAction(separator);
     addAction(actionSplitLesson);
+    addAction(actionExpandAll);
+    addAction(actionCollapseAll);
 }
 
 void LessonView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
@@ -234,7 +256,15 @@ void LessonView::columnsInserted()
     }
 }
 
+void LessonView::expandAllLesson()
+{
+    expandAll();
+}
 
+void LessonView::collapseAllLesson()
+{
+    collapseAll();
+}
 
 #include "lessonview.moc"
 
