@@ -1,11 +1,11 @@
 * Decisions
    + Create a map of Parley for the components (see below)              Done
 
-* Library (word bank)                                                   ----
+* Word Bank                                                             ----
    + Create a class that wraps a collection                             ----
    + Code to analyse a collection (#words due, etc)                     ----
 
-* Visual Library Manager                                                ----
+* Visual Word Bank Manager                                              ----
    + Dialog?
 
 * Dashboard                                                             ----
@@ -18,9 +18,9 @@
 
 Component map
 
-START --->  Dashboard <+-->  Library manager  (dialog?  component?)
-             ^     |   +-->  Collection maintenance  <-->  Editor  (?)
-             |     |   +-->  Extended statistics for the library
+START --->  Dashboard <+-->  Word bank manager  (dialog?  component?)
+             ^     |   +-->  Collection maintenance  <-->  Collection Editor
+             |     |   +-->  Extended statistics for the word bank
              |     |   +-->  ...
              |     |
              |     |
@@ -28,6 +28,7 @@ START --->  Dashboard <+-->  Library manager  (dialog?  component?)
              |     |
              |     +------>  Practice  --->  Session statistics -->+
              |     +------>  Collection statistics   ------------->+
+             |     +------>  Collection Editor       ------------->+
              |                                                     |
              |                                                     v
              +<----------------------------------------------------+
