@@ -1,5 +1,5 @@
 * Decisions
-   + Create a map of Parley for the components                          ----
+   + Create a map of Parley for the components (see below)              Done
 
 * Library (word bank)                                                   ----
    + Create a class that wraps a collection                             ----
@@ -12,3 +12,22 @@
    + Parley component                                                   ----
    + Class to view data about one collection                            ----
    + Overview over one 
+
+
+================================================================
+
+Component map
+
+START --->  Dashboard <+-->  Library manager  (dialog?  component?)
+             ^     |   +-->  Collection maintenance  <-->  Editor  (?)
+             |     |   +-->  Extended statistics for the library
+             |     |   +-->  ...
+             |     |
+             |     |
+             |   Select Collection
+             |     |
+             |     +------>  Practice  --->  Session statistics -->+
+             |     +------>  Collection statistics   ------------->+
+             |                                                     |
+             |                                                     v
+             +<----------------------------------------------------+
