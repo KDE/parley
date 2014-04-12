@@ -86,17 +86,10 @@ public:
         return m_userAnswers;
     }
 
-#if 0
-    static void setGradeFrom(int from);
-    static void setGradeTo(int to);
-    static int gradeFrom();
-    static int gradeTo();
-#else
     void setLanguageFrom(int from);
     void setLanguageTo(int to);
     int languageFrom() const;
     int languageTo() const;
-#endif
 
     KEduVocExpression *entry();
 
@@ -124,13 +117,8 @@ private:
     //! Only affects conjugation training.
     QList<KEduVocWordFlags> m_conjugationPronouns;
 
-#if 0
-    static int m_gradeTo;
-    static int m_gradeFrom;
-#else
     int  m_languageFrom;   // Index of the language this entry is from
     int  m_languageTo;     // Index of the language this entry is from
-#endif
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(TestEntry::ErrorTypes)
