@@ -44,7 +44,7 @@ public:
     QList<TestEntry*> entries();
 
 private:
-    void entries2(int setNo);
+    void collectEntries(int setNo);
 
     /**
      * Called when starting a practice.

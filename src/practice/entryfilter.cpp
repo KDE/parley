@@ -85,7 +85,7 @@ QList<TestEntry*> EntryFilter::entries()
 
         expireEntries(pass);
 
-        entries2(pass);
+        collectEntries(pass);
     }
 
     static QString noEntriesError =
@@ -221,7 +221,7 @@ void EntryFilter::expireEntries(int setNo)
 }
 
 
-void EntryFilter::entries2(int setNo)
+void EntryFilter::collectEntries(int setNo)
 {
     // Set up the lists/sets of filtered vocabulary
     m_entries[setNo] = m_doc->lesson()->entries(KEduVocLesson::Recursive).toSet();

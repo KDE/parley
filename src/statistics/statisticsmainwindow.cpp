@@ -172,7 +172,7 @@ void StatisticsMainWindow::initLanguages()
     }
     m_ui->learnedLanguage->setCurrentIndex(Prefs::learningLanguage());
     m_ui->knownLanguage->setCurrentIndex(Prefs::knownLanguage());
-    
+
     connect(m_ui->learnedLanguage, SIGNAL(currentIndexChanged(int)), SLOT(languagesChanged()));
     connect(m_ui->knownLanguage, SIGNAL(currentIndexChanged(int)), SLOT(languagesChanged()));
 
@@ -217,21 +217,8 @@ void StatisticsMainWindow::practiceModeSelected(int mode)
 
 void StatisticsMainWindow::practiceDirectionChanged(int mode)
 {
-    qDebug() << "new practice mode:" << mode;
-#if 0
-    switch (mode) {
-    case 0: Prefs::setPracticeDirection(Prefs::EnumPracticeDirection::KnownToLearning);    break;
-    case 1: Prefs::setPracticeDirection(Prefs::EnumPracticeDirection::LearningToKnown);    break;
-    case 2: Prefs::setPracticeDirection(Prefs::EnumPracticeDirection::MixedDirectionsWordsOnly); break;
-    case 3: Prefs::setPracticeDirection(Prefs::EnumPracticeDirection::MixedDirectionsWithSound); break;
-    default:
-        // This is the default.
-        Prefs::setPracticeDirection(Prefs::EnumPracticeDirection::MixedDirectionsWordsOnly);
-        break;
-    };
-#else
+    //kDebug() << "new practice mode:" << mode;
     Prefs::setPracticeDirection(static_cast<Prefs::EnumPracticeDirection::type>(mode));
-#endif
 }
 
 void StatisticsMainWindow::updateVisibleColumns()
