@@ -73,6 +73,12 @@ public slots:
 
     void setTranslation(KEduVocExpression* entry, int translationId);
 
+    /** Expand all the lessons and its corresponding sub-lessons **/
+    void expandAllLesson();
+
+    /** Collapse all the lessons and its corresponding sub-lessons **/
+    void collapseAllLesson();
+
 protected slots:
     void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected);
     void currentChanged(const QModelIndex & current, const QModelIndex & previous);
