@@ -43,6 +43,11 @@ public:
     virtual QVariant userInput();
     QWidget* widget();
 
+    QFont knownLangFont() const;
+    QFont learningLangFont() const;
+    void setKnownLangFont(const QFont& font);
+    void setLearningLangFont(const QFont& font);
+
     virtual void setQuestion(const QVariant& question);
     virtual void setQuestionImage(const KUrl& img);
     virtual void setQuestionPronunciation(const QString& pronunciationText);
@@ -107,6 +112,9 @@ private:
     int m_newBoxIfCorrect;
     int m_newBoxIfWrong;
     ThemedBackgroundRenderer *m_themedBackgroundRenderer;
+
+    QFont m_knownLangFont;
+    QFont m_learningLangFont;
 };
 
 }

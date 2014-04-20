@@ -8,7 +8,7 @@
      variables in the session manager.
    + Remove PracticeOptions - they are worthless right now              Done
    + Fix bug in single direction training (learning to known)           Done
-   + PracticeMainWindow::startPractice font issue                       ---- <-- Doing next
+   + PracticeMainWindow::startPractice font issue                       Done
    + Implement actual mixed mode                                        Done
 
 * Review fixes
@@ -19,4 +19,4 @@
      mode is not active.
 
 * Bugs
-   + Bug with comparition (which testfile?)                             ----
+   + Bug with comparison                                                ---- <-- Doing next

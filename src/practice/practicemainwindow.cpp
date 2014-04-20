@@ -147,23 +147,20 @@ void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)
 
 void PracticeMainWindow::startPractice()
 {
-    // FIXME: This really needs changing in mixed mode.
-    //        Even in one-directional practice it needs change. 
-    //        We need to call the practice manager to find out this.
-    //
-    // As a quick workaround we use learningLanguage as
-    // solutionLanguage and knownLanguage as questionLanguage.
-    QString questionLocale = m_mainWindow->parleyDocument()->document()->identifier(Prefs::knownLanguage()).locale();
-    LanguageSettings questionLanguageSettings(questionLocale);
-    questionLanguageSettings.readConfig();
-    QFont questionFont = questionLanguageSettings.practiceFont();
-    m_guiFrontend->setQuestionFont(questionFont);
+    // Set the fonts for the known language and learning language.
+    // These are used in the practice state machine to set the
+    // questionfont and answerfont in the mode widget.
+    QString knownLangLocale = m_mainWindow->parleyDocument()->document()->identifier(Prefs::knownLanguage()).locale();
+    LanguageSettings knownLangSettings(knownLangLocale);
+    knownLangSettings.readConfig();
+    QFont knownLangFont = knownLangSettings.practiceFont();
+    m_guiFrontend->setKnownLangFont(knownLangFont);
 
-    QString solutionLocale = m_mainWindow->parleyDocument()->document()->identifier(Prefs::learningLanguage()).locale();
-    LanguageSettings solutionLanguageSettings(solutionLocale);
-    solutionLanguageSettings.readConfig();
-    QFont solutionFont = solutionLanguageSettings.practiceFont();
-    m_guiFrontend->setSolutionFont(solutionFont);
+    QString learningLangLocale = m_mainWindow->parleyDocument()->document()->identifier(Prefs::learningLanguage()).locale();
+    LanguageSettings learningLangSettings(learningLangLocale);
+    learningLangSettings.readConfig();
+    QFont learningLangFont = learningLangSettings.practiceFont();
+    m_guiFrontend->setLearningLangFont(learningLangFont);
 
     m_stateMachine->start();
 }

@@ -57,6 +57,14 @@ public:
     /** The status such as lesson or number of words has changed */
     virtual void setFinishedWordsTotalWords(int finished, int total) = 0;
 
+    /** fonts for learning and known languages. These will be used to
+     * set question and answer fonts for individual entries.
+     */
+    virtual QFont knownLangFont() const = 0;
+    virtual QFont learningLangFont() const = 0;
+    virtual void setKnownLangFont(const QFont& font) = 0;
+    virtual void setLearningLangFont(const QFont& font) = 0;
+
     virtual void setQuestion(const QVariant& question) = 0;
     virtual void setSolution(const QVariant& solution) = 0;
     virtual void setFeedback(const QVariant& feedback) = 0;

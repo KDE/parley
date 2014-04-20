@@ -202,6 +202,14 @@ void PracticeStateMachine::updateFrontend()
         m_sessionManager->allEntryCount() - m_sessionManager->activeEntryCount(),
         m_sessionManager->allEntryCount());
 
+    // Set fonts
+    m_frontend->setQuestionFont((m_current->languageFrom() == Prefs::learningLanguage())
+                                ? m_frontend->learningLangFont()
+                                : m_frontend->knownLangFont());
+    m_frontend->setSolutionFont((m_current->languageTo() == Prefs::learningLanguage())
+                                ? m_frontend->learningLangFont()
+                                : m_frontend->knownLangFont());
+
     grade_t grade = m_mode->currentGradeForEntry();
     grade_t goodGrade = qMax(grade, grade_t(KV_LEV1_GRADE)); // if the word hasn't been practiced yet, use grade 1 as a base
 
