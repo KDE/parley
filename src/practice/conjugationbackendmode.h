@@ -26,7 +26,7 @@ class ConjugationBackendMode : public AbstractBackendMode
     Q_OBJECT
 
 public:
-    ConjugationBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend,
+    ConjugationBackendMode(AbstractFrontend *frontend,
                            QObject *parent, Practice::SessionManagerBase* sessionManager, KEduVocDocument* doc);
 
     virtual bool setTestEntry(TestEntry* current);

@@ -31,7 +31,6 @@
 #include "settings/parleyprefs.h"
 #include "configure-practice/configurepracticedialog.h"
 #include "practice/guifrontend.h"
-#include "practice/practiceoptions.h"
 #include "practice/practicesummarycomponent.h"
 
 #include "parleyactions.h"
@@ -172,6 +171,13 @@ void ParleyMainWindow::configurePractice()
 
 void ParleyMainWindow::startPractice()
 {
+    if (Prefs::learningLanguage() == Prefs::knownLanguage()) {
+        KMessageBox::sorry(this,
+                           i18n("You cannot start to practice when the known language is the same as the language to learn."),
+                           i18n("Select languages"));
+        return;
+    }
+
     switchComponent(PracticeComponent);
 }
 

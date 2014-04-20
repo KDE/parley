@@ -195,6 +195,27 @@ void GuiFrontend::setFinishedWordsTotalWords(int finished, int total)
                                           total, finished, finishedPercentage));
 }
 
+QFont GuiFrontend::knownLangFont() const
+{
+    return m_knownLangFont;
+}
+
+QFont GuiFrontend::learningLangFont() const
+{
+    return m_learningLangFont;
+}
+
+void GuiFrontend::setKnownLangFont(const QFont& font)
+{
+    m_knownLangFont = font;
+}
+
+void GuiFrontend::setLearningLangFont(const QFont& font)
+{
+    m_learningLangFont = font;
+}
+
+
 void GuiFrontend::setHint(const QVariant& hint)
 {
     m_modeWidget->setHint(hint);

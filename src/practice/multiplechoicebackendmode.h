@@ -26,7 +26,8 @@ class MultipleChoiceBackendMode : public AbstractBackendMode
     Q_OBJECT
 
 public:
-    MultipleChoiceBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend, QObject *parent, Practice::SessionManagerBase* sessionManager);
+    MultipleChoiceBackendMode(AbstractFrontend *frontend, QObject *parent,
+                              Practice::SessionManagerBase* sessionManager);
 
     virtual bool setTestEntry(TestEntry* current);
 

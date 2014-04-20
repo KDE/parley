@@ -27,8 +27,7 @@ class WrittenBackendMode : public AbstractBackendMode
     Q_OBJECT
 
 public:
-    WrittenBackendMode(const Practice::PracticeOptions& practiceOptions,
-                       Practice::AbstractFrontend* frontend, QObject* parent,
+    WrittenBackendMode(Practice::AbstractFrontend* frontend, QObject* parent,
                        Practice::SessionManagerBase* sessionManager, KEduVocDocument* doc);
 
     virtual bool setTestEntry(TestEntry* current);

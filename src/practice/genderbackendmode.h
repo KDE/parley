@@ -26,7 +26,7 @@ class GenderBackendMode : public MultipleChoiceBackendMode
     Q_OBJECT
 
 public:
-    GenderBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend,
+    GenderBackendMode(AbstractFrontend *frontend,
                       QObject *parent, Practice::SessionManagerBase* sessionManager,
                       KEduVocDocument* doc);
 

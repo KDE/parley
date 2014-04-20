@@ -18,14 +18,14 @@
 
 using namespace Practice;
 
-WrittenBackendMode::WrittenBackendMode(const Practice::PracticeOptions& practiceOptions,
-                                       AbstractFrontend* frontend, QObject* parent,
+WrittenBackendMode::WrittenBackendMode(AbstractFrontend* frontend, QObject* parent,
                                        SessionManagerBase* sessionManager, KEduVocDocument* doc)
-    : AbstractBackendMode(practiceOptions, frontend, parent)
+    : AbstractBackendMode(frontend, parent)
     , m_sessionManager(sessionManager)
     , m_doc(doc)
 {
-    m_validator = new WrittenPracticeValidator(m_practiceOptions.languageTo(), doc);
+    // FIXME: Used to be m_practiceOptions.languageTo()
+    m_validator = new WrittenPracticeValidator(Prefs::learningLanguage(), doc);
 }
 
 bool WrittenBackendMode::setTestEntry(TestEntry* current)
@@ -140,13 +140,13 @@ QString WrittenBackendMode::getFeedbackString(TestEntry::ErrorTypes error)
 
 void WrittenBackendMode::hintAction()
 {
-    QString solution = m_current->entry()->translation(m_practiceOptions.languageTo())->text();
+    QString solution = m_current->entry()->translation(m_current->languageTo())->text();
     m_currentHint = solution.left(m_currentHint.size() + 1);
     if (m_currentHint.size() == solution.size()) {
         // show solution
         m_frontend->setFeedback(i18n("You revealed the answer by using too many hints."));
         m_frontend->setResultState(AbstractFrontend::AnswerWrong);
-        if (m_frontend->userInput().toString() == m_current->entry()->translation(m_practiceOptions.languageTo())->text()) {
+        if (m_frontend->userInput().toString() == m_current->entry()->translation(m_current->languageTo())->text()) {
             m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
         } else {
             m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
