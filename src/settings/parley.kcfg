@@ -294,7 +294,7 @@
       <default>0</default>
     </entry>
     <entry name="KnownLanguage" type="Int">
-      <label>The language which that you know already.</label>
+      <label>The language that you know already.</label>
       <default>1</default>
     </entry>
 
