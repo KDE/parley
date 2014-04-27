@@ -118,8 +118,6 @@ public slots:
 
     /** When quitting, ask for confirmation if the doc has not been saved */
     bool queryClose();
-    /** overloaded for Message box on last window exit */
-    bool queryExit();
 
     QSize sizeHint() const;
 

@@ -188,15 +188,6 @@ void ParleyMainWindow::practiceFinished()
 
 bool ParleyMainWindow::queryClose()
 {
-    bool erg = queryExit();
-    if (erg && m_document->document()) {
-        m_document->document()->setModified(false);  // avoid double query on exit via system menu
-    }
-    return erg;
-}
-
-bool ParleyMainWindow::queryExit()
-{
     if (!m_document->document() || !m_document->document()->isModified()) {
         return true;
     }
@@ -218,6 +209,7 @@ bool ParleyMainWindow::queryExit()
 
     if (save) {
         m_document->save();       // save and exit
+        m_document->document()->setModified(false);
     }
     return true;
 }

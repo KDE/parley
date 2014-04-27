@@ -105,7 +105,7 @@ void ParleyDocument::setTitle(const QString& title)
 
 void ParleyDocument::slotFileNew()
 {
-    if (m_parleyApp->queryExit()) {
+    if (m_parleyApp->queryClose()) {
         newDocument(true);
     }
 }
@@ -156,7 +156,7 @@ void ParleyDocument::newDocument(bool wizard)
 
 void ParleyDocument::slotFileOpen()
 {
-    if (m_parleyApp->queryExit()) {
+    if (m_parleyApp->queryClose()) {
         QCheckBox *practiceCheckBox = new QCheckBox(i18n("Open in practice &mode"));
         practiceCheckBox->setChecked(m_parleyApp->currentComponent() != ParleyMainWindow::EditorComponent);
         KFileDialog dialog(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), m_parleyApp, practiceCheckBox);
@@ -174,7 +174,7 @@ void ParleyDocument::slotFileOpen()
 
 void ParleyDocument::slotFileOpenRecent(const KUrl& url)
 {
-    if (m_parleyApp->queryExit()) {
+    if (m_parleyApp->queryClose()) {
         open(url);
         m_parleyApp->showEditor(); ///@todo: start practice directly depending on current component
     }
@@ -220,7 +220,7 @@ void ParleyDocument::close()
 
 void ParleyDocument::openGHNS()
 {
-    if (m_parleyApp->queryExit()) {
+    if (m_parleyApp->queryClose()) {
         QString downloadDir = KStandardDirs::locateLocal("data", "kvtml/");
         KUrl url = KFileDialog::getOpenUrl(
                        downloadDir,
