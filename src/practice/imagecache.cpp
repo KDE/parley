@@ -66,7 +66,7 @@ void ImageCache::openCache()
     QString temp;
     stream >> temp;
     if (temp != QString(identifier)) {
-        kDebug() << "not loading cache because the identifier doesn't match";
+        //kDebug() << "not loading cache because the identifier doesn't match";
         return;
     }
     // check filename and timestamp, no need to load images for the wrong file or outdated images
@@ -74,7 +74,7 @@ void ImageCache::openCache()
     QList<QDateTime> timestamps;
     stream >> filenames >> timestamps;
     if (filenames != m_filenames || timestamps != m_timestamps) {
-        kDebug() << "not loading cache because it contains the wrong theme or the timestamp has changed";
+        //kDebug() << "not loading cache because it contains the wrong theme or the timestamp has changed";
         return;
     }
     // finally load data
@@ -84,14 +84,14 @@ void ImageCache::openCache()
         i.next();
         m_images[i.key()] = i.value().convertToFormat(QImage::Format_ARGB32_Premultiplied);
     }
-    kDebug() << "opened cache:" << m_saveFilename;
-    kDebug() << *this;
+    //kDebug() << "opened cache:" << m_saveFilename;
+    //kDebug() << *this;
 }
 
 void ImageCache::saveCache()
 {
-    kDebug() << "save cache to:" << m_saveFilename;
-    kDebug() << *this;
+    //kDebug() << "save cache to:" << m_saveFilename;
+    //kDebug() << *this;
     QFile file(m_saveFilename);
     file.open(QIODevice::WriteOnly);
     QDataStream stream(&file);

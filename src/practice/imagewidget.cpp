@@ -199,7 +199,7 @@ ImageWidget::ImageWidget(QWidget *parent)
 
 void ImageWidget::setPixmap(const QPixmap& pixmap)
 {
-    kDebug() << "set new pixmap, size:" << pixmap.size();
+    //kDebug() << "set new pixmap, size:" << pixmap.size();
     if (m_animation->state() == QTimeLine::Running) {
         m_scaledPixmap = transition(m_animationPixmap, m_scaledPixmap, m_animation->currentValue());
         m_animation->stop();
@@ -289,12 +289,12 @@ void ImageWidget::scalePixmap(bool smooth)
 {
     bool scaleUp = m_originalPixmap.width() <= size().width() && m_originalPixmap.height() <= size().height();
     if ((m_onlyDownscaling && scaleUp) || m_originalPixmap.size() == size()) {
-        kDebug() << "no need to scale pixmap";
+        //kDebug() << "no need to scale pixmap";
         m_scaledPixmapOutOfDate = false;
         m_scaledPixmap = m_originalPixmap;
         m_scaledBackupPixmap = QPixmap();
     } else if (smooth) {
-        kDebug() << "smooth scaling to" << size();
+        //kDebug() << "smooth scaling to" << size();
         if (m_originalPixmap.isNull() || size().isEmpty()) {
             m_scaledPixmapOutOfDate = false;
             m_scaledPixmap = QPixmap();
@@ -306,9 +306,9 @@ void ImageWidget::scalePixmap(bool smooth)
         m_scaledPixmapOutOfDate = false;
         update();
     } else {
-        kDebug() << "fast scaling to" << size();
-        // try to find out if it makes sense to use the scaled backup pixmap
-        // if the scaled backup gets too small, we use the original image
+        //kDebug() << "fast scaling to" << size();
+        // Try to find out if it makes sense to use the scaled backup pixmap.
+        // If the scaled backup gets too small, we use the original image.
         float ratio = 0;
         if (!size().isEmpty()) {
             ratio = qMin(float(m_scaledBackupPixmap.width()) / size().width(),
