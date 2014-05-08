@@ -84,11 +84,12 @@ void SessionManagerBase::setDocument(KEduVocDocument* doc)
     // Create the list of available entries for this training session.
     EntryFilter filter(m_parent, m_doc);
     m_allTestEntries = filter.entries();
-    kDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
 
     kDebug() << "Entries: ----------------";
+    kDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
     foreach (TestEntry *entry, m_allTestEntries) {
-        kDebug() << "Entry: " << entry->languageFrom() << "to" << entry->languageTo();
+        kDebug() << "Entry: " << entry->languageFrom() << entry->entry()->translation(entry->languageFrom())->text()
+                 << "to" << entry->languageTo() << entry->entry()->translation(entry->languageTo())->text();
     }
 
     // Create the list actual entries in this training session.  This

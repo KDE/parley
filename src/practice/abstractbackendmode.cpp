@@ -52,7 +52,8 @@ grade_t Practice::AbstractBackendMode::currentGradeForEntry()
 void Practice::AbstractBackendMode::updateGrades()
 {
     KEduVocTranslation* translation = m_current->entry()->translation(m_current->languageTo());
-    kDebug() << "Update Grades Default Implementation: " << m_frontend->resultState() << " for " << translation->text()
+    kDebug() << "Update Grades Default Implementation: " << m_frontend->resultState()
+             << " for " << translation->text()
              << " grade: " << m_current->entry()->translation(m_current->languageTo())->grade();
 
     translation->incPracticeCount();

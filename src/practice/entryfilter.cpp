@@ -42,6 +42,12 @@ EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc)
     }
 }
 
+static void debugEntry(const QString &comment, KEduVocExpression *vocexp,
+                       KEduVocTranslation *from, KEduVocTranslation *to)
+{
+    kDebug() << comment << "from" << from->text() << "to" << to->text();
+}
+
 QList<TestEntry*> EntryFilter::entries()
 {
     switch (Prefs::practiceDirection()) {
@@ -73,7 +79,6 @@ QList<TestEntry*> EntryFilter::entries()
         m_toTranslation   = Prefs::learningLanguage();
         break;
     }
-    kDebug() << "Filter for " << m_fromTranslation << " to " << m_toTranslation;
 
     for (int pass = 0; pass < m_numSets; ++pass) {
         // If we only do one pass, then from/to translation are already set.
@@ -83,6 +88,7 @@ QList<TestEntry*> EntryFilter::entries()
             m_toTranslation   = Prefs::knownLanguage();
         }
 
+        kDebug() << "Filter for " << m_fromTranslation << " to " << m_toTranslation;
         expireEntries(pass);
 
         collectEntries(pass);
@@ -172,22 +178,44 @@ QList<TestEntry*> EntryFilter::entries()
         }
         return ret;
     } else {
+        // FIXME: Create entries already from the beginning so we
+        //        don't have to work with kvtml translations first and
+        //        then entries later.
         QList<TestEntry*> testEntries;
         for (int setNo = 0; setNo < m_numSets; ++setNo) {
+            int from;
+            int to;
+
+            if (setNo == 0) {
+                switch (Prefs::practiceDirection()) {
+                case Prefs::EnumPracticeDirection::KnownToLearning:
+                    from = Prefs::knownLanguage();
+                    to   = Prefs::learningLanguage();
+                    break;
+                case Prefs::EnumPracticeDirection::LearningToKnown:
+                    from = Prefs::learningLanguage();
+                    to   = Prefs::knownLanguage();
+                    break;
+                case Prefs::EnumPracticeDirection::MixedDirectionsWordsOnly:
+                case Prefs::EnumPracticeDirection::MixedDirectionsWithSound:
+                default:
+                    from = Prefs::knownLanguage();
+                    to   = Prefs::learningLanguage();
+                    break;
+                }
+            }
+            else {
+                from = Prefs::learningLanguage();
+                to   = Prefs::knownLanguage();
+            }
+
             foreach(KEduVocExpression * entry, m_currentSelection[setNo]) {
                 // Set the from and to translation for the entry itself.
                 TestEntry *testEntry = new TestEntry(entry);
 
-                if (setNo == 0) {
-                    // one-directional practice or the first part of mixed mode.
-                    testEntry->setLanguageFrom(m_fromTranslation);
-                    testEntry->setLanguageTo(m_toTranslation);
-                }
-                else if (setNo == 1) {
-                    // The second part of mixed mode
-                    testEntry->setLanguageFrom(m_toTranslation);
-                    testEntry->setLanguageTo(m_fromTranslation);
-                }
+                testEntry->setLanguageFrom(from);
+                testEntry->setLanguageTo(to);
+
                 randomizedInsert(testEntries, testEntry);
             }
         }
@@ -311,6 +339,14 @@ void EntryFilter::blockedEntries(int setNo)
         foreach(KEduVocExpression * entry, m_entries[setNo]) {
             if (!isBlocked(entry->translation(m_toTranslation))) {
                 m_entriesNotBlocked[setNo].insert(entry);
+                //debugEntry("Not blocked:", entry,
+                //           entry->translation(m_fromTranslation),
+                //           entry->translation(m_toTranslation));
+            }
+            else {
+                //debugEntry("Blocked:", entry,
+                //           entry->translation(m_fromTranslation),
+                //           entry->translation(m_toTranslation));
             }
         }
         break;
@@ -340,10 +376,13 @@ bool EntryFilter::isBlocked(const KEduVocText* const text) const
     grade_t grade = text->grade();
     // always include lowest level and where blocking is off
     if (grade == KV_NORM_GRADE || Prefs::blockItem(grade) == 0) {
+        //kDebug() << "Not blocked, test 1; word =" << text->text() << "grade =" << grade << "blockItem(grade) =" << Prefs::blockItem(grade);
+        
         return false;
     } else {
         QDateTime date = text->practiceDate();
         if (date.addSecs(Prefs::blockItem(grade)) < QDateTime::currentDateTime()) {
+            //kDebug() << "Not blocked, test 2";
             return false;
         }
     }
@@ -423,6 +462,7 @@ void EntryFilter::cleanupInvalid(int setNo)
                       && !toTranslation->text().isEmpty());
         if (!keep) {
             i = m_entries[setNo].erase(i);
+            //debugEntry("Removing empty:", *i, fromTranslation, toTranslation);
             continue;
         }
 
