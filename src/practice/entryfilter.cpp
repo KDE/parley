@@ -414,8 +414,8 @@ bool EntryFilter::isBlocked(const KEduVocText* const text) const
     {
         // Always include untrained words and all words when blocking is off.
 
-        kDebug() << "Not blocked, test 1; word =" << text->text() << "grade =" << grade
-                 << "blockItem(grade) =" << Prefs::blockItem(grade);
+        //kDebug() << "Not blocked, test 1; word =" << text->text() << "grade =" << grade
+        //         << "blockItem(grade) =" << Prefs::blockItem(grade);
         
         return false;
     } 
@@ -423,7 +423,7 @@ bool EntryFilter::isBlocked(const KEduVocText* const text) const
         // Test for pregrade blocking.
         QDateTime date = text->practiceDate();
         if (date.addSecs(preGradeTimes[preGrade]) < now) {
-            kDebug() << "Not blocked, test 2";
+            //kDebug() << "Not blocked, test 2";
             return false;
         }
     }
@@ -432,7 +432,7 @@ bool EntryFilter::isBlocked(const KEduVocText* const text) const
 
         QDateTime date = text->practiceDate();
         if (date.addSecs(Prefs::blockItem(grade)) < now) {
-            kDebug() << "Not blocked, test 3";
+            //kDebug() << "Not blocked, test 3";
             return false;
         }
     }
