@@ -29,6 +29,26 @@
 
 using namespace Practice;
 
+
+// Blocking times for pregrade levels.
+//
+// It could be argued that these should be configurable but I am not
+// sure what that would bring us or the user. Definitely not improved
+// learning...
+//
+// FIXME: Find out what the optimal values are.
+int preGradeTimes[] = {
+    0, 
+    3 * 60 + 30,                // 1: 3.5 minutes
+    7 * 60,                     // 2: 7 minutes
+    15 * 60,                    // 3: 15 minutes
+    1 * 3600,                   // 4: 1 hour
+    2 * 3600,                   // 5: 2 hours
+    4 * 3600,                   // 6: 4 hours
+    8 * 3600,                   // 7: 8 hours
+};
+
+
 EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc)
     : QObject(parent)
     , m_doc(doc)
@@ -339,14 +359,14 @@ void EntryFilter::blockedEntries(int setNo)
         foreach(KEduVocExpression * entry, m_entries[setNo]) {
             if (!isBlocked(entry->translation(m_toTranslation))) {
                 m_entriesNotBlocked[setNo].insert(entry);
-                //debugEntry("Not blocked:", entry,
-                //           entry->translation(m_fromTranslation),
-                //           entry->translation(m_toTranslation));
+                debugEntry("Not blocked:", entry,
+                           entry->translation(m_fromTranslation),
+                           entry->translation(m_toTranslation));
             }
             else {
-                //debugEntry("Blocked:", entry,
-                //           entry->translation(m_fromTranslation),
-                //           entry->translation(m_toTranslation));
+                debugEntry("Blocked:", entry,
+                           entry->translation(m_fromTranslation),
+                           entry->translation(m_toTranslation));
             }
         }
         break;
@@ -373,16 +393,46 @@ bool EntryFilter::isConjugationBlocked(KEduVocTranslation* translation) const
 
 bool EntryFilter::isBlocked(const KEduVocText* const text) const
 {
-    grade_t grade = text->grade();
-    // always include lowest level and where blocking is off
-    if (grade == KV_NORM_GRADE || Prefs::blockItem(grade) == 0) {
-        //kDebug() << "Not blocked, test 1; word =" << text->text() << "grade =" << grade << "blockItem(grade) =" << Prefs::blockItem(grade);
+    grade_t grade    = text->grade();
+    grade_t preGrade = text->preGrade();
+
+    // Sanity checks
+    // FIXME: This should be done when the prefs are first read.
+    if (preGrade < 0)
+        preGrade = 0;
+    else if (preGrade > KV_MAX_GRADE)
+        preGrade = KV_MAX_GRADE;
+    if (grade < 0)
+        grade = 0;
+    else if (grade > KV_MAX_GRADE)
+        grade = KV_MAX_GRADE;
+
+    QDateTime now = QDateTime::currentDateTime();
+
+    if ((grade == KV_NORM_GRADE && preGrade == KV_NORM_GRADE)
+        || (grade > 0 && Prefs::blockItem(grade) == 0))
+    {
+        // Always include untrained words and all words when blocking is off.
+
+        kDebug() << "Not blocked, test 1; word =" << text->text() << "grade =" << grade
+                 << "blockItem(grade) =" << Prefs::blockItem(grade);
         
         return false;
-    } else {
+    } 
+    else if (grade == KV_NORM_GRADE) {
+        // Test for pregrade blocking.
         QDateTime date = text->practiceDate();
-        if (date.addSecs(Prefs::blockItem(grade)) < QDateTime::currentDateTime()) {
-            //kDebug() << "Not blocked, test 2";
+        if (date.addSecs(preGradeTimes[preGrade]) < now) {
+            kDebug() << "Not blocked, test 2";
+            return false;
+        }
+    }
+    else {
+        // Test for grade blocking.
+
+        QDateTime date = text->practiceDate();
+        if (date.addSecs(Prefs::blockItem(grade)) < now) {
+            kDebug() << "Not blocked, test 3";
             return false;
         }
     }

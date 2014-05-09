@@ -31,6 +31,8 @@ public:
 
     virtual bool setTestEntry(TestEntry* current);
 
+    /** Return the worst pregrade for any pronoun of the current entry */
+    virtual grade_t currentPreGradeForEntry();
     /** Return the worst grade for any pronoun of the current entry */
     virtual grade_t currentGradeForEntry();
 

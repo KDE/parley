@@ -69,6 +69,7 @@ public:
 
     /// update lesson label
     void setLessonName(const QString& lessonName);
+    void setGradeString(const QString& gradeString);
     virtual void setFinishedWordsTotalWords(int finished, int total);
 
     virtual void setSynonym(const QString& entry);

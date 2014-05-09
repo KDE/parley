@@ -22,6 +22,16 @@
     </widget>
    </item>
    <item>
+    <widget class="QLabel" name="gradeLabel">
+     <property name="text">
+      <string comment="KDE::DoNotExtract">pregrade/grade</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>

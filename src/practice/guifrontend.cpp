@@ -129,6 +129,12 @@ void GuiFrontend::setLessonName(const QString& lessonName)
     m_ui->lessonLabel->setText(i18nc("Display of the current lesson during practice", "Lesson: %1", lessonName));
 }
 
+void GuiFrontend::setGradeString(const QString& gradeString)
+{
+    kDebug() << gradeString;
+    m_ui->gradeLabel->setText(i18nc("Display of the current grades during practice", "Grades: %1", gradeString));
+}
+
 void GuiFrontend::showQuestion()
 {
     m_ui->answerLaterButton->setEnabled(true);

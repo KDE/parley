@@ -50,6 +50,7 @@ public:
      * For modes that work on several words, this should return the worst grade of them.
      * @return the grade
      */
+    virtual grade_t currentPreGradeForEntry();
     virtual grade_t currentGradeForEntry();
 
     /**
@@ -79,6 +80,10 @@ Q_SIGNALS:
     void answerWrongRetry();
     void answerWrongShowSolution();
     void showSolution();
+
+protected:
+    // Support functions for derived classes
+    void updateGrade(KEduVocText &text, bool isCorrectAnswer, bool hasNoPreviousBadAnswers);
 
 protected:
     AbstractFrontend* m_frontend;

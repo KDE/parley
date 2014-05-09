@@ -115,6 +115,21 @@ void ConjugationBackendMode::checkAnswer()
     }
 }
 
+grade_t ConjugationBackendMode::currentPreGradeForEntry()
+{
+    Q_ASSERT(m_current != 0);
+    KEduVocTranslation* trans = m_current->entry()->translation(m_current->languageTo());
+    KEduVocConjugation& conj = trans->conjugation(m_current->conjugationTense());
+    QList<KEduVocWordFlags> keys = conj.keys();
+
+    grade_t min_grade = KV_MAX_GRADE;
+    foreach(KEduVocWordFlags key, keys) {
+        min_grade = qMin(conj.conjugation(key).preGrade(), min_grade);
+    }
+
+    return min_grade;
+}
+
 grade_t ConjugationBackendMode::currentGradeForEntry()
 {
     Q_ASSERT(m_current != 0);
@@ -141,6 +156,10 @@ void ConjugationBackendMode::updateGrades()
         text.incPracticeCount();
         text.setPracticeDate(QDateTime::currentDateTime());
 
+#if 1
+        updateGrade(text, m_frontend->resultState() == AbstractFrontend::AnswerCorrect,
+                    m_current->statisticBadCount() == 0);
+#else
         if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
             if (m_current->statisticBadCount() == 0) {
                 text.incGrade();
@@ -149,6 +168,7 @@ void ConjugationBackendMode::updateGrades()
             text.setGrade(KV_LEV1_GRADE);
             text.incBadCount();
         }
+#endif
     }
 }
 

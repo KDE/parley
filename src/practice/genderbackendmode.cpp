@@ -110,22 +110,13 @@ void GenderBackendMode::prepareChoices(TestEntry* entry)
 
 void GenderBackendMode::updateGrades()
 {
-    if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-        kDebug() << "article right - old grade: " << m_current->entry()->translation(m_current->languageTo())->article().grade();
-        KEduVocText articleGrade = m_current->entry()->translation(m_current->languageTo())->article();
-        articleGrade.incGrade();
-        articleGrade.incPracticeCount();
-        articleGrade.setPracticeDate(QDateTime::currentDateTime());
-        m_current->entry()->translation(m_current->languageTo())->setArticle(articleGrade);
-        kDebug() << "article right - new grade: " << m_current->entry()->translation(m_current->languageTo())->article().grade();
-    } else {
-        kDebug() << "article wrong";
-        KEduVocText articleGrade = m_current->entry()->translation(m_current->languageTo())->article();
-        articleGrade.setGrade(KV_LEV1_GRADE);
-        articleGrade.incPracticeCount();
-        articleGrade.incBadCount();
-        m_current->entry()->translation(m_current->languageTo())->setArticle(articleGrade);
-    }
+    KEduVocText articleGrade = m_current->entry()->translation(m_current->languageTo())->article();
+    articleGrade.incPracticeCount();
+    articleGrade.setPracticeDate(QDateTime::currentDateTime());
+    updateGrade(articleGrade, m_frontend->resultState() == AbstractFrontend::AnswerCorrect,
+                m_current->statisticBadCount() == 0);
+
+    m_current->entry()->translation(m_current->languageTo())->setArticle(articleGrade);
 }
 
 

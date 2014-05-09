@@ -53,7 +53,8 @@ void SessionManagerFixed::initializeTraining()
            && m_currentEntries.count() < MaxEntries)
     {
         TestEntry *it = m_allTestEntries.at(i);
-        if (it->entry()->translation(it->languageTo())->grade() == 0) {
+        if (it->entry()->translation(it->languageTo())->grade() == 0
+            && it->entry()->translation(it->languageTo())->preGrade() == 0) {
             m_currentEntries.append(it);
             numNewWords++;
         }
@@ -80,7 +81,29 @@ void SessionManagerFixed::initializeTraining()
         }
     }
 
+    // If there is still room in the session, pick the rest of the
+    // words from the ones with pregrades.  Also here, use higher
+    // graded entries before lower graded ones.
+    for (int preGrade = KV_MAX_GRADE; preGrade > 0 ; --preGrade) {
+        if (m_currentEntries.count() >= MaxEntries) {
+            break;
+        }
+
+        // Step through all entries and collect those at the current
+        // grade until the session is filled.
+        foreach (TestEntry *entry, m_allTestEntries) {
+            if (entry->entry()->translation(entry->languageTo())->preGrade() == preGrade) {
+                m_currentEntries.append(entry);
+            }
+            if (m_currentEntries.count() >= MaxEntries) {
+                break;
+            }
+        }
+    }
+
     // Now we have decided exactly which ones to use.
     // We need to keep this for statistics reporting at the end.
+    //
+    // FIXME: Seems to be a memory leak here.
     m_allTestEntries = m_currentEntries;
 }
