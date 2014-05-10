@@ -64,19 +64,8 @@ void Practice::AbstractBackendMode::updateGrades()
     translation->incPracticeCount();
     translation->setPracticeDate(QDateTime::currentDateTime());
 
-#if 1
     updateGrade(*translation, m_frontend->resultState() == AbstractFrontend::AnswerCorrect,
                 m_current->statisticBadCount() == 0);
-#else
-    if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-        if (m_current->statisticBadCount() == 0) {
-            translation->incGrade();
-        }
-    } else {
-        translation->setGrade(KV_LEV1_GRADE);
-        translation->incBadCount();
-    }
-#endif
 
     kDebug() << "new grade: " << m_current->entry()->translation(m_current->languageTo())->grade();
 }

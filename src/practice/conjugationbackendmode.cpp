@@ -156,19 +156,8 @@ void ConjugationBackendMode::updateGrades()
         text.incPracticeCount();
         text.setPracticeDate(QDateTime::currentDateTime());
 
-#if 1
         updateGrade(text, m_frontend->resultState() == AbstractFrontend::AnswerCorrect,
                     m_current->statisticBadCount() == 0);
-#else
-        if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-            if (m_current->statisticBadCount() == 0) {
-                text.incGrade();
-            }
-        } else {
-            text.setGrade(KV_LEV1_GRADE);
-            text.incBadCount();
-        }
-#endif
     }
 }
 
