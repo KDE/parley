@@ -130,11 +130,17 @@ void GuiFrontend::setLessonName(const QString& lessonName)
                                      lessonName));
 }
 
-void GuiFrontend::setGradeString(const QString& gradeString)
+void GuiFrontend::showGrade(int preGrade, int grade)
 {
-    kDebug() << gradeString;
-    m_ui->gradeLabel->setText(i18nc("Display of the current grades during practice", "Grades: %1",
-                                    gradeString));
+    if (preGrade == 0 && grade == 0) {
+        m_ui->gradeLabel->setText(i18n("New word"));
+    }
+    else {
+        m_ui->gradeLabel->setText(i18nc("Display of the current confidence level during practice, 1st param is either initial or long term",
+                                        "%1, confidence %2", 
+                                        grade == 0 ? i18n("initial") : i18n("long term"),
+                                        QString::number(grade == 0 ? preGrade : grade)));
+    }
 }
 
 void GuiFrontend::showQuestion()

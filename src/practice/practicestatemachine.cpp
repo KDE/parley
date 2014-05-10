@@ -196,9 +196,8 @@ void PracticeStateMachine::updateFrontend()
     m_frontend->setFeedbackState(AbstractFrontend::QuestionState);
     m_frontend->setResultState(AbstractFrontend::QuestionState);
     m_frontend->setLessonName(m_current->entry()->lesson()->name());
-    m_frontend->setGradeString(QString::number(m_current->entry()->translation(m_current->languageTo())->preGrade())
-                               + '/'
-                               + QString::number(m_current->entry()->translation(m_current->languageTo())->grade()));
+    m_frontend->showGrade(m_current->entry()->translation(m_current->languageTo())->preGrade(),
+                          m_current->entry()->translation(m_current->languageTo())->grade());
 
     // show the word that is currently practiced in the progress bar
     m_frontend->setFinishedWordsTotalWords(
