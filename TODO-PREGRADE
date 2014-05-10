@@ -5,10 +5,18 @@
  * Update                                                               Done
 
  * Presentation
-    - Show pregrade (how?)                                              ----
+    - Show pregrade                                                     Done
 
  * Configuration (No config necessary)                                  Done
 
  * Other
     - Reset pregrades when removing grades too.                         Done
-    - expire?
+
+
+----------------------------------------------------------------
+Milestone 1: Merge into master
+
+
+* Statistics (also take into account double directed training)          ----
+
+* Show words due (sync with xenochrist and the dashboard)               ----
