@@ -81,10 +81,12 @@ void Practice::AbstractBackendMode::updateGrade(KEduVocText &text, bool isCorrec
     if (isCorrectAnswer) {
         if (hasNoPreviousBadAnswers) {
             if (text.grade() == KV_NORM_GRADE) {
-                text.setPreGrade(text.preGrade() + 1); // FIXME: Implement incPreGrade()
-                if (text.preGrade() > KV_MAX_GRADE) {
+                if (text.preGrade() == KV_MAX_GRADE) {
                     text.setPreGrade(KV_NORM_GRADE);
                     text.setGrade(KV_LEV1_GRADE);
+                }
+                else {
+                    text.setPreGrade(text.preGrade() + 1); // FIXME: Implement incPreGrade()
                 }
             }
             else {
