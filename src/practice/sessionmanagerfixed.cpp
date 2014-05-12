@@ -105,5 +105,11 @@ void SessionManagerFixed::initializeTraining()
     // We need to keep this for statistics reporting at the end.
     //
     // FIXME: Seems to be a memory leak here.
+
+    //        m_allTestEntries owns all test entries and now it
+    //        suddenly gets assigned a potentially smaller subset.
+    //        Those which were pointed to by pointers inside
+    //        m_allTestEntries but not also a pointer inside
+    //        m_currentEntries are lost.
     m_allTestEntries = m_currentEntries;
 }

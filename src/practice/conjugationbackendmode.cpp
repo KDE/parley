@@ -115,7 +115,7 @@ void ConjugationBackendMode::checkAnswer()
     }
 }
 
-grade_t ConjugationBackendMode::currentPreGradeForEntry()
+grade_t ConjugationBackendMode::currentPreGradeForEntry() const
 {
     Q_ASSERT(m_current != 0);
     KEduVocTranslation* trans = m_current->entry()->translation(m_current->languageTo());
@@ -130,7 +130,7 @@ grade_t ConjugationBackendMode::currentPreGradeForEntry()
     return min_grade;
 }
 
-grade_t ConjugationBackendMode::currentGradeForEntry()
+grade_t ConjugationBackendMode::currentGradeForEntry() const
 {
     Q_ASSERT(m_current != 0);
     KEduVocTranslation* trans = m_current->entry()->translation(m_current->languageTo());

@@ -38,7 +38,7 @@ using namespace Practice;
 //
 // FIXME: Find out what the optimal values are.
 int preGradeTimes[] = {
-    0, 
+    0,
     3 * 60 + 30,                // 1: 3.5 minutes
     7 * 60,                     // 2: 7 minutes
     15 * 60,                    // 3: 15 minutes
@@ -359,14 +359,14 @@ void EntryFilter::blockedEntries(int setNo)
         foreach(KEduVocExpression * entry, m_entries[setNo]) {
             if (!isBlocked(entry->translation(m_toTranslation))) {
                 m_entriesNotBlocked[setNo].insert(entry);
-                debugEntry("Not blocked:", entry,
-                           entry->translation(m_fromTranslation),
-                           entry->translation(m_toTranslation));
+                //debugEntry("Not blocked:", entry,
+                //           entry->translation(m_fromTranslation),
+                //           entry->translation(m_toTranslation));
             }
             else {
-                debugEntry("Blocked:", entry,
-                           entry->translation(m_fromTranslation),
-                           entry->translation(m_toTranslation));
+                //debugEntry("Blocked:", entry,
+                //           entry->translation(m_fromTranslation),
+                //           entry->translation(m_toTranslation));
             }
         }
         break;
@@ -398,14 +398,18 @@ bool EntryFilter::isBlocked(const KEduVocText* const text) const
 
     // Sanity checks
     // FIXME: This should be done when the prefs are first read.
-    if (preGrade < 0)
+    if (preGrade < 0) {
         preGrade = 0;
-    else if (preGrade > KV_MAX_GRADE)
+    }
+    else if (preGrade > KV_MAX_GRADE) {
         preGrade = KV_MAX_GRADE;
-    if (grade < 0)
+    }
+    if (grade < 0) {
         grade = 0;
-    else if (grade > KV_MAX_GRADE)
+    }
+    else if (grade > KV_MAX_GRADE) {
         grade = KV_MAX_GRADE;
+    }
 
     QDateTime now = QDateTime::currentDateTime();
 
@@ -418,7 +422,7 @@ bool EntryFilter::isBlocked(const KEduVocText* const text) const
         //         << "blockItem(grade) =" << Prefs::blockItem(grade);
         
         return false;
-    } 
+    }
     else if (grade == KV_NORM_GRADE) {
         // Test for pregrade blocking.
         QDateTime date = text->practiceDate();

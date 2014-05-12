@@ -44,12 +44,12 @@ bool AbstractBackendMode::setTestEntry(TestEntry* current)
     return true;
 }
 
-grade_t Practice::AbstractBackendMode::currentPreGradeForEntry()
+grade_t Practice::AbstractBackendMode::currentPreGradeForEntry() const
 {
     return m_current->entry()->translation(m_current->languageTo())->preGrade();
 }
 
-grade_t Practice::AbstractBackendMode::currentGradeForEntry()
+grade_t Practice::AbstractBackendMode::currentGradeForEntry() const
 {
     return m_current->entry()->translation(m_current->languageTo())->grade();
 }

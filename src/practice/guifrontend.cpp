@@ -137,7 +137,7 @@ void GuiFrontend::showGrade(int preGrade, int grade)
     }
     else {
         m_ui->gradeLabel->setText(i18nc("Display of the current confidence level during practice, 1st param is either initial or long term",
-                                        "%1, confidence %2", 
+                                        "%1, confidence %2",
                                         grade == 0 ? i18n("initial") : i18n("long term"),
                                         QString::number(grade == 0 ? preGrade : grade)));
     }
