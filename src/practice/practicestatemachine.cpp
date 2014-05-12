@@ -196,6 +196,8 @@ void PracticeStateMachine::updateFrontend()
     m_frontend->setFeedbackState(AbstractFrontend::QuestionState);
     m_frontend->setResultState(AbstractFrontend::QuestionState);
     m_frontend->setLessonName(m_current->entry()->lesson()->name());
+    m_frontend->showGrade(m_current->entry()->translation(m_current->languageTo())->preGrade(),
+                          m_current->entry()->translation(m_current->languageTo())->grade());
 
     // show the word that is currently practiced in the progress bar
     m_frontend->setFinishedWordsTotalWords(
@@ -245,18 +247,27 @@ void PracticeStateMachine::updateFrontend()
 
 void PracticeStateMachine::gradeEntryAndContinue()
 {
-    grade_t currentGrade = m_mode->currentGradeForEntry();
+    grade_t currentPreGrade = m_mode->currentPreGradeForEntry();
+    grade_t currentGrade    = m_mode->currentGradeForEntry();
 
     if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-	m_current->updateStatisticsRightAnswer(currentGrade);
+	m_current->updateStatisticsRightAnswer(currentPreGrade, currentGrade);
     } else {
-        m_current->updateStatisticsWrongAnswer(currentGrade);
+        m_current->updateStatisticsWrongAnswer(currentPreGrade, currentGrade);
     }
 
     kDebug() << "entry finished: " << m_frontend->resultState() << " change grades? " << m_current->changeGrades();
+
+#if 0
+    // FIXME: We should have a discussion about which grade that new
+    //        words that are correct at the first attempt should be
+    //        put into.  Until then I am disabling this.
+
+    // New words should always move to pregrade=1 since only unseen words have grades 0, 0
     if (m_current->isUnseenQuestion()) {
 	m_mode->updateGrades();
     }
+#endif
     if (m_current->changeGrades()) {
         m_mode->updateGrades();
         if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {

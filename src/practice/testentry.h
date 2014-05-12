@@ -42,10 +42,10 @@ public:
     TestEntry(KEduVocExpression *entry);
 
     /// update the internal statistics for this practice with a right result
-    void updateStatisticsRightAnswer(grade_t currentGrade);
+    void updateStatisticsRightAnswer(grade_t currentPreGrade, grade_t currentGrade);
 
     /// update the internal statistics for this practice with a wrong result
-    void updateStatisticsWrongAnswer(grade_t currentGrade);
+    void updateStatisticsWrongAnswer(grade_t currentPreGrade, grade_t currentGrade);
 
     /**
      check if the entry was finished and the practice backend

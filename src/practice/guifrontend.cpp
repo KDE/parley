@@ -126,7 +126,21 @@ void GuiFrontend::setMode(Mode mode)
 
 void GuiFrontend::setLessonName(const QString& lessonName)
 {
-    m_ui->lessonLabel->setText(i18nc("Display of the current lesson during practice", "Lesson: %1", lessonName));
+    m_ui->lessonLabel->setText(i18nc("Display of the current lesson during practice", "Lesson: %1",
+                                     lessonName));
+}
+
+void GuiFrontend::showGrade(int preGrade, int grade)
+{
+    if (preGrade == 0 && grade == 0) {
+        m_ui->gradeLabel->setText(i18n("New word"));
+    }
+    else {
+        m_ui->gradeLabel->setText(i18nc("Display of the current confidence level during practice, 1st param is either initial or long term",
+                                        "%1, confidence %2",
+                                        grade == 0 ? i18n("initial") : i18n("long term"),
+                                        QString::number(grade == 0 ? preGrade : grade)));
+    }
 }
 
 void GuiFrontend::showQuestion()
@@ -380,6 +394,7 @@ void GuiFrontend::updateFontColors()
     QColor c = m_themedBackgroundRenderer->fontColor("Outer", p.color(QPalette::Active, QPalette::WindowText));
     p.setColor(QPalette::WindowText, c);
     m_ui->lessonLabel->setPalette(p);
+    m_ui->gradeLabel->setPalette(p);
 
     if (m_modeWidget) {
         p = QApplication::palette();

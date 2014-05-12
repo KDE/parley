@@ -110,28 +110,14 @@ void ComparisonBackendMode::updateGrades()
     translation->incPracticeCount();
     translation->setPracticeDate(QDateTime::currentDateTime());
 
-    if (absoluteCorrect) {
-        if (m_current->statisticBadCount() == 0) {
-            translation->incGrade();
-        }
-    } else {
-        translation->setGrade(KV_LEV1_GRADE);
-        translation->incBadCount();
-    }
+    updateGrade(*translation, absoluteCorrect, m_current->statisticBadCount() == 0);
 
     KEduVocText comp = translation->comparativeForm();
 
     comp.incPracticeCount();
     comp.setPracticeDate(QDateTime::currentDateTime());
 
-    if (comparativeCorrect) {
-        if (m_current->statisticBadCount() == 0) {
-            comp.incGrade();
-        }
-    } else {
-        comp.setGrade(KV_LEV1_GRADE);
-        comp.incBadCount();
-    }
+    updateGrade(comp, comparativeCorrect, m_current->statisticBadCount() == 0);
     translation->setComparativeForm(comp);
 
     KEduVocText super = translation->superlativeForm();
@@ -139,14 +125,7 @@ void ComparisonBackendMode::updateGrades()
     super.incPracticeCount();
     super.setPracticeDate(QDateTime::currentDateTime());
 
-    if (superlativeCorrect) {
-        if (m_current->statisticBadCount() == 0) {
-            super.incGrade();
-        }
-    } else {
-        super.setGrade(KV_LEV1_GRADE);
-        super.incBadCount();
-    }
+    updateGrade(super, superlativeCorrect, m_current->statisticBadCount() == 0);
     translation->setSuperlativeForm(super);
 }
 

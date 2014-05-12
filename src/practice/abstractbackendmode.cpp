@@ -44,7 +44,12 @@ bool AbstractBackendMode::setTestEntry(TestEntry* current)
     return true;
 }
 
-grade_t Practice::AbstractBackendMode::currentGradeForEntry()
+grade_t Practice::AbstractBackendMode::currentPreGradeForEntry() const
+{
+    return m_current->entry()->translation(m_current->languageTo())->preGrade();
+}
+
+grade_t Practice::AbstractBackendMode::currentGradeForEntry() const
 {
     return m_current->entry()->translation(m_current->languageTo())->grade();
 }
@@ -59,15 +64,44 @@ void Practice::AbstractBackendMode::updateGrades()
     translation->incPracticeCount();
     translation->setPracticeDate(QDateTime::currentDateTime());
 
-    if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-        if (m_current->statisticBadCount() == 0) {
-            translation->incGrade();
-        }
-    } else {
-        translation->setGrade(KV_LEV1_GRADE);
-        translation->incBadCount();
-    }
+    updateGrade(*translation, m_frontend->resultState() == AbstractFrontend::AnswerCorrect,
+                m_current->statisticBadCount() == 0);
+
     kDebug() << "new grade: " << m_current->entry()->translation(m_current->languageTo())->grade();
 }
+
+
+// ----------------------------------------------------------------
+//                         protected methods
+
+
+void Practice::AbstractBackendMode::updateGrade(KEduVocText &text, bool isCorrectAnswer,
+                                                bool hasNoPreviousBadAnswers)
+{
+    if (isCorrectAnswer) {
+        if (hasNoPreviousBadAnswers) {
+            if (text.grade() == KV_NORM_GRADE) {
+                if (text.preGrade() == KV_MAX_GRADE) {
+                    text.setPreGrade(KV_NORM_GRADE);
+                    text.setGrade(KV_LEV1_GRADE);
+                }
+                else {
+                    text.setPreGrade(text.preGrade() + 1); // FIXME: Implement incPreGrade()
+                }
+            }
+            else {
+                text.incGrade();
+            }
+        }
+    } else {
+        text.setPreGrade(KV_LEV1_GRADE);
+        text.setGrade(KV_NORM_GRADE);
+        text.incBadCount();
+    }
+
+    kDebug() << "new pregrade, grade: " << text.preGrade() << text.grade();
+}
+
+
 
 #include "abstractbackendmode.moc"

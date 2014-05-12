@@ -62,7 +62,7 @@ int TestEntry::statisticGoodCount()
     return m_statisticGoodCount;
 }
 
-void TestEntry::updateStatisticsRightAnswer(grade_t currentGrade)
+void TestEntry::updateStatisticsRightAnswer(grade_t currentPreGrade, grade_t currentGrade)
 {
     m_statisticCount++;
     m_statisticGoodCount++;
@@ -70,7 +70,7 @@ void TestEntry::updateStatisticsRightAnswer(grade_t currentGrade)
     m_isUnseenQuestion = false;
 
     // Check if this is the first time the user is seeing this question (not practiced).
-    if (currentGrade == KV_NORM_GRADE) {
+    if (currentPreGrade == KV_NORM_GRADE && currentGrade == KV_NORM_GRADE) {
         m_isUnseenQuestion = true;
     }
 
@@ -87,7 +87,6 @@ void TestEntry::updateStatisticsRightAnswer(grade_t currentGrade)
             m_correctAtFirstAttempt = true;
         }
     }
-
 }
 
 bool TestEntry::changeGrades()
@@ -95,7 +94,7 @@ bool TestEntry::changeGrades()
     return m_changeGrades;
 }
 
-void TestEntry::updateStatisticsWrongAnswer(grade_t currentGrade)
+void TestEntry::updateStatisticsWrongAnswer(grade_t currentPreGrade, grade_t currentGrade)
 {
     m_statisticCount++;
     m_statisticBadCount++;
@@ -103,7 +102,7 @@ void TestEntry::updateStatisticsWrongAnswer(grade_t currentGrade)
     m_changeGrades = true;
     m_isUnseenQuestion = false;
 
-    if (currentGrade == KV_NORM_GRADE) {
+    if (currentPreGrade == KV_NORM_GRADE && currentGrade == KV_NORM_GRADE) {
 	m_isUnseenQuestion = true;
     }
 }
