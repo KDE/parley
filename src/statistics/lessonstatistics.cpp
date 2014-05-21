@@ -72,17 +72,20 @@ protected:
             // Intersect the QPainterPath of inner rectangle with outer,
             // so that the inner rectangle takes the shape of the outer rounded rectangle.
             QPainterPath barElementIntersectedPath = roundedPath.intersected(barElementPath);
-            // Display empty rectangle (white) for Grade 0 and color for others.
+            // Display empty rectangle (white) for grade 0 and color for others.
+            //
+            // 255 being the max alpha, ie the darkest shade. As
+            // grades become lower, the alpha value gets decremented
+            // by 35 for every decrement in grade by 1.  Here 7 =>
+            // No. of grades. 35 => arbitrary number for a good
+            // difference in alpha values for consecutive grades, also
+            // such that for grade 1, the alpha value isn't too low.
             QColor color = Prefs::gradeColor();
-            // 255 being the max alpha, ie the darkest shade. As grades become lower,
-            // the alpha value gets decremented by 35 for every decrement in grade by 1.
-            // Here 7 => No. of grades. 35 => arbitrary number for a good difference in alpha values for
-            // consecutive grades, also such that for grade 1, the alpha value isn't too low.
             color.setAlpha(255 - (7 - i) * 35);
-            if (i != 0) {
-                painter->setBrush(QBrush(color));
-            } else {
+            if (i == 0) {
                 painter->setBrush(QBrush(QColor(255, 255, 255, 0)));
+            } else {
+                painter->setBrush(QBrush(color));
             }
             painter->drawPath(barElementIntersectedPath);
         }

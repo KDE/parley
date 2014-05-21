@@ -109,7 +109,7 @@ void PracticeStateMachine::nextEntry()
     m_state = NotAnswered;
     m_current = m_sessionManager->nextTrainingEntry();
 
-    kDebug() << "GETTING ENTRY - " << m_current;
+    //kDebug() << "GETTING ENTRY - " << m_current;
 
     //after going through all words, or at the start of practice
     if (m_current == 0) {
@@ -138,7 +138,7 @@ void PracticeStateMachine::currentEntryFinished()
 
 void PracticeStateMachine::continueAction()
 {
-    kDebug() << "continue" << m_state;
+    //kDebug() << "continue" << m_state;
     switch (m_state) {
         // on continue, we check the answer, if in NotAnsweredState or AnswerWasWrongState
     case NotAnswered:
@@ -154,7 +154,7 @@ void PracticeStateMachine::continueAction()
 
 void PracticeStateMachine::answerRight()
 {
-    kDebug() << "ans right";
+    //kDebug() << "ans right";
 
     m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
     if (m_state == NotAnswered) {
@@ -169,14 +169,14 @@ void PracticeStateMachine::answerRight()
 
 void PracticeStateMachine::answerWrongRetry()
 {
-    kDebug() << "wrong retr";
+    //kDebug() << "wrong retr";
     m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
     m_state = AnswerWasWrong;
 }
 
 void PracticeStateMachine::answerWrongShowSolution()
 {
-    kDebug() << "wrong sol";
+    //kDebug() << "wrong sol";
     m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
     //User gave an empty answer or the same answer for a second time so we want to drop out.
     m_frontend->setResultState(AbstractFrontend::AnswerWrong);
@@ -186,7 +186,7 @@ void PracticeStateMachine::answerWrongShowSolution()
 
 void PracticeStateMachine::showSolution()
 {
-    kDebug() << "show solution";
+    //kDebug() << "show solution";
     m_state = SolutionShown;
     m_frontend->showSolution();
 }
@@ -256,7 +256,7 @@ void PracticeStateMachine::gradeEntryAndContinue()
         m_current->updateStatisticsWrongAnswer(currentPreGrade, currentGrade);
     }
 
-    kDebug() << "entry finished: " << m_frontend->resultState() << " change grades? " << m_current->changeGrades();
+    //kDebug() << "entry finished: " << m_frontend->resultState() << " change grades? " << m_current->changeGrades();
 
 #if 0
     // FIXME: We should have a discussion about which grade that new
