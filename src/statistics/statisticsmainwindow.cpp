@@ -53,7 +53,7 @@ StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindo
     setCentralWidget(mainWidget);
     m_ui = new Ui::StatisticsMainWindow;
     m_ui->setupUi(mainWidget);
-    //m_ui->caption->setText(i18nc("caption for an overview of the grades for a document"
+    //m_ui->caption->setText(i18nc("caption for an overview of the confidence levels for a document"
     //                             "Statistics for \"%1\"", m_doc->title()));
     m_statisticsModel = new StatisticsModel(this);
 

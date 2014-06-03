@@ -167,7 +167,7 @@ QVariant ContainerModel::headerData(int section, Qt::Orientation orientation, in
         switch (section) {
         case 0:
             if (role == Qt::DisplayRole) {
-                return i18n("Lesson");
+                return i18n("Unit");
             }
             break;
         case 1:

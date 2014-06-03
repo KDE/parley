@@ -24,7 +24,7 @@
       <default code="true">QChar('\t')</default>
     </entry>
     <entry name="EntriesPerLesson" type="Int">
-      <label>The number of entries per lesson</label>
+      <label>The number of entries per unit</label>
       <default>20</default>
     </entry>
     <entry name="AutoOpenLast" type="Bool">
@@ -47,7 +47,7 @@
       <default>15</default>
     </entry>
     <entry name="AutomaticTranslation" type="Bool">
-      <label>Enable automatic translation of the lesson entries.</label>
+      <label>Enable automatic translation of the unit entries.</label>
       <default>false</default>
     </entry>
   </group>
@@ -74,7 +74,7 @@
       <default>false</default>
     </entry>
     <entry name="TestOrderLesson" type="Bool">
-      <label>Append new vocabulary in a test in order of their lessons. Note that this will not be a hard transition, but a slow mix from one lesson to the next.</label>
+      <label>Append new vocabulary in a collection in order of their units. Note that this will not be a hard transition, but a slow mix from one unit to the next.</label>
       <default>true</default>
     </entry>
     <entry name="TestNumberOfEntries" type="Int">
@@ -195,12 +195,12 @@
     </entry>
 
     <entry name="ShowSublessonentries" type="Bool">
-      <label>When enabled a lesson also shows entries from its sublessons.</label>
+      <label>When enabled a unit also shows entries from its subunits.</label>
       <default>true</default>
     </entry>
 
     <entry name="TableLessonColumnVisible" type="Bool">
-      <label>Show/hide the lesson column.</label>
+      <label>Show/hide the unit column.</label>
       <default>false</default>
     </entry>
 
@@ -210,7 +210,7 @@
     </entry>
 
     <entry name="LessonEditingSelection" type="Enum">
-      <label>Select which lessons are displayed for editing</label>
+      <label>Select which units are displayed for editing</label>
       <choices>
         <choice name="CurrentLesson"/>
         <choice name="LessonsInQuery"/>
@@ -240,7 +240,7 @@
       <default>0</default>
     </entry>
     <entry name="GradeColor" type="Color" key="GradeColor">
-      <label>Color used to display the grades</label>
+      <label>Color used to display the confidence levels</label>
       <default>25, 140, 25</default>
     </entry>
   </group>
@@ -266,11 +266,11 @@
     </entry>
 
     <entry name="PracticeMinimumGrade" type="Int">
-      <label>The entry must have at least this grade to be included in the practice (0..7).</label>
+      <label>The entry must have at least this confidence level to be included in the practice (0..7).</label>
       <default>0</default>
     </entry>
     <entry name="PracticeMaximumGrade" type="Int">
-      <label>The entry must have at most this grade to be included in the practice (0..7).</label>
+      <label>The entry must have at most this confidence level to be included in the practice (0..7).</label>
       <default>7</default>
     </entry>
     <entry name="WordTypesInPracticeEnabled" type="Bool">
@@ -335,7 +335,7 @@
 
     <entry name="BlockItem$(Grade)" type="Int" key="BlockItem$(Grade)">
       <parameter name="Grade" type="Int" max="7"/>
-      <label>Amount of time different grades should be blocked</label>
+      <label>Amount of time different confidence levels should be blocked</label>
       <default param="1">86400</default>
       <default param="2">172800</default>
       <default param="3">345600</default>
@@ -346,7 +346,7 @@
     </entry>
     <entry name="ExpireItem$(Grade)" type="Int" key="ExpireItem$(Grade)">
       <parameter name="Grade" type="Int" max="7"/>
-      <label>Amount of time after which different grades should expire</label>
+      <label>Amount of time after which different confidence levels should expire</label>
       <default param="1">172800</default>
       <default param="2">345600</default>
       <default param="3">604800</default>

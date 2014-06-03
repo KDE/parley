@@ -472,7 +472,7 @@ void AnswerValidatorOld::sentenceAnalysis()
     int levenshtein = levenshteinDistance(m_solution, m_userAnswer);
 
     kDebug() << correction;
-    kDebug() << "IMPLEMENT ME TO ACTUALLY EVALUATE THE ABOVE AND GENERATE A GRADE!";
+    kDebug() << "IMPLEMENT ME TO ACTUALLY EVALUATE THE ABOVE AND GENERATE A CONFIDENCE!";
     m_entry->setLastPercentage(1.0 - ((double)levenshtein / qMax(m_solution.length(), m_userAnswer.length())));
     m_entry->setLastErrors(TestEntry::UnknownMistake);
 }

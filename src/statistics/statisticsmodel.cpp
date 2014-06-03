@@ -28,7 +28,7 @@ QVariant StatisticsModel::headerData(int section, Qt::Orientation orientation, i
 {
     if (section >= 2) {
         if (role == Qt::DisplayRole) {
-            return i18nc("Grade in language, table header", "Grade (%1)", m_doc->identifier(section - 2).name());
+            return i18nc("Confidence level in language, table header", "Confidence (%1)", m_doc->identifier(section - 2).name());
         }
     }
     return ContainerModel::headerData(section, orientation, role);

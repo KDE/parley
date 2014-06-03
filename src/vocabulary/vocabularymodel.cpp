@@ -325,7 +325,7 @@ QModelIndex VocabularyModel::appendEntry(KEduVocExpression *expression)
     }
 
     if (!m_lesson || !m_lesson->parent()) {
-        KMessageBox::information(0, i18n("Select a lesson before adding vocabulary."), i18n("No Lesson Selected"));
+        KMessageBox::information(0, i18n("Select a unit before adding vocabulary."), i18n("No Unit Selected"));
         delete expression;
         return QModelIndex();
     }

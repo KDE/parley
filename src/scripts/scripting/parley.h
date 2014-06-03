@@ -110,8 +110,8 @@ Parley.connect(action1,"triggered()",moveSelectedToNewLesson)
 
 
 #create a new action for the Scripts menu (action2)
-action2 = Parley.newAction("example_action2","Mark as known (highest grade)")
-action2.statusTip="Sets the grade selected translations to 7 (highest grade)"
+action2 = Parley.newAction("example_action2","Mark as known (highest level)")
+action2.statusTip="Sets the confidence level selected translations to 7 (highest level)"
 Parley.connect(action2,"triggered()",markAsKnown)
 @endcode
  *

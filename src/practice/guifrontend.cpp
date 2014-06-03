@@ -126,7 +126,7 @@ void GuiFrontend::setMode(Mode mode)
 
 void GuiFrontend::setLessonName(const QString& lessonName)
 {
-    m_ui->lessonLabel->setText(i18nc("Display of the current lesson during practice", "Lesson: %1",
+    m_ui->lessonLabel->setText(i18nc("Display of the current unit during practice", "Unit: %1",
                                      lessonName));
 }
 

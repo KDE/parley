@@ -264,7 +264,7 @@ void EntryFilter::expireEntries(int setNo)
                 counter++;
             }
         }
-        kDebug() << "Expired words dropped their grade: " << counter;
+        kDebug() << "Expired words dropped their confidence: " << counter;
     }
 }
 
@@ -491,7 +491,7 @@ void EntryFilter::minMaxGradeEntries(int setNo)
 }
 
    if ( removeTestEntryList.count() == m_entries.count() ) {
-   if ( KMessageBox::questionYesNo(0, i18n("<p>The lessons you selected for the practice contain no entries when the threshold settings are respected.</p><p>Hint: To configure the thresholds use the \"Threshold Page\" in the \"Configure Practice\" dialog.</p><p>Would you like to ignore the threshold setting?</p>"), i18n("No Entries with Current Threshold Settings") ) == KMessageBox::No ) {
+   if ( KMessageBox::questionYesNo(0, i18n("<p>The units you selected for the practice contain no entries when the threshold settings are respected.</p><p>Hint: To configure the thresholds use the \"Threshold Page\" in the \"Configure Practice\" dialog.</p><p>Would you like to ignore the threshold setting?</p>"), i18n("No Entries with Current Threshold Settings") ) == KMessageBox::No ) {
    return;
 }
 

@@ -118,23 +118,23 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
         break;
     case RemoveGrades:
         pAction = Private::createCustomAction(recvr, slot, parent,
-                                              "vocab_remove_grades", i18n("Remove Grades"),
-                                              i18n("Remove all grades from the current document"), "edit-clear");
+                                              "vocab_remove_grades", i18n("Remove Confidence Levels"),
+                                              i18n("Remove all confidence levels from the current document"), "edit-clear");
         break;
     case CheckSpelling:
         pAction = KStandardAction::spelling(recvr, slot, parent);
         break;
     case ToggleShowSublessons:
         pAction = Private::createCustomAction(recvr, slot, parent,
-                                              "lesson_showsublessonentries", i18n("Show Entries from Child Lessons"),
-                                              i18n("Enable to also see the entries of child lessons in each lesson."),
+                                              "lesson_showsublessonentries", i18n("Show Entries from Child Units"),
+                                              i18n("Enable to also see the entries of child units in each unit."),
                                               QString(), true);
         pAction->setChecked(Prefs::showSublessonentries());
         break;
     case AutomaticTranslation:
         pAction = Private::createCustomAction(recvr, slot, parent,
                                               "lesson_automatictranslation", i18n("Automatic Translation"),
-                                              i18n("Enable automatic translation of the lesson entries."),
+                                              i18n("Enable automatic translation of the unit entries."),
                                               QString(), true);
         pAction->setChecked(Prefs::automaticTranslation());
         break;

@@ -179,9 +179,9 @@ LessonStatisticsView::LessonStatisticsView(QWidget *parent)
 
     // inherits context menu policy - so action will show up in right click menu
     KAction *removeGradesAction = new KAction(this);
-    removeGradesAction->setText(i18n("Remove &Grades from this lesson"));
+    removeGradesAction->setText(i18n("Remove confidence levels from this unit"));
     removeGradesAction->setIcon(KIcon("edit-clear"));
-    removeGradesAction->setWhatsThis(i18n("Remove grades from this lesson"));
+    removeGradesAction->setWhatsThis(i18n("Remove confidence levels from this unit"));
     removeGradesAction->setToolTip(removeGradesAction->whatsThis());
     removeGradesAction->setStatusTip(removeGradesAction->whatsThis());
 
@@ -189,9 +189,9 @@ LessonStatisticsView::LessonStatisticsView(QWidget *parent)
     addAction(removeGradesAction);
 
     KAction *removeGradesChildrenAction = new KAction(this);
-    removeGradesChildrenAction->setText(i18n("Remove &Grades from this lesson and all sub-lessons"));
+    removeGradesChildrenAction->setText(i18n("Remove confidence levels from this unit and all sub-units"));
     removeGradesChildrenAction->setIcon(KIcon("edit-clear"));
-    removeGradesChildrenAction->setWhatsThis(i18n("Remove grades from this lesson and all sub-lessons"));
+    removeGradesChildrenAction->setWhatsThis(i18n("Remove confidence level from this unit and all sub-units"));
     removeGradesChildrenAction->setToolTip(removeGradesChildrenAction->whatsThis());
     removeGradesChildrenAction->setStatusTip(removeGradesChildrenAction->whatsThis());
 
