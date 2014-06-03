@@ -112,16 +112,16 @@ Before the 4.14 freeze (features).  These are picked from the ones below.
       See thaipod101.com for this.
 
  * Usability
-    + Set language you are learning and languages you know instead of
+    + Set language you are learning and languages you know instead of   Done
       language to language.
-    + Disable those practice modes in the GUI that are not supported
+    + Disable those practice modes in the GUI that are not supported    ----
       by the data in the selected lessons. This would be better than
       having all of them enabled and popping up a big warning dialog
       when the user starts the practice.
-    + Bigger default font for practice contents
+    + Bigger default font for practice contents                         ----
 
  * Practice
-    + Extended Leitner box method -OR- move to time based card          ----
+    + Extended Leitner box method -OR- move to time based card          Done
       selection.
 
       The Leitner box system that is currently implemented is not very
@@ -136,7 +136,7 @@ Before the 4.14 freeze (features).  These are picked from the ones below.
       leitner boxes are trying to emulate anyway).
       thaipod101.com uses this system and it works very well.
 
-    + Sessions.  A session is a byte sized part of a lesson containing  ----
+    + Sessions.  A session is a byte sized part of a lesson containing  Done
       maybe 10-20 questions. It is automatically generated when the
       user starts to practice a lesson and is never saved anywhere.
       The reason we want this is that you will get a greater sense of
@@ -145,7 +145,7 @@ Before the 4.14 freeze (features).  These are picked from the ones below.
       limit the number of new words in each session (5?).
       See thaipod101.com for this.
 
-    + Mixed mode in all practice methods.                               ----
+    + Mixed mode in all practice methods.                               Done
       This means that not just one direction is practiced, but
       known->learning, learning->known and maybe even sound of
       learning -> known
@@ -157,9 +157,9 @@ Before the 4.14 freeze (features).  These are picked from the ones below.
       into another parley or something else. Also support paste into
       lessons of a group of words.
     + Smaller issues                                                    ----
-       - Buttons to open/close all lessons (wish in bugzilla)           ----
-       - Button to remove all empty lines.
-       - Button (menu entry) to check for duplicates
+       - Buttons to open/close all lessons (wish in bugzilla)           done
+       - Button to remove all empty lines.                              ----
+       - Button (menu entry) to check for duplicates                    ----
     + Always keep the primary (to be learned) language visible?
 
  * File formats
