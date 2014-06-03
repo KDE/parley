@@ -46,7 +46,7 @@
       <Action name="config_show_search" />
   </Menu>
   <Menu name="lesson" >
-   <text>&amp;Lesson</text>
+   <text>&amp;Unit</text>
    <Action name="new_lesson" />
    <Action name="rename_lesson" />
    <Action name="delete_lesson" />
