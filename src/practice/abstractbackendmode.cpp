@@ -81,19 +81,33 @@ void Practice::AbstractBackendMode::updateGrade(KEduVocText &text, bool isCorrec
     if (isCorrectAnswer) {
         if (hasNoPreviousBadAnswers) {
             if (text.grade() == KV_NORM_GRADE) {
-                if (text.preGrade() == KV_MAX_GRADE) {
+                if (text.preGrade()  == KV_NORM_GRADE) {
+                    // If the word was new and correct answer, then
+                    // set it to grade, pregrade 2, 0.  This is so
+                    // that the user doesn't have to go through all
+                    // the pregrade levels with words that s/he
+                    // already knows well.
+                    text.setPreGrade(KV_NORM_GRADE);
+                    text.setGrade(KV_LEV2_GRADE);
+                }
+                else if (text.preGrade() == KV_MAX_GRADE) {
+                    // If correct answer and last pregrade level, then
+                    // set new grade, pregrade to 1, 0.
                     text.setPreGrade(KV_NORM_GRADE);
                     text.setGrade(KV_LEV1_GRADE);
                 }
                 else {
-                    text.setPreGrade(text.preGrade() + 1); // FIXME: Implement incPreGrade()
+                    // otherwise just increase the pregrade.
+                    text.setPreGrade(text.preGrade() + 1); // FIXME: Implement incPreGrade() in the library.
                 }
             }
             else {
+                // If grade was > 0 then just increase it.
                 text.incGrade();
             }
         }
     } else {
+        // If the answer was wrong, reset the grade, pregrade to 0, 1.
         text.setPreGrade(KV_LEV1_GRADE);
         text.setGrade(KV_NORM_GRADE);
         text.incBadCount();
