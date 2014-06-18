@@ -43,7 +43,7 @@ private:
     void setLanguage(int translation);
 
     /** Simple check if the words are the same */
-    bool isCorrect(const QString& answer);
+    bool isCorrect(const QString& correct, const QString& answer);
 
     /** Check if the answer is a synonym of the testentry
       *  also check for capitalization mistakes and accent mistakes

@@ -273,7 +273,7 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
 
             // FIXME: Use trainingmode2 also here!
             if (isValidMultipleChoiceAnswer(exp)) {
-                choices.append(exp->translation(m_learningLanguageIndex)->text());
+                choices.append(exp->translation(currentEntry->languageTo())->text());
             }
         }
     } else {
@@ -298,11 +298,11 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
 
         // FIXME: Use trainingmode2 too here
         for (int i = 0; i < exprlist.count(); i++) {
-            choices.append(exprlist[i]->translation(m_learningLanguageIndex)->text());
+            choices.append(exprlist[i]->translation(currentEntry->languageTo())->text());
         }
     }
 
-    kDebug() << "choices:" << choices;
+    kDebug() << "choices:" << choices << " answerLang = " << currentEntry->languageTo() ;
     return choices;
 }
 
@@ -331,4 +331,3 @@ bool SessionManagerBase::isValidMultipleChoiceAnswer(KEduVocExpression *e)
 
     return true;
 }
-
