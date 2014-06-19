@@ -42,4 +42,4 @@ endif(HAVE_LIBXSLT)
 
 add_subdirectory(plasmoid)
 
-
+install(FILES parley.appdata.xml DESTINATION ${SHARE_INSTALL_PREFIX}/appdata/)
