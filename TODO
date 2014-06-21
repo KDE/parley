@@ -49,7 +49,7 @@ NOTE:  DO NOT CHANGE THESE HERE.
  * Normal bugzilla bugs
     + Vocabulary does not expire                                        ----
       https://bugs.kde.org/show_bug.cgi?id=261396
-    + Synonyms are not checked case-insensitively
+    + Synonyms are not checked case-insensitively                       ----
       https://bugs.kde.org/show_bug.cgi?id=302733
     + Making two words synonyms does not mark file as modified          Done
       https://bugs.kde.org/show_bug.cgi?id=246198
@@ -59,13 +59,7 @@ NOTE:  DO NOT CHANGE THESE HERE.
       https://bugs.kde.org/show_bug.cgi?id=312995
 
  * Bugs without a bugzilla bug
-    + If a card only has a translation, i.e. no word in the             Done
-      from language, the word in the card is not cleared during
-      practice. Instead, the last word is shown.
-      (Bug in entryfilter: if ther is no from word or image it should
-      be removed from the training.)
-    + The legend doesn't show white, i.e actually not practiced.        Done
-    + The legend overlaps the table headers                             Done
+    +...
 
  * Release work
     + Update the version! (To what?)
@@ -84,6 +78,10 @@ Before the 4.14 freeze (features).  These are picked from the ones below.
        - Milestone 2: Configurable values                               Done
        - Milestone 3: Nice summary before the start                     ----
     + Mixed mode. For details see below                                 ----
+       - Mixed mode working in general                                  Done
+       - Statistics updated for mixed mode                              ----
+    + Dashboard
+
 
  * Wishes from bugzilla
     + 
@@ -171,6 +169,7 @@ Before the 4.14 freeze (features).  These are picked from the ones below.
        - Allow one image for a whole entry, not just for a word.        ----
          After all, all the translations in an entry mean the same thing.
        - Field for transcription of non-western scripts                 ----
+       - pregrades for the phase before grade 1                         Done
 
 
 ================================================================
