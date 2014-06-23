@@ -32,6 +32,7 @@ class StatisticsMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
+
     StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindow* parent);
     ~StatisticsMainWindow();
 

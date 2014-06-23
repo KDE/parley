@@ -223,9 +223,26 @@ void StatisticsMainWindow::practiceDirectionChanged(int mode)
 
 void StatisticsMainWindow::updateVisibleColumns()
 {
-    int learningLanguage = Prefs::learningLanguage();
-    for (int i = 2; i < m_ui->lessonStatistics->header()->count(); i++) {
-        m_ui->lessonStatistics->setColumnHidden(i, (i - 2) != learningLanguage);
+    bool isHidden;
+    for (int i = ContainerModel::FirstDataColumn; i < m_ui->lessonStatistics->header()->count(); i++) {
+        int iLang = i - ContainerModel::FirstDataColumn;
+
+        switch (Prefs::practiceDirection()) {
+        case Prefs::EnumPracticeDirection::LearningToKnown:
+            isHidden = iLang != Prefs::knownLanguage();
+            break;
+        case Prefs::EnumPracticeDirection::MixedDirectionsWordsOnly:
+        case Prefs::EnumPracticeDirection::MixedDirectionsWithSound:
+            isHidden = iLang != Prefs::knownLanguage() && iLang !=  Prefs::learningLanguage();
+            break;
+        case Prefs::EnumPracticeDirection::KnownToLearning:
+        // Use KnownToLearning as default.
+        default:
+            isHidden = iLang != Prefs::learningLanguage();
+            break;
+        }
+
+        m_ui->lessonStatistics->setColumnHidden(i, isHidden);
     }
 }
 

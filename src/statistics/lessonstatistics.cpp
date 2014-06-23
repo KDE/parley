@@ -115,7 +115,25 @@ protected:
         const int gradeBarWidth = 40;
         const int alphaValueIncrement = 35;
 
-        if (logicalIndex >= 2) {
+        int iFirstUsedDataColumn;
+
+        switch (Prefs::practiceDirection()) {
+        case Prefs::EnumPracticeDirection::LearningToKnown:
+            iFirstUsedDataColumn = Prefs::knownLanguage();
+            break;
+        case Prefs::EnumPracticeDirection::MixedDirectionsWordsOnly:
+        case Prefs::EnumPracticeDirection::MixedDirectionsWithSound:
+            iFirstUsedDataColumn = qMax( Prefs::knownLanguage(),  Prefs::learningLanguage() );
+            break;
+        case Prefs::EnumPracticeDirection::KnownToLearning:
+        // Use KnownToLearning as default.
+        default:
+            iFirstUsedDataColumn = Prefs::learningLanguage();
+            break;
+        }
+        iFirstUsedDataColumn += ContainerModel::FirstDataColumn;
+
+        if (logicalIndex == iFirstUsedDataColumn) {
             QRect roundedRect(rect.x() + legendOffsetX, rect.y() + legendOffsetY, legendWidth, legendHeight);
             roundedRect.adjust(1, 1, -1, -1);
             QPainterPath roundedPath;
@@ -203,7 +221,7 @@ void LessonStatisticsView::setModel(Editor::ContainerModel *model)
 {
     ContainerView::setModel(model);
     GradeDelegate *delegate = new GradeDelegate(this);
-    for (int i = 2; i < model->columnCount(QModelIndex()); i++) {
+    for (int i = ContainerModel::FirstDataColumn; i < model->columnCount(QModelIndex()); i++) {
         setItemDelegateForColumn(i, delegate);
         setColumnWidth(i, 150);
     }
@@ -227,5 +245,3 @@ void LessonStatisticsView::removeGradesChildren()
 }
 
 #include "lessonstatistics.moc"
-
-
