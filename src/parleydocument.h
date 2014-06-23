@@ -59,7 +59,12 @@ public slots:
 
     /** Opens the given url, displays an error message and returns false on failure */
     bool open(const KUrl &);
+
+    /** close the document*/
     void close();
+    /** When quitting, ask for confirmation if the doc has not been saved */
+    bool queryClose();
+
 
     /** merge a document */
     void slotFileMerge();
@@ -81,6 +86,13 @@ signals:
     void statesNeedSaving();
 
 private:
+    /** Creates a default document when one is requested but none exists.
+     *
+     * It will overwrite an existing document.  It is necessary because
+     * document() hands out the pointer to the document and some other
+     * classes have no failure mechanism/check if document() returns NULL
+     */
+    void defaultDocument();
     void initializeDefaultGrammar(KEduVocDocument *doc);
     void setDefaultDocumentProperties(KEduVocDocument *doc);
 

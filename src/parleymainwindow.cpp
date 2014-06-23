@@ -188,30 +188,7 @@ void ParleyMainWindow::practiceFinished()
 
 bool ParleyMainWindow::queryClose()
 {
-    if (!m_document->document() || !m_document->document()->isModified()) {
-        return true;
-    }
-    saveOptions();
-
-    bool save = Prefs::autoSave(); //save without asking
-
-    if (!save) {
-        int exit = KMessageBox::warningYesNoCancel(this, i18n("Vocabulary is modified.\n\nSave file before exit?\n"),
-                   "", KStandardGuiItem::save(), KStandardGuiItem::discard());
-        if (exit == KMessageBox::Yes) {
-            save = true;   // save and exit
-        } else if (exit == KMessageBox::No) {
-            save = false;  // don't save but exit
-        } else {
-            return false;  // continue work
-        }
-    }
-
-    if (save) {
-        m_document->save();       // save and exit
-        m_document->document()->setModified(false);
-    }
-    return true;
+    return m_document->queryClose();
 }
 
 QSize ParleyMainWindow::sizeHint() const
