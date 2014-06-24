@@ -287,7 +287,7 @@ void ParleyMainWindow::switchComponent(Component component)
         WelcomeScreen *welcome = new WelcomeScreen(this);
         m_currentComponentWindow = welcome;
         showDocumentActions(true, false);
-        welcome->updateRecentFilesModel();
+        //welcome->updateRecentFilesModel();
         break;
     }
     case ConfigurePracticeComponent: {

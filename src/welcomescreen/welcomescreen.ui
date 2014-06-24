@@ -21,28 +21,7 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="KPushButton" name="newButton">
-     <property name="text">
-      <string>Create a New Collection</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="KPushButton" name="openButton">
-     <property name="text">
-      <string>Open an Existing Collection</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
-    <widget class="KPushButton" name="ghnsButton">
-     <property name="text">
-      <string>Download New Collections</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0" colspan="2">
+   <item row="1" column="0" colspan="2">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -53,19 +32,74 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>5</height>
+       <height>25</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QLabel" name="recentLabel">
+     <property name="text">
+      <string>Active Collections</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>25</height>
       </size>
      </property>
     </spacer>
    </item>
    <item row="6" column="0" colspan="2">
-    <widget class="QLabel" name="recentLabel">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>25</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="7" column="0" colspan="2">
+    <widget class="QLabel" name="completedLabel">
      <property name="text">
-      <string>Last Opened Collections</string>
+      <string>Completed Collections</string>
      </property>
     </widget>
    </item>
-   <item row="7" column="0" colspan="2">
+   <item row="8" column="0" colspan="2">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>25</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="10" column="0" colspan="2">
     <widget class="QListView" name="recentFiles">
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
@@ -75,6 +109,27 @@
        <width>32</width>
        <height>32</height>
       </size>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="1">
+    <widget class="KPushButton" name="newButton">
+     <property name="text">
+      <string>Create a New Collection</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="2">
+    <widget class="KPushButton" name="openButton">
+     <property name="text">
+      <string>Open an Existing Collection</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="3">
+    <widget class="KPushButton" name="ghnsButton">
+     <property name="text">
+      <string>Download New Collections</string>
      </property>
     </widget>
    </item>

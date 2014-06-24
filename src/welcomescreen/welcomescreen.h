@@ -15,8 +15,12 @@
 #define WELCOMESCREEN_H
 
 #include "ui_welcomescreen.h"
+#include "statistics/statisticsmainwindow.h"
 
 #include <KXmlGuiWindow>
+#include <QSignalMapper>
+
+static const int N = 50;
 
 class ParleyMainWindow;
 class KUrl;
@@ -34,13 +38,17 @@ class WelcomeScreen : public KXmlGuiWindow
 public:
     WelcomeScreen(ParleyMainWindow *parent);
     ~WelcomeScreen();
+    int randInt(int low, int high);
 
 public slots:
     void slotOpenUrl(const KUrl& url);
     void slotPracticeUrl(const KUrl& url);
-    void slotDoubleClicked(const QModelIndex& index);
+    //void slotDoubleClicked(const QModelIndex& index);
     void slotDoubleClickOpen();
-    void updateRecentFilesModel();
+    //void updateRecentFilesModel();
+    void populateGrid();
+    void slotPracticeButtonClicked(const QString& urlString);
+    void statisticsHandler(KUrl url);
 
 private slots:
     void setTheme();
@@ -55,6 +63,15 @@ private:
     KUrl m_openUrl;
     Practice::ThemedBackgroundRenderer *m_themedBackgroundRenderer;
     Practice::ImageWidget* m_widget;
+    QGridLayout *m_subGridLayout;
+    QGridLayout *m_completedGridLayout;
+    QLabel *nameLabel[N];
+    QWidget *wordCloud[N];
+    QPushButton *practiceButton[N];
+    QSignalMapper *signalMapper;
+    KUrl urlArray[N];
+    StatisticsMainWindow *statisticsWidget;
+    int m_count;
 };
 
 #endif
