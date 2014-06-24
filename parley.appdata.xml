@@ -4,6 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>Parley</name>
+  <name xml:lang="cs">Parley</name>
   <name xml:lang="fi">Parley</name>
   <name xml:lang="nds">Parley</name>
   <name xml:lang="nl">Parley</name>
@@ -14,6 +15,7 @@
   <name xml:lang="uk">Parley</name>
   <name xml:lang="x-test">xxParleyxx</name>
   <summary>Vocabulary Trainer</summary>
+  <summary xml:lang="cs">Učitel slovní zásoby</summary>
   <summary xml:lang="fi">Sanaston harjoitusohjelma</summary>
   <summary xml:lang="nds">Vokaveln lehren</summary>
   <summary xml:lang="nl">Woordjes oefenen</summary>
@@ -44,6 +46,7 @@
     <p xml:lang="x-test">xxTraining Modes:xx</p>
     <ul>
       <li>Flash Cards</li>
+      <li xml:lang="cs">Kartičky</li>
       <li xml:lang="nds">Naslakoorten</li>
       <li xml:lang="nl">Oefenkaarten</li>
       <li xml:lang="pt">Cartões</li>
@@ -62,6 +65,7 @@
       <li xml:lang="uk">Відновлення порядку літер (різновид анаграми).</li>
       <li xml:lang="x-test">xxMixed Letters (order the letters of a word)xx</li>
       <li>Multiple Choice</li>
+      <li xml:lang="cs">S nabídkou možností</li>
       <li xml:lang="nds">Mehrfachköör</li>
       <li xml:lang="nl">Meerkeuze</li>
       <li xml:lang="pt">Escolha Múltipla</li>
@@ -80,6 +84,8 @@
       <li xml:lang="uk">Письмовий.</li>
       <li xml:lang="x-test">xxWrittenxx</li>
       <li>Language specific trainings: article, comparison forms, conjugations, synonymes/antonyms/paraphrases</li>
+      <li xml:lang="nds">Besünner Spraaklexen: Artikeln, Stiegformen, Böögformen, Liekwöör, Güntwöör, Ümschrieven</li>
+      <li xml:lang="nl">Taaleigen oefeningen: lidwoorden, vergelijkingen, vervoegingen, synoniemen/antoniemen/paragrafen</li>
       <li xml:lang="pt">Treinos específicos da língua: artigos, formas de comparação, conjugações, sinónimos/antónimos/parágrafos</li>
       <li xml:lang="pt-BR">Treinamentos específicos de idioma: artigo, formas de comparação, conjugações, sinônimos/antônimos/paráfrases</li>
       <li xml:lang="sk">Tréning závislý na jazyku: článok, porovnanie foriem, konjugácie, synonymá/antonymá/odseky</li>
