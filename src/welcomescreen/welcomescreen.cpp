@@ -17,11 +17,162 @@
 #include "parleydocument.h"
 #include "practice/themedbackgroundrenderer.h"
 #include "practice/imagewidget.h"
-
+#include "statistics/statisticsmainwindow.h"
+#include "statistics/statisticsmodel.h"
+#include <QSignalMapper>
 #include <KMimeType>
 
 #include <QStandardItemModel>
 #include <QTimer>
+#include <QTime>
+#include <QDebug>
+
+#include <QtGui>
+#include <Qt>
+
+QColor gradeColor[11];
+
+class GradeReferenceWidget : public QWidget
+{
+public:
+    GradeReferenceWidget();
+
+protected:
+    void paintEvent(QPaintEvent *);
+
+};
+
+GradeReferenceWidget::GradeReferenceWidget()
+{
+}
+
+void GradeReferenceWidget::paintEvent(QPaintEvent *)
+{
+    QPainter painter(this);
+    const int legendWidth = this->width();
+    const int legendHeight = this->height();
+    const int legendOffsetY = 0;
+    const int legendOffsetX = (this->width() / 2) - (legendWidth / 2);;
+    const int gradeBarWidth = this->width()/8;
+    const int alphaValueIncrement = 35;
+    QRect roundedRect(0 + legendOffsetX, 0 + legendOffsetY, legendWidth, legendHeight);
+    roundedRect.adjust(1, 1, -1, -1);
+    QPainterPath roundedPath;
+    roundedPath.addRoundedRect(roundedRect, 2.0, 2.0);
+    for (int i = 7; i >= 0; i--) {
+        QRectF barElement(0 + legendOffsetX + (7 - i) * gradeBarWidth, 0 + legendOffsetY, gradeBarWidth, legendHeight);
+        QPainterPath barElementPath;
+        barElementPath.addRect(barElement);
+        QPainterPath barElementIntersectedPath = roundedPath.intersected(barElementPath);
+        QColor color = gradeColor[i];
+        painter.setBrush(QBrush(color));
+        painter.drawPath(barElementIntersectedPath);
+    }
+}
+
+
+class BarWidget : public QWidget
+{
+public:
+    BarWidget();
+    BarWidget(int [], int, int);
+
+protected:
+    void paintEvent(QPaintEvent *);
+
+private:
+    int dueWords[8];
+    int totalDueWords;
+    int percentageCompleted;
+};
+
+BarWidget::BarWidget()
+{
+
+}
+
+BarWidget::BarWidget(int dueWords[], int totalDueWords, int percentageCompleted)
+{
+    QPalette palette(BarWidget::palette());
+    palette.setColor(backgroundRole(), Qt::white);
+    setPalette(palette);
+    for (int i = 0; i < 8; i++) {
+        this->dueWords[i] = dueWords[i];
+    }
+    this->totalDueWords = totalDueWords;
+    this->percentageCompleted = percentageCompleted;
+}
+
+void BarWidget::paintEvent(QPaintEvent *)
+{
+    QPainter painter(this);
+    const int legendWidth = 160;
+    const int legendHeight = 20;
+    const int legendOffsetY = 0;
+    const int legendOffsetX = 0;
+    const int alphaValueIncrement = 35;
+
+    int gradeBarWidth[9];
+    gradeBarWidth[8] = 0;
+    int gradeBarOffset[9];
+    gradeBarOffset[8] = 0;
+    if (percentageCompleted < 100) {
+        for(int j = 7; j >= 0; j--) {
+            gradeBarWidth[j] = (float)(dueWords[j]) / (float)(totalDueWords) * legendWidth;
+            gradeBarOffset[j] = gradeBarOffset[j+1] + gradeBarWidth[j+1];
+        }
+    }
+    else {
+        for(int j = 6; j >= 0; j--) {
+            gradeBarWidth[j] = 0;
+            gradeBarOffset[j] = 160;
+        }
+        gradeBarWidth[7] = 160;
+        gradeBarOffset[7] = 0;
+    }
+    if (percentageCompleted < 100 && totalDueWords == 0) {
+        for(int j = 6; j >= 0; j--) {
+            gradeBarWidth[j] = 0;
+            gradeBarOffset[j] = 160;
+        }
+        gradeBarWidth[7] = 160;
+        gradeBarOffset[7] = 0;
+    }
+    QRect roundedRect(0, 0, legendWidth, legendHeight);
+    roundedRect.adjust(1, 1, -1, -1);
+    QPainterPath roundedPath;
+    roundedPath.addRoundedRect(roundedRect, 8.0, 8.0);
+
+    for (int i = 7; i >= 0; i--) {
+        QRectF barElement(0 + legendOffsetX + gradeBarOffset[i], 0 + legendOffsetY, gradeBarWidth[i], legendHeight);
+        QPainterPath barElementPath;
+        barElementPath.addRect(barElement);
+        QPainterPath barElementIntersectedPath = roundedPath.intersected(barElementPath);
+        QColor color;
+        if (totalDueWords == 0 && percentageCompleted < 100) {
+            color = QColor(0, 0, 0, 128);
+        }
+        else {
+            color = gradeColor[i];
+        }
+        painter.setBrush(QBrush(color));
+        painter.drawPath(barElementIntersectedPath);
+    }
+    QPen pen(QColor(255,255,255));
+    painter.setPen(pen);
+    if (percentageCompleted < 100) {
+        painter.drawText(0, 0, 160, 20, Qt::AlignCenter, QString::number(totalDueWords) + " due words");
+    }
+    else {
+        painter.drawText(0, 0, 160, 20, Qt::AlignCenter, "Fully learned");
+    }
+}
+
+int WelcomeScreen::randInt(int low, int high)
+{
+    // Random number between low and high
+    return qrand() % ((high + 1) - low) + low;
+}
 
 WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     : KXmlGuiWindow(parent)
@@ -39,34 +190,53 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     ui = new Ui::WelcomeScreen();
     ui->setupUi(m_widget);
     setCentralWidget(m_widget);
+    signalMapper = new QSignalMapper(this);
+
+    gradeColor[0] = QColor(25,38,41);
+    gradeColor[1] = QColor(25,38,41,64);// Need 8 colors, so find a suitable color for this grade, currently gray.
+    gradeColor[2] = QColor(237,21,21);
+    gradeColor[3] = QColor(246,116,0);
+    gradeColor[4] = QColor(201,206,59);
+    gradeColor[5] = QColor(28,220,154);
+    gradeColor[6] = QColor(17,209,22);
+    gradeColor[7] = QColor(61,174,253);
+    gradeColor[8] = QColor(255,221,217);//These two are placeholders for the wordcloud background color.
+    gradeColor[9] = QColor(238,232,213);//
+
+    QTime time = QTime::currentTime();
+    qsrand((uint)time.msec());
 
     QFont font = ui->recentLabel->font();
     font.setBold(true);
     ui->recentLabel->setFont(font);
+    font = ui->completedLabel->font();
+    font.setBold(true);
+    ui->completedLabel->setFont(font);
 
     ui->newButton->setIcon(KIcon("document-new"));
     ui->openButton->setIcon(KIcon("document-open"));
     ui->ghnsButton->setIcon(KIcon("get-hot-new-stuff"));
+    GradeReferenceWidget *gradeReferenceWidget = new GradeReferenceWidget();
+    gradeReferenceWidget->setMinimumSize(m_widget->width(),50);
+    ui->gridLayout->addWidget(gradeReferenceWidget, 2, 0, 1, 6, Qt::AlignCenter);
 
-    m_recentFilesModel = new QStandardItemModel(this);
-    updateRecentFilesModel();
-    ui->recentFiles->setModel(m_recentFilesModel);
-    ui->recentFiles->setSelectionMode(QAbstractItemView::NoSelection);
+    m_subGridLayout = new QGridLayout();
+    m_subGridLayout->setHorizontalSpacing(50);
+    m_subGridLayout->setVerticalSpacing(30);
+    ui->gridLayout->addLayout(m_subGridLayout, 5, 0);
+    m_completedGridLayout = new QGridLayout();
+    m_completedGridLayout->setHorizontalSpacing(50);
+    m_completedGridLayout->setVerticalSpacing(30);
+    ui->gridLayout->addLayout(m_completedGridLayout, 9, 0);
 
-    ButtonDelegate* delegate = new ButtonDelegate(ui->recentFiles, this);
-    ui->recentFiles->setItemDelegate(delegate);
+    populateGrid();
 
     ParleyDocument* doc = m_mainWindow->parleyDocument();
     connect(ui->newButton, SIGNAL(clicked()), doc, SLOT(slotFileNew()));
     connect(ui->openButton, SIGNAL(clicked()), doc, SLOT(slotFileOpen()));
     connect(ui->ghnsButton, SIGNAL(clicked()), doc, SLOT(slotGHNS()));
-    if (KGlobalSettings::singleClick()) {
-        connect(ui->recentFiles, SIGNAL(clicked(const QModelIndex&)), this, SLOT(slotDoubleClicked(const QModelIndex&)));
-    } else {
-        connect(ui->recentFiles, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(slotDoubleClicked(const QModelIndex&)));
-    }
 
-    connect(m_mainWindow, SIGNAL(recentFilesChanged()), this, SLOT(updateRecentFilesModel()));
+    connect(signalMapper, SIGNAL(mapped(const QString &)), this, SLOT(slotPracticeButtonClicked(const QString &)));
 
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
@@ -78,6 +248,10 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
 
     connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)), this, SLOT(backgroundChanged(QPixmap)));
     connect(m_widget, SIGNAL(sizeChanged()), this, SLOT(updateBackground()));
+
+    /*statisticsWidget = new StatisticsMainWindow(m_mainWindow->parleyDocument()->document(), m_mainWindow);
+    for (int i = 0; i < m_count; i++)
+        statisticsHandler(urlArray[i]); */ //Used to get the statistics for each Collection. TODO find a better way.
 }
 
 WelcomeScreen::~WelcomeScreen()
@@ -86,33 +260,126 @@ WelcomeScreen::~WelcomeScreen()
     saveMainWindowSettings(cfg);
 }
 
-void WelcomeScreen::updateRecentFilesModel()
+void WelcomeScreen::populateGrid()
 {
     KConfig parleyConfig("parleyrc");
     KConfigGroup recentFilesGroup(&parleyConfig, "Recent Files");
-
-    m_recentFilesModel->clear();
+    int j = 0, k = 0, jc = 0, kc = 0;
     for (int i = recentFilesGroup.keyList().count() / 2; i > 0 ; i--) {
         QString urlString = recentFilesGroup.readPathEntry("File" + QString::number(i), QString());
         QString nameString = recentFilesGroup.readEntry("Name" + QString::number(i), QString());
 
+        ///This is only for testing purposes. Need a way to get the grades and words due for every document.
+        int dueWords[8]; //Due words categorized in grades.
+        int firstGrade = randInt(0,7); //This is done for vanity purposes only, giving due word values to only two grades for now.
+        int secondGrade = randInt(0,7);
+        int totalDueWords = 0;
+        for (int x = 0; x < 8; x++) {
+            if (x == firstGrade || x == secondGrade) {
+                dueWords[x] = randInt(0,20);
+                totalDueWords += dueWords[x];
+            }
+            else {
+                dueWords[x] = 0;
+            }
+        }
+        int percentageCompleted = randInt(98,100); //To test randomnly for Complete Collections. Again to be obtained from document.
+
         KUrl url(urlString);
+        urlArray[k] = url;
+        if (percentageCompleted != 100) {
+            if (j % 6 == 0) {
+                m_subGridLayout->addItem(new QSpacerItem(50,1), j / 6, 0);
+                j++;
+            }
+        }
+        else {
+            if (jc % 6 == 0) {
+                m_completedGridLayout->addItem(new QSpacerItem(50,1), jc / 6, 0);
+                jc++;
+            }
+        }
+        QWidget* backWidget = new QWidget;
+        QGraphicsDropShadowEffect* effect = new QGraphicsDropShadowEffect();
+        effect->setBlurRadius(50);
+        backWidget->setGraphicsEffect(effect);
+        QPalette palette = backWidget->palette();
+        palette.setColor(QPalette::Background, Qt::white);
+        backWidget->setAutoFillBackground(true);
+        backWidget->setPalette(palette);
+        if (percentageCompleted != 100) {
+                backWidget->setFixedSize(170,250);
+                m_subGridLayout->addWidget(backWidget, j / 6, j % 6);
+        }
+        else {
+                backWidget->setFixedSize(170,100);
+                m_completedGridLayout->addWidget(backWidget, jc / 6, jc % 6);
+        }
+        QVBoxLayout* vBoxLayout = new QVBoxLayout();
+        nameLabel[k] = new QLabel(nameString);
+        vBoxLayout->addWidget(nameLabel[k]);
+        wordCloud[k] = new QWidget;
+        palette = wordCloud[k]->palette();
+        int y = randInt(8,9);
+        palette.setColor(QPalette::Background, gradeColor[y]);
+        wordCloud[k]->setAutoFillBackground(true);
+        wordCloud[k]->setPalette(palette);
+        wordCloud[k]->setFixedSize(160,160);
+        if (percentageCompleted != 100) {
+            vBoxLayout->addWidget(wordCloud[k]);
+        }
+        vBoxLayout->setAlignment(Qt::AlignCenter);
+        BarWidget *barWidget = new BarWidget(dueWords, totalDueWords, percentageCompleted);
+        barWidget->setFixedSize(160,20);
+        vBoxLayout->addWidget(barWidget);
+        if (totalDueWords == 0 && percentageCompleted < 100) {
+            practiceButton[k] = new QPushButton(i18n("Practice Anyway"));
+        }
+        else {
+            practiceButton[k] = new QPushButton(i18n("Practice"));
+        }
+        practiceButton[k]->setStyleSheet("QPushButton {border: none; margin: 0px;   padding: 0px;}");
+        vBoxLayout->addWidget(practiceButton[k]);
+        backWidget->setLayout(vBoxLayout);
 
-        QStandardItem* item = new QStandardItem;
-        item->setEditable(false);
-        item->setText(nameString + " (" + url.fileName() + ')');
-        item->setToolTip(nameString + " (" + url.pathOrUrl() + ')');
-        item->setData(QVariant(url), Qt::UserRole);
+        signalMapper->setMapping(practiceButton[k], urlString);
+        connect(practiceButton[k], SIGNAL(clicked()), signalMapper, SLOT(map()));
 
-        item->setIcon(KIcon("practice-start"));
-
-        m_recentFilesModel->appendRow(item);
+        if (percentageCompleted != 100) {
+            j++;
+        }
+        else {
+            jc++;
+            kc++;
+        }
+        k++;
     }
-    if (m_recentFilesModel->rowCount(QModelIndex())) {
-        ui->recentLabel->setText(i18n("Last Opened Collections"));
+    m_count=k;
+    m_completedGridLayout->addItem(new QSpacerItem(170,1,QSizePolicy::Expanding, QSizePolicy::Fixed), m_completedGridLayout->rowCount() - 1, m_completedGridLayout->columnCount());
+    m_subGridLayout->addItem(new QSpacerItem(170,1,QSizePolicy::Expanding, QSizePolicy::Fixed), m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount());
+    if (k) {
+        ui->recentLabel->setText(i18n("Active Collections"));
     } else {
         ui->recentLabel->clear();
     }
+    if (kc) {
+        ui->completedLabel->setText(i18n("Completed Collections"));
+    } else {
+        ui->completedLabel->clear();
+    }
+}
+
+void WelcomeScreen::statisticsHandler(KUrl url)
+{/*
+    if (!m_mainWindow->parleyDocument()->open(url)) {
+        return;
+    }
+    m_mainWindow->m_sessionManager.setDocument(m_mainWindow->parleyDocument()->document()); //Used to find due words. TODO find a better way.
+    qDebug()<<"Session Manager, allEntryCount="<<m_mainWindow->m_sessionManager.allDueEntryCount();
+    statisticsWidget->setDocument(m_mainWindow->parleyDocument()->document());
+    QModelIndex index = statisticsWidget->statisticsModel()->index(0, 2, QModelIndex());
+    qDebug()<<"Percentage:"<<index.data(StatisticsModel::TotalPercent).toInt(); //Used to find the percentage completion, to categorize as active or completed collection.
+    */
 }
 
 void WelcomeScreen::slotOpenUrl(const KUrl& url)
@@ -123,9 +390,9 @@ void WelcomeScreen::slotOpenUrl(const KUrl& url)
     m_mainWindow->showEditor();
 }
 
-void WelcomeScreen::slotDoubleClicked(const QModelIndex& index)
+void WelcomeScreen::slotPracticeButtonClicked(const QString& urlString)
 {
-    KUrl url = index.data(Qt::UserRole).toUrl();
+    KUrl url(urlString);
     m_openUrl = url;
     QTimer::singleShot(0, this, SLOT(slotDoubleClickOpen()));
 }
