@@ -49,6 +49,9 @@ KPageWidgetItem*  LanguageProperties::createPage(int i)
     QString name = i18n("New Language");
 
     // check if this language already exists in the doc
+    if (m_doc->identifierCount() <= i) {
+      m_doc->appendIdentifier();
+    }
     if (m_doc->identifierCount() > i) {
         name = m_doc->identifier(i).name();
         LanguageSettings currentSettings(m_doc->identifier(i).locale());

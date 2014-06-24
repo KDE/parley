@@ -29,7 +29,6 @@
 
 #include "parleymainwindow.h"
 #include "guifrontend.h"
-#include "practiceoptions.h"
 #include "practicestatemachine.h"
 #include <languagesettings.h>
 
@@ -46,8 +45,7 @@ PracticeMainWindow::PracticeMainWindow(SessionManagerBase* sessionManager,
     m_guiFrontend = new GuiFrontend(this);
     setCentralWidget(m_guiFrontend->widget());
 
-    PracticeOptions options;
-    m_stateMachine = new PracticeStateMachine(m_guiFrontend, mainWindow->parleyDocument(), options, sessionManager, this);
+    m_stateMachine = new PracticeStateMachine(m_guiFrontend, mainWindow->parleyDocument(), sessionManager, this);
 
     // setModified - otherwise we may not ask to save progress
     mainWindow->parleyDocument()->document()->setModified(true);
@@ -149,17 +147,20 @@ void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)
 
 void PracticeMainWindow::startPractice()
 {
-    QString questionLocale = m_mainWindow->parleyDocument()->document()->identifier(Prefs::questionLanguage()).locale();
-    LanguageSettings questionLanguageSettings(questionLocale);
-    questionLanguageSettings.readConfig();
-    QFont questionFont = questionLanguageSettings.practiceFont();
-    m_guiFrontend->setQuestionFont(questionFont);
+    // Set the fonts for the known language and learning language.
+    // These are used in the practice state machine to set the
+    // questionfont and answerfont in the mode widget.
+    QString knownLangLocale = m_mainWindow->parleyDocument()->document()->identifier(Prefs::knownLanguage()).locale();
+    LanguageSettings knownLangSettings(knownLangLocale);
+    knownLangSettings.readConfig();
+    QFont knownLangFont = knownLangSettings.practiceFont();
+    m_guiFrontend->setKnownLangFont(knownLangFont);
 
-    QString solutionLocale = m_mainWindow->parleyDocument()->document()->identifier(Prefs::solutionLanguage()).locale();
-    LanguageSettings solutionLanguageSettings(solutionLocale);
-    solutionLanguageSettings.readConfig();
-    QFont solutionFont = solutionLanguageSettings.practiceFont();
-    m_guiFrontend->setSolutionFont(solutionFont);
+    QString learningLangLocale = m_mainWindow->parleyDocument()->document()->identifier(Prefs::learningLanguage()).locale();
+    LanguageSettings learningLangSettings(learningLangLocale);
+    learningLangSettings.readConfig();
+    QFont learningLangFont = learningLangSettings.practiceFont();
+    m_guiFrontend->setLearningLangFont(learningLangFont);
 
     m_stateMachine->start();
 }

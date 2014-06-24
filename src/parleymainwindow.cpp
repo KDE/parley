@@ -31,7 +31,6 @@
 #include "settings/parleyprefs.h"
 #include "configure-practice/configurepracticedialog.h"
 #include "practice/guifrontend.h"
-#include "practice/practiceoptions.h"
 #include "practice/practicesummarycomponent.h"
 
 #include "parleyactions.h"
@@ -172,6 +171,13 @@ void ParleyMainWindow::configurePractice()
 
 void ParleyMainWindow::startPractice()
 {
+    if (Prefs::learningLanguage() == Prefs::knownLanguage()) {
+        KMessageBox::sorry(this,
+                           i18n("You cannot start to practice when the known language is the same as the language to learn."),
+                           i18n("Select languages"));
+        return;
+    }
+
     switchComponent(PracticeComponent);
 }
 
@@ -182,38 +188,7 @@ void ParleyMainWindow::practiceFinished()
 
 bool ParleyMainWindow::queryClose()
 {
-    bool erg = queryExit();
-    if (erg && m_document->document()) {
-        m_document->document()->setModified(false);  // avoid double query on exit via system menu
-    }
-    return erg;
-}
-
-bool ParleyMainWindow::queryExit()
-{
-    if (!m_document->document() || !m_document->document()->isModified()) {
-        return true;
-    }
-    saveOptions();
-
-    bool save = Prefs::autoSave(); //save without asking
-
-    if (!save) {
-        int exit = KMessageBox::warningYesNoCancel(this, i18n("Vocabulary is modified.\n\nSave file before exit?\n"),
-                   "", KStandardGuiItem::save(), KStandardGuiItem::discard());
-        if (exit == KMessageBox::Yes) {
-            save = true;   // save and exit
-        } else if (exit == KMessageBox::No) {
-            save = false;  // don't save but exit
-        } else {
-            return false;  // continue work
-        }
-    }
-
-    if (save) {
-        m_document->save();       // save and exit
-    }
-    return true;
+    return m_document->queryClose();
 }
 
 QSize ParleyMainWindow::sizeHint() const

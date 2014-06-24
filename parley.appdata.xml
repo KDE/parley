@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component type="desktop">
+  <id>parley.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <name>Parley</name>
+  <name xml:lang="cs">Parley</name>
+  <name xml:lang="fi">Parley</name>
+  <name xml:lang="nds">Parley</name>
+  <name xml:lang="nl">Parley</name>
+  <name xml:lang="pt">Parley</name>
+  <name xml:lang="pt-BR">Parley</name>
+  <name xml:lang="sk">Parley</name>
+  <name xml:lang="sv">Parley</name>
+  <name xml:lang="uk">Parley</name>
+  <name xml:lang="x-test">xxParleyxx</name>
+  <summary>Vocabulary Trainer</summary>
+  <summary xml:lang="cs">Učitel slovní zásoby</summary>
+  <summary xml:lang="fi">Sanaston harjoitusohjelma</summary>
+  <summary xml:lang="nds">Vokaveln lehren</summary>
+  <summary xml:lang="nl">Woordjes oefenen</summary>
+  <summary xml:lang="pt">Treinador do Vocabulário</summary>
+  <summary xml:lang="pt-BR">Treinador de vocabulário</summary>
+  <summary xml:lang="sk">Tréner slovnej zásoby</summary>
+  <summary xml:lang="sv">Ordförrådsträning</summary>
+  <summary xml:lang="uk">Словниковий тренажер</summary>
+  <summary xml:lang="x-test">xxVocabulary Trainerxx</summary>
+  <description>
+    <p>Parley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. It supports many language specific features, but can be used for other learning tasks as well. It uses the spaced repetition learning method, which makes learning optimal. Vocabulary collections can be downloaded by "Get Hot New Stuff" or created with the built-in editor.</p>
+    <p xml:lang="nds">Parley is en Vokavel-Lehrprogramm. Dat hölpt Di bi't Lehren vun Dien Wöör, a.B. ut en butenlannsch Spraak. Dat ünnerstütt vele Spraakfunkschonen, man lett sik ok för anner Saken bruken. De Lehrmetood is de Wedderhalen mit Afstand, wat dat Lehren verbetert. Vokavelsetten kannst Du över „Deegte niege Saken“ daalladen oder mit den inbuut Editor sülven opstellen.</p>
+    <p xml:lang="nl">Met Parley kunt u woordjes oefenen. Het helpt uw woordenschat uit te breiden, bijvoorbeeld bij het leren van een vreemde taal. Veel taaleigen zaken worden ondersteund, maar u kunt Parley ook gebruiken voor andere leeroefeningen. Het gebruikt de "spaced repetition" leermethode (met geregelde herhalingen), om optimaal te kunnen leren. Woordenlijsten kunnen worden gedownload, of met het ingebouwde bewerkingsprogramma zelf worden gemaakt.</p>
+    <p xml:lang="pt">O Parley é um treinador de vocabulários. Ajuda-o a memorizar o seu vocabulário, quando por exemplo está a tentar aprender uma língua estrangeira. Ele suporta muitas funcionalidades específicas das línguas, mas também poderá ser usado para outras tarefas de aprendizagem. Ele usa o método de aprendizagem por repetição espaçada, o que torna a aprendizagem óptima. As colecções de vocabulários poderão ser obtidas pelo mecanismo para "Obter Coisas Novas" ou criadas com o editor incorporado.</p>
+    <p xml:lang="pt-BR">Parley é um treinador de vocabulários. Ele o ajuda a memorizar seu vocabulário, quando, por exemplo, você estiver tentando aprender um idioma estrangeiro. Ele tem suporte a muitas funcionalidades específicas de idiomas, mas também pode ser usado para outras tarefas de aprendizagem. Ele usa o método de aprendizagem por repetição espaçada, o que torna a aprendizagem ótima. As coleções de vocabulários poderão ser obtidas pela funcionalidade "Obter novidades" ou criadas com o editor incorporado.</p>
+    <p xml:lang="sk">Parley je tréner slovnej zásoby. Pomôže vám naučiť sa slovnú zásobu, napríklad keď sa snažíte naučiť cudzí jazyk. Podporuje mnoho jazykovo špecifických funkcií, ale dá sa použiť aj na iné výukové účely. Používa metódu rozloženého opakovania učenia, ktorá robí výuku optimálnou. Kolekcie slovnej zásoby sa dajú stiahnuť cez "Získať nový materiál" alebo vytvoriť cez zabudovaný editor.</p>
+    <p xml:lang="sv">Parley är ett är program för ordförrådsövning. Det hjälper dig att memorera ditt ordförråd, till exempel när du försöker lära dig ett främmande språk. Det stöder en mängd språkspecifika funktioner, men kan dessutom användas för andra inlärningsuppgifter. Det använder inlärningsmetoden med utspridd upprepning, vilket gör inlärning optimal. Ordförrådsamlingar kan laddas ner med "Hämta heta nyheter" eller skapas med den inbyggda editorn.</p>
+    <p xml:lang="uk">Parley — програма для вивчення мов. Вона допоможе вам поповнити ваш словниковий запас і вивчити правила іноземної мови. У програмі передбачено багато специфічних для мов можливостей. Втім, нею можна скористатися і для виконання інших завдань з вивчення даних. У програмі використано методику навчання за допомогою повторення зі змінним інтервалом, яка оптимізує процес навчання. Збірки словників можна отримати з інтернету або створити за допомогою вбудованого до програми редактора.</p>
+    <p xml:lang="x-test">xxParley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. It supports many language specific features, but can be used for other learning tasks as well. It uses the spaced repetition learning method, which makes learning optimal. Vocabulary collections can be downloaded by "Get Hot New Stuff" or created with the built-in editor.xx</p>
+    <p>Training Modes:</p>
+    <p xml:lang="nds">Ööv-Bedriefoorden:</p>
+    <p xml:lang="nl">Oefenmethodes:</p>
+    <p xml:lang="pt">Modos de Treino:</p>
+    <p xml:lang="pt-BR">Modos de treinamento:</p>
+    <p xml:lang="sk">Režimy tréningu:</p>
+    <p xml:lang="sv">Övningsmetoder:</p>
+    <p xml:lang="uk">Режими навчання:</p>
+    <p xml:lang="x-test">xxTraining Modes:xx</p>
+    <ul>
+      <li>Flash Cards</li>
+      <li xml:lang="cs">Kartičky</li>
+      <li xml:lang="nds">Naslakoorten</li>
+      <li xml:lang="nl">Oefenkaarten</li>
+      <li xml:lang="pt">Cartões</li>
+      <li xml:lang="pt-BR">Cartões</li>
+      <li xml:lang="sk">Učebné karty</li>
+      <li xml:lang="sv">Snabbkort</li>
+      <li xml:lang="uk">Навчальні картки.</li>
+      <li xml:lang="x-test">xxFlash Cardsxx</li>
+      <li>Mixed Letters (order the letters of a word)</li>
+      <li xml:lang="nds">Mischt Bookstaven (Bookstaven vun en Woort ornen)</li>
+      <li xml:lang="nl">Gehutselde letters (zet de letters in het woord in de goede volgorde)</li>
+      <li xml:lang="pt">Letras Misturadas (ordenar as letras de uma palavra)</li>
+      <li xml:lang="pt-BR">Letras misturadas (ordenar as letras de uma palavra)</li>
+      <li xml:lang="sk">Zmiešané písmená (poradie písmen v slove)</li>
+      <li xml:lang="sv">Blandade bokstäver (ordna bokstäverna i ett ord)</li>
+      <li xml:lang="uk">Відновлення порядку літер (різновид анаграми).</li>
+      <li xml:lang="x-test">xxMixed Letters (order the letters of a word)xx</li>
+      <li>Multiple Choice</li>
+      <li xml:lang="cs">S nabídkou možností</li>
+      <li xml:lang="nds">Mehrfachköör</li>
+      <li xml:lang="nl">Meerkeuze</li>
+      <li xml:lang="pt">Escolha Múltipla</li>
+      <li xml:lang="pt-BR">Múltipla escolha</li>
+      <li xml:lang="sk">Viacnásobné možnosti</li>
+      <li xml:lang="sv">Flerval</li>
+      <li xml:lang="uk">Вибір з варіантів.</li>
+      <li xml:lang="x-test">xxMultiple Choicexx</li>
+      <li>Written</li>
+      <li xml:lang="nds">Schreven</li>
+      <li xml:lang="nl">Geschreven</li>
+      <li xml:lang="pt">Escrito</li>
+      <li xml:lang="pt-BR">Escrita</li>
+      <li xml:lang="sk">Napísané</li>
+      <li xml:lang="sv">Skrivet</li>
+      <li xml:lang="uk">Письмовий.</li>
+      <li xml:lang="x-test">xxWrittenxx</li>
+      <li>Language specific trainings: article, comparison forms, conjugations, synonymes/antonyms/paraphrases</li>
+      <li xml:lang="nds">Besünner Spraaklexen: Artikeln, Stiegformen, Böögformen, Liekwöör, Güntwöör, Ümschrieven</li>
+      <li xml:lang="nl">Taaleigen oefeningen: lidwoorden, vergelijkingen, vervoegingen, synoniemen/antoniemen/paragrafen</li>
+      <li xml:lang="pt">Treinos específicos da língua: artigos, formas de comparação, conjugações, sinónimos/antónimos/parágrafos</li>
+      <li xml:lang="pt-BR">Treinamentos específicos de idioma: artigo, formas de comparação, conjugações, sinônimos/antônimos/paráfrases</li>
+      <li xml:lang="sk">Tréning závislý na jazyku: článok, porovnanie foriem, konjugácie, synonymá/antonymá/odseky</li>
+      <li xml:lang="sv">Språkspecifika övningar: artiklar, kompareringsformer, konjugeringar, synonymer/antonymer/omskrivningar</li>
+      <li xml:lang="uk">Специфічні для мови режими: артиклі, ступені порівняння, спряження, синоніми, антоніми, парафрази.</li>
+      <li xml:lang="x-test">xxLanguage specific trainings: article, comparison forms, conjugations, synonymes/antonyms/paraphrasesxx</li>
+    </ul>
+  </description>
+  <url type="homepage">http://edu.kde.org/parley/</url>
+  <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=parley</url>
+  <url type="help">http://docs.kde.org/stable/en/kdeedu/parley/index.html</url>
+  <screenshots>
+    <screenshot type="default">
+      <image>http://kde.org/images/screenshots/parley.png</image>
+    </screenshot>
+  </screenshots>
+  <project_group>KDE</project_group>
+  <provides>
+    <binary>parley</binary>
+  </provides>
+</component>

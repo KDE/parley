@@ -26,7 +26,7 @@ class ComparisonBackendMode : public AbstractBackendMode
     Q_OBJECT
 
 public:
-    ComparisonBackendMode(const PracticeOptions& PracticeOptions, AbstractFrontend *frontend,
+    ComparisonBackendMode(AbstractFrontend *frontend,
                           QObject *parent, Practice::SessionManagerBase* sessionManager, KEduVocDocument* doc);
 
     virtual bool setTestEntry(TestEntry* current);

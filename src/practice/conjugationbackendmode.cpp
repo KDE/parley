@@ -23,11 +23,10 @@
 
 using namespace Practice;
 
-ConjugationBackendMode::ConjugationBackendMode(const PracticeOptions& practiceOptions,
-                                               AbstractFrontend* frontend, QObject* parent,
+ConjugationBackendMode::ConjugationBackendMode(AbstractFrontend* frontend, QObject* parent,
                                                Practice::SessionManagerBase* sessionManager,
                                                KEduVocDocument* doc)
-    : AbstractBackendMode(practiceOptions, frontend, parent)
+    : AbstractBackendMode(frontend, parent)
     , m_sessionManager(sessionManager)
     , m_doc(doc)
 {
@@ -41,17 +40,17 @@ bool ConjugationBackendMode::setTestEntry(TestEntry* current)
 
     m_currentTense = m_current->conjugationTense();
 
-    if (!m_current->entry()->translation(m_practiceOptions.languageTo())->conjugationTenses().contains(m_currentTense)) {
+    if (!m_current->entry()->translation(m_current->languageTo())->conjugationTenses().contains(m_currentTense)) {
         kDebug() << "invalid tense for entry - " << m_currentTense;
-        kDebug() << "tenses: "  << m_current->entry()->translation(m_practiceOptions.languageTo())->conjugationTenses();
+        kDebug() << "tenses: "  << m_current->entry()->translation(m_current->languageTo())->conjugationTenses();
     }
 
     data.tense = m_currentTense;
-    m_conjugation = m_current->entry()->translation(m_practiceOptions.languageTo())->conjugation(m_currentTense);
+    m_conjugation = m_current->entry()->translation(m_current->languageTo())->conjugation(m_currentTense);
     m_pronounFlags = current->conjugationPronouns();
 
-    data.questionInfinitive = m_current->entry()->translation(m_practiceOptions.languageFrom())->text();
-    data.solutionInfinitive = m_current->entry()->translation(m_practiceOptions.languageTo())->text();
+    data.questionInfinitive = m_current->entry()->translation(m_current->languageFrom())->text();
+    data.solutionInfinitive = m_current->entry()->translation(m_current->languageTo())->text();
 
     data.personalPronouns = validPersonalPronouns();
 
@@ -62,10 +61,10 @@ bool ConjugationBackendMode::setTestEntry(TestEntry* current)
     }
     m_frontend->setSolution(answers);
 
-    m_frontend->setQuestionSound(m_current->entry()->translation(m_practiceOptions.languageFrom())->soundUrl());
-    m_frontend->setSolutionSound(m_current->entry()->translation(m_practiceOptions.languageTo())->soundUrl());
-    m_frontend->setQuestionPronunciation(m_current->entry()->translation(m_practiceOptions.languageFrom())->pronunciation());
-    m_frontend->setSolutionPronunciation(m_current->entry()->translation(m_practiceOptions.languageTo())->pronunciation());
+    m_frontend->setQuestionSound(m_current->entry()->translation(m_current->languageFrom())->soundUrl());
+    m_frontend->setSolutionSound(m_current->entry()->translation(m_current->languageTo())->soundUrl());
+    m_frontend->setQuestionPronunciation(m_current->entry()->translation(m_current->languageFrom())->pronunciation());
+    m_frontend->setSolutionPronunciation(m_current->entry()->translation(m_current->languageTo())->pronunciation());
     m_frontend->setResultState(AbstractFrontend::QuestionState);
     m_frontend->showQuestion();
     return true;
@@ -75,7 +74,8 @@ QStringList ConjugationBackendMode::validPersonalPronouns()
 {
     QStringList pp;
     foreach(const KEduVocWordFlags & person, m_pronounFlags) {
-        pp.append(m_doc->identifier(m_practiceOptions.languageTo()).personalPronouns().personalPronoun(person));
+        // FIXME: Used to be m_practiceOptions.languageTo()
+        pp.append(m_doc->identifier(Prefs::learningLanguage()).personalPronouns().personalPronoun(person));
     }
     kDebug() << "PP: " << pp.size() << pp;
     return pp;
@@ -115,10 +115,25 @@ void ConjugationBackendMode::checkAnswer()
     }
 }
 
-grade_t ConjugationBackendMode::currentGradeForEntry()
+grade_t ConjugationBackendMode::currentPreGradeForEntry() const
 {
     Q_ASSERT(m_current != 0);
-    KEduVocTranslation* trans = m_current->entry()->translation(m_practiceOptions.languageTo());
+    KEduVocTranslation* trans = m_current->entry()->translation(m_current->languageTo());
+    KEduVocConjugation& conj = trans->conjugation(m_current->conjugationTense());
+    QList<KEduVocWordFlags> keys = conj.keys();
+
+    grade_t min_grade = KV_MAX_GRADE;
+    foreach(KEduVocWordFlags key, keys) {
+        min_grade = qMin(conj.conjugation(key).preGrade(), min_grade);
+    }
+
+    return min_grade;
+}
+
+grade_t ConjugationBackendMode::currentGradeForEntry() const
+{
+    Q_ASSERT(m_current != 0);
+    KEduVocTranslation* trans = m_current->entry()->translation(m_current->languageTo());
     KEduVocConjugation& conj = trans->conjugation(m_current->conjugationTense());
     QList<KEduVocWordFlags> keys = conj.keys();
 
@@ -135,20 +150,14 @@ void ConjugationBackendMode::updateGrades()
     kDebug() << "Grading conjugations";
 
     foreach(const KEduVocWordFlags & key, m_pronounFlags) {
-        KEduVocText& text = m_current->entry()->translation(Prefs::solutionLanguage())->
+        KEduVocText& text = m_current->entry()->translation(m_current->languageTo())->
                             conjugation(m_currentTense).conjugation(key);
 
         text.incPracticeCount();
         text.setPracticeDate(QDateTime::currentDateTime());
 
-        if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-            if (m_current->statisticBadCount() == 0) {
-                text.incGrade();
-            }
-        } else {
-            text.setGrade(KV_LEV1_GRADE);
-            text.incBadCount();
-        }
+        updateGrade(text, m_frontend->resultState() == AbstractFrontend::AnswerCorrect,
+                    m_current->statisticBadCount() == 0);
     }
 }
 

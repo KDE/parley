@@ -26,9 +26,9 @@ StatisticsModel::StatisticsModel(QObject * parent)
 
 QVariant StatisticsModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if (section >= 2) {
+    if (section >= FirstDataColumn) {
         if (role == Qt::DisplayRole) {
-            return i18nc("Grade in language, table header", "Grade (%1)", m_doc->identifier(section - 2).name());
+            return i18nc("Confidence level in language, table header", "Confidence (%1)", m_doc->identifier(section - FirstDataColumn).name());
         }
     }
     return ContainerModel::headerData(section, orientation, role);
@@ -36,16 +36,16 @@ QVariant StatisticsModel::headerData(int section, Qt::Orientation orientation, i
 
 QVariant StatisticsModel::data(const QModelIndex & index, int role) const
 {
-    if (index.column() >= 2) {
+    if (index.column() >= FirstDataColumn) {
         KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
         switch (role) {
         case TotalPercent: // Average grade
-            return container->averageGrade(index.column() - 2, KEduVocContainer::Recursive);
+            return container->averageGrade(index.column() - FirstDataColumn, KEduVocContainer::Recursive);
         case TotalCount:
             return container->entryCount(KEduVocContainer::Recursive);
         default:
             if (role >= Qt::UserRole) {
-                return container->expressionsOfGrade(index.column() - 2, role - Grade0, KEduVocContainer::Recursive);
+                return container->expressionsOfGrade(index.column() - FirstDataColumn, role - Grade0, KEduVocContainer::Recursive);
             }
         }
     }
@@ -79,7 +79,7 @@ Qt::ItemFlags StatisticsModel::flags(const QModelIndex & index) const
 int StatisticsModel::columnCount(const QModelIndex & parent) const
 {
     Q_UNUSED(parent)
-    return m_doc->identifierCount() + 2;
+    return m_doc->identifierCount() + FirstDataColumn;
 }
 
 KEduVocContainer * StatisticsModel::rootContainer() const
@@ -91,5 +91,3 @@ KEduVocContainer * StatisticsModel::rootContainer() const
 }
 
 #include "statisticsmodel.moc"
-
-

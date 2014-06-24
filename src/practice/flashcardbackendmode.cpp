@@ -18,8 +18,8 @@
 
 using namespace Practice;
 
-FlashCardBackendMode::FlashCardBackendMode(const PracticeOptions& practiceOptions, AbstractFrontend* frontend, QObject* parent)
-    : AbstractBackendMode(practiceOptions, frontend, parent)
+FlashCardBackendMode::FlashCardBackendMode(AbstractFrontend* frontend, QObject* parent)
+    : AbstractBackendMode(frontend, parent)
 {
 }
 
@@ -40,7 +40,7 @@ void FlashCardBackendMode::checkAnswer()
 
 void FlashCardBackendMode::hintAction()
 {
-    QString solution = m_current->entry()->translation(m_practiceOptions.languageTo())->text();
+    QString solution = m_current->entry()->translation(m_current->languageTo())->text();
     m_currentHint = solution.left(m_currentHint.size() + 1);
     if (m_currentHint.size() == solution.size()) {
         // show solution

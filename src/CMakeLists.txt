@@ -34,7 +34,6 @@ set(parley_SRCS
     practice/sessionmanagerbase.cpp
     practice/sessionmanagercontinuous.cpp
     practice/sessionmanagerfixed.cpp
-    practice/practiceoptions.cpp
     practice/abstractfrontend.cpp
     practice/abstractbackendmode.cpp
     practice/practicestatemachine.cpp

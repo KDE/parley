@@ -36,6 +36,12 @@ class ContainerModel : public BasicContainerModel
     Q_OBJECT
 
 public:
+    enum ColumnType {
+        ContainerNameColumn = 0,
+        TotalCountColumn,
+        FirstDataColumn
+    };
+
     explicit ContainerModel(KEduVocContainer::EnumContainerType type, QObject *parent = 0);
 
     virtual QVariant data(const QModelIndex &index, int role) const;

@@ -80,7 +80,7 @@ QVariant ContainerModel::data(const QModelIndex & index, int role) const
     KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
 
     switch (index.column()) {
-    case 0: // Container name
+    case ContainerNameColumn:
         if (role == Qt::DisplayRole || role == Qt::EditRole) {
             return container->name();
         }
@@ -92,7 +92,7 @@ QVariant ContainerModel::data(const QModelIndex & index, int role) const
             return Qt::AlignLeft;
         }
         break;
-    case 1: // Total count
+    case TotalCountColumn:
         if (role == Qt::DisplayRole) {
             return container->entryCount(KEduVocContainer::Recursive);
         }
@@ -115,7 +115,7 @@ bool ContainerModel::setData(const QModelIndex &index, const QVariant &value, in
         return false;
     }
 
-    if (index.column() == 0) {
+    if (index.column() == ContainerNameColumn) {
         KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
         // rename a lesson
         if (role == Qt::EditRole) {
@@ -149,7 +149,7 @@ Qt::ItemFlags ContainerModel::flags(const QModelIndex &index) const
             return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
         }
         // the name column
-        if (index.column() == 0) {
+        if (index.column() == ContainerNameColumn) {
             return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable
                     | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled);
         } else { // every other element
@@ -165,12 +165,12 @@ QVariant ContainerModel::headerData(int section, Qt::Orientation orientation, in
     // statically two columns for now
     if (orientation == Qt::Horizontal) {
         switch (section) {
-        case 0:
+        case ContainerNameColumn:
             if (role == Qt::DisplayRole) {
-                return i18n("Lesson");
+                return i18n("Unit");
             }
             break;
-        case 1:
+        case TotalCountColumn:
             if (role == Qt::DisplayRole) {
                 return QVariant();
             }
@@ -188,11 +188,11 @@ int ContainerModel::columnCount(const QModelIndex & parent) const
 {
     Q_UNUSED(parent);
     if (!m_doc) {
-        return 2;
+        return FirstDataColumn;
     }
 
     // for now one grade per language
-    return 2; // + m_doc->identifierCount();
+    return FirstDataColumn; // + m_doc->identifierCount();
 }
 
 

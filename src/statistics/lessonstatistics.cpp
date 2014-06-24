@@ -72,17 +72,20 @@ protected:
             // Intersect the QPainterPath of inner rectangle with outer,
             // so that the inner rectangle takes the shape of the outer rounded rectangle.
             QPainterPath barElementIntersectedPath = roundedPath.intersected(barElementPath);
-            // Display empty rectangle (white) for Grade 0 and color for others.
+            // Display empty rectangle (white) for grade 0 and color for others.
+            //
+            // 255 being the max alpha, ie the darkest shade. As
+            // grades become lower, the alpha value gets decremented
+            // by 35 for every decrement in grade by 1.  Here 7 =>
+            // No. of grades. 35 => arbitrary number for a good
+            // difference in alpha values for consecutive grades, also
+            // such that for grade 1, the alpha value isn't too low.
             QColor color = Prefs::gradeColor();
-            // 255 being the max alpha, ie the darkest shade. As grades become lower,
-            // the alpha value gets decremented by 35 for every decrement in grade by 1.
-            // Here 7 => No. of grades. 35 => arbitrary number for a good difference in alpha values for
-            // consecutive grades, also such that for grade 1, the alpha value isn't too low.
             color.setAlpha(255 - (7 - i) * 35);
-            if (i != 0) {
-                painter->setBrush(QBrush(color));
-            } else {
+            if (i == 0) {
                 painter->setBrush(QBrush(QColor(255, 255, 255, 0)));
+            } else {
+                painter->setBrush(QBrush(color));
             }
             painter->drawPath(barElementIntersectedPath);
         }
@@ -112,7 +115,25 @@ protected:
         const int gradeBarWidth = 40;
         const int alphaValueIncrement = 35;
 
-        if (logicalIndex >= 2) {
+        int iFirstUsedDataColumn;
+
+        switch (Prefs::practiceDirection()) {
+        case Prefs::EnumPracticeDirection::LearningToKnown:
+            iFirstUsedDataColumn = Prefs::knownLanguage();
+            break;
+        case Prefs::EnumPracticeDirection::MixedDirectionsWordsOnly:
+        case Prefs::EnumPracticeDirection::MixedDirectionsWithSound:
+            iFirstUsedDataColumn = qMax( Prefs::knownLanguage(),  Prefs::learningLanguage() );
+            break;
+        case Prefs::EnumPracticeDirection::KnownToLearning:
+        // Use KnownToLearning as default.
+        default:
+            iFirstUsedDataColumn = Prefs::learningLanguage();
+            break;
+        }
+        iFirstUsedDataColumn += ContainerModel::FirstDataColumn;
+
+        if (logicalIndex == iFirstUsedDataColumn) {
             QRect roundedRect(rect.x() + legendOffsetX, rect.y() + legendOffsetY, legendWidth, legendHeight);
             roundedRect.adjust(1, 1, -1, -1);
             QPainterPath roundedPath;
@@ -176,9 +197,9 @@ LessonStatisticsView::LessonStatisticsView(QWidget *parent)
 
     // inherits context menu policy - so action will show up in right click menu
     KAction *removeGradesAction = new KAction(this);
-    removeGradesAction->setText(i18n("Remove &Grades from this lesson"));
+    removeGradesAction->setText(i18n("Remove confidence levels from this unit"));
     removeGradesAction->setIcon(KIcon("edit-clear"));
-    removeGradesAction->setWhatsThis(i18n("Remove grades from this lesson"));
+    removeGradesAction->setWhatsThis(i18n("Remove confidence levels from this unit"));
     removeGradesAction->setToolTip(removeGradesAction->whatsThis());
     removeGradesAction->setStatusTip(removeGradesAction->whatsThis());
 
@@ -186,9 +207,9 @@ LessonStatisticsView::LessonStatisticsView(QWidget *parent)
     addAction(removeGradesAction);
 
     KAction *removeGradesChildrenAction = new KAction(this);
-    removeGradesChildrenAction->setText(i18n("Remove &Grades from this lesson and all sub-lessons"));
+    removeGradesChildrenAction->setText(i18n("Remove confidence levels from this unit and all sub-units"));
     removeGradesChildrenAction->setIcon(KIcon("edit-clear"));
-    removeGradesChildrenAction->setWhatsThis(i18n("Remove grades from this lesson and all sub-lessons"));
+    removeGradesChildrenAction->setWhatsThis(i18n("Remove confidence level from this unit and all sub-units"));
     removeGradesChildrenAction->setToolTip(removeGradesChildrenAction->whatsThis());
     removeGradesChildrenAction->setStatusTip(removeGradesChildrenAction->whatsThis());
 
@@ -200,7 +221,7 @@ void LessonStatisticsView::setModel(Editor::ContainerModel *model)
 {
     ContainerView::setModel(model);
     GradeDelegate *delegate = new GradeDelegate(this);
-    for (int i = 2; i < model->columnCount(QModelIndex()); i++) {
+    for (int i = ContainerModel::FirstDataColumn; i < model->columnCount(QModelIndex()); i++) {
         setItemDelegateForColumn(i, delegate);
         setColumnWidth(i, 150);
     }
@@ -224,5 +245,3 @@ void LessonStatisticsView::removeGradesChildren()
 }
 
 #include "lessonstatistics.moc"
-
-

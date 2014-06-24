@@ -30,25 +30,25 @@ LeitnerView::LeitnerView(Editor *parent) : QListView(parent)
     /*
         KAction *actionNewLesson = new KAction(this);
         parent->actionCollection()->addAction("new_lesson", actionNewLesson);
-        actionNewLesson->setText(i18n("New Lesson"));
+        actionNewLesson->setText(i18n("New Unit"));
         actionNewLesson->setIcon(KIcon("lesson-add"));
-        actionNewLesson->setWhatsThis(i18n("Add a new lesson to your document"));
+        actionNewLesson->setWhatsThis(i18n("Add a new unit to your document"));
         actionNewLesson->setToolTip(actionNewLesson->whatsThis());
         actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
 
         KAction *actionRenameLesson = new KAction(this);
         parent->actionCollection()->addAction("rename_lesson", actionRenameLesson);
-        actionRenameLesson->setText(i18n("Rename Lesson"));
+        actionRenameLesson->setText(i18n("Rename Unit"));
         actionRenameLesson->setIcon(KIcon("edit-rename"));
-        actionRenameLesson->setWhatsThis(i18n("Rename the selected lesson"));
+        actionRenameLesson->setWhatsThis(i18n("Rename the selected unit"));
         actionRenameLesson->setToolTip(actionRenameLesson->whatsThis());
         actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
 
         KAction *actionDeleteLesson = new KAction(this);
         parent->actionCollection()->addAction("delete_lesson", actionDeleteLesson);
-        actionDeleteLesson->setText(i18n("Delete Lesson"));
+        actionDeleteLesson->setText(i18n("Delete Unit"));
         actionDeleteLesson->setIcon(KIcon("lesson-remove"));
-        actionDeleteLesson->setWhatsThis(i18n("Delete the selected lesson."));
+        actionDeleteLesson->setWhatsThis(i18n("Delete the selected unit."));
         actionDeleteLesson->setToolTip(actionDeleteLesson->whatsThis());
         actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
 
@@ -114,7 +114,7 @@ void LeitnerView::slotDeleteLeitnerBox()
     QModelIndex selectedIndex = selectionModel()->currentIndex();
 
     if (selectedIndex.parent() == QModelIndex()) {
-        KMessageBox::information(this, i18n("The root lesson cannot be deleted."));
+        KMessageBox::information(this, i18n("The root unit cannot be deleted."));
         return;
     }
 
@@ -123,7 +123,7 @@ void LeitnerView::slotDeleteLeitnerBox()
     int count = lesson->entryCount(KEduVocLesson::Recursive);
 
     if (count == 0 ||
-            KMessageBox::warningYesNo(this, i18np("There is %1 word left in this lesson. Do you want to delete it?", "There are %1 words left in this lesson. Do you want to delete them?", count)) == KMessageBox::Yes) {
+            KMessageBox::warningYesNo(this, i18np("There is %1 word left in this unit. Do you want to delete it?", "There are %1 words left in this unit. Do you want to delete them?", count)) == KMessageBox::Yes) {
         m_model->deleteContainer(selectedIndex);
     }
 }

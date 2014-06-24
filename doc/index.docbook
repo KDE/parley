@@ -89,14 +89,14 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>&parley; consists of two big parts: <link linkend="practice">Vocabulary Practice</link> and <link linkend="vocabulary-editing">an Editor for Vocabulary Collections</link>.
 </para>
-<para>In this manual the term <emphasis>Vocabulary Collection</emphasis> refers to a file that contains lessons and the vocabulary in the lessons.
+<para>In this manual the term <emphasis>Vocabulary Collection</emphasis> refers to a file that contains <emphasis>Units</emphasis>. Each unit can be a lesson or a collection of lessons nested to any depth. In the rest of this manual we will refer to units rather than lessons since they can be used for other purposes too.
 </para>
 <para>Both, the Editor and the Practice can be reached from the <link linkend="start-page">Start Page</link>.
 </para>
 <para>The <link linkend="practice">Practice</link> consists of three parts: first the <link linkend="practice-setup">Practice Setup</link> where you choose what to practice. From there you start the actual <link linkend="practice">Practice</link> and when you are done, you get a <link linkend="summary-after-practice">Summary</link>.
 </para>
 <tip>
-<para>Like in all applications try to use the right-click if you explore features and functionality in &parley;. The right-click displays a <quote>context menu</quote> that shows what you can do with your present situation. Try right-clicking lessons and words to find some options.
+<para>Like in all applications try to use the right-click if you explore features and functionality in &parley;. The right-click displays a <quote>context menu</quote> that shows what you can do with your present situation. Try right-clicking units and words to find some options.
 </para>
 </tip>
 </chapter>
@@ -118,7 +118,7 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>A vocabulary collection is a file that contains words and their translations into other languages or other pairs of words and sentences that you want to memorize. The words are organized in lessons.
+<para>A vocabulary collection is a file that contains words and their translations into other languages or other pairs of words and sentences that you want to memorize. The words are organized in units.
 </para>
 <para>To <emphasis>start practicing</emphasis>, click one of the vocabulary collections in the list. You are taken to the <link linkend="practice-setup">practice setup</link>.
 </para>
@@ -184,7 +184,7 @@ limited to language learning but supports a multitude of subjects.
 </para></listitem>
 <listitem><para> The selection of the practice mode
 </para></listitem>
-<listitem><para> The selection of the lessons that also shows your current progress
+<listitem><para> The selection of the units that also shows your current progress
 </para></listitem>
 </itemizedlist>
 <para>
@@ -204,9 +204,9 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>Below the language selection you choose the practice mode. <guilabel>Practice Mode</guilabel> determines how the practice will ask you questions.
 </para>
-<para>In the big part on the right, you see the lessons of the vocabulary collection. You can select which lessons you want to practice with the check box in front of the lesson name. The number of words that each lesson contains is shown next to its name. On the right of the name you see your current progress for the lesson.
+<para>In the big part on the right, you see the units of the vocabulary collection. You can select which units you want to practice with the check box in front of the unit name. The number of words that each unit contains is shown next to its name. On the right of the name you see your current progress for the unit.
 </para>
-<para>The progress for each lesson is displayed as the percentage of the lesson completed and the multi-shaded progress bars. The percentage is calculated based on the total number of words in that lesson and the grades of each word. The progress bars depict the number of words in each grade, with a darker shade depicting a higher grade. A legend can also be seen at the top of the lesson selections, in the header. The colors in this legend depict the corresponding colors of the progress bars, from the fully learned words to the words not yet practiced.
+<para>The progress for each unit is displayed as the percentage of the unit completed and the multi-shaded progress bars. The percentage is calculated based on the total number of words in that unit and the confidence level of each word. The progress bars depict the number of words in each confidence level, with a darker shade depicting a higher confidence. A legend can also be seen at the top of the unit selections, in the header. The colors in this legend depict the corresponding colors of the progress bars, from the fully learned words to the words not yet practiced.
 </para>
 </sect1>
 <sect1 id="advanced-practice-configuration"><title>Advanced Practice Configuration</title>
@@ -249,7 +249,7 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>You can decide to practice only words that you know better or less well than some grade. Or you can select only words that you have practiced a certain number of times.
+<para>You can decide to practice only words that you know better or less well than some confidence level. Or you can select only words that you have practiced a certain number of times.
 </para>
 </sect2>
 <sect2 id="advanced-practice-settings"><title>Advanced Practice Settings</title>
@@ -563,9 +563,9 @@ limited to language learning but supports a multitude of subjects.
 </para>
 </sect2>
 <sect2 id="reset-practice-to-initial-state"><title>Reset Practice to Initial State</title>
-<para>You can reset all your practice scores (remove the grades) to the initial state. When being in edit mode select <guilabel>Edit</guilabel> from the menubar and then <guilabel>Remove Grades</guilabel>.
+<para>You can reset all your practice scores (remove the confidence levels) to the initial state. When being in edit mode select <guilabel>Edit</guilabel> from the menubar and then <guilabel>Remove Confidence Levels</guilabel>.
 </para>
-<para>Furthermore you can reset your grades for individual lessons from within the <guilabel>Practice Setup</guilabel> by right clicking on the lesson to reset and choosing <guilabel>Remove Grades from this Lesson</guilabel> or by choosing <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Remove Grades from this Lesson</guimenuitem></menuchoice> or <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Remove Grades from this Lesson and all Sub-Lessons</guimenuitem></menuchoice> menu items when being in edit mode.
+<para>Furthermore you can reset your confidence levels for individual units from within the <guilabel>Practice Setup</guilabel> by right clicking on the unit to reset and choosing <guilabel>Remove Confidence Levels from this Unit</guilabel> or by choosing <menuchoice><guimenu>Unit</guimenu><guimenuitem>Remove Confidence Levels from this Unit</guimenuitem></menuchoice> or <menuchoice><guimenu>Unit</guimenu><guimenuitem>Remove Confidence Levels from this Unit and all Sub-Units</guimenuitem></menuchoice> menu items when being in edit mode.
 </para>
 </sect2>
 </sect1>
@@ -893,15 +893,15 @@ limited to language learning but supports a multitude of subjects.
 </sect3>
 </sect2>
 </sect1>
-<sect1 id="lessons"><title>Lessons</title>
-<para>On the left you have a list of lessons. If you started a new collection, this list might be empty except for one lesson that was created by default for you.
+<sect1 id="units"><title>Units</title>
+<para>On the left you have a list of units. If you started a new collection, this list might be empty except for one unit that was created by default for you.
 </para>
-<para>If you cannot see the list of lessons, you might have to enable it in the View menu - <menuchoice><guimenu>View</guimenu><guimenuitem>Lessons</guimenuitem></menuchoice>.
+<para>If you cannot see the list of units, you might have to enable it in the View menu - <menuchoice><guimenu>View</guimenu><guimenuitem>Units</guimenuitem></menuchoice>.
 </para>
-<para>The check boxes in front of the lesson name show which lessons are currently included in your practice. The number next to it is the number of words in the lesson.
+<para>The check boxes in front of the unit name show which units are currently included in your practice. The number next to it is the number of words in the unit.
 </para>
-<sect2 id="new-lesson"><title>New Lesson</title>
-<para>Add a new lesson: Select where this lesson belongs to, for example the collection <guilabel>My Spanish Lessons</guilabel>.
+<sect2 id="new-unit"><title>New Unit</title>
+<para>Add a new unit: Select where this unit belongs to, for example the collection <guilabel>My Spanish Units</guilabel>.
 </para>
 <para>
 <screenshot>
@@ -916,7 +916,7 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>In the Lesson menu, select <guilabel>New Lesson</guilabel>.
+<para>In the Unit menu, select <guilabel>New Unit</guilabel>.
 </para>
 <para>
 <screenshot>
@@ -931,21 +931,21 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>Please make sure to select the right point in the tree structure of lessons before selecting <guilabel>New Lesson</guilabel>. In our case, wanting a <emphasis>Sub-Lesson</emphasis> of <guilabel>Collection: My Spanish Lessons</guilabel> it is exactly that one that needs to be selected before going ahead with <guilabel>New Lesson</guilabel>.
+<para>Please make sure to select the right point in the tree structure of units before selecting <guilabel>New Unit</guilabel>. In our case, wanting a <emphasis>Sub-Unit</emphasis> of <guilabel>Collection: My Spanish Lessons</guilabel> it is exactly that one that needs to be selected before going ahead with <guilabel>New Unit</guilabel>.
 </para>
 </sect2>
-<sect2 id="moving-renaming-and-deleting-lessons"><title>Moving, Renaming and Deleting Lessons</title>
-<para>To change the name of a lesson, double click it, or right click on the lesson and choose <guilabel>Rename Lesson</guilabel>. You can also delete it this way (but you'll lose its contents also then).
+<sect2 id="moving-renaming-and-deleting-units"><title>Moving, Renaming and Deleting Units</title>
+<para>To change the name of a unit, double click it, or right click on the unit and choose <guilabel>Rename Unit</guilabel>. You can also delete it this way (but you'll lose its contents also then).
 </para>
-<para>If you don't like the arrangement of lessons, you can move a lesson with the mouse. You can drag it onto another lesson, then it will become a child of that lesson.
+<para>If you don't like the arrangement of units, you can move a unit with the mouse. You can drag it onto another unit, then it will become a child of that unit.
 </para>
 </sect2>
-<sect2 id="splitting-a-lesson"><title>Splitting a Lesson</title>
-<para>If your lessons grow too big, you can choose to split them up to make learning easier in small units. 20 words for a lesson is probably a good size. Right click a lesson, or use <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Split Lesson into Smaller Lessons</guimenuitem></menuchoice> and the lesson will be separated into child lessons. You can choose to randomize the words that are put into the new lessons before assigning them, or to keep them in order.
+<sect2 id="splitting-a-unit"><title>Splitting a Unit</title>
+<para>If your units grow too big, you can choose to split them up to make learning easier in small units. 20 words for a unit is probably a good size. Right click a unit, or use <menuchoice><guimenu>Unit</guimenu><guimenuitem>Split Unit into Smaller Units</guimenuitem></menuchoice> and the unit will be separated into child units. You can choose to randomize the words that are put into the new units before assigning them, or to keep them in order.
 </para>
 </sect2>
 <sect2 id="what-is-shown-in-the-table"><title>What is Shown in the Table</title>
-<para>&parley; shows always the words of the lesson that you have currently selected. You can enable to see the words in sub-lessons contained in this lesson also. Use <menuchoice><guimenu>Lesson</guimenu><guimenuitem>Show Entries from Child Lessons</guimenuitem></menuchoice> to enable this. That way, you can browse all words by selecting the document lesson at the very top.
+<para>&parley; shows always the words of the unit that you have currently selected. You can enable to see the words in sub-units contained in this unit also. Use <menuchoice><guimenu>Unit</guimenu><guimenuitem>Show Entries from Child Units</guimenuitem></menuchoice> to enable this. That way, you can browse all words by selecting the document unit at the very top.
 </para>
 </sect2>
 </sect1>
@@ -954,7 +954,7 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>In order to work with word types, enable the word type tool: <menuchoice><guimenu>View</guimenu><guimenuitem>Word Types</guimenuitem></menuchoice>.
 </para>
-<para>You can categorize the word types just like lessons.
+<para>You can categorize the word types just like units.
 </para>
 <para>If you want to see all words of a certain type - &eg; all nouns, simply select the noun category, and you will see only nouns in the table.
 </para>
@@ -1219,7 +1219,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </para>
 <para>Next click on <guilabel>OK</guilabel>. The following screen asks you to set up the language details. Here we don't want to change anything and therefore we just click on <guilabel>OK</guilabel>.
 </para>
-<para>As a first step, let's create the vocabulary part. We will think about the addition of the sound files and pictures in a second stage. This is what the lesson looks like:
+<para>As a first step, let's create the vocabulary part. We will think about the addition of the sound files and pictures in a second stage. This is what the unit looks like:
 </para>
 <para>
 <screenshot>
@@ -1241,7 +1241,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_003.png" format="PNG"/> <!--FIXME Lessons wrong in png-->
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_003.png" format="PNG"/> <!--FIXME Units wrong in png-->
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -1251,18 +1251,18 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </para>
 <para>If you now check your folder where the sound-files and pictures are, you will also find the file <guilabel>Trainer eng-deu.kvtml</guilabel>
 </para>
-<para>Let's have a short look at the words we want to add: <emphasis>apple, bird, cat, cherry, cow, orange, pear, snake, strawberry</emphasis>. We have animals and fruit and therefore we decide to create two lessons that are called: <guilabel>Animals</guilabel> and <guilabel>Fruit</guilabel>.
+<para>Let's have a short look at the words we want to add: <emphasis>apple, bird, cat, cherry, cow, orange, pear, snake, strawberry</emphasis>. We have animals and fruit and therefore we decide to create two units that are called: <guilabel>Animals</guilabel> and <guilabel>Fruit</guilabel>.
 </para>
-<para>We now rename <guilabel>Lesson 1</guilabel> to <guilabel>Animals</guilabel> and then we add a lesson called <guilabel>Fruit</guilabel>. Right-click on <guilabel>Lesson 1</guilabel> and choose <guilabel>Rename Lesson</guilabel> from the options shown. Now <guilabel>Lesson 1</guilabel> is highlighted and you can simply overwrite it by typing in <guilabel>Animals</guilabel>. When done, hit the &Enter; key. Now right-click on <guilabel>Collection: Vocabulary trainer E...</guilabel> which is the root of the lesson tree and choose <guilabel>New Lesson</guilabel> from the options shown. In the new field write <guilabel>Fruit</guilabel> and hit the &Enter; key again.
+<para>We now rename <guilabel>Lesson 1</guilabel> to <guilabel>Animals</guilabel> and then we add a unit called <guilabel>Fruit</guilabel>. Right-click on <guilabel>Lesson 1</guilabel> and choose <guilabel>Rename Unit</guilabel> from the options shown. Now <guilabel>Lesson 1</guilabel> is highlighted and you can simply overwrite it by typing in <guilabel>Animals</guilabel>. When done, hit the &Enter; key. Now right-click on <guilabel>Collection: Vocabulary trainer E...</guilabel> which is the root of the unit tree and choose <guilabel>New Unit</guilabel> from the options shown. In the new field write <guilabel>Fruit</guilabel> and hit the &Enter; key again.
 </para>
-<para>First, let's insert the animals. Please click on the lesson <guilabel>Animals</guilabel> and you will get an empty table you can fill in. Click with your mouse in the first field, and insert the source terms.  Then, insert the target terms in the second column. Once you've inserted all 4 English animal names with their German translation the screen looks like this:
+<para>First, let's insert the animals. Please click on the unit <guilabel>Animals</guilabel> and you will get an empty table you can fill in. Click with your mouse in the first field, and insert the source terms.  Then, insert the target terms in the second column. Once you've inserted all 4 English animal names with their German translation the screen looks like this:
 </para>
 <para>
 <screenshot>
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_004.png" format="PNG"/> <!--FIXME Lessons wrong in png-->
+      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_004.png" format="PNG"/> <!--FIXME Units wrong in png-->
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -1270,13 +1270,13 @@ The sound file will be saved next to the current vocabulary file in the <filenam
   </mediaobject>
 </screenshot>
 </para>
-<para>In our case we want only 4 entries in the animals lesson. There are many empty lines that should be deleted. To do this click on the first empty field, and keep the &Shift; key pressed while clicking on the last empty field. All lines to be deleted will be highlighted. Then, press the <keycap>Del</keycap> key and confirm the question <emphasis>Do you really want to delete the selected entries?</emphasis> by clicking on the <guilabel>Delete</guilabel> button.
+<para>In our case we want only 4 entries in the animals unit. There are many empty lines that should be deleted. To do this click on the first empty field, and keep the &Shift; key pressed while clicking on the last empty field. All lines to be deleted will be highlighted. Then, press the <keycap>Del</keycap> key and confirm the question <emphasis>Do you really want to delete the selected entries?</emphasis> by clicking on the <guilabel>Delete</guilabel> button.
 </para>
-<para>Let's add the fruit terminology. Just click on the lesson named <guilabel>Fruit</guilabel>. This second lesson is completely empty. Since we have five fruit terms we need to add five lines. Therefore, press the <keycap>Ins</keycap> key five times, and then, just like before, we add our terminology.
+<para>Let's add the fruit terminology. Just click on the unit named <guilabel>Fruit</guilabel>. This second unit is completely empty. Since we have five fruit terms we need to add five lines. Therefore, press the <keycap>Ins</keycap> key five times, and then, just like before, we add our terminology.
 </para>
 <para>Don't forget to save every now and then ...
 </para>
-<para>A click on the root of our lesson tree <guilabel>Collection: Vocabulary trainer E...</guilabel> and Parley will show us all entries that are present in the two lessons:
+<para>A click on the root of our unit tree <guilabel>Collection: Vocabulary trainer E...</guilabel> and Parley will show us all entries that are present in the two units:
 </para>
 <para>
 <screenshot>
@@ -1344,7 +1344,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </para>
 <para>Just go ahead like this for all terms.
 </para>
-<para>Time to add adjectives and verbs as lessons to our project. So just do as before with the lesson <emphasis>Fruit</emphasis> and create two new lessons: <emphasis>Adjectives</emphasis> and <emphasis>Verbs</emphasis>. Let's assume we will add <emphasis>big, small, old, young, narrow</emphasis> in the adjective lesson and <emphasis>to go, to come, to buy, to drink, to eat</emphasis> in the verb lesson.
+<para>Time to add adjectives and verbs as units to our project. So just do as before with the unit <emphasis>Fruit</emphasis> and create two new units: <emphasis>Adjectives</emphasis> and <emphasis>Verbs</emphasis>. Let's assume we will add <emphasis>big, small, old, young, narrow</emphasis> in the adjective unit and <emphasis>to go, to come, to buy, to drink, to eat</emphasis> in the verb unit.
 </para>
 <para>The following shows a screenshot with all inserted terminology. Now, words are mixed and it would be nice to see what is a <emphasis>noun, adjective</emphasis> or <emphasis>verb</emphasis>.
 </para>
@@ -1391,7 +1391,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
   </mediaobject>
 </screenshot>
 </para>
-<para>Once we have specified all the word types, we will first consider <emphasis>Adjectives</emphasis>, adding <guilabel>Comparison Forms</guilabel>  to them. So let's move to the <emphasis>Adjectives</emphasis> lesson only.
+<para>Once we have specified all the word types, we will first consider <emphasis>Adjectives</emphasis>, adding <guilabel>Comparison Forms</guilabel>  to them. So let's move to the <emphasis>Adjectives</emphasis> unit only.
 </para>
 <para>
 <screenshot>
@@ -1436,7 +1436,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
   </mediaobject>
 </screenshot>
 </para>
-<para>Finally, let's consider the <guilabel>Conjugation</guilabel> form of the <guilabel>Verbs</guilabel>. Select the <guilabel>Verbs</guilabel> lesson and then activate the conjugation section on the right hand side by selecting <guilabel>View</guilabel> from the menubar and activating <guilabel>Conjugation</guilabel>. As an example we edit the present tense (<guilabel>Präsens</guilabel>) form of <emphasis>gehen</emphasis>. Please first select <guilabel>Präsens</guilabel> from the drop down menu and then add the verb forms.
+<para>Finally, let's consider the <guilabel>Conjugation</guilabel> form of the <guilabel>Verbs</guilabel>. Select the <guilabel>Verbs</guilabel> unit and then activate the conjugation section on the right hand side by selecting <guilabel>View</guilabel> from the menubar and activating <guilabel>Conjugation</guilabel>. As an example we edit the present tense (<guilabel>Präsens</guilabel>) form of <emphasis>gehen</emphasis>. Please first select <guilabel>Präsens</guilabel> from the drop down menu and then add the verb forms.
 </para>
 <para>
 <screenshot>
@@ -1683,7 +1683,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </para>
 </sect3>
 <sect3 id="editing-option"><title>Editing option</title>
-<para>Here you can determine whether Parley automatically appends new rows while you are editing your vocabulary collection. This can be useful if you want to add many entries, before then splitting them up into various lessons. On the other hand, it can be good to have this option off if you want to work by creating lessons with a set maximum number of entries.
+<para>Here you can determine whether Parley automatically appends new rows while you are editing your vocabulary collection. This can be useful if you want to add many entries, before then splitting them up into various units. On the other hand, it can be good to have this option off if you want to work by creating units with a set maximum number of entries.
 </para>
 <para>
 <screenshot>
@@ -1701,7 +1701,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </sect3>
 </sect2>
 <sect2 id="view-tab"><title>View Tab</title>
-<para>The <guilabel>View Settings</guilabel> allows you to change font and size for the pronunciation symbols, and you can choose the <guilabel>Base color for displaying grades</guilabel> you like best.
+<para>The <guilabel>View Settings</guilabel> allows you to change font and size for the pronunciation symbols, and you can choose the <guilabel>Base color for displaying confidence levels</guilabel> you like best.
 </para>
 <para>
 <screenshot>

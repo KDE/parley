@@ -98,7 +98,7 @@ void WrittenPracticeValidator::validateAnswer(const QString& answer)
         return;
     }
 
-    QString correct = m_entry->entry()->translation(m_translation)->text();
+    QString correct = m_entry->entry()->translation(m_entry->languageTo())->text();
 
     kDebug() << "Correct answer should be: " << correct;
     m_error = 0;
@@ -107,7 +107,7 @@ void WrittenPracticeValidator::validateAnswer(const QString& answer)
     if (answer.isEmpty()) {
         m_error |= TestEntry::Wrong;
         kDebug() << "Empty answer ";
-    } else if (isCorrect(answer)) {
+    } else if (isCorrect(correct, answer)) {
         m_error |= TestEntry::Correct;
     } else {
         //Check for all valid errors to build a list of
@@ -134,9 +134,9 @@ QString WrittenPracticeValidator::getCorrectedAnswer()
     return m_correctedAnswer;
 }
 
-bool WrittenPracticeValidator::isCorrect(const QString& answer)
+bool WrittenPracticeValidator::isCorrect(const QString& correct, const QString& answer)
 {
-    if (answer == m_entry->entry()->translation(m_translation)->text()) {
+    if (answer == correct ) {
         kDebug() << "Correct answer was given";
         return true;
     }
@@ -145,7 +145,7 @@ bool WrittenPracticeValidator::isCorrect(const QString& answer)
 
 bool WrittenPracticeValidator::isSynonymMistake(const QString& answer)
 {
-    foreach(KEduVocTranslation * synonym, m_entry->entry()->translation(m_translation)->synonyms()) {
+    foreach(KEduVocTranslation * synonym, m_entry->entry()->translation(m_entry->languageTo())->synonyms()) {
         if (synonym->text() == answer ||
                 (Prefs::ignoreCapitalizationMistakes() && isCapitalizationMistake(synonym->text(), answer)) ||
                 (Prefs::ignoreAccentMistakes() && isAccentMistake(synonym->text(), answer))) {
@@ -193,4 +193,3 @@ bool WrittenPracticeValidator::isAccentMistake(const QString& original, const QS
     }
     return false;
 }
-

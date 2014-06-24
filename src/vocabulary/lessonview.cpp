@@ -34,65 +34,65 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
 {
     KAction *actionNewLesson = new KAction(this);
     parent->actionCollection()->addAction("new_lesson", actionNewLesson);
-    actionNewLesson->setText(i18n("New Lesson"));
+    actionNewLesson->setText(i18n("New Unit"));
     actionNewLesson->setIcon(KIcon("lesson-add"));
-    actionNewLesson->setWhatsThis(i18n("Add a new lesson to your document"));
+    actionNewLesson->setWhatsThis(i18n("Add a new unit to your document"));
     actionNewLesson->setToolTip(actionNewLesson->whatsThis());
     actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
 
     KAction *actionRenameLesson = new KAction(this);
     parent->actionCollection()->addAction("rename_lesson", actionRenameLesson);
-    actionRenameLesson->setText(i18n("Rename Lesson"));
+    actionRenameLesson->setText(i18n("Rename Unit"));
     actionRenameLesson->setIcon(KIcon("edit-rename"));
-//    actionRenameLesson->setWhatsThis(i18n("Rename the selected lesson"));
+//    actionRenameLesson->setWhatsThis(i18n("Rename the selected unit"));
     actionRenameLesson->setToolTip(actionRenameLesson->whatsThis());
     actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
 
     KAction *actionDeleteLesson = new KAction(this);
     parent->actionCollection()->addAction("delete_lesson", actionDeleteLesson);
-    actionDeleteLesson->setText(i18n("Delete Lesson"));
+    actionDeleteLesson->setText(i18n("Delete Unit"));
     actionDeleteLesson->setIcon(KIcon("lesson-remove"));
-    actionDeleteLesson->setWhatsThis(i18n("Delete the selected lesson."));
+    actionDeleteLesson->setWhatsThis(i18n("Delete the selected unit."));
     actionDeleteLesson->setToolTip(actionDeleteLesson->whatsThis());
     actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
 
     KAction *actionSplitLesson = new KAction(this);
     parent->actionCollection()->addAction("split_lesson", actionSplitLesson);
-    actionSplitLesson->setText(i18n("Split Lesson into Smaller Lessons"));
+    actionSplitLesson->setText(i18n("Split Unit into Smaller Units"));
     actionSplitLesson->setIcon(KIcon("edit-copy"));  /// @todo better icon
-    actionSplitLesson->setWhatsThis(i18n("Make multiple smaller lessons out of one big lesson."));
+    actionSplitLesson->setWhatsThis(i18n("Make multiple smaller units out of one big unit."));
     actionSplitLesson->setToolTip(actionSplitLesson->whatsThis());
     actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
 
     KAction *actionRemoveGradesLesson = new KAction(this);
     parent->actionCollection()->addAction("remove_grades_lesson", actionRemoveGradesLesson);
-    actionRemoveGradesLesson->setText(i18n("Remove Grades from this Lesson"));
+    actionRemoveGradesLesson->setText(i18n("Remove Confidence Levels"));
     actionRemoveGradesLesson->setIcon(KIcon("edit-clear")); /// @todo better icon
-    actionRemoveGradesLesson->setWhatsThis(i18n("Remove grades from this lesson."));
+    actionRemoveGradesLesson->setWhatsThis(i18n("Remove confidence levels from this unit."));
     actionRemoveGradesLesson->setToolTip(actionRemoveGradesLesson->whatsThis());
     actionRemoveGradesLesson->setStatusTip(actionRemoveGradesLesson->whatsThis());
 
     KAction *actionRemoveGradesLessonChildren = new KAction(this);
     parent->actionCollection()->addAction("remove_grades_lesson_children", actionRemoveGradesLessonChildren);
-    actionRemoveGradesLessonChildren->setText(i18n("Remove Grades from this Lesson and all Sub-Lessons"));
+    actionRemoveGradesLessonChildren->setText(i18n("Remove Confidence Levels From This Unit And All Subunits"));
     actionRemoveGradesLessonChildren->setIcon(KIcon("edit-clear"));
-    actionRemoveGradesLessonChildren->setWhatsThis(i18n("Remove grades from this lesson and all sub-lessons."));
+    actionRemoveGradesLessonChildren->setWhatsThis(i18n("Remove confidence levels from this unit and all subunits."));
     actionRemoveGradesLessonChildren->setToolTip(actionRemoveGradesLessonChildren->whatsThis());
     actionRemoveGradesLessonChildren->setStatusTip(actionRemoveGradesLessonChildren->whatsThis());
 
     KAction *actionExpandAll = new KAction(this);
     parent->actionCollection()->addAction("expand_all_lesson_children", actionExpandAll);
-    actionExpandAll->setText(i18n("Expand all lessons and sub-lessons"));
+    actionExpandAll->setText(i18n("Expand Units and Subunits"));
     actionExpandAll->setIcon(KIcon("go-down-search"));
-    actionExpandAll->setWhatsThis(i18n("Expand all lessons and sub-lessons."));
+    actionExpandAll->setWhatsThis(i18n("Expand all units and subunits."));
     actionExpandAll->setToolTip(actionExpandAll->whatsThis());
     actionExpandAll->setStatusTip(actionExpandAll->whatsThis());
 
     KAction *actionCollapseAll = new KAction(this);
     parent->actionCollection()->addAction("collapse_all_lesson_children", actionExpandAll);
-    actionCollapseAll->setText(i18n("Collapse all lessons and sub-lessons"));
+    actionCollapseAll->setText(i18n("Collapse All Units And Subunits"));
     actionCollapseAll->setIcon(KIcon("go-up-search"));
-    actionCollapseAll->setWhatsThis(i18n("Collapse all lessons and sub-lessons."));
+    actionCollapseAll->setWhatsThis(i18n("Collapse all units and subunits."));
     actionCollapseAll->setToolTip(actionCollapseAll->whatsThis());
     actionCollapseAll->setStatusTip(actionCollapseAll->whatsThis());
 
@@ -200,7 +200,7 @@ void LessonView::slotDeleteLesson()
     int count = lesson->entryCount(KEduVocLesson::Recursive);
 
     if (count == 0 ||
-            KMessageBox::warningYesNo(this, i18np("There is %1 word left in this lesson. Do you want to delete it?", "There are %1 words left in this lesson. Do you want to delete them?", count)) == KMessageBox::Yes) {
+            KMessageBox::warningYesNo(this, i18np("There is %1 word left in this unit. Do you want to delete it?", "There are %1 words left in this unit. Do you want to delete them?", count)) == KMessageBox::Yes) {
         m_model->deleteContainer(selectedIndex);
     }
 }
@@ -214,7 +214,7 @@ void LessonView::slotSplitLesson()
     /** @todo A nicer dialog would be great.
      * Maybe with radio buttons to ask, if the entries should be in random order or as they come. */
     bool ok = false;
-    int numEntries = KInputDialog::getInteger(i18n("Entries per Lesson"), i18n("The lesson will be split into smaller lessons. How many entries in each lesson do you want?"), Prefs::entriesPerLesson(), 1, 1000, 1, &ok, this);
+    int numEntries = KInputDialog::getInteger(i18n("Entries per Unit"), i18n("The unit will be split into smaller unit. How many entries in each unit do you want?"), Prefs::entriesPerLesson(), 1, 1000, 1, &ok, this);
     if (!ok) {
         return;
     }

@@ -161,9 +161,9 @@ void EditorWindow::initDockWidgets()
 
     m_lessonModel = new LessonModel(this);
     m_lessonView->setModel(m_lessonModel);
-    m_lessonView->setToolTip(i18n("Right click to add, delete, or rename lessons. \n"
-                                  "With the checkboxes you can select which lessons you want to practice. \n"
-                                  "Only checked lessons [x] will be asked in the tests!"));
+    m_lessonView->setToolTip(i18n("Right click to add, delete, or rename units. \n"
+                                  "With the checkboxes you can select which units you want to practice. \n"
+                                  "Only checked units [x] will be asked in the practice!"));
 
     connect(m_lessonView, SIGNAL(selectedLessonChanged(KEduVocLesson*)),
             m_vocabularyModel, SLOT(setLesson(KEduVocLesson*)));

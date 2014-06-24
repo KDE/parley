@@ -29,12 +29,10 @@
 using namespace Practice;
 
 PracticeStateMachine::PracticeStateMachine(AbstractFrontend* frontend, ParleyDocument* doc,
-                                           const PracticeOptions& options,
                                            SessionManagerBase* sessionManager,  QObject* parent)
     : QObject(parent)
     , m_frontend(frontend)
     , m_document(doc)
-    , m_options(options)
     , m_current(0)
     , m_sessionManager(sessionManager)
 {
@@ -55,43 +53,43 @@ PracticeStateMachine::PracticeStateMachine(AbstractFrontend* frontend, ParleyDoc
 
 void PracticeStateMachine::createPracticeMode()
 {
-    switch (m_options.mode()) {
+    switch (Prefs::practiceMode()) {
     case Prefs::EnumPracticeMode::FlashCardsPractice:
         kDebug() << "Create Flash Card Practice backend";
         m_frontend->setMode(AbstractFrontend::FlashCard);
-        m_mode = new FlashCardBackendMode(m_options, m_frontend, this);
+        m_mode = new FlashCardBackendMode(m_frontend, this);
         break;
     case Prefs::EnumPracticeMode::MultipleChoicePractice:
         kDebug() << "Create MultipleChoice Practice backend";
         m_frontend->setMode(AbstractFrontend::MultipleChoice);
-        m_mode = new MultipleChoiceBackendMode(m_options, m_frontend, this, m_sessionManager);
+        m_mode = new MultipleChoiceBackendMode(m_frontend, this, m_sessionManager);
         break;
     case Prefs::EnumPracticeMode::MixedLettersPractice:
         kDebug() << "Create Mixed Letters Practice backend";
         m_frontend->setMode(AbstractFrontend::MixedLetters);
-        m_mode = new WrittenBackendMode(m_options, m_frontend, this, m_sessionManager, m_document->document());
+        m_mode = new WrittenBackendMode(m_frontend, this, m_sessionManager, m_document->document());
         break;
     case Prefs::EnumPracticeMode::WrittenPractice:
         kDebug() << "Create Written Practice backend";
         m_frontend->setMode(AbstractFrontend::Written);
-        m_mode = new WrittenBackendMode(m_options, m_frontend, this, m_sessionManager, m_document->document());
+        m_mode = new WrittenBackendMode(m_frontend, this, m_sessionManager, m_document->document());
         break;
     case Prefs::EnumPracticeMode::ExampleSentencesPractice:
         kDebug() << "Create Written Practice backend";
         m_frontend->setMode(AbstractFrontend::ExampleSentence);
-        m_mode = new ExampleSentenceBackendMode(m_options, m_frontend, this, m_sessionManager, m_document->document());
+        m_mode = new ExampleSentenceBackendMode(m_frontend, this, m_sessionManager, m_document->document());
         break;
     case Prefs::EnumPracticeMode::GenderPractice:
         m_frontend->setMode(AbstractFrontend::MultipleChoice);
-        m_mode = new GenderBackendMode(m_options, m_frontend, this, m_sessionManager, m_document->document());
+        m_mode = new GenderBackendMode(m_frontend, this, m_sessionManager, m_document->document());
         break;
     case Prefs::EnumPracticeMode::ConjugationPractice:
         m_frontend->setMode(AbstractFrontend::Conjugation);
-        m_mode = new ConjugationBackendMode(m_options, m_frontend, this, m_sessionManager, m_document->document());
+        m_mode = new ConjugationBackendMode(m_frontend, this, m_sessionManager, m_document->document());
         break;
     case Prefs::EnumPracticeMode::ComparisonPractice:
         m_frontend->setMode(AbstractFrontend::Comparison);
-        m_mode = new ComparisonBackendMode(m_options, m_frontend, this, m_sessionManager, m_document->document());
+        m_mode = new ComparisonBackendMode(m_frontend, this, m_sessionManager, m_document->document());
         break;
 
     default:
@@ -111,7 +109,7 @@ void PracticeStateMachine::nextEntry()
     m_state = NotAnswered;
     m_current = m_sessionManager->nextTrainingEntry();
 
-    kDebug() << "GETTING ENTRY - " << m_current;
+    //kDebug() << "GETTING ENTRY - " << m_current;
 
     //after going through all words, or at the start of practice
     if (m_current == 0) {
@@ -140,7 +138,7 @@ void PracticeStateMachine::currentEntryFinished()
 
 void PracticeStateMachine::continueAction()
 {
-    kDebug() << "continue" << m_state;
+    //kDebug() << "continue" << m_state;
     switch (m_state) {
         // on continue, we check the answer, if in NotAnsweredState or AnswerWasWrongState
     case NotAnswered:
@@ -156,7 +154,7 @@ void PracticeStateMachine::continueAction()
 
 void PracticeStateMachine::answerRight()
 {
-    kDebug() << "ans right";
+    //kDebug() << "ans right";
 
     m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
     if (m_state == NotAnswered) {
@@ -171,14 +169,14 @@ void PracticeStateMachine::answerRight()
 
 void PracticeStateMachine::answerWrongRetry()
 {
-    kDebug() << "wrong retr";
+    //kDebug() << "wrong retr";
     m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
     m_state = AnswerWasWrong;
 }
 
 void PracticeStateMachine::answerWrongShowSolution()
 {
-    kDebug() << "wrong sol";
+    //kDebug() << "wrong sol";
     m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
     //User gave an empty answer or the same answer for a second time so we want to drop out.
     m_frontend->setResultState(AbstractFrontend::AnswerWrong);
@@ -188,7 +186,7 @@ void PracticeStateMachine::answerWrongShowSolution()
 
 void PracticeStateMachine::showSolution()
 {
-    kDebug() << "show solution";
+    //kDebug() << "show solution";
     m_state = SolutionShown;
     m_frontend->showSolution();
 }
@@ -198,11 +196,21 @@ void PracticeStateMachine::updateFrontend()
     m_frontend->setFeedbackState(AbstractFrontend::QuestionState);
     m_frontend->setResultState(AbstractFrontend::QuestionState);
     m_frontend->setLessonName(m_current->entry()->lesson()->name());
+    m_frontend->showGrade(m_current->entry()->translation(m_current->languageTo())->preGrade(),
+                          m_current->entry()->translation(m_current->languageTo())->grade());
 
     // show the word that is currently practiced in the progress bar
     m_frontend->setFinishedWordsTotalWords(
         m_sessionManager->allEntryCount() - m_sessionManager->activeEntryCount(),
         m_sessionManager->allEntryCount());
+
+    // Set fonts
+    m_frontend->setQuestionFont((m_current->languageFrom() == Prefs::learningLanguage())
+                                ? m_frontend->learningLangFont()
+                                : m_frontend->knownLangFont());
+    m_frontend->setSolutionFont((m_current->languageTo() == Prefs::learningLanguage())
+                                ? m_frontend->learningLangFont()
+                                : m_frontend->knownLangFont());
 
     grade_t grade = m_mode->currentGradeForEntry();
     grade_t goodGrade = qMax(grade, grade_t(KV_LEV1_GRADE)); // if the word hasn't been practiced yet, use grade 1 as a base
@@ -216,8 +224,8 @@ void PracticeStateMachine::updateFrontend()
 
     m_frontend->setBoxes(grade, goodGrade, KV_LEV1_GRADE);
 
-    QString imgFrom = m_current->entry()->translation(m_options.languageFrom())->imageUrl().url();
-    QString imgTo = m_current->entry()->translation(m_options.languageTo())->imageUrl().url();
+    QString imgFrom = m_current->entry()->translation(m_current->languageFrom())->imageUrl().url();
+    QString imgTo = m_current->entry()->translation(m_current->languageTo())->imageUrl().url();
     if (imgFrom.isEmpty()) {
         imgFrom = imgTo;
     }
@@ -239,18 +247,27 @@ void PracticeStateMachine::updateFrontend()
 
 void PracticeStateMachine::gradeEntryAndContinue()
 {
-    grade_t currentGrade = m_mode->currentGradeForEntry();
+    grade_t currentPreGrade = m_mode->currentPreGradeForEntry();
+    grade_t currentGrade    = m_mode->currentGradeForEntry();
 
     if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-	m_current->updateStatisticsRightAnswer(currentGrade);
+	m_current->updateStatisticsRightAnswer(currentPreGrade, currentGrade);
     } else {
-        m_current->updateStatisticsWrongAnswer(currentGrade);
+        m_current->updateStatisticsWrongAnswer(currentPreGrade, currentGrade);
     }
 
-    kDebug() << "entry finished: " << m_frontend->resultState() << " change grades? " << m_current->changeGrades();
+    //kDebug() << "entry finished: " << m_frontend->resultState() << " change grades? " << m_current->changeGrades();
+
+#if 0
+    // FIXME: We should have a discussion about which grade that new
+    //        words that are correct at the first attempt should be
+    //        put into.  Until then I am disabling this.
+
+    // New words should always move to pregrade=1 since only unseen words have grades 0, 0
     if (m_current->isUnseenQuestion()) {
 	m_mode->updateGrades();
     }
+#endif
     if (m_current->changeGrades()) {
         m_mode->updateGrades();
         if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {

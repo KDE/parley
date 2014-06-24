@@ -17,27 +17,17 @@
    </sizepolicy>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" rowspan="2">
+   <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Languages:</string>
+      <string>Language to Learn</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="1">
-    <widget class="QLabel" name="caption">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
+   <item row="1" column="0">
+    <widget class="QComboBox" name="learnedLanguage"/>
    </item>
-   <item row="1" column="1" rowspan="14">
+   <item row="0" column="1" rowspan="18">
     <widget class="LessonStatisticsView" name="lessonStatistics" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -48,28 +38,16 @@
     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="QListWidget" name="languageList">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-       <horstretch>100</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>30</width>
-       <height>30</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>220</width>
-       <height>100</height>
-      </size>
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+     <string>Known Language</string>
      </property>
     </widget>
    </item>
    <item row="3" column="0">
+    <widget class="QComboBox" name="knownLanguage"/>
+   </item>
+   <item row="4" column="0">
     <spacer name="verticalSpacer_2">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -85,14 +63,14 @@
      </property>
     </spacer>
    </item>
-   <item row="4" column="0">
+   <item row="5" column="0">
     <widget class="QLabel" name="label_2">
      <property name="text">
       <string>Practice Mode:</string>
      </property>
     </widget>
    </item>
-   <item row="5" column="0">
+   <item row="6" column="0">
     <widget class="QRadioButton" name="flashCard">
      <property name="text">
       <string>Flash Cards</string>
@@ -102,28 +80,28 @@
      </property>
     </widget>
    </item>
-   <item row="6" column="0">
+   <item row="7" column="0">
     <widget class="QRadioButton" name="mixedLetters">
      <property name="text">
       <string>Mixed Letters</string>
      </property>
     </widget>
    </item>
-   <item row="7" column="0">
+   <item row="8" column="0">
     <widget class="QRadioButton" name="multipleChoice">
      <property name="text">
       <string>Multiple Choice</string>
      </property>
     </widget>
    </item>
-   <item row="8" column="0">
+   <item row="9" column="0">
     <widget class="QRadioButton" name="written">
      <property name="text">
       <string>Written</string>
      </property>
     </widget>
    </item>
-   <item row="9" column="0">
+   <item row="10" column="0">
     <widget class="QRadioButton" name="exampleSentence">
      <property name="enabled">
       <bool>true</bool>
@@ -133,7 +111,7 @@
      </property>
     </widget>
    </item>
-   <item row="10" column="0">
+   <item row="11" column="0">
     <widget class="QRadioButton" name="gender">
      <property name="enabled">
       <bool>true</bool>
@@ -143,7 +121,7 @@
      </property>
     </widget>
    </item>
-   <item row="11" column="0">
+   <item row="12" column="0">
     <widget class="QRadioButton" name="comparisonForms">
      <property name="enabled">
       <bool>true</bool>
@@ -153,7 +131,7 @@
      </property>
     </widget>
    </item>
-   <item row="12" column="0">
+   <item row="13" column="0">
     <widget class="QRadioButton" name="conjugations">
      <property name="enabled">
       <bool>true</bool>
@@ -163,7 +141,7 @@
      </property>
     </widget>
    </item>
-   <item row="13" column="0">
+   <item row="14" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <spacer name="horizontalSpacer">
@@ -199,7 +177,17 @@
      </item>
     </layout>
    </item>
-   <item row="14" column="0">
+   <item row="15" column="0">
+    <widget class="QLabel" name="label3">
+     <property name="text">
+      <string>Practice Direction</string>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="0">
+    <widget class="QComboBox" name="practiceDirection"/>
+   </item>
+   <item row="17" column="0">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>

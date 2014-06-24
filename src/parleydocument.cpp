@@ -87,15 +87,29 @@ ParleyDocument::ParleyDocument(ParleyMainWindow* parleyMainWindow)
 
 ParleyDocument::~ParleyDocument()
 {
+    close();
     delete m_backupTimer;
     delete m_doc;
 }
 
 KEduVocDocument * ParleyDocument::document()
 {
+    if ( m_doc == NULL ) {
+        defaultDocument();
+    }
     return m_doc;
 }
+void ParleyDocument::defaultDocument()
+{
+    if ( m_doc == NULL ) {
+        KEduVocDocument *newDoc = new KEduVocDocument();
+        newDoc->setTitle( i18n("Untitled") );
+        newDoc->setGenerator( QString::fromLatin1("Parley ") + PARLEY_VERSION_STRING );
 
+        m_doc = newDoc;
+    }
+
+}
 void ParleyDocument::setTitle(const QString& title)
 {
     m_doc->setTitle(title);
@@ -105,7 +119,7 @@ void ParleyDocument::setTitle(const QString& title)
 
 void ParleyDocument::slotFileNew()
 {
-    if (m_parleyApp->queryExit()) {
+    if (queryClose()) {
         newDocument(true);
     }
 }
@@ -156,13 +170,15 @@ void ParleyDocument::newDocument(bool wizard)
 
 void ParleyDocument::slotFileOpen()
 {
-    if (m_parleyApp->queryExit()) {
+    if ( queryClose() ) {
         QCheckBox *practiceCheckBox = new QCheckBox(i18n("Open in practice &mode"));
         practiceCheckBox->setChecked(m_parleyApp->currentComponent() != ParleyMainWindow::EditorComponent);
         KFileDialog dialog(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), m_parleyApp, practiceCheckBox);
         dialog.setCaption(i18n("Open Vocabulary Collection"));
-        if (dialog.exec() && !dialog.selectedUrl().isEmpty()) {
-            open(dialog.selectedUrl());
+        if (dialog.exec()
+            && !dialog.selectedUrl().isEmpty()
+            && open(dialog.selectedUrl())
+            ) {
             if (practiceCheckBox->isChecked()) {
                 m_parleyApp->showPracticeConfiguration();
             } else {
@@ -174,8 +190,7 @@ void ParleyDocument::slotFileOpen()
 
 void ParleyDocument::slotFileOpenRecent(const KUrl& url)
 {
-    if (m_parleyApp->queryExit()) {
-        open(url);
+    if ( queryClose() && open(url)) {
         m_parleyApp->showEditor(); ///@todo: start practice directly depending on current component
     }
 }
@@ -189,22 +204,55 @@ bool ParleyDocument::open(const KUrl & url)
     close();
     m_doc = new KEduVocDocument(this);
     m_doc->setCsvDelimiter(Prefs::separator());
-    int ret = m_doc->open(url);
-    if (ret != KEduVocDocument::NoError) {
-        KMessageBox::error(
-            m_parleyApp, i18n("Could not read collection from \"%1\"", url.url()), i18nc("@title:window", "Open Collection"));
-        delete m_doc;
-        m_doc = 0;
-        return false;
+
+    bool isSuccess = false, isError = false;
+
+    KEduVocDocument::ErrorCode ret = m_doc->open(url,  KEduVocDocument::FileDefaultHandling);
+    switch ( ret ) {
+    case KEduVocDocument::NoError :
+        isSuccess = true;
+        break;
+    case KEduVocDocument::FileLocked :
+    {
+        int exit = KMessageBox::warningYesNo(
+            m_parleyApp, i18n("The vocabulary collection is locked by another process.  You can open the file if you take over the lock, but you will lose any changes from the other process.\n\nDo you want to take over the lock?\n"), i18n( "Take Over Lock" ) ) ;
+        if ( exit == KMessageBox::Yes ) { //attempt to steal lock
+
+            ret = m_doc->open(url, KEduVocDocument::FileIgnoreLock);
+            if ( ret == KEduVocDocument::NoError ) {
+                kDebug() << "Lock stolen";
+                isSuccess = true;
+            } else {
+                isError = true;
+            }
+        } else { //Don't Steal continue work without saving !!!
+        }
+
+        break;
+    }
+    default:
+        isError = true;
     }
 
-    //m_parleyApp->editor()->updateDocument();
-    m_parleyApp->addRecentFile(url, m_doc->title());
+    if ( isSuccess ) {
+        kDebug() << "Open success.";
+        //m_parleyApp->editor()->updateDocument();
+        m_parleyApp->addRecentFile(url, m_doc->title());
 
-    emit documentChanged(m_doc);
-    enableAutoBackup(Prefs::autoBackup());
+        emit documentChanged(m_doc);
+        enableAutoBackup(Prefs::autoBackup());
 
-    return true;
+    } else {
+        if ( isError ) {
+            KMessageBox::error(
+                m_parleyApp, i18n("Opening collection \"%1\" resulted in an error: %2", m_doc->url().url(),
+                                  m_doc->errorDescription(ret)), i18nc("@title:window", "Open Collection"));
+        }
+        delete m_doc;
+        m_doc = 0;
+    }
+
+    return isSuccess;
 }
 
 void ParleyDocument::close()
@@ -218,9 +266,46 @@ void ParleyDocument::close()
     m_parleyApp->slotUpdateWindowCaption();
 }
 
+bool ParleyDocument::queryClose()
+{
+    if ( (m_doc == NULL ) || !m_doc->isModified()) {
+        return true;
+    }
+
+    Prefs::self()->writeConfig();
+
+    bool canSave = Prefs::autoSave(); //save without asking
+
+    if (!canSave) {
+        int exit = KMessageBox::warningYesNoCancel(
+            m_parleyApp, i18n("Vocabulary is modified.\n\nSave file before exit?\n"),
+            "", KStandardGuiItem::save(), KStandardGuiItem::discard());
+        switch ( exit ) {
+        case KMessageBox::Yes :
+            canSave = true;   // save and exit
+            break;
+        case KMessageBox::No :
+            canSave = false;  // don't save but exit
+            break;
+        case KMessageBox::Continue :
+        default:
+            return false;  // continue work without saving !!!
+        }
+    }
+
+    if (canSave) {
+        save();       // save and exit
+        document()->setModified(false);
+    }
+
+    close();
+    return true;
+}
+
+
 void ParleyDocument::openGHNS()
 {
-    if (m_parleyApp->queryExit()) {
+    if (m_parleyApp->queryClose()) {
         QString downloadDir = KStandardDirs::locateLocal("data", "kvtml/");
         KUrl url = KFileDialog::getOpenUrl(
                        downloadDir,
@@ -248,16 +333,59 @@ void ParleyDocument::save()
 
     emit statesNeedSaving();
 
-    int result = m_doc->saveAs(m_doc->url(), KEduVocDocument::Automatic, QString::fromLatin1("Parley ") + PARLEY_VERSION_STRING);
-    if (result != 0) {
-        KMessageBox::error(m_parleyApp,
-                           i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(),
-                                m_doc->errorDescription(result)), i18nc("@title:window", "Save File"));
-        saveAs();
-        return;
+    QString oldgenerator = m_doc->generator();
+    QString newgenerator = QString::fromLatin1("Parley ") + PARLEY_VERSION_STRING ;
+    m_doc->setGenerator(newgenerator);
+
+    bool isSuccess = false,  isError = false ;
+
+    KEduVocDocument::ErrorCode ret = m_doc->saveAs(
+        m_doc->url() , KEduVocDocument::Automatic, KEduVocDocument::FileIgnoreLock);
+    m_doc->setGenerator(oldgenerator);
+
+    switch ( ret ) {
+    case KEduVocDocument::NoError :
+        isSuccess = true;
+        break;
+    case KEduVocDocument::FileLocked :
+    {
+        int exit = KMessageBox::warningYesNo(
+            m_parleyApp, i18n("File \"%1\" is locked by another process.  You can save to the file if you take over the lock, but you will lose any changes from the other process.\n\nDo you want to take over the lock?\n"
+                , m_doc->url().url()), "");
+        if ( exit == KMessageBox::Yes ) {
+            m_doc->setGenerator(newgenerator );
+            ret = m_doc->saveAs(m_doc->url() , KEduVocDocument::Automatic, KEduVocDocument::FileIgnoreLock);
+            m_doc->setGenerator(oldgenerator );
+
+            if ( ret == KEduVocDocument::NoError ) {
+                isSuccess = true;
+                kDebug() << "Lock stolen";
+            } else {
+                isError = true;
+            }
+        } else {
+        }
+        break;
     }
-    m_parleyApp->addRecentFile(m_doc->url(), m_doc->title());
-    enableAutoBackup(Prefs::autoBackup());
+    default:
+        isError = true;
+    }
+
+    if ( isSuccess ) {
+        kDebug() << "Save success.";
+
+        m_parleyApp->addRecentFile(m_doc->url(), m_doc->title());
+        enableAutoBackup(Prefs::autoBackup());
+    } else {
+        if ( isError ) {
+            KMessageBox::error(
+                m_parleyApp, i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(),
+                                  m_doc->errorDescription(ret)), i18nc("@title:window", "Save File"));
+        }
+        kDebug() << "Save failed trying save as for "<< m_doc->url().url();
+        saveAs();
+    }
+
 }
 
 void ParleyDocument::saveAs(KUrl url)
@@ -271,16 +399,16 @@ void ParleyDocument::saveAs(KUrl url)
                                       KEduVocDocument::pattern(KEduVocDocument::Writing),
                                       m_parleyApp->parentWidget(),
                                       i18n("Save Vocabulary As"));
-    }
-    if (url.isEmpty()) {
-        return;
+        if (url.isEmpty()) {
+            return;
+        }
     }
 
     QFileInfo fileinfo(url.toLocalFile());
     if (fileinfo.exists()) {
-        if (KMessageBox::warningContinueCancel(0,
-                                               i18n("<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>",
-                                                       url.toLocalFile()), QString(), KStandardGuiItem::overwrite()) == KMessageBox::Cancel) {
+        if (KMessageBox::warningContinueCancel(
+                0, i18n("<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>",
+                        url.toLocalFile()), QString(), KStandardGuiItem::overwrite()) == KMessageBox::Cancel) {
             return;
         }
     }
@@ -296,14 +424,56 @@ void ParleyDocument::saveAs(KUrl url)
         url.setFileName(url.fileName() + QString::fromLatin1(".kvtml"));
     }
 
-    int result = m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley");
-    if (result == 0) {
+    bool isSuccess = false,  isError = false;
+    int ret = m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley");
+    switch ( ret ) {
+    case KEduVocDocument::NoError :
+        isSuccess = true;
+        break;
+    case KEduVocDocument::FileLocked :
+    {
+        int exit = KMessageBox::warningYesNo(
+            m_parleyApp, i18n("File \"%1\" is locked by another process.  You can save to the file if you take over the lock, but you will lose any changes from the other process.\n\nDo you want to take over the lock?\n"
+                , m_doc->url().url()), "");
+        if ( exit = KMessageBox::Yes ) { //attempt lock steal
+            QString oldgenerator = m_doc->generator();
+            m_doc->setGenerator(QString::fromLatin1("Parley ") + PARLEY_VERSION_STRING );
+            ret = m_doc->saveAs(
+                m_doc->url() , KEduVocDocument::Automatic, KEduVocDocument::FileIgnoreLock);
+            m_doc->setGenerator(oldgenerator );
+
+            if ( ret == KEduVocDocument::NoError ) {
+                isSuccess = true;
+                kDebug() << "Lock stolen";
+            } else {
+                isError = true;
+            }
+            break;
+        } else { //don't steal the lock
+        }
+
+        break;
+    }
+    default:
+        isError = true;
+        break;
+    }
+
+    if ( isSuccess ) {
+        kDebug() << "SaveAs success.";
         m_parleyApp->addRecentFile(m_doc->url(), m_doc->title());
         emit statesNeedSaving();
+
     } else {
-        KMessageBox::error(m_parleyApp, i18n("Writing file \"%1\" resulted in an error: %2",
-                                             m_doc->url().url(), m_doc->errorDescription(result)), i18nc("@title:window", "Save File"));
+        kDebug() << "SaveAs failed for "<< m_doc->url().url()<<" \nwhy "<< m_doc->errorDescription(ret);
+        if ( isError ) {
+            KMessageBox::error(
+                m_parleyApp, i18n("Writing file \"%1\" resulted in an error: %2",
+                                  m_doc->url().url(), m_doc->errorDescription(ret)), i18nc("@title:window", "Save File"));
+
+        }
     }
+
 }
 
 void ParleyDocument::initializeDefaultGrammar(KEduVocDocument *doc)
@@ -432,19 +602,30 @@ void ParleyDocument::uploadFile()
     KTempDir dir;
     KUrl url(dir.name() + m_doc->url().fileName());
     kDebug() << "save in " << url.url();
-    m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley");
+    if ( m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley") != KEduVocDocument::NoError ) {
+        KMessageBox::error(m_parleyApp, i18n("Could not save vocabulary collection \"%1\"", url.fileName() ));
+        return;
+    }
 
     KEduVocDocument tempDoc(this);
-    tempDoc.open(url);
+    if ( tempDoc.open(url) != KEduVocDocument::NoError ) {
+        KMessageBox::error(m_parleyApp, i18n("Could not open vocabulary collection \"%1\"", url.fileName() ));
+        return;
+    }
+
     // remove grades
     tempDoc.lesson()->resetGrades(-1, KEduVocContainer::Recursive);
-    tempDoc.saveAs(url, KEduVocDocument::Automatic, "Parley");
+    if ( tempDoc.saveAs(url, KEduVocDocument::Automatic, "Parley") != KEduVocDocument::NoError ) {
+        KMessageBox::error(m_parleyApp, i18n("Could not save vocabulary collection \"%1\"", url.fileName() ));
+        return;
+    }
 
     // upload
     KNS3::UploadDialog dialog(ParleyMainWindow::instance());
     dialog.setUploadFile(url);
     dialog.exec();
 }
+
 
 void ParleyDocument::exportDialog()
 {

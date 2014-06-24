@@ -39,8 +39,8 @@ using namespace Practice;
 
 SessionManagerBase::SessionManagerBase(QWidget* parent)
     : m_parent(parent)
-    , m_fromTranslation(0)
-    , m_toTranslation(1)
+    , m_learningLanguageIndex(0)
+    , m_knownLanguageIndex(1)
     , m_currentEntry(-1)
     , m_totalTime(0)
     , m_randomSequence(QDateTime::currentDateTime().toTime_t())
@@ -61,26 +61,40 @@ void SessionManagerBase::setDocument(KEduVocDocument* doc)
 
     m_doc = doc;
 
-    // Don't crash when trying to start practicing a document with only one language
+    // Make sure that there are at least 2 languages in the file before
+    // starting the practice. If we don't do this, it will crash later.
     if (m_doc->identifierCount() < 2) {
         KMessageBox::error(0, i18n("The vocabulary collection contains fewer than two languages.",
                                    i18n("Could not start practice")));
         return;
     }
-    if (Prefs::questionLanguage() >= m_doc->identifierCount()
-        || Prefs::solutionLanguage() >= m_doc->identifierCount()) {
-        kDebug() << "Invalid language selection" << m_fromTranslation << " to " << m_toTranslation;
-        Prefs::setQuestionLanguage(0);
-        Prefs::setSolutionLanguage(1);
+
+    if (Prefs::learningLanguage() >= m_doc->identifierCount()
+        || Prefs::knownLanguage() >= m_doc->identifierCount())
+    {
+        Prefs::setLearningLanguage(0);
+        Prefs::setKnownLanguage(1);
     }
 
-    setLanguages(Prefs::questionLanguage(), Prefs::solutionLanguage());
-    kDebug() << "Test from: " << m_doc->identifier(m_fromTranslation).name()
-             << " to: " << m_doc->identifier(m_toTranslation).name();
+    m_learningLanguageIndex = Prefs::learningLanguage();
+    m_knownLanguageIndex    = Prefs::knownLanguage();
+    kDebug() << "Practice: learning language:" << m_doc->identifier(m_learningLanguageIndex).name()
+             << " known language:" << m_doc->identifier(m_knownLanguageIndex).name();
 
-    filterTestEntries();
+    // Create the list of available entries for this training session.
+    EntryFilter filter(m_parent, m_doc);
+    m_allTestEntries = filter.entries();
+
+    kDebug() << "Entries: ----------------";
     kDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
+    foreach (TestEntry *entry, m_allTestEntries) {
+        kDebug() << "Entry: " << entry->languageFrom() << entry->entry()->translation(entry->languageFrom())->text()
+                 << "to" << entry->languageTo() << entry->entry()->translation(entry->languageTo())->text();
+    }
 
+    // Create the list actual entries in this training session.  This
+    // is a pure virtual function and must be implemented by the
+    // concrete session managers.
     initializeTraining();
 }
 
@@ -109,18 +123,22 @@ int SessionManagerBase::totalTime()
 
 TestEntry* SessionManagerBase::nextTrainingEntry()
 {
-    // Refill current entries.
+    // In some session types an entry will move out of the "current
+    // entries" when they are correctly answered and then we need to
+    // refill.
     while (m_currentEntries.count() < Prefs::testNumberOfEntries() &&
             m_notAskedTestEntries.count() > 0) {
         m_currentEntries.append(m_notAskedTestEntries.takeAt(0));
     }
 
+    // Return one of the current entries, but not the same as last
+    // time if posible.
     int lastEntry = m_currentEntry;
-    // return one of the current entries
     if (m_currentEntries.count() > 0) {
-        // one of the current words (by random)
+        // Choose one of the current entries randomly.
         m_currentEntry = m_randomSequence.getLong(m_currentEntries.count());
-        // do not allow to ask the same entry twice in a row
+
+        // Do not allow to ask the same entry twice in a row.
         if (m_currentEntries.count() > 1) {
             while (m_currentEntry == lastEntry) {
                 m_currentEntry = m_randomSequence.getLong(m_currentEntries.count());
@@ -233,7 +251,8 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
     int count = numberChoices;
 
     // if the current entry has predefined multiple choice entries definied, use them first
-    QStringList predefinedChoices = m_currentEntries.at(m_currentEntry)->entry()->translation(Prefs::solutionLanguage())->multipleChoice();
+    TestEntry *currentEntry = m_currentEntries.at(m_currentEntry);
+    QStringList predefinedChoices = currentEntry->entry()->translation(currentEntry->languageTo())->multipleChoice();
     while (!predefinedChoices.isEmpty() && count > 0) {
         choices.append(predefinedChoices.takeAt(randomSequence.getLong(predefinedChoices.count())));
         count--;
@@ -252,8 +271,9 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
         for (int i = choices.count(); i < allEntries.count(); ++i) {
             KEduVocExpression *exp = allEntries.value(i);
 
+            // FIXME: Use trainingmode2 also here!
             if (isValidMultipleChoiceAnswer(exp)) {
-                choices.append(exp->translation(Prefs::solutionLanguage())->text());
+                choices.append(exp->translation(currentEntry->languageTo())->text());
             }
         }
     } else {
@@ -276,12 +296,13 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
             }
         }
 
+        // FIXME: Use trainingmode2 too here
         for (int i = 0; i < exprlist.count(); i++) {
-            choices.append(exprlist[i]->translation(Prefs::solutionLanguage())->text());
+            choices.append(exprlist[i]->translation(currentEntry->languageTo())->text());
         }
     }
 
-    kDebug() << "choices:" << choices;
+    kDebug() << "choices:" << choices << " answerLang = " << currentEntry->languageTo() ;
     return choices;
 }
 
@@ -290,31 +311,23 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
 //                         Protected methods
 
 
-void SessionManagerBase::filterTestEntries()
-{
-    EntryFilter filter(m_parent, m_doc);
-    m_allTestEntries = filter.entries();
-}
-
-void SessionManagerBase::setLanguages(int from, int to)
-{
-    m_fromTranslation = from;
-    m_toTranslation = to;
-    TestEntry::setGradeFrom(m_fromTranslation);
-    TestEntry::setGradeTo(m_toTranslation);
-}
-
 bool SessionManagerBase::isValidMultipleChoiceAnswer(KEduVocExpression *e)
 {
     // entry is empty
-    if (e->translation(Prefs::solutionLanguage())->text().trimmed().isEmpty())
+    if (e->translation(m_learningLanguageIndex)->text().trimmed().isEmpty())
         return false;
+
+    // FIXME: Must test individual solution & question languages per
+    // entry in mixed mode training.
+    //
     // entry is a synonym of the solution
-    if (e->translation(Prefs::solutionLanguage())->synonyms().contains(m_currentEntries.at(m_currentEntry)->entry()->translation(Prefs::solutionLanguage())))
+    if (e->translation(m_learningLanguageIndex)->synonyms().contains(m_currentEntries.at(m_currentEntry)->entry()->translation(m_learningLanguageIndex)))
         return false;
-    // entry has the same text as the solution
-    if (e->translation(Prefs::solutionLanguage())->text().simplified() == m_currentEntries.at(m_currentEntry)->entry()->translation(Prefs::solutionLanguage())->text().simplified())
+
+    // Entry has the same text as the solution.
+    if (e->translation(m_learningLanguageIndex)->text().simplified()
+        == m_currentEntries.at(m_currentEntry)->entry()->translation(m_learningLanguageIndex)->text().simplified())
         return false;
+
     return true;
 }
-

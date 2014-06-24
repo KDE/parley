@@ -43,6 +43,11 @@ public:
     virtual QVariant userInput();
     QWidget* widget();
 
+    QFont knownLangFont() const;
+    QFont learningLangFont() const;
+    void setKnownLangFont(const QFont& font);
+    void setLearningLangFont(const QFont& font);
+
     virtual void setQuestion(const QVariant& question);
     virtual void setQuestionImage(const KUrl& img);
     virtual void setQuestionPronunciation(const QString& pronunciationText);
@@ -64,6 +69,7 @@ public:
 
     /// update lesson label
     void setLessonName(const QString& lessonName);
+    void showGrade(int preGrade, int grade);
     virtual void setFinishedWordsTotalWords(int finished, int total);
 
     virtual void setSynonym(const QString& entry);
@@ -107,6 +113,9 @@ private:
     int m_newBoxIfCorrect;
     int m_newBoxIfWrong;
     ThemedBackgroundRenderer *m_themedBackgroundRenderer;
+
+    QFont m_knownLangFont;
+    QFont m_learningLangFont;
 };
 
 }
