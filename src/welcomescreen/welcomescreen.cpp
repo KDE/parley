@@ -230,8 +230,8 @@ int WelcomeScreen::randInt(int low, int high)
 //                         class WelcomeScreen
 
 
-// Number of collection widgets per row
-const int ROWSIZE = 4;
+// Number of collection widgets (+ 1 initial spacerItem) per row
+int ROWSIZE = 4;
 
 
 WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
@@ -284,12 +284,12 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     m_subGridLayout = new QGridLayout();
     m_subGridLayout->setHorizontalSpacing(50);
     m_subGridLayout->setVerticalSpacing(30);
-    ui->gridLayout->addLayout(m_subGridLayout, 5, 0);
+    ui->gridLayout->addLayout(m_subGridLayout, 5, 0, 1, 4);
 
     m_completedGridLayout = new QGridLayout();
     m_completedGridLayout->setHorizontalSpacing(50);
     m_completedGridLayout->setVerticalSpacing(30);
-    ui->gridLayout->addLayout(m_completedGridLayout, 9, 0);
+    ui->gridLayout->addLayout(m_completedGridLayout, 9, 0, 1, 4);
 
     populateMap();
     populateGrid();
@@ -341,7 +341,7 @@ void WelcomeScreen::remove(QGridLayout *layout, int row, int column, bool delete
     for (int i = layout->count() - 1; i >= 0; i--) {
         int r, c, rs, cs;
         layout->getItemPosition(i, &r, &c, &rs, &cs);
-        if ((r <= row && r + rs - 1 >= row) || (c <= column && c + cs - 1 >= column)) {
+        if ((r + rs - 1 <= row) || (c + cs - 1 <= column)) {
             // This layout item is subject to deletion.
             QLayoutItem *item = layout->takeAt(i);
             if (deleteWidgets) {
@@ -492,8 +492,8 @@ void WelcomeScreen::populateGrid()
     }
 
     m_count=k;
-    m_completedGridLayout->addItem(new QSpacerItem(170,1,QSizePolicy::Expanding, QSizePolicy::Fixed), m_completedGridLayout->rowCount() - 1, m_completedGridLayout->columnCount());
-    m_subGridLayout->addItem(new QSpacerItem(170,1,QSizePolicy::Expanding, QSizePolicy::Fixed), m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount());
+    m_completedGridLayout->addItem(new QSpacerItem(50,1,QSizePolicy::Expanding, QSizePolicy::Fixed), m_completedGridLayout->rowCount() - 1, m_completedGridLayout->columnCount());
+    m_subGridLayout->addItem(new QSpacerItem(50,1,QSizePolicy::Expanding, QSizePolicy::Fixed), m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount());
     if (k-kc) {
         ui->recentLabel->setText(i18n("Active Collections"));
     } else {
