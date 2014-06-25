@@ -32,6 +32,24 @@
 
 QColor gradeColor[11];
 
+RemoveButton::RemoveButton(): QPushButton()
+{
+}
+
+void RemoveButton::paintEvent(QPaintEvent*)
+{
+    QPainter painter(this);
+    QPen pen(QColor(255,255,255));
+    painter.setPen(pen);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    QBrush brush(QColor(49,54,59));
+    painter.setBrush(brush);
+    painter.drawEllipse(1, 1, height() - 1, height() - 1);
+    painter.setFont( QFont( "Helvetica", 7, QFont::Bold, false));
+    painter.drawText(2, 1, height() - 2, height() - 1, Qt::AlignCenter, "x");
+}
+
+
 class GradeReferenceWidget : public QWidget
 {
 public:
@@ -138,6 +156,8 @@ void BarWidget::paintEvent(QPaintEvent *)
         gradeBarWidth[7] = 160;
         gradeBarOffset[7] = 0;
     }
+    QPen penBar(QColor(255,255,255));
+    painter.setPen(penBar);
     QRect roundedRect(0, 0, legendWidth, legendHeight);
     roundedRect.adjust(1, 1, -1, -1);
     QPainterPath roundedPath;
@@ -191,6 +211,7 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     ui->setupUi(m_widget);
     setCentralWidget(m_widget);
     signalMapper = new QSignalMapper(this);
+    signalMapper2 = new QSignalMapper(this);
 
     gradeColor[0] = QColor(25,38,41);
     gradeColor[1] = QColor(25,38,41,64);// Need 8 colors, so find a suitable color for this grade, currently gray.
@@ -229,6 +250,7 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     m_completedGridLayout->setVerticalSpacing(30);
     ui->gridLayout->addLayout(m_completedGridLayout, 9, 0);
 
+    populateMap();
     populateGrid();
 
     ParleyDocument* doc = m_mainWindow->parleyDocument();
@@ -237,6 +259,7 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     connect(ui->ghnsButton, SIGNAL(clicked()), doc, SLOT(slotGHNS()));
 
     connect(signalMapper, SIGNAL(mapped(const QString &)), this, SLOT(slotPracticeButtonClicked(const QString &)));
+    connect(signalMapper2, SIGNAL(mapped(const QString &)), this, SLOT(slotRemoveButtonClicked(const QString &)));
 
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
@@ -260,14 +283,66 @@ WelcomeScreen::~WelcomeScreen()
     saveMainWindowSettings(cfg);
 }
 
-void WelcomeScreen::populateGrid()
+void WelcomeScreen:: clearGrid()
+{
+   remove(m_subGridLayout,m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount() - 1, true);
+   remove(m_completedGridLayout,m_completedGridLayout->rowCount() - 1, m_completedGridLayout->columnCount() - 1, true);
+}
+
+/**
+ * Helper function. Removes all layout items within the given @a layout
+ * which either span the given @a row or @a column. If @a deleteWidgets
+ * is true, all concerned child widgets become not only removed from the
+ * layout, but also deleted.
+ */
+void WelcomeScreen::remove(QGridLayout *layout, int row, int column, bool deleteWidgets) {
+    // We avoid usage of QGridLayout::itemAtPosition() here to improve performance.
+    for (int i = layout->count() - 1; i >= 0; i--) {
+        int r, c, rs, cs;
+        layout->getItemPosition(i, &r, &c, &rs, &cs);
+        if ((r <= row && r + rs - 1 >= row) || (c <= column && c + cs - 1 >= column)) {
+            // This layout item is subject to deletion.
+            QLayoutItem *item = layout->takeAt(i);
+            if (deleteWidgets) {
+                deleteChildWidgets(item);
+            }
+            delete item;
+        }
+    }
+}
+
+/**
+ * Helper function. Deletes all child widgets of the given layout @a item.
+ */
+void WelcomeScreen::deleteChildWidgets(QLayoutItem *item) {
+    if (item->layout()) {
+        // Process all child items recursively.
+        for (int i = 0; i < item->layout()->count(); i++) {
+            deleteChildWidgets(item->layout()->itemAt(i));
+        }
+    }
+    delete item->widget();
+}
+
+void WelcomeScreen::populateMap()
 {
     KConfig parleyConfig("parleyrc");
     KConfigGroup recentFilesGroup(&parleyConfig, "Recent Files");
-    int j = 0, k = 0, jc = 0, kc = 0;
     for (int i = recentFilesGroup.keyList().count() / 2; i > 0 ; i--) {
         QString urlString = recentFilesGroup.readPathEntry("File" + QString::number(i), QString());
         QString nameString = recentFilesGroup.readEntry("Name" + QString::number(i), QString());
+        recentFilesMap.insert(urlString,nameString);
+    }
+}
+
+void WelcomeScreen::populateGrid()
+{
+    int j = 0, k = 0, jc = 0, kc = 0;
+    QMapIterator<QString, QString> i(recentFilesMap);
+    while (i.hasNext()) {
+        i.next();
+        QString urlString = i.key();
+        QString nameString = i.value();
 
         ///This is only for testing purposes. Need a way to get the grades and words due for every document.
         int dueWords[8]; //Due words categorized in grades.
@@ -339,11 +414,21 @@ void WelcomeScreen::populateGrid()
             practiceButton[k] = new QPushButton(i18n("Practice"));
         }
         practiceButton[k]->setStyleSheet("QPushButton {border: none; margin: 0px;   padding: 0px;}");
-        vBoxLayout->addWidget(practiceButton[k]);
+        QHBoxLayout *hBoxLayout = new QHBoxLayout();
+        vBoxLayout->addLayout(hBoxLayout);
+        removeButton[k] = new RemoveButton();
+        removeButton[k]->setFixedSize(20,20);
+        hBoxLayout->setAlignment(removeButton[k], Qt::AlignLeft | Qt::AlignVCenter);
+        hBoxLayout->setAlignment(practiceButton[k], Qt::AlignCenter);
+        hBoxLayout->addWidget(removeButton[k]);
+        hBoxLayout->addWidget(practiceButton[k]);
+        hBoxLayout->addItem(new QSpacerItem(20,20));
         backWidget->setLayout(vBoxLayout);
 
         signalMapper->setMapping(practiceButton[k], urlString);
         connect(practiceButton[k], SIGNAL(clicked()), signalMapper, SLOT(map()));
+        signalMapper2->setMapping(removeButton[k], urlString);
+        connect(removeButton[k], SIGNAL(clicked()), signalMapper2, SLOT(map()));
 
         if (percentageCompleted != 100) {
             j++;
@@ -357,7 +442,7 @@ void WelcomeScreen::populateGrid()
     m_count=k;
     m_completedGridLayout->addItem(new QSpacerItem(170,1,QSizePolicy::Expanding, QSizePolicy::Fixed), m_completedGridLayout->rowCount() - 1, m_completedGridLayout->columnCount());
     m_subGridLayout->addItem(new QSpacerItem(170,1,QSizePolicy::Expanding, QSizePolicy::Fixed), m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount());
-    if (k) {
+    if (k-kc) {
         ui->recentLabel->setText(i18n("Active Collections"));
     } else {
         ui->recentLabel->clear();
@@ -395,6 +480,18 @@ void WelcomeScreen::slotPracticeButtonClicked(const QString& urlString)
     KUrl url(urlString);
     m_openUrl = url;
     QTimer::singleShot(0, this, SLOT(slotDoubleClickOpen()));
+}
+
+void WelcomeScreen::slotRemoveButtonClicked(const QString& urlString)
+{
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, i18n("Remove"), i18n("Are you sure you want to remove this collection?"), QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        recentFilesMap.remove(urlString);
+        m_mainWindow->removeRecentFile(KUrl(urlString));
+        clearGrid();
+        populateGrid();
+    }
 }
 
 void WelcomeScreen::slotDoubleClickOpen()

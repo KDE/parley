@@ -32,6 +32,16 @@ class ThemedBackgroundRenderer;
 class ImageWidget;
 }
 
+class RemoveButton : public QPushButton
+{
+public:
+    RemoveButton();
+
+protected:
+    void paintEvent(QPaintEvent *);
+};
+
+
 class WelcomeScreen : public KXmlGuiWindow
 {
     Q_OBJECT
@@ -47,8 +57,13 @@ public slots:
     void slotDoubleClickOpen();
     //void updateRecentFilesModel();
     void populateGrid();
+    void populateMap();
+    void clearGrid();
     void slotPracticeButtonClicked(const QString& urlString);
+    void slotRemoveButtonClicked(const QString& urlString);
     void statisticsHandler(KUrl url);
+    void remove(QGridLayout *layout, int row, int column, bool deleteWidgets);
+    void deleteChildWidgets(QLayoutItem *item);
 
 private slots:
     void setTheme();
@@ -61,6 +76,7 @@ private:
     ParleyMainWindow *m_mainWindow;
     QStandardItemModel *m_recentFilesModel;
     KUrl m_openUrl;
+    QMap<QString, QString> recentFilesMap;
     Practice::ThemedBackgroundRenderer *m_themedBackgroundRenderer;
     Practice::ImageWidget* m_widget;
     QGridLayout *m_subGridLayout;
@@ -68,7 +84,9 @@ private:
     QLabel *nameLabel[N];
     QWidget *wordCloud[N];
     QPushButton *practiceButton[N];
+    RemoveButton *removeButton[N];
     QSignalMapper *signalMapper;
+    QSignalMapper *signalMapper2;
     KUrl urlArray[N];
     StatisticsMainWindow *statisticsWidget;
     int m_count;

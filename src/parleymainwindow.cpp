@@ -118,6 +118,12 @@ void ParleyMainWindow::addRecentFile(const KUrl &url, const QString &name)
     m_recentFilesAction->saveEntries(KGlobal::config()->group("Recent Files"));
 }
 
+void ParleyMainWindow::removeRecentFile(const KUrl &url)
+{
+    m_recentFilesAction->removeUrl(url);
+    m_recentFilesAction->saveEntries(KGlobal::config()->group("Recent Files"));
+}
+
 void ParleyMainWindow::updateRecentFilesModel()
 {
     emit recentFilesChanged();

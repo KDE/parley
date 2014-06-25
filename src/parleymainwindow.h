@@ -119,6 +119,9 @@ public slots:
     /** When quitting, ask for confirmation if the doc has not been saved */
     bool queryClose();
 
+    /** remove an entry from the list of recent files */
+    void removeRecentFile(const KUrl &url);
+
     QSize sizeHint() const;
 
     /** set up options */
