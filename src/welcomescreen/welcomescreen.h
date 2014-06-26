@@ -42,7 +42,7 @@ class WelcomeScreen : public KXmlGuiWindow
 public:
     WelcomeScreen(ParleyMainWindow *parent);
     ~WelcomeScreen();
-    int randInt(int low, int high);
+    int randInt(int low, int high);  // FIXME: should be private?
 
 public slots:
     void slotOpenUrl(const KUrl& url);

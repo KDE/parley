@@ -34,6 +34,10 @@ QColor gradeColor[11];
 
 
 
+// ================================================================
+//                        private classes
+
+
 class RemoveButton : public QPushButton
 {
 public:
@@ -44,9 +48,11 @@ protected:
 };
 
 
-RemoveButton::RemoveButton(): QPushButton()
+RemoveButton::RemoveButton()
+  : QPushButton()
 {
 }
+
 
 void RemoveButton::paintEvent(QPaintEvent*)
 {
@@ -56,10 +62,14 @@ void RemoveButton::paintEvent(QPaintEvent*)
     painter.setRenderHint(QPainter::Antialiasing, true);
     QBrush brush(QColor(49,54,59));
     painter.setBrush(brush);
+
     painter.drawEllipse(1, 1, height() - 1, height() - 1);
     painter.setFont( QFont( "Helvetica", 7, QFont::Bold, false));
     painter.drawText(2, 1, height() - 2, height() - 1, Qt::AlignCenter, "x");
 }
+
+
+// ----------------------------------------------------------------
 
 
 class GradeReferenceWidget : public QWidget
@@ -73,6 +83,7 @@ protected:
 };
 
 GradeReferenceWidget::GradeReferenceWidget()
+  : QWidget()
 {
 }
 
@@ -89,8 +100,11 @@ void GradeReferenceWidget::paintEvent(QPaintEvent *)
     roundedRect.adjust(1, 1, -1, -1);
     QPainterPath roundedPath;
     roundedPath.addRoundedRect(roundedRect, 2.0, 2.0);
-    for (int i = 7; i >= 0; i--) {
-        QRectF barElement(0 + legendOffsetX + (7 - i) * gradeBarWidth, 0 + legendOffsetY, gradeBarWidth, legendHeight);
+
+    for (int i = 7; i >= 0; --i) {
+        QRectF barElement(0 + legendOffsetX + (7 - i) * gradeBarWidth,
+			  0 + legendOffsetY,
+			  gradeBarWidth, legendHeight);
         QPainterPath barElementPath;
         barElementPath.addRect(barElement);
         QPainterPath barElementIntersectedPath = roundedPath.intersected(barElementPath);
@@ -99,6 +113,9 @@ void GradeReferenceWidget::paintEvent(QPaintEvent *)
         painter.drawPath(barElementIntersectedPath);
     }
 }
+
+
+// ----------------------------------------------------------------
 
 
 class BarWidget : public QWidget
@@ -168,6 +185,7 @@ void BarWidget::paintEvent(QPaintEvent *)
         gradeBarWidth[7] = 160;
         gradeBarOffset[7] = 0;
     }
+
     QPen penBar(QColor(255,255,255));
     painter.setPen(penBar);
     QRect roundedRect(0, 0, legendWidth, legendHeight);
@@ -193,10 +211,11 @@ void BarWidget::paintEvent(QPaintEvent *)
     QPen pen(QColor(255,255,255));
     painter.setPen(pen);
     if (percentageCompleted < 100) {
-        painter.drawText(0, 0, 160, 20, Qt::AlignCenter, QString::number(totalDueWords) + " due words");
+        painter.drawText(0, 0, 160, 20, Qt::AlignCenter,
+			 i18n("%1 words due").arg(totalDueWords));
     }
     else {
-        painter.drawText(0, 0, 160, 20, Qt::AlignCenter, "Fully learned");
+        painter.drawText(0, 0, 160, 20, Qt::AlignCenter, i18n("Fully learned"));
     }
 }
 
@@ -205,6 +224,11 @@ int WelcomeScreen::randInt(int low, int high)
     // Random number between low and high
     return qrand() % ((high + 1) - low) + low;
 }
+
+
+// ================================================================
+//                         class WelcomeScreen
+
 
 WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     : KXmlGuiWindow(parent)
