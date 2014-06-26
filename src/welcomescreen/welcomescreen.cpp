@@ -32,6 +32,18 @@
 
 QColor gradeColor[11];
 
+
+
+class RemoveButton : public QPushButton
+{
+public:
+    RemoveButton();
+
+protected:
+    void paintEvent(QPaintEvent *);
+};
+
+
 RemoveButton::RemoveButton(): QPushButton()
 {
 }

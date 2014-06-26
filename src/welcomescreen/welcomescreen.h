@@ -32,14 +32,8 @@ class ThemedBackgroundRenderer;
 class ImageWidget;
 }
 
-class RemoveButton : public QPushButton
-{
-public:
-    RemoveButton();
 
-protected:
-    void paintEvent(QPaintEvent *);
-};
+class RemoveButton;
 
 
 class WelcomeScreen : public KXmlGuiWindow
