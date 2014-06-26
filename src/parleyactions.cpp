@@ -100,8 +100,8 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
         break;
     case FileClose:
         pAction = Private::createCustomAction(recvr, slot, parent,
-                                              "file_close", i18n("&Start Page"),
-                                              i18n("Close the current vocabulary collection and show the start page"), "go-home");
+                                              "file_close", i18n("Dashboard"),
+                                              i18n("Close the current vocabulary collection and show the dashboard"), "go-home");
         break;
     case FileQuit:
         pAction = KStandardAction::quit(recvr, slot, parent);
