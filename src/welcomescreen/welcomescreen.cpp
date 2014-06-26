@@ -281,6 +281,7 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     m_subGridLayout->setHorizontalSpacing(50);
     m_subGridLayout->setVerticalSpacing(30);
     ui->gridLayout->addLayout(m_subGridLayout, 5, 0);
+
     m_completedGridLayout = new QGridLayout();
     m_completedGridLayout->setHorizontalSpacing(50);
     m_completedGridLayout->setVerticalSpacing(30);
@@ -350,7 +351,8 @@ void WelcomeScreen::remove(QGridLayout *layout, int row, int column, bool delete
 /**
  * Helper function. Deletes all child widgets of the given layout @a item.
  */
-void WelcomeScreen::deleteChildWidgets(QLayoutItem *item) {
+void WelcomeScreen::deleteChildWidgets(QLayoutItem *item)
+{
     if (item->layout()) {
         // Process all child items recursively.
         for (int i = 0; i < item->layout()->count(); i++) {
@@ -371,16 +373,20 @@ void WelcomeScreen::populateMap()
     }
 }
 
+const int ROWSIZE = 4;
+
 void WelcomeScreen::populateGrid()
 {
     int j = 0, k = 0, jc = 0, kc = 0;
-    QMapIterator<QString, QString> i(recentFilesMap);
-    while (i.hasNext()) {
-        i.next();
-        QString urlString = i.key();
-        QString nameString = i.value();
 
-        ///This is only for testing purposes. Need a way to get the grades and words due for every document.
+    QMapIterator<QString, QString> it(recentFilesMap);
+    while (it.hasNext()) {
+        it.next();
+        QString urlString  = it.key();
+        QString nameString = it.value();
+
+        // FIXME: This is only for testing purposes. We need a way to get the
+        //        grades and words due for every document.
         int dueWords[8]; //Due words categorized in grades.
         int firstGrade = randInt(0,7); //This is done for vanity purposes only, giving due word values to only two grades for now.
         int secondGrade = randInt(0,7);
@@ -399,17 +405,19 @@ void WelcomeScreen::populateGrid()
         KUrl url(urlString);
         urlArray[k] = url;
         if (percentageCompleted != 100) {
-            if (j % 6 == 0) {
-                m_subGridLayout->addItem(new QSpacerItem(50,1), j / 6, 0);
+            if (j % ROWSIZE == 0) {
+                m_subGridLayout->addItem(new QSpacerItem(50,1), j / ROWSIZE, 0);
                 j++;
             }
         }
         else {
-            if (jc % 6 == 0) {
-                m_completedGridLayout->addItem(new QSpacerItem(50,1), jc / 6, 0);
+            if (jc % ROWSIZE == 0) {
+                m_completedGridLayout->addItem(new QSpacerItem(50,1), jc / ROWSIZE, 0);
                 jc++;
             }
         }
+
+	// backWidget is the main widget for one collection
         QWidget* backWidget = new QWidget;
         QGraphicsDropShadowEffect* effect = new QGraphicsDropShadowEffect();
         effect->setBlurRadius(50);
@@ -420,12 +428,14 @@ void WelcomeScreen::populateGrid()
         backWidget->setPalette(palette);
         if (percentageCompleted != 100) {
                 backWidget->setFixedSize(170,250);
-                m_subGridLayout->addWidget(backWidget, j / 6, j % 6);
+                m_subGridLayout->addWidget(backWidget, j / ROWSIZE, j % ROWSIZE);
         }
         else {
                 backWidget->setFixedSize(170,100);
-                m_completedGridLayout->addWidget(backWidget, jc / 6, jc % 6);
+                m_completedGridLayout->addWidget(backWidget, jc / ROWSIZE, jc % ROWSIZE);
         }
+
+	// vBoxLayout is the main vertical layout for one collection
         QVBoxLayout* vBoxLayout = new QVBoxLayout();
         nameLabel[k] = new QLabel(nameString);
         vBoxLayout->addWidget(nameLabel[k]);
@@ -450,6 +460,9 @@ void WelcomeScreen::populateGrid()
             practiceButton[k] = new QPushButton(i18n("Practice"));
         }
         practiceButton[k]->setStyleSheet("QPushButton {border: none; margin: 0px;   padding: 0px;}");
+
+	// hBoxLayout is the horizontal layout for the bottom line in the
+	// collection widget: delete button, practice button, etc
         QHBoxLayout *hBoxLayout = new QHBoxLayout();
         vBoxLayout->addLayout(hBoxLayout);
         removeButton[k] = new RemoveButton();
@@ -475,6 +488,7 @@ void WelcomeScreen::populateGrid()
         }
         k++;
     }
+
     m_count=k;
     m_completedGridLayout->addItem(new QSpacerItem(170,1,QSizePolicy::Expanding, QSizePolicy::Fixed), m_completedGridLayout->rowCount() - 1, m_completedGridLayout->columnCount());
     m_subGridLayout->addItem(new QSpacerItem(170,1,QSizePolicy::Expanding, QSizePolicy::Fixed), m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount());
