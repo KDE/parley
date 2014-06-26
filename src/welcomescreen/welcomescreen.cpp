@@ -230,6 +230,10 @@ int WelcomeScreen::randInt(int low, int high)
 //                         class WelcomeScreen
 
 
+// Number of collection widgets per row
+const int ROWSIZE = 4;
+
+
 WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     : KXmlGuiWindow(parent)
     , m_mainWindow(parent)
@@ -275,7 +279,7 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     ui->ghnsButton->setIcon(KIcon("get-hot-new-stuff"));
     GradeReferenceWidget *gradeReferenceWidget = new GradeReferenceWidget();
     gradeReferenceWidget->setMinimumSize(m_widget->width(),50);
-    ui->gridLayout->addWidget(gradeReferenceWidget, 2, 0, 1, 6, Qt::AlignCenter);
+    ui->gridLayout->addWidget(gradeReferenceWidget, 2, 0, 1, ROWSIZE, Qt::AlignCenter);
 
     m_subGridLayout = new QGridLayout();
     m_subGridLayout->setHorizontalSpacing(50);
@@ -372,8 +376,6 @@ void WelcomeScreen::populateMap()
         recentFilesMap.insert(urlString,nameString);
     }
 }
-
-const int ROWSIZE = 4;
 
 void WelcomeScreen::populateGrid()
 {
