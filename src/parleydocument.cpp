@@ -435,7 +435,7 @@ void ParleyDocument::saveAs(KUrl url)
         int exit = KMessageBox::warningYesNo(
             m_parleyApp, i18n("File \"%1\" is locked by another process.  You can save to the file if you take over the lock, but you will lose any changes from the other process.\n\nDo you want to take over the lock?\n"
                 , m_doc->url().url()), "");
-        if ( exit = KMessageBox::Yes ) { //attempt lock steal
+        if ( exit == KMessageBox::Yes ) { //attempt lock steal
             QString oldgenerator = m_doc->generator();
             m_doc->setGenerator(QString::fromLatin1("Parley ") + PARLEY_VERSION_STRING );
             ret = m_doc->saveAs(
