@@ -68,21 +68,26 @@ private slots:
 private:
     Ui::WelcomeScreen *ui;
     ParleyMainWindow *m_mainWindow;
-    QStandardItemModel *m_recentFilesModel;
-    KUrl m_openUrl;
-    QMap<QString, QString> recentFilesMap;
+    StatisticsMainWindow *statisticsWidget;
     Practice::ThemedBackgroundRenderer *m_themedBackgroundRenderer;
     Practice::ImageWidget* m_widget;
+
+    QStandardItemModel *m_recentFilesModel;
+    QMap<QString, QString> recentFilesMap;  // url, name
+    KUrl m_openUrl;
     QGridLayout *m_subGridLayout;
     QGridLayout *m_completedGridLayout;
-    QLabel *nameLabel[N];
-    QWidget *wordCloud[N];
-    QPushButton *practiceButton[N];
+
+    // The parts of the collections
+    QLabel       *nameLabel[N];
+    QWidget      *wordCloud[N];
+    QPushButton  *practiceButton[N];
     RemoveButton *removeButton[N];
-    QSignalMapper *signalMapper;
-    QSignalMapper *signalMapper2;
-    KUrl urlArray[N];
-    StatisticsMainWindow *statisticsWidget;
+    KUrl          urlArray[N];
+
+    QSignalMapper *signalMapper;  // For the practice buttons
+    QSignalMapper *signalMapper2; // For the remove buttons 
+
     int m_count;
 };
 

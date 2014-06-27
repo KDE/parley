@@ -33,23 +33,34 @@
 QColor gradeColor[11];
 
 
+// Size constants for the collection widgets
+//int COLLWIDTH   = 170; // Width in pixels of a collection widget
+int COLLWIDTH   = 140; // Width in pixels of a collection widget
+int COLLHEIGHT1 = 250; // Height in pixels of a collection widget not yet fully learned
+int COLLHEIGHT2 = 100; // Height in pixels of a collection widget fully learned
+
 
 // ================================================================
 //                        private classes
 
 
+
+// The RemoveButton is a button that the user can press in a collection to
+// remove the collection from the word bank.
+
+
 class RemoveButton : public QPushButton
 {
 public:
-    RemoveButton();
+    RemoveButton(QWidget *parent = 0);
 
 protected:
     void paintEvent(QPaintEvent *);
 };
 
 
-RemoveButton::RemoveButton()
-  : QPushButton()
+RemoveButton::RemoveButton(QWidget *parent)
+  : QPushButton(parent)
 {
 }
 
@@ -75,15 +86,15 @@ void RemoveButton::paintEvent(QPaintEvent*)
 class GradeReferenceWidget : public QWidget
 {
 public:
-    GradeReferenceWidget();
+    GradeReferenceWidget(QWidget *parent = 0);
 
 protected:
     void paintEvent(QPaintEvent *);
 
 };
 
-GradeReferenceWidget::GradeReferenceWidget()
-  : QWidget()
+GradeReferenceWidget::GradeReferenceWidget(QWidget *parent)
+  : QWidget(parent)
 {
 }
 
@@ -95,7 +106,7 @@ void GradeReferenceWidget::paintEvent(QPaintEvent *)
     const int legendOffsetY = 0;
     const int legendOffsetX = (this->width() / 2) - (legendWidth / 2);;
     const int gradeBarWidth = this->width()/8;
-    const int alphaValueIncrement = 35;
+    //const int alphaValueIncrement = 35;
     QRect roundedRect(0 + legendOffsetX, 0 + legendOffsetY, legendWidth, legendHeight);
     roundedRect.adjust(1, 1, -1, -1);
     QPainterPath roundedPath;
@@ -153,11 +164,11 @@ BarWidget::BarWidget(int dueWords[], int totalDueWords, int percentageCompleted)
 void BarWidget::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    const int legendWidth = 160;
+    const int legendWidth = COLLWIDTH - 10;
     const int legendHeight = 20;
     const int legendOffsetY = 0;
     const int legendOffsetX = 0;
-    const int alphaValueIncrement = 35;
+    //const int alphaValueIncrement = 35;
 
     int gradeBarWidth[9];
     gradeBarWidth[8] = 0;
@@ -172,17 +183,17 @@ void BarWidget::paintEvent(QPaintEvent *)
     else {
         for(int j = 6; j >= 0; j--) {
             gradeBarWidth[j] = 0;
-            gradeBarOffset[j] = 160;
+            gradeBarOffset[j] = legendWidth;
         }
-        gradeBarWidth[7] = 160;
+        gradeBarWidth[7] = legendWidth;
         gradeBarOffset[7] = 0;
     }
     if (percentageCompleted < 100 && totalDueWords == 0) {
         for(int j = 6; j >= 0; j--) {
             gradeBarWidth[j] = 0;
-            gradeBarOffset[j] = 160;
+            gradeBarOffset[j] = legendWidth;
         }
-        gradeBarWidth[7] = 160;
+        gradeBarWidth[7] = legendWidth;
         gradeBarOffset[7] = 0;
     }
 
@@ -211,11 +222,11 @@ void BarWidget::paintEvent(QPaintEvent *)
     QPen pen(QColor(255,255,255));
     painter.setPen(pen);
     if (percentageCompleted < 100) {
-        painter.drawText(0, 0, 160, 20, Qt::AlignCenter,
+        painter.drawText(0, 0, legendWidth, 20, Qt::AlignCenter,
 			 i18n("%1 words due").arg(totalDueWords));
     }
     else {
-        painter.drawText(0, 0, 160, 20, Qt::AlignCenter, i18n("Fully learned"));
+        painter.drawText(0, 0, legendWidth, 20, Qt::AlignCenter, i18n("Fully learned"));
     }
 }
 
@@ -230,8 +241,7 @@ int WelcomeScreen::randInt(int low, int high)
 //                         class WelcomeScreen
 
 
-// Number of collection widgets (+ 1 initial spacerItem) per row
-int ROWSIZE = 4;
+int ROWSIZE = 4;      // Number of collection widgets (+ 1 initial spacerItem) per row
 
 
 WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
@@ -278,7 +288,7 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     ui->openButton->setIcon(KIcon("document-open"));
     ui->ghnsButton->setIcon(KIcon("get-hot-new-stuff"));
     GradeReferenceWidget *gradeReferenceWidget = new GradeReferenceWidget();
-    gradeReferenceWidget->setMinimumSize(m_widget->width(),50);
+    gradeReferenceWidget->setMinimumSize(m_widget->width(), 50);
     ui->gridLayout->addWidget(gradeReferenceWidget, 2, 0, 1, ROWSIZE, Qt::AlignCenter);
 
     m_subGridLayout = new QGridLayout();
@@ -295,7 +305,7 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     populateGrid();
 
     ParleyDocument* doc = m_mainWindow->parleyDocument();
-    connect(ui->newButton, SIGNAL(clicked()), doc, SLOT(slotFileNew()));
+    connect(ui->newButton,  SIGNAL(clicked()), doc, SLOT(slotFileNew()));
     connect(ui->openButton, SIGNAL(clicked()), doc, SLOT(slotFileOpen()));
     connect(ui->ghnsButton, SIGNAL(clicked()), doc, SLOT(slotGHNS()));
 
@@ -324,10 +334,15 @@ WelcomeScreen::~WelcomeScreen()
     saveMainWindowSettings(cfg);
 }
 
+
 void WelcomeScreen:: clearGrid()
 {
-   remove(m_subGridLayout,m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount() - 1, true);
-   remove(m_completedGridLayout,m_completedGridLayout->rowCount() - 1, m_completedGridLayout->columnCount() - 1, true);
+   remove(m_subGridLayout,
+	  m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount() - 1,
+	  true);
+   remove(m_completedGridLayout,
+	  m_completedGridLayout->rowCount() - 1, m_completedGridLayout->columnCount() - 1,
+	  true);
 }
 
 /**
@@ -429,31 +444,39 @@ void WelcomeScreen::populateGrid()
         backWidget->setAutoFillBackground(true);
         backWidget->setPalette(palette);
         if (percentageCompleted != 100) {
-                backWidget->setFixedSize(170,250);
+                backWidget->setFixedSize(COLLWIDTH, COLLHEIGHT1);
                 m_subGridLayout->addWidget(backWidget, j / ROWSIZE, j % ROWSIZE);
         }
         else {
-                backWidget->setFixedSize(170,100);
+                backWidget->setFixedSize(COLLWIDTH, COLLHEIGHT2);
                 m_completedGridLayout->addWidget(backWidget, jc / ROWSIZE, jc % ROWSIZE);
         }
 
 	// vBoxLayout is the main vertical layout for one collection
         QVBoxLayout* vBoxLayout = new QVBoxLayout();
+        vBoxLayout->setAlignment(Qt::AlignCenter);
+        backWidget->setLayout(vBoxLayout);
+
+	// One collection is laid out vertically like this:
+	//  1. nameLabel:  contains the name of the collection
+	//  2. wordcloud:  a wordcloud generated from the words in the collection
+	//  3. barWidget:  a visual bar showing the training status of the words in the collection
+	//  4. hBoxLayout: a horizontal row of pushbuttons for delete, practice, etc
         nameLabel[k] = new QLabel(nameString);
         vBoxLayout->addWidget(nameLabel[k]);
         wordCloud[k] = new QWidget;
         palette = wordCloud[k]->palette();
-        int y = randInt(8,9);
+        int y = randInt(8, 9);
         palette.setColor(QPalette::Background, gradeColor[y]);
         wordCloud[k]->setAutoFillBackground(true);
         wordCloud[k]->setPalette(palette);
-        wordCloud[k]->setFixedSize(160,160);
+        wordCloud[k]->setFixedSize(COLLWIDTH - 10, COLLHEIGHT1 - COLLHEIGHT2 + 10);
         if (percentageCompleted != 100) {
             vBoxLayout->addWidget(wordCloud[k]);
         }
-        vBoxLayout->setAlignment(Qt::AlignCenter);
+
         BarWidget *barWidget = new BarWidget(dueWords, totalDueWords, percentageCompleted);
-        barWidget->setFixedSize(160,20);
+        barWidget->setFixedSize(COLLWIDTH - 10, 20);
         vBoxLayout->addWidget(barWidget);
         if (totalDueWords == 0 && percentageCompleted < 100) {
             practiceButton[k] = new QPushButton(i18n("Practice Anyway"));
@@ -468,13 +491,12 @@ void WelcomeScreen::populateGrid()
         QHBoxLayout *hBoxLayout = new QHBoxLayout();
         vBoxLayout->addLayout(hBoxLayout);
         removeButton[k] = new RemoveButton();
-        removeButton[k]->setFixedSize(20,20);
+        removeButton[k]->setFixedSize(20, 20);
         hBoxLayout->setAlignment(removeButton[k], Qt::AlignLeft | Qt::AlignVCenter);
         hBoxLayout->setAlignment(practiceButton[k], Qt::AlignCenter);
         hBoxLayout->addWidget(removeButton[k]);
         hBoxLayout->addWidget(practiceButton[k]);
-        hBoxLayout->addItem(new QSpacerItem(20,20));
-        backWidget->setLayout(vBoxLayout);
+        hBoxLayout->addItem(new QSpacerItem(20, 20));
 
         signalMapper->setMapping(practiceButton[k], urlString);
         connect(practiceButton[k], SIGNAL(clicked()), signalMapper, SLOT(map()));
@@ -491,10 +513,14 @@ void WelcomeScreen::populateGrid()
         k++;
     }
 
-    m_count=k;
-    m_completedGridLayout->addItem(new QSpacerItem(50,1,QSizePolicy::Expanding, QSizePolicy::Fixed), m_completedGridLayout->rowCount() - 1, m_completedGridLayout->columnCount());
-    m_subGridLayout->addItem(new QSpacerItem(50,1,QSizePolicy::Expanding, QSizePolicy::Fixed), m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount());
-    if (k-kc) {
+    m_count = k;
+    m_completedGridLayout->addItem(new QSpacerItem(50, 1, 
+						   QSizePolicy::Expanding, QSizePolicy::Fixed),
+				   m_completedGridLayout->rowCount() - 1,
+				   m_completedGridLayout->columnCount());
+    m_subGridLayout->addItem(new QSpacerItem(50,1,QSizePolicy::Expanding, QSizePolicy::Fixed),
+			     m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount());
+    if (k - kc) {
         ui->recentLabel->setText(i18n("Active Collections"));
     } else {
         ui->recentLabel->clear();
@@ -507,16 +533,24 @@ void WelcomeScreen::populateGrid()
 }
 
 void WelcomeScreen::statisticsHandler(KUrl url)
-{/*
+{
+#if 1
+    Q_UNUSED(url);
+#else
     if (!m_mainWindow->parleyDocument()->open(url)) {
         return;
     }
-    m_mainWindow->m_sessionManager.setDocument(m_mainWindow->parleyDocument()->document()); //Used to find due words. TODO find a better way.
+
+    // Find due words. TODO find a better way.
+    m_mainWindow->m_sessionManager.setDocument(m_mainWindow->parleyDocument()->document());
+
     qDebug()<<"Session Manager, allEntryCount="<<m_mainWindow->m_sessionManager.allDueEntryCount();
     statisticsWidget->setDocument(m_mainWindow->parleyDocument()->document());
+
+    // Find the percentage completion, to categorize as active or completed collection.
     QModelIndex index = statisticsWidget->statisticsModel()->index(0, 2, QModelIndex());
-    qDebug()<<"Percentage:"<<index.data(StatisticsModel::TotalPercent).toInt(); //Used to find the percentage completion, to categorize as active or completed collection.
-    */
+    qDebug() << "Percentage:" << index.data(StatisticsModel::TotalPercent).toInt();
+#endif
 }
 
 void WelcomeScreen::slotOpenUrl(const KUrl& url)
@@ -537,7 +571,9 @@ void WelcomeScreen::slotPracticeButtonClicked(const QString& urlString)
 void WelcomeScreen::slotRemoveButtonClicked(const QString& urlString)
 {
     QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(this, i18n("Remove"), i18n("Are you sure you want to remove this collection?"), QMessageBox::Yes|QMessageBox::No);
+    reply = QMessageBox::question(this, i18n("Remove"),
+				  i18n("Are you sure you want to remove this collection?"),
+				  QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
         recentFilesMap.remove(urlString);
         m_mainWindow->removeRecentFile(KUrl(urlString));
