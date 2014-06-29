@@ -3,26 +3,25 @@
 
 
 ================================================================
-Before the 4.13 release (bugs).
+Before the 4.14 release (bugs).
 NOTE:  DO NOT CHANGE THESE HERE.
        Instead, change them in the branch and merge the branch into master.
 
  * To investigate
-    + Show pronounciation in the training
+    + Show pronounciation in the training				----
       https://bugs.kde.org/show_bug.cgi?id=150923
       This can be extended for other fields like
       comments, too.
       https://bugs.kde.org/show_bug.cgi?id=175241
       https://bugs.kde.org/show_bug.cgi?id=238893
-    + Impossible to remove images
+    + Impossible to remove images					----
       https://bugs.kde.org/show_bug.cgi?id=263836
-    + Modes like Conjugation, Gender etc. and				----
+    + Modes like Conjugation, Gender etc. and				Done
       Widgets like inflection, comparision forms
       haven't been implemented properly. Should
-      they be disabled for now? (PS: If yes, also
-      change the marketing for Parley to not
-      include "8" modes in the tag line)
-    + Vocabulary does not expire after a given time
+      they be disabled for now?
+      Done I think, but needs more checking
+    + Vocabulary does not expire after a given time			----
       https://bugs.kde.org/show_bug.cgi?id=261396
 
  * All crashes
@@ -38,8 +37,6 @@ NOTE:  DO NOT CHANGE THESE HERE.
       https://bugs.kde.org/show_bug.cgi?id=271695
 
  * Data loss
-    + Second instance causes data overwriting.                          ----
-      https://bugs.kde.org/show_bug.cgi?id=240552
 
  * Misfeatures
     + There seems to be no way to change the title.                     ----
@@ -73,14 +70,41 @@ Before the 4.14 freeze (features).  These are picked from the ones below.
     + 
 
  * Practice
-    + Sessions.  For details, see below.                                ----
+    + Sessions.  For details, see below.                                DONE
        - Milestone 1: (Working sessions)                                Done
        - Milestone 2: Configurable values                               Done
+    + Mixed mode. For details see below                                 DONE
+       - Mixed mode working in general                                  Done
+       - Statistics updated for mixed mode                              Done
+    + Dashboard	    	    	      					----
+       - Dashboard widget						Done
+       - wrapper class for a KEduVocDocument				----
+       - Make the words due work					----
+       - KEduVocDocument summary view widget				----
+    + Pregrades								DONE
+
+
+ * Wishes from bugzilla
+    + Second instance causes data overwriting.                          Done
+      https://bugs.kde.org/show_bug.cgi?id=240552
+    + FIXME: Check the commits for this one.
+
+
+================================================================
+Before the 4.15 freeze (features).  These are picked from the ones below.
+
+
+ * Editor
+    + 
+
+ * Practice
+    + Sessions.  For details, see below.                                ----
        - Milestone 3: Nice summary before the start                     ----
     + Mixed mode. For details see below                                 ----
-       - Mixed mode working in general                                  Done
-       - Statistics updated for mixed mode                              ----
-    + Dashboard
+       - Better statistic						----
+    + Sessions								----
+       - Create session overview pane					----
+
 
 
  * Wishes from bugzilla
@@ -171,6 +195,24 @@ Before the 4.14 freeze (features).  These are picked from the ones below.
        - Field for transcription of non-western scripts                 ----
        - pregrades for the phase before grade 1                         Done
 
+----------------------------------------------------------------
+
+Component map
+
+START --->  Dashboard <+-->  Word bank manager  (dialog?  component?)
+             ^     |   +-->  Collection maintenance  <-->  Collection Editor
+             |     |   +-->  Extended statistics for the word bank
+             |     |   +-->  ...
+             |     |
+             |     |
+             |   Select Collection
+             |     |
+             |     +------>  Practice  --->  Session statistics -->+
+             |     +------>  Collection statistics   ------------->+
+             |     +------>  Collection Editor       ------------->+
+             |                                                     |
+             |                                                     v
+             +<----------------------------------------------------+
 
 ================================================================
 
