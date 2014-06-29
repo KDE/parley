@@ -92,29 +92,24 @@ ParleyDocument::~ParleyDocument()
     delete m_doc;
 }
 
-KEduVocDocument * ParleyDocument::document()
+
+KEduVocDocument *ParleyDocument::document()
 {
-    if ( m_doc == NULL ) {
-        defaultDocument();
+    // If there is no present vocabulary document, create an empty one.
+    if (!m_doc) {
+	m_doc = new KEduVocDocument();
+        m_doc->setTitle( i18n("Untitled") );
+        m_doc->setGenerator( QString::fromLatin1("Parley ") + PARLEY_VERSION_STRING );
     }
+
     return m_doc;
 }
-void ParleyDocument::defaultDocument()
-{
-    if ( m_doc == NULL ) {
-        KEduVocDocument *newDoc = new KEduVocDocument();
-        newDoc->setTitle( i18n("Untitled") );
-        newDoc->setGenerator( QString::fromLatin1("Parley ") + PARLEY_VERSION_STRING );
 
-        m_doc = newDoc;
-    }
-
-}
 void ParleyDocument::setTitle(const QString& title)
 {
-    m_doc->setTitle(title);
-    m_parleyApp->slotUpdateWindowCaption();
     m_doc->setModified(true);
+    m_doc->setTitle(title);
+    m_parleyApp->slotUpdateWindowCaption(); // FIXME: This is what signals are for.  The document should *not* directly call it's owner. What if there are >1 window, for instance?
 }
 
 void ParleyDocument::slotFileNew()

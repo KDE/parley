@@ -86,19 +86,15 @@ signals:
     void statesNeedSaving();
 
 private:
-    /** Creates a default document when one is requested but none exists.
-     *
-     * It will overwrite an existing document.  It is necessary because
-     * document() hands out the pointer to the document and some other
-     * classes have no failure mechanism/check if document() returns NULL
-     */
-    void defaultDocument();
     void initializeDefaultGrammar(KEduVocDocument *doc);
     void setDefaultDocumentProperties(KEduVocDocument *doc);
 
-    ParleyMainWindow *m_parleyApp;
+ private:
+    ParleyMainWindow *m_parleyApp;   // Pointer to the owner of this document
+    QTimer           *m_backupTimer; // Timer for next autosave
+
+    // The contents of the document
     KEduVocDocument *m_doc;
-    QTimer *m_backupTimer;
 };
 
 #endif
