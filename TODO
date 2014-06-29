@@ -180,7 +180,6 @@ We will move appropriate issues up to the current ones above.
 ================================================================
 
 Before releases:
- * Remove ModelTest!
  * Check that changes to the document result in a modified state!!!!
    Ask when quitting Parley!!!
  * Reenable synonym, false friend and antonym practices and synonym
