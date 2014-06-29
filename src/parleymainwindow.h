@@ -166,31 +166,22 @@ signals:
     void preferencesChanged();
 
 private:
-    ParleyMainWindow(const KUrl& filename = KUrl());
+    ParleyMainWindow(const KUrl &filename = KUrl());
     static ParleyMainWindow *s_instance;
 
-    Component m_currentComponent;
+    Component      m_currentComponent;
+    KXmlGuiWindow *m_currentComponentWindow;
 
-    /*
-    WelcomeScreen *m_welcomeScreen;
-    Editor::EditorWindow *m_editor;
-    Practice::GuiFrontend *m_practiceFrontend;
-    Practice::DefaultBackend *m_practiceBackend;
-    StatisticsMainWindow *m_statisticsWidget;
-    Practice::PracticeSummaryComponent *m_practiceSummary;
-    */
-    KXmlGuiWindow* m_currentComponentWindow;
-
-    KRecentFilesAction* m_recentFilesAction;
+    KRecentFilesAction *m_recentFilesAction;
 
     /** m_document is the current vocabulary document. */
     ParleyDocument   *m_document;
 
-    /// the name of the executable
-    QString m_appName;
     Component m_componentBeforePractice;
+
+
     //Practice::SessionManagerContinuous m_sessionManager;
-    Practice::SessionManagerFixed m_sessionManager;
+    Practice::SessionManagerFixed        m_sessionManager;
 
     friend int main(int argc, char* argv[]);
 };

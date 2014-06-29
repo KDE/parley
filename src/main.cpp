@@ -27,7 +27,6 @@
 #include <kapplication.h>
 
 #include "parleymainwindow.h"
-//#include "practice/parleypracticemainwindow.h"
 #include "version.h"
 
 
@@ -99,8 +98,6 @@ int main(int argc, char* argv[])
     KCmdLineArgs::init(argc, argv, &aboutData);
 
     KCmdLineOptions options;
-//     options.add("e").add("edit", ki18n("Start the editor part of Parley"));
-    options.add("p").add("practice", ki18n("Start practice instead of editor"));
     options.add(I18N_NOOP("+[file]"), ki18n("Document file to open"));
 
     KCmdLineArgs::addCmdLineOptions(options);
@@ -123,23 +120,14 @@ int main(int argc, char* argv[])
 
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
-        bool practiceMode = false;
-
-        if (args) {
-            practiceMode = args->isSet("p");
-        }
-
         if (args && args->count() > 0) {
-            ///@todo make --practice command line argument work with a file name
             parleyApp = new ParleyMainWindow(args->url(0));
             args->clear();
         } else {
-//            if (practiceMode) {
-//                parleyApp = new ParleyPracticeMainWindow();
-//            } else {
             parleyApp = new ParleyMainWindow();
-//            }
+
         }
+
         if (args) {
             args->clear();
         }
