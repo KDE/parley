@@ -104,6 +104,8 @@ set(parley_SRCS
     vocabulary/vocabularycolumnsdialog.cpp
     welcomescreen/welcomescreen.cpp
     welcomescreen/buttondelegate.cpp
+    lessoncreator/translationsfetcher.cpp
+    lessoncreator/filedownloader.cpp
 )
 
 kde4_add_ui_files(parley_SRCS

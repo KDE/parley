@@ -44,6 +44,8 @@
 #include "scripts/scriptdialog.h"
 #include "scripts/translator.h"
 
+#include "lessoncreator/translationsfetcher.h"
+
 #include "parleyactions.h"
 #include <KActionCollection>
 #include <KToggleAction>
@@ -89,6 +91,9 @@ EditorWindow::EditorWindow(ParleyMainWindow* parent)
     connect(parent, SIGNAL(preferencesChanged()), this, SLOT(applyPrefs()));
 
     QTimer::singleShot(0, this, SLOT(initScripts()));
+
+    //TranslationsFetcher *translationsFetcher = new TranslationsFetcher(this);
+    //translationsFetcher->fetchTranslationFromUrl("http://www.omegawiki.org/downloads/owd_fra_csv.zip");
 }
 
 EditorWindow::~EditorWindow()
