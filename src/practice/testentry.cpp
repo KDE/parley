@@ -18,18 +18,17 @@
 
 TestEntry::TestEntry(KEduVocExpression *entry)
     : m_entry(entry)
+    , m_languageFrom(998)        // Bogus number to make sure that it's set correctly later
+    , m_languageTo(999)
     , m_statisticCount(0)
     , m_statisticGoodCount(0)
     , m_statisticBadCount(0)
     , m_answeredCorrectInSequence(0)
     , m_correctAtFirstAttempt(false)
-      //, m_practiceFinished(false)
-    , m_changeGrades(false)
+    , m_shouldChangeGrades(false)
     , m_isUnseenQuestion(false)
     , m_lastPercentage(0.0)
     , m_lastError(0)
-    , m_languageFrom(98)        // Bogus number to make sure that it's set correctly later
-    , m_languageTo(99)
 {}
 
 void TestEntry::setLanguageFrom(int from)
@@ -75,7 +74,7 @@ void TestEntry::updateStatisticsRightAnswer(grade_t currentPreGrade, grade_t cur
     }
 
     if ((!Prefs::altLearn()) || m_answeredCorrectInSequence == 3) {
-        m_changeGrades = true;
+        m_shouldChangeGrades = true;
     }
 
     // Make changes in statistics if answered correctly and not answered wrong in current test
@@ -89,9 +88,9 @@ void TestEntry::updateStatisticsRightAnswer(grade_t currentPreGrade, grade_t cur
     }
 }
 
-bool TestEntry::changeGrades()
+bool TestEntry::shouldChangeGrades()
 {
-    return m_changeGrades;
+    return m_shouldChangeGrades;
 }
 
 void TestEntry::updateStatisticsWrongAnswer(grade_t currentPreGrade, grade_t currentGrade)
@@ -99,7 +98,7 @@ void TestEntry::updateStatisticsWrongAnswer(grade_t currentPreGrade, grade_t cur
     m_statisticCount++;
     m_statisticBadCount++;
     m_answeredCorrectInSequence = 0;
-    m_changeGrades = true;
+    m_shouldChangeGrades = true;
     m_isUnseenQuestion = false;
 
     if (currentPreGrade == KV_NORM_GRADE && currentGrade == KV_NORM_GRADE) {

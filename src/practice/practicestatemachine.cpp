@@ -256,19 +256,7 @@ void PracticeStateMachine::gradeEntryAndContinue()
         m_current->updateStatisticsWrongAnswer(currentPreGrade, currentGrade);
     }
 
-    //kDebug() << "entry finished: " << m_frontend->resultState() << " change grades? " << m_current->changeGrades();
-
-#if 0
-    // FIXME: We should have a discussion about which grade that new
-    //        words that are correct at the first attempt should be
-    //        put into.  Until then I am disabling this.
-
-    // New words should always move to pregrade=1 since only unseen words have grades 0, 0
-    if (m_current->isUnseenQuestion()) {
-	m_mode->updateGrades();
-    }
-#endif
-    if (m_current->changeGrades()) {
+    if (m_current->shouldChangeGrades()) {
         m_mode->updateGrades();
         if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
             currentEntryFinished();

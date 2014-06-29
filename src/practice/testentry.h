@@ -23,11 +23,11 @@ class TestEntry
 {
 public:
     enum ErrorType {
-        SpellingMistake       =   0x1, /** < misspelled */
-        CapitalizationMistake =   0x2, /** < capitalization error (whAt) */
-        AccentMistake         =   0x4, /** < an accent is missing or wrong (é) */
-        ArticleWrong          =   0x8, /** < solution is correct with the article interchanged */
-        ArticleMissing        =   0x10, /** < solution is correct with the article missing*/
+        SpellingMistake       =  0x01, /** < misspelled */
+        CapitalizationMistake =  0x02, /** < capitalization error (whAt) */
+        AccentMistake         =  0x04, /** < an accent is missing or wrong (é) */
+        ArticleWrong          =  0x08, /** < solution is correct with the article interchanged */
+        ArticleMissing        =  0x10, /** < solution is correct with the article missing*/
         FalseFriend           =  0x20, /** < a false friend */
         Synonym               =  0x40, /** < a synonym (may be correct) */
         Empty                 =  0x80, /** < empty answer string */
@@ -52,7 +52,7 @@ public:
      may update the grades that will be saved to the file persistently
      @return whether the entry is done
     */
-    bool changeGrades();
+    bool shouldChangeGrades();
 
     int answeredCorrectInSequence();
     int statisticCount();
@@ -97,6 +97,9 @@ private:
     /// the entry itself
     KEduVocExpression *m_entry;
 
+    int  m_languageFrom;   // Index of the language this entry is from
+    int  m_languageTo;     // Index of the language this entry is from
+
     // These are for the current entry only, so that we can display
     // statistics about it after the training session is finished..
     int m_statisticCount;
@@ -104,7 +107,7 @@ private:
     int m_statisticBadCount;
     int m_answeredCorrectInSequence;
     bool m_correctAtFirstAttempt;
-    bool m_changeGrades;        // Set to true when grades should be changed after the practice
+    bool m_shouldChangeGrades;  // Set to true when grades should be changed after the practice
     bool m_isUnseenQuestion;    // Is set to true for questions never seen before.
 
     double m_lastPercentage;
@@ -116,9 +119,6 @@ private:
     QString                 m_conjugationTense;
     //! Only affects conjugation training.
     QList<KEduVocWordFlags> m_conjugationPronouns;
-
-    int  m_languageFrom;   // Index of the language this entry is from
-    int  m_languageTo;     // Index of the language this entry is from
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(TestEntry::ErrorTypes)

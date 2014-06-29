@@ -28,7 +28,6 @@ set(parley_SRCS
     editor/summarywordwidget.cpp
     editor/synonymwidget.cpp
     editor/latexwidget.cpp
-    #modeltest/modeltest.cpp
     practice/testentry.cpp
     practice/entryfilter.cpp
     practice/sessionmanagerbase.cpp
