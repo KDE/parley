@@ -1,3 +1,6 @@
+This file describes the program flow of the practice.
+
+
 Overview
 ---------
 
@@ -6,30 +9,37 @@ PracticeMainWindow. This class owns a few other important classes:
  - a GuiFrontend
  - a PracticeStateMachine
 
-The practice frontend controls what is visible to the user.  There is
-an AbstractFrontend which defines the API to the frontend and an
-actual frontend called GuiFrontend. The GuiFrontend owns and controls
-the main practice window and connects all the buttons (the answer
-buttosn, "answer later", "hint", etc), and the image widget.  It also
-creates and destroys the practice widget depending on which practice
-mode that is chosen at every given time.
+The frontend controls what is visible to the user.  There is an
+AbstractFrontend which defines the API to the frontend and an actual
+frontend class called GuiFrontend. The GuiFrontend owns and controls the
+main practice window and connects all the buttons (the answer button,
+"answer later", "hint", etc), and the image widget.  It also creates
+and destroys the practice widget depending on which practice mode that
+is chosen at every given time.
 
 Furthermore, it fills the widget with data and extracts the answer
 that the user replied.  It also animates the leitner boxes in the
 practice modes that use them.
 
-The practice itself is controlled by the PracticeStateMachine.  It
-connects the frontend, the backend and uses a SessionManager to keep
-track of the entries that are being practiced and also selects their
-order.
+The details of the practice is controlled by the PracticeStateMachine.
+It connects the frontend, the backend and uses a SessionManager to
+keep track of the entries that are being practiced and also selects
+their order.
 
-In general the SessionManager selects the entries that will be
-practiced, limited by the options, the last time each entry was
-practiced and which Leitner box it is in. It keeps a list of entries
-which are practiced right now, called the "current entries", and these
-are shown to the user until s/he gets it right. When a test entry is
-correctly answered it is removed from the current entries list and a
-new one is entered.
+
+Sessions
+--------
+
+A training session is a set of words that are practiced together.
+
+The SessionManager controls the entries that will be practiced during
+the session and the order of them. At the beginning of the session, it
+selects the initial set of entries given the boundaries by the
+practice settings, the last time each entry was practiced and the
+grade / confidence level of the word. During the practice it maintains
+a list of entries which are practiced right now, called the "current
+entries". These are shown to the user in an order defined by the
+session manager until s/he gets one of them right.
 
 There are currently two different SessionManagers to choose from:
 SessionManagerContinuous and SessionManagerFixed. The continuous one
@@ -44,15 +54,15 @@ the main training window.
 Practice modes
 --------------
 
-Each practice mode has 2 classes:
+Each practice mode uses 2 classes:
  - a backend
  - a widget
 
-The backend implements the methods used by the TestEntryManager to
-control the practice. It does control the flow for one test entry,
-e.g. giving hints and determining if an answer is correct or not. It
-also extracts the user's answer from the frontend, analyzes it and
-updates the grades.
+The practice backend implements the methods used by the
+TestEntryManager to control the details of the practice. It controls
+the flow for one test entry, e.g. giving hints and determining if an
+answer is correct or not. It also extracts the user's answer from the
+frontend, analyzes it and updates the grades.
 
 There is one concrete backend class per practice mode.  The abstract
 backend class, AbstractBackend, also has lots of default
@@ -78,4 +88,3 @@ Questions
    instead?
 
  * ...
-
