@@ -5,6 +5,7 @@
   <project_license>GPL-2.0+</project_license>
   <name>Parley</name>
   <name xml:lang="cs">Parley</name>
+  <name xml:lang="es">Parley</name>
   <name xml:lang="fi">Parley</name>
   <name xml:lang="nds">Parley</name>
   <name xml:lang="nl">Parley</name>
@@ -17,6 +18,7 @@
   <name xml:lang="x-test">xxParleyxx</name>
   <summary>Vocabulary Trainer</summary>
   <summary xml:lang="cs">Učitel slovní zásoby</summary>
+  <summary xml:lang="es">Entrenador de vocabulario</summary>
   <summary xml:lang="fi">Sanaston harjoitusohjelma</summary>
   <summary xml:lang="nds">Vokaveln lehren</summary>
   <summary xml:lang="nl">Woordjes oefenen</summary>
@@ -39,6 +41,7 @@
     <p xml:lang="uk">Parley — програма для вивчення мов. Вона допоможе вам поповнити ваш словниковий запас і вивчити правила іноземної мови. У програмі передбачено багато специфічних для мов можливостей. Втім, нею можна скористатися і для виконання інших завдань з вивчення даних. У програмі використано методику навчання за допомогою повторення зі змінним інтервалом, яка оптимізує процес навчання. Збірки словників можна отримати з інтернету або створити за допомогою вбудованого до програми редактора.</p>
     <p xml:lang="x-test">xxParley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. It supports many language specific features, but can be used for other learning tasks as well. It uses the spaced repetition learning method, which makes learning optimal. Vocabulary collections can be downloaded by "Get Hot New Stuff" or created with the built-in editor.xx</p>
     <p>Training Modes:</p>
+    <p xml:lang="es">Modos de entrenamiento:</p>
     <p xml:lang="nds">Ööv-Bedriefoorden:</p>
     <p xml:lang="nl">Oefenmethodes:</p>
     <p xml:lang="pl">Tryby ćwiczeń"</p>
