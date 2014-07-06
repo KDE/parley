@@ -132,6 +132,8 @@ private:
     ComparisonWidget *m_comparisonWidget;
     LatexWidget *m_latexWidget;
     SynonymWidget *m_synonymWidget;
+    SynonymWidget *m_antonymWidget;
+    SynonymWidget *m_falseFriendWidget;
 
     /// dock widgets to display lessons, word types, ...
     LessonView *m_lessonView;
@@ -160,4 +162,3 @@ private:
 }
 
 #endif // EDITOR_H
-

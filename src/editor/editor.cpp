@@ -111,6 +111,8 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
     m_inflectionWidget->setDocument(doc);
     m_comparisonWidget->setDocument(doc);
     m_synonymWidget->setDocument(doc);
+    m_antonymWidget->setDocument(doc);
+    m_falseFriendWidget->setDocument(doc);
 
     if (!m_mainWindow->parleyDocument()->document()) {
         return;
@@ -260,32 +262,32 @@ void EditorWindow::initDockWidgets()
 
     QDockWidget *antonymDock = new QDockWidget(i18n("Antonyms"), this);
     antonymDock->setObjectName("AntonymDock");
-    SynonymWidget *antonymWidget = new SynonymWidget(SynonymWidget::Antonym, this);
+    m_antonymWidget = new SynonymWidget(SynonymWidget::Antonym, this);
     QScrollArea *antonymScrollArea = new QScrollArea(this);
     antonymScrollArea->setWidgetResizable(true);
-    antonymScrollArea->setWidget(antonymWidget);
+    antonymScrollArea->setWidget(m_antonymWidget);
     antonymDock->setWidget(antonymScrollArea);
     addDockWidget(Qt::RightDockWidgetArea, antonymDock);
     m_dockWidgets.append(antonymDock);
     actionCollection()->addAction("show_antonym_dock", antonymDock->toggleViewAction());
     antonymDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-            antonymWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+            m_antonymWidget, SLOT(setTranslation(KEduVocExpression*, int)));
     tabifyDockWidget(synonymDock,antonymDock);
 
     QDockWidget *falseFriendDock = new QDockWidget(i18n("False Friends"), this);
     falseFriendDock->setObjectName("FalseFriendDock");
-    SynonymWidget *falseFriendWidget = new SynonymWidget(SynonymWidget::FalseFriend, this);
+    m_falseFriendWidget = new SynonymWidget(SynonymWidget::FalseFriend, this);
     QScrollArea *falseFriendScrollArea = new QScrollArea(this);
     falseFriendScrollArea->setWidgetResizable(true);
-    falseFriendScrollArea->setWidget(falseFriendWidget);
+    falseFriendScrollArea->setWidget(m_falseFriendWidget);
     falseFriendDock->setWidget(falseFriendScrollArea);
     addDockWidget(Qt::RightDockWidgetArea, falseFriendDock);
     m_dockWidgets.append(falseFriendDock);
     actionCollection()->addAction("show_falsefriend_dock", falseFriendDock->toggleViewAction());
     falseFriendDock->setVisible(false);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-            falseFriendWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+            m_falseFriendWidget, SLOT(setTranslation(KEduVocExpression*, int)));
     tabifyDockWidget(antonymDock,falseFriendDock);
 
 // Pronunciation symbols - Use KCharSelect
