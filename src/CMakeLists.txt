@@ -1,13 +1,9 @@
-include_directories( ${LIBATTICA_INCLUDE_DIR} )
+include_directories( ${parley_INCLUDE_DIRS} )
 
 # installation of kconfig files .kcfg containing app settings
 add_subdirectory( settings )
 
-# libkdeedu/keduvocdocument contains the library for reading and writing vocabulary files
-include_directories( ${LIBKDEEDU_INCLUDE_DIR} )
-
-set(parley_SRCS
-    main.cpp
+set(parley_LIB_SRCS
     parleyactions.cpp
     parleydocument.cpp
     parleymainwindow.cpp
@@ -106,7 +102,7 @@ set(parley_SRCS
     welcomescreen/buttondelegate.cpp
 )
 
-kde4_add_ui_files(parley_SRCS
+kde4_add_ui_files(parley_LIB_SRCS
     configure-practice/generalpracticeoptions.ui
     configure-practice/blockoptions.ui
     configure-practice/thresholdoptions.ui
@@ -139,7 +135,7 @@ kde4_add_ui_files(parley_SRCS
     welcomescreen/welcomescreen.ui
 )
 
-kde4_add_kcfg_files(parley_SRCS
+kde4_add_kcfg_files(parley_LIB_SRCS
     settings/prefs.kcfgc
     settings/documentsettings.kcfgc
     settings/languagesettings.kcfgc
@@ -148,40 +144,31 @@ kde4_add_kcfg_files(parley_SRCS
 #### XSLT Support ####
 # to transform the document xml to html or other
 if(HAVE_LIBXSLT)
-    include_directories( ${LIBXML2_INCLUDE_DIR} ${LIBXSLT_INCLUDE_DIR} )
-
-    set(parley_SRCS ${parley_SRCS}
+    set(parley_LIB_SRCS ${parley_LIB_SRCS}
         export/exportdialog.cpp
     )
 
-    kde4_add_ui_files(parley_SRCS
+    kde4_add_ui_files(parley_LIB_SRCS
         export/exportdialog.ui
     )
 endif(HAVE_LIBXSLT)
 #### End XSLT Support ####
 
-kde4_add_app_icon(parley_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-parley.png")
+kde4_add_app_icon(parley_LIB_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-parley.png")
+
+set(parley_SRCS
+    main.cpp
+    ${parley_LIB_SRCS}
+)
 
 kde4_add_executable(parley ${parley_SRCS})
+
+#Library for the unit tests target
+kde4_add_library(parley_LIB STATIC ${parley_LIB_SRCS})
+
 kde4_install_icons( ${ICON_INSTALL_DIR} )
 
-target_link_libraries(
-    parley
-    ${LIBKDEEDU_KEDUVOCDOCUMENT_LIBRARIES}
-    ${KDE4_KHTML_LIBS}
-    ${KDE4_KNEWSTUFF3_LIBS}
-    ${KDE4_PHONON_LIBS}
-    ${KDE4_KCMUTILS_LIBRARY} #for the KPluginSelector
-    ${KDE4_KROSSCORE_LIBS} ${KDE4_KROSSUI_LIBS} #for Kross
-    ${QT_QTCORE_LIBRARY}
-)
-if(HAVE_LIBXSLT)
-    target_link_libraries(parley ${LIBXML2_LIBRARIES} ${LIBXSLT_LIBRARIES})
-endif(HAVE_LIBXSLT)
-
-if (X11_Xrender_FOUND)
-   target_link_libraries(parley ${X11_LIBRARIES} ${X11_Xrender_LIB})
-endif(X11_Xrender_FOUND)
+target_link_libraries(parley ${parley_LINK_LIBS})
 
 
 ########### install files ###############
@@ -200,5 +187,3 @@ install( FILES welcomescreen/welcomescreenui.rc DESTINATION  ${DATA_INSTALL_DIR}
 install( FILES statistics/statisticsui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES practice/practiceui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES practice/practicesummaryui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
-
-
