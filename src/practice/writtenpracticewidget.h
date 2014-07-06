@@ -52,6 +52,17 @@ public:
     virtual void setSynonym(const QString& entry);
 
 public slots:
+    /** To be called prior to focus change during deletion
+        to switch focus away from the KLineEdit answer area
+        and prevent a crash.
+
+        @ref bug332596
+
+        @todo When frameworks/kde5 is implemented remove this code
+        , if the bug in Qt (returning a pointer to a deleted stylesheet) is fixed.
+     */
+    virtual void objectDestroyed(QObject *);
+
     void showQuestion();
     void showSolution();
     void continueClicked();

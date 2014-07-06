@@ -57,6 +57,13 @@ public slots:
     virtual void showSolution() = 0;
     virtual void showSynonym() = 0;
 
+    /** To be called prior to focus change in deletion to allow any cleanup.
+
+     @todo When frameworks/kde5 is implemented remove this code, if the bug
+     in Qt (returning a pointer to a deleted stylesheet) is fixed.
+     */
+    virtual void objectDestroyed(QObject *obj = 0);
+
 signals:
     void continueAction();
     void stopAudio();

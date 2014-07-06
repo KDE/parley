@@ -173,7 +173,7 @@ void PracticeMainWindow::startPractice()
 
 void PracticeMainWindow::practiceFinished()
 {
-    kDebug() << "finished";
+    m_guiFrontend->modeWidgetDestroyed(0);
     delete m_stateMachine;
     emit stopPractice();
 }
