@@ -88,6 +88,13 @@ public Q_SLOTS:
     void showSetResultButtons(bool show);
     void toggleResultState();
 
+    /** To be called prior to deleting a modeWidget.
+
+     @todo When frameworks/kde5 is implemented remove this code, if the bug
+     in Qt (returning a pointer to a deleted stylesheet) is fixed.
+     */
+    virtual void modeWidgetDestroyed(QObject * obj = 0);
+
 protected:
     bool eventFilter(QObject *object, QEvent *event);
 

@@ -26,3 +26,7 @@ void AbstractModeWidget::setResultPalettes(const QPalette &correctPalette, const
     m_correctPalette = correctPalette;
     m_wrongPalette = wrongPalette;
 }
+
+void AbstractModeWidget::objectDestroyed(QObject *)
+{
+}
