@@ -61,8 +61,11 @@ PracticeMainWindow::PracticeMainWindow(SessionManagerBase* sessionManager,
 
 PracticeMainWindow::~PracticeMainWindow()
 {
+    //m_floatingToolBar is a child of m_mainWindow will be deleted with its children
+    //before or after this.  So don't access it in toggleFullScreenMode.
+    m_floatingToolBar = 0;
     toggleFullScreenMode(false);
-    delete m_floatingToolBar;
+
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     saveMainWindowSettings(cfg);
 }
@@ -88,6 +91,7 @@ void PracticeMainWindow::initActions()
     toggleAnswerState->setShortcut(Qt::CTRL + Qt::Key_Space);
     connect(toggleAnswerState, SIGNAL(triggered()), m_guiFrontend, SLOT(toggleResultState()));
 
+    //m_floatingToolBar now a child of m_mainWindow and will be deleted with its parent
     m_floatingToolBar = new QWidget(m_mainWindow);
     QHBoxLayout *layout = new QHBoxLayout();
     m_floatingToolBar->setLayout(layout);
@@ -141,7 +145,9 @@ void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)
     KToggleFullScreenAction::setFullScreen(m_mainWindow, fullScreen);
     m_mainWindow->toolBar("practiceToolBar")->setVisible(!fullScreen);
     m_mainWindow->menuBar()->setVisible(!fullScreen);
-    m_floatingToolBar->setVisible(fullScreen);
+    if ( m_floatingToolBar != 0 ) {
+        m_floatingToolBar->setVisible(fullScreen);
+    }
     m_mainWindow->setSettingsDirty();
 }
 
