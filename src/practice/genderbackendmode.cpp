@@ -25,8 +25,15 @@ GenderBackendMode::GenderBackendMode(AbstractFrontend* frontend, QObject* parent
                                      Practice::SessionManagerBase* sessionManager,
                                      KEduVocDocument* doc)
     : MultipleChoiceBackendMode(frontend, parent, sessionManager)
+    ,  m_doc( *doc )
 {
-    m_articles = doc->identifier(m_current->languageTo()).article();
+}
+
+bool GenderBackendMode::setTestEntry(TestEntry* current)
+{
+    Practice::AbstractBackendMode::setTestEntry(current);
+
+    m_articles = m_doc.identifier(m_current->languageTo()).article();
 
     KEduVocWordFlag::Flags singular = KEduVocWordFlag::Singular;
     KEduVocWordFlag::Flags definite = KEduVocWordFlag::Definite;
@@ -52,8 +59,12 @@ GenderBackendMode::GenderBackendMode(AbstractFrontend* frontend, QObject* parent
 
     // best bet... if it is defined, it must exist, or if none of them is defined
     m_neuterExists = (!m_neuter.isEmpty()) || (m_masculine.isEmpty() && m_feminine.isEmpty());
-}
 
+    prepareChoices(current);
+    populateFrontEnd();
+
+    return true;
+}
 void GenderBackendMode::prepareChoices(TestEntry* entry)
 {
     Q_ASSERT(entry->entry()->translation(entry->languageTo())->wordType()->wordType() & KEduVocWordFlag::Noun);

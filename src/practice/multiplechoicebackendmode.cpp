@@ -36,18 +36,7 @@ bool MultipleChoiceBackendMode::setTestEntry(TestEntry* current)
     m_question.clear();
 
     prepareChoices(current);
-    MultipleChoiceData data;
-    data.question = m_question;
-    data.choices = m_choices;
-
-    m_frontend->setQuestion(qVariantFromValue<MultipleChoiceData>(data));
-    m_frontend->setSolution(m_correctAnswer);
-    m_frontend->setQuestionSound(m_current->entry()->translation(m_current->languageFrom())->soundUrl());
-    m_frontend->setSolutionSound(m_current->entry()->translation(m_current->languageTo())->soundUrl());
-    m_frontend->setQuestionPronunciation(m_current->entry()->translation(m_current->languageFrom())->pronunciation());
-    m_frontend->setSolutionPronunciation(m_current->entry()->translation(m_current->languageTo())->pronunciation());
-    m_frontend->setResultState(AbstractFrontend::QuestionState);
-    m_frontend->showQuestion();
+    populateFrontEnd();
     return true;
 }
 
@@ -65,6 +54,23 @@ void MultipleChoiceBackendMode::prepareChoices(TestEntry* current)
     m_choices.insert(correctAnswer, m_current->entry()->translation(m_current->languageTo())->text());
     setCorrectAnswer(correctAnswer);
 }
+
+void MultipleChoiceBackendMode::populateFrontEnd()
+{
+    MultipleChoiceData data;
+    data.question = m_question;
+    data.choices = m_choices;
+
+    m_frontend->setQuestion(qVariantFromValue<MultipleChoiceData>(data));
+    m_frontend->setSolution(m_correctAnswer);
+    m_frontend->setQuestionSound(m_current->entry()->translation(m_current->languageFrom())->soundUrl());
+    m_frontend->setSolutionSound(m_current->entry()->translation(m_current->languageTo())->soundUrl());
+    m_frontend->setQuestionPronunciation(m_current->entry()->translation(m_current->languageFrom())->pronunciation());
+    m_frontend->setSolutionPronunciation(m_current->entry()->translation(m_current->languageTo())->pronunciation());
+    m_frontend->setResultState(AbstractFrontend::QuestionState);
+    m_frontend->showQuestion();
+}
+
 
 void MultipleChoiceBackendMode::setQuestion(const QString& question)
 {

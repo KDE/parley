@@ -30,11 +30,16 @@ public:
                       QObject *parent, Practice::SessionManagerBase* sessionManager,
                       KEduVocDocument* doc);
 
+    /** Start practicing a new word */
+    virtual bool setTestEntry(TestEntry* current);
+
 protected:
     virtual void prepareChoices(TestEntry* current);
     virtual void updateGrades();
 
 private:
+    /** Reference to the kvocdoc */
+    const KEduVocDocument & m_doc;
     KEduVocArticle m_articles;
     QString m_masculine;
     QString m_feminine;
