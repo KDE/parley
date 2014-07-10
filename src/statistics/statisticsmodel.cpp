@@ -27,7 +27,8 @@ StatisticsModel::StatisticsModel(QObject * parent)
 QVariant StatisticsModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (section >= 2) {
-        if (role == Qt::DisplayRole) {
+        if (role == Qt::DisplayRole
+            && m_doc->identifierCount() > (section - 2) ) {
             return i18nc("Grade in language, table header", "Grade (%1)", m_doc->identifier(section - 2).name());
         }
     }
@@ -91,5 +92,3 @@ KEduVocContainer * StatisticsModel::rootContainer() const
 }
 
 #include "statisticsmodel.moc"
-
-
