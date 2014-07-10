@@ -27,7 +27,8 @@ StatisticsModel::StatisticsModel(QObject * parent)
 QVariant StatisticsModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (section >= FirstDataColumn) {
-        if (role == Qt::DisplayRole) {
+        if (role == Qt::DisplayRole
+            && m_doc->identifierCount() > (section - FirstDataColumn) ) {
             return i18nc("Confidence level in language, table header", "Confidence (%1)", m_doc->identifier(section - FirstDataColumn).name());
         }
     }
