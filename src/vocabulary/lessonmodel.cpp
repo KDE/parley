@@ -73,7 +73,8 @@ QVariant LessonModel::data(const QModelIndex & index, int role) const
 bool LessonModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (index.isValid() && !index.parent().isValid()) {
-        if (index.column() == 0 && role == Qt::DisplayRole) {
+        if (index.column() == ContainerNameColumn && role == Qt::EditRole) {
+            ///@todo decouple the root lesson and document title
             m_doc->setTitle(value.toString());
         }
     }
@@ -118,5 +119,3 @@ void LessonModel::splitLesson(const QModelIndex& containerIndex, int entriesPerL
 
 
 #include "lessonmodel.moc"
-
-
