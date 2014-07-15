@@ -221,7 +221,7 @@ void EditorWindow::initDockWidgets()
     QScrollArea *comparisonScrollArea = new QScrollArea(this);
     comparisonScrollArea->setWidgetResizable(true);
     comparisonScrollArea->setWidget(m_comparisonWidget);
-    inflectionDock->setWidget(comparisonScrollArea);
+    comparisonDock->setWidget(comparisonScrollArea);
     addDockWidget(Qt::RightDockWidgetArea, comparisonDock);
     m_dockWidgets.append(comparisonDock);
     actionCollection()->addAction("show_comparison_dock", comparisonDock->toggleViewAction());
