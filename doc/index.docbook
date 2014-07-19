@@ -120,9 +120,9 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>A vocabulary collection is a file that contains words and their translations into other languages or other pairs of words and sentences that you want to memorize. The words are organized in units.
 </para>
-<para>To <emphasis>start practicing</emphasis>, click one of the vocabulary collections in the list. You are taken to the <link linkend="practice-setup">practice setup</link>.
+<para>To <emphasis>start practicing</emphasis>, click one of the vocabulary collection names in the list. You are taken to the <link linkend="practice-setup">practice setup</link>.
 </para>
-<para>Note that a small <guilabel>Editor Icon</guilabel> appears to the right of the document name when you move the mouse over it. The <guilabel>Editor Icon</guilabel> lets you open the collection in the editor instead of practice mode.
+<para>Note that a small <guilabel>Delete Icon</guilabel> appears to the left of the document name. The <guilabel>Delete Icon</guilabel> lets you remove the collection from the list.
 </para>
 <para>To <link linkend="vocabulary-editing">edit</link> a collection, click on the <guilabel>Editor Icon</guilabel> on its right hand side.
 </para>
@@ -475,14 +475,14 @@ limited to language learning but supports a multitude of subjects.
 <sect3 id="with-yes-no-answers"><title>With yes/no answers</title>
 <para>Normally &parley; automatically proposes one correct and several wrong answers in Multiple Choice mode. For some exercises instead you will have preset answers like yes/no or similar. And for these you have to configure the practice by clicking on <link linkend="advanced-practice-configuration"><guilabel>Configure Practice</guilabel></link>.
 </para>
-<para>Select the tab <guilabel>Advanced</guilabel> and you will get something very similar to the following screenshot:
+<para>Select the tab <guilabel>Specific</guilabel> and you will get something very similar to the following screenshot:
 </para>
 <para>
 <screenshot>
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_configure_advanced.png" format="PNG"/>
+      <imagedata fileref="Parley_configure_specific.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -1272,9 +1272,9 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </para>
 <para>If you now check your folder where the sound-files and pictures are, you will also find the file <guilabel>Trainer eng-deu.kvtml</guilabel>
 </para>
-<para>Let's have a short look at the words we want to add: <emphasis>apple, bird, cat, cherry, cow, orange, pear, snake, strawberry</emphasis>. We have animals and fruit and therefore we decide to create two units that are called: <guilabel>Animals</guilabel> and <guilabel>Fruit</guilabel>.
+<para>Let's have a short look at the words we want to add: <emphasis>apple, bird, cat, cherry, cow, orange, pear, snake, strawberry</emphasis>. We have animals and fruit and therefore we decide to create two units that are called: <guilabel>Animals</guilabel> and <guilabel>Fruits</guilabel>.
 </para>
-<para>We now rename <guilabel>Lesson 1</guilabel> to <guilabel>Animals</guilabel> and then we add a unit called <guilabel>Fruit</guilabel>. Right-click on <guilabel>Lesson 1</guilabel> and choose <guilabel>Rename Unit</guilabel> from the options shown. Now <guilabel>Lesson 1</guilabel> is highlighted and you can simply overwrite it by typing in <guilabel>Animals</guilabel>. When done, hit the &Enter; key. Now right-click on <guilabel>Collection: Vocabulary trainer E...</guilabel> which is the root of the unit tree and choose <guilabel>New Unit</guilabel> from the options shown. In the new field write <guilabel>Fruit</guilabel> and hit the &Enter; key again.
+<para>We now rename <guilabel>Lesson 1</guilabel> to <guilabel>Animals</guilabel> and then we add a unit called <guilabel>Fruits</guilabel>. Right-click on <guilabel>Lesson 1</guilabel> and choose <guilabel>Rename Unit</guilabel> from the options shown. Now <guilabel>Lesson 1</guilabel> is highlighted and you can simply overwrite it by typing in <guilabel>Animals</guilabel>. When done, hit the &Enter; key. Now right-click on <guilabel>Collection: Vocabulary trainer E...</guilabel> which is the root of the unit tree and choose <guilabel>New Unit</guilabel> from the options shown. In the new field write <guilabel>Fruits</guilabel> and hit the &Enter; key again.
 </para>
 <para>First, let's insert the animals. Please click on the unit <guilabel>Animals</guilabel> and you will get an empty table you can fill in. Click with your mouse in the first field, and insert the source terms.  Then, insert the target terms in the second column. Once you've inserted all 4 English animal names with their German translation the screen looks like this:
 </para>
@@ -1293,7 +1293,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </para>
 <para>In our case we want only 4 entries in the animals unit. There are many empty lines that should be deleted. To do this click on the first empty field, and keep the &Shift; key pressed while clicking on the last empty field. All lines to be deleted will be highlighted. Then, press the <keycap>Del</keycap> key and confirm the question <emphasis>Do you really want to delete the selected entries?</emphasis> by clicking on the <guilabel>Delete</guilabel> button.
 </para>
-<para>Let's add the fruit terminology. Just click on the unit named <guilabel>Fruit</guilabel>. This second unit is completely empty. Since we have five fruit terms we need to add five lines. Therefore, press the <keycap>Ins</keycap> key five times, and then, just like before, we add our terminology.
+<para>Let's add the fruit terminology. Just click on the unit named <guilabel>Fruits</guilabel>. This second unit is completely empty. Since we have five fruit terms we need to add five lines. Therefore, press the <keycap>Ins</keycap> key five times, and then, just like before, we add our terminology.
 </para>
 <para>Don't forget to save every now and then ...
 </para>
@@ -1365,7 +1365,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </para>
 <para>Just go ahead like this for all terms.
 </para>
-<para>Time to add adjectives and verbs as units to our project. So just do as before with the unit <emphasis>Fruit</emphasis> and create two new units: <emphasis>Adjectives</emphasis> and <emphasis>Verbs</emphasis>. Let's assume we will add <emphasis>big, small, old, young, narrow</emphasis> in the adjective unit and <emphasis>to go, to come, to buy, to drink, to eat</emphasis> in the verb unit.
+<para>Time to add adjectives and verbs as units to our project. So just do as before with the unit <emphasis>Fruits</emphasis> and create two new units: <emphasis>Adjectives</emphasis> and <emphasis>Verbs</emphasis>. Let's assume we will add <emphasis>big, small, old, young, narrow</emphasis> in the adjective unit and <emphasis>to go, to come, to buy, to drink, to eat</emphasis> in the verb unit.
 </para>
 <para>The following shows a screenshot with all inserted terminology. Now, words are mixed and it would be nice to see what is a <emphasis>noun, adjective</emphasis> or <emphasis>verb</emphasis>.
 </para>
