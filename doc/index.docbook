@@ -120,11 +120,9 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>A vocabulary collection is a file that contains words and their translations into other languages or other pairs of words and sentences that you want to memorize. The words are organized in units.
 </para>
-<para>To <emphasis>start practicing</emphasis>, click one of the vocabulary collection names in the list. You are taken to the <link linkend="practice-setup">practice setup</link>.
+<para>To <emphasis>start practicing</emphasis>, click the <guilabel>Practice</guilabel> on one of the vocabulary collection names in the list. You are taken to the <link linkend="practice-setup">practice setup</link>.
 </para>
 <para>Note that a small <guilabel>Delete Icon</guilabel> appears to the left of the document name. The <guilabel>Delete Icon</guilabel> lets you remove the collection from the list.
-</para>
-<para>To <link linkend="vocabulary-editing">edit</link> a collection, click on the <guilabel>Editor Icon</guilabel> on its right hand side.
 </para>
 <para>If you'd like to start your own collection of vocabulary, click on <guilabel>Create a New Collection</guilabel>.
 </para>
