@@ -12,45 +12,35 @@
  *                                                                         *
  ***************************************************************************/
 
+
+// Own
 #include "barwidget.h"
 
-//#include "welcomescreen.h"
-//#include "buttondelegate.h"
-//#include "parleymainwindow.h"
-//#include "parleydocument.h"
-//#include "practice/themedbackgroundrenderer.h"
-//#include "practice/imagewidget.h"
-//#include "statistics/statisticsmainwindow.h"
-//#include "statistics/statisticsmodel.h"
-//#include <KMimeType>
-
-//#include <QSignalMapper>
-//#include <QStandardItemModel>
-//#include <QTimer>
-//#include <QTime>
+// Qt
 #include <QDebug>
 #include <QWidget>
 #include <QPainter>
 #include <QPen>
 
+// KDE
 #include <klocalizedstring.h>
 
+// Parley
 #include "collectionwidget.h"  // for COLLWIDTH, etc
-
-//#include <QtGui>
-//#include <Qt>
 
 
 QColor gradeColor[11];
 
 
 
-BarWidget::BarWidget()
+BarWidget::BarWidget(QWidget *parent)
+    : QWidget(parent)
 {
 
 }
 
-BarWidget::BarWidget(int dueWords[], int totalDueWords, int percentageCompleted)
+BarWidget::BarWidget(int dueWords[], int totalDueWords, int percentageCompleted, QWidget *parent)
+    : QWidget(parent)
 {
     QPalette palette(BarWidget::palette());
     palette.setColor(backgroundRole(), Qt::white);

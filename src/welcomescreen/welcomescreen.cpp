@@ -32,6 +32,7 @@
 
 #include "collectionwidget.h"
 #include "barwidget.h"
+#include "gradereferencewidget.h"
 
 
 
@@ -76,49 +77,6 @@ void RemoveButton::paintEvent(QPaintEvent*)
 
 
 // ----------------------------------------------------------------
-
-
-class GradeReferenceWidget : public QWidget
-{
-public:
-    GradeReferenceWidget(QWidget *parent = 0);
-
-protected:
-    void paintEvent(QPaintEvent *);
-
-};
-
-GradeReferenceWidget::GradeReferenceWidget(QWidget *parent)
-  : QWidget(parent)
-{
-}
-
-void GradeReferenceWidget::paintEvent(QPaintEvent *)
-{
-    QPainter painter(this);
-    const int legendWidth = this->width();
-    const int legendHeight = this->height();
-    const int legendOffsetY = 0;
-    const int legendOffsetX = (this->width() / 2) - (legendWidth / 2);;
-    const int gradeBarWidth = this->width()/8;
-    //const int alphaValueIncrement = 35;
-    QRect roundedRect(0 + legendOffsetX, 0 + legendOffsetY, legendWidth, legendHeight);
-    roundedRect.adjust(1, 1, -1, -1);
-    QPainterPath roundedPath;
-    roundedPath.addRoundedRect(roundedRect, 2.0, 2.0);
-
-    for (int i = 7; i >= 0; --i) {
-        QRectF barElement(0 + legendOffsetX + (7 - i) * gradeBarWidth,
-			  0 + legendOffsetY,
-			  gradeBarWidth, legendHeight);
-        QPainterPath barElementPath;
-        barElementPath.addRect(barElement);
-        QPainterPath barElementIntersectedPath = roundedPath.intersected(barElementPath);
-        QColor color = gradeColor[i];
-        painter.setBrush(QBrush(color));
-        painter.drawPath(barElementIntersectedPath);
-    }
-}
 
 
 // ----------------------------------------------------------------
