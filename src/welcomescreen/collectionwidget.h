@@ -12,25 +12,8 @@
  *                                                                         *
  ***************************************************************************/
 
-//#include "welcomescreen.h"
-//#include "buttondelegate.h"
-//#include "parleymainwindow.h"
-//#include "parleydocument.h"
-//#include "practice/themedbackgroundrenderer.h"
-//#include "practice/imagewidget.h"
-//#include "statistics/statisticsmainwindow.h"
-//#include "statistics/statisticsmodel.h"
-//#include <KMimeType>
 
-//#include <QSignalMapper>
-//#include <QStandardItemModel>
-//#include <QTimer>
-//#include <QTime>
-#include <QColor>
 #include <QWidget>
-
-//#include <QtGui>
-//#include <Qt>
 
 
 // Size constants for the collection widgets
@@ -39,15 +22,40 @@ extern int COLLHEIGHT1;  // Height in pixels of a collection widget not yet full
 extern int COLLHEIGHT2;  // Height in pixels of a collection widget fully learned
 
 
+class QLabel;
+class QPushButton;
+class RemoveButton;
+
+
+// FIXME: Temporary struct until the real number of due words works.
+struct DueWords {
+    DueWords();
+
+    int dueWords[8];
+    int totalDueWords;
+    int percentageCompleted;
+};
+
+
 class CollectionWidget : public QWidget
 {
+    Q_OBJECT
+
 public:
-    CollectionWidget();
+    CollectionWidget(const QString &namestring, DueWords *due,
+		     QWidget *parent = 0);
     ~CollectionWidget();
 
+Q_SIGNALS:
+    void practiceButtonClicked();
+    void removeButtonClicked();
+
 protected:
-    //void paintEvent(QPaintEvent *);
 
 private:
+    QLabel       *nameLabel;
+    QWidget      *wordCloud;
+    RemoveButton *removeButton;
+    QPushButton  *practiceButton;
 };
 

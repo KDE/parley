@@ -84,8 +84,8 @@ private:
     RemoveButton *removeButton[N];
     KUrl          urlArray[N];
 
-    QSignalMapper *signalMapper;  // For the practice buttons
-    QSignalMapper *signalMapper2; // For the remove buttons 
+    QSignalMapper *practiceSignalMapper;  // For the practice buttons
+    QSignalMapper *removeSignalMapper; // For the remove buttons 
 
     int m_count;
 };
