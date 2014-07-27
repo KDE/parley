@@ -124,7 +124,7 @@ void GradeReferenceWidget::paintEvent(QPaintEvent *)
 // ----------------------------------------------------------------
 
 
-int WelcomeScreen::randInt(int low, int high)
+static int randInt(int low, int high)
 {
     // Random number between low and high
     return qrand() % ((high + 1) - low) + low;
