@@ -20,7 +20,6 @@
 #include "statistics/statisticsmainwindow.h"
 #include "statistics/statisticsmodel.h"
 #include <QSignalMapper>
-#include <KMimeType>
 
 #include <QStandardItemModel>
 #include <QTimer>
@@ -30,53 +29,13 @@
 #include <QtGui>
 #include <Qt>
 
+#include <KMimeType>
+#include <KDebug>
+
 #include "collectionwidget.h"
 #include "barwidget.h"
 #include "gradereferencewidget.h"
 
-
-
-// ================================================================
-//                        private classes
-
-
-
-// The RemoveButton is a button that the user can press in a collection to
-// remove the collection from the word bank.
-
-
-class RemoveButton : public QPushButton
-{
-public:
-    RemoveButton(QWidget *parent = 0);
-
-protected:
-    void paintEvent(QPaintEvent *);
-};
-
-
-RemoveButton::RemoveButton(QWidget *parent)
-  : QPushButton(parent)
-{
-}
-
-
-void RemoveButton::paintEvent(QPaintEvent*)
-{
-    QPainter painter(this);
-    QPen pen(QColor(255,255,255));
-    painter.setPen(pen);
-    painter.setRenderHint(QPainter::Antialiasing, true);
-    QBrush brush(QColor(49,54,59));
-    painter.setBrush(brush);
-
-    painter.drawEllipse(1, 1, height() - 1, height() - 1);
-    painter.setFont( QFont( "Helvetica", 7, QFont::Bold, false));
-    painter.drawText(2, 1, height() - 2, height() - 1, Qt::AlignCenter, "x");
-}
-
-
-// ----------------------------------------------------------------
 
 
 // ----------------------------------------------------------------
@@ -112,8 +71,8 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     ui = new Ui::WelcomeScreen();
     ui->setupUi(m_widget);
     setCentralWidget(m_widget);
-    signalMapper = new QSignalMapper(this);
-    signalMapper2 = new QSignalMapper(this);
+    practiceSignalMapper = new QSignalMapper(this);
+    removeSignalMapper = new QSignalMapper(this);
 
     gradeColor[0] = QColor(25,38,41);
     gradeColor[1] = QColor(25,38,41,64);// Need 8 colors, so find a suitable color for this grade, currently gray.
@@ -156,13 +115,18 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
     populateMap();
     populateGrid();
 
+    // Signals from the main buttons.
     ParleyDocument* doc = m_mainWindow->parleyDocument();
     connect(ui->newButton,  SIGNAL(clicked()), doc, SLOT(slotFileNew()));
     connect(ui->openButton, SIGNAL(clicked()), doc, SLOT(slotFileOpen()));
     connect(ui->ghnsButton, SIGNAL(clicked()), doc, SLOT(slotGHNS()));
 
-    connect(signalMapper, SIGNAL(mapped(const QString &)), this, SLOT(slotPracticeButtonClicked(const QString &)));
-    connect(signalMapper2, SIGNAL(mapped(const QString &)), this, SLOT(slotRemoveButtonClicked(const QString &)));
+    // Signals FROM the signal mappers.  The ones TO the signal mappers are
+    // handled below.
+    connect(practiceSignalMapper, SIGNAL(mapped(const QString &)),
+	    this,                 SLOT(slotPracticeButtonClicked(const QString &)));
+    connect(removeSignalMapper,   SIGNAL(mapped(const QString &)),
+	    this,                 SLOT(slotRemoveButtonClicked(const QString &)));
 
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
@@ -203,7 +167,8 @@ void WelcomeScreen:: clearGrid()
  * is true, all concerned child widgets become not only removed from the
  * layout, but also deleted.
  */
-void WelcomeScreen::remove(QGridLayout *layout, int row, int column, bool deleteWidgets) {
+void WelcomeScreen::remove(QGridLayout *layout, int row, int column, bool deleteWidgets)
+{
     // We avoid usage of QGridLayout::itemAtPosition() here to improve performance.
     for (int i = layout->count() - 1; i >= 0; i--) {
         int r, c, rs, cs;
@@ -254,26 +219,13 @@ void WelcomeScreen::populateGrid()
         QString urlString  = it.key();
         QString nameString = it.value();
 
-        // FIXME: This is only for testing purposes. We need a way to get the
-        //        grades and words due for every document.
-        int dueWords[8]; //Due words categorized in grades.
-        int firstGrade = randInt(0,7); //This is done for vanity purposes only, giving due word values to only two grades for now.
-        int secondGrade = randInt(0,7);
-        int totalDueWords = 0;
-        for (int x = 0; x < 8; x++) {
-            if (x == firstGrade || x == secondGrade) {
-                dueWords[x] = randInt(0,20);
-                totalDueWords += dueWords[x];
-            }
-            else {
-                dueWords[x] = 0;
-            }
-        }
-        int percentageCompleted = randInt(98,100); //To test randomnly for Complete Collections. Again to be obtained from document.
+	// Automatically initialized.
+	// FIXME: Will be initialized by the KEduVocDocument later.
+	DueWords due;
 
         KUrl url(urlString);
         urlArray[k] = url;
-        if (percentageCompleted != 100) {
+        if (due.percentageCompleted != 100) {
             if (j % ROWSIZE == 0) {
                 m_subGridLayout->addItem(new QSpacerItem(50,1), j / ROWSIZE, 0);
                 j++;
@@ -286,16 +238,8 @@ void WelcomeScreen::populateGrid()
             }
         }
 
-	// backWidget is the main widget for one collection
-        QWidget* backWidget = new QWidget;
-        QGraphicsDropShadowEffect* effect = new QGraphicsDropShadowEffect();
-        effect->setBlurRadius(50);
-        backWidget->setGraphicsEffect(effect);
-        QPalette palette = backWidget->palette();
-        palette.setColor(QPalette::Background, Qt::white);
-        backWidget->setAutoFillBackground(true);
-        backWidget->setPalette(palette);
-        if (percentageCompleted != 100) {
+        QWidget* backWidget = new CollectionWidget(nameString, &due);
+        if (due.percentageCompleted != 100) {
                 backWidget->setFixedSize(COLLWIDTH, COLLHEIGHT1);
                 m_subGridLayout->addWidget(backWidget, j / ROWSIZE, j % ROWSIZE);
         }
@@ -304,64 +248,19 @@ void WelcomeScreen::populateGrid()
                 m_completedGridLayout->addWidget(backWidget, jc / ROWSIZE, jc % ROWSIZE);
         }
 
-	// vBoxLayout is the main vertical layout for one collection
-        QVBoxLayout* vBoxLayout = new QVBoxLayout();
-        vBoxLayout->setAlignment(Qt::AlignCenter);
-        backWidget->setLayout(vBoxLayout);
+        practiceSignalMapper->setMapping(backWidget, urlString);
+        connect(backWidget, SIGNAL(practiceButtonClicked()), practiceSignalMapper, SLOT(map()));
+        removeSignalMapper->setMapping(backWidget, urlString);
+        connect(backWidget, SIGNAL(removeButtonClicked()), removeSignalMapper, SLOT(map()));
 
-	// One collection is laid out vertically like this:
-	//  1. nameLabel:  contains the name of the collection
-	//  2. wordcloud:  a wordcloud generated from the words in the collection
-	//  3. barWidget:  a visual bar showing the training status of the words in the collection
-	//  4. hBoxLayout: a horizontal row of pushbuttons for delete, practice, etc
-        nameLabel[k] = new QLabel(nameString);
-        vBoxLayout->addWidget(nameLabel[k]);
-        wordCloud[k] = new QWidget;
-        palette = wordCloud[k]->palette();
-        int y = randInt(8, 9);
-        palette.setColor(QPalette::Background, gradeColor[y]);
-        wordCloud[k]->setAutoFillBackground(true);
-        wordCloud[k]->setPalette(palette);
-        wordCloud[k]->setFixedSize(COLLWIDTH - 10, COLLHEIGHT1 - COLLHEIGHT2 + 10);
-        if (percentageCompleted != 100) {
-            vBoxLayout->addWidget(wordCloud[k]);
-        }
-
-        BarWidget *barWidget = new BarWidget(dueWords, totalDueWords, percentageCompleted);
-        barWidget->setFixedSize(COLLWIDTH - 10, 20);
-        vBoxLayout->addWidget(barWidget);
-        if (totalDueWords == 0 && percentageCompleted < 100) {
-            practiceButton[k] = new QPushButton(i18n("Practice Anyway"));
-        }
-        else {
-            practiceButton[k] = new QPushButton(i18n("Practice"));
-        }
-        practiceButton[k]->setStyleSheet("QPushButton {border: none; margin: 0px;   padding: 0px;}");
-
-	// hBoxLayout is the horizontal layout for the bottom line in the
-	// collection widget: delete button, practice button, etc
-        QHBoxLayout *hBoxLayout = new QHBoxLayout();
-        vBoxLayout->addLayout(hBoxLayout);
-        removeButton[k] = new RemoveButton();
-        removeButton[k]->setFixedSize(20, 20);
-        hBoxLayout->setAlignment(removeButton[k], Qt::AlignLeft | Qt::AlignVCenter);
-        hBoxLayout->setAlignment(practiceButton[k], Qt::AlignCenter);
-        hBoxLayout->addWidget(removeButton[k]);
-        hBoxLayout->addWidget(practiceButton[k]);
-        hBoxLayout->addItem(new QSpacerItem(20, 20));
-
-        signalMapper->setMapping(practiceButton[k], urlString);
-        connect(practiceButton[k], SIGNAL(clicked()), signalMapper, SLOT(map()));
-        signalMapper2->setMapping(removeButton[k], urlString);
-        connect(removeButton[k], SIGNAL(clicked()), signalMapper2, SLOT(map()));
-
-        if (percentageCompleted != 100) {
+        if (due.percentageCompleted != 100) {
             j++;
         }
         else {
             jc++;
             kc++;
         }
+
         k++;
     }
 
@@ -415,6 +314,8 @@ void WelcomeScreen::slotOpenUrl(const KUrl& url)
 
 void WelcomeScreen::slotPracticeButtonClicked(const QString& urlString)
 {
+    kDebug() << urlString;
+
     KUrl url(urlString);
     m_openUrl = url;
     QTimer::singleShot(0, this, SLOT(slotDoubleClickOpen()));
@@ -422,6 +323,8 @@ void WelcomeScreen::slotPracticeButtonClicked(const QString& urlString)
 
 void WelcomeScreen::slotRemoveButtonClicked(const QString& urlString)
 {
+    kDebug() << urlString;
+
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, i18n("Remove"),
 				  i18n("Are you sure you want to remove this collection?"),
