@@ -100,6 +100,7 @@ set(parley_LIB_SRCS
     vocabulary/vocabularycolumnsdialog.cpp
     welcomescreen/welcomescreen.cpp
     welcomescreen/buttondelegate.cpp
+    welcomescreen/gradereferencewidget.cpp
     welcomescreen/barwidget.cpp
     welcomescreen/collectionwidget.cpp
 )

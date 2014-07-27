@@ -13,25 +13,15 @@
  ***************************************************************************/
 
 
-// Qt
-#include <QPaintEvent>
 #include <QWidget>
 
-extern QColor gradeColor[11];
 
-
-class BarWidget : public QWidget
+class GradeReferenceWidget : public QWidget
 {
 public:
-    BarWidget(QWidget *parent = 0);
-    BarWidget(int [], int, int, QWidget *parent = 0);
+    GradeReferenceWidget(QWidget *parent = 0);
 
 protected:
     void paintEvent(QPaintEvent *);
 
-private:
-    int dueWords[8];
-    int totalDueWords;
-    int percentageCompleted;
 };
-
