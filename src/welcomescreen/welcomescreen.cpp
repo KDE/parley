@@ -30,14 +30,9 @@
 #include <QtGui>
 #include <Qt>
 
-QColor gradeColor[11];
+#include "collectionwidget.h"
+#include "barwidget.h"
 
-
-// Size constants for the collection widgets
-//int COLLWIDTH   = 170; // Width in pixels of a collection widget
-int COLLWIDTH   = 140; // Width in pixels of a collection widget
-int COLLHEIGHT1 = 250; // Height in pixels of a collection widget not yet fully learned
-int COLLHEIGHT2 = 100; // Height in pixels of a collection widget fully learned
 
 
 // ================================================================
@@ -128,107 +123,6 @@ void GradeReferenceWidget::paintEvent(QPaintEvent *)
 
 // ----------------------------------------------------------------
 
-
-class BarWidget : public QWidget
-{
-public:
-    BarWidget();
-    BarWidget(int [], int, int);
-
-protected:
-    void paintEvent(QPaintEvent *);
-
-private:
-    int dueWords[8];
-    int totalDueWords;
-    int percentageCompleted;
-};
-
-BarWidget::BarWidget()
-{
-
-}
-
-BarWidget::BarWidget(int dueWords[], int totalDueWords, int percentageCompleted)
-{
-    QPalette palette(BarWidget::palette());
-    palette.setColor(backgroundRole(), Qt::white);
-    setPalette(palette);
-    for (int i = 0; i < 8; i++) {
-        this->dueWords[i] = dueWords[i];
-    }
-    this->totalDueWords = totalDueWords;
-    this->percentageCompleted = percentageCompleted;
-}
-
-void BarWidget::paintEvent(QPaintEvent *)
-{
-    QPainter painter(this);
-    const int legendWidth = COLLWIDTH - 10;
-    const int legendHeight = 20;
-    const int legendOffsetY = 0;
-    const int legendOffsetX = 0;
-    //const int alphaValueIncrement = 35;
-
-    int gradeBarWidth[9];
-    gradeBarWidth[8] = 0;
-    int gradeBarOffset[9];
-    gradeBarOffset[8] = 0;
-    if (percentageCompleted < 100) {
-        for(int j = 7; j >= 0; j--) {
-            gradeBarWidth[j] = (float)(dueWords[j]) / (float)(totalDueWords) * legendWidth;
-            gradeBarOffset[j] = gradeBarOffset[j+1] + gradeBarWidth[j+1];
-        }
-    }
-    else {
-        for(int j = 6; j >= 0; j--) {
-            gradeBarWidth[j] = 0;
-            gradeBarOffset[j] = legendWidth;
-        }
-        gradeBarWidth[7] = legendWidth;
-        gradeBarOffset[7] = 0;
-    }
-    if (percentageCompleted < 100 && totalDueWords == 0) {
-        for(int j = 6; j >= 0; j--) {
-            gradeBarWidth[j] = 0;
-            gradeBarOffset[j] = legendWidth;
-        }
-        gradeBarWidth[7] = legendWidth;
-        gradeBarOffset[7] = 0;
-    }
-
-    QPen penBar(QColor(255,255,255));
-    painter.setPen(penBar);
-    QRect roundedRect(0, 0, legendWidth, legendHeight);
-    roundedRect.adjust(1, 1, -1, -1);
-    QPainterPath roundedPath;
-    roundedPath.addRoundedRect(roundedRect, 8.0, 8.0);
-
-    for (int i = 7; i >= 0; i--) {
-        QRectF barElement(0 + legendOffsetX + gradeBarOffset[i], 0 + legendOffsetY, gradeBarWidth[i], legendHeight);
-        QPainterPath barElementPath;
-        barElementPath.addRect(barElement);
-        QPainterPath barElementIntersectedPath = roundedPath.intersected(barElementPath);
-        QColor color;
-        if (totalDueWords == 0 && percentageCompleted < 100) {
-            color = QColor(0, 0, 0, 128);
-        }
-        else {
-            color = gradeColor[i];
-        }
-        painter.setBrush(QBrush(color));
-        painter.drawPath(barElementIntersectedPath);
-    }
-    QPen pen(QColor(255,255,255));
-    painter.setPen(pen);
-    if (percentageCompleted < 100) {
-        painter.drawText(0, 0, legendWidth, 20, Qt::AlignCenter,
-			 i18np("%1 word due", "%1 words due", totalDueWords));
-    }
-    else {
-        painter.drawText(0, 0, legendWidth, 20, Qt::AlignCenter, i18n("Fully learned"));
-    }
-}
 
 int WelcomeScreen::randInt(int low, int high)
 {
