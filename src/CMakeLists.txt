@@ -100,6 +100,8 @@ set(parley_LIB_SRCS
     vocabulary/vocabularycolumnsdialog.cpp
     welcomescreen/welcomescreen.cpp
     welcomescreen/buttondelegate.cpp
+    welcomescreen/barwidget.cpp
+    welcomescreen/collectionwidget.cpp
 )
 
 kde4_add_ui_files(parley_LIB_SRCS
