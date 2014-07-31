@@ -22,6 +22,7 @@
   <name xml:lang="x-test">xxParleyxx</name>
   <summary>Vocabulary Trainer</summary>
   <summary xml:lang="cs">Učitel slovní zásoby</summary>
+  <summary xml:lang="de">Vokabeltrainer</summary>
   <summary xml:lang="en-GB">Vocabulary Trainer</summary>
   <summary xml:lang="es">Entrenador de vocabulario</summary>
   <summary xml:lang="et">Sõnavara treening</summary>
@@ -67,6 +68,7 @@
     <ul>
       <li>Flash Cards</li>
       <li xml:lang="cs">Kartičky</li>
+      <li xml:lang="de">Karteikarten</li>
       <li xml:lang="en-GB">Flash Cards</li>
       <li xml:lang="et">Sähvikud</li>
       <li xml:lang="nds">Naslakoorten</li>
@@ -94,6 +96,7 @@
       <li xml:lang="x-test">xxMixed Letters (order the letters of a word)xx</li>
       <li>Multiple Choice</li>
       <li xml:lang="cs">S nabídkou možností</li>
+      <li xml:lang="de">Mehrfachauswahl</li>
       <li xml:lang="en-GB">Multiple Choice</li>
       <li xml:lang="et">Mitmene valik</li>
       <li xml:lang="nds">Mehrfachköör</li>
@@ -107,6 +110,7 @@
       <li xml:lang="uk">Вибір з варіантів.</li>
       <li xml:lang="x-test">xxMultiple Choicexx</li>
       <li>Written</li>
+      <li xml:lang="de">Schriftlich</li>
       <li xml:lang="en-GB">Written</li>
       <li xml:lang="et">Kirjalik</li>
       <li xml:lang="nds">Schreven</li>
