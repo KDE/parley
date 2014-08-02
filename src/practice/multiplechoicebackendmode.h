@@ -29,6 +29,7 @@ public:
     MultipleChoiceBackendMode(AbstractFrontend *frontend, QObject *parent,
                               Practice::SessionManagerBase* sessionManager);
 
+    /** Start practicing a new word */
     virtual bool setTestEntry(TestEntry* current);
 
     virtual void checkAnswer();
@@ -58,6 +59,11 @@ protected:
     void setCorrectAnswer(int index);
 
     int numberOfChoices();
+
+    /**
+     * Configure the multiple choice front end.
+     */
+    virtual void populateFrontEnd();
 
 private:
     SessionManagerBase* m_sessionManager;

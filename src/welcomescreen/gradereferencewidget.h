@@ -1,5 +1,6 @@
 /***************************************************************************
-    Copyright 2009 Daniel Laidig <d.laidig@gmx.de>
+    Copyright 2014 Andreas Xavier
+    Copyright 2014 Inge Wallin
  ***************************************************************************/
 
 /***************************************************************************
@@ -11,22 +12,16 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "abstractwidget.h"
 
-using namespace Practice;
+#include <QWidget>
 
-AbstractModeWidget::AbstractModeWidget(GuiFrontend *frontend, QWidget* parent)
-    : QWidget(parent), m_frontend(frontend)
+
+class GradeReferenceWidget : public QWidget
 {
+public:
+    GradeReferenceWidget(QWidget *parent = 0);
 
-}
+protected:
+    void paintEvent(QPaintEvent *);
 
-void AbstractModeWidget::setResultPalettes(const QPalette &correctPalette, const QPalette &wrongPalette)
-{
-    m_correctPalette = correctPalette;
-    m_wrongPalette = wrongPalette;
-}
-
-void AbstractModeWidget::objectDestroyed(QObject *)
-{
-}
+};

@@ -97,7 +97,7 @@ KEduVocDocument *ParleyDocument::document()
 {
     // If there is no present vocabulary document, create an empty one.
     if (!m_doc) {
-	m_doc = new KEduVocDocument();
+        m_doc = new KEduVocDocument();
         m_doc->setTitle( i18n("Untitled") );
         m_doc->setGenerator( QString::fromLatin1("Parley ") + PARLEY_VERSION_STRING );
     }
@@ -322,7 +322,7 @@ void ParleyDocument::save()
 
     // remove previous backup
     QFile::remove(m_doc->url().toLocalFile() + '~');
-    ::rename(QFile::encodeName(m_doc->url().toLocalFile()), QFile::encodeName(m_doc->url().toLocalFile() + '~'));
+    QFile::copy(QFile::encodeName(m_doc->url().toLocalFile()), QFile::encodeName(m_doc->url().toLocalFile() + '~'));
 
     m_doc->setCsvDelimiter(Prefs::separator());
 
@@ -359,6 +359,7 @@ void ParleyDocument::save()
                 isError = true;
             }
         } else {
+            //Intentionally empty else. Try to saveAs another filename
         }
         break;
     }
@@ -367,8 +368,6 @@ void ParleyDocument::save()
     }
 
     if ( isSuccess ) {
-        kDebug() << "Save success.";
-
         m_parleyApp->addRecentFile(m_doc->url(), m_doc->title());
         enableAutoBackup(Prefs::autoBackup());
     } else {
@@ -411,7 +410,7 @@ void ParleyDocument::saveAs(KUrl url)
     QString msg = i18nc("@info:status saving a file", "Saving %1", url.toLocalFile());
 
     QFile::remove(url.toLocalFile() + '~'); // remove previous backup
-    QFile::rename(QFile::encodeName(url.toLocalFile()), QFile::encodeName(QString(url.toLocalFile() + '~')));
+    QFile::copy(QFile::encodeName(url.toLocalFile()), QFile::encodeName(QString(url.toLocalFile() + '~')));
 
     m_doc->setCsvDelimiter(Prefs::separator());
 

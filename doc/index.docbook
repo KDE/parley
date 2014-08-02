@@ -53,8 +53,8 @@
 </copyright>
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2014-03-11</date>
-<releaseinfo>1.0.0 (&kde; SC 4.13)</releaseinfo>
+<date>2014-07-18</date>
+<releaseinfo>1.0.0 (&kde; SC 4.14)</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -120,11 +120,9 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>A vocabulary collection is a file that contains words and their translations into other languages or other pairs of words and sentences that you want to memorize. The words are organized in units.
 </para>
-<para>To <emphasis>start practicing</emphasis>, click one of the vocabulary collections in the list. You are taken to the <link linkend="practice-setup">practice setup</link>.
+<para>To <emphasis>start practicing</emphasis>, click the <guilabel>Practice</guilabel> on one of the vocabulary collection names in the list. You are taken to the <link linkend="practice-setup">practice setup</link>.
 </para>
-<para>Note that a small <guilabel>Editor Icon</guilabel> appears to the right of the document name when you move the mouse over it. The <guilabel>Editor Icon</guilabel> lets you open the collection in the editor instead of practice mode.
-</para>
-<para>To <link linkend="vocabulary-editing">edit</link> a collection, click on the <guilabel>Editor Icon</guilabel> on its right hand side.
+<para>Note that a small <guilabel>Delete Icon</guilabel> appears to the left of the document name. The <guilabel>Delete Icon</guilabel> lets you remove the collection from the list.
 </para>
 <para>If you'd like to start your own collection of vocabulary, click on <guilabel>Create a New Collection</guilabel>.
 </para>
@@ -204,6 +202,8 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>Below the language selection you choose the practice mode. <guilabel>Practice Mode</guilabel> determines how the practice will ask you questions.
 </para>
+<para>The <guilabel>Practice Direction</guilabel> drop down list can be used to select the query that will be shown during the practice. The possible choices are the known phrase (<guimenuitem>Known to Learning</guimenuitem>), the learning phrase (<guimenuitem>Learning to Known</guimenuitem>), or the the mix of the phrases (<guimenuitem>Mixed Directions</guimenuitem>).
+</para>
 <para>In the big part on the right, you see the units of the vocabulary collection. You can select which units you want to practice with the check box in front of the unit name. The number of words that each unit contains is shown next to its name. On the right of the name you see your current progress for the unit.
 </para>
 <para>The progress for each unit is displayed as the percentage of the unit completed and the multi-shaded progress bars. The percentage is calculated based on the total number of words in that unit and the confidence level of each word. The progress bars depict the number of words in each confidence level, with a darker shade depicting a higher confidence. A legend can also be seen at the top of the unit selections, in the header. The colors in this legend depict the corresponding colors of the progress bars, from the fully learned words to the words not yet practiced.
@@ -214,6 +214,35 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>In the <link linkend="practice-setup">Practice Setup</link> page you reach the <guilabel>Advanced Practice Configuration</guilabel> with the <guilabel>Configure Practice</guilabel> button in the toolbar. The button with the green icon.
 </para>
+<sect2 id="advanced-practice-settings"><title>General Practice Settings</title>
+<para>You can find several general configuration options for the practice in the general settings page.
+</para>
+<para>
+<screenshot>
+<screeninfo></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="Parley_configure_advanced.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase></phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+</para>
+<para>The most important options are:
+</para>
+<itemizedlist>
+<listitem><para> Ignore Accents: with this option if you enter a word with <guilabel>e</guilabel> instead of  <guilabel>é</guilabel> it will still count as right.
+</para></listitem>
+<listitem><para> Ignore Capitalization: this option allows you to ignore capitalization when you enter words.
+</para></listitem>
+<listitem><para> Images and Sound: if you enable images they will be displayed during the practice, if they are available. Same applies to Sound.
+</para></listitem>
+<listitem><para> Allow images instead of words: if you enable this option, it will allow an image to be used as the question during practice, provided a translation is not set for that target language's word.
+</para></listitem>
+</itemizedlist>
+</sect2>
 <sect2 id="blocking"><title>Blocking</title>
 <para>If you plan to practice your vocabulary regularly, you should make sure that the <emphasis>Blocking</emphasis> feature is enabled. The <guilabel>Blocking</guilabel> options are part of the <link linkend="advanced-practice-configuration">Advanced Practice Configuration</link>. There you go to the blocking page and tick the check box that says <guilabel>Blocking</guilabel>. Now you can even configure the interval in which words that you answered correctly will be repeated.
 </para>
@@ -252,15 +281,15 @@ limited to language learning but supports a multitude of subjects.
 <para>You can decide to practice only words that you know better or less well than some confidence level. Or you can select only words that you have practiced a certain number of times.
 </para>
 </sect2>
-<sect2 id="advanced-practice-settings"><title>Advanced Practice Settings</title>
-<para>You can find several more configuration options for the practice in the advanced settings page.
+<sect2 id="specific-practice-settings"><title>Specific Practice Settings</title>
+<para>Configuration options for the practice with multiple choices can be changed using the specific settings page.
 </para>
 <para>
 <screenshot>
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_configure_advanced.png" format="PNG"/>
+      <imagedata fileref="Parley_configure_specific.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -268,18 +297,8 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>The most important options are:
+<para>Here you can select if the choices should be of the same type as well as the number of choices.
 </para>
-<itemizedlist>
-<listitem><para> Ignore Accents: with this option if you enter a word with <guilabel>e</guilabel> instead of  <guilabel>é</guilabel> it will still count as right.
-</para></listitem>
-<listitem><para> Ignore Capitalization: this option allows you to ignore capitalization when you enter words.
-</para></listitem>
-<listitem><para> Images and Sound: if you enable images they will be displayed during the practice, if they are available. Same applies to Sound.
-</para></listitem>
-<listitem><para> Allow images instead of words: if you enable this option, it will allow an image to be used as the question during practice, provided a translation is not set for that target language's word.
-</para></listitem>
-</itemizedlist>
 </sect2>
 </sect1>
 <sect1 id="practice"><title>Practice</title>
@@ -454,14 +473,14 @@ limited to language learning but supports a multitude of subjects.
 <sect3 id="with-yes-no-answers"><title>With yes/no answers</title>
 <para>Normally &parley; automatically proposes one correct and several wrong answers in Multiple Choice mode. For some exercises instead you will have preset answers like yes/no or similar. And for these you have to configure the practice by clicking on <link linkend="advanced-practice-configuration"><guilabel>Configure Practice</guilabel></link>.
 </para>
-<para>Select the tab <guilabel>Advanced</guilabel> and you will get something very similar to the following screenshot:
+<para>Select the tab <guilabel>Specific</guilabel> and you will get something very similar to the following screenshot:
 </para>
 <para>
 <screenshot>
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_configure_advanced.png" format="PNG"/>
+      <imagedata fileref="Parley_configure_specific.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -827,7 +846,7 @@ limited to language learning but supports a multitude of subjects.
 </para></listitem>
 <listitem><para><guilabel>Name</guilabel> = Spanish
 </para></listitem>
-<listitem><para><guilabel>Keyboard layout</guilabel> = de (for German)
+<listitem><para><guilabel>Keyboard layout</guilabel> = us (for English)
 </para></listitem>
 </itemizedlist>
 <para>You can leave <guilabel>Keyboard layout</guilabel> empty if you are not sure about what you are using. &parley; will then simply take the standard layout of your computer.
@@ -901,7 +920,7 @@ limited to language learning but supports a multitude of subjects.
 <para>The check boxes in front of the unit name show which units are currently included in your practice. The number next to it is the number of words in the unit.
 </para>
 <sect2 id="new-unit"><title>New Unit</title>
-<para>Add a new unit: Select where this unit belongs to, for example the collection <guilabel>My Spanish Units</guilabel>.
+<para>Add a new unit: Select where this unit belongs to, for example the collection <guilabel>My Spanish Lessons</guilabel>.
 </para>
 <para>
 <screenshot>
@@ -1251,9 +1270,9 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </para>
 <para>If you now check your folder where the sound-files and pictures are, you will also find the file <guilabel>Trainer eng-deu.kvtml</guilabel>
 </para>
-<para>Let's have a short look at the words we want to add: <emphasis>apple, bird, cat, cherry, cow, orange, pear, snake, strawberry</emphasis>. We have animals and fruit and therefore we decide to create two units that are called: <guilabel>Animals</guilabel> and <guilabel>Fruit</guilabel>.
+<para>Let's have a short look at the words we want to add: <emphasis>apple, bird, cat, cherry, cow, orange, pear, snake, strawberry</emphasis>. We have animals and fruit and therefore we decide to create two units that are called: <guilabel>Animals</guilabel> and <guilabel>Fruits</guilabel>.
 </para>
-<para>We now rename <guilabel>Lesson 1</guilabel> to <guilabel>Animals</guilabel> and then we add a unit called <guilabel>Fruit</guilabel>. Right-click on <guilabel>Lesson 1</guilabel> and choose <guilabel>Rename Unit</guilabel> from the options shown. Now <guilabel>Lesson 1</guilabel> is highlighted and you can simply overwrite it by typing in <guilabel>Animals</guilabel>. When done, hit the &Enter; key. Now right-click on <guilabel>Collection: Vocabulary trainer E...</guilabel> which is the root of the unit tree and choose <guilabel>New Unit</guilabel> from the options shown. In the new field write <guilabel>Fruit</guilabel> and hit the &Enter; key again.
+<para>We now rename <guilabel>Lesson 1</guilabel> to <guilabel>Animals</guilabel> and then we add a unit called <guilabel>Fruits</guilabel>. Right-click on <guilabel>Lesson 1</guilabel> and choose <guilabel>Rename Unit</guilabel> from the options shown. Now <guilabel>Lesson 1</guilabel> is highlighted and you can simply overwrite it by typing in <guilabel>Animals</guilabel>. When done, hit the &Enter; key. Now right-click on <guilabel>Collection: Vocabulary trainer E...</guilabel> which is the root of the unit tree and choose <guilabel>New Unit</guilabel> from the options shown. In the new field write <guilabel>Fruits</guilabel> and hit the &Enter; key again.
 </para>
 <para>First, let's insert the animals. Please click on the unit <guilabel>Animals</guilabel> and you will get an empty table you can fill in. Click with your mouse in the first field, and insert the source terms.  Then, insert the target terms in the second column. Once you've inserted all 4 English animal names with their German translation the screen looks like this:
 </para>
@@ -1272,7 +1291,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </para>
 <para>In our case we want only 4 entries in the animals unit. There are many empty lines that should be deleted. To do this click on the first empty field, and keep the &Shift; key pressed while clicking on the last empty field. All lines to be deleted will be highlighted. Then, press the <keycap>Del</keycap> key and confirm the question <emphasis>Do you really want to delete the selected entries?</emphasis> by clicking on the <guilabel>Delete</guilabel> button.
 </para>
-<para>Let's add the fruit terminology. Just click on the unit named <guilabel>Fruit</guilabel>. This second unit is completely empty. Since we have five fruit terms we need to add five lines. Therefore, press the <keycap>Ins</keycap> key five times, and then, just like before, we add our terminology.
+<para>Let's add the fruit terminology. Just click on the unit named <guilabel>Fruits</guilabel>. This second unit is completely empty. Since we have five fruit terms we need to add five lines. Therefore, press the <keycap>Ins</keycap> key five times, and then, just like before, we add our terminology.
 </para>
 <para>Don't forget to save every now and then ...
 </para>
@@ -1344,7 +1363,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </para>
 <para>Just go ahead like this for all terms.
 </para>
-<para>Time to add adjectives and verbs as units to our project. So just do as before with the unit <emphasis>Fruit</emphasis> and create two new units: <emphasis>Adjectives</emphasis> and <emphasis>Verbs</emphasis>. Let's assume we will add <emphasis>big, small, old, young, narrow</emphasis> in the adjective unit and <emphasis>to go, to come, to buy, to drink, to eat</emphasis> in the verb unit.
+<para>Time to add adjectives and verbs as units to our project. So just do as before with the unit <emphasis>Fruits</emphasis> and create two new units: <emphasis>Adjectives</emphasis> and <emphasis>Verbs</emphasis>. Let's assume we will add <emphasis>big, small, old, young, narrow</emphasis> in the adjective unit and <emphasis>to go, to come, to buy, to drink, to eat</emphasis> in the verb unit.
 </para>
 <para>The following shows a screenshot with all inserted terminology. Now, words are mixed and it would be nice to see what is a <emphasis>noun, adjective</emphasis> or <emphasis>verb</emphasis>.
 </para>

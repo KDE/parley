@@ -87,36 +87,44 @@ bool ImageChooserWidget::eventFilter(QObject * obj, QEvent * event)
 //         }
 
 
-        if (event->type() == QEvent::DragEnter) {
-            if (!m_entry) {
-                return true;
-            }
-            QDragEnterEvent *dragEnterEvent = static_cast<QDragEnterEvent *>(event);
-            kDebug() << "DragEnter mime format: " << dragEnterEvent->format();
-            if (dragEnterEvent->provides("text/uri-list")) {
-                kDebug() << KMimeType::findByUrl(dragEnterEvent->mimeData()->urls()[0])->name();
-
-                if (KMimeType::findByUrl(dragEnterEvent->mimeData()->urls()[0])->name().startsWith("image")) {
-                    kDebug() << "text/uri-list contains image";
-                    event->accept();
-                    return true;
-                }
-            }
-            return false;
-        }
-
         if (event->type() == QEvent::DragMove) {
             event->accept();
             return true;
         }
 
-        if (event->type() == QEvent::Drop) {
-            QDropEvent *dropEvent = static_cast<QDropEvent *>(event);
-            kDebug() << "You dropped onto me: " << dropEvent->mimeData()->formats() << dropEvent->mimeData()->urls();
+        //Events with drop data
+        if (event->type() == QEvent::DragEnter || event->type() == QEvent::Drop) {
+            if (!m_entry) {
+                return true;
+            }
+            QDropEvent *dropEvent = dynamic_cast<QDropEvent *>(event);
+            if (( dropEvent!= NULL ) && dropEvent->provides("text/uri-list")) {
+                const QMimeData * mimeData(  dropEvent->mimeData() );
+                if ( mimeData && mimeData->hasUrls() ) {
+                    const QList<QUrl > qurls(mimeData->urls() ) ;
+                    if ( !qurls.empty() ) {
+                        const QUrl & qurl (qurls.first() );
 
-            imageUrlRequester->setUrl(dropEvent->mimeData()->urls()[0]);
+                        switch( event->type() ) {
+                        case QEvent::DragEnter: {
+                            const QString name(KMimeType::findByUrl(qurl)->name());
+                            if (name.startsWith("image")) {
+                                event->accept();
+                                return true;
+                            }
+                            break;
+                        }
+                        case QEvent::Drop:
+                            imageUrlRequester->setUrl(qurl);
+                            return true;
+                            break;
+                        default:
+                            break;
+                        }
 
-            return true;
+                    }
+                }
+            }
         }
     }
     return QObject::eventFilter(obj, event);

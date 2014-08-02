@@ -116,6 +116,7 @@ void GuiFrontend::setMode(Mode mode)
     }
     if (newWidget) {
         m_ui->centralPracticeWidget->layout()->addWidget(newWidget);
+        modeWidgetDestroyed();
         delete m_modeWidget;
         m_modeWidget = newWidget;
         connect(m_modeWidget, SIGNAL(continueAction()), m_ui->continueButton, SLOT(animateClick()));
@@ -425,6 +426,13 @@ void GuiFrontend::setTheme()
     m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
     m_ui->boxesWidget->setRenderer(m_themedBackgroundRenderer);
     m_ui->statusToggle->setRenderer(m_themedBackgroundRenderer);
+}
+
+void GuiFrontend::modeWidgetDestroyed(QObject * obj)
+{
+    if (m_modeWidget) {
+        m_modeWidget->objectDestroyed();
+    }
 }
 
 #include "guifrontend.moc"

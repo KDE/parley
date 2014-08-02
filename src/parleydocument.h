@@ -38,6 +38,9 @@ public:
 
     void setTitle(const QString& title);
 
+    /** Enable/disable the timed auto backup
+     @todo Move autobackup functionality into libkdeedu which is responsible for
+    file opening/closing and locking already.*/
     void enableAutoBackup(bool enable);
     //void fetchGrammar(int languageIndex);
 

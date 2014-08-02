@@ -28,6 +28,44 @@ configure_file(
    ${CMAKE_CURRENT_BINARY_DIR}/config-parley.h
 )
 
+
+# Define link libs for parley executable and unittests
+set( parley_LINK_LIBS
+    ${LIBKDEEDU_KEDUVOCDOCUMENT_LIBRARIES}
+    ${KDE4_KHTML_LIBS}
+    ${KDE4_KNEWSTUFF3_LIBS}
+    ${KDE4_PHONON_LIBS}
+    ${KDE4_KCMUTILS_LIBRARY} #for the KPluginSelector
+    ${KDE4_KROSSCORE_LIBS} ${KDE4_KROSSUI_LIBS} #for Kross
+    ${QT_QTCORE_LIBRARY}
+)
+
+if(HAVE_LIBXSLT)
+  set( parley_LINK_LIBS ${parley_LINK_LIBS} ${LIBXML2_LIBRARIES} ${LIBXSLT_LIBRARIES})
+endif(HAVE_LIBXSLT)
+
+if (X11_Xrender_FOUND)
+  set( parley_LINK_LIBS ${parley_LINK_LIBS} ${X11_LIBRARIES} ${X11_Xrender_LIB})
+endif(X11_Xrender_FOUND)
+
+
+#define the include libraries for both the parley executable and the autotests
+set( parley_INCLUDE_DIRS
+  ${LIBATTICA_INCLUDE_DIR}
+  # libkdeedu/keduvocdocument contains the library for reading and writing vocabulary files
+  ${LIBKDEEDU_INCLUDE_DIR}
+)
+
+#### XSLT Support ####
+# to transform the document xml to html or other
+if(HAVE_LIBXSLT)
+    set( parley_INCLUDE_DIRS ${parley_INCLUDE_DIRS} ${LIBXML2_INCLUDE_DIR} ${LIBXSLT_INCLUDE_DIR} )
+endif(HAVE_LIBXSLT)
+#### End XSLT Support ####
+
+
+
+add_subdirectory( autotests )
 add_subdirectory( doc )
 add_subdirectory( scripts_test )
 add_subdirectory( src )
@@ -35,6 +73,7 @@ add_subdirectory( icons )
 add_subdirectory( plugins )
 add_subdirectory( themes )
 add_subdirectory( tipofday )
+
 
 if(HAVE_LIBXSLT)
     add_subdirectory( xslt )

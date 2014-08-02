@@ -156,6 +156,14 @@ void StatisticsMainWindow::initLanguages()
 {
     //kDebug() << "init languages: " << Prefs::learningLanguage() << Prefs::knownLanguage();
     const int totalNumLanguages = m_doc->identifierCount();
+
+    if ( Prefs::knownLanguage() < 0 || totalNumLanguages <= Prefs::knownLanguage() ) {
+        Prefs::setKnownLanguage(0);
+    }
+    if ( Prefs::learningLanguage() < 0 || totalNumLanguages <= Prefs::learningLanguage() ) {
+        Prefs::setLearningLanguage(0);
+    }
+
     if (Prefs::knownLanguage() >= totalNumLanguages
         || Prefs::learningLanguage() >= totalNumLanguages
         || Prefs::learningLanguage() == Prefs::knownLanguage())
