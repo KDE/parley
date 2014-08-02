@@ -105,6 +105,8 @@ set(parley_LIB_SRCS
     welcomescreen/collectionwidget.cpp
     lessoncreator/translationsfetcher.cpp
     lessoncreator/filedownloader.cpp
+    lessoncreator/databasemanager.cpp
+    lessoncreator/csv.cpp
 )
 
 kde4_add_ui_files(parley_LIB_SRCS
