@@ -48,6 +48,11 @@ void VocabularyFilter::setSourceModel(VocabularyModel * model)
     m_model = model;
 }
 
+VocabularyModel* VocabularyFilter::sourceVocabularyModel()
+{
+    return m_model;
+}
+
 void VocabularyFilter::setSearchString(const QString & expression)
 {
     m_filterString = expression;

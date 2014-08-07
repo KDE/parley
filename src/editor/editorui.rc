@@ -50,6 +50,7 @@
    <Action name="new_lesson" />
    <Action name="rename_lesson" />
    <Action name="delete_lesson" />
+   <Action name="fetch_lesson" />
    <Separator/>
    <Action name="split_lesson" />
    <Separator/>
@@ -77,6 +78,7 @@
   <Separator/>
   <Action name="new_lesson" />
   <Action name="edit_append" />
+  <Action name="fetch_lesson" />
   <Separator/>
   <Action name="practice_start" />
  </ToolBar>

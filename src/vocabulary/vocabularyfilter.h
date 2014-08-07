@@ -35,6 +35,7 @@ public:
 
     QModelIndex appendEntry(KEduVocExpression *expression = 0);
     KEduVocLesson * lesson();
+    VocabularyModel* sourceVocabularyModel();
 
 public slots:
     void setSearchString(const QString& expression);

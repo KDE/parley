@@ -524,4 +524,9 @@ void EditorWindow::slotLanguagesChanged()
     m_vocabularyModel->resetLanguages();
 }
 
+VocabularyView* EditorWindow::vocabularyView()
+{
+    return m_vocabularyView;
+}
+
 #include "editor.moc"

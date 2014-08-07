@@ -232,6 +232,23 @@ void VocabularyView::appendEntry()
     edit(newIndex);
 }
 
+void VocabularyView::fillEntry(QString fromTranslation, QString toTranslation)
+{
+    QModelIndex newIndex = m_model->appendEntry();
+    for (int i = 0; i < m_model->sourceVocabularyModel()->EntryColumnsMAX * 2; i++) {
+        newIndex = m_model->index(newIndex.row(), i, QModelIndex());
+        int translationId = m_model->sourceVocabularyModel()->translation(newIndex.column());
+        int column = m_model->sourceVocabularyModel()->columnType(newIndex.column());
+
+        if (column == m_model->sourceVocabularyModel()->Translation && translationId == 0) {
+            m_model->setData(newIndex, fromTranslation);
+        }
+        if (column == m_model->sourceVocabularyModel()->Translation && translationId == 1) {
+            m_model->setData(newIndex, toTranslation);
+        }
+    }
+}
+
 void VocabularyView::appendChar(const QChar &c)
 {
     const QModelIndex &index = selectionModel()->currentIndex();

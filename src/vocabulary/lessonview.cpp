@@ -32,6 +32,7 @@ using namespace Editor;
 
 LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
 {
+    m_editorWindow = parent;
     KAction *actionNewLesson = new KAction(this);
     parent->actionCollection()->addAction("new_lesson", actionNewLesson);
     actionNewLesson->setText(i18n("New Unit"));
@@ -39,6 +40,14 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
     actionNewLesson->setWhatsThis(i18n("Add a new unit to your document"));
     actionNewLesson->setToolTip(actionNewLesson->whatsThis());
     actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
+
+    KAction *actionFetchLesson = new KAction(this);
+    parent->actionCollection()->addAction("fetch_lesson", actionFetchLesson);
+    actionFetchLesson->setText(i18n("Fetch Lesson"));
+    actionFetchLesson->setIcon(KIcon("lesson-add"));
+    actionFetchLesson->setWhatsThis(i18n("Automatically fetch a lesson from dictionary"));
+    actionFetchLesson->setToolTip(actionFetchLesson->whatsThis());
+    actionFetchLesson->setStatusTip(actionFetchLesson->whatsThis());
 
     KAction *actionRenameLesson = new KAction(this);
     parent->actionCollection()->addAction("rename_lesson", actionRenameLesson);
@@ -102,6 +111,8 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
             SLOT(slotRename()));
     connect(actionDeleteLesson, SIGNAL(triggered()),
             SLOT(slotDeleteLesson()));
+    connect(actionFetchLesson, SIGNAL(triggered()),
+            SLOT(slotFetchLesson()));
     connect(actionSplitLesson, SIGNAL(triggered()),
             SLOT(slotSplitLesson()));
     connect(actionRemoveGradesLesson, SIGNAL(triggered()),
@@ -117,6 +128,7 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
     addAction(actionNewLesson);
     addAction(actionRenameLesson);
     addAction(actionDeleteLesson);
+    addAction(actionFetchLesson);
     QAction* separator = new QAction(this);
     separator->setSeparator(true);
     addAction(separator);
@@ -184,6 +196,20 @@ void LessonView::slotCreateNewLesson()
     scrollTo(modelIndex);
     selectionModel()->setCurrentIndex(modelIndex, QItemSelectionModel::ClearAndSelect);
     edit(modelIndex);    // let the user type a new name for the lesson
+}
+
+void LessonView::slotFetchLesson()
+{
+    QModelIndex selectedIndex = m_model->index(0, 0, QModelIndex());
+
+    QModelIndex modelIndex = m_model->appendContainer(selectedIndex);
+
+    scrollTo(modelIndex);
+    selectionModel()->setCurrentIndex(modelIndex, QItemSelectionModel::ClearAndSelect);
+    edit(modelIndex);    // let the user type a new name for the lesson
+    for (int i = 0; i < 20; i++) {
+        m_editorWindow->vocabularyView()->fillEntry("abc","bca"); // TODO: Pass the fetched translations from the SQLite table.
+    }
 }
 
 void LessonView::slotDeleteLesson()

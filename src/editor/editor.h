@@ -21,6 +21,8 @@
 
 #include "scripts/scripting/parley.h"
 
+#include "vocabulary/vocabularyview.h"
+
 #include <KXmlGuiWindow>
 
 class QSignalMapper;
@@ -63,6 +65,8 @@ public:
 
     /** setup the main view*/
     void initView();
+
+    VocabularyView* vocabularyView();
 
     void initDockWidgets();
 

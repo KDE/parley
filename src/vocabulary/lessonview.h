@@ -18,6 +18,7 @@
 
 #include "containerview.h"
 #include "lessonmodel.h"
+#include "editor/editor.h"
 
 namespace Editor
 {
@@ -51,6 +52,9 @@ signals:
 public slots:
     /** Append a lesson to the model and automatically set an edit up so the user can change "New unit" into something meaningfull.*/
     void slotCreateNewLesson();
+
+    /** Automatically create a new lesson by fetching translations from online dictionary.*/
+    void slotFetchLesson();
 
     /** Remove a lesson. Ask if it's not empty. */
     void slotDeleteLesson();
@@ -92,6 +96,7 @@ private:
     }
 
     LessonModel *m_model;
+    EditorWindow *m_editorWindow;
 };
 }
 
