@@ -49,6 +49,14 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
     actionFetchLesson->setToolTip(actionFetchLesson->whatsThis());
     actionFetchLesson->setStatusTip(actionFetchLesson->whatsThis());
 
+    KAction *actionFetchSelectiveTranslations = new KAction(this);
+    parent->actionCollection()->addAction("fetch_selective_translations", actionFetchSelectiveTranslations);
+    actionFetchSelectiveTranslations->setText(i18n("Fetch Selective Translations"));
+    actionFetchSelectiveTranslations->setIcon(KIcon("lesson-add"));
+    actionFetchSelectiveTranslations->setWhatsThis(i18n("Automatically fetch a translations for blank entries in selected lesson from dictionary"));
+    actionFetchSelectiveTranslations->setToolTip(actionFetchSelectiveTranslations->whatsThis());
+    actionFetchSelectiveTranslations->setStatusTip(actionFetchSelectiveTranslations->whatsThis());
+
     KAction *actionRenameLesson = new KAction(this);
     parent->actionCollection()->addAction("rename_lesson", actionRenameLesson);
     actionRenameLesson->setText(i18n("Rename Unit"));
@@ -113,6 +121,8 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
             SLOT(slotDeleteLesson()));
     connect(actionFetchLesson, SIGNAL(triggered()),
             SLOT(slotFetchLesson()));
+    connect(actionFetchSelectiveTranslations, SIGNAL(triggered()),
+            SLOT(slotFetchSelectiveTranslations()));
     connect(actionSplitLesson, SIGNAL(triggered()),
             SLOT(slotSplitLesson()));
     connect(actionRemoveGradesLesson, SIGNAL(triggered()),
@@ -128,8 +138,12 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
     addAction(actionNewLesson);
     addAction(actionRenameLesson);
     addAction(actionDeleteLesson);
-    addAction(actionFetchLesson);
     QAction* separator = new QAction(this);
+    separator->setSeparator(true);
+    addAction(separator);
+    addAction(actionFetchLesson);
+    addAction(actionFetchSelectiveTranslations);
+    separator = new QAction(this);
     separator->setSeparator(true);
     addAction(separator);
     addAction(actionRemoveGradesLesson);
@@ -210,6 +224,11 @@ void LessonView::slotFetchLesson()
     for (int i = 0; i < 20; i++) {
         m_editorWindow->vocabularyView()->fillEntry("abc","bca"); // TODO: Pass the fetched translations from the SQLite table.
     }
+}
+
+void LessonView::slotFetchSelectiveTranslations()
+{
+    m_editorWindow->vocabularyView()->fillEmptyTranslations(); // TODO: Pass the fetched translations from the SQLite table.
 }
 
 void LessonView::slotDeleteLesson()

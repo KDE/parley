@@ -50,7 +50,9 @@
    <Action name="new_lesson" />
    <Action name="rename_lesson" />
    <Action name="delete_lesson" />
+   <Separator/>
    <Action name="fetch_lesson" />
+   <Action name="fetch_selective_translations" />
    <Separator/>
    <Action name="split_lesson" />
    <Separator/>
@@ -78,7 +80,9 @@
   <Separator/>
   <Action name="new_lesson" />
   <Action name="edit_append" />
+  <Separator/>
   <Action name="fetch_lesson" />
+  <Action name="fetch_selective_translations" />
   <Separator/>
   <Action name="practice_start" />
  </ToolBar>

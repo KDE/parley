@@ -249,6 +249,61 @@ void VocabularyView::fillEntry(QString fromTranslation, QString toTranslation)
     }
 }
 
+void VocabularyView::fillEmptyTranslations()
+{
+    // TODO: QMultiMap used as a driver, to be replaced by using SQLite database
+    QMultiMap<QString, QString> multi0;
+    multi0.insert( "man", "homme" );
+    multi0.insert( "human", "homme" );
+    multi0.insert( "mankind", "homme" );
+    multi0.insert( "foo", "bar" );
+    multi0.insert( "foo", "barry" );
+    QMultiMap<QString, QString> multi1;
+    multi1.insert( "homme", "man" );
+    multi1.insert( "homme", "human" );
+    multi1.insert( "homme", "mankind" );
+    multi1.insert( "bar", "foo" );
+    multi1.insert( "barry", "foo" );
+
+    int row = 0;
+    QModelIndex fromIndex, toIndex;
+    while (row < m_model->rowCount()) {
+        fromIndex = m_model->index(row, m_model->sourceVocabularyModel()->Translation);
+        toIndex = m_model->index(row, m_model->sourceVocabularyModel()->Translation + m_model->sourceVocabularyModel()->EntryColumnsMAX);
+        QString fromTranslation = m_model->data(fromIndex).toString().toLower();
+        QString toTranslation = m_model->data(toIndex).toString().toLower();
+        if (!fromTranslation.isEmpty() && toTranslation.isEmpty()) {
+            QMultiMap<QString, QString>::iterator i = multi0.find(fromTranslation);
+            int count = 0;
+            while (i != multi0.end() && i.key() == fromTranslation) {
+                if (count == 0) {
+                    m_model->setData(toIndex, i.value());
+                }
+                else {
+                    fillEntry(fromTranslation, i.value());
+                }
+                ++i;
+                ++count;
+            }
+        }
+        if (fromTranslation.isEmpty() && !toTranslation.isEmpty()) {
+            QMultiMap<QString, QString>::iterator i2 = multi1.find(toTranslation);
+            int count2 = 0;
+            while (i2 != multi1.end() && i2.key() == toTranslation) {
+                if (count2 == 0) {
+                    m_model->setData(fromIndex, i2.value());
+                }
+                else {
+                    fillEntry(i2.value(), toTranslation);
+                }
+                ++i2;
+                ++count2;
+            }
+        }
+        ++row;
+    }
+}
+
 void VocabularyView::appendChar(const QChar &c)
 {
     const QModelIndex &index = selectionModel()->currentIndex();

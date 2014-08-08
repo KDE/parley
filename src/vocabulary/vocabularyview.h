@@ -57,6 +57,7 @@ public slots:
     void reset();
     void appendEntry();
     void fillEntry(QString fromTranslation, QString toTranslation);
+    void fillEmptyTranslations();
 
     /** Delete the currently selected entries */
     void deleteSelectedEntries(bool askConfirmation = true);

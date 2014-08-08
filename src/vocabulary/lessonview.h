@@ -56,6 +56,9 @@ public slots:
     /** Automatically create a new lesson by fetching translations from online dictionary.*/
     void slotFetchLesson();
 
+    /** Automatically fills blank translations in a selected lesson by matching and fetching translations from online dictionary.*/
+    void slotFetchSelectiveTranslations();
+
     /** Remove a lesson. Ask if it's not empty. */
     void slotDeleteLesson();
 
