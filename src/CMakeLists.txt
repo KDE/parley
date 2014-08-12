@@ -144,6 +144,9 @@ kde4_add_kcfg_files(parley_LIB_SRCS
     settings/languagesettings.kcfgc
 )
 
+qt4_add_dbus_adaptor(parley_LIB_SRCS editor/org.kde.parley.xml
+                     editor/editor.h Editor::EditorWindow)
+
 #### XSLT Support ####
 # to transform the document xml to html or other
 if(HAVE_LIBXSLT)

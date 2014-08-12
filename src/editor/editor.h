@@ -104,6 +104,11 @@ public slots:
      */
     void updateDocument(KEduVocDocument *doc);
 
+    /**
+     * DBus method for adding words by external apps
+     */
+    void addWordWithTranslation(const QStringList &w);
+
 private slots:
 
     /** Make the search bar visible and focus it */
