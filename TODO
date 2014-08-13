@@ -80,7 +80,7 @@ Before the 4.14 freeze (features).  These are picked from the ones below.
        - Dashboard widget						Done
        - wrapper class for a KEduVocDocument				----
        - Make the words due work					----
-       - KEduVocDocument summary view widget				----
+       - KEduVocDocument summary view widget				Done
     + Pregrades								DONE
 
 
