@@ -91,8 +91,14 @@ DueWords::DueWords()
 
     totalDueWords = 0;
 
+#if 0
     int firstGrade = randInt(0,7); //This is done for vanity purposes only, giving due word values to only two grades for now.
     int secondGrade = randInt(0,7);
+#else
+    // Disable this until it works in lower layers too
+    int firstGrade = 0;
+    int secondGrade = 7;
+#endif
     for (int x = 0; x < 8; x++) {
 	if (x == firstGrade || x == secondGrade) {
 	    dueWords[x] = randInt(0,20);
@@ -104,7 +110,7 @@ DueWords::DueWords()
     }
 
     //To test randomnly for Complete Collections. Again to be obtained from document.
-    percentageCompleted = randInt(98,100);
+    percentageCompleted = randInt(98, 99);
 
 }
 
