@@ -1,0 +1,61 @@
+diff --git a/kexi/kexidb/alter.cpp b/kexi/kexidb/alter.cpp
+index 784b93b..70ea95c 100644
+--- a/kexi/kexidb/alter.cpp
++++ b/kexi/kexidb/alter.cpp
+@@ -192,15 +192,17 @@ int AlterTableHandler::alteringTypeForProperty(const QByteArray& propertyName)
+ //---
+ 
+ AlterTableHandler::ChangeFieldPropertyAction::ChangeFieldPropertyAction(
+-    const QString& fieldName, const QString& propertyName, const QVariant& newValue, int uid)
+-        : FieldActionBase(fieldName, uid)
++    const Field& field, const QString& propertyName, const QVariant& newValue, int uid)
++        : FieldActionBase(field.name(), uid)
+         , m_propertyName(propertyName)
+         , m_newValue(newValue)
++        , m_field(&field)
+ {
+ }
+ 
+ AlterTableHandler::ChangeFieldPropertyAction::ChangeFieldPropertyAction(bool)
+         : FieldActionBase(true)
++        , m_field(0)
+ {
+ }
+ 
+@@ -210,7 +212,14 @@ AlterTableHandler::ChangeFieldPropertyAction::~ChangeFieldPropertyAction()
+ 
+ void AlterTableHandler::ChangeFieldPropertyAction::updateAlteringRequirements()
+ {
+-// m_alteringRequirements = ???;
++    if ("maxLength" == m_propertyName) {
++        if (m_field && m_field->type() == Field::Text) { // changing length of text is relatively harmless
++//! @todo check if we have to cut off data, and if so - warn the user and ask for permissions, show minimal length needed
++//! @todo for now we jsut change the limit without altering the data
++            setAlteringRequirements(MainSchemaAlteringRequired);
++            return;
++        }
++    }
+     setAlteringRequirements(alteringTypeForProperty(m_propertyName.toLatin1()));
+ }
+ 
+diff --git a/kexi/kexidb/alter.h b/kexi/kexidb/alter.h
+index 1d3d26e..def6c53 100644
+--- a/kexi/kexidb/alter.h
++++ b/kexi/kexidb/alter.h
+@@ -295,7 +295,7 @@ public:
+     class KEXI_DB_EXPORT ChangeFieldPropertyAction : public FieldActionBase
+     {
+     public:
+-        ChangeFieldPropertyAction(const QString& fieldName,
++        ChangeFieldPropertyAction(const Field& field,
+                                   const QString& propertyName, const QVariant& newValue, int uid);
+         //! @internal, used for constructing null action
+         ChangeFieldPropertyAction(bool null);
+@@ -324,6 +324,7 @@ public:
+ 
+         QString m_propertyName;
+         QVariant m_newValue;
++        const Field* m_field;
+     };
+ 
+     //! Defines an action for removing a single table field.
