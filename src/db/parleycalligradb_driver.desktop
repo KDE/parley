@@ -1,0 +1,22 @@
+[Desktop Entry]
+Type=ServiceType
+X-KDE-ServiceType=Parley/DBDriver
+Comment=Parley SQL-Driver plugin
+
+[PropertyDef::X-Kexi-FileDBDriverMime]
+Type=QString
+
+[PropertyDef::X-Kexi-FileDBDriverMimeList]
+Type=QStringList
+
+[PropertyDef::X-Kexi-DriverName]
+Type=QString
+
+[PropertyDef::X-Kexi-DriverType]
+Type=QString
+
+[PropertyDef::X-Kexi-KexiDBVersion]
+Type=QString
+
+[PropertyDef::X-Kexi-DoNotAllowProjectImportingTo]
+Type=bool

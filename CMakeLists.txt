@@ -4,7 +4,7 @@ find_package(KDE4 REQUIRED)
 include(KDE4Defaults)
 include_directories (${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES})
 
-set(CMAKE_MODULE_PATH ${parley_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
+set(CMAKE_MODULE_PATH ${parley_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
 
 find_package(LibKdeEdu REQUIRED)
 
@@ -22,6 +22,30 @@ macro_log_feature(LIBATTICA_FOUND "libattica" "A library to access Open Collabor
 
 macro_bool_to_01(1 HAVE_XRENDER)
 
+##
+## Test for sqlite
+##
+set(SQLITE_MIN_VERSION 3.6.16)
+set(SQLITE_RECOMMENDED_VERSION 3.8.5)
+set(SQLITE_LOAD_EXTENSION_REQUIRED ON)
+macro_optional_find_package(ParleySqlite ${SQLITE_MIN_VERSION})
+macro_bool_to_01(SQLITE_FOUND HAVE_SQLITE)
+macro_log_feature(SQLITE_FOUND "SQLite" "Embedded SQL database engine with enabled extensions loading"
+                  "http://www.sqlite.org" FALSE "${SQLITE_MIN_VERSION}"
+                  "Required by default database handler.")
+
+##
+## Test for ICU
+##
+macro_optional_find_package(ICU)
+macro_bool_to_01(ICU_FOUND HAVE_ICU)
+macro_log_feature(ICU_FOUND "ICU" "International Components for Unicode (ICU) Library"
+                  "http://icu-project.org" FALSE ""
+                  "Required by default database handler (SQLite).")
+
+set(GENERIC_CALLIGRA_LIB_VERSION "1.0.0")
+set(GENERIC_CALLIGRA_LIB_SOVERSION "1")
+
 # at the end, output the configuration
 configure_file(
    ${CMAKE_CURRENT_SOURCE_DIR}/config-parley.h.cmake
@@ -31,6 +55,7 @@ configure_file(
 
 # Define link libs for parley executable and unittests
 set( parley_LINK_LIBS
+    parleycalligradb
     ${LIBKDEEDU_KEDUVOCDOCUMENT_LIBRARIES}
     ${KDE4_KHTML_LIBS}
     ${KDE4_KNEWSTUFF3_LIBS}

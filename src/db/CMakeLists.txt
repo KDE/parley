@@ -14,9 +14,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config-calligradb.h.cmake ${CMAKE_CUR
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
-    ${CMAKE_SOURCE_DIR}/libs
     ${CMAKE_CURRENT_SOURCE_DIR}/parser
-    ${KOPLUGIN_INCLUDES}
     ${KDE4_INCLUDES}
 )
 
@@ -55,6 +53,7 @@ set(calligradbparser_STAT_SRCS
    parser/parser_p.cpp )
 
 set(calligradb_LIB_SRCS
+   KoServiceLocator.cpp
    ${calligradbparser_STAT_SRCS}
    pluginloader.cpp
    drivermanager.cpp 
@@ -90,23 +89,23 @@ set(calligradb_LIB_SRCS
    validator.cpp
 )
 
-kde4_add_library(calligradb SHARED ${calligradb_LIB_SRCS})
-target_link_libraries(calligradb koplugin ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY}
+kde4_add_library(parleycalligradb SHARED ${calligradb_LIB_SRCS})
+target_link_libraries(parleycalligradb ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY}
                                  ${KDE4_KDECORE_LIBS} ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS})
 
-target_link_libraries(calligradb LINK_INTERFACE_LIBRARIES koplugin ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY}
+target_link_libraries(parleycalligradb LINK_INTERFACE_LIBRARIES ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY}
                                  ${KDE4_KDECORE_LIBS} ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS})
 
-set_target_properties(calligradb PROPERTIES VERSION ${GENERIC_CALLIGRA_LIB_VERSION} SOVERSION ${GENERIC_CALLIGRA_LIB_SOVERSION} )
+set_target_properties(parleycalligradb PROPERTIES VERSION ${GENERIC_CALLIGRA_LIB_VERSION} SOVERSION ${GENERIC_CALLIGRA_LIB_SOVERSION} )
 
 if(MSVC)
    # avoid LNK1169 errors
-   set_target_properties(calligradb PROPERTIES LINK_FLAGS /FORCE:MULTIPLE)
+   set_target_properties(parleycalligradb PROPERTIES LINK_FLAGS /FORCE:MULTIPLE)
 endif(MSVC)
 
-install(TARGETS calligradb ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS parleycalligradb ${INSTALL_TARGETS_DEFAULT_ARGS})
 
-install(FILES calligradb_driver.desktop DESTINATION ${SERVICETYPES_INSTALL_DIR})
+install(FILES parleycalligradb_driver.desktop DESTINATION ${SERVICETYPES_INSTALL_DIR})
 
 if(FALSE) # TODO: install when we move to independent place
    install( FILES  connection.h connectiondata.h cursor.h

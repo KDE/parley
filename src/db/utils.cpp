@@ -28,7 +28,6 @@
 #include "drivermanager.h"
 #include "lookupfieldschema.h"
 #include "calligradb_global.h"
-#include <KoIcon.h>
 
 #include <QMap>
 #include <QHash>
@@ -44,6 +43,7 @@
 #include <QFile>
 #include <QFileInfo>
 
+#include <KIcon>
 #include <kdebug.h>
 #include <klocale.h>
 #include <kmessagebox.h>
@@ -1208,7 +1208,7 @@ struct KexiDB_NotEmptyValueForTypeCache {
                 QByteArray ba;
                 QBuffer buffer(&ba);
                 buffer.open(QIODevice::WriteOnly);
-                QPixmap pm(koSmallIcon("document-new"));
+                QPixmap pm(SmallIcon("document-new"));
                 pm.save(&buffer, "PNG"/*! @todo default? */);
                 ADD(i, ba);
                 continue;

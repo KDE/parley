@@ -98,11 +98,11 @@ bool DriverManagerInternal::lookupDrivers()
 
     lookupDriversNeeded = false;
     clearError();
-    const KService::List tlist = KoServiceLocator::instance()->entries("Kexi/DBDriver");
+    const KService::List tlist = KoServiceLocator::instance()->entries("Parley/DBDriver");
     foreach(KService::Ptr ptr, tlist) {
-        if (!ptr->property("Library").toString().startsWith("kexidb_")) {
+        if (!ptr->property("Library").toString().startsWith("parleydb_")) {
             KexiDBWarn << "X-KDE-Library == " << ptr->property("Library").toString()
-                << ": no \"kexidb_\" prefix -- skipped to avoid potential conflicts!";
+                << ": no \"parleydb_\" prefix -- skipped to avoid potential conflicts!";
             continue;
         }
         QString srv_name = ptr->property("X-Kexi-DriverName").toString().toLower();

@@ -1,7 +1,10 @@
-include_directories( ${parley_INCLUDE_DIRS} )
+include_directories( ${parley_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/src ${CMAKE_BINARY_DIR}/src/db )
+
+include(MacroParleyBuildTest)
 
 # installation of kconfig files .kcfg containing app settings
 add_subdirectory( settings )
+add_subdirectory( db )
 
 set(parley_LIB_SRCS
     parleyactions.cpp

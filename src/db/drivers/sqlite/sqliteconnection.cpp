@@ -220,7 +220,7 @@ bool SQLiteConnection::drv_useDatabaseInternal(bool *cancelled,
         }
         // Load ICU extension for unicode collations
         QString icuExtensionFilename(
-            KStandardDirs::locate("module", QLatin1String("kexidb_sqlite3_icu" SHARED_LIB_EXTENSION)));
+            KStandardDirs::locate("module", QLatin1String("parleydb_sqlite3_icu" SHARED_LIB_EXTENSION)));
         if (!loadExtension(icuExtensionFilename)) {
             drv_closeDatabaseSilently();
             return false;
