@@ -4,131 +4,219 @@
   <widget class="QWidget" name="ViewOptionsBase">
     <property name="geometry">
       <rect>
-	<x>0</x>
-	<y>0</y>
-	<width>377</width>
-	<height>381</height>
+   <x>0</x>
+   <y>0</y>
+   <width>377</width>
+   <height>381</height>
       </rect>
     </property>
     <layout class="QGridLayout">
       <property name="margin">
-	<number>0</number>
+   <number>0</number>
       </property>
       <property name="spacing">
-	<number>6</number>
+   <number>6</number>
       </property>
       <item row="2" column="0" colspan="2">
-	<spacer>
-	  <property name="orientation">
-	    <enum>Qt::Vertical</enum>
-	  </property>
-	  <property name="sizeType">
-	    <enum>QSizePolicy::Expanding</enum>
-	  </property>
-	  <property name="sizeHint" stdset="0">
-	    <size>
-	      <width>291</width>
-	      <height>16</height>
-	    </size>
-	  </property>
-	</spacer>
+   <spacer>
+     <property name="orientation">
+       <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+       <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+       <size>
+         <width>291</width>
+         <height>16</height>
+       </size>
+     </property>
+   </spacer>
       </item>
       <item row="0" column="0" colspan="2">
-	<layout class="QGridLayout">
-	  <property name="margin">
-	    <number>0</number>
-	  </property>
-	  <property name="spacing">
-	    <number>6</number>
-	  </property>
-	  <item row="0" column="1">
-	    <widget class="KFontRequester" name="kcfg_IPAFont">
-	      <property name="whatsThis">
-		<string>Specify which font to use for displaying pronunciations using phonetic symbols.</string>
-	      </property>
-	    </widget>
-	  </item>
-	  <item row="0" column="0">
-	    <widget class="QLabel" name="IPAFontLabel">
-	      <property name="text">
-		<string>&amp;Pronunciation symbols font:</string>
-	      </property>
-	      <property name="alignment">
-		<set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-	      </property>
-	      <property name="buddy">
-		<cstring>kcfg_IPAFont</cstring>
-	      </property>
-	    </widget>
-	  </item>
-	</layout>
+   <layout class="QGridLayout">
+     <property name="margin">
+       <number>0</number>
+     </property>
+     <property name="spacing">
+       <number>6</number>
+     </property>
+     <item row="0" column="1">
+       <widget class="KFontRequester" name="kcfg_IPAFont">
+         <property name="whatsThis">
+      <string>Specify which font to use for displaying pronunciations using phonetic symbols.</string>
+         </property>
+       </widget>
+     </item>
+     <item row="0" column="0">
+       <widget class="QLabel" name="IPAFontLabel">
+         <property name="text">
+      <string>&amp;Pronunciation symbols font:</string>
+         </property>
+         <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="buddy">
+      <cstring>kcfg_IPAFont</cstring>
+         </property>
+       </widget>
+     </item>
+   </layout>
       </item>
       <item row="1" column="0" colspan="2">
-	<layout class="QGridLayout" name="gridLayout2">
-	  <property name="margin">
-	    <number>0</number>
-	  </property>
-	  <property name="spacing">
-	    <number>6</number>
-	  </property>
-	  <item row="0" column="0">
-	    <widget class="QLabel" name="gradeColorLabel">
-	      <property name="sizePolicy">
-		<sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-		  <horstretch>0</horstretch>
-		  <verstretch>0</verstretch>
-		</sizepolicy>
-	      </property>
-	      <property name="text">
-		<string>Base color for displaying grades:</string>
-	      </property>
-	      <property name="alignment">
-		<set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-	      </property>
-	      <property name="buddy">
-		<cstring>kcfg_GradeColor</cstring>
-	      </property>
-	    </widget>
-	  </item>
-	  <item row="0" column="1">
-	    <widget class="KColorButton" name="kcfg_GradeColor">
-	      <property name="sizePolicy">
-		<sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-		  <horstretch>0</horstretch>
-		  <verstretch>0</verstretch>
-		</sizepolicy>
-	      </property>
-	      <property name="toolTip">
-		<string>Color used to display the grades</string>
-	      </property>
-	      <property name="whatsThis">
-		<string>Click here to change the color used to display the grades.</string>
-	      </property>
-	      <property name="text">
-		<string>&amp;Base</string>
-	      </property>
-	      <property name="shortcut">
-		<string>Alt+0</string>
-	      </property>
-	      <property name="flat">
-		<bool>false</bool>
-	      </property>
-	    </widget>
-	  </item>
-	  <item row="1" column="2">
-	    <spacer name="horizontalSpacer">
-	      <property name="orientation">
-		<enum>Qt::Horizontal</enum>
-	      </property>
-	      <property name="sizeHint" stdset="0">
-		<size>
-		  <width>40</width>
-		  <height>20</height>
-		</size>
-	      </property>
-	    </spacer>
-	  </item>
-	</layout>
+   <layout class="QGridLayout" name="gridLayout2">
+     <property name="margin">
+       <number>0</number>
+     </property>
+     <property name="spacing">
+       <number>6</number>
+     </property>
+     <item row="0" column="0">
+       <widget class="QLabel" name="gradeColorLabel">
+         <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+      </sizepolicy>
+         </property>
+         <property name="text">
+      <string>Base color for displaying grades:</string>
+         </property>
+         <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="buddy">
+      <cstring>kcfg_GradeColor</cstring>
+         </property>
+       </widget>
+     </item>
+     <item row="0" column="1">
+       <widget class="KColorButton" name="kcfg_GradeColor">
+         <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+      </sizepolicy>
+         </property>
+         <property name="toolTip">
+      <string>Color used to display the progress</string>
+         </property>
+         <property name="whatsThis">
+      <string>Click here to change the color used to display the progress.</string>
+         </property>
+         <property name="text">
+      <string>&amp;Base</string>
+         </property>
+         <property name="shortcut">
+      <string>Alt+0</string>
+         </property>
+         <property name="flat">
+      <bool>false</bool>
+         </property>
+       </widget>
+     </item>
+     <item row="1" column="0">
+       <widget class="QLabel" name="preGradeColorLabel">
+         <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+           </sizepolicy>
+         </property>
+         <property name="text">
+           <string>Base color for displaying early progress:</string>
+         </property>
+         <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="buddy">
+           <cstring>kcfg_PreGradeColor</cstring>
+         </property>
+       </widget>
+     </item>
+     <item row="1" column="1">
+       <widget class="KColorButton" name="kcfg_PreGradeColor">
+         <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+           </sizepolicy>
+         </property>
+         <property name="toolTip">
+           <string>Color used to display the early progress</string>
+         </property>
+         <property name="whatsThis">
+           <string>Click here to change the color used to display the early progress.</string>
+         </property>
+         <property name="text">
+           <string>&amp;Base</string>
+         </property>
+         <property name="shortcut">
+           <string>Alt+1</string>
+         </property>
+         <property name="flat">
+           <bool>false</bool>
+         </property>
+       </widget>
+     </item>
+     <item row="2" column="0">
+       <widget class="QLabel" name="invalidUnitColorLabel">
+         <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+           </sizepolicy>
+         </property>
+         <property name="text">
+           <string>Color for displaying invalid units:</string>
+         </property>
+         <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="buddy">
+           <cstring>kcfg_InvalidUnitColor</cstring>
+         </property>
+       </widget>
+     </item>
+     <item row="2" column="1">
+       <widget class="KColorButton" name="kcfg_InvalidUnitColor">
+         <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+           </sizepolicy>
+         </property>
+         <property name="toolTip">
+           <string>Color used to display invalid units</string>
+         </property>
+         <property name="whatsThis">
+           <string>Click here to change the color used to display invalid units.</string>
+         </property>
+         <property name="text">
+           <string>&amp;Base</string>
+         </property>
+         <property name="shortcut">
+           <string>Alt+2</string>
+         </property>
+         <property name="flat">
+           <bool>false</bool>
+         </property>
+       </widget>
+     </item>
+     <item row="3" column="2">
+       <spacer name="horizontalSpacer">
+         <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+      <size>
+        <width>40</width>
+        <height>20</height>
+      </size>
+         </property>
+       </spacer>
+     </item>
+   </layout>
       </item>
     </layout>
   </widget>

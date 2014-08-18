@@ -83,6 +83,7 @@ set(parley_LIB_SRCS
     statistics/lessonstatistics.cpp
     statistics/statisticsmodel.cpp
     statistics/statisticsmainwindow.cpp
+    statistics/statisticslegendwidget.cpp
     vocabulary/vocabularymodel.cpp
     vocabulary/vocabularyview.cpp
     vocabulary/vocabularyheaderview.cpp

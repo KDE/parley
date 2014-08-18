@@ -35,7 +35,8 @@ public:
         Grade4,
         Grade5,
         Grade6,
-        Grade7
+        Grade7,
+        AllFractions
     };
 
     explicit StatisticsModel(QObject *parent = 0);
