@@ -20,6 +20,7 @@
  */
 
 #include "statisticslegendwidget.h"
+#include <keduvocexpression.h>
 #include "prefs.h"
 
 #include <KLocalizedString>
@@ -31,12 +32,14 @@ StatisticsLegendWidget::StatisticsLegendWidget(QWidget * parent)
     : QWidget( parent )
 {
     QString ttip;
-    ttip += "<table><tr><td>Progress gradients</td><td bgcolor=\""
-            + Prefs::gradeColor().name()+"\"><nobr>    </nobr></td></tr>"
-            + "<tr><td>Early progress gradients</td><td bgcolor=\""
-            + Prefs::preGradeColor().name()+"\"><nobr>    </nobr></td></tr>"
-            + "<tr><td>Invalid Entries</td><td bgcolor=\""
-            + Prefs::invalidUnitColor().name()+"\" width=\"15%\"><nobr>    </nobr></td></tr></table>";
+    ttip += "<table><tr><td>"+i18n( "Progress gradients" )+"</td><td bgcolor=\""
+            + gradeColor(KV_MAX_GRADE - 1).name()+"\"><nobr>    </nobr></td></tr>"
+            + "<tr><td>"+i18n( "Early progress" )+"</td><td bgcolor=\""
+            + preGradeColor().name()+"\"><nobr>    </nobr></td></tr>"
+            + "<tr><td>"+i18n( "Not Practiced" )+"</td><td bgcolor=\""
+            + unpracticedColor().name()+"\"><nobr>    </nobr></td></tr>"
+            + "<tr><td>"+i18n("Invalid Entries")+"</td><td bgcolor=\""
+            + invalidColor().name()+"\" width=\"15%\"><nobr>    </nobr></td></tr></table>";
     setToolTip(ttip );
 }
 
@@ -46,14 +49,48 @@ QColor StatisticsLegendWidget::gradeColor(int grade) {
     return color;
 }
 
-QColor StatisticsLegendWidget::preGradeColor(int grade) {
+QColor StatisticsLegendWidget::preGradeColor() {
     QColor color( Prefs::preGradeColor() );
-    color.setAlpha( alphaMax - ( KV_MAX_GRADE - grade - 1) * alphaStep );
+    color.setAlpha( alphaMax );
+    return color;
+}
+
+QColor StatisticsLegendWidget::unpracticedColor() {
+    QColor color( "#FFFFFF" );
+    color.setAlpha( alphaMax );
     return color;
 }
 
 QColor StatisticsLegendWidget::invalidColor() {
     return Prefs::invalidUnitColor();
+}
+
+QList< QVariant > StatisticsLegendWidget::legendFractions(KEduVocContainer & container,  int index)
+{
+    QVector<double> sums( KV_MAX_GRADE + fractionsOffset, 0);
+    double count( 0 );
+    foreach (KEduVocExpression *entry, container.entries( KEduVocContainer::Recursive ) ) {
+        KEduVocTranslation & trans( *entry->translation(index) );
+        ++count;
+        if ( !trans.isEmpty() ) {
+            if ( trans.grade() != 0 ) {
+                sums[trans.grade() + fractionsOffset] += 1;
+            } else {
+                if ( trans.preGrade() != 0 ) {
+                    sums[2] += 1;
+                } else {
+                    sums[1] += 1; //unpracticed
+                }
+            }
+        }else{
+            sums[0] += 1; //invalid
+        }
+    }
+    QList< QVariant > fractions;
+    for( int ii =0 ;ii < KV_MAX_GRADE + fractionsOffset; ++ii) {
+        fractions.push_back(( double )( sums[ii] / count ));
+    }
+    return fractions;
 }
 
 void StatisticsLegendWidget::paintStatisticsBar(
@@ -65,7 +102,7 @@ void StatisticsLegendWidget::paintStatisticsBar(
 
     QColor color;
     int xPosition = 0;
-    for(int ii = KV_MAX_GRADE + KV_MAX_GRADE; ii >= 0; --ii ) {
+    for(int ii = KV_MAX_GRADE + fractionsOffset - 1; ii >= 0; --ii ) {
         double fraction( fractions[ii].toDouble() );
         int barElementWidth = fraction * rect.width();
         QRectF barElement(rect.x() + xPosition, rect.y(), barElementWidth, rect.height());
@@ -76,12 +113,21 @@ void StatisticsLegendWidget::paintStatisticsBar(
         // so that the inner rectangle takes the shape of the outer rounded rectangle.
         QPainterPath barElementIntersectedPath = roundedPath.intersected(barElementPath);
 
-        if ( ii > KV_MAX_GRADE ) {
-            color = StatisticsLegendWidget::gradeColor( ii - KV_MAX_GRADE - 1);
-        } else if ( ii != 0 ) {
-            color = StatisticsLegendWidget::preGradeColor( ii - 1 );
+        if ( ii >= fractionsOffset ) {
+            color = StatisticsLegendWidget::gradeColor( ii - fractionsOffset);
         } else {
-            color = StatisticsLegendWidget::invalidColor();
+            switch( ii ) {
+            case 2:
+                color = StatisticsLegendWidget::preGradeColor();
+                break;
+            case 1:
+                color = StatisticsLegendWidget::unpracticedColor();
+                break;
+            case 0:
+            default:
+                color = StatisticsLegendWidget::invalidColor();
+                break;
+            }
         }
 
         painter.setBrush(QBrush(color));
@@ -119,7 +165,9 @@ void StatisticsLegendWidget::paintEvent(QPaintEvent *) {
     rightRect.moveBottomLeft(QPoint(legendOffsetX + legendWidth + horizontalDistanceFromLegend, legendOffsetY + legendHeight));
 
     QRect rect(x() + legendOffsetX, legendOffsetY, legendWidth, legendHeight);
-    QList<QVariant> fractions(QList<QVariant>::fromVector( QVector<QVariant>(KV_MAX_GRADE+KV_MAX_GRADE+1, ( double ) 1.0/(KV_MAX_GRADE+KV_MAX_GRADE+1) ) ) );
+    QList<QVariant> fractions(
+        QList<QVariant>::fromVector(
+            QVector<QVariant>(KV_MAX_GRADE+fractionsOffset, ( double ) 1.0/(KV_MAX_GRADE+fractionsOffset) ) ) );
     paintStatisticsBar( painter, rect, fractions);
 
     painter.setPen(Qt::black);

@@ -54,7 +54,7 @@ public:
 
 protected:
     void drawBackground(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const {
-        QList<QVariant> fractions = index.data(StatisticsModel::AllFractions).toList();
+        QList<QVariant> fractions = index.data(StatisticsModel::LegendFractions).toList();
         StatisticsLegendWidget::paintStatisticsBar(*painter, option.rect, fractions);
     }
 };

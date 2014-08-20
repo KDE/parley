@@ -124,7 +124,7 @@
            </sizepolicy>
          </property>
          <property name="text">
-           <string>Base color for displaying early progress:</string>
+           <string>Color for displaying early progress:</string>
          </property>
          <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
