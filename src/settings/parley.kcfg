@@ -243,6 +243,14 @@
       <label>Color used to display the confidence levels</label>
       <default>25, 140, 25</default>
     </entry>
+    <entry name="PreGradeColor" type="Color" key="PreGradeColor">
+      <label>Color used to display the early confidence levels</label>
+      <default>255, 255, 0</default>
+    </entry>
+    <entry name="InvalidUnitColor" type="Color" key="InvalidUnitColor">
+      <label>Color used to display invalid units</label>
+      <default>255, 0, 0</default>
+    </entry>
   </group>
 
 

@@ -328,7 +328,6 @@ void ParleyDocument::save()
 
     emit statesNeedSaving();
 
-    QString oldgenerator = m_doc->generator();
     QString newgenerator = QString::fromLatin1("Parley ") + PARLEY_VERSION_STRING ;
     m_doc->setGenerator(newgenerator);
 
@@ -336,7 +335,6 @@ void ParleyDocument::save()
 
     KEduVocDocument::ErrorCode ret = m_doc->saveAs(
         m_doc->url() , KEduVocDocument::Automatic, KEduVocDocument::FileIgnoreLock);
-    m_doc->setGenerator(oldgenerator);
 
     switch ( ret ) {
     case KEduVocDocument::NoError :
@@ -350,7 +348,6 @@ void ParleyDocument::save()
         if ( exit == KMessageBox::Yes ) {
             m_doc->setGenerator(newgenerator );
             ret = m_doc->saveAs(m_doc->url() , KEduVocDocument::Automatic, KEduVocDocument::FileIgnoreLock);
-            m_doc->setGenerator(oldgenerator );
 
             if ( ret == KEduVocDocument::NoError ) {
                 isSuccess = true;
@@ -430,11 +427,9 @@ void ParleyDocument::saveAs(KUrl url)
             m_parleyApp, i18n("File \"%1\" is locked by another process.  You can save to the file if you take over the lock, but you will lose any changes from the other process.\n\nDo you want to take over the lock?\n"
                 , m_doc->url().url()), "");
         if ( exit == KMessageBox::Yes ) { //attempt lock steal
-            QString oldgenerator = m_doc->generator();
             m_doc->setGenerator(QString::fromLatin1("Parley ") + PARLEY_VERSION_STRING );
             ret = m_doc->saveAs(
                 m_doc->url() , KEduVocDocument::Automatic, KEduVocDocument::FileIgnoreLock);
-            m_doc->setGenerator(oldgenerator );
 
             if ( ret == KEduVocDocument::NoError ) {
                 isSuccess = true;

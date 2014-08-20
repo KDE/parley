@@ -15,8 +15,12 @@
 
 #include "statisticsmodel.h"
 
+#include "keduvoctranslation.h"
+#include "keduvocexpression.h"
+
 #include <KLocalizedString>
 #include <QGradient>
+#include <QDebug>
 
 StatisticsModel::StatisticsModel(QObject * parent)
     : ContainerModel(KEduVocContainer::Lesson, parent)
@@ -29,7 +33,8 @@ QVariant StatisticsModel::headerData(int section, Qt::Orientation orientation, i
     if (section >= FirstDataColumn) {
         if (role == Qt::DisplayRole
             && m_doc->identifierCount() > (section - FirstDataColumn) ) {
-            return i18nc("Confidence level in language, table header", "Confidence (%1)", m_doc->identifier(section - FirstDataColumn).name());
+            return i18nc("Confidence level in language, table header", "Confidence (%1)"
+                         , m_doc->identifier(section - FirstDataColumn).name());
         }
     }
     return ContainerModel::headerData(section, orientation, role);
@@ -40,13 +45,37 @@ QVariant StatisticsModel::data(const QModelIndex & index, int role) const
     if (index.column() >= FirstDataColumn) {
         KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
         switch (role) {
+        case AllFractions: //Calculate the percent each grade and pregrade occupies
+        {
+            QVector<double> sums( KV_MAX_GRADE + KV_MAX_GRADE + 1, 0);
+            double count( 0 );
+            foreach (KEduVocExpression *entry, container->entries( KEduVocContainer::Recursive ) ) {
+                KEduVocTranslation & trans( *entry->translation(index.column() - FirstDataColumn) );
+                ++count;
+                if ( !trans.isEmpty() ) {
+                    if ( trans.grade() != 0 ) {
+                        sums[trans.grade() + KV_MAX_GRADE + 1] += 1;
+                    } else {
+                        sums [trans.preGrade() + 1] += 1;
+                    }
+                }else{
+                    sums[0] += 1;
+                 }
+             }
+            QList< QVariant > fractions;
+            for( int ii =0 ;ii < KV_MAX_GRADE + KV_MAX_GRADE + 1; ++ii) {
+                fractions.push_back(( double )( sums[ii] / count ));
+            }
+            return fractions;
+        }
         case TotalPercent: // Average grade
             return container->averageGrade(index.column() - FirstDataColumn, KEduVocContainer::Recursive);
         case TotalCount:
             return container->entryCount(KEduVocContainer::Recursive);
         default:
             if (role >= Qt::UserRole) {
-                return container->expressionsOfGrade(index.column() - FirstDataColumn, role - Grade0, KEduVocContainer::Recursive);
+                return container->expressionsOfGrade(
+                    index.column() - FirstDataColumn, role - Grade0, KEduVocContainer::Recursive);
             }
         }
     }

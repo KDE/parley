@@ -47,6 +47,8 @@
 #include "lessoncreator/translationsfetcher.h"
 
 #include "parleyactions.h"
+#include "parleyadaptor.h"
+
 #include <KActionCollection>
 #include <KToggleAction>
 #include <KActionMenu>
@@ -419,6 +421,18 @@ void EditorWindow::initActions()
     ParleyActions::create(ParleyActions::ShowScriptManager, this, SLOT(slotShowScriptManager()), actionCollection());
     ParleyActions::create(ParleyActions::LanguagesProperties, m_mainWindow->parleyDocument(), SLOT(languageProperties()), actionCollection());
     ParleyActions::createUploadAction(m_mainWindow->parleyDocument(), SLOT(uploadFile()), actionCollection());
+
+    new EditorWindowAdaptor(this);
+
+    QDBusConnection dbus = QDBusConnection::sessionBus();
+    dbus.registerObject("/AddWithTranslation", this);
+}
+
+void EditorWindow::addWordWithTranslation(const QStringList &w)
+{
+    KEduVocExpression *kexpr = new KEduVocExpression(w);
+
+    m_vocabularyModel->appendEntry(kexpr);
 }
 
 void EditorWindow::initModel()

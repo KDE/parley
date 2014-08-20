@@ -86,6 +86,7 @@ set(parley_LIB_SRCS
     statistics/lessonstatistics.cpp
     statistics/statisticsmodel.cpp
     statistics/statisticsmainwindow.cpp
+    statistics/statisticslegendwidget.cpp
     vocabulary/vocabularymodel.cpp
     vocabulary/vocabularyview.cpp
     vocabulary/vocabularyheaderview.cpp
@@ -150,6 +151,9 @@ kde4_add_kcfg_files(parley_LIB_SRCS
     settings/documentsettings.kcfgc
     settings/languagesettings.kcfgc
 )
+
+qt4_add_dbus_adaptor(parley_LIB_SRCS editor/org.kde.parley.xml
+                     editor/editor.h Editor::EditorWindow)
 
 #### XSLT Support ####
 # to transform the document xml to html or other
