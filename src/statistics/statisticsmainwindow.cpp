@@ -56,6 +56,8 @@ StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindo
     //m_ui->caption->setText(i18nc("caption for an overview of the confidence levels for a document"
     //                             "Statistics for \"%1\"", m_doc->title()));
     m_statisticsModel = new StatisticsModel(this);
+    //DatabaseManager *dm = new DatabaseManager();
+    //dm->createDB();
 
     setDocument(doc);
     initActions();

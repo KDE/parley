@@ -6,6 +6,11 @@
 #include <QIODevice>
 #include <QTextCodec>
 #include <QRegExp>
+#include <QFile>
+#include <QTextStream>
+#include <QList>
+#include <QStringList>
+#include <QDebug>
 
 class CSV
 {
@@ -20,6 +25,9 @@ public:
     static QStringList parseLine(QString line);
 
     void setCodec(const char *codecName);
+    void parseFile();
+    void checkString(QString &temp, QChar character = 0);
+    QList<QStringList> list();
 
 private:
     QIODevice *m_device;
@@ -27,6 +35,8 @@ private:
     QString m_string;
     int m_pos;
     QRegExp m_rx;
+    QList<QStringList> bigList;
+    QStringList tempList;
 	
 };
 

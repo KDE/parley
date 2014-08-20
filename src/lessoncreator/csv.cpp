@@ -57,6 +57,59 @@ QStringList CSV::parseLine()
     return parseLine(readLine());
 }
 
+void CSV::parseFile()
+{
+    QFile file (m_string);
+    if (file.open(QIODevice::ReadOnly)) {
+        QString data = file.readAll();
+        data.remove( QRegExp("\r") ); //remove all ocurrences of CR (Carriage Return)
+        QString temp;
+        QChar character;
+        QTextStream textStream(&data);
+        while (!textStream.atEnd()) {
+            textStream >> character;
+            if (character == ',') {
+                checkString(temp, character);
+            } else if (character == '\n') {
+                checkString(temp, character);
+            } else if (textStream.atEnd()) {
+                temp.append(character);
+                checkString(temp);
+            } else {
+                temp.append(character);
+            }
+        }
+    }
+}
+
+void CSV::checkString(QString &temp, QChar character)
+{
+
+    if(temp.count("\"")%2 == 0) {
+        //if (temp.size() == 0 && character != ',') //problem with line endings
+        //    return;
+        if (temp.startsWith( QChar('\"')) && temp.endsWith( QChar('\"') ) ) {
+             temp.remove( QRegExp("^\"") );
+             temp.remove( QRegExp("\"$") );
+        }
+        //FIXME: will possibly fail if there are 4 or more reapeating double quotes
+        temp.replace("\"\"", "\"");
+        tempList << temp;
+        if (character != QChar(',')) {
+            bigList << tempList;
+            tempList.clear();
+        }
+        temp.clear();
+    } else {
+        temp.append(character);
+    }
+}
+
+QList<QStringList> CSV::list()
+{
+    return bigList;
+}
+
 QStringList CSV::parseLine(QString line)
 {
     QStringList list;

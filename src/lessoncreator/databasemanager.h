@@ -10,16 +10,18 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-/*
 
 #ifndef DATABASEMANAGER_H
 #define DATABASEMANAGER_H
 
 #include <QObject>
-#include <QSqlDatabase>
-#include <QSqlError>
 #include <QFile>
-#include <QSqlQuery>
+
+#include "db/drivermanager.h"
+#include "db/driver.h"
+#include "db/connection.h"
+#include "db/cursor.h"
+
 
 class DatabaseManager : public QObject
 {
@@ -30,11 +32,11 @@ class DatabaseManager : public QObject
     public:
         void createDB();
         void getAllTranslations();
+        void createTables();
 
     private:
-        QSqlDatabase db;
+        KexiDB::Connection *conn;
 
 };
 
 #endif // DATABASEMANAGER_H
-*/
