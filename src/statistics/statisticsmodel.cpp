@@ -14,9 +14,7 @@
  ***************************************************************************/
 
 #include "statisticsmodel.h"
-
-#include "keduvoctranslation.h"
-#include "keduvocexpression.h"
+#include "statisticslegendwidget.h"
 
 #include <KLocalizedString>
 #include <QGradient>
@@ -45,29 +43,8 @@ QVariant StatisticsModel::data(const QModelIndex & index, int role) const
     if (index.column() >= FirstDataColumn) {
         KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
         switch (role) {
-        case AllFractions: //Calculate the percent each grade and pregrade occupies
-        {
-            QVector<double> sums( KV_MAX_GRADE + KV_MAX_GRADE + 1, 0);
-            double count( 0 );
-            foreach (KEduVocExpression *entry, container->entries( KEduVocContainer::Recursive ) ) {
-                KEduVocTranslation & trans( *entry->translation(index.column() - FirstDataColumn) );
-                ++count;
-                if ( !trans.isEmpty() ) {
-                    if ( trans.grade() != 0 ) {
-                        sums[trans.grade() + KV_MAX_GRADE + 1] += 1;
-                    } else {
-                        sums [trans.preGrade() + 1] += 1;
-                    }
-                }else{
-                    sums[0] += 1;
-                 }
-             }
-            QList< QVariant > fractions;
-            for( int ii =0 ;ii < KV_MAX_GRADE + KV_MAX_GRADE + 1; ++ii) {
-                fractions.push_back(( double )( sums[ii] / count ));
-            }
-            return fractions;
-        }
+        case LegendFractions: //Calculate the percent each grade and pregrade occupies
+            return StatisticsLegendWidget::legendFractions(*container ,index.column() - FirstDataColumn);
         case TotalPercent: // Average grade
             return container->averageGrade(index.column() - FirstDataColumn, KEduVocContainer::Recursive);
         case TotalCount:

@@ -23,9 +23,12 @@
 #define STATISTICSLEGENDWIDGET_H
 
 #include "keduvoctext.h"
+
 #include <QWidget>
 #include <QColor>
 #include <QList>
+
+class KEduVocContainer;
 
 /**Draws the statistics legend and provides color information about the legend**/
 class StatisticsLegendWidget : public QWidget
@@ -39,12 +42,18 @@ public:
        @param grade
        @returns the color **/
     static QColor gradeColor(int grade);
-    /**@returns the color of the @p preGrade
-       @param preGrade
+    /**@returns the color of the preGrade stats
     **/
-    static QColor preGradeColor(int preGrade);
+    static QColor preGradeColor();
+    /**@returns the color of the unpracticed entries**/
+    static QColor unpracticedColor();
     /**@returns the color of the invalid entries**/
     static QColor invalidColor();
+
+    /** Calculate the fractions passed to paintStatisticsBar
+        of late/early/unpracticed and invalid types.
+        @returns calculated fractions practice statistics for @p container at @p index .**/
+    static QList<QVariant> legendFractions(KEduVocContainer &container, int index);
 
     /** With a @p painter draw the stats bar with @p fractions within @p rect
      @param painter supplied painter
@@ -60,6 +69,8 @@ private:
     static const int alphaMax = 255;  ///< full brightness
     /// steps small enought that the last is still visible
     static const int alphaStep = ((alphaMax - 10) / KV_MAX_GRADE);
+    /// offset of table for unpracticed, invalid and preGrade types
+    static const int fractionsOffset = 3;
 };
 
 #endif
