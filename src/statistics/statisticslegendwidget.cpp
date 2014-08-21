@@ -67,7 +67,7 @@ QColor StatisticsLegendWidget::invalidColor() {
 
 QList< QVariant > StatisticsLegendWidget::legendFractions(KEduVocContainer & container,  int index)
 {
-    QVector<double> sums( KV_MAX_GRADE + fractionsOffset, 0);
+    QVector<double> sums( KV_MAX_GRADE + fractionsOffset + 1, 0);
     double count( 0 );
     foreach (KEduVocExpression *entry, container.entries( KEduVocContainer::Recursive ) ) {
         KEduVocTranslation & trans( *entry->translation(index) );
@@ -94,7 +94,8 @@ QList< QVariant > StatisticsLegendWidget::legendFractions(KEduVocContainer & con
 }
 
 void StatisticsLegendWidget::paintStatisticsBar(
-    QPainter & painter, const QRect & rect,  const QList< QVariant> &fractions) {
+    QPainter & painter, const QRect & rect,  const QList< QVariant> &fractions)
+{
     QRect roundedRect(rect);
     roundedRect.adjust(1, 1, -1, -1);
     QPainterPath roundedPath;
@@ -137,8 +138,8 @@ void StatisticsLegendWidget::paintStatisticsBar(
 }
 
 
-void StatisticsLegendWidget::paintEvent(QPaintEvent *) {
-
+void StatisticsLegendWidget::paintEvent(QPaintEvent *)
+{
     const int legendWidth = 320;
     const int legendHeight = 30;
     const int legendOffsetY = 10;
@@ -167,11 +168,11 @@ void StatisticsLegendWidget::paintEvent(QPaintEvent *) {
     QRect rect(x() + legendOffsetX, legendOffsetY, legendWidth, legendHeight);
     QList<QVariant> fractions(
         QList<QVariant>::fromVector(
-            QVector<QVariant>(KV_MAX_GRADE+fractionsOffset, ( double ) 1.0/(KV_MAX_GRADE+fractionsOffset) ) ) );
+            QVector<QVariant>(KV_MAX_GRADE + fractionsOffset + 1,
+			      (double) 1.0/(KV_MAX_GRADE+fractionsOffset) ) ) );
     paintStatisticsBar( painter, rect, fractions);
 
     painter.setPen(Qt::black);
     painter.drawText(leftRect, Qt::AlignRight | Qt::AlignVCenter, leftString);
     painter.drawText(rightRect, Qt::AlignLeft | Qt::AlignVCenter, rightString);
-
 }
