@@ -60,7 +60,8 @@ public:
      @param rect bounding box
      @param fractions the fractional widths of each of the grade categories
     **/
-    static void paintStatisticsBar(QPainter & painter, const QRect & rect, const QList< QVariant> &fractions);
+    static void paintStatisticsBar(QPainter &painter, const QRect &rect,
+				   const QList< QVariant> &fractions);
 
 protected:
     /// paintEvent @p e event
