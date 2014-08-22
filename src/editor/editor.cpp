@@ -126,19 +126,12 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
     m_lessonView->expandToDepth(0);
     m_wordTypeView->expandToDepth(0);
 
-    connect(m_mainWindow->parleyDocument()->document(), SIGNAL(docModified(bool)),
-            m_mainWindow,                               SLOT(slotUpdateWindowCaption()));
-
     connect(m_vocabularyView->selectionModel(),
             SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
             m_summaryWordWidget, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
     connect(m_vocabularyView->selectionModel(),
             SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
             m_latexWidget, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
-
-    setCaption(doc->url().fileName(), false);
-
-    m_mainWindow->slotUpdateWindowCaption();
 
     m_spellCheckMenu->menu()->clear();
     for (int i = 0; i < doc->identifierCount(); ++i) {

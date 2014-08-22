@@ -48,6 +48,7 @@ PracticeMainWindow::PracticeMainWindow(SessionManagerBase* sessionManager,
     m_stateMachine = new PracticeStateMachine(m_guiFrontend, mainWindow->parleyDocument(), sessionManager, this);
 
     // setModified - otherwise we may not ask to save progress
+    ///@todo trust the dirty bit
     mainWindow->parleyDocument()->document()->setModified(true);
 
     initActions();

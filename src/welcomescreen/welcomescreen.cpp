@@ -117,7 +117,7 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
 
     // Signals from the main buttons.
     ParleyDocument* doc = m_mainWindow->parleyDocument();
-    connect(ui->newButton,  SIGNAL(clicked()), doc, SLOT(slotFileNew()));
+    connect(ui->newButton,  SIGNAL(clicked()), m_mainWindow, SLOT(slotFileNew()));
     connect(ui->openButton, SIGNAL(clicked()), doc, SLOT(slotFileOpen()));
     connect(ui->ghnsButton, SIGNAL(clicked()), doc, SLOT(slotGHNS()));
 

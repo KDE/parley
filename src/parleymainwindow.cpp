@@ -66,6 +66,9 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
     s_instance = this;
     m_document = new ParleyDocument(this);
 
+    connect(m_document, SIGNAL(documentChanged(KEduVocDocument*))
+            , this, SLOT(documentUpdated(KEduVocDocument*)));
+
     setCentralWidget(new QWidget());
     centralWidget()->setLayout(new QHBoxLayout());
     centralWidget()->layout()->setMargin(0);
@@ -122,6 +125,14 @@ void ParleyMainWindow::removeRecentFile(const KUrl &url)
 {
     m_recentFilesAction->removeUrl(url);
     m_recentFilesAction->saveEntries(KGlobal::config()->group("Recent Files"));
+}
+
+void ParleyMainWindow::documentUpdated(KEduVocDocument *doc)
+{
+    if (doc != 0) {
+        connect(m_document->document(), SIGNAL(docModified(bool))
+                , this, SLOT(slotUpdateWindowCaption()));
+    }
 }
 
 void ParleyMainWindow::updateRecentFilesModel()
@@ -212,9 +223,15 @@ void ParleyMainWindow::startupTipOfDay()
     KTipDialog::showTip(this, "parley/tips");
 }
 
+void ParleyMainWindow::slotFileNew()
+{
+    m_document->slotFileNew();
+    slotUpdateWindowCaption();
+}
+
 void ParleyMainWindow::initActions()
 {
-    ParleyActions::create(ParleyActions::FileNew, m_document, SLOT(slotFileNew()), actionCollection());
+    ParleyActions::create(ParleyActions::FileNew, this, SLOT(slotFileNew()), actionCollection());
     ParleyActions::create(ParleyActions::FileOpen, m_document, SLOT(slotFileOpen()), actionCollection());
     ParleyActions::createDownloadAction(m_document, SLOT(slotGHNS()), actionCollection());
     ParleyActions::create(ParleyActions::FileOpenDownloaded, m_document, SLOT(openGHNS()), actionCollection());
@@ -310,6 +327,7 @@ void ParleyMainWindow::switchComponent(Component component)
         break;
     }
     case PracticeComponent: {
+        ///@todo trust the dirty bit
         m_document->document()->setModified(true);
         Practice::PracticeMainWindow *practiceWindow = new Practice::PracticeMainWindow(&m_sessionManager, this);
         connect(practiceWindow, SIGNAL(stopPractice()), this, SLOT(showPracticeSummary()));
