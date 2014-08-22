@@ -75,7 +75,6 @@ void DocumentProperties::prepareLanguageSelection()
 void DocumentProperties::accept()
 {
     m_doc->setTitle(titleLineEdit->text());
-    ParleyMainWindow::instance()->slotUpdateWindowCaption();
     m_doc->setAuthor(authorLineEdit->text());
     m_doc->setAuthorContact(contactLineEdit->text());
     m_doc->setLicense(licenseComboBox->currentText());

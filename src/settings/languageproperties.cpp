@@ -90,7 +90,6 @@ void LanguageProperties::accept()
             if (index < doc->identifierCount()) {
                 if (KMessageBox::warningYesNo(this, i18n("Really delete language: %1?", doc->identifier(index - deleted).name()), i18n("Remove Language")) == KMessageBox::Yes) {
                     doc->removeIdentifier(index - deleted);
-                    doc->setModified();
                     deleted++;
                 }
             }

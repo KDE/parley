@@ -98,8 +98,6 @@ KEduVocDocument *ParleyDocument::document()
     // If there is no present vocabulary document, create an empty one.
     if (!m_doc) {
         m_doc = new KEduVocDocument();
-        m_doc->setTitle( i18n("Untitled") );
-        m_doc->setGenerator( QString::fromLatin1("Parley ") + PARLEY_VERSION_STRING );
     }
 
     return m_doc;
@@ -107,9 +105,7 @@ KEduVocDocument *ParleyDocument::document()
 
 void ParleyDocument::setTitle(const QString& title)
 {
-    m_doc->setModified(true);
     m_doc->setTitle(title);
-    m_parleyApp->slotUpdateWindowCaption(); // FIXME: This is what signals are for.  The document should *not* directly call it's owner. What if there are >1 window, for instance?
 }
 
 void ParleyDocument::slotFileNew()
@@ -147,10 +143,8 @@ void ParleyDocument::newDocument(bool wizard)
 
     close();
     m_doc = newDoc;
-
     emit documentChanged(m_doc);
     enableAutoBackup(Prefs::autoBackup());
-
 
     if (fetchGrammarOnline) {
         DocumentHelper::fetchGrammar(m_doc, 0);
@@ -230,8 +224,6 @@ bool ParleyDocument::open(const KUrl & url)
     }
 
     if ( isSuccess ) {
-        kDebug() << "Open success.";
-        //m_parleyApp->editor()->updateDocument();
         m_parleyApp->addRecentFile(url, m_doc->title());
 
         emit documentChanged(m_doc);
@@ -258,7 +250,6 @@ void ParleyDocument::close()
     disconnect(m_doc);
     delete m_doc;
     m_doc = 0;
-    m_parleyApp->slotUpdateWindowCaption();
 }
 
 bool ParleyDocument::queryClose()
@@ -290,7 +281,6 @@ bool ParleyDocument::queryClose()
 
     if (canSave) {
         save();       // save and exit
-        document()->setModified(false);
     }
 
     close();
@@ -575,6 +565,7 @@ void ParleyDocument::documentProperties()
     connect(titleAuthorDialog, SIGNAL(accepted()), titleAuthorWidget, SLOT(accept()));
     titleAuthorDialog->exec();
     delete titleAuthorDialog;
+    emit documentChanged(m_doc);
 }
 
 void ParleyDocument::languageProperties()
