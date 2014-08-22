@@ -38,8 +38,8 @@
 StatisticsLegendWidget::StatisticsLegendWidget(QWidget * parent)
     : QWidget(parent)
 {
-    QString ttip;
-    ttip += "<table><tr><td>"+i18n("Progress gradients")+"</td><td bgcolor=\""
+    QString tooltip;
+    tooltip += "<table><tr><td>"+i18n("Progress gradients")+"</td><td bgcolor=\""
             + gradeColor(KV_MAX_GRADE - 1).name()+"\"><nobr>    </nobr></td></tr>"
             + "<tr><td>"+i18n("Early progress")+"</td><td bgcolor=\""
             + preGradeColor().name()+"\"><nobr>    </nobr></td></tr>"
@@ -47,8 +47,9 @@ StatisticsLegendWidget::StatisticsLegendWidget(QWidget * parent)
             + unpracticedColor().name()+"\"><nobr>    </nobr></td></tr>"
             + "<tr><td>"+i18n("Invalid Entries")+"</td><td bgcolor=\""
             + invalidColor().name()+"\" width=\"15%\"><nobr>    </nobr></td></tr></table>";
-    setToolTip(ttip);
+    setToolTip(tooltip);
 }
+
 
 QColor StatisticsLegendWidget::gradeColor(int grade)
 {
@@ -80,12 +81,14 @@ QList< QVariant > StatisticsLegendWidget::legendFractions(KEduVocContainer & con
 {
     QVector<double> sums(KV_MAX_GRADE + fractionsOffset + 1, 0);
     double count(0);
+
+    // 'index' is the index of the translation inside the KEduVocExpression.
     foreach (KEduVocExpression *entry, container.entries(KEduVocContainer::Recursive)) {
         KEduVocTranslation & trans(*entry->translation(index));
         ++count;
         if (!trans.isEmpty()) {
             if (trans.grade() != 0) {
-                sums[trans.grade() + fractionsOffset] += 1;
+                sums[trans.grade() + fractionsOffset - 1] += 1;
             } else {
                 if (trans.preGrade() != 0) {
                     sums[2] += 1;
@@ -99,14 +102,14 @@ QList< QVariant > StatisticsLegendWidget::legendFractions(KEduVocContainer & con
     }
 
     QList< QVariant > fractions;
-    for (int ii =0 ;ii < KV_MAX_GRADE + fractionsOffset; ++ii) {
+    for (int ii = 0 ;ii < KV_MAX_GRADE + fractionsOffset; ++ii) {
         fractions.push_back((double) (sums[ii] / count));
     }
 
     return fractions;
 }
 
-void StatisticsLegendWidget::paintStatisticsBar(QPainter & painter, const QRect & rect,
+void StatisticsLegendWidget::paintStatisticsBar(QPainter &painter, const QRect &rect,
 						const QList< QVariant> &fractions)
 {
     QRect roundedRect(rect);

@@ -13,26 +13,31 @@
  *                                                                         *
  ***************************************************************************/
 
+// Own
 #include "lessonstatistics.h"
 
-#include "statisticslegendwidget.h"
-#include "statisticsmodel.h"
-#include "keduvoclesson.h"
-#include "prefs.h"
+// Qt
+#include <QApplication>
+#include <QHeaderView>
+#include <QItemDelegate>
+#include <QPainter>
+
+// KDE
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KInputDialog>
 #include <KAction>
 #include <KActionCollection>
 
-#include <QApplication>
-#include <QHeaderView>
+// Parley
+#include "statisticslegendwidget.h"
+#include "statisticsmodel.h"
+#include "keduvoclesson.h"
+#include "prefs.h"
 
-#include <QPainter>
-
-#include <QItemDelegate>
 
 using namespace Editor;
+
 
 class GradeDelegate: public QItemDelegate
 {
@@ -41,7 +46,9 @@ public:
         : QItemDelegate(parent) {
     }
 
-    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const {
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option,
+		       const QModelIndex &index) const
+    {
         QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, 0);
 
         // empty lesson
@@ -49,15 +56,22 @@ public:
             return;
         }
         drawBackground(painter, option, index);
-        painter->drawText(option.rect, Qt::AlignCenter, QString("%1%").arg(index.data(StatisticsModel::TotalPercent).toInt()));
+        painter->drawText(option.rect, Qt::AlignCenter,
+			  QString("%1%").arg(index.data(StatisticsModel::TotalPercent).toInt()));
     }
 
 protected:
-    void drawBackground(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const {
+    void drawBackground(QPainter *painter, const QStyleOptionViewItem &option,
+			const QModelIndex &index) const
+    {
         QList<QVariant> fractions = index.data(StatisticsModel::LegendFractions).toList();
         StatisticsLegendWidget::paintStatisticsBar(*painter, option.rect, fractions);
     }
 };
+
+
+// ----------------------------------------------------------------
+
 
 LessonStatisticsView::LessonStatisticsView(QWidget *parent)
     : ContainerView(parent)
@@ -90,6 +104,7 @@ LessonStatisticsView::LessonStatisticsView(QWidget *parent)
 void LessonStatisticsView::setModel(Editor::ContainerModel *model)
 {
     ContainerView::setModel(model);
+
     GradeDelegate *delegate = new GradeDelegate(this);
     for (int i = ContainerModel::FirstDataColumn; i < model->columnCount(QModelIndex()); i++) {
         setItemDelegateForColumn(i, delegate);
