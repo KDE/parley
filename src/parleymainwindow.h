@@ -113,6 +113,12 @@ public:
     Component currentComponent();
 
 public slots:
+    /** Updates connections when the ParleyDocument pointer is changed to @p doc **/
+    void documentUpdated(KEduVocDocument *doc);
+
+    /** Opens a dialog for a new collection. **/
+    void slotFileNew();
+
     /** Update the title bar of the main window with the current document */
     void slotUpdateWindowCaption();
 
