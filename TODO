@@ -4,7 +4,7 @@
 
 ================================================================
 Before the 4.14 release (bugs).
-NOTE:  DO NOT CHANGE THESE HERE.
+NOTE:  DO NOT CHANGE THESE IN MASTER.
        Instead, change them in the branch and merge the branch into master.
 
  * To investigate
@@ -16,17 +16,10 @@ NOTE:  DO NOT CHANGE THESE HERE.
       https://bugs.kde.org/show_bug.cgi?id=238893
     + Impossible to remove images					----
       https://bugs.kde.org/show_bug.cgi?id=263836
-    + Modes like Conjugation, Gender etc. and				Done
-      Widgets like inflection, comparision forms
-      haven't been implemented properly. Should
-      they be disabled for now?
-      Done I think, but needs more checking
     + Vocabulary does not expire after a given time			----
       https://bugs.kde.org/show_bug.cgi?id=261396
 
  * All crashes
-    + parley crash when opening csv files                               Done
-      https://bugs.kde.org/show_bug.cgi?id=268241
     + Parley crash while adding choice in multiple			----
       choice mode in editor (investigate)
       https://bugs.kde.org/show_bug.cgi?id=255647
@@ -52,11 +45,10 @@ NOTE:  DO NOT CHANGE THESE HERE.
       https://bugs.kde.org/show_bug.cgi?id=246198
 
  * Usability
-    + Removing grades can lead to misunderstanding			Done
-      https://bugs.kde.org/show_bug.cgi?id=312995
+    + ...
 
  * Bugs without a bugzilla bug
-    +...
+    + ...
 
  * Release work
     + Update the version! (To what?)
@@ -67,7 +59,7 @@ Before the 4.14 freeze (features).  These are picked from the ones below.
 
 
  * Editor
-    + 
+    + ...
 
  * Practice
     + Sessions.  For details, see below.                                DONE
@@ -85,9 +77,19 @@ Before the 4.14 freeze (features).  These are picked from the ones below.
 
 
  * Wishes from bugzilla
-    + Second instance causes data overwriting.                          Done
+    + Second instance causes data overwriting. (File locking)		Done
       https://bugs.kde.org/show_bug.cgi?id=240552
     + FIXME: Check the commits for this one.
+
+
+================================================================
+Release work for 4.14
+
+
+ " Change the version number of Parley					Done
+ " Create new versions in Bugzilla					Done
+ * Add the new features to the feature plan				Done
+ * Blog	                                   				----
 
 
 ================================================================
@@ -112,6 +114,16 @@ Before the 4.15 freeze (features).  These are picked from the ones below.
 
 
 ================================================================
+Release work for 4.15
+
+
+ " Change the version number of Parley					----
+ " Create new versions in Bugzilla					----
+ * Add the new features to the feature plan				----
+ * Blog	                                   				----
+
+
+================================================================
                             Open issues
 
 
@@ -122,12 +134,12 @@ Before the 4.15 freeze (features).  These are picked from the ones below.
 
 
  * General
-    + A library of active collections.
+    + A library of active collections.					Done
       Right now we only have a list of files. There is no concept of
       active collections/lessons (i.e. those you are studying) and
       ones that are just lying around.  See also the dashboard below.
 
-    + A dashboard where you can see the status of your learning.
+    + A dashboard where you can see the status of your learning.	Done
       It should contain info on all your active collections or lessons
       with how many cards they have, your learning status (percentage)
       and how many cards are due to practice right now.
@@ -141,6 +153,9 @@ Before the 4.15 freeze (features).  These are picked from the ones below.
       having all of them enabled and popping up a big warning dialog
       when the user starts the practice.
     + Bigger default font for practice contents                         ----
+    + Profiles so that you can switch between different sets of units	----
+      quickly
+      https://bugs.kde.org/show_bug.cgi?id=252482
 
  * Practice
     + Extended Leitner box method -OR- move to time based card          Done
