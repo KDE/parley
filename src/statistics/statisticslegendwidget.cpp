@@ -38,16 +38,16 @@
 StatisticsLegendWidget::StatisticsLegendWidget(QWidget * parent)
     : QWidget(parent)
 {
-    // QString tooltip;
-    // tooltip += "<table><tr><td>"+i18n("Progress gradients")+"</td><td bgcolor=\""
-    //         + gradeColor(KV_MAX_GRADE - 1).name()+"\"><nobr>    </nobr></td></tr>"
-    //         + "<tr><td>"+i18n("Early progress")+"</td><td bgcolor=\""
-    //         + preGradeColor().name()+"\"><nobr>    </nobr></td></tr>"
-    //         + "<tr><td>"+i18n("Not Practiced")+"</td><td bgcolor=\""
-    //         + unpracticedColor().name()+"\"><nobr>    </nobr></td></tr>"
-    //         + "<tr><td>"+i18n("Invalid Entries")+"</td><td bgcolor=\""
-    //         + invalidColor().name()+"\" width=\"15%\"><nobr>    </nobr></td></tr></table>";
-    // setToolTip(tooltip);
+    QString tooltip;
+    tooltip += "<table><tr><td>"+i18n("Progress gradients")+"</td><td bgcolor=\""
+            + gradeColor(KV_MAX_GRADE - 1).name()+"\"><nobr>    </nobr></td></tr>"
+            + "<tr><td>"+i18n("Early progress")+"</td><td bgcolor=\""
+            + preGradeColor().name()+"\"><nobr>    </nobr></td></tr>"
+            + "<tr><td>"+i18n("Not Practiced")+"</td><td bgcolor=\""
+            + unpracticedColor().name()+"\"><nobr>    </nobr></td></tr>"
+            + "<tr><td>"+i18n("Invalid Entries")+"</td><td bgcolor=\""
+            + invalidColor().name()+"\" width=\"15%\"><nobr>    </nobr></td></tr></table>";
+    setToolTip(tooltip);
 }
 
 

@@ -99,12 +99,10 @@
       </sizepolicy>
          </property>
          <property name="toolTip">
-      <!-- <string>Color used to display the progress</string> -->
-      <string>Color used to display the grades</string>
+           <string>Color used to display the progress</string>
          </property>
          <property name="whatsThis">
-      <!-- <string>Click here to change the color used to display the progress.</string> -->
-      <string>Click here to change the color used to display the grades.</string>
+           <string>Click here to change the color used to display the progress.</string>
          </property>
          <property name="text">
       <string>&amp;Base</string>
@@ -126,8 +124,7 @@
            </sizepolicy>
          </property>
          <property name="text">
-      <string>Color used to display the grades</string>
-           <!-- <string>Color for displaying early progress:</string> -->
+           <string>Color for displaying early progress:</string>
          </property>
          <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -146,12 +143,10 @@
            </sizepolicy>
          </property>
          <property name="toolTip">
-      <string>Color used to display the grades</string>
-           <!-- <string>Color used to display the early progress</string> -->
+           <string>Color used to display the early progress</string>
          </property>
          <property name="whatsThis">
-      <string>Click here to change the color used to display the grades.</string>
-           <!-- <string>Click here to change the color used to display the early progress.</string> -->
+           <string>Click here to change the color used to display the early progress.</string>
          </property>
          <property name="text">
            <string>&amp;Base</string>
@@ -173,8 +168,7 @@
            </sizepolicy>
          </property>
          <property name="text">
-      <string>Color used to display the grades</string>
-           <!-- <string>Color for displaying invalid units:</string> -->
+           <string>Color used to display the grades</string>
          </property>
          <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -193,12 +187,10 @@
            </sizepolicy>
          </property>
          <property name="toolTip">
-      <string>Color used to display the grades</string>
-           <!-- <string>Color used to display invalid units</string> -->
+           <string>Color used to display invalid units</string>
          </property>
          <property name="whatsThis">
-      <string>Click here to change the color used to display the grades.</string>
-           <!-- <string>Click here to change the color used to display invalid units.</string> -->
+           <string>Click here to change the color used to display invalid units.</string>
          </property>
          <property name="text">
            <string>&amp;Base</string>
