@@ -38,16 +38,16 @@
 StatisticsLegendWidget::StatisticsLegendWidget(QWidget * parent)
     : QWidget(parent)
 {
-    QString tooltip;
-    tooltip += "<table><tr><td>"+i18n("Progress gradients")+"</td><td bgcolor=\""
-            + gradeColor(KV_MAX_GRADE - 1).name()+"\"><nobr>    </nobr></td></tr>"
-            + "<tr><td>"+i18n("Early progress")+"</td><td bgcolor=\""
-            + preGradeColor().name()+"\"><nobr>    </nobr></td></tr>"
-            + "<tr><td>"+i18n("Not Practiced")+"</td><td bgcolor=\""
-            + unpracticedColor().name()+"\"><nobr>    </nobr></td></tr>"
-            + "<tr><td>"+i18n("Invalid Entries")+"</td><td bgcolor=\""
-            + invalidColor().name()+"\" width=\"15%\"><nobr>    </nobr></td></tr></table>";
-    setToolTip(tooltip);
+    // QString tooltip;
+    // tooltip += "<table><tr><td>"+i18n("Progress gradients")+"</td><td bgcolor=\""
+    //         + gradeColor(KV_MAX_GRADE - 1).name()+"\"><nobr>    </nobr></td></tr>"
+    //         + "<tr><td>"+i18n("Early progress")+"</td><td bgcolor=\""
+    //         + preGradeColor().name()+"\"><nobr>    </nobr></td></tr>"
+    //         + "<tr><td>"+i18n("Not Practiced")+"</td><td bgcolor=\""
+    //         + unpracticedColor().name()+"\"><nobr>    </nobr></td></tr>"
+    //         + "<tr><td>"+i18n("Invalid Entries")+"</td><td bgcolor=\""
+    //         + invalidColor().name()+"\" width=\"15%\"><nobr>    </nobr></td></tr></table>";
+    // setToolTip(tooltip);
 }
 
 
@@ -110,7 +110,7 @@ QList< QVariant > StatisticsLegendWidget::legendFractions(KEduVocContainer & con
 }
 
 void StatisticsLegendWidget::paintStatisticsBar(QPainter &painter, const QRect &rect,
-						const QList< QVariant> &fractions)
+                  const QList< QVariant> &fractions)
 {
     QRect roundedRect(rect);
     roundedRect.adjust(1, 1, -1, -1);
@@ -175,7 +175,7 @@ void StatisticsLegendWidget::paintEvent(QPaintEvent *)
     leftRect.setWidth(leftRect.width() + extraRoomInRectSize);
     leftRect.setHeight(leftRect.height() + extraRoomInRectSize);
     leftRect.moveBottomRight(QPoint(legendOffsetX - horizontalDistanceFromLegend,
-				    legendOffsetY + legendHeight));
+                legendOffsetY + legendHeight));
 
     // Calculate the size and position of the rectangle that will contain the
     // string on the right side of the legend.
@@ -183,13 +183,13 @@ void StatisticsLegendWidget::paintEvent(QPaintEvent *)
     rightRect.setWidth(rightRect.width() + extraRoomInRectSize);
     rightRect.setHeight(rightRect.height() + extraRoomInRectSize);
     rightRect.moveBottomLeft(QPoint(legendOffsetX + legendWidth + horizontalDistanceFromLegend,
-				    legendOffsetY + legendHeight));
+                legendOffsetY + legendHeight));
 
     QRect rect(x() + legendOffsetX, legendOffsetY, legendWidth, legendHeight);
     QList<QVariant> fractions(
         QList<QVariant>::fromVector(
             QVector<QVariant>(KV_MAX_GRADE + fractionsOffset + 1,
-			      (double) 1.0 / (KV_MAX_GRADE + fractionsOffset))));
+               (double) 1.0 / (KV_MAX_GRADE + fractionsOffset))));
     paintStatisticsBar(painter, rect, fractions);
 
     painter.setPen(Qt::black);
