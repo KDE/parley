@@ -84,6 +84,8 @@ public slots:
     void languageProperties();
 
 signals:
+    /** Emitted when the document pointer is changed.
+     @todo Stop using documentChanged(0) as a replacement for destoyed in editor classes.**/
     void documentChanged(KEduVocDocument *newDocument);
     void languagesChanged();
     void statesNeedSaving();
