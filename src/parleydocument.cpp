@@ -89,7 +89,8 @@ ParleyDocument::~ParleyDocument()
 {
     close();
     delete m_backupTimer;
-    delete m_doc;
+    m_doc->deleteLater();
+    emit documentChanged(0);
 }
 
 
@@ -142,6 +143,9 @@ void ParleyDocument::newDocument(bool wizard)
     }
 
     close();
+    if (m_doc) {
+        m_doc->deleteLater();
+    }
     m_doc = newDoc;
     emit documentChanged(m_doc);
     enableAutoBackup(Prefs::autoBackup());
@@ -191,7 +195,12 @@ bool ParleyDocument::open(const KUrl & url)
     }
 
     close();
+
+    if (m_doc) {
+        m_doc->deleteLater();
+    }
     m_doc = new KEduVocDocument(this);
+    emit documentChanged(m_doc);
     m_doc->setCsvDelimiter(Prefs::separator());
 
     bool isSuccess = false, isError = false;
@@ -226,7 +235,6 @@ bool ParleyDocument::open(const KUrl & url)
     if ( isSuccess ) {
         m_parleyApp->addRecentFile(url, m_doc->title());
 
-        emit documentChanged(m_doc);
         enableAutoBackup(Prefs::autoBackup());
 
     } else {
@@ -235,7 +243,8 @@ bool ParleyDocument::open(const KUrl & url)
                 m_parleyApp, i18n("Opening collection \"%1\" resulted in an error: %2", m_doc->url().url(),
                                   m_doc->errorDescription(ret)), i18nc("@title:window", "Open Collection"));
         }
-        delete m_doc;
+        m_doc->deleteLater();
+        emit documentChanged(0);
         m_doc = 0;
     }
 
@@ -246,10 +255,11 @@ void ParleyDocument::close()
 {
     kDebug() << "Close Document";
     enableAutoBackup(false);
-    emit documentChanged(0);
-    disconnect(m_doc);
-    delete m_doc;
-    m_doc = 0;
+    if (m_doc) {
+        emit documentChanged(0);
+        m_doc->deleteLater();
+        m_doc = 0;
+    }
 }
 
 bool ParleyDocument::queryClose()
