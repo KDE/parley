@@ -132,6 +132,9 @@ void ParleyMainWindow::documentUpdated(KEduVocDocument *doc)
     if (doc != 0) {
         connect(m_document->document(), SIGNAL(docModified(bool))
                 , this, SLOT(slotUpdateWindowCaption()));
+        connect(m_document->document(), SIGNAL(destroyed())
+                , this, SLOT(slotUpdateWindowCaption()));
+        slotUpdateWindowCaption();
     }
 }
 
