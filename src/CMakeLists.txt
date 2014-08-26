@@ -163,19 +163,18 @@ endif(HAVE_LIBXSLT)
 
 kde4_add_app_icon(parley_LIB_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-parley.png")
 
+# This library is used both by parley itself and the unit tests.
+kde4_add_library(parley_LIB STATIC ${parley_LIB_SRCS})
+
 set(parley_SRCS
     main.cpp
-    ${parley_LIB_SRCS}
 )
 
 kde4_add_executable(parley ${parley_SRCS})
 
-#Library for the unit tests target
-kde4_add_library(parley_LIB STATIC ${parley_LIB_SRCS})
-
 kde4_install_icons( ${ICON_INSTALL_DIR} )
 
-target_link_libraries(parley ${parley_LINK_LIBS})
+target_link_libraries(parley parley_LIB ${parley_LINK_LIBS})
 
 
 ########### install files ###############
@@ -187,7 +186,7 @@ install( PROGRAMS parley.desktop DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 # hot new stuff config
 install( FILES parley.knsrc parley-themes.knsrc DESTINATION  ${CONFIG_INSTALL_DIR} )
 
-# UI files - define menus and toolbars
+# RC files - define menus and toolbars
 install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES editor/editorui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES welcomescreen/welcomescreenui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
