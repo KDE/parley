@@ -13,7 +13,7 @@ Copyright 2009 Frederik Gladhorn <gladhorn@kde.org>
 
 
 #include "abstractbackendmode.h"
-
+#include "prefs.h"
 #include <kdebug.h>
 
 using namespace Practice;
@@ -36,10 +36,16 @@ bool AbstractBackendMode::setTestEntry(TestEntry* current)
         m_frontend->setQuestion(translation->imageUrl());
     }
     m_frontend->setSolution(m_current->entry()->translation(m_current->languageTo())->text());
-    m_frontend->setQuestionSound(m_current->entry()->translation(m_current->languageFrom())->soundUrl());
-    m_frontend->setSolutionSound(m_current->entry()->translation(m_current->languageTo())->soundUrl());
-    m_frontend->setQuestionPronunciation(m_current->entry()->translation(m_current->languageFrom())->pronunciation());
-    m_frontend->setSolutionPronunciation(m_current->entry()->translation(m_current->languageTo())->pronunciation());
+    if (Prefs::practiceSoundEnabled() == true) {
+        m_frontend->setQuestionSound(
+            m_current->entry()-> translation(m_current->languageFrom())->soundUrl());
+        m_frontend->setSolutionSound(
+            m_current->entry()->translation(m_current->languageTo())->soundUrl());
+    }
+    m_frontend->setQuestionPronunciation(
+        m_current->entry()->translation(m_current->languageFrom())->pronunciation());
+    m_frontend->setSolutionPronunciation(
+        m_current->entry()->translation(m_current->languageTo())->pronunciation());
 
     return true;
 }
