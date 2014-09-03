@@ -122,7 +122,7 @@ void WrittenPracticeWidget::showQuestion()
 
     if (isExampleSentenceMode == false) {
         m_ui->questionPronunciationLabel->setVisible(m_ui->questionPronunciationLabel->isEnabled());
-        m_ui->questionSoundButton->setVisible(true); // TODO: Use Configuration's Sound Enable QCheckbox
+        m_ui->questionSoundButton->setVisible(m_ui->questionSoundButton->isEnabled());
     } else {
         m_ui->questionPronunciationLabel->setVisible(false);
         m_ui->questionSoundButton->setVisible(false);
@@ -148,7 +148,7 @@ void WrittenPracticeWidget::showSolution()
     m_ui->solutionLabel->setPalette(m_correctPalette);
 
     m_ui->solutionPronunciationLabel->setVisible(m_ui->solutionPronunciationLabel->isEnabled());
-    m_ui->solutionSoundButton->setVisible(true); // TODO: Use Configuration's Sound Enable QCheckbox
+    m_ui->solutionSoundButton->setVisible(m_ui->solutionSoundButton->isEnabled());
 }
 
 void WrittenPracticeWidget::setSynonym(const QString &synonym)

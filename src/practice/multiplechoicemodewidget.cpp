@@ -98,7 +98,7 @@ void MultiplechoiceModeWidget::showQuestion()
     m_choiceButtons[0]->setAutoExclusive(true);
 
     m_ui->questionPronunciationLabel->setVisible(m_ui->questionPronunciationLabel->isEnabled());
-    m_ui->questionSoundButton->setVisible(true); // TODO: Use Configuration's Sound Enable QCheckbox
+    m_ui->questionSoundButton->setVisible(m_ui->questionSoundButton->isEnabled());
     m_ui->solutionPronunciationLabel->setVisible(false);
     m_ui->solutionSoundButton->setVisible(false);
     m_ui->feedbackLabel->clear();
@@ -185,7 +185,7 @@ void MultiplechoiceModeWidget::showSolution()
         radio->setEnabled(false);
     }
     m_ui->solutionPronunciationLabel->setVisible(m_ui->solutionPronunciationLabel->isEnabled());
-    m_ui->solutionSoundButton->setVisible(true); // TODO: Use Configuration's Sound Enable QCheckbox
+    m_ui->solutionSoundButton->setVisible(m_ui->solutionSoundButton->isEnabled());
 }
 
 QVariant MultiplechoiceModeWidget::userInput()
