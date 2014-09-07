@@ -11,7 +11,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "welcomescreen.h"
+#include "dashboard.h"
 #include "buttondelegate.h"
 #include "parleymainwindow.h"
 #include "parleydocument.h"
@@ -49,26 +49,26 @@ static int randInt(int low, int high)
 
 
 // ================================================================
-//                         class WelcomeScreen
+//                         class Dashboard
 
 
 int ROWSIZE = 4;      // Number of collection widgets (+ 1 initial spacerItem) per row
 
 
-WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
+Dashboard::Dashboard(ParleyMainWindow *parent)
     : KXmlGuiWindow(parent)
     , m_mainWindow(parent)
 {
     // KXmlGui
-    setXMLFile("welcomescreenui.rc");
-    setObjectName("WelcomeScreen");
+    setXMLFile("dashboardui.rc");
+    setObjectName("Dashboard");
 
     m_widget = new Practice::ImageWidget(this);
     m_widget->setScalingEnabled(false, false);
     m_widget->setKeepAspectRatio(Qt::IgnoreAspectRatio);
     m_widget->setFadingEnabled(false);
 
-    ui = new Ui::WelcomeScreen();
+    ui = new Ui::Dashboard();
     ui->setupUi(m_widget);
     setCentralWidget(m_widget);
     practiceSignalMapper = new QSignalMapper(this);
@@ -144,14 +144,14 @@ WelcomeScreen::WelcomeScreen(ParleyMainWindow *parent)
         statisticsHandler(urlArray[i]); */ //Used to get the statistics for each Collection. TODO find a better way.
 }
 
-WelcomeScreen::~WelcomeScreen()
+Dashboard::~Dashboard()
 {
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     saveMainWindowSettings(cfg);
 }
 
 
-void WelcomeScreen:: clearGrid()
+void Dashboard::clearGrid()
 {
    remove(m_subGridLayout,
 	  m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount() - 1,
@@ -167,7 +167,7 @@ void WelcomeScreen:: clearGrid()
  * is true, all concerned child widgets become not only removed from the
  * layout, but also deleted.
  */
-void WelcomeScreen::remove(QGridLayout *layout, int row, int column, bool deleteWidgets)
+void Dashboard::remove(QGridLayout *layout, int row, int column, bool deleteWidgets)
 {
     // We avoid usage of QGridLayout::itemAtPosition() here to improve performance.
     for (int i = layout->count() - 1; i >= 0; i--) {
@@ -187,7 +187,7 @@ void WelcomeScreen::remove(QGridLayout *layout, int row, int column, bool delete
 /**
  * Helper function. Deletes all child widgets of the given layout @a item.
  */
-void WelcomeScreen::deleteChildWidgets(QLayoutItem *item)
+void Dashboard::deleteChildWidgets(QLayoutItem *item)
 {
     if (item->layout()) {
         // Process all child items recursively.
@@ -198,7 +198,7 @@ void WelcomeScreen::deleteChildWidgets(QLayoutItem *item)
     delete item->widget();
 }
 
-void WelcomeScreen::populateMap()
+void Dashboard::populateMap()
 {
     KConfig parleyConfig("parleyrc");
     KConfigGroup recentFilesGroup(&parleyConfig, "Recent Files");
@@ -209,7 +209,7 @@ void WelcomeScreen::populateMap()
     }
 }
 
-void WelcomeScreen::populateGrid()
+void Dashboard::populateGrid()
 {
     int j = 0, k = 0, jc = 0, kc = 0;
 
@@ -283,7 +283,7 @@ void WelcomeScreen::populateGrid()
     }
 }
 
-void WelcomeScreen::statisticsHandler(KUrl url)
+void Dashboard::statisticsHandler(KUrl url)
 {
 #if 1
     Q_UNUSED(url);
@@ -304,7 +304,7 @@ void WelcomeScreen::statisticsHandler(KUrl url)
 #endif
 }
 
-void WelcomeScreen::slotOpenUrl(const KUrl& url)
+void Dashboard::slotOpenUrl(const KUrl& url)
 {
     if (!m_mainWindow->parleyDocument()->open(url)) {
         return;
@@ -312,7 +312,7 @@ void WelcomeScreen::slotOpenUrl(const KUrl& url)
     m_mainWindow->showEditor();
 }
 
-void WelcomeScreen::slotPracticeButtonClicked(const QString& urlString)
+void Dashboard::slotPracticeButtonClicked(const QString& urlString)
 {
     kDebug() << urlString;
 
@@ -321,7 +321,7 @@ void WelcomeScreen::slotPracticeButtonClicked(const QString& urlString)
     QTimer::singleShot(0, this, SLOT(slotDoubleClickOpen()));
 }
 
-void WelcomeScreen::slotRemoveButtonClicked(const QString& urlString)
+void Dashboard::slotRemoveButtonClicked(const QString& urlString)
 {
     kDebug() << urlString;
 
@@ -337,12 +337,12 @@ void WelcomeScreen::slotRemoveButtonClicked(const QString& urlString)
     }
 }
 
-void WelcomeScreen::slotDoubleClickOpen()
+void Dashboard::slotDoubleClickOpen()
 {
     slotPracticeUrl(m_openUrl);
 }
 
-void WelcomeScreen::slotPracticeUrl(const KUrl & url)
+void Dashboard::slotPracticeUrl(const KUrl & url)
 {
     if (!m_mainWindow->parleyDocument()->open(url)) {
         return;
@@ -350,12 +350,12 @@ void WelcomeScreen::slotPracticeUrl(const KUrl & url)
     m_mainWindow->showPracticeConfiguration();
 }
 
-void WelcomeScreen::backgroundChanged(const QPixmap &pixmap)
+void Dashboard::backgroundChanged(const QPixmap &pixmap)
 {
     m_widget->setPixmap(pixmap);
 }
 
-void WelcomeScreen::setTheme()
+void Dashboard::setTheme()
 {
     m_themedBackgroundRenderer->setTheme(Prefs::theme());
     updateFontColors();
@@ -363,7 +363,7 @@ void WelcomeScreen::setTheme()
     m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
 }
 
-void WelcomeScreen::updateFontColors()
+void Dashboard::updateFontColors()
 {
     QPalette p(QApplication::palette());
     QColor c = m_themedBackgroundRenderer->fontColor("Start", p.color(QPalette::Active, QPalette::WindowText));
@@ -373,7 +373,7 @@ void WelcomeScreen::updateFontColors()
     m_widget->setPalette(p);
 }
 
-void WelcomeScreen::updateBackground()
+void Dashboard::updateBackground()
 {
     m_themedBackgroundRenderer->clearRects();
     m_themedBackgroundRenderer->addRect("startbackground", QRect(QPoint(), m_widget->size()));
@@ -388,4 +388,4 @@ void WelcomeScreen::updateBackground()
     m_themedBackgroundRenderer->updateBackground();
 }
 
-#include "welcomescreen.moc"
+#include "dashboard.moc"

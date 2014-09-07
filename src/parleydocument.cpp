@@ -23,7 +23,7 @@
 
 #include "vocabulary/vocabularyview.h"
 #include "settings/documentproperties.h"
-#include "welcomescreen/welcomescreen.h"
+#include "dashboard/dashboard.h"
 
 #include <keduvoclesson.h>
 #include <keduvocleitnerbox.h>
@@ -549,7 +549,7 @@ void ParleyDocument::slotGHNS()
         }
     }
 
-    // to enable the display in the welcome screen
+    // to enable the display in the dashboard
     Prefs::self()->writeConfig();
     m_parleyApp->updateRecentFilesModel();
     if (numberInstalled > 1) {

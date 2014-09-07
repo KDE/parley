@@ -100,11 +100,11 @@ set(parley_LIB_SRCS
     vocabulary/lessonview.cpp
     vocabulary/wordtypeview.cpp
     vocabulary/vocabularycolumnsdialog.cpp
-    welcomescreen/welcomescreen.cpp
-    welcomescreen/buttondelegate.cpp
-    welcomescreen/gradereferencewidget.cpp
-    welcomescreen/barwidget.cpp
-    welcomescreen/collectionwidget.cpp
+    dashboard/dashboard.cpp
+    dashboard/buttondelegate.cpp
+    dashboard/gradereferencewidget.cpp
+    dashboard/barwidget.cpp
+    dashboard/collectionwidget.cpp
 )
 
 kde4_add_ui_files(parley_LIB_SRCS
@@ -137,7 +137,7 @@ kde4_add_ui_files(parley_LIB_SRCS
     settings/documentproperties.ui
     settings/kgametheme/kgamethemeselector.ui
     statistics/statisticsmainwindow.ui
-    welcomescreen/welcomescreen.ui
+    dashboard/dashboard.ui
 )
 
 kde4_add_kcfg_files(parley_LIB_SRCS
@@ -186,8 +186,8 @@ install( FILES parley.knsrc parley-themes.knsrc DESTINATION  ${CONFIG_INSTALL_DI
 
 # RC files - define menus and toolbars
 install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )
+install( FILES dashboard/dashboardui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES editor/editorui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
-install( FILES welcomescreen/welcomescreenui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES statistics/statisticsui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES practice/practiceui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES practice/practicesummaryui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )

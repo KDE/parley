@@ -36,7 +36,7 @@
 #include "parleyactions.h"
 
 #include "prefs.h"
-#include "welcomescreen/welcomescreen.h"
+#include "dashboard/dashboard.h"
 
 #include <KActionCollection>
 #include <KRecentFilesAction>
@@ -75,7 +75,7 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
 
     initActions();
 
-    bool startWithWelcomeScreen = false;
+    bool startWithDashboard = false;
 
     setupGUI(ToolBar | Keys | Create);
 
@@ -87,14 +87,14 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
                 && m_recentFilesAction->action(m_recentFilesAction->actions().count() - 1)->isEnabled()) {
             m_recentFilesAction->action(m_recentFilesAction->actions().count() - 1)->trigger();
         } else {
-            startWithWelcomeScreen = true;
+            startWithDashboard = true;
         }
     }
 
     // save position of dock windows etc
     setAutoSaveSettings();
 
-    if (startWithWelcomeScreen) {
+    if (startWithDashboard) {
 	showDashboard();
     } else {
         showEditor();
@@ -310,10 +310,10 @@ void ParleyMainWindow::switchComponent(Component component)
 
     switch (component) {
     case DashboardComponent: {
-        WelcomeScreen *welcome = new WelcomeScreen(this);
-        m_currentComponentWindow = welcome;
+        Dashboard *dashboard = new Dashboard(this);
+        m_currentComponentWindow = dashboard;
         showDocumentActions(true, false);
-        //welcome->updateRecentFilesModel();
+        //dashboard->updateRecentFilesModel();
         break;
     }
     case ConfigurePracticeComponent: {

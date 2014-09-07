@@ -63,7 +63,7 @@ class KAction;
 class QLabel;
 class QDockWidget;
 
-class WelcomeScreen;
+class Dashboard;
 class StatisticsMainWindow;
 class ScriptManager;
 class ParleyPracticeMainWindow;
