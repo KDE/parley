@@ -1,4 +1,5 @@
-include_directories( ${parley_INCLUDE_DIRS} )
+include_directories( ${parley_INCLUDE_DIRS}
+		     ${CMAKE_CURRENT_SOURCE_DIR}/collection )
 
 # installation of kconfig files .kcfg containing app settings
 add_subdirectory( settings )
@@ -7,6 +8,8 @@ set(parley_LIB_SRCS
     parleyactions.cpp
     parleydocument.cpp
     parleymainwindow.cpp
+    collection/testentry.cpp
+    collection/entryfilter.cpp
     configure-practice/configurepracticedialog.cpp
     configure-practice/generalpracticeoptions.cpp
     configure-practice/blockoptions.cpp
@@ -24,8 +27,6 @@ set(parley_LIB_SRCS
     editor/summarywordwidget.cpp
     editor/synonymwidget.cpp
     editor/latexwidget.cpp
-    practice/testentry.cpp
-    practice/entryfilter.cpp
     practice/sessionmanagerbase.cpp
     practice/sessionmanagercontinuous.cpp
     practice/sessionmanagerfixed.cpp
