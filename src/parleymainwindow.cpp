@@ -95,7 +95,7 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
     setAutoSaveSettings();
 
     if (startWithWelcomeScreen) {
-        showWelcomeScreen();
+	showDashboard();
     } else {
         showEditor();
     }
@@ -171,7 +171,7 @@ void ParleyMainWindow::slotGeneralOptions()
 
 void ParleyMainWindow::slotApplyPreferences()
 {
-    m_document->enableAutoBackup((m_currentComponent != WelcomeComponent) && Prefs::autoBackup());
+    m_document->enableAutoBackup((m_currentComponent != DashboardComponent) && Prefs::autoBackup());
 }
 
 void ParleyMainWindow::slotCloseDocument()
@@ -179,7 +179,7 @@ void ParleyMainWindow::slotCloseDocument()
     if (!queryClose()) {
         return;
     }
-    showWelcomeScreen();
+    showDashboard();
     m_document->close();
 }
 
@@ -259,9 +259,9 @@ void ParleyMainWindow::initActions()
     actionCollection()->addAction(KStandardAction::TipofDay,  "help_tipofday", this, SLOT(tipOfDay()));
 }
 
-void ParleyMainWindow::showWelcomeScreen()
+void ParleyMainWindow::showDashboard()
 {
-    switchComponent(WelcomeComponent);
+    switchComponent(DashboardComponent);
 }
 
 void ParleyMainWindow::showEditor()
@@ -309,7 +309,7 @@ void ParleyMainWindow::switchComponent(Component component)
     }
 
     switch (component) {
-    case WelcomeComponent: {
+    case DashboardComponent: {
         WelcomeScreen *welcome = new WelcomeScreen(this);
         m_currentComponentWindow = welcome;
         showDocumentActions(true, false);
@@ -354,7 +354,7 @@ void ParleyMainWindow::switchComponent(Component component)
     centralWidget()->layout()->addWidget(m_currentComponentWindow);
     m_currentComponentWindow->show();
     switch (component) {
-    case WelcomeComponent: {
+    case DashboardComponent: {
         setVisibleToolbar(QString());
         break;
     }
