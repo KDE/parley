@@ -108,6 +108,7 @@ set(parley_LIB_SRCS
 )
 
 kde4_add_ui_files(parley_LIB_SRCS
+    collection/entryfilter.ui
     configure-practice/generalpracticeoptions.ui
     configure-practice/blockoptions.ui
     configure-practice/thresholdoptions.ui
@@ -122,7 +123,6 @@ kde4_add_ui_files(parley_LIB_SRCS
     editor/browserwidget.ui
     editor/summarywordwidget.ui
     editor/latexwidget.ui
-    practice/entryfilter.ui
     practice/practicesummarywidget.ui
     practice/practice_mainwindow.ui
     practice/practice_widget_comparison.ui
