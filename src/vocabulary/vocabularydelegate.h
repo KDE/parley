@@ -17,7 +17,7 @@
 #ifndef VOCABULARYDELEGATE_H
 #define VOCABULARYDELEGATE_H
 
-#include "basiccontainermodel.h"
+#include "readonlycontainermodel.h"
 #include "../scripts/translator.h"
 
 #include <QItemDelegate>
@@ -79,7 +79,7 @@ private:
     class WordTypeBasicModel;
 };
 
-class VocabularyDelegate::WordTypeBasicModel : public BasicContainerModel
+class VocabularyDelegate::WordTypeBasicModel : public ReadonlyContainerModel
 {
 public:
     explicit WordTypeBasicModel(QObject *parent = 0);

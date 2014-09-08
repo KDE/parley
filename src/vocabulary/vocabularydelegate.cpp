@@ -20,7 +20,7 @@
 
 #include "prefs.h"
 #include "languagesettings.h"
-#include "basiccontainermodel.h"
+#include "readonlycontainermodel.h"
 
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
@@ -348,7 +348,7 @@ QPair< QString, QString > VocabularyDelegate::guessWordType(const QString & entr
 
 
 VocabularyDelegate::WordTypeBasicModel::WordTypeBasicModel(QObject * parent)
-    : BasicContainerModel(KEduVocContainer::WordType, parent)
+    : ReadonlyContainerModel(KEduVocContainer::WordType, parent)
 {
 }
 

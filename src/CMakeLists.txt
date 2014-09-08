@@ -10,6 +10,9 @@ set(parley_LIB_SRCS
     parleymainwindow.cpp
     collection/testentry.cpp
     collection/entryfilter.cpp
+    collection/readonlycontainermodel.cpp
+    collection/vocabularymimedata.cpp
+    collection/containermimedata.cpp
     configure-practice/configurepracticedialog.cpp
     configure-practice/generalpracticeoptions.cpp
     configure-practice/blockoptions.cpp
@@ -90,13 +93,10 @@ set(parley_LIB_SRCS
     vocabulary/vocabularyheaderview.cpp
     vocabulary/vocabularydelegate.cpp
     vocabulary/vocabularyfilter.cpp
-    vocabulary/vocabularymimedata.cpp
     vocabulary/containermodel.cpp
-    vocabulary/basiccontainermodel.cpp
     vocabulary/lessonmodel.cpp
     vocabulary/wordtypemodel.cpp
     vocabulary/containerview.cpp
-    vocabulary/containermimedata.cpp
     vocabulary/lessonview.cpp
     vocabulary/wordtypeview.cpp
     vocabulary/vocabularycolumnsdialog.cpp
