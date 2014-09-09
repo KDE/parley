@@ -30,6 +30,7 @@ NOTE:  DO NOT CHANGE THESE IN MASTER.
       https://bugs.kde.org/show_bug.cgi?id=271695
 
  * Data loss
+    + ...
 
  * Misfeatures
     + There seems to be no way to change the title.                     ----
@@ -50,46 +51,14 @@ NOTE:  DO NOT CHANGE THESE IN MASTER.
  * Bugs without a bugzilla bug
     + ...
 
- * Release work
-    + Update the version! (To what?)
-
 
 ================================================================
 Before the 4.14 freeze (features).  These are picked from the ones below.
 
 
- * Editor
-    + ...
-
  * Practice
-    + Sessions.  For details, see below.                                DONE
-       - Milestone 1: (Working sessions)                                Done
-       - Milestone 2: Configurable values                               Done
-    + Mixed mode. For details see below                                 DONE
-       - Mixed mode working in general                                  Done
-       - Statistics updated for mixed mode                              Done
     + Dashboard	    	    	      					----
-       - Dashboard widget						Done
        - wrapper class for a KEduVocDocument				----
-       - Make the words due work					----
-       - KEduVocDocument summary view widget				Done
-    + Pregrades								DONE
-
-
- * Wishes from bugzilla
-    + Second instance causes data overwriting. (File locking)		Done
-      https://bugs.kde.org/show_bug.cgi?id=240552
-    + FIXME: Check the commits for this one.
-
-
-================================================================
-Release work for 4.14
-
-
- " Change the version number of Parley					Done
- " Create new versions in Bugzilla					Done
- * Add the new features to the feature plan				Done
- * Blog	                                   				----
 
 
 ================================================================
@@ -117,8 +86,8 @@ Before the 4.15 freeze (features).  These are picked from the ones below.
 Release work for 4.15
 
 
- " Change the version number of Parley					----
- " Create new versions in Bugzilla					----
+ * Change the version number of Parley					----
+ * Create new versions in Bugzilla					----
  * Add the new features to the feature plan				----
  * Blog	                                   				----
 
@@ -130,7 +99,7 @@ Release work for 4.15
  OVERALL GOAL:
    Make the program more focussed around the learning process.
    Learning is the purpose of the program. All other functions are
-   just to support that goal.
+   just to support that purpose.
 
 
  * General
@@ -146,8 +115,6 @@ Release work for 4.15
       See thaipod101.com for this.
 
  * Usability
-    + Set language you are learning and languages you know instead of   Done
-      language to language.
     + Disable those practice modes in the GUI that are not supported    ----
       by the data in the selected lessons. This would be better than
       having all of them enabled and popping up a big warning dialog
@@ -160,33 +127,8 @@ Release work for 4.15
  * Practice
     + Extended Leitner box method -OR- move to time based card          Done
       selection.
-
-      The Leitner box system that is currently implemented is not very
-      good at the very beginning of the study. When you have a lot of
-      new words to learn just getting it right once is not enough to
-      solidify the knowledge. So instead of having a repeat time of 1
-      day for the first box we should have system based on time that
-      starts with just a few minutes until the card is shown next time
-      and then moves up to a full day when you have shown that you
-      know the words well.  Alternatively skip the concept of boxes
-      altogether and have a purely time based system (which the
-      leitner boxes are trying to emulate anyway).
-      thaipod101.com uses this system and it works very well.
-
     + Sessions.  A session is a byte sized part of a lesson containing  Done
-      maybe 10-20 questions. It is automatically generated when the
-      user starts to practice a lesson and is never saved anywhere.
-      The reason we want this is that you will get a greater sense of
-      achievement when you are done with a session than when you have
-      just practiced 5% of the words in a big lesson.  It should also
-      limit the number of new words in each session (5?).
-      See thaipod101.com for this.
-
-    + Mixed mode in all practice methods.                               Done
-      This means that not just one direction is practiced, but
-      known->learning, learning->known and maybe even sound of
-      learning -> known
-      See thaipod101.com for this (again! - that system is awesome).
+    + Mixed directions mode in all practice methods.			Done
 
  * Editor
     + Drag & drop of images from other applications                     ----
