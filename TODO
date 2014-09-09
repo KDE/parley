@@ -58,9 +58,6 @@ NOTE:  DO NOT CHANGE THESE IN MASTER.
 Before the 4.14 freeze (features).  These are picked from the ones below.
 
 
- * Editor
-    + ...
-
  * Practice
     + Sessions.  For details, see below.                                DONE
        - Milestone 1: (Working sessions)                                Done
@@ -74,22 +71,6 @@ Before the 4.14 freeze (features).  These are picked from the ones below.
        - Make the words due work					----
        - KEduVocDocument summary view widget				Done
     + Pregrades								DONE
-
-
- * Wishes from bugzilla
-    + Second instance causes data overwriting. (File locking)		Done
-      https://bugs.kde.org/show_bug.cgi?id=240552
-    + FIXME: Check the commits for this one.
-
-
-================================================================
-Release work for 4.14
-
-
- " Change the version number of Parley					Done
- " Create new versions in Bugzilla					Done
- * Add the new features to the feature plan				Done
- * Blog	                                   				----
 
 
 ================================================================
@@ -107,18 +88,19 @@ Before the 4.15 freeze (features).  These are picked from the ones below.
     + Sessions								----
        - Create session overview pane					----
 
-
-
  * Wishes from bugzilla
-    + 
+    + Comments in practise mode
+      https://bugs.kde.org/show_bug.cgi?id=175241
+      https://bugs.kde.org/show_bug.cgi?id=273040
+      https://bugs.kde.org/show_bug.cgi?id=238893
 
 
 ================================================================
 Release work for 4.15
 
 
- " Change the version number of Parley					----
- " Create new versions in Bugzilla					----
+ * Change the version number of Parley					----
+ * Create new versions in Bugzilla					----
  * Add the new features to the feature plan				----
  * Blog	                                   				----
 
