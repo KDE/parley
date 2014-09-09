@@ -13,24 +13,30 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "wordtypemodel.h"
+#ifndef WORDCLASSMODEL_H
+#define WORDCLASSMODEL_H
 
-#include <keduvocwordtype.h>
+#include "containermodel.h"
 
-using namespace Editor;
-
-WordTypeModel::WordTypeModel(QObject * parent)
-    : ContainerModel(KEduVocContainer::WordType, parent)
+namespace Editor
 {
+/**
+  * Model for the tree of word types.
+  */
+class WordClassModel : public ContainerModel
+{
+    Q_OBJECT
+
+public:
+    explicit WordClassModel(QObject *parent = 0);
+
+    QModelIndex appendWordClass(const QModelIndex& parent, const QString & wordTypeName = QString());
+
+    void deleteWordClass(const QModelIndex& wordTypeIndex);
+
+protected:
+    KEduVocContainer * rootContainer() const;
+};
 }
 
-KEduVocContainer * WordTypeModel::rootContainer() const
-{
-    if (!m_doc) {
-        return 0;
-    }
-    return m_doc->wordTypeContainer();
-}
-
-#include "wordtypemodel.moc"
-
+#endif

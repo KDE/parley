@@ -14,6 +14,7 @@ set(parley_LIB_SRCS
     collection/containermodel.cpp
     collection/lessonmodel.cpp
     collection/vocabularymodel.cpp
+    collection/wordclassmodel.cpp
     collection/vocabularymimedata.cpp
     collection/containermimedata.cpp
     configure-practice/configurepracticedialog.cpp
@@ -95,7 +96,6 @@ set(parley_LIB_SRCS
     vocabulary/vocabularyheaderview.cpp
     vocabulary/vocabularydelegate.cpp
     vocabulary/vocabularyfilter.cpp
-    vocabulary/wordtypemodel.cpp
     vocabulary/containerview.cpp
     vocabulary/lessonview.cpp
     vocabulary/wordtypeview.cpp

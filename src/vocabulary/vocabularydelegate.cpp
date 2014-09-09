@@ -79,7 +79,7 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
     }
 
     switch (VocabularyModel::columnType(index.column())) {
-    case VocabularyModel::WordType: {
+    case VocabularyModel::WordClass: {
         if (!m_doc) return 0;
         KComboBox *wordTypeCombo = new KComboBox(parent);
 
@@ -281,7 +281,7 @@ void VocabularyDelegate::setModelData(QWidget * editor, QAbstractItemModel * mod
     }
 
     switch (VocabularyModel::columnType(index.column())) {
-    case (VocabularyModel::WordType) : {
+    case (VocabularyModel::WordClass) : {
         kDebug() << "word type editor";
         KComboBox *combo = qobject_cast<KComboBox*> (editor);
         if (!combo) {

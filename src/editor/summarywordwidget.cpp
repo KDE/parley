@@ -12,6 +12,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+
 #include "summarywordwidget.h"
 
 #include "languagesettings.h"
@@ -19,7 +20,7 @@
 #include "lessonmodel.h"
 #include "vocabularymodel.h"
 #include "vocabulary/vocabularyfilter.h"
-#include "vocabulary/wordtypemodel.h"
+#include "wordclassmodel.h"
 
 // Qt headers
 #include <QAbstractItemModel>
@@ -103,7 +104,7 @@ void SummaryWordWidget::slotDocumentChanged(KEduVocDocument *doc)
         delete m_wordTypeView;
         if (!m_wordTypeModel) {
             kDebug() << "Create word type model for summary view";
-            m_wordTypeModel = new WordTypeModel(this);
+            m_wordTypeModel = new WordClassModel(this);
         }
         m_wordTypeModel->setDocument(m_doc);
         m_wordTypeView = new QTreeView(this);
@@ -193,7 +194,7 @@ void SummaryWordDelegate::setEditorData(QWidget *editor, const QModelIndex &inde
 
     if (editor) {
         switch (VocabularyModel::columnType(index.column())) {
-        case VocabularyModel::WordType:
+        case VocabularyModel::WordClass:
             break;
 
         case VocabularyModel::Comment:
