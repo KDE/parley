@@ -11,6 +11,9 @@ set(parley_LIB_SRCS
     collection/testentry.cpp
     collection/entryfilter.cpp
     collection/readonlycontainermodel.cpp
+    collection/containermodel.cpp
+    collection/lessonmodel.cpp
+    collection/vocabularymodel.cpp
     collection/vocabularymimedata.cpp
     collection/containermimedata.cpp
     configure-practice/configurepracticedialog.cpp
@@ -88,13 +91,10 @@ set(parley_LIB_SRCS
     statistics/statisticsmodel.cpp
     statistics/statisticsmainwindow.cpp
     statistics/statisticslegendwidget.cpp
-    vocabulary/vocabularymodel.cpp
     vocabulary/vocabularyview.cpp
     vocabulary/vocabularyheaderview.cpp
     vocabulary/vocabularydelegate.cpp
     vocabulary/vocabularyfilter.cpp
-    vocabulary/containermodel.cpp
-    vocabulary/lessonmodel.cpp
     vocabulary/wordtypemodel.cpp
     vocabulary/containerview.cpp
     vocabulary/lessonview.cpp

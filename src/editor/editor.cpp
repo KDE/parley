@@ -18,15 +18,18 @@
 
 #include "../config-parley.h"
 
-#include "vocabulary/vocabularymodel.h"
+// Qt models on top of the KEduVocDocument
+#include "containermodel.h"
+#include "lessonmodel.h"
+#include "vocabularymodel.h"
+#include "vocabulary/wordtypemodel.h"
+
+// Views
 #include "vocabulary/vocabularyview.h"
 #include "vocabulary/vocabularyfilter.h"
 #include "vocabulary/containerview.h"
 #include "vocabulary/lessonview.h"
 #include "vocabulary/wordtypeview.h"
-#include "vocabulary/containermodel.h"
-#include "vocabulary/lessonmodel.h"
-#include "vocabulary/wordtypemodel.h"
 
 #include "multiplechoicewidget.h"
 #include "comparisonwidget.h"

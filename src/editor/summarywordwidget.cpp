@@ -15,8 +15,9 @@
 #include "summarywordwidget.h"
 
 #include "languagesettings.h"
-#include "vocabulary/lessonmodel.h"
-#include "vocabulary/vocabularymodel.h"
+
+#include "lessonmodel.h"
+#include "vocabularymodel.h"
 #include "vocabulary/vocabularyfilter.h"
 #include "vocabulary/wordtypemodel.h"
 
