@@ -19,7 +19,7 @@
 
 #include "lessonmodel.h"
 #include "vocabularymodel.h"
-#include "vocabulary/vocabularyfilter.h"
+#include "vocabularyfilter.h"
 #include "wordclassmodel.h"
 
 // Qt headers

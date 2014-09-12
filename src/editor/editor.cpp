@@ -22,11 +22,11 @@
 #include "containermodel.h"
 #include "lessonmodel.h"
 #include "vocabularymodel.h"
+#include "vocabularyfilter.h"
 #include "wordclassmodel.h"
 
 // Views
 #include "vocabulary/vocabularyview.h"
-#include "vocabulary/vocabularyfilter.h"
 #include "vocabulary/containerview.h"
 #include "vocabulary/lessonview.h"
 #include "vocabulary/wordtypeview.h"
