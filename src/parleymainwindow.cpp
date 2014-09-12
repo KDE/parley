@@ -36,7 +36,7 @@
 #include "parleyactions.h"
 
 #include "prefs.h"
-#include "welcomescreen/welcomescreen.h"
+#include "dashboard/dashboard.h"
 
 #include <KActionCollection>
 #include <KRecentFilesAction>
@@ -75,7 +75,7 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
 
     initActions();
 
-    bool startWithWelcomeScreen = false;
+    bool startWithDashboard = false;
 
     setupGUI(ToolBar | Keys | Create);
 
@@ -87,15 +87,15 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
                 && m_recentFilesAction->action(m_recentFilesAction->actions().count() - 1)->isEnabled()) {
             m_recentFilesAction->action(m_recentFilesAction->actions().count() - 1)->trigger();
         } else {
-            startWithWelcomeScreen = true;
+            startWithDashboard = true;
         }
     }
 
     // save position of dock windows etc
     setAutoSaveSettings();
 
-    if (startWithWelcomeScreen) {
-        showWelcomeScreen();
+    if (startWithDashboard) {
+	showDashboard();
     } else {
         showEditor();
     }
@@ -171,7 +171,7 @@ void ParleyMainWindow::slotGeneralOptions()
 
 void ParleyMainWindow::slotApplyPreferences()
 {
-    m_document->enableAutoBackup((m_currentComponent != WelcomeComponent) && Prefs::autoBackup());
+    m_document->enableAutoBackup((m_currentComponent != DashboardComponent) && Prefs::autoBackup());
 }
 
 void ParleyMainWindow::slotCloseDocument()
@@ -179,7 +179,7 @@ void ParleyMainWindow::slotCloseDocument()
     if (!queryClose()) {
         return;
     }
-    showWelcomeScreen();
+    showDashboard();
     m_document->close();
 }
 
@@ -259,9 +259,9 @@ void ParleyMainWindow::initActions()
     actionCollection()->addAction(KStandardAction::TipofDay,  "help_tipofday", this, SLOT(tipOfDay()));
 }
 
-void ParleyMainWindow::showWelcomeScreen()
+void ParleyMainWindow::showDashboard()
 {
-    switchComponent(WelcomeComponent);
+    switchComponent(DashboardComponent);
 }
 
 void ParleyMainWindow::showEditor()
@@ -309,11 +309,11 @@ void ParleyMainWindow::switchComponent(Component component)
     }
 
     switch (component) {
-    case WelcomeComponent: {
-        WelcomeScreen *welcome = new WelcomeScreen(this);
-        m_currentComponentWindow = welcome;
+    case DashboardComponent: {
+        Dashboard *dashboard = new Dashboard(this);
+        m_currentComponentWindow = dashboard;
         showDocumentActions(true, false);
-        //welcome->updateRecentFilesModel();
+        //dashboard->updateRecentFilesModel();
         break;
     }
     case ConfigurePracticeComponent: {
@@ -354,7 +354,7 @@ void ParleyMainWindow::switchComponent(Component component)
     centralWidget()->layout()->addWidget(m_currentComponentWindow);
     m_currentComponentWindow->show();
     switch (component) {
-    case WelcomeComponent: {
+    case DashboardComponent: {
         setVisibleToolbar(QString());
         break;
     }

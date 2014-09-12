@@ -1,4 +1,5 @@
-include_directories( ${parley_INCLUDE_DIRS} )
+include_directories( ${parley_INCLUDE_DIRS}
+		     ${CMAKE_CURRENT_SOURCE_DIR}/collection )
 
 # installation of kconfig files .kcfg containing app settings
 add_subdirectory( settings )
@@ -7,6 +8,15 @@ set(parley_LIB_SRCS
     parleyactions.cpp
     parleydocument.cpp
     parleymainwindow.cpp
+    collection/testentry.cpp
+    collection/entryfilter.cpp
+    collection/readonlycontainermodel.cpp
+    collection/containermodel.cpp
+    collection/lessonmodel.cpp
+    collection/vocabularymodel.cpp
+    collection/wordclassmodel.cpp
+    collection/vocabularymimedata.cpp
+    collection/containermimedata.cpp
     configure-practice/configurepracticedialog.cpp
     configure-practice/generalpracticeoptions.cpp
     configure-practice/blockoptions.cpp
@@ -24,8 +34,6 @@ set(parley_LIB_SRCS
     editor/summarywordwidget.cpp
     editor/synonymwidget.cpp
     editor/latexwidget.cpp
-    practice/testentry.cpp
-    practice/entryfilter.cpp
     practice/sessionmanagerbase.cpp
     practice/sessionmanagercontinuous.cpp
     practice/sessionmanagerfixed.cpp
@@ -84,29 +92,23 @@ set(parley_LIB_SRCS
     statistics/statisticsmodel.cpp
     statistics/statisticsmainwindow.cpp
     statistics/statisticslegendwidget.cpp
-    vocabulary/vocabularymodel.cpp
     vocabulary/vocabularyview.cpp
     vocabulary/vocabularyheaderview.cpp
     vocabulary/vocabularydelegate.cpp
     vocabulary/vocabularyfilter.cpp
-    vocabulary/vocabularymimedata.cpp
-    vocabulary/containermodel.cpp
-    vocabulary/basiccontainermodel.cpp
-    vocabulary/lessonmodel.cpp
-    vocabulary/wordtypemodel.cpp
     vocabulary/containerview.cpp
-    vocabulary/containermimedata.cpp
     vocabulary/lessonview.cpp
     vocabulary/wordtypeview.cpp
     vocabulary/vocabularycolumnsdialog.cpp
-    welcomescreen/welcomescreen.cpp
-    welcomescreen/buttondelegate.cpp
-    welcomescreen/gradereferencewidget.cpp
-    welcomescreen/barwidget.cpp
-    welcomescreen/collectionwidget.cpp
+    dashboard/dashboard.cpp
+    dashboard/buttondelegate.cpp
+    dashboard/gradereferencewidget.cpp
+    dashboard/barwidget.cpp
+    dashboard/collectionwidget.cpp
 )
 
 kde4_add_ui_files(parley_LIB_SRCS
+    collection/entryfilter.ui
     configure-practice/generalpracticeoptions.ui
     configure-practice/blockoptions.ui
     configure-practice/thresholdoptions.ui
@@ -121,7 +123,6 @@ kde4_add_ui_files(parley_LIB_SRCS
     editor/browserwidget.ui
     editor/summarywordwidget.ui
     editor/latexwidget.ui
-    practice/entryfilter.ui
     practice/practicesummarywidget.ui
     practice/practice_mainwindow.ui
     practice/practice_widget_comparison.ui
@@ -136,7 +137,7 @@ kde4_add_ui_files(parley_LIB_SRCS
     settings/documentproperties.ui
     settings/kgametheme/kgamethemeselector.ui
     statistics/statisticsmainwindow.ui
-    welcomescreen/welcomescreen.ui
+    dashboard/dashboard.ui
 )
 
 kde4_add_kcfg_files(parley_LIB_SRCS
@@ -185,8 +186,8 @@ install( FILES parley.knsrc parley-themes.knsrc DESTINATION  ${CONFIG_INSTALL_DI
 
 # RC files - define menus and toolbars
 install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )
+install( FILES dashboard/dashboardui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES editor/editorui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
-install( FILES welcomescreen/welcomescreenui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES statistics/statisticsui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES practice/practiceui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
 install( FILES practice/practicesummaryui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )

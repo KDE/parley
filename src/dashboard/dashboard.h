@@ -11,10 +11,10 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef WELCOMESCREEN_H
-#define WELCOMESCREEN_H
+#ifndef DASHBOARD_H
+#define DASHBOARD_H
 
-#include "ui_welcomescreen.h"
+#include "ui_dashboard.h"
 #include "statistics/statisticsmainwindow.h"
 
 #include <KXmlGuiWindow>
@@ -36,12 +36,12 @@ class ImageWidget;
 class RemoveButton;
 
 
-class WelcomeScreen : public KXmlGuiWindow
+class Dashboard : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
-    WelcomeScreen(ParleyMainWindow *parent);
-    ~WelcomeScreen();
+    Dashboard(ParleyMainWindow *parent);
+    ~Dashboard();
 
 public slots:
     void slotOpenUrl(const KUrl& url);
@@ -65,7 +65,7 @@ private slots:
     void updateBackground();
 
 private:
-    Ui::WelcomeScreen *ui;
+    Ui::Dashboard *ui;
     ParleyMainWindow *m_mainWindow;
     StatisticsMainWindow *statisticsWidget;
     Practice::ThemedBackgroundRenderer *m_themedBackgroundRenderer;

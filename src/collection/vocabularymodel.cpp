@@ -130,7 +130,7 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
             return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->text());
         case Pronunciation:
             return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->pronunciation());
-        case WordType:
+        case WordClass:
             // if no word type is set, we get a null pointer
             if (m_container->entry(index.row(), m_recursive)->translation(translationId)->wordType()) {
                 return QVariant(m_container->entry(index.row(), m_recursive)->translation(translationId)->wordType()->name());
@@ -193,7 +193,7 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
     case Qt::ToolTipRole: {
         ///@todo more tooltips?
         switch (entryColumn) {
-        case WordType:
+        case WordClass:
             return i18n("You can drag and drop words onto their word type.");
         case Synonym:
             return i18n("Enable the synonym view to edit synonyms.");
@@ -222,7 +222,7 @@ bool VocabularyModel::setData(const QModelIndex &index, const QVariant &value, i
     case Pronunciation:
         m_container->entry(index.row(), m_recursive)->translation(translationId)->setPronunciation(value.toString());
         break;
-    case WordType:
+    case WordClass:
         break;
     case Example:
         m_container->entry(index.row(), m_recursive)->translation(translationId)->setExample(value.toString());
@@ -252,7 +252,7 @@ Qt::ItemFlags VocabularyModel::flags(const QModelIndex & index) const
     switch (columnType(index.column())) {
     case Translation:
         return QAbstractItemModel::flags(index) | Qt::ItemIsEditable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;
-    case WordType:
+    case WordClass:
         return QAbstractItemModel::flags(index) | Qt::ItemIsEditable;
     case Synonym:
     case Antonym:
@@ -291,7 +291,7 @@ QString VocabularyModel::columnTitle(KEduVocDocument *document, int translation,
         return document->identifier(translation).name(); //returns "English", "German", etc
     case Pronunciation:
         return i18n("Pronunciation");
-    case WordType:
+    case WordClass:
         return i18n("Word Type");
     case Synonym:
         return i18n("Synonym");

@@ -13,8 +13,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef BASICCONTAINERMODEL_H
-#define BASICCONTAINERMODEL_H
+#ifndef READONLYCONTAINERMODEL_H
+#define READONLYCONTAINERMODEL_H
 
 #include <QAbstractItemModel>
 #include <QModelIndex>
@@ -26,18 +26,18 @@
 
 /**
   * Model for the tree of containers (lessons, word types).
-  * BasicContainerModel is a read only tree model.
+  * ReadonlyContainerModel is a read only tree model.
   * @see ContainerModel for its subclass that includes more options.
   */
 namespace Editor
 {
 
-class BasicContainerModel : public QAbstractItemModel
+class ReadonlyContainerModel : public QAbstractItemModel
 {
     Q_OBJECT
 
 public:
-    explicit BasicContainerModel(KEduVocContainer::EnumContainerType type, QObject *parent = 0);
+    explicit ReadonlyContainerModel(KEduVocContainer::EnumContainerType type, QObject *parent = 0);
 
     virtual QVariant data(const QModelIndex &index, int role) const;
     virtual Qt::ItemFlags flags(const QModelIndex &index) const;

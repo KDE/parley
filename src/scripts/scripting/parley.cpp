@@ -16,7 +16,7 @@
 #include "parley.h"
 
 #include "editor/editor.h"
-#include "../../vocabulary/vocabularymodel.h"
+#include "vocabularymodel.h"
 #include "../../vocabulary/vocabularyview.h"
 
 #include "../scriptmanager.h"

@@ -12,7 +12,7 @@
  ***************************************************************************/
 #include "latexwidget.h"
 
-#include "vocabulary/vocabularymodel.h"
+#include "vocabularymodel.h"
 #include "vocabulary/vocabularyfilter.h"
 #include "practice/latexrenderer.h"
 

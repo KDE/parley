@@ -18,7 +18,7 @@
 
 #include <QPoint>
 
-class WelcomeScreen;
+class Dashboard;
 class QToolButton;
 
 class ButtonDelegate
@@ -26,7 +26,7 @@ class ButtonDelegate
 {
     Q_OBJECT
 public:
-    ButtonDelegate(QAbstractItemView *itemView, WelcomeScreen *parent);
+    ButtonDelegate(QAbstractItemView *itemView, Dashboard *parent);
 
     virtual ~ButtonDelegate();
 
@@ -43,7 +43,7 @@ public slots:
 private:
     int m_rightMargin;
     int m_buttonHeight;
-    WelcomeScreen *m_welcomeScreen;
+    Dashboard *m_dashboard;
     QAbstractItemView *m_itemView;
     QToolButton *m_editButton;
 };

@@ -16,7 +16,7 @@
 #ifndef STATISTICSMODEL_H
 #define STATISTICSMODEL_H
 
-#include "vocabulary/containermodel.h"
+#include "containermodel.h"
 
 using namespace Editor;
 
