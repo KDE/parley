@@ -35,7 +35,7 @@ public:
     enum entryColumns {
         Translation = 0,
         Pronunciation,
-        WordType,
+        WordClass,
         Synonym,
         Antonym,
         Example,

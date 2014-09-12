@@ -20,8 +20,8 @@
 #include "vocabularycolumnsdialog.h"
 
 // parley imports
-#include "vocabulary/vocabularymodel.h"
 #include "documentsettings.h"
+#include "vocabularymodel.h"
 
 // Qt imports
 #include <QGridLayout>

@@ -63,7 +63,7 @@ class KAction;
 class QLabel;
 class QDockWidget;
 
-class WelcomeScreen;
+class Dashboard;
 class StatisticsMainWindow;
 class ScriptManager;
 class ParleyPracticeMainWindow;
@@ -80,7 +80,7 @@ public:
     /** enum for the different components that can be displayed */
     enum Component {
         NoComponent,
-        WelcomeComponent,
+        DashboardComponent,
         EditorComponent,
         ConfigurePracticeComponent,
         PracticeComponent,
@@ -101,7 +101,7 @@ public:
     /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
     void updateTableFilter();
 
-    /** update the list of recent files in the welcome screen */
+    /** update the list of recent files in the dashboard */
     void updateRecentFilesModel();
 
     /**
@@ -153,7 +153,7 @@ public slots:
      */
     void startupTipOfDay();
 
-    void showWelcomeScreen();
+    void showDashboard();
     void showEditor();
     void showPractice();
     void showPracticeConfiguration();

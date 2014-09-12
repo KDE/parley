@@ -32,7 +32,8 @@
   */
 using namespace Editor;
 
-ContainerModel::ContainerModel(KEduVocContainer::EnumContainerType type, QObject * parent) : BasicContainerModel(type, parent)
+ContainerModel::ContainerModel(KEduVocContainer::EnumContainerType type, QObject * parent)
+    : ReadonlyContainerModel(type, parent)
 {
     m_type = type;
     m_doc = 0;

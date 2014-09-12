@@ -13,7 +13,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "containermodel.h"
+#include "readonlycontainermodel.h"
 
 #include <KLocalizedString>
 #include <KDebug>
@@ -28,20 +28,20 @@
 
 
 /** @file
-  * Implementation of BasicContainerModel.
+  * Implementation of ReadonlyContainerModel.
   * Functions to create the model from the lessons of the vocabulary document.
   */
 
 using namespace Editor;
 
-BasicContainerModel::BasicContainerModel(KEduVocContainer::EnumContainerType type, QObject * parent)
+ReadonlyContainerModel::ReadonlyContainerModel(KEduVocContainer::EnumContainerType type, QObject * parent)
     : QAbstractItemModel(parent)
     , m_type(type)
     , m_doc(0)
 {
 }
 
-void BasicContainerModel::setDocument(KEduVocDocument * doc)
+void ReadonlyContainerModel::setDocument(KEduVocDocument * doc)
 {
     m_doc = doc;
     if (m_doc) {
@@ -52,7 +52,7 @@ void BasicContainerModel::setDocument(KEduVocDocument * doc)
     reset();
 }
 
-QModelIndex BasicContainerModel::index(int row, int column, const QModelIndex &parent) const
+QModelIndex ReadonlyContainerModel::index(int row, int column, const QModelIndex &parent) const
 {
     if (!m_doc || !hasIndex(row, column, parent)) {
         return QModelIndex();
@@ -78,7 +78,7 @@ QModelIndex BasicContainerModel::index(int row, int column, const QModelIndex &p
     return createIndex(row, column, childContainer);
 }
 
-QModelIndex BasicContainerModel::index(KEduVocContainer * container) const
+QModelIndex ReadonlyContainerModel::index(KEduVocContainer * container) const
 {
     if (!container) {
         return QModelIndex();
@@ -90,7 +90,7 @@ QModelIndex BasicContainerModel::index(KEduVocContainer * container) const
     return currentIndex;
 }
 
-QModelIndex BasicContainerModel::parent(const QModelIndex &index) const
+QModelIndex ReadonlyContainerModel::parent(const QModelIndex &index) const
 {
     if (!index.isValid()) {
         return QModelIndex();
@@ -111,7 +111,7 @@ QModelIndex BasicContainerModel::parent(const QModelIndex &index) const
     return parentIndex;
 }
 
-int BasicContainerModel::rowCount(const QModelIndex &parent) const
+int ReadonlyContainerModel::rowCount(const QModelIndex &parent) const
 {
     if (parent.column() > 0) {
         return 0;
@@ -130,7 +130,7 @@ int BasicContainerModel::rowCount(const QModelIndex &parent) const
     }
 }
 
-QVariant BasicContainerModel::data(const QModelIndex & index, int role) const
+QVariant ReadonlyContainerModel::data(const QModelIndex & index, int role) const
 {
     if (!index.isValid()) {
         return QVariant();
@@ -155,7 +155,7 @@ QVariant BasicContainerModel::data(const QModelIndex & index, int role) const
     return QVariant();
 }
 
-Qt::ItemFlags BasicContainerModel::flags(const QModelIndex &index) const
+Qt::ItemFlags ReadonlyContainerModel::flags(const QModelIndex &index) const
 {
     if (index.isValid()) {
         // the root element, not editable for now
@@ -172,7 +172,7 @@ Qt::ItemFlags BasicContainerModel::flags(const QModelIndex &index) const
     return  0;
 }
 
-int BasicContainerModel::columnCount(const QModelIndex & parent) const
+int ReadonlyContainerModel::columnCount(const QModelIndex & parent) const
 {
     Q_UNUSED(parent);
     if (!m_doc) {
@@ -182,10 +182,10 @@ int BasicContainerModel::columnCount(const QModelIndex & parent) const
     return 1;
 }
 
-KEduVocContainer::EnumContainerType BasicContainerModel::containerType()
+KEduVocContainer::EnumContainerType ReadonlyContainerModel::containerType()
 {
     return m_type;
 }
 
 
-#include "basiccontainermodel.moc"
+#include "readonlycontainermodel.moc"

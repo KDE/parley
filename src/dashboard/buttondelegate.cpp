@@ -12,7 +12,7 @@
  ***************************************************************************/
 
 #include "buttondelegate.h"
-#include "welcomescreen.h"
+#include "dashboard.h"
 
 #include <KMessageBox>
 
@@ -25,8 +25,8 @@
 const int margin = 5;
 const int iconSize = 22;
 
-ButtonDelegate::ButtonDelegate(QAbstractItemView *itemView, WelcomeScreen *parent)
-    : QStyledItemDelegate(itemView), m_rightMargin(0), m_buttonHeight(0), m_welcomeScreen(parent), m_itemView(itemView)
+ButtonDelegate::ButtonDelegate(QAbstractItemView *itemView, Dashboard *parent)
+    : QStyledItemDelegate(itemView), m_rightMargin(0), m_buttonHeight(0), m_dashboard(parent), m_itemView(itemView)
 {
     m_editButton = new QToolButton(itemView->viewport());
     m_editButton->setIcon(KIcon("document-edit"));
@@ -80,14 +80,14 @@ void ButtonDelegate::slotEdit()
 {
     const QModelIndex index = hoveredIndex();
     KUrl url = index.data(Qt::UserRole).toUrl();
-    m_welcomeScreen->slotOpenUrl(url);
+    m_dashboard->slotOpenUrl(url);
 }
 
 void ButtonDelegate::slotPractice()
 {
     const QModelIndex index = hoveredIndex();
     KUrl url = index.data(Qt::UserRole).toUrl();
-    m_welcomeScreen->slotPracticeUrl(url);
+    m_dashboard->slotPracticeUrl(url);
 }
 
 QModelIndex ButtonDelegate::hoveredIndex() const

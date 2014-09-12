@@ -16,7 +16,7 @@
 #ifndef CONTAINERMODEL_H
 #define CONTAINERMODEL_H
 
-#include "basiccontainermodel.h"
+#include "readonlycontainermodel.h"
 
 #include <QAbstractItemModel>
 #include <QModelIndex>
@@ -31,7 +31,7 @@ namespace Editor
 /**
   * Model for the tree of containers (lessons, word types).
   */
-class ContainerModel : public BasicContainerModel
+class ContainerModel : public ReadonlyContainerModel
 {
     Q_OBJECT
 

@@ -37,7 +37,7 @@ class LessonView;
 class WordTypeView;
 class LeitnerView;
 class LessonModel;
-class WordTypeModel;
+class WordClassModel;
 class LeitnerModel;
 class InflectionWidget;
 class ComparisonWidget;
@@ -144,8 +144,8 @@ private:
     LessonView *m_lessonView;
     LessonModel *m_lessonModel;
 
+    WordClassModel *m_wordTypeModel;
     WordTypeView *m_wordTypeView;
-    WordTypeModel *m_wordTypeModel;
 
     LeitnerView *m_leitnerView;
     LeitnerModel *m_leitnerModel;
