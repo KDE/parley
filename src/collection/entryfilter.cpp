@@ -27,8 +27,6 @@
 #include "documentsettings.h"
 #include "testentry.h"
 
-using namespace Practice;
-
 
 // Blocking times for pregrade levels.
 //

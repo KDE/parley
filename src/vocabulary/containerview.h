@@ -21,9 +21,10 @@
 class KEduVocContainer;
 class KEduVocExpression;
 
+class ContainerModel;
+
 namespace Editor
 {
-class ContainerModel;
 
 /**
  * View for containers (KEduVocContainer).

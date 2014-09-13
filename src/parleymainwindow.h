@@ -41,17 +41,18 @@ class DefaultBackend;
 class PracticeSummaryComponent;
 }
 
+class VocabularyModel;
+class VocabularyFilter;
+class LessonModel;
+class WordClassModel;
+class LeitnerModel;
+
 namespace Editor
 {
 class VocabularyView;
-class VocabularyModel;
-class VocabularyFilter;
 class LessonView;
 class WordTypeView;
 class LeitnerView;
-class LessonModel;
-class WordTypeModel;
-class LeitnerModel;
 class ConjugationWidget;
 class SummaryWordWidget;
 class EditorWindow;

@@ -31,14 +31,17 @@
 #include <QTreeView>
 
 // KDE imports
+#include <KIcon>
+#include <KLocale>
+
+// KEduVocDocument
 #include <keduvoccontainer.h>
 #include <keduvocdocument.h>
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
-#include <KIcon>
-#include <KLocale>
 
 using namespace Editor;
+
 
 SummaryWordWidget::SummaryWordWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent)
     : QWidget(parent)

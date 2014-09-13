@@ -28,7 +28,7 @@ class LessonStatisticsView : public Editor::ContainerView
 
 public:
     LessonStatisticsView(QWidget *parent);
-    void setModel(Editor::ContainerModel *model);
+    void setModel(ContainerModel *model);
 
 private Q_SLOTS:
     void removeGrades();

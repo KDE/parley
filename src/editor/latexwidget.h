@@ -28,9 +28,10 @@ namespace Practice
 class LatexRenderer;
 }
 
+class VocabularyFilter;
+
 namespace Editor
 {
-class VocabularyFilter;
 
 class LatexWidget : public QWidget, public Ui::LatexWidget
 {
