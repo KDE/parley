@@ -202,7 +202,7 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>Below the language selection you choose the practice mode. <guilabel>Practice Mode</guilabel> determines how the practice will ask you questions.
 </para>
-<para>The <guilabel>Practice Direction</guilabel> drop down list can be used to select the query that will be shown during the practice. The possible choices are the known phrase (<guimenuitem>Known to Learning</guimenuitem>), the learning phrase (<guimenuitem>Learning to Known</guimenuitem>), or the the mix of the phrases (<guimenuitem>Mixed Directions</guimenuitem>).
+<para>The <guilabel>Practice Direction</guilabel> drop down list can be used to select the query that will be shown during the practice. The possible choices are the known phrase (<guimenuitem>Known to Learning</guimenuitem>), the learning phrase (<guimenuitem>Learning to Known</guimenuitem>), or the mix of the phrases (<guimenuitem>Mixed Directions</guimenuitem>).
 </para>
 <para>In the big part on the right, you see the units of the vocabulary collection. You can select which units you want to practice with the check box in front of the unit name. The number of words that each unit contains is shown next to its name. On the right of the name you see your current progress for the unit.
 </para>
