@@ -1,5 +1,7 @@
 include_directories( ${parley_INCLUDE_DIRS}
-		     ${CMAKE_CURRENT_SOURCE_DIR}/collection )
+		     ${CMAKE_CURRENT_SOURCE_DIR}/collection
+		     ${CMAKE_CURRENT_SOURCE_DIR}/editor  # FIXME: Remove when moving the rest of the files in vocabulary/
+)
 
 # installation of kconfig files .kcfg containing app settings
 add_subdirectory( settings )
@@ -24,6 +26,7 @@ set(parley_LIB_SRCS
     configure-practice/thresholdoptions.cpp
     configure-practice/specificpracticeoptions.cpp
     editor/editor.cpp
+    editor/vocabularycolumnsdialog.cpp
     editor/audiowidget.cpp
     editor/browserwidget.cpp
     editor/comparisonwidget.cpp
@@ -99,7 +102,6 @@ set(parley_LIB_SRCS
     vocabulary/containerview.cpp
     vocabulary/lessonview.cpp
     vocabulary/wordtypeview.cpp
-    vocabulary/vocabularycolumnsdialog.cpp
     dashboard/dashboard.cpp
     dashboard/buttondelegate.cpp
     dashboard/gradereferencewidget.cpp
