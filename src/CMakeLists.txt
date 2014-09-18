@@ -12,14 +12,20 @@ set(parley_LIB_SRCS
     parleymainwindow.cpp
     collection/testentry.cpp
     collection/entryfilter.cpp
+    collection/vocabularymimedata.cpp
+    collection/containermimedata.cpp
     collection/readonlycontainermodel.cpp
     collection/containermodel.cpp
     collection/lessonmodel.cpp
     collection/vocabularymodel.cpp
     collection/vocabularyfilter.cpp
     collection/wordclassmodel.cpp
-    collection/vocabularymimedata.cpp
-    collection/containermimedata.cpp
+    collection/vocabularyview.cpp
+    collection/vocabularyheaderview.cpp
+    collection/vocabularydelegate.cpp
+    collection/containerview.cpp
+    collection/lessonview.cpp
+    collection/wordtypeview.cpp
     configure-practice/configurepracticedialog.cpp
     configure-practice/generalpracticeoptions.cpp
     configure-practice/blockoptions.cpp
@@ -96,12 +102,6 @@ set(parley_LIB_SRCS
     statistics/statisticsmodel.cpp
     statistics/statisticsmainwindow.cpp
     statistics/statisticslegendwidget.cpp
-    vocabulary/vocabularyview.cpp
-    vocabulary/vocabularyheaderview.cpp
-    vocabulary/vocabularydelegate.cpp
-    vocabulary/containerview.cpp
-    vocabulary/lessonview.cpp
-    vocabulary/wordtypeview.cpp
     dashboard/dashboard.cpp
     dashboard/buttondelegate.cpp
     dashboard/gradereferencewidget.cpp

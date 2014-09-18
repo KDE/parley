@@ -26,10 +26,10 @@
 #include "wordclassmodel.h"
 
 // Views
-#include "vocabulary/vocabularyview.h"
-#include "vocabulary/containerview.h"
-#include "vocabulary/lessonview.h"
-#include "vocabulary/wordtypeview.h"
+#include "vocabularyview.h"
+#include "containerview.h"
+#include "lessonview.h"
+#include "wordtypeview.h"
 
 #include "multiplechoicewidget.h"
 #include "comparisonwidget.h"

@@ -21,7 +21,7 @@
 #include "version.h"
 #include "prefs.h"
 
-#include "vocabulary/vocabularyview.h"
+#include "vocabularyview.h"
 #include "settings/documentproperties.h"
 #include "dashboard/dashboard.h"
 

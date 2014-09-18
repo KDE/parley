@@ -16,7 +16,7 @@
 #ifndef LESSONSTATISTICSVIEW_H
 #define LESSONSTATISTICSVIEW_H
 
-#include "vocabulary/containerview.h"
+#include "containerview.h"
 
 /**
  * View for the lesson list.
