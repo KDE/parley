@@ -152,11 +152,11 @@ kde4_add_kcfg_files(parley_LIB_SRCS
 # to transform the document xml to html or other
 if(HAVE_LIBXSLT)
     set(parley_LIB_SRCS ${parley_LIB_SRCS}
-        export/exportdialog.cpp
+        exportdialog.cpp
     )
 
     kde4_add_ui_files(parley_LIB_SRCS
-        export/exportdialog.ui
+        exportdialog.ui
     )
 endif(HAVE_LIBXSLT)
 #### End XSLT Support ####

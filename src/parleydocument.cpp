@@ -45,7 +45,7 @@
 #include <QtGui/QPrintDialog>
 
 #ifdef HAVE_LIBXSLT
-#include "export/exportdialog.h"
+#include "exportdialog.h"
 #include <libxml/parser.h>
 #include <libxml/tree.h>
 #include <libxslt/xslt.h>
