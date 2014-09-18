@@ -25,7 +25,6 @@ set(parley_LIB_SRCS
     collection/vocabularydelegate.cpp
     collection/containerview.cpp
     collection/lessonview.cpp
-    collection/wordtypeview.cpp
     configure-practice/configurepracticedialog.cpp
     configure-practice/generalpracticeoptions.cpp
     configure-practice/blockoptions.cpp
@@ -33,6 +32,7 @@ set(parley_LIB_SRCS
     configure-practice/specificpracticeoptions.cpp
     editor/editor.cpp
     editor/vocabularycolumnsdialog.cpp
+    editor/wordtypeview.cpp
     editor/audiowidget.cpp
     editor/browserwidget.cpp
     editor/comparisonwidget.cpp
