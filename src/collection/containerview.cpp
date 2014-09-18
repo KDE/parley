@@ -13,13 +13,15 @@
  *                                                                         *
  ***************************************************************************/
 
+// Own
 #include "containerview.h"
 
+// Qt
 #include <QHeaderView>
 
+// Parley/collection
 #include "containermodel.h"
 
-using namespace Editor;
 
 ContainerView::ContainerView(QWidget *parent) : QTreeView(parent)
 {

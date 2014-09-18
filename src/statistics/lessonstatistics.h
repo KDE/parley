@@ -22,7 +22,7 @@
  * View for the lesson list.
  * @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
  */
-class LessonStatisticsView : public Editor::ContainerView
+class LessonStatisticsView : public ContainerView
 {
     Q_OBJECT
 

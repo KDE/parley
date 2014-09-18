@@ -24,6 +24,7 @@
 #include <KActionCollection>
 
 #include <keduvocdocument.h>
+
 #include "configure-practice/configurepracticedialog.h"
 #include "lessonstatistics.h"
 #include "statisticsmodel.h"
@@ -37,7 +38,6 @@
 #include "prefs.h"
 #include "conjugationoptions.h"
 
-using namespace Editor;
 
 StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindow* parent)
     : KXmlGuiWindow(parent)

@@ -148,7 +148,7 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
 
 void EditorWindow::initDockWidgets()
 {
-// Lesson dock
+    // Lesson dockwidget
     QDockWidget *lessonDockWidget = new QDockWidget(i18n("Lessons"), this);
     lessonDockWidget->setObjectName("LessonDock");
     m_lessonView = new LessonView(this);
@@ -173,7 +173,7 @@ void EditorWindow::initDockWidgets()
             m_lessonView, SLOT(setTranslation(KEduVocExpression*, int)));
 
 
-// Word types dock
+    // Word classes dock widget
     QDockWidget* wordTypeDockWidget = new QDockWidget(i18n("Word Types"), this);
     wordTypeDockWidget->setObjectName("WordTypeDock");
     m_wordTypeView = new WordTypeView(this);

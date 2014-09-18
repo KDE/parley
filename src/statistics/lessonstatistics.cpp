@@ -36,9 +36,6 @@
 #include "prefs.h"
 
 
-using namespace Editor;
-
-
 class GradeDelegate: public QItemDelegate
 {
 public:

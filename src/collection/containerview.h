@@ -23,8 +23,6 @@ class KEduVocExpression;
 
 class ContainerModel;
 
-namespace Editor
-{
 
 /**
  * View for containers (KEduVocContainer).
@@ -57,6 +55,5 @@ private:
     }
 };
 
-}
 
 #endif
