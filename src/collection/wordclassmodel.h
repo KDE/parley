@@ -18,8 +18,6 @@
 
 #include "containermodel.h"
 
-namespace Editor
-{
 /**
   * Model for the tree of word types.
   */
@@ -37,6 +35,6 @@ public:
 protected:
     KEduVocContainer * rootContainer() const;
 };
-}
+
 
 #endif

@@ -1,5 +1,7 @@
 include_directories( ${parley_INCLUDE_DIRS}
-		     ${CMAKE_CURRENT_SOURCE_DIR}/collection )
+		     ${CMAKE_CURRENT_SOURCE_DIR}/collection
+		     ${CMAKE_CURRENT_SOURCE_DIR}/editor  # FIXME: Remove when moving the rest of the files in vocabulary/
+)
 
 # installation of kconfig files .kcfg containing app settings
 add_subdirectory( settings )
@@ -10,19 +12,27 @@ set(parley_LIB_SRCS
     parleymainwindow.cpp
     collection/testentry.cpp
     collection/entryfilter.cpp
+    collection/vocabularymimedata.cpp
+    collection/containermimedata.cpp
     collection/readonlycontainermodel.cpp
     collection/containermodel.cpp
     collection/lessonmodel.cpp
     collection/vocabularymodel.cpp
+    collection/vocabularyfilter.cpp
     collection/wordclassmodel.cpp
-    collection/vocabularymimedata.cpp
-    collection/containermimedata.cpp
+    collection/containerview.cpp
     configure-practice/configurepracticedialog.cpp
     configure-practice/generalpracticeoptions.cpp
     configure-practice/blockoptions.cpp
     configure-practice/thresholdoptions.cpp
     configure-practice/specificpracticeoptions.cpp
     editor/editor.cpp
+    editor/vocabularycolumnsdialog.cpp
+    editor/lessonview.cpp
+    editor/vocabularydelegate.cpp
+    editor/vocabularyheaderview.cpp
+    editor/vocabularyview.cpp
+    editor/wordtypeview.cpp
     editor/audiowidget.cpp
     editor/browserwidget.cpp
     editor/comparisonwidget.cpp
@@ -92,14 +102,6 @@ set(parley_LIB_SRCS
     statistics/statisticsmodel.cpp
     statistics/statisticsmainwindow.cpp
     statistics/statisticslegendwidget.cpp
-    vocabulary/vocabularyview.cpp
-    vocabulary/vocabularyheaderview.cpp
-    vocabulary/vocabularydelegate.cpp
-    vocabulary/vocabularyfilter.cpp
-    vocabulary/containerview.cpp
-    vocabulary/lessonview.cpp
-    vocabulary/wordtypeview.cpp
-    vocabulary/vocabularycolumnsdialog.cpp
     dashboard/dashboard.cpp
     dashboard/buttondelegate.cpp
     dashboard/gradereferencewidget.cpp
@@ -153,11 +155,11 @@ qt4_add_dbus_adaptor(parley_LIB_SRCS editor/org.kde.parley.xml
 # to transform the document xml to html or other
 if(HAVE_LIBXSLT)
     set(parley_LIB_SRCS ${parley_LIB_SRCS}
-        export/exportdialog.cpp
+        exportdialog.cpp
     )
 
     kde4_add_ui_files(parley_LIB_SRCS
-        export/exportdialog.ui
+        exportdialog.ui
     )
 endif(HAVE_LIBXSLT)
 #### End XSLT Support ####

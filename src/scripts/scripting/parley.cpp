@@ -17,7 +17,7 @@
 
 #include "editor/editor.h"
 #include "vocabularymodel.h"
-#include "../../vocabulary/vocabularyview.h"
+#include "vocabularyview.h"
 
 #include "../scriptmanager.h"
 #include "../translator.h"

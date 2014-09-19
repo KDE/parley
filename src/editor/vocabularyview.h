@@ -19,22 +19,28 @@
 
 #include <sonnet/dialog.h>
 
+// Qt
 #include <QTableView>
 #include <QMap>
 
-class KEduVocExpression;
-class KEduVocDocument;
-
+// KDE
 class KActionMenu;
 class KAction;
 class KUrl;
 
+// KEduVocDocument
+class KEduVocExpression;
+class KEduVocDocument;
+
+// parley / collection
+class VocabularyFilter;
+
 class Translator;
+
 
 namespace Editor
 {
 class EditorWindow;
-class VocabularyFilter;
 class VocabularyDelegate;
 
 class VocabularyView : public QTableView
@@ -101,10 +107,11 @@ private:
     void selectIndex(const QModelIndex &index);
     // trap enter presses at the end of the document to add a new entry instead of moving to the first cell
     bool eventFilter(QObject *obj, QEvent *event);
+#if 0
     virtual void setModel(QAbstractItemModel *model) {
         Q_UNUSED(model)
     }
-
+#endif
     KAction* m_appendEntryAction;
     KAction* m_deleteEntriesAction;
     KAction* m_copyAction;

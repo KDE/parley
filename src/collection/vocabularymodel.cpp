@@ -30,7 +30,6 @@
 #include <KMessageBox>
 #include <QPixmap>
 
-using namespace Editor;
 
 VocabularyModel::VocabularyModel(QObject *parent)
     : QAbstractTableModel(parent),

@@ -28,16 +28,18 @@ class KLineEdit;
 class KActionMenu;
 class ScriptManager;
 
+// Models around the Collection / KEduVocDocument
+class LessonModel;
+class VocabularyModel;
+class VocabularyFilter;
+class WordClassModel;
+
 namespace Editor
 {
 class VocabularyView;
-class VocabularyModel;
-class VocabularyFilter;
 class LessonView;
 class WordTypeView;
 class LeitnerView;
-class LessonModel;
-class WordClassModel;
 class LeitnerModel;
 class InflectionWidget;
 class ComparisonWidget;

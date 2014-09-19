@@ -32,7 +32,6 @@
   * Functions to create the model from the lessons of the vocabulary document.
   */
 
-using namespace Editor;
 
 ReadonlyContainerModel::ReadonlyContainerModel(KEduVocContainer::EnumContainerType type, QObject * parent)
     : QAbstractItemModel(parent)

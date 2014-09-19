@@ -29,8 +29,6 @@
   * ReadonlyContainerModel is a read only tree model.
   * @see ContainerModel for its subclass that includes more options.
   */
-namespace Editor
-{
 
 class ReadonlyContainerModel : public QAbstractItemModel
 {
@@ -64,6 +62,5 @@ protected:
     KEduVocDocument *m_doc;
 };
 
-}
 
 #endif

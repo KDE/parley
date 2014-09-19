@@ -27,8 +27,6 @@ class KEduVocDocument;
 class KDialog;
 class TestEntry;
 
-namespace Practice
-{
 
 class EntryFilter
     : public QObject
@@ -108,7 +106,7 @@ private:
     KDialog *m_dialog;
     QSet<KEduVocExpression*> m_currentSelection[2];
 };
-}
+
 
 #endif
 

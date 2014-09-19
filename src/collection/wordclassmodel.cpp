@@ -20,8 +20,6 @@
 #include <keduvocwordtype.h>
 
 
-using namespace Editor;
-
 WordClassModel::WordClassModel(QObject * parent)
     : ContainerModel(KEduVocContainer::WordType, parent)
 {

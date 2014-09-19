@@ -17,7 +17,6 @@
 
 #include "vocabularymodel.h"
 
-using namespace Editor;
 
 VocabularyFilter::VocabularyFilter(QObject *parent)
     : QSortFilterProxyModel(parent), m_model(0)

@@ -19,7 +19,6 @@
 #include <keduvoctranslation.h>
 #include <keduvocwordtype.h>
 
-using namespace Editor;
 
 void VocabularyMimeData::setTranslations(QList<KEduVocTranslation *> translations)
 {

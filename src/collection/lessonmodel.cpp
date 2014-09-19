@@ -25,7 +25,6 @@
   * Functions to create the model from the lessons of the vocabulary document.
   */
 
-using namespace Editor;
 
 LessonModel::LessonModel(QObject * parent)
     : ContainerModel(KEduVocContainer::Lesson, parent)

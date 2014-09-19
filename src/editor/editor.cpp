@@ -22,14 +22,14 @@
 #include "containermodel.h"
 #include "lessonmodel.h"
 #include "vocabularymodel.h"
+#include "vocabularyfilter.h"
 #include "wordclassmodel.h"
 
 // Views
-#include "vocabulary/vocabularyview.h"
-#include "vocabulary/vocabularyfilter.h"
-#include "vocabulary/containerview.h"
-#include "vocabulary/lessonview.h"
-#include "vocabulary/wordtypeview.h"
+#include "vocabularyview.h"
+#include "containerview.h"
+#include "lessonview.h"
+#include "wordtypeview.h"
 
 #include "multiplechoicewidget.h"
 #include "comparisonwidget.h"
@@ -150,7 +150,7 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
 
 void EditorWindow::initDockWidgets()
 {
-// Lesson dock
+    // Lesson dockwidget
     QDockWidget *lessonDockWidget = new QDockWidget(i18n("Lessons"), this);
     lessonDockWidget->setObjectName("LessonDock");
     m_lessonView = new LessonView(this);
@@ -175,7 +175,7 @@ void EditorWindow::initDockWidgets()
             m_lessonView, SLOT(setTranslation(KEduVocExpression*, int)));
 
 
-// Word types dock
+    // Word classes dock widget
     QDockWidget* wordTypeDockWidget = new QDockWidget(i18n("Word Types"), this);
     wordTypeDockWidget->setObjectName("WordTypeDock");
     m_wordTypeView = new WordTypeView(this);
