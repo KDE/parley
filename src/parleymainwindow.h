@@ -34,39 +34,9 @@
 
 #include <QPointer>
 
-namespace Practice
-{
-class GuiFrontend;
-class DefaultBackend;
-class PracticeSummaryComponent;
-}
-
-namespace Editor
-{
-class VocabularyView;
-class VocabularyModel;
-class VocabularyFilter;
-class LessonView;
-class WordTypeView;
-class LeitnerView;
-class LessonModel;
-class WordTypeModel;
-class LeitnerModel;
-class ConjugationWidget;
-class SummaryWordWidget;
-class EditorWindow;
-}
 
 class KRecentFilesAction;
-class KActionMenu;
-class KAction;
-class QLabel;
-class QDockWidget;
 
-class Dashboard;
-class StatisticsMainWindow;
-class ScriptManager;
-class ParleyPracticeMainWindow;
 
 class ParleyMainWindow : public KXmlGuiWindow
 {

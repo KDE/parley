@@ -13,7 +13,7 @@
 #include "latexwidget.h"
 
 #include "vocabularymodel.h"
-#include "vocabulary/vocabularyfilter.h"
+#include "vocabularyfilter.h"
 #include "practice/latexrenderer.h"
 
 #include <QDataWidgetMapper>

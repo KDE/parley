@@ -21,7 +21,7 @@
 #include "version.h"
 #include "prefs.h"
 
-#include "vocabulary/vocabularyview.h"
+#include "vocabularyview.h"
 #include "settings/documentproperties.h"
 #include "dashboard/dashboard.h"
 
@@ -45,7 +45,7 @@
 #include <QtGui/QPrintDialog>
 
 #ifdef HAVE_LIBXSLT
-#include "export/exportdialog.h"
+#include "exportdialog.h"
 #include <libxml/parser.h>
 #include <libxml/tree.h>
 #include <libxslt/xslt.h>

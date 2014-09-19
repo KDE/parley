@@ -18,7 +18,6 @@
 
 #include "containermodel.h"
 
-using namespace Editor;
 
 class StatisticsModel : public ContainerModel
 {

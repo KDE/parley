@@ -30,7 +30,6 @@
   * Implementation of ContainerModel.
   * Functions to create the model from the lessons of the vocabulary document.
   */
-using namespace Editor;
 
 ContainerModel::ContainerModel(KEduVocContainer::EnumContainerType type, QObject * parent)
     : ReadonlyContainerModel(type, parent)

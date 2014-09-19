@@ -36,9 +36,6 @@
 #include "prefs.h"
 
 
-using namespace Editor;
-
-
 class GradeDelegate: public QItemDelegate
 {
 public:
@@ -101,7 +98,7 @@ LessonStatisticsView::LessonStatisticsView(QWidget *parent)
     addAction(removeGradesChildrenAction);
 }
 
-void LessonStatisticsView::setModel(Editor::ContainerModel *model)
+void LessonStatisticsView::setModel(ContainerModel *model)
 {
     ContainerView::setModel(model);
 

@@ -28,10 +28,11 @@ class KEduVocContainer;
 class KEduVocDocument;
 class KEduVocExpression;
 
-namespace Editor
-{
 class VocabularyFilter;
 class WordClassModel;
+
+namespace Editor
+{
 
 /**
 * Represents the overview of a KEduVocExpression

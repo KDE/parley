@@ -15,7 +15,6 @@
 
 #include "containermimedata.h"
 
-using namespace Editor;
 
 void ContainerMimeData::addContainer(KEduVocContainer * container)
 {

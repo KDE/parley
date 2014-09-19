@@ -16,19 +16,19 @@
 #ifndef LESSONSTATISTICSVIEW_H
 #define LESSONSTATISTICSVIEW_H
 
-#include "vocabulary/containerview.h"
+#include "containerview.h"
 
 /**
  * View for the lesson list.
  * @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
  */
-class LessonStatisticsView : public Editor::ContainerView
+class LessonStatisticsView : public ContainerView
 {
     Q_OBJECT
 
 public:
     LessonStatisticsView(QWidget *parent);
-    void setModel(Editor::ContainerModel *model);
+    void setModel(ContainerModel *model);
 
 private Q_SLOTS:
     void removeGrades();

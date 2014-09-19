@@ -26,8 +26,7 @@
 #include <keduvocdocument.h>
 #include <keduvoclesson.h>
 
-namespace Editor
-{
+
 /**
   * Model for the tree of containers (lessons, word types).
   */
@@ -75,6 +74,5 @@ signals:
     void documentModified();
 };
 
-}
 
 #endif
