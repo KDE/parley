@@ -80,11 +80,12 @@ Before the 4.15 freeze (features).  These are picked from the ones below.
        - Create session overview pane					----
 
  * Wishes from bugzilla
-    + Comments in practise mode
+    + Comments in practise mode						----
       https://bugs.kde.org/show_bug.cgi?id=175241
       https://bugs.kde.org/show_bug.cgi?id=273040
       https://bugs.kde.org/show_bug.cgi?id=238893
 
+ * Merge Amarvir's GSoC							----
 
 ================================================================
 Release work for 4.15
