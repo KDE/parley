@@ -64,6 +64,7 @@
     <p xml:lang="zh-TW">Parley 是一套字彙訓練程式。它能協助您在學習外語時記憶字彙。它支援多種語言功能，也可以用於其他領域的訓練。字彙可以從「取得新禮物」中下載，或是自行透過內建編輯器建立。</p>
     <p>Training Modes:</p>
     <p xml:lang="ca">Modes d'entrenament:</p>
+    <p xml:lang="de">Übungsmodi:</p>
     <p xml:lang="en-GB">Training Modes:</p>
     <p xml:lang="es">Modos de entrenamiento:</p>
     <p xml:lang="et">Harjutamisviisid:</p>
@@ -103,6 +104,7 @@
       <li xml:lang="zh-TW">閃卡</li>
       <li>Mixed Letters (order the letters of a word)</li>
       <li xml:lang="ca">Lletres barrejades (ordre de les lletres d'una paraula)</li>
+      <li xml:lang="de">Gemischte Buchstaben (Buchstaben in der richtigen Reihenfolge anordnen)</li>
       <li xml:lang="en-GB">Mixed Letters (order the letters of a word)</li>
       <li xml:lang="es">Mezcla de letras (ordenar las letras de una palabra)</li>
       <li xml:lang="et">Segatud tähed (tähtede järjestamine nagu anagrammis)</li>
