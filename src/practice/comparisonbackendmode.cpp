@@ -128,7 +128,3 @@ void ComparisonBackendMode::updateGrades()
     updateGrade(super, superlativeCorrect, m_current->statisticBadCount() == 0);
     translation->setSuperlativeForm(super);
 }
-
-
-
-#include "comparisonbackendmode.moc"

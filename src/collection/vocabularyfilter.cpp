@@ -76,6 +76,3 @@ KEduVocLesson * VocabularyFilter::lesson()
     }
     return 0;
 }
-
-#include "vocabularyfilter.moc"
-

@@ -22,12 +22,13 @@
 #include <QTextCursor>
 #include <QTextTable>
 #include <KMessageBox>
+#include <KLocalizedString>
 #include <keduvocexpression.h>
 #include <KConfigGroup>
 #include <KActionCollection>
 #include <KColorScheme>
 #include <KToolBar>
-#include <KFileDialog>
+#include <QFileDialog>
 
 using namespace Practice;
 
@@ -129,13 +130,13 @@ void PracticeSummaryComponent::setupDetailsTable()
         itemAttempts->setFlags(flags);
 
         if (entry->correctAtFirstAttempt()) {
-            itemUserAnswer->setIcon(KIcon("dialog-ok-apply"));
+            itemUserAnswer->setIcon(QIcon::fromTheme("dialog-ok-apply"));
         } else if (entry->statisticGoodCount() > 0) {
-            itemUserAnswer->setIcon(KIcon("task-attempt"));
+            itemUserAnswer->setIcon(QIcon::fromTheme("task-attempt"));
         } else if (entry->statisticCount() > 0) {
-            itemUserAnswer->setIcon(KIcon("dialog-error"));
+            itemUserAnswer->setIcon(QIcon::fromTheme("dialog-error"));
         } else {
-            itemUserAnswer->setIcon(KIcon("task-attempt"));
+            itemUserAnswer->setIcon(QIcon::fromTheme("task-attempt"));
         }
 
         tableWidget->setItem(i, 0, itemAttempts);
@@ -153,7 +154,9 @@ void PracticeSummaryComponent::setupDetailsTable()
 void PracticeSummaryComponent::exportResults()
 {
     QString filter = "*.html|" + i18n("HTML Files") + "\n*.odt|" + i18n("OpenDocument text files");
-    QString fileName = KFileDialog::getSaveFileName(KUrl("kfiledialog:///practice_export"), filter);
+    QString caption;
+    QString startingdir("kfiledialog:///practice_export");
+    QString fileName = QFileDialog::getSaveFileName(0, caption, startingdir , filter);
 
     if (fileName.isEmpty()) {
         return;
@@ -196,6 +199,3 @@ void PracticeSummaryComponent::exportResults()
         return;
     }
 }
-
-#include "practicesummarycomponent.moc"
-

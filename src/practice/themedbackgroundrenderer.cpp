@@ -14,8 +14,8 @@
 #include "themedbackgroundrenderer.h"
 
 #include "settings/kgametheme/kgametheme.h"
-#include <kdebug.h>
-#include <kstandarddirs.h>
+#include <QDebug>
+#include <QStandardPaths>
 #include <unistd.h>
 
 #include <QtConcurrentRun>
@@ -30,7 +30,7 @@ ThemedBackgroundRenderer::ThemedBackgroundRenderer(QObject* parent, const QStrin
     : QObject(parent), m_haveCache(true), m_queuedRequest(false), m_isFastScaledRender(true)
 {
     m_theme = new KGameTheme();
-    m_cache.setSaveFilename(KStandardDirs::locateLocal("appdata", cacheFilename));
+    m_cache.setSaveFilename(QStandardPaths::writableLocation(QStandardPaths::DataLocation) + '/' + cacheFilename);
     m_timer.setSingleShot(true);
     m_timer.setInterval(1000);
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(updateBackgroundTimeout()));
@@ -40,7 +40,7 @@ ThemedBackgroundRenderer::ThemedBackgroundRenderer(QObject* parent, const QStrin
 ThemedBackgroundRenderer::~ThemedBackgroundRenderer()
 {
     if (m_future.isRunning()) {
-        kDebug() << "Waiting for rendering to finish";
+        qDebug() << "Waiting for rendering to finish";
         m_future.waitForFinished();
     }
     m_cache.saveCache();
@@ -50,7 +50,7 @@ ThemedBackgroundRenderer::~ThemedBackgroundRenderer()
 void ThemedBackgroundRenderer::setTheme(const QString &theme)
 {
     if (!m_theme->load(theme)) {
-        kDebug() << "could not load theme" << theme;
+        qDebug() << "could not load theme" << theme;
     }
     m_renderer.load(m_theme->graphics());
     m_cache.setFilenames(QStringList(m_theme->graphics()) << m_theme->path());
@@ -144,7 +144,7 @@ void ThemedBackgroundRenderer::updateBackgroundTimeout()
 void ThemedBackgroundRenderer::renderingFinished()
 {
     if (!m_future.resultCount()) {
-        //kDebug() << "there is no image!";
+        //qDebug() << "there is no image!";
         return;
     }
     emit backgroundChanged(QPixmap::fromImage(m_future.result()));
@@ -225,7 +225,7 @@ QImage ThemedBackgroundRenderer::renderBackground(bool fastScale)
         renderRect(rect.first, rect.second, &p, fastScale);
     }
 
-    //kDebug() << "image rendered, time:" << t.elapsed();
+    //qDebug() << "image rendered, time:" << t.elapsed();
     return image;
 }
 
@@ -283,23 +283,23 @@ void ThemedBackgroundRenderer::renderItem(const QString& idBase, const QString& 
     if (itemRectF.isNull() || rect.isNull())
         return;
 
-    //kDebug() << "draw item" << id;
-//    kDebug() << "original item rect:" << itemRect << m_renderer.boundsOnElement(id);
+    //qDebug() << "draw item" << id;
+//    qDebug() << "original item rect:" << itemRect << m_renderer.boundsOnElement(id);
     QRect itemRect = scaleRect(itemRectF, rect, scaleBase, aspectRatio);
-//    kDebug() << "scaled" << itemRect;
+//    qDebug() << "scaled" << itemRect;
     itemRect = alignRect(itemRect, rect, edge, align, inside);
-//    kDebug() << "aligned" << itemRect;
+//    qDebug() << "aligned" << itemRect;
 
     QImage image;
     if (m_cache.imageSize(id) == itemRect.size()) {
-        // kDebug() << "found in cache:" << id;
+        // qDebug() << "found in cache:" << id;
         image = m_cache.getImage(id);
     } else if (fastScale && !m_cache.imageSize(id).isEmpty()) {
-        // kDebug() << "FAST SCALE for:" << id;
+        // qDebug() << "FAST SCALE for:" << id;
         image = m_cache.getImage(id).scaled(itemRect.size(), Qt::IgnoreAspectRatio, Qt::FastTransformation);
         m_isFastScaledRender = true;
     } else {
-        // kDebug() << "NOT IN CACHE, render svg:" << id;
+        // qDebug() << "NOT IN CACHE, render svg:" << id;
         image = QImage(itemRect.size(), QImage::Format_ARGB32_Premultiplied);
         image.fill(QColor(Qt::transparent).rgba());
         QPainter painter(&image);
@@ -342,7 +342,7 @@ QRect ThemedBackgroundRenderer::scaleRect(QRectF itemRect, const QRect& baseRect
             itemRect.setHeight(itemRect.height()*horizontalFactor);
             return itemRect.toRect();
         case Qt::KeepAspectRatioByExpanding:
-            kWarning() << "KeepAspectRatioByExpanding only works for the center";
+            qWarning() << "KeepAspectRatioByExpanding only works for the center";
             return itemRect.toRect();
         }
         break;
@@ -357,7 +357,7 @@ QRect ThemedBackgroundRenderer::scaleRect(QRectF itemRect, const QRect& baseRect
             itemRect.setWidth(itemRect.width()*verticalFactor);
             return itemRect.toRect();
         case Qt::KeepAspectRatioByExpanding:
-            kWarning() << "KeepAspectRatioByExpanding only works for the center";
+            qWarning() << "KeepAspectRatioByExpanding only works for the center";
             return itemRect.toRect();
         }
         break;
@@ -392,7 +392,7 @@ QRect ThemedBackgroundRenderer::scaleRect(QRectF itemRect, const QRect& baseRect
         }
         break;
     }
-    // kDebug() << "unhandled scaling option";
+    // qDebug() << "unhandled scaling option";
     return itemRect.toRect();
 }
 
@@ -474,8 +474,6 @@ QRect ThemedBackgroundRenderer::alignRect(QRect itemRect, const QRect &baseRect,
         itemRect.moveTo(x, y);
         return itemRect;
     }
-    // kDebug() << "unhandled alignment option";
+    // qDebug() << "unhandled alignment option";
     return itemRect;
 }
-
-#include "themedbackgroundrenderer.moc"

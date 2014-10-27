@@ -18,35 +18,43 @@ Copyright 2009 Frederik Gladhorn <gladhorn@kde.org>
 #include <KStandardAction>
 #include <KLocalizedString>
 #include <KActionCollection>
-#include <knewstuff3/knewstuffaction.h>
+#include <KNewStuff3/kns3/knewstuffaction.h>
 #include <KToggleAction>
+
+#include <QIcon>
 
 namespace ParleyActions
 {
 namespace Private
 {
-KAction* createCustomAction(const QObject* recvr, const char* slot, QObject* parent,
+QAction* createCustomAction(const QObject* recvr, const char* slot, QObject* parent,
                             const QString& name,
                             const QString& text,
                             const QString& helpText,
                             const QString& iconName = QString(),
                             bool toggle = false)
 {
-    // Create KAction or KToggleAction
-    KAction* pAction;
+    // Create QAction or KToggleAction
+    QAction* pAction;
     if (toggle) {
         pAction = new KToggleAction(parent);
     } else {
-        pAction = new KAction(parent);
+        pAction = new QAction(parent);
     }
     // Set ObjectName, Text and HelpText
     pAction->setObjectName(name);
     pAction->setText(text);
-    pAction->setHelpText(helpText);
+    pAction->setToolTip(helpText);
 
     // Icon
     if (!iconName.isEmpty()) {
-        pAction->setIcon(KIcon(iconName));
+        QIcon foundIcon ( QIcon::fromTheme(iconName) );
+        if ( foundIcon.isNull() ) {
+            //Note: If you are using an alternative /usr/share/icons directory you need to
+            //copy the /usr/share/icons/<theme>/index.theme into you alternate directory
+            qDebug() << "Missing QIcon "<< iconName;
+        }
+        pAction->setIcon(foundIcon);
     }
 
     // Connect the action
@@ -61,18 +69,20 @@ KAction* createCustomAction(const QObject* recvr, const char* slot, QObject* par
 }
 }
 
-KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char* slot, QObject* parent)
+QAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char* slot, KActionCollection* parent)
 {
-    KAction* pAction = 0;
+    QAction* pAction = 0;
 
     switch (id) {
     case FileNew:
         pAction = KStandardAction::openNew(recvr, slot, parent);
-        pAction->setHelpText(i18n("Creates a new vocabulary collection"));
+        pAction->setToolTip(i18n("Creates a new vocabulary collection"));
+        parent->setDefaultShortcut(pAction, QKeySequence::New);
         break;
     case FileOpen:
         pAction = KStandardAction::open(recvr, slot, parent);
-        pAction->setHelpText(i18n("Opens an existing vocabulary collection"));
+        pAction->setToolTip(i18n("Opens an existing vocabulary collection"));
+        parent->setDefaultShortcut(pAction, QKeySequence::Open);
         break;
     case FileOpenDownloaded:
         pAction = Private::createCustomAction(recvr, slot, parent,
@@ -81,12 +91,14 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
         break;
     case FileSave:
         pAction = KStandardAction::save(recvr, slot, parent);
-        pAction->setHelpText(i18n("Save the active vocabulary collection"));
+        pAction->setToolTip(i18n("Save the active vocabulary collection"));
+        parent->setDefaultShortcut(pAction, QKeySequence::Save);
         break;
     case FileSaveAs:
         pAction = KStandardAction::saveAs(recvr, slot, parent);
-        pAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
-        pAction->setHelpText(i18n("Save the active vocabulary collection with a different name"));
+        pAction->setShortcut(QKeySequence::SaveAs);
+        parent->setDefaultShortcut(pAction, QKeySequence::SaveAs);
+        pAction->setToolTip(i18n("Save the active vocabulary collection with a different name"));
         break;
     case FileExport:
         pAction = Private::createCustomAction(recvr, slot, parent,
@@ -105,11 +117,13 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
         break;
     case FileQuit:
         pAction = KStandardAction::quit(recvr, slot, parent);
-        pAction->setHelpText(i18n("Quit Parley"));
+        parent->setDefaultShortcut(pAction, QKeySequence::Quit);
+        pAction->setToolTip(i18n("Quit Parley"));
         break;
     case Preferences:
         pAction = KStandardAction::preferences(recvr, slot, parent);
-        pAction->setHelpText(i18n("Show the configuration dialog"));
+        parent->setDefaultShortcut(pAction, QKeySequence::Preferences);
+        pAction->setToolTip(i18n("Show the configuration dialog"));
         break;
     case LanguagesProperties:
         pAction = Private::createCustomAction(recvr, slot, parent,
@@ -167,6 +181,7 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
         break;
     case SearchVocabulary:
         pAction = KStandardAction::find(recvr, slot, parent);
+        parent->setDefaultShortcut(pAction, QKeySequence::Find);
         break;
     case ShowScriptManager:
         pAction = Private::createCustomAction(recvr, slot, parent,
@@ -180,22 +195,28 @@ KAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
 }
 
 
+
 KRecentFilesAction* ParleyActions::createRecentFilesAction(const QObject* recvr, const char* slot, QObject* parent)
 {
     return KStandardAction::openRecent(recvr, slot, parent);
 }
 
-KAction* ParleyActions::createDownloadAction(const QObject* recvr, const char* slot, KActionCollection* collection)
+QAction* ParleyActions::createDownloadAction(const QObject* recvr, const char* slot, KActionCollection* collection)
 {
-    KAction *pAction = KNS3::standardAction(i18n("Download New Vocabularies..."), recvr, slot, collection, "file_ghns");
+    QAction *pAction = KNS3::standardAction(i18n("Download New Vocabularies..."), recvr, slot, collection, "file_ghns");
+    pAction->setIcon(QIcon::fromTheme("get-hot-new-stuff"));
+
     pAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_G));
-    pAction->setHelpText(i18n("Downloads new vocabulary collections"));
+    collection->setDefaultShortcut(pAction, QKeySequence(Qt::CTRL + Qt::Key_G));
+    pAction->setToolTip(i18n("Downloads new vocabulary collections"));
     return pAction;
 }
 
-KAction* ParleyActions::createUploadAction(const QObject* recvr, const char* slot, KActionCollection* collection)
+QAction* ParleyActions::createUploadAction(const QObject* recvr, const char* slot, KActionCollection* collection)
 {
-    KAction *pAction = KNS3::standardActionUpload(i18n("&Upload Vocabulary Document..."), recvr, slot, collection, "file_upload");
-    pAction->setHelpText(i18n("Share the current vocabulary collection with other users"));
+    QAction *pAction = KNS3::standardActionUpload(i18n("&Upload Vocabulary Document..."), recvr, slot, collection, "file_upload");
+    pAction->setIcon(QIcon::fromTheme("get-hot-new-stuff"));
+
+    pAction->setToolTip(i18n("Share the current vocabulary collection with other users"));
     return pAction;
 }

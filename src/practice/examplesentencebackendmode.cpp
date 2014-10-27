@@ -42,5 +42,3 @@ bool ExampleSentenceBackendMode::setTestEntry(TestEntry* current)
     m_frontend->setQuestion(sentence);
     return true;
 }
-
-#include "examplesentencebackendmode.moc"

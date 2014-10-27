@@ -18,10 +18,11 @@
 #include "abstractfrontend.h"
 
 #include <KXmlGuiWindow>
-#include <KUrl>
+#include <QUrl>
 
 #include "practicemainwindow.h"
 
+///@brief classes generated from the .ui XML files
 namespace Ui
 {
 class PracticeMainWindow;
@@ -32,6 +33,7 @@ namespace Practice
 class ThemedBackgroundRenderer;
 class ImageWidget;
 
+/** GuiFrontend **/
 class GuiFrontend : public AbstractFrontend
 {
     Q_OBJECT
@@ -49,15 +51,15 @@ public:
     void setLearningLangFont(const QFont& font);
 
     virtual void setQuestion(const QVariant& question);
-    virtual void setQuestionImage(const KUrl& img);
+    virtual void setQuestionImage(const QUrl& img);
     virtual void setQuestionPronunciation(const QString& pronunciationText);
-    virtual void setQuestionSound(const KUrl& soundUrl);
+    virtual void setQuestionSound(const QUrl& soundUrl);
     virtual void setQuestionFont(const QFont& font);
 
     virtual void setSolution(const QVariant& solution);
-    virtual void setSolutionImage(const KUrl& img);
+    virtual void setSolutionImage(const QUrl& img);
     virtual void setSolutionPronunciation(const QString& pronunciationText);
-    virtual void setSolutionSound(const KUrl& soundUrl);
+    virtual void setSolutionSound(const QUrl& soundUrl);
     virtual void setSolutionFont(const QFont& font);
 
     virtual void setHint(const QVariant& hint);
@@ -88,13 +90,6 @@ public Q_SLOTS:
     void showSetResultButtons(bool show);
     void toggleResultState();
 
-    /** To be called prior to deleting a modeWidget.
-
-     @todo When frameworks/kde5 is implemented remove this code, if the bug
-     in Qt (returning a pointer to a deleted stylesheet) is fixed.
-     */
-    virtual void modeWidgetDestroyed(QObject * obj = 0);
-
 protected:
     bool eventFilter(QObject *object, QEvent *event);
 
@@ -106,16 +101,16 @@ private Q_SLOTS:
     void setTheme();
 
 private:
-    void setImage(const KUrl& image);
+    void setImage(const QUrl& image);
 
     ImageWidget* m_widget;
     Ui::PracticeMainWindow* m_ui;
     AbstractModeWidget* m_modeWidget;
     ResultState m_resultState;
     ResultState m_feedbackState;
-    KUrl m_lastImage;
-    KUrl m_questionImage;
-    KUrl m_solutionImage;
+    QUrl m_lastImage;
+    QUrl m_questionImage;
+    QUrl m_solutionImage;
     int m_currentBox;
     int m_newBoxIfCorrect;
     int m_newBoxIfWrong;

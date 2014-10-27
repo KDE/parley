@@ -43,7 +43,7 @@
       </widget>
      </item>
      <item row="1" column="2">
-      <widget class="KLineEdit" name="absoluteEdit">
+      <widget class="QLineEdit" name="absoluteEdit">
        <property name="text">
         <string comment="KDE::DoNotExtract">good</string>
        </property>
@@ -88,7 +88,7 @@
       </widget>
      </item>
      <item row="2" column="2">
-      <widget class="KLineEdit" name="comparativeEdit">
+      <widget class="QLineEdit" name="comparativeEdit">
        <property name="text">
         <string comment="KDE::DoNotExtract">better</string>
        </property>
@@ -133,7 +133,7 @@
       </widget>
      </item>
      <item row="3" column="2">
-      <widget class="KLineEdit" name="superlativeEdit">
+      <widget class="QLineEdit" name="superlativeEdit">
        <property name="text">
         <string comment="KDE::DoNotExtract">best</string>
        </property>
@@ -194,13 +194,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

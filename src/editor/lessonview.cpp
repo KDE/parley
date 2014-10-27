@@ -15,9 +15,9 @@
 
 #include "lessonview.h"
 
-#include <KAction>
+#include <QAction>
 #include <KActionCollection>
-#include <KInputDialog>
+#include <QInputDialog>
 #include <KLocalizedString>
 #include <KMessageBox>
 
@@ -32,66 +32,66 @@ using namespace Editor;
 
 LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
 {
-    KAction *actionNewLesson = new KAction(this);
+    QAction *actionNewLesson = new QAction(this);
     parent->actionCollection()->addAction("new_lesson", actionNewLesson);
     actionNewLesson->setText(i18n("New Unit"));
-    actionNewLesson->setIcon(KIcon("lesson-add"));
+    actionNewLesson->setIcon(QIcon::fromTheme("lesson-add"));
     actionNewLesson->setWhatsThis(i18n("Add a new unit to your document"));
     actionNewLesson->setToolTip(actionNewLesson->whatsThis());
     actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
 
-    KAction *actionRenameLesson = new KAction(this);
+    QAction *actionRenameLesson = new QAction(this);
     parent->actionCollection()->addAction("rename_lesson", actionRenameLesson);
     actionRenameLesson->setText(i18n("Rename Unit"));
-    actionRenameLesson->setIcon(KIcon("edit-rename"));
+    actionRenameLesson->setIcon(QIcon::fromTheme("edit-rename"));
 //    actionRenameLesson->setWhatsThis(i18n("Rename the selected unit"));
     actionRenameLesson->setToolTip(actionRenameLesson->whatsThis());
     actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
 
-    KAction *actionDeleteLesson = new KAction(this);
+    QAction *actionDeleteLesson = new QAction(this);
     parent->actionCollection()->addAction("delete_lesson", actionDeleteLesson);
     actionDeleteLesson->setText(i18n("Delete Unit"));
-    actionDeleteLesson->setIcon(KIcon("lesson-remove"));
+    actionDeleteLesson->setIcon(QIcon::fromTheme("lesson-remove"));
     actionDeleteLesson->setWhatsThis(i18n("Delete the selected unit."));
     actionDeleteLesson->setToolTip(actionDeleteLesson->whatsThis());
     actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
 
-    KAction *actionSplitLesson = new KAction(this);
+    QAction *actionSplitLesson = new QAction(this);
     parent->actionCollection()->addAction("split_lesson", actionSplitLesson);
     actionSplitLesson->setText(i18n("Split Unit into Smaller Units"));
-    actionSplitLesson->setIcon(KIcon("edit-copy"));  /// @todo better icon
+    actionSplitLesson->setIcon(QIcon::fromTheme("edit-copy"));  /// @todo better icon
     actionSplitLesson->setWhatsThis(i18n("Make multiple smaller units out of one big unit."));
     actionSplitLesson->setToolTip(actionSplitLesson->whatsThis());
     actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
 
-    KAction *actionRemoveGradesLesson = new KAction(this);
+    QAction *actionRemoveGradesLesson = new QAction(this);
     parent->actionCollection()->addAction("remove_grades_lesson", actionRemoveGradesLesson);
     actionRemoveGradesLesson->setText(i18n("Remove Confidence Levels"));
-    actionRemoveGradesLesson->setIcon(KIcon("edit-clear")); /// @todo better icon
+    actionRemoveGradesLesson->setIcon(QIcon::fromTheme("edit-clear")); /// @todo better icon
     actionRemoveGradesLesson->setWhatsThis(i18n("Remove confidence levels from this unit."));
     actionRemoveGradesLesson->setToolTip(actionRemoveGradesLesson->whatsThis());
     actionRemoveGradesLesson->setStatusTip(actionRemoveGradesLesson->whatsThis());
 
-    KAction *actionRemoveGradesLessonChildren = new KAction(this);
+    QAction *actionRemoveGradesLessonChildren = new QAction(this);
     parent->actionCollection()->addAction("remove_grades_lesson_children", actionRemoveGradesLessonChildren);
     actionRemoveGradesLessonChildren->setText(i18n("Remove Confidence Levels From This Unit And All Subunits"));
-    actionRemoveGradesLessonChildren->setIcon(KIcon("edit-clear"));
+    actionRemoveGradesLessonChildren->setIcon(QIcon::fromTheme("edit-clear"));
     actionRemoveGradesLessonChildren->setWhatsThis(i18n("Remove confidence levels from this unit and all subunits."));
     actionRemoveGradesLessonChildren->setToolTip(actionRemoveGradesLessonChildren->whatsThis());
     actionRemoveGradesLessonChildren->setStatusTip(actionRemoveGradesLessonChildren->whatsThis());
 
-    KAction *actionExpandAll = new KAction(this);
+    QAction *actionExpandAll = new QAction(this);
     parent->actionCollection()->addAction("expand_all_lesson_children", actionExpandAll);
     actionExpandAll->setText(i18n("Expand Units and Subunits"));
-    actionExpandAll->setIcon(KIcon("go-down-search"));
+    actionExpandAll->setIcon(QIcon::fromTheme("go-down-search"));
     actionExpandAll->setWhatsThis(i18n("Expand all units and subunits."));
     actionExpandAll->setToolTip(actionExpandAll->whatsThis());
     actionExpandAll->setStatusTip(actionExpandAll->whatsThis());
 
-    KAction *actionCollapseAll = new KAction(this);
-    parent->actionCollection()->addAction("collapse_all_lesson_children", actionExpandAll);
+    QAction *actionCollapseAll = new QAction(this);
+    parent->actionCollection()->addAction("collapse_all_lesson_children", actionCollapseAll);
     actionCollapseAll->setText(i18n("Collapse All Units And Subunits"));
-    actionCollapseAll->setIcon(KIcon("go-up-search"));
+    actionCollapseAll->setIcon(QIcon::fromTheme("go-up-search"));
     actionCollapseAll->setWhatsThis(i18n("Collapse all units and subunits."));
     actionCollapseAll->setToolTip(actionCollapseAll->whatsThis());
     actionCollapseAll->setStatusTip(actionCollapseAll->whatsThis());
@@ -214,7 +214,7 @@ void LessonView::slotSplitLesson()
     /** @todo A nicer dialog would be great.
      * Maybe with radio buttons to ask, if the entries should be in random order or as they come. */
     bool ok = false;
-    int numEntries = KInputDialog::getInteger(i18n("Entries per Unit"), i18n("The unit will be split into smaller unit. How many entries in each unit do you want?"), Prefs::entriesPerLesson(), 1, 1000, 1, &ok, this);
+    int numEntries = QInputDialog::getInt(this,  i18n("Entries per Unit"), i18n("The unit will be split into smaller unit. How many entries in each unit do you want?"), Prefs::entriesPerLesson(), 1, 1000, 1, &ok);
     if (!ok) {
         return;
     }
@@ -265,7 +265,3 @@ void LessonView::collapseAllLesson()
 {
     collapseAll();
 }
-
-#include "lessonview.moc"
-
-

@@ -44,6 +44,7 @@ set(parley_LIB_SRCS
     editor/summarywordwidget.cpp
     editor/synonymwidget.cpp
     editor/latexwidget.cpp
+    practice/abstractwidget.cpp
     practice/sessionmanagerbase.cpp
     practice/sessionmanagercontinuous.cpp
     practice/sessionmanagerfixed.cpp
@@ -55,7 +56,6 @@ set(parley_LIB_SRCS
     practice/conjugationbackendmode.cpp
     practice/conjugationmodewidget.cpp
     practice/guifrontend.cpp
-    practice/abstractwidget.cpp
     practice/writtenpracticewidget.cpp
     practice/writtenpracticevalidator.cpp
     practice/writtenbackendmode.cpp
@@ -109,7 +109,7 @@ set(parley_LIB_SRCS
     dashboard/collectionwidget.cpp
 )
 
-kde4_add_ui_files(parley_LIB_SRCS
+qt5_wrap_ui(parley_LIB_SRCS
     collection/entryfilter.ui
     configure-practice/generalpracticeoptions.ui
     configure-practice/blockoptions.ui
@@ -142,13 +142,13 @@ kde4_add_ui_files(parley_LIB_SRCS
     dashboard/dashboard.ui
 )
 
-kde4_add_kcfg_files(parley_LIB_SRCS
+kconfig_add_kcfg_files(parley_LIB_SRCS
     settings/prefs.kcfgc
     settings/documentsettings.kcfgc
     settings/languagesettings.kcfgc
 )
 
-qt4_add_dbus_adaptor(parley_LIB_SRCS editor/org.kde.parley.xml
+qt5_add_dbus_adaptor(parley_LIB_SRCS editor/org.kde.parley.xml
                      editor/editor.h Editor::EditorWindow)
 
 #### XSLT Support ####
@@ -158,27 +158,20 @@ if(HAVE_LIBXSLT)
         exportdialog.cpp
     )
 
-    kde4_add_ui_files(parley_LIB_SRCS
+    qt5_wrap_ui(parley_LIB_SRCS
         exportdialog.ui
     )
 endif(HAVE_LIBXSLT)
 #### End XSLT Support ####
 
-kde4_add_app_icon(parley_LIB_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-parley.png")
-
 # This library is used both by parley itself and the unit tests.
-kde4_add_library(parley_LIB STATIC ${parley_LIB_SRCS})
+add_library(parley_LIB STATIC ${parley_LIB_SRCS})
 
-set(parley_SRCS
-    main.cpp
-)
-
-kde4_add_executable(parley ${parley_SRCS})
-
-kde4_install_icons( ${ICON_INSTALL_DIR} )
+set(parley_SRCS main.cpp)
+add_executable(parley ${parley_SRCS})
 
 target_link_libraries(parley parley_LIB ${parley_LINK_LIBS})
-
+target_link_libraries(parley_LIB ${parley_LINK_LIBS})
 
 ########### install files ###############
 install(TARGETS parley  ${INSTALL_TARGETS_DEFAULT_ARGS} )
@@ -189,10 +182,15 @@ install( PROGRAMS parley.desktop DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 # hot new stuff config
 install( FILES parley.knsrc parley-themes.knsrc DESTINATION  ${CONFIG_INSTALL_DIR} )
 
-# RC files - define menus and toolbars
-install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )
-install( FILES dashboard/dashboardui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
-install( FILES editor/editorui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
-install( FILES statistics/statisticsui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
-install( FILES practice/practiceui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
-install( FILES practice/practicesummaryui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
+# UI files - define menus and toolbars
+# @todo frameworks find a definitive locations for files and then use KXMLGUI_INSTALL_DIR
+install( FILES parleyui.rc  DESTINATION  ${KXMLGUI_INSTALL_DIR}/parley )
+#install( FILES editor/editorui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
+install( FILES editor/editorui.rc DESTINATION  ${KXMLGUI_INSTALL_DIR}/parley )
+install( FILES dashboard/dashboardui.rc DESTINATION  ${KXMLGUI_INSTALL_DIR}/parley )
+# install( FILES statistics/statisticsui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
+# install( FILES practice/practiceui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
+# install( FILES practice/practicesummaryui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
+install( FILES statistics/statisticsui.rc DESTINATION  ${KXMLGUI_INSTALL_DIR}/parley )
+install( FILES practice/practiceui.rc DESTINATION  ${KXMLGUI_INSTALL_DIR}/parley )
+install( FILES practice/practicesummaryui.rc DESTINATION  ${KXMLGUI_INSTALL_DIR}/parley )

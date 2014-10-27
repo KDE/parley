@@ -15,10 +15,11 @@
 
 #include "ui_practice_widget_comparison.h"
 
-#include <KDebug>
+#include <QDebug>
 #include <kcolorscheme.h>
-#include <QtGui/QRadioButton>
+#include <QtWidgets/QRadioButton>
 #include <QTimer>
+#include <KLocalizedString>
 
 using namespace Practice;
 
@@ -142,14 +143,10 @@ void ComparisonModeWidget::setSolutionPronunciation(const QString& /*pronunciati
 {
 }
 
-void ComparisonModeWidget::setQuestionSound(const KUrl& /*soundUrl*/)
+void ComparisonModeWidget::setQuestionSound(const QUrl& /*soundUrl*/)
 {
 }
 
-void ComparisonModeWidget::setSolutionSound(const KUrl& /*soundUrl*/)
+void ComparisonModeWidget::setSolutionSound(const QUrl& /*soundUrl*/)
 {
 }
-
-
-
-#include "comparisonmodewidget.moc"

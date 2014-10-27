@@ -39,7 +39,6 @@ public:
 
 
 public slots:
-    /// Apply the settings. This is not a KDialog, so accept is not automatically called!
     void accept();
 
 private:
@@ -52,4 +51,3 @@ private:
 };
 
 #endif
-

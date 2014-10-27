@@ -68,7 +68,7 @@
          </widget>
         </item>
         <item>
-         <widget class="KIntSpinBox" name="kcfg_BackupTime" >
+         <widget class="QSpinBox" name="kcfg_BackupTime" >
           <property name="sizePolicy" >
            <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
             <horstretch>0</horstretch>
@@ -186,11 +186,6 @@
    <class>KComboBox</class>
    <extends>QComboBox</extends>
    <header>kcombobox.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KIntSpinBox</class>
-   <extends>QSpinBox</extends>
-   <header>knuminput.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

@@ -22,7 +22,7 @@
 
 #include <QMap>
 
-#include <KDialog>
+#include <QDialog>
 
 class DocumentSettings;
 class QGridLayout;
@@ -37,7 +37,7 @@ namespace Editor
 /**
 * Show options to enable/disable the columns for each language of the current document
 */
-class VocabularyColumnsDialog : public KDialog
+class VocabularyColumnsDialog : public QDialog
 {
     Q_OBJECT
 public:

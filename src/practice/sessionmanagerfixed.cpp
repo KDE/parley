@@ -14,9 +14,9 @@
 #include "sessionmanagerfixed.h"
 
 // kdelibs
-#include <klocale.h>
+#include <KLocalizedString>
 #include <kconfig.h>
-#include <KDebug>
+#include <QDebug>
 
 // kdeedulibs
 #include <keduvocexpression.h>

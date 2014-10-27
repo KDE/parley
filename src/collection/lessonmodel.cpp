@@ -115,6 +115,3 @@ void LessonModel::splitLesson(const QModelIndex& containerIndex, int entriesPerL
         }
     }
 }
-
-
-#include "lessonmodel.moc"

@@ -24,11 +24,11 @@
 #include "vocabularymimedata.h"
 
 #include <keduvocexpression.h>
-#include <KIcon>
 #include <KLocalizedString>
-#include <KDebug>
+#include <QDebug>
 #include <KMessageBox>
 #include <QPixmap>
+#include <QTextStream>
 
 
 VocabularyModel::VocabularyModel(QObject *parent)
@@ -47,19 +47,19 @@ VocabularyModel::~VocabularyModel()
 
 void VocabularyModel::setDocument(KEduVocDocument * doc)
 {
+    beginResetModel();
+
     m_document = doc;
     m_container = 0;
     m_lesson = 0;
-
-    // to get the headers right
-    // (better get rid of the reset)
-    reset();
 
     if (m_document) {
         showContainer(m_document->lesson());
     } else {
         showContainer(0);
     }
+
+    endResetModel();
 }
 
 
@@ -174,7 +174,7 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
         if (entryColumn == Translation) {
             QString locale = m_document->identifier(translationId).locale();
             LanguageSettings ls(locale);
-            ls.readConfig();
+            ls.load();
             return ls.editorFont();
         }
         return QVariant();
@@ -369,7 +369,7 @@ QMimeData * VocabularyModel::mimeData(const QModelIndexList & indexes) const
     QModelIndexList sortedIndexes = indexes;
     qSort(sortedIndexes);
 
-    kDebug() << "mimeData for " << indexes.count() << "indexes";
+    qDebug() << "mimeData for " << indexes.count() << "indexes";
 
     QList<KEduVocTranslation*> translations;
     foreach(const QModelIndex & index, sortedIndexes) {
@@ -385,13 +385,14 @@ QMimeData * VocabularyModel::mimeData(const QModelIndexList & indexes) const
 
 void VocabularyModel::showEntriesOfSubcontainers(bool show)
 {
+    beginResetModel();
     Prefs::setShowSublessonentries(show);
     if (show) {
         m_recursive = KEduVocContainer::Recursive;
     } else {
         m_recursive = KEduVocContainer::NotRecursive;
     }
-    reset();
+    endResetModel();
 }
 
 void VocabularyModel::resetLanguages()
@@ -402,8 +403,6 @@ void VocabularyModel::resetLanguages()
 
 void VocabularyModel::automaticTranslation(bool enabled)
 {
-    kDebug() << "auto trans enabled: " << enabled;
+    qDebug() << "auto trans enabled: " << enabled;
     Prefs::setAutomaticTranslation(true);
 }
-
-#include "vocabularymodel.moc"

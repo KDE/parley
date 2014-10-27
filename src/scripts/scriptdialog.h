@@ -17,13 +17,13 @@
 
 #include "scriptmanager.h"
 
-#include <KDialog>
+#include <QDialog>
 #include <KPluginSelector>
 
 /**
     @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
 */
-class ScriptDialog : public KDialog
+class ScriptDialog : public QDialog
 {
 public:
     ScriptDialog(ScriptManager* scriptManager);

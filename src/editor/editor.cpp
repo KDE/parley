@@ -57,10 +57,10 @@
 
 #include <QtCore/QTimer>
 #include <QtCore/QSignalMapper>
-#include <QtGui/QDockWidget>
-#include <QtGui/QHeaderView>
-#include <QtGui/QMenu>
-#include <QtGui/QStackedWidget>
+#include <QtWidgets/QDockWidget>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QStackedWidget>
 #include <QScrollArea>
 
 using namespace Editor;
@@ -140,7 +140,7 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
 
     m_spellCheckMenu->menu()->clear();
     for (int i = 0; i < doc->identifierCount(); ++i) {
-        KAction* languageSpellCheck = new KAction(doc->identifier(i).name(), m_spellCheckMenu->menu());
+        QAction* languageSpellCheck = new QAction(doc->identifier(i).name(), m_spellCheckMenu->menu());
         m_spellCheckMenu->menu()->addAction(languageSpellCheck);
         m_spellCheckMapper->setMapping(languageSpellCheck, i);
         connect(languageSpellCheck, SIGNAL(triggered()), m_spellCheckMapper, SLOT(map()));
@@ -446,16 +446,13 @@ void EditorWindow::initView()
     QWidget *mainWidget = new QWidget(this);
     setCentralWidget(mainWidget);
     QVBoxLayout *topLayout = new QVBoxLayout(mainWidget);
-    topLayout->setMargin(KDialog::marginHint());
-    topLayout->setSpacing(KDialog::spacingHint());
 
-    m_searchLine = new KLineEdit(this);
+    m_searchLine = new QLineEdit(this);
     m_searchLine->show();
     m_searchLine->setFocusPolicy(Qt::ClickFocus);
-    m_searchLine->setClearButtonShown(true);
-    m_searchLine->setClickMessage(i18n("Enter search terms here"));
-
-//     m_searchLine->setToolTip(i18n("Search your vocabuary"));
+    m_searchLine->setClearButtonEnabled(true);
+    m_searchLine->setPlaceholderText(i18n("Enter search terms here"));
+    m_searchLine->setToolTip(i18n("Search your vocabulary"));
 
     QLabel *label = new QLabel(i18n("S&earch:"), this);
     label->setBuddy(m_searchLine);
@@ -463,14 +460,12 @@ void EditorWindow::initView()
 
     m_searchWidget = new QWidget(this);
     QHBoxLayout* layout = new QHBoxLayout(m_searchWidget);
-    layout->setSpacing(KDialog::spacingHint());
     layout->setMargin(0);
     layout->addWidget(label);
     layout->addWidget(m_searchLine);
 
 ///@todo     centralWidget()-> delete layout
     QVBoxLayout * rightLayout = new QVBoxLayout();
-    rightLayout->setSpacing(KDialog::spacingHint());
     rightLayout->setMargin(0);
     rightLayout->addWidget(m_searchWidget);
     m_searchWidget->setVisible(Prefs::showSearch());
@@ -528,5 +523,3 @@ void EditorWindow::slotLanguagesChanged()
 {
     m_vocabularyModel->resetLanguages();
 }
-
-#include "editor.moc"

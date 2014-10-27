@@ -21,92 +21,96 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <kcmdlineargs.h>
-#include <kaboutdata.h>
-#include <klocale.h>
-#include <kapplication.h>
+/// @file main.cpp
 
 #include "parleymainwindow.h"
 #include "version.h"
 
+#include <kaboutdata.h>
+#include <KLocalizedString>
+
+#include <QApplication>
+#include <QCommandLineParser>
 
 int main(int argc, char* argv[])
 {
-    static const char description[] = I18N_NOOP("Vocabulary Trainer");
-    static const char version[]     = PARLEY_VERSION_STRING;
+    KLocalizedString::setApplicationDomain("parley");
 
-    KAboutData aboutData("parley", 0,
-                         ki18n("Parley"),
-                         version,
-                         ki18n(description),
-                         KAboutData::License_GPL,
-                         ki18n("© 1999-2002\tEwald Arnold\n"
-                               "© 2001-2002\tThe KDE team\n"
-                               "© 2004-2007\tPeter Hedlund\n"
-                               "© 2007-2010\tFrederik Gladhorn\n"),
-                         ki18n("Helps you train your vocabulary"),
-                         "http://edu.kde.org/parley",
-                         "submit@bugs.kde.org");
+    KAboutData aboutData("parley",  ki18n("Parley").toString(),  PARLEY_VERSION_STRING );
+    aboutData.setShortDescription( ki18n("Vocabulary Trainer").toString() );
+    aboutData.setLicense( KAboutLicense::GPL );
+    aboutData.setCopyrightStatement( ki18n("© 1999-2002\tEwald Arnold\n"
+                                           "© 2001-2002\tThe KDE team\n"
+                                           "© 2004-2007\tPeter Hedlund\n"
+                                           "© 2007-2010\tFrederik Gladhorn\n").toString() );
+    aboutData.setOtherText( ki18n("Helps you train your vocabulary").toString() );
+    aboutData.setHomepage( "http://edu.kde.org/parley" );
+    aboutData.setBugAddress( "submit@bugs.kde.org");
 
-    aboutData.addAuthor(ki18n("Inge Wallin"),
-                        ki18n("Developer and Co-maintainer"),
+    aboutData.addAuthor(ki18n("Inge Wallin").toString(),
+                        ki18n("Developer and Co-maintainer").toString(),
                         "inge@lysator.liu.se");
 
-    aboutData.addAuthor(ki18n("Amarvir Singh"),
-                        ki18n("Developer and Co-maintainer"),
+    aboutData.addAuthor(ki18n("Amarvir Singh").toString(),
+                        ki18n("Developer and Co-maintainer").toString(),
                         "amarvir.ammu.93@gmail.com");
 
-    aboutData.addAuthor(ki18n("Frederik Gladhorn"),
-                        ki18n("Developer, former maintainer"),
+    aboutData.addAuthor(ki18n("Frederik Gladhorn").toString(),
+                        ki18n("Developer, former maintainer").toString(),
                         "gladhorn@kde.org");
 
-    aboutData.addAuthor(ki18n("Daniel Laidig"),
-                        ki18n("Developer"),
+    aboutData.addAuthor(ki18n("Daniel Laidig").toString(),
+                        ki18n("Developer").toString(),
                         "d.laidig@gmx.de");
 
-    aboutData.addAuthor(ki18n("David Capel"),
-                        ki18n("Practice Dialogs"),
+    aboutData.addAuthor(ki18n("David Capel").toString(),
+                        ki18n("Practice Dialogs").toString(),
                         "wot.narg@gmail.com");
 
-    aboutData.addAuthor(ki18n("Avgoustinos Kadis"),
-                        ki18n("Scripting"),
+    aboutData.addAuthor(ki18n("Avgoustinos Kadis").toString(),
+                        ki18n("Scripting").toString(),
                         "avgoustinos.kadis@kdemail.net");
 
-    aboutData.addAuthor(ki18n("Peter Hedlund"),
-                        ki18n("Countless fixes, former maintainer, port to KDE4"),
+    aboutData.addAuthor(ki18n("Peter Hedlund").toString(),
+                        ki18n("Countless fixes, former maintainer, port to KDE4").toString(),
                         "peter.hedlund@kdemail.net");
 
-    aboutData.addAuthor(ki18n("Ewald Arnold"), ki18n("Original Author"),
+    aboutData.addAuthor(ki18n("Ewald Arnold").toString(), ki18n("Original Author").toString(),
                         "kvoctrain@ewald-arnold.de",
                         "http://www.ewald-arnold.de");
 
-    aboutData.addCredit(ki18n("Lee Olson"),
-                        ki18n("Artwork and Oxygen Icons"));
+    aboutData.addCredit(ki18n("Lee Olson").toString(),
+                        ki18n("Artwork and Oxygen Icons").toString());
 
-    aboutData.addCredit(ki18n("Anne-Marie Mahfouf"),
-                        ki18n("Port to KConfig XT"));
+    aboutData.addCredit(ki18n("Anne-Marie Mahfouf").toString(),
+                        ki18n("Port to KConfig XT").toString());
 
-    aboutData.addCredit(ki18n("Jeremy Whiting"),
-                        ki18n("Rewriting the kvtml library for KDE4"));
+    aboutData.addCredit(ki18n("Jeremy Whiting").toString(),
+                        ki18n("Rewriting the kvtml library for KDE4").toString());
 
-    aboutData.addCredit(ki18n("Markus Büchele"),
-                        ki18n("Bug reports and testing on the way to KDE4"));
+    aboutData.addCredit(ki18n("Markus Büchele").toString(),
+                        ki18n("Bug reports and testing on the way to KDE4").toString());
 
-    aboutData.addCredit(ki18n("Ramona Knapp"),
-                        ki18n("Conceived the name Parley"));
+    aboutData.addCredit(ki18n("Ramona Knapp").toString(),
+                        ki18n("Conceived the name Parley").toString());
 
-    KCmdLineArgs::init(argc, argv, &aboutData);
+    KAboutData::setApplicationData(aboutData);
 
-    KCmdLineOptions options;
-    options.add(I18N_NOOP("+[file]"), ki18n("Document file to open"));
+    QApplication::setApplicationName("parley");
+    QApplication::setApplicationVersion(PARLEY_VERSION_STRING);
+    QApplication::setOrganizationDomain("kde.org");
+    QApplication::setApplicationDisplayName(i18n("Parley"));
+    QApplication app(argc, argv);
 
-    KCmdLineArgs::addCmdLineOptions(options);
 
-    KApplication app;
+    QCommandLineParser parser;
+    parser.addHelpOption();
+    parser.addVersionOption();
+    parser.addPositionalArgument(ki18n( "[file]" ).toString(), ki18n("Document file to open").toString() );
+
+    parser.process(app);
+
     app.setQuitOnLastWindowClosed(false);
-
-    // for i18n of the lib strings
-    KGlobal::locale()->insertCatalog("libkdeedu");
 
     if (app.isSessionRestored()) {
         int n = 1;
@@ -118,21 +122,15 @@ int main(int argc, char* argv[])
     } else {
         KMainWindow *parleyApp;
 
-        KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+        const QStringList args = parser.positionalArguments();
 
-        if (args && args->count() > 0) {
-            parleyApp = new ParleyMainWindow(args->url(0));
-            args->clear();
+        if (!args.isEmpty()) {
+            parleyApp = new ParleyMainWindow(QUrl::fromLocalFile(args.first() ));
         } else {
             parleyApp = new ParleyMainWindow();
-
         }
 
-        if (args) {
-            args->clear();
-        }
         parleyApp->show();
         return app.exec();
     }
 }
-

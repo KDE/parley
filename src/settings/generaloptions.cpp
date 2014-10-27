@@ -24,8 +24,9 @@
 #include "generaloptions.h"
 
 #include <QCheckBox>
+#include <KLocalizedString>
 
-#include <knuminput.h>
+#include <QSpinBox>
 #include <kfile.h>
 
 #include "prefs.h"
@@ -102,5 +103,3 @@ void GeneralOptions::updateSettings()
         return;
     Prefs::setSeparator((separator_id[kcfg_SeparatorCombo->currentIndex()]));
 }
-
-#include "generaloptions.moc"

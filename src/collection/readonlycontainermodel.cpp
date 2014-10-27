@@ -16,7 +16,7 @@
 #include "readonlycontainermodel.h"
 
 #include <KLocalizedString>
-#include <KDebug>
+#include <QDebug>
 
 #include "containermimedata.h"
 #include "vocabularymimedata.h"
@@ -42,13 +42,14 @@ ReadonlyContainerModel::ReadonlyContainerModel(KEduVocContainer::EnumContainerTy
 
 void ReadonlyContainerModel::setDocument(KEduVocDocument * doc)
 {
+    beginResetModel();
     m_doc = doc;
     if (m_doc) {
-        kDebug() << "Set Document: " << m_doc->url();
+        qDebug() << "Set Document: " << m_doc->url();
     } else {
-        kDebug() << "Set Invalid Document";
+        qDebug() << "Set Invalid Document";
     }
-    reset();
+    endResetModel();
 }
 
 QModelIndex ReadonlyContainerModel::index(int row, int column, const QModelIndex &parent) const
@@ -185,6 +186,3 @@ KEduVocContainer::EnumContainerType ReadonlyContainerModel::containerType()
 {
     return m_type;
 }
-
-
-#include "readonlycontainermodel.moc"

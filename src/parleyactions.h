@@ -14,11 +14,12 @@
 #ifndef PARLEYACTIONS_H
 #define PARLEYACTIONS_H
 
-#include <KAction>
-#include <KRecentFilesAction>
+#include <QAction>
 
 class KActionCollection;
+class KRecentFilesAction;
 
+///@brief contains all parley actions
 namespace ParleyActions
 {
 enum ParleyAction {
@@ -40,17 +41,13 @@ enum ParleyAction {
     ShowScriptManager
 };
 
-KAction* create(ParleyAction id, const QObject *recvr, const char *slot,
-                QObject *parent);
+QAction* create(ParleyAction id, const QObject *recvr, const char *slot, KActionCollection *parent);
 
-KRecentFilesAction* createRecentFilesAction(const QObject *recvr, const char *slot,
-        QObject *parent);
+KRecentFilesAction* createRecentFilesAction(const QObject *recvr, const char *slot, QObject *parent);
 
-KAction* createDownloadAction(const QObject *recvr, const char *slot,
-                              KActionCollection *collection);
+QAction* createDownloadAction(const QObject *recvr, const char *slot, KActionCollection *collection);
 
-KAction* createUploadAction(const QObject *recvr, const char *slot,
-                            KActionCollection *collection);
+QAction* createUploadAction(const QObject *recvr, const char *slot, KActionCollection *collection);
 }
 
 #endif

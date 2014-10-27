@@ -18,7 +18,7 @@
 #include "ui_summarywordwidget.h"
 
 #include <QItemDelegate>
-#include <QWidget>
+#include <QtWidgets/QWidget>
 
 class QTreeView;
 class QDataWidgetMapper;

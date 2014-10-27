@@ -17,6 +17,7 @@
 #ifndef PARLEYPLASMA_H
 #define PARLEYPLASMA_H
 
+#include <Plasma/Plasma>
 #include <Plasma/Applet>
 #include <Plasma/Svg>
 #include <plasma/dataengine.h>
@@ -52,7 +53,7 @@ public slots:
     void showFontSelectDlg();
     void dataUpdated(const QString &name, const Plasma::DataEngine::Data &data);
     // in the config dialog a file was selected
-    void urlSelected(const KUrl &file);
+    void urlSelected(const QUrl &file);
     void configChanged();
 protected:
     virtual void hoverEnterEvent(QGraphicsSceneHoverEvent * event);
@@ -73,7 +74,7 @@ private:
     QSizeF m_size;
 
     Plasma::DataEngine* m_engine;
-    KUrl m_sourceFile;
+    QUrl m_sourceFile;
     QStringList m_languages;
     int m_solutionType;
     int m_lang1;

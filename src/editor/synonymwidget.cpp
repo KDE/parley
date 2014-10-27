@@ -19,6 +19,7 @@
 
 #include <QStringListModel>
 #include <QDragEnterEvent>
+#include <KLocalizedString>
 
 using namespace Editor;
 
@@ -164,7 +165,3 @@ void SynonymWidget::togglePair()
 
     updateList();
 }
-
-
-#include "synonymwidget.moc"
-

@@ -23,7 +23,6 @@
 StatisticsModel::StatisticsModel(QObject * parent)
     : ContainerModel(KEduVocContainer::Lesson, parent)
 {
-    setSupportedDragActions(0);
 }
 
 QVariant StatisticsModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -88,6 +87,11 @@ int StatisticsModel::columnCount(const QModelIndex & parent) const
 {
     Q_UNUSED(parent)
     return m_doc->identifierCount() + FirstDataColumn;
+}
+
+Qt::DropActions StatisticsModel::supportedDragActions() const
+{
+    return 0;
 }
 
 KEduVocContainer * StatisticsModel::rootContainer() const

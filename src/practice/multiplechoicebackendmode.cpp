@@ -14,7 +14,9 @@
 
 #include "multiplechoicebackendmode.h"
 
-#include <klocale.h>
+#include <KLocalizedString>
+#include <KRandom>
+
 #include "multiplechoicedata.h"
 
 using namespace Practice;
@@ -23,7 +25,6 @@ MultipleChoiceBackendMode::MultipleChoiceBackendMode(AbstractFrontend* frontend,
                                                      Practice::SessionManagerBase* sessionManager)
     : AbstractBackendMode(frontend, parent)
     , m_sessionManager(sessionManager)
-    , m_randomSequence(QDateTime::currentDateTime().toTime_t())
 {
     m_numberOfChoices = Prefs::numberMultipleChoiceAnswers();
 }
@@ -47,10 +48,10 @@ void MultipleChoiceBackendMode::prepareChoices(TestEntry* current)
 
     QStringList choices = m_sessionManager->multipleChoiceAnswers(m_numberOfChoices - 1);
     foreach(const QString & choice, choices) {
-        int position = m_randomSequence.getLong(m_choices.count() + 1);
+        int position = KRandom::random() % (m_choices.count() + 1);
         m_choices.insert(position, choice);
     }
-    int correctAnswer = m_randomSequence.getLong(m_choices.count() + 1);
+    int correctAnswer = KRandom::random() % (m_choices.count() + 1);
     m_choices.insert(correctAnswer, m_current->entry()->translation(m_current->languageTo())->text());
     setCorrectAnswer(correctAnswer);
 }
@@ -89,7 +90,7 @@ void MultipleChoiceBackendMode::setChoices(const QStringList& choices)
 
 void MultipleChoiceBackendMode::setCorrectAnswer(int index)
 {
-    kDebug() << "correct: " << index << m_choices.at(index);
+    qDebug() << "correct: " << index << m_choices.at(index);
     m_correctAnswer = index;
 }
 
@@ -114,13 +115,10 @@ void MultipleChoiceBackendMode::hintAction()
         return;
     }
 
-    KRandomSequence randomSequence;
     int hint = -1;
     do {
-        hint = randomSequence.getLong(m_choices.count());
+	hint = KRandom::random() % m_choices.count();
     } while (hint == m_correctAnswer || m_hints.contains(hint));
     m_hints.append(hint);
     m_frontend->setHint(QVariant(hint));
 }
-
-#include "multiplechoicebackendmode.moc"

@@ -14,7 +14,7 @@ Copyright 2009 Frederik Gladhorn <gladhorn@kde.org>
 
 #include "abstractbackendmode.h"
 #include "prefs.h"
-#include <kdebug.h>
+#include <QDebug>
 
 using namespace Practice;
 
@@ -63,7 +63,7 @@ grade_t Practice::AbstractBackendMode::currentGradeForEntry() const
 void Practice::AbstractBackendMode::updateGrades()
 {
     KEduVocTranslation* translation = m_current->entry()->translation(m_current->languageTo());
-    //kDebug() << "Update Grades Default Implementation: " << m_frontend->resultState()
+    //qDebug() << "Update Grades Default Implementation: " << m_frontend->resultState()
     //         << " for " << translation->text()
     //         << " grade: " << m_current->entry()->translation(m_current->languageTo())->grade();
 
@@ -73,7 +73,7 @@ void Practice::AbstractBackendMode::updateGrades()
     updateGrade(*translation, m_frontend->resultState() == AbstractFrontend::AnswerCorrect,
                 m_current->statisticBadCount() == 0);
 
-    //kDebug() << "new grade: " << m_current->entry()->translation(m_current->languageTo())->grade();
+    //qDebug() << "new grade: " << m_current->entry()->translation(m_current->languageTo())->grade();
 }
 
 
@@ -119,9 +119,5 @@ void Practice::AbstractBackendMode::updateGrade(KEduVocText &text, bool isCorrec
         text.incBadCount();
     }
 
-    //kDebug() << "new pregrade, grade: " << text.preGrade() << text.grade();
+    //qDebug() << "new pregrade, grade: " << text.preGrade() << text.grade();
 }
-
-
-
-#include "abstractbackendmode.moc"

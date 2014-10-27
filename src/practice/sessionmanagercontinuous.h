@@ -22,9 +22,6 @@
 // Qt
 #include <QVector>
 
-// kdelibs
-#include <KRandomSequence>
-
 // kdeedulibs
 #include <keduvocexpression.h>
 

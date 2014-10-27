@@ -24,12 +24,12 @@
 #include "generaloptions.h"
 #include "viewoptions.h"
 #include <KConfigSkeleton>
+#include <KLocalizedString>
 
 ParleyPrefs::ParleyPrefs(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config)
     : KConfigDialog(parent, name, config)
 {
-    setButtons(Default | Ok | Apply | Cancel | Help);
-    setDefaultButton(Ok);
+    button(QDialogButtonBox::Ok)->setDefault( true );
     setModal(true);
 
     m_doc = doc;

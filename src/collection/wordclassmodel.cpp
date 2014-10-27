@@ -32,6 +32,3 @@ KEduVocContainer * WordClassModel::rootContainer() const
     }
     return m_doc->wordTypeContainer();
 }
-
-#include "wordclassmodel.moc"
-

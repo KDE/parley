@@ -17,7 +17,7 @@ using namespace Editor;
 VocabularyHeaderView::VocabularyHeaderView(Qt::Orientation orientation, QWidget * parent)
     : QHeaderView(orientation, parent)
 {
-    setClickable(true);
+    setSectionsClickable(true);
     connect(this, SIGNAL(sectionClicked(int)), this, SLOT(updateSorting(int)));
     m_sortSection = -1;
 }
@@ -47,5 +47,3 @@ void VocabularyHeaderView::updateSorting(int index)
     m_sortSection = -1;
     model()->sort(-1);
 }
-
-#include "vocabularyheaderview.moc"

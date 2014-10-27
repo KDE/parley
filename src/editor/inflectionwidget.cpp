@@ -23,6 +23,11 @@
 
 #include "inflectionwidget.h"
 
+#include <KLocalizedString>
+
+#include <QDialogButtonBox>
+#include <QDialog>
+
 using namespace Editor;
 
 InflectionWidget::InflectionWidget(QWidget* parent): QStackedWidget(parent)
@@ -113,22 +118,30 @@ void InflectionWidget::setWordType()
     } else if (sender()->objectName() == "toNoun") {
         KEduVocWordFlags type = KEduVocWordFlag::Noun;
 
-        QPointer<KDialog> getGenderDialog = new KDialog(this);
-        getGenderDialog->setCaption(i18n("Please select the noun's gender"));
-        getGenderDialog->setButtons(KDialog::Ok | KDialog::Cancel);
+        QPointer<QDialogButtonBox> getGenderDialog = new QDialogButtonBox;
+        getGenderDialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 
         KComboBox *genderComboBox = new KComboBox;
         genderComboBox->addItem(i18n("Masculine"), KEduVocWordFlag::Masculine);
         genderComboBox->addItem(i18n("Neuter"), KEduVocWordFlag::Neuter);
         genderComboBox->addItem(i18n("Feminine"), KEduVocWordFlag::Feminine);
 
-        getGenderDialog->setMainWidget(genderComboBox);
+        QVBoxLayout *layout = new QVBoxLayout;
+        layout->addWidget( genderComboBox );
+        layout->addWidget( getGenderDialog );
 
-        if (getGenderDialog->exec() == KDialog::Accepted) {
+        QPointer<QDialog> dialog = new QDialog( this );
+        dialog->setLayout( layout );
+        dialog->setWindowTitle(i18n("Please select the noun's gender"));
+
+        connect(getGenderDialog, SIGNAL(accepted()), dialog, SLOT(accept()));
+        connect(getGenderDialog, SIGNAL(rejected()), dialog, SLOT(reject()));
+
+        if (dialog->exec() == QDialog::Accepted) {
             type = (KEduVocWordFlags)(type | genderComboBox->itemData(genderComboBox->currentIndex()).toInt());
         }
 
-        delete getGenderDialog;
+        delete dialog;
 
         container = m_doc->wordTypeContainer()->childOfType(type);
     } else if (sender()->objectName() == "toAdjective") {

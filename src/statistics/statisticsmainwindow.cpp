@@ -18,9 +18,8 @@
 
 #include <QtCore/qsignalmapper.h>
 
-#include <KLocale>
+#include <KLocalizedString>
 #include <KConfig>
-#include <KGlobal>
 #include <KActionCollection>
 
 #include <keduvocdocument.h>
@@ -79,7 +78,7 @@ StatisticsMainWindow::~StatisticsMainWindow()
 
 void StatisticsMainWindow::syncConfig()
 {
-    //kDebug() << "save tenses";
+    //qDebug() << "save tenses";
     if (m_conjugationOptions) {
         m_conjugationOptions->updateSettings();
     }
@@ -154,7 +153,7 @@ void StatisticsMainWindow::initPracticeModeSelection()
 
 void StatisticsMainWindow::initLanguages()
 {
-    //kDebug() << "init languages: " << Prefs::learningLanguage() << Prefs::knownLanguage();
+    //qDebug() << "init languages: " << Prefs::learningLanguage() << Prefs::knownLanguage();
     const int totalNumLanguages = m_doc->identifierCount();
 
     if ( Prefs::knownLanguage() < 0 || totalNumLanguages <= Prefs::knownLanguage() ) {
@@ -170,7 +169,7 @@ void StatisticsMainWindow::initLanguages()
     {
         Prefs::setKnownLanguage(0);
         Prefs::setLearningLanguage(1);
-        //kDebug() << "Invalid language selection.";
+        //qDebug() << "Invalid language selection.";
     }
 
     // Insert data into the comboboxes.
@@ -218,14 +217,14 @@ void StatisticsMainWindow::initPracticeMode()
 void StatisticsMainWindow::practiceModeSelected(int mode)
 {
     Prefs::setPracticeMode(static_cast<Prefs::EnumPracticeMode::type>(mode));
-    //kDebug() << "mode: " << mode << Prefs::practiceMode();
+    //qDebug() << "mode: " << mode << Prefs::practiceMode();
 
     showConjugationOptions(mode == Prefs::EnumPracticeMode::ConjugationPractice);
 }
 
 void StatisticsMainWindow::practiceDirectionChanged(int mode)
 {
-    //kDebug() << "new practice direction:" << mode;
+    //qDebug() << "new practice direction:" << mode;
     Prefs::setPracticeDirection(static_cast<Prefs::EnumPracticeDirection::type>(mode));
 }
 

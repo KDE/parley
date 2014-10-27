@@ -190,7 +190,7 @@
          </widget>
         </item>
         <item row="3" column="1">
-         <widget class="KLineEdit" name="masculine_1">
+         <widget class="QLineEdit" name="masculine_1">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -200,7 +200,7 @@
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="KLineEdit" name="masculine_2">
+         <widget class="QLineEdit" name="masculine_2">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -210,7 +210,7 @@
          </widget>
         </item>
         <item row="5" column="1">
-         <widget class="KLineEdit" name="masculine_3">
+         <widget class="QLineEdit" name="masculine_3">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -220,7 +220,7 @@
          </widget>
         </item>
         <item row="6" column="1">
-         <widget class="KLineEdit" name="masculine_4">
+         <widget class="QLineEdit" name="masculine_4">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -230,7 +230,7 @@
          </widget>
         </item>
         <item row="7" column="1">
-         <widget class="KLineEdit" name="masculine_5">
+         <widget class="QLineEdit" name="masculine_5">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -240,7 +240,7 @@
          </widget>
         </item>
         <item row="8" column="1">
-         <widget class="KLineEdit" name="masculine_6">
+         <widget class="QLineEdit" name="masculine_6">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -250,7 +250,7 @@
          </widget>
         </item>
         <item row="9" column="1">
-         <widget class="KLineEdit" name="masculine_7">
+         <widget class="QLineEdit" name="masculine_7">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -276,7 +276,7 @@
          </widget>
         </item>
         <item row="3" column="2">
-         <widget class="KLineEdit" name="feminine_1">
+         <widget class="QLineEdit" name="feminine_1">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -286,7 +286,7 @@
          </widget>
         </item>
         <item row="4" column="2">
-         <widget class="KLineEdit" name="feminine_2">
+         <widget class="QLineEdit" name="feminine_2">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -296,7 +296,7 @@
          </widget>
         </item>
         <item row="5" column="2">
-         <widget class="KLineEdit" name="feminine_3">
+         <widget class="QLineEdit" name="feminine_3">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -306,7 +306,7 @@
          </widget>
         </item>
         <item row="6" column="2">
-         <widget class="KLineEdit" name="feminine_4">
+         <widget class="QLineEdit" name="feminine_4">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -316,7 +316,7 @@
          </widget>
         </item>
         <item row="7" column="2">
-         <widget class="KLineEdit" name="feminine_5">
+         <widget class="QLineEdit" name="feminine_5">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -326,7 +326,7 @@
          </widget>
         </item>
         <item row="8" column="2">
-         <widget class="KLineEdit" name="feminine_6">
+         <widget class="QLineEdit" name="feminine_6">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -336,7 +336,7 @@
          </widget>
         </item>
         <item row="9" column="2">
-         <widget class="KLineEdit" name="feminine_7">
+         <widget class="QLineEdit" name="feminine_7">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -362,7 +362,7 @@
          </widget>
         </item>
         <item row="3" column="3">
-         <widget class="KLineEdit" name="neuter_1">
+         <widget class="QLineEdit" name="neuter_1">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -372,7 +372,7 @@
          </widget>
         </item>
         <item row="4" column="3">
-         <widget class="KLineEdit" name="neuter_2">
+         <widget class="QLineEdit" name="neuter_2">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -382,7 +382,7 @@
          </widget>
         </item>
         <item row="5" column="3">
-         <widget class="KLineEdit" name="neuter_3">
+         <widget class="QLineEdit" name="neuter_3">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -392,7 +392,7 @@
          </widget>
         </item>
         <item row="6" column="3">
-         <widget class="KLineEdit" name="neuter_4">
+         <widget class="QLineEdit" name="neuter_4">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -402,7 +402,7 @@
          </widget>
         </item>
         <item row="7" column="3">
-         <widget class="KLineEdit" name="neuter_5">
+         <widget class="QLineEdit" name="neuter_5">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -412,7 +412,7 @@
          </widget>
         </item>
         <item row="8" column="3">
-         <widget class="KLineEdit" name="neuter_6">
+         <widget class="QLineEdit" name="neuter_6">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -422,7 +422,7 @@
          </widget>
         </item>
         <item row="9" column="3">
-         <widget class="KLineEdit" name="neuter_7">
+         <widget class="QLineEdit" name="neuter_7">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -500,13 +500,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>nextButton</tabstop>
   <tabstop>numberSelection</tabstop>

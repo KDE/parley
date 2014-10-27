@@ -43,7 +43,7 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="KLineEdit" name="infinitiveEdit">
+      <widget class="QLineEdit" name="infinitiveEdit">
        <property name="text">
         <string comment="KDE::DoNotExtract">gehen</string>
        </property>
@@ -104,13 +104,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

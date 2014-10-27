@@ -16,12 +16,12 @@
 
 #include "ui_exportdialog.h"
 
-#include <KDialog>
+#include <QDialog>
 
 class ParleyDocument;
-class KUrl;
+class QUrl;
 
-class ExportDialog : public KDialog
+class ExportDialog : public QDialog
 {
     Q_OBJECT
 public:
@@ -31,7 +31,7 @@ private slots:
     void accept();
 
 private:
-    KUrl getFileName(const QString& filter);
+    QUrl getFileName(const QString& filter);
 
     Ui::ExportOptions* ui;
     ParleyDocument *m_doc;

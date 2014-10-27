@@ -21,6 +21,8 @@
 #include <QAbstractItemDelegate>
 #include <QApplication>
 #include <QToolButton>
+#include <KLocalizedString>
+#include <QUrl>
 
 const int margin = 5;
 const int iconSize = 22;
@@ -29,7 +31,7 @@ ButtonDelegate::ButtonDelegate(QAbstractItemView *itemView, Dashboard *parent)
     : QStyledItemDelegate(itemView), m_rightMargin(0), m_buttonHeight(0), m_dashboard(parent), m_itemView(itemView)
 {
     m_editButton = new QToolButton(itemView->viewport());
-    m_editButton->setIcon(KIcon("document-edit"));
+    m_editButton->setIcon(QIcon::fromTheme("document-edit"));
     m_editButton->setToolTip(i18n("Open this vocabulary collection in the editor"));
     m_editButton->resize(m_editButton->sizeHint());
     m_editButton->setAutoRaise(true);
@@ -79,14 +81,14 @@ QSize ButtonDelegate::sizeHint(const QStyleOptionViewItem &option,
 void ButtonDelegate::slotEdit()
 {
     const QModelIndex index = hoveredIndex();
-    KUrl url = index.data(Qt::UserRole).toUrl();
+    QUrl url = index.data(Qt::UserRole).toUrl();
     m_dashboard->slotOpenUrl(url);
 }
 
 void ButtonDelegate::slotPractice()
 {
     const QModelIndex index = hoveredIndex();
-    KUrl url = index.data(Qt::UserRole).toUrl();
+    QUrl url = index.data(Qt::UserRole).toUrl();
     m_dashboard->slotPracticeUrl(url);
 }
 
@@ -95,5 +97,3 @@ QModelIndex ButtonDelegate::hoveredIndex() const
     const QPoint pos = m_itemView->viewport()->mapFromGlobal(QCursor::pos());
     return m_itemView->indexAt(pos);
 }
-
-#include "buttondelegate.moc"

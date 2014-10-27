@@ -14,10 +14,11 @@
 #ifndef PRACTICE_AUDIOBUTTON_H
 #define PRACTICE_AUDIOBUTTON_H
 
-#include <QtGui/QToolButton>
-#include <kurl.h>
+#include <QtWidgets/QToolButton>
+#include <QtMultimedia/QMediaPlayer>
+#include <QUrl>
 
-#include <Phonon/MediaObject>
+class QMediaPlayer;
 
 namespace Practice
 {
@@ -27,16 +28,16 @@ class AudioButton : public QToolButton
     Q_OBJECT
 public:
     AudioButton(QWidget *parent);
-    void setSoundFile(KUrl url);
+    void setSoundFile(QUrl url);
 
 private Q_SLOTS:
     void playAudio();
     void stopAudio();
-    void playerStateChanged(Phonon::State newState);
+    void playerStateChanged(QMediaPlayer::State newState);
 
 private:
-    Phonon::MediaObject *m_player;
-    KUrl m_url;
+    QMediaPlayer* m_player;        ///< media object for the files
+    QUrl m_url;
 };
 
 }

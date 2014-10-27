@@ -53,8 +53,8 @@ public:
         Q_UNUSED(resultState);
     }
 
-    virtual void setQuestionSound(const KUrl& soundUrl);
-    virtual void setSolutionSound(const KUrl& soundUrl);
+    virtual void setQuestionSound(const QUrl& soundUrl);
+    virtual void setSolutionSound(const QUrl& soundUrl);
     virtual void setSolutionPronunciation(const QString& pronunciationText);
     virtual void setQuestionPronunciation(const QString& pronunciationText);
 

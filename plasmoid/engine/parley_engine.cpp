@@ -18,12 +18,14 @@
 
 #include <QStringList>
 
-#include <KDebug>
+#include <QDebug>
 #include <KConfigGroup>
 
 #include <keduvocdocument.h>
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>
+//@todo frameworks KGlobal
+#include <KGlobal>
 
 
 #include "plasma/datacontainer.h"
@@ -34,7 +36,7 @@ ParleyEngine::ParleyEngine(QObject* parent, const QVariantList& args)
     Q_UNUSED(args)
     KGlobal::locale()->insertCatalog("parley");
     setMinimumPollingInterval(1000);
-    kDebug() << "ParleyEngine::ParleyEngine";
+    qDebug() << "ParleyEngine::ParleyEngine";
 
     m_random = new KRandomSequence(QDateTime::currentDateTime().toTime_t());
 }
@@ -46,10 +48,10 @@ ParleyEngine::~ParleyEngine()
 
 void ParleyEngine::openDocument(const QString& file)
 {
-    kDebug() << "Open vocabulary file: '" << file << "'";
+    qDebug() << "Open vocabulary file: '" << file << "'";
     if (!file.isEmpty()) {
         KEduVocDocument *doc = new KEduVocDocument(this);
-        doc->open(KUrl(file));
+        doc->open(QUrl::fromLocalFile(file));
 
         // check that there is at least one identifier, otherwise this won't work...
         if (doc->identifierCount() > 0) {
@@ -69,12 +71,12 @@ QStringList ParleyEngine::sources() const
 bool ParleyEngine::sourceRequestEvent(const QString &source)
 {
     if (!m_docs.contains(source)) {
-        kDebug() << "open file: " << source;
+        qDebug() << "open file: " << source;
         openDocument(source);
     }
 
     if (!m_docs.contains(source)) {
-        kDebug() << "Could not open source file: " << source;
+        qDebug() << "Could not open source file: " << source;
         return false;
     }
     return updateSourceEvent(source);

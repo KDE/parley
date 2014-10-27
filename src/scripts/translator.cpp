@@ -15,7 +15,7 @@
 #include "translator.h"
 #include "scripting/parley.h"
 
-#include <KDebug>
+#include <QDebug>
 
 Translator::Translator()
 {
@@ -35,7 +35,7 @@ void Translator::addTranslation(QString word, QString fromLanguage, QString toLa
     if (word.trimmed() == "") return;
 
     QString t = word + fromLanguage + toLanguage;
-    kDebug() << "Translation for " << word << "in cache: " << m_translations.contains(t);
+    qDebug() << "Translation for " << word << "in cache: " << m_translations.contains(t);
     if (!m_translations.contains(t)) {
         m_translations[t] = new QSet<QString>();
     }
@@ -47,7 +47,7 @@ QSet<QString>* Translator::getTranslation(QString word, QString fromLanguage, QS
     if (word.isEmpty() || fromLanguage.isEmpty() || toLanguage.isEmpty()) return 0;
 
     QString t = word + fromLanguage + toLanguage;
-    kDebug() << "Fetch translation " << word << "(" << fromLanguage << "to" << toLanguage << ")"
+    qDebug() << "Fetch translation " << word << "(" << fromLanguage << "to" << toLanguage << ")"
              << "already in cache:" << m_translations.contains(t);
     if (!m_translations.contains(t)) {
         Scripting::Parley * p = dynamic_cast<Scripting::Parley*>(m_parent);

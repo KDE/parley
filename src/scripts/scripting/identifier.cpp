@@ -16,7 +16,7 @@
 
 #include <QMap>
 
-#include <KDebug>
+#include <QDebug>
 
 namespace Scripting
 {

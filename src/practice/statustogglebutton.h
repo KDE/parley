@@ -15,7 +15,7 @@
 #define PRACTICE_STATUSTOGGLEBUTTON_H
 
 #include "imagewidget.h"
-#include <kdebug.h> //TODO
+#include <QDebug> //TODO
 
 namespace Practice
 {

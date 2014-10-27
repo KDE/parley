@@ -24,7 +24,7 @@ class KEduVocText;
 class KEduVocTranslation;
 class KEduVocExpression;
 class KEduVocDocument;
-class KDialog;
+class QDialogButtonBox;
 class TestEntry;
 
 
@@ -103,10 +103,10 @@ private:
     // The tenses selected by the user for practice
     QStringList m_tenses;
 
-    KDialog *m_dialog;
+    QDialog *m_dialog;                                ///<Dialog to determine words to be added to practice
+    QDialogButtonBox *m_button_dialog;                ///<ok/cancel buttons
     QSet<KEduVocExpression*> m_currentSelection[2];
 };
 
 
 #endif
-

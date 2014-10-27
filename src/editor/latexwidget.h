@@ -16,7 +16,7 @@
 #include "ui_latexwidget.h"
 
 #include <QItemDelegate>
-#include <QWidget>
+#include <QtWidgets/QWidget>
 
 class QDataWidgetMapper;
 class KEduVocDocument;

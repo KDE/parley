@@ -23,6 +23,11 @@
 #include "documentsettings.h"
 #include "vocabularymodel.h"
 
+// KDE imports
+#include <keduvocdocument.h>
+#include <KLocalizedString>
+#include <KTitleWidget>
+
 // Qt imports
 #include <QGridLayout>
 #include <QGroupBox>
@@ -31,36 +36,40 @@
 #include <QStandardItemModel>
 #include <QTreeView>
 #include <QVBoxLayout>
-
-// KDE imports
-#include <keduvocdocument.h>
-#include <KIcon>
-#include <KLocale>
-#include <KTitleWidget>
+#include <QDialogButtonBox>
 
 const int COLUMNS_LIMIT = 1; // columns for row
 
 using namespace Editor;
 
 VocabularyColumnsDialog::VocabularyColumnsDialog(KEduVocDocument *doc, QWidget *parent)
-    : KDialog(parent),
+    : QDialog(parent),
       m_models()
 {
+    QDialogButtonBox * button_dialog = new QDialogButtonBox;
+    button_dialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel );
+
     m_box = new QGridLayout();
     m_doc = doc;
     m_settings = new DocumentSettings(m_doc->url().url());
 
-    setCaption(i18n("Vocabulary Columns"));
-    setButtons(Ok | Cancel);
+    setWindowTitle(i18n("Vocabulary Columns"));
 
     QWidget *main_widget = new QWidget(this);
     main_widget->setLayout(m_box);
 
-    setMainWidget(main_widget);
+    QVBoxLayout *layout = new QVBoxLayout;
+    layout->addWidget( main_widget );
+    layout->addWidget( button_dialog );
+
+    setLayout( layout );
+
+    connect(button_dialog, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(button_dialog, SIGNAL(rejected()), this, SLOT(reject()));
 
     KTitleWidget *titleWidget = new KTitleWidget(this);
     titleWidget->setText(i18n("Enable/Disable the columns for each language"));
-    titleWidget->setPixmap(KIcon("view-file-columns").pixmap(22, 22), KTitleWidget::ImageRight);
+    titleWidget->setPixmap(QIcon::fromTheme("view-file-columns").pixmap(22, 22), KTitleWidget::ImageRight);
     m_box->addWidget(titleWidget, 0, 0, 1, 2);
 
     createLanguagesLayout();
@@ -74,7 +83,7 @@ VocabularyColumnsDialog::~VocabularyColumnsDialog()
 void VocabularyColumnsDialog::accept()
 {
     saveVisibleColumns();
-    KDialog::accept();
+    QDialog::accept();
 }
 
 void VocabularyColumnsDialog::createLanguagesLayout()
@@ -140,5 +149,5 @@ void VocabularyColumnsDialog::saveVisibleColumns()
 
     // i think that this is not the place for this
     m_settings->setVisibleColumns(columns);
-    m_settings->writeConfig();
+    m_settings->save();
 }

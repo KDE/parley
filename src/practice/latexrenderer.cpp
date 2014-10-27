@@ -14,16 +14,17 @@
 
 #include "latexrenderer.h"
 
-#include <klocale.h>
-#include <kdebug.h>
-#include <ktemporaryfile.h>
-#include <kstandarddirs.h>
+#include <KLocalizedString>
 #include <kprocess.h>
 
 #include <QLabel>
 #include <QProcess>
 #include <QFileInfo>
 #include <QColor>
+#include <QTemporaryFile>
+#include <QTemporaryDir>
+#include <QCoreApplication>
+#include <QDebug>
 #include <complex>
 
 using namespace Practice;
@@ -60,15 +61,14 @@ void LatexRenderer::renderLatex(QString tex)
     } else {
         tex.remove(0, 2).remove(-2, 2);
     }
-    kDebug() << "rendering as latex";
-
-    QString dir = KGlobal::dirs()->saveLocation("tmp", "parley/");
+    qDebug() << "rendering as latex";
 
     //Check if the parley subdir exists, if not, create it
-    KTemporaryFile *texFile = new KTemporaryFile();
-    texFile->setPrefix("parley/");
-    texFile->setSuffix(".tex");
-    texFile->open();
+    QString dir( QDir::tempPath() + QLatin1Char('/') + QCoreApplication::applicationName() );
+    QTemporaryFile *texFile = new QTemporaryFile(dir + QLatin1Char('/') + QLatin1String("XXXXXX") + ".tex");
+    if ( ! texFile->open() ) {
+        return;
+    }
 
     QColor color = m_label->palette().color(QPalette::WindowText);
     QString colorString = QString::number(color.redF()) + ','
@@ -80,7 +80,7 @@ void LatexRenderer::renderLatex(QString tex)
     texFile->flush();
 
     QString fileName = texFile->fileName();
-    kDebug() << "fileName: " << fileName;
+    qDebug() << "fileName: " << fileName;
     m_latexFilename = fileName;
     m_latexFilename.replace(".tex", ".eps");
     KProcess *p = new KProcess(this);
@@ -102,11 +102,11 @@ bool LatexRenderer::isLatex(const QString& tex)
 
 void LatexRenderer::convertToPs()
 {
-    kDebug() << "converting to ps";
+    qDebug() << "converting to ps";
     QString dviFile = m_latexFilename;
     dviFile.replace(".eps", ".dvi");
     KProcess *p = new KProcess(this);
-    kDebug() << "running: " << "dvips" << "-E" << "-o" << m_latexFilename << dviFile;
+    qDebug() << "running: " << "dvips" << "-E" << "-o" << m_latexFilename << dviFile;
     (*p) << "dvips" << "-E" << "-o" << m_latexFilename << dviFile;
 
     connect(p, SIGNAL(finished(int,  QProcess::ExitStatus)), this, SLOT(convertToImage()));
@@ -116,11 +116,11 @@ void LatexRenderer::convertToPs()
 
 void LatexRenderer::convertToImage()
 {
-    kDebug() << "converting to ps";
+    qDebug() << "converting to ps";
     QString pngFile = m_latexFilename;
     pngFile.replace(".eps", ".png");
     KProcess *p = new KProcess(this);
-    kDebug() << "running:" << "convert" << m_latexFilename << pngFile;
+    qDebug() << "running:" << "convert" << m_latexFilename << pngFile;
     (*p) << "convert" << "-density" << "85" << m_latexFilename << pngFile;
 
     connect(p, SIGNAL(finished(int,  QProcess::ExitStatus)), this, SLOT(latexRendered()));
@@ -130,7 +130,7 @@ void LatexRenderer::convertToImage()
 
 void LatexRenderer::latexRendered()
 {
-    kDebug() << "rendered file " << m_latexFilename;
+    qDebug() << "rendered file " << m_latexFilename;
 
     QString pngFile = m_latexFilename;
     pngFile.replace(".eps", ".png");
@@ -143,7 +143,8 @@ void LatexRenderer::latexRendered()
     }
 
     //cleanup the temp directory a bit...
-    QString dir = KGlobal::dirs()->saveLocation("tmp", "parley/");
+    QString dir( QDir::tempPath() + QLatin1Char('/') + QCoreApplication::applicationName() );
+
     QStringList extensions;
     extensions << ".log" << ".aux" << ".tex" << ".dvi" << ".eps" << ".png";
     foreach(const QString & ext, extensions) {
@@ -153,5 +154,3 @@ void LatexRenderer::latexRendered()
         f.remove();
     }
 }
-
-#include "latexrenderer.moc"

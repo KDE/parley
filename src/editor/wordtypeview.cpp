@@ -18,8 +18,7 @@
 #include <QContextMenuEvent>
 #include <QMenu>
 
-#include <KAction>
-#include <KIcon>
+#include <QAction>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KSelectAction>
@@ -37,25 +36,25 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
 {
     setContextMenuPolicy(Qt::DefaultContextMenu);
 
-    m_actionNewWordType = new KAction(this);
+    m_actionNewWordType = new QAction(this);
     m_actionNewWordType->setText(i18n("New"));
-    m_actionNewWordType->setIcon(KIcon("lesson-add"));
+    m_actionNewWordType->setIcon(QIcon::fromTheme("lesson-add"));
     m_actionNewWordType->setWhatsThis(i18n("Add a new word type to your document"));
     m_actionNewWordType->setToolTip(m_actionNewWordType->whatsThis());
     m_actionNewWordType->setStatusTip(m_actionNewWordType->whatsThis());
     m_actionNewWordType->setStatusTip(m_actionNewWordType->whatsThis());
 
-    m_actionRenameWordType = new KAction(this);
+    m_actionRenameWordType = new QAction(this);
     m_actionRenameWordType->setText(i18n("Rename"));
-    m_actionRenameWordType->setIcon(KIcon("edit-rename"));
+    m_actionRenameWordType->setIcon(QIcon::fromTheme("edit-rename"));
     m_actionRenameWordType->setWhatsThis(i18n("Rename the selected word type"));
     m_actionRenameWordType->setToolTip(m_actionRenameWordType->whatsThis());
     m_actionRenameWordType->setStatusTip(m_actionRenameWordType->whatsThis());
     m_actionRenameWordType->setStatusTip(m_actionRenameWordType->whatsThis());
 
-    m_actionDeleteWordType = new KAction(this);
+    m_actionDeleteWordType = new QAction(this);
     m_actionDeleteWordType->setText(i18n("Delete Word Type"));
-    m_actionDeleteWordType->setIcon(KIcon("lesson-remove"));
+    m_actionDeleteWordType->setIcon(QIcon::fromTheme("lesson-remove"));
     m_actionDeleteWordType->setWhatsThis(i18n("Delete the selected word type."));
     m_actionDeleteWordType->setToolTip(m_actionDeleteWordType->whatsThis());
     m_actionDeleteWordType->setStatusTip(m_actionDeleteWordType->whatsThis());
@@ -63,14 +62,14 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
 
     m_actionSpecialTypeMenu = new KSelectAction(this);
     m_actionSpecialTypeMenu->setText(i18nc("Let the user select what grammatical meaning is connected to a word type (nouns have gender, verbs conjugations etc)", "Grammar"));
-    //actionSplitWordType->setIcon(KIcon(""));  /// @todo better icon
+    //actionSplitWordType->setIcon(QIcon::fromTheme(""));  /// @todo better icon
     m_actionSpecialTypeMenu->setWhatsThis(i18n("To let Parley know the grammatical meaning of a word type."));
     m_actionSpecialTypeMenu->setToolTip(m_actionSpecialTypeMenu->whatsThis());
     m_actionSpecialTypeMenu->setStatusTip(m_actionSpecialTypeMenu->whatsThis());
     m_actionSpecialTypeMenu->setStatusTip(m_actionSpecialTypeMenu->whatsThis());
 
 
-    m_nounAction = new KAction(this);
+    m_nounAction = new QAction(this);
     m_nounAction->setText(i18n("Noun"));
     m_nounAction->setCheckable(true);
     m_nounAction->setWhatsThis(i18n("This word type folder contains nouns."));
@@ -78,7 +77,7 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
     m_nounAction->setStatusTip(m_nounAction->whatsThis());
     m_nounAction->setStatusTip(m_nounAction->whatsThis());
 
-    m_nounMaleAction = new KAction(this);
+    m_nounMaleAction = new QAction(this);
     m_nounMaleAction->setText(i18n("Masculine Noun"));
     m_nounMaleAction->setCheckable(true);
     m_nounMaleAction->setWhatsThis(i18n("This word type folder contains masculine nouns."));
@@ -86,7 +85,7 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
     m_nounMaleAction->setStatusTip(m_nounMaleAction->whatsThis());
     m_nounMaleAction->setStatusTip(m_nounMaleAction->whatsThis());
 
-    m_nounFemaleAction = new KAction(this);
+    m_nounFemaleAction = new QAction(this);
     m_nounFemaleAction->setText(i18n("Feminine Noun"));
     m_nounFemaleAction->setCheckable(true);
     m_nounFemaleAction->setWhatsThis(i18n("This word type folder contains feminine nouns."));
@@ -94,7 +93,7 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
     m_nounFemaleAction->setStatusTip(m_nounFemaleAction->whatsThis());
     m_nounFemaleAction->setStatusTip(m_nounFemaleAction->whatsThis());
 
-    m_nounNeutralAction = new KAction(this);
+    m_nounNeutralAction = new QAction(this);
     m_nounNeutralAction->setText(i18n("Neuter Noun"));
     m_nounNeutralAction->setCheckable(true);
     m_nounNeutralAction->setWhatsThis(i18n("This word type folder contains neuter nouns."));
@@ -102,7 +101,7 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
     m_nounNeutralAction->setStatusTip(m_nounNeutralAction->whatsThis());
     m_nounNeutralAction->setStatusTip(m_nounNeutralAction->whatsThis());
 
-    m_adjectiveAction = new KAction(this);
+    m_adjectiveAction = new QAction(this);
     m_adjectiveAction->setText(i18n("Adjective"));
     m_adjectiveAction->setCheckable(true);
     m_adjectiveAction->setWhatsThis(i18n("This word type folder contains adjectives."));
@@ -110,7 +109,7 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
     m_adjectiveAction->setStatusTip(m_adjectiveAction->whatsThis());
     m_adjectiveAction->setStatusTip(m_adjectiveAction->whatsThis());
 
-    m_adverbAction = new KAction(this);
+    m_adverbAction = new QAction(this);
     m_adverbAction->setText(i18n("Adverb"));
     m_adverbAction->setCheckable(true);
     m_adverbAction->setWhatsThis(i18n("This word type folder contains adverbs."));
@@ -119,7 +118,7 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
     m_adverbAction->setStatusTip(m_adverbAction->whatsThis());
 
 
-    m_verbAction = new KAction(this);
+    m_verbAction = new QAction(this);
     m_verbAction->setText(i18n("Verb"));
     m_verbAction->setCheckable(true);
     m_verbAction->setWhatsThis(i18n("This word type folder contains verbs."));
@@ -127,7 +126,7 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
     m_verbAction->setStatusTip(m_verbAction->whatsThis());
     m_verbAction->setStatusTip(m_verbAction->whatsThis());
 
-    m_conjunctionAction = new KAction(this);
+    m_conjunctionAction = new QAction(this);
     m_conjunctionAction->setText(i18n("Conjunction"));
     m_conjunctionAction->setCheckable(true);
     m_conjunctionAction->setWhatsThis(i18n("This word type folder contains conjunctions."));
@@ -135,7 +134,7 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
     m_conjunctionAction->setStatusTip(m_conjunctionAction->whatsThis());
     m_conjunctionAction->setStatusTip(m_conjunctionAction->whatsThis());
 
-    m_noneAction = new KAction(this);
+    m_noneAction = new QAction(this);
     m_noneAction->setText(i18n("No Special Type"));
     m_noneAction->setCheckable(true);
     m_noneAction->setChecked(true);
@@ -339,8 +338,3 @@ void WordTypeView::setWordTypeConjunction()
     KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
     wordType->setWordType(KEduVocWordFlag::Conjunction);
 }
-
-
-#include "wordtypeview.moc"
-
-

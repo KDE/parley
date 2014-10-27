@@ -62,7 +62,7 @@ private:
     /**
      * All line edits and labels, index corresponding to KEduVocWordFlag::indexOf
      */
-    QMap< KEduVocWordFlags, KLineEdit* > m_conjugationLineEdits;
+    QMap< KEduVocWordFlags, QLineEdit* > m_conjugationLineEdits;
 };
 
 }

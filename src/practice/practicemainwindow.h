@@ -22,6 +22,7 @@ class ParleyMainWindow;
 class KToggleFullScreenAction;
 class QPropertyAnimation;
 
+///@brief contains all objects for the practice window
 namespace Practice
 {
 class PracticeStateMachine;

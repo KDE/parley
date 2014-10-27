@@ -17,11 +17,14 @@
 #include <keduvocdocument.h>
 #include <keduvockvtml2writer.h>
 
-#include <KStandardDirs>
-#include <KUrl>
-#include <KDebug>
-#include <KFileDialog>
+#include <KLocalizedString>
+#include <QStandardPaths>
+#include <QUrl>
+#include <QDebug>
+#include <QFileDialog>
 #include <KMessageBox>
+
+#include <QDialogButtonBox>
 
 #include <string.h>
 #include <libxml/xmlmemory.h>
@@ -35,28 +38,41 @@
 #include <libxslt/transform.h>
 #include <libxslt/xsltutils.h>
 
-ExportDialog::ExportDialog(ParleyDocument *doc, QWidget *parent) : KDialog(parent)
+ExportDialog::ExportDialog(ParleyDocument *doc, QWidget *parent) : QDialog(parent)
 {
     m_doc = doc;
     m_parent = parent;
 
     ui = new Ui::ExportOptions();
-    ui->setupUi(mainWidget());
+    QWidget *widget = new QWidget();
+    ui->setupUi(widget);
 
-    setCaption(i18n("Export"));
+    QDialogButtonBox * button_dialog = new QDialogButtonBox;
+    button_dialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel );
+
+    QVBoxLayout *layout = new QVBoxLayout;
+    layout->addWidget( widget );
+    layout->addWidget( button_dialog );
+
+    setLayout( layout );
+
+    connect(button_dialog, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(button_dialog, SIGNAL(rejected()), this, SLOT(reject()));
+
+    setWindowTitle(i18n("Export"));
 }
 
 void ExportDialog::accept()
 {
-    KDialog::accept();
+    QDialog::accept();
 
     if (ui->csvRadio->isChecked()) {
         /// Find the CSV filter in the standard filter list
         //!@todo: good and clean solution
         QStringList defaultFilters = KEduVocDocument::pattern(KEduVocDocument::Writing).split('\n');
         QString filter = defaultFilters.filter("csv").join("\n");
-        KUrl filename = getFileName(filter);
-        if (filename != KUrl()) {
+        QUrl filename = getFileName(filter);
+        if (filename != QUrl()) {
             m_doc->saveAs(filename);
         }
         return;
@@ -64,18 +80,18 @@ void ExportDialog::accept()
 
     QString xslFile;
     if (ui->flashCardRadio->isChecked()) {
-        xslFile = KStandardDirs::locate("data", "parley/xslt/flashcards.xsl");
+        xslFile = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "parley/xslt/flashcards.xsl");
     } else {
-        xslFile = KStandardDirs::locate("data", "parley/xslt/table.xsl");
+        xslFile = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "parley/xslt/table.xsl");
     }
 
     QString filter = "*.html|" + i18n("HTML document");
-    KUrl filename = getFileName(filter);
-    if (filename == KUrl()) {
+    QUrl filename = getFileName(filter);
+    if (filename.isEmpty()) {
         return;
     }
 
-    kDebug() << "XSLT starting";
+    qDebug() << "XSLT starting";
 
     xsltStylesheetPtr cur = NULL;
     xmlDocPtr doc, res;
@@ -102,13 +118,15 @@ void ExportDialog::accept()
     xsltCleanupGlobals();
     xmlCleanupParser();
 
-    kDebug() << "XSLT finished";
+    qDebug() << "XSLT finished";
 }
 
-KUrl ExportDialog::getFileName(const QString& filter)
+QUrl ExportDialog::getFileName(const QString& filter)
 {
-    return KFileDialog::getSaveUrl((m_doc->document()->url().fileName() == i18n("Untitled")) ? "" : m_doc->document()->url().toLocalFile(),
-                                   filter, m_parent, i18n("Export As"), KFileDialog::ConfirmOverwrite);
-}
+    return QUrl::fromLocalFile(QFileDialog::getSaveFileName(
+        m_parent, i18n("Export As")
+        , (m_doc->document()->url().fileName() == i18n("Untitled"))
+        ? "" : m_doc->document()->url().toLocalFile()
+        ,  filter ) );
 
-#include "exportdialog.moc"
+}

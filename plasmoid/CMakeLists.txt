@@ -1,18 +1,25 @@
 project(plasma-parley)
 add_subdirectory( engine )
 
-include_directories( ${LIBKDEEDU_INCLUDE_DIR} )
+# include_directories( ${LIBKDEEDU_INCLUDE_DIR} )
 set(parley_plasma_SRCS
     parley_plasma.cpp
     )
 
-kde4_add_ui_files(parley_plasma_SRCS config.ui)
+qt5_wrap_ui(parley_plasma_SRCS config.ui)
 
-kde4_add_plugin(plasma_applet_parley ${parley_plasma_SRCS})
+add_library(plasma_applet_parley ${parley_plasma_SRCS})
 target_link_libraries(plasma_applet_parley
-    plasma ${KDE4_KIO_LIBS}
-    ${LIBKDEEDU_KEDUVOCDOCUMENT_LIBRARIES}
-    )
+  Qt5::Widgets
+  KF5::Completion
+  KF5::CoreAddons    #for KRandomSequence
+  KF5::Plasma
+  # KF5::KIOCore
+  #    KF5::KIOWidgets
+  LibKdeEduImport__KEduVocDocument
+  #todo frameworks remove KDELibs4Support
+  KF5::KDELibs4Support
+  )
 
 install(
     TARGETS plasma_applet_parley

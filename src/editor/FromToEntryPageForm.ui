@@ -57,7 +57,7 @@
          </spacer>
         </item>
         <item row="1" column="1" colspan="2" >
-         <widget class="KLineEdit" name="fauxami_line" >
+         <widget class="QLineEdit" name="fauxami_line" >
           <property name="sizePolicy" >
            <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
             <horstretch>0</horstretch>
@@ -117,7 +117,7 @@
           <number>6</number>
          </property>
          <item row="1" column="1" >
-          <widget class="KIntSpinBox" name="badCountEdit" >
+          <widget class="QSpinBox" name="badCountEdit" >
            <property name="minimum" >
             <number>0</number>
            </property>
@@ -130,7 +130,7 @@
           </widget>
          </item>
          <item row="0" column="1" >
-          <widget class="KIntSpinBox" name="totalCountEdit" >
+          <widget class="QSpinBox" name="totalCountEdit" >
            <property name="maximum" >
             <number>999999999</number>
            </property>
@@ -283,16 +283,6 @@
    <class>KComboBox</class>
    <extends>QComboBox</extends>
    <header>kcombobox.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KIntSpinBox</class>
-   <extends>QSpinBox</extends>
-   <header>knuminput.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

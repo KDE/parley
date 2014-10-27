@@ -44,15 +44,11 @@ void ContainerView::setModel(ContainerModel *model)
     QTreeView::setModel(model);
     m_model = model;
 
-    header()->setResizeMode(0, QHeaderView::Stretch);
-    header()->setResizeMode(1, QHeaderView::ResizeToContents);
+    header()->setSectionResizeMode(0, QHeaderView::Stretch);
+    header()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
 }
 
 void ContainerView::slotRename()
 {
     edit(selectionModel()->currentIndex());
 }
-
-#include "containerview.moc"
-
-

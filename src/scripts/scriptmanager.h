@@ -101,11 +101,11 @@ public:
     void reloadScripts();
 
     /**
-     * Add a KAction to the Scripts menu
+     * Add a QAction to the Scripts menu
      * @param name The action name
-     * @param action KAction to be added
+     * @param action QAction to be added
      */
-    void addScriptAction(const QString & name, KAction * action);
+    void addScriptAction(const QString & name, QAction * action);
 
     /** returns the Translator object the Scripting::Parley */
     Translator * translator() {

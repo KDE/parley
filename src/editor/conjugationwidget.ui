@@ -46,7 +46,7 @@
        </widget>
       </item>
       <item row="2" column="1" colspan="2">
-       <widget class="KLineEdit" name="singularFirstPersonLineEdit">
+       <widget class="QLineEdit" name="singularFirstPersonLineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -69,7 +69,7 @@
        </widget>
       </item>
       <item row="3" column="1" colspan="2">
-       <widget class="KLineEdit" name="singularSecondPersonLineEdit">
+       <widget class="QLineEdit" name="singularSecondPersonLineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -92,7 +92,7 @@
        </widget>
       </item>
       <item row="4" column="1" colspan="2">
-       <widget class="KLineEdit" name="singularThirdMalePersonLineEdit"/>
+       <widget class="QLineEdit" name="singularThirdMalePersonLineEdit"/>
       </item>
       <item row="5" column="0">
        <widget class="QLabel" name="singularThirdFemalePersonLabel">
@@ -108,7 +108,7 @@
        </widget>
       </item>
       <item row="5" column="1" colspan="2">
-       <widget class="KLineEdit" name="singularThirdFemalePersonLineEdit"/>
+       <widget class="QLineEdit" name="singularThirdFemalePersonLineEdit"/>
       </item>
       <item row="6" column="0">
        <widget class="QLabel" name="singularThirdNeutralPersonLabel">
@@ -124,7 +124,7 @@
        </widget>
       </item>
       <item row="6" column="1" colspan="2">
-       <widget class="KLineEdit" name="singularThirdNeutralPersonLineEdit"/>
+       <widget class="QLineEdit" name="singularThirdNeutralPersonLineEdit"/>
       </item>
       <item row="9" column="0">
        <widget class="QLabel" name="dualFirstPersonLabel">
@@ -140,7 +140,7 @@
        </widget>
       </item>
       <item row="9" column="1" colspan="2">
-       <widget class="KLineEdit" name="dualFirstPersonLineEdit"/>
+       <widget class="QLineEdit" name="dualFirstPersonLineEdit"/>
       </item>
       <item row="10" column="0">
        <widget class="QLabel" name="dualSecondPersonLabel">
@@ -156,7 +156,7 @@
        </widget>
       </item>
       <item row="10" column="1" colspan="2">
-       <widget class="KLineEdit" name="dualSecondPersonLineEdit"/>
+       <widget class="QLineEdit" name="dualSecondPersonLineEdit"/>
       </item>
       <item row="11" column="0">
        <widget class="QLabel" name="dualThirdMalePersonLabel">
@@ -185,7 +185,7 @@
        </widget>
       </item>
       <item row="12" column="1" colspan="2">
-       <widget class="KLineEdit" name="dualThirdFemalePersonLineEdit"/>
+       <widget class="QLineEdit" name="dualThirdFemalePersonLineEdit"/>
       </item>
       <item row="13" column="0">
        <widget class="QLabel" name="dualThirdNeutralPersonLabel">
@@ -201,7 +201,7 @@
        </widget>
       </item>
       <item row="13" column="1" colspan="2">
-       <widget class="KLineEdit" name="dualThirdNeutralPersonLineEdit"/>
+       <widget class="QLineEdit" name="dualThirdNeutralPersonLineEdit"/>
       </item>
       <item row="15" column="0">
        <widget class="QLabel" name="pluralFirstPersonLabel">
@@ -217,7 +217,7 @@
        </widget>
       </item>
       <item row="15" column="1" colspan="2">
-       <widget class="KLineEdit" name="pluralFirstPersonLineEdit"/>
+       <widget class="QLineEdit" name="pluralFirstPersonLineEdit"/>
       </item>
       <item row="16" column="0">
        <widget class="QLabel" name="pluralSecondPersonLabel">
@@ -233,7 +233,7 @@
        </widget>
       </item>
       <item row="16" column="1" colspan="2">
-       <widget class="KLineEdit" name="pluralSecondPersonLineEdit"/>
+       <widget class="QLineEdit" name="pluralSecondPersonLineEdit"/>
       </item>
       <item row="17" column="0">
        <widget class="QLabel" name="pluralThirdMalePersonLabel">
@@ -249,10 +249,10 @@
        </widget>
       </item>
       <item row="11" column="1" colspan="2">
-       <widget class="KLineEdit" name="dualThirdMalePersonLineEdit"/>
+       <widget class="QLineEdit" name="dualThirdMalePersonLineEdit"/>
       </item>
       <item row="17" column="1" colspan="2">
-       <widget class="KLineEdit" name="pluralThirdMalePersonLineEdit"/>
+       <widget class="QLineEdit" name="pluralThirdMalePersonLineEdit"/>
       </item>
       <item row="18" column="0">
        <widget class="QLabel" name="pluralThirdFemalePersonLabel">
@@ -268,10 +268,10 @@
        </widget>
       </item>
       <item row="18" column="1" colspan="2">
-       <widget class="KLineEdit" name="pluralThirdFemalePersonLineEdit"/>
+       <widget class="QLineEdit" name="pluralThirdFemalePersonLineEdit"/>
       </item>
       <item row="19" column="1" colspan="2">
-       <widget class="KLineEdit" name="pluralThirdNeutralPersonLineEdit"/>
+       <widget class="QLineEdit" name="pluralThirdNeutralPersonLineEdit"/>
       </item>
       <item row="19" column="0">
        <widget class="QLabel" name="pluralThirdNeutralPersonLabel">
@@ -417,11 +417,6 @@
    <class>KComboBox</class>
    <extends>QComboBox</extends>
    <header>kcombobox.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -25,8 +25,8 @@
     </widget>
    </item>
    <item row="0" column="2">
-    <widget class="KLineEdit" name="lineEdit">
-     <property name="clickMessage">
+    <widget class="QLineEdit" name="lineEdit">
+     <property name="placeholderText">
       <string/>
      </property>
     </widget>
@@ -63,13 +63,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -17,6 +17,7 @@
 #include "practice/latexrenderer.h"
 
 #include <QDataWidgetMapper>
+#include <KLocalizedString>
 
 using namespace Editor;
 
@@ -27,7 +28,7 @@ LatexWidget::LatexWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget 
     m_model = model;
 
     setupUi(this);
-    lineEdit->setClickMessage(i18n("Enter LaTeX code here."));
+    lineEdit->setPlaceholderText(i18n("Enter LaTeX code here."));
     m_mapper = new QDataWidgetMapper(this);
     m_mapper->setModel(model);
     LatexDelegate *delegate = new LatexDelegate(this);
@@ -109,7 +110,7 @@ void LatexDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
     }
 
     if (editor) {
-        KLineEdit *entry = static_cast <KLineEdit *>(editor);
+        QLineEdit *entry = static_cast <QLineEdit *>(editor);
         if (entry) {
             QString text = index.model()->data(index).toString();
             if (text.startsWith(QLatin1String("$$")) && text.endsWith(QLatin1String("$$"))) {
@@ -133,7 +134,7 @@ void LatexDelegate::setModelData(QWidget * editor, QAbstractItemModel * model, c
     }
 
     if (editor) {
-        KLineEdit *entry = static_cast <KLineEdit *>(editor);
+        QLineEdit *entry = static_cast <QLineEdit *>(editor);
         if (entry) {
             QString text = entry->text();
             if (m_checkBox->isChecked()) {
@@ -144,5 +145,3 @@ void LatexDelegate::setModelData(QWidget * editor, QAbstractItemModel * model, c
         }
     }
 }
-
-#include "latexwidget.moc"

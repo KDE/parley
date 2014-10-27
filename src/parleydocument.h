@@ -52,7 +52,7 @@ public slots:
     void slotFileOpen();
 
     /** opens a file from the recent files menu */
-    void slotFileOpenRecent(const KUrl& url);
+    void slotFileOpenRecent(const QUrl& url);
     /** open a downloaded (knewstuff/get hot new stuff) document */
     void openGHNS();
     /** download new vocabularies */
@@ -61,7 +61,7 @@ public slots:
     void uploadFile();
 
     /** Opens the given url, displays an error message and returns false on failure */
-    bool open(const KUrl &);
+    bool open(const QUrl &);
 
     /** close the document*/
     void close();
@@ -73,7 +73,7 @@ public slots:
     void slotFileMerge();
     /** save a document */
     void save();
-    void saveAs(KUrl file = KUrl());
+    void saveAs(QUrl file = QUrl());
 
     void exportDialog();
 

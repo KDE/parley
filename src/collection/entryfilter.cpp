@@ -13,12 +13,12 @@
 
 #include "entryfilter.h"
 
+#include <QPushButton>
+#include <QDebug>
 
-#include <krandom.h>
-
-#include <KDebug>
-#include <KDialog>
 #include <KMessageBox>
+#include <KLocalizedString>
+#include <KRandom>
 
 #include <keduvocdocument.h>
 #include <keduvocwordtype.h>
@@ -26,6 +26,8 @@
 
 #include "documentsettings.h"
 #include "testentry.h"
+
+//using namespace Practice;
 
 
 // Blocking times for pregrade levels.
@@ -54,16 +56,16 @@ EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc)
 {
     if (Prefs::practiceMode() == Prefs::EnumPracticeMode::ConjugationPractice) {
         DocumentSettings documentSettings(m_doc->url().url() + QString::number(m_toTranslation));
-        documentSettings.readConfig();
+        documentSettings.load();
         m_tenses = documentSettings.conjugationTenses();
-        kDebug() << "Tenses" << m_tenses;
+        qDebug() << "Tenses" << m_tenses;
     }
 }
 
 static void debugEntry(const QString &comment, KEduVocExpression *vocexp,
                        KEduVocTranslation *from, KEduVocTranslation *to)
 {
-    kDebug() << comment << "from" << from->text() << "to" << to->text();
+    qDebug() << comment << "from" << from->text() << "to" << to->text();
 }
 
 QList<TestEntry*> EntryFilter::entries()
@@ -106,7 +108,7 @@ QList<TestEntry*> EntryFilter::entries()
             m_toTranslation   = Prefs::knownLanguage();
         }
 
-        kDebug() << "Filter for " << m_fromTranslation << " to " << m_toTranslation;
+        qDebug() << "Filter for " << m_fromTranslation << " to " << m_toTranslation;
         expireEntries(pass);
 
         collectEntries(pass);
@@ -116,7 +118,7 @@ QList<TestEntry*> EntryFilter::entries()
         i18n("The vocabulary document contains no entries that can be used for the chosen type"
              " of practice.");
 
-    kDebug() << "Document contains " << m_entries[0].count() + m_entries[1].count() << " valid entries.";
+    qDebug() << "Document contains " << m_entries[0].count() + m_entries[1].count() << " valid entries.";
     if (m_entries[0].count() + m_entries[1].count() == 0) {
         KMessageBox::error(0, noEntriesError);
         return QList<TestEntry*>();
@@ -127,13 +129,23 @@ QList<TestEntry*> EntryFilter::entries()
     bool ignoreBlocked = false;
     int numSelected = m_currentSelection[0].count() + m_currentSelection[1].count();
     if (numSelected == 0) {
-        kDebug() << "Creating practice filter dialog.";
-        m_dialog = new KDialog;
-        m_dialog->setCaption(i18n("Start Practice"));
-        QWidget *widget = new QWidget(m_dialog);
+        m_button_dialog = new QDialogButtonBox;
+        m_button_dialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel );
+
+        QWidget *widget = new QWidget();
         ui.setupUi(widget);
-        m_dialog->setMainWidget(widget);
-        m_dialog->setButtons(KDialog::Ok | KDialog::Cancel);
+
+        QVBoxLayout *layout = new QVBoxLayout;
+        layout->addWidget( widget );
+        layout->addWidget( m_button_dialog );
+
+        m_dialog = new QDialog;
+        m_dialog->setLayout( layout );
+        m_dialog->setWindowTitle(i18n("Start Practice"));
+
+        connect(m_button_dialog, SIGNAL(accepted()), m_dialog, SLOT(accept()));
+        connect(m_button_dialog, SIGNAL(rejected()), m_dialog, SLOT(reject()));
+
 
         int numEntries = m_entries[0].count() + m_entries[1].count();
         ui.lessonLabel        ->setText(QString::number(numEntries
@@ -262,7 +274,7 @@ void EntryFilter::expireEntries(int setNo)
                 counter++;
             }
         }
-        kDebug() << "Expired words dropped their confidence: " << counter;
+        qDebug() << "Expired words dropped their confidence: " << counter;
     }
 }
 
@@ -396,16 +408,10 @@ bool EntryFilter::isBlocked(const KEduVocText* const text) const
 
     // Sanity checks
     // FIXME: This should be done when the prefs are first read.
-    if (preGrade < 0) {
-        preGrade = 0;
-    }
-    else if (preGrade > KV_MAX_GRADE) {
+    if (preGrade > KV_MAX_GRADE) {
         preGrade = KV_MAX_GRADE;
     }
-    if (grade < 0) {
-        grade = 0;
-    }
-    else if (grade > KV_MAX_GRADE) {
+    if (grade > KV_MAX_GRADE) {
         grade = KV_MAX_GRADE;
     }
 
@@ -416,16 +422,16 @@ bool EntryFilter::isBlocked(const KEduVocText* const text) const
     {
         // Always include untrained words and all words when blocking is off.
 
-        //kDebug() << "Not blocked, test 1; word =" << text->text() << "grade =" << grade
+        //qDebug() << "Not blocked, test 1; word =" << text->text() << "grade =" << grade
         //         << "blockItem(grade) =" << Prefs::blockItem(grade);
-        
+
         return false;
     }
     else if (grade == KV_NORM_GRADE) {
         // Test for pregrade blocking.
         QDateTime date = text->practiceDate();
         if (date.addSecs(preGradeTimes[preGrade]) < now) {
-            //kDebug() << "Not blocked, test 2";
+            //qDebug() << "Not blocked, test 2";
             return false;
         }
     }
@@ -434,7 +440,7 @@ bool EntryFilter::isBlocked(const KEduVocText* const text) const
 
         QDateTime date = text->practiceDate();
         if (date.addSecs(Prefs::blockItem(grade)) < now) {
-            //kDebug() << "Not blocked, test 3";
+            //qDebug() << "Not blocked, test 3";
             return false;
         }
     }
@@ -584,12 +590,12 @@ void EntryFilter::cleanupInvalid(int setNo)
         } // switch
         ++i;
     } // while
-    kDebug() << "Invalid items removed. Remaining: " << m_entries[setNo].count();
+    qDebug() << "Invalid items removed. Remaining: " << m_entries[setNo].count();
 }
 
 QList< TestEntry* > EntryFilter::conjugationTestEntries(bool ignoreBlocked) const
 {
-    kDebug() << "Filtering conjugation entries for tenses... " << m_tenses;
+    qDebug() << "Filtering conjugation entries for tenses... " << m_tenses;
 
     // TODO CM make this configurable
     enum MODE {
@@ -684,7 +690,7 @@ void EntryFilter::updateTotal()
     if (m_dialog) {
         int numSelected = selected[0].count() + selected[1].count();
         ui.totalLabel->setText(QString::number(numSelected));
-        m_dialog->enableButtonOk(numSelected > 0);
+        m_button_dialog->button(QDialogButtonBox::Ok)->setEnabled(numSelected > 0);
     }
 }
 
@@ -697,5 +703,3 @@ void EntryFilter::randomizedInsert(QList<TestEntry*>& list, TestEntry* entry)
 {
     list.insert(KRandom::random() % (list.size() + 1), entry);
 }
-
-#include "entryfilter.moc"

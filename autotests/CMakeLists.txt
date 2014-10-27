@@ -1,7 +1,14 @@
-# To add a new unittest
-# 1. Add its name to parley_unittests
+include(ECMMarkAsTest)
+include(ECMAddTests)
+include(CTest)
 
-set( EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR} )
+find_package(Qt5 5.2.0 CONFIG REQUIRED Test)
+
+# To add a new unittest
+# 1. Add its name to parley_gui_unit_tests or parley_non_gui_unit_tests
+# 2. Add any non-parley library helper cpp files to parley_unittest_helpers
+
+# set( EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR} )
 
 set( unittest_INCLUDE_DIRS
   ../src
@@ -10,30 +17,39 @@ set( unittest_INCLUDE_DIRS
 )
 
 set(unittest_LINK_LIBS
-  ${QT_QTTEST_LIBRARY}
+  Qt5::Test
+  ${parley_LINK_LIBS}
+  parley_LIB
 )
 
-set(parley_unittests
-  allpass1test
-  allpass2test
-)
-
-set(parley_unittests_helpers
+set(parley_unittest_helpers
   parleyunittestutilities.cpp
 )
 
-macro(ADD_PARLEY_UNITTESTS)
-  foreach(_unittestname ${ARGN} )
+macro(PARLEY_GUI_UNITTESTS)
+   foreach(_testname ${ARGN})
+     ecm_add_test( ${_testname} ${parley_unittest_helpers}
+       LINK_LIBRARIES ${unittest_LINK_LIBS}
+       TEST_NAME ${_testname}
+       GUI)
+   endforeach()
+endmacro()
 
-    kde4_add_unit_test(${_unittestname} ${_unittestname}.cpp ${parley_unittests_helpers} )
+macro(PARLEY_NON_GUI_UNITTESTS)
+   foreach(_testname ${ARGN})
+     ecm_add_test( ${_testname} ${parley_unittest_helpers}
+       LINK_LIBRARIES ${unittest_LINK_LIBS}
+       TEST_NAME ${_testname}
+       )
+   endforeach()
+endmacro()
 
-    target_link_libraries( ${_unittestname} ${unittest_LINK_LIBS} parley_LIB ${parley_LINK_LIBS} )
 
-  endforeach(_unittestname ${argn} )
-endmacro(ADD_PARLEY_UNITTESTS)
+include_directories( ${unittest_INCLUDE_DIRS})
 
 
-
-include_directories( ${unittest_INCLUDE_DIRS} ${parley_INCLUDE_DIRS} )
-
-ADD_PARLEY_UNITTESTS( ${parley_unittests} )
+parley_gui_unittests(
+  #todo restore dummy unit test when file locking is fixed
+  # allpass1test
+   allpass2test
+)

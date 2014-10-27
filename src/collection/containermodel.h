@@ -67,6 +67,10 @@ public:
 
     void deleteContainer(const QModelIndex& containerIndex);
 
+    /** Indicate supported drag actions
+     @return enum of actions supported **/
+    virtual Qt::DropActions supportedDragActions() const ;
+
 signals:
     /**
      * emitted when the inPractice state or name of a lesson changed.

@@ -16,15 +16,19 @@
 // Own
 #include "collectionwidget.h"
 
-// Qt
-#include <QtGui>
-#include <QColor>
+// Parley
+#include "barwidget.h"
 
 // KDE
 #include <klocalizedstring.h>
 
-// Parley
-#include "barwidget.h"
+// Qt
+#include <QtGui>
+#include <QColor>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QGraphicsDropShadowEffect>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QLabel>
 
 
 // Size constants for the collection widgets
@@ -100,13 +104,13 @@ DueWords::DueWords()
     int secondGrade = 7;
 #endif
     for (int x = 0; x < 8; x++) {
-	if (x == firstGrade || x == secondGrade) {
-	    dueWords[x] = randInt(0,20);
-	    totalDueWords += dueWords[x];
-	}
-	else {
-	    dueWords[x] = 0;
-	}
+   if (x == firstGrade || x == secondGrade) {
+       dueWords[x] = randInt(0,20);
+       totalDueWords += dueWords[x];
+   }
+   else {
+       dueWords[x] = 0;
+   }
     }
 
     //To test randomnly for Complete Collections. Again to be obtained from document.
@@ -118,7 +122,7 @@ DueWords::DueWords()
 
 
 CollectionWidget::CollectionWidget(const QString &nameString, DueWords *due,
-				   QWidget *parent)
+               QWidget *parent)
     : QWidget(parent)
 {
     // Set a nice shadow effect.
@@ -152,18 +156,18 @@ CollectionWidget::CollectionWidget(const QString &nameString, DueWords *due,
     wordCloud->setPalette(palette);
     wordCloud->setFixedSize(COLLWIDTH - 10, COLLHEIGHT1 - COLLHEIGHT2 + 10);
     if (due->percentageCompleted != 100) {
-	vBoxLayout->addWidget(wordCloud);
+   vBoxLayout->addWidget(wordCloud);
     }
 
     BarWidget *barWidget = new BarWidget(due->dueWords, due->totalDueWords,
-					 due->percentageCompleted);
+                due->percentageCompleted);
     barWidget->setFixedSize(COLLWIDTH - 10, 20);
     vBoxLayout->addWidget(barWidget);
     if (due->totalDueWords == 0 && due->percentageCompleted < 100) {
-	practiceButton = new QPushButton(i18n("Practice Anyway"));
+   practiceButton = new QPushButton(i18n("Practice Anyway"));
     }
     else {
-	practiceButton = new QPushButton(i18n("Practice"));
+   practiceButton = new QPushButton(i18n("Practice"));
     }
     practiceButton->setStyleSheet("QPushButton {border: none; margin: 0px;   padding: 0px;}");
 
@@ -186,4 +190,3 @@ CollectionWidget::CollectionWidget(const QString &nameString, DueWords *due,
 CollectionWidget::~CollectionWidget()
 {
 }
-

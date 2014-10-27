@@ -20,10 +20,11 @@
 #include <QDateTime>
 
 // kdelibs
-#include <klocale.h>
+#include <KLocalizedString>
 #include <kconfig.h>
-#include <KDebug>
+#include <QDebug>
 #include <KMessageBox>
+#include <KRandom>
 
 // kdeedulibs
 #include <keduvoclesson.h>
@@ -43,7 +44,6 @@ SessionManagerBase::SessionManagerBase(QWidget* parent)
     , m_knownLanguageIndex(1)
     , m_currentEntry(-1)
     , m_totalTime(0)
-    , m_randomSequence(QDateTime::currentDateTime().toTime_t())
 {
 }
 
@@ -78,17 +78,17 @@ void SessionManagerBase::setDocument(KEduVocDocument* doc)
 
     m_learningLanguageIndex = Prefs::learningLanguage();
     m_knownLanguageIndex    = Prefs::knownLanguage();
-    kDebug() << "Practice: learning language:" << m_doc->identifier(m_learningLanguageIndex).name()
+    qDebug() << "Practice: learning language:" << m_doc->identifier(m_learningLanguageIndex).name()
              << " known language:" << m_doc->identifier(m_knownLanguageIndex).name();
 
     // Create the list of available entries for this training session.
     EntryFilter filter(m_parent, m_doc);
     m_allTestEntries = filter.entries();
 
-    kDebug() << "Entries: ----------------";
-    kDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
+    qDebug() << "Entries: ----------------";
+    qDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
     foreach (TestEntry *entry, m_allTestEntries) {
-        kDebug() << "Entry: " << entry->languageFrom() << entry->entry()->translation(entry->languageFrom())->text()
+        qDebug() << "Entry: " << entry->languageFrom() << entry->entry()->translation(entry->languageFrom())->text()
                  << "to" << entry->languageTo() << entry->entry()->translation(entry->languageTo())->text();
     }
 
@@ -105,14 +105,14 @@ QString SessionManagerBase::title() const
 
 void SessionManagerBase::practiceStarted()
 {
-    kDebug() << "start practice timer";
+    qDebug() << "start practice timer";
     m_time.start();
 }
 
 void SessionManagerBase::practiceFinished()
 {
     m_totalTime = m_time.elapsed();
-    kDebug() << "stop practice timer" << m_totalTime << m_time.toString();
+    qDebug() << "stop practice timer" << m_totalTime << m_time.toString();
 }
 
 int SessionManagerBase::totalTime()
@@ -136,16 +136,16 @@ TestEntry* SessionManagerBase::nextTrainingEntry()
     int lastEntry = m_currentEntry;
     if (m_currentEntries.count() > 0) {
         // Choose one of the current entries randomly.
-        m_currentEntry = m_randomSequence.getLong(m_currentEntries.count());
+	m_currentEntry = KRandom::random() % m_currentEntries.count();
 
         // Do not allow to ask the same entry twice in a row.
         if (m_currentEntries.count() > 1) {
             while (m_currentEntry == lastEntry) {
-                m_currentEntry = m_randomSequence.getLong(m_currentEntries.count());
+                m_currentEntry = KRandom::random() % m_currentEntries.count();
             }
         }
 
-        kDebug() << "nextTrainingEntry:"
+        qDebug() << "nextTrainingEntry:"
                  << m_currentEntry << " = " << m_currentEntries.value(m_currentEntry)->entry()->translation(0)->text()
                  << " (" << m_currentEntries.count() + m_notAskedTestEntries.count()
                  << "entries remaining)";
@@ -228,9 +228,9 @@ int SessionManagerBase::statisticTotalUnanswered()
 
 void SessionManagerBase::printStatistics()
 {
-    kDebug() << "Test statistics: ";
+    qDebug() << "Test statistics: ";
     foreach(TestEntry * entry, m_allTestEntries) {
-        kDebug()
+        qDebug()
                 << " asked: " << entry->statisticCount()
                 << " +" << entry->statisticGoodCount() << " -" << entry->statisticBadCount()
                 << "Entry: " << entry->entry()->translation(0)->text();
@@ -245,7 +245,6 @@ void SessionManagerBase::printStatistics()
 QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
 {
     QStringList choices;
-    KRandomSequence randomSequence;
     QList<KEduVocExpression*> allEntries = m_doc->lesson()->entries(KEduVocLesson::Recursive);
     int numValidEntries = 0;
     int count = numberChoices;
@@ -254,7 +253,7 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
     TestEntry *currentEntry = m_currentEntries.at(m_currentEntry);
     QStringList predefinedChoices = currentEntry->entry()->translation(currentEntry->languageTo())->multipleChoice();
     while (!predefinedChoices.isEmpty() && count > 0) {
-        choices.append(predefinedChoices.takeAt(randomSequence.getLong(predefinedChoices.count())));
+        choices.append(predefinedChoices.takeAt(KRandom::random() % predefinedChoices.count()));
         count--;
     }
 
@@ -282,7 +281,7 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
             int nr;
             // if there are enough non-empty fields, fill the options only with those
             do {
-                nr = randomSequence.getLong(allEntries.count());
+                nr = KRandom::random() % allEntries.count();
             } while (!isValidMultipleChoiceAnswer(allEntries.value(nr)));
             // append if new entry found
             bool newex = true;
@@ -302,7 +301,7 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
         }
     }
 
-    kDebug() << "choices:" << choices << " answerLang = " << currentEntry->languageTo() ;
+    qDebug() << "choices:" << choices << " answerLang = " << currentEntry->languageTo() ;
     return choices;
 }
 

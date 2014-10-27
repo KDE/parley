@@ -20,22 +20,27 @@
 
 #include <KMessageBox>
 #include <QLabel>
-#include <KLocale>
+#include <KLocalizedString>
+#include <QToolTip>
+#include <QDialogButtonBox>
 
 LanguageProperties::LanguageProperties(KEduVocDocument* doc, QWidget * parent)
     : KPageDialog(parent), m_doc(doc)
 {
-    setCaption(i18n("Edit Languages"));
+    setWindowTitle(i18n("Edit Languages"));
     setFaceType(List);
-    setButtons(User1 | User2 | Ok | Cancel);
+    setStandardButtons( QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 
-    setButtonText(User2, i18n("Add language"));
-    setButtonIcon(User2, KIcon("list-add"));
-    setButtonText(User1, i18n("Remove language"));
-    setButtonIcon(User1, KIcon("list-remove"));
+    QAbstractButton * addLangButton(
+        buttonBox()->addButton(i18n("Add language"), QDialogButtonBox::ActionRole) );
+    addLangButton->setIcon(QIcon::fromTheme("list-add"));
 
-    connect(this, SIGNAL(user2Clicked()), this, SLOT(slotAppendIdentifier()));
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotDeleteIdentifier()));
+    QAbstractButton * removeLangButton(
+        buttonBox()->addButton(i18n("Remove language"), QDialogButtonBox::ActionRole) );
+    removeLangButton->setIcon(QIcon::fromTheme("list-remove") );
+
+    connect(addLangButton, SIGNAL(clicked()), this, SLOT(slotAppendIdentifier()));
+    connect(removeLangButton, SIGNAL(clicked()), this, SLOT(slotDeleteIdentifier()));
 
     for (int i = 0; i < m_doc->identifierCount(); i++) {
         createPage(i);
@@ -55,7 +60,7 @@ KPageWidgetItem*  LanguageProperties::createPage(int i)
     if (m_doc->identifierCount() > i) {
         name = m_doc->identifier(i).name();
         LanguageSettings currentSettings(m_doc->identifier(i).locale());
-        currentSettings.readConfig();
+        currentSettings.load();
     }
 
     KPageWidgetItem* editPage = new KPageWidgetItem(page, name);
@@ -64,7 +69,7 @@ KPageWidgetItem*  LanguageProperties::createPage(int i)
     m_pages.append(editPage);
     addPage(editPage);
 
-    editPage->setIcon(KIcon("set-language"));
+    editPage->setIcon(QIcon::fromTheme("set-language"));
 
     connect(page->identifierNameLineEdit, SIGNAL(textChanged(const QString&)), this, SLOT(pageNameChanged(const QString&)));
     connect(this, SIGNAL(accepted()), page, SLOT(accept()));
@@ -96,7 +101,7 @@ void LanguageProperties::accept()
         }
     }
 
-    KDialog::accept();
+    KPageDialog::accept();
 }
 
 

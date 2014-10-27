@@ -27,20 +27,18 @@
 
 #include "parleydocument.h"
 
-#include <KTemporaryFile>
+#include <QTemporaryFile>
 
-#include <KUrl>
+#include <QUrl>
 
-#include <qtest_kde.h>
-#include <KDebug>
-
-#include <QtTest>
+#include <QtTest/QtTest>
+#include <QDebug>
 
 namespace UnitTestUtilities
 {
 
 /** Class to manage creation/destruction of a kvtml temp doc*/
-class TemporaryVocDoc : public KTemporaryFile
+class TemporaryVocDoc : public QTemporaryFile
 {
 public :
     /** Create the file, fix the suffix and instantiate it.*/

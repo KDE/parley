@@ -14,17 +14,20 @@
  ***************************************************************************/
 #include "scriptmanager.h"
 
-#include <KStandardDirs>
-#include <KDebug>
 #include <KPluginInfo>
 #include <KServiceTypeTrader>
-#include <QFileInfo>
 #include <KActionCollection>
-#include <KPassivePopup>
+#include <KNotifications/KPassivePopup>
 #include <KMessageBox>
+#include <KConfig>
+#include <KSharedConfig>
 
 #include <kross/core/action.h>
 #include <kross/core/manager.h>
+
+#include <QFileInfo>
+#include <QStandardPaths>
+#include <QDebug>
 
 using namespace Editor;
 
@@ -45,12 +48,18 @@ ScriptManager::~ScriptManager()
 QStringList ScriptManager::getDesktopFiles()
 {
 //     QStringList scriptsAvailable;
-    return KGlobal::dirs()->findAllResources(
-               "appdata",
-               QString("plugins/*.desktop"),
-               KStandardDirs::Recursive
-               /*, scriptsAvailable*/
-           );
+    QStringList dirs(
+        QStandardPaths::locateAll(
+            QStandardPaths::DataLocation, "plugins",  QStandardPaths::LocateDirectory ) );
+    QStringList filenames;
+    foreach ( const QString dir,  dirs ) {
+        foreach ( const QString filename,  QDir( dir ).entryList(QDir::Files) ) {
+            if ( filename.endsWith(QLatin1String(".desktop") ) ) {
+                filenames << filename;
+            }
+        }
+    }
+    return filenames;
 }
 
 
@@ -91,7 +100,7 @@ QStringList ScriptManager::enabledScripts()
         inf.load(cfg);
         if (inf.isPluginEnabled())
             enabledScripts.push_back(inf.entryPath());
-//         kDebug() << inf.name() << inf.isPluginEnabled() << inf.pluginName();
+//         qDebug() << inf.name() << inf.isPluginEnabled() << inf.pluginName();
     }
     return enabledScripts;
 }
@@ -159,7 +168,7 @@ void ScriptManager::reloadScripts()
 }
 
 
-void ScriptManager::addScriptAction(const QString & name, KAction * action)
+void ScriptManager::addScriptAction(const QString & name, QAction * action)
 {
     //unplug action list (orelse it will add twice the same entries
     m_editor->unplugActionList("scripts_actionlist");

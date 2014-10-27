@@ -23,7 +23,7 @@
 #include <keduvocwordtype.h>
 #include <keduvocexpression.h>
 
-#include <KDebug>
+#include <QDebug>
 #include <KLocalizedString>
 
 /** @file
@@ -36,8 +36,6 @@ ContainerModel::ContainerModel(KEduVocContainer::EnumContainerType type, QObject
 {
     m_type = type;
     m_doc = 0;
-
-    setSupportedDragActions(Qt::CopyAction | Qt::MoveAction);
 }
 
 QModelIndex ContainerModel::appendContainer(const QModelIndex& parent, const QString & containerName)
@@ -86,7 +84,7 @@ QVariant ContainerModel::data(const QModelIndex & index, int role) const
         }
 
 //         if (role == Qt::DecorationRole) {
-//             return KIcon("favorites");
+//             return QIcon::fromTheme("favorites");
 //         }
         if (role == Qt::TextAlignmentRole) {
             return Qt::AlignLeft;
@@ -240,7 +238,7 @@ QMimeData * ContainerModel::mimeData(const QModelIndexList &indexes) const
 //              stream << text;
 //          }
 //      }
-// // kDebug() << "mimeData:" << encodedData;
+// // qDebug() << "mimeData:" << encodedData;
 //      mimeData->setData("text/plain", encodedData);
     return mimeData;
 }
@@ -266,7 +264,7 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
             }
 
             if (action == Qt::MoveAction || action == Qt::CopyAction) {
-                kDebug() << "Move container: " << container->name();
+                qDebug() << "Move container: " << container->name();
                 KEduVocContainer* parentContainer = 0;
 
                 if (parent.isValid()) {
@@ -280,7 +278,7 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
                     KEduVocContainer* childTest = parentContainer;
                     while (childTest != 0) {
                         if (childTest == container) {
-                            kDebug() << "Cannot drop a container into one of its child containers!";
+                            qDebug() << "Cannot drop a container into one of its child containers!";
                             return false;
                         }
                         childTest = childTest->parent();
@@ -344,13 +342,13 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
     }
 
 
-    kDebug() << data->formats();
+    qDebug() << data->formats();
     /*
         if (data->hasText()) {
             if (action == Qt::CopyAction | action == Qt::MoveAction) {
                 QString name;
                 name = data->text();
-                kDebug() << "Copy lesson " << name;
+                qDebug() << "Copy lesson " << name;
 
                 appendLesson(parent, name);
                 return true;
@@ -359,6 +357,12 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
 
     return false;
 }
+
+Qt::DropActions ContainerModel::supportedDragActions() const
+{
+    return (Qt::CopyAction | Qt::MoveAction);
+}
+
 
 /*
 bool ContainerModel::removeRows(int row, int count, const QModelIndex & parent)
@@ -371,7 +375,7 @@ bool ContainerModel::removeRows(int row, int count, const QModelIndex & parent)
     } else {
         parentContainer = static_cast<KEduVocContainer*>(parent.internalPointer());
     }
-    kDebug() << "removeRows from " << parentContainer->name() << " row " << row << "count" << count;
+    qDebug() << "removeRows from " << parentContainer->name() << " row " << row << "count" << count;
 
     beginRemoveRows ( parent, row, row+count );
     for (int i = 0; i<count; i++) {
@@ -383,6 +387,3 @@ bool ContainerModel::removeRows(int row, int count, const QModelIndex & parent)
 }
 
 */
-
-
-#include "containermodel.moc"

@@ -15,12 +15,10 @@
 
 #include "audiowidget.h"
 
-#include <Phonon/MediaObject>
-
 #include <keduvocexpression.h>
 
-#include <KIcon>
-#include <kdebug.h>
+#include <QtMultimedia/QMediaPlayer>
+#include <QDebug>
 
 using namespace Editor;
 
@@ -35,10 +33,10 @@ AudioWidget::AudioWidget(QWidget *parent) : QWidget(parent)
 //     connect(recordButton, SIGNAL(clicked()), SLOT(recordAudio()));
 
     playButton->setEnabled(false);
-    playButton->setIcon(KIcon("media-playback-start"));
+    playButton->setIcon(QIcon::fromTheme("media-playback-start"));
     recordButton->setVisible(false);
 //     recordButton->setEnabled(false);
-//     recordButton->setIcon(KIcon("media-record"));
+//     recordButton->setIcon(QIcon::fromTheme("media-record"));
     audioUrlRequester->setEnabled(false);
 }
 
@@ -55,7 +53,7 @@ void AudioWidget::setTranslation(KEduVocExpression* entry, int translation)
         recordButton->setEnabled(false);
         audioUrlRequester->setEnabled(false);
         if (m_player) {
-            if (m_player->state() == Phonon::PlayingState) {
+            if (m_player->state() == QMediaPlayer::PlayingState) {
                 playButton->setEnabled(true);
             } else {
                 playButton->setEnabled(false);
@@ -68,28 +66,28 @@ void AudioWidget::setTranslation(KEduVocExpression* entry, int translation)
 void AudioWidget::slotAudioFileChanged(const QString & url)
 {
     if (m_entry) {
-        m_entry->translation(m_currentTranslation)->setSoundUrl(KUrl(url));
+        m_entry->translation(m_currentTranslation)->setSoundUrl( QUrl::fromLocalFile(url));
     }
     playButton->setEnabled(!url.isEmpty());
 }
 
 void AudioWidget::playAudio()
 {
-    KUrl soundFile = m_entry->translation(m_currentTranslation)->soundUrl();
+    QUrl soundFile = m_entry->translation(m_currentTranslation)->soundUrl();
 
     if (!m_player) {
-        m_player = Phonon::createPlayer(Phonon::NotificationCategory, soundFile);
-        m_player->setParent(this);
+        m_player = new QMediaPlayer( this );
         connect(m_player, SIGNAL(finished()), SLOT(slotPlaybackFinished()));
     } else {
-        if (m_player->state() == Phonon::PlayingState) {
+        if (m_player->state() == QMediaPlayer::PlayingState) {
             m_player->stop();
             slotPlaybackFinished();
-            return;
         }
-        m_player->setCurrentSource(soundFile);
     }
-    playButton->setIcon(KIcon("media-playback-stop"));
+    m_player->setMedia(soundFile);
+    m_player->setVolume(50);
+
+    playButton->setIcon(QIcon::fromTheme("media-playback-stop"));
     m_player->play();
 }
 
@@ -102,8 +100,6 @@ void AudioWidget::recordAudio()
 
 void AudioWidget::slotPlaybackFinished()
 {
-    playButton->setIcon(KIcon("media-playback-start"));
+    playButton->setIcon(QIcon::fromTheme("media-playback-start"));
     playButton->setEnabled(!audioUrlRequester->url().isEmpty());
 }
-
-#include "audiowidget.moc"

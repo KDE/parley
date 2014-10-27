@@ -24,16 +24,17 @@
 
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
+#include <KLocalizedString>
 #include <KPassivePopup>
 #include <KComboBox>
-#include <KDebug>
-#include <KLineEdit>
-#include <KLocale>
+#include <QDebug>
+#include <QLineEdit>
 #include <QTreeView>
 #include <QHeaderView>
 #include <QDBusInterface>
 #include <QKeyEvent>
 #include <QtGui>
+#include <QToolTip>
 
 using namespace Editor;
 
@@ -58,7 +59,7 @@ QSet<QString> VocabularyDelegate::getTranslations(const QModelIndex & index) con
             QString word = index.model()->index(index.row(), i, QModelIndex()).data().toString();
 
             if (fromLanguage != toLanguage) {
-//                 kDebug() << fromLanguage << toLanguage << word;
+//                 qDebug() << fromLanguage << toLanguage << word;
                 //get the word translations and add them to the translations set
                 QSet<QString> * tr = m_translator->getTranslation(word, fromLanguage, toLanguage);
                 if (tr)
@@ -96,7 +97,7 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
         basicWordTypeModel->setDocument(m_doc);
         view->expandAll();
 
-        kDebug() << "index data" << index.data().toString();
+        qDebug() << "index data" << index.data().toString();
         //view->setCurrentItem();
 
         return wordTypeCombo;
@@ -125,7 +126,7 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
         // no break - we fall back to a line edit if there are not multiple translations fetched online
     }
     default: {
-        KLineEdit *editor = new KLineEdit(parent);
+        QLineEdit *editor = new QLineEdit(parent);
         editor->setFrame(false);
         editor->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
         editor->setText(index.model()->data(index, Qt::DisplayRole).toString());
@@ -133,7 +134,7 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
         QString locale = index.model()->data(index, VocabularyModel::LocaleRole).toString();
         if (!locale.isEmpty()) {
             LanguageSettings settings(locale);
-            settings.readConfig();
+            settings.load();
             QString layout = settings.keyboardLayout();
             if (!layout.isEmpty()) {
                 QDBusInterface kxkb("org.kde.keyboard", "/Layouts", "org.kde.KeyboardLayouts");
@@ -266,7 +267,7 @@ void VocabularyDelegate::setEditorData(QWidget * editor, const QModelIndex & ind
     default: {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
 
-        KLineEdit *lineEdit = qobject_cast<KLineEdit*> (editor);
+        QLineEdit *lineEdit = qobject_cast<QLineEdit*> (editor);
         if (lineEdit) {
             lineEdit->setText(value);
         }
@@ -282,12 +283,12 @@ void VocabularyDelegate::setModelData(QWidget * editor, QAbstractItemModel * mod
 
     switch (VocabularyModel::columnType(index.column())) {
     case (VocabularyModel::WordClass) : {
-        kDebug() << "word type editor";
+        qDebug() << "word type editor";
         KComboBox *combo = qobject_cast<KComboBox*> (editor);
         if (!combo) {
             return;
         }
-        kDebug() << "combo" << combo->currentText();
+        qDebug() << "combo" << combo->currentText();
         QModelIndex comboIndex = combo->view()->currentIndex();
         KEduVocWordType* wordType = static_cast<KEduVocWordType*>(comboIndex.internalPointer());
 
@@ -316,7 +317,7 @@ void VocabularyDelegate::setModelData(QWidget * editor, QAbstractItemModel * mod
         }
     }
     default: {
-        KLineEdit *lineEdit = qobject_cast<KLineEdit*> (editor);
+        QLineEdit *lineEdit = qobject_cast<QLineEdit*> (editor);
         if (lineEdit) {
             model->setData(index, lineEdit->text());
         }
@@ -332,12 +333,12 @@ void VocabularyDelegate::setDocument(KEduVocDocument * doc)
 /*
 QPair< QString, QString > VocabularyDelegate::guessWordType(const QString & entry, int language) const
 {
-    kDebug() << "guessing word type for: " << entry;
+    qDebug() << "guessing word type for: " << entry;
 
     QString article = entry.section(" ", 0, 0);
     if ( article.length() < entry.length() ) {
         if ( article == ->identifier(language).articles().article(KEduVocWordFlag::Singular| KEduVocWordFlag::Definite| KEduVocWordFlag::Masculine) ) {
-            kDebug() << "Noun masculine";
+            qDebug() << "Noun masculine";
             return qMakePair(m_doc->wordTypes().specialTypeNoun(), m_doc->wordTypes().specialTypeNounMale());
         }
 
@@ -368,5 +369,3 @@ void VocabularyDelegate::setTranslator(Translator* translator)
 {
     m_translator = translator;
 }
-
-#include "vocabularydelegate.moc"

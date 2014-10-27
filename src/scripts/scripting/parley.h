@@ -17,13 +17,14 @@
 
 #include "document.h"
 
+#include <KLocalizedString>
+
+#include <QStandardPaths>
 #include <QObject>
-#include <KAction>
-#include <KDebug>
+#include <QAction>
+#include <QDebug>
 
 #include <keduvocdeclension.h>
-
-#include <KStandardDirs>
 
 namespace Editor
 {
@@ -237,11 +238,17 @@ public:
 public Q_SLOTS:
 
     QStringList dataDirs() {
-        return KGlobal::dirs()->findDirs("data", "parley");
+    return QStandardPaths::standardLocations(QStandardPaths::DataLocation);
     }
 
     QStringList pluginDirs() {
-        return KGlobal::dirs()->findDirs("data", "parley/plugins");
+        QStringList basedirs(QStandardPaths::standardLocations(QStandardPaths::DataLocation));
+        QStringList ret;
+        foreach ( const QString dir , basedirs){
+            ret << (dir + "/plugins");
+        }
+
+        return ret;
     }
 
     /** Returns a list of Expression objects (the selected entries of the active lesson) */
@@ -346,7 +353,7 @@ public Q_SLOTS:
     }
 
     /**
-     * Creates and adds to the Scripts menu a new KAction (see KAction documentation)
+     * Creates and adds to the Scripts menu a new QAction (see QAction documentation)
      *
      * @code
      * #how to add two new Scripts menu entries
@@ -370,7 +377,7 @@ public Q_SLOTS:
      *
      * @param name Unique action name
      * @param text Action's text (what text appears in the scripts menu)
-     * @return A reference to a KAction object (accessible by scripts)
+     * @return A reference to a QAction object (accessible by scripts)
      */
     QObject * newAction(const QString & name, const QString & text = QString());
 

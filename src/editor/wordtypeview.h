@@ -19,7 +19,7 @@
 #include "wordtypeview.h"
 #include "containerview.h"
 
-class KAction;
+class QAction;
 class KSelectAction;
 class KEduVocWordType;
 
@@ -61,21 +61,21 @@ private slots:
     void setWordTypeConjunction();
 
 private:
-    KAction *m_actionNewWordType;
-    KAction *m_actionDeleteWordType;
-    KAction *m_actionRenameWordType;
+    QAction *m_actionNewWordType;
+    QAction *m_actionDeleteWordType;
+    QAction *m_actionRenameWordType;
     KSelectAction *m_actionSpecialTypeMenu;
 
-    KAction *m_noneAction;
-    KAction *m_separator;
-    KAction *m_nounAction;
-    KAction *m_nounMaleAction;
-    KAction *m_nounFemaleAction;
-    KAction *m_nounNeutralAction;
-    KAction *m_adjectiveAction;
-    KAction *m_adverbAction;
-    KAction *m_verbAction;
-    KAction *m_conjunctionAction;
+    QAction *m_noneAction;
+    QAction *m_separator;
+    QAction *m_nounAction;
+    QAction *m_nounMaleAction;
+    QAction *m_nounFemaleAction;
+    QAction *m_nounNeutralAction;
+    QAction *m_adjectiveAction;
+    QAction *m_adverbAction;
+    QAction *m_verbAction;
+    QAction *m_conjunctionAction;
 };
 }
 

@@ -26,8 +26,8 @@
 using namespace UnitTestUtilities;
 
 TemporaryVocDoc::TemporaryVocDoc()
+    :QTemporaryFile( "XXXXXX.kvtml" )
 {
-    this->setSuffix(".kvtml");
     this->open();
     this->close();
 }
@@ -50,8 +50,8 @@ MinimalTempVocDoc::MinimalTempVocDoc()
     KEduVocDocument *doc = new KEduVocDocument();
     doc->setAuthor( author );
     doc->appendIdentifier( lang0 );
-    KUrl filename = this->fileName();
-    doc->saveAs(filename, KEduVocDocument::Kvtml, generator);
+    doc->setGenerator(generator);
+    doc->saveAs(this->fileName(), KEduVocDocument::Kvtml);
     delete doc;
 }
 

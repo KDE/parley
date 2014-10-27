@@ -46,6 +46,9 @@ public:
     virtual Qt::ItemFlags flags(const QModelIndex &index) const;
     virtual int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
+    /** Indicate supported drag actions
+     @return enum of actions supported **/
+    virtual Qt::DropActions supportedDragActions() const ;
 protected:
     KEduVocContainer * rootContainer() const;
 };

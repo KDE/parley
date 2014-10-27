@@ -57,6 +57,3 @@ bool ThresholdOptions::hasChanged()
 {
     return false;
 }
-
-
-#include "thresholdoptions.moc"

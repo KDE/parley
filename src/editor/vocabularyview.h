@@ -25,8 +25,8 @@
 
 // KDE
 class KActionMenu;
-class KAction;
-class KUrl;
+class QAction;
+class QUrl;
 
 // KEduVocDocument
 class KEduVocExpression;
@@ -112,13 +112,13 @@ private:
         Q_UNUSED(model)
     }
 #endif
-    KAction* m_appendEntryAction;
-    KAction* m_deleteEntriesAction;
-    KAction* m_copyAction;
-    KAction* m_cutAction;
-    KAction* m_pasteAction;
-    KAction* m_selectAllAction;
-    KAction* m_clearSelectionAction;
+    QAction* m_appendEntryAction;
+    QAction* m_deleteEntriesAction;
+    QAction* m_copyAction;
+    QAction* m_cutAction;
+    QAction* m_pasteAction;
+    QAction* m_selectAllAction;
+    QAction* m_clearSelectionAction;
 
     VocabularyFilter* m_model;
     VocabularyDelegate* m_vocabularyDelegate;

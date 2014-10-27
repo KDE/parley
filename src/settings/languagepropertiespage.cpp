@@ -15,13 +15,12 @@
 
 #include "languagesettings.h"
 
-#include <kinputdialog.h>
 #include <kmessagebox.h>
 
-#include <KDebug>
-#include <KLocale>
-#include <KStandardDirs>
-#include <KLineEdit>
+#include <QDebug>
+#include <KLocalizedString>
+#include <QLineEdit>
+#include <QInputDialog>
 #include <QCheckBox>
 #include <QLabel>
 #include <QtDBus>
@@ -43,12 +42,12 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
     connect(localeComboBox, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(localeChanged(const QString&)));
     connect(downloadGrammarButton, SIGNAL(clicked()), this, SLOT(downloadGrammar()));
 
-    QStringList languageCodes = KGlobal::locale()->allLanguagesList();
+    QStringList languageCodes =  QLocale().uiLanguages();
 
     // qmap automatically sorts by keys
     QMap<QString, QString> languageCodeMap;
     foreach(const QString & code, languageCodes) {
-        languageCodeMap[KGlobal::locale()->languageCodeToName(code)] = code;
+        languageCodeMap[ QLocale(code ).nativeLanguageName( ) ] = code;
     }
     // add the language, but also it's code as data
     foreach(const QString & language, languageCodeMap.keys()) {
@@ -64,7 +63,7 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
 
     int index = (m_identifierIndex < m_doc->identifierCount() ? m_identifierIndex : 0);
     LanguageSettings settings(m_doc->identifier(index).locale());
-    settings.readConfig();
+    settings.load();
 
     // fonts
     editorFont->setFont(settings.editorFont());
@@ -89,7 +88,7 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
             }
         }
     } else {
-        kDebug() << "kxkb dbus error";
+        qDebug() << "kxkb dbus error";
         keyboardLayoutComboBox->setEnabled(false);
         keyboardLayoutComboBox->addItem(i18n("No KDE keyboard selector found."));
     }
@@ -235,7 +234,7 @@ void LanguagePropertiesPage::accept()
     }
     int index = spellcheckerComboBox->currentIndex();
     settings.setSpellChecker(spellcheckerComboBox->itemData(index).toString());
-    settings.writeConfig();
+    settings.save();
 
     // articles
     const KEduVocWordFlag::Flags artSing = KEduVocWordFlag::Singular;
@@ -359,7 +358,7 @@ void LanguagePropertiesPage::slotTenseChosen(int index)
 void LanguagePropertiesPage::slotNewTense()
 {
     bool ok;
-    QString getTense = KInputDialog::getText(i18n("Tense Name"), i18n("Enter name of tense:"), QString(), &ok, this);
+    QString getTense = QInputDialog::getText(this, i18n("Tense Name"), i18n("Enter name of tense:"), QLineEdit::Normal, QString(), &ok);
     if (!ok)
         return;
 
@@ -381,7 +380,7 @@ void LanguagePropertiesPage::slotModifyTense()
         str = str.mid(str.indexOf(TENSE_TAG) + QString(TENSE_TAG).length());
 
         bool ok;
-        QString getTense = KInputDialog::getText(i18n("Tense Name"), i18n("Enter name of tense:"), str, &ok, this);
+        QString getTense = QInputDialog::getText(this, i18n("Tense Name"), i18n("Enter name of tense:"), QLineEdit::Normal, str, &ok);
         if (!ok)
             return;
 

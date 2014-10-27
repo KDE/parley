@@ -91,6 +91,3 @@ QList< VocabularyMimeData::MimeExpression > VocabularyMimeData::expressionList()
 {
     return m_expressions;
 }
-
-
-#include "vocabularymimedata.moc"

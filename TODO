@@ -23,7 +23,7 @@ NOTE:  DO NOT CHANGE THESE IN MASTER.
     + Parley crash while adding choice in multiple			----
       choice mode in editor (investigate)
       https://bugs.kde.org/show_bug.cgi?id=255647
-    + Scripts need to sandboxed or atleast check 			----
+    + Scripts need to sandboxed or atleast check         ----
       if data can be fetched and stop gracefully. Eg:
       https://bugs.kde.org/show_bug.cgi?id=252696
     + Investigate - large list causes crash?				----
@@ -33,7 +33,7 @@ NOTE:  DO NOT CHANGE THESE IN MASTER.
     + ...
 
  * Misfeatures
-    + There seems to be no way to change the title.                     ----
+    + There seems to be no way to change the title.                     DONE
       It works in the editor but it is never saved.
       Note: It can be changed in the menu, though.
 
@@ -57,7 +57,7 @@ Before the 4.14 freeze (features).  These are picked from the ones below.
 
 
  * Practice
-    + Dashboard	    	    	      					----
+    + Dashboard                                    ----
        - wrapper class for a KEduVocDocument				----
        - Make the words due work					----
        - KEduVocDocument summary view widget				Done
@@ -69,7 +69,7 @@ Before the 4.15 freeze (features).  These are picked from the ones below.
 
 
  * Editor
-    + 
+    +
 
  * Practice
     + Sessions.  For details, see below.                                ----
@@ -93,7 +93,7 @@ Release work for 4.15
  * Change the version number of Parley					----
  * Create new versions in Bugzilla					----
  * Add the new features to the feature plan				----
- * Blog	                                   				----
+ * Blog                                               ----
 
 
 ================================================================

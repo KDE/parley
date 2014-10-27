@@ -23,7 +23,11 @@
 #include "thresholdoptions.h"
 #include "specificpracticeoptions.h"
 
-#include <KLocale>
+#include <KLocalizedString>
+#include <KWindowConfig>
+#include <KConfigWidgets/KConfigDialog>
+
+#include <QPushButton>
 
 ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *parent,
                                                  const QString &name, KConfigSkeleton *config)
@@ -31,12 +35,11 @@ ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *
 {
     m_config = config;
 
-    setCaption(i18nc("@title:window", "Configure Practice"));
-    setButtons(Default | Ok | Apply | Cancel | Help);
-    setDefaultButton(Ok);
+    setWindowTitle(i18nc("@title:window", "Configure Practice"));
+    button(QDialogButtonBox::Ok)->setDefault( true );
 
     m_generalPracticeOptions = new GeneralPracticeOptions(this);
-    addPage(m_generalPracticeOptions, 
+    addPage(m_generalPracticeOptions,
             i18nc("@title:group Configure general settings for practicing vocabulary, short title in config dialog.", "General"),
             "general-setup", i18nc("Configure general settings for practicing vocabulary.", "General Practice Settings"),
             true);
@@ -53,13 +56,14 @@ ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *
     setHelp(QString(), "parley");
 
     KConfigGroup cg(KSharedConfig::openConfig("parleyrc"), "ConfigurePracticeDialog");
-    KDialog::restoreDialogSize(cg);
+    this->resize( cg.readEntry("width",100 ), cg.readEntry("height",100 ) );
 }
 
 ConfigurePracticeDialog::~ConfigurePracticeDialog()
 {
     KConfigGroup cg(KSharedConfig::openConfig("parleyrc"), "ConfigurePracticeDialog");
-    KDialog::saveDialogSize(cg);
+    cg.writeEntry("width",  this->size().width() );
+    cg.writeEntry("height",  this->size().height() );
 }
 
 
@@ -93,5 +97,3 @@ void ConfigurePracticeDialog::updateWidgetsDefault()
     updateWidgets();
     m_config->useDefaults(false);
 }
-
-#include "configurepracticedialog.moc"

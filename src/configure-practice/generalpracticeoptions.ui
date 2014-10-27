@@ -164,7 +164,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KIntSpinBox" name="kcfg_SessionMaxSize">
+          <widget class="QSpinBox" name="kcfg_SessionMaxSize">
            <property name="maximumSize">
             <size>
              <width>74</width>
@@ -213,7 +213,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KIntSpinBox" name="kcfg_SessionMaxNewWords">
+          <widget class="QSpinBox" name="kcfg_SessionMaxNewWords">
            <property name="maximumSize">
             <size>
              <width>74</width>
@@ -291,13 +291,6 @@
    </layout>
   </widget>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KIntSpinBox</class>
-   <extends>QSpinBox</extends>
-   <header>knuminput.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

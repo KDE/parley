@@ -18,7 +18,7 @@
 #include <kross/core/manager.h>
 #include <kross/core/action.h>
 
-#include <KDebug>
+#include <QDebug>
 
 /*!
     \fn ScriptTest::test()
@@ -28,13 +28,13 @@
 void ScriptTest::test()
 {
 //    foreach(QString s, Kross::Manager::self().interpreters())
-//        kDebug() << s;
+//        qDebug() << s;
 
     Kross::Action action(this, "MyScript");
     action.setFile("myscript.py");
     QVariantList args;
     QVariant result = action.callFunction("testTuple", args);
-    kDebug() << result;
+    qDebug() << result;
 
 
     /*Kross::Action action(this,"MyScript");
@@ -46,16 +46,16 @@ void ScriptTest::test()
 
     for (int i = 0; i < translations.size(); i++)
         if (translations[i].canConvert<QString>())
-            kDebug() << translations[i].toString();
+            qDebug() << translations[i].toString();
         //if (translations[i].canConvert<QString>()) {*/
 
-    /*kDebug() << result;
+    /*qDebug() << result;
     QVariant list_result = action.callFunction("returnlist");
-    kDebug() << list_result;
+    qDebug() << list_result;
     QList<QVariant> ql = list_result.toList();
     for (int i = 0; i < ql.size(); i++)
         if (ql[i].canConvert<int>())
-            kDebug() << ql[i].toInt(NULL);*/
+            qDebug() << ql[i].toInt(NULL);*/
     //foreach (QVariant v, list_result.
 
 }
@@ -70,5 +70,5 @@ void ScriptTest::testJS()
     QVariantList args;
     args << "hello";
     QVariant script_result = action.callFunction("fetchTranslation", args);
-    kDebug() << script_result;
+    qDebug() << script_result;
 }

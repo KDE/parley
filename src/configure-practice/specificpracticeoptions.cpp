@@ -33,6 +33,3 @@ SpecificPracticeOptions::SpecificPracticeOptions(QWidget* parent) : QWidget(pare
 
     //connect(kcfg_ShowSolutionAfterAnswer, SIGNAL(toggled(bool)), kcfg_ShowSolutionAfterAnswerTime, SLOT(setEnabled(bool)));
 }
-
-
-#include "specificpracticeoptions.moc"

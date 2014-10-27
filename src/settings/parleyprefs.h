@@ -18,7 +18,7 @@
 #ifndef PARLEYPREFS_H
 #define PARLEYPREFS_H
 
-#include <KConfigDialog>
+#include <KConfigWidgets/KConfigDialog>
 
 /**
   *@author Peter Hedlund
@@ -31,6 +31,8 @@ class PluginOptions;
 
 class KEduVocDocument;
 class KComboBox;
+
+class KConfigSkeleton;
 
 class ParleyPrefs : public KConfigDialog
 {

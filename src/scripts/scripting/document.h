@@ -389,7 +389,8 @@ public slots:
      * @returns          ErrorCode
      */
     int saveAs(const QString & url, KEduVocDocument::FileType ft = KEduVocDocument::Automatic, const QString & generator = QString("Parley")) {
-        return m_doc->saveAs(url, ft, generator);
+        m_doc->setGenerator(generator);
+        return m_doc->saveAs(url, ft);
     }
 
 //             QByteArray toByteArray ( const QString &generator );

@@ -19,11 +19,11 @@
 
 #include <KXmlGuiWindow>
 #include <QSignalMapper>
+#include <QUrl>
 
 static const int N = 50;
 
 class ParleyMainWindow;
-class KUrl;
 class QStandardItemModel;
 
 namespace Practice
@@ -35,7 +35,6 @@ class ImageWidget;
 
 class RemoveButton;
 
-
 class Dashboard : public KXmlGuiWindow
 {
     Q_OBJECT
@@ -44,8 +43,8 @@ public:
     ~Dashboard();
 
 public slots:
-    void slotOpenUrl(const KUrl& url);
-    void slotPracticeUrl(const KUrl& url);
+    void slotOpenUrl(const QUrl& url);
+    void slotPracticeUrl(const QUrl& url);
     //void slotDoubleClicked(const QModelIndex& index);
     void slotDoubleClickOpen();
     //void updateRecentFilesModel();
@@ -54,7 +53,7 @@ public slots:
     void clearGrid();
     void slotPracticeButtonClicked(const QString& urlString);
     void slotRemoveButtonClicked(const QString& urlString);
-    void statisticsHandler(KUrl url);
+    void statisticsHandler(QUrl url);
     void remove(QGridLayout *layout, int row, int column, bool deleteWidgets);
     void deleteChildWidgets(QLayoutItem *item);
 
@@ -73,7 +72,7 @@ private:
 
     QStandardItemModel *m_recentFilesModel;
     QMap<QString, QString> recentFilesMap;  // url, name
-    KUrl m_openUrl;
+    QUrl m_openUrl;
     QGridLayout *m_subGridLayout;
     QGridLayout *m_completedGridLayout;
 
@@ -82,10 +81,10 @@ private:
     QWidget      *wordCloud[N];
     QPushButton  *practiceButton[N];
     RemoveButton *removeButton[N];
-    KUrl          urlArray[N];
+    QUrl          urlArray[N];
 
     QSignalMapper *practiceSignalMapper;  // For the practice buttons
-    QSignalMapper *removeSignalMapper; // For the remove buttons 
+    QSignalMapper *removeSignalMapper; // For the remove buttons
 
     int m_count;
 };

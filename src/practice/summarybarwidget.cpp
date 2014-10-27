@@ -14,7 +14,7 @@
 #include "summarybarwidget.h"
 
 #include <kcolorscheme.h>
-#include <klocale.h>
+#include <KLocalizedString>
 
 #include <QPainter>
 #include <QEvent>
@@ -175,5 +175,3 @@ QPixmap SummaryBarWidget::captionPixmap(QColor color)
     painter.drawPath(path);
     return QPixmap::fromImage(image);
 }
-
-#include "summarybarwidget.moc"

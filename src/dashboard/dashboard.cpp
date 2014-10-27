@@ -20,26 +20,23 @@
 #include "statistics/statisticsmainwindow.h"
 #include "statistics/statisticsmodel.h"
 #include <QSignalMapper>
+#include <KLocalizedString>
 
+#include <QGraphicsDropShadowEffect>
 #include <QStandardItemModel>
 #include <QTimer>
 #include <QTime>
+#include <QMessageBox>
 #include <QDebug>
 
 #include <QtGui>
 #include <Qt>
 
-#include <KMimeType>
-#include <KDebug>
-
 #include "collectionwidget.h"
 #include "barwidget.h"
 #include "gradereferencewidget.h"
 
-
-
 // ----------------------------------------------------------------
-
 
 static int randInt(int low, int high)
 {
@@ -47,13 +44,11 @@ static int randInt(int low, int high)
     return qrand() % ((high + 1) - low) + low;
 }
 
-
 // ================================================================
 //                         class Dashboard
 
 
 int ROWSIZE = 4;      // Number of collection widgets (+ 1 initial spacerItem) per row
-
 
 Dashboard::Dashboard(ParleyMainWindow *parent)
     : KXmlGuiWindow(parent)
@@ -64,6 +59,7 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     setObjectName("Dashboard");
 
     m_widget = new Practice::ImageWidget(this);
+
     m_widget->setScalingEnabled(false, false);
     m_widget->setKeepAspectRatio(Qt::IgnoreAspectRatio);
     m_widget->setFadingEnabled(false);
@@ -95,9 +91,9 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     font.setBold(true);
     ui->completedLabel->setFont(font);
 
-    ui->newButton->setIcon(KIcon("document-new"));
-    ui->openButton->setIcon(KIcon("document-open"));
-    ui->ghnsButton->setIcon(KIcon("get-hot-new-stuff"));
+    ui->newButton->setIcon(QIcon::fromTheme("document-new"));
+    ui->openButton->setIcon(QIcon::fromTheme("document-open"));
+    ui->ghnsButton->setIcon(QIcon::fromTheme("get-hot-new-stuff"));
     GradeReferenceWidget *gradeReferenceWidget = new GradeReferenceWidget();
     gradeReferenceWidget->setMinimumSize(m_widget->width(), 50);
     ui->gridLayout->addWidget(gradeReferenceWidget, 2, 0, 1, ROWSIZE, Qt::AlignCenter);
@@ -124,9 +120,9 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     // Signals FROM the signal mappers.  The ones TO the signal mappers are
     // handled below.
     connect(practiceSignalMapper, SIGNAL(mapped(const QString &)),
-	    this,                 SLOT(slotPracticeButtonClicked(const QString &)));
+       this,                 SLOT(slotPracticeButtonClicked(const QString &)));
     connect(removeSignalMapper,   SIGNAL(mapped(const QString &)),
-	    this,                 SLOT(slotRemoveButtonClicked(const QString &)));
+       this,                 SLOT(slotRemoveButtonClicked(const QString &)));
 
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
@@ -154,11 +150,11 @@ Dashboard::~Dashboard()
 void Dashboard::clearGrid()
 {
    remove(m_subGridLayout,
-	  m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount() - 1,
-	  true);
+     m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount() - 1,
+     true);
    remove(m_completedGridLayout,
-	  m_completedGridLayout->rowCount() - 1, m_completedGridLayout->columnCount() - 1,
-	  true);
+     m_completedGridLayout->rowCount() - 1, m_completedGridLayout->columnCount() - 1,
+     true);
 }
 
 /**
@@ -219,11 +215,11 @@ void Dashboard::populateGrid()
         QString urlString  = it.key();
         QString nameString = it.value();
 
-	// Automatically initialized.
-	// FIXME: Will be initialized by the KEduVocDocument later.
-	DueWords due;
+   // Automatically initialized.
+   // FIXME: Will be initialized by the KEduVocDocument later.
+   DueWords due;
 
-        KUrl url(urlString);
+        QUrl  url( QUrl::fromLocalFile(urlString) );
         urlArray[k] = url;
         if (due.percentageCompleted != 100) {
             if (j % ROWSIZE == 0) {
@@ -265,12 +261,12 @@ void Dashboard::populateGrid()
     }
 
     m_count = k;
-    m_completedGridLayout->addItem(new QSpacerItem(50, 1, 
-						   QSizePolicy::Expanding, QSizePolicy::Fixed),
-				   m_completedGridLayout->rowCount() - 1,
-				   m_completedGridLayout->columnCount());
+    m_completedGridLayout->addItem(new QSpacerItem(50, 1,
+                     QSizePolicy::Expanding, QSizePolicy::Fixed),
+               m_completedGridLayout->rowCount() - 1,
+               m_completedGridLayout->columnCount());
     m_subGridLayout->addItem(new QSpacerItem(50,1,QSizePolicy::Expanding, QSizePolicy::Fixed),
-			     m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount());
+              m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount());
     if (k - kc) {
         ui->recentLabel->setText(i18n("Active Collections"));
     } else {
@@ -283,7 +279,7 @@ void Dashboard::populateGrid()
     }
 }
 
-void Dashboard::statisticsHandler(KUrl url)
+void Dashboard::statisticsHandler(QUrl url)
 {
 #if 1
     Q_UNUSED(url);
@@ -304,7 +300,7 @@ void Dashboard::statisticsHandler(KUrl url)
 #endif
 }
 
-void Dashboard::slotOpenUrl(const KUrl& url)
+void Dashboard::slotOpenUrl(const QUrl& url)
 {
     if (!m_mainWindow->parleyDocument()->open(url)) {
         return;
@@ -314,24 +310,23 @@ void Dashboard::slotOpenUrl(const KUrl& url)
 
 void Dashboard::slotPracticeButtonClicked(const QString& urlString)
 {
-    kDebug() << urlString;
-
-    KUrl url(urlString);
+    qDebug() << urlString;
+    QUrl url( QUrl::fromLocalFile(urlString) );
     m_openUrl = url;
     QTimer::singleShot(0, this, SLOT(slotDoubleClickOpen()));
 }
 
 void Dashboard::slotRemoveButtonClicked(const QString& urlString)
 {
-    kDebug() << urlString;
+    qDebug() << urlString;
 
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, i18n("Remove"),
-				  i18n("Are you sure you want to remove this collection?"),
-				  QMessageBox::Yes | QMessageBox::No);
+              i18n("Are you sure you want to remove this collection?"),
+              QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
         recentFilesMap.remove(urlString);
-        m_mainWindow->removeRecentFile(KUrl(urlString));
+        m_mainWindow->removeRecentFile(QUrl::fromLocalFile(urlString ));
         clearGrid();
         populateGrid();
     }
@@ -342,7 +337,7 @@ void Dashboard::slotDoubleClickOpen()
     slotPracticeUrl(m_openUrl);
 }
 
-void Dashboard::slotPracticeUrl(const KUrl & url)
+void Dashboard::slotPracticeUrl(const QUrl & url)
 {
     if (!m_mainWindow->parleyDocument()->open(url)) {
         return;
@@ -387,5 +382,3 @@ void Dashboard::updateBackground()
     }
     m_themedBackgroundRenderer->updateBackground();
 }
-
-#include "dashboard.moc"

@@ -24,9 +24,11 @@
 #include <KXmlGuiWindow>
 
 class QSignalMapper;
-class KLineEdit;
+class QLineEdit;
 class KActionMenu;
 class ScriptManager;
+
+///@brief contains objects for the editor main window
 
 // Models around the Collection / KEduVocDocument
 class LessonModel;
@@ -122,15 +124,15 @@ signals:
 private:
     ParleyMainWindow  *m_mainWindow;
 
-    KAction* m_vocabShowSearchBarAction;
+    QAction* m_vocabShowSearchBarAction;
 
     VocabularyModel *m_vocabularyModel;
     VocabularyView *m_vocabularyView;
     VocabularyFilter *m_vocabularyFilter;
 
-    KLineEdit *m_searchLine;
+    QLineEdit *m_searchLine;
     QWidget *m_searchWidget;
-    KAction *m_spellCheckMenu;
+    QAction *m_spellCheckMenu;
     QSignalMapper *m_spellCheckMapper;
 
     /** Show a single conjugation and let the user edit it */
