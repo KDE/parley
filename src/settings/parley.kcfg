@@ -176,6 +176,14 @@
         <label>The maximum number of new (untrained) words that will be used in a training session.</label>
         <default>5</default>
     </entry>
+    <entry name="SessionLimitWordsInitialPhase" type="Bool">
+      <label>Limit the number of words in the initial phase.</label>
+      <default>false</default>
+    </entry>
+    <entry name="SessionMaxWordsInitialPhase" type="Int">
+        <label>The maximum number of words in the initial phase. If this limit is exceeded, no new words will be introduced.</label>
+        <default>20</default>
+    </entry>
 
     <!-- Multiple choice -->
     <entry name="MultipleChoiceWordTypeConsistancy" type="Bool">

@@ -26,6 +26,7 @@
 #include <KLocalizedString>
 #include <KConfig>
 #include <KConfigGroup>
+#include <KLocalizedString>
 
 #include "parleymainwindow.h"
 #include "guifrontend.h"
@@ -33,6 +34,7 @@
 #include <languagesettings.h>
 
 using namespace Practice;
+
 
 PracticeMainWindow::PracticeMainWindow(SessionManagerBase* sessionManager,
                                        ParleyMainWindow* mainWindow)
@@ -58,6 +60,8 @@ PracticeMainWindow::PracticeMainWindow(SessionManagerBase* sessionManager,
 
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
+
+    I18N_NOOP("I knew it well");
 }
 
 PracticeMainWindow::~PracticeMainWindow()

@@ -168,6 +168,11 @@ void StatisticsLegendWidget::paintEvent(QPaintEvent *)
     QString rightString = i18nc("adjective, The word has not even been practiced once by the user","Not practiced");
     QFontMetrics fontMetrics(painter.font());
 
+    I18N_NOOP("Initial phase");
+    I18N_NOOP("Long term phase");
+    I18N_NOOP("Invalid entry");
+    I18N_NOOP("Newly started");
+
     // Calculate the size and position of the rectangle that will contain the
     // string on the left side of the legend.
     QRect leftRect = fontMetrics.boundingRect(leftString);
