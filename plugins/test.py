@@ -1,4 +1,4 @@
-#!/usr/bin/env kross
+#!/usr/bin/env kf5kross
 import Parley
 import Kross
 import PyKDE4
