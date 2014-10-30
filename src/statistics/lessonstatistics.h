@@ -37,8 +37,11 @@ private Q_SLOTS:
 protected:
     virtual void resizeEvent(QResizeEvent *event);
 
-private:
+private Q_SLOTS:
+    void sectionResized(int index, int /*oldSize*/, int /*newSize*/);
     void adjustColumnWidths();
+
+private:
     virtual void setModel(QAbstractItemModel *model) {
         Q_UNUSED(model)
     }
