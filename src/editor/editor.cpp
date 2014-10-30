@@ -157,7 +157,7 @@ void EditorWindow::initDockWidgets()
     lessonDockWidget->setWidget(m_lessonView);
     addDockWidget(Qt::LeftDockWidgetArea, lessonDockWidget);
     m_dockWidgets.append(lessonDockWidget);
-    actionCollection()->addAction("show_lesson_dock", lessonDockWidget->toggleViewAction());
+    actionCollection()->addAction("show_units_dock", lessonDockWidget->toggleViewAction());
 
     m_lessonModel = new LessonModel(this);
     m_lessonView->setModel(m_lessonModel);
