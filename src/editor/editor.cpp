@@ -151,7 +151,7 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
 void EditorWindow::initDockWidgets()
 {
     // Lesson dockwidget
-    QDockWidget *lessonDockWidget = new QDockWidget(i18n("Lessons"), this);
+    QDockWidget *lessonDockWidget = new QDockWidget(i18n("Units"), this);
     lessonDockWidget->setObjectName("LessonDock");
     m_lessonView = new LessonView(this);
     lessonDockWidget->setWidget(m_lessonView);
