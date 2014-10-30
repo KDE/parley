@@ -96,6 +96,11 @@ LessonStatisticsView::LessonStatisticsView(QWidget *parent)
 
     connect(removeGradesChildrenAction, SIGNAL(triggered()), SLOT(removeGradesChildren()));
     addAction(removeGradesChildrenAction);
+
+    connect(header(), SIGNAL(geometriesChanged()),
+	    this,     SLOT(adjustColumnWidths()));
+    connect(header(), SIGNAL(sectionResized(int,int,int)),
+	    this,     SLOT(sectionResized(int,int,int)));
 }
 
 void LessonStatisticsView::setModel(ContainerModel *model)
@@ -116,8 +121,17 @@ void LessonStatisticsView::resizeEvent(QResizeEvent *event)
     ContainerView::resizeEvent(event);
 }
 
+void LessonStatisticsView::sectionResized(int index,
+					  int /*oldSize*/, int /*newSize*/)
+{
+    if (index < ContainerModel::FirstDataColumn) {
+	adjustColumnWidths();
+    }
+}
+
 void LessonStatisticsView::adjustColumnWidths()
 {
+    qDebug() << "adjusting column widths";
     int firstWidth = columnWidth(0) + columnWidth(1);
     // Subtract 5 here otherwise we get a horizontal scrollbar.
     int totalWidth = width() - firstWidth - 5;
