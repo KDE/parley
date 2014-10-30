@@ -29,5 +29,3 @@ ViewOptions::ViewOptions(QWidget *parent) : QWidget(parent)
 {
     setupUi(this);
 }
-
-#include "viewoptions.moc"

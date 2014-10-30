@@ -87,5 +87,3 @@ void ConjugationOptions::updateSettings()
     documentSettings.setConjugationTenses(activeTenses);
     documentSettings.save();
 }
-
-#include "conjugationoptions.moc"

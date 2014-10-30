@@ -127,5 +127,3 @@ void LanguageProperties::pageNameChanged(const QString & newName)
 {
     currentPage()->setName(newName);
 }
-
-#include "languageproperties.moc"

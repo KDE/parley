@@ -196,5 +196,5 @@ void KGameThemeSelectorPrivate::_k_openKNewStuffDialog()
         findThemes(ui.kcfg_Theme->text());
 }
 
-#include "kgamethemeselector.moc"
+//#include "kgamethemeselector.moc"
 #include "moc_kgamethemeselector.cpp"

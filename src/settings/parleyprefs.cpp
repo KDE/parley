@@ -72,5 +72,3 @@ void ParleyPrefs::updateWidgets()
 {
     m_generalOptions->updateWidgets();
 }
-
-#include "parleyprefs.moc"

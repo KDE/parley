@@ -126,5 +126,3 @@ void LessonStatisticsView::removeGradesChildren()
     KEduVocLesson *lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
     lesson->resetGrades(-1, KEduVocContainer::Recursive);
 }
-
-#include "lessonstatistics.moc"

@@ -101,5 +101,3 @@ KEduVocContainer * StatisticsModel::rootContainer() const
     }
     return m_doc->lesson();
 }
-
-#include "statisticsmodel.moc"

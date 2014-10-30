@@ -275,5 +275,3 @@ void StatisticsMainWindow::configurePractice()
     ConfigurePracticeDialog dialog(m_doc, this, "practice settings",  Prefs::self());
     dialog.exec();
 }
-
-#include "statisticsmainwindow.moc"
