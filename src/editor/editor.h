@@ -41,8 +41,6 @@ namespace Editor
 class VocabularyView;
 class LessonView;
 class WordTypeView;
-class LeitnerView;
-class LeitnerModel;
 class InflectionWidget;
 class ComparisonWidget;
 class SummaryWordWidget;
@@ -150,10 +148,6 @@ private:
 
     WordClassModel *m_wordTypeModel;
     WordTypeView *m_wordTypeView;
-
-    LeitnerView *m_leitnerView;
-    LeitnerModel *m_leitnerModel;
-
 
     ScriptManager* m_scriptManager;
 
