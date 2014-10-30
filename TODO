@@ -129,12 +129,6 @@ Release work for 4.15
       quickly
       https://bugs.kde.org/show_bug.cgi?id=252482
 
- * Practice
-    + Extended Leitner box method -OR- move to time based card          Done
-      selection.
-    + Sessions.  A session is a byte sized part of a lesson containing  Done
-    + Mixed directions mode in all practice methods.			Done
-
  * Editor
     + Drag & drop of images from other applications                     ----
     + Select whole regions of a table so that you can cut&paste them    ----
