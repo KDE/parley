@@ -55,7 +55,7 @@ QStringList ScriptManager::getDesktopFiles()
     foreach ( const QString dir,  dirs ) {
         foreach ( const QString filename,  QDir( dir ).entryList(QDir::Files) ) {
             if ( filename.endsWith(QLatin1String(".desktop") ) ) {
-                filenames << filename;
+                filenames << dir + '/' + filename;
             }
         }
     }
