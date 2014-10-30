@@ -16,7 +16,7 @@
 #include "themedbackgroundrenderer.h"
 
 #include <keduvoctext.h>
-#include <kdebug.h>
+#include <QDebug>
 
 #include <QtGui/QPainter>
 #include <QBrush>

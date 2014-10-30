@@ -29,7 +29,7 @@
 #include "parleydocument.h"
 
 #include <keduvocdocument.h>
-#include <KLineEdit>
+#include <QLineEdit>
 
 #include <QTextEdit>
 #include <QLabel>
@@ -55,10 +55,10 @@ DocumentProperties::DocumentProperties(KEduVocDocument * doc, bool languageSetup
 
 void DocumentProperties::prepareLanguageSelection()
 {
-    QStringList codes = KGlobal::locale()->allLanguagesList();
+    QStringList codes = QLocale().uiLanguages();
     QStringList languageNames;
     foreach(const QString & code, codes) {
-        languageNames.append(KGlobal::locale()->languageCodeToName(code));
+        languageNames.append(QLocale( code ).nativeLanguageName( ) );
     }
     languageNames.sort();
 
@@ -75,7 +75,6 @@ void DocumentProperties::prepareLanguageSelection()
 void DocumentProperties::accept()
 {
     m_doc->setTitle(titleLineEdit->text());
-    ParleyMainWindow::instance()->slotUpdateWindowCaption();
     m_doc->setAuthor(authorLineEdit->text());
     m_doc->setAuthorContact(contactLineEdit->text());
     m_doc->setLicense(licenseComboBox->currentText());
@@ -95,11 +94,11 @@ void DocumentProperties::acceptLanguageConfiguration()
     QString secondLocale;
 
     // ugly but works for now: iterate over languages to check which code we have
-    foreach(const QString & code, KGlobal::locale()->allLanguagesList()) {
-        if (firstLanguage == KGlobal::locale()->languageCodeToName(code)) {
+    foreach(const QString & code, QLocale().uiLanguages()) {
+        if (firstLanguage == QLocale( code ).nativeLanguageName( ) ) {
             firstLocale = code;
         }
-        if (secondLanguage == KGlobal::locale()->languageCodeToName(code)) {
+        if (secondLanguage == QLocale( code ).nativeLanguageName( ) ) {
             secondLocale = code;
         }
     }
@@ -109,5 +108,3 @@ void DocumentProperties::acceptLanguageConfiguration()
     m_doc->identifier(1).setLocale(secondLocale);
     m_doc->identifier(1).setName(secondLanguage);
 }
-
-#include "documentproperties.moc"

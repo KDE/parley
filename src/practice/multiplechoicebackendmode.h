@@ -67,7 +67,6 @@ protected:
 
 private:
     SessionManagerBase* m_sessionManager;
-    KRandomSequence m_randomSequence;
     QString m_question;
     int m_numberOfChoices;
     QStringList m_choices;

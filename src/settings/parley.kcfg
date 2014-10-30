@@ -3,7 +3,7 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
-  <include>kglobalsettings.h</include>
+  <include>qfontdatabase.h</include>
   <kcfgfile name="parleyrc"/>
 
   <group name="General">
@@ -176,6 +176,14 @@
         <label>The maximum number of new (untrained) words that will be used in a training session.</label>
         <default>5</default>
     </entry>
+    <entry name="SessionLimitWordsInitialPhase" type="Bool">
+      <label>Limit the number of words in the initial phase.</label>
+      <default>false</default>
+    </entry>
+    <entry name="SessionMaxWordsInitialPhase" type="Int">
+        <label>The maximum number of words in the initial phase. If this limit is exceeded, no new words will be introduced.</label>
+        <default>20</default>
+    </entry>
 
     <!-- Multiple choice -->
     <entry name="MultipleChoiceWordTypeConsistancy" type="Bool">
@@ -225,11 +233,11 @@
     </entry>
     <entry name="PracticeFont" type="Font">
       <label>The font used in the vocabulary table</label>
-      <default code="true">KGlobalSettings::generalFont()</default>
+      <default code="true">QFontDatabase::systemFont(QFontDatabase::GeneralFont)</default>
     </entry>
     <entry name="IPAFont" type="Font">
       <label>The font used for phonetics</label>
-      <default code="true">KGlobalSettings::generalFont()</default>
+      <default code="true">QFontDatabase::systemFont(QFontDatabase::GeneralFont)</default>
     </entry>
     <entry name="CurrentCol" type="Int">
       <label>Currently selected column</label>

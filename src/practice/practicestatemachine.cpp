@@ -55,27 +55,27 @@ void PracticeStateMachine::createPracticeMode()
 {
     switch (Prefs::practiceMode()) {
     case Prefs::EnumPracticeMode::FlashCardsPractice:
-        kDebug() << "Create Flash Card Practice backend";
+        qDebug() << "Create Flash Card Practice backend";
         m_frontend->setMode(AbstractFrontend::FlashCard);
         m_mode = new FlashCardBackendMode(m_frontend, this);
         break;
     case Prefs::EnumPracticeMode::MultipleChoicePractice:
-        kDebug() << "Create MultipleChoice Practice backend";
+        qDebug() << "Create MultipleChoice Practice backend";
         m_frontend->setMode(AbstractFrontend::MultipleChoice);
         m_mode = new MultipleChoiceBackendMode(m_frontend, this, m_sessionManager);
         break;
     case Prefs::EnumPracticeMode::MixedLettersPractice:
-        kDebug() << "Create Mixed Letters Practice backend";
+        qDebug() << "Create Mixed Letters Practice backend";
         m_frontend->setMode(AbstractFrontend::MixedLetters);
         m_mode = new WrittenBackendMode(m_frontend, this, m_sessionManager, m_document->document());
         break;
     case Prefs::EnumPracticeMode::WrittenPractice:
-        kDebug() << "Create Written Practice backend";
+        qDebug() << "Create Written Practice backend";
         m_frontend->setMode(AbstractFrontend::Written);
         m_mode = new WrittenBackendMode(m_frontend, this, m_sessionManager, m_document->document());
         break;
     case Prefs::EnumPracticeMode::ExampleSentencesPractice:
-        kDebug() << "Create Written Practice backend";
+        qDebug() << "Create Written Practice backend";
         m_frontend->setMode(AbstractFrontend::ExampleSentence);
         m_mode = new ExampleSentenceBackendMode(m_frontend, this, m_sessionManager, m_document->document());
         break;
@@ -99,7 +99,7 @@ void PracticeStateMachine::createPracticeMode()
 
 void Practice::PracticeStateMachine::start()
 {
-    kDebug() << "Start practice";
+    qDebug() << "Start practice";
     m_sessionManager->practiceStarted();
     nextEntry();
 }
@@ -109,7 +109,7 @@ void PracticeStateMachine::nextEntry()
     m_state = NotAnswered;
     m_current = m_sessionManager->nextTrainingEntry();
 
-    //kDebug() << "GETTING ENTRY - " << m_current;
+    //qDebug() << "GETTING ENTRY - " << m_current;
 
     //after going through all words, or at the start of practice
     if (m_current == 0) {
@@ -126,7 +126,7 @@ void PracticeStateMachine::nextEntry()
 
 void PracticeStateMachine::slotPracticeFinished()
 {
-    kDebug() << "Stop practice";
+    qDebug() << "Stop practice";
     m_sessionManager->practiceFinished();
     emit practiceFinished();
 }
@@ -138,7 +138,7 @@ void PracticeStateMachine::currentEntryFinished()
 
 void PracticeStateMachine::continueAction()
 {
-    //kDebug() << "continue" << m_state;
+    //qDebug() << "continue" << m_state;
     switch (m_state) {
         // on continue, we check the answer, if in NotAnsweredState or AnswerWasWrongState
     case NotAnswered:
@@ -154,7 +154,7 @@ void PracticeStateMachine::continueAction()
 
 void PracticeStateMachine::answerRight()
 {
-    //kDebug() << "ans right";
+    //qDebug() << "ans right";
 
     m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
     if (m_state == NotAnswered) {
@@ -169,14 +169,14 @@ void PracticeStateMachine::answerRight()
 
 void PracticeStateMachine::answerWrongRetry()
 {
-    //kDebug() << "wrong retr";
+    //qDebug() << "wrong retr";
     m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
     m_state = AnswerWasWrong;
 }
 
 void PracticeStateMachine::answerWrongShowSolution()
 {
-    //kDebug() << "wrong sol";
+    //qDebug() << "wrong sol";
     m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
     //User gave an empty answer or the same answer for a second time so we want to drop out.
     m_frontend->setResultState(AbstractFrontend::AnswerWrong);
@@ -186,7 +186,7 @@ void PracticeStateMachine::answerWrongShowSolution()
 
 void PracticeStateMachine::showSolution()
 {
-    //kDebug() << "show solution";
+    //qDebug() << "show solution";
     m_state = SolutionShown;
     m_frontend->showSolution();
 }
@@ -251,7 +251,7 @@ void PracticeStateMachine::gradeEntryAndContinue()
     grade_t currentGrade    = m_mode->currentGradeForEntry();
 
     if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-	m_current->updateStatisticsRightAnswer(currentPreGrade, currentGrade);
+   m_current->updateStatisticsRightAnswer(currentPreGrade, currentGrade);
     } else {
         m_current->updateStatisticsWrongAnswer(currentPreGrade, currentGrade);
     }
@@ -264,5 +264,3 @@ void PracticeStateMachine::gradeEntryAndContinue()
     }
     emit nextEntry();
 }
-
-#include "practicestatemachine.moc"

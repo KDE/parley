@@ -49,8 +49,8 @@ public:
 
     virtual void setQuestionFont(const QFont& font);
     virtual void setSolutionFont(const QFont& font);
-    virtual void setQuestionSound(const KUrl& soundUrl);
-    virtual void setSolutionSound(const KUrl& soundUrl);
+    virtual void setQuestionSound(const QUrl& soundUrl);
+    virtual void setSolutionSound(const QUrl& soundUrl);
     virtual void setSolutionPronunciation(const QString& pronunciationText);
     virtual void setQuestionPronunciation(const QString& pronunciationText);
 

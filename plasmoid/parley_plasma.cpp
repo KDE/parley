@@ -16,12 +16,15 @@
 
 #include "parley_plasma.h"
 
+//@todo frameworks KDialog -> QDialog
 #include <KDialog>
 #include <KConfigGroup>
 #include <KConfigDialog>
 #include <KFontDialog>
 #include <KColorDialog>
-#include <KDebug>
+#include <QDebug>
+//@todo frameworks KGlobal
+#include <KGlobal>
 
 ParleyPlasma::ParleyPlasma(QObject *parent, const QVariantList &args)
     : Plasma::Applet(parent, args),
@@ -60,7 +63,7 @@ void ParleyPlasma::init()
     m_label1->setFont(m_font);
     m_label2->setFont(m_font);
 
-    m_engine->connectSource(m_sourceFile.url(), this, m_updateInterval);
+    m_engine->connectSource(m_sourceFile.toLocalFile(), this, m_updateInterval);
 }
 
 void ParleyPlasma::configChanged()
@@ -73,15 +76,15 @@ void ParleyPlasma::configChanged()
     m_lang2 = cg.readEntry("Bottom Language", 1);
     m_font = cg.readEntry("font", QFont());
 
-    m_sourceFile = cg.readEntry("File Name", KUrl());
+    m_sourceFile = cg.readEntry("File Name", QUrl().toLocalFile());
     if (m_sourceFile.isEmpty()) {
-        kDebug() << "open file from parleyrc";
+        qDebug() << "open file from parleyrc";
         KConfig parleyConfig("parleyrc");
-        kDebug() << parleyConfig.groupList();
+        qDebug() << parleyConfig.groupList();
         KConfigGroup recentFilesGroup(&parleyConfig, "Recent Files");
         // take the last file, but there are File1..n and Name1..n entries..
-        m_sourceFile = recentFilesGroup.readEntry(recentFilesGroup.keyList().value(recentFilesGroup.keyList().count() / 2 - 1), KUrl());
-        kDebug() << "open file: " << m_sourceFile;
+        m_sourceFile = recentFilesGroup.readEntry(recentFilesGroup.keyList().value(recentFilesGroup.keyList().count() / 2 - 1), QUrl().toLocalFile());
+        qDebug() << "open file: " << m_sourceFile;
     }
 }
 
@@ -119,7 +122,7 @@ ParleyPlasma::~ParleyPlasma()
 
 void ParleyPlasma::dataUpdated(const QString& source, const Plasma::DataEngine::Data &data)
 {
-    kDebug() << "data updated" << source << data;
+    qDebug() << "data updated" << source << data;
 
     m_languages = data.keys();
 
@@ -185,7 +188,7 @@ void ParleyPlasma::createConfigurationInterface(KConfigDialog * parent)
 
     ui.filechooser->setUrl(m_sourceFile);
     ui.filechooser->setFilter(i18n("*.kvtml|Vocabulary Collections"));
-    connect(ui.filechooser, SIGNAL(urlSelected(const KUrl &)), this, SLOT(urlSelected(const KUrl &)));
+    connect(ui.filechooser, SIGNAL(urlSelected(const QUrl &)), this, SLOT(urlSelected(const QUrl &)));
     ui.language1->addItems(m_languages);
     ui.language2->addItems(m_languages);
     ui.language1->setCurrentIndex(m_lang1);
@@ -203,19 +206,19 @@ void ParleyPlasma::createConfigurationInterface(KConfigDialog * parent)
     connect(ui.fontSelectButton, SIGNAL(clicked()), parent, SLOT(settingsModified()));
     connect(ui.solutionOnHover, SIGNAL(toggled(bool)), parent, SLOT(settingsModified()));
     connect(ui.solutionAlways, SIGNAL(toggled(bool)), parent, SLOT(settingsModified()));
-    connect(ui.filechooser, SIGNAL(urlSelected(const KUrl &)), parent, SLOT(settingsModified()));
+    connect(ui.filechooser, SIGNAL(urlSelected(const QUrl &)), parent, SLOT(settingsModified()));
     connect(ui.updateIntervalSpinBox, SIGNAL(valueChanged(int)), parent, SLOT(settingsModified()));
 }
 
-void ParleyPlasma::urlSelected(const KUrl &)
+void ParleyPlasma::urlSelected(const QUrl &)
 {
     // turn off old engine
-    m_engine->disconnectSource(m_sourceFile.url(), this);
+    m_engine->disconnectSource(m_sourceFile.toLocalFile(), this);
     // connect to new file
     m_sourceFile = ui.filechooser->url();
-    m_engine->connectSource(m_sourceFile.url(), this, m_updateInterval);
+    m_engine->connectSource(m_sourceFile.toLocalFile(), this, m_updateInterval);
     // get language data
-    Plasma::DataEngine::Data data = m_engine->query(m_sourceFile.url());
+    Plasma::DataEngine::Data data = m_engine->query(m_sourceFile.toLocalFile());
     m_languages = data.keys();
     // update language selection
     ui.language1->clear();
@@ -243,9 +246,9 @@ void ParleyPlasma::configAccepted()
     m_updateInterval = ui.updateIntervalSpinBox->value() * 1000;
     cg.writeEntry("updateInterval", m_updateInterval);
 
-    m_engine->disconnectSource(m_sourceFile.url(), this);
+    m_engine->disconnectSource(m_sourceFile.toLocalFile(), this);
     m_sourceFile = ui.filechooser->url();
-    cg.writeEntry("File Name", m_sourceFile);
+    cg.writeEntry("File Name", m_sourceFile.toLocalFile());
 
     m_solutionType = Hover;
     if (ui.solutionAlways->isChecked()) {
@@ -261,9 +264,9 @@ void ParleyPlasma::configAccepted()
     cg.writeEntry("Bottom Language", m_lang2);
 
 
-    m_engine->connectSource(m_sourceFile.url(), this, m_updateInterval);
+    m_engine->connectSource(m_sourceFile.toLocalFile(), this, m_updateInterval);
 
-    kDebug() << "open:" << m_sourceFile;
+    qDebug() << "open:" << m_sourceFile;
 
     emit configNeedsSaving();
 }

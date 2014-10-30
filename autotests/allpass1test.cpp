@@ -21,16 +21,14 @@
 
 #include "parleydocument.h"
 
-#include <QtTest>
-
+#include <QtTest/QtTest>
 
 using namespace UnitTestUtilities;
 
 /** This class is a unittest stub with 2 tests that always pass
  */
 
-class AllPass1Test
-    : public QObject
+class AllPass1Test : public QObject
 {
     Q_OBJECT
 
@@ -60,12 +58,11 @@ void AllPass1Test::testAlwaysPass2()
     int docError = docWithLock->open(tempfile.fileName());
     QCOMPARE( docError, int( KEduVocDocument::NoError ) );
 
-    KUrl kurl = KUrl::fromPath(tempfile.fileName() );
     ParleyDocument *doc = new ParleyDocument(0);
 
-    QCOMPARE( true,  true );
+    QVERIFY( doc != NULL );
 }
 
-QTEST_KDEMAIN_CORE( AllPass1Test )
+QTEST_MAIN( AllPass1Test )
 
 #include "allpass1test.moc"

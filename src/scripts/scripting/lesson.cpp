@@ -17,7 +17,7 @@
 
 #include <keduvocexpression.h>
 
-#include <KDebug>
+#include <QDebug>
 
 namespace Scripting
 {
@@ -75,7 +75,7 @@ void Lesson::setEntries(QVariantList entries)
         Expression * entry = dynamic_cast<Expression*>(obj);
         if (entry)
             m_lesson->appendEntry(entry->kEduVocExpression());
-//                 kDebug() << entry->translationTexts();
+//                 qDebug() << entry->translationTexts();
     }
 }
 
@@ -106,7 +106,7 @@ void Lesson::removeEntry(QObject * entry)
     if (e) {
         m_lesson->removeEntry(e->kEduVocExpression());
     } else {
-        kDebug() << "The entry given does not exist";
+        qDebug() << "The entry given does not exist";
     }
 }
 
@@ -144,7 +144,7 @@ QObject * Lesson::findChildLesson(const QString& name)
     KEduVocContainer * container = findContainer(name);
     if (container)
         return new Lesson(container);
-    kDebug() << "not found";
+    qDebug() << "not found";
     return 0;
 }
 

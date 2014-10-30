@@ -1,26 +1,77 @@
+cmake_minimum_required(VERSION 2.8.12)
+
 project(parley)
 
-find_package(KDE4 REQUIRED)
-include(KDE4Defaults)
-include_directories (${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES})
+find_package(ECM 1.0.0 REQUIRED NO_MODULE)
 
-set(CMAKE_MODULE_PATH ${parley_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
+set(CMAKE_MODULE_PATH
+    ${parley_SOURCE_DIR}/cmake/modules
+    ${CMAKE_MODULE_PATH}
+    ${ECM_MODULE_PATH}
+    ${ECM_KDE_MODULE_DIR}
+)
 
-find_package(LibKdeEdu REQUIRED)
+include(KDEInstallDirs)
+include(KDECompilerSettings)
+include(KDECMakeSettings)
+include(FeatureSummary)
 
+#Allows QString concatenation to use a single memory allocation per source line.
 add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
 
-macro_optional_find_package(LibXslt)
-macro_optional_find_package(LibXml2)
-find_package(LibAttica)
+set(REQUIRED_QT_VERSION "5.2")
+find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED
+  Core
+  Svg
+  Concurrent
+  Multimedia
+  Test
+)
 
-macro_bool_to_01(LIBXSLT_FOUND AND LIBXML2_FOUND HAVE_LIBXSLT)
+set(REQUIRED_KF5_VERSION "4.96.0")
+find_package(KF5 ${REQUIRED_KF5_VERSION} MODULE REQUIRED COMPONENTS
+  DocTools  #to produce the docbook
+  CoreAddons
+  Config
+  Crash
+  I18n
+  KIO
+  NewStuff
+  Kross
+  KHtml
+  Sonnet
+  KCMUtils
+  XmlGui
+  Notifications
+  #Plasma
+)
 
-macro_log_feature(LIBXSLT_FOUND "LibXSLT" "A library to transform XMLfiles into other XML files" "http://xmlsoft.org/XSLT" FALSE "" "Required to build HTML export for Parley.")
-macro_log_feature(LIBXML2_FOUND "LibXML2" "Libraries used to develop XML applications" "http://xmlsoft.org" FALSE "" "Required to build HTML export for Parley.")
-macro_log_feature(LIBATTICA_FOUND "libattica" "A library to access Open Collaboration Service providers" "http://kde.org" FALSE "" "Required to access OCS providers in get hot new stuff.")
+find_package(LibKEduVocDocument)
+set_package_properties(LibKEduVocDocument PROPERTIES
+                       TYPE REQUIRED
+                       PURPOSE "Required to manipulate the KDE word files."
+                      )
 
-macro_bool_to_01(1 HAVE_XRENDER)
+find_package(LibXslt)
+set_package_properties(LibXslt PROPERTIES
+                       URL "http://xmlsoft.org/XSLT"
+                       TYPE OPTIONAL
+                       PURPOSE "Required to build HTML export for Parley."
+                      )
+
+find_package(LibXml2)
+set_package_properties(LibXml2 PROPERTIES
+                       URL "http://xmlsoft.org"
+                       TYPE OPTIONAL
+                       PURPOSE "Required to build HTML export for Parley."
+                      )
+
+
+#@todo frameworks restore Xattica
+# find_package(LibAttica)
+
+# macro_log_feature(LIBATTICA_FOUND "libattica" "A library to access Open Collaboration Service providers" "http://kde.org" FALSE "" "Required to access OCS providers in get hot new stuff.")
+
 
 ##
 ## Test for sqlite
@@ -28,7 +79,7 @@ macro_bool_to_01(1 HAVE_XRENDER)
 set(SQLITE_MIN_VERSION 3.6.16)
 set(SQLITE_RECOMMENDED_VERSION 3.8.5)
 set(SQLITE_LOAD_EXTENSION_REQUIRED ON)
-macro_optional_find_package(ParleySqlite ${SQLITE_MIN_VERSION})
+find_package(ParleySqlite ${SQLITE_MIN_VERSION})
 macro_bool_to_01(SQLITE_FOUND HAVE_SQLITE)
 macro_log_feature(SQLITE_FOUND "SQLite" "Embedded SQL database engine with enabled extensions loading"
                   "http://www.sqlite.org" FALSE "${SQLITE_MIN_VERSION}"
@@ -37,7 +88,7 @@ macro_log_feature(SQLITE_FOUND "SQLite" "Embedded SQL database engine with enabl
 ##
 ## Test for ICU
 ##
-macro_optional_find_package(ICU)
+find_package(ICU)
 macro_bool_to_01(ICU_FOUND HAVE_ICU)
 macro_log_feature(ICU_FOUND "ICU" "International Components for Unicode (ICU) Library"
                   "http://icu-project.org" FALSE ""
@@ -53,57 +104,92 @@ configure_file(
 )
 
 
+
 # Define link libs for parley executable and unittests
 set( parley_LINK_LIBS
     parleycalligradb
-    ${LIBKDEEDU_KEDUVOCDOCUMENT_LIBRARIES}
-    ${KDE4_KHTML_LIBS}
-    ${KDE4_KNEWSTUFF3_LIBS}
-    ${KDE4_PHONON_LIBS}
-    ${KDE4_KCMUTILS_LIBRARY} #for the KPluginSelector
-    ${KDE4_KROSSCORE_LIBS} ${KDE4_KROSSUI_LIBS} #for Kross
-    ${QT_QTCORE_LIBRARY}
+
+# Before porting - remove when everything works
+    #${KDE4_KHTML_LIBS}
+    #${KDE4_KNEWSTUFF3_LIBS}
+    #${KDE4_PHONON_LIBS}
+    #${KDE4_KCMUTILS_LIBRARY} #for the KPluginSelector
+    #${KDE4_KROSSCORE_LIBS} ${KDE4_KROSSUI_LIBS} #for Kross
+  LibKEduVocDocumentImport__KEduVocDocument
+  KF5::KHtml
+  KF5::KrossCore
+  # KF5::ConfigCore
+  Qt5::Core
+  # Qt5::Qml
+  Qt5::Svg
+  # KF5::I18n
+  KF5::NewStuff
+  KF5::SonnetCore
+  # KF5::SonnetUi
+  KF5::KCMUtils
+  KF5::XmlGui
+  KF5::Completion
+  KF5::ConfigWidgets
+  KF5::ConfigGui
+  KF5::WidgetsAddons
+  Qt5::Widgets
+  Qt5::Gui
+  Qt5::Concurrent
+  Qt5::Multimedia
+  KF5::Notifications
 )
 
-if(HAVE_LIBXSLT)
-  set( parley_LINK_LIBS ${parley_LINK_LIBS} ${LIBXML2_LIBRARIES} ${LIBXSLT_LIBRARIES})
-endif(HAVE_LIBXSLT)
+message(STATUS "cmake cflags ${CMAKE_C_FLAGS}")
+message(STATUS "cmake link flags ${CMAKE_EXE_LINKER_FLAGS}")
 
-if (X11_Xrender_FOUND)
+if(${LIBXSLT_FOUND} AND ${LIBXML2_FOUND})
+  set(HAVE_LIBXSLT 1)
+  message(STATUS "XLST found")
+  set( parley_LINK_LIBS ${parley_LINK_LIBS} ${LIBXML2_LIBRARIES} ${LIBXSLT_LIBRARIES})
+  include_directories(${LIBXML2_INCLUDE_DIR} ${LIBXSLT_INCLUDE_DIR})
+else(${LIBXSLT_FOUND} AND ${LIBXML2_FOUND})
+  set(HAVE_LIBXSLT 0)
+  message(STATUS "XSLT not found, but not required")
+endif(${LIBXSLT_FOUND} AND ${LIBXML2_FOUND})
+
+if(X11_Xrender_FOUND)
+  message(STATUS "X11 Xrender found")
   set( parley_LINK_LIBS ${parley_LINK_LIBS} ${X11_LIBRARIES} ${X11_Xrender_LIB})
+else(X11_Xrender_FOUND)
+  message(STATUS "X11 Xrender not found, but not required")
 endif(X11_Xrender_FOUND)
 
 
 #define the include libraries for both the parley executable and the autotests
-set( parley_INCLUDE_DIRS
-  ${LIBATTICA_INCLUDE_DIR}
-  # libkdeedu/keduvocdocument contains the library for reading and writing vocabulary files
-  ${LIBKDEEDU_INCLUDE_DIR}
-)
-
-#### XSLT Support ####
-# to transform the document xml to html or other
-if(HAVE_LIBXSLT)
-    set( parley_INCLUDE_DIRS ${parley_INCLUDE_DIRS} ${LIBXML2_INCLUDE_DIR} ${LIBXSLT_INCLUDE_DIR} )
-endif(HAVE_LIBXSLT)
-#### End XSLT Support ####
+# set( parley_INCLUDE_DIRS
+#   # ${LIBATTICA_INCLUDE_DIR}
+#   # libkdeedu/keduvocdocument contains the library for reading and writing vocabulary files
+#   ${LIBKDEEDU_INCLUDE_DIR}
+# )
 
 
+if(BUILD_TESTING)
+  add_subdirectory( autotests )
+  add_subdirectory( tests )
+endif()
 
-add_subdirectory( autotests )
-add_subdirectory( doc )
-add_subdirectory( scripts_test )
+add_subdirectory( docs )
 add_subdirectory( src )
 add_subdirectory( icons )
 add_subdirectory( plugins )
 add_subdirectory( themes )
 add_subdirectory( tipofday )
 
-
 if(HAVE_LIBXSLT)
     add_subdirectory( xslt )
 endif(HAVE_LIBXSLT)
 
-add_subdirectory(plasmoid)
+
+#@todo unused This seems unused delete December 2014
+#add_subdirectory( scripts_test )
+
+#@todo frameworks restore/rewrite the plasmoid
+#add_subdirectory(plasmoid)
+
 
 install(FILES parley.appdata.xml DESTINATION ${SHARE_INSTALL_PREFIX}/appdata/)

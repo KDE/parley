@@ -16,9 +16,10 @@
 
 #include "ui_practice_widget_conjugation.h"
 
-#include <KDebug>
+#include <QDebug>
 #include <kcolorscheme.h>
-#include <QtGui/QRadioButton>
+#include <KLocalizedString>
+#include <QtWidgets/QRadioButton>
 #include <QTimer>
 
 namespace Practice
@@ -75,7 +76,7 @@ void ConjugationModeWidget::setSolutionFont(const QFont& font)
 void ConjugationModeWidget::setQuestion(const QVariant& question)
 {
     if (!question.canConvert<ConjugationData>()) {
-        kWarning() << "expected ConjugationData";
+        qWarning() << "expected ConjugationData";
         return;
     }
     ConjugationData data = question.value<ConjugationData>();
@@ -186,13 +187,10 @@ void ConjugationModeWidget::setSolutionPronunciation(const QString& /*pronunciat
 {
 }
 
-void ConjugationModeWidget::setQuestionSound(const KUrl& /*soundUrl*/)
+void ConjugationModeWidget::setQuestionSound(const QUrl& /*soundUrl*/)
 {
 
 }
-void ConjugationModeWidget::setSolutionSound(const KUrl& /*soundUrl*/)
+void ConjugationModeWidget::setSolutionSound(const QUrl& /*soundUrl*/)
 {
 }
-
-
-#include "conjugationmodewidget.moc"

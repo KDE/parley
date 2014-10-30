@@ -45,7 +45,7 @@
      <item row="1" column="2">
       <widget class="Practice::AudioButton" name="solutionSoundButton">
        <property name="text">
-        <string comment="KDE::DoNotExtract">...</string>
+        <string>Play</string>
        </property>
        <property name="iconSize">
         <size>
@@ -100,7 +100,7 @@
      <item row="0" column="2">
       <widget class="Practice::AudioButton" name="questionSoundButton">
        <property name="text">
-        <string comment="KDE::DoNotExtract">...</string>
+        <string>Play</string>
        </property>
        <property name="iconSize">
         <size>

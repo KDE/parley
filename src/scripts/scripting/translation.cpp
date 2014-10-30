@@ -99,13 +99,13 @@ QStringList Translation::conjugationTexts(const QString& tense, const KEduVocWor
 
 //     QObject * Translation::declension ( KEduVocWordFlag::DeclensionNumber number, KEduVocWordFlag::DeclensionCase decCase )
 //     {
-//         kDebug() << number << decCase;
-//         kDebug() << m_translation->declension();
+//         qDebug() << number << decCase;
+//         qDebug() << m_translation->declension();
 //         if ( m_translation->declension() ) {
-//             kDebug() << "in here";
+//             qDebug() << "in here";
 //             //crashes here!
 //             m_translation->declension()->declension ( number,decCase );
-//             kDebug() << "in here";
+//             qDebug() << "in here";
 //             return new Text ( m_translation->declension()->declension ( number,decCase ) );
 //         }
 //         else
@@ -114,12 +114,12 @@ QStringList Translation::conjugationTexts(const QString& tense, const KEduVocWor
 
 //     void Translation::setDeclension ( const QString& declension, KEduVocWordFlag::DeclensionNumber number, KEduVocWordFlag::DeclensionCase decCase )
 //     {
-//         kDebug() << number << decCase;
+//         qDebug() << number << decCase;
 //         KEduVocDeclension * dec = m_translation->declension();
-//         kDebug() << dec;
+//         qDebug() << dec;
 //         if ( !dec )
 //             dec = new KEduVocDeclension();
-//         kDebug() << "here";
+//         qDebug() << "here";
 //         dec->setDeclension ( KEduVocText ( declension ),number,decCase );
 //         m_translation->setDeclension ( dec );
 //     }

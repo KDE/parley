@@ -21,13 +21,12 @@
 
 #include "parleydocument.h"
 
-#include <QtTest>
+#include <QtTest/QtTest>
 
 /** This class is a unittest stub with 2 tests that always pass
  */
 
-class AllPass2Test
-    : public QObject
+class AllPass2Test : public QObject
 {
     Q_OBJECT
 
@@ -52,6 +51,6 @@ void AllPass2Test::testAlwaysPass2()
     QCOMPARE( true,  true );
 }
 
-QTEST_KDEMAIN_CORE( AllPass2Test )
+QTEST_APPLESS_MAIN( AllPass2Test )
 
 #include "allpass2test.moc"

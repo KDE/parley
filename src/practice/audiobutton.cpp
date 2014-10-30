@@ -13,8 +13,7 @@
 
 #include "audiobutton.h"
 
-#include <kicon.h>
-#include <klocale.h>
+#include <KLocalizedString>
 
 using namespace Practice;
 
@@ -22,52 +21,52 @@ AudioButton::AudioButton(QWidget *parent)
     : QToolButton(parent), m_player(0)
 {
     setEnabled(false);
-    setIcon(KIcon("media-playback-start"));
+    QIcon setIcon(QIcon::fromTheme("media-playback-start"));
     setText(i18n("Play"));
     setToolTip(i18n("Play"));
     connect(this, SIGNAL(clicked(bool)), this, SLOT(playAudio()));
     connect(parent, SIGNAL(stopAudio()), this, SLOT(stopAudio()));
 }
 
-void AudioButton::setSoundFile(KUrl soundFile)
+void AudioButton::setSoundFile(QUrl soundFile)
 {
     m_url = soundFile;
-    setEnabled(!m_url.path().isEmpty() && m_url.isLocalFile());
+    setEnabled(!m_url.isEmpty() && m_url.isLocalFile());
 }
 
 void AudioButton::playAudio()
 {
     if (!m_player) {
-        m_player = Phonon::createPlayer(Phonon::NotificationCategory, m_url);
-        m_player->setParent(this);
-        connect(m_player, SIGNAL(stateChanged(Phonon::State, Phonon::State)), this, SLOT(playerStateChanged(Phonon::State)));
+        m_player = new QMediaPlayer( this );
+        connect(m_player, SIGNAL(stateChanged(QMediaPlayer::State, QMediaPlayer::State)), this, SLOT(playerStateChanged(QMediaPlayer::State)));
     } else {
-        if (m_player->state() == Phonon::PlayingState) {
+        if (m_player->state() == QMediaPlayer::PlayingState) {
             m_player->stop();
-            return;
         }
-        m_player->setCurrentSource(m_url);
     }
+    m_player->setMedia(m_url);
+    m_player->setVolume(50);
     m_player->play();
 }
 
 void AudioButton::stopAudio()
 {
-    if (m_player && m_player->state() == Phonon::PlayingState) {
+    if (m_player && m_player->state() == QMediaPlayer::PlayingState) {
         m_player->stop();
     }
 }
 
-void AudioButton::playerStateChanged(Phonon::State newState)
+void AudioButton::playerStateChanged(QMediaPlayer::State newState)
 {
     switch (newState) {
-    case Phonon::LoadingState: case Phonon::BufferingState: case Phonon::PlayingState:
-        setIcon(KIcon("media-playback-stop"));
+    case QMediaPlayer::PlayingState:
+        setIcon(QIcon::fromTheme("media-playback-stop"));
         setText(i18n("Stop"));
         setToolTip(i18n("Stop"));
         break;
-    case Phonon::StoppedState: case Phonon::PausedState: case Phonon::ErrorState:
-        setIcon(KIcon("media-playback-start"));
+    case QMediaPlayer::StoppedState:
+    case QMediaPlayer::PausedState:
+        setIcon(QIcon::fromTheme("media-playback-start"));
         setToolTip(i18n("Play"));
         setText(i18n("Play"));
         break;

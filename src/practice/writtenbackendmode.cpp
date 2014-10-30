@@ -42,7 +42,7 @@ bool WrittenBackendMode::setTestEntry(TestEntry* current)
 
 void WrittenBackendMode::checkAnswer()
 {
-    kDebug() << "check";
+    qDebug() << "check";
     QString answer = m_frontend->userInput().toString();
 
     // move on, the user has not changed anything or pressed enter with no answer
@@ -158,5 +158,3 @@ void WrittenBackendMode::hintAction()
 
     m_lastAnswer = m_frontend->userInput().toString();
 }
-
-#include "writtenbackendmode.moc"

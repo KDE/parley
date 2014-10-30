@@ -18,15 +18,18 @@
 
 #include "../config-parley.h"
 
-#include "vocabulary/vocabularymodel.h"
-#include "vocabulary/vocabularyview.h"
-#include "vocabulary/vocabularyfilter.h"
-#include "vocabulary/containerview.h"
-#include "vocabulary/lessonview.h"
-#include "vocabulary/wordtypeview.h"
-#include "vocabulary/containermodel.h"
-#include "vocabulary/lessonmodel.h"
-#include "vocabulary/wordtypemodel.h"
+// Qt models on top of the KEduVocDocument
+#include "containermodel.h"
+#include "lessonmodel.h"
+#include "vocabularymodel.h"
+#include "vocabularyfilter.h"
+#include "wordclassmodel.h"
+
+// Views
+#include "vocabularyview.h"
+#include "containerview.h"
+#include "lessonview.h"
+#include "wordtypeview.h"
 
 #include "multiplechoicewidget.h"
 #include "comparisonwidget.h"
@@ -56,10 +59,10 @@
 
 #include <QtCore/QTimer>
 #include <QtCore/QSignalMapper>
-#include <QtGui/QDockWidget>
-#include <QtGui/QHeaderView>
-#include <QtGui/QMenu>
-#include <QtGui/QStackedWidget>
+#include <QtWidgets/QDockWidget>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QStackedWidget>
 #include <QScrollArea>
 
 using namespace Editor;
@@ -133,9 +136,6 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
     m_lessonView->expandToDepth(0);
     m_wordTypeView->expandToDepth(0);
 
-    connect(m_mainWindow->parleyDocument()->document(), SIGNAL(docModified(bool)),
-            m_mainWindow,                               SLOT(slotUpdateWindowCaption()));
-
     connect(m_vocabularyView->selectionModel(),
             SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
             m_summaryWordWidget, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
@@ -143,13 +143,9 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
             SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
             m_latexWidget, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
 
-    setCaption(doc->url().fileName(), false);
-
-    m_mainWindow->slotUpdateWindowCaption();
-
     m_spellCheckMenu->menu()->clear();
     for (int i = 0; i < doc->identifierCount(); ++i) {
-        KAction* languageSpellCheck = new KAction(doc->identifier(i).name(), m_spellCheckMenu->menu());
+        QAction* languageSpellCheck = new QAction(doc->identifier(i).name(), m_spellCheckMenu->menu());
         m_spellCheckMenu->menu()->addAction(languageSpellCheck);
         m_spellCheckMapper->setMapping(languageSpellCheck, i);
         connect(languageSpellCheck, SIGNAL(triggered()), m_spellCheckMapper, SLOT(map()));
@@ -159,14 +155,14 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
 
 void EditorWindow::initDockWidgets()
 {
-// Lesson dock
-    QDockWidget *lessonDockWidget = new QDockWidget(i18n("Lessons"), this);
+    // Lesson dockwidget
+    QDockWidget *lessonDockWidget = new QDockWidget(i18n("Units"), this);
     lessonDockWidget->setObjectName("LessonDock");
     m_lessonView = new LessonView(this);
     lessonDockWidget->setWidget(m_lessonView);
     addDockWidget(Qt::LeftDockWidgetArea, lessonDockWidget);
     m_dockWidgets.append(lessonDockWidget);
-    actionCollection()->addAction("show_lesson_dock", lessonDockWidget->toggleViewAction());
+    actionCollection()->addAction("show_units_dock", lessonDockWidget->toggleViewAction());
 
     m_lessonModel = new LessonModel(this);
     m_lessonView->setModel(m_lessonModel);
@@ -184,7 +180,7 @@ void EditorWindow::initDockWidgets()
             m_lessonView, SLOT(setTranslation(KEduVocExpression*, int)));
 
 
-// Word types dock
+    // Word classes dock widget
     QDockWidget* wordTypeDockWidget = new QDockWidget(i18n("Word Types"), this);
     wordTypeDockWidget->setObjectName("WordTypeDock");
     m_wordTypeView = new WordTypeView(this);
@@ -192,7 +188,7 @@ void EditorWindow::initDockWidgets()
     addDockWidget(Qt::LeftDockWidgetArea, wordTypeDockWidget);
     m_dockWidgets.append(wordTypeDockWidget);
 
-    m_wordTypeModel = new WordTypeModel(this);
+    m_wordTypeModel = new WordClassModel(this);
     wordTypeDockWidget->setVisible(false);
     actionCollection()->addAction("show_wordtype_dock", wordTypeDockWidget->toggleViewAction());
 
@@ -455,16 +451,13 @@ void EditorWindow::initView()
     QWidget *mainWidget = new QWidget(this);
     setCentralWidget(mainWidget);
     QVBoxLayout *topLayout = new QVBoxLayout(mainWidget);
-    topLayout->setMargin(KDialog::marginHint());
-    topLayout->setSpacing(KDialog::spacingHint());
 
-    m_searchLine = new KLineEdit(this);
+    m_searchLine = new QLineEdit(this);
     m_searchLine->show();
     m_searchLine->setFocusPolicy(Qt::ClickFocus);
-    m_searchLine->setClearButtonShown(true);
-    m_searchLine->setClickMessage(i18n("Enter search terms here"));
-
-//     m_searchLine->setToolTip(i18n("Search your vocabuary"));
+    m_searchLine->setClearButtonEnabled(true);
+    m_searchLine->setPlaceholderText(i18n("Enter search terms here"));
+    m_searchLine->setToolTip(i18n("Search your vocabulary"));
 
     QLabel *label = new QLabel(i18n("S&earch:"), this);
     label->setBuddy(m_searchLine);
@@ -472,14 +465,12 @@ void EditorWindow::initView()
 
     m_searchWidget = new QWidget(this);
     QHBoxLayout* layout = new QHBoxLayout(m_searchWidget);
-    layout->setSpacing(KDialog::spacingHint());
     layout->setMargin(0);
     layout->addWidget(label);
     layout->addWidget(m_searchLine);
 
 ///@todo     centralWidget()-> delete layout
     QVBoxLayout * rightLayout = new QVBoxLayout();
-    rightLayout->setSpacing(KDialog::spacingHint());
     rightLayout->setMargin(0);
     rightLayout->addWidget(m_searchWidget);
     m_searchWidget->setVisible(Prefs::showSearch());

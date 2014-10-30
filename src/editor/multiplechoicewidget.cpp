@@ -19,10 +19,12 @@
 
 #include <keduvoctranslation.h>
 #include <keduvocexpression.h>
-#include <KDebug>
+#include <QDebug>
 
 #include <QStringListModel>
 #include <QDragEnterEvent>
+#include <QDropEvent>
+#include <QMimeData>
 
 using namespace Editor;
 
@@ -102,8 +104,8 @@ bool MultipleChoiceWidget::eventFilter(QObject * obj, QEvent * event)
     if (obj == multipleChoiceListView) {
         if (event->type() == QEvent::DragEnter) {
             QDragEnterEvent *dragEnterEvent = static_cast<QDragEnterEvent *>(event);
-            kDebug() << "DragEnter mime format: " << dragEnterEvent->format();
-            if (dragEnterEvent->mimeData()->hasText()) {
+            //qDebug() << "DragEnter mime format: " << dragEnterEvent->format();
+            if (( dragEnterEvent->mimeData() != NULL ) && dragEnterEvent->mimeData()->hasText()) {
                 event->accept();
             }
             return true;
@@ -116,19 +118,18 @@ bool MultipleChoiceWidget::eventFilter(QObject * obj, QEvent * event)
 
         if (event->type() == QEvent::Drop) {
             QDropEvent *dropEvent = static_cast<QDropEvent *>(event);
-            kDebug() << "You dropped onto me: " << dropEvent->mimeData()->text();
+            //qDebug() << "You dropped onto me: " << dropEvent->mimeData()->text();
+            if (( dropEvent->mimeData() != NULL ) && dropEvent->mimeData()->hasText()) {
 
-            QStringList choices = dropEvent->mimeData()->text().split('\n');
-            foreach(const QString & choice, choices) {
-                m_choicesModel->insertRow(multipleChoiceListView->model()->rowCount());
-                m_choicesModel->setData(m_choicesModel->index(multipleChoiceListView->model()->rowCount() - 1), choice);
+                QStringList choices = dropEvent->mimeData()->text().split('\n');
+                foreach(const QString & choice, choices) {
+                    m_choicesModel->insertRow(multipleChoiceListView->model()->rowCount());
+                    m_choicesModel->setData(m_choicesModel->index(multipleChoiceListView->model()->rowCount() - 1), choice);
+                }
+
+                return true;
             }
-            return true;
         }
     }
     return QObject::eventFilter(obj, event);
 }
-
-
-#include "multiplechoicewidget.moc"
-

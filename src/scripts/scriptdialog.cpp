@@ -16,33 +16,47 @@
 
 #include "scripting/parley.h"
 
-#include <KLocale>
+#include <KLocalizedString>
 #include <KPluginInfo>
 #include <KSharedConfig>
 #include <KConfigGroup>
+
+#include <QDialog>
+#include <QDialogButtonBox>
+#include <QVBoxLayout>
 
 #include <kross/core/action.h>
 #include <kross/core/manager.h>
 
 ScriptDialog::ScriptDialog(ScriptManager * scriptManager)
-    : KDialog()
+    : QDialog()
 {
     m_scriptManager = scriptManager;
 
     //Configure window
-    setCaption(i18n("Script Dialog"));
-    setButtons(Ok | Cancel);
+    setWindowTitle(i18n("Script Dialog"));
+
+    QDialogButtonBox * button_dialog = new QDialogButtonBox;
+    button_dialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel );
 
     //Add KPluginSelector as the main widget of the dialog
     m_kps = new KPluginSelector(0);
     m_kps->setMinimumSize(500, 500);
 
-    setMainWidget(m_kps);
+    QVBoxLayout *layout = new QVBoxLayout;
+    layout->addWidget( m_kps );
+    layout->addWidget( button_dialog );
+
+    setLayout( layout );
+
+    connect(button_dialog, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(button_dialog, SIGNAL(rejected()), this, SLOT(reject()));
 
     //Load available plugins
     pluginsInfoList = KPluginInfo::fromFiles(ScriptManager::getDesktopFiles());
 
 //     m_kps->addPlugins ( pluginsInfoList,KPluginSelector::ReadConfigFile,i18n ( "Playlist" ),QString ( "playlist" ),KSharedConfig::openConfig ( "parleyrc" ) );
+    ///@todo frameworks scripts dialog is not finding any scripts
     m_kps->addPlugins(pluginsInfoList,
                       KPluginSelector::ReadConfigFile,
                       QString(),

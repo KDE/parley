@@ -16,10 +16,10 @@
 #include "imagechooserwidget.h"
 
 #include <keduvocexpression.h>
-#include <kdebug.h>
-#include <KMimeType>
+#include <QDebug>
 
 #include <QDragEnterEvent>
+#include <QMimeData>
 
 using namespace Editor;
 
@@ -63,7 +63,7 @@ void ImageChooserWidget::slotImageChanged(const QString & url)
     }
 
     if (m_entry) {
-        m_entry->translation(m_currentTranslation)->setImageUrl(KUrl(url));
+        m_entry->translation(m_currentTranslation)->setImageUrl( QUrl::fromLocalFile(url));
         foreach(int j, m_entry->translationIndices()) {
             if (m_entry->translation(j)->imageUrl().isEmpty()) {
                 m_entry->translation(j)->setImageUrl(imageUrlRequester->url());
@@ -77,7 +77,7 @@ bool ImageChooserWidget::eventFilter(QObject * obj, QEvent * event)
     if (obj == imageWidget) {
 //         if (event->type() == QEvent::KeyPress) {
 //              QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-//              kDebug() << "Ate key press " << keyEvent->key();
+//              qDebug() << "Ate key press " << keyEvent->key();
 //              return true;
 //         }
 //         if (event->type() == QEvent::Resize) {
@@ -98,36 +98,24 @@ bool ImageChooserWidget::eventFilter(QObject * obj, QEvent * event)
                 return true;
             }
             QDropEvent *dropEvent = dynamic_cast<QDropEvent *>(event);
-            if (( dropEvent!= NULL ) && dropEvent->provides("text/uri-list")) {
-                const QMimeData * mimeData(  dropEvent->mimeData() );
-                if ( mimeData && mimeData->hasUrls() ) {
-                    const QList<QUrl > qurls(mimeData->urls() ) ;
-                    if ( !qurls.empty() ) {
-                        const QUrl & qurl (qurls.first() );
-
-                        switch( event->type() ) {
-                        case QEvent::DragEnter: {
-                            const QString name(KMimeType::findByUrl(qurl)->name());
-                            if (name.startsWith("image")) {
-                                event->accept();
-                                return true;
-                            }
-                            break;
-                        }
-                        case QEvent::Drop:
-                            imageUrlRequester->setUrl(qurl);
-                            return true;
-                            break;
-                        default:
-                            break;
-                        }
-
+            if (( dropEvent!= NULL ) && ( dropEvent->mimeData()!= NULL ) ) {
+                const QMimeData * mimeData( dropEvent->mimeData() );
+                if ( mimeData->hasUrls() && mimeData->hasUrls() && ( mimeData->urls().size() == 1 )) {
+                    switch( event->type() ) {
+                    case QEvent::DragEnter:
+                        event->accept();
+                        return true;
+                    case QEvent::Drop:
+                        imageUrlRequester->setUrl(mimeData->urls().first());
+                        return true;
+                        break;
+                    default:
+                        break;
                     }
                 }
             }
         }
     }
+
     return QObject::eventFilter(obj, event);
 }
-
-#include "imagechooserwidget.moc"

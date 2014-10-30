@@ -21,6 +21,7 @@
 #include "prefs.h"
 
 #include <kcolorscheme.h>
+#include <KLocalizedString>
 
 #include <QTimer>
 #include <QDebug>
@@ -38,36 +39,6 @@ WrittenPracticeWidget::WrittenPracticeWidget(GuiFrontend *frontend, QWidget *par
     connect(frontend, SIGNAL(continueAction()), this, SIGNAL(stopAudio()));
     connect(frontend, SIGNAL(skipAction()), this, SIGNAL(stopAudio()));
 }
-
-void WrittenPracticeWidget::objectDestroyed(QObject *) {
-    /**
-      @page bug332596 bug 332596 Deleting a qstyled KLineEdit causes crash
-
-     The bug was as follows.  When a WrittenPracticeWidget using a KLineEdit
-     styled with a qStyleSheet that has focus is deleted this triggers a focus
-     changing event, but the QStyleSheet returns a style that has already been
-     deleted and causes a crash when the invalid style is applied.
-
-     The obvious solution of responding to the destroyed() event doesn't work
-     , because the destroyed() event happens after the crash.
-
-     In order to fix this bug, I transistion focus away from the KLineEdit before
-     the focus change preceding deletion.  The virtual function,
-     WrittenPracticeWidget::objectDestroyed,  avoids having a
-     practice mode switch statement as large as this comment at each delete event.
-
-     Transitioning to helpLabel was chosen arbitrarily.
-
-     @todo When frameworks/kde5 is implemented remove this code
-     , if the bug in Qt (returning a pointer to a deleted stylesheet) is fixed.
-     If this function is removed then the entire inheritance path can be removed.
-     */
-
-    m_ui->helpLabel->setFocus();
-    delete m_ui;
-    m_ui = 0;
-}
-
 
 void WrittenPracticeWidget::setQuestionFont(const QFont& font)
 {
@@ -122,7 +93,7 @@ void WrittenPracticeWidget::showQuestion()
 
     if (isExampleSentenceMode == false) {
         m_ui->questionPronunciationLabel->setVisible(m_ui->questionPronunciationLabel->isEnabled());
-        m_ui->questionSoundButton->setVisible(true); // TODO: Use Configuration's Sound Enable QCheckbox
+        m_ui->questionSoundButton->setVisible(m_ui->questionSoundButton->isEnabled());
     } else {
         m_ui->questionPronunciationLabel->setVisible(false);
         m_ui->questionSoundButton->setVisible(false);
@@ -148,7 +119,7 @@ void WrittenPracticeWidget::showSolution()
     m_ui->solutionLabel->setPalette(m_correctPalette);
 
     m_ui->solutionPronunciationLabel->setVisible(m_ui->solutionPronunciationLabel->isEnabled());
-    m_ui->solutionSoundButton->setVisible(true); // TODO: Use Configuration's Sound Enable QCheckbox
+    m_ui->solutionSoundButton->setVisible(m_ui->solutionSoundButton->isEnabled());
 }
 
 void WrittenPracticeWidget::setSynonym(const QString &synonym)
@@ -190,12 +161,12 @@ void WrittenPracticeWidget::setResultState(AbstractFrontend::ResultState resultS
     m_resultState = resultState;
 }
 
-void WrittenPracticeWidget::setQuestionSound(const KUrl& soundUrl)
+void WrittenPracticeWidget::setQuestionSound(const QUrl& soundUrl)
 {
     m_ui->questionSoundButton->setSoundFile(soundUrl);
 }
 
-void WrittenPracticeWidget::setSolutionSound(const KUrl& soundUrl)
+void WrittenPracticeWidget::setSolutionSound(const QUrl& soundUrl)
 {
     m_ui->solutionSoundButton->setSoundFile(soundUrl);
 }
@@ -211,5 +182,3 @@ void WrittenPracticeWidget::setQuestionPronunciation(const QString& pronunciatio
     m_ui->questionPronunciationLabel->setText('[' + pronunciationText + ']');
     m_ui->questionPronunciationLabel->setEnabled(!pronunciationText.isNull());
 }
-
-#include "writtenpracticewidget.moc"

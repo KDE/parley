@@ -15,7 +15,7 @@
 
 #include "ui_practice_widget_flashcard.h"
 
-#include <KUrl>
+#include <QUrl>
 
 #include "guifrontend.h"
 #include "latexrenderer.h"
@@ -51,21 +51,22 @@ void FlashCardModeWidget::setQuestion(const QVariant& question)
             m_questionLatexRenderer->setResultLabel(m_ui->questionLabel);
         }
         m_questionLatexRenderer->renderLatex(question.toString());
-    } else if (question.canConvert<KUrl>()) {
-        // A KUrl means an image.
-        QPixmap pixmap(question.value<KUrl>().path());
-        if (pixmap.isNull()) {
-            // Couldn't create the pixmap from the path.  This should not happen!
-            // FIXME: Do something here (the line below is stolen from guifrontend.cpp
-            //m_ui->questionLabel->setPixmap(m_themedBackgroundRenderer->getPixmapForId("image-placeholder", QSize(150, 150)));
-        } else {
-            m_ui->questionLabel->setPixmap(pixmap.scaled(m_ui->questionLabel->size(),
-                                                         Qt::KeepAspectRatio ));
-        }
-    } else {
-        // A normal text.
-        m_ui->questionLabel->setText(question.toString());
+        return;
     }
+
+    if (question.canConvert<QUrl>()) {
+        // A QUrl might be an image.
+        QPixmap pixmap(question.value<QUrl>().path());
+        if (!pixmap.isNull()) {
+            m_ui->questionLabel->setText(QString() );
+            m_ui->questionLabel->setPixmap(
+                pixmap.scaled(m_ui->questionLabel->size(), Qt::KeepAspectRatio ));
+            return;
+        }
+    }
+
+    // A normal text.
+    m_ui->questionLabel->setText(question.toString());
 }
 
 void FlashCardModeWidget::showQuestion()
@@ -74,7 +75,7 @@ void FlashCardModeWidget::showQuestion()
     m_frontend->showSetResultButtons(false);
 
     m_ui->questionPronunciationLabel->setVisible(m_ui->questionPronunciationLabel->isEnabled());
-    m_ui->questionSoundButton->setVisible(true); // TODO: Use Configuration's Sound Enable QCheckbox
+    m_ui->questionSoundButton->setVisible(m_ui->questionSoundButton->isEnabled());
     m_ui->solutionPronunciationLabel->setVisible(false);
     m_ui->solutionSoundButton->setVisible(false);
 }
@@ -114,7 +115,7 @@ void FlashCardModeWidget::showSolution()
     m_frontend->showSetResultButtons(true);
 
     m_ui->solutionPronunciationLabel->setVisible(m_ui->solutionPronunciationLabel->isEnabled());
-    m_ui->solutionSoundButton->setVisible(true); // TODO: Use Configuration's Sound Enable QCheckbox
+    m_ui->solutionSoundButton->setVisible(m_ui->solutionSoundButton->isEnabled());
 }
 
 void FlashCardModeWidget::setHint(const QVariant& hint)
@@ -129,12 +130,12 @@ QVariant FlashCardModeWidget::userInput()
     return QVariant();
 }
 
-void FlashCardModeWidget::setQuestionSound(const KUrl& soundUrl)
+void FlashCardModeWidget::setQuestionSound(const QUrl& soundUrl)
 {
     m_ui->questionSoundButton->setSoundFile(soundUrl);
 }
 
-void FlashCardModeWidget::setSolutionSound(const KUrl& soundUrl)
+void FlashCardModeWidget::setSolutionSound(const QUrl& soundUrl)
 {
     m_ui->solutionSoundButton->setSoundFile(soundUrl);
 }
@@ -150,5 +151,3 @@ void FlashCardModeWidget::setQuestionPronunciation(const QString& pronunciationT
     m_ui->questionPronunciationLabel->setText('[' + pronunciationText + ']');
     m_ui->questionPronunciationLabel->setEnabled(!pronunciationText.isNull());
 }
-
-#include "flashcardmodewidget.moc"

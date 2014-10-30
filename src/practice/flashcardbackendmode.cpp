@@ -14,7 +14,7 @@
 
 #include "flashcardbackendmode.h"
 
-#include <klocale.h>
+#include <KLocalizedString>
 
 using namespace Practice;
 
@@ -50,5 +50,3 @@ void FlashCardBackendMode::hintAction()
         m_frontend->setHint(m_currentHint);
     }
 }
-
-#include "flashcardbackendmode.moc"

@@ -16,7 +16,7 @@
 #include "prefs.h"
 
 #include <keduvoctranslation.h>
-#include <kdebug.h>
+#include <QDebug>
 
 /// temporary namespace for string manipulation functions
 /// could move into KStringHandler eventually
@@ -31,7 +31,7 @@ QString stripAccents(const QString& original)
             noAccents.append(decomposed[i]);
         }
     }
-    kDebug() << original << " without accents: " << noAccents;
+    qDebug() << original << " without accents: " << noAccents;
     return noAccents;
 }
 }
@@ -75,8 +75,8 @@ void WrittenPracticeValidator::setLanguage(int translation)
     }
 
     if (!m_speller->isValid()) {
-        kDebug() << "No spellchecker for current language found: " << m_doc->identifier(m_translation).locale();
-        kDebug() << "Available dictionaries: " << m_speller->availableLanguages()
+        qDebug() << "No spellchecker for current language found: " << m_doc->identifier(m_translation).locale();
+        qDebug() << "Available dictionaries: " << m_speller->availableLanguages()
                  << "\n names: " << m_speller->availableLanguageNames()
                  << "\n backends: " << m_speller->availableBackends();
         m_spellerAvailable = false;
@@ -94,19 +94,19 @@ bool WrittenPracticeValidator::spellcheckerAvailable()
 void WrittenPracticeValidator::validateAnswer(const QString& answer)
 {
     if (m_entry == 0) {
-        kError() << "No entry set, cannot verify answer.";
+        qCritical() << "No entry set, cannot verify answer.";
         return;
     }
 
     QString correct = m_entry->entry()->translation(m_entry->languageTo())->text();
 
-    kDebug() << "Correct answer should be: " << correct;
+    qDebug() << "Correct answer should be: " << correct;
     m_error = 0;
 
     //Check for empty answers and valid answers first
     if (answer.isEmpty()) {
         m_error |= TestEntry::Wrong;
-        kDebug() << "Empty answer ";
+        qDebug() << "Empty answer ";
     } else if (isCorrect(correct, answer)) {
         m_error |= TestEntry::Correct;
     } else {
@@ -121,10 +121,10 @@ void WrittenPracticeValidator::validateAnswer(const QString& answer)
             m_error |= TestEntry::Correct;
         } else {
             m_error |= TestEntry::Wrong;
-            kDebug() << "Wrong answer: " << answer;
+            qDebug() << "Wrong answer: " << answer;
         }
     }
-    kDebug() << "Error code " << m_error;
+    qDebug() << "Error code " << m_error;
 
     m_entry->setLastErrors(m_error);
 }
@@ -137,7 +137,7 @@ QString WrittenPracticeValidator::getCorrectedAnswer()
 bool WrittenPracticeValidator::isCorrect(const QString& correct, const QString& answer)
 {
     if (answer == correct ) {
-        kDebug() << "Correct answer was given";
+        qDebug() << "Correct answer was given";
         return true;
     }
     return false;
@@ -149,7 +149,7 @@ bool WrittenPracticeValidator::isSynonymMistake(const QString& answer)
         if (synonym->text() == answer ||
                 (Prefs::ignoreCapitalizationMistakes() && isCapitalizationMistake(synonym->text(), answer)) ||
                 (Prefs::ignoreAccentMistakes() && isAccentMistake(synonym->text(), answer))) {
-            kDebug() << "Synonym entered: " << synonym->text() << " answer: " << answer;
+            qDebug() << "Synonym entered: " << synonym->text() << " answer: " << answer;
             m_correctedAnswer = synonym->text();
             m_error |= TestEntry::Synonym;
             //only return true if accept these kinds of mistakes
@@ -165,7 +165,7 @@ bool WrittenPracticeValidator::isSynonymMistake(const QString& answer)
 bool WrittenPracticeValidator::isCapitalizationMistake(const QString& original, const QString& answer)
 {
     if (answer.toLower() == original.toLower()) {
-        kDebug() << "CapitalizationMistake: " << original << " answer: " << answer;
+        qDebug() << "CapitalizationMistake: " << original << " answer: " << answer;
         m_error |= TestEntry::CapitalizationMistake;
         m_correctedAnswer = answer;
         //only return true if accept these kinds of mistakes
@@ -182,7 +182,7 @@ bool WrittenPracticeValidator::isAccentMistake(const QString& original, const QS
     QString stripedAnswer = ParleyStringHandlerOld::stripAccents(answer);
     if (stripedOriginal == stripedAnswer ||
             (Prefs::ignoreCapitalizationMistakes() && isCapitalizationMistake(stripedOriginal, stripedAnswer))) {
-        kDebug() << "AccentMistake: " << original << " answer: " << answer;
+        qDebug() << "AccentMistake: " << original << " answer: " << answer;
         m_error |= TestEntry::AccentMistake;
         m_correctedAnswer = answer;
         //only return true if accept these kinds of mistakes

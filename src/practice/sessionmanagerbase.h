@@ -20,9 +20,6 @@
 // Qt
 #include <QVector>
 
-// kdelibs
-#include <KRandomSequence>
-
 // kdeedulibs
 #include <keduvocexpression.h>
 
@@ -171,8 +168,6 @@ protected:  // data
 
     QTime m_time;
     int m_totalTime;
-
-    KRandomSequence m_randomSequence;
 
     friend class EntryFilter;
 };

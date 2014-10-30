@@ -35,8 +35,8 @@ BrowserWidget::BrowserWidget(QWidget *parent) : QWidget(parent)
     layout->addWidget(m_htmlPart->widget());
 
     connect(m_htmlPart->browserExtension(),
-            SIGNAL(openUrlRequest(const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)),
-            this, SLOT(openUrl(const KUrl&)));
+            SIGNAL(openUrlRequest(const QUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)),
+            this, SLOT(openUrl(const QUrl&)));
 
     connect(showCurrentButton, SIGNAL(clicked()), SLOT(showCurrentTranslation()));
 
@@ -133,13 +133,13 @@ void BrowserWidget::showCurrentTranslation()
         if (m_entry->translation(m_currentTranslation)) {
             QString text = m_entry->translation(m_currentTranslation)->text();
             if (!text.isEmpty()) {
-                m_htmlPart->openUrl(KUrl(QString(m_providers.value(m_currentProvider).url.replace("\\{@}", text))));
+                m_htmlPart->openUrl(QUrl(QString(m_providers.value(m_currentProvider).url.replace("\\{@}", text))));
             }
         }
     }
 }
 
-void BrowserWidget::openUrl(const KUrl & targetUrl)
+void BrowserWidget::openUrl(const QUrl & targetUrl)
 {
     m_htmlPart->openUrl(targetUrl);
 }
@@ -149,7 +149,3 @@ void BrowserWidget::providerChanged(int provider)
     m_currentProvider = provider;
     showCurrentTranslation();
 }
-
-
-#include "browserwidget.moc"
-

@@ -14,7 +14,7 @@
 
 #include "genderbackendmode.h"
 
-#include <klocale.h>
+#include <KLocalizedString>
 
 #include <keduvocdocument.h>
 #include <keduvocwordtype.h>
@@ -106,16 +106,16 @@ void GenderBackendMode::prepareChoices(TestEntry* entry)
 
     setChoices(choices);
 
-    kDebug() << entry->entry()->translation(entry->languageTo())->wordType()->wordType();
+    qDebug() << entry->entry()->translation(entry->languageTo())->wordType()->wordType();
     if (entry->entry()->translation(entry->languageTo())->wordType()->wordType() & KEduVocWordFlag::Masculine) {
         setCorrectAnswer(0);
-        kDebug() << "male";
+        qDebug() << "male";
     } else if (entry->entry()->translation(entry->languageTo())->wordType()->wordType() & KEduVocWordFlag::Feminine) {
         setCorrectAnswer(1);
-        kDebug() << "female";
+        qDebug() << "female";
     } else {
         setCorrectAnswer(2);
-        kDebug() << "neuter";
+        qDebug() << "neuter";
     }
 }
 
@@ -129,6 +129,3 @@ void GenderBackendMode::updateGrades()
 
     m_current->entry()->translation(m_current->languageTo())->setArticle(articleGrade);
 }
-
-
-#include "genderbackendmode.moc"

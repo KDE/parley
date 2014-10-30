@@ -17,7 +17,7 @@
 
 #include "translation.h"
 
-#include <KDebug>
+#include <QDebug>
 
 namespace Scripting
 {
@@ -48,7 +48,7 @@ KEduVocWordType * Document::wordTypeFromString(const QString & name)
     list.removeFirst();
 
 //         foreach ( KEduVocContainer * child, list )
-//             kDebug() << static_cast<KEduVocWordType*>(child)->name();
+//             qDebug() << static_cast<KEduVocWordType*>(child)->name();
 
     foreach(KEduVocContainer * child, list) {
         KEduVocWordType * wt = static_cast<KEduVocWordType*>(child);
@@ -62,14 +62,14 @@ void Document::setWordType(QObject * translation, const QString & wordtype)
 {
     Translation * tr = dynamic_cast<Translation*>(translation);
     if (!tr) {
-        kDebug() << "Invalid lesson entry";
+        qDebug() << "Invalid lesson entry";
         return;
     }
     KEduVocWordType * wt = wordTypeFromString(wordtype);
     if (wt)
         tr->setWordType(wt);
     else
-        kDebug() << "Invalid given wordtype: " << wordtype;
+        qDebug() << "Invalid given wordtype: " << wordtype;
 }
 
 QStringList Document::wordTypes()

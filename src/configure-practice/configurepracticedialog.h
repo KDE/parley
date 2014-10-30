@@ -20,7 +20,8 @@
 #define CONFIGUREPRACTICEDIALOG_H
 
 #include <keduvocdocument.h>
-#include <KConfigDialog>
+#include <KConfigWidgets/KConfigDialog>
+#include <KConfigSkeleton>
 
 class GeneralPracticeOptions;
 class ConfigurePracticeWidget;
@@ -78,4 +79,3 @@ private:
 };
 
 #endif // ConfigurePracticeDialog_included
-

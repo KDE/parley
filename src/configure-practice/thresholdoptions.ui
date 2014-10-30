@@ -58,14 +58,14 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="KIntSpinBox" name="kcfg_PracticeMinimumTimesAsked">
+      <widget class="QSpinBox" name="kcfg_PracticeMinimumTimesAsked">
        <property name="maximum">
         <number>1000</number>
        </property>
       </widget>
      </item>
      <item row="2" column="2">
-      <widget class="KIntSpinBox" name="kcfg_PracticeMaximumTimesAsked">
+      <widget class="QSpinBox" name="kcfg_PracticeMaximumTimesAsked">
        <property name="maximum">
         <number>1000</number>
        </property>
@@ -85,14 +85,14 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="KIntSpinBox" name="kcfg_PracticeMinimumWrongCount">
+      <widget class="QSpinBox" name="kcfg_PracticeMinimumWrongCount">
        <property name="maximum">
         <number>1000</number>
        </property>
       </widget>
      </item>
      <item row="3" column="2">
-      <widget class="KIntSpinBox" name="kcfg_PracticeMaximumWrongCount">
+      <widget class="QSpinBox" name="kcfg_PracticeMaximumWrongCount">
        <property name="maximum">
         <number>1000</number>
        </property>
@@ -162,13 +162,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KIntSpinBox</class>
-   <extends>QSpinBox</extends>
-   <header>knuminput.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

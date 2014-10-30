@@ -20,9 +20,9 @@
 #include <QDateTime>
 
 // kdelibs
-#include <klocale.h>
+#include <KLocalizedString>
 #include <kconfig.h>
-#include <KDebug>
+#include <QDebug>
 #include <KMessageBox>
 
 // kdeedulibs

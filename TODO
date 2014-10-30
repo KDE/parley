@@ -4,7 +4,7 @@
 
 ================================================================
 Before the 4.14 release (bugs).
-NOTE:  DO NOT CHANGE THESE HERE.
+NOTE:  DO NOT CHANGE THESE IN MASTER.
        Instead, change them in the branch and merge the branch into master.
 
  * To investigate
@@ -16,30 +16,24 @@ NOTE:  DO NOT CHANGE THESE HERE.
       https://bugs.kde.org/show_bug.cgi?id=238893
     + Impossible to remove images					----
       https://bugs.kde.org/show_bug.cgi?id=263836
-    + Modes like Conjugation, Gender etc. and				Done
-      Widgets like inflection, comparision forms
-      haven't been implemented properly. Should
-      they be disabled for now?
-      Done I think, but needs more checking
     + Vocabulary does not expire after a given time			----
       https://bugs.kde.org/show_bug.cgi?id=261396
 
  * All crashes
-    + parley crash when opening csv files                               Done
-      https://bugs.kde.org/show_bug.cgi?id=268241
     + Parley crash while adding choice in multiple			----
       choice mode in editor (investigate)
       https://bugs.kde.org/show_bug.cgi?id=255647
-    + Scripts need to sandboxed or atleast check 			----
+    + Scripts need to sandboxed or atleast check         ----
       if data can be fetched and stop gracefully. Eg:
       https://bugs.kde.org/show_bug.cgi?id=252696
     + Investigate - large list causes crash?				----
       https://bugs.kde.org/show_bug.cgi?id=271695
 
  * Data loss
+    + ...
 
  * Misfeatures
-    + There seems to be no way to change the title.                     ----
+    + There seems to be no way to change the title.                     DONE
       It works in the editor but it is never saved.
       Note: It can be changed in the menu, though.
 
@@ -52,42 +46,22 @@ NOTE:  DO NOT CHANGE THESE HERE.
       https://bugs.kde.org/show_bug.cgi?id=246198
 
  * Usability
-    + Removing grades can lead to misunderstanding			Done
-      https://bugs.kde.org/show_bug.cgi?id=312995
+    + ...
 
  * Bugs without a bugzilla bug
-    +...
-
- * Release work
-    + Update the version! (To what?)
+    + ...
 
 
 ================================================================
 Before the 4.14 freeze (features).  These are picked from the ones below.
 
 
- * Editor
-    + 
-
  * Practice
-    + Sessions.  For details, see below.                                DONE
-       - Milestone 1: (Working sessions)                                Done
-       - Milestone 2: Configurable values                               Done
-    + Mixed mode. For details see below                                 DONE
-       - Mixed mode working in general                                  Done
-       - Statistics updated for mixed mode                              Done
-    + Dashboard	    	    	      					----
-       - Dashboard widget						Done
+    + Dashboard                                    ----
        - wrapper class for a KEduVocDocument				----
        - Make the words due work					----
-       - KEduVocDocument summary view widget				----
+       - KEduVocDocument summary view widget				Done
     + Pregrades								DONE
-
-
- * Wishes from bugzilla
-    + Second instance causes data overwriting.                          Done
-      https://bugs.kde.org/show_bug.cgi?id=240552
-    + FIXME: Check the commits for this one.
 
 
 ================================================================
@@ -95,7 +69,7 @@ Before the 4.15 freeze (features).  These are picked from the ones below.
 
 
  * Editor
-    + 
+    +
 
  * Practice
     + Sessions.  For details, see below.                                ----
@@ -105,10 +79,22 @@ Before the 4.15 freeze (features).  These are picked from the ones below.
     + Sessions								----
        - Create session overview pane					----
 
-
-
  * Wishes from bugzilla
-    + 
+    + Comments in practise mode						----
+      https://bugs.kde.org/show_bug.cgi?id=175241
+      https://bugs.kde.org/show_bug.cgi?id=273040
+      https://bugs.kde.org/show_bug.cgi?id=238893
+
+ * Merge Amarvir's GSoC							----
+
+================================================================
+Release work for 4.15
+
+
+ * Change the version number of Parley					----
+ * Create new versions in Bugzilla					----
+ * Add the new features to the feature plan				----
+ * Blog                                               ----
 
 
 ================================================================
@@ -118,60 +104,30 @@ Before the 4.15 freeze (features).  These are picked from the ones below.
  OVERALL GOAL:
    Make the program more focussed around the learning process.
    Learning is the purpose of the program. All other functions are
-   just to support that goal.
+   just to support that purpose.
 
 
  * General
-    + A library of active collections.
+    + A library of active collections.					Done
       Right now we only have a list of files. There is no concept of
       active collections/lessons (i.e. those you are studying) and
       ones that are just lying around.  See also the dashboard below.
 
-    + A dashboard where you can see the status of your learning.
+    + A dashboard where you can see the status of your learning.	Done
       It should contain info on all your active collections or lessons
       with how many cards they have, your learning status (percentage)
       and how many cards are due to practice right now.
       See thaipod101.com for this.
 
  * Usability
-    + Set language you are learning and languages you know instead of   Done
-      language to language.
     + Disable those practice modes in the GUI that are not supported    ----
       by the data in the selected lessons. This would be better than
       having all of them enabled and popping up a big warning dialog
       when the user starts the practice.
     + Bigger default font for practice contents                         ----
-
- * Practice
-    + Extended Leitner box method -OR- move to time based card          Done
-      selection.
-
-      The Leitner box system that is currently implemented is not very
-      good at the very beginning of the study. When you have a lot of
-      new words to learn just getting it right once is not enough to
-      solidify the knowledge. So instead of having a repeat time of 1
-      day for the first box we should have system based on time that
-      starts with just a few minutes until the card is shown next time
-      and then moves up to a full day when you have shown that you
-      know the words well.  Alternatively skip the concept of boxes
-      altogether and have a purely time based system (which the
-      leitner boxes are trying to emulate anyway).
-      thaipod101.com uses this system and it works very well.
-
-    + Sessions.  A session is a byte sized part of a lesson containing  Done
-      maybe 10-20 questions. It is automatically generated when the
-      user starts to practice a lesson and is never saved anywhere.
-      The reason we want this is that you will get a greater sense of
-      achievement when you are done with a session than when you have
-      just practiced 5% of the words in a big lesson.  It should also
-      limit the number of new words in each session (5?).
-      See thaipod101.com for this.
-
-    + Mixed mode in all practice methods.                               Done
-      This means that not just one direction is practiced, but
-      known->learning, learning->known and maybe even sound of
-      learning -> known
-      See thaipod101.com for this (again! - that system is awesome).
+    + Profiles so that you can switch between different sets of units	----
+      quickly
+      https://bugs.kde.org/show_bug.cgi?id=252482
 
  * Editor
     + Drag & drop of images from other applications                     ----

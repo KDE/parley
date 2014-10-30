@@ -20,11 +20,12 @@
 #include "mixedlettersmodewidget.h"
 #include "ui_practice_widget_written.h"
 
-#include <krandomsequence.h>
-#include <kcolorscheme.h>
-
 #include <QFontMetrics>
 #include <QPainter>
+
+#include <kcolorscheme.h>
+#include <KRandom>
+
 
 using namespace Practice;
 
@@ -91,14 +92,10 @@ void MixedLettersModeWidget::setSolution(const QVariant& solution)
     Q_FOREACH(QChar ch, solution.toString()) {
         chars.append(ch);
     }
-    KRandomSequence random = KRandomSequence();
-    random.randomize(chars);
     m_mixedSolution.clear();
     m_positions.clear();
     Q_FOREACH(QChar ch, chars) {
         m_mixedSolution.append(ch);
-        m_positions.append(random.getLong(8));
+        m_positions.append(KRandom::random() % 8);
     }
 }
-
-#include "mixedlettersmodewidget.moc"

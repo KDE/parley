@@ -19,8 +19,7 @@
 
 #include <keduvocdocument.h>
 
-#include <KStandardDirs>
-#include <KLocale>
+#include <KLocalizedString>
 #include <QStackedLayout>
 #include <QLabel>
 #include <QtDBus>
@@ -55,9 +54,9 @@ void ConjugationOptions::setupTenses()
     m_treeWidget->clear();
 
     DocumentSettings documentSettings(m_doc->url().url() + QString::number(m_language));
-    documentSettings.readConfig();
+    documentSettings.load();
     QStringList activeTenses = documentSettings.conjugationTenses();
-    kDebug() << "activeTenses:" << activeTenses << " id tenses: " << m_doc->identifier(m_language).tenseList();
+    qDebug() << "activeTenses:" << activeTenses << " id tenses: " << m_doc->identifier(m_language).tenseList();
     QTreeWidgetItem* tenseItem;
 
     foreach(const QString & tenseName, m_doc->identifier(m_language).tenseList()) {
@@ -75,7 +74,7 @@ void ConjugationOptions::setupTenses()
 
 void ConjugationOptions::updateSettings()
 {
-    kDebug() << "Save language selection";
+    qDebug() << "Save language selection";
     QTreeWidgetItem* parentItem = m_treeWidget->invisibleRootItem();
     QStringList activeTenses;
     for (int i = 0; i < parentItem->childCount(); i++) {
@@ -86,7 +85,5 @@ void ConjugationOptions::updateSettings()
     }
     DocumentSettings documentSettings(m_doc->url().url() + QString::number(m_language));
     documentSettings.setConjugationTenses(activeTenses);
-    documentSettings.writeConfig();
+    documentSettings.save();
 }
-
-#include "conjugationoptions.moc"

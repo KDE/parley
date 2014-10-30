@@ -12,13 +12,15 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+
 #include "summarywordwidget.h"
 
 #include "languagesettings.h"
-#include "vocabulary/lessonmodel.h"
-#include "vocabulary/vocabularymodel.h"
-#include "vocabulary/vocabularyfilter.h"
-#include "vocabulary/wordtypemodel.h"
+
+#include "lessonmodel.h"
+#include "vocabularymodel.h"
+#include "vocabularyfilter.h"
+#include "wordclassmodel.h"
 
 // Qt headers
 #include <QAbstractItemModel>
@@ -28,15 +30,14 @@
 #include <QLabel>
 #include <QTreeView>
 
-// KDE imports
+// KEduVocDocument
 #include <keduvoccontainer.h>
 #include <keduvocdocument.h>
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
-#include <KIcon>
-#include <KLocale>
 
 using namespace Editor;
+
 
 SummaryWordWidget::SummaryWordWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent)
     : QWidget(parent)
@@ -95,14 +96,14 @@ void SummaryWordWidget::slotDocumentChanged(KEduVocDocument *doc)
 {
     m_doc = doc;
     if (!m_doc) {
-        kDebug() << "Set invalid document";
+        qDebug() << "Set invalid document";
         delete m_wordTypeModel;
         m_wordTypeModel = 0;
     } else {
         delete m_wordTypeView;
         if (!m_wordTypeModel) {
-            kDebug() << "Create word type model for summary view";
-            m_wordTypeModel = new WordTypeModel(this);
+            qDebug() << "Create word type model for summary view";
+            m_wordTypeModel = new WordClassModel(this);
         }
         m_wordTypeModel->setDocument(m_doc);
         m_wordTypeView = new QTreeView(this);
@@ -156,7 +157,7 @@ void SummaryWordWidget::populateLessonList(KEduVocExpression *entry)
 void SummaryWordWidget::setCurrentWordType(KEduVocExpression *entry, int translation)
 {
     if (entry && entry->translation(translation)->wordType()) {
-        kDebug() << "Set current word type: " << entry->translation(translation)->wordType()->name();
+        qDebug() << "Set current word type: " << entry->translation(translation)->wordType()->name();
         // select the right word type
         m_wordTypeView->setCurrentIndex(m_wordTypeModel->index(entry->translation(translation)->wordType()));
     } else {
@@ -166,7 +167,7 @@ void SummaryWordWidget::setCurrentWordType(KEduVocExpression *entry, int transla
 
 void SummaryWordWidget::clear()
 {
-    kDebug() << "Clear summary widget";
+    qDebug() << "Clear summary widget";
 
     languageLabel->setText(QString());
     wordEntry->setText(QString());
@@ -192,7 +193,7 @@ void SummaryWordDelegate::setEditorData(QWidget *editor, const QModelIndex &inde
 
     if (editor) {
         switch (VocabularyModel::columnType(index.column())) {
-        case VocabularyModel::WordType:
+        case VocabularyModel::WordClass:
             break;
 
         case VocabularyModel::Comment:
@@ -201,7 +202,7 @@ void SummaryWordDelegate::setEditorData(QWidget *editor, const QModelIndex &inde
         case VocabularyModel::Example:
         case VocabularyModel::Paraphrase:
 
-            KLineEdit *entry = static_cast <KLineEdit *>(editor);
+            QLineEdit *entry = static_cast <QLineEdit *>(editor);
             if (entry) {
                 entry->setText(index.model()->data(index).toString());
             }
@@ -224,7 +225,3 @@ void SummaryWordWidget::wordTypeSelected(const QString& wordTypeName)
         }
     }
 }
-
-
-#include "summarywordwidget.moc"
-

@@ -16,9 +16,8 @@
 #ifndef STATISTICSMODEL_H
 #define STATISTICSMODEL_H
 
-#include "vocabulary/containermodel.h"
+#include "containermodel.h"
 
-using namespace Editor;
 
 class StatisticsModel : public ContainerModel
 {
@@ -36,7 +35,7 @@ public:
         Grade5,
         Grade6,
         Grade7,
-        AllFractions
+        LegendFractions
     };
 
     explicit StatisticsModel(QObject *parent = 0);
@@ -47,6 +46,9 @@ public:
     virtual Qt::ItemFlags flags(const QModelIndex &index) const;
     virtual int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
+    /** Indicate supported drag actions
+     @return enum of actions supported **/
+    virtual Qt::DropActions supportedDragActions() const ;
 protected:
     KEduVocContainer * rootContainer() const;
 };

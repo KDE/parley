@@ -36,7 +36,7 @@
 #include "parleyactions.h"
 
 #include "prefs.h"
-#include "welcomescreen/welcomescreen.h"
+#include "dashboard/dashboard.h"
 
 #include <KActionCollection>
 #include <KRecentFilesAction>
@@ -45,7 +45,7 @@
 #include <KXMLGUIFactory>
 #include <KXmlGuiWindow>
 #include <KToolBar>
-#include <KMenuBar>
+#include <QMenuBar>
 
 #include <QtCore/QTimer>
 
@@ -57,7 +57,7 @@ ParleyMainWindow* ParleyMainWindow::instance()
     return s_instance;
 }
 
-ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
+ParleyMainWindow::ParleyMainWindow(const QUrl& filename)
     : KXmlGuiWindow(0)
     , m_currentComponent(NoComponent)
     , m_currentComponentWindow(0)
@@ -66,33 +66,36 @@ ParleyMainWindow::ParleyMainWindow(const KUrl& filename)
     s_instance = this;
     m_document = new ParleyDocument(this);
 
+    connect(m_document, SIGNAL(documentChanged(KEduVocDocument*))
+            , this, SLOT(documentUpdated(KEduVocDocument*)));
+
     setCentralWidget(new QWidget());
     centralWidget()->setLayout(new QHBoxLayout());
     centralWidget()->layout()->setMargin(0);
 
     initActions();
 
-    bool startWithWelcomeScreen = false;
+    bool startWithDashboard = false;
 
-    setupGUI(ToolBar | Keys | Create);
+    setupGUI(ToolBar | Keys | Create); ///@todo frameworks KXMLGui warnings
 
-    if (!filename.url().isEmpty()) {
+    if (!filename.isEmpty()) {
         m_document->open(filename);
     } else {
         bool openLastFile = Prefs::autoOpenLast();
         if (openLastFile && m_recentFilesAction->actions().count() > 0
-                && m_recentFilesAction->action(m_recentFilesAction->actions().count() - 1)->isEnabled()) {
+            && m_recentFilesAction->action(m_recentFilesAction->actions().count() - 1)->isEnabled()) {
             m_recentFilesAction->action(m_recentFilesAction->actions().count() - 1)->trigger();
         } else {
-            startWithWelcomeScreen = true;
+            startWithDashboard = true;
         }
     }
 
     // save position of dock windows etc
     setAutoSaveSettings();
 
-    if (startWithWelcomeScreen) {
-        showWelcomeScreen();
+    if (startWithDashboard) {
+	showDashboard();
     } else {
         showEditor();
     }
@@ -112,16 +115,27 @@ ParleyMainWindow::~ParleyMainWindow()
     delete m_document;
 }
 
-void ParleyMainWindow::addRecentFile(const KUrl &url, const QString &name)
+void ParleyMainWindow::addRecentFile(const QUrl &url, const QString &name)
 {
     m_recentFilesAction->addUrl(url, name);
-    m_recentFilesAction->saveEntries(KGlobal::config()->group("Recent Files"));
+    m_recentFilesAction->saveEntries(KSharedConfig::openConfig()->group("Recent Files"));
 }
 
-void ParleyMainWindow::removeRecentFile(const KUrl &url)
+void ParleyMainWindow::removeRecentFile(const QUrl &url)
 {
     m_recentFilesAction->removeUrl(url);
-    m_recentFilesAction->saveEntries(KGlobal::config()->group("Recent Files"));
+    m_recentFilesAction->saveEntries(KSharedConfig::openConfig()->group("Recent Files"));
+}
+
+void ParleyMainWindow::documentUpdated(KEduVocDocument *doc)
+{
+    if (doc != 0) {
+        connect(m_document->document(), SIGNAL(docModified(bool))
+                , this, SLOT(slotUpdateWindowCaption()));
+        connect(m_document->document(), SIGNAL(destroyed())
+                , this, SLOT(slotUpdateWindowCaption()));
+        slotUpdateWindowCaption();
+    }
 }
 
 void ParleyMainWindow::updateRecentFilesModel()
@@ -131,7 +145,7 @@ void ParleyMainWindow::updateRecentFilesModel()
 
 void ParleyMainWindow::saveOptions()
 {
-    Prefs::self()->writeConfig();
+    Prefs::self()->save();
 }
 
 void ParleyMainWindow::slotUpdateWindowCaption()
@@ -139,10 +153,11 @@ void ParleyMainWindow::slotUpdateWindowCaption()
     QString title;
     bool modified = false;
     if (m_document->document()) {
-        title = m_document->document()->title();
+        title = i18nc("Title and a modified status indicator.  [*] is exact and will be shown only when document is modified"
+                      , "%1 [*]",m_document->document()->title());
         modified = m_document->document()->isModified();
         if (title == i18n("Untitled")) {
-            title.clear();
+            title = "[*]";
         }
     }
     setCaption(title, modified);
@@ -157,7 +172,7 @@ void ParleyMainWindow::slotGeneralOptions()
 
 void ParleyMainWindow::slotApplyPreferences()
 {
-    m_document->enableAutoBackup((m_currentComponent != WelcomeComponent) && Prefs::autoBackup());
+    m_document->enableAutoBackup((m_currentComponent != DashboardComponent) && Prefs::autoBackup());
 }
 
 void ParleyMainWindow::slotCloseDocument()
@@ -165,7 +180,7 @@ void ParleyMainWindow::slotCloseDocument()
     if (!queryClose()) {
         return;
     }
-    showWelcomeScreen();
+    showDashboard();
     m_document->close();
 }
 
@@ -183,8 +198,9 @@ void ParleyMainWindow::startPractice()
                            i18n("Select languages"));
         return;
     }
-
+    qDebug() <<"Starting Switch Practice";
     switchComponent(PracticeComponent);
+    qDebug() <<"Finished Switch Practice";
 }
 
 void ParleyMainWindow::practiceFinished()
@@ -212,17 +228,22 @@ void ParleyMainWindow::startupTipOfDay()
     KTipDialog::showTip(this, "parley/tips");
 }
 
+void ParleyMainWindow::slotFileNew()
+{
+    m_document->slotFileNew();
+    slotUpdateWindowCaption();
+}
+
 void ParleyMainWindow::initActions()
 {
-    ParleyActions::create(ParleyActions::FileNew, m_document, SLOT(slotFileNew()), actionCollection());
+    ParleyActions::create(ParleyActions::FileNew, this, SLOT(slotFileNew()), actionCollection());
     ParleyActions::create(ParleyActions::FileOpen, m_document, SLOT(slotFileOpen()), actionCollection());
     ParleyActions::createDownloadAction(m_document, SLOT(slotGHNS()), actionCollection());
     ParleyActions::create(ParleyActions::FileOpenDownloaded, m_document, SLOT(openGHNS()), actionCollection());
 
     m_recentFilesAction = ParleyActions::createRecentFilesAction(
-                              m_document, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
-
-    m_recentFilesAction->loadEntries(KGlobal::config()->group("Recent Files"));
+        m_document, SLOT(slotFileOpenRecent(const QUrl&)), actionCollection());
+    m_recentFilesAction->loadEntries(KSharedConfig::openConfig()->group("Recent Files"));
 
     ParleyActions::create(ParleyActions::FileSave, m_document, SLOT(save()), actionCollection());
     ParleyActions::create(ParleyActions::FileSaveAs, m_document, SLOT(saveAs()), actionCollection());
@@ -239,9 +260,9 @@ void ParleyMainWindow::initActions()
     actionCollection()->addAction(KStandardAction::TipofDay,  "help_tipofday", this, SLOT(tipOfDay()));
 }
 
-void ParleyMainWindow::showWelcomeScreen()
+void ParleyMainWindow::showDashboard()
 {
-    switchComponent(WelcomeComponent);
+    switchComponent(DashboardComponent);
 }
 
 void ParleyMainWindow::showEditor()
@@ -289,11 +310,11 @@ void ParleyMainWindow::switchComponent(Component component)
     }
 
     switch (component) {
-    case WelcomeComponent: {
-        WelcomeScreen *welcome = new WelcomeScreen(this);
-        m_currentComponentWindow = welcome;
+    case DashboardComponent: {
+        Dashboard *dashboard = new Dashboard(this);
+        m_currentComponentWindow = dashboard;
         showDocumentActions(true, false);
-        //welcome->updateRecentFilesModel();
+        //dashboard->updateRecentFilesModel();
         break;
     }
     case ConfigurePracticeComponent: {
@@ -310,12 +331,15 @@ void ParleyMainWindow::switchComponent(Component component)
         break;
     }
     case PracticeComponent: {
+        ///@todo trust the dirty bit
         m_document->document()->setModified(true);
         Practice::PracticeMainWindow *practiceWindow = new Practice::PracticeMainWindow(&m_sessionManager, this);
         connect(practiceWindow, SIGNAL(stopPractice()), this, SLOT(showPracticeSummary()));
         m_currentComponentWindow = practiceWindow;
+        qDebug() <<" Practice Slotted up";
         showDocumentActions(false, false);
         practiceWindow->startPractice();
+        qDebug() <<" Practice Slotted up2";
         break;
     }
     case PracticeSummary: {
@@ -327,13 +351,13 @@ void ParleyMainWindow::switchComponent(Component component)
     default:
         break;
     }
-    //kDebug() << "new component" << m_currentComponentWindow;
+    //qDebug() << "new component" << m_currentComponentWindow;
 
     guiFactory()->addClient(m_currentComponentWindow);
     centralWidget()->layout()->addWidget(m_currentComponentWindow);
     m_currentComponentWindow->show();
     switch (component) {
-    case WelcomeComponent: {
+    case DashboardComponent: {
         setVisibleToolbar(QString());
         break;
     }
@@ -398,5 +422,3 @@ ParleyMainWindow::Component ParleyMainWindow::currentComponent()
 {
     return m_currentComponent;
 }
-
-#include "parleymainwindow.moc"

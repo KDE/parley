@@ -14,8 +14,8 @@
  ***************************************************************************/
 #include "script.h"
 
-#include <KDebug>
-#include <KLocale>
+#include <QDebug>
+#include <KLocalizedString>
 
 #include <kross/core/action.h>
 
@@ -41,13 +41,13 @@ bool Script::isActivated()
 
 void Script::activate()
 {
-    kDebug() << "Activating Script" << fileName();
+    qDebug() << "Activating Script" << fileName();
     if (isActivated()) {
-        kDebug() << "Script already activated";
+        qDebug() << "Script already activated";
         return;
     }
     if (!exists()) {
-        kDebug() << "Script file given does not exist";
+        qDebug() << "Script file given does not exist";
         m_errorMessage = i18n("The script file does not exist.");
         return;
     }
@@ -62,7 +62,7 @@ void Script::activate()
     QMapIterator<QString, QObject*> i(m_scriptObjects);
     while (i.hasNext()) {
         i.next();
-        kDebug() << i.key();
+        qDebug() << i.key();
         action->addObject(i.value() , i.key(), Kross::ChildrenInterface::AutoConnectSignals);
     }
 
@@ -74,7 +74,7 @@ void Script::activate()
 
     m_activated = !action->isFinalized();
     if (!m_activated) {
-        kDebug() << "Script not activated";
+        qDebug() << "Script not activated";
         QString msg = action->errorMessage();
         QString trace = action->errorTrace();
         msg.replace('<', "&lt;").replace('\n', "<br/>");

@@ -13,26 +13,28 @@
  *                                                                         *
  ***************************************************************************/
 
+// Own
 #include "lessonstatistics.h"
 
+// Qt
+#include <QApplication>
+#include <QHeaderView>
+#include <QItemDelegate>
+#include <QPainter>
+
+// KDE
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <QInputDialog>
+#include <QAction>
+#include <KActionCollection>
+
+// Parley
 #include "statisticslegendwidget.h"
 #include "statisticsmodel.h"
 #include "keduvoclesson.h"
 #include "prefs.h"
-#include <KLocalizedString>
-#include <KMessageBox>
-#include <KInputDialog>
-#include <KAction>
-#include <KActionCollection>
 
-#include <QApplication>
-#include <QHeaderView>
-
-#include <QPainter>
-
-#include <QItemDelegate>
-
-using namespace Editor;
 
 class GradeDelegate: public QItemDelegate
 {
@@ -41,7 +43,9 @@ public:
         : QItemDelegate(parent) {
     }
 
-    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const {
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option,
+		       const QModelIndex &index) const
+    {
         QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, 0);
 
         // empty lesson
@@ -49,26 +53,34 @@ public:
             return;
         }
         drawBackground(painter, option, index);
-        painter->drawText(option.rect, Qt::AlignCenter, QString("%1%").arg(index.data(StatisticsModel::TotalPercent).toInt()));
+        painter->drawText(option.rect, Qt::AlignCenter,
+			  QString("%1%").arg(index.data(StatisticsModel::TotalPercent).toInt()));
     }
 
 protected:
-    void drawBackground(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const {
-        QList<QVariant> fractions = index.data(StatisticsModel::AllFractions).toList();
+    void drawBackground(QPainter *painter, const QStyleOptionViewItem &option,
+			const QModelIndex &index) const
+    {
+        QList<QVariant> fractions = index.data(StatisticsModel::LegendFractions).toList();
         StatisticsLegendWidget::paintStatisticsBar(*painter, option.rect, fractions);
     }
 };
+
+
+// ----------------------------------------------------------------
+
 
 LessonStatisticsView::LessonStatisticsView(QWidget *parent)
     : ContainerView(parent)
 {
     header()->setVisible(true);
     header()->setDefaultAlignment(Qt::AlignLeft | Qt::AlignBottom);
+    header()->setSectionsMovable( true );
 
     // inherits context menu policy - so action will show up in right click menu
-    KAction *removeGradesAction = new KAction(this);
+    QAction *removeGradesAction = new QAction(this);
     removeGradesAction->setText(i18n("Remove confidence levels from this unit"));
-    removeGradesAction->setIcon(KIcon("edit-clear"));
+    removeGradesAction->setIcon(QIcon::fromTheme("edit-clear"));
     removeGradesAction->setWhatsThis(i18n("Remove confidence levels from this unit"));
     removeGradesAction->setToolTip(removeGradesAction->whatsThis());
     removeGradesAction->setStatusTip(removeGradesAction->whatsThis());
@@ -76,9 +88,9 @@ LessonStatisticsView::LessonStatisticsView(QWidget *parent)
     connect(removeGradesAction, SIGNAL(triggered()), SLOT(removeGrades()));
     addAction(removeGradesAction);
 
-    KAction *removeGradesChildrenAction = new KAction(this);
+    QAction *removeGradesChildrenAction = new QAction(this);
     removeGradesChildrenAction->setText(i18n("Remove confidence levels from this unit and all sub-units"));
-    removeGradesChildrenAction->setIcon(KIcon("edit-clear"));
+    removeGradesChildrenAction->setIcon(QIcon::fromTheme("edit-clear"));
     removeGradesChildrenAction->setWhatsThis(i18n("Remove confidence level from this unit and all sub-units"));
     removeGradesChildrenAction->setToolTip(removeGradesChildrenAction->whatsThis());
     removeGradesChildrenAction->setStatusTip(removeGradesChildrenAction->whatsThis());
@@ -87,16 +99,17 @@ LessonStatisticsView::LessonStatisticsView(QWidget *parent)
     addAction(removeGradesChildrenAction);
 }
 
-void LessonStatisticsView::setModel(Editor::ContainerModel *model)
+void LessonStatisticsView::setModel(ContainerModel *model)
 {
     ContainerView::setModel(model);
+
     GradeDelegate *delegate = new GradeDelegate(this);
     for (int i = ContainerModel::FirstDataColumn; i < model->columnCount(QModelIndex()); i++) {
         setItemDelegateForColumn(i, delegate);
         setColumnWidth(i, 150);
     }
 //    header()->resizeSections(QHeaderView::ResizeToContents);
-    header()->setResizeMode(QHeaderView::Interactive);
+    header()->setSectionResizeMode(QHeaderView::Interactive);
     header()->setStretchLastSection(true);
 }
 
@@ -113,5 +126,3 @@ void LessonStatisticsView::removeGradesChildren()
     KEduVocLesson *lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
     lesson->resetGrades(-1, KEduVocContainer::Recursive);
 }
-
-#include "lessonstatistics.moc"

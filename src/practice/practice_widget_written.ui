@@ -130,7 +130,7 @@
       <layout class="QVBoxLayout" name="synonymList"/>
      </item>
      <item row="4" column="0">
-      <widget class="KLineEdit" name="answerEdit">
+      <widget class="QLineEdit" name="answerEdit">
        <property name="text">
         <string comment="KDE::DoNotExtract">tree</string>
        </property>
@@ -166,11 +166,6 @@
   </layout>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
-  </customwidget>
   <customwidget>
    <class>Practice::AudioButton</class>
    <extends>QToolButton</extends>

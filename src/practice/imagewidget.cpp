@@ -19,9 +19,10 @@
 #include <QtCore/QTimer>
 #include <QtCore/QTimeLine>
 
-#include <kdebug.h>
+#include <QDebug>
+#include <QtWidgets>
 
-#if defined(Q_WS_X11) && defined(HAVE_XRENDER)
+#if defined(Q_WS_X11)
 #include <X11/Xlib.h>
 #include <X11/extensions/Xrender.h>
 #include <QX11Info>
@@ -111,7 +112,7 @@ QPixmap transition(const QPixmap &from, const QPixmap &to, qreal amount)
 
         return startPixmap;
     }
-#if defined(Q_WS_X11) && defined(HAVE_XRENDER)
+#if defined(Q_WS_X11)
     // We have Xrender support
     else if (paintEngine && paintEngine->hasFeature(QPaintEngine::PorterDuff)) {
         // QX11PaintEngine doesn't implement CompositionMode_Plus in Qt 4.3,
@@ -199,7 +200,7 @@ ImageWidget::ImageWidget(QWidget *parent)
 
 void ImageWidget::setPixmap(const QPixmap& pixmap)
 {
-    //kDebug() << "set new pixmap, size:" << pixmap.size();
+    //qDebug() << "set new pixmap, size:" << pixmap.size();
     if (m_animation->state() == QTimeLine::Running) {
         m_scaledPixmap = transition(m_animationPixmap, m_scaledPixmap, m_animation->currentValue());
         m_animation->stop();
@@ -289,12 +290,12 @@ void ImageWidget::scalePixmap(bool smooth)
 {
     bool scaleUp = m_originalPixmap.width() <= size().width() && m_originalPixmap.height() <= size().height();
     if ((m_onlyDownscaling && scaleUp) || m_originalPixmap.size() == size()) {
-        //kDebug() << "no need to scale pixmap";
+        //qDebug() << "no need to scale pixmap";
         m_scaledPixmapOutOfDate = false;
         m_scaledPixmap = m_originalPixmap;
         m_scaledBackupPixmap = QPixmap();
     } else if (smooth) {
-        //kDebug() << "smooth scaling to" << size();
+        //qDebug() << "smooth scaling to" << size();
         if (m_originalPixmap.isNull() || size().isEmpty()) {
             m_scaledPixmapOutOfDate = false;
             m_scaledPixmap = QPixmap();
@@ -306,7 +307,7 @@ void ImageWidget::scalePixmap(bool smooth)
         m_scaledPixmapOutOfDate = false;
         update();
     } else {
-        //kDebug() << "fast scaling to" << size();
+        //qDebug() << "fast scaling to" << size();
         // Try to find out if it makes sense to use the scaled backup pixmap.
         // If the scaled backup gets too small, we use the original image.
         float ratio = 0;
@@ -333,5 +334,3 @@ void ImageWidget::animationFinished()
 {
     m_animationPixmap = QPixmap();
 }
-
-#include "imagewidget.moc"

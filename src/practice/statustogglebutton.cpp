@@ -61,6 +61,3 @@ void StatusToggleButton::leaveEvent(QEvent *)
     m_current = 0;
     setPixmap(m_defaultPixmap);
 }
-
-
-#include "statustogglebutton.moc"

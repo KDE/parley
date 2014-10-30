@@ -16,13 +16,9 @@
 #ifndef AUDIOWIDGET_H
 #define AUDIOWIDGET_H
 
-
 #include "ui_audiowidget.h"
 
-namespace Phonon
-{
-class MediaObject;
-}
+class QMediaPlayer;
 
 class KEduVocExpression;
 
@@ -55,7 +51,7 @@ private:
     /// Selection in the doc - if more than one row is selected behavior is different
     KEduVocExpression* m_entry;
 
-    Phonon::MediaObject* m_player;
+    QMediaPlayer* m_player;        ///< media object for the files
 };
 
 }

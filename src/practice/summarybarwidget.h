@@ -15,7 +15,7 @@
 #ifndef SUMMARYBARWIDGET_H
 #define SUMMARYBARWIDGET_H
 
-#include <QtGui/QWidget>
+#include <QtWidgets/QWidget>
 
 class QLabel;
 class QHBoxLayout;

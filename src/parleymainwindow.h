@@ -34,39 +34,20 @@
 
 #include <QPointer>
 
-namespace Practice
-{
-class GuiFrontend;
-class DefaultBackend;
-class PracticeSummaryComponent;
-}
-
-namespace Editor
-{
-class VocabularyView;
-class VocabularyModel;
-class VocabularyFilter;
-class LessonView;
-class WordTypeView;
-class LeitnerView;
-class LessonModel;
-class WordTypeModel;
-class LeitnerModel;
-class ConjugationWidget;
-class SummaryWordWidget;
-class EditorWindow;
-}
 
 class KRecentFilesAction;
+#if 0
 class KActionMenu;
-class KAction;
+class QAction;
 class QLabel;
 class QDockWidget;
 
-class WelcomeScreen;
+class Dashboard;
 class StatisticsMainWindow;
 class ScriptManager;
 class ParleyPracticeMainWindow;
+#endif
+
 
 class ParleyMainWindow : public KXmlGuiWindow
 {
@@ -80,7 +61,7 @@ public:
     /** enum for the different components that can be displayed */
     enum Component {
         NoComponent,
-        WelcomeComponent,
+        DashboardComponent,
         EditorComponent,
         ConfigurePracticeComponent,
         PracticeComponent,
@@ -93,7 +74,7 @@ public:
     void initActions();
 
     /** add a new entry to the list of recent files */
-    void addRecentFile(const KUrl &url, const QString &name);
+    void addRecentFile(const QUrl &url, const QString &name);
 
     /** save the app-specific options on slotAppExit or by an Options dialog */
     void saveOptions();
@@ -101,7 +82,7 @@ public:
     /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
     void updateTableFilter();
 
-    /** update the list of recent files in the welcome screen */
+    /** update the list of recent files in the dashboard */
     void updateRecentFilesModel();
 
     /**
@@ -113,6 +94,12 @@ public:
     Component currentComponent();
 
 public slots:
+    /** Updates connections when the ParleyDocument pointer is changed to @p doc **/
+    void documentUpdated(KEduVocDocument *doc);
+
+    /** Opens a dialog for a new collection. **/
+    void slotFileNew();
+
     /** Update the title bar of the main window with the current document */
     void slotUpdateWindowCaption();
 
@@ -120,7 +107,7 @@ public slots:
     bool queryClose();
 
     /** remove an entry from the list of recent files */
-    void removeRecentFile(const KUrl &url);
+    void removeRecentFile(const QUrl &url);
 
     QSize sizeHint() const;
 
@@ -147,7 +134,7 @@ public slots:
      */
     void startupTipOfDay();
 
-    void showWelcomeScreen();
+    void showDashboard();
     void showEditor();
     void showPractice();
     void showPracticeConfiguration();
@@ -166,7 +153,7 @@ signals:
     void preferencesChanged();
 
 private:
-    ParleyMainWindow(const KUrl &filename = KUrl());
+    ParleyMainWindow(const QUrl &filename = QUrl());
     static ParleyMainWindow *s_instance;
 
     Component      m_currentComponent;

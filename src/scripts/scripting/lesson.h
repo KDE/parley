@@ -21,8 +21,6 @@
 #include <QObject>
 #include <QStringList>
 
-#include <KSharedPtr>
-
 namespace Scripting
 {
 

@@ -19,13 +19,14 @@
 #include <QPropertyAnimation>
 
 #include <KActionCollection>
-#include <KAction>
+#include <QAction>
 #include <KToolBar>
-#include <KMenuBar>
+#include <QMenuBar>
 #include <KToggleFullScreenAction>
 #include <KLocalizedString>
 #include <KConfig>
 #include <KConfigGroup>
+#include <KLocalizedString>
 
 #include "parleymainwindow.h"
 #include "guifrontend.h"
@@ -33,6 +34,7 @@
 #include <languagesettings.h>
 
 using namespace Practice;
+
 
 PracticeMainWindow::PracticeMainWindow(SessionManagerBase* sessionManager,
                                        ParleyMainWindow* mainWindow)
@@ -48,6 +50,7 @@ PracticeMainWindow::PracticeMainWindow(SessionManagerBase* sessionManager,
     m_stateMachine = new PracticeStateMachine(m_guiFrontend, mainWindow->parleyDocument(), sessionManager, this);
 
     // setModified - otherwise we may not ask to save progress
+    ///@todo trust the dirty bit
     mainWindow->parleyDocument()->document()->setModified(true);
 
     initActions();
@@ -57,6 +60,8 @@ PracticeMainWindow::PracticeMainWindow(SessionManagerBase* sessionManager,
 
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
+
+    I18N_NOOP("I knew it well");
 }
 
 PracticeMainWindow::~PracticeMainWindow()
@@ -72,10 +77,10 @@ PracticeMainWindow::~PracticeMainWindow()
 
 void PracticeMainWindow::initActions()
 {
-    KAction* stopPracticeAction = new KAction(this);
+    QAction* stopPracticeAction = new QAction(this);
     stopPracticeAction->setText(i18n("Stop Practice"));
-    stopPracticeAction->setIcon(KIcon("practice-stop"));
-    stopPracticeAction->setHelpText(i18n("Stop practicing"));
+    stopPracticeAction->setIcon(QIcon::fromTheme("practice-stop"));
+    stopPracticeAction->setToolTip(i18n("Stop practicing"));
     actionCollection()->addAction("practice_stop", stopPracticeAction);
     connect(stopPracticeAction, SIGNAL(triggered()), m_stateMachine, SLOT(slotPracticeFinished()));
 
@@ -84,9 +89,9 @@ void PracticeMainWindow::initActions()
                          m_mainWindow,
                          actionCollection());
 
-    KAction* toggleAnswerState = new KAction(this);
+    QAction* toggleAnswerState = new QAction(this);
     toggleAnswerState->setText(i18n("Change answer to right/wrong"));
-    toggleAnswerState->setHelpText(i18n("When you answered, Parley will display that the answer was right or wrong.\nThis shortcut changes how the answer is counted."));
+    toggleAnswerState->setToolTip(i18n("When you answered, Parley will display that the answer was right or wrong.\nThis shortcut changes how the answer is counted."));
     actionCollection()->addAction("toggle_answer_state", toggleAnswerState);
     toggleAnswerState->setShortcut(Qt::CTRL + Qt::Key_Space);
     connect(toggleAnswerState, SIGNAL(triggered()), m_guiFrontend, SLOT(toggleResultState()));
@@ -158,13 +163,13 @@ void PracticeMainWindow::startPractice()
     // questionfont and answerfont in the mode widget.
     QString knownLangLocale = m_mainWindow->parleyDocument()->document()->identifier(Prefs::knownLanguage()).locale();
     LanguageSettings knownLangSettings(knownLangLocale);
-    knownLangSettings.readConfig();
+    knownLangSettings.load();
     QFont knownLangFont = knownLangSettings.practiceFont();
     m_guiFrontend->setKnownLangFont(knownLangFont);
 
     QString learningLangLocale = m_mainWindow->parleyDocument()->document()->identifier(Prefs::learningLanguage()).locale();
     LanguageSettings learningLangSettings(learningLangLocale);
-    learningLangSettings.readConfig();
+    learningLangSettings.load();
     QFont learningLangFont = learningLangSettings.practiceFont();
     m_guiFrontend->setLearningLangFont(learningLangFont);
 
@@ -173,9 +178,6 @@ void PracticeMainWindow::startPractice()
 
 void PracticeMainWindow::practiceFinished()
 {
-    m_guiFrontend->modeWidgetDestroyed(0);
     delete m_stateMachine;
     emit stopPractice();
 }
-
-#include "practicemainwindow.moc"

@@ -49,7 +49,7 @@ public slots:
 
 private slots:
     void showCurrentTranslation();
-    void openUrl(const KUrl& targetUrl);
+    void openUrl(const QUrl& targetUrl);
     void providerChanged(int);
 private:
     /**

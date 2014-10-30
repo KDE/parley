@@ -19,24 +19,23 @@
 
 #include "kgamethemeselector.h"
 
-#include <KLocale>
-#include <KStandardDirs>
+#include <KLocalizedString>
 #include <KConfigSkeleton>
-#include <KComponentData>
 #include <KNS3/DownloadDialog>
 
 #include "ui_kgamethemeselector.h"
 #include "kgametheme.h"
 
-class KGameThemeSelector::KGameThemeSelectorPrivate
+class KGameThemeSelectorPrivate
 {
+    KGameThemeSelector * q_ptr;
+    Q_DECLARE_PUBLIC(KGameThemeSelector)
+
 public:
-    KGameThemeSelectorPrivate(KGameThemeSelector* parent) : q(parent) {}
+    KGameThemeSelectorPrivate(KGameThemeSelector* parent) : q_ptr(parent) {}
     ~KGameThemeSelectorPrivate() {
         qDeleteAll(themeMap);
     }
-
-    KGameThemeSelector* q;
 
     QMap<QString, KGameTheme*> themeMap;
     Ui::KGameThemeSelectorBase ui;
@@ -53,27 +52,27 @@ public:
 };
 
 KGameThemeSelector::KGameThemeSelector(QWidget* parent, KConfigSkeleton * aconfig, KGameThemeSelector::NewStuffState knsflags, const QString &groupName, const QString &directory)
-    : QWidget(parent), d(new KGameThemeSelectorPrivate(this))
+    : QWidget(parent), d_ptr(new KGameThemeSelectorPrivate(this))
 {
-    d->lookupDirectory = directory;
-    d->groupName = groupName;
-    d->setupData(aconfig, knsflags);
+    d_func()->lookupDirectory = directory;
+    d_func()->groupName = groupName;
+    d_func()->setupData(aconfig, knsflags);
 }
 
 KGameThemeSelector::~KGameThemeSelector()
 {
-    delete d;
+    delete d_ptr;
 }
 
-void KGameThemeSelector::KGameThemeSelectorPrivate::setupData(KConfigSkeleton * aconfig, KGameThemeSelector::NewStuffState knsflags)
+void KGameThemeSelectorPrivate::setupData(KConfigSkeleton * aconfig, KGameThemeSelector::NewStuffState knsflags)
 {
-    ui.setupUi(q);
-    ui.getNewButton->setIcon(KIcon("get-hot-new-stuff"));
+    ui.setupUi(q_ptr);
+    ui.getNewButton->setIcon(QIcon::fromTheme("get-hot-new-stuff"));
 
     //The lineEdit widget holds our theme path for automatic connection via KConfigXT.
     //But the user should not manipulate it directly, so we hide it.
     ui.kcfg_Theme->hide();
-    connect(ui.kcfg_Theme, SIGNAL(textChanged(const QString&)), q, SLOT(_k_updateThemeList(const QString&)));
+    q_func()->connect(ui.kcfg_Theme, SIGNAL(textChanged(const QString&)), q_ptr, SLOT(_k_updateThemeList(const QString&)));
 
     //Disable KNS button?
     if (knsflags == KGameThemeSelector::NewStuffDisableDownload) {
@@ -85,13 +84,13 @@ void KGameThemeSelector::KGameThemeSelectorPrivate::setupData(KConfigSkeleton * 
     QString lastUsedTheme = configItem->property().toString();
 
     //Now get our themes into the list widget
-    KGlobal::dirs()->addResourceType("gamethemeselector", "data", KGlobal::mainComponent().componentName() + '/' + lookupDirectory + '/');
+    //KGlobal::dirs()->addResourceType("gamethemeselector", "data", QCoreApplication::applicationName() + '/' + lookupDirectory + '/');
     findThemes(lastUsedTheme);
 
-    connect(ui.getNewButton, SIGNAL(clicked()), q, SLOT(_k_openKNewStuffDialog()));
+    q_func()->connect(ui.getNewButton, SIGNAL(clicked()), q_ptr, SLOT(_k_openKNewStuffDialog()));
 }
 
-void KGameThemeSelector::KGameThemeSelectorPrivate::findThemes(const QString &initialSelection)
+void KGameThemeSelectorPrivate::findThemes(const QString &initialSelection)
 {
     qDeleteAll(themeMap.values());
     themeMap.clear();
@@ -102,7 +101,8 @@ void KGameThemeSelector::KGameThemeSelectorPrivate::findThemes(const QString &in
     ui.themeList->setSortingEnabled(true);
 
     QStringList themesAvailable;
-    KGlobal::dirs()->findAllResources("gamethemeselector", "*.desktop", KStandardDirs::Recursive, themesAvailable);
+    //Note: this has been disconnected since 2010
+    //KGlobal::dirs()->findAllResources("gamethemeselector", "*.desktop", KStandardDirs::Recursive, themesAvailable);
 
     bool initialFound = false;
     foreach(const QString & file, themesAvailable) {
@@ -144,10 +144,10 @@ void KGameThemeSelector::KGameThemeSelectorPrivate::findThemes(const QString &in
     }
 
     //Reconnect the themeList
-    connect(ui.themeList, SIGNAL(currentItemChanged(QListWidgetItem * , QListWidgetItem *)), q, SLOT(_k_updatePreview()));
+    q_func()->connect(ui.themeList, SIGNAL(currentItemChanged(QListWidgetItem * , QListWidgetItem *)), q_ptr, SLOT(_k_updatePreview()));
 }
 
-void KGameThemeSelector::KGameThemeSelectorPrivate::_k_updatePreview()
+void KGameThemeSelectorPrivate::_k_updatePreview()
 {
     KGameTheme * seltheme = themeMap.value(ui.themeList->currentItem()->text());
     //Sanity checkings. Should not happen.
@@ -174,7 +174,7 @@ void KGameThemeSelector::KGameThemeSelectorPrivate::_k_updatePreview()
     ui.themePreview->setPixmap(pix.scaled(ui.themePreview->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 }
 
-void KGameThemeSelector::KGameThemeSelectorPrivate::_k_updateThemeList(const QString& strTheme)
+void KGameThemeSelectorPrivate::_k_updateThemeList(const QString& strTheme)
 {
     //find theme and set selection to the current theme; happens when pressing "Default"
     QListWidgetItem * currentItem = ui.themeList->currentItem();
@@ -188,12 +188,13 @@ void KGameThemeSelector::KGameThemeSelectorPrivate::_k_updateThemeList(const QSt
     }
 }
 
-void KGameThemeSelector::KGameThemeSelectorPrivate::_k_openKNewStuffDialog()
+void KGameThemeSelectorPrivate::_k_openKNewStuffDialog()
 {
-    KNS3::DownloadDialog dialog("parley-themes.knsrc",  q);
+    KNS3::DownloadDialog dialog("parley-themes.knsrc",  q_ptr);
     dialog.exec();
     if (!dialog.changedEntries().isEmpty())
         findThemes(ui.kcfg_Theme->text());
 }
 
-#include "kgamethemeselector.moc"
+//#include "kgamethemeselector.moc"
+#include "moc_kgamethemeselector.cpp"

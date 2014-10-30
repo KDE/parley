@@ -41,8 +41,8 @@ bool ConjugationBackendMode::setTestEntry(TestEntry* current)
     m_currentTense = m_current->conjugationTense();
 
     if (!m_current->entry()->translation(m_current->languageTo())->conjugationTenses().contains(m_currentTense)) {
-        kDebug() << "invalid tense for entry - " << m_currentTense;
-        kDebug() << "tenses: "  << m_current->entry()->translation(m_current->languageTo())->conjugationTenses();
+        qDebug() << "invalid tense for entry - " << m_currentTense;
+        qDebug() << "tenses: "  << m_current->entry()->translation(m_current->languageTo())->conjugationTenses();
     }
 
     data.tense = m_currentTense;
@@ -77,7 +77,7 @@ QStringList ConjugationBackendMode::validPersonalPronouns()
         // FIXME: Used to be m_practiceOptions.languageTo()
         pp.append(m_doc->identifier(Prefs::learningLanguage()).personalPronouns().personalPronoun(person));
     }
-    kDebug() << "PP: " << pp.size() << pp;
+    qDebug() << "PP: " << pp.size() << pp;
     return pp;
 }
 
@@ -92,13 +92,13 @@ void ConjugationBackendMode::checkAnswer()
         if (answers.at(i) == m_conjugation.conjugation(key).text()) {
             ++numRight;
         } else {
-            kDebug() << "dec grade for " << m_conjugation.conjugation(key).text();
+            qDebug() << "dec grade for " << m_conjugation.conjugation(key).text();
             allCorrect = false;
         }
         ++i;
     }
 
-    kDebug() << "answers: " << answers;
+    qDebug() << "answers: " << answers;
 
     if (allCorrect) {
         m_frontend->setFeedback(i18n("All conjugation forms were right."));
@@ -147,7 +147,7 @@ grade_t ConjugationBackendMode::currentGradeForEntry() const
 
 void ConjugationBackendMode::updateGrades()
 {
-    kDebug() << "Grading conjugations";
+    qDebug() << "Grading conjugations";
 
     foreach(const KEduVocWordFlags & key, m_pronounFlags) {
         KEduVocText& text = m_current->entry()->translation(m_current->languageTo())->
@@ -165,5 +165,3 @@ void ConjugationBackendMode::hintAction()
 {
     // FIXME
 }
-
-#include "conjugationbackendmode.moc"

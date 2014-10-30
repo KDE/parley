@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
     http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
-<include>kglobalsettings.h</include>
+<include>qfontdatabase.h</include>
 <kcfgfile name="parleyrc">
     <parameter name="locale" />
 </kcfgfile>
@@ -30,11 +30,11 @@
     </entry>
     <entry name="PracticeFont" type="Font">
         <label>The font used during practice</label>
-        <default code="true">KGlobalSettings::generalFont()</default>
+        <default code="true">QFontDatabase::systemFont(QFontDatabase::GeneralFont)</default>
     </entry>
     <entry name="EditorFont" type="Font">
         <label>The font used in the editor</label>
-        <default code="true">KGlobalSettings::generalFont()</default>
+        <default code="true">QFontDatabase::systemFont(QFontDatabase::GeneralFont)</default>
     </entry>
 </group>
 </kcfg>

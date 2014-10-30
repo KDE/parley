@@ -16,7 +16,7 @@
 #include "abstractfrontend.h"
 #include "statustogglebutton.h"
 
-#include <klocale.h>
+#include <KLocalizedString>
 
 #include <QAction>
 
@@ -128,5 +128,3 @@ void StatusToggle::updateToggle()
         m_toggle->setPixmaps(QPixmap(), QPixmap(), QPixmap());
     }
 }
-
-#include "statustoggle.moc"

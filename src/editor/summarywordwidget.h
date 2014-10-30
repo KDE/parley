@@ -18,7 +18,7 @@
 #include "ui_summarywordwidget.h"
 
 #include <QItemDelegate>
-#include <QWidget>
+#include <QtWidgets/QWidget>
 
 class QTreeView;
 class QDataWidgetMapper;
@@ -28,10 +28,11 @@ class KEduVocContainer;
 class KEduVocDocument;
 class KEduVocExpression;
 
+class VocabularyFilter;
+class WordClassModel;
+
 namespace Editor
 {
-class VocabularyFilter;
-class WordTypeModel;
 
 /**
 * Represents the overview of a KEduVocExpression
@@ -88,7 +89,7 @@ private:
     VocabularyFilter *m_model;
     KEduVocDocument *m_doc;
     QDataWidgetMapper *m_mapper;
-    WordTypeModel *m_wordTypeModel;
+    WordClassModel *m_wordTypeModel;
     QTreeView *m_wordTypeView;
     KEduVocExpression *m_entry;
     int m_translationId;

@@ -20,7 +20,7 @@
 #include <QFuture>
 #include <QFutureWatcher>
 #include <QTimer>
-#include <ksvgrenderer.h>
+#include <QSvgRenderer>
 
 class QMargins;
 class KGameTheme;
@@ -94,7 +94,7 @@ private:
     QFutureWatcher<QImage> m_watcher;
     KGameTheme *m_theme;
     QHash<QString, QString> m_rectMappings;
-    KSvgRenderer m_renderer;
+    QSvgRenderer m_renderer;
     QList<QPair<QString, QRect> > m_rects;
     QList<QPair<QString, QRect> > m_lastScaledRenderRects; // the rects used for the last scaled render
     QList<QPair<QString, QRect> > m_lastFullRenderRects; // the rects used for the last full render

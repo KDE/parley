@@ -15,7 +15,7 @@
 #ifndef WRITTENPRACTICEVALIDATOR_H
 #define WRITTENPRACTICEVALIDATOR_H
 
-#include <sonnet/speller.h>
+#include <Sonnet/Speller>
 
 #include "parleydocument.h"
 

@@ -222,7 +222,7 @@
     </widget>
    </item>
    <item>
-    <widget class="KLineEdit" name="kcfg_Theme">
+    <widget class="QLineEdit" name="kcfg_Theme">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -236,13 +236,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

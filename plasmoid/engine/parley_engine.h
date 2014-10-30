@@ -17,7 +17,7 @@
 #ifndef PARLEYENGINE_H
 #define PARLEYENGINE_H
 
-#include <KRandomSequence>
+#include <KCoreAddons/KRandomSequence>
 
 #include "plasma/dataengine.h"
 

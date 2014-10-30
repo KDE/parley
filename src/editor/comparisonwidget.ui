@@ -67,7 +67,7 @@
       </widget>
      </item>
      <item row="1" column="1" >
-      <widget class="KLineEdit" name="comparativeLineEdit" >
+      <widget class="QLineEdit" name="comparativeLineEdit" >
        <property name="sizePolicy" >
         <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
          <horstretch>0</horstretch>
@@ -99,7 +99,7 @@
       </widget>
      </item>
      <item row="2" column="1" >
-      <widget class="KLineEdit" name="superlativeLineEdit" >
+      <widget class="QLineEdit" name="superlativeLineEdit" >
        <property name="sizePolicy" >
         <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
          <horstretch>0</horstretch>
@@ -139,13 +139,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

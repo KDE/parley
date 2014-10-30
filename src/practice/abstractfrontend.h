@@ -18,7 +18,7 @@
 #include <keduvoctext.h>
 #include <QFont>
 
-class KUrl;
+class QUrl;
 
 namespace Practice
 {
@@ -73,10 +73,10 @@ public:
     virtual void setSolutionFont(const QFont& font) = 0;
 
     virtual void setHint(const QVariant& hint) = 0;
-    virtual void setQuestionImage(const KUrl& img) = 0;
-    virtual void setSolutionImage(const KUrl& img) = 0;
-    virtual void setQuestionSound(const KUrl& soundUrl) = 0;
-    virtual void setSolutionSound(const KUrl& soundUrl) = 0;
+    virtual void setQuestionImage(const QUrl& img) = 0;
+    virtual void setSolutionImage(const QUrl& img) = 0;
+    virtual void setQuestionSound(const QUrl& soundUrl) = 0;
+    virtual void setSolutionSound(const QUrl& soundUrl) = 0;
     virtual void setSolutionPronunciation(const QString& pronunciationText) = 0;
     virtual void setQuestionPronunciation(const QString& pronunciationText) = 0;
 

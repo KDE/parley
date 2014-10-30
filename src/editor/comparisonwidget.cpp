@@ -20,6 +20,7 @@
 #include <keduvocexpression.h>
 #include <keduvocdocument.h>
 #include <KMessageBox>
+#include <KLocalizedString>
 
 using namespace Editor;
 
@@ -121,6 +122,3 @@ void ComparisonWidget::slotSuperlativeChanged()
 {
     m_translation->setSuperlative(superlativeLineEdit->text());
 }
-
-
-#include "comparisonwidget.moc"

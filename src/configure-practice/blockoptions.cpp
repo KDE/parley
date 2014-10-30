@@ -25,7 +25,7 @@
 
 #include <QCheckBox>
 
-#include <klocale.h>
+#include <KLocalizedString>
 #include <kmessagebox.h>
 #include <KComboBox>
 
@@ -390,5 +390,3 @@ bool BlockOptions::hasChanged()
            date_itemlist[expire2->currentIndex()].num != Prefs::expireItem(KV_LEV2_GRADE) ||
            date_itemlist[expire1->currentIndex()].num != Prefs::expireItem(KV_LEV1_GRADE);
 }
-
-#include "blockoptions.moc"

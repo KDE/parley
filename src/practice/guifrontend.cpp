@@ -16,8 +16,8 @@
 #include <QtCore/QTimer>
 
 #include <kcolorscheme.h>
-#include <kstandarddirs.h>
-#include <kdebug.h>
+#include <QDebug>
+#include <KLocalizedString>
 
 #include "ui_practice_mainwindow.h"
 
@@ -83,12 +83,12 @@ QWidget* GuiFrontend::widget()
 
 void GuiFrontend::setMode(Mode mode)
 {
-    kDebug() << "setCentralWidget" << mode;
+    qDebug() << "setCentralWidget" << mode;
     AbstractModeWidget *newWidget = 0;
     switch (mode) {
     case Written:
         if (/*m_modeWidget->metaObject()->className() == QLatin1String("WrittenPracticeWidget")*/false) {
-            kDebug() << "Written practice widget is already the central widget";
+            qDebug() << "Written practice widget is already the central widget";
             break;
         }
         newWidget = new WrittenPracticeWidget(this, m_widget);
@@ -116,7 +116,6 @@ void GuiFrontend::setMode(Mode mode)
     }
     if (newWidget) {
         m_ui->centralPracticeWidget->layout()->addWidget(newWidget);
-        modeWidgetDestroyed();
         delete m_modeWidget;
         m_modeWidget = newWidget;
         connect(m_modeWidget, SIGNAL(continueAction()), m_ui->continueButton, SLOT(animateClick()));
@@ -247,7 +246,7 @@ void GuiFrontend::setQuestionPronunciation(const QString& pronunciationText)
     m_modeWidget->setQuestionPronunciation(pronunciationText);
 }
 
-void GuiFrontend::setQuestionSound(const KUrl& soundUrl)
+void GuiFrontend::setQuestionSound(const QUrl& soundUrl)
 {
     m_modeWidget->setQuestionSound(soundUrl);
 }
@@ -257,12 +256,12 @@ void GuiFrontend::setSolution(const QVariant& solution)
     m_modeWidget->setSolution(solution);
 }
 
-void GuiFrontend::setQuestionImage(const KUrl& image)
+void GuiFrontend::setQuestionImage(const QUrl& image)
 {
     m_questionImage = image;
 }
 
-void GuiFrontend::setSolutionImage(const KUrl& image)
+void GuiFrontend::setSolutionImage(const QUrl& image)
 {
     m_solutionImage = image;
 }
@@ -277,7 +276,7 @@ void GuiFrontend::setSolutionFont(const QFont& font)
     m_modeWidget->setSolutionFont(font);
 }
 
-void GuiFrontend::setImage(const KUrl& image)
+void GuiFrontend::setImage(const QUrl& image)
 {
     if (m_lastImage == image) {
         return;
@@ -296,7 +295,7 @@ void GuiFrontend::setSolutionPronunciation(const QString& pronunciationText)
     m_modeWidget->setSolutionPronunciation(pronunciationText);
 }
 
-void GuiFrontend::setSolutionSound(const KUrl& soundUrl)
+void GuiFrontend::setSolutionSound(const QUrl& soundUrl)
 {
     m_modeWidget->setSolutionSound(soundUrl);
 }
@@ -427,12 +426,3 @@ void GuiFrontend::setTheme()
     m_ui->boxesWidget->setRenderer(m_themedBackgroundRenderer);
     m_ui->statusToggle->setRenderer(m_themedBackgroundRenderer);
 }
-
-void GuiFrontend::modeWidgetDestroyed(QObject * obj)
-{
-    if (m_modeWidget) {
-        m_modeWidget->objectDestroyed();
-    }
-}
-
-#include "guifrontend.moc"

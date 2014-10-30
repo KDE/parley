@@ -19,7 +19,7 @@
 #include <QStringList>
 #include <QTextCodec>
 
-#include <KDebug>
+#include <QDebug>
 
 int main()
 {
@@ -27,12 +27,12 @@ int main()
 
     //TranslationScript script("google_translation.py");
     //script.getLanguagePairs();
-    //kDebug() << script.translateWord("car","en","it");
+    //qDebug() << script.translateWord("car","en","it");
 
     TranslationScript s("ectaco.py");
-//     kDebug() << s.translateWord("test","en","pl");
+//     qDebug() << s.translateWord("test","en","pl");
     foreach(const QString & word, s.translateWord("test", "en", "pl"))
-    kDebug() << "trns: " << word;
+    qDebug() << "trns: " << word;
 
     return 0;
 }

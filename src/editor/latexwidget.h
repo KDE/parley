@@ -16,7 +16,7 @@
 #include "ui_latexwidget.h"
 
 #include <QItemDelegate>
-#include <QWidget>
+#include <QtWidgets/QWidget>
 
 class QDataWidgetMapper;
 class KEduVocDocument;
@@ -28,9 +28,10 @@ namespace Practice
 class LatexRenderer;
 }
 
+class VocabularyFilter;
+
 namespace Editor
 {
-class VocabularyFilter;
 
 class LatexWidget : public QWidget, public Ui::LatexWidget
 {

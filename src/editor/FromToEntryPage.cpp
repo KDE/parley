@@ -28,9 +28,9 @@
 #include <QPushButton>
 #include <QGroupBox>
 
-#include <klocale.h>
+#include <KLocalizedString>
 #include <KComboBox>
-#include <KLineEdit>
+#include <QLineEdit>
 
 #include "EntryDlg.h"
 
@@ -224,7 +224,7 @@ void FromToEntryPage::setData(const QList<int>& entries)
 
 void FromToEntryPage::commitData()
 {
-    kDebug() << "Grade page commit data: " << m_translationFrom << m_translationTo;
+    qDebug() << "Grade page commit data: " << m_translationFrom << m_translationTo;
     if (m_entries.count() == 1) {
         // these things are only changed when editing a single entry
         KEduVocTranslation * trans = &m_doc->entry(m_entries.value(0))->translation(m_translationTo);

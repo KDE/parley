@@ -20,6 +20,7 @@
 #include <keduvocdeclension.h>
 
 #include <KMessageBox>
+#include <KLocalizedString>
 
 using namespace Editor;
 
@@ -48,7 +49,7 @@ DeclensionWidget::DeclensionWidget(QWidget *parent) : QWidget(parent)
 
 void DeclensionWidget::textChanged(const QString& text)
 {
-    int valueIndex = m_DeclensionLineEdits.values().indexOf(qobject_cast<KLineEdit*>(sender()));
+    int valueIndex = m_DeclensionLineEdits.values().indexOf(qobject_cast<QLineEdit*>(sender()));
     int key = m_DeclensionLineEdits.keys().value(valueIndex) | currentAdditionalWordFlag();
     m_entry->translation(m_identifier)->declension()->setDeclension(text, (KEduVocWordFlag::Flags)key);
     emit sigModified();
@@ -198,5 +199,3 @@ void DeclensionWidget::setupLineEdits()
         m_DeclensionLineEdits[KEduVocWordFlag::Neuter | KEduVocWordFlag::Vocative] = neuter_7;
     }
 }
-
-#include "declensionwidget.moc"
