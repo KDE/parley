@@ -132,7 +132,6 @@ void LessonStatisticsView::sectionResized(int index,
 
 void LessonStatisticsView::adjustColumnWidths()
 {
-    qDebug() << "adjusting column widths";
     int firstWidth = columnWidth(0) + columnWidth(1);
     // Subtract 5 here otherwise we get a horizontal scrollbar.
     int totalWidth = width() - firstWidth - 5;
