@@ -106,7 +106,31 @@ void LessonStatisticsView::setModel(ContainerModel *model)
     GradeDelegate *delegate = new GradeDelegate(this);
     for (int i = ContainerModel::FirstDataColumn; i < model->columnCount(QModelIndex()); i++) {
         setItemDelegateForColumn(i, delegate);
-        setColumnWidth(i, 150);
+    }
+
+    adjustColumnWidths();
+}
+
+void LessonStatisticsView::resizeEvent(QResizeEvent *event)
+{
+    adjustColumnWidths();
+    ContainerView::resizeEvent(event);
+}
+
+void LessonStatisticsView::adjustColumnWidths()
+{
+    int firstWidth = columnWidth(0) + columnWidth(1);
+    // Subtract 5 here otherwise we get a horizontal scrollbar.
+    int totalWidth = width() - firstWidth - 5;
+    int columnCount = model()->columnCount(QModelIndex());
+    int visibleColumns = 0;
+    for (int i = ContainerModel::FirstDataColumn; i < columnCount; ++i) {
+        if (!isColumnHidden(i))
+            visibleColumns++;
+    }
+    int columnWidth = visibleColumns > 0 ? totalWidth / visibleColumns : 150;
+    for (int i = ContainerModel::FirstDataColumn; i < model()->columnCount(QModelIndex()); i++) {
+        setColumnWidth(i, columnWidth);
     }
 //    header()->resizeSections(QHeaderView::ResizeToContents);
     header()->setSectionResizeMode(QHeaderView::Interactive);
