@@ -34,7 +34,11 @@ private Q_SLOTS:
     void removeGrades();
     void removeGradesChildren();
 
+protected:
+    virtual void resizeEvent(QResizeEvent *event);
+
 private:
+    void adjustColumnWidths();
     virtual void setModel(QAbstractItemModel *model) {
         Q_UNUSED(model)
     }
