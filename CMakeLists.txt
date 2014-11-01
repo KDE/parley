@@ -21,6 +21,7 @@ find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED
   Concurrent
   Multimedia
   Test
+  PrintSupport
 )
 
 set(REQUIRED_KF5_VERSION "4.96.0")

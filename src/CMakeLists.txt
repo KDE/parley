@@ -10,6 +10,7 @@ set(parley_LIB_SRCS
     parleyactions.cpp
     parleydocument.cpp
     parleymainwindow.cpp
+    collection/collection.cpp
     collection/testentry.cpp
     collection/entryfilter.cpp
     collection/vocabularymimedata.cpp
@@ -171,7 +172,7 @@ set(parley_SRCS main.cpp)
 add_executable(parley ${parley_SRCS})
 
 target_link_libraries(parley parley_LIB ${parley_LINK_LIBS})
-target_link_libraries(parley_LIB ${parley_LINK_LIBS})
+target_link_libraries(parley_LIB ${parley_LINK_LIBS} Qt5::PrintSupport)
 
 ########### install files ###############
 install(TARGETS parley  ${INSTALL_TARGETS_DEFAULT_ARGS} )
