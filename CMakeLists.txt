@@ -79,22 +79,24 @@ configure_file(
 # Define link libs for parley executable and unittests
 set( parley_LINK_LIBS
   LibKEduVocDocumentImport__KEduVocDocument
-  KF5::KHtml
+  #KF5::KHtml
   KF5::KrossCore
   # KF5::ConfigCore
   Qt5::Core
   # Qt5::Qml
   Qt5::Svg
-  # KF5::I18n
+  KF5::I18n
   KF5::NewStuff
   KF5::SonnetCore
-  # KF5::SonnetUi
+  KF5::SonnetUi
   KF5::KCMUtils
   KF5::XmlGui
   KF5::Completion
   KF5::ConfigWidgets
   KF5::ConfigGui
   KF5::WidgetsAddons
+  KF5::TextWidgets
+  KF5::KIOWidgets
   Qt5::Widgets
   Qt5::Gui
   Qt5::Concurrent

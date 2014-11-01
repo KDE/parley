@@ -354,17 +354,17 @@ void EditorWindow::initDockWidgets()
     QDockWidget *browserDock = new QDockWidget(i18n("Internet"), this);
     browserDock->setObjectName("BrowserDock");
     //TinyWebBrowser *browserWidget = new TinyWebBrowser(this);
-    BrowserWidget *htmlPart = new BrowserWidget(browserDock);
+    //BrowserWidget *htmlPart = new BrowserWidget(browserDock);
     QScrollArea *browserScrollArea = new QScrollArea(this);
     browserScrollArea->setWidgetResizable(true);
-    browserScrollArea->setWidget(htmlPart);
+    //browserScrollArea->setWidget(htmlPart);
     browserDock->setWidget(browserScrollArea);
     addDockWidget(Qt::BottomDockWidgetArea, browserDock);
     m_dockWidgets.append(browserDock);
     actionCollection()->addAction("show_browser_dock", browserDock->toggleViewAction());
     browserDock->setVisible(false);
-    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
-            htmlPart, SLOT(setTranslation(KEduVocExpression*, int)));
+    //    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+    //            htmlPart, SLOT(setTranslation(KEduVocExpression*, int)));
     tabifyDockWidget(summaryDock,browserDock);
 
 // LaTeX

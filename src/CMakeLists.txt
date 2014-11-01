@@ -34,7 +34,7 @@ set(parley_LIB_SRCS
     editor/vocabularyview.cpp
     editor/wordtypeview.cpp
     editor/audiowidget.cpp
-    editor/browserwidget.cpp
+    #editor/browserwidget.cpp
     editor/comparisonwidget.cpp
     editor/inflectionwidget.cpp
     editor/conjugationwidget.cpp
