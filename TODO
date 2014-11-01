@@ -3,7 +3,7 @@
 
 
 ================================================================
-Before the 4.14 release (bugs).
+Before the 4.15 release (bugs).
 NOTE:  DO NOT CHANGE THESE IN MASTER.
        Instead, change them in the branch and merge the branch into master.
 
@@ -23,7 +23,7 @@ NOTE:  DO NOT CHANGE THESE IN MASTER.
     + Parley crash while adding choice in multiple			----
       choice mode in editor (investigate)
       https://bugs.kde.org/show_bug.cgi?id=255647
-    + Scripts need to sandboxed or atleast check         ----
+    + Scripts need to sandboxed or atleast check			----
       if data can be fetched and stop gracefully. Eg:
       https://bugs.kde.org/show_bug.cgi?id=252696
     + Investigate - large list causes crash?				----
@@ -91,10 +91,10 @@ Before the 4.15 freeze (features).  These are picked from the ones below.
 Release work for 4.15
 
 
- * Change the version number of Parley					----
+ * Change the version number of Parley (2.0?)				----
  * Create new versions in Bugzilla					----
  * Add the new features to the feature plan				----
- * Blog                                               ----
+ * Blog        		       	       					----
 
 
 ================================================================
@@ -112,12 +112,6 @@ Release work for 4.15
       Right now we only have a list of files. There is no concept of
       active collections/lessons (i.e. those you are studying) and
       ones that are just lying around.  See also the dashboard below.
-
-    + A dashboard where you can see the status of your learning.	Done
-      It should contain info on all your active collections or lessons
-      with how many cards they have, your learning status (percentage)
-      and how many cards are due to practice right now.
-      See thaipod101.com for this.
 
  * Usability
     + Disable those practice modes in the GUI that are not supported    ----
@@ -172,7 +166,7 @@ START --->  Dashboard <+-->  Word bank manager  (dialog?  component?)
 
 ================================================================
 
-Below is old stuff, most of which is outdated (refers to KDE 4.1).
+Below is old stuff, most of which is outdated (refers to KDE 4.1!).
 We will move appropriate issues up to the current ones above.
 
 ================================================================
@@ -220,8 +214,6 @@ Gui
  * Analysis of sentences could be improved a lot
 
 General
- * Open/Create file - maybe it makes sense to open/create file in new
-   application window, and keep "current" document opened?
  * Warn about overwriting kvtml-1 files
 
  * declination support
