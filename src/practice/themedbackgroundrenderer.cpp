@@ -16,7 +16,6 @@
 #include "settings/kgametheme/kgametheme.h"
 #include <QDebug>
 #include <QStandardPaths>
-#include <unistd.h>
 
 #include <QtConcurrentRun>
 #include <QPainter>
