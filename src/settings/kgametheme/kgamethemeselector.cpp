@@ -22,6 +22,7 @@
 #include <KLocalizedString>
 #include <KConfigSkeleton>
 #include <KNS3/DownloadDialog>
+#include <QDirIterator>
 
 #include "ui_kgamethemeselector.h"
 #include "kgametheme.h"
@@ -84,7 +85,6 @@ void KGameThemeSelectorPrivate::setupData(KConfigSkeleton * aconfig, KGameThemeS
     QString lastUsedTheme = configItem->property().toString();
 
     //Now get our themes into the list widget
-    //KGlobal::dirs()->addResourceType("gamethemeselector", "data", QCoreApplication::applicationName() + '/' + lookupDirectory + '/');
     findThemes(lastUsedTheme);
 
     q_func()->connect(ui.getNewButton, SIGNAL(clicked()), q_ptr, SLOT(_k_openKNewStuffDialog()));
@@ -101,8 +101,20 @@ void KGameThemeSelectorPrivate::findThemes(const QString &initialSelection)
     ui.themeList->setSortingEnabled(true);
 
     QStringList themesAvailable;
-    //Note: this has been disconnected since 2010
-    //KGlobal::dirs()->findAllResources("gamethemeselector", "*.desktop", KStandardDirs::Recursive, themesAvailable);
+    QStringList themePaths =
+        QStandardPaths::locateAll(QStandardPaths::GenericDataLocation,
+                                  QCoreApplication::applicationName() + '/' + lookupDirectory + '/',
+                                  QStandardPaths::LocateDirectory);
+    foreach (const QString dir, themePaths) {
+        QDirIterator it(dir,
+                        QStringList() << QStringLiteral("*.desktop"),
+                        QDir::NoFilter,
+                        QDirIterator::Subdirectories);
+        while (it.hasNext()) {
+            it.next();
+            themesAvailable.append(it.fileName());
+        }
+    }
 
     bool initialFound = false;
     foreach(const QString & file, themesAvailable) {
