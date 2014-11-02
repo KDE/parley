@@ -168,8 +168,6 @@ protected:  // data
 
     QTime m_time;
     int m_totalTime;
-
-    friend class EntryFilter;
 };
 
 }
