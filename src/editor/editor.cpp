@@ -417,7 +417,7 @@ void EditorWindow::initModel()
     m_vocabularyModel = new VocabularyModel(this);
     m_vocabularyFilter = new VocabularyFilter(this);
     m_vocabularyFilter->setSourceModel(m_vocabularyModel);
-    m_vocabularyView->setModel(m_vocabularyFilter);
+    m_vocabularyView->setFilter(m_vocabularyFilter);
 
 //    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyModel, SLOT(setDocument(KEduVocDocument*)));
 //    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(setDocument(KEduVocDocument*)));
