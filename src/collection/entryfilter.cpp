@@ -49,7 +49,7 @@ int preGradeTimes[] = {
 };
 
 
-EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc)
+EntryFilter::EntryFilter(KEduVocDocument* doc, QObject * parent)
     : QObject(parent)
     , m_doc(doc)
     , m_dialog(0)
@@ -68,7 +68,7 @@ static void debugEntry(const QString &comment, KEduVocExpression *vocexp,
     qDebug() << comment << "from" << from->text() << "to" << to->text();
 }
 
-QList<TestEntry*> EntryFilter::entries()
+QList<TestEntry*> EntryFilter::entries(bool showDialog)
 {
     switch (Prefs::practiceDirection()) {
     case Prefs::EnumPracticeDirection::KnownToLearning:
@@ -118,9 +118,11 @@ QList<TestEntry*> EntryFilter::entries()
         i18n("The vocabulary document contains no entries that can be used for the chosen type"
              " of practice.");
 
-    qDebug() << "Document contains " << m_entries[0].count() + m_entries[1].count() << " valid entries.";
+    //qDebug() << "Document contains " << m_entries[0].count() + m_entries[1].count() << " valid entries.";
     if (m_entries[0].count() + m_entries[1].count() == 0) {
-        KMessageBox::error(0, noEntriesError);
+	if (showDialog) {
+	    KMessageBox::error(0, noEntriesError);
+	}
         return QList<TestEntry*>();
     }
 
@@ -128,7 +130,7 @@ QList<TestEntry*> EntryFilter::entries()
 
     bool ignoreBlocked = false;
     int numSelected = m_currentSelection[0].count() + m_currentSelection[1].count();
-    if (numSelected == 0) {
+    if (numSelected == 0 && showDialog) {
         m_button_dialog = new QDialogButtonBox;
         m_button_dialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel );
 
