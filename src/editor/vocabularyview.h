@@ -52,7 +52,7 @@ public:
 
     KActionMenu* columnsActionMenu();
 
-    void setModel(VocabularyFilter * model);
+    void setFilter(VocabularyFilter * model);
 
     /** Save column visibility settings */
     void saveColumnVisibility() const;
@@ -107,11 +107,12 @@ private:
     void selectIndex(const QModelIndex &index);
     // trap enter presses at the end of the document to add a new entry instead of moving to the first cell
     bool eventFilter(QObject *obj, QEvent *event);
-#if 0
+
+    // Make this private to avoid inadvertent use. Instead use setFilter() which is public.
     virtual void setModel(QAbstractItemModel *model) {
         Q_UNUSED(model)
     }
-#endif
+
     QAction* m_appendEntryAction;
     QAction* m_deleteEntriesAction;
     QAction* m_copyAction;

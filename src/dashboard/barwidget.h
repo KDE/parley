@@ -13,9 +13,15 @@
  ***************************************************************************/
 
 
+#ifndef BARWIDGET_H
+#define BARWIDGET_H
+
 // Qt
 #include <QPaintEvent>
 #include <QWidget>
+
+#include "collection.h"  // For struct WordCount
+
 
 extern QColor gradeColor[11];
 
@@ -26,12 +32,16 @@ public:
     BarWidget(QWidget *parent = 0);
     BarWidget(int [], int, int, QWidget *parent = 0);
 
+    void setDue(WordCount &wc);
+
 protected:
     void paintEvent(QPaintEvent *);
 
 private:
-    int dueWords[8];
-    int totalDueWords;
-    int percentageCompleted;
+    int m_dueWords[8];
+    int m_totalDueWords;
+    int m_percentageCompleted;
 };
 
+
+#endif // BARWIDGET_H

@@ -15,6 +15,8 @@
 
 #include <QWidget>
 
+#include "barwidget.h"
+
 
 // Size constants for the collection widgets
 extern int COLLWIDTH;    // Width in pixels of a collection widget
@@ -25,7 +27,7 @@ extern int COLLHEIGHT2;  // Height in pixels of a collection widget fully learne
 class QLabel;
 class QPushButton;
 class RemoveButton;
-
+class Collection;
 
 // FIXME: Temporary struct until the real number of due words works.
 struct DueWords {
@@ -42,20 +44,28 @@ class CollectionWidget : public QWidget
     Q_OBJECT
 
 public:
-    CollectionWidget(const QString &namestring, DueWords *due,
+    CollectionWidget(Collection *collection, DueWords *due,
 		     QWidget *parent = 0);
     ~CollectionWidget();
+
+    Collection *collection() const;
+    void setCollection(Collection *collection);
 
 Q_SIGNALS:
     void practiceButtonClicked();
     void removeButtonClicked();
 
-protected:
+private:
+    void setupWidget(DueWords *due);
+    void fillWidget();
 
 private:
-    QLabel       *nameLabel;
-    QWidget      *wordCloud;
-    RemoveButton *removeButton;
-    QPushButton  *practiceButton;
+    QLabel       *m_titleLabel;
+    QWidget      *m_thumbnail;
+    BarWidget    *m_barWidget;
+    RemoveButton *m_removeButton;
+    QPushButton  *m_practiceButton;
+
+    Collection   *m_collection;
 };
 
