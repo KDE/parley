@@ -221,6 +221,7 @@ void Dashboard::populateGrid()
 
 	QUrl  url(QUrl::fromLocalFile(urlString));
 	Collection *collection = new Collection(&url, this);
+	collection->close(); // We just want to look at it, not own it, so release the lock.
 
 	// Automatically initialized.
 	DueWords due;
