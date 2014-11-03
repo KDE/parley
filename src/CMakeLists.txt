@@ -109,7 +109,7 @@ set(parley_LIB_SRCS
     dashboard/collectionwidget.cpp
 )
 
-qt5_wrap_ui(parley_LIB_SRCS
+ki18n_wrap_ui(parley_LIB_SRCS
     collection/entryfilter.ui
     configure-practice/generalpracticeoptions.ui
     configure-practice/blockoptions.ui
@@ -158,7 +158,7 @@ if(HAVE_LIBXSLT)
         exportdialog.cpp
     )
 
-    qt5_wrap_ui(parley_LIB_SRCS
+    ki18n_wrap_ui(parley_LIB_SRCS
         exportdialog.ui
     )
 endif(HAVE_LIBXSLT)
