@@ -148,9 +148,10 @@ VocabularyView::VocabularyView(EditorWindow * parent)
     connect(vocabularyColumnsDialogAction, SIGNAL(triggered(bool)), this, SLOT(slotShowVocabularyColumnsDialog()));
 }
 
-void VocabularyView::setModel(VocabularyFilter * model)
+void VocabularyView::setFilter(VocabularyFilter * model)
 {
     QTableView::setModel(model);
+
     m_model = model;
     connect(selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
             SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
