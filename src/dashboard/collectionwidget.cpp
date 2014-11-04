@@ -17,6 +17,7 @@
 #include "collectionwidget.h"
 
 // Parley
+#include "collection.h"
 #include "barwidget.h"
 
 // KDE
@@ -190,3 +191,9 @@ CollectionWidget::CollectionWidget(const QString &nameString, DueWords *due,
 CollectionWidget::~CollectionWidget()
 {
 }
+
+Collection *CollectionWidget::collection() const
+{
+    return m_collection;
+}
+

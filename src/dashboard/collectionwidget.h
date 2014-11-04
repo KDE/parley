@@ -25,7 +25,7 @@ extern int COLLHEIGHT2;  // Height in pixels of a collection widget fully learne
 class QLabel;
 class QPushButton;
 class RemoveButton;
-
+class Collection;
 
 // FIXME: Temporary struct until the real number of due words works.
 struct DueWords {
@@ -46,6 +46,8 @@ public:
 		     QWidget *parent = 0);
     ~CollectionWidget();
 
+    Collection *collection() const;
+
 Q_SIGNALS:
     void practiceButtonClicked();
     void removeButtonClicked();
@@ -57,5 +59,7 @@ private:
     QWidget      *wordCloud;
     RemoveButton *removeButton;
     QPushButton  *practiceButton;
+
+    Collection   *m_collection;
 };
 

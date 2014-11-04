@@ -17,19 +17,21 @@
 #ifndef COLLECTION_H
 #define COLLECTION_H
 
-#include <keduvocdocument.h>
 #include <QObject>
 
-#include "../config-parley.h"
+#include <keduvocdocument.h>
 
-class ParleyMainWindow;
+//#include "../config-parley.h"
+
+
+//class ParleyMainWindow;
 class QTimer;
 
 class Collection : public QObject
 {
     Q_OBJECT
 public:
-    Collection();
+    Collection(QObject* parent = 0);
     ~Collection();
 
 
