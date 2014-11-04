@@ -31,7 +31,8 @@ class Collection : public QObject
 {
     Q_OBJECT
 public:
-    Collection(QObject* parent = 0);
+    Collection(KEduVocDocument *doc, QObject* parent = 0);
+    Collection(KUrl *url, QObject* parent = 0);
     ~Collection();
 
 
@@ -48,7 +49,7 @@ public slots:
     /** close the document*/
     void close();
 
-signals:
+Q_SIGNALS:
     /** Emitted when the document pointer is changed.
      @todo Stop using documentChanged(0) as a replacement for destoyed in editor classes.**/
     void documentChanged(KEduVocDocument *newDocument);

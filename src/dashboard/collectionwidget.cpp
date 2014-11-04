@@ -122,8 +122,8 @@ DueWords::DueWords()
 // ----------------------------------------------------------------
 
 
-CollectionWidget::CollectionWidget(const QString &nameString, DueWords *due,
-               QWidget *parent)
+CollectionWidget::CollectionWidget(const QString &titleString, DueWords *due,
+				   QWidget *parent)
     : QWidget(parent)
 {
     // Set a nice shadow effect.
@@ -137,55 +137,58 @@ CollectionWidget::CollectionWidget(const QString &nameString, DueWords *due,
 
     // Fill in the contents of the widget.
 
-    // vBoxLayout is the main vertical layout for one collection
-    QVBoxLayout* vBoxLayout = new QVBoxLayout();
-    vBoxLayout->setAlignment(Qt::AlignCenter);
-    this->setLayout(vBoxLayout);
+    // mainLayout is the main vertical layout for one collection widget.
+    QVBoxLayout* mainLayout = new QVBoxLayout();
+    mainLayout->setAlignment(Qt::AlignCenter);
+    this->setLayout(mainLayout);
 
     // One collection is laid out vertically like this:
-    //  1. nameLabel:  contains the name of the collection
-    //  2. wordcloud:  a wordcloud generated from the words in the collection
-    //  3. barWidget:  a visual bar showing the training status of the words in the collection
-    //  4. hBoxLayout: a horizontal row of pushbuttons for delete, practice, etc
-    nameLabel = new QLabel(nameString);
-    vBoxLayout->addWidget(nameLabel);
-    wordCloud = new QWidget;
-    palette = wordCloud->palette();
+    //  1. titleLabel:   contains the title of the collection
+    //  2. thumbnail:    an image that represents the collection. It could be a
+    //                   wordcloud generated from the words in the collection, a
+    //                   logo or something else.
+    //  3. barWidget:    a visual bar showing the training status of the words in
+    //                   the collection
+    //  4. buttonLayout: a horizontal row of pushbuttons for delete, practice, etc
+    m_titleLabel = new QLabel(titleString);
+    mainLayout->addWidget(m_titleLabel);
+    m_thumbnail = new QWidget;
+    palette = m_thumbnail->palette();
     int y = randInt(8, 9);
     palette.setColor(QPalette::Background, gradeColor[y]);
-    wordCloud->setAutoFillBackground(true);
-    wordCloud->setPalette(palette);
-    wordCloud->setFixedSize(COLLWIDTH - 10, COLLHEIGHT1 - COLLHEIGHT2 + 10);
+    m_thumbnail->setAutoFillBackground(true);
+    m_thumbnail->setPalette(palette);
+    m_thumbnail->setFixedSize(COLLWIDTH - 10, COLLHEIGHT1 - COLLHEIGHT2 + 10);
     if (due->percentageCompleted != 100) {
-   vBoxLayout->addWidget(wordCloud);
+	mainLayout->addWidget(m_thumbnail);
     }
 
     BarWidget *barWidget = new BarWidget(due->dueWords, due->totalDueWords,
                 due->percentageCompleted);
     barWidget->setFixedSize(COLLWIDTH - 10, 20);
-    vBoxLayout->addWidget(barWidget);
+    mainLayout->addWidget(barWidget);
     if (due->totalDueWords == 0 && due->percentageCompleted < 100) {
-   practiceButton = new QPushButton(i18n("Practice Anyway"));
+        m_practiceButton = new QPushButton(i18n("Practice Anyway"));
     }
     else {
-   practiceButton = new QPushButton(i18n("Practice"));
+        m_practiceButton = new QPushButton(i18n("Practice"));
     }
-    practiceButton->setStyleSheet("QPushButton {border: none; margin: 0px;   padding: 0px;}");
+    m_practiceButton->setStyleSheet("QPushButton {border: none; margin: 0px; padding: 0px;}");
 
-    // hBoxLayout is the horizontal layout for the bottom line in the
+    // buttonLayout is the horizontal layout for the bottom line in the
     // collection widget: delete button, practice button, etc
-    QHBoxLayout *hBoxLayout = new QHBoxLayout();
-    vBoxLayout->addLayout(hBoxLayout);
-    removeButton = new RemoveButton();
-    removeButton->setFixedSize(20, 20);
-    hBoxLayout->setAlignment(removeButton, Qt::AlignLeft | Qt::AlignVCenter);
-    hBoxLayout->setAlignment(practiceButton, Qt::AlignCenter);
-    hBoxLayout->addWidget(removeButton);
-    hBoxLayout->addWidget(practiceButton);
-    hBoxLayout->addItem(new QSpacerItem(20, 20));
+    QHBoxLayout *buttonLayout = new QHBoxLayout();
+    mainLayout->addLayout(buttonLayout);
+    m_removeButton = new RemoveButton();
+    m_removeButton->setFixedSize(20, 20);
+    buttonLayout->setAlignment(m_removeButton, Qt::AlignLeft | Qt::AlignVCenter);
+    buttonLayout->setAlignment(m_practiceButton, Qt::AlignCenter);
+    buttonLayout->addWidget(m_removeButton);
+    buttonLayout->addWidget(m_practiceButton);
+    buttonLayout->addItem(new QSpacerItem(20, 20));
 
-    connect(practiceButton, SIGNAL(clicked()), this, SIGNAL(practiceButtonClicked()));
-    connect(removeButton,   SIGNAL(clicked()), this, SIGNAL(removeButtonClicked()));
+    connect(m_practiceButton, SIGNAL(clicked()), this, SIGNAL(practiceButtonClicked()));
+    connect(m_removeButton,   SIGNAL(clicked()), this, SIGNAL(removeButtonClicked()));
 }
 
 CollectionWidget::~CollectionWidget()
@@ -195,5 +198,10 @@ CollectionWidget::~CollectionWidget()
 Collection *CollectionWidget::collection() const
 {
     return m_collection;
+}
+
+void CollectionWidget::setCollection(Collection *collection)
+{
+    m_collection = collection;
 }
 
