@@ -42,23 +42,22 @@ class CollectionWidget : public QWidget
     Q_OBJECT
 
 public:
-    CollectionWidget(const QString &namestring, DueWords *due,
+    CollectionWidget(const QString &titlestring, DueWords *due,
 		     QWidget *parent = 0);
     ~CollectionWidget();
 
     Collection *collection() const;
+    void setCollection(Collection *collection);
 
 Q_SIGNALS:
     void practiceButtonClicked();
     void removeButtonClicked();
 
-protected:
-
 private:
-    QLabel       *nameLabel;
-    QWidget      *wordCloud;
-    RemoveButton *removeButton;
-    QPushButton  *practiceButton;
+    QLabel       *m_titleLabel;
+    QWidget      *m_thumbnail;
+    RemoveButton *m_removeButton;
+    QPushButton  *m_practiceButton;
 
     Collection   *m_collection;
 };

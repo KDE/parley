@@ -82,11 +82,21 @@ void fetchGrammar(KEduVocDocument* doc, int languageIndex)
     }
 }
 
-Collection::Collection(QObject* parent)
+Collection::Collection(KEduVocDocument *doc, QObject* parent)
+    : QObject(parent)
+    , m_doc(doc)
+    , m_backupTimer(0)
+{
+}
+
+Collection::Collection(KUrl *url, QObject* parent)
     : QObject(parent)
     , m_doc(new KEduVocDocument(this))
     , m_backupTimer(0)
 {
+    // We ignore file locks here because we open the file for readonly
+    // purposes only.
+    m_doc->open(*url, KEduVocDocument::FileIgnoreLock);
 }
 
 Collection::~Collection()
@@ -94,9 +104,6 @@ Collection::~Collection()
     close();
 
     delete m_backupTimer;
-
-    m_doc->deleteLater();
-    emit documentChanged(0);
 }
 
 
@@ -119,6 +126,9 @@ void Collection::setTitle(const QString& title)
 
 void Collection::close()
 {
+    // NOTE: No saving here because at this point the Collection class is a
+    //       read-only wrapper around KEduVocDocument.
+
     enableAutoBackup(false);
     if (m_doc) {
         emit documentChanged(0);
