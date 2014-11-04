@@ -65,27 +65,27 @@ private slots:
     void updateBackground();
 
 private:
-    Ui::Dashboard *ui;
+    Ui::Dashboard *m_ui;
     ParleyMainWindow *m_mainWindow;
-    StatisticsMainWindow *statisticsWidget;
+    StatisticsMainWindow *m_statisticsWidget;
     Practice::ThemedBackgroundRenderer *m_themedBackgroundRenderer;
     Practice::ImageWidget* m_widget;
 
     QStandardItemModel *m_recentFilesModel;
-    QMap<QString, QString> recentFilesMap;  // url, name
+    QMap<QString, QString> m_recentFilesMap;  // url, name
     KUrl m_openUrl;
     QGridLayout *m_subGridLayout;
     QGridLayout *m_completedGridLayout;
 
     // The parts of the collections
-    QLabel       *nameLabel[N];
-    QWidget      *wordCloud[N];
-    QPushButton  *practiceButton[N];
-    RemoveButton *removeButton[N];
-    KUrl          urlArray[N];
+    //QLabel       *m_nameLabel[N];
+    //QWidget      *m_wordCloud[N];
+    //QPushButton  *m_practiceButton[N];
+    //RemoveButton *m_removeButton[N];
+    KUrl          m_urlArray[N];
 
-    QSignalMapper *practiceSignalMapper;  // For the practice buttons
-    QSignalMapper *removeSignalMapper; // For the remove buttons 
+    QSignalMapper *m_practiceSignalMapper;  // For the practice buttons
+    QSignalMapper *m_removeSignalMapper; // For the remove buttons 
 
     int m_count;
 };

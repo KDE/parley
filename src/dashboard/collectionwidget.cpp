@@ -24,6 +24,7 @@
 #include <klocalizedstring.h>
 
 // Parley
+#include "collection.h"
 #include "barwidget.h"
 
 
@@ -187,3 +188,8 @@ CollectionWidget::~CollectionWidget()
 {
 }
 
+
+Collection *CollectionWidget::collection() const
+{
+    return m_collection;
+}

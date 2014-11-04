@@ -16,19 +16,21 @@
 #include "collection.h"
 
 #include <QTimer>
-#include <QtGui/QPrinter>
-#include <QtGui/QPrintDialog>
+//#include <QtGui/QPrinter>
+//#include <QtGui/QPrintDialog>
 
 // KDE
-#include <KFileDialog>
-#include <KRecentFilesAction>
-#include <KStandardDirs>
-#include <knewstuff3/downloaddialog.h>
-#include <knewstuff3/uploaddialog.h>
+//#include <KFileDialog>
+//#include <KRecentFilesAction>
+//#include <KStandardDirs>
+//#include <knewstuff3/downloaddialog.h>
+//#include <knewstuff3/uploaddialog.h>
 #include <KEMailSettings>
-#include <KMessageBox>
-#include <KProcess>
-#include <KTempDir>
+//#include <KMessageBox>
+//#include <KProcess>
+//#include <KTempDir>
+#include <KGlobal>
+#include <KLocale>
 
 // KEduVocDocument library
 #include <keduvoclesson.h>
@@ -36,6 +38,7 @@
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
 
+#if 0
 #ifdef HAVE_LIBXSLT
 #include "exportdialog.h"
 #include <libxml/parser.h>
@@ -45,20 +48,21 @@
 #include <libxslt/transform.h>
 #include <libxslt/xsltutils.h>
 #endif
+#endif
 
 // Parley
 #include "../config-parley.h"
-#include "parleymainwindow.h"
-#include "editor/editor.h"
-#include "version.h"
+//#include "parleymainwindow.h"
+//#include "editor/editor.h"
+//#include "version.h"
 #include "prefs.h"
 
-#include "vocabularyview.h"
-#include "settings/documentproperties.h"
-#include "dashboard/dashboard.h"
+//#include "vocabularyview.h"
+//#include "settings/documentproperties.h"
+//#include "dashboard/dashboard.h"
 
-#include "settings/languageproperties.h"
-#include "settings/documentproperties.h"
+//#include "settings/languageproperties.h"
+//#include "settings/documentproperties.h"
 
 
 void fetchGrammar(KEduVocDocument* doc, int languageIndex)
@@ -78,9 +82,10 @@ void fetchGrammar(KEduVocDocument* doc, int languageIndex)
     }
 }
 
-Collection::Collection()
-    : m_backupTimer(0)
+Collection::Collection(QObject* parent)
+    : QObject(parent)
     , m_doc(new KEduVocDocument(this))
+    , m_backupTimer(0)
 {
 }
 

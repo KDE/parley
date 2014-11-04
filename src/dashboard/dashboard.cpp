@@ -68,11 +68,11 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     m_widget->setKeepAspectRatio(Qt::IgnoreAspectRatio);
     m_widget->setFadingEnabled(false);
 
-    ui = new Ui::Dashboard();
-    ui->setupUi(m_widget);
+    m_ui = new Ui::Dashboard();
+    m_ui->setupUi(m_widget);
     setCentralWidget(m_widget);
-    practiceSignalMapper = new QSignalMapper(this);
-    removeSignalMapper = new QSignalMapper(this);
+    m_practiceSignalMapper = new QSignalMapper(this);
+    m_removeSignalMapper = new QSignalMapper(this);
 
     gradeColor[0] = QColor(25,38,41);
     gradeColor[1] = QColor(25,38,41,64);// Need 8 colors, so find a suitable color for this grade, currently gray.
@@ -88,45 +88,45 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     QTime time = QTime::currentTime();
     qsrand((uint)time.msec());
 
-    QFont font = ui->recentLabel->font();
+    QFont font = m_ui->recentLabel->font();
     font.setBold(true);
-    ui->recentLabel->setFont(font);
-    font = ui->completedLabel->font();
+    m_ui->recentLabel->setFont(font);
+    font = m_ui->completedLabel->font();
     font.setBold(true);
-    ui->completedLabel->setFont(font);
+    m_ui->completedLabel->setFont(font);
 
-    ui->newButton->setIcon(KIcon("document-new"));
-    ui->openButton->setIcon(KIcon("document-open"));
-    ui->ghnsButton->setIcon(KIcon("get-hot-new-stuff"));
+    m_ui->newButton->setIcon(KIcon("document-new"));
+    m_ui->openButton->setIcon(KIcon("document-open"));
+    m_ui->ghnsButton->setIcon(KIcon("get-hot-new-stuff"));
     GradeReferenceWidget *gradeReferenceWidget = new GradeReferenceWidget();
     gradeReferenceWidget->setMinimumSize(m_widget->width(), 50);
-    ui->gridLayout->addWidget(gradeReferenceWidget, 2, 0, 1, ROWSIZE, Qt::AlignCenter);
+    m_ui->gridLayout->addWidget(gradeReferenceWidget, 2, 0, 1, ROWSIZE, Qt::AlignCenter);
 
     m_subGridLayout = new QGridLayout();
     m_subGridLayout->setHorizontalSpacing(50);
     m_subGridLayout->setVerticalSpacing(30);
-    ui->gridLayout->addLayout(m_subGridLayout, 5, 0, 1, 4);
+    m_ui->gridLayout->addLayout(m_subGridLayout, 5, 0, 1, 4);
 
     m_completedGridLayout = new QGridLayout();
     m_completedGridLayout->setHorizontalSpacing(50);
     m_completedGridLayout->setVerticalSpacing(30);
-    ui->gridLayout->addLayout(m_completedGridLayout, 9, 0, 1, 4);
+    m_ui->gridLayout->addLayout(m_completedGridLayout, 9, 0, 1, 4);
 
     populateMap();
     populateGrid();
 
     // Signals from the main buttons.
     ParleyDocument* doc = m_mainWindow->parleyDocument();
-    connect(ui->newButton,  SIGNAL(clicked()), m_mainWindow, SLOT(slotFileNew()));
-    connect(ui->openButton, SIGNAL(clicked()), doc, SLOT(slotFileOpen()));
-    connect(ui->ghnsButton, SIGNAL(clicked()), doc, SLOT(slotGHNS()));
+    connect(m_ui->newButton,  SIGNAL(clicked()), m_mainWindow, SLOT(slotFileNew()));
+    connect(m_ui->openButton, SIGNAL(clicked()), doc, SLOT(slotFileOpen()));
+    connect(m_ui->ghnsButton, SIGNAL(clicked()), doc, SLOT(slotGHNS()));
 
     // Signals FROM the signal mappers.  The ones TO the signal mappers are
     // handled below.
-    connect(practiceSignalMapper, SIGNAL(mapped(const QString &)),
-	    this,                 SLOT(slotPracticeButtonClicked(const QString &)));
-    connect(removeSignalMapper,   SIGNAL(mapped(const QString &)),
-	    this,                 SLOT(slotRemoveButtonClicked(const QString &)));
+    connect(m_practiceSignalMapper, SIGNAL(mapped(const QString &)),
+	    this,                   SLOT(slotPracticeButtonClicked(const QString &)));
+    connect(m_removeSignalMapper,   SIGNAL(mapped(const QString &)),
+	    this,                   SLOT(slotRemoveButtonClicked(const QString &)));
 
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
@@ -205,7 +205,7 @@ void Dashboard::populateMap()
     for (int i = recentFilesGroup.keyList().count() / 2; i > 0 ; i--) {
         QString urlString = recentFilesGroup.readPathEntry("File" + QString::number(i), QString());
         QString nameString = recentFilesGroup.readEntry("Name" + QString::number(i), QString());
-        recentFilesMap.insert(urlString,nameString);
+        m_recentFilesMap.insert(urlString, nameString);
     }
 }
 
@@ -213,7 +213,7 @@ void Dashboard::populateGrid()
 {
     int j = 0, k = 0, jc = 0, kc = 0;
 
-    QMapIterator<QString, QString> it(recentFilesMap);
+    QMapIterator<QString, QString> it(m_recentFilesMap);
     while (it.hasNext()) {
         it.next();
         QString urlString  = it.key();
@@ -224,7 +224,7 @@ void Dashboard::populateGrid()
 	DueWords due;
 
         KUrl url(urlString);
-        urlArray[k] = url;
+        m_urlArray[k] = url;
         if (due.percentageCompleted != 100) {
             if (j % ROWSIZE == 0) {
                 m_subGridLayout->addItem(new QSpacerItem(50,1), j / ROWSIZE, 0);
@@ -248,10 +248,10 @@ void Dashboard::populateGrid()
                 m_completedGridLayout->addWidget(backWidget, jc / ROWSIZE, jc % ROWSIZE);
         }
 
-        practiceSignalMapper->setMapping(backWidget, urlString);
-        connect(backWidget, SIGNAL(practiceButtonClicked()), practiceSignalMapper, SLOT(map()));
-        removeSignalMapper->setMapping(backWidget, urlString);
-        connect(backWidget, SIGNAL(removeButtonClicked()), removeSignalMapper, SLOT(map()));
+        m_practiceSignalMapper->setMapping(backWidget, urlString);
+        connect(backWidget, SIGNAL(practiceButtonClicked()), m_practiceSignalMapper, SLOT(map()));
+        m_removeSignalMapper->setMapping(backWidget, urlString);
+        connect(backWidget, SIGNAL(removeButtonClicked()), m_removeSignalMapper, SLOT(map()));
 
         if (due.percentageCompleted != 100) {
             j++;
@@ -272,14 +272,14 @@ void Dashboard::populateGrid()
     m_subGridLayout->addItem(new QSpacerItem(50,1,QSizePolicy::Expanding, QSizePolicy::Fixed),
 			     m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount());
     if (k - kc) {
-        ui->recentLabel->setText(i18n("Active Collections"));
+        m_ui->recentLabel->setText(i18n("Active Collections"));
     } else {
-        ui->recentLabel->clear();
+        m_ui->recentLabel->clear();
     }
     if (kc) {
-        ui->completedLabel->setText(i18n("Completed Collections"));
+        m_ui->completedLabel->setText(i18n("Completed Collections"));
     } else {
-        ui->completedLabel->clear();
+        m_ui->completedLabel->clear();
     }
 }
 
@@ -330,7 +330,7 @@ void Dashboard::slotRemoveButtonClicked(const QString& urlString)
 				  i18n("Are you sure you want to remove this collection?"),
 				  QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
-        recentFilesMap.remove(urlString);
+        m_recentFilesMap.remove(urlString);
         m_mainWindow->removeRecentFile(KUrl(urlString));
         clearGrid();
         populateGrid();
@@ -377,10 +377,10 @@ void Dashboard::updateBackground()
 {
     m_themedBackgroundRenderer->clearRects();
     m_themedBackgroundRenderer->addRect("startbackground", QRect(QPoint(), m_widget->size()));
-    QRect headerRect = ui->headingLabel->frameGeometry();
-    headerRect.setBottom(ui->recentFiles->frameGeometry().top() - 1);
+    QRect headerRect = m_ui->headingLabel->frameGeometry();
+    headerRect.setBottom(m_ui->recentFiles->frameGeometry().top() - 1);
     m_themedBackgroundRenderer->addRect("startheader", headerRect);
-    m_themedBackgroundRenderer->addRect("recentfiles", ui->recentFiles->frameGeometry());
+    m_themedBackgroundRenderer->addRect("recentfiles", m_ui->recentFiles->frameGeometry());
     QPixmap pixmap = m_themedBackgroundRenderer->getScaledBackground();
     if (!pixmap.isNull()) {
         m_widget->setPixmap(pixmap);
