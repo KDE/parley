@@ -44,8 +44,6 @@ class CollectionWidget : public QWidget
 public:
     CollectionWidget(Collection *collection, DueWords *due,
 		     QWidget *parent = 0);
-    CollectionWidget(const QString &titlestring, DueWords *due,
-		     QWidget *parent = 0);
     ~CollectionWidget();
 
     Collection *collection() const;

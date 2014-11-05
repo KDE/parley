@@ -85,7 +85,15 @@ Before the 4.15 freeze (features).  These are picked from the ones below.
       https://bugs.kde.org/show_bug.cgi?id=273040
       https://bugs.kde.org/show_bug.cgi?id=238893
 
- * Merge Amarvir's GSoC							----
+ * Make collection widget live
+    + Collection class							----
+       - Create it							done
+       - Collect due words						----
+    + Use Collection in CollectionWidget				----
+       - Initialization							done
+       - Update when things change					----
+    + Make BarWidget show correct colors				----
+
 
 ================================================================
 Release work for 4.15
