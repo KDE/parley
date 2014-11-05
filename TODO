@@ -76,10 +76,17 @@ Before the 4.15 freeze (features).  These are picked from the ones below.
     + Sessions								----
        - Create session overview pane					----
 
-
-
  * Wishes from bugzilla
     + 
+
+ * Make collection widget live
+    + Collection class							----
+       - Create it							done
+       - Collect due words						----
+    + Use Collection in CollectionWidget				----
+       - Initialization							done
+       - Update when things change					----
+    + Make BarWidget show correct colors				----
 
 
 ================================================================
