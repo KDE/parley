@@ -42,6 +42,8 @@ class CollectionWidget : public QWidget
     Q_OBJECT
 
 public:
+    CollectionWidget(Collection *collection, DueWords *due,
+		     QWidget *parent = 0);
     CollectionWidget(const QString &titlestring, DueWords *due,
 		     QWidget *parent = 0);
     ~CollectionWidget();
@@ -52,6 +54,10 @@ public:
 Q_SIGNALS:
     void practiceButtonClicked();
     void removeButtonClicked();
+
+private:
+    void setupWidget(DueWords *due);
+    void fillWidget(DueWords *due);
 
 private:
     QLabel       *m_titleLabel;

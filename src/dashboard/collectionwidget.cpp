@@ -116,16 +116,29 @@ DueWords::DueWords()
 
     //To test randomnly for Complete Collections. Again to be obtained from document.
     percentageCompleted = randInt(98, 99);
-
 }
+
 
 // ----------------------------------------------------------------
 
 
+CollectionWidget::CollectionWidget(Collection *collection, DueWords *due, QWidget *parent)
+    : QWidget(parent)
+    , m_collection(collection)
+{
+    setupWidget(due);
+    fillWidget(due);
+}
+
 CollectionWidget::CollectionWidget(const QString &titleString, DueWords *due,
 				   QWidget *parent)
     : QWidget(parent)
+    , m_collection(0)
 {
+#if 1
+    setupWidget(due);
+    fillWidget(due);
+#else
     // Set a nice shadow effect.
     QGraphicsDropShadowEffect* effect = new QGraphicsDropShadowEffect();
     effect->setBlurRadius(50);
@@ -189,6 +202,7 @@ CollectionWidget::CollectionWidget(const QString &titleString, DueWords *due,
 
     connect(m_practiceButton, SIGNAL(clicked()), this, SIGNAL(practiceButtonClicked()));
     connect(m_removeButton,   SIGNAL(clicked()), this, SIGNAL(removeButtonClicked()));
+#endif
 }
 
 CollectionWidget::~CollectionWidget()
@@ -205,3 +219,83 @@ void CollectionWidget::setCollection(Collection *collection)
     m_collection = collection;
 }
 
+
+// ----------------------------------------------------------------
+//                         private classes
+
+
+void CollectionWidget::setupWidget(DueWords *due)
+{
+    // Set a nice shadow effect.
+    QGraphicsDropShadowEffect* effect = new QGraphicsDropShadowEffect();
+    effect->setBlurRadius(50);
+    this->setGraphicsEffect(effect);
+    QPalette palette = this->palette();
+    palette.setColor(QPalette::Background, Qt::white);
+    this->setAutoFillBackground(true);
+    this->setPalette(palette);
+
+    // Fill in the contents of the widget.
+
+    // mainLayout is the main vertical layout for one collection widget.
+    QVBoxLayout* mainLayout = new QVBoxLayout();
+    mainLayout->setAlignment(Qt::AlignCenter);
+    this->setLayout(mainLayout);
+
+    // One collection is laid out vertically like this:
+    //  1. titleLabel:   contains the title of the collection
+    //  2. thumbnail:    an image that represents the collection. It could be a
+    //                   wordcloud generated from the words in the collection, a
+    //                   logo or something else.
+    //  3. barWidget:    a visual bar showing the training status of the words in
+    //                   the collection
+    //  4. buttonLayout: a horizontal row of pushbuttons for delete, practice, etc
+    m_titleLabel = new QLabel;
+    mainLayout->addWidget(m_titleLabel);
+
+    m_thumbnail = new QWidget;
+    palette = m_thumbnail->palette();
+    int y = randInt(8, 9);
+    palette.setColor(QPalette::Background, gradeColor[y]);
+    m_thumbnail->setAutoFillBackground(true);
+    m_thumbnail->setPalette(palette);
+    m_thumbnail->setFixedSize(COLLWIDTH - 10, COLLHEIGHT1 - COLLHEIGHT2 + 10);
+    if (due->percentageCompleted != 100) {
+	mainLayout->addWidget(m_thumbnail);
+    }
+
+    BarWidget *barWidget = new BarWidget(due->dueWords, due->totalDueWords,
+					 due->percentageCompleted);
+    barWidget->setFixedSize(COLLWIDTH - 10, 20);
+    mainLayout->addWidget(barWidget);
+    m_practiceButton = new QPushButton();
+    m_practiceButton->setStyleSheet("QPushButton {border: none; margin: 0px; padding: 0px;}");
+
+    // buttonLayout is the horizontal layout for the bottom line in the
+    // collection widget: delete button, practice button, etc
+    QHBoxLayout *buttonLayout = new QHBoxLayout();
+    mainLayout->addLayout(buttonLayout);
+    m_removeButton = new RemoveButton();
+    m_removeButton->setFixedSize(20, 20);
+    buttonLayout->setAlignment(m_removeButton, Qt::AlignLeft | Qt::AlignVCenter);
+    buttonLayout->setAlignment(m_practiceButton, Qt::AlignCenter);
+    buttonLayout->addWidget(m_removeButton);
+    buttonLayout->addWidget(m_practiceButton);
+    buttonLayout->addItem(new QSpacerItem(20, 20));
+
+    connect(m_practiceButton, SIGNAL(clicked()), this, SIGNAL(practiceButtonClicked()));
+    connect(m_removeButton,   SIGNAL(clicked()), this, SIGNAL(removeButtonClicked()));
+}
+
+
+void CollectionWidget::fillWidget(DueWords *due)
+{
+    m_titleLabel->setText(m_collection->eduVocDocument()->title());
+
+    if (due->totalDueWords == 0 && due->percentageCompleted < 100) {
+	m_practiceButton->setText(i18n("Practice Anyway"));
+    }
+    else {
+	m_practiceButton->setText(i18n("Practice"));
+    }
+}

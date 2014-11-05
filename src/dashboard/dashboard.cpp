@@ -32,6 +32,10 @@
 #include <QtGui>
 #include <Qt>
 
+#include <KMimeType>
+#include <QDebug>
+
+#include "collection.h"
 #include "collectionwidget.h"
 #include "barwidget.h"
 #include "gradereferencewidget.h"
@@ -212,8 +216,11 @@ void Dashboard::populateGrid()
     QMapIterator<QString, QString> it(m_recentFilesMap);
     while (it.hasNext()) {
         it.next();
-        QString urlString  = it.key();
-        QString nameString = it.value();
+        QString urlString   = it.key();
+        QString titleString = it.value();
+
+	KUrl  url(urlString);
+	Collection *collection = new Collection(&url, this);
 
    // Automatically initialized.
    // FIXME: Will be initialized by the KEduVocDocument later.
@@ -223,7 +230,7 @@ void Dashboard::populateGrid()
         m_urlArray[k] = url;
         if (due.percentageCompleted != 100) {
             if (j % ROWSIZE == 0) {
-                m_subGridLayout->addItem(new QSpacerItem(50,1), j / ROWSIZE, 0);
+                m_subGridLayout->addItem(new QSpacerItem(50, 1), j / ROWSIZE, 0);
                 j++;
             }
         }
@@ -234,7 +241,8 @@ void Dashboard::populateGrid()
             }
         }
 
-        QWidget* backWidget = new CollectionWidget(nameString, &due);
+        //QWidget* backWidget = new CollectionWidget(titleString, &due);
+	QWidget* backWidget = new CollectionWidget(collection, &due, this);
         if (due.percentageCompleted != 100) {
                 backWidget->setFixedSize(COLLWIDTH, COLLHEIGHT1);
                 m_subGridLayout->addWidget(backWidget, j / ROWSIZE, j % ROWSIZE);
