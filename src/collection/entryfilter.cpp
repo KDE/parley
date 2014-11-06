@@ -47,7 +47,7 @@ int preGradeTimes[] = {
 };
 
 
-EntryFilter::EntryFilter(QObject * parent, KEduVocDocument* doc)
+EntryFilter::EntryFilter(KEduVocDocument* doc, QObject * parent)
     : QObject(parent)
     , m_doc(doc)
     , m_dialog(0)

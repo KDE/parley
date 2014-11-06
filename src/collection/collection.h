@@ -21,15 +21,30 @@
 
 #include <keduvocdocument.h>
 
+#include "testentry.h"
 //#include "../config-parley.h"
 
 
 //class ParleyMainWindow;
 class QTimer;
 
+
+// The WordCount struct contains the number of words in each 
+struct WordCount {
+    WordCount();
+
+    int grades[KV_MAX_GRADE + 1]; // Number of entries in each grade including grade=0, pregrade=0
+    int initial;		// Number of entries in initial phase (grade=0, pregrade>0)
+    int totalWords;		// Total sum of the above two
+
+    int invalid;		// Number of invalid entries (not always applicable);
+};
+
+
 class Collection : public QObject
 {
     Q_OBJECT
+
 public:
     Collection(KEduVocDocument *doc, QObject* parent = 0);
     Collection(KUrl *url, QObject* parent = 0);
@@ -40,11 +55,14 @@ public:
 
     void setTitle(const QString& title);
 
+    void numDueWords(WordCount &wc);
+
+
     /** Enable/disable the timed auto backup
      */
     void enableAutoBackup(bool enable);
 
-public slots:
+public Q_SLOTS:
 
     /** close the document*/
     void close();
@@ -65,6 +83,8 @@ private:
     KEduVocDocument *m_doc;
 
     QTimer           *m_backupTimer; // Timer for next autosave
+    QList<TestEntry*> m_allTestEntries;
+
 };
 
 #endif
