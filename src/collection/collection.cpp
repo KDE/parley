@@ -55,6 +55,7 @@
 //#include "editor/editor.h"
 //#include "version.h"
 #include "prefs.h"
+#include "entryfilter.h"
 
 //#include "vocabularyview.h"
 //#include "settings/documentproperties.h"
@@ -62,6 +63,18 @@
 
 //#include "settings/languageproperties.h"
 //#include "settings/documentproperties.h"
+
+
+WordCount::WordCount()
+{
+    for (int i = 0; i <= KV_MAX_GRADE; ++i) {
+	grades[i] = 0;
+    }
+    initial = 0;
+    totalWords = 0;
+
+    invalid = 0;
+}
 
 
 void fetchGrammar(KEduVocDocument* doc, int languageIndex)
@@ -123,6 +136,37 @@ void Collection::setTitle(const QString& title)
 
 
 
+void Collection::enableAutoBackup(bool enable)
+{
+    if (!enable) {
+        if (m_backupTimer) {
+            m_backupTimer->stop();
+        }
+    } else {
+        if (!m_backupTimer) {
+            m_backupTimer = new QTimer(this);
+            connect(m_backupTimer, SIGNAL(timeout()), this, SLOT(save()));
+        }
+        m_backupTimer->start(Prefs::backupTime() * 60 * 1000);
+    }
+}
+
+void Collection::numDueWords(WordCount &wc)
+{
+    // Get the entries from the collection.
+    if (m_allTestEntries.isEmpty()) {
+	EntryFilter  filter(m_doc, this);
+	m_allTestEntries = filter.entries();
+    }
+
+    wc.totalWords = m_allTestEntries.count();
+    //kDebug() << m_doc->title() << wc.totalWords << "entries";
+}
+
+
+// Slots
+
+
 void Collection::close()
 {
     // NOTE: No saving here because at this point the Collection class is a
@@ -135,6 +179,10 @@ void Collection::close()
         m_doc = 0;
     }
 }
+
+
+// ----------------------------------------------------------------
+//                         private functions
 
 
 void Collection::setDefaultDocumentProperties(KEduVocDocument *doc)
@@ -199,20 +247,4 @@ void Collection::initializeDefaultGrammar(KEduVocDocument *doc)
     KEduVocWordType *conjunction = new KEduVocWordType(i18n("Conjunction"), root);
     conjunction->setWordType(KEduVocWordFlag::Conjunction);
     root->appendChildContainer(conjunction);
-}
-
-
-void Collection::enableAutoBackup(bool enable)
-{
-    if (!enable) {
-        if (m_backupTimer) {
-            m_backupTimer->stop();
-        }
-    } else {
-        if (!m_backupTimer) {
-            m_backupTimer = new QTimer(this);
-            connect(m_backupTimer, SIGNAL(timeout()), this, SLOT(save()));
-        }
-        m_backupTimer->start(Prefs::backupTime() * 60 * 1000);
-    }
 }

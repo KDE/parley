@@ -82,7 +82,7 @@ void SessionManagerBase::setDocument(KEduVocDocument* doc)
              << " known language:" << m_doc->identifier(m_knownLanguageIndex).name();
 
     // Create the list of available entries for this training session.
-    EntryFilter filter(m_parent, m_doc);
+    EntryFilter filter(m_doc, m_parent);
     m_allTestEntries = filter.entries();
 
     qDebug() << "Entries: ----------------";

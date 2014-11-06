@@ -18,9 +18,10 @@
 
 // Parley
 #include "collection.h"
-#include "barwidget.h"
+//#include "barwidget.h"
 
 // KDE
+#include <KDebug>
 #include <klocalizedstring.h>
 
 // Qt
@@ -126,8 +127,10 @@ CollectionWidget::CollectionWidget(Collection *collection, DueWords *due, QWidge
     : QWidget(parent)
     , m_collection(collection)
 {
+    kDebug() << collection->eduVocDocument()->title();
+
     setupWidget(due);
-    fillWidget(due);
+    fillWidget();
 }
 
 CollectionWidget::CollectionWidget(const QString &titleString, DueWords *due,
@@ -264,10 +267,10 @@ void CollectionWidget::setupWidget(DueWords *due)
 	mainLayout->addWidget(m_thumbnail);
     }
 
-    BarWidget *barWidget = new BarWidget(due->dueWords, due->totalDueWords,
-					 due->percentageCompleted);
-    barWidget->setFixedSize(COLLWIDTH - 10, 20);
-    mainLayout->addWidget(barWidget);
+    m_barWidget = new BarWidget(due->dueWords, due->totalDueWords,
+				due->percentageCompleted);
+    m_barWidget->setFixedSize(COLLWIDTH - 10, 20);
+    mainLayout->addWidget(m_barWidget);
     m_practiceButton = new QPushButton();
     m_practiceButton->setStyleSheet("QPushButton {border: none; margin: 0px; padding: 0px;}");
 
@@ -288,11 +291,16 @@ void CollectionWidget::setupWidget(DueWords *due)
 }
 
 
-void CollectionWidget::fillWidget(DueWords *due)
+void CollectionWidget::fillWidget()
 {
     m_titleLabel->setText(m_collection->eduVocDocument()->title());
 
-    if (due->totalDueWords == 0 && due->percentageCompleted < 100) {
+    WordCount  due;
+    m_collection->numDueWords(due);
+
+    m_barWidget->setDue(due);
+
+    if (due.totalWords == 0 /* && due->percentageCompleted < 100*/) {
 	m_practiceButton->setText(i18n("Practice Anyway"));
     }
     else {

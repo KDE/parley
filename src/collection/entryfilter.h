@@ -33,7 +33,7 @@ class EntryFilter
 {
     Q_OBJECT
 public:
-    EntryFilter(QObject * parent, KEduVocDocument *doc);
+    EntryFilter(KEduVocDocument *doc, QObject *parent);
 
     /**
      * Returns the list of test entries after filtering out invalid entries according to the settings.

@@ -15,6 +15,8 @@
 
 #include <QWidget>
 
+#include "barwidget.h"
+
 
 // Size constants for the collection widgets
 extern int COLLWIDTH;    // Width in pixels of a collection widget
@@ -55,11 +57,12 @@ Q_SIGNALS:
 
 private:
     void setupWidget(DueWords *due);
-    void fillWidget(DueWords *due);
+    void fillWidget();
 
 private:
     QLabel       *m_titleLabel;
     QWidget      *m_thumbnail;
+    BarWidget    *m_barWidget;
     RemoveButton *m_removeButton;
     QPushButton  *m_practiceButton;
 
