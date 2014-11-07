@@ -91,7 +91,7 @@ public:
     int languageFrom() const;
     int languageTo() const;
 
-    KEduVocExpression *entry();
+    KEduVocExpression *entry() const;
 
 private:
     /// the entry itself

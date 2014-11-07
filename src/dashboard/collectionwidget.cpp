@@ -31,7 +31,8 @@
 
 // Size constants for the collection widgets
 int COLLWIDTH   = 140; // Width in pixels of a collection widget
-int COLLHEIGHT1 = 250; // Height in pixels of a collection widget not yet fully learned
+//int COLLHEIGHT1 = 250; // Height in pixels of a collection widget not yet fully learned
+int COLLHEIGHT1 = 150; // Height in pixels of a collection widget not yet fully learned
 int COLLHEIGHT2 = 100; // Height in pixels of a collection widget fully learned
 
 

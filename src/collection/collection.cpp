@@ -68,6 +68,11 @@
 
 WordCount::WordCount()
 {
+    clear();
+}
+
+void WordCount::clear()
+{
     for (int i = 0; i <= KV_MAX_GRADE; ++i) {
 	grades[i] = 0;
     }
@@ -76,6 +81,9 @@ WordCount::WordCount()
 
     invalid = 0;
 }
+
+
+// ----------------------------------------------------------------
 
 
 void fetchGrammar(KEduVocDocument* doc, int languageIndex)
@@ -154,10 +162,19 @@ void Collection::enableAutoBackup(bool enable)
 
 void Collection::numDueWords(WordCount &wc)
 {
-    // Get the entries from the collection.
+    // Get the entries from the collection. Cache them for future use.
     if (m_allTestEntries.isEmpty()) {
 	EntryFilter  filter(m_doc, this);
 	m_allTestEntries = filter.entries();
+    }
+
+    // Count the number of words due for each grade level.
+    // TODO: Also take into account pregrades.
+    foreach (const TestEntry *entry, m_allTestEntries) {
+	int languageTo = entry->languageTo();
+	KEduVocExpression *exp = entry->entry();
+
+	wc.grades[exp->translation(languageTo)->grade()]++;
     }
 
     wc.totalWords = m_allTestEntries.count();
