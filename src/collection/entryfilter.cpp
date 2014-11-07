@@ -116,9 +116,11 @@ QList<TestEntry*> EntryFilter::entries(bool showDialog)
         i18n("The vocabulary document contains no entries that can be used for the chosen type"
              " of practice.");
 
-    kDebug() << "Document contains " << m_entries[0].count() + m_entries[1].count() << " valid entries.";
+    //kDebug() << "Document contains " << m_entries[0].count() + m_entries[1].count() << " valid entries.";
     if (m_entries[0].count() + m_entries[1].count() == 0) {
-        KMessageBox::error(0, noEntriesError);
+	if (showDialog) {
+	    KMessageBox::error(0, noEntriesError);
+	}
         return QList<TestEntry*>();
     }
 
