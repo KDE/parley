@@ -6,7 +6,7 @@ set(parley_plasma_SRCS
     parley_plasma.cpp
     )
 
-qt5_wrap_ui(parley_plasma_SRCS config.ui)
+ki18n_wrap_ui(parley_plasma_SRCS config.ui)
 
 add_library(plasma_applet_parley ${parley_plasma_SRCS})
 target_link_libraries(plasma_applet_parley
