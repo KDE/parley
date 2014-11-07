@@ -32,7 +32,7 @@
 #include <QtGui>
 #include <Qt>
 
-#include <KMimeType>
+// #include <KMimeType>
 #include <QDebug>
 
 #include "collection.h"
@@ -219,14 +219,13 @@ void Dashboard::populateGrid()
         QString urlString   = it.key();
         QString titleString = it.value();
 
-	KUrl  url(urlString);
+	QUrl  url(QUrl::fromLocalFile(urlString));
 	Collection *collection = new Collection(&url, this);
 
    // Automatically initialized.
    // FIXME: Will be initialized by the KEduVocDocument later.
    DueWords due;
 
-        QUrl url( QUrl::fromLocalFile(urlString) );
         m_urlArray[k] = url;
         if (due.percentageCompleted != 100) {
             if (j % ROWSIZE == 0) {

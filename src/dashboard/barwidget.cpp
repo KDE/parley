@@ -23,7 +23,7 @@
 #include <QPen>
 
 // KDE
-#include <KDebug>
+#include <QDebug>
 #include <klocalizedstring.h>
 
 // Parley
@@ -79,8 +79,8 @@ void BarWidget::paintEvent(QPaintEvent *)
     int gradeBarOffset[9];
     gradeBarOffset[8] = 0;
 
-    kDebug() << "percentage completed: " << m_percentageCompleted;
-    kDebug() << "Total due words: " << m_totalDueWords;
+    qDebug() << "percentage completed: " << m_percentageCompleted;
+    qDebug() << "Total due words: " << m_totalDueWords;
 
     if (m_percentageCompleted < 100) {
         for(int j = 7; j >= 0; j--) {

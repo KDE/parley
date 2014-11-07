@@ -48,7 +48,7 @@ class Collection : public QObject
 
 public:
     Collection(KEduVocDocument *doc, QObject* parent = 0);
-    Collection(KUrl *url, QObject* parent = 0);
+    Collection(QUrl *url, QObject* parent = 0);
     ~Collection();
 
 

@@ -16,19 +16,9 @@
 #include "collection.h"
 
 #include <QTimer>
-//#include <QPrinter>
-//#include <QPrintDialog>
 
 // KDE
-//#include <QFileDialog>
-//#include <KRecentFilesAction>
-//#include <QStandardPaths>
-//#include <kns3/downloaddialog.h>
-//#include <kns3/uploaddialog.h>
 #include <KEMailSettings>
-//#include <KMessageBox>
-//#include <KProcess>
-//#include <QTemporaryDir>
 #include <KLocalizedString>
 
 // KEduVocDocument library
@@ -37,32 +27,10 @@
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
 
-#if 0
-#ifdef HAVE_LIBXSLT
-#include "exportdialog.h"
-#include <libxml/parser.h>
-#include <libxml/tree.h>
-#include <libxslt/xslt.h>
-#include <libxslt/xsltInternals.h>
-#include <libxslt/transform.h>
-#include <libxslt/xsltutils.h>
-#endif
-#endif
-
 // Parley
 #include "../config-parley.h"
-//#include "parleymainwindow.h"
-//#include "editor/editor.h"
-//#include "version.h"
 #include "prefs.h"
 #include "entryfilter.h"
-
-//#include "vocabularyview.h"
-//#include "settings/documentproperties.h"
-//#include "dashboard/dashboard.h"
-
-//#include "settings/languageproperties.h"
-//#include "settings/documentproperties.h"
 
 
 WordCount::WordCount()
@@ -109,7 +77,7 @@ Collection::Collection(KEduVocDocument *doc, QObject* parent)
 {
 }
 
-Collection::Collection(KUrl *url, QObject* parent)
+Collection::Collection(QUrl *url, QObject* parent)
     : QObject(parent)
     , m_doc(new KEduVocDocument(this))
     , m_backupTimer(0)
