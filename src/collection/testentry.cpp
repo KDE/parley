@@ -146,7 +146,7 @@ double TestEntry::lastPercentage()
     return m_lastPercentage;
 }
 
-KEduVocExpression * TestEntry::entry()
+KEduVocExpression * TestEntry::entry() const
 {
     return m_entry;
 }
