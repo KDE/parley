@@ -32,6 +32,7 @@ class QTimer;
 // The WordCount struct contains the number of words in each 
 struct WordCount {
     WordCount();
+    void clear();
 
     int grades[KV_MAX_GRADE + 1]; // Number of entries in each grade including grade=0, pregrade=0
     int initial;		// Number of entries in initial phase (grade=0, pregrade>0)

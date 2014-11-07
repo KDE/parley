@@ -128,14 +128,12 @@ void BarWidget::paintEvent(QPaintEvent *)
         painter.drawPath(barElementIntersectedPath);
     }
 
-    //QPen pen(QColor(255,255,255));
-    QPen pen(QColor(0, 0, 0));
+    QPen pen(QColor(255,255,255));
+    //QPen pen(QColor(0, 0, 0));
     painter.setPen(pen);
     if (m_percentageCompleted < 100) {
         painter.drawText(0, 0, legendWidth, 20, Qt::AlignCenter,
-			 true  // Disabled until we get the number of words due working
-			 ? i18np("%1 word due", "%1 words due", m_totalDueWords)
-			 : "");
+			 i18np("%1 word due", "%1 words due", m_totalDueWords));
     }
     else {
         painter.drawText(0, 0, legendWidth, 20, Qt::AlignCenter, i18n("Fully learned"));
