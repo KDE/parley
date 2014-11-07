@@ -68,7 +68,7 @@ static void debugEntry(const QString &comment, KEduVocExpression *vocexp,
     qDebug() << comment << "from" << from->text() << "to" << to->text();
 }
 
-QList<TestEntry*> EntryFilter::entries()
+QList<TestEntry*> EntryFilter::entries(bool showDialog)
 {
     switch (Prefs::practiceDirection()) {
     case Prefs::EnumPracticeDirection::KnownToLearning:
@@ -128,7 +128,7 @@ QList<TestEntry*> EntryFilter::entries()
 
     bool ignoreBlocked = false;
     int numSelected = m_currentSelection[0].count() + m_currentSelection[1].count();
-    if (numSelected == 0) {
+    if (numSelected == 0 && showDialog) {
         m_button_dialog = new QDialogButtonBox;
         m_button_dialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel );
 

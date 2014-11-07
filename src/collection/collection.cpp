@@ -164,7 +164,7 @@ void Collection::numDueWords(WordCount &wc)
     // Get the entries from the collection. Cache them for future use.
     if (m_allTestEntries.isEmpty()) {
 	EntryFilter  filter(m_doc, this);
-	m_allTestEntries = filter.entries();
+	m_allTestEntries = filter.entries(false);
     }
 
     // Count the number of words due for each grade level.
