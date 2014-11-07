@@ -92,6 +92,14 @@ Collection::~Collection()
 {
     close();
 
+    // NOTE: No saving here because at this point the Collection class is a
+    //       read-only wrapper around KEduVocDocument.
+    if (m_doc) {
+        emit documentChanged(0);
+        m_doc->deleteLater();
+        m_doc = 0;
+    }
+
     delete m_backupTimer;
 }
 
@@ -155,15 +163,8 @@ void Collection::numDueWords(WordCount &wc)
 
 void Collection::close()
 {
-    // NOTE: No saving here because at this point the Collection class is a
-    //       read-only wrapper around KEduVocDocument.
-
     enableAutoBackup(false);
-    if (m_doc) {
-        emit documentChanged(0);
-        m_doc->deleteLater();
-        m_doc = 0;
-    }
+    m_doc->close();
 }
 
 
