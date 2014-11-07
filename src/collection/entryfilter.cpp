@@ -66,7 +66,7 @@ static void debugEntry(const QString &comment, KEduVocExpression *vocexp,
     kDebug() << comment << "from" << from->text() << "to" << to->text();
 }
 
-QList<TestEntry*> EntryFilter::entries()
+QList<TestEntry*> EntryFilter::entries(bool showDialog)
 {
     switch (Prefs::practiceDirection()) {
     case Prefs::EnumPracticeDirection::KnownToLearning:
@@ -126,8 +126,8 @@ QList<TestEntry*> EntryFilter::entries()
 
     bool ignoreBlocked = false;
     int numSelected = m_currentSelection[0].count() + m_currentSelection[1].count();
-    if (numSelected == 0) {
-        kDebug() << "Creating practice filter dialog.";
+    if (numSelected == 0 && showDialog) {
+        //kDebug() << "Creating practice filter dialog.";
         m_dialog = new KDialog;
         m_dialog->setCaption(i18n("Start Practice"));
         QWidget *widget = new QWidget(m_dialog);
