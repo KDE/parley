@@ -36,7 +36,13 @@ public:
     EntryFilter(KEduVocDocument *doc, QObject *parent);
 
     /**
-     * Returns the list of test entries after filtering out invalid entries according to the settings.
+     * Returns the list of test entries after filtering out invalid entries
+     * according to the settings.
+     *
+     * @param showDialog if true, show a dialog that lets the user slacken the
+     *                   search parameters if there is no selected entries
+     *                   using the current settings.
+     *
      * @return list of entries to practice
      */
     QList<TestEntry*> entries(bool showDialog = true);

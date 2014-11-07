@@ -17,28 +17,30 @@
 #ifndef COLLECTION_H
 #define COLLECTION_H
 
+// Qt
 #include <QObject>
 
+// keduvocdocument library
 #include <keduvocdocument.h>
 
+// Parley
 #include "testentry.h"
-//#include "../config-parley.h"
 
 
-//class ParleyMainWindow;
 class QTimer;
 
 
-// The WordCount struct contains the number of words in each 
+// The WordCount struct contains the number of words in each category.
+// This could be used for number of words due, total number of words, etc.
 struct WordCount {
     WordCount();
     void clear();
 
     int grades[KV_MAX_GRADE + 1]; // Number of entries in each grade including grade=0, pregrade=0
-    int initial;		// Number of entries in initial phase (grade=0, pregrade>0)
-    int totalWords;		// Total sum of the above two
+    int initial;                  // Number of entries in initial phase (grade=0, pregrade>0)
+    int totalWords;		  // Total sum of the above two
 
-    int invalid;		// Number of invalid entries (not always applicable);
+    int invalid;		  // Number of invalid entries (not always applicable);
 };
 
 
