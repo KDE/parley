@@ -66,8 +66,7 @@ ParleyMainWindow::ParleyMainWindow(const QUrl& filename)
     s_instance = this;
     m_document = new ParleyDocument(this);
 
-    connect(m_document, SIGNAL(documentChanged(KEduVocDocument*))
-            , this, SLOT(documentUpdated(KEduVocDocument*)));
+    connect(m_document, &ParleyDocument::documentChanged, this, &ParleyMainWindow::documentUpdated);
 
     setCentralWidget(new QWidget());
     centralWidget()->setLayout(new QHBoxLayout());
@@ -100,7 +99,7 @@ ParleyMainWindow::ParleyMainWindow(const QUrl& filename)
         showEditor();
     }
 
-    connect(this, SIGNAL(preferencesChanged()), this, SLOT(slotApplyPreferences()));
+    connect(this, &ParleyMainWindow::preferencesChanged, this, &ParleyMainWindow::slotApplyPreferences);
     menuBar()->show();
 
     // finally show tip-of-day (if the user wants it)
@@ -166,7 +165,7 @@ void ParleyMainWindow::slotUpdateWindowCaption()
 void ParleyMainWindow::slotGeneralOptions()
 {
     ParleyPrefs* dialog = new ParleyPrefs(m_document->document(), this, "settings",  Prefs::self());
-    connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SIGNAL(preferencesChanged()));
+    connect(dialog, &ParleyPrefs::settingsChanged, this, &ParleyMainWindow::preferencesChanged);
     dialog->show();
 }
 
@@ -334,7 +333,7 @@ void ParleyMainWindow::switchComponent(Component component)
         ///@todo trust the dirty bit
         m_document->document()->setModified(true);
         Practice::PracticeMainWindow *practiceWindow = new Practice::PracticeMainWindow(&m_sessionManager, this);
-        connect(practiceWindow, SIGNAL(stopPractice()), this, SLOT(showPracticeSummary()));
+        connect(practiceWindow, &Practice::PracticeMainWindow::stopPractice, this, &ParleyMainWindow::showPracticeSummary);
         m_currentComponentWindow = practiceWindow;
         qDebug() <<" Practice Slotted up";
         showDocumentActions(false, false);

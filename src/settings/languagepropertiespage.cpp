@@ -39,8 +39,8 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
 {
     setupUi(this);
 
-    connect(localeComboBox, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(localeChanged(const QString&)));
-    connect(downloadGrammarButton, SIGNAL(clicked()), this, SLOT(downloadGrammar()));
+    connect(localeComboBox, static_cast<void (KComboBox::*)(const QString &)>(&KComboBox::currentIndexChanged), this, &LanguagePropertiesPage::localeChanged);
+    connect(downloadGrammarButton, &QPushButton::clicked, this, &LanguagePropertiesPage::downloadGrammar);
 
     QStringList languageCodes =  QLocale().uiLanguages();
 
@@ -179,15 +179,15 @@ void LanguagePropertiesPage::loadGrammarFromDocument()
     // update shown labels etc...
     updateCheckBoxes();
 
-    connect(maleFemaleDifferCheckBox, SIGNAL(toggled(bool)), SLOT(updateCheckBoxes()));
-    connect(neutralCheckBox, SIGNAL(toggled(bool)), SLOT(updateCheckBoxes()));
-    connect(dualCheckBox, SIGNAL(toggled(bool)), SLOT(updateCheckBoxes()));
+    connect(maleFemaleDifferCheckBox, &QCheckBox::toggled, this, &LanguagePropertiesPage::updateCheckBoxes);
+    connect(neutralCheckBox, &QCheckBox::toggled, this, &LanguagePropertiesPage::updateCheckBoxes);
+    connect(dualCheckBox, &QCheckBox::toggled, this, &LanguagePropertiesPage::updateCheckBoxes);
 
     // tenses
-    connect(tenseList,   SIGNAL(currentRowChanged(int)), this, SLOT(slotTenseChosen(int)));
-    connect(deleteButton,  SIGNAL(clicked()),              this, SLOT(slotDeleteTense()));
-    connect(modifyButton,  SIGNAL(clicked()),              this, SLOT(slotModifyTense()));
-    connect(newButton,     SIGNAL(clicked()),              this, SLOT(slotNewTense()));
+    connect(tenseList, &QListWidget::currentRowChanged, this, &LanguagePropertiesPage::slotTenseChosen);
+    connect(deleteButton, &QPushButton::clicked, this, &LanguagePropertiesPage::slotDeleteTense);
+    connect(modifyButton, &QPushButton::clicked, this, &LanguagePropertiesPage::slotModifyTense);
+    connect(newButton, &QPushButton::clicked, this, &LanguagePropertiesPage::slotNewTense);
 
     if (m_identifierIndex < m_doc->identifierCount()) {
         int i = 1;

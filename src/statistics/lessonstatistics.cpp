@@ -85,7 +85,7 @@ LessonStatisticsView::LessonStatisticsView(QWidget *parent)
     removeGradesAction->setToolTip(removeGradesAction->whatsThis());
     removeGradesAction->setStatusTip(removeGradesAction->whatsThis());
 
-    connect(removeGradesAction, SIGNAL(triggered()), SLOT(removeGrades()));
+    connect(removeGradesAction, &QAction::triggered, this, &LessonStatisticsView::removeGrades);
     addAction(removeGradesAction);
 
     QAction *removeGradesChildrenAction = new QAction(this);
@@ -95,7 +95,7 @@ LessonStatisticsView::LessonStatisticsView(QWidget *parent)
     removeGradesChildrenAction->setToolTip(removeGradesChildrenAction->whatsThis());
     removeGradesChildrenAction->setStatusTip(removeGradesChildrenAction->whatsThis());
 
-    connect(removeGradesChildrenAction, SIGNAL(triggered()), SLOT(removeGradesChildren()));
+    connect(removeGradesChildrenAction, &QAction::triggered, this, &LessonStatisticsView::removeGradesChildren);
     addAction(removeGradesChildrenAction);
 
     connect(header(), SIGNAL(geometriesChanged()),

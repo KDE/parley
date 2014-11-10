@@ -139,9 +139,9 @@ void ParleyDocument::newDocument(bool wizard)
         titleAuthorDialog->setLayout( layout );
         titleAuthorDialog->setWindowTitle(i18nc("@title:window document properties", "Properties for %1", newDoc->url().url()));
 
-        connect(titleAuthorDialog, SIGNAL(accepted()), titleAuthorWidget, SLOT(accept()));
-        connect(button_dialog, SIGNAL(accepted()), titleAuthorDialog, SLOT(accept()));
-        connect(button_dialog, SIGNAL(rejected()), titleAuthorDialog, SLOT(reject()));
+        connect(titleAuthorDialog, &QDialog::accepted, titleAuthorWidget, &DocumentProperties::accept);
+        connect(button_dialog, &QDialogButtonBox::accepted, titleAuthorDialog, &QDialog::accept);
+        connect(button_dialog, &QDialogButtonBox::rejected, titleAuthorDialog, &QDialog::reject);
 
         if (titleAuthorDialog->exec()) {
             showGrammarDialog = titleAuthorWidget->grammarCheckBox->isChecked();
@@ -604,9 +604,9 @@ void ParleyDocument::documentProperties()
     // the language options are only shown, when this is used to create a new document.
     titleAuthorWidget->languageGroupBox->setVisible(false);
 
-    connect(titleAuthorDialog, SIGNAL(accepted()), titleAuthorWidget, SLOT(accept()));
-    connect(button_dialog, SIGNAL(accepted()), titleAuthorDialog, SLOT(accept()));
-    connect(button_dialog, SIGNAL(rejected()), titleAuthorDialog, SLOT(reject()));
+    connect(titleAuthorDialog, &QDialog::accepted, titleAuthorWidget, &DocumentProperties::accept);
+    connect(button_dialog, &QDialogButtonBox::accepted, titleAuthorDialog, &QDialog::accept);
+    connect(button_dialog, &QDialogButtonBox::rejected, titleAuthorDialog, &QDialog::reject);
 
     titleAuthorDialog->exec();
     delete titleAuthorDialog;
@@ -701,7 +701,7 @@ void ParleyDocument::enableAutoBackup(bool enable)
     } else {
         if (!m_backupTimer) {
             m_backupTimer = new QTimer(this);
-            connect(m_backupTimer, SIGNAL(timeout()), this, SLOT(save()));
+            connect(m_backupTimer, &QTimer::timeout, this, &ParleyDocument::save);
         }
         m_backupTimer->start(Prefs::backupTime() * 60 * 1000);
     }

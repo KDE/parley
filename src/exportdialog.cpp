@@ -56,8 +56,8 @@ ExportDialog::ExportDialog(ParleyDocument *doc, QWidget *parent) : QDialog(paren
 
     setLayout( layout );
 
-    connect(button_dialog, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(button_dialog, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(button_dialog, &QDialogButtonBox::accepted, this, &ExportDialog::accept);
+    connect(button_dialog, &QDialogButtonBox::rejected, this, &ExportDialog::reject);
 
     setWindowTitle(i18n("Export"));
 }

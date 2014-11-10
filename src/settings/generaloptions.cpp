@@ -47,7 +47,7 @@ static const char *separator_id[] = {
 GeneralOptions::GeneralOptions(QWidget* parent) : QWidget(parent)
 {
     setupUi(this);
-    connect(kcfg_AutoBackup, SIGNAL(toggled(bool)), kcfg_BackupTime, SLOT(setEnabled(bool)));
+    connect(kcfg_AutoBackup, &QCheckBox::toggled, kcfg_BackupTime, &QSpinBox::setEnabled);
 
     fillWidgets();
     updateWidgets();

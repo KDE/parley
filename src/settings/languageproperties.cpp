@@ -71,8 +71,8 @@ KPageWidgetItem*  LanguageProperties::createPage(int i)
 
     editPage->setIcon(QIcon::fromTheme("set-language"));
 
-    connect(page->identifierNameLineEdit, SIGNAL(textChanged(const QString&)), this, SLOT(pageNameChanged(const QString&)));
-    connect(this, SIGNAL(accepted()), page, SLOT(accept()));
+    connect(page->identifierNameLineEdit, &QLineEdit::textChanged, this, &LanguageProperties::pageNameChanged);
+    connect(this, &LanguageProperties::accepted, page, &LanguagePropertiesPage::accept);
 
     return editPage;
 }
