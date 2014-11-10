@@ -61,6 +61,7 @@ X-DocPath=parley/index.html
 Type=Application
 Terminal=false
 Categories=Qt;KDE;Education;Languages;
+X-DBUS-ServiceName=org.kde.parley
 GenericName=Vocabulary Trainer
 GenericName[af]=Woordeskat-afrigter
 GenericName[ast]=Tutor de vocabulariu
