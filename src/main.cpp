@@ -104,11 +104,13 @@ int main(int argc, char* argv[])
 
 
     QCommandLineParser parser;
-    parser.addHelpOption();
     parser.addVersionOption();
+    parser.addHelpOption();
     parser.addPositionalArgument(ki18n( "[file]" ).toString(), ki18n("Document file to open").toString() );
 
+    aboutData.setupCommandLine(&parser);
     parser.process(app);
+    aboutData.processCommandLine(&parser);
 
     app.setQuitOnLastWindowClosed(false);
 
