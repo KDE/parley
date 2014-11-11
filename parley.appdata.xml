@@ -12,6 +12,7 @@
   <name xml:lang="et">Parley</name>
   <name xml:lang="fi">Parley</name>
   <name xml:lang="it">Parley</name>
+  <name xml:lang="lt">Parley</name>
   <name xml:lang="nds">Parley</name>
   <name xml:lang="nl">Parley</name>
   <name xml:lang="pl">Parley</name>
@@ -32,6 +33,7 @@
   <summary xml:lang="et">Sõnavara treening</summary>
   <summary xml:lang="fi">Sanaston harjoitusohjelma</summary>
   <summary xml:lang="it">Apprendimento di vocaboli</summary>
+  <summary xml:lang="lt">Žodyno treniruoklis</summary>
   <summary xml:lang="nds">Vokaveln lehren</summary>
   <summary xml:lang="nl">Woordjes oefenen</summary>
   <summary xml:lang="pl">Trening słownictwa</summary>
@@ -91,6 +93,7 @@
       <li xml:lang="et">Sähvikud</li>
       <li xml:lang="fi">Kysymyskortit</li>
       <li xml:lang="it">Carte mnemoniche</li>
+      <li xml:lang="lt">Kortelės</li>
       <li xml:lang="nds">Naslakoorten</li>
       <li xml:lang="nl">Oefenkaarten</li>
       <li xml:lang="pl">Fiszki</li>
@@ -130,6 +133,7 @@
       <li xml:lang="et">Mitmene valik</li>
       <li xml:lang="fi">Monivalinta</li>
       <li xml:lang="it">Scelta multipla</li>
+      <li xml:lang="lt">Pasirinkimas iš kelių atsakymų</li>
       <li xml:lang="nds">Mehrfachköör</li>
       <li xml:lang="nl">Meerkeuze</li>
       <li xml:lang="pl">Wiele odpowiedzi</li>
@@ -149,6 +153,7 @@
       <li xml:lang="et">Kirjalik</li>
       <li xml:lang="fi">Kirjallinen</li>
       <li xml:lang="it">Scritto</li>
+      <li xml:lang="lt">Rašyba</li>
       <li xml:lang="nds">Schreven</li>
       <li xml:lang="nl">Geschreven</li>
       <li xml:lang="pl">Pisemny</li>
