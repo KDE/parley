@@ -51,6 +51,8 @@ public:
     Collection *collection() const;
     void setCollection(Collection *collection);
 
+    void updateDue();
+
 Q_SIGNALS:
     void practiceButtonClicked();
     void removeButtonClicked();
