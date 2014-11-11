@@ -25,7 +25,7 @@
 #include <QGraphicsDropShadowEffect>
 #include <QStandardItemModel>
 #include <QTimer>
-#include <QTime>
+#include <QAction>
 #include <QMessageBox>
 #include <QDebug>
 
@@ -33,6 +33,7 @@
 #include <Qt>
 
 //#include <KMimeType>
+#include <KActionCollection>
 
 #include "collection.h"
 #include "collectionwidget.h"
@@ -73,16 +74,21 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     m_practiceSignalMapper = new QSignalMapper(this);
     m_removeSignalMapper = new QSignalMapper(this);
 
+    // Need 8 colors for confidence 0..7.
+    // FIXME: Find a better color than gray for confidence 1.
+    // FIXME: Add a color for pregrades.
     gradeColor[0] = QColor(25,38,41);
-    gradeColor[1] = QColor(25,38,41,64);// Need 8 colors, so find a suitable color for this grade, currently gray.
+    gradeColor[1] = QColor(25,38,41,64);
     gradeColor[2] = QColor(237,21,21);
     gradeColor[3] = QColor(246,116,0);
     gradeColor[4] = QColor(201,206,59);
     gradeColor[5] = QColor(28,220,154);
     gradeColor[6] = QColor(17,209,22);
     gradeColor[7] = QColor(61,174,253);
-    gradeColor[8] = QColor(255,221,217);//These two are placeholders for the wordcloud background color.
-    gradeColor[9] = QColor(238,232,213);//
+
+    // These two are placeholders for the wordcloud background color.
+    gradeColor[8] = QColor(255,221,217);
+    gradeColor[9] = QColor(238,232,213);
 
     QTime time = QTime::currentTime();
     qsrand((uint)time.msec());
@@ -133,15 +139,19 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
 
     m_themedBackgroundRenderer = new Practice::ThemedBackgroundRenderer(this, "startpagethemecache.bin");
 
+    // Set theme and prepare for future theme changes.
     connect(Prefs::self(), SIGNAL(configChanged()), this, SLOT(setTheme()));
     setTheme();
 
-    connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)), this, SLOT(backgroundChanged(QPixmap)));
+    connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)),
+	    this,                       SLOT(backgroundChanged(QPixmap)));
     connect(m_widget, SIGNAL(sizeChanged()), this, SLOT(updateBackground()));
 
-    /*statisticsWidget = new StatisticsMainWindow(m_mainWindow->parleyDocument()->document(), m_mainWindow);
-    for (int i = 0; i < m_count; i++)
-        statisticsHandler(urlArray[i]); */ //Used to get the statistics for each Collection. TODO find a better way.
+    QAction *updateAction = new QAction(this);
+    updateAction->connect(updateAction, SIGNAL(triggered(bool)), this, SLOT(updateWidgets()));
+    actionCollection()->addAction("update_dashboard", updateAction);
+    //actionCollection()->setDefaultShortcut(updateAction, QKeySequence(Qt::Key_F5));
+    updateAction->setShortcut(QKeySequence(Qt::Key_F5));
 }
 
 Dashboard::~Dashboard()
@@ -240,7 +250,10 @@ void Dashboard::populateGrid()
             }
         }
 
-	QWidget* backWidget = new CollectionWidget(collection, &due, this);
+	//QWidget* backWidget = new CollectionWidget(collection, &due, this);
+	CollectionWidget* backWidget = new CollectionWidget(collection, &due, this);
+	m_collectionWidgets.append(backWidget);
+
         if (due.percentageCompleted != 100) {
                 backWidget->setFixedSize(COLLWIDTH, COLLHEIGHT1);
                 m_subGridLayout->addWidget(backWidget, j / ROWSIZE, j % ROWSIZE);
@@ -364,6 +377,12 @@ void Dashboard::setTheme()
     m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
 }
 
+void Dashboard::updateWidgets()
+{
+    foreach (CollectionWidget *cw, m_collectionWidgets) {
+	cw->updateDue();
+    }
+}
 void Dashboard::updateFontColors()
 {
     QPalette p(QApplication::palette());
