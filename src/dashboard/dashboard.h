@@ -33,6 +33,7 @@ class ImageWidget;
 }
 
 
+class CollectionWidget;
 class RemoveButton;
 
 class Dashboard : public KXmlGuiWindow
@@ -59,6 +60,7 @@ public slots:
 
 private slots:
     void setTheme();
+    void updateWidgets();
     void backgroundChanged(const QPixmap& pixmap);
     void updateFontColors();
     void updateBackground();
@@ -75,6 +77,7 @@ private:
     QUrl m_openUrl;
     QGridLayout *m_subGridLayout;
     QGridLayout *m_completedGridLayout;
+    QList<CollectionWidget *>  m_collectionWidgets; // List of the widgets in the dashboard.
 
     // The parts of the collections
     QUrl          m_urlArray[N];
