@@ -150,8 +150,7 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     QAction *updateAction = new QAction(this);
     updateAction->connect(updateAction, SIGNAL(triggered(bool)), this, SLOT(updateWidgets()));
     actionCollection()->addAction("update_dashboard", updateAction);
-    //actionCollection()->setDefaultShortcut(updateAction, QKeySequence(Qt::Key_F5));
-    updateAction->setShortcut(QKeySequence(Qt::Key_F5));
+    actionCollection()->setDefaultShortcut(updateAction, QKeySequence(Qt::Key_F5));
 }
 
 Dashboard::~Dashboard()
