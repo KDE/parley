@@ -165,11 +165,11 @@ Dashboard::~Dashboard()
 void Dashboard::clearGrid()
 {
    remove(m_subGridLayout,
-     m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount() - 1,
-     true);
+          m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount() - 1,
+          true);
    remove(m_completedGridLayout,
-     m_completedGridLayout->rowCount() - 1, m_completedGridLayout->columnCount() - 1,
-     true);
+          m_completedGridLayout->rowCount() - 1, m_completedGridLayout->columnCount() - 1,
+          true);
 }
 
 /**
@@ -253,7 +253,6 @@ void Dashboard::populateGrid()
 
         CollectionWidget* backWidget = new CollectionWidget(collection, &due, this);
         m_collectionWidgets.append(backWidget);
-
         if (due.percentageCompleted != 100) {
                 backWidget->setFixedSize(COLLWIDTH, COLLHEIGHT1);
                 backWidget->setMinimumSize(COLLWIDTH, COLLHEIGHT1);
@@ -283,11 +282,11 @@ void Dashboard::populateGrid()
 
     m_count = k;
     m_completedGridLayout->addItem(new QSpacerItem(50, 1,
-                     QSizePolicy::Expanding, QSizePolicy::Fixed),
-               m_completedGridLayout->rowCount() - 1,
-               m_completedGridLayout->columnCount());
+                                                   QSizePolicy::Expanding, QSizePolicy::Fixed),
+                                   m_completedGridLayout->rowCount() - 1,
+                                   m_completedGridLayout->columnCount());
     m_subGridLayout->addItem(new QSpacerItem(50,1,QSizePolicy::Expanding, QSizePolicy::Fixed),
-              m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount());
+                             m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount());
     if (k - kc) {
         m_ui->recentLabel->setText(i18n("Active Collections"));
     } else {
@@ -343,8 +342,8 @@ void Dashboard::slotRemoveButtonClicked(const QString& urlString)
 
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, i18n("Remove"),
-              i18n("Are you sure you want to remove this collection?"),
-              QMessageBox::Yes | QMessageBox::No);
+                                  i18n("Are you sure you want to remove this collection?"),
+                                  QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
         m_recentFilesMap.remove(urlString);
         m_mainWindow->removeRecentFile(QUrl::fromLocalFile(urlString ));

@@ -188,32 +188,29 @@ void CollectionWidget::setupWidget(DueWords *due)
     //  3. barWidget:    a visual bar showing the training status of the words in
     //                   the collection
     //  4. buttonLayout: a horizontal row of pushbuttons for delete, practice, etc
-    m_titleLabel = new QLabel;
+    m_titleLabel = new QLabel(this);
     mainLayout->addWidget(m_titleLabel);
 
-    m_thumbnail = new QWidget;
-    palette = m_thumbnail->palette();
-    int y = randInt(8, 9);
-    palette.setColor(QPalette::Background, gradeColor[y]);
-    m_thumbnail->setAutoFillBackground(true);
-    m_thumbnail->setPalette(palette);
+    m_thumbnail = new QLabel(this);
     m_thumbnail->setFixedSize(COLLWIDTH - 10, COLLHEIGHT1 - COLLHEIGHT2 + 10);
+    QPixmap *pixmap = new QPixmap(m_thumbnail->size());
+    pixmap->fill(Qt::lightGray);
+    m_thumbnail->setPixmap(*pixmap);
     if (due->percentageCompleted != 100) {
         mainLayout->addWidget(m_thumbnail);
     }
 
-    m_barWidget = new BarWidget(due->dueWords, due->totalDueWords,
-                                due->percentageCompleted);
+    m_barWidget = new BarWidget(due->dueWords, due->totalDueWords, due->percentageCompleted, this);
     m_barWidget->setFixedSize(COLLWIDTH - 10, 20);
     mainLayout->addWidget(m_barWidget);
-    m_practiceButton = new QPushButton();
+    m_practiceButton = new QPushButton(this);
     m_practiceButton->setStyleSheet("QPushButton {border: none; margin: 0px; padding: 0px;}");
 
     // buttonLayout is the horizontal layout for the bottom line in the
     // collection widget: delete button, practice button, etc
     QHBoxLayout *buttonLayout = new QHBoxLayout();
     mainLayout->addLayout(buttonLayout);
-    m_removeButton = new RemoveButton();
+    m_removeButton = new RemoveButton(this);
     m_removeButton->setFixedSize(20, 20);
     buttonLayout->setAlignment(m_removeButton, Qt::AlignLeft | Qt::AlignVCenter);
     buttonLayout->setAlignment(m_practiceButton, Qt::AlignCenter);

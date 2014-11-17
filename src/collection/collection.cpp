@@ -23,6 +23,7 @@
 //#include <KLocale>
 
 // KEduVocDocument library
+#include <keduvocdocument.h>
 #include <keduvoclesson.h>
 #include <keduvocleitnerbox.h>
 #include <keduvocexpression.h>
@@ -85,7 +86,7 @@ Collection::Collection(QUrl *url, QObject* parent)
 {
     // We ignore file locks here because we open the file for readonly
     // purposes only.
-    m_doc->open(*url, KEduVocDocument::FileIgnoreLock);
+    m_doc->open(*url, KEduVocDocument::FileOpenReadOnly);
 }
 
 Collection::~Collection()
