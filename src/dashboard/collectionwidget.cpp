@@ -91,47 +91,16 @@ static int randInt(int low, int high)
 }
 
 
-// This is just used until the real handling of the due words works.
-DueWords::DueWords()
-{
-    // FIXME: This is only for testing purposes. We need a way to get the
-    //        grades and words due for every document.
-
-    totalDueWords = 0;
-
-#if 0
-    int firstGrade = randInt(0,7); //This is done for vanity purposes only, giving due word values to only two grades for now.
-    int secondGrade = randInt(0,7);
-#else
-    // Disable this until it works in lower layers too
-    int firstGrade = 0;
-    int secondGrade = 7;
-#endif
-    for (int x = 0; x < 8; x++) {
-        if (x == firstGrade || x == secondGrade) {
-            dueWords[x] = randInt(0,20);
-            totalDueWords += dueWords[x];
-        }
-        else {
-            dueWords[x] = 0;
-        }
-    }
-
-    //To test randomnly for Complete Collections. Again to be obtained from document.
-    percentageCompleted = randInt(98, 99);
-}
-
-
 // ----------------------------------------------------------------
 
 
-CollectionWidget::CollectionWidget(Collection *collection, DueWords *due, QWidget *parent)
+CollectionWidget::CollectionWidget(Collection *collection, WordCount *dueWords, QWidget *parent)
     : QWidget(parent)
     , m_collection(collection)
 {
     qDebug() << collection->eduVocDocument()->title();
 
-    setupWidget(due);
+    setupWidget(dueWords);
     fillWidget();
 }
 
@@ -162,7 +131,7 @@ void CollectionWidget::updateDue()
 //                         private classes
 
 
-void CollectionWidget::setupWidget(DueWords *due)
+void CollectionWidget::setupWidget(WordCount *dueWords)
 {
     // Set a nice shadow effect.
     QGraphicsDropShadowEffect* effect = new QGraphicsDropShadowEffect();
@@ -196,11 +165,13 @@ void CollectionWidget::setupWidget(DueWords *due)
     QPixmap *pixmap = new QPixmap(m_thumbnail->size());
     pixmap->fill(Qt::lightGray);
     m_thumbnail->setPixmap(*pixmap);
-    if (due->percentageCompleted != 100) {
+
+    int  percentageCompleted = dueWords->percentageCompleted();
+    if (percentageCompleted != 100) {
         mainLayout->addWidget(m_thumbnail);
     }
 
-    m_barWidget = new BarWidget(due->dueWords, due->totalDueWords, due->percentageCompleted, this);
+    m_barWidget = new BarWidget(dueWords, this);
     m_barWidget->setFixedSize(COLLWIDTH - 10, 20);
     mainLayout->addWidget(m_barWidget);
     m_practiceButton = new QPushButton(this);

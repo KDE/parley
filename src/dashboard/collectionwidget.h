@@ -15,6 +15,8 @@
 
 #include <QWidget>
 
+#include "collection.h"
+
 #include "barwidget.h"
 
 
@@ -29,22 +31,13 @@ class QPushButton;
 class RemoveButton;
 class Collection;
 
-// FIXME: Temporary struct until the real number of due words works.
-struct DueWords {
-    DueWords();
-
-    int dueWords[8];
-    int totalDueWords;
-    int percentageCompleted;
-};
-
 
 class CollectionWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    CollectionWidget(Collection *collection, DueWords *due,
+    CollectionWidget(Collection *collection, WordCount *dueWords,
 		     QWidget *parent = 0);
     ~CollectionWidget();
 
@@ -58,7 +51,7 @@ Q_SIGNALS:
     void removeButtonClicked();
 
 private:
-    void setupWidget(DueWords *due);
+    void setupWidget(WordCount *dueWords);
     void fillWidget();
 
 private:
