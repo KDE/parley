@@ -39,17 +39,18 @@ BarWidget::BarWidget(QWidget *parent)
 
 }
 
-BarWidget::BarWidget(int dueWords[], int totalDueWords, int percentageCompleted, QWidget *parent)
+BarWidget::BarWidget(WordCount *dueWords, QWidget *parent)
     : QWidget(parent)
 {
     QPalette palette(BarWidget::palette());
     palette.setColor(backgroundRole(), Qt::white);
     setPalette(palette);
+
     for (int i = 0; i <= KV_MAX_GRADE; i++) {
-        m_dueWords[i] = dueWords[i];
+        m_dueWords[i] = dueWords->grades[i];
     }
-    m_totalDueWords = totalDueWords;
-    m_percentageCompleted = percentageCompleted;
+    m_totalDueWords = dueWords->totalWords;
+    m_percentageCompleted = dueWords->percentageCompleted();
 }
 
 

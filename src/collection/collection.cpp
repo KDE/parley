@@ -43,12 +43,36 @@ WordCount::WordCount()
 void WordCount::clear()
 {
     for (int i = 0; i <= KV_MAX_GRADE; ++i) {
-	grades[i] = 0;
+        grades[i] = 0;
+        pregrades[i] = 0;
     }
-    initial = 0;
-    totalWords = 0;
-
     invalid = 0;
+
+    initialWords = 0;
+    totalWords = 0;
+}
+
+int WordCount::percentageCompleted() const
+{
+    // To calculate the percentage done we add:
+    //  * 1..KV_MAX_GRADE points for words in the initial phase (grade = 0, pregrade > 0)
+    //  * KV_MAX_GRADE * (1..KV_MAX_GRADE) points for words in the long-term phase (grade>0)
+    // So the maximum number of points is KV_MAX_GRADE^2 per word.
+    // 
+    // In the final calculation, we exclude all invalid words from the percentage.
+    int points = 0;
+    for (int i = 0; i <= KV_MAX_GRADE + 1; ++i) {
+        points += pregrades[i] * i;
+        points += grades[i] * KV_MAX_GRADE * i;
+    }
+
+    if (totalWords - invalid == 0) {
+        // Don't divide by 0.
+        return 0;
+    }
+    else {
+        return 100 * points / ((totalWords - invalid) * KV_MAX_GRADE * KV_MAX_GRADE);
+    }
 }
 
 
@@ -151,7 +175,19 @@ void Collection::numDueWords(WordCount &wc)
 	int languageTo = entry->languageTo();
 	KEduVocExpression *exp = entry->entry();
 
-	wc.grades[exp->translation(languageTo)->grade()]++;
+        int grade    = exp->translation(languageTo)->grade();
+        int pregrade = exp->translation(languageTo)->preGrade();
+        if (exp->translation(languageTo)->text().isEmpty()) {
+            wc.invalid++;
+        }
+        else if (pregrade > 0) {
+            wc.pregrades[pregrade]++;
+            wc.initialWords++;
+            wc.grades[0]++;
+        }
+        else {
+            wc.grades[grade]++;
+        }
     }
 
     wc.totalWords = m_allTestEntries.count();
