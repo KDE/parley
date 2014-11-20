@@ -103,13 +103,13 @@ DueWords::DueWords()
     int secondGrade = 7;
 #endif
     for (int x = 0; x < 8; x++) {
-	if (x == firstGrade || x == secondGrade) {
-	    dueWords[x] = randInt(0,20);
-	    totalDueWords += dueWords[x];
-	}
-	else {
-	    dueWords[x] = 0;
-	}
+        if (x == firstGrade || x == secondGrade) {
+            dueWords[x] = randInt(0,20);
+            totalDueWords += dueWords[x];
+        }
+        else {
+            dueWords[x] = 0;
+        }
     }
 
     //To test randomnly for Complete Collections. Again to be obtained from document.
@@ -194,11 +194,11 @@ void CollectionWidget::setupWidget(DueWords *due)
     m_thumbnail->setPalette(palette);
     m_thumbnail->setFixedSize(COLLWIDTH - 10, COLLHEIGHT1 - COLLHEIGHT2 + 10);
     if (due->percentageCompleted != 100) {
-	mainLayout->addWidget(m_thumbnail);
+        mainLayout->addWidget(m_thumbnail);
     }
 
     m_barWidget = new BarWidget(due->dueWords, due->totalDueWords,
-				due->percentageCompleted);
+                                due->percentageCompleted);
     m_barWidget->setFixedSize(COLLWIDTH - 10, 20);
     mainLayout->addWidget(m_barWidget);
     m_practiceButton = new QPushButton();
@@ -231,9 +231,9 @@ void CollectionWidget::fillWidget()
     m_barWidget->setDue(due);
 
     if (due.totalWords == 0 /* && due->percentageCompleted < 100*/) {
-	m_practiceButton->setText(i18n("Practice Anyway"));
+        m_practiceButton->setText(i18n("Practice Anyway"));
     }
     else {
-	m_practiceButton->setText(i18n("Practice"));
+        m_practiceButton->setText(i18n("Practice"));
     }
 }

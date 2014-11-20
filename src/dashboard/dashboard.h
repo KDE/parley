@@ -73,7 +73,6 @@ private:
     Practice::ThemedBackgroundRenderer *m_themedBackgroundRenderer;
     Practice::ImageWidget* m_widget;
 
-    QStandardItemModel *m_recentFilesModel;
     QMap<QString, QString> m_recentFilesMap;  // url, name
     KUrl m_openUrl;
     QGridLayout *m_subGridLayout;
