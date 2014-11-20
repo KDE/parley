@@ -106,17 +106,18 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
 
     GradeReferenceWidget *gradeReferenceWidget = new GradeReferenceWidget();
     gradeReferenceWidget->setMinimumSize(m_widget->width(), 50);
-    m_ui->gridLayout->addWidget(gradeReferenceWidget, 2, 0, 1, ROWSIZE, Qt::AlignCenter);
+    m_ui->gridLayout->addWidget(gradeReferenceWidget, 1, 0, 1, ROWSIZE, Qt::AlignCenter);
 
     m_subGridLayout = new QGridLayout();
     m_subGridLayout->setHorizontalSpacing(50);
     m_subGridLayout->setVerticalSpacing(30);
-    m_ui->gridLayout->addLayout(m_subGridLayout, 5, 0, 1, 4);
+    m_ui->gridLayout_2->addLayout(m_subGridLayout, 2, 0, 1, 1);
+
 
     m_completedGridLayout = new QGridLayout();
     m_completedGridLayout->setHorizontalSpacing(50);
     m_completedGridLayout->setVerticalSpacing(30);
-    m_ui->gridLayout->addLayout(m_completedGridLayout, 9, 0, 1, 4);
+    m_ui->gridLayout_2->addLayout(m_completedGridLayout, 6, 0, 1, 1);
 
     populateMap();
     populateGrid();
@@ -130,9 +131,9 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     // Signals FROM the signal mappers.  The ones TO the signal mappers are
     // handled below.
     connect(m_practiceSignalMapper, SIGNAL(mapped(const QString &)),
-	    this,                   SLOT(slotPracticeButtonClicked(const QString &)));
+            this,                   SLOT(slotPracticeButtonClicked(const QString &)));
     connect(m_removeSignalMapper,   SIGNAL(mapped(const QString &)),
-	    this,                   SLOT(slotRemoveButtonClicked(const QString &)));
+            this,                   SLOT(slotRemoveButtonClicked(const QString &)));
 
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
@@ -144,7 +145,7 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     setTheme();
 
     connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)),
-	    this,                       SLOT(backgroundChanged(QPixmap)));
+            this,                       SLOT(backgroundChanged(QPixmap)));
     connect(m_widget, SIGNAL(sizeChanged()), this, SLOT(updateBackground()));
 
     QAction *updateAction = new QAction(this);
@@ -229,12 +230,12 @@ void Dashboard::populateGrid()
         QString urlString   = it.key();
         QString titleString = it.value();
 
-	QUrl  url(QUrl::fromLocalFile(urlString));
-	Collection *collection = new Collection(&url, this);
-	collection->close(); // We just want to look at it, not own it, so release the lock.
+        QUrl  url(QUrl::fromLocalFile(urlString));
+        Collection *collection = new Collection(&url, this);
+        collection->close(); // We just want to look at it, not own it, so release the lock.
 
-	// Automatically initialized.
-	DueWords due;
+        // Automatically initialized.
+        DueWords due;
 
         m_urlArray[k] = url;
         if (due.percentageCompleted != 100) {
@@ -250,16 +251,17 @@ void Dashboard::populateGrid()
             }
         }
 
-	//QWidget* backWidget = new CollectionWidget(collection, &due, this);
-	CollectionWidget* backWidget = new CollectionWidget(collection, &due, this);
-	m_collectionWidgets.append(backWidget);
+        CollectionWidget* backWidget = new CollectionWidget(collection, &due, this);
+        m_collectionWidgets.append(backWidget);
 
         if (due.percentageCompleted != 100) {
                 backWidget->setFixedSize(COLLWIDTH, COLLHEIGHT1);
+                backWidget->setMinimumSize(COLLWIDTH, COLLHEIGHT1);
                 m_subGridLayout->addWidget(backWidget, j / ROWSIZE, j % ROWSIZE);
         }
         else {
                 backWidget->setFixedSize(COLLWIDTH, COLLHEIGHT2);
+                backWidget->setMinimumSize(COLLWIDTH, COLLHEIGHT2);
                 m_completedGridLayout->addWidget(backWidget, jc / ROWSIZE, jc % ROWSIZE);
         }
 
@@ -380,7 +382,7 @@ void Dashboard::setTheme()
 void Dashboard::updateWidgets()
 {
     foreach (CollectionWidget *cw, m_collectionWidgets) {
-	cw->updateDue();
+        cw->updateDue();
     }
 }
 void Dashboard::updateFontColors()
@@ -397,10 +399,6 @@ void Dashboard::updateBackground()
 {
     m_themedBackgroundRenderer->clearRects();
     m_themedBackgroundRenderer->addRect("startbackground", QRect(QPoint(), m_widget->size()));
-    QRect headerRect = m_ui->headingLabel->frameGeometry();
-    headerRect.setBottom(m_ui->recentFiles->frameGeometry().top() - 1);
-    m_themedBackgroundRenderer->addRect("startheader", headerRect);
-    m_themedBackgroundRenderer->addRect("recentfiles", m_ui->recentFiles->frameGeometry());
     QPixmap pixmap = m_themedBackgroundRenderer->getScaledBackground();
     if (!pixmap.isNull()) {
         m_widget->setPixmap(pixmap);
