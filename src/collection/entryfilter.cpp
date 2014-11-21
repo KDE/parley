@@ -65,6 +65,8 @@ EntryFilter::EntryFilter(KEduVocDocument* doc, QObject * parent)
 static void debugEntry(const QString &comment, KEduVocExpression *vocexp,
                        KEduVocTranslation *from, KEduVocTranslation *to)
 {
+    Q_UNUSED(vocexp);
+
     qDebug() << comment << "from" << from->text() << "to" << to->text();
 }
 
@@ -408,7 +410,9 @@ bool EntryFilter::isBlocked(const KEduVocText* const text) const
     grade_t grade    = text->grade();
     grade_t preGrade = text->preGrade();
 
-    // Sanity checks
+    // Sanity checks.
+    // Note that grade_t is unsigned so no need to check < 0.
+    //
     // FIXME: This should be done when the prefs are first read.
     if (preGrade > KV_MAX_GRADE) {
         preGrade = KV_MAX_GRADE;

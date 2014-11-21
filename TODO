@@ -3,7 +3,8 @@
 
 
 ================================================================
-Before the 4.15 release (bugs).
+Before the 14.12 release (bugs).
+
 NOTE:  DO NOT CHANGE THESE IN MASTER.
        Instead, change them in the branch and merge the branch into master.
 
@@ -31,9 +32,12 @@ NOTE:  DO NOT CHANGE THESE IN MASTER.
     + ...
 
  * Misfeatures
-    + There seems to be no way to change the title.                     DONE
-      It works in the editor but it is never saved.
-      Note: It can be changed in the menu, though.
+    + Make it possible to click anywhere in a collection widget		----
+      in the dashboard.
+    + Unify color handling in the dashboard				----
+       - Add a color for pregrades
+    + Make the number of collections per line dynamic, depending	----
+      on how wide the window is.
 
  * Normal bugzilla bugs
     + Vocabulary does not expire                                        ----
@@ -45,11 +49,12 @@ NOTE:  DO NOT CHANGE THESE IN MASTER.
     + ...
 
  * Bugs without a bugzilla bug
-    + ...
+    + When the dashboard is updated with F5 and goes from 0 words due	Done
+      to >0 then the text is still "practice anyway".
 
 
 ================================================================
-Before the 14.12 freeze (features).  These are picked from the ones below.
+Before the 15.04 freeze (features).  These are picked from the ones below.
 
 
  * Editor
