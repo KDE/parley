@@ -237,10 +237,11 @@ void Dashboard::populateGrid()
 
         // Automatically initialized.
         // FIXME: Will be initialized by the KEduVocDocument later.
-        DueWords due;
+        WordCount dueWords;
+	int percentageCompleted = dueWords.percentageCompleted();
 
         m_urlArray[k] = url;
-        if (due.percentageCompleted != 100) {
+        if (percentageCompleted != 100) {
             if (j % ROWSIZE == 0) {
                 m_subGridLayout->addItem(new QSpacerItem(50, 1), j / ROWSIZE, 0);
                 j++;
@@ -253,9 +254,9 @@ void Dashboard::populateGrid()
             }
         }
 
-        CollectionWidget* backWidget = new CollectionWidget(collection, &due, this);
+        CollectionWidget* backWidget = new CollectionWidget(collection, &dueWords, this);
         m_collectionWidgets.append(backWidget);
-        if (due.percentageCompleted != 100) {
+        if (percentageCompleted != 100) {
                 backWidget->setFixedSize(COLLWIDTH, COLLHEIGHT1);
                 backWidget->setMinimumSize(COLLWIDTH, COLLHEIGHT1);
                 m_subGridLayout->addWidget(backWidget, j / ROWSIZE, j % ROWSIZE);
@@ -271,7 +272,7 @@ void Dashboard::populateGrid()
         m_removeSignalMapper->setMapping(backWidget, urlString);
         connect(backWidget, SIGNAL(removeButtonClicked()), m_removeSignalMapper, SLOT(map()));
 
-        if (due.percentageCompleted != 100) {
+        if (percentageCompleted != 100) {
             j++;
         }
         else {

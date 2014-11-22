@@ -35,12 +35,16 @@ class QTimer;
 struct WordCount {
     WordCount();
     void clear();
+    int  percentageCompleted() const;
 
     int grades[KV_MAX_GRADE + 1]; // Number of entries in each grade including grade=0, pregrade=0
-    int initial;                  // Number of entries in initial phase (grade=0, pregrade>0)
-    int totalWords;		  // Total sum of the above two
+    int pregrades[KV_MAX_GRADE + 1]; // Number of entries in each grade including grade=0, pregrade=0
+    int invalid;	          // Number of invalid entries (not always applicable);
 
-    int invalid;		  // Number of invalid entries (not always applicable);
+    int initialWords;             // Number of entries in initial phase (grade=0, pregrade>0)
+                                  // This is the sum of the numbers in pregrades[].
+    int totalWords;		  // Total number of words
+                                  // This is the sum of grades[], pregrades[] and invalid
 };
 
 

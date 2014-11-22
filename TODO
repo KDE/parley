@@ -53,20 +53,7 @@ NOTE:  DO NOT CHANGE THESE IN MASTER.
 
 
 ================================================================
-Before the 4.14 freeze (features).  These are picked from the ones below.
-
-
- * Practice
-    + Dashboard	    	    	      					----
-       - wrapper class for a KEduVocDocument				----
-
-
- * After the freeze (not features)
-    + Get rid of DueWords and use WordCount instead.			----
-
-
-================================================================
-Before the 4.15 freeze (features).  These are picked from the ones below.
+Before the 14.12 freeze (features).  These are picked from the ones below.
 
 
  * Editor

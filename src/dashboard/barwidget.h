@@ -23,6 +23,9 @@
 #include "collection.h"  // For struct WordCount
 
 
+class WordCount;
+
+
 extern QColor gradeColor[11];
 
 
@@ -30,7 +33,7 @@ class BarWidget : public QWidget
 {
 public:
     BarWidget(QWidget *parent = 0);
-    BarWidget(int [], int, int, QWidget *parent = 0);
+    BarWidget(WordCount *dueWords, QWidget *parent = 0);
 
     void setDue(WordCount &wc);
 
