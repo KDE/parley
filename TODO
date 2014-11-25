@@ -26,8 +26,6 @@ NOTE:  DO NOT CHANGE THESE IN MASTER.
     + Scripts need to sandboxed or atleast check 			----
       if data can be fetched and stop gracefully. Eg:
       https://bugs.kde.org/show_bug.cgi?id=252696
-    + Investigate - large list causes crash?				----
-      https://bugs.kde.org/show_bug.cgi?id=271695
 
  * Data loss
     + ...
@@ -42,8 +40,6 @@ NOTE:  DO NOT CHANGE THESE IN MASTER.
       https://bugs.kde.org/show_bug.cgi?id=261396
     + Synonyms are not checked case-insensitively                       ----
       https://bugs.kde.org/show_bug.cgi?id=302733
-    + Making two words synonyms does not mark file as modified          Done
-      https://bugs.kde.org/show_bug.cgi?id=246198
 
  * Usability
     + ...
@@ -70,18 +66,9 @@ Before the 14.12 freeze (features).  These are picked from the ones below.
  * Wishes from bugzilla
     + 
 
- * Make collection widget live
-    + Collection class							Done
-       - Create it							done
-       - Collect due words						done
-    + Use Collection in CollectionWidget				Done
-       - Initialization							done
-       - Update when things change					done
-    + Make BarWidget show correct colors				Done
-
 
 ================================================================
-Release work for 4.15
+Release work for 14.12
 
 
  * Change the version number of Parley					----
@@ -101,16 +88,7 @@ Release work for 4.15
 
 
  * General
-    + A library of active collections.					Done
-      Right now we only have a list of files. There is no concept of
-      active collections/lessons (i.e. those you are studying) and
-      ones that are just lying around.  See also the dashboard below.
-
-    + A dashboard where you can see the status of your learning.	Done
-      It should contain info on all your active collections or lessons
-      with how many cards they have, your learning status (percentage)
-      and how many cards are due to practice right now.
-      See thaipod101.com for this.
+    + ...
 
  * Usability
     + Disable those practice modes in the GUI that are not supported    ----
@@ -123,10 +101,7 @@ Release work for 4.15
       https://bugs.kde.org/show_bug.cgi?id=252482
 
  * Practice
-    + Extended Leitner box method -OR- move to time based card          Done
-      selection.
-    + Sessions.  A session is a byte sized part of a lesson containing  Done
-    + Mixed directions mode in all practice methods.			Done
+    + ...
 
  * Editor
     + Drag & drop of images from other applications                     ----
@@ -134,7 +109,6 @@ Release work for 4.15
       into another parley or something else. Also support paste into
       lessons of a group of words.
     + Smaller issues                                                    ----
-       - Buttons to open/close all lessons (wish in bugzilla)           done
        - Button to remove all empty lines.                              ----
        - Button (menu entry) to check for duplicates                    ----
     + Always keep the primary (to be learned) language visible?
@@ -148,7 +122,6 @@ Release work for 4.15
        - Allow one image for a whole entry, not just for a word.        ----
          After all, all the translations in an entry mean the same thing.
        - Field for transcription of non-western scripts                 ----
-       - pregrades for the phase before grade 1                         Done
 
 ----------------------------------------------------------------
 
