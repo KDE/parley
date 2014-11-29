@@ -1,5 +1,5 @@
 /***************************************************************************
-    Copyright 2008-2010 Daniel Laidig <d.laidig@gmx.de>
+    Copyright 2014 Inge Wallin <inge@lysator.liu.se>
  ***************************************************************************/
 
 /***************************************************************************
@@ -11,6 +11,19 @@
  *                                                                         *
  ***************************************************************************/
 
+#include <Qt>
+#include <QtGui>
+#include <QTimer>
+#include <QTime>
+#include <QDebug>
+#include <QSignalMapper>
+#include <QStandardItemModel>
+
+#include <KMimeType>
+#include <KDebug>
+#include <KAction>
+#include <KActionCollection>
+
 #include "dashboard.h"
 #include "buttondelegate.h"
 #include "parleymainwindow.h"
@@ -19,26 +32,11 @@
 #include "practice/imagewidget.h"
 #include "statistics/statisticsmainwindow.h"
 #include "statistics/statisticsmodel.h"
-#include <QSignalMapper>
-
-#include <QStandardItemModel>
-#include <QTimer>
-#include <QTime>
-#include <QDebug>
-
-#include <QtGui>
-#include <Qt>
-
-#include <KMimeType>
-#include <KDebug>
-#include <KAction>
-#include <KActionCollection>
 
 #include "collection.h"
 #include "collectionwidget.h"
 #include "barwidget.h"
 #include "gradereferencewidget.h"
-
 
 
 // ----------------------------------------------------------------
