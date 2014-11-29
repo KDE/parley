@@ -39,16 +39,16 @@ PracticeStateMachine::PracticeStateMachine(AbstractFrontend* frontend, ParleyDoc
     createPracticeMode();
 
     // To allow to skip an an entry
-    connect(m_frontend, SIGNAL(skipAction()), this, SLOT(nextEntry()));
-    connect(m_frontend, SIGNAL(stopPractice()), this, SLOT(slotPracticeFinished()));
-    connect(m_frontend, SIGNAL(hintAction()), m_mode, SLOT(hintAction()));
+    connect(m_frontend, &AbstractFrontend::skipAction, this, &PracticeStateMachine::nextEntry);
+    connect(m_frontend, &AbstractFrontend::stopPractice, this, &PracticeStateMachine::slotPracticeFinished);
+    connect(m_frontend, &AbstractFrontend::hintAction, m_mode, &AbstractBackendMode::hintAction);
 
-    connect(m_frontend, SIGNAL(continueAction()), this, SLOT(continueAction()));
+    connect(m_frontend, &AbstractFrontend::continueAction, this, &PracticeStateMachine::continueAction);
 
-    connect(m_mode, SIGNAL(answerRight()), this, SLOT(answerRight()));
-    connect(m_mode, SIGNAL(answerWrongRetry()), this, SLOT(answerWrongRetry()));
-    connect(m_mode, SIGNAL(answerWrongShowSolution()), this, SLOT(answerWrongShowSolution()));
-    connect(m_mode, SIGNAL(showSolution()), this, SLOT(showSolution()));
+    connect(m_mode, &AbstractBackendMode::answerRight, this, &PracticeStateMachine::answerRight);
+    connect(m_mode, &AbstractBackendMode::answerWrongRetry, this, &PracticeStateMachine::answerWrongRetry);
+    connect(m_mode, &AbstractBackendMode::answerWrongShowSolution, this, &PracticeStateMachine::answerWrongShowSolution);
+    connect(m_mode, &AbstractBackendMode::showSolution, this, &PracticeStateMachine::showSolution);
 }
 
 void PracticeStateMachine::createPracticeMode()

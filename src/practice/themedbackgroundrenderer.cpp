@@ -32,7 +32,7 @@ ThemedBackgroundRenderer::ThemedBackgroundRenderer(QObject* parent, const QStrin
     m_cache.setSaveFilename(QStandardPaths::writableLocation(QStandardPaths::DataLocation) + '/' + cacheFilename);
     m_timer.setSingleShot(true);
     m_timer.setInterval(1000);
-    connect(&m_timer, SIGNAL(timeout()), this, SLOT(updateBackgroundTimeout()));
+    connect(&m_timer, &QTimer::timeout, this, &ThemedBackgroundRenderer::updateBackgroundTimeout);
     connect(&m_watcher, SIGNAL(finished()), this, SLOT(renderingFinished()));
 }
 

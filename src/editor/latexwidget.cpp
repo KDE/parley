@@ -34,8 +34,8 @@ LatexWidget::LatexWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget 
     LatexDelegate *delegate = new LatexDelegate(this);
     delegate->setMathModeCheckBox(mathModeCheckBox);
     m_mapper->setItemDelegate(delegate);
-    connect(mathModeCheckBox, SIGNAL(stateChanged(int)), this, SLOT(checkBoxToggled()));
-    connect(lineEdit, SIGNAL(editingFinished()), this, SLOT(updateLatex()), Qt::QueuedConnection);
+    connect(mathModeCheckBox, &QCheckBox::stateChanged, this, &LatexWidget::checkBoxToggled);
+    connect(lineEdit, &QLineEdit::editingFinished, this, &LatexWidget::updateLatex, Qt::QueuedConnection);
 }
 
 LatexWidget::~LatexWidget()

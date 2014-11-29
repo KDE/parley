@@ -34,14 +34,13 @@ BrowserWidget::BrowserWidget(QWidget *parent) : QWidget(parent)
     widget->setLayout(layout);
     layout->addWidget(m_htmlPart->widget());
 
-    connect(m_htmlPart->browserExtension(),
-            SIGNAL(openUrlRequest(const QUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)),
+    connect(m_htmlPart->browserExtension(), SIGNAL(openUrlRequest(const QUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)),
             this, SLOT(openUrl(const QUrl&)));
 
-    connect(showCurrentButton, SIGNAL(clicked()), SLOT(showCurrentTranslation()));
+    connect(showCurrentButton, &QPushButton::clicked, this, &BrowserWidget::showCurrentTranslation);
 
     setupProviders();
-    connect(providerComboBox, SIGNAL(currentIndexChanged(int)), SLOT(providerChanged(int)));
+    connect(providerComboBox, static_cast<void (KComboBox::*)(int)>(&KComboBox::currentIndexChanged), this, &BrowserWidget::providerChanged);
 
     m_htmlPart->setJavaEnabled(false);
     m_htmlPart->setPluginsEnabled(false);

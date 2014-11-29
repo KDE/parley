@@ -35,7 +35,7 @@ WrittenPracticeWidget::WrittenPracticeWidget(GuiFrontend *frontend, QWidget *par
     m_ui->setupUi(this);
     m_ui->mixedSolutionLabel->setVisible(false);
     this->isExampleSentenceMode = isExampleSentenceMode;
-    connect(m_ui->answerEdit, SIGNAL(returnPressed()), this, SLOT(continueClicked()));
+    connect(m_ui->answerEdit, &QLineEdit::returnPressed, this, &WrittenPracticeWidget::continueClicked);
     connect(frontend, SIGNAL(continueAction()), this, SIGNAL(stopAudio()));
     connect(frontend, SIGNAL(skipAction()), this, SIGNAL(stopAudio()));
 }

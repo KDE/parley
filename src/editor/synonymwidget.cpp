@@ -30,7 +30,7 @@ SynonymWidget::SynonymWidget(SynonymWidgetType type, QWidget *parent) : QWidget(
     m_lastTranslation = 0;
     setupUi(this);
 
-    connect(synonymButton, SIGNAL(clicked()), SLOT(togglePair()));
+    connect(synonymButton, &QPushButton::clicked, this, &SynonymWidget::togglePair);
     m_listModel = new QStringListModel(this);     listView->setModel(m_listModel);
 
     updateList();

@@ -28,8 +28,8 @@ AudioWidget::AudioWidget(QWidget *parent) : QWidget(parent)
     m_currentTranslation = -1;
     m_player = 0;
 
-    connect(audioUrlRequester, SIGNAL(textChanged(const QString&)), SLOT(slotAudioFileChanged(const QString&)));
-    connect(playButton, SIGNAL(clicked()), SLOT(playAudio()));
+    connect(audioUrlRequester, &KUrlRequester::textChanged, this, &AudioWidget::slotAudioFileChanged);
+    connect(playButton, &QPushButton::clicked, this, &AudioWidget::playAudio);
 //     connect(recordButton, SIGNAL(clicked()), SLOT(recordAudio()));
 
     playButton->setEnabled(false);

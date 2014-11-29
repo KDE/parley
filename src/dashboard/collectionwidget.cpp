@@ -196,8 +196,8 @@ void CollectionWidget::setupWidget(WordCount *dueWords)
     buttonLayout->addWidget(m_practiceButton);
     buttonLayout->addItem(new QSpacerItem(20, 20));
 
-    connect(m_practiceButton, SIGNAL(clicked()), this, SIGNAL(practiceButtonClicked()));
-    connect(m_removeButton,   SIGNAL(clicked()), this, SIGNAL(removeButtonClicked()));
+    connect(m_practiceButton, &QPushButton::clicked, this, &CollectionWidget::practiceButtonClicked);
+    connect(m_removeButton, &RemoveButton::clicked, this, &CollectionWidget::removeButtonClicked);
 }
 
 

@@ -147,8 +147,8 @@ QList<TestEntry*> EntryFilter::entries(bool showDialog)
         m_dialog->setLayout( layout );
         m_dialog->setWindowTitle(i18n("Start Practice"));
 
-        connect(m_button_dialog, SIGNAL(accepted()), m_dialog, SLOT(accept()));
-        connect(m_button_dialog, SIGNAL(rejected()), m_dialog, SLOT(reject()));
+        connect(m_button_dialog, &QDialogButtonBox::accepted, m_dialog, &QDialog::accept);
+        connect(m_button_dialog, &QDialogButtonBox::rejected, m_dialog, &QDialog::reject);
 
 
         int numEntries = m_entries[0].count() + m_entries[1].count();

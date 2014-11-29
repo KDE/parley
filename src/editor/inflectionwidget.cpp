@@ -40,17 +40,17 @@ InflectionWidget::InflectionWidget(QWidget* parent): QStackedWidget(parent)
 
     QPushButton *toVerb = new QPushButton(i18n("Verb"));
     toVerb->setObjectName("toVerb");
-    connect(toVerb, SIGNAL(pressed()), this, SLOT(setWordType()));
+    connect(toVerb, &QPushButton::pressed, this, &InflectionWidget::setWordType);
     wordTypeLayout->addWidget(toVerb, 1);
 
     QPushButton *toNoun = new QPushButton(i18n("Noun"));
     toNoun->setObjectName("toNoun");
-    connect(toNoun, SIGNAL(pressed()), this, SLOT(setWordType()));
+    connect(toNoun, &QPushButton::pressed, this, &InflectionWidget::setWordType);
     wordTypeLayout->addWidget(toNoun, 1);
 
     QPushButton *toAdjective = new QPushButton(i18n("Adjective"));
     toAdjective->setObjectName("toAdjective");
-    connect(toAdjective, SIGNAL(pressed()), this, SLOT(setWordType()));
+    connect(toAdjective, &QPushButton::pressed, this, &InflectionWidget::setWordType);
     wordTypeLayout->addWidget(toAdjective, 1);
 
     wordTypeLayout->addStretch();
@@ -134,8 +134,8 @@ void InflectionWidget::setWordType()
         dialog->setLayout( layout );
         dialog->setWindowTitle(i18n("Please select the noun's gender"));
 
-        connect(getGenderDialog, SIGNAL(accepted()), dialog, SLOT(accept()));
-        connect(getGenderDialog, SIGNAL(rejected()), dialog, SLOT(reject()));
+        connect(getGenderDialog.data(), &QDialogButtonBox::accepted, dialog.data(), &QDialog::accept);
+        connect(getGenderDialog.data(), &QDialogButtonBox::rejected, dialog.data(), &QDialog::reject);
 
         if (dialog->exec() == QDialog::Accepted) {
             type = (KEduVocWordFlags)(type | genderComboBox->itemData(genderComboBox->currentIndex()).toInt());

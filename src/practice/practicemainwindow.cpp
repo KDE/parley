@@ -55,8 +55,8 @@ PracticeMainWindow::PracticeMainWindow(SessionManagerBase* sessionManager,
 
     initActions();
 
-    connect(this, SIGNAL(enterPressed()), m_guiFrontend, SIGNAL(continueAction()));
-    connect(m_stateMachine, SIGNAL(practiceFinished()), this, SLOT(practiceFinished()));
+    connect(this, &PracticeMainWindow::enterPressed, m_guiFrontend, &GuiFrontend::continueAction);
+    connect(m_stateMachine, &PracticeStateMachine::practiceFinished, this, &PracticeMainWindow::practiceFinished);
 
     KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
     applyMainWindowSettings(cfg);
@@ -82,7 +82,7 @@ void PracticeMainWindow::initActions()
     stopPracticeAction->setIcon(QIcon::fromTheme("practice-stop"));
     stopPracticeAction->setToolTip(i18n("Stop practicing"));
     actionCollection()->addAction("practice_stop", stopPracticeAction);
-    connect(stopPracticeAction, SIGNAL(triggered()), m_stateMachine, SLOT(slotPracticeFinished()));
+    connect(stopPracticeAction, &QAction::triggered, m_stateMachine, &PracticeStateMachine::slotPracticeFinished);
 
     m_fullScreenAction = KStandardAction::fullScreen(this,
                          SLOT(toggleFullScreenMode(bool)),
@@ -94,7 +94,7 @@ void PracticeMainWindow::initActions()
     toggleAnswerState->setToolTip(i18n("When you answered, Parley will display that the answer was right or wrong.\nThis shortcut changes how the answer is counted."));
     actionCollection()->addAction("toggle_answer_state", toggleAnswerState);
     toggleAnswerState->setShortcut(Qt::CTRL + Qt::Key_Space);
-    connect(toggleAnswerState, SIGNAL(triggered()), m_guiFrontend, SLOT(toggleResultState()));
+    connect(toggleAnswerState, &QAction::triggered, m_guiFrontend, &GuiFrontend::toggleResultState);
 
     //m_floatingToolBar now a child of m_mainWindow and will be deleted with its parent
     m_floatingToolBar = new QWidget(m_mainWindow);

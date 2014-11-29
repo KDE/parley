@@ -96,22 +96,14 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
     actionCollapseAll->setToolTip(actionCollapseAll->whatsThis());
     actionCollapseAll->setStatusTip(actionCollapseAll->whatsThis());
 
-    connect(actionNewLesson, SIGNAL(triggered()),
-            SLOT(slotCreateNewLesson()));
-    connect(actionRenameLesson, SIGNAL(triggered()),
-            SLOT(slotRename()));
-    connect(actionDeleteLesson, SIGNAL(triggered()),
-            SLOT(slotDeleteLesson()));
-    connect(actionSplitLesson, SIGNAL(triggered()),
-            SLOT(slotSplitLesson()));
-    connect(actionRemoveGradesLesson, SIGNAL(triggered()),
-            SLOT(slotRemoveGradesLesson()));
-    connect(actionRemoveGradesLessonChildren, SIGNAL(triggered()),
-            SLOT(slotRemoveGradesLessonChildren()));
-    connect(actionExpandAll, SIGNAL(triggered()),
-            SLOT(expandAllLesson()));
-    connect(actionCollapseAll, SIGNAL(triggered()),
-            SLOT(collapseAllLesson()));
+    connect(actionNewLesson, &QAction::triggered, this, &LessonView::slotCreateNewLesson);
+    connect(actionRenameLesson, &QAction::triggered, this, &LessonView::slotRename);
+    connect(actionDeleteLesson, &QAction::triggered, this, &LessonView::slotDeleteLesson);
+    connect(actionSplitLesson, &QAction::triggered, this, &LessonView::slotSplitLesson);
+    connect(actionRemoveGradesLesson, &QAction::triggered, this, &LessonView::slotRemoveGradesLesson);
+    connect(actionRemoveGradesLessonChildren, &QAction::triggered, this, &LessonView::slotRemoveGradesLessonChildren);
+    connect(actionExpandAll, &QAction::triggered, this, &LessonView::expandAllLesson);
+    connect(actionCollapseAll, &QAction::triggered, this, &LessonView::collapseAllLesson);
 
     // right cick menu for the lesson view:
     addAction(actionNewLesson);

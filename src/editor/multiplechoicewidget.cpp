@@ -32,13 +32,13 @@ MultipleChoiceWidget::MultipleChoiceWidget(QWidget *parent) : QWidget(parent)
 {
     setupUi(this);
 
-    connect(addChoiceButton, SIGNAL(clicked()), SLOT(slotAddChoiceButton()));
-    connect(removeChoiceButton, SIGNAL(clicked()), SLOT(slotRemoveChoiceButton()));
+    connect(addChoiceButton, &QPushButton::clicked, this, &MultipleChoiceWidget::slotAddChoiceButton);
+    connect(removeChoiceButton, &QPushButton::clicked, this, &MultipleChoiceWidget::slotRemoveChoiceButton);
 
     m_choicesModel = new QStringListModel(this);
     multipleChoiceListView->setModel(m_choicesModel);
 
-    connect(m_choicesModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), SLOT(slotDataChanged(const QModelIndex &, const QModelIndex &)));
+    connect(m_choicesModel, &QStringListModel::dataChanged, this, &MultipleChoiceWidget::slotDataChanged);
 
     multipleChoiceListView->setAcceptDrops(true);
     multipleChoiceListView->installEventFilter(this);

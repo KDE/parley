@@ -28,7 +28,7 @@ ImageChooserWidget::ImageChooserWidget(QWidget *parent) : QWidget(parent)
     setupUi(this);
     m_currentTranslation = -1;
 
-    connect(imageUrlRequester, SIGNAL(textChanged(const QString&)), SLOT(slotImageChanged(const QString&)));
+    connect(imageUrlRequester, &KUrlRequester::textChanged, this, &ImageChooserWidget::slotImageChanged);
 
     imageWidget->setAcceptDrops(true);
     imageWidget->installEventFilter(this);

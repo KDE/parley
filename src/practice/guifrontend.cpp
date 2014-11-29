@@ -46,18 +46,18 @@ GuiFrontend::GuiFrontend(QWidget* parent)
 
     m_themedBackgroundRenderer = new ThemedBackgroundRenderer(this, "practicethemecache.bin");
 
-    connect(Prefs::self(), SIGNAL(configChanged()), this, SLOT(setTheme()));
+    connect(Prefs::self(), &Prefs::configChanged, this, &GuiFrontend::setTheme);
     setTheme();
 
-    connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)), this, SLOT(backgroundChanged(QPixmap)));
-    connect(m_widget, SIGNAL(sizeChanged()), this, SLOT(updateBackground()));
+    connect(m_themedBackgroundRenderer, &ThemedBackgroundRenderer::backgroundChanged, this, &GuiFrontend::backgroundChanged);
+    connect(m_widget, &ImageWidget::sizeChanged, this, &GuiFrontend::updateBackground);
 
-    connect(m_ui->continueButton, SIGNAL(clicked()), this, SIGNAL(continueAction()));
-    connect(m_ui->answerLaterButton, SIGNAL(clicked()), this, SIGNAL(skipAction()));
-    connect(m_ui->hintButton, SIGNAL(clicked()), this, SIGNAL(hintAction()));
-    connect(m_ui->statusToggle, SIGNAL(toggle()), this, SLOT(toggleResultState()));
-    connect(m_ui->countAsCorrectButton, SIGNAL(clicked()), this, SLOT(countAsCorrectButtonClicked()));
-    connect(m_ui->countAsWrongButton, SIGNAL(clicked()), this, SLOT(countAsWrongButtonClicked()));
+    connect(m_ui->continueButton, &QPushButton::clicked, this, &GuiFrontend::continueAction);
+    connect(m_ui->answerLaterButton, &QPushButton::clicked, this, &GuiFrontend::skipAction);
+    connect(m_ui->hintButton, &QPushButton::clicked, this, &GuiFrontend::hintAction);
+    connect(m_ui->statusToggle, &Practice::StatusToggle::toggle, this, &GuiFrontend::toggleResultState);
+    connect(m_ui->countAsCorrectButton, &QPushButton::clicked, this, &GuiFrontend::countAsCorrectButtonClicked);
+    connect(m_ui->countAsWrongButton, &QPushButton::clicked, this, &GuiFrontend::countAsWrongButtonClicked);
 
     m_ui->centralPracticeWidget->installEventFilter(this);
     m_ui->imageWidget->installEventFilter(this);

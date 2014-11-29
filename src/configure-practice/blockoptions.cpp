@@ -77,23 +77,23 @@ static ListRef date_itemlist [] = {
 BlockOptions::BlockOptions(QWidget* parent): QWidget(parent)
 {
     setupUi(this);
-    connect(expire1, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-    connect(block1, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-    connect(expire2, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-    connect(block2, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-    connect(expire3, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-    connect(block3, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-    connect(expire4, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-    connect(block4, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-    connect(expire5, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-    connect(block5, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-    connect(expire6, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-    connect(block6, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-    connect(expire7, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-    connect(block7, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
+    connect(expire1, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &BlockOptions::slotComboBoxActivated);
+    connect(block1, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &BlockOptions::slotComboBoxActivated);
+    connect(expire2, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &BlockOptions::slotComboBoxActivated);
+    connect(block2, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &BlockOptions::slotComboBoxActivated);
+    connect(expire3, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &BlockOptions::slotComboBoxActivated);
+    connect(block3, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &BlockOptions::slotComboBoxActivated);
+    connect(expire4, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &BlockOptions::slotComboBoxActivated);
+    connect(block4, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &BlockOptions::slotComboBoxActivated);
+    connect(expire5, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &BlockOptions::slotComboBoxActivated);
+    connect(block5, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &BlockOptions::slotComboBoxActivated);
+    connect(expire6, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &BlockOptions::slotComboBoxActivated);
+    connect(block6, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &BlockOptions::slotComboBoxActivated);
+    connect(expire7, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &BlockOptions::slotComboBoxActivated);
+    connect(block7, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &BlockOptions::slotComboBoxActivated);
 
-    connect(kcfg_Block, SIGNAL(toggled(bool)), this, SLOT(slotBlockToggled(bool)));
-    connect(kcfg_Expire, SIGNAL(toggled(bool)), this, SLOT(slotExpireToggled(bool)));
+    connect(kcfg_Block, &QCheckBox::toggled, this, &BlockOptions::slotBlockToggled);
+    connect(kcfg_Expire, &QCheckBox::toggled, this, &BlockOptions::slotExpireToggled);
 
     fillWidgets();
     updateWidgets();

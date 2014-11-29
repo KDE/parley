@@ -29,9 +29,9 @@ ComparisonModeWidget::ComparisonModeWidget(GuiFrontend *frontend, QWidget* paren
     m_ui = new Ui::ComparisonPracticeWidget();
     m_ui->setupUi(this);
 
-    connect(m_ui->absoluteEdit, SIGNAL(returnPressed(QString)), this, SLOT(nextComparisonForm()));
-    connect(m_ui->comparativeEdit, SIGNAL(returnPressed(QString)), this, SLOT(nextComparisonForm()));
-    connect(m_ui->superlativeEdit, SIGNAL(returnPressed(QString)), this, SLOT(nextComparisonForm()));
+    connect(m_ui->absoluteEdit, &QLineEdit::returnPressed, this, &ComparisonModeWidget::nextComparisonForm);
+    connect(m_ui->comparativeEdit, &QLineEdit::returnPressed, this, &ComparisonModeWidget::nextComparisonForm);
+    connect(m_ui->superlativeEdit, &QLineEdit::returnPressed, this, &ComparisonModeWidget::nextComparisonForm);
 
     m_ui->absoluteSolutionLabel->setPalette(m_correctPalette);
     m_ui->comparativeSolutionLabel->setPalette(m_correctPalette);

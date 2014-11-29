@@ -18,7 +18,7 @@ VocabularyHeaderView::VocabularyHeaderView(Qt::Orientation orientation, QWidget 
     : QHeaderView(orientation, parent)
 {
     setSectionsClickable(true);
-    connect(this, SIGNAL(sectionClicked(int)), this, SLOT(updateSorting(int)));
+    connect(this, &VocabularyHeaderView::sectionClicked, this, &VocabularyHeaderView::updateSorting);
     m_sortSection = -1;
 }
 

@@ -24,7 +24,7 @@ AudioButton::AudioButton(QWidget *parent)
     QIcon setIcon(QIcon::fromTheme("media-playback-start"));
     setText(i18n("Play"));
     setToolTip(i18n("Play"));
-    connect(this, SIGNAL(clicked(bool)), this, SLOT(playAudio()));
+    connect(this, &AudioButton::clicked, this, &AudioButton::playAudio);
     connect(parent, SIGNAL(stopAudio()), this, SLOT(stopAudio()));
 }
 
@@ -38,7 +38,7 @@ void AudioButton::playAudio()
 {
     if (!m_player) {
         m_player = new QMediaPlayer( this );
-        connect(m_player, SIGNAL(stateChanged(QMediaPlayer::State, QMediaPlayer::State)), this, SLOT(playerStateChanged(QMediaPlayer::State)));
+        connect(m_player, &QMediaPlayer::stateChanged, this, &AudioButton::playerStateChanged);
     } else {
         if (m_player->state() == QMediaPlayer::PlayingState) {
             m_player->stop();

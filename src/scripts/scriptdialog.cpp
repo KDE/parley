@@ -49,8 +49,8 @@ ScriptDialog::ScriptDialog(ScriptManager * scriptManager)
 
     setLayout( layout );
 
-    connect(button_dialog, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(button_dialog, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(button_dialog, &QDialogButtonBox::accepted, this, &ScriptDialog::accept);
+    connect(button_dialog, &QDialogButtonBox::rejected, this, &ScriptDialog::reject);
 
     //Load available plugins
     pluginsInfoList = KPluginInfo::fromFiles(ScriptManager::getDesktopFiles());

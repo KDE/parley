@@ -39,7 +39,7 @@ StatusToggle::StatusToggle(QWidget* parent)
     m_toggle->setScalingEnabled(false);
     m_toggle->move(width() - m_toggle->width(), height() - m_toggle->height());
 
-    connect(m_toggle, SIGNAL(clicked()), this, SIGNAL(toggle()));
+    connect(m_toggle, &StatusToggleButton::clicked, this, &StatusToggle::toggle);
 }
 
 void StatusToggle::setRenderer(ThemedBackgroundRenderer *renderer)

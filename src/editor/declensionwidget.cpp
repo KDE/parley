@@ -35,9 +35,9 @@ DeclensionWidget::DeclensionWidget(QWidget *parent) : QWidget(parent)
     numberSelection->setItemData(0, KEduVocWordFlag::Singular);
     numberSelection->setItemData(1, KEduVocWordFlag::Dual);
     numberSelection->setItemData(2, KEduVocWordFlag::Plural);
-    connect(numberSelection, SIGNAL(currentIndexChanged(int)), this, SLOT(updateEntries()));
+    connect(numberSelection, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &DeclensionWidget::updateEntries);
 
-    connect(nextButton, SIGNAL(clicked(bool)), this, SLOT(nextNumber()));
+    connect(nextButton, &QPushButton::clicked, this, &DeclensionWidget::nextNumber);
 
     setupLineEdits();
 

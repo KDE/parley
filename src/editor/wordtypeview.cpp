@@ -157,12 +157,9 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
     m_actionSpecialTypeMenu->addAction(m_verbAction);
     m_actionSpecialTypeMenu->addAction(m_conjunctionAction);
 
-    connect(m_actionNewWordType, SIGNAL(triggered()),
-            SLOT(slotCreateNewWordType()));
-    connect(m_actionRenameWordType, SIGNAL(triggered()),
-            SLOT(slotRename()));
-    connect(m_actionDeleteWordType, SIGNAL(triggered()),
-            SLOT(slotDeleteWordType()));
+    connect(m_actionNewWordType, &QAction::triggered, this, &WordTypeView::slotCreateNewWordType);
+    connect(m_actionRenameWordType, &QAction::triggered, this, &WordTypeView::slotRename);
+    connect(m_actionDeleteWordType, &QAction::triggered, this, &WordTypeView::slotDeleteWordType);
 
     // right cick menu for the WordType view:
     addAction(m_actionNewWordType);
@@ -176,24 +173,15 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
     addAction(separator);
     addAction(m_actionSpecialTypeMenu);
 
-    connect(m_noneAction, SIGNAL(triggered()),
-            SLOT(setWordTypeNone()));
-    connect(m_nounAction, SIGNAL(triggered()),
-            SLOT(setWordTypeNoun()));
-    connect(m_nounMaleAction, SIGNAL(triggered()),
-            SLOT(setWordTypeNounMale()));
-    connect(m_nounFemaleAction, SIGNAL(triggered()),
-            SLOT(setWordTypeNounFemale()));
-    connect(m_nounNeutralAction, SIGNAL(triggered()),
-            SLOT(setWordTypeNounNeutral()));
-    connect(m_adjectiveAction, SIGNAL(triggered()),
-            SLOT(setWordTypeAdjective()));
-    connect(m_adverbAction, SIGNAL(triggered()),
-            SLOT(setWordTypeAdverb()));
-    connect(m_verbAction, SIGNAL(triggered()),
-            SLOT(setWordTypeVerb()));
-    connect(m_conjunctionAction, SIGNAL(triggered()),
-            SLOT(setWordTypeConjunction()));
+    connect(m_noneAction, &QAction::triggered, this, &WordTypeView::setWordTypeNone);
+    connect(m_nounAction, &QAction::triggered, this, &WordTypeView::setWordTypeNoun);
+    connect(m_nounMaleAction, &QAction::triggered, this, &WordTypeView::setWordTypeNounMale);
+    connect(m_nounFemaleAction, &QAction::triggered, this, &WordTypeView::setWordTypeNounFemale);
+    connect(m_nounNeutralAction, &QAction::triggered, this, &WordTypeView::setWordTypeNounNeutral);
+    connect(m_adjectiveAction, &QAction::triggered, this, &WordTypeView::setWordTypeAdjective);
+    connect(m_adverbAction, &QAction::triggered, this, &WordTypeView::setWordTypeAdverb);
+    connect(m_verbAction, &QAction::triggered, this, &WordTypeView::setWordTypeVerb);
+    connect(m_conjunctionAction, &QAction::triggered, this, &WordTypeView::setWordTypeConjunction);
 }
 
 void WordTypeView::setTranslation(KEduVocExpression * entry, int translation)

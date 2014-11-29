@@ -28,8 +28,8 @@ ConjugationWidget::ConjugationWidget(QWidget *parent) : QWidget(parent)
 
     setupUi(this);
 
-    connect(nextTenseButton, SIGNAL(clicked()), SLOT(slotNextTense()));
-    connect(tenseComboBox, SIGNAL(activated(int)), SLOT(slotTenseSelected(int)));
+    connect(nextTenseButton, &QPushButton::clicked, this, &ConjugationWidget::slotNextTense);
+    connect(tenseComboBox, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &ConjugationWidget::slotTenseSelected);
     connect(tenseComboBox->lineEdit(), SIGNAL(editingFinished()), SLOT(tenseEditingFinished()));
 
     m_conjugationLineEdits[KEduVocWordFlag::First | KEduVocWordFlag::Singular]

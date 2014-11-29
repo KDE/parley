@@ -79,17 +79,17 @@ FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, int fromIdentifier, int t
 
     setupUi(this);
 
-    connect(fauxami_line, SIGNAL(textChanged(const QString&)), this, SLOT(slotFalseFriendChanged(const QString &)));
+    connect(fauxami_line, &QLineEdit::textChanged, this, &FromToEntryPage::slotFalseFriendChanged);
 
-    connect(never, SIGNAL(clicked()), this, SLOT(slotNever()));
-    connect(today, SIGNAL(clicked()), this, SLOT(slotToday()));
-    connect(gradebox, SIGNAL(activated(int)), this, SLOT(slotGradeSelected(int)));
+    connect(never, &QPushButton::clicked, this, &FromToEntryPage::slotNever);
+    connect(today, &QPushButton::clicked, this, &FromToEntryPage::slotToday);
+    connect(gradebox, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &FromToEntryPage::slotGradeSelected);
 
-    connect(queryDateEdit, SIGNAL(dateChanged(const QDate &)), this, SLOT(slotDateChanged(const QDate &)));
-    connect(totalCountEdit, SIGNAL(valueChanged(int)), this, SLOT(totalCountChanged(int)));
-    connect(badCountEdit, SIGNAL(valueChanged(int)), this, SLOT(badCountChanged(int)));
+    connect(queryDateEdit, &QDateEdit::dateChanged, this, &FromToEntryPage::slotDateChanged);
+    connect(totalCountEdit, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &FromToEntryPage::totalCountChanged);
+    connect(badCountEdit, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &FromToEntryPage::badCountChanged);
 
-    connect(resetGradesButton, SIGNAL(clicked()), SLOT(slotResetGrades()));
+    connect(resetGradesButton, &QPushButton::clicked, this, &FromToEntryPage::slotResetGrades);
 
     for (int i = 0; i <= KV_MAX_GRADE; i++) {
         gradebox->addItem(gradeToString(i));

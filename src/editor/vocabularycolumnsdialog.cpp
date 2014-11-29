@@ -64,8 +64,8 @@ VocabularyColumnsDialog::VocabularyColumnsDialog(KEduVocDocument *doc, QWidget *
 
     setLayout( layout );
 
-    connect(button_dialog, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(button_dialog, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(button_dialog, &QDialogButtonBox::accepted, this, &VocabularyColumnsDialog::accept);
+    connect(button_dialog, &QDialogButtonBox::rejected, this, &VocabularyColumnsDialog::reject);
 
     KTitleWidget *titleWidget = new KTitleWidget(this);
     titleWidget->setText(i18n("Enable/Disable the columns for each language"));

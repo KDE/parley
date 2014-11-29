@@ -30,11 +30,11 @@ ComparisonWidget::ComparisonWidget(QWidget *parent) : QWidget(parent)
 
     m_doc = 0;
 
-    connect(makeAdjectiveButton, SIGNAL(clicked()), SLOT(slotMakeAdjectiveButton()));
-    connect(makeAdverbButton, SIGNAL(clicked()), SLOT(slotMakeAdverbButton()));
+    connect(makeAdjectiveButton, &QPushButton::clicked, this, &ComparisonWidget::slotMakeAdjectiveButton);
+    connect(makeAdverbButton, &QPushButton::clicked, this, &ComparisonWidget::slotMakeAdverbButton);
 
-    connect(comparativeLineEdit, SIGNAL(editingFinished()), SLOT(slotComparativeChanged()));
-    connect(superlativeLineEdit, SIGNAL(editingFinished()), SLOT(slotSuperlativeChanged()));
+    connect(comparativeLineEdit, &QLineEdit::editingFinished, this, &ComparisonWidget::slotComparativeChanged);
+    connect(superlativeLineEdit, &QLineEdit::editingFinished, this, &ComparisonWidget::slotSuperlativeChanged);
 }
 
 void ComparisonWidget::setTranslation(KEduVocExpression * entry, int translation)
