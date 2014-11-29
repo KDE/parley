@@ -34,6 +34,10 @@ NOTE:  DO NOT CHANGE THESE IN MASTER.
  * Misfeatures
     + Make it possible to click anywhere in a collection widget		----
       in the dashboard.
+    + Unify color handling in the dashboard				----
+       - Add a color for pregrades
+    + Make the number of collections per line dynamic, depending	----
+      on how wide the window is.
 
  * Normal bugzilla bugs
     + Vocabulary does not expire                                        ----
@@ -45,7 +49,8 @@ NOTE:  DO NOT CHANGE THESE IN MASTER.
     + ...
 
  * Bugs without a bugzilla bug
-    + ...
+    + When the dashboard is updated with F5 and goes from 0 words due	----
+      to >0 then the text is still "practice anyway".
 
 
 ================================================================
