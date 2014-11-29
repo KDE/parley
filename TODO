@@ -3,7 +3,8 @@
 
 
 ================================================================
-Before the 4.14 release (bugs).
+Time frame: ASAP
+
 NOTE:  DO NOT CHANGE THESE IN MASTER.
        Instead, change them in the branch and merge the branch into master.
 
@@ -31,9 +32,8 @@ NOTE:  DO NOT CHANGE THESE IN MASTER.
     + ...
 
  * Misfeatures
-    + There seems to be no way to change the title.                     ----
-      It works in the editor but it is never saved.
-      Note: It can be changed in the menu, though.
+    + Make it possible to click anywhere in a collection widget		----
+      in the dashboard.
 
  * Normal bugzilla bugs
     + Vocabulary does not expire                                        ----
@@ -49,7 +49,7 @@ NOTE:  DO NOT CHANGE THESE IN MASTER.
 
 
 ================================================================
-Before the 14.12 freeze (features).  These are picked from the ones below.
+Before the 15.04 freeze (features).  These are picked from the ones below.
 
 
  * Editor
