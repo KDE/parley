@@ -49,7 +49,7 @@ NOTE:  DO NOT CHANGE THESE IN MASTER.
     + ...
 
  * Bugs without a bugzilla bug
-    + When the dashboard is updated with F5 and goes from 0 words due	----
+    + When the dashboard is updated with F5 and goes from 0 words due	Done
       to >0 then the text is still "practice anyway".
 
 

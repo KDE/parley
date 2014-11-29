@@ -119,6 +119,13 @@ void CollectionWidget::updateDue()
     WordCount  due;
     m_collection->numDueWords(due);
     m_barWidget->setDue(due);
+
+    if (due.totalWords == 0 /* && due->percentageCompleted < 100*/) {
+        m_practiceButton->setText(i18n("Practice Anyway"));
+    }
+    else {
+        m_practiceButton->setText(i18n("Practice"));
+    }
 }
 
 
@@ -193,15 +200,5 @@ void CollectionWidget::fillWidget()
 {
     m_titleLabel->setText(m_collection->eduVocDocument()->title());
 
-    // We could call updateDue() but we need the the other fields of 'due' too.
-    WordCount  due;
-    m_collection->numDueWords(due);
-    m_barWidget->setDue(due);
-
-    if (due.totalWords == 0 /* && due->percentageCompleted < 100*/) {
-        m_practiceButton->setText(i18n("Practice Anyway"));
-    }
-    else {
-        m_practiceButton->setText(i18n("Practice"));
-    }
+    updateDue();
 }
