@@ -428,8 +428,10 @@ void GuiFrontend::setTheme()
     m_ui->statusToggle->setRenderer(m_themedBackgroundRenderer);
 }
 
-void GuiFrontend::modeWidgetDestroyed(QObject * obj)
+void GuiFrontend::modeWidgetDestroyed(QObject *obj)
 {
+    Q_UNUSED(obj);
+
     if (m_modeWidget) {
         m_modeWidget->objectDestroyed();
     }

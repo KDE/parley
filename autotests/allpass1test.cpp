@@ -61,7 +61,7 @@ void AllPass1Test::testAlwaysPass2()
     QCOMPARE( docError, int( KEduVocDocument::NoError ) );
 
     KUrl kurl = KUrl::fromPath(tempfile.fileName() );
-    ParleyDocument *doc = new ParleyDocument(0);
+    //ParleyDocument *doc = new ParleyDocument(0);
 
     QCOMPARE( true,  true );
 }
