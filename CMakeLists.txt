@@ -20,7 +20,6 @@ find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED
   Svg
   Concurrent
   Multimedia
-  Test
 )
 
 set(REQUIRED_KF5_VERSION "4.96.0")
@@ -100,6 +99,7 @@ set( parley_LINK_LIBS
   Qt5::Concurrent
   Qt5::Multimedia
   KF5::Notifications
+  KF5::Crash
 )
 
 message(STATUS "cmake cflags ${CMAKE_C_FLAGS}")
