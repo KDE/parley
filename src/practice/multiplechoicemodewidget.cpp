@@ -53,6 +53,9 @@ void MultiplechoiceModeWidget::setQuestionFont(const QFont& font)
 void MultiplechoiceModeWidget::setSolutionFont(const QFont& font)
 {
     m_solutionFont = font;
+    foreach(QRadioButton * radio, m_choiceButtons) {
+        radio->setFont(m_solutionFont);
+    }
 }
 
 void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
