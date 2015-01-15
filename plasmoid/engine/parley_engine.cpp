@@ -107,4 +107,3 @@ bool ParleyEngine::updateSourceEvent(const QString &source)
     return true;
 }
 
-#include "parley_engine.moc"

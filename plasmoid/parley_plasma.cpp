@@ -282,4 +282,3 @@ void ParleyPlasma::hoverLeaveEvent(QGraphicsSceneHoverEvent  * event)
     Plasma::Applet::hoverLeaveEvent(event);
 }
 
-#include "parley_plasma.moc"

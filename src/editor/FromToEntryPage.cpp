@@ -266,5 +266,4 @@ void FromToEntryPage::slotResetGrades()
 }
 
 
-#include "FromToEntryPage.moc"
 
