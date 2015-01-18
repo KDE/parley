@@ -86,7 +86,7 @@ void LessonModel::splitLesson(const QModelIndex& containerIndex, int entriesPerL
         return;
     }
 
-    if (!static_cast<KEduVocContainer*>(containerIndex.internalPointer())->containerType() == KEduVocContainer::Lesson) {
+    if (static_cast<KEduVocContainer*>(containerIndex.internalPointer())->containerType() != KEduVocContainer::Lesson) {
         return;
     }
 
