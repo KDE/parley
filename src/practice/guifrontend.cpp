@@ -147,7 +147,7 @@ void GuiFrontend::showGrade(int preGrade, int grade)
 void GuiFrontend::showQuestion()
 {
     m_ui->answerLaterButton->setEnabled(true);
-    m_ui->hintButton->setEnabled(true);
+    m_ui->hintButton->setEnabled(Prefs::showHints());
     QTimer::singleShot(0, m_ui->continueButton, SLOT(setFocus()));
     m_modeWidget->showQuestion();
     setImage(m_questionImage);
