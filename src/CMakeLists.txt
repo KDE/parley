@@ -22,11 +22,6 @@ set(parley_LIB_SRCS
     collection/vocabularyfilter.cpp
     collection/wordclassmodel.cpp
     collection/containerview.cpp
-    configure-practice/configurepracticedialog.cpp
-    configure-practice/generalpracticeoptions.cpp
-    configure-practice/blockoptions.cpp
-    configure-practice/thresholdoptions.cpp
-    configure-practice/specificpracticeoptions.cpp
     editor/editor.cpp
     editor/vocabularycolumnsdialog.cpp
     editor/lessonview.cpp
@@ -78,6 +73,11 @@ set(parley_LIB_SRCS
     practice/statustoggle.cpp
     practice/statustogglebutton.cpp
     practice/latexrenderer.cpp
+    practice/configure/configurepracticedialog.cpp
+    practice/configure/generalpracticeoptions.cpp
+    practice/configure/blockoptions.cpp
+    practice/configure/thresholdoptions.cpp
+    practice/configure/specificpracticeoptions.cpp
     scripts/scriptdialog.cpp
     scripts/scriptmanager.cpp
     scripts/scripting/parley.cpp
@@ -112,10 +112,6 @@ set(parley_LIB_SRCS
 
 kde4_add_ui_files(parley_LIB_SRCS
     collection/entryfilter.ui
-    configure-practice/generalpracticeoptions.ui
-    configure-practice/blockoptions.ui
-    configure-practice/thresholdoptions.ui
-    configure-practice/specificpracticeoptions.ui
     editor/multiplechoicewidget.ui
     editor/comparisonwidget.ui
     editor/conjugationwidget.ui
@@ -133,6 +129,10 @@ kde4_add_ui_files(parley_LIB_SRCS
     practice/practice_widget_flashcard.ui
     practice/practice_widget_multiplechoice.ui
     practice/practice_widget_written.ui
+    practice/configure/generalpracticeoptions.ui
+    practice/configure/blockoptions.ui
+    practice/configure/thresholdoptions.ui
+    practice/configure/specificpracticeoptions.ui
     settings/optionlistform.ui
     settings/viewoptionsbase.ui
     settings/generaloptionsbase.ui

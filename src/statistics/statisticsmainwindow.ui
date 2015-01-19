@@ -222,7 +222,7 @@
   <customwidget>
    <class>LessonStatisticsView</class>
    <extends>QWidget</extends>
-   <header>statistics/lessonstatistics.h</header>
+   <header>statistics/lessonstatisticsview.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

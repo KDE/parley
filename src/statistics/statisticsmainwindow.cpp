@@ -25,7 +25,7 @@
 
 #include <keduvocdocument.h>
 
-#include "configure-practice/configurepracticedialog.h"
+#include "practice/configure/configurepracticedialog.h"
 #include "lessonstatisticsview.h"
 #include "statisticsmodel.h"
 #include "parleymainwindow.h"
