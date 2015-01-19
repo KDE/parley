@@ -35,7 +35,6 @@
 
 #include "collection.h"
 #include "collectionwidget.h"
-#include "barwidget.h"
 #include "gradereferencewidget.h"
 
 
