@@ -29,9 +29,9 @@
 #include "editor/editor.h"
 #include "statistics/statisticsmainwindow.h"
 #include "settings/parleyprefs.h"
-#include "configure-practice/configurepracticedialog.h"
 #include "practice/guifrontend.h"
 #include "practice/practicesummarycomponent.h"
+#include "practice/configure/configurepracticedialog.h"
 
 #include "parleyactions.h"
 

@@ -14,7 +14,7 @@
  ***************************************************************************/
 
 // Own
-#include "lessonstatistics.h"
+#include "lessonstatisticsview.h"
 
 // Qt
 #include <QApplication>
