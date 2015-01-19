@@ -14,7 +14,7 @@
  ***************************************************************************/
 
 // Own
-#include "lessonstatistics.h"
+#include "lessonstatisticsview.h"
 
 // Qt
 #include <QApplication>
@@ -163,4 +163,4 @@ void LessonStatisticsView::removeGradesChildren()
     lesson->resetGrades(-1, KEduVocContainer::Recursive);
 }
 
-#include "lessonstatistics.moc"
+#include "lessonstatisticsview.moc"

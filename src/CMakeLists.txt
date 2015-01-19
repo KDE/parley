@@ -99,7 +99,7 @@ set(parley_LIB_SRCS
     settings/kgametheme/kgametheme.cpp
     settings/kgametheme/kgamethemeselector.cpp
     statistics/conjugationoptions.cpp
-    statistics/lessonstatistics.cpp
+    statistics/lessonstatisticsview.cpp
     statistics/statisticsmodel.cpp
     statistics/statisticsmainwindow.cpp
     statistics/statisticslegendwidget.cpp
