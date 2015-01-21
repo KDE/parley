@@ -560,7 +560,7 @@ void EntryFilter::cleanupInvalid(int setNo)
                 (((*i)->translation(m_toTranslation)->wordType()->wordType() != KEduVocWordFlag::Adjective)
                  && ((*i)->translation(m_toTranslation)->wordType()->wordType() != KEduVocWordFlag::Adverb))
                 // at least one comparison forms is there
-                || ((*i)->translation(m_toTranslation)->comparative().isEmpty() || (*i)->translation(m_toTranslation)->superlative().isEmpty())) {
+                || ((*i)->translation(m_toTranslation)->comparativeForm().text().isEmpty() || (*i)->translation(m_toTranslation)->superlativeForm().text().isEmpty())) {
                 i = m_entries[setNo].erase(i);
                 continue;
             }
