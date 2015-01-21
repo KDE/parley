@@ -186,16 +186,16 @@ public:
      * Comparison forms of adjectives/adverbs.
      */
     QString comparative() const {
-        return m_translation->comparative();
+        return m_translation->comparativeForm().text();
     }
     void setComparative(const QString& comparative) {
-        m_translation->setComparative(comparative);
+        m_translation->setComparativeForm(comparative);
     }
     QString superlative() const {
-        return m_translation->superlative();
+        return m_translation->superlativeForm().text();
     }
     void setSuperlative(const QString& superlative) {
-        m_translation->setSuperlative(superlative);
+        m_translation->setSuperlativeForm(superlative);
     }
 
     /* sets multiple choice

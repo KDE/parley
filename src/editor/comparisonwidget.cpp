@@ -60,8 +60,8 @@ void ComparisonWidget::setTranslation(KEduVocExpression * entry, int translation
                 comparativeLineEdit->setEnabled(true);
                 superlativeLineEdit->setEnabled(true);
 
-                comparativeLineEdit->setText(m_translation->comparative());
-                superlativeLineEdit->setText(m_translation->superlative());
+                comparativeLineEdit->setText(m_translation->comparativeForm().text());
+                superlativeLineEdit->setText(m_translation->superlativeForm().text());
             }
         }
     } else {
@@ -115,10 +115,10 @@ void ComparisonWidget::setDocument(KEduVocDocument * doc)
 
 void ComparisonWidget::slotComparativeChanged()
 {
-    m_translation->setComparative(comparativeLineEdit->text());
+    m_translation->setComparativeForm(comparativeLineEdit->text());
 }
 
 void ComparisonWidget::slotSuperlativeChanged()
 {
-    m_translation->setSuperlative(superlativeLineEdit->text());
+    m_translation->setSuperlativeForm(superlativeLineEdit->text());
 }

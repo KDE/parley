@@ -40,8 +40,8 @@ bool ComparisonBackendMode::setTestEntry(TestEntry* current)
     m_frontend->setQuestion(m_current->entry()->translation(languageFrom)->text());
     QStringList answers;
     answers.append(m_current->entry()->translation(languageTo)->text());
-    answers.append(m_current->entry()->translation(languageTo)->comparative());
-    answers.append(m_current->entry()->translation(languageTo)->superlative());
+    answers.append(m_current->entry()->translation(languageTo)->comparativeForm().text());
+    answers.append(m_current->entry()->translation(languageTo)->superlativeForm().text());
     m_frontend->setSolution(answers);
 
     m_frontend->setQuestionSound(m_current->entry()->translation(m_current->languageFrom())->soundUrl());
@@ -63,8 +63,8 @@ void ComparisonBackendMode::checkAnswer()
     }
 
     bool absoluteCorrect = answers.at(0) == m_current->entry()->translation(m_current->languageTo())->text();
-    bool comparativeCorrect = answers.at(1) == m_current->entry()->translation(m_current->languageTo())->comparative();
-    bool superlativeCorrect = answers.at(2) == m_current->entry()->translation(m_current->languageTo())->superlative();
+    bool comparativeCorrect = answers.at(1) == m_current->entry()->translation(m_current->languageTo())->comparativeForm().text();
+    bool superlativeCorrect = answers.at(2) == m_current->entry()->translation(m_current->languageTo())->superlativeForm().text();
 
     if (absoluteCorrect && comparativeCorrect && superlativeCorrect) {
         m_frontend->setFeedback(i18n("All comparison forms were right."));
@@ -100,8 +100,8 @@ void ComparisonBackendMode::updateGrades()
     QStringList answers = m_frontend->userInput().toStringList();
 
     bool absoluteCorrect = answers.at(0) == m_current->entry()->translation(m_current->languageTo())->text();
-    bool comparativeCorrect = answers.at(1) == m_current->entry()->translation(m_current->languageTo())->comparative();
-    bool superlativeCorrect = answers.at(2) == m_current->entry()->translation(m_current->languageTo())->superlative();
+    bool comparativeCorrect = answers.at(1) == m_current->entry()->translation(m_current->languageTo())->comparativeForm().text();
+    bool superlativeCorrect = answers.at(2) == m_current->entry()->translation(m_current->languageTo())->superlativeForm().text();
 
     // TODO way too much duplicated code here
 
