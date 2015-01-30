@@ -24,6 +24,7 @@
   <name xml:lang="sv">Parley</name>
   <name xml:lang="uk">Parley</name>
   <name xml:lang="x-test">xxParleyxx</name>
+  <name xml:lang="zh-CN">Parley</name>
   <name xml:lang="zh-TW">語言_Parley</name>
   <summary>Vocabulary Trainer</summary>
   <summary xml:lang="ca">Entrenador de vocabulari</summary>
@@ -45,6 +46,7 @@
   <summary xml:lang="sv">Ordförrådsträning</summary>
   <summary xml:lang="uk">Словниковий тренажер</summary>
   <summary xml:lang="x-test">xxVocabulary Trainerxx</summary>
+  <summary xml:lang="zh-CN">词汇练习器</summary>
   <summary xml:lang="zh-TW">字彙訓練師</summary>
   <description>
     <p>Parley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. It supports many language specific features, but can be used for other learning tasks as well. It uses the spaced repetition learning method, which makes learning optimal. Vocabulary collections can be downloaded by "Get Hot New Stuff" or created with the built-in editor.</p>
@@ -105,6 +107,7 @@
       <li xml:lang="sv">Snabbkort</li>
       <li xml:lang="uk">Навчальні картки.</li>
       <li xml:lang="x-test">xxFlash Cardsxx</li>
+      <li xml:lang="zh-CN">题卡</li>
       <li xml:lang="zh-TW">閃卡</li>
       <li>Mixed Letters (order the letters of a word)</li>
       <li xml:lang="ca">Lletres barrejades (ordre de les lletres d'una paraula)</li>
@@ -145,6 +148,7 @@
       <li xml:lang="sv">Flerval</li>
       <li xml:lang="uk">Вибір з варіантів.</li>
       <li xml:lang="x-test">xxMultiple Choicexx</li>
+      <li xml:lang="zh-CN">多项选择</li>
       <li xml:lang="zh-TW">多重選擇</li>
       <li>Written</li>
       <li xml:lang="ca">Escrita</li>
