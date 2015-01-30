@@ -330,7 +330,7 @@ void Dashboard::slotOpenUrl(const KUrl& url)
 
 void Dashboard::slotPracticeButtonClicked(const QString& urlString)
 {
-    kDebug() << urlString;
+    //kDebug() << urlString;
 
     KUrl url(urlString);
     m_openUrl = url;

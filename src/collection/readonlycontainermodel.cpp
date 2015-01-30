@@ -43,11 +43,6 @@ ReadonlyContainerModel::ReadonlyContainerModel(KEduVocContainer::EnumContainerTy
 void ReadonlyContainerModel::setDocument(KEduVocDocument * doc)
 {
     m_doc = doc;
-    if (m_doc) {
-        kDebug() << "Set Document: " << m_doc->url();
-    } else {
-        kDebug() << "Set Invalid Document";
-    }
     reset();
 }
 

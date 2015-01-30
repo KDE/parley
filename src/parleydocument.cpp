@@ -253,7 +253,6 @@ bool ParleyDocument::open(const KUrl & url)
 
 void ParleyDocument::close()
 {
-    kDebug() << "Close Document";
     enableAutoBackup(false);
     if (m_doc) {
         emit documentChanged(0);
