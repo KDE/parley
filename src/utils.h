@@ -16,8 +16,7 @@
 #define UTILS_H
 
 // Qt
-//#include <QPaintEvent>
-//#include <QWidget>
+#include <QtGui>
 
 // KEduVocDocument library
 #include <keduvocdocument.h>
@@ -41,11 +40,20 @@ struct WordCount {
 };
 
 
+struct ConfidenceColors {
+    enum ColorScheme {
+        MultiColorScheme,       //< The color scheme from the dashboard
+        ProgressiveColorScheme  //< The color scheme from the practice component
+    };
 
+    ConfidenceColors(ColorScheme colorScheme = MultiColorScheme);
 
-//extern QColor gradeColor[11];
+    void initColors(ColorScheme colorScheme);
 
-
+    QColor longTermColors[KV_MAX_GRADE + 1];
+    QColor initialTermColor;
+    QColor frontEndColors[2]; // Placeholders for the wordcloud background colors
+};
 
 
 #endif // UTILS_H

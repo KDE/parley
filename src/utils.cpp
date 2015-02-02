@@ -73,6 +73,37 @@ int WordCount::percentageCompleted() const
 //                         class confidenceColors
 
 
-// FIXME: NYI
-//extern QColor gradeColor[11];
+ConfidenceColors::ConfidenceColors(ColorScheme colorScheme)
+{
+    initColors(colorScheme);
+}
 
+
+void ConfidenceColors::initColors(ColorScheme colorScheme)
+{
+    switch (colorScheme) {
+    case MultiColorScheme:
+    default: // Not default at the last line.  Hope this works...
+
+        longTermColors[0] = QColor(25,38,41);
+        longTermColors[1] = QColor(Qt::yellow);
+        //longTermColors[1] = QColor(25,38,41,64);
+        longTermColors[2] = QColor(237,21,21);
+        longTermColors[3] = QColor(246,116,0);
+        longTermColors[4] = QColor(201,206,59);
+        longTermColors[5] = QColor(28,220,154);
+        longTermColors[6] = QColor(17,209,22);
+        longTermColors[7] = QColor(61,174,253);
+
+        initialTermColor = QColor(25,38,41,64);
+
+        // These two are placeholders for the wordcloud background color.
+        frontEndColors[0] = QColor(255,221,217);
+        frontEndColors[1] = QColor(238,232,213);
+        break;
+
+    case ProgressiveColorScheme:
+        // FIXME: NYI
+        break;
+    }
+}

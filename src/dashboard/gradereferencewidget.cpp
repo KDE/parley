@@ -26,7 +26,7 @@
 #include <klocalizedstring.h>
 
 // Parley
-#include "barwidget.h"  // for gradeColor
+#include "barwidget.h"  // for gradeColor^WglobalColors
 
 
 GradeReferenceWidget::GradeReferenceWidget(QWidget *parent)
@@ -55,7 +55,7 @@ void GradeReferenceWidget::paintEvent(QPaintEvent *)
         QPainterPath barElementPath;
         barElementPath.addRect(barElement);
         QPainterPath barElementIntersectedPath = roundedPath.intersected(barElementPath);
-        QColor color = gradeColor[i];
+        QColor color = globalColors.longTermColors[i];
         painter.setBrush(QBrush(color));
         painter.drawPath(barElementIntersectedPath);
     }
