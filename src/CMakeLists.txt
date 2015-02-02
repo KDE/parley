@@ -10,6 +10,7 @@ set(parley_LIB_SRCS
     parleyactions.cpp
     parleydocument.cpp
     parleymainwindow.cpp
+    utils.cpp
     collection/collection.cpp
     collection/testentry.cpp
     collection/entryfilter.cpp

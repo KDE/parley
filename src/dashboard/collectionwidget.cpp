@@ -25,8 +25,8 @@
 #include <klocalizedstring.h>
 
 // Parley
+#include "utils.h"
 #include "collection.h"
-//#include "barwidget.h"
 
 
 // Size constants for the collection widgets

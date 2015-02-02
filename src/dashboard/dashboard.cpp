@@ -24,6 +24,7 @@
 #include <KAction>
 #include <KActionCollection>
 
+#include "../utils.h"
 #include "dashboard.h"
 #include "buttondelegate.h"
 #include "parleymainwindow.h"
@@ -363,7 +364,12 @@ void Dashboard::slotPracticeUrl(const KUrl & url)
     if (!m_mainWindow->parleyDocument()->open(url)) {
         return;
     }
-    m_mainWindow->showPracticeConfiguration();
+
+    // This used to go to the practice configuration but both I and
+    //some users wanted to go directly to the practice so I'm testing
+    //out this for a while.
+    //m_mainWindow->showPracticeConfiguration();
+    m_mainWindow->showPractice();
 }
 
 void Dashboard::backgroundChanged(const QPixmap &pixmap)

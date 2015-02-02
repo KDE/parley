@@ -27,6 +27,7 @@
 #include <klocalizedstring.h>
 
 // Parley
+#include "utils.h"
 #include "collectionwidget.h"  // for COLLWIDTH, etc
 
 
