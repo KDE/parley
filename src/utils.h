@@ -19,8 +19,11 @@
 #include <QtGui>
 
 // KEduVocDocument library
-#include <keduvocdocument.h>
+#include <keduvoccontainer.h>
 
+
+class QPainter;
+class QRect;
 
 // The WordCount struct contains the number of words in each category.
 // This could be used for number of words due, total number of words, etc.
@@ -28,6 +31,10 @@ struct WordCount {
     WordCount();
     void clear();
     int  percentageCompleted() const;
+
+    // Fill the WordCount data from the container.
+    void fillFromContainer(KEduVocContainer &container, int translationIndex,
+                           KEduVocContainer::EnumEntriesRecursive recursive = KEduVocContainer::Recursive);
 
     int grades[KV_MAX_GRADE + 1]; // Number of entries in each grade including grade=0, pregrade=0
     int pregrades[KV_MAX_GRADE + 1]; // Number of entries in each grade including grade=0, pregrade=0
@@ -52,8 +59,13 @@ struct ConfidenceColors {
 
     QColor longTermColors[KV_MAX_GRADE + 1];
     QColor initialTermColor;
+    QColor invalidColor;
     QColor frontEndColors[2]; // Placeholders for the wordcloud background colors
 };
+
+
+void paintColorBar(QPainter &painter, const QRect &rect,
+                   const WordCount &wordCount, const ConfidenceColors &colors);
 
 
 #endif // UTILS_H

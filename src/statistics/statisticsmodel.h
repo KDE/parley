@@ -35,7 +35,7 @@ public:
         Grade5,
         Grade6,
         Grade7,
-        LegendFractions
+        Container
     };
 
     explicit StatisticsModel(QObject *parent = 0);
@@ -49,6 +49,9 @@ public:
 protected:
     KEduVocContainer * rootContainer() const;
 };
+
+// For index.data()
+Q_DECLARE_METATYPE(KEduVocContainer*)
 
 
 #endif
