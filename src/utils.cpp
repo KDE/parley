@@ -130,14 +130,13 @@ void ConfidenceColors::initColors(ColorScheme colorScheme)
         {
             static const int AlphaMax = 255;
             static const int AlphaStep = ((AlphaMax - 10) / KV_MAX_GRADE);
-            //static const int fractionsOffset = 3;
 
             QColor color;
 
             // Confidence 1..max
             for (int grade = 1; grade <= KV_MAX_GRADE; ++grade) {
                 color = Prefs::gradeColor();
-                color.setAlpha(AlphaMax - (KV_MAX_GRADE - grade - 1) * AlphaStep);
+                color.setAlpha(AlphaMax - (KV_MAX_GRADE - grade) * AlphaStep);
 
                 longTermColors[grade] = color;
             }

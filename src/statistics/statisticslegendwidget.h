@@ -38,40 +38,11 @@ public:
     /// constructor
     StatisticsLegendWidget(QWidget * parent = 0);
 
-    /**@brief the color of the @p grade
-       @param grade
-       @returns the color **/
-    static QColor gradeColor(int grade);
-    /**@returns the color of the preGrade stats
-    **/
-    static QColor preGradeColor();
-    /**@returns the color of the unpracticed entries**/
-    static QColor unpracticedColor();
-    /**@returns the color of the invalid entries**/
-    static QColor invalidColor();
-
-    /** Calculate the fractions passed to paintStatisticsBar
-        of late/early/unpracticed and invalid types.
-        @returns calculated fractions practice statistics for @p container at @p index .**/
-    static QList<QVariant> legendFractions(KEduVocContainer &container, int index);
-
-    /** With a @p painter draw the stats bar with @p fractions within @p rect
-     @param painter supplied painter
-     @param rect bounding box
-     @param fractions the fractional widths of each of the grade categories
-    **/
-    static void paintStatisticsBar(QPainter &painter, const QRect &rect,
-                                   const QList< QVariant> &fractions);
 
 protected:
     /// paintEvent @p e event
     void paintEvent(QPaintEvent *e);
-private:
-    static const int alphaMax = 255;  ///< full brightness
-    /// steps small enought that the last is still visible
-    static const int alphaStep = ((alphaMax - 10) / KV_MAX_GRADE);
-    /// offset of table for unpracticed, invalid and preGrade types
-    static const int fractionsOffset = 3;
 };
+
 
 #endif
