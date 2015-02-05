@@ -23,6 +23,7 @@
 //#include <KMimeType>
 #include <KActionCollection>
 
+#include "../utils.h"
 #include "dashboard.h"
 #include "buttondelegate.h"
 #include "parleymainwindow.h"
@@ -70,22 +71,6 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     setCentralWidget(m_widget);
     m_practiceSignalMapper = new QSignalMapper(this);
     m_removeSignalMapper = new QSignalMapper(this);
-
-    // Need 8 colors for confidence 0..7.
-    // FIXME: Find a better color than gray for confidence 1.
-    // FIXME: Add a color for pregrades.
-    gradeColor[0] = QColor(25,38,41);
-    gradeColor[1] = QColor(25,38,41,64);
-    gradeColor[2] = QColor(237,21,21);
-    gradeColor[3] = QColor(246,116,0);
-    gradeColor[4] = QColor(201,206,59);
-    gradeColor[5] = QColor(28,220,154);
-    gradeColor[6] = QColor(17,209,22);
-    gradeColor[7] = QColor(61,174,253);
-
-    // These two are placeholders for the wordcloud background color.
-    gradeColor[8] = QColor(255,221,217);
-    gradeColor[9] = QColor(238,232,213);
 
     QTime time = QTime::currentTime();
     qsrand((uint)time.msec());
@@ -327,7 +312,7 @@ void Dashboard::slotOpenUrl(const QUrl& url)
 
 void Dashboard::slotPracticeButtonClicked(const QString& urlString)
 {
-    qDebug() << urlString;
+    //qDebug() << urlString;
     QUrl url( QUrl::fromLocalFile(urlString) );
     m_openUrl = url;
     QTimer::singleShot(0, this, SLOT(slotDoubleClickOpen()));
@@ -359,7 +344,12 @@ void Dashboard::slotPracticeUrl(const QUrl & url)
     if (!m_mainWindow->parleyDocument()->open(url)) {
         return;
     }
+
+    // This used to go to the practice configuration but both I and
+    //some users wanted to go directly to the practice so I'm testing
+    //out this for a while.
     m_mainWindow->showPracticeConfiguration();
+    //m_mainWindow->showPractice();
 }
 
 void Dashboard::backgroundChanged(const QPixmap &pixmap)

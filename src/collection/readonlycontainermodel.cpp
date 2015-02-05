@@ -45,9 +45,9 @@ void ReadonlyContainerModel::setDocument(KEduVocDocument * doc)
     beginResetModel();
     m_doc = doc;
     if (m_doc) {
-        qDebug() << "Set Document: " << m_doc->url();
+	//qDebug() << "Set Document: " << m_doc->url();
     } else {
-        qDebug() << "Set Invalid Document";
+        //qDebug() << "Set Invalid Document";
     }
     endResetModel();
 }

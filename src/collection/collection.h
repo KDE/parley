@@ -28,24 +28,7 @@
 
 
 class QTimer;
-
-
-// The WordCount struct contains the number of words in each category.
-// This could be used for number of words due, total number of words, etc.
-struct WordCount {
-    WordCount();
-    void clear();
-    int  percentageCompleted() const;
-
-    int grades[KV_MAX_GRADE + 1]; // Number of entries in each grade including grade=0, pregrade=0
-    int pregrades[KV_MAX_GRADE + 1]; // Number of entries in each grade including grade=0, pregrade=0
-    int invalid;	          // Number of invalid entries (not always applicable);
-
-    int initialWords;             // Number of entries in initial phase (grade=0, pregrade>0)
-                                  // This is the sum of the numbers in pregrades[].
-    int totalWords;		  // Total number of words
-                                  // This is the sum of grades[], pregrades[] and invalid
-};
+class WordCount;
 
 
 class Collection : public QObject

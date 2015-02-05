@@ -269,7 +269,6 @@ bool ParleyDocument::open(const QUrl & url)
 
 void ParleyDocument::close()
 {
-    qDebug() << "Close Document";
     enableAutoBackup(false);
     if (m_doc) {
         emit documentChanged(0);

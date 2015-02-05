@@ -33,8 +33,11 @@
 #include "statisticslegendwidget.h"
 #include "statisticsmodel.h"
 #include "keduvoclesson.h"
-#include "prefs.h"
+#include "utils.h"
 
+
+// GradeDelegate shows the graphic colored bar in the statistics,
+// showing how far the student has come on the way to enlightenment.
 
 class GradeDelegate: public QItemDelegate
 {
@@ -48,21 +51,22 @@ public:
     {
         QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, 0);
 
-        // empty lesson
+        // empty lesson? If so, paint nothing.
         if (!index.data(StatisticsModel::TotalCount).toInt()) {
             return;
         }
-        drawBackground(painter, option, index);
+
+        // Draw the colored bar.
+        KEduVocContainer *container = index.data(StatisticsModel::Container).value<KEduVocContainer*>();
+        WordCount  wordCount;
+        wordCount.fillFromContainer(*container, index.column() - ContainerModel::FirstDataColumn);
+        ConfidenceColors  colors(ConfidenceColors::ProgressiveColorScheme);
+
+        paintColorBar(*painter, option.rect, wordCount, colors); // in utils
+
+        // Draw the text telling the percentage on top of the bar.
         painter->drawText(option.rect, Qt::AlignCenter,
 			  QString("%1%").arg(index.data(StatisticsModel::TotalPercent).toInt()));
-    }
-
-protected:
-    void drawBackground(QPainter *painter, const QStyleOptionViewItem &option,
-			const QModelIndex &index) const
-    {
-        QList<QVariant> fractions = index.data(StatisticsModel::LegendFractions).toList();
-        StatisticsLegendWidget::paintStatisticsBar(*painter, option.rect, fractions);
     }
 };
 

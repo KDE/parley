@@ -20,13 +20,12 @@
 #include <QPaintEvent>
 #include <QWidget>
 
+
+#include "utils.h"
 #include "collection.h"  // For struct WordCount
 
 
-class WordCount;
-
-
-extern QColor gradeColor[11];
+extern ConfidenceColors globalColors;
 
 
 class BarWidget : public QWidget
