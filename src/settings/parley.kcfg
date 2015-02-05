@@ -69,10 +69,6 @@
       <label>In Blocking Query Tab Dialog, if checked then the Query accepts an expiring time</label>
       <default>true</default>
     </entry>
-    <entry name="AltLearn" type="Bool">
-      <label>Use the Leitner learning method</label>
-      <default>false</default>
-    </entry>
     <entry name="TestOrderLesson" type="Bool">
       <label>Append new vocabulary in a collection in order of their units. Note that this will not be a hard transition, but a slow mix from one unit to the next.</label>
       <default>true</default>

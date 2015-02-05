@@ -215,10 +215,7 @@ void PracticeStateMachine::updateFrontend()
     grade_t grade = m_mode->currentGradeForEntry();
     grade_t goodGrade = qMax(grade, grade_t(KV_LEV1_GRADE)); // if the word hasn't been practiced yet, use grade 1 as a base
 
-    // Normal mode: check if current word was not answered wrong -> if yes, mark next grade as achievable
-    // Alternative mode (3 consecutive answers): check if word was not answered wrong and two consecutive times correct -> if yes, mark next grade as achievable
-    if ((!(Prefs::altLearn()) && m_current->statisticBadCount() == 0) ||
-        (m_current->statisticBadCount() == 0 && m_current->answeredCorrectInSequence() == 2 && Prefs::altLearn())) {
+    if (m_current->statisticBadCount() == 0) {
         goodGrade = qMax(KV_LEV2_GRADE, qMin(grade + 1, KV_MAX_GRADE));
     }
 

@@ -73,18 +73,11 @@ void TestEntry::updateStatisticsRightAnswer(grade_t currentPreGrade, grade_t cur
         m_isUnseenQuestion = true;
     }
 
-    if ((!Prefs::altLearn()) || m_answeredCorrectInSequence == 3) {
-        m_shouldChangeGrades = true;
-    }
+    m_shouldChangeGrades = true;
 
     // Make changes in statistics if answered correctly and not answered wrong in current test
-    if (!Prefs::altLearn() && m_statisticBadCount == 0) {
+    if (m_statisticBadCount == 0) {
         m_correctAtFirstAttempt = true;
-    } else {
-        // alt learn: 3 times right
-        if (answeredCorrectInSequence() == 3  && m_statisticBadCount == 0) {
-            m_correctAtFirstAttempt = true;
-        }
     }
 }
 
