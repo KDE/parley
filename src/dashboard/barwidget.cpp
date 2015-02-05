@@ -29,8 +29,8 @@
 #include "collectionwidget.h"  // for COLLWIDTH, etc
 
 
-QColor gradeColor[11];
-
+// FIXME: Find a better home for this variable.
+ConfidenceColors globalColors = ConfidenceColors();
 
 
 BarWidget::BarWidget(QWidget *parent)
@@ -122,7 +122,7 @@ void BarWidget::paintEvent(QPaintEvent *)
             color = QColor(0, 0, 0, 128);
         }
         else {
-            color = gradeColor[i];
+            color = globalColors.longTermColors[i];
         }
         painter.setBrush(QBrush(color));
         painter.drawPath(barElementIntersectedPath);

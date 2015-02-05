@@ -31,6 +31,7 @@
 #include <QtWidgets/QLabel>
 
 // Parley
+#include "utils.h"
 #include "collection.h"
 
 
@@ -98,8 +99,6 @@ CollectionWidget::CollectionWidget(Collection *collection, WordCount *dueWords, 
     : QWidget(parent)
     , m_collection(collection)
 {
-    qDebug() << collection->eduVocDocument()->title();
-
     setupWidget(dueWords);
     fillWidget();
 }

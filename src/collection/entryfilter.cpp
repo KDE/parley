@@ -110,7 +110,7 @@ QList<TestEntry*> EntryFilter::entries(bool showDialog)
             m_toTranslation   = Prefs::knownLanguage();
         }
 
-        qDebug() << "Filter for " << m_fromTranslation << " to " << m_toTranslation;
+	//qDebug() << "Filter for " << m_fromTranslation << " to " << m_toTranslation;
         expireEntries(pass);
 
         collectEntries(pass);
@@ -596,7 +596,7 @@ void EntryFilter::cleanupInvalid(int setNo)
         } // switch
         ++i;
     } // while
-    qDebug() << "Invalid items removed. Remaining: " << m_entries[setNo].count();
+    //qDebug() << "Invalid items removed. Remaining: " << m_entries[setNo].count();
 }
 
 QList< TestEntry* > EntryFilter::conjugationTestEntries(bool ignoreBlocked) const

@@ -41,10 +41,12 @@ QVariant StatisticsModel::data(const QModelIndex & index, int role) const
 {
     if (index.column() >= FirstDataColumn) {
         KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
+        QVariant var;
         switch (role) {
-        case LegendFractions:
-	    // Calculate the percent each grade and pregrade occupies.
-            return StatisticsLegendWidget::legendFractions(*container ,index.column() - FirstDataColumn);
+        case Container:
+	    // Return a pointer to the container we are working on.
+            var.setValue(container);
+            return var;
         case TotalPercent: // Average grade
             return container->averageGrade(index.column() - FirstDataColumn, KEduVocContainer::Recursive);
         case TotalCount:
