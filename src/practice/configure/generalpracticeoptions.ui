@@ -44,6 +44,19 @@
        </widget>
       </item>
       <item>
+	<widget class="QCheckBox" name="kcfg_IgnorePunctuationMistakes">
+        <property name="toolTip">
+         <string>Any punctuation mistake in the answer is counted as correct.</string>
+        </property>
+        <property name="text">
+         <string>Ignore Punctuation</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QCheckBox" name="kcfg_ShowHints">
         <property name="toolTip">
          <string>During the practice you can use the hint button to see parts of the solution.</string>

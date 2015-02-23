@@ -115,6 +115,10 @@
       <label>Count answers as right when only the capitalization is wrong.</label>
       <default>false</default>
     </entry>
+    <entry name="IgnorePunctuationMistakes" type="Bool">
+      <label>Count answers as right when only the punctuation is wrong.</label>
+      <default>false</default>
+    </entry>
 
     <entry name="SplitTranslations" type="Bool">
       <label>Split translations in written practice.</label>

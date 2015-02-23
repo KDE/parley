@@ -97,7 +97,9 @@ QString WrittenBackendMode::getFeedbackString(TestEntry::ErrorTypes error)
         if (m_synonyms.contains(answer)) {
             return i18n("Your answer was an already entered synonym.");
         } else {
-            if (error & TestEntry::CapitalizationMistake) {
+            if (error & TestEntry::PunctuationMistake) {
+                return i18n("Your answer was a synonym and your punctuation was wrong.");
+            }else if (error & TestEntry::CapitalizationMistake) {
                 return i18n("Your answer was a synonym and your capitalization was wrong.");
             } else if (error & TestEntry::AccentMistake) {
                 return i18n("Your answer was a synonym and accents were wrong.");
@@ -109,7 +111,9 @@ QString WrittenBackendMode::getFeedbackString(TestEntry::ErrorTypes error)
 
     // The answer was wrong
     if (error & TestEntry::Wrong) {
-        if ((error & TestEntry::CapitalizationMistake) && !Prefs::ignoreCapitalizationMistakes()) {
+        if ((error & TestEntry::PunctuationMistake) && !Prefs::ignorePunctuationMistakes()) {
+            return i18n("Your answer was wrong as punctuation mistakes are not accepted. Please try again.");
+        } else if ((error & TestEntry::CapitalizationMistake) && !Prefs::ignoreCapitalizationMistakes()) {
             return i18n("Your answer was wrong as capitalization mistakes are not accepted. Please try again.");
         } else if ((error & TestEntry::AccentMistake) && !Prefs::ignoreAccentMistakes()) {
             return i18n("Your answer was wrong as accent mistakes are not accepted. Please try again.");
@@ -120,7 +124,9 @@ QString WrittenBackendMode::getFeedbackString(TestEntry::ErrorTypes error)
 
     // The answer was right
     if (m_firstAttempt) {
-        if ((error & TestEntry::CapitalizationMistake)) {
+        if ((error & TestEntry::PunctuationMistake)) {
+            return i18n("Your answer was right, but your punctuation was wrong.");
+        }else if ((error & TestEntry::CapitalizationMistake)) {
             return i18n("Your answer was right, but your capitalization was wrong.");
         } else if ((error & TestEntry::AccentMistake)) {
             return i18n("Your answer was right, but accents were wrong.");
@@ -128,7 +134,9 @@ QString WrittenBackendMode::getFeedbackString(TestEntry::ErrorTypes error)
             return i18n("Your answer was right.");
         }
     } else {
-        if ((error & TestEntry::CapitalizationMistake)) {
+        if ((error & TestEntry::PunctuationMistake)) {
+            return i18n("Your answer was right... but not on the first try and your punctuation was wrong.");
+        }else if ((error & TestEntry::CapitalizationMistake)) {
             return i18n("Your answer was right... but not on the first try and your capitalization was wrong.");
         } else if ((error & TestEntry::AccentMistake)) {
             return i18n("Your answer was right... but not on the first try and accents were wrong.");

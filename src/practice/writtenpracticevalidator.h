@@ -50,6 +50,9 @@ private:
       *  if the option is set */
     bool isSynonymMistake(const QString& answer);
 
+    /** Check if the answer is a punctuation mistakes */
+    bool isPunctuationMistake(const QString& original, const QString& answer);
+
     /** Check if the answer is a capitalization mistakes */
     bool isCapitalizationMistake(const QString& original, const QString& answer);
 

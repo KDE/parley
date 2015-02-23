@@ -26,15 +26,16 @@ public:
         SpellingMistake       =  0x01, /** < misspelled */
         CapitalizationMistake =  0x02, /** < capitalization error (whAt) */
         AccentMistake         =  0x04, /** < an accent is missing or wrong (é) */
-        ArticleWrong          =  0x08, /** < solution is correct with the article interchanged */
-        ArticleMissing        =  0x10, /** < solution is correct with the article missing*/
-        FalseFriend           =  0x20, /** < a false friend */
-        Synonym               =  0x40, /** < a synonym (may be correct) */
-        Empty                 =  0x80, /** < empty answer string */
-        UnrelatedWord         = 0x100, /** < a valid word but no connection to the solution */
-        Incomplete            = 0x200, /** < the part that was entered is right, but not complete */
-        Correct               = 0x400, /** < no error, solution was right */
-        Wrong                 = 0x800  /** < some error, solution was somehow wrong check other bits */
+        PunctuationMistake    =  0x08, /** < punctuation mistake (doesnt) */
+        ArticleWrong          =  0x10, /** < solution is correct with the article interchanged */
+        ArticleMissing        =  0x20, /** < solution is correct with the article missing*/
+        FalseFriend           =  0x40, /** < a false friend */
+        Synonym               =  0x80, /** < a synonym (may be correct) */
+        Empty                 =  0x100, /** < empty answer string */
+        UnrelatedWord         =  0x200, /** < a valid word but no connection to the solution */
+        Incomplete            =  0x400, /** < the part that was entered is right, but not complete */
+        Correct               =  0x800, /** < no error, solution was right */
+        Wrong                 =  0x1000  /** < some error, solution was somehow wrong check other bits */
     };
 
     Q_DECLARE_FLAGS(ErrorTypes, ErrorType)
