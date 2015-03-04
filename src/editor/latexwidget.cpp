@@ -12,9 +12,10 @@
  ***************************************************************************/
 #include "latexwidget.h"
 
-#include "vocabularymodel.h"
 #include "vocabularyfilter.h"
 #include "practice/latexrenderer.h"
+
+#include <keduvocvocabularymodel.h>
 
 #include <QDataWidgetMapper>
 #include <KLocalizedString>
@@ -53,7 +54,7 @@ void LatexWidget::setTranslation(KEduVocExpression *entry, int translation)
         m_mapper->clearMapping();
 
         m_mapper->addMapping(lineEdit,
-                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Translation);
+                             KEduVocVocabularyModel::EntryColumnsMAX * translation + KEduVocVocabularyModel::Translation);
         m_translation = entry->translation(translation);
         updateLatex();
     }
