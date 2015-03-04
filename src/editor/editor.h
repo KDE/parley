@@ -21,6 +21,8 @@
 
 #include "scripts/scripting/parley.h"
 
+#include <keduvocvocabularymodel.h>
+
 #include <KXmlGuiWindow>
 
 class QSignalMapper;
@@ -32,7 +34,7 @@ class ScriptManager;
 
 // Models around the Collection / KEduVocDocument
 class LessonModel;
-class VocabularyModel;
+class KEduVocVocabularyModel;
 class VocabularyFilter;
 class WordClassModel;
 
@@ -124,7 +126,7 @@ private:
 
     QAction* m_vocabShowSearchBarAction;
 
-    VocabularyModel *m_vocabularyModel;
+    KEduVocVocabularyModel *m_vocabularyModel;
     VocabularyView *m_vocabularyView;
     VocabularyFilter *m_vocabularyFilter;
 
