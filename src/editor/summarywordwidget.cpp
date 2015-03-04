@@ -18,7 +18,6 @@
 #include "languagesettings.h"
 
 #include "lessonmodel.h"
-#include "vocabularymodel.h"
 #include "vocabularyfilter.h"
 #include "wordclassmodel.h"
 
@@ -35,6 +34,7 @@
 #include <keduvocdocument.h>
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
+#include <keduvocvocabularymodel.h>
 
 using namespace Editor;
 
@@ -69,17 +69,17 @@ void SummaryWordWidget::setTranslation(KEduVocExpression *entry, int translation
         m_mapper->clearMapping();
 
         m_mapper->addMapping(wordEntry,
-                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Translation);
+                             KEduVocVocabularyModel::EntryColumnsMAX * translation + KEduVocVocabularyModel::Translation);
         //m_mapper->addMapping(wordTypeComboBox,
         //                    VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::WordType);
         m_mapper->addMapping(pronunciationEntry,
-                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Pronunciation);
+                             KEduVocVocabularyModel::EntryColumnsMAX * translation + KEduVocVocabularyModel::Pronunciation);
         m_mapper->addMapping(exampleEntry,
-                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Example);
+                             KEduVocVocabularyModel::EntryColumnsMAX * translation + KEduVocVocabularyModel::Example);
         m_mapper->addMapping(paraphraseEntry,
-                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Paraphrase);
+                             KEduVocVocabularyModel::EntryColumnsMAX * translation + KEduVocVocabularyModel::Paraphrase);
         m_mapper->addMapping(commentEntry,
-                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Comment);
+                             KEduVocVocabularyModel::EntryColumnsMAX * translation + KEduVocVocabularyModel::Comment);
 
         languageLabel->setText("<b>" + m_doc->identifier(translation).name() + "</b>");
         lessonLabel->setText(entry->lesson()->name());
@@ -193,15 +193,15 @@ void SummaryWordDelegate::setEditorData(QWidget *editor, const QModelIndex &inde
     }
 
     if (editor) {
-        switch (VocabularyModel::columnType(index.column())) {
-        case VocabularyModel::WordClass:
+        switch (KEduVocVocabularyModel::columnType(index.column())) {
+        case KEduVocVocabularyModel::WordClass:
             break;
 
-        case VocabularyModel::Comment:
-        case VocabularyModel::Pronunciation:
-        case VocabularyModel::Translation:
-        case VocabularyModel::Example:
-        case VocabularyModel::Paraphrase:
+        case KEduVocVocabularyModel::Comment:
+        case KEduVocVocabularyModel::Pronunciation:
+        case KEduVocVocabularyModel::Translation:
+        case KEduVocVocabularyModel::Example:
+        case KEduVocVocabularyModel::Paraphrase:
 
             QLineEdit *entry = static_cast <QLineEdit *>(editor);
             if (entry) {

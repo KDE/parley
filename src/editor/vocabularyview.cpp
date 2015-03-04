@@ -19,7 +19,6 @@
 #include "vocabularyview.h"
 #include "vocabularyheaderview.h"
 
-#include "vocabularymodel.h"
 #include "vocabularyfilter.h"
 #include "vocabularydelegate.h"
 #include "vocabularymimedata.h"
@@ -31,6 +30,7 @@
 
 #include <keduvoctranslation.h>
 #include <keduvocexpression.h>
+#include <keduvocvocabularymodel.h>
 
 #include <QHeaderView>
 #include <QPainter>
@@ -180,9 +180,9 @@ void VocabularyView::slotCurrentChanged(const QModelIndex & current, const QMode
     Q_UNUSED(previous);
     KEduVocExpression* entry = 0;
     if (current.isValid()) {
-        entry =  model()->data(current, VocabularyModel::EntryRole).value<KEduVocExpression*>();
+        entry =  model()->data(current, KEduVocVocabularyModel::EntryRole).value<KEduVocExpression*>();
     }
-    emit translationChanged(entry, VocabularyModel::translation(current.column()));
+    emit translationChanged(entry, KEduVocVocabularyModel::translation(current.column()));
 }
 
 void VocabularyView::reset()
@@ -211,7 +211,7 @@ void VocabularyView::reset()
         if (i < visibleColumns.size()) {
             setColumnHidden(i, !visibleColumns.value(i));
         } else {
-            if (VocabularyModel::columnType(i) != VocabularyModel::Translation) {
+            if (KEduVocVocabularyModel::columnType(i) != KEduVocVocabularyModel::Translation) {
                 setColumnHidden(i, true);
             }
         }
@@ -386,7 +386,7 @@ void VocabularyView::checkSpelling(int language)
         connect(m_spellDialog, &Sonnet::Dialog::replace, this, &VocabularyView::spellingReplace);
     }
 
-    m_spellColumn = language * VocabularyModel::EntryColumnsMAX;
+    m_spellColumn = language * KEduVocVocabularyModel::EntryColumnsMAX;
     m_spellRow = -1;
     if (m_spellColumn < 0) {
         return;

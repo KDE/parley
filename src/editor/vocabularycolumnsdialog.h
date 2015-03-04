@@ -30,6 +30,7 @@ class QStandardItem;
 class QStandardItemModel;
 class QVBoxLayout;
 class KEduVocDocument;
+class KEduVocVocabularyModel;
 
 namespace Editor
 {

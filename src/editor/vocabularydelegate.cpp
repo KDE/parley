@@ -15,7 +15,6 @@
  ***************************************************************************/
 
 #include "vocabularydelegate.h"
-#include "vocabularymodel.h"
 #include "vocabularyfilter.h"
 
 #include "prefs.h"
@@ -24,6 +23,7 @@
 
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
+#include <keduvocvocabularymodel.h>
 #include <KLocalizedString>
 #include <KComboBox>
 #include <QDebug>
@@ -48,13 +48,13 @@ QSet<QString> VocabularyDelegate::getTranslations(const QModelIndex & index) con
 
     QSet<QString> translations; //translations of this column from all the other languages
 
-    int language = index.column() / VocabularyModel::EntryColumnsMAX;
+    int language = index.column() / KEduVocVocabularyModel::EntryColumnsMAX;
     QString toLanguage = m_doc->identifier(language).locale();
 
     //iterate through all the Translation columns
     for (int i = 0; i < index.model()->columnCount(index.parent()); i ++) {
-        if (VocabularyModel::columnType(i) == VocabularyModel::Translation) {    //translation column
-            QString fromLanguage = m_doc->identifier(VocabularyModel::translation(i)).locale();
+        if (KEduVocVocabularyModel::columnType(i) == KEduVocVocabularyModel::Translation) {    //translation column
+            QString fromLanguage = m_doc->identifier(KEduVocVocabularyModel::translation(i)).locale();
             QString word = index.model()->index(index.row(), i, QModelIndex()).data().toString();
 
             if (fromLanguage != toLanguage) {
@@ -78,8 +78,8 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
         return 0;
     }
 
-    switch (VocabularyModel::columnType(index.column())) {
-    case VocabularyModel::WordClass: {
+    switch (KEduVocVocabularyModel::columnType(index.column())) {
+    case KEduVocVocabularyModel::WordClass: {
         if (!m_doc) return 0;
         KComboBox *wordTypeCombo = new KComboBox(parent);
 
@@ -102,10 +102,10 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
         return wordTypeCombo;
     }
 
-    case VocabularyModel::Translation:
+    case KEduVocVocabularyModel::Translation: {
         if (!m_doc || !m_translator) return 0;
 
-        if (VocabularyModel::columnType(index.column()) == VocabularyModel::Translation) {
+        if (KEduVocVocabularyModel::columnType(index.column()) == KEduVocVocabularyModel::Translation) {
             //get the translations of this word (fetch only with the help of scripts, if enabled)
             QSet<QString> translations = getTranslations(index);
 
@@ -130,7 +130,7 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
         editor->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
         editor->setText(index.model()->data(index, Qt::DisplayRole).toString());
 
-        QString locale = index.model()->data(index, VocabularyModel::LocaleRole).toString();
+        QString locale = index.model()->data(index, KEduVocVocabularyModel::LocaleRole).toString();
         if (!locale.isEmpty()) {
             LanguageSettings settings(locale);
             settings.load();
@@ -207,14 +207,14 @@ bool VocabularyDelegate::hasImage(const QModelIndex &index) const
 
 QString VocabularyDelegate::audioUrl(const QModelIndex &index) const
 {
-    QVariant audioVar = index.data(VocabularyModel::AudioRole);
+    QVariant audioVar = index.data(KEduVocVocabularyModel::AudioRole);
     QString audioUrl = audioVar.toString();
     return audioUrl;
 }
 
 QString VocabularyDelegate::imageUrl(const QModelIndex &index) const
 {
-    QVariant imageVar = index.data(VocabularyModel::ImageRole);
+    QVariant imageVar = index.data(KEduVocVocabularyModel::ImageRole);
     QString imageUrl = imageVar.toString();
     return imageUrl;
 }
@@ -250,8 +250,8 @@ void VocabularyDelegate::setEditorData(QWidget * editor, const QModelIndex & ind
         return;
     }
 
-    switch (VocabularyModel::columnType(index.column())) {
-    case (VocabularyModel::Translation) : {
+    switch (KEduVocVocabularyModel::columnType(index.column())) {
+    case (KEduVocVocabularyModel::Translation) : {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
         KComboBox * translationCombo = qobject_cast<KComboBox*> (editor);
         if (translationCombo) {
@@ -281,8 +281,8 @@ void VocabularyDelegate::setModelData(QWidget * editor, QAbstractItemModel * mod
         return;
     }
 
-    switch (VocabularyModel::columnType(index.column())) {
-    case (VocabularyModel::WordClass) : {
+    switch (KEduVocVocabularyModel::columnType(index.column())) {
+    case (KEduVocVocabularyModel::WordClass) : {
         qDebug() << "word type editor";
         KComboBox *combo = qobject_cast<KComboBox*> (editor);
         if (!combo) {
@@ -298,19 +298,19 @@ void VocabularyDelegate::setModelData(QWidget * editor, QAbstractItemModel * mod
         }
 
         VocabularyFilter *filter = qobject_cast<VocabularyFilter*> (model);
-        VocabularyModel *vocModel = qobject_cast<VocabularyModel*> ((filter)->sourceModel());
+        KEduVocVocabularyModel *vocModel = qobject_cast<KEduVocVocabularyModel*> ((filter)->sourceModel());
         Q_ASSERT(vocModel);
-        QVariant data = vocModel->data(filter->mapToSource(index), VocabularyModel::EntryRole);
+        QVariant data = vocModel->data(filter->mapToSource(index), KEduVocVocabularyModel::EntryRole);
 
         KEduVocExpression *expression = data.value<KEduVocExpression*>();
         Q_ASSERT(expression);
-        int translationId = VocabularyModel::translation(index.column());
+        int translationId = KEduVocVocabularyModel::translation(index.column());
 
         expression->translation(translationId)->setWordType(wordType);
         model->setData(index, combo->currentText());
         break;
     }
-    case (VocabularyModel::Translation) : {
+    case (KEduVocVocabularyModel::Translation) : {
         QLineEdit *lineEdit = qobject_cast<QLineEdit*> (editor);
         if (lineEdit) {
             model->setData(index, lineEdit->text());

@@ -15,7 +15,7 @@
 
 #include "vocabularyfilter.h"
 
-#include "vocabularymodel.h"
+#include <keduvocvocabularymodel.h>
 
 
 VocabularyFilter::VocabularyFilter(QObject *parent)
@@ -41,7 +41,7 @@ QModelIndex VocabularyFilter::appendEntry(KEduVocExpression *expression)
     return mapFromSource(m_model->appendEntry(expression));
 }
 
-void VocabularyFilter::setSourceModel(VocabularyModel * model)
+void VocabularyFilter::setSourceModel(KEduVocVocabularyModel * model)
 {
     QSortFilterProxyModel::setSourceModel(model);
     m_model = model;
@@ -60,7 +60,7 @@ bool VocabularyFilter::filterAcceptsRow(int sourceRow, const QModelIndex &source
     }
 
     int columns = m_model->columnCount(QModelIndex());
-    for (int i = 0; i < columns; i += VocabularyModel::EntryColumnsMAX) {
+    for (int i = 0; i < columns; i += KEduVocVocabularyModel::EntryColumnsMAX) {
         QModelIndex index = sourceModel()->index(sourceRow, i, sourceParent);
         if (sourceModel()->data(index).toString().contains(m_filterString, Qt::CaseInsensitive)) {
             return true;

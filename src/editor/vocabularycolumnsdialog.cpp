@@ -21,10 +21,10 @@
 
 // parley imports
 #include "documentsettings.h"
-#include "vocabularymodel.h"
 
 // KDE imports
 #include <keduvocdocument.h>
+#include <keduvocvocabularymodel.h>
 #include <KLocalizedString>
 #include <KTitleWidget>
 
@@ -113,8 +113,8 @@ void VocabularyColumnsDialog::createLanguagesLayout()
 
 void VocabularyColumnsDialog::addLanguage(int i, QVBoxLayout *parent)
 {
-    for (int c = 1; c < VocabularyModel::EntryColumnsMAX; c++) {
-        QStandardItem *item_data = new QStandardItem(VocabularyModel::columnTitle(m_doc, i, c, /*addLocaleSuffix*/ false));
+    for (int c = 1; c < KEduVocVocabularyModel::EntryColumnsMAX; c++) {
+        QStandardItem *item_data = new QStandardItem(KEduVocVocabularyModel::columnTitle(m_doc, i, c, /*addLocaleSuffix*/ false));
         item_data->setData(QVariant(c - 1), VocabularyColumnsDialog::ColumnRole);
         item_data->setData(QVariant(i), VocabularyColumnsDialog::LanguageRole);
         item_data->setCheckable(true);

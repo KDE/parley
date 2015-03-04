@@ -21,7 +21,7 @@
 class KEduVocLesson;
 class KEduVocExpression;
 
-class VocabularyModel;
+class KEduVocVocabularyModel;
 
 class VocabularyFilter : public QSortFilterProxyModel
 {
@@ -29,7 +29,7 @@ class VocabularyFilter : public QSortFilterProxyModel
 public:
     explicit VocabularyFilter(QObject *parent = 0);
 
-    void setSourceModel(VocabularyModel* model);
+    void setSourceModel(KEduVocVocabularyModel* model);
 
     QModelIndex appendEntry(KEduVocExpression *expression = 0);
     KEduVocLesson * lesson();
@@ -45,7 +45,7 @@ private:
         Q_UNUSED(model)
     }
 
-    VocabularyModel * m_model;
+    KEduVocVocabularyModel * m_model;
     QString m_filterString;
 };
 

@@ -16,7 +16,7 @@
 #include "parley.h"
 
 #include "editor/editor.h"
-#include "vocabularymodel.h"
+#include <keduvocvocabularymodel.h>
 #include "vocabularyview.h"
 
 #include "../scriptmanager.h"
@@ -96,7 +96,7 @@ QVariantList Parley::selectedEntries()
     QSet<KEduVocExpression*> kentries;
     foreach(const QModelIndex & index, indexes) {
 //             qDebug() << index.row() << index.data(Qt::DisplayRole);
-        KEduVocExpression * expr = qvariant_cast<KEduVocExpression*> (index.data(VocabularyModel::EntryRole));
+        KEduVocExpression * expr = qvariant_cast<KEduVocExpression*> (index.data(KEduVocVocabularyModel::EntryRole));
         kentries << expr;
     }
 
@@ -122,9 +122,9 @@ QVariantList Parley::selectedTranslations()
     QSet<KEduVocTranslation*> ktranslations;
 //         const QModelIndex &index;
     foreach(const QModelIndex & index, indexes) {
-        if (VocabularyModel::columnType(index.column()) == VocabularyModel::Translation) {
-            KEduVocExpression * expr = qvariant_cast<KEduVocExpression*> (index.data(VocabularyModel::EntryRole));
-            ktranslations << expr->translation(VocabularyModel::translation(index.column()));
+        if (KEduVocVocabularyModel::columnType(index.column()) == KEduVocVocabularyModel::Translation) {
+            KEduVocExpression * expr = qvariant_cast<KEduVocExpression*> (index.data(KEduVocVocabularyModel::EntryRole));
+            ktranslations << expr->translation(KEduVocVocabularyModel::translation(index.column()));
         }
 //             qDebug() << index.row() << index.data(Qt::DisplayRole);
     }
