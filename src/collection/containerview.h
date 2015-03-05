@@ -21,7 +21,7 @@
 class KEduVocContainer;
 class KEduVocExpression;
 
-class ContainerModel;
+class KEduVocContainerModel;
 
 
 /**
@@ -38,7 +38,7 @@ public:
     ContainerView(QWidget *parent = 0);
     /** Set the model for the view.
      * @param model the model */
-    virtual void setModel(ContainerModel *model);
+    virtual void setModel(KEduVocContainerModel *model);
 
 public slots:
     /** let the user type a new name for the container */
@@ -46,7 +46,7 @@ public slots:
 
 protected:
     /** ContainerModel for this view. */
-    ContainerModel *m_model;
+    KEduVocContainerModel *m_model;
 
 private:
     // intentionally hide this to make sure a proper model is passed

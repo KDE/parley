@@ -19,7 +19,7 @@
 #include "../config-parley.h"
 
 // Qt models on top of the KEduVocDocument
-#include "containermodel.h"
+
 #include "lessonmodel.h"
 #include "vocabularyfilter.h"
 #include "wordclassmodel.h"
@@ -51,6 +51,7 @@
 
 //KEduVoc
 #include <keduvocvocabularymodel.h>
+#include <keduvoccontainermodel.h>
 
 #include <KActionCollection>
 #include <KToggleAction>

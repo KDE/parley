@@ -84,7 +84,7 @@ protected slots:
     void currentChanged(const QModelIndex & current, const QModelIndex & previous);
 
 private:
-    virtual void setModel(ContainerModel *model) {
+    virtual void setModel(KEduVocContainerModel *model) {
         Q_UNUSED(model)
     }
     virtual void setModel(QAbstractItemModel *model) {
