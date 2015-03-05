@@ -27,7 +27,7 @@
 
 
 LessonModel::LessonModel(QObject * parent)
-    : ContainerModel(KEduVocContainer::Lesson, parent)
+    : KEduVocContainerModel(KEduVocContainer::Lesson, parent)
 {
 }
 
@@ -48,7 +48,7 @@ Qt::ItemFlags LessonModel::flags(const QModelIndex &index) const
     }
 
     // the name column should be checkable to select lessons for practice
-    return  ContainerModel::flags(index);
+    return  KEduVocContainerModel::flags(index);
 }
 
 QVariant LessonModel::data(const QModelIndex & index, int role) const
@@ -57,7 +57,7 @@ QVariant LessonModel::data(const QModelIndex & index, int role) const
         if (index.column() == 0) {
             switch (role) {
             case Qt::DisplayRole:
-                return i18nc("display of the name of the vocabulary collection", "Collection: %1", ContainerModel::data(index, role).toString());
+                return i18nc("display of the name of the vocabulary collection", "Collection: %1", KEduVocContainerModel::data(index, role).toString());
             case Qt::FontRole:
                 QFont f;
                 f.setBold(true);
@@ -65,7 +65,7 @@ QVariant LessonModel::data(const QModelIndex & index, int role) const
             }
         }
     }
-    return ContainerModel::data(index, role);
+    return KEduVocContainerModel::data(index, role);
 }
 
 
@@ -77,7 +77,7 @@ bool LessonModel::setData(const QModelIndex &index, const QVariant &value, int r
             document()->setTitle(value.toString());
         }
     }
-    return ContainerModel::setData(index, value, role);
+    return KEduVocContainerModel::setData(index, value, role);
 }
 
 void LessonModel::splitLesson(const QModelIndex& containerIndex, int entriesPerLesson, SplitLessonOrder order)

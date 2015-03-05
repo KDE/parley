@@ -29,7 +29,7 @@ class LessonStatisticsView : public ContainerView
 public:
     explicit LessonStatisticsView(QWidget *parent);
     ~LessonStatisticsView();
-    void setModel(ContainerModel *model) Q_DECL_OVERRIDE;
+    void setModel(KEduVocContainerModel *model) Q_DECL_OVERRIDE;
     void saveExpandedStatus() const;
     void restoreExpandedStatus();
 

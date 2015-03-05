@@ -19,8 +19,8 @@
 // Qt
 #include <QHeaderView>
 
-// Parley/collection
-#include "containermodel.h"
+// KEduVoc
+#include <keduvoccontainermodel.h>
 
 
 ContainerView::ContainerView(QWidget *parent) : QTreeView(parent)
@@ -39,7 +39,7 @@ ContainerView::ContainerView(QWidget *parent) : QTreeView(parent)
     setDragDropMode(QAbstractItemView::DragDrop);
 }
 
-void ContainerView::setModel(ContainerModel *model)
+void ContainerView::setModel(KEduVocContainerModel *model)
 {
     QTreeView::setModel(model);
     m_model = model;

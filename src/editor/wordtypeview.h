@@ -16,7 +16,6 @@
 #ifndef WORDTYPEVIEW_H
 #define WORDTYPEVIEW_H
 
-#include "wordtypeview.h"
 #include "containerview.h"
 
 class QAction;

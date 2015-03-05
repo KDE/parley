@@ -16,12 +16,12 @@
 #ifndef WORDCLASSMODEL_H
 #define WORDCLASSMODEL_H
 
-#include "containermodel.h"
+#include <keduvoccontainermodel.h>
 
 /**
   * Model for the tree of word types.
   */
-class WordClassModel : public ContainerModel
+class WordClassModel : public KEduVocContainerModel
 {
     Q_OBJECT
 

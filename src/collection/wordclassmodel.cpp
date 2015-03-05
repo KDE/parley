@@ -21,7 +21,7 @@
 
 
 WordClassModel::WordClassModel(QObject * parent)
-    : ContainerModel(KEduVocContainer::WordType, parent)
+    : KEduVocContainerModel(KEduVocContainer::WordType, parent)
 {
 }
 

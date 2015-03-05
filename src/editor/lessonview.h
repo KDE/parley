@@ -84,7 +84,7 @@ protected slots:
     void currentChanged(const QModelIndex & current, const QModelIndex & previous) Q_DECL_OVERRIDE;
 
 private:
-    void setModel(ContainerModel *model) Q_DECL_OVERRIDE {
+    virtual void setModel(KEduVocContainerModel *model) Q_DECL_OVERRIDE {
         Q_UNUSED(model)
     }
     void setModel(QAbstractItemModel *model) Q_DECL_OVERRIDE {

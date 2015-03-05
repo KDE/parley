@@ -25,7 +25,7 @@
 #include <QDebug>
 
 StatisticsModel::StatisticsModel(QObject *parent)
-    : ContainerModel(KEduVocContainer::Lesson, parent)
+    : KEduVocContainerModel(KEduVocContainer::Lesson, parent)
 {
 }
 
@@ -38,7 +38,7 @@ QVariant StatisticsModel::headerData(int section, Qt::Orientation orientation, i
                          , document()->identifier(section - FirstDataColumn).name());
         }
     }
-    return ContainerModel::headerData(section, orientation, role);
+    return KEduVocContainerModel::headerData(section, orientation, role);
 }
 
 QVariant StatisticsModel::data(const QModelIndex &index, int role) const
@@ -101,7 +101,7 @@ QVariant StatisticsModel::data(const QModelIndex &index, int role) const
         }
     }
 
-    return ContainerModel::data(index, role);
+    return KEduVocContainerModel::data(index, role);
 }
 
 int StatisticsModel::averageGradeForPracticeMode(KEduVocContainer *container, int translation) const
