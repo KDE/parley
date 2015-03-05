@@ -23,9 +23,9 @@
 
 #include <keduvocexpression.h>
 #include <keduvoclesson.h>
+#include <keduvoclessonmodel.h>
 
 #include "editor/editor.h"
-#include "lessonmodel.h"
 #include "prefs.h"
 
 using namespace Editor;
@@ -211,7 +211,7 @@ void LessonView::slotSplitLesson()
         return;
     }
     Prefs::setEntriesPerLesson(numEntries);
-    m_model->splitLesson(selectionModel()->currentIndex(), numEntries, LessonModel::Random);
+    m_model->splitLesson(selectionModel()->currentIndex(), numEntries, KEduVocLessonModel::Random);
     setExpanded(selectionModel()->currentIndex(), true);
 }
 
@@ -231,7 +231,7 @@ void LessonView::slotRemoveGradesLessonChildren()
     emit signalShowContainer(lesson);
 }
 
-void LessonView::setModel(LessonModel * model)
+void LessonView::setModel(KEduVocLessonModel * model)
 {
     m_model = model;
     ContainerView::setModel(model);

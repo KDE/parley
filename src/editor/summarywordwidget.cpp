@@ -17,7 +17,6 @@
 
 #include "languagesettings.h"
 
-#include "lessonmodel.h"
 #include "vocabularyfilter.h"
 #include "wordclassmodel.h"
 
@@ -35,6 +34,7 @@
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
 #include <keduvocvocabularymodel.h>
+#include <keduvoclessonmodel.h>
 
 using namespace Editor;
 
