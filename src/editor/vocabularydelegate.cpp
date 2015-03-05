@@ -19,11 +19,12 @@
 
 #include "prefs.h"
 #include "languagesettings.h"
-#include "readonlycontainermodel.h"
 
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
 #include <keduvocvocabularymodel.h>
+#include <keduvocreadonlycontainermodel.h>
+
 #include <KLocalizedString>
 #include <KPassivePopup>
 #include <KComboBox>
@@ -349,16 +350,16 @@ QPair< QString, QString > VocabularyDelegate::guessWordType(const QString & entr
 
 
 VocabularyDelegate::WordTypeBasicModel::WordTypeBasicModel(QObject * parent)
-    : ReadonlyContainerModel(KEduVocContainer::WordType, parent)
+    : KEduVocReadonlyContainerModel(KEduVocContainer::WordType, parent)
 {
 }
 
 KEduVocContainer * VocabularyDelegate::WordTypeBasicModel::rootContainer() const
 {
-    if (!m_doc) {
+    if (!document()) {
         return 0;
     }
-    return m_doc->wordTypeContainer();
+    return document()->wordTypeContainer();
 }
 
 /**

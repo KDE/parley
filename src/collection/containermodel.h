@@ -16,8 +16,6 @@
 #ifndef CONTAINERMODEL_H
 #define CONTAINERMODEL_H
 
-#include "readonlycontainermodel.h"
-
 #include <QAbstractItemModel>
 #include <QModelIndex>
 
@@ -25,12 +23,13 @@
 
 #include <keduvocdocument.h>
 #include <keduvoclesson.h>
+#include <keduvocreadonlycontainermodel.h>
 
 
 /**
   * Model for the tree of containers (lessons, word types).
   */
-class ContainerModel : public ReadonlyContainerModel
+class ContainerModel : public KEduVocReadonlyContainerModel
 {
     Q_OBJECT
 
