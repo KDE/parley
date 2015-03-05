@@ -36,7 +36,7 @@ class ScriptManager;
 class KEduVocLessonModel;
 class KEduVocVocabularyModel;
 class VocabularyFilter;
-class WordClassModel;
+class KEduVocWordClassModel;
 
 namespace Editor
 {
@@ -148,7 +148,7 @@ private:
     LessonView *m_lessonView;
     KEduVocLessonModel *m_lessonModel;
 
-    WordClassModel *m_wordTypeModel;
+    KEduVocWordClassModel *m_wordTypeModel;
     WordTypeView *m_wordTypeView;
 
     ScriptManager* m_scriptManager;

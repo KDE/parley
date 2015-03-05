@@ -21,7 +21,7 @@ set(parley_LIB_SRCS
     #collection/lessonmodel.cpp
     #collection/vocabularymodel.cpp
     collection/vocabularyfilter.cpp
-    collection/wordclassmodel.cpp
+    #collection/wordclassmodel.cpp
     collection/containerview.cpp
     editor/editor.cpp
     editor/vocabularycolumnsdialog.cpp
