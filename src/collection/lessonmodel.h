@@ -16,12 +16,12 @@
 #ifndef LESSONMODEL_H
 #define LESSONMODEL_H
 
-#include "containermodel.h"
+#include <keduvoccontainermodel.h>
 
 /**
   * Model for the tree of lessons.
   */
-class LessonModel : public ContainerModel
+class LessonModel : public KEduVocContainerModel
 {
     Q_OBJECT
 

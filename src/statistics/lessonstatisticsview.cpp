@@ -59,7 +59,7 @@ public:
         // Draw the colored bar.
         KEduVocContainer *container = index.data(StatisticsModel::Container).value<KEduVocContainer*>();
         WordCount  wordCount;
-        wordCount.fillFromContainer(*container, index.column() - ContainerModel::FirstDataColumn);
+        wordCount.fillFromContainer(*container, index.column() - KEduVocContainerModel::FirstDataColumn);
         ConfidenceColors  colors(ConfidenceColors::ProgressiveColorScheme);
 
         paintColorBar(*painter, option.rect, wordCount, colors); // in utils
@@ -108,12 +108,12 @@ LessonStatisticsView::LessonStatisticsView(QWidget *parent)
 	    this,     SLOT(sectionResized(int,int,int)));
 }
 
-void LessonStatisticsView::setModel(ContainerModel *model)
+void LessonStatisticsView::setModel(KEduVocContainerModel *model)
 {
     ContainerView::setModel(model);
 
     GradeDelegate *delegate = new GradeDelegate(this);
-    for (int i = ContainerModel::FirstDataColumn; i < model->columnCount(QModelIndex()); i++) {
+    for (int i = KEduVocContainerModel::FirstDataColumn; i < model->columnCount(QModelIndex()); i++) {
         setItemDelegateForColumn(i, delegate);
     }
 
@@ -129,7 +129,7 @@ void LessonStatisticsView::resizeEvent(QResizeEvent *event)
 void LessonStatisticsView::sectionResized(int index,
 					  int /*oldSize*/, int /*newSize*/)
 {
-    if (index < ContainerModel::FirstDataColumn) {
+    if (index < KEduVocContainerModel::FirstDataColumn) {
 	adjustColumnWidths();
     }
 }
@@ -141,12 +141,12 @@ void LessonStatisticsView::adjustColumnWidths()
     int totalWidth = width() - firstWidth - 5;
     int columnCount = model()->columnCount(QModelIndex());
     int visibleColumns = 0;
-    for (int i = ContainerModel::FirstDataColumn; i < columnCount; ++i) {
+    for (int i = KEduVocContainerModel::FirstDataColumn; i < columnCount; ++i) {
         if (!isColumnHidden(i))
             visibleColumns++;
     }
     int columnWidth = visibleColumns > 0 ? totalWidth / visibleColumns : 150;
-    for (int i = ContainerModel::FirstDataColumn; i < model()->columnCount(QModelIndex()); i++) {
+    for (int i = KEduVocContainerModel::FirstDataColumn; i < model()->columnCount(QModelIndex()); i++) {
         setColumnWidth(i, columnWidth);
     }
 //    header()->resizeSections(QHeaderView::ResizeToContents);

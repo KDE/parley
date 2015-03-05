@@ -230,8 +230,8 @@ void StatisticsMainWindow::practiceDirectionChanged(int mode)
 void StatisticsMainWindow::updateVisibleColumns()
 {
     bool isHidden;
-    for (int i = ContainerModel::FirstDataColumn; i < m_ui->lessonStatistics->header()->count(); i++) {
-        int iLang = i - ContainerModel::FirstDataColumn;
+    for (int i = KEduVocContainerModel::FirstDataColumn; i < m_ui->lessonStatistics->header()->count(); i++) {
+        int iLang = i - KEduVocContainerModel::FirstDataColumn;
 
         switch (Prefs::practiceDirection()) {
         case Prefs::EnumPracticeDirection::LearningToKnown:

@@ -16,10 +16,10 @@
 #ifndef STATISTICSMODEL_H
 #define STATISTICSMODEL_H
 
-#include "containermodel.h"
+#include <keduvoccontainermodel.h>
 
 
-class StatisticsModel : public ContainerModel
+class StatisticsModel : public KEduVocContainerModel
 {
     Q_OBJECT
 

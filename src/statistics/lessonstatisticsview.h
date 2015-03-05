@@ -28,7 +28,7 @@ class LessonStatisticsView : public ContainerView
 
 public:
     LessonStatisticsView(QWidget *parent);
-    void setModel(ContainerModel *model);
+    void setModel(KEduVocContainerModel *model);
 
 private Q_SLOTS:
     void removeGrades();
