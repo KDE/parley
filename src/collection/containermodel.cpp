@@ -32,10 +32,9 @@
   */
 
 ContainerModel::ContainerModel(KEduVocContainer::EnumContainerType type, QObject * parent)
-    : ReadonlyContainerModel(type, parent)
+    : KEduVocReadonlyContainerModel(type, parent)
 {
-    m_type = type;
-    m_doc = 0;
+    setDocument(0);
 }
 
 QModelIndex ContainerModel::appendContainer(const QModelIndex& parent, const QString & containerName)
@@ -49,7 +48,7 @@ QModelIndex ContainerModel::appendContainer(const QModelIndex& parent, const QSt
 
     beginInsertRows(parent, parentContainer->childContainerCount(),
                     parentContainer->childContainerCount());
-    switch (m_type) {
+    switch (containerType()) {
     case (KEduVocContainer::Lesson):
         parentContainer->appendChildContainer(new KEduVocLesson(containerName, static_cast<KEduVocLesson*>(parentContainer)));
         break;
@@ -185,7 +184,7 @@ QVariant ContainerModel::headerData(int section, Qt::Orientation orientation, in
 int ContainerModel::columnCount(const QModelIndex & parent) const
 {
     Q_UNUSED(parent);
-    if (!m_doc) {
+    if (!document()) {
         return FirstDataColumn;
     }
 
@@ -259,7 +258,7 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
     if (containerData) {
         foreach(KEduVocContainer * container, containerData->containerList()) {
             // no way to move a word type to a lesson for now
-            if (container->containerType() != m_type) {
+            if (container->containerType() != containerType()) {
                 return false;
             }
 

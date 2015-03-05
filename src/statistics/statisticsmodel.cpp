@@ -33,9 +33,9 @@ QVariant StatisticsModel::headerData(int section, Qt::Orientation orientation, i
 {
     if (section >= FirstDataColumn) {
         if (role == Qt::DisplayRole
-            && m_doc->identifierCount() > (section - FirstDataColumn) ) {
+            && document()->identifierCount() > (section - FirstDataColumn) ) {
             return i18nc("Confidence level in language, table header", "Confidence (%1)"
-                         , m_doc->identifier(section - FirstDataColumn).name());
+                         , document()->identifier(section - FirstDataColumn).name());
         }
     }
     return ContainerModel::headerData(section, orientation, role);
@@ -152,7 +152,7 @@ Qt::ItemFlags StatisticsModel::flags(const QModelIndex &index) const
 int StatisticsModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
-    return m_doc->identifierCount() + FirstDataColumn;
+    return document()->identifierCount() + FirstDataColumn;
 }
 
 Qt::DropActions StatisticsModel::supportedDragActions() const
@@ -162,10 +162,10 @@ Qt::DropActions StatisticsModel::supportedDragActions() const
 
 KEduVocContainer *StatisticsModel::rootContainer() const
 {
-    if (!m_doc) {
+    if (!document()) {
         return 0;
     }
-    return m_doc->lesson();
+    return document()->lesson();
 }
 
 void StatisticsModel::loadDocumentsSettings()

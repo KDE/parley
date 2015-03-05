@@ -33,10 +33,10 @@ LessonModel::LessonModel(QObject * parent)
 
 KEduVocContainer * LessonModel::rootContainer() const
 {
-    if (!m_doc) {
+    if (!document()) {
         return 0;
     }
-    return m_doc->lesson();
+    return document()->lesson();
 }
 
 Qt::ItemFlags LessonModel::flags(const QModelIndex &index) const
@@ -74,7 +74,7 @@ bool LessonModel::setData(const QModelIndex &index, const QVariant &value, int r
     if (index.isValid() && !index.parent().isValid()) {
         if (index.column() == ContainerNameColumn && role == Qt::EditRole) {
             ///@todo decouple the root lesson and document title
-            m_doc->setTitle(value.toString());
+            document()->setTitle(value.toString());
         }
     }
     return ContainerModel::setData(index, value, role);
