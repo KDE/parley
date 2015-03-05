@@ -18,7 +18,6 @@
 #include "languagesettings.h"
 
 #include "vocabularyfilter.h"
-#include "wordclassmodel.h"
 
 // Qt headers
 #include <QAbstractItemModel>
@@ -35,6 +34,7 @@
 #include <keduvocwordtype.h>
 #include <keduvocvocabularymodel.h>
 #include <keduvoclessonmodel.h>
+#include <keduvocwordclassmodel.h>
 
 using namespace Editor;
 
@@ -104,7 +104,7 @@ void SummaryWordWidget::slotDocumentChanged(KEduVocDocument *doc)
         delete m_wordTypeView;
         if (!m_wordTypeModel) {
             qDebug() << "Create word type model for summary view";
-            m_wordTypeModel = new WordClassModel(this);
+            m_wordTypeModel = new KEduVocWordClassModel(this);
         }
         m_wordTypeModel->setDocument(m_doc);
         m_wordTypeView = new QTreeView(this);

@@ -28,7 +28,7 @@ class KEduVocDocument;
 class KEduVocExpression;
 
 class VocabularyFilter;
-class WordClassModel;
+class KEduVocWordClassModel;
 
 namespace Editor
 {
@@ -88,7 +88,7 @@ private:
     VocabularyFilter *m_model;
     KEduVocDocument *m_doc;
     QDataWidgetMapper *m_mapper;
-    WordClassModel *m_wordTypeModel;
+    KEduVocWordClassModel *m_wordTypeModel;
     QTreeView *m_wordTypeView;
     KEduVocExpression *m_entry;
     int m_translationId;
