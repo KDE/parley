@@ -21,7 +21,6 @@
 // Qt models on top of the KEduVocDocument
 
 #include "vocabularyfilter.h"
-#include "wordclassmodel.h"
 
 // Views
 #include "vocabularyview.h"
@@ -52,6 +51,7 @@
 #include <keduvocvocabularymodel.h>
 #include <keduvoccontainermodel.h>
 #include <keduvoclessonmodel.h>
+#include <keduvocwordclassmodel.h>
 
 #include <KActionCollection>
 #include <KToggleAction>
@@ -186,7 +186,7 @@ void EditorWindow::initDockWidgets()
     addDockWidget(Qt::LeftDockWidgetArea, wordTypeDockWidget);
     m_dockWidgets.append(wordTypeDockWidget);
 
-    m_wordTypeModel = new WordClassModel(this);
+    m_wordTypeModel = new KEduVocWordClassModel(this);
     wordTypeDockWidget->setVisible(false);
     actionCollection()->addAction("show_wordtype_dock", wordTypeDockWidget->toggleViewAction());
 
