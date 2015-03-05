@@ -21,7 +21,6 @@
 
 #include "vocabularyfilter.h"
 #include "vocabularydelegate.h"
-#include "vocabularymimedata.h"
 
 #include "editor/editor.h"
 #include "prefs.h"
@@ -31,6 +30,7 @@
 #include <keduvoctranslation.h>
 #include <keduvocexpression.h>
 #include <keduvocvocabularymodel.h>
+#include <keduvocvocabularymimedata.h>
 
 #include <QHeaderView>
 #include <QPainter>
@@ -290,10 +290,10 @@ void VocabularyView::slotEditPaste()
 {
     QClipboard *clipboard = QApplication::clipboard();
     const QMimeData *mimeData = clipboard->mimeData();
-    const VocabularyMimeData *vocMimeData = qobject_cast<const VocabularyMimeData *>(mimeData);
+    const KEduVocVocabularyMimeData *vocMimeData = qobject_cast<const KEduVocVocabularyMimeData *>(mimeData);
     if (vocMimeData) {
         qDebug() << "Clipboard contains vocabulary mime data.";
-        foreach(const VocabularyMimeData::MimeExpression & mimeEntry, vocMimeData->expressionList()) {
+        foreach(const KEduVocVocabularyMimeData::MimeExpression & mimeEntry, vocMimeData->expressionList()) {
             KEduVocExpression *pasteExpression = new KEduVocExpression(mimeEntry.expression);
             m_model->appendEntry(pasteExpression);
 
