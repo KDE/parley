@@ -16,7 +16,7 @@ set(parley_LIB_SRCS
     collection/entryfilter.cpp
     collection/entryfilterdialog.cpp
     collection/vocabularymimedata.cpp
-    collection/containermimedata.cpp
+    #collection/containermimedata.cpp
     #collection/readonlycontainermodel.cpp
     #collection/containermodel.cpp
     #collection/lessonmodel.cpp
