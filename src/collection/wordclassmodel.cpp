@@ -27,8 +27,8 @@ WordClassModel::WordClassModel(QObject * parent)
 
 KEduVocContainer * WordClassModel::rootContainer() const
 {
-    if (!m_doc) {
+    if (!document()) {
         return 0;
     }
-    return m_doc->wordTypeContainer();
+    return document()->wordTypeContainer();
 }

@@ -17,11 +17,12 @@
 #ifndef VOCABULARYDELEGATE_H
 #define VOCABULARYDELEGATE_H
 
-#include "readonlycontainermodel.h"
 #include "../scripts/translator.h"
 
 #include <QItemDelegate>
 #include <QModelIndex>
+
+#include <keduvocreadonlycontainermodel.h>
 
 class KEduVocDocument;
 
@@ -79,7 +80,7 @@ private:
     class WordTypeBasicModel;
 };
 
-class VocabularyDelegate::WordTypeBasicModel : public ReadonlyContainerModel
+class VocabularyDelegate::WordTypeBasicModel : public KEduVocReadonlyContainerModel
 {
 public:
     explicit WordTypeBasicModel(QObject *parent = 0);
