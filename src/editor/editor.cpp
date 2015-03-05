@@ -20,7 +20,6 @@
 
 // Qt models on top of the KEduVocDocument
 
-#include "lessonmodel.h"
 #include "vocabularyfilter.h"
 #include "wordclassmodel.h"
 
@@ -52,6 +51,7 @@
 //KEduVoc
 #include <keduvocvocabularymodel.h>
 #include <keduvoccontainermodel.h>
+#include <keduvoclessonmodel.h>
 
 #include <KActionCollection>
 #include <KToggleAction>
@@ -162,7 +162,7 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(lessonDockWidget);
     actionCollection()->addAction("show_units_dock", lessonDockWidget->toggleViewAction());
 
-    m_lessonModel = new LessonModel(this);
+    m_lessonModel = new KEduVocLessonModel(this);
     m_lessonView->setModel(m_lessonModel);
     m_lessonView->setToolTip(i18n("Right click to add, delete, or rename units. \n"
                                   "With the checkboxes you can select which units you want to practice. \n"

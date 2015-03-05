@@ -33,7 +33,7 @@ class ScriptManager;
 ///@brief contains objects for the editor main window
 
 // Models around the Collection / KEduVocDocument
-class LessonModel;
+class KEduVocLessonModel;
 class KEduVocVocabularyModel;
 class VocabularyFilter;
 class WordClassModel;
@@ -146,7 +146,7 @@ private:
 
     /// dock widgets to display lessons, word types, ...
     LessonView *m_lessonView;
-    LessonModel *m_lessonModel;
+    KEduVocLessonModel *m_lessonModel;
 
     WordClassModel *m_wordTypeModel;
     WordTypeView *m_wordTypeView;
