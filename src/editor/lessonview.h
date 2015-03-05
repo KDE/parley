@@ -17,7 +17,8 @@
 #define LESSONVIEW_H
 
 #include "containerview.h"
-#include "lessonmodel.h"
+
+#include <keduvoclessonmodel.h>
 
 namespace Editor
 {
@@ -36,7 +37,7 @@ public:
 
     /** Set the model for the view.
      * @param model the model */
-    virtual void setModel(LessonModel *model);
+    virtual void setModel(KEduVocLessonModel *model);
 
 signals:
     /** A lesson was selected */
@@ -91,7 +92,7 @@ private:
         Q_UNUSED(model)
     }
 
-    LessonModel *m_model;
+    KEduVocLessonModel *m_model;
 };
 }
 
