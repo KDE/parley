@@ -401,7 +401,7 @@ void EditorWindow::initActions()
     m_spellCheckMenu->setMenu(new QMenu(this));
 
     ParleyActions::create(ParleyActions::ToggleShowSublessons, m_vocabularyModel, SLOT(showEntriesOfSubcontainers(bool)), actionCollection());
-    ParleyActions::create(ParleyActions::AutomaticTranslation, m_vocabularyModel, SLOT(automaticTranslation(bool)), actionCollection());
+    ParleyActions::create(ParleyActions::AutomaticTranslation, m_vocabularyModel, SLOT(Prefs::setAutomaticTranslation(bool)), actionCollection());
     ParleyActions::create(ParleyActions::StartPractice, m_mainWindow, SLOT(showPracticeConfiguration()), actionCollection());
     actionCollection()->action(QStringLiteral("practice_start"))->setText(i18n("Practice"));
     actionCollection()->action(QStringLiteral("practice_start"))->setToolTip(i18n("Practice"));
