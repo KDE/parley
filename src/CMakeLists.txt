@@ -14,14 +14,7 @@ set(parley_LIB_SRCS
     collection/collection.cpp
     collection/testentry.cpp
     collection/entryfilter.cpp
-    #collection/vocabularymimedata.cpp
-    #collection/containermimedata.cpp
-    #collection/readonlycontainermodel.cpp
-    #collection/containermodel.cpp
-    #collection/lessonmodel.cpp
-    #collection/vocabularymodel.cpp
     collection/vocabularyfilter.cpp
-    #collection/wordclassmodel.cpp
     collection/containerview.cpp
     editor/editor.cpp
     editor/vocabularycolumnsdialog.cpp
