@@ -113,6 +113,11 @@ public slots:
      */
     void addWordWithTranslation(const QStringList &w);
 
+    /**
+      * Set/Unset Automatic Translation in Prefs
+      */
+    void setAutomaticTranslation(bool v);
+
 private slots:
 
     /** Make the search bar visible and focus it */

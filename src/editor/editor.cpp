@@ -150,6 +150,10 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
     }
 }
 
+void EditorWindow::setAutomaticTranslation(bool v)
+{
+    Prefs::setAutomaticTranslation(v);
+}
 
 void EditorWindow::initDockWidgets()
 {
@@ -404,8 +408,8 @@ void EditorWindow::initActions()
     m_spellCheckMapper = new QSignalMapper(this);
     connect(m_spellCheckMapper, SIGNAL(mapped(int)), m_vocabularyView, SLOT(checkSpelling(int)));
 
-    ParleyActions::create(ParleyActions::ToggleShowSublessons, m_vocabularyModel, SLOT(showEntriesOfSubcontainers(bool)), actionCollection());
-    ParleyActions::create(ParleyActions::AutomaticTranslation, m_vocabularyModel, SLOT(Prefs::setAutomaticTranslation(bool)), actionCollection());
+    ParleyActions::create(ParleyActions::ToggleShowSublessons, m_vocabularyModel, SLOT(setRecursive(bool)), actionCollection());
+    ParleyActions::create(ParleyActions::AutomaticTranslation, this, SLOT(setAutomaticTranslation(bool)), actionCollection());
     ParleyActions::create(ParleyActions::StartPractice, m_mainWindow, SLOT(showPracticeConfiguration()), actionCollection());
     actionCollection()->action("practice_start")->setText(i18n("Practice"));
     actionCollection()->action("practice_start")->setToolTip(i18n("Practice"));
