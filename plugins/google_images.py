@@ -36,7 +36,7 @@ class ImageDialog(KDialog):
     KDialog.__init__(self)
 
     self.w = None
-    #look for the uiFile in plugin dirs and get the first occurence of it
+    #look for the uiFile in plugin dirs and get the first occurrence of it
     for plugindir in Parley.pluginDirs():
       if path.exists(plugindir+uiFile):
         (ImageWidget, widget) = uic.loadUiType(plugindir+uiFile)

@@ -26,7 +26,6 @@
 #include <KLocalizedString>
 #include <KConfig>
 #include <KConfigGroup>
-#include <KLocalizedString>
 
 #include "parleymainwindow.h"
 #include "guifrontend.h"

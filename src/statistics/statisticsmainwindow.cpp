@@ -34,7 +34,6 @@
 
 
 #include "ui_statisticsmainwindow.h"
-#include "prefs.h"
 #include "conjugationoptions.h"
 
 

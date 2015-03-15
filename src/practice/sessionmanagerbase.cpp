@@ -132,7 +132,7 @@ TestEntry* SessionManagerBase::nextTrainingEntry()
     }
 
     // Return one of the current entries, but not the same as last
-    // time if posible.
+    // time if possible.
     int lastEntry = m_currentEntry;
     if (m_currentEntries.count() > 0) {
         // Choose one of the current entries randomly.

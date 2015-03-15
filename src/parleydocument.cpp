@@ -56,7 +56,6 @@
 #endif
 
 #include "settings/languageproperties.h"
-#include "settings/documentproperties.h"
 
 namespace DocumentHelper
 {
