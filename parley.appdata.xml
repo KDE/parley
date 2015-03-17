@@ -91,6 +91,7 @@
     <p xml:lang="sv">Övningsmetoder:</p>
     <p xml:lang="uk">Режими навчання:</p>
     <p xml:lang="x-test">xxTraining Modes:xx</p>
+    <p xml:lang="zh-CN">训练模式：</p>
     <p xml:lang="zh-TW">訓練模式：</p>
     <ul>
       <li>Flash Cards</li>
@@ -135,6 +136,7 @@
       <li xml:lang="sv">Blandade bokstäver (ordna bokstäverna i ett ord)</li>
       <li xml:lang="uk">Відновлення порядку літер (різновид анаграми).</li>
       <li xml:lang="x-test">xxMixed Letters (order the letters of a word)xx</li>
+      <li xml:lang="zh-CN">混合字母 (一个单词的字母顺序)</li>
       <li xml:lang="zh-TW">混合字母（單字字母順序）</li>
       <li>Multiple Choice</li>
       <li xml:lang="bs">Višestruki izbor</li>
@@ -180,6 +182,7 @@
       <li xml:lang="sv">Skrivet</li>
       <li xml:lang="uk">Письмовий.</li>
       <li xml:lang="x-test">xxWrittenxx</li>
+      <li xml:lang="zh-CN">写作</li>
       <li xml:lang="zh-TW">已寫入</li>
       <li>Language specific trainings: article, comparison forms, conjugations, synonymes/antonyms/paraphrases</li>
       <li xml:lang="bs">Jezički posebna obuka: članovi, oblici poređenja, konjugacija, sinonimi/antonimi/parafraze</li>
