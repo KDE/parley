@@ -5,7 +5,6 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Wiktionary Sound
-Name[ast]=Soníu del Wiktionariu
 Name[bs]=Zvuk wiki rječnika
 Name[ca]=So de Wiktionary
 Name[ca@valencia]=So de Wiktionary
@@ -49,7 +48,6 @@ Name[x-test]=xxWiktionary Soundxx
 Name[zh_CN]=Wiktionary 声音
 Name[zh_TW]=Wiktionary 音效
 Comment=This script fetches sound files from http://commons.wikimedia.org.
-Comment[ast]=Esti guión estrái ficheros de soníu de http://commons.wikimedia.org.
 Comment[bs]=Ova skripta dohvaća zvučne datoteke iz http://commons.wikimedia.org.
 Comment[ca]=Aquest script recupera fitxers de so des de http://commons.wikimedia.org.
 Comment[ca@valencia]=Este script recupera fitxers de so des de http://commons.wikimedia.org.
