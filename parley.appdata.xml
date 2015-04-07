@@ -4,7 +4,6 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>Parley</name>
-  <name xml:lang="ast">Parley</name>
   <name xml:lang="bs">Parley</name>
   <name xml:lang="ca">Parley</name>
   <name xml:lang="cs">Parley</name>
@@ -29,7 +28,6 @@
   <name xml:lang="zh-CN">Parley</name>
   <name xml:lang="zh-TW">語言_Parley</name>
   <summary>Vocabulary Trainer</summary>
-  <summary xml:lang="ast">Entrenador de vocabulariu</summary>
   <summary xml:lang="bs">Trener riječnika</summary>
   <summary xml:lang="ca">Entrenador de vocabulari</summary>
   <summary xml:lang="cs">Učitel slovní zásoby</summary>
