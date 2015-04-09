@@ -20,6 +20,7 @@
   <name xml:lang="pl">Parley</name>
   <name xml:lang="pt">Parley</name>
   <name xml:lang="pt-BR">Parley</name>
+  <name xml:lang="ru">Parley</name>
   <name xml:lang="sk">Parley</name>
   <name xml:lang="sl">Parley</name>
   <name xml:lang="sv">Parley</name>
@@ -43,6 +44,7 @@
   <summary xml:lang="pl">Trening słownictwa</summary>
   <summary xml:lang="pt">Treinador do Vocabulário</summary>
   <summary xml:lang="pt-BR">Treinador de vocabulário</summary>
+  <summary xml:lang="ru">Программа для изучения новой лексики</summary>
   <summary xml:lang="sk">Tréner slovnej zásoby</summary>
   <summary xml:lang="sl">Učenje besedišča</summary>
   <summary xml:lang="sv">Ordförrådsträning</summary>
@@ -64,6 +66,7 @@
     <p xml:lang="pl">Parley jest programem do ćwiczenia słownictwa. Pomaga zapamiętać słownictwo np. w przypadku nauki obcego języka. Zapewnia wiele możliwości zależnych od języka, lecz można go użyć także do nauki innych rzeczy. Używa metody nauki polegającej na powtarzaniu w czasie, co sprawia, że nauka jest optymalna. Zbiory słownictwa można pobrać poprzez usługę "Get Hot New Stuff" lub utworzyć poprzez wbudowany edytor.</p>
     <p xml:lang="pt">O Parley é um treinador de vocabulários. Ajuda-o a memorizar o seu vocabulário, quando por exemplo está a tentar aprender uma língua estrangeira. Ele suporta muitas funcionalidades específicas das línguas, mas também poderá ser usado para outras tarefas de aprendizagem. Ele usa o método de aprendizagem por repetição espaçada, o que torna a aprendizagem óptima. As colecções de vocabulários poderão ser obtidas pelo mecanismo para "Obter Coisas Novas" ou criadas com o editor incorporado.</p>
     <p xml:lang="pt-BR">Parley é um treinador de vocabulários. Ele o ajuda a memorizar seu vocabulário, quando, por exemplo, você estiver tentando aprender um idioma estrangeiro. Ele tem suporte a muitas funcionalidades específicas de idiomas, mas também pode ser usado para outras tarefas de aprendizagem. Ele usa o método de aprendizagem por repetição espaçada, o que torna a aprendizagem ótima. As coleções de vocabulários poderão ser obtidas pela funcionalidade "Obter novidades" ou criadas com o editor incorporado.</p>
+    <p xml:lang="ru">Parley — программа для тренировки словарного запаса, например при изучении иностранного языка. Учитываются особенности языков, но тем не менее возможно заучивать не только переводы слов, но и другую информацию. В программе используется техника интервальных повторений, ускоряющая заучивание. Можно создавать свои файлы словарей. Также доступны готовые файлы, предоставленные другими пользователями Parley, которые можно загрузить прямо из программы.</p>
     <p xml:lang="sk">Parley je tréner slovnej zásoby. Pomôže vám naučiť sa slovnú zásobu, napríklad keď sa snažíte naučiť cudzí jazyk. Podporuje mnoho jazykovo špecifických funkcií, ale dá sa použiť aj na iné výukové účely. Používa metódu rozloženého opakovania učenia, ktorá robí výuku optimálnou. Kolekcie slovnej zásoby sa dajú stiahnuť cez "Získať nový materiál" alebo vytvoriť cez zabudovaný editor.</p>
     <p xml:lang="sl">Parley vam lahko pomaga pri učenju besedišča, če se na primer poskušate naučiti tuj jezik. Podpira zmožnosti, ki so določene za nek jezik, lahko pa ga uporabite tudi za druge stvari. Uporablja posebne metode, ki optimizirajo učenje. Zbirke besedišč lahko prejmete s pomočjo "Dobi vroče novosti" ali pa uporabite vgrajen urejevalnik.</p>
     <p xml:lang="sv">Parley är ett är program för ordförrådsövning. Det hjälper dig att memorera ditt ordförråd, till exempel när du försöker lära dig ett främmande språk. Det stöder en mängd språkspecifika funktioner, men kan dessutom användas för andra inlärningsuppgifter. Det använder inlärningsmetoden med utspridd upprepning, vilket gör inlärning optimal. Ordförrådsamlingar kan laddas ner med "Hämta heta nyheter" eller skapas med den inbyggda editorn.</p>
@@ -84,6 +87,7 @@
     <p xml:lang="pl">Tryby ćwiczeń"</p>
     <p xml:lang="pt">Modos de Treino:</p>
     <p xml:lang="pt-BR">Modos de treinamento:</p>
+    <p xml:lang="ru">Режимы обучения:</p>
     <p xml:lang="sk">Režimy tréningu:</p>
     <p xml:lang="sl">Načini učenja:</p>
     <p xml:lang="sv">Övningsmetoder:</p>
@@ -108,6 +112,7 @@
       <li xml:lang="pl">Fiszki</li>
       <li xml:lang="pt">Cartões</li>
       <li xml:lang="pt-BR">Cartões</li>
+      <li xml:lang="ru">Карточки</li>
       <li xml:lang="sk">Učebné karty</li>
       <li xml:lang="sl">Karte</li>
       <li xml:lang="sv">Snabbkort</li>
@@ -129,6 +134,7 @@
       <li xml:lang="pl">Mieszane litery (ułóż litery słowa)</li>
       <li xml:lang="pt">Letras Misturadas (ordenar as letras de uma palavra)</li>
       <li xml:lang="pt-BR">Letras misturadas (ordenar as letras de uma palavra)</li>
+      <li xml:lang="ru">Перемешанные буквы (нужно восстановить правильный порядок букв в слове)</li>
       <li xml:lang="sk">Zmiešané písmená (poradie písmen v slove)</li>
       <li xml:lang="sl">Pomešane črke (postavite črke besede v pravilni vrstni red)</li>
       <li xml:lang="sv">Blandade bokstäver (ordna bokstäverna i ett ord)</li>
@@ -152,6 +158,7 @@
       <li xml:lang="pl">Wiele odpowiedzi</li>
       <li xml:lang="pt">Escolha Múltipla</li>
       <li xml:lang="pt-BR">Múltipla escolha</li>
+      <li xml:lang="ru">Вопросы с вариантами ответа</li>
       <li xml:lang="sk">Viacnásobné možnosti</li>
       <li xml:lang="sl">Več možnosti</li>
       <li xml:lang="sv">Flerval</li>
@@ -175,6 +182,7 @@
       <li xml:lang="pl">Pisemny</li>
       <li xml:lang="pt">Escrito</li>
       <li xml:lang="pt-BR">Escrita</li>
+      <li xml:lang="ru">Письменные задания</li>
       <li xml:lang="sk">Napísané</li>
       <li xml:lang="sl">Pisno</li>
       <li xml:lang="sv">Skrivet</li>
@@ -195,6 +203,7 @@
       <li xml:lang="pl">Ćwiczenia wyjątkowe dla języka: rodzajnik, formy porównawcze, odmiany, synonimy/antonimy/parafrazy</li>
       <li xml:lang="pt">Treinos específicos da língua: artigos, formas de comparação, conjugações, sinónimos/antónimos/parágrafos</li>
       <li xml:lang="pt-BR">Treinamentos específicos de idioma: artigo, formas de comparação, conjugações, sinônimos/antônimos/paráfrases</li>
+      <li xml:lang="ru">Задания, зависящие от языка: артикли, степени сравнения, спряжение глаголов, синонимы и антонимы</li>
       <li xml:lang="sk">Tréning závislý na jazyku: článok, porovnanie foriem, konjugácie, synonymá/antonymá/odseky</li>
       <li xml:lang="sl">Vadbe določene za jezik: členi, primerjalne oblike, spregatve, sopomenke/protipomenke/parafraze</li>
       <li xml:lang="sv">Språkspecifika övningar: artiklar, kompareringsformer, konjugeringar, synonymer/antonymer/omskrivningar</li>
