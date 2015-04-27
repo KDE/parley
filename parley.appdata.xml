@@ -14,6 +14,7 @@
   <name xml:lang="et">Parley</name>
   <name xml:lang="fi">Parley</name>
   <name xml:lang="it">Parley</name>
+  <name xml:lang="ko">Parley</name>
   <name xml:lang="lt">Parley</name>
   <name xml:lang="nds">Parley</name>
   <name xml:lang="nl">Parley</name>
@@ -38,6 +39,7 @@
   <summary xml:lang="et">Sõnavara treening</summary>
   <summary xml:lang="fi">Sanaston harjoitusohjelma</summary>
   <summary xml:lang="it">Apprendimento di vocaboli</summary>
+  <summary xml:lang="ko">어휘 연습 도구</summary>
   <summary xml:lang="lt">Žodyno treniruoklis</summary>
   <summary xml:lang="nds">Vokaveln lehren</summary>
   <summary xml:lang="nl">Woordjes oefenen</summary>
@@ -82,6 +84,7 @@
     <p xml:lang="et">Harjutamisviisid:</p>
     <p xml:lang="fi">Harjoitustavat:</p>
     <p xml:lang="it">Modalità di apprendimento:</p>
+    <p xml:lang="ko">연습 모드:</p>
     <p xml:lang="nds">Ööv-Bedriefoorden:</p>
     <p xml:lang="nl">Oefenmethodes:</p>
     <p xml:lang="pl">Tryby ćwiczeń"</p>
@@ -106,6 +109,7 @@
       <li xml:lang="et">Sähvikud</li>
       <li xml:lang="fi">Kysymyskortit</li>
       <li xml:lang="it">Carte mnemoniche</li>
+      <li xml:lang="ko">플래시 카드</li>
       <li xml:lang="lt">Kortelės</li>
       <li xml:lang="nds">Naslakoorten</li>
       <li xml:lang="nl">Oefenkaarten</li>
@@ -152,6 +156,7 @@
       <li xml:lang="et">Mitmene valik</li>
       <li xml:lang="fi">Monivalinta</li>
       <li xml:lang="it">Scelta multipla</li>
+      <li xml:lang="ko">객관식</li>
       <li xml:lang="lt">Pasirinkimas iš kelių atsakymų</li>
       <li xml:lang="nds">Mehrfachköör</li>
       <li xml:lang="nl">Meerkeuze</li>
@@ -176,6 +181,7 @@
       <li xml:lang="et">Kirjalik</li>
       <li xml:lang="fi">Kirjallinen</li>
       <li xml:lang="it">Scritto</li>
+      <li xml:lang="ko">주관식</li>
       <li xml:lang="lt">Rašyba</li>
       <li xml:lang="nds">Schreven</li>
       <li xml:lang="nl">Geschreven</li>
