@@ -29,7 +29,7 @@ namespace Practice
 class LatexRenderer;
 }
 
-class VocabularyFilter;
+class KEduVocVocabularyFilter;
 
 namespace Editor
 {
@@ -39,7 +39,7 @@ class LatexWidget : public QWidget, public Ui::LatexWidget
     Q_OBJECT
 
 public:
-    LatexWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent = 0);
+    LatexWidget(KEduVocVocabularyFilter *model, KEduVocDocument *doc, QWidget *parent = 0);
     ~LatexWidget();
 
 public slots:
@@ -63,7 +63,7 @@ public slots:
     void updateLatex();
 
 private:
-    VocabularyFilter *m_model;
+    KEduVocVocabularyFilter *m_model;
     KEduVocDocument *m_doc;
     QDataWidgetMapper *m_mapper;
     KEduVocTranslation *m_translation;

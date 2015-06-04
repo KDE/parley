@@ -15,7 +15,6 @@
  ***************************************************************************/
 
 #include "vocabularydelegate.h"
-#include "vocabularyfilter.h"
 
 #include "prefs.h"
 #include "languagesettings.h"
@@ -24,6 +23,7 @@
 #include <keduvocwordtype.h>
 #include <keduvocvocabularymodel.h>
 #include <keduvocreadonlycontainermodel.h>
+#include <keduvocvocabularyfilter.h>
 
 #include <KLocalizedString>
 #include <KComboBox>
@@ -298,7 +298,7 @@ void VocabularyDelegate::setModelData(QWidget * editor, QAbstractItemModel * mod
             wordType = 0;
         }
 
-        VocabularyFilter *filter = qobject_cast<VocabularyFilter*> (model);
+        KEduVocVocabularyFilter *filter = qobject_cast<KEduVocVocabularyFilter*> (model);
         KEduVocVocabularyModel *vocModel = qobject_cast<KEduVocVocabularyModel*> ((filter)->sourceModel());
         Q_ASSERT(vocModel);
         QVariant data = vocModel->data(filter->mapToSource(index), KEduVocVocabularyModel::EntryRole);

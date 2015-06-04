@@ -19,7 +19,6 @@
 #include "vocabularyview.h"
 #include "vocabularyheaderview.h"
 
-#include "vocabularyfilter.h"
 #include "vocabularydelegate.h"
 
 #include "editor/editor.h"
@@ -31,6 +30,7 @@
 #include <keduvocexpression.h>
 #include <keduvocvocabularymodel.h>
 #include <keduvocvocabularymimedata.h>
+#include <keduvocvocabularyfilter.h>
 
 #include <QHeaderView>
 #include <QPainter>
@@ -163,7 +163,7 @@ VocabularyView::VocabularyView(EditorWindow * parent)
     connect(vocabularyColumnsDialogAction, &QAction::triggered, this, &VocabularyView::slotShowVocabularyColumnsDialog);
 }
 
-void VocabularyView::setFilter(VocabularyFilter * model)
+void VocabularyView::setFilter(KEduVocVocabularyFilter * model)
 {
     QTableView::setModel(model);
 

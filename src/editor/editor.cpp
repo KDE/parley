@@ -20,7 +20,6 @@
 
 // Qt models on top of the KEduVocDocument
 
-#include "vocabularyfilter.h"
 
 // Views
 #include "vocabularyview.h"
@@ -52,6 +51,7 @@
 #include <keduvoccontainermodel.h>
 #include <keduvoclessonmodel.h>
 #include <keduvocwordclassmodel.h>
+#include <keduvocvocabularyfilter.h>
 
 #include <KActionCollection>
 #include <KToggleAction>
@@ -432,7 +432,7 @@ void EditorWindow::addWordWithTranslation(const QStringList &w)
 void EditorWindow::initModel()
 {
     m_vocabularyModel = new KEduVocVocabularyModel(Prefs::showSublessonentries(), this);
-    m_vocabularyFilter = new VocabularyFilter(this);
+    m_vocabularyFilter = new KEduVocVocabularyFilter(this);
     m_vocabularyFilter->setSourceModel(m_vocabularyModel);
     m_vocabularyView->setFilter(m_vocabularyFilter);
 

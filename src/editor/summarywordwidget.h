@@ -24,10 +24,11 @@ class QTreeView;
 class QDataWidgetMapper;
 class QItemSelection;
 class QModelIndex;
+
+class KEduVocContainer;
 class KEduVocDocument;
 class KEduVocExpression;
-
-class VocabularyFilter;
+class KEduVocVocabularyFilter;
 class KEduVocWordClassModel;
 
 namespace Editor
@@ -48,7 +49,7 @@ class SummaryWordWidget : public QWidget, public Ui::SummaryWordWidget
     Q_OBJECT
 
 public:
-    SummaryWordWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent = 0);
+    SummaryWordWidget(KEduVocVocabularyFilter *model, KEduVocDocument *doc, QWidget *parent = 0);
 
 public slots:
     /**
@@ -85,7 +86,7 @@ private:
     void setCurrentWordType(KEduVocExpression *entry, int translation);
 
 private:
-    VocabularyFilter *m_model;
+    KEduVocVocabularyFilter *m_model;
     KEduVocDocument *m_doc;
     QDataWidgetMapper *m_mapper;
     KEduVocWordClassModel *m_wordTypeModel;
