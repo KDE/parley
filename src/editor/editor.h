@@ -22,6 +22,7 @@
 #include "scripts/scripting/parley.h"
 
 #include <keduvocvocabularymodel.h>
+#include <keduvocvocabularyfilter.h>
 
 #include <KXmlGuiWindow>
 
@@ -35,7 +36,7 @@ class ScriptManager;
 // Models around the Collection / KEduVocDocument
 class KEduVocLessonModel;
 class KEduVocVocabularyModel;
-class VocabularyFilter;
+class KEduVocVocabularyFilter;
 class KEduVocWordClassModel;
 
 namespace Editor
@@ -133,7 +134,7 @@ private:
 
     KEduVocVocabularyModel *m_vocabularyModel;
     VocabularyView *m_vocabularyView;
-    VocabularyFilter *m_vocabularyFilter;
+    KEduVocVocabularyFilter *m_vocabularyFilter;
 
     QLineEdit *m_searchLine;
     QWidget *m_searchWidget;

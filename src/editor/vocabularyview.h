@@ -31,10 +31,10 @@ class QUrl;
 // KEduVocDocument
 class KEduVocExpression;
 class KEduVocDocument;
+class KEduVocVocabularyFilter;
+
 
 // parley / collection
-class VocabularyFilter;
-
 class Translator;
 
 
@@ -52,7 +52,7 @@ public:
 
     KActionMenu* columnsActionMenu();
 
-    void setFilter(VocabularyFilter * model);
+    void setFilter(KEduVocVocabularyFilter * model);
 
     /** Save column visibility settings */
     void saveColumnVisibility() const;
@@ -121,7 +121,7 @@ private:
     QAction* m_selectAllAction;
     QAction* m_clearSelectionAction;
 
-    VocabularyFilter* m_model;
+    KEduVocVocabularyFilter* m_model;
     VocabularyDelegate* m_vocabularyDelegate;
     KEduVocDocument *m_doc;
 

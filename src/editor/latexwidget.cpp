@@ -12,17 +12,17 @@
  ***************************************************************************/
 #include "latexwidget.h"
 
-#include "vocabularyfilter.h"
 #include "practice/latexrenderer.h"
 
 #include <keduvocvocabularymodel.h>
+#include <keduvocvocabularyfilter.h>
 
 #include <QDataWidgetMapper>
 #include <KLocalizedString>
 
 using namespace Editor;
 
-LatexWidget::LatexWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent) :
+LatexWidget::LatexWidget(KEduVocVocabularyFilter *model, KEduVocDocument *doc, QWidget *parent) :
     QWidget(parent), m_translation(0), m_renderer(0)
 {
     m_doc = doc;
@@ -71,7 +71,7 @@ void LatexWidget::slotSelectionChanged(const QItemSelection &itemSelected,
     Q_UNUSED(itemDeselected)
 
     if (itemSelected.indexes().size() >= 1) {
-        // the selected index belongs to VocabularyFilter, when we need it from the vocabulary model
+        // the selected index belongs to KEduVocVocabularyFilter, when we need it from the vocabulary model
         QModelIndex index = m_model->index(itemSelected.indexes().at(0).row(),
                                            itemSelected.indexes().at(0).column());
         m_mapper->setCurrentModelIndex(index);
