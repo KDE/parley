@@ -19,7 +19,6 @@ set(parley_LIB_SRCS
     editor/editor.cpp
     editor/vocabularycolumnsdialog.cpp
     editor/lessonview.cpp
-    editor/vocabularydelegate.cpp
     editor/vocabularyheaderview.cpp
     editor/vocabularyview.cpp
     editor/wordtypeview.cpp

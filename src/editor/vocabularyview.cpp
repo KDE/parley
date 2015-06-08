@@ -19,8 +19,6 @@
 #include "vocabularyview.h"
 #include "vocabularyheaderview.h"
 
-#include "vocabularydelegate.h"
-
 #include "editor/editor.h"
 #include "prefs.h"
 #include "vocabularycolumnsdialog.h"
@@ -31,6 +29,7 @@
 #include <keduvocvocabularymodel.h>
 #include <keduvocvocabularymimedata.h>
 #include <keduvocvocabularyfilter.h>
+#include <keduvocvocabularydelegate.h>
 
 #include <QHeaderView>
 #include <QPainter>
@@ -66,7 +65,7 @@ VocabularyView::VocabularyView(EditorWindow * parent)
     setSortingEnabled(true);
     setTabKeyNavigation(true);
 
-    m_vocabularyDelegate = new VocabularyDelegate(this);
+    m_vocabularyDelegate = new KEduVocVocabularyDelegate( Prefs::automaticTranslation(), this );
     setItemDelegate(m_vocabularyDelegate);
 
     setFrameStyle(QFrame::NoFrame);

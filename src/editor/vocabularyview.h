@@ -37,7 +37,7 @@ class KEduVocTranslator;
 namespace Editor
 {
 class EditorWindow;
-class VocabularyDelegate;
+class KEduVocVocabularyDelegate;
 
 class VocabularyView : public QTableView
 {
@@ -118,7 +118,7 @@ private:
     QAction* m_clearSelectionAction;
 
     KEduVocVocabularyFilter* m_model;
-    VocabularyDelegate* m_vocabularyDelegate;
+    KEduVocVocabularyDelegate* m_vocabularyDelegate;
     KEduVocDocument *m_doc;
 
     int m_spellColumn;
