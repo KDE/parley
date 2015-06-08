@@ -36,12 +36,12 @@
 #include "synonymwidget.h"
 #include "summarywordwidget.h"
 #include "latexwidget.h"
+#include "parleymainwindow.h"
 
 #include "settings/parleyprefs.h"
 #include "prefs.h"
 
 #include "scripts/scriptdialog.h"
-#include "scripts/translator.h"
 
 #include "parleyactions.h"
 #include "parleyadaptor.h"
@@ -52,6 +52,7 @@
 #include <keduvoclessonmodel.h>
 #include <keduvocwordclassmodel.h>
 #include <keduvocvocabularyfilter.h>
+#include <keduvoctranslator.h>
 
 #include <KActionCollection>
 #include <KToggleAction>

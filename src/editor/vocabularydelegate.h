@@ -17,12 +17,12 @@
 #ifndef VOCABULARYDELEGATE_H
 #define VOCABULARYDELEGATE_H
 
-#include "../scripts/translator.h"
 
 #include <QItemDelegate>
 #include <QModelIndex>
 
 #include <keduvocreadonlycontainermodel.h>
+#include <keduvoctranslator.h>
 
 class KEduVocDocument;
 
@@ -54,7 +54,7 @@ public:
     void setEditorData(QWidget *editor, const QModelIndex &index) const;
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
-    void setTranslator(Translator * translator);
+    void setTranslator(KEduVocTranslator * translator);
 
     static int columnType(int column);
 
@@ -71,7 +71,7 @@ public slots:
 
 private:
     KEduVocDocument *m_doc;
-    Translator * m_translator;
+    KEduVocTranslator * m_translator;
 
     /** Returns the translations of the word of the given index */
     QSet<QString> getTranslations(const QModelIndex & index) const;

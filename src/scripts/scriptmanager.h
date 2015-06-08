@@ -21,6 +21,8 @@
 
 #include <QStringList>
 
+#include <keduvoctranslator.h>
+
 
 /**
  * This class finds the scripts installed in the application directory and manages loading and unloading of the scripts. For each script an instance of Script class is created.
@@ -108,7 +110,7 @@ public:
     void addScriptAction(const QString & name, QAction * action);
 
     /** returns the Translator object the Scripting::Parley */
-    Translator * translator() {
+    KEduVocTranslator * translator() {
         return m_scriptingParley->translator();
     }
 
