@@ -25,12 +25,13 @@
 #include <QDebug>
 
 #include <keduvocdeclension.h>
+#include <keduvoctranslator.h>
 
 namespace Editor
 {
 class EditorWindow;
 }
-class Translator;
+class KEduVocTranslator;
 
 /**
  * @namespace Scripting
@@ -223,7 +224,7 @@ public:
 
     //sets the translator object
 //             void setTranslator ( Translator* translator ) { m_translator = translator; }
-    Translator * translator() {
+    KEduVocTranslator * translator() {
         return m_translator;
     }
 
@@ -406,7 +407,7 @@ Q_SIGNALS:
     void translationStarted(const QString & word, const QString& fromLanguage, const QString& toLanguage);
 
 private:
-    Translator* m_translator;
+    KEduVocTranslator* m_translator;
     Document* m_doc;
     Editor::EditorWindow * m_editor;
 };

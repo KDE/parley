@@ -18,6 +18,7 @@
 #define EDITOR_H
 
 #include "parleydocument.h"
+#include "parleymainwindow.h"
 
 #include "scripts/scripting/parley.h"
 
@@ -157,7 +158,7 @@ private:
     ScriptManager* m_scriptManager;
 
     ///stores all the translations of a vocabulary word
-    Translator* m_translator;
+    KEduVocTranslator* m_translator;
 
     QList<QDockWidget*> m_dockWidgets;
     QList<bool> m_dockWidgetVisibility;

@@ -31,10 +31,7 @@ class QAction;
 class KEduVocExpression;
 class KEduVocDocument;
 class KEduVocVocabularyFilter;
-
-
-// parley / collection
-class Translator;
+class KEduVocTranslator;
 
 
 namespace Editor
@@ -82,7 +79,7 @@ public slots:
 
     void setDocument(KEduVocDocument * doc);
 
-    void setTranslator(Translator* translator);
+    void setTranslator(KEduVocTranslator* translator);
 
     void checkSpelling(int language);
 

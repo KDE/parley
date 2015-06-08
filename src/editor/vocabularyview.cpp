@@ -357,7 +357,7 @@ void VocabularyView::setDocument(KEduVocDocument * doc)
  * Set the translator to be used by the delegate
  * @param translator
  */
-void VocabularyView::setTranslator(Translator* translator)
+void VocabularyView::setTranslator(KEduVocTranslator* translator)
 {
     m_vocabularyDelegate->setTranslator(translator);
 }

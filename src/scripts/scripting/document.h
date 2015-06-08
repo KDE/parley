@@ -136,7 +136,7 @@ public:
 
     ~Document();
 
-    KEduVocDocument * kEduVocDocument() {
+    ::KEduVocDocument * kEduVocDocument() {
         return m_doc;
     }
 
@@ -388,7 +388,7 @@ public slots:
      * @param generator  the name of the application saving the document (default value: "Parley")
      * @returns          ErrorCode
      */
-    int saveAs(const QString & url, KEduVocDocument::FileType ft = KEduVocDocument::Automatic, const QString & generator = QStringLiteral("Parley")) {
+    int saveAs(const QString & url, ::KEduVocDocument::FileType ft = ::KEduVocDocument::Automatic, const QString & generator = QString("Parley")) {
         m_doc->setGenerator(generator);
         return m_doc->saveAs(QUrl(url), ft);
     }
@@ -525,8 +525,8 @@ public slots:
     // *** file format specific methods ***
 
 
-    static KEduVocDocument::FileType detectFileType(const QString &fileName) {
-        return KEduVocDocument::detectFileType(fileName);
+    static ::KEduVocDocument::FileType detectFileType(const QString &fileName) {
+        return ::KEduVocDocument::detectFileType(fileName);
     }
 
     /**
@@ -537,17 +537,17 @@ public slots:
      * @param mode             the mode for the supported document types. See FileDialogMode enum
      * @returns                the filter string
      */
-    static QString pattern(KEduVocDocument::FileDialogMode mode) {
-        return KEduVocDocument::pattern(mode);
+    static QString pattern(::KEduVocDocument::FileDialogMode mode) {
+        return ::KEduVocDocument::pattern(mode);
     }
 
     /** Returns a more detailed description of the @p errorCode given */
     static QString errorDescription(int errorCode) {
-        return KEduVocDocument::errorDescription(errorCode);
+        return ::KEduVocDocument::errorDescription(errorCode);
     }
 
 private:
-    KEduVocDocument * m_doc;
+    ::KEduVocDocument * m_doc;
 };
 
 }
