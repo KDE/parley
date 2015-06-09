@@ -17,7 +17,6 @@
 ///@file vocabularyview.cpp
 
 #include "vocabularyview.h"
-#include "vocabularyheaderview.h"
 
 #include "editor/editor.h"
 #include "prefs.h"
@@ -30,6 +29,8 @@
 #include <keduvocvocabularymimedata.h>
 #include <keduvocvocabularyfilter.h>
 #include <keduvocvocabularydelegate.h>
+#include <keduvocvocabularyheaderview.h>
+
 
 #include <QHeaderView>
 #include <QPainter>
@@ -56,7 +57,7 @@ VocabularyView::VocabularyView(EditorWindow * parent)
 {
     installEventFilter(this);
 
-    setHorizontalHeader(new VocabularyHeaderView(Qt::Horizontal, this));
+    setHorizontalHeader(new KEduVocVocabularyHeaderView(Qt::Horizontal, this));
 
     horizontalHeader()->setSectionResizeMode(QHeaderView::Interactive);
     horizontalHeader()->setSectionsMovable(true);
