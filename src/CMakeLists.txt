@@ -17,7 +17,6 @@ set(parley_LIB_SRCS
     collection/entryfilterdialog.cpp
     collection/containerview.cpp
     editor/editor.cpp
-    editor/vocabularycolumnsdialog.cpp
     editor/lessonview.cpp
     editor/vocabularyview.cpp
     editor/wordtypeview.cpp

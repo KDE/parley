@@ -20,7 +20,6 @@
 
 #include "editor/editor.h"
 #include "prefs.h"
-#include "vocabularycolumnsdialog.h"
 #include "documentsettings.h"
 
 #include <keduvoctranslation.h>
@@ -30,6 +29,7 @@
 #include <keduvocvocabularyfilter.h>
 #include <keduvocvocabularydelegate.h>
 #include <keduvocvocabularyheaderview.h>
+#include <keduvocvocabularycolumnsdialog.h>
 
 
 #include <QHeaderView>
@@ -364,7 +364,8 @@ void VocabularyView::setTranslator(KEduVocTranslator* translator)
 
 void VocabularyView::slotShowVocabularyColumnsDialog()
 {
-    VocabularyColumnsDialog *dialog = new VocabularyColumnsDialog(m_doc, this);
+    DocumentSettings ds(m_doc->url().url());
+    KEduVocVocabularyColumnsDialog *dialog = new KEduVocVocabularyColumnsDialog(m_doc, ds.visibleColumns(), this);
 
     if (dialog->exec() == QDialog::Accepted) {
         reset();
