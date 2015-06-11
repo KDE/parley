@@ -16,13 +16,13 @@
 #ifndef LESSONSTATISTICSVIEW_H
 #define LESSONSTATISTICSVIEW_H
 
-#include "containerview.h"
+#include <keduvoccontainerview.h>
 
 /**
  * View for the lesson list.
  * @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
  */
-class LessonStatisticsView : public ContainerView
+class LessonStatisticsView : public KEduVocContainerView
 {
     Q_OBJECT
 

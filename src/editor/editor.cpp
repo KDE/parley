@@ -23,7 +23,6 @@
 
 // Views
 #include "vocabularyview.h"
-#include "containerview.h"
 #include "lessonview.h"
 #include "wordtypeview.h"
 
@@ -53,6 +52,8 @@
 #include <keduvocwordclassmodel.h>
 #include <keduvocvocabularyfilter.h>
 #include <keduvoctranslator.h>
+#include <keduvoccontainerview.h>
+
 
 #include <KActionCollection>
 #include <KToggleAction>

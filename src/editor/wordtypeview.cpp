@@ -26,13 +26,14 @@
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
 #include <keduvoccontainermodel.h>
+#include <keduvoccontainerview.h>
 
 #include "editor/editor.h"
-#include "containerview.h"
 
 using namespace Editor;
 
-WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
+WordTypeView::WordTypeView( EditorWindow* parent )
+    : KEduVocContainerView(parent)
 {
     setContextMenuPolicy(Qt::DefaultContextMenu);
 
@@ -191,7 +192,7 @@ void WordTypeView::setTranslation(KEduVocExpression * entry, int translation)
     }
 
     // attempt to find the container to select
-    QModelIndex index(m_model->index(entry->translation(translation)->wordType()));
+    QModelIndex index(model()->index(entry->translation(translation)->wordType()));
     scrollTo(index);
     selectionModel()->select(index, QItemSelectionModel::ClearAndSelect);
 }
@@ -201,10 +202,10 @@ void WordTypeView::slotCreateNewWordType()
     QModelIndex selectedIndex = selectionModel()->currentIndex();
 
     if (!selectedIndex.isValid()) {
-        selectedIndex = m_model->index(0, 0, QModelIndex());
+        selectedIndex = model()->index(0, 0, QModelIndex());
     }
 
-    QModelIndex modelIndex = m_model->appendContainer(selectedIndex);
+    QModelIndex modelIndex = model()->appendContainer(selectedIndex);
 
     scrollTo(modelIndex);
     selectionModel()->setCurrentIndex(modelIndex, QItemSelectionModel::ClearAndSelect);
@@ -226,7 +227,7 @@ void WordTypeView::slotDeleteWordType()
 
     if (count == 0 ||
             KMessageBox::warningYesNo(this, i18np("There is a word left with this word type. It will lose its type. Continue?", "There are %1 words left with this word type. They will lose their word type. Continue?", count)) == KMessageBox::Yes) {
-        m_model->deleteContainer(selectedIndex);
+        model()->deleteContainer(selectedIndex);
     }
 }
 
