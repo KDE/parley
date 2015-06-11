@@ -83,7 +83,7 @@ public:
 
 
 LessonStatisticsView::LessonStatisticsView(QWidget *parent)
-    : ContainerView(parent)
+    : KEduVocContainerView(parent)
 {
     header()->setVisible(true);
     header()->setDefaultAlignment(Qt::AlignLeft | Qt::AlignBottom);
@@ -123,7 +123,7 @@ LessonStatisticsView::~LessonStatisticsView()
 
 void LessonStatisticsView::setModel(KEduVocContainerModel *model)
 {
-    ContainerView::setModel(model);
+    KEduVocContainerView::setModel(model);
 
     GradeDelegate *delegate = new GradeDelegate(this);
     for (int i = KEduVocContainerModel::FirstDataColumn; i < model->columnCount(QModelIndex()); i++) {
@@ -136,7 +136,7 @@ void LessonStatisticsView::setModel(KEduVocContainerModel *model)
 void LessonStatisticsView::resizeEvent(QResizeEvent *event)
 {
     adjustColumnWidths();
-    ContainerView::resizeEvent(event);
+    KEduVocContainerView::resizeEvent(event);
 }
 
 void LessonStatisticsView::sectionResized(int index,

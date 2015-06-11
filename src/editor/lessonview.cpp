@@ -30,7 +30,8 @@
 
 using namespace Editor;
 
-LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
+LessonView::LessonView(EditorWindow * parent)
+    : KEduVocContainerView(parent)
 {
     QAction *actionNewLesson = new QAction(this);
     parent->actionCollection()->addAction(QStringLiteral("new_lesson"), actionNewLesson);
@@ -234,7 +235,7 @@ void LessonView::slotRemoveGradesLessonChildren()
 void LessonView::setModel(KEduVocLessonModel * model)
 {
     m_model = model;
-    ContainerView::setModel(model);
+    KEduVocContainerView::setModel(model);
     connect(model, &QAbstractItemModel::columnsInserted, this, &LessonView::columnsInserted);
     for (int i = 2; i < model->columnCount(QModelIndex()); i++) {
         setColumnHidden(i, true);

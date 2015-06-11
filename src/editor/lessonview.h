@@ -16,7 +16,7 @@
 #ifndef LESSONVIEW_H
 #define LESSONVIEW_H
 
-#include "containerview.h"
+#include <keduvoccontainerview.h>
 
 #include <keduvoclessonmodel.h>
 
@@ -28,7 +28,7 @@ class EditorWindow;
  * View for the lesson list.
  * @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
  */
-class LessonView : public ContainerView
+class LessonView : public KEduVocContainerView
 {
     Q_OBJECT
 

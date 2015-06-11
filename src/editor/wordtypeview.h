@@ -16,7 +16,7 @@
 #ifndef WORDTYPEVIEW_H
 #define WORDTYPEVIEW_H
 
-#include "containerview.h"
+#include <keduvoccontainerview.h>
 
 class QAction;
 class KSelectAction;
@@ -26,7 +26,7 @@ namespace Editor
 {
 class EditorWindow;
 
-class WordTypeView : public ContainerView
+class WordTypeView : public KEduVocContainerView
 {
     Q_OBJECT
 
