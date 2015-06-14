@@ -43,7 +43,7 @@ class KEduVocWordClassModel;
 namespace Editor
 {
 class KEduVocVocabularyView;
-class LessonView;
+class KEduVocLessonView;
 class KEduVocWordTypeView;
 class InflectionWidget;
 class ComparisonWidget;
@@ -152,7 +152,7 @@ private:
     SynonymWidget *m_falseFriendWidget;
 
     /// dock widgets to display lessons, word types, ...
-    LessonView *m_lessonView;
+    KEduVocLessonView *m_lessonView;
     KEduVocLessonModel *m_lessonModel;
 
     KEduVocWordClassModel *m_wordTypeModel;
