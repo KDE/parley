@@ -44,7 +44,7 @@ namespace Editor
 {
 class KEduVocVocabularyView;
 class LessonView;
-class WordTypeView;
+class KEduVocWordTypeView;
 class InflectionWidget;
 class ComparisonWidget;
 class SummaryWordWidget;
@@ -156,7 +156,7 @@ private:
     KEduVocLessonModel *m_lessonModel;
 
     KEduVocWordClassModel *m_wordTypeModel;
-    WordTypeView *m_wordTypeView;
+    KEduVocWordTypeView *m_wordTypeView;
 
     ScriptManager* m_scriptManager;
 
