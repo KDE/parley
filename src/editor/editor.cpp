@@ -23,7 +23,6 @@
 
 // Views
 #include "lessonview.h"
-#include "wordtypeview.h"
 
 #include "multiplechoicewidget.h"
 #include "comparisonwidget.h"
@@ -54,6 +53,7 @@
 #include <keduvoctranslator.h>
 #include <keduvoccontainerview.h>
 #include <keduvocvocabularyview.h>
+#include <keduvocwordtypeview.h>
 
 
 
@@ -188,7 +188,7 @@ void EditorWindow::initDockWidgets()
     // Word classes dock widget
     QDockWidget* wordTypeDockWidget = new QDockWidget(i18n("Word Types"), this);
     wordTypeDockWidget->setObjectName(QStringLiteral("WordTypeDock"));
-    m_wordTypeView = new WordTypeView(this);
+    m_wordTypeView = new KEduVocWordTypeView(this);
     wordTypeDockWidget->setWidget(m_wordTypeView);
     addDockWidget(Qt::LeftDockWidgetArea, wordTypeDockWidget);
     m_dockWidgets.append(wordTypeDockWidget);
