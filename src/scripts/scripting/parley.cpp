@@ -18,7 +18,7 @@
 #include "editor/editor.h"
 #include <keduvocvocabularymodel.h>
 #include <keduvoctranslator.h>
-#include "vocabularyview.h"
+#include <keduvocvocabularyview.h>
 
 #include "../scriptmanager.h"
 

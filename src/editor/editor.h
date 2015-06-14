@@ -40,7 +40,7 @@ class KEduVocWordClassModel;
 
 namespace Editor
 {
-class VocabularyView;
+class KEduVocVocabularyView;
 class LessonView;
 class WordTypeView;
 class InflectionWidget;
@@ -132,7 +132,7 @@ private:
     QAction* m_vocabShowSearchBarAction;
 
     KEduVocVocabularyModel *m_vocabularyModel;
-    VocabularyView *m_vocabularyView;
+    KEduVocVocabularyView *m_vocabularyView;
     KEduVocVocabularyFilter *m_vocabularyFilter;
 
     QLineEdit *m_searchLine;
