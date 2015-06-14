@@ -21,9 +21,6 @@
 // Qt models on top of the KEduVocDocument
 
 
-// Views
-#include "lessonview.h"
-
 #include "multiplechoicewidget.h"
 #include "comparisonwidget.h"
 #include "inflectionwidget.h"
@@ -54,6 +51,7 @@
 #include <keduvoccontainerview.h>
 #include <keduvocvocabularyview.h>
 #include <keduvocwordtypeview.h>
+#include <keduvoclessonview.h>
 
 
 
@@ -163,7 +161,7 @@ void EditorWindow::initDockWidgets()
     // Lesson dockwidget
     QDockWidget *lessonDockWidget = new QDockWidget(i18n("Units"), this);
     lessonDockWidget->setObjectName(QStringLiteral("LessonDock"));
-    m_lessonView = new LessonView(this);
+    m_lessonView = new KEduVocLessonView(this, this->actionCollection(), Prefs::entriesPerLesson() );
     lessonDockWidget->setWidget(m_lessonView);
     addDockWidget(Qt::LeftDockWidgetArea, lessonDockWidget);
     m_dockWidgets.append(lessonDockWidget);
