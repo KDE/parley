@@ -21,7 +21,6 @@
 #include "version.h"
 #include "prefs.h"
 
-#include "vocabularyview.h"
 #include "settings/documentproperties.h"
 #include "dashboard/dashboard.h"
 
@@ -29,6 +28,8 @@
 #include <keduvocleitnerbox.h>
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
+#include <keduvocvocabularyview.h>
+
 
 #include <QFileDialog>
 #include <QMimeDatabase>

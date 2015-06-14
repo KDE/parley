@@ -22,7 +22,6 @@
 
 
 // Views
-#include "vocabularyview.h"
 #include "lessonview.h"
 #include "wordtypeview.h"
 
@@ -39,6 +38,7 @@
 
 #include "settings/parleyprefs.h"
 #include "prefs.h"
+#include "documentsettings.h"
 
 #include "scripts/scriptdialog.h"
 
@@ -53,6 +53,8 @@
 #include <keduvocvocabularyfilter.h>
 #include <keduvoctranslator.h>
 #include <keduvoccontainerview.h>
+#include <keduvocvocabularyview.h>
+
 
 
 #include <KActionCollection>
@@ -479,7 +481,7 @@ void EditorWindow::initView()
     rightLayout->addWidget(m_searchWidget);
     m_searchWidget->setVisible(Prefs::showSearch());
 
-    m_vocabularyView = new VocabularyView(this);
+    m_vocabularyView = new KEduVocVocabularyView( this, this->actionCollection(), Prefs::automaticTranslation() );
     rightLayout->addWidget(m_vocabularyView, 1, 0);
 
     topLayout->addLayout(rightLayout);
@@ -505,7 +507,18 @@ void EditorWindow::slotShowScriptManager()
 
 void EditorWindow::applyPrefs()
 {
-    m_vocabularyView->reset();
+    DocumentSettings ds( m_vocabularyView->document()->url().url() );
+    ds.load();
+    QList <int> visibleColumns = ds.visibleColumns();
+
+    KConfig parleyConfig( "parleyrc" );
+    KConfigGroup documentGroup( &parleyConfig, "Document " + m_vocabularyView->document()->url().url() ); 
+    QByteArray state = documentGroup.readEntry( "VocabularyColumns", QByteArray() );
+
+    m_vocabularyView->reset( visibleColumns, state );
+
+    QByteArray saveState = m_vocabularyView->horizontalHeader()->saveState();
+    documentGroup.writeEntry( "VocabularyColumns", m_vocabularyView->horizontalHeader()->saveState() );
 }
 
 void EditorWindow::removeGrades()
