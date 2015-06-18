@@ -15,7 +15,6 @@ set(parley_LIB_SRCS
     collection/testentry.cpp
     collection/entryfilter.cpp
     editor/editor.cpp
-    editor/audiowidget.cpp
     #editor/browserwidget.cpp
     editor/comparisonwidget.cpp
     editor/inflectionwidget.cpp
@@ -102,7 +101,6 @@ ki18n_wrap_ui(parley_LIB_SRCS
     editor/conjugationwidget.ui
     editor/declensionwidget.ui
     editor/imagechooserwidget.ui
-    editor/audiowidget.ui
     editor/synonymwidget.ui
     editor/browserwidget.ui
     editor/summarywordwidget.ui

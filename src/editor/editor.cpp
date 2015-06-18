@@ -25,7 +25,7 @@
 #include "comparisonwidget.h"
 #include "inflectionwidget.h"
 #include "imagechooserwidget.h"
-#include "audiowidget.h"
+#include <keduvocaudiowidget.h>
 #include "browserwidget.h"
 #include "synonymwidget.h"
 #include "summarywordwidget.h"
@@ -112,6 +112,17 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
 {
 
     m_vocabularyView->setDocument(doc);
+
+    DocumentSettings ds( doc->url().url() );
+    ds.load();
+    QList <int> visibleColumns = ds.visibleColumns();
+    KConfig parleyConfig("parleyrc");
+    KConfigGroup documentGroup(&parleyConfig, "Document " + doc->url().url()); 
+    QByteArray state = documentGroup.readEntry("VocabularyColumns", QByteArray());
+    m_vocabularyView->setVisibleColumns( visibleColumns );
+    m_vocabularyView->setState( state );
+    QByteArray saveState = m_vocabularyView->horizontalHeader()->saveState();
+    documentGroup.writeEntry("VocabularyColumns", m_vocabularyView->horizontalHeader()->saveState());
     m_vocabularyModel->setDocument(doc);
 
     m_lessonModel->setDocument(doc);
@@ -346,7 +357,7 @@ void EditorWindow::initDockWidgets()
 // Sound
     QDockWidget *audioDock = new QDockWidget(i18n("Sound"), this);
     audioDock->setObjectName("AudioDock");
-    AudioWidget *audioWidget = new AudioWidget(this);
+    KEduVocAudioWidget *audioWidget = new KEduVocAudioWidget( this );
     QScrollArea *audioScrollArea = new QScrollArea(this);
     audioScrollArea->setWidgetResizable(true);
     audioScrollArea->setWidget(audioWidget);
@@ -480,6 +491,7 @@ void EditorWindow::initView()
     m_searchWidget->setVisible(Prefs::showSearch());
 
     m_vocabularyView = new KEduVocVocabularyView( this, this->actionCollection(), Prefs::automaticTranslation() );
+
     rightLayout->addWidget(m_vocabularyView, 1, 0);
 
     topLayout->addLayout(rightLayout);
