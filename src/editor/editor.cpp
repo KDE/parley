@@ -21,7 +21,6 @@
 // Qt models on top of the KEduVocDocument
 
 
-#include "multiplechoicewidget.h"
 #include "comparisonwidget.h"
 #include "inflectionwidget.h"
 #include "imagechooserwidget.h"
@@ -52,6 +51,7 @@
 #include <keduvocvocabularyview.h>
 #include <keduvocwordtypeview.h>
 #include <keduvoclessonview.h>
+#include <keduvocmultiplechoicewidget.h>
 
 
 
@@ -251,7 +251,7 @@ void EditorWindow::initDockWidgets()
 // Multiple choice
     QDockWidget *multipleChoiceDock = new QDockWidget(i18n("Multiple Choice"), this);
     multipleChoiceDock->setObjectName("MultipleChoiceDock");
-    MultipleChoiceWidget *multipleChoiceWidget = new MultipleChoiceWidget(this);
+    KEduVocMultipleChoiceWidget *multipleChoiceWidget = new KEduVocMultipleChoiceWidget(this);
     QScrollArea *multipleChoiceScrollArea = new QScrollArea(this);
     multipleChoiceScrollArea->setWidgetResizable(true);
     multipleChoiceScrollArea->setWidget(multipleChoiceWidget);
