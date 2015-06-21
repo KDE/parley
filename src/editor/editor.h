@@ -44,7 +44,7 @@ class KEduVocVocabularyView;
 class KEduVocLessonView;
 class KEduVocWordTypeView;
 class InflectionWidget;
-class ComparisonWidget;
+class KEduVocComparisonWidget;
 class SummaryWordWidget;
 class LatexWidget;
 class SynonymWidget;
@@ -142,7 +142,7 @@ private:
     /** Show a single conjugation and let the user edit it */
     InflectionWidget *m_inflectionWidget;
     SummaryWordWidget *m_summaryWordWidget;
-    ComparisonWidget *m_comparisonWidget;
+    KEduVocComparisonWidget *m_comparisonWidget;
     LatexWidget *m_latexWidget;
     SynonymWidget *m_synonymWidget;
     SynonymWidget *m_antonymWidget;
