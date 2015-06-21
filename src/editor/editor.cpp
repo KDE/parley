@@ -21,7 +21,6 @@
 // Qt models on top of the KEduVocDocument
 
 
-#include "comparisonwidget.h"
 #include "inflectionwidget.h"
 #include "imagechooserwidget.h"
 #include <keduvocaudiowidget.h>
@@ -52,6 +51,7 @@
 #include <keduvocwordtypeview.h>
 #include <keduvoclessonview.h>
 #include <keduvocmultiplechoicewidget.h>
+#include <keduvoccomparisonwidget.h>
 
 
 
@@ -235,7 +235,7 @@ void EditorWindow::initDockWidgets()
 // Comparison forms
     QDockWidget *comparisonDock = new QDockWidget(i18n("Comparison forms"), this);
     comparisonDock->setObjectName("ComparisonDock");
-    m_comparisonWidget = new ComparisonWidget(this);
+    m_comparisonWidget = new KEduVocComparisonWidget(this);
     QScrollArea *comparisonScrollArea = new QScrollArea(this);
     comparisonScrollArea->setWidgetResizable(true);
     comparisonScrollArea->setWidget(m_comparisonWidget);
