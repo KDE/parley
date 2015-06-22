@@ -16,7 +16,6 @@ set(parley_LIB_SRCS
     collection/entryfilter.cpp
     editor/editor.cpp
     #editor/browserwidget.cpp
-    editor/imagechooserwidget.cpp
     editor/summarywordwidget.cpp
     editor/synonymwidget.cpp
     editor/latexwidget.cpp
@@ -90,7 +89,6 @@ set(parley_LIB_SRCS
 
 ki18n_wrap_ui(parley_LIB_SRCS
     collection/entryfilter.ui
-    editor/imagechooserwidget.ui
     editor/synonymwidget.ui
     editor/browserwidget.ui
     editor/summarywordwidget.ui

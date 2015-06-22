@@ -21,7 +21,6 @@
 // Qt models on top of the KEduVocDocument
 
 
-#include "imagechooserwidget.h"
 #include <keduvocaudiowidget.h>
 #include "browserwidget.h"
 #include "synonymwidget.h"
@@ -52,6 +51,7 @@
 #include <keduvocmultiplechoicewidget.h>
 #include <keduvoccomparisonwidget.h>
 #include <keduvocinflectionwidget.h>
+#include <keduvocimagechooserwidget.h>
 
 
 
@@ -326,7 +326,7 @@ void EditorWindow::initDockWidgets()
 // Image
     QDockWidget *imageDock = new QDockWidget(i18n("Image"), this);
     imageDock->setObjectName("ImageDock");
-    ImageChooserWidget *imageChooserWidget = new ImageChooserWidget(this);
+    KEduVocImageChooserWidget *imageChooserWidget = new KEduVocImageChooserWidget( this );
     QScrollArea *imageScrollArea = new QScrollArea(this);
     imageScrollArea->setWidgetResizable(true);
     imageScrollArea->setWidget(imageChooserWidget);
