@@ -14,7 +14,7 @@
 #ifndef PRACTICE_STATUSTOGGLE_H
 #define PRACTICE_STATUSTOGGLE_H
 
-#include "imagewidget.h"
+#include <keduvocimagewidget.h>
 
 #include "abstractfrontend.h"
 
@@ -24,7 +24,7 @@ namespace Practice
 class ThemedBackgroundRenderer;
 class StatusToggleButton;
 
-class StatusToggle : public ImageWidget
+class StatusToggle : public KEduVocImageWidget
 {
     Q_OBJECT
 

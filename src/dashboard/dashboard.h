@@ -27,7 +27,7 @@ class ParleyMainWindow;
 namespace Practice
 {
 class ThemedBackgroundRenderer;
-class ImageWidget;
+class KEduVocImageWidget;
 }
 
 
@@ -68,7 +68,7 @@ private:
     ParleyMainWindow *m_mainWindow;
     StatisticsMainWindow *m_statisticsWidget;
     Practice::ThemedBackgroundRenderer *m_themedBackgroundRenderer;
-    Practice::ImageWidget* m_widget;
+    Practice::KEduVocImageWidget* m_widget;
 
     QMap<QString, QString> m_recentFilesMap;  // url, name
     QUrl m_openUrl;

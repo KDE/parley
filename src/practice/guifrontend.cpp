@@ -34,7 +34,7 @@ using namespace Practice;
 
 GuiFrontend::GuiFrontend(QWidget *parent)
     : AbstractFrontend(parent)
-    , m_widget(new ImageWidget())
+    , m_widget(new KEduVocImageWidget())
     , m_ui(new Ui::PracticeMainWindow())
     , m_modeWidget(nullptr)
     , m_resultState(AbstractFrontend::AnswerWrong)
@@ -55,7 +55,7 @@ GuiFrontend::GuiFrontend(QWidget *parent)
     setTheme();
 
     connect(m_themedBackgroundRenderer, &ThemedBackgroundRenderer::backgroundChanged, this, &GuiFrontend::backgroundChanged);
-    connect(m_widget, &ImageWidget::sizeChanged, this, &GuiFrontend::updateBackground);
+    connect(m_widget, &KEduVocImageWidget::sizeChanged, this, &GuiFrontend::updateBackground);
 
     connect(m_ui->continueButton, &QPushButton::clicked, this, &GuiFrontend::continueAction);
     connect(m_ui->answerLaterButton, &QPushButton::clicked, this, &GuiFrontend::skipAction);

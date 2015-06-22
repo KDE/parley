@@ -31,7 +31,7 @@ class PracticeMainWindow;
 namespace Practice
 {
 class ThemedBackgroundRenderer;
-class ImageWidget;
+class KEduVocImageWidget;
 
 /** GuiFrontend **/
 class GuiFrontend : public AbstractFrontend
@@ -103,7 +103,7 @@ private Q_SLOTS:
 private:
     void setImage(const QUrl& image);
 
-    ImageWidget *m_widget;
+    KEduVocImageWidget* m_widget;
     Ui::PracticeMainWindow *m_ui;
     AbstractModeWidget *m_modeWidget;
     ResultState m_resultState;

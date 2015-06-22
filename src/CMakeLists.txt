@@ -44,7 +44,6 @@ set(parley_LIB_SRCS
     practice/multiplechoicebackendmode.cpp
     practice/genderbackendmode.cpp
     practice/mixedlettersmodewidget.cpp
-    practice/imagewidget.cpp
     practice/practicemainwindow.cpp
     practice/practicesummarycomponent.cpp
     practice/boxeswidget.cpp
