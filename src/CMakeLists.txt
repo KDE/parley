@@ -18,9 +18,6 @@ set(parley_LIB_SRCS
     editor/editor.cpp
     #editor/audiowidget.cpp
     #editor/browserwidget.cpp
-    editor/inflectionwidget.cpp
-    editor/conjugationwidget.cpp
-    editor/declensionwidget.cpp
     editor/imagechooserwidget.cpp
     editor/summarywordwidget.cpp
     editor/synonymwidget.cpp
@@ -97,7 +94,6 @@ set(parley_LIB_SRCS
 ki18n_wrap_ui(parley_LIB_SRCS
     collection/entryfilterdialog.ui
     editor/conjugationwidget.ui
-    editor/declensionwidget.ui
     editor/imagechooserwidget.ui
     editor/synonymwidget.ui
     editor/browserwidget.ui
