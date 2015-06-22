@@ -21,7 +21,6 @@
 // Qt models on top of the KEduVocDocument
 
 
-#include "inflectionwidget.h"
 #include "imagechooserwidget.h"
 #include <keduvocaudiowidget.h>
 #include "browserwidget.h"
@@ -52,6 +51,7 @@
 #include <keduvoclessonview.h>
 #include <keduvocmultiplechoicewidget.h>
 #include <keduvoccomparisonwidget.h>
+#include <keduvocinflectionwidget.h>
 
 
 
@@ -219,7 +219,7 @@ void EditorWindow::initDockWidgets()
 // Inflections
     QDockWidget *inflectionDock = new QDockWidget(i18n("Inflection (verbs, adjectives, nouns)"), this);
     inflectionDock->setObjectName("InflectionDock");
-    m_inflectionWidget = new InflectionWidget(this);
+    m_inflectionWidget = new KEduVocInflectionWidget(this);
     QScrollArea *inflectionScrollArea = new QScrollArea(this);
     inflectionScrollArea->setWidgetResizable(true);
     inflectionScrollArea->setWidget(m_inflectionWidget);

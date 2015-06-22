@@ -45,7 +45,7 @@ namespace Editor
 class KEduVocVocabularyView;
 class KEduVocLessonView;
 class KEduVocWordTypeView;
-class InflectionWidget;
+class KEduVocInflectionWidget;
 class KEduVocComparisonWidget;
 class SummaryWordWidget;
 class LatexWidget;
@@ -143,7 +143,7 @@ private:
     QSignalMapper *m_spellCheckMapper;
 
     /** Show a single conjugation and let the user edit it */
-    InflectionWidget *m_inflectionWidget;
+    KEduVocInflectionWidget *m_inflectionWidget;
     SummaryWordWidget *m_summaryWordWidget;
     KEduVocComparisonWidget *m_comparisonWidget;
     LatexWidget *m_latexWidget;
