@@ -12,7 +12,7 @@
   </property>
   <layout class="QVBoxLayout">
    <item>
-    <widget class="Practice::ImageWidget" name="imageWidget" native="true">
+    <widget class="Practice::KEduVocImageWidget" name="imageWidget" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
@@ -39,9 +39,9 @@
    <header>kurlrequester.h</header>
   </customwidget>
   <customwidget>
-   <class>Practice::ImageWidget</class>
+   <class>Practice::KEduVocImageWidget</class>
    <extends>QWidget</extends>
-   <header>practice/imagewidget.h</header>
+   <header>keduvocimagewidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

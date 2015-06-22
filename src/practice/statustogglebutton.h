@@ -14,18 +14,18 @@
 #ifndef PRACTICE_STATUSTOGGLEBUTTON_H
 #define PRACTICE_STATUSTOGGLEBUTTON_H
 
-#include "imagewidget.h"
+#include <keduvocimagewidget.h>
 #include <QDebug> //TODO
 
 namespace Practice
 {
 
-class StatusToggleButton : public ImageWidget
+class StatusToggleButton : public KEduVocImageWidget
 {
     Q_OBJECT
 
 public:
-    StatusToggleButton(QWidget* parent = 0) : ImageWidget(parent), m_current(0) {
+    StatusToggleButton(QWidget* parent = 0) : KEduVocImageWidget(parent), m_current(0) {
         setMouseTracking(true);
     }
 

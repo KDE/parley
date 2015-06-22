@@ -35,7 +35,7 @@ using namespace Practice;
 GuiFrontend::GuiFrontend(QWidget* parent)
     : AbstractFrontend(parent), m_modeWidget(0), m_lastImage("invalid"), m_currentBox(0), m_newBoxIfCorrect(0), m_newBoxIfWrong(0)
 {
-    m_widget = new ImageWidget();
+    m_widget = new KEduVocImageWidget();
     m_widget->setScalingEnabled(false, false);
     m_widget->setKeepAspectRatio(Qt::IgnoreAspectRatio);
     m_widget->setFadingEnabled(false);
@@ -50,7 +50,7 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     setTheme();
 
     connect(m_themedBackgroundRenderer, &ThemedBackgroundRenderer::backgroundChanged, this, &GuiFrontend::backgroundChanged);
-    connect(m_widget, &ImageWidget::sizeChanged, this, &GuiFrontend::updateBackground);
+    connect(m_widget, &KEduVocImageWidget::sizeChanged, this, &GuiFrontend::updateBackground);
 
     connect(m_ui->continueButton, &QPushButton::clicked, this, &GuiFrontend::continueAction);
     connect(m_ui->answerLaterButton, &QPushButton::clicked, this, &GuiFrontend::skipAction);

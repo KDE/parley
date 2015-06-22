@@ -29,7 +29,7 @@
 #include "parleymainwindow.h"
 #include "parleydocument.h"
 #include "practice/themedbackgroundrenderer.h"
-#include "practice/imagewidget.h"
+#include <keduvocimagewidget.h>
 #include "statistics/statisticsmainwindow.h"
 #include "statistics/statisticsmodel.h"
 
@@ -60,7 +60,7 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     setXMLFile("dashboardui.rc");
     setObjectName("Dashboard");
 
-    m_widget = new Practice::ImageWidget(this);
+    m_widget = new Practice::KEduVocImageWidget( this );
 
     m_widget->setScalingEnabled(false, false);
     m_widget->setKeepAspectRatio(Qt::IgnoreAspectRatio);

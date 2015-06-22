@@ -25,7 +25,7 @@
 using namespace Practice;
 
 BoxesWidget::BoxesWidget(QWidget* parent)
-    : ImageWidget(parent), m_boxCount(1), m_currentBox(-1), m_lastBox(-1), m_renderer(0), m_fixedSize(true), m_arrowHint(0), m_spacingHint(0)
+    : KEduVocImageWidget(parent), m_boxCount(1), m_currentBox(-1), m_lastBox(-1), m_renderer(0), m_fixedSize(true), m_arrowHint(0), m_spacingHint(0)
 {
     setBoxCount(KV_MAX_GRADE);
     setScalingEnabled(false);
@@ -64,7 +64,7 @@ QSize BoxesWidget::minimumSizeHint() const
     if (m_fixedSize) {
         return m_rect.size();
     }
-    return ImageWidget::minimumSizeHint();
+    return KEduVocImageWidget::minimumSizeHint();
 }
 
 void BoxesWidget::updatePixmap()
@@ -97,7 +97,7 @@ bool BoxesWidget::event(QEvent *e)
 {
     if (e->type() == QEvent::Resize)
         updatePixmap();
-    return ImageWidget::event(e);
+    return KEduVocImageWidget::event(e);
 }
 
 void BoxesWidget::drawElement(QPainter *p, const QString& id)

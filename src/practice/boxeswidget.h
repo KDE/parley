@@ -14,14 +14,14 @@
 #ifndef PRACTICE_BOXESWIDGET_H
 #define PRACTICE_BOXESWIDGET_H
 
-#include "imagewidget.h"
+#include <keduvocimagewidget.h>
 
 namespace Practice
 {
 
 class ThemedBackgroundRenderer;
 
-class BoxesWidget : public ImageWidget
+class BoxesWidget : public KEduVocImageWidget
 {
     Q_OBJECT
 
