@@ -31,6 +31,7 @@
 #include "settings/parleyprefs.h"
 #include "prefs.h"
 #include "documentsettings.h"
+#include "languagesettings.h"
 
 #include "scripts/scriptdialog.h"
 
@@ -113,16 +114,18 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
 
     m_vocabularyView->setDocument(doc);
 
-    DocumentSettings ds( doc->url().url() );
-    ds.load();
-    QList <int> visibleColumns = ds.visibleColumns();
-    KConfig parleyConfig("parleyrc");
-    KConfigGroup documentGroup(&parleyConfig, "Document " + doc->url().url()); 
-    QByteArray state = documentGroup.readEntry("VocabularyColumns", QByteArray());
-    m_vocabularyView->setVisibleColumns( visibleColumns );
-    m_vocabularyView->setState( state );
-    QByteArray saveState = m_vocabularyView->horizontalHeader()->saveState();
-    documentGroup.writeEntry("VocabularyColumns", m_vocabularyView->horizontalHeader()->saveState());
+    if( doc ) {
+        DocumentSettings ds( doc->url().url() );
+        ds.load();
+        QList <int> visibleColumns = ds.visibleColumns();
+        KConfig parleyConfig("parleyrc");
+        KConfigGroup documentGroup(&parleyConfig, "Document " + doc->url().url()); 
+        QByteArray state = documentGroup.readEntry("VocabularyColumns", QByteArray());
+        m_vocabularyView->setVisibleColumns( visibleColumns );
+        m_vocabularyView->setState( state );
+        QByteArray saveState = m_vocabularyView->horizontalHeader()->saveState();
+        documentGroup.writeEntry("VocabularyColumns", m_vocabularyView->horizontalHeader()->saveState());
+    }
     m_vocabularyModel->setDocument(doc);
 
     m_lessonModel->setDocument(doc);
@@ -419,7 +422,7 @@ void EditorWindow::initActions()
     m_spellCheckMenu = ParleyActions::create(ParleyActions::CheckSpelling, 0, "", actionCollection());
     m_spellCheckMenu->setMenu(new QMenu(this));
     m_spellCheckMapper = new QSignalMapper(this);
-    connect(m_spellCheckMapper, SIGNAL(mapped(int)), m_vocabularyView, SLOT(checkSpelling(int)));
+    connect(m_spellCheckMapper, SIGNAL(mapped(int)), this, SLOT(setSpellCheck(int)));
 
     ParleyActions::create(ParleyActions::ToggleShowSublessons, m_vocabularyModel, SLOT(setRecursive(bool)), actionCollection());
     ParleyActions::create(ParleyActions::AutomaticTranslation, this, SLOT(setAutomaticTranslation(bool)), actionCollection());
@@ -437,6 +440,15 @@ void EditorWindow::initActions()
 
     QDBusConnection dbus = QDBusConnection::sessionBus();
     dbus.registerObject("/AddWithTranslation", this);
+}
+
+void EditorWindow::setSpellCheck(int language)
+{
+    QString locale = m_vocabularyView->document()->identifier( language ).locale();
+    LanguageSettings settings(locale);
+    QString spellCheck = settings.spellChecker().isEmpty() ? locale : settings.spellChecker();
+    m_vocabularyView->setSpellCheck( spellCheck );
+    m_vocabularyView->checkSpelling( language );
 }
 
 void EditorWindow::addWordWithTranslation(const QStringList &w)
