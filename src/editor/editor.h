@@ -118,6 +118,11 @@ public slots:
       */
     void setAutomaticTranslation(bool v);
 
+    /**
+     * Set m_vocabularyView->m_spellCheck
+     */
+    void setSpellCheck( int language );
+
 private slots:
 
     /** Make the search bar visible and focus it */
