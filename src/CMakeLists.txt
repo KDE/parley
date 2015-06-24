@@ -18,7 +18,6 @@ set(parley_LIB_SRCS
     editor/editor.cpp
     #editor/audiowidget.cpp
     #editor/browserwidget.cpp
-    editor/summarywordwidget.cpp
     editor/latexwidget.cpp
     practice/abstractwidget.cpp
     practice/sessionmanagerbase.cpp
@@ -92,7 +91,6 @@ ki18n_wrap_ui(parley_LIB_SRCS
     collection/entryfilterdialog.ui
     editor/conjugationwidget.ui
     editor/browserwidget.ui
-    editor/summarywordwidget.ui
     editor/latexwidget.ui
     practice/practicesummarywidget.ui
     practice/practice_mainwindow.ui
