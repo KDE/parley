@@ -21,9 +21,7 @@
 // Qt models on top of the KEduVocDocument
 
 
-#include <keduvocaudiowidget.h>
 #include "browserwidget.h"
-#include "synonymwidget.h"
 #include "summarywordwidget.h"
 #include "latexwidget.h"
 #include "parleymainwindow.h"
@@ -49,10 +47,12 @@
 #include <keduvocvocabularyview.h>
 #include <keduvocwordtypeview.h>
 #include <keduvoclessonview.h>
+#include <keduvocaudiowidget.h>
 #include <keduvocmultiplechoicewidget.h>
 #include <keduvoccomparisonwidget.h>
 #include <keduvocinflectionwidget.h>
 #include <keduvocimagechooserwidget.h>
+#include <keduvocsynonymwidget.h>
 
 
 
@@ -269,7 +269,7 @@ void EditorWindow::initDockWidgets()
 // Synonym (and the same for antonym and false friends)
     QDockWidget *synonymDock = new QDockWidget(i18n("Synonyms"), this);
     synonymDock->setObjectName("SynonymDock");
-    m_synonymWidget = new SynonymWidget(SynonymWidget::Synonym, this);
+    m_synonymWidget = new KEduVocSynonymWidget( KEduVocSynonymWidget::Synonym, this );
     QScrollArea *synonymScrollArea = new QScrollArea(this);
     synonymScrollArea->setWidgetResizable(true);
     synonymScrollArea->setWidget(m_synonymWidget);
@@ -283,7 +283,7 @@ void EditorWindow::initDockWidgets()
 
     QDockWidget *antonymDock = new QDockWidget(i18n("Antonyms"), this);
     antonymDock->setObjectName("AntonymDock");
-    m_antonymWidget = new SynonymWidget(SynonymWidget::Antonym, this);
+    m_antonymWidget = new KEduVocSynonymWidget( KEduVocSynonymWidget::Antonym, this );
     QScrollArea *antonymScrollArea = new QScrollArea(this);
     antonymScrollArea->setWidgetResizable(true);
     antonymScrollArea->setWidget(m_antonymWidget);
@@ -298,7 +298,7 @@ void EditorWindow::initDockWidgets()
 
     QDockWidget *falseFriendDock = new QDockWidget(i18n("False Friends"), this);
     falseFriendDock->setObjectName("FalseFriendDock");
-    m_falseFriendWidget = new SynonymWidget(SynonymWidget::FalseFriend, this);
+    m_falseFriendWidget = new KEduVocSynonymWidget( KEduVocSynonymWidget::FalseFriend, this );
     QScrollArea *falseFriendScrollArea = new QScrollArea(this);
     falseFriendScrollArea->setWidgetResizable(true);
     falseFriendScrollArea->setWidget(m_falseFriendWidget);
