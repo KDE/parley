@@ -47,7 +47,7 @@ class KEduVocInflectionWidget;
 class KEduVocComparisonWidget;
 class SummaryWordWidget;
 class LatexWidget;
-class SynonymWidget;
+class KEduVocSynonymWidget;
 
 class EditorWindow : public KXmlGuiWindow
 {
@@ -149,9 +149,9 @@ private:
     SummaryWordWidget *m_summaryWordWidget;
     KEduVocComparisonWidget *m_comparisonWidget;
     LatexWidget *m_latexWidget;
-    SynonymWidget *m_synonymWidget;
-    SynonymWidget *m_antonymWidget;
-    SynonymWidget *m_falseFriendWidget;
+    KEduVocSynonymWidget *m_synonymWidget;
+    KEduVocSynonymWidget *m_antonymWidget;
+    KEduVocSynonymWidget *m_falseFriendWidget;
 
     /// dock widgets to display lessons, word types, ...
     KEduVocLessonView *m_lessonView;
