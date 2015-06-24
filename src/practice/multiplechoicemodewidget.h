@@ -26,7 +26,7 @@ class QPushButton;
 
 namespace Practice
 {
-class LatexRenderer;
+class KEduVocLatexRenderer;
 
 class MultiplechoiceModeWidget: public AbstractModeWidget
 {
@@ -71,7 +71,7 @@ private:
     int m_solution;
     QList<QPushButton*> m_choiceButtons;
     QList<QAction*> m_actions;
-    LatexRenderer *m_latexRenderer;
+    KEduVocLatexRenderer *m_latexRenderer;
     QFont m_solutionFont;
 };
 

@@ -18,7 +18,8 @@
 #include <QUrl>
 
 #include "guifrontend.h"
-#include "latexrenderer.h"
+
+#include <keduvoclatexrenderer.h>
 
 using namespace Practice;
 
@@ -45,9 +46,9 @@ void FlashCardModeWidget::setSolutionFont(const QFont& font)
 void FlashCardModeWidget::setQuestion(const QVariant& question)
 {
     m_ui->questionLabel->setMinimumSize(QSize(0, 0));
-    if (LatexRenderer::isLatex(question.toString())) {
+    if (KEduVocLatexRenderer::isLatex(question.toString())) {
         if (!m_questionLatexRenderer) {
-            m_questionLatexRenderer = new LatexRenderer(this);
+            m_questionLatexRenderer = new KEduVocLatexRenderer(this);
             m_questionLatexRenderer->setResultLabel(m_ui->questionLabel);
         }
         m_questionLatexRenderer->renderLatex(question.toString());
@@ -101,9 +102,9 @@ void FlashCardModeWidget::showSolution()
     m_ui->solutionLabel->setPalette(m_correctPalette);
 
     m_ui->solutionLabel->setMinimumSize(QSize(0, 0));
-    if (LatexRenderer::isLatex(m_solution)) {
+    if (KEduVocLatexRenderer::isLatex(m_solution)) {
         if (!m_solutionLatexRenderer) {
-            m_solutionLatexRenderer = new LatexRenderer(this);
+            m_solutionLatexRenderer = new KEduVocLatexRenderer(this);
             m_solutionLatexRenderer->setResultLabel(m_ui->solutionLabel);
         }
         m_solutionLatexRenderer->renderLatex(m_solution);

@@ -27,7 +27,7 @@ class FlashCardPracticeWidget;
 
 namespace Practice
 {
-class LatexRenderer;
+class KEduVocLatexRenderer;
 
 
 class FlashCardModeWidget: public AbstractModeWidget
@@ -68,8 +68,8 @@ public Q_SLOTS:
 private:
     Ui::FlashCardPracticeWidget* m_ui;
     QString m_solution;
-    LatexRenderer *m_questionLatexRenderer;
-    LatexRenderer *m_solutionLatexRenderer;
+    KEduVocLatexRenderer *m_questionLatexRenderer;
+    KEduVocLatexRenderer *m_solutionLatexRenderer;
 };
 
 }

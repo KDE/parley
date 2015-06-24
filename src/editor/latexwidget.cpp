@@ -12,8 +12,7 @@
  ***************************************************************************/
 #include "latexwidget.h"
 
-#include "practice/latexrenderer.h"
-
+#include <keduvoclatexrenderer.h>
 #include <keduvocvocabularymodel.h>
 #include <keduvocvocabularyfilter.h>
 
@@ -90,9 +89,9 @@ void LatexWidget::updateLatex()
     if (!m_translation) {
         return;
     }
-    if (Practice::LatexRenderer::isLatex(m_translation->text())) {
+    if (Practice::KEduVocLatexRenderer::isLatex(m_translation->text())) {
         if (!m_renderer) {
-            m_renderer = new Practice::LatexRenderer(this);
+            m_renderer = new Practice::KEduVocLatexRenderer(this);
             m_renderer->setResultLabel(previewLabel);
         }
         m_renderer->renderLatex(m_translation->text());
