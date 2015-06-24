@@ -22,7 +22,6 @@
 
 
 #include "browserwidget.h"
-#include "summarywordwidget.h"
 #include "latexwidget.h"
 #include "parleymainwindow.h"
 
@@ -53,6 +52,7 @@
 #include <keduvocinflectionwidget.h>
 #include <keduvocimagechooserwidget.h>
 #include <keduvocsynonymwidget.h>
+#include <keduvocsummarywordwidget.h>
 
 
 
@@ -345,7 +345,7 @@ void EditorWindow::initDockWidgets()
 // Summary word
     QDockWidget *summaryDock = new QDockWidget(i18n("Summary"), this);
     summaryDock->setObjectName("SummaryDock");
-    m_summaryWordWidget = new SummaryWordWidget(m_vocabularyFilter, m_mainWindow->parleyDocument()->document(), this);
+    m_summaryWordWidget = new KEduVocSummaryWordWidget( m_vocabularyFilter, m_mainWindow->parleyDocument()->document(), this );
     QScrollArea *summaryScrollArea = new QScrollArea(this);
     summaryScrollArea->setWidgetResizable(true);
     summaryScrollArea->setWidget(m_summaryWordWidget);
