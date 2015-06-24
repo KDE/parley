@@ -16,7 +16,8 @@
 #include "ui_practice_widget_written.h"
 
 #include "guifrontend.h"
-#include "latexrenderer.h"
+
+#include <keduvoclatexrenderer.h>
 
 #include "prefs.h"
 
@@ -65,9 +66,9 @@ QVariant WrittenPracticeWidget::userInput()
 void WrittenPracticeWidget::setQuestion(const QVariant& question)
 {
     m_ui->questionLabel->setMinimumSize(QSize(0, 0));
-    if (LatexRenderer::isLatex(question.toString())) {
+    if (KEduVocLatexRenderer::isLatex(question.toString())) {
         if (!m_latexRenderer) {
-            m_latexRenderer = new LatexRenderer(this);
+            m_latexRenderer = new KEduVocLatexRenderer(this);
             m_latexRenderer->setResultLabel(m_ui->questionLabel);
         }
         m_latexRenderer->renderLatex(question.toString());

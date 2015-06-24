@@ -13,10 +13,11 @@
 
 #include "multiplechoicemodewidget.h"
 #include "multiplechoicedata.h"
-#include "latexrenderer.h"
 #include "guifrontend.h"
 
 #include "ui_practice_widget_multiplechoice.h"
+
+#include <keduvoclatexrenderer.h>
 
 #include <QDebug>
 #include <kcolorscheme.h>
@@ -67,9 +68,9 @@ void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
     MultipleChoiceData data = question.value<MultipleChoiceData>();
 
     m_ui->questionLabel->setMinimumSize(QSize(0, 0));
-    if (LatexRenderer::isLatex(data.question)) {
+    if (KEduVocLatexRenderer::isLatex(data.question)) {
         if (!m_latexRenderer) {
-            m_latexRenderer = new LatexRenderer(this);
+            m_latexRenderer = new KEduVocLatexRenderer(this);
             m_latexRenderer->setResultLabel(m_ui->questionLabel);
         }
         m_latexRenderer->renderLatex(data.question);

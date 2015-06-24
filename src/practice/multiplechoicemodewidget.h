@@ -26,7 +26,7 @@ class QRadioButton;
 
 namespace Practice
 {
-class LatexRenderer;
+class KEduVocLatexRenderer;
 
 class MultiplechoiceModeWidget: public AbstractModeWidget
 {
@@ -69,7 +69,7 @@ private:
     int m_solution;
     QList<QRadioButton*> m_choiceButtons;
     QList<QAction*> m_actions;
-    LatexRenderer *m_latexRenderer;
+    KEduVocLatexRenderer *m_latexRenderer;
     QFont m_solutionFont;
 };
 

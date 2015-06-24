@@ -25,7 +25,7 @@ class KEduVocTranslation;
 
 namespace Practice
 {
-class LatexRenderer;
+class KEduVocLatexRenderer;
 }
 
 class KEduVocVocabularyFilter;
@@ -67,7 +67,7 @@ private:
     QDataWidgetMapper *m_mapper;
     KEduVocTranslation *m_translation;
     QLabel m_hiddenLabel;
-    Practice::LatexRenderer *m_renderer;
+    Practice::KEduVocLatexRenderer *m_renderer;
 };
 
 class LatexDelegate : public QItemDelegate

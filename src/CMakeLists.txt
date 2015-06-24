@@ -48,7 +48,6 @@ set(parley_LIB_SRCS
     practice/imagecache.cpp
     practice/statustoggle.cpp
     practice/statustogglebutton.cpp
-    practice/latexrenderer.cpp
     practice/configure/configurepracticedialog.cpp
     practice/configure/generalpracticeoptions.cpp
     practice/configure/blockoptions.cpp
