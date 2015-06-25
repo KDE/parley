@@ -22,7 +22,6 @@
 
 
 #include "browserwidget.h"
-#include "latexwidget.h"
 #include "parleymainwindow.h"
 
 #include "settings/parleyprefs.h"
@@ -53,6 +52,7 @@
 #include <keduvocimagechooserwidget.h>
 #include <keduvocsynonymwidget.h>
 #include <keduvocsummarywordwidget.h>
+#include <keduvoclatexwidget.h>
 
 
 
@@ -61,13 +61,15 @@
 #include <KActionMenu>
 #include <KCharSelect>
 
-#include <QtCore/QTimer>
-#include <QtCore/QSignalMapper>
-#include <QtWidgets/QDockWidget>
-#include <QtWidgets/QHeaderView>
-#include <QtWidgets/QMenu>
-#include <QtWidgets/QStackedWidget>
+#include <QTimer>
+#include <QSignalMapper>
+#include <QDockWidget>
+#include <QHeaderView>
+#include <QMenu>
+#include <QStackedWidget>
 #include <QScrollArea>
+#include <QLineEdit>
+#include <QLabel>
 
 using namespace Editor;
 
@@ -393,7 +395,7 @@ void EditorWindow::initDockWidgets()
 // LaTeX
     QDockWidget *latexDock = new QDockWidget(i18n("LaTeX"), this);
     latexDock->setObjectName("LatexDock");
-    m_latexWidget = new LatexWidget(m_vocabularyFilter, m_mainWindow->parleyDocument()->document(), this);
+    m_latexWidget = new KEduVocLatexWidget(m_vocabularyFilter, m_mainWindow->parleyDocument()->document(), this);
     QScrollArea *latexScrollArea = new QScrollArea(this);
     latexScrollArea->setWidgetResizable(true);
     latexScrollArea->setWidget(m_latexWidget);

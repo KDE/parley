@@ -48,7 +48,7 @@ class KEduVocWordTypeView;
 class KEduVocInflectionWidget;
 class KEduVocComparisonWidget;
 class KEduVocSummaryWordWidget;
-class LatexWidget;
+class KEduVocLatexWidget;
 class KEduVocSynonymWidget;
 
 class EditorWindow : public KXmlGuiWindow
@@ -151,7 +151,7 @@ private:
     KEduVocInflectionWidget *m_inflectionWidget;
     KEduVocSummaryWordWidget *m_summaryWordWidget;
     KEduVocComparisonWidget *m_comparisonWidget;
-    LatexWidget *m_latexWidget;
+    KEduVocLatexWidget *m_latexWidget;
     KEduVocSynonymWidget *m_synonymWidget;
     KEduVocSynonymWidget *m_antonymWidget;
     KEduVocSynonymWidget *m_falseFriendWidget;
