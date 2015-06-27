@@ -62,7 +62,6 @@ set(parley_LIB_SRCS
     scripts/scripting/text.cpp
     scripts/scripting/container.cpp
     scripts/scripting/identifier.cpp
-    scripts/script.cpp
     settings/generaloptions.cpp
     settings/parleyprefs.cpp
     settings/viewoptions.cpp
