@@ -15,13 +15,12 @@
 #ifndef SCRIPTMANAGER_H
 #define SCRIPTMANAGER_H
 
-#include "script.h"
-
 #include "editor/editor.h"
 
 #include <QStringList>
 
 #include <keduvoctranslator.h>
+#include <keduvocscript.h>
 
 
 /**
@@ -109,19 +108,19 @@ public:
      */
     void addScriptAction(const QString & name, QAction * action);
 
-    /** returns the Translator object the Scripting::Parley */
+    /** returns the Translator object the Scripting::KEduVocDocument */
     KEduVocTranslator * translator() {
         return m_scriptingParley->translator();
     }
 
 private:
     Editor::EditorWindow * m_editor;
-    QList<Script*> m_scripts;
+    QList<KEduVocScript*> m_scripts;
     QMap<QString, QObject*> m_scriptObjects;
     QList<QAction*> m_scriptActions;
 
     ///script objects (objects that will be used from inside the scripts)
-    Scripting::Parley* m_scriptingParley;
+    Scripting::KEduVocDocument* m_scriptingParley;
 };
 
 #endif

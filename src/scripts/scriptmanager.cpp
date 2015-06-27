@@ -24,6 +24,8 @@
 #include <kross/core/action.h>
 #include <kross/core/manager.h>
 
+#include <keduvoctranslator.h>
+
 #include <QFileInfo>
 #include <QStandardPaths>
 #include <QDebug>
@@ -33,8 +35,8 @@ using namespace Editor;
 ScriptManager::ScriptManager(EditorWindow * editor)
     : m_editor(editor)
 {
-    //add Scripting::Parley
-    m_scriptingParley = new Scripting::Parley(editor);
+    //add Scripting::KEduVocDocument
+    m_scriptingParley = new Scripting::KEduVocDocument( editor->m_mainWindow->parleyDocument()->document(), m_editor->m_vocabularyModel, Prefs::separator() );
     addObject(m_scriptingParley, QStringLiteral("Parley"));
 }
 
@@ -124,7 +126,7 @@ void ScriptManager::loadScripts()
     QStringList errorDetails;
     foreach(const QString & script, scripts) {
         //create a new Script and add it to the m_scripts list
-        Script * s = new Script(getScriptFileName(script));
+        KEduVocScript * s = new KEduVocScript(getScriptFileName(script));
         s->addObjects(m_scriptObjects);
         s->activate();
         m_scripts.push_back(s);
@@ -152,7 +154,7 @@ void ScriptManager::addObject(QObject * obj, const QString & name)
 void ScriptManager::reloadScripts()
 {
     //deactivate (delete) all the active scripts
-    foreach(Script * s, m_scripts) {
+    foreach(KEduVocScript * s, m_scripts) {
         if (s) delete s;
     }
     m_scripts.clear();
