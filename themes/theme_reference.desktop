@@ -1,5 +1,6 @@
 [KGameTheme]
 Name=Gray
+Name[ast]=Buxu
 Name[bg]=Сиво
 Name[bs]=Siva
 Name[ca]=Gris
@@ -41,6 +42,7 @@ Name[x-test]=xxGrayxx
 Name[zh_CN]=灰色
 Name[zh_TW]=灰
 Description=A simple gray theme.
+Description[ast]=Un tema buxu cenciellu.
 Description[bg]=Проста сива тема
 Description[bs]=Jednostavna siva tema
 Description[ca]=Un tema gris senzill.
