@@ -102,6 +102,7 @@ set( parley_LINK_LIBS
   Qt5::Multimedia
   KF5::Notifications
   KF5::Crash
+  KF5::CoreAddons
 )
 
 message(STATUS "cmake cflags ${CMAKE_C_FLAGS}")

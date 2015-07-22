@@ -28,6 +28,7 @@
 
 #include <kaboutdata.h>
 #include <KLocalizedString>
+#include <Kdelibs4ConfigMigrator>
 
 #include <QApplication>
 #include <QCommandLineParser>
@@ -35,6 +36,13 @@
 int main(int argc, char* argv[])
 {
     KLocalizedString::setApplicationDomain("parley");
+
+    /* for migration*/
+    QStringList configFiles;
+    configFiles << QLatin1String("parleyrc");
+    Kdelibs4ConfigMigrator migrator(QLatin1String("parley"));
+    migrator.setConfigFiles(configFiles);
+    migrator.migrate();
 
     KAboutData aboutData("parley",  ki18n("Parley").toString(),  PARLEY_VERSION_STRING );
     aboutData.setShortDescription( ki18n("Vocabulary Trainer").toString() );
