@@ -21,7 +21,6 @@
 #include "version.h"
 #include "prefs.h"
 
-#include "settings/documentproperties.h"
 #include "dashboard/dashboard.h"
 
 #include <keduvoclesson.h>
@@ -29,7 +28,7 @@
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
 #include <keduvocvocabularyview.h>
-
+#include <keduvocdocumentproperties.h>
 
 #include <QFileDialog>
 #include <QMimeDatabase>
@@ -45,6 +44,7 @@
 #include <QDialog>
 #include <QDialogButtonBox>
 #include <QTimer>
+#include <QCheckBox>
 
 #ifdef HAVE_LIBXSLT
 #include "exportdialog.h"
@@ -126,7 +126,7 @@ void ParleyDocument::newDocument(bool wizard)
     bool showGrammarDialog = false;
     bool fetchGrammarOnline = false;
     if (wizard) {
-        DocumentProperties* titleAuthorWidget = new DocumentProperties(newDoc, true, m_parleyApp);
+        KEduVocDocumentProperties* titleAuthorWidget = new KEduVocDocumentProperties( newDoc, true, m_parleyApp );
 
         QDialogButtonBox * button_dialog = new QDialogButtonBox;
         button_dialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel );
@@ -139,13 +139,13 @@ void ParleyDocument::newDocument(bool wizard)
         titleAuthorDialog->setLayout( layout );
         titleAuthorDialog->setWindowTitle(i18nc("@title:window document properties", "Properties for %1", newDoc->url().url()));
 
-        connect(titleAuthorDialog, &QDialog::accepted, titleAuthorWidget, &DocumentProperties::accept);
+        connect(titleAuthorDialog, &QDialog::accepted, titleAuthorWidget, &KEduVocDocumentProperties::accept);
         connect(button_dialog, &QDialogButtonBox::accepted, titleAuthorDialog, &QDialog::accept);
         connect(button_dialog, &QDialogButtonBox::rejected, titleAuthorDialog, &QDialog::reject);
 
         if (titleAuthorDialog->exec()) {
-            showGrammarDialog = titleAuthorWidget->grammarCheckBox->isChecked();
-            fetchGrammarOnline = titleAuthorWidget->downloadGrammarCheckBox->isChecked();
+            showGrammarDialog = titleAuthorWidget->isGrammarCheckBoxChecked();
+            fetchGrammarOnline = titleAuthorWidget->isDownloadGrammarCheckBoxChecked();
             delete titleAuthorDialog;
         } else {
             delete titleAuthorDialog;
@@ -587,7 +587,7 @@ void ParleyDocument::slotGHNS()
 
 void ParleyDocument::documentProperties()
 {
-    DocumentProperties* titleAuthorWidget = new DocumentProperties(m_doc, false, m_parleyApp);
+    KEduVocDocumentProperties* titleAuthorWidget = new KEduVocDocumentProperties( m_doc, false, m_parleyApp );
 
     QDialogButtonBox * button_dialog = new QDialogButtonBox;
     button_dialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel );
@@ -601,9 +601,9 @@ void ParleyDocument::documentProperties()
     titleAuthorDialog->setWindowTitle(i18nc("@title:window document properties", "Properties for %1", m_doc->url().url()));
 
     // the language options are only shown, when this is used to create a new document.
-    titleAuthorWidget->languageGroupBox->setVisible(false);
+    titleAuthorWidget->setLanguageGroupBoxVisible(false);
 
-    connect(titleAuthorDialog, &QDialog::accepted, titleAuthorWidget, &DocumentProperties::accept);
+    connect(titleAuthorDialog, &QDialog::accepted, titleAuthorWidget, &KEduVocDocumentProperties::accept);
     connect(button_dialog, &QDialogButtonBox::accepted, titleAuthorDialog, &QDialog::accept);
     connect(button_dialog, &QDialogButtonBox::rejected, titleAuthorDialog, &QDialog::reject);
 
