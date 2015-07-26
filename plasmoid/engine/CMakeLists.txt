@@ -6,7 +6,7 @@ include_directories( ${LIBKDEEDU_INCLUDE_DIR} )
 
 kde4_add_plugin(plasma_engine_parley ${parley_engine_SRCS})
 target_link_libraries(plasma_engine_parley ${KDE4_KDECORE_LIBS}
-  plasma
+  ${KDE4_PLASMA_LIBS}
   ${LIBKDEEDU_KEDUVOCDOCUMENT_LIBRARIES}
 )
 

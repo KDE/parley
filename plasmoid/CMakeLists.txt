@@ -10,7 +10,7 @@ kde4_add_ui_files(parley_plasma_SRCS config.ui)
 
 kde4_add_plugin(plasma_applet_parley ${parley_plasma_SRCS})
 target_link_libraries(plasma_applet_parley
-    plasma ${KDE4_KIO_LIBS}
+   ${KDE4_PLASMA_LIBS} ${KDE4_KIO_LIBS}
     ${LIBKDEEDU_KEDUVOCDOCUMENT_LIBRARIES}
     )
 
