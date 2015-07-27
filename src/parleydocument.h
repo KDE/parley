@@ -22,6 +22,7 @@
 
 class ParleyMainWindow;
 class QTimer;
+class KEduVocLanguagePropertiesPage;
 
 /**
     @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
@@ -82,6 +83,18 @@ public slots:
     /** General doc properties like title, author etc */
     void documentProperties();
     void languageProperties();
+
+    /** Slots for KEduVocLanguageProperties signals */
+    void loadLanguageSettings( QString locale );
+    void loadEditorFont( QString locale, KEduVocLanguagePropertiesPage* page );
+    void loadPracticeFont( QString locale, KEduVocLanguagePropertiesPage* page );
+    void loadKeyboardLayout( QString locale, KEduVocLanguagePropertiesPage* page );
+    void loadSpellChecker( QString locale, KEduVocLanguagePropertiesPage* page );
+    void saveEditorFont( QString locale, QFont font );
+    void savePracticeFont( QString locale, QFont font );
+    void saveKeyboardLayout( QString locale, QString keyboardLayout );
+    void saveSpellChecker( QString locale, QString spellChecker );
+    void storeSettings( QString locale );
 
 signals:
     /** Emitted when the document pointer is changed.
