@@ -19,6 +19,7 @@
 #include "parleymainwindow.h"
 #include "editor/editor.h"
 #include "prefs.h"
+#include "languagesettings.h"
 
 #include "dashboard/dashboard.h"
 
@@ -28,6 +29,7 @@
 #include <keduvocwordtype.h>
 #include <keduvocvocabularyview.h>
 #include <keduvocdocumentproperties.h>
+#include <keduvoclanguageproperties.h>
 
 #include <QFileDialog>
 #include <QMimeDatabase>
@@ -54,8 +56,6 @@
 #include <libxslt/transform.h>
 #include <libxslt/xsltutils.h>
 #endif
-
-#include "settings/languageproperties.h"
 
 namespace DocumentHelper
 {
@@ -88,6 +88,65 @@ ParleyDocument::ParleyDocument(ParleyMainWindow* parleyMainWindow)
 ParleyDocument::~ParleyDocument()
 {
     close();
+}
+
+void ParleyDocument::loadLanguageSettings( QString locale ) {
+    LanguageSettings settings( locale );
+    settings.load();
+}
+
+void ParleyDocument::loadEditorFont( QString locale, KEduVocLanguagePropertiesPage* page ) {
+    LanguageSettings settings( locale );
+    settings.load();
+    page->setEditorFont( settings.editorFont() );
+}
+
+void ParleyDocument::loadPracticeFont( QString locale, KEduVocLanguagePropertiesPage* page ) {
+    LanguageSettings settings( locale );
+    settings.load();
+    page->setPracticeFont( settings.practiceFont() );
+}
+
+void ParleyDocument::loadKeyboardLayout( QString locale, KEduVocLanguagePropertiesPage* page ) {
+    LanguageSettings settings( locale );
+    settings.load();
+    page->setKeyboardLayout( settings.keyboardLayout() );
+}
+
+void ParleyDocument::loadSpellChecker( QString locale, KEduVocLanguagePropertiesPage* page ) {
+    LanguageSettings settings( locale );
+    settings.load();
+    page->setSpellChecker( settings.spellChecker() );
+}
+
+void ParleyDocument::saveEditorFont( QString locale, QFont font ) {
+    LanguageSettings settings( locale );
+    settings.load();
+    settings.setEditorFont( font );
+}
+
+void ParleyDocument::savePracticeFont( QString locale, QFont font ) {
+    LanguageSettings settings( locale );
+    settings.load();
+    settings.setPracticeFont( font );
+}
+
+void ParleyDocument::saveKeyboardLayout( QString locale, QString keyboardLayout ) {
+    LanguageSettings settings( locale );
+    settings.load();
+    settings.setKeyboardLayout( keyboardLayout );
+}
+
+void ParleyDocument::saveSpellChecker( QString locale, QString spellChecker ) {
+    LanguageSettings settings( locale );
+    settings.load();
+    settings.setSpellChecker( spellChecker );
+}
+
+void ParleyDocument::storeSettings( QString locale ) {
+    LanguageSettings settings( locale );
+    settings.load();
+    settings.save();
 }
 
 
@@ -608,8 +667,19 @@ void ParleyDocument::documentProperties()
 
 void ParleyDocument::languageProperties()
 {
-    LanguageProperties properties(m_doc, m_parleyApp);
-    if (properties.exec() == QDialog::Accepted) {
+    KEduVocLanguageProperties *properties = new KEduVocLanguageProperties( m_doc, m_parleyApp );
+    connect( properties, &KEduVocLanguageProperties::languageSettingsChanged, this, &ParleyDocument::loadLanguageSettings );
+    connect( properties, &KEduVocLanguageProperties::editorFontChanged, this, &ParleyDocument::loadEditorFont );
+    connect( properties, &KEduVocLanguageProperties::practiceFontChanged, this, &ParleyDocument::loadPracticeFont );
+    connect( properties, &KEduVocLanguageProperties::keyboardLayoutChanged, this, &ParleyDocument::loadKeyboardLayout );
+    connect( properties, &KEduVocLanguageProperties::spellCheckerChanged, this, &ParleyDocument::loadSpellChecker );
+    connect( properties, &KEduVocLanguageProperties::storeEditorFont, this, &ParleyDocument::saveEditorFont );
+    connect( properties, &KEduVocLanguageProperties::storePracticeFont, this, &ParleyDocument::savePracticeFont );
+    connect( properties, &KEduVocLanguageProperties::storeKeyboardLayout, this, &ParleyDocument::saveKeyboardLayout );
+    connect( properties, &KEduVocLanguageProperties::storeSpellChecker, this, &ParleyDocument::saveSpellChecker );;
+    connect( properties, &KEduVocLanguageProperties::saveSettings, this, &ParleyDocument::storeSettings );
+
+    if (properties->exec() == QDialog::Accepted) {
         emit languagesChanged();
     }
 }

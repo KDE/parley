@@ -67,8 +67,8 @@ set(parley_LIB_SRCS
     settings/generaloptions.cpp
     settings/parleyprefs.cpp
     settings/viewoptions.cpp
-    settings/languageproperties.cpp
-    settings/languagepropertiespage.cpp
+    #settings/languageproperties.cpp
+    #settings/languagepropertiespage.cpp
     settings/kgametheme/kgametheme.cpp
     settings/kgametheme/kgamethemeselector.cpp
     statistics/conjugationoptions.cpp
@@ -101,7 +101,7 @@ ki18n_wrap_ui(parley_LIB_SRCS
     settings/optionlistform.ui
     settings/viewoptionsbase.ui
     settings/generaloptionsbase.ui
-    settings/languagepropertiespage.ui
+    #settings/languagepropertiespage.ui
     settings/kgametheme/kgamethemeselector.ui
     statistics/statisticsmainwindow.ui
     dashboard/dashboard.ui
