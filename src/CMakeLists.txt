@@ -8,7 +8,7 @@ add_subdirectory( settings )
 
 set(parley_LIB_SRCS
     parleyactions.cpp
-    parleydocument.cpp
+    #parleydocument.cpp
     parleymainwindow.cpp
     utils.cpp
     collection/collection.cpp

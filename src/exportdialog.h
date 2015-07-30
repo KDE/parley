@@ -18,14 +18,22 @@
 
 #include <QDialog>
 
-class ParleyDocument;
+class KEduVocDocument;
 class QUrl;
 
 class ExportDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit ExportDialog(ParleyDocument *doc, QWidget *parent = 0);
+    explicit ExportDialog( KEduVocDocument *doc, QWidget *parent = 0 );
+
+signals:
+    /**
+     * Signal connected in KEduVocEditorDocument like this
+     * 
+     * connect( exportDialog, &ExportDialog::saveEditorDocument, this, &KEduVocEditorDocument::saveAs( filename ) );
+     */
+    void saveEditorDocument( QUrl filename );
 
 private slots:
     void accept() Q_DECL_OVERRIDE;
@@ -34,7 +42,7 @@ private:
     QUrl getFileName(const QString& filter);
 
     Ui::ExportOptions* ui;
-    ParleyDocument *m_doc;
+    KEduVocDocument *m_doc;
     QWidget *m_parent;
 };
 

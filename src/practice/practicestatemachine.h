@@ -19,7 +19,7 @@
 
 #include "abstractbackendmode.h"
 
-class ParleyDocument;
+class KEduVocEditorDocument;
 
 namespace Practice
 {
@@ -29,7 +29,7 @@ class PracticeStateMachine : public QObject
 {
     Q_OBJECT
 public:
-    PracticeStateMachine(AbstractFrontend* frontend, ParleyDocument* doc,
+    PracticeStateMachine(AbstractFrontend* frontend, KEduVocEditorDocument* doc,
                          SessionManagerBase* sessionManager,
                          QObject* parent = 0);
     void start();
@@ -71,7 +71,7 @@ private:
 
     AbstractFrontend* m_frontend;
     AbstractBackendMode* m_mode;
-    ParleyDocument* m_document;
+    KEduVocEditorDocument* m_document;
     TestEntry* m_current;
     SessionManagerBase* m_sessionManager;
 };

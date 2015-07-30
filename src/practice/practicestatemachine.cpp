@@ -14,7 +14,7 @@
 
 #include "practicestatemachine.h"
 
-#include "parleydocument.h"
+#include <keduvoceditordocument.h>
 
 #include "prefs.h"
 #include "abstractbackendmode.h"
@@ -28,7 +28,7 @@
 
 using namespace Practice;
 
-PracticeStateMachine::PracticeStateMachine(AbstractFrontend* frontend, ParleyDocument* doc,
+PracticeStateMachine::PracticeStateMachine(AbstractFrontend* frontend, KEduVocEditorDocument* doc,
                                            SessionManagerBase* sessionManager,  QObject* parent)
     : QObject(parent)
     , m_frontend(frontend)

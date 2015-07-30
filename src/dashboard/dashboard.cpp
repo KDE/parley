@@ -25,7 +25,7 @@
 #include "../utils.h"
 #include "buttondelegate.h"
 #include "parleymainwindow.h"
-#include "parleydocument.h"
+#include <keduvoceditordocument.h>
 #include "practice/themedbackgroundrenderer.h"
 #include <keduvocimagewidget.h>
 #include "statistics/statisticsmainwindow.h"
@@ -93,10 +93,17 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     populateGrid();
 
     // Signals from the main buttons.
-    ParleyDocument* doc = m_mainWindow->parleyDocument();
+    KEduVocEditorDocument* doc = m_mainWindow->parleyDocument();
     connect(m_ui->newButton,  &QAbstractButton::clicked, m_mainWindow, &ParleyMainWindow::slotFileNew);
     connect(m_ui->openButton, &QAbstractButton::clicked, doc, &ParleyDocument::slotFileOpen);
     connect(m_ui->ghnsButton, &QAbstractButton::clicked, doc, &ParleyDocument::slotGHNS);
+
+    // Signals FROM the signal mappers.  The ones TO the signal mappers are
+    // handled below.
+    connect(m_practiceSignalMapper, SIGNAL(mapped(const QString &)),
+            this,                   SLOT(slotPracticeButtonClicked(const QString &)));
+    connect(m_removeSignalMapper,   SIGNAL(mapped(const QString &)),
+            this,                   SLOT(slotRemoveButtonClicked(const QString &)));
 
     KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
     applyMainWindowSettings(cfg);

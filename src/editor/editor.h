@@ -17,13 +17,13 @@
 #ifndef EDITOR_H
 #define EDITOR_H
 
-#include "parleydocument.h"
 #include "parleymainwindow.h"
 
 #include "scripts/scripting/parley.h"
 
 #include <keduvocvocabularymodel.h>
 #include <keduvocvocabularyfilter.h>
+#include <keduvoceditordocument.h>
 
 #include <KXmlGuiWindow>
 
@@ -168,7 +168,7 @@ private:
     QList<QDockWidget*> m_dockWidgets;
     QList<bool> m_dockWidgetVisibility;
 
-    friend class ::ParleyDocument;
+    friend class ::KEduVocEditorDocument;
     friend class Scripting::Parley;
     friend class ::ScriptManager;
 };
