@@ -13,7 +13,7 @@
 
 #include "exportdialog.h"
 
-#include <parleydocument.h>
+#include <keduvoceditordocument.h>
 #include <keduvocdocument.h>
 #include <keduvockvtml2writer.h>
 
@@ -38,7 +38,8 @@
 #include <libxslt/transform.h>
 #include <libxslt/xsltutils.h>
 
-ExportDialog::ExportDialog(ParleyDocument *doc, QWidget *parent) : QDialog(parent)
+ExportDialog::ExportDialog( KEduVocDocument *doc, QWidget *parent )
+    : QDialog( parent )
 {
     m_doc = doc;
     m_parent = parent;
@@ -73,7 +74,7 @@ void ExportDialog::accept()
         QString filter = defaultFilters.filter("csv").join("\n");
         QUrl filename = getFileName(filter);
         if (filename != QUrl()) {
-            m_doc->saveAs(filename);
+            emit saveEditorDocument( filename );
         }
         return;
     }
@@ -100,7 +101,7 @@ void ExportDialog::accept()
     xmlLoadExtDtdDefaultValue = 1;
     cur = xsltParseStylesheetFile((const xmlChar*) xslFile.toLatin1().constData());
 
-    doc = xmlParseDoc((const xmlChar*) m_doc->document()->toByteArray(m_doc->document()->generator()).constData());
+    doc = xmlParseDoc((const xmlChar*) m_doc->toByteArray(m_doc->generator()).constData());
 
     res = xsltApplyStylesheet(cur, doc, 0);
     FILE* result = fopen(QFile::encodeName(filename.toLocalFile()).constData(), "w");
@@ -125,8 +126,8 @@ QUrl ExportDialog::getFileName(const QString& filter)
 {
     return QUrl::fromLocalFile(QFileDialog::getSaveFileName(
         m_parent, i18n("Export As")
-        , (m_doc->document()->url().fileName() == i18n("Untitled"))
-        ? "" : m_doc->document()->url().toLocalFile()
+        , (m_doc->url().fileName() == i18n("Untitled"))
+        ? "" : m_doc->url().toLocalFile()
         ,  filter ) );
 
 }

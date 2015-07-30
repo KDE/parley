@@ -34,6 +34,7 @@
 #include "practice/configure/configurepracticedialog.h"
 
 #include "parleyactions.h"
+#include "languagesettings.h"
 
 #include "prefs.h"
 #include "dashboard/dashboard.h"
@@ -46,6 +47,9 @@
 #include <KXmlGuiWindow>
 #include <KToolBar>
 #include <QMenuBar>
+#include <QCheckBox>
+
+#include <keduvoclanguageproperties.h>
 
 #include <QtCore/QTimer>
 
@@ -64,9 +68,33 @@ ParleyMainWindow::ParleyMainWindow(const QUrl& filename)
     , m_sessionManager(this)
 {
     s_instance = this;
-    m_document = new ParleyDocument(this);
 
-    connect(m_document, &ParleyDocument::documentChanged, this, &ParleyMainWindow::documentUpdated);
+    // initialize KEduVocEditorDocument
+    m_document = new KEduVocEditorDocument( this );
+    connect( m_document, &KEduVocEditorDocument::documentChanged, this, &ParleyMainWindow::documentUpdated );
+
+    connect( m_document, &KEduVocEditorDocument::languageSettingsChanged, this, &ParleyMainWindow::loadLanguageSettings );
+    connect( m_document, &KEduVocEditorDocument::editorFontChanged, this, &ParleyMainWindow::loadEditorFont );
+    connect( m_document, &KEduVocEditorDocument::practiceFontChanged, this, &ParleyMainWindow::loadPracticeFont );
+    connect( m_document, &KEduVocEditorDocument::keyboardLayoutChanged, this, &ParleyMainWindow::loadKeyboardLayout );
+    connect( m_document, &KEduVocEditorDocument::spellCheckerChanged, this, &ParleyMainWindow::loadSpellChecker );
+    connect( m_document, &KEduVocEditorDocument::storeEditorFont, this, &ParleyMainWindow::saveEditorFont );
+    connect( m_document, &KEduVocEditorDocument::storePracticeFont, this, &ParleyMainWindow::savePracticeFont );
+    connect( m_document, &KEduVocEditorDocument::storeKeyboardLayout, this, &ParleyMainWindow::saveKeyboardLayout );
+    connect( m_document, &KEduVocEditorDocument::storeSpellChecker, this, &ParleyMainWindow::saveSpellChecker );
+    connect( m_document, &KEduVocEditorDocument::saveSettings, this, &ParleyMainWindow::storeSettings );
+    connect( m_document, &KEduVocEditorDocument::autoBackupChanged, this, &ParleyMainWindow::loadAutoBackup );
+    connect( m_document, &KEduVocEditorDocument::showEditor, this, &ParleyMainWindow::loadEditor );
+    connect( m_document, &KEduVocEditorDocument::checkBoxChanged, this, &ParleyMainWindow::setCheckBox );
+    connect( m_document, &KEduVocEditorDocument::showPracticeConfiguration, this, &ParleyMainWindow::loadPracticeConfiguration );
+    connect( m_document, &KEduVocEditorDocument::separatorChanged, this, &ParleyMainWindow::loadSeparator );
+    connect( m_document, &KEduVocEditorDocument::recentFileChanged, this, &ParleyMainWindow::loadRecentFile );
+    connect( m_document, &KEduVocEditorDocument::prefsSelfSave, this, &ParleyMainWindow::selfSave );
+    connect( m_document, &KEduVocEditorDocument::autoSaveChanged, this, &ParleyMainWindow::loadAutoSave );
+    connect( m_document, &KEduVocEditorDocument::queryCloseChanged, this, &ParleyMainWindow::loadQueryClose );
+    connect( m_document, &KEduVocEditorDocument::updateRecentFilesModel, this, &ParleyMainWindow::updateRecentFiles );
+    connect( m_document, &KEduVocEditorDocument::backupTimeChanged, this, &ParleyMainWindow::loadBackupTime );
+
 
     setCentralWidget(new QWidget());
     centralWidget()->setLayout(new QHBoxLayout());
@@ -113,6 +141,123 @@ ParleyMainWindow::~ParleyMainWindow()
     delete m_currentComponentWindow;
     delete m_document;
 }
+
+
+void ParleyMainWindow::loadLanguageSettings( QString locale )
+{
+    LanguageSettings settings( locale );
+    settings.load();
+}
+
+void ParleyMainWindow::loadEditorFont( QString locale, KEduVocLanguagePropertiesPage* page ) {
+    LanguageSettings settings( locale );
+    settings.load();
+    page->setEditorFont( settings.editorFont() );
+}
+
+void ParleyMainWindow::loadPracticeFont( QString locale, KEduVocLanguagePropertiesPage* page ) {
+    LanguageSettings settings( locale );
+    settings.load();
+    page->setPracticeFont( settings.practiceFont() );
+}
+
+void ParleyMainWindow::loadKeyboardLayout( QString locale, KEduVocLanguagePropertiesPage* page ) {
+    LanguageSettings settings( locale );
+    settings.load();
+    page->setKeyboardLayout( settings.keyboardLayout() );
+}
+
+void ParleyMainWindow::loadSpellChecker( QString locale, KEduVocLanguagePropertiesPage* page ) {
+    LanguageSettings settings( locale );
+    settings.load();
+    page->setSpellChecker( settings.spellChecker() );
+}
+
+void ParleyMainWindow::saveEditorFont( QString locale, QFont font ) {
+    LanguageSettings settings( locale );
+    settings.load();
+    settings.setEditorFont( font );
+}
+
+void ParleyMainWindow::savePracticeFont( QString locale, QFont font ) {
+    LanguageSettings settings( locale );
+    settings.load();
+    settings.setPracticeFont( font );
+}
+
+void ParleyMainWindow::saveKeyboardLayout( QString locale, QString keyboardLayout ) {
+    LanguageSettings settings( locale );
+    settings.load();
+    settings.setKeyboardLayout( keyboardLayout );
+}
+
+void ParleyMainWindow::saveSpellChecker( QString locale, QString spellChecker ) {
+    LanguageSettings settings( locale );
+    settings.load();
+    settings.setSpellChecker( spellChecker );
+}
+
+void ParleyMainWindow::storeSettings( QString locale ) {
+    LanguageSettings settings( locale );
+    settings.load();
+    settings.save();
+}
+
+void ParleyMainWindow::loadAutoBackup()
+{
+    m_document->setAutoBackup( Prefs::autoBackup() );
+}
+
+void ParleyMainWindow::loadEditor()
+{
+    showEditor();
+}
+
+void ParleyMainWindow::setCheckBox( QCheckBox* box )
+{
+    box->setChecked( currentComponent() != EditorComponent );
+}
+
+void ParleyMainWindow::loadPracticeConfiguration()
+{
+    showPracticeConfiguration();
+}
+
+void ParleyMainWindow::loadSeparator()
+{
+    m_document->setSeparator( Prefs::separator() );
+}
+
+void ParleyMainWindow::loadRecentFile( const QUrl& url, QString title )
+{
+    addRecentFile( url, title );
+}
+
+void ParleyMainWindow::selfSave()
+{
+    Prefs::self()->save();
+}
+
+void ParleyMainWindow::loadAutoSave()
+{
+    m_document->setAutoSave( Prefs::autoSave() );
+}
+
+void ParleyMainWindow::loadQueryClose()
+{
+    m_document->setQueryClose( queryClose() );
+}
+
+void ParleyMainWindow::updateRecentFiles()
+{
+    updateRecentFilesModel();
+}
+
+void ParleyMainWindow::loadBackupTime()
+{
+    m_document->setBackupTime( Prefs::backupTime() );
+}
+
 
 void ParleyMainWindow::addRecentFile(const QUrl &url, const QString &name)
 {
@@ -412,7 +557,7 @@ void ParleyMainWindow::setVisibleToolbar(const QString& name)
     }
 }
 
-ParleyDocument* ParleyMainWindow::parleyDocument()
+KEduVocEditorDocument* ParleyMainWindow::parleyDocument()
 {
     return m_document;
 }

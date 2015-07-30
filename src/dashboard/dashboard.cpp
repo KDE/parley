@@ -27,7 +27,7 @@
 #include "dashboard.h"
 #include "buttondelegate.h"
 #include "parleymainwindow.h"
-#include "parleydocument.h"
+#include <keduvoceditordocument.h>
 #include "practice/themedbackgroundrenderer.h"
 #include <keduvocimagewidget.h>
 #include "statistics/statisticsmainwindow.h"
@@ -105,7 +105,7 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     populateGrid();
 
     // Signals from the main buttons.
-    ParleyDocument* doc = m_mainWindow->parleyDocument();
+    KEduVocEditorDocument* doc = m_mainWindow->parleyDocument();
     connect(m_ui->newButton,  SIGNAL(clicked()), m_mainWindow, SLOT(slotFileNew()));
     connect(m_ui->openButton, SIGNAL(clicked()), doc, SLOT(slotFileOpen()));
     connect(m_ui->ghnsButton, SIGNAL(clicked()), doc, SLOT(slotGHNS()));

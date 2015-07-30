@@ -17,7 +17,7 @@
 
 #include <Sonnet/Speller>
 
-#include "parleydocument.h"
+#include "keduvoceditordocument.h"
 
 #include "testentry.h"
 

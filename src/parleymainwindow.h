@@ -26,7 +26,7 @@
 #ifndef PARLEYMAINWINDOW_H
 #define PARLEYMAINWINDOW_H
 
-#include "parleydocument.h"
+#include "keduvoceditordocument.h"
 
 #include <KXmlGuiWindow>
 #include "practice/sessionmanagercontinuous.h"
@@ -86,15 +86,15 @@ public:
     void updateRecentFilesModel();
 
     /**
-     * Return the ParleyDocument member object
+     * Return the KEduVocEditorDocument member object
      * @return member m_document
      */
-    ParleyDocument* parleyDocument();
+    KEduVocEditorDocument* parleyDocument();
 
     Component currentComponent();
 
 public slots:
-    /** Updates connections when the ParleyDocument pointer is changed to @p doc **/
+    /** Updates connections when the KEduVocEditorDocument pointer is changed to @p doc **/
     void documentUpdated(KEduVocDocument *doc);
 
     /** Opens a dialog for a new collection. **/
@@ -148,6 +148,28 @@ public slots:
 
     void setVisibleToolbar(const QString& name);
 
+    void loadLanguageSettings( QString locale );
+    void loadEditorFont( QString locale, KEduVocLanguagePropertiesPage* page );
+    void loadPracticeFont( QString locale, KEduVocLanguagePropertiesPage* page );
+    void loadKeyboardLayout( QString locale, KEduVocLanguagePropertiesPage* page );
+    void loadSpellChecker( QString locale, KEduVocLanguagePropertiesPage* page );
+    void saveEditorFont( QString locale, QFont font );
+    void savePracticeFont( QString locale, QFont font );
+    void saveKeyboardLayout( QString locale, QString keyboardLayout );
+    void saveSpellChecker( QString locale, QString spellChecker );
+    void storeSettings( QString locale );
+    void loadAutoBackup();
+    void loadEditor();
+    void setCheckBox( QCheckBox* box );
+    void loadPracticeConfiguration();
+    void loadSeparator();
+    void loadRecentFile( const QUrl& url, QString title );
+    void selfSave();
+    void loadAutoSave();
+    void loadQueryClose();
+    void updateRecentFiles();
+    void loadBackupTime();
+
 signals:
     void recentFilesChanged();
     void preferencesChanged();
@@ -162,7 +184,7 @@ private:
     KRecentFilesAction *m_recentFilesAction;
 
     /** m_document is the current vocabulary document. */
-    ParleyDocument   *m_document;
+    KEduVocEditorDocument   *m_document;
 
     Component m_componentBeforePractice;
 
