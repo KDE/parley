@@ -15,7 +15,7 @@
 #ifndef SCRIPTDIALOG_H
 #define SCRIPTDIALOG_H
 
-#include "scriptmanager.h"
+#include <keduvocscriptmanager.h>
 
 #include <QDialog>
 #include <KPluginSelector>
@@ -26,7 +26,7 @@
 class ScriptDialog : public QDialog
 {
 public:
-    explicit ScriptDialog(ScriptManager* scriptManager);
+    explicit ScriptDialog( KEduVocScriptManager* scriptManager );
     ~ScriptDialog();
     /**
      * Executed when user clicks OK button.
@@ -39,7 +39,7 @@ private:
     KPluginSelector* m_kps;
     QList<KPluginInfo> pluginsInfoList;
 //    KConfigGroup* scriptsConfigGroup;
-    ScriptManager* m_scriptManager;
+    KEduVocScriptManager* m_scriptManager;
 
 };
 

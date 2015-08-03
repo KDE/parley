@@ -53,6 +53,7 @@
 #include <keduvocsynonymwidget.h>
 #include <keduvocsummarywordwidget.h>
 #include <keduvoclatexwidget.h>
+#include <keduvocscriptmanager.h>
 
 
 
@@ -453,6 +454,22 @@ void EditorWindow::setSpellCheck(int language)
     m_vocabularyView->checkSpelling( language );
 }
 
+void EditorWindow::unplugAction( QString list )
+{
+    unplugAction( list );
+}
+
+void EditorWindow::plugAction( QString list, QList< QAction* > scriptActions )
+{
+    plugActionList( list, scriptActions );
+}
+
+void EditorWindow::editorAddActionCollection( const QString& name, QAction* action )
+{
+    actionCollection()->addAction( name, action );
+}
+
+
 void EditorWindow::addWordWithTranslation(const QStringList &w)
 {
     KEduVocExpression *kexpr = new KEduVocExpression(w);
@@ -552,7 +569,12 @@ void EditorWindow::removeGrades()
 
 void EditorWindow::initScripts()
 {
-    m_scriptManager = new ScriptManager(this);
+    m_scriptManager = new KEduVocScriptManager( this, this->m_mainWindow->parleyDocument(), this->m_vocabularyModel, Prefs::separator() );
+
+    // signal-slot connections between EditorWindow and KEduVocScriptMangager
+    connect( m_scriptManager, &KEduVocScriptManager::editorUnplugActionList, this, &EditorWindow::unplugAction );
+    connect( m_scriptManager, &KEduVocScriptManager::editorPlugActionList, this, &EditorWindow::plugAction );
+    connect( m_scriptManager, &KEduVocScriptManager::editorActionAdded, this, &EditorWindow::editorAddActionCollection );
 
     m_vocabularyView->setTranslator(m_scriptManager->translator());
 

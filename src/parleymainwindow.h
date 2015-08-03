@@ -39,6 +39,9 @@ class KRecentFilesAction;
 #if 0
 
 class Dashboard;
+class StatisticsMainWindow;
+class KEduVocScriptManager;
+class ParleyPracticeMainWindow;
 #endif
 
 

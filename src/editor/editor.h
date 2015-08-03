@@ -19,16 +19,18 @@
 
 #include "parleymainwindow.h"
 
-#include "scripts/scripting/parley.h"
+//#include "scripts/scripting/parley.h"
 
 #include <keduvocvocabularymodel.h>
 #include <keduvocvocabularyfilter.h>
 #include <keduvoceditordocument.h>
+#include <keduvoctranslator.h>
 
 #include <KXmlGuiWindow>
 
 class QLineEdit;
-class ScriptManager;
+class KActionMenu;
+class KEduVocScriptManager;
 
 ///@brief contains objects for the editor main window
 
@@ -123,6 +125,24 @@ public slots:
      */
     void setSpellCheck( int language );
 
+    // KEduVocScriptManager slots
+
+    /**
+     * Invoke unplugActionList( list )
+     */
+    void unplugAction( QString list );
+
+    /**
+     * Invoke plugActionList( list, scriptActions )
+     */
+    void plugAction( QString list, QList <QAction*> scriptActions );
+
+    /**
+     * Add a new action to actionCollection()
+     */
+    void editorAddActionCollection( const QString& name, QAction* action );
+
+
 private slots:
 
     /** Make the search bar visible and focus it */
@@ -160,7 +180,7 @@ private:
     KEduVocWordClassModel *m_wordTypeModel;
     KEduVocWordTypeView *m_wordTypeView;
 
-    ScriptManager* m_scriptManager;
+    KEduVocScriptManager* m_scriptManager;
 
     ///stores all the translations of a vocabulary word
     KEduVocTranslator* m_translator;
@@ -169,8 +189,8 @@ private:
     QList<bool> m_dockWidgetVisibility;
 
     friend class ::KEduVocEditorDocument;
-    friend class Scripting::Parley;
-    friend class ::ScriptManager;
+    friend class Scripting::KEduVocDocument;
+    friend class ::KEduVocScriptManager;
 };
 
 }
