@@ -29,8 +29,6 @@
 #include "documentsettings.h"
 #include "languagesettings.h"
 
-#include "scripts/scriptdialog.h"
-
 #include "parleyactions.h"
 #include "parleyadaptor.h"
 
@@ -54,8 +52,7 @@
 #include <keduvocsummarywordwidget.h>
 #include <keduvoclatexwidget.h>
 #include <keduvocscriptmanager.h>
-
-
+#include <keduvocscriptdialog.h>
 
 #include <KActionCollection>
 #include <KToggleAction>
@@ -542,7 +539,7 @@ void EditorWindow::startSearch()
 
 void EditorWindow::slotShowScriptManager()
 {
-    ScriptDialog * dialog = new ScriptDialog(m_scriptManager);
+    KEduVocScriptDialog * dialog = new KEduVocScriptDialog( m_scriptManager );
     dialog->show();
 }
 
