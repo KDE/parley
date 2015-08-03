@@ -52,7 +52,7 @@ set(parley_LIB_SRCS
     practice/configure/blockoptions.cpp
     practice/configure/thresholdoptions.cpp
     practice/configure/specificpracticeoptions.cpp
-    scripts/scriptdialog.cpp
+    #scripts/scriptdialog.cpp
     #scripts/scriptmanager.cpp
     #scripts/scripting/parley.cpp
     scripts/scripting/document.cpp
