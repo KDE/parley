@@ -53,8 +53,8 @@ set(parley_LIB_SRCS
     practice/configure/thresholdoptions.cpp
     practice/configure/specificpracticeoptions.cpp
     scripts/scriptdialog.cpp
-    scripts/scriptmanager.cpp
-    scripts/scripting/parley.cpp
+    #scripts/scriptmanager.cpp
+    #scripts/scripting/parley.cpp
     scripts/scripting/document.cpp
     scripts/scripting/lesson.cpp
     scripts/scripting/expression.cpp
@@ -117,11 +117,11 @@ qt5_add_dbus_adaptor(parley_LIB_SRCS editor/org.kde.parley.xml
 # to transform the document xml to html or other
 if(HAVE_LIBXSLT)
     set(parley_LIB_SRCS ${parley_LIB_SRCS}
-        exportdialog.cpp
+        #exportdialog.cpp
     )
 
     ki18n_wrap_ui(parley_LIB_SRCS
-        exportdialog.ui
+        #exportdialog.ui
     )
 endif(HAVE_LIBXSLT)
 #### End XSLT Support ####

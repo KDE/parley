@@ -14,7 +14,8 @@
  ***************************************************************************/
 #include "scriptdialog.h"
 
-#include "scripting/parley.h"
+#include <keduvoctranslator.h>
+#include <keduvocscriptmanager.h>
 
 #include <KLocalizedString>
 #include <KPluginInfo>
@@ -28,7 +29,7 @@
 #include <kross/core/action.h>
 #include <kross/core/manager.h>
 
-ScriptDialog::ScriptDialog(ScriptManager * scriptManager)
+ScriptDialog::ScriptDialog( KEduVocScriptManager * scriptManager )
     : QDialog()
 {
     m_scriptManager = scriptManager;
@@ -53,7 +54,7 @@ ScriptDialog::ScriptDialog(ScriptManager * scriptManager)
     connect(button_dialog, &QDialogButtonBox::rejected, this, &ScriptDialog::reject);
 
     //Load available plugins
-    pluginsInfoList = KPluginInfo::fromFiles(ScriptManager::getDesktopFiles());
+    pluginsInfoList = KPluginInfo::fromFiles( KEduVocScriptManager::getDesktopFiles() );
 
 //     m_kps->addPlugins ( pluginsInfoList,KPluginSelector::ReadConfigFile,i18n ( "Playlist" ),QString ( "playlist" ),KSharedConfig::openConfig ( "parleyrc" ) );
     ///@todo frameworks scripts dialog is not finding any scripts

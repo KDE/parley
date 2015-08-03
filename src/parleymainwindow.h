@@ -44,7 +44,7 @@ class QDockWidget;
 
 class Dashboard;
 class StatisticsMainWindow;
-class ScriptManager;
+class KEduVocScriptManager;
 class ParleyPracticeMainWindow;
 #endif
 
