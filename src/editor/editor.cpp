@@ -21,7 +21,6 @@
 // Qt models on top of the KEduVocDocument
 
 
-#include "browserwidget.h"
 #include "parleymainwindow.h"
 
 #include "settings/parleyprefs.h"
@@ -44,6 +43,7 @@
 #include <keduvocwordtypeview.h>
 #include <keduvoclessonview.h>
 #include <keduvocaudiowidget.h>
+#include <keduvocbrowserwidget.h>
 #include <keduvocmultiplechoicewidget.h>
 #include <keduvoccomparisonwidget.h>
 #include <keduvocinflectionwidget.h>
@@ -58,6 +58,7 @@
 #include <KToggleAction>
 #include <KActionMenu>
 #include <KCharSelect>
+#include <KLocalizedString>
 
 #include <QTimer>
 #include <QSignalMapper>
@@ -68,6 +69,8 @@
 #include <QScrollArea>
 #include <QLineEdit>
 #include <QLabel>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
 
 using namespace Editor;
 
@@ -377,7 +380,7 @@ void EditorWindow::initDockWidgets()
     QDockWidget *browserDock = new QDockWidget(i18n("Internet"), this);
     browserDock->setObjectName(QStringLiteral("BrowserDock"));
     //TinyWebBrowser *browserWidget = new TinyWebBrowser(this);
-    BrowserWidget *htmlPart = new BrowserWidget(browserDock);
+    KEduVocBrowserWidget *htmlPart = new KEduVocBrowserWidget( browserDock );
     QScrollArea *browserScrollArea = new QScrollArea(this);
     browserScrollArea->setWidgetResizable(true);
     browserScrollArea->setWidget(htmlPart);
