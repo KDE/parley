@@ -16,8 +16,7 @@ set(parley_LIB_SRCS
     collection/entryfilter.cpp
     collection/entryfilterdialog.cpp
     editor/editor.cpp
-    #editor/audiowidget.cpp
-    #editor/browserwidget.cpp
+    editor/browserwidget.cpp
     practice/abstractwidget.cpp
     practice/sessionmanagerbase.cpp
     practice/sessionmanagercontinuous.cpp

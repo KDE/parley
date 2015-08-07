@@ -48,6 +48,7 @@ find_package(KF5 ${KF5_MIN_VERSION} MODULE REQUIRED COMPONENTS
   KCMUtils
   XmlGui
   Notifications
+  KHtml
   #Plasma
 )
 
