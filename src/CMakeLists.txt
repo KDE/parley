@@ -15,7 +15,7 @@ set(parley_LIB_SRCS
     collection/testentry.cpp
     collection/entryfilter.cpp
     editor/editor.cpp
-    #editor/browserwidget.cpp
+    editor/browserwidget.cpp
     practice/abstractwidget.cpp
     practice/sessionmanagerbase.cpp
     practice/sessionmanagercontinuous.cpp

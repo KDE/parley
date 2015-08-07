@@ -377,7 +377,7 @@ void EditorWindow::initDockWidgets()
     QDockWidget *browserDock = new QDockWidget(i18n("Internet"), this);
     browserDock->setObjectName("BrowserDock");
     //TinyWebBrowser *browserWidget = new TinyWebBrowser(this);
-    //BrowserWidget *htmlPart = new BrowserWidget(browserDock);
+    BrowserWidget *htmlPart = new BrowserWidget(browserDock);
     QScrollArea *browserScrollArea = new QScrollArea(this);
     browserScrollArea->setWidgetResizable(true);
     //browserScrollArea->setWidget(htmlPart);

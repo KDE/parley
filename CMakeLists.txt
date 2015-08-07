@@ -37,6 +37,7 @@ find_package(KF5 ${REQUIRED_KF5_VERSION} MODULE REQUIRED COMPONENTS
   KCMUtils
   XmlGui
   Notifications
+  KHtml
   #Plasma
 )
 
@@ -102,6 +103,7 @@ set( parley_LINK_LIBS
   Qt5::Multimedia
   KF5::Notifications
   KF5::Crash
+  KF5::KHtml
 )
 
 message(STATUS "cmake cflags ${CMAKE_C_FLAGS}")
