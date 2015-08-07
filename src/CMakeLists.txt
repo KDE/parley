@@ -15,7 +15,7 @@ set(parley_LIB_SRCS
     collection/testentry.cpp
     collection/entryfilter.cpp
     editor/editor.cpp
-    editor/browserwidget.cpp
+    #editor/browserwidget.cpp
     practice/abstractwidget.cpp
     practice/sessionmanagerbase.cpp
     practice/sessionmanagercontinuous.cpp
@@ -83,7 +83,7 @@ set(parley_LIB_SRCS
 
 ki18n_wrap_ui(parley_LIB_SRCS
     collection/entryfilter.ui
-    editor/browserwidget.ui
+    #editor/browserwidget.ui
     practice/practicesummarywidget.ui
     practice/practice_mainwindow.ui
     practice/practice_widget_comparison.ui
