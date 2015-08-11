@@ -26,7 +26,8 @@
 #ifndef PARLEYMAINWINDOW_H
 #define PARLEYMAINWINDOW_H
 
-#include "keduvoceditordocument.h"
+#include <keduvoceditordocument.h>
+#include <keduvoceditor.h>
 
 #include <KXmlGuiWindow>
 #include "practice/sessionmanagercontinuous.h"
@@ -34,6 +35,7 @@
 
 #include <QPointer>
 
+using namespace Editor;
 
 class KRecentFilesAction;
 #if 0
@@ -170,6 +172,17 @@ public slots:
     void updateRecentFiles();
     void loadBackupTime();
 
+    // KEduVocEditorWindow slots
+    void changeVisibleColumns( KEduVocDocument *doc );
+    void storeAutomaticTranslation( bool v );
+    void changeEntriesPerLesson();
+    void changeSubLessonEntries();
+    void setAutomaticTranslation();
+    void setShowSearch();
+    void setSpellChecker( QString locale );
+    void storeShowSearch( bool v );
+    void setSeparator();
+
 signals:
     void recentFilesChanged();
     void preferencesChanged();
@@ -185,6 +198,9 @@ private:
 
     /** m_document is the current vocabulary document. */
     KEduVocEditorDocument   *m_document;
+
+    /** m_editor is the editor mainwindow */
+    KEduVocEditorWindow *m_editor;
 
     Component m_componentBeforePractice;
 

@@ -26,7 +26,6 @@
 #include "parleymainwindow.h"
 
 #include "../config-parley.h"
-#include "editor/editor.h"
 #include "statistics/statisticsmainwindow.h"
 #include "settings/parleyprefs.h"
 #include "practice/guifrontend.h"
@@ -35,6 +34,8 @@
 
 #include "parleyactions.h"
 #include "languagesettings.h"
+
+#include "documentsettings.h"
 
 #include "prefs.h"
 #include "dashboard/dashboard.h"
@@ -50,6 +51,7 @@
 #include <QCheckBox>
 
 #include <keduvoclanguageproperties.h>
+#include <keduvoceditor.h>
 
 #include <QtCore/QTimer>
 
@@ -65,6 +67,7 @@ ParleyMainWindow::ParleyMainWindow(const QUrl& filename)
     : KXmlGuiWindow(0)
     , m_currentComponent(NoComponent)
     , m_currentComponentWindow(0)
+    , m_editor(0)
     , m_sessionManager(this)
 {
     s_instance = this;
@@ -256,6 +259,56 @@ void ParleyMainWindow::updateRecentFiles()
 void ParleyMainWindow::loadBackupTime()
 {
     m_document->setBackupTime( Prefs::backupTime() );
+}
+
+
+void ParleyMainWindow::changeVisibleColumns( KEduVocDocument *doc )
+{
+    DocumentSettings ds( doc->url().url() );
+    ds.load();
+    QList <int> vc = ds.visibleColumns();
+    m_editor->setVisibleColumns( vc );
+}
+
+void ParleyMainWindow::storeAutomaticTranslation( bool v )
+{
+    Prefs::setAutomaticTranslation( v );
+}
+
+void ParleyMainWindow::changeEntriesPerLesson()
+{
+    m_editor->setEntriesPerLesson( Prefs::entriesPerLesson() );
+}
+
+void ParleyMainWindow::changeSubLessonEntries()
+{
+    m_editor->setSubLessonEntries( Prefs::showSublessonentries() );
+}
+
+void ParleyMainWindow::setAutomaticTranslation()
+{
+    m_editor->saveAutomaticTranslation( Prefs::automaticTranslation() );
+}
+
+void ParleyMainWindow::setShowSearch()
+{
+    m_editor->setShowSearch( Prefs::showSearch() );
+}
+
+void ParleyMainWindow::setSpellChecker( QString locale )
+{
+    LanguageSettings settings(locale);
+    m_editor->setSpellChecker( settings.spellChecker() );
+}
+
+void ParleyMainWindow::storeShowSearch( bool v )
+{
+    Prefs::setShowSearch( v );
+}
+
+void ParleyMainWindow::setSeparator()
+{
+    m_editor->setSeparator( Prefs::separator() );
 }
 
 
@@ -468,10 +521,22 @@ void ParleyMainWindow::switchComponent(Component component)
         break;
     }
     case EditorComponent: {
-        EditorWindow *editor = new EditorWindow(this);
-        m_currentComponentWindow = editor;
+        m_editor = new KEduVocEditorWindow( this, this->parleyDocument() );
+
+        // signal-slot connections between Parley mainwindow and KEduVocEditor
+
+        connect( m_editor, &KEduVocEditorWindow::visibleColumnsChanged, this, &ParleyMainWindow::changeVisibleColumns );
+        connect( m_editor, &KEduVocEditorWindow::saveAutomaticTranslation, this, &ParleyMainWindow::storeAutomaticTranslation );
+        connect( m_editor, &KEduVocEditorWindow::entriesPerLessonChanged, this, &ParleyMainWindow::changeEntriesPerLesson );
+        connect( m_editor, &KEduVocEditorWindow::subLessonEntriesChanged, this, &ParleyMainWindow::changeSubLessonEntries );
+        connect( m_editor, &KEduVocEditorWindow::automaticTranslationChanged, this, &ParleyMainWindow::setAutomaticTranslation );
+        connect( m_editor, &KEduVocEditorWindow::showSearchChanged, this, &ParleyMainWindow::setShowSearch );
+        connect( m_editor, &KEduVocEditorWindow::spellCheckerChanged, this, &ParleyMainWindow::setSpellChecker );
+        connect( m_editor, &KEduVocEditorWindow::saveShowSearch, this, &ParleyMainWindow::storeShowSearch );
+        connect( m_editor, &KEduVocEditorWindow::separatorChanged, this, &ParleyMainWindow::setSeparator );
+        m_currentComponentWindow = m_editor;
         showDocumentActions(true, true);
-        editor->updateDocument(m_document->document());
+        m_editor->updateDocument(m_document->document());
         break;
     }
     case PracticeComponent: {

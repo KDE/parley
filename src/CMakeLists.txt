@@ -14,7 +14,7 @@ set(parley_LIB_SRCS
     collection/collection.cpp
     collection/testentry.cpp
     collection/entryfilter.cpp
-    editor/editor.cpp
+    #editor/editor.cpp
     #editor/browserwidget.cpp
     practice/abstractwidget.cpp
     practice/sessionmanagerbase.cpp
@@ -110,8 +110,8 @@ kconfig_add_kcfg_files(parley_LIB_SRCS
     settings/languagesettings.kcfgc
 )
 
-qt5_add_dbus_adaptor(parley_LIB_SRCS editor/org.kde.parley.xml
-                     editor/editor.h Editor::EditorWindow)
+#qt5_add_dbus_adaptor(parley_LIB_SRCS editor/org.kde.parley.xml
+#                     editor/editor.h Editor::EditorWindow)
 
 #### XSLT Support ####
 # to transform the document xml to html or other
