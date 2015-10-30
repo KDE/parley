@@ -28,8 +28,8 @@ FlashCardModeWidget::FlashCardModeWidget(GuiFrontend *frontend, QWidget* parent)
 {
     m_ui = new Ui::FlashCardPracticeWidget();
     m_ui->setupUi(this);
-    connect(frontend, SIGNAL(continueAction()), this, SIGNAL(stopAudio()));
-    connect(frontend, SIGNAL(skipAction()), this, SIGNAL(stopAudio()));
+    connect(frontend, &AbstractFrontend::continueAction, this, &AbstractModeWidget::stopAudio);
+    connect(frontend, &AbstractFrontend::skipAction, this, &AbstractModeWidget::stopAudio);
 }
 
 void FlashCardModeWidget::setQuestionFont(const QFont& font)

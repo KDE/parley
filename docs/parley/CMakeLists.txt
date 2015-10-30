@@ -27,5 +27,5 @@
 #	mv crushed/*.png .
 #	rm -r crushed
 
-message(STATUS "kdoctools installing handbook in ${HTML_INSTALL_DIR}/en/parley")
-kdoctools_create_handbook(index.docbook INSTALL_DESTINATION ${HTML_INSTALL_DIR}/en SUBDIR parley)
+message(STATUS "kdoctools installing handbook in ${KDE_INSTALL_DOCBUNDLEDIR}/en/parley")
+kdoctools_create_handbook(index.docbook INSTALL_DESTINATION ${KDE_INSTALL_DOCBUNDLEDIR}/en SUBDIR parley)

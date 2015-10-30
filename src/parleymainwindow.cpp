@@ -129,10 +129,10 @@ void ParleyMainWindow::removeRecentFile(const QUrl &url)
 void ParleyMainWindow::documentUpdated(KEduVocDocument *doc)
 {
     if (doc != 0) {
-        connect(m_document->document(), SIGNAL(docModified(bool))
-                , this, SLOT(slotUpdateWindowCaption()));
-        connect(m_document->document(), SIGNAL(destroyed())
-                , this, SLOT(slotUpdateWindowCaption()));
+        connect(m_document->document(), &KEduVocDocument::docModified
+                , this, &ParleyMainWindow::slotUpdateWindowCaption);
+        connect(m_document->document(), &QObject::destroyed
+                , this, &ParleyMainWindow::slotUpdateWindowCaption);
         slotUpdateWindowCaption();
     }
 }
@@ -156,7 +156,7 @@ void ParleyMainWindow::slotUpdateWindowCaption()
                       , "%1 [*]",m_document->document()->title());
         modified = m_document->document()->isModified();
         if (title == i18n("Untitled")) {
-            title = "[*]";
+            title = QStringLiteral("[*]");
         }
     }
     setCaption(title, modified);
@@ -164,7 +164,7 @@ void ParleyMainWindow::slotUpdateWindowCaption()
 
 void ParleyMainWindow::slotGeneralOptions()
 {
-    ParleyPrefs* dialog = new ParleyPrefs(m_document->document(), this, "settings",  Prefs::self());
+    ParleyPrefs* dialog = new ParleyPrefs(m_document->document(), this, QStringLiteral("settings"),  Prefs::self());
     connect(dialog, &ParleyPrefs::settingsChanged, this, &ParleyMainWindow::preferencesChanged);
     dialog->show();
 }
@@ -185,7 +185,7 @@ void ParleyMainWindow::slotCloseDocument()
 
 void ParleyMainWindow::configurePractice()
 {
-    ConfigurePracticeDialog configurePracticeDialog(m_document->document(), this, "practice settings",  Prefs::self());
+    ConfigurePracticeDialog configurePracticeDialog(m_document->document(), this, QStringLiteral("practice settings"),  Prefs::self());
     configurePracticeDialog.exec();
 }
 
@@ -219,12 +219,12 @@ QSize ParleyMainWindow::sizeHint() const
 
 void ParleyMainWindow::tipOfDay()
 {
-    KTipDialog::showTip(this, "parley/tips", true);
+    KTipDialog::showTip(this, QStringLiteral("parley/tips"), true);
 }
 
 void ParleyMainWindow::startupTipOfDay()
 {
-    KTipDialog::showTip(this, "parley/tips");
+    KTipDialog::showTip(this, QStringLiteral("parley/tips"));
 }
 
 void ParleyMainWindow::slotFileNew()
@@ -256,7 +256,7 @@ void ParleyMainWindow::initActions()
     ParleyActions::create(ParleyActions::FileQuit, this, SLOT(close()), actionCollection());
     ParleyActions::create(ParleyActions::Preferences, this, SLOT(slotGeneralOptions()), actionCollection());
 
-    actionCollection()->addAction(KStandardAction::TipofDay,  "help_tipofday", this, SLOT(tipOfDay()));
+    actionCollection()->addAction(KStandardAction::TipofDay,  QStringLiteral("help_tipofday"), this, SLOT(tipOfDay()));
 }
 
 void ParleyMainWindow::showDashboard()
@@ -361,19 +361,19 @@ void ParleyMainWindow::switchComponent(Component component)
         break;
     }
     case ConfigurePracticeComponent: {
-        setVisibleToolbar("statisticsToolBar");
+        setVisibleToolbar(QStringLiteral("statisticsToolBar"));
         break;
     }
     case EditorComponent: {
-        setVisibleToolbar("editorToolBar");
+        setVisibleToolbar(QStringLiteral("editorToolBar"));
         break;
     }
     case PracticeComponent: {
-        setVisibleToolbar("practiceToolBar");
+        setVisibleToolbar(QStringLiteral("practiceToolBar"));
         break;
     }
     case PracticeSummary: {
-        setVisibleToolbar("practiceSummaryToolBar");
+        setVisibleToolbar(QStringLiteral("practiceSummaryToolBar"));
         break;
     }
     default:
@@ -385,20 +385,20 @@ void ParleyMainWindow::switchComponent(Component component)
 
 void ParleyMainWindow::showDocumentActions(bool open, bool edit)
 {
-    actionCollection()->action("file_new")->setVisible(open);
-    actionCollection()->action("file_open")->setVisible(open);
-    actionCollection()->action("file_open_recent")->setVisible(open);
-    actionCollection()->action("file_ghns")->setVisible(open);
-    actionCollection()->action("file_open_downloaded")->setVisible(open);
+    actionCollection()->action(QStringLiteral("file_new"))->setVisible(open);
+    actionCollection()->action(QStringLiteral("file_open"))->setVisible(open);
+    actionCollection()->action(QStringLiteral("file_open_recent"))->setVisible(open);
+    actionCollection()->action(QStringLiteral("file_ghns"))->setVisible(open);
+    actionCollection()->action(QStringLiteral("file_open_downloaded"))->setVisible(open);
 
-    actionCollection()->action("file_save")->setVisible(edit);
-    actionCollection()->action("file_save_as")->setVisible(edit);
-    actionCollection()->action("file_close")->setVisible(edit);
+    actionCollection()->action(QStringLiteral("file_save"))->setVisible(edit);
+    actionCollection()->action(QStringLiteral("file_save_as"))->setVisible(edit);
+    actionCollection()->action(QStringLiteral("file_close"))->setVisible(edit);
 #ifdef HAVE_LIBXSLT
     actionCollection()->action("file_export")->setVisible(edit);
 #endif
-    actionCollection()->action("file_properties")->setVisible(edit);
-    actionCollection()->action("file_close")->setVisible(edit);
+    actionCollection()->action(QStringLiteral("file_properties"))->setVisible(edit);
+    actionCollection()->action(QStringLiteral("file_close"))->setVisible(edit);
 }
 
 void ParleyMainWindow::setVisibleToolbar(const QString& name)

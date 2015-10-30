@@ -216,7 +216,7 @@ Qt::DropActions ContainerModel::supportedDropActions() const
 
 QStringList ContainerModel::mimeTypes() const
 {
-    return QStringList() << "text/plain";
+    return QStringList() << QStringLiteral("text/plain");
 }
 
 
@@ -228,7 +228,7 @@ QMimeData * ContainerModel::mimeData(const QModelIndexList &indexes) const
     foreach(const QModelIndex & index, indexes) {
         mimeData->addContainer(static_cast<KEduVocContainer*>(index.internalPointer()));
     }
-    mimeData->setText("Parley lesson");
+    mimeData->setText(QStringLiteral("Parley lesson"));
 
 //      QDataStream stream(&encodedData, QIODevice::WriteOnly);
 // stream << "Parley lesson";

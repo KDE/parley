@@ -42,7 +42,7 @@ class QPixmap;
 class KGameTheme
 {
 public:
-    KGameTheme(const QString &themeGroup = QLatin1String("KGameTheme"));
+    KGameTheme(const QString &themeGroup = QStringLiteral("KGameTheme"));
     virtual ~KGameTheme();
 
     /**

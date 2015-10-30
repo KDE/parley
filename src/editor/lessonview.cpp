@@ -33,65 +33,65 @@ using namespace Editor;
 LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
 {
     QAction *actionNewLesson = new QAction(this);
-    parent->actionCollection()->addAction("new_lesson", actionNewLesson);
+    parent->actionCollection()->addAction(QStringLiteral("new_lesson"), actionNewLesson);
     actionNewLesson->setText(i18n("New Unit"));
-    actionNewLesson->setIcon(QIcon::fromTheme("lesson-add"));
+    actionNewLesson->setIcon(QIcon::fromTheme(QStringLiteral("lesson-add")));
     actionNewLesson->setWhatsThis(i18n("Add a new unit to your document"));
     actionNewLesson->setToolTip(actionNewLesson->whatsThis());
     actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
 
     QAction *actionRenameLesson = new QAction(this);
-    parent->actionCollection()->addAction("rename_lesson", actionRenameLesson);
+    parent->actionCollection()->addAction(QStringLiteral("rename_lesson"), actionRenameLesson);
     actionRenameLesson->setText(i18n("Rename Unit"));
-    actionRenameLesson->setIcon(QIcon::fromTheme("edit-rename"));
+    actionRenameLesson->setIcon(QIcon::fromTheme(QStringLiteral("edit-rename")));
 //    actionRenameLesson->setWhatsThis(i18n("Rename the selected unit"));
     actionRenameLesson->setToolTip(actionRenameLesson->whatsThis());
     actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
 
     QAction *actionDeleteLesson = new QAction(this);
-    parent->actionCollection()->addAction("delete_lesson", actionDeleteLesson);
+    parent->actionCollection()->addAction(QStringLiteral("delete_lesson"), actionDeleteLesson);
     actionDeleteLesson->setText(i18n("Delete Unit"));
-    actionDeleteLesson->setIcon(QIcon::fromTheme("lesson-remove"));
+    actionDeleteLesson->setIcon(QIcon::fromTheme(QStringLiteral("lesson-remove")));
     actionDeleteLesson->setWhatsThis(i18n("Delete the selected unit."));
     actionDeleteLesson->setToolTip(actionDeleteLesson->whatsThis());
     actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
 
     QAction *actionSplitLesson = new QAction(this);
-    parent->actionCollection()->addAction("split_lesson", actionSplitLesson);
+    parent->actionCollection()->addAction(QStringLiteral("split_lesson"), actionSplitLesson);
     actionSplitLesson->setText(i18n("Split Unit into Smaller Units"));
-    actionSplitLesson->setIcon(QIcon::fromTheme("edit-copy"));  /// @todo better icon
+    actionSplitLesson->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));  /// @todo better icon
     actionSplitLesson->setWhatsThis(i18n("Make multiple smaller units out of one big unit."));
     actionSplitLesson->setToolTip(actionSplitLesson->whatsThis());
     actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
 
     QAction *actionRemoveGradesLesson = new QAction(this);
-    parent->actionCollection()->addAction("remove_grades_lesson", actionRemoveGradesLesson);
+    parent->actionCollection()->addAction(QStringLiteral("remove_grades_lesson"), actionRemoveGradesLesson);
     actionRemoveGradesLesson->setText(i18n("Remove Confidence Levels"));
-    actionRemoveGradesLesson->setIcon(QIcon::fromTheme("edit-clear")); /// @todo better icon
+    actionRemoveGradesLesson->setIcon(QIcon::fromTheme(QStringLiteral("edit-clear"))); /// @todo better icon
     actionRemoveGradesLesson->setWhatsThis(i18n("Remove confidence levels from this unit."));
     actionRemoveGradesLesson->setToolTip(actionRemoveGradesLesson->whatsThis());
     actionRemoveGradesLesson->setStatusTip(actionRemoveGradesLesson->whatsThis());
 
     QAction *actionRemoveGradesLessonChildren = new QAction(this);
-    parent->actionCollection()->addAction("remove_grades_lesson_children", actionRemoveGradesLessonChildren);
+    parent->actionCollection()->addAction(QStringLiteral("remove_grades_lesson_children"), actionRemoveGradesLessonChildren);
     actionRemoveGradesLessonChildren->setText(i18n("Remove Confidence Levels From This Unit And All Subunits"));
-    actionRemoveGradesLessonChildren->setIcon(QIcon::fromTheme("edit-clear"));
+    actionRemoveGradesLessonChildren->setIcon(QIcon::fromTheme(QStringLiteral("edit-clear")));
     actionRemoveGradesLessonChildren->setWhatsThis(i18n("Remove confidence levels from this unit and all subunits."));
     actionRemoveGradesLessonChildren->setToolTip(actionRemoveGradesLessonChildren->whatsThis());
     actionRemoveGradesLessonChildren->setStatusTip(actionRemoveGradesLessonChildren->whatsThis());
 
     QAction *actionExpandAll = new QAction(this);
-    parent->actionCollection()->addAction("expand_all_lesson_children", actionExpandAll);
+    parent->actionCollection()->addAction(QStringLiteral("expand_all_lesson_children"), actionExpandAll);
     actionExpandAll->setText(i18n("Expand Units and Subunits"));
-    actionExpandAll->setIcon(QIcon::fromTheme("go-down-search"));
+    actionExpandAll->setIcon(QIcon::fromTheme(QStringLiteral("go-down-search")));
     actionExpandAll->setWhatsThis(i18n("Expand all units and subunits."));
     actionExpandAll->setToolTip(actionExpandAll->whatsThis());
     actionExpandAll->setStatusTip(actionExpandAll->whatsThis());
 
     QAction *actionCollapseAll = new QAction(this);
-    parent->actionCollection()->addAction("collapse_all_lesson_children", actionCollapseAll);
+    parent->actionCollection()->addAction(QStringLiteral("collapse_all_lesson_children"), actionCollapseAll);
     actionCollapseAll->setText(i18n("Collapse All Units And Subunits"));
-    actionCollapseAll->setIcon(QIcon::fromTheme("go-up-search"));
+    actionCollapseAll->setIcon(QIcon::fromTheme(QStringLiteral("go-up-search")));
     actionCollapseAll->setWhatsThis(i18n("Collapse all units and subunits."));
     actionCollapseAll->setToolTip(actionCollapseAll->whatsThis());
     actionCollapseAll->setStatusTip(actionCollapseAll->whatsThis());
@@ -235,7 +235,7 @@ void LessonView::setModel(LessonModel * model)
 {
     m_model = model;
     ContainerView::setModel(model);
-    connect(model, SIGNAL(columnsInserted(const QModelIndex &, int, int)), this, SLOT(columnsInserted()));
+    connect(model, &QAbstractItemModel::columnsInserted, this, &LessonView::columnsInserted);
     for (int i = 2; i < model->columnCount(QModelIndex()); i++) {
         setColumnHidden(i, true);
     }

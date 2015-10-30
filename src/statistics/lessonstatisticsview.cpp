@@ -66,7 +66,7 @@ public:
 
         // Draw the text telling the percentage on top of the bar.
         painter->drawText(option.rect, Qt::AlignCenter,
-			  QString("%1%").arg(index.data(StatisticsModel::TotalPercent).toInt()));
+			  QStringLiteral("%1%").arg(index.data(StatisticsModel::TotalPercent).toInt()));
     }
 };
 
@@ -84,7 +84,7 @@ LessonStatisticsView::LessonStatisticsView(QWidget *parent)
     // inherits context menu policy - so action will show up in right click menu
     QAction *removeGradesAction = new QAction(this);
     removeGradesAction->setText(i18n("Remove confidence levels from this unit"));
-    removeGradesAction->setIcon(QIcon::fromTheme("edit-clear"));
+    removeGradesAction->setIcon(QIcon::fromTheme(QStringLiteral("edit-clear")));
     removeGradesAction->setWhatsThis(i18n("Remove confidence levels from this unit"));
     removeGradesAction->setToolTip(removeGradesAction->whatsThis());
     removeGradesAction->setStatusTip(removeGradesAction->whatsThis());
@@ -94,7 +94,7 @@ LessonStatisticsView::LessonStatisticsView(QWidget *parent)
 
     QAction *removeGradesChildrenAction = new QAction(this);
     removeGradesChildrenAction->setText(i18n("Remove confidence levels from this unit and all sub-units"));
-    removeGradesChildrenAction->setIcon(QIcon::fromTheme("edit-clear"));
+    removeGradesChildrenAction->setIcon(QIcon::fromTheme(QStringLiteral("edit-clear")));
     removeGradesChildrenAction->setWhatsThis(i18n("Remove confidence level from this unit and all sub-units"));
     removeGradesChildrenAction->setToolTip(removeGradesChildrenAction->whatsThis());
     removeGradesChildrenAction->setStatusTip(removeGradesChildrenAction->whatsThis());
@@ -102,10 +102,10 @@ LessonStatisticsView::LessonStatisticsView(QWidget *parent)
     connect(removeGradesChildrenAction, &QAction::triggered, this, &LessonStatisticsView::removeGradesChildren);
     addAction(removeGradesChildrenAction);
 
-    connect(header(), SIGNAL(geometriesChanged()),
-	    this,     SLOT(adjustColumnWidths()));
-    connect(header(), SIGNAL(sectionResized(int,int,int)),
-	    this,     SLOT(sectionResized(int,int,int)));
+    connect(header(), &QHeaderView::geometriesChanged,
+	    this,     &LessonStatisticsView::adjustColumnWidths);
+    connect(header(), &QHeaderView::sectionResized,
+	    this,     &LessonStatisticsView::sectionResized);
 }
 
 void LessonStatisticsView::setModel(ContainerModel *model)

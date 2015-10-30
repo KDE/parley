@@ -181,12 +181,12 @@ QList<TestEntry*> EntryFilter::entries(bool showDialog)
         ui.timesPracticedCheckBox->setChecked(m_entriesTimesPracticed[0].count() + m_entriesTimesPracticed[1].count() == 0);
         ui.minMaxGradeCheckBox->setChecked(m_entriesMinMaxGrade[0].count() + m_entriesMinMaxGrade[1].count() == 0);
 
-        connect(ui.lessonCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
-        connect(ui.wordTypeCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
-        connect(ui.blockedCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
-        connect(ui.timesWrongCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
-        connect(ui.timesPracticedCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
-        connect(ui.minMaxGradeCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkBoxChanged(bool)));
+        connect(ui.lessonCheckBox, &QAbstractButton::toggled, this, &EntryFilter::checkBoxChanged);
+        connect(ui.wordTypeCheckBox, &QAbstractButton::toggled, this, &EntryFilter::checkBoxChanged);
+        connect(ui.blockedCheckBox, &QAbstractButton::toggled, this, &EntryFilter::checkBoxChanged);
+        connect(ui.timesWrongCheckBox, &QAbstractButton::toggled, this, &EntryFilter::checkBoxChanged);
+        connect(ui.timesPracticedCheckBox, &QAbstractButton::toggled, this, &EntryFilter::checkBoxChanged);
+        connect(ui.minMaxGradeCheckBox, &QAbstractButton::toggled, this, &EntryFilter::checkBoxChanged);
 
         updateTotal();
 

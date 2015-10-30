@@ -4,7 +4,7 @@ install(FILES
    leo-dict.desktop
    example.desktop
    google_images.desktop
-   DESTINATION ${DATA_INSTALL_DIR}/parley/plugins)
+   DESTINATION ${KDE_INSTALL_DATADIR}/parley/plugins)
 
 #script files
 install(FILES
@@ -12,11 +12,11 @@ install(FILES
    leo-dict.py
    example.py
    google_images.py
-   DESTINATION ${DATA_INSTALL_DIR}/parley/plugins)
+   DESTINATION ${KDE_INSTALL_DATADIR}/parley/plugins)
 
 #ui files
 install(FILES
    google_images.ui
-   DESTINATION ${DATA_INSTALL_DIR}/parley/plugins)
+   DESTINATION ${KDE_INSTALL_DATADIR}/parley/plugins)
 
 add_subdirectory( wiktionary )

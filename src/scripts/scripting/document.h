@@ -388,7 +388,7 @@ public slots:
      * @param generator  the name of the application saving the document (default value: "Parley")
      * @returns          ErrorCode
      */
-    int saveAs(const QString & url, KEduVocDocument::FileType ft = KEduVocDocument::Automatic, const QString & generator = QString("Parley")) {
+    int saveAs(const QString & url, KEduVocDocument::FileType ft = KEduVocDocument::Automatic, const QString & generator = QStringLiteral("Parley")) {
         m_doc->setGenerator(generator);
         return m_doc->saveAs(url, ft);
     }

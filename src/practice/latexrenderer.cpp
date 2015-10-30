@@ -57,7 +57,7 @@ void LatexRenderer::renderLatex(QString tex)
     }
 
     if (tex.startsWith(QLatin1String("$$"))) {
-        tex.replace(0, 2, "\\begin{eqnarray*}").remove(-2, 2).append("\\end{eqnarray*}");
+        tex.replace(0, 2, QStringLiteral("\\begin{eqnarray*}")).remove(-2, 2).append("\\end{eqnarray*}");
     } else {
         tex.remove(0, 2).remove(-2, 2);
     }
@@ -82,11 +82,11 @@ void LatexRenderer::renderLatex(QString tex)
     QString fileName = texFile->fileName();
     qDebug() << "fileName: " << fileName;
     m_latexFilename = fileName;
-    m_latexFilename.replace(".tex", ".eps");
+    m_latexFilename.replace(QLatin1String(".tex"), QLatin1String(".eps"));
     KProcess *p = new KProcess(this);
     p->setWorkingDirectory(dir);
 
-    (*p) << "latex" << "-interaction=batchmode" << "-halt-on-error" << fileName;
+    (*p) << QStringLiteral("latex") << QStringLiteral("-interaction=batchmode") << QStringLiteral("-halt-on-error") << fileName;
 
     connect(p, SIGNAL(finished(int,  QProcess::ExitStatus)), this, SLOT(convertToPs()));
     connect(p, SIGNAL(error(QProcess::ProcessError)), this, SLOT(latexRendered()));
@@ -97,17 +97,17 @@ bool LatexRenderer::isLatex(const QString& tex)
 {
     return tex.length() > 4 && tex.mid(2, tex.length() - 4).simplified().length() > 0 &&
            ((tex.startsWith(QLatin1String("$$")) && tex.endsWith(QLatin1String("$$"))) ||
-            (tex.startsWith(QString::fromUtf8("§§")) && tex.endsWith(QString::fromUtf8("§§"))));
+            (tex.startsWith(QStringLiteral("§§")) && tex.endsWith(QStringLiteral("§§"))));
 }
 
 void LatexRenderer::convertToPs()
 {
     qDebug() << "converting to ps";
     QString dviFile = m_latexFilename;
-    dviFile.replace(".eps", ".dvi");
+    dviFile.replace(QLatin1String(".eps"), QLatin1String(".dvi"));
     KProcess *p = new KProcess(this);
     qDebug() << "running: " << "dvips" << "-E" << "-o" << m_latexFilename << dviFile;
-    (*p) << "dvips" << "-E" << "-o" << m_latexFilename << dviFile;
+    (*p) << QStringLiteral("dvips") << QStringLiteral("-E") << QStringLiteral("-o") << m_latexFilename << dviFile;
 
     connect(p, SIGNAL(finished(int,  QProcess::ExitStatus)), this, SLOT(convertToImage()));
     connect(p, SIGNAL(error(QProcess::ProcessError)), this, SLOT(latexRendered()));
@@ -118,10 +118,10 @@ void LatexRenderer::convertToImage()
 {
     qDebug() << "converting to ps";
     QString pngFile = m_latexFilename;
-    pngFile.replace(".eps", ".png");
+    pngFile.replace(QLatin1String(".eps"), QLatin1String(".png"));
     KProcess *p = new KProcess(this);
     qDebug() << "running:" << "convert" << m_latexFilename << pngFile;
-    (*p) << "convert" << "-density" << "85" << m_latexFilename << pngFile;
+    (*p) << QStringLiteral("convert") << QStringLiteral("-density") << QStringLiteral("85") << m_latexFilename << pngFile;
 
     connect(p, SIGNAL(finished(int,  QProcess::ExitStatus)), this, SLOT(latexRendered()));
     connect(p, SIGNAL(error(QProcess::ProcessError)), this, SLOT(latexRendered()));
@@ -133,7 +133,7 @@ void LatexRenderer::latexRendered()
     qDebug() << "rendered file " << m_latexFilename;
 
     QString pngFile = m_latexFilename;
-    pngFile.replace(".eps", ".png");
+    pngFile.replace(QLatin1String(".eps"), QLatin1String(".png"));
     if (QFileInfo(pngFile).exists()) {
         QPixmap pixmap(pngFile);
         m_label->setPixmap(pixmap);
@@ -146,10 +146,10 @@ void LatexRenderer::latexRendered()
     QString dir( QDir::tempPath() + QLatin1Char('/') + QCoreApplication::applicationName() );
 
     QStringList extensions;
-    extensions << ".log" << ".aux" << ".tex" << ".dvi" << ".eps" << ".png";
+    extensions << QStringLiteral(".log") << QStringLiteral(".aux") << QStringLiteral(".tex") << QStringLiteral(".dvi") << QStringLiteral(".eps") << QStringLiteral(".png");
     foreach(const QString & ext, extensions) {
         QString s = m_latexFilename;
-        s.replace(".eps", ext);
+        s.replace(QLatin1String(".eps"), ext);
         QFile f(s);
         f.remove();
     }

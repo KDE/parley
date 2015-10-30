@@ -44,8 +44,8 @@ StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindo
     , m_conjugationOptions(0)
 {
     // KXmlGui
-    setXMLFile("statisticsui.rc");
-    setObjectName("Statistics");
+    setXMLFile(QStringLiteral("statisticsui.rc"));
+    setObjectName(QStringLiteral("Statistics"));
 
     QWidget *mainWidget = new QWidget(this);
     setCentralWidget(mainWidget);
@@ -61,7 +61,7 @@ StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindo
     initLanguages();
     initPracticeMode();
 
-    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
+    KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
     applyMainWindowSettings(cfg);
 }
 
@@ -70,7 +70,7 @@ StatisticsMainWindow::~StatisticsMainWindow()
     if (m_conjugationOptions) {
         m_conjugationOptions->updateSettings();
     }
-    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
+    KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
     saveMainWindowSettings(cfg);
     delete m_ui;
 }
@@ -271,6 +271,6 @@ void StatisticsMainWindow::showConjugationOptions(bool visible)
 
 void StatisticsMainWindow::configurePractice()
 {
-    ConfigurePracticeDialog dialog(m_doc, this, "practice settings",  Prefs::self());
+    ConfigurePracticeDialog dialog(m_doc, this, QStringLiteral("practice settings"),  Prefs::self());
     dialog.exec();
 }

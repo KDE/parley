@@ -101,7 +101,7 @@ void LessonModel::splitLesson(const QModelIndex& containerIndex, int entriesPerL
     while (parentLesson->entryCount() > 0) {
         beginInsertRows(containerIndex, parentLesson->entryCount(), parentLesson->entryCount());
         KEduVocLesson* child = new KEduVocLesson(parentLesson->name()
-                + QString(" %1").arg(parentLesson->childContainerCount() + 1), parentLesson);
+                + QStringLiteral(" %1").arg(parentLesson->childContainerCount() + 1), parentLesson);
         parentLesson->appendChildContainer(child);
         endInsertRows();
 

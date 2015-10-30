@@ -70,7 +70,7 @@ void ExportDialog::accept()
         /// Find the CSV filter in the standard filter list
         //!@todo: good and clean solution
         QStringList defaultFilters = KEduVocDocument::pattern(KEduVocDocument::Writing).split('\n');
-        QString filter = defaultFilters.filter("csv").join("\n");
+        QString filter = defaultFilters.filter(QStringLiteral("csv")).join(QStringLiteral("\n"));
         QUrl filename = getFileName(filter);
         if (filename != QUrl()) {
             m_doc->saveAs(filename);
@@ -80,9 +80,9 @@ void ExportDialog::accept()
 
     QString xslFile;
     if (ui->flashCardRadio->isChecked()) {
-        xslFile = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "parley/xslt/flashcards.xsl");
+        xslFile = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("parley/xslt/flashcards.xsl"));
     } else {
-        xslFile = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "parley/xslt/table.xsl");
+        xslFile = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("parley/xslt/table.xsl"));
     }
 
     QString filter = "*.html|" + i18n("HTML document");
@@ -126,7 +126,7 @@ QUrl ExportDialog::getFileName(const QString& filter)
     return QUrl::fromLocalFile(QFileDialog::getSaveFileName(
         m_parent, i18n("Export As")
         , (m_doc->document()->url().fileName() == i18n("Untitled"))
-        ? "" : m_doc->document()->url().toLocalFile()
+        ? QLatin1String("") : m_doc->document()->url().toLocalFile()
         ,  filter ) );
 
 }

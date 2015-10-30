@@ -184,7 +184,7 @@ bool WrittenPracticeValidator::isPunctuationMistake(const QString& original, con
 {
     QString ans = answer;
     QString orig = original;
-    if (ans.remove(QRegExp("[^a-zA-ZƒŠŒŽšœžŸÀ-ÿ\\s]")) == orig.remove(QRegExp("[^a-zA-ZƒŠŒŽšœžŸÀ-ÿ\\s]"))) {
+    if (ans.remove(QRegExp(QStringLiteral("[^a-zA-ZƒŠŒŽšœžŸÀ-ÿ\\s]"))) == orig.remove(QRegExp(QStringLiteral("[^a-zA-ZƒŠŒŽšœžŸÀ-ÿ\\s]")))) {
         qDebug() << "PunctuationMistake: " << original << " answer: " << answer;
         m_error |= TestEntry::PunctuationMistake;
         m_correctedAnswer = answer;

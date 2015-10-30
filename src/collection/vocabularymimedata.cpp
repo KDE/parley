@@ -76,7 +76,7 @@ QVariant VocabularyMimeData::retrieveData(const QString & mimeType, QVariant::Ty
     // the translation list may be invalid (eg when cut it is no longer valid.
     // translations can only be used internally for drag and drop!!!
 
-    if (mimeType == "text/plain") {
+    if (mimeType == QLatin1String("text/plain")) {
         return m_text;
     }
     return QVariant();
@@ -84,7 +84,7 @@ QVariant VocabularyMimeData::retrieveData(const QString & mimeType, QVariant::Ty
 
 QStringList VocabularyMimeData::formats() const
 {
-    return QStringList() << "text/plain";
+    return QStringList() << QStringLiteral("text/plain");
 }
 
 QList< VocabularyMimeData::MimeExpression > VocabularyMimeData::expressionList() const

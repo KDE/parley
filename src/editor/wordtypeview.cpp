@@ -38,7 +38,7 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
 
     m_actionNewWordType = new QAction(this);
     m_actionNewWordType->setText(i18n("New"));
-    m_actionNewWordType->setIcon(QIcon::fromTheme("lesson-add"));
+    m_actionNewWordType->setIcon(QIcon::fromTheme(QStringLiteral("lesson-add")));
     m_actionNewWordType->setWhatsThis(i18n("Add a new word type to your document"));
     m_actionNewWordType->setToolTip(m_actionNewWordType->whatsThis());
     m_actionNewWordType->setStatusTip(m_actionNewWordType->whatsThis());
@@ -46,7 +46,7 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
 
     m_actionRenameWordType = new QAction(this);
     m_actionRenameWordType->setText(i18n("Rename"));
-    m_actionRenameWordType->setIcon(QIcon::fromTheme("edit-rename"));
+    m_actionRenameWordType->setIcon(QIcon::fromTheme(QStringLiteral("edit-rename")));
     m_actionRenameWordType->setWhatsThis(i18n("Rename the selected word type"));
     m_actionRenameWordType->setToolTip(m_actionRenameWordType->whatsThis());
     m_actionRenameWordType->setStatusTip(m_actionRenameWordType->whatsThis());
@@ -54,7 +54,7 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
 
     m_actionDeleteWordType = new QAction(this);
     m_actionDeleteWordType->setText(i18n("Delete Word Type"));
-    m_actionDeleteWordType->setIcon(QIcon::fromTheme("lesson-remove"));
+    m_actionDeleteWordType->setIcon(QIcon::fromTheme(QStringLiteral("lesson-remove")));
     m_actionDeleteWordType->setWhatsThis(i18n("Delete the selected word type."));
     m_actionDeleteWordType->setToolTip(m_actionDeleteWordType->whatsThis());
     m_actionDeleteWordType->setStatusTip(m_actionDeleteWordType->whatsThis());

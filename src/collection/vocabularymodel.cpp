@@ -140,14 +140,14 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
             foreach(KEduVocTranslation * synonym,  m_container->entry(index.row(), m_recursive)->translation(translationId)->synonyms()) {
                 displayElements.append(synonym->text());
             }
-            return QVariant(displayElements.join("; "));
+            return QVariant(displayElements.join(QStringLiteral("; ")));
         }
         case Antonym: {
             QStringList displayElements;
             foreach(KEduVocTranslation * antonym,  m_container->entry(index.row(), m_recursive)->translation(translationId)->antonyms()) {
                 displayElements.append(antonym->text());
             }
-            return QVariant(displayElements.join("; "));
+            return QVariant(displayElements.join(QStringLiteral("; ")));
         }
         case Example: {
             QString example = m_container->entry(index.row(), m_recursive)->translation(translationId)->example();
@@ -360,7 +360,7 @@ bool VocabularyModel::removeRows(int row, int count, const QModelIndex & parent)
 
 QStringList VocabularyModel::mimeTypes() const
 {
-    return QStringList() << "text/plain";
+    return QStringList() << QStringLiteral("text/plain");
 }
 
 QMimeData * VocabularyModel::mimeData(const QModelIndexList & indexes) const

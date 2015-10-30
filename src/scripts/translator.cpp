@@ -32,7 +32,7 @@ Translator::~Translator()
 
 void Translator::addTranslation(QString word, QString fromLanguage, QString toLanguage, QString translation)
 {
-    if (word.trimmed() == "") return;
+    if (word.trimmed() == QLatin1String("")) return;
 
     QString t = word + fromLanguage + toLanguage;
     qDebug() << "Translation for " << word << "in cache: " << m_translations.contains(t);

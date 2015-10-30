@@ -13,5 +13,5 @@ target_link_libraries(plasma_engine_parley
   KF5::KDELibs4Support
 )
 
-install(TARGETS plasma_engine_parley DESTINATION ${PLUGIN_INSTALL_DIR})
-install(FILES plasma-dataengine-parley.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
+install(TARGETS plasma_engine_parley DESTINATION ${KDE_INSTALL_PLUGINDIR})
+install(FILES plasma-dataengine-parley.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR} )

@@ -176,23 +176,23 @@ target_link_libraries(parley parley_LIB ${parley_LINK_LIBS})
 target_link_libraries(parley_LIB ${parley_LINK_LIBS})
 
 ########### install files ###############
-install(TARGETS parley  ${INSTALL_TARGETS_DEFAULT_ARGS} )
+install(TARGETS parley  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
 # desktop files appear in the menus
-install( PROGRAMS org.kde.parley.desktop DESTINATION  ${XDG_APPS_INSTALL_DIR} )
+install( PROGRAMS org.kde.parley.desktop DESTINATION  ${KDE_INSTALL_APPDIR} )
 
 # hot new stuff config
-install( FILES parley.knsrc parley-themes.knsrc DESTINATION  ${CONFIG_INSTALL_DIR} )
+install( FILES parley.knsrc parley-themes.knsrc DESTINATION  ${KDE_INSTALL_CONFDIR} )
 
 # UI files - define menus and toolbars
 # @todo frameworks find a definitive locations for files and then use KXMLGUI_INSTALL_DIR
-install( FILES parleyui.rc  DESTINATION  ${KXMLGUI_INSTALL_DIR}/parley )
-#install( FILES editor/editorui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
-install( FILES editor/editorui.rc DESTINATION  ${KXMLGUI_INSTALL_DIR}/parley )
-install( FILES dashboard/dashboardui.rc DESTINATION  ${KXMLGUI_INSTALL_DIR}/parley )
-# install( FILES statistics/statisticsui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
-# install( FILES practice/practiceui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
-# install( FILES practice/practicesummaryui.rc DESTINATION  ${DATA_INSTALL_DIR}/parley )
-install( FILES statistics/statisticsui.rc DESTINATION  ${KXMLGUI_INSTALL_DIR}/parley )
-install( FILES practice/practiceui.rc DESTINATION  ${KXMLGUI_INSTALL_DIR}/parley )
-install( FILES practice/practicesummaryui.rc DESTINATION  ${KXMLGUI_INSTALL_DIR}/parley )
+install( FILES parleyui.rc  DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/parley )
+#install( FILES editor/editorui.rc DESTINATION  ${KDE_INSTALL_DATADIR}/parley )
+install( FILES editor/editorui.rc DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/parley )
+install( FILES dashboard/dashboardui.rc DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/parley )
+# install( FILES statistics/statisticsui.rc DESTINATION  ${KDE_INSTALL_DATADIR}/parley )
+# install( FILES practice/practiceui.rc DESTINATION  ${KDE_INSTALL_DATADIR}/parley )
+# install( FILES practice/practicesummaryui.rc DESTINATION  ${KDE_INSTALL_DATADIR}/parley )
+install( FILES statistics/statisticsui.rc DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/parley )
+install( FILES practice/practiceui.rc DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/parley )
+install( FILES practice/practicesummaryui.rc DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/parley )

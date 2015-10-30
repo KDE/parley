@@ -36,7 +36,7 @@ ScriptManager::ScriptManager(EditorWindow * editor)
 {
     //add Scripting::Parley
     m_scriptingParley = new Scripting::Parley(editor);
-    addObject(m_scriptingParley, "Parley");
+    addObject(m_scriptingParley, QStringLiteral("Parley"));
 }
 
 
@@ -50,7 +50,7 @@ QStringList ScriptManager::getDesktopFiles()
 //     QStringList scriptsAvailable;
     QStringList dirs(
         QStandardPaths::locateAll(
-            QStandardPaths::DataLocation, "plugins",  QStandardPaths::LocateDirectory ) );
+            QStandardPaths::DataLocation, QStringLiteral("plugins"),  QStandardPaths::LocateDirectory ) );
     QStringList filenames;
     foreach ( const QString dir,  dirs ) {
         foreach ( const QString filename,  QDir( dir ).entryList(QDir::Files) ) {
@@ -66,7 +66,7 @@ QStringList ScriptManager::getDesktopFiles()
 QMap<QString, QString> ScriptManager::categories()
 {
     QMap<QString, QString> categories;
-    categories["translation"] = "Translation";
+    categories[QStringLiteral("translation")] = QStringLiteral("Translation");
     return categories;
 }
 
@@ -91,7 +91,7 @@ QStringList ScriptManager::enabledScripts()
 {
     QStringList enabledScripts;
     // Open parleyrc to read the state of the plugins (enabled/disabled)
-    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), "Plugins");
+    KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), "Plugins");
     // Get list of KPluginInfo for each of the desktop files found
     QList<KPluginInfo> pluginsInfoList = KPluginInfo::fromFiles(getDesktopFiles());
     // Find which plugins are enabled and add them to enabledScripts list
@@ -108,7 +108,7 @@ QStringList ScriptManager::enabledScripts()
 
 void ScriptManager::disablePlugin(QString desktopFile)
 {
-    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), "Plugins");
+    KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), "Plugins");
     KPluginInfo inf(desktopFile);
     //load parleyrc enabled value
     inf.load(cfg);
@@ -138,8 +138,8 @@ void ScriptManager::loadScripts()
     //inform with a message box when a script could not be activated
     if (!failed.empty()) {
         QString errorMessage = "<p>" + i18np("A script could not be activated and has been disabled.", "%1 scripts could not be activated and have been disabled.", failed.count()) + ' ' + i18n("This probably means that there are errors in the script or that the required packages are not installed.") + "</p>";
-        errorMessage += "<ul><li>" + failed.join("</li><li>") + "</li></ul>";
-        KMessageBox::detailedError(m_editor, errorMessage, errorDetails.join("<hr/>"), i18n("Script Activation"));
+        errorMessage += "<ul><li>" + failed.join(QStringLiteral("</li><li>")) + "</li></ul>";
+        KMessageBox::detailedError(m_editor, errorMessage, errorDetails.join(QStringLiteral("<hr/>")), i18n("Script Activation"));
     }
 }
 
@@ -159,9 +159,9 @@ void ScriptManager::reloadScripts()
     m_scripts.clear();
 
     //reload the scripts menu
-    m_editor->unplugActionList("scripts_actionlist");
+    m_editor->unplugActionList(QStringLiteral("scripts_actionlist"));
     m_scriptActions.clear();
-    m_editor->plugActionList("scripts_actionlist", m_scriptActions);
+    m_editor->plugActionList(QStringLiteral("scripts_actionlist"), m_scriptActions);
 
     //load all the enabled scripts
     loadScripts();
@@ -171,7 +171,7 @@ void ScriptManager::reloadScripts()
 void ScriptManager::addScriptAction(const QString & name, QAction * action)
 {
     //unplug action list (orelse it will add twice the same entries
-    m_editor->unplugActionList("scripts_actionlist");
+    m_editor->unplugActionList(QStringLiteral("scripts_actionlist"));
 
     //add to action collection
     m_editor->actionCollection()->addAction(name, action);
@@ -180,6 +180,6 @@ void ScriptManager::addScriptAction(const QString & name, QAction * action)
     m_editor->m_scriptManager->m_scriptActions.push_back(action);
 
     //plug the action list
-    m_editor->plugActionList("scripts_actionlist", m_scriptActions);
+    m_editor->plugActionList(QStringLiteral("scripts_actionlist"), m_scriptActions);
 
 }

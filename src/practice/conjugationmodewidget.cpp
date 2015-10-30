@@ -105,7 +105,7 @@ void ConjugationModeWidget::setQuestion(const QVariant& question)
         m_personWidgets.at(i)->input->setFont(m_solutionFont);
         m_personWidgets.at(i)->solution->clear();
         m_personWidgets.at(i)->solution->setFont(m_solutionFont);
-        connect(m_personWidgets.at(i)->input, SIGNAL(returnPressed()), this, SLOT(nextConjugationForm()));
+        connect(m_personWidgets.at(i)->input, &QLineEdit::returnPressed, this, &ConjugationModeWidget::nextConjugationForm);
         ++i;
     }
 }

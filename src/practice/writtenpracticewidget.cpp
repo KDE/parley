@@ -36,8 +36,8 @@ WrittenPracticeWidget::WrittenPracticeWidget(GuiFrontend *frontend, QWidget *par
     m_ui->mixedSolutionLabel->setVisible(false);
     this->isExampleSentenceMode = isExampleSentenceMode;
     connect(m_ui->answerEdit, &QLineEdit::returnPressed, this, &WrittenPracticeWidget::continueClicked);
-    connect(frontend, SIGNAL(continueAction()), this, SIGNAL(stopAudio()));
-    connect(frontend, SIGNAL(skipAction()), this, SIGNAL(stopAudio()));
+    connect(frontend, &AbstractFrontend::continueAction, this, &AbstractModeWidget::stopAudio);
+    connect(frontend, &AbstractFrontend::skipAction, this, &AbstractModeWidget::stopAudio);
 }
 
 void WrittenPracticeWidget::setQuestionFont(const QFont& font)

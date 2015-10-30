@@ -47,8 +47,8 @@ PracticeSummaryComponent::PracticeSummaryComponent(SessionManagerBase* sessionMa
     , m_sessionManager(sessionManager)
 {
     // KXmlGui
-    setXMLFile("practicesummaryui.rc");
-    setObjectName("Statistics");
+    setXMLFile(QStringLiteral("practicesummaryui.rc"));
+    setObjectName(QStringLiteral("Statistics"));
 
     QWidget *mainWidget = new QWidget(this);
     setupUi(mainWidget);
@@ -68,13 +68,13 @@ PracticeSummaryComponent::PracticeSummaryComponent(SessionManagerBase* sessionMa
                                     i18np("one minute", "%1 minutes", minutes),
                                     i18np("one second", "%1 seconds", seconds)));
 
-    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
+    KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
     applyMainWindowSettings(cfg);
 }
 
 PracticeSummaryComponent::~PracticeSummaryComponent()
 {
-    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
+    KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
     saveMainWindowSettings(cfg);
 }
 
@@ -83,8 +83,8 @@ void PracticeSummaryComponent::initActions(QWidget* parleyMainWindow)
     ParleyActions::create(ParleyActions::EnterEditMode, parleyMainWindow, SLOT(showEditor()), actionCollection());
     ParleyActions::create(ParleyActions::StartPractice, parleyMainWindow, SLOT(showPracticeConfiguration()), actionCollection());
     ParleyActions::create(ParleyActions::ExportPracticeResults, this, SLOT(exportResults()), actionCollection());
-    actionCollection()->action("practice_start")->setText(i18n("Practice Overview"));
-    actionCollection()->action("practice_start")->setToolTip(i18n("Switch to the Practice Overview page"));
+    actionCollection()->action(QStringLiteral("practice_start"))->setText(i18n("Practice Overview"));
+    actionCollection()->action(QStringLiteral("practice_start"))->setToolTip(i18n("Switch to the Practice Overview page"));
 }
 
 void PracticeSummaryComponent::setupDetailsTable()
@@ -116,7 +116,7 @@ void PracticeSummaryComponent::setupDetailsTable()
         }
 
         QTableWidgetItem* itemUserAnswer = new QTableWidgetItem(
-            entry->userAnswers().join("; "));
+            entry->userAnswers().join(QStringLiteral("; ")));
         itemUserAnswer->setForeground(wrongPalette.foreground());
 
         SortedAttemptTableWidgetItem* itemAttempts = new SortedAttemptTableWidgetItem();
@@ -130,13 +130,13 @@ void PracticeSummaryComponent::setupDetailsTable()
         itemAttempts->setFlags(flags);
 
         if (entry->correctAtFirstAttempt()) {
-            itemUserAnswer->setIcon(QIcon::fromTheme("dialog-ok-apply"));
+            itemUserAnswer->setIcon(QIcon::fromTheme(QStringLiteral("dialog-ok-apply")));
         } else if (entry->statisticGoodCount() > 0) {
-            itemUserAnswer->setIcon(QIcon::fromTheme("task-attempt"));
+            itemUserAnswer->setIcon(QIcon::fromTheme(QStringLiteral("task-attempt")));
         } else if (entry->statisticCount() > 0) {
-            itemUserAnswer->setIcon(QIcon::fromTheme("dialog-error"));
+            itemUserAnswer->setIcon(QIcon::fromTheme(QStringLiteral("dialog-error")));
         } else {
-            itemUserAnswer->setIcon(QIcon::fromTheme("task-attempt"));
+            itemUserAnswer->setIcon(QIcon::fromTheme(QStringLiteral("task-attempt")));
         }
 
         tableWidget->setItem(i, 0, itemAttempts);
@@ -155,7 +155,7 @@ void PracticeSummaryComponent::exportResults()
 {
     QString filter = "*.html|" + i18n("HTML Files") + "\n*.odt|" + i18n("OpenDocument text files");
     QString caption;
-    QString startingdir("kfiledialog:///practice_export");
+    QString startingdir(QStringLiteral("kfiledialog:///practice_export"));
     QString fileName = QFileDialog::getSaveFileName(0, caption, startingdir , filter);
 
     if (fileName.isEmpty()) {
@@ -188,7 +188,7 @@ void PracticeSummaryComponent::exportResults()
         table->cellAt(newRow, 0).firstCursorPosition().insertText(QString::number(entry->statisticCount()));
         table->cellAt(newRow, 1).firstCursorPosition().insertText(entry->entry()->translation(entry->languageFrom())->text());
         table->cellAt(newRow, 2).firstCursorPosition().insertText(entry->entry()->translation(entry->languageTo())->text());
-        table->cellAt(newRow, 3).firstCursorPosition().insertText(entry->userAnswers().join("; "));
+        table->cellAt(newRow, 3).firstCursorPosition().insertText(entry->userAnswers().join(QStringLiteral("; ")));
     }
 
     QTextDocumentWriter writer(fileName);

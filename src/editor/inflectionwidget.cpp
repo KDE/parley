@@ -39,17 +39,17 @@ InflectionWidget::InflectionWidget(QWidget* parent): QStackedWidget(parent)
     wordTypeLayout->addWidget(label);
 
     QPushButton *toVerb = new QPushButton(i18n("Verb"));
-    toVerb->setObjectName("toVerb");
+    toVerb->setObjectName(QStringLiteral("toVerb"));
     connect(toVerb, &QPushButton::pressed, this, &InflectionWidget::setWordType);
     wordTypeLayout->addWidget(toVerb, 1);
 
     QPushButton *toNoun = new QPushButton(i18n("Noun"));
-    toNoun->setObjectName("toNoun");
+    toNoun->setObjectName(QStringLiteral("toNoun"));
     connect(toNoun, &QPushButton::pressed, this, &InflectionWidget::setWordType);
     wordTypeLayout->addWidget(toNoun, 1);
 
     QPushButton *toAdjective = new QPushButton(i18n("Adjective"));
-    toAdjective->setObjectName("toAdjective");
+    toAdjective->setObjectName(QStringLiteral("toAdjective"));
     connect(toAdjective, &QPushButton::pressed, this, &InflectionWidget::setWordType);
     wordTypeLayout->addWidget(toAdjective, 1);
 
@@ -113,9 +113,9 @@ void InflectionWidget::setWordType()
 
     KEduVocWordType* container = 0;
 
-    if (sender()->objectName() == "toVerb") {
+    if (sender()->objectName() == QLatin1String("toVerb")) {
         container = m_doc->wordTypeContainer()->childOfType(KEduVocWordFlag::Verb);
-    } else if (sender()->objectName() == "toNoun") {
+    } else if (sender()->objectName() == QLatin1String("toNoun")) {
         KEduVocWordFlags type = KEduVocWordFlag::Noun;
 
         QPointer<QDialogButtonBox> getGenderDialog = new QDialogButtonBox;
@@ -144,7 +144,7 @@ void InflectionWidget::setWordType()
         delete dialog;
 
         container = m_doc->wordTypeContainer()->childOfType(type);
-    } else if (sender()->objectName() == "toAdjective") {
+    } else if (sender()->objectName() == QLatin1String("toAdjective")) {
         container = m_doc->wordTypeContainer()->childOfType(KEduVocWordFlag::Adjective);
     }
 

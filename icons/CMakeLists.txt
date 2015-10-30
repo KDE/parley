@@ -27,7 +27,7 @@ ecm_install_icons( ICONS
   sc-actions-edit-table-row.svgz  sc-actions-practice-setup.svgz
   sc-actions-lesson-add.svgz      sc-actions-practice-start.svgz
 
-  DESTINATION ${ICON_INSTALL_DIR}
+  DESTINATION ${KDE_INSTALL_ICONDIR}
   THEME oxygen
 )
 
@@ -37,6 +37,6 @@ ecm_install_icons( ICONS
   sc-apps-parley-simple.svgz 16-apps-parley.png   48-apps-parley.png
   sc-apps-parley-parley.svgz  sc-apps-parley.svgz
 
-  DESTINATION ${ICON_INSTALL_DIR}
+  DESTINATION ${KDE_INSTALL_ICONDIR}
   THEME hicolor
 )

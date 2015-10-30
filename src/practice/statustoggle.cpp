@@ -48,19 +48,19 @@ void StatusToggle::setRenderer(ThemedBackgroundRenderer *renderer)
 
     QSize size = minimumSizeHint();
 
-    m_defaultStatus = m_renderer->getPixmapForId("status-default", size);
-    m_correctStatus = m_renderer->getPixmapForId("status-correct", size);
-    m_wrongStatus = m_renderer->getPixmapForId("status-wrong", size);
+    m_defaultStatus = m_renderer->getPixmapForId(QStringLiteral("status-default"), size);
+    m_correctStatus = m_renderer->getPixmapForId(QStringLiteral("status-correct"), size);
+    m_wrongStatus = m_renderer->getPixmapForId(QStringLiteral("status-wrong"), size);
 
     size = size * 0.4;
 
-    m_toggleCorrect = m_renderer->getPixmapForId("toggle-correct", size);
-    m_toggleCorrectHover = m_renderer->getPixmapForId("toggle-correct-hover", size);
-    m_toggleCorrectPressed = m_renderer->getPixmapForId("toggle-correct-pressed", size);
+    m_toggleCorrect = m_renderer->getPixmapForId(QStringLiteral("toggle-correct"), size);
+    m_toggleCorrectHover = m_renderer->getPixmapForId(QStringLiteral("toggle-correct-hover"), size);
+    m_toggleCorrectPressed = m_renderer->getPixmapForId(QStringLiteral("toggle-correct-pressed"), size);
 
-    m_toggleWrong = m_renderer->getPixmapForId("toggle-wrong", size);
-    m_toggleWrongHover = m_renderer->getPixmapForId("toggle-wrong-hover", size);
-    m_toggleWrongPressed = m_renderer->getPixmapForId("toggle-wrong-pressed", size);
+    m_toggleWrong = m_renderer->getPixmapForId(QStringLiteral("toggle-wrong"), size);
+    m_toggleWrongHover = m_renderer->getPixmapForId(QStringLiteral("toggle-wrong-hover"), size);
+    m_toggleWrongPressed = m_renderer->getPixmapForId(QStringLiteral("toggle-wrong-pressed"), size);
 
     updatePixmap();
     updateToggle();

@@ -63,7 +63,7 @@ void fetchGrammar(KEduVocDocument* doc, int languageIndex)
 {
     QString locale = doc->identifier(languageIndex).locale();
 
-    QUrl location(QUrl::fromUserInput(QString("http://edu.kde.org/parley/locale/") + locale + QString(".kvtml")) );
+    QUrl location(QUrl::fromUserInput(QStringLiteral("http://edu.kde.org/parley/locale/") + locale + QStringLiteral(".kvtml")) );
 
     KEduVocDocument grammarDoc;
     if (grammarDoc.open(location) == KEduVocDocument::NoError) {
@@ -289,7 +289,7 @@ bool ParleyDocument::queryClose()
     if (!canSave) {
         int exit = KMessageBox::warningYesNoCancel(
             m_parleyApp, i18n("Vocabulary is modified.\n\nSave file before exit?\n"),
-            "", KStandardGuiItem::save(), KStandardGuiItem::discard());
+            QLatin1String(""), KStandardGuiItem::save(), KStandardGuiItem::discard());
         switch ( exit ) {
         case KMessageBox::Yes :
             canSave = true;   // save and exit
@@ -346,7 +346,7 @@ void ParleyDocument::save()
 
     emit statesNeedSaving();
 
-    QString newgenerator = QString::fromLatin1("Parley ") + PARLEY_VERSION_STRING ;
+    QString newgenerator = QLatin1String("Parley ") + PARLEY_VERSION_STRING ;
     m_doc->setGenerator(newgenerator);
 
     bool isSuccess = false,  isError = false ;
@@ -362,7 +362,7 @@ void ParleyDocument::save()
     {
         int exit = KMessageBox::warningYesNo(
             m_parleyApp, i18n("File \"%1\" is locked by another process.  You can save to the file if you take over the lock, but you will lose any changes from the other process.\n\nDo you want to take over the lock?\n"
-                , m_doc->url().url()), "");
+                , m_doc->url().url()), QLatin1String(""));
         if ( exit == KMessageBox::Yes ) {
             m_doc->setGenerator(newgenerator );
             ret = m_doc->saveAs(m_doc->url() , KEduVocDocument::Automatic, KEduVocDocument::FileIgnoreLock);
@@ -432,11 +432,11 @@ void ParleyDocument::saveAs(QUrl url)
     m_doc->setCsvDelimiter(Prefs::separator());
 
     if (!url.toLocalFile().contains('.')) {
-        url.fromLocalFile(url.toLocalFile() + QString::fromLatin1(".kvtml"));
+        url.fromLocalFile(url.toLocalFile() + QLatin1String(".kvtml"));
     }
 
     bool isSuccess = false,  isError = false;
-    m_doc->setGenerator("Parley");
+    m_doc->setGenerator(QStringLiteral("Parley"));
     int ret = m_doc->saveAs(url, KEduVocDocument::Automatic);
     switch ( ret ) {
     case KEduVocDocument::NoError :
@@ -446,9 +446,9 @@ void ParleyDocument::saveAs(QUrl url)
     {
         int exit = KMessageBox::warningYesNo(
             m_parleyApp, i18n("File \"%1\" is locked by another process.  You can save to the file if you take over the lock, but you will lose any changes from the other process.\n\nDo you want to take over the lock?\n"
-                , m_doc->url().url()), "");
+                , m_doc->url().url()), QLatin1String(""));
         if ( exit == KMessageBox::Yes ) { //attempt lock steal
-            m_doc->setGenerator(QString::fromLatin1("Parley ") + PARLEY_VERSION_STRING );
+            m_doc->setGenerator(QLatin1String("Parley ") + PARLEY_VERSION_STRING );
             ret = m_doc->saveAs(
                 m_doc->url() , KEduVocDocument::Automatic, KEduVocDocument::FileIgnoreLock);
 
@@ -564,7 +564,7 @@ void ParleyDocument::slotGHNS()
         foreach (const QString & file, entry.installedFiles()) {
             QMimeType mimeType = db.mimeTypeForFile(file);
             qDebug() << "KNS2 file of mime type:" << db.mimeTypeForFile(file).name();
-            if (mimeType.inherits("application/x-kvtml")) {
+            if (mimeType.inherits(QStringLiteral("application/x-kvtml"))) {
                 ParleyMainWindow::instance()->addRecentFile(file, QString()); ///@todo: title!
                 fileName = file;
             }
@@ -629,7 +629,7 @@ void ParleyDocument::uploadFile()
     }
     QUrl url(QUrl::fromUserInput(dir.path() + m_doc->url().fileName()) );
     qDebug() << "save in " << url;
-    m_doc->setGenerator("Parley");
+    m_doc->setGenerator(QStringLiteral("Parley"));
     if ( m_doc->saveAs(url, KEduVocDocument::Automatic) != KEduVocDocument::NoError ){
         KMessageBox::error(m_parleyApp, i18n("Could not save vocabulary collection \"%1\"", url.toString() ));
         return;
@@ -643,7 +643,7 @@ void ParleyDocument::uploadFile()
 
     // remove grades
     tempDoc.lesson()->resetGrades(-1, KEduVocContainer::Recursive);
-    m_doc->setGenerator("Parley");
+    m_doc->setGenerator(QStringLiteral("Parley"));
     if ( tempDoc.saveAs(url, KEduVocDocument::Automatic) != KEduVocDocument::NoError ) {
         KMessageBox::error(m_parleyApp, i18n("Could not save vocabulary collection \"%1\"", url.toString() ));
         return;

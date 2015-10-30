@@ -57,8 +57,8 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     , m_mainWindow(parent)
 {
     // KXmlGui
-    setXMLFile("dashboardui.rc");
-    setObjectName("Dashboard");
+    setXMLFile(QStringLiteral("dashboardui.rc"));
+    setObjectName(QStringLiteral("Dashboard"));
 
     m_widget = new Practice::ImageWidget(this);
 
@@ -82,9 +82,9 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     font.setBold(true);
     m_ui->completedLabel->setFont(font);
 
-    m_ui->newButton->setIcon(QIcon::fromTheme("document-new"));
-    m_ui->openButton->setIcon(QIcon::fromTheme("document-open"));
-    m_ui->ghnsButton->setIcon(QIcon::fromTheme("get-hot-new-stuff"));
+    m_ui->newButton->setIcon(QIcon::fromTheme(QStringLiteral("document-new")));
+    m_ui->openButton->setIcon(QIcon::fromTheme(QStringLiteral("document-open")));
+    m_ui->ghnsButton->setIcon(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")));
 
     GradeReferenceWidget *gradeReferenceWidget = new GradeReferenceWidget();
     gradeReferenceWidget->setMinimumSize(m_widget->width(), 50);
@@ -106,9 +106,9 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
 
     // Signals from the main buttons.
     ParleyDocument* doc = m_mainWindow->parleyDocument();
-    connect(m_ui->newButton,  SIGNAL(clicked()), m_mainWindow, SLOT(slotFileNew()));
-    connect(m_ui->openButton, SIGNAL(clicked()), doc, SLOT(slotFileOpen()));
-    connect(m_ui->ghnsButton, SIGNAL(clicked()), doc, SLOT(slotGHNS()));
+    connect(m_ui->newButton,  &QAbstractButton::clicked, m_mainWindow, &ParleyMainWindow::slotFileNew);
+    connect(m_ui->openButton, &QAbstractButton::clicked, doc, &ParleyDocument::slotFileOpen);
+    connect(m_ui->ghnsButton, &QAbstractButton::clicked, doc, &ParleyDocument::slotGHNS);
 
     // Signals FROM the signal mappers.  The ones TO the signal mappers are
     // handled below.
@@ -117,28 +117,28 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     connect(m_removeSignalMapper,   SIGNAL(mapped(const QString &)),
             this,                   SLOT(slotRemoveButtonClicked(const QString &)));
 
-    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
+    KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
     applyMainWindowSettings(cfg);
 
-    m_themedBackgroundRenderer = new Practice::ThemedBackgroundRenderer(this, "startpagethemecache.bin");
+    m_themedBackgroundRenderer = new Practice::ThemedBackgroundRenderer(this, QStringLiteral("startpagethemecache.bin"));
 
     // Set theme and prepare for future theme changes.
-    connect(Prefs::self(), SIGNAL(configChanged()), this, SLOT(setTheme()));
+    connect(Prefs::self(), &KCoreConfigSkeleton::configChanged, this, &Dashboard::setTheme);
     setTheme();
 
     connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)),
             this,                       SLOT(backgroundChanged(QPixmap)));
-    connect(m_widget, SIGNAL(sizeChanged()), this, SLOT(updateBackground()));
+    connect(m_widget, &Practice::ImageWidget::sizeChanged, this, &Dashboard::updateBackground);
 
     QAction *updateAction = new QAction(this);
-    updateAction->connect(updateAction, SIGNAL(triggered(bool)), this, SLOT(updateWidgets()));
-    actionCollection()->addAction("update_dashboard", updateAction);
+    updateAction->connect(updateAction, &QAction::triggered, this, &Dashboard::updateWidgets);
+    actionCollection()->addAction(QStringLiteral("update_dashboard"), updateAction);
     actionCollection()->setDefaultShortcut(updateAction, QKeySequence(Qt::Key_F5));
 }
 
 Dashboard::~Dashboard()
 {
-    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
+    KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
     saveMainWindowSettings(cfg);
 }
 
@@ -192,7 +192,7 @@ void Dashboard::deleteChildWidgets(QLayoutItem *item)
 
 void Dashboard::populateMap()
 {
-    KConfig parleyConfig("parleyrc");
+    KConfig parleyConfig(QStringLiteral("parleyrc"));
     KConfigGroup recentFilesGroup(&parleyConfig, "Recent Files");
     for (int i = recentFilesGroup.keyList().count() / 2; i > 0 ; i--) {
         QString urlString = recentFilesGroup.readPathEntry("File" + QString::number(i), QString());
@@ -314,7 +314,7 @@ void Dashboard::slotPracticeButtonClicked(const QString& urlString)
     //qDebug() << urlString;
     QUrl url( QUrl::fromLocalFile(urlString) );
     m_openUrl = url;
-    QTimer::singleShot(0, this, SLOT(slotDoubleClickOpen()));
+    QTimer::singleShot(0, this, &Dashboard::slotDoubleClickOpen);
 }
 
 void Dashboard::slotRemoveButtonClicked(const QString& urlString)
@@ -373,7 +373,7 @@ void Dashboard::updateWidgets()
 void Dashboard::updateFontColors()
 {
     QPalette p(QApplication::palette());
-    QColor c = m_themedBackgroundRenderer->fontColor("Start", p.color(QPalette::Active, QPalette::WindowText));
+    QColor c = m_themedBackgroundRenderer->fontColor(QStringLiteral("Start"), p.color(QPalette::Active, QPalette::WindowText));
     p.setColor(QPalette::Base, Qt::transparent);
     p.setColor(QPalette::Text, c);
     p.setColor(QPalette::WindowText, c);
@@ -383,7 +383,7 @@ void Dashboard::updateFontColors()
 void Dashboard::updateBackground()
 {
     m_themedBackgroundRenderer->clearRects();
-    m_themedBackgroundRenderer->addRect("startbackground", QRect(QPoint(), m_widget->size()));
+    m_themedBackgroundRenderer->addRect(QStringLiteral("startbackground"), QRect(QPoint(), m_widget->size()));
     QPixmap pixmap = m_themedBackgroundRenderer->getScaledBackground();
     if (!pixmap.isNull()) {
         m_widget->setPixmap(pixmap);

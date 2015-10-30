@@ -37,7 +37,7 @@ bool ExampleSentenceBackendMode::setTestEntry(TestEntry* current)
     int pos = -1;
     while ((pos = sentence.indexOf(answer)) >= 0) {
         sentence.remove(pos, answer.length());
-        sentence.insert(pos, "<font color=\"#FF0000\"><b>...</b></font>");
+        sentence.insert(pos, QLatin1String("<font color=\"#FF0000\"><b>...</b></font>"));
     }
     m_frontend->setQuestion(sentence);
     return true;

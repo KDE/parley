@@ -33,7 +33,7 @@ AudioWidget::AudioWidget(QWidget *parent) : QWidget(parent)
 //     connect(recordButton, SIGNAL(clicked()), SLOT(recordAudio()));
 
     playButton->setEnabled(false);
-    playButton->setIcon(QIcon::fromTheme("media-playback-start"));
+    playButton->setIcon(QIcon::fromTheme(QStringLiteral("media-playback-start")));
     recordButton->setVisible(false);
 //     recordButton->setEnabled(false);
 //     recordButton->setIcon(QIcon::fromTheme("media-record"));
@@ -87,7 +87,7 @@ void AudioWidget::playAudio()
     m_player->setMedia(soundFile);
     m_player->setVolume(50);
 
-    playButton->setIcon(QIcon::fromTheme("media-playback-stop"));
+    playButton->setIcon(QIcon::fromTheme(QStringLiteral("media-playback-stop")));
     m_player->play();
 }
 
@@ -100,6 +100,6 @@ void AudioWidget::recordAudio()
 
 void AudioWidget::slotPlaybackFinished()
 {
-    playButton->setIcon(QIcon::fromTheme("media-playback-start"));
+    playButton->setIcon(QIcon::fromTheme(QStringLiteral("media-playback-start")));
     playButton->setEnabled(!audioUrlRequester->url().isEmpty());
 }

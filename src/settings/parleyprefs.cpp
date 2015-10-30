@@ -35,14 +35,14 @@ ParleyPrefs::ParleyPrefs(KEduVocDocument *doc, QWidget *parent, const QString &n
     m_doc = doc;
     m_config = config;
 
-    addPage(new KGameThemeSelector(this, config), i18n("Theme"), "games-config-theme");
+    addPage(new KGameThemeSelector(this, config), i18n("Theme"), QStringLiteral("games-config-theme"));
 
     m_generalOptions = new GeneralOptions(0);
-    addPage(m_generalOptions, i18nc("title:window general settings", "General"), "parley", i18n("General Settings"), true);
+    addPage(m_generalOptions, i18nc("title:window general settings", "General"), QStringLiteral("parley"), i18n("General Settings"), true);
 
     m_viewOptions = new ViewOptions(0);
-    addPage(m_viewOptions, i18n("View"), "view-choose", i18n("View Settings"), true);
-    setHelp(QString(), "parley");
+    addPage(m_viewOptions, i18n("View"), QStringLiteral("view-choose"), i18n("View Settings"), true);
+    setHelp(QString(), QStringLiteral("parley"));
 }
 
 bool ParleyPrefs::hasChanged()
@@ -58,7 +58,7 @@ bool ParleyPrefs::isDefault()
 void ParleyPrefs::updateSettings()
 {
     m_generalOptions->updateSettings();
-    emit settingsChanged("");
+    emit settingsChanged(QLatin1String(""));
 }
 
 void ParleyPrefs::updateWidgetsDefault()

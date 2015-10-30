@@ -1,7 +1,7 @@
 install(FILES
     wiktionary_sound.desktop
     wiktionary_sound.py
-    DESTINATION ${DATA_INSTALL_DIR}/parley/plugins)
+    DESTINATION ${KDE_INSTALL_DATADIR}/parley/plugins)
 
 install(FILES
     mwclient/__init__.py  
@@ -15,7 +15,7 @@ install(FILES
     mwclient/page.py
     mwclient/upload.py
     mwclient/README.txt
-    DESTINATION ${DATA_INSTALL_DIR}/parley/plugins/mwclient)
+    DESTINATION ${KDE_INSTALL_DATADIR}/parley/plugins/mwclient)
 
 install(FILES
     mwclient/simplejson/__init__.py
@@ -25,4 +25,4 @@ install(FILES
     mwclient/simplejson/scanner.py
     mwclient/simplejson/ordered_dict.py
     mwclient/simplejson/tool.py
-    DESTINATION ${DATA_INSTALL_DIR}/parley/plugins/mwclient/simplejson)
+    DESTINATION ${KDE_INSTALL_DATADIR}/parley/plugins/mwclient/simplejson)

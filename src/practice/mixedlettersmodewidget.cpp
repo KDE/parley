@@ -33,7 +33,7 @@ MixedLettersModeWidget::MixedLettersModeWidget(GuiFrontend *frontend, QWidget *p
     : WrittenPracticeWidget(frontend, parent)
 {
     m_ui->mixedSolutionLabel->show();
-    connect(m_ui->answerEdit, SIGNAL(textChanged(QString)), this, SLOT(updatePixmap()));
+    connect(m_ui->answerEdit, &QLineEdit::textChanged, this, &MixedLettersModeWidget::updatePixmap);
 }
 
 void MixedLettersModeWidget::setSolutionFont(const QFont& font)

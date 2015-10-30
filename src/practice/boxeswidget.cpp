@@ -35,10 +35,10 @@ BoxesWidget::BoxesWidget(QWidget* parent)
 void BoxesWidget::setRenderer(ThemedBackgroundRenderer *renderer)
 {
     m_renderer = renderer;
-    m_rect = m_renderer->getRectForId("boxes-noscale").toRect();
+    m_rect = m_renderer->getRectForId(QStringLiteral("boxes-noscale")).toRect();
     m_fixedSize = true;
     if (!m_rect.isValid()) {
-        m_rect = m_renderer->getRectForId("boxes").toRect();
+        m_rect = m_renderer->getRectForId(QStringLiteral("boxes")).toRect();
         m_fixedSize = false;
     }
     updatePixmap();
@@ -83,7 +83,7 @@ void BoxesWidget::updatePixmap()
     for (int i = 0; i < m_boxCount; i++) {
         QString id = "box-" + QString::number(i + 1);
         if (i + 1 == m_currentBox) {
-            id += "-active";
+            id += QLatin1String("-active");
         }
         drawElement(&p, id);
     }

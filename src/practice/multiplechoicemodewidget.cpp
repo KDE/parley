@@ -40,8 +40,8 @@ MultiplechoiceModeWidget::MultiplechoiceModeWidget(GuiFrontend *frontend, QWidge
         addAction(action);
         m_actions.append(action);
     }
-    connect(frontend, SIGNAL(continueAction()), this, SIGNAL(stopAudio()));
-    connect(frontend, SIGNAL(skipAction()), this, SIGNAL(stopAudio()));
+    connect(frontend, &AbstractFrontend::continueAction, this, &AbstractModeWidget::stopAudio);
+    connect(frontend, &AbstractFrontend::skipAction, this, &AbstractModeWidget::stopAudio);
 
 }
 
@@ -125,7 +125,7 @@ void MultiplechoiceModeWidget::setNumberOfRadioButtons(const int numberOfChoices
         verticalLayout->addWidget(radio_button);
         m_choiceButtons.append(radio_button);
         if (i < 5) {
-            connect(m_actions.at(i), SIGNAL(triggered()), radio_button, SLOT(click()));
+            connect(m_actions.at(i), &QAction::triggered, radio_button, &QAbstractButton::click);
         }
         connect(radio_button, &QRadioButton::clicked, this, &MultiplechoiceModeWidget::continueAction);
         radio_button->installEventFilter(this);

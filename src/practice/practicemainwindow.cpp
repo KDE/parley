@@ -40,8 +40,8 @@ PracticeMainWindow::PracticeMainWindow(SessionManagerBase* sessionManager,
     : KXmlGuiWindow(mainWindow), m_mainWindow(mainWindow)
 {
     // KXmlGui
-    setXMLFile("practiceui.rc");
-    setObjectName("Practice");
+    setXMLFile(QStringLiteral("practiceui.rc"));
+    setObjectName(QStringLiteral("Practice"));
 
     m_guiFrontend = new GuiFrontend(this);
     setCentralWidget(m_guiFrontend->widget());
@@ -57,7 +57,7 @@ PracticeMainWindow::PracticeMainWindow(SessionManagerBase* sessionManager,
     connect(this, &PracticeMainWindow::enterPressed, m_guiFrontend, &GuiFrontend::continueAction);
     connect(m_stateMachine, &PracticeStateMachine::practiceFinished, this, &PracticeMainWindow::practiceFinished);
 
-    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
+    KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
     applyMainWindowSettings(cfg);
 
     I18N_NOOP("I knew it well");
@@ -70,7 +70,7 @@ PracticeMainWindow::~PracticeMainWindow()
     m_floatingToolBar = 0;
     toggleFullScreenMode(false);
 
-    KConfigGroup cfg(KSharedConfig::openConfig("parleyrc"), objectName());
+    KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
     saveMainWindowSettings(cfg);
 }
 
@@ -78,9 +78,9 @@ void PracticeMainWindow::initActions()
 {
     QAction* stopPracticeAction = new QAction(this);
     stopPracticeAction->setText(i18n("Stop Practice"));
-    stopPracticeAction->setIcon(QIcon::fromTheme("practice-stop"));
+    stopPracticeAction->setIcon(QIcon::fromTheme(QStringLiteral("practice-stop")));
     stopPracticeAction->setToolTip(i18n("Stop practicing"));
-    actionCollection()->addAction("practice_stop", stopPracticeAction);
+    actionCollection()->addAction(QStringLiteral("practice_stop"), stopPracticeAction);
     connect(stopPracticeAction, &QAction::triggered, m_stateMachine, &PracticeStateMachine::slotPracticeFinished);
 
     m_fullScreenAction = KStandardAction::fullScreen(this,
@@ -91,7 +91,7 @@ void PracticeMainWindow::initActions()
     QAction* toggleAnswerState = new QAction(this);
     toggleAnswerState->setText(i18n("Change answer to right/wrong"));
     toggleAnswerState->setToolTip(i18n("When you answered, Parley will display that the answer was right or wrong.\nThis shortcut changes how the answer is counted."));
-    actionCollection()->addAction("toggle_answer_state", toggleAnswerState);
+    actionCollection()->addAction(QStringLiteral("toggle_answer_state"), toggleAnswerState);
     toggleAnswerState->setShortcut(Qt::CTRL + Qt::Key_Space);
     connect(toggleAnswerState, &QAction::triggered, m_guiFrontend, &GuiFrontend::toggleResultState);
 
@@ -147,7 +147,7 @@ bool PracticeMainWindow::event(QEvent *event)
 void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)
 {
     KToggleFullScreenAction::setFullScreen(m_mainWindow, fullScreen);
-    m_mainWindow->toolBar("practiceToolBar")->setVisible(!fullScreen);
+    m_mainWindow->toolBar(QStringLiteral("practiceToolBar"))->setVisible(!fullScreen);
     m_mainWindow->menuBar()->setVisible(!fullScreen);
     if ( m_floatingToolBar != 0 ) {
         m_floatingToolBar->setVisible(fullScreen);

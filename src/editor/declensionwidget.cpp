@@ -42,7 +42,7 @@ DeclensionWidget::DeclensionWidget(QWidget *parent) : QWidget(parent)
     setupLineEdits();
 
     foreach(int index, m_DeclensionLineEdits.keys()) {
-        connect(m_DeclensionLineEdits.value(index), SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
+        connect(m_DeclensionLineEdits.value(index), &QLineEdit::textChanged, this, &DeclensionWidget::textChanged);
     }
 }
 

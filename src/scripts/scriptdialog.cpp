@@ -61,7 +61,7 @@ ScriptDialog::ScriptDialog(ScriptManager * scriptManager)
                       KPluginSelector::ReadConfigFile,
                       QString(),
                       QString(),
-                      KSharedConfig::openConfig("parleyrc"));
+                      KSharedConfig::openConfig(QStringLiteral("parleyrc")));
 }
 
 ScriptDialog::~ScriptDialog()

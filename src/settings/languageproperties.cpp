@@ -33,14 +33,14 @@ LanguageProperties::LanguageProperties(KEduVocDocument* doc, QWidget * parent)
 
     QAbstractButton * addLangButton(
         buttonBox()->addButton(i18n("Add language"), QDialogButtonBox::ActionRole) );
-    addLangButton->setIcon(QIcon::fromTheme("list-add"));
+    addLangButton->setIcon(QIcon::fromTheme(QStringLiteral("list-add")));
 
     QAbstractButton * removeLangButton(
         buttonBox()->addButton(i18n("Remove language"), QDialogButtonBox::ActionRole) );
-    removeLangButton->setIcon(QIcon::fromTheme("list-remove") );
+    removeLangButton->setIcon(QIcon::fromTheme(QStringLiteral("list-remove")) );
 
-    connect(addLangButton, SIGNAL(clicked()), this, SLOT(slotAppendIdentifier()));
-    connect(removeLangButton, SIGNAL(clicked()), this, SLOT(slotDeleteIdentifier()));
+    connect(addLangButton, &QAbstractButton::clicked, this, &LanguageProperties::slotAppendIdentifier);
+    connect(removeLangButton, &QAbstractButton::clicked, this, &LanguageProperties::slotDeleteIdentifier);
 
     for (int i = 0; i < m_doc->identifierCount(); i++) {
         createPage(i);
@@ -69,7 +69,7 @@ KPageWidgetItem*  LanguageProperties::createPage(int i)
     m_pages.append(editPage);
     addPage(editPage);
 
-    editPage->setIcon(QIcon::fromTheme("set-language"));
+    editPage->setIcon(QIcon::fromTheme(QStringLiteral("set-language")));
 
     connect(page->identifierNameLineEdit, &QLineEdit::textChanged, this, &LanguageProperties::pageNameChanged);
     connect(this, &LanguageProperties::accepted, page, &LanguagePropertiesPage::accept);

@@ -68,7 +68,7 @@ KGameThemeSelector::~KGameThemeSelector()
 void KGameThemeSelectorPrivate::setupData(KConfigSkeleton * aconfig, KGameThemeSelector::NewStuffState knsflags)
 {
     ui.setupUi(q_ptr);
-    ui.getNewButton->setIcon(QIcon::fromTheme("get-hot-new-stuff"));
+    ui.getNewButton->setIcon(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")));
 
     //The lineEdit widget holds our theme path for automatic connection via KConfigXT.
     //But the user should not manipulate it directly, so we hide it.
@@ -81,7 +81,7 @@ void KGameThemeSelectorPrivate::setupData(KConfigSkeleton * aconfig, KGameThemeS
     }
 
     //Get the last used theme path from the KConfigSkeleton
-    KConfigSkeletonItem * configItem = aconfig->findItem("Theme");
+    KConfigSkeletonItem * configItem = aconfig->findItem(QStringLiteral("Theme"));
     QString lastUsedTheme = configItem->property().toString();
 
     //Now get our themes into the list widget
@@ -122,7 +122,7 @@ void KGameThemeSelectorPrivate::findThemes(const QString &initialSelection)
         KGameTheme* atheme = new KGameTheme(groupName);
 
         if (atheme->load(themePath)) {
-            QString themeName = atheme->themeProperty("Name");
+            QString themeName = atheme->themeProperty(QStringLiteral("Name"));
             //Add underscores to avoid duplicate names.
             while (themeMap.contains(themeName))
                 themeName += '_';
@@ -142,10 +142,10 @@ void KGameThemeSelectorPrivate::findThemes(const QString &initialSelection)
 
     if (!initialFound) {
         // TODO change this if we ever change KGameTheme::loadDefault
-        QString defaultPath = "themes/default.desktop";
+        QString defaultPath = QStringLiteral("themes/default.desktop");
         foreach(KGameTheme * theme, themeMap) {
             if (theme->path().endsWith(defaultPath)) {
-                const QList<QListWidgetItem *> itemList = ui.themeList->findItems(theme->themeProperty("Name"), Qt::MatchExactly);
+                const QList<QListWidgetItem *> itemList = ui.themeList->findItems(theme->themeProperty(QStringLiteral("Name")), Qt::MatchExactly);
                 // never can be != 1 but better safe than sorry
                 if (itemList.count() == 1) {
                     ui.themeList->setCurrentItem(itemList.first());
@@ -169,12 +169,12 @@ void KGameThemeSelectorPrivate::_k_updatePreview()
     }
     ui.kcfg_Theme->setText(seltheme->fileName());
 
-    QString authstr("Author");
-    QString contactstr("AuthorEmail");
-    QString descstr("Description");
+    QString authstr(QStringLiteral("Author"));
+    QString contactstr(QStringLiteral("AuthorEmail"));
+    QString descstr(QStringLiteral("Description"));
     QString emailstr;
     if (!seltheme->themeProperty(contactstr).isEmpty()) {
-        emailstr = QString("<a href=\"mailto:%1\">%1</a>").arg(seltheme->themeProperty(contactstr));
+        emailstr = QStringLiteral("<a href=\"mailto:%1\">%1</a>").arg(seltheme->themeProperty(contactstr));
     }
 
     ui.themeAuthor->setText(seltheme->themeProperty(authstr));
@@ -202,7 +202,7 @@ void KGameThemeSelectorPrivate::_k_updateThemeList(const QString& strTheme)
 
 void KGameThemeSelectorPrivate::_k_openKNewStuffDialog()
 {
-    KNS3::DownloadDialog dialog("parley-themes.knsrc",  q_ptr);
+    KNS3::DownloadDialog dialog(QStringLiteral("parley-themes.knsrc"),  q_ptr);
     dialog.exec();
     if (!dialog.changedEntries().isEmpty())
         findThemes(ui.kcfg_Theme->text());

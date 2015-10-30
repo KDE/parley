@@ -116,7 +116,7 @@ void LatexDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
             if (text.startsWith(QLatin1String("$$")) && text.endsWith(QLatin1String("$$"))) {
                 entry->setText(text.mid(2, text.count() - 4));
                 m_checkBox->setChecked(true);
-            } else if (text.startsWith(QString::fromUtf8("§§")) && text.endsWith(QString::fromUtf8("§§"))) {
+            } else if (text.startsWith(QStringLiteral("§§")) && text.endsWith(QStringLiteral("§§"))) {
                 entry->setText(text.mid(2, text.count() - 4));
                 m_checkBox->setChecked(false);
             } else {
@@ -140,7 +140,7 @@ void LatexDelegate::setModelData(QWidget * editor, QAbstractItemModel * model, c
             if (m_checkBox->isChecked()) {
                 model->setData(index, QString("$$" + text + "$$"));
             } else {
-                model->setData(index, QString(QString::fromUtf8("§§") + text + QString::fromUtf8("§§")));
+                model->setData(index, QString(QStringLiteral("§§") + text + QStringLiteral("§§")));
             }
         }
     }

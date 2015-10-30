@@ -26,7 +26,7 @@
 using namespace UnitTestUtilities;
 
 TemporaryVocDoc::TemporaryVocDoc()
-    :QTemporaryFile( "XXXXXX.kvtml" )
+    :QTemporaryFile( QStringLiteral("XXXXXX.kvtml") )
 {
     this->open();
     this->close();

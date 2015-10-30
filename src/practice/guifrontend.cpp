@@ -33,7 +33,7 @@
 using namespace Practice;
 
 GuiFrontend::GuiFrontend(QWidget* parent)
-    : AbstractFrontend(parent), m_modeWidget(0), m_lastImage("invalid"), m_currentBox(0), m_newBoxIfCorrect(0), m_newBoxIfWrong(0)
+    : AbstractFrontend(parent), m_modeWidget(0), m_lastImage(QStringLiteral("invalid")), m_currentBox(0), m_newBoxIfCorrect(0), m_newBoxIfWrong(0)
 {
     m_widget = new ImageWidget();
     m_widget->setScalingEnabled(false, false);
@@ -44,7 +44,7 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     m_ui->setupUi(m_widget);
     m_ui->centralPracticeWidget->setLayout(new QHBoxLayout());
 
-    m_themedBackgroundRenderer = new ThemedBackgroundRenderer(this, "practicethemecache.bin");
+    m_themedBackgroundRenderer = new ThemedBackgroundRenderer(this, QStringLiteral("practicethemecache.bin"));
 
     connect(Prefs::self(), &Prefs::configChanged, this, &GuiFrontend::setTheme);
     setTheme();
@@ -63,7 +63,7 @@ GuiFrontend::GuiFrontend(QWidget* parent)
     m_ui->imageWidget->installEventFilter(this);
     m_ui->rightContainer->installEventFilter(this);
 
-    QTimer::singleShot(0, this, SLOT(updateBackground()));
+    QTimer::singleShot(0, this, &GuiFrontend::updateBackground);
 }
 
 GuiFrontend::~GuiFrontend()
@@ -283,7 +283,7 @@ void GuiFrontend::setImage(const QUrl& image)
     }
     QPixmap pixmap(image.path());
     if (pixmap.isNull()) {
-        m_ui->imageWidget->setPixmap(m_themedBackgroundRenderer->getPixmapForId("image-placeholder", QSize(150, 150)));
+        m_ui->imageWidget->setPixmap(m_themedBackgroundRenderer->getPixmapForId(QStringLiteral("image-placeholder"), QSize(150, 150)));
     } else {
         m_ui->imageWidget->setPixmap(pixmap);
     }
@@ -377,10 +377,10 @@ void GuiFrontend::toggleResultState()
 void GuiFrontend::updateBackground()
 {
     m_themedBackgroundRenderer->clearRects();
-    m_themedBackgroundRenderer->addRect("background", QRect(QPoint(), m_widget->size()));
-    m_themedBackgroundRenderer->addRect("image", m_ui->imageWidget->frameGeometry());
-    m_themedBackgroundRenderer->addRect("central", m_ui->centralPracticeWidget->frameGeometry());
-    m_themedBackgroundRenderer->addRect("buttons", m_ui->rightContainer->frameGeometry());
+    m_themedBackgroundRenderer->addRect(QStringLiteral("background"), QRect(QPoint(), m_widget->size()));
+    m_themedBackgroundRenderer->addRect(QStringLiteral("image"), m_ui->imageWidget->frameGeometry());
+    m_themedBackgroundRenderer->addRect(QStringLiteral("central"), m_ui->centralPracticeWidget->frameGeometry());
+    m_themedBackgroundRenderer->addRect(QStringLiteral("buttons"), m_ui->rightContainer->frameGeometry());
     QPixmap pixmap = m_themedBackgroundRenderer->getScaledBackground();
     if (!pixmap.isNull()) {
         m_widget->setPixmap(pixmap);
@@ -391,25 +391,25 @@ void GuiFrontend::updateBackground()
 void GuiFrontend::updateFontColors()
 {
     QPalette p(QApplication::palette());
-    QColor c = m_themedBackgroundRenderer->fontColor("Outer", p.color(QPalette::Active, QPalette::WindowText));
+    QColor c = m_themedBackgroundRenderer->fontColor(QStringLiteral("Outer"), p.color(QPalette::Active, QPalette::WindowText));
     p.setColor(QPalette::WindowText, c);
     m_ui->lessonLabel->setPalette(p);
     m_ui->gradeLabel->setPalette(p);
 
     if (m_modeWidget) {
         p = QApplication::palette();
-        c = m_themedBackgroundRenderer->fontColor("Central", p.color(QPalette::Active, QPalette::WindowText));
+        c = m_themedBackgroundRenderer->fontColor(QStringLiteral("Central"), p.color(QPalette::Active, QPalette::WindowText));
         p.setColor(QPalette::Active, QPalette::WindowText, c);
         p.setColor(QPalette::Inactive, QPalette::WindowText, c);
         m_modeWidget->setPalette(p);
 
         KColorScheme scheme(QPalette::Active);
         QPalette correctPalette = QApplication::palette();
-        c = m_themedBackgroundRenderer->fontColor("Correct", scheme.foreground(KColorScheme::PositiveText).color());
+        c = m_themedBackgroundRenderer->fontColor(QStringLiteral("Correct"), scheme.foreground(KColorScheme::PositiveText).color());
         correctPalette.setColor(QPalette::WindowText, c);
         correctPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::PositiveText).color());
         QPalette wrongPalette = QApplication::palette();
-        c = m_themedBackgroundRenderer->fontColor("Wrong", scheme.foreground(KColorScheme::NegativeText).color());
+        c = m_themedBackgroundRenderer->fontColor(QStringLiteral("Wrong"), scheme.foreground(KColorScheme::NegativeText).color());
         wrongPalette.setColor(QPalette::WindowText, c);
         wrongPalette.setColor(QPalette::Text, scheme.foreground(KColorScheme::NegativeText).color());
 

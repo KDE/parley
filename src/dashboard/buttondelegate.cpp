@@ -31,7 +31,7 @@ ButtonDelegate::ButtonDelegate(QAbstractItemView *itemView, Dashboard *parent)
     : QStyledItemDelegate(itemView), m_rightMargin(0), m_buttonHeight(0), m_dashboard(parent), m_itemView(itemView)
 {
     m_editButton = new QToolButton(itemView->viewport());
-    m_editButton->setIcon(QIcon::fromTheme("document-edit"));
+    m_editButton->setIcon(QIcon::fromTheme(QStringLiteral("document-edit")));
     m_editButton->setToolTip(i18n("Open this vocabulary collection in the editor"));
     m_editButton->resize(m_editButton->sizeHint());
     m_editButton->setAutoRaise(true);
@@ -39,7 +39,7 @@ ButtonDelegate::ButtonDelegate(QAbstractItemView *itemView, Dashboard *parent)
     m_rightMargin = m_editButton->sizeHint().width() + margin;
     m_buttonHeight = m_editButton->sizeHint().height();
 
-    connect(m_editButton, SIGNAL(clicked()), this, SLOT(slotEdit()));
+    connect(m_editButton, &QAbstractButton::clicked, this, &ButtonDelegate::slotEdit);
 }
 
 ButtonDelegate::~ButtonDelegate()

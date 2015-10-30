@@ -195,7 +195,7 @@ ImageWidget::ImageWidget(QWidget *parent)
     m_scaledPixmapOutOfDate = false;
     connect(m_scaleTimer, SIGNAL(timeout()), this, SLOT(scalePixmap()));
     connect(m_animation, SIGNAL(valueChanged(qreal)), this, SLOT(update()));
-    connect(m_animation, SIGNAL(finished()), this, SLOT(animationFinished()));
+    connect(m_animation, &QTimeLine::finished, this, &ImageWidget::animationFinished);
 }
 
 void ImageWidget::setPixmap(const QPixmap& pixmap)

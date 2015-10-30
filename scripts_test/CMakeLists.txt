@@ -1,6 +1,6 @@
 project (scripts)
 
-install(FILES myscript.py DESTINATION ${DATA_INSTALL_DIR}/parleyscripts/)
+install(FILES myscript.py DESTINATION ${KDE_INSTALL_DATADIR}/parleyscripts/)
 
 set(scripts_SRCS main.cpp scripts.cpp translationscript.cpp)
 

@@ -57,7 +57,7 @@ KGameTheme::~KGameTheme()
 
 bool KGameTheme::loadDefault()
 {
-    return load("themes/default.desktop"); //TODO make this editable to match custom directories.
+    return load(QStringLiteral("themes/default.desktop")); //TODO make this editable to match custom directories.
     // If this ever changes change findThemes in KGameThemeSelectorPrivate too
 }
 

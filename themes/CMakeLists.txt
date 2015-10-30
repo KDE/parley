@@ -5,8 +5,8 @@ install(FILES
    bees_theme.svgz
    bees_theme.desktop
    bees_theme_preview.jpg
-   # DESTINATION ${DATA_INSTALL_DIR}/parley/themes)
-   DESTINATION ${KXMLGUI_INSTALL_DIR}/parley/themes)
+   # DESTINATION ${KDE_INSTALL_DATADIR}/parley/themes)
+   DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/parley/themes)
 
 #@todo frameworks one of these directories is wrong
 install(FILES
@@ -16,5 +16,5 @@ install(FILES
    bees_theme.svgz
    bees_theme.desktop
    bees_theme_preview.jpg
-   DESTINATION ${DATA_INSTALL_DIR}/parley/themes)
-   # DESTINATION ${KXMLGUI_INSTALL_DIR}/parley/themes)
+   DESTINATION ${KDE_INSTALL_DATADIR}/parley/themes)
+   # DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/parley/themes)

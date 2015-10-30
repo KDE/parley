@@ -71,8 +71,8 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
 
     // keyboard layout
     // try to talk to kxbk - get a list of keyboard layouts
-    QDBusInterface kxbk("org.kde.keyboard", "/Layouts", "org.kde.KeyboardLayouts");
-    QDBusReply<QStringList> reply = kxbk.call("getLayoutsList");
+    QDBusInterface kxbk(QStringLiteral("org.kde.keyboard"), QStringLiteral("/Layouts"), QStringLiteral("org.kde.KeyboardLayouts"));
+    QDBusReply<QStringList> reply = kxbk.call(QStringLiteral("getLayoutsList"));
     if (reply.isValid()) {
         QStringList layouts = reply;
         layouts.prepend(QString());
@@ -80,7 +80,7 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
         keyboardLayoutComboBox->addItems(layouts);
         keyboardLayoutComboBox->setEnabled(true);
 
-        QDBusReply<QString> currentLayout = kxbk.call("getCurrentLayout");
+        QDBusReply<QString> currentLayout = kxbk.call(QStringLiteral("getCurrentLayout"));
         keyboardLayoutComboBox->setCurrentIndex(keyboardLayoutComboBox->findText(currentLayout));
         if (m_identifierIndex < m_doc->identifierCount()) {
             if (!settings.keyboardLayout().isEmpty()) {
@@ -192,7 +192,7 @@ void LanguagePropertiesPage::loadGrammarFromDocument()
     if (m_identifierIndex < m_doc->identifierCount()) {
         int i = 1;
         foreach(const QString & tenseName, m_doc->identifier(m_identifierIndex).tenseList()) {
-            tenseList->addItem(QString("%1").arg(i++, 2).append(TENSE_TAG).append(tenseName));
+            tenseList->addItem(QStringLiteral("%1").arg(i++, 2).append(TENSE_TAG).append(tenseName));
             tenseIndex.append(i);
         }
     }
@@ -301,7 +301,7 @@ void LanguagePropertiesPage::accept()
     QString str;
     for (int i = 0; i < (int) tenseList->count(); i++) {
         str = tenseList->item(i)->text();
-        tenses.append(str.mid(str.indexOf(TENSE_TAG) + QString(TENSE_TAG).length()));
+        tenses.append(str.mid(str.indexOf(TENSE_TAG) + QStringLiteral(TENSE_TAG).length()));
     }
 
     m_doc->identifier(m_identifierIndex).setTenseList(tenses);
@@ -364,7 +364,7 @@ void LanguagePropertiesPage::slotNewTense()
 
     QString str;
     int i = tenseList->count() + 1;
-    tenseList->addItem(QString("%1").arg(i, 2).append(TENSE_TAG).append(getTense.simplified()));
+    tenseList->addItem(QStringLiteral("%1").arg(i, 2).append(TENSE_TAG).append(getTense.simplified()));
     tenseIndex.append(-(i - 1));
 
     m_currentTense = tenseList->count();
@@ -377,7 +377,7 @@ void LanguagePropertiesPage::slotModifyTense()
 {
     if (tenseList->count() != 0 && (int) tenseList->count() > m_currentTense) {
         QString str = tenseList->item(m_currentTense)->text();
-        str = str.mid(str.indexOf(TENSE_TAG) + QString(TENSE_TAG).length());
+        str = str.mid(str.indexOf(TENSE_TAG) + QStringLiteral(TENSE_TAG).length());
 
         bool ok;
         QString getTense = QInputDialog::getText(this, i18n("Tense Name"), i18n("Enter name of tense:"), QLineEdit::Normal, str, &ok);
@@ -385,7 +385,7 @@ void LanguagePropertiesPage::slotModifyTense()
             return;
 
         int i = m_currentTense + 1;
-        tenseList->item(m_currentTense)->setText(QString("%1").arg(i, 2).append(TENSE_TAG).append(getTense.simplified()));
+        tenseList->item(m_currentTense)->setText(QStringLiteral("%1").arg(i, 2).append(TENSE_TAG).append(getTense.simplified()));
     }
 }
 
@@ -394,8 +394,8 @@ void LanguagePropertiesPage::updateListBox(int start)
     QString str;
     for (int i = start; i < (int) tenseList->count(); i++) {
         str = tenseList->item(i)->text();
-        str = str.mid(str.indexOf(TENSE_TAG) + QString(TENSE_TAG).length());
-        tenseList->item(i)->setText(QString("%1").arg(i + 1, 2).append(TENSE_TAG).append(str));
+        str = str.mid(str.indexOf(TENSE_TAG) + QStringLiteral(TENSE_TAG).length());
+        tenseList->item(i)->setText(QStringLiteral("%1").arg(i + 1, 2).append(TENSE_TAG).append(str));
     }
 }
 

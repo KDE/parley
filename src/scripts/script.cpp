@@ -77,8 +77,8 @@ void Script::activate()
         qDebug() << "Script not activated";
         QString msg = action->errorMessage();
         QString trace = action->errorTrace();
-        msg.replace('<', "&lt;").replace('\n', "<br/>");
-        trace.replace('<', "&lt;").replace('\n', "<br/>");
+        msg.replace('<', QLatin1String("&lt;")).replace('\n', QLatin1String("<br/>"));
+        trace.replace('<', QLatin1String("&lt;")).replace('\n', QLatin1String("<br/>"));
         m_errorMessage = "<p><strong>" + i18n("Error in file %1 at line %2:", fileName(),
                                               action->errorLineNo()) + "</strong><br/>" + msg + "<br/><strong>"
                          + i18nc("debug information in error message", "Backtrace:") +

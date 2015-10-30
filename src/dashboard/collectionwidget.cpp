@@ -77,8 +77,8 @@ void RemoveButton::paintEvent(QPaintEvent*)
     painter.setBrush(brush);
 
     painter.drawEllipse(1, 1, height() - 1, height() - 1);
-    painter.setFont( QFont( "Helvetica", 7, QFont::Bold, false));
-    painter.drawText(2, 1, height() - 2, height() - 1, Qt::AlignCenter, "x");
+    painter.setFont( QFont( QStringLiteral("Helvetica"), 7, QFont::Bold, false));
+    painter.drawText(2, 1, height() - 2, height() - 1, Qt::AlignCenter, QStringLiteral("x"));
 }
 
 
@@ -181,7 +181,7 @@ void CollectionWidget::setupWidget(WordCount *dueWords)
     m_barWidget->setFixedSize(COLLWIDTH - 10, 20);
     mainLayout->addWidget(m_barWidget);
     m_practiceButton = new QPushButton(this);
-    m_practiceButton->setStyleSheet("QPushButton {border: none; margin: 0px; padding: 0px;}");
+    m_practiceButton->setStyleSheet(QStringLiteral("QPushButton {border: none; margin: 0px; padding: 0px;}"));
 
     // buttonLayout is the horizontal layout for the bottom line in the
     // collection widget: delete button, practice button, etc

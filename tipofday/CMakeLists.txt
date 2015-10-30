@@ -1,4 +1,4 @@
 install(FILES
    tips
-   DESTINATION ${DATA_INSTALL_DIR}/parley)
+   DESTINATION ${KDE_INSTALL_DATADIR}/parley)
 

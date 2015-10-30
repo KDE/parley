@@ -39,12 +39,12 @@ int main(int argc, char* argv[])
 
     /* for migration*/
     QStringList configFiles;
-    configFiles << QLatin1String("parleyrc");
-    Kdelibs4ConfigMigrator migrator(QLatin1String("parley"));
+    configFiles << QStringLiteral("parleyrc");
+    Kdelibs4ConfigMigrator migrator(QStringLiteral("parley"));
     migrator.setConfigFiles(configFiles);
     migrator.migrate();
 
-    KAboutData aboutData("parley",  ki18n("Parley").toString(),  PARLEY_VERSION_STRING );
+    KAboutData aboutData(QStringLiteral("parley"),  ki18n("Parley").toString(),  PARLEY_VERSION_STRING );
     aboutData.setShortDescription( ki18n("Vocabulary Trainer").toString() );
     aboutData.setLicense( KAboutLicense::GPL );
     aboutData.setCopyrightStatement( ki18n("© 1999-2002\tEwald Arnold\n"
@@ -52,40 +52,40 @@ int main(int argc, char* argv[])
                                            "© 2004-2007\tPeter Hedlund\n"
                                            "© 2007-2010\tFrederik Gladhorn\n").toString() );
     aboutData.setOtherText( ki18n("Helps you train your vocabulary").toString() );
-    aboutData.setHomepage( "http://edu.kde.org/parley" );
+    aboutData.setHomepage( QStringLiteral("http://edu.kde.org/parley") );
     aboutData.setBugAddress( "submit@bugs.kde.org");
 
     aboutData.addAuthor(ki18n("Inge Wallin").toString(),
                         ki18n("Developer and Co-maintainer").toString(),
-                        "inge@lysator.liu.se");
+                        QStringLiteral("inge@lysator.liu.se"));
 
     aboutData.addAuthor(ki18n("Amarvir Singh").toString(),
                         ki18n("Developer and Co-maintainer").toString(),
-                        "amarvir.ammu.93@gmail.com");
+                        QStringLiteral("amarvir.ammu.93@gmail.com"));
 
     aboutData.addAuthor(ki18n("Frederik Gladhorn").toString(),
                         ki18n("Developer, former maintainer").toString(),
-                        "gladhorn@kde.org");
+                        QStringLiteral("gladhorn@kde.org"));
 
     aboutData.addAuthor(ki18n("Daniel Laidig").toString(),
                         ki18n("Developer").toString(),
-                        "d.laidig@gmx.de");
+                        QStringLiteral("d.laidig@gmx.de"));
 
     aboutData.addAuthor(ki18n("David Capel").toString(),
                         ki18n("Practice Dialogs").toString(),
-                        "wot.narg@gmail.com");
+                        QStringLiteral("wot.narg@gmail.com"));
 
     aboutData.addAuthor(ki18n("Avgoustinos Kadis").toString(),
                         ki18n("Scripting").toString(),
-                        "avgoustinos.kadis@kdemail.net");
+                        QStringLiteral("avgoustinos.kadis@kdemail.net"));
 
     aboutData.addAuthor(ki18n("Peter Hedlund").toString(),
                         ki18n("Countless fixes, former maintainer, port to KDE4").toString(),
-                        "peter.hedlund@kdemail.net");
+                        QStringLiteral("peter.hedlund@kdemail.net"));
 
     aboutData.addAuthor(ki18n("Ewald Arnold").toString(), ki18n("Original Author").toString(),
-                        "kvoctrain@ewald-arnold.de",
-                        "http://www.ewald-arnold.de");
+                        QStringLiteral("kvoctrain@ewald-arnold.de"),
+                        QStringLiteral("http://www.ewald-arnold.de"));
 
     aboutData.addCredit(ki18n("Lee Olson").toString(),
                         ki18n("Artwork and Oxygen Icons").toString());
@@ -104,9 +104,9 @@ int main(int argc, char* argv[])
 
     KAboutData::setApplicationData(aboutData);
 
-    QApplication::setApplicationName("parley");
+    QApplication::setApplicationName(QStringLiteral("parley"));
     QApplication::setApplicationVersion(PARLEY_VERSION_STRING);
-    QApplication::setOrganizationDomain("kde.org");
+    QApplication::setOrganizationDomain(QStringLiteral("kde.org"));
     QApplication::setApplicationDisplayName(i18n("Parley"));
     QApplication app(argc, argv);
 

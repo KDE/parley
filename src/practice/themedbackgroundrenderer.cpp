@@ -33,7 +33,7 @@ ThemedBackgroundRenderer::ThemedBackgroundRenderer(QObject* parent, const QStrin
     m_timer.setSingleShot(true);
     m_timer.setInterval(1000);
     connect(&m_timer, &QTimer::timeout, this, &ThemedBackgroundRenderer::updateBackgroundTimeout);
-    connect(&m_watcher, SIGNAL(finished()), this, SLOT(renderingFinished()));
+    connect(&m_watcher, &QFutureWatcherBase::finished, this, &ThemedBackgroundRenderer::renderingFinished);
 }
 
 ThemedBackgroundRenderer::~ThemedBackgroundRenderer()
@@ -105,10 +105,10 @@ QPixmap ThemedBackgroundRenderer::getScaledBackground()
 QColor ThemedBackgroundRenderer::fontColor(const QString& context, const QColor& fallback)
 {
     QString text = m_theme->property("X-Parley-Font-Color-" + context).toLower();
-    if (text.length() == 6 && text.contains(QRegExp("[0-9a-f]{6}"))) {
-        return QColor(text.mid(0, 2).toInt(0, 16),
-                      text.mid(2, 2).toInt(0, 16),
-                      text.mid(4, 2).toInt(0, 16));
+    if (text.length() == 6 && text.contains(QRegExp(QStringLiteral("[0-9a-f]{6}")))) {
+        return QColor(text.midRef(0, 2).toInt(0, 16),
+                      text.midRef(2, 2).toInt(0, 16),
+                      text.midRef(4, 2).toInt(0, 16));
 
     }
 
@@ -230,17 +230,17 @@ QImage ThemedBackgroundRenderer::renderBackground(bool fastScale)
 
 void ThemedBackgroundRenderer::renderRect(const QString& name, const QRect& rect, QPainter *p, bool fastScale)
 {
-    renderItem(name, "center", rect, p, fastScale, Rect, Qt::IgnoreAspectRatio, Center, Centered, true);
-    renderItem(name, "center-ratio", rect, p, fastScale, Rect, Qt::IgnoreAspectRatio, Center, Centered, true);
-    renderItem(name, "center-noscale", rect, p, fastScale, NoScale, Qt::IgnoreAspectRatio, Center, Centered, true);
+    renderItem(name, QStringLiteral("center"), rect, p, fastScale, Rect, Qt::IgnoreAspectRatio, Center, Centered, true);
+    renderItem(name, QStringLiteral("center-ratio"), rect, p, fastScale, Rect, Qt::IgnoreAspectRatio, Center, Centered, true);
+    renderItem(name, QStringLiteral("center-noscale"), rect, p, fastScale, NoScale, Qt::IgnoreAspectRatio, Center, Centered, true);
 
-    renderItem(name, "border-topleft", rect, p, fastScale, NoScale, Qt::IgnoreAspectRatio, Top, Corner, false);
-    renderItem(name, "border-topright", rect, p, fastScale, NoScale, Qt::IgnoreAspectRatio, Right, Corner, false);
-    renderItem(name, "border-bottomleft", rect, p, fastScale, NoScale, Qt::IgnoreAspectRatio, Left, Corner, false);
-    renderItem(name, "border-bottomright", rect, p, fastScale, NoScale, Qt::IgnoreAspectRatio, Bottom, Corner, false);
+    renderItem(name, QStringLiteral("border-topleft"), rect, p, fastScale, NoScale, Qt::IgnoreAspectRatio, Top, Corner, false);
+    renderItem(name, QStringLiteral("border-topright"), rect, p, fastScale, NoScale, Qt::IgnoreAspectRatio, Right, Corner, false);
+    renderItem(name, QStringLiteral("border-bottomleft"), rect, p, fastScale, NoScale, Qt::IgnoreAspectRatio, Left, Corner, false);
+    renderItem(name, QStringLiteral("border-bottomright"), rect, p, fastScale, NoScale, Qt::IgnoreAspectRatio, Bottom, Corner, false);
 
     QStringList edges;
-    edges << "top" << "bottom" << "left" << "right";
+    edges << QStringLiteral("top") << QStringLiteral("bottom") << QStringLiteral("left") << QStringLiteral("right");
     Q_FOREACH(const QString & edge, edges) {
         ScaleBase scaleBase;
         Edge alignEdge;

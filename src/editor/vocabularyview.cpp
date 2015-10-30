@@ -83,12 +83,12 @@ VocabularyView::VocabularyView(EditorWindow * parent)
     setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
 
     m_appendEntryAction = new QAction(this);
-    parent->actionCollection()->addAction("edit_append", m_appendEntryAction);
+    parent->actionCollection()->addAction(QStringLiteral("edit_append"), m_appendEntryAction);
     parent->actionCollection()->setDefaultShortcut(
         m_appendEntryAction, QKeySequence(Qt::Key_Insert));
-    m_appendEntryAction->setIcon(QIcon::fromTheme("list-add-card"));
+    m_appendEntryAction->setIcon(QIcon::fromTheme(QStringLiteral("list-add-card")));
     m_appendEntryAction->setText(i18n("&Add New Entry"));
-    connect(m_appendEntryAction, SIGNAL(triggered(bool)), SLOT(appendEntry()));
+    connect(m_appendEntryAction, &QAction::triggered, this, &VocabularyView::appendEntry);
     m_appendEntryAction->setShortcut(QKeySequence(Qt::Key_Insert));
     m_appendEntryAction->setWhatsThis(i18n("Append a new row to the vocabulary"));
     m_appendEntryAction->setToolTip(m_appendEntryAction->whatsThis());
@@ -96,12 +96,12 @@ VocabularyView::VocabularyView(EditorWindow * parent)
     addAction(m_appendEntryAction);
 
     m_deleteEntriesAction = new QAction(this);
-    parent->actionCollection()->addAction("edit_remove_selected_area", m_deleteEntriesAction);
+    parent->actionCollection()->addAction(QStringLiteral("edit_remove_selected_area"), m_deleteEntriesAction);
     parent->actionCollection()->setDefaultShortcut(
         m_deleteEntriesAction, QKeySequence::Delete);
-    m_deleteEntriesAction->setIcon(QIcon::fromTheme("list-remove-card"));
+    m_deleteEntriesAction->setIcon(QIcon::fromTheme(QStringLiteral("list-remove-card")));
     m_deleteEntriesAction->setText(i18n("&Delete Entry"));
-    connect(m_deleteEntriesAction, SIGNAL(triggered(bool)), this, SLOT(deleteSelectedEntries()));
+    connect(m_deleteEntriesAction, &QAction::triggered, this, &VocabularyView::deleteSelectedEntries);
     m_deleteEntriesAction->setShortcut(QKeySequence::Delete);
     m_deleteEntriesAction->setWhatsThis(i18n("Delete the selected rows"));
     m_deleteEntriesAction->setToolTip(m_deleteEntriesAction->whatsThis());
@@ -152,15 +152,15 @@ VocabularyView::VocabularyView(EditorWindow * parent)
 
     // vocabulary columns dialog
     QAction *vocabularyColumnsDialogAction = new QAction(this);
-    parent->actionCollection()->addAction("show_vocabulary_columns_dialog", vocabularyColumnsDialogAction);
-    vocabularyColumnsDialogAction->setIcon(QIcon::fromTheme("view-file-columns"));
+    parent->actionCollection()->addAction(QStringLiteral("show_vocabulary_columns_dialog"), vocabularyColumnsDialogAction);
+    vocabularyColumnsDialogAction->setIcon(QIcon::fromTheme(QStringLiteral("view-file-columns")));
     vocabularyColumnsDialogAction->setText(i18n("Vocabulary Columns..."));
     vocabularyColumnsDialogAction->setWhatsThis(i18n("Toggle display of individual vocabulary columns"));
     vocabularyColumnsDialogAction->setToolTip(vocabularyColumnsDialogAction->whatsThis());
     vocabularyColumnsDialogAction->setStatusTip(vocabularyColumnsDialogAction->whatsThis());
     horizontalHeader()->addAction(vocabularyColumnsDialogAction);
     addAction(vocabularyColumnsDialogAction);
-    connect(vocabularyColumnsDialogAction, SIGNAL(triggered(bool)), this, SLOT(slotShowVocabularyColumnsDialog()));
+    connect(vocabularyColumnsDialogAction, &QAction::triggered, this, &VocabularyView::slotShowVocabularyColumnsDialog);
 }
 
 void VocabularyView::setFilter(VocabularyFilter * model)
@@ -168,10 +168,10 @@ void VocabularyView::setFilter(VocabularyFilter * model)
     QTableView::setModel(model);
 
     m_model = model;
-    connect(selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
-            SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
-    connect(selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
-            SLOT(slotSelectionChanged(const QItemSelection&, const QItemSelection&)));
+    connect(selectionModel(), &QItemSelectionModel::currentChanged,
+            this, &VocabularyView::slotCurrentChanged);
+    connect(selectionModel(), &QItemSelectionModel::selectionChanged,
+            this, &VocabularyView::slotSelectionChanged);
     slotSelectionChanged(QItemSelection(), QItemSelection());
 }
 
@@ -196,7 +196,7 @@ void VocabularyView::reset()
         ds.load();
         visibleColumns = ds.visibleColumns();
 
-        KConfig parleyConfig("parleyrc");
+        KConfig parleyConfig(QStringLiteral("parleyrc"));
         KConfigGroup documentGroup(&parleyConfig, "Document " + m_doc->url().url());
         QByteArray state = documentGroup.readEntry("VocabularyColumns", QByteArray());
 
@@ -235,7 +235,7 @@ void VocabularyView::saveColumnVisibility() const
     ds.save();
 
     QByteArray saveState = horizontalHeader()->saveState();
-    KConfig parleyConfig("parleyrc");
+    KConfig parleyConfig(QStringLiteral("parleyrc"));
     KConfigGroup documentGroup(&parleyConfig, "Document " + m_doc->url().url());
     documentGroup.writeEntry("VocabularyColumns", horizontalHeader()->saveState());
 }
@@ -326,7 +326,7 @@ void VocabularyView::slotEditPaste()
         QStringList lines = clipboard->text().split('\n');
         foreach(QString line, lines) {
             // split at tabs or semicolon:
-            m_model->appendEntry(new KEduVocExpression(line.split(QRegExp("[\t;]"), QString::KeepEmptyParts)));
+            m_model->appendEntry(new KEduVocExpression(line.split(QRegExp(QStringLiteral("[\t;]")), QString::KeepEmptyParts)));
         }
     }
 }
@@ -382,8 +382,8 @@ void VocabularyView::checkSpelling(int language)
         m_spellChecker = new Sonnet::BackgroundChecker(this);
         m_spellDialog = new Sonnet::Dialog(m_spellChecker, this);
         connect(m_spellDialog, SIGNAL(done(const QString&)), this, SLOT(continueSpelling()));
-        connect(m_spellDialog, SIGNAL(misspelling(const QString&, int)), this, SLOT(misspelling(const QString&, int)));
-        connect(m_spellDialog, SIGNAL(replace(const QString&, int, const QString&)), this, SLOT(spellingReplace(const QString&, int, const QString&)));
+        connect(m_spellDialog, &Sonnet::Dialog::misspelling, this, &VocabularyView::misspelling);
+        connect(m_spellDialog, &Sonnet::Dialog::replace, this, &VocabularyView::spellingReplace);
     }
 
     m_spellColumn = language * VocabularyModel::EntryColumnsMAX;
