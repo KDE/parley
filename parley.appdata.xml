@@ -7,6 +7,7 @@
   <name xml:lang="ast">Parley</name>
   <name xml:lang="bs">Parley</name>
   <name xml:lang="ca">Parley</name>
+  <name xml:lang="ca-valencia">Parley</name>
   <name xml:lang="cs">Parley</name>
   <name xml:lang="da">Parley</name>
   <name xml:lang="de">Parley</name>
@@ -35,6 +36,7 @@
   <summary xml:lang="ast">Entrenador de vocabulariu</summary>
   <summary xml:lang="bs">Trener riječnika</summary>
   <summary xml:lang="ca">Entrenador de vocabulari</summary>
+  <summary xml:lang="ca-valencia">Entrenador de vocabulari</summary>
   <summary xml:lang="cs">Učitel slovní zásoby</summary>
   <summary xml:lang="de">Vokabeltrainer</summary>
   <summary xml:lang="en-GB">Vocabulary Trainer</summary>
@@ -63,6 +65,7 @@
     <p xml:lang="ast">Parley ye un entrenador de vocabulariu. Ayúdate a memorizar el to vocabulariu, por exemplu cuando intentes deprender una llingua foriata. Sofita munches carauterístiques específiques de llingua, pero tamién pue usase pa otres xeres de deprendimientu. Usa'l métodu de deprendizax de repitición espaciada, que fai óptimu'l deprendimientu. Les coleiciones de vocabulariu puen baxase de "Consigui material nuevu" o crease col editor integráu.</p>
     <p xml:lang="bs">Parlej je trener rječnika. Pomaže vam da zapamtite svoj rječnik, na primer, kada pokušavate da naučite strani jezik. On podržava mnoge jezičke specifičnosti, ali se može koristiti za druge zadatke učenja jednako dobro. On koristi raspoređeni metod ponavljanja učenja , što čini učenje optimalno. Vokabular kolekcije možete preuzeti sa "Dobavi nove dobre stvari" ili kreirati sa ugrađenim urednikom.</p>
     <p xml:lang="ca">El Parley és un entrenador de vocabulari. Us ajuda a memoritzar vocabulari, per exemple quan esteu intentant aprendre un idioma estranger. Accepta moltes funcionalitats específiques d'idioma, però també es pot utilitzar per altres tasques d'aprenentatge. Utilitza el mètode d'aprenentatge de repetició espaiada, que optimitza l'aprenentatge. Les col·leccions dels vocabularis es poden baixar amb «Obtén les novetats» (Get Hot New Stuff) o es poden crear amb l'editor integrat.</p>
+    <p xml:lang="ca-valencia">El Parley és un entrenador de vocabulari. Vos ajuda a memoritzar vocabulari, per exemple quan esteu intentant aprendre un idioma estranger. Accepta moltes funcionalitats específiques d'idioma, però també es pot utilitzar per altres tasques d'aprenentatge. Utilitza el mètode d'aprenentatge de repetició espaiada, que optimitza l'aprenentatge. Les col·leccions dels vocabularis es poden baixar amb «Obtén les novetats» (Get Hot New Stuff) o es poden crear amb l'editor integrat.</p>
     <p xml:lang="en-GB">Parley is a vocabulary trainer. It helps you to memorise your vocabulary, for example when you are trying to learn a foreign language. It supports many language specific features, but can be used for other learning tasks as well. It uses the spaced repetition learning method, which makes learning optimal. Vocabulary collections can be downloaded by "Get Hot New Stuff" or created with the built-in editor.</p>
     <p xml:lang="es">Parley es un entrenador de vocabulario. Ayuda a memorizar vocabulario, por ejemplo, cuando se está intentando aprender un idioma extranjero. Cuenta con muchas funcionalidades específicas para los idiomas, pero también se puede utilizar para otras tareas de aprendizaje. Utiliza el método de repetición espaciada, que proporciona un aprendizaje óptimo. Las colecciones de vocabulario se pueden descargar mediante la opción «Obtener nuevo material» o crear mediante el editor incorporado.</p>
     <p xml:lang="et">Parley on sõnavara harjutamise rakendus. See aitab sõnu meelde jätta, millest on kasu, kui õpid näiteks võõrkeelt. Toetatud on paljud keelespetsiifilised võimalused, kuid rakendust saab kasutada ka muudeks õppimisülesanneteks. Siin kasutatakse ajas hajutatud kordamise meetodit, mis muudab omandamise optimaalseks. Sõnavarakogusid saab alla laadida internetist või luua neid ise kaasasoleva redaktoriga.</p>
@@ -85,6 +88,7 @@
     <p xml:lang="ast">Moos d'entretenimientu</p>
     <p xml:lang="bs">Režimi treninga</p>
     <p xml:lang="ca">Modes d'entrenament:</p>
+    <p xml:lang="ca-valencia">Modes d'entrenament:</p>
     <p xml:lang="de">Übungsmodi:</p>
     <p xml:lang="en-GB">Training Modes:</p>
     <p xml:lang="es">Modos de entrenamiento:</p>
@@ -111,6 +115,7 @@
       <li xml:lang="ast">Tarxetes</li>
       <li xml:lang="bs">Memorijske kartice</li>
       <li xml:lang="ca">Fitxes ràpides</li>
+      <li xml:lang="ca-valencia">Fitxes ràpides</li>
       <li xml:lang="cs">Kartičky</li>
       <li xml:lang="de">Karteikarten</li>
       <li xml:lang="en-GB">Flash Cards</li>
@@ -138,6 +143,7 @@
       <li xml:lang="ast">Lletres mestes (ordena les lletres d'un pallabra)</li>
       <li xml:lang="bs">Miješana slova (redoslijed slova riječi)</li>
       <li xml:lang="ca">Lletres barrejades (ordre de les lletres d'una paraula)</li>
+      <li xml:lang="ca-valencia">Lletres barrejades (orde de les lletres d'una paraula)</li>
       <li xml:lang="de">Gemischte Buchstaben (Buchstaben in der richtigen Reihenfolge anordnen)</li>
       <li xml:lang="en-GB">Mixed Letters (order the letters of a word)</li>
       <li xml:lang="es">Mezcla de letras (ordenar las letras de una palabra)</li>
@@ -162,6 +168,7 @@
       <li xml:lang="ast">Escoyeta múltiple</li>
       <li xml:lang="bs">Višestruki izbor</li>
       <li xml:lang="ca">Elecció múltiple</li>
+      <li xml:lang="ca-valencia">Elecció múltiple</li>
       <li xml:lang="cs">S nabídkou možností</li>
       <li xml:lang="de">Mehrfachauswahl</li>
       <li xml:lang="en-GB">Multiple Choice</li>
@@ -188,6 +195,7 @@
       <li>Written</li>
       <li xml:lang="bs">Napisano</li>
       <li xml:lang="ca">Escrita</li>
+      <li xml:lang="ca-valencia">Escrita</li>
       <li xml:lang="cs">Písemný</li>
       <li xml:lang="de">Schriftlich</li>
       <li xml:lang="en-GB">Written</li>
@@ -215,6 +223,7 @@
       <li xml:lang="ast">Entrenamientos específicos de lligua: artículos, formes de comparanza, conxugaciones, sinónimos/anotónimos/paráfrasis</li>
       <li xml:lang="bs">Jezički posebna obuka: članovi, oblici poređenja, konjugacija, sinonimi/antonimi/parafraze</li>
       <li xml:lang="ca">Entrenaments específics d'idioma: article, formes de comparació, conjugacions, sinònims/antònims/paràfrasis</li>
+      <li xml:lang="ca-valencia">Entrenaments específics d'idioma: article, formes de comparació, conjugacions, sinònims/antònims/paràfrasis</li>
       <li xml:lang="de">Sprachspezifische Übungen: Artikel, Vergleichsformen, Konjugationen, Synonyme, Antonyme, Umschreibungen</li>
       <li xml:lang="en-GB">Language specific trainings: article, comparison forms, conjugations, synonymes/antonyms/paraphrases</li>
       <li xml:lang="es">Entrenamiento específico para idiomas: artículo, formas comparativas, conjugaciones, sinónimos, antónimos y paráfrasis.</li>
