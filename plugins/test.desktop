@@ -7,6 +7,7 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Testing Purposes Script
+Name[ast]=Script pa facer pruebes
 Name[bs]=Svrhe testiranja skripti
 Name[ca]=Script de prova
 Name[ca@valencia]=Script de prova
