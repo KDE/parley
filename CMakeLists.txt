@@ -158,5 +158,5 @@ endif(HAVE_LIBXSLT)
 #add_subdirectory(plasmoid)
 
 
-install(FILES parley.appdata.xml DESTINATION ${KDE_INSTALL_DATAROOTDIR}/appdata/)
+install(FILES org.kde.parley.appdata.xml DESTINATION ${KDE_INSTALL_DATAROOTDIR}/appdata/)
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
