@@ -307,12 +307,13 @@ void VocabularyDelegate::setModelData(QWidget * editor, QAbstractItemModel * mod
         int translationId = VocabularyModel::translation(index.column());
 
         expression->translation(translationId)->setWordType(wordType);
-	break;
+        model->setData(index, combo->currentText());
+        break;
     }
     case (VocabularyModel::Translation) : {
-        KComboBox * translationCombo = qobject_cast<KComboBox*> (editor);
-        if (translationCombo) {
-            model->setData(index, translationCombo->currentText());
+        QLineEdit *lineEdit = qobject_cast<QLineEdit*> (editor);
+        if (lineEdit) {
+            model->setData(index, lineEdit->text());
         }
         break;
     }
