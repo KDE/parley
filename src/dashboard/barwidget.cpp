@@ -68,6 +68,7 @@ void BarWidget::setDue(WordCount &wc)
 void BarWidget::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing, true);
     const int legendWidth = COLLWIDTH - 10;
     const int legendHeight = 20;
     const int legendOffsetY = 0;
@@ -107,7 +108,7 @@ void BarWidget::paintEvent(QPaintEvent *)
 
     QPen penBar(QColor(255,255,255));
     painter.setPen(penBar);
-    QRect roundedRect(0, 0, legendWidth, legendHeight);
+    QRectF roundedRect(0, 0, legendWidth, legendHeight);
     roundedRect.adjust(1, 1, -1, -1);
     QPainterPath roundedPath;
     roundedPath.addRoundedRect(roundedRect, 8.0, 8.0);

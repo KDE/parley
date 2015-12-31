@@ -109,7 +109,7 @@ int main(int argc, char* argv[])
     QApplication::setOrganizationDomain(QStringLiteral("kde.org"));
     QApplication::setApplicationDisplayName(i18n("Parley"));
     QApplication app(argc, argv);
-
+    app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
     QCommandLineParser parser;
     parser.addVersionOption();

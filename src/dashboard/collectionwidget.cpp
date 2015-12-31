@@ -76,7 +76,7 @@ void RemoveButton::paintEvent(QPaintEvent*)
     QBrush brush(QColor(49,54,59));
     painter.setBrush(brush);
 
-    painter.drawEllipse(1, 1, height() - 1, height() - 1);
+    painter.drawEllipse(QRectF(1.0, 1.0, height() - 1.0, height() - 1.0));
     painter.setFont( QFont( QStringLiteral("Helvetica"), 7, QFont::Bold, false));
     painter.drawText(2, 1, height() - 2, height() - 1, Qt::AlignCenter, QStringLiteral("x"));
 }
