@@ -26,7 +26,8 @@
 #include "parleymainwindow.h"
 #include "version.h"
 
-#include <kaboutdata.h>
+#include <KAboutData>
+#include <KCrash>
 #include <KLocalizedString>
 #include <Kdelibs4ConfigMigrator>
 
@@ -103,13 +104,14 @@ int main(int argc, char* argv[])
                         ki18n("Conceived the name Parley").toString());
 
     KAboutData::setApplicationData(aboutData);
-
+    QApplication app(argc, argv);
+    app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
     QApplication::setApplicationName(QStringLiteral("parley"));
     QApplication::setApplicationVersion(PARLEY_VERSION_STRING);
     QApplication::setOrganizationDomain(QStringLiteral("kde.org"));
     QApplication::setApplicationDisplayName(i18n("Parley"));
-    QApplication app(argc, argv);
-    app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+
+    KCrash::initialize();
 
     QCommandLineParser parser;
     parser.addVersionOption();

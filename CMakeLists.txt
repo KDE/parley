@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.12)
 
 project(parley)
 
-find_package(ECM 1.0.0 REQUIRED NO_MODULE)
+find_package(ECM 5.15.0 REQUIRED NO_MODULE)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
@@ -22,8 +22,7 @@ find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED
   Multimedia
 )
 
-set(REQUIRED_KF5_VERSION "4.96.0")
-find_package(KF5 ${REQUIRED_KF5_VERSION} MODULE REQUIRED COMPONENTS
+find_package(KF5 5.15 MODULE REQUIRED COMPONENTS
   DocTools  #to produce the docbook
   CoreAddons
   Config
