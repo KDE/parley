@@ -333,7 +333,7 @@ void ParleyDocument::openGHNS()
 
 void ParleyDocument::save()
 {
-    if (m_doc->url().fileName() == i18n("Untitled")) {
+    if (m_doc->url().fileName() == QString()) {
         saveAs();
         return;
     }
