@@ -62,6 +62,7 @@ Type=Application
 Terminal=false
 Categories=Qt;KDE;Education;Languages;
 Comment=A program to help you memorize things.
+Comment[ca]=Un programa per ajudar a memoritzar coses.
 Comment[fi]=Ohjelma asioiden ulkoa opettelemiseen.
 Comment[gl]=Un programa para axudalo a memorizar cousas.
 Comment[nl]=Een programma om u te helpen dingen te onthouden.
