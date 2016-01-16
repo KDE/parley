@@ -168,7 +168,7 @@
            </sizepolicy>
          </property>
          <property name="text">
-           <string>Color used to display the grades</string>
+           <string>Color used to display the grades:</string>
          </property>
          <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
