@@ -1,7 +1,4 @@
 cmake_minimum_required(VERSION 3.0.0)
-if (POLICY CMP0063)
-    cmake_policy(SET CMP0063 NEW)
-endif()
 
 project(parley)
 
@@ -10,7 +7,7 @@ find_package(ECM 5.15.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 include(KDEInstallDirs)
-include(KDECompilerSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
 include(FeatureSummary)
 
