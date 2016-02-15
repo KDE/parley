@@ -63,7 +63,7 @@ void fetchGrammar(KEduVocDocument* doc, int languageIndex)
 {
     QString locale = doc->identifier(languageIndex).locale();
 
-    QUrl location(QUrl::fromUserInput(QStringLiteral("http://edu.kde.org/parley/locale/") + locale + QStringLiteral(".kvtml")) );
+    QUrl location(QUrl::fromUserInput(QStringLiteral("http://edu.kde.org/parley/locale/") + locale.split('_').at(0).toLower() + QStringLiteral(".kvtml")) );
 
     KEduVocDocument grammarDoc;
     if (grammarDoc.open(location) == KEduVocDocument::NoError) {

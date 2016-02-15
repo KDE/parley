@@ -14,7 +14,7 @@
 #include "languagepropertiespage.h"
 
 #include "languagesettings.h"
-
+#include "documentproperties.h"
 #include <kmessagebox.h>
 
 #include <QDebug>
@@ -42,13 +42,9 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
     connect(localeComboBox, static_cast<void (KComboBox::*)(const QString &)>(&KComboBox::currentIndexChanged), this, &LanguagePropertiesPage::localeChanged);
     connect(downloadGrammarButton, &QPushButton::clicked, this, &LanguagePropertiesPage::downloadGrammar);
 
-    QStringList languageCodes =  QLocale().uiLanguages();
-
     // qmap automatically sorts by keys
-    QMap<QString, QString> languageCodeMap;
-    foreach(const QString & code, languageCodes) {
-        languageCodeMap[ QLocale(code ).nativeLanguageName( ) ] = code;
-    }
+    QMap<QString, QString> languageCodeMap = DocumentProperties::localeLangsMap();
+
     // add the language, but also it's code as data
     foreach(const QString & language, languageCodeMap.keys()) {
         localeComboBox->addItem(language, languageCodeMap.value(language));

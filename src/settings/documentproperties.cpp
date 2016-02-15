@@ -55,17 +55,23 @@ DocumentProperties::DocumentProperties(KEduVocDocument * doc, bool languageSetup
 
 void DocumentProperties::prepareLanguageSelection()
 {
-    QStringList codes = QLocale().uiLanguages();
     QStringList languageNames;
-    foreach(const QString & code, codes) {
-        languageNames.append(QLocale( code ).nativeLanguageName( ) );
+
+    //Create a key map, key: language-country pair, value: locale
+    QMap<QString, QString> languageCodeMap = DocumentProperties::localeLangsMap();
+
+    QMap<QString, QString>::const_iterator lcMapIter;
+
+    for (lcMapIter = languageCodeMap.constBegin(); lcMapIter != languageCodeMap.constEnd(); ++lcMapIter) {
+        firstLanguageComboBox->addItem(lcMapIter.key(), lcMapIter.value());
+        secondLanguageComboBox->addItem(lcMapIter.key(), lcMapIter.value());
+        languageNames.append(lcMapIter.key());
     }
+
     languageNames.sort();
 
-    firstLanguageComboBox->addItems(languageNames);
     firstLanguageComboBox->completionObject()->insertItems(languageNames);
     firstLanguageComboBox->completionObject()->setIgnoreCase(true);
-    secondLanguageComboBox->addItems(languageNames);
     secondLanguageComboBox->completionObject()->insertItems(languageNames);
     secondLanguageComboBox->completionObject()->setIgnoreCase(true);
 
@@ -89,22 +95,29 @@ void DocumentProperties::accept()
 void DocumentProperties::acceptLanguageConfiguration()
 {
     QString firstLanguage = firstLanguageComboBox->currentText();
-    QString firstLocale;
+    QString firstLocale = firstLanguageComboBox->currentData().toString();
     QString secondLanguage = secondLanguageComboBox->currentText();
-    QString secondLocale;
-
-    // ugly but works for now: iterate over languages to check which code we have
-    foreach(const QString & code, QLocale().uiLanguages()) {
-        if (firstLanguage == QLocale( code ).nativeLanguageName( ) ) {
-            firstLocale = code;
-        }
-        if (secondLanguage == QLocale( code ).nativeLanguageName( ) ) {
-            secondLocale = code;
-        }
-    }
-
+    QString secondLocale = secondLanguageComboBox->currentData().toString();
     m_doc->identifier(0).setLocale(firstLocale);
     m_doc->identifier(0).setName(firstLanguage);
     m_doc->identifier(1).setLocale(secondLocale);
     m_doc->identifier(1).setName(secondLanguage);
+}
+
+QMap<QString, QString> DocumentProperties::localeLangsMap()
+{
+    //Get a list of locales
+    QList<QLocale> allLocales = QLocale::matchingLocales(
+        QLocale::AnyLanguage,
+        QLocale::AnyScript,
+        QLocale::AnyCountry);
+
+    QMap<QString, QString> languageCodeMap;
+
+    foreach (const QLocale & myLocale, allLocales) {
+        if(!myLocale.nativeLanguageName().isEmpty() && !myLocale.nativeCountryName().isEmpty()) {
+            languageCodeMap[ myLocale.nativeLanguageName() +  " (" +  myLocale.nativeCountryName() + ")" ] = myLocale.name();
+        }
+    }
+    return languageCodeMap;
 }

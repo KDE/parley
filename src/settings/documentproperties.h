@@ -37,6 +37,12 @@ class DocumentProperties : public QWidget, public Ui::DocumentProperties
 public:
     DocumentProperties(KEduVocDocument * doc, bool languageSetup, QWidget *parent);
 
+    /**
+     * Return a [key, value] map, where key = Native language name (Native country name), value = Locale name
+     * @return A QMap of [ Native language name (Native country name), Locale name ] pairs
+     */
+    static QMap<QString, QString> localeLangsMap();
+
 
 public slots:
     void accept();
