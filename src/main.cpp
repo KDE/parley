@@ -36,6 +36,8 @@
 
 int main(int argc, char* argv[])
 {
+    QApplication app(argc, argv);
+
     KLocalizedString::setApplicationDomain("parley");
 
     /* for migration*/
