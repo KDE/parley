@@ -35,6 +35,8 @@
 
 int main(int argc, char* argv[])
 {
+    QApplication app(argc, argv);
+
     KLocalizedString::setApplicationDomain("parley");
 
     /* for migration*/
@@ -108,7 +110,6 @@ int main(int argc, char* argv[])
     QApplication::setApplicationVersion(PARLEY_VERSION_STRING);
     QApplication::setOrganizationDomain(QStringLiteral("kde.org"));
     QApplication::setApplicationDisplayName(i18n("Parley"));
-    QApplication app(argc, argv);
 
 
     QCommandLineParser parser;
