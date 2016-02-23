@@ -61,7 +61,7 @@ EntryFilter::EntryFilter(KEduVocDocument* doc, QObject * parent)
         qDebug() << "Tenses" << m_tenses;
     }
 }
-
+/*
 static void debugEntry(const QString &comment, KEduVocExpression *vocexp,
                        KEduVocTranslation *from, KEduVocTranslation *to)
 {
@@ -69,7 +69,7 @@ static void debugEntry(const QString &comment, KEduVocExpression *vocexp,
 
     qDebug() << comment << "from" << from->text() << "to" << to->text();
 }
-
+*/
 QList<TestEntry*> EntryFilter::entries(bool showDialog)
 {
     switch (Prefs::practiceDirection()) {
@@ -274,7 +274,11 @@ void EntryFilter::expireEntries(int setNo)
                 entry->translation(m_toTranslation)->decGrade();
 
                 // prevent from endless dropping
-                entry->translation(m_toTranslation)->setPracticeDate(QDateTime::currentDateTime().addSecs(-Prefs::expireItem(grade - 2)));
+                if (grade > 2) {
+                    entry->translation(m_toTranslation)->setPracticeDate(QDateTime::currentDateTime().addSecs(-Prefs::expireItem(grade - 2)));
+                } else {
+                    entry->translation(m_toTranslation)->setPracticeDate(QDateTime::currentDateTime());
+                }
                 counter++;
             }
         }
