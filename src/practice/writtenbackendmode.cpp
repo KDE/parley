@@ -22,10 +22,11 @@ WrittenBackendMode::WrittenBackendMode(AbstractFrontend* frontend, QObject* pare
                                        SessionManagerBase* sessionManager, KEduVocDocument* doc)
     : AbstractBackendMode(frontend, parent)
     , m_sessionManager(sessionManager)
+    // FIXME: Used to be m_practiceOptions.languageTo()
+    , m_validator(new WrittenPracticeValidator(Prefs::learningLanguage(), doc))
     , m_doc(doc)
 {
-    // FIXME: Used to be m_practiceOptions.languageTo()
-    m_validator = new WrittenPracticeValidator(Prefs::learningLanguage(), doc);
+
 }
 
 bool WrittenBackendMode::setTestEntry(TestEntry* current)

@@ -18,6 +18,7 @@
 #include "abstractbackendmode.h"
 #include "practice/sessionmanagerbase.h"
 #include "practice/writtenpracticevalidator.h"
+#include <QScopedPointer>
 
 namespace Practice
 {
@@ -44,7 +45,7 @@ private:
     QString m_currentHint;
     bool m_firstAttempt;
     SessionManagerBase* m_sessionManager;
-    WrittenPracticeValidator* m_validator;
+    QScopedPointer<WrittenPracticeValidator> m_validator;
     KEduVocDocument* m_doc;
 };
 
