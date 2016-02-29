@@ -57,7 +57,7 @@ int WordCount::percentageCompleted() const
     // 
     // In the final calculation, we exclude all invalid words from the percentage.
     int points = 0;
-    for (int i = 0; i <= KV_MAX_GRADE + 1; ++i) {
+    for (int i = 0; i < KV_MAX_GRADE + 1; ++i) {
         points += pregrades[i] * i;
         points += grades[i] * KV_MAX_GRADE * i;
     }
