@@ -52,6 +52,8 @@ int preGradeTimes[] = {
 EntryFilter::EntryFilter(KEduVocDocument* doc, QObject * parent)
     : QObject(parent)
     , m_doc(doc)
+    , m_fromTranslation(Prefs::knownLanguage())
+    , m_toTranslation(Prefs::learningLanguage())
     , m_dialog(0)
 {
     if (Prefs::practiceMode() == Prefs::EnumPracticeMode::ConjugationPractice) {
@@ -638,6 +640,8 @@ QList< TestEntry* > EntryFilter::conjugationTestEntries(bool ignoreBlocked) cons
                         if (mode == M_SEPARATE) {
                             TestEntry* testEntry = new TestEntry(entry);
                             testEntry->setConjugationTense(tense);
+                            testEntry->setLanguageTo(m_toTranslation);
+                            testEntry->setLanguageFrom(m_fromTranslation);
                             QList<KEduVocWordFlags> list;
                             list << pronoun;
                             testEntry->setConjugationPronouns(list);
@@ -650,6 +654,8 @@ QList< TestEntry* > EntryFilter::conjugationTestEntries(bool ignoreBlocked) cons
                     TestEntry* testEntry = new TestEntry(entry);
                     testEntry->setConjugationTense(tense);
                     testEntry->setConjugationPronouns(pronouns);
+                    testEntry->setLanguageTo(m_toTranslation);
+                    testEntry->setLanguageFrom(m_fromTranslation);
                     randomizedInsert(testEntries, testEntry);
                 }
             }
