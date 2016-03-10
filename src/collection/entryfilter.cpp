@@ -113,9 +113,10 @@ QList<TestEntry*> EntryFilter::entries(bool showDialog)
         }
 
 	//qDebug() << "Filter for " << m_fromTranslation << " to " << m_toTranslation;
-        expireEntries(pass);
 
         collectEntries(pass);
+        expireEntries(pass);
+        setupFilteredEntries(pass);
     }
 
     static QString noEntriesError =
@@ -276,11 +277,8 @@ void EntryFilter::expireEntries(int setNo)
                 entry->translation(m_toTranslation)->decGrade();
 
                 // prevent from endless dropping
-                if (grade > 2) {
-                    entry->translation(m_toTranslation)->setPracticeDate(QDateTime::currentDateTime().addSecs(-Prefs::expireItem(grade - 2)));
-                } else {
-                    entry->translation(m_toTranslation)->setPracticeDate(QDateTime::currentDateTime());
-                }
+                // use blockItem() time to prevent blocking after expiring
+                entry->translation(m_toTranslation)->setPracticeDate(QDateTime::currentDateTime().addSecs(-Prefs::blockItem(grade - 1)));
                 counter++;
             }
         }
@@ -307,7 +305,10 @@ void EntryFilter::collectEntries(int setNo)
         }
     }
     */
+}
 
+void EntryFilter::setupFilteredEntries(int setNo)
+{
     lessonEntries(setNo);
     wordTypeEntries(setNo);
     blockedEntries(setNo);
@@ -315,7 +316,6 @@ void EntryFilter::collectEntries(int setNo)
     timesPracticedEntries(setNo);
     minMaxGradeEntries(setNo);
 }
-
 
 void EntryFilter::lessonEntries(int setNo)
 {

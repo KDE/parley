@@ -56,6 +56,7 @@ private:
      * Only if expiring is activated in prefs.
      */
     void expireEntries(int setNo);
+    void setupFilteredEntries(int setNo);
 
     void lessonEntries(int setNo);
     void wordTypeEntries(int setNo);
