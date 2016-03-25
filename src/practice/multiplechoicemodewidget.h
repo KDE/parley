@@ -22,7 +22,7 @@ namespace Ui
 {
 class MultiplechoicePracticeWidget;
 }
-class QRadioButton;
+class QPushButton;
 
 namespace Practice
 {
@@ -59,15 +59,17 @@ public:
 public Q_SLOTS:
     virtual void showQuestion();
     virtual void showSolution();
-    virtual void setNumberOfRadioButtons(const int numberOfChoices);
+    virtual void setNumberOfPushButtons(const int numberOfChoices);
     virtual void showSynonym();
 
 protected:
     virtual bool eventFilter(QObject *obj, QEvent *event);
+    virtual void resetButtonStyleSheet();
+
 private:
     Ui::MultiplechoicePracticeWidget* m_ui;
     int m_solution;
-    QList<QRadioButton*> m_choiceButtons;
+    QList<QPushButton*> m_choiceButtons;
     QList<QAction*> m_actions;
     LatexRenderer *m_latexRenderer;
     QFont m_solutionFont;

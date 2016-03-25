@@ -20,7 +20,7 @@
 
 #include <QDebug>
 #include <kcolorscheme.h>
-#include <QtWidgets/QRadioButton>
+#include <QPushButton>
 #include <QTimer>
 #include <QKeyEvent>
 #include <QVBoxLayout>
@@ -53,9 +53,7 @@ void MultiplechoiceModeWidget::setQuestionFont(const QFont& font)
 void MultiplechoiceModeWidget::setSolutionFont(const QFont& font)
 {
     m_solutionFont = font;
-    foreach(QRadioButton * radio, m_choiceButtons) {
-        radio->setFont(m_solutionFont);
-    }
+    resetButtonStyleSheet();
 }
 
 void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
@@ -80,14 +78,14 @@ void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
     if (m_choiceButtons.size() != data.choices.size()) {
         qDeleteAll(m_choiceButtons);
         m_choiceButtons.clear();
-        setNumberOfRadioButtons(data.choices.size());
+        setNumberOfPushButtons(data.choices.size());
     }
 
     int j = 0;
-    foreach(QRadioButton * radio, m_choiceButtons) {
-        radio->setText(data.choices[j]);
-        radio->setToolTip(data.choices[j]);
-        radio->setFont(m_solutionFont);
+    foreach(QPushButton * pushButton, m_choiceButtons) {
+        pushButton->setText(data.choices[j]);
+        pushButton->setToolTip(data.choices[j]);
+        pushButton->setFont(m_solutionFont);
         j++;
     }
 }
@@ -100,35 +98,46 @@ void MultiplechoiceModeWidget::showQuestion()
     m_ui->solutionSoundButton->setVisible(false);
     m_ui->feedbackLabel->clear();
 
+    resetButtonStyleSheet();
+
     if ( ! m_choiceButtons.isEmpty() ) {
-        //necessary trick to uncheck'em all
-        m_choiceButtons[0]->setChecked(true);
-        m_choiceButtons[0]->setAutoExclusive(false);
-        m_choiceButtons[0]->setChecked(false);
-        m_choiceButtons[0]->setAutoExclusive(true);
-        foreach(QRadioButton * radio, m_choiceButtons) {
-            radio->setPalette(palette());
-            radio->setEnabled(true);
+        foreach(QPushButton * pushButton, m_choiceButtons) {
+            pushButton->setChecked(false);
+            pushButton->setEnabled(true);
         }
 
         QTimer::singleShot(0, m_choiceButtons[0], SLOT(setFocus()));
     }
 }
 
-void MultiplechoiceModeWidget::setNumberOfRadioButtons(const int numberOfChoices)
+void MultiplechoiceModeWidget::setNumberOfPushButtons(const int numberOfChoices)
 {
     QVBoxLayout *verticalLayout = new QVBoxLayout();
     m_ui->gridLayout->addLayout(verticalLayout, 2, 0);
 
     for (int i = 0; i < numberOfChoices; i++) {
-        QRadioButton *radio_button = new QRadioButton(this);
-        verticalLayout->addWidget(radio_button);
-        m_choiceButtons.append(radio_button);
+        QHBoxLayout *horizontalLayout = new QHBoxLayout();
+        verticalLayout->addLayout(horizontalLayout);
+
+        // Display number of entry
+        QLabel *label = new QLabel(QString::number(i+1) + QString(":"), this);
+        horizontalLayout->addWidget(label);
+
+        // Button displaying choice
+        QPushButton *pushButton = new QPushButton(this);
+        pushButton->setCheckable(true);
+        pushButton->setFlat(true);
+        pushButton->sizePolicy().setHorizontalPolicy(QSizePolicy::Maximum);
+        m_choiceButtons.append(pushButton);
         if (i < 5) {
-            connect(m_actions.at(i), &QAction::triggered, radio_button, &QAbstractButton::click);
+            connect(m_actions.at(i), &QAction::triggered, pushButton, &QAbstractButton::click);
         }
-        connect(radio_button, &QRadioButton::clicked, this, &MultiplechoiceModeWidget::continueAction);
-        radio_button->installEventFilter(this);
+        connect(pushButton, &QPushButton::clicked, this, &MultiplechoiceModeWidget::continueAction);
+        pushButton->installEventFilter(this);
+        horizontalLayout->addWidget(pushButton);
+
+        // Spacer to align button to the left
+        horizontalLayout->addStretch(1);
     }
 }
 
@@ -149,9 +158,9 @@ bool MultiplechoiceModeWidget::eventFilter(QObject *obj, QEvent *event)
     if (event->type() == QEvent::KeyPress) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
         if (keyEvent->key() == Qt::Key_Enter || keyEvent->key() == Qt::Key_Return) {
-            QRadioButton *radioButton = qobject_cast<QRadioButton*>(obj);
-            if (radioButton) {
-                radioButton->click();
+            QPushButton *pushButton = qobject_cast<QPushButton*>(obj);
+            if (pushButton) {
+                pushButton->click();
                 return true;
             }
         }
@@ -181,12 +190,41 @@ void MultiplechoiceModeWidget::showSolution()
     if (userInput().isValid()) {
         input = userInput().toInt();
     }
-    m_choiceButtons[m_solution]->setPalette(m_correctPalette);
+
+    const QColor textColor = palette().color(QPalette::WindowText);
+    // Set border to text color with light transparency
+    const QString borderColor = QStringLiteral("#90") +
+                palette().color(QPalette::WindowText).name().remove(0,1);
+    // Set background to correct color, but with transparency
+    const QString correctBackground = QStringLiteral("#7D") +
+                m_correctPalette.color(QPalette::Text).name().remove(0,1);
+
+    m_choiceButtons[m_solution]->setStyleSheet(
+        m_choiceButtons[m_solution]->styleSheet() +
+        " QPushButton:checked { "
+                "color: " + textColor.name() + "; "
+                "border-color: " + borderColor + "; "
+                "background-color: " + correctBackground +
+                            " }"
+    );
+    // Always check correct button to highlight correct answer
+    m_choiceButtons[m_solution]->setChecked(true);
+
     if (input != -1 && input != m_solution) {
-        m_choiceButtons[input]->setPalette(m_wrongPalette);
+        const QString wrongBackground = QStringLiteral("#7D") +
+                m_wrongPalette.color(QPalette::Text).name().remove(0,1);
+
+        m_choiceButtons[input]->setStyleSheet(
+            m_choiceButtons[input]->styleSheet() +
+            " QPushButton:checked { "
+                    "color: " + textColor.name() + "; "
+                    "border-color: " + borderColor + "; "
+                    "background-color: " + wrongBackground +
+                                " }"
+        );
     }
-    foreach(QRadioButton * radio, m_choiceButtons) {
-        radio->setEnabled(false);
+    foreach(QPushButton * pushButton, m_choiceButtons) {
+        pushButton->setEnabled(false);
     }
     m_ui->solutionPronunciationLabel->setVisible(m_ui->solutionPronunciationLabel->isEnabled());
     m_ui->solutionSoundButton->setVisible(m_ui->solutionSoundButton->isEnabled());
@@ -196,8 +234,8 @@ QVariant MultiplechoiceModeWidget::userInput()
 {
 
     int i = 0;
-    foreach(QRadioButton * radio, m_choiceButtons) {
-        if (radio->isChecked()) return i;
+    foreach(QPushButton * pushButton, m_choiceButtons) {
+        if (pushButton->isChecked()) return i;
         i++;
     }
 
@@ -224,4 +262,40 @@ void MultiplechoiceModeWidget::setQuestionPronunciation(const QString& pronuncia
 {
     m_ui->questionPronunciationLabel->setText('[' + pronunciationText + ']');
     m_ui->questionPronunciationLabel->setEnabled(!pronunciationText.isNull());
+}
+
+void MultiplechoiceModeWidget::resetButtonStyleSheet()
+{
+    // Define default QPushButton StyleSheet
+    const QColor textColor = palette().color(QPalette::WindowText);
+    // Set border to text color with light transparency
+    const QString borderColor = QStringLiteral("#90") +
+                        palette().color(QPalette::WindowText).name().remove(0,1);
+    const QString defaultStyleSheet =
+        "QPushButton { text-align: left; "
+                      "color: " + textColor.name() + "; "
+                      "padding: 5px; "
+                      "border-color: #00FFFFFF; " // Make border transparent
+                      "border-style: solid; "
+                      "border-width: 1px; "
+                      "border-radius: 4px; "
+                      "font-style: " +
+                        m_solutionFont.styleName() + "; " +
+                      "font-weight: " +
+                        QString::number(m_solutionFont.weight()) + "; " +
+                      "font-size: " +
+                        QString::number(m_solutionFont.pointSize()) + "pt } "+
+        "QPushButton:hover { "
+                      "border-color: " + borderColor + " } "
+        "QPushButton:focus { "
+                      "color: " + textColor.name() + " } "
+        "QPushButton:focus:!hover { "
+                      "border-style: dashed; "
+                      "border-color: " + borderColor + " }";
+
+    if (!m_choiceButtons.isEmpty()) {
+        foreach(QPushButton * pushButton, m_choiceButtons) {
+            pushButton->setStyleSheet(defaultStyleSheet);
+        }
+    }
 }
