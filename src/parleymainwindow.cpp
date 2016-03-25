@@ -128,11 +128,11 @@ void ParleyMainWindow::removeRecentFile(const QUrl &url)
 
 void ParleyMainWindow::documentUpdated(KEduVocDocument *doc)
 {
-    if (doc != 0) {
-        connect(m_document->document(), &KEduVocDocument::docModified
-                , this, &ParleyMainWindow::slotUpdateWindowCaption);
-        connect(m_document->document(), &QObject::destroyed
-                , this, &ParleyMainWindow::slotUpdateWindowCaption);
+    if (doc != nullptr) {
+        connect(doc, &KEduVocDocument::docModified,
+                this, &ParleyMainWindow::slotUpdateWindowCaption);
+        connect(doc, &KEduVocDocument::destroyed,
+                this, &ParleyMainWindow::slotUpdateWindowCaption);
         slotUpdateWindowCaption();
     }
 }

@@ -123,8 +123,6 @@ int main(int argc, char* argv[])
     parser.process(app);
     aboutData.processCommandLine(&parser);
 
-    app.setQuitOnLastWindowClosed(false);
-
     if (app.isSessionRestored()) {
         int n = 1;
         while (KMainWindow::canBeRestored(n)) {

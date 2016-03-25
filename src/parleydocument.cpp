@@ -88,9 +88,6 @@ ParleyDocument::ParleyDocument(ParleyMainWindow* parleyMainWindow)
 ParleyDocument::~ParleyDocument()
 {
     close();
-    delete m_backupTimer;
-    m_doc->deleteLater();
-    emit documentChanged(0);
 }
 
 
@@ -98,7 +95,7 @@ KEduVocDocument *ParleyDocument::document()
 {
     // If there is no present vocabulary document, create an empty one.
     if (!m_doc) {
-        m_doc = new KEduVocDocument();
+        m_doc = new KEduVocDocument(this);
     }
 
     return m_doc;
@@ -118,7 +115,7 @@ void ParleyDocument::slotFileNew()
 
 void ParleyDocument::newDocument(bool wizard)
 {
-    KEduVocDocument *newDoc = new KEduVocDocument();
+    KEduVocDocument *newDoc = new KEduVocDocument(this);
 
     initializeDefaultGrammar(newDoc);
     setDefaultDocumentProperties(newDoc);
