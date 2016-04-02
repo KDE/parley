@@ -14,6 +14,7 @@ set(parley_LIB_SRCS
     collection/collection.cpp
     collection/testentry.cpp
     collection/entryfilter.cpp
+    collection/entryfilterdialog.cpp
     collection/vocabularymimedata.cpp
     collection/containermimedata.cpp
     collection/readonlycontainermodel.cpp
@@ -112,7 +113,7 @@ set(parley_LIB_SRCS
 )
 
 ki18n_wrap_ui(parley_LIB_SRCS
-    collection/entryfilter.ui
+    collection/entryfilterdialog.ui
     editor/multiplechoicewidget.ui
     editor/comparisonwidget.ui
     editor/conjugationwidget.ui

@@ -14,8 +14,6 @@
 #ifndef ENTRYFILTER_H
 #define ENTRYFILTER_H
 
-#include "ui_entryfilter.h"
-
 #include <QtCore/QList>
 #include <QtCore/QSet>
 #include <prefs.h>
@@ -68,7 +66,7 @@ private:
     void timesPracticedEntries(int setNo);
     void minMaxGradeEntries(int setNo);
 
-    void updateTotal();
+    void updateCurrentSelection();
 
     /**
      * Remove entries that are empty or not of the right type for the specific test type
@@ -84,11 +82,7 @@ private:
 
     static void randomizedInsert(QList<TestEntry*>& list, TestEntry* entry);
 
-private slots:
-    void checkBoxChanged(bool filter);
-
 private:
-    Ui::EntryFilter ui;
     KEduVocDocument *m_doc;
 
     // All entries that are valid given all criteria
@@ -110,9 +104,9 @@ private:
     // The tenses selected by the user for practice
     QStringList m_tenses;
 
-    QDialog *m_dialog;                                ///<Dialog to determine words to be added to practice
-    QDialogButtonBox *m_button_dialog;                ///<ok/cancel buttons
     QSet<KEduVocExpression*> m_currentSelection[2];
+
+    friend class EntryFilterDialog;
 };
 
 

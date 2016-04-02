@@ -13,7 +13,6 @@
 
 #include "entryfilter.h"
 
-#include <QPushButton>
 #include <QDebug>
 
 #include <KMessageBox>
@@ -26,6 +25,7 @@
 
 #include "documentsettings.h"
 #include "testentry.h"
+#include "entryfilterdialog.h"
 
 //using namespace Practice;
 
@@ -52,9 +52,9 @@ int preGradeTimes[] = {
 EntryFilter::EntryFilter(KEduVocDocument* doc, QObject * parent)
     : QObject(parent)
     , m_doc(doc)
+    , m_numSets(0)
     , m_fromTranslation(Prefs::knownLanguage())
     , m_toTranslation(Prefs::learningLanguage())
-    , m_dialog(0)
 {
     if (Prefs::practiceMode() == Prefs::EnumPracticeMode::ConjugationPractice) {
         DocumentSettings documentSettings(m_doc->url().url() + QString::number(m_toTranslation));
@@ -131,79 +131,17 @@ QList<TestEntry*> EntryFilter::entries(bool showDialog)
         return QList<TestEntry*>();
     }
 
-    updateTotal();
+    updateCurrentSelection();
 
     bool ignoreBlocked = false;
     int numSelected = m_currentSelection[0].count() + m_currentSelection[1].count();
     if (numSelected == 0 && showDialog) {
-        m_button_dialog = new QDialogButtonBox;
-        m_button_dialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel );
-
-        QWidget *widget = new QWidget();
-        ui.setupUi(widget);
-
-        QVBoxLayout *layout = new QVBoxLayout;
-        layout->addWidget( widget );
-        layout->addWidget( m_button_dialog );
-
-        m_dialog = new QDialog;
-        m_dialog->setLayout( layout );
-        m_dialog->setWindowTitle(i18n("Start Practice"));
-
-        connect(m_button_dialog, &QDialogButtonBox::accepted, m_dialog, &QDialog::accept);
-        connect(m_button_dialog, &QDialogButtonBox::rejected, m_dialog, &QDialog::reject);
-
-
-        int numEntries = m_entries[0].count() + m_entries[1].count();
-        ui.lessonLabel        ->setText(QString::number(numEntries
-                                                        - m_entriesLesson[0].count()
-                                                        - m_entriesLesson[1].count()));
-        ui.wordTypeLabel      ->setText(QString::number(numEntries
-                                                        - m_entriesWordType[0].count()
-                                                        - m_entriesWordType[1].count()));
-        ui.blockedLabel       ->setText(QString::number(numEntries
-                                                        - m_entriesNotBlocked[0].count()
-                                                        - m_entriesNotBlocked[1].count()));
-        ui.timesWrongLabel    ->setText(QString::number(numEntries
-                                                        - m_entriesTimesWrong[0].count()
-                                                        - m_entriesTimesWrong[1].count()));
-        ui.timesPracticedLabel->setText(QString::number(numEntries
-                                                        - m_entriesTimesPracticed[0].count()
-                                                        - m_entriesTimesPracticed[1].count()));
-        ui.minMaxGradeLabel   ->setText(QString::number(numEntries
-                                                        - m_entriesMinMaxGrade[0].count()
-                                                        - m_entriesMinMaxGrade[1].count()));
-
-        ui.documentTotalLabel->setText(QString::number(numEntries));
-        updateTotal();
-
-        ui.lessonCheckBox->setChecked(m_entriesLesson[0].count() + m_entriesLesson[1].count() == 0);
-        ui.wordTypeCheckBox->setChecked(m_entriesWordType[0].count() + m_entriesWordType[1].count() == 0);
-        ui.blockedCheckBox->setChecked(m_entriesNotBlocked[0].count() + m_entriesNotBlocked[1].count() == 0);
-        ui.timesWrongCheckBox->setChecked(m_entriesTimesWrong[0].count() + m_entriesTimesWrong[1].count() == 0);
-        ui.timesPracticedCheckBox->setChecked(m_entriesTimesPracticed[0].count() + m_entriesTimesPracticed[1].count() == 0);
-        ui.minMaxGradeCheckBox->setChecked(m_entriesMinMaxGrade[0].count() + m_entriesMinMaxGrade[1].count() == 0);
-
-        connect(ui.lessonCheckBox, &QAbstractButton::toggled, this, &EntryFilter::checkBoxChanged);
-        connect(ui.wordTypeCheckBox, &QAbstractButton::toggled, this, &EntryFilter::checkBoxChanged);
-        connect(ui.blockedCheckBox, &QAbstractButton::toggled, this, &EntryFilter::checkBoxChanged);
-        connect(ui.timesWrongCheckBox, &QAbstractButton::toggled, this, &EntryFilter::checkBoxChanged);
-        connect(ui.timesPracticedCheckBox, &QAbstractButton::toggled, this, &EntryFilter::checkBoxChanged);
-        connect(ui.minMaxGradeCheckBox, &QAbstractButton::toggled, this, &EntryFilter::checkBoxChanged);
-
-        updateTotal();
-
-        if (!Prefs::wordTypesInPracticeEnabled()) {
-            ui.wordTypeLabel->setVisible(false);
-            ui.wordTypeCheckBox->setVisible(false);
-        }
-
-        if (m_dialog->exec() == QDialog::Rejected) {
-            delete m_dialog;
+        EntryFilterDialog dialog(*this);// this pointer isn't used as pointer to parent widget here!
+                                       // It should provide access to the EntryFilter data.
+        if (dialog.exec() == QDialog::Rejected) {
             return QList<TestEntry*>();
         }
-        ignoreBlocked = ui.blockedCheckBox->isChecked();
-        delete m_dialog;
+        ignoreBlocked = dialog.ignoreBlocked();
     }
 
     // Finally, create the list of test entries from the selected
@@ -664,49 +602,16 @@ QList< TestEntry* > EntryFilter::conjugationTestEntries(bool ignoreBlocked) cons
     return testEntries;
 }
 
-
-// ----------------------------------------------------------------
-//                 Support functions for the dialog
-
-
-void EntryFilter::checkBoxChanged(bool filter)
+void EntryFilter::updateCurrentSelection()
 {
-    Q_UNUSED(filter)
-    updateTotal();
-}
-
-void EntryFilter::updateTotal()
-{
-    QSet< KEduVocExpression * > selected[2];
-
     for (int i = 0; i < m_numSets; ++i) {
-        selected[i] = m_entries[i];
-        if (!m_dialog || !ui.lessonCheckBox->isChecked()) {
-            selected[i] = selected[i].intersect(m_entriesLesson[i]);
-        }
-        if (!m_dialog || !ui.wordTypeCheckBox->isChecked()) {
-            selected[i] = selected[i].intersect(m_entriesWordType[i]);
-        }
-        if (!m_dialog || !ui.blockedCheckBox->isChecked()) {
-            selected[i] = selected[i].intersect(m_entriesNotBlocked[i]);
-        }
-        if (!m_dialog || !ui.timesWrongCheckBox->isChecked()) {
-            selected[i] = selected[i].intersect(m_entriesTimesWrong[i]);
-        }
-        if (!m_dialog || !ui.timesPracticedCheckBox->isChecked()) {
-            selected[i] = selected[i].intersect(m_entriesTimesPracticed[i]);
-        }
-        if (!m_dialog || !ui.minMaxGradeCheckBox->isChecked()) {
-            selected[i] = selected[i].intersect(m_entriesMinMaxGrade[i]);
-        }
-
-        m_currentSelection[i] = selected[i];
-    }
-
-    if (m_dialog) {
-        int numSelected = selected[0].count() + selected[1].count();
-        ui.totalLabel->setText(QString::number(numSelected));
-        m_button_dialog->button(QDialogButtonBox::Ok)->setEnabled(numSelected > 0);
+        m_currentSelection[i] = m_entries[i];
+        m_currentSelection[i] = m_currentSelection[i].intersect(m_entriesLesson[i]);
+        m_currentSelection[i] = m_currentSelection[i].intersect(m_entriesWordType[i]);
+        m_currentSelection[i] = m_currentSelection[i].intersect(m_entriesNotBlocked[i]);
+        m_currentSelection[i] = m_currentSelection[i].intersect(m_entriesTimesWrong[i]);
+        m_currentSelection[i] = m_currentSelection[i].intersect(m_entriesTimesPracticed[i]);
+        m_currentSelection[i] = m_currentSelection[i].intersect(m_entriesMinMaxGrade[i]);
     }
 }
 

@@ -20,6 +20,7 @@
 
 // KDE
 #include <KEMailSettings>
+#include <klocalizedstring.h>
 //#include <KLocale>
 
 // KEduVocDocument library
