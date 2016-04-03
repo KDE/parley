@@ -36,10 +36,10 @@
 
 
 // Size constants for the collection widgets
-int COLLWIDTH   = 140; // Width in pixels of a collection widget
+int COLLWIDTH   = 155; // Width in pixels of a collection widget
 //int COLLHEIGHT1 = 250; // Height in pixels of a collection widget not yet fully learned
-int COLLHEIGHT1 = 150; // Height in pixels of a collection widget not yet fully learned
-int COLLHEIGHT2 = 100; // Height in pixels of a collection widget fully learned
+int COLLHEIGHT1 = 175; // Height in pixels of a collection widget not yet fully learned
+int COLLHEIGHT2 = 125; // Height in pixels of a collection widget fully learned
 
 
 // ================================================================
@@ -178,10 +178,13 @@ void CollectionWidget::setupWidget(WordCount *dueWords)
     }
 
     m_barWidget = new BarWidget(dueWords, this);
-    m_barWidget->setFixedSize(COLLWIDTH - 10, 20);
+    m_barWidget->setFixedSize(COLLWIDTH - 10, 45);
     mainLayout->addWidget(m_barWidget);
     m_practiceButton = new QPushButton(this);
-    m_practiceButton->setStyleSheet(QStringLiteral("QPushButton {border: none; margin: 0px; padding: 0px;}"));
+    QString buttonStyleSheet = "QPushButton { border: none; margin: 0px; padding: 0px; color: " +
+            palette.color(QPalette::Active, QPalette::ButtonText).name()+ "; background-color: " +
+            palette.color(QPalette::Active, QPalette::Button).name() + "; border-radius: 3px;}";
+    m_practiceButton->setStyleSheet(buttonStyleSheet);
 
     // buttonLayout is the horizontal layout for the bottom line in the
     // collection widget: delete button, practice button, etc

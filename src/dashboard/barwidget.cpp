@@ -70,7 +70,7 @@ void BarWidget::paintEvent(QPaintEvent *)
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
     const int legendWidth = COLLWIDTH - 10;
-    const int legendHeight = 20;
+    const int legendHeight = 45;
     const int legendOffsetY = 0;
     const int legendOffsetX = 0;
     //const int alphaValueIncrement = 35;
@@ -133,10 +133,10 @@ void BarWidget::paintEvent(QPaintEvent *)
     //QPen pen(QColor(0, 0, 0));
     painter.setPen(pen);
     if (m_percentageCompleted < 100) {
-        painter.drawText(0, 0, legendWidth, 20, Qt::AlignCenter,
-			 i18np("%1 word due", "%1 words due", m_totalDueWords));
+        painter.drawText(0, 0, legendWidth, legendHeight, Qt::AlignCenter | Qt::TextWordWrap,
+			 i18np("%1 word due", "%1 word due", m_totalDueWords));
     }
     else {
-        painter.drawText(0, 0, legendWidth, 20, Qt::AlignCenter, i18n("Fully learned"));
+        painter.drawText(0, 0, legendWidth, legendHeight, Qt::AlignCenter | Qt::TextWordWrap, i18n("Fully learned"));
     }
 }
