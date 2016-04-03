@@ -24,7 +24,6 @@
 #include <QPainter>
 
 #include <kcolorscheme.h>
-#include <KRandom>
 
 
 using namespace Practice;
@@ -92,10 +91,11 @@ void MixedLettersModeWidget::setSolution(const QVariant& solution)
     Q_FOREACH(QChar ch, solution.toString()) {
         chars.append(ch);
     }
+    m_randomSequence.randomize(chars);
     m_mixedSolution.clear();
     m_positions.clear();
     Q_FOREACH(QChar ch, chars) {
         m_mixedSolution.append(ch);
-        m_positions.append(KRandom::random() % 8);
+        m_positions.append(m_randomSequence.getInt(8));
     }
 }
