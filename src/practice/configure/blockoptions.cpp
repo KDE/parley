@@ -206,6 +206,9 @@ void BlockOptions::slotBlockToggled(bool state)
     block5->setEnabled(state);
     block6->setEnabled(state);
     block7->setEnabled(state);
+    if (state) {
+        checkValidity();
+    }
 }
 
 void BlockOptions::slotExpireToggled(bool state)
@@ -217,6 +220,9 @@ void BlockOptions::slotExpireToggled(bool state)
     expire5->setEnabled(state);
     expire6->setEnabled(state);
     expire7->setEnabled(state);
+    if (state) {
+        checkValidity();
+    }
 }
 
 void BlockOptions::slotComboBoxActivated(int)
@@ -229,16 +235,12 @@ void BlockOptions::slotComboBoxActivated(int)
 void BlockOptions::checkValidity()
 {
     QString message;
-    bool found = false;
-    for (int i = 1; i <= 6; i++) {
-        if (kcfg_Block->isChecked()) {
-            /*if (Prefs::blockItem(i-1) != 0  &&
-              Prefs::blockItem(i) != 0 &&
-              Prefs::blockItem(i-1) >= Prefs::blockItem(i))*/
+    if (kcfg_Block->isChecked()) {
+        bool found = false;
+        for (int i = 1; i <= 6; i++) {
             if (date_itemlist[m_blockComboList[i - 1]->currentIndex()].num != 0 &&
                     date_itemlist[m_blockComboList[i]->currentIndex()].num != 0 &&
                     date_itemlist[m_blockComboList[i - 1]->currentIndex()].num >= date_itemlist[m_blockComboList[i]->currentIndex()].num) {
-                QString format;
                 if (!found)
                     message.append(i18n("Illogical blocking times.\n"));
                 found = true;
@@ -247,14 +249,13 @@ void BlockOptions::checkValidity()
         }
     }
 
-    for (int i = 1; i <= 6; i++) {
-        found = false;
-        if (kcfg_Expire->isChecked()) {
+    if (kcfg_Expire->isChecked()) {
+        bool found = false;
+        for (int i = 1; i <= 6; i++) {
             if (date_itemlist[m_expireComboList[i - 1]->currentIndex()].num != 0 &&
                     date_itemlist[m_expireComboList[i]->currentIndex()].num != 0 &&
                     date_itemlist[m_expireComboList[i - 1]->currentIndex()].num >=
                     date_itemlist[m_expireComboList[i]->currentIndex()].num) {
-                QString format;
                 if (!found)
                     message.append(i18n("\nIllogical expiration times.\n"));
                 found = true;
@@ -263,17 +264,14 @@ void BlockOptions::checkValidity()
         }
     }
 
-    if (message.length() == 0) {
-        found = false;
+    if ((message.length() == 0) && kcfg_Block->isChecked() && kcfg_Expire->isChecked()) {
+        bool found = false;
         for (int i = 0; i <= 6; i++) {
-            if (kcfg_Block->isChecked() &&
-                    kcfg_Expire->isChecked() &&
-                    m_expireComboList[i]->currentIndex() >= 0 &&
+            if (m_expireComboList[i]->currentIndex() >= 0 &&
                     m_blockComboList[i]->currentIndex() >= 0 &&
                     date_itemlist[m_expireComboList[i]->currentIndex()].num != 0 &&
                     date_itemlist[m_blockComboList[i]->currentIndex()].num != 0 &&
                     date_itemlist[m_blockComboList[i]->currentIndex()].num >= date_itemlist[m_expireComboList[i]->currentIndex()].num) {
-                QString format;
                 if (!found)
                     message.append(i18n("\nIllogical blocking vs. expiration times.\n"));
                 found = true;
