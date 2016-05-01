@@ -22,7 +22,7 @@ find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED
   Multimedia
 )
 
-find_package(KF5 5.15 MODULE REQUIRED COMPONENTS
+find_package(KF5 5.22 MODULE REQUIRED COMPONENTS
   DocTools  #to produce the docbook
   CoreAddons
   Config
