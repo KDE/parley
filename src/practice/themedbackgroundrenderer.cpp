@@ -29,7 +29,7 @@ ThemedBackgroundRenderer::ThemedBackgroundRenderer(QObject* parent, const QStrin
     : QObject(parent), m_haveCache(true), m_queuedRequest(false), m_isFastScaledRender(true)
 {
     m_theme = new KGameTheme();
-    m_cache.setSaveFilename(QStandardPaths::writableLocation(QStandardPaths::DataLocation) + '/' + cacheFilename);
+    m_cache.setSaveFilename(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + '/' + cacheFilename);
     m_timer.setSingleShot(true);
     m_timer.setInterval(1000);
     connect(&m_timer, &QTimer::timeout, this, &ThemedBackgroundRenderer::updateBackgroundTimeout);

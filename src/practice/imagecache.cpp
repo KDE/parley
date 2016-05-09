@@ -14,6 +14,7 @@
 #include "imagecache.h"
 
 #include <QFileInfo>
+#include <QDir>
 #include <QDataStream>
 
 #include <QDebug>
@@ -57,10 +58,23 @@ QImage ImageCache::getImage(const QString& id)
     return m_images.value(id);
 }
 
+void ImageCache::setSaveFilename(const QString &filename)
+{
+    m_saveFilename = filename;
+    QDir fileDir = QFileInfo(filename).absoluteDir();
+    if (!fileDir.exists() && !fileDir.mkpath(QStringLiteral("."))) {
+        qWarning() << QStringLiteral("Couldn't create image cache path: ") << fileDir.absolutePath();
+    }
+}
+
 void ImageCache::openCache()
 {
     QFile file(m_saveFilename);
-    file.open(QIODevice::ReadOnly);
+    if (!file.open(QIODevice::ReadOnly)) {
+        // If cache is used for the first time it's normal to fail here,
+        // because cache file doesn't exist at this time.
+        return;
+    }
     QDataStream stream(&file);
     // check identifier
     QString temp;
@@ -112,3 +126,4 @@ QDebug Practice::operator<<(QDebug dbg, const ImageCache &c)
     dbg.nospace() << "\n\ttotal pixel count: " << pixels << " (approx. " << double(pixels) * 4 / 1024 / 1024 << " MiB)";
     return dbg.space();
 }
+

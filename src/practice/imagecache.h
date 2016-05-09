@@ -39,9 +39,7 @@ public:
         return m_images.isEmpty();
     }
 
-    void setSaveFilename(const QString& filename) {
-        m_saveFilename = filename;
-    }
+    void setSaveFilename(const QString &filename);
     void openCache();
     void saveCache();
 
