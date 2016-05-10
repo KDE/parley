@@ -18,6 +18,7 @@
 #include <QDebug>
 
 Translator::Translator()
+    : m_parent(nullptr)
 {
 }
 
