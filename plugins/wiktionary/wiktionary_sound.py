@@ -17,8 +17,18 @@ import os
 from os import path
 import string
 import Kross
+import urllib
 
 T = Kross.module("kdetranslation")
+
+# fetch http_content
+def fetch_http_content(url, params, method):
+    params = urllib.urlencode(params)
+    if method=='POST':
+        f = urllib.urlopen(url, params)
+    else:
+        f = urllib.urlopen(url+'?'+params)
+    return (f.read(), f.code)
 
 # Connected to the action menu
 def fetchSound():
@@ -95,8 +105,16 @@ def downloadFromWiki(wikiObject):
     filename = filesdir + wikiObject.name.encode('utf-8')
     print filename
     saveas = open(filename,'w')
-    remote = wikiObject.download()
-    saveas.write(remote.read())
+#   remote = wikiObject.download()
+#   workaround: because download method results with http response code 404
+    content, response_code = fetch_http_content(
+                              wikiObject.imageinfo['url'],
+                              {},
+                              'GET'
+                         )
+    print 'HTTP Response code: ', response_code
+    if(response_code == 200):
+	    saveas.write(content)
     saveas.close()
     return filename
 
