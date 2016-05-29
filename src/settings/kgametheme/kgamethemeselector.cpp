@@ -48,7 +48,7 @@ public:
 
     // private slots
     void _k_updatePreview();
-    void _k_updateThemeList(const QString& strTheme);
+    void _k_updateThemeList(const QString &strTheme);
     void _k_openKNewStuffDialog();
 };
 
@@ -186,13 +186,23 @@ void KGameThemeSelectorPrivate::_k_updatePreview()
     ui.themePreview->setPixmap(pix.scaled(ui.themePreview->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 }
 
-void KGameThemeSelectorPrivate::_k_updateThemeList(const QString& strTheme)
+void KGameThemeSelectorPrivate::_k_updateThemeList(const QString &strTheme)
 {
     //find theme and set selection to the current theme; happens when pressing "Default"
-    QListWidgetItem * currentItem = ui.themeList->currentItem();
-    if (!currentItem || themeMap.value(currentItem->text())->fileName() != strTheme) {
+    QListWidgetItem *currentItem = ui.themeList->currentItem();
+
+    QString currentGameThemeFileName;
+    if (currentItem) {
+        KGameTheme *currentGameTheme = themeMap.value(currentItem->text());
+        if (currentGameTheme) {
+            currentGameThemeFileName = currentGameTheme->fileName();
+        }
+    }
+
+    if (!currentItem || (currentGameThemeFileName != strTheme)) {
         for (int i = 0; i < ui.themeList->count(); i++) {
-            if (themeMap.value(ui.themeList->item(i)->text())->fileName() == strTheme) {
+            KGameTheme *listItemGameTheme = themeMap.value(ui.themeList->item(i)->text());
+            if (listItemGameTheme && (listItemGameTheme->fileName() == strTheme)) {
                 ui.themeList->setCurrentItem(ui.themeList->item(i));
                 break;
             }
