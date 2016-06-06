@@ -134,7 +134,7 @@ void BarWidget::paintEvent(QPaintEvent *)
     painter.setPen(pen);
     if (m_percentageCompleted < 100) {
         painter.drawText(0, 0, legendWidth, legendHeight, Qt::AlignCenter | Qt::TextWordWrap,
-			 i18np("%1 word due", "%1 word due", m_totalDueWords));
+			 i18np("%1 word due", "%1 words due", m_totalDueWords));
     }
     else {
         painter.drawText(0, 0, legendWidth, legendHeight, Qt::AlignCenter | Qt::TextWordWrap, i18n("Fully learned"));
