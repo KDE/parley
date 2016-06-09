@@ -28,14 +28,16 @@
 
 using namespace Editor;
 
-MultipleChoiceWidget::MultipleChoiceWidget(QWidget *parent) : QWidget(parent)
+MultipleChoiceWidget::MultipleChoiceWidget(QWidget *parent)
+    : QWidget(parent)
+    , m_translation(Q_NULLPTR)
+    , m_choicesModel(new QStringListModel(this))
 {
     setupUi(this);
 
     connect(addChoiceButton, &QPushButton::clicked, this, &MultipleChoiceWidget::slotAddChoiceButton);
     connect(removeChoiceButton, &QPushButton::clicked, this, &MultipleChoiceWidget::slotRemoveChoiceButton);
 
-    m_choicesModel = new QStringListModel(this);
     multipleChoiceListView->setModel(m_choicesModel);
 
     connect(m_choicesModel, &QStringListModel::dataChanged, this, &MultipleChoiceWidget::slotDataChanged);
@@ -47,16 +49,20 @@ MultipleChoiceWidget::MultipleChoiceWidget(QWidget *parent) : QWidget(parent)
 }
 
 
-void MultipleChoiceWidget::slotDataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight)
+void MultipleChoiceWidget::slotDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight)
 {
     Q_UNUSED(topLeft)
     Q_UNUSED(bottomRight)
-    m_translation->multipleChoice() = m_choicesModel->stringList();
-    removeChoiceButton->setEnabled(m_translation && m_translation->multipleChoice().count() > 0);
+    if (m_translation) {
+        m_translation->multipleChoice() = m_choicesModel->stringList();
+        removeChoiceButton->setEnabled(m_translation->multipleChoice().count() > 0);
+    } else {
+        removeChoiceButton->setEnabled(false);
+    }
 }
 
 
-void MultipleChoiceWidget::setTranslation(KEduVocExpression * entry, int translation)
+void MultipleChoiceWidget::setTranslation(KEduVocExpression *entry, int translation)
 {
     if (entry) {
         m_translation = entry->translation(translation);
@@ -94,12 +100,16 @@ void MultipleChoiceWidget::slotRemoveChoiceButton()
     } else {
         m_choicesModel->removeRows(m_choicesModel->rowCount(QModelIndex()) - 1, 1, QModelIndex());
     }
-    m_translation->multipleChoice() = m_choicesModel->stringList();
-    removeChoiceButton->setEnabled(m_translation && m_translation->multipleChoice().count() > 0);
+    if (m_translation) {
+        m_translation->multipleChoice() = m_choicesModel->stringList();
+        removeChoiceButton->setEnabled(m_translation->multipleChoice().count() > 0);
+    } else {
+        removeChoiceButton->setEnabled(false);
+    }
 }
 
 
-bool MultipleChoiceWidget::eventFilter(QObject * obj, QEvent * event)
+bool MultipleChoiceWidget::eventFilter(QObject *obj, QEvent *event)
 {
     if (obj == multipleChoiceListView) {
         if (event->type() == QEvent::DragEnter) {
