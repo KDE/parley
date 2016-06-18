@@ -1027,7 +1027,7 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>
+<!--para>
 The needed images can be obtained from Google search using &parley; inbuilt scripts.
 </para>
 <para>
@@ -1059,7 +1059,7 @@ When the selection is finished just click on <guibutton>OK</guibutton> and the i
 <para>
 Due to the current script limitations the image files cannot be saved in the paths with Unicode symbols in the names of folders and files.
 </para>
-</warning>
+</warning-->
 </sect1>
 <sect1 id="adding-sound"><title>Adding Sound</title>
 <para>First show the sound tool by selecting <guilabel>View</guilabel> in the menubar and then clicking on <guilabel>Sound</guilabel>. This will show up the sound section on the right hand side of the &parley; screen.
