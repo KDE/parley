@@ -78,7 +78,10 @@ void ConjugationWidget::textChanged(const QString& text)
 {
     int valueIndex = m_conjugationLineEdits.values().indexOf(qobject_cast<QLineEdit*>(sender()));
     int key = m_conjugationLineEdits.keys().value(valueIndex);
-    m_entry->translation(m_identifier)->conjugation(tenseComboBox->currentText()).setConjugation(text, (KEduVocWordFlag::Flags)key);
+    KEduVocTranslation *translation = m_entry->translation(m_identifier);
+    KEduVocConjugation conjugation = translation->getConjugation(tenseComboBox->currentText());
+    conjugation.setConjugation(text, (KEduVocWordFlag::Flags)key);
+    translation->setConjugation(tenseComboBox->currentText(), conjugation);
 }
 
 
@@ -92,7 +95,7 @@ void ConjugationWidget::slotTenseSelected(int sel)
 void ConjugationWidget::updateEntries()
 {
     m_lastTenseSelection = tenseComboBox->currentText();
-    KEduVocConjugation& conjugation = m_entry->translation(m_identifier)->conjugation(m_lastTenseSelection);
+    KEduVocConjugation conjugation = m_entry->translation(m_identifier)->getConjugation(m_lastTenseSelection);
     foreach(KEduVocWordFlags flags, m_conjugationLineEdits.keys()) {
         QString text;
         if (conjugation.keys().contains(flags)) {

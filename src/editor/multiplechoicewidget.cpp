@@ -54,8 +54,8 @@ void MultipleChoiceWidget::slotDataChanged(const QModelIndex &topLeft, const QMo
     Q_UNUSED(topLeft)
     Q_UNUSED(bottomRight)
     if (m_translation) {
-        m_translation->multipleChoice() = m_choicesModel->stringList();
-        removeChoiceButton->setEnabled(m_translation->multipleChoice().count() > 0);
+        m_translation->setMultipleChoice(m_choicesModel->stringList());
+        removeChoiceButton->setEnabled(m_translation->getMultipleChoice().count() > 0);
     } else {
         removeChoiceButton->setEnabled(false);
     }
@@ -72,12 +72,12 @@ void MultipleChoiceWidget::setTranslation(KEduVocExpression *entry, int translat
 
     if (m_translation) {
         setEnabled(true);
-        m_choicesModel->setStringList(m_translation->multipleChoice());
-        removeChoiceButton->setEnabled(m_translation->multipleChoice().count() > 0);
+        m_choicesModel->setStringList(m_translation->getMultipleChoice());
+        removeChoiceButton->setEnabled(m_translation->getMultipleChoice().count() > 0);
     } else {
         setEnabled(false);
     }
-    removeChoiceButton->setEnabled(m_translation && m_translation->multipleChoice().count() > 0);
+    removeChoiceButton->setEnabled(m_translation && m_translation->getMultipleChoice().count() > 0);
 }
 
 
@@ -101,8 +101,8 @@ void MultipleChoiceWidget::slotRemoveChoiceButton()
         m_choicesModel->removeRows(m_choicesModel->rowCount(QModelIndex()) - 1, 1, QModelIndex());
     }
     if (m_translation) {
-        m_translation->multipleChoice() = m_choicesModel->stringList();
-        removeChoiceButton->setEnabled(m_translation->multipleChoice().count() > 0);
+        m_translation->setMultipleChoice(m_choicesModel->stringList());
+        removeChoiceButton->setEnabled(m_translation->getMultipleChoice().count() > 0);
     } else {
         removeChoiceButton->setEnabled(false);
     }

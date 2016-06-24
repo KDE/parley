@@ -46,7 +46,7 @@ bool ConjugationBackendMode::setTestEntry(TestEntry* current)
     }
 
     data.tense = m_currentTense;
-    m_conjugation = m_current->entry()->translation(m_current->languageTo())->conjugation(m_currentTense);
+    m_conjugation = m_current->entry()->translation(m_current->languageTo())->getConjugation(m_currentTense);
     m_pronounFlags = current->conjugationPronouns();
 
     data.questionInfinitive = m_current->entry()->translation(m_current->languageFrom())->text();
@@ -119,7 +119,7 @@ grade_t ConjugationBackendMode::currentPreGradeForEntry() const
 {
     Q_ASSERT(m_current != 0);
     KEduVocTranslation* trans = m_current->entry()->translation(m_current->languageTo());
-    KEduVocConjugation& conj = trans->conjugation(m_current->conjugationTense());
+    KEduVocConjugation conj = trans->getConjugation(m_current->conjugationTense());
     QList<KEduVocWordFlags> keys = conj.keys();
 
     grade_t min_grade = KV_MAX_GRADE;
@@ -134,7 +134,7 @@ grade_t ConjugationBackendMode::currentGradeForEntry() const
 {
     Q_ASSERT(m_current != 0);
     KEduVocTranslation* trans = m_current->entry()->translation(m_current->languageTo());
-    KEduVocConjugation& conj = trans->conjugation(m_current->conjugationTense());
+    KEduVocConjugation conj = trans->getConjugation(m_current->conjugationTense());
     QList<KEduVocWordFlags> keys = conj.keys();
 
     grade_t min_grade = KV_MAX_GRADE;
@@ -150,14 +150,18 @@ void ConjugationBackendMode::updateGrades()
     qDebug() << "Grading conjugations";
 
     foreach(const KEduVocWordFlags & key, m_pronounFlags) {
-        KEduVocText& text = m_current->entry()->translation(m_current->languageTo())->
-                            conjugation(m_currentTense).conjugation(key);
+        KEduVocTranslation *translation = m_current->entry()->translation(m_current->languageTo());
+        if (translation) {
+            KEduVocConjugation conjugationToUpdate = translation->getConjugation(m_currentTense);
+            conjugationToUpdate.conjugation(key).incPracticeCount();
+            conjugationToUpdate.conjugation(key).setPracticeDate(QDateTime::currentDateTime());
 
-        text.incPracticeCount();
-        text.setPracticeDate(QDateTime::currentDateTime());
+            updateGrade(conjugationToUpdate.conjugation(key),
+                        m_frontend->resultState() == AbstractFrontend::AnswerCorrect,
+                        m_current->statisticBadCount() == 0);
 
-        updateGrade(text, m_frontend->resultState() == AbstractFrontend::AnswerCorrect,
-                    m_current->statisticBadCount() == 0);
+            translation->setConjugation(m_currentTense, conjugationToUpdate);
+        }
     }
 }
 

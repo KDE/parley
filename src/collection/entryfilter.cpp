@@ -335,9 +335,9 @@ bool EntryFilter::isConjugationBlocked(KEduVocTranslation* translation) const
 {
     foreach(const QString & tense, translation->conjugationTenses()) {
         if (m_tenses.contains(tense)) {
-            QList<KEduVocWordFlags> pronouns = translation->conjugation(tense).keys();
+            QList<KEduVocWordFlags> pronouns = translation->getConjugation(tense).keys();
             foreach(const KEduVocWordFlags & pronoun, pronouns) {
-                KEduVocText grade = translation->conjugation(tense).conjugation(pronoun);
+                KEduVocText grade = translation->getConjugation(tense).conjugation(pronoun);
                 if (!isBlocked(&(grade))) {
                     // just need to find any form that is not blocked for generating test entries
                     // exact filtering is done later in conjugationTestEntries
@@ -523,7 +523,7 @@ void EntryFilter::cleanupInvalid(int setNo)
             QSet<QString> practice_tenses = QSet<QString>::fromList(m_tenses);
             QSet<QString> existing_tenses;
             foreach(const QString & tense, translation->conjugationTenses()) {
-                if (!translation->conjugation(tense).isEmpty()) {
+                if (!translation->getConjugation(tense).isEmpty()) {
                     existing_tenses << tense;
                 }
             }
@@ -563,7 +563,7 @@ QList< TestEntry* > EntryFilter::conjugationTestEntries(bool ignoreBlocked) cons
                 if (!m_tenses.contains(tense)) {
                     continue;
                 }
-                KEduVocConjugation& conjugation = entry->translation(m_toTranslation)->conjugation(tense);
+                KEduVocConjugation conjugation = entry->translation(m_toTranslation)->getConjugation(tense);
                 if (conjugation.isEmpty()) {
                     continue;
                 }

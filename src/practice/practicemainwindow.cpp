@@ -59,8 +59,6 @@ PracticeMainWindow::PracticeMainWindow(SessionManagerBase* sessionManager,
 
     KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
     applyMainWindowSettings(cfg);
-
-    I18N_NOOP("I knew it well");
 }
 
 PracticeMainWindow::~PracticeMainWindow()

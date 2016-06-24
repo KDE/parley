@@ -251,7 +251,7 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
 
     // if the current entry has predefined multiple choice entries definied, use them first
     TestEntry *currentEntry = m_currentEntries.at(m_currentEntry);
-    QStringList predefinedChoices = currentEntry->entry()->translation(currentEntry->languageTo())->multipleChoice();
+    QStringList predefinedChoices = currentEntry->entry()->translation(currentEntry->languageTo())->getMultipleChoice();
     while (!predefinedChoices.isEmpty() && count > 0) {
         choices.append(predefinedChoices.takeAt(KRandom::random() % predefinedChoices.count()));
         count--;

@@ -46,14 +46,14 @@ QString Translation::wordType() const
 
 void Translation::setConjugationText(const QString& conjugation, const QString& tense, const KEduVocWordFlags& flags)
 {
-    KEduVocConjugation & conjug = m_translation->conjugation(tense);
+    KEduVocConjugation conjug = m_translation->getConjugation(tense);
     conjug.setConjugation(conjugation, flags);
     m_translation->setConjugation(tense, conjug);
 }
 
 QObject * Translation::conjugation(const QString & tense, const KEduVocWordFlags& flags)
 {
-    KEduVocConjugation conjug = m_translation->conjugation(tense);
+    KEduVocConjugation conjug = m_translation->getConjugation(tense);
     return new Text(conjug.conjugation(flags));
 }
 
@@ -61,7 +61,7 @@ void Translation::setConjugation(QObject * conjugation, const QString& tense, co
 {
     Text * txt = dynamic_cast<Text*>(conjugation);
     if (txt) {
-        KEduVocConjugation & conjug = m_translation->conjugation(tense);
+        KEduVocConjugation conjug = m_translation->getConjugation(tense);
         conjug.setConjugation(*(txt->kEduVocText()), flags);
         m_translation->setConjugation(tense, conjug);
     }

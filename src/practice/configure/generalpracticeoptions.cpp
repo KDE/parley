@@ -34,7 +34,4 @@ GeneralPracticeOptions::GeneralPracticeOptions(QWidget* parent) : QWidget(parent
     setupUi(this);
 
     //connect(kcfg_ShowSolutionAfterAnswer, SIGNAL(toggled(bool)), kcfg_ShowSolutionAfterAnswerTime, SLOT(setEnabled(bool)));
-
-    I18N_NOOP("Limit the number of words in the initial phase");
-    I18N_NOOP("Max number of words in the initial phase");
 }

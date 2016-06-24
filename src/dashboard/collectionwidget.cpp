@@ -81,20 +81,6 @@ void RemoveButton::paintEvent(QPaintEvent*)
     painter.drawText(2, 1, height() - 2, height() - 1, Qt::AlignCenter, QStringLiteral("x"));
 }
 
-
-// ----------------------------------------------------------------
-
-
-static int randInt(int low, int high)
-{
-    // Random number between low and high
-    return qrand() % ((high + 1) - low) + low;
-}
-
-
-// ----------------------------------------------------------------
-
-
 CollectionWidget::CollectionWidget(Collection *collection, WordCount *dueWords, QWidget *parent)
     : QWidget(parent)
     , m_collection(collection)
