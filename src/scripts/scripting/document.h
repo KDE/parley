@@ -261,12 +261,12 @@ public:
      * Sets the URL of the XML file
      */
     void setUrl(const QString& url) {
-        m_doc->setUrl(url);
+        m_doc->setUrl(QUrl(url));
     }
 
     /* @returns the URL of the XML file */
     QString url() const {
-        return m_doc->url().path();
+        return m_doc->url().toString();
     }
 
 public slots:
@@ -390,7 +390,7 @@ public slots:
      */
     int saveAs(const QString & url, KEduVocDocument::FileType ft = KEduVocDocument::Automatic, const QString & generator = QStringLiteral("Parley")) {
         m_doc->setGenerator(generator);
-        return m_doc->saveAs(url, ft);
+        return m_doc->saveAs(QUrl(url), ft);
     }
 
 //             QByteArray toByteArray ( const QString &generator );

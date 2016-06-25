@@ -130,7 +130,7 @@ public:
      * @param url               url of the image
      */
     void setImageUrl(const QString & url) {
-        m_container->setImageUrl(url);
+        m_container->setImageUrl(QUrl(url));
     }
 
     /* finds the container with the given name */

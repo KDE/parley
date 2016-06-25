@@ -42,7 +42,7 @@ void ImageChooserWidget::setTranslation(KEduVocExpression* entry, int translatio
 
     if (m_entry) {
         setEnabled(true);
-        imageUrlRequester->setUrl(m_entry->translation(m_currentTranslation)->imageUrl().toLocalFile());
+        imageUrlRequester->setUrl(m_entry->translation(m_currentTranslation)->imageUrl());
 //         slotImageChanged( m_entry->translation(m_currentTranslation)->imageUrl().toLocalFile() );
     } else {
         setEnabled(false);
@@ -52,10 +52,11 @@ void ImageChooserWidget::setTranslation(KEduVocExpression* entry, int translatio
     }
 }
 
-void ImageChooserWidget::slotImageChanged(const QString & url)
+void ImageChooserWidget::slotImageChanged(const QString & urlStr)
 {
-    if (!url.isEmpty()) {
-        QPixmap pixmap(url);
+    QUrl url = QUrl::fromUserInput(urlStr);
+    if (!url.isEmpty() && url.isLocalFile()) {
+        QPixmap pixmap(url.toLocalFile());
         imageWidget->setPixmap(pixmap);
     } else {
 //         imageLabel->setText(i18nc("@label image preview is empty", "No Image"));
@@ -63,7 +64,7 @@ void ImageChooserWidget::slotImageChanged(const QString & url)
     }
 
     if (m_entry) {
-        m_entry->translation(m_currentTranslation)->setImageUrl( QUrl::fromLocalFile(url));
+        m_entry->translation(m_currentTranslation)->setImageUrl(url);
         foreach(int j, m_entry->translationIndices()) {
             if (m_entry->translation(j)->imageUrl().isEmpty()) {
                 m_entry->translation(j)->setImageUrl(imageUrlRequester->url());

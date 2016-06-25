@@ -48,7 +48,7 @@ void AudioWidget::setTranslation(KEduVocExpression* entry, int translation)
     if (m_entry) {
         recordButton->setEnabled(true);
         audioUrlRequester->setEnabled(true);
-        audioUrlRequester->setUrl(m_entry->translation(m_currentTranslation)->soundUrl().toLocalFile());
+        audioUrlRequester->setUrl(m_entry->translation(m_currentTranslation)->soundUrl());
     } else {
         recordButton->setEnabled(false);
         audioUrlRequester->setEnabled(false);

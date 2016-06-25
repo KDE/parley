@@ -562,7 +562,7 @@ void ParleyDocument::slotGHNS()
             QMimeType mimeType = db.mimeTypeForFile(file);
             qDebug() << "KNS2 file of mime type:" << db.mimeTypeForFile(file).name();
             if (mimeType.inherits(QStringLiteral("application/x-kvtml"))) {
-                ParleyMainWindow::instance()->addRecentFile(file, QString()); ///@todo: title!
+                ParleyMainWindow::instance()->addRecentFile(QUrl::fromLocalFile(file), QString()); ///@todo: title!
                 fileName = file;
             }
         }
@@ -574,7 +574,7 @@ void ParleyDocument::slotGHNS()
     if (numberInstalled > 1) {
         openGHNS();
     } else if (numberInstalled == 1) {
-        if (open(QUrl::fromUserInput(fileName)))
+        if (open(QUrl::fromLocalFile(fileName)))
             m_parleyApp->showPracticeConfiguration();
         else
             KMessageBox::error(m_parleyApp, i18n("Could not open vocabulary collection \"%1\"", entries.first().name()));

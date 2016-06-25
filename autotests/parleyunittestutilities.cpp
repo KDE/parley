@@ -51,7 +51,7 @@ MinimalTempVocDoc::MinimalTempVocDoc()
     doc->setAuthor( author );
     doc->appendIdentifier( lang0 );
     doc->setGenerator(generator);
-    doc->saveAs(this->fileName(), KEduVocDocument::Kvtml);
+    doc->saveAs(QUrl::fromLocalFile(fileName()), KEduVocDocument::Kvtml);
     delete doc;
 }
 

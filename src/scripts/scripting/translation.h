@@ -206,25 +206,25 @@ public:
 
     /* get the sound url for this translation if it exists */
     QString soundUrl() {
-        return m_translation->soundUrl().path();
+        return m_translation->soundUrl().toString();
     }
 
     /* set the sound url for this translation
      * @param url               url of the sound file */
     void setSoundUrl(const QString &url) {
-        m_translation->setSoundUrl(url);
+        m_translation->setSoundUrl(QUrl(url));
     }
 
     /* get the image url for this translation if it exists */
     QString imageUrl() {
-        return m_translation->soundUrl().path();
+        return m_translation->soundUrl().toString();
     }
 
     /* set the image url for this translation
      * @param url               url of the image
      */
     void setImageUrl(const QString &url) {
-        m_translation->setImageUrl(url);
+        m_translation->setImageUrl(QUrl(url));
     }
 
     /*

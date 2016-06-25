@@ -221,8 +221,8 @@ void PracticeStateMachine::updateFrontend()
 
     m_frontend->setBoxes(grade, goodGrade, KV_LEV1_GRADE);
 
-    QString imgFrom = m_current->entry()->translation(m_current->languageFrom())->imageUrl().url();
-    QString imgTo = m_current->entry()->translation(m_current->languageTo())->imageUrl().url();
+    QUrl imgFrom = m_current->entry()->translation(m_current->languageFrom())->imageUrl();
+    QUrl imgTo = m_current->entry()->translation(m_current->languageTo())->imageUrl();
     if (imgFrom.isEmpty()) {
         imgFrom = imgTo;
     }
@@ -232,12 +232,12 @@ void PracticeStateMachine::updateFrontend()
     if (Prefs::flashcardsFrontImage()) {
         m_frontend->setQuestionImage(imgFrom);
     } else {
-        m_frontend->setQuestionImage(QString());
+        m_frontend->setQuestionImage(QUrl());
     }
     if (Prefs::flashcardsBackImage()) {
         m_frontend->setSolutionImage(imgTo);
     } else {
-        m_frontend->setSolutionImage(QString());
+        m_frontend->setSolutionImage(QUrl());
     }
     m_frontend->showQuestion();
 }
