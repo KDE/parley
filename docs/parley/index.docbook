@@ -1,9 +1,5 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
-  <!-- Define an entity for your application if it is not part of KDE
-       CVS -->
-  <!ENTITY kappname "&parley;">
-  <!ENTITY package "parley">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE">]>
 
@@ -53,8 +49,8 @@
 </copyright>
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2014-07-18</date>
-<releaseinfo>1.0.0 (&kde; SC 4.14)</releaseinfo>
+<date>2016-05-12</date>
+<releaseinfo>2.10 (Applications 16.04)</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -73,7 +69,7 @@ limited to language learning but supports a multitude of subjects.
 <keyword>training</keyword>
 <keyword>learning</keyword>
 </keywordset>
-
+<!-- https://bugs.kde.org/show_bug.cgi?id=281586#c2 adjustable font size for practice window for better reading on highres screens -->
 </bookinfo>
 <!--userbase <timestamp>2010-06-25T18:39:29Z</timestamp>-->
 
@@ -91,26 +87,26 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>In this manual the term <emphasis>Vocabulary Collection</emphasis> refers to a file that contains <emphasis>Units</emphasis>. Each unit can be a lesson or a collection of lessons nested to any depth. In the rest of this manual we will refer to units rather than lessons since they can be used for other purposes too.
 </para>
-<para>Both, the Editor and the Practice can be reached from the <link linkend="start-page">Start Page</link>.
+<para>Both, the Editor and the Practice can be reached from the <link linkend="practice-overview">Practice Overview</link>.
 </para>
-<para>The <link linkend="practice">Practice</link> consists of three parts: first the <link linkend="practice-setup">Practice Setup</link> where you choose what to practice. From there you start the actual <link linkend="practice">Practice</link> and when you are done, you get a <link linkend="summary-after-practice">Summary</link>.
+<para>The <link linkend="practice">Practice</link> consists of three parts: first the <link linkend="practice-overview">Practice Overview</link> where you choose what to practice. From there you start the actual <link linkend="practice">Practice</link> and when you are done, you get a <link linkend="summary-after-practice">Summary</link>.
 </para>
 <tip>
 <para>Like in all applications try to use the right-click if you explore features and functionality in &parley;. The right-click displays a <quote>context menu</quote> that shows what you can do with your present situation. Try right-clicking units and words to find some options.
 </para>
 </tip>
 </chapter>
-<chapter id="start-page"><title>Start Page</title>
-<para>When you first launch &parley; the <guilabel>Start Page</guilabel> welcomes you.
+<chapter id="dashboard"><title>Dashboard</title>
+<para>When you first launch &parley; the <guilabel>Dashboard</guilabel> welcomes you.
 </para>
-<para>At first the <guilabel>Start Page</guilabel> is empty, once you opened some vocabulary collections, it shows you the ones you worked with most recently.
+<para>At first the <guilabel>Dashboard</guilabel> is empty, once you opened some vocabulary collections, it shows you the ones you worked with most recently.
 </para>
 <para>
 <screenshot>
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_welcome_screen.png" format="PNG"/>
+      <imagedata fileref="dashboard.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -120,7 +116,7 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>A vocabulary collection is a file that contains words and their translations into other languages or other pairs of words and sentences that you want to memorize. The words are organized in units.
 </para>
-<para>To <emphasis>start practicing</emphasis>, click the <guilabel>Practice</guilabel> on one of the vocabulary collection names in the list. You are taken to the <link linkend="practice-setup">practice setup</link>.
+<para>To <emphasis>start practicing</emphasis>, click the <guilabel>Practice</guilabel> on one of the vocabulary collection names in the list. You are taken to the <link linkend="practice-overview">practice overview</link>.
 </para>
 <para>Note that a small <guilabel>Delete Icon</guilabel> appears to the left of the document name. The <guilabel>Delete Icon</guilabel> lets you remove the collection from the list.
 </para>
@@ -128,7 +124,7 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>You can also <link linkend="open-an-existing-collection">open a collection</link> if you have it on your computer already but it's not in the list.
 </para>
-<para>The last button on the <guilabel>Start Page</guilabel> offers you to download vocabulary collections made by others. When you've created a file that you'd like to share with others, you can easily upload it from the editor.
+<para>The last button on the <guilabel>Dashboard</guilabel> offers you to download vocabulary collections made by others. When you've created a file that you'd like to share with others, you can easily upload it from the editor.
 </para>
 <para>&parley; comes with different themes, you can switch to a different graphical style in the settings. For further information, see <link linkend="configure-parley">Configure &parley;</link>.
 </para>
@@ -143,7 +139,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_initial_screen_0-9-4.png" format="PNG"/>
+      <imagedata fileref="initial_screen.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -160,7 +156,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_file_select_dialog_0-9-4.png" format="PNG"/>
+      <imagedata fileref="file_select_dialog.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -168,14 +164,14 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>Now, the file is loaded, and you move on to the <guilabel>Practice Setup</guilabel> screen: see the following section for further details.
+<para>Now, the file is loaded, and you move on to the <guilabel>Practice Overview</guilabel> screen: see the following section for further details.
 </para>
 </chapter>
 <chapter id="vocabulary-practice"><title>Vocabulary Practice</title>
 <para>To start practicing you select a document after starting &parley;. If you have it opened in the editor already, just click <guilabel>Practice</guilabel> in the toolbar.
 </para>
-<sect1 id="practice-setup"><title>Practice Setup</title>
-<para>Before the actual practice starts, you always get to the Practice Setup page. There are three areas which allow you to choose what to practice:
+<sect1 id="practice-overview"><title>Practice Overview</title>
+<para>Before the actual practice starts, you always get to the Practice Overview page. There are three areas which allow you to choose what to practice:
 </para>
 <itemizedlist>
 <listitem><para> The selection of languages
@@ -190,7 +186,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Configure_practice.png" format="PNG"/>
+      <imagedata fileref="configure_practice.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -209,12 +205,12 @@ limited to language learning but supports a multitude of subjects.
 <para>The progress for each unit is displayed as the percentage of the unit completed and the multi-shaded progress bars. The percentage is calculated based on the total number of words in that unit and the confidence level of each word. The progress bars depict the number of words in each confidence level, with a darker shade depicting a higher confidence. A legend can also be seen at the top of the unit selections, in the header. The colors in this legend depict the corresponding colors of the progress bars, from the fully learned words to the words not yet practiced.
 </para>
 </sect1>
-<sect1 id="advanced-practice-configuration"><title>Advanced Practice Configuration</title>
-<para>The <guilabel>Advanced Practice Configuration</guilabel> allows you to specify more advanced settings that will affect the practice.
+<sect1 id="advanced-practice-configuration"><title>Practice Configuration</title>
+<para>The <guilabel>Practice Configuration</guilabel> allows you to specify more advanced settings that will affect the practice.
 </para>
-<para>In the <link linkend="practice-setup">Practice Setup</link> page you reach the <guilabel>Advanced Practice Configuration</guilabel> with the <guilabel>Configure Practice</guilabel> button in the toolbar. The button with the green icon.
+<para>In the <link linkend="practice-overview">Practice Overview</link> page you reach the <guilabel>Practice Configuration</guilabel> with the <guilabel>Configure Practice</guilabel> button in the toolbar.
 </para>
-<sect2 id="advanced-practice-settings"><title>General Practice Settings</title>
+<sect2 id="general-practice-settings"><title>General Practice Settings</title>
 <para>You can find several general configuration options for the practice in the general settings page.
 </para>
 <para>
@@ -222,7 +218,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_configure_advanced.png" format="PNG"/>
+      <imagedata fileref="configure_general.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -242,9 +238,10 @@ limited to language learning but supports a multitude of subjects.
 <listitem><para> Allow images instead of words: if you enable this option, it will allow an image to be used as the question during practice, provided a translation is not set for that target language's word.
 </para></listitem>
 </itemizedlist>
+<!--FIXME Enable Hints Sessions Synonyms-->
 </sect2>
 <sect2 id="blocking"><title>Blocking</title>
-<para>If you plan to practice your vocabulary regularly, you should make sure that the <emphasis>Blocking</emphasis> feature is enabled. The <guilabel>Blocking</guilabel> options are part of the <link linkend="advanced-practice-configuration">Advanced Practice Configuration</link>. There you go to the blocking page and tick the check box that says <guilabel>Blocking</guilabel>. Now you can even configure the interval in which words that you answered correctly will be repeated.
+<para>If you plan to practice your vocabulary regularly, you should make sure that the <emphasis>Blocking</emphasis> feature is enabled. Go to the blocking page and tick the check box that says <guilabel>Blocking</guilabel>. Now you can even configure the interval in which words that you answered correctly will be repeated.
 </para>
 <para><emphasis>Blocking</emphasis> means that words will not be asked for some period of time after the last practice. This period of time depends on how well you know the word, so that words you don't know yet will be asked more frequently.
 </para>
@@ -253,7 +250,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Configure_blocking.png" format="PNG"/>
+      <imagedata fileref="configure_blocking.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -261,6 +258,7 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
+<!--FIXME Expiring-->
 </sect2>
 <sect2 id="thresholds"><title>Thresholds</title>
 <para>Thresholds are another way of limiting what you want to practice.
@@ -270,7 +268,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_configure_thresholds.png" format="PNG"/>
+      <imagedata fileref="configure_thresholds.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -289,7 +287,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_configure_specific.png" format="PNG"/>
+      <imagedata fileref="configure_specific.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -312,7 +310,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_practice_grey_flash.png" format="PNG"/>
+      <imagedata fileref="practice_grey.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -326,7 +324,7 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>This will take you to the next question.
 </para>
-<para>On the left hand side bottom of the screen you have 7 boxes that show how good you know the vocabulary. These 7 boxes correspond to the blocking levels set under <link linkend="blocking"><guilabel>Blocking</guilabel></link> in the <guilabel>Advanced Practice Configuration</guilabel>
+<para>On the left hand side bottom of the screen you have 7 boxes that show how good you know the vocabulary. These 7 boxes correspond to the blocking levels set under <link linkend="blocking"><guilabel>Blocking</guilabel></link> in the <guilabel>Practice Configuration</guilabel>
 </para>
 <tip><para>Instead of clicking <guilabel>Continue</guilabel> you can also use the <keycap>Spacebar</keycap> of your keyboard.
 </para></tip>
@@ -335,7 +333,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_practice_grey_flash_solution.png" format="PNG"/>
+      <imagedata fileref="practice_flash_solution.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -354,7 +352,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_mixed_letters_0-9-4_001.png" format="PNG"/>
+      <imagedata fileref="mixed_letters_hint.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -373,7 +371,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_mixed_letters_0-9-4_002.png" format="PNG"/>
+      <imagedata fileref="mixed_letters_right.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -388,7 +386,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_mixed_letters_0-9-4_003.png" format="PNG"/>
+      <imagedata fileref="mixed_letters_wrong.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -403,7 +401,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_mixed_letters_0-9-4_004.png" format="PNG"/>
+      <imagedata fileref="mixed_letters_solution.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -411,21 +409,21 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>After the solution is revealed, you see a big icon on the right that indicates if your answer will count as right or wrong.
-</para>
+<!--FIXME the icons are not displayed in parley > 15.12 -->
 <para>You can overrule how your answer is counted. See <link linkend="counting-an-answer-as-right">Counting an Answer as Right</link>.
 </para>
 </sect2>
 <sect2 id="multiple-choice"><title>Multiple Choice</title>
 <sect3 id="automatic-selection-of-the-possible-answers"><title>Automatic selection of the possible answers</title>
-<para>In <guilabel>Multiple Choice</guilabel> mode you are shown a number of potential answers, of which only one is correct. By clicking on <guilabel>Hint</guilabel> &parley; excludes one of the wrong answers so that your choice gets more and more restricted with each further click on <guilabel>Hint</guilabel>. Of course you may also choose to <guilabel>Answer Later</guilabel>.
+<para>In <guilabel>Multiple Choice</guilabel> mode you are shown a number of potential answers, of which only one is correct. By clicking on <guilabel>Hint</guilabel> &parley; excludes one of the wrong answers so that your choice gets more and more restricted with each further click on <guilabel>Hint</guilabel>.
+The answer is revealed when only one option is left and the question is counted as wrong. Of course you may also choose <guilabel>Answer Later</guilabel>.
 </para>
 <para>
 <screenshot>
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_multiple_choice_0-9-4_001.png" format="PNG"/>
+      <imagedata fileref="multiple_choice.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -433,14 +431,14 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>Once you made your choice by clicking on what you believe to be correct, &parley; shows up with the screen below if the answer was right. Go ahead with the next question by clicking on <guilabel>Continue</guilabel>.
+<para>Once you made your choice by clicking on what you believe to be correct or type the number in front of the choice, &parley; shows up with the screen below if the answer was right. Go ahead with the next question by clicking on <guilabel>Continue</guilabel>.
 </para>
 <para>
 <screenshot>
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_multiple_choice_0-9-4_002.png" format="PNG"/>
+      <imagedata fileref="multiple_choice-right.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -455,7 +453,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_multiple_choice_0-9-4_003.png" format="PNG"/>
+      <imagedata fileref="multiple_choice-wrong.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -463,8 +461,7 @@ limited to language learning but supports a multitude of subjects.
   </mediaobject>
 </screenshot>
 </para>
-<para>After the solution is revealed, you see a big icon on the right that indicates if your answer will count as right or wrong.
-</para>
+<!--FIXME the icons are not displayed in parley > 15.12 -->
 <para>You can overrule how your answer is counted. See <link linkend="counting-an-answer-as-right">Counting an Answer as Right</link>.
 </para>
 <para>If you wish to stop practice, just click on the <guilabel>Stop Practice</guilabel> button.
@@ -480,7 +477,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_configure_specific.png" format="PNG"/>
+      <imagedata fileref="configure_specific.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -500,7 +497,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_practice_grey_written.png" format="PNG"/>
+      <imagedata fileref="practice_written.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -515,7 +512,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_practice_grey_written_right.png" format="PNG"/>
+      <imagedata fileref="practice_written_right.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -530,7 +527,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_practice_grey_written_wrong.png" format="PNG"/>
+      <imagedata fileref="practice_written_wrong.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -545,6 +542,7 @@ limited to language learning but supports a multitude of subjects.
 <para>You can overrule how your answer is counted. See <link linkend="counting-an-answer-as-right">Counting an Answer as Right</link>.
 </para>
 </sect2>
+<!--FIXME the icons are not displayed in parley > 15.12 -->
 <sect2 id="counting-an-answer-as-right"><title>Counting an Answer as Right</title>
 <para>After the solution is revealed, you see a big icon on the right that indicates if your answer will count as right or wrong.
 </para>
@@ -581,10 +579,9 @@ limited to language learning but supports a multitude of subjects.
 <para>You can click the small icon next to the indicator to change how your answer is counted. The big symbol always indicates how the answer is counted.
 </para>
 </sect2>
+
 <sect2 id="reset-practice-to-initial-state"><title>Reset Practice to Initial State</title>
-<para>You can reset all your practice scores (remove the confidence levels) to the initial state. When being in edit mode select <guilabel>Edit</guilabel> from the menubar and then <guilabel>Remove Confidence Levels</guilabel>.
-</para>
-<para>Furthermore you can reset your confidence levels for individual units from within the <guilabel>Practice Setup</guilabel> by right clicking on the unit to reset and choosing <guilabel>Remove Confidence Levels from this Unit</guilabel> or by choosing <menuchoice><guimenu>Unit</guimenu><guimenuitem>Remove Confidence Levels from this Unit</guimenuitem></menuchoice> or <menuchoice><guimenu>Unit</guimenu><guimenuitem>Remove Confidence Levels from this Unit and all Sub-Units</guimenuitem></menuchoice> menu items when being in edit mode.
+<para>You can reset all your practice scores (remove the confidence levels) to the initial state. You can reset your confidence levels for individual units from within the <guilabel>Practice Overview</guilabel> by right clicking on the unit to reset and choosing <guilabel>Remove Confidence Levels from this Unit</guilabel> or by choosing <guilabel>Remove Confidence Levels from this Unit and all Sub-Units</guilabel>.
 </para>
 </sect2>
 </sect1>
@@ -602,7 +599,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_practice_summary.png" format="PNG"/>
+      <imagedata fileref="practice_summary.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -611,6 +608,7 @@ limited to language learning but supports a multitude of subjects.
 </screenshot>
 </para>
 </sect1>
+<!--FIXME Example Sentences practice missing -->
 <sect1 id="grammar-practice-modes"><title>Grammar Practice Modes</title>
 <para>With &parley; you can also learn specific grammar structures, such as the gender of nouns, the comparison forms of adjectives and the conjugation of verbs. Let's look at some examples.
 </para>
@@ -626,7 +624,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_articles_and_gender_0-9-4_001.png" format="PNG"/>
+      <imagedata fileref="articles_and_gender.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -641,7 +639,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_articles_and_gender_0-9-4_002.png" format="PNG"/>
+      <imagedata fileref="articles_and_genderright.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -656,7 +654,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_articles_and_gender_0-9-4_003.png" format="PNG"/>
+      <imagedata fileref="articles_and_gender_wrong.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -677,7 +675,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_comparison_eng-deu_0-9-4_002.png" format="PNG"/>
+      <imagedata fileref="comparison.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -692,7 +690,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_comparison_eng-deu_0-9-4_003.png" format="PNG"/>
+      <imagedata fileref="comparison_right.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -743,7 +741,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_edit_main.png" format="PNG"/>
+      <imagedata fileref="edit_main.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -772,7 +770,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_document_properties.png" format="PNG"/>
+      <imagedata fileref="document_properties.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -789,7 +787,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_trainer_eng-deu_0-9-4_010.png" format="PNG"/>
+      <imagedata fileref="vocabulary_columns.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -836,7 +834,7 @@ limited to language learning but supports a multitude of subjects.
 </para>
 <para>Tenses: Depending on the language, you can enter the right tenses which you later want to learn how to conjugate. Examples are: Simple Present, Simple Past, Future I etc.
 </para>
-<para>Btw. by clicking on the <guilabel>Add Language</guilabel> button you can add an additional language to your collection.
+<para>Btw. by clicking on the <guilabel>Add Language</guilabel> button you can add an additional language to your collection.<!--FIXME only en and german available?-->
 </para>
 <sect3 id="lets-have-a-closer-look-at-spanish"><title>Let's Have a Closer Look at Spanish</title>
 <para>On the <guilabel>General</guilabel> tab the basic language settings, like here
@@ -856,7 +854,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_new_document_lang_general.png" format="PNG"/>
+      <imagedata fileref="general.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -871,7 +869,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_new_document_lang_articles.png" format="PNG"/>
+      <imagedata fileref="lang_articles.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -886,7 +884,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_new_document_lang_personalpronouns.png" format="PNG"/>
+      <imagedata fileref="lang_personal_pronouns.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -901,7 +899,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_new_document_lang_tenses.png" format="PNG"/>
+      <imagedata fileref="lang_tenses.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -927,7 +925,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_new_lesson1.png" format="PNG"/>
+      <imagedata fileref="new_lesson1.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -942,7 +940,7 @@ limited to language learning but supports a multitude of subjects.
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_new_lesson2.png" format="PNG"/>
+      <imagedata fileref="new_lesson2.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -985,7 +983,7 @@ limited to language learning but supports a multitude of subjects.
 </sect2
 -->
 <sect2 id="adding-new-vocabulary"><title>Adding New Vocabulary</title>
-<para>Use <guilabel>Add New Entry</guilabel> in the toolbar to add new words. You can start typing the word in the first language right away. By default &parley; lets you enter another word when you press &Enter; in the last row, so you don't have to keep using the <guilabel>Add</guilabel> button. After entering the first word, press &Tab; to go to the next language.
+<para>Use <guilabel>Add New Entry</guilabel> in the toolbar to add new words. You can start typing the word in the first language right away. After entering the first word, press &Tab; to go to the next language.
 </para>
 </sect2>
 <sect2 id="editing-words"><title>Editing Words</title>
@@ -1204,14 +1202,14 @@ The sound file will be saved next to the current vocabulary file in the <filenam
   </mediaobject>
 </screenshot>
 </para>
-<para>Let's start from the <guilabel>Start Page</guilabel> which is shown once you launch Parley:
+<para>Let's start from the <guilabel>Dashboard</guilabel> which is shown once you launch Parley:
 </para>
 <para>
 <screenshot>
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_initial_screen_0-9-4.png" format="PNG"/>
+      <imagedata fileref="dashboard.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -1253,7 +1251,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
   </mediaobject>
 </screenshot>
 </para>
-<para>Before we do anything else, let's save the file to the folder with the pictures and sound-files. Click on the <guilabel>Save</guilabel> icon and select the folder using the navigation. In this example we will call the file <guilabel>Trainer eng-deu</guilabel> - once you entered the name just click on save.
+<para>Before we do anything else, let's save the file to the folder with the pictures and sound-files. Use <menuchoice><guimenu>File</guimenu><guimenuitem>Save</guimenuitem></menuchoice> and select the folder using the navigation. In this example we will call the file <guilabel>Trainer eng-deu</guilabel> - once you entered the name just click on save.
 </para>
 <para>
 <screenshot>
@@ -1289,7 +1287,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
   </mediaobject>
 </screenshot>
 </para>
-<para>In our case we want only 4 entries in the animals unit. There are many empty lines that should be deleted. To do this click on the first empty field, and keep the &Shift; key pressed while clicking on the last empty field. All lines to be deleted will be highlighted. Then, press the <keycap>Del</keycap> key and confirm the question <emphasis>Do you really want to delete the selected entries?</emphasis> by clicking on the <guilabel>Delete</guilabel> button.
+<para>In our case we want only 4 entries in the animals unit. There are many empty lines that should be deleted. To do this click on the first empty field, and keep the &Shift; key pressed while clicking on the last empty field. All lines to be deleted will be highlighted. Then, press the <keycap>Del</keycap> key.
 </para>
 <para>Let's add the fruit terminology. Just click on the unit named <guilabel>Fruits</guilabel>. This second unit is completely empty. Since we have five fruit terms we need to add five lines. Therefore, press the <keycap>Ins</keycap> key five times, and then, just like before, we add our terminology.
 </para>
@@ -1594,14 +1592,14 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </sect2>
 </sect1>
 <sect1 id="getting-additional-collections"><title>Getting Additional Collections</title>
-<para>When you are on the <guilabel>Start Page</guilabel> you have the possibility to install collections directly from the server, provided you are online. Just click on <guilabel>Download New Collections</guilabel>.
+<para>When you are on the <guilabel>Dashboard</guilabel> you have the possibility to install collections directly from the server, provided you are online. Just click on <guilabel>Download New Collections</guilabel>.
 </para>
 <para>
 <screenshot>
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_welcome_screen.png" format="PNG"/>
+      <imagedata fileref="dashboard.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -1626,7 +1624,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </para>
 </sect1>
 <sect1 id="configure-parley"><title>Configure Parley</title>
-<para>You can configure the appearance of Parley from the <guilabel>Start Page</guilabel> or from within the <guilabel>Edit section</guilabel>. Select <guilabel>Settings</guilabel> from the menubar and then <guilabel>Configure &parley;</guilabel>.
+<para>You can configure the appearance of Parley from the <guilabel>Dashboard</guilabel> or from within the <guilabel>Edit section</guilabel>. Select <guilabel>Settings</guilabel> from the menubar and then <guilabel>Configure &parley;</guilabel>.
 </para>
 <para>
 <screenshot>
@@ -1642,11 +1640,11 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </screenshot>
 </para>
 <sect2 id="theme-tab"><title>Theme Tab</title>
-<para>The configuration opens with the <guilabel>Theme</guilabel> section. This is the place where you can choose how Parley should greet you when launching it: an elegant <guilabel>Grey</guilabel> version, the all time busy <guilabel>Bees</guilabel> or the <guilabel>Fluffy Bunny</guilabel> for all those who love pink. Note that it could well be that <guilabel>Fluffy Bunny</guilabel> is not in your version: if you want it, read the following section.
+<para>The configuration opens with the <guilabel>Theme</guilabel> section. This is the place where you can choose how Parley should greet you when launching it: an elegant <guilabel>Gray</guilabel> version or the all time busy <guilabel>Bees</guilabel>. Note that it could well be that <guilabel>Fluffy Bunny</guilabel> is not in your version: if you want it, read the following section.
 </para>
 <para>Once you selected your preferred theme, click on <guilabel>OK</guilabel>.
 </para>
-<para>Screenshots of the <guilabel>Bees</guilabel> and <guilabel>Fluffy Bunny</guilabel> themes:
+<para>Screenshots of the <guilabel>Bees</guilabel> theme:
 </para>
 <para>
 <screenshot>
@@ -1654,19 +1652,6 @@ The sound file will be saved next to the current vocabulary file in the <filenam
   <mediaobject>
     <imageobject>
       <imagedata fileref="Parley_practice_bees.png" format="PNG"/>
-    </imageobject>
-    <textobject>
-      <phrase></phrase>
-    </textobject>
-  </mediaobject>
-</screenshot>
-</para>
-<para>
-<screenshot>
-<screeninfo></screeninfo>
-  <mediaobject>
-    <imageobject>
-      <imagedata fileref="Parley_practice_fluffy.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -1738,6 +1723,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </sect2>
 </sect1>
 </chapter>
+<!--FIXME Parley is not available on Windows in 16.04
 <chapter id="parley-on-windows"><title>Parley on Windows</title>
 <para>It is possible to install Parley together with other <ulink url="http://edu.kde.org">Educational software</ulink> on Windows systems. For further info please visit <ulink url="http://windows.kde.org">this page</ulink>.
 </para>
@@ -1745,7 +1731,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </para>
 <para>Download the installer <ulink url="http://windows.kde.org/download.php">here</ulink>
 </para>
-<para>Then follow the installation procedure like for any other Windows software - screenshots are <ulink url="http://www.winkde.org/pub/kde/ports/win32/installer/manual/">here</ulink>.
+<para>Then follow the installation procedure like for any other Windows software.
 </para>
 <para>When you come to the <guilabel>Package selection screen</guilabel>, select the language(s) you wish the software to be available in <emphasis>and</emphasis> the package - in this case <guilabel>kdeedu</guilabel>. If you don't select any language you will automatically get English.
 </para>
@@ -1754,6 +1740,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 <para>Please note that the Parley team does not deal with the Windows-Installer and therefore we cannot easily answer your questions. Should you have difficulties, please contact the KDE-Windows team directly. You can do so by subscribing to the mailing list <ulink url="https://mail.kde.org/mailman/listinfo/kde-windows">here</ulink> or join them on IRC at irc://freenode.net Channel: #kde-windows.
 </para>
 </chapter>
+-->
 <chapter id="notes-for-advanced-users"><title>Notes For Advanced Users</title>
 <!--
 <sect1 id="using-parley-for-exam-preparation"><title>Using Parley for Exam Preparation</title>
@@ -1776,7 +1763,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </para>
 <para>If that does not work, you can also visit <ulink url="http://kde-files.org/?xcontentmode=687">kde-files.org</ulink>.
 </para>
-<para>In either case the files will show up in the <guilabel>Download New Collections</guilabel> dialog on the <guilabel>Start Page</guilabel>.
+<para>In either case the files will show up in the <guilabel>Download New Collections</guilabel> dialog on the <guilabel>Dashboard</guilabel>.
 </para>
 </sect1>
 <sect1 id="file-format"><title>File format</title>
@@ -1838,25 +1825,6 @@ Daniel Laidig <email>d.laidig@gmx.de</email>;
 </sect1>
 
 </chapter>
-
-<appendix id="installation">
-<title>Installation</title>
-
-<sect1 id="getting-kapp">
-<title>How to obtain Parley</title>
-
-&install.intro.documentation;
-
-</sect1>
-
-<sect1 id="compilation">
-<title>Compilation and Installation</title>
-
-&install.compile.documentation;
-
-</sect1>
-
-</appendix>
 
 &documentation.index;
 </book>
