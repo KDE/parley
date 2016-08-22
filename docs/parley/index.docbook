@@ -854,7 +854,7 @@ The answer is revealed when only one option is left and the question is counted 
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="general.png" format="PNG"/>
+      <imagedata fileref="lang_general.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -1258,7 +1258,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="save_new_collection" format="PNG"/>
+      <imagedata fileref="save_new_collection.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -1614,7 +1614,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_get_new_stuff_0-9-4_001.png" format="PNG"/>
+      <imagedata fileref="get_new_stuff.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
