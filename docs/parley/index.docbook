@@ -1483,7 +1483,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_initial_screen_0-9-4.png" format="PNG"/><!--FIXME missing-->
+      <imagedata fileref="initial_screen.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -1631,7 +1631,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_configure_parley_0-9-4_001.png" format="PNG"/><!--FIXME update screenshot-->
+      <imagedata fileref="configure_parley.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -1651,7 +1651,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_practice_bees.png" format="PNG"/><!--FIXME update screenshot-->
+      <imagedata fileref="practice_bees.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -1666,7 +1666,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_configure_parley_0-9-4_002.png" format="PNG"/><!--FIXME update screenshot-->
+      <imagedata fileref="configure_theme.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -1694,7 +1694,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_configure_parley_0-9-4_003.png" format="PNG"/><!--FIXME update screenshot-->
+      <imagedata fileref="configure_generalconfig.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
@@ -1712,7 +1712,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 <screeninfo></screeninfo>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="Parley_configure_parley_0-9-4_004.png" format="PNG"/><!--FIXME update screenshot-->
+      <imagedata fileref="configure_view.png" format="PNG"/>
     </imageobject>
     <textobject>
       <phrase></phrase>
