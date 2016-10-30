@@ -129,3 +129,22 @@ void GenderBackendMode::updateGrades()
 
     m_current->entry()->translation(m_current->languageTo())->setArticle(articleGrade);
 }
+
+grade_t GenderBackendMode::currentPreGradeForEntry() const
+{
+    KEduVocTranslation *translation = m_current->entry()->translation(m_current->languageTo());
+    if (translation) {
+        return translation->article().preGrade();
+    }
+    return KV_NORM_GRADE;
+}
+
+grade_t GenderBackendMode::currentGradeForEntry() const
+{
+    KEduVocTranslation *translation = m_current->entry()->translation(m_current->languageTo());
+    if (translation) {
+        return translation->article().grade();
+    }
+    return KV_NORM_GRADE;
+}
+

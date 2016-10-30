@@ -128,3 +128,21 @@ void ComparisonBackendMode::updateGrades()
     updateGrade(super, superlativeCorrect, m_current->statisticBadCount() == 0);
     translation->setSuperlativeForm(super);
 }
+
+grade_t ComparisonBackendMode::currentPreGradeForEntry() const
+{
+    KEduVocTranslation *translation = m_current->entry()->translation(m_current->languageTo());
+    if (translation) {
+        return qMin(translation->comparativeForm().preGrade(), translation->superlativeForm().preGrade());
+    }
+    return KV_NORM_GRADE;
+}
+
+grade_t ComparisonBackendMode::currentGradeForEntry() const
+{
+    KEduVocTranslation *translation = m_current->entry()->translation(m_current->languageTo());
+    if (translation) {
+        return qMin(translation->comparativeForm().grade(), translation->superlativeForm().grade());
+    }
+    return KV_NORM_GRADE;
+}

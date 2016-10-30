@@ -30,6 +30,8 @@ public:
                           QObject *parent, Practice::SessionManagerBase* sessionManager, KEduVocDocument* doc);
 
     virtual bool setTestEntry(TestEntry* current);
+    virtual grade_t currentPreGradeForEntry() const;
+    virtual grade_t currentGradeForEntry() const;
 
     void checkAnswer();
 

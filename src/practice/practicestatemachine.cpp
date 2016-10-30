@@ -196,8 +196,8 @@ void PracticeStateMachine::updateFrontend()
     m_frontend->setFeedbackState(AbstractFrontend::QuestionState);
     m_frontend->setResultState(AbstractFrontend::QuestionState);
     m_frontend->setLessonName(m_current->entry()->lesson()->name());
-    m_frontend->showGrade(m_current->entry()->translation(m_current->languageTo())->preGrade(),
-                          m_current->entry()->translation(m_current->languageTo())->grade());
+    grade_t grade = m_mode->currentGradeForEntry();
+    m_frontend->showGrade(m_mode->currentPreGradeForEntry(), grade);
 
     // show the word that is currently practiced in the progress bar
     m_frontend->setFinishedWordsTotalWords(
@@ -212,7 +212,6 @@ void PracticeStateMachine::updateFrontend()
                                 ? m_frontend->learningLangFont()
                                 : m_frontend->knownLangFont());
 
-    grade_t grade = m_mode->currentGradeForEntry();
     grade_t goodGrade = qMax(grade, grade_t(KV_LEV1_GRADE)); // if the word hasn't been practiced yet, use grade 1 as a base
 
     if (m_current->statisticBadCount() == 0) {

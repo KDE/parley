@@ -33,6 +33,9 @@ public:
     /** Start practicing a new word */
     virtual bool setTestEntry(TestEntry* current);
 
+    virtual grade_t currentPreGradeForEntry() const;
+    virtual grade_t currentGradeForEntry() const;
+
 protected:
     virtual void prepareChoices(TestEntry* current);
     virtual void updateGrades();

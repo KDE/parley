@@ -117,29 +117,19 @@ void ConjugationBackendMode::checkAnswer()
 
 grade_t ConjugationBackendMode::currentPreGradeForEntry() const
 {
-    Q_ASSERT(m_current != 0);
-    KEduVocTranslation* trans = m_current->entry()->translation(m_current->languageTo());
-    KEduVocConjugation conj = trans->getConjugation(m_current->conjugationTense());
-    QList<KEduVocWordFlags> keys = conj.keys();
-
-    grade_t min_grade = KV_MAX_GRADE;
-    foreach(KEduVocWordFlags key, keys) {
-        min_grade = qMin(conj.conjugation(key).preGrade(), min_grade);
+    grade_t min_preGrade = KV_MAX_GRADE;
+    foreach(KEduVocWordFlags key, m_pronounFlags) {
+        min_preGrade = qMin(m_conjugation.conjugation(key).preGrade(), min_preGrade);
     }
 
-    return min_grade;
+    return min_preGrade;
 }
 
 grade_t ConjugationBackendMode::currentGradeForEntry() const
 {
-    Q_ASSERT(m_current != 0);
-    KEduVocTranslation* trans = m_current->entry()->translation(m_current->languageTo());
-    KEduVocConjugation conj = trans->getConjugation(m_current->conjugationTense());
-    QList<KEduVocWordFlags> keys = conj.keys();
-
     grade_t min_grade = KV_MAX_GRADE;
-    foreach(KEduVocWordFlags key, keys) {
-        min_grade = qMin(conj.conjugation(key).grade(), min_grade);
+    foreach(KEduVocWordFlags key, m_pronounFlags) {
+        min_grade = qMin(m_conjugation.conjugation(key).grade(), min_grade);
     }
 
     return min_grade;
