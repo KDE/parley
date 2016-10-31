@@ -209,7 +209,11 @@ void ParleyMainWindow::practiceFinished()
 
 bool ParleyMainWindow::queryClose()
 {
-    return m_document->queryClose();
+    if (m_document->queryClose()) {
+        Prefs::self()->save();
+        return true;
+    }
+    return false;
 }
 
 QSize ParleyMainWindow::sizeHint() const

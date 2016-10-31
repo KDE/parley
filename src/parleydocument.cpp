@@ -279,8 +279,6 @@ bool ParleyDocument::queryClose()
         return true;
     }
 
-    Prefs::self()->save();
-
     bool canSave = Prefs::autoSave(); //save without asking
 
     if (!canSave) {
