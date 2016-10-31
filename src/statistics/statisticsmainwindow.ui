@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>602</width>
-    <height>467</height>
+    <height>580</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -16,205 +16,193 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QGridLayout" name="gridLayout" columnstretch="0,1">
    <item row="0" column="0">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Language to Learn</string>
+    <widget class="QGroupBox" name="groupBoxLanguages">
+     <property name="title">
+      <string>Languages</string>
      </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Language to Learn</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="learnedLanguage"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Known Language</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="knownLanguage"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1" rowspan="4">
+    <widget class="QSplitter" name="splitter">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <widget class="LessonStatisticsView" name="lessonStatistics" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+     <widget class="StatisticsLegendWidget" name="statisticsLegend" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QComboBox" name="learnedLanguage"/>
-   </item>
-   <item row="0" column="1" rowspan="18">
-     <widget class="QSplitter" name="splitter" >
-       <property name="orientation" >
-         <enum>Qt::Vertical</enum>
-       </property>
-
-    <widget class="LessonStatisticsView" name="lessonStatistics" native="true">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+    <widget class="QGroupBox" name="groupBoxPracticeMode">
+     <property name="title">
+      <string>Practice Mode</string>
      </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QRadioButton" name="flashCard">
+        <property name="text">
+         <string>Flash Cards</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="mixedLetters">
+        <property name="text">
+         <string>Mixed &amp;Letters</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="multipleChoice">
+        <property name="text">
+         <string>M&amp;ultiple Choice</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="written">
+        <property name="text">
+         <string>Wri&amp;tten</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="exampleSentence">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="text">
+         <string>E&amp;xample Sentences</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="gender">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="text">
+         <string>&amp;Gender of Nouns</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="comparisonForms">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="text">
+         <string>Comparison Forms</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="conjugations">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="text">
+         <string>Co&amp;njugations</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QWidget" name="modeSpecificOptions" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
     </widget>
-
-    <widget class="StatisticsLegendWidget" name="statisticsLegend" native="true">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
-
-     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="QLabel" name="label_3">
-     <property name="text">
-     <string>Known Language</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QComboBox" name="knownLanguage"/>
-   </item>
-   <item row="4" column="0">
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Fixed</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>10</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="5" column="0">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>Practice Mode:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="0">
-    <widget class="QRadioButton" name="flashCard">
-     <property name="text">
-      <string>Flash Cards</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="0">
-    <widget class="QRadioButton" name="mixedLetters">
-     <property name="text">
-      <string>Mixed Letters</string>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="0">
-    <widget class="QRadioButton" name="multipleChoice">
-     <property name="text">
-      <string>Multiple Choice</string>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="0">
-    <widget class="QRadioButton" name="written">
-     <property name="text">
-      <string>Written</string>
-     </property>
-    </widget>
-   </item>
-   <item row="10" column="0">
-    <widget class="QRadioButton" name="exampleSentence">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="text">
-      <string>Example Sentences</string>
-     </property>
-    </widget>
-   </item>
-   <item row="11" column="0">
-    <widget class="QRadioButton" name="gender">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="text">
-      <string>Gender of Nouns</string>
-     </property>
-    </widget>
-   </item>
-   <item row="12" column="0">
-    <widget class="QRadioButton" name="comparisonForms">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="text">
-      <string>Comparison Forms</string>
-     </property>
-    </widget>
-   </item>
-   <item row="13" column="0">
-    <widget class="QRadioButton" name="conjugations">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="text">
-      <string>Conjugations</string>
-     </property>
-    </widget>
-   </item>
-   <item row="14" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QWidget" name="modeSpecificOptions" native="true">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>200</width>
-         <height>16777215</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="15" column="0">
-    <widget class="QLabel" name="label3">
-     <property name="text">
+    <widget class="QGroupBox" name="groupBoxPracticeDirection">
+     <property name="title">
       <string>Practice Direction</string>
      </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QComboBox" name="practiceDirection"/>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="rememberPracticeDirection">
+        <property name="text">
+         <string>Remember for each Practice Mode</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
-   </item>
-   <item row="16" column="0">
-    <widget class="QComboBox" name="practiceDirection"/>
-   </item>
-   <item row="17" column="0">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>0</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>

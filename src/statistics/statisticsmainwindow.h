@@ -33,7 +33,7 @@ class StatisticsMainWindow : public KXmlGuiWindow
     Q_OBJECT
 public:
 
-    StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindow* parent);
+    StatisticsMainWindow(KEduVocDocument *doc, ParleyMainWindow *parent);
     ~StatisticsMainWindow();
 
     void setDocument(KEduVocDocument* doc);
@@ -48,6 +48,7 @@ private slots:
     void languagesChanged();
     void practiceModeSelected(int mode);
     void practiceDirectionChanged(int mode);
+    void rememberPracticeDirectionChanged(bool checked);
     void updateVisibleColumns();
 
 private:
@@ -56,6 +57,8 @@ private:
     void initLanguages();
     void initPracticeMode();
     void showConjugationOptions(bool visible = true);
+    int practiceDirectionForPracticeMode(int mode) const;
+    void setPracticeDirectionForPracticeMode(int direction, int mode);
 
     ParleyMainWindow* m_mainWindow;
     KEduVocDocument* m_doc;

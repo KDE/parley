@@ -37,10 +37,11 @@
 #include "conjugationoptions.h"
 
 
-StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindow* parent)
+StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument *doc, ParleyMainWindow *parent)
     : KXmlGuiWindow(parent)
     , m_mainWindow(parent)
     , m_doc(doc)
+    , m_ui(new Ui::StatisticsMainWindow)
     , m_conjugationOptions(0)
 {
     // KXmlGui
@@ -49,7 +50,6 @@ StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument* doc, ParleyMainWindo
 
     QWidget *mainWidget = new QWidget(this);
     setCentralWidget(mainWidget);
-    m_ui = new Ui::StatisticsMainWindow;
     m_ui->setupUi(mainWidget);
     //m_ui->caption->setText(i18nc("caption for an overview of the confidence levels for a document"
     //                             "Statistics for \"%1\"", m_doc->title()));
@@ -204,27 +204,51 @@ void StatisticsMainWindow::initPracticeMode()
     m_ui->practiceDirection->insertItem(2, i18n("Mixed Directions"));
     //m_ui->practiceDirection->insertItem(3, i18n("Mixed Directions with Sound"));
 
-    if (Prefs::practiceDirection() < 0 || 3 < Prefs::practiceDirection())
+    int practiceDirection(Prefs::rememberPracticeDirection()
+        ? practiceDirectionForPracticeMode(Prefs::practiceMode()) : Prefs::practiceDirection());
+
+    if (practiceDirection < 0 || 3 < practiceDirection)
         Prefs::setPracticeDirection(Prefs::EnumPracticeDirection::MixedDirectionsWordsOnly);
 
-    m_ui->practiceDirection->setCurrentIndex(Prefs::practiceDirection());
+    m_ui->practiceDirection->setCurrentIndex(practiceDirection);
+    connect(m_ui->practiceDirection, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+            this, &StatisticsMainWindow::practiceDirectionChanged);
 
-    connect(m_ui->practiceDirection, SIGNAL(currentIndexChanged(int)),
-            this,                    SLOT(practiceDirectionChanged(int)));
+    m_ui->rememberPracticeDirection->setChecked(Prefs::rememberPracticeDirection());
+    connect(m_ui->rememberPracticeDirection, &QCheckBox::toggled,
+            this, &StatisticsMainWindow::rememberPracticeDirectionChanged);
 }
 
 void StatisticsMainWindow::practiceModeSelected(int mode)
 {
+    int previousPracticeMode = Prefs::practiceMode();
     Prefs::setPracticeMode(static_cast<Prefs::EnumPracticeMode::type>(mode));
     //qDebug() << "mode: " << mode << Prefs::practiceMode();
 
     showConjugationOptions(mode == Prefs::EnumPracticeMode::ConjugationPractice);
+
+    if (Prefs::rememberPracticeDirection()) {
+        setPracticeDirectionForPracticeMode(Prefs::practiceDirection(), previousPracticeMode);
+        m_ui->practiceDirection->setCurrentIndex(practiceDirectionForPracticeMode(mode));
+    }
 }
 
 void StatisticsMainWindow::practiceDirectionChanged(int mode)
 {
     //qDebug() << "new practice direction:" << mode;
     Prefs::setPracticeDirection(static_cast<Prefs::EnumPracticeDirection::type>(mode));
+    if (Prefs::rememberPracticeDirection()) {
+        setPracticeDirectionForPracticeMode(mode, Prefs::practiceMode());
+    }
+}
+
+void StatisticsMainWindow::rememberPracticeDirectionChanged(bool checked)
+{
+//     qDebug() << "remember practice direction changed to: " << checked;
+    Prefs::setRememberPracticeDirection(checked);
+    if (checked) {
+        setPracticeDirectionForPracticeMode(Prefs::practiceDirection(), Prefs::practiceMode());
+    }
 }
 
 void StatisticsMainWindow::updateVisibleColumns()
@@ -273,4 +297,24 @@ void StatisticsMainWindow::configurePractice()
 {
     ConfigurePracticeDialog dialog(m_doc, this, QStringLiteral("practice settings"),  Prefs::self());
     dialog.exec();
+}
+
+int StatisticsMainWindow::practiceDirectionForPracticeMode(int mode) const
+{
+    int direction = Prefs::practiceDirectionsByPracticeMode().value(mode, Prefs::practiceDirection());
+    if ((direction < 0) || (direction > Prefs::EnumPracticeDirection::MixedDirectionsWordsOnly)) {
+        direction = Prefs::EnumPracticeDirection::MixedDirectionsWordsOnly;
+    }
+    return direction;
+}
+
+void StatisticsMainWindow::setPracticeDirectionForPracticeMode(int direction, int mode)
+{
+    QList<int> directions = Prefs::practiceDirectionsByPracticeMode();
+    // Expand list if fields not used before
+    for (int i = directions.size() - 1; i < mode; ++i) {
+        directions.append(Prefs::practiceDirection());
+    }
+    directions[mode] = direction;
+    Prefs::setPracticeDirectionsByPracticeMode(directions);
 }

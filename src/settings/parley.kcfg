@@ -371,6 +371,16 @@
       <default param="6">5184000</default>
       <default param="7">10368000</default>
     </entry>
+    <entry name="RememberPracticeDirection" type="Bool">
+      <label>If true, the practice direction for each practice mode is stored.</label>
+      <whatsthis>Should the practice direction for each practice mode be stored?</whatsthis>
+      <default>false</default>
+    </entry>
+    <entry name="PracticeDirectionsByPracticeMode" type="IntList">
+      <label>Stored values of practice direction for each practice mode.</label>
+      <whatsthis>Stored values of practice direction for each practice mode.</whatsthis>
+      <default></default>
+    </entry>
   </group>
   <group name="KNewStuff">
     <entry name="ProvidersUrl" type="Path">
