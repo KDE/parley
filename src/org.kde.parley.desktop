@@ -82,6 +82,7 @@ Comment[sl]=Program za pomoč pri pomnjenju stvari.
 Comment[sv]=Ett program som hjälper dig memorera saker.
 Comment[uk]=Програма, яка допоможе вам запам’ятовувати знання.
 Comment[x-test]=xxA program to help you memorize things.xx
+Comment[zh_TW]=訓練記憶力的程式。
 X-DBUS-ServiceName=org.kde.parley
 GenericName=Vocabulary Trainer
 GenericName[af]=Woordeskat-afrigter
