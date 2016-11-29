@@ -1761,7 +1761,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </para>
 <para>Use <guimenuitem>Upload Vocabulary Document</guimenuitem> from the file menu in the Editor within Parley.
 </para>
-<para>If that does not work, you can also visit <ulink url="http://kde-files.org/?xcontentmode=687">kde-files.org</ulink>.
+<para>If that does not work, you can also visit <ulink url="https://store.kde.org/">store.kde.org</ulink>.
 </para>
 <para>In either case the files will show up in the <guilabel>Download New Collections</guilabel> dialog on the <guilabel>Dashboard</guilabel>.
 </para>
