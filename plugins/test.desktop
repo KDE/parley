@@ -7,7 +7,6 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Testing Purposes Script
-Name[ast]=Script pa facer pruebes
 Name[bs]=Svrhe testiranja skripti
 Name[ca]=Script de prova
 Name[ca@valencia]=Script de prova
@@ -51,7 +50,6 @@ Name[x-test]=xxTesting Purposes Scriptxx
 Name[zh_CN]=测试目的脚本
 Name[zh_TW]=測試目的文稿
 Comment=Description of what the plugin does
-Comment[ast]=Descripción de lo que fai'l complementu
 Comment[bs]=Opis šta radi dodatak
 Comment[ca]=Descripció de què fa el connector
 Comment[ca@valencia]=Descripció de què fa el connector

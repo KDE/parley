@@ -7,7 +7,6 @@ Type=Service
 ServiceTypes=KPluginInfo
 
 Name=Google Dictionary (translation)
-Name[ast]=Diccionariu Google (traducción)
 Name[bg]=Речник на Google (превод)
 Name[bs]=Google rječnik (prijevod)
 Name[ca]=Diccionari de Google (traducció)
