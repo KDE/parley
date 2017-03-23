@@ -18,6 +18,7 @@ from os import path
 import string
 import Kross
 import urllib
+from urlparse import urlparse
 
 T = Kross.module("kdetranslation")
 
@@ -121,6 +122,9 @@ def downloadFromWiki(wikiObject):
 # directory the files are saved to (subdirectory of the document)
 def getTargetDirectory():
     filepath = Parley.doc.url
+    if filepath.startswith('file://'):
+        url = urlparse(filepath)
+        filepath = path.abspath(path.join(url.netloc, url.path))
     p,f = path.split(filepath)
     [name,ext] = f.rsplit(".", 1)
     filesdir = p + "/" + name + "_files/"

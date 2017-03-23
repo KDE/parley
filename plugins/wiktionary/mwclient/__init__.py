@@ -1,6 +1,6 @@
 """
  Copyright (c) 2006-2011 Bryan Tong Minh
- 
+
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
  files (the "Software"), to deal in the Software without
@@ -9,10 +9,10 @@
  copies of the Software, and to permit persons to whom the
  Software is furnished to do so, subject to the following
  conditions:
- 
+
  The above copyright notice and this permission notice shall be
  included in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -23,11 +23,20 @@
  OTHER DEALINGS IN THE SOFTWARE.
 """
 
-import sys as _sys
-import os as _os
-_path = _os.path.dirname(__file__)
-_sys.path.insert(0, _os.path.abspath(_path))
+from mwclient.errors import *  # pylint: disable=unused-import
+from mwclient.client import Site, __ver__  # pylint: disable=unused-import
+import logging
+import warnings
 
-from errors import *
-from client import Site, __ver__
-import ex
+# Show DeprecationWarning
+warnings.simplefilter('always', DeprecationWarning)
+
+# Logging: Add a null handler to avoid "No handler found" warnings.
+try:
+    from logging import NullHandler
+except ImportError:
+    class NullHandler(logging.Handler):
+        def emit(self, record):
+            pass
+
+logging.getLogger(__name__).addHandler(NullHandler())
