@@ -50,7 +50,7 @@ protected:
 
 private:
     // intentionally hide this to make sure a proper model is passed
-    virtual void setModel(QAbstractItemModel *model) {
+    void setModel(QAbstractItemModel *model) Q_DECL_OVERRIDE {
         Q_UNUSED(model)
     }
 };

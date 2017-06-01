@@ -104,12 +104,12 @@ public slots:
     void slotUpdateWindowCaption();
 
     /** When quitting, ask for confirmation if the doc has not been saved */
-    bool queryClose();
+    bool queryClose() Q_DECL_OVERRIDE;
 
     /** remove an entry from the list of recent files */
     void removeRecentFile(const QUrl &url);
 
-    QSize sizeHint() const;
+    QSize sizeHint() const Q_DECL_OVERRIDE;
 
     /** set up options */
     void slotGeneralOptions();

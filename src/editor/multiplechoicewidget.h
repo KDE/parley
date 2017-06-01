@@ -48,7 +48,7 @@ public slots:
     void setTranslation(KEduVocExpression *entry, int translation);
 
 protected:
-    bool eventFilter(QObject *obj, QEvent *event);
+    bool eventFilter(QObject *obj, QEvent *event) Q_DECL_OVERRIDE;
 
 private slots:
     void slotDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);

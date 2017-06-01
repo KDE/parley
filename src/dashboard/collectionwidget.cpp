@@ -57,7 +57,7 @@ public:
     RemoveButton(QWidget *parent = 0);
 
 protected:
-    void paintEvent(QPaintEvent *);
+    void paintEvent(QPaintEvent *) Q_DECL_OVERRIDE;
 };
 
 

@@ -31,14 +31,14 @@ public:
                       KEduVocDocument* doc);
 
     /** Start practicing a new word */
-    virtual bool setTestEntry(TestEntry* current);
+    bool setTestEntry(TestEntry* current) Q_DECL_OVERRIDE;
 
-    virtual grade_t currentPreGradeForEntry() const;
-    virtual grade_t currentGradeForEntry() const;
+    grade_t currentPreGradeForEntry() const Q_DECL_OVERRIDE;
+    grade_t currentGradeForEntry() const Q_DECL_OVERRIDE;
 
 protected:
-    virtual void prepareChoices(TestEntry* current);
-    virtual void updateGrades();
+    void prepareChoices(TestEntry* current) Q_DECL_OVERRIDE;
+    void updateGrades() Q_DECL_OVERRIDE;
 
 private:
     /** Reference to the kvocdoc */

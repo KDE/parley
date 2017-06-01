@@ -60,7 +60,7 @@ public:
     QModelIndexList getSelectedIndexes() const;
 
 public slots:
-    void reset();
+    void reset() Q_DECL_OVERRIDE;
     void appendEntry();
 
     /** Delete the currently selected entries */
@@ -106,10 +106,10 @@ private slots:
 private:
     void selectIndex(const QModelIndex &index);
     // trap enter presses at the end of the document to add a new entry instead of moving to the first cell
-    bool eventFilter(QObject *obj, QEvent *event);
+    bool eventFilter(QObject *obj, QEvent *event) Q_DECL_OVERRIDE;
 
     // Make this private to avoid inadvertent use. Instead use setFilter() which is public.
-    virtual void setModel(QAbstractItemModel *model) {
+    void setModel(QAbstractItemModel *model) Q_DECL_OVERRIDE {
         Q_UNUSED(model)
     }
 

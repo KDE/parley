@@ -49,7 +49,7 @@ public:
     VocabularyColumnsDialog(KEduVocDocument *doc, QWidget *parent);
     ~VocabularyColumnsDialog();
 
-    void accept();
+    void accept() Q_DECL_OVERRIDE;
 
 private:
     /**

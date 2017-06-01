@@ -27,7 +27,7 @@ public:
     ExampleSentenceBackendMode(Practice::AbstractFrontend* frontend, QObject* parent,
                                Practice::SessionManagerBase* sessionManager, KEduVocDocument* doc);
 
-    virtual bool setTestEntry(TestEntry* current);
+    bool setTestEntry(TestEntry* current) Q_DECL_OVERRIDE;
 };
 
 }

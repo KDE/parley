@@ -28,21 +28,21 @@ class LessonStatisticsView : public ContainerView
 
 public:
     LessonStatisticsView(QWidget *parent);
-    void setModel(ContainerModel *model);
+    void setModel(ContainerModel *model) Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void removeGrades();
     void removeGradesChildren();
 
 protected:
-    virtual void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event) Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void sectionResized(int index, int /*oldSize*/, int /*newSize*/);
     void adjustColumnWidths();
 
 private:
-    virtual void setModel(QAbstractItemModel *model) {
+    void setModel(QAbstractItemModel *model) Q_DECL_OVERRIDE {
         Q_UNUSED(model)
     }
 };

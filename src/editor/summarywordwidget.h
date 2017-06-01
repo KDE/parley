@@ -101,7 +101,7 @@ class SummaryWordDelegate : public QItemDelegate
 public:
     SummaryWordDelegate(QObject *parent = 0);
 
-    void setEditorData(QWidget *editor, const QModelIndex &index) const;
+    void setEditorData(QWidget *editor, const QModelIndex &index) const Q_DECL_OVERRIDE;
 };
 }
 

@@ -34,7 +34,7 @@ using namespace Practice;
 
 class PracticeSummaryComponent::SortedAttemptTableWidgetItem: public QTableWidgetItem
 {
-    virtual bool operator<(const QTableWidgetItem &other) const {
+    bool operator<(const QTableWidgetItem &other) const Q_DECL_OVERRIDE {
         if (data(Qt::DisplayRole).toInt() == other.data(Qt::DisplayRole).toInt()) {
             return data(Qt::UserRole).toInt() < other.data(Qt::UserRole).toInt();
         }

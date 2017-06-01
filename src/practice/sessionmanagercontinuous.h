@@ -53,13 +53,13 @@ public:
     /**
      * Prepare for practice using the entries in this document.
      */
-    void setDocument(KEduVocDocument *doc);
+    void setDocument(KEduVocDocument *doc) Q_DECL_OVERRIDE;
 
     /**
      * Initialize the lists of entries that will be used in the
      * training from the full set of available entries.
      */
-    virtual void initializeTraining();
+    void initializeTraining() Q_DECL_OVERRIDE;
 
 
     // Not reimplemented.  The default version does what is needed.

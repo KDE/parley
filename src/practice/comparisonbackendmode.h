@@ -29,17 +29,17 @@ public:
     ComparisonBackendMode(AbstractFrontend *frontend,
                           QObject *parent, Practice::SessionManagerBase* sessionManager, KEduVocDocument* doc);
 
-    virtual bool setTestEntry(TestEntry* current);
-    virtual grade_t currentPreGradeForEntry() const;
-    virtual grade_t currentGradeForEntry() const;
+    bool setTestEntry(TestEntry* current) Q_DECL_OVERRIDE;
+    grade_t currentPreGradeForEntry() const Q_DECL_OVERRIDE;
+    grade_t currentGradeForEntry() const Q_DECL_OVERRIDE;
 
-    void checkAnswer();
+    void checkAnswer() Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
-    virtual void hintAction();
+    void hintAction() Q_DECL_OVERRIDE;
 
 protected:
-    virtual void updateGrades();
+    void updateGrades() Q_DECL_OVERRIDE;
 
 private:
 

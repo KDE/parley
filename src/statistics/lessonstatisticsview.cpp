@@ -46,8 +46,8 @@ public:
         : QItemDelegate(parent) {
     }
 
-    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option,
-		       const QModelIndex &index) const
+    void paint(QPainter *painter, const QStyleOptionViewItem &option,
+		       const QModelIndex &index) const Q_DECL_OVERRIDE
     {
         QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, 0);
 

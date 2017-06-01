@@ -28,7 +28,7 @@ public:
     ExportDialog(ParleyDocument *doc, QWidget *parent = 0);
 
 private slots:
-    void accept();
+    void accept() Q_DECL_OVERRIDE;
 
 private:
     QUrl getFileName(const QString& filter);

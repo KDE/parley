@@ -37,7 +37,7 @@ public:
     void setDue(WordCount &wc);
 
 protected:
-    void paintEvent(QPaintEvent *);
+    void paintEvent(QPaintEvent *) Q_DECL_OVERRIDE;
 
 private:
     int m_dueWords[8];

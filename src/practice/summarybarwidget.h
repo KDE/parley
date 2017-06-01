@@ -33,8 +33,8 @@ public:
     void setStatistics(int correct, int wrong, int notAnswered);
 
 protected:
-    void paintEvent(QPaintEvent *event);
-    bool event(QEvent *event);
+    void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
+    bool event(QEvent *event) Q_DECL_OVERRIDE;
 
 private:
     void setupCaption();

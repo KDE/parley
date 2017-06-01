@@ -32,31 +32,31 @@ class ComparisonModeWidget: public AbstractModeWidget
 
 public:
     ComparisonModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
-    virtual QVariant userInput();
+    QVariant userInput() Q_DECL_OVERRIDE;
 
-    virtual void setQuestion(const QVariant& question);
-    virtual void setSolution(const QVariant& solution);
-    virtual void setHint(const QVariant& hint);
-    virtual void setFeedback(const QVariant& feedback);
-    virtual void setFeedbackState(AbstractFrontend::ResultState feedbackState) {
+    void setQuestion(const QVariant& question) Q_DECL_OVERRIDE;
+    void setSolution(const QVariant& solution) Q_DECL_OVERRIDE;
+    void setHint(const QVariant& hint) Q_DECL_OVERRIDE;
+    void setFeedback(const QVariant& feedback) Q_DECL_OVERRIDE;
+    void setFeedbackState(AbstractFrontend::ResultState feedbackState) Q_DECL_OVERRIDE {
         Q_UNUSED(feedbackState);
     }
-    virtual void setResultState(AbstractFrontend::ResultState resultState) {
+    void setResultState(AbstractFrontend::ResultState resultState) Q_DECL_OVERRIDE {
         Q_UNUSED(resultState);
     }
 
-    virtual void setQuestionFont(const QFont& font);
-    virtual void setSolutionFont(const QFont& font);
-    virtual void setQuestionSound(const QUrl& soundUrl);
-    virtual void setSolutionSound(const QUrl& soundUrl);
-    virtual void setSolutionPronunciation(const QString& pronunciationText);
-    virtual void setQuestionPronunciation(const QString& pronunciationText);
-    virtual void setSynonym(const QString& /*entry*/) {}
+    void setQuestionFont(const QFont& font) Q_DECL_OVERRIDE;
+    void setSolutionFont(const QFont& font) Q_DECL_OVERRIDE;
+    void setQuestionSound(const QUrl& soundUrl) Q_DECL_OVERRIDE;
+    void setSolutionSound(const QUrl& soundUrl) Q_DECL_OVERRIDE;
+    void setSolutionPronunciation(const QString& pronunciationText) Q_DECL_OVERRIDE;
+    void setQuestionPronunciation(const QString& pronunciationText) Q_DECL_OVERRIDE;
+    void setSynonym(const QString& /*entry*/) Q_DECL_OVERRIDE {}
 
 public Q_SLOTS:
-    virtual void showQuestion();
-    virtual void showSolution();
-    virtual void showSynonym() {}
+    void showQuestion() Q_DECL_OVERRIDE;
+    void showSolution() Q_DECL_OVERRIDE;
+    void showSynonym() Q_DECL_OVERRIDE {}
 
 private Q_SLOTS:
     void nextComparisonForm();

@@ -31,12 +31,12 @@ public:
     WrittenBackendMode(Practice::AbstractFrontend* frontend, QObject* parent,
                        Practice::SessionManagerBase* sessionManager, KEduVocDocument* doc);
 
-    virtual bool setTestEntry(TestEntry* current);
+    bool setTestEntry(TestEntry* current) Q_DECL_OVERRIDE;
 
-    void checkAnswer();
+    void checkAnswer() Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
-    virtual void hintAction();
+    void hintAction() Q_DECL_OVERRIDE;
 
 private:
     QString getFeedbackString(TestEntry::ErrorTypes error);

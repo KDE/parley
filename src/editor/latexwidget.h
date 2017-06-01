@@ -76,8 +76,8 @@ class LatexDelegate : public QItemDelegate
 public:
     LatexDelegate(QObject *parent = 0);
 
-    void setEditorData(QWidget *editor, const QModelIndex &index) const;
-    void setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const;
+    void setEditorData(QWidget *editor, const QModelIndex &index) const Q_DECL_OVERRIDE;
+    void setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const Q_DECL_OVERRIDE;
     void setMathModeCheckBox(QCheckBox *checkBox) {
         m_checkBox = checkBox;
     }

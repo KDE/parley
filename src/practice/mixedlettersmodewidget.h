@@ -39,12 +39,12 @@ class MixedLettersModeWidget : public Practice::WrittenPracticeWidget
 public:
     MixedLettersModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
 
-    virtual void setQuestion(const QVariant& question);
-    virtual void setSolution(const QVariant& solution);
-    virtual void setSolutionFont(const QFont& font);
+    void setQuestion(const QVariant& question) Q_DECL_OVERRIDE;
+    void setSolution(const QVariant& solution) Q_DECL_OVERRIDE;
+    void setSolutionFont(const QFont& font) Q_DECL_OVERRIDE;
 
 public slots:
-    void showQuestion();
+    void showQuestion() Q_DECL_OVERRIDE;
 
 private slots:
     void updatePixmap();

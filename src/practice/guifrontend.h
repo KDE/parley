@@ -42,47 +42,47 @@ public:
     GuiFrontend(QWidget *parent = 0);
     virtual ~GuiFrontend();
 
-    virtual QVariant userInput();
+    QVariant userInput() Q_DECL_OVERRIDE;
     QWidget* widget();
 
-    QFont knownLangFont() const;
-    QFont learningLangFont() const;
-    void setKnownLangFont(const QFont& font);
-    void setLearningLangFont(const QFont& font);
+    QFont knownLangFont() const Q_DECL_OVERRIDE;
+    QFont learningLangFont() const Q_DECL_OVERRIDE;
+    void setKnownLangFont(const QFont& font) Q_DECL_OVERRIDE;
+    void setLearningLangFont(const QFont& font) Q_DECL_OVERRIDE;
 
-    virtual void setQuestion(const QVariant& question);
-    virtual void setQuestionImage(const QUrl& img);
-    virtual void setQuestionPronunciation(const QString& pronunciationText);
-    virtual void setQuestionSound(const QUrl& soundUrl);
-    virtual void setQuestionFont(const QFont& font);
+    void setQuestion(const QVariant& question) Q_DECL_OVERRIDE;
+    void setQuestionImage(const QUrl& img) Q_DECL_OVERRIDE;
+    void setQuestionPronunciation(const QString& pronunciationText) Q_DECL_OVERRIDE;
+    void setQuestionSound(const QUrl& soundUrl) Q_DECL_OVERRIDE;
+    void setQuestionFont(const QFont& font) Q_DECL_OVERRIDE;
 
-    virtual void setSolution(const QVariant& solution);
-    virtual void setSolutionImage(const QUrl& img);
-    virtual void setSolutionPronunciation(const QString& pronunciationText);
-    virtual void setSolutionSound(const QUrl& soundUrl);
-    virtual void setSolutionFont(const QFont& font);
+    void setSolution(const QVariant& solution) Q_DECL_OVERRIDE;
+    void setSolutionImage(const QUrl& img) Q_DECL_OVERRIDE;
+    void setSolutionPronunciation(const QString& pronunciationText) Q_DECL_OVERRIDE;
+    void setSolutionSound(const QUrl& soundUrl) Q_DECL_OVERRIDE;
+    void setSolutionFont(const QFont& font) Q_DECL_OVERRIDE;
 
-    virtual void setHint(const QVariant& hint);
-    virtual void setFeedback(const QVariant& feedback);
+    void setHint(const QVariant& hint) Q_DECL_OVERRIDE;
+    void setFeedback(const QVariant& feedback) Q_DECL_OVERRIDE;
 
-    virtual void setFeedbackState(ResultState feedbackState);
-    virtual void setResultState(ResultState resultState);
-    virtual ResultState resultState();
+    void setFeedbackState(ResultState feedbackState) Q_DECL_OVERRIDE;
+    void setResultState(ResultState resultState) Q_DECL_OVERRIDE;
+    ResultState resultState() Q_DECL_OVERRIDE;
 
     /// update lesson label
-    void setLessonName(const QString& lessonName);
-    void showGrade(int preGrade, int grade);
-    virtual void setFinishedWordsTotalWords(int finished, int total);
+    void setLessonName(const QString& lessonName) Q_DECL_OVERRIDE;
+    void showGrade(int preGrade, int grade) Q_DECL_OVERRIDE;
+    void setFinishedWordsTotalWords(int finished, int total) Q_DECL_OVERRIDE;
 
-    virtual void setSynonym(const QString& entry);
+    void setSynonym(const QString& entry) Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
-    void setMode(Mode mode);
-    void showQuestion();
-    void showSolution();
-    void setBoxes(grade_t currentBox, grade_t newBoxIfCorrect, grade_t newBoxIfWrong);
+    void setMode(Mode mode) Q_DECL_OVERRIDE;
+    void showQuestion() Q_DECL_OVERRIDE;
+    void showSolution() Q_DECL_OVERRIDE;
+    void setBoxes(grade_t currentBox, grade_t newBoxIfCorrect, grade_t newBoxIfWrong) Q_DECL_OVERRIDE;
 
-    void showSynonym();
+    void showSynonym() Q_DECL_OVERRIDE;
 
     void backgroundChanged(const QPixmap& pixmap);
 
@@ -91,7 +91,7 @@ public Q_SLOTS:
     void toggleResultState();
 
 protected:
-    bool eventFilter(QObject *object, QEvent *event);
+    bool eventFilter(QObject *object, QEvent *event) Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void countAsCorrectButtonClicked();

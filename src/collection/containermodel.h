@@ -43,24 +43,24 @@ public:
 
     explicit ContainerModel(KEduVocContainer::EnumContainerType type, QObject *parent = 0);
 
-    virtual QVariant data(const QModelIndex &index, int role) const;
-    virtual Qt::ItemFlags flags(const QModelIndex &index) const;
-    virtual QVariant headerData(int section, Qt::Orientation orientation,
-                                int role = Qt::DisplayRole) const;
-    virtual int columnCount(const QModelIndex &parent = QModelIndex()) const;
+    QVariant data(const QModelIndex &index, int role) const Q_DECL_OVERRIDE;
+    Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
+    QVariant headerData(int section, Qt::Orientation orientation,
+                                int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
-    virtual Qt::DropActions supportedDropActions() const;
-    virtual QStringList mimeTypes() const;
-    virtual QMimeData * mimeData(const QModelIndexList &indexes) const;
-    virtual bool dropMimeData(const QMimeData *data, Qt::DropAction action,
-                              int row, int column, const QModelIndex &parent);
+    Qt::DropActions supportedDropActions() const Q_DECL_OVERRIDE;
+    QStringList mimeTypes() const Q_DECL_OVERRIDE;
+    QMimeData * mimeData(const QModelIndexList &indexes) const Q_DECL_OVERRIDE;
+    bool dropMimeData(const QMimeData *data, Qt::DropAction action,
+                              int row, int column, const QModelIndex &parent) Q_DECL_OVERRIDE;
 
     /** Change the name or checkbox of a lesson.
      * @param index which lesson
      * @param value new name
      * @param role
      * @return bool @c true it worked */
-    virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) Q_DECL_OVERRIDE;
 
 
     QModelIndex appendContainer(const QModelIndex& parent, const QString & containerName = QString());
@@ -69,7 +69,7 @@ public:
 
     /** Indicate supported drag actions
      @return enum of actions supported **/
-    virtual Qt::DropActions supportedDragActions() const ;
+    Qt::DropActions supportedDragActions() const  Q_DECL_OVERRIDE;
 
 signals:
     /**

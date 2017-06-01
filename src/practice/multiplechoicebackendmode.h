@@ -30,12 +30,12 @@ public:
                               Practice::SessionManagerBase* sessionManager);
 
     /** Start practicing a new word */
-    virtual bool setTestEntry(TestEntry* current);
+    bool setTestEntry(TestEntry* current) Q_DECL_OVERRIDE;
 
-    virtual void checkAnswer();
+    void checkAnswer() Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
-    virtual void hintAction();
+    void hintAction() Q_DECL_OVERRIDE;
 
 protected:
     /**

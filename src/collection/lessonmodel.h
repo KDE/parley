@@ -34,9 +34,9 @@ public:
 
     explicit LessonModel(QObject *parent = 0);
 
-    virtual Qt::ItemFlags flags(const QModelIndex &index) const;
-    virtual QVariant data(const QModelIndex &index, int role) const;
-    virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+    Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
+    QVariant data(const QModelIndex &index, int role) const Q_DECL_OVERRIDE;
+    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) Q_DECL_OVERRIDE;
 
     /**
      * Divide a lesson into smaller ones.
@@ -48,7 +48,7 @@ public:
     void splitLesson(const QModelIndex& containerIndex, int entriesPerLesson, SplitLessonOrder order);
 
 protected:
-    KEduVocContainer * rootContainer() const;
+    KEduVocContainer * rootContainer() const Q_DECL_OVERRIDE;
 };
 
 

@@ -40,17 +40,17 @@ public:
 
     explicit StatisticsModel(QObject *parent = 0);
 
-    virtual QVariant headerData(int section, Qt::Orientation orientation,
-                                int role = Qt::DisplayRole) const;
-    virtual QVariant data(const QModelIndex &index, int role) const;
-    virtual Qt::ItemFlags flags(const QModelIndex &index) const;
-    virtual int columnCount(const QModelIndex &parent = QModelIndex()) const;
+    QVariant headerData(int section, Qt::Orientation orientation,
+                                int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+    QVariant data(const QModelIndex &index, int role) const Q_DECL_OVERRIDE;
+    Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
     /** Indicate supported drag actions
      @return enum of actions supported **/
-    virtual Qt::DropActions supportedDragActions() const ;
+    Qt::DropActions supportedDragActions() const  Q_DECL_OVERRIDE;
 protected:
-    KEduVocContainer * rootContainer() const;
+    KEduVocContainer * rootContainer() const Q_DECL_OVERRIDE;
 };
 
 // For index.data()

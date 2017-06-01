@@ -26,7 +26,7 @@ public:
     LanguageProperties(KEduVocDocument* doc, QWidget* parent);
 
 public slots:
-    virtual void accept();
+    void accept() Q_DECL_OVERRIDE;
 
 private slots:
     void slotAppendIdentifier();

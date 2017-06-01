@@ -48,11 +48,11 @@ public:
 
     VocabularyDelegate(QObject *parent = 0);
 
-    QWidget * createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    QWidget * createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const Q_DECL_OVERRIDE;
 
-    void setEditorData(QWidget *editor, const QModelIndex &index) const;
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-    void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
+    void setEditorData(QWidget *editor, const QModelIndex &index) const Q_DECL_OVERRIDE;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const Q_DECL_OVERRIDE;
+    void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const Q_DECL_OVERRIDE;
     void setTranslator(Translator * translator);
 
     static int columnType(int column);
@@ -66,7 +66,7 @@ public:
 
 public slots:
     void setDocument(KEduVocDocument *doc);
-    bool helpEvent(QHelpEvent *event, QAbstractItemView *view, const QStyleOptionViewItem &option, const QModelIndex &index );
+    bool helpEvent(QHelpEvent *event, QAbstractItemView *view, const QStyleOptionViewItem &option, const QModelIndex &index ) Q_DECL_OVERRIDE;
 
 private:
     KEduVocDocument *m_doc;
@@ -84,7 +84,7 @@ class VocabularyDelegate::WordTypeBasicModel : public ReadonlyContainerModel
 public:
     explicit WordTypeBasicModel(QObject *parent = 0);
 protected:
-    KEduVocContainer * rootContainer() const;
+    KEduVocContainer * rootContainer() const Q_DECL_OVERRIDE;
 };
 
 }
