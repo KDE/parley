@@ -16,6 +16,7 @@
   <name xml:lang="es">Parley</name>
   <name xml:lang="et">Parley</name>
   <name xml:lang="fi">Parley</name>
+  <name xml:lang="fr">Parley</name>
   <name xml:lang="gl">Parley</name>
   <name xml:lang="it">Parley</name>
   <name xml:lang="ko">Parley</name>
@@ -45,6 +46,7 @@
   <summary xml:lang="es">Entrenador de vocabulario</summary>
   <summary xml:lang="et">Sõnavara treening</summary>
   <summary xml:lang="fi">Sanaston harjoitusohjelma</summary>
+  <summary xml:lang="fr">Exercices de vocabulaire</summary>
   <summary xml:lang="gl">Adestrador de vocabulario</summary>
   <summary xml:lang="it">Apprendimento di vocaboli</summary>
   <summary xml:lang="ko">어휘 연습 도구</summary>
@@ -127,6 +129,7 @@
       <li xml:lang="es">Tarjetas</li>
       <li xml:lang="et">Sähvikud</li>
       <li xml:lang="fi">Kysymyskortit</li>
+      <li xml:lang="fr">Fiches mnémotechniques</li>
       <li xml:lang="gl">Tarxetas</li>
       <li xml:lang="it">Carte mnemoniche</li>
       <li xml:lang="ko">플래시 카드</li>
@@ -182,6 +185,7 @@
       <li xml:lang="es">Varias opciones</li>
       <li xml:lang="et">Mitmene valik</li>
       <li xml:lang="fi">Monivalinta</li>
+      <li xml:lang="fr">Choix multiple</li>
       <li xml:lang="gl">Opcións múltiplas</li>
       <li xml:lang="it">Scelta multipla</li>
       <li xml:lang="ko">객관식</li>
@@ -211,6 +215,7 @@
       <li xml:lang="es">Escrito</li>
       <li xml:lang="et">Kirjalik</li>
       <li xml:lang="fi">Kirjallinen</li>
+      <li xml:lang="fr">Écrit</li>
       <li xml:lang="gl">Escrito</li>
       <li xml:lang="it">Scritto</li>
       <li xml:lang="ko">주관식</li>
