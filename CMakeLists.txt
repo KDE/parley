@@ -32,7 +32,7 @@ find_package(KF5 5.22 MODULE REQUIRED COMPONENTS
   KIO
   NewStuff
   Kross
-  KHtml
+  #KHtml
   Sonnet
   KCMUtils
   XmlGui
