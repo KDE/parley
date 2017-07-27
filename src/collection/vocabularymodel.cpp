@@ -280,8 +280,9 @@ QVariant VocabularyModel::headerData(int section, Qt::Orientation orientation, i
     return QVariant();
 }
 
-QString VocabularyModel::columnTitle(KEduVocDocument *document, int translation, int column)
+QString VocabularyModel::columnTitle(KEduVocDocument *document, int translation, int column, bool addLocaleSuffix)
 {
+    QString localeSuffix = (addLocaleSuffix) ? " (" + document->identifier(translation).locale() + ") " : QString();
     switch (column) {
     case Translation:
         if (document->identifierCount() - 1 < translation) {
@@ -289,19 +290,19 @@ QString VocabularyModel::columnTitle(KEduVocDocument *document, int translation,
         }
         return document->identifier(translation).name(); //returns "English", "German", etc
     case Pronunciation:
-        return i18n("Pronunciation");
+        return i18n("Pronunciation%1", localeSuffix);
     case WordClass:
-        return i18n("Word Type");
+        return i18n("Word Type%1", localeSuffix);
     case Synonym:
-        return i18n("Synonym");
+        return i18n("Synonym%1", localeSuffix);
     case Antonym:
-        return i18n("Antonym");
+        return i18n("Antonym%1", localeSuffix);
     case Example:
-        return i18n("Example");
+        return i18n("Example%1", localeSuffix);
     case Comment:
-        return i18n("Comment");
+        return i18n("Comment%1", localeSuffix);
     case Paraphrase:
-        return i18n("Paraphrase");
+        return i18n("Paraphrase%1", localeSuffix);
     }
 
     return QString();

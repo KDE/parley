@@ -114,7 +114,7 @@ void VocabularyColumnsDialog::createLanguagesLayout()
 void VocabularyColumnsDialog::addLanguage(int i, QVBoxLayout *parent)
 {
     for (int c = 1; c < VocabularyModel::EntryColumnsMAX; c++) {
-        QStandardItem *item_data = new QStandardItem(VocabularyModel::columnTitle(m_doc, i, c));
+        QStandardItem *item_data = new QStandardItem(VocabularyModel::columnTitle(m_doc, i, c, false));
         item_data->setData(QVariant(c - 1), VocabularyColumnsDialog::ColumnRole);
         item_data->setData(QVariant(i), VocabularyColumnsDialog::LanguageRole);
         item_data->setCheckable(true);
