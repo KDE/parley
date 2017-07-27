@@ -97,7 +97,7 @@ void StatisticsLegendWidget::paintEvent(QPaintEvent *)
     paintColorBar(painter, rect, wordCount, colors);
 
     // Draw the legend texts
-    painter.setPen(Qt::black);
+    painter.setPen(QPalette().color(QPalette::WindowText));
     painter.drawText(leftRect, Qt::AlignRight | Qt::AlignVCenter, leftString);
     painter.drawText(rightRect, Qt::AlignLeft | Qt::AlignVCenter, rightString);
 }
