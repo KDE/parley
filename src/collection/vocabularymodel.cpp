@@ -273,7 +273,7 @@ QVariant VocabularyModel::headerData(int section, Qt::Orientation orientation, i
 
         switch (role) {
         case Qt::DisplayRole:
-            return VocabularyModel::columnTitle(m_document, translationId, entryColumn);
+            return VocabularyModel::columnTitle(m_document, translationId, entryColumn, /*addLocaleSuffix*/ true);
             break;
         } // switch role
     } // if horizontal
@@ -282,7 +282,7 @@ QVariant VocabularyModel::headerData(int section, Qt::Orientation orientation, i
 
 QString VocabularyModel::columnTitle(KEduVocDocument *document, int translation, int column, bool addLocaleSuffix)
 {
-    QString localeSuffix = (addLocaleSuffix) ? " (" + document->identifier(translation).locale() + ") " : QString();
+    const QString localeSuffix = document->identifier(translation).locale();
     switch (column) {
     case Translation:
         if (document->identifierCount() - 1 < translation) {
@@ -290,19 +290,19 @@ QString VocabularyModel::columnTitle(KEduVocDocument *document, int translation,
         }
         return document->identifier(translation).name(); //returns "English", "German", etc
     case Pronunciation:
-        return i18n("Pronunciation%1", localeSuffix);
+        return addLocaleSuffix ? i18n("Pronunciation (%1)", localeSuffix) : i18n("Pronunciation");
     case WordClass:
-        return i18n("Word Type%1", localeSuffix);
+        return addLocaleSuffix ? i18n("Word Type (%1)", localeSuffix) : i18n("Word Type");
     case Synonym:
-        return i18n("Synonym%1", localeSuffix);
+        return addLocaleSuffix ? i18n("Synonym (%1)", localeSuffix) : i18n("Synonym");
     case Antonym:
-        return i18n("Antonym%1", localeSuffix);
+        return addLocaleSuffix ? i18n("Antonym (%1)", localeSuffix) : i18n("Antonym");
     case Example:
-        return i18n("Example%1", localeSuffix);
+        return addLocaleSuffix ? i18n("Example (%1)", localeSuffix) : i18n("Example");
     case Comment:
-        return i18n("Comment%1", localeSuffix);
+        return addLocaleSuffix ? i18n("Comment (%1)", localeSuffix) : i18n("Comment");
     case Paraphrase:
-        return i18n("Paraphrase%1", localeSuffix);
+        return addLocaleSuffix ? i18n("Paraphrase (%1)", localeSuffix) : i18n("Paraphrase");
     }
 
     return QString();
