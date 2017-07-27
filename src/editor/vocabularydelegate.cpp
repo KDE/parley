@@ -103,7 +103,7 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
         return wordTypeCombo;
     }
 
-    case VocabularyModel::Translation: {
+    case VocabularyModel::Translation:
         if (!m_doc || !m_translator) return 0;
 
         if (VocabularyModel::columnType(index.column()) == VocabularyModel::Translation) {
@@ -123,8 +123,8 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
                 return translationCombo;
             }
         }
-        // no break - we fall back to a line edit if there are not multiple translations fetched online
-    }
+        // no break - we fall back to a line edit if there are not multiple translations fetched onlin
+        // fallthrough
     default: {
         QLineEdit *editor = new QLineEdit(parent);
         editor->setFrame(false);
@@ -264,6 +264,7 @@ void VocabularyDelegate::setEditorData(QWidget * editor, const QModelIndex & ind
             break;
         }
     }
+    // fallthrough
     default: {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
 
