@@ -18,9 +18,10 @@
 
 
 #include "ui_browserwidget.h"
+#include <QtWebEngineWidgets/QWebEngineView>
 
 class KEduVocExpression;
-class KHTMLPart;
+
 
 
 namespace Editor
@@ -62,7 +63,7 @@ private:
     /// Selection in the doc - if more than one row is selected behavior is different
     KEduVocExpression* m_entry;
 
-    KHTMLPart *m_htmlPart;
+    QWebEngineView *m_htmlPart;
     QList<DictionaryProvider> m_providers;
     int m_currentProvider;
 };

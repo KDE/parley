@@ -21,6 +21,7 @@ find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED
   Svg
   Concurrent
   Multimedia
+  WebEngineWidgets
 )
 
 find_package(KF5 5.22 MODULE REQUIRED COMPONENTS
@@ -103,6 +104,7 @@ set( parley_LINK_LIBS
   KF5::Notifications
   KF5::Crash
   KF5::CoreAddons
+  Qt5::WebEngineWidgets
 )
 
 message(STATUS "cmake cflags ${CMAKE_C_FLAGS}")
