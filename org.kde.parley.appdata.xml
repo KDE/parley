@@ -261,12 +261,12 @@
       <li xml:lang="zh-TW">語言指定訓練：冠詞、比較級、詞形變化、同義/反義/譯述等</li>
     </ul>
   </description>
-  <url type="homepage">http://edu.kde.org/parley/</url>
+  <url type="homepage">https://edu.kde.org/parley/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=parley</url>
-  <url type="help">http://docs.kde.org/stable/en/kdeedu/parley/index.html</url>
+  <url type="help">https://docs.kde.org/?application=parley</url>
   <screenshots>
     <screenshot type="default">
-      <image>http://kde.org/images/screenshots/parley.png</image>
+      <image>https://kde.org/images/screenshots/parley.png</image>
     </screenshot>
   </screenshots>
   <project_group>KDE</project_group>
