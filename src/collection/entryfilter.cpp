@@ -148,7 +148,7 @@ QList<TestEntry*> EntryFilter::entries(bool showDialog)
     // lists of EduVocTranslations.
     if (Prefs::practiceMode() == Prefs::EnumPracticeMode::ConjugationPractice) {
         QList< TestEntry* > ret = conjugationTestEntries(ignoreBlocked);
-        if (ret.count() == 0) {
+        if ((ret.count() == 0) && showDialog) {
             KMessageBox::error(0, noEntriesError);
         }
         return ret;
