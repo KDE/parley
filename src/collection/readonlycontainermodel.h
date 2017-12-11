@@ -54,7 +54,7 @@ public:
 public slots:
     /** Set the new source kvtml file
      * @param doc the new file */
-    void setDocument(KEduVocDocument *doc);
+    virtual void setDocument(KEduVocDocument *doc);
 
 protected:
     virtual KEduVocContainer *rootContainer() const = 0;

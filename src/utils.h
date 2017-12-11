@@ -20,10 +20,12 @@
 
 // KEduVocDocument library
 #include <keduvoccontainer.h>
+#include <KEduVocWordtype>
 
 
 class QPainter;
 class QRect;
+class KEduVocTranslation;
 
 // The WordCount struct contains the number of words in each category.
 // This could be used for number of words due, total number of words, etc.
@@ -36,6 +38,11 @@ struct WordCount {
     void fillFromContainer(KEduVocContainer &container, int translationIndex,
                            KEduVocContainer::EnumEntriesRecursive recursive = KEduVocContainer::Recursive);
 
+    // Fill the WordCount data from the container for the selected practice mode.
+    void fillFromContainerForPracticeMode(KEduVocContainer &container, int translationIndex,
+                    const QStringList &activeConjugationTenses,
+                    KEduVocContainer::EnumEntriesRecursive recursive = KEduVocContainer::Recursive);
+
     int grades[KV_MAX_GRADE + 1]; // Number of entries in each grade including grade=0, pregrade=0
     int pregrades[KV_MAX_GRADE + 1]; // Number of entries in each grade including grade=0, pregrade=0
     int invalid;	          // Number of invalid entries (not always applicable);
@@ -44,6 +51,10 @@ struct WordCount {
                                   // This is the sum of the numbers in pregrades[].
     int totalWords;		  // Total number of words
                                   // This is the sum of grades[], pregrades[] and invalid
+
+private:
+    bool isValidForProcessing(KEduVocTranslation &trans, KEduVocWordFlags wordType) const;
+    void evaluateWord(const KEduVocText &item, const QString &text);
 };
 
 

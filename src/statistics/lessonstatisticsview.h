@@ -30,16 +30,16 @@ public:
     LessonStatisticsView(QWidget *parent);
     void setModel(ContainerModel *model) Q_DECL_OVERRIDE;
 
-private Q_SLOTS:
-    void removeGrades();
-    void removeGradesChildren();
+public Q_SLOTS:
+    void adjustColumnWidths();
 
 protected:
     void resizeEvent(QResizeEvent *event) Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
+    void removeGrades();
+    void removeGradesChildren();
     void sectionResized(int index, int /*oldSize*/, int /*newSize*/);
-    void adjustColumnWidths();
 
 private:
     void setModel(QAbstractItemModel *model) Q_DECL_OVERRIDE {

@@ -18,6 +18,9 @@
 
 #include "containermodel.h"
 
+#include "prefs.h"
+#include "documentsettings.h"
+
 
 class StatisticsModel : public ContainerModel
 {
@@ -35,7 +38,8 @@ public:
         Grade5,
         Grade6,
         Grade7,
-        Container
+        Container,
+        ActiveConjugationTenses
     };
 
     explicit StatisticsModel(QObject *parent = 0);
@@ -49,8 +53,24 @@ public:
     /** Indicate supported drag actions
      @return enum of actions supported **/
     Qt::DropActions supportedDragActions() const  Q_DECL_OVERRIDE;
+
+    void updateDocumentSettings();
+
+public slots:
+    virtual void setDocument(KEduVocDocument *doc) Q_DECL_OVERRIDE;
+
 protected:
-    KEduVocContainer * rootContainer() const Q_DECL_OVERRIDE;
+    KEduVocContainer *rootContainer() const Q_DECL_OVERRIDE;
+
+private:
+    int averageGradeForPracticeMode(KEduVocContainer *container, int translation) const;
+    int entryCountForPracticeMode(KEduVocContainer *container, int translation) const;
+    int expressionsOfGradeForPracticeMode(KEduVocContainer *container, int translation,
+                                          grade_t grade) const;
+    void loadDocumentsSettings();
+
+private:
+    QList<QSharedPointer<DocumentSettings>> m_documentSettings;
 };
 
 // For index.data()

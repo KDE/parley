@@ -50,6 +50,7 @@ private slots:
     void practiceDirectionChanged(int mode);
     void rememberPracticeDirectionChanged(bool checked);
     void updateVisibleColumns();
+    void updateModelSettings();
 
 private:
     void initActions();

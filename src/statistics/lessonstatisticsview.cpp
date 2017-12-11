@@ -47,7 +47,7 @@ public:
     }
 
     void paint(QPainter *painter, const QStyleOptionViewItem &option,
-		       const QModelIndex &index) const Q_DECL_OVERRIDE
+               const QModelIndex &index) const Q_DECL_OVERRIDE
     {
         QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, 0);
 
@@ -57,16 +57,23 @@ public:
         }
 
         // Draw the colored bar.
-        KEduVocContainer *container = index.data(StatisticsModel::Container).value<KEduVocContainer*>();
+        KEduVocContainer *container = index.data(StatisticsModel::Container)
+                                           .value<KEduVocContainer*>();
+        QStringList activeConjugationTenses = index.data(StatisticsModel::ActiveConjugationTenses)
+                                                   .toStringList();
         WordCount  wordCount;
-        wordCount.fillFromContainer(*container, index.column() - ContainerModel::FirstDataColumn);
+        wordCount.fillFromContainerForPracticeMode(
+            *container,
+            index.column() - ContainerModel::FirstDataColumn,
+            activeConjugationTenses
+        );
         ConfidenceColors  colors(ConfidenceColors::ProgressiveColorScheme);
 
         paintColorBar(*painter, option.rect, wordCount, colors); // in utils
 
         // Draw the text telling the percentage on top of the bar.
         painter->drawText(option.rect, Qt::AlignCenter,
-			  QStringLiteral("%1%").arg(index.data(StatisticsModel::TotalPercent).toInt()));
+                    QStringLiteral("%1%").arg(index.data(StatisticsModel::TotalPercent).toInt()));
     }
 };
 
@@ -137,8 +144,7 @@ void LessonStatisticsView::sectionResized(int index,
 void LessonStatisticsView::adjustColumnWidths()
 {
     int firstWidth = columnWidth(0) + columnWidth(1);
-    // Subtract 5 here otherwise we get a horizontal scrollbar.
-    int totalWidth = width() - firstWidth - 5;
+    int totalWidth = viewport()->width() - firstWidth;
     int columnCount = model()->columnCount(QModelIndex());
     int visibleColumns = 0;
     for (int i = ContainerModel::FirstDataColumn; i < columnCount; ++i) {

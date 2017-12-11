@@ -15,12 +15,16 @@
 
 #include "statisticsmodel.h"
 #include "statisticslegendwidget.h"
+#include "utils.h"
 
+#include <KEduVocExpression>
+#include <KEduVocTranslation>
+#include <KEduVocWordtype>
 #include <KLocalizedString>
 #include <QGradient>
 #include <QDebug>
 
-StatisticsModel::StatisticsModel(QObject * parent)
+StatisticsModel::StatisticsModel(QObject *parent)
     : ContainerModel(KEduVocContainer::Lesson, parent)
 {
 }
@@ -37,31 +41,59 @@ QVariant StatisticsModel::headerData(int section, Qt::Orientation orientation, i
     return ContainerModel::headerData(section, orientation, role);
 }
 
-QVariant StatisticsModel::data(const QModelIndex & index, int role) const
+QVariant StatisticsModel::data(const QModelIndex &index, int role) const
 {
+    Q_ASSERT(!m_documentSettings.isEmpty());
+
+    KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
+
+    // Entrie count
+    if (index.column() == TotalCountColumn) {
+        if (role == Qt::DisplayRole) {
+            switch (Prefs::practiceDirection()) {
+            case Prefs::EnumPracticeDirection::KnownToLearning:
+                return entryCountForPracticeMode(container, Prefs::learningLanguage());
+            case Prefs::EnumPracticeDirection::LearningToKnown:
+                return entryCountForPracticeMode(container, Prefs::knownLanguage());
+            case Prefs::EnumPracticeDirection::MixedDirectionsWordsOnly:
+            case Prefs::EnumPracticeDirection::MixedDirectionsWithSound:
+                return entryCountForPracticeMode(container, Prefs::knownLanguage())
+                    + entryCountForPracticeMode(container, Prefs::learningLanguage());
+            default:
+                return entryCountForPracticeMode(container, Prefs::learningLanguage());
+            }
+        }
+        if (role == Qt::TextAlignmentRole) {
+            return Qt::AlignRight;
+        }
+    }
+
+    // Colorbars
     if (index.column() >= FirstDataColumn) {
-        KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
-        QVariant var;
+        int translation = index.column() - FirstDataColumn;
         switch (role) {
         case Container:
-	    // Return a pointer to the container we are working on.
-            var.setValue(container);
-            return var;
+            {
+                // Return a pointer to the container we are working on.
+                QVariant var;
+                var.setValue(container);
+                return var;
+            }
         case TotalPercent: // Average grade
-            return container->averageGrade(index.column() - FirstDataColumn, KEduVocContainer::Recursive);
+            return averageGradeForPracticeMode(container, translation);
         case TotalCount:
-            return container->entryCount(KEduVocContainer::Recursive);
+            return entryCountForPracticeMode(container, translation);
+        case ActiveConjugationTenses:
+            return m_documentSettings.at(translation)->conjugationTenses();
         default:
-            if (role >= Qt::UserRole) {
-                return container->expressionsOfGrade(
-                    index.column() - FirstDataColumn, role - Grade0, KEduVocContainer::Recursive);
+            if ((role >= Grade0) && (role <= Grade7)) {
+                return expressionsOfGradeForPracticeMode(container, translation, role - Grade0);
             }
         }
     }
 
-    // checkboxes
+    // Checkboxes
     if (index.column() == 0 && role == Qt::CheckStateRole) {
-        KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
         if (container->inPractice()) {
             return Qt::Checked;
         } else {
@@ -72,9 +104,41 @@ QVariant StatisticsModel::data(const QModelIndex & index, int role) const
     return ContainerModel::data(index, role);
 }
 
+int StatisticsModel::averageGradeForPracticeMode(KEduVocContainer *container, int translation) const
+{
+    WordCount wordCount;
+    wordCount.fillFromContainerForPracticeMode(
+        *container,
+        translation,
+        m_documentSettings.at(translation)->conjugationTenses()
+    );
+    return wordCount.percentageCompleted();
+}
 
+int StatisticsModel::entryCountForPracticeMode(KEduVocContainer *container, int translation) const
+{
+    WordCount wordCount;
+    wordCount.fillFromContainerForPracticeMode(
+        *container,
+        translation,
+        m_documentSettings.at(translation)->conjugationTenses()
+    );
+    return wordCount.totalWords - wordCount.invalid;
+}
 
-Qt::ItemFlags StatisticsModel::flags(const QModelIndex & index) const
+int StatisticsModel::expressionsOfGradeForPracticeMode(KEduVocContainer *container,
+                                                      int translation, grade_t grade) const
+{
+    WordCount wordCount;
+    wordCount.fillFromContainerForPracticeMode(
+        *container,
+        translation,
+        m_documentSettings.at(translation)->conjugationTenses()
+    );
+    return wordCount.grades[grade];
+}
+
+Qt::ItemFlags StatisticsModel::flags(const QModelIndex &index) const
 {
     if (index.isValid()) {
         if (index.column() == 0) {
@@ -85,7 +149,7 @@ Qt::ItemFlags StatisticsModel::flags(const QModelIndex & index) const
     return 0;
 }
 
-int StatisticsModel::columnCount(const QModelIndex & parent) const
+int StatisticsModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
     return m_doc->identifierCount() + FirstDataColumn;
@@ -96,10 +160,42 @@ Qt::DropActions StatisticsModel::supportedDragActions() const
     return 0;
 }
 
-KEduVocContainer * StatisticsModel::rootContainer() const
+KEduVocContainer *StatisticsModel::rootContainer() const
 {
     if (!m_doc) {
         return 0;
     }
     return m_doc->lesson();
 }
+
+void StatisticsModel::loadDocumentsSettings()
+{
+    m_documentSettings.clear();
+    if (m_doc == nullptr) {
+        return;
+    }
+    for (int i = 0 ; i < m_doc->identifierCount(); ++i) {
+        m_documentSettings << QSharedPointer<DocumentSettings>(
+            new DocumentSettings(m_doc->url().url() + QString::number(i))
+        );
+        m_documentSettings.last()->load();
+
+    }
+}
+
+void StatisticsModel::setDocument(KEduVocDocument *doc)
+{
+    beginResetModel();
+    m_doc = doc;
+    loadDocumentsSettings();
+    endResetModel();
+}
+
+
+void StatisticsModel::updateDocumentSettings()
+{
+    beginResetModel();
+    loadDocumentsSettings();
+    endResetModel();
+}
+

@@ -195,6 +195,7 @@ void StatisticsMainWindow::languagesChanged()
     emit languagesChanged(knownLanguage, learningLanguage);
 
     updateVisibleColumns();
+    updateModelSettings();
 }
 
 void StatisticsMainWindow::initPracticeMode()
@@ -231,6 +232,8 @@ void StatisticsMainWindow::practiceModeSelected(int mode)
         setPracticeDirectionForPracticeMode(Prefs::practiceDirection(), previousPracticeMode);
         m_ui->practiceDirection->setCurrentIndex(practiceDirectionForPracticeMode(mode));
     }
+
+    updateModelSettings();
 }
 
 void StatisticsMainWindow::practiceDirectionChanged(int mode)
@@ -240,6 +243,8 @@ void StatisticsMainWindow::practiceDirectionChanged(int mode)
     if (Prefs::rememberPracticeDirection()) {
         setPracticeDirectionForPracticeMode(mode, Prefs::practiceMode());
     }
+    updateVisibleColumns();
+    updateModelSettings();
 }
 
 void StatisticsMainWindow::rememberPracticeDirectionChanged(bool checked)
@@ -273,6 +278,7 @@ void StatisticsMainWindow::updateVisibleColumns()
         }
 
         m_ui->lessonStatistics->setColumnHidden(i, isHidden);
+        m_ui->lessonStatistics->adjustColumnWidths();
     }
 }
 
@@ -287,8 +293,11 @@ void StatisticsMainWindow::showConjugationOptions(bool visible)
         QHBoxLayout* layout = new QHBoxLayout(m_ui->modeSpecificOptions);
         layout->setMargin(0);
         layout->addWidget(m_conjugationOptions);
-        connect(this, SIGNAL(languagesChanged(int, int)), m_conjugationOptions, SLOT(setLanguages(int, int)));
+        connect(this, QOverload<int, int>::of(&StatisticsMainWindow::languagesChanged),
+                m_conjugationOptions, &ConjugationOptions::setLanguages);
         m_conjugationOptions->setLanguages(Prefs::knownLanguage(), Prefs::learningLanguage());
+        connect(m_conjugationOptions, &ConjugationOptions::checkBoxChanged,
+                this, &StatisticsMainWindow::updateModelSettings);
     }
     m_conjugationOptions->setVisible(visible);
 }
@@ -318,3 +327,10 @@ void StatisticsMainWindow::setPracticeDirectionForPracticeMode(int direction, in
     directions[mode] = direction;
     Prefs::setPracticeDirectionsByPracticeMode(directions);
 }
+
+void StatisticsMainWindow::updateModelSettings()
+{
+    m_statisticsModel->updateDocumentSettings();
+    m_ui->lessonStatistics->expandAll();
+}
+

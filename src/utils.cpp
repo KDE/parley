@@ -79,18 +79,90 @@ void WordCount::fillFromContainer(KEduVocContainer &container, int translationIn
 
     foreach (KEduVocExpression *entry, container.entries(recursive)) {
         KEduVocTranslation &translation(*entry->translation(translationIndex));
+        evaluateWord(translation, translation.text());
+    }
+}
 
-        ++totalWords;
-        if (translation.isEmpty()) {
-            ++invalid;
-        } else if (translation.preGrade() > 0) {
-            // Initial phase (we assume correctness, i.e. if pregrade>0 then grade = 0)
-            ++initialWords;
-            ++pregrades[translation.preGrade()];
-        } else {
-            // Long term or unpracticed
-            ++grades[translation.grade()];
+
+void WordCount::fillFromContainerForPracticeMode(KEduVocContainer &container, int translationIndex,
+                                                 const QStringList &activeConjugationTenses,
+                                                 KEduVocContainer::EnumEntriesRecursive recursive)
+{
+    KEduVocWordFlags wordTypeToProcess(KEduVocWordFlag::NoInformation);
+    switch (Prefs::practiceMode()) {
+    case Prefs::EnumPracticeMode::GenderPractice:
+        wordTypeToProcess = KEduVocWordFlag::Noun;
+        break;
+    case Prefs::EnumPracticeMode::ConjugationPractice:
+        wordTypeToProcess = KEduVocWordFlag::Verb;
+        break;
+    case Prefs::EnumPracticeMode::ComparisonPractice:
+        wordTypeToProcess = KEduVocWordFlag::Adjective | KEduVocWordFlag::Adverb;
+        break;
+    default:
+        fillFromContainer(container, translationIndex, recursive);
+        return;
+    }
+
+    clear();
+
+    foreach (KEduVocExpression *entry, container.entries(recursive)) {
+        KEduVocTranslation &translation(*entry->translation(translationIndex));
+        if (isValidForProcessing(translation, wordTypeToProcess)) {
+            switch (wordTypeToProcess) {
+            case KEduVocWordFlag::Noun:
+                {
+                    KEduVocText article = translation.article();
+                    evaluateWord(article, translation.text());
+                }
+                break;
+            case KEduVocWordFlag::Verb:
+                {
+                    QStringList conjugationTenses = translation.conjugationTenses();
+                    foreach(const QString &activeTense, activeConjugationTenses)
+                    {
+                        if (conjugationTenses.contains(activeTense)) {
+                            KEduVocConjugation conj = translation.getConjugation(activeTense);
+                            foreach (KEduVocWordFlags key, conj.keys()) {
+                                KEduVocText person = conj.conjugation(key);
+                                evaluateWord(person, person.text());
+                            }
+                        }
+                    }
+                }
+                break;
+            case KEduVocWordFlag::Adjective | KEduVocWordFlag::Adverb:
+                {
+                    KEduVocText comparative = translation.comparativeForm();
+                    evaluateWord(comparative, comparative.text());
+                    KEduVocText superlative = translation.superlativeForm();
+                    evaluateWord(superlative, superlative.text());
+                }
+                break;
+            }
         }
+    }
+}
+
+bool WordCount::isValidForProcessing(KEduVocTranslation &trans, KEduVocWordFlags wordType) const
+{
+    return !trans.isEmpty()
+        && (trans.wordType() != nullptr)
+        && ((trans.wordType()->wordType() & wordType) != 0);
+}
+
+void WordCount::evaluateWord(const KEduVocText &item, const QString &text)
+{
+    ++totalWords;
+    if (text.isEmpty()) {
+        ++invalid;
+    } else if (item.preGrade() > 0) {
+        // Initial phase (we assume correctness, i.e. if pregrade>0 then grade = 0)
+        ++initialWords;
+        ++pregrades[item.preGrade()];
+    } else {
+        // Long term or unpracticed
+        ++grades[item.grade()];
     }
 }
 
