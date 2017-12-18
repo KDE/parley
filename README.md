@@ -4,7 +4,7 @@ Parley is a vocabulary trainer.
 
 ## Introduction
 
-arley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. It supports many language specific features, but can be used for other learning tasks as well. It uses the spaced repetition learning method, which makes learning optimal. Vocabulary collections can be downloaded by "Get Hot New Stuff" or created with the built-in editor.
+Parley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. It supports many language specific features, but can be used for other learning tasks as well. It uses the spaced repetition learning method, which makes learning optimal. Vocabulary collections can be downloaded by "Get Hot New Stuff" or created with the built-in editor.
 
 ## Links
 
