@@ -76,6 +76,7 @@
     <p xml:lang="es">Parley es un entrenador de vocabulario. Ayuda a memorizar vocabulario, por ejemplo, cuando se está intentando aprender un idioma extranjero. Cuenta con muchas funcionalidades específicas para los idiomas, pero también se puede utilizar para otras tareas de aprendizaje. Utiliza el método de repetición espaciada, que proporciona un aprendizaje óptimo. Las colecciones de vocabulario se pueden descargar mediante la opción «Obtener nuevo material» o crear mediante el editor incorporado.</p>
     <p xml:lang="et">Parley on sõnavara harjutamise rakendus. See aitab sõnu meelde jätta, millest on kasu, kui õpid näiteks võõrkeelt. Toetatud on paljud keelespetsiifilised võimalused, kuid rakendust saab kasutada ka muudeks õppimisülesanneteks. Siin kasutatakse ajas hajutatud kordamise meetodit, mis muudab omandamise optimaalseks. Sõnavarakogusid saab alla laadida internetist või luua neid ise kaasasoleva redaktoriga.</p>
     <p xml:lang="fi">Parley on sanaston harjoitusohjelma. Se auttaa oppimaan sanastoja ulkoa esimerkiksi, kun yrität oppia vierasta kieltä. Se tukee useita kielikohtaisia piirteitä, mutta sitä voi käyttää muuhunkin opiskeluun. Se käyttää aikavälikertauksen oppimismenetelmää, joka optimoi oppimisen. Sanastoja voi ladata käyttämällä ”Lataa uusia sanastoja” -ominaisuutta tai niitä voi luoda sisäänrakennetussa muokkaimessa.</p>
+    <p xml:lang="fr">Parley est un logiciel proposant des exercices de vocabulaire. Il vous aide à mémoriser votre vocabulaire, par exemple lorsque vous apprenez une langue étrangère. Il prend en charge de nombreuses spécificités des différentes langues, mais vous pouvez également l'utiliser à d'autres fins d'apprentissage. Il utilise une méthode d'apprentissage par répétition espacée, qui optimise l'apprentissage. Les collections de vocabulaire peuvent être téléchargées par l'intermédiaire de « Obtenir les dernières nouveautés » ou grâce à l'éditeur intégré.</p>
     <p xml:lang="gl">Parley é un adestrador de vocabulario. Axúdao a memorizar un vocabulario, como por exemplo o vocabulario dun idioma que está a aprender. Permite moitas funcionalidades específicas de idiomas, pero tamén se pode empregar para aprender outras cousas. Emprega o método de ensino de repetición espazada, que optimiza a aprendizaxe. Pode descargar coleccións de vocabulario empregando «Get Hot New Stuff» ou crear as súas propias coleccións co editor integrado.</p>
     <p xml:lang="it">Parley è un programma per l'pprendimento di vocaboli. Ti aiuta a memorizzare vocaboli, ad esempio quando stai imparando una lingua straniera. Supporta molte caratteristiche specifiche di varie lingue, ma può essere usato anche per imparare altre cose. Usa la ripetizione dilazionata come metodo di apprendimento, migliorando l'apprendimento. Collezioni di vocaboli possono essere scaricate usando il sistema delle «Novità», oppure create con l'editor integrato.</p>
     <p xml:lang="nds">Parley is en Vokavel-Lehrprogramm. Dat hölpt Di bi't Lehren vun Dien Wöör, a.B. ut en butenlannsch Spraak. Dat ünnerstütt vele Spraakfunkschonen, man lett sik ok för anner Saken bruken. De Lehrmetood is de Wedderhalen mit Afstand, wat dat Lehren verbetert. Vokavelsetten kannst Du över „Deegte niege Saken“ daalladen oder mit den inbuut Editor sülven opstellen.</p>
@@ -101,6 +102,7 @@
     <p xml:lang="es">Modos de entrenamiento:</p>
     <p xml:lang="et">Harjutamisviisid:</p>
     <p xml:lang="fi">Harjoitustavat:</p>
+    <p xml:lang="fr">Modes d'exercice :</p>
     <p xml:lang="gl">Modos de adestramento:</p>
     <p xml:lang="it">Modalità di apprendimento:</p>
     <p xml:lang="ko">연습 모드:</p>
@@ -159,6 +161,7 @@
       <li xml:lang="es">Mezcla de letras (ordenar las letras de una palabra)</li>
       <li xml:lang="et">Segatud tähed (tähtede järjestamine nagu anagrammis)</li>
       <li xml:lang="fi">Sekoitetut kirjaimet (järjestä sanan kirjaimet)</li>
+      <li xml:lang="fr">Lettres mélangées (remettre les lettres en ordre)</li>
       <li xml:lang="gl">Letras mesturadas (ordenar as letras dunha palabra)</li>
       <li xml:lang="it">Lettere mescolate (ordina le lettere di una parola)</li>
       <li xml:lang="nds">Mischt Bookstaven (Bookstaven vun en Woort ornen)</li>
@@ -245,6 +248,7 @@
       <li xml:lang="es">Entrenamiento específico para idiomas: artículo, formas comparativas, conjugaciones, sinónimos, antónimos y paráfrasis.</li>
       <li xml:lang="et">Keelespetsiifilised harjutused: artiklid, võrdlusvormid, käänamine, pööramine, sünonüümid, antonüümid, parafraasid</li>
       <li xml:lang="fi">Kielikohtaiset harjoitukset: artikkelit, vertailumuodot, taivutusmuodot, synonyymit/antonyymit/parafraasit</li>
+      <li xml:lang="fr">Exercices spécifiques aux langues : articles, comparaisons, conjugaisons, synonymes/antonymes/paraphrases</li>
       <li xml:lang="gl">Adestramentos de idioma: artigos, formas de comparación, conxugación, sinónimos, antónimos e perífrases.</li>
       <li xml:lang="it">Apprendimenti specifici per le lingue: articoli, forme di confronto, coniugazioni, sinomini/antonimi/parafrasi</li>
       <li xml:lang="nds">Besünner Spraaklexen: Artikeln, Stiegformen, Böögformen, Liekwöör, Güntwöör, Ümschrieven</li>
