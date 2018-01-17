@@ -88,7 +88,7 @@ void StatisticsMainWindow::setDocument(KEduVocDocument* doc)
     m_doc = doc;
     m_statisticsModel->setDocument(doc);
     m_ui->lessonStatistics->setModel(m_statisticsModel);
-    m_ui->lessonStatistics->expandAll();
+    m_ui->lessonStatistics->restoreExpandedStatus();
     m_ui->lessonStatistics->resizeColumnToContents(0);
 }
 
@@ -330,7 +330,8 @@ void StatisticsMainWindow::setPracticeDirectionForPracticeMode(int direction, in
 
 void StatisticsMainWindow::updateModelSettings()
 {
+    m_ui->lessonStatistics->saveExpandedStatus();
     m_statisticsModel->updateDocumentSettings();
-    m_ui->lessonStatistics->expandAll();
+    m_ui->lessonStatistics->restoreExpandedStatus();
 }
 

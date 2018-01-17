@@ -55,6 +55,7 @@ public:
     Qt::DropActions supportedDragActions() const  Q_DECL_OVERRIDE;
 
     void updateDocumentSettings();
+    const KEduVocDocument *document() const;
 
 public slots:
     virtual void setDocument(KEduVocDocument *doc) Q_DECL_OVERRIDE;

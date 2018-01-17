@@ -16,5 +16,10 @@
     	<label>Visible columns in the main editor window.</label>
     	<whatsthis>Visible columns in the main editor window.</whatsthis>
 	</entry>
-  </group>
+    <entry name="CollapsedStatisticsViewItems" type="StringList">
+        <label>Collapsed tree view items of statistics view window.</label>
+        <whatsthis>Collapsed tree view items of statistics view window.</whatsthis>
+        <default></default>
+    </entry>
+</group>
 </kcfg>

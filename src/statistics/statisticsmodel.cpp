@@ -199,3 +199,9 @@ void StatisticsModel::updateDocumentSettings()
     endResetModel();
 }
 
+
+const KEduVocDocument *StatisticsModel::document() const
+{
+    return m_doc;
+}
+

@@ -28,7 +28,10 @@ class LessonStatisticsView : public ContainerView
 
 public:
     LessonStatisticsView(QWidget *parent);
+    ~LessonStatisticsView();
     void setModel(ContainerModel *model) Q_DECL_OVERRIDE;
+    void saveExpandedStatus() const;
+    void restoreExpandedStatus();
 
 public Q_SLOTS:
     void adjustColumnWidths();
@@ -45,6 +48,10 @@ private:
     void setModel(QAbstractItemModel *model) Q_DECL_OVERRIDE {
         Q_UNUSED(model)
     }
+    void getCollapsedItems(QStringList &collapsedItems, const QModelIndex &item,
+                           QString name) const;
+    void setCollapsedItems(const QStringList &collapsedItems, const QModelIndex &item,
+                           QString name);
 };
 
 #endif

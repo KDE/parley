@@ -34,6 +34,7 @@
 #include "statisticsmodel.h"
 #include "keduvoclesson.h"
 #include "utils.h"
+#include "documentsettings.h"
 
 
 // GradeDelegate shows the graphic colored bar in the statistics,
@@ -115,6 +116,11 @@ LessonStatisticsView::LessonStatisticsView(QWidget *parent)
 	    this,     &LessonStatisticsView::sectionResized);
 }
 
+LessonStatisticsView::~LessonStatisticsView()
+{
+    saveExpandedStatus();
+}
+
 void LessonStatisticsView::setModel(ContainerModel *model)
 {
     ContainerView::setModel(model);
@@ -173,3 +179,76 @@ void LessonStatisticsView::removeGradesChildren()
     KEduVocLesson *lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
     lesson->resetGrades(-1, KEduVocContainer::Recursive);
 }
+
+void LessonStatisticsView::saveExpandedStatus() const
+{
+    auto statisticsModel = qobject_cast<StatisticsModel *>(model());
+    Q_ASSERT(statisticsModel != nullptr);
+
+    QStringList collapsedItems;
+    getCollapsedItems(collapsedItems, statisticsModel->index(0, 0, QModelIndex()), QString());
+
+    const KEduVocDocument *doc = statisticsModel->document();
+    if (doc != nullptr) {
+        DocumentSettings documentSettings(doc->url().url());
+        documentSettings.setCollapsedStatisticsViewItems(collapsedItems);
+        documentSettings.save();
+    }
+}
+
+void LessonStatisticsView::getCollapsedItems(QStringList &collapsedItems, const QModelIndex &item,
+                                            QString name) const
+{
+    if (!item.isValid()) {
+        return;
+    }
+
+    int rowCount = model()->rowCount(item);
+    if (rowCount > 0) {
+        // Item has children and therefore expandable
+        name += item.data().toString();
+        if (!isExpanded(item)) {
+            collapsedItems << name;
+        }
+        for (int row = 0; row < rowCount; ++row) {
+            getCollapsedItems(collapsedItems, model()->index(row, 0, item), name + '/');
+        }
+    }
+}
+
+void LessonStatisticsView::restoreExpandedStatus()
+{
+    auto statisticsModel = qobject_cast<StatisticsModel *>(model());
+    Q_ASSERT(statisticsModel != nullptr);
+
+    const KEduVocDocument *doc = statisticsModel->document();
+    if (doc != nullptr) {
+        DocumentSettings documentSettings(doc->url().url());
+        documentSettings.load();
+        QStringList collapsedItems = documentSettings.collapsedStatisticsViewItems();
+        setCollapsedItems(collapsedItems, statisticsModel->index(0, 0, QModelIndex()), QString());
+    }
+}
+
+void LessonStatisticsView::setCollapsedItems(const QStringList &collapsedItems,
+                                             const QModelIndex &item, QString name)
+{
+    if (!item.isValid()) {
+        return;
+    }
+
+    int rowCount = model()->rowCount(item);
+    if (rowCount > 0) {
+        // Item has children and therefore expandable
+        name += item.data().toString();
+        if (collapsedItems.contains(name)) {
+            collapse(item);
+        } else {
+            expand(item);
+        }
+        for (int row = 0; row < rowCount; ++row) {
+            setCollapsedItems(collapsedItems, model()->index(row, 0, item), name + '/');
+        }
+    }
+}
+
