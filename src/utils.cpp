@@ -244,12 +244,15 @@ void paintColorBar(QPainter &painter, const QRect &rect,
                    const WordCount &wordCount, const ConfidenceColors &colors)
 {
     // The outline of the total bar.
-    QRect roundedRect(rect);
-    roundedRect.adjust(1, 1, -1, -1);
-    QPainterPath roundedPath;
-    roundedPath.addRoundedRect(roundedRect, 2.0, 2.0);
+    QRectF roundedRect(rect);
+    roundedRect.adjust(1.0, 1.0, -1.0, -1.0);
 
-    int xPosition = 0;
+    // Set a rounded clipping region to paint the bar segments in
+    QPainterPath clippingPath;
+    clippingPath.addRoundedRect(roundedRect, 2.0, 2.0);
+    painter.setClipPath(clippingPath);
+
+    qreal xPosition = 0.0;
 
     // >0: grade, 0: initial, -1: untrained, -2: invalid
     for (int i = KV_MAX_GRADE; i >= -2; --i) {
@@ -274,21 +277,18 @@ void paintColorBar(QPainter &painter, const QRect &rect,
             color = colors.invalidColor;
         }
 
-        // Create a rect from the current fraction and 
-        // adjust the rect to the outer limits.
-        int barElementWidth = fraction * rect.width();
-        //int barElementWidth = fraction * roundedRect.width(); <-- Use this instead?
-        QRectF barElement(rect.x() + xPosition, rect.y(), barElementWidth, rect.height());
-        QPainterPath barElementPath;
-        barElementPath.addRect(barElement);
-
-        // Intersect the QPainterPath of inner rectangle with outer,
-        // so that the inner rectangle takes the shape of the outer rounded rectangle.
-        QPainterPath barElementIntersectedPath = roundedPath.intersected(barElementPath);
+        // Create a rect from the current fraction
+        qreal barElementWidth = fraction * roundedRect.width();
+        QRectF barElement(roundedRect.x() + xPosition, roundedRect.y(), barElementWidth, roundedRect.height());
         xPosition += barElementWidth;
 
         // Paint!
         painter.setBrush(QBrush(color));
-        painter.drawPath(barElementIntersectedPath);
+        painter.drawRect(barElement);
     }
+
+    // Draw the outline
+    painter.setClipping(false);
+    painter.setBrush(Qt::NoBrush);
+    painter.drawRoundedRect(roundedRect, 2.0, 2.0);
 }
