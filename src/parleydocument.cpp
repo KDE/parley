@@ -18,7 +18,6 @@
 #include "../config-parley.h"
 #include "parleymainwindow.h"
 #include "editor/editor.h"
-#include "version.h"
 #include "prefs.h"
 
 #include "vocabularyview.h"

@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.0.0)
 
-project(parley)
+# KDE Application Version, managed by release script
+set(KDE_APPLICATIONS_VERSION_MAJOR "18")
+set(KDE_APPLICATIONS_VERSION_MINOR "03")
+set(KDE_APPLICATIONS_VERSION_MICRO "70")
+set(KDE_APPLICATIONS_VERSION "${KDE_APPLICATIONS_VERSION_MAJOR}.${KDE_APPLICATIONS_VERSION_MINOR}.${KDE_APPLICATIONS_VERSION_MICRO}")
+
+project(parley VERSION ${KDE_APPLICATIONS_VERSION})
 
 find_package(ECM 5.15.0 REQUIRED NO_MODULE)
 
@@ -73,6 +79,9 @@ configure_file(
    ${CMAKE_CURRENT_SOURCE_DIR}/config-parley.h.cmake
    ${CMAKE_CURRENT_BINARY_DIR}/config-parley.h
 )
+
+# let our config-parley.h be found first in any case
+include_directories (BEFORE ${CMAKE_CURRENT_BINARY_DIR})
 
 
 
