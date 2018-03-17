@@ -18,6 +18,7 @@
 
 #include "ui_practice_widget_multiplechoice.h"
 
+#include <QAction>
 #include <QDebug>
 #include <kcolorscheme.h>
 #include <QPushButton>

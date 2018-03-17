@@ -16,6 +16,7 @@
 #include "ui_latexwidget.h"
 
 #include <QItemDelegate>
+#include <QItemSelection>
 #include <QtWidgets/QWidget>
 
 class QDataWidgetMapper;

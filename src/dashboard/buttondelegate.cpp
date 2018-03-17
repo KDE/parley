@@ -19,6 +19,7 @@
 #include <QStandardItemModel>
 #include <QPainter>
 #include <QAbstractItemDelegate>
+#include <QAbstractItemView>
 #include <QApplication>
 #include <QToolButton>
 #include <KLocalizedString>
