@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>DocumentProperties</class>
- <widget class="QWidget" name="DocumentProperties" >
-  <property name="geometry" >
+ <widget class="QWidget" name="DocumentProperties">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,220 +10,232 @@
     <height>437</height>
    </rect>
   </property>
-  <property name="minimumSize" >
+  <property name="minimumSize">
    <size>
     <width>300</width>
     <height>200</height>
    </size>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>-</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" >
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
-    <widget class="QGroupBox" name="tiltle_group" >
-     <property name="title" >
+    <widget class="QGroupBox" name="tiltle_group">
+     <property name="title">
       <string>General Document Properties</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout" >
-      <item row="0" column="0" >
-       <widget class="QLabel" name="label_title" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="MinimumExpanding" hsizetype="Minimum" >
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_title">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="text" >
+        <property name="text">
          <string>&amp;Title:</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
-        <property name="buddy" >
+        <property name="buddy">
          <cstring>titleLineEdit</cstring>
         </property>
        </widget>
       </item>
-      <item row="0" column="1" >
-       <widget class="QLineEdit" name="titleLineEdit" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="titleLineEdit">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="toolTip" >
+        <property name="toolTip">
          <string>A title for your document.</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0" >
-       <widget class="QLabel" name="label_author" >
-        <property name="text" >
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_author">
+        <property name="text">
          <string>&amp;Author:</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
-        <property name="buddy" >
+        <property name="buddy">
          <cstring>authorLineEdit</cstring>
         </property>
        </widget>
       </item>
-      <item row="1" column="1" >
-       <widget class="QLineEdit" name="authorLineEdit" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="authorLineEdit">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="toolTip" >
+        <property name="toolTip">
          <string>A title for your document.</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="0" >
-       <widget class="QLabel" name="label_author_2" >
-        <property name="text" >
-         <string>&amp;Email:</string>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_author_2">
+        <property name="text">
+         <string>E&amp;mail:</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
-        <property name="buddy" >
+        <property name="buddy">
          <cstring>contactLineEdit</cstring>
         </property>
        </widget>
       </item>
-      <item row="2" column="1" >
-       <widget class="QLineEdit" name="contactLineEdit" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="contactLineEdit">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="toolTip" >
+        <property name="toolTip">
          <string>A way to contact you (email or a webpage).</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="0" >
-       <widget class="QLabel" name="label_remark" >
-        <property name="text" >
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_remark">
+        <property name="text">
          <string>&amp;Comment:</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
-        <property name="buddy" >
+        <property name="buddy">
          <cstring>commentTextEdit</cstring>
         </property>
        </widget>
       </item>
-      <item row="3" column="1" >
-       <widget class="KTextEdit" name="commentTextEdit" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+      <item row="3" column="1">
+       <widget class="KTextEdit" name="commentTextEdit">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="toolTip" >
+        <property name="toolTip">
          <string>Any additional information.</string>
         </property>
-        <property name="tabChangesFocus" >
+        <property name="tabChangesFocus">
          <bool>true</bool>
         </property>
-        <property name="acceptRichText" >
+        <property name="acceptRichText">
          <bool>false</bool>
         </property>
        </widget>
       </item>
-      <item row="4" column="0" >
-       <widget class="QLabel" name="label" >
-        <property name="text" >
-         <string>Cat&amp;egory</string>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Cate&amp;gory</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
-        <property name="buddy" >
+        <property name="buddy">
          <cstring>categoryComboBox</cstring>
         </property>
        </widget>
       </item>
-      <item row="4" column="1" >
-       <widget class="KComboBox" name="categoryComboBox" >
-        <property name="toolTip" >
+      <item row="4" column="1">
+       <widget class="KComboBox" name="categoryComboBox">
+        <property name="toolTip">
          <string>A general category into which your document belongs.</string>
         </property>
-        <property name="editable" >
+        <property name="editable">
          <bool>true</bool>
         </property>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>Languages</string>
          </property>
         </item>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>Music</string>
          </property>
         </item>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>Geography</string>
          </property>
         </item>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>Anatomy</string>
          </property>
         </item>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>History</string>
          </property>
         </item>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>Test Preparation</string>
          </property>
         </item>
        </widget>
       </item>
-      <item row="5" column="0" >
-       <widget class="QLabel" name="label_license" >
-        <property name="text" >
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_license">
+        <property name="text">
          <string>&amp;License:</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
-        <property name="buddy" >
+        <property name="buddy">
          <cstring>licenseComboBox</cstring>
         </property>
        </widget>
       </item>
-      <item row="5" column="1" >
-       <widget class="KComboBox" name="licenseComboBox" >
-        <property name="toolTip" >
+      <item row="5" column="1">
+       <widget class="KComboBox" name="licenseComboBox">
+        <property name="toolTip">
          <string>The license under which your document will be.
 If you consider contributing your file to KDE in the future, an appropriate license is required.</string>
         </property>
-        <property name="editable" >
+        <property name="editable">
          <bool>true</bool>
         </property>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>Public Domain</string>
          </property>
         </item>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>GPLv2+ (GNU General Public License version 2 or later)</string>
          </property>
         </item>
@@ -232,82 +245,82 @@ If you consider contributing your file to KDE in the future, an appropriate lice
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="languageGroupBox" >
-     <property name="title" >
+    <widget class="QGroupBox" name="languageGroupBox">
+     <property name="title">
       <string>Languages</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_2" >
-      <item row="0" column="1" >
-       <widget class="QLabel" name="label_language_1" >
-        <property name="text" >
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="1">
+       <widget class="QLabel" name="label_language_1">
+        <property name="text">
          <string>&amp;First language:</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
-        <property name="buddy" >
+        <property name="buddy">
          <cstring>firstLanguageComboBox</cstring>
         </property>
        </widget>
       </item>
-      <item row="0" column="2" >
-       <widget class="KComboBox" name="firstLanguageComboBox" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+      <item row="0" column="2">
+       <widget class="KComboBox" name="firstLanguageComboBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="editable" >
+        <property name="editable">
          <bool>true</bool>
         </property>
        </widget>
       </item>
-      <item row="2" column="1" >
-       <widget class="QLabel" name="label_language_2" >
-        <property name="text" >
+      <item row="2" column="1">
+       <widget class="QLabel" name="label_language_2">
+        <property name="text">
          <string>&amp;Second language:</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
-        <property name="buddy" >
+        <property name="buddy">
          <cstring>secondLanguageComboBox</cstring>
         </property>
        </widget>
       </item>
-      <item row="2" column="2" >
-       <widget class="KComboBox" name="secondLanguageComboBox" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+      <item row="2" column="2">
+       <widget class="KComboBox" name="secondLanguageComboBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="editable" >
+        <property name="editable">
          <bool>true</bool>
         </property>
-        <property name="autoCompletion" >
+        <property name="autoCompletion">
          <bool>false</bool>
         </property>
        </widget>
       </item>
-      <item row="4" column="2" >
-       <widget class="QCheckBox" name="grammarCheckBox" >
-        <property name="text" >
+      <item row="4" column="2">
+       <widget class="QCheckBox" name="grammarCheckBox">
+        <property name="text">
          <string>&amp;Setup Grammar Details</string>
         </property>
-        <property name="checked" >
+        <property name="checked">
          <bool>true</bool>
         </property>
        </widget>
       </item>
-      <item row="5" column="2" >
-       <widget class="QCheckBox" name="downloadGrammarCheckBox" >
-        <property name="text" >
-         <string comment="Attept to download grammar properties for the selected languages" >Download Grammar</string>
+      <item row="5" column="2">
+       <widget class="QCheckBox" name="downloadGrammarCheckBox">
+        <property name="text">
+         <string comment="Attept to download grammar properties for the selected languages">Download Grammar</string>
         </property>
-        <property name="checked" >
+        <property name="checked">
          <bool>true</bool>
         </property>
        </widget>
