@@ -23,6 +23,7 @@
   <name xml:lang="lt">Parley</name>
   <name xml:lang="nds">Parley</name>
   <name xml:lang="nl">Parley</name>
+  <name xml:lang="nn">Parley</name>
   <name xml:lang="pl">Parley</name>
   <name xml:lang="pt">Parley</name>
   <name xml:lang="pt-BR">Parley</name>
@@ -53,6 +54,7 @@
   <summary xml:lang="lt">Žodyno treniruoklis</summary>
   <summary xml:lang="nds">Vokaveln lehren</summary>
   <summary xml:lang="nl">Woordjes oefenen</summary>
+  <summary xml:lang="nn">Gloseøving</summary>
   <summary xml:lang="pl">Trening słownictwa</summary>
   <summary xml:lang="pt">Treinador do Vocabulário</summary>
   <summary xml:lang="pt-BR">Treinador de vocabulário</summary>
@@ -108,6 +110,7 @@
     <p xml:lang="ko">연습 모드:</p>
     <p xml:lang="nds">Ööv-Bedriefoorden:</p>
     <p xml:lang="nl">Oefenmethodes:</p>
+    <p xml:lang="nn">Øvingsmodusar:</p>
     <p xml:lang="pl">Tryby ćwiczeń"</p>
     <p xml:lang="pt">Modos de Treino:</p>
     <p xml:lang="pt-BR">Modos de treinamento:</p>
@@ -139,6 +142,7 @@
       <li xml:lang="lt">Kortelės</li>
       <li xml:lang="nds">Naslakoorten</li>
       <li xml:lang="nl">Oefenkaarten</li>
+      <li xml:lang="nn">Spørjekort</li>
       <li xml:lang="pl">Fiszki</li>
       <li xml:lang="pt">Cartões</li>
       <li xml:lang="pt-BR">Cartões</li>
@@ -196,6 +200,7 @@
       <li xml:lang="lt">Pasirinkimas iš kelių atsakymų</li>
       <li xml:lang="nds">Mehrfachköör</li>
       <li xml:lang="nl">Meerkeuze</li>
+      <li xml:lang="nn">Fleirvalsoppgåver</li>
       <li xml:lang="pl">Wiele odpowiedzi</li>
       <li xml:lang="pt">Escolha Múltipla</li>
       <li xml:lang="pt-BR">Múltipla escolha</li>
