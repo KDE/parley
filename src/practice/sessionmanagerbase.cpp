@@ -64,8 +64,8 @@ void SessionManagerBase::setDocument(KEduVocDocument* doc)
     // Make sure that there are at least 2 languages in the file before
     // starting the practice. If we don't do this, it will crash later.
     if (m_doc->identifierCount() < 2) {
-        KMessageBox::error(0, i18n("The vocabulary collection contains fewer than two languages.",
-                                   i18n("Could not start practice")));
+        KMessageBox::error(0, i18n("The vocabulary collection contains fewer than two languages."),
+                                   i18n("Could not start practice"));
         return;
     }
 
