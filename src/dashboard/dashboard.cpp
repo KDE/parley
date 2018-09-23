@@ -11,6 +11,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "dashboard.h"
+
 #include <Qt>
 #include <QtGui>
 #include <QTimer>
@@ -24,7 +26,6 @@
 #include <KActionCollection>
 
 #include "../utils.h"
-#include "dashboard.h"
 #include "buttondelegate.h"
 #include "parleymainwindow.h"
 #include "parleydocument.h"
@@ -104,10 +105,10 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
 
     // Signals FROM the signal mappers.  The ones TO the signal mappers are
     // handled below.
-    connect(m_practiceSignalMapper, SIGNAL(mapped(const QString &)),
-            this,                   SLOT(slotPracticeButtonClicked(const QString &)));
-    connect(m_removeSignalMapper,   SIGNAL(mapped(const QString &)),
-            this,                   SLOT(slotRemoveButtonClicked(const QString &)));
+    connect(m_practiceSignalMapper, SIGNAL(mapped(QString)),
+            this,                   SLOT(slotPracticeButtonClicked(QString)));
+    connect(m_removeSignalMapper,   SIGNAL(mapped(QString)),
+            this,                   SLOT(slotRemoveButtonClicked(QString)));
 
     KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
     applyMainWindowSettings(cfg);

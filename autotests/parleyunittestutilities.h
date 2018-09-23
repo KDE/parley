@@ -31,7 +31,7 @@
 
 #include <QUrl>
 
-#include <QtTest/QtTest>
+#include <QtTest>
 #include <QDebug>
 
 namespace UnitTestUtilities

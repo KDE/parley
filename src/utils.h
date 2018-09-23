@@ -16,7 +16,7 @@
 #define UTILS_H
 
 // Qt
-#include <QtGui>
+#include <QColor>
 
 // KEduVocDocument library
 #include <keduvoccontainer.h>

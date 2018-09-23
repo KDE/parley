@@ -22,7 +22,6 @@
 #include <KLocalizedString>
 #include <QStackedLayout>
 #include <QLabel>
-#include <QtDBus>
 #include <QTreeWidget>
 
 ConjugationOptions::ConjugationOptions(KEduVocDocument *doc, QWidget *parent)

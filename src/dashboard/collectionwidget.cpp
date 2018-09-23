@@ -25,10 +25,10 @@
 // Qt
 #include <QtGui>
 #include <QColor>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QGraphicsDropShadowEffect>
-#include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QLabel>
+#include <QPushButton>
+#include <QGraphicsDropShadowEffect>
+#include <QVBoxLayout>
+#include <QLabel>
 
 // Parley
 #include "utils.h"

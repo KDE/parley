@@ -14,8 +14,8 @@
 #ifndef PRACTICE_AUDIOBUTTON_H
 #define PRACTICE_AUDIOBUTTON_H
 
-#include <QtWidgets/QToolButton>
-#include <QtMultimedia/QMediaPlayer>
+#include <QToolButton>
+#include <QMediaPlayer>
 #include <QUrl>
 
 class QMediaPlayer;

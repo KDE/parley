@@ -16,7 +16,7 @@
 
 #include "editor.h"
 
-#include "../config-parley.h"
+#include <config-parley.h>
 
 // Qt models on top of the KEduVocDocument
 #include "containermodel.h"
@@ -55,12 +55,12 @@
 #include <KActionMenu>
 #include <KCharSelect>
 
-#include <QtCore/QTimer>
-#include <QtCore/QSignalMapper>
-#include <QtWidgets/QDockWidget>
-#include <QtWidgets/QHeaderView>
-#include <QtWidgets/QMenu>
-#include <QtWidgets/QStackedWidget>
+#include <QTimer>
+#include <QSignalMapper>
+#include <QDockWidget>
+#include <QHeaderView>
+#include <QMenu>
+#include <QStackedWidget>
 #include <QScrollArea>
 
 using namespace Editor;

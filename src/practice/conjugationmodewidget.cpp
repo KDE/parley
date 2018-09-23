@@ -19,7 +19,7 @@
 #include <QDebug>
 #include <kcolorscheme.h>
 #include <KLocalizedString>
-#include <QtWidgets/QRadioButton>
+#include <QRadioButton>
 #include <QTimer>
 
 namespace Practice

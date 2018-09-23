@@ -381,7 +381,7 @@ void VocabularyView::checkSpelling(int language)
     if (!m_spellChecker) {
         m_spellChecker = new Sonnet::BackgroundChecker(this);
         m_spellDialog = new Sonnet::Dialog(m_spellChecker, this);
-        connect(m_spellDialog, SIGNAL(done(const QString&)), this, SLOT(continueSpelling()));
+        connect(m_spellDialog, SIGNAL(done(QString)), this, SLOT(continueSpelling()));
         connect(m_spellDialog, &Sonnet::Dialog::misspelling, this, &VocabularyView::misspelling);
         connect(m_spellDialog, &Sonnet::Dialog::replace, this, &VocabularyView::spellingReplace);
     }

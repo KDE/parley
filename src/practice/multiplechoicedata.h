@@ -15,9 +15,9 @@
 #ifndef MULTIPLECHOICEDATA_H
 #define MULTIPLECHOICEDATA_H
 
-#include <QtCore/QStringList>
-#include <QtCore/QString>
-#include <QtCore/QMetaType>
+#include <QStringList>
+#include <QString>
+#include <QMetaType>
 
 namespace Practice
 {

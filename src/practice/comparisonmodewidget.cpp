@@ -17,7 +17,7 @@
 
 #include <QDebug>
 #include <kcolorscheme.h>
-#include <QtWidgets/QRadioButton>
+#include <QRadioButton>
 #include <QTimer>
 #include <KLocalizedString>
 

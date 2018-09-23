@@ -25,7 +25,7 @@
 
 #include "parleymainwindow.h"
 
-#include "../config-parley.h"
+#include <config-parley.h>
 #include "editor/editor.h"
 #include "statistics/statisticsmainwindow.h"
 #include "settings/parleyprefs.h"
@@ -47,7 +47,7 @@
 #include <KToolBar>
 #include <QMenuBar>
 
-#include <QtCore/QTimer>
+#include <QTimer>
 
 using namespace Editor;
 
@@ -103,7 +103,7 @@ ParleyMainWindow::ParleyMainWindow(const QUrl& filename)
     menuBar()->show();
 
     // finally show tip-of-day (if the user wants it)
-    //QTimer::singleShot( 0, this, SLOT( startupTipOfDay() ) );
+    //QTimer::singleShot( 0, this, SLOT(startupTipOfDay()) );
 }
 
 ParleyMainWindow::~ParleyMainWindow()
@@ -245,7 +245,7 @@ void ParleyMainWindow::initActions()
     ParleyActions::create(ParleyActions::FileOpenDownloaded, m_document, SLOT(openGHNS()), actionCollection());
 
     m_recentFilesAction = ParleyActions::createRecentFilesAction(
-        m_document, SLOT(slotFileOpenRecent(const QUrl&)), actionCollection());
+        m_document, SLOT(slotFileOpenRecent(QUrl)), actionCollection());
     m_recentFilesAction->loadEntries(KSharedConfig::openConfig()->group("Recent Files"));
 
     ParleyActions::create(ParleyActions::FileSave, m_document, SLOT(save()), actionCollection());

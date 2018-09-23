@@ -13,6 +13,8 @@
  ***************************************************************************/
 
 
+#include "inflectionwidget.h"
+
 #include <keduvocdocument.h>
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
@@ -20,8 +22,6 @@
 
 #include "declensionwidget.h"
 #include "conjugationwidget.h"
-
-#include "inflectionwidget.h"
 
 #include <KLocalizedString>
 

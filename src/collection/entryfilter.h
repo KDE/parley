@@ -14,8 +14,8 @@
 #ifndef ENTRYFILTER_H
 #define ENTRYFILTER_H
 
-#include <QtCore/QList>
-#include <QtCore/QSet>
+#include <QList>
+#include <QSet>
 #include <prefs.h>
 
 class KEduVocText;

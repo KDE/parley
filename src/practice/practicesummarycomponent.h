@@ -11,8 +11,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef PRACTICESUMMARYDIALOG_H
-#define PRACTICESUMMARYDIALOG_H
+#ifndef PRACTICESUMMARYCOMPONENT_H
+#define PRACTICESUMMARYCOMPONENT_H
 
 #include "practice/sessionmanagerbase.h"
 

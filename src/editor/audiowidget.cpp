@@ -17,7 +17,7 @@
 
 #include <keduvocexpression.h>
 
-#include <QtMultimedia/QMediaPlayer>
+#include <QMediaPlayer>
 #include <QDebug>
 
 using namespace Editor;

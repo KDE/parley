@@ -17,7 +17,7 @@
 
 #include "abstractwidget.h"
 
-#include <QtCore/QVariant>
+#include <QVariant>
 
 
 namespace Ui

@@ -18,7 +18,7 @@
 #include <keduvoctext.h>
 #include <QDebug>
 
-#include <QtGui/QPainter>
+#include <QPainter>
 #include <QBrush>
 #include <QEvent>
 

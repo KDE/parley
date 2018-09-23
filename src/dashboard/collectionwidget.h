@@ -12,6 +12,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#ifndef COLLECTIONWIDGET_H
+#define COLLECTIONWIDGET_H
 
 #include <QWidget>
 
@@ -64,3 +66,4 @@ private:
     Collection   *m_collection;
 };
 
+#endif

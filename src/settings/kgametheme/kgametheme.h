@@ -21,7 +21,7 @@
 #define KGAMETHEME_H
 
 
-#include <QtCore/QString>
+#include <QString>
 
 class KGameThemePrivate;
 class QPixmap;

@@ -17,7 +17,7 @@
 #include "statisticsmainwindow.h"
 
 #include <QHeaderView>
-#include <QtCore/qsignalmapper.h>
+#include <QSignalMapper>
 
 #include <KLocalizedString>
 #include <KConfig>

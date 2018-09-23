@@ -22,10 +22,10 @@
 #include <KConfig>
 #include <KConfigGroup>
 #include <QDebug>
-#include <QtCore/QFile>
-#include <QtCore/QFileInfo>
-#include <QtCore/QMap>
-#include <QtGui/QPixmap>
+#include <QFile>
+#include <QFileInfo>
+#include <QMap>
+#include <QPixmap>
 
 class KGameThemePrivate
 {

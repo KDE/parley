@@ -21,7 +21,7 @@
 
 #include "parleydocument.h"
 
-#include <QtTest/QtTest>
+#include <QtTest>
 
 using namespace UnitTestUtilities;
 

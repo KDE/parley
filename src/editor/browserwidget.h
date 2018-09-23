@@ -18,7 +18,7 @@
 
 
 #include "ui_browserwidget.h"
-#include <QtWebEngineWidgets/QWebEngineView>
+#include <QWebEngineView>
 
 class KEduVocExpression;
 

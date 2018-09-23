@@ -24,7 +24,7 @@
 #ifndef BLOCKOPTIONS_H
 #define BLOCKOPTIONS_H
 
-#include <QtCore/QList>
+#include <QList>
 
 #include "ui_blockoptions.h"
 #include "practice/sessionmanagerbase.h"

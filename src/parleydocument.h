@@ -18,7 +18,7 @@
 #include <keduvocdocument.h>
 #include <QObject>
 
-#include "../config-parley.h"
+#include <config-parley.h>
 
 class ParleyMainWindow;
 class QTimer;

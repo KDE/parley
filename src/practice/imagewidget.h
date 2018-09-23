@@ -14,7 +14,7 @@
 #ifndef PRACTICE_IMAGEWIDGET_H
 #define PRACTICE_IMAGEWIDGET_H
 
-#include <QtWidgets/QWidget>
+#include <QWidget>
 
 class QTimeLine;
 

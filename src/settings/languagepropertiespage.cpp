@@ -23,7 +23,8 @@
 #include <QInputDialog>
 #include <QCheckBox>
 #include <QLabel>
-#include <QtDBus>
+#include <QDBusInterface>
+#include <QDBusReply>
 #include <sonnet/speller.h>
 
 #include <keduvocdocument.h>

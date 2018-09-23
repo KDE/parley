@@ -14,7 +14,7 @@
 #ifndef PRACTICE_ABSTRACTFRONTEND_H
 #define PRACTICE_ABSTRACTFRONTEND_H
 
-#include <QtCore/QObject>
+#include <QObject>
 #include <keduvoctext.h>
 #include <QFont>
 

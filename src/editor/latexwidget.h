@@ -17,7 +17,7 @@
 
 #include <QItemDelegate>
 #include <QItemSelection>
-#include <QtWidgets/QWidget>
+#include <QWidget>
 
 class QDataWidgetMapper;
 class KEduVocDocument;

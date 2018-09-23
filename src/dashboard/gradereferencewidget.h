@@ -12,6 +12,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#ifndef GRADEREFERENCEWIDGET_H
+#define GRADEREFERENCEWIDGET_H
 
 #include <QWidget>
 
@@ -25,3 +27,5 @@ protected:
     void paintEvent(QPaintEvent *) Q_DECL_OVERRIDE;
 
 };
+
+#endif

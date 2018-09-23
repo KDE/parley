@@ -15,7 +15,7 @@
 #define PRACTICE_MAINWINDOW_H
 
 #include <KXmlGuiWindow>
-#include <QtGui/QKeyEvent>
+#include <QKeyEvent>
 #include "sessionmanagerbase.h"
 
 class ParleyMainWindow;

@@ -12,12 +12,12 @@
  ***************************************************************************/
 
 #include "imagewidget.h"
-#include "../config-parley.h"
+#include <config-parley.h>
 
-#include <QtGui/QPainter>
-#include <QtGui/QPaintEngine>
-#include <QtCore/QTimer>
-#include <QtCore/QTimeLine>
+#include <QPainter>
+#include <QPaintEngine>
+#include <QTimer>
+#include <QTimeLine>
 
 #include <QDebug>
 #include <QtWidgets>

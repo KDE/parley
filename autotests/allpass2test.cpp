@@ -21,7 +21,7 @@
 
 #include "parleydocument.h"
 
-#include <QtTest/QtTest>
+#include <QtTest>
 
 /** This class is a unittest stub with 2 tests that always pass
  */

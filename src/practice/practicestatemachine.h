@@ -15,7 +15,7 @@
 #ifndef PRACTICESTATEMACHINE_H
 #define PRACTICESTATEMACHINE_H
 
-#include <QtCore/QObject>
+#include <QObject>
 
 #include "abstractbackendmode.h"
 

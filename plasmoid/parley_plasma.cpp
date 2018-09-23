@@ -188,7 +188,7 @@ void ParleyPlasma::createConfigurationInterface(KConfigDialog * parent)
 
     ui.filechooser->setUrl(m_sourceFile);
     ui.filechooser->setFilter(i18n("*.kvtml|Vocabulary Collections"));
-    connect(ui.filechooser, SIGNAL(urlSelected(const QUrl &)), this, SLOT(urlSelected(const QUrl &)));
+    connect(ui.filechooser, SIGNAL(urlSelected(QUrl)), this, SLOT(urlSelected(QUrl)));
     ui.language1->addItems(m_languages);
     ui.language2->addItems(m_languages);
     ui.language1->setCurrentIndex(m_lang1);
@@ -206,7 +206,7 @@ void ParleyPlasma::createConfigurationInterface(KConfigDialog * parent)
     connect(ui.fontSelectButton, SIGNAL(clicked()), parent, SLOT(settingsModified()));
     connect(ui.solutionOnHover, SIGNAL(toggled(bool)), parent, SLOT(settingsModified()));
     connect(ui.solutionAlways, SIGNAL(toggled(bool)), parent, SLOT(settingsModified()));
-    connect(ui.filechooser, SIGNAL(urlSelected(const QUrl &)), parent, SLOT(settingsModified()));
+    connect(ui.filechooser, SIGNAL(urlSelected(QUrl)), parent, SLOT(settingsModified()));
     connect(ui.updateIntervalSpinBox, SIGNAL(valueChanged(int)), parent, SLOT(settingsModified()));
 }
 

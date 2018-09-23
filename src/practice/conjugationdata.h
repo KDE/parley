@@ -15,9 +15,9 @@
 #ifndef CONJUGATIONDATA_H
 #define CONJUGATIONDATA_H
 
-#include <QtCore/QStringList>
-#include <QtCore/QString>
-#include <QtCore/QMetaType>
+#include <QStringList>
+#include <QString>
+#include <QMetaType>
 
 #include <keduvocconjugation.h>
 

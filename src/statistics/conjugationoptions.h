@@ -14,7 +14,7 @@
 #ifndef CONJUGATIONOPTIONS_H
 #define CONJUGATIONOPTIONS_H
 
-#include <QtWidgets/QWidget>
+#include <QWidget>
 #include <QMap>
 
 class KEduVocDocument;

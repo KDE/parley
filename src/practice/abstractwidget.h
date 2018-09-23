@@ -16,7 +16,7 @@
 
 #include "abstractfrontend.h"
 
-#include <QtWidgets/QWidget>
+#include <QWidget>
 
 class QVariant;
 

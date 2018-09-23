@@ -88,7 +88,7 @@ void LatexRenderer::renderLatex(QString tex)
 
     (*p) << QStringLiteral("latex") << QStringLiteral("-interaction=batchmode") << QStringLiteral("-halt-on-error") << fileName;
 
-    connect(p, SIGNAL(finished(int,  QProcess::ExitStatus)), this, SLOT(convertToPs()));
+    connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(convertToPs()));
     connect(p, SIGNAL(error(QProcess::ProcessError)), this, SLOT(latexRendered()));
     p->start();
 }
@@ -109,7 +109,7 @@ void LatexRenderer::convertToPs()
     qDebug() << "running: " << "dvips" << "-E" << "-o" << m_latexFilename << dviFile;
     (*p) << QStringLiteral("dvips") << QStringLiteral("-E") << QStringLiteral("-o") << m_latexFilename << dviFile;
 
-    connect(p, SIGNAL(finished(int,  QProcess::ExitStatus)), this, SLOT(convertToImage()));
+    connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(convertToImage()));
     connect(p, SIGNAL(error(QProcess::ProcessError)), this, SLOT(latexRendered()));
     p->start();
 }
@@ -123,7 +123,7 @@ void LatexRenderer::convertToImage()
     qDebug() << "running:" << "convert" << m_latexFilename << pngFile;
     (*p) << QStringLiteral("convert") << QStringLiteral("-density") << QStringLiteral("85") << m_latexFilename << pngFile;
 
-    connect(p, SIGNAL(finished(int,  QProcess::ExitStatus)), this, SLOT(latexRendered()));
+    connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(latexRendered()));
     connect(p, SIGNAL(error(QProcess::ProcessError)), this, SLOT(latexRendered()));
     p->start();
 }

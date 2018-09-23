@@ -13,7 +13,7 @@
 
 #include "guifrontend.h"
 
-#include <QtCore/QTimer>
+#include <QTimer>
 
 #include <kcolorscheme.h>
 #include <QDebug>
