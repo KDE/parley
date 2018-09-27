@@ -13,8 +13,6 @@
 
 #include "dashboard.h"
 
-#include <Qt>
-#include <QtGui>
 #include <QTimer>
 #include <QAction>
 #include <QMessageBox>

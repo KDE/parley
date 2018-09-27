@@ -33,7 +33,7 @@
 #include <QHeaderView>
 #include <QDBusInterface>
 #include <QKeyEvent>
-#include <QtGui>
+#include <QPainter>
 #include <QToolTip>
 
 using namespace Editor;

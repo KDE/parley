@@ -47,10 +47,10 @@ def fetchSoundForTranslation(word):
         if (bFound == 0):
             print 'Language:', wikiLocale, ' Word: ', word.text
             soundfile = getWikiObject(wikiLocale, word.text, None)
-            # check for specific pronounciation for nouns
+            # check for specific pronunciation for nouns
             if soundfile == None:
                 soundfile = getWikiObject(wikiLocale, word.text, 'noun')
-            # check for specific pronounciation for verbs
+            # check for specific pronunciation for verbs
             if soundfile == None:
                 soundfile = getWikiObject(wikiLocale, word.text, 'verb')
             if soundfile:

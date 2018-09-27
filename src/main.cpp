@@ -24,7 +24,7 @@
 /// @file main.cpp
 
 #include "parleymainwindow.h"
-#include "config-parley.h"
+#include <config-parley.h>
 
 #include <KAboutData>
 #include <KCrash>

@@ -23,7 +23,8 @@
 #include <klocalizedstring.h>
 
 // Qt
-#include <QtGui>
+#include <QPainter>
+#include <QPen>
 #include <QColor>
 #include <QPushButton>
 #include <QGraphicsDropShadowEffect>

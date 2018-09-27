@@ -20,7 +20,6 @@
 #include <QTimeLine>
 
 #include <QDebug>
-#include <QtWidgets>
 
 #if defined(Q_WS_X11)
 #include <X11/Xlib.h>
