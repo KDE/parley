@@ -43,7 +43,7 @@ class Container : public QObject
 //             Q_PROPERTY ( QVariantList childContainers READ childContainers )
 public:
 
-    Container(KEduVocContainer * container = 0);
+    explicit Container(KEduVocContainer * container = 0);
 
     /* copy constructor for d-pointer safe copying */
 //             Container ( const Container &other );

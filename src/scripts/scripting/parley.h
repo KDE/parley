@@ -209,7 +209,7 @@ public:
         Irregular = 0x20000000
     };
 
-    Parley(Editor::EditorWindow * editor);
+    explicit Parley(Editor::EditorWindow * editor);
 
     ~Parley();
 

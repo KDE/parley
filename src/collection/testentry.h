@@ -40,7 +40,7 @@ public:
 
     Q_DECLARE_FLAGS(ErrorTypes, ErrorType)
 
-    TestEntry(KEduVocExpression *entry);
+    explicit TestEntry(KEduVocExpression *entry);
 
     /// update the internal statistics for this practice with a right result
     void updateStatisticsRightAnswer(grade_t currentPreGrade, grade_t currentGrade);

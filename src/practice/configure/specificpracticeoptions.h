@@ -31,7 +31,7 @@ class SpecificPracticeOptions : public QWidget, public Ui::SpecificPracticeOptio
 {
     Q_OBJECT
 public:
-    SpecificPracticeOptions(QWidget* parent = 0);
+    explicit SpecificPracticeOptions(QWidget* parent = 0);
 };
 
 #endif

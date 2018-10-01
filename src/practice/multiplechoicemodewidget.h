@@ -33,7 +33,7 @@ class MultiplechoiceModeWidget: public AbstractModeWidget
     Q_OBJECT
 
 public:
-    MultiplechoiceModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
+    explicit MultiplechoiceModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
     QVariant userInput() Q_DECL_OVERRIDE;
 
     void setQuestion(const QVariant& question) Q_DECL_OVERRIDE;

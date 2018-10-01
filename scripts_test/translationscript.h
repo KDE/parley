@@ -30,7 +30,7 @@ class TranslationScript : public QObject
 {
     Kross::Action* action;
 public:
-    TranslationScript(QString filename);
+    explicit TranslationScript(QString filename);
     void getLanguagePairs();
     QStringList translateWord(QString word, QString from, QString to);
 

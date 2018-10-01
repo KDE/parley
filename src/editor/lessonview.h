@@ -32,7 +32,7 @@ class LessonView : public ContainerView
     Q_OBJECT
 
 public:
-    LessonView(EditorWindow *parent);
+    explicit LessonView(EditorWindow *parent);
 
     /** Set the model for the view.
      * @param model the model */

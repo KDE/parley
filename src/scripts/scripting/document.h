@@ -130,9 +130,9 @@ public:
         DeleteEntriesAndLesson
     };
 
-    Document(QObject* parent = 0);
+    explicit Document(QObject* parent = 0);
 
-    Document(KEduVocDocument * doc);
+    explicit Document(KEduVocDocument * doc);
 
     ~Document();
 

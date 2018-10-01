@@ -35,7 +35,7 @@ public:
     /** Set up the lesson list widget.
      * Also creates the menu to manipulate the lessons.
      * @param parent parent widget */
-    ContainerView(QWidget *parent = 0);
+    explicit ContainerView(QWidget *parent = 0);
     /** Set the model for the view.
      * @param model the model */
     virtual void setModel(ContainerModel *model);

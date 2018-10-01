@@ -30,7 +30,7 @@
 class ScriptManager : public QObject
 {
 public:
-    ScriptManager(Editor::EditorWindow * editor);
+    explicit ScriptManager(Editor::EditorWindow * editor);
 
     ~ScriptManager();
 

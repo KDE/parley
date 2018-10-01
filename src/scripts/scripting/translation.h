@@ -58,7 +58,7 @@ public:
     /*
      * Default constructor for an empty translation.
      */
-    Translation(Expression * entry);
+    explicit Translation(Expression * entry);
 
     /*
      * Constructor
@@ -70,7 +70,7 @@ public:
      * Constructor from KEduVocTranslation (not used by scripts)
      * @param translation KEduVocTranslation to initialize Scripting::Translation
      */
-    Translation(KEduVocTranslation * translation);
+    explicit Translation(KEduVocTranslation * translation);
 
     ~Translation();
 

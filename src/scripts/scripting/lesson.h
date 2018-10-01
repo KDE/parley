@@ -47,11 +47,11 @@ class Lesson : public Container
     Q_OBJECT
 public:
 
-    Lesson(KEduVocLesson * lesson);
+    explicit Lesson(KEduVocLesson * lesson);
 
-    Lesson(KEduVocContainer * container);
+    explicit Lesson(KEduVocContainer * container);
 
-    Lesson(const QString& name);
+    explicit Lesson(const QString& name);
 
     ~Lesson();
 

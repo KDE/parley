@@ -40,7 +40,7 @@ class Dashboard : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
-    Dashboard(ParleyMainWindow *parent);
+    explicit Dashboard(ParleyMainWindow *parent);
     ~Dashboard();
 
 public slots:

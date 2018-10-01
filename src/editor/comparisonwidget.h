@@ -41,7 +41,7 @@ class ComparisonWidget : public QWidget, public Ui::comparisonWidget
     Q_OBJECT
 
 public:
-    ComparisonWidget(QWidget *parent = 0);
+    explicit ComparisonWidget(QWidget *parent = 0);
 
 public slots:
     /**

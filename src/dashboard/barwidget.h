@@ -1,6 +1,6 @@
 /***************************************************************************
     Copyright 2014 Andreas Xavier
-    Copyright 2014 Inge Wallin
+    Copyright 2014 Inge Wallin <inge@lysator.liu.se>
  ***************************************************************************/
 
 /***************************************************************************
@@ -31,8 +31,8 @@ extern ConfidenceColors globalColors;
 class BarWidget : public QWidget
 {
 public:
-    BarWidget(QWidget *parent = 0);
-    BarWidget(WordCount *dueWords, QWidget *parent = 0);
+    explicit BarWidget(QWidget *parent = 0);
+    explicit BarWidget(WordCount *dueWords, QWidget *parent = 0);
 
     void setDue(WordCount &wc);
 

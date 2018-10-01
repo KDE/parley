@@ -52,7 +52,7 @@ class EditorWindow : public KXmlGuiWindow
     Q_OBJECT
 
 public:
-    EditorWindow(ParleyMainWindow* parent);
+    explicit EditorWindow(ParleyMainWindow* parent);
     ~EditorWindow();
 
     /**

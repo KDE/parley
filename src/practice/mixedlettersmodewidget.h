@@ -37,7 +37,7 @@ class MixedLettersModeWidget : public Practice::WrittenPracticeWidget
     Q_OBJECT
 
 public:
-    MixedLettersModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
+    explicit MixedLettersModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
 
     void setQuestion(const QVariant& question) Q_DECL_OVERRIDE;
     void setSolution(const QVariant& solution) Q_DECL_OVERRIDE;

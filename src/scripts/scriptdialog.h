@@ -26,7 +26,7 @@
 class ScriptDialog : public QDialog
 {
 public:
-    ScriptDialog(ScriptManager* scriptManager);
+    explicit ScriptDialog(ScriptManager* scriptManager);
     ~ScriptDialog();
     /**
      * Executed when user clicks OK button.

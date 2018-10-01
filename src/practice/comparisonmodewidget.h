@@ -31,7 +31,7 @@ class ComparisonModeWidget: public AbstractModeWidget
     Q_OBJECT
 
 public:
-    ComparisonModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
+    explicit ComparisonModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
     QVariant userInput() Q_DECL_OVERRIDE;
 
     void setQuestion(const QVariant& question) Q_DECL_OVERRIDE;

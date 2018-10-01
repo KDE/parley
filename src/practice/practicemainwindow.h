@@ -32,7 +32,7 @@ class PracticeMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
-    PracticeMainWindow(SessionManagerBase* sessionManager, ParleyMainWindow* mainWindow = 0);
+    explicit PracticeMainWindow(SessionManagerBase* sessionManager, ParleyMainWindow* mainWindow = 0);
     ~PracticeMainWindow();
 
     void startPractice();

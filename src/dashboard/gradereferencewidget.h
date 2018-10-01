@@ -1,6 +1,6 @@
 /***************************************************************************
     Copyright 2014 Andreas Xavier
-    Copyright 2014 Inge Wallin
+    Copyright 2014 Inge Wallin <inge@lysator.liu.se>
  ***************************************************************************/
 
 /***************************************************************************
@@ -21,7 +21,7 @@
 class GradeReferenceWidget : public QWidget
 {
 public:
-    GradeReferenceWidget(QWidget *parent = 0);
+    explicit GradeReferenceWidget(QWidget *parent = 0);
 
 protected:
     void paintEvent(QPaintEvent *) Q_DECL_OVERRIDE;

@@ -60,7 +60,7 @@ class Text : public QObject
 
 public:
     /* default constructor */
-    Text(const QString& text = QString());
+    explicit Text(const QString& text = QString());
 
     /* copy constructor
      * provides safe copy of d pointer
@@ -72,9 +72,9 @@ public:
      * Constructor from KEduVocText (not used by scripts)
      * @param text KEduVocText to initialize Scripting::Text
      */
-    Text(KEduVocText * text);
+    explicit Text(KEduVocText * text);
 
-    Text(const KEduVocText & text);
+    explicit Text(const KEduVocText & text);
 
     ~Text();
 

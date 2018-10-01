@@ -35,7 +35,7 @@ class Collection : public QObject
     Q_OBJECT
 
 public:
-    Collection(QUrl *url, QObject* parent = 0);
+    explicit Collection(QUrl *url, QObject* parent = 0);
     ~Collection();
 
     KEduVocDocument *eduVocDocument();

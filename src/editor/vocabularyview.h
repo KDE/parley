@@ -47,7 +47,7 @@ class VocabularyView : public QTableView
 {
     Q_OBJECT
 public:
-    VocabularyView(EditorWindow *parent);
+    explicit VocabularyView(EditorWindow *parent);
     virtual ~VocabularyView() {}
 
     KActionMenu* columnsActionMenu();

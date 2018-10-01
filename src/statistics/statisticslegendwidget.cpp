@@ -1,6 +1,6 @@
 /*
  *  Copyright 2014  Andreas Xavier <andxav at zoho dot com>
- *  Copyright 2014  Inge Wallin
+ *  Copyright 2014  Inge Wallin <inge@lysator.liu.se>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as

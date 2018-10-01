@@ -35,7 +35,7 @@ class BlockOptions : public QWidget, public Ui::BlockOptionsBase
 {
     Q_OBJECT
 public:
-    BlockOptions(QWidget* parent = 0);
+    explicit BlockOptions(QWidget* parent = 0);
     void updateWidgets();
     bool hasChanged();
     bool isDefault();

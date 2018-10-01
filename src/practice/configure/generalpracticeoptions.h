@@ -32,7 +32,7 @@ class GeneralPracticeOptions : public QWidget, public Ui::GeneralPracticeOptions
 {
     Q_OBJECT
 public:
-    GeneralPracticeOptions(QWidget* parent = 0);
+    explicit GeneralPracticeOptions(QWidget* parent = 0);
 };
 
 #endif

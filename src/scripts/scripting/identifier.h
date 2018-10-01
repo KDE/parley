@@ -60,9 +60,9 @@ public:
 
     Identifier();
 
-    Identifier(KEduVocIdentifier * identifier);
+    explicit Identifier(KEduVocIdentifier * identifier);
 
-    Identifier(KEduVocIdentifier & identifier);
+    explicit Identifier(KEduVocIdentifier & identifier);
 
     ~Identifier();
 

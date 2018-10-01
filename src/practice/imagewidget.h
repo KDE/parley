@@ -26,7 +26,7 @@ class ImageWidget : public QWidget
     Q_OBJECT
 
 public:
-    ImageWidget(QWidget *parent = 0);
+    explicit ImageWidget(QWidget *parent = 0);
 
     void setPixmap(const QPixmap& pixmap);
     void setScalingEnabled(bool scaling, bool onlyDownscaling = true);

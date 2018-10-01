@@ -30,7 +30,7 @@ class ParleyDocument : public QObject
 {
     Q_OBJECT
 public:
-    ParleyDocument(ParleyMainWindow* parleyMainWindow);
+    explicit ParleyDocument(ParleyMainWindow* parleyMainWindow);
     ~ParleyDocument();
 
 

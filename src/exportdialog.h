@@ -25,7 +25,7 @@ class ExportDialog : public QDialog
 {
     Q_OBJECT
 public:
-    ExportDialog(ParleyDocument *doc, QWidget *parent = 0);
+    explicit ExportDialog(ParleyDocument *doc, QWidget *parent = 0);
 
 private slots:
     void accept() Q_DECL_OVERRIDE;

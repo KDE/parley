@@ -88,7 +88,7 @@ void BoxesWidget::updatePixmap()
         drawElement(&p, id);
     }
     if (m_lastBox != -1 && m_currentBox != -1 && m_lastBox != m_currentBox) {
-        drawElement(&p, "arrow-" + QString::number(m_lastBox) + "-" + QString::number(m_currentBox));
+        drawElement(&p, "arrow-" + QString::number(m_lastBox) + '-' + QString::number(m_currentBox));
     }
     setPixmap(QPixmap::fromImage(image));
 }

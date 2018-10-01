@@ -29,7 +29,7 @@ class AbstractModeWidget : public QWidget
     Q_OBJECT
 
 public:
-    AbstractModeWidget(GuiFrontend *frontend, QWidget* parent = 0);
+    explicit AbstractModeWidget(GuiFrontend *frontend, QWidget* parent = 0);
     virtual ~AbstractModeWidget() {}
 
     virtual void setQuestion(const QVariant& question) = 0;

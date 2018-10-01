@@ -49,13 +49,13 @@ public:
      *
      * @param expression       translation
      */
-    Expression(const QString & expression);
+    explicit Expression(const QString & expression);
 
     /*
      * Constructor for vocabulary expression with more than one translation
      * @param translations
      */
-    Expression(const QStringList & translations);
+    explicit Expression(const QStringList & translations);
 
     Expression(const Expression & other);
 
@@ -63,7 +63,7 @@ public:
      * Constructor from a KEduVocExpression (doesn't exist in KEduVocExpression)
      * @param expression KEduVocExpression object
      */
-    Expression(KEduVocExpression * expression);
+    explicit Expression(KEduVocExpression * expression);
 
     ~Expression();
 

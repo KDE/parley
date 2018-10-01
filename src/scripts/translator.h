@@ -75,7 +75,7 @@ class Translator
 {
 public:
     Translator();
-    Translator(QObject * parent);
+    explicit Translator(QObject * parent);
 
     ~Translator();
 

@@ -35,7 +35,7 @@ class FlashCardModeWidget: public AbstractModeWidget
     Q_OBJECT
 
 public:
-    FlashCardModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
+    explicit FlashCardModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
     QVariant userInput() Q_DECL_OVERRIDE;
 
     void setQuestion(const QVariant& question) Q_DECL_OVERRIDE;

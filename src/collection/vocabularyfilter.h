@@ -27,7 +27,7 @@ class VocabularyFilter : public QSortFilterProxyModel
 {
     Q_OBJECT
 public:
-    VocabularyFilter(QObject *parent = 0);
+    explicit VocabularyFilter(QObject *parent = 0);
 
     void setSourceModel(VocabularyModel* model);
 

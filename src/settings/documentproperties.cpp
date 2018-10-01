@@ -116,7 +116,7 @@ QMap<QString, QString> DocumentProperties::localeLangsMap()
 
     foreach (const QLocale & myLocale, allLocales) {
         if(!myLocale.nativeLanguageName().isEmpty() && !myLocale.nativeCountryName().isEmpty()) {
-            languageCodeMap[ myLocale.nativeLanguageName() +  " (" +  myLocale.nativeCountryName() + ")" ] = myLocale.name();
+            languageCodeMap[ myLocale.nativeLanguageName() +  " (" +  myLocale.nativeCountryName() + ')' ] = myLocale.name();
         }
     }
     return languageCodeMap;

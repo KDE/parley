@@ -29,7 +29,7 @@ class StatusToggle : public ImageWidget
     Q_OBJECT
 
 public:
-    StatusToggle(QWidget* parent = 0);
+    explicit StatusToggle(QWidget* parent = 0);
     QSize minimumSizeHint() const Q_DECL_OVERRIDE;
 
     void setRenderer(ThemedBackgroundRenderer *renderer);

@@ -258,12 +258,12 @@ void ThemedBackgroundRenderer::renderRect(const QString& name, const QRect& rect
             scaleBase = Vertical;
         }
         for (int inside = 1; inside >= 0; inside--) {
-            renderItem(name, QString(inside ? "inside" : "border") + "-" + edge,            rect, p, fastScale, scaleBase, Qt::IgnoreAspectRatio, alignEdge, Centered, inside);
-            renderItem(name, QString(inside ? "inside" : "border") + "-" + edge + "-ratio",   rect, p, fastScale, scaleBase, Qt::KeepAspectRatio,   alignEdge, Centered, inside);
-            renderItem(name, QString(inside ? "inside" : "border") + "-" + edge + "-noscale", rect, p, fastScale, NoScale,   Qt::IgnoreAspectRatio, alignEdge, Centered, inside);
-            renderItem(name, QString(inside ? "inside" : "border") + "-" + edge + "-repeat",  rect, p, fastScale, scaleBase, Qt::IgnoreAspectRatio, alignEdge, Repeated, inside);
-            renderItem(name, QString(inside ? "inside" : "border") + "-" + edge + "-" + (scaleBase == Vertical ? "top" : "left"),     rect, p, fastScale, NoScale,   Qt::IgnoreAspectRatio, alignEdge, LeftTop, inside);
-            renderItem(name, QString(inside ? "inside" : "border") + "-" + edge + "-" + (scaleBase == Vertical ? "bottom" : "right"), rect, p, fastScale, NoScale,   Qt::IgnoreAspectRatio, alignEdge, RightBottom, inside);
+            renderItem(name, QString(inside ? "inside" : "border") + '-' + edge,            rect, p, fastScale, scaleBase, Qt::IgnoreAspectRatio, alignEdge, Centered, inside);
+            renderItem(name, QString(inside ? "inside" : "border") + '-' + edge + "-ratio",   rect, p, fastScale, scaleBase, Qt::KeepAspectRatio,   alignEdge, Centered, inside);
+            renderItem(name, QString(inside ? "inside" : "border") + '-' + edge + "-noscale", rect, p, fastScale, NoScale,   Qt::IgnoreAspectRatio, alignEdge, Centered, inside);
+            renderItem(name, QString(inside ? "inside" : "border") + '-' + edge + "-repeat",  rect, p, fastScale, scaleBase, Qt::IgnoreAspectRatio, alignEdge, Repeated, inside);
+            renderItem(name, QString(inside ? "inside" : "border") + '-' + edge + '-' + (scaleBase == Vertical ? "top" : "left"),     rect, p, fastScale, NoScale,   Qt::IgnoreAspectRatio, alignEdge, LeftTop, inside);
+            renderItem(name, QString(inside ? "inside" : "border") + '-' + edge + '-' + (scaleBase == Vertical ? "bottom" : "right"), rect, p, fastScale, NoScale,   Qt::IgnoreAspectRatio, alignEdge, RightBottom, inside);
         }
     }
 }

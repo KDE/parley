@@ -45,7 +45,7 @@ public:
         AnswerWrong
     };
 
-    AbstractFrontend(QObject* parent = 0);
+    explicit AbstractFrontend(QObject* parent = 0);
     virtual ~AbstractFrontend() {}
 
     /**

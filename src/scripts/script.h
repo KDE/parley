@@ -37,7 +37,7 @@ public:
      *
      * @param file The path to the script file to be activated (executed)
      */
-    Script(QString file);
+    explicit Script(QString file);
     ~Script();
     /**
      * Returns true if the script was successfully activated; false otherwise

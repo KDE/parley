@@ -28,7 +28,7 @@ class SummaryBarWidget : public QWidget
     Q_OBJECT
 
 public:
-    SummaryBarWidget(QWidget *parent = 0);
+    explicit SummaryBarWidget(QWidget *parent = 0);
 
     void setStatistics(int correct, int wrong, int notAnswered);
 

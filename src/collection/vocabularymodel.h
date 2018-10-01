@@ -53,7 +53,7 @@ public:
         ImageRole
     };
 
-    VocabularyModel(QObject *parent = 0);
+    explicit VocabularyModel(QObject *parent = 0);
 
     ~VocabularyModel();
 

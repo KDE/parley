@@ -26,7 +26,7 @@ class BoxesWidget : public ImageWidget
     Q_OBJECT
 
 public:
-    BoxesWidget(QWidget* parent = 0);
+    explicit BoxesWidget(QWidget* parent = 0);
     QSize minimumSizeHint() const Q_DECL_OVERRIDE;
 
     void setRenderer(ThemedBackgroundRenderer *renderer);

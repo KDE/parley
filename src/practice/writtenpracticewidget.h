@@ -31,7 +31,7 @@ class WrittenPracticeWidget : public Practice::AbstractModeWidget
     Q_OBJECT
 
 public:
-    WrittenPracticeWidget(GuiFrontend *frontend, QWidget *parent = 0, bool isExampleSentenceMode = false);
+    explicit WrittenPracticeWidget(GuiFrontend *frontend, QWidget *parent = 0, bool isExampleSentenceMode = false);
     QVariant userInput() Q_DECL_OVERRIDE;
 
     void setQuestion(const QVariant& question) Q_DECL_OVERRIDE;

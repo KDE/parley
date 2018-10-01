@@ -75,7 +75,7 @@ class LatexDelegate : public QItemDelegate
 {
     Q_OBJECT
 public:
-    LatexDelegate(QObject *parent = 0);
+    explicit LatexDelegate(QObject *parent = 0);
 
     void setEditorData(QWidget *editor, const QModelIndex &index) const Q_DECL_OVERRIDE;
     void setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const Q_DECL_OVERRIDE;

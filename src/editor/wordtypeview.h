@@ -32,7 +32,7 @@ class WordTypeView : public ContainerView
     Q_OBJECT
 
 public:
-    WordTypeView(EditorWindow *parent);
+    explicit WordTypeView(EditorWindow *parent);
 
 public slots:
     /** Append a word type to the model and automatically set an edit up so the user can change "New lesson" into something meaningfull.*/

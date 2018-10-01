@@ -32,7 +32,7 @@ class ConjugationModeWidget: public AbstractModeWidget
     Q_OBJECT
 
 public:
-    ConjugationModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
+    explicit ConjugationModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
     virtual ~ConjugationModeWidget();
     QVariant userInput() Q_DECL_OVERRIDE;
 
