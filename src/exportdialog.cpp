@@ -69,7 +69,7 @@ void ExportDialog::accept()
     if (ui->csvRadio->isChecked()) {
         /// Find the CSV filter in the standard filter list
         //!@todo: good and clean solution
-        QStringList defaultFilters = KEduVocDocument::pattern(KEduVocDocument::Writing).split(';;');
+        QStringList defaultFilters = KEduVocDocument::pattern(KEduVocDocument::Writing).split(QStringLiteral(";;"));
         QString filter = defaultFilters.filter(QStringLiteral("csv")).join(QStringLiteral(";;"));
         QUrl filename = getFileName(filter);
         if (filename != QUrl()) {
