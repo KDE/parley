@@ -69,8 +69,8 @@ void ExportDialog::accept()
     if (ui->csvRadio->isChecked()) {
         /// Find the CSV filter in the standard filter list
         //!@todo: good and clean solution
-        QStringList defaultFilters = KEduVocDocument::pattern(KEduVocDocument::Writing).split('\n');
-        QString filter = defaultFilters.filter(QStringLiteral("csv")).join(QStringLiteral("\n"));
+        QStringList defaultFilters = KEduVocDocument::pattern(KEduVocDocument::Writing).split(';;');
+        QString filter = defaultFilters.filter(QStringLiteral("csv")).join(QStringLiteral(";;"));
         QUrl filename = getFileName(filter);
         if (filename != QUrl()) {
             m_doc->saveAs(filename);
@@ -85,7 +85,7 @@ void ExportDialog::accept()
         xslFile = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("parley/xslt/table.xsl"));
     }
 
-    QString filter = "*.html|" + i18n("HTML document");
+    QString filter = i18n("HTML document") + " (*.html)";
     QUrl filename = getFileName(filter);
     if (filename.isEmpty()) {
         return;
