@@ -39,7 +39,6 @@ class SessionManagerBase
 public:
     /**
      * Create a collection of entries to be practiced.
-     * @param doc
      */
     explicit SessionManagerBase(QWidget *parent);
 
@@ -65,7 +64,7 @@ public:
     virtual void initializeTraining() = 0;
 
     /**
-     * Retun the title of the document.
+     * Return the title of the document.
      */
     QString title() const;
 

@@ -249,7 +249,7 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
     int numValidEntries = 0;
     int count = numberChoices;
 
-    // if the current entry has predefined multiple choice entries definied, use them first
+    // if the current entry has predefined multiple choice entries defined, use them first
     TestEntry *currentEntry = m_currentEntries.at(m_currentEntry);
     QStringList predefinedChoices = currentEntry->entry()->translation(currentEntry->languageTo())->getMultipleChoice();
     while (!predefinedChoices.isEmpty() && count > 0) {

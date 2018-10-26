@@ -68,6 +68,9 @@ public:
 
     /**
     * Returns the name of the entryColumns column
+    * @param document KEduVocDocument document
+    * @param translation the number of translation
+    * @param column the column index
     * @param addLocaleSuffix controls if locale name should be added to column title
     */
     static QString columnTitle(KEduVocDocument *document, int translation, int column, bool addLocaleSuffix);

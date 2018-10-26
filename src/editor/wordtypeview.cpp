@@ -161,7 +161,7 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
     connect(m_actionRenameWordType, &QAction::triggered, this, &WordTypeView::slotRename);
     connect(m_actionDeleteWordType, &QAction::triggered, this, &WordTypeView::slotDeleteWordType);
 
-    // right cick menu for the WordType view:
+    // right click menu for the WordType view:
     addAction(m_actionNewWordType);
     addAction(m_actionRenameWordType);
     addAction(m_actionDeleteWordType);

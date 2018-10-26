@@ -365,7 +365,7 @@ KEduVocContainer * VocabularyDelegate::WordTypeBasicModel::rootContainer() const
 
 /**
  * Sets the member variable m_translator to a Translator object
- * @param translator Translator Object to be used for retreiving word translations
+ * @param translator Translator Object to be used for retrieving word translations
  */
 void VocabularyDelegate::setTranslator(Translator* translator)
 {

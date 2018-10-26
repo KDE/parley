@@ -23,7 +23,7 @@
 /*!
     \fn ScriptTest::test()
 
-    Expirement With Kross
+    Experiment With Kross
  */
 void ScriptTest::test()
 {

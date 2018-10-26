@@ -50,7 +50,7 @@ private:
 
     /**
      * Called when starting a practice.
-     * Looks if the time is up, if the work has been praced too long ago, it will drop in grade.
+     * Looks if the time is up, if the work has been practiced too long ago, it will drop in grade.
      * Only if expiring is activated in prefs.
      */
     void expireEntries(int setNo);

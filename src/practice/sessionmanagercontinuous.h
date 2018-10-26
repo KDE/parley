@@ -41,7 +41,6 @@ namespace Practice
 public:
     /**
      * Create a collection of entries to be practiced.
-     * @param doc
      */
     explicit SessionManagerContinuous(QWidget *parent);
 

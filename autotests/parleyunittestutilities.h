@@ -18,7 +18,8 @@
 */
 
 /**
-@file This file collects some utility classes that are used in multiple unit tests
+@file
+This file collects some utility classes that are used in multiple unit tests
 **/
 
 

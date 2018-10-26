@@ -41,7 +41,7 @@ public:
     /**
      * Divide a lesson into smaller ones.
      * Tip: If you create a lesson that is >= the original one and use random order, you get your lesson reshuffled. Maybe that is sometimes useful. For now the lessons are appended at the end.
-     * @param lessonIndex lesson to split
+     * @param containerIndex lesson to split
      * @param entriesPerLesson number of entries in each new lesson
      * @param order one of SplitLessonOrder
         */

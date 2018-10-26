@@ -55,6 +55,9 @@ public:
     };
     /**
      * Load a specific theme file.
+     * @param parent the parent widget
+     * @param config configuration data
+     * @param knsflags KDE New Stuff flags
      * @param groupName the title of the config group in the theme .desktop file
      * @param directory subdirectory (of share/apps/appname) to search in
      * @return true if the theme files and properties could be loaded

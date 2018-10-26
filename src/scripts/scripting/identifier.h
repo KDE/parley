@@ -148,7 +148,8 @@ public Q_SLOTS:
 
     /**
      * Sets personal pronouns
-     * @param pronouns a KEduVocConjugation containing the personal pronouns
+     * @param conjugation a conjugation of the personal pronoun
+     * @param flags the KEduVocWordFlags flags
      */
 //             void setPersonalPronouns ( const KEduVocPersonalPronoun &pronouns );
 

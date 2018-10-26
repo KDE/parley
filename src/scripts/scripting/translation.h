@@ -94,11 +94,11 @@ public:
         m_translation->setPronunciation(expression);
     }
 
-    /* returns the translation commment */
+    /* returns the translation comment */
     QString comment() const {
         return m_translation->comment();
     }
-    /* sets the translation commment */
+    /* sets the translation comment */
     void setComment(const QString & expr) {
         m_translation->setComment(expr);
     }
@@ -262,7 +262,7 @@ public slots:
 
     /**
      * Add a synonym
-     * @param synonym An excisting translation object that contains the synonym
+     * @param synonym An existing translation object that contains the synonym
      */
     void addSynonym(Translation* synonym) {
         m_translation->addSynonym(synonym->kEduVocTranslation());
@@ -270,7 +270,7 @@ public slots:
 
     /**
      * Remove a synonym
-     * @param synonym An excisting translation object that contains the synonym
+     * @param synonym An existing translation object that contains the synonym
      */
     void removeSynonym(Translation* synonym) {
         m_translation->removeSynonym(synonym->kEduVocTranslation());
@@ -278,7 +278,7 @@ public slots:
 
     /**
      * Add a antonym
-     * @param antonym An excisting translation object that contains the antonym
+     * @param antonym An existing translation object that contains the antonym
          */
     void addAntonym(Translation* antonym) {
         m_translation->addAntonym(antonym->kEduVocTranslation());
@@ -286,7 +286,7 @@ public slots:
 
     /**
      * Remove a antonym
-     * @param antonym An excisting translation object that contains the synonym
+     * @param antonym An existing translation object that contains the synonym
      */
     void removeAntonym(Translation* antonym) {
         m_translation->removeAntonym(antonym->kEduVocTranslation());
@@ -349,8 +349,7 @@ public slots:
      * @endcode
      * @param conjugation The conjugation in @p tense, @p number, @p person
      * @param tense The tense that @p conjugation belongs to (see Document::tenses())
-     * @param number The number of the @p conjugation. See Parley::Number enum
-     * @param person The person of the @p conjugation. See Parley::Person enum
+     * @param flags The KEduVocWordFlags flags
      */
     void setConjugationText(const QString& conjugation, const QString& tense, const KEduVocWordFlags& flags);
 
@@ -358,8 +357,7 @@ public slots:
      * Sets the @p conjugation of the verb in the given @p tense, @p number and @p person. Use this method instead of setConjugationText when the grades, practice count etc are important and want them to be set in this conjugation
      * @param conjugation Scripting::Text object as the conjugation
      * @param tense The tense that @p conjugation belongs to (see Document::tenses())
-     * @param number The number of the @p conjugation. See Parley::Number enum
-     * @param person The person of the @p conjugation. See Parley::Person enum
+     * @param flags The KEduVocWordFlags flags
      */
     void setConjugation(QObject * conjugation, const QString& tense, const KEduVocWordFlags& flags);
 
@@ -367,8 +365,7 @@ public slots:
     /**
      * returns the conjugation of the verb in the given @p tense, @p number and @p person
      * @param tense The conjugation tense (see Document::tenses())
-     * @param number The conjugation number. See Parley::Number enum
-     * @param person The conjugation person. See Parley::Person enum
+     * @param flags The KEduVocWordFlags flags
      * @return A Text object that represents the conjugation
      */
     QObject * conjugation(const QString & tense, const KEduVocWordFlags& flags);
@@ -376,14 +373,14 @@ public slots:
     /**
      * Returns all the possible conjugations of the given @p tense
      * @param tense The tense of the conjugation
-     * @return A String list with 15 entries. First 5 are for Singluar [First, Second, ThirdMale, ThirdFemale, ThirdNeutral/Third], next 5 for Dual (in a similar way) and last 5 for plural.
+     * @return A String list with 15 entries. First 5 are for Singular [First, Second, ThirdMale, ThirdFemale, ThirdNeutral/Third], next 5 for Dual (in a similar way) and last 5 for plural.
      */
     QStringList conjugationTexts(const QString& tense);
 
     /**
      * Returns the conjugations of the given @p tense and @p number
      * @param tense The tense of conjugation
-     * @param number Conjugation number. See Parley::Number enum
+     * @param flags The KEduVocWordFlags flags
      * @return A String list with 5 conjugations in the order of [First, Second, ThirdMale, ThirdFemale, Third]
      */
     QStringList conjugationTexts(const QString& tense, const KEduVocWordFlags& flags);

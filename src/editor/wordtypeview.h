@@ -35,7 +35,7 @@ public:
     explicit WordTypeView(EditorWindow *parent);
 
 public slots:
-    /** Append a word type to the model and automatically set an edit up so the user can change "New lesson" into something meaningfull.*/
+    /** Append a word type to the model and automatically set an edit up so the user can change "New lesson" into something meaningful.*/
     void slotCreateNewWordType();
 
     /** Remove a word type. */

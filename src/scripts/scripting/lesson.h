@@ -32,7 +32,7 @@ class Expression;
  *
  * The Lesson class gives access to lesson properties, entries and child-lessons. The lesson properties documentation can be found in Container class as well as few function's documentation.
  *
- * The main way of accessing the lesson entries is with the entries() function which allows you to iterate through all the lesson entries (recursively also) and access their properties and modifiy them (see entries() function example code). For individual entry access use the entry(int) function.
+ * The main way of accessing the lesson entries is with the entries() function which allows you to iterate through all the lesson entries (recursively also) and access their properties and modify them (see entries() function example code). For individual entry access use the entry(int) function.
  *
  * To add new entries to a lesson you can use the following ways:
  * - newEntry() or newEntry(QStringList) with appendEntry() or insertEntry() function

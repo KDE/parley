@@ -34,7 +34,7 @@ class QPixmap;
  * Essentially just a wrapper around a .desktop theme file. Load a file with
  * load() and then access its properties.
  *
- * For more advanced feaures like dynamic themes or custom game rules, it
+ * For more advanced features like dynamic themes or custom game rules, it
  * will likely be necessary to derive from this class
  *
  * @author Mauricio Piacentini

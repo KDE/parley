@@ -35,7 +35,6 @@ class SessionManagerFixed : public SessionManagerBase
 public:
     /**
      * Create a collection of entries to be practiced.
-     * @param doc
      */
     explicit SessionManagerFixed(QWidget *parent);
 

@@ -49,7 +49,7 @@ signals:
     void lessonsInPracticeChanged();
 
 public slots:
-    /** Append a lesson to the model and automatically set an edit up so the user can change "New unit" into something meaningfull.*/
+    /** Append a lesson to the model and automatically set an edit up so the user can change "New unit" into something meaningful.*/
     void slotCreateNewLesson();
 
     /** Remove a lesson. Ask if it's not empty. */

@@ -105,7 +105,7 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
     connect(actionExpandAll, &QAction::triggered, this, &LessonView::expandAllLesson);
     connect(actionCollapseAll, &QAction::triggered, this, &LessonView::collapseAllLesson);
 
-    // right cick menu for the lesson view:
+    // right click menu for the lesson view:
     addAction(actionNewLesson);
     addAction(actionRenameLesson);
     addAction(actionDeleteLesson);

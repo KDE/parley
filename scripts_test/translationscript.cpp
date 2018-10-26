@@ -29,7 +29,7 @@ TranslationScript::~TranslationScript()
 }
 
 /*!
-    \fn ScriptTest::getLanguagePairs()
+    \fn TranslationScript::getLanguagePairs()
  */
 void TranslationScript::getLanguagePairs()
 {
@@ -44,7 +44,7 @@ void TranslationScript::getLanguagePairs()
 }
 
 /*!
-    \fn ScriptTest::translateWord(QString Word)
+    \fn TranslationScript::translateWord(QString Word)
  */
 QStringList TranslationScript::translateWord(QString word, QString from, QString to)
 {

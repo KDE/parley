@@ -177,6 +177,7 @@ public slots:
      * Returns how many expressions of language with index @p translation have grade as @p grade
      * @param translation language index
      * @param grade grade
+     * @param recursive whether the search is recursive
      * @return A number that represents the number of expressions of that grade
      */
     int expressionsOfGrade(int translation, unsigned int grade, bool recursive) {
@@ -195,6 +196,7 @@ public slots:
     /**
      * Returns the average grade of the specified @p translation considering all the lesson entries
      * @param translation language index
+     * @param recursive whether the search is recursive
      * @return A double, the average lesson grade
      */
     double averageGrade(int translation, bool recursive) {
