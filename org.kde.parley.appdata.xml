@@ -275,6 +275,7 @@
   <url type="help">https://docs.kde.org/?application=parley</url>
   <screenshots>
     <screenshot type="default">
+      <caption>Choosing a collection for training in Parley</caption>
       <image>https://kde.org/images/screenshots/parley.png</image>
     </screenshot>
   </screenshots>
