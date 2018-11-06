@@ -40,7 +40,7 @@ void GradeReferenceWidget::paintEvent(QPaintEvent *)
     const int legendWidth = this->width();
     const int legendHeight = this->height();
     const int legendOffsetY = 0;
-    const int legendOffsetX = (this->width() / 2) - (legendWidth / 2);;
+    const int legendOffsetX = (this->width() / 2) - (legendWidth / 2);
     const int gradeBarWidth = this->width()/8;
     //const int alphaValueIncrement = 35;
     QRect roundedRect(0 + legendOffsetX, 0 + legendOffsetY, legendWidth, legendHeight);
