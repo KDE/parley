@@ -25,7 +25,7 @@ class ConjugationPracticeWidget;
 
 namespace Practice
 {
-class PersonConjugationSolutionWidgets;
+struct PersonConjugationSolutionWidgets;
 
 class ConjugationModeWidget: public AbstractModeWidget
 {

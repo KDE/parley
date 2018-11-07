@@ -27,7 +27,7 @@
 #include "testentry.h"
 
 
-class WordCount;
+struct WordCount;
 
 
 class Collection : public QObject

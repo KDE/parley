@@ -38,7 +38,7 @@ public:
 private:
     KPluginSelector* m_kps;
     QList<KPluginInfo> pluginsInfoList;
-    KConfigGroup* scriptsConfigGroup;
+//    KConfigGroup* scriptsConfigGroup;
     ScriptManager* m_scriptManager;
 
 };
