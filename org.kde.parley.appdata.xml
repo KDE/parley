@@ -273,6 +273,7 @@
   <url type="homepage">https://edu.kde.org/parley/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=parley</url>
   <url type="help">https://docs.kde.org/?application=parley</url>
+  <url type="donation">https://www.kde.org/community/donations/?app=parley&amp;source=appdata</url>
   <screenshots>
     <screenshot type="default">
       <caption>Choosing a collection for training in Parley</caption>
