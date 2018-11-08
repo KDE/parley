@@ -277,6 +277,14 @@
   <screenshots>
     <screenshot type="default">
       <caption>Choosing a collection for training in Parley</caption>
+      <caption xml:lang="ca">Triant una col·lecció per entrenar-se amb el Parley</caption>
+      <caption xml:lang="ca-valencia">Triant una col·lecció per entrenar-se amb el Parley</caption>
+      <caption xml:lang="gl">Escollendo unha colección para adestrar en Parley</caption>
+      <caption xml:lang="nl">Een verzameling kiezen voor oefenen in Parley</caption>
+      <caption xml:lang="pt">A escolher uma colecção para praticar no Parley</caption>
+      <caption xml:lang="sv">Välja en övningssamling i Parley</caption>
+      <caption xml:lang="uk">Вибір збірки для вправ у Parley</caption>
+      <caption xml:lang="x-test">xxChoosing a collection for training in Parleyxx</caption>
       <image>https://kde.org/images/screenshots/parley.png</image>
     </screenshot>
   </screenshots>
