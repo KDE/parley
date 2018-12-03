@@ -280,6 +280,7 @@
       <caption xml:lang="ca">Triant una col·lecció per entrenar-se amb el Parley</caption>
       <caption xml:lang="ca-valencia">Triant una col·lecció per entrenar-se amb el Parley</caption>
       <caption xml:lang="de">Auswahl einer Sammlung zur Übung in Parley</caption>
+      <caption xml:lang="en-GB">Choosing a collection for training in Parley</caption>
       <caption xml:lang="es">Escogiendo una colección para entrenarse en Parley</caption>
       <caption xml:lang="gl">Escollendo unha colección para adestrar en Parley</caption>
       <caption xml:lang="nl">Een verzameling kiezen voor oefenen in Parley</caption>
@@ -288,6 +289,7 @@
       <caption xml:lang="sv">Välja en övningssamling i Parley</caption>
       <caption xml:lang="uk">Вибір збірки для вправ у Parley</caption>
       <caption xml:lang="x-test">xxChoosing a collection for training in Parleyxx</caption>
+      <caption xml:lang="zh-TW">在 Parley 中選擇集合來訓練</caption>
       <image>https://kde.org/images/screenshots/parley.png</image>
     </screenshot>
   </screenshots>
