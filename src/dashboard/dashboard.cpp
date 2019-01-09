@@ -117,8 +117,8 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     connect(Prefs::self(), &KCoreConfigSkeleton::configChanged, this, &Dashboard::setTheme);
     setTheme();
 
-    connect(m_themedBackgroundRenderer, SIGNAL(backgroundChanged(QPixmap)),
-            this,                       SLOT(backgroundChanged(QPixmap)));
+    connect(m_themedBackgroundRenderer, &Practice::ThemedBackgroundRenderer::backgroundChanged,
+            this,                       &Dashboard::backgroundChanged);
     connect(m_widget, &Practice::ImageWidget::sizeChanged, this, &Dashboard::updateBackground);
 
     QAction *updateAction = new QAction(this);

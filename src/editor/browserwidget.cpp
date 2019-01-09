@@ -46,57 +46,57 @@ void BrowserWidget::setupProviders()
     providerComboBox->clear();
 
     DictionaryProvider provider;
-    provider.name = "De-Es Beolingus";
-    provider.url = "http://beolingus.org/dings.cgi?service=dees&query=\\{@}";
-    provider.languages << "de" << "es";
+    provider.name = QStringLiteral("De-Es Beolingus");
+    provider.url = QStringLiteral("http://beolingus.org/dings.cgi?service=dees&query=\\{@}");
+    provider.languages << QStringLiteral("de") << QStringLiteral("es");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
-    provider.name = "De-En Beolingus";
-    provider.url = "http://beolingus.org/dings.cgi?query=\\{@}";
-    provider.languages << "de" << "en";
+    provider.name = QStringLiteral("De-En Beolingus");
+    provider.url = QStringLiteral("http://beolingus.org/dings.cgi?query=\\{@}");
+    provider.languages << QStringLiteral("de") << QStringLiteral("en");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
-    provider.name = "De-En Leo";
-    provider.url = "http://dict.leo.org/?search=\\{@}";
-    provider.languages << "de" << "en";
+    provider.name = QStringLiteral("De-En Leo");
+    provider.url = QStringLiteral("http://dict.leo.org/?search=\\{@}");
+    provider.languages << QStringLiteral("de") << QStringLiteral("en");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
-    provider.name = "De-Es Leo";
-    provider.url = "http://dict.leo.org/?lp=esde&search=\\{@}";
-    provider.languages << "de" << "es";
+    provider.name = QStringLiteral("De-Es Leo");
+    provider.url = QStringLiteral("http://dict.leo.org/?lp=esde&search=\\{@}");
+    provider.languages << QStringLiteral("de") << QStringLiteral("es");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
-    provider.name = "De-Fr Leo";
-    provider.url = "http://dict.leo.org/?lp=frde&search=\\{@}";
-    provider.languages << "de" << "fr";
+    provider.name = QStringLiteral("De-Fr Leo");
+    provider.url = QStringLiteral("http://dict.leo.org/?lp=frde&search=\\{@}");
+    provider.languages << QStringLiteral("de") << QStringLiteral("fr");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
-    provider.name = "Ru-En Multitran";
-    provider.url = "http://multitran.ru/c/m.exe?SHL=1&CL=1&l1=1&s=\\{@}";
-    provider.languages << "ru" << "en";
+    provider.name = QStringLiteral("Ru-En Multitran");
+    provider.url = QStringLiteral("http://multitran.ru/c/m.exe?SHL=1&CL=1&l1=1&s=\\{@}");
+    provider.languages << QStringLiteral("ru") << QStringLiteral("en");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
-    provider.name = "Ru-De Multitran";
-    provider.url = "http://multitran.ru/c/m.exe?SHL=1&CL=1&l1=3&s=\\{@}";
-    provider.languages << "ru" << "de";
+    provider.name = QStringLiteral("Ru-De Multitran");
+    provider.url = QStringLiteral("http://multitran.ru/c/m.exe?SHL=1&CL=1&l1=3&s=\\{@}");
+    provider.languages << QStringLiteral("ru") << QStringLiteral("de");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
-    provider.name = "Ru-Fr Multitran";
-    provider.url = "http://multitran.ru/c/m.exe?SHL=1&CL=1&l1=4&s=\\{@}";
-    provider.languages << "ru" << "fr";
+    provider.name = QStringLiteral("Ru-Fr Multitran");
+    provider.url = QStringLiteral("http://multitran.ru/c/m.exe?SHL=1&CL=1&l1=4&s=\\{@}");
+    provider.languages << QStringLiteral("ru") << QStringLiteral("fr");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
-    provider.name = "Heinzelnisse";
-    provider.url = "http://heinzelnisse.info/dict?setOptions=true&searchItem=\\{@}&dictDeNoSearch=on&dictNoDeSearch=on&dictExactSearch=on&dictPhoneticSearch=on&wikiSearch=on&dictNynorskSearch=on&dictBokmaalSearch=checked&forumKeywordSearch=on&suggestion=on";
-    provider.languages << "no" << "de";
+    provider.name = QStringLiteral("Heinzelnisse");
+    provider.url = QStringLiteral("http://heinzelnisse.info/dict?setOptions=true&searchItem=\\{@}&dictDeNoSearch=on&dictNoDeSearch=on&dictExactSearch=on&dictPhoneticSearch=on&wikiSearch=on&dictNynorskSearch=on&dictBokmaalSearch=checked&forumKeywordSearch=on&suggestion=on");
+    provider.languages << QStringLiteral("no") << QStringLiteral("de");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
@@ -118,7 +118,7 @@ void BrowserWidget::showCurrentTranslation()
         if (m_entry->translation(m_currentTranslation)) {
             QString text = m_entry->translation(m_currentTranslation)->text();
             if (!text.isEmpty()) {
-                m_htmlPart->load(QUrl(QString(m_providers.value(m_currentProvider).url.replace("\\{@}", text))));
+                m_htmlPart->load(QUrl(QString(m_providers.value(m_currentProvider).url.replace(QLatin1String("\\{@}"), text))));
                 m_htmlPart->show();
             }
         }

@@ -121,7 +121,7 @@ void MultiplechoiceModeWidget::setNumberOfPushButtons(const int numberOfChoices)
         verticalLayout->addLayout(horizontalLayout);
 
         // Display number of entry
-        QLabel *label = new QLabel(QString::number(i+1) + QString(":"), this);
+        QLabel *label = new QLabel(QString::number(i+1) + QStringLiteral(":"), this);
         horizontalLayout->addWidget(label);
 
         // Button displaying choice
