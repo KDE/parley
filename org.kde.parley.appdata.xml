@@ -17,6 +17,7 @@
   <name xml:lang="fi">Parley</name>
   <name xml:lang="fr">Parley</name>
   <name xml:lang="gl">Parley</name>
+  <name xml:lang="id">Parley</name>
   <name xml:lang="it">Parley</name>
   <name xml:lang="ko">Parley</name>
   <name xml:lang="lt">Parley</name>
@@ -48,6 +49,7 @@
   <summary xml:lang="fi">Sanaston harjoitusohjelma</summary>
   <summary xml:lang="fr">Exercices de vocabulaire</summary>
   <summary xml:lang="gl">Adestrador de vocabulario</summary>
+  <summary xml:lang="id">Pelatih Kosakata</summary>
   <summary xml:lang="it">Apprendimento di vocaboli</summary>
   <summary xml:lang="ko">어휘 연습 도구</summary>
   <summary xml:lang="lt">Žodyno treniruoklis</summary>
@@ -79,6 +81,7 @@
     <p xml:lang="fi">Parley on sanaston harjoitusohjelma. Se auttaa oppimaan sanastoja ulkoa esimerkiksi, kun yrität oppia vierasta kieltä. Se tukee useita kielikohtaisia piirteitä, mutta sitä voi käyttää muuhunkin opiskeluun. Se käyttää aikavälikertauksen oppimismenetelmää, joka optimoi oppimisen. Sanastoja voi ladata käyttämällä ”Lataa uusia sanastoja” -ominaisuutta tai niitä voi luoda sisäänrakennetussa muokkaimessa.</p>
     <p xml:lang="fr">Parley est un logiciel proposant des exercices de vocabulaire. Il vous aide à mémoriser votre vocabulaire, par exemple lorsque vous apprenez une langue étrangère. Il prend en charge de nombreuses spécificités des différentes langues, mais vous pouvez également l'utiliser à d'autres fins d'apprentissage. Il utilise une méthode d'apprentissage par répétition espacée, qui optimise l'apprentissage. Les collections de vocabulaire peuvent être téléchargées par l'intermédiaire de « Obtenir les dernières nouveautés » ou grâce à l'éditeur intégré.</p>
     <p xml:lang="gl">Parley é un adestrador de vocabulario. Axúdao a memorizar un vocabulario, como por exemplo o vocabulario dun idioma que está a aprender. Permite moitas funcionalidades específicas de idiomas, pero tamén se pode empregar para aprender outras cousas. Emprega o método de ensino de repetición espazada, que optimiza a aprendizaxe. Pode descargar coleccións de vocabulario empregando «Get Hot New Stuff» ou crear as súas propias coleccións co editor integrado.</p>
+    <p xml:lang="id">Parley adalah pelatih kosakata. Ini membantu kamu untuk menghafal kosakatamu, contohnya ketika kamu mencoba untuk belajar bahasa asing. Ini mendukung banyak fitur khusus bahasa, tetapi dapat digunakan untuk tugas belajar lainnya juga. Ini menggunakan metode pembelajaran pengulangan berspasi, yang membuat pembelajaran menjadi optimal. Koleksi kosakata dapat didownload dengan "Get Hot New Stuff" atau diciptakan dengan editor bawaan.</p>
     <p xml:lang="it">Parley è un programma per l'pprendimento di vocaboli. Ti aiuta a memorizzare vocaboli, ad esempio quando stai imparando una lingua straniera. Supporta molte caratteristiche specifiche di varie lingue, ma può essere usato anche per imparare altre cose. Usa la ripetizione dilazionata come metodo di apprendimento, migliorando l'apprendimento. Collezioni di vocaboli possono essere scaricate usando il sistema delle «Novità», oppure create con l'editor integrato.</p>
     <p xml:lang="nds">Parley is en Vokavel-Lehrprogramm. Dat hölpt Di bi't Lehren vun Dien Wöör, a.B. ut en butenlannsch Spraak. Dat ünnerstütt vele Spraakfunkschonen, man lett sik ok för anner Saken bruken. De Lehrmetood is de Wedderhalen mit Afstand, wat dat Lehren verbetert. Vokavelsetten kannst Du över „Deegte niege Saken“ daalladen oder mit den inbuut Editor sülven opstellen.</p>
     <p xml:lang="nl">Met Parley kunt u woordjes oefenen. Het helpt uw woordenschat uit te breiden, bijvoorbeeld bij het leren van een vreemde taal. Veel taaleigen zaken worden ondersteund, maar u kunt Parley ook gebruiken voor andere leeroefeningen. Het gebruikt de "spaced repetition" leermethode (met geregelde herhalingen), om optimaal te kunnen leren. Woordenlijsten kunnen worden gedownload, of met het ingebouwde bewerkingsprogramma zelf worden gemaakt.</p>
@@ -105,6 +108,7 @@
     <p xml:lang="fi">Harjoitustavat:</p>
     <p xml:lang="fr">Modes d'exercice :</p>
     <p xml:lang="gl">Modos de adestramento:</p>
+    <p xml:lang="id">Mode Pelatihan:</p>
     <p xml:lang="it">Modalità di apprendimento:</p>
     <p xml:lang="ko">연습 모드:</p>
     <p xml:lang="nds">Ööv-Bedriefoorden:</p>
@@ -136,6 +140,7 @@
       <li xml:lang="fi">Kysymyskortit</li>
       <li xml:lang="fr">Fiches mnémotechniques</li>
       <li xml:lang="gl">Tarxetas</li>
+      <li xml:lang="id">Kartu Flash</li>
       <li xml:lang="it">Carte mnemoniche</li>
       <li xml:lang="ko">플래시 카드</li>
       <li xml:lang="lt">Kortelės</li>
@@ -166,6 +171,7 @@
       <li xml:lang="fi">Sekoitetut kirjaimet (järjestä sanan kirjaimet)</li>
       <li xml:lang="fr">Lettres mélangées (remettre les lettres en ordre)</li>
       <li xml:lang="gl">Letras mesturadas (ordenar as letras dunha palabra)</li>
+      <li xml:lang="id">Huruf Campuran (urutan huruf kata)</li>
       <li xml:lang="it">Lettere mescolate (ordina le lettere di una parola)</li>
       <li xml:lang="nds">Mischt Bookstaven (Bookstaven vun en Woort ornen)</li>
       <li xml:lang="nl">Gehutselde letters (zet de letters in het woord in de goede volgorde)</li>
@@ -194,6 +200,7 @@
       <li xml:lang="fi">Monivalinta</li>
       <li xml:lang="fr">Choix multiple</li>
       <li xml:lang="gl">Opcións múltiplas</li>
+      <li xml:lang="id">Pilihan Multipel</li>
       <li xml:lang="it">Scelta multipla</li>
       <li xml:lang="ko">객관식</li>
       <li xml:lang="lt">Pasirinkimas iš kelių atsakymų</li>
@@ -225,6 +232,7 @@
       <li xml:lang="fi">Kirjallinen</li>
       <li xml:lang="fr">Écrit</li>
       <li xml:lang="gl">Escrito</li>
+      <li xml:lang="id">Ditulis</li>
       <li xml:lang="it">Scritto</li>
       <li xml:lang="ko">주관식</li>
       <li xml:lang="lt">Rašyba</li>
@@ -254,6 +262,7 @@
       <li xml:lang="fi">Kielikohtaiset harjoitukset: artikkelit, vertailumuodot, taivutusmuodot, synonyymit/antonyymit/parafraasit</li>
       <li xml:lang="fr">Exercices spécifiques aux langues : articles, comparaisons, conjugaisons, synonymes/antonymes/paraphrases</li>
       <li xml:lang="gl">Adestramentos de idioma: artigos, formas de comparación, conxugación, sinónimos, antónimos e perífrases.</li>
+      <li xml:lang="id">Pelatihan khusus bahasa: artikel, formulir perbandingan, konjugasi, sinonim/antonim/parafrase</li>
       <li xml:lang="it">Apprendimenti specifici per le lingue: articoli, forme di confronto, coniugazioni, sinomini/antonimi/parafrasi</li>
       <li xml:lang="nds">Besünner Spraaklexen: Artikeln, Stiegformen, Böögformen, Liekwöör, Güntwöör, Ümschrieven</li>
       <li xml:lang="nl">Taaleigen oefeningen: lidwoorden, vergelijkingen, vervoegingen, synoniemen/antoniemen/paragrafen</li>
@@ -283,6 +292,7 @@
       <caption xml:lang="en-GB">Choosing a collection for training in Parley</caption>
       <caption xml:lang="es">Escogiendo una colección para entrenarse en Parley</caption>
       <caption xml:lang="gl">Escollendo unha colección para adestrar en Parley</caption>
+      <caption xml:lang="id">Memilih koleksi untuk pelatihan di Parley</caption>
       <caption xml:lang="it">Scegliere una collezione per l'apprendimento in Parley</caption>
       <caption xml:lang="nl">Een verzameling kiezen voor oefenen in Parley</caption>
       <caption xml:lang="pl">Wybór zbioru do ćwiczeń w Parley</caption>
