@@ -292,7 +292,7 @@ void StatisticsMainWindow::showConjugationOptions(bool visible)
     if (!m_conjugationOptions) {
         m_conjugationOptions = new ConjugationOptions(m_doc, m_ui->modeSpecificOptions);
         QHBoxLayout* layout = new QHBoxLayout(m_ui->modeSpecificOptions);
-        layout->setMargin(0);
+        layout->setContentsMargins(0, 0, 0, 0);
         layout->addWidget(m_conjugationOptions);
         connect(this, QOverload<int, int>::of(&StatisticsMainWindow::languagesChanged),
                 m_conjugationOptions, &ConjugationOptions::setLanguages);

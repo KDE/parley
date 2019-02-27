@@ -459,13 +459,13 @@ void EditorWindow::initView()
 
     m_searchWidget = new QWidget(this);
     QHBoxLayout* layout = new QHBoxLayout(m_searchWidget);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(label);
     layout->addWidget(m_searchLine);
 
 ///@todo     centralWidget()-> delete layout
     QVBoxLayout * rightLayout = new QVBoxLayout();
-    rightLayout->setMargin(0);
+    rightLayout->setContentsMargins(0, 0, 0, 0);
     rightLayout->addWidget(m_searchWidget);
     m_searchWidget->setVisible(Prefs::showSearch());
 

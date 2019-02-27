@@ -34,7 +34,7 @@ ConjugationOptions::ConjugationOptions(KEduVocDocument *doc, QWidget *parent)
     m_treeWidget->setRootIsDecorated(false);
     QHBoxLayout* layout = new QHBoxLayout(this);
     layout->addWidget(m_treeWidget);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
     connect(m_treeWidget, &QTreeWidget::itemChanged,
             this, &ConjugationOptions::processCheckBoxChanged);

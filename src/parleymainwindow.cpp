@@ -70,7 +70,7 @@ ParleyMainWindow::ParleyMainWindow(const QUrl& filename)
 
     setCentralWidget(new QWidget());
     centralWidget()->setLayout(new QHBoxLayout());
-    centralWidget()->layout()->setMargin(0);
+    centralWidget()->layout()->setContentsMargins(0, 0, 0, 0);
 
     initActions();
 

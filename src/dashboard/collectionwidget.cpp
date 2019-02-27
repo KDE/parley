@@ -131,7 +131,7 @@ void CollectionWidget::setupWidget(WordCount *dueWords)
     effect->setBlurRadius(50);
     this->setGraphicsEffect(effect);
     QPalette palette = this->palette();
-    palette.setColor(QPalette::Background, Qt::white);
+    palette.setColor(QPalette::Window, Qt::white);
     this->setAutoFillBackground(true);
     this->setPalette(palette);
 
