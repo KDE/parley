@@ -54,7 +54,7 @@ public slots:
     void clearGrid();
     void slotPracticeButtonClicked(const QString& urlString);
     void slotRemoveButtonClicked(const QString& urlString);
-    void statisticsHandler(QUrl url);
+    void statisticsHandler(const QUrl &url);
     void remove(QGridLayout *layout, int row, int column, bool deleteWidgets);
     void deleteChildWidgets(QLayoutItem *item);
 

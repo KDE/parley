@@ -104,7 +104,7 @@ public slots:
      * @param translations A list with the translations of this entry (must be in correct order)
      * @return A new Expression object
      */
-    QObject* newEntry(QStringList translations);
+    QObject* newEntry(const QStringList &translations);
 
     /**
      * Appends an entry at the end of the lesson
@@ -130,7 +130,7 @@ public slots:
      * @endcode
      * @param translations A string list with the translations (in same order as their identifiers)
      */
-    void appendNewEntry(QStringList translations);
+    void appendNewEntry(const QStringList &translations);
 
     /**
      * Insert an entry on a specific @p index

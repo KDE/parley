@@ -128,12 +128,12 @@ QObject* Lesson::newEntry()
 //         return new Expression ( expression );
 //     }
 
-QObject* Lesson::newEntry(QStringList translations)
+QObject* Lesson::newEntry(const QStringList &translations)
 {
     return new Expression(translations);
 }
 
-void Lesson::appendNewEntry(QStringList translations)
+void Lesson::appendNewEntry(const QStringList &translations)
 {
     KEduVocExpression * expr = new KEduVocExpression(translations);
     m_lesson->appendEntry(expr);

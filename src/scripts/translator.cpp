@@ -31,7 +31,7 @@ Translator::~Translator()
 {
 }
 
-void Translator::addTranslation(QString word, QString fromLanguage, QString toLanguage, QString translation)
+void Translator::addTranslation(const QString &word, const QString &fromLanguage, const QString &toLanguage, const QString &translation)
 {
     if (word.trimmed() == QLatin1String("")) return;
 
@@ -43,7 +43,7 @@ void Translator::addTranslation(QString word, QString fromLanguage, QString toLa
     m_translations[t]->insert(translation.simplified());
 }
 
-QSet<QString>* Translator::getTranslation(QString word, QString fromLanguage, QString toLanguage)
+QSet<QString>* Translator::getTranslation(const QString &word, const QString &fromLanguage, const QString &toLanguage)
 {
     if (word.isEmpty() || fromLanguage.isEmpty() || toLanguage.isEmpty()) return 0;
 

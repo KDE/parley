@@ -29,7 +29,7 @@ public:
         setMouseTracking(true);
     }
 
-    void setPixmaps(QPixmap defaultPixmap, QPixmap hoverPixmap, QPixmap pressedPixmap);
+    void setPixmaps(const QPixmap &defaultPixmap, const QPixmap &hoverPixmap, const QPixmap &pressedPixmap);
 
 protected:
     void mousePressEvent(QMouseEvent *e) Q_DECL_OVERRIDE;

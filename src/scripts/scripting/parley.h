@@ -275,7 +275,7 @@ public Q_SLOTS:
      * @param toLanguage To language
      * @param translation %Translation of word
      */
-    void addTranslation(QString word, QString fromLanguage, QString toLanguage, QString translation);
+    void addTranslation(const QString &word, const QString &fromLanguage, const QString &toLanguage, const QString &translation);
     /**
      * Returns a list of all available locales (to be used by the scripts)
      * @return
@@ -287,7 +287,7 @@ public Q_SLOTS:
      * @param locale Language locale
      * @return Language name
      */
-    QString localeName(QString locale);
+    QString localeName(const QString &locale);
 
     /// @todo Make this function working (not very important function)
     /*
@@ -299,7 +299,7 @@ public Q_SLOTS:
      * @endcode
      * @param file Parley Document file path (ex. /home/kde-user/MyVocab.kvtml)
      */
-    void open(QString filename);
+    void open(const QString &filename);
 
     /**
      * Creates a new document and returns a reference to it

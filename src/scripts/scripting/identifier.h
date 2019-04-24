@@ -174,7 +174,7 @@ public Q_SLOTS:
     * @endcode
     * @param names A string list of the document tenses we want to be using
     */
-    void setTenses(QStringList names) {
+    void setTenses(const QStringList &names) {
         m_identifier->setTenseList(names);
     }
 

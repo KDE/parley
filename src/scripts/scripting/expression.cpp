@@ -95,7 +95,7 @@ QStringList Expression::translationTexts() const
 //         m_expression->setTranslation(index,t->kEduVocTranslation());
 //     }
 
-void Expression::setTranslations(QStringList translations)
+void Expression::setTranslations(const QStringList &translations)
 {
     delete m_expression;
     m_expression = new KEduVocExpression(translations);

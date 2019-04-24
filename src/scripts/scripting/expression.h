@@ -138,7 +138,7 @@ public slots:
      * @endcode
      * @param translations A list of strings with the translations (must be in correct language order)
      */
-    void setTranslations(QStringList translations);
+    void setTranslations(const QStringList &translations);
 
     /**
      * removes a translation

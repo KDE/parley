@@ -56,7 +56,7 @@ void Parley::callTranslateWord(const QString & word, const QString& fromLanguage
     emit translationFinished(word, fromLanguage, toLanguage);
 }
 
-void Parley::addTranslation(QString word, QString fromLanguage, QString toLanguage, QString translation)
+void Parley::addTranslation(const QString &word, const QString &fromLanguage, const QString &toLanguage, const QString &translation)
 {
     if (m_translator)
         m_translator->addTranslation(word, fromLanguage, toLanguage, translation);
@@ -68,12 +68,12 @@ QStringList Parley::locales()
     return QLocale().uiLanguages();
 }
 
-QString Parley::localeName(QString locale)
+QString Parley::localeName(const QString &locale)
 {
     return QLocale( locale ).nativeLanguageName( );
 }
 
-void Parley::open(QString filename)
+void Parley::open(const QString &filename)
 {
     QUrl url( QUrl::fromLocalFile(filename) );
     qDebug() << url;

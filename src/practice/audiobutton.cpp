@@ -28,7 +28,7 @@ AudioButton::AudioButton(QWidget *parent)
     connect(parent, SIGNAL(stopAudio()), this, SLOT(stopAudio()));
 }
 
-void AudioButton::setSoundFile(QUrl soundFile)
+void AudioButton::setSoundFile(const QUrl &soundFile)
 {
     m_url = soundFile;
     setEnabled(!m_url.isEmpty() && m_url.isLocalFile());

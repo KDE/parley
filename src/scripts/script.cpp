@@ -20,7 +20,7 @@
 #include <kross/core/action.h>
 
 
-Script::Script(QString file)
+Script::Script(const QString &file)
 {
     m_file = file;
     m_activated = false;
@@ -107,13 +107,13 @@ QString Script::fileName()
 }
 
 
-void Script::addObject(QString name, QObject * object)
+void Script::addObject(const QString &name, QObject * object)
 {
     m_scriptObjects.insert(name, object);
 }
 
 
-void Script::addObjects(QMap<QString, QObject*> objects)
+void Script::addObjects(const QMap<QString, QObject*> &objects)
 {
     m_scriptObjects.unite(objects);
 }

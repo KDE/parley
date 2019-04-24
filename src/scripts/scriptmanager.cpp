@@ -71,7 +71,7 @@ QMap<QString, QString> ScriptManager::categories()
 }
 
 
-QString ScriptManager::getScriptEntry(QString desktopFile)
+QString ScriptManager::getScriptEntry(const QString &desktopFile)
 {
     //open it as a raw configuration file and read the script entry
     KConfig scriptconfig(desktopFile, KConfig::SimpleConfig);
@@ -80,7 +80,7 @@ QString ScriptManager::getScriptEntry(QString desktopFile)
 }
 
 
-QString ScriptManager::getScriptFileName(QString desktopFile)
+QString ScriptManager::getScriptFileName(const QString &desktopFile)
 {
     QFileInfo desktopFileInfo(desktopFile);
     return desktopFileInfo.absolutePath() + '/' + ScriptManager::getScriptEntry(desktopFile);
@@ -106,7 +106,7 @@ QStringList ScriptManager::enabledScripts()
 }
 
 
-void ScriptManager::disablePlugin(QString desktopFile)
+void ScriptManager::disablePlugin(const QString &desktopFile)
 {
     KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), "Plugins");
     KPluginInfo inf(desktopFile);

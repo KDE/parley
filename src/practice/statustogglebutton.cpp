@@ -17,7 +17,7 @@
 
 using namespace Practice;
 
-void StatusToggleButton::setPixmaps(QPixmap defaultPixmap, QPixmap hoverPixmap, QPixmap pressedPixmap)
+void StatusToggleButton::setPixmaps(const QPixmap &defaultPixmap, const QPixmap &hoverPixmap, const QPixmap &pressedPixmap)
 {
     if (m_current == 1) {
         setPixmap(hoverPixmap);

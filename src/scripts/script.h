@@ -37,7 +37,7 @@ public:
      *
      * @param file The path to the script file to be activated (executed)
      */
-    explicit Script(QString file);
+    explicit Script(const QString &file);
     ~Script();
     /**
      * Returns true if the script was successfully activated; false otherwise
@@ -68,12 +68,12 @@ public:
      * @param name Name to appear in the script
      * @param object Object to be accessible by the script
      */
-    void addObject(QString name, QObject * object);
+    void addObject(const QString &name, QObject * object);
     /**
      * Adds more than one scripting Objects to the script
      * @param objects Map of the objects to add
      */
-    void addObjects(QMap<QString, QObject*> objects);
+    void addObjects(const QMap<QString, QObject*> &objects);
     /**
      * Returns an html error message if there have been errors in the script.
      */

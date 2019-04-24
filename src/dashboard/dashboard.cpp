@@ -270,7 +270,7 @@ void Dashboard::populateGrid()
     }
 }
 
-void Dashboard::statisticsHandler(QUrl url)
+void Dashboard::statisticsHandler(const QUrl &url)
 {
 #if 1
     Q_UNUSED(url);

@@ -39,7 +39,7 @@ public:
         QMap<int, WordTypeStrings> wordTypes;
     };
 
-    void setTranslations(QList<KEduVocTranslation*> translation);
+    void setTranslations(const QList<KEduVocTranslation*> &translation);
     QList<KEduVocTranslation *> translationList() const;
     QList<VocabularyMimeData::MimeExpression> expressionList() const;
 

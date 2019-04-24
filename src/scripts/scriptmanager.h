@@ -58,7 +58,7 @@ public:
      * @param desktopFile The .desktop file that will get the value from
      * @return The value of "Script" entry. Empty string of no "Script" entry is found
      */
-    static QString getScriptEntry(QString desktopFile);
+    static QString getScriptEntry(const QString &desktopFile);
 
     /**
      * Returns the full path to the script name given in the @p desktopFile.
@@ -66,7 +66,7 @@ public:
      * @param desktopFile The desktop file for the parley plugin
      * @return The full-path to the script
      */
-    QString getScriptFileName(QString desktopFile);
+    QString getScriptFileName(const QString &desktopFile);
 
     /**
      * Returns a list of filenames (full path) of enabled scripts
@@ -80,7 +80,7 @@ public:
      *
      * @param desktopFile
      */
-    void disablePlugin(QString desktopFile);
+    void disablePlugin(const QString &desktopFile);
 
     /**
      * Loads (activates) all the available scripts and notifies the user if any

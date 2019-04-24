@@ -28,7 +28,7 @@ class AudioButton : public QToolButton
     Q_OBJECT
 public:
     explicit AudioButton(QWidget *parent);
-    void setSoundFile(QUrl url);
+    void setSoundFile(const QUrl &url);
 
 private Q_SLOTS:
     void playAudio();

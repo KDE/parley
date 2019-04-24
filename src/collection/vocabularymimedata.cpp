@@ -20,7 +20,7 @@
 #include <keduvocwordtype.h>
 
 
-void VocabularyMimeData::setTranslations(QList<KEduVocTranslation *> translations)
+void VocabularyMimeData::setTranslations(const QList<KEduVocTranslation *> &translations)
 {
     // list of pointers for drag and drop - for example to assign word types
     m_translations = translations;

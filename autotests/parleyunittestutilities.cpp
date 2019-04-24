@@ -39,10 +39,10 @@ TemporaryVocDoc::~TemporaryVocDoc()
 
 MinimalTempVocDoc::MinimalTempVocDoc()
 {
-    const QString generator = QString::fromLatin1( "File Locking Unit Tests" );
-    const QString author = QString::fromLatin1( "File Locking Test" );
-    const QString lang = QString::fromLatin1( "File Locking Language Name" );
-    const QString locale = QString::fromLatin1( "en" ) ;
+    const QString generator = QStringLiteral( "File Locking Unit Tests" );
+    const QString author = QStringLiteral( "File Locking Test" );
+    const QString lang = QStringLiteral( "File Locking Language Name" );
+    const QString locale = QStringLiteral( "en" ) ;
 
     KEduVocIdentifier lang0;
     lang0.setName( lang );
