@@ -62,7 +62,7 @@ void MultipleChoiceBackendMode::populateFrontEnd()
     data.question = m_question;
     data.choices = m_choices;
 
-    m_frontend->setQuestion(qVariantFromValue<MultipleChoiceData>(data));
+    m_frontend->setQuestion(QVariant::fromValue<MultipleChoiceData>(data));
     m_frontend->setSolution(m_correctAnswer);
     m_frontend->setQuestionSound(m_current->entry()->translation(m_current->languageFrom())->soundUrl());
     m_frontend->setSolutionSound(m_current->entry()->translation(m_current->languageTo())->soundUrl());

@@ -214,7 +214,7 @@ QVariantList Container::toVariantList(QList<T*> objList) const
     QVariantList list;
     foreach(T * t, objList) {
         QObject * obj = new S(t);
-        list.push_back(qVariantFromValue(obj));
+        list.push_back(QVariant::fromValue(obj));
     }
     return list;
 }

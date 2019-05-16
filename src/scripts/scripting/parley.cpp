@@ -105,7 +105,7 @@ QVariantList Parley::selectedEntries()
 //             Expression entry(expr);
 //             qDebug() << entry.translationTexts();
         QObject * obj = new Expression(expr);
-        entries << qVariantFromValue(obj);
+        entries << QVariant::fromValue(obj);
     }
 
     return entries;
@@ -134,7 +134,7 @@ QVariantList Parley::selectedTranslations()
 //             Translation transltion(tr);
 //             qDebug() << entry.translationTexts();
         QObject * obj = new Translation(tr);
-        translations << qVariantFromValue(obj);
+        translations << QVariant::fromValue(obj);
     }
 
     return translations;

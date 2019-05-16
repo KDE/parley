@@ -39,7 +39,7 @@ Document::~Document()
 QVariantList Document::allLessons()
 {
     Lesson * l = new Lesson(m_doc->lesson());
-    return QVariantList() << qVariantFromValue(static_cast<QObject*>(l)) <<  l->childLessons(true);
+    return QVariantList() << QVariant::fromValue(static_cast<QObject*>(l)) <<  l->childLessons(true);
 }
 
 KEduVocWordType * Document::wordTypeFromString(const QString & name)
@@ -88,7 +88,7 @@ QVariantList Document::identifiers()
     QVariantList list;
     for (int i = 0; i < m_doc->identifierCount(); i++) {
         QObject * obj = new Identifier(m_doc->identifier(i));
-        list << qVariantFromValue(obj);
+        list << QVariant::fromValue(obj);
     }
     return list;
 }

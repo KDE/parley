@@ -54,7 +54,7 @@ bool ConjugationBackendMode::setTestEntry(TestEntry* current)
 
     data.personalPronouns = validPersonalPronouns();
 
-    m_frontend->setQuestion(qVariantFromValue<ConjugationData>(data));
+    m_frontend->setQuestion(QVariant::fromValue<ConjugationData>(data));
     QStringList answers;
     foreach(const KEduVocWordFlags & key, m_pronounFlags) {
         answers.append(m_conjugation.conjugation(key).text());
