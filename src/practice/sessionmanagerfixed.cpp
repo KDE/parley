@@ -53,8 +53,8 @@ void SessionManagerFixed::initializeTraining()
            && m_currentEntries.count() < MaxEntries)
     {
         TestEntry *it = m_allTestEntries.at(i);
-        if (it->entry()->translation(it->languageTo())->grade() == 0
-            && it->entry()->translation(it->languageTo())->preGrade() == 0) {
+        if (it->practiceModeDependentMinGrade() == 0
+            && it->practiceModeDependentMinPreGrade() == 0) {
             m_currentEntries.append(it);
             numNewWords++;
         }
@@ -72,7 +72,7 @@ void SessionManagerFixed::initializeTraining()
         // Step through all entries and collect those at the current
         // grade until the session is filled.
         foreach (TestEntry *entry, m_allTestEntries) {
-            if (entry->entry()->translation(entry->languageTo())->grade() == grade) {
+            if (entry->practiceModeDependentMaxGrade() == grade) {
                 m_currentEntries.append(entry);
             }
             if (m_currentEntries.count() >= MaxEntries) {
@@ -92,7 +92,7 @@ void SessionManagerFixed::initializeTraining()
         // Step through all entries and collect those at the current
         // grade until the session is filled.
         foreach (TestEntry *entry, m_allTestEntries) {
-            if (entry->entry()->translation(entry->languageTo())->preGrade() == preGrade) {
+            if (entry->practiceModeDependentMaxPreGrade() == preGrade) {
                 m_currentEntries.append(entry);
             }
             if (m_currentEntries.count() >= MaxEntries) {

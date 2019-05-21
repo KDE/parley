@@ -60,7 +60,7 @@ EntryFilter::EntryFilter(KEduVocDocument* doc, QObject * parent)
         DocumentSettings documentSettings(m_doc->url().url() + QString::number(m_toTranslation));
         documentSettings.load();
         m_tenses = documentSettings.conjugationTenses();
-        qDebug() << "Tenses" << m_tenses;
+//         qDebug() << "Tenses" << m_tenses;
     }
 }
 /*
@@ -545,7 +545,7 @@ void EntryFilter::cleanupInvalid(int setNo)
 
 QList< TestEntry* > EntryFilter::conjugationTestEntries(bool ignoreBlocked) const
 {
-    qDebug() << "Filtering conjugation entries for tenses... " << m_tenses;
+//     qDebug() << "Filtering conjugation entries for tenses... " << m_tenses;
 
     // TODO CM make this configurable
     enum MODE {

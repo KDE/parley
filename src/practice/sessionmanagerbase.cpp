@@ -78,19 +78,19 @@ void SessionManagerBase::setDocument(KEduVocDocument* doc)
 
     m_learningLanguageIndex = Prefs::learningLanguage();
     m_knownLanguageIndex    = Prefs::knownLanguage();
-    qDebug() << "Practice: learning language:" << m_doc->identifier(m_learningLanguageIndex).name()
-             << " known language:" << m_doc->identifier(m_knownLanguageIndex).name();
+//     qDebug() << "Practice: learning language:" << m_doc->identifier(m_learningLanguageIndex).name()
+//              << " known language:" << m_doc->identifier(m_knownLanguageIndex).name();
 
     // Create the list of available entries for this training session.
     EntryFilter filter(m_doc, m_parent);
     m_allTestEntries = filter.entries();
 
-    qDebug() << "Entries: ----------------";
-    qDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
-    foreach (TestEntry *entry, m_allTestEntries) {
-        qDebug() << "Entry: " << entry->languageFrom() << entry->entry()->translation(entry->languageFrom())->text()
-                 << "to" << entry->languageTo() << entry->entry()->translation(entry->languageTo())->text();
-    }
+//     qDebug() << "Entries: ----------------";
+//     qDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
+//     foreach (TestEntry *entry, m_allTestEntries) {
+//         qDebug() << "Entry: " << entry->languageFrom() << entry->entry()->translation(entry->languageFrom())->text()
+//                  << "to" << entry->languageTo() << entry->entry()->translation(entry->languageTo())->text();
+//     }
 
     // Create the list actual entries in this training session.  This
     // is a pure virtual function and must be implemented by the

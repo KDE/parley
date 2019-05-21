@@ -15,6 +15,8 @@
 #ifndef TESTENTRY_H
 #define TESTENTRY_H
 
+#include <functional>
+
 #include <QFlags>
 
 #include <keduvocexpression.h>
@@ -93,6 +95,15 @@ public:
     int languageTo() const;
 
     KEduVocExpression *entry() const;
+
+    grade_t practiceModeDependentMinGrade() const;
+    grade_t practiceModeDependentMinPreGrade() const;
+    grade_t practiceModeDependentMaxGrade() const;
+    grade_t practiceModeDependentMaxPreGrade() const;
+
+private:
+    grade_t practiceModeDependentGrade(std::function<grade_t(KEduVocText)> gradeFunc,
+                                       std::function<grade_t(grade_t, grade_t)> minMaxFunc) const;
 
 private:
     /// the entry itself

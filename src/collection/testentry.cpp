@@ -163,3 +163,70 @@ void TestEntry::setConjugationPronouns(const QList<KEduVocWordFlags>& flags)
 {
     m_conjugationPronouns = flags;
 }
+
+grade_t TestEntry::practiceModeDependentMinGrade() const
+{
+    return practiceModeDependentGrade(&KEduVocTranslation::grade, qMin<grade_t>);
+}
+
+
+grade_t TestEntry::practiceModeDependentMinPreGrade() const
+{
+    return practiceModeDependentGrade(&KEduVocText::preGrade, qMin<grade_t>);
+}
+
+
+grade_t TestEntry::practiceModeDependentMaxGrade() const
+{
+    return practiceModeDependentGrade(&KEduVocText::grade, qMax<grade_t>);
+}
+
+
+grade_t TestEntry::practiceModeDependentMaxPreGrade() const
+{
+    return practiceModeDependentGrade(&KEduVocText::preGrade, qMax<grade_t>);
+}
+
+
+grade_t TestEntry::practiceModeDependentGrade(std::function<grade_t(KEduVocText)> gradeFunc,
+                                        std::function<grade_t(grade_t, grade_t)> minMaxFunc) const
+{
+    grade_t result(0);
+    const KEduVocTranslation *translation(entry()->translation(languageTo()));
+    switch (Prefs::practiceMode()) {
+
+        // For gender practice the article (pre-)grades are required.
+        case Prefs::EnumPracticeMode::GenderPractice:
+            result = gradeFunc(translation->article());
+            break;
+
+        // For conjugation practice the conjugation (pre-)grades are required.
+        // For the specified tense the highest/lowest values of all specified gramatical persons
+        // is evaluated.
+        case Prefs::EnumPracticeMode::ConjugationPractice:
+            {
+                KEduVocConjugation conj(translation->getConjugation(conjugationTense()));
+                // Depending on what minMaxFunc is used result needs an appropriate initialisation
+                result = (minMaxFunc(0, 1) == 1) ? KV_MIN_GRADE:KV_MAX_GRADE;
+                foreach(KEduVocWordFlags pronoun, conjugationPronouns()) {
+                    result = minMaxFunc(result, gradeFunc(conj.conjugation(pronoun)));
+                }
+            }
+            break;
+
+        // For comparison practice the (pre-)grades of the positive, comparative and superlative
+        // are required. Then highest/lowest value is evaluated.
+        case Prefs::EnumPracticeMode::ComparisonPractice:
+            {
+                result = gradeFunc(translation->comparativeForm());
+                result = minMaxFunc(result, gradeFunc(translation->superlativeForm()));
+            }
+            break;
+
+        // For all other practice forms the basic (pre-)grades are required.
+        default:
+            result = gradeFunc(*translation);
+            break;
+    }
+    return result;
+}

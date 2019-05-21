@@ -53,3 +53,7 @@ parley_gui_unittests(
   # allpass1test
    allpass2test
 )
+parley_non_gui_unittests(
+   testentrytest
+   sessionmanagerfixedtest
+)
