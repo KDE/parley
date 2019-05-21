@@ -47,19 +47,20 @@ void SessionManagerFixed::initializeTraining()
 
     // Pick N new words if there are any into the active set.
     int numNewWords = 0;
-    int i = 0;
-    while (i < m_allTestEntries.count()
+    QList<TestEntry*>::Iterator it = m_allTestEntries.begin();
+    while (it != m_allTestEntries.end()
            && numNewWords < MaxNewWords
            && m_currentEntries.count() < MaxEntries)
     {
-        TestEntry *it = m_allTestEntries.at(i);
-        if (it->practiceModeDependentMinGrade() == 0
-            && it->practiceModeDependentMinPreGrade() == 0) {
-            m_currentEntries.append(it);
+        if ((*it)->practiceModeDependentMinGrade() == 0
+            && (*it)->practiceModeDependentMinPreGrade() == 0)
+        {
+            m_currentEntries.append(*it);
             numNewWords++;
+            it = m_allTestEntries.erase(it);
+        } else {
+            ++it;
         }
-
-        ++i;
     }
 
     // Pick the rest of the words from the already practiced ones.
@@ -71,12 +72,15 @@ void SessionManagerFixed::initializeTraining()
 
         // Step through all entries and collect those at the current
         // grade until the session is filled.
-        foreach (TestEntry *entry, m_allTestEntries) {
-            if (entry->practiceModeDependentMaxGrade() == grade) {
-                m_currentEntries.append(entry);
-            }
-            if (m_currentEntries.count() >= MaxEntries) {
-                break;
+        it = m_allTestEntries.begin();
+        while (it != m_allTestEntries.end()
+               && m_currentEntries.count() < MaxEntries)
+        {
+            if ((*it)->practiceModeDependentMaxGrade() == grade) {
+                m_currentEntries.append(*it);
+                it = m_allTestEntries.erase(it);
+            } else {
+                ++it;
             }
         }
     }
@@ -91,25 +95,23 @@ void SessionManagerFixed::initializeTraining()
 
         // Step through all entries and collect those at the current
         // grade until the session is filled.
-        foreach (TestEntry *entry, m_allTestEntries) {
-            if (entry->practiceModeDependentMaxPreGrade() == preGrade) {
-                m_currentEntries.append(entry);
-            }
-            if (m_currentEntries.count() >= MaxEntries) {
-                break;
+        it = m_allTestEntries.begin();
+        while (it != m_allTestEntries.end()
+            && m_currentEntries.count() < MaxEntries)
+        {
+            if ((*it)->practiceModeDependentMaxPreGrade() == preGrade) {
+                m_currentEntries.append(*it);
+                it = m_allTestEntries.erase(it);
+            } else {
+                ++it;
             }
         }
     }
 
+    // The remaining entries have to be deleted to prevent memory leaking
+    qDeleteAll(m_allTestEntries);
+
     // Now we have decided exactly which ones to use.
     // We need to keep this for statistics reporting at the end.
-    //
-    // FIXME: Seems to be a memory leak here.
-
-    //        m_allTestEntries owns all test entries and now it
-    //        suddenly gets assigned a potentially smaller subset.
-    //        Those which were pointed to by pointers inside
-    //        m_allTestEntries but not also a pointer inside
-    //        m_currentEntries are lost.
     m_allTestEntries = m_currentEntries;
 }
