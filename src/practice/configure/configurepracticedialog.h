@@ -24,7 +24,6 @@
 #include <KConfigSkeleton>
 
 class GeneralPracticeOptions;
-class ConfigurePracticeWidget;
 class SpecificPracticeOptions;
 class ThresholdOptions;
 class BlockOptions;

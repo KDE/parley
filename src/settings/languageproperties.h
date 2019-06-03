@@ -17,7 +17,6 @@
 #include <KPageDialog>
 
 class KEduVocDocument;
-class ParleyDocument;
 
 class LanguageProperties : public KPageDialog
 {

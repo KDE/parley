@@ -28,7 +28,6 @@
 #include <QColor>
 #include <QList>
 
-class KEduVocContainer;
 
 /**Draws the statistics legend and provides color information about the legend**/
 class StatisticsLegendWidget : public QWidget

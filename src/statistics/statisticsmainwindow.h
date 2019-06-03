@@ -19,7 +19,6 @@
 #include <KXmlGuiWindow>
 
 class ConjugationOptions;
-class LessonStatisticsView;
 class StatisticsModel;
 class KEduVocDocument;
 class ParleyMainWindow;

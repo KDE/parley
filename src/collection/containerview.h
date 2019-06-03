@@ -19,7 +19,6 @@
 #include <QTreeView>
 
 class KEduVocContainer;
-class KEduVocExpression;
 
 class ContainerModel;
 

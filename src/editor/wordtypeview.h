@@ -22,7 +22,7 @@
 class QAction;
 class KSelectAction;
 class KEduVocWordType;
-
+class KEduVocExpression;
 namespace Editor
 {
 class EditorWindow;

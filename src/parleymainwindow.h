@@ -37,15 +37,8 @@
 
 class KRecentFilesAction;
 #if 0
-class KActionMenu;
-class QAction;
-class QLabel;
-class QDockWidget;
 
 class Dashboard;
-class StatisticsMainWindow;
-class ScriptManager;
-class ParleyPracticeMainWindow;
 #endif
 
 

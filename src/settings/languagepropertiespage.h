@@ -18,7 +18,6 @@
 #include "ui_languagepropertiespage.h"
 
 class KEduVocDocument;
-class ParleyDocument;
 
 class LanguagePropertiesPage : public QWidget, public Ui::LanguagePropertiesPage
 {

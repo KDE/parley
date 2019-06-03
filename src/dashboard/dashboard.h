@@ -24,7 +24,6 @@
 static const int N = 50;
 
 class ParleyMainWindow;
-class QStandardItemModel;
 
 namespace Practice
 {

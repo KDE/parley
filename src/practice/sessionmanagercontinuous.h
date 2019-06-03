@@ -31,7 +31,6 @@
 
 
 class KEduVocDocument;
-class PracticeDialog;
 
 namespace Practice
 {

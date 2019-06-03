@@ -24,7 +24,6 @@ class QTreeView;
 class QDataWidgetMapper;
 class QItemSelection;
 class QModelIndex;
-class KEduVocContainer;
 class KEduVocDocument;
 class KEduVocExpression;
 

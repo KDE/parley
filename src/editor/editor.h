@@ -25,7 +25,6 @@
 
 class QSignalMapper;
 class QLineEdit;
-class KActionMenu;
 class ScriptManager;
 
 ///@brief contains objects for the editor main window

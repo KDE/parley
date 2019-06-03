@@ -26,7 +26,6 @@
 // KDE
 class KActionMenu;
 class QAction;
-class QUrl;
 
 // KEduVocDocument
 class KEduVocExpression;

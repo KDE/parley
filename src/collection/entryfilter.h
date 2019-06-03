@@ -22,7 +22,6 @@ class KEduVocText;
 class KEduVocTranslation;
 class KEduVocExpression;
 class KEduVocDocument;
-class QDialogButtonBox;
 class TestEntry;
 
 
