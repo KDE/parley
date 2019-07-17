@@ -17,7 +17,6 @@
 #include <QAction>
 #include <QMessageBox>
 #include <QDebug>
-#include <QSignalMapper>
 #include <QStandardItemModel>
 
 //#include <KMimeType>
@@ -60,8 +59,6 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     m_ui = new Ui::Dashboard();
     m_ui->setupUi(m_widget);
     setCentralWidget(m_widget);
-    m_practiceSignalMapper = new QSignalMapper(this);
-    m_removeSignalMapper = new QSignalMapper(this);
 
     QTime time = QTime::currentTime();
     qsrand((uint)time.msec());
@@ -100,13 +97,6 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     connect(m_ui->newButton,  &QAbstractButton::clicked, m_mainWindow, &ParleyMainWindow::slotFileNew);
     connect(m_ui->openButton, &QAbstractButton::clicked, doc, &ParleyDocument::slotFileOpen);
     connect(m_ui->ghnsButton, &QAbstractButton::clicked, doc, &ParleyDocument::slotGHNS);
-
-    // Signals FROM the signal mappers.  The ones TO the signal mappers are
-    // handled below.
-    connect(m_practiceSignalMapper, SIGNAL(mapped(QString)),
-            this,                   SLOT(slotPracticeButtonClicked(QString)));
-    connect(m_removeSignalMapper,   SIGNAL(mapped(QString)),
-            this,                   SLOT(slotRemoveButtonClicked(QString)));
 
     KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
     applyMainWindowSettings(cfg);
@@ -235,10 +225,10 @@ void Dashboard::populateGrid()
                 m_completedGridLayout->addWidget(backWidget, jc / ROWSIZE, jc % ROWSIZE);
         }
 
-        m_practiceSignalMapper->setMapping(backWidget, urlString);
-        connect(backWidget, SIGNAL(practiceButtonClicked()), m_practiceSignalMapper, SLOT(map()));
-        m_removeSignalMapper->setMapping(backWidget, urlString);
-        connect(backWidget, SIGNAL(removeButtonClicked()), m_removeSignalMapper, SLOT(map()));
+        connect(backWidget, &CollectionWidget::practiceButtonClicked,
+                this, [=] {slotPracticeButtonClicked(urlString);});
+        connect(backWidget, &CollectionWidget::removeButtonClicked,
+                this, [=] {slotRemoveButtonClicked(urlString);});
 
         if (percentageCompleted != 100) {
             j++;

@@ -56,7 +56,6 @@
 #include <KCharSelect>
 
 #include <QTimer>
-#include <QSignalMapper>
 #include <QDockWidget>
 #include <QHeaderView>
 #include <QMenu>
@@ -142,8 +141,8 @@ void EditorWindow::updateDocument(KEduVocDocument *doc)
     for (int i = 0; i < doc->identifierCount(); ++i) {
         QAction* languageSpellCheck = new QAction(doc->identifier(i).name(), m_spellCheckMenu->menu());
         m_spellCheckMenu->menu()->addAction(languageSpellCheck);
-        m_spellCheckMapper->setMapping(languageSpellCheck, i);
-        connect(languageSpellCheck, SIGNAL(triggered()), m_spellCheckMapper, SLOT(map()));
+        connect(languageSpellCheck, &QAction::triggered,
+                this, [=] {m_vocabularyView->checkSpelling(i);});
     }
 }
 
@@ -397,8 +396,6 @@ void EditorWindow::initActions()
     ParleyActions::create(ParleyActions::RemoveGrades, this, SLOT(removeGrades()), actionCollection());
     m_spellCheckMenu = ParleyActions::create(ParleyActions::CheckSpelling, 0, "", actionCollection());
     m_spellCheckMenu->setMenu(new QMenu(this));
-    m_spellCheckMapper = new QSignalMapper(this);
-    connect(m_spellCheckMapper, SIGNAL(mapped(int)), m_vocabularyView, SLOT(checkSpelling(int)));
 
     ParleyActions::create(ParleyActions::ToggleShowSublessons, m_vocabularyModel, SLOT(showEntriesOfSubcontainers(bool)), actionCollection());
     ParleyActions::create(ParleyActions::AutomaticTranslation, m_vocabularyModel, SLOT(automaticTranslation(bool)), actionCollection());

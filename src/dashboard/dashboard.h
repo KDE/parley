@@ -18,7 +18,6 @@
 #include "statistics/statisticsmainwindow.h"
 
 #include <KXmlGuiWindow>
-#include <QSignalMapper>
 #include <QUrl>
 
 static const int N = 50;
@@ -79,9 +78,6 @@ private:
 
     // The parts of the collections
     QUrl          m_urlArray[N];
-
-    QSignalMapper *m_practiceSignalMapper;  // For the practice buttons
-    QSignalMapper *m_removeSignalMapper; // For the remove buttons
 
     int m_count;
 };

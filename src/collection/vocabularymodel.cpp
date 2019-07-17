@@ -368,7 +368,7 @@ QMimeData * VocabularyModel::mimeData(const QModelIndexList & indexes) const
 {
     VocabularyMimeData *mimeData = new VocabularyMimeData();
     QModelIndexList sortedIndexes = indexes;
-    qSort(sortedIndexes);
+    std::sort(sortedIndexes.begin(), sortedIndexes.end());
 
     qDebug() << "mimeData for " << indexes.count() << "indexes";
 

@@ -23,7 +23,6 @@
 
 #include <KXmlGuiWindow>
 
-class QSignalMapper;
 class QLineEdit;
 class ScriptManager;
 
@@ -130,7 +129,6 @@ private:
     QLineEdit *m_searchLine;
     QWidget *m_searchWidget;
     QAction *m_spellCheckMenu;
-    QSignalMapper *m_spellCheckMapper;
 
     /** Show a single conjugation and let the user edit it */
     InflectionWidget *m_inflectionWidget;

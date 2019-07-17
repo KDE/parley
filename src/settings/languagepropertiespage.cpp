@@ -40,7 +40,8 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
 {
     setupUi(this);
 
-    connect(localeComboBox, static_cast<void (KComboBox::*)(const QString &)>(&KComboBox::currentIndexChanged), this, &LanguagePropertiesPage::localeChanged);
+    connect(localeComboBox, QOverload<const QString &>::of(&KComboBox::currentTextChanged),
+            this, &LanguagePropertiesPage::localeChanged);
     connect(downloadGrammarButton, &QPushButton::clicked, this, &LanguagePropertiesPage::downloadGrammar);
 
     // qmap automatically sorts by keys

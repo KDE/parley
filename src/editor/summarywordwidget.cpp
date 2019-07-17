@@ -58,7 +58,8 @@ SummaryWordWidget::SummaryWordWidget(VocabularyFilter *model, KEduVocDocument *d
     m_mapper->setModel(model);
     m_mapper->setItemDelegate(new SummaryWordDelegate(this));
 
-    connect(wordTypeComboBox, static_cast<void (KComboBox::*)(const QString &)>(&KComboBox::currentIndexChanged), this, &SummaryWordWidget::wordTypeSelected);
+    connect(wordTypeComboBox, QOverload<const QString &>::of(&KComboBox::currentTextChanged),
+            this, &SummaryWordWidget::wordTypeSelected);
 }
 
 void SummaryWordWidget::setTranslation(KEduVocExpression *entry, int translation)

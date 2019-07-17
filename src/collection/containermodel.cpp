@@ -127,7 +127,7 @@ bool ContainerModel::setData(const QModelIndex &index, const QVariant &value, in
         if (role == Qt::CheckStateRole) {
             bool newState = value.toBool();
             for (int i = 0; i < rowCount(index); i++) {
-                setData(index.child(i, 0), newState, Qt::CheckStateRole);
+                setData(index.model()->index(i, 0, index), newState, Qt::CheckStateRole);
             }
             container->setInPractice(newState);
             emit dataChanged(index, index);

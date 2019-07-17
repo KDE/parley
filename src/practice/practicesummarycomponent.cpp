@@ -112,12 +112,12 @@ void PracticeSummaryComponent::setupDetailsTable()
         QTableWidgetItem* itemTo = new QTableWidgetItem(
             entry->entry()->translation(entry->languageTo())->text());
         if (entry->statisticGoodCount() > 0) {
-            itemTo->setForeground(correctPalette.foreground());
+            itemTo->setForeground(correctPalette.windowText());
         }
 
         QTableWidgetItem* itemUserAnswer = new QTableWidgetItem(
             entry->userAnswers().join(QStringLiteral("; ")));
-        itemUserAnswer->setForeground(wrongPalette.foreground());
+        itemUserAnswer->setForeground(wrongPalette.windowText());
 
         SortedAttemptTableWidgetItem* itemAttempts = new SortedAttemptTableWidgetItem();
         itemAttempts->setData(Qt::DisplayRole, entry->statisticCount());

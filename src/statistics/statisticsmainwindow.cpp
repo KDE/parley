@@ -17,7 +17,6 @@
 #include "statisticsmainwindow.h"
 
 #include <QHeaderView>
-#include <QSignalMapper>
 
 #include <KLocalizedString>
 #include <KConfig>
@@ -131,24 +130,22 @@ void StatisticsMainWindow::initPracticeModeSelection()
     default:
         break;
     }
-    QSignalMapper* mapper = new QSignalMapper(this);
-    mapper->setMapping(m_ui->flashCard, Prefs::EnumPracticeMode::FlashCardsPractice);
-    mapper->setMapping(m_ui->mixedLetters, Prefs::EnumPracticeMode::MixedLettersPractice);
-    mapper->setMapping(m_ui->multipleChoice, Prefs::EnumPracticeMode::MultipleChoicePractice);
-    mapper->setMapping(m_ui->written, Prefs::EnumPracticeMode::WrittenPractice);
-    mapper->setMapping(m_ui->exampleSentence, Prefs::EnumPracticeMode::ExampleSentencesPractice);
-    mapper->setMapping(m_ui->gender, Prefs::EnumPracticeMode::GenderPractice);
-    mapper->setMapping(m_ui->comparisonForms, Prefs::EnumPracticeMode::ComparisonPractice);
-    mapper->setMapping(m_ui->conjugations, Prefs::EnumPracticeMode::ConjugationPractice);
-    connect(m_ui->flashCard, SIGNAL(clicked(bool)), mapper, SLOT(map()));
-    connect(m_ui->mixedLetters, SIGNAL(clicked(bool)), mapper, SLOT(map()));
-    connect(m_ui->multipleChoice, SIGNAL(clicked(bool)), mapper, SLOT(map()));
-    connect(m_ui->written, SIGNAL(clicked(bool)), mapper, SLOT(map()));
-    connect(m_ui->exampleSentence, SIGNAL(clicked(bool)), mapper, SLOT(map()));
-    connect(m_ui->gender, SIGNAL(clicked(bool)), mapper, SLOT(map()));
-    connect(m_ui->comparisonForms, SIGNAL(clicked(bool)), mapper, SLOT(map()));
-    connect(m_ui->conjugations, SIGNAL(clicked(bool)), mapper, SLOT(map()));
-    connect(mapper, SIGNAL(mapped(int)), this, SLOT(practiceModeSelected(int)));
+    connect(m_ui->flashCard, &QRadioButton::clicked,
+            this, [=] {practiceModeSelected(Prefs::EnumPracticeMode::FlashCardsPractice);});
+    connect(m_ui->mixedLetters, &QRadioButton::clicked,
+            this, [=] {practiceModeSelected(Prefs::EnumPracticeMode::MixedLettersPractice);});
+    connect(m_ui->multipleChoice, &QRadioButton::clicked,
+            this, [=] {practiceModeSelected(Prefs::EnumPracticeMode::MultipleChoicePractice);});
+    connect(m_ui->written, &QRadioButton::clicked,
+            this, [=] {practiceModeSelected(Prefs::EnumPracticeMode::WrittenPractice);});
+    connect(m_ui->exampleSentence, &QRadioButton::clicked,
+            this, [=] {practiceModeSelected(Prefs::EnumPracticeMode::ExampleSentencesPractice);});
+    connect(m_ui->gender, &QRadioButton::clicked,
+            this, [=] {practiceModeSelected(Prefs::EnumPracticeMode::GenderPractice);});
+    connect(m_ui->comparisonForms, &QRadioButton::clicked,
+            this, [=] {practiceModeSelected(Prefs::EnumPracticeMode::ComparisonPractice);});
+    connect(m_ui->conjugations, &QRadioButton::clicked,
+            this, [=] {practiceModeSelected(Prefs::EnumPracticeMode::ConjugationPractice);});
 }
 
 void StatisticsMainWindow::initLanguages()

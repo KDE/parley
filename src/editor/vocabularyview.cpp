@@ -279,7 +279,7 @@ void VocabularyView::deleteSelectedEntries(bool askConfirmation)
 void VocabularyView::slotEditCopy()
 {
     QModelIndexList sortedIndexes = selectionModel()->selectedIndexes();
-    qSort(sortedIndexes);
+    std::sort(sortedIndexes.begin(), sortedIndexes.end());
     QMimeData *mimeData = m_model->mimeData(sortedIndexes);
 
     QClipboard *clipboard = QApplication::clipboard();
