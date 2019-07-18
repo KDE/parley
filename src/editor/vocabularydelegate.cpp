@@ -25,7 +25,6 @@
 #include <keduvocexpression.h>
 #include <keduvocwordtype.h>
 #include <KLocalizedString>
-#include <KPassivePopup>
 #include <KComboBox>
 #include <QDebug>
 #include <QLineEdit>

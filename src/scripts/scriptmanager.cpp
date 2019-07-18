@@ -17,7 +17,6 @@
 #include <KPluginInfo>
 #include <KServiceTypeTrader>
 #include <KActionCollection>
-#include <KNotifications/KPassivePopup>
 #include <KMessageBox>
 #include <KConfig>
 #include <KSharedConfig>
