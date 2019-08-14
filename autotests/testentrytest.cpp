@@ -341,4 +341,4 @@ void TestEntryTest::test_practiceModeDependentMaxPreGrade_comparsion()
 
 }
 
-QTEST_MAIN(TestEntryTests::TestEntryTest)
+QTEST_GUILESS_MAIN(TestEntryTests::TestEntryTest)
