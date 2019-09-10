@@ -39,7 +39,6 @@ find_package(KF5 5.22 MODULE REQUIRED COMPONENTS
   KIO
   NewStuff
   Kross
-  #KHtml
   Sonnet
   KCMUtils
   XmlGui
@@ -88,7 +87,6 @@ include_directories (BEFORE ${CMAKE_CURRENT_BINARY_DIR})
 # Define link libs for parley executable and unittests
 set( parley_LINK_LIBS
   LibKEduVocDocumentImport__KEduVocDocument
-  #KF5::KHtml
   KF5::KrossCore
   # KF5::ConfigCore
   Qt5::Core
