@@ -112,7 +112,7 @@ void SessionManagerBase::practiceStarted()
 void SessionManagerBase::practiceFinished()
 {
     m_totalTime = m_time.elapsed();
-    qDebug() << "stop practice timer" << m_totalTime << m_time.toString();
+    qDebug() << "stop practice timer" << m_totalTime;
 }
 
 int SessionManagerBase::totalTime()

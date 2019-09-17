@@ -19,7 +19,7 @@
 
 // Qt
 #include <QVector>
-
+#include <QElapsedTimer>
 // kdeedulibs
 #include <keduvocexpression.h>
 
@@ -164,7 +164,7 @@ protected:  // data
     // The index of the current entry in m_currentEntries.
     int m_currentEntry;
 
-    QTime m_time;
+    QElapsedTimer m_time;
     int m_totalTime;
 };
 
