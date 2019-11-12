@@ -4,7 +4,7 @@ from sgmllib import SGMLParser
 
 # fetches the html document for the given word and language pair
 def fetchData(word,from_lang,to_lang):
-  url = "http://translate.google.com/translate_dict"
+  url = "https://translate.google.com/translate_dict"
   param_word_trn = ("q",word)       #set query parameter
   param_lang_pair = ("langpair",from_lang+"|"+to_lang)
   request_url = url + "?" + urllib.urlencode([param_word_trn,param_lang_pair])

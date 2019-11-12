@@ -75,7 +75,7 @@ set_package_properties(LibXml2 PROPERTIES
 #@todo frameworks restore Xattica
 # find_package(LibAttica)
 
-# macro_log_feature(LIBATTICA_FOUND "libattica" "A library to access Open Collaboration Service providers" "http://kde.org" FALSE "" "Required to access OCS providers in get hot new stuff.")
+# macro_log_feature(LIBATTICA_FOUND "libattica" "A library to access Open Collaboration Service providers" "https://kde.org" FALSE "" "Required to access OCS providers in get hot new stuff.")
 
 
 # at the end, output the configuration

@@ -75,9 +75,9 @@ limited to language learning but supports a multitude of subjects.
 
 <!--userbase-content-->
 <chapter id="introduction"><title>Introduction</title>
-<para>&parley; is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. You can create your own vocabulary collections with the words you need or select from a great variety of available <ulink url="http://userbase.kde.org/Parley#Vocabulary_Collections">Vocabulary Collections</ulink>. There you can find collections containing language vocabulary and also anatomy, music, geography, chemistry or exam preparation.
+<para>&parley; is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. You can create your own vocabulary collections with the words you need or select from a great variety of available <ulink url="https://userbase.kde.org/Parley#Vocabulary_Collections">Vocabulary Collections</ulink>. There you can find collections containing language vocabulary and also anatomy, music, geography, chemistry or exam preparation.
 </para>
-<para>&parley; is very flexible and uses the <ulink url="http://en.wikipedia.org/wiki/Flashcard">flash card learning approach</ulink>. It automatically keeps track of your learning progress. With &parley; you can arrange your vocabulary as you wish, you create your own lessons as needed. But unlike real flash cards you can use different learning methods with &parley;.
+<para>&parley; is very flexible and uses the <ulink url="https://en.wikipedia.org/wiki/Flashcard">flash card learning approach</ulink>. It automatically keeps track of your learning progress. With &parley; you can arrange your vocabulary as you wish, you create your own lessons as needed. But unlike real flash cards you can use different learning methods with &parley;.
 </para>
 <para>Flashcards contain expressions on the front side and their translation on the back. You start with a pile of cards. If you know the translation on a card, you can put it into a second pile of cards. If you did not remember it, you keep it in the first one to try again later.
 </para>
@@ -1659,7 +1659,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
   </mediaobject>
 </screenshot>
 </para>
-<para>And if these are not enough: you can click on <guilabel>Get New Themes</guilabel> to find more themes. Over time we hope that more and more themes come along. If you know how to create SVG graphics (for example with <ulink url="http://inkscape.org"><application>Inkscape</application></ulink>), you can create your own theme and share it with the world.
+<para>And if these are not enough: you can click on <guilabel>Get New Themes</guilabel> to find more themes. Over time we hope that more and more themes come along. If you know how to create SVG graphics (for example with <ulink url="https://inkscape.org"><application>Inkscape</application></ulink>), you can create your own theme and share it with the world.
 </para>
 <para>
 <screenshot>
@@ -1674,7 +1674,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
   </mediaobject>
 </screenshot>
 </para>
-<para>Additional themes can be found on <ulink url="http://kde-look.org/index.php?xcontentmode=85">kde-look.org </ulink>
+<para>Additional themes can be found on <ulink url="https://store.kde.org/browse/cat/357/order/latest/">store.kde.org</ulink>
 </para>
 </sect2>
 <sect2 id="general-tab"><title>General Tab</title>
@@ -1725,11 +1725,11 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 </chapter>
 <!--FIXME Parley is not available on Windows in 16.04
 <chapter id="parley-on-windows"><title>Parley on Windows</title>
-<para>It is possible to install Parley together with other <ulink url="http://edu.kde.org">Educational software</ulink> on Windows systems. For further info please visit <ulink url="http://windows.kde.org">this page</ulink>.
+<para>It is possible to install Parley together with other <ulink url="https://edu.kde.org">Educational software</ulink> on Windows systems. For further info please visit <ulink url="https://community.kde.org/Windows">this page</ulink>.
 </para>
 <para>The steps to be followed in short:
 </para>
-<para>Download the installer <ulink url="http://windows.kde.org/download.php">here</ulink>
+<para>Download the installer <ulink url="https://windows.kde.org/download.php">here</ulink>
 </para>
 <para>Then follow the installation procedure like for any other Windows software.
 </para>
@@ -1769,7 +1769,7 @@ The sound file will be saved next to the current vocabulary file in the <filenam
 <sect1 id="file-format"><title>File format</title>
 <para>If you are interested in the file formats that Parley can read and stores the vocabulary collections in, visit:
 </para>
-<para><ulink url="http://userbase.kde.org/Parley/FileFormats">Parley File Formats on userbase.kde.org</ulink>
+<para><ulink url="https://userbase.kde.org/Parley/FileFormats">Parley File Formats on userbase.kde.org</ulink>
 </para>
 </sect1>
 

@@ -9,16 +9,16 @@ import Parley
 import re
 
 #german to french (Glas) [links off]
-#http://dict.leo.org/frde?lp=frde&lang=de&searchLoc=1&cmpType=relaxed&sectHdr=on&spellToler=on&chinese=both&pinyin=diacritic&search=Glas&relink=off
+#https://dict.leo.org/frde?lp=frde&lang=de&searchLoc=1&cmpType=relaxed&sectHdr=on&spellToler=on&chinese=both&pinyin=diacritic&search=Glas&relink=off
 
 #german to spanish (Glas)
-#http://dict.leo.org/esde?lp=esde&lang=de&searchLoc=1&cmpType=relaxed&sectHdr=on&spellToler=std&chinese=both&pinyin=diacritic&search=Glas&relink=on
+#https://dict.leo.org/esde?lp=esde&lang=de&searchLoc=1&cmpType=relaxed&sectHdr=on&spellToler=std&chinese=both&pinyin=diacritic&search=Glas&relink=on
 
 #spanish to german (tarro)
-#http://dict.leo.org/esde?lp=esde&lang=de&searchLoc=-1&cmpType=relaxed&sectHdr=on&spellToler=std&chinese=both&pinyin=diacritic&search=tarro&relink=on
+#https://dict.leo.org/esde?lp=esde&lang=de&searchLoc=-1&cmpType=relaxed&sectHdr=on&spellToler=std&chinese=both&pinyin=diacritic&search=tarro&relink=on
 
 #spanish to german (tarro) [links off]
-#http://dict.leo.org/esde?lp=esde&lang=de&searchLoc=-1&cmpType=relaxed&sectHdr=on&spellToler=std&chinese=both&pinyin=diacritic&search=tarro&relink=off
+#https://dict.leo.org/esde?lp=esde&lang=de&searchLoc=-1&cmpType=relaxed&sectHdr=on&spellToler=std&chinese=both&pinyin=diacritic&search=tarro&relink=off
 
 # timeout of search (important for slow connections, not to freeze Parley by waiting for a result)
 timeout = 1.0
@@ -42,7 +42,7 @@ def fetchData(word,from_lang,to_lang):
   locale = languageString(from_lang,to_lang)
   if locale == None:
     return #not supported languages
-  url = "http://dict.leo.org/"+locale
+  url = "https://dict.leo.org/"+locale
   #esde?lp=esde&lang=de&searchLoc=-1&cmpType=relaxed&sectHdr=on&spellToler=std&chinese=both&pinyin=diacritic&search=tarro&relink=off
   params = [("lp",locale),("lang","de"),("searchLoc",searchLoc(from_lang,to_lang)),("cmpType","relaxed"),("sectHdr","on"),("spellToler","std"),("chinese","both"),("pinyin","diacritic"),("search",word),("relink","off")]
 

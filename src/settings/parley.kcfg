@@ -385,7 +385,7 @@
   <group name="KNewStuff">
     <entry name="ProvidersUrl" type="Path">
       <label>The Providers path for Parley</label>
-      <default>"http://edu.kde.org/parley/providers.xml"</default>
+      <default>"https://edu.kde.org/parley/newstuff/providers.xml"</default>
     </entry>
     <entry name="InstallationCommand" type="String">
       <label>The command used to start a downloaded vocabulary</label>

@@ -4,9 +4,9 @@ import re
 from sgmllib import SGMLParser
 
 
-url = "http://translate.google.com/translate_dict"
-google_url = "http://ajax.googleapis.com/ajax/services/language/translate"
-referer_url = "http://edu.kde.org/parley/"
+url = "https://translate.google.com/translate_dict"
+google_url = "https://ajax.googleapis.com/ajax/services/language/translate"
+referer_url = "https://edu.kde.org/parley/"
 referer = "Referer: "+referer_url
 header_referer = ("Referer",referer_url)
 param_lang_pair = ("langpair","en|fr")
