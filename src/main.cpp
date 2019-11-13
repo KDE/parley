@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
                                            "© 2004-2007\tPeter Hedlund\n"
                                            "© 2007-2010\tFrederik Gladhorn\n").toString() );
     aboutData.setOtherText( ki18n("Helps you train your vocabulary").toString() );
-    aboutData.setHomepage( QStringLiteral("http://edu.kde.org/parley") );
+    aboutData.setHomepage( QStringLiteral("https://edu.kde.org/parley") );
     aboutData.setBugAddress( "submit@bugs.kde.org");
 
     aboutData.addAuthor(ki18n("Inge Wallin").toString(),

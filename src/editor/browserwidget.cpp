@@ -47,13 +47,13 @@ void BrowserWidget::setupProviders()
 
     DictionaryProvider provider;
     provider.name = QStringLiteral("De-Es Beolingus");
-    provider.url = QStringLiteral("http://beolingus.org/dings.cgi?service=dees&query=\\{@}");
+    provider.url = QStringLiteral("https://dict.tu-chemnitz.de/dings.cgi?service=dees&query=\\{@}");
     provider.languages << QStringLiteral("de") << QStringLiteral("es");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
     provider.name = QStringLiteral("De-En Beolingus");
-    provider.url = QStringLiteral("http://beolingus.org/dings.cgi?query=\\{@}");
+    provider.url = QStringLiteral("https://dict.tu-chemnitz.de/dings.cgi?service=deen?query=\\{@}");
     provider.languages << QStringLiteral("de") << QStringLiteral("en");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
@@ -65,37 +65,37 @@ void BrowserWidget::setupProviders()
     providerComboBox->addItem(provider.name);
 
     provider.name = QStringLiteral("De-Es Leo");
-    provider.url = QStringLiteral("http://dict.leo.org/?lp=esde&search=\\{@}");
+    provider.url = QStringLiteral("https://dict.leo.org/?lp=esde&search=\\{@}");
     provider.languages << QStringLiteral("de") << QStringLiteral("es");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
     provider.name = QStringLiteral("De-Fr Leo");
-    provider.url = QStringLiteral("http://dict.leo.org/?lp=frde&search=\\{@}");
+    provider.url = QStringLiteral("https://dict.leo.org/?lp=frde&search=\\{@}");
     provider.languages << QStringLiteral("de") << QStringLiteral("fr");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
     provider.name = QStringLiteral("Ru-En Multitran");
-    provider.url = QStringLiteral("http://multitran.ru/c/m.exe?SHL=1&CL=1&l1=1&s=\\{@}");
+    provider.url = QStringLiteral("https://multitran.com/c/m.exe?SHL=1&CL=1&l1=1&s=\\{@}");
     provider.languages << QStringLiteral("ru") << QStringLiteral("en");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
     provider.name = QStringLiteral("Ru-De Multitran");
-    provider.url = QStringLiteral("http://multitran.ru/c/m.exe?SHL=1&CL=1&l1=3&s=\\{@}");
+    provider.url = QStringLiteral("https://multitran.com/c/m.exe?SHL=1&CL=1&l1=3&s=\\{@}");
     provider.languages << QStringLiteral("ru") << QStringLiteral("de");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
     provider.name = QStringLiteral("Ru-Fr Multitran");
-    provider.url = QStringLiteral("http://multitran.ru/c/m.exe?SHL=1&CL=1&l1=4&s=\\{@}");
+    provider.url = QStringLiteral("https://multitran.com/c/m.exe?SHL=1&CL=1&l1=4&s=\\{@}");
     provider.languages << QStringLiteral("ru") << QStringLiteral("fr");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
 
     provider.name = QStringLiteral("Heinzelnisse");
-    provider.url = QStringLiteral("http://heinzelnisse.info/dict?setOptions=true&searchItem=\\{@}&dictDeNoSearch=on&dictNoDeSearch=on&dictExactSearch=on&dictPhoneticSearch=on&wikiSearch=on&dictNynorskSearch=on&dictBokmaalSearch=checked&forumKeywordSearch=on&suggestion=on");
+    provider.url = QStringLiteral("https://heinzelnisse.info/dict?setOptions=true&searchItem=\\{@}&dictDeNoSearch=on&dictNoDeSearch=on&dictExactSearch=on&dictPhoneticSearch=on&wikiSearch=on&dictNynorskSearch=on&dictBokmaalSearch=checked&forumKeywordSearch=on&suggestion=on");
     provider.languages << QStringLiteral("no") << QStringLiteral("de");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
