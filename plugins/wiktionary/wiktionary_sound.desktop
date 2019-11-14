@@ -48,6 +48,13 @@ Name[x-test]=xxWiktionary Soundxx
 Name[zh_CN]=Wiktionary 声音
 Name[zh_TW]=Wiktionary 音效
 Comment=This script fetches sound files from https://commons.wikimedia.org.
+Comment[ca]=Aquest script recupera fitxers de so des de https://commons.wikimedia.org.
+Comment[et]=See skript tõmbab helifaile aadressilt https://commons.wikimedia.org.
+Comment[nl]=Dit script haalt geluidsbestanden op van https://commons.wikimedia.org.
+Comment[pt]=Este programa obtém ficheiros de sons do https://commons.wikimedia.org.
+Comment[sv]=Skriptet hämtar ljudfiler från https://commons.wikimedia.org.
+Comment[uk]=Цей скрипт отримує звукові файли з https://commons.wikimedia.org.
+Comment[x-test]=xxThis script fetches sound files from https://commons.wikimedia.org.xx
 
 Script=wiktionary_sound.py
 
