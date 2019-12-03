@@ -467,7 +467,7 @@ void EditorWindow::initView()
     m_searchWidget->setVisible(Prefs::showSearch());
 
     m_vocabularyView = new VocabularyView(this);
-    rightLayout->addWidget(m_vocabularyView, 1, 0);
+    rightLayout->addWidget(m_vocabularyView, 1);
 
     topLayout->addLayout(rightLayout);
 }

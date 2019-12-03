@@ -169,7 +169,7 @@ Qt::ItemFlags ReadonlyContainerModel::flags(const QModelIndex &index) const
             return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
         }
     }
-    return  0;
+    return Qt::NoItemFlags;
 }
 
 int ReadonlyContainerModel::columnCount(const QModelIndex & parent) const

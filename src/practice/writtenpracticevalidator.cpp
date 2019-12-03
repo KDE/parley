@@ -101,7 +101,7 @@ void WrittenPracticeValidator::validateAnswer(const QString& answer)
     QString correct = m_entry->entry()->translation(m_entry->languageTo())->text();
 
     qDebug() << "Correct answer should be: " << correct;
-    m_error = 0;
+    m_error = {};
 
     //Check for empty answers and valid answers first
     if (answer.isEmpty()) {
