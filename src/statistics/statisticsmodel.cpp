@@ -146,7 +146,7 @@ Qt::ItemFlags StatisticsModel::flags(const QModelIndex &index) const
         }
         return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
     }
-    return 0;
+    return Qt::NoItemFlags;
 }
 
 int StatisticsModel::columnCount(const QModelIndex &parent) const
@@ -157,7 +157,7 @@ int StatisticsModel::columnCount(const QModelIndex &parent) const
 
 Qt::DropActions StatisticsModel::supportedDragActions() const
 {
-    return 0;
+    return Qt::IgnoreAction;
 }
 
 KEduVocContainer *StatisticsModel::rootContainer() const
