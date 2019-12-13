@@ -59,7 +59,7 @@ void BrowserWidget::setupProviders()
     providerComboBox->addItem(provider.name);
 
     provider.name = QStringLiteral("De-En Leo");
-    provider.url = QStringLiteral("http://dict.leo.org/?search=\\{@}");
+    provider.url = QStringLiteral("https://dict.leo.org/?search=\\{@}");
     provider.languages << QStringLiteral("de") << QStringLiteral("en");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
