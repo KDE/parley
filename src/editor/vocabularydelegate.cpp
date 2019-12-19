@@ -114,11 +114,11 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
             if (!translations.isEmpty() && !(translations.size() == 1 && (*translations.begin()) == index.model()->data(index, Qt::DisplayRole).toString())) {
                 KComboBox *translationCombo = new KComboBox(parent);
                 translationCombo->setFrame(false);
-                translationCombo->addItems(translations.toList());
+                translationCombo->addItems(translations.values());
                 translationCombo->setEditable(true);
                 translationCombo->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
                 translationCombo->setEditText(index.model()->data(index, Qt::DisplayRole).toString());
-                translationCombo->completionObject()->setItems(translations.toList());
+                translationCombo->completionObject()->setItems(translations.values());
                 return translationCombo;
             }
         }
