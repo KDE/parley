@@ -21,7 +21,7 @@
  *                                                                         *
  ***************************************************************************/
 
-/// @file main.cpp
+/// @file src/main.cpp
 
 #include "parleymainwindow.h"
 #include <config-parley.h>
