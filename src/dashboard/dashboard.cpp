@@ -60,9 +60,6 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     m_ui->setupUi(m_widget);
     setCentralWidget(m_widget);
 
-    QTime time = QTime::currentTime();
-    qsrand((uint)time.msec());
-
     QFont font = m_ui->recentLabel->font();
     font.setBold(true);
     m_ui->recentLabel->setFont(font);
