@@ -115,8 +115,6 @@ int main(int argc, char* argv[])
     KCrash::initialize();
 
     QCommandLineParser parser;
-    parser.addVersionOption();
-    parser.addHelpOption();
     parser.addPositionalArgument(ki18n( "[file]" ).toString(), ki18n("Document file to open").toString() );
 
     aboutData.setupCommandLine(&parser);
