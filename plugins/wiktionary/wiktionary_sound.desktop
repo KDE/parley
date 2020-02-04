@@ -49,6 +49,7 @@ Name[zh_CN]=Wiktionary 声音
 Name[zh_TW]=Wiktionary 音效
 Comment=This script fetches sound files from https://commons.wikimedia.org.
 Comment[ca]=Aquest script recupera fitxers de so des de https://commons.wikimedia.org.
+Comment[ca@valencia]=Aquest script recupera fitxers de so des de https://commons.wikimedia.org.
 Comment[cs]=Tento skript stahuje zvuk z  https://commons.wikimedia.org.
 Comment[de]=Dieses Skript lädt Klangdateien von https://commons.wikimedia.org.
 Comment[en_GB]=This script fetches sound files from https://commons.wikimedia.org.
