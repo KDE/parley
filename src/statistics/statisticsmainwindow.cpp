@@ -210,7 +210,11 @@ void StatisticsMainWindow::initPracticeMode()
         Prefs::setPracticeDirection(Prefs::EnumPracticeDirection::MixedDirectionsWordsOnly);
 
     m_ui->practiceDirection->setCurrentIndex(practiceDirection);
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
     connect(m_ui->practiceDirection, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+#else
+    connect(m_ui->practiceDirection, static_cast<void (QComboBox::*)(int, const QString &)>(&QComboBox::currentIndexChanged) ,
+#endif
             this, &StatisticsMainWindow::practiceDirectionChanged);
 
     m_ui->rememberPracticeDirection->setChecked(Prefs::rememberPracticeDirection());

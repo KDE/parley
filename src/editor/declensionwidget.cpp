@@ -35,7 +35,11 @@ DeclensionWidget::DeclensionWidget(QWidget *parent) : QWidget(parent)
     numberSelection->setItemData(0, KEduVocWordFlag::Singular);
     numberSelection->setItemData(1, KEduVocWordFlag::Dual);
     numberSelection->setItemData(2, KEduVocWordFlag::Plural);
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
     connect(numberSelection, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &DeclensionWidget::updateEntries);
+#else
+    connect(numberSelection, static_cast<void (QComboBox::*)(int, const QString &)>(&QComboBox::currentIndexChanged) , this, &DeclensionWidget::updateEntries);
+#endif
 
     connect(nextButton, &QPushButton::clicked, this, &DeclensionWidget::nextNumber);
 
