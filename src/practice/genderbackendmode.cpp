@@ -75,7 +75,11 @@ void GenderBackendMode::prepareChoices(TestEntry* entry)
     QString noun = entry->entry()->translation(m_current->languageTo())->text();
 
     // strip the article
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
     QStringList qsl = noun.split(QRegExp(QStringLiteral("\\s")), QString::SkipEmptyParts);
+#else
+    QStringList qsl = noun.split(QRegExp(QStringLiteral("\\s")), Qt::SkipEmptyParts);
+#endif
     QMutableStringListIterator qsli(qsl);
     while (qsli.hasNext())
         if (m_articles.isArticle(qsli.next()))
