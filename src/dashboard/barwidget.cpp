@@ -21,6 +21,7 @@
 #include <QWidget>
 #include <QPainter>
 #include <QPen>
+#include <QPainterPath>
 
 // KDE
 #include <klocalizedstring.h>

@@ -34,6 +34,7 @@
 #include <QKeyEvent>
 #include <QPainter>
 #include <QToolTip>
+#include <QPainterPath>
 
 using namespace Editor;
 
