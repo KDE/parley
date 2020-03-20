@@ -21,6 +21,7 @@
 #include <QHelpEvent>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QPainterPath>
 
 using namespace Practice;
 

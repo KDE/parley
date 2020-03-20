@@ -18,6 +18,7 @@
 // Qt
 #include <QPainter>
 #include <QRect>
+#include <QPainterPath>
 
 // KEduVocDocument library
 #include <keduvocdocument.h>
