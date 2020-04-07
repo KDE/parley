@@ -37,11 +37,7 @@ BrowserWidget::BrowserWidget(QWidget *parent) : QWidget(parent)
     connect(showCurrentButton, &QPushButton::clicked, this, &BrowserWidget::showCurrentTranslation);
 
     setupProviders();
-#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
     connect(providerComboBox, static_cast<void (KComboBox::*)(int)>(&KComboBox::currentIndexChanged), this, &BrowserWidget::providerChanged);
-#else
-    connect(providerComboBox, static_cast<void (KComboBox::*)(int, const QString &)>(&KComboBox::currentIndexChanged) , this, &BrowserWidget::providerChanged);
-#endif
 
 }
 
