@@ -34,6 +34,7 @@
   <name xml:lang="sv">Parley</name>
   <name xml:lang="tr">Parley</name>
   <name xml:lang="uk">Parley</name>
+  <name xml:lang="x-test">xxParleyxx</name>
   <name xml:lang="zh-CN">Parley</name>
   <name xml:lang="zh-TW">語言_Parley</name>
   <summary>Vocabulary Trainer</summary>
@@ -66,6 +67,7 @@
   <summary xml:lang="sv">Ordförrådsträning</summary>
   <summary xml:lang="tr">Kelime Çalıştırıcı</summary>
   <summary xml:lang="uk">Словниковий тренажер</summary>
+  <summary xml:lang="x-test">xxVocabulary Trainerxx</summary>
   <summary xml:lang="zh-CN">词汇练习器</summary>
   <summary xml:lang="zh-TW">字彙訓練師</summary>
   <description>
@@ -94,6 +96,7 @@
     <p xml:lang="sv">Parley är ett är program för ordförrådsövning. Det hjälper dig att memorera ditt ordförråd, till exempel när du försöker lära dig ett främmande språk. Det stöder en mängd språkspecifika funktioner, men kan dessutom användas för andra inlärningsuppgifter. Det använder inlärningsmetoden med utspridd upprepning, vilket gör inlärning optimal. Ordförrådsamlingar kan laddas ner med "Hämta heta nyheter" eller skapas med den inbyggda editorn.</p>
     <p xml:lang="tr">Parley bir kelime çalıştırıcıdır. Kelimeleri hatırlamanıza yardımcı olur, yeni bir dil öğrenmeye çalışırken faydalıdır. Dillere özel bir çok özelliği destekler ama diğer öğrenme görevleri için de kullanılabilir. Öğrenmeyi kolaylaştıran tekrarlı öğrenme yöntemini kullanır. Kelime listeleri "Yeni Liste İndir" bağlantısından indirilebilir veya gömülü düzenleyici ile oluşturulabilir.</p>
     <p xml:lang="uk">Parley — програма для вивчення мов. Вона допоможе вам поповнити ваш словниковий запас і вивчити правила іноземної мови. У програмі передбачено багато специфічних для мов можливостей. Втім, нею можна скористатися і для виконання інших завдань з вивчення даних. У програмі використано методику навчання за допомогою повторення зі змінним інтервалом, яка оптимізує процес навчання. Збірки словників можна отримати з інтернету або створити за допомогою вбудованого до програми редактора.</p>
+    <p xml:lang="x-test">xxParley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. It supports many language specific features, but can be used for other learning tasks as well. It uses the spaced repetition learning method, which makes learning optimal. Vocabulary collections can be downloaded by "Get Hot New Stuff" or created with the built-in editor.xx</p>
     <p xml:lang="zh-TW">Parley 是一套字彙訓練程式。它能協助您在學習外語時記憶字彙。它支援多種語言功能，也可以用於其他領域的訓練。字彙可以從「取得新禮物」中下載，或是自行透過內建編輯器建立。</p>
     <p>Training Modes:</p>
     <p xml:lang="bs">Režimi treninga</p>
@@ -123,6 +126,7 @@
     <p xml:lang="sv">Övningsmetoder:</p>
     <p xml:lang="tr">Çalışma Kipleri:</p>
     <p xml:lang="uk">Режими навчання:</p>
+    <p xml:lang="x-test">xxTraining Modes:xx</p>
     <p xml:lang="zh-CN">训练模式：</p>
     <p xml:lang="zh-TW">訓練模式：</p>
     <ul>
@@ -155,6 +159,7 @@
       <li xml:lang="sv">Snabbkort</li>
       <li xml:lang="tr">Hafıza Kartları</li>
       <li xml:lang="uk">Навчальні картки.</li>
+      <li xml:lang="x-test">xxFlash Cardsxx</li>
       <li xml:lang="zh-CN">题卡</li>
       <li xml:lang="zh-TW">閃卡</li>
       <li>Mixed Letters (order the letters of a word)</li>
@@ -182,6 +187,7 @@
       <li xml:lang="sv">Blandade bokstäver (ordna bokstäverna i ett ord)</li>
       <li xml:lang="tr">Karışık Harfler (kelimenin harflerini sıraya dizin)</li>
       <li xml:lang="uk">Відновлення порядку літер (різновид анаграми).</li>
+      <li xml:lang="x-test">xxMixed Letters (order the letters of a word)xx</li>
       <li xml:lang="zh-CN">混合字母 (一个单词的字母顺序)</li>
       <li xml:lang="zh-TW">混合字母（單字字母順序）</li>
       <li>Multiple Choice</li>
@@ -213,6 +219,7 @@
       <li xml:lang="sv">Flerval</li>
       <li xml:lang="tr">Çoktan Seçmeli</li>
       <li xml:lang="uk">Вибір з варіантів.</li>
+      <li xml:lang="x-test">xxMultiple Choicexx</li>
       <li xml:lang="zh-CN">多项选择</li>
       <li xml:lang="zh-TW">多重選擇</li>
       <li>Written</li>
@@ -244,6 +251,7 @@
       <li xml:lang="sv">Skrivet</li>
       <li xml:lang="tr">Yazılı</li>
       <li xml:lang="uk">Письмовий.</li>
+      <li xml:lang="x-test">xxWrittenxx</li>
       <li xml:lang="zh-CN">写作</li>
       <li xml:lang="zh-TW">已寫入</li>
       <li>Language specific trainings: article, comparison forms, conjugations, synonymes/antonyms/paraphrases</li>
@@ -271,6 +279,7 @@
       <li xml:lang="sv">Språkspecifika övningar: artiklar, kompareringsformer, konjugeringar, synonymer/antonymer/omskrivningar</li>
       <li xml:lang="tr">Dile özel çalışmalar: makale, karşılaştırma formları, çekimler, eş anlamlılar / zıt anlamlılar / başka kelimelerle açıklamalar</li>
       <li xml:lang="uk">Специфічні для мови режими: артиклі, ступені порівняння, спряження, синоніми, антоніми, парафрази.</li>
+      <li xml:lang="x-test">xxLanguage specific trainings: article, comparison forms, conjugations, synonymes/antonyms/paraphrasesxx</li>
       <li xml:lang="zh-TW">語言指定訓練：冠詞、比較級、詞形變化、同義/反義/譯述等</li>
     </ul>
   </description>
@@ -299,6 +308,7 @@
       <caption xml:lang="sk">Výber kolekcie na školenie v Parley</caption>
       <caption xml:lang="sv">Välja en övningssamling i Parley</caption>
       <caption xml:lang="uk">Вибір збірки для вправ у Parley</caption>
+      <caption xml:lang="x-test">xxChoosing a collection for training in Parleyxx</caption>
       <caption xml:lang="zh-CN">选择要在 Parley 中训练的收藏集</caption>
       <caption xml:lang="zh-TW">在 Parley 中選擇集合來訓練</caption>
       <image>https://cdn.kde.org/screenshots/parley/parley.png</image>
