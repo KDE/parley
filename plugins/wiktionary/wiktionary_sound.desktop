@@ -44,6 +44,7 @@ Name[sl]=Zvoki Wiktionary
 Name[sv]=Wiktionary-ljud
 Name[tr]=Wiktionary Sesi
 Name[uk]=Звук з Вікісловника
+Name[x-test]=xxWiktionary Soundxx
 Name[zh_CN]=Wiktionary 声音
 Name[zh_TW]=Wiktionary 音效
 Comment=This script fetches sound files from https://commons.wikimedia.org.
@@ -64,6 +65,7 @@ Comment[pt]=Este programa obtém ficheiros de sons do https://commons.wikimedia.
 Comment[pt_BR]=Este script obtém arquivos de som de https://commons.wikimedia.org.
 Comment[sv]=Skriptet hämtar ljudfiler från https://commons.wikimedia.org.
 Comment[uk]=Цей скрипт отримує звукові файли з https://commons.wikimedia.org.
+Comment[x-test]=xxThis script fetches sound files from https://commons.wikimedia.org.xx
 Comment[zh_CN]=此脚本从 https://commons.wikimedia.org 获取声音文件。
 Comment[zh_TW]=此文稿會從 https://commons.wikimedia.org 中抓取音效檔。
 
