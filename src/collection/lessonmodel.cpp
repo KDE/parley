@@ -16,9 +16,9 @@
 #include "lessonmodel.h"
 
 #include "parleydocument.h"
-#include <KRandom>
 #include <KLocalizedString>
 #include <QFont>
+#include <QRandomGenerator>
 
 /** @file
   * Implementation of LessonModel.
@@ -109,7 +109,7 @@ void LessonModel::splitLesson(const QModelIndex& containerIndex, int entriesPerL
             // next entry to be assigned to one of the new lessons
             int nextEntry = 0;
             if (order == Random) {
-                nextEntry = KRandom::random() % parentLesson->entryCount();
+                nextEntry = QRandomGenerator::global()->bounded(parentLesson->entryCount());
                 child->appendEntry(parentLesson->entry(nextEntry));
             }
         }

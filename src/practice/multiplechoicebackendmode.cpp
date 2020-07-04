@@ -15,7 +15,8 @@
 #include "multiplechoicebackendmode.h"
 
 #include <KLocalizedString>
-#include <KRandom>
+
+#include <QRandomGenerator>
 
 #include "multiplechoicedata.h"
 
@@ -48,10 +49,10 @@ void MultipleChoiceBackendMode::prepareChoices(TestEntry* current)
 
     QStringList choices = m_sessionManager->multipleChoiceAnswers(m_numberOfChoices - 1);
     foreach(const QString & choice, choices) {
-        int position = KRandom::random() % (m_choices.count() + 1);
+        int position = QRandomGenerator::global()->bounded(m_choices.count() + 1);
         m_choices.insert(position, choice);
     }
-    int correctAnswer = KRandom::random() % (m_choices.count() + 1);
+    int correctAnswer = QRandomGenerator::global()->bounded(m_choices.count() + 1);
     m_choices.insert(correctAnswer, m_current->entry()->translation(m_current->languageTo())->text());
     setCorrectAnswer(correctAnswer);
 }
@@ -117,7 +118,7 @@ void MultipleChoiceBackendMode::hintAction()
 
     int hint = -1;
     do {
-	hint = KRandom::random() % m_choices.count();
+	hint = QRandomGenerator::global()->bounded(m_choices.count());
     } while (hint == m_correctAnswer || m_hints.contains(hint));
     m_hints.append(hint);
     m_frontend->setHint(QVariant(hint));

@@ -14,10 +14,10 @@
 #include "entryfilter.h"
 
 #include <QDebug>
+#include <QRandomGenerator>
 
 #include <KMessageBox>
 #include <KLocalizedString>
-#include <KRandom>
 
 #include <keduvocdocument.h>
 #include <keduvocwordtype.h>
@@ -622,5 +622,5 @@ void EntryFilter::updateCurrentSelection()
 
 void EntryFilter::randomizedInsert(QList<TestEntry*>& list, TestEntry* entry)
 {
-    list.insert(KRandom::random() % (list.size() + 1), entry);
+    list.insert(QRandomGenerator::global()->bounded(list.size() + 1), entry);
 }

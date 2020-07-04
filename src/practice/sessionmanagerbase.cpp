@@ -18,13 +18,13 @@
 
 // Qt
 #include <QDateTime>
+#include <QRandomGenerator>
 
 // kdelibs
 #include <KLocalizedString>
 #include <kconfig.h>
 #include <QDebug>
 #include <KMessageBox>
-#include <KRandom>
 
 // kdeedulibs
 #include <keduvoclesson.h>
@@ -136,12 +136,12 @@ TestEntry* SessionManagerBase::nextTrainingEntry()
     int lastEntry = m_currentEntry;
     if (m_currentEntries.count() > 0) {
         // Choose one of the current entries randomly.
-	m_currentEntry = KRandom::random() % m_currentEntries.count();
+	m_currentEntry = QRandomGenerator::global()->bounded(m_currentEntries.count());
 
         // Do not allow to ask the same entry twice in a row.
         if (m_currentEntries.count() > 1) {
             while (m_currentEntry == lastEntry) {
-                m_currentEntry = KRandom::random() % m_currentEntries.count();
+                m_currentEntry = QRandomGenerator::global()->bounded(m_currentEntries.count());
             }
         }
 
@@ -253,7 +253,7 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
     TestEntry *currentEntry = m_currentEntries.at(m_currentEntry);
     QStringList predefinedChoices = currentEntry->entry()->translation(currentEntry->languageTo())->getMultipleChoice();
     while (!predefinedChoices.isEmpty() && count > 0) {
-        choices.append(predefinedChoices.takeAt(KRandom::random() % predefinedChoices.count()));
+        choices.append(predefinedChoices.takeAt(QRandomGenerator::global()->bounded(predefinedChoices.count())));
         count--;
     }
 
@@ -281,7 +281,7 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
             int nr;
             // if there are enough non-empty fields, fill the options only with those
             do {
-                nr = KRandom::random() % allEntries.count();
+                nr = QRandomGenerator::global()->bounded(allEntries.count());
             } while (!isValidMultipleChoiceAnswer(allEntries.value(nr)));
             // append if new entry found
             bool newex = true;
