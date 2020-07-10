@@ -21,14 +21,14 @@
 
 // kdelibs
 #include <KLocalizedString>
-#include <kconfig.h>
+#include <KConfig>
 #include <QDebug>
 #include <KMessageBox>
 
 // kdeedulibs
-#include <keduvoclesson.h>
-#include <keduvocexpression.h>
-#include <keduvocdocument.h>
+#include <KEduVocLesson>
+#include <KEduVocExpression>
+#include <KEduVocDocument>
 
 // parley
 #include "entryfilter.h"

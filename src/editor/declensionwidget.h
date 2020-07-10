@@ -16,7 +16,7 @@
 
 #include "ui_declensionwidget.h"
 
-#include <keduvocdeclension.h>
+#include <KEduVocDeclension>
 
 class KEduVocExpression;
 class KEduVocDocument;

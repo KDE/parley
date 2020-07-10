@@ -29,9 +29,9 @@
 #include <QDateTime>
 
 #include "ui_FromToEntryPageForm.h"
-#include <keduvocexpression.h>
+#include <KEduVocExpression>
 #include <keduvocgrammar.h>
-#include <keduvocdocument.h>
+#include <KEduVocDocument>
 
 class FromToEntryPage : public QWidget, public Ui::FromToEntryPageForm
 {

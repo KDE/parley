@@ -28,7 +28,7 @@
 #include "parleymainwindow.h"
 #include "parleydocument.h"
 
-#include <keduvocdocument.h>
+#include <KEduVocDocument>
 #include <QLineEdit>
 
 #include <QTextEdit>

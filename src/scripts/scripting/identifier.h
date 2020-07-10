@@ -15,8 +15,8 @@
 #ifndef SCRIPTINGIDENTIFIER_H
 #define SCRIPTINGIDENTIFIER_H
 
-#include <keduvocidentifier.h>
-#include <keduvocwordflags.h>
+#include <KEduVocIdentifier>
+#include <KEduVocWordFlags>
 
 #include <QObject>
 

@@ -23,7 +23,7 @@
 #include <QVector>
 
 // kdeedulibs
-#include <keduvocexpression.h>
+#include <KEduVocExpression>
 
 // Parley
 #include "testentry.h"

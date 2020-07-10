@@ -23,8 +23,8 @@
 
 #include <QObject>
 
-#include <keduvocdocument.h>
-#include <keduvoclesson.h>
+#include <KEduVocDocument>
+#include <KEduVocLesson>
 
 
 /**

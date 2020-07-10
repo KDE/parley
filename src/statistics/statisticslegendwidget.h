@@ -22,7 +22,7 @@
 #ifndef STATISTICSLEGENDWIDGET_H
 #define STATISTICSLEGENDWIDGET_H
 
-#include "keduvoctext.h"
+#include <KEduVocText>
 
 #include <QWidget>
 #include <QColor>

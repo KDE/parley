@@ -23,7 +23,7 @@
 #include <QTextTable>
 #include <KMessageBox>
 #include <KLocalizedString>
-#include <keduvocexpression.h>
+#include <KEduVocExpression>
 #include <KConfigGroup>
 #include <KActionCollection>
 #include <KColorScheme>

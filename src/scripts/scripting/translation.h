@@ -15,11 +15,11 @@
 #ifndef SCRIPTINGSCRIPTOBJECTTRANSLATION_H
 #define SCRIPTINGSCRIPTOBJECTTRANSLATION_H
 
-#include <keduvocdeclension.h>
-#include <keduvocconjugation.h>
+#include <KEduVocDeclension>
+#include <KEduVocConjugation>
 
-#include "keduvoctranslation.h"
-#include "keduvocwordtype.h"
+#include <KEduVocTranslation>
+#include <KEduVocWordtype>
 #include "expression.h"
 #include "text.h"
 

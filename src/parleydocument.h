@@ -15,7 +15,7 @@
 #ifndef PARLEYDOCUMENT_H
 #define PARLEYDOCUMENT_H
 
-#include <keduvocdocument.h>
+#include <KEduVocDocument>
 #include <QObject>
 
 #include <config-parley.h>

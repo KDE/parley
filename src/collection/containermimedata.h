@@ -16,7 +16,7 @@
 #ifndef CONTAINERMIMEDATA_H
 #define CONTAINERMIMEDATA_H
 
-// #include <keduvoccontainer.h>
+// #include <KEduVocContainer>
 
 #include <QMimeData>
 

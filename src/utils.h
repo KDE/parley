@@ -19,7 +19,7 @@
 #include <QColor>
 
 // KEduVocDocument library
-#include <keduvoccontainer.h>
+#include <KEduVocContainer>
 #include <KEduVocWordtype>
 
 

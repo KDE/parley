@@ -14,8 +14,8 @@
 #include "exportdialog.h"
 
 #include <parleydocument.h>
-#include <keduvocdocument.h>
-#include <keduvockvtml2writer.h>
+#include <KEduVocDocument>
+#include <KEduVocKVTML2Writer>
 
 #include <KLocalizedString>
 #include <QStandardPaths>

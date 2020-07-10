@@ -23,7 +23,7 @@
 #include <QFontMetrics>
 #include <QPainter>
 
-#include <kcolorscheme.h>
+#include <KColorScheme>
 
 
 using namespace Practice;

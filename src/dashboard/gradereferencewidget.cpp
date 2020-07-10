@@ -24,7 +24,7 @@
 #include <QPainterPath>
 
 // KDE
-#include <klocalizedstring.h>
+#include <KLocalizedString>
 
 // Parley
 #include "barwidget.h"  // for gradeColor^WglobalColors

@@ -15,7 +15,7 @@
 #include "latexrenderer.h"
 
 #include <KLocalizedString>
-#include <kprocess.h>
+#include <KProcess>
 
 #include <QLabel>
 #include <QProcess>

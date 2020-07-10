@@ -17,8 +17,8 @@
 
 #include "multiplechoicewidget.h"
 
-#include <keduvoctranslation.h>
-#include <keduvocexpression.h>
+#include <KEduVocTranslation>
+#include <KEduVocExpression>
 #include <QDebug>
 
 #include <QStringListModel>

@@ -18,12 +18,12 @@
 #include "prefs.h"
 #include "languagesettings.h"
 
-#include <keduvoclesson.h>
-#include <keduvocwordtype.h>
+#include <KEduVocLesson>
+#include <KEduVocWordtype>
 
 #include "vocabularymimedata.h"
 
-#include <keduvocexpression.h>
+#include <KEduVocExpression>
 #include <KLocalizedString>
 #include <QDebug>
 #include <KMessageBox>

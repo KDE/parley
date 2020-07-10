@@ -16,7 +16,7 @@
 
 #include <KLocalizedString>
 
-#include <keduvocdocument.h>
+#include <KEduVocDocument>
 
 #include "conjugationdata.h"
 #include "documentsettings.h"

@@ -15,11 +15,11 @@
 
 // kdelibs
 #include <KLocalizedString>
-#include <kconfig.h>
+#include <KConfig>
 #include <QDebug>
 
 // kdeedulibs
-#include <keduvocexpression.h>
+#include <KEduVocExpression>
 
 // parley
 #include <prefs.h>

@@ -19,7 +19,7 @@
 #ifndef CONFIGUREPRACTICEDIALOG_H
 #define CONFIGUREPRACTICEDIALOG_H
 
-#include <keduvocdocument.h>
+#include <KEduVocDocument>
 #include <KConfigWidgets/KConfigDialog>
 #include <KConfigSkeleton>
 

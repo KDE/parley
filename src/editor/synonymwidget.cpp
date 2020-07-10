@@ -13,9 +13,9 @@
 
 #include "synonymwidget.h"
 
-#include <keduvocdocument.h>
-#include <keduvoctranslation.h>
-#include <keduvocexpression.h>
+#include <KEduVocDocument>
+#include <KEduVocTranslation>
+#include <KEduVocExpression>
 
 #include <QStringListModel>
 #include <QDragEnterEvent>

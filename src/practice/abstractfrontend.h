@@ -15,7 +15,7 @@
 #define PRACTICE_ABSTRACTFRONTEND_H
 
 #include <QObject>
-#include <keduvoctext.h>
+#include <KEduVocText>
 #include <QFont>
 
 class QUrl;

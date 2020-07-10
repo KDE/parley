@@ -16,7 +16,7 @@
 #define SCRIPTINGTEXT_H
 
 #include <QObject>
-#include <keduvoctext.h>
+#include <KEduVocText>
 
 namespace Scripting
 {

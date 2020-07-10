@@ -21,9 +21,9 @@
 #include <QDebug>
 #include <KConfigGroup>
 
-#include <keduvocdocument.h>
-#include <keduvoclesson.h>
-#include <keduvocexpression.h>
+#include <KEduVocDocument>
+#include <KEduVocLesson>
+#include <KEduVocExpression>
 //@todo frameworks KGlobal
 #include <KGlobal>
 

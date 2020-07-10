@@ -15,7 +15,7 @@
 #ifndef SCRIPTINGSCRIPTOBJECTLESSON_H
 #define SCRIPTINGSCRIPTOBJECTLESSON_H
 
-#include <keduvoclesson.h>
+#include <KEduVocLesson>
 #include "container.h"
 
 #include <QObject>

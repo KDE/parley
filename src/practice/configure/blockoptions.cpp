@@ -26,7 +26,7 @@
 #include <QCheckBox>
 
 #include <KLocalizedString>
-#include <kmessagebox.h>
+#include <KMessageBox>
 #include <KComboBox>
 
 #include "prefs.h"

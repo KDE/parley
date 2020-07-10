@@ -16,7 +16,7 @@
 
 #include "ui_conjugationwidget.h"
 
-#include <keduvocwordflags.h>
+#include <KEduVocWordFlags>
 
 class KEduVocExpression;
 class KEduVocDocument;

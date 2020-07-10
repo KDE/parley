@@ -15,10 +15,10 @@
 
 #include "comparisonwidget.h"
 
-#include <keduvocwordtype.h>
-#include <keduvoctranslation.h>
-#include <keduvocexpression.h>
-#include <keduvocdocument.h>
+#include <KEduVocWordtype>
+#include <KEduVocTranslation>
+#include <KEduVocExpression>
+#include <KEduVocDocument>
 #include <KMessageBox>
 #include <KLocalizedString>
 

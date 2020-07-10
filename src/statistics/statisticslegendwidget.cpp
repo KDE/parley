@@ -30,7 +30,7 @@
 #include <KLocalizedString>
 
 // Parley
-#include <keduvocexpression.h>
+#include <KEduVocExpression>
 #include "utils.h"
 
 

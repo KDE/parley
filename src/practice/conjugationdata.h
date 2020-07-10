@@ -19,7 +19,7 @@
 #include <QString>
 #include <QMetaType>
 
-#include <keduvocconjugation.h>
+#include <KEduVocConjugation>
 
 namespace Practice
 {

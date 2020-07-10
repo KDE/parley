@@ -17,7 +17,7 @@
 #include "ui_practice_widget_conjugation.h"
 
 #include <QDebug>
-#include <kcolorscheme.h>
+#include <KColorScheme>
 #include <KLocalizedString>
 #include <QRadioButton>
 #include <QTimer>

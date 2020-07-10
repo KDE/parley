@@ -19,7 +19,7 @@
 
 #include <QFlags>
 
-#include <keduvocexpression.h>
+#include <KEduVocExpression>
 
 class TestEntry
 {

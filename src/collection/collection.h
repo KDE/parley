@@ -21,7 +21,7 @@
 #include <QObject>
 
 // keduvocdocument library
-#include <keduvocdocument.h>
+#include <KEduVocDocument>
 
 // Parley
 #include "testentry.h"

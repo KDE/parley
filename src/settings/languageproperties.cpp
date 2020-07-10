@@ -16,7 +16,7 @@
 #include "languagepropertiespage.h"
 #include "languagesettings.h"
 
-#include <keduvocdocument.h>
+#include <KEduVocDocument>
 
 #include <KMessageBox>
 #include <QLabel>

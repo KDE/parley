@@ -16,8 +16,8 @@
 
 #include <KLocalizedString>
 
-#include <keduvocdocument.h>
-#include <keduvocwordtype.h>
+#include <KEduVocDocument>
+#include <KEduVocWordtype>
 
 using namespace Practice;
 

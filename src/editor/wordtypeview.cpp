@@ -23,8 +23,8 @@
 #include <KMessageBox>
 #include <KSelectAction>
 
-#include <keduvocexpression.h>
-#include <keduvocwordtype.h>
+#include <KEduVocExpression>
+#include <KEduVocWordtype>
 
 #include "editor/editor.h"
 #include "containermodel.h"

@@ -19,9 +19,9 @@
 #include <KMessageBox>
 #include <KLocalizedString>
 
-#include <keduvocdocument.h>
-#include <keduvocwordtype.h>
-#include <keduvocexpression.h>
+#include <KEduVocDocument>
+#include <KEduVocWordtype>
+#include <KEduVocExpression>
 
 #include "documentsettings.h"
 #include "testentry.h"

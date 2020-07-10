@@ -29,8 +29,8 @@
 #include "vocabularycolumnsdialog.h"
 #include "documentsettings.h"
 
-#include <keduvoctranslation.h>
-#include <keduvocexpression.h>
+#include <KEduVocTranslation>
+#include <KEduVocExpression>
 
 #include <QHeaderView>
 #include <QPainter>

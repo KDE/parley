@@ -22,7 +22,7 @@
 #include <KConfig>
 #include <KActionCollection>
 
-#include <keduvocdocument.h>
+#include <KEduVocDocument>
 
 #include "practice/configure/configurepracticedialog.h"
 #include "lessonstatisticsview.h"

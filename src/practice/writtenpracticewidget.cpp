@@ -20,7 +20,7 @@
 
 #include "prefs.h"
 
-#include <kcolorscheme.h>
+#include <KColorScheme>
 #include <KLocalizedString>
 
 #include <QTimer>

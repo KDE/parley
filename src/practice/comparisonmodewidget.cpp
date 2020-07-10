@@ -16,7 +16,7 @@
 #include "ui_practice_widget_comparison.h"
 
 #include <QDebug>
-#include <kcolorscheme.h>
+#include <KColorScheme>
 #include <QRadioButton>
 #include <QTimer>
 #include <KLocalizedString>

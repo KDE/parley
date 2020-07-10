@@ -13,7 +13,7 @@
 
 #include "summarybarwidget.h"
 
-#include <kcolorscheme.h>
+#include <KColorScheme>
 #include <KLocalizedString>
 
 #include <QPainter>

@@ -21,8 +21,8 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 
-#include <keduvocexpression.h>
-#include <keduvoclesson.h>
+#include <KEduVocExpression>
+#include <KEduVocLesson>
 
 #include "editor/editor.h"
 #include "lessonmodel.h"

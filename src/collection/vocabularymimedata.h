@@ -16,8 +16,8 @@
 #ifndef VOCABULARYMIMEDATA_H
 #define VOCABULARYMIMEDATA_H
 
-#include <keduvocexpression.h>
-#include <keduvocwordtype.h>
+#include <KEduVocExpression>
+#include <KEduVocWordtype>
 #include <QMimeData>
 
 class KEduVocTranslation;

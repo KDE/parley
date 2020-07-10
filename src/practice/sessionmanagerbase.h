@@ -21,7 +21,7 @@
 #include <QVector>
 #include <QElapsedTimer>
 // kdeedulibs
-#include <keduvocexpression.h>
+#include <KEduVocExpression>
 
 // Parley
 #include "testentry.h"

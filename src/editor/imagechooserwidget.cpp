@@ -15,7 +15,7 @@
 
 #include "imagechooserwidget.h"
 
-#include <keduvocexpression.h>
+#include <KEduVocExpression>
 #include <QDebug>
 
 #include <QDragEnterEvent>

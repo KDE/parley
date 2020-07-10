@@ -22,8 +22,8 @@
 #include "languagesettings.h"
 #include "readonlycontainermodel.h"
 
-#include <keduvocexpression.h>
-#include <keduvocwordtype.h>
+#include <KEduVocExpression>
+#include <KEduVocWordtype>
 #include <KLocalizedString>
 #include <KComboBox>
 #include <QDebug>

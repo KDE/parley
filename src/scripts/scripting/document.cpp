@@ -13,7 +13,7 @@
  *                                                                         *
  ***************************************************************************/
 #include "document.h"
-#include <keduvocwordtype.h>
+#include <KEduVocWordtype>
 
 #include "translation.h"
 

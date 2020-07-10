@@ -15,7 +15,7 @@
 
 #include "languagesettings.h"
 #include "documentproperties.h"
-#include <kmessagebox.h>
+#include <KMessageBox>
 
 #include <QDebug>
 #include <KLocalizedString>
@@ -27,9 +27,9 @@
 #include <QDBusReply>
 #include <sonnet/speller.h>
 
-#include <keduvocdocument.h>
-#include <keduvocexpression.h>
-#include <keduvoclesson.h>
+#include <KEduVocDocument>
+#include <KEduVocExpression>
+#include <KEduVocLesson>
 
 #include <parleydocument.h>
 

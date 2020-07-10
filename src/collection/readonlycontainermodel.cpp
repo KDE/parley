@@ -21,10 +21,10 @@
 #include "containermimedata.h"
 #include "vocabularymimedata.h"
 
-#include <keduvocdocument.h>
-#include <keduvoclesson.h>
-#include <keduvocwordtype.h>
-#include <keduvocexpression.h>
+#include <KEduVocDocument>
+#include <KEduVocLesson>
+#include <KEduVocWordtype>
+#include <KEduVocExpression>
 
 
 /** @file

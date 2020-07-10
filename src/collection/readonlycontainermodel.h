@@ -21,8 +21,8 @@
 
 #include <QObject>
 
-#include <keduvocdocument.h>
-#include <keduvoclesson.h>
+#include <KEduVocDocument>
+#include <KEduVocLesson>
 
 /**
   * Model for the tree of containers (lessons, word types).

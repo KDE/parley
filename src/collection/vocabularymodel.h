@@ -15,8 +15,8 @@
 #ifndef VOCABULARYMODEL_H
 #define VOCABULARYMODEL_H
 
-#include <keduvocexpression.h>
-#include <keduvoctranslation.h>
+#include <KEduVocExpression>
+#include <KEduVocTranslation>
 #include <QAbstractTableModel>
 
 class KEduVocDocument;

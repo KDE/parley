@@ -24,7 +24,7 @@
 #include <QPainterPath>
 
 // KDE
-#include <klocalizedstring.h>
+#include <KLocalizedString>
 
 // Parley
 #include "collectionwidget.h"  // for COLLWIDTH, etc

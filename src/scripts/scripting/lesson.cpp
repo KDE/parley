@@ -15,7 +15,7 @@
 #include "lesson.h"
 #include "expression.h"
 
-#include <keduvocexpression.h>
+#include <KEduVocExpression>
 
 #include <QDebug>
 

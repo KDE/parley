@@ -15,7 +15,7 @@
 
 #include <QTimer>
 
-#include <kcolorscheme.h>
+#include <KColorScheme>
 #include <QDebug>
 #include <KLocalizedString>
 

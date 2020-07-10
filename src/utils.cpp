@@ -21,8 +21,8 @@
 #include <QPainterPath>
 
 // KEduVocDocument library
-#include <keduvocdocument.h>
-#include <keduvocexpression.h>
+#include <KEduVocDocument>
+#include <KEduVocExpression>
 
 // Parley
 #include "prefs.h"

@@ -15,7 +15,7 @@
 #include "testentry.h"
 #include "prefs.h"
 
-#include <keduvoctranslation.h>
+#include <KEduVocTranslation>
 #include <QDebug>
 
 /// temporary namespace for string manipulation functions

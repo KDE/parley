@@ -24,7 +24,7 @@
 #include <QAction>
 #include <QDebug>
 
-#include <keduvocdeclension.h>
+#include <KEduVocDeclension>
 
 namespace Editor
 {

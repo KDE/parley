@@ -17,7 +17,7 @@
 // Own
 #include "wordclassmodel.h"
 
-#include <keduvocwordtype.h>
+#include <KEduVocWordtype>
 
 
 WordClassModel::WordClassModel(QObject * parent)

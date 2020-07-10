@@ -20,7 +20,7 @@
 
 #include <QAction>
 #include <QDebug>
-#include <kcolorscheme.h>
+#include <KColorScheme>
 #include <QPushButton>
 #include <QTimer>
 #include <QKeyEvent>

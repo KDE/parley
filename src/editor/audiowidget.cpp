@@ -15,7 +15,7 @@
 
 #include "audiowidget.h"
 
-#include <keduvocexpression.h>
+#include <KEduVocExpression>
 
 #include <QMediaPlayer>
 #include <QDebug>

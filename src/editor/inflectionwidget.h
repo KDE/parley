@@ -17,7 +17,7 @@
 
 #include <QStackedWidget>
 
-#include <keduvocdeclension.h>
+#include <KEduVocDeclension>
 
 class KEduVocExpression;
 class KEduVocDocument;

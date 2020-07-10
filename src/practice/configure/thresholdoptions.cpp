@@ -26,8 +26,8 @@
 
 #include "prefs.h"
 
-#include <keduvocdocument.h>
-#include <keduvocwordtype.h>
+#include <KEduVocDocument>
+#include <KEduVocWordtype>
 
 ThresholdOptions::ThresholdOptions(KEduVocDocument* doc, QWidget* parent) : QWidget(parent)
 {

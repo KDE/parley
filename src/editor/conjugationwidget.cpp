@@ -13,9 +13,9 @@
 
 #include "conjugationwidget.h"
 
-#include <keduvocdocument.h>
-#include <keduvocexpression.h>
-#include <keduvocwordtype.h>
+#include <KEduVocDocument>
+#include <KEduVocExpression>
+#include <KEduVocWordtype>
 #include <KMessageBox>
 
 using namespace Editor;

@@ -24,7 +24,7 @@
 #include "vocabularymodel.h"
 
 // KDE imports
-#include <keduvocdocument.h>
+#include <KEduVocDocument>
 #include <KLocalizedString>
 #include <KTitleWidget>
 

@@ -17,7 +17,7 @@
 #include "documentsettings.h"
 #include "prefs.h"
 
-#include <keduvocdocument.h>
+#include <KEduVocDocument>
 
 #include <KLocalizedString>
 #include <QStackedLayout>

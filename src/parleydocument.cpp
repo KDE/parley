@@ -24,10 +24,10 @@
 #include "settings/documentproperties.h"
 #include "dashboard/dashboard.h"
 
-#include <keduvoclesson.h>
-#include <keduvocleitnerbox.h>
-#include <keduvocexpression.h>
-#include <keduvocwordtype.h>
+#include <KEduVocLesson>
+#include <KEduVocLeitnerBox>
+#include <KEduVocExpression>
+#include <KEduVocWordtype>
 
 #include <QFileDialog>
 #include <QMimeDatabase>

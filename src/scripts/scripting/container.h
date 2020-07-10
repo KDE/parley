@@ -18,7 +18,7 @@
 #include <QObject>
 #include <QVariant>
 
-#include <keduvoccontainer.h>
+#include <KEduVocContainer>
 
 namespace Scripting
 {

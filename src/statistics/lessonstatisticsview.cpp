@@ -32,7 +32,7 @@
 // Parley
 #include "statisticslegendwidget.h"
 #include "statisticsmodel.h"
-#include "keduvoclesson.h"
+#include <KEduVocLesson>
 #include "utils.h"
 #include "documentsettings.h"
 

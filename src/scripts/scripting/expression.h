@@ -15,7 +15,7 @@
 #ifndef SCRIPTINGEXPRESSION_H
 #define SCRIPTINGEXPRESSION_H
 
-#include <keduvocexpression.h>
+#include <KEduVocExpression>
 
 #include "lesson.h"
 

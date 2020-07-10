@@ -15,10 +15,10 @@
 
 #include "inflectionwidget.h"
 
-#include <keduvocdocument.h>
-#include <keduvocexpression.h>
-#include <keduvocwordtype.h>
-#include <keduvocdeclension.h>
+#include <KEduVocDocument>
+#include <KEduVocExpression>
+#include <KEduVocWordtype>
+#include <KEduVocDeclension>
 
 #include "declensionwidget.h"
 #include "conjugationwidget.h"

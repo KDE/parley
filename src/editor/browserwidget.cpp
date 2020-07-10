@@ -15,7 +15,7 @@
 
 #include "browserwidget.h"
 
-#include <keduvocexpression.h>
+#include <KEduVocExpression>
 #include <QWebEngineView>
 
 #include <QDragEnterEvent>

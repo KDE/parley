@@ -31,10 +31,10 @@
 #include <QTreeView>
 
 // KEduVocDocument
-#include <keduvoccontainer.h>
-#include <keduvocdocument.h>
-#include <keduvocexpression.h>
-#include <keduvocwordtype.h>
+#include <KEduVocContainer>
+#include <KEduVocDocument>
+#include <KEduVocExpression>
+#include <KEduVocWordtype>
 
 using namespace Editor;
 

@@ -20,7 +20,7 @@
 #include "barwidget.h"
 
 // KDE
-#include <klocalizedstring.h>
+#include <KLocalizedString>
 
 // Qt
 #include <QPainter>

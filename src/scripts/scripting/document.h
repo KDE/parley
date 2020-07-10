@@ -15,7 +15,7 @@
 #ifndef SCRIPTOBJECTDOCUMENT_H
 #define SCRIPTOBJECTDOCUMENT_H
 
-#include <keduvocdocument.h>
+#include <KEduVocDocument>
 
 #include "lesson.h"
 #include "identifier.h"

@@ -27,7 +27,7 @@
 #include <KLocalizedString>
 
 #include <QSpinBox>
-#include <kfile.h>
+#include <KFile>
 
 #include "prefs.h"
 
