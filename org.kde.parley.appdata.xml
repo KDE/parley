@@ -215,7 +215,7 @@
       <li xml:lang="pt-BR">Múltipla escolha</li>
       <li xml:lang="ru">Вопросы с вариантами ответа</li>
       <li xml:lang="sk">Viacnásobné možnosti</li>
-      <li xml:lang="sl">Več možnosti</li>
+      <li xml:lang="sl">Več izbir</li>
       <li xml:lang="sv">Flerval</li>
       <li xml:lang="tr">Çoktan Seçmeli</li>
       <li xml:lang="uk">Вибір з варіантів.</li>
@@ -306,6 +306,7 @@
       <caption xml:lang="pt">A escolher uma colecção para praticar no Parley</caption>
       <caption xml:lang="pt-BR">Escolhendo uma coleção para treinamento no Parley</caption>
       <caption xml:lang="sk">Výber kolekcie na školenie v Parley</caption>
+      <caption xml:lang="sl">Izbira zbirke besedišč za vadbo v Parleyju</caption>
       <caption xml:lang="sv">Välja en övningssamling i Parley</caption>
       <caption xml:lang="uk">Вибір збірки для вправ у Parley</caption>
       <caption xml:lang="x-test">xxChoosing a collection for training in Parleyxx</caption>
