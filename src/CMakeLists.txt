@@ -183,7 +183,11 @@ install(TARGETS parley  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 install( PROGRAMS org.kde.parley.desktop DESTINATION  ${KDE_INSTALL_APPDIR} )
 
 # hot new stuff config
-install( FILES parley.knsrc parley-themes.knsrc DESTINATION  ${KDE_INSTALL_CONFDIR} )
+if(KF5NewStuff_VERSION VERSION_GREATER "5.56.0")
+    install( FILES parley.knsrc parley-themes.knsrc DESTINATION  ${KDE_INSTALL_KNSRCDIR} )
+else()
+    install( FILES parley.knsrc parley-themes.knsrc DESTINATION  ${KDE_INSTALL_CONFDIR} )
+endif()
 
 # UI files - define menus and toolbars
 # @todo frameworks find a definitive locations for files and then use KXMLGUI_INSTALL_DIR
