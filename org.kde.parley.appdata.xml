@@ -73,8 +73,8 @@
   <description>
     <p>Parley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. It supports many language specific features, but can be used for other learning tasks as well. It uses the spaced repetition learning method, which makes learning optimal. Vocabulary collections can be downloaded by "Get Hot New Stuff" or created with the built-in editor.</p>
     <p xml:lang="bs">Parlej je trener rječnika. Pomaže vam da zapamtite svoj rječnik, na primer, kada pokušavate da naučite strani jezik. On podržava mnoge jezičke specifičnosti, ali se može koristiti za druge zadatke učenja jednako dobro. On koristi raspoređeni metod ponavljanja učenja , što čini učenje optimalno. Vokabular kolekcije možete preuzeti sa "Dobavi nove dobre stvari" ili kreirati sa ugrađenim urednikom.</p>
-    <p xml:lang="ca">El Parley és un entrenador de vocabulari. Us ajuda a memoritzar vocabulari, per exemple quan esteu intentant aprendre un idioma estranger. Accepta moltes funcionalitats específiques d'idioma, però també es pot utilitzar per a altres tasques d'aprenentatge. Utilitza el mètode d'aprenentatge de repetició espaiada, que optimitza l'aprenentatge. Les col·leccions dels vocabularis es poden baixar amb «Obtén les novetats» (Get Hot New Stuff) o es poden crear amb l'editor integrat.</p>
-    <p xml:lang="ca-valencia">El Parley és un entrenador de vocabulari. Vos ajuda a memoritzar vocabulari, per exemple quan esteu intentant aprendre un idioma estranger. Accepta moltes funcionalitats específiques d'idioma, però també es pot utilitzar per a altres tasques d'aprenentatge. Utilitza el mètode d'aprenentatge de repetició espaiada, que optimitza l'aprenentatge. Les col·leccions dels vocabularis es poden baixar amb «Obtén les novetats» (Get Hot New Stuff) o es poden crear amb l'editor integrat.</p>
+    <p xml:lang="ca">El Parley és un entrenador de vocabulari. Us ajuda a memoritzar un vocabulari, per exemple quan esteu intentant aprendre un idioma estranger. Accepta moltes funcionalitats específiques de l'idioma, però també es pot utilitzar per a altres tasques d'aprenentatge. Utilitza el mètode d'aprenentatge de repetició espaiada, el qual optimitza l'aprenentatge. Les col·leccions dels vocabularis es poden baixar amb «Obtén les novetats» (Get Hot New Stuff) o es poden crear amb l'editor integrat.</p>
+    <p xml:lang="ca-valencia">El Parley és un entrenador de vocabulari. Vos ajuda a memoritzar un vocabulari, per exemple quan esteu intentant aprendre un idioma estranger. Accepta moltes funcionalitats específiques de l'idioma, però també es pot utilitzar per a altres tasques d'aprenentatge. Utilitza el mètode d'aprenentatge de repetició espaiada, el qual optimitza l'aprenentatge. Les col·leccions dels vocabularis es poden baixar amb «Obtén les novetats» (Get Hot New Stuff) o es poden crear amb l'editor integrat.</p>
     <p xml:lang="de">Parley ist ein Vokabelprogramm. Es hilft Ihnen, Ihre Vokabelkenntnisse zu verbessern, wenn Sie eine neue Sprache lernen. Es werden viele Sprachspezifische Funktionen unterstützt, es kann aber auch für andere Lernaufgaben verwendet werden. Es verwendet die Methode des wiederholten Lernens mit zeitlichem Abstand für einen optimalen Lernfortschritt.  Vokabelsammlungen können mit „Neue Erweiterungen“  heruntergeladen oder mit dem eingebauten Editor erstellt werden.</p>
     <p xml:lang="el">Το Parley είναι ένα πρόγραμμα εξάσκησης λεξιλογίου. Σας βοηθά να απομνημονεύσετε το λεξιλόγιό σας, π.χ. όταν προσπαθείτε να μάθετε μια ξένη γλώσσα. Υποστηρίζει πολλά ιδιαίτερα γλωσσικά χαρακτηριστικά, αλλά μπορεί να χρησιμοποιηθεί και για άλλους εκπαιδευτικούς σκοπούς. Χρησιμοποιεί τη μέθοδο της τμηματικής επανάληψης, η οποία βελτιστοποιεί την εκμάθηση. Συλλογές λεξιλογίου μπορείτε να κατεβάσετε μέσω της "Λήψης νέου χρήσιμου υλικού" ή να δημιουργήσετε στον ενσωματωμένο επεξεργαστή.</p>
     <p xml:lang="en-GB">Parley is a vocabulary trainer. It helps you to memorise your vocabulary, for example when you are trying to learn a foreign language. It supports many language specific features, but can be used for other learning tasks as well. It uses the spaced repetition learning method, which makes learning optimal. Vocabulary collections can be downloaded by "Get Hot New Stuff" or created with the built-in editor.</p>
@@ -256,8 +256,8 @@
       <li xml:lang="zh-TW">已寫入</li>
       <li>Language specific trainings: article, comparison forms, conjugations, synonymes/antonyms/paraphrases</li>
       <li xml:lang="bs">Jezički posebna obuka: članovi, oblici poređenja, konjugacija, sinonimi/antonimi/parafraze</li>
-      <li xml:lang="ca">Entrenaments específics d'idioma: article, formes de comparació, conjugacions, sinònims/antònims/paràfrasis</li>
-      <li xml:lang="ca-valencia">Entrenaments específics d'idioma: article, formes de comparació, conjugacions, sinònims/antònims/paràfrasis</li>
+      <li xml:lang="ca">Entrenaments específics de l'idioma: articles, formes de comparació, conjugacions, sinònims/antònims/paràfrasis</li>
+      <li xml:lang="ca-valencia">Entrenaments específics de l'idioma: articles, formes de comparació, conjugacions, sinònims/antònims/paràfrasis</li>
       <li xml:lang="de">Sprachspezifische Übungen: Artikel, Vergleichsformen, Konjugationen, Synonyme, Antonyme, Umschreibungen</li>
       <li xml:lang="el">Εξειδικευμένες γλωσσικές εξασκήσεις: άρθρα, συγκρίσεις, κλίσεις, συνώνυμα/αντίθετα/παραφράσεις</li>
       <li xml:lang="en-GB">Language specific trainings: article, comparison forms, conjugations, synonymes/antonyms/paraphrases</li>
@@ -290,8 +290,8 @@
   <screenshots>
     <screenshot type="default">
       <caption>Choosing a collection for training in Parley</caption>
-      <caption xml:lang="ca">Triant una col·lecció per entrenar-se amb el Parley</caption>
-      <caption xml:lang="ca-valencia">Triant una col·lecció per entrenar-se amb el Parley</caption>
+      <caption xml:lang="ca">Triant una col·lecció per a entrenar-se amb el Parley</caption>
+      <caption xml:lang="ca-valencia">Triant una col·lecció per a entrenar-se amb el Parley</caption>
       <caption xml:lang="de">Auswahl einer Sammlung zur Übung in Parley</caption>
       <caption xml:lang="el">Επιλογή συλλογής για εξάσκηση στο Parley</caption>
       <caption xml:lang="en-GB">Choosing a collection for training in Parley</caption>
