@@ -108,7 +108,6 @@ X-KDE-PluginInfo-Name=google_dict
 X-KDE-PluginInfo-Version=1.1
 X-KDE-PluginInfo-Website=https://edu.kde.org/parley
 X-KDE-PluginInfo-Category=translation
-# X-KDE-PluginInfo-Depends=plugin1,plugin3
 X-KDE-PluginInfo-License=GPL
 X-KDE-PluginInfo-EnabledByDefault=true
 # the next line didn't work
