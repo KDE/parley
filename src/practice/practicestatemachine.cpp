@@ -67,29 +67,29 @@ void PracticeStateMachine::createPracticeMode()
     case Prefs::EnumPracticeMode::MixedLettersPractice:
         qDebug() << "Create Mixed Letters Practice backend";
         m_frontend->setMode(AbstractFrontend::MixedLetters);
-        m_mode = new WrittenBackendMode(m_frontend, this, m_sessionManager, m_document->document());
+        m_mode = new WrittenBackendMode(m_frontend, this, m_sessionManager, m_document->document().get());
         break;
     case Prefs::EnumPracticeMode::WrittenPractice:
         qDebug() << "Create Written Practice backend";
         m_frontend->setMode(AbstractFrontend::Written);
-        m_mode = new WrittenBackendMode(m_frontend, this, m_sessionManager, m_document->document());
+        m_mode = new WrittenBackendMode(m_frontend, this, m_sessionManager, m_document->document().get());
         break;
     case Prefs::EnumPracticeMode::ExampleSentencesPractice:
         qDebug() << "Create Written Practice backend";
         m_frontend->setMode(AbstractFrontend::ExampleSentence);
-        m_mode = new ExampleSentenceBackendMode(m_frontend, this, m_sessionManager, m_document->document());
+        m_mode = new ExampleSentenceBackendMode(m_frontend, this, m_sessionManager, m_document->document().get());
         break;
     case Prefs::EnumPracticeMode::GenderPractice:
         m_frontend->setMode(AbstractFrontend::MultipleChoice);
-        m_mode = new GenderBackendMode(m_frontend, this, m_sessionManager, m_document->document());
+        m_mode = new GenderBackendMode(m_frontend, this, m_sessionManager, m_document->document().get());
         break;
     case Prefs::EnumPracticeMode::ConjugationPractice:
         m_frontend->setMode(AbstractFrontend::Conjugation);
-        m_mode = new ConjugationBackendMode(m_frontend, this, m_sessionManager, m_document->document());
+        m_mode = new ConjugationBackendMode(m_frontend, this, m_sessionManager, m_document->document().get());
         break;
     case Prefs::EnumPracticeMode::ComparisonPractice:
         m_frontend->setMode(AbstractFrontend::Comparison);
-        m_mode = new ComparisonBackendMode(m_frontend, this, m_sessionManager, m_document->document());
+        m_mode = new ComparisonBackendMode(m_frontend, this, m_sessionManager, m_document->document().get());
         break;
 
     default:

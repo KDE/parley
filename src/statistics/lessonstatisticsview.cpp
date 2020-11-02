@@ -188,7 +188,7 @@ void LessonStatisticsView::saveExpandedStatus() const
     QStringList collapsedItems;
     getCollapsedItems(collapsedItems, statisticsModel->index(0, 0, QModelIndex()), QString());
 
-    const KEduVocDocument *doc = statisticsModel->document();
+    const KEduVocDocument *doc = statisticsModel->document().get();
     if (doc != nullptr) {
         DocumentSettings documentSettings(doc->url().url());
         documentSettings.setCollapsedStatisticsViewItems(collapsedItems);
@@ -221,7 +221,7 @@ void LessonStatisticsView::restoreExpandedStatus()
     auto statisticsModel = qobject_cast<StatisticsModel *>(model());
     Q_ASSERT(statisticsModel != nullptr);
 
-    const KEduVocDocument *doc = statisticsModel->document();
+    const KEduVocDocument *doc = statisticsModel->document().get();
     if (doc != nullptr) {
         DocumentSettings documentSettings(doc->url().url());
         documentSettings.load();

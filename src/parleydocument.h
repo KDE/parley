@@ -15,6 +15,7 @@
 #ifndef PARLEYDOCUMENT_H
 #define PARLEYDOCUMENT_H
 
+#include <memory>
 #include <KEduVocDocument>
 #include <QObject>
 
@@ -34,7 +35,7 @@ public:
     ~ParleyDocument();
 
 
-    KEduVocDocument *document();
+    std::shared_ptr<KEduVocDocument> document();
 
     void setTitle(const QString& title);
 
@@ -86,7 +87,7 @@ public slots:
 signals:
     /** Emitted when the document pointer is changed.
      @todo Stop using documentChanged(0) as a replacement for destroyed in editor classes.**/
-    void documentChanged(KEduVocDocument *newDocument);
+    void documentChanged(const std::shared_ptr<KEduVocDocument> &newDocument);
     void languagesChanged();
     void statesNeedSaving();
 
@@ -99,7 +100,7 @@ private:
     QTimer           *m_backupTimer; // Timer for next autosave
 
     // The contents of the document
-    KEduVocDocument *m_doc;
+    std::shared_ptr<KEduVocDocument> m_doc;
 };
 
 #endif

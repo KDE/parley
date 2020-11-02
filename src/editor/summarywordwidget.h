@@ -17,6 +17,8 @@
 
 #include "ui_summarywordwidget.h"
 
+#include <memory>
+
 #include <QItemDelegate>
 #include <QWidget>
 
@@ -48,7 +50,7 @@ class SummaryWordWidget : public QWidget, public Ui::SummaryWordWidget
     Q_OBJECT
 
 public:
-    SummaryWordWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent = 0);
+    SummaryWordWidget(VocabularyFilter *model, const std::shared_ptr<KEduVocDocument> &, QWidget *parent = 0);
 
 public slots:
     /**
@@ -59,7 +61,7 @@ public slots:
     /**
     * Called when a KEduVocDocument change happened
     */
-    void slotDocumentChanged(KEduVocDocument *doc);
+    void slotDocumentChanged(const std::shared_ptr<KEduVocDocument> &doc);
 
     /**
     * Called when the selection changed in the vocabulary view
@@ -86,7 +88,7 @@ private:
 
 private:
     VocabularyFilter *m_model;
-    KEduVocDocument *m_doc;
+    std::shared_ptr<KEduVocDocument> m_doc;
     QDataWidgetMapper *m_mapper;
     WordClassModel *m_wordTypeModel;
     QTreeView *m_wordTypeView;

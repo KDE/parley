@@ -66,11 +66,11 @@ InflectionWidget::InflectionWidget(QWidget* parent): QStackedWidget(parent)
     addWidget(m_declensionWidget);
 }
 
-void InflectionWidget::setDocument(KEduVocDocument* doc)
+void InflectionWidget::setDocument(const std::shared_ptr<KEduVocDocument> &doc)
 {
     m_doc = doc;
-    m_conjugationWidget->setDocument(doc);
-    m_declensionWidget->setDocument(doc);
+    m_conjugationWidget->setDocument(doc.get());
+    m_declensionWidget->setDocument(doc.get());
 }
 
 void InflectionWidget::setTranslation(KEduVocExpression* entry, int translation)

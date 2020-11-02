@@ -55,10 +55,10 @@ public:
     Qt::DropActions supportedDragActions() const  Q_DECL_OVERRIDE;
 
     void updateDocumentSettings();
-    const KEduVocDocument *document() const;
+    std::shared_ptr<KEduVocDocument> document() const;
 
 public slots:
-    virtual void setDocument(KEduVocDocument *doc) Q_DECL_OVERRIDE;
+    virtual void setDocument(const std::shared_ptr<KEduVocDocument> &doc) Q_DECL_OVERRIDE;
 
 protected:
     KEduVocContainer *rootContainer() const Q_DECL_OVERRIDE;

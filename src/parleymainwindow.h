@@ -88,7 +88,7 @@ public:
 
 public slots:
     /** Updates connections when the ParleyDocument pointer is changed to @p doc **/
-    void documentUpdated(KEduVocDocument *doc);
+    void documentUpdated(const std::shared_ptr<KEduVocDocument> &doc);
 
     /** Opens a dialog for a new collection. **/
     void slotFileNew();

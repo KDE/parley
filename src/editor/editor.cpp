@@ -102,21 +102,21 @@ EditorWindow::~EditorWindow()
     saveMainWindowSettings(cfg);
 }
 
-void EditorWindow::updateDocument(KEduVocDocument *doc)
+void EditorWindow::updateDocument(const std::shared_ptr<KEduVocDocument> &doc)
 {
 
     m_vocabularyView->setDocument(doc);
-    m_vocabularyModel->setDocument(doc);
+    m_vocabularyModel->setDocument(doc.get());
 
     m_lessonModel->setDocument(doc);
     m_wordTypeModel->setDocument(doc);
 
     m_summaryWordWidget->slotDocumentChanged(doc);
     m_inflectionWidget->setDocument(doc);
-    m_comparisonWidget->setDocument(doc);
-    m_synonymWidget->setDocument(doc);
-    m_antonymWidget->setDocument(doc);
-    m_falseFriendWidget->setDocument(doc);
+    m_comparisonWidget->setDocument(doc.get());
+    m_synonymWidget->setDocument(doc.get());
+    m_antonymWidget->setDocument(doc.get());
+    m_falseFriendWidget->setDocument(doc.get());
 
     if (!m_mainWindow->parleyDocument()->document()) {
         return;
@@ -368,7 +368,7 @@ void EditorWindow::initDockWidgets()
 // LaTeX
     QDockWidget *latexDock = new QDockWidget(i18n("LaTeX"), this);
     latexDock->setObjectName(QStringLiteral("LatexDock"));
-    m_latexWidget = new LatexWidget(m_vocabularyFilter, m_mainWindow->parleyDocument()->document(), this);
+    m_latexWidget = new LatexWidget(m_vocabularyFilter, m_mainWindow->parleyDocument()->document().get(), this);
     QScrollArea *latexScrollArea = new QScrollArea(this);
     latexScrollArea->setWidgetResizable(true);
     latexScrollArea->setWidget(m_latexWidget);

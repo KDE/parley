@@ -171,7 +171,7 @@ KEduVocContainer *StatisticsModel::rootContainer() const
 void StatisticsModel::loadDocumentsSettings()
 {
     m_documentSettings.clear();
-    if (m_doc == nullptr) {
+    if (!m_doc) {
         return;
     }
     for (int i = 0 ; i < m_doc->identifierCount(); ++i) {
@@ -183,7 +183,7 @@ void StatisticsModel::loadDocumentsSettings()
     }
 }
 
-void StatisticsModel::setDocument(KEduVocDocument *doc)
+void StatisticsModel::setDocument(const std::shared_ptr<KEduVocDocument> &doc)
 {
     beginResetModel();
     m_doc = doc;
@@ -200,7 +200,7 @@ void StatisticsModel::updateDocumentSettings()
 }
 
 
-const KEduVocDocument *StatisticsModel::document() const
+std::shared_ptr<KEduVocDocument> StatisticsModel::document() const
 {
     return m_doc;
 }

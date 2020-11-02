@@ -37,7 +37,8 @@
 #include "conjugationoptions.h"
 
 
-StatisticsMainWindow::StatisticsMainWindow(KEduVocDocument *doc, ParleyMainWindow *parent)
+StatisticsMainWindow::StatisticsMainWindow(const std::shared_ptr<KEduVocDocument> &doc,
+                                           ParleyMainWindow *parent)
     : KXmlGuiWindow(parent)
     , m_mainWindow(parent)
     , m_doc(doc)
@@ -83,7 +84,7 @@ void StatisticsMainWindow::syncConfig()
     }
 }
 
-void StatisticsMainWindow::setDocument(KEduVocDocument* doc)
+void StatisticsMainWindow::setDocument(const std::shared_ptr<KEduVocDocument> &doc)
 {
     m_doc = doc;
     m_statisticsModel->setDocument(doc);
@@ -287,7 +288,7 @@ void StatisticsMainWindow::showConjugationOptions(bool visible)
     }
 
     if (!m_conjugationOptions) {
-        m_conjugationOptions = new ConjugationOptions(m_doc, m_ui->modeSpecificOptions);
+        m_conjugationOptions = new ConjugationOptions(m_doc.get(), m_ui->modeSpecificOptions);
         QHBoxLayout* layout = new QHBoxLayout(m_ui->modeSpecificOptions);
         layout->setContentsMargins(0, 0, 0, 0);
         layout->addWidget(m_conjugationOptions);
@@ -302,7 +303,7 @@ void StatisticsMainWindow::showConjugationOptions(bool visible)
 
 void StatisticsMainWindow::configurePractice()
 {
-    ConfigurePracticeDialog dialog(m_doc, this, QStringLiteral("practice settings"),  Prefs::self());
+    ConfigurePracticeDialog dialog(m_doc.get(), this, QStringLiteral("practice settings"),  Prefs::self());
     dialog.exec();
 }
 

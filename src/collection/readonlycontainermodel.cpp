@@ -36,11 +36,10 @@
 ReadonlyContainerModel::ReadonlyContainerModel(KEduVocContainer::EnumContainerType type, QObject * parent)
     : QAbstractItemModel(parent)
     , m_type(type)
-    , m_doc(0)
 {
 }
 
-void ReadonlyContainerModel::setDocument(KEduVocDocument * doc)
+void ReadonlyContainerModel::setDocument(const std::shared_ptr<KEduVocDocument> &doc)
 {
     beginResetModel();
     m_doc = doc;

@@ -15,6 +15,8 @@
 #ifndef INFLECTIONWIDGET_H
 #define INFLECTIONWIDGET_H
 
+#include <memory>
+
 #include <QStackedWidget>
 
 #include <KEduVocDeclension>
@@ -35,7 +37,7 @@ public:
     explicit InflectionWidget(QWidget *parent = 0);
 
 public slots:
-    void setDocument(KEduVocDocument* doc);
+    void setDocument(const std::shared_ptr<KEduVocDocument> &doc);
     void setTranslation(KEduVocExpression* entry, int translation);
 
 private slots:
@@ -46,7 +48,7 @@ private:
     DeclensionWidget *m_declensionWidget;
     ConjugationWidget *m_conjugationWidget;
 
-    KEduVocDocument *m_doc;
+    std::shared_ptr<KEduVocDocument> m_doc;
     KEduVocExpression *m_entry;
     int m_translation;
 };

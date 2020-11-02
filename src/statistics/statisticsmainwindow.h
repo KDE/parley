@@ -16,6 +16,8 @@
 #ifndef STATISTICSMAINWINDOW_H
 #define STATISTICSMAINWINDOW_H
 
+#include <memory>
+
 #include <KXmlGuiWindow>
 
 class ConjugationOptions;
@@ -32,10 +34,10 @@ class StatisticsMainWindow : public KXmlGuiWindow
     Q_OBJECT
 public:
 
-    StatisticsMainWindow(KEduVocDocument *doc, ParleyMainWindow *parent);
+    StatisticsMainWindow(const std::shared_ptr<KEduVocDocument> &doc, ParleyMainWindow *parent);
     ~StatisticsMainWindow();
 
-    void setDocument(KEduVocDocument* doc);
+    void setDocument(const std::shared_ptr<KEduVocDocument> &doc);
 
     void syncConfig();
 
@@ -61,7 +63,7 @@ private:
     void setPracticeDirectionForPracticeMode(int direction, int mode);
 
     ParleyMainWindow* m_mainWindow;
-    KEduVocDocument* m_doc;
+    std::shared_ptr<KEduVocDocument> m_doc;
     StatisticsModel* m_statisticsModel;
     Ui::StatisticsMainWindow* m_ui;
     ConjugationOptions* m_conjugationOptions;

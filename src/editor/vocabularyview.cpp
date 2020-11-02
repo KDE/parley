@@ -52,7 +52,7 @@
 using namespace Editor;
 
 VocabularyView::VocabularyView(EditorWindow * parent)
-    : QTableView(parent), m_model(0), m_doc(0),
+    : QTableView(parent), m_model(0),
       m_spellChecker(0), m_spellDialog(0)
 {
     installEventFilter(this);
@@ -350,7 +350,7 @@ void VocabularyView::slotSelectionChanged(const QItemSelection &, const QItemSel
     m_cutAction->setEnabled(hasSelection);
 }
 
-void VocabularyView::setDocument(KEduVocDocument * doc)
+void VocabularyView::setDocument(const std::shared_ptr<KEduVocDocument> &doc)
 {
     m_doc = doc;
     m_vocabularyDelegate->setDocument(doc);
@@ -368,7 +368,7 @@ void VocabularyView::setTranslator(Translator* translator)
 
 void VocabularyView::slotShowVocabularyColumnsDialog()
 {
-    VocabularyColumnsDialog *dialog = new VocabularyColumnsDialog(m_doc, this);
+    VocabularyColumnsDialog *dialog = new VocabularyColumnsDialog(m_doc.get(), this);
 
     if (dialog->exec() == QDialog::Accepted) {
         reset();
