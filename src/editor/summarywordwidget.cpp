@@ -39,7 +39,7 @@
 using namespace Editor;
 
 
-SummaryWordWidget::SummaryWordWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent)
+SummaryWordWidget::SummaryWordWidget(VocabularyFilter *model, const std::shared_ptr<KEduVocDocument> &doc, QWidget *parent)
     : QWidget(parent)
     , m_doc(doc)
     , m_wordTypeModel(0)
@@ -93,7 +93,7 @@ void SummaryWordWidget::setTranslation(KEduVocExpression *entry, int translation
     m_translationId = translation;
 }
 
-void SummaryWordWidget::slotDocumentChanged(KEduVocDocument *doc)
+void SummaryWordWidget::slotDocumentChanged(const std::shared_ptr<KEduVocDocument> &doc)
 {
     m_doc = doc;
     if (!m_doc) {

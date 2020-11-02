@@ -17,6 +17,7 @@
 #ifndef VOCABULARYVIEW_H
 #define VOCABULARYVIEW_H
 
+#include <memory>
 #include <sonnet/dialog.h>
 
 // Qt
@@ -80,7 +81,7 @@ public slots:
      */
     void appendChar(const QChar & c);
 
-    void setDocument(KEduVocDocument * doc);
+    void setDocument(const std::shared_ptr<KEduVocDocument> &doc);
 
     void setTranslator(Translator* translator);
 
@@ -122,7 +123,7 @@ private:
 
     VocabularyFilter* m_model;
     VocabularyDelegate* m_vocabularyDelegate;
-    KEduVocDocument *m_doc;
+    std::shared_ptr<KEduVocDocument> m_doc;
 
     int m_spellColumn;
     int m_spellRow;

@@ -39,7 +39,7 @@
 using namespace Editor;
 
 VocabularyDelegate::VocabularyDelegate(QObject *parent)
-    : QItemDelegate(parent), m_doc(0), m_translator(0)
+    : QItemDelegate(parent), m_translator(0)
 {
 }
 
@@ -327,7 +327,7 @@ void VocabularyDelegate::setModelData(QWidget * editor, QAbstractItemModel * mod
     }
 }
 
-void VocabularyDelegate::setDocument(KEduVocDocument * doc)
+void VocabularyDelegate::setDocument(const std::shared_ptr<KEduVocDocument> &doc)
 {
     m_doc = doc;
 }

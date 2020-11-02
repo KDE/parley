@@ -102,7 +102,7 @@ public slots:
     /**
      * Set the current doc (after creating a new one or opening a file)
      */
-    void updateDocument(KEduVocDocument *doc);
+    void updateDocument(const std::shared_ptr<KEduVocDocument> &doc);
 
     /**
      * DBus method for adding words by external apps

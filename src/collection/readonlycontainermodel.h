@@ -16,6 +16,8 @@
 #ifndef READONLYCONTAINERMODEL_H
 #define READONLYCONTAINERMODEL_H
 
+#include <memory>
+
 #include <QAbstractItemModel>
 #include <QModelIndex>
 
@@ -54,12 +56,12 @@ public:
 public slots:
     /** Set the new source kvtml file
      * @param doc the new file */
-    virtual void setDocument(KEduVocDocument *doc);
+    virtual void setDocument(const std::shared_ptr<KEduVocDocument> &doc);
 
 protected:
     virtual KEduVocContainer *rootContainer() const = 0;
     KEduVocContainer::EnumContainerType m_type;
-    KEduVocDocument *m_doc;
+    std::shared_ptr<KEduVocDocument> m_doc;
 };
 
 

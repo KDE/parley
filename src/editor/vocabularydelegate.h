@@ -65,11 +65,11 @@ public:
     QPolygon imagePolygon(const QStyleOptionViewItem &option) const;
 
 public slots:
-    void setDocument(KEduVocDocument *doc);
+    void setDocument(const std::shared_ptr<KEduVocDocument> &doc);
     bool helpEvent(QHelpEvent *event, QAbstractItemView *view, const QStyleOptionViewItem &option, const QModelIndex &index ) Q_DECL_OVERRIDE;
 
 private:
-    KEduVocDocument *m_doc;
+    std::shared_ptr<KEduVocDocument> m_doc;
     Translator * m_translator;
 
     /** Returns the translations of the word of the given index */

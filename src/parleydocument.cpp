@@ -80,7 +80,7 @@ ParleyDocument::ParleyDocument(ParleyMainWindow* parleyMainWindow)
     : QObject(parleyMainWindow)
     , m_parleyApp(parleyMainWindow)
     , m_backupTimer(0)
-    , m_doc(new KEduVocDocument(this))
+    , m_doc(new KEduVocDocument, [](KEduVocDocument *p){p->deleteLater();})
 {
 }
 
@@ -90,11 +90,11 @@ ParleyDocument::~ParleyDocument()
 }
 
 
-KEduVocDocument *ParleyDocument::document()
+std::shared_ptr<KEduVocDocument> ParleyDocument::document()
 {
     // If there is no present vocabulary document, create an empty one.
     if (!m_doc) {
-        m_doc = new KEduVocDocument(this);
+        m_doc.reset(new KEduVocDocument, [](KEduVocDocument *p){p->deleteLater();});
     }
 
     return m_doc;
@@ -114,14 +114,14 @@ void ParleyDocument::slotFileNew()
 
 void ParleyDocument::newDocument(bool wizard)
 {
-    KEduVocDocument *newDoc = new KEduVocDocument(this);
+    std::shared_ptr<KEduVocDocument> newDoc(new KEduVocDocument, [](KEduVocDocument *p){p->deleteLater();});
 
-    initializeDefaultGrammar(newDoc);
-    setDefaultDocumentProperties(newDoc);
+    initializeDefaultGrammar(newDoc.get());
+    setDefaultDocumentProperties(newDoc.get());
     bool showGrammarDialog = false;
     bool fetchGrammarOnline = false;
     if (wizard) {
-        DocumentProperties* titleAuthorWidget = new DocumentProperties(newDoc, true, m_parleyApp);
+        DocumentProperties* titleAuthorWidget = new DocumentProperties(newDoc.get(), true, m_parleyApp);
 
         QDialogButtonBox * button_dialog = new QDialogButtonBox;
         button_dialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel );
@@ -144,22 +144,18 @@ void ParleyDocument::newDocument(bool wizard)
             delete titleAuthorDialog;
         } else {
             delete titleAuthorDialog;
-            delete newDoc;
             return;
         }
     }
 
     close();
-    if (m_doc) {
-        m_doc->deleteLater();
-    }
-    m_doc = newDoc;
+    m_doc = std::move(newDoc);
     emit documentChanged(m_doc);
     enableAutoBackup(Prefs::autoBackup());
 
     if (fetchGrammarOnline) {
-        DocumentHelper::fetchGrammar(m_doc, 0);
-        DocumentHelper::fetchGrammar(m_doc, 1);
+        DocumentHelper::fetchGrammar(m_doc.get(), 0);
+        DocumentHelper::fetchGrammar(m_doc.get(), 1);
     }
     if (showGrammarDialog) {
         languageProperties();
@@ -205,10 +201,7 @@ bool ParleyDocument::open(const QUrl & url)
 
     close();
 
-    if (m_doc) {
-        m_doc->deleteLater();
-    }
-    m_doc = new KEduVocDocument(this);
+    m_doc.reset(new KEduVocDocument, [](KEduVocDocument *p){p->deleteLater();});
     emit documentChanged(m_doc);
     m_doc->setCsvDelimiter(Prefs::separator());
 
@@ -254,9 +247,8 @@ bool ParleyDocument::open(const QUrl & url)
                 m_parleyApp, i18n("Opening collection \"%1\" resulted in an error: %2", m_doc->url().url(),
                                   m_doc->errorDescription(ret)), i18nc("@title:window", "Open Collection"));
         }
-        m_doc->deleteLater();
-        emit documentChanged(0);
-        m_doc = 0;
+        m_doc.reset();
+        emit documentChanged(m_doc);
     }
 
     return isSuccess;
@@ -266,15 +258,14 @@ void ParleyDocument::close()
 {
     enableAutoBackup(false);
     if (m_doc) {
-        emit documentChanged(0);
-        m_doc->deleteLater();
-        m_doc = 0;
+        m_doc.reset();
+        emit documentChanged(m_doc);
     }
 }
 
 bool ParleyDocument::queryClose()
 {
-    if ( (m_doc == NULL ) || !m_doc->isModified()) {
+    if ( !m_doc || !m_doc->isModified()) {
         return true;
     }
 
@@ -580,7 +571,7 @@ void ParleyDocument::slotGHNS()
 
 void ParleyDocument::documentProperties()
 {
-    DocumentProperties* titleAuthorWidget = new DocumentProperties(m_doc, false, m_parleyApp);
+    DocumentProperties* titleAuthorWidget = new DocumentProperties(m_doc.get(), false, m_parleyApp);
 
     QDialogButtonBox * button_dialog = new QDialogButtonBox;
     button_dialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel );
@@ -607,7 +598,7 @@ void ParleyDocument::documentProperties()
 
 void ParleyDocument::languageProperties()
 {
-    LanguageProperties properties(m_doc, m_parleyApp);
+    LanguageProperties properties(m_doc.get(), m_parleyApp);
     if (properties.exec() == QDialog::Accepted) {
         emit languagesChanged();
     }

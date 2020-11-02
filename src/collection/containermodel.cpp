@@ -35,7 +35,6 @@ ContainerModel::ContainerModel(KEduVocContainer::EnumContainerType type, QObject
     : ReadonlyContainerModel(type, parent)
 {
     m_type = type;
-    m_doc = 0;
 }
 
 QModelIndex ContainerModel::appendContainer(const QModelIndex& parent, const QString & containerName)

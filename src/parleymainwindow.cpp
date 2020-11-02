@@ -126,12 +126,12 @@ void ParleyMainWindow::removeRecentFile(const QUrl &url)
     m_recentFilesAction->saveEntries(KSharedConfig::openConfig()->group("Recent Files"));
 }
 
-void ParleyMainWindow::documentUpdated(KEduVocDocument *doc)
+void ParleyMainWindow::documentUpdated(const std::shared_ptr<KEduVocDocument> &doc)
 {
-    if (doc != nullptr) {
-        connect(doc, &KEduVocDocument::docModified,
+    if (doc) {
+        connect(doc.get(), &KEduVocDocument::docModified,
                 this, &ParleyMainWindow::slotUpdateWindowCaption);
-        connect(doc, &KEduVocDocument::destroyed,
+        connect(doc.get(), &KEduVocDocument::destroyed,
                 this, &ParleyMainWindow::slotUpdateWindowCaption);
         slotUpdateWindowCaption();
     }
@@ -164,7 +164,7 @@ void ParleyMainWindow::slotUpdateWindowCaption()
 
 void ParleyMainWindow::slotGeneralOptions()
 {
-    ParleyPrefs* dialog = new ParleyPrefs(m_document->document(), this, QStringLiteral("settings"),  Prefs::self());
+    ParleyPrefs* dialog = new ParleyPrefs(m_document->document().get(), this, QStringLiteral("settings"),  Prefs::self());
     connect(dialog, &ParleyPrefs::settingsChanged, this, &ParleyMainWindow::preferencesChanged);
     dialog->show();
 }
@@ -185,7 +185,7 @@ void ParleyMainWindow::slotCloseDocument()
 
 void ParleyMainWindow::configurePractice()
 {
-    ConfigurePracticeDialog configurePracticeDialog(m_document->document(), this, QStringLiteral("practice settings"),  Prefs::self());
+    ConfigurePracticeDialog configurePracticeDialog(m_document->document().get(), this, QStringLiteral("practice settings"),  Prefs::self());
     configurePracticeDialog.exec();
 }
 
@@ -299,7 +299,7 @@ void ParleyMainWindow::switchComponent(Component component)
 
         // Don't start a practice when there are no words to practice.
         // This has to be checked before deleting the old component.
-        m_sessionManager.setDocument(m_document->document());
+        m_sessionManager.setDocument(m_document->document().get());
         if (!m_sessionManager.allEntryCount()) {
             return;
         }
