@@ -80,7 +80,7 @@ ParleyDocument::ParleyDocument(ParleyMainWindow* parleyMainWindow)
     : QObject(parleyMainWindow)
     , m_parleyApp(parleyMainWindow)
     , m_backupTimer(0)
-    , m_doc(new KEduVocDocument, [](KEduVocDocument *p){p->deleteLater();})
+    , m_doc(new KEduVocDocument)
 {
 }
 
@@ -94,7 +94,7 @@ std::shared_ptr<KEduVocDocument> ParleyDocument::document()
 {
     // If there is no present vocabulary document, create an empty one.
     if (!m_doc) {
-        m_doc.reset(new KEduVocDocument, [](KEduVocDocument *p){p->deleteLater();});
+        m_doc.reset(new KEduVocDocument);
     }
 
     return m_doc;
@@ -114,7 +114,7 @@ void ParleyDocument::slotFileNew()
 
 void ParleyDocument::newDocument(bool wizard)
 {
-    std::shared_ptr<KEduVocDocument> newDoc(new KEduVocDocument, [](KEduVocDocument *p){p->deleteLater();});
+    std::shared_ptr<KEduVocDocument> newDoc(new KEduVocDocument);
 
     initializeDefaultGrammar(newDoc.get());
     setDefaultDocumentProperties(newDoc.get());
@@ -201,7 +201,7 @@ bool ParleyDocument::open(const QUrl & url)
 
     close();
 
-    m_doc.reset(new KEduVocDocument, [](KEduVocDocument *p){p->deleteLater();});
+    m_doc.reset(new KEduVocDocument);
     emit documentChanged(m_doc);
     m_doc->setCsvDelimiter(Prefs::separator());
 
