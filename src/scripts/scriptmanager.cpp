@@ -15,7 +15,6 @@
 #include "scriptmanager.h"
 
 #include <KPluginInfo>
-#include <KServiceTypeTrader>
 #include <KActionCollection>
 #include <KMessageBox>
 #include <KConfig>
