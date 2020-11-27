@@ -203,8 +203,9 @@ KRecentFilesAction* ParleyActions::createRecentFilesAction(const QObject* recvr,
 
 QAction* ParleyActions::createDownloadAction(const QObject* recvr, const char* slot, KActionCollection* collection)
 {
-    QAction *pAction = KNS3::standardAction(i18n("Download New Vocabularies..."), recvr, slot, collection, "file_ghns");
-    pAction->setIcon(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")));
+    QAction *pAction = new QAction(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")), i18n("Download New Vocabularies..."), collection);
+    collection->addAction(QStringLiteral("file_ghns"), pAction);
+    QObject::connect(pAction, SIGNAL(triggered(bool)), recvr, slot);
 
     pAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_G));
     collection->setDefaultShortcut(pAction, QKeySequence(Qt::CTRL + Qt::Key_G));
