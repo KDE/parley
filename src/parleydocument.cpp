@@ -300,7 +300,7 @@ bool ParleyDocument::queryClose()
 void ParleyDocument::openGHNS()
 {
     if (m_parleyApp->queryClose()) {
-        QDir downloadDir(  QStandardPaths::writableLocation( QStandardPaths::DataLocation ) + '/' + "kvtml/" );
+        QDir downloadDir(  QStandardPaths::writableLocation( QStandardPaths::GenericDataLocation ) + '/' + "kvtml/" );
 
         downloadDir.mkpath(downloadDir.absolutePath());
 
