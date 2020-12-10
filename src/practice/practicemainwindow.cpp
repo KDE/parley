@@ -90,7 +90,7 @@ void PracticeMainWindow::initActions()
     toggleAnswerState->setText(i18n("Change answer to right/wrong"));
     toggleAnswerState->setToolTip(i18n("When you answered, Parley will display that the answer was right or wrong.\nThis shortcut changes how the answer is counted."));
     actionCollection()->addAction(QStringLiteral("toggle_answer_state"), toggleAnswerState);
-    toggleAnswerState->setShortcut(Qt::CTRL + Qt::Key_Space);
+    toggleAnswerState->setShortcut(Qt::CTRL | Qt::Key_Space);
     connect(toggleAnswerState, &QAction::triggered, m_guiFrontend, &GuiFrontend::toggleResultState);
 
     //m_floatingToolBar now a child of m_mainWindow and will be deleted with its parent
