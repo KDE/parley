@@ -32,7 +32,7 @@ This file collects some utility classes that are used in multiple unit tests
 
 #include <QUrl>
 
-#include <QtTest>
+#include <QTest>
 #include <QDebug>
 
 namespace UnitTestUtilities
