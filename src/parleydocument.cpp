@@ -33,7 +33,12 @@
 #include <QMimeDatabase>
 #include <KRecentFilesAction>
 #include <QStandardPaths>
-#include <kns3/downloaddialog.h>
+#include <knewstuff_version.h>
+#if KNEWSTUFF_VERSION < QT_VERSION_CHECK(5, 78, 0)
+#include <KNS3/DownloadDialog>
+#else
+#include <KNS3/QtQuickDialogWrapper>
+#endif
 #include <kns3/uploaddialog.h>
 #include <KEMailSettings>
 #include <KMessageBox>
@@ -540,13 +545,22 @@ void ParleyDocument::slotGHNS()
 {
     QMimeDatabase db;
     QString fileName;
-    KNS3::DownloadDialog newStuffDialog(ParleyMainWindow::instance());
+#if KNEWSTUFF_VERSION < QT_VERSION_CHECK(5, 78, 0)
+    KNS3::DownloadDialog dialog(QStringLiteral("parley.knsrc"),  q_ptr);
     newStuffDialog.exec();
     KNS3::Entry::List entries = newStuffDialog.installedEntries();
-    int numberInstalled = entries.size();
-    foreach (const KNS3::Entry & entry, entries) {
+#else
+    const auto entries = KNS3::QtQuickDialogWrapper(QStringLiteral("parley.knsrc")).exec();
+#endif
+    int numberInstalled = 0;
+    for (const auto &entry : entries) {
+        if (entry.status() != KNS3::Entry::Installed) {
+            continue;
+        }
+        ++numberInstalled;
         // check mime type and if kvtml, open it
-        foreach (const QString & file, entry.installedFiles()) {
+        const QStringList installedFiles = entry.installedFiles();
+        for (const QString &file : installedFiles) {
             QMimeType mimeType = db.mimeTypeForFile(file);
             qDebug() << "KNS2 file of mime type:" << db.mimeTypeForFile(file).name();
             if (mimeType.inherits(QStringLiteral("application/x-kvtml"))) {

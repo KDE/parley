@@ -21,7 +21,12 @@
 
 #include <KLocalizedString>
 #include <KConfigSkeleton>
+#include <knewstuff_version.h>
+#if KNEWSTUFF_VERSION < QT_VERSION_CHECK(5, 78, 0)
 #include <KNS3/DownloadDialog>
+#else
+    #include <KNS3/QtQuickDialogWrapper>
+#endif
 #include <QDirIterator>
 
 #include "ui_kgamethemeselector.h"
@@ -212,10 +217,17 @@ void KGameThemeSelectorPrivate::_k_updateThemeList(const QString &strTheme)
 
 void KGameThemeSelectorPrivate::_k_openKNewStuffDialog()
 {
+#if KNEWSTUFF_VERSION < QT_VERSION_CHECK(5, 78, 0)
     KNS3::DownloadDialog dialog(QStringLiteral("parley-themes.knsrc"),  q_ptr);
     dialog.exec();
     if (!dialog.changedEntries().isEmpty())
         findThemes(ui.kcfg_Theme->text());
+#else
+    if (!KNS3::QtQuickDialogWrapper(QStringLiteral("parley-themes.knsrc")).exec().isEmpty()) {
+        // Only load the list if entries are changed
+        findThemes(ui.kcfg_Theme->text());
+    }
+#endif
 }
 
 #include "moc_kgamethemeselector.cpp"
