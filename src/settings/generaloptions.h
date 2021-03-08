@@ -1,25 +1,8 @@
-/***************************************************************************
-
-                      general options for parley
-
-    -----------------------------------------------------------------------
-
-    begin         : Tue Mar 29 2005
-
-    copyright     :(C) 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
-
-    -----------------------------------------------------------------------
-
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    general options for parley
+    SPDX-FileCopyrightText: 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef GENERALOPTIONS_H
 #define GENERALOPTIONS_H

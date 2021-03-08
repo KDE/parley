@@ -2,16 +2,8 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"  xmlns="http://www.w3.org/1999/xhtml"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 <!-- XSL Stylesheet to transform kvtml-2 files to html
- ***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
-
-Copyright 2007: Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    SPDX-FileCopyrightText: Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    SPDX-License-Identifier: GPL-2.0-or-later
 
 The easiest way to use the stylesheet is to include it in the .kvtml file:
 <?xml-stylesheet type="text/xsl" href="kvtml_html_stylesheet.xsl"?>

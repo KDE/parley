@@ -1,18 +1,8 @@
-/***************************************************************************
-
-    Copyright 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
-    Copyright 2014 Inge Wallin       <inge@lysator.liu.se>
-
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+    SPDX-FileCopyrightText: 2014 Inge Wallin <inge@lysator.liu.se>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef COLLECTION_H
 #define COLLECTION_H

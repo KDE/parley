@@ -1,15 +1,7 @@
-/***************************************************************************
-    Copyright 2009 Daniel Laidig <d.laidig@gmx.de>
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2009 Daniel Laidig <d.laidig@gmx.de>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "imagewidget.h"
 #include <config-parley.h>
@@ -33,8 +25,8 @@ using namespace Practice;
 
 // The functions centerPixmaps() and transition() are copied from kdelibs/plasma/paintutils.cpp, revision 1133527
 // License: LGPLv2+
-// Copyright 2005 by Aaron Seigo <aseigo@kde.org>
-// Copyright 2008 by Andrew Lake <jamboarder@yahoo.com>
+// SPDX-FileCopyrightText: 2005 Aaron Seigo <aseigo@kde.org>
+// SPDX-FileCopyrightText: 2008 Andrew Lake <jamboarder@yahoo.com>
 // Don't just modify the code here, if there are issues they should probably also be fixed in libplasma.
 
 void centerPixmaps(QPixmap &from, QPixmap &to)
