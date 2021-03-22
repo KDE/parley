@@ -546,7 +546,7 @@ void ParleyDocument::slotGHNS()
     QMimeDatabase db;
     QString fileName;
 #if KNEWSTUFF_VERSION < QT_VERSION_CHECK(5, 78, 0)
-    KNS3::DownloadDialog dialog(QStringLiteral("parley.knsrc"),  q_ptr);
+    KNS3::DownloadDialog newStuffDialog(QStringLiteral("parley.knsrc"));
     newStuffDialog.exec();
     KNS3::Entry::List entries = newStuffDialog.installedEntries();
 #else
