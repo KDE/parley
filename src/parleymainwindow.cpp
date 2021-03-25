@@ -111,6 +111,12 @@ ParleyMainWindow::~ParleyMainWindow()
     guiFactory()->removeClient(m_currentComponentWindow);
     centralWidget()->layout()->removeWidget(m_currentComponentWindow);
     delete m_currentComponentWindow;
+
+    // Prevent calling this slot with already deleted m_document as it is no longer needed anyway
+    if (m_document->document()) {
+        disconnect(m_document->document().get(), &KEduVocDocument::destroyed,
+                this, &ParleyMainWindow::slotUpdateWindowCaption);
+    }
     delete m_document;
 }
 
