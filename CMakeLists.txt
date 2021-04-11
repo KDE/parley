@@ -44,7 +44,6 @@ find_package(KF5 ${KF5_MIN_VERSION} MODULE REQUIRED COMPONENTS
   KCMUtils
   XmlGui
   Notifications
-  #Plasma
 )
 
 find_package(LibKEduVocDocument)
@@ -67,13 +66,6 @@ set_package_properties(LibXml2 PROPERTIES
                        PURPOSE "Required to build HTML export for Parley."
                       )
 
-
-#@todo frameworks restore Xattica
-# find_package(LibAttica)
-
-# macro_log_feature(LIBATTICA_FOUND "libattica" "A library to access Open Collaboration Service providers" "https://kde.org" FALSE "" "Required to access OCS providers in get hot new stuff.")
-
-
 # at the end, output the configuration
 configure_file(
    ${CMAKE_CURRENT_SOURCE_DIR}/config-parley.h.cmake
@@ -89,9 +81,7 @@ include_directories (BEFORE ${CMAKE_CURRENT_BINARY_DIR})
 set( parley_LINK_LIBS
   LibKEduVocDocumentImport__KEduVocDocument
   KF5::KrossCore
-  # KF5::ConfigCore
   Qt5::Core
-  # Qt5::Qml
   Qt5::Svg
   KF5::I18n
   KF5::NewStuff
@@ -135,15 +125,6 @@ else(X11_Xrender_FOUND)
   message(STATUS "X11 Xrender not found, but not required")
 endif(X11_Xrender_FOUND)
 
-
-#define the include libraries for both the parley executable and the autotests
-# set( parley_INCLUDE_DIRS
-#   # ${LIBATTICA_INCLUDE_DIR}
-#   # libkdeedu/keduvocdocument contains the library for reading and writing vocabulary files
-#   ${LIBKDEEDU_INCLUDE_DIR}
-# )
-
-
 if(BUILD_TESTING)
   add_subdirectory( autotests )
   add_subdirectory( tests )
@@ -159,13 +140,6 @@ add_subdirectory( tipofday )
 if(HAVE_LIBXSLT)
     add_subdirectory( xslt )
 endif(HAVE_LIBXSLT)
-
-
-#@todo unused This seems unused delete December 2014
-#add_subdirectory( scripts_test )
-
-#@todo frameworks restore/rewrite the plasmoid
-#add_subdirectory(plasmoid)
 
 ki18n_install(po)
 if (KF5DocTools_FOUND)
