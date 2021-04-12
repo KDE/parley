@@ -6,8 +6,6 @@
 #ifndef CONTAINERMIMEDATA_H
 #define CONTAINERMIMEDATA_H
 
-// #include <KEduVocContainer>
-
 #include <QMimeData>
 
 class KEduVocContainer;
