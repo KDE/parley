@@ -10,7 +10,6 @@
 #include <QMediaPlayer>
 #include <QUrl>
 
-class QMediaPlayer;
 
 namespace Practice
 {
