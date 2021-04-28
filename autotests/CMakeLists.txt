@@ -28,18 +28,20 @@ set(parley_unittest_helpers
 
 macro(PARLEY_GUI_UNITTESTS)
    foreach(_testname ${ARGN})
+     get_filename_component( _name ${_testname} NAME_WE )
      ecm_add_test( ${_testname} ${parley_unittest_helpers}
        LINK_LIBRARIES ${unittest_LINK_LIBS}
-       TEST_NAME ${_testname}
+       TEST_NAME ${_name}
        GUI)
    endforeach()
 endmacro()
 
 macro(PARLEY_NON_GUI_UNITTESTS)
    foreach(_testname ${ARGN})
+     get_filename_component( _name ${_testname} NAME_WE )
      ecm_add_test( ${_testname} ${parley_unittest_helpers}
        LINK_LIBRARIES ${unittest_LINK_LIBS}
-       TEST_NAME ${_testname}
+       TEST_NAME ${_name}
        )
    endforeach()
 endmacro()
