@@ -2,7 +2,7 @@
     SPDX-FileCopyrightText: 2014 Andreas Xavier <andxav at zoho dot com>
     SPDX-FileCopyrightText: 2014 Inge Wallin <inge@lysator.liu.se>
     SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
- */
+*/
 
 // Own
 #include "statisticslegendwidget.h"
