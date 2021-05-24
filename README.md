@@ -10,5 +10,5 @@ Parley is a vocabulary trainer. It helps you to memorize your vocabulary, for ex
 
 - Home page: <http://edu.kde.org/parley>
 - Mailing list: <https://mail.kde.org/mailman/listinfo/kde-edu>
-- IRC channel: #kde-edu on Freenode
+- IRC channel: #kde-edu on Libera Chat
 - Git repository: <https://commits.kde.org/parley>
