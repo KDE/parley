@@ -13,7 +13,6 @@
 
 #include "vocabularymimedata.h"
 
-#include <KEduVocExpression>
 #include <KLocalizedString>
 #include <QDebug>
 #include <KMessageBox>

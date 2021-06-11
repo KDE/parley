@@ -20,7 +20,6 @@
 #include "parleydocument.h"
 #include "practice/themedbackgroundrenderer.h"
 #include "practice/imagewidget.h"
-#include "statistics/statisticsmainwindow.h"
 #include "statistics/statisticsmodel.h"
 
 #include "collection.h"

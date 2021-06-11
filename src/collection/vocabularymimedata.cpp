@@ -8,7 +8,6 @@
 #include "vocabularymimedata.h"
 
 #include <KEduVocTranslation>
-#include <KEduVocWordtype>
 
 
 void VocabularyMimeData::setTranslations(const QList<KEduVocTranslation *> &translations)

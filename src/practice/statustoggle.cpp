@@ -5,7 +5,6 @@
 
 #include "statustoggle.h"
 #include "themedbackgroundrenderer.h"
-#include "abstractfrontend.h"
 #include "statustogglebutton.h"
 
 #include <KLocalizedString>

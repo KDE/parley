@@ -19,7 +19,6 @@
 
 // kdeedulibs
 #include <KEduVocLesson>
-#include <KEduVocExpression>
 #include <KEduVocDocument>
 
 // parley

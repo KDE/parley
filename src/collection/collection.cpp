@@ -6,7 +6,6 @@
 #include "collection.h"
 
 // KEduVocDocument library
-#include <KEduVocDocument>
 
 // Parley
 #include "../utils.h"

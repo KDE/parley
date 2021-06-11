@@ -18,7 +18,6 @@
 
 #include "editor/editor.h"
 #include "containermodel.h"
-#include "containerview.h"
 
 using namespace Editor;
 

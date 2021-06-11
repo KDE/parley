@@ -9,7 +9,6 @@
 #include "parleydocument.h"
 
 #include "prefs.h"
-#include "abstractbackendmode.h"
 #include "comparisonbackendmode.h"
 #include "conjugationbackendmode.h"
 #include "examplesentencebackendmode.h"

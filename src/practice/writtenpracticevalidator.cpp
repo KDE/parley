@@ -5,7 +5,6 @@
 */
 
 #include "writtenpracticevalidator.h"
-#include "testentry.h"
 #include "prefs.h"
 
 #include <KEduVocTranslation>

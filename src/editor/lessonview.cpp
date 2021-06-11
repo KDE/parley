@@ -15,7 +15,6 @@
 #include <KEduVocLesson>
 
 #include "editor/editor.h"
-#include "lessonmodel.h"
 #include "prefs.h"
 
 using namespace Editor;

@@ -6,7 +6,6 @@
 #include "browserwidget.h"
 
 #include <KEduVocExpression>
-#include <QWebEngineView>
 
 #include <QDragEnterEvent>
 

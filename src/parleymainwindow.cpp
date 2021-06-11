@@ -27,7 +27,6 @@
 #include <KMessageBox>
 #include <KTipDialog>
 #include <KXMLGUIFactory>
-#include <KXmlGuiWindow>
 #include <KToolBar>
 #include <QMenuBar>
 

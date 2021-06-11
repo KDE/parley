@@ -10,7 +10,6 @@
 #include <KEduVocDocument>
 #include <KEduVocExpression>
 #include <KEduVocWordtype>
-#include <KEduVocDeclension>
 
 #include "declensionwidget.h"
 #include "conjugationwidget.h"

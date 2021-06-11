@@ -10,7 +10,6 @@
 
 #include "prefs.h"
 #include "languagesettings.h"
-#include "readonlycontainermodel.h"
 
 #include <KEduVocExpression>
 #include <KEduVocWordtype>

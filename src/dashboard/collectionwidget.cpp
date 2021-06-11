@@ -9,7 +9,6 @@
 #include "collectionwidget.h"
 
 // Parley
-#include "barwidget.h"
 
 // KDE
 #include <KLocalizedString>
@@ -25,7 +24,6 @@
 
 // Parley
 #include "utils.h"
-#include "collection.h"
 
 
 // Size constants for the collection widgets

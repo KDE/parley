@@ -13,7 +13,6 @@
 
 #include <KLocalizedString>
 #include <KWindowConfig>
-#include <KConfigWidgets/KConfigDialog>
 
 #include <QPushButton>
 

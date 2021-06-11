@@ -10,7 +10,6 @@
 
 // Qt
 #include <QDebug>
-#include <QWidget>
 #include <QPainter>
 #include <QPen>
 #include <QPainterPath>

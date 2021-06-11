@@ -8,8 +8,6 @@
 #include "containermimedata.h"
 #include "vocabularymimedata.h"
 
-#include <KEduVocDocument>
-#include <KEduVocLesson>
 #include <KEduVocWordtype>
 #include <KEduVocExpression>
 

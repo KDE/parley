@@ -11,7 +11,6 @@
 #include <KSharedConfig>
 #include <KConfigGroup>
 
-#include <QDialog>
 #include <QDialogButtonBox>
 #include <QVBoxLayout>
 

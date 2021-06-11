@@ -12,12 +12,10 @@
 #include "../scriptmanager.h"
 #include "../translator.h"
 
-#include "document.h"
 #include "lesson.h"
 #include "expression.h"
 #include "translation.h"
 
-#include <QDebug>
 #include <KActionCollection>
 #include <QMenuBar>
 

@@ -9,7 +9,6 @@
 #include <KEduVocDocument>
 #include <KEduVocExpression>
 #include <KEduVocWordtype>
-#include <KEduVocDeclension>
 
 #include <KMessageBox>
 #include <KLocalizedString>

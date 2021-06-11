@@ -7,7 +7,6 @@
 
 #include "thresholdoptions.h"
 
-#include "prefs.h"
 
 #include <KEduVocDocument>
 #include <KEduVocWordtype>

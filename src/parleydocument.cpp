@@ -5,7 +5,6 @@
 
 #include "parleydocument.h"
 
-#include <config-parley.h>
 #include "parleymainwindow.h"
 #include "editor/editor.h"
 #include "prefs.h"
