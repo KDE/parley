@@ -399,7 +399,6 @@ void EditorWindow::initActions()
     ParleyActions::create(ParleyActions::SearchVocabulary, this, SLOT(startSearch()), actionCollection());
     ParleyActions::create(ParleyActions::ShowScriptManager, this, SLOT(slotShowScriptManager()), actionCollection());
     ParleyActions::create(ParleyActions::LanguagesProperties, m_mainWindow->parleyDocument(), SLOT(languageProperties()), actionCollection());
-    ParleyActions::createUploadAction(m_mainWindow->parleyDocument(), SLOT(uploadFile()), actionCollection());
 
     new EditorWindowAdaptor(this);
 

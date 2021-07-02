@@ -203,12 +203,3 @@ QAction* ParleyActions::createDownloadAction(const QObject* recvr, const char* s
     pAction->setToolTip(i18n("Downloads new vocabulary collections"));
     return pAction;
 }
-
-QAction* ParleyActions::createUploadAction(const QObject* recvr, const char* slot, KActionCollection* collection)
-{
-    QAction *pAction = new QAction(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")), i18n("&Upload Vocabulary Document..."), collection);
-    collection->addAction(QStringLiteral("file_upload"), pAction);
-    QObject::connect(pAction, SIGNAL(triggered(bool)), recvr, slot);
-    pAction->setToolTip(i18n("Share the current vocabulary collection with other users"));
-    return pAction;
-}

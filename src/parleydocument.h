@@ -48,8 +48,6 @@ public slots:
     void openGHNS();
     /** download new vocabularies */
     void slotGHNS();
-    /** upload the current file */
-    void uploadFile();
 
     /** Opens the given url, displays an error message and returns false on failure */
     bool open(const QUrl &);

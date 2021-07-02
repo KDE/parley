@@ -28,7 +28,6 @@
 #else
 #include <KNS3/QtQuickDialogWrapper>
 #endif
-#include <kns3/uploaddialog.h>
 #include <KEMailSettings>
 #include <KMessageBox>
 #include <KProcess>
@@ -606,43 +605,6 @@ void ParleyDocument::languageProperties()
         emit languagesChanged();
     }
 }
-
-void ParleyDocument::uploadFile()
-{
-    // save file to temp location
-    QTemporaryDir dir;
-    if ( ! dir.isValid() ) {
-        KMessageBox::error(m_parleyApp, i18n("Could not create temporary directory \"%1\"", dir.path() ));
-        return;
-    }
-    QUrl url(QUrl::fromUserInput(dir.path() + m_doc->url().fileName()) );
-    qDebug() << "save in " << url;
-    m_doc->setGenerator(QStringLiteral("Parley"));
-    if ( m_doc->saveAs(url, KEduVocDocument::Automatic) != KEduVocDocument::NoError ){
-        KMessageBox::error(m_parleyApp, i18n("Could not save vocabulary collection \"%1\"", url.toString() ));
-        return;
-    }
-
-    KEduVocDocument tempDoc(this);
-    if ( tempDoc.open(url) != KEduVocDocument::NoError ) {
-        KMessageBox::error(m_parleyApp, i18n("Could not open vocabulary collection \"%1\"", url.toString() ));
-        return;
-    }
-
-    // remove grades
-    tempDoc.lesson()->resetGrades(-1, KEduVocContainer::Recursive);
-    m_doc->setGenerator(QStringLiteral("Parley"));
-    if ( tempDoc.saveAs(url, KEduVocDocument::Automatic) != KEduVocDocument::NoError ) {
-        KMessageBox::error(m_parleyApp, i18n("Could not save vocabulary collection \"%1\"", url.toString() ));
-        return;
-    }
-
-    // upload
-    KNS3::UploadDialog dialog(ParleyMainWindow::instance());
-    dialog.setUploadFile(url);
-    dialog.exec();
-}
-
 
 void ParleyDocument::exportDialog()
 {

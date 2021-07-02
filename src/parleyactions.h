@@ -38,8 +38,6 @@ QAction* create(ParleyAction id, const QObject *recvr, const char *slot, KAction
 KRecentFilesAction* createRecentFilesAction(const QObject *recvr, const char *slot, QObject *parent);
 
 QAction* createDownloadAction(const QObject *recvr, const char *slot, KActionCollection *collection);
-
-QAction* createUploadAction(const QObject *recvr, const char *slot, KActionCollection *collection);
 }
 
 #endif
