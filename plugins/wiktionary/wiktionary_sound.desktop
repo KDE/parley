@@ -56,6 +56,7 @@ Comment[el]=Το σενάριο αυτό ανακτά αρχεία ήχου απ
 Comment[en_GB]=This script fetches sound files from https://commons.wikimedia.org.
 Comment[es]=Este guion extrae archivos de sonido de https://commons.wikimedia.org.
 Comment[et]=See skript tõmbab helifaile aadressilt https://commons.wikimedia.org.
+Comment[eu]=Script honek soinuak «https://commons.wikimedia.org»etik hartzen ditu.
 Comment[fi]=Tämä komentojono hakee äänitiedostoja osoitteesta https://commons.wikimedia.org.
 Comment[fr]=Ce script télécharge des fichiers de sons à partir de « https://commons.wikimedia.org ».
 Comment[it]=Questo script scarica suoni da https://commons.wikimedia.org.
