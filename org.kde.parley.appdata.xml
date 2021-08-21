@@ -105,6 +105,7 @@
     <p xml:lang="bs">Režimi treninga</p>
     <p xml:lang="ca">Modes d'entrenament:</p>
     <p xml:lang="ca-valencia">Modes d'entrenament:</p>
+    <p xml:lang="cs">Režimy výuky:</p>
     <p xml:lang="de">Übungsmodi:</p>
     <p xml:lang="el">Λειτουργίες εκμάθησης:</p>
     <p xml:lang="en-GB">Training Modes:</p>
@@ -301,6 +302,7 @@
       <caption>Choosing a collection for training in Parley</caption>
       <caption xml:lang="ca">Triant una col·lecció per a entrenar-se amb el Parley</caption>
       <caption xml:lang="ca-valencia">Triant una col·lecció per a entrenar-se amb el Parley</caption>
+      <caption xml:lang="cs">Výběr sbírky pro učení se s Parley</caption>
       <caption xml:lang="de">Auswahl einer Sammlung zur Übung in Parley</caption>
       <caption xml:lang="el">Επιλογή συλλογής για εξάσκηση στο Parley</caption>
       <caption xml:lang="en-GB">Choosing a collection for training in Parley</caption>
