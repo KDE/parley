@@ -41,7 +41,7 @@ LanguageProperties::LanguageProperties(KEduVocDocument* doc, QWidget * parent)
 
 KPageWidgetItem*  LanguageProperties::createPage(int i)
 {
-    LanguagePropertiesPage* page = new LanguagePropertiesPage(m_doc, i, this);
+    LanguagePropertiesPage* page = new LanguagePropertiesPage(m_doc, i);
 
     QString name = i18n("New Language");
 
