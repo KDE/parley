@@ -56,7 +56,7 @@ private slots:
     void updateBackground();
 
 private:
-    Ui::Dashboard *m_ui;
+    Ui::Dashboard m_ui;
     ParleyMainWindow *m_mainWindow;
     StatisticsMainWindow *m_statisticsWidget;
     Practice::ThemedBackgroundRenderer *m_themedBackgroundRenderer;

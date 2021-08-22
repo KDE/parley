@@ -20,7 +20,8 @@
 using namespace Editor;
 
 ScriptManager::ScriptManager(EditorWindow * editor)
-    : m_editor(editor)
+    : QObject(editor)
+    , m_editor(editor)
 {
     //add Scripting::Parley
     m_scriptingParley = new Scripting::Parley(editor);
@@ -30,6 +31,7 @@ ScriptManager::ScriptManager(EditorWindow * editor)
 
 ScriptManager::~ScriptManager()
 {
+    m_scriptingParley->deleteLater();
 }
 
 

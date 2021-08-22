@@ -47,44 +47,43 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     m_widget->setKeepAspectRatio(Qt::IgnoreAspectRatio);
     m_widget->setFadingEnabled(false);
 
-    m_ui = new Ui::Dashboard();
-    m_ui->setupUi(m_widget);
+    m_ui.setupUi(m_widget);
     setCentralWidget(m_widget);
 
-    QFont font = m_ui->recentLabel->font();
+    QFont font = m_ui.recentLabel->font();
     font.setBold(true);
-    m_ui->recentLabel->setFont(font);
-    font = m_ui->completedLabel->font();
+    m_ui.recentLabel->setFont(font);
+    font = m_ui.completedLabel->font();
     font.setBold(true);
-    m_ui->completedLabel->setFont(font);
+    m_ui.completedLabel->setFont(font);
 
-    m_ui->newButton->setIcon(QIcon::fromTheme(QStringLiteral("document-new")));
-    m_ui->openButton->setIcon(QIcon::fromTheme(QStringLiteral("document-open")));
-    m_ui->ghnsButton->setIcon(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")));
+    m_ui.newButton->setIcon(QIcon::fromTheme(QStringLiteral("document-new")));
+    m_ui.openButton->setIcon(QIcon::fromTheme(QStringLiteral("document-open")));
+    m_ui.ghnsButton->setIcon(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")));
 
     GradeReferenceWidget *gradeReferenceWidget = new GradeReferenceWidget();
     gradeReferenceWidget->setMinimumSize(m_widget->width(), 50);
-    m_ui->gridLayout->addWidget(gradeReferenceWidget, 1, 0, 1, ROWSIZE, Qt::AlignCenter);
+    m_ui.gridLayout->addWidget(gradeReferenceWidget, 1, 0, 1, ROWSIZE, Qt::AlignCenter);
 
     m_subGridLayout = new QGridLayout();
     m_subGridLayout->setHorizontalSpacing(50);
     m_subGridLayout->setVerticalSpacing(30);
-    m_ui->gridLayout_2->addLayout(m_subGridLayout, 2, 0, 1, 1);
+    m_ui.gridLayout_2->addLayout(m_subGridLayout, 2, 0, 1, 1);
 
 
     m_completedGridLayout = new QGridLayout();
     m_completedGridLayout->setHorizontalSpacing(50);
     m_completedGridLayout->setVerticalSpacing(30);
-    m_ui->gridLayout_2->addLayout(m_completedGridLayout, 6, 0, 1, 1);
+    m_ui.gridLayout_2->addLayout(m_completedGridLayout, 6, 0, 1, 1);
 
     populateMap();
     populateGrid();
 
     // Signals from the main buttons.
     ParleyDocument* doc = m_mainWindow->parleyDocument();
-    connect(m_ui->newButton,  &QAbstractButton::clicked, m_mainWindow, &ParleyMainWindow::slotFileNew);
-    connect(m_ui->openButton, &QAbstractButton::clicked, doc, &ParleyDocument::slotFileOpen);
-    connect(m_ui->ghnsButton, &QAbstractButton::clicked, doc, &ParleyDocument::slotGHNS);
+    connect(m_ui.newButton,  &QAbstractButton::clicked, m_mainWindow, &ParleyMainWindow::slotFileNew);
+    connect(m_ui.openButton, &QAbstractButton::clicked, doc, &ParleyDocument::slotFileOpen);
+    connect(m_ui.ghnsButton, &QAbstractButton::clicked, doc, &ParleyDocument::slotGHNS);
 
     KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
     applyMainWindowSettings(cfg);
@@ -237,14 +236,14 @@ void Dashboard::populateGrid()
     m_subGridLayout->addItem(new QSpacerItem(50,1,QSizePolicy::Expanding, QSizePolicy::Fixed),
                              m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount());
     if (k - kc) {
-        m_ui->recentLabel->setText(i18n("Active Collections"));
+        m_ui.recentLabel->setText(i18n("Active Collections"));
     } else {
-        m_ui->recentLabel->clear();
+        m_ui.recentLabel->clear();
     }
     if (kc) {
-        m_ui->completedLabel->setText(i18n("Completed Collections"));
+        m_ui.completedLabel->setText(i18n("Completed Collections"));
     } else {
-        m_ui->completedLabel->clear();
+        m_ui.completedLabel->clear();
     }
 }
 
