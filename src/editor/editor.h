@@ -101,6 +101,10 @@ public slots:
      */
     void addWordWithTranslation(const QStringList &w);
 
+    VocabularyView *vocabularyView() const {
+        return m_vocabularyView;
+    }
+
 private slots:
 
     /** Make the search bar visible and focus it */

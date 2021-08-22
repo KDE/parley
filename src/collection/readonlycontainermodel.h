@@ -43,6 +43,8 @@ public:
 
     KEduVocContainer::EnumContainerType containerType();
 
+    KEduVocDocument *document() const;
+
 public slots:
     /** Set the new source kvtml file
      * @param doc the new file */

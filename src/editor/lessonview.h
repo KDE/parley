@@ -50,6 +50,11 @@ public slots:
      */
     void slotSplitLesson();
 
+    /**
+     * Moves the selected vocabs to a new lession
+     */
+    void moveToNewLesson();
+
     /** Remove the grades for the selected lesson.  */
     void slotRemoveGradesLesson();
 
@@ -82,6 +87,7 @@ private:
     }
 
     LessonModel *m_model;
+    EditorWindow *m_editorWindow;
 };
 }
 

@@ -174,3 +174,8 @@ KEduVocContainer::EnumContainerType ReadonlyContainerModel::containerType()
 {
     return m_type;
 }
+
+KEduVocDocument *ReadonlyContainerModel::document() const
+{
+    return m_doc.get();
+}

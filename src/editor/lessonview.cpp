@@ -5,6 +5,9 @@
 
 #include "lessonview.h"
 
+#include "vocabularymodel.h"
+#include "vocabularyview.h"
+
 #include <QAction>
 #include <KActionCollection>
 #include <QInputDialog>
@@ -19,7 +22,7 @@
 
 using namespace Editor;
 
-LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
+LessonView::LessonView(EditorWindow * parent) : ContainerView(parent), m_editorWindow(parent)
 {
     QAction *actionNewLesson = new QAction(this);
     parent->actionCollection()->addAction(QStringLiteral("new_lesson"), actionNewLesson);
@@ -52,6 +55,14 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
     actionSplitLesson->setWhatsThis(i18n("Make multiple smaller units out of one big unit."));
     actionSplitLesson->setToolTip(actionSplitLesson->whatsThis());
     actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
+
+    QAction *actionMoveToNewLesson = new QAction(this);
+    parent->actionCollection()->addAction(QStringLiteral("move_to_new_lesson"), actionMoveToNewLesson);
+    actionMoveToNewLesson->setText(i18n("Move to new lesson"));
+    actionMoveToNewLesson->setIcon(QIcon::fromTheme(QStringLiteral("edit-move")));
+    actionMoveToNewLesson->setWhatsThis(i18n("Moves the selected vocabulary to a new lesson"));
+    actionMoveToNewLesson->setToolTip(actionMoveToNewLesson->whatsThis());
+    actionMoveToNewLesson->setStatusTip(actionMoveToNewLesson->whatsThis());
 
     QAction *actionRemoveGradesLesson = new QAction(this);
     parent->actionCollection()->addAction(QStringLiteral("remove_grades_lesson"), actionRemoveGradesLesson);
@@ -89,6 +100,7 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent)
     connect(actionRenameLesson, &QAction::triggered, this, &LessonView::slotRename);
     connect(actionDeleteLesson, &QAction::triggered, this, &LessonView::slotDeleteLesson);
     connect(actionSplitLesson, &QAction::triggered, this, &LessonView::slotSplitLesson);
+    connect(actionMoveToNewLesson, &QAction::triggered, this, &LessonView::moveToNewLesson);
     connect(actionRemoveGradesLesson, &QAction::triggered, this, &LessonView::slotRemoveGradesLesson);
     connect(actionRemoveGradesLessonChildren, &QAction::triggered, this, &LessonView::slotRemoveGradesLessonChildren);
     connect(actionExpandAll, &QAction::triggered, this, &LessonView::expandAllLesson);
@@ -196,6 +208,7 @@ void LessonView::slotSplitLesson()
      * Maybe with radio buttons to ask, if the entries should be in random order or as they come. */
     bool ok = false;
     int numEntries = QInputDialog::getInt(this,  i18n("Entries per Unit"), i18n("The unit will be split into smaller unit. How many entries in each unit do you want?"), Prefs::entriesPerLesson(), 1, 1000, 1, &ok);
+
     if (!ok) {
         return;
     }
@@ -203,6 +216,23 @@ void LessonView::slotSplitLesson()
     m_model->splitLesson(selectionModel()->currentIndex(), numEntries, LessonModel::Random);
     setExpanded(selectionModel()->currentIndex(), true);
 }
+
+void LessonView::moveToNewLesson()
+{
+    const QModelIndexList indexes = m_editorWindow->vocabularyView()->getSelectedIndexes();
+    if (indexes.isEmpty()) {
+        return;
+    }
+
+    KEduVocDocument *doc = m_model->document();
+    KEduVocLesson *lesson = new KEduVocLesson(i18n("New Lesson"), doc->lesson());
+    doc->lesson()->appendChildContainer(lesson);
+
+    for (const QModelIndex &index : indexes) {
+        lesson->appendEntry(qvariant_cast<KEduVocExpression*> (index.data(VocabularyModel::EntryRole)));
+    }
+}
+
 
 void LessonView::slotRemoveGradesLesson()
 {

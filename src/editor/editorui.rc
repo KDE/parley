@@ -52,6 +52,7 @@
    <Action name="delete_lesson" />
    <Separator/>
    <Action name="split_lesson" />
+   <Action name="move_to_new_lesson" />
    <Separator/>
    <Action name="remove_grades_lesson" />
    <Action name="remove_grades_lesson_children" />
