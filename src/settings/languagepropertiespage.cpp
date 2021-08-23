@@ -285,7 +285,6 @@ void LanguagePropertiesPage::accept()
 
 
     // tenses
-    QList<int> tenseIndex;
     QStringList tenses;
 
     QString str;

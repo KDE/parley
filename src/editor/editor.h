@@ -61,6 +61,10 @@ public:
     /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
     void updateTableFilter();
 
+    VocabularyView *vocabularyView() const {
+        return m_vocabularyView;
+    }
+
 public slots:
     /**
      * Load enabled scripts (from configuration parleyrc)
@@ -100,10 +104,6 @@ public slots:
      * DBus method for adding words by external apps
      */
     void addWordWithTranslation(const QStringList &w);
-
-    VocabularyView *vocabularyView() const {
-        return m_vocabularyView;
-    }
 
 private slots:
 

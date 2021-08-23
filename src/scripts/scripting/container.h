@@ -140,13 +140,13 @@ public:
      */
     QVariantList childContainers();
 
-
-public slots:
-
     /** Returns an integer, the Container's unique row. Useful for Lesson::removeChildLesson() function */
     int row() const {
         return m_container->row();
     }
+
+public slots:
+
 
 //             virtual Container *parent() { return new Container ( m_container->parent() ); }
 

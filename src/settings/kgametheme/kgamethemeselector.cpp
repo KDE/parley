@@ -84,7 +84,7 @@ void KGameThemeSelectorPrivate::setupData(KConfigSkeleton * aconfig, KGameThemeS
 
 void KGameThemeSelectorPrivate::findThemes(const QString &initialSelection)
 {
-    qDeleteAll(themeMap.values());
+    qDeleteAll(themeMap);
     themeMap.clear();
 
     //Disconnect the themeList as we are going to clear it and do not want previews generated

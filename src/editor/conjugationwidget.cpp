@@ -60,8 +60,8 @@ ConjugationWidget::ConjugationWidget(QWidget *parent) : QWidget(parent)
     m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | KEduVocWordFlag::Plural]
         = pluralThirdNeutralPersonLineEdit;
 
-    foreach(const KEduVocWordFlags & index, m_conjugationLineEdits.keys()) {
-        connect(m_conjugationLineEdits.value(index), &QLineEdit::textChanged, this, &ConjugationWidget::textChanged);
+    for (auto iter = m_conjugationLineEdits.cbegin(); iter != m_conjugationLineEdits.cend(); ++iter) {
+        connect(m_conjugationLineEdits.value(iter.key()), &QLineEdit::textChanged, this, &ConjugationWidget::textChanged);
     }
 }
 

@@ -13,7 +13,7 @@ AudioButton::AudioButton(QWidget *parent)
     : QToolButton(parent), m_player(0)
 {
     setEnabled(false);
-    QIcon setIcon(QIcon::fromTheme(QStringLiteral("media-playback-start")));
+    setIcon(QIcon::fromTheme(QStringLiteral("media-playback-start")));
     setText(i18n("Play"));
     setToolTip(i18n("Play"));
     connect(this, &AudioButton::clicked, this, &AudioButton::playAudio);

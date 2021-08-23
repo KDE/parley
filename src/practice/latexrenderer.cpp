@@ -126,7 +126,7 @@ void LatexRenderer::latexRendered()
 
     QString pngFile = m_latexFilename;
     pngFile.replace(QLatin1String(".eps"), QLatin1String(".png"));
-    if (QFileInfo(pngFile).exists()) {
+    if (QFileInfo::exists(pngFile)) {
         QPixmap pixmap(pngFile);
         m_label->setPixmap(pixmap);
         m_label->setMinimumSize(pixmap.size().boundedTo(QSize(600, 300)));

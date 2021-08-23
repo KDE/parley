@@ -225,7 +225,7 @@ bool VocabularyModel::setData(const QModelIndex &index, const QVariant &value, i
         return false;
     }
 
-    emit(dataChanged(index, index));
+    emit dataChanged(index, index);
     ///@todo trust dirty bit
     m_document->setModified();
     return true;
