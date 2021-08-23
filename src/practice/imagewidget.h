@@ -27,8 +27,8 @@ public:
     void setAlignment(Qt::Alignment alignment);
 
 protected:
-    void paintEvent(QPaintEvent *e) Q_DECL_OVERRIDE;
-    void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    void paintEvent(QPaintEvent *e) override;
+    void resizeEvent(QResizeEvent *e) override;
 
 signals:
     void sizeChanged();

@@ -37,7 +37,7 @@ signals:
     void selectedWordTypeChanged(KEduVocWordType* wordType);
 
 protected:
-    void contextMenuEvent(QContextMenuEvent * event) Q_DECL_OVERRIDE;
+    void contextMenuEvent(QContextMenuEvent * event) override;
 
 private slots:
     void setWordTypeNone();

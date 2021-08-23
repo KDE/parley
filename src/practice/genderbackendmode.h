@@ -23,14 +23,14 @@ public:
                       KEduVocDocument* doc);
 
     /** Start practicing a new word */
-    bool setTestEntry(TestEntry* current) Q_DECL_OVERRIDE;
+    bool setTestEntry(TestEntry* current) override;
 
-    grade_t currentPreGradeForEntry() const Q_DECL_OVERRIDE;
-    grade_t currentGradeForEntry() const Q_DECL_OVERRIDE;
+    grade_t currentPreGradeForEntry() const override;
+    grade_t currentGradeForEntry() const override;
 
 protected:
-    void prepareChoices(TestEntry* current) Q_DECL_OVERRIDE;
-    void updateGrades() Q_DECL_OVERRIDE;
+    void prepareChoices(TestEntry* current) override;
+    void updateGrades() override;
 
 private:
     /** Reference to the kvocdoc */

@@ -39,7 +39,7 @@ public:
      * Initialize the lists of entries that will be used in the
      * training from the full set of available entries.
      */
-    void initializeTraining() Q_DECL_OVERRIDE;
+    void initializeTraining() override;
 
 
     // Not reimplemented.  The default version does what is needed.

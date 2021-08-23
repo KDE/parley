@@ -23,7 +23,7 @@ public:
     void deleteWordClass(const QModelIndex& wordTypeIndex);
 
 protected:
-    KEduVocContainer * rootContainer() const Q_DECL_OVERRIDE;
+    KEduVocContainer * rootContainer() const override;
 };
 
 

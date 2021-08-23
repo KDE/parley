@@ -19,7 +19,7 @@ public:
     ExampleSentenceBackendMode(Practice::AbstractFrontend* frontend, QObject* parent,
                                Practice::SessionManagerBase* sessionManager, KEduVocDocument* doc);
 
-    bool setTestEntry(TestEntry* current) Q_DECL_OVERRIDE;
+    bool setTestEntry(TestEntry* current) override;
 };
 
 }

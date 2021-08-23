@@ -26,7 +26,7 @@ using namespace Practice;
 
 class PracticeSummaryComponent::SortedAttemptTableWidgetItem: public QTableWidgetItem
 {
-    bool operator<(const QTableWidgetItem &other) const Q_DECL_OVERRIDE {
+    bool operator<(const QTableWidgetItem &other) const override {
         if (data(Qt::DisplayRole).toInt() == other.data(Qt::DisplayRole).toInt()) {
             return data(Qt::UserRole).toInt() < other.data(Qt::UserRole).toInt();
         }

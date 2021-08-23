@@ -33,24 +33,24 @@ public:
 
     explicit ContainerModel(KEduVocContainer::EnumContainerType type, QObject *parent = 0);
 
-    QVariant data(const QModelIndex &index, int role) const Q_DECL_OVERRIDE;
-    Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
+    QVariant data(const QModelIndex &index, int role) const override;
+    Qt::ItemFlags flags(const QModelIndex &index) const override;
     QVariant headerData(int section, Qt::Orientation orientation,
-                                int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
-    int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
+                                int role = Qt::DisplayRole) const override;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 
-    Qt::DropActions supportedDropActions() const Q_DECL_OVERRIDE;
-    QStringList mimeTypes() const Q_DECL_OVERRIDE;
-    QMimeData * mimeData(const QModelIndexList &indexes) const Q_DECL_OVERRIDE;
+    Qt::DropActions supportedDropActions() const override;
+    QStringList mimeTypes() const override;
+    QMimeData * mimeData(const QModelIndexList &indexes) const override;
     bool dropMimeData(const QMimeData *data, Qt::DropAction action,
-                              int row, int column, const QModelIndex &parent) Q_DECL_OVERRIDE;
+                              int row, int column, const QModelIndex &parent) override;
 
     /** Change the name or checkbox of a lesson.
      * @param index which lesson
      * @param value new name
      * @param role
      * @return bool @c true it worked */
-    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) Q_DECL_OVERRIDE;
+    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
 
 
     QModelIndex appendContainer(const QModelIndex& parent, const QString & containerName = QString());
@@ -59,7 +59,7 @@ public:
 
     /** Indicate supported drag actions
      @return enum of actions supported **/
-    Qt::DropActions supportedDragActions() const  Q_DECL_OVERRIDE;
+    Qt::DropActions supportedDragActions() const  override;
 
 signals:
     /**

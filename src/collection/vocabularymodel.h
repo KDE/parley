@@ -48,13 +48,13 @@ public:
     ~VocabularyModel();
 
 
-    int rowCount(const QModelIndex&) const Q_DECL_OVERRIDE;
-    int columnCount(const QModelIndex&) const Q_DECL_OVERRIDE;
-    QVariant data(const QModelIndex&, int) const Q_DECL_OVERRIDE;
-    bool setData(const QModelIndex &index, const QVariant &value, int role) Q_DECL_OVERRIDE;
-    Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
+    int rowCount(const QModelIndex&) const override;
+    int columnCount(const QModelIndex&) const override;
+    QVariant data(const QModelIndex&, int) const override;
+    bool setData(const QModelIndex &index, const QVariant &value, int role) override;
+    Qt::ItemFlags flags(const QModelIndex &index) const override;
 
-    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 
     /**
     * Returns the name of the entryColumns column
@@ -79,10 +79,10 @@ public:
 
     QModelIndex appendEntry(KEduVocExpression *expression = 0);
 
-    bool removeRows(int row, int count, const QModelIndex & parent = QModelIndex()) Q_DECL_OVERRIDE;
+    bool removeRows(int row, int count, const QModelIndex & parent = QModelIndex()) override;
 
-    QStringList mimeTypes() const Q_DECL_OVERRIDE;
-    QMimeData * mimeData(const QModelIndexList &indexes) const Q_DECL_OVERRIDE;
+    QStringList mimeTypes() const override;
+    QMimeData * mimeData(const QModelIndexList &indexes) const override;
 //     bool dropMimeData(const QMimeData *data, Qt::DropAction action,
 //         int row, int column, const QModelIndex &parent);
 

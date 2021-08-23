@@ -24,10 +24,10 @@ public:
     void setPixmaps(const QPixmap &defaultPixmap, const QPixmap &hoverPixmap, const QPixmap &pressedPixmap);
 
 protected:
-    void mousePressEvent(QMouseEvent *e) Q_DECL_OVERRIDE;
-    void mouseReleaseEvent(QMouseEvent *e) Q_DECL_OVERRIDE;
-    void enterEvent(QEvent *) Q_DECL_OVERRIDE;
-    void leaveEvent(QEvent *) Q_DECL_OVERRIDE;
+    void mousePressEvent(QMouseEvent *e) override;
+    void mouseReleaseEvent(QMouseEvent *e) override;
+    void enterEvent(QEvent *) override;
+    void leaveEvent(QEvent *) override;
 
 signals:
     void clicked();

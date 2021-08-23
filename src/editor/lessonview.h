@@ -75,14 +75,14 @@ public slots:
     void collapseAllLesson();
 
 protected slots:
-    void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected) Q_DECL_OVERRIDE;
-    void currentChanged(const QModelIndex & current, const QModelIndex & previous) Q_DECL_OVERRIDE;
+    void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected) override;
+    void currentChanged(const QModelIndex & current, const QModelIndex & previous) override;
 
 private:
-    void setModel(ContainerModel *model) Q_DECL_OVERRIDE {
+    void setModel(ContainerModel *model) override {
         Q_UNUSED(model)
     }
-    void setModel(QAbstractItemModel *model) Q_DECL_OVERRIDE {
+    void setModel(QAbstractItemModel *model) override {
         Q_UNUSED(model)
     }
 

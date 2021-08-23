@@ -20,7 +20,7 @@ public:
     explicit ExportDialog(ParleyDocument *doc, QWidget *parent = 0);
 
 private slots:
-    void accept() Q_DECL_OVERRIDE;
+    void accept() override;
 
 private:
     QUrl getFileName(const QString& filter);

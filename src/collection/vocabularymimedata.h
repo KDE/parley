@@ -33,9 +33,9 @@ public:
     QList<KEduVocTranslation *> translationList() const;
     QList<VocabularyMimeData::MimeExpression> expressionList() const;
 
-    QVariant retrieveData(const QString & mimeType, QVariant::Type type) const Q_DECL_OVERRIDE;
+    QVariant retrieveData(const QString & mimeType, QVariant::Type type) const override;
 
-    QStringList formats() const Q_DECL_OVERRIDE;
+    QStringList formats() const override;
 
 
 private:

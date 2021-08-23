@@ -35,23 +35,23 @@ public:
     explicit StatisticsModel(QObject *parent = 0);
 
     QVariant headerData(int section, Qt::Orientation orientation,
-                                int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
-    QVariant data(const QModelIndex &index, int role) const Q_DECL_OVERRIDE;
-    Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
-    int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
+                                int role = Qt::DisplayRole) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    Qt::ItemFlags flags(const QModelIndex &index) const override;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 
     /** Indicate supported drag actions
      @return enum of actions supported **/
-    Qt::DropActions supportedDragActions() const  Q_DECL_OVERRIDE;
+    Qt::DropActions supportedDragActions() const  override;
 
     void updateDocumentSettings();
     std::shared_ptr<KEduVocDocument> document() const;
 
 public slots:
-    virtual void setDocument(const std::shared_ptr<KEduVocDocument> &doc) Q_DECL_OVERRIDE;
+    virtual void setDocument(const std::shared_ptr<KEduVocDocument> &doc) override;
 
 protected:
-    KEduVocContainer *rootContainer() const Q_DECL_OVERRIDE;
+    KEduVocContainer *rootContainer() const override;
 
 private:
     int averageGradeForPracticeMode(KEduVocContainer *container, int translation) const;

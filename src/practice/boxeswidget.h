@@ -19,7 +19,7 @@ class BoxesWidget : public ImageWidget
 
 public:
     explicit BoxesWidget(QWidget* parent = 0);
-    QSize minimumSizeHint() const Q_DECL_OVERRIDE;
+    QSize minimumSizeHint() const override;
 
     void setRenderer(ThemedBackgroundRenderer *renderer);
     void setBoxCount(int boxCount);
@@ -28,7 +28,7 @@ public:
     void updatePixmap();
 
 protected:
-    bool event(QEvent *e) Q_DECL_OVERRIDE;
+    bool event(QEvent *e) override;
 
 private:
     void drawElement(QPainter *p, const QString& id);

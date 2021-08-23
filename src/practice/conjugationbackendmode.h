@@ -21,18 +21,18 @@ public:
     ConjugationBackendMode(AbstractFrontend *frontend,
                            QObject *parent, Practice::SessionManagerBase* sessionManager, KEduVocDocument* doc);
 
-    bool setTestEntry(TestEntry* current) Q_DECL_OVERRIDE;
+    bool setTestEntry(TestEntry* current) override;
 
     /** Return the worst pregrade for any pronoun of the current entry */
-    grade_t currentPreGradeForEntry() const Q_DECL_OVERRIDE;
+    grade_t currentPreGradeForEntry() const override;
     /** Return the worst grade for any pronoun of the current entry */
-    grade_t currentGradeForEntry() const Q_DECL_OVERRIDE;
+    grade_t currentGradeForEntry() const override;
 
-    void updateGrades() Q_DECL_OVERRIDE;
+    void updateGrades() override;
 
 public Q_SLOTS:
-    void hintAction() Q_DECL_OVERRIDE;
-    void checkAnswer() Q_DECL_OVERRIDE;
+    void hintAction() override;
+    void checkAnswer() override;
 
 private:
     QStringList validPersonalPronouns();

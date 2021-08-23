@@ -16,7 +16,7 @@ public:
     explicit GradeReferenceWidget(QWidget *parent = 0);
 
 protected:
-    void paintEvent(QPaintEvent *) Q_DECL_OVERRIDE;
+    void paintEvent(QPaintEvent *) override;
 
 };
 

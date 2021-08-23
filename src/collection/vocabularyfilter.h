@@ -28,10 +28,10 @@ public slots:
     void setSearchString(const QString& expression);
 
 protected:
-    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const Q_DECL_OVERRIDE;
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
 
 private:
-    void setSourceModel(QAbstractItemModel *model) Q_DECL_OVERRIDE {
+    void setSourceModel(QAbstractItemModel *model) override {
         Q_UNUSED(model)
     }
 

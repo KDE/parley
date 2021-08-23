@@ -36,7 +36,7 @@ public:
     VocabularyColumnsDialog(KEduVocDocument *doc, QWidget *parent);
     ~VocabularyColumnsDialog();
 
-    void accept() Q_DECL_OVERRIDE;
+    void accept() override;
 
 private:
     /**

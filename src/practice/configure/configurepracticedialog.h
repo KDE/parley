@@ -34,28 +34,28 @@ private slots:
     /**
      * Called when the user clicks Apply or OK.
      */
-    void updateSettings() Q_DECL_OVERRIDE;
+    void updateSettings() override;
     /**
      * Updates dialog widgets. Here only used after loading a profile.
      * Profiles only store the settings of the last three pages in the dialog.
      */
-    void updateWidgets() Q_DECL_OVERRIDE;
+    void updateWidgets() override;
     /**
      * Called when the user clicks Default
      */
-    void updateWidgetsDefault() Q_DECL_OVERRIDE;
+    void updateWidgetsDefault() override;
 
     /**
      * Returns true if the current state of the dialog is different from the saved settings
      */
-    bool hasChanged() Q_DECL_OVERRIDE;
+    bool hasChanged() override;
 
 private:
 
     /**
      * Returns true if the current state of the dialog represents the default settings.
      */
-    bool isDefault() Q_DECL_OVERRIDE;
+    bool isDefault() override;
 
     GeneralPracticeOptions  *m_generalPracticeOptions;
     BlockOptions            *m_blockOptions;

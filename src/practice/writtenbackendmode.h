@@ -23,12 +23,12 @@ public:
     WrittenBackendMode(Practice::AbstractFrontend* frontend, QObject* parent,
                        Practice::SessionManagerBase* sessionManager, KEduVocDocument* doc);
 
-    bool setTestEntry(TestEntry* current) Q_DECL_OVERRIDE;
+    bool setTestEntry(TestEntry* current) override;
 
-    void checkAnswer() Q_DECL_OVERRIDE;
+    void checkAnswer() override;
 
 public Q_SLOTS:
-    void hintAction() Q_DECL_OVERRIDE;
+    void hintAction() override;
 
 private:
     QString getFeedbackString(TestEntry::ErrorTypes error);

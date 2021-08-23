@@ -18,11 +18,11 @@ class FlashCardBackendMode : public AbstractBackendMode
 
 public:
     FlashCardBackendMode(AbstractFrontend *frontend, QObject *parent);
-    bool setTestEntry(TestEntry* current) Q_DECL_OVERRIDE;
+    bool setTestEntry(TestEntry* current) override;
 
 public Q_SLOTS:
-    void checkAnswer() Q_DECL_OVERRIDE;
-    void hintAction() Q_DECL_OVERRIDE;
+    void checkAnswer() override;
+    void hintAction() override;
 
 private:
     bool m_solutionVisible;

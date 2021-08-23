@@ -38,8 +38,8 @@ Q_SIGNALS:
     void stopPractice();
 
 protected:
-    void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
-    bool event(QEvent *event) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent *e) override;
+    bool event(QEvent *event) override;
 
 private:
     void initActions();

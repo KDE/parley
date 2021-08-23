@@ -23,7 +23,7 @@ public:
      * Saves the state of the plugins (which ones are loaded) in the config file
      * and makes the necessary loads/unloads of plugins
      */
-    void accept() Q_DECL_OVERRIDE;
+    void accept() override;
 
 private:
     KPluginSelector* m_kps;

@@ -22,7 +22,7 @@ class StatusToggle : public ImageWidget
 
 public:
     explicit StatusToggle(QWidget* parent = 0);
-    QSize minimumSizeHint() const Q_DECL_OVERRIDE;
+    QSize minimumSizeHint() const override;
 
     void setRenderer(ThemedBackgroundRenderer *renderer);
     void setResultState(AbstractFrontend::ResultState state);

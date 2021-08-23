@@ -39,7 +39,7 @@ protected:
 
 private:
     // intentionally hide this to make sure a proper model is passed
-    void setModel(QAbstractItemModel *model) Q_DECL_OVERRIDE {
+    void setModel(QAbstractItemModel *model) override {
         Q_UNUSED(model)
     }
 };

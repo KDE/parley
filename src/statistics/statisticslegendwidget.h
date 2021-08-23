@@ -25,7 +25,7 @@ public:
 
 protected:
     /// paintEvent @p e event
-    void paintEvent(QPaintEvent *e) Q_DECL_OVERRIDE;
+    void paintEvent(QPaintEvent *e) override;
 };
 
 

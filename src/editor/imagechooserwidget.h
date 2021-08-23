@@ -39,7 +39,7 @@ private slots:
     void slotImageChanged(const QString & url);
 
 protected:
-    bool eventFilter(QObject *obj, QEvent *event) Q_DECL_OVERRIDE;
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:
     /// Column in the document - corresponds to the language (-KV_COL_TRANS)
