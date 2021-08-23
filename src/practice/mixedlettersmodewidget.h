@@ -8,8 +8,6 @@
 
 #include "writtenpracticewidget.h"
 
-#include <KRandomSequence>
-
 namespace Ui
 {
 class WrittenPracticeWidget;
@@ -41,7 +39,6 @@ private:
     QString m_question;
     QList<int> m_positions;
     QPixmap m_pixmap;
-    KRandomSequence m_randomSequence;
     QFont m_solutionFont;
 };
 
