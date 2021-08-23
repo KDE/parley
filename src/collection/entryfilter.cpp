@@ -512,7 +512,7 @@ void EntryFilter::cleanupInvalid(int setNo)
             }
 
             // Remove entries which don't have any of the tenses which are configured for practice
-            QSet<QString> practice_tenses = QSet<QString>::fromList(m_tenses);
+            QSet<QString> practice_tenses = QSet<QString>(m_tenses.begin(), m_tenses.end());
             QSet<QString> existing_tenses;
             foreach(const QString & tense, translation->conjugationTenses()) {
                 if (!translation->getConjugation(tense).isEmpty()) {
