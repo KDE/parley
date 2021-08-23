@@ -25,6 +25,7 @@ Collection::Collection(QUrl *url, QObject* parent)
 
 Collection::~Collection()
 {
+    qDeleteAll(m_allTestEntries);
 }
 
 KEduVocDocument *Collection::eduVocDocument()

@@ -145,9 +145,9 @@ void CollectionWidget::setupWidget(WordCount *dueWords)
 
     m_thumbnail = new QLabel(this);
     m_thumbnail->setFixedSize(COLLWIDTH - 10, COLLHEIGHT1 - COLLHEIGHT2 + 10);
-    QPixmap *pixmap = new QPixmap(m_thumbnail->size());
-    pixmap->fill(Qt::lightGray);
-    m_thumbnail->setPixmap(*pixmap);
+    QPixmap pixmap(m_thumbnail->size());
+    pixmap.fill(Qt::lightGray);
+    m_thumbnail->setPixmap(pixmap);
 
     int  percentageCompleted = dueWords->percentageCompleted();
     if (percentageCompleted != 100) {

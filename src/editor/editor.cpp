@@ -478,6 +478,7 @@ void EditorWindow::startSearch()
 void EditorWindow::slotShowScriptManager()
 {
     ScriptDialog * dialog = new ScriptDialog(m_scriptManager);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->show();
 }
 

@@ -66,6 +66,7 @@ GuiFrontend::GuiFrontend(QWidget *parent)
 GuiFrontend::~GuiFrontend()
 {
     delete m_widget;
+    delete m_ui;
 }
 
 QVariant GuiFrontend::userInput()
