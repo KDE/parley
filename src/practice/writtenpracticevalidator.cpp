@@ -33,7 +33,7 @@ using namespace Practice;
 WrittenPracticeValidator::WrittenPracticeValidator(int translation, KEduVocDocument* doc)
     : m_entry(0),
       m_doc(doc),
-      m_error(0),
+      m_error(),
       m_speller(0),
       m_spellerAvailable(false)
 {

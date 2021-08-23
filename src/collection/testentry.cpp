@@ -20,7 +20,7 @@ TestEntry::TestEntry(KEduVocExpression *entry)
     , m_shouldChangeGrades(false)
     , m_isUnseenQuestion(false)
     , m_lastPercentage(0.0)
-    , m_lastError(0)
+    , m_lastError()
 {}
 
 void TestEntry::setLanguageFrom(int from)
