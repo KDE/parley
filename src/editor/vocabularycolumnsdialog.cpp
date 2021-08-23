@@ -56,7 +56,7 @@ VocabularyColumnsDialog::VocabularyColumnsDialog(KEduVocDocument *doc, QWidget *
 
     KTitleWidget *titleWidget = new KTitleWidget(this);
     titleWidget->setText(i18n("Enable/Disable the columns for each language"));
-    titleWidget->setPixmap(QIcon::fromTheme(QStringLiteral("view-file-columns")).pixmap(22, 22), KTitleWidget::ImageRight);
+    titleWidget->setIcon(QIcon::fromTheme(QStringLiteral("view-file-columns")), KTitleWidget::ImageRight);
     m_box->addWidget(titleWidget, 0, 0, 1, 2);
 
     createLanguagesLayout();
