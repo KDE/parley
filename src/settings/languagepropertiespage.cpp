@@ -344,10 +344,10 @@ void LanguagePropertiesPage::slotNewTense()
 {
     bool ok;
     QString getTense = QInputDialog::getText(this, i18n("Tense Name"), i18n("Enter name of tense:"), QLineEdit::Normal, QString(), &ok);
-    if (!ok)
+    if (!ok) {
         return;
+    }
 
-    QString str;
     int i = tenseList->count() + 1;
     tenseList->addItem(QStringLiteral("%1").arg(i, 2).append(TENSE_TAG).append(getTense.simplified()));
     tenseIndex.append(-(i - 1));
@@ -390,7 +390,7 @@ void LanguagePropertiesPage::slotDeleteTense()
     if (tenseList->count() > 0 && (int)tenseList->count() > act) {
         QString t = tenseList->item(act)->text();
 
-        QList<KEduVocExpression *> entries = m_doc->lesson()->entries(KEduVocLesson::Recursive);
+        const QList<KEduVocExpression *> entries = m_doc->lesson()->entries(KEduVocLesson::Recursive);
         for (KEduVocExpression *exp : entries) {
             for (int lang = 0; lang < m_doc->identifierCount(); lang++) {
                 if (exp->translation(lang)->conjugationTenses().contains(t)) {

@@ -317,7 +317,7 @@ void VocabularyView::slotEditPaste()
         qDebug() << "Clipboard contains text data.";
         // split at newline
         QStringList lines = clipboard->text().split('\n');
-        for (QString line : qAsConst(lines)) {
+        for (const QString &line : qAsConst(lines)) {
             // split at tabs or semicolon:
 #if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
             m_model->appendEntry(new KEduVocExpression(line.split(QRegExp(QStringLiteral("[\t;]")), QString::KeepEmptyParts)));

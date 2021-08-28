@@ -29,7 +29,8 @@ void VocabularyMimeData::setTranslations(const QList<KEduVocTranslation *> &tran
 
         // copy word types
         // this sucks but there is not really a better was. copying pointers is not a good idea because copy and paste can be done between different documents.
-        for (int i : expression->translationIndices()) {
+        const QList<int> translationIndices = expression->translationIndices();
+        for (int i : translationIndices) {
             // generate text string representation
             m_text.append(expression->translation(i)->text());
             m_text.append(" - ");
