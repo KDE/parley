@@ -36,7 +36,8 @@ Lesson::~Lesson()
 QList<KEduVocLesson*>  flattenLessons(KEduVocLesson * rootLesson)
 {
     QList<KEduVocLesson*> lessonsList;
-    foreach(KEduVocContainer * child, rootLesson->childContainers()) {
+    const QList<KEduVocContainer *> childContainers = rootLesson->childContainers();
+    for (KEduVocContainer * child : childContainers) {
         lessonsList << static_cast<KEduVocLesson*>(child);
         lessonsList += flattenLessons(static_cast<KEduVocLesson*>(child));
     }
@@ -60,7 +61,7 @@ void Lesson::setEntries(QVariantList entries)
 {
     clearEntries();
 
-    foreach(const QVariant & ventry, entries) {
+    for (const QVariant & ventry : qAsConst(entries)) {
         QObject * obj = qvariant_cast<QObject*> (ventry);
         Expression * entry = dynamic_cast<Expression*>(obj);
         if (entry)

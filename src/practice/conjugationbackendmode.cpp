@@ -48,7 +48,7 @@ bool ConjugationBackendMode::setTestEntry(TestEntry* current)
 
     m_frontend->setQuestion(QVariant::fromValue<ConjugationData>(data));
     QStringList answers;
-    foreach(const KEduVocWordFlags & key, m_pronounFlags) {
+    for (const KEduVocWordFlags & key : qAsConst(m_pronounFlags)) {
         answers.append(m_conjugation.conjugation(key).text());
     }
     m_frontend->setSolution(answers);
@@ -65,7 +65,7 @@ bool ConjugationBackendMode::setTestEntry(TestEntry* current)
 QStringList ConjugationBackendMode::validPersonalPronouns()
 {
     QStringList pp;
-    foreach(const KEduVocWordFlags & person, m_pronounFlags) {
+    for (const KEduVocWordFlags & person : qAsConst(m_pronounFlags)) {
         // FIXME: Used to be m_practiceOptions.languageTo()
         pp.append(m_doc->identifier(Prefs::learningLanguage()).personalPronouns().personalPronoun(person));
     }
@@ -80,7 +80,7 @@ void ConjugationBackendMode::checkAnswer()
     bool allCorrect = true;
     int numRight = 0;
     int i = 0;
-    foreach(const KEduVocWordFlags & key, m_pronounFlags) {
+    for (const KEduVocWordFlags & key : qAsConst(m_pronounFlags)) {
         if (answers.at(i) == m_conjugation.conjugation(key).text()) {
             ++numRight;
         } else {
@@ -110,7 +110,7 @@ void ConjugationBackendMode::checkAnswer()
 grade_t ConjugationBackendMode::currentPreGradeForEntry() const
 {
     grade_t min_preGrade = KV_MAX_GRADE;
-    foreach(KEduVocWordFlags key, m_pronounFlags) {
+    for (KEduVocWordFlags key : qAsConst(m_pronounFlags)) {
         min_preGrade = qMin(m_conjugation.conjugation(key).preGrade(), min_preGrade);
     }
 
@@ -120,7 +120,7 @@ grade_t ConjugationBackendMode::currentPreGradeForEntry() const
 grade_t ConjugationBackendMode::currentGradeForEntry() const
 {
     grade_t min_grade = KV_MAX_GRADE;
-    foreach(KEduVocWordFlags key, m_pronounFlags) {
+    for (KEduVocWordFlags key : qAsConst(m_pronounFlags)) {
         min_grade = qMin(m_conjugation.conjugation(key).grade(), min_grade);
     }
 
@@ -131,7 +131,7 @@ void ConjugationBackendMode::updateGrades()
 {
     qDebug() << "Grading conjugations";
 
-    foreach(const KEduVocWordFlags & key, m_pronounFlags) {
+    for (const KEduVocWordFlags & key : qAsConst(m_pronounFlags)) {
         KEduVocTranslation *translation = m_current->entry()->translation(m_current->languageTo());
         if (translation) {
             KEduVocConjugation conjugationToUpdate = translation->getConjugation(m_currentTense);

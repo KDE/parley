@@ -40,7 +40,7 @@ void MultipleChoiceBackendMode::prepareChoices(TestEntry* current)
     setQuestion(m_current->entry()->translation(m_current->languageFrom())->text());
 
     QStringList choices = m_sessionManager->multipleChoiceAnswers(m_numberOfChoices - 1);
-    foreach(const QString & choice, choices) {
+    for (const QString & choice : qAsConst(choices)) {
         int position = QRandomGenerator::global()->bounded(m_choices.count() + 1);
         m_choices.insert(position, choice);
     }

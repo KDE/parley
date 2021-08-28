@@ -18,20 +18,20 @@ void VocabularyMimeData::setTranslations(const QList<KEduVocTranslation *> &tran
     // sort the translations into entries to make deep copies for real copy and paste
     // to only include each expression once
     QList<KEduVocExpression *> expressions;
-    foreach(KEduVocTranslation * translation, m_translations) {
+    for (KEduVocTranslation * translation : qAsConst(m_translations)) {
         if (!expressions.contains(translation->entry())) {
             expressions.append(translation->entry());
         }
     }
 
-    foreach(KEduVocExpression * expression, expressions) {
+    for (KEduVocExpression * expression : qAsConst(expressions)) {
         MimeExpression exp;
         // deep copy
         exp.expression = KEduVocExpression(*expression);
 
         // copy word types
         // this sucks but there is not really a better was. copying pointers is not a good idea because copy and paste can be done between different documents.
-        foreach(int i, expression->translationIndices()) {
+        for (int i : expression->translationIndices()) {
             // generate text string representation
             m_text.append(expression->translation(i)->text());
             m_text.append(" - ");

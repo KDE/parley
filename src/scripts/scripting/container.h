@@ -202,7 +202,7 @@ template <class T, class S>
 QVariantList Container::toVariantList(QList<T*> objList) const
 {
     QVariantList list;
-    foreach(T * t, objList) {
+    for (T * t : qAsConst(objList)) {
         QObject * obj = new S(t);
         list.push_back(QVariant::fromValue(obj));
     }

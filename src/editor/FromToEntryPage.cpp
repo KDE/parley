@@ -156,7 +156,7 @@ void FromToEntryPage::setData(const QList<int>& entries)
 
     if (m_entries.count() > 1) {
         // fill enabled fields if equal for all edited entries, otherwise empty.
-        foreach(int entry, m_entries) {
+        for (int entry : qAsConst(m_entries)) {
             // grade
             KEduVocExpression *currentEntry = m_doc->entry(entry);
             if (firstEntry->translation(m_translationTo)
@@ -215,7 +215,7 @@ void FromToEntryPage::commitData()
     }
 
     // things that are changed for multiple or single entries
-    foreach(int entry, m_entries) {
+    for (int entry : qAsConst(m_entries)) {
         if (m_gradeChanged) {
             m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setGrade(gradebox->currentIndex());
         }

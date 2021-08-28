@@ -139,7 +139,8 @@ bool WrittenPracticeValidator::isCorrect(const QString& correct, const QString& 
 
 bool WrittenPracticeValidator::isSynonymMistake(const QString& answer)
 {
-    foreach(KEduVocTranslation * synonym, m_entry->entry()->translation(m_entry->languageTo())->synonyms()) {
+    const QList<KEduVocTranslation *> synonyms = m_entry->entry()->translation(m_entry->languageTo())->synonyms();
+    for (KEduVocTranslation * synonym : synonyms) {
         if (synonym->text() == answer ||
                 (Prefs::ignoreCapitalizationMistakes() && isCapitalizationMistake(synonym->text(), answer)) ||
                 (Prefs::ignoreAccentMistakes() && isAccentMistake(synonym->text(), answer)) ||

@@ -97,7 +97,7 @@ void KGameThemeSelectorPrivate::findThemes(const QString &initialSelection)
         QStandardPaths::locateAll(QStandardPaths::GenericDataLocation,
                                   QCoreApplication::applicationName() + '/' + lookupDirectory + '/',
                                   QStandardPaths::LocateDirectory);
-    foreach (const QString dir, themePaths) {
+    for (const QString &dir : qAsConst(themePaths)) {
         QDirIterator it(dir,
                         QStringList() << QStringLiteral("*.desktop"),
                         QDir::NoFilter,
@@ -109,7 +109,7 @@ void KGameThemeSelectorPrivate::findThemes(const QString &initialSelection)
     }
 
     bool initialFound = false;
-    foreach(const QString & file, themesAvailable) {
+    for (const QString &file : qAsConst(themesAvailable)) {
         QString themePath = lookupDirectory + '/' + file;
         KGameTheme* atheme = new KGameTheme(groupName);
 
@@ -135,7 +135,7 @@ void KGameThemeSelectorPrivate::findThemes(const QString &initialSelection)
     if (!initialFound) {
         // TODO change this if we ever change KGameTheme::loadDefault
         QString defaultPath = QStringLiteral("themes/default.desktop");
-        foreach(KGameTheme * theme, themeMap) {
+        for (KGameTheme * theme : qAsConst(themeMap)) {
             if (theme->path().endsWith(defaultPath)) {
                 const QList<QListWidgetItem *> itemList = ui.themeList->findItems(theme->themeProperty(QStringLiteral("Name")), Qt::MatchExactly);
                 // never can be != 1 but better safe than sorry

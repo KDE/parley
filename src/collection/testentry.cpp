@@ -200,7 +200,8 @@ grade_t TestEntry::practiceModeDependentGrade(std::function<grade_t(KEduVocText)
                 KEduVocConjugation conj(translation->getConjugation(conjugationTense()));
                 // Depending on what minMaxFunc is used result needs an appropriate initialisation
                 result = (minMaxFunc(0, 1) == 1) ? KV_MIN_GRADE:KV_MAX_GRADE;
-                foreach(KEduVocWordFlags pronoun, conjugationPronouns()) {
+                const QList<KEduVocWordFlags> conjugationPronouns = this->conjugationPronouns();
+                for (KEduVocWordFlags pronoun : conjugationPronouns) {
                     result = minMaxFunc(result, gradeFunc(conj.conjugation(pronoun)));
                 }
             }

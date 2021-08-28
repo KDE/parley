@@ -55,7 +55,8 @@ void ImageChooserWidget::slotImageChanged(const QString & urlStr)
 
     if (m_entry) {
         m_entry->translation(m_currentTranslation)->setImageUrl(url);
-        foreach(int j, m_entry->translationIndices()) {
+        const QList<int> translationIndices = m_entry->translationIndices();
+        for (int j : translationIndices) {
             if (m_entry->translation(j)->imageUrl().isEmpty()) {
                 m_entry->translation(j)->setImageUrl(imageUrlRequester->url());
             }

@@ -77,7 +77,7 @@ void WrittenPracticeWidget::showQuestion()
     m_ui->solutionLabel->setText(QString());
     m_ui->helpLabel->clear();
 
-    foreach(QWidget * child, synonymWidgets) {
+    for (QWidget * child : qAsConst(synonymWidgets)) {
         m_ui->synonymList->removeWidget(child);
         delete child;
     }

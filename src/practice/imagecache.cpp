@@ -18,7 +18,7 @@ const char* identifier = "parleyimagecache2";
 void ImageCache::setFilenames(const QStringList& filenames)
 {
     m_timestamps.clear();
-    Q_FOREACH(const QString & filename, filenames) {
+    for (const QString & filename : filenames) {
         QFileInfo info(filename);
         m_timestamps.append(info.lastModified());
     }

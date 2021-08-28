@@ -88,13 +88,13 @@ void ConjugationWidget::updateEntries()
 {
     m_lastTenseSelection = tenseComboBox->currentText();
     KEduVocConjugation conjugation = m_entry->translation(m_identifier)->getConjugation(m_lastTenseSelection);
-    foreach(KEduVocWordFlags flags, m_conjugationLineEdits.keys()) {
+    for(auto iter = m_conjugationLineEdits.cbegin(); iter != m_conjugationLineEdits.cend(); ++iter) {
         QString text;
-        if (conjugation.keys().contains(flags)) {
-            text = conjugation.conjugation(flags).text();
+        if (conjugation.keys().contains(iter.key())) {
+            text = conjugation.conjugation(iter.key()).text();
         }
 
-        m_conjugationLineEdits[flags]->setText(text);
+        m_conjugationLineEdits[iter.key()]->setText(text);
     }
 }
 

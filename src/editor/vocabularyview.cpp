@@ -250,7 +250,8 @@ void VocabularyView::appendChar(const QChar &c)
 void VocabularyView::deleteSelectedEntries(bool askConfirmation)
 {
     QSet<int> rows;
-    foreach(const QModelIndex & index, selectionModel()->selectedIndexes()) {
+    const QModelIndexList selectedIndexes = selectionModel()->selectedIndexes();
+    for (const QModelIndex & index : selectedIndexes) {
         rows.insert(index.row());
     }
 
@@ -284,15 +285,18 @@ void VocabularyView::slotEditPaste()
     const VocabularyMimeData *vocMimeData = qobject_cast<const VocabularyMimeData *>(mimeData);
     if (vocMimeData) {
         qDebug() << "Clipboard contains vocabulary mime data.";
-        foreach(const VocabularyMimeData::MimeExpression & mimeEntry, vocMimeData->expressionList()) {
+        QList< VocabularyMimeData::MimeExpression > expressionList = vocMimeData->expressionList();
+        for (const VocabularyMimeData::MimeExpression & mimeEntry : qAsConst(expressionList)) {
             KEduVocExpression *pasteExpression = new KEduVocExpression(mimeEntry.expression);
             m_model->appendEntry(pasteExpression);
 
             // find word type (create if not found)
             KEduVocWordType *type = m_doc->wordTypeContainer();
-            foreach(int translation, mimeEntry.wordTypes.keys()) {
+            for (auto iter = mimeEntry.wordTypes.cbegin(); iter != mimeEntry.wordTypes.cend(); ++iter) {
+                const int translation = iter.key();
                 // append if needed
-                foreach(const QString & typeName, mimeEntry.wordTypes.value(translation).wordType) {
+                const QStringList wordType = mimeEntry.wordTypes.value(translation).wordType;
+                for (const QString & typeName : wordType) {
                     qDebug() << mimeEntry.wordTypes.value(translation).wordType;
                     KEduVocContainer *childType = type->childContainer(typeName);
                     if (!childType) {
@@ -315,7 +319,7 @@ void VocabularyView::slotEditPaste()
         qDebug() << "Clipboard contains text data.";
         // split at newline
         QStringList lines = clipboard->text().split('\n');
-        foreach(QString line, lines) {
+        for (QString line : qAsConst(lines)) {
             // split at tabs or semicolon:
 #if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
             m_model->appendEntry(new KEduVocExpression(line.split(QRegExp(QStringLiteral("[\t;]")), QString::KeepEmptyParts)));

@@ -122,7 +122,7 @@ bool MultipleChoiceWidget::eventFilter(QObject *obj, QEvent *event)
             if (( dropEvent->mimeData() != NULL ) && dropEvent->mimeData()->hasText()) {
 
                 QStringList choices = dropEvent->mimeData()->text().split('\n');
-                foreach(const QString & choice, choices) {
+                for (const QString & choice : qAsConst(choices)) {
                     m_choicesModel->insertRow(multipleChoiceListView->model()->rowCount());
                     m_choicesModel->setData(m_choicesModel->index(multipleChoiceListView->model()->rowCount() - 1), choice);
                 }

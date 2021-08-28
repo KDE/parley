@@ -234,7 +234,7 @@ public Q_SLOTS:
     QStringList pluginDirs() {
         QStringList basedirs(QStandardPaths::standardLocations(QStandardPaths::DataLocation));
         QStringList ret;
-        foreach ( const QString dir , basedirs){
+        for (const QString &dir : qAsConst(basedirs)) {
             ret << (dir + "/plugins");
         }
 

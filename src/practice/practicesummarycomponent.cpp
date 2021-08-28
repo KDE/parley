@@ -98,7 +98,8 @@ void PracticeSummaryComponent::setupDetailsTable()
     int i = 0;
     // TODO headers with languages
     // TODO some colors, maybe an indicator icon whether the word was right/wrong
-    foreach(TestEntry * entry, m_sessionManager->allTestEntries()) {
+    const QList<TestEntry *> allTestEntries = m_sessionManager->allTestEntries();
+    for (TestEntry * entry : allTestEntries) {
         QTableWidgetItem* itemFrom = new QTableWidgetItem(
             entry->entry()->translation(entry->TestEntry::languageFrom())->text());
         QTableWidgetItem* itemTo = new QTableWidgetItem(
@@ -174,7 +175,8 @@ void PracticeSummaryComponent::exportResults()
     table->cellAt(0, 2).firstCursorPosition().insertHtml(i18n("<b>Correct answer</b>"));
     table->cellAt(0, 3).firstCursorPosition().insertHtml(i18n("<b>Your errors</b>"));
 
-    foreach(TestEntry * entry, m_sessionManager->allTestEntries()) {
+    const QList<TestEntry *> allTestEntries = m_sessionManager->allTestEntries();
+    for (TestEntry * entry : allTestEntries) {
         table->appendRows(1);
         int newRow = table->rows() - 1;
         table->cellAt(newRow, 0).firstCursorPosition().insertText(QString::number(entry->statisticCount()));

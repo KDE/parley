@@ -396,7 +396,8 @@ void ParleyMainWindow::showDocumentActions(bool open, bool edit)
 
 void ParleyMainWindow::setVisibleToolbar(const QString& name)
 {
-    Q_FOREACH(KToolBar * toolbar, toolBars()) {
+    const QList<KToolBar*> toolbars = toolBars();
+    for (KToolBar * toolbar : toolbars) {
         if (toolbar && toolbar->objectName() == name) {
             toolbar->show();
         } else if (toolbar) {

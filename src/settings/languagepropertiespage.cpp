@@ -40,8 +40,8 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
     QMap<QString, QString> languageCodeMap = DocumentProperties::localeLangsMap();
 
     // add the language, but also it's code as data
-    foreach(const QString & language, languageCodeMap.keys()) {
-        localeComboBox->addItem(language, languageCodeMap.value(language));
+    for (auto iter = languageCodeMap.cbegin(); iter != languageCodeMap.cend(); ++iter) {
+        localeComboBox->addItem(iter.key(), iter.value());
     }
 
     if (m_identifierIndex < m_doc->identifierCount()) {
@@ -181,7 +181,8 @@ void LanguagePropertiesPage::loadGrammarFromDocument()
 
     if (m_identifierIndex < m_doc->identifierCount()) {
         int i = 1;
-        foreach(const QString & tenseName, m_doc->identifier(m_identifierIndex).tenseList()) {
+        const QStringList tenses = m_doc->identifier(m_identifierIndex).tenseList();
+        for (const QString & tenseName : tenses) {
             tenseList->addItem(QStringLiteral("%1").arg(i++, 2).append(TENSE_TAG).append(tenseName));
             tenseIndex.append(i);
         }
@@ -395,7 +396,8 @@ void LanguagePropertiesPage::slotDeleteTense()
 
         QString t = tenseList->item(act)->text();
 
-        foreach(KEduVocExpression * exp, m_doc->lesson()->entries(KEduVocLesson::Recursive)) {
+        QList < KEduVocExpression* > entries = m_doc->lesson()->entries(KEduVocLesson::Recursive);
+        for (KEduVocExpression * exp : entries) {
             for (int lang = 0; lang < m_doc->identifierCount(); lang++) {
                 if (exp->translation(lang)->conjugationTenses().contains(t)) {
                     KMessageBox::information(this, i18n("The selected user defined tense could not be deleted\nbecause it is in use."),    i18n("Deleting Tense Description"));

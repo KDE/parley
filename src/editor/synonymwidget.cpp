@@ -110,7 +110,7 @@ void SynonymWidget::updateList()
             list = m_currentTranslation->falseFriends();
             break;
         }
-        foreach(KEduVocTranslation * translation, list) {
+        for (KEduVocTranslation * translation : qAsConst(list)) {
             int row = m_listModel->rowCount();
             m_listModel->insertRow(row);
             m_listModel->setData(m_listModel->index(row), translation->text());

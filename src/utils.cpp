@@ -70,7 +70,8 @@ void WordCount::fillFromContainer(KEduVocContainer &container, int translationIn
 {
     clear();
 
-    foreach (KEduVocExpression *entry, container.entries(recursive)) {
+    const QList<KEduVocExpression *> entries = container.entries(recursive);
+    for (KEduVocExpression *entry : entries) {
         KEduVocTranslation &translation(*entry->translation(translationIndex));
         evaluateWord(translation, translation.text());
     }
@@ -99,7 +100,8 @@ void WordCount::fillFromContainerForPracticeMode(KEduVocContainer &container, in
 
     clear();
 
-    foreach (KEduVocExpression *entry, container.entries(recursive)) {
+    const QList<KEduVocExpression *> entries = container.entries(recursive);
+    for (KEduVocExpression *entry : entries) {
         KEduVocTranslation &translation(*entry->translation(translationIndex));
         if (isValidForProcessing(translation, wordTypeToProcess)) {
             switch (wordTypeToProcess) {
@@ -112,11 +114,12 @@ void WordCount::fillFromContainerForPracticeMode(KEduVocContainer &container, in
             case KEduVocWordFlag::Verb:
                 {
                     QStringList conjugationTenses = translation.conjugationTenses();
-                    foreach(const QString &activeTense, activeConjugationTenses)
+                    for (const QString &activeTense : qAsConst(activeConjugationTenses))
                     {
                         if (conjugationTenses.contains(activeTense)) {
                             KEduVocConjugation conj = translation.getConjugation(activeTense);
-                            foreach (KEduVocWordFlags key, conj.keys()) {
+                            const QList<KEduVocWordFlags> keys = conj.keys();
+                            for (KEduVocWordFlags key : keys) {
                                 KEduVocText person = conj.conjugation(key);
                                 evaluateWord(person, person.text());
                             }

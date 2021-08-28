@@ -37,14 +37,14 @@ void Collection::numDueWords(WordCount &wc)
 {
     // Get the entries from the collection. Cache them for future use.
     if (m_allTestEntries.isEmpty()) {
-	EntryFilter  filter(m_doc, this);
-	m_allTestEntries = filter.entries(false);
+        EntryFilter  filter(m_doc, this);
+        m_allTestEntries = filter.entries(false);
     }
 
     // Count the number of words due for each grade level.
-    foreach (const TestEntry *entry, m_allTestEntries) {
-	int languageTo = entry->languageTo();
-	KEduVocExpression *exp = entry->entry();
+    for (const TestEntry *entry : qAsConst(m_allTestEntries)) {
+        int languageTo = entry->languageTo();
+        KEduVocExpression *exp = entry->entry();
 
         int grade    = exp->translation(languageTo)->grade();
         int pregrade = exp->translation(languageTo)->preGrade();

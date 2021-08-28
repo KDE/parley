@@ -42,9 +42,10 @@ QStringList ScriptManager::getDesktopFiles()
         QStandardPaths::locateAll(
             QStandardPaths::DataLocation, QStringLiteral("plugins"),  QStandardPaths::LocateDirectory ) );
     QStringList filenames;
-    foreach ( const QString dir,  dirs ) {
-        foreach ( const QString filename,  QDir( dir ).entryList(QDir::Files) ) {
-            if ( filename.endsWith(QLatin1String(".desktop") ) ) {
+    for (const QString &dir : qAsConst(dirs)) {
+        const QStringList files = QDir(dir).entryList(QDir::Files);
+        for (const QString &filename : files) {
+            if (filename.endsWith(QLatin1String(".desktop"))) {
                 filenames << dir + '/' + filename;
             }
         }
@@ -85,11 +86,10 @@ QStringList ScriptManager::enabledScripts()
     // Get list of KPluginInfo for each of the desktop files found
     QList<KPluginInfo> pluginsInfoList = KPluginInfo::fromFiles(getDesktopFiles());
     // Find which plugins are enabled and add them to enabledScripts list
-    KPluginInfo inf;
-    foreach(inf, pluginsInfoList) {
-        inf.load(cfg);
-        if (inf.isPluginEnabled())
-            enabledScripts.push_back(inf.entryPath());
+    for (KPluginInfo &info : pluginsInfoList) {
+        info.load(cfg);
+        if (info.isPluginEnabled())
+            enabledScripts.push_back(info.entryPath());
 //         qDebug() << inf.name() << inf.isPluginEnabled() << inf.pluginName();
     }
     return enabledScripts;
@@ -113,7 +113,7 @@ void ScriptManager::loadScripts()
     QStringList scripts = enabledScripts();
     QStringList failed;
     QStringList errorDetails;
-    foreach(const QString & script, scripts) {
+    for (const QString & script : qAsConst(scripts)) {
         //create a new Script and add it to the m_scripts list
         Script * s = new Script(getScriptFileName(script));
         s->addObjects(m_scriptObjects);
@@ -143,7 +143,7 @@ void ScriptManager::addObject(QObject * obj, const QString & name)
 void ScriptManager::reloadScripts()
 {
     //deactivate (delete) all the active scripts
-    foreach(Script * s, m_scripts) {
+    for (Script * s : qAsConst(m_scripts)) {
         if (s) delete s;
     }
     m_scripts.clear();

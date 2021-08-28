@@ -333,7 +333,7 @@ void Dashboard::setTheme()
 
 void Dashboard::updateWidgets()
 {
-    foreach (CollectionWidget *cw, m_collectionWidgets) {
+    for (CollectionWidget *cw : qAsConst(m_collectionWidgets)) {
         cw->updateDue();
     }
 }

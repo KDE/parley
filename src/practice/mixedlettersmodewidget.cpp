@@ -54,7 +54,7 @@ void MixedLettersModeWidget::updatePixmap()
     defaultPen.setColor(palette().color(QPalette::WindowText));
     QString enteredChars = m_ui->answerEdit->text();
     int i = 0;
-    Q_FOREACH(QChar ch, m_mixedSolution) {
+    for (QChar ch : qAsConst(m_mixedSolution)) {
         int pos = enteredChars.indexOf(ch);
         if (pos != -1) {
             p.setPen(scheme.foreground(KColorScheme::InactiveText).color());
@@ -74,13 +74,13 @@ void MixedLettersModeWidget::setSolution(const QVariant& solution)
     WrittenPracticeWidget::setSolution(solution);
     m_solution = solution.toString();
     QList<QChar> chars;
-    Q_FOREACH(QChar ch, solution.toString()) {
+    for (QChar ch : qAsConst(m_solution)) {
         chars.append(ch);
     }
     KRandom::shuffle(chars);
     m_mixedSolution.clear();
     m_positions.clear();
-    Q_FOREACH(QChar ch, chars) {
+    for (QChar ch : qAsConst(chars)) {
         m_mixedSolution.append(ch);
         m_positions.append(QRandomGenerator::global()->bounded(8));
     }

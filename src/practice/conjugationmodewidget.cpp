@@ -86,7 +86,7 @@ void ConjugationModeWidget::setQuestion(const QVariant& question)
 
     setNumberOfConjugationWidgets(data.personalPronouns.size());
     int i = 0;
-    foreach(QString pp, data.personalPronouns) {
+    for (QString pp : qAsConst(data.personalPronouns)) {
         if (data.personalPronouns.size() == 1) {
             pp += " (" + data.tense + ')';
         }

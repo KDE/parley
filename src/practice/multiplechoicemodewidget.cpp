@@ -75,7 +75,7 @@ void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
     }
 
     int j = 0;
-    foreach(QPushButton * pushButton, m_choiceButtons) {
+    for (QPushButton * pushButton : qAsConst(m_choiceButtons)) {
         pushButton->setText(data.choices[j]);
         pushButton->setToolTip(data.choices[j]);
         pushButton->setFont(m_solutionFont);
@@ -94,7 +94,7 @@ void MultiplechoiceModeWidget::showQuestion()
     resetButtonStyleSheet();
 
     if ( ! m_choiceButtons.isEmpty() ) {
-        foreach(QPushButton * pushButton, m_choiceButtons) {
+        for (QPushButton * pushButton : qAsConst(m_choiceButtons)) {
             pushButton->setChecked(false);
             pushButton->setEnabled(true);
         }
@@ -216,7 +216,7 @@ void MultiplechoiceModeWidget::showSolution()
                                 " }"
         );
     }
-    foreach(QPushButton * pushButton, m_choiceButtons) {
+    for (QPushButton * pushButton : qAsConst(m_choiceButtons)) {
         pushButton->setEnabled(false);
     }
     m_ui->solutionPronunciationLabel->setVisible(m_ui->solutionPronunciationLabel->isEnabled());
@@ -227,7 +227,7 @@ QVariant MultiplechoiceModeWidget::userInput()
 {
 
     int i = 0;
-    foreach(QPushButton * pushButton, m_choiceButtons) {
+    for (QPushButton * pushButton : qAsConst(m_choiceButtons)) {
         if (pushButton->isChecked()) return i;
         i++;
     }
@@ -287,7 +287,7 @@ void MultiplechoiceModeWidget::resetButtonStyleSheet()
                       "border-color: " + borderColor + " }";
 
     if (!m_choiceButtons.isEmpty()) {
-        foreach(QPushButton * pushButton, m_choiceButtons) {
+        for (QPushButton * pushButton : qAsConst(m_choiceButtons)) {
             pushButton->setStyleSheet(defaultStyleSheet);
         }
     }

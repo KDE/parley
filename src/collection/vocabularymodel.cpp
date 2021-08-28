@@ -126,14 +126,16 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
             return QVariant(QString());
         case Synonym: {
             QStringList displayElements;
-            foreach(KEduVocTranslation * synonym,  m_container->entry(index.row(), m_recursive)->translation(translationId)->synonyms()) {
+            QList<KEduVocTranslation *> synonyms = m_container->entry(index.row(), m_recursive)->translation(translationId)->synonyms();
+            for (KEduVocTranslation * synonym : qAsConst(synonyms)) {
                 displayElements.append(synonym->text());
             }
             return QVariant(displayElements.join(QStringLiteral("; ")));
         }
         case Antonym: {
             QStringList displayElements;
-            foreach(KEduVocTranslation * antonym,  m_container->entry(index.row(), m_recursive)->translation(translationId)->antonyms()) {
+            QList<KEduVocTranslation *> antonyms = m_container->entry(index.row(), m_recursive)->translation(translationId)->antonyms();
+            for (KEduVocTranslation * antonym : qAsConst(antonyms)) {
                 displayElements.append(antonym->text());
             }
             return QVariant(displayElements.join(QStringLiteral("; ")));
@@ -362,7 +364,7 @@ QMimeData * VocabularyModel::mimeData(const QModelIndexList & indexes) const
     qDebug() << "mimeData for " << indexes.count() << "indexes";
 
     QList<KEduVocTranslation*> translations;
-    foreach(const QModelIndex & index, sortedIndexes) {
+    for (const QModelIndex & index : qAsConst(sortedIndexes)) {
         // only add if it's a translation. other cells like word type are being ignored for now.
         if (columnType(index.column()) == Translation) {
             translations.append(m_container->entry(index.row(), m_recursive)->translation(translation(index.column())));

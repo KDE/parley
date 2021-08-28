@@ -82,14 +82,14 @@ QVariantList Parley::selectedEntries()
 
     //get the unique selected entries
     QSet<KEduVocExpression*> kentries;
-    foreach(const QModelIndex & index, indexes) {
+    for (const QModelIndex & index : qAsConst(indexes)) {
 //             qDebug() << index.row() << index.data(Qt::DisplayRole);
         KEduVocExpression * expr = qvariant_cast<KEduVocExpression*> (index.data(VocabularyModel::EntryRole));
         kentries << expr;
     }
 
     //convert them to Expression objects and add them to the QVariantList
-    foreach(KEduVocExpression * expr, kentries) {
+    for (KEduVocExpression * expr : qAsConst(kentries)) {
 //             Expression entry(expr);
 //             qDebug() << entry.translationTexts();
         QObject * obj = new Expression(expr);
@@ -109,7 +109,7 @@ QVariantList Parley::selectedTranslations()
     //get the unique selected entries
     QSet<KEduVocTranslation*> ktranslations;
 //         const QModelIndex &index;
-    foreach(const QModelIndex & index, indexes) {
+    for (const QModelIndex & index : qAsConst(indexes)) {
         if (VocabularyModel::columnType(index.column()) == VocabularyModel::Translation) {
             KEduVocExpression * expr = qvariant_cast<KEduVocExpression*> (index.data(VocabularyModel::EntryRole));
             ktranslations << expr->translation(VocabularyModel::translation(index.column()));
@@ -118,7 +118,7 @@ QVariantList Parley::selectedTranslations()
     }
 
     //convert them to Expression objects and add them to the QVariantList
-    foreach(KEduVocTranslation * tr, ktranslations) {
+    for (KEduVocTranslation * tr : qAsConst(ktranslations)) {
 //             Translation transltion(tr);
 //             qDebug() << entry.translationTexts();
         QObject * obj = new Translation(tr);

@@ -37,10 +37,10 @@ KEduVocWordType * Document::wordTypeFromString(const QString & name)
     QList<KEduVocContainer*> list = Container::flattenContainer(m_doc->wordTypeContainer());
     list.removeFirst();
 
-//         foreach ( KEduVocContainer * child, list )
+//         for ( KEduVocContainer * child : qAsConst(list) )
 //             qDebug() << static_cast<KEduVocWordType*>(child)->name();
 
-    foreach(KEduVocContainer * child, list) {
+    for (KEduVocContainer * child : qAsConst(list)) {
         KEduVocWordType * wt = static_cast<KEduVocWordType*>(child);
         if (name == wt->name())
             return wt;
@@ -67,7 +67,7 @@ QStringList Document::wordTypes()
     QList<KEduVocContainer*> list = Container::flattenContainer(m_doc->wordTypeContainer());
     list.removeFirst();
     QStringList strList;
-    foreach(KEduVocContainer * child, list) {
+    for (KEduVocContainer * child : qAsConst(list)) {
         strList << child->name();
     }
     return strList;

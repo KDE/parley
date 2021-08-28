@@ -54,7 +54,8 @@ void ConjugationOptions::setupTenses()
     qDebug() << "activeTenses:" << activeTenses << " id tenses: " << m_doc->identifier(m_language).tenseList();
     QTreeWidgetItem* tenseItem;
 
-    foreach(const QString & tenseName, m_doc->identifier(m_language).tenseList()) {
+    const QStringList tenses = m_doc->identifier(m_language).tenseList();
+    for (const QString & tenseName : tenses) {
         tenseItem = new QTreeWidgetItem(m_treeWidget);
         tenseItem->setText(0, tenseName);
         if (activeTenses.contains(tenseName)) {

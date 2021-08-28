@@ -32,8 +32,8 @@ DeclensionWidget::DeclensionWidget(QWidget *parent) : QWidget(parent)
 
     setupLineEdits();
 
-    foreach(int index, m_DeclensionLineEdits.keys()) {
-        connect(m_DeclensionLineEdits.value(index), &QLineEdit::textChanged, this, &DeclensionWidget::textChanged);
+    for (auto iter = m_DeclensionLineEdits.begin(); iter != m_DeclensionLineEdits.end(); ++iter) {
+        connect(iter.value(), &QLineEdit::textChanged, this, &DeclensionWidget::textChanged);
     }
 }
 
@@ -49,8 +49,8 @@ void DeclensionWidget::textChanged(const QString& text)
 
 void DeclensionWidget::updateEntries()
 {
-    foreach(int key, m_DeclensionLineEdits.keys()) {
-        m_DeclensionLineEdits.value(key)->setText(m_entry->translation(m_identifier)->declension()->declension((KEduVocWordFlag::Flags)(key | currentAdditionalWordFlag())).text());
+    for (auto iter = m_DeclensionLineEdits.cbegin(); iter != m_DeclensionLineEdits.cend(); ++iter) {
+        m_DeclensionLineEdits.value(iter.key())->setText(m_entry->translation(m_identifier)->declension()->declension((KEduVocWordFlag::Flags)(iter.key() | currentAdditionalWordFlag())).text());
     }
 }
 

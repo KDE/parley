@@ -54,18 +54,22 @@ QList<KEduVocContainer*>  Container::flattenContainer(KEduVocContainer * root)
     QList<KEduVocContainer*> list;
     if (root) {
         list << root;
-        foreach(KEduVocContainer * child, root->childContainers())
-        list += flattenContainer(child);
+        const QList<KEduVocContainer *> childContainers = root->childContainers();
+        for (KEduVocContainer * child : childContainers) {
+            list += flattenContainer(child);
+        }
     }
     return list;
 }
 
 KEduVocContainer * Container::findContainer(const QString& name)
 {
-    QList<KEduVocContainer*> list = flattenContainer(m_container);
-    foreach(KEduVocContainer * container, list)
-    if (container->name() == name)
-        return container;
+    const QList<KEduVocContainer*> list = flattenContainer(m_container);
+    for (KEduVocContainer * container : list) {
+        if (container->name() == name) {
+            return container;
+        }
+    }
     return 0;
 }
 

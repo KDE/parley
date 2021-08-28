@@ -212,14 +212,14 @@ QMimeData * ContainerModel::mimeData(const QModelIndexList &indexes) const
     ContainerMimeData *mimeData = new ContainerMimeData();
 //      QByteArray encodedData;
 
-    foreach(const QModelIndex & index, indexes) {
+    for (const QModelIndex & index : indexes) {
         mimeData->addContainer(static_cast<KEduVocContainer*>(index.internalPointer()));
     }
     mimeData->setText(QStringLiteral("Parley lesson"));
 
 //      QDataStream stream(&encodedData, QIODevice::WriteOnly);
 // stream << "Parley lesson";
-//      foreach (const QModelIndex &index, indexes) {
+//      for (const QModelIndex &index : qAsConst(indexes)) {
 //          if (index.isValid()) {
 //              QString text = data(index, Qt::DisplayRole).toString();
 //              stream << text;
@@ -244,7 +244,8 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
         qobject_cast<const ContainerMimeData *>(data);
 
     if (containerData) {
-        foreach(KEduVocContainer * container, containerData->containerList()) {
+        const QList<KEduVocContainer*> containerList = containerData->containerList();
+        for (KEduVocContainer * container : containerList) {
             // no way to move a word type to a lesson for now
             if (container->containerType() != m_type) {
                 return false;
@@ -308,19 +309,21 @@ bool ContainerModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
             // Create a list of the entries associated with the translations being copied. This prevents duplicates if they highlighted several columns.
             QList<KEduVocExpression*> entries;
 
-            foreach(KEduVocTranslation * translation, translationData->translationList()) {
+            const QList<KEduVocTranslation*> translationList = translationData->translationList();
+            for (const auto & translation : translationList) {
                 if (!entries.contains(translation->entry())) {
                     entries << translation->entry();
                 }
             }
 
-            foreach(KEduVocExpression * entry, entries) {
+            for (KEduVocExpression * entry : qAsConst(entries)) {
                 static_cast<KEduVocLesson*>(parent.internalPointer())->appendEntry(new KEduVocExpression(*entry));
             }
         }
 
         if (containerType() == KEduVocContainer::WordType) {
-            foreach(KEduVocTranslation * translation, translationData->translationList()) {
+            const QList<KEduVocTranslation*> translationList = translationData->translationList();
+            for (const auto & translation : translationList) {
                 translation->setWordType(
                     static_cast<KEduVocWordType*>(parent.internalPointer()));
             }
