@@ -6,17 +6,13 @@
 #ifndef BROWSERWIDGET_H
 #define BROWSERWIDGET_H
 
-
 #include "ui_browserwidget.h"
 #include <QWebEngineView>
 
 class KEduVocExpression;
 
-
-
 namespace Editor
 {
-
 struct DictionaryProvider {
     QString name;
     QString url;
@@ -27,7 +23,7 @@ class BrowserWidget : public QWidget, public Ui::BrowserWidget
 {
     Q_OBJECT
 public:
-    explicit BrowserWidget(QWidget* parent = 0);
+    explicit BrowserWidget(QWidget *parent = 0);
 
 public slots:
     /**
@@ -35,13 +31,13 @@ public slots:
      * @param entry
      * @param translation
      */
-    void setTranslation(KEduVocExpression* entry, int translation);
-
+    void setTranslation(KEduVocExpression *entry, int translation);
 
 private slots:
     void showCurrentTranslation();
-    void openUrl(const QUrl& targetUrl);
+    void openUrl(const QUrl &targetUrl);
     void providerChanged(int);
+
 private:
     /**
      * Load a list of providers of online dictionaries
@@ -49,9 +45,9 @@ private:
     void setupProviders();
 
     /// Column in the document - corresponds to the language (-KV_COL_TRANS)
-    int               m_currentTranslation;
+    int m_currentTranslation;
     /// Selection in the doc - if more than one row is selected behavior is different
-    KEduVocExpression* m_entry;
+    KEduVocExpression *m_entry;
 
     QWebEngineView *m_htmlPart;
     QList<DictionaryProvider> m_providers;

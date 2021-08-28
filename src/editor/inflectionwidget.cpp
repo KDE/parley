@@ -4,24 +4,24 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #include "inflectionwidget.h"
 
 #include <KEduVocDocument>
 #include <KEduVocExpression>
 #include <KEduVocWordtype>
 
-#include "declensionwidget.h"
 #include "conjugationwidget.h"
+#include "declensionwidget.h"
 
 #include <KLocalizedString>
 
-#include <QDialogButtonBox>
 #include <QDialog>
+#include <QDialogButtonBox>
 
 using namespace Editor;
 
-InflectionWidget::InflectionWidget(QWidget* parent): QStackedWidget(parent)
+InflectionWidget::InflectionWidget(QWidget *parent)
+    : QStackedWidget(parent)
 {
     m_wordTypeWidget = new QWidget(this);
     QVBoxLayout *wordTypeLayout = new QVBoxLayout();
@@ -64,7 +64,7 @@ void InflectionWidget::setDocument(const std::shared_ptr<KEduVocDocument> &doc)
     m_declensionWidget->setDocument(doc.get());
 }
 
-void InflectionWidget::setTranslation(KEduVocExpression* entry, int translation)
+void InflectionWidget::setTranslation(KEduVocExpression *entry, int translation)
 {
     m_entry = entry;
     m_translation = translation;
@@ -74,13 +74,11 @@ void InflectionWidget::setTranslation(KEduVocExpression* entry, int translation)
         setCurrentWidget(m_wordTypeWidget);
         return;
     }
-    if (!entry->translation(translation)->wordType() ||
-            !(entry->translation(translation)->wordType()->wordType() & KEduVocWordFlag::Verb
-              || entry->translation(translation)->wordType()->wordType() & KEduVocWordFlag::Noun
-              || entry->translation(translation)->wordType()->wordType() & KEduVocWordFlag::Adjective
-             )
-       ) {
-        qobject_cast<QLabel*>(m_wordTypeWidget->layout()->itemAt(0)->widget())->setText(i18n("\"%1\" is a:", entry->translation(translation)->text()));
+    if (!entry->translation(translation)->wordType()
+        || !(entry->translation(translation)->wordType()->wordType() & KEduVocWordFlag::Verb
+             || entry->translation(translation)->wordType()->wordType() & KEduVocWordFlag::Noun
+             || entry->translation(translation)->wordType()->wordType() & KEduVocWordFlag::Adjective)) {
+        qobject_cast<QLabel *>(m_wordTypeWidget->layout()->itemAt(0)->widget())->setText(i18n("\"%1\" is a:", entry->translation(translation)->text()));
         m_wordTypeWidget->setEnabled(true);
         setCurrentWidget(m_wordTypeWidget);
         return;
@@ -102,7 +100,7 @@ void InflectionWidget::setWordType()
         return;
     }
 
-    KEduVocWordType* container = 0;
+    KEduVocWordType *container = 0;
 
     if (sender()->objectName() == QLatin1String("toVerb")) {
         container = m_doc->wordTypeContainer()->childOfType(KEduVocWordFlag::Verb);
@@ -118,11 +116,11 @@ void InflectionWidget::setWordType()
         genderComboBox->addItem(i18n("Feminine"), KEduVocWordFlag::Feminine);
 
         QVBoxLayout *layout = new QVBoxLayout;
-        layout->addWidget( genderComboBox );
-        layout->addWidget( getGenderDialog );
+        layout->addWidget(genderComboBox);
+        layout->addWidget(getGenderDialog);
 
-        QPointer<QDialog> dialog = new QDialog( this );
-        dialog->setLayout( layout );
+        QPointer<QDialog> dialog = new QDialog(this);
+        dialog->setLayout(layout);
         dialog->setWindowTitle(i18n("Please select the noun's gender"));
 
         connect(getGenderDialog.data(), &QDialogButtonBox::accepted, dialog.data(), &QDialog::accept);

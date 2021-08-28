@@ -8,19 +8,18 @@
 
 #include "parleydocument.h"
 
-#include "prefs.h"
 #include "comparisonbackendmode.h"
 #include "conjugationbackendmode.h"
 #include "examplesentencebackendmode.h"
 #include "flashcardbackendmode.h"
 #include "genderbackendmode.h"
 #include "multiplechoicebackendmode.h"
+#include "prefs.h"
 #include "writtenbackendmode.h"
 
 using namespace Practice;
 
-PracticeStateMachine::PracticeStateMachine(AbstractFrontend* frontend, ParleyDocument* doc,
-                                           SessionManagerBase* sessionManager,  QObject* parent)
+PracticeStateMachine::PracticeStateMachine(AbstractFrontend *frontend, ParleyDocument *doc, SessionManagerBase *sessionManager, QObject *parent)
     : QObject(parent)
     , m_frontend(frontend)
     , m_document(doc)
@@ -100,9 +99,9 @@ void PracticeStateMachine::nextEntry()
     m_state = NotAnswered;
     m_current = m_sessionManager->nextTrainingEntry();
 
-    //qDebug() << "GETTING ENTRY - " << m_current;
+    // qDebug() << "GETTING ENTRY - " << m_current;
 
-    //after going through all words, or at the start of practice
+    // after going through all words, or at the start of practice
     if (m_current == 0) {
         slotPracticeFinished();
         return;
@@ -129,7 +128,7 @@ void PracticeStateMachine::currentEntryFinished()
 
 void PracticeStateMachine::continueAction()
 {
-    //qDebug() << "continue" << m_state;
+    // qDebug() << "continue" << m_state;
     switch (m_state) {
         // on continue, we check the answer, if in NotAnsweredState or AnswerWasWrongState
     case NotAnswered:
@@ -145,7 +144,7 @@ void PracticeStateMachine::continueAction()
 
 void PracticeStateMachine::answerRight()
 {
-    //qDebug() << "ans right";
+    // qDebug() << "ans right";
 
     m_frontend->setFeedbackState(AbstractFrontend::AnswerCorrect);
     if (m_state == NotAnswered) {
@@ -160,16 +159,16 @@ void PracticeStateMachine::answerRight()
 
 void PracticeStateMachine::answerWrongRetry()
 {
-    //qDebug() << "wrong retr";
+    // qDebug() << "wrong retr";
     m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
     m_state = AnswerWasWrong;
 }
 
 void PracticeStateMachine::answerWrongShowSolution()
 {
-    //qDebug() << "wrong sol";
+    // qDebug() << "wrong sol";
     m_frontend->setFeedbackState(AbstractFrontend::AnswerWrong);
-    //User gave an empty answer or the same answer for a second time so we want to drop out.
+    // User gave an empty answer or the same answer for a second time so we want to drop out.
     m_frontend->setResultState(AbstractFrontend::AnswerWrong);
     m_state = SolutionShown;
     m_frontend->showSolution();
@@ -177,7 +176,7 @@ void PracticeStateMachine::answerWrongShowSolution()
 
 void PracticeStateMachine::showSolution()
 {
-    //qDebug() << "show solution";
+    // qDebug() << "show solution";
     m_state = SolutionShown;
     m_frontend->showSolution();
 }
@@ -191,17 +190,11 @@ void PracticeStateMachine::updateFrontend()
     m_frontend->showGrade(m_mode->currentPreGradeForEntry(), grade);
 
     // show the word that is currently practiced in the progress bar
-    m_frontend->setFinishedWordsTotalWords(
-        m_sessionManager->allEntryCount() - m_sessionManager->activeEntryCount(),
-        m_sessionManager->allEntryCount());
+    m_frontend->setFinishedWordsTotalWords(m_sessionManager->allEntryCount() - m_sessionManager->activeEntryCount(), m_sessionManager->allEntryCount());
 
     // Set fonts
-    m_frontend->setQuestionFont((m_current->languageFrom() == Prefs::learningLanguage())
-                                ? m_frontend->learningLangFont()
-                                : m_frontend->knownLangFont());
-    m_frontend->setSolutionFont((m_current->languageTo() == Prefs::learningLanguage())
-                                ? m_frontend->learningLangFont()
-                                : m_frontend->knownLangFont());
+    m_frontend->setQuestionFont((m_current->languageFrom() == Prefs::learningLanguage()) ? m_frontend->learningLangFont() : m_frontend->knownLangFont());
+    m_frontend->setSolutionFont((m_current->languageTo() == Prefs::learningLanguage()) ? m_frontend->learningLangFont() : m_frontend->knownLangFont());
 
     grade_t goodGrade = qMax(grade, grade_t(KV_LEV1_GRADE)); // if the word hasn't been practiced yet, use grade 1 as a base
 
@@ -235,10 +228,10 @@ void PracticeStateMachine::updateFrontend()
 void PracticeStateMachine::gradeEntryAndContinue()
 {
     grade_t currentPreGrade = m_mode->currentPreGradeForEntry();
-    grade_t currentGrade    = m_mode->currentGradeForEntry();
+    grade_t currentGrade = m_mode->currentGradeForEntry();
 
     if (m_frontend->resultState() == AbstractFrontend::AnswerCorrect) {
-   m_current->updateStatisticsRightAnswer(currentPreGrade, currentGrade);
+        m_current->updateStatisticsRightAnswer(currentPreGrade, currentGrade);
     } else {
         m_current->updateStatisticsWrongAnswer(currentPreGrade, currentGrade);
     }

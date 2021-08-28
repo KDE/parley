@@ -11,8 +11,8 @@
 #include <sonnet/dialog.h>
 
 // Qt
-#include <QTableView>
 #include <QMap>
+#include <QTableView>
 
 // KDE
 class KActionMenu;
@@ -27,7 +27,6 @@ class VocabularyFilter;
 
 class Translator;
 
-
 namespace Editor
 {
 class EditorWindow;
@@ -38,11 +37,13 @@ class VocabularyView : public QTableView
     Q_OBJECT
 public:
     explicit VocabularyView(EditorWindow *parent);
-    virtual ~VocabularyView() {}
+    virtual ~VocabularyView()
+    {
+    }
 
-    KActionMenu* columnsActionMenu();
+    KActionMenu *columnsActionMenu();
 
-    void setFilter(VocabularyFilter * model);
+    void setFilter(VocabularyFilter *model);
 
     /** Save column visibility settings */
     void saveColumnVisibility() const;
@@ -69,29 +70,29 @@ public slots:
      * Append a char to the last edited entry (used to add the phonetic stuff).
      * @param c the char
      */
-    void appendChar(const QChar & c);
+    void appendChar(const QChar &c);
 
     void setDocument(const std::shared_ptr<KEduVocDocument> &doc);
 
-    void setTranslator(Translator* translator);
+    void setTranslator(Translator *translator);
 
     void checkSpelling(int language);
 
     /**
-    * Show the vocabulary columns dialog to enable or disable the columns in the view
-    */
+     * Show the vocabulary columns dialog to enable or disable the columns in the view
+     */
     void slotShowVocabularyColumnsDialog();
 
 signals:
-    void translationChanged(KEduVocExpression*, int);
+    void translationChanged(KEduVocExpression *, int);
 
 private slots:
-    void slotCurrentChanged(const QModelIndex& current, const QModelIndex& previous);
-    void slotSelectionChanged(const QItemSelection&, const QItemSelection&);
+    void slotCurrentChanged(const QModelIndex &current, const QModelIndex &previous);
+    void slotSelectionChanged(const QItemSelection &, const QItemSelection &);
 
     void continueSpelling();
     void misspelling(const QString &word, int start);
-    void spellingReplace(const QString& oldWord, int start, const QString &newWord);
+    void spellingReplace(const QString &oldWord, int start, const QString &newWord);
 
 private:
     void selectIndex(const QModelIndex &index);
@@ -99,20 +100,21 @@ private:
     bool eventFilter(QObject *obj, QEvent *event) override;
 
     // Make this private to avoid inadvertent use. Instead use setFilter() which is public.
-    void setModel(QAbstractItemModel *model) override {
+    void setModel(QAbstractItemModel *model) override
+    {
         Q_UNUSED(model)
     }
 
-    QAction* m_appendEntryAction;
-    QAction* m_deleteEntriesAction;
-    QAction* m_copyAction;
-    QAction* m_cutAction;
-    QAction* m_pasteAction;
-    QAction* m_selectAllAction;
-    QAction* m_clearSelectionAction;
+    QAction *m_appendEntryAction;
+    QAction *m_deleteEntriesAction;
+    QAction *m_copyAction;
+    QAction *m_cutAction;
+    QAction *m_pasteAction;
+    QAction *m_selectAllAction;
+    QAction *m_clearSelectionAction;
 
-    VocabularyFilter* m_model;
-    VocabularyDelegate* m_vocabularyDelegate;
+    VocabularyFilter *m_model;
+    VocabularyDelegate *m_vocabularyDelegate;
     std::shared_ptr<KEduVocDocument> m_doc;
 
     int m_spellColumn;

@@ -13,7 +13,8 @@
 
 using namespace Editor;
 
-ImageChooserWidget::ImageChooserWidget(QWidget *parent) : QWidget(parent)
+ImageChooserWidget::ImageChooserWidget(QWidget *parent)
+    : QWidget(parent)
 {
     setupUi(this);
     m_currentTranslation = -1;
@@ -25,7 +26,7 @@ ImageChooserWidget::ImageChooserWidget(QWidget *parent) : QWidget(parent)
     setEnabled(false);
 }
 
-void ImageChooserWidget::setTranslation(KEduVocExpression* entry, int translation)
+void ImageChooserWidget::setTranslation(KEduVocExpression *entry, int translation)
 {
     m_currentTranslation = translation;
     m_entry = entry;
@@ -33,23 +34,23 @@ void ImageChooserWidget::setTranslation(KEduVocExpression* entry, int translatio
     if (m_entry) {
         setEnabled(true);
         imageUrlRequester->setUrl(m_entry->translation(m_currentTranslation)->imageUrl());
-//         slotImageChanged( m_entry->translation(m_currentTranslation)->imageUrl().toLocalFile() );
+        //         slotImageChanged( m_entry->translation(m_currentTranslation)->imageUrl().toLocalFile() );
     } else {
         setEnabled(false);
         imageUrlRequester->clear();
-//         imageLabel->setText(i18nc("@label image preview is empty", "No Preview"));
+        //         imageLabel->setText(i18nc("@label image preview is empty", "No Preview"));
         imageWidget->setPixmap(QPixmap());
     }
 }
 
-void ImageChooserWidget::slotImageChanged(const QString & urlStr)
+void ImageChooserWidget::slotImageChanged(const QString &urlStr)
 {
     QUrl url = QUrl::fromUserInput(urlStr);
     if (!url.isEmpty() && url.isLocalFile()) {
         QPixmap pixmap(url.toLocalFile());
         imageWidget->setPixmap(pixmap);
     } else {
-//         imageLabel->setText(i18nc("@label image preview is empty", "No Image"));
+        //         imageLabel->setText(i18nc("@label image preview is empty", "No Image"));
         imageWidget->setPixmap(QPixmap());
     }
 
@@ -64,36 +65,35 @@ void ImageChooserWidget::slotImageChanged(const QString & urlStr)
     }
 }
 
-bool ImageChooserWidget::eventFilter(QObject * obj, QEvent * event)
+bool ImageChooserWidget::eventFilter(QObject *obj, QEvent *event)
 {
     if (obj == imageWidget) {
-//         if (event->type() == QEvent::KeyPress) {
-//              QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-//              qDebug() << "Ate key press " << keyEvent->key();
-//              return true;
-//         }
-//         if (event->type() == QEvent::Resize) {
-//             QPixmap pixmap(imageUrlRequester->url().toLocalFile());
-//             imageLabel->setPixmap(pixmap.scaled(imageLabel->size(), Qt::KeepAspectRatio));
-//             return false;
-//         }
-
+        //         if (event->type() == QEvent::KeyPress) {
+        //              QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        //              qDebug() << "Ate key press " << keyEvent->key();
+        //              return true;
+        //         }
+        //         if (event->type() == QEvent::Resize) {
+        //             QPixmap pixmap(imageUrlRequester->url().toLocalFile());
+        //             imageLabel->setPixmap(pixmap.scaled(imageLabel->size(), Qt::KeepAspectRatio));
+        //             return false;
+        //         }
 
         if (event->type() == QEvent::DragMove) {
             event->accept();
             return true;
         }
 
-        //Events with drop data
+        // Events with drop data
         if (event->type() == QEvent::DragEnter || event->type() == QEvent::Drop) {
             if (!m_entry) {
                 return true;
             }
             QDropEvent *dropEvent = dynamic_cast<QDropEvent *>(event);
-            if (( dropEvent!= NULL ) && ( dropEvent->mimeData()!= NULL ) ) {
-                const QMimeData * mimeData( dropEvent->mimeData() );
-                if ( mimeData->hasUrls() && mimeData->hasUrls() && ( mimeData->urls().size() == 1 )) {
-                    switch( event->type() ) {
+            if ((dropEvent != NULL) && (dropEvent->mimeData() != NULL)) {
+                const QMimeData *mimeData(dropEvent->mimeData());
+                if (mimeData->hasUrls() && mimeData->hasUrls() && (mimeData->urls().size() == 1)) {
+                    switch (event->type()) {
                     case QEvent::DragEnter:
                         event->accept();
                         return true;

@@ -16,28 +16,34 @@ namespace ParleyActions
 {
 enum ParleyAction {
     FileNew,
-    FileOpen, FileOpenDownloaded,
-    FileSave, FileSaveAs,
+    FileOpen,
+    FileOpenDownloaded,
+    FileSave,
+    FileSaveAs,
     FileExport,
     FileProperties,
-    FileClose, FileQuit,
+    FileClose,
+    FileQuit,
     Preferences,
     LanguagesProperties,
     RemoveGrades,
     CheckSpelling,
     ToggleShowSublessons,
     AutomaticTranslation,
-    StartPractice, ConfigurePractice, ExportPracticeResults,
+    StartPractice,
+    ConfigurePractice,
+    ExportPracticeResults,
     EnterEditMode,
-    ToggleSearchBar, SearchVocabulary,
+    ToggleSearchBar,
+    SearchVocabulary,
     ShowScriptManager
 };
 
-QAction* create(ParleyAction id, const QObject *recvr, const char *slot, KActionCollection *parent);
+QAction *create(ParleyAction id, const QObject *recvr, const char *slot, KActionCollection *parent);
 
-KRecentFilesAction* createRecentFilesAction(const QObject *recvr, const char *slot, QObject *parent);
+KRecentFilesAction *createRecentFilesAction(const QObject *recvr, const char *slot, QObject *parent);
 
-QAction* createDownloadAction(const QObject *recvr, const char *slot, KActionCollection *collection);
+QAction *createDownloadAction(const QObject *recvr, const char *slot, KActionCollection *collection);
 }
 
 #endif

@@ -10,17 +10,15 @@
 
 class KEduVocContainer;
 
-
 class ContainerMimeData : public QMimeData
 {
     Q_OBJECT
 public:
-    void addContainer(KEduVocContainer* container);
-    QList<KEduVocContainer*> containerList() const;
+    void addContainer(KEduVocContainer *container);
+    QList<KEduVocContainer *> containerList() const;
 
 private:
-    QList<KEduVocContainer*> m_containers;
+    QList<KEduVocContainer *> m_containers;
 };
-
 
 #endif

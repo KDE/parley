@@ -8,20 +8,24 @@
 
 #include <KMessageBox>
 
-#include <QStandardItemModel>
-#include <QPainter>
+#include <KLocalizedString>
 #include <QAbstractItemDelegate>
 #include <QAbstractItemView>
 #include <QApplication>
+#include <QPainter>
+#include <QStandardItemModel>
 #include <QToolButton>
-#include <KLocalizedString>
 #include <QUrl>
 
 const int margin = 5;
 const int iconSize = 22;
 
 ButtonDelegate::ButtonDelegate(QAbstractItemView *itemView, Dashboard *parent)
-    : QStyledItemDelegate(itemView), m_rightMargin(0), m_buttonHeight(0), m_dashboard(parent), m_itemView(itemView)
+    : QStyledItemDelegate(itemView)
+    , m_rightMargin(0)
+    , m_buttonHeight(0)
+    , m_dashboard(parent)
+    , m_itemView(itemView)
 {
     m_editButton = new QToolButton(itemView->viewport());
     m_editButton->setIcon(QIcon::fromTheme(QStringLiteral("document-edit")));
@@ -62,8 +66,7 @@ void ButtonDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
     painter->drawText(textRect, Qt::AlignLeft | Qt::AlignVCenter, elidedText);
 }
 
-QSize ButtonDelegate::sizeHint(const QStyleOptionViewItem &option,
-                               const QModelIndex &index) const
+QSize ButtonDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     Q_UNUSED(index);
     Q_UNUSED(option);

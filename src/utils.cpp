@@ -3,14 +3,13 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 // Own
 #include "utils.h"
 
 // Qt
 #include <QPainter>
-#include <QRect>
 #include <QPainterPath>
+#include <QRect>
 
 // KEduVocDocument library
 #include <KEduVocDocument>
@@ -22,12 +21,10 @@
 // ----------------------------------------------------------------
 //                         class WordCount
 
-
 WordCount::WordCount()
 {
     clear();
 }
-
 
 void WordCount::clear()
 {
@@ -47,7 +44,7 @@ int WordCount::percentageCompleted() const
     //  * 1..KV_MAX_GRADE points for words in the initial phase (grade = 0, pregrade > 0)
     //  * KV_MAX_GRADE * (1..KV_MAX_GRADE) points for words in the long-term phase (grade>0)
     // So the maximum number of points is KV_MAX_GRADE^2 per word.
-    // 
+    //
     // In the final calculation, we exclude all invalid words from the percentage.
     int points = 0;
     for (int i = 0; i < KV_MAX_GRADE + 1; ++i) {
@@ -58,15 +55,12 @@ int WordCount::percentageCompleted() const
     if (totalWords - invalid == 0) {
         // Don't divide by 0.
         return 0;
-    }
-    else {
+    } else {
         return 100 * points / ((totalWords - invalid) * KV_MAX_GRADE * KV_MAX_GRADE);
     }
 }
 
-
-void WordCount::fillFromContainer(KEduVocContainer &container, int translationIndex,
-                                  KEduVocContainer::EnumEntriesRecursive recursive)
+void WordCount::fillFromContainer(KEduVocContainer &container, int translationIndex, KEduVocContainer::EnumEntriesRecursive recursive)
 {
     clear();
 
@@ -77,8 +71,8 @@ void WordCount::fillFromContainer(KEduVocContainer &container, int translationIn
     }
 }
 
-
-void WordCount::fillFromContainerForPracticeMode(KEduVocContainer &container, int translationIndex,
+void WordCount::fillFromContainerForPracticeMode(KEduVocContainer &container,
+                                                 int translationIndex,
                                                  const QStringList &activeConjugationTenses,
                                                  KEduVocContainer::EnumEntriesRecursive recursive)
 {
@@ -105,36 +99,29 @@ void WordCount::fillFromContainerForPracticeMode(KEduVocContainer &container, in
         KEduVocTranslation &translation(*entry->translation(translationIndex));
         if (isValidForProcessing(translation, wordTypeToProcess)) {
             switch (wordTypeToProcess) {
-            case KEduVocWordFlag::Noun:
-                {
-                    KEduVocText article = translation.article();
-                    evaluateWord(article, translation.text());
-                }
-                break;
-            case KEduVocWordFlag::Verb:
-                {
-                    QStringList conjugationTenses = translation.conjugationTenses();
-                    for (const QString &activeTense : qAsConst(activeConjugationTenses))
-                    {
-                        if (conjugationTenses.contains(activeTense)) {
-                            KEduVocConjugation conj = translation.getConjugation(activeTense);
-                            const QList<KEduVocWordFlags> keys = conj.keys();
-                            for (KEduVocWordFlags key : keys) {
-                                KEduVocText person = conj.conjugation(key);
-                                evaluateWord(person, person.text());
-                            }
+            case KEduVocWordFlag::Noun: {
+                KEduVocText article = translation.article();
+                evaluateWord(article, translation.text());
+            } break;
+            case KEduVocWordFlag::Verb: {
+                QStringList conjugationTenses = translation.conjugationTenses();
+                for (const QString &activeTense : qAsConst(activeConjugationTenses)) {
+                    if (conjugationTenses.contains(activeTense)) {
+                        KEduVocConjugation conj = translation.getConjugation(activeTense);
+                        const QList<KEduVocWordFlags> keys = conj.keys();
+                        for (KEduVocWordFlags key : keys) {
+                            KEduVocText person = conj.conjugation(key);
+                            evaluateWord(person, person.text());
                         }
                     }
                 }
-                break;
-            case KEduVocWordFlag::Adjective | KEduVocWordFlag::Adverb:
-                {
-                    KEduVocText comparative = translation.comparativeForm();
-                    evaluateWord(comparative, comparative.text());
-                    KEduVocText superlative = translation.superlativeForm();
-                    evaluateWord(superlative, superlative.text());
-                }
-                break;
+            } break;
+            case KEduVocWordFlag::Adjective | KEduVocWordFlag::Adverb: {
+                KEduVocText comparative = translation.comparativeForm();
+                evaluateWord(comparative, comparative.text());
+                KEduVocText superlative = translation.superlativeForm();
+                evaluateWord(superlative, superlative.text());
+            } break;
             }
         }
     }
@@ -142,9 +129,7 @@ void WordCount::fillFromContainerForPracticeMode(KEduVocContainer &container, in
 
 bool WordCount::isValidForProcessing(KEduVocTranslation &trans, KEduVocWordFlags wordType) const
 {
-    return !trans.isEmpty()
-        && (trans.wordType() != nullptr)
-        && ((trans.wordType()->wordType() & wordType) != 0);
+    return !trans.isEmpty() && (trans.wordType() != nullptr) && ((trans.wordType()->wordType() & wordType) != 0);
 }
 
 void WordCount::evaluateWord(const KEduVocText &item, const QString &text)
@@ -162,16 +147,13 @@ void WordCount::evaluateWord(const KEduVocText &item, const QString &text)
     }
 }
 
-
 // ----------------------------------------------------------------
 //                         class confidenceColors
-
 
 ConfidenceColors::ConfidenceColors(ColorScheme colorScheme)
 {
     initColors(colorScheme);
 }
-
 
 void ConfidenceColors::initColors(ColorScheme colorScheme)
 {
@@ -179,65 +161,61 @@ void ConfidenceColors::initColors(ColorScheme colorScheme)
     case MultiColorScheme:
     default: // Not default at the last line.  Hope this works...
 
-        longTermColors[0] = QColor(25,38,41);
-        //longTermColors[1] = QColor(Qt::yellow);
-        longTermColors[1] = QColor(25,38,41,64);
-        longTermColors[2] = QColor(237,21,21);
-        longTermColors[3] = QColor(246,116,0);
-        longTermColors[4] = QColor(201,206,59);
-        longTermColors[5] = QColor(28,220,154);
-        longTermColors[6] = QColor(17,209,22);
-        longTermColors[7] = QColor(61,174,253);
+        longTermColors[0] = QColor(25, 38, 41);
+        // longTermColors[1] = QColor(Qt::yellow);
+        longTermColors[1] = QColor(25, 38, 41, 64);
+        longTermColors[2] = QColor(237, 21, 21);
+        longTermColors[3] = QColor(246, 116, 0);
+        longTermColors[4] = QColor(201, 206, 59);
+        longTermColors[5] = QColor(28, 220, 154);
+        longTermColors[6] = QColor(17, 209, 22);
+        longTermColors[7] = QColor(61, 174, 253);
 
-        initialTermColor = QColor(25,38,41,64); // Find something else
+        initialTermColor = QColor(25, 38, 41, 64); // Find something else
 
         invalidColor = QColor(Qt::red);
         break;
 
-    case ProgressiveColorScheme:
-        {
-            static const int AlphaMax = 255;
-            static const int AlphaStep = ((AlphaMax - 10) / KV_MAX_GRADE);
+    case ProgressiveColorScheme: {
+        static const int AlphaMax = 255;
+        static const int AlphaStep = ((AlphaMax - 10) / KV_MAX_GRADE);
 
-            QColor color;
+        QColor color;
 
-            // Confidence 1..max
-            for (int grade = 1; grade <= KV_MAX_GRADE; ++grade) {
-                color = Prefs::gradeColor();
-                color.setAlpha(AlphaMax - (KV_MAX_GRADE - grade) * AlphaStep);
+        // Confidence 1..max
+        for (int grade = 1; grade <= KV_MAX_GRADE; ++grade) {
+            color = Prefs::gradeColor();
+            color.setAlpha(AlphaMax - (KV_MAX_GRADE - grade) * AlphaStep);
 
-                longTermColors[grade] = color;
-            }
-
-            // Unpracticed (confidence 0)
-            color = QColor("#FFFFFF");
-            color.setAlpha(AlphaMax);
-            longTermColors[0] = color;
-
-            // Use one color for all initial phase values
-            color = Prefs::preGradeColor();
-            color.setAlpha(AlphaMax);
-            initialTermColor = color;
-
-            // Invalid
-            invalidColor = Prefs::invalidUnitColor();
-
-            break;
+            longTermColors[grade] = color;
         }
+
+        // Unpracticed (confidence 0)
+        color = QColor("#FFFFFF");
+        color.setAlpha(AlphaMax);
+        longTermColors[0] = color;
+
+        // Use one color for all initial phase values
+        color = Prefs::preGradeColor();
+        color.setAlpha(AlphaMax);
+        initialTermColor = color;
+
+        // Invalid
+        invalidColor = Prefs::invalidUnitColor();
+
+        break;
+    }
     }
 
     // These two are placeholders for the wordcloud background color.
-    frontEndColors[0] = QColor(255,221,217);
-    frontEndColors[1] = QColor(238,232,213);
+    frontEndColors[0] = QColor(255, 221, 217);
+    frontEndColors[1] = QColor(238, 232, 213);
 }
-
 
 // ----------------------------------------------------------------
 //                         Various utility functions
 
-
-void paintColorBar(QPainter &painter, const QRect &rect,
-                   const WordCount &wordCount, const ConfidenceColors &colors)
+void paintColorBar(QPainter &painter, const QRect &rect, const WordCount &wordCount, const ConfidenceColors &colors)
 {
     // The outline of the total bar.
     QRectF roundedRect(rect);

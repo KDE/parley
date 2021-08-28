@@ -16,9 +16,7 @@ class KEduVocExpression;
 class KEduVocDocument;
 class TestEntry;
 
-
-class EntryFilter
-    : public QObject
+class EntryFilter : public QObject
 {
     Q_OBJECT
 public:
@@ -34,7 +32,7 @@ public:
      *
      * @return list of entries to practice
      */
-    QList<TestEntry*> entries(bool showDialog = true);
+    QList<TestEntry *> entries(bool showDialog = true);
 
 private:
     void collectEntries(int setNo);
@@ -50,8 +48,8 @@ private:
     void lessonEntries(int setNo);
     void wordTypeEntries(int setNo);
 
-    bool isBlocked(const KEduVocText* const grade) const;
-    bool isConjugationBlocked(KEduVocTranslation* translation) const;
+    bool isBlocked(const KEduVocText *const grade) const;
+    bool isConjugationBlocked(KEduVocTranslation *translation) const;
     void blockedEntries(int setNo);
     void timesWrongEntries(int setNo);
     void timesPracticedEntries(int setNo);
@@ -69,24 +67,24 @@ private:
      * This depends on the number of tenses and on the practice mode selected (every pronoun
      * separately, or grouped by tense).
      */
-    QList<TestEntry*> conjugationTestEntries(bool ignoreBlocked) const;
+    QList<TestEntry *> conjugationTestEntries(bool ignoreBlocked) const;
 
-    static void randomizedInsert(QList<TestEntry*>& list, TestEntry* entry);
+    static void randomizedInsert(QList<TestEntry *> &list, TestEntry *entry);
 
 private:
     KEduVocDocument *m_doc;
 
     // All entries that are valid given all criteria
-    QSet<KEduVocExpression*> m_entries[2];
+    QSet<KEduVocExpression *> m_entries[2];
 
     // Various sets of entries that are valid given only one criterium each.
     // These are used in the selection dialog if there are no totally valid entries.
-    QSet<KEduVocExpression*> m_entriesLesson[2];
-    QSet<KEduVocExpression*> m_entriesWordType[2];
-    QSet<KEduVocExpression*> m_entriesNotBlocked[2];
-    QSet<KEduVocExpression*> m_entriesTimesWrong[2];
-    QSet<KEduVocExpression*> m_entriesTimesPracticed[2];
-    QSet<KEduVocExpression*> m_entriesMinMaxGrade[2];
+    QSet<KEduVocExpression *> m_entriesLesson[2];
+    QSet<KEduVocExpression *> m_entriesWordType[2];
+    QSet<KEduVocExpression *> m_entriesNotBlocked[2];
+    QSet<KEduVocExpression *> m_entriesTimesWrong[2];
+    QSet<KEduVocExpression *> m_entriesTimesPracticed[2];
+    QSet<KEduVocExpression *> m_entriesMinMaxGrade[2];
 
     int m_numSets;
     int m_fromTranslation;
@@ -95,10 +93,9 @@ private:
     // The tenses selected by the user for practice
     QStringList m_tenses;
 
-    QSet<KEduVocExpression*> m_currentSelection[2];
+    QSet<KEduVocExpression *> m_currentSelection[2];
 
     friend class EntryFilterDialog;
 };
-
 
 #endif

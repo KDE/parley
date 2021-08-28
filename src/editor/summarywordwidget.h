@@ -25,7 +25,6 @@ class WordClassModel;
 
 namespace Editor
 {
-
 /**
 * Represents the overview of a KEduVocExpression
 * Shows the language word
@@ -45,26 +44,26 @@ public:
 
 public slots:
     /**
-    * Sets the selected word (KEduVocExpression) from the vocabularyView
-    */
+     * Sets the selected word (KEduVocExpression) from the vocabularyView
+     */
     void setTranslation(KEduVocExpression *entry, int translation);
 
     /**
-    * Called when a KEduVocDocument change happened
-    */
+     * Called when a KEduVocDocument change happened
+     */
     void slotDocumentChanged(const std::shared_ptr<KEduVocDocument> &doc);
 
     /**
-    * Called when the selection changed in the vocabulary view
-    */
+     * Called when the selection changed in the vocabulary view
+     */
     void slotSelectionChanged(const QItemSelection &, const QItemSelection &);
 
-    void wordTypeSelected(const QString& wordTypeName);
+    void wordTypeSelected(const QString &wordTypeName);
 
 private:
     /**
-    * Clears the form and the comboboxes
-    */
+     * Clears the form and the comboboxes
+     */
     void clear();
 
     /**
@@ -73,8 +72,8 @@ private:
     void populateLessonList(KEduVocExpression *entry);
     */
     /**
-    * Fill the word types list with the available word types of the KEduVocDocument
-    */
+     * Fill the word types list with the available word types of the KEduVocDocument
+     */
     void setCurrentWordType(KEduVocExpression *entry, int translation);
 
 private:

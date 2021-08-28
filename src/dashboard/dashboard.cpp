@@ -5,33 +5,31 @@
 
 #include "dashboard.h"
 
-#include <QTimer>
 #include <QAction>
-#include <QMessageBox>
 #include <QDebug>
+#include <QMessageBox>
 #include <QStandardItemModel>
+#include <QTimer>
 
 //#include <KMimeType>
 #include <KActionCollection>
 
 #include "../utils.h"
 #include "buttondelegate.h"
-#include "parleymainwindow.h"
 #include "parleydocument.h"
-#include "practice/themedbackgroundrenderer.h"
+#include "parleymainwindow.h"
 #include "practice/imagewidget.h"
+#include "practice/themedbackgroundrenderer.h"
 #include "statistics/statisticsmodel.h"
 
 #include "collection.h"
 #include "collectionwidget.h"
 #include "gradereferencewidget.h"
 
-
 // ================================================================
 //                         class Dashboard
 
-
-int ROWSIZE = 4;      // Number of collection widgets (+ 1 initial spacerItem) per row
+int ROWSIZE = 4; // Number of collection widgets (+ 1 initial spacerItem) per row
 
 Dashboard::Dashboard(ParleyMainWindow *parent)
     : KXmlGuiWindow(parent)
@@ -70,7 +68,6 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     m_subGridLayout->setVerticalSpacing(30);
     m_ui.gridLayout_2->addLayout(m_subGridLayout, 2, 0, 1, 1);
 
-
     m_completedGridLayout = new QGridLayout();
     m_completedGridLayout->setHorizontalSpacing(50);
     m_completedGridLayout->setVerticalSpacing(30);
@@ -80,8 +77,8 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     populateGrid();
 
     // Signals from the main buttons.
-    ParleyDocument* doc = m_mainWindow->parleyDocument();
-    connect(m_ui.newButton,  &QAbstractButton::clicked, m_mainWindow, &ParleyMainWindow::slotFileNew);
+    ParleyDocument *doc = m_mainWindow->parleyDocument();
+    connect(m_ui.newButton, &QAbstractButton::clicked, m_mainWindow, &ParleyMainWindow::slotFileNew);
     connect(m_ui.openButton, &QAbstractButton::clicked, doc, &ParleyDocument::slotFileOpen);
     connect(m_ui.ghnsButton, &QAbstractButton::clicked, doc, &ParleyDocument::slotGHNS);
 
@@ -94,8 +91,7 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     connect(Prefs::self(), &KCoreConfigSkeleton::configChanged, this, &Dashboard::setTheme);
     setTheme();
 
-    connect(m_themedBackgroundRenderer, &Practice::ThemedBackgroundRenderer::backgroundChanged,
-            this,                       &Dashboard::backgroundChanged);
+    connect(m_themedBackgroundRenderer, &Practice::ThemedBackgroundRenderer::backgroundChanged, this, &Dashboard::backgroundChanged);
     connect(m_widget, &Practice::ImageWidget::sizeChanged, this, &Dashboard::updateBackground);
 
     QAction *updateAction = new QAction(this);
@@ -110,15 +106,10 @@ Dashboard::~Dashboard()
     saveMainWindowSettings(cfg);
 }
 
-
 void Dashboard::clearGrid()
 {
-   remove(m_subGridLayout,
-          m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount() - 1,
-          true);
-   remove(m_completedGridLayout,
-          m_completedGridLayout->rowCount() - 1, m_completedGridLayout->columnCount() - 1,
-          true);
+    remove(m_subGridLayout, m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount() - 1, true);
+    remove(m_completedGridLayout, m_completedGridLayout->rowCount() - 1, m_completedGridLayout->columnCount() - 1, true);
 }
 
 /**
@@ -162,7 +153,7 @@ void Dashboard::populateMap()
 {
     KConfig parleyConfig(QStringLiteral("parleyrc"));
     KConfigGroup recentFilesGroup(&parleyConfig, "Recent Files");
-    for (int i = recentFilesGroup.keyList().count() / 2; i > 0 ; i--) {
+    for (int i = recentFilesGroup.keyList().count() / 2; i > 0; i--) {
         QString urlString = recentFilesGroup.readPathEntry("File" + QString::number(i), QString());
         QString nameString = recentFilesGroup.readEntry("Name" + QString::number(i), QString());
         m_recentFilesMap.insert(urlString, nameString);
@@ -176,14 +167,14 @@ void Dashboard::populateGrid()
     QMapIterator<QString, QString> it(m_recentFilesMap);
     while (it.hasNext()) {
         it.next();
-        QString urlString   = it.key();
+        QString urlString = it.key();
         QString titleString = it.value();
 
-        QUrl  url(QUrl::fromLocalFile(urlString));
+        QUrl url(QUrl::fromLocalFile(urlString));
         Collection *collection = new Collection(&url, this);
 
         WordCount dueWords;
-	int percentageCompleted = dueWords.percentageCompleted();
+        int percentageCompleted = dueWords.percentageCompleted();
 
         m_urlArray[k] = url;
         if (percentageCompleted != 100) {
@@ -191,36 +182,35 @@ void Dashboard::populateGrid()
                 m_subGridLayout->addItem(new QSpacerItem(50, 1), j / ROWSIZE, 0);
                 j++;
             }
-        }
-        else {
+        } else {
             if (jc % ROWSIZE == 0) {
-                m_completedGridLayout->addItem(new QSpacerItem(50,1), jc / ROWSIZE, 0);
+                m_completedGridLayout->addItem(new QSpacerItem(50, 1), jc / ROWSIZE, 0);
                 jc++;
             }
         }
 
-        CollectionWidget* backWidget = new CollectionWidget(collection, &dueWords, this);
+        CollectionWidget *backWidget = new CollectionWidget(collection, &dueWords, this);
         m_collectionWidgets.append(backWidget);
         if (percentageCompleted != 100) {
-                backWidget->setFixedSize(COLLWIDTH, COLLHEIGHT1);
-                backWidget->setMinimumSize(COLLWIDTH, COLLHEIGHT1);
-                m_subGridLayout->addWidget(backWidget, j / ROWSIZE, j % ROWSIZE);
-        }
-        else {
-                backWidget->setFixedSize(COLLWIDTH, COLLHEIGHT2);
-                backWidget->setMinimumSize(COLLWIDTH, COLLHEIGHT2);
-                m_completedGridLayout->addWidget(backWidget, jc / ROWSIZE, jc % ROWSIZE);
+            backWidget->setFixedSize(COLLWIDTH, COLLHEIGHT1);
+            backWidget->setMinimumSize(COLLWIDTH, COLLHEIGHT1);
+            m_subGridLayout->addWidget(backWidget, j / ROWSIZE, j % ROWSIZE);
+        } else {
+            backWidget->setFixedSize(COLLWIDTH, COLLHEIGHT2);
+            backWidget->setMinimumSize(COLLWIDTH, COLLHEIGHT2);
+            m_completedGridLayout->addWidget(backWidget, jc / ROWSIZE, jc % ROWSIZE);
         }
 
-        connect(backWidget, &CollectionWidget::practiceButtonClicked,
-                this, [=] {slotPracticeButtonClicked(urlString);});
-        connect(backWidget, &CollectionWidget::removeButtonClicked,
-                this, [=] {slotRemoveButtonClicked(urlString);});
+        connect(backWidget, &CollectionWidget::practiceButtonClicked, this, [=] {
+            slotPracticeButtonClicked(urlString);
+        });
+        connect(backWidget, &CollectionWidget::removeButtonClicked, this, [=] {
+            slotRemoveButtonClicked(urlString);
+        });
 
         if (percentageCompleted != 100) {
             j++;
-        }
-        else {
+        } else {
             jc++;
             kc++;
         }
@@ -229,12 +219,12 @@ void Dashboard::populateGrid()
     }
 
     m_count = k;
-    m_completedGridLayout->addItem(new QSpacerItem(50, 1,
-                                                   QSizePolicy::Expanding, QSizePolicy::Fixed),
+    m_completedGridLayout->addItem(new QSpacerItem(50, 1, QSizePolicy::Expanding, QSizePolicy::Fixed),
                                    m_completedGridLayout->rowCount() - 1,
                                    m_completedGridLayout->columnCount());
-    m_subGridLayout->addItem(new QSpacerItem(50,1,QSizePolicy::Expanding, QSizePolicy::Fixed),
-                             m_subGridLayout->rowCount() - 1, m_subGridLayout->columnCount());
+    m_subGridLayout->addItem(new QSpacerItem(50, 1, QSizePolicy::Expanding, QSizePolicy::Fixed),
+                             m_subGridLayout->rowCount() - 1,
+                             m_subGridLayout->columnCount());
     if (k - kc) {
         m_ui.recentLabel->setText(i18n("Active Collections"));
     } else {
@@ -259,7 +249,7 @@ void Dashboard::statisticsHandler(const QUrl &url)
     // Find due words. TODO find a better way.
     m_mainWindow->m_sessionManager.setDocument(m_mainWindow->parleyDocument()->document());
 
-    qDebug()<<"Session Manager, allEntryCount="<<m_mainWindow->m_sessionManager.allDueEntryCount();
+    qDebug() << "Session Manager, allEntryCount=" << m_mainWindow->m_sessionManager.allDueEntryCount();
     statisticsWidget->setDocument(m_mainWindow->parleyDocument()->document());
 
     // Find the percentage completion, to categorize as active or completed collection.
@@ -268,7 +258,7 @@ void Dashboard::statisticsHandler(const QUrl &url)
 #endif
 }
 
-void Dashboard::slotOpenUrl(const QUrl& url)
+void Dashboard::slotOpenUrl(const QUrl &url)
 {
     if (!m_mainWindow->parleyDocument()->open(url)) {
         return;
@@ -276,25 +266,23 @@ void Dashboard::slotOpenUrl(const QUrl& url)
     m_mainWindow->showEditor();
 }
 
-void Dashboard::slotPracticeButtonClicked(const QString& urlString)
+void Dashboard::slotPracticeButtonClicked(const QString &urlString)
 {
-    //qDebug() << urlString;
-    QUrl url( QUrl::fromLocalFile(urlString) );
+    // qDebug() << urlString;
+    QUrl url(QUrl::fromLocalFile(urlString));
     m_openUrl = url;
     QTimer::singleShot(0, this, &Dashboard::slotDoubleClickOpen);
 }
 
-void Dashboard::slotRemoveButtonClicked(const QString& urlString)
+void Dashboard::slotRemoveButtonClicked(const QString &urlString)
 {
     qDebug() << urlString;
 
     QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(this, i18n("Remove"),
-                                  i18n("Are you sure you want to remove this collection?"),
-                                  QMessageBox::Yes | QMessageBox::No);
+    reply = QMessageBox::question(this, i18n("Remove"), i18n("Are you sure you want to remove this collection?"), QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
         m_recentFilesMap.remove(urlString);
-        m_mainWindow->removeRecentFile(QUrl::fromLocalFile(urlString ));
+        m_mainWindow->removeRecentFile(QUrl::fromLocalFile(urlString));
         clearGrid();
         populateGrid();
     }
@@ -305,17 +293,17 @@ void Dashboard::slotDoubleClickOpen()
     slotPracticeUrl(m_openUrl);
 }
 
-void Dashboard::slotPracticeUrl(const QUrl & url)
+void Dashboard::slotPracticeUrl(const QUrl &url)
 {
     if (!m_mainWindow->parleyDocument()->open(url)) {
         return;
     }
 
     // This used to go to the practice configuration but both I and
-    //some users wanted to go directly to the practice so I'm testing
-    //out this for a while.
+    // some users wanted to go directly to the practice so I'm testing
+    // out this for a while.
     m_mainWindow->showPracticeConfiguration();
-    //m_mainWindow->showPractice();
+    // m_mainWindow->showPractice();
 }
 
 void Dashboard::backgroundChanged(const QPixmap &pixmap)

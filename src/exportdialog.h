@@ -23,9 +23,9 @@ private slots:
     void accept() override;
 
 private:
-    QUrl getFileName(const QString& filter);
+    QUrl getFileName(const QString &filter);
 
-    Ui::ExportOptions* ui;
+    Ui::ExportOptions *ui;
     ParleyDocument *m_doc;
     QWidget *m_parent;
 };

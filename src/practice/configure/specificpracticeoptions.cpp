@@ -10,9 +10,10 @@
 
 #include "prefs.h"
 
-SpecificPracticeOptions::SpecificPracticeOptions(QWidget* parent) : QWidget(parent)
+SpecificPracticeOptions::SpecificPracticeOptions(QWidget *parent)
+    : QWidget(parent)
 {
     setupUi(this);
 
-    //connect(kcfg_ShowSolutionAfterAnswer, SIGNAL(toggled(bool)), kcfg_ShowSolutionAfterAnswerTime, SLOT(setEnabled(bool)));
+    // connect(kcfg_ShowSolutionAfterAnswer, SIGNAL(toggled(bool)), kcfg_ShowSolutionAfterAnswerTime, SLOT(setEnabled(bool)));
 }

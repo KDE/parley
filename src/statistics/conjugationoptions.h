@@ -6,8 +6,8 @@
 #ifndef CONJUGATIONOPTIONS_H
 #define CONJUGATIONOPTIONS_H
 
-#include <QWidget>
 #include <QMap>
+#include <QWidget>
 
 class KEduVocDocument;
 class QTreeWidget;
@@ -36,7 +36,7 @@ private:
     KEduVocDocument *m_doc;
     int m_language;
     QTreeWidget *m_treeWidget;
-    QMap<QTreeWidgetItem*, Qt::CheckState> m_checkStates;
+    QMap<QTreeWidgetItem *, Qt::CheckState> m_checkStates;
 };
 
 #endif

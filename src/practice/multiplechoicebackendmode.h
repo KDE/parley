@@ -3,7 +3,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef MULTIPLECHOICEBACKENDMODE_H
 #define MULTIPLECHOICEBACKENDMODE_H
 
@@ -12,17 +11,15 @@
 
 namespace Practice
 {
-
 class MultipleChoiceBackendMode : public AbstractBackendMode
 {
     Q_OBJECT
 
 public:
-    MultipleChoiceBackendMode(AbstractFrontend *frontend, QObject *parent,
-                              Practice::SessionManagerBase* sessionManager);
+    MultipleChoiceBackendMode(AbstractFrontend *frontend, QObject *parent, Practice::SessionManagerBase *sessionManager);
 
     /** Start practicing a new word */
-    bool setTestEntry(TestEntry* current) override;
+    bool setTestEntry(TestEntry *current) override;
 
     void checkAnswer() override;
 
@@ -33,17 +30,17 @@ protected:
     /**
      * set the list of possible answers. This function needs to call setCorrectAnswer and setChoices
      */
-    virtual void prepareChoices(TestEntry* current);
+    virtual void prepareChoices(TestEntry *current);
 
     /**
      * Set the question/original language
      */
-    void setQuestion(const QString& question);
+    void setQuestion(const QString &question);
 
     /**
      * This must include the correct answer. The order of the choices will be preserved.
      */
-    void setChoices(const QStringList& choices);
+    void setChoices(const QStringList &choices);
 
     /**
      * The correct solution, index of the choices.
@@ -58,7 +55,7 @@ protected:
     virtual void populateFrontEnd();
 
 private:
-    SessionManagerBase* m_sessionManager;
+    SessionManagerBase *m_sessionManager;
     QString m_question;
     int m_numberOfChoices;
     QStringList m_choices;

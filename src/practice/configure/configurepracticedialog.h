@@ -7,9 +7,9 @@
 #ifndef CONFIGUREPRACTICEDIALOG_H
 #define CONFIGUREPRACTICEDIALOG_H
 
-#include <KEduVocDocument>
-#include <KConfigWidgets/KConfigDialog>
 #include <KConfigSkeleton>
+#include <KConfigWidgets/KConfigDialog>
+#include <KEduVocDocument>
 
 class GeneralPracticeOptions;
 class SpecificPracticeOptions;
@@ -17,8 +17,8 @@ class ThresholdOptions;
 class BlockOptions;
 
 /**
-  *
-  */
+ *
+ */
 class ConfigurePracticeDialog : public KConfigDialog
 {
     Q_OBJECT
@@ -51,15 +51,14 @@ private slots:
     bool hasChanged() override;
 
 private:
-
     /**
      * Returns true if the current state of the dialog represents the default settings.
      */
     bool isDefault() override;
 
-    GeneralPracticeOptions  *m_generalPracticeOptions;
-    BlockOptions            *m_blockOptions;
-    ThresholdOptions        *m_thresholdOptions;
+    GeneralPracticeOptions *m_generalPracticeOptions;
+    BlockOptions *m_blockOptions;
+    ThresholdOptions *m_thresholdOptions;
     SpecificPracticeOptions *m_specificPracticeOptions;
 
     KConfigSkeleton *m_config;

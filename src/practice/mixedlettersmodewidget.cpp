@@ -6,11 +6,11 @@
 #include "mixedlettersmodewidget.h"
 #include "ui_practice_widget_written.h"
 
+#include <KColorScheme>
+#include <KRandom>
 #include <QFontMetrics>
 #include <QPainter>
 #include <QRandomGenerator>
-#include <KRandom>
-#include <KColorScheme>
 
 using namespace Practice;
 
@@ -21,13 +21,13 @@ MixedLettersModeWidget::MixedLettersModeWidget(GuiFrontend *frontend, QWidget *p
     connect(m_ui->answerEdit, &QLineEdit::textChanged, this, &MixedLettersModeWidget::updatePixmap);
 }
 
-void MixedLettersModeWidget::setSolutionFont(const QFont& font)
+void MixedLettersModeWidget::setSolutionFont(const QFont &font)
 {
     m_solutionFont = font;
     WrittenPracticeWidget::setSolutionFont(font);
 }
 
-void MixedLettersModeWidget::setQuestion(const QVariant& question)
+void MixedLettersModeWidget::setQuestion(const QVariant &question)
 {
     m_question = question.toString();
     WrittenPracticeWidget::setQuestion(question);
@@ -62,14 +62,14 @@ void MixedLettersModeWidget::updatePixmap()
         } else {
             p.setPen(defaultPen);
         }
-        p.drawText(charWidth + charWidth * i * 2, charHeight + int(m_positions.at(i)*charHeight * 0.25), ch);
+        p.drawText(charWidth + charWidth * i * 2, charHeight + int(m_positions.at(i) * charHeight * 0.25), ch);
         i++;
     }
     m_ui->mixedSolutionLabel->setPixmap(m_pixmap);
     m_ui->mixedSolutionLabel->setMinimumSize(m_pixmap.size());
 }
 
-void MixedLettersModeWidget::setSolution(const QVariant& solution)
+void MixedLettersModeWidget::setSolution(const QVariant &solution)
 {
     WrittenPracticeWidget::setSolution(solution);
     m_solution = solution.toString();

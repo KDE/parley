@@ -17,7 +17,10 @@
 class KGameThemePrivate
 {
 public:
-    KGameThemePrivate() : loaded(false) {}
+    KGameThemePrivate()
+        : loaded(false)
+    {
+    }
 
     QMap<QString, QString> themeproperties;
     QString fullPath; ///< Full path e.g. "/opt/kde/share/apps/appname/default.desktop"
@@ -34,7 +37,7 @@ KGameTheme::KGameTheme(const QString &themeGroup)
     : d(new KGameThemePrivate)
 {
     d->themeGroup = themeGroup;
-    //KGlobal::dirs()->addResourceType("gametheme", KStandardDirs::kde_default("data") + KGlobal::mainComponent().componentName());
+    // KGlobal::dirs()->addResourceType("gametheme", KStandardDirs::kde_default("data") + KGlobal::mainComponent().componentName());
 }
 
 KGameTheme::~KGameTheme()
@@ -44,7 +47,7 @@ KGameTheme::~KGameTheme()
 
 bool KGameTheme::loadDefault()
 {
-    return load(QStringLiteral("themes/default.desktop")); //TODO make this editable to match custom directories.
+    return load(QStringLiteral("themes/default.desktop")); // TODO make this editable to match custom directories.
     // If this ever changes change findThemes in KGameThemeSelectorPrivate too
 }
 
@@ -56,8 +59,7 @@ bool KGameTheme::load(const QString &fileName)
         qDebug() << "Refusing to load theme with no name";
         return false;
     }
-    QString filePath = QStandardPaths::locate(
-        QStandardPaths::DataLocation, fileName, QStandardPaths::LocateFile );
+    QString filePath = QStandardPaths::locate(QStandardPaths::DataLocation, fileName, QStandardPaths::LocateFile);
     qDebug() << "Attempting to load .desktop at" << filePath;
     if (filePath.isEmpty()) {
         return false;
@@ -79,20 +81,21 @@ bool KGameTheme::load(const QString &fileName)
     }
     KConfigGroup group = themeconfig.group(d->themeGroup);
 
-    //Copy the whole entryMap, so we can inherit generic properties as well, reducing the need to subclass for simple implementations
+    // Copy the whole entryMap, so we can inherit generic properties as well, reducing the need to subclass for simple implementations
     d->themeproperties = group.entryMap();
 
-    //Version control
+    // Version control
     int themeversion = group.readEntry("VersionFormat", 0);
-    //Format is increased when we have incompatible changes, meaning that older clients are not able to use the remaining information safely
+    // Format is increased when we have incompatible changes, meaning that older clients are not able to use the remaining information safely
     if (themeversion > kThemeVersionFormat) {
         return false;
     }
 
     QString graphName = group.readEntry("FileName");
-    //d->graphics = KStandardDirs::locate("appdata", graphName);
+    // d->graphics = KStandardDirs::locate("appdata", graphName);
     d->graphics = d->prefix + graphName;
-    if (d->graphics.isEmpty()) return false;
+    if (d->graphics.isEmpty())
+        return false;
 
     // let's see if svg file exists and can be opened
     QFile svgFile(d->graphics);
@@ -102,7 +105,7 @@ bool KGameTheme::load(const QString &fileName)
     }
 
     QString previewName = group.readEntry("Preview");
-    //QString graphicsPath = KStandardDirs::locate("appdata", previewName);
+    // QString graphicsPath = KStandardDirs::locate("appdata", previewName);
     QString graphicsPath = d->prefix + previewName;
     d->preview = QPixmap(graphicsPath);
 

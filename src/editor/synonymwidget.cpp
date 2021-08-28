@@ -6,16 +6,17 @@
 #include "synonymwidget.h"
 
 #include <KEduVocDocument>
-#include <KEduVocTranslation>
 #include <KEduVocExpression>
+#include <KEduVocTranslation>
 
-#include <QStringListModel>
-#include <QDragEnterEvent>
 #include <KLocalizedString>
+#include <QDragEnterEvent>
+#include <QStringListModel>
 
 using namespace Editor;
 
-SynonymWidget::SynonymWidget(SynonymWidgetType type, QWidget *parent) : QWidget(parent)
+SynonymWidget::SynonymWidget(SynonymWidgetType type, QWidget *parent)
+    : QWidget(parent)
 {
     m_type = type;
     m_currentTranslation = 0;
@@ -23,7 +24,8 @@ SynonymWidget::SynonymWidget(SynonymWidgetType type, QWidget *parent) : QWidget(
     setupUi(this);
 
     connect(synonymButton, &QPushButton::clicked, this, &SynonymWidget::togglePair);
-    m_listModel = new QStringListModel(this);     listView->setModel(m_listModel);
+    m_listModel = new QStringListModel(this);
+    listView->setModel(m_listModel);
 
     updateList();
 }
@@ -33,7 +35,7 @@ void SynonymWidget::setDocument(KEduVocDocument *doc)
     m_doc = doc;
 }
 
-void SynonymWidget::setTranslation(KEduVocExpression * entry, int translation)
+void SynonymWidget::setTranslation(KEduVocExpression *entry, int translation)
 {
     // ignore zeros
     if (entry) {
@@ -93,12 +95,14 @@ void SynonymWidget::updateList()
             synonymLabel->setText(i18nc("Title for a list of antonyms (opposites) for a word", "Antonyms of %1:", m_currentTranslation->text()));
             break;
         case FalseFriend:
-            synonymLabel->setText(i18nc("Title for a list of false friend (things that sound similar but have different meanings) for a word", "False Friends of %1:", m_currentTranslation->text()));
+            synonymLabel->setText(i18nc("Title for a list of false friend (things that sound similar but have different meanings) for a word",
+                                        "False Friends of %1:",
+                                        m_currentTranslation->text()));
             break;
         }
 
         // load list of synonyms/antonyms/ffs
-        QList< KEduVocTranslation* > list;
+        QList<KEduVocTranslation *> list;
         switch (m_type) {
         case Synonym:
             list = m_currentTranslation->synonyms();
@@ -110,7 +114,7 @@ void SynonymWidget::updateList()
             list = m_currentTranslation->falseFriends();
             break;
         }
-        for (KEduVocTranslation * translation : qAsConst(list)) {
+        for (KEduVocTranslation *translation : qAsConst(list)) {
             int row = m_listModel->rowCount();
             m_listModel->insertRow(row);
             m_listModel->setData(m_listModel->index(row), translation->text());

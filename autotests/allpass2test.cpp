@@ -16,27 +16,25 @@ class AllPass2Test : public QObject
 {
     Q_OBJECT
 
-
-private slots: //must be private
+private slots: // must be private
 
     /** Test that always passes*/
     void testAlwaysPass1();
 
     /** Test that always passes*/
     void testAlwaysPass2();
-
 };
 
 void AllPass2Test::testAlwaysPass1()
 {
-    QCOMPARE( true,  true );
+    QCOMPARE(true, true);
 }
 
 void AllPass2Test::testAlwaysPass2()
 {
-    QCOMPARE( true,  true );
+    QCOMPARE(true, true);
 }
 
-QTEST_APPLESS_MAIN( AllPass2Test )
+QTEST_APPLESS_MAIN(AllPass2Test)
 
 #include "allpass2test.moc"

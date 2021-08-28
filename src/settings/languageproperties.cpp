@@ -10,26 +10,25 @@
 
 #include <KEduVocDocument>
 
-#include <KMessageBox>
-#include <QLabel>
 #include <KLocalizedString>
-#include <QToolTip>
+#include <KMessageBox>
 #include <QDialogButtonBox>
+#include <QLabel>
+#include <QToolTip>
 
-LanguageProperties::LanguageProperties(KEduVocDocument* doc, QWidget * parent)
-    : KPageDialog(parent), m_doc(doc)
+LanguageProperties::LanguageProperties(KEduVocDocument *doc, QWidget *parent)
+    : KPageDialog(parent)
+    , m_doc(doc)
 {
     setWindowTitle(i18n("Edit Languages"));
     setFaceType(List);
-    setStandardButtons( QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 
-    QAbstractButton * addLangButton(
-        buttonBox()->addButton(i18n("Add language"), QDialogButtonBox::ActionRole) );
+    QAbstractButton *addLangButton(buttonBox()->addButton(i18n("Add language"), QDialogButtonBox::ActionRole));
     addLangButton->setIcon(QIcon::fromTheme(QStringLiteral("list-add")));
 
-    QAbstractButton * removeLangButton(
-        buttonBox()->addButton(i18n("Remove language"), QDialogButtonBox::ActionRole) );
-    removeLangButton->setIcon(QIcon::fromTheme(QStringLiteral("list-remove")) );
+    QAbstractButton *removeLangButton(buttonBox()->addButton(i18n("Remove language"), QDialogButtonBox::ActionRole));
+    removeLangButton->setIcon(QIcon::fromTheme(QStringLiteral("list-remove")));
 
     connect(addLangButton, &QAbstractButton::clicked, this, &LanguageProperties::slotAppendIdentifier);
     connect(removeLangButton, &QAbstractButton::clicked, this, &LanguageProperties::slotDeleteIdentifier);
@@ -39,15 +38,15 @@ LanguageProperties::LanguageProperties(KEduVocDocument* doc, QWidget * parent)
     }
 }
 
-KPageWidgetItem*  LanguageProperties::createPage(int i)
+KPageWidgetItem *LanguageProperties::createPage(int i)
 {
-    LanguagePropertiesPage* page = new LanguagePropertiesPage(m_doc, i);
+    LanguagePropertiesPage *page = new LanguagePropertiesPage(m_doc, i);
 
     QString name = i18n("New Language");
 
     // check if this language already exists in the doc
     if (m_doc->identifierCount() <= i) {
-      m_doc->appendIdentifier();
+        m_doc->appendIdentifier();
     }
     if (m_doc->identifierCount() > i) {
         name = m_doc->identifier(i).name();
@@ -55,7 +54,7 @@ KPageWidgetItem*  LanguageProperties::createPage(int i)
         currentSettings.load();
     }
 
-    KPageWidgetItem* editPage = new KPageWidgetItem(page, name);
+    KPageWidgetItem *editPage = new KPageWidgetItem(page, name);
     editPage->setHeader(i18nc("Edit language properties", "Properties for %1", name));
 
     m_pages.append(editPage);
@@ -80,12 +79,13 @@ void LanguageProperties::accept()
                 // add a language
                 doc->appendIdentifier();
             }
-            LanguagePropertiesPage * page = static_cast<LanguagePropertiesPage *>(m_pages.value(index)->widget());
+            LanguagePropertiesPage *page = static_cast<LanguagePropertiesPage *>(m_pages.value(index)->widget());
             page->setLanguageIdentifierIndex(index - deleted);
         } else {
             // page is disabled, delete the language
             if (index < doc->identifierCount()) {
-                if (KMessageBox::warningYesNo(this, i18n("Really delete language: %1?", doc->identifier(index - deleted).name()), i18n("Remove Language")) == KMessageBox::Yes) {
+                if (KMessageBox::warningYesNo(this, i18n("Really delete language: %1?", doc->identifier(index - deleted).name()), i18n("Remove Language"))
+                    == KMessageBox::Yes) {
                     doc->removeIdentifier(index - deleted);
                     deleted++;
                 }
@@ -96,7 +96,6 @@ void LanguageProperties::accept()
     KPageDialog::accept();
 }
 
-
 void LanguageProperties::slotAppendIdentifier()
 {
     // if a page that was "removed" is selected, simply enable it again to not delete it.
@@ -106,7 +105,7 @@ void LanguageProperties::slotAppendIdentifier()
     }
 
     int i = m_pages.count();
-    KPageWidgetItem* newPage = createPage(i);
+    KPageWidgetItem *newPage = createPage(i);
     setCurrentPage(newPage);
 }
 
@@ -115,7 +114,7 @@ void LanguageProperties::slotDeleteIdentifier()
     currentPage()->setEnabled(false);
 }
 
-void LanguageProperties::pageNameChanged(const QString & newName)
+void LanguageProperties::pageNameChanged(const QString &newName)
 {
     currentPage()->setName(newName);
 }

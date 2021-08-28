@@ -8,27 +8,24 @@
 
 #include <QHeaderView>
 
-#include <KLocalizedString>
-#include <KConfig>
 #include <KActionCollection>
+#include <KConfig>
+#include <KLocalizedString>
 
 #include <KEduVocDocument>
 
-#include "practice/configure/configurepracticedialog.h"
 #include "lessonstatisticsview.h"
-#include "statisticsmodel.h"
-#include "parleymainwindow.h"
 #include "parleyactions.h"
+#include "parleymainwindow.h"
+#include "practice/configure/configurepracticedialog.h"
+#include "statisticsmodel.h"
 
 #include "prefs.h"
 
-
-#include "ui_statisticsmainwindow.h"
 #include "conjugationoptions.h"
+#include "ui_statisticsmainwindow.h"
 
-
-StatisticsMainWindow::StatisticsMainWindow(const std::shared_ptr<KEduVocDocument> &doc,
-                                           ParleyMainWindow *parent)
+StatisticsMainWindow::StatisticsMainWindow(const std::shared_ptr<KEduVocDocument> &doc, ParleyMainWindow *parent)
     : KXmlGuiWindow(parent)
     , m_mainWindow(parent)
     , m_doc(doc)
@@ -42,7 +39,7 @@ StatisticsMainWindow::StatisticsMainWindow(const std::shared_ptr<KEduVocDocument
     QWidget *mainWidget = new QWidget(this);
     setCentralWidget(mainWidget);
     m_ui->setupUi(mainWidget);
-    //m_ui->caption->setText(i18nc("caption for an overview of the confidence levels for a document"
+    // m_ui->caption->setText(i18nc("caption for an overview of the confidence levels for a document"
     //                             "Statistics for \"%1\"", m_doc->title()));
     m_statisticsModel = new StatisticsModel(this);
 
@@ -68,7 +65,7 @@ StatisticsMainWindow::~StatisticsMainWindow()
 
 void StatisticsMainWindow::syncConfig()
 {
-    //qDebug() << "save tenses";
+    // qDebug() << "save tenses";
     if (m_conjugationOptions) {
         m_conjugationOptions->updateSettings();
     }
@@ -121,43 +118,48 @@ void StatisticsMainWindow::initPracticeModeSelection()
     default:
         break;
     }
-    connect(m_ui->flashCard, &QRadioButton::clicked,
-            this, [=] {practiceModeSelected(Prefs::EnumPracticeMode::FlashCardsPractice);});
-    connect(m_ui->mixedLetters, &QRadioButton::clicked,
-            this, [=] {practiceModeSelected(Prefs::EnumPracticeMode::MixedLettersPractice);});
-    connect(m_ui->multipleChoice, &QRadioButton::clicked,
-            this, [=] {practiceModeSelected(Prefs::EnumPracticeMode::MultipleChoicePractice);});
-    connect(m_ui->written, &QRadioButton::clicked,
-            this, [=] {practiceModeSelected(Prefs::EnumPracticeMode::WrittenPractice);});
-    connect(m_ui->exampleSentence, &QRadioButton::clicked,
-            this, [=] {practiceModeSelected(Prefs::EnumPracticeMode::ExampleSentencesPractice);});
-    connect(m_ui->gender, &QRadioButton::clicked,
-            this, [=] {practiceModeSelected(Prefs::EnumPracticeMode::GenderPractice);});
-    connect(m_ui->comparisonForms, &QRadioButton::clicked,
-            this, [=] {practiceModeSelected(Prefs::EnumPracticeMode::ComparisonPractice);});
-    connect(m_ui->conjugations, &QRadioButton::clicked,
-            this, [=] {practiceModeSelected(Prefs::EnumPracticeMode::ConjugationPractice);});
+    connect(m_ui->flashCard, &QRadioButton::clicked, this, [=] {
+        practiceModeSelected(Prefs::EnumPracticeMode::FlashCardsPractice);
+    });
+    connect(m_ui->mixedLetters, &QRadioButton::clicked, this, [=] {
+        practiceModeSelected(Prefs::EnumPracticeMode::MixedLettersPractice);
+    });
+    connect(m_ui->multipleChoice, &QRadioButton::clicked, this, [=] {
+        practiceModeSelected(Prefs::EnumPracticeMode::MultipleChoicePractice);
+    });
+    connect(m_ui->written, &QRadioButton::clicked, this, [=] {
+        practiceModeSelected(Prefs::EnumPracticeMode::WrittenPractice);
+    });
+    connect(m_ui->exampleSentence, &QRadioButton::clicked, this, [=] {
+        practiceModeSelected(Prefs::EnumPracticeMode::ExampleSentencesPractice);
+    });
+    connect(m_ui->gender, &QRadioButton::clicked, this, [=] {
+        practiceModeSelected(Prefs::EnumPracticeMode::GenderPractice);
+    });
+    connect(m_ui->comparisonForms, &QRadioButton::clicked, this, [=] {
+        practiceModeSelected(Prefs::EnumPracticeMode::ComparisonPractice);
+    });
+    connect(m_ui->conjugations, &QRadioButton::clicked, this, [=] {
+        practiceModeSelected(Prefs::EnumPracticeMode::ConjugationPractice);
+    });
 }
 
 void StatisticsMainWindow::initLanguages()
 {
-    //qDebug() << "init languages: " << Prefs::learningLanguage() << Prefs::knownLanguage();
+    // qDebug() << "init languages: " << Prefs::learningLanguage() << Prefs::knownLanguage();
     const int totalNumLanguages = m_doc->identifierCount();
 
-    if ( Prefs::knownLanguage() < 0 || totalNumLanguages <= Prefs::knownLanguage() ) {
+    if (Prefs::knownLanguage() < 0 || totalNumLanguages <= Prefs::knownLanguage()) {
         Prefs::setKnownLanguage(0);
     }
-    if ( Prefs::learningLanguage() < 0 || totalNumLanguages <= Prefs::learningLanguage() ) {
+    if (Prefs::learningLanguage() < 0 || totalNumLanguages <= Prefs::learningLanguage()) {
         Prefs::setLearningLanguage(0);
     }
 
-    if (Prefs::knownLanguage() >= totalNumLanguages
-        || Prefs::learningLanguage() >= totalNumLanguages
-        || Prefs::learningLanguage() == Prefs::knownLanguage())
-    {
+    if (Prefs::knownLanguage() >= totalNumLanguages || Prefs::learningLanguage() >= totalNumLanguages || Prefs::learningLanguage() == Prefs::knownLanguage()) {
         Prefs::setKnownLanguage(0);
         Prefs::setLearningLanguage(1);
-        //qDebug() << "Invalid language selection.";
+        // qDebug() << "Invalid language selection.";
     }
 
     // Insert data into the comboboxes.
@@ -192,28 +194,28 @@ void StatisticsMainWindow::initPracticeMode()
     m_ui->practiceDirection->insertItem(0, i18n("Known to Learning"));
     m_ui->practiceDirection->insertItem(1, i18n("Learning to Known"));
     m_ui->practiceDirection->insertItem(2, i18n("Mixed Directions"));
-    //m_ui->practiceDirection->insertItem(3, i18n("Mixed Directions with Sound"));
+    // m_ui->practiceDirection->insertItem(3, i18n("Mixed Directions with Sound"));
 
-    int practiceDirection(Prefs::rememberPracticeDirection()
-        ? practiceDirectionForPracticeMode(Prefs::practiceMode()) : Prefs::practiceDirection());
+    int practiceDirection(Prefs::rememberPracticeDirection() ? practiceDirectionForPracticeMode(Prefs::practiceMode()) : Prefs::practiceDirection());
 
     if (practiceDirection < 0 || 3 < practiceDirection)
         Prefs::setPracticeDirection(Prefs::EnumPracticeDirection::MixedDirectionsWordsOnly);
 
     m_ui->practiceDirection->setCurrentIndex(practiceDirection);
-    connect(m_ui->practiceDirection, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-            this, &StatisticsMainWindow::practiceDirectionChanged);
+    connect(m_ui->practiceDirection,
+            static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+            this,
+            &StatisticsMainWindow::practiceDirectionChanged);
 
     m_ui->rememberPracticeDirection->setChecked(Prefs::rememberPracticeDirection());
-    connect(m_ui->rememberPracticeDirection, &QCheckBox::toggled,
-            this, &StatisticsMainWindow::rememberPracticeDirectionChanged);
+    connect(m_ui->rememberPracticeDirection, &QCheckBox::toggled, this, &StatisticsMainWindow::rememberPracticeDirectionChanged);
 }
 
 void StatisticsMainWindow::practiceModeSelected(int mode)
 {
     int previousPracticeMode = Prefs::practiceMode();
     Prefs::setPracticeMode(static_cast<Prefs::EnumPracticeMode::type>(mode));
-    //qDebug() << "mode: " << mode << Prefs::practiceMode();
+    // qDebug() << "mode: " << mode << Prefs::practiceMode();
 
     showConjugationOptions(mode == Prefs::EnumPracticeMode::ConjugationPractice);
 
@@ -227,7 +229,7 @@ void StatisticsMainWindow::practiceModeSelected(int mode)
 
 void StatisticsMainWindow::practiceDirectionChanged(int mode)
 {
-    //qDebug() << "new practice direction:" << mode;
+    // qDebug() << "new practice direction:" << mode;
     Prefs::setPracticeDirection(static_cast<Prefs::EnumPracticeDirection::type>(mode));
     if (Prefs::rememberPracticeDirection()) {
         setPracticeDirectionForPracticeMode(mode, Prefs::practiceMode());
@@ -238,7 +240,7 @@ void StatisticsMainWindow::practiceDirectionChanged(int mode)
 
 void StatisticsMainWindow::rememberPracticeDirectionChanged(bool checked)
 {
-//     qDebug() << "remember practice direction changed to: " << checked;
+    //     qDebug() << "remember practice direction changed to: " << checked;
     Prefs::setRememberPracticeDirection(checked);
     if (checked) {
         setPracticeDirectionForPracticeMode(Prefs::practiceDirection(), Prefs::practiceMode());
@@ -257,7 +259,7 @@ void StatisticsMainWindow::updateVisibleColumns()
             break;
         case Prefs::EnumPracticeDirection::MixedDirectionsWordsOnly:
         case Prefs::EnumPracticeDirection::MixedDirectionsWithSound:
-            isHidden = iLang != Prefs::knownLanguage() && iLang !=  Prefs::learningLanguage();
+            isHidden = iLang != Prefs::knownLanguage() && iLang != Prefs::learningLanguage();
             break;
         case Prefs::EnumPracticeDirection::KnownToLearning:
         // Use KnownToLearning as default.
@@ -279,21 +281,19 @@ void StatisticsMainWindow::showConjugationOptions(bool visible)
 
     if (!m_conjugationOptions) {
         m_conjugationOptions = new ConjugationOptions(m_doc.get(), m_ui->modeSpecificOptions);
-        QHBoxLayout* layout = new QHBoxLayout(m_ui->modeSpecificOptions);
+        QHBoxLayout *layout = new QHBoxLayout(m_ui->modeSpecificOptions);
         layout->setContentsMargins(0, 0, 0, 0);
         layout->addWidget(m_conjugationOptions);
-        connect(this, QOverload<int, int>::of(&StatisticsMainWindow::languagesChanged),
-                m_conjugationOptions, &ConjugationOptions::setLanguages);
+        connect(this, QOverload<int, int>::of(&StatisticsMainWindow::languagesChanged), m_conjugationOptions, &ConjugationOptions::setLanguages);
         m_conjugationOptions->setLanguages(Prefs::knownLanguage(), Prefs::learningLanguage());
-        connect(m_conjugationOptions, &ConjugationOptions::checkBoxChanged,
-                this, &StatisticsMainWindow::updateModelSettings);
+        connect(m_conjugationOptions, &ConjugationOptions::checkBoxChanged, this, &StatisticsMainWindow::updateModelSettings);
     }
     m_conjugationOptions->setVisible(visible);
 }
 
 void StatisticsMainWindow::configurePractice()
 {
-    ConfigurePracticeDialog dialog(m_doc.get(), this, QStringLiteral("practice settings"),  Prefs::self());
+    ConfigurePracticeDialog dialog(m_doc.get(), this, QStringLiteral("practice settings"), Prefs::self());
     dialog.exec();
 }
 
@@ -323,4 +323,3 @@ void StatisticsMainWindow::updateModelSettings()
     m_statisticsModel->updateDocumentSettings();
     m_ui->lessonStatistics->restoreExpandedStatus();
 }
-

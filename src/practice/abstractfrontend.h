@@ -6,39 +6,26 @@
 #ifndef PRACTICE_ABSTRACTFRONTEND_H
 #define PRACTICE_ABSTRACTFRONTEND_H
 
-#include <QObject>
 #include <KEduVocText>
 #include <QFont>
+#include <QObject>
 
 class QUrl;
 
 namespace Practice
 {
-
 class AbstractFrontend : public QObject
 {
     Q_OBJECT
 public:
-    enum Mode {
-        None,
-        FlashCard,
-        MixedLetters,
-        MultipleChoice,
-        Written,
-        Conjugation,
-        Comparison,
-        ExampleSentence
-    };
+    enum Mode { None, FlashCard, MixedLetters, MultipleChoice, Written, Conjugation, Comparison, ExampleSentence };
 
-    enum ResultState {
-        QuestionState,
-        AnswerCorrect,
-        AnswerSynonym,
-        AnswerWrong
-    };
+    enum ResultState { QuestionState, AnswerCorrect, AnswerSynonym, AnswerWrong };
 
-    explicit AbstractFrontend(QObject* parent = 0);
-    virtual ~AbstractFrontend() {}
+    explicit AbstractFrontend(QObject *parent = 0);
+    virtual ~AbstractFrontend()
+    {
+    }
 
     /**
      * Enables access to the input of the user.
@@ -54,25 +41,25 @@ public:
      */
     virtual QFont knownLangFont() const = 0;
     virtual QFont learningLangFont() const = 0;
-    virtual void setKnownLangFont(const QFont& font) = 0;
-    virtual void setLearningLangFont(const QFont& font) = 0;
+    virtual void setKnownLangFont(const QFont &font) = 0;
+    virtual void setLearningLangFont(const QFont &font) = 0;
 
-    virtual void setQuestion(const QVariant& question) = 0;
-    virtual void setSolution(const QVariant& solution) = 0;
-    virtual void setFeedback(const QVariant& feedback) = 0;
+    virtual void setQuestion(const QVariant &question) = 0;
+    virtual void setSolution(const QVariant &solution) = 0;
+    virtual void setFeedback(const QVariant &feedback) = 0;
 
-    virtual void setQuestionFont(const QFont& font) = 0;
-    virtual void setSolutionFont(const QFont& font) = 0;
+    virtual void setQuestionFont(const QFont &font) = 0;
+    virtual void setSolutionFont(const QFont &font) = 0;
 
-    virtual void setHint(const QVariant& hint) = 0;
-    virtual void setQuestionImage(const QUrl& img) = 0;
-    virtual void setSolutionImage(const QUrl& img) = 0;
-    virtual void setQuestionSound(const QUrl& soundUrl) = 0;
-    virtual void setSolutionSound(const QUrl& soundUrl) = 0;
-    virtual void setSolutionPronunciation(const QString& pronunciationText) = 0;
-    virtual void setQuestionPronunciation(const QString& pronunciationText) = 0;
+    virtual void setHint(const QVariant &hint) = 0;
+    virtual void setQuestionImage(const QUrl &img) = 0;
+    virtual void setSolutionImage(const QUrl &img) = 0;
+    virtual void setQuestionSound(const QUrl &soundUrl) = 0;
+    virtual void setSolutionSound(const QUrl &soundUrl) = 0;
+    virtual void setSolutionPronunciation(const QString &pronunciationText) = 0;
+    virtual void setQuestionPronunciation(const QString &pronunciationText) = 0;
 
-    virtual void setLessonName(const QString& lesson) = 0;
+    virtual void setLessonName(const QString &lesson) = 0;
     virtual void showGrade(int preGrade, int grade) = 0;
 
     /** The feedback state tells the user if the currently entered word is correct
@@ -85,7 +72,7 @@ public:
     virtual ResultState resultState() = 0;
 
     /** set a new synonym that should be shown */
-    virtual void setSynonym(const QString& entry) = 0;
+    virtual void setSynonym(const QString &entry) = 0;
 
 public Q_SLOTS:
     /** enter question mode - the user is asked to provide the solution */

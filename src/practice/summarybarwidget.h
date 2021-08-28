@@ -3,7 +3,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef SUMMARYBARWIDGET_H
 #define SUMMARYBARWIDGET_H
 
@@ -14,7 +13,6 @@ class QHBoxLayout;
 
 namespace Practice
 {
-
 class SummaryBarWidget : public QWidget
 {
     Q_OBJECT

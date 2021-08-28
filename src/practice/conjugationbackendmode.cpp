@@ -3,7 +3,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #include "conjugationbackendmode.h"
 
 #include <KLocalizedString>
@@ -15,16 +14,14 @@
 
 using namespace Practice;
 
-ConjugationBackendMode::ConjugationBackendMode(AbstractFrontend* frontend, QObject* parent,
-                                               Practice::SessionManagerBase* sessionManager,
-                                               KEduVocDocument* doc)
+ConjugationBackendMode::ConjugationBackendMode(AbstractFrontend *frontend, QObject *parent, Practice::SessionManagerBase *sessionManager, KEduVocDocument *doc)
     : AbstractBackendMode(frontend, parent)
     , m_sessionManager(sessionManager)
     , m_doc(doc)
 {
 }
 
-bool ConjugationBackendMode::setTestEntry(TestEntry* current)
+bool ConjugationBackendMode::setTestEntry(TestEntry *current)
 {
     ConjugationData data;
     m_current = current;
@@ -34,7 +31,7 @@ bool ConjugationBackendMode::setTestEntry(TestEntry* current)
 
     if (!m_current->entry()->translation(m_current->languageTo())->conjugationTenses().contains(m_currentTense)) {
         qDebug() << "invalid tense for entry - " << m_currentTense;
-        qDebug() << "tenses: "  << m_current->entry()->translation(m_current->languageTo())->conjugationTenses();
+        qDebug() << "tenses: " << m_current->entry()->translation(m_current->languageTo())->conjugationTenses();
     }
 
     data.tense = m_currentTense;
@@ -48,7 +45,7 @@ bool ConjugationBackendMode::setTestEntry(TestEntry* current)
 
     m_frontend->setQuestion(QVariant::fromValue<ConjugationData>(data));
     QStringList answers;
-    for (const KEduVocWordFlags & key : qAsConst(m_pronounFlags)) {
+    for (const KEduVocWordFlags &key : qAsConst(m_pronounFlags)) {
         answers.append(m_conjugation.conjugation(key).text());
     }
     m_frontend->setSolution(answers);
@@ -65,7 +62,7 @@ bool ConjugationBackendMode::setTestEntry(TestEntry* current)
 QStringList ConjugationBackendMode::validPersonalPronouns()
 {
     QStringList pp;
-    for (const KEduVocWordFlags & person : qAsConst(m_pronounFlags)) {
+    for (const KEduVocWordFlags &person : qAsConst(m_pronounFlags)) {
         // FIXME: Used to be m_practiceOptions.languageTo()
         pp.append(m_doc->identifier(Prefs::learningLanguage()).personalPronouns().personalPronoun(person));
     }
@@ -80,7 +77,7 @@ void ConjugationBackendMode::checkAnswer()
     bool allCorrect = true;
     int numRight = 0;
     int i = 0;
-    for (const KEduVocWordFlags & key : qAsConst(m_pronounFlags)) {
+    for (const KEduVocWordFlags &key : qAsConst(m_pronounFlags)) {
         if (answers.at(i) == m_conjugation.conjugation(key).text()) {
             ++numRight;
         } else {
@@ -96,7 +93,10 @@ void ConjugationBackendMode::checkAnswer()
         m_frontend->setFeedback(i18n("All conjugation forms were right."));
         emit answerRight();
     } else {
-        m_frontend->setFeedback(i18ncp("You did not get the conjugation forms right.", "You answered %1 conjugation form correctly.", "You answered %1 conjugation forms correctly.", numRight));
+        m_frontend->setFeedback(i18ncp("You did not get the conjugation forms right.",
+                                       "You answered %1 conjugation form correctly.",
+                                       "You answered %1 conjugation forms correctly.",
+                                       numRight));
 
         if (answers == m_lastAnswers) {
             emit answerWrongShowSolution();
@@ -131,7 +131,7 @@ void ConjugationBackendMode::updateGrades()
 {
     qDebug() << "Grading conjugations";
 
-    for (const KEduVocWordFlags & key : qAsConst(m_pronounFlags)) {
+    for (const KEduVocWordFlags &key : qAsConst(m_pronounFlags)) {
         KEduVocTranslation *translation = m_current->entry()->translation(m_current->languageTo());
         if (translation) {
             KEduVocConjugation conjugationToUpdate = translation->getConjugation(m_currentTense);

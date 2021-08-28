@@ -13,23 +13,22 @@
 
 namespace Practice
 {
-
 class PracticeSummaryComponent : public KXmlGuiWindow, Ui::PracticeSummaryWidget
 {
     Q_OBJECT
 
 public:
-    PracticeSummaryComponent(SessionManagerBase* sessionManager, QWidget *parent);
+    PracticeSummaryComponent(SessionManagerBase *sessionManager, QWidget *parent);
     ~PracticeSummaryComponent();
 
 public slots:
     void exportResults();
 
 private:
-    void initActions(QWidget* parleyMainWindow);
+    void initActions(QWidget *parleyMainWindow);
     void setupDetailsTable();
 
-    SessionManagerBase* m_sessionManager;
+    SessionManagerBase *m_sessionManager;
 
     class SortedAttemptTableWidgetItem;
 };

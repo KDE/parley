@@ -12,8 +12,8 @@
 // Parley/collection
 #include "containermodel.h"
 
-
-ContainerView::ContainerView(QWidget *parent) : QTreeView(parent)
+ContainerView::ContainerView(QWidget *parent)
+    : QTreeView(parent)
 {
     header()->setStretchLastSection(false);
     header()->setVisible(false);

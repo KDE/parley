@@ -8,17 +8,21 @@
 #include <KColorScheme>
 #include <KLocalizedString>
 
-#include <QPainter>
 #include <QEvent>
-#include <QHelpEvent>
 #include <QHBoxLayout>
+#include <QHelpEvent>
 #include <QLabel>
+#include <QPainter>
 #include <QPainterPath>
 
 using namespace Practice;
 
 SummaryBarWidget::SummaryBarWidget(QWidget *parent)
-    : QWidget(parent), m_correct(0), m_wrong(0), m_notAnswered(0), m_total(0)
+    : QWidget(parent)
+    , m_correct(0)
+    , m_wrong(0)
+    , m_notAnswered(0)
+    , m_total(0)
 {
     setMinimumHeight(30);
     m_layout = new QHBoxLayout(this);
@@ -131,7 +135,6 @@ void SummaryBarWidget::setupCaption()
     correctColorLabel->setPixmap(captionPixmap(scheme.foreground(KColorScheme::PositiveText).color()));
     wrongColorLabel->setPixmap(captionPixmap(scheme.foreground(KColorScheme::NegativeText).color()));
     notAnsweredColorLabel->setPixmap(captionPixmap(scheme.foreground(KColorScheme::NormalText).color()));
-
 }
 
 QString SummaryBarWidget::correctText()

@@ -10,14 +10,21 @@
 #include <KEduVocText>
 #include <QDebug>
 
-#include <QPainter>
 #include <QBrush>
 #include <QEvent>
+#include <QPainter>
 
 using namespace Practice;
 
-BoxesWidget::BoxesWidget(QWidget* parent)
-    : ImageWidget(parent), m_boxCount(1), m_currentBox(-1), m_lastBox(-1), m_renderer(0), m_fixedSize(true), m_arrowHint(0), m_spacingHint(0)
+BoxesWidget::BoxesWidget(QWidget *parent)
+    : ImageWidget(parent)
+    , m_boxCount(1)
+    , m_currentBox(-1)
+    , m_lastBox(-1)
+    , m_renderer(0)
+    , m_fixedSize(true)
+    , m_arrowHint(0)
+    , m_spacingHint(0)
 {
     setBoxCount(KV_MAX_GRADE);
     setScalingEnabled(false);
@@ -92,7 +99,7 @@ bool BoxesWidget::event(QEvent *e)
     return ImageWidget::event(e);
 }
 
-void BoxesWidget::drawElement(QPainter *p, const QString& id)
+void BoxesWidget::drawElement(QPainter *p, const QString &id)
 {
     QRect rect = m_renderer->getRectForId(id).toRect();
     QPoint pos = rect.topLeft() - m_rect.topLeft();
@@ -100,10 +107,10 @@ void BoxesWidget::drawElement(QPainter *p, const QString& id)
         QSize scaledSize = m_rect.size();
         scaledSize.scale(size(), Qt::KeepAspectRatio);
         qreal scale = qreal(scaledSize.width()) / m_rect.width();
-        rect.setWidth(rect.width()*scale);
-        rect.setHeight(rect.height()*scale);
-        pos.setX(pos.x()*scale);
-        pos.setY(pos.y()*scale);
+        rect.setWidth(rect.width() * scale);
+        rect.setHeight(rect.height() * scale);
+        pos.setX(pos.x() * scale);
+        pos.setY(pos.y() * scale);
     }
 
     p->drawPixmap(pos, m_renderer->getPixmapForId(id, rect.size()));

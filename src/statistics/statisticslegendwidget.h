@@ -9,10 +9,9 @@
 
 #include <KEduVocText>
 
-#include <QWidget>
 #include <QColor>
 #include <QList>
-
+#include <QWidget>
 
 /**Draws the statistics legend and provides color information about the legend**/
 class StatisticsLegendWidget : public QWidget
@@ -20,13 +19,11 @@ class StatisticsLegendWidget : public QWidget
     Q_OBJECT
 public:
     /// constructor
-    explicit StatisticsLegendWidget(QWidget * parent = 0);
-
+    explicit StatisticsLegendWidget(QWidget *parent = 0);
 
 protected:
     /// paintEvent @p e event
     void paintEvent(QPaintEvent *e) override;
 };
-
 
 #endif

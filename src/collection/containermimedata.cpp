@@ -5,8 +5,7 @@
 
 #include "containermimedata.h"
 
-
-void ContainerMimeData::addContainer(KEduVocContainer * container)
+void ContainerMimeData::addContainer(KEduVocContainer *container)
 {
     m_containers.append(container);
 }

@@ -13,7 +13,7 @@ class GeneralOptions : public QWidget, public Ui::GeneralOptionsBase
 {
     Q_OBJECT
 public:
-    explicit GeneralOptions(QWidget* parent = 0);
+    explicit GeneralOptions(QWidget *parent = 0);
 
     void updateWidgets();
     bool hasChanged();
@@ -25,4 +25,3 @@ private slots:
 };
 
 #endif
-

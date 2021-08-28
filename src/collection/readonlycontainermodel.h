@@ -17,10 +17,10 @@
 #include <KEduVocLesson>
 
 /**
-  * Model for the tree of containers (lessons, word types).
-  * ReadonlyContainerModel is a read only tree model.
-  * @see ContainerModel for its subclass that includes more options.
-  */
+ * Model for the tree of containers (lessons, word types).
+ * ReadonlyContainerModel is a read only tree model.
+ * @see ContainerModel for its subclass that includes more options.
+ */
 
 class ReadonlyContainerModel : public QAbstractItemModel
 {
@@ -32,10 +32,9 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
     Qt::ItemFlags flags(const QModelIndex &index) const override;
 
-    QModelIndex index(int row, int column,
-                              const QModelIndex &parent = QModelIndex()) const override;
+    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
 
-    QModelIndex index(KEduVocContainer* container) const;
+    QModelIndex index(KEduVocContainer *container) const;
 
     QModelIndex parent(const QModelIndex &index) const override;
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -55,6 +54,5 @@ protected:
     KEduVocContainer::EnumContainerType m_type;
     std::shared_ptr<KEduVocDocument> m_doc;
 };
-
 
 #endif

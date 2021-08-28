@@ -12,7 +12,6 @@
 class KEduVocDocument;
 class KEduVocLesson;
 
-
 /**
     @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 */
@@ -29,40 +28,33 @@ public:
         Example,
         Comment,
         Paraphrase,
-//         Audio,
-//         Image,
+        //         Audio,
+        //         Image,
         EntryColumnsMAX
 
     };
 
-    enum roles {
-        TranslationRole = Qt::UserRole,
-        EntryRole,
-        LocaleRole,
-        AudioRole,
-        ImageRole
-    };
+    enum roles { TranslationRole = Qt::UserRole, EntryRole, LocaleRole, AudioRole, ImageRole };
 
     explicit VocabularyModel(QObject *parent = 0);
 
     ~VocabularyModel();
 
-
-    int rowCount(const QModelIndex&) const override;
-    int columnCount(const QModelIndex&) const override;
-    QVariant data(const QModelIndex&, int) const override;
+    int rowCount(const QModelIndex &) const override;
+    int columnCount(const QModelIndex &) const override;
+    QVariant data(const QModelIndex &, int) const override;
     bool setData(const QModelIndex &index, const QVariant &value, int role) override;
     Qt::ItemFlags flags(const QModelIndex &index) const override;
 
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 
     /**
-    * Returns the name of the entryColumns column
-    * @param document KEduVocDocument document
-    * @param translation the number of translation
-    * @param column the column index
-    * @param addLocaleSuffix controls if locale name should be added to column title
-    */
+     * Returns the name of the entryColumns column
+     * @param document KEduVocDocument document
+     * @param translation the number of translation
+     * @param column the column index
+     * @param addLocaleSuffix controls if locale name should be added to column title
+     */
     static QString columnTitle(KEduVocDocument *document, int translation, int column, bool addLocaleSuffix);
 
     /**
@@ -79,12 +71,12 @@ public:
 
     QModelIndex appendEntry(KEduVocExpression *expression = 0);
 
-    bool removeRows(int row, int count, const QModelIndex & parent = QModelIndex()) override;
+    bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
 
     QStringList mimeTypes() const override;
-    QMimeData * mimeData(const QModelIndexList &indexes) const override;
-//     bool dropMimeData(const QMimeData *data, Qt::DropAction action,
-//         int row, int column, const QModelIndex &parent);
+    QMimeData *mimeData(const QModelIndexList &indexes) const override;
+    //     bool dropMimeData(const QMimeData *data, Qt::DropAction action,
+    //         int row, int column, const QModelIndex &parent);
 
     void resetLanguages();
 
@@ -103,7 +95,7 @@ public slots:
      */
     void setLesson(KEduVocLesson *lessonContainer);
 
-    KEduVocLesson * lesson();
+    KEduVocLesson *lesson();
 
     /**
      * Show the entries of child lessons in selected lessons
@@ -117,7 +109,6 @@ public slots:
      */
     void automaticTranslation(bool enabled);
 
-
 private:
     KEduVocContainer *m_container;
     KEduVocLesson *m_lesson;
@@ -126,6 +117,6 @@ private:
     KEduVocContainer::EnumEntriesRecursive m_recursive;
 };
 
-Q_DECLARE_METATYPE(KEduVocExpression*)
+Q_DECLARE_METATYPE(KEduVocExpression *)
 
 #endif

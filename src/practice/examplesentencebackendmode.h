@@ -3,7 +3,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef EXAMPLESENTENCEBACKENDMODE_H
 #define EXAMPLESENTENCEBACKENDMODE_H
 
@@ -11,18 +10,15 @@
 
 namespace Practice
 {
-
 class ExampleSentenceBackendMode : public WrittenBackendMode
 {
     Q_OBJECT
 public:
-    ExampleSentenceBackendMode(Practice::AbstractFrontend* frontend, QObject* parent,
-                               Practice::SessionManagerBase* sessionManager, KEduVocDocument* doc);
+    ExampleSentenceBackendMode(Practice::AbstractFrontend *frontend, QObject *parent, Practice::SessionManagerBase *sessionManager, KEduVocDocument *doc);
 
-    bool setTestEntry(TestEntry* current) override;
+    bool setTestEntry(TestEntry *current) override;
 };
 
 }
 
 #endif
-

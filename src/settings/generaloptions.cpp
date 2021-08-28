@@ -6,28 +6,27 @@
 
 #include "generaloptions.h"
 
-#include <QCheckBox>
 #include <KLocalizedString>
+#include <QCheckBox>
 
-#include <QSpinBox>
 #include <KFile>
+#include <QSpinBox>
 
 #include "prefs.h"
 
-static const char *separator_id[] = {
-    ";",              // 0
-    "#",              // 1
-    "!",              // 2
-    "|",              // 3
-    ",",              // 4
-    "\t",             // 5
-    "  ",             // 6
-    ":",              // 7
-    "::",             // 8
-    0
-};
+static const char *separator_id[] = {";", // 0
+                                     "#", // 1
+                                     "!", // 2
+                                     "|", // 3
+                                     ",", // 4
+                                     "\t", // 5
+                                     "  ", // 6
+                                     ":", // 7
+                                     "::", // 8
+                                     0};
 
-GeneralOptions::GeneralOptions(QWidget* parent) : QWidget(parent)
+GeneralOptions::GeneralOptions(QWidget *parent)
+    : QWidget(parent)
 {
     setupUi(this);
     connect(kcfg_AutoBackup, &QCheckBox::toggled, kcfg_BackupTime, &QSpinBox::setEnabled);
@@ -36,7 +35,6 @@ GeneralOptions::GeneralOptions(QWidget* parent) : QWidget(parent)
     updateWidgets();
     kcfg_BackupTime->setEnabled(kcfg_AutoBackup->isChecked());
 }
-
 
 void GeneralOptions::fillWidgets()
 {
@@ -59,9 +57,7 @@ void GeneralOptions::updateWidgets()
             break;
         }
     }
-
 }
-
 
 bool GeneralOptions::hasChanged()
 {
@@ -71,14 +67,12 @@ bool GeneralOptions::hasChanged()
     return (separator_id[kcfg_SeparatorCombo->currentIndex()] != Prefs::separator());
 }
 
-
 bool GeneralOptions::isDefault()
 {
     if (kcfg_SeparatorCombo->currentIndex() < 0)
         return false;
     return !strcmp(separator_id[kcfg_SeparatorCombo->currentIndex()], "\t");
 }
-
 
 void GeneralOptions::updateSettings()
 {

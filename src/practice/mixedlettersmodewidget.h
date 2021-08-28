@@ -15,7 +15,6 @@ class WrittenPracticeWidget;
 
 namespace Practice
 {
-
 class MixedLettersModeWidget : public Practice::WrittenPracticeWidget
 {
     Q_OBJECT
@@ -23,9 +22,9 @@ class MixedLettersModeWidget : public Practice::WrittenPracticeWidget
 public:
     explicit MixedLettersModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
 
-    void setQuestion(const QVariant& question) override;
-    void setSolution(const QVariant& solution) override;
-    void setSolutionFont(const QFont& font) override;
+    void setQuestion(const QVariant &question) override;
+    void setSolution(const QVariant &solution) override;
+    void setSolutionFont(const QFont &font) override;
 
 public slots:
     void showQuestion() override;

@@ -15,19 +15,19 @@ class QLabel;
 
 namespace Practice
 {
-
 class LatexRenderer : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit LatexRenderer(QObject* parent = 0);
-    void setResultLabel(QLabel *label) {
+    explicit LatexRenderer(QObject *parent = 0);
+    void setResultLabel(QLabel *label)
+    {
         m_label = label;
     }
     void renderLatex(QString tex);
 
-    static bool isLatex(const QString& tex);
+    static bool isLatex(const QString &tex);
 
 private slots:
     void convertToPs();

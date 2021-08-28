@@ -41,74 +41,30 @@ void EntryFilterDialog::setupEntryCounts()
 {
     int numEntries = m_entryFilter.m_entries[0].count() + m_entryFilter.m_entries[1].count();
 
-    m_ui->lessonLabel->setText(
-        QString::number(
-            numEntries
-            - m_entryFilter.m_entriesLesson[0].count()
-            - m_entryFilter.m_entriesLesson[1].count()
-        )
-    );
-    m_ui->wordTypeLabel->setText(
-        QString::number(
-            numEntries
-            - m_entryFilter.m_entriesWordType[0].count()
-            - m_entryFilter.m_entriesWordType[1].count()
-        )
-    );
-    m_ui->blockedLabel->setText(
-        QString::number(
-            numEntries
-            - m_entryFilter.m_entriesNotBlocked[0].count()
-            - m_entryFilter.m_entriesNotBlocked[1].count()
-        )
-    );
-    m_ui->timesWrongLabel->setText(
-        QString::number(
-            numEntries
-            - m_entryFilter.m_entriesTimesWrong[0].count()
-            - m_entryFilter.m_entriesTimesWrong[1].count()
-        )
-    );
+    m_ui->lessonLabel->setText(QString::number(numEntries - m_entryFilter.m_entriesLesson[0].count() - m_entryFilter.m_entriesLesson[1].count()));
+    m_ui->wordTypeLabel->setText(QString::number(numEntries - m_entryFilter.m_entriesWordType[0].count() - m_entryFilter.m_entriesWordType[1].count()));
+    m_ui->blockedLabel->setText(QString::number(numEntries - m_entryFilter.m_entriesNotBlocked[0].count() - m_entryFilter.m_entriesNotBlocked[1].count()));
+    m_ui->timesWrongLabel->setText(QString::number(numEntries - m_entryFilter.m_entriesTimesWrong[0].count() - m_entryFilter.m_entriesTimesWrong[1].count()));
     m_ui->timesPracticedLabel->setText(
-        QString::number(numEntries
-            - m_entryFilter.m_entriesTimesPracticed[0].count()
-            - m_entryFilter.m_entriesTimesPracticed[1].count()
-        )
-    );
+        QString::number(numEntries - m_entryFilter.m_entriesTimesPracticed[0].count() - m_entryFilter.m_entriesTimesPracticed[1].count()));
     m_ui->minMaxGradeLabel->setText(
-        QString::number(numEntries
-            - m_entryFilter.m_entriesMinMaxGrade[0].count()
-            - m_entryFilter.m_entriesMinMaxGrade[1].count()
-        )
-    );
+        QString::number(numEntries - m_entryFilter.m_entriesMinMaxGrade[0].count() - m_entryFilter.m_entriesMinMaxGrade[1].count()));
     m_ui->documentTotalLabel->setText(QString::number(numEntries));
 }
 
 void EntryFilterDialog::setupCheckBoxes()
 {
-    m_ui->lessonCheckBox->setChecked(
-        (m_entryFilter.m_entriesLesson[0].count()
-        + m_entryFilter.m_entriesLesson[1].count()) == 0);
+    m_ui->lessonCheckBox->setChecked((m_entryFilter.m_entriesLesson[0].count() + m_entryFilter.m_entriesLesson[1].count()) == 0);
 
-    m_ui->wordTypeCheckBox->setChecked(
-        (m_entryFilter.m_entriesWordType[0].count()
-        + m_entryFilter.m_entriesWordType[1].count()) == 0);
+    m_ui->wordTypeCheckBox->setChecked((m_entryFilter.m_entriesWordType[0].count() + m_entryFilter.m_entriesWordType[1].count()) == 0);
 
-    m_ui->blockedCheckBox->setChecked(
-        (m_entryFilter.m_entriesNotBlocked[0].count()
-        + m_entryFilter.m_entriesNotBlocked[1].count()) == 0);
+    m_ui->blockedCheckBox->setChecked((m_entryFilter.m_entriesNotBlocked[0].count() + m_entryFilter.m_entriesNotBlocked[1].count()) == 0);
 
-    m_ui->timesWrongCheckBox->setChecked(
-        (m_entryFilter.m_entriesTimesWrong[0].count()
-        + m_entryFilter.m_entriesTimesWrong[1].count()) == 0);
+    m_ui->timesWrongCheckBox->setChecked((m_entryFilter.m_entriesTimesWrong[0].count() + m_entryFilter.m_entriesTimesWrong[1].count()) == 0);
 
-    m_ui->timesPracticedCheckBox->setChecked(
-        (m_entryFilter.m_entriesTimesPracticed[0].count()
-        + m_entryFilter.m_entriesTimesPracticed[1].count()) == 0);
+    m_ui->timesPracticedCheckBox->setChecked((m_entryFilter.m_entriesTimesPracticed[0].count() + m_entryFilter.m_entriesTimesPracticed[1].count()) == 0);
 
-    m_ui->minMaxGradeCheckBox->setChecked(
-        (m_entryFilter.m_entriesMinMaxGrade[0].count()
-        + m_entryFilter.m_entriesMinMaxGrade[1].count()) == 0);
+    m_ui->minMaxGradeCheckBox->setChecked((m_entryFilter.m_entriesMinMaxGrade[0].count() + m_entryFilter.m_entriesMinMaxGrade[1].count()) == 0);
 }
 
 void EntryFilterDialog::updateTotal()
@@ -138,8 +94,7 @@ void EntryFilterDialog::updateTotal()
         }
     }
 
-    int numSelected = m_entryFilter.m_currentSelection[0].count()
-                    + m_entryFilter.m_currentSelection[1].count();
+    int numSelected = m_entryFilter.m_currentSelection[0].count() + m_entryFilter.m_currentSelection[1].count();
     m_ui->totalLabel->setText(QString::number(numSelected));
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(numSelected > 0);
 }
@@ -156,4 +111,3 @@ void EntryFilterDialog::setupConnections()
     connect(m_ui->timesPracticedCheckBox, &QAbstractButton::toggled, this, &EntryFilterDialog::updateTotal);
     connect(m_ui->minMaxGradeCheckBox, &QAbstractButton::toggled, this, &EntryFilterDialog::updateTotal);
 }
-

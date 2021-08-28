@@ -9,8 +9,8 @@
 #include "containermodel.h"
 
 /**
-  * Model for the tree of word types.
-  */
+ * Model for the tree of word types.
+ */
 class WordClassModel : public ContainerModel
 {
     Q_OBJECT
@@ -18,13 +18,12 @@ class WordClassModel : public ContainerModel
 public:
     explicit WordClassModel(QObject *parent = 0);
 
-    QModelIndex appendWordClass(const QModelIndex& parent, const QString & wordTypeName = QString());
+    QModelIndex appendWordClass(const QModelIndex &parent, const QString &wordTypeName = QString());
 
-    void deleteWordClass(const QModelIndex& wordTypeIndex);
+    void deleteWordClass(const QModelIndex &wordTypeIndex);
 
 protected:
-    KEduVocContainer * rootContainer() const override;
+    KEduVocContainer *rootContainer() const override;
 };
-
 
 #endif

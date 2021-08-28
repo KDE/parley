@@ -10,7 +10,8 @@
 using namespace Practice;
 
 AudioButton::AudioButton(QWidget *parent)
-    : QToolButton(parent), m_player(0)
+    : QToolButton(parent)
+    , m_player(0)
 {
     setEnabled(false);
     setIcon(QIcon::fromTheme(QStringLiteral("media-playback-start")));
@@ -29,7 +30,7 @@ void AudioButton::setSoundFile(const QUrl &soundFile)
 void AudioButton::playAudio()
 {
     if (!m_player) {
-        m_player = new QMediaPlayer( this );
+        m_player = new QMediaPlayer(this);
         connect(m_player, &QMediaPlayer::stateChanged, this, &AudioButton::playerStateChanged);
     } else {
         if (m_player->state() == QMediaPlayer::PlayingState) {

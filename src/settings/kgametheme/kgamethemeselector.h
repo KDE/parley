@@ -36,10 +36,7 @@ class KGameThemeSelector : public QWidget
 {
     Q_OBJECT
 public:
-    enum NewStuffState {
-        NewStuffDisableDownload,
-        NewStuffEnableDownload
-    };
+    enum NewStuffState { NewStuffDisableDownload, NewStuffEnableDownload };
     /**
      * Load a specific theme file.
      * @param parent the parent widget
@@ -49,17 +46,21 @@ public:
      * @param directory subdirectory (of share/apps/appname) to search in
      * @return true if the theme files and properties could be loaded
      */
-    KGameThemeSelector(QWidget* parent, KConfigSkeleton* config, KGameThemeSelector::NewStuffState knsflags = KGameThemeSelector::NewStuffEnableDownload, const QString &groupName = QStringLiteral("KGameTheme"), const QString &directory = QStringLiteral("themes"));
+    KGameThemeSelector(QWidget *parent,
+                       KConfigSkeleton *config,
+                       KGameThemeSelector::NewStuffState knsflags = KGameThemeSelector::NewStuffEnableDownload,
+                       const QString &groupName = QStringLiteral("KGameTheme"),
+                       const QString &directory = QStringLiteral("themes"));
     virtual ~KGameThemeSelector();
 
 private:
-    KGameThemeSelectorPrivate* const d_ptr;
+    KGameThemeSelectorPrivate *const d_ptr;
 
     Q_DISABLE_COPY(KGameThemeSelector)
     Q_DECLARE_PRIVATE(KGameThemeSelector)
 
     Q_PRIVATE_SLOT(d_func(), void _k_updatePreview())
-    Q_PRIVATE_SLOT(d_func(), void _k_updateThemeList(const QString&))
+    Q_PRIVATE_SLOT(d_func(), void _k_updateThemeList(const QString &))
     Q_PRIVATE_SLOT(d_func(), void _k_openKNewStuffDialog())
 };
 

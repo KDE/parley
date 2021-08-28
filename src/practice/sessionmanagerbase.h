@@ -10,21 +10,19 @@
 #define PRACTICESESSIONMANAGERBASE_H
 
 // Qt
-#include <QVector>
 #include <QElapsedTimer>
+#include <QVector>
 // kdeedulibs
 #include <KEduVocExpression>
 
 // Parley
-#include "testentry.h"
 #include "prefs.h"
-
+#include "testentry.h"
 
 class KEduVocDocument;
 
 namespace Practice
 {
-
 class SessionManagerBase
 {
 public:
@@ -59,7 +57,6 @@ public:
      */
     QString title() const;
 
-
     // Should be called when starting and ending the practice session respectively.
     // The default implementations only start and stop the practice timer.
     virtual void practiceStarted();
@@ -68,7 +65,6 @@ public:
     /** the time in seconds */
     int totalTime();
 
-
     /**
      * Get the next entry to show to the user. The default
      * implementation refills the active entries up to the max number
@@ -76,16 +72,15 @@ public:
      *
      * @return TestEntry* the next entry to be practiced
      */
-    virtual TestEntry* nextTrainingEntry();
+    virtual TestEntry *nextTrainingEntry();
 
     /** Finish the currently active entry */
     virtual void removeCurrentEntryFromPractice();
 
-
     /**
      * Get a list of all entries in the test - used by the summary dialog
      */
-    QList<TestEntry*> allTestEntries() const;
+    QList<TestEntry *> allTestEntries() const;
 
     /**
      * The number of entries available for the practice session.
@@ -101,9 +96,9 @@ public:
     int activeEntryCount();
 
     /**
-    * Get a list of all unanswered entries in the test
-    */
-    QList<TestEntry*> allUnansweredTestEntries();
+     * Get a list of all unanswered entries in the test
+     */
+    QList<TestEntry *> allUnansweredTestEntries();
 
     // ----------------------------------------------------------------
     // Statistics
@@ -116,21 +111,18 @@ public:
      */
     void printStatistics();
 
-
     QStringList multipleChoiceAnswers(int numberChoices);
 
-    //QString currentConjugationTense();
+    // QString currentConjugationTense();
 
- protected:  // methods
-
+protected: // methods
     /**
      * Find out if the given expression can be used as a multiple choice answer for the current entry
      * (i.e. if it's not the answer itself, not a synonym and has a different text)
      */
     bool isValidMultipleChoiceAnswer(KEduVocExpression *e);
 
-protected:  // data
-
+protected: // data
     KEduVocDocument *m_doc;
     QWidget *m_parent;
     int m_learningLanguageIndex;
@@ -143,15 +135,15 @@ protected:  // data
     /// All entries available in the document that fulfill the
     /// requirements set in the configuration and the grades in the
     /// entries themselves.
-    QList<TestEntry*> m_allTestEntries;
+    QList<TestEntry *> m_allTestEntries;
 
     /// All entries that have not been entered into the active set.
-    QList<TestEntry*> m_notAskedTestEntries;
+    QList<TestEntry *> m_notAskedTestEntries;
 
     /// The list of entries that are being asked. If one of these is
     /// done, it can be deleted and an new one from
     /// m_notAskedTestEntries taken.
-    QList<TestEntry*> m_currentEntries;
+    QList<TestEntry *> m_currentEntries;
 
     // The index of the current entry in m_currentEntries.
     int m_currentEntry;

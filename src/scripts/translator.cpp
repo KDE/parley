@@ -12,7 +12,7 @@ Translator::Translator()
 {
 }
 
-Translator::Translator(QObject * parent)
+Translator::Translator(QObject *parent)
     : m_parent(parent)
 {
 }
@@ -23,7 +23,8 @@ Translator::~Translator()
 
 void Translator::addTranslation(const QString &word, const QString &fromLanguage, const QString &toLanguage, const QString &translation)
 {
-    if (word.trimmed() == QLatin1String("")) return;
+    if (word.trimmed() == QLatin1String(""))
+        return;
 
     QString t = word + fromLanguage + toLanguage;
     qDebug() << "Translation for " << word << "in cache: " << m_translations.contains(t);
@@ -33,15 +34,16 @@ void Translator::addTranslation(const QString &word, const QString &fromLanguage
     m_translations[t]->insert(translation.simplified());
 }
 
-QSet<QString>* Translator::getTranslation(const QString &word, const QString &fromLanguage, const QString &toLanguage)
+QSet<QString> *Translator::getTranslation(const QString &word, const QString &fromLanguage, const QString &toLanguage)
 {
-    if (word.isEmpty() || fromLanguage.isEmpty() || toLanguage.isEmpty()) return 0;
+    if (word.isEmpty() || fromLanguage.isEmpty() || toLanguage.isEmpty())
+        return 0;
 
     QString t = word + fromLanguage + toLanguage;
     qDebug() << "Fetch translation " << word << "(" << fromLanguage << "to" << toLanguage << ")"
              << "already in cache:" << m_translations.contains(t);
     if (!m_translations.contains(t)) {
-        Scripting::Parley * p = dynamic_cast<Scripting::Parley*>(m_parent);
+        Scripting::Parley *p = dynamic_cast<Scripting::Parley *>(m_parent);
         if (p) {
             p->callTranslateWord(word, fromLanguage, toLanguage);
         }

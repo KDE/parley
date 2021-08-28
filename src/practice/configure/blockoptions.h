@@ -9,8 +9,8 @@
 
 #include <QList>
 
-#include "ui_blockoptions.h"
 #include "practice/sessionmanagerbase.h"
+#include "ui_blockoptions.h"
 
 class KComboBox;
 
@@ -18,7 +18,7 @@ class BlockOptions : public QWidget, public Ui::BlockOptionsBase
 {
     Q_OBJECT
 public:
-    explicit BlockOptions(QWidget* parent = 0);
+    explicit BlockOptions(QWidget *parent = 0);
     void updateWidgets();
     bool hasChanged();
     bool isDefault();

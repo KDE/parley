@@ -10,8 +10,8 @@
 #include <KConfigWidgets/KConfigDialog>
 
 /**
-  *@author Peter Hedlund
-*/
+ *@author Peter Hedlund
+ */
 
 class GeneralOptions;
 class ViewOptions;
@@ -59,14 +59,14 @@ protected:
     bool isDefault() override;
 
 private:
-    GeneralOptions * m_generalOptions;
-    ViewOptions * m_viewOptions;
-    PasteOptions * m_pasteOptions;
-    PluginOptions * m_pluginOptions;
+    GeneralOptions *m_generalOptions;
+    ViewOptions *m_viewOptions;
+    PasteOptions *m_pasteOptions;
+    PluginOptions *m_pluginOptions;
 
     KConfigSkeleton *m_config;
     KEduVocDocument *m_doc;
-    KComboBox       *m_lessons;
+    KComboBox *m_lessons;
 };
 
 #endif

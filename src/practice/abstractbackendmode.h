@@ -8,30 +8,31 @@
 
 #include <QVariant>
 
-#include "testentry.h"
 #include "abstractfrontend.h"
-
+#include "testentry.h"
 
 namespace Practice
 {
-
 class AbstractBackendMode : public QObject
 {
     Q_OBJECT
 
 public:
-
     AbstractBackendMode(AbstractFrontend *frontend, QObject *parent);
-    virtual ~AbstractBackendMode() {}
+    virtual ~AbstractBackendMode()
+    {
+    }
 
     /** start practicing a new word. sets some default that can be overwritten by the modes.
-      * m_frontend->showQuestion() should be called after the initialization. */
-    virtual bool setTestEntry(TestEntry* current);
+     * m_frontend->showQuestion() should be called after the initialization. */
+    virtual bool setTestEntry(TestEntry *current);
 
     /** add a new synonym to the list of shown/answered synonyms depending on which mode we
-      * are in. */
-    void addSynonym(const QString& entry) {
-        if (!entry.isEmpty()) m_synonyms.append(entry);
+     * are in. */
+    void addSynonym(const QString &entry)
+    {
+        if (!entry.isEmpty())
+            m_synonyms.append(entry);
     }
 
     /**
@@ -110,8 +111,8 @@ protected:
     void updateGrade(KEduVocText &text, bool isCorrectAnswer, bool hasNoPreviousBadAnswers);
 
 protected:
-    AbstractFrontend* m_frontend;
-    TestEntry* m_current;
+    AbstractFrontend *m_frontend;
+    TestEntry *m_current;
     QStringList m_synonyms;
 };
 

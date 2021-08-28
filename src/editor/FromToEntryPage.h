@@ -12,9 +12,9 @@
 #include <QDateTime>
 
 #include "ui_FromToEntryPageForm.h"
+#include <KEduVocDocument>
 #include <KEduVocExpression>
 #include <keduvocgrammar.h>
-#include <KEduVocDocument>
 
 class FromToEntryPage : public QWidget, public Ui::FromToEntryPageForm
 {
@@ -24,7 +24,7 @@ public:
     explicit FromToEntryPage(KEduVocDocument *doc, int fromIdentifier, int toIdentifier, QWidget *parent = 0);
 
 public slots:
-    void setData(const QList<int>& entries);
+    void setData(const QList<int> &entries);
     void commitData();
 
 signals:
@@ -46,7 +46,7 @@ private:
     /// get a text representation of a grade
     static QString gradeStr(int i);
 
-    KEduVocDocument     *m_doc;
+    KEduVocDocument *m_doc;
     int m_translationFrom;
     int m_translationTo;
     QList<int> m_entries;

@@ -15,13 +15,14 @@
 #include <KColorScheme>
 #include <KLocalizedString>
 
-#include <QTimer>
 #include <QDebug>
+#include <QTimer>
 
 using namespace Practice;
 
 WrittenPracticeWidget::WrittenPracticeWidget(GuiFrontend *frontend, QWidget *parent, bool isExampleSentenceMode)
-    : AbstractModeWidget(frontend, parent), m_latexRenderer(0)
+    : AbstractModeWidget(frontend, parent)
+    , m_latexRenderer(0)
 {
     m_ui = new Ui::WrittenPracticeWidget();
     m_ui->setupUi(this);
@@ -32,12 +33,12 @@ WrittenPracticeWidget::WrittenPracticeWidget(GuiFrontend *frontend, QWidget *par
     connect(frontend, &AbstractFrontend::skipAction, this, &AbstractModeWidget::stopAudio);
 }
 
-void WrittenPracticeWidget::setQuestionFont(const QFont& font)
+void WrittenPracticeWidget::setQuestionFont(const QFont &font)
 {
     m_ui->questionLabel->setFont(font);
 }
 
-void WrittenPracticeWidget::setSolutionFont(const QFont& font)
+void WrittenPracticeWidget::setSolutionFont(const QFont &font)
 {
     m_ui->answerEdit->setFont(font);
     m_ui->solutionLabel->setFont(font);
@@ -54,7 +55,7 @@ QVariant WrittenPracticeWidget::userInput()
     return QVariant(m_ui->answerEdit->text());
 }
 
-void WrittenPracticeWidget::setQuestion(const QVariant& question)
+void WrittenPracticeWidget::setQuestion(const QVariant &question)
 {
     m_ui->questionLabel->setMinimumSize(QSize(0, 0));
     if (LatexRenderer::isLatex(question.toString())) {
@@ -77,7 +78,7 @@ void WrittenPracticeWidget::showQuestion()
     m_ui->solutionLabel->setText(QString());
     m_ui->helpLabel->clear();
 
-    for (QWidget * child : qAsConst(synonymWidgets)) {
+    for (QWidget *child : qAsConst(synonymWidgets)) {
         m_ui->synonymList->removeWidget(child);
         delete child;
     }
@@ -94,7 +95,7 @@ void WrittenPracticeWidget::showQuestion()
     m_ui->solutionSoundButton->setVisible(false);
 }
 
-void WrittenPracticeWidget::setSolution(const QVariant& solution)
+void WrittenPracticeWidget::setSolution(const QVariant &solution)
 {
     m_solution = solution.toString();
 }
@@ -121,10 +122,10 @@ void WrittenPracticeWidget::setSynonym(const QString &synonym)
 
 void WrittenPracticeWidget::showSynonym()
 {
-    QLabel* synonym = new QLabel();
+    QLabel *synonym = new QLabel();
     QFont font;
-    //TODO: use slightly smaller font for synonyms
-    //font.setPointSize(9);
+    // TODO: use slightly smaller font for synonyms
+    // font.setPointSize(9);
     synonym->setAlignment(Qt::AlignCenter);
     synonym->setFont(font);
     synonym->setText(i18n("Synonym: ") + m_synonym);
@@ -133,12 +134,12 @@ void WrittenPracticeWidget::showSynonym()
     m_ui->answerEdit->clear();
 }
 
-void WrittenPracticeWidget::setHint(const QVariant& hint)
+void WrittenPracticeWidget::setHint(const QVariant &hint)
 {
     m_ui->helpLabel->setText(hint.toString());
 }
 
-void WrittenPracticeWidget::setFeedback(const QVariant& feedback)
+void WrittenPracticeWidget::setFeedback(const QVariant &feedback)
 {
     m_ui->helpLabel->setText(feedback.toString());
 }
@@ -153,23 +154,23 @@ void WrittenPracticeWidget::setResultState(AbstractFrontend::ResultState resultS
     m_resultState = resultState;
 }
 
-void WrittenPracticeWidget::setQuestionSound(const QUrl& soundUrl)
+void WrittenPracticeWidget::setQuestionSound(const QUrl &soundUrl)
 {
     m_ui->questionSoundButton->setSoundFile(soundUrl);
 }
 
-void WrittenPracticeWidget::setSolutionSound(const QUrl& soundUrl)
+void WrittenPracticeWidget::setSolutionSound(const QUrl &soundUrl)
 {
     m_ui->solutionSoundButton->setSoundFile(soundUrl);
 }
 
-void WrittenPracticeWidget::setSolutionPronunciation(const QString& pronunciationText)
+void WrittenPracticeWidget::setSolutionPronunciation(const QString &pronunciationText)
 {
     m_ui->solutionPronunciationLabel->setText('[' + pronunciationText + ']');
     m_ui->solutionPronunciationLabel->setEnabled(!pronunciationText.isNull());
 }
 
-void WrittenPracticeWidget::setQuestionPronunciation(const QString& pronunciationText)
+void WrittenPracticeWidget::setQuestionPronunciation(const QString &pronunciationText)
 {
     m_ui->questionPronunciationLabel->setText('[' + pronunciationText + ']');
     m_ui->questionPronunciationLabel->setEnabled(!pronunciationText.isNull());

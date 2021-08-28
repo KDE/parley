@@ -12,7 +12,6 @@ class KEduVocContainer;
 
 class ContainerModel;
 
-
 /**
  * View for containers (KEduVocContainer).
  * @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
@@ -39,10 +38,10 @@ protected:
 
 private:
     // intentionally hide this to make sure a proper model is passed
-    void setModel(QAbstractItemModel *model) override {
+    void setModel(QAbstractItemModel *model) override
+    {
         Q_UNUSED(model)
     }
 };
-
 
 #endif

@@ -4,11 +4,9 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #include "vocabularymimedata.h"
 
 #include <KEduVocTranslation>
-
 
 void VocabularyMimeData::setTranslations(const QList<KEduVocTranslation *> &translations)
 {
@@ -18,13 +16,13 @@ void VocabularyMimeData::setTranslations(const QList<KEduVocTranslation *> &tran
     // sort the translations into entries to make deep copies for real copy and paste
     // to only include each expression once
     QList<KEduVocExpression *> expressions;
-    for (KEduVocTranslation * translation : qAsConst(m_translations)) {
+    for (KEduVocTranslation *translation : qAsConst(m_translations)) {
         if (!expressions.contains(translation->entry())) {
             expressions.append(translation->entry());
         }
     }
 
-    for (KEduVocExpression * expression : qAsConst(expressions)) {
+    for (KEduVocExpression *expression : qAsConst(expressions)) {
         MimeExpression exp;
         // deep copy
         exp.expression = KEduVocExpression(*expression);
@@ -45,7 +43,7 @@ void VocabularyMimeData::setTranslations(const QList<KEduVocTranslation *> &tran
                 // this may seem weird, but the root element is "word types" so no need to copy that one.
                 while (type->parent()) {
                     exp.wordTypes[i].wordType.prepend(type->name());
-                    type = static_cast<KEduVocWordType*>(type->parent());
+                    type = static_cast<KEduVocWordType *>(type->parent());
                 }
             }
         }
@@ -54,12 +52,12 @@ void VocabularyMimeData::setTranslations(const QList<KEduVocTranslation *> &tran
     }
 }
 
-QList< KEduVocTranslation * > VocabularyMimeData::translationList() const
+QList<KEduVocTranslation *> VocabularyMimeData::translationList() const
 {
     return m_translations;
 }
 
-QVariant VocabularyMimeData::retrieveData(const QString & mimeType, QVariant::Type type) const
+QVariant VocabularyMimeData::retrieveData(const QString &mimeType, QVariant::Type type) const
 {
     Q_UNUSED(type)
     // only use the expression list.expressions
@@ -77,7 +75,7 @@ QStringList VocabularyMimeData::formats() const
     return QStringList() << QStringLiteral("text/plain");
 }
 
-QList< VocabularyMimeData::MimeExpression > VocabularyMimeData::expressionList() const
+QList<VocabularyMimeData::MimeExpression> VocabularyMimeData::expressionList() const
 {
     return m_expressions;
 }

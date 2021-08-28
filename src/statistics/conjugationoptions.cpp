@@ -5,15 +5,15 @@
 
 #include "conjugationoptions.h"
 
-#include "languagesettings.h"
 #include "documentsettings.h"
+#include "languagesettings.h"
 #include "prefs.h"
 
 #include <KEduVocDocument>
 
 #include <KLocalizedString>
-#include <QStackedLayout>
 #include <QLabel>
+#include <QStackedLayout>
 #include <QTreeWidget>
 
 ConjugationOptions::ConjugationOptions(KEduVocDocument *doc, QWidget *parent)
@@ -24,12 +24,11 @@ ConjugationOptions::ConjugationOptions(KEduVocDocument *doc, QWidget *parent)
     m_treeWidget = new QTreeWidget(this);
     m_treeWidget->setHeaderLabel(i18n("Tenses"));
     m_treeWidget->setRootIsDecorated(false);
-    QHBoxLayout* layout = new QHBoxLayout(this);
+    QHBoxLayout *layout = new QHBoxLayout(this);
     layout->addWidget(m_treeWidget);
     layout->setContentsMargins(0, 0, 0, 0);
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
-    connect(m_treeWidget, &QTreeWidget::itemChanged,
-            this, &ConjugationOptions::processCheckBoxChanged);
+    connect(m_treeWidget, &QTreeWidget::itemChanged, this, &ConjugationOptions::processCheckBoxChanged);
 }
 
 void ConjugationOptions::setLanguages(int from, int to)
@@ -52,10 +51,10 @@ void ConjugationOptions::setupTenses()
     documentSettings.load();
     QStringList activeTenses = documentSettings.conjugationTenses();
     qDebug() << "activeTenses:" << activeTenses << " id tenses: " << m_doc->identifier(m_language).tenseList();
-    QTreeWidgetItem* tenseItem;
+    QTreeWidgetItem *tenseItem;
 
     const QStringList tenses = m_doc->identifier(m_language).tenseList();
-    for (const QString & tenseName : tenses) {
+    for (const QString &tenseName : tenses) {
         tenseItem = new QTreeWidgetItem(m_treeWidget);
         tenseItem->setText(0, tenseName);
         if (activeTenses.contains(tenseName)) {
@@ -102,4 +101,3 @@ void ConjugationOptions::processCheckBoxChanged(QTreeWidgetItem *item, int colum
         emit checkBoxChanged();
     }
 }
-

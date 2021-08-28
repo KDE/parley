@@ -4,35 +4,30 @@
 */
 #include "sessionmanagerfixedtest.h"
 
-#include "sessionmanagerfixed.h"
-#include "prefs.h"
 #include "documentsettings.h"
+#include "prefs.h"
+#include "sessionmanagerfixed.h"
 #include <KEduVocDocument>
 #include <KEduVocWordtype>
 #include <QTest>
 
-
 namespace SessionManagerFixedTests
 {
-
 void SessionManagerFixedTest::initTestCase()
 {
     // Prevent writing by tast case modified pareleys config file to current users configuration
     QStandardPaths::setTestModeEnabled(true);
 }
 
-
 void SessionManagerFixedTest::cleanupTestCase()
 {
     if (QStandardPaths::isTestModeEnabled()) {
-        QFileInfo prefsFile(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation),
-                            Prefs::self()->config()->name());
+        QFileInfo prefsFile(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation), Prefs::self()->config()->name());
         if (prefsFile.exists()) {
             QFile::remove(prefsFile.filePath());
         }
     }
 }
-
 
 void SessionManagerFixedTest::setupBasicPreferences() const
 {
@@ -52,9 +47,7 @@ void SessionManagerFixedTest::setupBasicPreferences() const
     Prefs::setSessionMaxSize(20);
 }
 
-
-void SessionManagerFixedTest::initDocumentPracticeModeDependent(KEduVocDocument &doc,
-                                                                int nEntries) const
+void SessionManagerFixedTest::initDocumentPracticeModeDependent(KEduVocDocument &doc, int nEntries) const
 {
     KEduVocWordType *root = doc.wordTypeContainer();
     KEduVocWordType *noun = new KEduVocWordType(QStringLiteral("Noun"), root);
@@ -89,15 +82,14 @@ void SessionManagerFixedTest::initDocumentPracticeModeDependent(KEduVocDocument 
     doc.identifier(1).setName(QStringLiteral("Languge 1"));
     doc.identifier(1).setLocale(QStringLiteral("l1"));
 
-    for (int i = 0; i < nEntries ; i++) {
+    for (int i = 0; i < nEntries; i++) {
         KEduVocExpression *expression = new KEduVocExpression;
         expression->setTranslation(0, QStringLiteral("translation 0 word %1").arg(i));
         expression->setTranslation(1, QStringLiteral("translation 1 word %1").arg(i));
         lesson->appendEntry(expression);
 
         if (Prefs::practiceMode() == Prefs::EnumPracticeMode::GenderPractice) {
-            auto container = doc.wordTypeContainer()->childOfType(KEduVocWordFlag::Noun
-                                                                  | KEduVocWordFlag::Masculine);
+            auto container = doc.wordTypeContainer()->childOfType(KEduVocWordFlag::Noun | KEduVocWordFlag::Masculine);
             expression->translation(0)->setWordType(container);
             expression->translation(1)->setWordType(container);
 
@@ -108,23 +100,17 @@ void SessionManagerFixedTest::initDocumentPracticeModeDependent(KEduVocDocument 
 
         if (Prefs::practiceMode() == Prefs::EnumPracticeMode::ConjugationPractice) {
             KEduVocConjugation conjugation0;
-            conjugation0.setConjugation(KEduVocText(QStringLiteral("conjugation %1 00").arg(i)),
-                                        KEduVocWordFlag::Singular | KEduVocWordFlag::First);
-            conjugation0.setConjugation(KEduVocText(QStringLiteral("conjugation %1 01").arg(i)),
-                                        KEduVocWordFlag::Singular | KEduVocWordFlag::Second);
+            conjugation0.setConjugation(KEduVocText(QStringLiteral("conjugation %1 00").arg(i)), KEduVocWordFlag::Singular | KEduVocWordFlag::First);
+            conjugation0.setConjugation(KEduVocText(QStringLiteral("conjugation %1 01").arg(i)), KEduVocWordFlag::Singular | KEduVocWordFlag::Second);
             conjugation0.setConjugation(KEduVocText(QStringLiteral("conjugation %1 03").arg(i)),
-                                        KEduVocWordFlag::Singular | KEduVocWordFlag::Third
-                                        | KEduVocWordFlag::Neuter);
+                                        KEduVocWordFlag::Singular | KEduVocWordFlag::Third | KEduVocWordFlag::Neuter);
             expression->translation(0)->setConjugation(QStringLiteral("tense"), conjugation0);
 
             KEduVocConjugation conjugation1;
-            conjugation1.setConjugation(KEduVocText(QStringLiteral("conjugation %1 10").arg(i)),
-                                        KEduVocWordFlag::Singular | KEduVocWordFlag::First);
-            conjugation1.setConjugation(KEduVocText(QStringLiteral("conjugation %1 11").arg(i)),
-                                        KEduVocWordFlag::Singular | KEduVocWordFlag::Second);
+            conjugation1.setConjugation(KEduVocText(QStringLiteral("conjugation %1 10").arg(i)), KEduVocWordFlag::Singular | KEduVocWordFlag::First);
+            conjugation1.setConjugation(KEduVocText(QStringLiteral("conjugation %1 11").arg(i)), KEduVocWordFlag::Singular | KEduVocWordFlag::Second);
             conjugation1.setConjugation(KEduVocText(QStringLiteral("conjugation %1 13").arg(i)),
-                                        KEduVocWordFlag::Singular | KEduVocWordFlag::Third
-                                        | KEduVocWordFlag::Neuter);
+                                        KEduVocWordFlag::Singular | KEduVocWordFlag::Third | KEduVocWordFlag::Neuter);
             expression->translation(1)->setConjugation(QStringLiteral("tense"), conjugation1);
 
             auto container = doc.wordTypeContainer()->childOfType(KEduVocWordFlag::Verb);
@@ -137,14 +123,10 @@ void SessionManagerFixedTest::initDocumentPracticeModeDependent(KEduVocDocument 
         }
 
         if (Prefs::practiceMode() == Prefs::EnumPracticeMode::ComparisonPractice) {
-            expression->translation(0)->setComparativeForm(
-                KEduVocText(QStringLiteral("comparative %1 0").arg(i)));
-            expression->translation(0)->setSuperlativeForm(
-                KEduVocText(QStringLiteral("superlative %1 0").arg(i)));
-            expression->translation(1)->setComparativeForm(
-                KEduVocText(QStringLiteral("comparative %1 1").arg(i)));
-            expression->translation(1)->setSuperlativeForm(
-                KEduVocText(QStringLiteral("superlative %1 1").arg(i)));
+            expression->translation(0)->setComparativeForm(KEduVocText(QStringLiteral("comparative %1 0").arg(i)));
+            expression->translation(0)->setSuperlativeForm(KEduVocText(QStringLiteral("superlative %1 0").arg(i)));
+            expression->translation(1)->setComparativeForm(KEduVocText(QStringLiteral("comparative %1 1").arg(i)));
+            expression->translation(1)->setSuperlativeForm(KEduVocText(QStringLiteral("superlative %1 1").arg(i)));
 
             auto container = doc.wordTypeContainer()->childOfType(KEduVocWordFlag::Adjective);
             expression->translation(0)->setWordType(container);
@@ -159,7 +141,6 @@ void SessionManagerFixedTest::initDocumentPracticeModeDependent(KEduVocDocument 
     doc.setUrl(QUrl::fromLocalFile(QStringLiteral("dummy_fquJ4CM7.kvtml")));
     doc.setModified(false);
 }
-
 
 void SessionManagerFixedTest::test_maximumNumberOfNewWordsPerSession_written()
 {
@@ -180,7 +161,6 @@ void SessionManagerFixedTest::test_maximumNumberOfNewWordsPerSession_written()
     QCOMPARE(sessionManager.allEntryCount(), MAX_NUMBER_OF_NEW_WORDS);
 }
 
-
 void SessionManagerFixedTest::test_maximumNumberOfNewWordsPerSession_gender()
 {
     constexpr int MAX_NUMBER_OF_NEW_WORDS = 5;
@@ -199,7 +179,6 @@ void SessionManagerFixedTest::test_maximumNumberOfNewWordsPerSession_gender()
 
     QCOMPARE(sessionManager.allEntryCount(), MAX_NUMBER_OF_NEW_WORDS);
 }
-
 
 void SessionManagerFixedTest::test_maximumNumberOfNewWordsPerSession_conjugation()
 {
@@ -224,7 +203,6 @@ void SessionManagerFixedTest::test_maximumNumberOfNewWordsPerSession_conjugation
 
     QCOMPARE(sessionManager.allEntryCount(), MAX_NUMBER_OF_NEW_WORDS);
 }
-
 
 void SessionManagerFixedTest::test_maximumNumberOfNewWordsPerSession_comparsion()
 {

@@ -9,7 +9,8 @@
 
 class KEduVocDocument;
 
-namespace SessionManagerFixedTests {
+namespace SessionManagerFixedTests
+{
 /** @file
  * \brief SessionManagerFixedTest test application
  *        Various tests for SessionManagerFixed class.
@@ -18,7 +19,7 @@ namespace SessionManagerFixedTests {
 
 class SessionManagerFixedTest : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
 
 private slots:
     void initTestCase();
@@ -31,9 +32,7 @@ private slots:
 private:
     void setupBasicPreferences() const;
     void initDocumentPracticeModeDependent(KEduVocDocument &doc, int nEntries) const;
-
 };
 }
 
 #endif // SESSIONMANAGERFIXEDTEST_H
-

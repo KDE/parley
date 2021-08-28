@@ -4,25 +4,25 @@
 */
 
 #include "multiplechoicemodewidget.h"
-#include "multiplechoicedata.h"
-#include "latexrenderer.h"
 #include "guifrontend.h"
+#include "latexrenderer.h"
+#include "multiplechoicedata.h"
 
 #include "ui_practice_widget_multiplechoice.h"
 
+#include <KColorScheme>
 #include <QAction>
 #include <QDebug>
-#include <KColorScheme>
+#include <QKeyEvent>
 #include <QPushButton>
 #include <QTimer>
-#include <QKeyEvent>
 #include <QVBoxLayout>
 
 using namespace Practice;
 
-
-MultiplechoiceModeWidget::MultiplechoiceModeWidget(GuiFrontend *frontend, QWidget* parent)
-    : AbstractModeWidget(frontend, parent), m_latexRenderer(0)
+MultiplechoiceModeWidget::MultiplechoiceModeWidget(GuiFrontend *frontend, QWidget *parent)
+    : AbstractModeWidget(frontend, parent)
+    , m_latexRenderer(0)
 {
     m_ui = new Ui::MultiplechoicePracticeWidget();
     m_ui->setupUi(this);
@@ -35,21 +35,20 @@ MultiplechoiceModeWidget::MultiplechoiceModeWidget(GuiFrontend *frontend, QWidge
     }
     connect(frontend, &AbstractFrontend::continueAction, this, &AbstractModeWidget::stopAudio);
     connect(frontend, &AbstractFrontend::skipAction, this, &AbstractModeWidget::stopAudio);
-
 }
 
-void MultiplechoiceModeWidget::setQuestionFont(const QFont& font)
+void MultiplechoiceModeWidget::setQuestionFont(const QFont &font)
 {
     m_ui->questionLabel->setFont(font);
 }
 
-void MultiplechoiceModeWidget::setSolutionFont(const QFont& font)
+void MultiplechoiceModeWidget::setSolutionFont(const QFont &font)
 {
     m_solutionFont = font;
     resetButtonStyleSheet();
 }
 
-void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
+void MultiplechoiceModeWidget::setQuestion(const QVariant &question)
 {
     if (!question.canConvert<MultipleChoiceData>()) {
         qWarning() << "expected MultipleChoiceData";
@@ -75,7 +74,7 @@ void MultiplechoiceModeWidget::setQuestion(const QVariant& question)
     }
 
     int j = 0;
-    for (QPushButton * pushButton : qAsConst(m_choiceButtons)) {
+    for (QPushButton *pushButton : qAsConst(m_choiceButtons)) {
         pushButton->setText(data.choices[j]);
         pushButton->setToolTip(data.choices[j]);
         pushButton->setFont(m_solutionFont);
@@ -93,8 +92,8 @@ void MultiplechoiceModeWidget::showQuestion()
 
     resetButtonStyleSheet();
 
-    if ( ! m_choiceButtons.isEmpty() ) {
-        for (QPushButton * pushButton : qAsConst(m_choiceButtons)) {
+    if (!m_choiceButtons.isEmpty()) {
+        for (QPushButton *pushButton : qAsConst(m_choiceButtons)) {
             pushButton->setChecked(false);
             pushButton->setEnabled(true);
         }
@@ -113,7 +112,7 @@ void MultiplechoiceModeWidget::setNumberOfPushButtons(const int numberOfChoices)
         verticalLayout->addLayout(horizontalLayout);
 
         // Display number of entry
-        QLabel *label = new QLabel(QString::number(i+1) + QStringLiteral(":"), this);
+        QLabel *label = new QLabel(QString::number(i + 1) + QStringLiteral(":"), this);
         horizontalLayout->addWidget(label);
 
         // Button displaying choice
@@ -134,24 +133,23 @@ void MultiplechoiceModeWidget::setNumberOfPushButtons(const int numberOfChoices)
     }
 }
 
-void MultiplechoiceModeWidget::setSynonym(const QString& /*entry*/)
+void MultiplechoiceModeWidget::setSynonym(const QString & /*entry*/)
 {
-    //TODO Do something here to show synonyms
+    // TODO Do something here to show synonyms
 }
-
 
 void MultiplechoiceModeWidget::showSynonym()
 {
-    //TODO Do something here to show synonyms
+    // TODO Do something here to show synonyms
 }
 
 bool MultiplechoiceModeWidget::eventFilter(QObject *obj, QEvent *event)
 {
     // make it possible to use the enter key to select multiple choice options
     if (event->type() == QEvent::KeyPress) {
-        QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         if (keyEvent->key() == Qt::Key_Enter || keyEvent->key() == Qt::Key_Return) {
-            QPushButton *pushButton = qobject_cast<QPushButton*>(obj);
+            QPushButton *pushButton = qobject_cast<QPushButton *>(obj);
             if (pushButton) {
                 pushButton->click();
                 return true;
@@ -162,17 +160,17 @@ bool MultiplechoiceModeWidget::eventFilter(QObject *obj, QEvent *event)
     return QObject::eventFilter(obj, event);
 }
 
-void MultiplechoiceModeWidget::setSolution(const QVariant& solution)
+void MultiplechoiceModeWidget::setSolution(const QVariant &solution)
 {
     m_solution = solution.toInt();
 }
 
-void MultiplechoiceModeWidget::setHint(const QVariant& hint)
+void MultiplechoiceModeWidget::setHint(const QVariant &hint)
 {
     m_choiceButtons.at(hint.toInt())->setEnabled(false);
 }
 
-void MultiplechoiceModeWidget::setFeedback(const QVariant& feedback)
+void MultiplechoiceModeWidget::setFeedback(const QVariant &feedback)
 {
     m_ui->feedbackLabel->setText(feedback.toString());
 }
@@ -186,11 +184,9 @@ void MultiplechoiceModeWidget::showSolution()
 
     const QColor textColor = palette().color(QPalette::WindowText);
     // Set border to text color with light transparency
-    const QString borderColor = QStringLiteral("#90") +
-                palette().color(QPalette::WindowText).name().remove(0,1);
+    const QString borderColor = QStringLiteral("#90") + palette().color(QPalette::WindowText).name().remove(0, 1);
     // Set background to correct color, but with transparency
-    const QString correctBackground = QStringLiteral("#7D") +
-                m_correctPalette.color(QPalette::Text).name().remove(0,1);
+    const QString correctBackground = QStringLiteral("#7D") + m_correctPalette.color(QPalette::Text).name().remove(0, 1);
 
     m_choiceButtons[m_solution]->setStyleSheet(
         m_choiceButtons[m_solution]->styleSheet() +
@@ -204,8 +200,7 @@ void MultiplechoiceModeWidget::showSolution()
     m_choiceButtons[m_solution]->setChecked(true);
 
     if (input != -1 && input != m_solution) {
-        const QString wrongBackground = QStringLiteral("#7D") +
-                m_wrongPalette.color(QPalette::Text).name().remove(0,1);
+        const QString wrongBackground = QStringLiteral("#7D") + m_wrongPalette.color(QPalette::Text).name().remove(0, 1);
 
         m_choiceButtons[input]->setStyleSheet(
             m_choiceButtons[input]->styleSheet() +
@@ -216,7 +211,7 @@ void MultiplechoiceModeWidget::showSolution()
                                 " }"
         );
     }
-    for (QPushButton * pushButton : qAsConst(m_choiceButtons)) {
+    for (QPushButton *pushButton : qAsConst(m_choiceButtons)) {
         pushButton->setEnabled(false);
     }
     m_ui->solutionPronunciationLabel->setVisible(m_ui->solutionPronunciationLabel->isEnabled());
@@ -225,33 +220,33 @@ void MultiplechoiceModeWidget::showSolution()
 
 QVariant MultiplechoiceModeWidget::userInput()
 {
-
     int i = 0;
-    for (QPushButton * pushButton : qAsConst(m_choiceButtons)) {
-        if (pushButton->isChecked()) return i;
+    for (QPushButton *pushButton : qAsConst(m_choiceButtons)) {
+        if (pushButton->isChecked())
+            return i;
         i++;
     }
 
     return QVariant();
 }
 
-void MultiplechoiceModeWidget::setQuestionSound(const QUrl& soundUrl)
+void MultiplechoiceModeWidget::setQuestionSound(const QUrl &soundUrl)
 {
     m_ui->questionSoundButton->setSoundFile(soundUrl);
 }
 
-void MultiplechoiceModeWidget::setSolutionSound(const QUrl& soundUrl)
+void MultiplechoiceModeWidget::setSolutionSound(const QUrl &soundUrl)
 {
     m_ui->solutionSoundButton->setSoundFile(soundUrl);
 }
 
-void MultiplechoiceModeWidget::setSolutionPronunciation(const QString& pronunciationText)
+void MultiplechoiceModeWidget::setSolutionPronunciation(const QString &pronunciationText)
 {
     m_ui->solutionPronunciationLabel->setText('[' + pronunciationText + ']');
     m_ui->solutionPronunciationLabel->setEnabled(!pronunciationText.isNull());
 }
 
-void MultiplechoiceModeWidget::setQuestionPronunciation(const QString& pronunciationText)
+void MultiplechoiceModeWidget::setQuestionPronunciation(const QString &pronunciationText)
 {
     m_ui->questionPronunciationLabel->setText('[' + pronunciationText + ']');
     m_ui->questionPronunciationLabel->setEnabled(!pronunciationText.isNull());
@@ -262,8 +257,7 @@ void MultiplechoiceModeWidget::resetButtonStyleSheet()
     // Define default QPushButton StyleSheet
     const QColor textColor = palette().color(QPalette::WindowText);
     // Set border to text color with light transparency
-    const QString borderColor = QStringLiteral("#90") +
-                        palette().color(QPalette::WindowText).name().remove(0,1);
+    const QString borderColor = QStringLiteral("#90") + palette().color(QPalette::WindowText).name().remove(0, 1);
     const QString defaultStyleSheet =
         "QPushButton { text-align: left; "
                       "color: " + textColor.name() + "; "
@@ -287,7 +281,7 @@ void MultiplechoiceModeWidget::resetButtonStyleSheet()
                       "border-color: " + borderColor + " }";
 
     if (!m_choiceButtons.isEmpty()) {
-        for (QPushButton * pushButton : qAsConst(m_choiceButtons)) {
+        for (QPushButton *pushButton : qAsConst(m_choiceButtons)) {
             pushButton->setStyleSheet(defaultStyleSheet);
         }
     }

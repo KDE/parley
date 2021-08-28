@@ -4,17 +4,19 @@
 */
 #include "latexwidget.h"
 
-#include "vocabularymodel.h"
-#include "vocabularyfilter.h"
 #include "practice/latexrenderer.h"
+#include "vocabularyfilter.h"
+#include "vocabularymodel.h"
 
-#include <QDataWidgetMapper>
 #include <KLocalizedString>
+#include <QDataWidgetMapper>
 
 using namespace Editor;
 
-LatexWidget::LatexWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent) :
-    QWidget(parent), m_translation(0), m_renderer(0)
+LatexWidget::LatexWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent)
+    : QWidget(parent)
+    , m_translation(0)
+    , m_renderer(0)
 {
     m_doc = doc;
     m_model = model;
@@ -44,8 +46,7 @@ void LatexWidget::setTranslation(KEduVocExpression *entry, int translation)
         // we need to map the widgets relative to the translation (each translation has 9 columns)
         m_mapper->clearMapping();
 
-        m_mapper->addMapping(lineEdit,
-                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Translation);
+        m_mapper->addMapping(lineEdit, VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Translation);
         m_translation = entry->translation(translation);
         updateLatex();
     }
@@ -56,15 +57,13 @@ void LatexWidget::slotDocumentChanged(KEduVocDocument *doc)
     m_doc = doc;
 }
 
-void LatexWidget::slotSelectionChanged(const QItemSelection &itemSelected,
-                                       const QItemSelection &itemDeselected)
+void LatexWidget::slotSelectionChanged(const QItemSelection &itemSelected, const QItemSelection &itemDeselected)
 {
     Q_UNUSED(itemDeselected)
 
     if (itemSelected.indexes().size() >= 1) {
         // the selected index belongs to VocabularyFilter, when we need it from the vocabulary model
-        QModelIndex index = m_model->index(itemSelected.indexes().at(0).row(),
-                                           itemSelected.indexes().at(0).column());
+        QModelIndex index = m_model->index(itemSelected.indexes().at(0).row(), itemSelected.indexes().at(0).column());
         m_mapper->setCurrentModelIndex(index);
     }
 }
@@ -90,8 +89,9 @@ void LatexWidget::updateLatex()
     }
 }
 
-
-LatexDelegate::LatexDelegate(QObject *parent) : QItemDelegate(parent), m_checkBox(0)
+LatexDelegate::LatexDelegate(QObject *parent)
+    : QItemDelegate(parent)
+    , m_checkBox(0)
 {
 }
 
@@ -102,7 +102,7 @@ void LatexDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
     }
 
     if (editor) {
-        QLineEdit *entry = static_cast <QLineEdit *>(editor);
+        QLineEdit *entry = static_cast<QLineEdit *>(editor);
         if (entry) {
             QString text = index.model()->data(index).toString();
             if (text.startsWith(QLatin1String("$$")) && text.endsWith(QLatin1String("$$"))) {
@@ -119,14 +119,14 @@ void LatexDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
     }
 }
 
-void LatexDelegate::setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const
+void LatexDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
     if (!index.isValid()) {
         return;
     }
 
     if (editor) {
-        QLineEdit *entry = static_cast <QLineEdit *>(editor);
+        QLineEdit *entry = static_cast<QLineEdit *>(editor);
         if (entry) {
             QString text = entry->text();
             if (m_checkBox->isChecked()) {

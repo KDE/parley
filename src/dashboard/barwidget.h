@@ -4,7 +4,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef BARWIDGET_H
 #define BARWIDGET_H
 
@@ -12,13 +11,10 @@
 #include <QPaintEvent>
 #include <QWidget>
 
-
+#include "collection.h" // For struct WordCount
 #include "utils.h"
-#include "collection.h"  // For struct WordCount
-
 
 extern ConfidenceColors globalColors;
-
 
 class BarWidget : public QWidget
 {
@@ -36,6 +32,5 @@ private:
     int m_totalDueWords;
     int m_percentageCompleted;
 };
-
 
 #endif // BARWIDGET_H

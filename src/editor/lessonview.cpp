@@ -8,11 +8,11 @@
 #include "vocabularymodel.h"
 #include "vocabularyview.h"
 
-#include <QAction>
 #include <KActionCollection>
-#include <QInputDialog>
 #include <KLocalizedString>
 #include <KMessageBox>
+#include <QAction>
+#include <QInputDialog>
 
 #include <KEduVocExpression>
 #include <KEduVocLesson>
@@ -22,7 +22,9 @@
 
 using namespace Editor;
 
-LessonView::LessonView(EditorWindow * parent) : ContainerView(parent), m_editorWindow(parent)
+LessonView::LessonView(EditorWindow *parent)
+    : ContainerView(parent)
+    , m_editorWindow(parent)
 {
     QAction *actionNewLesson = new QAction(this);
     parent->actionCollection()->addAction(QStringLiteral("new_lesson"), actionNewLesson);
@@ -36,7 +38,7 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent), m_editorW
     parent->actionCollection()->addAction(QStringLiteral("rename_lesson"), actionRenameLesson);
     actionRenameLesson->setText(i18n("Rename Unit"));
     actionRenameLesson->setIcon(QIcon::fromTheme(QStringLiteral("edit-rename")));
-//    actionRenameLesson->setWhatsThis(i18n("Rename the selected unit"));
+    //    actionRenameLesson->setWhatsThis(i18n("Rename the selected unit"));
     actionRenameLesson->setToolTip(actionRenameLesson->whatsThis());
     actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
 
@@ -51,7 +53,7 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent), m_editorW
     QAction *actionSplitLesson = new QAction(this);
     parent->actionCollection()->addAction(QStringLiteral("split_lesson"), actionSplitLesson);
     actionSplitLesson->setText(i18n("Split Unit into Smaller Units"));
-    actionSplitLesson->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));  /// @todo better icon
+    actionSplitLesson->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy"))); /// @todo better icon
     actionSplitLesson->setWhatsThis(i18n("Make multiple smaller units out of one big unit."));
     actionSplitLesson->setToolTip(actionSplitLesson->whatsThis());
     actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
@@ -110,7 +112,7 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent), m_editorW
     addAction(actionNewLesson);
     addAction(actionRenameLesson);
     addAction(actionDeleteLesson);
-    QAction* separator = new QAction(this);
+    QAction *separator = new QAction(this);
     separator->setSeparator(true);
     addAction(separator);
     addAction(actionRemoveGradesLesson);
@@ -123,12 +125,12 @@ LessonView::LessonView(EditorWindow * parent) : ContainerView(parent), m_editorW
     addAction(actionCollapseAll);
 }
 
-void LessonView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
+void LessonView::currentChanged(const QModelIndex &current, const QModelIndex &previous)
 {
     QTreeView::currentChanged(current, previous);
 
     if (current.isValid()) {
-        KEduVocLesson *container = static_cast<KEduVocLesson*>(current.internalPointer());
+        KEduVocLesson *container = static_cast<KEduVocLesson *>(current.internalPointer());
         if (container) {
             emit selectedLessonChanged(container);
             emit signalShowContainer(container);
@@ -136,7 +138,7 @@ void LessonView::currentChanged(const QModelIndex & current, const QModelIndex &
     }
 }
 
-void LessonView::selectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
+void LessonView::selectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
 {
     QTreeView::selectionChanged(selected, deselected);
 
@@ -144,13 +146,13 @@ void LessonView::selectionChanged(const QItemSelection & selected, const QItemSe
         return;
     }
 
-    KEduVocLesson *container = static_cast<KEduVocLesson*>(selected.indexes().value(0).internalPointer());
+    KEduVocLesson *container = static_cast<KEduVocLesson *>(selected.indexes().value(0).internalPointer());
     if (container) {
         emit selectedLessonChanged(container);
     }
 }
 
-void LessonView::setTranslation(KEduVocExpression * entry, int translation)
+void LessonView::setTranslation(KEduVocExpression *entry, int translation)
 {
     Q_UNUSED(translation)
 
@@ -176,7 +178,7 @@ void LessonView::slotCreateNewLesson()
 
     scrollTo(modelIndex);
     selectionModel()->setCurrentIndex(modelIndex, QItemSelectionModel::ClearAndSelect);
-    edit(modelIndex);    // let the user type a new name for the lesson
+    edit(modelIndex); // let the user type a new name for the lesson
 }
 
 void LessonView::slotDeleteLesson()
@@ -188,12 +190,16 @@ void LessonView::slotDeleteLesson()
         return;
     }
 
-    KEduVocLesson* lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
+    KEduVocLesson *lesson = static_cast<KEduVocLesson *>(selectedIndex.internalPointer());
 
     int count = lesson->entryCount(KEduVocLesson::Recursive);
 
-    if (count == 0 ||
-            KMessageBox::warningYesNo(this, i18np("There is %1 word left in this unit. Do you want to delete it?", "There are %1 words left in this unit. Do you want to delete them?", count)) == KMessageBox::Yes) {
+    if (count == 0
+        || KMessageBox::warningYesNo(this,
+                                     i18np("There is %1 word left in this unit. Do you want to delete it?",
+                                           "There are %1 words left in this unit. Do you want to delete them?",
+                                           count))
+            == KMessageBox::Yes) {
         m_model->deleteContainer(selectedIndex);
     }
 }
@@ -207,7 +213,14 @@ void LessonView::slotSplitLesson()
     /** @todo A nicer dialog would be great.
      * Maybe with radio buttons to ask, if the entries should be in random order or as they come. */
     bool ok = false;
-    int numEntries = QInputDialog::getInt(this,  i18n("Entries per Unit"), i18n("The unit will be split into smaller unit. How many entries in each unit do you want?"), Prefs::entriesPerLesson(), 1, 1000, 1, &ok);
+    int numEntries = QInputDialog::getInt(this,
+                                          i18n("Entries per Unit"),
+                                          i18n("The unit will be split into smaller unit. How many entries in each unit do you want?"),
+                                          Prefs::entriesPerLesson(),
+                                          1,
+                                          1000,
+                                          1,
+                                          &ok);
 
     if (!ok) {
         return;
@@ -229,15 +242,14 @@ void LessonView::moveToNewLesson()
     doc->lesson()->appendChildContainer(lesson);
 
     for (const QModelIndex &index : indexes) {
-        lesson->appendEntry(qvariant_cast<KEduVocExpression*> (index.data(VocabularyModel::EntryRole)));
+        lesson->appendEntry(qvariant_cast<KEduVocExpression *>(index.data(VocabularyModel::EntryRole)));
     }
 }
-
 
 void LessonView::slotRemoveGradesLesson()
 {
     QModelIndex selectedIndex = selectionModel()->currentIndex();
-    KEduVocLesson* lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
+    KEduVocLesson *lesson = static_cast<KEduVocLesson *>(selectedIndex.internalPointer());
     lesson->resetGrades(-1, KEduVocContainer::NotRecursive);
     emit signalShowContainer(lesson);
 }
@@ -245,12 +257,12 @@ void LessonView::slotRemoveGradesLesson()
 void LessonView::slotRemoveGradesLessonChildren()
 {
     QModelIndex selectedIndex = selectionModel()->currentIndex();
-    KEduVocLesson* lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
+    KEduVocLesson *lesson = static_cast<KEduVocLesson *>(selectedIndex.internalPointer());
     lesson->resetGrades(-1, KEduVocContainer::Recursive);
     emit signalShowContainer(lesson);
 }
 
-void LessonView::setModel(LessonModel * model)
+void LessonView::setModel(LessonModel *model)
 {
     m_model = model;
     ContainerView::setModel(model);

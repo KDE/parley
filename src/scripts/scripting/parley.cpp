@@ -12,22 +12,22 @@
 #include "../scriptmanager.h"
 #include "../translator.h"
 
-#include "lesson.h"
 #include "expression.h"
+#include "lesson.h"
 #include "translation.h"
 
 #include <KActionCollection>
 #include <QMenuBar>
 
-
 using namespace Editor;
 
 namespace Scripting
 {
-
-Parley::Parley(EditorWindow * editor) : QObject(), m_editor(editor)
+Parley::Parley(EditorWindow *editor)
+    : QObject()
+    , m_editor(editor)
 {
-    m_translator = new Translator(this); //parameter has to be <this> cause it's used by Translator to access callTranslateWord
+    m_translator = new Translator(this); // parameter has to be <this> cause it's used by Translator to access callTranslateWord
     m_doc = new Document(m_editor->m_mainWindow->parleyDocument()->document().get());
 }
 
@@ -37,7 +37,7 @@ Parley::~Parley()
     delete m_doc;
 }
 
-void Parley::callTranslateWord(const QString & word, const QString& fromLanguage, const QString& toLanguage)
+void Parley::callTranslateWord(const QString &word, const QString &fromLanguage, const QString &toLanguage)
 {
     emit translationStarted(word, fromLanguage, toLanguage);
     emit translateWord(word, fromLanguage, toLanguage);
@@ -58,17 +58,17 @@ QStringList Parley::locales()
 
 QString Parley::localeName(const QString &locale)
 {
-    return QLocale( locale ).nativeLanguageName( );
+    return QLocale(locale).nativeLanguageName();
 }
 
 void Parley::open(const QString &filename)
 {
-    QUrl url( QUrl::fromLocalFile(filename) );
+    QUrl url(QUrl::fromLocalFile(filename));
     qDebug() << url;
     m_editor->m_mainWindow->parleyDocument()->open(url);
 }
 
-QObject* Parley::activeLesson()
+QObject *Parley::activeLesson()
 {
     return new Lesson(m_editor->m_vocabularyModel->lesson());
 }
@@ -77,22 +77,22 @@ QVariantList Parley::selectedEntries()
 {
     QVariantList entries;
 
-    //get selected indexes and active lesson
+    // get selected indexes and active lesson
     QModelIndexList indexes = m_editor->m_vocabularyView->getSelectedIndexes();
 
-    //get the unique selected entries
-    QSet<KEduVocExpression*> kentries;
-    for (const QModelIndex & index : qAsConst(indexes)) {
-//             qDebug() << index.row() << index.data(Qt::DisplayRole);
-        KEduVocExpression * expr = qvariant_cast<KEduVocExpression*> (index.data(VocabularyModel::EntryRole));
+    // get the unique selected entries
+    QSet<KEduVocExpression *> kentries;
+    for (const QModelIndex &index : qAsConst(indexes)) {
+        //             qDebug() << index.row() << index.data(Qt::DisplayRole);
+        KEduVocExpression *expr = qvariant_cast<KEduVocExpression *>(index.data(VocabularyModel::EntryRole));
         kentries << expr;
     }
 
-    //convert them to Expression objects and add them to the QVariantList
-    for (KEduVocExpression * expr : qAsConst(kentries)) {
-//             Expression entry(expr);
-//             qDebug() << entry.translationTexts();
-        QObject * obj = new Expression(expr);
+    // convert them to Expression objects and add them to the QVariantList
+    for (KEduVocExpression *expr : qAsConst(kentries)) {
+        //             Expression entry(expr);
+        //             qDebug() << entry.translationTexts();
+        QObject *obj = new Expression(expr);
         entries << QVariant::fromValue(obj);
     }
 
@@ -103,38 +103,37 @@ QVariantList Parley::selectedTranslations()
 {
     QVariantList translations;
 
-    //get selected indexes and active lesson
+    // get selected indexes and active lesson
     QModelIndexList indexes = m_editor->m_vocabularyView->getSelectedIndexes();
 
-    //get the unique selected entries
-    QSet<KEduVocTranslation*> ktranslations;
-//         const QModelIndex &index;
-    for (const QModelIndex & index : qAsConst(indexes)) {
+    // get the unique selected entries
+    QSet<KEduVocTranslation *> ktranslations;
+    //         const QModelIndex &index;
+    for (const QModelIndex &index : qAsConst(indexes)) {
         if (VocabularyModel::columnType(index.column()) == VocabularyModel::Translation) {
-            KEduVocExpression * expr = qvariant_cast<KEduVocExpression*> (index.data(VocabularyModel::EntryRole));
+            KEduVocExpression *expr = qvariant_cast<KEduVocExpression *>(index.data(VocabularyModel::EntryRole));
             ktranslations << expr->translation(VocabularyModel::translation(index.column()));
         }
-//             qDebug() << index.row() << index.data(Qt::DisplayRole);
+        //             qDebug() << index.row() << index.data(Qt::DisplayRole);
     }
 
-    //convert them to Expression objects and add them to the QVariantList
-    for (KEduVocTranslation * tr : qAsConst(ktranslations)) {
-//             Translation transltion(tr);
-//             qDebug() << entry.translationTexts();
-        QObject * obj = new Translation(tr);
+    // convert them to Expression objects and add them to the QVariantList
+    for (KEduVocTranslation *tr : qAsConst(ktranslations)) {
+        //             Translation transltion(tr);
+        //             qDebug() << entry.translationTexts();
+        QObject *obj = new Translation(tr);
         translations << QVariant::fromValue(obj);
     }
 
     return translations;
 }
 
-QObject * Scripting::Parley::newAction(const QString & name, const QString& text)
+QObject *Scripting::Parley::newAction(const QString &name, const QString &text)
 {
-    //create new action
-    QAction* action = new QAction(text, m_editor);
+    // create new action
+    QAction *action = new QAction(text, m_editor);
     m_editor->m_scriptManager->addScriptAction(name, action);
     return action;
-
 }
 
 }

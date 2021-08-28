@@ -8,7 +8,6 @@
 This file collects some utility classes that are used in multiple unit tests
 **/
 
-
 #ifndef PARLEYUNITTESTUTILITIES_H
 #define PARLEYUNITTESTUTILITIES_H
 
@@ -18,18 +17,17 @@ This file collects some utility classes that are used in multiple unit tests
 
 #include <QUrl>
 
-#include <QTest>
 #include <QDebug>
+#include <QTest>
 
 namespace UnitTestUtilities
 {
-
 /** Class to manage creation/destruction of a kvtml temp doc*/
 class TemporaryVocDoc : public QTemporaryFile
 {
-public :
+public:
     /** Create the file, fix the suffix and instantiate it.*/
-    TemporaryVocDoc() ;
+    TemporaryVocDoc();
 
     /** Destructor*/
     ~TemporaryVocDoc();
@@ -38,7 +36,7 @@ public :
 /** Creates a minimal doc that will save and load error free.*/
 class MinimalTempVocDoc : public TemporaryVocDoc
 {
-public :
+public:
     /** The minimal doc has generator, author, lang and local */
     MinimalTempVocDoc();
 
@@ -47,4 +45,4 @@ public :
 };
 
 }
-#endif //PARLEYUNITTESTUTILITIES_H
+#endif // PARLEYUNITTESTUTILITIES_H

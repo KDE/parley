@@ -16,6 +16,7 @@
 #include <KTitleWidget>
 
 // Qt imports
+#include <QDialogButtonBox>
 #include <QGridLayout>
 #include <QGroupBox>
 #include <QHeaderView>
@@ -23,18 +24,17 @@
 #include <QStandardItemModel>
 #include <QTreeView>
 #include <QVBoxLayout>
-#include <QDialogButtonBox>
 
 const int COLUMNS_LIMIT = 1; // columns for row
 
 using namespace Editor;
 
 VocabularyColumnsDialog::VocabularyColumnsDialog(KEduVocDocument *doc, QWidget *parent)
-    : QDialog(parent),
-      m_models()
+    : QDialog(parent)
+    , m_models()
 {
-    QDialogButtonBox * button_dialog = new QDialogButtonBox;
-    button_dialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel );
+    QDialogButtonBox *button_dialog = new QDialogButtonBox;
+    button_dialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 
     m_box = new QGridLayout();
     m_doc = doc;
@@ -46,10 +46,10 @@ VocabularyColumnsDialog::VocabularyColumnsDialog(KEduVocDocument *doc, QWidget *
     main_widget->setLayout(m_box);
 
     QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget( main_widget );
-    layout->addWidget( button_dialog );
+    layout->addWidget(main_widget);
+    layout->addWidget(button_dialog);
 
-    setLayout( layout );
+    setLayout(layout);
 
     connect(button_dialog, &QDialogButtonBox::accepted, this, &VocabularyColumnsDialog::accept);
     connect(button_dialog, &QDialogButtonBox::rejected, this, &VocabularyColumnsDialog::reject);
@@ -78,7 +78,7 @@ void VocabularyColumnsDialog::createLanguagesLayout()
     int row = 1;
     int column = 0;
     for (int i = 0; i < m_doc->identifierCount(); i++) {
-        m_models [i] = new QStandardItemModel(this);
+        m_models[i] = new QStandardItemModel(this);
 
         QGroupBox *box = new QGroupBox(m_doc->identifier(i).name(), 0);
         QVBoxLayout *box_layout = new QVBoxLayout(0);
@@ -86,9 +86,9 @@ void VocabularyColumnsDialog::createLanguagesLayout()
         m_box->addWidget(box, row, column);
 
         if (column < COLUMNS_LIMIT) {
-            column ++;
+            column++;
         } else {
-            row ++;
+            row++;
             column = 0;
         }
 
@@ -112,24 +112,24 @@ void VocabularyColumnsDialog::addLanguage(int i, QVBoxLayout *parent)
             item_data->setCheckState(m_settings->visibleColumns().at(i * 8 + c) == 1 ? Qt::Checked : Qt::Unchecked);
         }
 
-        m_models [i]->insertRow(c - 1, item_data);
+        m_models[i]->insertRow(c - 1, item_data);
     }
 
     QTreeView *treeView = new QTreeView(this);
     treeView->header()->hide();
-    treeView->setModel(m_models [i]);
+    treeView->setModel(m_models[i]);
 
     parent->addWidget(treeView);
 }
 
 void VocabularyColumnsDialog::saveVisibleColumns()
 {
-    QList <int> columns;
+    QList<int> columns;
 
-    for (int i = 0; i < m_doc->identifierCount(); i++) {  // each model for every language
+    for (int i = 0; i < m_doc->identifierCount(); i++) { // each model for every language
         columns << 1;
-        for (int row = 0; row < m_models [i]->rowCount(); row++) { // the columns for one language
-            int enabled = (m_models [i]->item(row)->checkState() == Qt::Checked) ? 1 : 0;
+        for (int row = 0; row < m_models[i]->rowCount(); row++) { // the columns for one language
+            int enabled = (m_models[i]->item(row)->checkState() == Qt::Checked) ? 1 : 0;
             columns << enabled;
         }
     }

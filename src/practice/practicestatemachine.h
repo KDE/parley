@@ -3,7 +3,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef PRACTICESTATEMACHINE_H
 #define PRACTICESTATEMACHINE_H
 
@@ -21,9 +20,7 @@ class PracticeStateMachine : public QObject
 {
     Q_OBJECT
 public:
-    PracticeStateMachine(AbstractFrontend* frontend, ParleyDocument* doc,
-                         SessionManagerBase* sessionManager,
-                         QObject* parent = 0);
+    PracticeStateMachine(AbstractFrontend *frontend, ParleyDocument *doc, SessionManagerBase *sessionManager, QObject *parent = 0);
     void start();
 
 Q_SIGNALS:
@@ -53,19 +50,15 @@ private:
     void createPracticeMode();
     void updateFrontend();
 
-    enum State {
-        NotAnswered,
-        AnswerWasWrong,
-        SolutionShown
-    };
+    enum State { NotAnswered, AnswerWasWrong, SolutionShown };
 
     State m_state;
 
-    AbstractFrontend* m_frontend;
-    AbstractBackendMode* m_mode;
-    ParleyDocument* m_document;
-    TestEntry* m_current;
-    SessionManagerBase* m_sessionManager;
+    AbstractFrontend *m_frontend;
+    AbstractBackendMode *m_mode;
+    ParleyDocument *m_document;
+    TestEntry *m_current;
+    SessionManagerBase *m_sessionManager;
 };
 
 }

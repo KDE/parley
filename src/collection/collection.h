@@ -16,26 +16,23 @@
 // Parley
 #include "testentry.h"
 
-
 struct WordCount;
-
 
 class Collection : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit Collection(QUrl *url, QObject* parent = 0);
+    explicit Collection(QUrl *url, QObject *parent = 0);
     ~Collection();
 
     KEduVocDocument *eduVocDocument();
     void numDueWords(WordCount &wc);
 
- private:
+private:
     // The contents of the document
     KEduVocDocument *m_doc;
-    QList<TestEntry*> m_allTestEntries;
-
+    QList<TestEntry *> m_allTestEntries;
 };
 
 #endif

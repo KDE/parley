@@ -5,18 +5,18 @@
 
 #include "languagepropertiespage.h"
 
-#include "languagesettings.h"
 #include "documentproperties.h"
+#include "languagesettings.h"
 #include <KMessageBox>
 
-#include <QDebug>
 #include <KLocalizedString>
-#include <QLineEdit>
-#include <QInputDialog>
 #include <QCheckBox>
-#include <QLabel>
 #include <QDBusInterface>
 #include <QDBusReply>
+#include <QDebug>
+#include <QInputDialog>
+#include <QLabel>
+#include <QLineEdit>
 #include <sonnet/speller.h>
 
 #include <KEduVocDocument>
@@ -28,12 +28,13 @@
 #define TENSE_TAG ". "
 
 LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identifierIndex, QWidget *parent)
-    : QWidget(parent), m_doc(doc), m_identifierIndex(identifierIndex)
+    : QWidget(parent)
+    , m_doc(doc)
+    , m_identifierIndex(identifierIndex)
 {
     setupUi(this);
 
-    connect(localeComboBox, QOverload<const QString &>::of(&KComboBox::currentTextChanged),
-            this, &LanguagePropertiesPage::localeChanged);
+    connect(localeComboBox, QOverload<const QString &>::of(&KComboBox::currentTextChanged), this, &LanguagePropertiesPage::localeChanged);
     connect(downloadGrammarButton, &QPushButton::clicked, this, &LanguagePropertiesPage::downloadGrammar);
 
     // qmap automatically sorts by keys
@@ -45,8 +46,7 @@ LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identif
     }
 
     if (m_identifierIndex < m_doc->identifierCount()) {
-        localeComboBox->setCurrentIndex(localeComboBox->findData(
-                                            m_doc->identifier(m_identifierIndex).locale()));
+        localeComboBox->setCurrentIndex(localeComboBox->findData(m_doc->identifier(m_identifierIndex).locale()));
 
         identifierNameLineEdit->setText(m_doc->identifier(m_identifierIndex).name());
     }
@@ -102,7 +102,7 @@ void LanguagePropertiesPage::setLanguageIdentifierIndex(int newIndex)
 
 namespace DocumentHelper
 {
-void fetchGrammar(KEduVocDocument* doc, int languageIndex);
+void fetchGrammar(KEduVocDocument *doc, int languageIndex);
 }
 
 void LanguagePropertiesPage::downloadGrammar()
@@ -125,7 +125,6 @@ void LanguagePropertiesPage::loadGrammarFromDocument()
 
         def_natural->setText(articles.article(KEduVocWordFlag::Singular | KEduVocWordFlag::Definite | KEduVocWordFlag::Neuter));
         indef_natural->setText(articles.article(KEduVocWordFlag::Singular | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Neuter));
-
 
         def_male_plural->setText(articles.article(KEduVocWordFlag::Plural | KEduVocWordFlag::Definite | KEduVocWordFlag::Masculine));
         indef_male_plural->setText(articles.article(KEduVocWordFlag::Plural | KEduVocWordFlag::Indefinite | KEduVocWordFlag::Masculine));
@@ -182,7 +181,7 @@ void LanguagePropertiesPage::loadGrammarFromDocument()
     if (m_identifierIndex < m_doc->identifierCount()) {
         int i = 1;
         const QStringList tenses = m_doc->identifier(m_identifierIndex).tenseList();
-        for (const QString & tenseName : tenses) {
+        for (const QString &tenseName : tenses) {
             tenseList->addItem(QStringLiteral("%1").arg(i++, 2).append(TENSE_TAG).append(tenseName));
             tenseIndex.append(i);
         }
@@ -229,7 +228,7 @@ void LanguagePropertiesPage::accept()
 
     // articles
     const KEduVocWordFlag::Flags artSing = KEduVocWordFlag::Singular;
-//    const KEduVocWordFlag::Flags artDual = KEduVocWordFlag::Dual;
+    //    const KEduVocWordFlag::Flags artDual = KEduVocWordFlag::Dual;
     const KEduVocWordFlag::Flags artPlur = KEduVocWordFlag::Plural;
 
     const KEduVocWordFlag::Flags artDef = KEduVocWordFlag::Definite;
@@ -237,20 +236,19 @@ void LanguagePropertiesPage::accept()
 
     KEduVocArticle article;
 
-    article.setArticle(def_male->text(),  artSing | artDef | KEduVocWordFlag::Masculine);
-    article.setArticle(indef_male->text(),  artSing | artIndef | KEduVocWordFlag::Masculine);
-    article.setArticle(def_female->text(),  artSing | artDef | KEduVocWordFlag::Feminine);
-    article.setArticle(indef_female->text(),  artSing | artIndef | KEduVocWordFlag::Feminine);
-    article.setArticle(def_natural->text(),  artSing | artDef | KEduVocWordFlag::Neuter);
-    article.setArticle(indef_natural->text(),  artSing | artIndef | KEduVocWordFlag::Neuter);
+    article.setArticle(def_male->text(), artSing | artDef | KEduVocWordFlag::Masculine);
+    article.setArticle(indef_male->text(), artSing | artIndef | KEduVocWordFlag::Masculine);
+    article.setArticle(def_female->text(), artSing | artDef | KEduVocWordFlag::Feminine);
+    article.setArticle(indef_female->text(), artSing | artIndef | KEduVocWordFlag::Feminine);
+    article.setArticle(def_natural->text(), artSing | artDef | KEduVocWordFlag::Neuter);
+    article.setArticle(indef_natural->text(), artSing | artIndef | KEduVocWordFlag::Neuter);
 
-
-    article.setArticle(def_male_plural->text(),  artPlur | artDef | KEduVocWordFlag::Masculine);
-    article.setArticle(indef_male_plural->text(),  artPlur | artIndef | KEduVocWordFlag::Masculine);
-    article.setArticle(def_female_plural->text(),  artPlur | artDef | KEduVocWordFlag::Feminine);
-    article.setArticle(indef_female_plural->text(),  artPlur | artIndef | KEduVocWordFlag::Feminine);
-    article.setArticle(def_natural_plural->text(),  artPlur | artDef | KEduVocWordFlag::Neuter);
-    article.setArticle(indef_natural_plural->text(),  artPlur | artIndef | KEduVocWordFlag::Neuter);
+    article.setArticle(def_male_plural->text(), artPlur | artDef | KEduVocWordFlag::Masculine);
+    article.setArticle(indef_male_plural->text(), artPlur | artIndef | KEduVocWordFlag::Masculine);
+    article.setArticle(def_female_plural->text(), artPlur | artDef | KEduVocWordFlag::Feminine);
+    article.setArticle(indef_female_plural->text(), artPlur | artIndef | KEduVocWordFlag::Feminine);
+    article.setArticle(def_natural_plural->text(), artPlur | artDef | KEduVocWordFlag::Neuter);
+    article.setArticle(indef_natural_plural->text(), artPlur | artIndef | KEduVocWordFlag::Neuter);
 
     m_doc->identifier(m_identifierIndex).setArticle(article);
 
@@ -260,7 +258,7 @@ void LanguagePropertiesPage::accept()
     const KEduVocWordFlags numD = KEduVocWordFlag::Dual;
     const KEduVocWordFlags numP = KEduVocWordFlag::Plural;
 
-    pronoun.setPersonalPronoun(first_singular->text(),  KEduVocWordFlag::First | numS);
+    pronoun.setPersonalPronoun(first_singular->text(), KEduVocWordFlag::First | numS);
     pronoun.setPersonalPronoun(second_singular->text(), KEduVocWordFlag::Second | numS);
     pronoun.setPersonalPronoun(thirdM_singular->text(), KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | numS);
     pronoun.setPersonalPronoun(thirdF_singular->text(), KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | numS);
@@ -273,7 +271,7 @@ void LanguagePropertiesPage::accept()
     pronoun.setPersonalPronoun(dualThirdNeutralLineEdit->text(), KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | numD);
 
     pronoun.setPersonalPronoun(first_plural->text(), KEduVocWordFlag::First | numP);
-    pronoun.setPersonalPronoun(second_plural->text(), KEduVocWordFlag::Second |  numP);
+    pronoun.setPersonalPronoun(second_plural->text(), KEduVocWordFlag::Second | numP);
     pronoun.setPersonalPronoun(thirdM_plural->text(), KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | numP);
     pronoun.setPersonalPronoun(thirdF_plural->text(), KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | numP);
     pronoun.setPersonalPronoun(thirdN_plural->text(), KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | numP);
@@ -284,19 +282,17 @@ void LanguagePropertiesPage::accept()
 
     m_doc->identifier(m_identifierIndex).setPersonalPronouns(pronoun);
 
-
     // tenses
     QStringList tenses;
 
     QString str;
-    for (int i = 0; i < (int) tenseList->count(); i++) {
+    for (int i = 0; i < (int)tenseList->count(); i++) {
         str = tenseList->item(i)->text();
         tenses.append(str.mid(str.indexOf(TENSE_TAG) + QStringLiteral(TENSE_TAG).length()));
     }
 
     m_doc->identifier(m_identifierIndex).setTenseList(tenses);
 }
-
 
 void LanguagePropertiesPage::updateCheckBoxes()
 {
@@ -332,11 +328,10 @@ void LanguagePropertiesPage::updateCheckBoxes()
     }
 }
 
-void LanguagePropertiesPage::localeChanged(const QString & locale)
+void LanguagePropertiesPage::localeChanged(const QString &locale)
 {
     identifierNameLineEdit->setText(locale);
 }
-
 
 // ************** TENSES *********************
 
@@ -365,7 +360,7 @@ void LanguagePropertiesPage::slotNewTense()
 
 void LanguagePropertiesPage::slotModifyTense()
 {
-    if (tenseList->count() != 0 && (int) tenseList->count() > m_currentTense) {
+    if (tenseList->count() != 0 && (int)tenseList->count() > m_currentTense) {
         QString str = tenseList->item(m_currentTense)->text();
         str = str.mid(str.indexOf(TENSE_TAG) + QStringLiteral(TENSE_TAG).length());
 
@@ -382,7 +377,7 @@ void LanguagePropertiesPage::slotModifyTense()
 void LanguagePropertiesPage::updateListBox(int start)
 {
     QString str;
-    for (int i = start; i < (int) tenseList->count(); i++) {
+    for (int i = start; i < (int)tenseList->count(); i++) {
         str = tenseList->item(i)->text();
         str = str.mid(str.indexOf(TENSE_TAG) + QStringLiteral(TENSE_TAG).length());
         tenseList->item(i)->setText(QStringLiteral("%1").arg(i + 1, 2).append(TENSE_TAG).append(str));
@@ -392,15 +387,16 @@ void LanguagePropertiesPage::updateListBox(int start)
 void LanguagePropertiesPage::slotDeleteTense()
 {
     int act = m_currentTense;
-    if (tenseList->count() > 0 && (int) tenseList->count() > act) {
-
+    if (tenseList->count() > 0 && (int)tenseList->count() > act) {
         QString t = tenseList->item(act)->text();
 
-        QList < KEduVocExpression* > entries = m_doc->lesson()->entries(KEduVocLesson::Recursive);
-        for (KEduVocExpression * exp : entries) {
+        QList<KEduVocExpression *> entries = m_doc->lesson()->entries(KEduVocLesson::Recursive);
+        for (KEduVocExpression *exp : entries) {
             for (int lang = 0; lang < m_doc->identifierCount(); lang++) {
                 if (exp->translation(lang)->conjugationTenses().contains(t)) {
-                    KMessageBox::information(this, i18n("The selected user defined tense could not be deleted\nbecause it is in use."),    i18n("Deleting Tense Description"));
+                    KMessageBox::information(this,
+                                             i18n("The selected user defined tense could not be deleted\nbecause it is in use."),
+                                             i18n("Deleting Tense Description"));
                     return;
                 }
             }
@@ -409,7 +405,7 @@ void LanguagePropertiesPage::slotDeleteTense()
         delete tenseList->takeItem(act);
         tenseIndex.erase(tenseIndex.begin() + act);
 
-        if ((int) tenseList->count() <= act)
+        if ((int)tenseList->count() <= act)
             act = tenseList->count() - 1;
         else
             updateListBox(act); // update items after current

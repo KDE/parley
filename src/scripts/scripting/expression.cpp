@@ -7,28 +7,29 @@
 
 namespace Scripting
 {
-
 Expression::Expression()
 {
     m_expression = new KEduVocExpression();
 }
 
-Expression::Expression(const QString & expression)
+Expression::Expression(const QString &expression)
 {
     m_expression = new KEduVocExpression(expression);
 }
 
-Expression::Expression(const QStringList & translations)
+Expression::Expression(const QStringList &translations)
 {
     m_expression = new KEduVocExpression(translations);
 }
 
-Expression::Expression(KEduVocExpression * expression)
-    : QObject(), m_expression(expression)
+Expression::Expression(KEduVocExpression *expression)
+    : QObject()
+    , m_expression(expression)
 {
 }
 
-Expression::Expression(const Expression & other) : QObject()
+Expression::Expression(const Expression &other)
+    : QObject()
 {
     m_expression = other.kEduVocExpression();
 }
@@ -49,20 +50,20 @@ QVariantList Expression::translationIndices() const
 
 QVariantList Expression::translations() const
 {
-    //build a list of all the translations
+    // build a list of all the translations
     QList<KEduVocTranslation *> translations;
     const QList<int> translationIndices = m_expression->translationIndices();
     for (int k : translationIndices) {
         if (m_expression->translation(k))
             translations.push_back(m_expression->translation(k));
     }
-    //convert it to QVariantList and return it
-    return toVariantList<KEduVocTranslation, Translation> (translations);
+    // convert it to QVariantList and return it
+    return toVariantList<KEduVocTranslation, Translation>(translations);
 }
 
 QStringList Expression::translationTexts() const
 {
-    //build a list of all the translation texts
+    // build a list of all the translation texts
     QStringList list;
     const QList<int> translationIndices = m_expression->translationIndices();
     for (int k : translationIndices) {
@@ -94,10 +95,8 @@ void Expression::setTranslations(const QStringList &translations)
     m_expression = new KEduVocExpression(translations);
 }
 
-QObject* Expression::translation(int index) const
+QObject *Expression::translation(int index) const
 {
     return new Translation(m_expression->translation(index));
 }
 }
-
-

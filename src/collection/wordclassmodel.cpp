@@ -3,19 +3,17 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 // Own
 #include "wordclassmodel.h"
 
 #include <KEduVocWordtype>
 
-
-WordClassModel::WordClassModel(QObject * parent)
+WordClassModel::WordClassModel(QObject *parent)
     : ContainerModel(KEduVocContainer::WordType, parent)
 {
 }
 
-KEduVocContainer * WordClassModel::rootContainer() const
+KEduVocContainer *WordClassModel::rootContainer() const
 {
     if (!m_doc) {
         return 0;

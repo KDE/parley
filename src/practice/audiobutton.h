@@ -6,14 +6,12 @@
 #ifndef PRACTICE_AUDIOBUTTON_H
 #define PRACTICE_AUDIOBUTTON_H
 
-#include <QToolButton>
 #include <QMediaPlayer>
+#include <QToolButton>
 #include <QUrl>
-
 
 namespace Practice
 {
-
 class AudioButton : public QToolButton
 {
     Q_OBJECT
@@ -27,7 +25,7 @@ private Q_SLOTS:
     void playerStateChanged(QMediaPlayer::State newState);
 
 private:
-    QMediaPlayer* m_player;        ///< media object for the files
+    QMediaPlayer *m_player; ///< media object for the files
     QUrl m_url;
 };
 

@@ -3,19 +3,17 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef CONJUGATIONDATA_H
 #define CONJUGATIONDATA_H
 
-#include <QStringList>
-#include <QString>
 #include <QMetaType>
+#include <QString>
+#include <QStringList>
 
 #include <KEduVocConjugation>
 
 namespace Practice
 {
-
 struct ConjugationData {
     QString questionInfinitive;
     QString solutionInfinitive;

@@ -12,23 +12,22 @@
 #include <QDateTime>
 
 // kdelibs
-#include <KLocalizedString>
 #include <KConfig>
-#include <QDebug>
+#include <KLocalizedString>
 #include <KMessageBox>
+#include <QDebug>
 
 // kdeedulibs
-#include <KEduVocLesson>
 #include <KEduVocDocument>
+#include <KEduVocLesson>
 
 // parley
 #include "entryfilter.h"
 #include <prefs.h>
 
-
 using namespace Practice;
 
-SessionManagerContinuous::SessionManagerContinuous(QWidget* parent)
+SessionManagerContinuous::SessionManagerContinuous(QWidget *parent)
     : SessionManagerBase(parent)
 {
 }
@@ -37,8 +36,7 @@ SessionManagerContinuous::~SessionManagerContinuous()
 {
 }
 
-
-void SessionManagerContinuous::setDocument(KEduVocDocument* doc)
+void SessionManagerContinuous::setDocument(KEduVocDocument *doc)
 {
     SessionManagerBase::setDocument(doc);
 }

@@ -6,8 +6,8 @@
 #ifndef WORDTYPEVIEW_H
 #define WORDTYPEVIEW_H
 
-#include "wordtypeview.h"
 #include "containerview.h"
+#include "wordtypeview.h"
 
 class QAction;
 class KSelectAction;
@@ -31,13 +31,13 @@ public slots:
     /** Remove a word type. */
     void slotDeleteWordType();
 
-    void setTranslation(KEduVocExpression* entry, int translationId);
+    void setTranslation(KEduVocExpression *entry, int translationId);
 
 signals:
-    void selectedWordTypeChanged(KEduVocWordType* wordType);
+    void selectedWordTypeChanged(KEduVocWordType *wordType);
 
 protected:
-    void contextMenuEvent(QContextMenuEvent * event) override;
+    void contextMenuEvent(QContextMenuEvent *event) override;
 
 private slots:
     void setWordTypeNone();

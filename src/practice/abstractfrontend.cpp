@@ -7,7 +7,7 @@
 
 using namespace Practice;
 
-AbstractFrontend::AbstractFrontend(QObject* parent)
+AbstractFrontend::AbstractFrontend(QObject *parent)
     : QObject(parent)
 {
 }

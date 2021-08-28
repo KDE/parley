@@ -7,15 +7,15 @@
 
 #include "ui_practice_widget_comparison.h"
 
-#include <QDebug>
 #include <KColorScheme>
+#include <KLocalizedString>
+#include <QDebug>
 #include <QRadioButton>
 #include <QTimer>
-#include <KLocalizedString>
 
 using namespace Practice;
 
-ComparisonModeWidget::ComparisonModeWidget(GuiFrontend *frontend, QWidget* parent)
+ComparisonModeWidget::ComparisonModeWidget(GuiFrontend *frontend, QWidget *parent)
     : AbstractModeWidget(frontend, parent)
 {
     m_ui = new Ui::ComparisonPracticeWidget();
@@ -30,12 +30,12 @@ ComparisonModeWidget::ComparisonModeWidget(GuiFrontend *frontend, QWidget* paren
     m_ui->superlativeSolutionLabel->setPalette(m_correctPalette);
 }
 
-void ComparisonModeWidget::setQuestionFont(const QFont& font)
+void ComparisonModeWidget::setQuestionFont(const QFont &font)
 {
     m_ui->questionLabel->setFont(font);
 }
 
-void ComparisonModeWidget::setSolutionFont(const QFont& font)
+void ComparisonModeWidget::setSolutionFont(const QFont &font)
 {
     m_ui->absoluteSolutionLabel->setFont(font);
     m_ui->comparativeSolutionLabel->setFont(font);
@@ -45,7 +45,7 @@ void ComparisonModeWidget::setSolutionFont(const QFont& font)
     m_ui->superlativeEdit->setFont(font);
 }
 
-void ComparisonModeWidget::setQuestion(const QVariant& question)
+void ComparisonModeWidget::setQuestion(const QVariant &question)
 {
     m_ui->questionLabel->setText(question.toString());
     m_ui->absoluteEdit->clear();
@@ -65,7 +65,7 @@ void ComparisonModeWidget::showQuestion()
     m_ui->feedbackLabel->setText(i18n("Enter the comparison forms."));
 }
 
-void ComparisonModeWidget::setSolution(const QVariant& solution)
+void ComparisonModeWidget::setSolution(const QVariant &solution)
 {
     m_solution = solution.toStringList();
     Q_ASSERT(m_solution.size() == 3);
@@ -74,7 +74,7 @@ void ComparisonModeWidget::setSolution(const QVariant& solution)
     m_ui->superlativeEdit->setDisabled(m_solution.at(2).isEmpty());
 }
 
-void ComparisonModeWidget::setFeedback(const QVariant& feedback)
+void ComparisonModeWidget::setFeedback(const QVariant &feedback)
 {
     m_ui->feedbackLabel->setText(feedback.toString());
 }
@@ -111,9 +111,8 @@ QVariant ComparisonModeWidget::userInput()
     return answers;
 }
 
-void ComparisonModeWidget::setHint(const QVariant& /*hint*/)
+void ComparisonModeWidget::setHint(const QVariant & /*hint*/)
 {
-
 }
 
 void ComparisonModeWidget::nextComparisonForm()
@@ -122,23 +121,23 @@ void ComparisonModeWidget::nextComparisonForm()
         m_ui->comparativeEdit->setFocus();
     } else if (m_ui->comparativeEdit->hasFocus()) {
         m_ui->superlativeEdit->setFocus();
-    } else  {
+    } else {
         emit continueAction();
     }
 }
 
-void ComparisonModeWidget::setQuestionPronunciation(const QString& /*pronunciationText*/)
+void ComparisonModeWidget::setQuestionPronunciation(const QString & /*pronunciationText*/)
 {
 }
 
-void ComparisonModeWidget::setSolutionPronunciation(const QString& /*pronunciationText*/)
+void ComparisonModeWidget::setSolutionPronunciation(const QString & /*pronunciationText*/)
 {
 }
 
-void ComparisonModeWidget::setQuestionSound(const QUrl& /*soundUrl*/)
+void ComparisonModeWidget::setQuestionSound(const QUrl & /*soundUrl*/)
 {
 }
 
-void ComparisonModeWidget::setSolutionSound(const QUrl& /*soundUrl*/)
+void ComparisonModeWidget::setSolutionSound(const QUrl & /*soundUrl*/)
 {
 }

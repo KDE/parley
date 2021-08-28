@@ -14,7 +14,6 @@
 
 namespace Scripting
 {
-
 class Translation;
 
 /**
@@ -26,10 +25,10 @@ class Expression : public QObject
 {
     Q_OBJECT
     /// Parent lesson (if any)
-    Q_PROPERTY(QObject * lesson READ lesson)
+    Q_PROPERTY(QObject *lesson READ lesson)
     /// Specifies if the entry is active or not (enabled for queries or not)
     Q_PROPERTY(bool active READ isActive WRITE setActive)
-//             Q_PROPERTY ( int sizeHint READ sizeHint WRITE setSizeHint)
+    //             Q_PROPERTY ( int sizeHint READ sizeHint WRITE setSizeHint)
 public:
     /* default constructor for an empty vocabulary expression
      */
@@ -39,64 +38,69 @@ public:
      *
      * @param expression       translation
      */
-    explicit Expression(const QString & expression);
+    explicit Expression(const QString &expression);
 
     /*
      * Constructor for vocabulary expression with more than one translation
      * @param translations
      */
-    explicit Expression(const QStringList & translations);
+    explicit Expression(const QStringList &translations);
 
-    Expression(const Expression & other);
+    Expression(const Expression &other);
 
     /*
      * Constructor from a KEduVocExpression (doesn't exist in KEduVocExpression)
      * @param expression KEduVocExpression object
      */
-    explicit Expression(KEduVocExpression * expression);
+    explicit Expression(KEduVocExpression *expression);
 
     ~Expression();
 
-    KEduVocExpression * kEduVocExpression() const {
+    KEduVocExpression *kEduVocExpression() const
+    {
         return m_expression;
     }
 
-    template <class T, class S>
-    QVariantList toVariantList(QList<T*> objList) const;
+    template<class T, class S>
+    QVariantList toVariantList(QList<T *> objList) const;
 
-    //Property: lesson [get method - read-only]
-    QObject * lesson() const {
+    // Property: lesson [get method - read-only]
+    QObject *lesson() const
+    {
         return new Lesson(m_expression->lesson());
     }
 
     /* returns flag if entry is activated for queries */
-    bool isActive() const {
+    bool isActive() const
+    {
         return m_expression->isActive();
     }
     /* set entry active (enabled for queries) */
-    void setActive(bool flag = true) {
+    void setActive(bool flag = true)
+    {
         m_expression->setActive(flag);
     }
 
-    //Property: sizeHing [get/set methods] (not implemented in KEduVocExpression)
-    //int sizeHint() const { return m_expression->sizeHint(); }
-    //void setSizeHint( int sizeHint ) { m_expression->setSizeHint(sizeHint); }
+    // Property: sizeHing [get/set methods] (not implemented in KEduVocExpression)
+    // int sizeHint() const { return m_expression->sizeHint(); }
+    // void setSizeHint( int sizeHint ) { m_expression->setSizeHint(sizeHint); }
 
-    //for assignlable type
-//             Expression & operator= ( const Expression &other );
-//             bool operator== ( const Expression &other ) const;
+    // for assignlable type
+    //             Expression & operator= ( const Expression &other );
+    //             bool operator== ( const Expression &other ) const;
 
 public slots:
 
     /** reset all grades of the entry
      * @param index     identifier (language)
      */
-    void resetGrades(int index) {
+    void resetGrades(int index)
+    {
         m_expression->resetGrades(index);
     }
 
-    //not implemented in KEduVocExpression
-//             void setTranslation( int index, QObject* translation );
+    // not implemented in KEduVocExpression
+    //             void setTranslation( int index, QObject* translation );
 
     /**
      * Add a translation to this expression
@@ -113,7 +117,8 @@ public slots:
      * @param index            number of translation = the identifier
      * @param expression       the translation
      */
-    void setTranslation(int index, const QString &expression) {
+    void setTranslation(int index, const QString &expression)
+    {
         m_expression->setTranslation(index, expression);
     }
 
@@ -140,7 +145,8 @@ public slots:
      * @endcode
      * @param index            number of translation 1..x
      */
-    void removeTranslation(int index) {
+    void removeTranslation(int index)
+    {
         m_expression->removeTranslation(index);
     }
 
@@ -149,7 +155,7 @@ public slots:
      * @param index of the language identifier
      * @return A Translation object
      */
-    QObject* translation(int index) const;
+    QObject *translation(int index) const;
 
     /** Returns a list of integers (the translation indices) */
     QVariantList translationIndices() const;
@@ -178,21 +184,20 @@ public slots:
     QStringList translationTexts() const;
 
 private:
-    KEduVocExpression* m_expression;
+    KEduVocExpression *m_expression;
 };
 
-//Template functions should not be separated from their definition (must be in the header file)
-template <class T, class S>
-QVariantList Expression::toVariantList(QList<T*> objList) const
+// Template functions should not be separated from their definition (must be in the header file)
+template<class T, class S>
+QVariantList Expression::toVariantList(QList<T *> objList) const
 {
     QVariantList list;
-    for (T * t : qAsConst(objList)) {
-        QObject * obj = new S(t);
+    for (T *t : qAsConst(objList)) {
+        QObject *obj = new S(t);
         list.push_back(QVariant::fromValue(obj));
     }
     return list;
 }
-
 
 }
 

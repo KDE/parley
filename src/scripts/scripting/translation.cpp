@@ -6,20 +6,21 @@
 
 namespace Scripting
 {
-Translation::Translation(Expression * entry)
+Translation::Translation(Expression *entry)
 {
     m_translation = new KEduVocTranslation(entry->kEduVocExpression());
     m_text = m_translation;
 }
 
-Translation::Translation(Expression * entry, const QString & translation)
+Translation::Translation(Expression *entry, const QString &translation)
 {
     m_translation = new KEduVocTranslation(entry->kEduVocExpression(), translation);
     m_text = m_translation;
 }
 
-Translation::Translation(KEduVocTranslation * translation)
-    : Text(translation), m_translation(translation)
+Translation::Translation(KEduVocTranslation *translation)
+    : Text(translation)
+    , m_translation(translation)
 {
 }
 
@@ -34,22 +35,22 @@ QString Translation::wordType() const
     return QString();
 }
 
-void Translation::setConjugationText(const QString& conjugation, const QString& tense, const KEduVocWordFlags& flags)
+void Translation::setConjugationText(const QString &conjugation, const QString &tense, const KEduVocWordFlags &flags)
 {
     KEduVocConjugation conjug = m_translation->getConjugation(tense);
     conjug.setConjugation(conjugation, flags);
     m_translation->setConjugation(tense, conjug);
 }
 
-QObject * Translation::conjugation(const QString & tense, const KEduVocWordFlags& flags)
+QObject *Translation::conjugation(const QString &tense, const KEduVocWordFlags &flags)
 {
     KEduVocConjugation conjug = m_translation->getConjugation(tense);
     return new Text(conjug.conjugation(flags));
 }
 
-void Translation::setConjugation(QObject * conjugation, const QString& tense, const KEduVocWordFlags& flags)
+void Translation::setConjugation(QObject *conjugation, const QString &tense, const KEduVocWordFlags &flags)
 {
-    Text * txt = dynamic_cast<Text*>(conjugation);
+    Text *txt = dynamic_cast<Text *>(conjugation);
     if (txt) {
         KEduVocConjugation conjug = m_translation->getConjugation(tense);
         conjug.setConjugation(*(txt->kEduVocText()), flags);
@@ -57,35 +58,33 @@ void Translation::setConjugation(QObject * conjugation, const QString& tense, co
     }
 }
 
-
-QStringList Translation::conjugationTexts(const QString& tense)
+QStringList Translation::conjugationTexts(const QString &tense)
 {
     Q_UNUSED(tense)
-//         KEduVocConjugation conjug = m_translation->conjugation ( tense );
+    //         KEduVocConjugation conjug = m_translation->conjugation ( tense );
 
     QStringList list;
 
-//         for ( int n = 0; n <= KEduVocConjugation::Plural; n++ )
-//             for ( int p = 0; p <= KEduVocConjugation::ThirdNeutralCommon; p++ )
-//                 list << conjug.conjugation ( ( KEduVocConjugation::ConjugationPerson ) p, ( KEduVocConjugation::ConjugationNumber ) n ).text();
+    //         for ( int n = 0; n <= KEduVocConjugation::Plural; n++ )
+    //             for ( int p = 0; p <= KEduVocConjugation::ThirdNeutralCommon; p++ )
+    //                 list << conjug.conjugation ( ( KEduVocConjugation::ConjugationPerson ) p, ( KEduVocConjugation::ConjugationNumber ) n ).text();
 
     return list;
 }
 
-QStringList Translation::conjugationTexts(const QString& tense, const KEduVocWordFlags& flags)
+QStringList Translation::conjugationTexts(const QString &tense, const KEduVocWordFlags &flags)
 {
     Q_UNUSED(tense)
     Q_UNUSED(flags)
-//         KEduVocConjugation conjug = m_translation->conjugation ( tense );
+    //         KEduVocConjugation conjug = m_translation->conjugation ( tense );
 
     QStringList list;
 
-//         for ( int p = 0; p <= KEduVocConjugation::ThirdNeutralCommon; p++ )
-//             list << conjug.conjugation ( ( KEduVocConjugation::ConjugationPerson ) p, number ).text();
+    //         for ( int p = 0; p <= KEduVocConjugation::ThirdNeutralCommon; p++ )
+    //             list << conjug.conjugation ( ( KEduVocConjugation::ConjugationPerson ) p, number ).text();
 
     return list;
 }
-
 
 //     QObject * Translation::declension ( KEduVocWordFlag::DeclensionNumber number, KEduVocWordFlag::DeclensionCase decCase )
 //     {

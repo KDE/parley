@@ -12,7 +12,6 @@
 
 class KEduVocTranslation;
 
-
 class VocabularyMimeData : public QMimeData
 {
     Q_OBJECT
@@ -29,20 +28,18 @@ public:
         QMap<int, WordTypeStrings> wordTypes;
     };
 
-    void setTranslations(const QList<KEduVocTranslation*> &translation);
+    void setTranslations(const QList<KEduVocTranslation *> &translation);
     QList<KEduVocTranslation *> translationList() const;
     QList<VocabularyMimeData::MimeExpression> expressionList() const;
 
-    QVariant retrieveData(const QString & mimeType, QVariant::Type type) const override;
+    QVariant retrieveData(const QString &mimeType, QVariant::Type type) const override;
 
     QStringList formats() const override;
 
-
 private:
-    QList<KEduVocTranslation*> m_translations;
-    QList <MimeExpression> m_expressions;
+    QList<KEduVocTranslation *> m_translations;
+    QList<MimeExpression> m_expressions;
     QString m_text;
 };
-
 
 #endif

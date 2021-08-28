@@ -13,23 +13,22 @@
 #include <QRandomGenerator>
 
 // kdelibs
-#include <KLocalizedString>
 #include <KConfig>
-#include <QDebug>
+#include <KLocalizedString>
 #include <KMessageBox>
+#include <QDebug>
 
 // kdeedulibs
-#include <KEduVocLesson>
 #include <KEduVocDocument>
+#include <KEduVocLesson>
 
 // parley
 #include "entryfilter.h"
 #include <prefs.h>
 
-
 using namespace Practice;
 
-SessionManagerBase::SessionManagerBase(QWidget* parent)
+SessionManagerBase::SessionManagerBase(QWidget *parent)
     : m_parent(parent)
     , m_learningLanguageIndex(0)
     , m_knownLanguageIndex(1)
@@ -43,7 +42,7 @@ SessionManagerBase::~SessionManagerBase()
     qDeleteAll(m_allTestEntries);
 }
 
-void SessionManagerBase::setDocument(KEduVocDocument* doc)
+void SessionManagerBase::setDocument(KEduVocDocument *doc)
 {
     qDeleteAll(m_allTestEntries);
     m_allTestEntries.clear();
@@ -55,33 +54,30 @@ void SessionManagerBase::setDocument(KEduVocDocument* doc)
     // Make sure that there are at least 2 languages in the file before
     // starting the practice. If we don't do this, it will crash later.
     if (m_doc->identifierCount() < 2) {
-        KMessageBox::error(0, i18n("The vocabulary collection contains fewer than two languages."),
-                                   i18n("Could not start practice"));
+        KMessageBox::error(0, i18n("The vocabulary collection contains fewer than two languages."), i18n("Could not start practice"));
         return;
     }
 
-    if (Prefs::learningLanguage() >= m_doc->identifierCount()
-        || Prefs::knownLanguage() >= m_doc->identifierCount())
-    {
+    if (Prefs::learningLanguage() >= m_doc->identifierCount() || Prefs::knownLanguage() >= m_doc->identifierCount()) {
         Prefs::setLearningLanguage(0);
         Prefs::setKnownLanguage(1);
     }
 
     m_learningLanguageIndex = Prefs::learningLanguage();
-    m_knownLanguageIndex    = Prefs::knownLanguage();
-//     qDebug() << "Practice: learning language:" << m_doc->identifier(m_learningLanguageIndex).name()
-//              << " known language:" << m_doc->identifier(m_knownLanguageIndex).name();
+    m_knownLanguageIndex = Prefs::knownLanguage();
+    //     qDebug() << "Practice: learning language:" << m_doc->identifier(m_learningLanguageIndex).name()
+    //              << " known language:" << m_doc->identifier(m_knownLanguageIndex).name();
 
     // Create the list of available entries for this training session.
     EntryFilter filter(m_doc, m_parent);
     m_allTestEntries = filter.entries();
 
-//     qDebug() << "Entries: ----------------";
-//     qDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
-//     for (TestEntry *entry : qAsConst(m_allTestEntries)) {
-//         qDebug() << "Entry: " << entry->languageFrom() << entry->entry()->translation(entry->languageFrom())->text()
-//                  << "to" << entry->languageTo() << entry->entry()->translation(entry->languageTo())->text();
-//     }
+    //     qDebug() << "Entries: ----------------";
+    //     qDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
+    //     for (TestEntry *entry : qAsConst(m_allTestEntries)) {
+    //         qDebug() << "Entry: " << entry->languageFrom() << entry->entry()->translation(entry->languageFrom())->text()
+    //                  << "to" << entry->languageTo() << entry->entry()->translation(entry->languageTo())->text();
+    //     }
 
     // Create the list actual entries in this training session.  This
     // is a pure virtual function and must be implemented by the
@@ -112,13 +108,12 @@ int SessionManagerBase::totalTime()
     return m_totalTime / (1000);
 }
 
-TestEntry* SessionManagerBase::nextTrainingEntry()
+TestEntry *SessionManagerBase::nextTrainingEntry()
 {
     // In some session types an entry will move out of the "current
     // entries" when they are correctly answered and then we need to
     // refill.
-    while (m_currentEntries.count() < Prefs::testNumberOfEntries() &&
-            m_notAskedTestEntries.count() > 0) {
+    while (m_currentEntries.count() < Prefs::testNumberOfEntries() && m_notAskedTestEntries.count() > 0) {
         m_currentEntries.append(m_notAskedTestEntries.takeAt(0));
     }
 
@@ -127,7 +122,7 @@ TestEntry* SessionManagerBase::nextTrainingEntry()
     int lastEntry = m_currentEntry;
     if (m_currentEntries.count() > 0) {
         // Choose one of the current entries randomly.
-	m_currentEntry = QRandomGenerator::global()->bounded(m_currentEntries.count());
+        m_currentEntry = QRandomGenerator::global()->bounded(m_currentEntries.count());
 
         // Do not allow to ask the same entry twice in a row.
         if (m_currentEntries.count() > 1) {
@@ -136,17 +131,14 @@ TestEntry* SessionManagerBase::nextTrainingEntry()
             }
         }
 
-        qDebug() << "nextTrainingEntry:"
-                 << m_currentEntry << " = " << m_currentEntries.value(m_currentEntry)->entry()->translation(0)->text()
-                 << " (" << m_currentEntries.count() + m_notAskedTestEntries.count()
-                 << "entries remaining)";
+        qDebug() << "nextTrainingEntry:" << m_currentEntry << " = " << m_currentEntries.value(m_currentEntry)->entry()->translation(0)->text() << " ("
+                 << m_currentEntries.count() + m_notAskedTestEntries.count() << "entries remaining)";
 
         return m_currentEntries.value(m_currentEntry);
     } else {
         return 0;
     }
 }
-
 
 void SessionManagerBase::removeCurrentEntryFromPractice()
 {
@@ -155,7 +147,7 @@ void SessionManagerBase::removeCurrentEntryFromPractice()
     }
 }
 
-QList<TestEntry*> SessionManagerBase::allTestEntries() const
+QList<TestEntry *> SessionManagerBase::allTestEntries() const
 {
     return m_allTestEntries;
 }
@@ -170,9 +162,9 @@ int SessionManagerBase::activeEntryCount()
     return m_notAskedTestEntries.count() + m_currentEntries.count();
 }
 
-QList<TestEntry*> SessionManagerBase::allUnansweredTestEntries()
+QList<TestEntry *> SessionManagerBase::allUnansweredTestEntries()
 {
-    QList<TestEntry*> result;
+    QList<TestEntry *> result;
 
     result.append(m_notAskedTestEntries);
     result.append(m_currentEntries);
@@ -183,11 +175,10 @@ QList<TestEntry*> SessionManagerBase::allUnansweredTestEntries()
 // ----------------------------------------------------------------
 //                         Statistics
 
-
 int SessionManagerBase::statisticTotalCorrectFirstAttempt()
 {
     int count = 0;
-    for (TestEntry * entry : qAsConst(m_allTestEntries)) {
+    for (TestEntry *entry : qAsConst(m_allTestEntries)) {
         if (entry->correctAtFirstAttempt()) {
             count++;
         }
@@ -198,7 +189,7 @@ int SessionManagerBase::statisticTotalCorrectFirstAttempt()
 int SessionManagerBase::statisticTotalWrong()
 {
     int count = 0;
-    for (TestEntry * entry : qAsConst(m_allTestEntries)) {
+    for (TestEntry *entry : qAsConst(m_allTestEntries)) {
         if (entry->statisticBadCount()) {
             count++;
         }
@@ -209,7 +200,7 @@ int SessionManagerBase::statisticTotalWrong()
 int SessionManagerBase::statisticTotalUnanswered()
 {
     int count = 0;
-    for (TestEntry * entry : qAsConst(m_allTestEntries)) {
+    for (TestEntry *entry : qAsConst(m_allTestEntries)) {
         if (entry->statisticCount() == 0) {
             count++;
         }
@@ -220,23 +211,19 @@ int SessionManagerBase::statisticTotalUnanswered()
 void SessionManagerBase::printStatistics()
 {
     qDebug() << "Test statistics: ";
-    for (TestEntry * entry : qAsConst(m_allTestEntries)) {
-        qDebug()
-                << " asked: " << entry->statisticCount()
-                << " +" << entry->statisticGoodCount() << " -" << entry->statisticBadCount()
-                << "Entry: " << entry->entry()->translation(0)->text();
+    for (TestEntry *entry : qAsConst(m_allTestEntries)) {
+        qDebug() << " asked: " << entry->statisticCount() << " +" << entry->statisticGoodCount() << " -" << entry->statisticBadCount()
+                 << "Entry: " << entry->entry()->translation(0)->text();
     }
 }
-
 
 // ----------------------------------------------------------------
 //                 Multiple choice questions
 
-
 QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
 {
     QStringList choices;
-    QList<KEduVocExpression*> allEntries = m_doc->lesson()->entries(KEduVocLesson::Recursive);
+    QList<KEduVocExpression *> allEntries = m_doc->lesson()->entries(KEduVocLesson::Recursive);
     int numValidEntries = 0;
     int count = numberChoices;
 
@@ -267,7 +254,7 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
             }
         }
     } else {
-        QList<KEduVocExpression*> exprlist;
+        QList<KEduVocExpression *> exprlist;
         while (count > 0) {
             int nr;
             // if there are enough non-empty fields, fill the options only with those
@@ -292,14 +279,12 @@ QStringList SessionManagerBase::multipleChoiceAnswers(int numberChoices)
         }
     }
 
-    qDebug() << "choices:" << choices << " answerLang = " << currentEntry->languageTo() ;
+    qDebug() << "choices:" << choices << " answerLang = " << currentEntry->languageTo();
     return choices;
 }
 
-
 // ----------------------------------------------------------------
 //                         Protected methods
-
 
 bool SessionManagerBase::isValidMultipleChoiceAnswer(KEduVocExpression *e)
 {

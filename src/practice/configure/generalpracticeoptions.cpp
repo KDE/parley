@@ -12,9 +12,10 @@
 
 #include "prefs.h"
 
-GeneralPracticeOptions::GeneralPracticeOptions(QWidget* parent) : QWidget(parent)
+GeneralPracticeOptions::GeneralPracticeOptions(QWidget *parent)
+    : QWidget(parent)
 {
     setupUi(this);
 
-    //connect(kcfg_ShowSolutionAfterAnswer, SIGNAL(toggled(bool)), kcfg_ShowSolutionAfterAnswerTime, SLOT(setEnabled(bool)));
+    // connect(kcfg_ShowSolutionAfterAnswer, SIGNAL(toggled(bool)), kcfg_ShowSolutionAfterAnswerTime, SLOT(setEnabled(bool)));
 }

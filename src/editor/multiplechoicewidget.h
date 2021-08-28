@@ -19,7 +19,6 @@ class QStringListModel;
 
 namespace Editor
 {
-
 class MultipleChoiceWidget : public QWidget, public Ui::multipleChoiceWidget
 {
     Q_OBJECT

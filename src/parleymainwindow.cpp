@@ -9,38 +9,38 @@
 
 #include "parleymainwindow.h"
 
-#include <config-parley.h>
 #include "editor/editor.h"
-#include "statistics/statisticsmainwindow.h"
-#include "settings/parleyprefs.h"
+#include "practice/configure/configurepracticedialog.h"
 #include "practice/guifrontend.h"
 #include "practice/practicesummarycomponent.h"
-#include "practice/configure/configurepracticedialog.h"
+#include "settings/parleyprefs.h"
+#include "statistics/statisticsmainwindow.h"
+#include <config-parley.h>
 
 #include "parleyactions.h"
 
-#include "prefs.h"
 #include "dashboard/dashboard.h"
+#include "prefs.h"
 
 #include <KActionCollection>
-#include <KRecentFilesAction>
 #include <KMessageBox>
+#include <KRecentFilesAction>
 #include <KTipDialog>
-#include <KXMLGUIFactory>
 #include <KToolBar>
+#include <KXMLGUIFactory>
 #include <QMenuBar>
 
 #include <QTimer>
 
 using namespace Editor;
 
-ParleyMainWindow* ParleyMainWindow::s_instance = 0;
-ParleyMainWindow* ParleyMainWindow::instance()
+ParleyMainWindow *ParleyMainWindow::s_instance = 0;
+ParleyMainWindow *ParleyMainWindow::instance()
 {
     return s_instance;
 }
 
-ParleyMainWindow::ParleyMainWindow(const QUrl& filename)
+ParleyMainWindow::ParleyMainWindow(const QUrl &filename)
     : KXmlGuiWindow(0)
     , m_currentComponent(NoComponent)
     , m_currentComponentWindow(0)
@@ -77,7 +77,7 @@ ParleyMainWindow::ParleyMainWindow(const QUrl& filename)
     setAutoSaveSettings();
 
     if (startWithDashboard) {
-	showDashboard();
+        showDashboard();
     } else {
         showEditor();
     }
@@ -86,7 +86,7 @@ ParleyMainWindow::ParleyMainWindow(const QUrl& filename)
     menuBar()->show();
 
     // finally show tip-of-day (if the user wants it)
-    //QTimer::singleShot( 0, this, SLOT(startupTipOfDay()) );
+    // QTimer::singleShot( 0, this, SLOT(startupTipOfDay()) );
 }
 
 ParleyMainWindow::~ParleyMainWindow()
@@ -97,8 +97,7 @@ ParleyMainWindow::~ParleyMainWindow()
 
     // Prevent calling this slot with already deleted m_document as it is no longer needed anyway
     if (m_document->document()) {
-        disconnect(m_document->document().get(), &KEduVocDocument::destroyed,
-                this, &ParleyMainWindow::slotUpdateWindowCaption);
+        disconnect(m_document->document().get(), &KEduVocDocument::destroyed, this, &ParleyMainWindow::slotUpdateWindowCaption);
     }
     delete m_document;
 }
@@ -118,10 +117,8 @@ void ParleyMainWindow::removeRecentFile(const QUrl &url)
 void ParleyMainWindow::documentUpdated(const std::shared_ptr<KEduVocDocument> &doc)
 {
     if (doc) {
-        connect(doc.get(), &KEduVocDocument::docModified,
-                this, &ParleyMainWindow::slotUpdateWindowCaption);
-        connect(doc.get(), &KEduVocDocument::destroyed,
-                this, &ParleyMainWindow::slotUpdateWindowCaption);
+        connect(doc.get(), &KEduVocDocument::docModified, this, &ParleyMainWindow::slotUpdateWindowCaption);
+        connect(doc.get(), &KEduVocDocument::destroyed, this, &ParleyMainWindow::slotUpdateWindowCaption);
         slotUpdateWindowCaption();
     }
 }
@@ -141,8 +138,9 @@ void ParleyMainWindow::slotUpdateWindowCaption()
     QString title;
     bool modified = false;
     if (m_document->document()) {
-        title = i18nc("Title and a modified status indicator.  [*] is exact and will be shown only when document is modified"
-                      , "%1 [*]",m_document->document()->title());
+        title = i18nc("Title and a modified status indicator.  [*] is exact and will be shown only when document is modified",
+                      "%1 [*]",
+                      m_document->document()->title());
         modified = m_document->document()->isModified();
         if (title == i18n("Untitled")) {
             title = QStringLiteral("[*]");
@@ -153,7 +151,7 @@ void ParleyMainWindow::slotUpdateWindowCaption()
 
 void ParleyMainWindow::slotGeneralOptions()
 {
-    ParleyPrefs* dialog = new ParleyPrefs(m_document->document().get(), this, QStringLiteral("settings"),  Prefs::self());
+    ParleyPrefs *dialog = new ParleyPrefs(m_document->document().get(), this, QStringLiteral("settings"), Prefs::self());
     connect(dialog, &ParleyPrefs::settingsChanged, this, &ParleyMainWindow::preferencesChanged);
     dialog->show();
 }
@@ -174,21 +172,19 @@ void ParleyMainWindow::slotCloseDocument()
 
 void ParleyMainWindow::configurePractice()
 {
-    ConfigurePracticeDialog configurePracticeDialog(m_document->document().get(), this, QStringLiteral("practice settings"),  Prefs::self());
+    ConfigurePracticeDialog configurePracticeDialog(m_document->document().get(), this, QStringLiteral("practice settings"), Prefs::self());
     configurePracticeDialog.exec();
 }
 
 void ParleyMainWindow::startPractice()
 {
     if (Prefs::learningLanguage() == Prefs::knownLanguage()) {
-        KMessageBox::sorry(this,
-                           i18n("You cannot start to practice when the known language is the same as the language to learn."),
-                           i18n("Select languages"));
+        KMessageBox::sorry(this, i18n("You cannot start to practice when the known language is the same as the language to learn."), i18n("Select languages"));
         return;
     }
-    qDebug() <<"Starting Switch Practice";
+    qDebug() << "Starting Switch Practice";
     switchComponent(PracticeComponent);
-    qDebug() <<"Finished Switch Practice";
+    qDebug() << "Finished Switch Practice";
 }
 
 void ParleyMainWindow::practiceFinished()
@@ -233,8 +229,7 @@ void ParleyMainWindow::initActions()
     ParleyActions::createDownloadAction(m_document, SLOT(slotGHNS()), actionCollection());
     ParleyActions::create(ParleyActions::FileOpenDownloaded, m_document, SLOT(openGHNS()), actionCollection());
 
-    m_recentFilesAction = ParleyActions::createRecentFilesAction(
-        m_document, SLOT(slotFileOpenRecent(QUrl)), actionCollection());
+    m_recentFilesAction = ParleyActions::createRecentFilesAction(m_document, SLOT(slotFileOpenRecent(QUrl)), actionCollection());
     m_recentFilesAction->loadEntries(KSharedConfig::openConfig()->group("Recent Files"));
 
     ParleyActions::create(ParleyActions::FileSave, m_document, SLOT(save()), actionCollection());
@@ -249,7 +244,7 @@ void ParleyMainWindow::initActions()
     ParleyActions::create(ParleyActions::FileQuit, this, SLOT(close()), actionCollection());
     ParleyActions::create(ParleyActions::Preferences, this, SLOT(slotGeneralOptions()), actionCollection());
 
-    actionCollection()->addAction(KStandardAction::TipofDay,  QStringLiteral("help_tipofday"), this, SLOT(tipOfDay()));
+    actionCollection()->addAction(KStandardAction::TipofDay, QStringLiteral("help_tipofday"), this, SLOT(tipOfDay()));
 }
 
 void ParleyMainWindow::showDashboard()
@@ -280,8 +275,7 @@ void ParleyMainWindow::showPracticeSummary()
 void ParleyMainWindow::switchComponent(Component component)
 {
     if (component == PracticeComponent) {
-
-        StatisticsMainWindow *statisticsWidget = qobject_cast<StatisticsMainWindow*>(m_currentComponentWindow);
+        StatisticsMainWindow *statisticsWidget = qobject_cast<StatisticsMainWindow *>(m_currentComponentWindow);
         if (statisticsWidget) {
             statisticsWidget->syncConfig();
         }
@@ -306,7 +300,7 @@ void ParleyMainWindow::switchComponent(Component component)
         Dashboard *dashboard = new Dashboard(this);
         m_currentComponentWindow = dashboard;
         showDocumentActions(true, false);
-        //dashboard->updateRecentFilesModel();
+        // dashboard->updateRecentFilesModel();
         break;
     }
     case ConfigurePracticeComponent: {
@@ -328,14 +322,14 @@ void ParleyMainWindow::switchComponent(Component component)
         Practice::PracticeMainWindow *practiceWindow = new Practice::PracticeMainWindow(&m_sessionManager, this);
         connect(practiceWindow, &Practice::PracticeMainWindow::stopPractice, this, &ParleyMainWindow::showPracticeSummary);
         m_currentComponentWindow = practiceWindow;
-        qDebug() <<" Practice Slotted up";
+        qDebug() << " Practice Slotted up";
         showDocumentActions(false, false);
         practiceWindow->startPractice();
-        qDebug() <<" Practice Slotted up2";
+        qDebug() << " Practice Slotted up2";
         break;
     }
     case PracticeSummary: {
-        Practice::PracticeSummaryComponent* summary = new Practice::PracticeSummaryComponent(&m_sessionManager, this);
+        Practice::PracticeSummaryComponent *summary = new Practice::PracticeSummaryComponent(&m_sessionManager, this);
         m_currentComponentWindow = summary;
         showDocumentActions(true, true);
         break;
@@ -343,7 +337,7 @@ void ParleyMainWindow::switchComponent(Component component)
     default:
         break;
     }
-    //qDebug() << "new component" << m_currentComponentWindow;
+    // qDebug() << "new component" << m_currentComponentWindow;
 
     guiFactory()->addClient(m_currentComponentWindow);
     centralWidget()->layout()->addWidget(m_currentComponentWindow);
@@ -394,10 +388,10 @@ void ParleyMainWindow::showDocumentActions(bool open, bool edit)
     actionCollection()->action(QStringLiteral("file_close"))->setVisible(edit);
 }
 
-void ParleyMainWindow::setVisibleToolbar(const QString& name)
+void ParleyMainWindow::setVisibleToolbar(const QString &name)
 {
-    const QList<KToolBar*> toolbars = toolBars();
-    for (KToolBar * toolbar : toolbars) {
+    const QList<KToolBar *> toolbars = toolBars();
+    for (KToolBar *toolbar : toolbars) {
         if (toolbar && toolbar->objectName() == name) {
             toolbar->show();
         } else if (toolbar) {
@@ -406,7 +400,7 @@ void ParleyMainWindow::setVisibleToolbar(const QString& name)
     }
 }
 
-ParleyDocument* ParleyMainWindow::parleyDocument()
+ParleyDocument *ParleyMainWindow::parleyDocument()
 {
     return m_document;
 }

@@ -8,20 +8,21 @@
 #include <QContextMenuEvent>
 #include <QMenu>
 
-#include <QAction>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KSelectAction>
+#include <QAction>
 
 #include <KEduVocExpression>
 #include <KEduVocWordtype>
 
-#include "editor/editor.h"
 #include "containermodel.h"
+#include "editor/editor.h"
 
 using namespace Editor;
 
-WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
+WordTypeView::WordTypeView(EditorWindow *parent)
+    : ContainerView(parent)
 {
     setContextMenuPolicy(Qt::DefaultContextMenu);
 
@@ -50,13 +51,13 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
     m_actionDeleteWordType->setStatusTip(m_actionDeleteWordType->whatsThis());
 
     m_actionSpecialTypeMenu = new KSelectAction(this);
-    m_actionSpecialTypeMenu->setText(i18nc("Let the user select what grammatical meaning is connected to a word type (nouns have gender, verbs conjugations etc)", "Grammar"));
-    //actionSplitWordType->setIcon(QIcon::fromTheme(""));  /// @todo better icon
+    m_actionSpecialTypeMenu->setText(
+        i18nc("Let the user select what grammatical meaning is connected to a word type (nouns have gender, verbs conjugations etc)", "Grammar"));
+    // actionSplitWordType->setIcon(QIcon::fromTheme(""));  /// @todo better icon
     m_actionSpecialTypeMenu->setWhatsThis(i18n("To let Parley know the grammatical meaning of a word type."));
     m_actionSpecialTypeMenu->setToolTip(m_actionSpecialTypeMenu->whatsThis());
     m_actionSpecialTypeMenu->setStatusTip(m_actionSpecialTypeMenu->whatsThis());
     m_actionSpecialTypeMenu->setStatusTip(m_actionSpecialTypeMenu->whatsThis());
-
 
     m_nounAction = new QAction(this);
     m_nounAction->setText(i18n("Noun"));
@@ -106,7 +107,6 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
     m_adverbAction->setStatusTip(m_adverbAction->whatsThis());
     m_adverbAction->setStatusTip(m_adverbAction->whatsThis());
 
-
     m_verbAction = new QAction(this);
     m_verbAction->setText(i18n("Verb"));
     m_verbAction->setCheckable(true);
@@ -132,7 +132,7 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
     m_noneAction->setStatusTip(m_noneAction->whatsThis());
     m_noneAction->setStatusTip(m_noneAction->whatsThis());
 
-    QAction* separator = new QAction(this);
+    QAction *separator = new QAction(this);
     separator->setSeparator(true);
 
     m_actionSpecialTypeMenu->addAction(m_noneAction);
@@ -173,7 +173,7 @@ WordTypeView::WordTypeView(EditorWindow* parent) : ContainerView(parent)
     connect(m_conjunctionAction, &QAction::triggered, this, &WordTypeView::setWordTypeConjunction);
 }
 
-void WordTypeView::setTranslation(KEduVocExpression * entry, int translation)
+void WordTypeView::setTranslation(KEduVocExpression *entry, int translation)
 {
     if (entry == 0) {
         return;
@@ -197,7 +197,7 @@ void WordTypeView::slotCreateNewWordType()
 
     scrollTo(modelIndex);
     selectionModel()->setCurrentIndex(modelIndex, QItemSelectionModel::ClearAndSelect);
-    edit(modelIndex);    // let the user type a new name for the WordType
+    edit(modelIndex); // let the user type a new name for the WordType
 }
 
 void WordTypeView::slotDeleteWordType()
@@ -209,17 +209,21 @@ void WordTypeView::slotDeleteWordType()
         return;
     }
 
-    KEduVocWordType* WordType = static_cast<KEduVocWordType*>(selectedIndex.internalPointer());
+    KEduVocWordType *WordType = static_cast<KEduVocWordType *>(selectedIndex.internalPointer());
 
     int count = WordType->entryCount();
 
-    if (count == 0 ||
-            KMessageBox::warningYesNo(this, i18np("There is a word left with this word type. It will lose its type. Continue?", "There are %1 words left with this word type. They will lose their word type. Continue?", count)) == KMessageBox::Yes) {
+    if (count == 0
+        || KMessageBox::warningYesNo(this,
+                                     i18np("There is a word left with this word type. It will lose its type. Continue?",
+                                           "There are %1 words left with this word type. They will lose their word type. Continue?",
+                                           count))
+            == KMessageBox::Yes) {
         m_model->deleteContainer(selectedIndex);
     }
 }
 
-void WordTypeView::contextMenuEvent(QContextMenuEvent * event)
+void WordTypeView::contextMenuEvent(QContextMenuEvent *event)
 {
     // check for the root element:
     QModelIndex selectedIndex = selectionModel()->currentIndex();
@@ -228,7 +232,7 @@ void WordTypeView::contextMenuEvent(QContextMenuEvent * event)
     m_actionSpecialTypeMenu->setEnabled(selectedIndex.parent() != QModelIndex());
 
     if (selectedIndex.isValid()) {
-        KEduVocWordFlags t = (static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer())->wordType());
+        KEduVocWordFlags t = (static_cast<KEduVocWordType *>(selectionModel()->currentIndex().internalPointer())->wordType());
 
         if (!t)
             m_noneAction->setChecked(true);
@@ -263,55 +267,54 @@ void WordTypeView::contextMenuEvent(QContextMenuEvent * event)
 
 void WordTypeView::setWordTypeNone()
 {
-    KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
+    KEduVocWordType *wordType = static_cast<KEduVocWordType *>(selectionModel()->currentIndex().internalPointer());
     wordType->setWordType(KEduVocWordFlag::NoInformation);
 }
 
 void WordTypeView::setWordTypeNoun()
 {
-    KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
+    KEduVocWordType *wordType = static_cast<KEduVocWordType *>(selectionModel()->currentIndex().internalPointer());
     wordType->setWordType(KEduVocWordFlag::Noun);
 }
 
 void WordTypeView::setWordTypeNounMale()
 {
-    KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
+    KEduVocWordType *wordType = static_cast<KEduVocWordType *>(selectionModel()->currentIndex().internalPointer());
     wordType->setWordType(KEduVocWordFlag::Noun | KEduVocWordFlag::Masculine);
 }
 
 void WordTypeView::setWordTypeNounFemale()
 {
-    KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
+    KEduVocWordType *wordType = static_cast<KEduVocWordType *>(selectionModel()->currentIndex().internalPointer());
     wordType->setWordType(KEduVocWordFlag::Noun | KEduVocWordFlag::Feminine);
 }
 
 void WordTypeView::setWordTypeNounNeutral()
 {
-    KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
+    KEduVocWordType *wordType = static_cast<KEduVocWordType *>(selectionModel()->currentIndex().internalPointer());
     wordType->setWordType(KEduVocWordFlag::Noun | KEduVocWordFlag::Neuter);
 }
 
 void WordTypeView::setWordTypeAdjective()
 {
-    KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
+    KEduVocWordType *wordType = static_cast<KEduVocWordType *>(selectionModel()->currentIndex().internalPointer());
     wordType->setWordType(KEduVocWordFlag::Adjective);
 }
 
 void WordTypeView::setWordTypeAdverb()
 {
-    KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
+    KEduVocWordType *wordType = static_cast<KEduVocWordType *>(selectionModel()->currentIndex().internalPointer());
     wordType->setWordType(KEduVocWordFlag::Adverb);
 }
 
 void WordTypeView::setWordTypeVerb()
 {
-    KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
+    KEduVocWordType *wordType = static_cast<KEduVocWordType *>(selectionModel()->currentIndex().internalPointer());
     wordType->setWordType(KEduVocWordFlag::Verb);
 }
 
-
 void WordTypeView::setWordTypeConjunction()
 {
-    KEduVocWordType* wordType = static_cast<KEduVocWordType*>(selectionModel()->currentIndex().internalPointer());
+    KEduVocWordType *wordType = static_cast<KEduVocWordType *>(selectionModel()->currentIndex().internalPointer());
     wordType->setWordType(KEduVocWordFlag::Conjunction);
 }

@@ -3,7 +3,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #include "genderbackendmode.h"
 
 #include <KLocalizedString>
@@ -13,15 +12,13 @@
 
 using namespace Practice;
 
-GenderBackendMode::GenderBackendMode(AbstractFrontend* frontend, QObject* parent,
-                                     Practice::SessionManagerBase* sessionManager,
-                                     KEduVocDocument* doc)
+GenderBackendMode::GenderBackendMode(AbstractFrontend *frontend, QObject *parent, Practice::SessionManagerBase *sessionManager, KEduVocDocument *doc)
     : MultipleChoiceBackendMode(frontend, parent, sessionManager)
-    ,  m_doc( *doc )
+    , m_doc(*doc)
 {
 }
 
-bool GenderBackendMode::setTestEntry(TestEntry* current)
+bool GenderBackendMode::setTestEntry(TestEntry *current)
 {
     Practice::AbstractBackendMode::setTestEntry(current);
 
@@ -57,7 +54,7 @@ bool GenderBackendMode::setTestEntry(TestEntry* current)
 
     return true;
 }
-void GenderBackendMode::prepareChoices(TestEntry* entry)
+void GenderBackendMode::prepareChoices(TestEntry *entry)
 {
     Q_ASSERT(entry->entry()->translation(entry->languageTo())->wordType()->wordType() & KEduVocWordFlag::Noun);
 
@@ -120,8 +117,7 @@ void GenderBackendMode::updateGrades()
     KEduVocText articleGrade = m_current->entry()->translation(m_current->languageTo())->article();
     articleGrade.incPracticeCount();
     articleGrade.setPracticeDate(QDateTime::currentDateTime());
-    updateGrade(articleGrade, m_frontend->resultState() == AbstractFrontend::AnswerCorrect,
-                m_current->statisticBadCount() == 0);
+    updateGrade(articleGrade, m_frontend->resultState() == AbstractFrontend::AnswerCorrect, m_current->statisticBadCount() == 0);
 
     m_current->entry()->translation(m_current->languageTo())->setArticle(articleGrade);
 }
@@ -143,4 +139,3 @@ grade_t GenderBackendMode::currentGradeForEntry() const
     }
     return KV_NORM_GRADE;
 }
-

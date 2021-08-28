@@ -5,32 +5,33 @@
 
 #include "exportdialog.h"
 
-#include <parleydocument.h>
 #include <KEduVocDocument>
 #include <KEduVocKVTML2Writer>
+#include <parleydocument.h>
 
 #include <KLocalizedString>
-#include <QStandardPaths>
-#include <QUrl>
+#include <KMessageBox>
 #include <QDebug>
 #include <QFileDialog>
-#include <KMessageBox>
+#include <QStandardPaths>
+#include <QUrl>
 
 #include <QDialogButtonBox>
 
-#include <string.h>
-#include <libxml/xmlmemory.h>
-#include <libxml/debugXML.h>
 #include <libxml/HTMLtree.h>
-#include <libxml/xmlIO.h>
-#include <libxml/xinclude.h>
 #include <libxml/catalog.h>
+#include <libxml/debugXML.h>
+#include <libxml/xinclude.h>
+#include <libxml/xmlIO.h>
+#include <libxml/xmlmemory.h>
+#include <libxslt/transform.h>
 #include <libxslt/xslt.h>
 #include <libxslt/xsltInternals.h>
-#include <libxslt/transform.h>
 #include <libxslt/xsltutils.h>
+#include <string.h>
 
-ExportDialog::ExportDialog(ParleyDocument *doc, QWidget *parent) : QDialog(parent)
+ExportDialog::ExportDialog(ParleyDocument *doc, QWidget *parent)
+    : QDialog(parent)
 {
     m_doc = doc;
     m_parent = parent;
@@ -39,14 +40,14 @@ ExportDialog::ExportDialog(ParleyDocument *doc, QWidget *parent) : QDialog(paren
     QWidget *widget = new QWidget();
     ui->setupUi(widget);
 
-    QDialogButtonBox * button_dialog = new QDialogButtonBox;
-    button_dialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel );
+    QDialogButtonBox *button_dialog = new QDialogButtonBox;
+    button_dialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 
     QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget( widget );
-    layout->addWidget( button_dialog );
+    layout->addWidget(widget);
+    layout->addWidget(button_dialog);
 
-    setLayout( layout );
+    setLayout(layout);
 
     connect(button_dialog, &QDialogButtonBox::accepted, this, &ExportDialog::accept);
     connect(button_dialog, &QDialogButtonBox::rejected, this, &ExportDialog::reject);
@@ -90,12 +91,12 @@ void ExportDialog::accept()
 
     xmlSubstituteEntitiesDefault(1);
     xmlLoadExtDtdDefaultValue = 1;
-    cur = xsltParseStylesheetFile((const xmlChar*) xslFile.toLatin1().constData());
+    cur = xsltParseStylesheetFile((const xmlChar *)xslFile.toLatin1().constData());
 
-    doc = xmlParseDoc((const xmlChar*) m_doc->document()->toByteArray(m_doc->document()->generator()).constData());
+    doc = xmlParseDoc((const xmlChar *)m_doc->document()->toByteArray(m_doc->document()->generator()).constData());
 
     res = xsltApplyStylesheet(cur, doc, 0);
-    FILE* result = fopen(QFile::encodeName(filename.toLocalFile()).constData(), "w");
+    FILE *result = fopen(QFile::encodeName(filename.toLocalFile()).constData(), "w");
     if (result != NULL) {
         xsltSaveResultToFile(result, res, cur);
         fclose(result);
@@ -113,12 +114,11 @@ void ExportDialog::accept()
     qDebug() << "XSLT finished";
 }
 
-QUrl ExportDialog::getFileName(const QString& filter)
+QUrl ExportDialog::getFileName(const QString &filter)
 {
-    return QUrl::fromLocalFile(QFileDialog::getSaveFileName(
-        m_parent, i18n("Export As")
-        , (m_doc->document()->url().fileName() == i18n("Untitled"))
-        ? QLatin1String("") : m_doc->document()->url().toLocalFile()
-        ,  filter ) );
-
+    return QUrl::fromLocalFile(
+        QFileDialog::getSaveFileName(m_parent,
+                                     i18n("Export As"),
+                                     (m_doc->document()->url().fileName() == i18n("Untitled")) ? QLatin1String("") : m_doc->document()->url().toLocalFile(),
+                                     filter));
 }

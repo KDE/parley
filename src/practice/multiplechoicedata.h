@@ -3,17 +3,15 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef MULTIPLECHOICEDATA_H
 #define MULTIPLECHOICEDATA_H
 
-#include <QStringList>
-#include <QString>
 #include <QMetaType>
+#include <QString>
+#include <QStringList>
 
 namespace Practice
 {
-
 struct MultipleChoiceData {
     QString question;
     QStringList choices;

@@ -14,9 +14,10 @@
 
 using namespace Practice;
 
-
-FlashCardModeWidget::FlashCardModeWidget(GuiFrontend *frontend, QWidget* parent)
-    : AbstractModeWidget(frontend, parent), m_questionLatexRenderer(0), m_solutionLatexRenderer(0)
+FlashCardModeWidget::FlashCardModeWidget(GuiFrontend *frontend, QWidget *parent)
+    : AbstractModeWidget(frontend, parent)
+    , m_questionLatexRenderer(0)
+    , m_solutionLatexRenderer(0)
 {
     m_ui = new Ui::FlashCardPracticeWidget();
     m_ui->setupUi(this);
@@ -24,17 +25,17 @@ FlashCardModeWidget::FlashCardModeWidget(GuiFrontend *frontend, QWidget* parent)
     connect(frontend, &AbstractFrontend::skipAction, this, &AbstractModeWidget::stopAudio);
 }
 
-void FlashCardModeWidget::setQuestionFont(const QFont& font)
+void FlashCardModeWidget::setQuestionFont(const QFont &font)
 {
     m_ui->questionLabel->setFont(font);
 }
 
-void FlashCardModeWidget::setSolutionFont(const QFont& font)
+void FlashCardModeWidget::setSolutionFont(const QFont &font)
 {
     m_ui->solutionLabel->setFont(font);
 }
 
-void FlashCardModeWidget::setQuestion(const QVariant& question)
+void FlashCardModeWidget::setQuestion(const QVariant &question)
 {
     m_ui->questionLabel->setMinimumSize(QSize(0, 0));
     if (LatexRenderer::isLatex(question.toString())) {
@@ -50,9 +51,8 @@ void FlashCardModeWidget::setQuestion(const QVariant& question)
         // A QUrl might be an image.
         QPixmap pixmap(question.value<QUrl>().path());
         if (!pixmap.isNull()) {
-            m_ui->questionLabel->setText(QString() );
-            m_ui->questionLabel->setPixmap(
-                pixmap.scaled(m_ui->questionLabel->size(), Qt::KeepAspectRatio ));
+            m_ui->questionLabel->setText(QString());
+            m_ui->questionLabel->setPixmap(pixmap.scaled(m_ui->questionLabel->size(), Qt::KeepAspectRatio));
             return;
         }
     }
@@ -72,19 +72,19 @@ void FlashCardModeWidget::showQuestion()
     m_ui->solutionSoundButton->setVisible(false);
 }
 
-void FlashCardModeWidget::setSolution(const QVariant& solution)
+void FlashCardModeWidget::setSolution(const QVariant &solution)
 {
     m_solution = solution.toString();
 }
 
-void FlashCardModeWidget::setSynonym(const QString& /*entry*/)
+void FlashCardModeWidget::setSynonym(const QString & /*entry*/)
 {
-    //TODO Do something here to show synonyms
+    // TODO Do something here to show synonyms
 }
 
 void FlashCardModeWidget::showSynonym()
 {
-    //TODO Do something here to show synonyms
+    // TODO Do something here to show synonyms
 }
 
 void FlashCardModeWidget::showSolution()
@@ -110,7 +110,7 @@ void FlashCardModeWidget::showSolution()
     m_ui->solutionSoundButton->setVisible(m_ui->solutionSoundButton->isEnabled());
 }
 
-void FlashCardModeWidget::setHint(const QVariant& hint)
+void FlashCardModeWidget::setHint(const QVariant &hint)
 {
     m_ui->solutionLabel->setHidden(true);
     m_ui->solutionLabel->setText(hint.toString());
@@ -122,23 +122,23 @@ QVariant FlashCardModeWidget::userInput()
     return QVariant();
 }
 
-void FlashCardModeWidget::setQuestionSound(const QUrl& soundUrl)
+void FlashCardModeWidget::setQuestionSound(const QUrl &soundUrl)
 {
     m_ui->questionSoundButton->setSoundFile(soundUrl);
 }
 
-void FlashCardModeWidget::setSolutionSound(const QUrl& soundUrl)
+void FlashCardModeWidget::setSolutionSound(const QUrl &soundUrl)
 {
     m_ui->solutionSoundButton->setSoundFile(soundUrl);
 }
 
-void FlashCardModeWidget::setSolutionPronunciation(const QString& pronunciationText)
+void FlashCardModeWidget::setSolutionPronunciation(const QString &pronunciationText)
 {
     m_ui->solutionPronunciationLabel->setText('[' + pronunciationText + ']');
     m_ui->solutionPronunciationLabel->setEnabled(!pronunciationText.isNull());
 }
 
-void FlashCardModeWidget::setQuestionPronunciation(const QString& pronunciationText)
+void FlashCardModeWidget::setQuestionPronunciation(const QString &pronunciationText)
 {
     m_ui->questionPronunciationLabel->setText('[' + pronunciationText + ']');
     m_ui->questionPronunciationLabel->setEnabled(!pronunciationText.isNull());

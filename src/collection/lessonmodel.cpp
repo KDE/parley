@@ -11,17 +11,16 @@
 #include <QRandomGenerator>
 
 /** @file
-  * Implementation of LessonModel.
-  * Functions to create the model from the lessons of the vocabulary document.
-  */
+ * Implementation of LessonModel.
+ * Functions to create the model from the lessons of the vocabulary document.
+ */
 
-
-LessonModel::LessonModel(QObject * parent)
+LessonModel::LessonModel(QObject *parent)
     : ContainerModel(KEduVocContainer::Lesson, parent)
 {
 }
 
-KEduVocContainer * LessonModel::rootContainer() const
+KEduVocContainer *LessonModel::rootContainer() const
 {
     if (!m_doc) {
         return 0;
@@ -32,16 +31,14 @@ KEduVocContainer * LessonModel::rootContainer() const
 Qt::ItemFlags LessonModel::flags(const QModelIndex &index) const
 {
     if (index.isValid() && index.parent() == QModelIndex()) {
-        return (Qt::ItemIsEnabled
-                | Qt::ItemIsEditable
-                | Qt::ItemIsSelectable);
+        return (Qt::ItemIsEnabled | Qt::ItemIsEditable | Qt::ItemIsSelectable);
     }
 
     // the name column should be checkable to select lessons for practice
-    return  ContainerModel::flags(index);
+    return ContainerModel::flags(index);
 }
 
-QVariant LessonModel::data(const QModelIndex & index, int role) const
+QVariant LessonModel::data(const QModelIndex &index, int role) const
 {
     if (index.isValid() && !index.parent().isValid()) {
         if (index.column() == 0) {
@@ -58,7 +55,6 @@ QVariant LessonModel::data(const QModelIndex & index, int role) const
     return ContainerModel::data(index, role);
 }
 
-
 bool LessonModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (index.isValid() && !index.parent().isValid()) {
@@ -70,17 +66,17 @@ bool LessonModel::setData(const QModelIndex &index, const QVariant &value, int r
     return ContainerModel::setData(index, value, role);
 }
 
-void LessonModel::splitLesson(const QModelIndex& containerIndex, int entriesPerLesson, SplitLessonOrder order)
+void LessonModel::splitLesson(const QModelIndex &containerIndex, int entriesPerLesson, SplitLessonOrder order)
 {
     if (!containerIndex.isValid()) {
         return;
     }
 
-    if (static_cast<KEduVocContainer*>(containerIndex.internalPointer())->containerType() != KEduVocContainer::Lesson) {
+    if (static_cast<KEduVocContainer *>(containerIndex.internalPointer())->containerType() != KEduVocContainer::Lesson) {
         return;
     }
 
-    KEduVocLesson* parentLesson = static_cast<KEduVocLesson*>(containerIndex.internalPointer());
+    KEduVocLesson *parentLesson = static_cast<KEduVocLesson *>(containerIndex.internalPointer());
 
     int numNewLessons = parentLesson->entryCount() / entriesPerLesson;
     // modulo - fraction lesson if not 0 we need one more
@@ -90,8 +86,7 @@ void LessonModel::splitLesson(const QModelIndex& containerIndex, int entriesPerL
 
     while (parentLesson->entryCount() > 0) {
         beginInsertRows(containerIndex, parentLesson->entryCount(), parentLesson->entryCount());
-        KEduVocLesson* child = new KEduVocLesson(parentLesson->name()
-                + QStringLiteral(" %1").arg(parentLesson->childContainerCount() + 1), parentLesson);
+        KEduVocLesson *child = new KEduVocLesson(parentLesson->name() + QStringLiteral(" %1").arg(parentLesson->childContainerCount() + 1), parentLesson);
         parentLesson->appendChildContainer(child);
         endInsertRows();
 

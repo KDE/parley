@@ -3,7 +3,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #include "comparisonbackendmode.h"
 
 #include <KLocalizedString>
@@ -12,16 +11,14 @@
 
 using namespace Practice;
 
-ComparisonBackendMode::ComparisonBackendMode(AbstractFrontend* frontend, QObject* parent,
-                                             Practice::SessionManagerBase* sessionManager,
-                                             KEduVocDocument* doc)
+ComparisonBackendMode::ComparisonBackendMode(AbstractFrontend *frontend, QObject *parent, Practice::SessionManagerBase *sessionManager, KEduVocDocument *doc)
     : AbstractBackendMode(frontend, parent)
     , m_sessionManager(sessionManager)
     , m_doc(doc)
 {
 }
 
-bool ComparisonBackendMode::setTestEntry(TestEntry* current)
+bool ComparisonBackendMode::setTestEntry(TestEntry *current)
 {
     m_current = current;
     m_lastAnswers.clear();
@@ -63,18 +60,22 @@ void ComparisonBackendMode::checkAnswer()
         emit answerRight();
     } else {
         if (!absoluteCorrect) {
-            m_frontend->setFeedback(i18nc("the user entered the wrong absolute form when practicing comparison forms of adjectives (the base form of the adjective is wrong)",
-                                          "\"%1\" is the wrong word.", answers.at(0)));
+            m_frontend->setFeedback(
+                i18nc("the user entered the wrong absolute form when practicing comparison forms of adjectives (the base form of the adjective is wrong)",
+                      "\"%1\" is the wrong word.",
+                      answers.at(0)));
         } else {
             if ((!comparativeCorrect) && (!superlativeCorrect)) {
                 m_frontend->setFeedback(i18nc("the user entered the wrong comparison forms when practicing comparison forms of adjectives (good, better, best)",
                                               "Both comparison forms (comparative and superlative) are wrong."));
             } else if (!comparativeCorrect) {
-                m_frontend->setFeedback(i18nc("the user entered the wrong comparison forms when practicing comparison forms of adjectives (second form wrong - better)",
-                                              "The comparative is wrong."));
+                m_frontend->setFeedback(
+                    i18nc("the user entered the wrong comparison forms when practicing comparison forms of adjectives (second form wrong - better)",
+                          "The comparative is wrong."));
             } else if (!superlativeCorrect) {
-                m_frontend->setFeedback(i18nc("the user entered the wrong comparison forms when practicing comparison forms of adjectives (third form wrong - best)",
-                                              "The superlative is wrong."));
+                m_frontend->setFeedback(
+                    i18nc("the user entered the wrong comparison forms when practicing comparison forms of adjectives (third form wrong - best)",
+                          "The superlative is wrong."));
             }
         }
         emit answerWrongRetry();
@@ -97,7 +98,7 @@ void ComparisonBackendMode::updateGrades()
 
     // TODO way too much duplicated code here
 
-    KEduVocTranslation* translation = m_current->entry()->translation(m_current->languageTo());
+    KEduVocTranslation *translation = m_current->entry()->translation(m_current->languageTo());
 
     translation->incPracticeCount();
     translation->setPracticeDate(QDateTime::currentDateTime());

@@ -10,12 +10,13 @@
 #include <KEduVocExpression>
 #include <KEduVocWordtype>
 
-#include <KMessageBox>
 #include <KLocalizedString>
+#include <KMessageBox>
 
 using namespace Editor;
 
-DeclensionWidget::DeclensionWidget(QWidget *parent) : QWidget(parent)
+DeclensionWidget::DeclensionWidget(QWidget *parent)
+    : QWidget(parent)
 {
     m_doc = 0;
     m_entry = 0;
@@ -37,24 +38,23 @@ DeclensionWidget::DeclensionWidget(QWidget *parent) : QWidget(parent)
     }
 }
 
-
-void DeclensionWidget::textChanged(const QString& text)
+void DeclensionWidget::textChanged(const QString &text)
 {
-    int valueIndex = m_DeclensionLineEdits.values().indexOf(qobject_cast<QLineEdit*>(sender()));
+    int valueIndex = m_DeclensionLineEdits.values().indexOf(qobject_cast<QLineEdit *>(sender()));
     int key = m_DeclensionLineEdits.keys().value(valueIndex) | currentAdditionalWordFlag();
     m_entry->translation(m_identifier)->declension()->setDeclension(text, (KEduVocWordFlag::Flags)key);
     emit sigModified();
 }
 
-
 void DeclensionWidget::updateEntries()
 {
     for (auto iter = m_DeclensionLineEdits.cbegin(); iter != m_DeclensionLineEdits.cend(); ++iter) {
-        m_DeclensionLineEdits.value(iter.key())->setText(m_entry->translation(m_identifier)->declension()->declension((KEduVocWordFlag::Flags)(iter.key() | currentAdditionalWordFlag())).text());
+        m_DeclensionLineEdits.value(iter.key())
+            ->setText(m_entry->translation(m_identifier)->declension()->declension((KEduVocWordFlag::Flags)(iter.key() | currentAdditionalWordFlag())).text());
     }
 }
 
-void DeclensionWidget::setTranslation(KEduVocExpression * entry, int identifier)
+void DeclensionWidget::setTranslation(KEduVocExpression *entry, int identifier)
 {
     if (!m_doc) {
         return;
@@ -76,7 +76,6 @@ void DeclensionWidget::setTranslation(KEduVocExpression * entry, int identifier)
     if (entry->translation(m_identifier)->wordType()) {
         KEduVocWordFlags wordType = entry->translation(m_identifier)->wordType()->wordType();
         if (wordType & KEduVocWordFlag::Noun || wordType & KEduVocWordFlag::Adjective) {
-
             // we create declensions on demand. if empty it will simply not be saved.
             // very little memory overhead, comfy to use ;)
             if (!entry->translation(m_identifier)->declension()) {
@@ -88,7 +87,7 @@ void DeclensionWidget::setTranslation(KEduVocExpression * entry, int identifier)
     }
 }
 
-void DeclensionWidget::setDocument(KEduVocDocument * doc)
+void DeclensionWidget::setDocument(KEduVocDocument *doc)
 {
     m_doc = doc;
 }
@@ -122,7 +121,7 @@ void DeclensionWidget::setupLineEdits()
     m_DeclensionLineEdits.clear();
 
     if (m_entry == 0 || !m_entry->translation(m_identifier) || !m_entry->translation(m_identifier)->wordType()
-            || m_entry->translation(m_identifier)->wordType()->wordType() & KEduVocWordFlag::Noun) {
+        || m_entry->translation(m_identifier)->wordType()->wordType() & KEduVocWordFlag::Noun) {
         label_3->setText(i18n("Singular"));
         label_4->setText(i18n("Dual"));
         label_5->setText(i18n("Plural"));

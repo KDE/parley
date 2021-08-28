@@ -12,7 +12,8 @@
 
 using namespace Editor;
 
-ConjugationWidget::ConjugationWidget(QWidget *parent) : QWidget(parent)
+ConjugationWidget::ConjugationWidget(QWidget *parent)
+    : QWidget(parent)
 {
     m_doc = 0;
     m_entry = 0;
@@ -24,51 +25,35 @@ ConjugationWidget::ConjugationWidget(QWidget *parent) : QWidget(parent)
     connect(tenseComboBox, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &ConjugationWidget::slotTenseSelected);
     connect(tenseComboBox->lineEdit(), SIGNAL(editingFinished()), SLOT(tenseEditingFinished()));
 
-    m_conjugationLineEdits[KEduVocWordFlag::First | KEduVocWordFlag::Singular]
-        = singularFirstPersonLineEdit;
-    m_conjugationLineEdits[KEduVocWordFlag::Second | KEduVocWordFlag::Singular]
-        = singularSecondPersonLineEdit;
+    m_conjugationLineEdits[KEduVocWordFlag::First | KEduVocWordFlag::Singular] = singularFirstPersonLineEdit;
+    m_conjugationLineEdits[KEduVocWordFlag::Second | KEduVocWordFlag::Singular] = singularSecondPersonLineEdit;
 
-    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | KEduVocWordFlag::Singular]
-        = singularThirdMalePersonLineEdit;
-    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | KEduVocWordFlag::Singular]
-        = singularThirdFemalePersonLineEdit;
-    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | KEduVocWordFlag::Singular]
-        = singularThirdNeutralPersonLineEdit;
+    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | KEduVocWordFlag::Singular] = singularThirdMalePersonLineEdit;
+    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | KEduVocWordFlag::Singular] = singularThirdFemalePersonLineEdit;
+    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | KEduVocWordFlag::Singular] = singularThirdNeutralPersonLineEdit;
 
-    m_conjugationLineEdits[KEduVocWordFlag::First | KEduVocWordFlag::Dual]
-        = dualFirstPersonLineEdit;
-    m_conjugationLineEdits[KEduVocWordFlag::Second | KEduVocWordFlag::Dual]
-        = dualSecondPersonLineEdit;
+    m_conjugationLineEdits[KEduVocWordFlag::First | KEduVocWordFlag::Dual] = dualFirstPersonLineEdit;
+    m_conjugationLineEdits[KEduVocWordFlag::Second | KEduVocWordFlag::Dual] = dualSecondPersonLineEdit;
 
-    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | KEduVocWordFlag::Dual]
-        = dualThirdMalePersonLineEdit;
-    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | KEduVocWordFlag::Dual]
-        = dualThirdFemalePersonLineEdit;
-    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | KEduVocWordFlag::Dual]
-        = dualThirdNeutralPersonLineEdit;
+    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | KEduVocWordFlag::Dual] = dualThirdMalePersonLineEdit;
+    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | KEduVocWordFlag::Dual] = dualThirdFemalePersonLineEdit;
+    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | KEduVocWordFlag::Dual] = dualThirdNeutralPersonLineEdit;
 
-    m_conjugationLineEdits[KEduVocWordFlag::First | KEduVocWordFlag::Plural]
-        = pluralFirstPersonLineEdit;
-    m_conjugationLineEdits[KEduVocWordFlag::Second | KEduVocWordFlag::Plural]
-        = pluralSecondPersonLineEdit;
+    m_conjugationLineEdits[KEduVocWordFlag::First | KEduVocWordFlag::Plural] = pluralFirstPersonLineEdit;
+    m_conjugationLineEdits[KEduVocWordFlag::Second | KEduVocWordFlag::Plural] = pluralSecondPersonLineEdit;
 
-    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | KEduVocWordFlag::Plural]
-        = pluralThirdMalePersonLineEdit;
-    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | KEduVocWordFlag::Plural]
-        = pluralThirdFemalePersonLineEdit;
-    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | KEduVocWordFlag::Plural]
-        = pluralThirdNeutralPersonLineEdit;
+    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Masculine | KEduVocWordFlag::Plural] = pluralThirdMalePersonLineEdit;
+    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Feminine | KEduVocWordFlag::Plural] = pluralThirdFemalePersonLineEdit;
+    m_conjugationLineEdits[KEduVocWordFlag::Third | KEduVocWordFlag::Neuter | KEduVocWordFlag::Plural] = pluralThirdNeutralPersonLineEdit;
 
     for (auto iter = m_conjugationLineEdits.cbegin(); iter != m_conjugationLineEdits.cend(); ++iter) {
         connect(m_conjugationLineEdits.value(iter.key()), &QLineEdit::textChanged, this, &ConjugationWidget::textChanged);
     }
 }
 
-
-void ConjugationWidget::textChanged(const QString& text)
+void ConjugationWidget::textChanged(const QString &text)
 {
-    int valueIndex = m_conjugationLineEdits.values().indexOf(qobject_cast<QLineEdit*>(sender()));
+    int valueIndex = m_conjugationLineEdits.values().indexOf(qobject_cast<QLineEdit *>(sender()));
     int key = m_conjugationLineEdits.keys().value(valueIndex);
     KEduVocTranslation *translation = m_entry->translation(m_identifier);
     KEduVocConjugation conjugation = translation->getConjugation(tenseComboBox->currentText());
@@ -76,19 +61,17 @@ void ConjugationWidget::textChanged(const QString& text)
     translation->setConjugation(tenseComboBox->currentText(), conjugation);
 }
 
-
 void ConjugationWidget::slotTenseSelected(int sel)
 {
     Q_UNUSED(sel);
     updateEntries();
 }
 
-
 void ConjugationWidget::updateEntries()
 {
     m_lastTenseSelection = tenseComboBox->currentText();
     KEduVocConjugation conjugation = m_entry->translation(m_identifier)->getConjugation(m_lastTenseSelection);
-    for(auto iter = m_conjugationLineEdits.cbegin(); iter != m_conjugationLineEdits.cend(); ++iter) {
+    for (auto iter = m_conjugationLineEdits.cbegin(); iter != m_conjugationLineEdits.cend(); ++iter) {
         QString text;
         if (conjugation.keys().contains(iter.key())) {
             text = conjugation.conjugation(iter.key()).text();
@@ -98,7 +81,7 @@ void ConjugationWidget::updateEntries()
     }
 }
 
-void ConjugationWidget::setTranslation(KEduVocExpression * entry, int identifier)
+void ConjugationWidget::setTranslation(KEduVocExpression *entry, int identifier)
 {
     tenseComboBox->clear();
     tenseComboBox->completionObject()->clear();
@@ -121,14 +104,13 @@ void ConjugationWidget::setTranslation(KEduVocExpression * entry, int identifier
     }
 
     setEnabled(true);
-    if (entry->translation(m_identifier)->wordType()
-            && entry->translation(m_identifier)->wordType()->wordType() & KEduVocWordFlag::Verb) {
+    if (entry->translation(m_identifier)->wordType() && entry->translation(m_identifier)->wordType()->wordType() & KEduVocWordFlag::Verb) {
         updateVisiblePersons();
         updateEntries();
     }
 }
 
-void ConjugationWidget::setDocument(KEduVocDocument * doc)
+void ConjugationWidget::setDocument(KEduVocDocument *doc)
 {
     m_doc = doc;
     tenseComboBox->clear();
@@ -228,7 +210,7 @@ void ConjugationWidget::showWidgets(bool tenses, bool singular, bool dual, bool 
 
 void ConjugationWidget::tenseEditingFinished()
 {
-    const QStringList& oldTenses = m_doc->identifier(m_identifier).tenseList();
+    const QStringList &oldTenses = m_doc->identifier(m_identifier).tenseList();
     if (!oldTenses.contains(tenseComboBox->currentText())) {
         // add a new tense
         m_doc->identifier(m_identifier).setTense(oldTenses.count(), tenseComboBox->currentText());

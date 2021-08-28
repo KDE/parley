@@ -6,10 +6,10 @@
 
 #include "prefs.h"
 
-#include <KStandardAction>
-#include <KLocalizedString>
 #include <KActionCollection>
+#include <KLocalizedString>
 #include <KNewStuff3/kns3/knewstuffaction.h>
+#include <KStandardAction>
 #include <KToggleAction>
 
 #include <QIcon>
@@ -18,15 +18,17 @@ namespace ParleyActions
 {
 namespace Private
 {
-QAction* createCustomAction(const QObject* recvr, const char* slot, QObject* parent,
-                            const QString& name,
-                            const QString& text,
-                            const QString& helpText,
-                            const QString& iconName = QString(),
+QAction *createCustomAction(const QObject *recvr,
+                            const char *slot,
+                            QObject *parent,
+                            const QString &name,
+                            const QString &text,
+                            const QString &helpText,
+                            const QString &iconName = QString(),
                             bool toggle = false)
 {
     // Create QAction or KToggleAction
-    QAction* pAction;
+    QAction *pAction;
     if (toggle) {
         pAction = new KToggleAction(parent);
     } else {
@@ -39,11 +41,11 @@ QAction* createCustomAction(const QObject* recvr, const char* slot, QObject* par
 
     // Icon
     if (!iconName.isEmpty()) {
-        QIcon foundIcon ( QIcon::fromTheme(iconName) );
-        if ( foundIcon.isNull() ) {
-            //Note: If you are using an alternative /usr/share/icons directory you need to
-            //copy the /usr/share/icons/<theme>/index.theme into you alternate directory
-            qDebug() << "Missing QIcon "<< iconName;
+        QIcon foundIcon(QIcon::fromTheme(iconName));
+        if (foundIcon.isNull()) {
+            // Note: If you are using an alternative /usr/share/icons directory you need to
+            // copy the /usr/share/icons/<theme>/index.theme into you alternate directory
+            qDebug() << "Missing QIcon " << iconName;
         }
         pAction->setIcon(foundIcon);
     }
@@ -60,9 +62,9 @@ QAction* createCustomAction(const QObject* recvr, const char* slot, QObject* par
 }
 }
 
-QAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char* slot, KActionCollection* parent)
+QAction *ParleyActions::create(ParleyAction id, const QObject *recvr, const char *slot, KActionCollection *parent)
 {
-    QAction* pAction = 0;
+    QAction *pAction = 0;
 
     switch (id) {
     case FileNew:
@@ -76,9 +78,13 @@ QAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
         parent->setDefaultShortcut(pAction, QKeySequence::Open);
         break;
     case FileOpenDownloaded:
-        pAction = Private::createCustomAction(recvr, slot, parent,
-                                              QStringLiteral("file_open_downloaded"), i18n("Open &Downloaded Vocabularies..."),
-                                              i18n("Open downloaded vocabulary collections"), QStringLiteral("get-hot-new-stuff"));
+        pAction = Private::createCustomAction(recvr,
+                                              slot,
+                                              parent,
+                                              QStringLiteral("file_open_downloaded"),
+                                              i18n("Open &Downloaded Vocabularies..."),
+                                              i18n("Open downloaded vocabulary collections"),
+                                              QStringLiteral("get-hot-new-stuff"));
         break;
     case FileSave:
         pAction = KStandardAction::save(recvr, slot, parent);
@@ -92,19 +98,31 @@ QAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
         pAction->setToolTip(i18n("Save the active vocabulary collection with a different name"));
         break;
     case FileExport:
-        pAction = Private::createCustomAction(recvr, slot, parent,
-                                              QStringLiteral("file_export"), i18n("&Export..."),
-                                              i18n("Export to HTML or CSV"), QStringLiteral("document-export"));
+        pAction = Private::createCustomAction(recvr,
+                                              slot,
+                                              parent,
+                                              QStringLiteral("file_export"),
+                                              i18n("&Export..."),
+                                              i18n("Export to HTML or CSV"),
+                                              QStringLiteral("document-export"));
         break;
     case FileProperties:
-        pAction = Private::createCustomAction(recvr, slot, parent,
-                                              QStringLiteral("file_properties"), i18n("&Properties..."),
-                                              i18n("Edit document properties"), QStringLiteral("document-properties"));
+        pAction = Private::createCustomAction(recvr,
+                                              slot,
+                                              parent,
+                                              QStringLiteral("file_properties"),
+                                              i18n("&Properties..."),
+                                              i18n("Edit document properties"),
+                                              QStringLiteral("document-properties"));
         break;
     case FileClose:
-        pAction = Private::createCustomAction(recvr, slot, parent,
-                                              QStringLiteral("file_close"), i18n("Dashboard"),
-                                              i18n("Close the current vocabulary collection and show the dashboard"), QStringLiteral("go-home"));
+        pAction = Private::createCustomAction(recvr,
+                                              slot,
+                                              parent,
+                                              QStringLiteral("file_close"),
+                                              i18n("Dashboard"),
+                                              i18n("Close the current vocabulary collection and show the dashboard"),
+                                              QStringLiteral("go-home"));
         break;
     case FileQuit:
         pAction = KStandardAction::quit(recvr, slot, parent);
@@ -117,57 +135,93 @@ QAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
         pAction->setToolTip(i18n("Show the configuration dialog"));
         break;
     case LanguagesProperties:
-        pAction = Private::createCustomAction(recvr, slot, parent,
-                                              QStringLiteral("edit_languages"), i18n("&Languages..."),
-                                              i18n("Edit which languages are in the collection and their grammar properties."), QStringLiteral("set-language"));
+        pAction = Private::createCustomAction(recvr,
+                                              slot,
+                                              parent,
+                                              QStringLiteral("edit_languages"),
+                                              i18n("&Languages..."),
+                                              i18n("Edit which languages are in the collection and their grammar properties."),
+                                              QStringLiteral("set-language"));
         break;
     case RemoveGrades:
-        pAction = Private::createCustomAction(recvr, slot, parent,
-                                              QStringLiteral("vocab_remove_grades"), i18n("Remove Confidence Levels"),
-                                              i18n("Remove all confidence levels from the current document"), QStringLiteral("edit-clear"));
+        pAction = Private::createCustomAction(recvr,
+                                              slot,
+                                              parent,
+                                              QStringLiteral("vocab_remove_grades"),
+                                              i18n("Remove Confidence Levels"),
+                                              i18n("Remove all confidence levels from the current document"),
+                                              QStringLiteral("edit-clear"));
         break;
     case CheckSpelling:
         pAction = KStandardAction::spelling(recvr, slot, parent);
         break;
     case ToggleShowSublessons:
-        pAction = Private::createCustomAction(recvr, slot, parent,
-                                              QStringLiteral("lesson_showsublessonentries"), i18n("Show Entries from Child Units"),
+        pAction = Private::createCustomAction(recvr,
+                                              slot,
+                                              parent,
+                                              QStringLiteral("lesson_showsublessonentries"),
+                                              i18n("Show Entries from Child Units"),
                                               i18n("Enable to also see the entries of child units in each unit."),
-                                              QString(), true);
+                                              QString(),
+                                              true);
         pAction->setChecked(Prefs::showSublessonentries());
         break;
     case AutomaticTranslation:
-        pAction = Private::createCustomAction(recvr, slot, parent,
-                                              QStringLiteral("lesson_automatictranslation"), i18n("Automatic Translation"),
+        pAction = Private::createCustomAction(recvr,
+                                              slot,
+                                              parent,
+                                              QStringLiteral("lesson_automatictranslation"),
+                                              i18n("Automatic Translation"),
                                               i18n("Enable automatic translation of the unit entries."),
-                                              QString(), true);
+                                              QString(),
+                                              true);
         pAction->setChecked(Prefs::automaticTranslation());
         break;
     case StartPractice:
-        pAction = Private::createCustomAction(recvr, slot, parent,
-                                              QStringLiteral("practice_start"), i18n("Start Practice..."),
-                                              i18n("Start practicing"), QStringLiteral("practice-start"));
+        pAction = Private::createCustomAction(recvr,
+                                              slot,
+                                              parent,
+                                              QStringLiteral("practice_start"),
+                                              i18n("Start Practice..."),
+                                              i18n("Start practicing"),
+                                              QStringLiteral("practice-start"));
         break;
     case ConfigurePractice:
-        pAction = Private::createCustomAction(recvr, slot, parent,
-                                              QStringLiteral("practice_configure"), i18n("Configure Practice..."),
-                                              i18n("Change practice settings"), QStringLiteral("practice-setup"));
+        pAction = Private::createCustomAction(recvr,
+                                              slot,
+                                              parent,
+                                              QStringLiteral("practice_configure"),
+                                              i18n("Configure Practice..."),
+                                              i18n("Change practice settings"),
+                                              QStringLiteral("practice-setup"));
         break;
     case ExportPracticeResults:
-        pAction = Private::createCustomAction(recvr, slot, parent,
-                                              QStringLiteral("practice_export"), i18n("Export results..."),
-                                              i18n("Write a file with the results of the practice"), QStringLiteral("document-export"));
+        pAction = Private::createCustomAction(recvr,
+                                              slot,
+                                              parent,
+                                              QStringLiteral("practice_export"),
+                                              i18n("Export results..."),
+                                              i18n("Write a file with the results of the practice"),
+                                              QStringLiteral("document-export"));
         break;
     case EnterEditMode:
-        pAction = Private::createCustomAction(recvr, slot, parent,
-                                              QStringLiteral("document_edit"), i18n("Editor"),
-                                              i18n("Switch to vocabulary editor"), QStringLiteral("document-edit"));
+        pAction = Private::createCustomAction(recvr,
+                                              slot,
+                                              parent,
+                                              QStringLiteral("document_edit"),
+                                              i18n("Editor"),
+                                              i18n("Switch to vocabulary editor"),
+                                              QStringLiteral("document-edit"));
         break;
     case ToggleSearchBar:
-        pAction = Private::createCustomAction(recvr, slot, parent,
-                                              QStringLiteral("config_show_search"), i18n("Show Se&arch"),
+        pAction = Private::createCustomAction(recvr,
+                                              slot,
+                                              parent,
+                                              QStringLiteral("config_show_search"),
+                                              i18n("Show Se&arch"),
                                               i18n("Toggle display of the search bar"),
-                                              QString(), true);
+                                              QString(),
+                                              true);
         pAction->setChecked(Prefs::showSearch());
         break;
     case SearchVocabulary:
@@ -175,9 +229,13 @@ QAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
         parent->setDefaultShortcut(pAction, QKeySequence::Find);
         break;
     case ShowScriptManager:
-        pAction = Private::createCustomAction(recvr, slot, parent,
-                                              QStringLiteral("show_script_manager"), i18n("&Script Manager"),
-                                              i18n("Enable and disable scripts"), QStringLiteral("set-language"));
+        pAction = Private::createCustomAction(recvr,
+                                              slot,
+                                              parent,
+                                              QStringLiteral("show_script_manager"),
+                                              i18n("&Script Manager"),
+                                              i18n("Enable and disable scripts"),
+                                              QStringLiteral("set-language"));
         break;
     }
 
@@ -185,14 +243,12 @@ QAction* ParleyActions::create(ParleyAction id, const QObject* recvr, const char
     return pAction;
 }
 
-
-
-KRecentFilesAction* ParleyActions::createRecentFilesAction(const QObject* recvr, const char* slot, QObject* parent)
+KRecentFilesAction *ParleyActions::createRecentFilesAction(const QObject *recvr, const char *slot, QObject *parent)
 {
     return KStandardAction::openRecent(recvr, slot, parent);
 }
 
-QAction* ParleyActions::createDownloadAction(const QObject* recvr, const char* slot, KActionCollection* collection)
+QAction *ParleyActions::createDownloadAction(const QObject *recvr, const char *slot, KActionCollection *collection)
 {
     QAction *pAction = new QAction(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")), i18n("Download New Vocabularies..."), collection);
     collection->addAction(QStringLiteral("file_ghns"), pAction);

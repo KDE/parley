@@ -3,7 +3,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef WRITTENBACKENDMODE_H
 #define WRITTENBACKENDMODE_H
 
@@ -14,16 +13,14 @@
 
 namespace Practice
 {
-
 class WrittenBackendMode : public AbstractBackendMode
 {
     Q_OBJECT
 
 public:
-    WrittenBackendMode(Practice::AbstractFrontend* frontend, QObject* parent,
-                       Practice::SessionManagerBase* sessionManager, KEduVocDocument* doc);
+    WrittenBackendMode(Practice::AbstractFrontend *frontend, QObject *parent, Practice::SessionManagerBase *sessionManager, KEduVocDocument *doc);
 
-    bool setTestEntry(TestEntry* current) override;
+    bool setTestEntry(TestEntry *current) override;
 
     void checkAnswer() override;
 
@@ -36,9 +33,9 @@ private:
     QString m_lastAnswer;
     QString m_currentHint;
     bool m_firstAttempt;
-    SessionManagerBase* m_sessionManager;
+    SessionManagerBase *m_sessionManager;
     QScopedPointer<WrittenPracticeValidator> m_validator;
-    KEduVocDocument* m_doc;
+    KEduVocDocument *m_doc;
 };
 
 }

@@ -4,9 +4,9 @@
 */
 #include "vocabularymodel.h"
 
+#include "languagesettings.h"
 #include "parleydocument.h"
 #include "prefs.h"
-#include "languagesettings.h"
 
 #include <KEduVocLesson>
 #include <KEduVocWordtype>
@@ -14,27 +14,26 @@
 #include "vocabularymimedata.h"
 
 #include <KLocalizedString>
-#include <QDebug>
 #include <KMessageBox>
+#include <QDebug>
 #include <QPixmap>
 #include <QTextStream>
 
-
 VocabularyModel::VocabularyModel(QObject *parent)
-    : QAbstractTableModel(parent),
-      m_container(0), m_document(0)
+    : QAbstractTableModel(parent)
+    , m_container(0)
+    , m_document(0)
 {
-    m_recursive = Prefs::showSublessonentries() ? KEduVocContainer::Recursive
-                  : KEduVocContainer::NotRecursive;
+    m_recursive = Prefs::showSublessonentries() ? KEduVocContainer::Recursive : KEduVocContainer::NotRecursive;
 
-    qRegisterMetaType<KEduVocTranslation*>("KEduVocTranslationPointer");
+    qRegisterMetaType<KEduVocTranslation *>("KEduVocTranslationPointer");
 }
 
 VocabularyModel::~VocabularyModel()
 {
 }
 
-void VocabularyModel::setDocument(KEduVocDocument * doc)
+void VocabularyModel::setDocument(KEduVocDocument *doc)
 {
     beginResetModel();
 
@@ -51,8 +50,7 @@ void VocabularyModel::setDocument(KEduVocDocument * doc)
     endResetModel();
 }
 
-
-void VocabularyModel::showContainer(KEduVocContainer * container)
+void VocabularyModel::showContainer(KEduVocContainer *container)
 {
     // use remove and insert rows. using reset resets all table headers too.
     if (rowCount(QModelIndex()) > 0) {
@@ -71,12 +69,12 @@ void VocabularyModel::showContainer(KEduVocContainer * container)
     }
 }
 
-void VocabularyModel::setLesson(KEduVocLesson * lessonContainer)
+void VocabularyModel::setLesson(KEduVocLesson *lessonContainer)
 {
     m_lesson = lessonContainer;
 }
 
-KEduVocLesson * VocabularyModel::lesson()
+KEduVocLesson *VocabularyModel::lesson()
 {
     return m_lesson;
 }
@@ -102,7 +100,7 @@ int VocabularyModel::columnCount(const QModelIndex &) const
     return m_document->identifierCount() * EntryColumnsMAX;
 }
 
-QVariant VocabularyModel::data(const QModelIndex & index, int role) const
+QVariant VocabularyModel::data(const QModelIndex &index, int role) const
 {
     if (!m_document || !m_container) {
         return QVariant();
@@ -127,7 +125,7 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
         case Synonym: {
             QStringList displayElements;
             QList<KEduVocTranslation *> synonyms = m_container->entry(index.row(), m_recursive)->translation(translationId)->synonyms();
-            for (KEduVocTranslation * synonym : qAsConst(synonyms)) {
+            for (KEduVocTranslation *synonym : qAsConst(synonyms)) {
                 displayElements.append(synonym->text());
             }
             return QVariant(displayElements.join(QStringLiteral("; ")));
@@ -135,7 +133,7 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
         case Antonym: {
             QStringList displayElements;
             QList<KEduVocTranslation *> antonyms = m_container->entry(index.row(), m_recursive)->translation(translationId)->antonyms();
-            for (KEduVocTranslation * antonym : qAsConst(antonyms)) {
+            for (KEduVocTranslation *antonym : qAsConst(antonyms)) {
                 displayElements.append(antonym->text());
             }
             return QVariant(displayElements.join(QStringLiteral("; ")));
@@ -195,7 +193,6 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
     return QVariant();
 }
 
-
 bool VocabularyModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if ((!index.isValid()) || (role != Qt::EditRole)) {
@@ -233,7 +230,7 @@ bool VocabularyModel::setData(const QModelIndex &index, const QVariant &value, i
     return true;
 }
 
-Qt::ItemFlags VocabularyModel::flags(const QModelIndex & index) const
+Qt::ItemFlags VocabularyModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid()) {
         return Qt::ItemIsDropEnabled;
@@ -279,7 +276,7 @@ QString VocabularyModel::columnTitle(KEduVocDocument *document, int translation,
         if (document->identifierCount() - 1 < translation) {
             return QString();
         }
-        return document->identifier(translation).name(); //returns "English", "German", etc
+        return document->identifier(translation).name(); // returns "English", "German", etc
     case Pronunciation:
         return addLocaleSuffix ? i18n("Pronunciation (%1)", localeSuffix) : i18n("Pronunciation");
     case WordClass:
@@ -332,7 +329,7 @@ QModelIndex VocabularyModel::appendEntry(KEduVocExpression *expression)
     return index(rowCount(QModelIndex()) - 1, 0, QModelIndex());
 }
 
-bool VocabularyModel::removeRows(int row, int count, const QModelIndex & parent)
+bool VocabularyModel::removeRows(int row, int count, const QModelIndex &parent)
 {
     Q_UNUSED(parent);
     if (count < 1 || row < 0 || row + count > m_container->entryCount(m_recursive)) {
@@ -355,7 +352,7 @@ QStringList VocabularyModel::mimeTypes() const
     return QStringList() << QStringLiteral("text/plain");
 }
 
-QMimeData * VocabularyModel::mimeData(const QModelIndexList & indexes) const
+QMimeData *VocabularyModel::mimeData(const QModelIndexList &indexes) const
 {
     VocabularyMimeData *mimeData = new VocabularyMimeData();
     QModelIndexList sortedIndexes = indexes;
@@ -363,8 +360,8 @@ QMimeData * VocabularyModel::mimeData(const QModelIndexList & indexes) const
 
     qDebug() << "mimeData for " << indexes.count() << "indexes";
 
-    QList<KEduVocTranslation*> translations;
-    for (const QModelIndex & index : qAsConst(sortedIndexes)) {
+    QList<KEduVocTranslation *> translations;
+    for (const QModelIndex &index : qAsConst(sortedIndexes)) {
         // only add if it's a translation. other cells like word type are being ignored for now.
         if (columnType(index.column()) == Translation) {
             translations.append(m_container->entry(index.row(), m_recursive)->translation(translation(index.column())));

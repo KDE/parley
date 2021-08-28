@@ -3,7 +3,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #include "multiplechoicebackendmode.h"
 
 #include <KLocalizedString>
@@ -14,15 +13,14 @@
 
 using namespace Practice;
 
-MultipleChoiceBackendMode::MultipleChoiceBackendMode(AbstractFrontend* frontend, QObject* parent,
-                                                     Practice::SessionManagerBase* sessionManager)
+MultipleChoiceBackendMode::MultipleChoiceBackendMode(AbstractFrontend *frontend, QObject *parent, Practice::SessionManagerBase *sessionManager)
     : AbstractBackendMode(frontend, parent)
     , m_sessionManager(sessionManager)
 {
     m_numberOfChoices = Prefs::numberMultipleChoiceAnswers();
 }
 
-bool MultipleChoiceBackendMode::setTestEntry(TestEntry* current)
+bool MultipleChoiceBackendMode::setTestEntry(TestEntry *current)
 {
     m_current = current;
     m_hints.clear();
@@ -34,13 +32,13 @@ bool MultipleChoiceBackendMode::setTestEntry(TestEntry* current)
     return true;
 }
 
-void MultipleChoiceBackendMode::prepareChoices(TestEntry* current)
+void MultipleChoiceBackendMode::prepareChoices(TestEntry *current)
 {
     Q_UNUSED(current)
     setQuestion(m_current->entry()->translation(m_current->languageFrom())->text());
 
     QStringList choices = m_sessionManager->multipleChoiceAnswers(m_numberOfChoices - 1);
-    for (const QString & choice : qAsConst(choices)) {
+    for (const QString &choice : qAsConst(choices)) {
         int position = QRandomGenerator::global()->bounded(m_choices.count() + 1);
         m_choices.insert(position, choice);
     }
@@ -65,8 +63,7 @@ void MultipleChoiceBackendMode::populateFrontEnd()
     m_frontend->showQuestion();
 }
 
-
-void MultipleChoiceBackendMode::setQuestion(const QString& question)
+void MultipleChoiceBackendMode::setQuestion(const QString &question)
 {
     m_question = question;
 }
@@ -76,7 +73,7 @@ int MultipleChoiceBackendMode::numberOfChoices()
     return m_numberOfChoices;
 }
 
-void MultipleChoiceBackendMode::setChoices(const QStringList& choices)
+void MultipleChoiceBackendMode::setChoices(const QStringList &choices)
 {
     m_choices = choices;
 }
@@ -110,7 +107,7 @@ void MultipleChoiceBackendMode::hintAction()
 
     int hint = -1;
     do {
-	hint = QRandomGenerator::global()->bounded(m_choices.count());
+        hint = QRandomGenerator::global()->bounded(m_choices.count());
     } while (hint == m_correctAnswer || m_hints.contains(hint));
     m_hints.append(hint);
     m_frontend->setHint(QVariant(hint));

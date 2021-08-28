@@ -14,7 +14,7 @@ class LanguageProperties : public KPageDialog
 {
     Q_OBJECT
 public:
-    LanguageProperties(KEduVocDocument* doc, QWidget* parent);
+    LanguageProperties(KEduVocDocument *doc, QWidget *parent);
 
 public slots:
     void accept() override;
@@ -22,13 +22,13 @@ public slots:
 private slots:
     void slotAppendIdentifier();
     void slotDeleteIdentifier();
-    void pageNameChanged(const QString& newName);
+    void pageNameChanged(const QString &newName);
 
 private:
-    KPageWidgetItem*  createPage(int identifierIndex);
+    KPageWidgetItem *createPage(int identifierIndex);
 
-    KEduVocDocument* m_doc;
-    QList<KPageWidgetItem*> m_pages;
+    KEduVocDocument *m_doc;
+    QList<KPageWidgetItem *> m_pages;
 };
 
 #endif

@@ -12,17 +12,15 @@
 #include "vocabularymimedata.h"
 
 #include <KEduVocDocument>
-#include <KEduVocWordtype>
 #include <KEduVocExpression>
-
+#include <KEduVocWordtype>
 
 /** @file
-  * Implementation of ReadonlyContainerModel.
-  * Functions to create the model from the lessons of the vocabulary document.
-  */
+ * Implementation of ReadonlyContainerModel.
+ * Functions to create the model from the lessons of the vocabulary document.
+ */
 
-
-ReadonlyContainerModel::ReadonlyContainerModel(KEduVocContainer::EnumContainerType type, QObject * parent)
+ReadonlyContainerModel::ReadonlyContainerModel(KEduVocContainer::EnumContainerType type, QObject *parent)
     : QAbstractItemModel(parent)
     , m_type(type)
 {
@@ -33,9 +31,9 @@ void ReadonlyContainerModel::setDocument(const std::shared_ptr<KEduVocDocument> 
     beginResetModel();
     m_doc = doc;
     if (m_doc) {
-	//qDebug() << "Set Document: " << m_doc->url();
+        // qDebug() << "Set Document: " << m_doc->url();
     } else {
-        //qDebug() << "Set Invalid Document";
+        // qDebug() << "Set Invalid Document";
     }
     endResetModel();
 }
@@ -51,7 +49,7 @@ QModelIndex ReadonlyContainerModel::index(int row, int column, const QModelIndex
     if (!parent.isValid()) {
         parentContainer = 0;
     } else {
-        parentContainer = static_cast<KEduVocContainer*>(parent.internalPointer());
+        parentContainer = static_cast<KEduVocContainer *>(parent.internalPointer());
     }
 
     KEduVocContainer *childContainer = 0;
@@ -66,7 +64,7 @@ QModelIndex ReadonlyContainerModel::index(int row, int column, const QModelIndex
     return createIndex(row, column, childContainer);
 }
 
-QModelIndex ReadonlyContainerModel::index(KEduVocContainer * container) const
+QModelIndex ReadonlyContainerModel::index(KEduVocContainer *container) const
 {
     if (!container) {
         return QModelIndex();
@@ -84,7 +82,7 @@ QModelIndex ReadonlyContainerModel::parent(const QModelIndex &index) const
         return QModelIndex();
     }
 
-    KEduVocContainer *childItem = static_cast<KEduVocContainer*>(index.internalPointer());
+    KEduVocContainer *childItem = static_cast<KEduVocContainer *>(index.internalPointer());
     if (!childItem) {
         return QModelIndex();
     }
@@ -113,18 +111,18 @@ int ReadonlyContainerModel::rowCount(const QModelIndex &parent) const
         }
         return 1;
     } else {
-        parentItem =  static_cast<KEduVocContainer*>(parent.internalPointer());
+        parentItem = static_cast<KEduVocContainer *>(parent.internalPointer());
         return parentItem->childContainerCount();
     }
 }
 
-QVariant ReadonlyContainerModel::data(const QModelIndex & index, int role) const
+QVariant ReadonlyContainerModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid()) {
         return QVariant();
     }
 
-    KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
+    KEduVocContainer *container = static_cast<KEduVocContainer *>(index.internalPointer());
 
     switch (index.column()) {
     case 0: // Container name
@@ -160,7 +158,7 @@ Qt::ItemFlags ReadonlyContainerModel::flags(const QModelIndex &index) const
     return Qt::NoItemFlags;
 }
 
-int ReadonlyContainerModel::columnCount(const QModelIndex & parent) const
+int ReadonlyContainerModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
     if (!m_doc) {

@@ -3,7 +3,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef FLASHCARDBACKENDMODE_H
 #define FLASHCARDBACKENDMODE_H
 
@@ -11,14 +10,13 @@
 
 namespace Practice
 {
-
 class FlashCardBackendMode : public AbstractBackendMode
 {
     Q_OBJECT
 
 public:
     FlashCardBackendMode(AbstractFrontend *frontend, QObject *parent);
-    bool setTestEntry(TestEntry* current) override;
+    bool setTestEntry(TestEntry *current) override;
 
 public Q_SLOTS:
     void checkAnswer() override;

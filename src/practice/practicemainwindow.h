@@ -6,9 +6,9 @@
 #ifndef PRACTICE_MAINWINDOW_H
 #define PRACTICE_MAINWINDOW_H
 
+#include "sessionmanagerbase.h"
 #include <KXmlGuiWindow>
 #include <QKeyEvent>
-#include "sessionmanagerbase.h"
 
 class ParleyMainWindow;
 class KToggleFullScreenAction;
@@ -24,7 +24,7 @@ class PracticeMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
-    explicit PracticeMainWindow(SessionManagerBase* sessionManager, ParleyMainWindow* mainWindow = 0);
+    explicit PracticeMainWindow(SessionManagerBase *sessionManager, ParleyMainWindow *mainWindow = 0);
     ~PracticeMainWindow();
 
     void startPractice();
@@ -44,12 +44,12 @@ protected:
 private:
     void initActions();
 
-    GuiFrontend* m_guiFrontend;
-    PracticeStateMachine* m_stateMachine;
-    ParleyMainWindow* m_mainWindow;
-    QWidget* m_floatingToolBar;
-    KToggleFullScreenAction* m_fullScreenAction;
-    QPropertyAnimation* m_animation;
+    GuiFrontend *m_guiFrontend;
+    PracticeStateMachine *m_stateMachine;
+    ParleyMainWindow *m_mainWindow;
+    QWidget *m_floatingToolBar;
+    KToggleFullScreenAction *m_fullScreenAction;
+    QPropertyAnimation *m_animation;
 };
 }
 

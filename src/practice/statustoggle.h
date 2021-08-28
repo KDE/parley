@@ -12,7 +12,6 @@
 
 namespace Practice
 {
-
 class ThemedBackgroundRenderer;
 class StatusToggleButton;
 
@@ -21,7 +20,7 @@ class StatusToggle : public ImageWidget
     Q_OBJECT
 
 public:
-    explicit StatusToggle(QWidget* parent = 0);
+    explicit StatusToggle(QWidget *parent = 0);
     QSize minimumSizeHint() const override;
 
     void setRenderer(ThemedBackgroundRenderer *renderer);

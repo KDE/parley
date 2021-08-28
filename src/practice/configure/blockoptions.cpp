@@ -8,56 +8,51 @@
 
 #include <QCheckBox>
 
+#include <KComboBox>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KComboBox>
 
 #include "prefs.h"
 
-struct ListRef
-{
+struct ListRef {
     const char *text;
     long int num;
 };
 
-static ListRef date_itemlist [] = {
-    {
-        I18N_NOOP("Do not Care"),    0
-    },
+static ListRef date_itemlist[] = {{I18N_NOOP("Do not Care"), 0},
 
-    {I18N_NOOP("30 Min"),        30 * 60},
-    {I18N_NOOP("1 Hour"),    1 * 60 * 60},
-    {I18N_NOOP("2 Hours"),   2 * 60 * 60},
-    {I18N_NOOP("4 Hours"),   4 * 60 * 60},
-    {I18N_NOOP("8 Hours"),   8 * 60 * 60},
-    {I18N_NOOP("12 Hours"), 12 * 60 * 60},
-    {I18N_NOOP("18 Hours"), 18 * 60 * 60},
+                                  {I18N_NOOP("30 Min"), 30 * 60},
+                                  {I18N_NOOP("1 Hour"), 1 * 60 * 60},
+                                  {I18N_NOOP("2 Hours"), 2 * 60 * 60},
+                                  {I18N_NOOP("4 Hours"), 4 * 60 * 60},
+                                  {I18N_NOOP("8 Hours"), 8 * 60 * 60},
+                                  {I18N_NOOP("12 Hours"), 12 * 60 * 60},
+                                  {I18N_NOOP("18 Hours"), 18 * 60 * 60},
 
-    {I18N_NOOP("1 Day"),    1 * 60 * 60 * 24},
-    {I18N_NOOP("2 Days"),   2 * 60 * 60 * 24},
-    {I18N_NOOP("3 Days"),   3 * 60 * 60 * 24},
-    {I18N_NOOP("4 Days"),   4 * 60 * 60 * 24},
-    {I18N_NOOP("5 Days"),   5 * 60 * 60 * 24},
-    {I18N_NOOP("6 Days"),   6 * 60 * 60 * 24},
+                                  {I18N_NOOP("1 Day"), 1 * 60 * 60 * 24},
+                                  {I18N_NOOP("2 Days"), 2 * 60 * 60 * 24},
+                                  {I18N_NOOP("3 Days"), 3 * 60 * 60 * 24},
+                                  {I18N_NOOP("4 Days"), 4 * 60 * 60 * 24},
+                                  {I18N_NOOP("5 Days"), 5 * 60 * 60 * 24},
+                                  {I18N_NOOP("6 Days"), 6 * 60 * 60 * 24},
 
-    {I18N_NOOP("1 Week"),   1 * 60 * 60 * 24 * 7},
-    {I18N_NOOP("2 Weeks"),  2 * 60 * 60 * 24 * 7},
-    {I18N_NOOP("3 Weeks"),  3 * 60 * 60 * 24 * 7},
-    {I18N_NOOP("4 Weeks"),  4 * 60 * 60 * 24 * 7},
+                                  {I18N_NOOP("1 Week"), 1 * 60 * 60 * 24 * 7},
+                                  {I18N_NOOP("2 Weeks"), 2 * 60 * 60 * 24 * 7},
+                                  {I18N_NOOP("3 Weeks"), 3 * 60 * 60 * 24 * 7},
+                                  {I18N_NOOP("4 Weeks"), 4 * 60 * 60 * 24 * 7},
 
-    {I18N_NOOP("1 Month"),  1 * 60 * 60 * 24 * 30},
-    {I18N_NOOP("2 Months"), 2 * 60 * 60 * 24 * 30},
-    {I18N_NOOP("3 Months"), 3 * 60 * 60 * 24 * 30},
-    {I18N_NOOP("4 Months"), 4 * 60 * 60 * 24 * 30},
-    {I18N_NOOP("5 Months"), 5 * 60 * 60 * 24 * 30},
-    {I18N_NOOP("6 Months"), 6 * 60 * 60 * 24 * 30},
-    {I18N_NOOP("10 Months"), 10 * 60 * 60 * 24 * 30},
-    {I18N_NOOP("12 Months"), 12 * 60 * 60 * 24 * 30},
-    {0 ,  0}
-};
+                                  {I18N_NOOP("1 Month"), 1 * 60 * 60 * 24 * 30},
+                                  {I18N_NOOP("2 Months"), 2 * 60 * 60 * 24 * 30},
+                                  {I18N_NOOP("3 Months"), 3 * 60 * 60 * 24 * 30},
+                                  {I18N_NOOP("4 Months"), 4 * 60 * 60 * 24 * 30},
+                                  {I18N_NOOP("5 Months"), 5 * 60 * 60 * 24 * 30},
+                                  {I18N_NOOP("6 Months"), 6 * 60 * 60 * 24 * 30},
+                                  {I18N_NOOP("10 Months"), 10 * 60 * 60 * 24 * 30},
+                                  {I18N_NOOP("12 Months"), 12 * 60 * 60 * 24 * 30},
+                                  {0, 0}};
 
-
-BlockOptions::BlockOptions(QWidget* parent): QWidget(parent)
+BlockOptions::BlockOptions(QWidget *parent)
+    : QWidget(parent)
 {
     setupUi(this);
     connect(expire1, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &BlockOptions::slotComboBoxActivated);
@@ -156,7 +151,7 @@ void BlockOptions::updateWidgets()
     expire7->setEnabled(expire);
 }
 
-void BlockOptions::fillComboBox(KComboBox * cb)
+void BlockOptions::fillComboBox(KComboBox *cb)
 {
     ListRef *ref = date_itemlist;
 
@@ -167,7 +162,7 @@ void BlockOptions::fillComboBox(KComboBox * cb)
     }
 }
 
-void BlockOptions::updateComboBox(int value, KComboBox * cb)
+void BlockOptions::updateComboBox(int value, KComboBox *cb)
 {
     ListRef *ref = date_itemlist;
     int index = 0;
@@ -214,16 +209,14 @@ void BlockOptions::slotComboBoxActivated(int)
     checkValidity();
 }
 
-
 void BlockOptions::checkValidity()
 {
     QString message;
     if (kcfg_Block->isChecked()) {
         bool found = false;
         for (int i = 1; i <= 6; i++) {
-            if (date_itemlist[m_blockComboList[i - 1]->currentIndex()].num != 0 &&
-                    date_itemlist[m_blockComboList[i]->currentIndex()].num != 0 &&
-                    date_itemlist[m_blockComboList[i - 1]->currentIndex()].num >= date_itemlist[m_blockComboList[i]->currentIndex()].num) {
+            if (date_itemlist[m_blockComboList[i - 1]->currentIndex()].num != 0 && date_itemlist[m_blockComboList[i]->currentIndex()].num != 0
+                && date_itemlist[m_blockComboList[i - 1]->currentIndex()].num >= date_itemlist[m_blockComboList[i]->currentIndex()].num) {
                 if (!found)
                     message.append(i18n("Illogical blocking times.\n"));
                 found = true;
@@ -235,10 +228,8 @@ void BlockOptions::checkValidity()
     if (kcfg_Expire->isChecked()) {
         bool found = false;
         for (int i = 1; i <= 6; i++) {
-            if (date_itemlist[m_expireComboList[i - 1]->currentIndex()].num != 0 &&
-                    date_itemlist[m_expireComboList[i]->currentIndex()].num != 0 &&
-                    date_itemlist[m_expireComboList[i - 1]->currentIndex()].num >=
-                    date_itemlist[m_expireComboList[i]->currentIndex()].num) {
+            if (date_itemlist[m_expireComboList[i - 1]->currentIndex()].num != 0 && date_itemlist[m_expireComboList[i]->currentIndex()].num != 0
+                && date_itemlist[m_expireComboList[i - 1]->currentIndex()].num >= date_itemlist[m_expireComboList[i]->currentIndex()].num) {
                 if (!found)
                     message.append(i18n("\nIllogical expiration times.\n"));
                 found = true;
@@ -250,11 +241,9 @@ void BlockOptions::checkValidity()
     if ((message.length() == 0) && kcfg_Block->isChecked() && kcfg_Expire->isChecked()) {
         bool found = false;
         for (int i = 0; i <= 6; i++) {
-            if (m_expireComboList[i]->currentIndex() >= 0 &&
-                    m_blockComboList[i]->currentIndex() >= 0 &&
-                    date_itemlist[m_expireComboList[i]->currentIndex()].num != 0 &&
-                    date_itemlist[m_blockComboList[i]->currentIndex()].num != 0 &&
-                    date_itemlist[m_blockComboList[i]->currentIndex()].num >= date_itemlist[m_expireComboList[i]->currentIndex()].num) {
+            if (m_expireComboList[i]->currentIndex() >= 0 && m_blockComboList[i]->currentIndex() >= 0
+                && date_itemlist[m_expireComboList[i]->currentIndex()].num != 0 && date_itemlist[m_blockComboList[i]->currentIndex()].num != 0
+                && date_itemlist[m_blockComboList[i]->currentIndex()].num >= date_itemlist[m_expireComboList[i]->currentIndex()].num) {
                 if (!found)
                     message.append(i18n("\nIllogical blocking vs. expiration times.\n"));
                 found = true;
@@ -267,58 +256,27 @@ void BlockOptions::checkValidity()
         KMessageBox::sorry(this, message, i18n("Illogical Values"));
 }
 
-
 bool BlockOptions::isDefault()
 {
-    if (block7->currentIndex() < 0 ||
-            block6->currentIndex() < 0 ||
-            block5->currentIndex() < 0 ||
-            block4->currentIndex() < 0 ||
-            block3->currentIndex() < 0 ||
-            block2->currentIndex() < 0 ||
-            block1->currentIndex() < 0 ||
-            expire7->currentIndex() < 0 ||
-            expire6->currentIndex() < 0 ||
-            expire5->currentIndex() < 0 ||
-            expire4->currentIndex() < 0 ||
-            expire3->currentIndex() < 0 ||
-            expire2->currentIndex() < 0 ||
-            expire1->currentIndex() < 0)
+    if (block7->currentIndex() < 0 || block6->currentIndex() < 0 || block5->currentIndex() < 0 || block4->currentIndex() < 0 || block3->currentIndex() < 0
+        || block2->currentIndex() < 0 || block1->currentIndex() < 0 || expire7->currentIndex() < 0 || expire6->currentIndex() < 0 || expire5->currentIndex() < 0
+        || expire4->currentIndex() < 0 || expire3->currentIndex() < 0 || expire2->currentIndex() < 0 || expire1->currentIndex() < 0)
         return false;
 
-    return date_itemlist[block7->currentIndex()].num == 5184000 &&
-           date_itemlist[block6->currentIndex()].num == 2592000 &&
-           date_itemlist[block5->currentIndex()].num == 1209600 &&
-           date_itemlist[block4->currentIndex()].num == 604800 &&
-           date_itemlist[block3->currentIndex()].num == 345600 &&
-           date_itemlist[block2->currentIndex()].num == 172800 &&
-           date_itemlist[block1->currentIndex()].num == 86400 &&
-           date_itemlist[expire7->currentIndex()].num == 10368000 &&
-           date_itemlist[expire6->currentIndex()].num == 5184000 &&
-           date_itemlist[expire5->currentIndex()].num == 2592000 &&
-           date_itemlist[expire4->currentIndex()].num == 1209600 &&
-           date_itemlist[expire3->currentIndex()].num == 604800 &&
-           date_itemlist[expire2->currentIndex()].num == 345600 &&
-           date_itemlist[expire1->currentIndex()].num == 172800;
+    return date_itemlist[block7->currentIndex()].num == 5184000 && date_itemlist[block6->currentIndex()].num == 2592000
+        && date_itemlist[block5->currentIndex()].num == 1209600 && date_itemlist[block4->currentIndex()].num == 604800
+        && date_itemlist[block3->currentIndex()].num == 345600 && date_itemlist[block2->currentIndex()].num == 172800
+        && date_itemlist[block1->currentIndex()].num == 86400 && date_itemlist[expire7->currentIndex()].num == 10368000
+        && date_itemlist[expire6->currentIndex()].num == 5184000 && date_itemlist[expire5->currentIndex()].num == 2592000
+        && date_itemlist[expire4->currentIndex()].num == 1209600 && date_itemlist[expire3->currentIndex()].num == 604800
+        && date_itemlist[expire2->currentIndex()].num == 345600 && date_itemlist[expire1->currentIndex()].num == 172800;
 }
-
 
 void BlockOptions::updateSettings()
 {
-    if (block7->currentIndex() < 0 ||
-            block6->currentIndex() < 0 ||
-            block5->currentIndex() < 0 ||
-            block4->currentIndex() < 0 ||
-            block3->currentIndex() < 0 ||
-            block2->currentIndex() < 0 ||
-            block1->currentIndex() < 0 ||
-            expire7->currentIndex() < 0 ||
-            expire6->currentIndex() < 0 ||
-            expire5->currentIndex() < 0 ||
-            expire4->currentIndex() < 0 ||
-            expire3->currentIndex() < 0 ||
-            expire2->currentIndex() < 0 ||
-            expire1->currentIndex() < 0)
+    if (block7->currentIndex() < 0 || block6->currentIndex() < 0 || block5->currentIndex() < 0 || block4->currentIndex() < 0 || block3->currentIndex() < 0
+        || block2->currentIndex() < 0 || block1->currentIndex() < 0 || expire7->currentIndex() < 0 || expire6->currentIndex() < 0 || expire5->currentIndex() < 0
+        || expire4->currentIndex() < 0 || expire3->currentIndex() < 0 || expire2->currentIndex() < 0 || expire1->currentIndex() < 0)
         return;
 
     Prefs::setBlockItem(KV_LEV7_GRADE, date_itemlist[qMax(block7->currentIndex(), 0)].num);
@@ -340,34 +298,23 @@ void BlockOptions::updateSettings()
 
 bool BlockOptions::hasChanged()
 {
-    if (block7->currentIndex() < 0 ||
-            block6->currentIndex() < 0 ||
-            block5->currentIndex() < 0 ||
-            block4->currentIndex() < 0 ||
-            block3->currentIndex() < 0 ||
-            block2->currentIndex() < 0 ||
-            block1->currentIndex() < 0 ||
-            expire7->currentIndex() < 0 ||
-            expire6->currentIndex() < 0 ||
-            expire5->currentIndex() < 0 ||
-            expire4->currentIndex() < 0 ||
-            expire3->currentIndex() < 0 ||
-            expire2->currentIndex() < 0 ||
-            expire1->currentIndex() < 0)
+    if (block7->currentIndex() < 0 || block6->currentIndex() < 0 || block5->currentIndex() < 0 || block4->currentIndex() < 0 || block3->currentIndex() < 0
+        || block2->currentIndex() < 0 || block1->currentIndex() < 0 || expire7->currentIndex() < 0 || expire6->currentIndex() < 0 || expire5->currentIndex() < 0
+        || expire4->currentIndex() < 0 || expire3->currentIndex() < 0 || expire2->currentIndex() < 0 || expire1->currentIndex() < 0)
         return false;
 
-    return date_itemlist[block7->currentIndex()].num != Prefs::blockItem(KV_LEV7_GRADE) ||
-           date_itemlist[block6->currentIndex()].num != Prefs::blockItem(KV_LEV6_GRADE) ||
-           date_itemlist[block5->currentIndex()].num != Prefs::blockItem(KV_LEV5_GRADE) ||
-           date_itemlist[block4->currentIndex()].num != Prefs::blockItem(KV_LEV4_GRADE) ||
-           date_itemlist[block3->currentIndex()].num != Prefs::blockItem(KV_LEV3_GRADE) ||
-           date_itemlist[block2->currentIndex()].num != Prefs::blockItem(KV_LEV2_GRADE) ||
-           date_itemlist[block1->currentIndex()].num != Prefs::blockItem(KV_LEV1_GRADE) ||
-           date_itemlist[expire7->currentIndex()].num != Prefs::expireItem(KV_LEV7_GRADE) ||
-           date_itemlist[expire6->currentIndex()].num != Prefs::expireItem(KV_LEV6_GRADE) ||
-           date_itemlist[expire5->currentIndex()].num != Prefs::expireItem(KV_LEV5_GRADE) ||
-           date_itemlist[expire4->currentIndex()].num != Prefs::expireItem(KV_LEV4_GRADE) ||
-           date_itemlist[expire3->currentIndex()].num != Prefs::expireItem(KV_LEV3_GRADE) ||
-           date_itemlist[expire2->currentIndex()].num != Prefs::expireItem(KV_LEV2_GRADE) ||
-           date_itemlist[expire1->currentIndex()].num != Prefs::expireItem(KV_LEV1_GRADE);
+    return date_itemlist[block7->currentIndex()].num != Prefs::blockItem(KV_LEV7_GRADE)
+        || date_itemlist[block6->currentIndex()].num != Prefs::blockItem(KV_LEV6_GRADE)
+        || date_itemlist[block5->currentIndex()].num != Prefs::blockItem(KV_LEV5_GRADE)
+        || date_itemlist[block4->currentIndex()].num != Prefs::blockItem(KV_LEV4_GRADE)
+        || date_itemlist[block3->currentIndex()].num != Prefs::blockItem(KV_LEV3_GRADE)
+        || date_itemlist[block2->currentIndex()].num != Prefs::blockItem(KV_LEV2_GRADE)
+        || date_itemlist[block1->currentIndex()].num != Prefs::blockItem(KV_LEV1_GRADE)
+        || date_itemlist[expire7->currentIndex()].num != Prefs::expireItem(KV_LEV7_GRADE)
+        || date_itemlist[expire6->currentIndex()].num != Prefs::expireItem(KV_LEV6_GRADE)
+        || date_itemlist[expire5->currentIndex()].num != Prefs::expireItem(KV_LEV5_GRADE)
+        || date_itemlist[expire4->currentIndex()].num != Prefs::expireItem(KV_LEV4_GRADE)
+        || date_itemlist[expire3->currentIndex()].num != Prefs::expireItem(KV_LEV3_GRADE)
+        || date_itemlist[expire2->currentIndex()].num != Prefs::expireItem(KV_LEV2_GRADE)
+        || date_itemlist[expire1->currentIndex()].num != Prefs::expireItem(KV_LEV1_GRADE);
 }

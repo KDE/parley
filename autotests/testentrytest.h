@@ -7,12 +7,11 @@
 
 #include <QObject>
 
-
 class KEduVocExpression;
 class TestEntry;
 
-
-namespace TestEntryTests {
+namespace TestEntryTests
+{
 /** @file
  * \brief TestEntry test application
  *        Various tests for TestEntry class.
@@ -21,7 +20,7 @@ namespace TestEntryTests {
 
 class TestEntryTest : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
 
 private slots:
     void initTestCase();
@@ -57,4 +56,3 @@ private:
 }
 
 #endif // TESTENTRYTEST_H
-

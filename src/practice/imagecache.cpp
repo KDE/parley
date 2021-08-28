@@ -5,20 +5,20 @@
 
 #include "imagecache.h"
 
-#include <QFileInfo>
-#include <QDir>
 #include <QDataStream>
+#include <QDir>
+#include <QFileInfo>
 
 #include <QDebug>
 
 using namespace Practice;
 
-const char* identifier = "parleyimagecache2";
+const char *identifier = "parleyimagecache2";
 
-void ImageCache::setFilenames(const QStringList& filenames)
+void ImageCache::setFilenames(const QStringList &filenames)
 {
     m_timestamps.clear();
-    for (const QString & filename : filenames) {
+    for (const QString &filename : filenames) {
         QFileInfo info(filename);
         m_timestamps.append(info.lastModified());
     }
@@ -29,12 +29,12 @@ void ImageCache::setFilenames(const QStringList& filenames)
     }
 }
 
-void ImageCache::updateImage(const QString& id, const QImage& image)
+void ImageCache::updateImage(const QString &id, const QImage &image)
 {
     m_images[id] = image;
 }
 
-QSize ImageCache::imageSize(const QString& id)
+QSize ImageCache::imageSize(const QString &id)
 {
     if (!m_images.contains(id)) {
         return QSize();
@@ -42,7 +42,7 @@ QSize ImageCache::imageSize(const QString& id)
     return m_images.value(id).size();
 }
 
-QImage ImageCache::getImage(const QString& id)
+QImage ImageCache::getImage(const QString &id)
 {
     if (!m_images.contains(id)) {
         return QImage();
@@ -72,7 +72,7 @@ void ImageCache::openCache()
     QString temp;
     stream >> temp;
     if (temp != QString(identifier)) {
-        //qDebug() << "not loading cache because the identifier doesn't match";
+        // qDebug() << "not loading cache because the identifier doesn't match";
         return;
     }
     // check filename and timestamp, no need to load images for the wrong file or outdated images
@@ -80,24 +80,24 @@ void ImageCache::openCache()
     QList<QDateTime> timestamps;
     stream >> filenames >> timestamps;
     if (filenames != m_filenames || timestamps != m_timestamps) {
-        //qDebug() << "not loading cache because it contains the wrong theme or the timestamp has changed";
+        // qDebug() << "not loading cache because it contains the wrong theme or the timestamp has changed";
         return;
     }
     // finally load data
     stream >> m_images;
-    QHashIterator<QString, QImage> i(m_images); //TODO: do on demand
+    QHashIterator<QString, QImage> i(m_images); // TODO: do on demand
     while (i.hasNext()) {
         i.next();
         m_images[i.key()] = i.value().convertToFormat(QImage::Format_ARGB32_Premultiplied);
     }
-    //qDebug() << "opened cache:" << m_saveFilename;
-    //qDebug() << *this;
+    // qDebug() << "opened cache:" << m_saveFilename;
+    // qDebug() << *this;
 }
 
 void ImageCache::saveCache()
 {
-    //qDebug() << "save cache to:" << m_saveFilename;
-    //qDebug() << *this;
+    // qDebug() << "save cache to:" << m_saveFilename;
+    // qDebug() << *this;
     QFile file(m_saveFilename);
     file.open(QIODevice::WriteOnly);
     QDataStream stream(&file);
@@ -118,4 +118,3 @@ QDebug Practice::operator<<(QDebug dbg, const ImageCache &c)
     dbg.nospace() << "\n\ttotal pixel count: " << pixels << " (approx. " << double(pixels) * 4 / 1024 / 1024 << " MiB)";
     return dbg.space();
 }
-

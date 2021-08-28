@@ -9,10 +9,10 @@
 
 #include <KLocalizedString>
 
-#include <QStandardPaths>
-#include <QObject>
 #include <QAction>
 #include <QDebug>
+#include <QObject>
+#include <QStandardPaths>
 
 #include <KEduVocDeclension>
 
@@ -39,9 +39,12 @@ class Translator;
  *
  *<h3>How to create a new %Parley script (full example)</h3>
  *
- * Each %Parley script must be accompanied by a .desktop file, both put in the plugins folder in parley data directory (usually in  /usr/share/apps/parley/plugins/). In this example the desktop file is "example.desktop" and the script file is "example.py".
+ * Each %Parley script must be accompanied by a .desktop file, both put in the plugins folder in parley data directory (usually in
+/usr/share/apps/parley/plugins/). In this example the desktop file is "example.desktop" and the script file is "example.py".
  *
- * The desktop file provides information about the script's functionality, author and specifies the script file that implements it. This information will appear in the Scripts Manager (Scripts->Script Manager in main menu) and the user will be able to enable/disable the script. If the script is enabled then it'll be loaded every time Parley starts up.
+ * The desktop file provides information about the script's functionality, author and specifies the script file that implements it. This information will appear
+in the Scripts Manager (Scripts->Script Manager in main menu) and the user will be able to enable/disable the script. If the script is enabled then it'll be
+loaded every time Parley starts up.
  *
  * Content of example.desktop (/usr/share/apps/parley/plugins/example.desktop)
  *
@@ -66,11 +69,14 @@ X-KDE-PluginInfo-License=GPL
 X-KDE-PluginInfo-EnabledByDefault=true
 @endcode
  *
- * The script file will contain the functions (script functionality) and some code for creating an action for the Scripts menu. In the example below, the functions are moveSelectedToNewLesson() and markAsKnown() and they are called by the two actions that are added to the scripts menu (action1 and action2).
+ * The script file will contain the functions (script functionality) and some code for creating an action for the Scripts menu. In the example below, the
+functions are moveSelectedToNewLesson() and markAsKnown() and they are called by the two actions that are added to the scripts menu (action1 and action2).
  *
- * When the script file is loaded all the global code (outside of any function) is executed. This way we can register the Scripts menu actions and connect them with script functions (see example below for how to do this).
+ * When the script file is loaded all the global code (outside of any function) is executed. This way we can register the Scripts menu actions and connect them
+with script functions (see example below for how to do this).
  *
- * Another way to have a function called is by connecting it to a %Parley signal (see Parley::translateWord() and the example in Detailed Description of the Parley class).
+ * Another way to have a function called is by connecting it to a %Parley signal (see Parley::translateWord() and the example in Detailed Description of the
+Parley class).
  *
  * Content of example.py (/usr/share/apps/parley/plugins/example.py)
 @code
@@ -106,20 +112,20 @@ action2.statusTip="Sets the confidence level selected translations to 7 (highest
 Parley.connect(action2,"triggered()",markAsKnown)
 @endcode
  *
- * After creating the Script action and being able to call a function you can start adding your own code, using the documentation provided for the scripting classes and by seeing other examples.
+ * After creating the Script action and being able to call a function you can start adding your own code, using the documentation provided for the scripting
+classes and by seeing other examples.
  *
  * For debugging use the standard output and observed it in the terminal.
  *
  */
 namespace Scripting
 {
-
-
 /**
  * @class Parley
  * @brief Parley scripting class (main entry point of a %Parley Kross script)
  *
- * Parley class is the main entry point of Parley scripting classes. Through it you can access the Document class (Parley.doc or Parley.document) which provides functionality for viewing/modifying a %Parley document (%KEduVocDocument), that means access lessons, entries, document languages etc.
+ * Parley class is the main entry point of Parley scripting classes. Through it you can access the Document class (Parley.doc or Parley.document) which provides
+ * functionality for viewing/modifying a %Parley document (%KEduVocDocument), that means access lessons, entries, document languages etc.
  *
  * The Parley class has to do more with the active %Parley application. Here it follows a list of possible usages of Parley class:
  *
@@ -129,7 +135,8 @@ namespace Scripting
  * - Have access to various enumerations (see Parley::Number, Parley::Case, Parley::Person, Parley::Gender and Parley::Definiteness enumerations)
  * - Create a new %Parley %Document (see Parley::newDocument() function)
  *
- * Signals and Slots: To connect a script function (slot) to a signal you <b> just define a function with the same name as the signal </b> or use the Parley.connect function:
+ * Signals and Slots: To connect a script function (slot) to a signal you <b> just define a function with the same name as the signal </b> or use the
+ * Parley.connect function:
  * @code
  * #how to connect a function to a signal (example with Parley::translateWord() signal)
  * def translateFromInternet(word,fromLang,toLang):
@@ -144,17 +151,16 @@ class Parley : public QObject
 {
     Q_OBJECT
     /// Read-only property of the active document
-    Q_PROPERTY(QObject * document READ getDocument)
+    Q_PROPERTY(QObject *document READ getDocument)
     /// Abreviation of document property (same as Parley.document)
-    Q_PROPERTY(QObject * doc READ getDocument)
+    Q_PROPERTY(QObject *doc READ getDocument)
     /// Currently active lesson
-    Q_PROPERTY(QObject * activeLesson READ activeLesson)
+    Q_PROPERTY(QObject *activeLesson READ activeLesson)
 
-//             Q_ENUMS ( Number Case Person Gender Definiteness )
+    //             Q_ENUMS ( Number Case Person Gender Definiteness )
     Q_ENUMS(Flags)
 
 public:
-
     enum Flags {
         // This is used for both empty flags and to denote no flags of the correct type were set.
         NoInformation = 0x0,
@@ -199,7 +205,7 @@ public:
         Irregular = 0x20000000
     };
 
-    explicit Parley(Editor::EditorWindow * editor);
+    explicit Parley(Editor::EditorWindow *editor);
 
     ~Parley();
 
@@ -209,29 +215,33 @@ public:
      * @param fromLanguage The language of @p word to translate from
      * @param toLanguage The language you want to translate to
      */
-    void callTranslateWord(const QString & word, const QString& fromLanguage, const QString& toLanguage);
+    void callTranslateWord(const QString &word, const QString &fromLanguage, const QString &toLanguage);
 
-    //sets the translator object
-//             void setTranslator ( Translator* translator ) { m_translator = translator; }
-    Translator * translator() {
+    // sets the translator object
+    //             void setTranslator ( Translator* translator ) { m_translator = translator; }
+    Translator *translator()
+    {
         return m_translator;
     }
 
-    //Returns the active document
-    QObject* getDocument() {
+    // Returns the active document
+    QObject *getDocument()
+    {
         return m_doc;
     }
 
-    //Returns the active lesson
-    QObject* activeLesson();
+    // Returns the active lesson
+    QObject *activeLesson();
 
 public Q_SLOTS:
 
-    QStringList dataDirs() {
-    return QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+    QStringList dataDirs()
+    {
+        return QStandardPaths::standardLocations(QStandardPaths::DataLocation);
     }
 
-    QStringList pluginDirs() {
+    QStringList pluginDirs()
+    {
         QStringList basedirs(QStandardPaths::standardLocations(QStandardPaths::DataLocation));
         QStringList ret;
         for (const QString &dir : qAsConst(basedirs)) {
@@ -248,7 +258,9 @@ public Q_SLOTS:
     QVariantList selectedTranslations();
 
     /**
-     * Adds the found @p translation of the @p word from language @p fromLanguage to language @p toLanguage to %Parley translations to be used for translating lesson entries (or anything else). This function is ment to be used by scripts to add a translation of a word by parsing either online or offline dictionaries.
+     * Adds the found @p translation of the @p word from language @p fromLanguage to language @p toLanguage to %Parley translations to be used for translating
+     * lesson entries (or anything else). This function is ment to be used by scripts to add a translation of a word by parsing either online or offline
+     * dictionaries.
      *
      * @code
      * #example usage of addTranslation function
@@ -338,7 +350,8 @@ public Q_SLOTS:
      *
      * @return A Document object, the newly created lesson
      */
-    QObject * newDocument() {
+    QObject *newDocument()
+    {
         return new Document();
     }
 
@@ -369,11 +382,12 @@ public Q_SLOTS:
      * @param text Action's text (what text appears in the scripts menu)
      * @return A reference to a QAction object (accessible by scripts)
      */
-    QObject * newAction(const QString & name, const QString & text = QString());
+    QObject *newAction(const QString &name, const QString &text = QString());
 
 Q_SIGNALS:
     /**
-     * Slots (script functions) connected to this signal are called when a translation of @p word is requested. Note that a script function with the same name as a signal will be automatically connected to that signal when the script is activated.
+     * Slots (script functions) connected to this signal are called when a translation of @p word is requested. Note that a script function with the same name
+     * as a signal will be automatically connected to that signal when the script is activated.
      *
      * @code
      * #example usage of translateWord signal
@@ -389,16 +403,16 @@ Q_SIGNALS:
      * @param fromLanguage The language of @p word to translate from
      * @param toLanguage The language you want to translate to
      */
-    void translateWord(const QString & word, const QString& fromLanguage, const QString& toLanguage);
+    void translateWord(const QString &word, const QString &fromLanguage, const QString &toLanguage);
     /* Emits when the translation of a word is finished (from all the scripts) [not to be used by scripts] */
-    void translationFinished(const QString & word, const QString& fromLanguage, const QString& toLanguage);
+    void translationFinished(const QString &word, const QString &fromLanguage, const QString &toLanguage);
     /* Emits when the translation of a word starts [not to be used by scripts] */
-    void translationStarted(const QString & word, const QString& fromLanguage, const QString& toLanguage);
+    void translationStarted(const QString &word, const QString &fromLanguage, const QString &toLanguage);
 
 private:
-    Translator* m_translator;
-    Document* m_doc;
-    Editor::EditorWindow * m_editor;
+    Translator *m_translator;
+    Document *m_doc;
+    Editor::EditorWindow *m_editor;
 };
 
 }

@@ -13,8 +13,7 @@
 class Dashboard;
 class QToolButton;
 
-class ButtonDelegate
-    : public QStyledItemDelegate
+class ButtonDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
 public:
@@ -40,4 +39,4 @@ private:
     QToolButton *m_editButton;
 };
 
-#endif //BUTTONDELEGATE_H
+#endif // BUTTONDELEGATE_H

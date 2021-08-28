@@ -25,7 +25,6 @@ class VocabularyFilter;
 
 namespace Editor
 {
-
 class LatexWidget : public QWidget, public Ui::LatexWidget
 {
     Q_OBJECT
@@ -36,18 +35,18 @@ public:
 
 public slots:
     /**
-    * Sets the selected word (KEduVocExpression) from the vocabularyView
-    */
+     * Sets the selected word (KEduVocExpression) from the vocabularyView
+     */
     void setTranslation(KEduVocExpression *entry, int translation);
 
     /**
-    * Called when a KEduVocDocument change happened
-    */
+     * Called when a KEduVocDocument change happened
+     */
     void slotDocumentChanged(KEduVocDocument *doc);
 
     /**
-    * Called when the selection changed in the vocabulary view
-    */
+     * Called when the selection changed in the vocabulary view
+     */
     void slotSelectionChanged(const QItemSelection &, const QItemSelection &);
 
     void checkBoxToggled();
@@ -70,8 +69,9 @@ public:
     explicit LatexDelegate(QObject *parent = 0);
 
     void setEditorData(QWidget *editor, const QModelIndex &index) const override;
-    void setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const override;
-    void setMathModeCheckBox(QCheckBox *checkBox) {
+    void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const override;
+    void setMathModeCheckBox(QCheckBox *checkBox)
+    {
         m_checkBox = checkBox;
     }
 
@@ -80,4 +80,4 @@ private:
 };
 }
 
-#endif //LATEXWIDGET_H
+#endif // LATEXWIDGET_H

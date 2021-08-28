@@ -7,8 +7,8 @@
 #ifndef ENTRYFILTERDIALOG_H
 #define ENTRYFILTERDIALOG_H
 
-#include <QScopedPointer>
 #include <QDialog>
+#include <QScopedPointer>
 
 class EntryFilter;
 namespace Ui

@@ -11,7 +11,8 @@
 
 using namespace Editor;
 
-BrowserWidget::BrowserWidget(QWidget *parent) : QWidget(parent)
+BrowserWidget::BrowserWidget(QWidget *parent)
+    : QWidget(parent)
 {
     setupUi(this);
     m_currentTranslation = -1;
@@ -27,7 +28,6 @@ BrowserWidget::BrowserWidget(QWidget *parent) : QWidget(parent)
 
     setupProviders();
     connect(providerComboBox, static_cast<void (KComboBox::*)(int)>(&KComboBox::currentIndexChanged), this, &BrowserWidget::providerChanged);
-
 }
 
 void BrowserWidget::setupProviders()
@@ -84,14 +84,16 @@ void BrowserWidget::setupProviders()
     providerComboBox->addItem(provider.name);
 
     provider.name = QStringLiteral("Heinzelnisse");
-    provider.url = QStringLiteral("https://heinzelnisse.info/dict?setOptions=true&searchItem=\\{@}&dictDeNoSearch=on&dictNoDeSearch=on&dictExactSearch=on&dictPhoneticSearch=on&wikiSearch=on&dictNynorskSearch=on&dictBokmaalSearch=checked&forumKeywordSearch=on&suggestion=on");
+    provider.url = QStringLiteral(
+        "https://heinzelnisse.info/"
+        "dict?setOptions=true&searchItem=\\{@}&dictDeNoSearch=on&dictNoDeSearch=on&dictExactSearch=on&dictPhoneticSearch=on&wikiSearch=on&dictNynorskSearch=on&"
+        "dictBokmaalSearch=checked&forumKeywordSearch=on&suggestion=on");
     provider.languages << QStringLiteral("no") << QStringLiteral("de");
     m_providers.append(provider);
     providerComboBox->addItem(provider.name);
-
 }
 
-void BrowserWidget::setTranslation(KEduVocExpression* entry, int translation)
+void BrowserWidget::setTranslation(KEduVocExpression *entry, int translation)
 {
     m_currentTranslation = translation;
     m_entry = entry;
@@ -114,7 +116,7 @@ void BrowserWidget::showCurrentTranslation()
     }
 }
 
-void BrowserWidget::openUrl(const QUrl & targetUrl)
+void BrowserWidget::openUrl(const QUrl &targetUrl)
 {
     m_htmlPart->load(targetUrl);
     m_htmlPart->show();

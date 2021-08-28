@@ -7,9 +7,9 @@
 
 #include "vocabularymodel.h"
 
-
 VocabularyFilter::VocabularyFilter(QObject *parent)
-    : QSortFilterProxyModel(parent), m_model(0)
+    : QSortFilterProxyModel(parent)
+    , m_model(0)
 {
     // do not use capitalization for searches
     setSortCaseSensitivity(Qt::CaseInsensitive);
@@ -31,13 +31,13 @@ QModelIndex VocabularyFilter::appendEntry(KEduVocExpression *expression)
     return mapFromSource(m_model->appendEntry(expression));
 }
 
-void VocabularyFilter::setSourceModel(VocabularyModel * model)
+void VocabularyFilter::setSourceModel(VocabularyModel *model)
 {
     QSortFilterProxyModel::setSourceModel(model);
     m_model = model;
 }
 
-void VocabularyFilter::setSearchString(const QString & expression)
+void VocabularyFilter::setSearchString(const QString &expression)
 {
     m_filterString = expression;
     invalidateFilter();
@@ -59,7 +59,7 @@ bool VocabularyFilter::filterAcceptsRow(int sourceRow, const QModelIndex &source
     return false;
 }
 
-KEduVocLesson * VocabularyFilter::lesson()
+KEduVocLesson *VocabularyFilter::lesson()
 {
     if (m_model) {
         return m_model->lesson();

@@ -5,24 +5,25 @@
 #ifndef SCRIPTINGSCRIPTOBJECTLESSON_H
 #define SCRIPTINGSCRIPTOBJECTLESSON_H
 
-#include <KEduVocLesson>
 #include "container.h"
+#include <KEduVocLesson>
 
 #include <QObject>
 #include <QStringList>
 
 namespace Scripting
 {
-
 class Expression;
 
 /**
  * @class Lesson
  * @brief KEduVocLesson wrapping class for Kross scripts
  *
- * The Lesson class gives access to lesson properties, entries and child-lessons. The lesson properties documentation can be found in Container class as well as few function's documentation.
+ * The Lesson class gives access to lesson properties, entries and child-lessons. The lesson properties documentation can be found in Container class as well as
+ * few function's documentation.
  *
- * The main way of accessing the lesson entries is with the entries() function which allows you to iterate through all the lesson entries (recursively also) and access their properties and modify them (see entries() function example code). For individual entry access use the entry(int) function.
+ * The main way of accessing the lesson entries is with the entries() function which allows you to iterate through all the lesson entries (recursively also) and
+ * access their properties and modify them (see entries() function example code). For individual entry access use the entry(int) function.
  *
  * To add new entries to a lesson you can use the following ways:
  * - newEntry() or newEntry(QStringList) with appendEntry() or insertEntry() function
@@ -36,12 +37,11 @@ class Lesson : public Container
 {
     Q_OBJECT
 public:
+    explicit Lesson(KEduVocLesson *lesson);
 
-    explicit Lesson(KEduVocLesson * lesson);
+    explicit Lesson(KEduVocContainer *container);
 
-    explicit Lesson(KEduVocContainer * container);
-
-    explicit Lesson(const QString& name);
+    explicit Lesson(const QString &name);
 
     ~Lesson();
 
@@ -62,7 +62,7 @@ public slots:
     void setEntries(QVariantList entries);
 
     /** Returns the entry of the given @p row. If @p recursive is true then it considers all the entries of the sublessons too. */
-    QObject * entry(int row, bool recursive = false);
+    QObject *entry(int row, bool recursive = false);
 
     /** Returns how many entries are in this lesson (or with sublessons if @p recursive is true) */
     int entryCount(bool recursive = false);
@@ -80,7 +80,7 @@ public slots:
      *     lesson.appendEntry(new_entry)
      * @endcode
      */
-    QObject* newEntry();
+    QObject *newEntry();
 
     /**
      * Creates and returns a new Expression Object
@@ -94,7 +94,7 @@ public slots:
      * @param translations A list with the translations of this entry (must be in correct order)
      * @return A new Expression object
      */
-    QObject* newEntry(const QStringList &translations);
+    QObject *newEntry(const QStringList &translations);
 
     /**
      * Appends an entry at the end of the lesson
@@ -107,7 +107,7 @@ public slots:
      * @endcode
      * @param entry The entry to add the lesson
      */
-    void appendEntry(Expression * entry);
+    void appendEntry(Expression *entry);
 
     /**
      * Creates and appends a new entry with the given @p translations
@@ -127,7 +127,7 @@ public slots:
      * @param index Index where the entry will be added
      * @param entry The entry to add (can be created by newEntry() function)
      */
-    void insertEntry(int index, Expression * entry);
+    void insertEntry(int index, Expression *entry);
 
     /**
      * Removes an entry from this lesson
@@ -142,7 +142,7 @@ public slots:
      * @endcode
      * @param entry A reference to the entry to remove
      */
-    void removeEntry(QObject * entry);
+    void removeEntry(QObject *entry);
 
     /**
      * Removes all the lesson entries (not recursively)
@@ -155,36 +155,39 @@ public slots:
      * @param expression
      * @return A new Expression object
      */
-//             QObject* newEntry ( const QString & expression );
+    //             QObject* newEntry ( const QString & expression );
 
-
-    //child lesson public functions (just to change the names from "Container" to "Lesson")
+    // child lesson public functions (just to change the names from "Container" to "Lesson")
     /**
      * Appends a @p child lesson under the current lesson
      */
-    void appendChildLesson(Lesson *child) {
+    void appendChildLesson(Lesson *child)
+    {
         appendChildContainer(child);
     }
     /**
      * Inserts a child lesson (@p child) on the specified @p row
      */
-    void insertChildLesson(int row, Lesson *child) {
+    void insertChildLesson(int row, Lesson *child)
+    {
         insertChildContainer(row, child);
     }
     /*
      * Delete child lesson of the specified @p row
      */
-//             void deleteChildLesson ( int row ) { deleteChildContainer ( row ); }
+    //             void deleteChildLesson ( int row ) { deleteChildContainer ( row ); }
     /**
      * Remove child lesson of the specified @p row
      */
-    void removeChildLesson(int row) {
+    void removeChildLesson(int row)
+    {
         removeChildContainer(row);
     }
     /**
      * Return the child lesson with the corresponding @p row
      */
-    QObject *childLesson(int row) {
+    QObject *childLesson(int row)
+    {
         return new Lesson(m_lesson->childContainer(row));
     }
 
@@ -194,7 +197,8 @@ public slots:
      * @param name lesson name
      * @return the child lesson
      */
-    QObject *childLesson(const QString& name) {
+    QObject *childLesson(const QString &name)
+    {
         return new Lesson(m_lesson->childContainer(name));
     }
 
@@ -226,17 +230,18 @@ public slots:
      * @param name Name of the lesson to look for
      * @return A reference to a lesson if found. 0 otherwise
      */
-    QObject * findChildLesson(const QString& name);
+    QObject *findChildLesson(const QString &name);
 
     /**
      * Returns how many child lessons exist under this lesson
      */
-    int childLessonCount() const {
+    int childLessonCount() const
+    {
         return childContainerCount();
     }
 
 private:
-    KEduVocLesson* m_lesson;
+    KEduVocLesson *m_lesson;
 };
 
 }

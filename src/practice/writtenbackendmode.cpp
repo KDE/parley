@@ -3,25 +3,22 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #include "writtenbackendmode.h"
 
 #include <KLocalizedString>
 
 using namespace Practice;
 
-WrittenBackendMode::WrittenBackendMode(AbstractFrontend* frontend, QObject* parent,
-                                       SessionManagerBase* sessionManager, KEduVocDocument* doc)
+WrittenBackendMode::WrittenBackendMode(AbstractFrontend *frontend, QObject *parent, SessionManagerBase *sessionManager, KEduVocDocument *doc)
     : AbstractBackendMode(frontend, parent)
     , m_sessionManager(sessionManager)
     // FIXME: Used to be m_practiceOptions.languageTo()
     , m_validator(new WrittenPracticeValidator(Prefs::learningLanguage(), doc))
     , m_doc(doc)
 {
-
 }
 
-bool WrittenBackendMode::setTestEntry(TestEntry* current)
+bool WrittenBackendMode::setTestEntry(TestEntry *current)
 {
     AbstractBackendMode::setTestEntry(current);
     m_firstAttempt = true;
@@ -92,7 +89,7 @@ QString WrittenBackendMode::getFeedbackString(TestEntry::ErrorTypes error)
         } else {
             if (error & TestEntry::PunctuationMistake) {
                 return i18n("Your answer was a synonym and your punctuation was wrong.");
-            }else if (error & TestEntry::CapitalizationMistake) {
+            } else if (error & TestEntry::CapitalizationMistake) {
                 return i18n("Your answer was a synonym and your capitalization was wrong.");
             } else if (error & TestEntry::AccentMistake) {
                 return i18n("Your answer was a synonym and accents were wrong.");
@@ -119,7 +116,7 @@ QString WrittenBackendMode::getFeedbackString(TestEntry::ErrorTypes error)
     if (m_firstAttempt) {
         if ((error & TestEntry::PunctuationMistake)) {
             return i18n("Your answer was right, but your punctuation was wrong.");
-        }else if ((error & TestEntry::CapitalizationMistake)) {
+        } else if ((error & TestEntry::CapitalizationMistake)) {
             return i18n("Your answer was right, but your capitalization was wrong.");
         } else if ((error & TestEntry::AccentMistake)) {
             return i18n("Your answer was right, but accents were wrong.");
@@ -129,7 +126,7 @@ QString WrittenBackendMode::getFeedbackString(TestEntry::ErrorTypes error)
     } else {
         if ((error & TestEntry::PunctuationMistake)) {
             return i18n("Your answer was right... but not on the first try and your punctuation was wrong.");
-        }else if ((error & TestEntry::CapitalizationMistake)) {
+        } else if ((error & TestEntry::CapitalizationMistake)) {
             return i18n("Your answer was right... but not on the first try and your capitalization was wrong.");
         } else if ((error & TestEntry::AccentMistake)) {
             return i18n("Your answer was right... but not on the first try and accents were wrong.");

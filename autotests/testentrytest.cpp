@@ -4,12 +4,12 @@
 */
 #include "testentrytest.h"
 
-#include "testentry.h"
 #include "prefs.h"
+#include "testentry.h"
 #include <QTest>
 
-namespace TestEntryTests{
-
+namespace TestEntryTests
+{
 void TestEntryTest::initTestCase()
 {
     /*
@@ -48,7 +48,6 @@ void TestEntryTest::initTestCase()
     QStandardPaths::setTestModeEnabled(true);
 }
 
-
 KEduVocExpression *TestEntryTest::makeKEduVocExpressionGrade()
 {
     KEduVocExpression *expression = new KEduVocExpression;
@@ -70,9 +69,7 @@ KEduVocExpression *TestEntryTest::makeKEduVocExpressionGrade()
     conjugation0.setConjugation(text, KEduVocWordFlag::Singular | KEduVocWordFlag::Second);
     text.setText(QStringLiteral("conjugation 03"));
     text.setGrade(KV_LEV5_GRADE);
-    conjugation0.setConjugation(text, KEduVocWordFlag::Singular
-                                      | KEduVocWordFlag::Third
-                                      | KEduVocWordFlag::Neuter);
+    conjugation0.setConjugation(text, KEduVocWordFlag::Singular | KEduVocWordFlag::Third | KEduVocWordFlag::Neuter);
     translation0->setConjugation(QStringLiteral("tense"), conjugation0);
 
     text.setText(QStringLiteral("comparative 0"));
@@ -83,20 +80,15 @@ KEduVocExpression *TestEntryTest::makeKEduVocExpressionGrade()
     text.setGrade(KV_LEV7_GRADE);
     translation0->setSuperlativeForm(text);
 
-
     expression->setTranslation(1, QStringLiteral("translation 1"));
     KEduVocTranslation *translation1 = expression->translation(1);
 
     translation1->setArticle(KEduVocText());
 
     KEduVocConjugation conjugation1;
-    conjugation1.setConjugation(KEduVocText(QStringLiteral("conjugation 10")),
-                                KEduVocWordFlag::Singular | KEduVocWordFlag::First);
-    conjugation1.setConjugation(KEduVocText(QStringLiteral("conjugation 11")),
-                                KEduVocWordFlag::Singular | KEduVocWordFlag::Second);
-    conjugation1.setConjugation(KEduVocText(QStringLiteral("conjugation 13")),
-                                KEduVocWordFlag::Singular | KEduVocWordFlag::Third
-                                | KEduVocWordFlag::Neuter);
+    conjugation1.setConjugation(KEduVocText(QStringLiteral("conjugation 10")), KEduVocWordFlag::Singular | KEduVocWordFlag::First);
+    conjugation1.setConjugation(KEduVocText(QStringLiteral("conjugation 11")), KEduVocWordFlag::Singular | KEduVocWordFlag::Second);
+    conjugation1.setConjugation(KEduVocText(QStringLiteral("conjugation 13")), KEduVocWordFlag::Singular | KEduVocWordFlag::Third | KEduVocWordFlag::Neuter);
     translation1->setConjugation(QStringLiteral("tense"), conjugation1);
 
     translation1->setComparativeForm(KEduVocText(QStringLiteral("comparative 1")));
@@ -104,7 +96,6 @@ KEduVocExpression *TestEntryTest::makeKEduVocExpressionGrade()
 
     return expression;
 }
-
 
 KEduVocExpression *TestEntryTest::makeKEduVocExpressionPreGrade()
 {
@@ -127,9 +118,7 @@ KEduVocExpression *TestEntryTest::makeKEduVocExpressionPreGrade()
     conjugation0.setConjugation(text, KEduVocWordFlag::Singular | KEduVocWordFlag::Second);
     text.setText(QStringLiteral("conjugation 03"));
     text.setPreGrade(KV_LEV5_GRADE);
-    conjugation0.setConjugation(text, KEduVocWordFlag::Singular
-                                      | KEduVocWordFlag::Third
-                                      | KEduVocWordFlag::Neuter);
+    conjugation0.setConjugation(text, KEduVocWordFlag::Singular | KEduVocWordFlag::Third | KEduVocWordFlag::Neuter);
     translation0->setConjugation(QStringLiteral("tense"), conjugation0);
 
     text.setText(QStringLiteral("comparative 0"));
@@ -140,20 +129,15 @@ KEduVocExpression *TestEntryTest::makeKEduVocExpressionPreGrade()
     text.setPreGrade(KV_LEV7_GRADE);
     translation0->setSuperlativeForm(text);
 
-
     expression->setTranslation(1, QStringLiteral("translation 1"));
     KEduVocTranslation *translation1 = expression->translation(1);
 
     translation1->setArticle(KEduVocText());
 
     KEduVocConjugation conjugation1;
-    conjugation1.setConjugation(KEduVocText(QStringLiteral("conjugation 10")),
-                                KEduVocWordFlag::Singular | KEduVocWordFlag::First);
-    conjugation1.setConjugation(KEduVocText(QStringLiteral("conjugation 11")),
-                                KEduVocWordFlag::Singular | KEduVocWordFlag::Second);
-    conjugation1.setConjugation(KEduVocText(QStringLiteral("conjugation 13")),
-                                KEduVocWordFlag::Singular | KEduVocWordFlag::Third
-                                | KEduVocWordFlag::Neuter);
+    conjugation1.setConjugation(KEduVocText(QStringLiteral("conjugation 10")), KEduVocWordFlag::Singular | KEduVocWordFlag::First);
+    conjugation1.setConjugation(KEduVocText(QStringLiteral("conjugation 11")), KEduVocWordFlag::Singular | KEduVocWordFlag::Second);
+    conjugation1.setConjugation(KEduVocText(QStringLiteral("conjugation 13")), KEduVocWordFlag::Singular | KEduVocWordFlag::Third | KEduVocWordFlag::Neuter);
 
     translation1->setConjugation(QStringLiteral("tense"), conjugation1);
     translation1->setComparativeForm(KEduVocText(QStringLiteral("comparative 1")));
@@ -162,22 +146,18 @@ KEduVocExpression *TestEntryTest::makeKEduVocExpressionPreGrade()
     return expression;
 }
 
-
 TestEntry *TestEntryTest::makeTestEntry(KEduVocExpression *expression)
 {
     TestEntry *testEntry = new TestEntry(expression);
     testEntry->setLanguageTo(0);
     testEntry->setLanguageFrom(1);
     testEntry->setConjugationTense(QStringLiteral("tense"));
-    testEntry->setConjugationPronouns({
-        KEduVocWordFlag::Singular | KEduVocWordFlag::First,
-        KEduVocWordFlag::Singular | KEduVocWordFlag::Second,
-        KEduVocWordFlag::Singular | KEduVocWordFlag::Third | KEduVocWordFlag::Neuter
-    });
+    testEntry->setConjugationPronouns({KEduVocWordFlag::Singular | KEduVocWordFlag::First,
+                                       KEduVocWordFlag::Singular | KEduVocWordFlag::Second,
+                                       KEduVocWordFlag::Singular | KEduVocWordFlag::Third | KEduVocWordFlag::Neuter});
 
     return testEntry;
 }
-
 
 void TestEntryTest::cleanupTestCase()
 {
@@ -188,140 +168,107 @@ void TestEntryTest::cleanupTestCase()
 
     // Remove temporary parley config file
     if (QStandardPaths::isTestModeEnabled()) {
-        QFileInfo prefsFile(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation),
-                            Prefs::self()->config()->name());
+        QFileInfo prefsFile(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation), Prefs::self()->config()->name());
         if (prefsFile.exists()) {
             QFile::remove(prefsFile.filePath());
         }
     }
 }
 
-
 void TestEntryTest::test_practiceModeDependentMinGrade_written()
 {
     Prefs::setPracticeMode(Prefs::EnumPracticeMode::WrittenPractice);
-    QCOMPARE(m_gradeTestEntry->practiceModeDependentMinGrade(),
-             static_cast<grade_t>(KV_LEV1_GRADE));
+    QCOMPARE(m_gradeTestEntry->practiceModeDependentMinGrade(), static_cast<grade_t>(KV_LEV1_GRADE));
 }
-
 
 void TestEntryTest::test_practiceModeDependentMinGrade_gender()
 {
     Prefs::setPracticeMode(Prefs::EnumPracticeMode::GenderPractice);
-    QCOMPARE(m_gradeTestEntry->practiceModeDependentMinGrade(),
-             static_cast<grade_t>(KV_LEV2_GRADE));
+    QCOMPARE(m_gradeTestEntry->practiceModeDependentMinGrade(), static_cast<grade_t>(KV_LEV2_GRADE));
 }
-
 
 void TestEntryTest::test_practiceModeDependentMinGrade_conjugation()
 {
     Prefs::setPracticeMode(Prefs::EnumPracticeMode::ConjugationPractice);
-    QCOMPARE(m_gradeTestEntry->practiceModeDependentMinGrade(),
-             static_cast<grade_t>(KV_LEV3_GRADE));
+    QCOMPARE(m_gradeTestEntry->practiceModeDependentMinGrade(), static_cast<grade_t>(KV_LEV3_GRADE));
 }
-
 
 void TestEntryTest::test_practiceModeDependentMinGrade_comparsion()
 {
     Prefs::setPracticeMode(Prefs::EnumPracticeMode::ComparisonPractice);
-    QCOMPARE(m_gradeTestEntry->practiceModeDependentMinGrade(),
-             static_cast<grade_t>(KV_LEV6_GRADE));
+    QCOMPARE(m_gradeTestEntry->practiceModeDependentMinGrade(), static_cast<grade_t>(KV_LEV6_GRADE));
 }
-
 
 void TestEntryTest::test_practiceModeDependentMaxGrade_written()
 {
     Prefs::setPracticeMode(Prefs::EnumPracticeMode::WrittenPractice);
-    QCOMPARE(m_gradeTestEntry->practiceModeDependentMaxGrade(),
-             static_cast<grade_t>(KV_LEV1_GRADE));
+    QCOMPARE(m_gradeTestEntry->practiceModeDependentMaxGrade(), static_cast<grade_t>(KV_LEV1_GRADE));
 }
-
 
 void TestEntryTest::test_practiceModeDependentMaxGrade_gender()
 {
     Prefs::setPracticeMode(Prefs::EnumPracticeMode::GenderPractice);
-    QCOMPARE(m_gradeTestEntry->practiceModeDependentMaxGrade(),
-             static_cast<grade_t>(KV_LEV2_GRADE));
+    QCOMPARE(m_gradeTestEntry->practiceModeDependentMaxGrade(), static_cast<grade_t>(KV_LEV2_GRADE));
 }
-
 
 void TestEntryTest::test_practiceModeDependentMaxGrade_conjugation()
 {
     Prefs::setPracticeMode(Prefs::EnumPracticeMode::ConjugationPractice);
-    QCOMPARE(m_gradeTestEntry->practiceModeDependentMaxGrade(),
-             static_cast<grade_t>(KV_LEV5_GRADE));
+    QCOMPARE(m_gradeTestEntry->practiceModeDependentMaxGrade(), static_cast<grade_t>(KV_LEV5_GRADE));
 }
-
 
 void TestEntryTest::test_practiceModeDependentMaxGrade_comparsion()
 {
     Prefs::setPracticeMode(Prefs::EnumPracticeMode::ComparisonPractice);
-    QCOMPARE(m_gradeTestEntry->practiceModeDependentMaxGrade(),
-             static_cast<grade_t>(KV_LEV7_GRADE));
+    QCOMPARE(m_gradeTestEntry->practiceModeDependentMaxGrade(), static_cast<grade_t>(KV_LEV7_GRADE));
 }
-
 
 void TestEntryTest::test_practiceModeDependentMinPreGrade_written()
 {
     Prefs::setPracticeMode(Prefs::EnumPracticeMode::WrittenPractice);
-    QCOMPARE(m_preGradeTestEntry->practiceModeDependentMinPreGrade(),
-             static_cast<grade_t>(KV_LEV1_GRADE));
+    QCOMPARE(m_preGradeTestEntry->practiceModeDependentMinPreGrade(), static_cast<grade_t>(KV_LEV1_GRADE));
 }
-
 
 void TestEntryTest::test_practiceModeDependentMinPreGrade_gender()
 {
     Prefs::setPracticeMode(Prefs::EnumPracticeMode::GenderPractice);
-    QCOMPARE(m_preGradeTestEntry->practiceModeDependentMinPreGrade(),
-             static_cast<grade_t>(KV_LEV2_GRADE));
+    QCOMPARE(m_preGradeTestEntry->practiceModeDependentMinPreGrade(), static_cast<grade_t>(KV_LEV2_GRADE));
 }
-
 
 void TestEntryTest::test_practiceModeDependentMinPreGrade_conjugation()
 {
     Prefs::setPracticeMode(Prefs::EnumPracticeMode::ConjugationPractice);
-    QCOMPARE(m_preGradeTestEntry->practiceModeDependentMinPreGrade(),
-             static_cast<grade_t>(KV_LEV3_GRADE));
+    QCOMPARE(m_preGradeTestEntry->practiceModeDependentMinPreGrade(), static_cast<grade_t>(KV_LEV3_GRADE));
 }
-
 
 void TestEntryTest::test_practiceModeDependentMinPreGrade_comparsion()
 {
     Prefs::setPracticeMode(Prefs::EnumPracticeMode::ComparisonPractice);
-    QCOMPARE(m_preGradeTestEntry->practiceModeDependentMinPreGrade(),
-             static_cast<grade_t>(KV_LEV6_GRADE));
+    QCOMPARE(m_preGradeTestEntry->practiceModeDependentMinPreGrade(), static_cast<grade_t>(KV_LEV6_GRADE));
 }
-
 
 void TestEntryTest::test_practiceModeDependentMaxPreGrade_written()
 {
     Prefs::setPracticeMode(Prefs::EnumPracticeMode::WrittenPractice);
-    QCOMPARE(m_preGradeTestEntry->practiceModeDependentMaxPreGrade(),
-             static_cast<grade_t>(KV_LEV1_GRADE));
+    QCOMPARE(m_preGradeTestEntry->practiceModeDependentMaxPreGrade(), static_cast<grade_t>(KV_LEV1_GRADE));
 }
-
 
 void TestEntryTest::test_practiceModeDependentMaxPreGrade_gender()
 {
     Prefs::setPracticeMode(Prefs::EnumPracticeMode::GenderPractice);
-    QCOMPARE(m_preGradeTestEntry->practiceModeDependentMaxPreGrade(),
-             static_cast<grade_t>(KV_LEV2_GRADE));
+    QCOMPARE(m_preGradeTestEntry->practiceModeDependentMaxPreGrade(), static_cast<grade_t>(KV_LEV2_GRADE));
 }
-
 
 void TestEntryTest::test_practiceModeDependentMaxPreGrade_conjugation()
 {
     Prefs::setPracticeMode(Prefs::EnumPracticeMode::ConjugationPractice);
-    QCOMPARE(m_preGradeTestEntry->practiceModeDependentMaxPreGrade(),
-             static_cast<grade_t>(KV_LEV5_GRADE));
+    QCOMPARE(m_preGradeTestEntry->practiceModeDependentMaxPreGrade(), static_cast<grade_t>(KV_LEV5_GRADE));
 }
-
 
 void TestEntryTest::test_practiceModeDependentMaxPreGrade_comparsion()
 {
     Prefs::setPracticeMode(Prefs::EnumPracticeMode::ComparisonPractice);
-    QCOMPARE(m_preGradeTestEntry->practiceModeDependentMaxPreGrade(),
-             static_cast<grade_t>(KV_LEV7_GRADE));
+    QCOMPARE(m_preGradeTestEntry->practiceModeDependentMaxPreGrade(), static_cast<grade_t>(KV_LEV7_GRADE));
 }
 
 }

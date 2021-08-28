@@ -7,21 +7,19 @@
 
 #include "thresholdoptions.h"
 
-
 #include <KEduVocDocument>
 #include <KEduVocWordtype>
 
-ThresholdOptions::ThresholdOptions(KEduVocDocument* doc, QWidget* parent) : QWidget(parent)
+ThresholdOptions::ThresholdOptions(KEduVocDocument *doc, QWidget *parent)
+    : QWidget(parent)
 {
     setupUi(this);
     m_doc = doc;
 }
 
-
 void ThresholdOptions::updateWidgets()
 {
 }
-
 
 bool ThresholdOptions::isDefault()
 {
@@ -29,10 +27,8 @@ bool ThresholdOptions::isDefault()
     ///@todo
 }
 
-
 void ThresholdOptions::updateSettings()
 {
-
 }
 
 bool ThresholdOptions::hasChanged()

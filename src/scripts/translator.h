@@ -65,7 +65,7 @@ class Translator
 {
 public:
     Translator();
-    explicit Translator(QObject * parent);
+    explicit Translator(QObject *parent);
 
     ~Translator();
 
@@ -87,11 +87,11 @@ public:
      * @param toLanguage
      * @return QStringList with the translations (or an empty QStringList if no translations found)
      */
-    QSet<QString>* getTranslation(const QString &word, const QString &fromLanguage, const QString &toLanguage);
+    QSet<QString> *getTranslation(const QString &word, const QString &fromLanguage, const QString &toLanguage);
 
 private:
-    QMap<QString, QSet<QString>*> m_translations;
-    QObject * m_parent;
+    QMap<QString, QSet<QString> *> m_translations;
+    QObject *m_parent;
 };
 
 #endif

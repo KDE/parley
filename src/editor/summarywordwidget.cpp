@@ -9,8 +9,8 @@
 #include "languagesettings.h"
 
 #include "lessonmodel.h"
-#include "vocabularymodel.h"
 #include "vocabularyfilter.h"
+#include "vocabularymodel.h"
 #include "wordclassmodel.h"
 
 // Qt headers
@@ -28,7 +28,6 @@
 #include <KEduVocWordtype>
 
 using namespace Editor;
-
 
 SummaryWordWidget::SummaryWordWidget(VocabularyFilter *model, const std::shared_ptr<KEduVocDocument> &doc, QWidget *parent)
     : QWidget(parent)
@@ -49,8 +48,7 @@ SummaryWordWidget::SummaryWordWidget(VocabularyFilter *model, const std::shared_
     m_mapper->setModel(model);
     m_mapper->setItemDelegate(new SummaryWordDelegate(this));
 
-    connect(wordTypeComboBox, QOverload<const QString &>::of(&KComboBox::currentTextChanged),
-            this, &SummaryWordWidget::wordTypeSelected);
+    connect(wordTypeComboBox, QOverload<const QString &>::of(&KComboBox::currentTextChanged), this, &SummaryWordWidget::wordTypeSelected);
 }
 
 void SummaryWordWidget::setTranslation(KEduVocExpression *entry, int translation)
@@ -59,18 +57,13 @@ void SummaryWordWidget::setTranslation(KEduVocExpression *entry, int translation
         // we need to map the widgets relative to the translation (each translation has 9 columns)
         m_mapper->clearMapping();
 
-        m_mapper->addMapping(wordEntry,
-                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Translation);
-        //m_mapper->addMapping(wordTypeComboBox,
+        m_mapper->addMapping(wordEntry, VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Translation);
+        // m_mapper->addMapping(wordTypeComboBox,
         //                    VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::WordType);
-        m_mapper->addMapping(pronunciationEntry,
-                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Pronunciation);
-        m_mapper->addMapping(exampleEntry,
-                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Example);
-        m_mapper->addMapping(paraphraseEntry,
-                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Paraphrase);
-        m_mapper->addMapping(commentEntry,
-                             VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Comment);
+        m_mapper->addMapping(pronunciationEntry, VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Pronunciation);
+        m_mapper->addMapping(exampleEntry, VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Example);
+        m_mapper->addMapping(paraphraseEntry, VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Paraphrase);
+        m_mapper->addMapping(commentEntry, VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Comment);
 
         languageLabel->setText("<b>" + m_doc->identifier(translation).name() + "</b>");
         lessonLabel->setText(entry->lesson()->name());
@@ -110,16 +103,13 @@ void SummaryWordWidget::slotDocumentChanged(const std::shared_ptr<KEduVocDocumen
     }
 }
 
-
-void SummaryWordWidget::slotSelectionChanged(const QItemSelection &itemSelected,
-        const QItemSelection &itemDeselected)
+void SummaryWordWidget::slotSelectionChanged(const QItemSelection &itemSelected, const QItemSelection &itemDeselected)
 {
     Q_UNUSED(itemDeselected)
 
     if (itemSelected.indexes().size() >= 1) {
         // the selected index belongs to VocabularyFilter, when we need it from the vocabulary model
-        QModelIndex index = m_model->index(itemSelected.indexes().at(0).row(),
-                                           itemSelected.indexes().at(0).column());
+        QModelIndex index = m_model->index(itemSelected.indexes().at(0).row(), itemSelected.indexes().at(0).column());
         m_mapper->setCurrentModelIndex(index);
     }
 }
@@ -173,7 +163,8 @@ void SummaryWordWidget::clear()
     commentEntry->setText(QString());
 }
 
-SummaryWordDelegate::SummaryWordDelegate(QObject *parent) : QItemDelegate(parent)
+SummaryWordDelegate::SummaryWordDelegate(QObject *parent)
+    : QItemDelegate(parent)
 {
 }
 
@@ -194,7 +185,7 @@ void SummaryWordDelegate::setEditorData(QWidget *editor, const QModelIndex &inde
         case VocabularyModel::Example:
         case VocabularyModel::Paraphrase:
 
-            QLineEdit *entry = static_cast <QLineEdit *>(editor);
+            QLineEdit *entry = static_cast<QLineEdit *>(editor);
             if (entry) {
                 entry->setText(index.model()->data(index).toString());
             }
@@ -203,15 +194,15 @@ void SummaryWordDelegate::setEditorData(QWidget *editor, const QModelIndex &inde
     }
 }
 
-void SummaryWordWidget::wordTypeSelected(const QString& wordTypeName)
+void SummaryWordWidget::wordTypeSelected(const QString &wordTypeName)
 {
     if (!m_doc || !m_entry) {
         return;
     }
 
-    KEduVocContainer* container = m_doc->wordTypeContainer()->childContainer(wordTypeName);
+    KEduVocContainer *container = m_doc->wordTypeContainer()->childContainer(wordTypeName);
     if (container) {
-        KEduVocWordType *wordType = static_cast<KEduVocWordType*>(container);
+        KEduVocWordType *wordType = static_cast<KEduVocWordType *>(container);
         if (wordType) {
             m_entry->translation(m_translationId)->setWordType(wordType);
         }

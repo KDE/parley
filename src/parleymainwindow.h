@@ -12,12 +12,11 @@
 
 #include "parleydocument.h"
 
-#include <KXmlGuiWindow>
 #include "practice/sessionmanagercontinuous.h"
 #include "practice/sessionmanagerfixed.h"
+#include <KXmlGuiWindow>
 
 #include <QPointer>
-
 
 class KRecentFilesAction;
 #if 0
@@ -25,25 +24,17 @@ class KRecentFilesAction;
 class Dashboard;
 #endif
 
-
 class ParleyMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 
 public:
-    static ParleyMainWindow * instance();
+    static ParleyMainWindow *instance();
 
     ~ParleyMainWindow();
 
     /** enum for the different components that can be displayed */
-    enum Component {
-        NoComponent,
-        DashboardComponent,
-        EditorComponent,
-        ConfigurePracticeComponent,
-        PracticeComponent,
-        PracticeSummary
-    };
+    enum Component { NoComponent, DashboardComponent, EditorComponent, ConfigurePracticeComponent, PracticeComponent, PracticeSummary };
 
     /**
      * setup the action (menus etc)
@@ -66,7 +57,7 @@ public:
      * Return the ParleyDocument member object
      * @return member m_document
      */
-    ParleyDocument* parleyDocument();
+    ParleyDocument *parleyDocument();
 
     Component currentComponent();
 
@@ -100,7 +91,6 @@ public slots:
     void showPracticeSummary();
     void practiceFinished();
 
-
     /**
      * Show the tip of the day (force it to be shown)
      */
@@ -123,7 +113,7 @@ public slots:
      */
     void showDocumentActions(bool open, bool edit);
 
-    void setVisibleToolbar(const QString& name);
+    void setVisibleToolbar(const QString &name);
 
 signals:
     void recentFilesChanged();
@@ -133,21 +123,20 @@ private:
     ParleyMainWindow(const QUrl &filename = QUrl());
     static ParleyMainWindow *s_instance;
 
-    Component      m_currentComponent;
+    Component m_currentComponent;
     KXmlGuiWindow *m_currentComponentWindow;
 
     KRecentFilesAction *m_recentFilesAction;
 
     /** m_document is the current vocabulary document. */
-    ParleyDocument   *m_document;
+    ParleyDocument *m_document;
 
     Component m_componentBeforePractice;
 
+    // Practice::SessionManagerContinuous m_sessionManager;
+    Practice::SessionManagerFixed m_sessionManager;
 
-    //Practice::SessionManagerContinuous m_sessionManager;
-    Practice::SessionManagerFixed        m_sessionManager;
-
-    friend int main(int argc, char* argv[]);
+    friend int main(int argc, char *argv[]);
 };
 
 #endif // PARLEYMAINWINDOW_H

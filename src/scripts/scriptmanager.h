@@ -11,16 +11,16 @@
 
 #include <QStringList>
 
-
 /**
- * This class finds the scripts installed in the application directory and manages loading and unloading of the scripts. For each script an instance of Script class is created.
+ * This class finds the scripts installed in the application directory and manages loading and unloading of the scripts. For each script an instance of Script
+ * class is created.
  *
  * @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
-*/
+ */
 class ScriptManager : public QObject
 {
 public:
-    explicit ScriptManager(Editor::EditorWindow * editor);
+    explicit ScriptManager(Editor::EditorWindow *editor);
 
     ~ScriptManager();
 
@@ -83,7 +83,7 @@ public:
      * @param obj The QObject to be added to the script
      * @param name The name of the object as it will appear in the script
      */
-    void addObject(QObject * obj, const QString & name);
+    void addObject(QObject *obj, const QString &name);
 
     /**
      * Reloads all the scripts
@@ -95,21 +95,22 @@ public:
      * @param name The action name
      * @param action QAction to be added
      */
-    void addScriptAction(const QString & name, QAction * action);
+    void addScriptAction(const QString &name, QAction *action);
 
     /** returns the Translator object the Scripting::Parley */
-    Translator * translator() {
+    Translator *translator()
+    {
         return m_scriptingParley->translator();
     }
 
 private:
-    Editor::EditorWindow * m_editor;
-    QList<Script*> m_scripts;
-    QMap<QString, QObject*> m_scriptObjects;
-    QList<QAction*> m_scriptActions;
+    Editor::EditorWindow *m_editor;
+    QList<Script *> m_scripts;
+    QMap<QString, QObject *> m_scriptObjects;
+    QList<QAction *> m_scriptActions;
 
-    ///script objects (objects that will be used from inside the scripts)
-    Scripting::Parley* m_scriptingParley;
+    /// script objects (objects that will be used from inside the scripts)
+    Scripting::Parley *m_scriptingParley;
 };
 
 #endif

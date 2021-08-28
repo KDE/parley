@@ -8,17 +8,19 @@
 
 #include "documentproperties.h"
 
-#include "parleymainwindow.h"
 #include "parleydocument.h"
+#include "parleymainwindow.h"
 
 #include <KEduVocDocument>
 #include <QLineEdit>
 
-#include <QTextEdit>
 #include <QLabel>
+#include <QTextEdit>
 
-DocumentProperties::DocumentProperties(KEduVocDocument * doc, bool languageSetup, QWidget* parent)
-    : QWidget(parent), m_doc(doc), m_showLanguages(languageSetup)
+DocumentProperties::DocumentProperties(KEduVocDocument *doc, bool languageSetup, QWidget *parent)
+    : QWidget(parent)
+    , m_doc(doc)
+    , m_showLanguages(languageSetup)
 {
     setupUi(this);
 
@@ -40,7 +42,7 @@ void DocumentProperties::prepareLanguageSelection()
 {
     QStringList languageNames;
 
-    //Create a key map, key: language-country pair, value: locale
+    // Create a key map, key: language-country pair, value: locale
     QMap<QString, QString> languageCodeMap = DocumentProperties::localeLangsMap();
 
     QMap<QString, QString>::const_iterator lcMapIter;
@@ -89,17 +91,14 @@ void DocumentProperties::acceptLanguageConfiguration()
 
 QMap<QString, QString> DocumentProperties::localeLangsMap()
 {
-    //Get a list of locales
-    QList<QLocale> allLocales = QLocale::matchingLocales(
-        QLocale::AnyLanguage,
-        QLocale::AnyScript,
-        QLocale::AnyCountry);
+    // Get a list of locales
+    QList<QLocale> allLocales = QLocale::matchingLocales(QLocale::AnyLanguage, QLocale::AnyScript, QLocale::AnyCountry);
 
     QMap<QString, QString> languageCodeMap;
 
-    for (const QLocale & myLocale : qAsConst(allLocales)) {
-        if(!myLocale.nativeLanguageName().isEmpty() && !myLocale.nativeCountryName().isEmpty()) {
-            languageCodeMap[ myLocale.nativeLanguageName() +  " (" +  myLocale.nativeCountryName() + ')' ] = myLocale.name();
+    for (const QLocale &myLocale : qAsConst(allLocales)) {
+        if (!myLocale.nativeLanguageName().isEmpty() && !myLocale.nativeCountryName().isEmpty()) {
+            languageCodeMap[myLocale.nativeLanguageName() + " (" + myLocale.nativeCountryName() + ')'] = myLocale.name();
         }
     }
     return languageCodeMap;

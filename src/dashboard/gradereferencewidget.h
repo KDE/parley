@@ -9,7 +9,6 @@
 
 #include <QWidget>
 
-
 class GradeReferenceWidget : public QWidget
 {
 public:
@@ -17,7 +16,6 @@ public:
 
 protected:
     void paintEvent(QPaintEvent *) override;
-
 };
 
 #endif

@@ -19,25 +19,25 @@ class VocabularyFilter : public QSortFilterProxyModel
 public:
     explicit VocabularyFilter(QObject *parent = 0);
 
-    void setSourceModel(VocabularyModel* model);
+    void setSourceModel(VocabularyModel *model);
 
     QModelIndex appendEntry(KEduVocExpression *expression = 0);
-    KEduVocLesson * lesson();
+    KEduVocLesson *lesson();
 
 public slots:
-    void setSearchString(const QString& expression);
+    void setSearchString(const QString &expression);
 
 protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
 
 private:
-    void setSourceModel(QAbstractItemModel *model) override {
+    void setSourceModel(QAbstractItemModel *model) override
+    {
         Q_UNUSED(model)
     }
 
-    VocabularyModel * m_model;
+    VocabularyModel *m_model;
     QString m_filterString;
 };
-
 
 #endif

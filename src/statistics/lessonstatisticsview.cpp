@@ -13,32 +13,31 @@
 #include <QPainter>
 
 // KDE
+#include <KActionCollection>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <QInputDialog>
 #include <QAction>
-#include <KActionCollection>
+#include <QInputDialog>
 
 // Parley
+#include "documentsettings.h"
 #include "statisticslegendwidget.h"
 #include "statisticsmodel.h"
-#include <KEduVocLesson>
 #include "utils.h"
-#include "documentsettings.h"
-
+#include <KEduVocLesson>
 
 // GradeDelegate shows the graphic colored bar in the statistics,
 // showing how far the student has come on the way to enlightenment.
 
-class GradeDelegate: public QItemDelegate
+class GradeDelegate : public QItemDelegate
 {
 public:
     GradeDelegate(QObject *parent = 0)
-        : QItemDelegate(parent) {
+        : QItemDelegate(parent)
+    {
     }
 
-    void paint(QPainter *painter, const QStyleOptionViewItem &option,
-               const QModelIndex &index) const override
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override
     {
         QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, 0);
 
@@ -48,36 +47,27 @@ public:
         }
 
         // Draw the colored bar.
-        KEduVocContainer *container = index.data(StatisticsModel::Container)
-                                           .value<KEduVocContainer*>();
-        QStringList activeConjugationTenses = index.data(StatisticsModel::ActiveConjugationTenses)
-                                                   .toStringList();
-        WordCount  wordCount;
-        wordCount.fillFromContainerForPracticeMode(
-            *container,
-            index.column() - ContainerModel::FirstDataColumn,
-            activeConjugationTenses
-        );
-        ConfidenceColors  colors(ConfidenceColors::ProgressiveColorScheme);
+        KEduVocContainer *container = index.data(StatisticsModel::Container).value<KEduVocContainer *>();
+        QStringList activeConjugationTenses = index.data(StatisticsModel::ActiveConjugationTenses).toStringList();
+        WordCount wordCount;
+        wordCount.fillFromContainerForPracticeMode(*container, index.column() - ContainerModel::FirstDataColumn, activeConjugationTenses);
+        ConfidenceColors colors(ConfidenceColors::ProgressiveColorScheme);
 
         paintColorBar(*painter, option.rect, wordCount, colors); // in utils
 
         // Draw the text telling the percentage on top of the bar.
-        painter->drawText(option.rect, Qt::AlignCenter,
-                    QStringLiteral("%1%").arg(index.data(StatisticsModel::TotalPercent).toInt()));
+        painter->drawText(option.rect, Qt::AlignCenter, QStringLiteral("%1%").arg(index.data(StatisticsModel::TotalPercent).toInt()));
     }
 };
 
-
 // ----------------------------------------------------------------
-
 
 LessonStatisticsView::LessonStatisticsView(QWidget *parent)
     : ContainerView(parent)
 {
     header()->setVisible(true);
     header()->setDefaultAlignment(Qt::AlignLeft | Qt::AlignBottom);
-    header()->setSectionsMovable( true );
+    header()->setSectionsMovable(true);
 
     // inherits context menu policy - so action will show up in right click menu
     QAction *removeGradesAction = new QAction(this);
@@ -100,10 +90,8 @@ LessonStatisticsView::LessonStatisticsView(QWidget *parent)
     connect(removeGradesChildrenAction, &QAction::triggered, this, &LessonStatisticsView::removeGradesChildren);
     addAction(removeGradesChildrenAction);
 
-    connect(header(), &QHeaderView::geometriesChanged,
-	    this,     &LessonStatisticsView::adjustColumnWidths);
-    connect(header(), &QHeaderView::sectionResized,
-	    this,     &LessonStatisticsView::sectionResized);
+    connect(header(), &QHeaderView::geometriesChanged, this, &LessonStatisticsView::adjustColumnWidths);
+    connect(header(), &QHeaderView::sectionResized, this, &LessonStatisticsView::sectionResized);
 }
 
 LessonStatisticsView::~LessonStatisticsView()
@@ -129,11 +117,10 @@ void LessonStatisticsView::resizeEvent(QResizeEvent *event)
     ContainerView::resizeEvent(event);
 }
 
-void LessonStatisticsView::sectionResized(int index,
-					  int /*oldSize*/, int /*newSize*/)
+void LessonStatisticsView::sectionResized(int index, int /*oldSize*/, int /*newSize*/)
 {
     if (index < ContainerModel::FirstDataColumn) {
-	adjustColumnWidths();
+        adjustColumnWidths();
     }
 }
 
@@ -151,7 +138,7 @@ void LessonStatisticsView::adjustColumnWidths()
     for (int i = ContainerModel::FirstDataColumn; i < model()->columnCount(QModelIndex()); i++) {
         setColumnWidth(i, columnWidth);
     }
-//    header()->resizeSections(QHeaderView::ResizeToContents);
+    //    header()->resizeSections(QHeaderView::ResizeToContents);
     header()->setSectionResizeMode(QHeaderView::Interactive);
     header()->setStretchLastSection(true);
 }
@@ -159,14 +146,14 @@ void LessonStatisticsView::adjustColumnWidths()
 void LessonStatisticsView::removeGrades()
 {
     QModelIndex selectedIndex = selectionModel()->currentIndex();
-    KEduVocLesson *lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
+    KEduVocLesson *lesson = static_cast<KEduVocLesson *>(selectedIndex.internalPointer());
     lesson->resetGrades(-1, KEduVocContainer::NotRecursive);
 }
 
 void LessonStatisticsView::removeGradesChildren()
 {
     QModelIndex selectedIndex = selectionModel()->currentIndex();
-    KEduVocLesson *lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
+    KEduVocLesson *lesson = static_cast<KEduVocLesson *>(selectedIndex.internalPointer());
     lesson->resetGrades(-1, KEduVocContainer::Recursive);
 }
 
@@ -186,8 +173,7 @@ void LessonStatisticsView::saveExpandedStatus() const
     }
 }
 
-void LessonStatisticsView::getCollapsedItems(QStringList &collapsedItems, const QModelIndex &item,
-                                            QString name) const
+void LessonStatisticsView::getCollapsedItems(QStringList &collapsedItems, const QModelIndex &item, QString name) const
 {
     if (!item.isValid()) {
         return;
@@ -220,8 +206,7 @@ void LessonStatisticsView::restoreExpandedStatus()
     }
 }
 
-void LessonStatisticsView::setCollapsedItems(const QStringList &collapsedItems,
-                                             const QModelIndex &item, QString name)
+void LessonStatisticsView::setCollapsedItems(const QStringList &collapsedItems, const QModelIndex &item, QString name)
 {
     if (!item.isValid()) {
         return;
@@ -241,4 +226,3 @@ void LessonStatisticsView::setCollapsedItems(const QStringList &collapsedItems,
         }
     }
 }
-

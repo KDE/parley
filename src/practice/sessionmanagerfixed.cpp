@@ -6,8 +6,8 @@
 #include "sessionmanagerfixed.h"
 
 // kdelibs
-#include <KLocalizedString>
 #include <KConfig>
+#include <KLocalizedString>
 #include <QDebug>
 
 // kdeedulibs
@@ -16,10 +16,9 @@
 // parley
 #include <prefs.h>
 
-
 using namespace Practice;
 
-SessionManagerFixed::SessionManagerFixed(QWidget* parent)
+SessionManagerFixed::SessionManagerFixed(QWidget *parent)
     : SessionManagerBase(parent)
 {
 }
@@ -28,10 +27,9 @@ SessionManagerFixed::~SessionManagerFixed()
 {
 }
 
-
 void SessionManagerFixed::initializeTraining()
 {
-    const int MaxEntries  = Prefs::sessionMaxSize();
+    const int MaxEntries = Prefs::sessionMaxSize();
     const int MaxNewWords = Prefs::sessionMaxNewWords();
 
     // We will never add anything to the session after it's initialized.
@@ -39,14 +37,9 @@ void SessionManagerFixed::initializeTraining()
 
     // Pick N new words if there are any into the active set.
     int numNewWords = 0;
-    QList<TestEntry*>::Iterator it = m_allTestEntries.begin();
-    while (it != m_allTestEntries.end()
-           && numNewWords < MaxNewWords
-           && m_currentEntries.count() < MaxEntries)
-    {
-        if ((*it)->practiceModeDependentMinGrade() == 0
-            && (*it)->practiceModeDependentMinPreGrade() == 0)
-        {
+    QList<TestEntry *>::Iterator it = m_allTestEntries.begin();
+    while (it != m_allTestEntries.end() && numNewWords < MaxNewWords && m_currentEntries.count() < MaxEntries) {
+        if ((*it)->practiceModeDependentMinGrade() == 0 && (*it)->practiceModeDependentMinPreGrade() == 0) {
             m_currentEntries.append(*it);
             numNewWords++;
             it = m_allTestEntries.erase(it);
@@ -57,7 +50,7 @@ void SessionManagerFixed::initializeTraining()
 
     // Pick the rest of the words from the already practiced ones.
     // Use higher graded entries before lower graded ones.
-    for (int grade = KV_MAX_GRADE; grade > 0 ; --grade) {
+    for (int grade = KV_MAX_GRADE; grade > 0; --grade) {
         if (m_currentEntries.count() >= MaxEntries) {
             break;
         }
@@ -65,9 +58,7 @@ void SessionManagerFixed::initializeTraining()
         // Step through all entries and collect those at the current
         // grade until the session is filled.
         it = m_allTestEntries.begin();
-        while (it != m_allTestEntries.end()
-               && m_currentEntries.count() < MaxEntries)
-        {
+        while (it != m_allTestEntries.end() && m_currentEntries.count() < MaxEntries) {
             if ((*it)->practiceModeDependentMaxGrade() == grade) {
                 m_currentEntries.append(*it);
                 it = m_allTestEntries.erase(it);
@@ -80,7 +71,7 @@ void SessionManagerFixed::initializeTraining()
     // If there is still room in the session, pick the rest of the
     // words from the ones with pregrades.  Also here, use higher
     // graded entries before lower graded ones.
-    for (int preGrade = KV_MAX_GRADE; preGrade > 0 ; --preGrade) {
+    for (int preGrade = KV_MAX_GRADE; preGrade > 0; --preGrade) {
         if (m_currentEntries.count() >= MaxEntries) {
             break;
         }
@@ -88,9 +79,7 @@ void SessionManagerFixed::initializeTraining()
         // Step through all entries and collect those at the current
         // grade until the session is filled.
         it = m_allTestEntries.begin();
-        while (it != m_allTestEntries.end()
-            && m_currentEntries.count() < MaxEntries)
-        {
+        while (it != m_allTestEntries.end() && m_currentEntries.count() < MaxEntries) {
             if ((*it)->practiceModeDependentMaxPreGrade() == preGrade) {
                 m_currentEntries.append(*it);
                 it = m_allTestEntries.erase(it);

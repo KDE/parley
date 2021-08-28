@@ -12,7 +12,6 @@ class QTimeLine;
 
 namespace Practice
 {
-
 class ImageWidget : public QWidget
 {
     Q_OBJECT
@@ -20,7 +19,7 @@ class ImageWidget : public QWidget
 public:
     explicit ImageWidget(QWidget *parent = 0);
 
-    void setPixmap(const QPixmap& pixmap);
+    void setPixmap(const QPixmap &pixmap);
     void setScalingEnabled(bool scaling, bool onlyDownscaling = true);
     void setKeepAspectRatio(Qt::AspectRatioMode mode);
     void setFadingEnabled(bool fading);

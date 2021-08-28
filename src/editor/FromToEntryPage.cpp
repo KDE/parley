@@ -8,15 +8,14 @@
 
 #include "FromToEntryPage.h"
 
-#include <QPushButton>
 #include <QGroupBox>
+#include <QPushButton>
 
-#include <KLocalizedString>
 #include <KComboBox>
+#include <KLocalizedString>
 #include <QLineEdit>
 
 #include "EntryDlg.h"
-
 
 // this has nothing really to do with the rest. stays here until it has a better home.
 QString FromToEntryPage::gradeToString(int i)
@@ -52,8 +51,8 @@ QString FromToEntryPage::gradeToString(int i)
     }
 }
 
-
-FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, int fromIdentifier, int toIdentifier, QWidget *parent) : QWidget(parent)
+FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, int fromIdentifier, int toIdentifier, QWidget *parent)
+    : QWidget(parent)
 {
     m_doc = doc;
 
@@ -77,16 +76,13 @@ FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, int fromIdentifier, int t
     for (int i = 0; i <= KV_MAX_GRADE; i++) {
         gradebox->addItem(gradeToString(i));
     }
-
 }
 
-
-void FromToEntryPage::slotFalseFriendChanged(const QString& s)
+void FromToEntryPage::slotFalseFriendChanged(const QString &s)
 {
     Q_UNUSED(s)
     emit sigModified();
 }
-
 
 void FromToEntryPage::slotGradeSelected(int g)
 {
@@ -95,14 +91,12 @@ void FromToEntryPage::slotGradeSelected(int g)
     emit sigModified();
 }
 
-
 void FromToEntryPage::slotToday()
 {
     m_practiceDateChanged = true;
     queryDateEdit->setDateTime(QDateTime::currentDateTime());
     emit sigModified();
 }
-
 
 void FromToEntryPage::slotNever()
 {
@@ -112,8 +106,7 @@ void FromToEntryPage::slotNever()
     emit sigModified();
 }
 
-
-void FromToEntryPage::slotDateChanged(const QDate & d)
+void FromToEntryPage::slotDateChanged(const QDate &d)
 {
     m_practiceDateChanged = true;
     Q_UNUSED(d)
@@ -134,19 +127,17 @@ void FromToEntryPage::badCountChanged(int count)
     emit sigModified();
 }
 
-
-void FromToEntryPage::setData(const QList<int>& entries)
+void FromToEntryPage::setData(const QList<int> &entries)
 {
     m_entries = entries;
 
     // only set Grades as title for now:
-    direc_label->setTitle(QString(i18n("Confidence Levels from %1 to %2", m_doc->identifier(m_translationFrom).name(), m_doc->identifier(m_translationTo).name())));
+    direc_label->setTitle(
+        QString(i18n("Confidence Levels from %1 to %2", m_doc->identifier(m_translationFrom).name(), m_doc->identifier(m_translationTo).name())));
 
     KEduVocExpression *firstEntry = m_doc->entry(m_entries.value(0));
 
-    queryDateEdit->setDateTime(
-        firstEntry->translation(m_translationTo)
-        .gradeFrom(m_translationFrom).practiceDate());
+    queryDateEdit->setDateTime(firstEntry->translation(m_translationTo).gradeFrom(m_translationFrom).practiceDate());
 
     gradebox->setCurrentIndex(firstEntry->translation(m_translationTo).gradeFrom(m_translationFrom).grade());
 
@@ -159,37 +150,28 @@ void FromToEntryPage::setData(const QList<int>& entries)
         for (int entry : qAsConst(m_entries)) {
             // grade
             KEduVocExpression *currentEntry = m_doc->entry(entry);
-            if (firstEntry->translation(m_translationTo)
-                    .gradeFrom(m_translationFrom).grade()
-                    != currentEntry->translation(m_translationTo)
-                    .gradeFrom(m_translationFrom).grade()) {
+            if (firstEntry->translation(m_translationTo).gradeFrom(m_translationFrom).grade()
+                != currentEntry->translation(m_translationTo).gradeFrom(m_translationFrom).grade()) {
                 gradebox->setCurrentIndex(-1);
             }
             // date
-            if (firstEntry->translation(m_translationTo)
-                    .gradeFrom(m_translationFrom).practiceDate()
-                    != currentEntry->translation(m_translationTo)
-                    .gradeFrom(m_translationFrom).practiceDate()) {
+            if (firstEntry->translation(m_translationTo).gradeFrom(m_translationFrom).practiceDate()
+                != currentEntry->translation(m_translationTo).gradeFrom(m_translationFrom).practiceDate()) {
                 queryDateEdit->setDate(queryDateEdit->minimumDate());
                 queryDateEdit->setTime(queryDateEdit->minimumTime());
             }
 
             // total count
-            if (firstEntry->translation(m_translationTo)
-                    .gradeFrom(m_translationFrom).practiceCount()
-                    != currentEntry->translation(m_translationTo)
-                    .gradeFrom(m_translationFrom).practiceCount()) {
+            if (firstEntry->translation(m_translationTo).gradeFrom(m_translationFrom).practiceCount()
+                != currentEntry->translation(m_translationTo).gradeFrom(m_translationFrom).practiceCount()) {
                 totalCountEdit->clear();
             }
 
             // wrong count
-            if (firstEntry->translation(m_translationTo)
-                    .gradeFrom(m_translationFrom).badCount()
-                    != currentEntry->translation(m_translationTo)
-                    .gradeFrom(m_translationFrom).badCount()) {
+            if (firstEntry->translation(m_translationTo).gradeFrom(m_translationFrom).badCount()
+                != currentEntry->translation(m_translationTo).gradeFrom(m_translationFrom).badCount()) {
                 badCountEdit->clear();
             }
-
         }
         fauxami_line->setEnabled(false);
         fauxami_line->setText(QString());
@@ -202,7 +184,6 @@ void FromToEntryPage::setData(const QList<int>& entries)
     m_practiceDateChanged = false;
     m_totalCountChanged = false;
     m_wrongCountChanged = false;
-
 }
 
 void FromToEntryPage::commitData()
@@ -210,7 +191,7 @@ void FromToEntryPage::commitData()
     qDebug() << "Grade page commit data: " << m_translationFrom << m_translationTo;
     if (m_entries.count() == 1) {
         // these things are only changed when editing a single entry
-        KEduVocTranslation * trans = &m_doc->entry(m_entries.value(0))->translation(m_translationTo);
+        KEduVocTranslation *trans = &m_doc->entry(m_entries.value(0))->translation(m_translationTo);
         trans->setFalseFriend(m_translationFrom, fauxami_line->text());
     }
 
@@ -245,8 +226,5 @@ void FromToEntryPage::slotResetGrades()
     m_totalCountChanged = true;
     m_wrongCountChanged = true;
 
-//     emit sigModified();
+    //     emit sigModified();
 }
-
-
-

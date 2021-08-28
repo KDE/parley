@@ -6,17 +6,14 @@
 #ifndef PRACTICESESSIONMANAGERFIXED_H
 #define PRACTICESESSIONMANAGERFIXED_H
 
-
 #include "sessionmanagerbase.h"
 
 // Parley
-#include "testentry.h"
 #include "prefs.h"
-
+#include "testentry.h"
 
 namespace Practice
 {
-
 /**
  * This class handles a session of a fixed size. Special features include:
  *  - at most x (default: 5) new words every session
@@ -41,13 +38,11 @@ public:
      */
     void initializeTraining() override;
 
-
     // Not reimplemented.  The default version does what is needed.
-    //virtual TestEntry* nextTrainingEntry();
+    // virtual TestEntry* nextTrainingEntry();
 
-
- private:  // data
-    // The default data in the base class is enough for us.
+private: // data
+         // The default data in the base class is enough for us.
 };
 
 }

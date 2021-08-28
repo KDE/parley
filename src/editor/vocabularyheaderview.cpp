@@ -6,7 +6,7 @@
 
 using namespace Editor;
 
-VocabularyHeaderView::VocabularyHeaderView(Qt::Orientation orientation, QWidget * parent)
+VocabularyHeaderView::VocabularyHeaderView(Qt::Orientation orientation, QWidget *parent)
     : QHeaderView(orientation, parent)
 {
     setSectionsClickable(true);

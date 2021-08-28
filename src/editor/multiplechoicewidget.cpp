@@ -7,14 +7,14 @@
 
 #include "multiplechoicewidget.h"
 
-#include <KEduVocTranslation>
 #include <KEduVocExpression>
+#include <KEduVocTranslation>
 #include <QDebug>
 
-#include <QStringListModel>
 #include <QDragEnterEvent>
 #include <QDropEvent>
 #include <QMimeData>
+#include <QStringListModel>
 
 using namespace Editor;
 
@@ -38,7 +38,6 @@ MultipleChoiceWidget::MultipleChoiceWidget(QWidget *parent)
     setEnabled(false);
 }
 
-
 void MultipleChoiceWidget::slotDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight)
 {
     Q_UNUSED(topLeft)
@@ -50,7 +49,6 @@ void MultipleChoiceWidget::slotDataChanged(const QModelIndex &topLeft, const QMo
         removeChoiceButton->setEnabled(false);
     }
 }
-
 
 void MultipleChoiceWidget::setTranslation(KEduVocExpression *entry, int translation)
 {
@@ -70,7 +68,6 @@ void MultipleChoiceWidget::setTranslation(KEduVocExpression *entry, int translat
     removeChoiceButton->setEnabled(m_translation && m_translation->getMultipleChoice().count() > 0);
 }
 
-
 void MultipleChoiceWidget::slotAddChoiceButton()
 {
     m_choicesModel->insertRow(m_choicesModel->rowCount());
@@ -80,7 +77,6 @@ void MultipleChoiceWidget::slotAddChoiceButton()
     multipleChoiceListView->setCurrentIndex(index);
     multipleChoiceListView->edit(index);
 }
-
 
 void MultipleChoiceWidget::slotRemoveChoiceButton()
 {
@@ -98,14 +94,13 @@ void MultipleChoiceWidget::slotRemoveChoiceButton()
     }
 }
 
-
 bool MultipleChoiceWidget::eventFilter(QObject *obj, QEvent *event)
 {
     if (obj == multipleChoiceListView) {
         if (event->type() == QEvent::DragEnter) {
             QDragEnterEvent *dragEnterEvent = static_cast<QDragEnterEvent *>(event);
-            //qDebug() << "DragEnter mime format: " << dragEnterEvent->format();
-            if (( dragEnterEvent->mimeData() != NULL ) && dragEnterEvent->mimeData()->hasText()) {
+            // qDebug() << "DragEnter mime format: " << dragEnterEvent->format();
+            if ((dragEnterEvent->mimeData() != NULL) && dragEnterEvent->mimeData()->hasText()) {
                 event->accept();
             }
             return true;
@@ -118,11 +113,10 @@ bool MultipleChoiceWidget::eventFilter(QObject *obj, QEvent *event)
 
         if (event->type() == QEvent::Drop) {
             QDropEvent *dropEvent = static_cast<QDropEvent *>(event);
-            //qDebug() << "You dropped onto me: " << dropEvent->mimeData()->text();
-            if (( dropEvent->mimeData() != NULL ) && dropEvent->mimeData()->hasText()) {
-
+            // qDebug() << "You dropped onto me: " << dropEvent->mimeData()->text();
+            if ((dropEvent->mimeData() != NULL) && dropEvent->mimeData()->hasText()) {
                 QStringList choices = dropEvent->mimeData()->text().split('\n');
-                for (const QString & choice : qAsConst(choices)) {
+                for (const QString &choice : qAsConst(choices)) {
                     m_choicesModel->insertRow(multipleChoiceListView->model()->rowCount());
                     m_choicesModel->setData(m_choicesModel->index(multipleChoiceListView->model()->rowCount() - 1), choice);
                 }

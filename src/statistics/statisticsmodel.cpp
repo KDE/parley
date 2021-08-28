@@ -11,8 +11,8 @@
 #include <KEduVocTranslation>
 #include <KEduVocWordtype>
 #include <KLocalizedString>
-#include <QGradient>
 #include <QDebug>
+#include <QGradient>
 
 StatisticsModel::StatisticsModel(QObject *parent)
     : ContainerModel(KEduVocContainer::Lesson, parent)
@@ -22,10 +22,8 @@ StatisticsModel::StatisticsModel(QObject *parent)
 QVariant StatisticsModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (section >= FirstDataColumn) {
-        if (role == Qt::DisplayRole
-            && m_doc->identifierCount() > (section - FirstDataColumn) ) {
-            return i18nc("Confidence level in language, table header", "Confidence (%1)"
-                         , m_doc->identifier(section - FirstDataColumn).name());
+        if (role == Qt::DisplayRole && m_doc->identifierCount() > (section - FirstDataColumn)) {
+            return i18nc("Confidence level in language, table header", "Confidence (%1)", m_doc->identifier(section - FirstDataColumn).name());
         }
     }
     return ContainerModel::headerData(section, orientation, role);
@@ -35,7 +33,7 @@ QVariant StatisticsModel::data(const QModelIndex &index, int role) const
 {
     Q_ASSERT(!m_documentSettings.isEmpty());
 
-    KEduVocContainer *container = static_cast<KEduVocContainer*>(index.internalPointer());
+    KEduVocContainer *container = static_cast<KEduVocContainer *>(index.internalPointer());
 
     // Entrie count
     if (index.column() == TotalCountColumn) {
@@ -47,8 +45,7 @@ QVariant StatisticsModel::data(const QModelIndex &index, int role) const
                 return entryCountForPracticeMode(container, Prefs::knownLanguage());
             case Prefs::EnumPracticeDirection::MixedDirectionsWordsOnly:
             case Prefs::EnumPracticeDirection::MixedDirectionsWithSound:
-                return entryCountForPracticeMode(container, Prefs::knownLanguage())
-                    + entryCountForPracticeMode(container, Prefs::learningLanguage());
+                return entryCountForPracticeMode(container, Prefs::knownLanguage()) + entryCountForPracticeMode(container, Prefs::learningLanguage());
             default:
                 return entryCountForPracticeMode(container, Prefs::learningLanguage());
             }
@@ -62,13 +59,12 @@ QVariant StatisticsModel::data(const QModelIndex &index, int role) const
     if (index.column() >= FirstDataColumn) {
         int translation = index.column() - FirstDataColumn;
         switch (role) {
-        case Container:
-            {
-                // Return a pointer to the container we are working on.
-                QVariant var;
-                var.setValue(container);
-                return var;
-            }
+        case Container: {
+            // Return a pointer to the container we are working on.
+            QVariant var;
+            var.setValue(container);
+            return var;
+        }
         case TotalPercent: // Average grade
             return averageGradeForPracticeMode(container, translation);
         case TotalCount:
@@ -97,34 +93,21 @@ QVariant StatisticsModel::data(const QModelIndex &index, int role) const
 int StatisticsModel::averageGradeForPracticeMode(KEduVocContainer *container, int translation) const
 {
     WordCount wordCount;
-    wordCount.fillFromContainerForPracticeMode(
-        *container,
-        translation,
-        m_documentSettings.at(translation)->conjugationTenses()
-    );
+    wordCount.fillFromContainerForPracticeMode(*container, translation, m_documentSettings.at(translation)->conjugationTenses());
     return wordCount.percentageCompleted();
 }
 
 int StatisticsModel::entryCountForPracticeMode(KEduVocContainer *container, int translation) const
 {
     WordCount wordCount;
-    wordCount.fillFromContainerForPracticeMode(
-        *container,
-        translation,
-        m_documentSettings.at(translation)->conjugationTenses()
-    );
+    wordCount.fillFromContainerForPracticeMode(*container, translation, m_documentSettings.at(translation)->conjugationTenses());
     return wordCount.totalWords - wordCount.invalid;
 }
 
-int StatisticsModel::expressionsOfGradeForPracticeMode(KEduVocContainer *container,
-                                                      int translation, grade_t grade) const
+int StatisticsModel::expressionsOfGradeForPracticeMode(KEduVocContainer *container, int translation, grade_t grade) const
 {
     WordCount wordCount;
-    wordCount.fillFromContainerForPracticeMode(
-        *container,
-        translation,
-        m_documentSettings.at(translation)->conjugationTenses()
-    );
+    wordCount.fillFromContainerForPracticeMode(*container, translation, m_documentSettings.at(translation)->conjugationTenses());
     return wordCount.grades[grade];
 }
 
@@ -164,12 +147,9 @@ void StatisticsModel::loadDocumentsSettings()
     if (!m_doc) {
         return;
     }
-    for (int i = 0 ; i < m_doc->identifierCount(); ++i) {
-        m_documentSettings << QSharedPointer<DocumentSettings>(
-            new DocumentSettings(m_doc->url().url() + QString::number(i))
-        );
+    for (int i = 0; i < m_doc->identifierCount(); ++i) {
+        m_documentSettings << QSharedPointer<DocumentSettings>(new DocumentSettings(m_doc->url().url() + QString::number(i)));
         m_documentSettings.last()->load();
-
     }
 }
 
@@ -181,7 +161,6 @@ void StatisticsModel::setDocument(const std::shared_ptr<KEduVocDocument> &doc)
     endResetModel();
 }
 
-
 void StatisticsModel::updateDocumentSettings()
 {
     beginResetModel();
@@ -189,9 +168,7 @@ void StatisticsModel::updateDocumentSettings()
     endResetModel();
 }
 
-
 std::shared_ptr<KEduVocDocument> StatisticsModel::document() const
 {
     return m_doc;
 }
-

@@ -5,16 +5,17 @@
 
 #include "comparisonwidget.h"
 
-#include <KEduVocWordtype>
-#include <KEduVocTranslation>
-#include <KEduVocExpression>
 #include <KEduVocDocument>
-#include <KMessageBox>
+#include <KEduVocExpression>
+#include <KEduVocTranslation>
+#include <KEduVocWordtype>
 #include <KLocalizedString>
+#include <KMessageBox>
 
 using namespace Editor;
 
-ComparisonWidget::ComparisonWidget(QWidget *parent) : QWidget(parent)
+ComparisonWidget::ComparisonWidget(QWidget *parent)
+    : QWidget(parent)
 {
     setupUi(this);
 
@@ -27,7 +28,7 @@ ComparisonWidget::ComparisonWidget(QWidget *parent) : QWidget(parent)
     connect(superlativeLineEdit, &QLineEdit::editingFinished, this, &ComparisonWidget::slotSuperlativeChanged);
 }
 
-void ComparisonWidget::setTranslation(KEduVocExpression * entry, int translation)
+void ComparisonWidget::setTranslation(KEduVocExpression *entry, int translation)
 {
     comparativeLineEdit->setText(QString());
     superlativeLineEdit->setText(QString());
@@ -45,8 +46,7 @@ void ComparisonWidget::setTranslation(KEduVocExpression * entry, int translation
         setEnabled(true);
 
         if (m_translation->wordType()) {
-            if (m_translation->wordType()->wordType() & KEduVocWordFlag::Adjective
-                    || m_translation->wordType()->wordType() & KEduVocWordFlag::Adverb) {
+            if (m_translation->wordType()->wordType() & KEduVocWordFlag::Adjective || m_translation->wordType()->wordType() & KEduVocWordFlag::Adverb) {
                 comparativeLineEdit->setEnabled(true);
                 superlativeLineEdit->setEnabled(true);
 
@@ -67,7 +67,7 @@ void ComparisonWidget::slotMakeAdjectiveButton()
     }
 
     // find an adjective container
-    KEduVocWordType* container = m_doc->wordTypeContainer()->childOfType(KEduVocWordFlag::Adjective);
+    KEduVocWordType *container = m_doc->wordTypeContainer()->childOfType(KEduVocWordFlag::Adjective);
     if (container) {
         m_translation->setWordType(container);
         comparativeLineEdit->setEnabled(true);
@@ -86,7 +86,7 @@ void ComparisonWidget::slotMakeAdverbButton()
     }
 
     // find an adverb container
-    KEduVocWordType* container = m_doc->wordTypeContainer()->childOfType(KEduVocWordFlag::Adverb);
+    KEduVocWordType *container = m_doc->wordTypeContainer()->childOfType(KEduVocWordFlag::Adverb);
     if (container) {
         m_translation->setWordType(container);
         comparativeLineEdit->setEnabled(true);
@@ -98,7 +98,7 @@ void ComparisonWidget::slotMakeAdverbButton()
     }
 }
 
-void ComparisonWidget::setDocument(KEduVocDocument * doc)
+void ComparisonWidget::setDocument(KEduVocDocument *doc)
 {
     m_doc = doc;
 }

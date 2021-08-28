@@ -8,17 +8,16 @@
 #ifndef THRESHOLDOPTIONS_H
 #define THRESHOLDOPTIONS_H
 
-#include "ui_thresholdoptions.h"
 #include "prefs.h"
+#include "ui_thresholdoptions.h"
 
 class KEduVocDocument;
-
 
 class ThresholdOptions : public QWidget, public Ui::ThresholdOptions
 {
     Q_OBJECT
 public:
-    ThresholdOptions(KEduVocDocument* doc, QWidget* parent);
+    ThresholdOptions(KEduVocDocument *doc, QWidget *parent);
 
     void updateWidgets();
     bool hasChanged();
@@ -27,7 +26,7 @@ public:
 
 private:
     KEduVocDocument *m_doc;
-    KConfigSkeleton* m_config;
+    KConfigSkeleton *m_config;
 };
 
 #endif

@@ -7,10 +7,9 @@
 
 #include "prefs.h"
 
-
 TestEntry::TestEntry(KEduVocExpression *entry)
     : m_entry(entry)
-    , m_languageFrom(998)        // Bogus number to make sure that it's set correctly later
+    , m_languageFrom(998) // Bogus number to make sure that it's set correctly later
     , m_languageTo(999)
     , m_statisticCount(0)
     , m_statisticGoodCount(0)
@@ -21,7 +20,8 @@ TestEntry::TestEntry(KEduVocExpression *entry)
     , m_isUnseenQuestion(false)
     , m_lastPercentage(0.0)
     , m_lastError()
-{}
+{
+}
 
 void TestEntry::setLanguageFrom(int from)
 {
@@ -87,7 +87,7 @@ void TestEntry::updateStatisticsWrongAnswer(grade_t currentPreGrade, grade_t cur
     m_isUnseenQuestion = false;
 
     if (currentPreGrade == KV_NORM_GRADE && currentGrade == KV_NORM_GRADE) {
-	m_isUnseenQuestion = true;
+        m_isUnseenQuestion = true;
     }
 }
 
@@ -131,7 +131,7 @@ double TestEntry::lastPercentage()
     return m_lastPercentage;
 }
 
-KEduVocExpression * TestEntry::entry() const
+KEduVocExpression *TestEntry::entry() const
 {
     return m_entry;
 }
@@ -141,7 +141,7 @@ QString TestEntry::conjugationTense() const
     return m_conjugationTense;
 }
 
-void TestEntry::setConjugationTense(const QString& tense)
+void TestEntry::setConjugationTense(const QString &tense)
 {
     m_conjugationTense = tense;
 }
@@ -151,7 +151,7 @@ QList<KEduVocWordFlags> TestEntry::conjugationPronouns() const
     return m_conjugationPronouns;
 }
 
-void TestEntry::setConjugationPronouns(const QList<KEduVocWordFlags>& flags)
+void TestEntry::setConjugationPronouns(const QList<KEduVocWordFlags> &flags)
 {
     m_conjugationPronouns = flags;
 }
@@ -161,65 +161,55 @@ grade_t TestEntry::practiceModeDependentMinGrade() const
     return practiceModeDependentGrade(&KEduVocTranslation::grade, qMin<grade_t>);
 }
 
-
 grade_t TestEntry::practiceModeDependentMinPreGrade() const
 {
     return practiceModeDependentGrade(&KEduVocText::preGrade, qMin<grade_t>);
 }
-
 
 grade_t TestEntry::practiceModeDependentMaxGrade() const
 {
     return practiceModeDependentGrade(&KEduVocText::grade, qMax<grade_t>);
 }
 
-
 grade_t TestEntry::practiceModeDependentMaxPreGrade() const
 {
     return practiceModeDependentGrade(&KEduVocText::preGrade, qMax<grade_t>);
 }
 
-
-grade_t TestEntry::practiceModeDependentGrade(std::function<grade_t(KEduVocText)> gradeFunc,
-                                        std::function<grade_t(grade_t, grade_t)> minMaxFunc) const
+grade_t TestEntry::practiceModeDependentGrade(std::function<grade_t(KEduVocText)> gradeFunc, std::function<grade_t(grade_t, grade_t)> minMaxFunc) const
 {
     grade_t result(0);
     const KEduVocTranslation *translation(entry()->translation(languageTo()));
     switch (Prefs::practiceMode()) {
+    // For gender practice the article (pre-)grades are required.
+    case Prefs::EnumPracticeMode::GenderPractice:
+        result = gradeFunc(translation->article());
+        break;
 
-        // For gender practice the article (pre-)grades are required.
-        case Prefs::EnumPracticeMode::GenderPractice:
-            result = gradeFunc(translation->article());
-            break;
+    // For conjugation practice the conjugation (pre-)grades are required.
+    // For the specified tense the highest/lowest values of all specified gramatical persons
+    // is evaluated.
+    case Prefs::EnumPracticeMode::ConjugationPractice: {
+        KEduVocConjugation conj(translation->getConjugation(conjugationTense()));
+        // Depending on what minMaxFunc is used result needs an appropriate initialisation
+        result = (minMaxFunc(0, 1) == 1) ? KV_MIN_GRADE : KV_MAX_GRADE;
+        const QList<KEduVocWordFlags> conjugationPronouns = this->conjugationPronouns();
+        for (KEduVocWordFlags pronoun : conjugationPronouns) {
+            result = minMaxFunc(result, gradeFunc(conj.conjugation(pronoun)));
+        }
+    } break;
 
-        // For conjugation practice the conjugation (pre-)grades are required.
-        // For the specified tense the highest/lowest values of all specified gramatical persons
-        // is evaluated.
-        case Prefs::EnumPracticeMode::ConjugationPractice:
-            {
-                KEduVocConjugation conj(translation->getConjugation(conjugationTense()));
-                // Depending on what minMaxFunc is used result needs an appropriate initialisation
-                result = (minMaxFunc(0, 1) == 1) ? KV_MIN_GRADE:KV_MAX_GRADE;
-                const QList<KEduVocWordFlags> conjugationPronouns = this->conjugationPronouns();
-                for (KEduVocWordFlags pronoun : conjugationPronouns) {
-                    result = minMaxFunc(result, gradeFunc(conj.conjugation(pronoun)));
-                }
-            }
-            break;
+    // For comparison practice the (pre-)grades of the positive, comparative and superlative
+    // are required. Then highest/lowest value is evaluated.
+    case Prefs::EnumPracticeMode::ComparisonPractice: {
+        result = gradeFunc(translation->comparativeForm());
+        result = minMaxFunc(result, gradeFunc(translation->superlativeForm()));
+    } break;
 
-        // For comparison practice the (pre-)grades of the positive, comparative and superlative
-        // are required. Then highest/lowest value is evaluated.
-        case Prefs::EnumPracticeMode::ComparisonPractice:
-            {
-                result = gradeFunc(translation->comparativeForm());
-                result = minMaxFunc(result, gradeFunc(translation->superlativeForm()));
-            }
-            break;
-
-        // For all other practice forms the basic (pre-)grades are required.
-        default:
-            result = gradeFunc(*translation);
-            break;
+    // For all other practice forms the basic (pre-)grades are required.
+    default:
+        result = gradeFunc(*translation);
+        break;
     }
     return result;
 }

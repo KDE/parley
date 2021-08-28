@@ -3,19 +3,18 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #include "flashcardbackendmode.h"
 
 #include <KLocalizedString>
 
 using namespace Practice;
 
-FlashCardBackendMode::FlashCardBackendMode(AbstractFrontend* frontend, QObject* parent)
+FlashCardBackendMode::FlashCardBackendMode(AbstractFrontend *frontend, QObject *parent)
     : AbstractBackendMode(frontend, parent)
 {
 }
 
-bool FlashCardBackendMode::setTestEntry(TestEntry* current)
+bool FlashCardBackendMode::setTestEntry(TestEntry *current)
 {
     Practice::AbstractBackendMode::setTestEntry(current);
     m_current = current;

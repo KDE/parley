@@ -7,8 +7,8 @@
 
 #include "parleyprefs.h"
 
-#include "kgametheme/kgamethemeselector.h"
 #include "generaloptions.h"
+#include "kgametheme/kgamethemeselector.h"
 #include "viewoptions.h"
 #include <KConfigSkeleton>
 #include <KLocalizedString>
@@ -16,7 +16,7 @@
 ParleyPrefs::ParleyPrefs(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config)
     : KConfigDialog(parent, name, config)
 {
-    button(QDialogButtonBox::Ok)->setDefault( true );
+    button(QDialogButtonBox::Ok)->setDefault(true);
     setModal(true);
 
     m_doc = doc;

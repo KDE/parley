@@ -42,7 +42,7 @@ class EditorWindow : public KXmlGuiWindow
     Q_OBJECT
 
 public:
-    explicit EditorWindow(ParleyMainWindow* parent);
+    explicit EditorWindow(ParleyMainWindow *parent);
     ~EditorWindow();
 
     /**
@@ -61,7 +61,8 @@ public:
     /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
     void updateTableFilter();
 
-    VocabularyView *vocabularyView() const {
+    VocabularyView *vocabularyView() const
+    {
         return m_vocabularyView;
     }
 
@@ -111,12 +112,12 @@ private slots:
     void startSearch();
 
 signals:
-    void signalSetData(const QList<int>& entries, int currentTranslation);
+    void signalSetData(const QList<int> &entries, int currentTranslation);
 
 private:
-    ParleyMainWindow  *m_mainWindow;
+    ParleyMainWindow *m_mainWindow;
 
-    QAction* m_vocabShowSearchBarAction;
+    QAction *m_vocabShowSearchBarAction;
 
     VocabularyModel *m_vocabularyModel;
     VocabularyView *m_vocabularyView;
@@ -142,12 +143,12 @@ private:
     WordClassModel *m_wordTypeModel;
     WordTypeView *m_wordTypeView;
 
-    ScriptManager* m_scriptManager;
+    ScriptManager *m_scriptManager;
 
-    ///stores all the translations of a vocabulary word
-    Translator* m_translator;
+    /// stores all the translations of a vocabulary word
+    Translator *m_translator;
 
-    QList<QDockWidget*> m_dockWidgets;
+    QList<QDockWidget *> m_dockWidgets;
     QList<bool> m_dockWidgetVisibility;
 
     friend class ::ParleyDocument;

@@ -35,13 +35,12 @@ private Q_SLOTS:
     void sectionResized(int index, int /*oldSize*/, int /*newSize*/);
 
 private:
-    void setModel(QAbstractItemModel *model) override {
+    void setModel(QAbstractItemModel *model) override
+    {
         Q_UNUSED(model)
     }
-    void getCollapsedItems(QStringList &collapsedItems, const QModelIndex &item,
-                           QString name) const;
-    void setCollapsedItems(const QStringList &collapsedItems, const QModelIndex &item,
-                           QString name);
+    void getCollapsedItems(QStringList &collapsedItems, const QModelIndex &item, QString name) const;
+    void setCollapsedItems(const QStringList &collapsedItems, const QModelIndex &item, QString name);
 };
 
 #endif

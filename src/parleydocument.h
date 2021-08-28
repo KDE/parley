@@ -5,9 +5,9 @@
 #ifndef PARLEYDOCUMENT_H
 #define PARLEYDOCUMENT_H
 
-#include <memory>
 #include <KEduVocDocument>
 #include <QObject>
+#include <memory>
 
 #include <config-parley.h>
 
@@ -21,19 +21,18 @@ class ParleyDocument : public QObject
 {
     Q_OBJECT
 public:
-    explicit ParleyDocument(ParleyMainWindow* parleyMainWindow);
+    explicit ParleyDocument(ParleyMainWindow *parleyMainWindow);
     ~ParleyDocument();
-
 
     std::shared_ptr<KEduVocDocument> document();
 
-    void setTitle(const QString& title);
+    void setTitle(const QString &title);
 
     /** Enable/disable the timed auto backup
      @todo Move autobackup functionality into libkdeedu which is responsible for
     file opening/closing and locking already.*/
     void enableAutoBackup(bool enable);
-    //void fetchGrammar(int languageIndex);
+    // void fetchGrammar(int languageIndex);
 
 public slots:
     /** open a new application window */
@@ -43,7 +42,7 @@ public slots:
     void slotFileOpen();
 
     /** opens a file from the recent files menu */
-    void slotFileOpenRecent(const QUrl& url);
+    void slotFileOpenRecent(const QUrl &url);
     /** open a downloaded (knewstuff/get hot new stuff) document */
     void openGHNS();
     /** download new vocabularies */
@@ -56,7 +55,6 @@ public slots:
     void close();
     /** When quitting, ask for confirmation if the doc has not been saved */
     bool queryClose();
-
 
     /** merge a document */
     void slotFileMerge();
@@ -83,9 +81,9 @@ private:
     void initializeDefaultGrammar(KEduVocDocument *doc);
     void setDefaultDocumentProperties(KEduVocDocument *doc);
 
- private:
-    ParleyMainWindow *m_parleyApp;   // Pointer to the owner of this document
-    QTimer           *m_backupTimer; // Timer for next autosave
+private:
+    ParleyMainWindow *m_parleyApp; // Pointer to the owner of this document
+    QTimer *m_backupTimer; // Timer for next autosave
 
     // The contents of the document
     std::shared_ptr<KEduVocDocument> m_doc;

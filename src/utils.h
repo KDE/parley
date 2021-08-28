@@ -3,7 +3,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef UTILS_H
 #define UTILS_H
 
@@ -14,7 +13,6 @@
 #include <KEduVocContainer>
 #include <KEduVocWordtype>
 
-
 class QPainter;
 class QRect;
 class KEduVocTranslation;
@@ -24,36 +22,35 @@ class KEduVocTranslation;
 struct WordCount {
     WordCount();
     void clear();
-    int  percentageCompleted() const;
+    int percentageCompleted() const;
 
     // Fill the WordCount data from the container.
-    void fillFromContainer(KEduVocContainer &container, int translationIndex,
-                           KEduVocContainer::EnumEntriesRecursive recursive = KEduVocContainer::Recursive);
+    void fillFromContainer(KEduVocContainer &container, int translationIndex, KEduVocContainer::EnumEntriesRecursive recursive = KEduVocContainer::Recursive);
 
     // Fill the WordCount data from the container for the selected practice mode.
-    void fillFromContainerForPracticeMode(KEduVocContainer &container, int translationIndex,
-                    const QStringList &activeConjugationTenses,
-                    KEduVocContainer::EnumEntriesRecursive recursive = KEduVocContainer::Recursive);
+    void fillFromContainerForPracticeMode(KEduVocContainer &container,
+                                          int translationIndex,
+                                          const QStringList &activeConjugationTenses,
+                                          KEduVocContainer::EnumEntriesRecursive recursive = KEduVocContainer::Recursive);
 
     int grades[KV_MAX_GRADE + 1]; // Number of entries in each grade including grade=0, pregrade=0
     int pregrades[KV_MAX_GRADE + 1]; // Number of entries in each grade including grade=0, pregrade=0
-    int invalid;	          // Number of invalid entries (not always applicable);
+    int invalid; // Number of invalid entries (not always applicable);
 
-    int initialWords;             // Number of entries in initial phase (grade=0, pregrade>0)
-                                  // This is the sum of the numbers in pregrades[].
-    int totalWords;		  // Total number of words
-                                  // This is the sum of grades[], pregrades[] and invalid
+    int initialWords; // Number of entries in initial phase (grade=0, pregrade>0)
+                      // This is the sum of the numbers in pregrades[].
+    int totalWords; // Total number of words
+                    // This is the sum of grades[], pregrades[] and invalid
 
 private:
     bool isValidForProcessing(KEduVocTranslation &trans, KEduVocWordFlags wordType) const;
     void evaluateWord(const KEduVocText &item, const QString &text);
 };
 
-
 struct ConfidenceColors {
     enum ColorScheme {
-        MultiColorScheme,       //< The color scheme from the dashboard
-        ProgressiveColorScheme  //< The color scheme from the practice component
+        MultiColorScheme, //< The color scheme from the dashboard
+        ProgressiveColorScheme //< The color scheme from the practice component
     };
 
     ConfidenceColors(ColorScheme colorScheme = MultiColorScheme);
@@ -66,9 +63,6 @@ struct ConfidenceColors {
     QColor frontEndColors[2]; // Placeholders for the wordcloud background colors
 };
 
-
-void paintColorBar(QPainter &painter, const QRect &rect,
-                   const WordCount &wordCount, const ConfidenceColors &colors);
-
+void paintColorBar(QPainter &painter, const QRect &rect, const WordCount &wordCount, const ConfidenceColors &colors);
 
 #endif // UTILS_H

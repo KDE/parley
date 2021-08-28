@@ -11,14 +11,12 @@
 
 #include "ui_comparisonwidget.h"
 
-
 class KEduVocExpression;
 class KEduVocTranslation;
 class KEduVocDocument;
 
 namespace Editor
 {
-
 class ComparisonWidget : public QWidget, public Ui::comparisonWidget
 {
     Q_OBJECT
@@ -31,13 +29,13 @@ public slots:
      * To know about word types that are currently defined.
      * @param doc
      */
-    void setDocument(KEduVocDocument* doc);
+    void setDocument(KEduVocDocument *doc);
     /**
      * Update the word
      * @param entry
      * @param translation
      */
-    void setTranslation(KEduVocExpression* entry, int translation);
+    void setTranslation(KEduVocExpression *entry, int translation);
 
 private slots:
     void slotMakeAdjectiveButton();
@@ -47,8 +45,8 @@ private slots:
     void slotSuperlativeChanged();
 
 private:
-    KEduVocTranslation* m_translation;
-    KEduVocDocument* m_doc;
+    KEduVocTranslation *m_translation;
+    KEduVocDocument *m_doc;
 };
 
 }

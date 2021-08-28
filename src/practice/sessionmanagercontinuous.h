@@ -18,16 +18,14 @@
 #include <KEduVocExpression>
 
 // Parley
-#include "testentry.h"
 #include "prefs.h"
-
+#include "testentry.h"
 
 class KEduVocDocument;
 
 namespace Practice
 {
-
-    class SessionManagerContinuous : public SessionManagerBase
+class SessionManagerContinuous : public SessionManagerBase
 {
 public:
     /**
@@ -51,13 +49,11 @@ public:
      */
     void initializeTraining() override;
 
-
     // Not reimplemented.  The default version does what is needed.
-    //virtual TestEntry* nextTrainingEntry();
+    // virtual TestEntry* nextTrainingEntry();
 
-
- private:  // data
-    // The default data in the base class is enough for us.
+private: // data
+         // The default data in the base class is enough for us.
 };
 
 }

@@ -10,41 +10,43 @@
 #include "vocabularyview.h"
 #include "vocabularyheaderview.h"
 
-#include "vocabularymodel.h"
-#include "vocabularyfilter.h"
 #include "vocabularydelegate.h"
+#include "vocabularyfilter.h"
 #include "vocabularymimedata.h"
+#include "vocabularymodel.h"
 
+#include "documentsettings.h"
 #include "editor/editor.h"
 #include "prefs.h"
 #include "vocabularycolumnsdialog.h"
-#include "documentsettings.h"
 
-#include <KEduVocTranslation>
 #include <KEduVocExpression>
+#include <KEduVocTranslation>
 
+#include <QApplication>
+#include <QClipboard>
 #include <QHeaderView>
 #include <QPainter>
 #include <QResizeEvent>
-#include <QClipboard>
 #include <QTimer>
-#include <QApplication>
 
-#include <KNotification>
-#include <QAction>
 #include <KActionCollection>
-#include <KToggleAction>
 #include <KLocalizedString>
 #include <KMessageBox>
+#include <KNotification>
+#include <KToggleAction>
+#include <QAction>
 #include <QUrl>
-#include <sonnet/backgroundchecker.h>
 #include <languagesettings.h>
+#include <sonnet/backgroundchecker.h>
 
 using namespace Editor;
 
-VocabularyView::VocabularyView(EditorWindow * parent)
-    : QTableView(parent), m_model(0),
-      m_spellChecker(0), m_spellDialog(0)
+VocabularyView::VocabularyView(EditorWindow *parent)
+    : QTableView(parent)
+    , m_model(0)
+    , m_spellChecker(0)
+    , m_spellDialog(0)
 {
     installEventFilter(this);
 
@@ -75,8 +77,7 @@ VocabularyView::VocabularyView(EditorWindow * parent)
 
     m_appendEntryAction = new QAction(this);
     parent->actionCollection()->addAction(QStringLiteral("edit_append"), m_appendEntryAction);
-    parent->actionCollection()->setDefaultShortcut(
-        m_appendEntryAction, QKeySequence(Qt::Key_Insert));
+    parent->actionCollection()->setDefaultShortcut(m_appendEntryAction, QKeySequence(Qt::Key_Insert));
     m_appendEntryAction->setIcon(QIcon::fromTheme(QStringLiteral("list-add-card")));
     m_appendEntryAction->setText(i18n("&Add New Entry"));
     connect(m_appendEntryAction, &QAction::triggered, this, &VocabularyView::appendEntry);
@@ -88,8 +89,7 @@ VocabularyView::VocabularyView(EditorWindow * parent)
 
     m_deleteEntriesAction = new QAction(this);
     parent->actionCollection()->addAction(QStringLiteral("edit_remove_selected_area"), m_deleteEntriesAction);
-    parent->actionCollection()->setDefaultShortcut(
-        m_deleteEntriesAction, QKeySequence::Delete);
+    parent->actionCollection()->setDefaultShortcut(m_deleteEntriesAction, QKeySequence::Delete);
     m_deleteEntriesAction->setIcon(QIcon::fromTheme(QStringLiteral("list-remove-card")));
     m_deleteEntriesAction->setText(i18n("&Delete Entry"));
     connect(m_deleteEntriesAction, &QAction::triggered, this, &VocabularyView::deleteSelectedEntries);
@@ -99,44 +99,39 @@ VocabularyView::VocabularyView(EditorWindow * parent)
     m_deleteEntriesAction->setStatusTip(m_deleteEntriesAction->whatsThis());
     addAction(m_deleteEntriesAction);
 
-    QAction* separator = new QAction(this);
+    QAction *separator = new QAction(this);
     separator->setSeparator(true);
     addAction(separator);
 
     m_copyAction = KStandardAction::copy(this, SLOT(slotEditCopy()), parent->actionCollection());
-    parent->actionCollection()->setDefaultShortcut(
-        m_copyAction, QKeySequence::Copy);
+    parent->actionCollection()->setDefaultShortcut(m_copyAction, QKeySequence::Copy);
     m_copyAction->setWhatsThis(i18n("Copy"));
     m_copyAction->setToolTip(m_copyAction->whatsThis());
     m_copyAction->setStatusTip(m_copyAction->whatsThis());
     addAction(m_copyAction);
 
     m_cutAction = KStandardAction::cut(this, SLOT(slotCutEntry()), parent->actionCollection());
-    parent->actionCollection()->setDefaultShortcut(
-        m_cutAction, QKeySequence::Cut);
+    parent->actionCollection()->setDefaultShortcut(m_cutAction, QKeySequence::Cut);
     m_cutAction->setWhatsThis(i18n("Cut"));
     m_cutAction->setToolTip(m_cutAction->whatsThis());
     m_cutAction->setStatusTip(m_cutAction->whatsThis());
     addAction(m_cutAction);
 
     m_pasteAction = KStandardAction::paste(this, SLOT(slotEditPaste()), parent->actionCollection());
-    parent->actionCollection()->setDefaultShortcut(
-        m_pasteAction, QKeySequence::Paste);
+    parent->actionCollection()->setDefaultShortcut(m_pasteAction, QKeySequence::Paste);
     m_pasteAction->setWhatsThis(i18n("Paste"));
     m_pasteAction->setToolTip(m_pasteAction->whatsThis());
     m_pasteAction->setStatusTip(m_pasteAction->whatsThis());
     addAction(m_pasteAction);
 
     m_selectAllAction = KStandardAction::selectAll(this, SLOT(selectAll()), parent->actionCollection());
-    parent->actionCollection()->setDefaultShortcut(
-        m_selectAllAction, QKeySequence::SelectAll);
+    parent->actionCollection()->setDefaultShortcut(m_selectAllAction, QKeySequence::SelectAll);
     m_selectAllAction->setWhatsThis(i18n("Select all rows"));
     m_selectAllAction->setToolTip(m_selectAllAction->whatsThis());
     m_selectAllAction->setStatusTip(m_selectAllAction->whatsThis());
 
     m_clearSelectionAction = KStandardAction::deselect(this, SLOT(clearSelection()), parent->actionCollection());
-    parent->actionCollection()->setDefaultShortcut(
-        m_clearSelectionAction, QKeySequence::Deselect);
+    parent->actionCollection()->setDefaultShortcut(m_clearSelectionAction, QKeySequence::Deselect);
     m_clearSelectionAction->setWhatsThis(i18n("Deselect all rows"));
     m_clearSelectionAction->setToolTip(m_clearSelectionAction->whatsThis());
     m_clearSelectionAction->setStatusTip(m_clearSelectionAction->whatsThis());
@@ -154,24 +149,22 @@ VocabularyView::VocabularyView(EditorWindow * parent)
     connect(vocabularyColumnsDialogAction, &QAction::triggered, this, &VocabularyView::slotShowVocabularyColumnsDialog);
 }
 
-void VocabularyView::setFilter(VocabularyFilter * model)
+void VocabularyView::setFilter(VocabularyFilter *model)
 {
     QTableView::setModel(model);
 
     m_model = model;
-    connect(selectionModel(), &QItemSelectionModel::currentChanged,
-            this, &VocabularyView::slotCurrentChanged);
-    connect(selectionModel(), &QItemSelectionModel::selectionChanged,
-            this, &VocabularyView::slotSelectionChanged);
+    connect(selectionModel(), &QItemSelectionModel::currentChanged, this, &VocabularyView::slotCurrentChanged);
+    connect(selectionModel(), &QItemSelectionModel::selectionChanged, this, &VocabularyView::slotSelectionChanged);
     slotSelectionChanged(QItemSelection(), QItemSelection());
 }
 
-void VocabularyView::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous)
+void VocabularyView::slotCurrentChanged(const QModelIndex &current, const QModelIndex &previous)
 {
     Q_UNUSED(previous);
-    KEduVocExpression* entry = 0;
+    KEduVocExpression *entry = 0;
     if (current.isValid()) {
-        entry =  model()->data(current, VocabularyModel::EntryRole).value<KEduVocExpression*>();
+        entry = model()->data(current, VocabularyModel::EntryRole).value<KEduVocExpression *>();
     }
     emit translationChanged(entry, VocabularyModel::translation(current.column()));
 }
@@ -251,13 +244,18 @@ void VocabularyView::deleteSelectedEntries(bool askConfirmation)
 {
     QSet<int> rows;
     const QModelIndexList selectedIndexes = selectionModel()->selectedIndexes();
-    for (const QModelIndex & index : selectedIndexes) {
+    for (const QModelIndex &index : selectedIndexes) {
         rows.insert(index.row());
     }
 
     bool del = true;
     if (askConfirmation) {
-        del = KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18np("Do you really want to delete the selected entry?", "Do you really want to delete the selected %1 entries?", rows.count()), i18n("Delete"), KStandardGuiItem::del());
+        del = KMessageBox::Continue
+            == KMessageBox::warningContinueCancel(
+                  this,
+                  i18np("Do you really want to delete the selected entry?", "Do you really want to delete the selected %1 entries?", rows.count()),
+                  i18n("Delete"),
+                  KStandardGuiItem::del());
     }
 
     if (del) {
@@ -285,8 +283,8 @@ void VocabularyView::slotEditPaste()
     const VocabularyMimeData *vocMimeData = qobject_cast<const VocabularyMimeData *>(mimeData);
     if (vocMimeData) {
         qDebug() << "Clipboard contains vocabulary mime data.";
-        QList< VocabularyMimeData::MimeExpression > expressionList = vocMimeData->expressionList();
-        for (const VocabularyMimeData::MimeExpression & mimeEntry : qAsConst(expressionList)) {
+        QList<VocabularyMimeData::MimeExpression> expressionList = vocMimeData->expressionList();
+        for (const VocabularyMimeData::MimeExpression &mimeEntry : qAsConst(expressionList)) {
             KEduVocExpression *pasteExpression = new KEduVocExpression(mimeEntry.expression);
             m_model->appendEntry(pasteExpression);
 
@@ -296,7 +294,7 @@ void VocabularyView::slotEditPaste()
                 const int translation = iter.key();
                 // append if needed
                 const QStringList wordType = mimeEntry.wordTypes.value(translation).wordType;
-                for (const QString & typeName : wordType) {
+                for (const QString &typeName : wordType) {
                     qDebug() << mimeEntry.wordTypes.value(translation).wordType;
                     KEduVocContainer *childType = type->childContainer(typeName);
                     if (!childType) {
@@ -304,7 +302,7 @@ void VocabularyView::slotEditPaste()
                         childType = new KEduVocWordType(typeName);
                         type->appendChildContainer(childType);
                     }
-                    type = static_cast<KEduVocWordType*>(childType);
+                    type = static_cast<KEduVocWordType *>(childType);
                 }
                 pasteExpression->translation(translation)->setWordType(type);
                 // check for special type stuff
@@ -356,7 +354,7 @@ void VocabularyView::setDocument(const std::shared_ptr<KEduVocDocument> &doc)
  * Set the translator to be used by the delegate
  * @param translator
  */
-void VocabularyView::setTranslator(Translator* translator)
+void VocabularyView::setTranslator(Translator *translator)
 {
     m_vocabularyDelegate->setTranslator(translator);
 }
@@ -397,7 +395,9 @@ void VocabularyView::checkSpelling(int language)
     m_spellChecker->changeLanguage(spellCode);
     if (!m_spellChecker->speller().isValid()) {
         qDebug() << "Invalid Language, popup here!";
-        KNotification::event(KNotification::Warning, i18nc("@title of a popup", "No Spell Checker Available"), i18nc("@popupmessage", "Either the language set up is incorrect or no spellchecker was installed for this locale: %1.", locale));
+        KNotification::event(KNotification::Warning,
+                             i18nc("@title of a popup", "No Spell Checker Available"),
+                             i18nc("@popupmessage", "Either the language set up is incorrect or no spellchecker was installed for this locale: %1.", locale));
     }
     m_spellDialog->show();
     continueSpelling();
@@ -426,7 +426,7 @@ void VocabularyView::selectIndex(const QModelIndex &newIndex)
     scrollTo(newIndex);
 }
 
-bool VocabularyView::eventFilter(QObject* obj, QEvent* event)
+bool VocabularyView::eventFilter(QObject *obj, QEvent *event)
 {
     if (event->type() == QEvent::KeyPress && Prefs::smartAppend()) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
@@ -440,7 +440,7 @@ bool VocabularyView::eventFilter(QObject* obj, QEvent* event)
     return QObject::eventFilter(obj, event);
 }
 
-void VocabularyView::misspelling(const QString & word, int start)
+void VocabularyView::misspelling(const QString &word, int start)
 {
     Q_UNUSED(word)
     Q_UNUSED(start)
@@ -448,7 +448,7 @@ void VocabularyView::misspelling(const QString & word, int start)
     selectIndex(index);
 }
 
-void VocabularyView::spellingReplace(const QString & oldWord, int start, const QString & newWord)
+void VocabularyView::spellingReplace(const QString &oldWord, int start, const QString &newWord)
 {
     qDebug() << oldWord << start << newWord;
     QModelIndex index = m_model->index(m_spellRow, m_spellColumn);

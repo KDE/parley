@@ -3,7 +3,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef CONJUGATIONBACKENDMODE_H
 #define CONJUGATIONBACKENDMODE_H
 
@@ -12,16 +11,14 @@
 
 namespace Practice
 {
-
 class ConjugationBackendMode : public AbstractBackendMode
 {
     Q_OBJECT
 
 public:
-    ConjugationBackendMode(AbstractFrontend *frontend,
-                           QObject *parent, Practice::SessionManagerBase* sessionManager, KEduVocDocument* doc);
+    ConjugationBackendMode(AbstractFrontend *frontend, QObject *parent, Practice::SessionManagerBase *sessionManager, KEduVocDocument *doc);
 
-    bool setTestEntry(TestEntry* current) override;
+    bool setTestEntry(TestEntry *current) override;
 
     /** Return the worst pregrade for any pronoun of the current entry */
     grade_t currentPreGradeForEntry() const override;
@@ -37,8 +34,8 @@ public Q_SLOTS:
 private:
     QStringList validPersonalPronouns();
 
-    SessionManagerBase* m_sessionManager;
-    KEduVocDocument* m_doc;
+    SessionManagerBase *m_sessionManager;
+    KEduVocDocument *m_doc;
 
     QString m_currentTense;
     QList<KEduVocWordFlags> m_pronounFlags;

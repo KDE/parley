@@ -3,21 +3,18 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #include "examplesentencebackendmode.h"
 
 #include <KLocalizedString>
 
 using namespace Practice;
 
-ExampleSentenceBackendMode::ExampleSentenceBackendMode(AbstractFrontend* frontend, QObject* parent,
-                                                       SessionManagerBase* sessionManager,
-                                                       KEduVocDocument* doc)
+ExampleSentenceBackendMode::ExampleSentenceBackendMode(AbstractFrontend *frontend, QObject *parent, SessionManagerBase *sessionManager, KEduVocDocument *doc)
     : WrittenBackendMode(frontend, parent, sessionManager, doc)
 {
 }
 
-bool ExampleSentenceBackendMode::setTestEntry(TestEntry* current)
+bool ExampleSentenceBackendMode::setTestEntry(TestEntry *current)
 {
     Practice::WrittenBackendMode::setTestEntry(current);
     QString sentence = current->entry()->translation(current->languageTo())->example();

@@ -6,17 +6,17 @@
 #include "imagewidget.h"
 #include <config-parley.h>
 
-#include <QPainter>
 #include <QPaintEngine>
-#include <QTimer>
+#include <QPainter>
 #include <QTimeLine>
+#include <QTimer>
 
 #include <QDebug>
 
 #if defined(Q_WS_X11)
+#include <QX11Info>
 #include <X11/Xlib.h>
 #include <X11/extensions/Xrender.h>
-#include <QX11Info>
 #undef KeyPress
 #undef FocusOut
 #endif
@@ -75,19 +75,15 @@ QPixmap transition(const QPixmap &from, const QPixmap &to, qreal amount)
         centerPixmaps(startPixmap, targetPixmap);
     }
 
-    //paint to in the center of from
+    // paint to in the center of from
     QRect toRect = to.rect();
 
     QColor color;
     color.setAlphaF(amount);
 
-
     // If the native paint engine supports Porter/Duff compositing and CompositionMode_Plus
     QPaintEngine *paintEngine = from.paintEngine();
-    if (paintEngine &&
-            paintEngine->hasFeature(QPaintEngine::PorterDuff) &&
-            paintEngine->hasFeature(QPaintEngine::BlendModes)) {
-
+    if (paintEngine && paintEngine->hasFeature(QPaintEngine::PorterDuff) && paintEngine->hasFeature(QPaintEngine::BlendModes)) {
         QPainter p;
         p.begin(&targetPixmap);
         p.setCompositionMode(QPainter::CompositionMode_DestinationIn);
@@ -139,13 +135,22 @@ QPixmap transition(const QPixmap &from, const QPixmap &to, qreal amount)
         XRenderFillRectangle(dpy, PictOpSrc, alpha, &xcolor, 0, 0, 1, 1);
 
         // Reduce the alpha of the destination with 1 - opacity
-        XRenderComposite(dpy, PictOpOutReverse, alpha, None, destination.x11PictureHandle(),
-                         0, 0, 0, 0, 0, 0, destination.width(), destination.height());
+        XRenderComposite(dpy, PictOpOutReverse, alpha, None, destination.x11PictureHandle(), 0, 0, 0, 0, 0, 0, destination.width(), destination.height());
 
         // Add source * opacity to the destination
-        XRenderComposite(dpy, PictOpAdd, source.x11PictureHandle(), alpha,
+        XRenderComposite(dpy,
+                         PictOpAdd,
+                         source.x11PictureHandle(),
+                         alpha,
                          destination.x11PictureHandle(),
-                         toRect.x(), toRect.y(), 0, 0, 0, 0, destination.width(), destination.height());
+                         toRect.x(),
+                         toRect.y(),
+                         0,
+                         0,
+                         0,
+                         0,
+                         destination.width(),
+                         destination.height());
 
         XRenderFreePicture(dpy, alpha);
         return destination;
@@ -154,7 +159,7 @@ QPixmap transition(const QPixmap &from, const QPixmap &to, qreal amount)
     else {
         // Fall back to using QRasterPaintEngine to do the transition.
         QImage under = startPixmap.toImage();
-        QImage over  = targetPixmap.toImage();
+        QImage over = targetPixmap.toImage();
 
         QPainter p;
         p.begin(&over);
@@ -173,9 +178,13 @@ QPixmap transition(const QPixmap &from, const QPixmap &to, qreal amount)
     }
 }
 
-
 ImageWidget::ImageWidget(QWidget *parent)
-    : QWidget(parent), m_fading(true), m_scaling(true), m_onlyDownscaling(true), m_keepAspectRatio(Qt::KeepAspectRatio), m_alignment(Qt::AlignCenter)
+    : QWidget(parent)
+    , m_fading(true)
+    , m_scaling(true)
+    , m_onlyDownscaling(true)
+    , m_keepAspectRatio(Qt::KeepAspectRatio)
+    , m_alignment(Qt::AlignCenter)
 {
     m_scaleTimer = new QTimer(this);
     m_scaleTimer->setSingleShot(true);
@@ -189,9 +198,9 @@ ImageWidget::ImageWidget(QWidget *parent)
     connect(m_animation, &QTimeLine::finished, this, &ImageWidget::animationFinished);
 }
 
-void ImageWidget::setPixmap(const QPixmap& pixmap)
+void ImageWidget::setPixmap(const QPixmap &pixmap)
 {
-    //qDebug() << "set new pixmap, size:" << pixmap.size();
+    // qDebug() << "set new pixmap, size:" << pixmap.size();
     if (m_animation->state() == QTimeLine::Running) {
         m_scaledPixmap = transition(m_animationPixmap, m_scaledPixmap, m_animation->currentValue());
         m_animation->stop();
@@ -234,7 +243,7 @@ void ImageWidget::setAlignment(Qt::Alignment alignment)
     m_alignment = alignment;
 }
 
-void ImageWidget::paintEvent(QPaintEvent* e)
+void ImageWidget::paintEvent(QPaintEvent *e)
 {
     QWidget::paintEvent(e);
     QPainter painter(this);
@@ -262,7 +271,7 @@ void ImageWidget::paintEvent(QPaintEvent* e)
     painter.drawPixmap(x, y, pm);
 }
 
-void ImageWidget::resizeEvent(QResizeEvent* e)
+void ImageWidget::resizeEvent(QResizeEvent *e)
 {
     if (!m_scaledPixmapOutOfDate) {
         m_scaledBackupPixmap = m_scaledPixmap;
@@ -281,12 +290,12 @@ void ImageWidget::scalePixmap(bool smooth)
 {
     bool scaleUp = m_originalPixmap.width() <= size().width() && m_originalPixmap.height() <= size().height();
     if ((m_onlyDownscaling && scaleUp) || m_originalPixmap.size() == size()) {
-        //qDebug() << "no need to scale pixmap";
+        // qDebug() << "no need to scale pixmap";
         m_scaledPixmapOutOfDate = false;
         m_scaledPixmap = m_originalPixmap;
         m_scaledBackupPixmap = QPixmap();
     } else if (smooth) {
-        //qDebug() << "smooth scaling to" << size();
+        // qDebug() << "smooth scaling to" << size();
         if (m_originalPixmap.isNull() || size().isEmpty()) {
             m_scaledPixmapOutOfDate = false;
             m_scaledPixmap = QPixmap();
@@ -298,13 +307,12 @@ void ImageWidget::scalePixmap(bool smooth)
         m_scaledPixmapOutOfDate = false;
         update();
     } else {
-        //qDebug() << "fast scaling to" << size();
+        // qDebug() << "fast scaling to" << size();
         // Try to find out if it makes sense to use the scaled backup pixmap.
         // If the scaled backup gets too small, we use the original image.
         float ratio = 0;
         if (!size().isEmpty()) {
-            ratio = qMin(float(m_scaledBackupPixmap.width()) / size().width(),
-                         float(m_scaledBackupPixmap.height()) / size().height());
+            ratio = qMin(float(m_scaledBackupPixmap.width()) / size().width(), float(m_scaledBackupPixmap.height()) / size().height());
         }
         if (ratio > 0.4 && !m_scaledBackupPixmap.isNull()) {
             m_scaledPixmap = m_scaledBackupPixmap.scaled(size(), m_keepAspectRatio, Qt::FastTransformation);

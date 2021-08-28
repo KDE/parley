@@ -7,10 +7,10 @@
 
 using namespace Practice;
 
-AbstractModeWidget::AbstractModeWidget(GuiFrontend *frontend, QWidget* parent)
-    : QWidget(parent), m_frontend(frontend)
+AbstractModeWidget::AbstractModeWidget(GuiFrontend *frontend, QWidget *parent)
+    : QWidget(parent)
+    , m_frontend(frontend)
 {
-
 }
 
 void AbstractModeWidget::setResultPalettes(const QPalette &correctPalette, const QPalette &wrongPalette)

@@ -7,7 +7,6 @@
 #ifndef KGAMETHEME_H
 #define KGAMETHEME_H
 
-
 #include <QString>
 
 class KGameThemePrivate;

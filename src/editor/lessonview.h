@@ -30,10 +30,10 @@ public:
 
 signals:
     /** A lesson was selected */
-    void selectedLessonChanged(KEduVocLesson* lesson);
+    void selectedLessonChanged(KEduVocLesson *lesson);
 
     /** Emitted when a new container is selected. Indicates the selected container. */
-    void signalShowContainer(KEduVocContainer* selected);
+    void signalShowContainer(KEduVocContainer *selected);
 
     /** Emitted when any of the checkboxes for the query change. */
     void lessonsInPracticeChanged();
@@ -66,7 +66,7 @@ public slots:
      */
     void columnsInserted();
 
-    void setTranslation(KEduVocExpression* entry, int translationId);
+    void setTranslation(KEduVocExpression *entry, int translationId);
 
     /** Expand all the lessons and its corresponding sub-lessons **/
     void expandAllLesson();
@@ -75,14 +75,16 @@ public slots:
     void collapseAllLesson();
 
 protected slots:
-    void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected) override;
-    void currentChanged(const QModelIndex & current, const QModelIndex & previous) override;
+    void selectionChanged(const QItemSelection &selected, const QItemSelection &deselected) override;
+    void currentChanged(const QModelIndex &current, const QModelIndex &previous) override;
 
 private:
-    void setModel(ContainerModel *model) override {
+    void setModel(ContainerModel *model) override
+    {
         Q_UNUSED(model)
     }
-    void setModel(QAbstractItemModel *model) override {
+    void setModel(QAbstractItemModel *model) override
+    {
         Q_UNUSED(model)
     }
 

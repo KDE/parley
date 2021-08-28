@@ -14,12 +14,11 @@ class KEduVocExpression;
 
 namespace Editor
 {
-
 class AudioWidget : public QWidget, public Ui::AudioWidget
 {
     Q_OBJECT
 public:
-    explicit AudioWidget(QWidget* parent = 0);
+    explicit AudioWidget(QWidget *parent = 0);
 
 public slots:
     /**
@@ -27,21 +26,21 @@ public slots:
      * @param entry
      * @param translation
      */
-    void setTranslation(KEduVocExpression* entry, int translation);
+    void setTranslation(KEduVocExpression *entry, int translation);
 
 private slots:
-    void slotAudioFileChanged(const QString & url);
+    void slotAudioFileChanged(const QString &url);
     void playAudio();
-//     void recordAudio();
+    //     void recordAudio();
     void slotPlaybackFinished();
 
 private:
     /// Column in the document - corresponds to the language (-KV_COL_TRANS)
-    int               m_currentTranslation;
+    int m_currentTranslation;
     /// Selection in the doc - if more than one row is selected behavior is different
-    KEduVocExpression* m_entry;
+    KEduVocExpression *m_entry;
 
-    QMediaPlayer* m_player;        ///< media object for the files
+    QMediaPlayer *m_player; ///< media object for the files
 };
 
 }

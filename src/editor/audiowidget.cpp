@@ -7,12 +7,13 @@
 
 #include <KEduVocExpression>
 
-#include <QMediaPlayer>
 #include <QDebug>
+#include <QMediaPlayer>
 
 using namespace Editor;
 
-AudioWidget::AudioWidget(QWidget *parent) : QWidget(parent)
+AudioWidget::AudioWidget(QWidget *parent)
+    : QWidget(parent)
 {
     setupUi(this);
     m_currentTranslation = -1;
@@ -20,17 +21,17 @@ AudioWidget::AudioWidget(QWidget *parent) : QWidget(parent)
 
     connect(audioUrlRequester, &KUrlRequester::textChanged, this, &AudioWidget::slotAudioFileChanged);
     connect(playButton, &QPushButton::clicked, this, &AudioWidget::playAudio);
-//     connect(recordButton, SIGNAL(clicked()), SLOT(recordAudio()));
+    //     connect(recordButton, SIGNAL(clicked()), SLOT(recordAudio()));
 
     playButton->setEnabled(false);
     playButton->setIcon(QIcon::fromTheme(QStringLiteral("media-playback-start")));
     recordButton->setVisible(false);
-//     recordButton->setEnabled(false);
-//     recordButton->setIcon(QIcon::fromTheme("media-record"));
+    //     recordButton->setEnabled(false);
+    //     recordButton->setIcon(QIcon::fromTheme("media-record"));
     audioUrlRequester->setEnabled(false);
 }
 
-void AudioWidget::setTranslation(KEduVocExpression* entry, int translation)
+void AudioWidget::setTranslation(KEduVocExpression *entry, int translation)
 {
     m_currentTranslation = translation;
     m_entry = entry;
@@ -53,10 +54,10 @@ void AudioWidget::setTranslation(KEduVocExpression* entry, int translation)
     }
 }
 
-void AudioWidget::slotAudioFileChanged(const QString & url)
+void AudioWidget::slotAudioFileChanged(const QString &url)
 {
     if (m_entry) {
-        m_entry->translation(m_currentTranslation)->setSoundUrl( QUrl::fromLocalFile(url));
+        m_entry->translation(m_currentTranslation)->setSoundUrl(QUrl::fromLocalFile(url));
     }
     playButton->setEnabled(!url.isEmpty());
 }
@@ -66,7 +67,7 @@ void AudioWidget::playAudio()
     QUrl soundFile = m_entry->translation(m_currentTranslation)->soundUrl();
 
     if (!m_player) {
-        m_player = new QMediaPlayer( this );
+        m_player = new QMediaPlayer(this);
         connect(m_player, SIGNAL(finished()), SLOT(slotPlaybackFinished()));
     } else {
         if (m_player->state() == QMediaPlayer::PlayingState) {

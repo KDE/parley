@@ -13,28 +13,28 @@
 // Qt models on top of the KEduVocDocument
 #include "containermodel.h"
 #include "lessonmodel.h"
-#include "vocabularymodel.h"
 #include "vocabularyfilter.h"
+#include "vocabularymodel.h"
 #include "wordclassmodel.h"
 
 // Views
-#include "vocabularyview.h"
 #include "containerview.h"
 #include "lessonview.h"
+#include "vocabularyview.h"
 #include "wordtypeview.h"
 
-#include "multiplechoicewidget.h"
-#include "comparisonwidget.h"
-#include "inflectionwidget.h"
-#include "imagechooserwidget.h"
 #include "audiowidget.h"
 #include "browserwidget.h"
-#include "synonymwidget.h"
-#include "summarywordwidget.h"
+#include "comparisonwidget.h"
+#include "imagechooserwidget.h"
+#include "inflectionwidget.h"
 #include "latexwidget.h"
+#include "multiplechoicewidget.h"
+#include "summarywordwidget.h"
+#include "synonymwidget.h"
 
-#include "settings/parleyprefs.h"
 #include "prefs.h"
+#include "settings/parleyprefs.h"
 
 #include "scripts/scriptdialog.h"
 #include "scripts/translator.h"
@@ -43,21 +43,22 @@
 #include "parleyadaptor.h"
 
 #include <KActionCollection>
-#include <KToggleAction>
 #include <KActionMenu>
 #include <KCharSelect>
+#include <KToggleAction>
 
-#include <QTimer>
 #include <QDockWidget>
 #include <QHeaderView>
 #include <QMenu>
-#include <QStackedWidget>
 #include <QScrollArea>
+#include <QStackedWidget>
+#include <QTimer>
 
 using namespace Editor;
 
-EditorWindow::EditorWindow(ParleyMainWindow* parent)
-    : KXmlGuiWindow(parent), m_mainWindow(parent)
+EditorWindow::EditorWindow(ParleyMainWindow *parent)
+    : KXmlGuiWindow(parent)
+    , m_mainWindow(parent)
 {
     // KXmlGui
     setXMLFile(QStringLiteral("editorui.rc"));
@@ -77,10 +78,8 @@ EditorWindow::EditorWindow(ParleyMainWindow* parent)
     KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
     applyMainWindowSettings(cfg);
 
-    connect(parent->parleyDocument(), &ParleyDocument::documentChanged,
-            this,                     &EditorWindow::updateDocument);
-    connect(parent->parleyDocument(), &ParleyDocument::languagesChanged,
-            this,                     &EditorWindow::slotLanguagesChanged);
+    connect(parent->parleyDocument(), &ParleyDocument::documentChanged, this, &EditorWindow::updateDocument);
+    connect(parent->parleyDocument(), &ParleyDocument::languagesChanged, this, &EditorWindow::slotLanguagesChanged);
     connect(parent->parleyDocument(), SIGNAL(statesNeedSaving()), this, SLOT(saveState()));
     connect(parent, &ParleyMainWindow::preferencesChanged, this, &EditorWindow::applyPrefs);
 
@@ -96,7 +95,6 @@ EditorWindow::~EditorWindow()
 
 void EditorWindow::updateDocument(const std::shared_ptr<KEduVocDocument> &doc)
 {
-
     m_vocabularyView->setDocument(doc);
     m_vocabularyModel->setDocument(doc.get());
 
@@ -122,22 +120,18 @@ void EditorWindow::updateDocument(const std::shared_ptr<KEduVocDocument> &doc)
     m_lessonView->expandToDepth(0);
     m_wordTypeView->expandToDepth(0);
 
-    connect(m_vocabularyView->selectionModel(),
-            &QItemSelectionModel::selectionChanged,
-            m_summaryWordWidget, &SummaryWordWidget::slotSelectionChanged);
-    connect(m_vocabularyView->selectionModel(),
-            &QItemSelectionModel::selectionChanged,
-            m_latexWidget, &LatexWidget::slotSelectionChanged);
+    connect(m_vocabularyView->selectionModel(), &QItemSelectionModel::selectionChanged, m_summaryWordWidget, &SummaryWordWidget::slotSelectionChanged);
+    connect(m_vocabularyView->selectionModel(), &QItemSelectionModel::selectionChanged, m_latexWidget, &LatexWidget::slotSelectionChanged);
 
     m_spellCheckMenu->menu()->clear();
     for (int i = 0; i < doc->identifierCount(); ++i) {
-        QAction* languageSpellCheck = new QAction(doc->identifier(i).name(), m_spellCheckMenu->menu());
+        QAction *languageSpellCheck = new QAction(doc->identifier(i).name(), m_spellCheckMenu->menu());
         m_spellCheckMenu->menu()->addAction(languageSpellCheck);
-        connect(languageSpellCheck, &QAction::triggered,
-                this, [=] {m_vocabularyView->checkSpelling(i);});
+        connect(languageSpellCheck, &QAction::triggered, this, [=] {
+            m_vocabularyView->checkSpelling(i);
+        });
     }
 }
-
 
 void EditorWindow::initDockWidgets()
 {
@@ -152,22 +146,19 @@ void EditorWindow::initDockWidgets()
 
     m_lessonModel = new LessonModel(this);
     m_lessonView->setModel(m_lessonModel);
-    m_lessonView->setToolTip(i18n("Right click to add, delete, or rename units. \n"
-                                  "With the checkboxes you can select which units you want to practice. \n"
-                                  "Only checked units [x] will be asked in the practice!"));
+    m_lessonView->setToolTip(
+        i18n("Right click to add, delete, or rename units. \n"
+             "With the checkboxes you can select which units you want to practice. \n"
+             "Only checked units [x] will be asked in the practice!"));
 
-    connect(m_lessonView, &LessonView::selectedLessonChanged,
-            m_vocabularyModel, &VocabularyModel::setLesson);
+    connect(m_lessonView, &LessonView::selectedLessonChanged, m_vocabularyModel, &VocabularyModel::setLesson);
 
-    connect(m_lessonView, &LessonView::signalShowContainer,
-            m_vocabularyModel, &VocabularyModel::showContainer);
+    connect(m_lessonView, &LessonView::signalShowContainer, m_vocabularyModel, &VocabularyModel::showContainer);
 
-    connect(m_vocabularyView, &VocabularyView::translationChanged,
-            m_lessonView, &LessonView::setTranslation);
-
+    connect(m_vocabularyView, &VocabularyView::translationChanged, m_lessonView, &LessonView::setTranslation);
 
     // Word classes dock widget
-    QDockWidget* wordTypeDockWidget = new QDockWidget(i18n("Word Types"), this);
+    QDockWidget *wordTypeDockWidget = new QDockWidget(i18n("Word Types"), this);
     wordTypeDockWidget->setObjectName(QStringLiteral("WordTypeDock"));
     m_wordTypeView = new WordTypeView(this);
     wordTypeDockWidget->setWidget(m_wordTypeView);
@@ -178,16 +169,15 @@ void EditorWindow::initDockWidgets()
     wordTypeDockWidget->setVisible(false);
     actionCollection()->addAction(QStringLiteral("show_wordtype_dock"), wordTypeDockWidget->toggleViewAction());
 
-///@todo test, should be fixed with the lesson one though
-///@todo remove before release
-//     new ModelTest(m_wordTypeModel, this);
+    ///@todo test, should be fixed with the lesson one though
+    ///@todo remove before release
+    //     new ModelTest(m_wordTypeModel, this);
 
     m_wordTypeView->setModel(m_wordTypeModel);
 
-    connect(m_vocabularyView, &VocabularyView::translationChanged,
-            m_wordTypeView, &WordTypeView::setTranslation);
+    connect(m_vocabularyView, &VocabularyView::translationChanged, m_wordTypeView, &WordTypeView::setTranslation);
 
-// Inflections
+    // Inflections
     QDockWidget *inflectionDock = new QDockWidget(i18n("Inflection (verbs, adjectives, nouns)"), this);
     inflectionDock->setObjectName(QStringLiteral("InflectionDock"));
     m_inflectionWidget = new InflectionWidget(this);
@@ -198,12 +188,10 @@ void EditorWindow::initDockWidgets()
     addDockWidget(Qt::RightDockWidgetArea, inflectionDock);
     m_dockWidgets.append(inflectionDock);
     actionCollection()->addAction(QStringLiteral("show_inflection_dock"), inflectionDock->toggleViewAction());
-    connect(m_mainWindow->parleyDocument(), &ParleyDocument::documentChanged,
-            m_inflectionWidget, &InflectionWidget::setDocument);
-    connect(m_vocabularyView, &VocabularyView::translationChanged,
-            m_inflectionWidget, &InflectionWidget::setTranslation);
+    connect(m_mainWindow->parleyDocument(), &ParleyDocument::documentChanged, m_inflectionWidget, &InflectionWidget::setDocument);
+    connect(m_vocabularyView, &VocabularyView::translationChanged, m_inflectionWidget, &InflectionWidget::setTranslation);
 
-// Comparison forms
+    // Comparison forms
     QDockWidget *comparisonDock = new QDockWidget(i18n("Comparison forms"), this);
     comparisonDock->setObjectName(QStringLiteral("ComparisonDock"));
     m_comparisonWidget = new ComparisonWidget(this);
@@ -215,11 +203,10 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(comparisonDock);
     actionCollection()->addAction(QStringLiteral("show_comparison_dock"), comparisonDock->toggleViewAction());
     comparisonDock->setVisible(false);
-    connect(m_vocabularyView, &VocabularyView::translationChanged,
-            m_comparisonWidget, &ComparisonWidget::setTranslation);
-    tabifyDockWidget(comparisonDock,inflectionDock);
+    connect(m_vocabularyView, &VocabularyView::translationChanged, m_comparisonWidget, &ComparisonWidget::setTranslation);
+    tabifyDockWidget(comparisonDock, inflectionDock);
 
-// Multiple choice
+    // Multiple choice
     QDockWidget *multipleChoiceDock = new QDockWidget(i18n("Multiple Choice"), this);
     multipleChoiceDock->setObjectName(QStringLiteral("MultipleChoiceDock"));
     MultipleChoiceWidget *multipleChoiceWidget = new MultipleChoiceWidget(this);
@@ -231,10 +218,9 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(multipleChoiceDock);
     actionCollection()->addAction(QStringLiteral("show_multiplechoice_dock"), multipleChoiceDock->toggleViewAction());
     multipleChoiceDock->setVisible(false);
-    connect(m_vocabularyView, &VocabularyView::translationChanged,
-            multipleChoiceWidget, &MultipleChoiceWidget::setTranslation);
+    connect(m_vocabularyView, &VocabularyView::translationChanged, multipleChoiceWidget, &MultipleChoiceWidget::setTranslation);
 
-// Synonym (and the same for antonym and false friends)
+    // Synonym (and the same for antonym and false friends)
     QDockWidget *synonymDock = new QDockWidget(i18n("Synonyms"), this);
     synonymDock->setObjectName(QStringLiteral("SynonymDock"));
     m_synonymWidget = new SynonymWidget(SynonymWidget::Synonym, this);
@@ -246,8 +232,7 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(synonymDock);
     actionCollection()->addAction(QStringLiteral("show_synonym_dock"), synonymDock->toggleViewAction());
     synonymDock->setVisible(false);
-    connect(m_vocabularyView, &VocabularyView::translationChanged,
-            m_synonymWidget, &SynonymWidget::setTranslation);
+    connect(m_vocabularyView, &VocabularyView::translationChanged, m_synonymWidget, &SynonymWidget::setTranslation);
 
     QDockWidget *antonymDock = new QDockWidget(i18n("Antonyms"), this);
     antonymDock->setObjectName(QStringLiteral("AntonymDock"));
@@ -260,9 +245,8 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(antonymDock);
     actionCollection()->addAction(QStringLiteral("show_antonym_dock"), antonymDock->toggleViewAction());
     antonymDock->setVisible(false);
-    connect(m_vocabularyView, &VocabularyView::translationChanged,
-            m_antonymWidget, &SynonymWidget::setTranslation);
-    tabifyDockWidget(synonymDock,antonymDock);
+    connect(m_vocabularyView, &VocabularyView::translationChanged, m_antonymWidget, &SynonymWidget::setTranslation);
+    tabifyDockWidget(synonymDock, antonymDock);
 
     QDockWidget *falseFriendDock = new QDockWidget(i18n("False Friends"), this);
     falseFriendDock->setObjectName(QStringLiteral("FalseFriendDock"));
@@ -275,11 +259,10 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(falseFriendDock);
     actionCollection()->addAction(QStringLiteral("show_falsefriend_dock"), falseFriendDock->toggleViewAction());
     falseFriendDock->setVisible(false);
-    connect(m_vocabularyView, &VocabularyView::translationChanged,
-            m_falseFriendWidget, &SynonymWidget::setTranslation);
-    tabifyDockWidget(antonymDock,falseFriendDock);
+    connect(m_vocabularyView, &VocabularyView::translationChanged, m_falseFriendWidget, &SynonymWidget::setTranslation);
+    tabifyDockWidget(antonymDock, falseFriendDock);
 
-// Pronunciation symbols - Use KCharSelect
+    // Pronunciation symbols - Use KCharSelect
     QDockWidget *charSelectDock = new QDockWidget(i18n("Phonetic Symbols"), this);
     charSelectDock->setObjectName(QStringLiteral("IPADock"));
     KCharSelect *charSelectWidget = new KCharSelect(this, 0, KCharSelect::SearchLine | KCharSelect::BlockCombos | KCharSelect::CharacterTable);
@@ -294,7 +277,7 @@ void EditorWindow::initDockWidgets()
     charSelectDock->setVisible(false);
     connect(charSelectWidget, &KCharSelect::charSelected, m_vocabularyView, &VocabularyView::appendChar);
 
-// Image
+    // Image
     QDockWidget *imageDock = new QDockWidget(i18n("Image"), this);
     imageDock->setObjectName(QStringLiteral("ImageDock"));
     ImageChooserWidget *imageChooserWidget = new ImageChooserWidget(this);
@@ -306,11 +289,10 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(imageDock);
     actionCollection()->addAction(QStringLiteral("show_image_dock"), imageDock->toggleViewAction());
     imageDock->setVisible(false);
-    connect(m_vocabularyView, &VocabularyView::translationChanged,
-            imageChooserWidget, &ImageChooserWidget::setTranslation);
-    tabifyDockWidget(multipleChoiceDock,imageDock);
+    connect(m_vocabularyView, &VocabularyView::translationChanged, imageChooserWidget, &ImageChooserWidget::setTranslation);
+    tabifyDockWidget(multipleChoiceDock, imageDock);
 
-// Summary word
+    // Summary word
     QDockWidget *summaryDock = new QDockWidget(i18n("Summary"), this);
     summaryDock->setObjectName(QStringLiteral("SummaryDock"));
     m_summaryWordWidget = new SummaryWordWidget(m_vocabularyFilter, m_mainWindow->parleyDocument()->document(), this);
@@ -322,10 +304,9 @@ void EditorWindow::initDockWidgets()
     actionCollection()->addAction(QStringLiteral("show_summary_dock"), summaryDock->toggleViewAction());
     summaryDock->setVisible(false);
     m_dockWidgets.append(summaryDock);
-    connect(m_vocabularyView, &VocabularyView::translationChanged,
-            m_summaryWordWidget, &SummaryWordWidget::setTranslation);
+    connect(m_vocabularyView, &VocabularyView::translationChanged, m_summaryWordWidget, &SummaryWordWidget::setTranslation);
 
-// Sound
+    // Sound
     QDockWidget *audioDock = new QDockWidget(i18n("Sound"), this);
     audioDock->setObjectName(QStringLiteral("AudioDock"));
     AudioWidget *audioWidget = new AudioWidget(this);
@@ -337,11 +318,10 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(audioDock);
     actionCollection()->addAction(QStringLiteral("show_audio_dock"), audioDock->toggleViewAction());
     audioDock->setVisible(false);
-    connect(m_vocabularyView, &VocabularyView::translationChanged,
-            audioWidget, &AudioWidget::setTranslation);
-    tabifyDockWidget(imageDock,audioDock);
+    connect(m_vocabularyView, &VocabularyView::translationChanged, audioWidget, &AudioWidget::setTranslation);
+    tabifyDockWidget(imageDock, audioDock);
 
-// browser
+    // browser
     QDockWidget *browserDock = new QDockWidget(i18n("Internet"), this);
     browserDock->setObjectName(QStringLiteral("BrowserDock"));
     BrowserWidget *htmlPart = new BrowserWidget(browserDock);
@@ -353,11 +333,10 @@ void EditorWindow::initDockWidgets()
     m_dockWidgets.append(browserDock);
     actionCollection()->addAction(QStringLiteral("show_browser_dock"), browserDock->toggleViewAction());
     browserDock->setVisible(false);
-    connect(m_vocabularyView, &VocabularyView::translationChanged,
-            htmlPart, &BrowserWidget::setTranslation);
-    tabifyDockWidget(summaryDock,browserDock);
+    connect(m_vocabularyView, &VocabularyView::translationChanged, htmlPart, &BrowserWidget::setTranslation);
+    tabifyDockWidget(summaryDock, browserDock);
 
-// LaTeX
+    // LaTeX
     QDockWidget *latexDock = new QDockWidget(i18n("LaTeX"), this);
     latexDock->setObjectName(QStringLiteral("LatexDock"));
     m_latexWidget = new LatexWidget(m_vocabularyFilter, m_mainWindow->parleyDocument()->document().get(), this);
@@ -369,18 +348,16 @@ void EditorWindow::initDockWidgets()
     actionCollection()->addAction(QStringLiteral("show_latex_dock"), latexDock->toggleViewAction());
     latexDock->setVisible(false);
     m_dockWidgets.append(latexDock);
-    connect(m_vocabularyView, &VocabularyView::translationChanged,
-            m_latexWidget, &LatexWidget::setTranslation);
-    tabifyDockWidget(audioDock,latexDock);
+    connect(m_vocabularyView, &VocabularyView::translationChanged, m_latexWidget, &LatexWidget::setTranslation);
+    tabifyDockWidget(audioDock, latexDock);
 
-// Grades
-//     QDockWidget *gradeDock = new QDockWidget(i18n("Grade"), this);
-//     gradeDock->setObjectName("gradeDock");
-//     QLabel *gradeWidget = new QLabel("grade placeholder", this);
-//     gradeDock->setWidget(gradeWidget);
-//     addDockWidget(Qt::RightDockWidgetArea, gradeDock);
-//     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_declensionWidget, SLOT(setTranslation(KEduVocTranslation*)));
-
+    // Grades
+    //     QDockWidget *gradeDock = new QDockWidget(i18n("Grade"), this);
+    //     gradeDock->setObjectName("gradeDock");
+    //     QLabel *gradeWidget = new QLabel("grade placeholder", this);
+    //     gradeDock->setWidget(gradeWidget);
+    //     addDockWidget(Qt::RightDockWidgetArea, gradeDock);
+    //     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_declensionWidget, SLOT(setTranslation(KEduVocTranslation*)));
 }
 
 void EditorWindow::initActions()
@@ -420,8 +397,8 @@ void EditorWindow::initModel()
     m_vocabularyFilter->setSourceModel(m_vocabularyModel);
     m_vocabularyView->setFilter(m_vocabularyFilter);
 
-//    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyModel, SLOT(setDocument(KEduVocDocument*)));
-//    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(setDocument(KEduVocDocument*)));
+    //    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyModel, SLOT(setDocument(KEduVocDocument*)));
+    //    connect(m_mainWindow->parleyDocument(), SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyView, SLOT(setDocument(KEduVocDocument*)));
     connect(m_searchLine, &QLineEdit::textChanged, m_vocabularyFilter, &VocabularyFilter::setSearchString);
 }
 
@@ -446,13 +423,13 @@ void EditorWindow::initView()
     label->show();
 
     m_searchWidget = new QWidget(this);
-    QHBoxLayout* layout = new QHBoxLayout(m_searchWidget);
+    QHBoxLayout *layout = new QHBoxLayout(m_searchWidget);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(label);
     layout->addWidget(m_searchLine);
 
-///@todo     centralWidget()-> delete layout
-    QVBoxLayout * rightLayout = new QVBoxLayout();
+    ///@todo     centralWidget()-> delete layout
+    QVBoxLayout *rightLayout = new QVBoxLayout();
     rightLayout->setContentsMargins(0, 0, 0, 0);
     rightLayout->addWidget(m_searchWidget);
     m_searchWidget->setVisible(Prefs::showSearch());
@@ -477,7 +454,7 @@ void EditorWindow::startSearch()
 
 void EditorWindow::slotShowScriptManager()
 {
-    ScriptDialog * dialog = new ScriptDialog(m_scriptManager);
+    ScriptDialog *dialog = new ScriptDialog(m_scriptManager);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->show();
 }
@@ -498,7 +475,7 @@ void EditorWindow::initScripts()
 
     m_vocabularyView->setTranslator(m_scriptManager->translator());
 
-    //Load scripts
+    // Load scripts
     m_scriptManager->loadScripts();
 }
 

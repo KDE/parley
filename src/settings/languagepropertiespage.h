@@ -3,7 +3,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef LANGUAGEPROPERTIESPAGE_H
 #define LANGUAGEPROPERTIESPAGE_H
 
@@ -23,10 +22,10 @@ public slots:
     void downloadGrammar();
 
 signals:
-    void nameChanged(const QString&);
+    void nameChanged(const QString &);
 
 private slots:
-    void localeChanged(const QString&);
+    void localeChanged(const QString &);
 
     // pronouns/conjugations
     void updateCheckBoxes();
@@ -46,7 +45,7 @@ private:
     int m_currentTense;
     QList<int> tenseIndex;
 
-    KEduVocDocument* m_doc;
+    KEduVocDocument *m_doc;
     int m_identifierIndex;
 };
 

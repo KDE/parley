@@ -5,31 +5,29 @@
 
 #include "practicemainwindow.h"
 
-
 #include <QHBoxLayout>
-#include <QToolButton>
 #include <QPropertyAnimation>
+#include <QToolButton>
 
 #include <KActionCollection>
-#include <QAction>
-#include <KToolBar>
-#include <QMenuBar>
-#include <KToggleFullScreenAction>
-#include <KLocalizedString>
 #include <KConfig>
 #include <KConfigGroup>
+#include <KLocalizedString>
+#include <KToggleFullScreenAction>
+#include <KToolBar>
+#include <QAction>
+#include <QMenuBar>
 
-#include "parleymainwindow.h"
 #include "guifrontend.h"
+#include "parleymainwindow.h"
 #include "practicestatemachine.h"
 #include <languagesettings.h>
 
 using namespace Practice;
 
-
-PracticeMainWindow::PracticeMainWindow(SessionManagerBase* sessionManager,
-                                       ParleyMainWindow* mainWindow)
-    : KXmlGuiWindow(mainWindow), m_mainWindow(mainWindow)
+PracticeMainWindow::PracticeMainWindow(SessionManagerBase *sessionManager, ParleyMainWindow *mainWindow)
+    : KXmlGuiWindow(mainWindow)
+    , m_mainWindow(mainWindow)
 {
     // KXmlGui
     setXMLFile(QStringLiteral("practiceui.rc"));
@@ -55,8 +53,8 @@ PracticeMainWindow::PracticeMainWindow(SessionManagerBase* sessionManager,
 
 PracticeMainWindow::~PracticeMainWindow()
 {
-    //m_floatingToolBar is a child of m_mainWindow will be deleted with its children
-    //before or after this.  So don't access it in toggleFullScreenMode.
+    // m_floatingToolBar is a child of m_mainWindow will be deleted with its children
+    // before or after this.  So don't access it in toggleFullScreenMode.
     m_floatingToolBar = 0;
     toggleFullScreenMode(false);
 
@@ -66,26 +64,24 @@ PracticeMainWindow::~PracticeMainWindow()
 
 void PracticeMainWindow::initActions()
 {
-    QAction* stopPracticeAction = new QAction(this);
+    QAction *stopPracticeAction = new QAction(this);
     stopPracticeAction->setText(i18n("Stop Practice"));
     stopPracticeAction->setIcon(QIcon::fromTheme(QStringLiteral("practice-stop")));
     stopPracticeAction->setToolTip(i18n("Stop practicing"));
     actionCollection()->addAction(QStringLiteral("practice_stop"), stopPracticeAction);
     connect(stopPracticeAction, &QAction::triggered, m_stateMachine, &PracticeStateMachine::slotPracticeFinished);
 
-    m_fullScreenAction = KStandardAction::fullScreen(this,
-                         SLOT(toggleFullScreenMode(bool)),
-                         m_mainWindow,
-                         actionCollection());
+    m_fullScreenAction = KStandardAction::fullScreen(this, SLOT(toggleFullScreenMode(bool)), m_mainWindow, actionCollection());
 
-    QAction* toggleAnswerState = new QAction(this);
+    QAction *toggleAnswerState = new QAction(this);
     toggleAnswerState->setText(i18n("Change answer to right/wrong"));
-    toggleAnswerState->setToolTip(i18n("When you answered, Parley will display that the answer was right or wrong.\nThis shortcut changes how the answer is counted."));
+    toggleAnswerState->setToolTip(
+        i18n("When you answered, Parley will display that the answer was right or wrong.\nThis shortcut changes how the answer is counted."));
     actionCollection()->addAction(QStringLiteral("toggle_answer_state"), toggleAnswerState);
     toggleAnswerState->setShortcut(Qt::CTRL | Qt::Key_Space);
     connect(toggleAnswerState, &QAction::triggered, m_guiFrontend, &GuiFrontend::toggleResultState);
 
-    //m_floatingToolBar now a child of m_mainWindow and will be deleted with its parent
+    // m_floatingToolBar now a child of m_mainWindow and will be deleted with its parent
     m_floatingToolBar = new QWidget(m_mainWindow);
     QHBoxLayout *layout = new QHBoxLayout();
     m_floatingToolBar->setLayout(layout);
@@ -120,7 +116,7 @@ void PracticeMainWindow::resizeEvent(QResizeEvent *)
 bool PracticeMainWindow::event(QEvent *event)
 {
     if (event->type() == QEvent::HoverMove && m_fullScreenAction->isChecked()) {
-        QPoint pos = static_cast<QHoverEvent*>(event)->pos();
+        QPoint pos = static_cast<QHoverEvent *>(event)->pos();
         if (m_animation->direction() == QAbstractAnimation::Backward && pos.y() <= m_floatingToolBar->height()) {
             m_animation->setDirection(QAbstractAnimation::Forward);
             m_animation->start();
@@ -129,7 +125,6 @@ bool PracticeMainWindow::event(QEvent *event)
             m_animation->setDirection(QAbstractAnimation::Backward);
             m_animation->start();
         }
-
     }
     return KXmlGuiWindow::event(event);
 }
@@ -139,7 +134,7 @@ void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)
     KToggleFullScreenAction::setFullScreen(m_mainWindow, fullScreen);
     m_mainWindow->toolBar(QStringLiteral("practiceToolBar"))->setVisible(!fullScreen);
     m_mainWindow->menuBar()->setVisible(!fullScreen);
-    if ( m_floatingToolBar != 0 ) {
+    if (m_floatingToolBar != 0) {
         m_floatingToolBar->setVisible(fullScreen);
     }
     m_mainWindow->setSettingsDirty();

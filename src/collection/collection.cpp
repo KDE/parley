@@ -11,10 +11,9 @@
 #include "../utils.h"
 #include "entryfilter.h"
 
-
 // ----------------------------------------------------------------
 
-Collection::Collection(QUrl *url, QObject* parent)
+Collection::Collection(QUrl *url, QObject *parent)
     : QObject(parent)
     , m_doc(new KEduVocDocument(this))
 {
@@ -37,7 +36,7 @@ void Collection::numDueWords(WordCount &wc)
 {
     // Get the entries from the collection. Cache them for future use.
     if (m_allTestEntries.isEmpty()) {
-        EntryFilter  filter(m_doc, this);
+        EntryFilter filter(m_doc, this);
         m_allTestEntries = filter.entries(false);
     }
 
@@ -46,22 +45,19 @@ void Collection::numDueWords(WordCount &wc)
         int languageTo = entry->languageTo();
         KEduVocExpression *exp = entry->entry();
 
-        int grade    = exp->translation(languageTo)->grade();
+        int grade = exp->translation(languageTo)->grade();
         int pregrade = exp->translation(languageTo)->preGrade();
         if (exp->translation(languageTo)->text().isEmpty()) {
             wc.invalid++;
-        }
-        else if (pregrade > 0) {
+        } else if (pregrade > 0) {
             wc.pregrades[pregrade]++;
             wc.initialWords++;
             wc.grades[0]++;
-        }
-        else {
+        } else {
             wc.grades[grade]++;
         }
     }
 
     wc.totalWords = m_allTestEntries.count();
-    //kDebug() << m_doc->title() << wc.totalWords << "entries";
+    // kDebug() << m_doc->title() << wc.totalWords << "entries";
 }
-

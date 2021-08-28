@@ -11,13 +11,15 @@
 
 namespace Practice
 {
-
 class StatusToggleButton : public ImageWidget
 {
     Q_OBJECT
 
 public:
-    StatusToggleButton(QWidget* parent = 0) : ImageWidget(parent), m_current(0) {
+    StatusToggleButton(QWidget *parent = 0)
+        : ImageWidget(parent)
+        , m_current(0)
+    {
         setMouseTracking(true);
     }
 

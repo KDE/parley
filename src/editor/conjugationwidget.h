@@ -15,7 +15,6 @@ class KEduVocDocument;
 
 namespace Editor
 {
-
 class ConjugationWidget : public QWidget, public Ui::ConjugationWidget
 {
     Q_OBJECT
@@ -24,14 +23,14 @@ public:
     explicit ConjugationWidget(QWidget *parent = 0);
 
 public slots:
-    void setDocument(KEduVocDocument* doc);
-    void setTranslation(KEduVocExpression* entry, int translation);
+    void setDocument(KEduVocDocument *doc);
+    void setTranslation(KEduVocExpression *entry, int translation);
 
 signals:
     void sigModified();
 
 private slots:
-    void textChanged(const QString&);
+    void textChanged(const QString &);
     void slotTenseSelected(int);
     void slotNextTense();
     void tenseEditingFinished();
@@ -48,13 +47,13 @@ private:
 
     QString m_lastTenseSelection;
     int m_identifier;
-    KEduVocExpression* m_entry;
-    KEduVocDocument* m_doc;
+    KEduVocExpression *m_entry;
+    KEduVocDocument *m_doc;
 
     /**
      * All line edits and labels, index corresponding to KEduVocWordFlag::indexOf
      */
-    QMap< KEduVocWordFlags, QLineEdit* > m_conjugationLineEdits;
+    QMap<KEduVocWordFlags, QLineEdit *> m_conjugationLineEdits;
 };
 
 }

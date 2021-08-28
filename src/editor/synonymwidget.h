@@ -17,16 +17,11 @@ class QStringListModel;
 
 namespace Editor
 {
-
 class SynonymWidget : public QWidget, public Ui::SynonymWidget
 {
     Q_OBJECT
 public:
-    enum SynonymWidgetType {
-        Synonym,
-        Antonym,
-        FalseFriend
-    };
+    enum SynonymWidgetType { Synonym, Antonym, FalseFriend };
 
     explicit SynonymWidget(SynonymWidgetType type, QWidget *parent = 0);
 
@@ -37,20 +32,20 @@ public slots:
      */
     void setDocument(KEduVocDocument *doc);
 
-    void setTranslation(KEduVocExpression* entry, int translation);
+    void setTranslation(KEduVocExpression *entry, int translation);
 
 private slots:
     void togglePair();
     void updateList();
 
 private:
-    KEduVocDocument  *m_doc;
+    KEduVocDocument *m_doc;
 
     // the one that was selected before
-    KEduVocTranslation* m_lastTranslation;
+    KEduVocTranslation *m_lastTranslation;
     // the one the user clicked on latest
-    KEduVocTranslation* m_currentTranslation;
-    QStringListModel * m_listModel;
+    KEduVocTranslation *m_currentTranslation;
+    QStringListModel *m_listModel;
     SynonymWidgetType m_type;
 };
 }

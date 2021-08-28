@@ -13,7 +13,7 @@ class ViewOptions : public QWidget, public Ui::ViewOptionsBase
 {
     Q_OBJECT
 public:
-    explicit ViewOptions(QWidget* parent = 0);
+    explicit ViewOptions(QWidget *parent = 0);
 };
 
 #endif

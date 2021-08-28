@@ -8,9 +8,8 @@
 
 #include "containermodel.h"
 
-#include "prefs.h"
 #include "documentsettings.h"
-
+#include "prefs.h"
 
 class StatisticsModel : public ContainerModel
 {
@@ -34,15 +33,14 @@ public:
 
     explicit StatisticsModel(QObject *parent = 0);
 
-    QVariant headerData(int section, Qt::Orientation orientation,
-                                int role = Qt::DisplayRole) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     Qt::ItemFlags flags(const QModelIndex &index) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 
     /** Indicate supported drag actions
      @return enum of actions supported **/
-    Qt::DropActions supportedDragActions() const  override;
+    Qt::DropActions supportedDragActions() const override;
 
     void updateDocumentSettings();
     std::shared_ptr<KEduVocDocument> document() const;
@@ -56,8 +54,7 @@ protected:
 private:
     int averageGradeForPracticeMode(KEduVocContainer *container, int translation) const;
     int entryCountForPracticeMode(KEduVocContainer *container, int translation) const;
-    int expressionsOfGradeForPracticeMode(KEduVocContainer *container, int translation,
-                                          grade_t grade) const;
+    int expressionsOfGradeForPracticeMode(KEduVocContainer *container, int translation, grade_t grade) const;
     void loadDocumentsSettings();
 
 private:
@@ -65,7 +62,6 @@ private:
 };
 
 // For index.data()
-Q_DECLARE_METATYPE(KEduVocContainer*)
-
+Q_DECLARE_METATYPE(KEduVocContainer *)
 
 #endif

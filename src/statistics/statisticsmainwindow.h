@@ -25,7 +25,6 @@ class StatisticsMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
-
     StatisticsMainWindow(const std::shared_ptr<KEduVocDocument> &doc, ParleyMainWindow *parent);
     ~StatisticsMainWindow();
 
@@ -54,11 +53,11 @@ private:
     int practiceDirectionForPracticeMode(int mode) const;
     void setPracticeDirectionForPracticeMode(int direction, int mode);
 
-    ParleyMainWindow* m_mainWindow;
+    ParleyMainWindow *m_mainWindow;
     std::shared_ptr<KEduVocDocument> m_doc;
-    StatisticsModel* m_statisticsModel;
-    Ui::StatisticsMainWindow* m_ui;
-    ConjugationOptions* m_conjugationOptions;
+    StatisticsModel *m_statisticsModel;
+    Ui::StatisticsMainWindow *m_ui;
+    ConjugationOptions *m_conjugationOptions;
 };
 
 #endif

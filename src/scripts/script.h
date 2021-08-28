@@ -7,10 +7,10 @@
 
 #include "scripting/parley.h"
 
-#include <QString>
+#include <QMap>
 #include <QObject>
 #include <QPointer>
-#include <QMap>
+#include <QString>
 
 /**
  * This class represents the activated script and is used by the ScriptManager
@@ -18,7 +18,7 @@
  *
  * @author Avgoustinos Kadis <avgoustinos.kadis@kdemail.net>
  */
-class Script: public QObject
+class Script : public QObject
 {
     Q_OBJECT
 public:
@@ -47,7 +47,7 @@ public:
      *
      * @return True if the script file exists
      *         False if it does not exist
-    */
+     */
     bool exists();
     /**
      * Returns the file that was given as parameter to the constructor
@@ -58,21 +58,22 @@ public:
      * @param name Name to appear in the script
      * @param object Object to be accessible by the script
      */
-    void addObject(const QString &name, QObject * object);
+    void addObject(const QString &name, QObject *object);
     /**
      * Adds more than one scripting Objects to the script
      * @param objects Map of the objects to add
      */
-    void addObjects(const QMap<QString, QObject*> &objects);
+    void addObjects(const QMap<QString, QObject *> &objects);
     /**
      * Returns an html error message if there have been errors in the script.
      */
     QString errorMessage();
+
 private:
     bool m_activated;
     QString m_file;
     QPointer<QObject> m_object;
-    QMap<QString, QObject*> m_scriptObjects;
+    QMap<QString, QObject *> m_scriptObjects;
     QString m_errorMessage;
 };
 

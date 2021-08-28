@@ -12,7 +12,6 @@
 
 namespace Scripting
 {
-
 /**
  * Identifier class can be accessed from Document class and is used for specifying the document languages, articles and personal pronouns.
  *
@@ -47,31 +46,33 @@ class Identifier : public QObject
     Q_PROPERTY(QString name READ name WRITE setName)
     Q_PROPERTY(QString locale READ locale WRITE setLocale)
 public:
-
     Identifier();
 
-    explicit Identifier(KEduVocIdentifier * identifier);
+    explicit Identifier(KEduVocIdentifier *identifier);
 
-    explicit Identifier(KEduVocIdentifier & identifier);
+    explicit Identifier(KEduVocIdentifier &identifier);
 
     ~Identifier();
 
-    KEduVocIdentifier * kEduVocIdentifier() {
+    KEduVocIdentifier *kEduVocIdentifier()
+    {
         return m_identifier;
     }
 
     /**
-        * Name of this identifier. (English, Anatomy, Fruit salad...)
-        * @return name
-        */
-    QString name() const {
+     * Name of this identifier. (English, Anatomy, Fruit salad...)
+     * @return name
+     */
+    QString name() const
+    {
         return m_identifier->name();
     }
     /**
      * Set the name
      * @param name
      */
-    void setName(const QString& name) {
+    void setName(const QString &name)
+    {
         m_identifier->setName(name);
     }
 
@@ -79,14 +80,16 @@ public:
      * The locale of the contents: en, de, es, ...
      * @return locale
      */
-    QString locale() const {
+    QString locale() const
+    {
         return m_identifier->locale();
     }
     /**
      * Set the locale
      * @param name
      */
-    void setLocale(const QString& name) {
+    void setLocale(const QString &name)
+    {
         m_identifier->setLocale(name);
     }
 
@@ -98,7 +101,7 @@ public Q_SLOTS:
      * Articles (a, the in English, el, la,... in Spanish)
      * @returns articles
      */
-//             KEduVocArticle article() const;
+    //             KEduVocArticle article() const;
 
     /**
      * Returns the article in the given number, definiteness and gender flags:
@@ -110,7 +113,7 @@ public Q_SLOTS:
      * @param flags Flags to indicate which article to return
      * @return A string containing the requested article. Empty string if does not exist
      */
-    QString article(const KEduVocWordFlags& flags);
+    QString article(const KEduVocWordFlags &flags);
 
     /**
      * Sets the @p article in the given number, definiteness and gender flags:
@@ -122,7 +125,7 @@ public Q_SLOTS:
      * @param article The article to set
      * @param flags Flags to indicate which article to set
      */
-    void setArticle(const QString& article, const KEduVocWordFlags& flags);
+    void setArticle(const QString &article, const KEduVocWordFlags &flags);
 
     /**** Personal Pronoun Functions ****/
 
@@ -130,41 +133,41 @@ public Q_SLOTS:
      * Get the personal pronouns for this identifier
      * @returns a KEduVocPersonalPronoun containing the personal pronouns
      */
-//             KEduVocPersonalPronoun personalPronouns() const;
+    //             KEduVocPersonalPronoun personalPronouns() const;
 
-//              QString personalPronoun ( const QString & number, const QString & person );
-    QString personalPronoun(const KEduVocWordFlags& flags) const;
-
+    //              QString personalPronoun ( const QString & number, const QString & person );
+    QString personalPronoun(const KEduVocWordFlags &flags) const;
 
     /**
      * Sets personal pronouns
      * @param conjugation a conjugation of the personal pronoun
      * @param flags the KEduVocWordFlags flags
      */
-//             void setPersonalPronouns ( const KEduVocPersonalPronoun &pronouns );
+    //             void setPersonalPronouns ( const KEduVocPersonalPronoun &pronouns );
 
-//             void setPersonalPronoun ( const QString& personalPronoun, const QString & number, const QString & person );
-    void setPersonalPronoun(const QString& conjugation, const KEduVocWordFlags& flags);
+    //             void setPersonalPronoun ( const QString& personalPronoun, const QString & number, const QString & person );
+    void setPersonalPronoun(const QString &conjugation, const KEduVocWordFlags &flags);
 
     QStringList personalPronouns();
 
     /**
-    * Sets the document tenses
-    * @code
-    * #how to add new tenses to a language
-    * import Parley
-    * for ident in Parley.doc.identifiers():
-    *    T = ident.tenses()
-    *    print T
-    *    T.append("Present Perfect")
-    *    T.append("Past Simple")
-    *    T.append("Past Perfect")
-    *    ident.setTenses(T)
-    *    print ident.tenses()
-    * @endcode
-    * @param names A string list of the document tenses we want to be using
-    */
-    void setTenses(const QStringList &names) {
+     * Sets the document tenses
+     * @code
+     * #how to add new tenses to a language
+     * import Parley
+     * for ident in Parley.doc.identifiers():
+     *    T = ident.tenses()
+     *    print T
+     *    T.append("Present Perfect")
+     *    T.append("Past Simple")
+     *    T.append("Past Perfect")
+     *    ident.setTenses(T)
+     *    print ident.tenses()
+     * @endcode
+     * @param names A string list of the document tenses we want to be using
+     */
+    void setTenses(const QStringList &names)
+    {
         m_identifier->setTenseList(names);
     }
 
@@ -172,13 +175,13 @@ public Q_SLOTS:
      * Gets the language tenses (see example in Identifier::setTenses())
      * @return A string list of all the language tenses
      */
-    QStringList tenses() const {
+    QStringList tenses() const
+    {
         return m_identifier->tenseList();
     }
 
-
 private:
-    KEduVocIdentifier * m_identifier;
+    KEduVocIdentifier *m_identifier;
 };
 
 }

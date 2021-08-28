@@ -8,20 +8,21 @@
 
 #include "ui_practice_widget_conjugation.h"
 
-#include <QDebug>
 #include <KColorScheme>
 #include <KLocalizedString>
+#include <QDebug>
 #include <QRadioButton>
 #include <QTimer>
 
 namespace Practice
 {
 struct PersonConjugationSolutionWidgets {
-    QLabel* person;
-    QLineEdit* input;
-    QLabel* solution;
+    QLabel *person;
+    QLineEdit *input;
+    QLabel *solution;
 
-    PersonConjugationSolutionWidgets(QGridLayout* layout, QWidget* parent = 0) {
+    PersonConjugationSolutionWidgets(QGridLayout *layout, QWidget *parent = 0)
+    {
         person = new QLabel(parent);
         person->setAlignment(Qt::AlignRight);
         input = new QLineEdit(parent);
@@ -32,7 +33,8 @@ struct PersonConjugationSolutionWidgets {
         layout->addWidget(solution, row, 2);
     }
 
-    void setVisible(bool visible) {
+    void setVisible(bool visible)
+    {
         person->setVisible(visible);
         input->setVisible(visible);
         solution->setVisible(visible);
@@ -42,7 +44,7 @@ struct PersonConjugationSolutionWidgets {
 
 using namespace Practice;
 
-ConjugationModeWidget::ConjugationModeWidget(GuiFrontend *frontend, QWidget* parent)
+ConjugationModeWidget::ConjugationModeWidget(GuiFrontend *frontend, QWidget *parent)
     : AbstractModeWidget(frontend, parent)
 {
     m_ui = new Ui::ConjugationPracticeWidget();
@@ -54,18 +56,18 @@ ConjugationModeWidget::~ConjugationModeWidget()
     qDeleteAll(m_personWidgets);
 }
 
-void ConjugationModeWidget::setQuestionFont(const QFont& font)
+void ConjugationModeWidget::setQuestionFont(const QFont &font)
 {
     m_ui->questionLabel->setFont(font);
 }
 
-void ConjugationModeWidget::setSolutionFont(const QFont& font)
+void ConjugationModeWidget::setSolutionFont(const QFont &font)
 {
     m_ui->infinitiveEdit->setFont(font);
     m_solutionFont = font;
 }
 
-void ConjugationModeWidget::setQuestion(const QVariant& question)
+void ConjugationModeWidget::setQuestion(const QVariant &question)
 {
     if (!question.canConvert<ConjugationData>()) {
         qWarning() << "expected ConjugationData";
@@ -109,12 +111,12 @@ void ConjugationModeWidget::showQuestion()
     m_ui->feedbackLabel->setText(i18n("Enter all conjugation forms."));
 }
 
-void ConjugationModeWidget::setSolution(const QVariant& solution)
+void ConjugationModeWidget::setSolution(const QVariant &solution)
 {
     m_solution = solution.toStringList();
 }
 
-void ConjugationModeWidget::setFeedback(const QVariant& feedback)
+void ConjugationModeWidget::setFeedback(const QVariant &feedback)
 {
     m_ui->feedbackLabel->setText(feedback.toString());
 }
@@ -141,14 +143,14 @@ QVariant ConjugationModeWidget::userInput()
     return answers;
 }
 
-void ConjugationModeWidget::setHint(const QVariant& /*hint*/)
+void ConjugationModeWidget::setHint(const QVariant & /*hint*/)
 {
 }
 
 void ConjugationModeWidget::setNumberOfConjugationWidgets(const int numberOfForms)
 {
     while (m_personWidgets.size() < numberOfForms) {
-        PersonConjugationSolutionWidgets* w = new PersonConjugationSolutionWidgets(m_ui->conjugationsLayout, this);
+        PersonConjugationSolutionWidgets *w = new PersonConjugationSolutionWidgets(m_ui->conjugationsLayout, this);
         m_personWidgets.append(w);
     }
     for (int i = 0; i < m_personWidgets.size(); ++i) {
@@ -171,18 +173,17 @@ void ConjugationModeWidget::nextConjugationForm()
     }
 }
 
-void ConjugationModeWidget::setQuestionPronunciation(const QString& /*pronunciationText*/)
+void ConjugationModeWidget::setQuestionPronunciation(const QString & /*pronunciationText*/)
 {
 }
 
-void ConjugationModeWidget::setSolutionPronunciation(const QString& /*pronunciationText*/)
+void ConjugationModeWidget::setSolutionPronunciation(const QString & /*pronunciationText*/)
 {
 }
 
-void ConjugationModeWidget::setQuestionSound(const QUrl& /*soundUrl*/)
+void ConjugationModeWidget::setQuestionSound(const QUrl & /*soundUrl*/)
 {
-
 }
-void ConjugationModeWidget::setSolutionSound(const QUrl& /*soundUrl*/)
+void ConjugationModeWidget::setSolutionSound(const QUrl & /*soundUrl*/)
 {
 }

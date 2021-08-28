@@ -30,7 +30,7 @@ public:
 
 public slots:
     void setDocument(const std::shared_ptr<KEduVocDocument> &doc);
-    void setTranslation(KEduVocExpression* entry, int translation);
+    void setTranslation(KEduVocExpression *entry, int translation);
 
 private slots:
     void setWordType();

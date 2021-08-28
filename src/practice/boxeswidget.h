@@ -10,7 +10,6 @@
 
 namespace Practice
 {
-
 class ThemedBackgroundRenderer;
 
 class BoxesWidget : public ImageWidget
@@ -18,7 +17,7 @@ class BoxesWidget : public ImageWidget
     Q_OBJECT
 
 public:
-    explicit BoxesWidget(QWidget* parent = 0);
+    explicit BoxesWidget(QWidget *parent = 0);
     QSize minimumSizeHint() const override;
 
     void setRenderer(ThemedBackgroundRenderer *renderer);
@@ -31,7 +30,7 @@ protected:
     bool event(QEvent *e) override;
 
 private:
-    void drawElement(QPainter *p, const QString& id);
+    void drawElement(QPainter *p, const QString &id);
 
     int m_boxCount;
     int m_currentBox;

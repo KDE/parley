@@ -8,25 +8,26 @@
 
 #include "parleyactions.h"
 
-#include <QTableWidgetItem>
-#include <QTextDocument>
-#include <QTextDocumentWriter>
-#include <QTextCursor>
-#include <QTextTable>
-#include <KMessageBox>
-#include <KLocalizedString>
-#include <KEduVocExpression>
-#include <KConfigGroup>
 #include <KActionCollection>
 #include <KColorScheme>
+#include <KConfigGroup>
+#include <KEduVocExpression>
+#include <KLocalizedString>
+#include <KMessageBox>
 #include <KToolBar>
 #include <QFileDialog>
+#include <QTableWidgetItem>
+#include <QTextCursor>
+#include <QTextDocument>
+#include <QTextDocumentWriter>
+#include <QTextTable>
 
 using namespace Practice;
 
-class PracticeSummaryComponent::SortedAttemptTableWidgetItem: public QTableWidgetItem
+class PracticeSummaryComponent::SortedAttemptTableWidgetItem : public QTableWidgetItem
 {
-    bool operator<(const QTableWidgetItem &other) const override {
+    bool operator<(const QTableWidgetItem &other) const override
+    {
         if (data(Qt::DisplayRole).toInt() == other.data(Qt::DisplayRole).toInt()) {
             return data(Qt::UserRole).toInt() < other.data(Qt::UserRole).toInt();
         }
@@ -34,7 +35,7 @@ class PracticeSummaryComponent::SortedAttemptTableWidgetItem: public QTableWidge
     }
 };
 
-PracticeSummaryComponent::PracticeSummaryComponent(SessionManagerBase* sessionManager, QWidget* parent)
+PracticeSummaryComponent::PracticeSummaryComponent(SessionManagerBase *sessionManager, QWidget *parent)
     : KXmlGuiWindow(parent)
     , m_sessionManager(sessionManager)
 {
@@ -49,13 +50,16 @@ PracticeSummaryComponent::PracticeSummaryComponent(SessionManagerBase* sessionMa
     initActions(parent);
 
     setupDetailsTable();
-    summaryBar->setStatistics(m_sessionManager->statisticTotalCorrectFirstAttempt(), m_sessionManager->statisticTotalWrong(), m_sessionManager->statisticTotalUnanswered());
+    summaryBar->setStatistics(m_sessionManager->statisticTotalCorrectFirstAttempt(),
+                              m_sessionManager->statisticTotalWrong(),
+                              m_sessionManager->statisticTotalUnanswered());
 
     int total = m_sessionManager->statisticTotalCorrectFirstAttempt() + m_sessionManager->statisticTotalWrong();
     int minutes = m_sessionManager->totalTime() / 60;
     int seconds = m_sessionManager->totalTime() % 60;
 
-    testSummaryLabel->setText(i18nc("number of words, minutes, seconds", "You practiced %1 in %2 and %3.",
+    testSummaryLabel->setText(i18nc("number of words, minutes, seconds",
+                                    "You practiced %1 in %2 and %3.",
                                     i18np("one word", "%1 words", total),
                                     i18np("one minute", "%1 minutes", minutes),
                                     i18np("one second", "%1 seconds", seconds)));
@@ -70,7 +74,7 @@ PracticeSummaryComponent::~PracticeSummaryComponent()
     saveMainWindowSettings(cfg);
 }
 
-void PracticeSummaryComponent::initActions(QWidget* parleyMainWindow)
+void PracticeSummaryComponent::initActions(QWidget *parleyMainWindow)
 {
     ParleyActions::create(ParleyActions::EnterEditMode, parleyMainWindow, SLOT(showEditor()), actionCollection());
     ParleyActions::create(ParleyActions::StartPractice, parleyMainWindow, SLOT(showPracticeConfiguration()), actionCollection());
@@ -99,20 +103,17 @@ void PracticeSummaryComponent::setupDetailsTable()
     // TODO headers with languages
     // TODO some colors, maybe an indicator icon whether the word was right/wrong
     const QList<TestEntry *> allTestEntries = m_sessionManager->allTestEntries();
-    for (TestEntry * entry : allTestEntries) {
-        QTableWidgetItem* itemFrom = new QTableWidgetItem(
-            entry->entry()->translation(entry->TestEntry::languageFrom())->text());
-        QTableWidgetItem* itemTo = new QTableWidgetItem(
-            entry->entry()->translation(entry->languageTo())->text());
+    for (TestEntry *entry : allTestEntries) {
+        QTableWidgetItem *itemFrom = new QTableWidgetItem(entry->entry()->translation(entry->TestEntry::languageFrom())->text());
+        QTableWidgetItem *itemTo = new QTableWidgetItem(entry->entry()->translation(entry->languageTo())->text());
         if (entry->statisticGoodCount() > 0) {
             itemTo->setForeground(correctPalette.windowText());
         }
 
-        QTableWidgetItem* itemUserAnswer = new QTableWidgetItem(
-            entry->userAnswers().join(QStringLiteral("; ")));
+        QTableWidgetItem *itemUserAnswer = new QTableWidgetItem(entry->userAnswers().join(QStringLiteral("; ")));
         itemUserAnswer->setForeground(wrongPalette.windowText());
 
-        SortedAttemptTableWidgetItem* itemAttempts = new SortedAttemptTableWidgetItem();
+        SortedAttemptTableWidgetItem *itemAttempts = new SortedAttemptTableWidgetItem();
         itemAttempts->setData(Qt::DisplayRole, entry->statisticCount());
         itemAttempts->setData(Qt::UserRole, entry->statisticBadCount());
         itemAttempts->setTextAlignment(Qt::AlignRight);
@@ -146,10 +147,10 @@ void PracticeSummaryComponent::setupDetailsTable()
 
 void PracticeSummaryComponent::exportResults()
 {
-    QString filter = i18n("HTML Files") + " (*.html);;" + i18n("OpenDocument text files") + " (*.odt)" ;
+    QString filter = i18n("HTML Files") + " (*.html);;" + i18n("OpenDocument text files") + " (*.odt)";
     QString caption;
     QString startingdir(QStringLiteral("kfiledialog:///practice_export"));
-    QString fileName = QFileDialog::getSaveFileName(0, caption, startingdir , filter);
+    QString fileName = QFileDialog::getSaveFileName(0, caption, startingdir, filter);
 
     if (fileName.isEmpty()) {
         return;
@@ -176,7 +177,7 @@ void PracticeSummaryComponent::exportResults()
     table->cellAt(0, 3).firstCursorPosition().insertHtml(i18n("<b>Your errors</b>"));
 
     const QList<TestEntry *> allTestEntries = m_sessionManager->allTestEntries();
-    for (TestEntry * entry : allTestEntries) {
+    for (TestEntry *entry : allTestEntries) {
         table->appendRows(1);
         int newRow = table->rows() - 1;
         table->cellAt(newRow, 0).firstCursorPosition().insertText(QString::number(entry->statisticCount()));
@@ -188,8 +189,7 @@ void PracticeSummaryComponent::exportResults()
     QTextDocumentWriter writer(fileName);
 
     if (!writer.write(&doc)) {
-        KMessageBox::error(this, i18n("Could not write to %1", fileName),
-                           i18n("Could not write file"));
+        KMessageBox::error(this, i18n("Could not write to %1", fileName), i18n("Could not write file"));
         return;
     }
 }

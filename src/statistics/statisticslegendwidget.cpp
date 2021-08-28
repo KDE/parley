@@ -15,27 +15,22 @@
 #include <KLocalizedString>
 
 // Parley
-#include <KEduVocExpression>
 #include "utils.h"
+#include <KEduVocExpression>
 
-
-StatisticsLegendWidget::StatisticsLegendWidget(QWidget * parent)
+StatisticsLegendWidget::StatisticsLegendWidget(QWidget *parent)
     : QWidget(parent)
 {
     ConfidenceColors colors(ConfidenceColors::ProgressiveColorScheme);
 
     QString tooltip;
-    tooltip += "<table><tr><td>"+i18n("Progress gradients")+"</td><td bgcolor=\""
-            + colors.longTermColors[KV_MAX_GRADE].name()+"\"><nobr>    </nobr></td></tr>"
-            + "<tr><td>"+i18n("Early progress")+"</td><td bgcolor=\""
-            + colors.initialTermColor.name()+"\"><nobr>    </nobr></td></tr>"
-            + "<tr><td>"+i18n("Not Practiced")+"</td><td bgcolor=\""
-            + colors.longTermColors[0].name()+"\"><nobr>    </nobr></td></tr>"
-            + "<tr><td>"+i18n("Invalid Entries")+"</td><td bgcolor=\""
-            + colors.invalidColor.name()+"\" width=\"15%\"><nobr>    </nobr></td></tr></table>";
+    tooltip += "<table><tr><td>" + i18n("Progress gradients") + "</td><td bgcolor=\"" + colors.longTermColors[KV_MAX_GRADE].name()
+        + "\"><nobr>    </nobr></td></tr>" + "<tr><td>" + i18n("Early progress") + "</td><td bgcolor=\"" + colors.initialTermColor.name()
+        + "\"><nobr>    </nobr></td></tr>" + "<tr><td>" + i18n("Not Practiced") + "</td><td bgcolor=\"" + colors.longTermColors[0].name()
+        + "\"><nobr>    </nobr></td></tr>" + "<tr><td>" + i18n("Invalid Entries") + "</td><td bgcolor=\"" + colors.invalidColor.name()
+        + "\" width=\"15%\"><nobr>    </nobr></td></tr></table>";
     setToolTip(tooltip);
 }
-
 
 void StatisticsLegendWidget::paintEvent(QPaintEvent *)
 {
@@ -48,8 +43,8 @@ void StatisticsLegendWidget::paintEvent(QPaintEvent *)
 
     QPainter painter(this);
 
-    QString leftString = i18nc("adjective, The word has been properly and fully learned by the user","Fully learned");
-    QString rightString = i18nc("adjective, The word has not even been practiced once by the user","Not practiced");
+    QString leftString = i18nc("adjective, The word has been properly and fully learned by the user", "Fully learned");
+    QString rightString = i18nc("adjective, The word has not even been practiced once by the user", "Not practiced");
     QFontMetrics fontMetrics(painter.font());
 
     // Calculate the size and position of the rectangle that will contain the
@@ -57,20 +52,18 @@ void StatisticsLegendWidget::paintEvent(QPaintEvent *)
     QRect leftRect = fontMetrics.boundingRect(leftString);
     leftRect.setWidth(leftRect.width() + extraRoomInRectSize);
     leftRect.setHeight(leftRect.height() + extraRoomInRectSize);
-    leftRect.moveBottomRight(QPoint(legendOffsetX - horizontalDistanceFromLegend,
-                legendOffsetY + legendHeight));
+    leftRect.moveBottomRight(QPoint(legendOffsetX - horizontalDistanceFromLegend, legendOffsetY + legendHeight));
 
     // Calculate the size and position of the rectangle that will contain the
     // string on the right side of the legend.
     QRect rightRect = fontMetrics.boundingRect(rightString);
     rightRect.setWidth(rightRect.width() + extraRoomInRectSize);
     rightRect.setHeight(rightRect.height() + extraRoomInRectSize);
-    rightRect.moveBottomLeft(QPoint(legendOffsetX + legendWidth + horizontalDistanceFromLegend,
-                legendOffsetY + legendHeight));
+    rightRect.moveBottomLeft(QPoint(legendOffsetX + legendWidth + horizontalDistanceFromLegend, legendOffsetY + legendHeight));
 
     // Draw the legend color bar.
     QRect rect(x() + legendOffsetX, legendOffsetY, legendWidth, legendHeight);
-    WordCount  wordCount;
+    WordCount wordCount;
     for (int i = 0; i <= KV_MAX_GRADE; ++i) {
         wordCount.grades[i] = 1;
     }
