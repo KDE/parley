@@ -215,7 +215,8 @@ void EntryFilter::expireEntries(int setNo)
 void EntryFilter::collectEntries(int setNo)
 {
     // Set up the lists/sets of filtered vocabulary
-    m_entries[setNo] = m_doc->lesson()->entries(KEduVocLesson::Recursive).toSet();
+    QList<KEduVocExpression *> entries = m_doc->lesson()->entries(KEduVocLesson::Recursive);
+    m_entries[setNo] = QSet<KEduVocExpression *>(entries.cbegin(), entries.cend());
     cleanupInvalid(setNo);
 
     // FIXME the filtering needs to be done for each word or the grammar modes get included with written or somesuch
