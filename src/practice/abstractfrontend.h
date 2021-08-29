@@ -84,7 +84,7 @@ public Q_SLOTS:
     virtual void showSynonym() = 0;
 
     /** switch between different modes such as written, flash card, etc */
-    virtual void setMode(Practise::AbstractFrontend::Mode mode) = 0;
+    virtual void setMode(Practice::AbstractFrontend::Mode mode) = 0;
     virtual void setBoxes(grade_t currentBox, grade_t newBoxIfCorrect, grade_t newBoxIfWrong) = 0;
 
 Q_SIGNALS:
