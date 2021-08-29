@@ -164,11 +164,11 @@ void Dashboard::populateGrid()
 {
     int j = 0, k = 0, jc = 0, kc = 0;
 
+    // key = url, value = title
     QMapIterator<QString, QString> it(m_recentFilesMap);
     while (it.hasNext()) {
         it.next();
         QString urlString = it.key();
-        QString titleString = it.value();
 
         QUrl url(QUrl::fromLocalFile(urlString));
         Collection *collection = new Collection(&url, this);

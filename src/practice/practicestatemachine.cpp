@@ -242,5 +242,5 @@ void PracticeStateMachine::gradeEntryAndContinue()
             currentEntryFinished();
         }
     }
-    emit nextEntry();
+    nextEntry();
 }

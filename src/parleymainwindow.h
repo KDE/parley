@@ -61,6 +61,8 @@ public:
 
     Component currentComponent();
 
+    QSize sizeHint() const override;
+
 public slots:
     /** Updates connections when the ParleyDocument pointer is changed to @p doc **/
     void documentUpdated(const std::shared_ptr<KEduVocDocument> &doc);
@@ -76,8 +78,6 @@ public slots:
 
     /** remove an entry from the list of recent files */
     void removeRecentFile(const QUrl &url);
-
-    QSize sizeHint() const override;
 
     /** set up options */
     void slotGeneralOptions();

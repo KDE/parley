@@ -69,7 +69,7 @@ public:
     void setSynonym(const QString &entry) override;
 
 public Q_SLOTS:
-    void setMode(Mode mode) override;
+    void setMode(Practice::AbstractFrontend::Mode mode) override;
     void showQuestion() override;
     void showSolution() override;
     void setBoxes(grade_t currentBox, grade_t newBoxIfCorrect, grade_t newBoxIfWrong) override;
