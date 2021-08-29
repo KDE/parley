@@ -218,7 +218,7 @@ void VocabularyView::saveColumnVisibility() const
     ds.setVisibleColumns(visibleList);
     ds.save();
 
-    QByteArray saveState = horizontalHeader()->saveState();
+    horizontalHeader()->saveState();
     KConfig parleyConfig(QStringLiteral("parleyrc"));
     KConfigGroup documentGroup(&parleyConfig, "Document " + m_doc->url().url());
     documentGroup.writeEntry("VocabularyColumns", horizontalHeader()->saveState());

@@ -98,7 +98,7 @@ bool ImageChooserWidget::eventFilter(QObject *obj, QEvent *event)
                         event->accept();
                         return true;
                     case QEvent::Drop:
-                        imageUrlRequester->setUrl(mimeData->urls().first());
+                        imageUrlRequester->setUrl(mimeData->urls().constFirst());
                         return true;
                         break;
                     default:

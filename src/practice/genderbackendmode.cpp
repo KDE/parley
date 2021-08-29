@@ -76,8 +76,6 @@ void GenderBackendMode::prepareChoices(TestEntry *entry)
 
     noun = qsl.join(QStringLiteral(" "));
 
-    QString solution(noun);
-
     // set the choices
     QStringList choices;
 

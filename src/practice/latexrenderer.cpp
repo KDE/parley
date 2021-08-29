@@ -8,15 +8,14 @@
 
 #include <KLocalizedString>
 #include <KProcess>
-
 #include <QColor>
-#include <QCoreApplication>
 #include <QDebug>
 #include <QFileInfo>
+#include <QGuiApplication>
 #include <QLabel>
-#include <QProcess>
 #include <QTemporaryDir>
 #include <QTemporaryFile>
+#include <QtGlobal>
 #include <complex>
 
 using namespace Practice;
@@ -38,7 +37,7 @@ const char *texTemplate =
 
 LatexRenderer::LatexRenderer(QObject *parent)
     : QObject(parent)
-    , m_label(0)
+    , m_label(nullptr)
 {
 }
 
@@ -63,7 +62,7 @@ void LatexRenderer::renderLatex(QString tex)
         return;
     }
 
-    QColor color = m_label->palette().color(QPalette::WindowText);
+    QColor color = QGuiApplication::palette().color(QPalette::WindowText);
     QString colorString = QString::number(color.redF()) + ',' + QString::number(color.greenF()) + ',' + QString::number(color.blueF());
     QString expressionTex = QString(texTemplate).arg(colorString, tex.trimmed());
 
@@ -79,8 +78,8 @@ void LatexRenderer::renderLatex(QString tex)
 
     (*p) << QStringLiteral("latex") << QStringLiteral("-interaction=batchmode") << QStringLiteral("-halt-on-error") << fileName;
 
-    connect(p, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(convertToPs()));
-    connect(p, SIGNAL(error(QProcess::ProcessError)), this, SLOT(latexRendered()));
+    connect(p, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &LatexRenderer::convertToPs);
+    connect(p, &QProcess::errorOccurred, this, &LatexRenderer::latexRendered);
     p->start();
 }
 
@@ -103,8 +102,8 @@ void LatexRenderer::convertToPs()
              << "-o" << m_latexFilename << dviFile;
     (*p) << QStringLiteral("dvips") << QStringLiteral("-E") << QStringLiteral("-o") << m_latexFilename << dviFile;
 
-    connect(p, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(convertToImage()));
-    connect(p, SIGNAL(error(QProcess::ProcessError)), this, SLOT(latexRendered()));
+    connect(p, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &LatexRenderer::convertToImage);
+    connect(p, &QProcess::errorOccurred, this, &LatexRenderer::latexRendered);
     p->start();
 }
 
@@ -118,8 +117,8 @@ void LatexRenderer::convertToImage()
              << "convert" << m_latexFilename << pngFile;
     (*p) << QStringLiteral("convert") << QStringLiteral("-density") << QStringLiteral("85") << m_latexFilename << pngFile;
 
-    connect(p, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(latexRendered()));
-    connect(p, SIGNAL(error(QProcess::ProcessError)), this, SLOT(latexRendered()));
+    connect(p, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &LatexRenderer::latexRendered);
+    connect(p, &QProcess::errorOccurred, this, &LatexRenderer::latexRendered);
     p->start();
 }
 
@@ -138,8 +137,6 @@ void LatexRenderer::latexRendered()
     }
 
     // cleanup the temp directory a bit...
-    QString dir(QDir::tempPath() + QLatin1Char('/') + QCoreApplication::applicationName());
-
     QStringList extensions;
     extensions << QStringLiteral(".log") << QStringLiteral(".aux") << QStringLiteral(".tex") << QStringLiteral(".dvi") << QStringLiteral(".eps")
                << QStringLiteral(".png");

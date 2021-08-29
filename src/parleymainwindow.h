@@ -106,7 +106,7 @@ public slots:
     void showPractice();
     void showPracticeConfiguration();
 
-    void switchComponent(Component component);
+    void switchComponent(ParleyMainWindow::Component component);
 
     /**
      * Shows or hides actions that are only relevant when a document is opened

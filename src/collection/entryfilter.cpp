@@ -509,7 +509,7 @@ void EntryFilter::cleanupInvalid(int setNo)
                     existing_tenses << tense;
                 }
             }
-            if (existing_tenses.intersect(practice_tenses).isEmpty())
+            if (existing_tenses.intersects(practice_tenses))
                 erase = true;
 
             if (erase) {

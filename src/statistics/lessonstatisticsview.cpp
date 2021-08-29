@@ -32,7 +32,7 @@
 class GradeDelegate : public QItemDelegate
 {
 public:
-    GradeDelegate(QObject *parent = 0)
+    GradeDelegate(QObject *parent = nullptr)
         : QItemDelegate(parent)
     {
     }

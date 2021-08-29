@@ -165,7 +165,7 @@ void ParleyDocument::slotFileOpen()
         QCheckBox *practiceCheckBox = new QCheckBox(i18n("Open in practice &mode"), &dialog);
         practiceCheckBox->setChecked(m_parleyApp->currentComponent() != ParleyMainWindow::EditorComponent);
         dialog.setFileMode(QFileDialog::ExistingFile);
-        if (dialog.exec() && !dialog.selectedFiles().isEmpty() && open(QUrl::fromLocalFile(dialog.selectedFiles().first()))) {
+        if (dialog.exec() && !dialog.selectedFiles().isEmpty() && open(QUrl::fromLocalFile(dialog.selectedFiles().constFirst()))) {
             if (practiceCheckBox->isChecked()) {
                 m_parleyApp->showPracticeConfiguration();
             } else {

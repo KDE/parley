@@ -29,7 +29,7 @@ public:
 
     static bool isLatex(const QString &tex);
 
-private slots:
+private Q_SLOTS:
     void convertToPs();
     void convertToImage();
     void latexRendered();
