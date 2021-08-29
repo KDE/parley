@@ -50,11 +50,6 @@ endmacro()
 include_directories( ${unittest_INCLUDE_DIRS})
 
 
-parley_gui_unittests(
-  #todo restore dummy unit test when file locking is fixed
-  # allpass1test
-   allpass2test.cpp
-)
 parley_non_gui_unittests(
    testentrytest.cpp
    sessionmanagerfixedtest.cpp
