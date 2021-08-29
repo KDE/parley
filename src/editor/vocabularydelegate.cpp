@@ -22,6 +22,7 @@
 #include <QLineEdit>
 #include <QPainter>
 #include <QPainterPath>
+#include <QProcess>
 #include <QToolTip>
 #include <QTreeView>
 
@@ -48,6 +49,7 @@ QSet<QString> VocabularyDelegate::getTranslations(const QModelIndex &index) cons
         if (VocabularyModel::columnType(i) == VocabularyModel::Translation) { // translation column
             QString fromLanguage = m_doc->identifier(VocabularyModel::translation(i)).locale();
             QString word = index.model()->index(index.row(), i, QModelIndex()).data().toString();
+            qWarning() << fromLanguage << toLanguage << word;
 
             if (fromLanguage != toLanguage) {
                 //                 qDebug() << fromLanguage << toLanguage << word;
@@ -101,20 +103,52 @@ QWidget *VocabularyDelegate::createEditor(QWidget *parent, const QStyleOptionVie
 
         if (VocabularyModel::columnType(index.column()) == VocabularyModel::Translation) {
             // get the translations of this word (fetch only with the help of scripts, if enabled)
-            QSet<QString> translations = getTranslations(index);
+            QSet<QString> translations; //= getTranslations(index);
+            auto p = new QProcess();
+            QString targetLang = m_doc->identifier(index.column() / VocabularyModel::EntryColumnsMAX).locale();
 
-            // create combo box
-            // if there is only one word and that is the suggestion word (in translations) then don't create the combobox
-            if (!translations.isEmpty() && !(translations.size() == 1 && (*translations.begin()) == index.model()->data(index, Qt::DisplayRole).toString())) {
-                KComboBox *translationCombo = new KComboBox(parent);
-                translationCombo->setFrame(false);
-                translationCombo->addItems(translations.values());
-                translationCombo->setEditable(true);
-                translationCombo->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
-                translationCombo->setEditText(index.model()->data(index, Qt::DisplayRole).toString());
-                translationCombo->completionObject()->setItems(translations.values());
-                return translationCombo;
+            QString word;
+            for (int i = 0; i < index.model()->columnCount(index.parent()); i++) {
+                if (word.isEmpty() && VocabularyModel::columnType(i) == VocabularyModel::entryColumns::Translation) { // translation column
+                    word = index.model()->index(index.row(), i, QModelIndex()).data().toString();
+                }
             }
+
+            p->start(QStringLiteral("trans"),
+                     {"-t",
+                      targetLang,
+                      word,
+                      "-no-ansi",
+                      "-show-alternatives=n",
+                      "-show-original=n",
+                      "-show-original-phonetics=n",
+                      "-show-languages=n",
+                      "-show-original-dictionary=n",
+                      "-show-dictionary=y"});
+            qWarning() << Q_FUNC_INFO << targetLang << word;
+            KComboBox *translationCombo = new KComboBox(parent);
+            connect(p, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, [p, translationCombo, index](int i, QProcess::ExitStatus e) {
+                QStringList suggestions{QString::fromLocal8Bit(p->readLine()).trimmed()};
+
+                p->readLine();
+                p->readLine();
+                p->readLine();
+                p->readLine();
+                while (p->canReadLine()) {
+                    suggestions << QString::fromLocal8Bit(p->readLine()).trimmed();
+                    p->readLine();
+                }
+                if (!suggestions.isEmpty()) {
+                    translationCombo->setFrame(false);
+                    translationCombo->addItems(suggestions);
+                    translationCombo->setEditable(true);
+                    translationCombo->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
+                    translationCombo->setEditText(index.model()->data(index, Qt::DisplayRole).toString());
+                    translationCombo->completionObject()->setItems(suggestions);
+                }
+            });
+
+            return translationCombo;
         }
         // no break - we fall back to a line edit if there are not multiple translations fetched onlin
         // fallthrough
