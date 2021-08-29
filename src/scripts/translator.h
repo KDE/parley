@@ -64,10 +64,7 @@ Keeps the translated words
 class Translator
 {
 public:
-    Translator();
-    explicit Translator(QObject *parent);
-
-    ~Translator();
+    explicit Translator(QObject *parent = nullptr);
 
     /**
      * Stores the translation of @p word from language @p fromLanguage, to language @p toLanguage.

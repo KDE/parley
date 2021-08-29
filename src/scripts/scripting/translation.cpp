@@ -24,10 +24,6 @@ Translation::Translation(KEduVocTranslation *translation)
 {
 }
 
-Translation::~Translation()
-{
-}
-
 QString Translation::wordType() const
 {
     if (m_translation->wordType())

@@ -4,27 +4,18 @@
 */
 #include "translator.h"
 #include "scripting/parley.h"
-
 #include <QDebug>
-
-Translator::Translator()
-    : m_parent(nullptr)
-{
-}
 
 Translator::Translator(QObject *parent)
     : m_parent(parent)
 {
 }
 
-Translator::~Translator()
-{
-}
-
 void Translator::addTranslation(const QString &word, const QString &fromLanguage, const QString &toLanguage, const QString &translation)
 {
-    if (word.trimmed() == QLatin1String(""))
+    if (word.trimmed().isEmpty()) {
         return;
+    }
 
     QString t = word + fromLanguage + toLanguage;
     qDebug() << "Translation for " << word << "in cache: " << m_translations.contains(t);

@@ -5,14 +5,12 @@
 #ifndef SCRIPTINGSCRIPTOBJECTTRANSLATION_H
 #define SCRIPTINGSCRIPTOBJECTTRANSLATION_H
 
-#include <KEduVocConjugation>
-#include <KEduVocDeclension>
-
 #include "expression.h"
 #include "text.h"
+#include <KEduVocConjugation>
+#include <KEduVocDeclension>
 #include <KEduVocTranslation>
 #include <KEduVocWordtype>
-
 #include <QObject>
 
 namespace Scripting
@@ -60,8 +58,6 @@ public:
      * @param translation KEduVocTranslation to initialize Scripting::Translation
      */
     explicit Translation(KEduVocTranslation *translation);
-
-    ~Translation();
 
     KEduVocTranslation *kEduVocTranslation()
     {

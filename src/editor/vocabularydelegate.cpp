@@ -29,7 +29,7 @@ using namespace Editor;
 
 VocabularyDelegate::VocabularyDelegate(QObject *parent)
     : QItemDelegate(parent)
-    , m_translator(0)
+    , m_translator(nullptr)
 {
 }
 
