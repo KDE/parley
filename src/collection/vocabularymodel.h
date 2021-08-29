@@ -36,9 +36,9 @@ public:
 
     enum roles { TranslationRole = Qt::UserRole, EntryRole, LocaleRole, AudioRole, ImageRole };
 
-    explicit VocabularyModel(QObject *parent = 0);
+    explicit VocabularyModel(QObject *parent = nullptr);
 
-    ~VocabularyModel();
+    ~VocabularyModel() override;
 
     int rowCount(const QModelIndex &) const override;
     int columnCount(const QModelIndex &) const override;

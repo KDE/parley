@@ -350,15 +350,6 @@ void VocabularyView::setDocument(const std::shared_ptr<KEduVocDocument> &doc)
     QTimer::singleShot(0, this, SLOT(reset()));
 }
 
-/**
- * Set the translator to be used by the delegate
- * @param translator
- */
-void VocabularyView::setTranslator(Translator *translator)
-{
-    m_vocabularyDelegate->setTranslator(translator);
-}
-
 void VocabularyView::slotShowVocabularyColumnsDialog()
 {
     VocabularyColumnsDialog *dialog = new VocabularyColumnsDialog(m_doc.get(), this);

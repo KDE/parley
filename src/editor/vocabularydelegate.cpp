@@ -5,18 +5,19 @@
 */
 
 #include "vocabularydelegate.h"
-#include "vocabularyfilter.h"
-#include "vocabularymodel.h"
-
 #include "languagesettings.h"
 #include "prefs.h"
-
+#include "translateshelladapter.h"
+#include "vocabularyfilter.h"
+#include "vocabularymodel.h"
 #include <KComboBox>
 #include <KEduVocExpression>
 #include <KEduVocWordtype>
 #include <KLocalizedString>
+#include <QCompleter>
 #include <QDBusInterface>
 #include <QDebug>
+#include <QFutureWatcher>
 #include <QHeaderView>
 #include <QKeyEvent>
 #include <QLineEdit>
@@ -29,51 +30,22 @@ using namespace Editor;
 
 VocabularyDelegate::VocabularyDelegate(QObject *parent)
     : QItemDelegate(parent)
-    , m_translator(nullptr)
 {
-}
-
-QSet<QString> VocabularyDelegate::getTranslations(const QModelIndex &index) const
-{
-    if (Prefs::automaticTranslation() == false)
-        return QSet<QString>();
-
-    QSet<QString> translations; // translations of this column from all the other languages
-
-    int language = index.column() / VocabularyModel::EntryColumnsMAX;
-    QString toLanguage = m_doc->identifier(language).locale();
-
-    // iterate through all the Translation columns
-    for (int i = 0; i < index.model()->columnCount(index.parent()); i++) {
-        if (VocabularyModel::columnType(i) == VocabularyModel::Translation) { // translation column
-            QString fromLanguage = m_doc->identifier(VocabularyModel::translation(i)).locale();
-            QString word = index.model()->index(index.row(), i, QModelIndex()).data().toString();
-
-            if (fromLanguage != toLanguage) {
-                //                 qDebug() << fromLanguage << toLanguage << word;
-                // get the word translations and add them to the translations set
-                QSet<QString> *tr = m_translator->getTranslation(word, fromLanguage, toLanguage);
-                if (tr)
-                    translations.unite(*(tr));
-            }
-        }
-    }
-
-    return translations;
 }
 
 QWidget *VocabularyDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    Q_UNUSED(option); /// as long as it's unused
+    Q_UNUSED(option) /// as long as it's unused
 
     if (!index.isValid()) {
-        return 0;
+        return nullptr;
     }
 
     switch (VocabularyModel::columnType(index.column())) {
     case VocabularyModel::WordClass: {
-        if (!m_doc)
-            return 0;
+        if (!m_doc) {
+            return nullptr;
+        }
         KComboBox *wordTypeCombo = new KComboBox(parent);
 
         WordTypeBasicModel *basicWordTypeModel = new WordTypeBasicModel(parent);
@@ -95,28 +67,45 @@ QWidget *VocabularyDelegate::createEditor(QWidget *parent, const QStyleOptionVie
         return wordTypeCombo;
     }
 
-    case VocabularyModel::Translation:
-        if (!m_doc || !m_translator)
-            return 0;
-
-        if (VocabularyModel::columnType(index.column()) == VocabularyModel::Translation) {
-            // get the translations of this word (fetch only with the help of scripts, if enabled)
-            QSet<QString> translations = getTranslations(index);
-
-            // create combo box
-            // if there is only one word and that is the suggestion word (in translations) then don't create the combobox
-            if (!translations.isEmpty() && !(translations.size() == 1 && (*translations.begin()) == index.model()->data(index, Qt::DisplayRole).toString())) {
-                KComboBox *translationCombo = new KComboBox(parent);
-                translationCombo->setFrame(false);
-                translationCombo->addItems(translations.values());
-                translationCombo->setEditable(true);
-                translationCombo->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
-                translationCombo->setEditText(index.model()->data(index, Qt::DisplayRole).toString());
-                translationCombo->completionObject()->setItems(translations.values());
-                return translationCombo;
-            }
+    case VocabularyModel::Translation: {
+        if (!m_doc) {
+            return nullptr;
         }
-        // no break - we fall back to a line edit if there are not multiple translations fetched onlin
+
+        // always create combo box for translation selection, because translations are gained async
+        QLineEdit *lineedit = new QLineEdit(parent);
+        lineedit->setFrame(false);
+        lineedit->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
+        lineedit->setText(index.model()->data(index, Qt::DisplayRole).toString());
+
+        if (m_translator.isTranslateShellAvailable() && Prefs::automaticTranslation()) {
+            QString targetLanguage = m_doc->identifier(index.column() / VocabularyModel::EntryColumnsMAX).locale();
+            QString fromLanguage;
+            QString word;
+            for (int i = 0; i < index.model()->columnCount(index.parent()); i++) {
+                if (word.isEmpty() && VocabularyModel::columnType(i) == VocabularyModel::entryColumns::Translation) { // translation column
+                    fromLanguage = m_doc->identifier(VocabularyModel::translation(i)).locale();
+                    word = index.model()->index(index.row(), i, QModelIndex()).data().toString();
+                }
+            }
+
+            auto result = m_translator.translateAsync(word, fromLanguage, targetLanguage);
+            QFutureWatcher<TranslateShellAdapter::Translation> *watcher = new QFutureWatcher<TranslateShellAdapter::Translation>();
+            watcher->setFuture(result);
+            connect(watcher, &QFutureWatcher<TranslateShellAdapter::Translation>::finished, lineedit, [lineedit, watcher]() {
+                if (!watcher->future().result().m_error && !watcher->future().result().m_suggestions.isEmpty()) {
+                    QCompleter *completer = new QCompleter(watcher->future().result().m_suggestions, lineedit);
+                    completer->setCaseSensitivity(Qt::CaseInsensitive);
+                    completer->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
+                    lineedit->setCompleter(completer);
+                }
+                watcher->deleteLater();
+            });
+        }
+
+        return lineedit;
+    }
+        // no break - we fall back to a line edit if there are not multiple translations fetched online
         // fallthrough
     default: {
         QLineEdit *editor = new QLineEdit(parent);
@@ -143,7 +132,7 @@ QWidget *VocabularyDelegate::createEditor(QWidget *parent, const QStyleOptionVie
 
 bool VocabularyDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, const QStyleOptionViewItem &option, const QModelIndex &index)
 {
-    Q_UNUSED(view);
+    Q_UNUSED(view)
 
     if (event->type() == QEvent::ToolTip) {
         QPainterPath audioPainterPath;
@@ -284,8 +273,8 @@ void VocabularyDelegate::setModelData(QWidget *editor, QAbstractItemModel *model
         KEduVocWordType *wordType = static_cast<KEduVocWordType *>(comboIndex.internalPointer());
 
         // the root is the same as no word type
-        if (wordType && wordType->parent() == 0) {
-            wordType = 0;
+        if (wordType && wordType->parent() == nullptr) {
+            wordType = nullptr;
         }
 
         VocabularyFilter *filter = qobject_cast<VocabularyFilter *>(model);
@@ -347,16 +336,7 @@ VocabularyDelegate::WordTypeBasicModel::WordTypeBasicModel(QObject *parent)
 KEduVocContainer *VocabularyDelegate::WordTypeBasicModel::rootContainer() const
 {
     if (!m_doc) {
-        return 0;
+        return nullptr;
     }
     return m_doc->wordTypeContainer();
-}
-
-/**
- * Sets the member variable m_translator to a Translator object
- * @param translator Translator Object to be used for retrieving word translations
- */
-void VocabularyDelegate::setTranslator(Translator *translator)
-{
-    m_translator = translator;
 }

@@ -10,20 +10,21 @@ find_package(Qt5 5.2.0 CONFIG REQUIRED Test)
 
 # set( EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR} )
 
-set( unittest_INCLUDE_DIRS
-  ../src
-  ../src/practice
-  ../src/collection
+include_directories(
+    ../src
+    ../src/practice
+    ../src/editor
+    ../src/collection
 )
 
 set(unittest_LINK_LIBS
-  Qt5::Test
-  ${parley_LINK_LIBS}
-  parley_LIB
+    Qt5::Test
+    ${parley_LINK_LIBS}
+    parley_LIB
 )
 
 set(parley_unittest_helpers
-  parleyunittestutilities.cpp
+    parleyunittestutilities.cpp
 )
 
 macro(PARLEY_GUI_UNITTESTS)
@@ -51,6 +52,7 @@ include_directories( ${unittest_INCLUDE_DIRS})
 
 
 parley_non_gui_unittests(
-   testentrytest.cpp
-   sessionmanagerfixedtest.cpp
+    testentrytest.cpp
+    sessionmanagerfixedtest.cpp
+    translateshelltest.cpp
 )

@@ -472,9 +472,6 @@ void EditorWindow::removeGrades()
 void EditorWindow::initScripts()
 {
     m_scriptManager = new ScriptManager(this);
-
-    m_vocabularyView->setTranslator(m_scriptManager->translator());
-
     // Load scripts
     m_scriptManager->loadScripts();
 }

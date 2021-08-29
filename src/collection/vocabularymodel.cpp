@@ -392,6 +392,5 @@ void VocabularyModel::resetLanguages()
 
 void VocabularyModel::automaticTranslation(bool enabled)
 {
-    qDebug() << "auto trans enabled: " << enabled;
-    Prefs::setAutomaticTranslation(true);
+    Prefs::setAutomaticTranslation(enabled);
 }

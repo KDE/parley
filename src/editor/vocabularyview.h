@@ -74,8 +74,6 @@ public slots:
 
     void setDocument(const std::shared_ptr<KEduVocDocument> &doc);
 
-    void setTranslator(Translator *translator);
-
     void checkSpelling(int language);
 
     /**

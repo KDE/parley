@@ -42,6 +42,7 @@ set(parley_LIB_SRCS
     editor/summarywordwidget.cpp
     editor/synonymwidget.cpp
     editor/latexwidget.cpp
+    editor/translateshelladapter.cpp
     practice/abstractwidget.cpp
     practice/sessionmanagerbase.cpp
     practice/sessionmanagercontinuous.cpp

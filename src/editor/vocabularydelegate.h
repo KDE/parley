@@ -7,9 +7,8 @@
 #ifndef VOCABULARYDELEGATE_H
 #define VOCABULARYDELEGATE_H
 
-#include "../scripts/translator.h"
 #include "readonlycontainermodel.h"
-
+#include "translateshelladapter.h"
 #include <QItemDelegate>
 #include <QModelIndex>
 
@@ -42,7 +41,6 @@ public:
     void setEditorData(QWidget *editor, const QModelIndex &index) const override;
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const override;
-    void setTranslator(Translator *translator);
 
     static int columnType(int column);
 
@@ -59,7 +57,7 @@ public slots:
 
 private:
     std::shared_ptr<KEduVocDocument> m_doc;
-    Translator *m_translator;
+    TranslateShellAdapter m_translator;
 
     /** Returns the translations of the word of the given index */
     QSet<QString> getTranslations(const QModelIndex &index) const;
