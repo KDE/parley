@@ -31,6 +31,7 @@ namespace Editor
 class VocabularyView;
 class LessonView;
 class WordTypeView;
+class AudioWidget;
 class InflectionWidget;
 class ComparisonWidget;
 class SummaryWordWidget;
@@ -135,6 +136,7 @@ private:
     SynonymWidget *m_synonymWidget;
     SynonymWidget *m_antonymWidget;
     SynonymWidget *m_falseFriendWidget;
+    AudioWidget *m_audioWidget;
 
     /// dock widgets to display lessons, word types, ...
     LessonView *m_lessonView;

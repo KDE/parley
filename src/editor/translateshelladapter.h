@@ -74,6 +74,12 @@ public:
      */
     static TranslateShellAdapter::Translation translate(const QString &word, const QString &sourceLanguage, const QString &targetLanguage);
 
+    /**
+     * @brief Asynchronous download of sound file for given phrase
+     *
+     */
+    static QFuture<bool> downloadSoundFile(const QString &word, const QString &language, const QString &filePath);
+
 private:
     mutable bool m_translateShellAvailable{false};
 };

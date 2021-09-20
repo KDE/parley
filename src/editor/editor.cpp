@@ -107,6 +107,7 @@ void EditorWindow::updateDocument(const std::shared_ptr<KEduVocDocument> &doc)
     m_synonymWidget->setDocument(doc.get());
     m_antonymWidget->setDocument(doc.get());
     m_falseFriendWidget->setDocument(doc.get());
+    m_audioWidget->setDocument(doc.get());
 
     if (!m_mainWindow->parleyDocument()->document()) {
         return;
@@ -309,16 +310,16 @@ void EditorWindow::initDockWidgets()
     // Sound
     QDockWidget *audioDock = new QDockWidget(i18n("Sound"), this);
     audioDock->setObjectName(QStringLiteral("AudioDock"));
-    AudioWidget *audioWidget = new AudioWidget(this);
+    m_audioWidget = new AudioWidget(this);
     QScrollArea *audioScrollArea = new QScrollArea(this);
     audioScrollArea->setWidgetResizable(true);
-    audioScrollArea->setWidget(audioWidget);
+    audioScrollArea->setWidget(m_audioWidget);
     audioDock->setWidget(audioScrollArea);
     addDockWidget(Qt::RightDockWidgetArea, audioDock);
     m_dockWidgets.append(audioDock);
     actionCollection()->addAction(QStringLiteral("show_audio_dock"), audioDock->toggleViewAction());
     audioDock->setVisible(false);
-    connect(m_vocabularyView, &VocabularyView::translationChanged, audioWidget, &AudioWidget::setTranslation);
+    connect(m_vocabularyView, &VocabularyView::translationChanged, m_audioWidget, &AudioWidget::setTranslation);
     tabifyDockWidget(imageDock, audioDock);
 
     // browser

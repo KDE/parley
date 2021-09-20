@@ -51,7 +51,6 @@ TranslateShellAdapter::Translation TranslateShellAdapter::translate(const QStrin
                    "-show-original-dictionary=n",
                    "-show-dictionary=y",
                    "-no-warn"});
-    qDebug() << "RUNNING" << process.arguments();
     process.waitForFinished();
     if (process.exitCode() != 0) {
         TranslateShellAdapter::Translation translation;
@@ -60,6 +59,37 @@ TranslateShellAdapter::Translation TranslateShellAdapter::translate(const QStrin
     } else {
         return TranslateShellAdapter::parseTranslateShellResult(process.readAll());
     }
+}
+
+QFuture<bool> TranslateShellAdapter::downloadSoundFile(const QString &word, const QString &language, const QString &filePath)
+{
+    if (!filePath.endsWith(".ts")) {
+        qWarning() << "Sound file will have TS format and should have that suffix";
+    }
+    if (QFile::exists(filePath)) {
+        qWarning() << "File already exists, this operation will override the file" << filePath;
+    }
+    QDir directory = QFileInfo(filePath).absoluteDir();
+    if (!directory.exists(directory.absolutePath())) {
+        qWarning() << "Output directory does not exist, creating it" << directory;
+        directory.mkpath(directory.absolutePath());
+    }
+
+    QFuture<bool> result = QtConcurrent::run([word, language, filePath]() {
+        QProcess process;
+        process.start(QStringLiteral("trans"),
+                      {"-l",
+                       "en", // output language of CLI
+                       "-t",
+                       language,
+                       word,
+                       "-no-translate",
+                       "-download-audio-as",
+                       filePath});
+        process.waitForFinished();
+        return process.error() != QProcess::ProcessError::FailedToStart && process.exitCode() == 0;
+    });
+    return result;
 }
 
 TranslateShellAdapter::Translation TranslateShellAdapter::parseTranslateShellResult(const QString &output)
