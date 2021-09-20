@@ -16,6 +16,8 @@
       <Action name="edit_append" />
       <Action name="edit_remove_selected_area" />
       <Separator/>
+      <Action name="lesson_automatictranslation" />
+      <Separator/>
       <Action name="tools_spelling" />
       <Action name="vocab_remove_grades" />
   </Menu>
@@ -63,13 +65,6 @@
    <text>&amp;Practice</text>
    <Action name="practice_configure" />
    <Action name="practice_start" />
-  </Menu>  
-  <Menu name="scripts" >
-    <text>&amp;Scripts</text>
-    <Action name="show_script_manager" />
-    <Separator/>
-    <ActionList name="scripts_actionlist" />
-    <Action name="lesson_automatictranslation" />
   </Menu>
  </MenuBar> 
 

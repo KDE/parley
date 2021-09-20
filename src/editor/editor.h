@@ -10,9 +10,6 @@
 #define EDITOR_H
 
 #include "parleydocument.h"
-
-#include "scripts/scripting/parley.h"
-
 #include <KXmlGuiWindow>
 
 class QLineEdit;
@@ -69,11 +66,6 @@ public:
 
 public slots:
     /**
-     * Load enabled scripts (from configuration parleyrc)
-     */
-    void initScripts();
-
-    /**
      * Edit languages contained in the document.
      * This includes adding/removing languages,
      * editing articles, personal pronouns and tenses.
@@ -81,11 +73,6 @@ public slots:
     void slotLanguagesChanged();
 
     void slotConfigShowSearch();
-
-    /**
-     *  Display script manager (open a new window / or Settings window)
-     */
-    void slotShowScriptManager();
 
     void applyPrefs();
 
@@ -145,16 +132,10 @@ private:
     WordClassModel *m_wordTypeModel;
     WordTypeView *m_wordTypeView;
 
-    ScriptManager *m_scriptManager;
-
-    /// stores all the translations of a vocabulary word
-    Translator *m_translator;
-
     QList<QDockWidget *> m_dockWidgets;
     QList<bool> m_dockWidgetVisibility;
 
     friend class ::ParleyDocument;
-    friend class Scripting::Parley;
     friend class ::ScriptManager;
 };
 

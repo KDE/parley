@@ -81,18 +81,6 @@ set(parley_LIB_SRCS
     practice/configure/blockoptions.cpp
     practice/configure/thresholdoptions.cpp
     practice/configure/specificpracticeoptions.cpp
-    scripts/scriptdialog.cpp
-    scripts/scriptmanager.cpp
-    scripts/scripting/parley.cpp
-    scripts/scripting/document.cpp
-    scripts/scripting/lesson.cpp
-    scripts/scripting/expression.cpp
-    scripts/scripting/translation.cpp
-    scripts/scripting/text.cpp
-    scripts/scripting/container.cpp
-    scripts/scripting/identifier.cpp
-    scripts/script.cpp
-    scripts/translator.cpp
     settings/generaloptions.cpp
     settings/parleyprefs.cpp
     settings/viewoptions.cpp

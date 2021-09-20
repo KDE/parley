@@ -43,8 +43,8 @@ find_package(KF5 ${KF5_MIN_VERSION} MODULE REQUIRED COMPONENTS
   I18n
   KIO
   NewStuff
-  Kross
   Sonnet
+  TextWidgets
   KCMUtils
   XmlGui
   Notifications
@@ -84,7 +84,6 @@ include_directories (BEFORE ${CMAKE_CURRENT_BINARY_DIR})
 # Define link libs for parley executable and unittests
 set( parley_LINK_LIBS
   LibKEduVocDocumentImport__KEduVocDocument
-  KF5::KrossCore
   Qt5::Core
   Qt5::Svg
   KF5::I18n
@@ -137,7 +136,6 @@ endif()
 add_subdirectory( docs )
 add_subdirectory( src )
 add_subdirectory( icons )
-add_subdirectory( plugins )
 add_subdirectory( themes )
 add_subdirectory( tipofday )
 

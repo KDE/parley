@@ -30,22 +30,20 @@
 #include "inflectionwidget.h"
 #include "latexwidget.h"
 #include "multiplechoicewidget.h"
-#include "summarywordwidget.h"
-#include "synonymwidget.h"
-
-#include "prefs.h"
-#include "settings/parleyprefs.h"
-
-#include "scripts/scriptdialog.h"
-#include "scripts/translator.h"
-
 #include "parleyactions.h"
 #include "parleyadaptor.h"
+#include "parleydocument.h"
+#include "parleymainwindow.h"
+#include "prefs.h"
+#include "settings/parleyprefs.h"
+#include "summarywordwidget.h"
+#include "synonymwidget.h"
 
 #include <KActionCollection>
 #include <KActionMenu>
 #include <KCharSelect>
 #include <KToggleAction>
+#include <KXmlGuiWindow>
 
 #include <QDockWidget>
 #include <QHeaderView>
@@ -82,8 +80,6 @@ EditorWindow::EditorWindow(ParleyMainWindow *parent)
     connect(parent->parleyDocument(), &ParleyDocument::languagesChanged, this, &EditorWindow::slotLanguagesChanged);
     connect(parent->parleyDocument(), SIGNAL(statesNeedSaving()), this, SLOT(saveState()));
     connect(parent, &ParleyMainWindow::preferencesChanged, this, &EditorWindow::applyPrefs);
-
-    QTimer::singleShot(0, this, &EditorWindow::initScripts);
 }
 
 EditorWindow::~EditorWindow()
@@ -453,13 +449,6 @@ void EditorWindow::startSearch()
     m_searchLine->setFocus();
 }
 
-void EditorWindow::slotShowScriptManager()
-{
-    ScriptDialog *dialog = new ScriptDialog(m_scriptManager);
-    dialog->setAttribute(Qt::WA_DeleteOnClose);
-    dialog->show();
-}
-
 void EditorWindow::applyPrefs()
 {
     m_vocabularyView->reset();
@@ -468,13 +457,6 @@ void EditorWindow::applyPrefs()
 void EditorWindow::removeGrades()
 {
     m_mainWindow->parleyDocument()->document()->lesson()->resetGrades(-1, KEduVocContainer::Recursive);
-}
-
-void EditorWindow::initScripts()
-{
-    m_scriptManager = new ScriptManager(this);
-    // Load scripts
-    m_scriptManager->loadScripts();
 }
 
 void EditorWindow::saveState()

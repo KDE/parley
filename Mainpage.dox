@@ -14,8 +14,4 @@ The main class is ParleyApp
 File management is done in ParleyDocument
 
 The parloid (plasmoid) consists of ParleyPlasma and ParleyEngine.
-
-Parley supports Kross scripts.
-To get started writing scripts for Parley, have a look at the scripts provided with Parley and read the scripting API documentation in the Scripting namespace.
-
 */
