@@ -12,7 +12,7 @@ set(KF5_MIN_VERSION "5.73.0")
 
 find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} )
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
 
 include(KDEInstallDirs)
 include(KDECompilerSettings NO_POLICY_SCOPE)
@@ -68,6 +68,13 @@ set_package_properties(LibXml2 PROPERTIES
                        URL "http://xmlsoft.org"
                        TYPE OPTIONAL
                        PURPOSE "Required to build HTML export for Parley."
+                      )
+
+find_package(TranslateShell)
+set_package_properties(TranslateShell PROPERTIES
+                       URL "https://github.com/soimort/translate-shell"
+                       TYPE RUNTIME
+                       PURPOSE "Runtime dependency for online access to translations"
                       )
 
 # at the end, output the configuration
