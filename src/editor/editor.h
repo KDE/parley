@@ -13,7 +13,6 @@
 #include <KXmlGuiWindow>
 
 class QLineEdit;
-class ScriptManager;
 
 ///@brief contains objects for the editor main window
 
@@ -136,7 +135,6 @@ private:
     QList<bool> m_dockWidgetVisibility;
 
     friend class ::ParleyDocument;
-    friend class ::ScriptManager;
 };
 
 }

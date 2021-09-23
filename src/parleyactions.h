@@ -36,7 +36,6 @@ enum ParleyAction {
     EnterEditMode,
     ToggleSearchBar,
     SearchVocabulary,
-    ShowScriptManager
 };
 
 QAction *create(ParleyAction id, const QObject *recvr, const char *slot, KActionCollection *parent);

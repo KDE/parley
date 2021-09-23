@@ -228,15 +228,6 @@ QAction *ParleyActions::create(ParleyAction id, const QObject *recvr, const char
         pAction = KStandardAction::find(recvr, slot, parent);
         parent->setDefaultShortcut(pAction, QKeySequence::Find);
         break;
-    case ShowScriptManager:
-        pAction = Private::createCustomAction(recvr,
-                                              slot,
-                                              parent,
-                                              QStringLiteral("show_script_manager"),
-                                              i18n("&Script Manager"),
-                                              i18n("Enable and disable scripts"),
-                                              QStringLiteral("set-language"));
-        break;
     }
 
     Q_ASSERT(pAction);
