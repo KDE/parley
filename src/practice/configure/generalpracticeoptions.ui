@@ -49,7 +49,7 @@
          <string>Any punctuation mistake in the answer is counted as correct.</string>
         </property>
         <property name="text">
-         <string>Ignore Punctuation</string>
+         <string>Ignore punctuation</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -62,7 +62,7 @@
          <string>During the practice you can use the hint button to see parts of the solution.</string>
         </property>
         <property name="text">
-         <string>Enable Hints</string>
+         <string>Enable hints</string>
         </property>
         <property name="checked">
          <bool>true</bool>
