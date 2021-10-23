@@ -117,21 +117,21 @@
    <item row="5" column="1">
     <widget class="QPushButton" name="newButton">
      <property name="text">
-      <string>Create a New Collection</string>
+      <string>Create a New Collection...</string>
      </property>
     </widget>
    </item>
    <item row="5" column="2">
     <widget class="QPushButton" name="openButton">
      <property name="text">
-      <string>Open an Existing Collection</string>
+      <string>Open an Existing Collection...</string>
      </property>
     </widget>
    </item>
    <item row="5" column="3">
     <widget class="QPushButton" name="ghnsButton">
      <property name="text">
-      <string>Download New Collections</string>
+      <string>Download New Collections...</string>
      </property>
     </widget>
    </item>

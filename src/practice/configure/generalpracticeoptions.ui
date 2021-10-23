@@ -23,7 +23,7 @@
          <string>Answers with wrong accents are still counted as correct.</string>
         </property>
         <property name="text">
-         <string>Ignore Accents</string>
+         <string>Ignore accents</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -36,7 +36,7 @@
          <string>Any captitalization in the answer is counted as correct.</string>
         </property>
         <property name="text">
-         <string>Ignore Capitalization</string>
+         <string>Ignore capitalization</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -97,7 +97,7 @@
          <string>During the practice, images are shown for the question.</string>
         </property>
         <property name="text">
-         <string>Image for Question</string>
+         <string>Image for question</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -110,7 +110,7 @@
          <string>During the practice, images are shown for the solution.</string>
         </property>
         <property name="text">
-         <string>Image for Solution</string>
+         <string>Image for solution</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -165,7 +165,7 @@
       <item>
        <widget class="QCheckBox" name="kcfg_CountSynonymsAsCorrect">
         <property name="text">
-         <string>Accept any Synonym</string>
+         <string>Accept any synonym</string>
         </property>
        </widget>
       </item>
@@ -199,7 +199,7 @@
            <number>1</number>
           </property>
           <property name="text">
-           <string>Max session size</string>
+           <string>Max session size:</string>
           </property>
           <property name="indent">
            <number>0</number>
@@ -248,7 +248,7 @@
            <number>1</number>
           </property>
           <property name="text">
-           <string>Max number of new words</string>
+           <string>Max number of new words:</string>
           </property>
           <property name="indent">
            <number>0</number>

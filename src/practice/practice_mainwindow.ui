@@ -216,14 +216,14 @@
          <item>
           <widget class="QPushButton" name="countAsWrongButton">
            <property name="text">
-            <string>I did not know it</string>
+            <string>I Did not Know it</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="countAsCorrectButton">
            <property name="text">
-            <string>I knew it</string>
+            <string>I Knew it</string>
            </property>
           </widget>
          </item>

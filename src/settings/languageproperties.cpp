@@ -20,7 +20,7 @@ LanguageProperties::LanguageProperties(KEduVocDocument *doc, QWidget *parent)
     : KPageDialog(parent)
     , m_doc(doc)
 {
-    setWindowTitle(i18n("Edit Languages"));
+    setWindowTitle(i18nc("@title:window", "Edit Languages"));
     setFaceType(List);
     setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 

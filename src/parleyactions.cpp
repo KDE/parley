@@ -200,7 +200,7 @@ QAction *ParleyActions::create(ParleyAction id, const QObject *recvr, const char
                                               slot,
                                               parent,
                                               QStringLiteral("practice_export"),
-                                              i18n("Export results..."),
+                                              i18n("Export Results..."),
                                               i18n("Write a file with the results of the practice"),
                                               QStringLiteral("document-export"));
         break;

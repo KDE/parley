@@ -121,7 +121,7 @@ void InflectionWidget::setWordType()
 
         QPointer<QDialog> dialog = new QDialog(this);
         dialog->setLayout(layout);
-        dialog->setWindowTitle(i18n("Please select the noun's gender"));
+        dialog->setWindowTitle(i18nc("@title:window", "Please select the noun's gender"));
 
         connect(getGenderDialog.data(), &QDialogButtonBox::accepted, dialog.data(), &QDialog::accept);
         connect(getGenderDialog.data(), &QDialogButtonBox::rejected, dialog.data(), &QDialog::reject);

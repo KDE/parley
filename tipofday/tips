@@ -1,7 +1,7 @@
 <tip category="Parley">
 <html>
 <p>Parley enables you to edit many additional properties of the words you enter.</p>
-<p>Use "Settings" -> "Tools" to enable different tools that will help you set additional information for your vocabulary. These include images, sound, word types and many more. Choose the ones you like.</p>
+<p>Use "View -> ..." check boxes to enable different information that will help you set additional information for your vocabulary. These include Image, Sound, Word Types and many more. Choose the ones you like.</p>
 </html>
 </tip>
 
@@ -13,15 +13,8 @@
 
 <tip category="Parley">
 <html>
-<p>If you do not want to see the answer again after pressing enter when practicing, you can configure Parley to directly skip to the next entry.</p>
-<p>You can even choose to display the answer for a fixed amount of time. Use "Configure Practice..." -> "Advanced" -> "Show solution after answering".</p>
-</html>
-</tip>
-
-<tip category="Parley">
-<html>
 <p>If you want to see all words of a certain word type (e.g. nouns), simply select the word type in the list.</p>
-<p>To show the word type list, use "Settings" -> "Tools" -> "Word Types" in the menu.</p>
+<p>To show the word type list, use "View -> Word Types" check box.</p>
 </html>
 </tip>
 

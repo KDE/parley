@@ -40,7 +40,7 @@ VocabularyColumnsDialog::VocabularyColumnsDialog(KEduVocDocument *doc, QWidget *
     m_doc = doc;
     m_settings = new DocumentSettings(m_doc->url().url());
 
-    setWindowTitle(i18n("Vocabulary Columns"));
+    setWindowTitle(i18nc("@title:window", "Vocabulary Columns"));
 
     QWidget *main_widget = new QWidget(this);
     main_widget->setLayout(m_box);

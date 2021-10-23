@@ -189,7 +189,7 @@ void EditorWindow::initDockWidgets()
     connect(m_vocabularyView, &VocabularyView::translationChanged, m_inflectionWidget, &InflectionWidget::setTranslation);
 
     // Comparison forms
-    QDockWidget *comparisonDock = new QDockWidget(i18n("Comparison forms"), this);
+    QDockWidget *comparisonDock = new QDockWidget(i18n("Comparison Forms"), this);
     comparisonDock->setObjectName(QStringLiteral("ComparisonDock"));
     m_comparisonWidget = new ComparisonWidget(this);
     QScrollArea *comparisonScrollArea = new QScrollArea(this);

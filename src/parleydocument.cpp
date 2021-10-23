@@ -161,7 +161,7 @@ void ParleyDocument::slotFileOpen()
     if (queryClose()) {
         ///@todo frameworks check filters are fixed in kvocdoc
         ///@todo frameworks check how to add child checkbox to this dialog
-        QFileDialog dialog(m_parleyApp, i18n("Open Vocabulary Collection"), QString(), KEduVocDocument::pattern(KEduVocDocument::Reading));
+        QFileDialog dialog(m_parleyApp, i18nc("@title:window", "Open Vocabulary Collection"), QString(), KEduVocDocument::pattern(KEduVocDocument::Reading));
         QCheckBox *practiceCheckBox = new QCheckBox(i18n("Open in practice &mode"), &dialog);
         practiceCheckBox->setChecked(m_parleyApp->currentComponent() != ParleyMainWindow::EditorComponent);
         dialog.setFileMode(QFileDialog::ExistingFile);
@@ -296,7 +296,7 @@ void ParleyDocument::openGHNS()
         downloadDir.mkpath(downloadDir.absolutePath());
 
         QUrl url = QUrl::fromUserInput(QFileDialog::getOpenFileName(m_parleyApp,
-                                                                    i18n("Open Downloaded Vocabulary Collection"),
+                                                                    i18nc("@title:window", "Open Downloaded Vocabulary Collection"),
                                                                     downloadDir.path(),
                                                                     KEduVocDocument::pattern(KEduVocDocument::Reading)));
 
@@ -379,7 +379,7 @@ void ParleyDocument::saveAs(QUrl url)
 
     if (url.isEmpty()) {
         url = QUrl::fromLocalFile(QFileDialog::getSaveFileName(m_parleyApp->parentWidget(),
-                                                               i18n("Save Vocabulary As"),
+                                                               i18nc("@title:window", "Save Vocabulary As"),
                                                                QString(),
                                                                KEduVocDocument::pattern(KEduVocDocument::Writing)));
 
