@@ -687,7 +687,7 @@
 
 <sect2 id="vocabulary-columns"><title>Vocabulary Columns</title>
 
-<para>Depending on what your learning sessions are going to be about it can be relevant to have further Vocabulary Columns show up in your edit section. To choose these columns select the <menuchoice><guilabel>View</guilabel> <guimenuitem>Vocabulary Columns...</guimenuitem></menuchoice> menu item. There you can determine if the columns for <emphasis>Pronunciation, Word Type, Synonym, Antonym, Example, Comment</emphasis> and/or <emphasis>Paraphrase</emphasis> are to be shown.
+<para>Depending on what your learning sessions are going to be about it can be relevant to have further Vocabulary Columns show up in your edit section. To choose these columns select the <menuchoice><guimenu>View</guimenu> <guimenuitem>Vocabulary Columns...</guimenuitem></menuchoice> menu item. There you can determine if the columns for <emphasis>Pronunciation, Word Type, Synonym, Antonym, Example, Comment</emphasis> and/or <emphasis>Paraphrase</emphasis> are to be shown.
 </para>
 
 <screenshot>
@@ -818,7 +818,7 @@
 <para>Select where this unit belongs to, for example the collection <guilabel>My Spanish Lessons</guilabel>.
 </para>
 
-<para>You can select <guilabel>New Unit</guilabel> item with an of the following ways:
+<para>You can select <guilabel>New Unit</guilabel> item using one of the following ways:
 </para>
 
 <itemizedlist>
@@ -1261,7 +1261,7 @@
   <screeninfo>Editor window</screeninfo>
   <mediaobject>
     <imageobject><imagedata fileref="Parley_trainer_eng-deu_0-9-4_011.png" format="PNG"/></imageobject>
-    <caption>Chosing the Word Types</caption>
+    <caption>Choosing the Word Types</caption>
   </mediaobject>
 </screenshot>
 
@@ -1305,7 +1305,7 @@
   <screeninfo>Editor window</screeninfo>
   <mediaobject>
     <imageobject><imagedata fileref="Parley_trainer_eng-deu_0-9-4_015.png" format="PNG"/></imageobject>
-    <caption>Chosing the conjugation form of the verb</caption>
+    <caption>Choosing the conjugation form of the verb</caption>
   </mediaobject>
 </screenshot>
 
@@ -1339,7 +1339,7 @@
   <screeninfo>Properties for Untitled dialog</screeninfo>
   <mediaobject>
     <imageobject><imagedata fileref="Parley_create_new_exercise_collective_names1.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
-    <caption>Properties for Untiled dialog</caption>
+    <caption>Properties for Untitled dialog</caption>
   </mediaobject>
 </screenshot>
 
