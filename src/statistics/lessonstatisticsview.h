@@ -18,7 +18,7 @@ class LessonStatisticsView : public ContainerView
 
 public:
     explicit LessonStatisticsView(QWidget *parent);
-    ~LessonStatisticsView();
+    ~LessonStatisticsView() override;
     void setModel(ContainerModel *model) override;
     void saveExpandedStatus() const;
     void restoreExpandedStatus();

@@ -21,7 +21,7 @@ class EntryFilterDialog : public QDialog
     Q_OBJECT
 public:
     explicit EntryFilterDialog(EntryFilter &entryFilter);
-    ~EntryFilterDialog();
+    ~EntryFilterDialog() override;
 
     bool ignoreBlocked() const;
 

@@ -31,7 +31,7 @@ class ParleyMainWindow : public KXmlGuiWindow
 public:
     static ParleyMainWindow *instance();
 
-    ~ParleyMainWindow();
+    ~ParleyMainWindow() override;
 
     /** enum for the different components that can be displayed */
     enum Component { NoComponent, DashboardComponent, EditorComponent, ConfigurePracticeComponent, PracticeComponent, PracticeSummary };

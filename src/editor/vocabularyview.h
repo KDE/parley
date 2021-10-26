@@ -37,7 +37,7 @@ class VocabularyView : public QTableView
     Q_OBJECT
 public:
     explicit VocabularyView(EditorWindow *parent);
-    virtual ~VocabularyView()
+    ~VocabularyView() override
     {
     }
 

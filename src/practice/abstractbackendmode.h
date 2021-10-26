@@ -19,7 +19,7 @@ class AbstractBackendMode : public QObject
 
 public:
     AbstractBackendMode(AbstractFrontend *frontend, QObject *parent);
-    virtual ~AbstractBackendMode()
+    ~AbstractBackendMode() override
     {
     }
 

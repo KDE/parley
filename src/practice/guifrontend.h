@@ -32,7 +32,7 @@ class GuiFrontend : public AbstractFrontend
 
 public:
     explicit GuiFrontend(QWidget *parent = 0);
-    virtual ~GuiFrontend();
+    ~GuiFrontend() override;
 
     QVariant userInput() override;
     QWidget *widget();

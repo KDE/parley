@@ -22,7 +22,7 @@ class AbstractModeWidget : public QWidget
 
 public:
     explicit AbstractModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
-    virtual ~AbstractModeWidget()
+    ~AbstractModeWidget() override
     {
     }
 

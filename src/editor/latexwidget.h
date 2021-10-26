@@ -31,7 +31,7 @@ class LatexWidget : public QWidget, public Ui::LatexWidget
 
 public:
     LatexWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent = 0);
-    ~LatexWidget();
+    ~LatexWidget() override;
 
 public slots:
     /**

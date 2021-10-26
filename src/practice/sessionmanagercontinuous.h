@@ -36,7 +36,7 @@ public:
     /**
      * destructor
      */
-    virtual ~SessionManagerContinuous();
+    ~SessionManagerContinuous() override;
 
     /**
      * Prepare for practice using the entries in this document.

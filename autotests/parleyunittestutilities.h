@@ -30,7 +30,7 @@ public:
     TemporaryVocDoc();
 
     /** Destructor*/
-    ~TemporaryVocDoc();
+    ~TemporaryVocDoc() override;
 };
 
 /** Creates a minimal doc that will save and load error free.*/
@@ -41,7 +41,7 @@ public:
     MinimalTempVocDoc();
 
     /** Destructor*/
-    ~MinimalTempVocDoc();
+    ~MinimalTempVocDoc() override;
 };
 
 }

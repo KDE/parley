@@ -23,7 +23,7 @@ class ConjugationModeWidget : public AbstractModeWidget
 
 public:
     explicit ConjugationModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
-    virtual ~ConjugationModeWidget();
+    ~ConjugationModeWidget() override;
     QVariant userInput() override;
 
     void setQuestion(const QVariant &question) override;

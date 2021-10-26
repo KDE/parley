@@ -19,7 +19,7 @@ class PracticeSummaryComponent : public KXmlGuiWindow, Ui::PracticeSummaryWidget
 
 public:
     PracticeSummaryComponent(SessionManagerBase *sessionManager, QWidget *parent);
-    ~PracticeSummaryComponent();
+    ~PracticeSummaryComponent() override;
 
 public slots:
     void exportResults();

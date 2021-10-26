@@ -29,7 +29,7 @@ class CollectionWidget : public QWidget
 
 public:
     CollectionWidget(Collection *collection, WordCount *dueWords, QWidget *parent = 0);
-    ~CollectionWidget();
+    ~CollectionWidget() override;
 
     Collection *collection() const;
     void setCollection(Collection *collection);

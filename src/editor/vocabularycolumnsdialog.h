@@ -30,7 +30,7 @@ public:
     enum Roles { ColumnRole = 0x12, LanguageRole = 0x18 };
 
     VocabularyColumnsDialog(KEduVocDocument *doc, QWidget *parent);
-    ~VocabularyColumnsDialog();
+    ~VocabularyColumnsDialog() override;
 
     void accept() override;
 

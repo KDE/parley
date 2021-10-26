@@ -19,7 +19,7 @@ class ButtonDelegate : public QStyledItemDelegate
 public:
     ButtonDelegate(QAbstractItemView *itemView, Dashboard *parent);
 
-    virtual ~ButtonDelegate();
+    ~ButtonDelegate() override;
 
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 

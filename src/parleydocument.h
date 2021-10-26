@@ -22,7 +22,7 @@ class ParleyDocument : public QObject
     Q_OBJECT
 public:
     explicit ParleyDocument(ParleyMainWindow *parleyMainWindow);
-    ~ParleyDocument();
+    ~ParleyDocument() override;
 
     std::shared_ptr<KEduVocDocument> document();
 

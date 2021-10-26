@@ -25,7 +25,7 @@ class PracticeMainWindow : public KXmlGuiWindow
     Q_OBJECT
 public:
     explicit PracticeMainWindow(SessionManagerBase *sessionManager, ParleyMainWindow *mainWindow = 0);
-    ~PracticeMainWindow();
+    ~PracticeMainWindow() override;
 
     void startPractice();
 

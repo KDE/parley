@@ -23,7 +23,7 @@ public:
     enum ResultState { QuestionState, AnswerCorrect, AnswerSynonym, AnswerWrong };
 
     explicit AbstractFrontend(QObject *parent = 0);
-    virtual ~AbstractFrontend()
+    ~AbstractFrontend() override
     {
     }
 

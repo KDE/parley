@@ -37,7 +37,7 @@ public:
     };
 
     ThemedBackgroundRenderer(QObject *parent, const QString &cacheFilename);
-    ~ThemedBackgroundRenderer();
+    ~ThemedBackgroundRenderer() override;
 
     void setTheme(const QString &theme);
 

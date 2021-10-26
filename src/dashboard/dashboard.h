@@ -30,7 +30,7 @@ class Dashboard : public KXmlGuiWindow
     Q_OBJECT
 public:
     explicit Dashboard(ParleyMainWindow *parent);
-    ~Dashboard();
+    ~Dashboard() override;
 
 public slots:
     void slotOpenUrl(const QUrl &url);

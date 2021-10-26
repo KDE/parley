@@ -51,7 +51,7 @@ public:
                        KGameThemeSelector::NewStuffState knsflags = KGameThemeSelector::NewStuffEnableDownload,
                        const QString &groupName = QStringLiteral("KGameTheme"),
                        const QString &directory = QStringLiteral("themes"));
-    virtual ~KGameThemeSelector();
+    ~KGameThemeSelector() override;
 
 private:
     KGameThemeSelectorPrivate *const d_ptr;

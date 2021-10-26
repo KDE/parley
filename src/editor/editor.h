@@ -40,7 +40,7 @@ class EditorWindow : public KXmlGuiWindow
 
 public:
     explicit EditorWindow(ParleyMainWindow *parent);
-    ~EditorWindow();
+    ~EditorWindow() override;
 
     /**
      * setup the action (menus etc)

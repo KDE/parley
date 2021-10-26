@@ -26,7 +26,7 @@ class ConfigurePracticeDialog : public KConfigDialog
 public:
     ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config);
 
-    ~ConfigurePracticeDialog();
+    ~ConfigurePracticeDialog() override;
 
     void commitData();
 

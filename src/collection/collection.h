@@ -24,7 +24,7 @@ class Collection : public QObject
 
 public:
     explicit Collection(QUrl *url, QObject *parent = 0);
-    ~Collection();
+    ~Collection() override;
 
     KEduVocDocument *eduVocDocument();
     void numDueWords(WordCount &wc);

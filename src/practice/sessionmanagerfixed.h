@@ -30,7 +30,7 @@ public:
     /**
      * destructor
      */
-    virtual ~SessionManagerFixed();
+    ~SessionManagerFixed() override;
 
     /**
      * Initialize the lists of entries that will be used in the

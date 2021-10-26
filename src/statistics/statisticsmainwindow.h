@@ -26,7 +26,7 @@ class StatisticsMainWindow : public KXmlGuiWindow
     Q_OBJECT
 public:
     StatisticsMainWindow(const std::shared_ptr<KEduVocDocument> &doc, ParleyMainWindow *parent);
-    ~StatisticsMainWindow();
+    ~StatisticsMainWindow() override;
 
     void setDocument(const std::shared_ptr<KEduVocDocument> &doc);
 
