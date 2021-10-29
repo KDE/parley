@@ -49,7 +49,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string comment="one of the seven cases (grammatical)">Nominative</string>
+           <string comment="one of the seven cases (grammatical)">Nominative:</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -68,7 +68,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string comment="one of the seven cases (grammatical)">Genitive</string>
+           <string comment="one of the seven cases (grammatical)">Genitive:</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -87,7 +87,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string comment="one of the seven cases (grammatical)">Dative</string>
+           <string comment="one of the seven cases (grammatical)">Dative:</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -106,7 +106,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string comment="one of the seven cases (grammatical)">Accusative</string>
+           <string comment="one of the seven cases (grammatical)">Accusative:</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -125,7 +125,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string comment="one of the seven cases (grammatical)">Ablative</string>
+           <string comment="one of the seven cases (grammatical)">Ablative:</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -144,7 +144,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string comment="one of the seven cases (grammatical)">Locative</string>
+           <string comment="one of the seven cases (grammatical)">Locative:</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -163,7 +163,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string comment="one of the seven cases (grammatical)">Vocative</string>
+           <string comment="one of the seven cases (grammatical)">Vocative:</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

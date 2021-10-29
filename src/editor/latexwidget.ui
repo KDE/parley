@@ -14,7 +14,7 @@
    <item row="0" column="0">
     <widget class="QLabel" name="texLabel">
      <property name="text">
-      <string>LaTeX code</string>
+      <string>LaTeX code:</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
