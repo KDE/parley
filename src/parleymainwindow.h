@@ -91,16 +91,6 @@ public slots:
     void showPracticeSummary();
     void practiceFinished();
 
-    /**
-     * Show the tip of the day (force it to be shown)
-     */
-    void tipOfDay();
-
-    /**
-     * Show the tip of the day - the startup version that can be disabled
-     */
-    void startupTipOfDay();
-
     void showDashboard();
     void showEditor();
     void showPractice();

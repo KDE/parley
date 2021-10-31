@@ -144,7 +144,6 @@ add_subdirectory( docs )
 add_subdirectory( src )
 add_subdirectory( icons )
 add_subdirectory( themes )
-add_subdirectory( tipofday )
 
 if(HAVE_LIBXSLT)
     add_subdirectory( xslt )

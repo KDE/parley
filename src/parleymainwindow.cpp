@@ -8,42 +8,36 @@
 */
 
 #include "parleymainwindow.h"
-
+#include "dashboard/dashboard.h"
 #include "editor/editor.h"
+#include "parleyactions.h"
 #include "practice/configure/configurepracticedialog.h"
 #include "practice/guifrontend.h"
 #include "practice/practicesummarycomponent.h"
+#include "prefs.h"
 #include "settings/parleyprefs.h"
 #include "statistics/statisticsmainwindow.h"
-#include <config-parley.h>
-
-#include "parleyactions.h"
-
-#include "dashboard/dashboard.h"
-#include "prefs.h"
-
 #include <KActionCollection>
 #include <KMessageBox>
 #include <KRecentFilesAction>
-#include <KTipDialog>
 #include <KToolBar>
 #include <KXMLGUIFactory>
 #include <QMenuBar>
-
 #include <QTimer>
+#include <config-parley.h>
 
 using namespace Editor;
 
-ParleyMainWindow *ParleyMainWindow::s_instance = 0;
+ParleyMainWindow *ParleyMainWindow::s_instance = nullptr;
 ParleyMainWindow *ParleyMainWindow::instance()
 {
     return s_instance;
 }
 
 ParleyMainWindow::ParleyMainWindow(const QUrl &filename)
-    : KXmlGuiWindow(0)
+    : KXmlGuiWindow(nullptr)
     , m_currentComponent(NoComponent)
-    , m_currentComponentWindow(0)
+    , m_currentComponentWindow(nullptr)
     , m_sessionManager(this)
 {
     s_instance = this;
@@ -84,9 +78,6 @@ ParleyMainWindow::ParleyMainWindow(const QUrl &filename)
 
     connect(this, &ParleyMainWindow::preferencesChanged, this, &ParleyMainWindow::slotApplyPreferences);
     menuBar()->show();
-
-    // finally show tip-of-day (if the user wants it)
-    // QTimer::singleShot( 0, this, SLOT(startupTipOfDay()) );
 }
 
 ParleyMainWindow::~ParleyMainWindow()
@@ -206,16 +197,6 @@ QSize ParleyMainWindow::sizeHint() const
     return QSize(800, 600).expandedTo(KXmlGuiWindow::minimumSizeHint());
 }
 
-void ParleyMainWindow::tipOfDay()
-{
-    KTipDialog::showTip(this, QStringLiteral("parley/tips"), true);
-}
-
-void ParleyMainWindow::startupTipOfDay()
-{
-    KTipDialog::showTip(this, QStringLiteral("parley/tips"));
-}
-
 void ParleyMainWindow::slotFileNew()
 {
     m_document->slotFileNew();
@@ -243,8 +224,6 @@ void ParleyMainWindow::initActions()
     ParleyActions::create(ParleyActions::FileClose, this, SLOT(slotCloseDocument()), actionCollection());
     ParleyActions::create(ParleyActions::FileQuit, this, SLOT(close()), actionCollection());
     ParleyActions::create(ParleyActions::Preferences, this, SLOT(slotGeneralOptions()), actionCollection());
-
-    actionCollection()->addAction(KStandardAction::TipofDay, QStringLiteral("help_tipofday"), this, SLOT(tipOfDay()));
 }
 
 void ParleyMainWindow::showDashboard()
