@@ -71,7 +71,7 @@ void BarWidget::paintEvent(QPaintEvent *)
 
     if (m_percentageCompleted < 100) {
         for (int j = 7; j >= 0; j--) {
-            gradeBarWidth[j] = (float)(m_dueWords[j]) / (float)(m_totalDueWords)*legendWidth;
+            gradeBarWidth[j] = std::max(0.0, static_cast<double>(m_dueWords[j]) / static_cast<double>(m_totalDueWords) * legendWidth);
             gradeBarOffset[j] = gradeBarOffset[j + 1] + gradeBarWidth[j + 1];
         }
     } else {
