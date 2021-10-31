@@ -15,12 +15,9 @@
 
 class GeneralOptions;
 class ViewOptions;
-class PasteOptions;
-class PluginOptions;
-
+class TranslationShellOptions;
 class KEduVocDocument;
 class KComboBox;
-
 class KConfigSkeleton;
 
 class ParleyPrefs : public KConfigDialog
@@ -61,8 +58,7 @@ protected:
 private:
     GeneralOptions *m_generalOptions{nullptr};
     ViewOptions *m_viewOptions{nullptr};
-    PasteOptions *m_pasteOptions{nullptr};
-    PluginOptions *m_pluginOptions{nullptr};
+    TranslationShellOptions *m_translationShellOptions{nullptr};
 
     KConfigSkeleton *m_config{nullptr};
     KEduVocDocument *m_doc{nullptr};

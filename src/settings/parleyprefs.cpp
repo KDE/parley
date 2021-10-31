@@ -6,9 +6,9 @@
 */
 
 #include "parleyprefs.h"
-
 #include "generaloptions.h"
 #include "kgametheme/kgamethemeselector.h"
+#include "translationshelloptions.h"
 #include "viewoptions.h"
 #include <KConfigSkeleton>
 #include <KLocalizedString>
@@ -23,11 +23,15 @@ ParleyPrefs::ParleyPrefs(KEduVocDocument *doc, QWidget *parent, const QString &n
 
     addPage(new KGameThemeSelector(this, config), i18n("Theme"), QStringLiteral("games-config-theme"));
 
-    m_generalOptions = new GeneralOptions(0);
-    addPage(m_generalOptions, i18nc("title:window general settings", "General"), QStringLiteral("parley"), i18n("General Settings"), true);
+    m_generalOptions = new GeneralOptions(this);
+    addPage(m_generalOptions, i18nc("title:window general settings", "General"), QStringLiteral("parley"), i18n("General Settings"));
 
-    m_viewOptions = new ViewOptions(0);
-    addPage(m_viewOptions, i18n("View"), QStringLiteral("view-choose"), i18n("View Settings"), true);
+    m_viewOptions = new ViewOptions(this);
+    addPage(m_viewOptions, i18n("View"), QStringLiteral("view-choose"), i18n("View Settings"));
+
+    m_translationShellOptions = new TranslationShellOptions(this);
+    addPage(m_translationShellOptions, i18n("Online Translations"), QStringLiteral("internet-services"), i18n("Online Translation Services"));
+
     setHelp(QString(), QStringLiteral("parley"));
 }
 
