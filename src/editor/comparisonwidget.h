@@ -22,7 +22,7 @@ class ComparisonWidget : public QWidget, public Ui::comparisonWidget
     Q_OBJECT
 
 public:
-    explicit ComparisonWidget(QWidget *parent = 0);
+    explicit ComparisonWidget(QWidget *parent = nullptr);
 
 public slots:
     /**
@@ -45,8 +45,8 @@ private slots:
     void slotSuperlativeChanged();
 
 private:
-    KEduVocTranslation *m_translation;
-    KEduVocDocument *m_doc;
+    KEduVocTranslation *m_translation{nullptr};
+    KEduVocDocument *m_doc{nullptr};
 };
 
 }

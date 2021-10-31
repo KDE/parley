@@ -18,9 +18,8 @@
 
 ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config)
     : KConfigDialog(parent, name, config)
+    , m_config{config}
 {
-    m_config = config;
-
     setWindowTitle(i18nc("@title:window", "Configure Practice"));
     button(QDialogButtonBox::Ok)->setDefault(true);
 

@@ -34,8 +34,8 @@ public Q_SLOTS:
 private:
     QStringList validPersonalPronouns();
 
-    SessionManagerBase *m_sessionManager;
-    KEduVocDocument *m_doc;
+    SessionManagerBase *m_sessionManager{nullptr};
+    KEduVocDocument *m_doc{nullptr};
 
     QString m_currentTense;
     QList<KEduVocWordFlags> m_pronounFlags;

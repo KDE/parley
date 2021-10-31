@@ -37,7 +37,6 @@ const char *texTemplate =
 
 LatexRenderer::LatexRenderer(QObject *parent)
     : QObject(parent)
-    , m_label(nullptr)
 {
 }
 

@@ -12,9 +12,9 @@
 
 ThresholdOptions::ThresholdOptions(KEduVocDocument *doc, QWidget *parent)
     : QWidget(parent)
+    , m_doc{doc}
 {
     setupUi(this);
-    m_doc = doc;
 }
 
 void ThresholdOptions::updateWidgets()

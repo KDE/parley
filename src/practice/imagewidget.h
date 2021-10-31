@@ -17,7 +17,7 @@ class ImageWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ImageWidget(QWidget *parent = 0);
+    explicit ImageWidget(QWidget *parent = nullptr);
 
     void setPixmap(const QPixmap &pixmap);
     void setScalingEnabled(bool scaling, bool onlyDownscaling = true);
@@ -37,19 +37,19 @@ private Q_SLOTS:
     void animationFinished();
 
 private:
-    bool m_fading;
-    bool m_scaling;
-    bool m_onlyDownscaling;
-    Qt::AspectRatioMode m_keepAspectRatio;
-    Qt::Alignment m_alignment;
+    bool m_fading{true};
+    bool m_scaling{true};
+    bool m_onlyDownscaling{true};
+    Qt::AspectRatioMode m_keepAspectRatio{Qt::KeepAspectRatio};
+    Qt::Alignment m_alignment{Qt::AlignCenter};
     QPixmap m_originalPixmap;
     QPixmap m_scaledPixmap;
     QPixmap m_scaledBackupPixmap;
     QPixmap m_animationPixmap;
     bool m_scaledPixmapOutOfDate;
     /// Timer used to delay the smooth scaling
-    QTimer *m_scaleTimer;
-    QTimeLine *m_animation;
+    QTimer *m_scaleTimer{nullptr};
+    QTimeLine *m_animation{nullptr};
 };
 
 }

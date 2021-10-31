@@ -14,7 +14,7 @@ class LanguagePropertiesPage : public QWidget, public Ui::LanguagePropertiesPage
 {
     Q_OBJECT
 public:
-    LanguagePropertiesPage(KEduVocDocument *doc, int identifierIndex, QWidget *parent = 0);
+    LanguagePropertiesPage(KEduVocDocument *doc, int identifierIndex, QWidget *parent = nullptr);
     void setLanguageIdentifierIndex(int newIndex);
 
 public slots:
@@ -45,8 +45,8 @@ private:
     int m_currentTense;
     QList<int> tenseIndex;
 
-    KEduVocDocument *m_doc;
-    int m_identifierIndex;
+    KEduVocDocument *m_doc{nullptr};
+    int m_identifierIndex{0};
 };
 
 #endif

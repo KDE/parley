@@ -28,12 +28,8 @@ GuiFrontend::GuiFrontend(QWidget *parent)
     : AbstractFrontend(parent)
     , m_widget(new ImageWidget())
     , m_ui(new Ui::PracticeMainWindow())
-    , m_modeWidget(nullptr)
     , m_resultState(AbstractFrontend::AnswerWrong)
     , m_feedbackState(AbstractFrontend::AnswerWrong)
-    , m_currentBox(0)
-    , m_newBoxIfCorrect(0)
-    , m_newBoxIfWrong(0)
     , m_themedBackgroundRenderer(new ThemedBackgroundRenderer(this, QStringLiteral("practicethemecache.bin")))
 {
     m_widget->setScalingEnabled(false, false);

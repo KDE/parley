@@ -56,12 +56,12 @@ private:
      */
     bool isDefault() override;
 
-    GeneralPracticeOptions *m_generalPracticeOptions;
-    BlockOptions *m_blockOptions;
-    ThresholdOptions *m_thresholdOptions;
-    SpecificPracticeOptions *m_specificPracticeOptions;
+    GeneralPracticeOptions *m_generalPracticeOptions{nullptr};
+    BlockOptions *m_blockOptions{nullptr};
+    ThresholdOptions *m_thresholdOptions{nullptr};
+    SpecificPracticeOptions *m_specificPracticeOptions{nullptr};
 
-    KConfigSkeleton *m_config;
+    KConfigSkeleton *m_config{nullptr};
 };
 
 #endif // ConfigurePracticeDialog_included

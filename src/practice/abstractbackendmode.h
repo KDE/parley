@@ -19,9 +19,7 @@ class AbstractBackendMode : public QObject
 
 public:
     AbstractBackendMode(AbstractFrontend *frontend, QObject *parent);
-    ~AbstractBackendMode() override
-    {
-    }
+    ~AbstractBackendMode() override = default;
 
     /** start practicing a new word. sets some default that can be overwritten by the modes.
      * m_frontend->showQuestion() should be called after the initialization. */
@@ -111,9 +109,9 @@ protected:
     void updateGrade(KEduVocText &text, bool isCorrectAnswer, bool hasNoPreviousBadAnswers);
 
 protected:
-    AbstractFrontend *m_frontend;
-    TestEntry *m_current;
-    QStringList m_synonyms;
+    AbstractFrontend *m_frontend{nullptr};
+    TestEntry *m_current{nullptr};
+    QStringList m_synonyms{nullptr};
 };
 
 }

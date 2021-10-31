@@ -44,9 +44,6 @@ using namespace Editor;
 
 VocabularyView::VocabularyView(EditorWindow *parent)
     : QTableView(parent)
-    , m_model(0)
-    , m_spellChecker(0)
-    , m_spellDialog(0)
 {
     installEventFilter(this);
 

@@ -88,8 +88,8 @@ private:
         Q_UNUSED(model)
     }
 
-    LessonModel *m_model;
-    EditorWindow *m_editorWindow;
+    LessonModel *m_model{nullptr};
+    EditorWindow *m_editorWindow{nullptr};
 };
 }
 

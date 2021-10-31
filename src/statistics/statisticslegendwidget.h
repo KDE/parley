@@ -19,7 +19,7 @@ class StatisticsLegendWidget : public QWidget
     Q_OBJECT
 public:
     /// constructor
-    explicit StatisticsLegendWidget(QWidget *parent = 0);
+    explicit StatisticsLegendWidget(QWidget *parent = nullptr);
 
 protected:
     /// paintEvent @p e event

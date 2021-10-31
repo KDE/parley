@@ -31,16 +31,11 @@ using namespace Editor;
 
 SummaryWordWidget::SummaryWordWidget(VocabularyFilter *model, const std::shared_ptr<KEduVocDocument> &doc, QWidget *parent)
     : QWidget(parent)
-    , m_doc(doc)
-    , m_wordTypeModel(0)
-    , m_wordTypeView(0)
-    , m_entry(0)
-    , m_translationId(0)
+    , m_model{model}
+    , m_doc{doc}
 {
     Q_ASSERT(model);
     Q_ASSERT(m_doc);
-    m_model = model;
-
     setupUi(this);
     slotDocumentChanged(m_doc);
 

@@ -15,12 +15,9 @@ using namespace Editor;
 
 LatexWidget::LatexWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent)
     : QWidget(parent)
-    , m_translation(0)
-    , m_renderer(0)
+    , m_model{model}
+    , m_doc{doc}
 {
-    m_doc = doc;
-    m_model = model;
-
     setupUi(this);
     lineEdit->setPlaceholderText(i18n("Enter LaTeX code here."));
     m_mapper = new QDataWidgetMapper(this);
@@ -91,7 +88,6 @@ void LatexWidget::updateLatex()
 
 LatexDelegate::LatexDelegate(QObject *parent)
     : QItemDelegate(parent)
-    , m_checkBox(0)
 {
 }
 

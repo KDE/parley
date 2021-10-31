@@ -19,8 +19,8 @@ extern ConfidenceColors globalColors;
 class BarWidget : public QWidget
 {
 public:
-    explicit BarWidget(QWidget *parent = 0);
-    explicit BarWidget(WordCount *dueWords, QWidget *parent = 0);
+    explicit BarWidget(QWidget *parent = nullptr);
+    explicit BarWidget(WordCount *dueWords, QWidget *parent = nullptr);
 
     void setDue(WordCount &wc);
 

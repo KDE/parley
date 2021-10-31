@@ -20,7 +20,7 @@ class StatusToggle : public ImageWidget
     Q_OBJECT
 
 public:
-    explicit StatusToggle(QWidget *parent = 0);
+    explicit StatusToggle(QWidget *parent = nullptr);
     QSize minimumSizeHint() const override;
 
     void setRenderer(ThemedBackgroundRenderer *renderer);
@@ -33,10 +33,10 @@ signals:
     void toggle();
 
 private:
-    ThemedBackgroundRenderer *m_renderer;
+    ThemedBackgroundRenderer *m_renderer{nullptr};
 
-    StatusToggleButton *m_toggle;
-    QAction *m_toggleAction;
+    StatusToggleButton *m_toggle{nullptr};
+    QAction *m_toggleAction{nullptr};
 
     AbstractFrontend::ResultState m_resultState;
 

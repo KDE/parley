@@ -23,7 +23,7 @@ class MultiplechoiceModeWidget : public AbstractModeWidget
     Q_OBJECT
 
 public:
-    explicit MultiplechoiceModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
+    explicit MultiplechoiceModeWidget(GuiFrontend *frontend, QWidget *parent = nullptr);
     QVariant userInput() override;
 
     void setQuestion(const QVariant &question) override;
@@ -59,11 +59,11 @@ protected:
     virtual void resetButtonStyleSheet();
 
 private:
-    Ui::MultiplechoicePracticeWidget *m_ui;
+    Ui::MultiplechoicePracticeWidget *m_ui{nullptr};
     int m_solution;
-    QList<QPushButton *> m_choiceButtons;
+    QList<QPushButton *> m_choiceButtons{nullptr};
     QList<QAction *> m_actions;
-    LatexRenderer *m_latexRenderer;
+    LatexRenderer *m_latexRenderer{nullptr};
     QFont m_solutionFont;
 };
 

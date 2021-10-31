@@ -13,13 +13,12 @@ using namespace Editor;
 
 BrowserWidget::BrowserWidget(QWidget *parent)
     : QWidget(parent)
+    , m_htmlPart{new QWebEngineView(widget)}
 {
     setupUi(this);
     m_currentTranslation = -1;
-    m_entry = 0;
     m_currentProvider = 0; ///@todo kconfig?
 
-    m_htmlPart = new QWebEngineView(widget);
     QHBoxLayout *layout = new QHBoxLayout(widget);
     widget->setLayout(layout);
     layout->addWidget(m_htmlPart);

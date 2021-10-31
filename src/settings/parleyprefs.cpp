@@ -15,12 +15,11 @@
 
 ParleyPrefs::ParleyPrefs(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config)
     : KConfigDialog(parent, name, config)
+    , m_config{config}
+    , m_doc{doc}
 {
     button(QDialogButtonBox::Ok)->setDefault(true);
     setModal(true);
-
-    m_doc = doc;
-    m_config = config;
 
     addPage(new KGameThemeSelector(this, config), i18n("Theme"), QStringLiteral("games-config-theme"));
 

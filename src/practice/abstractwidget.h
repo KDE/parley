@@ -21,10 +21,8 @@ class AbstractModeWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit AbstractModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
-    ~AbstractModeWidget() override
-    {
-    }
+    explicit AbstractModeWidget(GuiFrontend *frontend, QWidget *parent = nullptr);
+    ~AbstractModeWidget() override = default;
 
     virtual void setQuestion(const QVariant &question) = 0;
     virtual void setSolution(const QVariant &solution) = 0;
@@ -58,7 +56,7 @@ signals:
     void skipAction();
 
 protected:
-    GuiFrontend *m_frontend;
+    GuiFrontend *m_frontend{nullptr};
 
     QPalette m_correctPalette;
     QPalette m_wrongPalette;

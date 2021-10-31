@@ -16,8 +16,6 @@ using namespace Practice;
 
 FlashCardModeWidget::FlashCardModeWidget(GuiFrontend *frontend, QWidget *parent)
     : AbstractModeWidget(frontend, parent)
-    , m_questionLatexRenderer(0)
-    , m_solutionLatexRenderer(0)
 {
     m_ui = new Ui::FlashCardPracticeWidget();
     m_ui->setupUi(this);

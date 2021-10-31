@@ -27,7 +27,7 @@ private slots:
 private:
     KPageWidgetItem *createPage(int identifierIndex);
 
-    KEduVocDocument *m_doc;
+    KEduVocDocument *m_doc{nullptr};
     QList<KPageWidgetItem *> m_pages;
 };
 

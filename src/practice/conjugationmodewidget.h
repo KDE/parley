@@ -22,7 +22,7 @@ class ConjugationModeWidget : public AbstractModeWidget
     Q_OBJECT
 
 public:
-    explicit ConjugationModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
+    explicit ConjugationModeWidget(GuiFrontend *frontend, QWidget *parent = nullptr);
     ~ConjugationModeWidget() override;
     QVariant userInput() override;
 
@@ -62,7 +62,7 @@ private Q_SLOTS:
 private:
     virtual void setNumberOfConjugationWidgets(const int numberOfForms);
 
-    Ui::ConjugationPracticeWidget *m_ui;
+    Ui::ConjugationPracticeWidget *m_ui{nullptr};
     QStringList m_solution;
     QList<PersonConjugationSolutionWidgets *> m_personWidgets;
     QFont m_solutionFont;

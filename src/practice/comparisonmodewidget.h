@@ -20,7 +20,7 @@ class ComparisonModeWidget : public AbstractModeWidget
     Q_OBJECT
 
 public:
-    explicit ComparisonModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
+    explicit ComparisonModeWidget(GuiFrontend *frontend, QWidget *parent = nullptr);
     QVariant userInput() override;
 
     void setQuestion(const QVariant &question) override;
@@ -57,7 +57,7 @@ private Q_SLOTS:
     void nextComparisonForm();
 
 private:
-    Ui::ComparisonPracticeWidget *m_ui;
+    Ui::ComparisonPracticeWidget *m_ui{nullptr};
     QStringList m_solution;
 };
 

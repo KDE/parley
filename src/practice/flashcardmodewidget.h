@@ -24,7 +24,7 @@ class FlashCardModeWidget : public AbstractModeWidget
     Q_OBJECT
 
 public:
-    explicit FlashCardModeWidget(GuiFrontend *frontend, QWidget *parent = 0);
+    explicit FlashCardModeWidget(GuiFrontend *frontend, QWidget *parent = nullptr);
     QVariant userInput() override;
 
     void setQuestion(const QVariant &question) override;
@@ -58,10 +58,10 @@ public Q_SLOTS:
     void showSynonym() override;
 
 private:
-    Ui::FlashCardPracticeWidget *m_ui;
+    Ui::FlashCardPracticeWidget *m_ui{nullptr};
     QString m_solution;
-    LatexRenderer *m_questionLatexRenderer;
-    LatexRenderer *m_solutionLatexRenderer;
+    LatexRenderer *m_questionLatexRenderer{nullptr};
+    LatexRenderer *m_solutionLatexRenderer{nullptr};
 };
 
 }

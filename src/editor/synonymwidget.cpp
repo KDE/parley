@@ -17,10 +17,8 @@ using namespace Editor;
 
 SynonymWidget::SynonymWidget(SynonymWidgetType type, QWidget *parent)
     : QWidget(parent)
+    , m_type{type}
 {
-    m_type = type;
-    m_currentTranslation = 0;
-    m_lastTranslation = 0;
     setupUi(this);
 
     connect(synonymButton, &QPushButton::clicked, this, &SynonymWidget::togglePair);

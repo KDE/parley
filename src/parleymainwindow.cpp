@@ -37,7 +37,6 @@ ParleyMainWindow *ParleyMainWindow::instance()
 ParleyMainWindow::ParleyMainWindow(const QUrl &filename)
     : KXmlGuiWindow(nullptr)
     , m_currentComponent(NoComponent)
-    , m_currentComponentWindow(nullptr)
     , m_sessionManager(this)
 {
     s_instance = this;

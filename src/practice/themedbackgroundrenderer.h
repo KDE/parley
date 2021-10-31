@@ -24,9 +24,20 @@ class ThemedBackgroundRenderer : public QObject
     Q_OBJECT
 
 public:
-    enum ScaleBase { NoScale, Horizontal, Vertical, Rect };
+    enum ScaleBase {
+        NoScale,
+        Horizontal,
+        Vertical,
+        Rect,
+    };
 
-    enum Edge { Top, Bottom, Left, Right, Center };
+    enum Edge {
+        Top,
+        Bottom,
+        Left,
+        Right,
+        Center,
+    };
 
     enum Align {
         Corner,
@@ -81,7 +92,7 @@ private:
     ImageCache m_cache;
     QFuture<QImage> m_future;
     QFutureWatcher<QImage> m_watcher;
-    KGameTheme *m_theme;
+    KGameTheme *m_theme{nullptr};
     QHash<QString, QString> m_rectMappings;
     QSvgRenderer m_renderer;
     QList<QPair<QString, QRect>> m_rects;

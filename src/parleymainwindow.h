@@ -19,10 +19,6 @@
 #include <QPointer>
 
 class KRecentFilesAction;
-#if 0
-
-class Dashboard;
-#endif
 
 class ParleyMainWindow : public KXmlGuiWindow
 {
@@ -34,7 +30,14 @@ public:
     ~ParleyMainWindow() override;
 
     /** enum for the different components that can be displayed */
-    enum Component { NoComponent, DashboardComponent, EditorComponent, ConfigurePracticeComponent, PracticeComponent, PracticeSummary };
+    enum Component {
+        NoComponent,
+        DashboardComponent,
+        EditorComponent,
+        ConfigurePracticeComponent,
+        PracticeComponent,
+        PracticeSummary,
+    };
 
     /**
      * setup the action (menus etc)
@@ -114,12 +117,12 @@ private:
     static ParleyMainWindow *s_instance;
 
     Component m_currentComponent;
-    KXmlGuiWindow *m_currentComponentWindow;
+    KXmlGuiWindow *m_currentComponentWindow{nullptr};
 
-    KRecentFilesAction *m_recentFilesAction;
+    KRecentFilesAction *m_recentFilesAction{nullptr};
 
     /** m_document is the current vocabulary document. */
-    ParleyDocument *m_document;
+    ParleyDocument *m_document{nullptr};
 
     Component m_componentBeforePractice;
 

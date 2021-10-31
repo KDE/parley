@@ -46,9 +46,9 @@ private:
     void updateEntries();
 
     QString m_lastTenseSelection;
-    int m_identifier;
-    KEduVocExpression *m_entry;
-    KEduVocDocument *m_doc;
+    int m_identifier{-1};
+    KEduVocExpression *m_entry{nullptr};
+    KEduVocDocument *m_doc{nullptr};
 
     /**
      * All line edits and labels, index corresponding to KEduVocWordFlag::indexOf

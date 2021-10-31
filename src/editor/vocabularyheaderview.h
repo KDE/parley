@@ -14,13 +14,13 @@ class VocabularyHeaderView : public QHeaderView
 {
     Q_OBJECT
 public:
-    explicit VocabularyHeaderView(Qt::Orientation orientation, QWidget *parent = 0);
+    explicit VocabularyHeaderView(Qt::Orientation orientation, QWidget *parent = nullptr);
 
 private slots:
     void updateSorting(int);
 
 private:
-    int m_sortSection;
+    int m_sortSection{-1};
 };
 }
 

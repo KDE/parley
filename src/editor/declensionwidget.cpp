@@ -18,10 +18,6 @@ using namespace Editor;
 DeclensionWidget::DeclensionWidget(QWidget *parent)
     : QWidget(parent)
 {
-    m_doc = 0;
-    m_entry = 0;
-    m_identifier = -1;
-
     setupUi(this);
 
     numberSelection->setItemData(0, KEduVocWordFlag::Singular);

@@ -12,7 +12,7 @@
 class GradeReferenceWidget : public QWidget
 {
 public:
-    explicit GradeReferenceWidget(QWidget *parent = 0);
+    explicit GradeReferenceWidget(QWidget *parent = nullptr);
 
 protected:
     void paintEvent(QPaintEvent *) override;

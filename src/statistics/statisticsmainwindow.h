@@ -53,11 +53,11 @@ private:
     int practiceDirectionForPracticeMode(int mode) const;
     void setPracticeDirectionForPracticeMode(int direction, int mode);
 
-    ParleyMainWindow *m_mainWindow;
+    ParleyMainWindow *m_mainWindow{nullptr};
     std::shared_ptr<KEduVocDocument> m_doc;
-    StatisticsModel *m_statisticsModel;
-    Ui::StatisticsMainWindow *m_ui;
-    ConjugationOptions *m_conjugationOptions;
+    StatisticsModel *m_statisticsModel{nullptr};
+    Ui::StatisticsMainWindow *m_ui{nullptr};
+    ConjugationOptions *m_conjugationOptions{nullptr};
 };
 
 #endif

@@ -72,7 +72,6 @@ void fetchGrammar(KEduVocDocument *doc, int languageIndex)
 ParleyDocument::ParleyDocument(ParleyMainWindow *parleyMainWindow)
     : QObject(parleyMainWindow)
     , m_parleyApp(parleyMainWindow)
-    , m_backupTimer(0)
     , m_doc(new KEduVocDocument)
 {
 }

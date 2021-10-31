@@ -17,7 +17,7 @@ class ExportDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit ExportDialog(ParleyDocument *doc, QWidget *parent = 0);
+    explicit ExportDialog(ParleyDocument *doc, QWidget *parent = nullptr);
 
 private slots:
     void accept() override;
@@ -25,9 +25,8 @@ private slots:
 private:
     QUrl getFileName(const QString &filter);
 
-    Ui::ExportOptions *ui;
-    ParleyDocument *m_doc;
-    QWidget *m_parent;
+    Ui::ExportOptions *ui{nullptr};
+    ParleyDocument *m_doc{nullptr};
 };
 
 #endif

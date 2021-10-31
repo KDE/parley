@@ -18,13 +18,6 @@ using namespace Practice;
 
 BoxesWidget::BoxesWidget(QWidget *parent)
     : ImageWidget(parent)
-    , m_boxCount(1)
-    , m_currentBox(-1)
-    , m_lastBox(-1)
-    , m_renderer(0)
-    , m_fixedSize(true)
-    , m_arrowHint(0)
-    , m_spacingHint(0)
 {
     setBoxCount(KV_MAX_GRADE);
     setScalingEnabled(false);
@@ -51,8 +44,9 @@ void BoxesWidget::setBoxCount(int boxCount)
 
 void BoxesWidget::setBoxes(int currentBox, int lastBox)
 {
-    if (currentBox == m_currentBox && lastBox == m_lastBox)
+    if (currentBox == m_currentBox && lastBox == m_lastBox) {
         return;
+    }
     m_currentBox = currentBox;
     m_lastBox = lastBox;
     updatePixmap();

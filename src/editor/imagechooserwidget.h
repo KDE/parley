@@ -16,7 +16,7 @@ class ImageChooserWidget : public QWidget, public Ui::ImageChooserWidget
 {
     Q_OBJECT
 public:
-    explicit ImageChooserWidget(QWidget *parent = 0);
+    explicit ImageChooserWidget(QWidget *parent = nullptr);
 
 public slots:
     /**
@@ -41,9 +41,9 @@ protected:
 
 private:
     /// Column in the document - corresponds to the language (-KV_COL_TRANS)
-    int m_currentTranslation;
+    int m_currentTranslation{-1};
     /// Selection in the doc - if more than one row is selected behavior is different
-    KEduVocExpression *m_entry;
+    KEduVocExpression *m_entry{nullptr};
 };
 }
 #endif

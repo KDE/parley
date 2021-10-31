@@ -102,34 +102,34 @@ signals:
     void signalSetData(const QList<int> &entries, int currentTranslation);
 
 private:
-    ParleyMainWindow *m_mainWindow;
+    ParleyMainWindow *m_mainWindow{nullptr};
 
-    QAction *m_vocabShowSearchBarAction;
+    QAction *m_vocabShowSearchBarAction{nullptr};
 
-    VocabularyModel *m_vocabularyModel;
-    VocabularyView *m_vocabularyView;
-    VocabularyFilter *m_vocabularyFilter;
+    VocabularyModel *m_vocabularyModel{nullptr};
+    VocabularyView *m_vocabularyView{nullptr};
+    VocabularyFilter *m_vocabularyFilter{nullptr};
 
-    QLineEdit *m_searchLine;
-    QWidget *m_searchWidget;
-    QAction *m_spellCheckMenu;
+    QLineEdit *m_searchLine{nullptr};
+    QWidget *m_searchWidget{nullptr};
+    QAction *m_spellCheckMenu{nullptr};
 
     /** Show a single conjugation and let the user edit it */
-    InflectionWidget *m_inflectionWidget;
-    SummaryWordWidget *m_summaryWordWidget;
-    ComparisonWidget *m_comparisonWidget;
-    LatexWidget *m_latexWidget;
-    SynonymWidget *m_synonymWidget;
-    SynonymWidget *m_antonymWidget;
-    SynonymWidget *m_falseFriendWidget;
-    AudioWidget *m_audioWidget;
+    InflectionWidget *m_inflectionWidget{nullptr};
+    SummaryWordWidget *m_summaryWordWidget{nullptr};
+    ComparisonWidget *m_comparisonWidget{nullptr};
+    LatexWidget *m_latexWidget{nullptr};
+    SynonymWidget *m_synonymWidget{nullptr};
+    SynonymWidget *m_antonymWidget{nullptr};
+    SynonymWidget *m_falseFriendWidget{nullptr};
+    AudioWidget *m_audioWidget{nullptr};
 
     /// dock widgets to display lessons, word types, ...
-    LessonView *m_lessonView;
-    LessonModel *m_lessonModel;
+    LessonView *m_lessonView{nullptr};
+    LessonModel *m_lessonModel{nullptr};
 
-    WordClassModel *m_wordTypeModel;
-    WordTypeView *m_wordTypeView;
+    WordClassModel *m_wordTypeModel{nullptr};
+    WordTypeView *m_wordTypeView{nullptr};
 
     QList<QDockWidget *> m_dockWidgets;
     QList<bool> m_dockWidgetVisibility;

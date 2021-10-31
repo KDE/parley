@@ -17,7 +17,6 @@ ImageChooserWidget::ImageChooserWidget(QWidget *parent)
     : QWidget(parent)
 {
     setupUi(this);
-    m_currentTranslation = -1;
 
     connect(imageUrlRequester, &KUrlRequester::textChanged, this, &ImageChooserWidget::slotImageChanged);
 

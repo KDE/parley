@@ -20,7 +20,6 @@ using namespace Editor;
 
 MultipleChoiceWidget::MultipleChoiceWidget(QWidget *parent)
     : QWidget(parent)
-    , m_translation(Q_NULLPTR)
     , m_choicesModel(new QStringListModel(this))
 {
     setupUi(this);

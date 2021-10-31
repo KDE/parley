@@ -30,7 +30,6 @@ StatisticsMainWindow::StatisticsMainWindow(const std::shared_ptr<KEduVocDocument
     , m_mainWindow(parent)
     , m_doc(doc)
     , m_ui(new Ui::StatisticsMainWindow)
-    , m_conjugationOptions(0)
 {
     // KXmlGui
     setXMLFile(QStringLiteral("statisticsui.rc"));

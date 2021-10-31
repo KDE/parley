@@ -20,7 +20,7 @@ class DeclensionWidget : public QWidget, public Ui::DeclensionWidget
     Q_OBJECT
 
 public:
-    explicit DeclensionWidget(QWidget *parent = 0);
+    explicit DeclensionWidget(QWidget *parent = nullptr);
 
 public slots:
     void setDocument(KEduVocDocument *doc);
@@ -43,9 +43,9 @@ private:
     int currentAdditionalWordFlag();
     void setupLineEdits();
 
-    int m_identifier;
-    KEduVocExpression *m_entry;
-    KEduVocDocument *m_doc;
+    int m_identifier{-1};
+    KEduVocExpression *m_entry{nullptr};
+    KEduVocDocument *m_doc{nullptr};
 
     /**
      * All line edits and labels, index corresponding to KEduVocWordFlag::indexOf

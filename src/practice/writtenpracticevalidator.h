@@ -46,15 +46,15 @@ private:
      * if the option was set in the preferences */
     bool isAccentMistake(const QString &original, const QString &answer);
 
-    TestEntry *m_entry;
-    KEduVocDocument *m_doc;
+    TestEntry *m_entry{nullptr};
+    KEduVocDocument *m_doc{nullptr};
     QString m_correctedAnswer;
-    int m_translation;
+    int m_translation{0};
     TestEntry::ErrorTypes m_error;
 
     /// spellchecker
-    Sonnet::Speller *m_speller;
-    bool m_spellerAvailable;
+    Sonnet::Speller *m_speller{nullptr};
+    bool m_spellerAvailable{false};
 };
 
 }

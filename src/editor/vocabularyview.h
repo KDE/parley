@@ -103,22 +103,22 @@ private:
         Q_UNUSED(model)
     }
 
-    QAction *m_appendEntryAction;
-    QAction *m_deleteEntriesAction;
-    QAction *m_copyAction;
-    QAction *m_cutAction;
-    QAction *m_pasteAction;
-    QAction *m_selectAllAction;
-    QAction *m_clearSelectionAction;
+    QAction *m_appendEntryAction{nullptr};
+    QAction *m_deleteEntriesAction{nullptr};
+    QAction *m_copyAction{nullptr};
+    QAction *m_cutAction{nullptr};
+    QAction *m_pasteAction{nullptr};
+    QAction *m_selectAllAction{nullptr};
+    QAction *m_clearSelectionAction{nullptr};
 
-    VocabularyFilter *m_model;
-    VocabularyDelegate *m_vocabularyDelegate;
+    VocabularyFilter *m_model{nullptr};
+    VocabularyDelegate *m_vocabularyDelegate{nullptr};
     std::shared_ptr<KEduVocDocument> m_doc;
 
-    int m_spellColumn;
-    int m_spellRow;
-    Sonnet::BackgroundChecker *m_spellChecker;
-    Sonnet::Dialog *m_spellDialog;
+    int m_spellColumn{0};
+    int m_spellRow{0};
+    Sonnet::BackgroundChecker *m_spellChecker{nullptr};
+    Sonnet::Dialog *m_spellDialog{nullptr};
 };
 
 }

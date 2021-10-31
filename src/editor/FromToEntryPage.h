@@ -21,7 +21,7 @@ class FromToEntryPage : public QWidget, public Ui::FromToEntryPageForm
     Q_OBJECT
 
 public:
-    explicit FromToEntryPage(KEduVocDocument *doc, int fromIdentifier, int toIdentifier, QWidget *parent = 0);
+    explicit FromToEntryPage(KEduVocDocument *doc, int fromIdentifier, int toIdentifier, QWidget *parent = nullptr);
 
 public slots:
     void setData(const QList<int> &entries);
@@ -46,7 +46,7 @@ private:
     /// get a text representation of a grade
     static QString gradeStr(int i);
 
-    KEduVocDocument *m_doc;
+    KEduVocDocument *m_doc{nullptr};
     int m_translationFrom;
     int m_translationTo;
     QList<int> m_entries;

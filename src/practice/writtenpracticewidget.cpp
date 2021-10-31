@@ -22,7 +22,6 @@ using namespace Practice;
 
 WrittenPracticeWidget::WrittenPracticeWidget(GuiFrontend *frontend, QWidget *parent, bool isExampleSentenceMode)
     : AbstractModeWidget(frontend, parent)
-    , m_latexRenderer(0)
 {
     m_ui = new Ui::WrittenPracticeWidget();
     m_ui->setupUi(this);

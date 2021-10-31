@@ -31,8 +31,8 @@ protected:
     void updateGrades() override;
 
 private:
-    SessionManagerBase *m_sessionManager;
-    KEduVocDocument *m_doc;
+    SessionManagerBase *m_sessionManager{nullptr};
+    KEduVocDocument *m_doc{nullptr};
     QStringList m_lastAnswers;
 };
 

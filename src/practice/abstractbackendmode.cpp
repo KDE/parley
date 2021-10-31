@@ -12,7 +12,6 @@ using namespace Practice;
 AbstractBackendMode::AbstractBackendMode(Practice::AbstractFrontend *frontend, QObject *parent)
     : QObject(parent)
     , m_frontend(frontend)
-    , m_current(0)
 {
 }
 

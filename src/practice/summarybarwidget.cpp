@@ -19,10 +19,6 @@ using namespace Practice;
 
 SummaryBarWidget::SummaryBarWidget(QWidget *parent)
     : QWidget(parent)
-    , m_correct(0)
-    , m_wrong(0)
-    , m_notAnswered(0)
-    , m_total(0)
 {
     setMinimumHeight(30);
     m_layout = new QHBoxLayout(this);

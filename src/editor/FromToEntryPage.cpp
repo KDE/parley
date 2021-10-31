@@ -53,9 +53,8 @@ QString FromToEntryPage::gradeToString(int i)
 
 FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, int fromIdentifier, int toIdentifier, QWidget *parent)
     : QWidget(parent)
+    , m_doc(doc)
 {
-    m_doc = doc;
-
     m_translationFrom = fromIdentifier;
     m_translationTo = toIdentifier;
 

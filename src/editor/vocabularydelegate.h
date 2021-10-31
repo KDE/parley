@@ -34,7 +34,7 @@ public:
         EntryColumnsMAX
     };
 
-    explicit VocabularyDelegate(QObject *parent = 0);
+    explicit VocabularyDelegate(QObject *parent = nullptr);
 
     QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
@@ -69,7 +69,7 @@ private:
 class VocabularyDelegate::WordTypeBasicModel : public ReadonlyContainerModel
 {
 public:
-    explicit WordTypeBasicModel(QObject *parent = 0);
+    explicit WordTypeBasicModel(QObject *parent = nullptr);
 
 protected:
     KEduVocContainer *rootContainer() const override;

@@ -18,11 +18,25 @@ class AbstractFrontend : public QObject
 {
     Q_OBJECT
 public:
-    enum Mode { None, FlashCard, MixedLetters, MultipleChoice, Written, Conjugation, Comparison, ExampleSentence };
+    enum Mode {
+        None,
+        FlashCard,
+        MixedLetters,
+        MultipleChoice,
+        Written,
+        Conjugation,
+        Comparison,
+        ExampleSentence,
+    };
 
-    enum ResultState { QuestionState, AnswerCorrect, AnswerSynonym, AnswerWrong };
+    enum ResultState {
+        QuestionState,
+        AnswerCorrect,
+        AnswerSynonym,
+        AnswerWrong,
+    };
 
-    explicit AbstractFrontend(QObject *parent = 0);
+    explicit AbstractFrontend(QObject *parent = nullptr);
     ~AbstractFrontend() override
     {
     }

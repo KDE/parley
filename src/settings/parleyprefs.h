@@ -59,14 +59,14 @@ protected:
     bool isDefault() override;
 
 private:
-    GeneralOptions *m_generalOptions;
-    ViewOptions *m_viewOptions;
-    PasteOptions *m_pasteOptions;
-    PluginOptions *m_pluginOptions;
+    GeneralOptions *m_generalOptions{nullptr};
+    ViewOptions *m_viewOptions{nullptr};
+    PasteOptions *m_pasteOptions{nullptr};
+    PluginOptions *m_pluginOptions{nullptr};
 
-    KConfigSkeleton *m_config;
-    KEduVocDocument *m_doc;
-    KComboBox *m_lessons;
+    KConfigSkeleton *m_config{nullptr};
+    KEduVocDocument *m_doc{nullptr};
+    KComboBox *m_lessons{nullptr};
 };
 
 #endif

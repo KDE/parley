@@ -13,7 +13,7 @@ class GeneralOptions : public QWidget, public Ui::GeneralOptionsBase
 {
     Q_OBJECT
 public:
-    explicit GeneralOptions(QWidget *parent = 0);
+    explicit GeneralOptions(QWidget *parent = nullptr);
 
     void updateWidgets();
     bool hasChanged();

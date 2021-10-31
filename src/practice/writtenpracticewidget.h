@@ -23,7 +23,7 @@ class WrittenPracticeWidget : public Practice::AbstractModeWidget
     Q_OBJECT
 
 public:
-    explicit WrittenPracticeWidget(GuiFrontend *frontend, QWidget *parent = 0, bool isExampleSentenceMode = false);
+    explicit WrittenPracticeWidget(GuiFrontend *frontend, QWidget *parent = nullptr, bool isExampleSentenceMode = false);
     QVariant userInput() override;
 
     void setQuestion(const QVariant &question) override;
@@ -50,7 +50,7 @@ public slots:
     void showSynonym() override;
 
 protected:
-    Ui::WrittenPracticeWidget *m_ui;
+    Ui::WrittenPracticeWidget *m_ui{nullptr};
 
 private:
     QString m_solution;
@@ -58,8 +58,8 @@ private:
     AbstractFrontend::ResultState m_resultState;
     AbstractFrontend::ResultState m_feedbackState;
     QList<QWidget *> synonymWidgets;
-    LatexRenderer *m_latexRenderer;
-    bool isExampleSentenceMode;
+    LatexRenderer *m_latexRenderer{nullptr};
+    bool isExampleSentenceMode{false};
 };
 
 }

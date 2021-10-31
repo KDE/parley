@@ -30,7 +30,7 @@ class LatexWidget : public QWidget, public Ui::LatexWidget
     Q_OBJECT
 
 public:
-    LatexWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent = 0);
+    LatexWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent = nullptr);
     ~LatexWidget() override;
 
 public slots:
@@ -54,19 +54,19 @@ public slots:
     void updateLatex();
 
 private:
-    VocabularyFilter *m_model;
-    KEduVocDocument *m_doc;
-    QDataWidgetMapper *m_mapper;
-    KEduVocTranslation *m_translation;
+    VocabularyFilter *m_model{nullptr};
+    KEduVocDocument *m_doc{nullptr};
+    QDataWidgetMapper *m_mapper{nullptr};
+    KEduVocTranslation *m_translation{nullptr};
     QLabel m_hiddenLabel;
-    Practice::LatexRenderer *m_renderer;
+    Practice::LatexRenderer *m_renderer{nullptr};
 };
 
 class LatexDelegate : public QItemDelegate
 {
     Q_OBJECT
 public:
-    explicit LatexDelegate(QObject *parent = 0);
+    explicit LatexDelegate(QObject *parent = nullptr);
 
     void setEditorData(QWidget *editor, const QModelIndex &index) const override;
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const override;
@@ -76,7 +76,7 @@ public:
     }
 
 private:
-    QCheckBox *m_checkBox;
+    QCheckBox *m_checkBox{nullptr};
 };
 }
 

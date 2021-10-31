@@ -57,9 +57,9 @@ protected:
 private:
     SessionManagerBase *m_sessionManager;
     QString m_question;
-    int m_numberOfChoices;
+    int m_numberOfChoices{0};
     QStringList m_choices;
-    int m_correctAnswer;
+    int m_correctAnswer{0};
     QList<int> m_hints;
 };
 

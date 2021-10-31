@@ -82,8 +82,8 @@ private:
     void setDefaultDocumentProperties(KEduVocDocument *doc);
 
 private:
-    ParleyMainWindow *m_parleyApp; // Pointer to the owner of this document
-    QTimer *m_backupTimer; // Timer for next autosave
+    ParleyMainWindow *m_parleyApp{nullptr}; // Pointer to the owner of this document
+    QTimer *m_backupTimer{nullptr}; // Timer for next autosave
 
     // The contents of the document
     std::shared_ptr<KEduVocDocument> m_doc;

@@ -19,8 +19,6 @@ ComparisonWidget::ComparisonWidget(QWidget *parent)
 {
     setupUi(this);
 
-    m_doc = 0;
-
     connect(makeAdjectiveButton, &QPushButton::clicked, this, &ComparisonWidget::slotMakeAdjectiveButton);
     connect(makeAdverbButton, &QPushButton::clicked, this, &ComparisonWidget::slotMakeAdverbButton);
 

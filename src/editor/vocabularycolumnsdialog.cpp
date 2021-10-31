@@ -31,13 +31,13 @@ using namespace Editor;
 
 VocabularyColumnsDialog::VocabularyColumnsDialog(KEduVocDocument *doc, QWidget *parent)
     : QDialog(parent)
+    , m_doc{doc}
     , m_models()
 {
     QDialogButtonBox *button_dialog = new QDialogButtonBox;
     button_dialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 
     m_box = new QGridLayout();
-    m_doc = doc;
     m_settings = new DocumentSettings(m_doc->url().url());
 
     setWindowTitle(i18nc("@title:window", "Vocabulary Columns"));

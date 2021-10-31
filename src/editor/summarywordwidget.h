@@ -40,7 +40,7 @@ class SummaryWordWidget : public QWidget, public Ui::SummaryWordWidget
     Q_OBJECT
 
 public:
-    SummaryWordWidget(VocabularyFilter *model, const std::shared_ptr<KEduVocDocument> &, QWidget *parent = 0);
+    SummaryWordWidget(VocabularyFilter *model, const std::shared_ptr<KEduVocDocument> &, QWidget *parent = nullptr);
 
 public slots:
     /**
@@ -77,20 +77,20 @@ private:
     void setCurrentWordType(KEduVocExpression *entry, int translation);
 
 private:
-    VocabularyFilter *m_model;
+    VocabularyFilter *m_model{nullptr};
     std::shared_ptr<KEduVocDocument> m_doc;
-    QDataWidgetMapper *m_mapper;
-    WordClassModel *m_wordTypeModel;
-    QTreeView *m_wordTypeView;
-    KEduVocExpression *m_entry;
-    int m_translationId;
+    QDataWidgetMapper *m_mapper{nullptr};
+    WordClassModel *m_wordTypeModel{nullptr};
+    QTreeView *m_wordTypeView{nullptr};
+    KEduVocExpression *m_entry{nullptr};
+    int m_translationId{0};
 };
 
 class SummaryWordDelegate : public QItemDelegate
 {
     Q_OBJECT
 public:
-    explicit SummaryWordDelegate(QObject *parent = 0);
+    explicit SummaryWordDelegate(QObject *parent = nullptr);
 
     void setEditorData(QWidget *editor, const QModelIndex &index) const override;
 };

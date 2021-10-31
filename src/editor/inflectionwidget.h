@@ -26,7 +26,7 @@ class InflectionWidget : public QStackedWidget
     Q_OBJECT
 
 public:
-    explicit InflectionWidget(QWidget *parent = 0);
+    explicit InflectionWidget(QWidget *parent = nullptr);
 
 public slots:
     void setDocument(const std::shared_ptr<KEduVocDocument> &doc);
@@ -36,13 +36,13 @@ private slots:
     void setWordType();
 
 private:
-    QWidget *m_wordTypeWidget;
-    DeclensionWidget *m_declensionWidget;
-    ConjugationWidget *m_conjugationWidget;
+    QWidget *m_wordTypeWidget{nullptr};
+    DeclensionWidget *m_declensionWidget{nullptr};
+    ConjugationWidget *m_conjugationWidget{nullptr};
 
-    std::shared_ptr<KEduVocDocument> m_doc;
-    KEduVocExpression *m_entry;
-    int m_translation;
+    std::shared_ptr<KEduVocDocument> m_doc{nullptr};
+    KEduVocExpression *m_entry{nullptr};
+    int m_translation{-1};
 };
 
 }

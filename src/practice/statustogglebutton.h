@@ -16,9 +16,8 @@ class StatusToggleButton : public ImageWidget
     Q_OBJECT
 
 public:
-    StatusToggleButton(QWidget *parent = 0)
+    StatusToggleButton(QWidget *parent = nullptr)
         : ImageWidget(parent)
-        , m_current(0)
     {
         setMouseTracking(true);
     }
@@ -38,7 +37,7 @@ private:
     QPixmap m_defaultPixmap;
     QPixmap m_hoverPixmap;
     QPixmap m_pressedPixmap;
-    int m_current;
+    int m_current{0};
 };
 }
 #endif // PRACTICE_STATUSTOGGLEBUTTON_H

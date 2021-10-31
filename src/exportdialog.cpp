@@ -32,10 +32,8 @@
 
 ExportDialog::ExportDialog(ParleyDocument *doc, QWidget *parent)
     : QDialog(parent)
+    , m_doc{doc}
 {
-    m_doc = doc;
-    m_parent = parent;
-
     ui = new Ui::ExportOptions();
     QWidget *widget = new QWidget();
     ui->setupUi(widget);
@@ -117,7 +115,7 @@ void ExportDialog::accept()
 QUrl ExportDialog::getFileName(const QString &filter)
 {
     return QUrl::fromLocalFile(
-        QFileDialog::getSaveFileName(m_parent,
+        QFileDialog::getSaveFileName(parentWidget(),
                                      i18n("Export As"),
                                      (m_doc->document()->url().fileName() == i18n("Untitled")) ? QLatin1String("") : m_doc->document()->url().toLocalFile(),
                                      filter));

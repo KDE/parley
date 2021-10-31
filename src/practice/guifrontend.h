@@ -31,7 +31,7 @@ class GuiFrontend : public AbstractFrontend
     Q_OBJECT
 
 public:
-    explicit GuiFrontend(QWidget *parent = 0);
+    explicit GuiFrontend(QWidget *parent = nullptr);
     ~GuiFrontend() override;
 
     QVariant userInput() override;
@@ -95,18 +95,18 @@ private Q_SLOTS:
 private:
     void setImage(const QUrl &image);
 
-    ImageWidget *m_widget;
-    Ui::PracticeMainWindow *m_ui;
-    AbstractModeWidget *m_modeWidget;
+    ImageWidget *m_widget{nullptr};
+    Ui::PracticeMainWindow *m_ui{nullptr};
+    AbstractModeWidget *m_modeWidget{nullptr};
     ResultState m_resultState;
     ResultState m_feedbackState;
     QUrl m_lastImage;
     QUrl m_questionImage;
     QUrl m_solutionImage;
-    int m_currentBox;
-    int m_newBoxIfCorrect;
-    int m_newBoxIfWrong;
-    ThemedBackgroundRenderer *m_themedBackgroundRenderer;
+    int m_currentBox{0};
+    int m_newBoxIfCorrect{0};
+    int m_newBoxIfWrong{0};
+    ThemedBackgroundRenderer *m_themedBackgroundRenderer{nullptr};
 
     QFont m_knownLangFont;
     QFont m_learningLangFont;

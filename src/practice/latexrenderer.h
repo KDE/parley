@@ -20,7 +20,7 @@ class LatexRenderer : public QObject
     Q_OBJECT
 
 public:
-    explicit LatexRenderer(QObject *parent = 0);
+    explicit LatexRenderer(QObject *parent = nullptr);
     void setResultLabel(QLabel *label)
     {
         m_label = label;
@@ -35,7 +35,7 @@ private Q_SLOTS:
     void latexRendered();
 
 private:
-    QLabel *m_label;
+    QLabel *m_label{nullptr};
     QString m_latexFilename;
 };
 

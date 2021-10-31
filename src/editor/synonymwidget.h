@@ -23,7 +23,7 @@ class SynonymWidget : public QWidget, public Ui::SynonymWidget
 public:
     enum SynonymWidgetType { Synonym, Antonym, FalseFriend };
 
-    explicit SynonymWidget(SynonymWidgetType type, QWidget *parent = 0);
+    explicit SynonymWidget(SynonymWidgetType type, QWidget *parent = nullptr);
 
 public slots:
     /**
@@ -42,10 +42,10 @@ private:
     KEduVocDocument *m_doc;
 
     // the one that was selected before
-    KEduVocTranslation *m_lastTranslation;
+    KEduVocTranslation *m_lastTranslation{nullptr};
     // the one the user clicked on latest
-    KEduVocTranslation *m_currentTranslation;
-    QStringListModel *m_listModel;
+    KEduVocTranslation *m_currentTranslation{nullptr};
+    QStringListModel *m_listModel{nullptr};
     SynonymWidgetType m_type;
 };
 }

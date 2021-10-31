@@ -175,7 +175,7 @@ WordTypeView::WordTypeView(EditorWindow *parent)
 
 void WordTypeView::setTranslation(KEduVocExpression *entry, int translation)
 {
-    if (entry == 0) {
+    if (entry == nullptr) {
         return;
     }
 

@@ -18,7 +18,7 @@ class SummaryBarWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit SummaryBarWidget(QWidget *parent = 0);
+    explicit SummaryBarWidget(QWidget *parent = nullptr);
 
     void setStatistics(int correct, int wrong, int notAnswered);
 
@@ -34,15 +34,15 @@ private:
 
     QPixmap captionPixmap(QColor color);
 
-    int m_correct;
-    int m_wrong;
-    int m_notAnswered;
-    int m_total;
+    int m_correct{0};
+    int m_wrong{0};
+    int m_notAnswered{0};
+    int m_total{0};
 
-    QHBoxLayout *m_layout;
-    QLabel *m_correctCaption;
-    QLabel *m_wrongCaption;
-    QLabel *m_notAnsweredCaption;
+    QHBoxLayout *m_layout{nullptr};
+    QLabel *m_correctCaption{nullptr};
+    QLabel *m_wrongCaption{nullptr};
+    QLabel *m_notAnsweredCaption{nullptr};
 
     static const int BAR_HEIGHT = 30;
 };

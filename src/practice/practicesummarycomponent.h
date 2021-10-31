@@ -28,7 +28,7 @@ private:
     void initActions(QWidget *parleyMainWindow);
     void setupDetailsTable();
 
-    SessionManagerBase *m_sessionManager;
+    SessionManagerBase *m_sessionManager{nullptr};
 
     class SortedAttemptTableWidgetItem;
 };

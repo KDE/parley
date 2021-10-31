@@ -51,21 +51,21 @@ private slots:
     void setWordTypeConjunction();
 
 private:
-    QAction *m_actionNewWordType;
-    QAction *m_actionDeleteWordType;
-    QAction *m_actionRenameWordType;
-    KSelectAction *m_actionSpecialTypeMenu;
+    QAction *m_actionNewWordType{nullptr};
+    QAction *m_actionDeleteWordType{nullptr};
+    QAction *m_actionRenameWordType{nullptr};
+    KSelectAction *m_actionSpecialTypeMenu{nullptr};
 
-    QAction *m_noneAction;
-    QAction *m_separator;
-    QAction *m_nounAction;
-    QAction *m_nounMaleAction;
-    QAction *m_nounFemaleAction;
-    QAction *m_nounNeutralAction;
-    QAction *m_adjectiveAction;
-    QAction *m_adverbAction;
-    QAction *m_verbAction;
-    QAction *m_conjunctionAction;
+    QAction *m_noneAction{nullptr};
+    QAction *m_separator{nullptr};
+    QAction *m_nounAction{nullptr};
+    QAction *m_nounMaleAction{nullptr};
+    QAction *m_nounFemaleAction{nullptr};
+    QAction *m_nounNeutralAction{nullptr};
+    QAction *m_adjectiveAction{nullptr};
+    QAction *m_adverbAction{nullptr};
+    QAction *m_verbAction{nullptr};
+    QAction *m_conjunctionAction{nullptr};
 };
 }
 

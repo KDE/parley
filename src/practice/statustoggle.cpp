@@ -15,8 +15,6 @@ using namespace Practice;
 
 StatusToggle::StatusToggle(QWidget *parent)
     : ImageWidget(parent)
-    , m_renderer(0)
-    , m_resultState(AbstractFrontend::QuestionState)
 {
     setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     setScalingEnabled(false);

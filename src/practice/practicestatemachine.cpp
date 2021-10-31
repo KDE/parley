@@ -23,7 +23,6 @@ PracticeStateMachine::PracticeStateMachine(AbstractFrontend *frontend, ParleyDoc
     : QObject(parent)
     , m_frontend(frontend)
     , m_document(doc)
-    , m_current(0)
     , m_sessionManager(sessionManager)
 {
     createPracticeMode();

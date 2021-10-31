@@ -24,7 +24,7 @@ class MultipleChoiceWidget : public QWidget, public Ui::multipleChoiceWidget
     Q_OBJECT
 
 public:
-    explicit MultipleChoiceWidget(QWidget *parent = 0);
+    explicit MultipleChoiceWidget(QWidget *parent = nullptr);
 
 public slots:
     void setTranslation(KEduVocExpression *entry, int translation);
@@ -38,8 +38,8 @@ private slots:
     void slotRemoveChoiceButton();
 
 private:
-    KEduVocTranslation *m_translation;
-    QStringListModel *m_choicesModel;
+    KEduVocTranslation *m_translation{nullptr};
+    QStringListModel *m_choicesModel{nullptr};
 };
 }
 

@@ -32,10 +32,10 @@ private:
 
     QString m_lastAnswer;
     QString m_currentHint;
-    bool m_firstAttempt;
-    SessionManagerBase *m_sessionManager;
+    bool m_firstAttempt{true};
+    SessionManagerBase *m_sessionManager{nullptr};
     QScopedPointer<WrittenPracticeValidator> m_validator;
-    KEduVocDocument *m_doc;
+    KEduVocDocument *m_doc{nullptr};
 };
 
 }

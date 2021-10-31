@@ -15,7 +15,7 @@ class GeneralPracticeOptions : public QWidget, public Ui::GeneralPracticeOptions
 {
     Q_OBJECT
 public:
-    explicit GeneralPracticeOptions(QWidget *parent = 0);
+    explicit GeneralPracticeOptions(QWidget *parent = nullptr);
 };
 
 #endif

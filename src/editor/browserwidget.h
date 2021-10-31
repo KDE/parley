@@ -23,7 +23,7 @@ class BrowserWidget : public QWidget, public Ui::BrowserWidget
 {
     Q_OBJECT
 public:
-    explicit BrowserWidget(QWidget *parent = 0);
+    explicit BrowserWidget(QWidget *parent = nullptr);
 
 public slots:
     /**
@@ -47,9 +47,9 @@ private:
     /// Column in the document - corresponds to the language (-KV_COL_TRANS)
     int m_currentTranslation;
     /// Selection in the doc - if more than one row is selected behavior is different
-    KEduVocExpression *m_entry;
+    KEduVocExpression *m_entry{nullptr};
 
-    QWebEngineView *m_htmlPart;
+    QWebEngineView *m_htmlPart{nullptr};
     QList<DictionaryProvider> m_providers;
     int m_currentProvider;
 };

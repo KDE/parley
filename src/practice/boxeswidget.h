@@ -17,7 +17,7 @@ class BoxesWidget : public ImageWidget
     Q_OBJECT
 
 public:
-    explicit BoxesWidget(QWidget *parent = 0);
+    explicit BoxesWidget(QWidget *parent = nullptr);
     QSize minimumSizeHint() const override;
 
     void setRenderer(ThemedBackgroundRenderer *renderer);
@@ -32,11 +32,11 @@ protected:
 private:
     void drawElement(QPainter *p, const QString &id);
 
-    int m_boxCount;
-    int m_currentBox;
-    int m_lastBox;
+    int m_boxCount{1};
+    int m_currentBox{-1};
+    int m_lastBox{-1};
 
-    ThemedBackgroundRenderer *m_renderer;
+    ThemedBackgroundRenderer *m_renderer{nullptr};
 
     QPixmap m_box;
     QPixmap m_activeBox;
@@ -46,10 +46,10 @@ private:
     QPixmap m_arrowEnd;
 
     QRect m_rect;
-    bool m_fixedSize;
+    bool m_fixedSize{true};
 
-    int m_arrowHint;
-    int m_spacingHint;
+    int m_arrowHint{0};
+    int m_spacingHint{0};
 };
 
 }

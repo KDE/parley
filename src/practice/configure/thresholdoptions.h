@@ -25,8 +25,8 @@ public:
     void updateSettings();
 
 private:
-    KEduVocDocument *m_doc;
-    KConfigSkeleton *m_config;
+    KEduVocDocument *m_doc{nullptr};
+    KConfigSkeleton *m_config{nullptr};
 };
 
 #endif

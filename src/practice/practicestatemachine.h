@@ -20,7 +20,7 @@ class PracticeStateMachine : public QObject
 {
     Q_OBJECT
 public:
-    PracticeStateMachine(AbstractFrontend *frontend, ParleyDocument *doc, SessionManagerBase *sessionManager, QObject *parent = 0);
+    PracticeStateMachine(AbstractFrontend *frontend, ParleyDocument *doc, SessionManagerBase *sessionManager, QObject *parent = nullptr);
     void start();
 
 Q_SIGNALS:
@@ -54,11 +54,11 @@ private:
 
     State m_state;
 
-    AbstractFrontend *m_frontend;
-    AbstractBackendMode *m_mode;
-    ParleyDocument *m_document;
-    TestEntry *m_current;
-    SessionManagerBase *m_sessionManager;
+    AbstractFrontend *m_frontend{nullptr};
+    AbstractBackendMode *m_mode{nullptr};
+    ParleyDocument *m_document{nullptr};
+    TestEntry *m_current{nullptr};
+    SessionManagerBase *m_sessionManager{nullptr};
 };
 
 }

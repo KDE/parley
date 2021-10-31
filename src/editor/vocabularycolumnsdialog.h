@@ -27,7 +27,10 @@ class VocabularyColumnsDialog : public QDialog
 {
     Q_OBJECT
 public:
-    enum Roles { ColumnRole = 0x12, LanguageRole = 0x18 };
+    enum Roles {
+        ColumnRole = 0x12,
+        LanguageRole = 0x18,
+    };
 
     VocabularyColumnsDialog(KEduVocDocument *doc, QWidget *parent);
     ~VocabularyColumnsDialog() override;
@@ -51,9 +54,9 @@ private:
      */
     void saveVisibleColumns();
 
-    DocumentSettings *m_settings;
-    QGridLayout *m_box;
-    KEduVocDocument *m_doc;
+    DocumentSettings *m_settings{nullptr};
+    QGridLayout *m_box{nullptr};
+    KEduVocDocument *m_doc{nullptr};
     QMap<int, QStandardItemModel *> m_models;
 };
 }

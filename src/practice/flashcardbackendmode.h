@@ -23,8 +23,8 @@ public Q_SLOTS:
     void hintAction() override;
 
 private:
-    bool m_solutionVisible;
-    TestEntry *m_current;
+    bool m_solutionVisible{false};
+    TestEntry *m_current{nullptr};
     QString m_currentHint;
 };
 

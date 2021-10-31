@@ -30,10 +30,6 @@ using namespace Practice;
 
 SessionManagerBase::SessionManagerBase(QWidget *parent)
     : m_parent(parent)
-    , m_learningLanguageIndex(0)
-    , m_knownLanguageIndex(1)
-    , m_currentEntry(-1)
-    , m_totalTime(0)
 {
 }
 

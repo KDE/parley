@@ -24,7 +24,7 @@ class PracticeMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
-    explicit PracticeMainWindow(SessionManagerBase *sessionManager, ParleyMainWindow *mainWindow = 0);
+    explicit PracticeMainWindow(SessionManagerBase *sessionManager, ParleyMainWindow *mainWindow = nullptr);
     ~PracticeMainWindow() override;
 
     void startPractice();
@@ -44,12 +44,12 @@ protected:
 private:
     void initActions();
 
-    GuiFrontend *m_guiFrontend;
-    PracticeStateMachine *m_stateMachine;
-    ParleyMainWindow *m_mainWindow;
-    QWidget *m_floatingToolBar;
-    KToggleFullScreenAction *m_fullScreenAction;
-    QPropertyAnimation *m_animation;
+    GuiFrontend *m_guiFrontend{nullptr};
+    PracticeStateMachine *m_stateMachine{nullptr};
+    ParleyMainWindow *m_mainWindow{nullptr};
+    QWidget *m_floatingToolBar{nullptr};
+    KToggleFullScreenAction *m_fullScreenAction{nullptr};
+    QPropertyAnimation *m_animation{nullptr};
 };
 }
 

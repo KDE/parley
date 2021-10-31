@@ -123,11 +123,11 @@ protected: // methods
     bool isValidMultipleChoiceAnswer(KEduVocExpression *e);
 
 protected: // data
-    KEduVocDocument *m_doc;
-    QWidget *m_parent;
-    int m_learningLanguageIndex;
-    int m_knownLanguageIndex;
-    int m_testType;
+    KEduVocDocument *m_doc{nullptr};
+    QWidget *m_parent{nullptr};
+    int m_learningLanguageIndex{0};
+    int m_knownLanguageIndex{1};
+    int m_testType{0};
 
     // ----------------------------------------------------------------
     // The following entries define the training
@@ -146,10 +146,10 @@ protected: // data
     QList<TestEntry *> m_currentEntries;
 
     // The index of the current entry in m_currentEntries.
-    int m_currentEntry;
+    int m_currentEntry{-1};
 
     QElapsedTimer m_time;
-    int m_totalTime;
+    int m_totalTime{0};
 };
 
 }
