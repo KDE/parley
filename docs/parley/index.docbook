@@ -49,7 +49,7 @@
 </copyright>
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2021-10-21</date>
+<date>2021-11-02</date>
 <releaseinfo>KDE Gear 21.08</releaseinfo>
 
 <!-- Abstract about this handbook -->
@@ -117,7 +117,7 @@
 <para>A vocabulary collection is a file that contains words and their translations into other languages or other pairs of words and sentences that you want to memorize. The words are organized in units.
 </para>
 
-<para>To <emphasis>start practicing</emphasis>, press the <inlinemediaobject><imageobject><imagedata fileref="practice-start.png" format="PNG"/></imageobject></inlinemediaobject> <guiicon>Practice</guiicon> icon on one of the vocabulary collection names in the list. You are taken to the <link linkend="practice-overview">practice overview</link>.
+<para>To <emphasis>start practicing</emphasis>, click with the &RMB; on the <guilabel>Practice Anyway</guilabel> box on one of the vocabulary collection names in the list. You are taken to the <link linkend="practice-overview">practice overview</link>.
 </para>
 
 <para>Note that a small <inlinemediaobject><imageobject><imagedata fileref="icon-delete.png" format="PNG"/></imageobject></inlinemediaobject> <guiicon>Delete</guiicon> icon appears bottom on the left of the collection item. This lets you remove the collection from the list.
@@ -302,7 +302,7 @@
 <sect1 id="practice"><title>Practice</title>
 <sect2 id="flash-cards"><title>Flash Cards</title>
 
-<para>After having activated the <guilabel>Flash Card</guilabel> on the <guilabel>Practice Mode</guilabel> section and having pressed on the <inlinemediaobject><imageobject><imagedata fileref="practice-start.png" format="PNG"/></imageobject></inlinemediaobject> <guiicon>Start Practice...</guiicon> icon in the toolbar the following screen shows up. The <guilabel>Flash Card</guilabel> Training Mode works just as if you would do it with <quote>real</quote> flash cards. You imagine the result and should you wish some help, you can press on the <guibutton>Hint</guibutton> button, which will start to give you the result one letter at a time.
+<para>After having activated the <guilabel>Flash Cards</guilabel> on the <guilabel>Practice Mode</guilabel> section and having pressed on the <inlinemediaobject><imageobject><imagedata fileref="practice-start.png" format="PNG"/></imageobject></inlinemediaobject> <guiicon>Start Practice...</guiicon> icon in the toolbar the following screen shows up. The <guilabel>Flash Cards</guilabel> Training Mode works just as if you would do it with <quote>real</quote> flash cards. You imagine the result and should you wish some help, you can press on the <guibutton>Hint</guibutton> button, which will start to give you the result one letter at a time.
 </para>
 
 <para>You can also decide to skip a word for now. When you press the <guibutton>Answer Later</guibutton> button, the word will show up again at a later time.
@@ -338,7 +338,7 @@
   </mediaobject>
 </screenshot>
 
-<para>You can stop practicing anytime by clicking on <guibutton>Stop Practice</guibutton>.
+<para>You can stop practicing anytime by pressing on the <guibutton>Stop Practice</guibutton> button.
 </para>
 </sect2>
 
@@ -443,7 +443,7 @@
 
 <sect3 id="with-yes-no-answers"><title>With yes/no answers</title>
 
-<para>Normally &parley; automatically proposes one correct and several wrong answers in Multiple Choice mode. For some exercises instead you will have preset answers like yes/no or similar. And for these you have to configure the practice by clicking on the <inlinemediaobject><imageobject><imagedata fileref="practice-setup.png" format="PNG"/></imageobject></inlinemediaobject> <link linkend="advanced-practice-configuration"><guiicon>Configure Practice...</guiicon></link> icon in the toolbar.
+<para>Normally &parley; automatically proposes one correct and several wrong answers in Multiple Choice mode. For some exercises instead you will have preset answers like yes/no or similar. And for these you have to configure the practice by selecting the <inlinemediaobject><imageobject><imagedata fileref="practice-setup.png" format="PNG"/></imageobject></inlinemediaobject> <link linkend="advanced-practice-configuration"><guiicon>Configure Practice...</guiicon></link> icon in the toolbar.
 </para>
 
 <para>Select the <guilabel>Specific</guilabel> page and you will get something very similar to the following screenshot:
@@ -498,9 +498,6 @@
 </screenshot>
 
 <para>Go ahead practicing by pressing on <guibutton>Continue</guibutton> or stop by pressing on the button <guibutton>Stop Practice</guibutton>.
-</para>
-
-<para>When the solution is revealed, you see a big icon on the right that indicates if your answer will count as right or wrong.
 </para>
 
 <para>You can overrule how your answer is counted. See <link linkend="practice-overview">Practice Overview</link>.
@@ -704,7 +701,7 @@
 <para>Set up some grammar details to let &parley; help you. Use the <menuchoice><guimenu>Edit</guimenu> <guimenuitem>Languages...</guimenuitem></menuchoice> menu item to pull up a grammar.
 </para>
 
-<para>Articles in English are simply <guilabel>the</guilabel> which is the definite article and <guilabel>a</guilabel> as indefinite article. Most other languages have more articles which can be filled in at the articles tab.
+<para>Articles in English are simply <guilabel>the</guilabel> which is the definite article and <guilabel>a</guilabel> as indefinite article. Most other languages have more articles which can be filled in at the <guilabel>Articles</guilabel> tab.
 </para>
 
 <para>For conjugations the personal pronouns should be filled out. Most languages do not have different conjugation forms for he/she/it, in that case, you should <emphasis>not</emphasis> check <guilabel>Male/female have different conjugations</guilabel>! Simply enter the pronouns for all three forms.
@@ -746,7 +743,7 @@
 
 <sect3 id="lets-have-a-closer-look-at-spanish"><title>Let's Have a Closer Look at Spanish</title>
 
-<para>On the <guilabel>General</guilabel> tab the basic language settings, like here
+<para>On the <guilabel>General</guilabel> tab the basic language settings, like here:
 </para>
 
 <itemizedlist>
@@ -853,7 +850,7 @@
 
 <sect2 id="splitting-a-unit"><title>Splitting a Unit</title>
 
-<para>If your units grow too big, you can choose to split them up to make learning easier in small units. 20 words for a unit is probably a good size. Right click a unit, or use the <menuchoice><guimenu>Unit</guimenu> <guimenuitem>Split Unit into Smaller Units</guimenuitem></menuchoice> menu item and the unit will be separated into child units. You can choose to randomize the words that are put into the new units before assigning them, or to keep them in order.
+<para>If your units grow too big, you can choose to split them up to make learning easier in small units. 20 words for a unit is probably a good size. Click with the &RMB; on a unit, or use the <menuchoice><guimenu>Unit</guimenu> <guimenuitem>Split Unit into Smaller Units</guimenuitem></menuchoice> menu item and the unit will be separated into child units. You can choose to randomize the words that are put into the new units before assigning them, or to keep them in order.
 </para>
 </sect2>
 
@@ -923,7 +920,7 @@
 <para>First show the image tool by selecting the <menuchoice><guimenu>View</guimenu> <guimenuitem>Image</guimenuitem></menuchoice> check box. This will show up the <guilabel>Image</guilabel> section on the right hand side of the &parley; screen.
 </para>
 
-<para>To add an image to a word make sure the word is highlighted. In the image section on the right hand side press on the <inlinemediaobject><imageobject><imagedata fileref="folder-black.png" format="PNG"/></imageobject></inlinemediaobject> <guiicon>Folder</guiicon> icon in the toolbar and choose the picture you wish to associate. On selecting an image for a pair of translations, the bottom right corners of the cells of both the words would be marked with a blue flag. Hovering over this flag with the mouse cursor shows the name and path of the image file.
+<para>To add an image to a word make sure the word is highlighted. In the <guilabel>Image</guilabel> section on the right hand side press on the <inlinemediaobject><imageobject><imagedata fileref="folder-black.png" format="PNG"/></imageobject></inlinemediaobject> <guiicon>Folder</guiicon> icon and choose the picture you wish to associate. On selecting an image for a pair of translations, the bottom right corners of the cells of both the words would be marked with a blue flag. If you want this way, do the same with the other word of the couple. Hovering over this flag with the mouse cursor shows the name and path of the image file.
 </para>
 
 <screenshot>
@@ -966,7 +963,7 @@
 <para>First show the sound tool by selecting the <menuchoice><guimenu>View</guimenu> <guimenuitem>Sound</guimenuitem></menuchoice> check box. This will show up the <guilabel>Sound</guilabel> section on the right hand side of the &parley; screen.
 </para>
 
-<para>To add a sound to a word make sure the word is highlighted. In the sound section on the right hand side click on the <inlinemediaobject><imageobject><imagedata fileref="folder-black.png" format="PNG"/></imageobject></inlinemediaobject> <guiicon>Folder</guiicon> icon in the toolbar and choose the sound you wish to associate. On selecting a sound file for a word, the top right corner of the cell of that word would be marked with a red flag. Hovering over this flag with the mouse cursor shows the name and path of the sound file.
+<para>To add a sound to a word make sure the word is highlighted. In the <guilabel>Sound</guilabel> section on the right hand side press on the <inlinemediaobject><imageobject><imagedata fileref="folder-black.png" format="PNG"/></imageobject></inlinemediaobject> <guiicon>Folder</guiicon> icon and choose the sound you wish to associate. On selecting a sound file for a word, the top right corner of the cell of that word would be marked with a red flag. If you want this way, do the same with the other word of the couple. Hovering over this flag with the mouse cursor shows the name and path of the sound file.
 </para>
 
 <screenshot>
@@ -1004,7 +1001,7 @@
   </mediaobject>
 </screenshot>
 
-<para>Click the <guibutton>Adjective</guibutton> or <guibutton>Adverb</guibutton> button in the comparison forms tool.
+<para>Press the <guibutton>Adjective</guibutton> or <guibutton>Adverb</guibutton> button in the comparison forms tool.
 </para>
 <!--
 <screenshot>
@@ -1057,7 +1054,7 @@
   </mediaobject>
 </screenshot>
 
-<para>After selecting the right tense in the tense selection box, enter the conjugation forms.
+<para>After selecting the right tense in the <guilabel>Tense:</guilabel> drop down box, enter the conjugation forms.
 </para>
 
 <para>The tenses can be configured for each language: <link linkend="languages-and-grammar">Languages and Grammar</link>.
@@ -1133,7 +1130,7 @@
   </mediaobject>
 </screenshot>
 
-<para>Before we do anything else, let's save the file to the folder with the pictures and sound-files. Use the <menuchoice><guimenu>File</guimenu> <guimenuitem>Save</guimenuitem></menuchoice> menu item and select the folder using the navigation. In this example we will call the file <guilabel>Trainer eng-deu</guilabel> - once you entered the name just click on save.
+<para>Before we do anything else, let's save the file to the folder with the pictures and sound-files. Use the <menuchoice><guimenu>File</guimenu> <guimenuitem>Save</guimenuitem></menuchoice> menu item and select the folder using the navigation. In this example we will call the file <guilabel>Trainer eng-deu</guilabel> - once you entered the name just press on the <guibutton>Save</guibutton> button.
 </para>
 
 <screenshot>
@@ -1153,7 +1150,7 @@
 <para>We now rename <guilabel>Lesson 1</guilabel> to <guilabel>Animals</guilabel> and then we add a unit called <guilabel>Fruits</guilabel>. Click with the &RMB; on the <guilabel>Lesson 1</guilabel> and choose <guimenuitem>Rename Unit</guimenuitem> from the items shown. Now <guilabel>Lesson 1</guilabel> is highlighted and you can simply overwrite it by typing in <guilabel>Animals</guilabel>. When done, press the &Enter; key. Now click with the &RMB; on the <guilabel>Collection: Vocabulary trainer E...</guilabel>, which is the root of the unit tree and choose <guimenuitem>New Unit</guimenuitem> from the items shown. In the new field write <guilabel>Fruits</guilabel> and press the &Enter; key again.
 </para>
 
-<para>First, let's insert the animals. Please click on the unit <guilabel>Animals</guilabel> and you will get an empty table you can fill in. Click with your mouse in the first field, and insert the source terms.  Then, insert the target terms in the second column. Once you've inserted all 4 English animal names with their German translation the screen looks like this:
+<para>First, let's insert the animals. Please click on the unit <guilabel>Animals</guilabel> and you will get an empty table you can fill in. Click with the &RMB; in the first field, and insert the source terms.  Then, insert the target terms in the second column. Once you've inserted all 4 English animal names with their German translation the screen looks like this:
 </para>
 
 <screenshot>
@@ -1184,7 +1181,7 @@
   </mediaobject>
 </screenshot>
 
-<para>Time to add sound and images. First of all we need to activate the Image and Sound views. Select the <menuchoice><guimenu>View</guimenu> <guimenuitem>Image</guimenuitem></menuchoice> and <menuchoice><guimenu>View</guimenu> <guimenuitem>Sound</guimenuitem></menuchoice> check boxes. Once these options are activated, two new sections are shown on the right hand side of the &parley; editing screen: <emphasis>Image</emphasis> and <emphasis>Sound</emphasis>
+<para>Time to add sound and images. First of all we need to activate the <guilabel>Image</guilabel> and <guilabel>Sound</guilabel> views. Select the <menuchoice><guimenu>View</guimenu> <guimenuitem>Image</guimenuitem></menuchoice> and <menuchoice><guimenu>View</guimenu> <guimenuitem>Sound</guimenuitem></menuchoice> check boxes. Once these options are activated, two new sections are shown as two new tabs on the bottom right hand side of the &parley; editing screen.
 </para>
 
 <screenshot>
@@ -1195,13 +1192,13 @@
   </mediaobject>
 </screenshot>
 
-<para>Select the English word <emphasis>apple</emphasis> by clicking on it. It is highlighted, so let's add the picture. In the image section on the right hand side click on the <inlinemediaobject><imageobject><imagedata fileref="folder-black.png" format="PNG"/></imageobject></inlinemediaobject> <guiicon>Folder</guiicon> icon in the toolbar and choose the picture you wish to associate.
+<para>Select the English word <emphasis>apple</emphasis> by clicking on it. It is highlighted, so let's add the picture. In the image section on the right hand side press on the <inlinemediaobject><imageobject><imagedata fileref="folder-black.png" format="PNG"/></imageobject></inlinemediaobject> <guiicon>Folder</guiicon> icon and choose the picture you wish to associate.
 </para>
 
 <para>To add the pronunciation for the English apple, do the same in the Sound section, selecting the relevant sound file.
 </para>
 
-<para>By clicking on the <guibutton>Play</guibutton> button in the sound tool you can listen to the pronunciation.
+<para>By pressing on the <guibutton>Play</guibutton> button in the sound tool you can listen to the pronunciation.
 </para>
 
 <para>The screen will then look like this:
@@ -1243,7 +1240,7 @@
   </mediaobject>
 </screenshot>
 
-<para>As the next step we are going to show the <guilabel>Word Type</guilabel>. Select <guilabel>View</guilabel> in the menubar and then select <guilabel>Vocabulary Columns</guilabel>. We activate <guilabel>Word Type</guilabel> for <emphasis>English</emphasis> and <emphasis>German</emphasis> by clicking on the check box in front of <guilabel>Word Type</guilabel>. Then click on <guilabel>OK</guilabel> to accept the changes.
+<para>As the next step we are going to show the <guilabel>Word Type</guilabel>. Select the <menuchoice><guimenu>View</guimenu> <guimenuitem>Vocabulary Columns</guimenuitem></menuchoice> check box. We activate <guilabel>Word Type</guilabel> for <emphasis>English</emphasis> and <emphasis>German</emphasis> by clicking on the check box in front of <guilabel>Word Type</guilabel>. Then press on the <guibutton>OK</guibutton> button to accept the changes.
 </para>
 
 <screenshot>
@@ -1298,7 +1295,7 @@
   </mediaobject>
 </screenshot>
 
-<para>Finally, let's consider the <guilabel>Conjugation</guilabel> form of the <guilabel>Verbs</guilabel>. Select the <guilabel>Verbs</guilabel> unit and then activate the conjugation section on the right hand side by selecting <guilabel>View</guilabel> from the menubar and activating <guilabel>Conjugation</guilabel>. As an example we edit the present tense (<guilabel>Präsens</guilabel>) form of <emphasis>gehen</emphasis>. Please first select <guilabel>Präsens</guilabel> from the drop down menu and then add the verb forms.
+<para>Finally, let's consider the conjugation form of the <guilabel>Verbs</guilabel>. Select the <guilabel>Verbs</guilabel> unit and then activate the inflection section on the right hand side by selecting the <menuchoice><guimenu>View</guimenu> <guimenuitem>Inflection (verbs, adjectives, nouns)</guimenuitem></menuchoice> check box. As an example we edit the present tense (<guilabel>Präsens</guilabel>) form of <emphasis>gehen</emphasis>. Please first select <guilabel>Präsens</guilabel> from the drop down box and then add the verb forms.
 </para>
 
 <screenshot>
@@ -1312,7 +1309,7 @@
 <para>This needs to be done for all verbs, and in all possible tenses.
 </para>
 
-<para>Once you are done you can start to practice by clicking on the <inlinemediaobject><imageobject><imagedata fileref="practice-start.png" format="PNG"/></imageobject></inlinemediaobject> <link linkend="vocabulary-practice"><guiicon>Practice</guiicon></link> icon.
+<para>Once you are done you can start to practice by pressing on the <inlinemediaobject><imageobject><imagedata fileref="practice-start.png" format="PNG"/></imageobject></inlinemediaobject> <link linkend="vocabulary-practice"><guiicon>Practice</guiicon></link> icon in the toolbar.
 </para>
 </sect2>
 
@@ -1371,7 +1368,7 @@
   </mediaobject>
 </screenshot>
 
-<para>Like before: choose <guilabel>Italian</guilabel> as language and insert <emphasis>nome collettivo</emphasis> and press on the <guilabel>OK</guilabel> button.
+<para>Like before: choose <guilabel>Italian</guilabel> as language and insert <emphasis>nome collettivo</emphasis> and press on the <guibutton>OK</guibutton> button.
 </para>
 
 <para>And now you can start to edit:
@@ -1407,14 +1404,14 @@
   </mediaobject>
 </screenshot>
 
-<para>In this case <guilabel>Multiple Choice</guilabel> is a good option, but also <guilabel>Written</guilabel> will do fine. After choosing the Practice Mode just click on the <inlinemediaobject><imageobject><imagedata fileref="practice-start.png" format="PNG"/></imageobject></inlinemediaobject> <guiicon>Start Practice...</guiicon> icon in the toolbar and have fun.
+<para>In this case <guilabel>Multiple Choice</guilabel> is a good option, but also <guilabel>Written</guilabel> will do fine. After choosing the Practice Mode just press on the <inlinemediaobject><imageobject><imagedata fileref="practice-start.png" format="PNG"/></imageobject></inlinemediaobject> <guiicon>Start Practice...</guiicon> icon in the toolbar and have fun.
 </para>
 </sect2>
 </sect1>
 
 <sect1 id="getting-additional-collections"><title>Getting Additional Collections</title>
 
-<para>When you are on the <guilabel>Dashboard</guilabel> you have the possibility to install collections directly from the server, provided you are online. Just click on <guibutton>Download New Collections...</guibutton> button.
+<para>When you are on the <guilabel>Dashboard</guilabel> you have the possibility to install collections directly from the server, provided you are online. Just press on the <guibutton>Download New Collections...</guibutton> button.
 </para>
 
 <screenshot>
@@ -1571,7 +1568,7 @@
 <para>If that does not work, you can also visit <ulink url="https://store.kde.org/">store.kde.org</ulink>.
 </para>
 
-<para>In either case the files will show up in the <guibutton>Download New Collections...</guibutton> dialog on the <guilabel>Dashboard</guilabel>.
+<para>In either case the files will show up in the <guilabel>Download New Stuff</guilabel> dialog by pressing the <guibutton>Download New Collections...</guibutton> button on the <guilabel>Dashboard</guilabel>.
 </para>
 </sect1>
 
