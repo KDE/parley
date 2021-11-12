@@ -23,11 +23,6 @@
 #include <QMimeDatabase>
 #include <QStandardPaths>
 #include <knewstuff_version.h>
-#if KNEWSTUFF_VERSION < QT_VERSION_CHECK(5, 78, 0)
-#include <KNS3/DownloadDialog>
-#else
-#include <KNS3/QtQuickDialogWrapper>
-#endif
 #include <KEMailSettings>
 #include <KMessageBox>
 #include <KProcess>
@@ -522,17 +517,10 @@ void ParleyDocument::setDefaultDocumentProperties(KEduVocDocument *doc)
     doc->setModified(false);
 }
 
-void ParleyDocument::slotGHNS()
+void ParleyDocument::slotGHNS(const QList<KNSCore::Entry> &entries)
 {
     QMimeDatabase db;
     QString fileName;
-#if KNEWSTUFF_VERSION < QT_VERSION_CHECK(5, 78, 0)
-    KNS3::DownloadDialog newStuffDialog(QStringLiteral("parley.knsrc"));
-    newStuffDialog.exec();
-    KNS3::Entry::List entries = newStuffDialog.installedEntries();
-#else
-    const auto entries = KNS3::QtQuickDialogWrapper(QStringLiteral("parley.knsrc")).exec();
-#endif
     int numberInstalled = 0;
     for (const auto &entry : entries) {
         if (entry.status() != KNS3::Entry::Installed) {

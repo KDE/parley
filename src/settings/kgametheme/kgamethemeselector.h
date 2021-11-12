@@ -61,7 +61,6 @@ private:
 
     Q_PRIVATE_SLOT(d_func(), void _k_updatePreview())
     Q_PRIVATE_SLOT(d_func(), void _k_updateThemeList(const QString &))
-    Q_PRIVATE_SLOT(d_func(), void _k_openKNewStuffDialog())
 };
 
 #endif

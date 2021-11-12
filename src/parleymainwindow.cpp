@@ -19,6 +19,7 @@
 #include "statistics/statisticsmainwindow.h"
 #include <KActionCollection>
 #include <KMessageBox>
+#include <KNSWidgets/Action>
 #include <KRecentFilesAction>
 #include <KToolBar>
 #include <KXMLGUIFactory>
@@ -206,7 +207,15 @@ void ParleyMainWindow::initActions()
 {
     ParleyActions::create(ParleyActions::FileNew, this, SLOT(slotFileNew()), actionCollection());
     ParleyActions::create(ParleyActions::FileOpen, m_document, SLOT(slotFileOpen()), actionCollection());
-    ParleyActions::createDownloadAction(m_document, SLOT(slotGHNS()), actionCollection());
+
+    KNSWidgets::Action *pAction = new KNSWidgets::Action(i18n("Download New Vocabularies..."), QStringLiteral("parley.knsrc"), actionCollection());
+    actionCollection()->addAction(QStringLiteral("file_ghns"), pAction);
+    QObject::connect(pAction, &KNSWidgets::Action::dialogFinished, m_document, &ParleyDocument::slotGHNS);
+
+    pAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_G));
+    actionCollection()->setDefaultShortcut(pAction, QKeySequence(Qt::CTRL | Qt::Key_G));
+    pAction->setToolTip(i18n("Downloads new vocabulary collections"));
+
     ParleyActions::create(ParleyActions::FileOpenDownloaded, m_document, SLOT(openGHNS()), actionCollection());
 
     m_recentFilesAction = ParleyActions::createRecentFilesAction(m_document, SLOT(slotFileOpenRecent(QUrl)), actionCollection());
@@ -353,7 +362,6 @@ void ParleyMainWindow::showDocumentActions(bool open, bool edit)
     actionCollection()->action(QStringLiteral("file_new"))->setVisible(open);
     actionCollection()->action(QStringLiteral("file_open"))->setVisible(open);
     actionCollection()->action(QStringLiteral("file_open_recent"))->setVisible(open);
-    actionCollection()->action(QStringLiteral("file_ghns"))->setVisible(open);
     actionCollection()->action(QStringLiteral("file_open_downloaded"))->setVisible(open);
 
     actionCollection()->action(QStringLiteral("file_save"))->setVisible(edit);

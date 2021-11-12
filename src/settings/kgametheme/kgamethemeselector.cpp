@@ -8,12 +8,6 @@
 
 #include <KConfigSkeleton>
 #include <KLocalizedString>
-#include <knewstuff_version.h>
-#if KNEWSTUFF_VERSION < QT_VERSION_CHECK(5, 78, 0)
-#include <KNS3/DownloadDialog>
-#else
-#include <KNS3/QtQuickDialogWrapper>
-#endif
 #include <QDirIterator>
 
 #include "kgametheme.h"
@@ -45,7 +39,6 @@ public:
     // private slots
     void _k_updatePreview();
     void _k_updateThemeList(const QString &strTheme);
-    void _k_openKNewStuffDialog();
 };
 
 KGameThemeSelector::KGameThemeSelector(QWidget *parent,
@@ -69,7 +62,7 @@ KGameThemeSelector::~KGameThemeSelector()
 void KGameThemeSelectorPrivate::setupData(KConfigSkeleton *aconfig, KGameThemeSelector::NewStuffState knsflags)
 {
     ui.setupUi(q_ptr);
-    ui.getNewButton->setIcon(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")));
+    ui.getNewButton->setConfigFile(QStringLiteral("parley-themes.knsrc"));
 
     // The lineEdit widget holds our theme path for automatic connection via KConfigXT.
     // But the user should not manipulate it directly, so we hide it.
@@ -88,7 +81,11 @@ void KGameThemeSelectorPrivate::setupData(KConfigSkeleton *aconfig, KGameThemeSe
     // Now get our themes into the list widget
     findThemes(lastUsedTheme);
 
-    q_func()->connect(ui.getNewButton, SIGNAL(clicked()), q_ptr, SLOT(_k_openKNewStuffDialog()));
+    q_func()->connect(ui.getNewButton, &KNSWidgets::Button::dialogFinished, q_ptr, [&](const QList<KNSCore::Entry> &changedEntries) {
+        if (!changedEntries.isEmpty()) {
+            findThemes(ui.kcfg_Theme->text());
+        }
+    });
 }
 
 void KGameThemeSelectorPrivate::findThemes(const QString &initialSelection)
@@ -206,21 +203,6 @@ void KGameThemeSelectorPrivate::_k_updateThemeList(const QString &strTheme)
             }
         }
     }
-}
-
-void KGameThemeSelectorPrivate::_k_openKNewStuffDialog()
-{
-#if KNEWSTUFF_VERSION < QT_VERSION_CHECK(5, 78, 0)
-    KNS3::DownloadDialog dialog(QStringLiteral("parley-themes.knsrc"), q_ptr);
-    dialog.exec();
-    if (!dialog.changedEntries().isEmpty())
-        findThemes(ui.kcfg_Theme->text());
-#else
-    if (!KNS3::QtQuickDialogWrapper(QStringLiteral("parley-themes.knsrc")).exec().isEmpty()) {
-        // Only load the list if entries are changed
-        findThemes(ui.kcfg_Theme->text());
-    }
-#endif
 }
 
 #include "moc_kgamethemeselector.cpp"

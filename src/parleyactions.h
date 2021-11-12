@@ -41,8 +41,6 @@ enum ParleyAction {
 QAction *create(ParleyAction id, const QObject *recvr, const char *slot, KActionCollection *parent);
 
 KRecentFilesAction *createRecentFilesAction(const QObject *recvr, const char *slot, QObject *parent);
-
-QAction *createDownloadAction(const QObject *recvr, const char *slot, KActionCollection *collection);
 }
 
 #endif

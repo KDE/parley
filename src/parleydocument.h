@@ -6,6 +6,7 @@
 #define PARLEYDOCUMENT_H
 
 #include <KEduVocDocument>
+#include <KNSWidgets/Button>
 #include <QObject>
 #include <memory>
 
@@ -46,7 +47,7 @@ public Q_SLOTS:
     /** open a downloaded (knewstuff/get hot new stuff) document */
     void openGHNS();
     /** download new vocabularies */
-    void slotGHNS();
+    void slotGHNS(const QList<KNSCore::Entry> &entries);
 
     /** Opens the given url, displays an error message and returns false on failure */
     bool open(const QUrl &);

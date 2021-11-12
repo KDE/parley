@@ -129,7 +129,7 @@
     </widget>
    </item>
    <item row="5" column="3">
-    <widget class="QPushButton" name="ghnsButton">
+    <widget class="KNSWidgets::Button" name="ghnsButton">
      <property name="text">
       <string>Download New Collections...</string>
      </property>
@@ -146,4 +146,11 @@
  </widget>
  <resources/>
  <connections/>
+ <customwidgets>
+  <customwidget>
+   <class>KNSWidgets::Button</class>
+   <extends>QPushButton</extends>
+   <header>KNSWidgets/Button</header>
+  </customwidget>
+ </customwidgets>
 </ui>

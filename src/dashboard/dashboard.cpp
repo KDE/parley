@@ -13,6 +13,7 @@
 
 //#include <KMimeType>
 #include <KActionCollection>
+#include <KNSWidgets/Button>
 
 #include "../utils.h"
 #include "buttondelegate.h"
@@ -80,7 +81,8 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     ParleyDocument *doc = m_mainWindow->parleyDocument();
     connect(m_ui.newButton, &QAbstractButton::clicked, m_mainWindow, &ParleyMainWindow::slotFileNew);
     connect(m_ui.openButton, &QAbstractButton::clicked, doc, &ParleyDocument::slotFileOpen);
-    connect(m_ui.ghnsButton, &QAbstractButton::clicked, doc, &ParleyDocument::slotGHNS);
+    connect(m_ui.ghnsButton, &KNSWidgets::Button::dialogFinished, doc, &ParleyDocument::slotGHNS);
+    m_ui.ghnsButton->setConfigFile("parley.knsrc");
 
     KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
     applyMainWindowSettings(cfg);

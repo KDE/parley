@@ -35,7 +35,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="getNewButton">
+        <widget class="KNSWidgets::Button" name="getNewButton">
          <property name="text">
           <string>&amp;Get New Themes...</string>
          </property>
@@ -238,4 +238,11 @@
  </widget>
  <resources/>
  <connections/>
+ <customwidgets>
+  <customwidget>
+   <class>KNSWidgets::Button</class>
+   <extends>QPushButton</extends>
+   <header>KNSWidgets/Button</header>
+  </customwidget>
+ </customwidgets>
 </ui>
