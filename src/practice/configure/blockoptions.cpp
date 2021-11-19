@@ -13,9 +13,21 @@
 #include <KMessageBox>
 
 #include "prefs.h"
-
+#include <ki18n_version.h>
+#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
+#include <KLazyLocalizedString>
+#undef I18N_NOOP
+#define I18N_NOOP kli18n
+#define I18N_NOOP_EMPTY KLazyLocalizedString()
+#else
+#define I18N_NOOP_EMPTY nullptr
+#endif
 struct ListRef {
+#if KI18N_VERSION < QT_VERSION_CHECK(5, 89, 0)
     const char *text;
+#else
+    const KLazyLocalizedString text;
+#endif
     long int num;
 };
 
@@ -49,7 +61,7 @@ static ListRef date_itemlist[] = {{I18N_NOOP("Do not Care"), 0},
                                   {I18N_NOOP("6 Months"), 6 * 60 * 60 * 24 * 30},
                                   {I18N_NOOP("10 Months"), 10 * 60 * 60 * 24 * 30},
                                   {I18N_NOOP("12 Months"), 12 * 60 * 60 * 24 * 30},
-                                  {0, 0}};
+                                  {I18N_NOOP_EMPTY, 0}};
 
 BlockOptions::BlockOptions(QWidget *parent)
     : QWidget(parent)
@@ -156,22 +168,36 @@ void BlockOptions::fillComboBox(KComboBox *cb)
     ListRef *ref = date_itemlist;
 
     cb->clear();
-    while (ref->text != 0) {
+#if KI18N_VERSION < QT_VERSION_CHECK(5, 89, 0)
+    while (ref->text != nullptr) {
         cb->addItem(i18n(ref->text));
         ref++;
     }
+#else
+    while (!KLocalizedString(ref->text).toString().isEmpty()) {
+        cb->addItem(KLocalizedString(ref->text).toString());
+        ref++;
+    }
+#endif
 }
 
 void BlockOptions::updateComboBox(int value, KComboBox *cb)
 {
     ListRef *ref = date_itemlist;
     int index = 0;
-
-    while (ref->text != 0) {
+#if KI18N_VERSION < QT_VERSION_CHECK(5, 89, 0)
+    while (ref->text != nullptr) {
         if (value == ref->num)
             index = ref - date_itemlist;
         ref++;
     }
+#else
+    while (!KLocalizedString(ref->text).toString().isEmpty()) {
+        if (value == ref->num)
+            index = ref - date_itemlist;
+        ref++;
+    }
+#endif
     cb->setCurrentIndex(index);
 }
 
