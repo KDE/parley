@@ -17,3 +17,4 @@ Dependencies:
     'frameworks/kcmutils': '@stable'
     'frameworks/kxmlgui': '@stable'
     'frameworks/knotifications': '@stable'
+    'education/libkeduvocdocument': '@same'
