@@ -13,9 +13,9 @@ using namespace Editor;
 
 BrowserWidget::BrowserWidget(QWidget *parent)
     : QWidget(parent)
-    , m_htmlPart{new QWebEngineView(widget)}
 {
     setupUi(this);
+    m_htmlPart = new QWebEngineView(widget);
     m_currentTranslation = -1;
     m_currentProvider = 0; ///@todo kconfig?
 
