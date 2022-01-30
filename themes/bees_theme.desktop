@@ -1,5 +1,6 @@
 [KGameTheme]
 Name=Bees
+Name[ar]=النحل
 Name[bg]=Пчели
 Name[bs]=Pčele
 Name[ca]=Abelles
@@ -41,6 +42,7 @@ Name[x-test]=xxBeesxx
 Name[zh_CN]=蜜蜂
 Name[zh_TW]=蜜蜂
 Description=Awesome cute bees
+Description[ar]=نحل لطيف ورهيب
 Description[bs]=Simpatične pčele
 Description[ca]=Abelles superbufones
 Description[ca@valencia]=Abelles superbufones

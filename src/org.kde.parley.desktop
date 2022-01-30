@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=Parley
+Name[ar]=المفاوض
 Name[bg]=Parley
 Name[bs]=Parley
 Name[ca]=Parley
@@ -62,6 +63,7 @@ Type=Application
 Terminal=false
 Categories=Qt;KDE;Education;Languages;
 Comment=A program to help you memorize things.
+Comment[ar]=برنامج لمساعدتك على حفظ الأشياء.
 Comment[ca]=Un programa per a ajudar a memoritzar les coses.
 Comment[ca@valencia]=Un programa per a ajudar a memoritzar les coses.
 Comment[cs]=Program, který vám pomůže zapamatovat si věci.
@@ -93,6 +95,7 @@ Comment[zh_TW]=訓練記憶力的程式。
 X-DBUS-ServiceName=org.kde.parley
 GenericName=Vocabulary Trainer
 GenericName[af]=Woordeskat-afrigter
+GenericName[ar]=مدرب المفردات
 GenericName[be]=Пашырэнне слоўнікавага запасу
 GenericName[bg]=Речникови тренировки
 GenericName[bn]=শব্দভাণ্ডার সমৃদ্ধকারী
