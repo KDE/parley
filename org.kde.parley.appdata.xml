@@ -4,6 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>Parley</name>
+  <name xml:lang="ar">المفاوض</name>
   <name xml:lang="bs">Parley</name>
   <name xml:lang="ca">Parley</name>
   <name xml:lang="ca-valencia">Parley</name>
@@ -39,6 +40,7 @@
   <name xml:lang="zh-CN">Parley</name>
   <name xml:lang="zh-TW">語言_Parley</name>
   <summary>Vocabulary Trainer</summary>
+  <summary xml:lang="ar">مدرب المفردات</summary>
   <summary xml:lang="bs">Trener riječnika</summary>
   <summary xml:lang="ca">Entrenador de vocabulari</summary>
   <summary xml:lang="ca-valencia">Entrenador de vocabulari</summary>
@@ -74,6 +76,7 @@
   <summary xml:lang="zh-TW">字彙訓練師</summary>
   <description>
     <p>Parley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. It supports many language specific features, but can be used for other learning tasks as well. It uses the spaced repetition learning method, which makes learning optimal. Vocabulary collections can be downloaded by "Get Hot New Stuff" or created with the built-in editor.</p>
+    <p xml:lang="ar">المفاوض هو مدرب مفردات. يساعدك على حفظ مفرداتك، على سبيل المثال عندما تحاول تعلم لغة أجنبية. يدعم العديد من الميزات الخاصة باللغة، ولكن يمكن استخدامه في مهام التعلم الأخرى أيضًا. يستخدم طريقة التعلم بالتكرار المتباعد مما يجعل التعلم أمثل. يمكن تنزيل مجموعات المفردات عن طريق "Get Hot New Stuff" أو إنشاؤها باستخدام المحرر المدمج.</p>
     <p xml:lang="bs">Parlej je trener rječnika. Pomaže vam da zapamtite svoj rječnik, na primer, kada pokušavate da naučite strani jezik. On podržava mnoge jezičke specifičnosti, ali se može koristiti za druge zadatke učenja jednako dobro. On koristi raspoređeni metod ponavljanja učenja , što čini učenje optimalno. Vokabular kolekcije možete preuzeti sa "Dobavi nove dobre stvari" ili kreirati sa ugrađenim urednikom.</p>
     <p xml:lang="ca">El Parley és un entrenador de vocabulari. Us ajuda a memoritzar un vocabulari, per exemple quan esteu intentant aprendre un idioma estranger. Accepta moltes funcionalitats específiques de l'idioma, però també es pot utilitzar per a altres tasques d'aprenentatge. Utilitza el mètode d'aprenentatge de repetició espaiada, el qual optimitza l'aprenentatge. Les col·leccions dels vocabularis es poden baixar amb «Obtén les novetats» o es poden crear amb l'editor integrat.</p>
     <p xml:lang="ca-valencia">El Parley és un entrenador de vocabulari. Vos ajuda a memoritzar un vocabulari, per exemple quan esteu intentant aprendre un idioma estranger. Accepta moltes funcionalitats específiques de l'idioma, però també es pot utilitzar per a altres tasques d'aprenentatge. Utilitza el mètode d'aprenentatge de repetició espaiada, el qual optimitza l'aprenentatge. Les col·leccions dels vocabularis es poden baixar amb «Obtén les novetats» o es poden crear amb l'editor integrat.</p>
@@ -102,6 +105,7 @@
     <p xml:lang="x-test">xxParley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. It supports many language specific features, but can be used for other learning tasks as well. It uses the spaced repetition learning method, which makes learning optimal. Vocabulary collections can be downloaded by "Get Hot New Stuff" or created with the built-in editor.xx</p>
     <p xml:lang="zh-TW">Parley 是一套字彙訓練程式。它能協助您在學習外語時記憶字彙。它支援多種語言功能，也可以用於其他領域的訓練。字彙可以從「取得新禮物」中下載，或是自行透過內建編輯器建立。</p>
     <p>Training Modes:</p>
+    <p xml:lang="ar">أوضاع التدريب:</p>
     <p xml:lang="bs">Režimi treninga</p>
     <p xml:lang="ca">Modes d'entrenament:</p>
     <p xml:lang="ca-valencia">Modes d'entrenament:</p>
@@ -136,6 +140,7 @@
     <p xml:lang="zh-TW">訓練模式：</p>
     <ul>
       <li>Flash Cards</li>
+      <li xml:lang="ar">بطاقات تذكر</li>
       <li xml:lang="bs">Memorijske kartice</li>
       <li xml:lang="ca">Fitxes ràpides</li>
       <li xml:lang="ca-valencia">Fitxes ràpides</li>
@@ -169,6 +174,7 @@
       <li xml:lang="zh-CN">题卡</li>
       <li xml:lang="zh-TW">閃卡</li>
       <li>Mixed Letters (order the letters of a word)</li>
+      <li xml:lang="ar">الحروف المختلطة (رتب حروف كلمة)</li>
       <li xml:lang="bs">Miješana slova (redoslijed slova riječi)</li>
       <li xml:lang="ca">Lletres barrejades (ordre de les lletres d'una paraula)</li>
       <li xml:lang="ca-valencia">Lletres barrejades (ordre de les lletres d'una paraula)</li>
@@ -198,6 +204,7 @@
       <li xml:lang="zh-CN">混合字母 (一个单词的字母顺序)</li>
       <li xml:lang="zh-TW">混合字母（單字字母順序）</li>
       <li>Multiple Choice</li>
+      <li xml:lang="ar">اختيار متعدد</li>
       <li xml:lang="bs">Višestruki izbor</li>
       <li xml:lang="ca">Elecció múltiple</li>
       <li xml:lang="ca-valencia">Elecció múltiple</li>
@@ -231,6 +238,7 @@
       <li xml:lang="zh-CN">多项选择</li>
       <li xml:lang="zh-TW">多重選擇</li>
       <li>Written</li>
+      <li xml:lang="ar">كتابة</li>
       <li xml:lang="bs">Napisano</li>
       <li xml:lang="ca">Escrit</li>
       <li xml:lang="ca-valencia">Escrit</li>
@@ -264,6 +272,7 @@
       <li xml:lang="zh-CN">写作</li>
       <li xml:lang="zh-TW">已寫入</li>
       <li>Language specific trainings: article, comparison forms, conjugations, synonymes/antonyms/paraphrases</li>
+      <li xml:lang="ar">تدريبات خاصة باللغة: التعريف والتنكير، أشكال مقارنة، تصريفات، مترادفات/ متضادات/ إعادة صياغة</li>
       <li xml:lang="bs">Jezički posebna obuka: članovi, oblici poređenja, konjugacija, sinonimi/antonimi/parafraze</li>
       <li xml:lang="ca">Entrenaments específics de l'idioma: articles, formes de comparació, conjugacions, sinònims/antònims/paràfrasis</li>
       <li xml:lang="ca-valencia">Entrenaments específics de l'idioma: articles, formes de comparació, conjugacions, sinònims/antònims/paràfrasis</li>
@@ -300,6 +309,7 @@
   <screenshots>
     <screenshot type="default">
       <caption>Choosing a collection for training in Parley</caption>
+      <caption xml:lang="ar">اختيار مجموعة للتدريب في المفاوض</caption>
       <caption xml:lang="ca">Triant una col·lecció per a entrenar-se amb el Parley</caption>
       <caption xml:lang="ca-valencia">Triant una col·lecció per a entrenar-se amb el Parley</caption>
       <caption xml:lang="cs">Výběr sbírky pro učení se s Parley</caption>
