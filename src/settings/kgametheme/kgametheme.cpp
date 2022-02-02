@@ -59,7 +59,7 @@ bool KGameTheme::load(const QString &fileName)
         qDebug() << "Refusing to load theme with no name";
         return false;
     }
-    QString filePath = QStandardPaths::locate(QStandardPaths::DataLocation, fileName, QStandardPaths::LocateFile);
+    QString filePath = QStandardPaths::locate(QStandardPaths::AppLocalDataLocation, fileName, QStandardPaths::LocateFile);
     qDebug() << "Attempting to load .desktop at" << filePath;
     if (filePath.isEmpty()) {
         return false;
