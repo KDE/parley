@@ -26,10 +26,10 @@ public:
     void setSolution(const QVariant &solution) override;
     void setSolutionFont(const QFont &font) override;
 
-public slots:
+public Q_SLOTS:
     void showQuestion() override;
 
-private slots:
+private Q_SLOTS:
     void updatePixmap();
 
 private:

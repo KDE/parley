@@ -25,7 +25,7 @@ class BrowserWidget : public QWidget, public Ui::BrowserWidget
 public:
     explicit BrowserWidget(QWidget *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     /**
      * Update the word
      * @param entry
@@ -33,7 +33,7 @@ public slots:
      */
     void setTranslation(KEduVocExpression *entry, int translation);
 
-private slots:
+private Q_SLOTS:
     void showCurrentTranslation();
     void openUrl(const QUrl &targetUrl);
     void providerChanged(int);

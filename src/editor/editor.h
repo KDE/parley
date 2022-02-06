@@ -63,7 +63,7 @@ public:
         return m_vocabularyView;
     }
 
-public slots:
+public Q_SLOTS:
     /**
      * Edit languages contained in the document.
      * This includes adding/removing languages,
@@ -93,12 +93,12 @@ public slots:
      */
     void addWordWithTranslation(const QStringList &w);
 
-private slots:
+private Q_SLOTS:
 
     /** Make the search bar visible and focus it */
     void startSearch();
 
-signals:
+Q_SIGNALS:
     void signalSetData(const QList<int> &entries, int currentTranslation);
 
 private:

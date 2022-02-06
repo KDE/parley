@@ -25,7 +25,7 @@ public:
 
     explicit SynonymWidget(SynonymWidgetType type, QWidget *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     /**
      * Register the document inside the widget so that it can be marked as modified.
      * @param doc
@@ -34,7 +34,7 @@ public slots:
 
     void setTranslation(KEduVocExpression *entry, int translation);
 
-private slots:
+private Q_SLOTS:
     void togglePair();
     void updateList();
 

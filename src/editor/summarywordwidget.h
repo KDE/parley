@@ -42,7 +42,7 @@ class SummaryWordWidget : public QWidget, public Ui::SummaryWordWidget
 public:
     SummaryWordWidget(VocabularyFilter *model, const std::shared_ptr<KEduVocDocument> &, QWidget *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     /**
      * Sets the selected word (KEduVocExpression) from the vocabularyView
      */

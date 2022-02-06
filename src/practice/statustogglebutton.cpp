@@ -32,7 +32,7 @@ void StatusToggleButton::mousePressEvent(QMouseEvent *e)
 void StatusToggleButton::mouseReleaseEvent(QMouseEvent *e)
 {
     if (!m_defaultPixmap.isNull() && e->button() == Qt::LeftButton) {
-        emit clicked();
+        Q_EMIT clicked();
         if (m_current == 1) {
             setPixmap(m_hoverPixmap);
         } else {

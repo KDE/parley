@@ -26,7 +26,7 @@ public:
      */
     static QMap<QString, QString> localeLangsMap();
 
-public slots:
+public Q_SLOTS:
     void accept();
 
 private:

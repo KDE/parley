@@ -182,7 +182,7 @@ void StatisticsMainWindow::languagesChanged()
     Prefs::setLearningLanguage(learningLanguage);
     Prefs::setKnownLanguage(knownLanguage);
 
-    emit languagesChanged(knownLanguage, learningLanguage);
+    Q_EMIT languagesChanged(knownLanguage, learningLanguage);
 
     updateVisibleColumns();
     updateModelSettings();

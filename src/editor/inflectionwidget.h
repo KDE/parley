@@ -28,11 +28,11 @@ class InflectionWidget : public QStackedWidget
 public:
     explicit InflectionWidget(QWidget *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     void setDocument(const std::shared_ptr<KEduVocDocument> &doc);
     void setTranslation(KEduVocExpression *entry, int translation);
 
-private slots:
+private Q_SLOTS:
     void setWordType();
 
 private:

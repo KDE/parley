@@ -28,7 +28,7 @@ public:
      * @param model the model */
     virtual void setModel(ContainerModel *model);
 
-public slots:
+public Q_SLOTS:
     /** let the user type a new name for the container */
     void slotRename();
 

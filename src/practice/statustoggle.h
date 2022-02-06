@@ -29,7 +29,7 @@ public:
     void updatePixmap();
     void updateToggle();
 
-signals:
+Q_SIGNALS:
     void toggle();
 
 private:

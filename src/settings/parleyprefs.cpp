@@ -48,7 +48,7 @@ bool ParleyPrefs::isDefault()
 void ParleyPrefs::updateSettings()
 {
     m_generalOptions->updateSettings();
-    emit settingsChanged(QLatin1String(""));
+    Q_EMIT settingsChanged(QLatin1String(""));
 }
 
 void ParleyPrefs::updateWidgetsDefault()

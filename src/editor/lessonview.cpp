@@ -132,8 +132,8 @@ void LessonView::currentChanged(const QModelIndex &current, const QModelIndex &p
     if (current.isValid()) {
         KEduVocLesson *container = static_cast<KEduVocLesson *>(current.internalPointer());
         if (container) {
-            emit selectedLessonChanged(container);
-            emit signalShowContainer(container);
+            Q_EMIT selectedLessonChanged(container);
+            Q_EMIT signalShowContainer(container);
         }
     }
 }
@@ -148,7 +148,7 @@ void LessonView::selectionChanged(const QItemSelection &selected, const QItemSel
 
     KEduVocLesson *container = static_cast<KEduVocLesson *>(selected.indexes().value(0).internalPointer());
     if (container) {
-        emit selectedLessonChanged(container);
+        Q_EMIT selectedLessonChanged(container);
     }
 }
 
@@ -251,7 +251,7 @@ void LessonView::slotRemoveGradesLesson()
     QModelIndex selectedIndex = selectionModel()->currentIndex();
     KEduVocLesson *lesson = static_cast<KEduVocLesson *>(selectedIndex.internalPointer());
     lesson->resetGrades(-1, KEduVocContainer::NotRecursive);
-    emit signalShowContainer(lesson);
+    Q_EMIT signalShowContainer(lesson);
 }
 
 void LessonView::slotRemoveGradesLessonChildren()
@@ -259,7 +259,7 @@ void LessonView::slotRemoveGradesLessonChildren()
     QModelIndex selectedIndex = selectionModel()->currentIndex();
     KEduVocLesson *lesson = static_cast<KEduVocLesson *>(selectedIndex.internalPointer());
     lesson->resetGrades(-1, KEduVocContainer::Recursive);
-    emit signalShowContainer(lesson);
+    Q_EMIT signalShowContainer(lesson);
 }
 
 void LessonView::setModel(LessonModel *model)

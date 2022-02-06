@@ -103,8 +103,8 @@ bool ContainerModel::setData(const QModelIndex &index, const QVariant &value, in
         // rename a lesson
         if (role == Qt::EditRole) {
             container->setName(value.toString());
-            emit dataChanged(index, index);
-            emit documentModified();
+            Q_EMIT dataChanged(index, index);
+            Q_EMIT documentModified();
             return true;
         }
 
@@ -115,8 +115,8 @@ bool ContainerModel::setData(const QModelIndex &index, const QVariant &value, in
                 setData(index.model()->index(i, 0, index), newState, Qt::CheckStateRole);
             }
             container->setInPractice(newState);
-            emit dataChanged(index, index);
-            emit documentModified();
+            Q_EMIT dataChanged(index, index);
+            Q_EMIT documentModified();
             return true;
         }
     }

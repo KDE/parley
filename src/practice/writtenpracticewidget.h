@@ -43,7 +43,7 @@ public:
 
     void setSynonym(const QString &entry) override;
 
-public slots:
+public Q_SLOTS:
     void showQuestion() override;
     void showSolution() override;
     void continueClicked();

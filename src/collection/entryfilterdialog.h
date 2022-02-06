@@ -30,7 +30,7 @@ private:
     void setupCheckBoxes();
     void setupConnections();
 
-private slots:
+private Q_SLOTS:
     void updateTotal();
 
 private:

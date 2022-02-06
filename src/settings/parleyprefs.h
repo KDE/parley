@@ -7,7 +7,7 @@
 #ifndef PARLEYPREFS_H
 #define PARLEYPREFS_H
 
-#include <KConfigWidgets/KConfigDialog>
+#include <KConfigDialog>
 
 /**
  *@author Peter Hedlund
@@ -30,7 +30,7 @@ public:
      */
     ParleyPrefs(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config);
 
-protected slots:
+protected Q_SLOTS:
     /**
      * Called when the user clicks Apply or OK.
      */

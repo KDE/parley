@@ -80,7 +80,7 @@ public:
 
     void resetLanguages();
 
-public slots:
+public Q_SLOTS:
     void setDocument(KEduVocDocument *doc);
 
     /**

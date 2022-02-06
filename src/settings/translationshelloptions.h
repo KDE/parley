@@ -15,7 +15,7 @@ class TranslationShellOptions : public QWidget, public Ui::TranslationShellPage
 public:
     explicit TranslationShellOptions(QWidget *parent = nullptr);
 
-private slots:
+private Q_SLOTS:
     void runTranslateShellTest();
 
 private:

@@ -35,7 +35,7 @@ public:
 Q_SIGNALS:
     void languagesChanged(int, int);
 
-private slots:
+private Q_SLOTS:
     void configurePractice();
     void languagesChanged();
     void practiceModeSelected(int mode);

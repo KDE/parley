@@ -51,7 +51,7 @@ public:
     QPolygon audioPolygon(const QStyleOptionViewItem &option) const;
     QPolygon imagePolygon(const QStyleOptionViewItem &option) const;
 
-public slots:
+public Q_SLOTS:
     void setDocument(const std::shared_ptr<KEduVocDocument> &doc);
     bool helpEvent(QHelpEvent *event, QAbstractItemView *view, const QStyleOptionViewItem &option, const QModelIndex &index) override;
 

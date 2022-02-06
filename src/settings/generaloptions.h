@@ -20,7 +20,7 @@ public:
     bool isDefault();
     void updateSettings();
 
-private slots:
+private Q_SLOTS:
     void fillWidgets();
 };
 

@@ -29,7 +29,7 @@ protected:
     void paintEvent(QPaintEvent *e) override;
     void resizeEvent(QResizeEvent *e) override;
 
-signals:
+Q_SIGNALS:
     void sizeChanged();
 
 private Q_SLOTS:

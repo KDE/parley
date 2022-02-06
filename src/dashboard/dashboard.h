@@ -32,7 +32,7 @@ public:
     explicit Dashboard(ParleyMainWindow *parent);
     ~Dashboard() override;
 
-public slots:
+public Q_SLOTS:
     void slotOpenUrl(const QUrl &url);
     void slotPracticeUrl(const QUrl &url);
     // void slotDoubleClicked(const QModelIndex& index);
@@ -47,7 +47,7 @@ public slots:
     void remove(QGridLayout *layout, int row, int column, bool deleteWidgets);
     void deleteChildWidgets(QLayoutItem *item);
 
-private slots:
+private Q_SLOTS:
     void setTheme();
     void updateWidgets();
     void backgroundChanged(const QPixmap &pixmap);

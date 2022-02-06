@@ -166,7 +166,7 @@ void ConjugationModeWidget::nextConjugationForm()
                 // move to the next input widget
                 m_personWidgets.at(i + 1)->input->setFocus();
             } else {
-                emit continueAction();
+                Q_EMIT continueAction();
             }
             return;
         }

@@ -28,7 +28,7 @@ public:
      * @param model the model */
     virtual void setModel(LessonModel *model);
 
-signals:
+Q_SIGNALS:
     /** A lesson was selected */
     void selectedLessonChanged(KEduVocLesson *lesson);
 
@@ -38,7 +38,7 @@ signals:
     /** Emitted when any of the checkboxes for the query change. */
     void lessonsInPracticeChanged();
 
-public slots:
+public Q_SLOTS:
     /** Append a lesson to the model and automatically set an edit up so the user can change "New unit" into something meaningful.*/
     void slotCreateNewLesson();
 
@@ -74,7 +74,7 @@ public slots:
     /** Collapse all the lessons and its corresponding sub-lessons **/
     void collapseAllLesson();
 
-protected slots:
+protected Q_SLOTS:
     void selectionChanged(const QItemSelection &selected, const QItemSelection &deselected) override;
     void currentChanged(const QModelIndex &current, const QModelIndex &previous) override;
 

@@ -33,7 +33,7 @@ public:
     LatexWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget *parent = nullptr);
     ~LatexWidget() override;
 
-public slots:
+public Q_SLOTS:
     /**
      * Sets the selected word (KEduVocExpression) from the vocabularyView
      */

@@ -44,7 +44,7 @@ public:
 
     KEduVocDocument *document() const;
 
-public slots:
+public Q_SLOTS:
     /** Set the new source kvtml file
      * @param doc the new file */
     virtual void setDocument(const std::shared_ptr<KEduVocDocument> &doc);

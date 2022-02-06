@@ -163,5 +163,5 @@ void PracticeMainWindow::startPractice()
 void PracticeMainWindow::practiceFinished()
 {
     delete m_stateMachine;
-    emit stopPractice();
+    Q_EMIT stopPractice();
 }

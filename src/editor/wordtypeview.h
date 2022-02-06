@@ -24,7 +24,7 @@ class WordTypeView : public ContainerView
 public:
     explicit WordTypeView(EditorWindow *parent);
 
-public slots:
+public Q_SLOTS:
     /** Append a word type to the model and automatically set an edit up so the user can change "New lesson" into something meaningful.*/
     void slotCreateNewWordType();
 
@@ -33,13 +33,13 @@ public slots:
 
     void setTranslation(KEduVocExpression *entry, int translationId);
 
-signals:
+Q_SIGNALS:
     void selectedWordTypeChanged(KEduVocWordType *wordType);
 
 protected:
     void contextMenuEvent(QContextMenuEvent *event) override;
 
-private slots:
+private Q_SLOTS:
     void setWordTypeNone();
     void setWordTypeNoun();
     void setWordTypeNounMale();

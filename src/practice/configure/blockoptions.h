@@ -24,10 +24,10 @@ public:
     bool isDefault();
     void updateSettings();
 
-signals:
+Q_SIGNALS:
     void widgetModified();
 
-protected slots:
+protected Q_SLOTS:
     void slotBlockToggled(bool);
     void slotExpireToggled(bool);
     void slotComboBoxActivated(int);

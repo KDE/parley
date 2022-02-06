@@ -30,7 +30,7 @@ protected:
     void enterEvent(QEvent *) override;
     void leaveEvent(QEvent *) override;
 
-signals:
+Q_SIGNALS:
     void clicked();
 
 private:

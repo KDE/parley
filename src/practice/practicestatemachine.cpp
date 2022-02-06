@@ -117,7 +117,7 @@ void PracticeStateMachine::slotPracticeFinished()
 {
     qDebug() << "Stop practice";
     m_sessionManager->practiceFinished();
-    emit practiceFinished();
+    Q_EMIT practiceFinished();
 }
 
 void PracticeStateMachine::currentEntryFinished()

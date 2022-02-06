@@ -23,13 +23,13 @@ public Q_SLOTS:
     void setLanguages(int from, int to);
     void updateSettings();
 
-signals:
+Q_SIGNALS:
     void checkBoxChanged();
 
 private:
     void setupTenses();
 
-private slots:
+private Q_SLOTS:
     void processCheckBoxChanged(QTreeWidgetItem *item, int column);
 
 private:

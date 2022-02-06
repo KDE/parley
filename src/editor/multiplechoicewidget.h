@@ -26,13 +26,13 @@ class MultipleChoiceWidget : public QWidget, public Ui::multipleChoiceWidget
 public:
     explicit MultipleChoiceWidget(QWidget *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     void setTranslation(KEduVocExpression *entry, int translation);
 
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
 
-private slots:
+private Q_SLOTS:
     void slotDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);
     void slotAddChoiceButton();
     void slotRemoveChoiceButton();

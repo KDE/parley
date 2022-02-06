@@ -137,7 +137,7 @@ void ThemedBackgroundRenderer::renderingFinished()
         // qDebug() << "there is no image!";
         return;
     }
-    emit backgroundChanged(QPixmap::fromImage(m_future.result()));
+    Q_EMIT backgroundChanged(QPixmap::fromImage(m_future.result()));
     m_future = QFuture<QImage>();
 }
 

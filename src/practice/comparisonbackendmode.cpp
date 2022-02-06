@@ -47,7 +47,7 @@ void ComparisonBackendMode::checkAnswer()
     QStringList answers = m_frontend->userInput().toStringList();
 
     if (answers == m_lastAnswers) {
-        emit answerWrongShowSolution();
+        Q_EMIT answerWrongShowSolution();
         return;
     }
 
@@ -57,7 +57,7 @@ void ComparisonBackendMode::checkAnswer()
 
     if (absoluteCorrect && comparativeCorrect && superlativeCorrect) {
         m_frontend->setFeedback(i18n("All comparison forms were right."));
-        emit answerRight();
+        Q_EMIT answerRight();
     } else {
         if (!absoluteCorrect) {
             m_frontend->setFeedback(
@@ -78,7 +78,7 @@ void ComparisonBackendMode::checkAnswer()
                           "The superlative is wrong."));
             }
         }
-        emit answerWrongRetry();
+        Q_EMIT answerWrongRetry();
     }
     m_lastAnswers = answers;
 }

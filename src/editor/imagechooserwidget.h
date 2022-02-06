@@ -18,7 +18,7 @@ class ImageChooserWidget : public QWidget, public Ui::ImageChooserWidget
 public:
     explicit ImageChooserWidget(QWidget *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     /**
      * Update the word
      * @param entry
@@ -26,14 +26,14 @@ public slots:
      */
     void setTranslation(KEduVocExpression *entry, int translation);
 
-    // signals:
+    // Q_SIGNALS:
     //     /**
     //      * Important to let other widgets know that a certain word type is edited (might make conjugations/comparison/declension appear)
     //      * @param
     //      */
     //     void imageChanged(const QString&);
 
-private slots:
+private Q_SLOTS:
     void slotImageChanged(const QString &url);
 
 protected:

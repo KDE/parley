@@ -46,7 +46,7 @@ void WrittenPracticeWidget::setSolutionFont(const QFont &font)
 
 void WrittenPracticeWidget::continueClicked()
 {
-    emit continueAction();
+    Q_EMIT continueAction();
 }
 
 QVariant WrittenPracticeWidget::userInput()

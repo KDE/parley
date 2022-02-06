@@ -122,7 +122,7 @@ void ComparisonModeWidget::nextComparisonForm()
     } else if (m_ui->comparativeEdit->hasFocus()) {
         m_ui->superlativeEdit->setFocus();
     } else {
-        emit continueAction();
+        Q_EMIT continueAction();
     }
 }
 

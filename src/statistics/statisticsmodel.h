@@ -45,7 +45,7 @@ public:
     void updateDocumentSettings();
     std::shared_ptr<KEduVocDocument> document() const;
 
-public slots:
+public Q_SLOTS:
     virtual void setDocument(const std::shared_ptr<KEduVocDocument> &doc) override;
 
 protected:

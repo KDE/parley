@@ -16,10 +16,10 @@ class LanguageProperties : public KPageDialog
 public:
     LanguageProperties(KEduVocDocument *doc, QWidget *parent);
 
-public slots:
+public Q_SLOTS:
     void accept() override;
 
-private slots:
+private Q_SLOTS:
     void slotAppendIdentifier();
     void slotDeleteIdentifier();
     void pageNameChanged(const QString &newName);

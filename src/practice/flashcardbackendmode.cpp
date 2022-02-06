@@ -26,7 +26,7 @@ bool FlashCardBackendMode::setTestEntry(TestEntry *current)
 
 void FlashCardBackendMode::checkAnswer()
 {
-    emit showSolution();
+    Q_EMIT showSolution();
 }
 
 void FlashCardBackendMode::hintAction()

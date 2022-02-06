@@ -70,7 +70,7 @@ public Q_SLOTS:
 
     void renderingFinished();
 
-signals:
+Q_SIGNALS:
     void backgroundChanged(QPixmap pixmap);
 
 private:

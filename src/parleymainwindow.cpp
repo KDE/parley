@@ -115,7 +115,7 @@ void ParleyMainWindow::documentUpdated(const std::shared_ptr<KEduVocDocument> &d
 
 void ParleyMainWindow::updateRecentFilesModel()
 {
-    emit recentFilesChanged();
+    Q_EMIT recentFilesChanged();
 }
 
 void ParleyMainWindow::saveOptions()

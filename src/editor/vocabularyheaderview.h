@@ -16,7 +16,7 @@ class VocabularyHeaderView : public QHeaderView
 public:
     explicit VocabularyHeaderView(Qt::Orientation orientation, QWidget *parent = nullptr);
 
-private slots:
+private Q_SLOTS:
     void updateSorting(int);
 
 private:

@@ -7,8 +7,8 @@
 #ifndef CONFIGUREPRACTICEDIALOG_H
 #define CONFIGUREPRACTICEDIALOG_H
 
+#include <KConfigDialog>
 #include <KConfigSkeleton>
-#include <KConfigWidgets/KConfigDialog>
 #include <KEduVocDocument>
 
 class GeneralPracticeOptions;
@@ -30,7 +30,7 @@ public:
 
     void commitData();
 
-private slots:
+private Q_SLOTS:
     /**
      * Called when the user clicks Apply or OK.
      */

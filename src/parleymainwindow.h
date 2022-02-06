@@ -66,7 +66,7 @@ public:
 
     QSize sizeHint() const override;
 
-public slots:
+public Q_SLOTS:
     /** Updates connections when the ParleyDocument pointer is changed to @p doc **/
     void documentUpdated(const std::shared_ptr<KEduVocDocument> &doc);
 
@@ -108,7 +108,7 @@ public slots:
 
     void setVisibleToolbar(const QString &name);
 
-signals:
+Q_SIGNALS:
     void recentFilesChanged();
     void preferencesChanged();
 

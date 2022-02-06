@@ -22,14 +22,14 @@ class ConjugationWidget : public QWidget, public Ui::ConjugationWidget
 public:
     explicit ConjugationWidget(QWidget *parent = 0);
 
-public slots:
+public Q_SLOTS:
     void setDocument(KEduVocDocument *doc);
     void setTranslation(KEduVocExpression *entry, int translation);
 
-signals:
+Q_SIGNALS:
     void sigModified();
 
-private slots:
+private Q_SLOTS:
     void textChanged(const QString &);
     void slotTenseSelected(int);
     void slotNextTense();

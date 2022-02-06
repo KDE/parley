@@ -19,7 +19,7 @@ class ExportDialog : public QDialog
 public:
     explicit ExportDialog(ParleyDocument *doc, QWidget *parent = nullptr);
 
-private slots:
+private Q_SLOTS:
     void accept() override;
 
 private:

@@ -17,14 +17,14 @@ public:
     LanguagePropertiesPage(KEduVocDocument *doc, int identifierIndex, QWidget *parent = nullptr);
     void setLanguageIdentifierIndex(int newIndex);
 
-public slots:
+public Q_SLOTS:
     void accept();
     void downloadGrammar();
 
-signals:
+Q_SIGNALS:
     void nameChanged(const QString &);
 
-private slots:
+private Q_SLOTS:
     void localeChanged(const QString &);
 
     // pronouns/conjugations

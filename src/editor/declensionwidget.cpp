@@ -38,7 +38,7 @@ void DeclensionWidget::textChanged(const QString &text)
 {
     int key = m_DeclensionLineEdits.key(qobject_cast<QLineEdit *>(sender())) | currentAdditionalWordFlag();
     m_entry->translation(m_identifier)->declension()->setDeclension(text, (KEduVocWordFlag::Flags)key);
-    emit sigModified();
+    Q_EMIT sigModified();
 }
 
 void DeclensionWidget::updateEntries()

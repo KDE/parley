@@ -141,7 +141,7 @@ void ParleyDocument::newDocument(bool wizard)
 
     close();
     m_doc = std::move(newDoc);
-    emit documentChanged(m_doc);
+    Q_EMIT documentChanged(m_doc);
     enableAutoBackup(Prefs::autoBackup());
 
     if (fetchGrammarOnline) {
@@ -190,7 +190,7 @@ bool ParleyDocument::open(const QUrl &url)
     close();
 
     m_doc.reset(new KEduVocDocument);
-    emit documentChanged(m_doc);
+    Q_EMIT documentChanged(m_doc);
     m_doc->setCsvDelimiter(Prefs::separator());
 
     bool isSuccess = false, isError = false;
@@ -237,7 +237,7 @@ bool ParleyDocument::open(const QUrl &url)
                                i18nc("@title:window", "Open Collection"));
         }
         m_doc.reset();
-        emit documentChanged(m_doc);
+        Q_EMIT documentChanged(m_doc);
     }
 
     return isSuccess;
@@ -248,7 +248,7 @@ void ParleyDocument::close()
     enableAutoBackup(false);
     if (m_doc) {
         m_doc.reset();
-        emit documentChanged(m_doc);
+        Q_EMIT documentChanged(m_doc);
     }
 }
 
@@ -318,7 +318,7 @@ void ParleyDocument::save()
 
     m_doc->setCsvDelimiter(Prefs::separator());
 
-    emit statesNeedSaving();
+    Q_EMIT statesNeedSaving();
 
     QString newgenerator = QLatin1String("Parley ") + PARLEY_VERSION_STRING;
     m_doc->setGenerator(newgenerator);
@@ -446,7 +446,7 @@ void ParleyDocument::saveAs(QUrl url)
     if (isSuccess) {
         qDebug() << "SaveAs success.";
         m_parleyApp->addRecentFile(m_doc->url(), m_doc->title());
-        emit statesNeedSaving();
+        Q_EMIT statesNeedSaving();
 
     } else {
         qDebug() << "SaveAs failed for " << m_doc->url().url() << " \nwhy " << m_doc->errorDescription(ret);
@@ -588,14 +588,14 @@ void ParleyDocument::documentProperties()
 
     titleAuthorDialog->exec();
     delete titleAuthorDialog;
-    emit documentChanged(m_doc);
+    Q_EMIT documentChanged(m_doc);
 }
 
 void ParleyDocument::languageProperties()
 {
     LanguageProperties properties(m_doc.get(), m_parleyApp);
     if (properties.exec() == QDialog::Accepted) {
-        emit languagesChanged();
+        Q_EMIT languagesChanged();
     }
 }
 

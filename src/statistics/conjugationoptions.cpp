@@ -97,6 +97,6 @@ void ConjugationOptions::processCheckBoxChanged(QTreeWidgetItem *item, int colum
     if (m_checkStates.contains(item) && (m_checkStates[item] != newCheckState)) {
         m_checkStates[item] = newCheckState;
         updateSettings();
-        emit checkBoxChanged();
+        Q_EMIT checkBoxChanged();
     }
 }

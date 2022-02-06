@@ -87,12 +87,12 @@ void MultipleChoiceBackendMode::setCorrectAnswer(int index)
 void MultipleChoiceBackendMode::checkAnswer()
 {
     if (!m_frontend->userInput().isNull() && m_frontend->userInput().toInt() == m_correctAnswer) {
-        emit answerRight();
+        Q_EMIT answerRight();
     } else {
         if (!m_frontend->userInput().isNull()) {
             m_current->addUserAnswer(m_choices.at(m_frontend->userInput().toInt()));
         }
-        emit answerWrongShowSolution();
+        Q_EMIT answerWrongShowSolution();
     }
 }
 
@@ -101,7 +101,7 @@ void MultipleChoiceBackendMode::hintAction()
     if (m_choices.count() - m_hints.count() <= 2) {
         // show solution
         m_frontend->setFeedback(i18n("You revealed the answer by using too many hints."));
-        emit answerWrongShowSolution();
+        Q_EMIT answerWrongShowSolution();
         return;
     }
 

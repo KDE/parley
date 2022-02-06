@@ -22,7 +22,7 @@ class DeclensionWidget : public QWidget, public Ui::DeclensionWidget
 public:
     explicit DeclensionWidget(QWidget *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     void setDocument(KEduVocDocument *doc);
     void setTranslation(KEduVocExpression *entry, int translation);
 
@@ -33,10 +33,10 @@ public slots:
 
     void nextNumber();
 
-signals:
+Q_SIGNALS:
     void sigModified();
 
-private slots:
+private Q_SLOTS:
     void textChanged(const QString &);
 
 private:

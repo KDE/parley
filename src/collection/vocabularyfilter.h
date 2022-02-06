@@ -24,7 +24,7 @@ public:
     QModelIndex appendEntry(KEduVocExpression *expression = 0);
     KEduVocLesson *lesson();
 
-public slots:
+public Q_SLOTS:
     void setSearchString(const QString &expression);
 
 protected:

@@ -44,12 +44,12 @@ public:
 
     virtual void setResultPalettes(const QPalette &correctPalette, const QPalette &wrongPalette);
 
-public slots:
+public Q_SLOTS:
     virtual void showQuestion() = 0;
     virtual void showSolution() = 0;
     virtual void showSynonym() = 0;
 
-signals:
+Q_SIGNALS:
     void continueAction();
     void stopAudio();
     void hintAction();

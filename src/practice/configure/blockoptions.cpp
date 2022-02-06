@@ -231,7 +231,7 @@ void BlockOptions::slotExpireToggled(bool state)
 
 void BlockOptions::slotComboBoxActivated(int)
 {
-    emit widgetModified();
+    Q_EMIT widgetModified();
     checkValidity();
 }
 

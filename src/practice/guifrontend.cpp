@@ -348,13 +348,13 @@ AbstractFrontend::ResultState GuiFrontend::resultState()
 void GuiFrontend::countAsCorrectButtonClicked()
 {
     m_resultState = AnswerCorrect;
-    emit continueAction();
+    Q_EMIT continueAction();
 }
 
 void GuiFrontend::countAsWrongButtonClicked()
 {
     m_resultState = AnswerWrong;
-    emit continueAction();
+    Q_EMIT continueAction();
 }
 
 void GuiFrontend::toggleResultState()

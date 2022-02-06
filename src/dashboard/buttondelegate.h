@@ -27,7 +27,7 @@ public:
 
     QModelIndex hoveredIndex() const;
 
-public slots:
+public Q_SLOTS:
     void slotEdit();
     void slotPractice();
 

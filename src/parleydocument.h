@@ -34,7 +34,7 @@ public:
     void enableAutoBackup(bool enable);
     // void fetchGrammar(int languageIndex);
 
-public slots:
+public Q_SLOTS:
     /** open a new application window */
     void slotFileNew();
 
@@ -70,7 +70,7 @@ public slots:
     void documentProperties();
     void languageProperties();
 
-signals:
+Q_SIGNALS:
     /** Emitted when the document pointer is changed.
      @todo Stop using documentChanged(0) as a replacement for destroyed in editor classes.**/
     void documentChanged(const std::shared_ptr<KEduVocDocument> &newDocument);

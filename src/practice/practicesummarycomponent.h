@@ -21,7 +21,7 @@ public:
     PracticeSummaryComponent(SessionManagerBase *sessionManager, QWidget *parent);
     ~PracticeSummaryComponent() override;
 
-public slots:
+public Q_SLOTS:
     void exportResults();
 
 private:

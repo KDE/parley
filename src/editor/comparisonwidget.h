@@ -24,7 +24,7 @@ class ComparisonWidget : public QWidget, public Ui::comparisonWidget
 public:
     explicit ComparisonWidget(QWidget *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     /**
      * To know about word types that are currently defined.
      * @param doc
@@ -37,7 +37,7 @@ public slots:
      */
     void setTranslation(KEduVocExpression *entry, int translation);
 
-private slots:
+private Q_SLOTS:
     void slotMakeAdjectiveButton();
     void slotMakeAdverbButton();
 

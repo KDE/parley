@@ -53,7 +53,7 @@ public:
      @return enum of actions supported **/
     Qt::DropActions supportedDragActions() const override;
 
-signals:
+Q_SIGNALS:
     /**
      * emitted when the inPractice state or name of a lesson changed.
      */

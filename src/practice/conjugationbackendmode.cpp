@@ -91,7 +91,7 @@ void ConjugationBackendMode::checkAnswer()
 
     if (allCorrect) {
         m_frontend->setFeedback(i18n("All conjugation forms were right."));
-        emit answerRight();
+        Q_EMIT answerRight();
     } else {
         m_frontend->setFeedback(i18ncp("You did not get the conjugation forms right.",
                                        "You answered %1 conjugation form correctly.",
@@ -99,9 +99,9 @@ void ConjugationBackendMode::checkAnswer()
                                        numRight));
 
         if (answers == m_lastAnswers) {
-            emit answerWrongShowSolution();
+            Q_EMIT answerWrongShowSolution();
         } else {
-            emit answerWrongRetry();
+            Q_EMIT answerWrongRetry();
         }
         m_lastAnswers = answers;
     }

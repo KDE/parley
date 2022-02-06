@@ -50,7 +50,7 @@ public:
 
     QModelIndexList getSelectedIndexes() const;
 
-public slots:
+public Q_SLOTS:
     void reset() override;
     void appendEntry();
 
@@ -81,10 +81,10 @@ public slots:
      */
     void slotShowVocabularyColumnsDialog();
 
-signals:
+Q_SIGNALS:
     void translationChanged(KEduVocExpression *, int);
 
-private slots:
+private Q_SLOTS:
     void slotCurrentChanged(const QModelIndex &current, const QModelIndex &previous);
     void slotSelectionChanged(const QItemSelection &, const QItemSelection &);
 

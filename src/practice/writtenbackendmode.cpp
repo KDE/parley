@@ -58,20 +58,20 @@ void WrittenBackendMode::checkAnswer()
         if (Prefs::countSynonymsAsCorrect()) {
             // any of the synonyms is automatically counted as right
             // otherwise do nothing to give the user another chance
-            emit answerRight();
+            Q_EMIT answerRight();
         }
         return;
     }
 
     if (isCorrect) {
-        emit answerRight();
+        Q_EMIT answerRight();
     } else {
         if (answerUnchanged) {
             m_frontend->setFeedback(i18n("Your answer was wrong."));
-            emit answerWrongShowSolution();
+            Q_EMIT answerWrongShowSolution();
         } else {
             m_current->addUserAnswer(answer);
-            emit answerWrongRetry();
+            Q_EMIT answerWrongRetry();
         }
     }
 }

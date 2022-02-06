@@ -8,9 +8,9 @@
 
 #include <KActionCollection>
 #include <KLocalizedString>
-#include <KNewStuff3/kns3/knewstuffaction.h>
 #include <KStandardAction>
 #include <KToggleAction>
+#include <kns3/knewstuffaction.h>
 
 #include <QIcon>
 

@@ -23,7 +23,7 @@ public:
     explicit AudioWidget(QWidget *parent = nullptr);
     void setDocument(KEduVocDocument *doc);
 
-public slots:
+public Q_SLOTS:
     /**
      * Update the word
      * @param entry
@@ -31,7 +31,7 @@ public slots:
      */
     void setTranslation(KEduVocExpression *entry, int translation);
 
-private slots:
+private Q_SLOTS:
     void slotAudioFileChanged(const QString &url);
     void startPlayback();
     void slotPlaybackFinished(QMediaPlayer::State state);
