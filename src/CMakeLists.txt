@@ -238,7 +238,7 @@ kconfig_add_kcfg_files(parley_LIB_SRCS
     settings/languagesettings.kcfgc
 )
 
-qt5_add_dbus_adaptor(parley_LIB_SRCS editor/org.kde.parley.xml
+qt_add_dbus_adaptor(parley_LIB_SRCS editor/org.kde.parley.xml
                      editor/editor.h Editor::EditorWindow)
 
 #### XSLT Support ####

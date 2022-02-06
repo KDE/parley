@@ -8,7 +8,8 @@ set(RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_
 
 project(parley VERSION ${RELEASE_SERVICE_VERSION})
 set(QT_MIN_VERSION "5.15.0")
-set(KF5_MIN_VERSION "5.73.0")
+set(KF5_MIN_VERSION "5.90.0")
+set(KDE_COMPILERSETTINGS_LEVEL "5.82")
 
 find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
 
@@ -27,7 +28,7 @@ add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 add_definitions(-DQT_NO_FOREACH)
 
-find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED
+find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED
   Core
   Svg
   Concurrent
@@ -91,8 +92,8 @@ include_directories (BEFORE ${CMAKE_CURRENT_BINARY_DIR})
 # Define link libs for parley executable and unittests
 set( parley_LINK_LIBS
   LibKEduVocDocumentImport__KEduVocDocument
-  Qt5::Core
-  Qt5::Svg
+  Qt::Core
+  Qt::Svg
   KF5::I18n
   KF5::NewStuff
   KF5::SonnetCore
@@ -105,14 +106,14 @@ set( parley_LINK_LIBS
   KF5::WidgetsAddons
   KF5::TextWidgets
   KF5::KIOWidgets
-  Qt5::Widgets
-  Qt5::Gui
-  Qt5::Concurrent
-  Qt5::Multimedia
+  Qt::Widgets
+  Qt::Gui
+  Qt::Concurrent
+  Qt::Multimedia
   KF5::Notifications
   KF5::Crash
   KF5::CoreAddons
-  Qt5::WebEngineWidgets
+  Qt::WebEngineWidgets
 )
 
 message(STATUS "cmake cflags ${CMAKE_C_FLAGS}")
@@ -136,6 +137,7 @@ else(X11_Xrender_FOUND)
 endif(X11_Xrender_FOUND)
 
 if(BUILD_TESTING)
+  find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED Test)
   add_subdirectory( autotests )
   add_subdirectory( tests )
 endif()

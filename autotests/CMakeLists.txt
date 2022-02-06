@@ -2,7 +2,7 @@ include(ECMMarkAsTest)
 include(ECMAddTests)
 include(CTest)
 
-find_package(Qt5 5.2.0 CONFIG REQUIRED Test)
+find_package(Qt${QT_MAJOR_VERSION} 5.2.0 CONFIG REQUIRED Test)
 
 # To add a new unittest
 # 1. Add its name to parley_gui_unit_tests or parley_non_gui_unit_tests
@@ -18,7 +18,7 @@ include_directories(
 )
 
 set(unittest_LINK_LIBS
-    Qt5::Test
+    Qt::Test
     ${parley_LINK_LIBS}
     parley_LIB
 )
