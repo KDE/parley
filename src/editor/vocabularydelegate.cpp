@@ -7,7 +7,6 @@
 #include "vocabularydelegate.h"
 #include "languagesettings.h"
 #include "prefs.h"
-#include "translateshelladapter.h"
 #include "vocabularyfilter.h"
 #include "vocabularymodel.h"
 #include <KComboBox>

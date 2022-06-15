@@ -4,7 +4,6 @@
 */
 
 #include "translationshelloptions.h"
-#include "translateshelladapter.h"
 #include <KLed>
 #include <KLocalizedString>
 

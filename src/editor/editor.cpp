@@ -32,7 +32,6 @@
 #include "multiplechoicewidget.h"
 #include "parleyactions.h"
 #include "parleyadaptor.h"
-#include "parleydocument.h"
 #include "parleymainwindow.h"
 #include "prefs.h"
 #include "settings/parleyprefs.h"
@@ -43,7 +42,6 @@
 #include <KActionMenu>
 #include <KCharSelect>
 #include <KToggleAction>
-#include <KXmlGuiWindow>
 
 #include <QDockWidget>
 #include <QHeaderView>

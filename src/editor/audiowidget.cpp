@@ -8,7 +8,6 @@
 #include <KEduVocDocument>
 #include <KEduVocExpression>
 #include <QDebug>
-#include <QMediaPlayer>
 
 using namespace Editor;
 
