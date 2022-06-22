@@ -7,7 +7,6 @@
 #define WORDTYPEVIEW_H
 
 #include "containerview.h"
-#include "wordtypeview.h"
 
 class QAction;
 class KSelectAction;
