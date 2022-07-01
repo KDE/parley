@@ -58,7 +58,11 @@ QList<KEduVocTranslation *> VocabularyMimeData::translationList() const
     return m_translations;
 }
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 QVariant VocabularyMimeData::retrieveData(const QString &mimeType, QVariant::Type type) const
+#else
+QVariant VocabularyMimeData::retrieveData(const QString &mimeType, QMetaType type) const
+#endif
 {
     Q_UNUSED(type)
     // only use the expression list.expressions
