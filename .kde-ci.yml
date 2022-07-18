@@ -14,7 +14,6 @@ Dependencies:
     'frameworks/knewstuff': '@stable'
     'frameworks/ksonnet': '@stable'
     'frameworks/ktextwidgets': '@stable'
-    'frameworks/kcmutils': '@stable'
     'frameworks/kxmlgui': '@stable'
     'frameworks/knotifications': '@stable'
     'education/libkeduvocdocument': '@same'
