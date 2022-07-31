@@ -279,7 +279,7 @@ void BlockOptions::checkValidity()
     }
 
     if (message.length() != 0)
-        KMessageBox::sorry(this, message, i18n("Illogical Values"));
+        KMessageBox::error(this, message, i18n("Illogical Values"));
 }
 
 bool BlockOptions::isDefault()
