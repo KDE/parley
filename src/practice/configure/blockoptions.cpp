@@ -13,55 +13,43 @@
 #include <KMessageBox>
 
 #include "prefs.h"
-#include <ki18n_version.h>
-#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
 #include <KLazyLocalizedString>
-#undef I18N_NOOP
-#define I18N_NOOP kli18n
-#define I18N_NOOP_EMPTY KLazyLocalizedString()
-#else
-#define I18N_NOOP_EMPTY nullptr
-#endif
 struct ListRef {
-#if KI18N_VERSION < QT_VERSION_CHECK(5, 89, 0)
-    const char *text;
-#else
     const KLazyLocalizedString text;
-#endif
     long int num;
 };
 
-static ListRef date_itemlist[] = {{I18N_NOOP("Do not Care"), 0},
+static ListRef date_itemlist[] = {{kli18n("Do not Care"), 0},
 
-                                  {I18N_NOOP("30 Min"), 30 * 60},
-                                  {I18N_NOOP("1 Hour"), 1 * 60 * 60},
-                                  {I18N_NOOP("2 Hours"), 2 * 60 * 60},
-                                  {I18N_NOOP("4 Hours"), 4 * 60 * 60},
-                                  {I18N_NOOP("8 Hours"), 8 * 60 * 60},
-                                  {I18N_NOOP("12 Hours"), 12 * 60 * 60},
-                                  {I18N_NOOP("18 Hours"), 18 * 60 * 60},
+                                  {kli18n("30 Min"), 30 * 60},
+                                  {kli18n("1 Hour"), 1 * 60 * 60},
+                                  {kli18n("2 Hours"), 2 * 60 * 60},
+                                  {kli18n("4 Hours"), 4 * 60 * 60},
+                                  {kli18n("8 Hours"), 8 * 60 * 60},
+                                  {kli18n("12 Hours"), 12 * 60 * 60},
+                                  {kli18n("18 Hours"), 18 * 60 * 60},
 
-                                  {I18N_NOOP("1 Day"), 1 * 60 * 60 * 24},
-                                  {I18N_NOOP("2 Days"), 2 * 60 * 60 * 24},
-                                  {I18N_NOOP("3 Days"), 3 * 60 * 60 * 24},
-                                  {I18N_NOOP("4 Days"), 4 * 60 * 60 * 24},
-                                  {I18N_NOOP("5 Days"), 5 * 60 * 60 * 24},
-                                  {I18N_NOOP("6 Days"), 6 * 60 * 60 * 24},
+                                  {kli18n("1 Day"), 1 * 60 * 60 * 24},
+                                  {kli18n("2 Days"), 2 * 60 * 60 * 24},
+                                  {kli18n("3 Days"), 3 * 60 * 60 * 24},
+                                  {kli18n("4 Days"), 4 * 60 * 60 * 24},
+                                  {kli18n("5 Days"), 5 * 60 * 60 * 24},
+                                  {kli18n("6 Days"), 6 * 60 * 60 * 24},
 
-                                  {I18N_NOOP("1 Week"), 1 * 60 * 60 * 24 * 7},
-                                  {I18N_NOOP("2 Weeks"), 2 * 60 * 60 * 24 * 7},
-                                  {I18N_NOOP("3 Weeks"), 3 * 60 * 60 * 24 * 7},
-                                  {I18N_NOOP("4 Weeks"), 4 * 60 * 60 * 24 * 7},
+                                  {kli18n("1 Week"), 1 * 60 * 60 * 24 * 7},
+                                  {kli18n("2 Weeks"), 2 * 60 * 60 * 24 * 7},
+                                  {kli18n("3 Weeks"), 3 * 60 * 60 * 24 * 7},
+                                  {kli18n("4 Weeks"), 4 * 60 * 60 * 24 * 7},
 
-                                  {I18N_NOOP("1 Month"), 1 * 60 * 60 * 24 * 30},
-                                  {I18N_NOOP("2 Months"), 2 * 60 * 60 * 24 * 30},
-                                  {I18N_NOOP("3 Months"), 3 * 60 * 60 * 24 * 30},
-                                  {I18N_NOOP("4 Months"), 4 * 60 * 60 * 24 * 30},
-                                  {I18N_NOOP("5 Months"), 5 * 60 * 60 * 24 * 30},
-                                  {I18N_NOOP("6 Months"), 6 * 60 * 60 * 24 * 30},
-                                  {I18N_NOOP("10 Months"), 10 * 60 * 60 * 24 * 30},
-                                  {I18N_NOOP("12 Months"), 12 * 60 * 60 * 24 * 30},
-                                  {I18N_NOOP_EMPTY, 0}};
+                                  {kli18n("1 Month"), 1 * 60 * 60 * 24 * 30},
+                                  {kli18n("2 Months"), 2 * 60 * 60 * 24 * 30},
+                                  {kli18n("3 Months"), 3 * 60 * 60 * 24 * 30},
+                                  {kli18n("4 Months"), 4 * 60 * 60 * 24 * 30},
+                                  {kli18n("5 Months"), 5 * 60 * 60 * 24 * 30},
+                                  {kli18n("6 Months"), 6 * 60 * 60 * 24 * 30},
+                                  {kli18n("10 Months"), 10 * 60 * 60 * 24 * 30},
+                                  {kli18n("12 Months"), 12 * 60 * 60 * 24 * 30},
+                                  {KLazyLocalizedString(), 0}};
 
 BlockOptions::BlockOptions(QWidget *parent)
     : QWidget(parent)
@@ -168,36 +156,21 @@ void BlockOptions::fillComboBox(KComboBox *cb)
     ListRef *ref = date_itemlist;
 
     cb->clear();
-#if KI18N_VERSION < QT_VERSION_CHECK(5, 89, 0)
-    while (ref->text != nullptr) {
-        cb->addItem(i18n(ref->text));
-        ref++;
-    }
-#else
     while (!KLocalizedString(ref->text).toString().isEmpty()) {
         cb->addItem(KLocalizedString(ref->text).toString());
         ref++;
     }
-#endif
 }
 
 void BlockOptions::updateComboBox(int value, KComboBox *cb)
 {
     ListRef *ref = date_itemlist;
     int index = 0;
-#if KI18N_VERSION < QT_VERSION_CHECK(5, 89, 0)
-    while (ref->text != nullptr) {
-        if (value == ref->num)
-            index = ref - date_itemlist;
-        ref++;
-    }
-#else
     while (!KLocalizedString(ref->text).toString().isEmpty()) {
         if (value == ref->num)
             index = ref - date_itemlist;
         ref++;
     }
-#endif
     cb->setCurrentIndex(index);
 }
 
