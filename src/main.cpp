@@ -84,7 +84,6 @@ int main(int argc, char *argv[])
     QApplication::setApplicationName(QStringLiteral("parley"));
     QApplication::setApplicationVersion(PARLEY_VERSION_STRING);
     QApplication::setOrganizationDomain(QStringLiteral("kde.org"));
-    QApplication::setApplicationDisplayName(i18n("Parley"));
 
     KCrash::initialize();
 
