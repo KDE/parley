@@ -60,7 +60,6 @@ Exec=parley %u
 Icon=parley
 X-DocPath=parley/index.html
 Type=Application
-Terminal=false
 Categories=Qt;KDE;Education;Languages;
 Comment=A program to help you memorize things.
 Comment[ar]=برنامج لمساعدتك على حفظ الأشياء.
