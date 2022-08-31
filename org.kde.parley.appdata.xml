@@ -22,6 +22,7 @@
   <name xml:lang="ia">Parley</name>
   <name xml:lang="id">Parley</name>
   <name xml:lang="it">Parley</name>
+  <name xml:lang="ka">Parley</name>
   <name xml:lang="ko">Parley</name>
   <name xml:lang="lt">Parley</name>
   <name xml:lang="nds">Parley</name>
@@ -57,6 +58,7 @@
   <summary xml:lang="ia">Instructor de vocabulario</summary>
   <summary xml:lang="id">Pelatih Kosakata</summary>
   <summary xml:lang="it">Apprendimento di vocaboli</summary>
+  <summary xml:lang="ka">ლექსიკონის სწავლა</summary>
   <summary xml:lang="ko">어휘 연습 도구</summary>
   <summary xml:lang="lt">Žodyno treniruoklis</summary>
   <summary xml:lang="nds">Vokaveln lehren</summary>
@@ -122,6 +124,7 @@
     <p xml:lang="ia">Modos de exercitar:</p>
     <p xml:lang="id">Mode Pelatihan:</p>
     <p xml:lang="it">Modalità di apprendimento:</p>
+    <p xml:lang="ka">ვარჯიშის რეჟიმები:</p>
     <p xml:lang="ko">연습 모드:</p>
     <p xml:lang="nds">Ööv-Bedriefoorden:</p>
     <p xml:lang="nl">Oefenmethodes:</p>
@@ -220,6 +223,7 @@
       <li xml:lang="gl">Opcións múltiplas</li>
       <li xml:lang="id">Pilihan Multipel</li>
       <li xml:lang="it">Scelta multipla</li>
+      <li xml:lang="ka">დიდი არჩევანი</li>
       <li xml:lang="ko">객관식</li>
       <li xml:lang="lt">Pasirinkimas iš kelių atsakymų</li>
       <li xml:lang="nds">Mehrfachköör</li>
@@ -255,6 +259,7 @@
       <li xml:lang="ia">Scribite</li>
       <li xml:lang="id">Ditulis</li>
       <li xml:lang="it">Scritto</li>
+      <li xml:lang="ka">ჩაწერილია</li>
       <li xml:lang="ko">주관식</li>
       <li xml:lang="lt">Rašyba</li>
       <li xml:lang="nds">Schreven</li>
