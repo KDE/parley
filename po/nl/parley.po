@@ -1,0 +1,5895 @@
+# translation of parley.po to Dutch
+# Copyright (C) 2002 KDE e.v..
+# KDE-vertaalgroep Nederlands <www.kde.nl>
+#
+# Rinse de Vries <rinsedevries@kde.nl>, 2002, 2003, 2004, 2005, 2007, 2008.
+# Bram Schoenmakers <bramschoenmakers@kde.nl>, 2006.
+# Kristof Bal <kristof.bal@gmail.com>, 2008, 2009.
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2008, 2009, 2010, 2012, 2013, 2014, 2016, 2018, 2019, 2021.
+# Antoon Tolboom <atolboo@gmail.com>, 2008.
+# Jaap Woldringh <jjhwoldringh@kde.nl>, 2008, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2019, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: parley\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-08-06 00:41+0000\n"
+"PO-Revision-Date: 2021-11-01 17:06+0100\n"
+"Last-Translator: jaap <jjhwoldringh@kde.nl>\n"
+"Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 19.12.3\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Rinse de Vries,Kristof Bal,Jaap Woldringh"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "rinsedevries@kde.nl,kristof.bal@gmail.com,jjhwoldringh@kde.nl"
+
+#: src/collection/containermodel.cpp:150
+#, kde-format
+msgid "Unit"
+msgstr "Les"
+
+#: src/collection/containermodel.cpp:158
+#, kde-format
+msgid "Number of entries in this lesson."
+msgstr "Aantal regels in deze eenheid."
+
+#: src/collection/entryfilter.cpp:113
+#, kde-format
+msgid ""
+"The vocabulary document contains no entries that can be used for the chosen "
+"type of practice."
+msgstr ""
+"Het woordenlijstdocument bevat geen regels die geschikt zijn voor de gekozen "
+"oefening."
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, EntryFilterDialog)
+#: src/collection/entryfilterdialog.ui:14
+#, kde-format
+msgid "Start Practice"
+msgstr "Oefening starten"
+
+#. i18n: ectx: property (text), widget (QLabel, headerLabel)
+#: src/collection/entryfilterdialog.ui:20
+#, kde-format
+msgid ""
+"<p>Your selection of vocabulary for the practice is empty.</p><p>Below you "
+"can choose to ignore some of your configuration settings to start a practice "
+"anyway.</p>"
+msgstr ""
+"<p>Er is geen te oefenen woordenlijst gekozen.</p><p>Hieronder kunt kiezen "
+"enkele van de instellingen te negeren en toch een oefening te starten.</p>"
+
+#. i18n: ectx: property (title), widget (QGroupBox, ignoreGroupBox)
+#: src/collection/entryfilterdialog.ui:30
+#, kde-format
+msgid "Ignore Configuration for:"
+msgstr "Instellingen negeren voor:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, lessonCheckBox)
+#: src/collection/entryfilterdialog.ui:36
+#, kde-format
+msgid "Ignore Lessons"
+msgstr "Lessen negeren"
+
+#. i18n: ectx: property (text), widget (QCheckBox, wordTypeCheckBox)
+#: src/collection/entryfilterdialog.ui:56
+#, kde-format
+msgid "Ignore Word Types"
+msgstr "Woordtypen negeren"
+
+#. i18n: ectx: property (text), widget (QCheckBox, blockedCheckBox)
+#: src/collection/entryfilterdialog.ui:76
+#, kde-format
+msgid "Ignore Blocked"
+msgstr "Vergrendelingen negeren"
+
+#. i18n: ectx: property (text), widget (QCheckBox, timesWrongCheckBox)
+#: src/collection/entryfilterdialog.ui:96
+#, kde-format
+msgid "Ignore Times Answered Incorrectly"
+msgstr "Aantal foute antwoorden negeren"
+
+#. i18n: ectx: property (text), widget (QCheckBox, timesPracticedCheckBox)
+#: src/collection/entryfilterdialog.ui:116
+#, kde-format
+msgid "Ignore Times Practiced"
+msgstr "Aantal keren geoefend negeren"
+
+#. i18n: ectx: property (text), widget (QCheckBox, minMaxGradeCheckBox)
+#: src/collection/entryfilterdialog.ui:136
+#, kde-format
+msgid "Ignore Minimum/Maximum Grade"
+msgstr "Min/max beheersing negeren"
+
+#. i18n: ectx: property (text), widget (QLabel, numberAffectedWordsLabel)
+#: src/collection/entryfilterdialog.ui:156
+#, kde-format
+msgid "Number of Affected Words"
+msgstr "Aantal betreffende woorden"
+
+#. i18n: ectx: property (text), widget (QLabel, documentTotalDescriptionLabel)
+#: src/collection/entryfilterdialog.ui:171
+#, kde-format
+msgid "Total number of entries:"
+msgstr "Totaal aantal regels:"
+
+#. i18n: ectx: property (text), widget (QLabel, totalDescriptionLabel)
+#: src/collection/entryfilterdialog.ui:192
+#, kde-format
+msgid "Resulting number of words to practice:"
+msgstr "Totaal aantal te oefenen woorden:"
+
+#: src/collection/lessonmodel.cpp:47
+#, kde-format
+msgctxt "display of the name of the vocabulary collection"
+msgid "Collection: %1"
+msgstr "Verzameling: %1"
+
+#: src/collection/readonlycontainermodel.cpp:131
+#, kde-format
+msgid "None"
+msgstr "Geen"
+
+#: src/collection/vocabularymodel.cpp:185
+#, kde-format
+msgid "You can drag and drop words onto their word type."
+msgstr "U kunt woorden naar hun woordtype slepen en neerzetten."
+
+#: src/collection/vocabularymodel.cpp:187
+#, kde-format
+msgid "Enable the synonym view to edit synonyms."
+msgstr ""
+"Schakel de weergave voor synoniemen in voor het bewerken van synoniemen."
+
+#: src/collection/vocabularymodel.cpp:189
+#, kde-format
+msgid "Enable the antonym view to edit antonyms."
+msgstr ""
+"Schakel de weergave in voor tegengestelden om tegengestelden te bewerken."
+
+#: src/collection/vocabularymodel.cpp:281
+#, kde-format
+msgid "Pronunciation (%1)"
+msgstr "Uitspraak (%1)"
+
+#: src/collection/vocabularymodel.cpp:281
+#, kde-format
+msgid "Pronunciation"
+msgstr "Uitspraak"
+
+#: src/collection/vocabularymodel.cpp:283
+#, kde-format
+msgid "Word Type (%1)"
+msgstr "Woordtype (%1)"
+
+#: src/collection/vocabularymodel.cpp:283
+#, kde-format
+msgid "Word Type"
+msgstr "Woordtype"
+
+#. i18n: ectx: property (text), widget (QPushButton, synonymButton)
+#: src/collection/vocabularymodel.cpp:285 src/editor/synonymwidget.ui:26
+#, kde-format
+msgid "Synonym"
+msgstr "Synoniem"
+
+#: src/collection/vocabularymodel.cpp:285
+#, kde-format
+msgid "Synonym (%1)"
+msgstr "Synoniem (%1)"
+
+#: src/collection/vocabularymodel.cpp:287
+#, kde-format
+msgid "Antonym (%1)"
+msgstr "Tegengestelde (%1)"
+
+#: src/collection/vocabularymodel.cpp:287
+#, kde-format
+msgid "Antonym"
+msgstr "Tegengestelde"
+
+#: src/collection/vocabularymodel.cpp:289
+#, kde-format
+msgid "Example (%1)"
+msgstr "Voorbeeld (%1)"
+
+#: src/collection/vocabularymodel.cpp:289
+#, kde-format
+msgid "Example"
+msgstr "Voorbeeld"
+
+#: src/collection/vocabularymodel.cpp:291
+#, kde-format
+msgid "Comment (%1)"
+msgstr "Commentaar (%1)"
+
+#: src/collection/vocabularymodel.cpp:291
+#, kde-format
+msgid "Comment"
+msgstr "Commentaar"
+
+#: src/collection/vocabularymodel.cpp:293
+#, kde-format
+msgid "Paraphrase (%1)"
+msgstr "Omschrijving (%1)"
+
+#: src/collection/vocabularymodel.cpp:293
+#, kde-format
+msgid "Paraphrase"
+msgstr "Omschrijving"
+
+#: src/collection/vocabularymodel.cpp:312
+#, kde-format
+msgid "Please use Edit -> Languages to set up your document."
+msgstr "Gebruik Bewerken -> Talen voor het bewerken van het document."
+
+#: src/collection/vocabularymodel.cpp:312
+#, kde-format
+msgid "No Languages Defined"
+msgstr "Geen talen opgegeven"
+
+#: src/collection/vocabularymodel.cpp:317
+#, kde-format
+msgid "Select a unit before adding vocabulary."
+msgstr "Selecteer een eenheid voordat u er een woordenlijst aan toevoegt."
+
+#: src/collection/vocabularymodel.cpp:317
+#, kde-format
+msgid "No Unit Selected"
+msgstr "Geen eenheid geselecteerd"
+
+#: src/dashboard/barwidget.cpp:120
+#, kde-format
+msgid "%1 word due"
+msgid_plural "%1 words due"
+msgstr[0] "nog %1 woord verwacht"
+msgstr[1] "nog %1 woorden verwacht"
+
+#: src/dashboard/barwidget.cpp:122
+#, kde-format
+msgid "Fully learned"
+msgstr "Alles geleerd"
+
+#: src/dashboard/buttondelegate.cpp:32
+#, kde-format
+msgid "Open this vocabulary collection in the editor"
+msgstr "Deze woordenlijstverzameling openen in de bewerker."
+
+#: src/dashboard/collectionwidget.cpp:96
+#, kde-format
+msgid "Practice Anyway"
+msgstr "Toch oefenen"
+
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:367
+#: src/editor/editor.cpp:368
+#, kde-format
+msgid "Practice"
+msgstr "Oefening"
+
+#. i18n: ectx: property (text), widget (QLabel, recentLabel)
+#: src/dashboard/dashboard.cpp:231 src/dashboard/dashboard.ui:38
+#, kde-format
+msgid "Active Collections"
+msgstr "Actieve verzamelingen"
+
+#. i18n: ectx: property (text), widget (QLabel, completedLabel)
+#: src/dashboard/dashboard.cpp:236 src/dashboard/dashboard.ui:77
+#, kde-format
+msgid "Completed Collections"
+msgstr "Geoefende verzamelingen"
+
+#. i18n: ectx: property (text), widget (QPushButton, removeChoiceButton)
+#: src/dashboard/dashboard.cpp:284 src/editor/multiplechoicewidget.ui:28
+#, kde-format
+msgid "Remove"
+msgstr "Verwijderen"
+
+#: src/dashboard/dashboard.cpp:284
+#, kde-format
+msgid "Are you sure you want to remove this collection?"
+msgstr "Wilt u werkelijk deze verzameling verwijderen?"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, Dashboard)
+#: src/dashboard/dashboard.ui:14 src/main.cpp:37
+#, kde-format
+msgid "Parley"
+msgstr "Parley"
+
+#. i18n: ectx: property (text), widget (QPushButton, newButton)
+#: src/dashboard/dashboard.ui:120
+#, kde-format
+msgid "Create a New Collection..."
+msgstr "Een nieuwe verzameling aanmaken..."
+
+#. i18n: ectx: property (text), widget (QPushButton, openButton)
+#: src/dashboard/dashboard.ui:127
+#, kde-format
+msgid "Open an Existing Collection..."
+msgstr "Een bestaande verzameling openen..."
+
+#. i18n: ectx: property (text), widget (KNSWidgets::Button, ghnsButton)
+#: src/dashboard/dashboard.ui:134
+#, kde-format
+msgid "Download New Collections..."
+msgstr "Nieuwe verzamelingen downloaden..."
+
+#. i18n: ectx: property (text), widget (QLabel, headingLabel)
+#: src/dashboard/dashboard.ui:141
+#, kde-format
+msgid "<h1>Parley</h1>"
+msgstr "<h1>Parley</h1>"
+
+#. i18n: ectx: property (text), widget (QPushButton, playButton)
+#. i18n: ectx: property (text), widget (Practice::AudioButton, solutionSoundButton)
+#. i18n: ectx: property (text), widget (Practice::AudioButton, questionSoundButton)
+#: src/editor/audiowidget.ui:19 src/practice/audiobutton.cpp:18
+#: src/practice/audiobutton.cpp:19 src/practice/audiobutton.cpp:63
+#: src/practice/audiobutton.cpp:64 src/practice/practice_widget_flashcard.ui:48
+#: src/practice/practice_widget_flashcard.ui:103
+#, kde-format
+msgid "Play"
+msgstr "Afspelen"
+
+#. i18n: ectx: property (text), widget (QPushButton, recordButton)
+#: src/editor/audiowidget.ui:26
+#, kde-format
+msgid "Record"
+msgstr "Opnemen"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, downloadButton)
+#: src/editor/audiowidget.ui:33
+#, kde-format
+msgid "Download audio file with webservice"
+msgstr "Geluidsbestand downloaden met webservice"
+
+#. i18n: ectx: property (text), widget (QPushButton, downloadButton)
+#: src/editor/audiowidget.ui:36
+#, kde-format
+msgid "Download"
+msgstr "Downloaden"
+
+#. i18n: ectx: property (text), widget (QPushButton, showCurrentButton)
+#: src/editor/browserwidget.ui:18
+#, kde-format
+msgid "Lookup Current"
+msgstr "Huidige opzoeken"
+
+#. i18n: ectx: property (text), widget (QCheckBox, followTableCheckBox)
+#: src/editor/browserwidget.ui:33
+#, kde-format
+msgid "Follow Table"
+msgstr "Tabel volgen"
+
+#: src/editor/comparisonwidget.cpp:76
+#, kde-format
+msgid "Could not determine word type of adjectives"
+msgstr "Kon het woordtype van bijvoeglijke naamwoorden niet vaststellen"
+
+#: src/editor/comparisonwidget.cpp:95
+#, kde-format
+msgid "Could not determine word type of adverbs"
+msgstr "Kon het woordtype van bijwoorden niet vaststellen"
+
+#. i18n: ectx: property (toolTip), widget (QLabel, absoluteLabel)
+#. i18n: ectx: property (toolTip), widget (QLabel, comparativeLabel)
+#: src/editor/comparisonwidget.ui:24 src/editor/comparisonwidget.ui:56
+#, kde-format
+msgid "The comparative is used to compare nouns or verbs (faster)"
+msgstr ""
+"Vergelijkende vorm wordt gebruikt om zelfstandige naamwoorden of bijwoorden  "
+"met elkaar te vergelijken (sneller)"
+
+#. i18n: ectx: property (text), widget (QLabel, absoluteLabel)
+#: src/editor/comparisonwidget.ui:27
+#, kde-format
+msgid "Absolute:"
+msgstr "Stellende trap:"
+
+#. i18n: ectx: property (text), widget (QLabel, comparativeLabel)
+#: src/editor/comparisonwidget.ui:59
+#, kde-format
+msgid "Comparative:"
+msgstr "Vergrotende trap:"
+
+#. i18n: ectx: property (toolTip), widget (QLabel, superlativeLabel)
+#: src/editor/comparisonwidget.ui:88
+#, kde-format
+msgid "The superlative (fastest)"
+msgstr "Overtreffende trap (snelste)"
+
+#. i18n: ectx: property (text), widget (QLabel, superlativeLabel)
+#: src/editor/comparisonwidget.ui:91
+#, kde-format
+msgid "Superlative:"
+msgstr "Overtreffende trap:"
+
+#. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
+#: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
+#: src/editor/wordtypeview.cpp:95 src/parleydocument.cpp:477
+#, kde-format
+msgid "Adjective"
+msgstr "Bijvoeglijk naamwoord"
+
+#. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
+#: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:103
+#: src/parleydocument.cpp:481
+#, kde-format
+msgid "Adverb"
+msgstr "Bijwoord"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, DocumentProperties)
+#. i18n: ectx: property (windowTitle), widget (QWidget, OptionListForm)
+#. i18n: ectx: property (windowTitle), widget (QWidget, FromToEntryPageForm)
+#. i18n: ectx: property (windowTitle), widget (QWidget, ConjugationWidget)
+#. i18n: ectx: property (windowTitle), widget (QWidget, DeclensionWidget)
+#: src/editor/conjugationwidget.ui:26 src/editor/declensionwidget.ui:26
+#: src/editor/FromToEntryPageForm.ui:20 src/settings/documentproperties.ui:20
+#: src/settings/optionlistform.ui:19
+#, kde-format
+msgid "-"
+msgstr "-"
+
+#. i18n: ectx: property (title), widget (QGroupBox, layout)
+#: src/editor/conjugationwidget.ui:32
+#, kde-format
+msgid "Conjugation Forms"
+msgstr "Vervoegingsvormen"
+
+#. i18n: ectx: property (text), widget (QLabel, singularFirstPersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, dualFirstPersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, pluralFirstPersonLabel)
+#: src/editor/conjugationwidget.ui:38 src/editor/conjugationwidget.ui:132
+#: src/editor/conjugationwidget.ui:209
+#, kde-format
+msgid "First"
+msgstr "Eerste"
+
+#. i18n: ectx: property (text), widget (QLabel, singularSecondPersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, dualSecondPersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, pluralSecondPersonLabel)
+#: src/editor/conjugationwidget.ui:61 src/editor/conjugationwidget.ui:148
+#: src/editor/conjugationwidget.ui:225
+#, kde-format
+msgid "Second"
+msgstr "Tweede"
+
+#. i18n: ectx: property (text), widget (QLabel, singularThirdMalePersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, dualThirdMalePersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, pluralThirdMalePersonLabel)
+#: src/editor/conjugationwidget.ui:84 src/editor/conjugationwidget.ui:164
+#: src/editor/conjugationwidget.ui:241
+#, kde-format
+msgid "Third Male"
+msgstr "Derde mannelijk"
+
+#. i18n: ectx: property (text), widget (QLabel, singularThirdFemalePersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, dualThirdFemalePersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, pluralThirdFemalePersonLabel)
+#: src/editor/conjugationwidget.ui:100 src/editor/conjugationwidget.ui:177
+#: src/editor/conjugationwidget.ui:260
+#, kde-format
+msgid "Third Female"
+msgstr "Derde vrouwelijk"
+
+#. i18n: ectx: property (text), widget (QLabel, singularThirdNeutralPersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, dualThirdNeutralPersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, pluralThirdNeutralPersonLabel)
+#: src/editor/conjugationwidget.ui:116 src/editor/conjugationwidget.ui:193
+#: src/editor/conjugationwidget.ui:279
+#, kde-format
+msgid "Third Neutral"
+msgstr "Derde onzijdig"
+
+#. i18n: ectx: property (text), widget (QPushButton, nextTenseButton)
+#: src/editor/conjugationwidget.ui:317
+#, kde-format
+msgid "Ne&xt"
+msgstr "&Volgende"
+
+#. i18n: ectx: property (text), widget (QLabel, tenselabel)
+#: src/editor/conjugationwidget.ui:330
+#, kde-format
+msgid "&Tense:"
+msgstr "&Tijdvorm:"
+
+#. i18n: ectx: property (text), widget (QLabel, male_label_3)
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4_2_2)
+#. i18n: ectx: property (text), widget (QLabel, singularLabel)
+#. i18n: ectx: property (text), item, widget (QComboBox, numberSelection)
+#: src/editor/conjugationwidget.ui:349 src/editor/declensionwidget.cpp:120
+#: src/editor/declensionwidget.ui:459
+#: src/settings/languagepropertiespage.ui:378
+#: src/settings/languagepropertiespage.ui:486
+#, kde-format
+msgid "Singular"
+msgstr "Enkelvoud"
+
+#. i18n: ectx: property (text), widget (QLabel, dualLabel)
+#. i18n: ectx: property (text), item, widget (QComboBox, numberSelection)
+#: src/editor/conjugationwidget.ui:368 src/editor/declensionwidget.cpp:121
+#: src/editor/declensionwidget.ui:464
+#: src/settings/languagepropertiespage.ui:493
+#, kde-format
+msgid "Dual"
+msgstr "Tweevoud"
+
+#. i18n: ectx: property (text), widget (QLabel, male_label_4)
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4_3)
+#. i18n: ectx: property (text), widget (QLabel, pluralLabel)
+#. i18n: ectx: property (text), item, widget (QComboBox, numberSelection)
+#: src/editor/conjugationwidget.ui:387 src/editor/declensionwidget.cpp:122
+#: src/editor/declensionwidget.ui:469
+#: src/settings/languagepropertiespage.ui:388
+#: src/settings/languagepropertiespage.ui:500
+#, kde-format
+msgid "Plural"
+msgstr "Meervoud"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:463
+#, kde-format
+msgid "Masculine"
+msgstr "Mannelijk"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:466
+#, kde-format
+msgid "Feminine"
+msgstr "Vrouwelijk"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:469
+#, kde-format
+msgid "Neuter"
+msgstr "Onzijdig"
+
+#. i18n: ectx: property (title), widget (QGroupBox, declensionGroupBox)
+#: src/editor/declensionwidget.ui:38
+#, kde-format
+msgid "Declension Forms"
+msgstr "Verbuigingsvormen"
+
+#. i18n: ectx: property (text), widget (QLabel, nominativeLabel)
+#: src/editor/declensionwidget.ui:52
+#, kde-format
+msgctxt "one of the seven cases (grammatical)"
+msgid "Nominative:"
+msgstr "Eerste naamval:"
+
+#. i18n: ectx: property (text), widget (QLabel, genitivLabel)
+#: src/editor/declensionwidget.ui:71
+#, kde-format
+msgctxt "one of the seven cases (grammatical)"
+msgid "Genitive:"
+msgstr "Tweede naamval:"
+
+#. i18n: ectx: property (text), widget (QLabel, dativLabel)
+#: src/editor/declensionwidget.ui:90
+#, kde-format
+msgctxt "one of the seven cases (grammatical)"
+msgid "Dative:"
+msgstr "Derde naamval:"
+
+#. i18n: ectx: property (text), widget (QLabel, accusativeLabel)
+#: src/editor/declensionwidget.ui:109
+#, kde-format
+msgctxt "one of the seven cases (grammatical)"
+msgid "Accusative:"
+msgstr "Vierde naamval:"
+
+#. i18n: ectx: property (text), widget (QLabel, ablativLabel)
+#: src/editor/declensionwidget.ui:128
+#, kde-format
+msgctxt "one of the seven cases (grammatical)"
+msgid "Ablative:"
+msgstr "Zesde naamval:"
+
+#. i18n: ectx: property (text), widget (QLabel, locativeLabel)
+#: src/editor/declensionwidget.ui:147
+#, kde-format
+msgctxt "one of the seven cases (grammatical)"
+msgid "Locative:"
+msgstr "Zevende naamval:"
+
+#. i18n: ectx: property (text), widget (QLabel, vocativeLabel)
+#: src/editor/declensionwidget.ui:166
+#, kde-format
+msgctxt "one of the seven cases (grammatical)"
+msgid "Vocative:"
+msgstr "Vijfde naamval:"
+
+#. i18n: ectx: property (text), widget (QLabel, numberLabel)
+#: src/editor/declensionwidget.ui:445
+#, kde-format
+msgid "Number:"
+msgstr "Aantal:"
+
+#. i18n: ectx: property (text), widget (QPushButton, nextButton)
+#: src/editor/declensionwidget.ui:477
+#, kde-format
+msgid "Next"
+msgstr "Volgende"
+
+#: src/editor/editor.cpp:134
+#, kde-format
+msgid "Units"
+msgstr "Eenheden"
+
+#: src/editor/editor.cpp:145
+#, kde-format
+msgid ""
+"Right click to add, delete, or rename units. \n"
+"With the checkboxes you can select which units you want to practice. \n"
+"Only checked units [x] will be asked in the practice!"
+msgstr ""
+"Klik met de rechtermuisknop om eenheden toe te\n"
+"voegen, te verwijderen of te hernoemen. \n"
+"Met de keuzevakjes kunt u kiezen welke eenheden u wilt oefenen.\n"
+"Alleen de gekozen eenheden [x] worden in de oefening gebruikt!"
+
+#: src/editor/editor.cpp:156
+#, kde-format
+msgid "Word Types"
+msgstr "Woordtypen"
+
+#: src/editor/editor.cpp:176
+#, kde-format
+msgid "Inflection (verbs, adjectives, nouns)"
+msgstr ""
+"verbuiging(werkwoorden,bijvoeglijke naamwoorden, zelfstandige naamwoorden)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
+#: src/editor/editor.cpp:190 src/statistics/statisticsmainwindow.ui:135
+#, kde-format
+msgid "Comparison Forms"
+msgstr "Trappen van vergelijking"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: src/editor/editor.cpp:205
+#: src/practice/configure/specificpracticeoptions.ui:17
+#, kde-format
+msgid "Multiple Choice"
+msgstr "Meerkeuze"
+
+#. i18n: ectx: property (text), widget (QLabel, synonymLabel)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/editor/editor.cpp:219 src/editor/synonymwidget.ui:16
+#: src/practice/configure/generalpracticeoptions.ui:152
+#, kde-format
+msgid "Synonyms"
+msgstr "Synoniemen"
+
+#: src/editor/editor.cpp:232
+#, kde-format
+msgid "Antonyms"
+msgstr "Tegengestelden"
+
+#: src/editor/editor.cpp:246
+#, kde-format
+msgid "False Friends"
+msgstr "Valse vrienden"
+
+#: src/editor/editor.cpp:261
+#, kde-format
+msgid "Phonetic Symbols"
+msgstr "Fonetische symbolen"
+
+#: src/editor/editor.cpp:276
+#, kde-format
+msgid "Image"
+msgstr "Afbeelding"
+
+#: src/editor/editor.cpp:291
+#, kde-format
+msgid "Summary"
+msgstr "Samenvatting"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
+#: src/editor/editor.cpp:305
+#: src/practice/configure/generalpracticeoptions.ui:139
+#, kde-format
+msgid "Sound"
+msgstr "Geluid"
+
+#: src/editor/editor.cpp:320
+#, kde-format
+msgid "Internet"
+msgstr "Internet"
+
+#: src/editor/editor.cpp:335
+#, kde-format
+msgid "LaTeX"
+msgstr "LaTeX"
+
+#: src/editor/editor.cpp:412
+#, kde-format
+msgid "Enter search terms here"
+msgstr "Voer hier zoektermen in"
+
+#: src/editor/editor.cpp:413
+#, kde-format
+msgid "Search your vocabulary"
+msgstr "Zoeken in woordenlijst"
+
+#: src/editor/editor.cpp:415
+#, kde-format
+msgid "S&earch:"
+msgstr "Zo&eken:"
+
+#. i18n: ectx: Menu (file)
+#: src/editor/editorui.rc:7 src/practice/practicesummaryui.rc:7
+#: src/practice/practiceui.rc:7 src/statistics/statisticsui.rc:7
+#, kde-format
+msgid "&File"
+msgstr "Besta&nd"
+
+#. i18n: ectx: Menu (edit)
+#: src/editor/editorui.rc:12
+#, kde-format
+msgid "&Edit"
+msgstr "B&ewerken"
+
+#. i18n: ectx: Menu (view)
+#: src/editor/editorui.rc:25 src/practice/practiceui.rc:12
+#, kde-format
+msgid "&View"
+msgstr "&Beeld"
+
+#. i18n: ectx: Menu (lesson)
+#: src/editor/editorui.rc:51
+#, kde-format
+msgid "&Unit"
+msgstr "&Les"
+
+#. i18n: ectx: Menu (learning)
+#: src/editor/editorui.rc:65 src/practice/practicesummaryui.rc:12
+#: src/statistics/statisticsui.rc:12
+#, kde-format
+msgid "&Practice"
+msgstr "&Oefening"
+
+#. i18n: ectx: ToolBar (editorToolBar)
+#: src/editor/editorui.rc:72 src/parleyui.rc:24
+#, kde-format
+msgid "Editor Toolbar"
+msgstr "Werkbalk voor bewerker"
+
+#. i18n: ectx: property (title), widget (QGroupBox, direc_label)
+#: src/editor/FromToEntryPageForm.ui:26
+#, kde-format
+msgid "Properties From Original"
+msgstr "Eigenschappen vanuit origineel"
+
+#. i18n: ectx: property (text), widget (QLabel, grade_label)
+#: src/editor/FromToEntryPageForm.ui:72
+#, kde-format
+msgid "&Confidence Level:"
+msgstr "&Beoordeling"
+
+#. i18n: ectx: property (text), widget (QLabel, fauxami_label)
+#: src/editor/FromToEntryPageForm.ui:95
+#, kde-format
+msgid "&False friend:"
+msgstr "&Valse vriend:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, GroupBox3)
+#: src/editor/FromToEntryPageForm.ui:110
+#, kde-format
+msgid "Practice &Counts"
+msgstr "&Oefenresultaten"
+
+#. i18n: ectx: property (text), widget (QLabel, bcount_label)
+#: src/editor/FromToEntryPageForm.ui:142
+#, kde-format
+msgid "&Wrong:"
+msgstr "&Fout:"
+
+#. i18n: ectx: property (text), widget (QLabel, qcount_label)
+#: src/editor/FromToEntryPageForm.ui:155
+#, kde-format
+msgid "Tot&al:"
+msgstr "Tot&aal:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, GroupBox2)
+#: src/editor/FromToEntryPageForm.ui:171
+#, kde-format
+msgid "&Last Practiced"
+msgstr "&Laatst geoefend"
+
+#. i18n: ectx: property (text), widget (QPushButton, never)
+#: src/editor/FromToEntryPageForm.ui:183
+#, kde-format
+msgid "&Never"
+msgstr "&Nooit"
+
+#. i18n: ectx: property (text), widget (QPushButton, today)
+#: src/editor/FromToEntryPageForm.ui:190
+#, kde-format
+msgid "T&oday"
+msgstr "V&andaag"
+
+#. i18n: ectx: property (toolTip), widget (QDateEdit, queryDateEdit)
+#: src/editor/FromToEntryPageForm.ui:206
+#, kde-format
+msgid "The date this expression was last practiced"
+msgstr "De datum dat dit voor het laatst is geoefend"
+
+#. i18n: ectx: property (specialValueText), widget (QDateEdit, queryDateEdit)
+#: src/editor/FromToEntryPageForm.ui:209
+#, kde-format
+msgid "Not Practiced Yet"
+msgstr "Nog niet geoefend"
+
+#. i18n: ectx: property (displayFormat), widget (QDateEdit, queryDateEdit)
+#: src/editor/FromToEntryPageForm.ui:229
+#, kde-format
+msgid "dd.MM.yyyy"
+msgstr "dd.MM.jjjj"
+
+#. i18n: ectx: property (text), widget (QPushButton, resetGradesButton)
+#: src/editor/FromToEntryPageForm.ui:260
+#, kde-format
+msgid "&Reset Confidence Levels"
+msgstr "&Beoordelingen opnieuw"
+
+#: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:111
+#: src/parleydocument.cpp:473
+#, kde-format
+msgid "Verb"
+msgstr "Werkwoord"
+
+#: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:63
+#: src/parleydocument.cpp:459
+#, kde-format
+msgid "Noun"
+msgstr "Zelfstandig naamwoord"
+
+#: src/editor/inflectionwidget.cpp:81
+#, kde-format
+msgid "\"%1\" is a:"
+msgstr "\"%1\" is een:"
+
+#: src/editor/inflectionwidget.cpp:124
+#, kde-format
+msgctxt "@title:window"
+msgid "Please select the noun's gender"
+msgstr "Selecteer het geslacht van het zelfstandig naamwoord"
+
+#: src/editor/latexwidget.cpp:22
+#, kde-format
+msgid "Enter LaTeX code here."
+msgstr "Voer hier LaTeX-code in."
+
+#. i18n: ectx: property (text), widget (QLabel, texLabel)
+#: src/editor/latexwidget.ui:17
+#, kde-format
+msgid "LaTeX code:"
+msgstr "LateX-code:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/editor/latexwidget.ui:37
+#: src/settings/kgametheme/kgamethemeselector.ui:55
+#, kde-format
+msgid "Preview"
+msgstr "Voorbeeld"
+
+#. i18n: ectx: property (text), widget (QCheckBox, mathModeCheckBox)
+#: src/editor/latexwidget.ui:57
+#, kde-format
+msgid "Math mode"
+msgstr "Wiskundemodus"
+
+#: src/editor/lessonview.cpp:31
+#, kde-format
+msgid "New Unit"
+msgstr "Nieuwe eenheid"
+
+#: src/editor/lessonview.cpp:33
+#, kde-format
+msgid "Add a new unit to your document"
+msgstr "Een nieuwe eenheid aan uw document toevoegen"
+
+#: src/editor/lessonview.cpp:39
+#, kde-format
+msgid "Rename Unit"
+msgstr "Les hernoemen"
+
+#: src/editor/lessonview.cpp:47
+#, kde-format
+msgid "Delete Unit"
+msgstr "Les verwijderen"
+
+#: src/editor/lessonview.cpp:49
+#, kde-format
+msgid "Delete the selected unit."
+msgstr "De geselecteerde eenheid verwijderen."
+
+#: src/editor/lessonview.cpp:55
+#, kde-format
+msgid "Split Unit into Smaller Units"
+msgstr "Lessen in kleinere eenheden opdelen"
+
+#: src/editor/lessonview.cpp:57
+#, kde-format
+msgid "Make multiple smaller units out of one big unit."
+msgstr "Maak meerdere kleine eenheden uit een grote eenheid."
+
+#: src/editor/lessonview.cpp:63
+#, kde-format
+msgid "Move to new lesson"
+msgstr "Naar een nieuwe eenheid gaan"
+
+#: src/editor/lessonview.cpp:65
+#, kde-format
+msgid "Moves the selected vocabulary to a new lesson"
+msgstr "Verplaatst de gekozen woordenlijst naar een nieuwe eenheid"
+
+#: src/editor/lessonview.cpp:71 src/parleyactions.cpp:151
+#, kde-format
+msgid "Remove Confidence Levels"
+msgstr "Beoordelingen wissen"
+
+#: src/editor/lessonview.cpp:73
+#, kde-format
+msgid "Remove confidence levels from this unit."
+msgstr "Beoordelingen van deze eenheid wissen"
+
+#: src/editor/lessonview.cpp:79
+#, kde-format
+msgid "Remove Confidence Levels From This Unit And All Subunits"
+msgstr "Beoordelingen wissen van deze eenheid en alle subeenheden"
+
+#: src/editor/lessonview.cpp:81
+#, kde-format
+msgid "Remove confidence levels from this unit and all subunits."
+msgstr "Beoordelingen wissen van deze eenheid en alle subeenheden."
+
+#: src/editor/lessonview.cpp:87
+#, kde-format
+msgid "Expand Units and Subunits"
+msgstr "Alle eenheden en subeenheden uitklappen"
+
+#: src/editor/lessonview.cpp:89
+#, kde-format
+msgid "Expand all units and subunits."
+msgstr "Alle eenheden en subeenheden uitklappen."
+
+#: src/editor/lessonview.cpp:95
+#, kde-format
+msgid "Collapse All Units And Subunits"
+msgstr "Alle eenheden en subeenheden inklappen"
+
+#: src/editor/lessonview.cpp:97
+#, kde-format
+msgid "Collapse all units and subunits."
+msgstr "Alle eenheden en subeenheden inklappen."
+
+#: src/editor/lessonview.cpp:189
+#, kde-format
+msgid "The root lesson cannot be deleted."
+msgstr "De basiseenheid kan niet worden verwijderd."
+
+#: src/editor/lessonview.cpp:199
+#, kde-format
+msgid "There is %1 word left in this unit. Do you want to delete it?"
+msgid_plural ""
+"There are %1 words left in this unit. Do you want to delete them?"
+msgstr[0] ""
+"Er is %1 woord over in deze eenheid. Wilt u dat dat verwijderd wordt?"
+msgstr[1] ""
+"Er zijn %1 woorden over in deze eenheid. Wilt u dat die verwijderd worden?"
+
+#: src/editor/lessonview.cpp:217
+#, kde-format
+msgid "Entries per Unit"
+msgstr "Regels per eenheid"
+
+#: src/editor/lessonview.cpp:218
+#, kde-format
+msgid ""
+"The unit will be split into smaller unit. How many entries in each unit do "
+"you want?"
+msgstr ""
+"De eenheden worden in kleinere eenheden opgedeeld. Hoeveel regels moeten er "
+"in iedere eenheid zijn?"
+
+#: src/editor/lessonview.cpp:241
+#, kde-format
+msgid "New Lesson"
+msgstr "Nieuwe eenheid"
+
+#. i18n: ectx: property (text), widget (QPushButton, addChoiceButton)
+#: src/editor/multiplechoicewidget.ui:21
+#, kde-format
+msgid "Add"
+msgstr "Toevoegen"
+
+#. i18n: ectx: property (text), widget (QLabel, languageLabel)
+#: src/editor/summarywordwidget.ui:16
+#, kde-format
+msgid "Language"
+msgstr "Taal"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/editor/summarywordwidget.ui:32
+#, kde-format
+msgid "Lesson"
+msgstr "Les"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: src/editor/summarywordwidget.ui:42
+#, kde-format
+msgid "Word type:"
+msgstr "Woordtype:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: src/editor/summarywordwidget.ui:55
+#, kde-format
+msgid "Pronunciation:"
+msgstr "Uitspraak:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: src/editor/summarywordwidget.ui:71
+#, kde-format
+msgid "Example:"
+msgstr "Voorbeeld:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: src/editor/summarywordwidget.ui:87
+#, kde-format
+msgid "Paraphrase:"
+msgstr "Omschrijving:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: src/editor/summarywordwidget.ui:103
+#, kde-format
+msgid "Comment:"
+msgstr "Commentaar:"
+
+#: src/editor/synonymwidget.cpp:59
+#, kde-format
+msgid "Select Synonyms"
+msgstr "Synoniemen selecteren"
+
+#: src/editor/synonymwidget.cpp:65
+#, kde-format
+msgid "%1 and %2 are not Synonyms"
+msgstr "%1 en %2 zijn niet synoniem"
+
+#: src/editor/synonymwidget.cpp:67
+#, kde-format
+msgid "%1 and %2 are Synonyms"
+msgstr "%1 en %2 zijn synoniem"
+
+#: src/editor/synonymwidget.cpp:72
+#, kde-format
+msgid "%1 and %2 are not Antonyms"
+msgstr "%1 en %2 zijn niet tegengesteld"
+
+#: src/editor/synonymwidget.cpp:74
+#, kde-format
+msgid "%1 and %2 are Antonyms"
+msgstr "%1 en %2 zijn tegengesteld"
+
+#: src/editor/synonymwidget.cpp:79
+#, kde-format
+msgid "%1 and %2 are not False Friends"
+msgstr "%1 en %2 zijn geen valse vrienden"
+
+#: src/editor/synonymwidget.cpp:81
+#, kde-format
+msgid "%1 and %2 are False Friends"
+msgstr "%1 en %2 zijn valse vrienden"
+
+#: src/editor/synonymwidget.cpp:90
+#, kde-format
+msgctxt "Title for a list of synonyms for a word"
+msgid "Synonyms of %1:"
+msgstr "Synoniemen van %1:"
+
+#: src/editor/synonymwidget.cpp:93
+#, kde-format
+msgctxt "Title for a list of antonyms (opposites) for a word"
+msgid "Antonyms of %1:"
+msgstr "Tegengestelden van %1:"
+
+#: src/editor/synonymwidget.cpp:97
+#, kde-format
+msgctxt ""
+"Title for a list of false friend (things that sound similar but have "
+"different meanings) for a word"
+msgid "False Friends of %1:"
+msgstr "Valse vrienden van %1:"
+
+#: src/editor/vocabularycolumnsdialog.cpp:43
+#, kde-format
+msgctxt "@title:window"
+msgid "Vocabulary Columns"
+msgstr "Kolommen woordenlijst"
+
+#: src/editor/vocabularycolumnsdialog.cpp:58
+#, kde-format
+msgid "Enable/Disable the columns for each language"
+msgstr "Activeer/deactiveer kolommen voor beide talen"
+
+#: src/editor/vocabularydelegate.cpp:145
+#, kde-format
+msgid "Sound file selected: %1"
+msgstr "Geselecteerd geluidsbestand: %1"
+
+#: src/editor/vocabularydelegate.cpp:147
+#, kde-format
+msgid "Image file selected: %1"
+msgstr "Geselecteerd afbeeldingsbestand: %1"
+
+#: src/editor/vocabularyview.cpp:79
+#, kde-format
+msgid "&Add New Entry"
+msgstr "Nieuwe regel &toevoegen"
+
+#: src/editor/vocabularyview.cpp:82
+#, kde-format
+msgid "Append a new row to the vocabulary"
+msgstr "Een nieuwe regel aan de woordenlijst toevoegen"
+
+#: src/editor/vocabularyview.cpp:91
+#, kde-format
+msgid "&Delete Entry"
+msgstr "Regel &verwijderen"
+
+#: src/editor/vocabularyview.cpp:94
+#, kde-format
+msgid "Delete the selected rows"
+msgstr "De geselecteerde regels verwijderen"
+
+#: src/editor/vocabularyview.cpp:105
+#, kde-format
+msgid "Copy"
+msgstr "Kopiëren"
+
+#: src/editor/vocabularyview.cpp:112
+#, kde-format
+msgid "Cut"
+msgstr "Knippen"
+
+#: src/editor/vocabularyview.cpp:119
+#, kde-format
+msgid "Paste"
+msgstr "Plakken"
+
+#: src/editor/vocabularyview.cpp:126
+#, kde-format
+msgid "Select all rows"
+msgstr "Alle regels selecteren"
+
+#: src/editor/vocabularyview.cpp:132
+#, kde-format
+msgid "Deselect all rows"
+msgstr "Alle regels deselecteren"
+
+#: src/editor/vocabularyview.cpp:140
+#, kde-format
+msgid "Vocabulary Columns..."
+msgstr "Kolommen woordenlijst..."
+
+#: src/editor/vocabularyview.cpp:141
+#, kde-format
+msgid "Toggle display of individual vocabulary columns"
+msgstr "Kolommenweergave in woordenlijst aan- of uitzetten"
+
+#: src/editor/vocabularyview.cpp:253
+#, kde-format
+msgid "Do you really want to delete the selected entry?"
+msgid_plural "Do you really want to delete the selected %1 entries?"
+msgstr[0] "Wilt u werkelijk de geselecteerde regel wissen?"
+msgstr[1] "Wilt u werkelijk de %1 geselecteerde regels wissen?"
+
+#: src/editor/vocabularyview.cpp:254
+#, kde-format
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: src/editor/vocabularyview.cpp:362
+#, kde-format
+msgid "Nothing to spell check."
+msgstr "Niets om de spelling van te controleren"
+
+#: src/editor/vocabularyview.cpp:387
+#, kde-format
+msgctxt "@title of a popup"
+msgid "No Spell Checker Available"
+msgstr "Geen spellingcontrole beschikbaar"
+
+#: src/editor/vocabularyview.cpp:388
+#, kde-format
+msgctxt "@popupmessage"
+msgid ""
+"Either the language set up is incorrect or no spellchecker was installed for "
+"this locale: %1."
+msgstr ""
+"De taal is onjuist ingesteld, of er is geen spellingcontrole geïnstalleerd "
+"voor deze taal: %1."
+
+#: src/editor/wordtypeview.cpp:30
+#, kde-format
+msgid "New"
+msgstr "Nieuw"
+
+#: src/editor/wordtypeview.cpp:32
+#, kde-format
+msgid "Add a new word type to your document"
+msgstr "Een nieuw woordtype aan uw document toevoegen"
+
+#: src/editor/wordtypeview.cpp:38
+#, kde-format
+msgid "Rename"
+msgstr "Hernoemen"
+
+#: src/editor/wordtypeview.cpp:40
+#, kde-format
+msgid "Rename the selected word type"
+msgstr "Het geselecteerde woordtype hernoemen"
+
+#: src/editor/wordtypeview.cpp:46
+#, kde-format
+msgid "Delete Word Type"
+msgstr "Woordtype verwijderen"
+
+#: src/editor/wordtypeview.cpp:48
+#, kde-format
+msgid "Delete the selected word type."
+msgstr "Het geselecteerde woordtype verwijderen."
+
+#: src/editor/wordtypeview.cpp:55
+#, kde-format
+msgctxt ""
+"Let the user select what grammatical meaning is connected to a word type "
+"(nouns have gender, verbs conjugations etc)"
+msgid "Grammar"
+msgstr "Grammatica"
+
+#: src/editor/wordtypeview.cpp:57
+#, kde-format
+msgid "To let Parley know the grammatical meaning of a word type."
+msgstr "Parley de grammatische betekenis van een woordtype leren."
+
+#: src/editor/wordtypeview.cpp:65
+#, kde-format
+msgid "This word type folder contains nouns."
+msgstr "Deze map met woordtypen bevat zelfstandige naamwoorden."
+
+#: src/editor/wordtypeview.cpp:71
+#, kde-format
+msgid "Masculine Noun"
+msgstr "Mannelijk zelfstandig naamwoord"
+
+#: src/editor/wordtypeview.cpp:73
+#, kde-format
+msgid "This word type folder contains masculine nouns."
+msgstr "Deze map met woordtypen bevat mannelijke zelfstandige naamwoorden."
+
+#: src/editor/wordtypeview.cpp:79
+#, kde-format
+msgid "Feminine Noun"
+msgstr "Vrouwelijk zelfstandig naamwoord"
+
+#: src/editor/wordtypeview.cpp:81
+#, kde-format
+msgid "This word type folder contains feminine nouns."
+msgstr "Deze map met woordtypen bevat vrouwelijke zelfstandige naamwoorden."
+
+#: src/editor/wordtypeview.cpp:87
+#, kde-format
+msgid "Neuter Noun"
+msgstr "Onzijdig zelfstandig naamwoord"
+
+#: src/editor/wordtypeview.cpp:89
+#, kde-format
+msgid "This word type folder contains neuter nouns."
+msgstr "Deze map met woordtypen bevat onzijdige zelfstandige naamwoorden."
+
+#: src/editor/wordtypeview.cpp:97
+#, kde-format
+msgid "This word type folder contains adjectives."
+msgstr "Deze map met woordtypen bevat bijvoeglijke naamwoorden."
+
+#: src/editor/wordtypeview.cpp:105
+#, kde-format
+msgid "This word type folder contains adverbs."
+msgstr "Deze map met woordtypen bevat bijwoorden."
+
+#: src/editor/wordtypeview.cpp:113
+#, kde-format
+msgid "This word type folder contains verbs."
+msgstr "Deze map met woordtypen bevat werkwoorden."
+
+#: src/editor/wordtypeview.cpp:119 src/parleydocument.cpp:485
+#, kde-format
+msgid "Conjunction"
+msgstr "Voegwoord"
+
+#: src/editor/wordtypeview.cpp:121
+#, kde-format
+msgid "This word type folder contains conjunctions."
+msgstr "Deze map met woordtypen bevat voegwoorden."
+
+#: src/editor/wordtypeview.cpp:127
+#, kde-format
+msgid "No Special Type"
+msgstr "Geen speciaal woordtype"
+
+#: src/editor/wordtypeview.cpp:130
+#, kde-format
+msgid "This word type folder contains no word type with special meaning."
+msgstr "Deze map met woordtypen bevat geen speciale woordsoorten."
+
+#: src/editor/wordtypeview.cpp:208
+#, kde-format
+msgid "The root word type cannot be deleted."
+msgstr "Het hoofdwoordtype kan niet worden verwijderd."
+
+#: src/editor/wordtypeview.cpp:218
+#, kde-format
+msgid ""
+"There is a word left with this word type. It will lose its type. Continue?"
+msgid_plural ""
+"There are %1 words left with this word type. They will lose their word type. "
+"Continue?"
+msgstr[0] ""
+"Er is nog een woord overgebleven van dit woordtype. Het woordtype hiervan "
+"gaat verloren. Doorgaan?"
+msgstr[1] ""
+"Er zijn nog %1 woorden overgebleven van dit woordtype. Het woordtype hiervan "
+"gaat verloren. Doorgaan?"
+
+#: src/exportdialog.cpp:53
+#, kde-format
+msgctxt "@title:window"
+msgid "Export"
+msgstr "Exporteren"
+
+#: src/exportdialog.cpp:79
+#, kde-format
+msgid "HTML document"
+msgstr "HTML-document"
+
+#: src/exportdialog.cpp:102
+#, kde-format
+msgid "Could not write to file \"%1\""
+msgstr "Kon niet naar bestand \"%1\" schrijven"
+
+#: src/exportdialog.cpp:119
+#, kde-format
+msgid "Export As"
+msgstr "Exporteren als"
+
+#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:136
+#, kde-format
+msgid "Untitled"
+msgstr "Naamloos"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, ExportOptions)
+#: src/exportdialog.ui:14
+#, kde-format
+msgid "Export"
+msgstr "Exporteren"
+
+#. i18n: ectx: property (text), widget (QRadioButton, flashCardRadio)
+#: src/exportdialog.ui:20
+#, kde-format
+msgid "Flash Cards - to print learning cards (HTML)"
+msgstr "Oefenkaarten - voor het afdrukken van kaarten (HTML)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, tableRadio)
+#: src/exportdialog.ui:30
+#, kde-format
+msgid "A vocabulary list that works in a web-browser and can be printed (HTML)"
+msgstr ""
+"Een woordenlijst die in een webbrowser kan worden weergegeven en kan worden "
+"afgedrukt (HTML)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, csvRadio)
+#: src/exportdialog.ui:40
+#, kde-format
+msgid "Comma separated values (CSV)"
+msgstr "Door komma gescheiden waarden (CSV, is comma separated values)"
+
+#: src/main.cpp:38
+#, kde-format
+msgid "Vocabulary Trainer"
+msgstr "Woordjes oefenen"
+
+#: src/main.cpp:40
+#, kde-format
+msgid ""
+"© 1999-2002\tEwald Arnold\n"
+"© 2001-2002\tThe KDE team\n"
+"© 2004-2007\tPeter Hedlund\n"
+"© 2007-2010\tFrederik Gladhorn\n"
+msgstr ""
+"© 1999-2002\tEwald Arnold\n"
+"© 2001-2002\tThe KDE team\n"
+"© 2004-2007\tPeter Hedlund\n"
+"© 2007-2010\tFrederik Gladhorn\n"
+
+#: src/main.cpp:45
+#, kde-format
+msgid "Helps you train your vocabulary"
+msgstr "Helpt bij het leren van woordjes"
+
+#: src/main.cpp:49
+#, kde-format
+msgid "Inge Wallin"
+msgstr "Inge Wallin"
+
+#: src/main.cpp:49 src/main.cpp:51
+#, kde-format
+msgid "Developer and Co-maintainer"
+msgstr "Ontwikkelaar en mede-onderhouder"
+
+#: src/main.cpp:51
+#, kde-format
+msgid "Amarvir Singh"
+msgstr "Amarvir Singh"
+
+#: src/main.cpp:53
+#, kde-format
+msgid "Frederik Gladhorn"
+msgstr "Frederik Gladhorn"
+
+#: src/main.cpp:53
+#, kde-format
+msgid "Developer, former maintainer"
+msgstr "Ontwikkelaar en vroeger onderhouder"
+
+#: src/main.cpp:55
+#, kde-format
+msgid "Daniel Laidig"
+msgstr "Daniel Laidig"
+
+#: src/main.cpp:55
+#, kde-format
+msgid "Developer"
+msgstr "Ontwikkelaar"
+
+#: src/main.cpp:57
+#, kde-format
+msgid "David Capel"
+msgstr "David Capel"
+
+#: src/main.cpp:57
+#, kde-format
+msgid "Practice Dialogs"
+msgstr "Oefeningdialogen"
+
+#: src/main.cpp:59
+#, kde-format
+msgid "Avgoustinos Kadis"
+msgstr "Avgoustinos Kadis"
+
+#: src/main.cpp:59
+#, kde-format
+msgid "Scripting"
+msgstr "Scripts"
+
+#: src/main.cpp:61
+#, kde-format
+msgid "Peter Hedlund"
+msgstr "Peter Hedlund"
+
+#: src/main.cpp:62
+#, kde-format
+msgid "Countless fixes, former maintainer, port to KDE4"
+msgstr "Ontelbare verbeteringen, vorige onderhouder, overzetten naar KDE4"
+
+#: src/main.cpp:65
+#, kde-format
+msgid "Ewald Arnold"
+msgstr "Ewald Arnold"
+
+#: src/main.cpp:66
+#, kde-format
+msgid "Original Author"
+msgstr "Oorspronkelijke auteur"
+
+#: src/main.cpp:70
+#, kde-format
+msgid "Lee Olson"
+msgstr "Lee Olson"
+
+#: src/main.cpp:70
+#, kde-format
+msgid "Artwork and Oxygen Icons"
+msgstr "Uiterlijk en Oxygen-pictogrammen"
+
+#: src/main.cpp:72
+#, kde-format
+msgid "Anne-Marie Mahfouf"
+msgstr "Anne-Marie Mahfouf"
+
+#: src/main.cpp:72
+#, kde-format
+msgid "Port to KConfig XT"
+msgstr "Overdracht naar KConfig XT"
+
+#: src/main.cpp:74
+#, kde-format
+msgid "Jeremy Whiting"
+msgstr "Jeremy Whiting"
+
+#: src/main.cpp:74
+#, kde-format
+msgid "Rewriting the kvtml library for KDE4"
+msgstr "De kvtml-bibliotheek herschreven voor KDE4"
+
+#: src/main.cpp:76
+#, kde-format
+msgid "Markus Büchele"
+msgstr "Markus Büchele"
+
+#: src/main.cpp:76
+#, kde-format
+msgid "Bug reports and testing on the way to KDE4"
+msgstr "Bugrapporten en testen bij overbrengen naar KDE4"
+
+#: src/main.cpp:78
+#, kde-format
+msgid "Ramona Knapp"
+msgstr "Ramona Knapp"
+
+#: src/main.cpp:78
+#, kde-format
+msgid "Conceived the name Parley"
+msgstr "Bedacht de naam Parley"
+
+#: src/main.cpp:91
+#, kde-format
+msgid "[file]"
+msgstr "[bestand]"
+
+#: src/main.cpp:91
+#, kde-format
+msgid "Document file to open"
+msgstr "Te openen document"
+
+#: src/parleyactions.cpp:72
+#, kde-format
+msgid "Creates a new vocabulary collection"
+msgstr "Maakt een nieuwe woordenlijstverzameling aan"
+
+#: src/parleyactions.cpp:77
+#, kde-format
+msgid "Opens an existing vocabulary collection"
+msgstr "Opent een bestaande woordenlijstverzameling"
+
+#: src/parleyactions.cpp:85
+#, kde-format
+msgid "Open &Downloaded Vocabularies..."
+msgstr "Ge&downloade woordenlijstverzamelingen openen..."
+
+#: src/parleyactions.cpp:86
+#, kde-format
+msgid "Open downloaded vocabulary collections"
+msgstr "Gedownloade woordenlijstverzamelingen openen"
+
+#: src/parleyactions.cpp:91
+#, kde-format
+msgid "Save the active vocabulary collection"
+msgstr "De actieve woordenlijstverzameling opslaan"
+
+#: src/parleyactions.cpp:98
+#, kde-format
+msgid "Save the active vocabulary collection with a different name"
+msgstr "De actieve woordenlijstverzameling met een andere naam opslaan"
+
+#: src/parleyactions.cpp:105
+#, kde-format
+msgid "&Export..."
+msgstr "&Exporteren..."
+
+#: src/parleyactions.cpp:106
+#, kde-format
+msgid "Export to HTML or CSV"
+msgstr "Naar HTML of CSV exporteren"
+
+#: src/parleyactions.cpp:114
+#, kde-format
+msgid "&Properties..."
+msgstr "&Eigenschappen..."
+
+#: src/parleyactions.cpp:115
+#, kde-format
+msgid "Edit document properties"
+msgstr "Documenteigenschappen bewerken"
+
+#: src/parleyactions.cpp:123
+#, kde-format
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: src/parleyactions.cpp:124
+#, kde-format
+msgid "Close the current vocabulary collection and show the dashboard"
+msgstr "De huidige woordenlijstverzameling afsluiten en het dashboard tonen"
+
+#: src/parleyactions.cpp:130
+#, kde-format
+msgid "Quit Parley"
+msgstr "Parley afsluiten"
+
+#: src/parleyactions.cpp:135
+#, kde-format
+msgid "Show the configuration dialog"
+msgstr "Configuratiedialoog openen"
+
+#: src/parleyactions.cpp:142
+#, kde-format
+msgid "&Languages..."
+msgstr "&Talen..."
+
+#: src/parleyactions.cpp:143
+#, kde-format
+msgid ""
+"Edit which languages are in the collection and their grammar properties."
+msgstr ""
+"Bewerk welke talen in de verzameling zijn, en hun grammaticale eigenschappen."
+
+#: src/parleyactions.cpp:152
+#, kde-format
+msgid "Remove all confidence levels from the current document"
+msgstr "Alle beheersingen uit het huidige document wissen"
+
+#: src/parleyactions.cpp:163
+#, kde-format
+msgid "Show Entries from Child Units"
+msgstr "Regels uit subeenheden tonen"
+
+#: src/parleyactions.cpp:164
+#, kde-format
+msgid "Enable to also see the entries of child units in each unit."
+msgstr ""
+"Schakel dit in om in elke eenheid ook de regels van de subeenheden  te laten "
+"weergeven."
+
+#: src/parleyactions.cpp:174
+#, kde-format
+msgid "Automatic Translation"
+msgstr "Automatische vertaling"
+
+#. i18n: ectx: label, entry (AutomaticTranslation), group (General)
+#: src/parleyactions.cpp:175 src/settings/parley.kcfg:50
+#, kde-format
+msgid "Enable automatic translation of the unit entries."
+msgstr "Automatische vertaling van de regels in de eenheid activeren."
+
+#: src/parleyactions.cpp:185
+#, kde-format
+msgid "Start Practice..."
+msgstr "Oefening starten..."
+
+#: src/parleyactions.cpp:186
+#, kde-format
+msgid "Start practicing"
+msgstr "Oefening starten"
+
+#: src/parleyactions.cpp:194
+#, kde-format
+msgid "Configure Practice..."
+msgstr "Oefening instellen..."
+
+#: src/parleyactions.cpp:195
+#, kde-format
+msgid "Change practice settings"
+msgstr "Instellingen oefening wijzigen"
+
+#: src/parleyactions.cpp:203
+#, kde-format
+msgid "Export Results..."
+msgstr "Resultaten exporteren..."
+
+#: src/parleyactions.cpp:204
+#, kde-format
+msgid "Write a file with the results of the practice"
+msgstr "Een bestand schrijven met de oefenresultaten"
+
+#: src/parleyactions.cpp:212
+#, kde-format
+msgid "Editor"
+msgstr "Bewerker"
+
+#: src/parleyactions.cpp:213
+#, kde-format
+msgid "Switch to vocabulary editor"
+msgstr "De woordenlijstbewerker inschakelen"
+
+#: src/parleyactions.cpp:221
+#, kde-format
+msgid "Show Se&arch"
+msgstr "Zo&eken tonen"
+
+#: src/parleyactions.cpp:222
+#, kde-format
+msgid "Toggle display of the search bar"
+msgstr "Zoekbalk aan- of uitzetten"
+
+#: src/parleydocument.cpp:121 src/parleydocument.cpp:568
+#, kde-format
+msgctxt "@title:window document properties"
+msgid "Properties for %1"
+msgstr "Eigenschappen voor %1"
+
+#: src/parleydocument.cpp:158
+#, kde-format
+msgctxt "@title:window"
+msgid "Open Vocabulary Collection"
+msgstr "Woordenlijstverzameling openen"
+
+#: src/parleydocument.cpp:159
+#, kde-format
+msgid "Open in practice &mode"
+msgstr "Openen in oefen&modus"
+
+#: src/parleydocument.cpp:200
+#, kde-format
+msgid ""
+"The vocabulary collection is locked by another process.  You can open the "
+"file if you take over the lock, but you will lose any changes from the other "
+"process.\n"
+"\n"
+"Do you want to take over the lock?\n"
+msgstr ""
+"De woordenlijstverzameling is door een ander proces geblokkeerd. U kunt het "
+"bestand openen als u de blokkering overneemt, maar in het andere proces gaan "
+"eventuele wijzigingen dan verloren.\n"
+"Wilt u de blokkering overnemen?\n"
+
+#: src/parleydocument.cpp:202
+#, kde-format
+msgid "Take Over Lock"
+msgstr "Blokkering overnemen"
+
+#: src/parleydocument.cpp:231
+#, kde-format
+msgid "Opening collection \"%1\" resulted in an error: %2"
+msgstr "Verzameling \"%1\" openen geeft fout: %2"
+
+#: src/parleydocument.cpp:232
+#, kde-format
+msgctxt "@title:window"
+msgid "Open Collection"
+msgstr "Verzameling openen"
+
+#: src/parleydocument.cpp:260
+#, kde-format
+msgid ""
+"Vocabulary is modified.\n"
+"\n"
+"Save file before exit?\n"
+msgstr ""
+"Woordenlijst is gewijzigd.\n"
+"\n"
+"Bestand voor het afsluiten opslaan?\n"
+
+#: src/parleydocument.cpp:293
+#, kde-format
+msgctxt "@title:window"
+msgid "Open Downloaded Vocabulary Collection"
+msgstr "Opgehaalde woordenlijstverzameling openen"
+
+#: src/parleydocument.cpp:331 src/parleydocument.cpp:416
+#, kde-format
+msgid ""
+"File \"%1\" is locked by another process.  You can save to the file if you "
+"take over the lock, but you will lose any changes from the other process.\n"
+"\n"
+"Do you want to take over the lock?\n"
+msgstr ""
+"Het bestand \"%1\" is door een ander proces geblokkeerd. U kunt het bestand "
+"openen als u de blokkering overneemt, maar in het andere proces gaan "
+"eventuele wijzigingen dan verloren.\n"
+"Wilt u de blokkering overnemen?\n"
+
+#: src/parleydocument.cpp:360 src/parleydocument.cpp:450
+#, kde-format
+msgid "Writing file \"%1\" resulted in an error: %2"
+msgstr "Schrijven bestand \"%1\"geeft fout: %2"
+
+#: src/parleydocument.cpp:361 src/parleydocument.cpp:451
+#, kde-format
+msgctxt "@title:window"
+msgid "Save File"
+msgstr "Bestand opslaan"
+
+#: src/parleydocument.cpp:376
+#, kde-format
+msgctxt "@title:window"
+msgid "Save Vocabulary As"
+msgstr "Woordenlijst opslaan als"
+
+#: src/parleydocument.cpp:388
+#, kde-format
+msgid ""
+"<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
+msgstr ""
+"<qt>Het bestand <p><b>%1</b></p>bestaat al. Wilt u het overschrijven?</qt>"
+
+#: src/parleydocument.cpp:396
+#, kde-format
+msgctxt "@info:status saving a file"
+msgid "Saving %1"
+msgstr "%1 wordt opgeslagen"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
+#: src/parleydocument.cpp:497 src/settings/documentproperties.ui:234
+#, kde-format
+msgid "Public Domain"
+msgstr "Publiek domein"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
+#. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
+#: src/parleydocument.cpp:498 src/settings/documentproperties.ui:180
+#: src/settings/documentproperties.ui:250
+#: src/statistics/statisticsmainwindow.ui:23
+#, kde-format
+msgid "Languages"
+msgstr "Talen"
+
+#: src/parleydocument.cpp:506
+#, kde-format
+msgid "A Second Language"
+msgstr "Een tweede taal"
+
+#: src/parleydocument.cpp:509
+#, kde-format
+msgid "Lesson 1"
+msgstr "Les 1"
+
+#: src/parleydocument.cpp:551
+#, kde-format
+msgid "Could not open vocabulary collection \"%1\""
+msgstr "Kon woordenlijstverzameling \"%1\" niet openen"
+
+#: src/parleymainwindow.cpp:133
+#, kde-format
+msgctxt ""
+"Title and a modified status indicator.  [*] is exact and will be shown only "
+"when document is modified"
+msgid "%1 [*]"
+msgstr "%1 [*]"
+
+#: src/parleymainwindow.cpp:173
+#, kde-format
+msgid ""
+"You cannot start to practice when the known language is the same as the "
+"language to learn."
+msgstr ""
+"U kunt niet oefenen als de bekende taal en de te leren taal gelijk zijn."
+
+#: src/parleymainwindow.cpp:173
+#, kde-format
+msgid "Select languages"
+msgstr "Talen selecteren"
+
+#: src/parleymainwindow.cpp:211
+#, kde-format
+msgid "Download New Vocabularies..."
+msgstr "Nieuwe woordenlijsten downloaden..."
+
+#: src/parleymainwindow.cpp:217
+#, kde-format
+msgid "Downloads new vocabulary collections"
+msgstr "Haalt nieuwe woordenlijstverzamelingen van internet op"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: src/parleyui.rc:21
+#, kde-format
+msgid "Main Toolbar"
+msgstr "Hoofdwerkbalk"
+
+#. i18n: ectx: ToolBar (practiceToolBar)
+#: src/parleyui.rc:29 src/practice/practiceui.rc:18
+#, kde-format
+msgid "Practice Toolbar"
+msgstr "Oefentaakbalk"
+
+#. i18n: ectx: ToolBar (statisticsToolBar)
+#: src/parleyui.rc:33 src/statistics/statisticsui.rc:19
+#, kde-format
+msgid "Statistics Toolbar"
+msgstr "Statistiekwerkbalk"
+
+#. i18n: ectx: ToolBar (practiceSummaryToolBar)
+#: src/parleyui.rc:40 src/practice/practicesummaryui.rc:20
+#, kde-format
+msgid "Practice Summary Toolbar"
+msgstr "Werkbalk samenvatting oefening"
+
+#: src/practice/audiobutton.cpp:57 src/practice/audiobutton.cpp:58
+#, kde-format
+msgid "Stop"
+msgstr "Stoppen"
+
+#: src/practice/comparisonbackendmode.cpp:59
+#, kde-format
+msgid "All comparison forms were right."
+msgstr "Alle trappen van vergelijking waren goed."
+
+#: src/practice/comparisonbackendmode.cpp:65
+#, kde-format
+msgctxt ""
+"the user entered the wrong absolute form when practicing comparison forms of "
+"adjectives (the base form of the adjective is wrong)"
+msgid "\"%1\" is the wrong word."
+msgstr "\"%1\" is het verkeerde woord."
+
+#: src/practice/comparisonbackendmode.cpp:70
+#, kde-format
+msgctxt ""
+"the user entered the wrong comparison forms when practicing comparison forms "
+"of adjectives (good, better, best)"
+msgid "Both comparison forms (comparative and superlative) are wrong."
+msgstr ""
+"Beide trappen van vergelijking (vergrotende en overtreffende trap) zijn fout."
+
+#: src/practice/comparisonbackendmode.cpp:74
+#, kde-format
+msgctxt ""
+"the user entered the wrong comparison forms when practicing comparison forms "
+"of adjectives (second form wrong - better)"
+msgid "The comparative is wrong."
+msgstr "De vergrotende trap is fout."
+
+#: src/practice/comparisonbackendmode.cpp:78
+#, kde-format
+msgctxt ""
+"the user entered the wrong comparison forms when practicing comparison forms "
+"of adjectives (third form wrong - best)"
+msgid "The superlative is wrong."
+msgstr "De overtreffende trap is fout."
+
+#: src/practice/comparisonmodewidget.cpp:65
+#, kde-format
+msgid "Enter the comparison forms."
+msgstr "Voer de trappen van vergelijking in."
+
+#: src/practice/configure/blockoptions.cpp:22
+msgid "Do not Care"
+msgstr "Maakt niet uit"
+
+#: src/practice/configure/blockoptions.cpp:24
+msgid "30 Min"
+msgstr "30 min"
+
+#: src/practice/configure/blockoptions.cpp:25
+msgid "1 Hour"
+msgstr "1 uur"
+
+#: src/practice/configure/blockoptions.cpp:26
+msgid "2 Hours"
+msgstr "2 uren"
+
+#: src/practice/configure/blockoptions.cpp:27
+msgid "4 Hours"
+msgstr "4 uren"
+
+#: src/practice/configure/blockoptions.cpp:28
+msgid "8 Hours"
+msgstr "8 uren"
+
+#: src/practice/configure/blockoptions.cpp:29
+msgid "12 Hours"
+msgstr "12 uren"
+
+#: src/practice/configure/blockoptions.cpp:30
+msgid "18 Hours"
+msgstr "18 uren"
+
+#: src/practice/configure/blockoptions.cpp:32
+msgid "1 Day"
+msgstr "1 dag"
+
+#: src/practice/configure/blockoptions.cpp:33
+msgid "2 Days"
+msgstr "2 dagen"
+
+#: src/practice/configure/blockoptions.cpp:34
+msgid "3 Days"
+msgstr "3 dagen"
+
+#: src/practice/configure/blockoptions.cpp:35
+msgid "4 Days"
+msgstr "4 dagen"
+
+#: src/practice/configure/blockoptions.cpp:36
+msgid "5 Days"
+msgstr "5 dagen"
+
+#: src/practice/configure/blockoptions.cpp:37
+msgid "6 Days"
+msgstr "6 dagen"
+
+#: src/practice/configure/blockoptions.cpp:39
+msgid "1 Week"
+msgstr "1 week"
+
+#: src/practice/configure/blockoptions.cpp:40
+msgid "2 Weeks"
+msgstr "2 weken"
+
+#: src/practice/configure/blockoptions.cpp:41
+msgid "3 Weeks"
+msgstr "3 weken"
+
+#: src/practice/configure/blockoptions.cpp:42
+msgid "4 Weeks"
+msgstr "4 weken"
+
+#: src/practice/configure/blockoptions.cpp:44
+msgid "1 Month"
+msgstr "1 maand"
+
+#: src/practice/configure/blockoptions.cpp:45
+msgid "2 Months"
+msgstr "2 maanden"
+
+#: src/practice/configure/blockoptions.cpp:46
+msgid "3 Months"
+msgstr "3 maanden"
+
+#: src/practice/configure/blockoptions.cpp:47
+msgid "4 Months"
+msgstr "4 maanden"
+
+#: src/practice/configure/blockoptions.cpp:48
+msgid "5 Months"
+msgstr "5 maanden"
+
+#: src/practice/configure/blockoptions.cpp:49
+msgid "6 Months"
+msgstr "6 maanden"
+
+#: src/practice/configure/blockoptions.cpp:50
+msgid "10 Months"
+msgstr "10 maanden"
+
+#: src/practice/configure/blockoptions.cpp:51
+msgid "12 Months"
+msgstr "12 maanden"
+
+#: src/practice/configure/blockoptions.cpp:220
+#, kde-format
+msgid "Illogical blocking times.\n"
+msgstr "Onzinnige vergrendelingstijden.\n"
+
+#: src/practice/configure/blockoptions.cpp:222
+#: src/practice/configure/blockoptions.cpp:235
+#, kde-format
+msgid "The time for level %1 should be lower than the time for level %2.\n"
+msgstr "De tijd voor niveau %1 moet korter zijn dan die voor niveau %2.\n"
+
+#: src/practice/configure/blockoptions.cpp:233
+#, kde-format
+msgid ""
+"\n"
+"Illogical expiration times.\n"
+msgstr ""
+"\n"
+"Onzinnige aflooptijden.\n"
+
+#: src/practice/configure/blockoptions.cpp:247
+#, kde-format
+msgid ""
+"\n"
+"Illogical blocking vs. expiration times.\n"
+msgstr ""
+"\n"
+"Onzinnige vergrendelingstijden versus aflooptijden.\n"
+
+#: src/practice/configure/blockoptions.cpp:249
+#, kde-format
+msgid ""
+"The blocking time at level %1 should be lower than the expiration time.\n"
+msgstr ""
+"De vergrendelingstijd op niveau %1 moet korter zijn dan de aflooptijd.\n"
+
+#: src/practice/configure/blockoptions.cpp:255
+#, kde-format
+msgid "Illogical Values"
+msgstr "Onzinnige waarden"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev2)
+#: src/practice/configure/blockoptions.ui:40
+#, kde-format
+msgid "Level &2:"
+msgstr "Niveau &2:"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev5)
+#: src/practice/configure/blockoptions.ui:53
+#, kde-format
+msgid "Level &5:"
+msgstr "Niveau &5:"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev6)
+#: src/practice/configure/blockoptions.ui:63
+#, kde-format
+msgid "Level &6:"
+msgstr "Niveau &6:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_Expire)
+#: src/practice/configure/blockoptions.ui:79
+#, kde-format
+msgid "E&xpiring"
+msgstr "&Vervalt"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_Block)
+#: src/practice/configure/blockoptions.ui:95
+#, kde-format
+msgid "Bl&ocking"
+msgstr "Ver&grendeling"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev4)
+#: src/practice/configure/blockoptions.ui:118
+#, kde-format
+msgid "Level &4:"
+msgstr "Niveau &4:"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev7)
+#: src/practice/configure/blockoptions.ui:128
+#, kde-format
+msgid "Level &7:"
+msgstr "Niveau &7:"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev1)
+#: src/practice/configure/blockoptions.ui:150
+#, kde-format
+msgid "Level &1:"
+msgstr "Niveau &1:"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev3)
+#: src/practice/configure/blockoptions.ui:192
+#, kde-format
+msgid "Level &3:"
+msgstr "Niveau &3:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/practice/configure/blockoptions.ui:218
+#, kde-format
+msgid "Do not practice vocabulary that has been asked within:"
+msgstr "Oefen geen woordenlijst die gevraagd is binnen:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: src/practice/configure/blockoptions.ui:228
+#, kde-format
+msgid "Vocabulary drops one grade after this much time:"
+msgstr "Woordenlijst naar een niveau lagere beheersing na dit tijdsverloop:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ComparisonIncludeAdjective)
+#: src/practice/configure/comparisonoptionswidget.ui:16
+#, kde-format
+msgid "Include Adjectives"
+msgstr "Inclusief bijvoeglijke naamwoorden"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ComparisonIncludeAdverb)
+#: src/practice/configure/comparisonoptionswidget.ui:23
+#, kde-format
+msgid "Include Adverbs"
+msgstr "Inclusief bijwoorden"
+
+#: src/practice/configure/configurepracticedialog.cpp:23
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Practice"
+msgstr "Oefening instellen"
+
+#: src/practice/configure/configurepracticedialog.cpp:28
+#, kde-format
+msgctxt ""
+"@title:group Configure general settings for practicing vocabulary, short "
+"title in config dialog."
+msgid "General"
+msgstr "Algemeen"
+
+#: src/practice/configure/configurepracticedialog.cpp:30
+#, kde-format
+msgctxt "Configure general settings for practicing vocabulary."
+msgid "General Practice Settings"
+msgstr "Algemene instellingen oefening"
+
+#: src/practice/configure/configurepracticedialog.cpp:35
+#, kde-format
+msgctxt ""
+"@title:group vocabulary can be set to be blocked for a certain amount of time"
+msgid "Blocking"
+msgstr "Vergrendeling"
+
+#: src/practice/configure/configurepracticedialog.cpp:37
+#, kde-format
+msgid "Blocking Settings"
+msgstr "Vergrendelinstellingen"
+
+#: src/practice/configure/configurepracticedialog.cpp:42
+#, kde-format
+msgctxt ""
+"@title:group ignore vocabulary based on some properties like word type"
+msgid "Thresholds"
+msgstr "Drempels"
+
+#: src/practice/configure/configurepracticedialog.cpp:44
+#, kde-format
+msgid "Threshold Settings"
+msgstr "Drempelinstellingen"
+
+#: src/practice/configure/configurepracticedialog.cpp:49
+#, kde-format
+msgctxt ""
+"@title:group Configure specific settings for practicing vocabulary, short "
+"title in config dialog."
+msgid "Specific"
+msgstr "Specifiek"
+
+#: src/practice/configure/configurepracticedialog.cpp:51
+#, kde-format
+msgctxt "Configure specific settings for practicing vocabulary."
+msgid "Specific Practice Settings"
+msgstr "Specifieke instellingen oefening"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: src/practice/configure/generalpracticeoptions.ui:17
+#, kde-format
+msgid "Correction"
+msgstr "Correctie"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
+#: src/practice/configure/generalpracticeoptions.ui:23
+#, kde-format
+msgid "Answers with wrong accents are still counted as correct."
+msgstr "Antwoorden met verkeerde accenten worden toch goed gerekend."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
+#: src/practice/configure/generalpracticeoptions.ui:26
+#, kde-format
+msgid "Ignore accents"
+msgstr "Accenten negeren"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
+#: src/practice/configure/generalpracticeoptions.ui:36
+#, kde-format
+msgid "Any captitalization in the answer is counted as correct."
+msgstr "Fouten met hoofdletters worden toch goed gerekend."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
+#: src/practice/configure/generalpracticeoptions.ui:39
+#, kde-format
+msgid "Ignore capitalization"
+msgstr "Hoofd/kleine letters negeren"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
+#: src/practice/configure/generalpracticeoptions.ui:49
+#, kde-format
+msgid "Any punctuation mistake in the answer is counted as correct."
+msgstr "Fouten met leestekens worden toch goed gerekend."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
+#: src/practice/configure/generalpracticeoptions.ui:52
+#, kde-format
+msgid "Ignore punctuation"
+msgstr "Leestekens negeren"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ShowHints)
+#: src/practice/configure/generalpracticeoptions.ui:62
+#, kde-format
+msgid ""
+"During the practice you can use the hint button to see parts of the solution."
+msgstr ""
+"Tijdens de oefening kunt u met de knop \"Aanwijzing\" delen zien van het "
+"goede antwoord."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowHints)
+#: src/practice/configure/generalpracticeoptions.ui:65
+#, kde-format
+msgid "Enable hints"
+msgstr "Aanwijzingen activeren"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_4)
+#: src/practice/configure/generalpracticeoptions.ui:91
+#, kde-format
+msgid "Images and Sound"
+msgstr "Afbeeldingen en geluid"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_FlashcardsFrontImage)
+#: src/practice/configure/generalpracticeoptions.ui:97
+#, kde-format
+msgid "During the practice, images are shown for the question."
+msgstr "Tijdens de oefening ziet u afbeeldingen bij de vragen."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsFrontImage)
+#: src/practice/configure/generalpracticeoptions.ui:100
+#, kde-format
+msgid "Image for question"
+msgstr "Afbeelding bij vraag"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_FlashcardsBackImage)
+#: src/practice/configure/generalpracticeoptions.ui:110
+#, kde-format
+msgid "During the practice, images are shown for the solution."
+msgstr "Tijdens de oefening ziet u afbeeldingen bij de antwoorden."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsBackImage)
+#: src/practice/configure/generalpracticeoptions.ui:113
+#, kde-format
+msgid "Image for solution"
+msgstr "Afbeelding bij antwoord"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AllowImageInsteadOfWord)
+#: src/practice/configure/generalpracticeoptions.ui:123
+#, kde-format
+msgid "Allow using images instead of words in flashcards."
+msgstr "Afbeeldingen op de oefenkaarten toestaan in plaats van woorden."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AllowImageInsteadOfWord)
+#: src/practice/configure/generalpracticeoptions.ui:126
+#, kde-format
+msgid "Allow images instead of words"
+msgstr "Afbeeldingen toestaan in plaats van woorden"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_PracticeSoundEnabled)
+#: src/practice/configure/generalpracticeoptions.ui:136
+#, kde-format
+msgid "Enable playing of pronunciation sound files during the practice."
+msgstr "Uitspraak laten horen tijdens de oefening."
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/practice/configure/generalpracticeoptions.ui:158
+#, kde-format
+msgid ""
+"By default you are asked to enter synonyms until you enter the one that is "
+"associated directly with the current word. With this option enabled any "
+"synonym is accepted."
+msgstr ""
+"Standaard wordt gevraagd synoniemen in te voeren, totdat u dat invoert dat "
+"direct is gekoppeld aan het huidige woord. Met deze optie wordt elk synoniem "
+"goed gerekend."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CountSynonymsAsCorrect)
+#: src/practice/configure/generalpracticeoptions.ui:168
+#, kde-format
+msgid "Accept any synonym"
+msgstr "Elk synoniem accepteren"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: src/practice/configure/generalpracticeoptions.ui:191
+#, kde-format
+msgid "Sessions"
+msgstr "Sessies"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: src/practice/configure/generalpracticeoptions.ui:202
+#, kde-format
+msgid "Max session size:"
+msgstr "Max sessiegrootte:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: src/practice/configure/generalpracticeoptions.ui:251
+#, kde-format
+msgid "Max number of new words:"
+msgstr "Max aantal nieuwe woorden:"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
+#: src/practice/configure/specificpracticeoptions.ui:23
+#, kde-format
+msgid ""
+"When creating multiple choice practices, try to show answers of the same "
+"word type."
+msgstr ""
+"Bij het opstellen van oefeningen met meerkeuzevragen, proberen antwoorden "
+"met hetzelfde woordtype te tonen."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
+#: src/practice/configure/specificpracticeoptions.ui:26
+#, kde-format
+msgid "Use choices of the same word type"
+msgstr "Keuzes met zelfde woordtype gebruiken"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: src/practice/configure/specificpracticeoptions.ui:41
+#, kde-format
+msgid "Number of choices:"
+msgstr "Aantal keuzes:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_8)
+#: src/practice/configure/thresholdoptions.ui:17
+#, kde-format
+msgid "Only practice vocabulary that fulfills the following conditions:"
+msgstr "Oefen alleen een woordenlijst die hieraan voldoet:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: src/practice/configure/thresholdoptions.ui:26
+#, kde-format
+msgid "At least"
+msgstr "Minstens"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: src/practice/configure/thresholdoptions.ui:33
+#, kde-format
+msgid "At most"
+msgstr "Hoogstens"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/practice/configure/thresholdoptions.ui:43
+#, kde-format
+msgid "Grade:"
+msgstr "Beoordeling:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: src/practice/configure/thresholdoptions.ui:53
+#, kde-format
+msgid "Times practiced:"
+msgstr "Aantal oefeningen:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: src/practice/configure/thresholdoptions.ui:80
+#, kde-format
+msgid "Answered incorrectly:"
+msgstr "Fout beantwoord:"
+
+#: src/practice/conjugationbackendmode.cpp:93
+#, kde-format
+msgid "All conjugation forms were right."
+msgstr "Alle vervoegingsvormen waren goed."
+
+#: src/practice/conjugationbackendmode.cpp:97
+#, kde-format
+msgctxt "You did not get the conjugation forms right."
+msgid "You answered %1 conjugation form correctly."
+msgid_plural "You answered %1 conjugation forms correctly."
+msgstr[0] "%1 vervoegingsvorm is goed beantwoord."
+msgstr[1] "%1 vervoegingsvormen zijn goed beantwoord"
+
+#: src/practice/conjugationmodewidget.cpp:111
+#, kde-format
+msgid "Enter all conjugation forms."
+msgstr "Voer alle vervoegingsvormen in."
+
+#: src/practice/genderbackendmode.cpp:61
+#, kde-format
+msgid "Choose the right article for \"%1\""
+msgstr "Kies het juiste lidwoord voor \"%1\""
+
+#: src/practice/genderbackendmode.cpp:85
+#, kde-format
+msgctxt "@label the gender of the word: masculine"
+msgid "%1 is masculine"
+msgstr "%1 is mannelijk"
+
+#: src/practice/genderbackendmode.cpp:90
+#, kde-format
+msgctxt "@label the gender of the word: feminine"
+msgid "%1 is feminine"
+msgstr "%1 is vrouwelijk"
+
+#: src/practice/genderbackendmode.cpp:95
+#, kde-format
+msgctxt "@label the gender of the word: neuter"
+msgid "%1 is neuter"
+msgstr "%1 is onzijdig"
+
+#: src/practice/guifrontend.cpp:123
+#, kde-format
+msgctxt "Display of the current unit during practice"
+msgid "Unit: %1"
+msgstr "Les: %1"
+
+#: src/practice/guifrontend.cpp:129
+#, kde-format
+msgid "New word"
+msgstr "Nieuw woord"
+
+#: src/practice/guifrontend.cpp:132
+#, kde-format
+msgctxt ""
+"Display of the current confidence level during practice, 1st param is either "
+"initial or long term"
+msgid "%1, confidence %2"
+msgstr "%1, beheersing %2"
+
+#: src/practice/guifrontend.cpp:133
+#, kde-format
+msgid "initial"
+msgstr "aanvankelijk"
+
+#: src/practice/guifrontend.cpp:133
+#, kde-format
+msgid "long term"
+msgstr "lange termijn"
+
+#: src/practice/guifrontend.cpp:199
+#, kde-format
+msgid ""
+"You answered correctly %2 of a total of %1 word.\n"
+"You are %3% done."
+msgid_plural ""
+"You answered correctly %2 of a total of %1 words.\n"
+"You are %3% done."
+msgstr[0] ""
+"%2 woord juist beantwoord uit een totaal van %1.\n"
+"U bent voor %3% klaar."
+msgstr[1] ""
+"%2 woorden juist beantwoord uit een totaal van %1\n"
+"U bent voor %3% klaar."
+
+#: src/practice/latexrenderer.cpp:46
+#, kde-format
+msgid "Rendering..."
+msgstr "Weergave..."
+
+#: src/practice/latexrenderer.cpp:135
+#, kde-format
+msgid "LaTeX error."
+msgstr "LaTeX-fout."
+
+#: src/practice/multiplechoicebackendmode.cpp:103
+#: src/practice/writtenbackendmode.cpp:145
+#, kde-format
+msgid "You revealed the answer by using too many hints."
+msgstr "Te veel aanwijzingen gebruikt."
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, answerLaterButton)
+#: src/practice/practice_mainwindow.ui:128
+#, kde-format
+msgid "Skip this word for now and ask again later"
+msgstr "Dit woord nu overslaan en later opnieuw vragen"
+
+#. i18n: ectx: property (text), widget (QPushButton, answerLaterButton)
+#: src/practice/practice_mainwindow.ui:131
+#, kde-format
+msgid "Answer Later"
+msgstr "Later beantwoorden"
+
+#. i18n: ectx: property (text), widget (QPushButton, hintButton)
+#: src/practice/practice_mainwindow.ui:141
+#, kde-format
+msgid "Hint"
+msgstr "Aanwijzing"
+
+#. i18n: ectx: property (text), widget (QPushButton, continueButton)
+#: src/practice/practice_mainwindow.ui:202
+#, kde-format
+msgid "Continue"
+msgstr "Doorgaan"
+
+#. i18n: ectx: property (text), widget (QPushButton, countAsWrongButton)
+#: src/practice/practice_mainwindow.ui:219
+#, kde-format
+msgid "I Did not Know it"
+msgstr "Ik wist het niet"
+
+#. i18n: ectx: property (text), widget (QPushButton, countAsCorrectButton)
+#: src/practice/practice_mainwindow.ui:226
+#, kde-format
+msgid "I Knew it"
+msgstr "Ik wist het"
+
+#. i18n: ectx: property (format), widget (QProgressBar, totalProgress)
+#: src/practice/practice_mainwindow.ui:300
+#, no-c-format, kde-format
+msgid "%v/%m"
+msgstr "%v/%m"
+
+#. i18n: ectx: property (text), widget (QLabel, absoluteLabel)
+#: src/practice/practice_widget_comparison.ui:35
+#, kde-format
+msgid "absolute"
+msgstr "stellende trap"
+
+#. i18n: ectx: property (text), widget (QLabel, comparativeLabel)
+#: src/practice/practice_widget_comparison.ui:80
+#, kde-format
+msgid "comparative"
+msgstr "vergrotende trap"
+
+#. i18n: ectx: property (text), widget (QLabel, superlativeLabel)
+#: src/practice/practice_widget_comparison.ui:125
+#, kde-format
+msgid "superlative"
+msgstr "overtreffende trap"
+
+#: src/practice/practicemainwindow.cpp:68
+#, kde-format
+msgid "Stop Practice"
+msgstr "Oefening stoppen"
+
+#: src/practice/practicemainwindow.cpp:70
+#, kde-format
+msgid "Stop practicing"
+msgstr "Met oefenen stoppen"
+
+#: src/practice/practicemainwindow.cpp:77
+#, kde-format
+msgid "Change answer to right/wrong"
+msgstr "Antwoord wijzigen naar goed/fout"
+
+#: src/practice/practicemainwindow.cpp:79
+#, kde-format
+msgid ""
+"When you answered, Parley will display that the answer was right or wrong.\n"
+"This shortcut changes how the answer is counted."
+msgstr ""
+"Na antwoorden toont Parley of het antwoord goed is of fout.\n"
+"Met deze sneltoets wordt ingesteld hoe het antwoord wordt gerekend."
+
+#: src/practice/practicesummarycomponent.cpp:62
+#, kde-format
+msgctxt "number of words, minutes, seconds"
+msgid "You practiced %1 in %2 and %3."
+msgstr "Geoefend:  %1 in %2 en %3."
+
+#: src/practice/practicesummarycomponent.cpp:63
+#, kde-format
+msgid "one word"
+msgid_plural "%1 words"
+msgstr[0] "een woord"
+msgstr[1] "%1 woorden"
+
+#: src/practice/practicesummarycomponent.cpp:64
+#, kde-format
+msgid "one minute"
+msgid_plural "%1 minutes"
+msgstr[0] "een minuut"
+msgstr[1] "%1 minuten"
+
+#: src/practice/practicesummarycomponent.cpp:65
+#, kde-format
+msgid "one second"
+msgid_plural "%1 seconds"
+msgstr[0] "een seconde"
+msgstr[1] "%1 seconden"
+
+#: src/practice/practicesummarycomponent.cpp:82
+#, kde-format
+msgid "Practice Overview"
+msgstr "Overzicht oefeningen"
+
+#: src/practice/practicesummarycomponent.cpp:83
+#, kde-format
+msgid "Switch to the Practice Overview page"
+msgstr "Ga naar overzichtpagina oefeningen"
+
+#: src/practice/practicesummarycomponent.cpp:150
+#, kde-format
+msgid "HTML Files"
+msgstr "HTML-bestanden"
+
+#: src/practice/practicesummarycomponent.cpp:150
+#, kde-format
+msgid "OpenDocument text files"
+msgstr "OpenDocument-tekstbestanden"
+
+#: src/practice/practicesummarycomponent.cpp:160
+#, kde-format
+msgid "Practice results"
+msgstr "Oefenresultaten"
+
+#: src/practice/practicesummarycomponent.cpp:165
+#, kde-format
+msgid "Answered questions: %1\n"
+msgstr "Beantwoorde vragen: %1\n"
+
+#: src/practice/practicesummarycomponent.cpp:166
+#, kde-format
+msgid "Correct answers: %1\n"
+msgstr "Goede antwoorden: %1\n"
+
+#: src/practice/practicesummarycomponent.cpp:167
+#, kde-format
+msgid "Wrong answers: %1\n"
+msgstr "Foute antwoorden: %1\n"
+
+#: src/practice/practicesummarycomponent.cpp:174
+#, kde-format
+msgid "<b>Attempts</b>"
+msgstr "<b>Pogingen</b>"
+
+#: src/practice/practicesummarycomponent.cpp:175
+#, kde-format
+msgid "<b>Question</b>"
+msgstr "<b>Vraag</b>"
+
+#: src/practice/practicesummarycomponent.cpp:176
+#, kde-format
+msgid "<b>Correct answer</b>"
+msgstr "<b>Goed antwoord</b>"
+
+#: src/practice/practicesummarycomponent.cpp:177
+#, kde-format
+msgid "<b>Your errors</b>"
+msgstr "<b>Uw fouten</b>"
+
+#: src/practice/practicesummarycomponent.cpp:192
+#, kde-format
+msgid "Could not write to %1"
+msgstr "Kon niet naar %1 schrijven"
+
+#: src/practice/practicesummarycomponent.cpp:192
+#, kde-format
+msgid "Could not write file"
+msgstr "Kon bestand niet schrijven"
+
+#. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
+#: src/practice/practicesummarywidget.ui:28
+#, kde-format
+msgid "Attempts"
+msgstr "Pogingen"
+
+#. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
+#: src/practice/practicesummarywidget.ui:33
+#, kde-format
+msgid "Question"
+msgstr "Vraag"
+
+#. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
+#: src/practice/practicesummarywidget.ui:38
+#, kde-format
+msgid "Solution"
+msgstr "Antwoord"
+
+#. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
+#: src/practice/practicesummarywidget.ui:43
+#, kde-format
+msgid "Your Answer"
+msgstr "Uw antwoord"
+
+#: src/practice/sessionmanagerbase.cpp:53
+#, kde-format
+msgid "The vocabulary collection contains fewer than two languages."
+msgstr "Minder dan twee talen in de woordenlijstverzameling."
+
+#: src/practice/sessionmanagerbase.cpp:53
+#, kde-format
+msgid "Could not start practice"
+msgstr "Kon oefening niet starten"
+
+#: src/practice/statustoggle.cpp:77
+#, kde-format
+msgid ""
+"This answer will be counted as correct.\n"
+"Words will only be counted as correct if they are answered correctly on the "
+"first attempt."
+msgstr ""
+"Dit antwoord wordt goed gerekend.\n"
+"Woorden worden alleen goed gerekend als zij bij de eerste poging goed "
+"beantwoord zijn."
+
+#: src/practice/statustoggle.cpp:78
+#, kde-format
+msgid "Count this answer as wrong"
+msgstr "Dit antwoord fout rekenen"
+
+#: src/practice/statustoggle.cpp:81
+#, kde-format
+msgid ""
+"This answer will be counted as wrong.\n"
+"Words will only be counted as correct if they are answered correctly on the "
+"first attempt."
+msgstr ""
+"Dit antwoord wordt fout gerekend.\n"
+"Woorden worden alleen goed gerekend als zij bij de eerste poging goed "
+"beantwoord zijn."
+
+#: src/practice/statustoggle.cpp:82
+#, kde-format
+msgid "Count this answer as correct"
+msgstr "Dit antwoord goed rekenen"
+
+#: src/practice/summarybarwidget.cpp:78
+#, kde-format
+msgctxt "test results"
+msgid "%1 % correct"
+msgstr "%1 % goed"
+
+#: src/practice/summarybarwidget.cpp:80
+#, kde-format
+msgctxt "test results"
+msgid "%1 % wrong"
+msgstr "%1 % fout"
+
+#: src/practice/summarybarwidget.cpp:82
+#, kde-format
+msgctxt "test results"
+msgid "%1 % not answered"
+msgstr "%1 % onbeantwoord"
+
+#: src/practice/summarybarwidget.cpp:140
+#, kde-format
+msgid "Answered correctly on the first attempt: %1 of %2 (%3 %)"
+msgstr "Goed beantwoord bij de eerste poging: %1 van %2 (%3 %)"
+
+#: src/practice/summarybarwidget.cpp:147
+#, kde-format
+msgid "Answered wrong on the first attempt: %1 of %2 (%3 %)"
+msgstr "Fout beantwoord bij de eerste poging: %1 van %2 (%3 %)"
+
+#: src/practice/summarybarwidget.cpp:154
+#, kde-format
+msgid "Not answered during this practice: %1 of %2 (%3 %)"
+msgstr "Niet beantwoord in deze oefening: %1 van %2 (%3 %)"
+
+#: src/practice/writtenbackendmode.cpp:70
+#, kde-format
+msgid "Your answer was wrong."
+msgstr "Uw antwoord was fout."
+
+#: src/practice/writtenbackendmode.cpp:84
+#, kde-format
+msgid ""
+"Your answer was a synonym. Please enter another word with the same "
+"translation."
+msgstr ""
+"Uw antwoord was een synoniem. Probeer een ander woord met dezelfde vertaling."
+
+#: src/practice/writtenbackendmode.cpp:88
+#, kde-format
+msgid "Your answer was an already entered synonym."
+msgstr "Uw antwoord was een reeds eerder ingevoerd synoniem."
+
+#: src/practice/writtenbackendmode.cpp:91
+#, kde-format
+msgid "Your answer was a synonym and your punctuation was wrong."
+msgstr "Antwoord was een synoniem en het gebruik van leestekens was fout."
+
+#: src/practice/writtenbackendmode.cpp:93
+#, kde-format
+msgid "Your answer was a synonym and your capitalization was wrong."
+msgstr "Antwoord was een synoniem en het gebruik van hoofdletters was fout."
+
+#: src/practice/writtenbackendmode.cpp:95
+#, kde-format
+msgid "Your answer was a synonym and accents were wrong."
+msgstr "Antwoord was een synoniem en accenten waren fout."
+
+#: src/practice/writtenbackendmode.cpp:97
+#, kde-format
+msgid "Your answer was a synonym."
+msgstr "Antwoord was een synoniem."
+
+#: src/practice/writtenbackendmode.cpp:105
+#, kde-format
+msgid ""
+"Your answer was wrong as punctuation mistakes are not accepted. Please try "
+"again."
+msgstr ""
+"Antwoord was fout omdat fouten in leestekens niet worden goed gerekend. "
+"Probeer het nog eens."
+
+#: src/practice/writtenbackendmode.cpp:107
+#, kde-format
+msgid ""
+"Your answer was wrong as capitalization mistakes are not accepted. Please "
+"try again."
+msgstr ""
+"Antwoord was fout omdat fouten in hoofdletters niet worden goed gerekend. "
+"Probeer het nog eens."
+
+#: src/practice/writtenbackendmode.cpp:109
+#, kde-format
+msgid ""
+"Your answer was wrong as accent mistakes are not accepted. Please try again."
+msgstr ""
+"Antwoord was fout omdat accentfouten niet worden goed gerekend. Probeer het "
+"nog eens."
+
+#: src/practice/writtenbackendmode.cpp:111
+#, kde-format
+msgid "Your answer was wrong. Please try again."
+msgstr "Antwoord was fout. Probeer het nog eens."
+
+#: src/practice/writtenbackendmode.cpp:118
+#, kde-format
+msgid "Your answer was right, but your punctuation was wrong."
+msgstr "Antwoord was goed, alleen het gebruik van leestekens was fout."
+
+#: src/practice/writtenbackendmode.cpp:120
+#, kde-format
+msgid "Your answer was right, but your capitalization was wrong."
+msgstr "Antwoord was goed, alleen het gebruik van hoofdletters was fout."
+
+#: src/practice/writtenbackendmode.cpp:122
+#, kde-format
+msgid "Your answer was right, but accents were wrong."
+msgstr "Antwoord was goed, maar accenten waren fout."
+
+#: src/practice/writtenbackendmode.cpp:124
+#, kde-format
+msgid "Your answer was right."
+msgstr "Antwoord was goed."
+
+#: src/practice/writtenbackendmode.cpp:128
+#, kde-format
+msgid ""
+"Your answer was right... but not on the first try and your punctuation was "
+"wrong."
+msgstr ""
+"Antwoord was goed... maar niet bij de eerste poging en het gebruik van "
+"leestekens was fout."
+
+#: src/practice/writtenbackendmode.cpp:130
+#, kde-format
+msgid ""
+"Your answer was right... but not on the first try and your capitalization "
+"was wrong."
+msgstr ""
+"Antwoord was goed... maar niet bij de eerste poging en het gebruik van "
+"hoofdletters was fout."
+
+#: src/practice/writtenbackendmode.cpp:132
+#, kde-format
+msgid ""
+"Your answer was right... but not on the first try and accents were wrong."
+msgstr ""
+"Antwoord was goed... maar niet bij de eerste poging en accenten waren fout."
+
+#: src/practice/writtenbackendmode.cpp:134
+#, kde-format
+msgid "Your answer was right... but not on the first try."
+msgstr "Antwoord was goed... maar niet bij de eerste poging."
+
+#: src/practice/writtenbackendmode.cpp:154
+#, kde-format
+msgid "The solution starts with: %1"
+msgstr "Het antwoord begint met: %1"
+
+#: src/practice/writtenpracticewidget.cpp:130
+#, kde-format
+msgid "Synonym: "
+msgstr "Synoniem: "
+
+#. i18n: ectx: property (title), widget (QGroupBox, tiltle_group)
+#: src/settings/documentproperties.ui:38
+#, kde-format
+msgid "General Document Properties"
+msgstr "Algemene documenteigenschappen"
+
+#. i18n: ectx: property (text), widget (QLabel, label_title)
+#: src/settings/documentproperties.ui:50
+#, kde-format
+msgid "&Title:"
+msgstr "&Titel:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, titleLineEdit)
+#. i18n: ectx: property (toolTip), widget (QLineEdit, authorLineEdit)
+#: src/settings/documentproperties.ui:69 src/settings/documentproperties.ui:95
+#, kde-format
+msgid "A title for your document."
+msgstr "De naam van uw document."
+
+#. i18n: ectx: property (text), widget (QLabel, label_author)
+#: src/settings/documentproperties.ui:76
+#, kde-format
+msgid "&Author:"
+msgstr "&Auteur:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_author_2)
+#: src/settings/documentproperties.ui:102
+#, kde-format
+msgid "E&mail:"
+msgstr "E-&mail:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, contactLineEdit)
+#: src/settings/documentproperties.ui:121
+#, kde-format
+msgid "A way to contact you (email or a webpage)."
+msgstr "Een manier om in contact te komen met u (e-mail of webpagina)."
+
+#. i18n: ectx: property (text), widget (QLabel, label_remark)
+#: src/settings/documentproperties.ui:128
+#, kde-format
+msgid "&Comment:"
+msgstr "&Commentaar:"
+
+#. i18n: ectx: property (toolTip), widget (KTextEdit, commentTextEdit)
+#: src/settings/documentproperties.ui:147
+#, kde-format
+msgid "Any additional information."
+msgstr "Verdere informatie."
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/settings/documentproperties.ui:160
+#, kde-format
+msgid "Cate&gory:"
+msgstr "Cate&gorie:"
+
+#. i18n: ectx: property (toolTip), widget (KComboBox, categoryComboBox)
+#: src/settings/documentproperties.ui:173
+#, kde-format
+msgid "A general category into which your document belongs."
+msgstr "Een algemene categorie voor uw document."
+
+#. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
+#: src/settings/documentproperties.ui:185
+#, kde-format
+msgid "Music"
+msgstr "Muziek"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
+#: src/settings/documentproperties.ui:190
+#, kde-format
+msgid "Geography"
+msgstr "Geografie"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
+#: src/settings/documentproperties.ui:195
+#, kde-format
+msgid "Anatomy"
+msgstr "Anatomie"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
+#: src/settings/documentproperties.ui:200
+#, kde-format
+msgid "History"
+msgstr "Geschiedenis"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
+#: src/settings/documentproperties.ui:205
+#, kde-format
+msgid "Test Preparation"
+msgstr "Testvoorbereiding"
+
+#. i18n: ectx: property (text), widget (QLabel, label_license)
+#: src/settings/documentproperties.ui:213
+#, kde-format
+msgid "&License:"
+msgstr "&Licentie:"
+
+#. i18n: ectx: property (toolTip), widget (KComboBox, licenseComboBox)
+#: src/settings/documentproperties.ui:227
+#, kde-format
+msgid ""
+"The license under which your document will be.\n"
+"If you consider contributing your file to KDE in the future, an appropriate "
+"license is required."
+msgstr ""
+"De gewenste licentie voor uw document.\n"
+"Wanneer u overweegt om in de toekomst uw bestand aan KDE te doneren, is een "
+"geschikte licentie noodzakelijk."
+
+#. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
+#: src/settings/documentproperties.ui:239
+#, kde-format
+msgid "GPLv2+ (GNU General Public License version 2 or later)"
+msgstr "GPLv2+ (GNU General Public License version 2 or later)"
+
+#. i18n: ectx: property (text), widget (QLabel, label_language_1)
+#: src/settings/documentproperties.ui:256
+#, kde-format
+msgid "&First language:"
+msgstr "&Eerste taal:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_language_2)
+#: src/settings/documentproperties.ui:282
+#, kde-format
+msgid "&Second language:"
+msgstr "&Tweede taal:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, grammarCheckBox)
+#: src/settings/documentproperties.ui:311
+#, kde-format
+msgid "&Setup grammar details"
+msgstr "Grammaticadetails in&stellen"
+
+#. i18n: ectx: property (text), widget (QCheckBox, downloadGrammarCheckBox)
+#: src/settings/documentproperties.ui:321
+#, kde-format
+msgctxt "Attept to download grammar properties for the selected languages"
+msgid "Download grammar"
+msgstr "Grammatica downloaden"
+
+#. i18n: ectx: label, entry (ConjugationTenses), group (Document $(fileurl))
+#. i18n: ectx: whatsthis, entry (ConjugationTenses), group (Document $(fileurl))
+#. i18n: ectx: label, entry (ConjugationTenses), group (Locale $(locale))
+#. i18n: ectx: whatsthis, entry (ConjugationTenses), group (Locale $(locale))
+#: src/settings/documentsettings.kcfg:11 src/settings/documentsettings.kcfg:12
+#: src/settings/languagesettings.kcfg:23 src/settings/languagesettings.kcfg:24
+#, kde-format
+msgid "Selected tenses for conjugation practice."
+msgstr "Geselecteerde tijdvormen voor vervoegingsoefening."
+
+#. i18n: ectx: label, entry (VisibleColumns), group (Document $(fileurl))
+#. i18n: ectx: whatsthis, entry (VisibleColumns), group (Document $(fileurl))
+#. i18n: ectx: label, entry (VisibleColumns), group (Locale $(locale))
+#. i18n: ectx: whatsthis, entry (VisibleColumns), group (Locale $(locale))
+#: src/settings/documentsettings.kcfg:16 src/settings/documentsettings.kcfg:17
+#: src/settings/languagesettings.kcfg:28 src/settings/languagesettings.kcfg:29
+#, kde-format
+msgid "Visible columns in the main editor window."
+msgstr "Zichtbare kolommen in het hoofdvenster voor bewerken."
+
+#. i18n: ectx: label, entry (CollapsedStatisticsViewItems), group (Document $(fileurl))
+#. i18n: ectx: whatsthis, entry (CollapsedStatisticsViewItems), group (Document $(fileurl))
+#: src/settings/documentsettings.kcfg:20 src/settings/documentsettings.kcfg:21
+#, kde-format
+msgid "Collapsed tree view items of statistics view window."
+msgstr ""
+"Ingeklapte items in boomstructuur van weergavevenster voor statistieken."
+
+#: src/settings/generaloptions.cpp:41
+#, kde-format
+msgctxt "CSV separator"
+msgid ";"
+msgstr ";"
+
+#: src/settings/generaloptions.cpp:42
+#, kde-format
+msgctxt "CSV separator"
+msgid "#"
+msgstr "#"
+
+#: src/settings/generaloptions.cpp:43
+#, kde-format
+msgctxt "CSV separator"
+msgid "!"
+msgstr "!"
+
+#: src/settings/generaloptions.cpp:44
+#, kde-format
+msgctxt "CSV separator"
+msgid "|"
+msgstr "|"
+
+#: src/settings/generaloptions.cpp:45
+#, kde-format
+msgctxt "CSV separator"
+msgid ","
+msgstr ","
+
+#: src/settings/generaloptions.cpp:46
+#, kde-format
+msgctxt "CSV separator: tabulator"
+msgid "TAB"
+msgstr "TAB"
+
+#: src/settings/generaloptions.cpp:47
+#, kde-format
+msgctxt "CSV separator"
+msgid ">= 2 SPACES"
+msgstr ">= 2 SPATIES"
+
+#: src/settings/generaloptions.cpp:48
+#, kde-format
+msgctxt "CSV separator"
+msgid " : "
+msgstr " : "
+
+#: src/settings/generaloptions.cpp:49
+#, kde-format
+msgctxt "CSV separator"
+msgid " :: "
+msgstr " :: "
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/settings/generaloptionsbase.ui:17
+#, kde-format
+msgid "Open/Save"
+msgstr "Openen/opslaan"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AutoOpenLast)
+#: src/settings/generaloptionsbase.ui:23
+#, kde-format
+msgid "Always open the collection that was active when quitting Parley"
+msgstr ""
+"Altijd de verzameling openen die actief was bij het afsluiten van Parley"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoOpenLast)
+#: src/settings/generaloptionsbase.ui:26
+#, kde-format
+msgid ""
+"When this option is checked, the last active collection will be loaded "
+"automatically when starting Parley instead of showing the welcome screen."
+msgstr ""
+"Wanneer deze optie is aangevinkt, zal de laatst actieve verzameling "
+"ingelezen worden bij het opstarten van Parley, in plaats van het tonen van "
+"het welkomstscherm."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoOpenLast)
+#: src/settings/generaloptionsbase.ui:29
+#, kde-format
+msgid "Always load the last opened collection on start"
+msgstr "Bij starten altijd laatst geopende verzameling inlezen"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AutoSave)
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AutoBackup)
+#: src/settings/generaloptionsbase.ui:39 src/settings/generaloptionsbase.ui:60
+#, kde-format
+msgid "Allow automatic saving of your work"
+msgstr "Automatisch opslaan van uw werk toestaan"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoSave)
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoBackup)
+#: src/settings/generaloptionsbase.ui:42 src/settings/generaloptionsbase.ui:63
+#, kde-format
+msgid "Your work will be automatically saved if you check this option"
+msgstr "Uw werk wordt automatisch opgeslagen als u deze optie selecteert"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoSave)
+#: src/settings/generaloptionsbase.ui:45
+#, kde-format
+msgid "&Save vocabularies automatically on close and quit"
+msgstr "Woordenlijsten automatisch op&slaan bij afsluiten en beëindigen"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoBackup)
+#: src/settings/generaloptionsbase.ui:66
+#, kde-format
+msgid "&Create a backup every"
+msgstr "&Reservekopie aanmaken elke"
+
+#. i18n: ectx: property (text), widget (QLabel, lblBackupInterva)
+#: src/settings/generaloptionsbase.ui:89
+#, kde-format
+msgid "minutes"
+msgstr "minuten"
+
+#. i18n: ectx: property (text), widget (QLabel, label_sep)
+#: src/settings/generaloptionsbase.ui:100
+#, kde-format
+msgid "Sep&arator for text file import/export (CSV):"
+msgstr "Scheidingsteken voor tekstbest&and importeren/exporteren (CSV):"
+
+#. i18n: ectx: property (toolTip), widget (KComboBox, kcfg_SeparatorCombo)
+#: src/settings/generaloptionsbase.ui:116
+#, kde-format
+msgid ""
+"Choose which separator you want to use to separate your data when importing "
+"and exporting text."
+msgstr ""
+"Kies welk scheidingsteken u wilt gebruiken om uw gegevens te scheiden bij "
+"het importeren en exporteren van tekst."
+
+#. i18n: ectx: property (whatsThis), widget (KComboBox, kcfg_SeparatorCombo)
+#: src/settings/generaloptionsbase.ui:119
+#, kde-format
+msgid ""
+"Choose the separator to use to divide the parts of an expression when "
+"importing or exporting data as text."
+msgstr ""
+"Kies het scheidingsteken voor het scheiden van de onderdelen van gegevens "
+"tijdens het importeren of exporteren van gegevens als tekst."
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: src/settings/generaloptionsbase.ui:144
+#, kde-format
+msgid "Editing"
+msgstr "Bewerken"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_SmartAppend)
+#: src/settings/generaloptionsbase.ui:162
+#, kde-format
+msgid "&Append new rows automatically when editing"
+msgstr "&Voeg nieuwe regels automatisch achteraan toe bij het bewerken"
+
+#. i18n: ectx: property (text), widget (KNSWidgets::Button, getNewButton)
+#: src/settings/kgametheme/kgamethemeselector.ui:40
+#, kde-format
+msgid "&Get New Themes..."
+msgstr "Nieuwe thema's op&halen..."
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/settings/kgametheme/kgamethemeselector.ui:97
+#, kde-format
+msgid "Theme Details"
+msgstr "Details thema"
+
+#. i18n: ectx: property (text), widget (QLabel, labelContact)
+#: src/settings/kgametheme/kgamethemeselector.ui:131
+#, kde-format
+msgid "Contact:"
+msgstr "Contact:"
+
+#. i18n: ectx: property (text), widget (QLabel, labelDescription)
+#: src/settings/kgametheme/kgamethemeselector.ui:166
+#, kde-format
+msgid "Description:"
+msgstr "Omschrijving:"
+
+#. i18n: ectx: property (text), widget (QLabel, labelAuthor)
+#: src/settings/kgametheme/kgamethemeselector.ui:201
+#, kde-format
+msgid "Author:"
+msgstr "Auteur:"
+
+#: src/settings/languageproperties.cpp:23
+#, kde-format
+msgctxt "@title:window"
+msgid "Edit Languages"
+msgstr "Talen bewerken"
+
+#: src/settings/languageproperties.cpp:27
+#, kde-format
+msgid "Add language"
+msgstr "Taal toevoegen"
+
+#: src/settings/languageproperties.cpp:30
+#, kde-format
+msgid "Remove language"
+msgstr "Taal verwijderen"
+
+#: src/settings/languageproperties.cpp:45
+#, kde-format
+msgid "New Language"
+msgstr "Nieuwe taal"
+
+#: src/settings/languageproperties.cpp:58
+#, kde-format
+msgctxt "Edit language properties"
+msgid "Properties for %1"
+msgstr "Eigenschappen voor %1"
+
+#: src/settings/languageproperties.cpp:87
+#, kde-format
+msgid "Really delete language: %1?"
+msgstr "De taal: %1 werkelijk verwijderen?"
+
+#: src/settings/languageproperties.cpp:87
+#, kde-format
+msgid "Remove Language"
+msgstr "Taal verwijderen"
+
+#: src/settings/languagepropertiespage.cpp:83
+#, kde-format
+msgid "No KDE keyboard selector found."
+msgstr "Geen KDE-toetsenbordkiezer gevonden."
+
+#: src/settings/languagepropertiespage.cpp:346
+#: src/settings/languagepropertiespage.cpp:368
+#, kde-format
+msgid "Tense Name"
+msgstr "Naam tijdvorm"
+
+#: src/settings/languagepropertiespage.cpp:346
+#: src/settings/languagepropertiespage.cpp:368
+#, kde-format
+msgid "Enter name of tense:"
+msgstr "Voer naam tijdvorm in:"
+
+#: src/settings/languagepropertiespage.cpp:398
+#, kde-format
+msgid ""
+"The selected user defined tense could not be deleted\n"
+"because it is in use."
+msgstr ""
+"De geselecteerde door gebruiker gedefinieerde\n"
+"tijdvorm kon niet worden verwijderd,\n"
+"omdat deze in gebruik is."
+
+#: src/settings/languagepropertiespage.cpp:399
+#, kde-format
+msgid "Deleting Tense Description"
+msgstr "Beschrijving tijdvorm verwijderen"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab)
+#: src/settings/languagepropertiespage.ui:21
+#, kde-format
+msgid "General"
+msgstr "Algemeen"
+
+#. i18n: ectx: property (text), widget (QLabel, nameLabel)
+#: src/settings/languagepropertiespage.ui:30
+#, kde-format
+msgid "Name:"
+msgstr "Naam:"
+
+#. i18n: ectx: property (text), widget (QLabel, keyboardLayoutLabel)
+#: src/settings/languagepropertiespage.ui:46
+#, kde-format
+msgid "Keyboard layout:"
+msgstr "Toetsenbordindeling:"
+
+#. i18n: ectx: property (text), widget (QPushButton, downloadGrammarButton)
+#: src/settings/languagepropertiespage.ui:75
+#, kde-format
+msgid "&Download grammar"
+msgstr "Grammatica &downloaden"
+
+#. i18n: ectx: property (text), widget (QLabel, spellcheckerLabel)
+#: src/settings/languagepropertiespage.ui:88
+#, kde-format
+msgid "Spell checker:"
+msgstr "Spellingcontrole:"
+
+#. i18n: ectx: property (text), widget (QLabel, localeSelectionLabel)
+#: src/settings/languagepropertiespage.ui:101
+#, kde-format
+msgid "Language:"
+msgstr "Taal:"
+
+#. i18n: ectx: property (text), widget (QLabel, fontLabel_2)
+#: src/settings/languagepropertiespage.ui:117
+#, kde-format
+msgid "Font (practice):"
+msgstr "Lettertype (oefenen):"
+
+#. i18n: ectx: property (text), widget (QLabel, fontLabel_3)
+#: src/settings/languagepropertiespage.ui:127
+#, kde-format
+msgid "Font (editor):"
+msgstr "Lettertype (bewerken):"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab_2)
+#: src/settings/languagepropertiespage.ui:141
+#, kde-format
+msgid "Articles"
+msgstr "Lidwoorden"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel3)
+#. i18n: ectx: property (text), widget (QLabel, TextLabel3_2)
+#: src/settings/languagepropertiespage.ui:153
+#: src/settings/languagepropertiespage.ui:404
+#, kde-format
+msgid "Definite"
+msgstr "Bepaald"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4_2)
+#: src/settings/languagepropertiespage.ui:160
+#: src/settings/languagepropertiespage.ui:411
+#, kde-format
+msgid "Indefinite"
+msgstr "Onbepaald"
+
+#. i18n: ectx: property (text), widget (QLabel, male_label)
+#. i18n: ectx: property (text), widget (QLabel, male_label_2)
+#: src/settings/languagepropertiespage.ui:167
+#: src/settings/languagepropertiespage.ui:365
+#, kde-format
+msgid "&Male:"
+msgstr "&Mannelijk:"
+
+#. i18n: ectx: property (text), widget (QLabel, female_label)
+#. i18n: ectx: property (text), widget (QLabel, female_label_2)
+#: src/settings/languagepropertiespage.ui:190
+#: src/settings/languagepropertiespage.ui:352
+#, kde-format
+msgid "&Female:"
+msgstr "&Vrouwelijk:"
+
+#. i18n: ectx: property (text), widget (QLabel, natural_label)
+#. i18n: ectx: property (text), widget (QLabel, natural_label_2)
+#: src/settings/languagepropertiespage.ui:223
+#: src/settings/languagepropertiespage.ui:339
+#, kde-format
+msgid "&Neutral:"
+msgstr "&Onzijdig:"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab_3)
+#: src/settings/languagepropertiespage.ui:451
+#, kde-format
+msgid "Personal Pronouns"
+msgstr "Persoonlijke voornaamwoorden"
+
+#. i18n: ectx: property (text), widget (QLabel, pers1_label)
+#: src/settings/languagepropertiespage.ui:507
+#, kde-format
+msgid "&1. Person:"
+msgstr "&1e persoon:"
+
+#. i18n: ectx: property (text), widget (QLabel, pers2_label)
+#: src/settings/languagepropertiespage.ui:543
+#, kde-format
+msgid "&2. Person:"
+msgstr "&2e persoon:"
+
+#. i18n: ectx: property (text), widget (QLabel, pers3_label)
+#: src/settings/languagepropertiespage.ui:579
+#, kde-format
+msgid "3. Person:"
+msgstr "3e persoon:"
+
+#. i18n: ectx: property (text), widget (QLabel, male_c_label)
+#: src/settings/languagepropertiespage.ui:589
+#, kde-format
+msgid "M&ale:"
+msgstr "&Mannelijk:"
+
+#. i18n: ectx: property (text), widget (QLabel, female_c_label)
+#: src/settings/languagepropertiespage.ui:625
+#, kde-format
+msgid "F&emale:"
+msgstr "&Vrouwelijk:"
+
+#. i18n: ectx: property (text), widget (QLabel, natural_c_label)
+#: src/settings/languagepropertiespage.ui:661
+#, kde-format
+msgid "Neu&ter:"
+msgstr "Onzij&dig:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, dualCheckBox)
+#: src/settings/languagepropertiespage.ui:697
+#, kde-format
+msgid "Dual conjugations"
+msgstr "Tweevoudige vervoegingen"
+
+#. i18n: ectx: property (text), widget (QCheckBox, neutralCheckBox)
+#: src/settings/languagepropertiespage.ui:704
+#, kde-format
+msgid "A neutral conjugation form exists"
+msgstr "Een onzijdige vervoegingsvorm bestaat"
+
+#. i18n: ectx: property (text), widget (QCheckBox, maleFemaleDifferCheckBox)
+#: src/settings/languagepropertiespage.ui:717
+#, kde-format
+msgid "Male/female have different conjugations"
+msgstr "Mannelijk/vrouwelijk worden verschillende vervoegd"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab_4)
+#: src/settings/languagepropertiespage.ui:725
+#: src/statistics/conjugationoptions.cpp:24
+#, kde-format
+msgid "Tenses"
+msgstr "Tijdvormen"
+
+#. i18n: ectx: property (text), widget (QPushButton, newButton)
+#: src/settings/languagepropertiespage.ui:752 src/settings/optionlistform.ui:63
+#, kde-format
+msgid "&New..."
+msgstr "&Nieuw..."
+
+#. i18n: ectx: property (text), widget (QPushButton, modifyButton)
+#: src/settings/languagepropertiespage.ui:765 src/settings/optionlistform.ui:78
+#, kde-format
+msgid "&Modify..."
+msgstr "&Wijzigen..."
+
+#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
+#: src/settings/languagepropertiespage.ui:778 src/settings/optionlistform.ui:93
+#, kde-format
+msgid "&Delete"
+msgstr "Verwij&deren"
+
+#. i18n: ectx: label, entry (KeyboardLayout), group (Locale $(locale))
+#. i18n: ectx: whatsthis, entry (KeyboardLayout), group (Locale $(locale))
+#: src/settings/languagesettings.kcfg:12 src/settings/languagesettings.kcfg:13
+#, kde-format
+msgid "Keyboard layout for this locale"
+msgstr "Toetsenbordindeling voor deze taal"
+
+#. i18n: ectx: label, entry (SpellChecker), group (Locale $(locale))
+#. i18n: ectx: whatsthis, entry (SpellChecker), group (Locale $(locale))
+#: src/settings/languagesettings.kcfg:17 src/settings/languagesettings.kcfg:18
+#, kde-format
+msgid "Spell checker for this language"
+msgstr "Spellingcontrole voor deze taal"
+
+#. i18n: ectx: label, entry (PracticeFont), group (Locale $(locale))
+#: src/settings/languagesettings.kcfg:32
+#, kde-format
+msgid "The font used during practice"
+msgstr "Het gebruikte lettertype voor oefenen"
+
+#. i18n: ectx: label, entry (EditorFont), group (Locale $(locale))
+#: src/settings/languagesettings.kcfg:36
+#, kde-format
+msgid "The font used in the editor"
+msgstr "Het gebruikte font in de bewerker"
+
+#. i18n: ectx: property (text), widget (QPushButton, cleanUpButton)
+#: src/settings/optionlistform.ui:124
+#, kde-format
+msgid "&Clean Up"
+msgstr "Ops&chonen"
+
+#. i18n: ectx: label, entry (Theme), group (General)
+#: src/settings/parley.kcfg:11
+#, kde-format
+msgid "Theme to use for practice and welcome screen"
+msgstr "Te gebruiken thema voor oefening- en welkomstscherm"
+
+#. i18n: ectx: label, entry (NumPreSetting), group (General)
+#: src/settings/parley.kcfg:15
+#, kde-format
+msgid "Number of stored setting profiles"
+msgstr "Aantal opgeslagen instellingsprofielen"
+
+#. i18n: ectx: label, entry (SmartAppend), group (General)
+#: src/settings/parley.kcfg:19
+#, kde-format
+msgid ""
+"If true, when using the entry dialog, new rows will be appended as needed"
+msgstr ""
+"Indien ingeschakeld worden in de invoerdialoog nieuwe regels zo nodig "
+"achteraan toegevoegd"
+
+#. i18n: ectx: label, entry (Separator), group (General)
+#: src/settings/parley.kcfg:23
+#, kde-format
+msgid "This sets the separator used when copying/pasting text, default is Tab"
+msgstr ""
+"Dit stelt het scheidingsteken in dat gebruikt wordt bij het kopiëren/plakken "
+"van tekst, standaard is Tab"
+
+#. i18n: ectx: label, entry (EntriesPerLesson), group (General)
+#: src/settings/parley.kcfg:27
+#, kde-format
+msgid "The number of entries per unit"
+msgstr "Het aantal regels per eenheid"
+
+#. i18n: ectx: label, entry (AutoOpenLast), group (General)
+#: src/settings/parley.kcfg:31
+#, kde-format
+msgid "If true, on each application start the last opened file will be loaded"
+msgstr ""
+"Indien ingeschakeld wordt bij iedere start van het programma het laatst "
+"geopende bestand ingelezen"
+
+#. i18n: ectx: label, entry (AutoSave), group (General)
+#: src/settings/parley.kcfg:35
+#, kde-format
+msgid "If true, vocabularies are automatically saved on close and exit"
+msgstr ""
+"Indien ingeschakeld worden woordenlijsten automatisch opgeslagen bij het "
+"afsluiten en beëindigen"
+
+#. i18n: ectx: label, entry (AutoBackup), group (General)
+#: src/settings/parley.kcfg:42
+#, kde-format
+msgid "If true, a backup is saved every BackupTime minutes"
+msgstr ""
+"Indien ingeschakeld wordt om de zoveel minuten een reservekopie gemaakt"
+
+#. i18n: ectx: label, entry (BackupTime), group (General)
+#: src/settings/parley.kcfg:46
+#, kde-format
+msgid "Time interval between two automatic backups"
+msgstr "Tijdinterval tussen het maken van twee reservekopieën"
+
+#. i18n: ectx: label, entry (FlashcardsFrontImage), group (PracticeOptions)
+#: src/settings/parley.kcfg:57
+#, kde-format
+msgid "Show images on the front of the flashcard."
+msgstr "Afbeeldingen op de voorkant van de oefenkaarten tonen."
+
+#. i18n: ectx: label, entry (FlashcardsBackImage), group (PracticeOptions)
+#: src/settings/parley.kcfg:61
+#, kde-format
+msgid "Show images on the back of the flashcard."
+msgstr "Afbeeldingen op de achterkant van de oefenkaarten tonen."
+
+#. i18n: ectx: label, entry (Block), group (PracticeOptions)
+#: src/settings/parley.kcfg:65
+#, kde-format
+msgid "In Blocking Query Tab Dialog, if checked then the Query is blocked"
+msgstr ""
+"In het tabblad Vergrendeling, indien aangevinkt, zijn de vragen vergrendeld"
+
+#. i18n: ectx: label, entry (Expire), group (PracticeOptions)
+#: src/settings/parley.kcfg:69
+#, kde-format
+msgid ""
+"In Blocking Query Tab Dialog, if checked then the Query accepts an expiring "
+"time"
+msgstr ""
+"In het tabblad Vergrendeling, indien aangevinkt, is er een vervaltijd voor "
+"de vergrendeling"
+
+#. i18n: ectx: label, entry (TestOrderLesson), group (PracticeOptions)
+#: src/settings/parley.kcfg:73
+#, kde-format
+msgid ""
+"Append new vocabulary in a collection in order of their units. Note that "
+"this will not be a hard transition, but a slow mix from one unit to the next."
+msgstr ""
+"Voeg nieuwe woordenlijsten toe aan een oefening in de volgorde van de  "
+"eenheden. Opmerking: de overgang van de ene eenheid naar de andere zal niet "
+"\"hard\" zijn, maar geleidelijk."
+
+#. i18n: ectx: label, entry (TestNumberOfEntries), group (PracticeOptions)
+#: src/settings/parley.kcfg:77
+#, kde-format
+msgid ""
+"The number of entries that are practiced at the same time. If one of these "
+"is answered correctly another entry will be appended."
+msgstr ""
+"Het aantal regels dat tegelijkertijd wordt geoefend. Als een van deze goed "
+"wordt beantwoord komt meteen de volgende regel."
+
+#. i18n: ectx: label, entry (SwapDirection), group (PracticeOptions)
+#: src/settings/parley.kcfg:81
+#, kde-format
+msgid "Swap direction randomly"
+msgstr "Richting willekeurig wisselen"
+
+#. i18n: ectx: label, entry (PracticeTimeout), group (PracticeOptions)
+#: src/settings/parley.kcfg:86
+#, kde-format
+msgid "Limit the time for the user to answer in a test."
+msgstr "De tijd om te antwoorden in een oefening beperken."
+
+#. i18n: ectx: label, entry (PracticeTimeoutMode), group (PracticeOptions)
+#: src/settings/parley.kcfg:90
+#, kde-format
+msgid ""
+"Show - show the solution after the given time; Continue - go to the next "
+"question after the given time."
+msgstr ""
+"Toon - toont het antwoord na de opgegeven tijd; Doorgaan - ga naar de "
+"volgende vraag na de opgegeven tijd."
+
+#. i18n: ectx: label, entry (PracticeTimeoutTimePerAnswer), group (PracticeOptions)
+#: src/settings/parley.kcfg:98
+#, kde-format
+msgid "Maximum time allowed to answer."
+msgstr "De tijd die maximaal is toegestaan om een antwoord te geven."
+
+#. i18n: ectx: label, entry (Suggestions), group (PracticeOptions)
+#: src/settings/parley.kcfg:103
+#, kde-format
+msgid "Enable suggestion lists in written practice."
+msgstr "Schakel in een schrijfoefening suggestielijsten in."
+
+#. i18n: ectx: label, entry (ShowHints), group (PracticeOptions)
+#: src/settings/parley.kcfg:107
+#, kde-format
+msgid "Enable the showing of hints."
+msgstr "Het tonen van aanwijzingen inschakelen."
+
+#. i18n: ectx: label, entry (IgnoreAccentMistakes), group (PracticeOptions)
+#: src/settings/parley.kcfg:111
+#, kde-format
+msgid "Count answers as right when only the accentuation is wrong."
+msgstr "Antwoorden goed rekenen als er alleen accentfouten zijn."
+
+#. i18n: ectx: label, entry (IgnoreCapitalizationMistakes), group (PracticeOptions)
+#: src/settings/parley.kcfg:115
+#, kde-format
+msgid "Count answers as right when only the capitalization is wrong."
+msgstr "Antwoorden goed rekenen als er alleen hoofdletterfouten zijn."
+
+#. i18n: ectx: label, entry (IgnorePunctuationMistakes), group (PracticeOptions)
+#: src/settings/parley.kcfg:119
+#, kde-format
+msgid "Count answers as right when only the punctuation is wrong."
+msgstr "Antwoorden goed rekenen als er alleen leestekenfouten zijn."
+
+#. i18n: ectx: label, entry (SplitTranslations), group (PracticeOptions)
+#: src/settings/parley.kcfg:124
+#, kde-format
+msgid "Split translations in written practice."
+msgstr "Splits vertalingen in de geschreven oefening op."
+
+#. i18n: ectx: label, entry (Periods), group (PracticeOptions)
+#: src/settings/parley.kcfg:128
+#, kde-format
+msgid "Split translations at periods."
+msgstr "Splits vertalingen op achter punten."
+
+#. i18n: ectx: label, entry (Colons), group (PracticeOptions)
+#: src/settings/parley.kcfg:132
+#, kde-format
+msgid "Split translations at colons."
+msgstr "Splits vertalingen op achter dubbele punten."
+
+#. i18n: ectx: label, entry (Semicolons), group (PracticeOptions)
+#: src/settings/parley.kcfg:136
+#, kde-format
+msgid "Split translations at semicolons."
+msgstr "Splits vertalingen op achter puntkomma's."
+
+#. i18n: ectx: label, entry (Commas), group (PracticeOptions)
+#: src/settings/parley.kcfg:140
+#, kde-format
+msgid "Split translations at commas."
+msgstr "Splits vertalingen op achter komma's."
+
+#. i18n: ectx: label, entry (ShowMore), group (PracticeOptions)
+#: src/settings/parley.kcfg:146
+#, kde-format
+msgid ""
+"Enable Show More button to reveal parts of the solution in written practice."
+msgstr ""
+"Druk op de knop Aanwijzing om het antwoord in de geschreven oefening "
+"gedeeltelijk te laten zien."
+
+#. i18n: ectx: label, entry (SkipKnownEnabled), group (PracticeOptions)
+#: src/settings/parley.kcfg:150
+#, kde-format
+msgid "Enable Skip (I Know It) button in written practice."
+msgstr ""
+"De knop voor overslaan (Ik weet het) drukken in de geschreven oefening."
+
+#. i18n: ectx: label, entry (CountSynonymsAsCorrect), group (PracticeOptions)
+#: src/settings/parley.kcfg:154
+#, kde-format
+msgid ""
+"When the synonym instead of the word was entered, does it count as correct?"
+msgstr ""
+"Als in plaats van het woord het synoniem is ingevuld, wordt dat dan "
+"goedgerekend?"
+
+#. i18n: ectx: label, entry (PracticeImagesEnabled), group (PracticeOptions)
+#: src/settings/parley.kcfg:158
+#, kde-format
+msgid "Enable image display in the practice dialogs."
+msgstr "Tonen van afbeeldingen in oefendialogen activeren."
+
+#. i18n: ectx: label, entry (PracticeSoundEnabled), group (PracticeOptions)
+#: src/settings/parley.kcfg:162
+#, kde-format
+msgid "Enable sound playback in the practice dialogs."
+msgstr "Geluid afspelen in de oefendialogen activeren."
+
+#. i18n: ectx: label, entry (AllowImageInsteadOfWord), group (PracticeOptions)
+#: src/settings/parley.kcfg:166
+#, kde-format
+msgid ""
+"Allow using images instead of words in flashcards. This will only be done if "
+"there is no word in the entry."
+msgstr ""
+"Afbeeldingen op de oefenkaarten toestaan in plaats van woorden. Dit alleen "
+"wanneer er geen woord wordt opgegeven."
+
+#. i18n: ectx: label, entry (SessionMaxSize), group (PracticeOptions)
+#: src/settings/parley.kcfg:172
+#, kde-format
+msgid ""
+"The maximum number of words that will be practiced in a training session."
+msgstr "Het grootste aantal woorden dat in een oefensessie wordt geoefend."
+
+#. i18n: ectx: label, entry (SessionMaxNewWords), group (PracticeOptions)
+#: src/settings/parley.kcfg:176
+#, kde-format
+msgid ""
+"The maximum number of new (untrained) words that will be used in a training "
+"session."
+msgstr ""
+"Het grootste aantal nieuwe (niet geoefende) woorden dat in een oefensessie "
+"wordt geoefend."
+
+#. i18n: ectx: label, entry (SessionLimitWordsInitialPhase), group (PracticeOptions)
+#: src/settings/parley.kcfg:180
+#, kde-format
+msgid "Limit the number of words in the initial phase."
+msgstr "Beperk het aanvankelijke aantal woorden."
+
+#. i18n: ectx: label, entry (SessionMaxWordsInitialPhase), group (PracticeOptions)
+#: src/settings/parley.kcfg:184
+#, kde-format
+msgid ""
+"The maximum number of words in the initial phase. If this limit is exceeded, "
+"no new words will be introduced."
+msgstr ""
+"Het aanvankelijk grootste aantal woorden. Indien dit aantal wordt bereikt, "
+"worden geen nieuwe woorden meer geïntroduceerd."
+
+#. i18n: ectx: label, entry (MultipleChoiceWordTypeConsistancy), group (PracticeOptions)
+#: src/settings/parley.kcfg:190
+#, kde-format
+msgid ""
+"Use the same word type as the solution for the incorrect answers in a "
+"multiple choice practice."
+msgstr ""
+"In een meerkeuze-oefening voor de foute antwoorden hetzelfde woordtype "
+"gebruiken als van het goede antwoord."
+
+#. i18n: ectx: label, entry (NumberMultipleChoiceAnswers), group (PracticeOptions)
+#: src/settings/parley.kcfg:194
+#, kde-format
+msgid ""
+"How many answers are provided for a multiple choice question, including the "
+"correct answer."
+msgstr ""
+"Hoeveel antwoorden worden in een meerkeuzevraag opgegeven, inclusief het "
+"goede antwoord."
+
+#. i18n: ectx: label, entry (ShowSearch), group (Appearance)
+#: src/settings/parley.kcfg:201
+#, kde-format
+msgid "Toggle display of the search bar."
+msgstr "Zoekbalk aan- of uitzetten."
+
+#. i18n: ectx: label, entry (ShowSublessonentries), group (Appearance)
+#: src/settings/parley.kcfg:206
+#, kde-format
+msgid "When enabled a unit also shows entries from its subunits."
+msgstr ""
+"Wanneer ingeschakeld zal in een eenheid ook de regels van de subeenheden "
+"worden getoond."
+
+#. i18n: ectx: label, entry (TableLessonColumnVisible), group (Appearance)
+#: src/settings/parley.kcfg:211
+#, kde-format
+msgid "Show/hide the unit column."
+msgstr "Leskolom tonen/verbergen."
+
+#. i18n: ectx: label, entry (TableActiveColumnVisible), group (Appearance)
+#: src/settings/parley.kcfg:216
+#, kde-format
+msgid "Show/hide the active column."
+msgstr "Actieve kolom tonen/verbergen."
+
+#. i18n: ectx: label, entry (LessonEditingSelection), group (Appearance)
+#: src/settings/parley.kcfg:221
+#, kde-format
+msgid "Select which units are displayed for editing"
+msgstr "Selecteer welke eenheden worden getoond om te bewerken"
+
+#. i18n: ectx: label, entry (MainWindowSplitter), group (Appearance)
+#: src/settings/parley.kcfg:231
+#, kde-format
+msgid "How the main window is divided."
+msgstr "Hoe het hoofdvenster is opgedeeld."
+
+#. i18n: ectx: label, entry (PracticeFont), group (Appearance)
+#: src/settings/parley.kcfg:235
+#, kde-format
+msgid "The font used in the vocabulary table"
+msgstr "Het gebruikte font in de tabel van de woordenlijst"
+
+#. i18n: ectx: label, entry (IPAFont), group (Appearance)
+#: src/settings/parley.kcfg:239
+#, kde-format
+msgid "The font used for phonetics"
+msgstr "Het gebruikte lettertype voor fonetische tekens"
+
+#. i18n: ectx: label, entry (CurrentCol), group (Appearance)
+#: src/settings/parley.kcfg:243
+#, kde-format
+msgid "Currently selected column"
+msgstr "Huidig geselecteerde kolom"
+
+#. i18n: ectx: label, entry (CurrentRow), group (Appearance)
+#: src/settings/parley.kcfg:247
+#, kde-format
+msgid "Currently selected row"
+msgstr "Huidig geselecteerde rij"
+
+#. i18n: ectx: label, entry (GradeColor), group (Appearance)
+#: src/settings/parley.kcfg:251
+#, kde-format
+msgid "Color used to display the confidence levels"
+msgstr "Gebruikte kleur voor tonen beheersing"
+
+#. i18n: ectx: label, entry (PreGradeColor), group (Appearance)
+#: src/settings/parley.kcfg:255
+#, kde-format
+msgid "Color used to display the early confidence levels"
+msgstr "Gebruikte kleur voor tonen eerdere beheersing"
+
+#. i18n: ectx: label, entry (InvalidUnitColor), group (Appearance)
+#. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_InvalidUnitColor)
+#: src/settings/parley.kcfg:259 src/settings/viewoptionsbase.ui:190
+#, kde-format
+msgid "Color used to display invalid units"
+msgstr "Gebruikte kleur voor tonen onjuiste eenheden"
+
+#. i18n: ectx: label, entry (PracticeMinimumTimesAsked), group (Thresholds)
+#: src/settings/parley.kcfg:267
+#, kde-format
+msgid ""
+"The entry must have been asked at least this often to be included in the "
+"practice."
+msgstr ""
+"De vraag moet minstens dit aantal keer gesteld zijn voordat die in deze "
+"oefening mee doet. "
+
+#. i18n: ectx: label, entry (PracticeMaximumTimesAsked), group (Thresholds)
+#: src/settings/parley.kcfg:271
+#, kde-format
+msgid ""
+"The entry must have been asked at most this often to be included in the "
+"practice."
+msgstr ""
+"De vraag moet hoogstens dit aantal keer gesteld zijn voordat die in deze "
+"oefening mee doet."
+
+#. i18n: ectx: label, entry (PracticeMinimumWrongCount), group (Thresholds)
+#: src/settings/parley.kcfg:276
+#, kde-format
+msgid ""
+"The entry must have been answered incorrectly at least this often to be "
+"included in the practice."
+msgstr ""
+"De vraag moet minstens dit aantal keer fout zijn beantwoord voordat die in "
+"de oefening mee doet."
+
+#. i18n: ectx: label, entry (PracticeMaximumWrongCount), group (Thresholds)
+#: src/settings/parley.kcfg:280
+#, kde-format
+msgid ""
+"The entry must have been answered incorrectly at most this often to be "
+"included in the practice."
+msgstr ""
+"De vraag moet hoogstens dit aantal keer fout zijn beantwoord voordat die in "
+"deze oefening mee doet."
+
+#. i18n: ectx: label, entry (PracticeMinimumGrade), group (Thresholds)
+#: src/settings/parley.kcfg:285
+#, kde-format
+msgid ""
+"The entry must have at least this confidence level to be included in the "
+"practice (0..7)."
+msgstr ""
+"De vraag moet minstens deze beheersing hebben voordat die in oefening (0..7) "
+"mee doet."
+
+#. i18n: ectx: label, entry (PracticeMaximumGrade), group (Thresholds)
+#: src/settings/parley.kcfg:289
+#, kde-format
+msgid ""
+"The entry must have at most this confidence level to be included in the "
+"practice (0..7)."
+msgstr ""
+"De vraag moet hoogstens deze beheersing hebben voordat die in oefening "
+"(0..7) mee doet."
+
+#. i18n: ectx: label, entry (WordTypesInPracticeEnabled), group (Thresholds)
+#: src/settings/parley.kcfg:293
+#, kde-format
+msgid "Only selected word types will be included in practice."
+msgstr "Alleen geselecteerde woordtypen zullen in de oefening worden gevraagd."
+
+#. i18n: ectx: label, entry (WordTypesInPractice), group (Thresholds)
+#. i18n: ectx: whatsthis, entry (WordTypesInPractice), group (Thresholds)
+#: src/settings/parley.kcfg:297 src/settings/parley.kcfg:298
+#, kde-format
+msgid "Selected word types for practices."
+msgstr "Geselecteerde woordtypen voor oefeningen."
+
+#. i18n: ectx: label, entry (SubWordTypesInPractice), group (Thresholds)
+#. i18n: ectx: whatsthis, entry (SubWordTypesInPractice), group (Thresholds)
+#: src/settings/parley.kcfg:301 src/settings/parley.kcfg:302
+#, kde-format
+msgid "Selected sub word types for practices."
+msgstr "Geselecteerde subwoordtypen voor oefeningen."
+
+#. i18n: ectx: label, entry (LearningLanguage), group (PracticeManager)
+#: src/settings/parley.kcfg:309
+#, kde-format
+msgid "The language that you are learning."
+msgstr "De taal die u leert"
+
+#. i18n: ectx: label, entry (KnownLanguage), group (PracticeManager)
+#: src/settings/parley.kcfg:313
+#, kde-format
+msgid "The language that you know already."
+msgstr "De u reeds bekende taal."
+
+#. i18n: ectx: label, entry (ShowSolutionAfterAnswer), group (PracticeManager)
+#: src/settings/parley.kcfg:318
+#, kde-format
+msgid "Show the solution after an answer was given."
+msgstr "Goede antwoord tonen na het geven van een antwoord."
+
+#. i18n: ectx: label, entry (ShowSolutionAfterAnswerTime), group (PracticeManager)
+#: src/settings/parley.kcfg:322
+#, kde-format
+msgid "The time the solution is shown (seconds). 0 is unlimited."
+msgstr ""
+"De tijdsduur dat een antwoord wordt getoond (seconden). 0 betekent "
+"onbegrensd."
+
+#. i18n: ectx: label, entry (PracticeMode), group (PracticeManager)
+#: src/settings/parley.kcfg:337
+#, kde-format
+msgid "The practice method that is currently selected."
+msgstr "De huidige geselecteerde oefenmodus."
+
+#. i18n: ectx: label, entry (PracticeDirection), group (PracticeManager)
+#: src/settings/parley.kcfg:348
+#, kde-format
+msgid "The practice mode that is currently selected."
+msgstr "De huidige geselecteerde oefenmodus."
+
+#. i18n: ectx: label, entry (BlockItem$(Grade)), group (PracticeManager)
+#: src/settings/parley.kcfg:354
+#, kde-format
+msgid "Amount of time different confidence levels should be blocked"
+msgstr "Tijdsduur voor vergrendelingen van de verschillende beheersingen"
+
+#. i18n: ectx: label, entry (ExpireItem$(Grade)), group (PracticeManager)
+#: src/settings/parley.kcfg:365
+#, kde-format
+msgid "Amount of time after which different confidence levels should expire"
+msgstr "Aflooptijden voor de verschillende beheersingen"
+
+#. i18n: ectx: label, entry (RememberPracticeDirection), group (PracticeManager)
+#: src/settings/parley.kcfg:375
+#, kde-format
+msgid "If true, the practice direction for each practice mode is stored."
+msgstr "Indien waar, wordt de oefenrichting opgeslagen voor elke oefenmodus."
+
+#. i18n: ectx: whatsthis, entry (RememberPracticeDirection), group (PracticeManager)
+#: src/settings/parley.kcfg:376
+#, kde-format
+msgid "Should the practice direction for each practice mode be stored?"
+msgstr "Moet oefenrichting voor elke oefenmodus worden bewaard?"
+
+#. i18n: ectx: label, entry (PracticeDirectionsByPracticeMode), group (PracticeManager)
+#. i18n: ectx: whatsthis, entry (PracticeDirectionsByPracticeMode), group (PracticeManager)
+#: src/settings/parley.kcfg:380 src/settings/parley.kcfg:381
+#, kde-format
+msgid "Stored values of practice direction for each practice mode."
+msgstr "Opgeslagen waarden van oefenrichting voor elke oefenmodus."
+
+#. i18n: ectx: label, entry (ProvidersUrl), group (KNewStuff)
+#: src/settings/parley.kcfg:387
+#, kde-format
+msgid "The Providers path for Parley"
+msgstr "Het pad van de provider voor Parley"
+
+#. i18n: ectx: label, entry (InstallationCommand), group (KNewStuff)
+#: src/settings/parley.kcfg:391
+#, kde-format
+msgid "The command used to start a downloaded vocabulary"
+msgstr "Het commando voor het starten van een opgehaalde woordenlijst"
+
+#. i18n: ectx: label, entry (InstallPath), group (KNewStuff)
+#: src/settings/parley.kcfg:395
+#, kde-format
+msgid "The folder where downloaded vocabularies are saved by default"
+msgstr "De map waarin standaard gedownloade woordenlijsten worden opgeslagen"
+
+#: src/settings/parleyprefs.cpp:24
+#, kde-format
+msgid "Theme"
+msgstr "Thema"
+
+#: src/settings/parleyprefs.cpp:27
+#, kde-format
+msgctxt "title:window general settings"
+msgid "General"
+msgstr "Algemeen"
+
+#: src/settings/parleyprefs.cpp:27
+#, kde-format
+msgid "General Settings"
+msgstr "Algemene instellingen"
+
+#: src/settings/parleyprefs.cpp:30
+#, kde-format
+msgid "View"
+msgstr "Weergeven"
+
+#: src/settings/parleyprefs.cpp:30
+#, kde-format
+msgid "View Settings"
+msgstr "Weergave-instellingen"
+
+#: src/settings/parleyprefs.cpp:33
+#, kde-format
+msgid "Online Translations"
+msgstr "Online vertalingen"
+
+#: src/settings/parleyprefs.cpp:33
+#, kde-format
+msgid "Online Translation Services"
+msgstr "Diensten voor online vertalingen"
+
+#: src/settings/translationshelloptions.cpp:20
+#, kde-format
+msgid "translate-shell is available."
+msgstr "Vertaalprogramma is beschikbaar."
+
+#: src/settings/translationshelloptions.cpp:23
+#, kde-format
+msgid "translate-shell executable could not be found."
+msgstr "het vertaalprogramma is niet aanwezig."
+
+#: src/settings/translationshelloptions.cpp:38
+#, kde-format
+msgid "Error"
+msgstr "Fout"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBoxInstalledStatus)
+#: src/settings/translationshellpage.ui:18
+#, kde-format
+msgid "Translation Shell Integration"
+msgstr "Integratie met vertaalprogramma"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/settings/translationshellpage.ui:52
+#, kde-format
+msgid "Run Interactive Functionality Test"
+msgstr "Interactieve functionaliteitstest uitvoeren"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: src/settings/translationshellpage.ui:58
+#, kde-format
+msgid ""
+"The interaction test request translation of English word \"parley\" into "
+"German."
+msgstr ""
+"Het interactieve vertalingsverzoek voor het Engelse woord \"parley\" naar "
+"het Duits."
+
+#. i18n: ectx: property (text), widget (QToolButton, buttonRunTest)
+#: src/settings/translationshellpage.ui:68
+#, kde-format
+msgid "Start online test"
+msgstr "Start online-test"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: src/settings/translationshellpage.ui:88
+#, kde-format
+msgid "Result:"
+msgstr "Antwoord:"
+
+#. i18n: ectx: property (text), widget (QLabel, labelResultArea)
+#: src/settings/translationshellpage.ui:101
+#, kde-format
+msgid "..."
+msgstr "..."
+
+#. i18n: ectx: property (whatsThis), widget (KFontRequester, kcfg_IPAFont)
+#: src/settings/viewoptionsbase.ui:47
+#, kde-format
+msgid ""
+"Specify which font to use for displaying pronunciations using phonetic "
+"symbols."
+msgstr ""
+"Specificeer lettertype voor de getoonde uitspraak door middel van fonetische "
+"symbolen."
+
+#. i18n: ectx: property (text), widget (QLabel, IPAFontLabel)
+#: src/settings/viewoptionsbase.ui:54
+#, kde-format
+msgid "&Pronunciation symbols font:"
+msgstr "Lettertype voor &uitspraaktekens:"
+
+#. i18n: ectx: property (text), widget (QLabel, gradeColorLabel)
+#: src/settings/viewoptionsbase.ui:83
+#, kde-format
+msgid "Base color for displaying grades:"
+msgstr "Basiskleur voor de beheersingen:"
+
+#. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_GradeColor)
+#: src/settings/viewoptionsbase.ui:102
+#, kde-format
+msgid "Color used to display the progress"
+msgstr "Gebruikte kleur voor tonen vordering"
+
+#. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_GradeColor)
+#: src/settings/viewoptionsbase.ui:105
+#, kde-format
+msgid "Click here to change the color used to display the progress."
+msgstr "Wijzig hier de kleur voor tonen van de vorderingen."
+
+#. i18n: ectx: property (text), widget (KColorButton, kcfg_GradeColor)
+#. i18n: ectx: property (text), widget (KColorButton, kcfg_PreGradeColor)
+#. i18n: ectx: property (text), widget (KColorButton, kcfg_InvalidUnitColor)
+#: src/settings/viewoptionsbase.ui:108 src/settings/viewoptionsbase.ui:152
+#: src/settings/viewoptionsbase.ui:196
+#, kde-format
+msgid "&Base"
+msgstr "&Basis"
+
+#. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_GradeColor)
+#: src/settings/viewoptionsbase.ui:111
+#, kde-format
+msgid "Alt+0"
+msgstr "Alt+0"
+
+#. i18n: ectx: property (text), widget (QLabel, preGradeColorLabel)
+#: src/settings/viewoptionsbase.ui:127
+#, kde-format
+msgid "Color for displaying early progress:"
+msgstr "Kleur voor tonen van eerdere vorderingen:"
+
+#. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_PreGradeColor)
+#: src/settings/viewoptionsbase.ui:146
+#, kde-format
+msgid "Color used to display the early progress"
+msgstr "Gebruikte kleur voor tonen van eerdere vorderingen"
+
+#. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_PreGradeColor)
+#: src/settings/viewoptionsbase.ui:149
+#, kde-format
+msgid "Click here to change the color used to display the early progress."
+msgstr "Wijzig hier de kleur voor tonen van eerdere vorderingen."
+
+#. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_PreGradeColor)
+#: src/settings/viewoptionsbase.ui:155
+#, kde-format
+msgid "Alt+1"
+msgstr "Alt+1"
+
+#. i18n: ectx: property (text), widget (QLabel, invalidUnitColorLabel)
+#: src/settings/viewoptionsbase.ui:171
+#, kde-format
+msgid "Color used to display the grades:"
+msgstr "Gebruikte kleur tonen vorderingen:"
+
+#. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_InvalidUnitColor)
+#: src/settings/viewoptionsbase.ui:193
+#, kde-format
+msgid "Click here to change the color used to display invalid units."
+msgstr "Wijzig hier de kleur voor tonen onjuiste eenheden."
+
+#. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_InvalidUnitColor)
+#: src/settings/viewoptionsbase.ui:199
+#, kde-format
+msgid "Alt+2"
+msgstr "Alt+2"
+
+#: src/statistics/lessonstatisticsview.cpp:74
+#: src/statistics/lessonstatisticsview.cpp:76
+#, kde-format
+msgid "Remove confidence levels from this unit"
+msgstr "Beoordelingen van deze eenheid wissen"
+
+#: src/statistics/lessonstatisticsview.cpp:84
+#, kde-format
+msgid "Remove confidence levels from this unit and all sub-units"
+msgstr "Beoordelingen wissen van deze eenheid, en alle subeenheden"
+
+#: src/statistics/lessonstatisticsview.cpp:86
+#, kde-format
+msgid "Remove confidence level from this unit and all sub-units"
+msgstr "Beoordelingen wissen van deze eenheid, en alle subeenheden"
+
+#: src/statistics/statisticslegendwidget.cpp:27
+#, kde-format
+msgid "Progress gradients"
+msgstr "Voortgangsnelheden"
+
+#: src/statistics/statisticslegendwidget.cpp:28
+#, kde-format
+msgid "Early progress"
+msgstr "Eerdere voortgang"
+
+#: src/statistics/statisticslegendwidget.cpp:29
+#, kde-format
+msgid "Not Practiced"
+msgstr "Niet geoefend"
+
+#: src/statistics/statisticslegendwidget.cpp:30
+#, kde-format
+msgid "Invalid Entries"
+msgstr "Ongeldige invoer"
+
+#: src/statistics/statisticslegendwidget.cpp:46
+#, kde-format
+msgctxt "adjective, The word has been properly and fully learned by the user"
+msgid "Fully learned"
+msgstr "Helemaal geoefend"
+
+#: src/statistics/statisticslegendwidget.cpp:47
+#, kde-format
+msgctxt "adjective, The word has not even been practiced once by the user"
+msgid "Not practiced"
+msgstr "Niet geoefend"
+
+#: src/statistics/statisticsmainwindow.cpp:193
+#, kde-format
+msgid "Known to Learning"
+msgstr "Bekend naar te leren"
+
+#: src/statistics/statisticsmainwindow.cpp:194
+#, kde-format
+msgid "Learning to Known"
+msgstr "Te leren naar bekend"
+
+#: src/statistics/statisticsmainwindow.cpp:195
+#, kde-format
+msgid "Mixed Directions"
+msgstr "Gemengde aanwijzingen"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/statistics/statisticsmainwindow.ui:29
+#, kde-format
+msgid "Language to Learn"
+msgstr "De te leren taal"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: src/statistics/statisticsmainwindow.ui:39
+#, kde-format
+msgid "Known Language"
+msgstr "Bekende taal"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBoxPracticeMode)
+#: src/statistics/statisticsmainwindow.ui:75
+#, kde-format
+msgid "Practice Mode"
+msgstr "Oefenmodus"
+
+#. i18n: ectx: property (text), widget (QRadioButton, flashCard)
+#: src/statistics/statisticsmainwindow.ui:81
+#, kde-format
+msgid "Flash Cards"
+msgstr "Oefenkaarten"
+
+#. i18n: ectx: property (text), widget (QRadioButton, mixedLetters)
+#: src/statistics/statisticsmainwindow.ui:91
+#, kde-format
+msgid "Mixed &Letters"
+msgstr "Gehutselde &letters"
+
+#. i18n: ectx: property (text), widget (QRadioButton, multipleChoice)
+#: src/statistics/statisticsmainwindow.ui:98
+#, kde-format
+msgid "M&ultiple Choice"
+msgstr "M&eerkeuze"
+
+#. i18n: ectx: property (text), widget (QRadioButton, written)
+#: src/statistics/statisticsmainwindow.ui:105
+#, kde-format
+msgid "Wri&tten"
+msgstr "Ge&schreven"
+
+#. i18n: ectx: property (text), widget (QRadioButton, exampleSentence)
+#: src/statistics/statisticsmainwindow.ui:115
+#, kde-format
+msgid "E&xample Sentences"
+msgstr "&Voorbeeldzinnen"
+
+#. i18n: ectx: property (text), widget (QRadioButton, gender)
+#: src/statistics/statisticsmainwindow.ui:125
+#, kde-format
+msgid "&Gender of Nouns"
+msgstr "&Geslacht zelfstandige naamwoorden"
+
+#. i18n: ectx: property (text), widget (QRadioButton, conjugations)
+#: src/statistics/statisticsmainwindow.ui:145
+#, kde-format
+msgid "Co&njugations"
+msgstr "&Vervoegingen"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBoxPracticeDirection)
+#: src/statistics/statisticsmainwindow.ui:191
+#, kde-format
+msgid "Practice Direction"
+msgstr "Oefenrichting"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rememberPracticeDirection)
+#: src/statistics/statisticsmainwindow.ui:200
+#, kde-format
+msgid "Remember for each Practice Mode"
+msgstr "Voor elke oefenmodus onthouden"
+
+#: src/statistics/statisticsmodel.cpp:26
+#, kde-format
+msgctxt "Confidence level in language, table header"
+msgid "Confidence (%1)"
+msgstr "Beheersing (%1)"
+
+#~ msgid "Confidence Levels from %1 to %2"
+#~ msgstr "Beoordelingen van %1 tot %2"
+
+#~ msgid "&Help"
+#~ msgstr "&Help"
+
+#~ msgid ""
+#~ "<p>Parley enables you to edit many additional properties of the words you "
+#~ "enter.</p>\n"
+#~ "<p>Use \"View -> ...\" check boxes to enable different information that "
+#~ "will help you set additional information for your vocabulary. These "
+#~ "include Image, Sound, Word Types and many more. Choose the ones you like."
+#~ "</p>\n"
+#~ msgstr ""
+#~ "<p>Parley maakt het mogelijk vele extra eigenschappen van ingevoerde "
+#~ "woorden te bewerken.</p>\n"
+#~ "<p>Gebruik de keuzevakjes van \"Beeld->...\" voor het activeren van de "
+#~ "verschillende hulpmiddelen, waarmee u extra informatie in de "
+#~ "woordenlijsten in kunt  voeren. Bijvoorbeeld afbeeldingen, geluid, "
+#~ "woordtypen en vele andere. Maak uw eigen keuze.</p>\n"
+
+#~ msgid ""
+#~ "<p>To <em>search</em> for a word, simply type it into the search bar.</"
+#~ "p>\n"
+#~ msgstr ""
+#~ "<p>Om naar een woord te <em>zoeken</em> typt u het heel eenvoudig in de "
+#~ "zoekbalk in.</p>\n"
+
+#~ msgid ""
+#~ "<p>If you want to see all words of a certain word type (e.g. nouns), "
+#~ "simply select the word type in the list.</p>\n"
+#~ "<p>To show the word type list, use \"View -> Word Types\" check box.</p>\n"
+#~ msgstr ""
+#~ "<p>Als u alle woorden van een bepaald woordtype (bijv. zelfstandige "
+#~ "naamwoorden) wilt zien, dan selecteert u het woordtype in de lijst.</p>\n"
+#~ "<p>U kunt de lijst met woordtypen zien, door met behulp van het "
+#~ "keuzevakje  \"Beeld->Woordtype\"</p>\n"
+
+#~ msgid ""
+#~ "<p>You can drag and drop your lessons to change their order or even make "
+#~ "a lesson a child of another lesson.</p>\n"
+#~ msgstr ""
+#~ "<p>U kunt de volgorde van uw eenheden met slepen en neerzetten wijzigen "
+#~ "of zelfs zo een eenheid subeenheid maken van een andere eenheid.</p>\n"
+
+#~ msgid ""
+#~ "<p>You can simply drag a word into the word types list to change its type."
+#~ "</p>\n"
+#~ "<p>You can even select multiple words at the same time.</p>\n"
+#~ msgstr ""
+#~ "<p>U kunt gewoon een woord in de lijst van woordtypen slepen om de soort "
+#~ "ervan te wijzigen.</p>\n"
+#~ "<p>U kunt zelfs een aantal woorden tegelijk selecteren.</p>\n"
+
+#~ msgid ""
+#~ "<p><em>Setting Images</em></p>\n"
+#~ "<p>A fast way to set an image for a word is to simply drop it onto the "
+#~ "image dock.</p>\n"
+#~ msgstr ""
+#~ "<p><em>Instellen van afbeeldingen</em></p>\n"
+#~ "<p>Een snelle manier om een afbeelding bij een woord in te stellen, is "
+#~ "dit woord op de afbeelding neer te zetten.</p>\n"
+
+#~ msgid ""
+#~ "<p><em>Word Types</em></p>\n"
+#~ "<p>You can set a special tag to some word types to let Parley know their "
+#~ "grammatical meaning.</p>\n"
+#~ "<p>For verbs for example you can then enter conjugations.</p>\n"
+#~ msgstr ""
+#~ "<p><em>Woordtypen</em></p>\n"
+#~ "<p>U kunt een speciale tag instellen bij sommige woordtypen om Parley de "
+#~ "grammaticale betekenis te laten weten.</p>\n"
+#~ "<p>Voor werkwoorden bijvoorbeeld kunt u daarna de vervoegingen invoeren.</"
+#~ "p>\n"
+
+#~ msgid ""
+#~ "<p><em>Multiple Choice</em></p>\n"
+#~ "<p>For some vocabularies multiple choice tests work best. You can add "
+#~ "choices to a word that will always be displayed in Multiple Choice mode. "
+#~ "Otherwise random choices are generated from the other entries in the "
+#~ "document. (Use the Multiple Choice tool for that.)</p>\n"
+#~ msgstr ""
+#~ "<p><em>Meerkeuze</em></p>\n"
+#~ "<p>Voor sommige woordenlijsten werken multiple choice-testen het best. U "
+#~ "kunt keuzes aan een woord toevoegen die altijd worden weergegeven in de "
+#~ "meerkeuzemodus. Anders worden willekeurige keuzes gemaakt uit de andere "
+#~ "regels in het document. (Gebruik hiervoor het meerkeuzehulpmiddel).</p>\n"
+
+#~ msgid ""
+#~ "<p>Want to enter pronunciation symbols quickly? <em>Double-click</em> the "
+#~ "symbol you need to directly add it.</p>\n"
+#~ msgstr ""
+#~ "<p>Snel uitspraaksymbolen invoeren? <em>Dubbelklik</em> op het symbool "
+#~ "dat direct moet worden toegevoegd.</p>\n"
+
+#~ msgid ""
+#~ "<p>You can use the \"Download New Vocabulary\" dialog or visit the "
+#~ "website listing many vocabulary documents:\n"
+#~ "<a href=\"https://edu.kde.org/contrib/kvtml2.php\">https://edu.kde.org/"
+#~ "contrib/kvtml2.php</a>.</p>\n"
+#~ msgstr ""
+#~ "<p>U kunt de dialoog \"Nieuwe woordenlijst downloaden\" gebruiken of de "
+#~ "webpagina bezoeken waarop veel woordenlijsten:\n"
+#~ "<a href=\"https://edu.kde.org/contrib/kvtml2.php\">https://edu.kde.org/"
+#~ "contrib/kvtml2.php</a>.</p>\n"
+
+#~ msgid "Comparison forms"
+#~ msgstr "Trappen van vergelijking"
+
+#~ msgid "Grade"
+#~ msgstr "Beoordeling"
+
+#~ msgid ""
+#~ "<p>If you do not want to see the answer again after pressing enter when "
+#~ "practicing, you can configure Parley to directly skip to the next entry.</"
+#~ "p>\n"
+#~ "<p>You can even choose to display the answer for a fixed amount of time. "
+#~ "Use \"Configure Practice...\" -> \"Advanced\" -> \"Show solution after "
+#~ "answering\".</p>\n"
+#~ msgstr ""
+#~ "<p>Als u het antwoord niet opnieuw wilt zien na het indrukken van Enter "
+#~ "bij het oefenen, dan kunt u Parley zo instellen dat direct naar de "
+#~ "volgende vraag wordt gegaan.</p>\n"
+#~ "<p>U kunt zelfs kiezen het antwoord gedurende een vaste periode te kunnen "
+#~ "zien. Kies \"Oefening instellen...\" -> \"Geavanceerd\" -> \"Toon "
+#~ "antwoord na het beantwoorden\".</p>\n"
+
+#~ msgid "Mark as known (highest grade)"
+#~ msgstr "Markeren als bekend (hoogste beheersing)"
+
+#~ msgid "Sets the grade for the selected words to 7 (highest grade)"
+#~ msgstr ""
+#~ "Stelt de beheersing voor de geselecteerde woorden op 7 (hoogste "
+#~ "beheersing)"
+
+#~ msgid "Fetch Sound"
+#~ msgstr "Geluid ophalen"
+
+#~ msgid ""
+#~ "Fetches a sound file from commons.wikimedia.org for the selected word"
+#~ msgstr ""
+#~ "Haalt een geluidsbestand op voor het geselecteerde woord, vanaf commons."
+#~ "wikimedia.org"
+
+#~ msgid "&Scripts"
+#~ msgstr "&Scripts"
+
+#~ msgid "&Script Manager"
+#~ msgstr "&Scriptbeheer"
+
+#~ msgid "Enable and disable scripts"
+#~ msgstr "Scripts in- en uitschakelen"
+
+#~ msgid "The script file does not exist."
+#~ msgstr "Het scriptbestand bestaat niet."
+
+#~ msgid "Error in file %1 at line %2:"
+#~ msgstr "Fout in bestand %1 bij regel %2:"
+
+#~ msgctxt "debug information in error message"
+#~ msgid "Backtrace:"
+#~ msgstr "Backtrace:"
+
+#~ msgid "Script Dialog"
+#~ msgstr "Scriptdialoog"
+
+#~ msgid "A script could not be activated and has been disabled."
+#~ msgid_plural "%1 scripts could not be activated and have been disabled."
+#~ msgstr[0] "Een script kon niet worden geactiveerd en is uitgeschakeld."
+#~ msgstr[1] "%1 scripts konden niet worden geactiveerd en zijn uitgeschakeld."
+
+#~ msgid ""
+#~ "This probably means that there are errors in the script or that the "
+#~ "required packages are not installed."
+#~ msgstr ""
+#~ "Dit betekent waarschijnlijk dat er fouten in het script zitten of dat de "
+#~ "vereiste pakketten niet zijn geïnstalleerd."
+
+#~ msgid "Script Activation"
+#~ msgstr "Script activeren"
+
+#~ msgid "&Upload Vocabulary Document..."
+#~ msgstr "Woordenlijstdocument &uploaden..."
+
+#~ msgid "Share the current vocabulary collection with other users"
+#~ msgstr "Huidige woordenlijstverzameling met anderen delen"
+
+#~ msgid "Could not create temporary directory \"%1\""
+#~ msgstr "Kon tijdelijke map \"%1\" niet aanmaken"
+
+#~ msgid "Could not save vocabulary collection \"%1\""
+#~ msgstr "Kon woordenlijstverzameling \"%1\" niet opslaan"
+
+#~ msgid "Vocabulary collection:"
+#~ msgstr "Woordenlijstverzameling:"
+
+#~ msgid "Language Selection"
+#~ msgstr "Taalselectie"
+
+#~ msgid "Top:"
+#~ msgstr "Boven:"
+
+#~ msgid "Bottom:"
+#~ msgstr "Onder:"
+
+#~ msgid "Reveal solution when mouse cursor is over the widget"
+#~ msgstr "Antwoord tonen wanneer de muisaanwijzer boven de widget is"
+
+#~ msgid "Always show the solution"
+#~ msgstr "Altijd het antwoord tonen"
+
+#~ msgid "Update interval:"
+#~ msgstr "Bijwerkinterval:"
+
+#~ msgid "Select Font..."
+#~ msgstr "Lettertype selecteren..."
+
+#~ msgid " second"
+#~ msgid_plural " seconds"
+#~ msgstr[0] " seconde"
+#~ msgstr[1] " seconden"
+
+#~ msgid "*.kvtml|Vocabulary Collections"
+#~ msgstr "*.kvtml|Woordenlijsverzamelingen"
+
+#~ msgid "Limit the number of words in the initial phase"
+#~ msgstr "Beperk het aanvankelijke aantal woorden"
+
+#~ msgid "Max number of words in the initial phase"
+#~ msgstr "Aanvankelijk max aantal woorden"
+
+#~ msgid "I knew it well"
+#~ msgstr "Ik wist het goed"
+
+#~ msgid "Initial phase"
+#~ msgstr "Aanvankelijk"
+
+#~ msgid "Long term phase"
+#~ msgstr "Lange termijn"
+
+#~ msgid "Invalid entry"
+#~ msgstr "Ongeldige invoer"
+
+#~ msgid "Newly started"
+#~ msgstr "Nieuw begonnen"
+
+#~ msgid ""
+#~ "Error: ui file not found.\n"
+#~ "Check your installation."
+#~ msgstr ""
+#~ "Fout: ui-bestand niet gevonden.\n"
+#~ "Controleer uw installatie."
+
+#~ msgid "Fetch Image"
+#~ msgstr "Afbeelding ophalen"
+
+#~ msgid ""
+#~ "No Selection:\n"
+#~ "Select a word to fetch an image for it"
+#~ msgstr ""
+#~ "Geen selectie:\n"
+#~ "Selecteer een woord waarvoor een afbeelding moet worden opgehaald"
+
+#~ msgid "Fetches an image for the selected translation"
+#~ msgstr "Haalt een afbeelding op voor de geselecteerde vertaling"
+
+#~ msgid "Give a keyword to search for an image related to it:"
+#~ msgstr ""
+#~ "Voer een trefwoord in voor het zoeken naar een bijbehorende afbeelding:"
+
+#~ msgid "Search"
+#~ msgstr "Zoeken"
+
+#~ msgid "Free images only (creative commons, gpl, ...)"
+#~ msgstr "Alleen vrije afbeeldingen (creative commons, gpl, ...)"
+
+#~ msgid "Previous"
+#~ msgstr "Vorige"
+
+#~ msgid ""
+#~ "Requires you to answer each question correctly 3 times in a row for it to "
+#~ "be counted as correct."
+#~ msgstr ""
+#~ "U moet elke vraag 3 keer achter elkaar goed beantwoorden, voordat die "
+#~ "wordt goed gerekend."
+
+#~ msgid "Require 3 consecutive correct answers"
+#~ msgstr "3 Opeenvolgende goede antwoorden vereisen"
+
+#~ msgid "Use the Leitner learning method"
+#~ msgstr "De Leitner-leermethode gebruiken"
+
+#~ msgid "Lessons"
+#~ msgstr "Lessen"
+
+#~ msgid "The root unit cannot be deleted."
+#~ msgstr "De basiseenheid kan niet worden verwijderd."
+
+#~ msgid "Color for displaying invalid units:"
+#~ msgstr "Kleur voor tonen onjuiste eenheden:"
+
+#~ msgid "Start practice instead of editor"
+#~ msgstr "Oefening starten in plaats van bewerker"
+
+#~ msgid "&Start Page"
+#~ msgstr "&Startpagina"
+
+#~ msgid "Could not read collection from \"%1\""
+#~ msgstr "Kon verzameling niet lezen van \"%1\""
+
+#~ msgid "&Lesson"
+#~ msgstr "&Les"
+
+#~ msgid "&Reset Grades"
+#~ msgstr "&Beoordelingen terugzetten"
+
+#~ msgid "Remove Grades"
+#~ msgstr "Beoordelingen wissen"
+
+#~ msgctxt "Display of the current lesson during practice"
+#~ msgid "Lesson: %1"
+#~ msgstr "Les: %1"
+
+#~ msgid "Remove &Grades from this lesson"
+#~ msgstr "&Beoordelingen van deze les wissen"
+
+#~ msgid "Remove &Grades from this lesson and all sub-lessons"
+#~ msgstr "&Beoordelingen wissen van deze les, en alle sublessen"
+
+#~ msgctxt "Grade in language, table header"
+#~ msgid "Grade (%1)"
+#~ msgstr "Beoordeling (%1)"
+
+#~ msgid "Rename Lesson"
+#~ msgstr "Les hernoemen"
+
+#~ msgid "Delete Lesson"
+#~ msgstr "Les verwijderen"
+
+#~ msgid "Remove Grades from this Lesson"
+#~ msgstr "Beoordelingen van deze les wissen"
+
+#~ msgctxt "caption for an overview of the grades for a document"
+#~ msgid "Statistics for \"%1\""
+#~ msgstr "Statistieken voor \"%1\""
+
+#~ msgctxt "pair of two languages that the user chooses to practice"
+#~ msgid "%1 to %2"
+#~ msgstr "%1 naar %2"
+
+#~ msgid "Languages:"
+#~ msgstr "Talen:"
+
+#~ msgctxt ""
+#~ "@title:group Configure advanced settings for practicing vocabulary, short "
+#~ "title in config dialog."
+#~ msgid "Advanced"
+#~ msgstr "Geavanceerd"
+
+#~ msgid ""
+#~ "Check this if you want to practice with images instead of words in "
+#~ "flashcards."
+#~ msgstr ""
+#~ "Kies dit indien er moet worden geoefend met afbeeldingen op de "
+#~ "oefenkaarten, in plaats van met woorden."
+
+#~ msgid "Remove &Grades"
+#~ msgstr "Beoordelingen &wissen"
+
+#~ msgid "Use your own colors"
+#~ msgstr "Eigen kleuren gebruiken"
+
+#~ msgid "Grade Colors"
+#~ msgstr "Beoordelingskleuren"
+
+#~ msgid ""
+#~ "If it is unchecked, you will just have black on white for the grades; if "
+#~ "it is checked, the colors below will be chosen."
+#~ msgstr ""
+#~ "Indien niet ingeschakeld, worden de beoordelingen in zwart op wit "
+#~ "gegeven; en anders in de hieronder gekozen kleuren."
+
+#~ msgid "&Use colors"
+#~ msgstr "Kleuren gebr&uiken"
+
+#~ msgid "Color for the grade 7"
+#~ msgstr "Kleur voor beoordeling 7"
+
+#~ msgid "&7"
+#~ msgstr "&7"
+
+#~ msgid "Color for the grade 6"
+#~ msgstr "Kleur voor beoordeling 6"
+
+#~ msgid "Click here to change the color for grade 6."
+#~ msgstr "Klik hier om de kleur voor beoordeling 6 te wijzigen."
+
+#~ msgid "&6"
+#~ msgstr "&6"
+
+#~ msgid "Alt+6"
+#~ msgstr "Alt+6"
+
+#~ msgid "Color for the grade 5"
+#~ msgstr "Kleur voor beoordeling 5"
+
+#~ msgid "Click here to change the color for grade 5."
+#~ msgstr "Klik hier om de kleur voor beoordeling 5 te wijzigen."
+
+#~ msgid "&5"
+#~ msgstr "&5"
+
+#~ msgid "Alt+5"
+#~ msgstr "Alt+5"
+
+#~ msgid "Color for the grade 4"
+#~ msgstr "Kleur voor beoordeling 4"
+
+#~ msgid "Click here to change the color for grade 4."
+#~ msgstr "Klik hier om de kleur voor beoordeling 4 te wijzigen."
+
+#~ msgid "&4"
+#~ msgstr "&4"
+
+#~ msgid "Alt+4"
+#~ msgstr "Alt+4"
+
+#~ msgid "Color for the grade 3"
+#~ msgstr "Kleur voor beoordeling 3"
+
+#~ msgid "Click here to change the color for grade 3."
+#~ msgstr "Klik hier om de kleur voor beoordeling 3 te wijzigen."
+
+#~ msgid "&3"
+#~ msgstr "&3"
+
+#~ msgid "Alt+3"
+#~ msgstr "Alt+3"
+
+#~ msgid "Color for the grade 2"
+#~ msgstr "Kleur voor beoordeling 2"
+
+#~ msgid "Click here to change the color for grade 2."
+#~ msgstr "Klik hier om de kleur voor beoordeling 2 te wijzigen."
+
+#~ msgid "&2"
+#~ msgstr "&2"
+
+#~ msgid "Color for the grade 1"
+#~ msgstr "Kleur voor beoordeling 1"
+
+#~ msgid "Click here to change the color for grade 1."
+#~ msgstr "Klik hier om de kleur voor beoordeling 1 te wijzigen."
+
+#~ msgid "&1"
+#~ msgstr "&1"
+
+#~ msgid "&N"
+#~ msgstr "&N"
+
+#~ msgid "Words"
+#~ msgstr "Woorden"
+
+#~ msgid "Could not determine word type of verbs"
+#~ msgstr "Kon de woordsoort van werkwoorden niet vaststellen"
+
+#~ msgid "\"%1\" is a noun"
+#~ msgstr "\"%1\" is een zelfstandig naamwoord"
+
+#~ msgid "Could not determine word type of nouns"
+#~ msgstr "Kon de woordsoort van zelfstandige naamwoorden niet vaststellen"
+
+#~ msgid "Conjugation"
+#~ msgstr "Vervoegingen"
+
+#~ msgid "Turn the selected word into a verb."
+#~ msgstr "Verander geselecteerd woord in werkwoord."
+
+#~ msgid "Turn the selected word into a noun."
+#~ msgstr "Verander geselecteerd woord in zelfstandig naamwoord."
+
+#~ msgid "&IPA font:"
+#~ msgstr "&IPA-lettertype:"
+
+#~ msgid "&Table font:"
+#~ msgstr "Lettertype &tabel:"
+
+#~ msgid "Specify which font to use for editing of the main table."
+#~ msgstr "Specificeer lettertype voor het bewerken van de hoofdtabel."
+
+#~ msgid "Your answer was right on the first attempt."
+#~ msgstr "Uw antwoord was goed bij de eerste poging."
+
+#~ msgid "Export Options"
+#~ msgstr "Exportopties"
+
+#~ msgid "List"
+#~ msgstr "Lijst"
+
+#~ msgid "A vocabulary list."
+#~ msgstr "Een woordenlijstlijst."
+
+#~ msgid "CSV"
+#~ msgstr "CSV"
+
+#~ msgid "General Options"
+#~ msgstr "Algemene opties"
+
+#~ msgid ""
+#~ "By checking this, you will use the Leitner method of learning which "
+#~ "requires you to answer correctly to each question 3 times in a row. Wrong "
+#~ "answers causes grade to drop to 0 "
+#~ msgstr ""
+#~ "Selecteer dit om de Leitner-lesmethode te gebruiken. Deze methode vereist "
+#~ "dat u elke vraag 3 keer achter elkaar goed beantwoordt. Foute antwoorden "
+#~ "brengen de beoordeling terug op 0 "
+
+#~ msgid "Show images with the question"
+#~ msgstr "Afbeeldingen tonen bij de vraag"
+
+#~ msgid "Show images with the solution"
+#~ msgstr "Afbeeldingen tonen bij het antwoord"
+
+#~ msgid "Enable Sound"
+#~ msgstr "Geluid inschakelen"
+
+#~ msgid "Accept synonyms as correct"
+#~ msgstr "Synoniemen goedkeuren"
+
+#~ msgid ""
+#~ "When practicing, new words will be chosen loosely in lesson order if this "
+#~ "is selected.  Otherwise, they will be chosen completely at random."
+#~ msgstr ""
+#~ "Bij het oefenen worden nieuwe woorden ongeveer in de volgorde van de les "
+#~ "gekozen wanneer dit is geselecteerd, en anders volledig willekeurig."
+
+#~ msgid "&Practice in lesson order"
+#~ msgstr "&Oefenen in de volgorde van de les"
+
+#~ msgid ""
+#~ "The number of times vocabulary will show up repeatedly until it is "
+#~ "answered correctly."
+#~ msgstr ""
+#~ "Het aantal herhalingen van de woordenlijst, totdat de antwoorden goed "
+#~ "zijn."
+
+#~ msgid "&Active entries during practice:"
+#~ msgstr "&Actieve regels  in deze oefening:"
+
+#~ msgid "Enable word type selection"
+#~ msgstr "Woordtypeselectie inschakelen"
+
+#~ msgid "Enable Images"
+#~ msgstr "Afbeeldingen activeren"
+
+#~ msgid "After the answer was given the solution will be shown for this long"
+#~ msgstr ""
+#~ "De tijdsduur van de getoonde oplossing nadat het antwoord gegeven is"
+
+#~ msgid "&Show solution after answering:"
+#~ msgstr "&Toon oplossing na het beantwoorden:"
+
+#~ msgid "unlimited"
+#~ msgstr "onbeperkt"
+
+#~ msgctxt "Seconds (suffix)"
+#~ msgid "s"
+#~ msgstr "s"
+
+#~ msgid ""
+#~ "If a time limit is set, an answer has to have been given within the time "
+#~ "set when practicing."
+#~ msgstr ""
+#~ "Wanneer een tijdslimiet opgegeven is, dient een antwoord binnen deze tijd "
+#~ "gegeven te worden bij het oefenen."
+
+#~ msgid "&Time Limit in Tests"
+#~ msgstr "&Tijdslimiet in testen"
+
+#~ msgid "&Show solution"
+#~ msgstr "&Toon oplossing"
+
+#~ msgid "&Continue after timeout"
+#~ msgstr "Ga &door na verstrijken van tijdslimiet"
+
+#~ msgid "Limit:"
+#~ msgstr "Limiet:"
+
+#~ msgid "Set the maximum time allowed per answer."
+#~ msgstr "Stel de tijd in die maximaal is toegestaan voor een antwoord."
+
+#~ msgid "Set here the maximum time you want to allow per answer."
+#~ msgstr ""
+#~ "Stel hier de maximale tijd in die u voor een antwoord wilt toestaan."
+
+#~ msgid "Box 7 (best)"
+#~ msgstr "Vak 7 (beste)"
+
+#~ msgid "Box 6"
+#~ msgstr "Vak 6"
+
+#~ msgid "Box 5"
+#~ msgstr "Vak 5"
+
+#~ msgid "Box 4"
+#~ msgstr "Vak 4"
+
+#~ msgid "Box 3"
+#~ msgstr "Vak 3"
+
+#~ msgid "Box 2"
+#~ msgstr "Vak 2"
+
+#~ msgid "Box 1 (lowest)"
+#~ msgstr "Vak 1 (laagste)"
+
+#~ msgid "without name"
+#~ msgstr "naamloos"
+
+#~ msgid "No icon"
+#~ msgstr "Geen pictogram"
+
+#~ msgid "Flag:"
+#~ msgstr "Vlag:"
+
+#~ msgid "Icon for an identifier"
+#~ msgstr "miniatuur voor een identifier"
+
+#~ msgid "The icon shown for the identifier (locale)"
+#~ msgstr "De miniatuur die getoond wordt voor de identifier (taalregio)"
+
+#~ msgid "You did not answer correctly."
+#~ msgstr "Uw antwoord was niet juist."
+
+#~ msgid "Show images on the front of flashcard"
+#~ msgstr "Afbeelding op de voorkant van flashkaart tonen"
+
+#~ msgid ""
+#~ "You have not defined any tenses.\n"
+#~ "Use Edit->Languages to configure the tenses in the document and add "
+#~ "conjugation forms to the verbs you want to practice."
+#~ msgstr ""
+#~ "Er zijn geen tijdsvormen gedefinieerd.\n"
+#~ "Gebruik Bewerken->Talen voor het instellen van tijdsvormen in het "
+#~ "document en voeg vervoegingsvormen toe aan de werkwoorden die u wilt "
+#~ "oefenen."
+
+#, fuzzy
+#~| msgid "&Edit"
+#~ msgid "&Editor"
+#~ msgstr "&Bewerken"
+
+#~ msgid "Close the current collection"
+#~ msgstr "Huidige verzameling sluiten"
+
+#~ msgid "Edit..."
+#~ msgstr "Bewerken..."
+
+#~ msgid "Edit the document"
+#~ msgstr "Het document bewerken"
+
+#, fuzzy
+#~| msgctxt "the language that is shown to the user in a test"
+#~| msgid "From"
+#~ msgid "Form"
+#~ msgstr "Van"
+
+#~ msgid "Practice theme to use"
+#~ msgstr "Te gebruiken oefeningthema"
+
+#~ msgctxt "@title:group"
+#~ msgid "Practice"
+#~ msgstr "Oefening"
+
+#, fuzzy
+#~| msgid "Conjugation"
+#~ msgid "Conjugation Tenses"
+#~ msgstr "Vervoegingen"
+
+#~ msgctxt "@label image preview is empty"
+#~ msgid "No Preview"
+#~ msgstr "Geen voorbeeld"
+
+#~ msgctxt "@label image preview is empty"
+#~ msgid "No Image"
+#~ msgstr "Geen afbeelding"
+
+#~ msgid "Grade Boxes"
+#~ msgstr "Klassevakken"
+
+#~ msgid "Show statistics for the current collection"
+#~ msgstr "Statistieken van de huidige verzameling tonen"
+
+#~ msgid ""
+#~ "The vocabulary document contains no articles for the current language. "
+#~ "Please add some in the Edit->Grammar menu."
+#~ msgstr ""
+#~ "Het woordenlijstdocument bevat geen items voor de huidige taal. Voeg er "
+#~ "enkele toe in het menu Bewerken->Grammatica."
+
+#~ msgid "Comparison Training"
+#~ msgstr "Vergelijkingentraining"
+
+#~ msgid "Verb Training"
+#~ msgstr "Werkwoordtraining"
+
+#~ msgid ""
+#~ "The test dialog was not answered several times in a row.\n"
+#~ "It is assumed that there is currently nobody in front of the screen, and "
+#~ "for that reason the practice is stopped."
+#~ msgstr ""
+#~ "De testdialoog werd meerdere malen achtereen niet beantwoord.\n"
+#~ "Daarom werd er van uit gegaan dat er niemand voor de computer zit en is "
+#~ "de oefening gestopt."
+
+#~ msgid "Stopping Test"
+#~ msgstr "De test wordt afgesloten"
+
+#~ msgid "Written Practice"
+#~ msgstr "Geschreven oefening"
+
+#~ msgid "<font color=\"#188C18\">You are right!</font>"
+#~ msgstr "<font color=\"#188C18\"> U hebt het goed!</font>"
+
+#~ msgid "<font color=\"#222978\">Watch your capitalization!</font>"
+#~ msgstr "<font color=\"#222978\">Let op de hoofdletters!</font>"
+
+#~ msgid ""
+#~ "<font color=\"#8C1818\">I think you made a spelling mistake. But the word "
+#~ "is right.</font>"
+#~ msgstr ""
+#~ "<font color=\"#8C1818\">U hebt vermoedelijk een spelfout gemaakt. maar "
+#~ "het woord is goed.</font>"
+
+#~ msgid "<font color=\"#8C1818\">You made a mistake.</font>"
+#~ msgstr "<font color=\"#8C1818\"> U hebt een fout gemaakt.</font>"
+
+#~ msgid "<font color=\"#222978\">Your accentuation was wrong.</font>"
+#~ msgstr "<font color=\"#222978\">De accentuatie is fout.</font>"
+
+#~ msgid "<font color=\"#222978\">The article is wrong.</font>"
+#~ msgstr "<font color=\"#222978\">Het lidwoord is fout.</font>"
+
+#~ msgid "<font color=\"#222978\">The article is missing.</font>"
+#~ msgstr "<font color=\"#222978\">Het lidwoord ontbreekt.</font>"
+
+#~ msgid "<font color=\"#8C1818\">Watch out! This is a false friend!</font>"
+#~ msgstr "<font color=\"#8C1818\">Let op! Dit is misleidend!</font>"
+
+#~ msgid "<font color=\"#8C1818\">Great, you entered a synonym.</font>"
+#~ msgstr ""
+#~ "<font color=\"#8C1818\"> Uitstekend, u hebt een synoniem opgegeven.</font>"
+
+#~ msgid ""
+#~ "<font color=\"#8C8C18\">Please enter something for me to check.</font>"
+#~ msgstr "<font color=\"#8C8C18\">Geef iets op om te controleren.</font>"
+
+#~ msgid ""
+#~ "<font color=\"#8C1818\">I know that word, but are you sure it is the "
+#~ "right one here?</font>"
+#~ msgstr ""
+#~ "<font color=\"#8C1818\">Ik ken dat woord, maar weet u zeker dit hier het "
+#~ "de juiste is?</font>"
+
+#~ msgid "There is a mistake."
+#~ msgstr "Er is een fout."
+
+#~ msgid "Well done, you knew the correct answer."
+#~ msgstr "Goed gedaan, u wist het correcte antwoord."
+
+#~ msgctxt "@title:window"
+#~ msgid "Article Training"
+#~ msgstr "Lidwoordentraining"
+
+#~ msgctxt "@label the gender of the word: masculine"
+#~ msgid "&masculine:\t"
+#~ msgstr "&mannelijk:\t"
+
+#~ msgctxt "@label the gender of the word: feminine"
+#~ msgid "&feminine:\t"
+#~ msgstr "&vrouwelijk:\t"
+
+#~ msgctxt "@label the gender of the word: neuter"
+#~ msgid "&neuter:\t"
+#~ msgstr "&onzijdig:\t"
+
+#~ msgid "Enter the synonym:"
+#~ msgstr "Voer de synoniem in:"
+
+#~ msgid "Synonym Training"
+#~ msgstr "Synoniementraining"
+
+#~ msgid "Enter the antonym:"
+#~ msgstr "Voer de tegenstelling in:"
+
+#~ msgid "Antonym Training"
+#~ msgstr "Tegenstellingentraining"
+
+#~ msgid "Paraphrase Training"
+#~ msgstr "Parafrasetraining"
+
+#~ msgid "Example sentence"
+#~ msgstr "Voorbeeldzin"
+
+#~ msgid "Fill in the missing word:"
+#~ msgstr "Vul het ontbrekende woord in:"
+
+#~ msgid "Example Training"
+#~ msgstr "Voorbeeldtraining"
+
+#~ msgctxt "@popupmessage"
+#~ msgid ""
+#~ "Either the language set up is incorrect or no spellchecker was installed "
+#~ "for %1 (%2)."
+#~ msgstr ""
+#~ "Ofwel de taal is onjuist ingesteld of er is geen spellingcontrole "
+#~ "geïnstalleerd voor %1 (%2). "
+
+#~ msgid "Image Practice"
+#~ msgstr "Afbeeldingoefening"
+
+#~ msgid "Rename the selected lesson"
+#~ msgstr "De geselecteerde les hernoemen"
+
+#~ msgid "No options"
+#~ msgstr "Geen opties"
+
+#~ msgid "Configure Practice"
+#~ msgstr "Oefening instellen"
+
+#~ msgid "Configure practice settings"
+#~ msgstr "Oefening instellen"
+
+#~ msgid "Document Statistics"
+#~ msgstr "Documentstatistieken"
+
+#~ msgid "Average grades for each lesson:"
+#~ msgstr "Gemiddelde klassen voor iedere les:"
+
+#~ msgid "Total:"
+#~ msgstr "Totaal:"
+
+#~ msgid "Skipped:"
+#~ msgstr "Overgeslagen:"
+
+#~ msgid "Postponed:"
+#~ msgstr "Uitgesteld:"
+
+#~ msgid "Enter the correct translation:"
+#~ msgstr "Voer de juiste vertaling in:"
+
+#~ msgid "Show &More"
+#~ msgstr "&Meer tonen"
+
+#~ msgid "Show &Solution"
+#~ msgstr "&Toon oplossing"
+
+#~ msgid "&Verify"
+#~ msgstr "&Verifiëren"
+
+#~ msgid "Skip (I &Know It)"
+#~ msgstr "Overslaan(Ik &weet het)"
+
+#~ msgid "Skip (Do &Not Know)"
+#~ msgstr "Overslaan (Ik weet &het niet)"
+
+#~ msgid "&Continue"
+#~ msgstr "&Doorgaan"
+
+#~ msgid "Count as &Right"
+#~ msgstr "Als goed aan&rekenen"
+
+#~ msgid "Hints"
+#~ msgstr "Tips"
+
+#~ msgid "T&ype:"
+#~ msgstr "T&ype:"
+
+#~ msgid "Count:"
+#~ msgstr "Telling:"
+
+#~ msgid "Time:"
+#~ msgstr "Tijd:"
+
+#~ msgid "Cycle:"
+#~ msgstr "Cyclus:"
+
+#~ msgid "&Stop Practice"
+#~ msgstr "&Oefening stoppen"
+
+#~ msgid "Fill in the missing comparison expressions:"
+#~ msgstr "Vul de ontbrekende vergelijkingsuitdrukkingen in:"
+
+#~ msgctxt ""
+#~ "Comparison form of adjective - the normal form of the adjective (good)"
+#~ msgid "&Absolute"
+#~ msgstr "&Absoluut"
+
+#~ msgctxt "comparison form of adjectives - comparison form (better)"
+#~ msgid "&Comparative"
+#~ msgstr "&Comparatief"
+
+#~ msgctxt "comparison of adjectives - (best)"
+#~ msgid "&Superlative"
+#~ msgstr "&Superlatief"
+
+#~ msgid "Verb:"
+#~ msgstr "Werkwoord:"
+
+#~ msgid "verb name"
+#~ msgstr "werkwoordnaam"
+
+#~ msgid "Current tense is %1."
+#~ msgstr "Huidige tijdvormd is %1."
+
+#~ msgid "Select the correct translation:"
+#~ msgstr "Selecteer de juiste vertaling:"
+
+#~ msgid "1"
+#~ msgstr "1"
+
+#~ msgid "2"
+#~ msgstr "2"
+
+#~ msgid "3"
+#~ msgstr "3"
+
+#~ msgid "4"
+#~ msgstr "4"
+
+#~ msgid "5"
+#~ msgstr "5"
+
+#~ msgid " - "
+#~ msgstr " - "
+
+#~ msgctxt "Listen to the vocabulary entry (sound)"
+#~ msgid "Play"
+#~ msgstr "Afspelen"
+
+#~ msgid "Can you order the letters?"
+#~ msgstr "Volgorde van de letters veranderen?"
+
+#~ msgid "Verify"
+#~ msgstr "Verifiëren"
+
+#~ msgid "Select the correct article for this noun:"
+#~ msgstr "Selecteer het juiste lidwoord voor dit zelfstandig naamwoord:"
+
+#~ msgid "&male"
+#~ msgstr "&mannelijk"
+
+#~ msgid "&female"
+#~ msgstr "&vrouwelijk"
+
+#~ msgid "&neutral"
+#~ msgstr "&onzijdig"
+
+#~ msgid "In a comparison forms test, include adjectives."
+#~ msgstr ""
+#~ "Bij het oefenen van vergelijkingsvormen ook de bijvoegelijke naamwoorden "
+#~ "gebruiken."
+
+#~ msgid "In a comparison forms test, include adverbs."
+#~ msgstr ""
+#~ "Bij het oefenen van vergelijkingsvormen ook de bijwoorden gebruiken."
+
+#~ msgid "Enable the Show More button on the Random Query screen"
+#~ msgstr "Activeer de knop \"Meer tonen\" in het vragenscherm"
+
+#~ msgid ""
+#~ "When this is checked, you will be able to use a Show More button which "
+#~ "allow you to get the next letter in your answer in the query. If this is "
+#~ "unchecked, the Show More button will not be enabled, you will not be able "
+#~ "to use it."
+#~ msgstr ""
+#~ "Als deze optie is ingeschakeld kunt u gebruik maken van de knop \"Meer "
+#~ "tonen\". Door op deze knop te drukken krijgt u de volgende letter in uw "
+#~ "antwoord op de vraag te zien. Als deze optie is uitgeschakeld zal de knop "
+#~ "inactief zijn, u kunt haar dan niet gebruiken."
+
+#~ msgid "Enable S&how More button"
+#~ msgstr "Knop \"Meer tonen\" a&ctiveren"
+
+#~ msgid "Enable the I Know It button on the Random Query screen"
+#~ msgstr "Activeer de knop \"Ik weet het\" in het vragenscherm"
+
+#~ msgid ""
+#~ "If this is checked, the I Know button will be available. It allows you to "
+#~ "tell the query that you know the result without writing it or having it "
+#~ "checked. This is available by default. If you uncheck this, the I Know "
+#~ "button will not be available."
+#~ msgstr ""
+#~ "Indien ingeschakeld zal de knop \"Ik weet het\" beschikbaar zijn. Hiermee "
+#~ "kunt u aangeven dat u het resultaat al weet zonder dat u het hoeft in te "
+#~ "vullen of te selecteren. De knop is standaard actief, door deze optie uit "
+#~ "te schakelen maakt u de knop inactief."
+
+#~ msgid "Enable Skip (I Know it) &button"
+#~ msgstr "'(Ik weet het) overslaan&knop activeren"
+
+#~ msgid "S&wap direction randomly"
+#~ msgstr "Richting willekeurig &wisselen"
+
+#~ msgid "Type of Test"
+#~ msgstr "Testtype"
+
+#~ msgid "Article Training"
+#~ msgstr "Lidwoordentraining"
+
+#~ msgid "Comparison"
+#~ msgstr "Vergelijking"
+
+#~ msgid "Options"
+#~ msgstr "Opties"
+
+#~ msgctxt "the language to which the user translates to in a test"
+#~ msgid "To"
+#~ msgstr "Naar"
+
+#~ msgid ""
+#~ "<p>You are running a version of Parley that has not officially been "
+#~ "released yet.</p>\n"
+#~ "<p>Please be aware that this version might be unstable, crash or forget "
+#~ "to save your changes.</p>\n"
+#~ "<p>Please report any issues that you encounter to improve Parley! <a href="
+#~ "\"http://bugs.kde.org\">http://bugs.kde.org</a></p>\n"
+#~ msgstr ""
+#~ "<p>U gebruikt een versie van Parley die nog niet officieel is uitgegeven."
+#~ "</p>\n"
+#~ "<p>Wees a.u.b. gewaarschuwd dat deze versie instabiel kan zijn, kan "
+#~ "crashen of uw wijzigingen niet oplsaat.</p>\n"
+#~ "<p>Als u fouten tegenkomt, rapporteer ze dan zodat u Parley kan "
+#~ "verbeteren! <a href=\"http://bugs.kde.org\">http://bugs.kde.org</a></p>\n"
+
+#~ msgid "Current Maintainer"
+#~ msgstr "Huidige onderhouder"
+
+#~ msgid "No document set."
+#~ msgstr "Geen document ingesteld."
+
+#~ msgid ""
+#~ "The following script could not be activated due to errors in the script:\n"
+#~ msgstr ""
+#~ "Het volgende script kan wegens fouten in het script niet geactiveerd "
+#~ "worden:\n"
+
+#~ msgctxt "@label the gender of the word: Masculine"
+#~ msgid "Masculine"
+#~ msgstr "Mannelijk"
+
+#~ msgctxt "@label the gender of the word: Female"
+#~ msgid "Feminine"
+#~ msgstr "Vrouwelijk"
+
+#~ msgctxt "@label the gender of the word: Neuter"
+#~ msgid "Neuter"
+#~ msgstr "Onzijdig"
+
+#~ msgid "First person"
+#~ msgstr "Eerste persoon"
+
+#~ msgid "Second person"
+#~ msgstr "Tweede persoon"
+
+#~ msgid "Third person"
+#~ msgstr "Derde persoon"
+
+#~ msgctxt "Grammatical masculine gender"
+#~ msgid "Masculine"
+#~ msgstr "Mannelijk"
+
+#~ msgctxt "Grammatical feminine gender"
+#~ msgid "Feminine"
+#~ msgstr "Vrouwelijk"
+
+#~ msgctxt "Grammatical neuter gender"
+#~ msgid "Neuter"
+#~ msgstr "Onzijdig"
+
+#~ msgctxt "Grammatical singular number"
+#~ msgid "Singular"
+#~ msgstr "Enkelvoud"
+
+#~ msgctxt "Grammatical dual number (doesn't exist in all languages)"
+#~ msgid "Dual"
+#~ msgstr "Meervoud"
+
+#~ msgctxt "Grammatical plural number"
+#~ msgid "Plural"
+#~ msgstr "Meervoud"
+
+#~ msgctxt "Grammatical infinitive of a verb"
+#~ msgid "Infinitive"
+#~ msgstr "Onbepaald"
+
+#~ msgctxt "the separator for a list of wrong words that the user entered"
+#~ msgid "; "
+#~ msgstr "; "
+
+#~ msgid "Original Word"
+#~ msgstr "Oorspronkelijk woord"
+
+#~ msgid "Translation"
+#~ msgstr "Vertaling"
+
+#~ msgid "False Answers"
+#~ msgstr "Foute antwoorden"
+
+#~ msgid "Points"
+#~ msgstr "Punten"
+
+#~ msgid "Check Answer"
+#~ msgstr "Antwoord controleren"
+
+#~ msgid "Empty answers are never correct."
+#~ msgstr "Lege antwoorden zijn nooit goed."
+
+#~ msgid "There is an article missing."
+#~ msgstr "Er ontbreekt een lidwoord."
+
+#~ msgid "Empty answers are always wrong."
+#~ msgstr "Lege antwoorden zijn altijd fout."
+
+#~ msgid "%1 is <b>a</b> solution, but not <b>the</b> solution."
+#~ msgstr "%1 is <b>een</b> oplossing, maar niet <b>de </b> oplossing."
+
+#~ msgid "%1 has a problem..."
+#~ msgstr "%1 heeft een probleem..."
+
+#~ msgid "Correct answer, capitalized incorrectly."
+#~ msgstr "Goed antwoord, hoofdletter niet juist."
+
+#~ msgid "Correct, but you have an accent problem."
+#~ msgstr "Correct, maar er is een accentprobleem."
+
+#~ msgid "Try improving your spelling."
+#~ msgstr "Probeer je spelling te verbeteren."
+
+#~ msgid "No! That was a false friend!"
+#~ msgstr "Nee! Dit is misleidend!"
+
+#~ msgid ""
+#~ "Do you have any idea what you are talking about? (Wrong word; supposedly "
+#~ "you spelled it correctly.)"
+#~ msgstr ""
+#~ "Weet je wel wat het betekend? (Woord is fout, vermoedelijk is de spelling "
+#~ "goed)."
+
+#~ msgid "Seems like you got the spelling wrong."
+#~ msgstr "Het lijkt erop dat de spelling fout is."
+
+#~ msgid "I don't know that word and it is not similar to the solution."
+#~ msgstr "Ik ken dat woord niet en het lijkt niet op het juiste woord."
+
+#~ msgid "No dictionary and no clue."
+#~ msgstr "Geen woordenlijst en geen aanwijzing."
+
+#~ msgid "Wrong:"
+#~ msgstr "Fout:"
+
+#~ msgid "I &Know It"
+#~ msgstr "Ik &weet het"
+
+#~ msgid "I &Don't Know It"
+#~ msgstr "Ik weet het &niet"
+
+#~ msgid "&Flip"
+#~ msgstr "&Spiegelen"
+
+#~ msgid "The selected theme is invalid and cannot be loaded."
+#~ msgstr "Het geselecteerde thema is ongeldig en kan niet geladen worden."
+
+#~ msgid "Leave the practice mode."
+#~ msgstr "Oefeningmodus verlaten."
+
+#~ msgid "Skip (Answer Known)"
+#~ msgstr "Overslaan (antwoord is bekend)"
+
+#~ msgid "Skip (Answer Not Known)"
+#~ msgstr "Overslaan (antwoord is niet bekend)"
+
+#~ msgid "Show Hint"
+#~ msgstr "Tip tonen"
+
+#~ msgid "Select Synonym:"
+#~ msgstr "Selecteer synoniem:"
+
+#~ msgid "Select Antonym:"
+#~ msgstr "Selecteer tegenstelling:"
+
+#~ msgid "Select the Correct Article:"
+#~ msgstr "Selecteer het juiste lidwoord:"
+
+#~ msgid "Select Translation:"
+#~ msgstr "Selecteer de vertaling:"
+
+#~ msgid "Enter Missing Word:"
+#~ msgstr "Vul het ontbrekende woord in:"
+
+#~ msgid "Enter a Matching Word:"
+#~ msgstr "Voer een overeenkomend woord in:"
+
+#~ msgid "Unscramble:"
+#~ msgstr "Ontcijfer:"
+
+#~ msgid "Conjugate:"
+#~ msgstr "Vervoeging:"
+
+#~ msgid "Tense Description"
+#~ msgstr "Tijdvormbeschrijving"
+
+#~ msgid "Enter tense description:"
+#~ msgstr "Tijdvormbeschrijving invoeren:"
+
+#~ msgid "There is %1 word left in this lesson. Do you want to delete them?"
+#~ msgid_plural ""
+#~ "There are %1 words left in this lesson. Do you want to delete them?"
+#~ msgstr[0] "Er is %1 woord over in deze les. Wilt u dat ze verwijderd wordt?"
+#~ msgstr[1] ""
+#~ "Er zijn %1 woorden over in deze les. Wilt u dat ze verwijderd worden?"
+
+#~ msgid "Total Points:"
+#~ msgstr "Totaal aantal punten:"
+
+#~ msgid "Percent:"
+#~ msgstr "Percentage:"
+
+#~ msgid "Ignore Times Answered Wrong"
+#~ msgstr "Aantal foute antwoorden negeren"
+
+#~ msgid "Navigation"
+#~ msgstr "Navigatie"
+
+#~ msgid "Google Images"
+#~ msgstr "Google-afbeeldingen"
+
+#~ msgid "OK"
+#~ msgstr "OK"
+
+#~ msgid "Cancel"
+#~ msgstr "Annuleren"
+
+#~ msgid "Check"
+#~ msgstr "Controleren"
+
+#~ msgid "TextLabel"
+#~ msgstr "Textlabel"
+
+#~ msgid "Smart a&ppending"
+#~ msgstr "Intelligente &toevoegingen"
+
+#, fuzzy
+#~| msgid "Example"
+#~ msgid "Open &Example..."
+#~ msgstr "Voorbeeld"
+
+#, fuzzy
+#~| msgid "Download New Vocabularies..."
+#~ msgid "Downloads new vocabularies"
+#~ msgstr "Nieuwe woordenlijsten downloaden..."
+
+#, fuzzy
+#~| msgctxt ""
+#~| "Let the user select what grammatical meaning is connected to a word type "
+#~| "(nouns have gender, verbs conjugations etc)"
+#~| msgid "Grammar"
+#~ msgid "&Grammar..."
+#~ msgstr "Grammatica"
+
+#, fuzzy
+#~| msgid "Start a test"
+#~ msgid "Set up and start a test"
+#~ msgstr "Start een test"
+
+#, fuzzy
+#~| msgid "Tense Description"
+#~ msgid "Tense Descriptions"
+#~ msgstr "Tijdvormbeschrijving"
+
+#, fuzzy
+#~| msgid "Use the Leitner learning method"
+#~ msgid "Patch to implement Leitner learning method"
+#~ msgstr "De Leitner-leermethode gebruiken"
+
+#, fuzzy
+#~| msgid "Bug reports and testing on the way to KDE4"
+#~ msgid "Bug fixes and testing on the way to KDE4"
+#~ msgstr "Bugrapporten en testen op weg naar KDE4"
+
+#, fuzzy
+#~| msgid "General Document Properties"
+#~ msgid "Grammar Properties"
+#~ msgstr "Algemene documenteigenschappen"
+
+#, fuzzy
+#~| msgid "&male"
+#~ msgctxt "@label the gender of the word: male"
+#~ msgid "&male"
+#~ msgstr "&mannelijk"
+
+#, fuzzy
+#~| msgid "&female"
+#~ msgctxt "@label the gender of the word: female"
+#~ msgid "&female"
+#~ msgstr "&vrouwelijk"
+
+#, fuzzy
+#~| msgid "&neutral"
+#~ msgctxt "@label the gender of the word: neutral"
+#~ msgid "&neutral"
+#~ msgstr "&onzijdig"
+
+#, fuzzy
+#~| msgid "&male"
+#~ msgctxt "@label the gender of the word: male"
+#~ msgid "&male:\t"
+#~ msgstr "&mannelijk"
+
+#, fuzzy
+#~| msgid "&female"
+#~ msgctxt "@label the gender of the word: female"
+#~ msgid "&female:\t"
+#~ msgstr "&vrouwelijk"
+
+#, fuzzy
+#~| msgid "&neutral"
+#~ msgctxt "@label the gender of the word: neutral"
+#~ msgid "&neutral:\t"
+#~ msgstr "&onzijdig"
+
+#, fuzzy
+#~| msgid "Pronunciation"
+#~ msgid "Introduction"
+#~ msgstr "Uitspraak"
+
+#, fuzzy
+#~| msgid "&Male:"
+#~ msgid "Male"
+#~ msgstr "&Mannelijk:"
+
+#, fuzzy
+#~| msgid "&Female:"
+#~ msgid "Female"
+#~ msgstr "&Vrouwelijk:"
+
+#, fuzzy
+#~| msgid "&Neutral:"
+#~ msgid "Neutral"
+#~ msgstr "&Onzijdig:"
+
+#, fuzzy
+#~| msgid "&Properties..."
+#~ msgid "Common Properties"
+#~ msgstr "&Eigenschappen..."
+
+#, fuzzy
+#~| msgid "&Lesson"
+#~ msgid "&Lesson:"
+#~ msgstr "&Les"
+
+#, fuzzy
+#~| msgid "Expression"
+#~ msgid "&Expression:"
+#~ msgstr "Uitdrukking"
+
+#, fuzzy
+#~| msgid "T&ype:"
+#~ msgid "T&ype"
+#~ msgstr "T&ype:"
+
+#, fuzzy
+#~| msgid "T&ype:"
+#~ msgid "&Subtype:"
+#~ msgstr "T&ype:"
+
+#, fuzzy
+#~| msgid "Adjective"
+#~ msgid "Acti&ve"
+#~ msgstr "Bijvoeglijk naamwoord"
+
+#, fuzzy
+#~| msgid "Conjugation"
+#~ msgid "Conjugation of Verbs"
+#~ msgstr "Vervoegingen"
+
+#, fuzzy
+#~| msgid "&Title:"
+#~ msgid "Title:"
+#~ msgstr "&Titel:"
+
+#, fuzzy
+#~| msgid "A title for your document."
+#~ msgid "So far your document contains:"
+#~ msgstr "Een titel voor uw document."
+
+#~ msgid "Your changes will be applied automatically."
+#~ msgstr "Uw wijzigingen zullen automatisch worden toegepast."
+
+#~ msgid ""
+#~ "If checked, you will not be asked if you really want this change; it will "
+#~ "be applied automatically."
+#~ msgstr ""
+#~ "Indien ingeschakeld zult u niet worden gevraagd of u deze wijziging  wilt "
+#~ "doorvoeren. De wijzigingen worden automatisch toegepast."
+
+#~ msgid "Appl&y changes without asking"
+#~ msgstr "&Wijzigingen toepassen zonder te vragen"
+
+#~ msgid "If checked, the entry dialog will popup repeatedly"
+#~ msgstr "Indien geselecteerd zal de invoerdialoog herhaaldelijk verschijnen"
+
+#~ msgid ""
+#~ "If this feature is activated, you will repeatedly be prompted with the "
+#~ "entry dialog. After entering the first original you have to enter the "
+#~ "corresponding translations. Afterwards you proceed with the next original "
+#~ "and its translations until you stop by pressing the ESC key."
+#~ msgstr ""
+#~ "Als deze functie is ingeschakeld, dan de invoerdialoog herhaaldelijk "
+#~ "verschijnen. Nadat u het eerste origineel hebt ingevoerd dient u de "
+#~ "bijhorende vertalingen op te geven. Daarna gaat u verder met het volgende "
+#~ "origineel en bijhorende vertalingen, net zolang totdat u zelf stopt door "
+#~ "op de toets Esc te drukken."
+
+#, fuzzy
+#~| msgid "Count:"
+#~ msgid "Custom:"
+#~ msgstr "Telling:"
+
+#~ msgid "Declension"
+#~ msgstr "Verbuigingen"

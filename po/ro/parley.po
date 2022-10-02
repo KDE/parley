@@ -1,0 +1,5269 @@
+# Traducerea parley.po în Română
+# Copyright (C) 2008 Free Software Foundation, Inc.
+# Claudiu Costin <claudiuc@kde.org>, 2003.
+# Sergiu Bivol <sergiu@cip.md>, 2008, 2010, 2012, 2013, 2014, 2020, 2022.
+# Szabo Roland <rolisz@gmail.com>, 2010.
+# Victor Cărbune <victor.carbune@kdemail.net>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: parley\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-08-06 00:41+0000\n"
+"PO-Revision-Date: 2022-02-16 11:20+0000\n"
+"Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
+"Language-Team: Romanian\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Lokalize 21.12.2\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Szabo Roland"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "rolisz@gmail.com"
+
+#: src/collection/containermodel.cpp:150
+#, kde-format
+msgid "Unit"
+msgstr ""
+
+#: src/collection/containermodel.cpp:158
+#, kde-format
+msgid "Number of entries in this lesson."
+msgstr "Numărul intrărilor din această lecție."
+
+#: src/collection/entryfilter.cpp:113
+#, kde-format
+msgid ""
+"The vocabulary document contains no entries that can be used for the chosen "
+"type of practice."
+msgstr ""
+"Documentul de vocabular nu conține nicio intrare care să poată fi folosită "
+"pentru modul de exersare ales."
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, EntryFilterDialog)
+#: src/collection/entryfilterdialog.ui:14
+#, kde-format
+msgid "Start Practice"
+msgstr "Începe exersarea"
+
+#. i18n: ectx: property (text), widget (QLabel, headerLabel)
+#: src/collection/entryfilterdialog.ui:20
+#, kde-format
+msgid ""
+"<p>Your selection of vocabulary for the practice is empty.</p><p>Below you "
+"can choose to ignore some of your configuration settings to start a practice "
+"anyway.</p>"
+msgstr ""
+"<p>Selecția dumneavoastră a vocabularului pentru această exersare este goală."
+"</p><p>Mai jos puteți alege să ignorați unele din setările dumneavoastră ca "
+"să puteți începe exersarea oricum.</p>"
+
+#. i18n: ectx: property (title), widget (QGroupBox, ignoreGroupBox)
+#: src/collection/entryfilterdialog.ui:30
+#, kde-format
+msgid "Ignore Configuration for:"
+msgstr "Ignoră configurațiiile pentru:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, lessonCheckBox)
+#: src/collection/entryfilterdialog.ui:36
+#, kde-format
+msgid "Ignore Lessons"
+msgstr "Ignoră lecțiile"
+
+#. i18n: ectx: property (text), widget (QCheckBox, wordTypeCheckBox)
+#: src/collection/entryfilterdialog.ui:56
+#, kde-format
+msgid "Ignore Word Types"
+msgstr "Ignoră tipurile de cuvinte"
+
+#. i18n: ectx: property (text), widget (QCheckBox, blockedCheckBox)
+#: src/collection/entryfilterdialog.ui:76
+#, kde-format
+msgid "Ignore Blocked"
+msgstr "Ignoră cele blocate"
+
+#. i18n: ectx: property (text), widget (QCheckBox, timesWrongCheckBox)
+#: src/collection/entryfilterdialog.ui:96
+#, kde-format
+msgid "Ignore Times Answered Incorrectly"
+msgstr "Ignoră numărul de răspunsuri incorecte"
+
+#. i18n: ectx: property (text), widget (QCheckBox, timesPracticedCheckBox)
+#: src/collection/entryfilterdialog.ui:116
+#, kde-format
+msgid "Ignore Times Practiced"
+msgstr "Ignoră numărul de exersări"
+
+#. i18n: ectx: property (text), widget (QCheckBox, minMaxGradeCheckBox)
+#: src/collection/entryfilterdialog.ui:136
+#, kde-format
+msgid "Ignore Minimum/Maximum Grade"
+msgstr "Ignoră nota minimă/maximă"
+
+#. i18n: ectx: property (text), widget (QLabel, numberAffectedWordsLabel)
+#: src/collection/entryfilterdialog.ui:156
+#, fuzzy, kde-format
+#| msgid "Number of choices:"
+msgid "Number of Affected Words"
+msgstr "Numărul opțiunilor:"
+
+#. i18n: ectx: property (text), widget (QLabel, documentTotalDescriptionLabel)
+#: src/collection/entryfilterdialog.ui:171
+#, kde-format
+msgid "Total number of entries:"
+msgstr "Număr total de intrări:"
+
+#. i18n: ectx: property (text), widget (QLabel, totalDescriptionLabel)
+#: src/collection/entryfilterdialog.ui:192
+#, kde-format
+msgid "Resulting number of words to practice:"
+msgstr "Numărul rezultant al cuvintelor din exersare:"
+
+#: src/collection/lessonmodel.cpp:47
+#, kde-format
+msgctxt "display of the name of the vocabulary collection"
+msgid "Collection: %1"
+msgstr "Colecția: %1"
+
+#: src/collection/readonlycontainermodel.cpp:131
+#, kde-format
+msgid "None"
+msgstr "Niciuna"
+
+#: src/collection/vocabularymodel.cpp:185
+#, kde-format
+msgid "You can drag and drop words onto their word type."
+msgstr "Puteți să trageți și să plasați cuvintele pe tipul lor de cuvânt."
+
+#: src/collection/vocabularymodel.cpp:187
+#, kde-format
+msgid "Enable the synonym view to edit synonyms."
+msgstr "Activează vizualizarea sinonimelor ca să poți modifica sinonimele. "
+
+#: src/collection/vocabularymodel.cpp:189
+#, kde-format
+msgid "Enable the antonym view to edit antonyms."
+msgstr "Activează vizualizarea antonimelor ca să poți modifica antonimele. "
+
+#: src/collection/vocabularymodel.cpp:281
+#, fuzzy, kde-format
+#| msgid "Pronunciation"
+msgid "Pronunciation (%1)"
+msgstr "Pronunțare"
+
+#: src/collection/vocabularymodel.cpp:281
+#, kde-format
+msgid "Pronunciation"
+msgstr "Pronunțare"
+
+#: src/collection/vocabularymodel.cpp:283
+#, fuzzy, kde-format
+#| msgid "Word Type"
+msgid "Word Type (%1)"
+msgstr "Tip de cuvânt"
+
+#: src/collection/vocabularymodel.cpp:283
+#, kde-format
+msgid "Word Type"
+msgstr "Tip de cuvânt"
+
+#. i18n: ectx: property (text), widget (QPushButton, synonymButton)
+#: src/collection/vocabularymodel.cpp:285 src/editor/synonymwidget.ui:26
+#, kde-format
+msgid "Synonym"
+msgstr "Sinonim"
+
+#: src/collection/vocabularymodel.cpp:285
+#, fuzzy, kde-format
+#| msgid "Synonym: "
+msgid "Synonym (%1)"
+msgstr "Sinonim:"
+
+#: src/collection/vocabularymodel.cpp:287
+#, fuzzy, kde-format
+#| msgctxt "Title for a list of antonyms (opposites) for a word"
+#| msgid "Antonyms of %1:"
+msgid "Antonym (%1)"
+msgstr "Antonime pentru %1:"
+
+#: src/collection/vocabularymodel.cpp:287
+#, kde-format
+msgid "Antonym"
+msgstr "Antonim"
+
+#: src/collection/vocabularymodel.cpp:289
+#, fuzzy, kde-format
+#| msgid "Example"
+msgid "Example (%1)"
+msgstr "Exemplu"
+
+#: src/collection/vocabularymodel.cpp:289
+#, kde-format
+msgid "Example"
+msgstr "Exemplu"
+
+#: src/collection/vocabularymodel.cpp:291
+#, fuzzy, kde-format
+#| msgid "Comment"
+msgid "Comment (%1)"
+msgstr "Comentariu"
+
+#: src/collection/vocabularymodel.cpp:291
+#, kde-format
+msgid "Comment"
+msgstr "Comentariu"
+
+#: src/collection/vocabularymodel.cpp:293
+#, fuzzy, kde-format
+#| msgid "Paraphrase"
+msgid "Paraphrase (%1)"
+msgstr "Parafrazare"
+
+#: src/collection/vocabularymodel.cpp:293
+#, kde-format
+msgid "Paraphrase"
+msgstr "Parafrazare"
+
+#: src/collection/vocabularymodel.cpp:312
+#, kde-format
+msgid "Please use Edit -> Languages to set up your document."
+msgstr "Folosiți Editare -> Limbi ca să pregătiți documentul dumneavoastră."
+
+#: src/collection/vocabularymodel.cpp:312
+#, kde-format
+msgid "No Languages Defined"
+msgstr "Nu este definită nicio limbă"
+
+#: src/collection/vocabularymodel.cpp:317
+#, fuzzy, kde-format
+#| msgid "Select a lesson before adding vocabulary."
+msgid "Select a unit before adding vocabulary."
+msgstr "Alegeți o lecție înainte de a adăuga vocabularul."
+
+#: src/collection/vocabularymodel.cpp:317
+#, fuzzy, kde-format
+#| msgid "No Lesson Selected"
+msgid "No Unit Selected"
+msgstr "Nu este selectată nicio lecție"
+
+#: src/dashboard/barwidget.cpp:120
+#, kde-format
+msgid "%1 word due"
+msgid_plural "%1 words due"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: src/dashboard/barwidget.cpp:122
+#, kde-format
+msgid "Fully learned"
+msgstr ""
+
+#: src/dashboard/buttondelegate.cpp:32
+#, kde-format
+msgid "Open this vocabulary collection in the editor"
+msgstr "Deschide această colecție de vocabulare în editor"
+
+#: src/dashboard/collectionwidget.cpp:96
+#, fuzzy, kde-format
+#| msgid "Practice Again"
+msgid "Practice Anyway"
+msgstr "Exersează din nou"
+
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:367
+#: src/editor/editor.cpp:368
+#, kde-format
+msgid "Practice"
+msgstr "Exersare"
+
+#. i18n: ectx: property (text), widget (QLabel, recentLabel)
+#: src/dashboard/dashboard.cpp:231 src/dashboard/dashboard.ui:38
+#, fuzzy, kde-format
+#| msgid "Last Opened Collections"
+msgid "Active Collections"
+msgstr "Colecțiile deschise ultima dată"
+
+#. i18n: ectx: property (text), widget (QLabel, completedLabel)
+#: src/dashboard/dashboard.cpp:236 src/dashboard/dashboard.ui:77
+#, fuzzy, kde-format
+#| msgid "Last Opened Collections"
+msgid "Completed Collections"
+msgstr "Colecțiile deschise ultima dată"
+
+#. i18n: ectx: property (text), widget (QPushButton, removeChoiceButton)
+#: src/dashboard/dashboard.cpp:284 src/editor/multiplechoicewidget.ui:28
+#, kde-format
+msgid "Remove"
+msgstr "Elimină"
+
+#: src/dashboard/dashboard.cpp:284
+#, fuzzy, kde-format
+#| msgid "Do you really want to delete the selected entry?"
+#| msgid_plural "Do you really want to delete the selected %1 entries?"
+msgid "Are you sure you want to remove this collection?"
+msgstr "Sigur doriți să ștergeți intrarea selectată?"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, Dashboard)
+#: src/dashboard/dashboard.ui:14 src/main.cpp:37
+#, kde-format
+msgid "Parley"
+msgstr "Parley"
+
+#. i18n: ectx: property (text), widget (QPushButton, newButton)
+#: src/dashboard/dashboard.ui:120
+#, fuzzy, kde-format
+#| msgid "Create a New Collection"
+msgid "Create a New Collection..."
+msgstr "Crează colecție nouă"
+
+#. i18n: ectx: property (text), widget (QPushButton, openButton)
+#: src/dashboard/dashboard.ui:127
+#, fuzzy, kde-format
+#| msgid "Open an Existing Collection"
+msgid "Open an Existing Collection..."
+msgstr "Deschide o colecție existentă"
+
+#. i18n: ectx: property (text), widget (KNSWidgets::Button, ghnsButton)
+#: src/dashboard/dashboard.ui:134
+#, fuzzy, kde-format
+#| msgid "Download New Collections"
+msgid "Download New Collections..."
+msgstr "Descarcă colecții noi"
+
+#. i18n: ectx: property (text), widget (QLabel, headingLabel)
+#: src/dashboard/dashboard.ui:141
+#, kde-format
+msgid "<h1>Parley</h1>"
+msgstr "<h1>Parley</h1>"
+
+#. i18n: ectx: property (text), widget (QPushButton, playButton)
+#. i18n: ectx: property (text), widget (Practice::AudioButton, solutionSoundButton)
+#. i18n: ectx: property (text), widget (Practice::AudioButton, questionSoundButton)
+#: src/editor/audiowidget.ui:19 src/practice/audiobutton.cpp:18
+#: src/practice/audiobutton.cpp:19 src/practice/audiobutton.cpp:63
+#: src/practice/audiobutton.cpp:64 src/practice/practice_widget_flashcard.ui:48
+#: src/practice/practice_widget_flashcard.ui:103
+#, kde-format
+msgid "Play"
+msgstr "Redare"
+
+#. i18n: ectx: property (text), widget (QPushButton, recordButton)
+#: src/editor/audiowidget.ui:26
+#, kde-format
+msgid "Record"
+msgstr "Înregistrează"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, downloadButton)
+#: src/editor/audiowidget.ui:33
+#, kde-format
+msgid "Download audio file with webservice"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, downloadButton)
+#: src/editor/audiowidget.ui:36
+#, fuzzy, kde-format
+#| msgctxt "Attept to download grammar properties for the selected languages"
+#| msgid "Download Grammar"
+msgid "Download"
+msgstr "Descarcă gramatică"
+
+#. i18n: ectx: property (text), widget (QPushButton, showCurrentButton)
+#: src/editor/browserwidget.ui:18
+#, kde-format
+msgid "Lookup Current"
+msgstr "Caută actual"
+
+#. i18n: ectx: property (text), widget (QCheckBox, followTableCheckBox)
+#: src/editor/browserwidget.ui:33
+#, kde-format
+msgid "Follow Table"
+msgstr "Urmărește tabelul"
+
+#: src/editor/comparisonwidget.cpp:76
+#, kde-format
+msgid "Could not determine word type of adjectives"
+msgstr "Nu s-a putut determina tipul de cuvânt al adjectivelor"
+
+#: src/editor/comparisonwidget.cpp:95
+#, kde-format
+msgid "Could not determine word type of adverbs"
+msgstr "Nu s-a putut determina tipul de cuvânt al adverbelor"
+
+#. i18n: ectx: property (toolTip), widget (QLabel, absoluteLabel)
+#. i18n: ectx: property (toolTip), widget (QLabel, comparativeLabel)
+#: src/editor/comparisonwidget.ui:24 src/editor/comparisonwidget.ui:56
+#, kde-format
+msgid "The comparative is used to compare nouns or verbs (faster)"
+msgstr ""
+"Comparativul este folosit pentru a compara substantive sau verbe (mai repede)"
+
+#. i18n: ectx: property (text), widget (QLabel, absoluteLabel)
+#: src/editor/comparisonwidget.ui:27
+#, kde-format
+msgid "Absolute:"
+msgstr "Absolut:"
+
+#. i18n: ectx: property (text), widget (QLabel, comparativeLabel)
+#: src/editor/comparisonwidget.ui:59
+#, kde-format
+msgid "Comparative:"
+msgstr "Comparativ:"
+
+#. i18n: ectx: property (toolTip), widget (QLabel, superlativeLabel)
+#: src/editor/comparisonwidget.ui:88
+#, kde-format
+msgid "The superlative (fastest)"
+msgstr "Superlativul (cel mai rapid)"
+
+#. i18n: ectx: property (text), widget (QLabel, superlativeLabel)
+#: src/editor/comparisonwidget.ui:91
+#, kde-format
+msgid "Superlative:"
+msgstr "Superlativ:"
+
+#. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
+#: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
+#: src/editor/wordtypeview.cpp:95 src/parleydocument.cpp:477
+#, kde-format
+msgid "Adjective"
+msgstr "Adjectiv"
+
+#. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
+#: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:103
+#: src/parleydocument.cpp:481
+#, kde-format
+msgid "Adverb"
+msgstr "Adverb"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, DocumentProperties)
+#. i18n: ectx: property (windowTitle), widget (QWidget, OptionListForm)
+#. i18n: ectx: property (windowTitle), widget (QWidget, FromToEntryPageForm)
+#. i18n: ectx: property (windowTitle), widget (QWidget, ConjugationWidget)
+#. i18n: ectx: property (windowTitle), widget (QWidget, DeclensionWidget)
+#: src/editor/conjugationwidget.ui:26 src/editor/declensionwidget.ui:26
+#: src/editor/FromToEntryPageForm.ui:20 src/settings/documentproperties.ui:20
+#: src/settings/optionlistform.ui:19
+#, kde-format
+msgid "-"
+msgstr "-"
+
+#. i18n: ectx: property (title), widget (QGroupBox, layout)
+#: src/editor/conjugationwidget.ui:32
+#, fuzzy, kde-format
+#| msgid "Conjugations"
+msgid "Conjugation Forms"
+msgstr "Conjugări"
+
+#. i18n: ectx: property (text), widget (QLabel, singularFirstPersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, dualFirstPersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, pluralFirstPersonLabel)
+#: src/editor/conjugationwidget.ui:38 src/editor/conjugationwidget.ui:132
+#: src/editor/conjugationwidget.ui:209
+#, kde-format
+msgid "First"
+msgstr "Primul"
+
+#. i18n: ectx: property (text), widget (QLabel, singularSecondPersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, dualSecondPersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, pluralSecondPersonLabel)
+#: src/editor/conjugationwidget.ui:61 src/editor/conjugationwidget.ui:148
+#: src/editor/conjugationwidget.ui:225
+#, kde-format
+msgid "Second"
+msgstr "Al doilea"
+
+#. i18n: ectx: property (text), widget (QLabel, singularThirdMalePersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, dualThirdMalePersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, pluralThirdMalePersonLabel)
+#: src/editor/conjugationwidget.ui:84 src/editor/conjugationwidget.ui:164
+#: src/editor/conjugationwidget.ui:241
+#, kde-format
+msgid "Third Male"
+msgstr "Al treilea masculin"
+
+#. i18n: ectx: property (text), widget (QLabel, singularThirdFemalePersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, dualThirdFemalePersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, pluralThirdFemalePersonLabel)
+#: src/editor/conjugationwidget.ui:100 src/editor/conjugationwidget.ui:177
+#: src/editor/conjugationwidget.ui:260
+#, kde-format
+msgid "Third Female"
+msgstr "Al treilea feminin"
+
+#. i18n: ectx: property (text), widget (QLabel, singularThirdNeutralPersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, dualThirdNeutralPersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, pluralThirdNeutralPersonLabel)
+#: src/editor/conjugationwidget.ui:116 src/editor/conjugationwidget.ui:193
+#: src/editor/conjugationwidget.ui:279
+#, kde-format
+msgid "Third Neutral"
+msgstr "Al treilea neutru"
+
+#. i18n: ectx: property (text), widget (QPushButton, nextTenseButton)
+#: src/editor/conjugationwidget.ui:317
+#, kde-format
+msgid "Ne&xt"
+msgstr "&Următorul"
+
+#. i18n: ectx: property (text), widget (QLabel, tenselabel)
+#: src/editor/conjugationwidget.ui:330
+#, kde-format
+msgid "&Tense:"
+msgstr "&Timp:"
+
+#. i18n: ectx: property (text), widget (QLabel, male_label_3)
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4_2_2)
+#. i18n: ectx: property (text), widget (QLabel, singularLabel)
+#. i18n: ectx: property (text), item, widget (QComboBox, numberSelection)
+#: src/editor/conjugationwidget.ui:349 src/editor/declensionwidget.cpp:120
+#: src/editor/declensionwidget.ui:459
+#: src/settings/languagepropertiespage.ui:378
+#: src/settings/languagepropertiespage.ui:486
+#, kde-format
+msgid "Singular"
+msgstr "Singular"
+
+#. i18n: ectx: property (text), widget (QLabel, dualLabel)
+#. i18n: ectx: property (text), item, widget (QComboBox, numberSelection)
+#: src/editor/conjugationwidget.ui:368 src/editor/declensionwidget.cpp:121
+#: src/editor/declensionwidget.ui:464
+#: src/settings/languagepropertiespage.ui:493
+#, kde-format
+msgid "Dual"
+msgstr "Dual"
+
+#. i18n: ectx: property (text), widget (QLabel, male_label_4)
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4_3)
+#. i18n: ectx: property (text), widget (QLabel, pluralLabel)
+#. i18n: ectx: property (text), item, widget (QComboBox, numberSelection)
+#: src/editor/conjugationwidget.ui:387 src/editor/declensionwidget.cpp:122
+#: src/editor/declensionwidget.ui:469
+#: src/settings/languagepropertiespage.ui:388
+#: src/settings/languagepropertiespage.ui:500
+#, kde-format
+msgid "Plural"
+msgstr "Plural"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:463
+#, kde-format
+msgid "Masculine"
+msgstr "Masculin"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:466
+#, kde-format
+msgid "Feminine"
+msgstr "Feminin"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:469
+#, kde-format
+msgid "Neuter"
+msgstr "Neutru"
+
+#. i18n: ectx: property (title), widget (QGroupBox, declensionGroupBox)
+#: src/editor/declensionwidget.ui:38
+#, kde-format
+msgid "Declension Forms"
+msgstr "Forme de declinare"
+
+#. i18n: ectx: property (text), widget (QLabel, nominativeLabel)
+#: src/editor/declensionwidget.ui:52
+#, fuzzy, kde-format
+#| msgctxt "one of the seven cases (grammatical)"
+#| msgid "Nominative"
+msgctxt "one of the seven cases (grammatical)"
+msgid "Nominative:"
+msgstr "Nominativ"
+
+#. i18n: ectx: property (text), widget (QLabel, genitivLabel)
+#: src/editor/declensionwidget.ui:71
+#, fuzzy, kde-format
+#| msgctxt "one of the seven cases (grammatical)"
+#| msgid "Genitive"
+msgctxt "one of the seven cases (grammatical)"
+msgid "Genitive:"
+msgstr "Genitiv"
+
+#. i18n: ectx: property (text), widget (QLabel, dativLabel)
+#: src/editor/declensionwidget.ui:90
+#, fuzzy, kde-format
+#| msgctxt "one of the seven cases (grammatical)"
+#| msgid "Dative"
+msgctxt "one of the seven cases (grammatical)"
+msgid "Dative:"
+msgstr "Dativ"
+
+#. i18n: ectx: property (text), widget (QLabel, accusativeLabel)
+#: src/editor/declensionwidget.ui:109
+#, fuzzy, kde-format
+#| msgctxt "one of the seven cases (grammatical)"
+#| msgid "Accusative"
+msgctxt "one of the seven cases (grammatical)"
+msgid "Accusative:"
+msgstr "Acuzativ"
+
+#. i18n: ectx: property (text), widget (QLabel, ablativLabel)
+#: src/editor/declensionwidget.ui:128
+#, fuzzy, kde-format
+#| msgctxt "one of the seven cases (grammatical)"
+#| msgid "Ablative"
+msgctxt "one of the seven cases (grammatical)"
+msgid "Ablative:"
+msgstr "Ablativ"
+
+#. i18n: ectx: property (text), widget (QLabel, locativeLabel)
+#: src/editor/declensionwidget.ui:147
+#, fuzzy, kde-format
+#| msgctxt "one of the seven cases (grammatical)"
+#| msgid "Locative"
+msgctxt "one of the seven cases (grammatical)"
+msgid "Locative:"
+msgstr "Locativ"
+
+#. i18n: ectx: property (text), widget (QLabel, vocativeLabel)
+#: src/editor/declensionwidget.ui:166
+#, fuzzy, kde-format
+#| msgctxt "one of the seven cases (grammatical)"
+#| msgid "Vocative"
+msgctxt "one of the seven cases (grammatical)"
+msgid "Vocative:"
+msgstr "Vocativ"
+
+#. i18n: ectx: property (text), widget (QLabel, numberLabel)
+#: src/editor/declensionwidget.ui:445
+#, kde-format
+msgid "Number:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, nextButton)
+#: src/editor/declensionwidget.ui:477
+#, kde-format
+msgid "Next"
+msgstr "Următor"
+
+#: src/editor/editor.cpp:134
+#, kde-format
+msgid "Units"
+msgstr ""
+
+#: src/editor/editor.cpp:145
+#, fuzzy, kde-format
+#| msgid ""
+#| "Right click to add, delete, or rename lessons. \n"
+#| "With the checkboxes you can select which lessons you want to practice. \n"
+#| "Only checked lessons [x] will be asked in the tests!"
+msgid ""
+"Right click to add, delete, or rename units. \n"
+"With the checkboxes you can select which units you want to practice. \n"
+"Only checked units [x] will be asked in the practice!"
+msgstr ""
+"Click dreapta pentru a adăuga, a șterge sau a redenumi lecții. \n"
+"Cu ajutorul căsuțelor poți alege lecțiile pe care vrei să le exersezi. \n"
+"Doar lecțiile bifate [x] vor fi întrebate în teste!"
+
+#: src/editor/editor.cpp:156
+#, kde-format
+msgid "Word Types"
+msgstr "Tipuri de cuvinte"
+
+#: src/editor/editor.cpp:176
+#, kde-format
+msgid "Inflection (verbs, adjectives, nouns)"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
+#: src/editor/editor.cpp:190 src/statistics/statisticsmainwindow.ui:135
+#, kde-format
+msgid "Comparison Forms"
+msgstr "Grade de comparație"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: src/editor/editor.cpp:205
+#: src/practice/configure/specificpracticeoptions.ui:17
+#, kde-format
+msgid "Multiple Choice"
+msgstr "Selecție multiplă"
+
+#. i18n: ectx: property (text), widget (QLabel, synonymLabel)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/editor/editor.cpp:219 src/editor/synonymwidget.ui:16
+#: src/practice/configure/generalpracticeoptions.ui:152
+#, kde-format
+msgid "Synonyms"
+msgstr "Sinonime"
+
+#: src/editor/editor.cpp:232
+#, kde-format
+msgid "Antonyms"
+msgstr "Antonime"
+
+#: src/editor/editor.cpp:246
+#, kde-format
+msgid "False Friends"
+msgstr "False Friends"
+
+#: src/editor/editor.cpp:261
+#, kde-format
+msgid "Phonetic Symbols"
+msgstr "Simboluri fonetice"
+
+#: src/editor/editor.cpp:276
+#, kde-format
+msgid "Image"
+msgstr "Imagine"
+
+#: src/editor/editor.cpp:291
+#, kde-format
+msgid "Summary"
+msgstr "Sumar"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
+#: src/editor/editor.cpp:305
+#: src/practice/configure/generalpracticeoptions.ui:139
+#, kde-format
+msgid "Sound"
+msgstr "Sunet"
+
+#: src/editor/editor.cpp:320
+#, kde-format
+msgid "Internet"
+msgstr "Internet"
+
+#: src/editor/editor.cpp:335
+#, kde-format
+msgid "LaTeX"
+msgstr "LaTeX"
+
+#: src/editor/editor.cpp:412
+#, kde-format
+msgid "Enter search terms here"
+msgstr "Introdu termenii de căutare aici"
+
+#: src/editor/editor.cpp:413
+#, fuzzy, kde-format
+#| msgid "Helps you train your vocabulary"
+msgid "Search your vocabulary"
+msgstr "Vă ajută la îmbunătățirea vocabularului dumneavoastră"
+
+#: src/editor/editor.cpp:415
+#, kde-format
+msgid "S&earch:"
+msgstr "&Căutare:"
+
+#. i18n: ectx: Menu (file)
+#: src/editor/editorui.rc:7 src/practice/practicesummaryui.rc:7
+#: src/practice/practiceui.rc:7 src/statistics/statisticsui.rc:7
+#, kde-format
+msgid "&File"
+msgstr "&Fișier"
+
+#. i18n: ectx: Menu (edit)
+#: src/editor/editorui.rc:12
+#, kde-format
+msgid "&Edit"
+msgstr "&Editare"
+
+#. i18n: ectx: Menu (view)
+#: src/editor/editorui.rc:25 src/practice/practiceui.rc:12
+#, kde-format
+msgid "&View"
+msgstr "&Vizualizare"
+
+#. i18n: ectx: Menu (lesson)
+#: src/editor/editorui.rc:51
+#, kde-format
+msgid "&Unit"
+msgstr ""
+
+#. i18n: ectx: Menu (learning)
+#: src/editor/editorui.rc:65 src/practice/practicesummaryui.rc:12
+#: src/statistics/statisticsui.rc:12
+#, kde-format
+msgid "&Practice"
+msgstr "&Exersare"
+
+#. i18n: ectx: ToolBar (editorToolBar)
+#: src/editor/editorui.rc:72 src/parleyui.rc:24
+#, kde-format
+msgid "Editor Toolbar"
+msgstr "Bara de unelte a editorului"
+
+#. i18n: ectx: property (title), widget (QGroupBox, direc_label)
+#: src/editor/FromToEntryPageForm.ui:26
+#, kde-format
+msgid "Properties From Original"
+msgstr "Proprietățile originalului"
+
+#. i18n: ectx: property (text), widget (QLabel, grade_label)
+#: src/editor/FromToEntryPageForm.ui:72
+#, kde-format
+msgid "&Confidence Level:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, fauxami_label)
+#: src/editor/FromToEntryPageForm.ui:95
+#, kde-format
+msgid "&False friend:"
+msgstr "&False Friends"
+
+#. i18n: ectx: property (title), widget (QGroupBox, GroupBox3)
+#: src/editor/FromToEntryPageForm.ui:110
+#, kde-format
+msgid "Practice &Counts"
+msgstr "&Numărul exersărilor"
+
+#. i18n: ectx: property (text), widget (QLabel, bcount_label)
+#: src/editor/FromToEntryPageForm.ui:142
+#, kde-format
+msgid "&Wrong:"
+msgstr "&Greșite:"
+
+#. i18n: ectx: property (text), widget (QLabel, qcount_label)
+#: src/editor/FromToEntryPageForm.ui:155
+#, kde-format
+msgid "Tot&al:"
+msgstr "Tot&al:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, GroupBox2)
+#: src/editor/FromToEntryPageForm.ui:171
+#, kde-format
+msgid "&Last Practiced"
+msgstr "U&ltima dată a exersării"
+
+#. i18n: ectx: property (text), widget (QPushButton, never)
+#: src/editor/FromToEntryPageForm.ui:183
+#, kde-format
+msgid "&Never"
+msgstr "&Niciodată"
+
+#. i18n: ectx: property (text), widget (QPushButton, today)
+#: src/editor/FromToEntryPageForm.ui:190
+#, kde-format
+msgid "T&oday"
+msgstr "&Azi"
+
+#. i18n: ectx: property (toolTip), widget (QDateEdit, queryDateEdit)
+#: src/editor/FromToEntryPageForm.ui:206
+#, kde-format
+msgid "The date this expression was last practiced"
+msgstr "Data la care această expresie a fost exersată ultima dată"
+
+#. i18n: ectx: property (specialValueText), widget (QDateEdit, queryDateEdit)
+#: src/editor/FromToEntryPageForm.ui:209
+#, kde-format
+msgid "Not Practiced Yet"
+msgstr "Încă nu a fost exersată"
+
+#. i18n: ectx: property (displayFormat), widget (QDateEdit, queryDateEdit)
+#: src/editor/FromToEntryPageForm.ui:229
+#, kde-format
+msgid "dd.MM.yyyy"
+msgstr "zz.LL.aaaa"
+
+#. i18n: ectx: property (text), widget (QPushButton, resetGradesButton)
+#: src/editor/FromToEntryPageForm.ui:260
+#, kde-format
+msgid "&Reset Confidence Levels"
+msgstr ""
+
+#: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:111
+#: src/parleydocument.cpp:473
+#, kde-format
+msgid "Verb"
+msgstr "Verb"
+
+#: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:63
+#: src/parleydocument.cpp:459
+#, kde-format
+msgid "Noun"
+msgstr "Substantiv"
+
+#: src/editor/inflectionwidget.cpp:81
+#, fuzzy, kde-format
+#| msgid "\"%1\" is a verb"
+msgid "\"%1\" is a:"
+msgstr "”%1” este un verb"
+
+#: src/editor/inflectionwidget.cpp:124
+#, kde-format
+msgctxt "@title:window"
+msgid "Please select the noun's gender"
+msgstr ""
+
+#: src/editor/latexwidget.cpp:22
+#, kde-format
+msgid "Enter LaTeX code here."
+msgstr "Introduceți codul LaTeX aici"
+
+#. i18n: ectx: property (text), widget (QLabel, texLabel)
+#: src/editor/latexwidget.ui:17
+#, fuzzy, kde-format
+#| msgid "LaTeX code"
+msgid "LaTeX code:"
+msgstr "Cod LaTeX"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/editor/latexwidget.ui:37
+#: src/settings/kgametheme/kgamethemeselector.ui:55
+#, kde-format
+msgid "Preview"
+msgstr "Previzualizare"
+
+#. i18n: ectx: property (text), widget (QCheckBox, mathModeCheckBox)
+#: src/editor/latexwidget.ui:57
+#, kde-format
+msgid "Math mode"
+msgstr "Mod de matematică"
+
+#: src/editor/lessonview.cpp:31
+#, kde-format
+msgid "New Unit"
+msgstr ""
+
+#: src/editor/lessonview.cpp:33
+#, fuzzy, kde-format
+#| msgid "Add a new lesson to your document"
+msgid "Add a new unit to your document"
+msgstr "Adăugați o lecție nouă documentului dumneavoastră"
+
+#: src/editor/lessonview.cpp:39
+#, fuzzy, kde-format
+#| msgid "Rename"
+msgid "Rename Unit"
+msgstr "Redenumiți"
+
+#: src/editor/lessonview.cpp:47
+#, fuzzy, kde-format
+#| msgid "&Delete Entry"
+msgid "Delete Unit"
+msgstr "&Ștergeți intrarea"
+
+#: src/editor/lessonview.cpp:49
+#, fuzzy, kde-format
+#| msgid "Delete the selected lesson."
+msgid "Delete the selected unit."
+msgstr "Ștergeți lecția selectată"
+
+#: src/editor/lessonview.cpp:55
+#, fuzzy, kde-format
+#| msgid "Split Lesson into Smaller Lessons"
+msgid "Split Unit into Smaller Units"
+msgstr "Împărțiți lecția în lecții mai mici"
+
+#: src/editor/lessonview.cpp:57
+#, fuzzy, kde-format
+#| msgid "Make multiple smaller lessons out of one big lesson."
+msgid "Make multiple smaller units out of one big unit."
+msgstr "Faceți mai multe lecții mici dintr-o lecție mare."
+
+#: src/editor/lessonview.cpp:63
+#, kde-format
+msgid "Move to new lesson"
+msgstr ""
+
+#: src/editor/lessonview.cpp:65
+#, fuzzy, kde-format
+#| msgid "Save the active vocabulary collection"
+msgid "Moves the selected vocabulary to a new lesson"
+msgstr "Salvare colecție de vocabulare activă"
+
+#: src/editor/lessonview.cpp:71 src/parleyactions.cpp:151
+#, kde-format
+msgid "Remove Confidence Levels"
+msgstr ""
+
+#: src/editor/lessonview.cpp:73
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Remove confidence levels from this unit."
+msgstr "Eliminați toate notele de la această lecție"
+
+#: src/editor/lessonview.cpp:79
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Remove Confidence Levels From This Unit And All Subunits"
+msgstr "Eliminați toate notele de la această lecție"
+
+#: src/editor/lessonview.cpp:81
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Remove confidence levels from this unit and all subunits."
+msgstr "Eliminați toate notele de la această lecție"
+
+#: src/editor/lessonview.cpp:87
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Expand Units and Subunits"
+msgstr "Eliminați toate notele de la această lecție"
+
+#: src/editor/lessonview.cpp:89
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Expand all units and subunits."
+msgstr "Eliminați toate notele de la această lecție"
+
+#: src/editor/lessonview.cpp:95
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Collapse All Units And Subunits"
+msgstr "Eliminați toate notele de la această lecție"
+
+#: src/editor/lessonview.cpp:97
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Collapse all units and subunits."
+msgstr "Eliminați toate notele de la această lecție"
+
+#: src/editor/lessonview.cpp:189
+#, kde-format
+msgid "The root lesson cannot be deleted."
+msgstr "Lecția de bază nu poate fi ștearsă."
+
+#: src/editor/lessonview.cpp:199
+#, fuzzy, kde-format
+#| msgid "There is %1 word left in this lesson. Do you want to delete it?"
+#| msgid_plural ""
+#| "There are %1 words left in this lesson. Do you want to delete them?"
+msgid "There is %1 word left in this unit. Do you want to delete it?"
+msgid_plural ""
+"There are %1 words left in this unit. Do you want to delete them?"
+msgstr[0] "Mai este %1 cuvânt în această lecție. Vreți să îl ștergeți?"
+msgstr[1] "Mai sunt %1 cuvinte în această lecție. Vreți să le ștergeți?"
+msgstr[2] "Mai sunt %1 de cuvinte în această lecție. Vreți să le ștergeți?"
+
+#: src/editor/lessonview.cpp:217
+#, fuzzy, kde-format
+#| msgid "Entries per Lesson"
+msgid "Entries per Unit"
+msgstr "Intrări pe lecție"
+
+#: src/editor/lessonview.cpp:218
+#, fuzzy, kde-format
+#| msgid ""
+#| "The lesson will be split into smaller lessons. How many entries in each "
+#| "lesson do you want?"
+msgid ""
+"The unit will be split into smaller unit. How many entries in each unit do "
+"you want?"
+msgstr ""
+"Lecția aceasta va fi împărțită în lecții mai mici. Câte intrări doriți să "
+"conțină fiecare lecție?"
+
+#: src/editor/lessonview.cpp:241
+#, kde-format
+msgid "New Lesson"
+msgstr "Lecție nouă"
+
+#. i18n: ectx: property (text), widget (QPushButton, addChoiceButton)
+#: src/editor/multiplechoicewidget.ui:21
+#, kde-format
+msgid "Add"
+msgstr "Adăugare"
+
+#. i18n: ectx: property (text), widget (QLabel, languageLabel)
+#: src/editor/summarywordwidget.ui:16
+#, kde-format
+msgid "Language"
+msgstr "Limba"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/editor/summarywordwidget.ui:32
+#, kde-format
+msgid "Lesson"
+msgstr "Lecție"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: src/editor/summarywordwidget.ui:42
+#, fuzzy, kde-format
+#| msgid "Word type"
+msgid "Word type:"
+msgstr "Tipul de cuvânt"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: src/editor/summarywordwidget.ui:55
+#, fuzzy, kde-format
+#| msgid "Pronunciation"
+msgid "Pronunciation:"
+msgstr "Pronunțare"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: src/editor/summarywordwidget.ui:71
+#, fuzzy, kde-format
+#| msgid "Example"
+msgid "Example:"
+msgstr "Exemplu"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: src/editor/summarywordwidget.ui:87
+#, fuzzy, kde-format
+#| msgid "Paraphrase"
+msgid "Paraphrase:"
+msgstr "Parafrazare"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: src/editor/summarywordwidget.ui:103
+#, fuzzy, kde-format
+#| msgid "&Comment:"
+msgid "Comment:"
+msgstr "&Comentariu:"
+
+#: src/editor/synonymwidget.cpp:59
+#, kde-format
+msgid "Select Synonyms"
+msgstr "Alegeți sinonime"
+
+#: src/editor/synonymwidget.cpp:65
+#, kde-format
+msgid "%1 and %2 are not Synonyms"
+msgstr "%1 și %2 nu sunt sinonime"
+
+#: src/editor/synonymwidget.cpp:67
+#, kde-format
+msgid "%1 and %2 are Synonyms"
+msgstr "%1 și %2 sunt sinonime"
+
+#: src/editor/synonymwidget.cpp:72
+#, kde-format
+msgid "%1 and %2 are not Antonyms"
+msgstr "%1 și %2 nu sunt antonime"
+
+#: src/editor/synonymwidget.cpp:74
+#, kde-format
+msgid "%1 and %2 are Antonyms"
+msgstr "%1 și %2 sunt antonime"
+
+#: src/editor/synonymwidget.cpp:79
+#, kde-format
+msgid "%1 and %2 are not False Friends"
+msgstr "%1 și %2 nu sunt False Friends"
+
+#: src/editor/synonymwidget.cpp:81
+#, kde-format
+msgid "%1 and %2 are False Friends"
+msgstr "%1 și %2 sunt False Friends"
+
+#: src/editor/synonymwidget.cpp:90
+#, kde-format
+msgctxt "Title for a list of synonyms for a word"
+msgid "Synonyms of %1:"
+msgstr "Sinonime pentru %1:"
+
+#: src/editor/synonymwidget.cpp:93
+#, kde-format
+msgctxt "Title for a list of antonyms (opposites) for a word"
+msgid "Antonyms of %1:"
+msgstr "Antonime pentru %1:"
+
+#: src/editor/synonymwidget.cpp:97
+#, kde-format
+msgctxt ""
+"Title for a list of false friend (things that sound similar but have "
+"different meanings) for a word"
+msgid "False Friends of %1:"
+msgstr "False Friends pentru %1:"
+
+#: src/editor/vocabularycolumnsdialog.cpp:43
+#, fuzzy, kde-format
+#| msgid "Vocabulary Columns"
+msgctxt "@title:window"
+msgid "Vocabulary Columns"
+msgstr "Coloane de vocabular"
+
+#: src/editor/vocabularycolumnsdialog.cpp:58
+#, kde-format
+msgid "Enable/Disable the columns for each language"
+msgstr "Activează/dezactiează coloanele pentru fiecare limbă"
+
+#: src/editor/vocabularydelegate.cpp:145
+#, fuzzy, kde-format
+#| msgid "Currently selected row"
+msgid "Sound file selected: %1"
+msgstr "Rândul selectat acum"
+
+#: src/editor/vocabularydelegate.cpp:147
+#, fuzzy, kde-format
+#| msgid "Currently selected row"
+msgid "Image file selected: %1"
+msgstr "Rândul selectat acum"
+
+#: src/editor/vocabularyview.cpp:79
+#, kde-format
+msgid "&Add New Entry"
+msgstr "&Adăugați intrări noi"
+
+#: src/editor/vocabularyview.cpp:82
+#, kde-format
+msgid "Append a new row to the vocabulary"
+msgstr "Adăugați un rând nou vocabularului"
+
+#: src/editor/vocabularyview.cpp:91
+#, kde-format
+msgid "&Delete Entry"
+msgstr "&Ștergeți intrarea"
+
+#: src/editor/vocabularyview.cpp:94
+#, kde-format
+msgid "Delete the selected rows"
+msgstr "Ștergeți rândurile selectate"
+
+#: src/editor/vocabularyview.cpp:105
+#, kde-format
+msgid "Copy"
+msgstr "Copiază"
+
+#: src/editor/vocabularyview.cpp:112
+#, kde-format
+msgid "Cut"
+msgstr "Taie"
+
+#: src/editor/vocabularyview.cpp:119
+#, kde-format
+msgid "Paste"
+msgstr "Lipește"
+
+#: src/editor/vocabularyview.cpp:126
+#, kde-format
+msgid "Select all rows"
+msgstr "Selectează toate rândurile"
+
+#: src/editor/vocabularyview.cpp:132
+#, kde-format
+msgid "Deselect all rows"
+msgstr "Deselectează toate rândurile"
+
+#: src/editor/vocabularyview.cpp:140
+#, kde-format
+msgid "Vocabulary Columns..."
+msgstr "Coloanele vocabularului..."
+
+#: src/editor/vocabularyview.cpp:141
+#, kde-format
+msgid "Toggle display of individual vocabulary columns"
+msgstr "Comutează afișarea coloanelor de vocabular individuale"
+
+#: src/editor/vocabularyview.cpp:253
+#, kde-format
+msgid "Do you really want to delete the selected entry?"
+msgid_plural "Do you really want to delete the selected %1 entries?"
+msgstr[0] "Sigur doriți să ștergeți intrarea selectată?"
+msgstr[1] "Sigur vreți să ștergeți cele %1 intrări selectate?"
+msgstr[2] "Sigur vreți să ștergeți cele %1 de intrări selectate?"
+
+#: src/editor/vocabularyview.cpp:254
+#, kde-format
+msgid "Delete"
+msgstr "Ștergeți"
+
+#: src/editor/vocabularyview.cpp:362
+#, kde-format
+msgid "Nothing to spell check."
+msgstr ""
+
+#: src/editor/vocabularyview.cpp:387
+#, kde-format
+msgctxt "@title of a popup"
+msgid "No Spell Checker Available"
+msgstr "Nu este disponibil niciun corector ortografic"
+
+#: src/editor/vocabularyview.cpp:388
+#, kde-format
+msgctxt "@popupmessage"
+msgid ""
+"Either the language set up is incorrect or no spellchecker was installed for "
+"this locale: %1."
+msgstr ""
+"Fie limba nu a fost configurată corect, fie nu e instalat niciun corector "
+"ortografic pentru această localizare: %1."
+
+#: src/editor/wordtypeview.cpp:30
+#, kde-format
+msgid "New"
+msgstr "Nou"
+
+#: src/editor/wordtypeview.cpp:32
+#, kde-format
+msgid "Add a new word type to your document"
+msgstr "Adaugă un nou tip de cuvinte la document"
+
+#: src/editor/wordtypeview.cpp:38
+#, kde-format
+msgid "Rename"
+msgstr "Redenumește"
+
+#: src/editor/wordtypeview.cpp:40
+#, kde-format
+msgid "Rename the selected word type"
+msgstr "Redenumește tipul de cuvinte ales"
+
+#: src/editor/wordtypeview.cpp:46
+#, kde-format
+msgid "Delete Word Type"
+msgstr "Ștergeți tipul de cuvinte"
+
+#: src/editor/wordtypeview.cpp:48
+#, kde-format
+msgid "Delete the selected word type."
+msgstr "Ștergeți tipul de cuvinte selectat."
+
+#: src/editor/wordtypeview.cpp:55
+#, kde-format
+msgctxt ""
+"Let the user select what grammatical meaning is connected to a word type "
+"(nouns have gender, verbs conjugations etc)"
+msgid "Grammar"
+msgstr "Gramatică"
+
+#: src/editor/wordtypeview.cpp:57
+#, kde-format
+msgid "To let Parley know the grammatical meaning of a word type."
+msgstr "Ca să știe Parley întelesul gramatical al tipului de cuvânt."
+
+#: src/editor/wordtypeview.cpp:65
+#, kde-format
+msgid "This word type folder contains nouns."
+msgstr "Acesta dosar de tipuri de cuvinte conține substantive."
+
+#: src/editor/wordtypeview.cpp:71
+#, kde-format
+msgid "Masculine Noun"
+msgstr "Substantiv de gen masculin"
+
+#: src/editor/wordtypeview.cpp:73
+#, kde-format
+msgid "This word type folder contains masculine nouns."
+msgstr "Acest dosar de tipuri de cuvinte conține substantive de gen masculin."
+
+#: src/editor/wordtypeview.cpp:79
+#, kde-format
+msgid "Feminine Noun"
+msgstr "Substantiv de gen feminin"
+
+#: src/editor/wordtypeview.cpp:81
+#, kde-format
+msgid "This word type folder contains feminine nouns."
+msgstr "Acest dosar de tipuri de cuvinte conține substantive de gen feminin."
+
+#: src/editor/wordtypeview.cpp:87
+#, kde-format
+msgid "Neuter Noun"
+msgstr "Substantiv de gen neutru"
+
+#: src/editor/wordtypeview.cpp:89
+#, kde-format
+msgid "This word type folder contains neuter nouns."
+msgstr "Acest dosar de tipuri de cuvinte conține substantive de gen neutru."
+
+#: src/editor/wordtypeview.cpp:97
+#, kde-format
+msgid "This word type folder contains adjectives."
+msgstr "Acest dosar de tipuri de cuvinte conține adjective."
+
+#: src/editor/wordtypeview.cpp:105
+#, kde-format
+msgid "This word type folder contains adverbs."
+msgstr "Acest dosar de tipuri de cuvinte conține adverbe."
+
+#: src/editor/wordtypeview.cpp:113
+#, kde-format
+msgid "This word type folder contains verbs."
+msgstr "Acesta dosar de tipuri de cuvinte conține verbe."
+
+#: src/editor/wordtypeview.cpp:119 src/parleydocument.cpp:485
+#, fuzzy, kde-format
+#| msgid "Conjugation"
+msgid "Conjunction"
+msgstr "Conjugare"
+
+#: src/editor/wordtypeview.cpp:121
+#, fuzzy, kde-format
+#| msgid "This word type folder contains nouns."
+msgid "This word type folder contains conjunctions."
+msgstr "Acesta dosar de tipuri de cuvinte conține substantive."
+
+#: src/editor/wordtypeview.cpp:127
+#, kde-format
+msgid "No Special Type"
+msgstr "Fără tip special"
+
+#: src/editor/wordtypeview.cpp:130
+#, kde-format
+msgid "This word type folder contains no word type with special meaning."
+msgstr ""
+"Acest dosar de tipuri de cuvinte nu conține tipuri de cuvinte fără "
+"semnificație specială."
+
+#: src/editor/wordtypeview.cpp:208
+#, kde-format
+msgid "The root word type cannot be deleted."
+msgstr "Tipul de cuvinte de bază nu poate fi șters."
+
+#: src/editor/wordtypeview.cpp:218
+#, kde-format
+msgid ""
+"There is a word left with this word type. It will lose its type. Continue?"
+msgid_plural ""
+"There are %1 words left with this word type. They will lose their word type. "
+"Continue?"
+msgstr[0] ""
+"Mai este un cuvânt de acest tip de cuvinte. El își va pierde tipul. "
+"Continuați?"
+msgstr[1] ""
+"Mai sunt %1 cuvinte de acest tip de cuvinte. Ele își vor pierde tipul de "
+"cuvinte. Continuați?"
+msgstr[2] ""
+"Mai sunt %1 de cuvinte de acest tip de cuvinte. Ele își vor pierde tipul de "
+"cuvinte. Continuați?"
+
+#: src/exportdialog.cpp:53
+#, fuzzy, kde-format
+#| msgid "Export"
+msgctxt "@title:window"
+msgid "Export"
+msgstr "Exportare"
+
+#: src/exportdialog.cpp:79
+#, kde-format
+msgid "HTML document"
+msgstr "Document HTML"
+
+#: src/exportdialog.cpp:102
+#, fuzzy, kde-format
+#| msgid "Could not start practice"
+msgid "Could not write to file \"%1\""
+msgstr "Nu s-a putut începe exersarea"
+
+#: src/exportdialog.cpp:119
+#, kde-format
+msgid "Export As"
+msgstr "Exportare"
+
+#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:136
+#, kde-format
+msgid "Untitled"
+msgstr "Fără titlu"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, ExportOptions)
+#: src/exportdialog.ui:14
+#, kde-format
+msgid "Export"
+msgstr "Exportare"
+
+#. i18n: ectx: property (text), widget (QRadioButton, flashCardRadio)
+#: src/exportdialog.ui:20
+#, fuzzy, kde-format
+#| msgid "Front and back sides for printing learning cards."
+msgid "Flash Cards - to print learning cards (HTML)"
+msgstr "Părțile față și spate pentru a imprima cardurile pentru învățat."
+
+#. i18n: ectx: property (text), widget (QRadioButton, tableRadio)
+#: src/exportdialog.ui:30
+#, kde-format
+msgid "A vocabulary list that works in a web-browser and can be printed (HTML)"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, csvRadio)
+#: src/exportdialog.ui:40
+#, fuzzy, kde-format
+#| msgid "Comma separated values"
+msgid "Comma separated values (CSV)"
+msgstr "Valori separate prin virgule"
+
+#: src/main.cpp:38
+#, kde-format
+msgid "Vocabulary Trainer"
+msgstr "Instructor de vocabular"
+
+#: src/main.cpp:40
+#, kde-format
+msgid ""
+"© 1999-2002\tEwald Arnold\n"
+"© 2001-2002\tThe KDE team\n"
+"© 2004-2007\tPeter Hedlund\n"
+"© 2007-2010\tFrederik Gladhorn\n"
+msgstr ""
+"© 1999-2002\tEwald Arnold\n"
+"© 2001-2002\tEchipa KDE\n"
+"© 2004-2007\tPeter Hedlund\n"
+"© 2007-2010\tFrederik Gladhorn\n"
+
+#: src/main.cpp:45
+#, kde-format
+msgid "Helps you train your vocabulary"
+msgstr "Vă ajută la îmbunătățirea vocabularului dumneavoastră"
+
+#: src/main.cpp:49
+#, kde-format
+msgid "Inge Wallin"
+msgstr ""
+
+#: src/main.cpp:49 src/main.cpp:51
+#, fuzzy, kde-format
+#| msgid "Developer and maintainer"
+msgid "Developer and Co-maintainer"
+msgstr "Dezvoltator și responsabil"
+
+#: src/main.cpp:51
+#, kde-format
+msgid "Amarvir Singh"
+msgstr ""
+
+#: src/main.cpp:53
+#, kde-format
+msgid "Frederik Gladhorn"
+msgstr "Frederik Gladhorn"
+
+#: src/main.cpp:53
+#, fuzzy, kde-format
+#| msgid "Developer and maintainer"
+msgid "Developer, former maintainer"
+msgstr "Dezvoltator și responsabil"
+
+#: src/main.cpp:55
+#, kde-format
+msgid "Daniel Laidig"
+msgstr "Daniel Laidig"
+
+#: src/main.cpp:55
+#, kde-format
+msgid "Developer"
+msgstr "Dezvoltator"
+
+#: src/main.cpp:57
+#, kde-format
+msgid "David Capel"
+msgstr "David Capel"
+
+#: src/main.cpp:57
+#, kde-format
+msgid "Practice Dialogs"
+msgstr "Dialoguri de exersare"
+
+#: src/main.cpp:59
+#, kde-format
+msgid "Avgoustinos Kadis"
+msgstr "Avgoustinos Kadis"
+
+#: src/main.cpp:59
+#, kde-format
+msgid "Scripting"
+msgstr "Scriptare"
+
+#: src/main.cpp:61
+#, kde-format
+msgid "Peter Hedlund"
+msgstr "Peter Hedlund"
+
+#: src/main.cpp:62
+#, kde-format
+msgid "Countless fixes, former maintainer, port to KDE4"
+msgstr "Reparații fără număr, fost responsabil, portarea la KDE4"
+
+#: src/main.cpp:65
+#, kde-format
+msgid "Ewald Arnold"
+msgstr "Ewald Arnold"
+
+#: src/main.cpp:66
+#, kde-format
+msgid "Original Author"
+msgstr "Autor original"
+
+#: src/main.cpp:70
+#, kde-format
+msgid "Lee Olson"
+msgstr "Lee Olson"
+
+#: src/main.cpp:70
+#, kde-format
+msgid "Artwork and Oxygen Icons"
+msgstr "Aspect și pictograme Oxygen"
+
+#: src/main.cpp:72
+#, kde-format
+msgid "Anne-Marie Mahfouf"
+msgstr "Anne-Marie Mahfouf"
+
+#: src/main.cpp:72
+#, kde-format
+msgid "Port to KConfig XT"
+msgstr "Portarea la KConfig XT"
+
+#: src/main.cpp:74
+#, kde-format
+msgid "Jeremy Whiting"
+msgstr "Jeremy Whiting"
+
+#: src/main.cpp:74
+#, kde-format
+msgid "Rewriting the kvtml library for KDE4"
+msgstr "Rescrierea librăriei kvtml pentru KDE4"
+
+#: src/main.cpp:76
+#, kde-format
+msgid "Markus Büchele"
+msgstr "Markus Büchele"
+
+#: src/main.cpp:76
+#, kde-format
+msgid "Bug reports and testing on the way to KDE4"
+msgstr "Raportări de defecțiuni și testări în timpul portării spre KDE4"
+
+#: src/main.cpp:78
+#, kde-format
+msgid "Ramona Knapp"
+msgstr "Ramona Knapp"
+
+#: src/main.cpp:78
+#, kde-format
+msgid "Conceived the name Parley"
+msgstr "A conceput numele de  Parley"
+
+#: src/main.cpp:91
+#, fuzzy, kde-format
+#| msgid "+[file]"
+msgid "[file]"
+msgstr "+[file]"
+
+#: src/main.cpp:91
+#, kde-format
+msgid "Document file to open"
+msgstr "Fișierul document care să fie deschis"
+
+#: src/parleyactions.cpp:72
+#, kde-format
+msgid "Creates a new vocabulary collection"
+msgstr "Creare colecție nouă de vocabulare"
+
+#: src/parleyactions.cpp:77
+#, kde-format
+msgid "Opens an existing vocabulary collection"
+msgstr "Deschidere colecție de vocabulare deja existentă"
+
+#: src/parleyactions.cpp:85
+#, kde-format
+msgid "Open &Downloaded Vocabularies..."
+msgstr "Deschidere și &descărcare vocabulare noi..."
+
+#: src/parleyactions.cpp:86
+#, kde-format
+msgid "Open downloaded vocabulary collections"
+msgstr "Deschidere colecții de vocabulare deja descărcate"
+
+#: src/parleyactions.cpp:91
+#, kde-format
+msgid "Save the active vocabulary collection"
+msgstr "Salvare colecție de vocabulare activă"
+
+#: src/parleyactions.cpp:98
+#, kde-format
+msgid "Save the active vocabulary collection with a different name"
+msgstr "Salvare colecție de vocabulare activă sub un alt nume"
+
+#: src/parleyactions.cpp:105
+#, kde-format
+msgid "&Export..."
+msgstr "&Exportare..."
+
+#: src/parleyactions.cpp:106
+#, kde-format
+msgid "Export to HTML or CSV"
+msgstr "Exportare în HTML sau CSV"
+
+#: src/parleyactions.cpp:114
+#, kde-format
+msgid "&Properties..."
+msgstr "&Proprietăți..."
+
+#: src/parleyactions.cpp:115
+#, kde-format
+msgid "Edit document properties"
+msgstr "Editează proprietățile documentului"
+
+#: src/parleyactions.cpp:123
+#, kde-format
+msgid "Dashboard"
+msgstr ""
+
+#: src/parleyactions.cpp:124
+#, fuzzy, kde-format
+#| msgid "Close the current vocabulary collection and show the start page"
+msgid "Close the current vocabulary collection and show the dashboard"
+msgstr "Închide colecția curentă de vocabulare și arată pagina de start"
+
+#: src/parleyactions.cpp:130
+#, kde-format
+msgid "Quit Parley"
+msgstr "Ieși din Parley"
+
+#: src/parleyactions.cpp:135
+#, kde-format
+msgid "Show the configuration dialog"
+msgstr "Arată dialogul de configurare"
+
+#: src/parleyactions.cpp:142
+#, kde-format
+msgid "&Languages..."
+msgstr "&Limbi..."
+
+#: src/parleyactions.cpp:143
+#, kde-format
+msgid ""
+"Edit which languages are in the collection and their grammar properties."
+msgstr ""
+"Editează care limbi sunt în colecție și editează proprietățile lor "
+"gramaticale."
+
+#: src/parleyactions.cpp:152
+#, fuzzy, kde-format
+#| msgid "Remove all grades from the current document"
+msgid "Remove all confidence levels from the current document"
+msgstr "Șterge toate notele din documentul actual"
+
+#: src/parleyactions.cpp:163
+#, fuzzy, kde-format
+#| msgid "Show Entries from Child Lessons"
+msgid "Show Entries from Child Units"
+msgstr "Arată intrări din sub-lecții"
+
+#: src/parleyactions.cpp:164
+#, fuzzy, kde-format
+#| msgid "Enable to also see the entries of child lessons in each lesson."
+msgid "Enable to also see the entries of child units in each unit."
+msgstr "Activează pentru a vedea intrările din sublecțiile din fiecare lecție."
+
+#: src/parleyactions.cpp:174
+#, kde-format
+msgid "Automatic Translation"
+msgstr "Traducere automată"
+
+#. i18n: ectx: label, entry (AutomaticTranslation), group (General)
+#: src/parleyactions.cpp:175 src/settings/parley.kcfg:50
+#, fuzzy, kde-format
+#| msgid "Enable automatic translation of the lesson entries."
+msgid "Enable automatic translation of the unit entries."
+msgstr "Activează traducerea automată a intrărilor de lecție."
+
+#: src/parleyactions.cpp:185
+#, kde-format
+msgid "Start Practice..."
+msgstr "Începe exersarea..."
+
+#: src/parleyactions.cpp:186
+#, kde-format
+msgid "Start practicing"
+msgstr "Începe exersarea"
+
+#: src/parleyactions.cpp:194
+#, kde-format
+msgid "Configure Practice..."
+msgstr "Configurează exersarea..."
+
+#: src/parleyactions.cpp:195
+#, kde-format
+msgid "Change practice settings"
+msgstr "Schimbă setările exersării"
+
+#: src/parleyactions.cpp:203
+#, fuzzy, kde-format
+#| msgid "&Export..."
+msgid "Export Results..."
+msgstr "&Exportare..."
+
+#: src/parleyactions.cpp:204
+#, kde-format
+msgid "Write a file with the results of the practice"
+msgstr ""
+
+#: src/parleyactions.cpp:212
+#, kde-format
+msgid "Editor"
+msgstr "Editor"
+
+#: src/parleyactions.cpp:213
+#, kde-format
+msgid "Switch to vocabulary editor"
+msgstr "Treci la editorul de vocabular"
+
+#: src/parleyactions.cpp:221
+#, kde-format
+msgid "Show Se&arch"
+msgstr "Arată căut&area"
+
+#: src/parleyactions.cpp:222
+#, kde-format
+msgid "Toggle display of the search bar"
+msgstr "Comută afișarea barei de căutare"
+
+#: src/parleydocument.cpp:121 src/parleydocument.cpp:568
+#, kde-format
+msgctxt "@title:window document properties"
+msgid "Properties for %1"
+msgstr "Proprietăți pentru %1"
+
+#: src/parleydocument.cpp:158
+#, fuzzy, kde-format
+#| msgid "Open Vocabulary Collection"
+msgctxt "@title:window"
+msgid "Open Vocabulary Collection"
+msgstr "Deschidere colecția de vocabulare"
+
+#: src/parleydocument.cpp:159
+#, kde-format
+msgid "Open in practice &mode"
+msgstr "Deschide în &modul de exersare"
+
+#: src/parleydocument.cpp:200
+#, kde-format
+msgid ""
+"The vocabulary collection is locked by another process.  You can open the "
+"file if you take over the lock, but you will lose any changes from the other "
+"process.\n"
+"\n"
+"Do you want to take over the lock?\n"
+msgstr ""
+
+#: src/parleydocument.cpp:202
+#, kde-format
+msgid "Take Over Lock"
+msgstr ""
+
+#: src/parleydocument.cpp:231
+#, fuzzy, kde-format
+#| msgid "Writing file \"%1\" resulted in an error: %2"
+msgid "Opening collection \"%1\" resulted in an error: %2"
+msgstr "Scrierea fișierului ”%1” a rezultat într-o eroare: %2"
+
+#: src/parleydocument.cpp:232
+#, fuzzy, kde-format
+#| msgid "Last Opened Collections"
+msgctxt "@title:window"
+msgid "Open Collection"
+msgstr "Colecțiile deschise ultima dată"
+
+#: src/parleydocument.cpp:260
+#, kde-format
+msgid ""
+"Vocabulary is modified.\n"
+"\n"
+"Save file before exit?\n"
+msgstr ""
+"Vocabularul a fost modificat.\n"
+"\n"
+"Îl salvați înainte de închidere?\n"
+
+#: src/parleydocument.cpp:293
+#, fuzzy, kde-format
+#| msgid "Open Downloaded Vocabulary Collection"
+msgctxt "@title:window"
+msgid "Open Downloaded Vocabulary Collection"
+msgstr "Deschide colecția de vocabulare descărcate"
+
+#: src/parleydocument.cpp:331 src/parleydocument.cpp:416
+#, kde-format
+msgid ""
+"File \"%1\" is locked by another process.  You can save to the file if you "
+"take over the lock, but you will lose any changes from the other process.\n"
+"\n"
+"Do you want to take over the lock?\n"
+msgstr ""
+
+#: src/parleydocument.cpp:360 src/parleydocument.cpp:450
+#, kde-format
+msgid "Writing file \"%1\" resulted in an error: %2"
+msgstr "Scrierea fișierului ”%1” a rezultat într-o eroare: %2"
+
+#: src/parleydocument.cpp:361 src/parleydocument.cpp:451
+#, fuzzy, kde-format
+#| msgid "Save File"
+msgctxt "@title:window"
+msgid "Save File"
+msgstr "Salvează fișierul"
+
+#: src/parleydocument.cpp:376
+#, fuzzy, kde-format
+#| msgid "Save Vocabulary As"
+msgctxt "@title:window"
+msgid "Save Vocabulary As"
+msgstr "Salvează vocabularul ca"
+
+#: src/parleydocument.cpp:388
+#, kde-format
+msgid ""
+"<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
+msgstr ""
+"<qt>Fișierul<p><b>%1</b></p>există deja. Vreți să îl suprascrieți?</qt>"
+
+#: src/parleydocument.cpp:396
+#, kde-format
+msgctxt "@info:status saving a file"
+msgid "Saving %1"
+msgstr "Se salvează %1"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
+#: src/parleydocument.cpp:497 src/settings/documentproperties.ui:234
+#, kde-format
+msgid "Public Domain"
+msgstr "Domeniu public"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
+#. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
+#: src/parleydocument.cpp:498 src/settings/documentproperties.ui:180
+#: src/settings/documentproperties.ui:250
+#: src/statistics/statisticsmainwindow.ui:23
+#, kde-format
+msgid "Languages"
+msgstr "Limbi"
+
+#: src/parleydocument.cpp:506
+#, kde-format
+msgid "A Second Language"
+msgstr "A doua limbă"
+
+#: src/parleydocument.cpp:509
+#, kde-format
+msgid "Lesson 1"
+msgstr "Lecția 1"
+
+#: src/parleydocument.cpp:551
+#, fuzzy, kde-format
+#| msgid "Downloads new vocabulary collections"
+msgid "Could not open vocabulary collection \"%1\""
+msgstr "Descărcare colecții de vocabulare noi..."
+
+#: src/parleymainwindow.cpp:133
+#, kde-format
+msgctxt ""
+"Title and a modified status indicator.  [*] is exact and will be shown only "
+"when document is modified"
+msgid "%1 [*]"
+msgstr ""
+
+#: src/parleymainwindow.cpp:173
+#, kde-format
+msgid ""
+"You cannot start to practice when the known language is the same as the "
+"language to learn."
+msgstr ""
+
+#: src/parleymainwindow.cpp:173
+#, fuzzy, kde-format
+#| msgid "&Second language:"
+msgid "Select languages"
+msgstr "Limba &secundară:"
+
+#: src/parleymainwindow.cpp:211
+#, kde-format
+msgid "Download New Vocabularies..."
+msgstr "Descărcare vocabulare noi..."
+
+#: src/parleymainwindow.cpp:217
+#, kde-format
+msgid "Downloads new vocabulary collections"
+msgstr "Descărcare colecții de vocabulare noi..."
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: src/parleyui.rc:21
+#, kde-format
+msgid "Main Toolbar"
+msgstr "Bara de unelte principală"
+
+#. i18n: ectx: ToolBar (practiceToolBar)
+#: src/parleyui.rc:29 src/practice/practiceui.rc:18
+#, kde-format
+msgid "Practice Toolbar"
+msgstr "Bara de unelte de exerciții"
+
+#. i18n: ectx: ToolBar (statisticsToolBar)
+#: src/parleyui.rc:33 src/statistics/statisticsui.rc:19
+#, kde-format
+msgid "Statistics Toolbar"
+msgstr "Bara de unelte de statistic"
+
+#. i18n: ectx: ToolBar (practiceSummaryToolBar)
+#: src/parleyui.rc:40 src/practice/practicesummaryui.rc:20
+#, kde-format
+msgid "Practice Summary Toolbar"
+msgstr "Bara de unelte de sumar al exersărilor"
+
+#: src/practice/audiobutton.cpp:57 src/practice/audiobutton.cpp:58
+#, kde-format
+msgid "Stop"
+msgstr "Oprire"
+
+#: src/practice/comparisonbackendmode.cpp:59
+#, kde-format
+msgid "All comparison forms were right."
+msgstr "Toate gradele de comparație au fost corecte."
+
+#: src/practice/comparisonbackendmode.cpp:65
+#, kde-format
+msgctxt ""
+"the user entered the wrong absolute form when practicing comparison forms of "
+"adjectives (the base form of the adjective is wrong)"
+msgid "\"%1\" is the wrong word."
+msgstr "”%1” este cuvântul greșit."
+
+#: src/practice/comparisonbackendmode.cpp:70
+#, kde-format
+msgctxt ""
+"the user entered the wrong comparison forms when practicing comparison forms "
+"of adjectives (good, better, best)"
+msgid "Both comparison forms (comparative and superlative) are wrong."
+msgstr "Amândouă formele (comparative și superlative) sunt greșite."
+
+#: src/practice/comparisonbackendmode.cpp:74
+#, kde-format
+msgctxt ""
+"the user entered the wrong comparison forms when practicing comparison forms "
+"of adjectives (second form wrong - better)"
+msgid "The comparative is wrong."
+msgstr "Comparativul este greșit."
+
+#: src/practice/comparisonbackendmode.cpp:78
+#, kde-format
+msgctxt ""
+"the user entered the wrong comparison forms when practicing comparison forms "
+"of adjectives (third form wrong - best)"
+msgid "The superlative is wrong."
+msgstr "Superlativul este greșit."
+
+#: src/practice/comparisonmodewidget.cpp:65
+#, kde-format
+msgid "Enter the comparison forms."
+msgstr "Introduceți gradele de comparație ."
+
+#: src/practice/configure/blockoptions.cpp:22
+msgid "Do not Care"
+msgstr "Nu contează"
+
+#: src/practice/configure/blockoptions.cpp:24
+msgid "30 Min"
+msgstr "30 Min"
+
+#: src/practice/configure/blockoptions.cpp:25
+msgid "1 Hour"
+msgstr "1 oră"
+
+#: src/practice/configure/blockoptions.cpp:26
+msgid "2 Hours"
+msgstr "2 ore"
+
+#: src/practice/configure/blockoptions.cpp:27
+msgid "4 Hours"
+msgstr "4 ore"
+
+#: src/practice/configure/blockoptions.cpp:28
+msgid "8 Hours"
+msgstr "8 ore"
+
+#: src/practice/configure/blockoptions.cpp:29
+msgid "12 Hours"
+msgstr "12 ore"
+
+#: src/practice/configure/blockoptions.cpp:30
+msgid "18 Hours"
+msgstr "18 ore"
+
+#: src/practice/configure/blockoptions.cpp:32
+msgid "1 Day"
+msgstr "1 zi"
+
+#: src/practice/configure/blockoptions.cpp:33
+msgid "2 Days"
+msgstr "2 zile"
+
+#: src/practice/configure/blockoptions.cpp:34
+msgid "3 Days"
+msgstr "3 zile"
+
+#: src/practice/configure/blockoptions.cpp:35
+msgid "4 Days"
+msgstr "4 zile"
+
+#: src/practice/configure/blockoptions.cpp:36
+msgid "5 Days"
+msgstr "5 zile"
+
+#: src/practice/configure/blockoptions.cpp:37
+msgid "6 Days"
+msgstr "6 zile"
+
+#: src/practice/configure/blockoptions.cpp:39
+msgid "1 Week"
+msgstr "1 săptămână"
+
+#: src/practice/configure/blockoptions.cpp:40
+msgid "2 Weeks"
+msgstr "2 săptămâni"
+
+#: src/practice/configure/blockoptions.cpp:41
+msgid "3 Weeks"
+msgstr "3 săptămâni"
+
+#: src/practice/configure/blockoptions.cpp:42
+msgid "4 Weeks"
+msgstr "4 săptămâni"
+
+#: src/practice/configure/blockoptions.cpp:44
+msgid "1 Month"
+msgstr "1 lună"
+
+#: src/practice/configure/blockoptions.cpp:45
+msgid "2 Months"
+msgstr "2 luni"
+
+#: src/practice/configure/blockoptions.cpp:46
+msgid "3 Months"
+msgstr "3 luni"
+
+#: src/practice/configure/blockoptions.cpp:47
+msgid "4 Months"
+msgstr "4 luni"
+
+#: src/practice/configure/blockoptions.cpp:48
+msgid "5 Months"
+msgstr "5 luni"
+
+#: src/practice/configure/blockoptions.cpp:49
+msgid "6 Months"
+msgstr "6 luni"
+
+#: src/practice/configure/blockoptions.cpp:50
+msgid "10 Months"
+msgstr "10 luni"
+
+#: src/practice/configure/blockoptions.cpp:51
+msgid "12 Months"
+msgstr "12 luni"
+
+#: src/practice/configure/blockoptions.cpp:220
+#, kde-format
+msgid "Illogical blocking times.\n"
+msgstr "Timpuri de blocare ilogice. \n"
+
+#: src/practice/configure/blockoptions.cpp:222
+#: src/practice/configure/blockoptions.cpp:235
+#, kde-format
+msgid "The time for level %1 should be lower than the time for level %2.\n"
+msgstr ""
+"Timpul pentru nivelul %1 ar trebui să fie mai mic decât timpul pentru "
+"nivelul %2. \n"
+
+#: src/practice/configure/blockoptions.cpp:233
+#, kde-format
+msgid ""
+"\n"
+"Illogical expiration times.\n"
+msgstr ""
+"\n"
+"Timpuri de expirare ilogice. \n"
+
+#: src/practice/configure/blockoptions.cpp:247
+#, kde-format
+msgid ""
+"\n"
+"Illogical blocking vs. expiration times.\n"
+msgstr ""
+"\n"
+"Timpii de blocare și timpii de expirare. \n"
+
+#: src/practice/configure/blockoptions.cpp:249
+#, kde-format
+msgid ""
+"The blocking time at level %1 should be lower than the expiration time.\n"
+msgstr ""
+"Timpul de blocare la nivelul %1 ar trebui să fie mai mic decât timpul de "
+"expirare. \n"
+
+#: src/practice/configure/blockoptions.cpp:255
+#, kde-format
+msgid "Illogical Values"
+msgstr "Valori ilogice"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev2)
+#: src/practice/configure/blockoptions.ui:40
+#, kde-format
+msgid "Level &2:"
+msgstr "Nivelul &2:"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev5)
+#: src/practice/configure/blockoptions.ui:53
+#, kde-format
+msgid "Level &5:"
+msgstr "Nivelul &5:"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev6)
+#: src/practice/configure/blockoptions.ui:63
+#, kde-format
+msgid "Level &6:"
+msgstr "Nivelul &6:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_Expire)
+#: src/practice/configure/blockoptions.ui:79
+#, kde-format
+msgid "E&xpiring"
+msgstr "E&xpiră"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_Block)
+#: src/practice/configure/blockoptions.ui:95
+#, kde-format
+msgid "Bl&ocking"
+msgstr "Bl&care"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev4)
+#: src/practice/configure/blockoptions.ui:118
+#, kde-format
+msgid "Level &4:"
+msgstr "Nivelul &4:"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev7)
+#: src/practice/configure/blockoptions.ui:128
+#, kde-format
+msgid "Level &7:"
+msgstr "Nivelul &7:"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev1)
+#: src/practice/configure/blockoptions.ui:150
+#, kde-format
+msgid "Level &1:"
+msgstr "Nivelul &1:"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev3)
+#: src/practice/configure/blockoptions.ui:192
+#, kde-format
+msgid "Level &3:"
+msgstr "Nivelul &3:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/practice/configure/blockoptions.ui:218
+#, kde-format
+msgid "Do not practice vocabulary that has been asked within:"
+msgstr "Nu exersați vocabularul care a fost întrebat :"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: src/practice/configure/blockoptions.ui:228
+#, kde-format
+msgid "Vocabulary drops one grade after this much time:"
+msgstr "Vocabulul scade nota cu un punct după atâta timp:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ComparisonIncludeAdjective)
+#: src/practice/configure/comparisonoptionswidget.ui:16
+#, kde-format
+msgid "Include Adjectives"
+msgstr "Incluzând adjective"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ComparisonIncludeAdverb)
+#: src/practice/configure/comparisonoptionswidget.ui:23
+#, kde-format
+msgid "Include Adverbs"
+msgstr "Incluzând adverbe"
+
+#: src/practice/configure/configurepracticedialog.cpp:23
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Practice"
+msgstr "Configurați exersarea"
+
+#: src/practice/configure/configurepracticedialog.cpp:28
+#, fuzzy, kde-format
+#| msgid "General"
+msgctxt ""
+"@title:group Configure general settings for practicing vocabulary, short "
+"title in config dialog."
+msgid "General"
+msgstr "General"
+
+#: src/practice/configure/configurepracticedialog.cpp:30
+#, fuzzy, kde-format
+#| msgctxt "Configure advanced settings for practicing vocabulary."
+#| msgid "Advanced Practice Settings"
+msgctxt "Configure general settings for practicing vocabulary."
+msgid "General Practice Settings"
+msgstr "Setări avansate de exersare "
+
+#: src/practice/configure/configurepracticedialog.cpp:35
+#, kde-format
+msgctxt ""
+"@title:group vocabulary can be set to be blocked for a certain amount of time"
+msgid "Blocking"
+msgstr "Blocare"
+
+#: src/practice/configure/configurepracticedialog.cpp:37
+#, kde-format
+msgid "Blocking Settings"
+msgstr "Configurări de blocare"
+
+#: src/practice/configure/configurepracticedialog.cpp:42
+#, kde-format
+msgctxt ""
+"@title:group ignore vocabulary based on some properties like word type"
+msgid "Thresholds"
+msgstr "Praguri"
+
+#: src/practice/configure/configurepracticedialog.cpp:44
+#, kde-format
+msgid "Threshold Settings"
+msgstr "Configurare praguri"
+
+#: src/practice/configure/configurepracticedialog.cpp:49
+#, kde-format
+msgctxt ""
+"@title:group Configure specific settings for practicing vocabulary, short "
+"title in config dialog."
+msgid "Specific"
+msgstr ""
+
+#: src/practice/configure/configurepracticedialog.cpp:51
+#, fuzzy, kde-format
+#| msgctxt "Configure advanced settings for practicing vocabulary."
+#| msgid "Advanced Practice Settings"
+msgctxt "Configure specific settings for practicing vocabulary."
+msgid "Specific Practice Settings"
+msgstr "Setări avansate de exersare "
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: src/practice/configure/generalpracticeoptions.ui:17
+#, kde-format
+msgid "Correction"
+msgstr "Corecție"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
+#: src/practice/configure/generalpracticeoptions.ui:23
+#, kde-format
+msgid "Answers with wrong accents are still counted as correct."
+msgstr "Răspunsurile cu accente greșite sunt considerate corecte."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
+#: src/practice/configure/generalpracticeoptions.ui:26
+#, fuzzy, kde-format
+#| msgid "Ignore Accents"
+msgid "Ignore accents"
+msgstr "Ignoră accente"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
+#: src/practice/configure/generalpracticeoptions.ui:36
+#, kde-format
+msgid "Any captitalization in the answer is counted as correct."
+msgstr "Orice majuscule sau litere mici în răspuns sunt considerate corecte."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
+#: src/practice/configure/generalpracticeoptions.ui:39
+#, fuzzy, kde-format
+#| msgid "Ignore Capitalization"
+msgid "Ignore capitalization"
+msgstr "Ignoră literele mari și mici"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
+#: src/practice/configure/generalpracticeoptions.ui:49
+#, fuzzy, kde-format
+#| msgid "Any captitalization in the answer is counted as correct."
+msgid "Any punctuation mistake in the answer is counted as correct."
+msgstr "Orice majuscule sau litere mici în răspuns sunt considerate corecte."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
+#: src/practice/configure/generalpracticeoptions.ui:52
+#, fuzzy, kde-format
+#| msgid "Ignore Capitalization"
+msgid "Ignore punctuation"
+msgstr "Ignoră literele mari și mici"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ShowHints)
+#: src/practice/configure/generalpracticeoptions.ui:62
+#, kde-format
+msgid ""
+"During the practice you can use the hint button to see parts of the solution."
+msgstr ""
+"În timpul exersării, apăsând pe butonul indiciu veți vedea părți ale "
+"răspunsului."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowHints)
+#: src/practice/configure/generalpracticeoptions.ui:65
+#, fuzzy, kde-format
+#| msgid "Enable Hints"
+msgid "Enable hints"
+msgstr "Activează indicii."
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_4)
+#: src/practice/configure/generalpracticeoptions.ui:91
+#, kde-format
+msgid "Images and Sound"
+msgstr "Imagini și sunete"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_FlashcardsFrontImage)
+#: src/practice/configure/generalpracticeoptions.ui:97
+#, kde-format
+msgid "During the practice, images are shown for the question."
+msgstr "În timpul exersării, sunt arătate imagini pentru întrebare."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsFrontImage)
+#: src/practice/configure/generalpracticeoptions.ui:100
+#, fuzzy, kde-format
+#| msgid "Image for Question"
+msgid "Image for question"
+msgstr "Imaginea pentru întrebare"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_FlashcardsBackImage)
+#: src/practice/configure/generalpracticeoptions.ui:110
+#, kde-format
+msgid "During the practice, images are shown for the solution."
+msgstr "În timpul exersării, sunt arătate imagini pentru răspuns."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsBackImage)
+#: src/practice/configure/generalpracticeoptions.ui:113
+#, fuzzy, kde-format
+#| msgid "Image for Solution"
+msgid "Image for solution"
+msgstr "Imaginea pentru răspuns"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AllowImageInsteadOfWord)
+#: src/practice/configure/generalpracticeoptions.ui:123
+#, fuzzy, kde-format
+#| msgid "Show images on the back of the flashcard."
+msgid "Allow using images instead of words in flashcards."
+msgstr "Arată imaginile de pe partea din spate a cardului de memorizare"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AllowImageInsteadOfWord)
+#: src/practice/configure/generalpracticeoptions.ui:126
+#, kde-format
+msgid "Allow images instead of words"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_PracticeSoundEnabled)
+#: src/practice/configure/generalpracticeoptions.ui:136
+#, kde-format
+msgid "Enable playing of pronunciation sound files during the practice."
+msgstr "Permite redarea fișierelor de sunet cu pronunțare în timpul exersării."
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/practice/configure/generalpracticeoptions.ui:158
+#, kde-format
+msgid ""
+"By default you are asked to enter synonyms until you enter the one that is "
+"associated directly with the current word. With this option enabled any "
+"synonym is accepted."
+msgstr ""
+"Implicit veți fi rugat să introduceți sinonime până ajungeți la cel care "
+"este asociat direct cu cuvântul cerut. Cu această opțiune activată, orice "
+"sinonim este acceptat."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CountSynonymsAsCorrect)
+#: src/practice/configure/generalpracticeoptions.ui:168
+#, fuzzy, kde-format
+#| msgid "Accept any Synonym"
+msgid "Accept any synonym"
+msgstr "Acceptă orice sinonim"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: src/practice/configure/generalpracticeoptions.ui:191
+#, fuzzy, kde-format
+#| msgid "Lesson"
+msgid "Sessions"
+msgstr "Lecție"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: src/practice/configure/generalpracticeoptions.ui:202
+#, kde-format
+msgid "Max session size:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: src/practice/configure/generalpracticeoptions.ui:251
+#, fuzzy, kde-format
+#| msgid "Total number of entries:"
+msgid "Max number of new words:"
+msgstr "Număr total de intrări:"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
+#: src/practice/configure/specificpracticeoptions.ui:23
+#, kde-format
+msgid ""
+"When creating multiple choice practices, try to show answers of the same "
+"word type."
+msgstr ""
+"Când sunt exerciții cu mai multe variante de răspuns, încearcă să arăți "
+"răspunsuri de același tip de cuvinte."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
+#: src/practice/configure/specificpracticeoptions.ui:26
+#, kde-format
+msgid "Use choices of the same word type"
+msgstr "Folosește opțiuni cu același tip de cuvinte"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: src/practice/configure/specificpracticeoptions.ui:41
+#, kde-format
+msgid "Number of choices:"
+msgstr "Numărul opțiunilor:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_8)
+#: src/practice/configure/thresholdoptions.ui:17
+#, kde-format
+msgid "Only practice vocabulary that fulfills the following conditions:"
+msgstr "Exersați vocabulare care îndeplinesc următoarele condiții:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: src/practice/configure/thresholdoptions.ui:26
+#, kde-format
+msgid "At least"
+msgstr "Cel puțin"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: src/practice/configure/thresholdoptions.ui:33
+#, kde-format
+msgid "At most"
+msgstr "Cel mult"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/practice/configure/thresholdoptions.ui:43
+#, fuzzy, kde-format
+#| msgid "&Grade:"
+msgid "Grade:"
+msgstr "&Notă:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: src/practice/configure/thresholdoptions.ui:53
+#, fuzzy, kde-format
+#| msgid "Times practiced"
+msgid "Times practiced:"
+msgstr "De câte ori s-a exersat"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: src/practice/configure/thresholdoptions.ui:80
+#, fuzzy, kde-format
+#| msgid "Answered incorrectly"
+msgid "Answered incorrectly:"
+msgstr "Răspunsuri incorecte"
+
+#: src/practice/conjugationbackendmode.cpp:93
+#, kde-format
+msgid "All conjugation forms were right."
+msgstr "Toate formele de conjugare au fost corecte."
+
+#: src/practice/conjugationbackendmode.cpp:97
+#, kde-format
+msgctxt "You did not get the conjugation forms right."
+msgid "You answered %1 conjugation form correctly."
+msgid_plural "You answered %1 conjugation forms correctly."
+msgstr[0] "Ați răspuns la %1 formă de conjugare corect."
+msgstr[1] "Ați răspuns la %1 forme de conjugare corect."
+msgstr[2] "Ați răspuns la %1 de forme de conjugare corect."
+
+#: src/practice/conjugationmodewidget.cpp:111
+#, kde-format
+msgid "Enter all conjugation forms."
+msgstr "Introduceți toate formele de conjugare"
+
+#: src/practice/genderbackendmode.cpp:61
+#, kde-format
+msgid "Choose the right article for \"%1\""
+msgstr "Alegeți articolul potrivite pentru ”%1”"
+
+#: src/practice/genderbackendmode.cpp:85
+#, kde-format
+msgctxt "@label the gender of the word: masculine"
+msgid "%1 is masculine"
+msgstr "%1 este masculin"
+
+#: src/practice/genderbackendmode.cpp:90
+#, kde-format
+msgctxt "@label the gender of the word: feminine"
+msgid "%1 is feminine"
+msgstr "%1 este feminin"
+
+#: src/practice/genderbackendmode.cpp:95
+#, kde-format
+msgctxt "@label the gender of the word: neuter"
+msgid "%1 is neuter"
+msgstr "%1 este neutru"
+
+#: src/practice/guifrontend.cpp:123
+#, kde-format
+msgctxt "Display of the current unit during practice"
+msgid "Unit: %1"
+msgstr ""
+
+#: src/practice/guifrontend.cpp:129
+#, fuzzy, kde-format
+#| msgid "one word"
+#| msgid_plural "%1 words"
+msgid "New word"
+msgstr "un cuvânt"
+
+#: src/practice/guifrontend.cpp:132
+#, kde-format
+msgctxt ""
+"Display of the current confidence level during practice, 1st param is either "
+"initial or long term"
+msgid "%1, confidence %2"
+msgstr ""
+
+#: src/practice/guifrontend.cpp:133
+#, kde-format
+msgid "initial"
+msgstr ""
+
+#: src/practice/guifrontend.cpp:133
+#, kde-format
+msgid "long term"
+msgstr ""
+
+#: src/practice/guifrontend.cpp:199
+#, fuzzy, kde-format
+#| msgid ""
+#| "You answered %2 of a total of %1 word.\n"
+#| "You are %3% done."
+#| msgid_plural ""
+#| "You answered %2 of a total of %1 words.\n"
+#| "You are %3% done."
+msgid ""
+"You answered correctly %2 of a total of %1 word.\n"
+"You are %3% done."
+msgid_plural ""
+"You answered correctly %2 of a total of %1 words.\n"
+"You are %3% done."
+msgstr[0] ""
+"Ați răspuns la %2 din %1 cuvânt în total. \n"
+"Ați terminat cu %3%."
+msgstr[1] ""
+"Ați răspuns la %2 din %1 cuvinte în total. \n"
+"Ați terminat cu %3%."
+msgstr[2] ""
+"Ați răspuns la %2 din %1 de cuvinte în total. \n"
+"Ați terminat cu %3%."
+
+#: src/practice/latexrenderer.cpp:46
+#, kde-format
+msgid "Rendering..."
+msgstr "Se randează..."
+
+#: src/practice/latexrenderer.cpp:135
+#, kde-format
+msgid "LaTeX error."
+msgstr "Eroare LaTeX."
+
+#: src/practice/multiplechoicebackendmode.cpp:103
+#: src/practice/writtenbackendmode.cpp:145
+#, kde-format
+msgid "You revealed the answer by using too many hints."
+msgstr "Ați aflat răspunsul folosind prea multe indicii."
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, answerLaterButton)
+#: src/practice/practice_mainwindow.ui:128
+#, kde-format
+msgid "Skip this word for now and ask again later"
+msgstr "Sari peste acest cuvânt și întreabă-mă din nou mai târziu"
+
+#. i18n: ectx: property (text), widget (QPushButton, answerLaterButton)
+#: src/practice/practice_mainwindow.ui:131
+#, kde-format
+msgid "Answer Later"
+msgstr "Răspundeți mai târziu"
+
+#. i18n: ectx: property (text), widget (QPushButton, hintButton)
+#: src/practice/practice_mainwindow.ui:141
+#, kde-format
+msgid "Hint"
+msgstr "Indiciu"
+
+#. i18n: ectx: property (text), widget (QPushButton, continueButton)
+#: src/practice/practice_mainwindow.ui:202
+#, kde-format
+msgid "Continue"
+msgstr "Continuați"
+
+#. i18n: ectx: property (text), widget (QPushButton, countAsWrongButton)
+#: src/practice/practice_mainwindow.ui:219
+#, fuzzy, kde-format
+#| msgid "I did not know it"
+msgid "I Did not Know it"
+msgstr "Nu am știut"
+
+#. i18n: ectx: property (text), widget (QPushButton, countAsCorrectButton)
+#: src/practice/practice_mainwindow.ui:226
+#, fuzzy, kde-format
+#| msgid "I knew it"
+msgid "I Knew it"
+msgstr "L-am știut"
+
+#. i18n: ectx: property (format), widget (QProgressBar, totalProgress)
+#: src/practice/practice_mainwindow.ui:300
+#, no-c-format, kde-format
+msgid "%v/%m"
+msgstr "%v/%m"
+
+#. i18n: ectx: property (text), widget (QLabel, absoluteLabel)
+#: src/practice/practice_widget_comparison.ui:35
+#, kde-format
+msgid "absolute"
+msgstr "absolut"
+
+#. i18n: ectx: property (text), widget (QLabel, comparativeLabel)
+#: src/practice/practice_widget_comparison.ui:80
+#, kde-format
+msgid "comparative"
+msgstr "comparativ"
+
+#. i18n: ectx: property (text), widget (QLabel, superlativeLabel)
+#: src/practice/practice_widget_comparison.ui:125
+#, kde-format
+msgid "superlative"
+msgstr "superlativ"
+
+#: src/practice/practicemainwindow.cpp:68
+#, kde-format
+msgid "Stop Practice"
+msgstr "Opriți exersarea"
+
+#: src/practice/practicemainwindow.cpp:70
+#, kde-format
+msgid "Stop practicing"
+msgstr "Opriți exersarea"
+
+#: src/practice/practicemainwindow.cpp:77
+#, kde-format
+msgid "Change answer to right/wrong"
+msgstr ""
+
+#: src/practice/practicemainwindow.cpp:79
+#, kde-format
+msgid ""
+"When you answered, Parley will display that the answer was right or wrong.\n"
+"This shortcut changes how the answer is counted."
+msgstr ""
+
+#: src/practice/practicesummarycomponent.cpp:62
+#, kde-format
+msgctxt "number of words, minutes, seconds"
+msgid "You practiced %1 in %2 and %3."
+msgstr "Ați exersat %1 în %2 și %3"
+
+#: src/practice/practicesummarycomponent.cpp:63
+#, kde-format
+msgid "one word"
+msgid_plural "%1 words"
+msgstr[0] "un cuvânt"
+msgstr[1] "%1 cuvinte"
+msgstr[2] "%1 de cuvinte"
+
+#: src/practice/practicesummarycomponent.cpp:64
+#, kde-format
+msgid "one minute"
+msgid_plural "%1 minutes"
+msgstr[0] "un minut"
+msgstr[1] "%1 minute"
+msgstr[2] "%1 de minute"
+
+#: src/practice/practicesummarycomponent.cpp:65
+#, kde-format
+msgid "one second"
+msgid_plural "%1 seconds"
+msgstr[0] "o secundă"
+msgstr[1] "%1 secunde"
+msgstr[2] "%1 de secunde"
+
+#: src/practice/practicesummarycomponent.cpp:82
+#, fuzzy, kde-format
+#| msgid "Practice &Counts"
+msgid "Practice Overview"
+msgstr "&Numărul exersărilor"
+
+#: src/practice/practicesummarycomponent.cpp:83
+#, kde-format
+msgid "Switch to the Practice Overview page"
+msgstr ""
+
+#: src/practice/practicesummarycomponent.cpp:150
+#, kde-format
+msgid "HTML Files"
+msgstr ""
+
+#: src/practice/practicesummarycomponent.cpp:150
+#, fuzzy, kde-format
+#| msgid "General Document Properties"
+msgid "OpenDocument text files"
+msgstr "Proprietăți generale ale documentelor"
+
+#: src/practice/practicesummarycomponent.cpp:160
+#, fuzzy, kde-format
+#| msgid "Practice &Counts"
+msgid "Practice results"
+msgstr "&Numărul exersărilor"
+
+#: src/practice/practicesummarycomponent.cpp:165
+#, kde-format
+msgid "Answered questions: %1\n"
+msgstr ""
+
+#: src/practice/practicesummarycomponent.cpp:166
+#, kde-format
+msgid "Correct answers: %1\n"
+msgstr ""
+
+#: src/practice/practicesummarycomponent.cpp:167
+#, kde-format
+msgid "Wrong answers: %1\n"
+msgstr ""
+
+#: src/practice/practicesummarycomponent.cpp:174
+#, fuzzy, kde-format
+#| msgid "Attempts"
+msgid "<b>Attempts</b>"
+msgstr "Încercări"
+
+#: src/practice/practicesummarycomponent.cpp:175
+#, fuzzy, kde-format
+#| msgid "Question"
+msgid "<b>Question</b>"
+msgstr "Întrebare"
+
+#: src/practice/practicesummarycomponent.cpp:176
+#, kde-format
+msgid "<b>Correct answer</b>"
+msgstr ""
+
+#: src/practice/practicesummarycomponent.cpp:177
+#, kde-format
+msgid "<b>Your errors</b>"
+msgstr ""
+
+#: src/practice/practicesummarycomponent.cpp:192
+#, fuzzy, kde-format
+#| msgid "Could not start practice"
+msgid "Could not write to %1"
+msgstr "Nu s-a putut începe exersarea"
+
+#: src/practice/practicesummarycomponent.cpp:192
+#, fuzzy, kde-format
+#| msgid "Could not start practice"
+msgid "Could not write file"
+msgstr "Nu s-a putut începe exersarea"
+
+#. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
+#: src/practice/practicesummarywidget.ui:28
+#, kde-format
+msgid "Attempts"
+msgstr "Încercări"
+
+#. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
+#: src/practice/practicesummarywidget.ui:33
+#, kde-format
+msgid "Question"
+msgstr "Întrebare"
+
+#. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
+#: src/practice/practicesummarywidget.ui:38
+#, kde-format
+msgid "Solution"
+msgstr "Răspuns"
+
+#. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
+#: src/practice/practicesummarywidget.ui:43
+#, kde-format
+msgid "Your Answer"
+msgstr "Răspunsul dumneavoastră"
+
+#: src/practice/sessionmanagerbase.cpp:53
+#, kde-format
+msgid "The vocabulary collection contains fewer than two languages."
+msgstr "Colecția de vocabulare conține mai puțin de două limbi."
+
+#: src/practice/sessionmanagerbase.cpp:53
+#, kde-format
+msgid "Could not start practice"
+msgstr "Nu s-a putut începe exersarea"
+
+#: src/practice/statustoggle.cpp:77
+#, fuzzy, kde-format
+#| msgid ""
+#| "This word will be counted as correct.\n"
+#| "Words will only be counted as correct if they are answered correctly on "
+#| "the first attempt."
+msgid ""
+"This answer will be counted as correct.\n"
+"Words will only be counted as correct if they are answered correctly on the "
+"first attempt."
+msgstr ""
+"Acest cuvânt va fi considerat corect. \n"
+"Cuvintele vor considerate corecte doar dacă s-a răspuns corect la ele din "
+"prima încercare."
+
+#: src/practice/statustoggle.cpp:78
+#, fuzzy, kde-format
+#| msgid "Count this word as wrong"
+msgid "Count this answer as wrong"
+msgstr "Cuvântul acesta este considerat greșit"
+
+#: src/practice/statustoggle.cpp:81
+#, fuzzy, kde-format
+#| msgid ""
+#| "This word will be counted as wrong.\n"
+#| "Words will only be counted as correct if they are answered correctly on "
+#| "the first attempt."
+msgid ""
+"This answer will be counted as wrong.\n"
+"Words will only be counted as correct if they are answered correctly on the "
+"first attempt."
+msgstr ""
+"Acest cuvânt va fi considerat greșit \n"
+"Cuvintele vor considerate corecte doar dacă s-a răspuns corect la ele din "
+"prima încercare."
+
+#: src/practice/statustoggle.cpp:82
+#, fuzzy, kde-format
+#| msgid "Count this word as correct"
+msgid "Count this answer as correct"
+msgstr "Cuvântul acesta este considerat corect"
+
+#: src/practice/summarybarwidget.cpp:78
+#, kde-format
+msgctxt "test results"
+msgid "%1 % correct"
+msgstr "%1 % corect"
+
+#: src/practice/summarybarwidget.cpp:80
+#, kde-format
+msgctxt "test results"
+msgid "%1 % wrong"
+msgstr "%1 % greșit"
+
+#: src/practice/summarybarwidget.cpp:82
+#, kde-format
+msgctxt "test results"
+msgid "%1 % not answered"
+msgstr "%1 % fără răspuns"
+
+#: src/practice/summarybarwidget.cpp:140
+#, kde-format
+msgid "Answered correctly on the first attempt: %1 of %2 (%3 %)"
+msgstr "Răspunsuri corecte la prima încercare: %1 din %2 (%3 %)"
+
+#: src/practice/summarybarwidget.cpp:147
+#, kde-format
+msgid "Answered wrong on the first attempt: %1 of %2 (%3 %)"
+msgstr "Răspunsuri greșite la prima încercare: %1 din %2 (%3 %)"
+
+#: src/practice/summarybarwidget.cpp:154
+#, kde-format
+msgid "Not answered during this practice: %1 of %2 (%3 %)"
+msgstr "Nerăspunse în această exersare: %1 din %2 (%3 %)"
+
+#: src/practice/writtenbackendmode.cpp:70
+#, kde-format
+msgid "Your answer was wrong."
+msgstr "Răspunsul dumneavoastră a fost greșit."
+
+#: src/practice/writtenbackendmode.cpp:84
+#, kde-format
+msgid ""
+"Your answer was a synonym. Please enter another word with the same "
+"translation."
+msgstr ""
+"Răspunsul dumneavoastră a fost un sinonim. Introduceți un alt cuvânt cu "
+"aceași traducere."
+
+#: src/practice/writtenbackendmode.cpp:88
+#, kde-format
+msgid "Your answer was an already entered synonym."
+msgstr "Răspunsul dumneavoastră a fost un sinonim deja introdus."
+
+#: src/practice/writtenbackendmode.cpp:91
+#, fuzzy, kde-format
+#| msgid "Your answer was a synonym and your capitalization was wrong."
+msgid "Your answer was a synonym and your punctuation was wrong."
+msgstr ""
+"Răspunsul dumneavoastră a fost un sinonim și ați greșit literele cu "
+"majuscule sau literele mici."
+
+#: src/practice/writtenbackendmode.cpp:93
+#, kde-format
+msgid "Your answer was a synonym and your capitalization was wrong."
+msgstr ""
+"Răspunsul dumneavoastră a fost un sinonim și ați greșit literele cu "
+"majuscule sau literele mici."
+
+#: src/practice/writtenbackendmode.cpp:95
+#, kde-format
+msgid "Your answer was a synonym and accents were wrong."
+msgstr "Răspunsul dumneavoastră a fost un sinonim și ați greșit accentele."
+
+#: src/practice/writtenbackendmode.cpp:97
+#, kde-format
+msgid "Your answer was a synonym."
+msgstr "Răspunsul dumneavoastră a fost un sinonim."
+
+#: src/practice/writtenbackendmode.cpp:105
+#, fuzzy, kde-format
+#| msgid ""
+#| "Your answer was wrong as capitalization mistakes are not accepted. Please "
+#| "try again."
+msgid ""
+"Your answer was wrong as punctuation mistakes are not accepted. Please try "
+"again."
+msgstr ""
+"Răspunsul dumneavoastră a fost greșit, deoarece greșelile de majuscule sau "
+"litere mici nu sunt acceptate. Încercați din nou."
+
+#: src/practice/writtenbackendmode.cpp:107
+#, kde-format
+msgid ""
+"Your answer was wrong as capitalization mistakes are not accepted. Please "
+"try again."
+msgstr ""
+"Răspunsul dumneavoastră a fost greșit, deoarece greșelile de majuscule sau "
+"litere mici nu sunt acceptate. Încercați din nou."
+
+#: src/practice/writtenbackendmode.cpp:109
+#, kde-format
+msgid ""
+"Your answer was wrong as accent mistakes are not accepted. Please try again."
+msgstr ""
+"Răspunsul dumneavoastră a fost greșit, deoarece greșelile de accent nu sunt "
+"acceptate. Încercați din nou."
+
+#: src/practice/writtenbackendmode.cpp:111
+#, kde-format
+msgid "Your answer was wrong. Please try again."
+msgstr "Răspunsul dumneavoastră a fost greșit. Încercați din nou."
+
+#: src/practice/writtenbackendmode.cpp:118
+#, fuzzy, kde-format
+#| msgid ""
+#| "Your answer was right on the first attempt, but your capitalization was "
+#| "wrong."
+msgid "Your answer was right, but your punctuation was wrong."
+msgstr ""
+"Răspunsul dumneavoastră a fost corect la prima încercare, dar ați greșit la "
+"majuscule sau la literele mici."
+
+#: src/practice/writtenbackendmode.cpp:120
+#, fuzzy, kde-format
+#| msgid ""
+#| "Your answer was right on the first attempt, but your capitalization was "
+#| "wrong."
+msgid "Your answer was right, but your capitalization was wrong."
+msgstr ""
+"Răspunsul dumneavoastră a fost corect la prima încercare, dar ați greșit la "
+"majuscule sau la literele mici."
+
+#: src/practice/writtenbackendmode.cpp:122
+#, fuzzy, kde-format
+#| msgid "Your answer was right on the first attempt, but accents were wrong."
+msgid "Your answer was right, but accents were wrong."
+msgstr ""
+"Răspunsul dumneavoastră a fost corect la prima încercare, dar ați greșit la "
+"accente."
+
+#: src/practice/writtenbackendmode.cpp:124
+#, fuzzy, kde-format
+#| msgid "Your answer was wrong."
+msgid "Your answer was right."
+msgstr "Răspunsul dumneavoastră a fost greșit."
+
+#: src/practice/writtenbackendmode.cpp:128
+#, fuzzy, kde-format
+#| msgid ""
+#| "Your answer was right... but not on the first try and your capitalization "
+#| "was wrong."
+msgid ""
+"Your answer was right... but not on the first try and your punctuation was "
+"wrong."
+msgstr ""
+"Răspunsul dumneavoastră a fost corect... dar nu la prima încercare și ați "
+"greșit la majuscule sau la literele mici."
+
+#: src/practice/writtenbackendmode.cpp:130
+#, kde-format
+msgid ""
+"Your answer was right... but not on the first try and your capitalization "
+"was wrong."
+msgstr ""
+"Răspunsul dumneavoastră a fost corect... dar nu la prima încercare și ați "
+"greșit la majuscule sau la literele mici."
+
+#: src/practice/writtenbackendmode.cpp:132
+#, kde-format
+msgid ""
+"Your answer was right... but not on the first try and accents were wrong."
+msgstr ""
+"Răspunsul dumneavoastră a fost corect... dar nu la prima încercare și ați "
+"greșit la accente."
+
+#: src/practice/writtenbackendmode.cpp:134
+#, kde-format
+msgid "Your answer was right... but not on the first try."
+msgstr "Răspunsul dumneavoastră a fost corect... dar nu la prima încercare."
+
+#: src/practice/writtenbackendmode.cpp:154
+#, kde-format
+msgid "The solution starts with: %1"
+msgstr "Soluția începe cu: %1"
+
+#: src/practice/writtenpracticewidget.cpp:130
+#, kde-format
+msgid "Synonym: "
+msgstr "Sinonim:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, tiltle_group)
+#: src/settings/documentproperties.ui:38
+#, kde-format
+msgid "General Document Properties"
+msgstr "Proprietăți generale ale documentelor"
+
+#. i18n: ectx: property (text), widget (QLabel, label_title)
+#: src/settings/documentproperties.ui:50
+#, kde-format
+msgid "&Title:"
+msgstr "&Titlu:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, titleLineEdit)
+#. i18n: ectx: property (toolTip), widget (QLineEdit, authorLineEdit)
+#: src/settings/documentproperties.ui:69 src/settings/documentproperties.ui:95
+#, kde-format
+msgid "A title for your document."
+msgstr "Un titlu pentru documentul dumneavoastră"
+
+#. i18n: ectx: property (text), widget (QLabel, label_author)
+#: src/settings/documentproperties.ui:76
+#, kde-format
+msgid "&Author:"
+msgstr "&Autor"
+
+#. i18n: ectx: property (text), widget (QLabel, label_author_2)
+#: src/settings/documentproperties.ui:102
+#, fuzzy, kde-format
+#| msgid "&Email:"
+msgid "E&mail:"
+msgstr "&Email:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, contactLineEdit)
+#: src/settings/documentproperties.ui:121
+#, kde-format
+msgid "A way to contact you (email or a webpage)."
+msgstr "Un mod de a vă contacta (email sau o pagina web)."
+
+#. i18n: ectx: property (text), widget (QLabel, label_remark)
+#: src/settings/documentproperties.ui:128
+#, kde-format
+msgid "&Comment:"
+msgstr "&Comentariu:"
+
+#. i18n: ectx: property (toolTip), widget (KTextEdit, commentTextEdit)
+#: src/settings/documentproperties.ui:147
+#, kde-format
+msgid "Any additional information."
+msgstr "Informații adiționale."
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/settings/documentproperties.ui:160
+#, fuzzy, kde-format
+#| msgid "Cat&egory"
+msgid "Cate&gory:"
+msgstr "Cat&egorii"
+
+#. i18n: ectx: property (toolTip), widget (KComboBox, categoryComboBox)
+#: src/settings/documentproperties.ui:173
+#, kde-format
+msgid "A general category into which your document belongs."
+msgstr "O categorie generală în care se încadrează documentul dumneavoastră."
+
+#. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
+#: src/settings/documentproperties.ui:185
+#, kde-format
+msgid "Music"
+msgstr "Muzică"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
+#: src/settings/documentproperties.ui:190
+#, kde-format
+msgid "Geography"
+msgstr "Geografie"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
+#: src/settings/documentproperties.ui:195
+#, kde-format
+msgid "Anatomy"
+msgstr "Anatomie"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
+#: src/settings/documentproperties.ui:200
+#, kde-format
+msgid "History"
+msgstr "Istorie"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
+#: src/settings/documentproperties.ui:205
+#, kde-format
+msgid "Test Preparation"
+msgstr "Pregătire pentru test"
+
+#. i18n: ectx: property (text), widget (QLabel, label_license)
+#: src/settings/documentproperties.ui:213
+#, kde-format
+msgid "&License:"
+msgstr "&Licență:"
+
+#. i18n: ectx: property (toolTip), widget (KComboBox, licenseComboBox)
+#: src/settings/documentproperties.ui:227
+#, kde-format
+msgid ""
+"The license under which your document will be.\n"
+"If you consider contributing your file to KDE in the future, an appropriate "
+"license is required."
+msgstr ""
+"Licența sub care va fi documentul dumneavoastră.\n"
+"Dacă vreți să contribuiți cu fișierul dumneavoastră la KDE în viitor, este "
+"necesară o licență potrivită."
+
+#. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
+#: src/settings/documentproperties.ui:239
+#, kde-format
+msgid "GPLv2+ (GNU General Public License version 2 or later)"
+msgstr "GPLv2+ (GNU General Public License versiunea 2 sau mai mare)"
+
+#. i18n: ectx: property (text), widget (QLabel, label_language_1)
+#: src/settings/documentproperties.ui:256
+#, kde-format
+msgid "&First language:"
+msgstr "&Prima limbă:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_language_2)
+#: src/settings/documentproperties.ui:282
+#, kde-format
+msgid "&Second language:"
+msgstr "Limba &secundară:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, grammarCheckBox)
+#: src/settings/documentproperties.ui:311
+#, fuzzy, kde-format
+#| msgid "&Setup Grammar Details"
+msgid "&Setup grammar details"
+msgstr "&Setează detalii gramaticale"
+
+#. i18n: ectx: property (text), widget (QCheckBox, downloadGrammarCheckBox)
+#: src/settings/documentproperties.ui:321
+#, fuzzy, kde-format
+#| msgctxt "Attept to download grammar properties for the selected languages"
+#| msgid "Download Grammar"
+msgctxt "Attept to download grammar properties for the selected languages"
+msgid "Download grammar"
+msgstr "Descarcă gramatică"
+
+#. i18n: ectx: label, entry (ConjugationTenses), group (Document $(fileurl))
+#. i18n: ectx: whatsthis, entry (ConjugationTenses), group (Document $(fileurl))
+#. i18n: ectx: label, entry (ConjugationTenses), group (Locale $(locale))
+#. i18n: ectx: whatsthis, entry (ConjugationTenses), group (Locale $(locale))
+#: src/settings/documentsettings.kcfg:11 src/settings/documentsettings.kcfg:12
+#: src/settings/languagesettings.kcfg:23 src/settings/languagesettings.kcfg:24
+#, kde-format
+msgid "Selected tenses for conjugation practice."
+msgstr "Timpurile selectate pentru exersarea conjugării."
+
+#. i18n: ectx: label, entry (VisibleColumns), group (Document $(fileurl))
+#. i18n: ectx: whatsthis, entry (VisibleColumns), group (Document $(fileurl))
+#. i18n: ectx: label, entry (VisibleColumns), group (Locale $(locale))
+#. i18n: ectx: whatsthis, entry (VisibleColumns), group (Locale $(locale))
+#: src/settings/documentsettings.kcfg:16 src/settings/documentsettings.kcfg:17
+#: src/settings/languagesettings.kcfg:28 src/settings/languagesettings.kcfg:29
+#, kde-format
+msgid "Visible columns in the main editor window."
+msgstr "Coloanele vizibile în fereastre editorului principal."
+
+#. i18n: ectx: label, entry (CollapsedStatisticsViewItems), group (Document $(fileurl))
+#. i18n: ectx: whatsthis, entry (CollapsedStatisticsViewItems), group (Document $(fileurl))
+#: src/settings/documentsettings.kcfg:20 src/settings/documentsettings.kcfg:21
+#, kde-format
+msgid "Collapsed tree view items of statistics view window."
+msgstr ""
+
+#: src/settings/generaloptions.cpp:41
+#, kde-format
+msgctxt "CSV separator"
+msgid ";"
+msgstr ";"
+
+#: src/settings/generaloptions.cpp:42
+#, kde-format
+msgctxt "CSV separator"
+msgid "#"
+msgstr "#"
+
+#: src/settings/generaloptions.cpp:43
+#, kde-format
+msgctxt "CSV separator"
+msgid "!"
+msgstr "!"
+
+#: src/settings/generaloptions.cpp:44
+#, kde-format
+msgctxt "CSV separator"
+msgid "|"
+msgstr "|"
+
+#: src/settings/generaloptions.cpp:45
+#, kde-format
+msgctxt "CSV separator"
+msgid ","
+msgstr ","
+
+#: src/settings/generaloptions.cpp:46
+#, kde-format
+msgctxt "CSV separator: tabulator"
+msgid "TAB"
+msgstr "TAB"
+
+#: src/settings/generaloptions.cpp:47
+#, kde-format
+msgctxt "CSV separator"
+msgid ">= 2 SPACES"
+msgstr ">= 2 SPAȚII"
+
+#: src/settings/generaloptions.cpp:48
+#, kde-format
+msgctxt "CSV separator"
+msgid " : "
+msgstr ":"
+
+#: src/settings/generaloptions.cpp:49
+#, kde-format
+msgctxt "CSV separator"
+msgid " :: "
+msgstr "::"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/settings/generaloptionsbase.ui:17
+#, kde-format
+msgid "Open/Save"
+msgstr "Deschidere/Salvare"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AutoOpenLast)
+#: src/settings/generaloptionsbase.ui:23
+#, kde-format
+msgid "Always open the collection that was active when quitting Parley"
+msgstr "Deschide întotdeauna colecția care era activă când s-a închis Parley"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoOpenLast)
+#: src/settings/generaloptionsbase.ui:26
+#, kde-format
+msgid ""
+"When this option is checked, the last active collection will be loaded "
+"automatically when starting Parley instead of showing the welcome screen."
+msgstr ""
+"Când această opțiune este bifată, ultima colecție activă va fi încărcată "
+"automat când se pornește Parley în loc de a afișa ecranul de bun venit."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoOpenLast)
+#: src/settings/generaloptionsbase.ui:29
+#, kde-format
+msgid "Always load the last opened collection on start"
+msgstr "Încarcă întotdeauna ultima colecție deschisă la început"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AutoSave)
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AutoBackup)
+#: src/settings/generaloptionsbase.ui:39 src/settings/generaloptionsbase.ui:60
+#, kde-format
+msgid "Allow automatic saving of your work"
+msgstr "Permite salvarea automată a lucrului dumneavoastră"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoSave)
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoBackup)
+#: src/settings/generaloptionsbase.ui:42 src/settings/generaloptionsbase.ui:63
+#, kde-format
+msgid "Your work will be automatically saved if you check this option"
+msgstr "Lucrul dumneavoastră va fi salvat automat dacă bifați această opțiune"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoSave)
+#: src/settings/generaloptionsbase.ui:45
+#, kde-format
+msgid "&Save vocabularies automatically on close and quit"
+msgstr "&Salvează vocabularele automat când sunt închise sau la ieșire"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoBackup)
+#: src/settings/generaloptionsbase.ui:66
+#, kde-format
+msgid "&Create a backup every"
+msgstr "&Crează backup la fiecare"
+
+#. i18n: ectx: property (text), widget (QLabel, lblBackupInterva)
+#: src/settings/generaloptionsbase.ui:89
+#, kde-format
+msgid "minutes"
+msgstr "minute"
+
+#. i18n: ectx: property (text), widget (QLabel, label_sep)
+#: src/settings/generaloptionsbase.ui:100
+#, kde-format
+msgid "Sep&arator for text file import/export (CSV):"
+msgstr "Sep&arator pentru importarea/exporarea fișierelor text (CSV):"
+
+#. i18n: ectx: property (toolTip), widget (KComboBox, kcfg_SeparatorCombo)
+#: src/settings/generaloptionsbase.ui:116
+#, kde-format
+msgid ""
+"Choose which separator you want to use to separate your data when importing "
+"and exporting text."
+msgstr ""
+"Alegeți care separator vreți să îl folosiți să vă separe datele când "
+"importați sau exportați text."
+
+#. i18n: ectx: property (whatsThis), widget (KComboBox, kcfg_SeparatorCombo)
+#: src/settings/generaloptionsbase.ui:119
+#, kde-format
+msgid ""
+"Choose the separator to use to divide the parts of an expression when "
+"importing or exporting data as text."
+msgstr ""
+"Alegeți separatorul pe care vreți să îl folosiți pentru a separa părțile "
+"unei expresii atunci când importați sau exportați date ca text."
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: src/settings/generaloptionsbase.ui:144
+#, kde-format
+msgid "Editing"
+msgstr "Editare"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_SmartAppend)
+#: src/settings/generaloptionsbase.ui:162
+#, kde-format
+msgid "&Append new rows automatically when editing"
+msgstr "&Adaugă automat șiruri noi când editați"
+
+#. i18n: ectx: property (text), widget (KNSWidgets::Button, getNewButton)
+#: src/settings/kgametheme/kgamethemeselector.ui:40
+#, kde-format
+msgid "&Get New Themes..."
+msgstr "&Obține teme noi"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/settings/kgametheme/kgamethemeselector.ui:97
+#, kde-format
+msgid "Theme Details"
+msgstr "Detaliile temei"
+
+#. i18n: ectx: property (text), widget (QLabel, labelContact)
+#: src/settings/kgametheme/kgamethemeselector.ui:131
+#, kde-format
+msgid "Contact:"
+msgstr "Contact:"
+
+#. i18n: ectx: property (text), widget (QLabel, labelDescription)
+#: src/settings/kgametheme/kgamethemeselector.ui:166
+#, kde-format
+msgid "Description:"
+msgstr "Descriere:"
+
+#. i18n: ectx: property (text), widget (QLabel, labelAuthor)
+#: src/settings/kgametheme/kgamethemeselector.ui:201
+#, kde-format
+msgid "Author:"
+msgstr "Autor:"
+
+#: src/settings/languageproperties.cpp:23
+#, fuzzy, kde-format
+#| msgid "Edit Languages"
+msgctxt "@title:window"
+msgid "Edit Languages"
+msgstr "Modificare limbile"
+
+#: src/settings/languageproperties.cpp:27
+#, kde-format
+msgid "Add language"
+msgstr "Adăugare limbă"
+
+#: src/settings/languageproperties.cpp:30
+#, kde-format
+msgid "Remove language"
+msgstr "Eliminare limbă"
+
+#: src/settings/languageproperties.cpp:45
+#, kde-format
+msgid "New Language"
+msgstr "Limbă nouă"
+
+#: src/settings/languageproperties.cpp:58
+#, kde-format
+msgctxt "Edit language properties"
+msgid "Properties for %1"
+msgstr "Proprietăți ale %1"
+
+#: src/settings/languageproperties.cpp:87
+#, kde-format
+msgid "Really delete language: %1?"
+msgstr "Sigur vreți să ștergeți limba: %1?"
+
+#: src/settings/languageproperties.cpp:87
+#, kde-format
+msgid "Remove Language"
+msgstr "Eliminare limbă"
+
+#: src/settings/languagepropertiespage.cpp:83
+#, kde-format
+msgid "No KDE keyboard selector found."
+msgstr ""
+
+#: src/settings/languagepropertiespage.cpp:346
+#: src/settings/languagepropertiespage.cpp:368
+#, kde-format
+msgid "Tense Name"
+msgstr "Numele timpului"
+
+#: src/settings/languagepropertiespage.cpp:346
+#: src/settings/languagepropertiespage.cpp:368
+#, kde-format
+msgid "Enter name of tense:"
+msgstr "Introduceți numele timpului:"
+
+#: src/settings/languagepropertiespage.cpp:398
+#, kde-format
+msgid ""
+"The selected user defined tense could not be deleted\n"
+"because it is in use."
+msgstr ""
+"Timpul definit de utilizator nu a putut fi șters \n"
+"pentru că încă este folosit."
+
+#: src/settings/languagepropertiespage.cpp:399
+#, kde-format
+msgid "Deleting Tense Description"
+msgstr "Se șterge descrierea sensului"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab)
+#: src/settings/languagepropertiespage.ui:21
+#, kde-format
+msgid "General"
+msgstr "General"
+
+#. i18n: ectx: property (text), widget (QLabel, nameLabel)
+#: src/settings/languagepropertiespage.ui:30
+#, kde-format
+msgid "Name:"
+msgstr "Numele:"
+
+#. i18n: ectx: property (text), widget (QLabel, keyboardLayoutLabel)
+#: src/settings/languagepropertiespage.ui:46
+#, kde-format
+msgid "Keyboard layout:"
+msgstr "Aranjament de tastatură:"
+
+#. i18n: ectx: property (text), widget (QPushButton, downloadGrammarButton)
+#: src/settings/languagepropertiespage.ui:75
+#, fuzzy, kde-format
+#| msgid "&Download Grammar"
+msgid "&Download grammar"
+msgstr "&Descarcă gramatică"
+
+#. i18n: ectx: property (text), widget (QLabel, spellcheckerLabel)
+#: src/settings/languagepropertiespage.ui:88
+#, kde-format
+msgid "Spell checker:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, localeSelectionLabel)
+#: src/settings/languagepropertiespage.ui:101
+#, kde-format
+msgid "Language:"
+msgstr "Limba:"
+
+#. i18n: ectx: property (text), widget (QLabel, fontLabel_2)
+#: src/settings/languagepropertiespage.ui:117
+#, fuzzy, kde-format
+#| msgid "Not &practiced:"
+msgid "Font (practice):"
+msgstr "Ne&exersat:"
+
+#. i18n: ectx: property (text), widget (QLabel, fontLabel_3)
+#: src/settings/languagepropertiespage.ui:127
+#, fuzzy, kde-format
+#| msgid "Not &practiced:"
+msgid "Font (editor):"
+msgstr "Ne&exersat:"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab_2)
+#: src/settings/languagepropertiespage.ui:141
+#, kde-format
+msgid "Articles"
+msgstr "Articole"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel3)
+#. i18n: ectx: property (text), widget (QLabel, TextLabel3_2)
+#: src/settings/languagepropertiespage.ui:153
+#: src/settings/languagepropertiespage.ui:404
+#, kde-format
+msgid "Definite"
+msgstr "Hotărât"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4_2)
+#: src/settings/languagepropertiespage.ui:160
+#: src/settings/languagepropertiespage.ui:411
+#, kde-format
+msgid "Indefinite"
+msgstr "Nehotărât"
+
+#. i18n: ectx: property (text), widget (QLabel, male_label)
+#. i18n: ectx: property (text), widget (QLabel, male_label_2)
+#: src/settings/languagepropertiespage.ui:167
+#: src/settings/languagepropertiespage.ui:365
+#, kde-format
+msgid "&Male:"
+msgstr "&Masculin:"
+
+#. i18n: ectx: property (text), widget (QLabel, female_label)
+#. i18n: ectx: property (text), widget (QLabel, female_label_2)
+#: src/settings/languagepropertiespage.ui:190
+#: src/settings/languagepropertiespage.ui:352
+#, kde-format
+msgid "&Female:"
+msgstr "&Feminin"
+
+#. i18n: ectx: property (text), widget (QLabel, natural_label)
+#. i18n: ectx: property (text), widget (QLabel, natural_label_2)
+#: src/settings/languagepropertiespage.ui:223
+#: src/settings/languagepropertiespage.ui:339
+#, kde-format
+msgid "&Neutral:"
+msgstr "&Neutru:"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab_3)
+#: src/settings/languagepropertiespage.ui:451
+#, kde-format
+msgid "Personal Pronouns"
+msgstr "Pronume personale"
+
+#. i18n: ectx: property (text), widget (QLabel, pers1_label)
+#: src/settings/languagepropertiespage.ui:507
+#, kde-format
+msgid "&1. Person:"
+msgstr "&1. Persoana:"
+
+#. i18n: ectx: property (text), widget (QLabel, pers2_label)
+#: src/settings/languagepropertiespage.ui:543
+#, kde-format
+msgid "&2. Person:"
+msgstr "&2. Persoana:"
+
+#. i18n: ectx: property (text), widget (QLabel, pers3_label)
+#: src/settings/languagepropertiespage.ui:579
+#, kde-format
+msgid "3. Person:"
+msgstr "3. Persoana:"
+
+#. i18n: ectx: property (text), widget (QLabel, male_c_label)
+#: src/settings/languagepropertiespage.ui:589
+#, kde-format
+msgid "M&ale:"
+msgstr "M&asculin:"
+
+#. i18n: ectx: property (text), widget (QLabel, female_c_label)
+#: src/settings/languagepropertiespage.ui:625
+#, kde-format
+msgid "F&emale:"
+msgstr "F&eminin:"
+
+#. i18n: ectx: property (text), widget (QLabel, natural_c_label)
+#: src/settings/languagepropertiespage.ui:661
+#, kde-format
+msgid "Neu&ter:"
+msgstr "Neu&tru:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, dualCheckBox)
+#: src/settings/languagepropertiespage.ui:697
+#, kde-format
+msgid "Dual conjugations"
+msgstr "Conjugări duble"
+
+#. i18n: ectx: property (text), widget (QCheckBox, neutralCheckBox)
+#: src/settings/languagepropertiespage.ui:704
+#, kde-format
+msgid "A neutral conjugation form exists"
+msgstr "Există o formă de conjugare neutră"
+
+#. i18n: ectx: property (text), widget (QCheckBox, maleFemaleDifferCheckBox)
+#: src/settings/languagepropertiespage.ui:717
+#, kde-format
+msgid "Male/female have different conjugations"
+msgstr "Masculin și feminin au conjugări diferite"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab_4)
+#: src/settings/languagepropertiespage.ui:725
+#: src/statistics/conjugationoptions.cpp:24
+#, kde-format
+msgid "Tenses"
+msgstr "Timpuri"
+
+#. i18n: ectx: property (text), widget (QPushButton, newButton)
+#: src/settings/languagepropertiespage.ui:752 src/settings/optionlistform.ui:63
+#, kde-format
+msgid "&New..."
+msgstr "&Nou..."
+
+#. i18n: ectx: property (text), widget (QPushButton, modifyButton)
+#: src/settings/languagepropertiespage.ui:765 src/settings/optionlistform.ui:78
+#, kde-format
+msgid "&Modify..."
+msgstr "&Modifică"
+
+#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
+#: src/settings/languagepropertiespage.ui:778 src/settings/optionlistform.ui:93
+#, kde-format
+msgid "&Delete"
+msgstr "Ș&terge"
+
+#. i18n: ectx: label, entry (KeyboardLayout), group (Locale $(locale))
+#. i18n: ectx: whatsthis, entry (KeyboardLayout), group (Locale $(locale))
+#: src/settings/languagesettings.kcfg:12 src/settings/languagesettings.kcfg:13
+#, kde-format
+msgid "Keyboard layout for this locale"
+msgstr "Aranjamentul de tastatură pentru această localizare"
+
+#. i18n: ectx: label, entry (SpellChecker), group (Locale $(locale))
+#. i18n: ectx: whatsthis, entry (SpellChecker), group (Locale $(locale))
+#: src/settings/languagesettings.kcfg:17 src/settings/languagesettings.kcfg:18
+#, kde-format
+msgid "Spell checker for this language"
+msgstr "Verificator ortografic pentru această limbă"
+
+#. i18n: ectx: label, entry (PracticeFont), group (Locale $(locale))
+#: src/settings/languagesettings.kcfg:32
+#, fuzzy, kde-format
+#| msgid "The font used for phonetics"
+msgid "The font used during practice"
+msgstr "Fontul folosit pentru fonetică."
+
+#. i18n: ectx: label, entry (EditorFont), group (Locale $(locale))
+#: src/settings/languagesettings.kcfg:36
+#, fuzzy, kde-format
+#| msgid "The font used in the vocabulary table"
+msgid "The font used in the editor"
+msgstr "Fontul folosit în tabelul de vocabulare."
+
+#. i18n: ectx: property (text), widget (QPushButton, cleanUpButton)
+#: src/settings/optionlistform.ui:124
+#, kde-format
+msgid "&Clean Up"
+msgstr "&Curăță"
+
+#. i18n: ectx: label, entry (Theme), group (General)
+#: src/settings/parley.kcfg:11
+#, kde-format
+msgid "Theme to use for practice and welcome screen"
+msgstr "Temă folosită pentru exersare și pentru fereastra de  bun venit"
+
+#. i18n: ectx: label, entry (NumPreSetting), group (General)
+#: src/settings/parley.kcfg:15
+#, kde-format
+msgid "Number of stored setting profiles"
+msgstr "Număr profilelor de setări salvate"
+
+#. i18n: ectx: label, entry (SmartAppend), group (General)
+#: src/settings/parley.kcfg:19
+#, kde-format
+msgid ""
+"If true, when using the entry dialog, new rows will be appended as needed"
+msgstr ""
+"Dacă este adevărat, când se folosește dialogul de intrări, rânduri noi vor "
+"fi adăugate când sunt necesare"
+
+#. i18n: ectx: label, entry (Separator), group (General)
+#: src/settings/parley.kcfg:23
+#, kde-format
+msgid "This sets the separator used when copying/pasting text, default is Tab"
+msgstr ""
+"Acesta setează separatorul ce va fi folosit când se copiază sau lipește "
+"text, implicit este Tab"
+
+#. i18n: ectx: label, entry (EntriesPerLesson), group (General)
+#: src/settings/parley.kcfg:27
+#, fuzzy, kde-format
+#| msgid "The number of entries per lesson"
+msgid "The number of entries per unit"
+msgstr "Numărul intrărilor pe lecție"
+
+#. i18n: ectx: label, entry (AutoOpenLast), group (General)
+#: src/settings/parley.kcfg:31
+#, kde-format
+msgid "If true, on each application start the last opened file will be loaded"
+msgstr ""
+"Dacă este adevărat, la fiecare pornire a aplicației se va încărca fișierul "
+"deschis ultima oară "
+
+#. i18n: ectx: label, entry (AutoSave), group (General)
+#: src/settings/parley.kcfg:35
+#, kde-format
+msgid "If true, vocabularies are automatically saved on close and exit"
+msgstr ""
+"Dacă este adevărat, vocabularele sunt salvate automat când sunt închise sau "
+"la ieșire"
+
+#. i18n: ectx: label, entry (AutoBackup), group (General)
+#: src/settings/parley.kcfg:42
+#, kde-format
+msgid "If true, a backup is saved every BackupTime minutes"
+msgstr "Dacă este adevărat, se salvează un backup la fiecare BackupTime minute"
+
+#. i18n: ectx: label, entry (BackupTime), group (General)
+#: src/settings/parley.kcfg:46
+#, kde-format
+msgid "Time interval between two automatic backups"
+msgstr "Intervalul de timp dintre 2 backupuri automate"
+
+#. i18n: ectx: label, entry (FlashcardsFrontImage), group (PracticeOptions)
+#: src/settings/parley.kcfg:57
+#, kde-format
+msgid "Show images on the front of the flashcard."
+msgstr "Arată imaginile de pe partea din față a cardului de memorizare"
+
+#. i18n: ectx: label, entry (FlashcardsBackImage), group (PracticeOptions)
+#: src/settings/parley.kcfg:61
+#, kde-format
+msgid "Show images on the back of the flashcard."
+msgstr "Arată imaginile de pe partea din spate a cardului de memorizare"
+
+#. i18n: ectx: label, entry (Block), group (PracticeOptions)
+#: src/settings/parley.kcfg:65
+#, kde-format
+msgid "In Blocking Query Tab Dialog, if checked then the Query is blocked"
+msgstr ""
+"Dacă în Dialogul de blocare a interogărilor de file este bifat, atunci "
+"interogarea va fi blocată"
+
+#. i18n: ectx: label, entry (Expire), group (PracticeOptions)
+#: src/settings/parley.kcfg:69
+#, kde-format
+msgid ""
+"In Blocking Query Tab Dialog, if checked then the Query accepts an expiring "
+"time"
+msgstr ""
+"Dacă în Dialogul de blocare a interogărilor de file este bifat, atunci "
+"interogarea poate primi un timp de expirare"
+
+#. i18n: ectx: label, entry (TestOrderLesson), group (PracticeOptions)
+#: src/settings/parley.kcfg:73
+#, fuzzy, kde-format
+#| msgid ""
+#| "Append new vocabulary in a test in order of their lessons. Note that this "
+#| "will not be a hard transition, but a slow mix from one lesson to the next."
+msgid ""
+"Append new vocabulary in a collection in order of their units. Note that "
+"this will not be a hard transition, but a slow mix from one unit to the next."
+msgstr ""
+"Adaugă vocabulare noi într-un test în ordinea lecțiilor lor. Aceasta nu va "
+"fi o tranziție bruscă, ci un amestec încet de la o lecție la alta."
+
+#. i18n: ectx: label, entry (TestNumberOfEntries), group (PracticeOptions)
+#: src/settings/parley.kcfg:77
+#, kde-format
+msgid ""
+"The number of entries that are practiced at the same time. If one of these "
+"is answered correctly another entry will be appended."
+msgstr ""
+"Numărul intrărilor care sunt exersate simultan. Dacă se răspunde corect la "
+"una din ele, o altă intrare va fi adăugată."
+
+#. i18n: ectx: label, entry (SwapDirection), group (PracticeOptions)
+#: src/settings/parley.kcfg:81
+#, kde-format
+msgid "Swap direction randomly"
+msgstr "Schimbă direcția aleatoriu"
+
+#. i18n: ectx: label, entry (PracticeTimeout), group (PracticeOptions)
+#: src/settings/parley.kcfg:86
+#, kde-format
+msgid "Limit the time for the user to answer in a test."
+msgstr "Limitează timpul alocat unui utilizator ca să răspundă într-un test."
+
+#. i18n: ectx: label, entry (PracticeTimeoutMode), group (PracticeOptions)
+#: src/settings/parley.kcfg:90
+#, kde-format
+msgid ""
+"Show - show the solution after the given time; Continue - go to the next "
+"question after the given time."
+msgstr ""
+"Arată - arată soluția după timpul dat; Continuă - mergi la următoarea "
+"întrebare după timpul dat."
+
+#. i18n: ectx: label, entry (PracticeTimeoutTimePerAnswer), group (PracticeOptions)
+#: src/settings/parley.kcfg:98
+#, kde-format
+msgid "Maximum time allowed to answer."
+msgstr "Timpul maxim în care se poate răspunde."
+
+#. i18n: ectx: label, entry (Suggestions), group (PracticeOptions)
+#: src/settings/parley.kcfg:103
+#, kde-format
+msgid "Enable suggestion lists in written practice."
+msgstr "Permite liste cu suggesti la exersarea scrisă. "
+
+#. i18n: ectx: label, entry (ShowHints), group (PracticeOptions)
+#: src/settings/parley.kcfg:107
+#, kde-format
+msgid "Enable the showing of hints."
+msgstr "Permite afișarea de indicii."
+
+#. i18n: ectx: label, entry (IgnoreAccentMistakes), group (PracticeOptions)
+#: src/settings/parley.kcfg:111
+#, kde-format
+msgid "Count answers as right when only the accentuation is wrong."
+msgstr ""
+"Consideră răspunsurile ca fiind corecte când doar accentuația este greșită."
+
+#. i18n: ectx: label, entry (IgnoreCapitalizationMistakes), group (PracticeOptions)
+#: src/settings/parley.kcfg:115
+#, kde-format
+msgid "Count answers as right when only the capitalization is wrong."
+msgstr ""
+"Consideră răspunsurile ca fiind corecte când doar majusculele sau literele "
+"mici sunt greșite."
+
+#. i18n: ectx: label, entry (IgnorePunctuationMistakes), group (PracticeOptions)
+#: src/settings/parley.kcfg:119
+#, fuzzy, kde-format
+#| msgid "Count answers as right when only the accentuation is wrong."
+msgid "Count answers as right when only the punctuation is wrong."
+msgstr ""
+"Consideră răspunsurile ca fiind corecte când doar accentuația este greșită."
+
+#. i18n: ectx: label, entry (SplitTranslations), group (PracticeOptions)
+#: src/settings/parley.kcfg:124
+#, kde-format
+msgid "Split translations in written practice."
+msgstr "Împarte traducerile în exersarea scrisă."
+
+#. i18n: ectx: label, entry (Periods), group (PracticeOptions)
+#: src/settings/parley.kcfg:128
+#, kde-format
+msgid "Split translations at periods."
+msgstr "Împarte traducerile la punct."
+
+#. i18n: ectx: label, entry (Colons), group (PracticeOptions)
+#: src/settings/parley.kcfg:132
+#, kde-format
+msgid "Split translations at colons."
+msgstr "Împarte traducerile la două puncte."
+
+#. i18n: ectx: label, entry (Semicolons), group (PracticeOptions)
+#: src/settings/parley.kcfg:136
+#, kde-format
+msgid "Split translations at semicolons."
+msgstr "Împarte traducerile la punct și virgulă"
+
+#. i18n: ectx: label, entry (Commas), group (PracticeOptions)
+#: src/settings/parley.kcfg:140
+#, kde-format
+msgid "Split translations at commas."
+msgstr "Împarte traducerile la virgule."
+
+#. i18n: ectx: label, entry (ShowMore), group (PracticeOptions)
+#: src/settings/parley.kcfg:146
+#, kde-format
+msgid ""
+"Enable Show More button to reveal parts of the solution in written practice."
+msgstr ""
+"Activează butonul Arată mai mult pentru a vedea părți ale soluției în "
+"exersarea scrisă."
+
+#. i18n: ectx: label, entry (SkipKnownEnabled), group (PracticeOptions)
+#: src/settings/parley.kcfg:150
+#, kde-format
+msgid "Enable Skip (I Know It) button in written practice."
+msgstr "Activează butonul Sari peste (Știu deja) în exersarea scrisă."
+
+#. i18n: ectx: label, entry (CountSynonymsAsCorrect), group (PracticeOptions)
+#: src/settings/parley.kcfg:154
+#, kde-format
+msgid ""
+"When the synonym instead of the word was entered, does it count as correct?"
+msgstr ""
+"Se consideră corect când a fost introdus un sinonim în locul cuvântului?"
+
+#. i18n: ectx: label, entry (PracticeImagesEnabled), group (PracticeOptions)
+#: src/settings/parley.kcfg:158
+#, kde-format
+msgid "Enable image display in the practice dialogs."
+msgstr "Permite afișarea pozelor în dialogurile de exersare."
+
+#. i18n: ectx: label, entry (PracticeSoundEnabled), group (PracticeOptions)
+#: src/settings/parley.kcfg:162
+#, kde-format
+msgid "Enable sound playback in the practice dialogs."
+msgstr "Permite redarea sunetelor în dialogurile de exersare."
+
+#. i18n: ectx: label, entry (AllowImageInsteadOfWord), group (PracticeOptions)
+#: src/settings/parley.kcfg:166
+#, fuzzy, kde-format
+#| msgid "Show images on the back of the flashcard."
+msgid ""
+"Allow using images instead of words in flashcards. This will only be done if "
+"there is no word in the entry."
+msgstr "Arată imaginile de pe partea din spate a cardului de memorizare"
+
+#. i18n: ectx: label, entry (SessionMaxSize), group (PracticeOptions)
+#: src/settings/parley.kcfg:172
+#, kde-format
+msgid ""
+"The maximum number of words that will be practiced in a training session."
+msgstr ""
+
+#. i18n: ectx: label, entry (SessionMaxNewWords), group (PracticeOptions)
+#: src/settings/parley.kcfg:176
+#, kde-format
+msgid ""
+"The maximum number of new (untrained) words that will be used in a training "
+"session."
+msgstr ""
+
+#. i18n: ectx: label, entry (SessionLimitWordsInitialPhase), group (PracticeOptions)
+#: src/settings/parley.kcfg:180
+#, kde-format
+msgid "Limit the number of words in the initial phase."
+msgstr ""
+
+#. i18n: ectx: label, entry (SessionMaxWordsInitialPhase), group (PracticeOptions)
+#: src/settings/parley.kcfg:184
+#, kde-format
+msgid ""
+"The maximum number of words in the initial phase. If this limit is exceeded, "
+"no new words will be introduced."
+msgstr ""
+
+#. i18n: ectx: label, entry (MultipleChoiceWordTypeConsistancy), group (PracticeOptions)
+#: src/settings/parley.kcfg:190
+#, kde-format
+msgid ""
+"Use the same word type as the solution for the incorrect answers in a "
+"multiple choice practice."
+msgstr ""
+"Folosește aceleași tipuri de cuvinte ca și soluția pentru răspunsurile "
+"incorecte într-un exercițiu cu mai multe variante."
+
+#. i18n: ectx: label, entry (NumberMultipleChoiceAnswers), group (PracticeOptions)
+#: src/settings/parley.kcfg:194
+#, kde-format
+msgid ""
+"How many answers are provided for a multiple choice question, including the "
+"correct answer."
+msgstr ""
+"Câte răspunsuri sunt date la întrebările cu mai multe variante, incluzând "
+"răspunsul corect."
+
+#. i18n: ectx: label, entry (ShowSearch), group (Appearance)
+#: src/settings/parley.kcfg:201
+#, kde-format
+msgid "Toggle display of the search bar."
+msgstr "Comută afișarea barei de căutare."
+
+#. i18n: ectx: label, entry (ShowSublessonentries), group (Appearance)
+#: src/settings/parley.kcfg:206
+#, fuzzy, kde-format
+#| msgid "When enabled a lesson also shows entries from its sublessons."
+msgid "When enabled a unit also shows entries from its subunits."
+msgstr "Când este activată, o lecție afișează intrări și de la sublecțiile ei."
+
+#. i18n: ectx: label, entry (TableLessonColumnVisible), group (Appearance)
+#: src/settings/parley.kcfg:211
+#, fuzzy, kde-format
+#| msgid "Show/hide the lesson column."
+msgid "Show/hide the unit column."
+msgstr "Arată/ascunde coloana cu lecții."
+
+#. i18n: ectx: label, entry (TableActiveColumnVisible), group (Appearance)
+#: src/settings/parley.kcfg:216
+#, kde-format
+msgid "Show/hide the active column."
+msgstr "Arată/ascunde coloana activă."
+
+#. i18n: ectx: label, entry (LessonEditingSelection), group (Appearance)
+#: src/settings/parley.kcfg:221
+#, fuzzy, kde-format
+#| msgid "Select which lessons are displayed for editing"
+msgid "Select which units are displayed for editing"
+msgstr "Selectați care lecții să fie afișate pentru editare"
+
+#. i18n: ectx: label, entry (MainWindowSplitter), group (Appearance)
+#: src/settings/parley.kcfg:231
+#, kde-format
+msgid "How the main window is divided."
+msgstr "Cum este împărțită fereastra principală."
+
+#. i18n: ectx: label, entry (PracticeFont), group (Appearance)
+#: src/settings/parley.kcfg:235
+#, kde-format
+msgid "The font used in the vocabulary table"
+msgstr "Fontul folosit în tabelul de vocabulare."
+
+#. i18n: ectx: label, entry (IPAFont), group (Appearance)
+#: src/settings/parley.kcfg:239
+#, kde-format
+msgid "The font used for phonetics"
+msgstr "Fontul folosit pentru fonetică."
+
+#. i18n: ectx: label, entry (CurrentCol), group (Appearance)
+#: src/settings/parley.kcfg:243
+#, kde-format
+msgid "Currently selected column"
+msgstr "Coloane selectată acum"
+
+#. i18n: ectx: label, entry (CurrentRow), group (Appearance)
+#: src/settings/parley.kcfg:247
+#, kde-format
+msgid "Currently selected row"
+msgstr "Rândul selectat acum"
+
+#. i18n: ectx: label, entry (GradeColor), group (Appearance)
+#: src/settings/parley.kcfg:251
+#, fuzzy, kde-format
+#| msgid "Colors used to display different grades"
+msgid "Color used to display the confidence levels"
+msgstr "Culori folosite pentru a afișa diferite note"
+
+#. i18n: ectx: label, entry (PreGradeColor), group (Appearance)
+#: src/settings/parley.kcfg:255
+#, fuzzy, kde-format
+#| msgid "Colors used to display different grades"
+msgid "Color used to display the early confidence levels"
+msgstr "Culori folosite pentru a afișa diferite note"
+
+#. i18n: ectx: label, entry (InvalidUnitColor), group (Appearance)
+#. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_InvalidUnitColor)
+#: src/settings/parley.kcfg:259 src/settings/viewoptionsbase.ui:190
+#, fuzzy, kde-format
+#| msgid "Colors used to display different grades"
+msgid "Color used to display invalid units"
+msgstr "Culori folosite pentru a afișa diferite note"
+
+#. i18n: ectx: label, entry (PracticeMinimumTimesAsked), group (Thresholds)
+#: src/settings/parley.kcfg:267
+#, kde-format
+msgid ""
+"The entry must have been asked at least this often to be included in the "
+"practice."
+msgstr ""
+"Intrarea aceasta trebuie să fi fost întrebată de cel puțin atâtea ori pentru "
+"a fi inclusă în exersare."
+
+#. i18n: ectx: label, entry (PracticeMaximumTimesAsked), group (Thresholds)
+#: src/settings/parley.kcfg:271
+#, kde-format
+msgid ""
+"The entry must have been asked at most this often to be included in the "
+"practice."
+msgstr ""
+"Intrarea aceasta trebuie să fi fost întrebată de cel mult atâtea ori pentru "
+"a fi inclusă în exersare."
+
+#. i18n: ectx: label, entry (PracticeMinimumWrongCount), group (Thresholds)
+#: src/settings/parley.kcfg:276
+#, kde-format
+msgid ""
+"The entry must have been answered incorrectly at least this often to be "
+"included in the practice."
+msgstr ""
+"La intrarea aceasta trebuie să se fi răspuns incorect de cel puțin atâtea "
+"ori pentru a fi inclusă în exersare."
+
+#. i18n: ectx: label, entry (PracticeMaximumWrongCount), group (Thresholds)
+#: src/settings/parley.kcfg:280
+#, kde-format
+msgid ""
+"The entry must have been answered incorrectly at most this often to be "
+"included in the practice."
+msgstr ""
+"La intrarea aceasta trebuie să se fi răspuns incorect de cel mult atâtea ori "
+"pentru a fi inclusă în exersare."
+
+#. i18n: ectx: label, entry (PracticeMinimumGrade), group (Thresholds)
+#: src/settings/parley.kcfg:285
+#, fuzzy, kde-format
+#| msgid ""
+#| "The entry must have at least this grade to be included in the practice "
+#| "(0..7)."
+msgid ""
+"The entry must have at least this confidence level to be included in the "
+"practice (0..7)."
+msgstr ""
+"Intrarea trebuie să aibă cel puțin nota aceasta pentru a fi inclusă în "
+"exersare (0..7)."
+
+#. i18n: ectx: label, entry (PracticeMaximumGrade), group (Thresholds)
+#: src/settings/parley.kcfg:289
+#, fuzzy, kde-format
+#| msgid ""
+#| "The entry must have at most this grade to be included in the practice "
+#| "(0..7)."
+msgid ""
+"The entry must have at most this confidence level to be included in the "
+"practice (0..7)."
+msgstr ""
+"Intrarea trebuie să aibă cel mult nota aceasta pentru a fi inclusă în "
+"exersare (0..7)."
+
+#. i18n: ectx: label, entry (WordTypesInPracticeEnabled), group (Thresholds)
+#: src/settings/parley.kcfg:293
+#, kde-format
+msgid "Only selected word types will be included in practice."
+msgstr "Doar tipurile de cuvinte selectate vor fi incluse în exersare"
+
+#. i18n: ectx: label, entry (WordTypesInPractice), group (Thresholds)
+#. i18n: ectx: whatsthis, entry (WordTypesInPractice), group (Thresholds)
+#: src/settings/parley.kcfg:297 src/settings/parley.kcfg:298
+#, kde-format
+msgid "Selected word types for practices."
+msgstr "Tipurile de cuvinte selectate pentru exersare."
+
+#. i18n: ectx: label, entry (SubWordTypesInPractice), group (Thresholds)
+#. i18n: ectx: whatsthis, entry (SubWordTypesInPractice), group (Thresholds)
+#: src/settings/parley.kcfg:301 src/settings/parley.kcfg:302
+#, kde-format
+msgid "Selected sub word types for practices."
+msgstr "Subtipurile de cuvinte selectate pentru exersare."
+
+#. i18n: ectx: label, entry (LearningLanguage), group (PracticeManager)
+#: src/settings/parley.kcfg:309
+#, fuzzy, kde-format
+#| msgid "The language that is displayed in a test."
+msgid "The language that you are learning."
+msgstr "Limba care se afișează într-un test."
+
+#. i18n: ectx: label, entry (KnownLanguage), group (PracticeManager)
+#: src/settings/parley.kcfg:313
+#, fuzzy, kde-format
+#| msgid "The language in which the user has to answer."
+msgid "The language that you know already."
+msgstr "Limba în care utilizatorul trebuie să răspundă."
+
+#. i18n: ectx: label, entry (ShowSolutionAfterAnswer), group (PracticeManager)
+#: src/settings/parley.kcfg:318
+#, kde-format
+msgid "Show the solution after an answer was given."
+msgstr "Arată soluția după ce s-a dat un răspuns."
+
+#. i18n: ectx: label, entry (ShowSolutionAfterAnswerTime), group (PracticeManager)
+#: src/settings/parley.kcfg:322
+#, kde-format
+msgid "The time the solution is shown (seconds). 0 is unlimited."
+msgstr "Timpul cât este arătată soluția (în secunde). 0 reprezintă nelimitat."
+
+#. i18n: ectx: label, entry (PracticeMode), group (PracticeManager)
+#: src/settings/parley.kcfg:337
+#, fuzzy, kde-format
+#| msgid "The practice mode that is currently selected."
+msgid "The practice method that is currently selected."
+msgstr "Modul de exersare care este selectat acuma."
+
+#. i18n: ectx: label, entry (PracticeDirection), group (PracticeManager)
+#: src/settings/parley.kcfg:348
+#, kde-format
+msgid "The practice mode that is currently selected."
+msgstr "Modul de exersare care este selectat acuma."
+
+#. i18n: ectx: label, entry (BlockItem$(Grade)), group (PracticeManager)
+#: src/settings/parley.kcfg:354
+#, fuzzy, kde-format
+#| msgid "Amount of time different grades should be blocked"
+msgid "Amount of time different confidence levels should be blocked"
+msgstr "Timpul cât ar trebui să fie blocate notele diferite"
+
+#. i18n: ectx: label, entry (ExpireItem$(Grade)), group (PracticeManager)
+#: src/settings/parley.kcfg:365
+#, fuzzy, kde-format
+#| msgid "Amount of time after which different grades should expire"
+msgid "Amount of time after which different confidence levels should expire"
+msgstr "Timpul dupa care notele diferite expira"
+
+#. i18n: ectx: label, entry (RememberPracticeDirection), group (PracticeManager)
+#: src/settings/parley.kcfg:375
+#, kde-format
+msgid "If true, the practice direction for each practice mode is stored."
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (RememberPracticeDirection), group (PracticeManager)
+#: src/settings/parley.kcfg:376
+#, kde-format
+msgid "Should the practice direction for each practice mode be stored?"
+msgstr ""
+
+#. i18n: ectx: label, entry (PracticeDirectionsByPracticeMode), group (PracticeManager)
+#. i18n: ectx: whatsthis, entry (PracticeDirectionsByPracticeMode), group (PracticeManager)
+#: src/settings/parley.kcfg:380 src/settings/parley.kcfg:381
+#, kde-format
+msgid "Stored values of practice direction for each practice mode."
+msgstr ""
+
+#. i18n: ectx: label, entry (ProvidersUrl), group (KNewStuff)
+#: src/settings/parley.kcfg:387
+#, kde-format
+msgid "The Providers path for Parley"
+msgstr "Calea The Providers pentru Parley"
+
+#. i18n: ectx: label, entry (InstallationCommand), group (KNewStuff)
+#: src/settings/parley.kcfg:391
+#, kde-format
+msgid "The command used to start a downloaded vocabulary"
+msgstr "Comanda folosită pentru a porni un vocabular descărcat"
+
+#. i18n: ectx: label, entry (InstallPath), group (KNewStuff)
+#: src/settings/parley.kcfg:395
+#, kde-format
+msgid "The folder where downloaded vocabularies are saved by default"
+msgstr "Dosarul unde sunt salvate implicit vocabularele descărcate"
+
+#: src/settings/parleyprefs.cpp:24
+#, kde-format
+msgid "Theme"
+msgstr "Temă"
+
+#: src/settings/parleyprefs.cpp:27
+#, kde-format
+msgctxt "title:window general settings"
+msgid "General"
+msgstr "General"
+
+#: src/settings/parleyprefs.cpp:27
+#, kde-format
+msgid "General Settings"
+msgstr "Opțiuni generale"
+
+#: src/settings/parleyprefs.cpp:30
+#, kde-format
+msgid "View"
+msgstr "Vizualizare"
+
+#: src/settings/parleyprefs.cpp:30
+#, kde-format
+msgid "View Settings"
+msgstr "Opțiuni vizualizare "
+
+#: src/settings/parleyprefs.cpp:33
+#, fuzzy, kde-format
+#| msgid "Automatic Translation"
+msgid "Online Translations"
+msgstr "Traducere automată"
+
+#: src/settings/parleyprefs.cpp:33
+#, fuzzy, kde-format
+#| msgid "Split translations at periods."
+msgid "Online Translation Services"
+msgstr "Împarte traducerile la punct."
+
+#: src/settings/translationshelloptions.cpp:20
+#, kde-format
+msgid "translate-shell is available."
+msgstr ""
+
+#: src/settings/translationshelloptions.cpp:23
+#, kde-format
+msgid "translate-shell executable could not be found."
+msgstr ""
+
+#: src/settings/translationshelloptions.cpp:38
+#, kde-format
+msgid "Error"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBoxInstalledStatus)
+#: src/settings/translationshellpage.ui:18
+#, kde-format
+msgid "Translation Shell Integration"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/settings/translationshellpage.ui:52
+#, kde-format
+msgid "Run Interactive Functionality Test"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: src/settings/translationshellpage.ui:58
+#, kde-format
+msgid ""
+"The interaction test request translation of English word \"parley\" into "
+"German."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QToolButton, buttonRunTest)
+#: src/settings/translationshellpage.ui:68
+#, kde-format
+msgid "Start online test"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: src/settings/translationshellpage.ui:88
+#, kde-format
+msgid "Result:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, labelResultArea)
+#: src/settings/translationshellpage.ui:101
+#, fuzzy, kde-format
+#| msgid "&New..."
+msgid "..."
+msgstr "&Nou..."
+
+#. i18n: ectx: property (whatsThis), widget (KFontRequester, kcfg_IPAFont)
+#: src/settings/viewoptionsbase.ui:47
+#, kde-format
+msgid ""
+"Specify which font to use for displaying pronunciations using phonetic "
+"symbols."
+msgstr ""
+"Specificați ce font să fie folosit la afișarea pronunțării folosind "
+"simboluri fonetice."
+
+#. i18n: ectx: property (text), widget (QLabel, IPAFontLabel)
+#: src/settings/viewoptionsbase.ui:54
+#, fuzzy, kde-format
+#| msgid "Pronunciation"
+msgid "&Pronunciation symbols font:"
+msgstr "Pronunțare"
+
+#. i18n: ectx: property (text), widget (QLabel, gradeColorLabel)
+#: src/settings/viewoptionsbase.ui:83
+#, fuzzy, kde-format
+#| msgid "Colors used to display different grades"
+msgid "Base color for displaying grades:"
+msgstr "Culori folosite pentru a afișa diferite note"
+
+#. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_GradeColor)
+#: src/settings/viewoptionsbase.ui:102
+#, fuzzy, kde-format
+#| msgid "Colors used to display different grades"
+msgid "Color used to display the progress"
+msgstr "Culori folosite pentru a afișa diferite note"
+
+#. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_GradeColor)
+#: src/settings/viewoptionsbase.ui:105
+#, fuzzy, kde-format
+#| msgid "Click here to change the color for grade 7."
+msgid "Click here to change the color used to display the progress."
+msgstr "Faceți click aici pentru a schimba culoarea notei 7."
+
+#. i18n: ectx: property (text), widget (KColorButton, kcfg_GradeColor)
+#. i18n: ectx: property (text), widget (KColorButton, kcfg_PreGradeColor)
+#. i18n: ectx: property (text), widget (KColorButton, kcfg_InvalidUnitColor)
+#: src/settings/viewoptionsbase.ui:108 src/settings/viewoptionsbase.ui:152
+#: src/settings/viewoptionsbase.ui:196
+#, kde-format
+msgid "&Base"
+msgstr ""
+
+#. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_GradeColor)
+#: src/settings/viewoptionsbase.ui:111
+#, fuzzy, kde-format
+#| msgid "Alt+7"
+msgid "Alt+0"
+msgstr "Alt+7"
+
+#. i18n: ectx: property (text), widget (QLabel, preGradeColorLabel)
+#: src/settings/viewoptionsbase.ui:127
+#, fuzzy, kde-format
+#| msgid "Colors used to display different grades"
+msgid "Color for displaying early progress:"
+msgstr "Culori folosite pentru a afișa diferite note"
+
+#. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_PreGradeColor)
+#: src/settings/viewoptionsbase.ui:146
+#, fuzzy, kde-format
+#| msgid "Colors used to display different grades"
+msgid "Color used to display the early progress"
+msgstr "Culori folosite pentru a afișa diferite note"
+
+#. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_PreGradeColor)
+#: src/settings/viewoptionsbase.ui:149
+#, fuzzy, kde-format
+#| msgid "Click here to change the color for grade 7."
+msgid "Click here to change the color used to display the early progress."
+msgstr "Faceți click aici pentru a schimba culoarea notei 7."
+
+#. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_PreGradeColor)
+#: src/settings/viewoptionsbase.ui:155
+#, kde-format
+msgid "Alt+1"
+msgstr "Alt+1"
+
+#. i18n: ectx: property (text), widget (QLabel, invalidUnitColorLabel)
+#: src/settings/viewoptionsbase.ui:171
+#, fuzzy, kde-format
+#| msgid "Colors used to display different grades"
+msgid "Color used to display the grades:"
+msgstr "Culori folosite pentru a afișa diferite note"
+
+#. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_InvalidUnitColor)
+#: src/settings/viewoptionsbase.ui:193
+#, fuzzy, kde-format
+#| msgid "Click here to change the color for grade 7."
+msgid "Click here to change the color used to display invalid units."
+msgstr "Faceți click aici pentru a schimba culoarea notei 7."
+
+#. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_InvalidUnitColor)
+#: src/settings/viewoptionsbase.ui:199
+#, kde-format
+msgid "Alt+2"
+msgstr "Alt+2"
+
+#: src/statistics/lessonstatisticsview.cpp:74
+#: src/statistics/lessonstatisticsview.cpp:76
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Remove confidence levels from this unit"
+msgstr "Eliminați toate notele de la această lecție"
+
+#: src/statistics/lessonstatisticsview.cpp:84
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Remove confidence levels from this unit and all sub-units"
+msgstr "Eliminați toate notele de la această lecție"
+
+#: src/statistics/lessonstatisticsview.cpp:86
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Remove confidence level from this unit and all sub-units"
+msgstr "Eliminați toate notele de la această lecție"
+
+#: src/statistics/statisticslegendwidget.cpp:27
+#, kde-format
+msgid "Progress gradients"
+msgstr ""
+
+#: src/statistics/statisticslegendwidget.cpp:28
+#, kde-format
+msgid "Early progress"
+msgstr ""
+
+#: src/statistics/statisticslegendwidget.cpp:29
+#, fuzzy, kde-format
+#| msgid "Not &practiced:"
+msgid "Not Practiced"
+msgstr "Ne&exersat:"
+
+#: src/statistics/statisticslegendwidget.cpp:30
+#, kde-format
+msgid "Invalid Entries"
+msgstr ""
+
+#: src/statistics/statisticslegendwidget.cpp:46
+#, kde-format
+msgctxt "adjective, The word has been properly and fully learned by the user"
+msgid "Fully learned"
+msgstr ""
+
+#: src/statistics/statisticslegendwidget.cpp:47
+#, fuzzy, kde-format
+#| msgid "Not &practiced:"
+msgctxt "adjective, The word has not even been practiced once by the user"
+msgid "Not practiced"
+msgstr "Ne&exersat:"
+
+#: src/statistics/statisticsmainwindow.cpp:193
+#, kde-format
+msgid "Known to Learning"
+msgstr ""
+
+#: src/statistics/statisticsmainwindow.cpp:194
+#, kde-format
+msgid "Learning to Known"
+msgstr ""
+
+#: src/statistics/statisticsmainwindow.cpp:195
+#, fuzzy, kde-format
+#| msgid "Mixed Letters"
+msgid "Mixed Directions"
+msgstr "Litere amestecate"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/statistics/statisticsmainwindow.ui:29
+#, fuzzy, kde-format
+#| msgid "Language Selection"
+msgid "Language to Learn"
+msgstr "Alegere limbă"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: src/statistics/statisticsmainwindow.ui:39
+#, fuzzy, kde-format
+#| msgid "New Language"
+msgid "Known Language"
+msgstr "Limbă nouă"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBoxPracticeMode)
+#: src/statistics/statisticsmainwindow.ui:75
+#, fuzzy, kde-format
+#| msgid "Practice Mode:"
+msgid "Practice Mode"
+msgstr "Mod de exersare:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, flashCard)
+#: src/statistics/statisticsmainwindow.ui:81
+#, kde-format
+msgid "Flash Cards"
+msgstr "Carduri de memorizare"
+
+#. i18n: ectx: property (text), widget (QRadioButton, mixedLetters)
+#: src/statistics/statisticsmainwindow.ui:91
+#, fuzzy, kde-format
+#| msgid "Mixed Letters"
+msgid "Mixed &Letters"
+msgstr "Litere amestecate"
+
+#. i18n: ectx: property (text), widget (QRadioButton, multipleChoice)
+#: src/statistics/statisticsmainwindow.ui:98
+#, fuzzy, kde-format
+#| msgid "Multiple Choice"
+msgid "M&ultiple Choice"
+msgstr "Selecție multiplă"
+
+#. i18n: ectx: property (text), widget (QRadioButton, written)
+#: src/statistics/statisticsmainwindow.ui:105
+#, fuzzy, kde-format
+#| msgid "Written"
+msgid "Wri&tten"
+msgstr "Scrise"
+
+#. i18n: ectx: property (text), widget (QRadioButton, exampleSentence)
+#: src/statistics/statisticsmainwindow.ui:115
+#, fuzzy, kde-format
+#| msgid "Example Sentences"
+msgid "E&xample Sentences"
+msgstr "Propoziții exemplu"
+
+#. i18n: ectx: property (text), widget (QRadioButton, gender)
+#: src/statistics/statisticsmainwindow.ui:125
+#, fuzzy, kde-format
+#| msgid "Gender of Nouns"
+msgid "&Gender of Nouns"
+msgstr "Genul substantivelor"
+
+#. i18n: ectx: property (text), widget (QRadioButton, conjugations)
+#: src/statistics/statisticsmainwindow.ui:145
+#, fuzzy, kde-format
+#| msgid "Conjugations"
+msgid "Co&njugations"
+msgstr "Conjugări"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBoxPracticeDirection)
+#: src/statistics/statisticsmainwindow.ui:191
+#, fuzzy, kde-format
+#| msgid "Practice Dialogs"
+msgid "Practice Direction"
+msgstr "Dialoguri de exersare"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rememberPracticeDirection)
+#: src/statistics/statisticsmainwindow.ui:200
+#, kde-format
+msgid "Remember for each Practice Mode"
+msgstr ""
+
+#: src/statistics/statisticsmodel.cpp:26
+#, kde-format
+msgctxt "Confidence level in language, table header"
+msgid "Confidence (%1)"
+msgstr ""
+
+#, fuzzy
+#~| msgid "Grades from %1 to %2"
+#~ msgid "Confidence Levels from %1 to %2"
+#~ msgstr "Note de la %1 la %2"
+
+#~ msgid "&Help"
+#~ msgstr "&Ajutor"
+
+#, fuzzy
+#~| msgid ""
+#~| "<p>Parley enables you to edit many additional properties of the words "
+#~| "you enter.</p>\n"
+#~| "<p>Use \"Settings\" -> \"Tools\" to enable different tools that will "
+#~| "help you set additional information for your vocabulary. These include "
+#~| "images, sound, word types and many more. Choose the ones you like.</p>\n"
+#~ msgid ""
+#~ "<p>Parley enables you to edit many additional properties of the words you "
+#~ "enter.</p>\n"
+#~ "<p>Use \"View -> ...\" check boxes to enable different information that "
+#~ "will help you set additional information for your vocabulary. These "
+#~ "include Image, Sound, Word Types and many more. Choose the ones you like."
+#~ "</p>\n"
+#~ msgstr ""
+#~ "<p>Parley vă oferă posibilitatea de a modifica multe alte proprietăți ale "
+#~ "cuvintelor pe care le introduceți.</p>\n"
+#~ "<p>Folosiți ”Setări” -> ”Unelte” ca să activați diferite unelte care vă "
+#~ "vor ajuta să setați informații adiționale pentru vocabularul "
+#~ "dumneavoastră. Acestea includ imagini, sunete, tipuri de cuvinte și multe "
+#~ "altele. Alegeți-le pe care le doriți .</p>\n"
+
+#~ msgid ""
+#~ "<p>To <em>search</em> for a word, simply type it into the search bar.</"
+#~ "p>\n"
+#~ msgstr ""
+#~ "<p>Pentru a <em>căuta</em> un cuvânt, pur și simplu introduceți-l în bara "
+#~ "de căutare.</p>\n"
+
+#, fuzzy
+#~| msgid ""
+#~| "<p>If you want to see all words of a certain word type (e.g. nouns), "
+#~| "simply select the word type in the list.</p>\n"
+#~| "<p>To show the word type list, use \"Settings\" -> \"Tools\" -> \"Word "
+#~| "Types\" in the menu.</p>\n"
+#~ msgid ""
+#~ "<p>If you want to see all words of a certain word type (e.g. nouns), "
+#~ "simply select the word type in the list.</p>\n"
+#~ "<p>To show the word type list, use \"View -> Word Types\" check box.</p>\n"
+#~ msgstr ""
+#~ "<p>Dacă vreți să vedeți toate cuvintele de un anumit tip de cuvinte (de "
+#~ "exemplu substantive), pur și simplu selectați acel tip de cuvinte din "
+#~ "listă.</p>\n"
+#~ "<p>Pentru a vedea lista cu tipurile de cuvinte, folosiți \"Setări\" -> "
+#~ "\"Unelte\" -> ”Tipuri de cuvinte\" din meniu.</p>\n"
+
+#~ msgid ""
+#~ "<p>You can drag and drop your lessons to change their order or even make "
+#~ "a lesson a child of another lesson.</p>\n"
+#~ msgstr ""
+#~ "<p>Puteți să trageți și să plasați lecțiile dumneavoastră pentru a le "
+#~ "schimba ordinea sau chiar și pentru a face o lecție sublecția altei "
+#~ "lecții.</p>\n"
+
+#~ msgid ""
+#~ "<p>You can simply drag a word into the word types list to change its type."
+#~ "</p>\n"
+#~ "<p>You can even select multiple words at the same time.</p>\n"
+#~ msgstr ""
+#~ "<p>Puteți să trageți un cuvânt în lista de tipuri de cuvinte ca să îi "
+#~ "schimbați tipul.</p>\n"
+#~ "<p>Puteți chiar să selectați mai multe cuvinte deodată.</p>\n"
+
+#~ msgid ""
+#~ "<p><em>Setting Images</em></p>\n"
+#~ "<p>A fast way to set an image for a word is to simply drop it onto the "
+#~ "image dock.</p>\n"
+#~ msgstr ""
+#~ "<p><em>Setarea imaginilor</em></p>\n"
+#~ "<p>O metodă rapidă de a seta o imagine pentru un cuvânt este să o trageți "
+#~ "și să o lăsați peste docul de imagini.</p>\n"
+
+#~ msgid ""
+#~ "<p><em>Word Types</em></p>\n"
+#~ "<p>You can set a special tag to some word types to let Parley know their "
+#~ "grammatical meaning.</p>\n"
+#~ "<p>For verbs for example you can then enter conjugations.</p>\n"
+#~ msgstr ""
+#~ "<p><em>Tipuri de cuvinte</em></p>\n"
+#~ "<p>Puteți să adăugați o etichetă specială unori tipuri de cuvinte pentru "
+#~ "ca Parley să știe semnificația lor gramaticală.</p>\n"
+#~ "<p>De exemplu, pentru verbe puteți introduce conjugările lor.</p>\n"
+
+#~ msgid ""
+#~ "<p><em>Multiple Choice</em></p>\n"
+#~ "<p>For some vocabularies multiple choice tests work best. You can add "
+#~ "choices to a word that will always be displayed in Multiple Choice mode. "
+#~ "Otherwise random choices are generated from the other entries in the "
+#~ "document. (Use the Multiple Choice tool for that.)</p>\n"
+#~ msgstr ""
+#~ "<p><em>Întrebări cu mai multe variante de răspuns</em></p>\n"
+#~ "<p>Pentru unele vocabulare întrebările cu mai multe variante de răspuns "
+#~ "funcționează cel mai bine. Puteți să adăugați opțiuni la un cuvânt care "
+#~ "vor fi afișate întotdeauna în modul cu mai multe variante de răspuns. "
+#~ "Altfel sunt folosite opțiuni aleatorii din alte intrări din documente. "
+#~ "(Folosiți unealta pentru mai multe variante de răspuns pentru aia.) </p>\n"
+
+#~ msgid ""
+#~ "<p>Want to enter pronunciation symbols quickly? <em>Double-click</em> the "
+#~ "symbol you need to directly add it.</p>\n"
+#~ msgstr ""
+#~ "<p>Vreți să adăugați simboluri fonetice repede? <em>Dublu-click</em> "
+#~ "pesimbolul de care aveți nevoie ca să îl adăugați direct.</p>\n"
+
+#, fuzzy
+#~| msgid ""
+#~| "<p>You can use the \"Download New Vocabulary\" dialog or visit the "
+#~| "website listing many vocabulary documents:\n"
+#~| "<a href=\"http://edu.kde.org/contrib/kvtml2.php\">http://edu.kde.org/"
+#~| "contrib/kvtml2.php</a>.</p>\n"
+#~ msgid ""
+#~ "<p>You can use the \"Download New Vocabulary\" dialog or visit the "
+#~ "website listing many vocabulary documents:\n"
+#~ "<a href=\"https://edu.kde.org/contrib/kvtml2.php\">https://edu.kde.org/"
+#~ "contrib/kvtml2.php</a>.</p>\n"
+#~ msgstr ""
+#~ "<p>Puteți folosi dialogul ”Descărcare vocabular nou” sau puteți vizita "
+#~ "siteul care conține multe documente de vocabular:\n"
+#~ "<a href=\"http://edu.kde.org/contrib/kvtml2.php\">http://edu.kde.org/"
+#~ "contrib/kvtml2.php</a>.</p>\n"
+
+#~ msgid "Comparison forms"
+#~ msgstr "Grade de comparație"
+
+#~ msgid "Grade"
+#~ msgstr "Nota"
+
+#~ msgid ""
+#~ "<p>If you do not want to see the answer again after pressing enter when "
+#~ "practicing, you can configure Parley to directly skip to the next entry.</"
+#~ "p>\n"
+#~ "<p>You can even choose to display the answer for a fixed amount of time. "
+#~ "Use \"Configure Practice...\" -> \"Advanced\" -> \"Show solution after "
+#~ "answering\".</p>\n"
+#~ msgstr ""
+#~ "<p>Dacă nu vreți să mai vedeți răspunsul după ce ați apăsat tasta enter "
+#~ "în timpul exersării, puteți configura Parley să sară automat la intrarea "
+#~ "următoare.</p>\n"
+#~ "<p>Puteți chiar să alegeți să arate răspunsul pentru o perioadă fixă de "
+#~ "timp. Folosiți ”Configurează exersare...”->”Avansat”->”Arată răspunsul "
+#~ "după ce am răspuns”.</p>\n"
+
+#, fuzzy
+#~| msgid "Sound"
+#~ msgid "Fetch Sound"
+#~ msgstr "Sunet"
+
+#~ msgid "&Scripts"
+#~ msgstr "&Scripturi"
+
+#~ msgid "&Script Manager"
+#~ msgstr "Manager de &scripturi"
+
+#~ msgid "Enable and disable scripts"
+#~ msgstr "Activează și dezactivează scripturi"
+
+#~ msgid "The script file does not exist."
+#~ msgstr "Fișerul script nu există."
+
+#~ msgid "Error in file %1 at line %2:"
+#~ msgstr "Eroare în fișierul %1 la linia %2:"
+
+#~ msgctxt "debug information in error message"
+#~ msgid "Backtrace:"
+#~ msgstr "Stiva de apelur"
+
+#~ msgid "Script Dialog"
+#~ msgstr "Dialogul scriptului"
+
+#~ msgid "A script could not be activated and has been disabled."
+#~ msgid_plural "%1 scripts could not be activated and have been disabled."
+#~ msgstr[0] "Un script nu a putut fi activat și a fost dezactivat."
+#~ msgstr[1] "%1 scripturi nu a putut fi activate și au fost dezactivate."
+#~ msgstr[2] "%1 de scripturi nu a putut fi activate și au fost dezactivate."
+
+#~ msgid ""
+#~ "This probably means that there are errors in the script or that the "
+#~ "required packages are not installed."
+#~ msgstr ""
+#~ "Aceasta probabil înseamnă că au fost erori în script și că pachetele "
+#~ "necesare nu sunt instalate."
+
+#~ msgid "Script Activation"
+#~ msgstr "Activare script"
+
+#~ msgid "&Upload Vocabulary Document..."
+#~ msgstr "Încărcă doc&ument de vocabular"
+
+#~ msgid "Share the current vocabulary collection with other users"
+#~ msgstr "Partajează colecția curentă de vocabulare cu alți utilizatori"
+
+#, fuzzy
+#~| msgid "Could not start practice"
+#~ msgid "Could not create temporary directory \"%1\""
+#~ msgstr "Nu s-a putut începe exersarea"
+
+#, fuzzy
+#~| msgid "Downloads new vocabulary collections"
+#~ msgid "Could not save vocabulary collection \"%1\""
+#~ msgstr "Descărcare colecții de vocabulare noi..."
+
+#~ msgid "Vocabulary collection:"
+#~ msgstr "Colecția de vocabular:"
+
+#~ msgid "Language Selection"
+#~ msgstr "Alegere limbă"
+
+#~ msgid "Top:"
+#~ msgstr "Sus:"
+
+#~ msgid "Bottom:"
+#~ msgstr "Jos:"
+
+#~ msgid "Reveal solution when mouse cursor is over the widget"
+#~ msgstr "Dezvăluie soluția când cursorul maus este peste widget"
+
+#~ msgid "Always show the solution"
+#~ msgstr "Arată soluția tot timpul"
+
+#~ msgid "Update interval:"
+#~ msgstr "Intervalul de reîmprospătare:"
+
+#~ msgid "Select Font..."
+#~ msgstr "Alegeți font..."
+
+#~ msgid " second"
+#~ msgid_plural " seconds"
+#~ msgstr[0] "secundă"
+#~ msgstr[1] "secunde"
+#~ msgstr[2] "de secunde"
+
+#~ msgid "*.kvtml|Vocabulary Collections"
+#~ msgstr "*.kvtml|Colecții de Vocabular"
+
+#, fuzzy
+#~| msgid "Total number of entries:"
+#~ msgid "Max number of words in the initial phase"
+#~ msgstr "Număr total de intrări:"
+
+#, fuzzy
+#~| msgid "I knew it"
+#~ msgid "I knew it well"
+#~ msgstr "L-am știut"
+
+#~ msgid ""
+#~ "Error: ui file not found.\n"
+#~ "Check your installation."
+#~ msgstr ""
+#~ "Eroare: fișierul de interfață nu a fost găsit. \n"
+#~ "Verificați instalarea dumneavoastră."
+
+#~ msgid "Fetch Image"
+#~ msgstr "Preia imaginea"
+
+#~ msgid ""
+#~ "No Selection:\n"
+#~ "Select a word to fetch an image for it"
+#~ msgstr ""
+#~ "Nicio selecție:\n"
+#~ "Selectați un cuvânt pentru a prelua o imagine pentru el"
+
+#~ msgid "Fetches an image for the selected translation"
+#~ msgstr "Preia o imagine pentru traducerea selectată"
+
+#~ msgid "Give a keyword to search for an image related to it:"
+#~ msgstr "Dați un cuvânt cheie pentru a căuta o imagine legată de el:"
+
+#~ msgid "Search"
+#~ msgstr "Căutare"
+
+#~ msgid "Free images only (creative commons, gpl, ...)"
+#~ msgstr "Doar imagini libere (creative commons, gpl, ...)"
+
+#~ msgid "Previous"
+#~ msgstr "Anterior"
+
+#~ msgid ""
+#~ "Requires you to answer each question correctly 3 times in a row for it to "
+#~ "be counted as correct."
+#~ msgstr ""
+#~ "Face ca să trebuiască să răspundeți corect la fiecare întrebare de 3 ori "
+#~ "una după alta pentru ca să fie considerat un răspuns corect."
+
+#~ msgid "Require 3 consecutive correct answers"
+#~ msgstr "Cere 3 răspunsuri corecte consecutive"
+
+#~ msgid "Use the Leitner learning method"
+#~ msgstr "Folosiți metoda de învățare Leitner"
+
+#~ msgid "Lessons"
+#~ msgstr "Lecții"
+
+#, fuzzy
+#~| msgid "The root lesson cannot be deleted."
+#~ msgid "The root unit cannot be deleted."
+#~ msgstr "Lecția de bază nu poate fi ștearsă."
+
+#, fuzzy
+#~| msgid "Colors used to display different grades"
+#~ msgid "Color for displaying invalid units:"
+#~ msgstr "Culori folosite pentru a afișa diferite note"
+
+#~ msgid "Start practice instead of editor"
+#~ msgstr "Începe exersarea în locul editorului"
+
+#~ msgid "&Start Page"
+#~ msgstr "Pagina de &start"
+
+#~ msgid "&Lesson"
+#~ msgstr "&Lecție"
+
+#~ msgid "&Reset Grades"
+#~ msgstr "&Resetare note"
+
+#~ msgid "Remove Grades"
+#~ msgstr "Ștergere note"
+
+#~ msgctxt "Display of the current lesson during practice"
+#~ msgid "Lesson: %1"
+#~ msgstr "Lecția: %1"
+
+#, fuzzy
+#~| msgid "Remove all grades from this lesson"
+#~ msgid "Remove &Grades from this lesson"
+#~ msgstr "Eliminați toate notele de la această lecție"
+
+#, fuzzy
+#~| msgid "Remove all grades from this lesson"
+#~ msgid "Remove &Grades from this lesson and all sub-lessons"
+#~ msgstr "Eliminați toate notele de la această lecție"
+
+#~ msgctxt "Grade in language, table header"
+#~ msgid "Grade (%1)"
+#~ msgstr "Nota (%1)"
+
+#~ msgid "Rename Lesson"
+#~ msgstr "Redenumiți lecția"
+
+#~ msgid "Delete Lesson"
+#~ msgstr "Ștergeți lecția"
+
+#, fuzzy
+#~| msgid "Remove all grades from this lesson"
+#~ msgid "Remove Grades from this Lesson"
+#~ msgstr "Eliminați toate notele de la această lecție"
+
+#~ msgctxt "caption for an overview of the grades for a document"
+#~ msgid "Statistics for \"%1\""
+#~ msgstr "&Statistici pentru ”%1”"
+
+#~ msgctxt "pair of two languages that the user chooses to practice"
+#~ msgid "%1 to %2"
+#~ msgstr "%1 la %2"
+
+#~ msgid "Languages:"
+#~ msgstr "Limbi:"
+
+#~ msgctxt ""
+#~ "@title:group Configure advanced settings for practicing vocabulary, short "
+#~ "title in config dialog."
+#~ msgid "Advanced"
+#~ msgstr "Avansat"
+
+#~ msgid "Remove &Grades"
+#~ msgstr "Eliminați &Notele"
+
+#~ msgid "Use your own colors"
+#~ msgstr "Folosiți propriile culori"
+
+#~ msgid "Grade Colors"
+#~ msgstr "Culorile notelor"
+
+#~ msgid ""
+#~ "If it is unchecked, you will just have black on white for the grades; if "
+#~ "it is checked, the colors below will be chosen."
+#~ msgstr ""
+#~ "Dacă nu este bifat, notele vor fi cu negru pe alb; dacă este bifat, "
+#~ "culorile de mai jos vor fi alese."
+
+#~ msgid "&Use colors"
+#~ msgstr "Folosește c&ulori"
+
+#~ msgid "Color for the grade 7"
+#~ msgstr "Culoarea pentru nota 7"
+
+#~ msgid "&7"
+#~ msgstr "&7"
+
+#~ msgid "Color for the grade 6"
+#~ msgstr "Culoarea pentru nota 6"
+
+#~ msgid "Click here to change the color for grade 6."
+#~ msgstr "Faceți click aici pentru a schimba culoarea notei 6."
+
+#~ msgid "&6"
+#~ msgstr "&6"
+
+#~ msgid "Alt+6"
+#~ msgstr "Alt+6"
+
+#~ msgid "Color for the grade 5"
+#~ msgstr "Culoarea pentru nota 5"
+
+#~ msgid "Click here to change the color for grade 5."
+#~ msgstr "Faceți click aici pentru a schimba culoarea notei 5."
+
+#~ msgid "&5"
+#~ msgstr "&5"
+
+#~ msgid "Alt+5"
+#~ msgstr "Alt+5"
+
+#~ msgid "Color for the grade 4"
+#~ msgstr "Culoarea pentru nota 4"
+
+#~ msgid "Click here to change the color for grade 4."
+#~ msgstr "Faceți click aici pentru a schimba culoarea notei 4."
+
+#~ msgid "&4"
+#~ msgstr "&4"
+
+#~ msgid "Alt+4"
+#~ msgstr "Alt+4"
+
+#~ msgid "Color for the grade 3"
+#~ msgstr "Culoarea pentru nota 3"
+
+#~ msgid "Click here to change the color for grade 3."
+#~ msgstr "Faceți click aici pentru a schimba culoarea notei 3."
+
+#~ msgid "&3"
+#~ msgstr "&3"
+
+#~ msgid "Alt+3"
+#~ msgstr "Alt+3"
+
+#~ msgid "Color for the grade 2"
+#~ msgstr "Nota 2"
+
+#~ msgid "Click here to change the color for grade 2."
+#~ msgstr "Faceți click aici pentru a schimba culoarea notei 2."
+
+#~ msgid "&2"
+#~ msgstr "&2"
+
+#~ msgid "Color for the grade 1"
+#~ msgstr "Nota 1"
+
+#~ msgid "Click here to change the color for grade 1."
+#~ msgstr "Faceți click aici pentru a schimba culoarea notei 1."
+
+#~ msgid "&1"
+#~ msgstr "&1"
+
+#~ msgid "&N"
+#~ msgstr "&N"
+
+#~ msgid "Words"
+#~ msgstr "Cuvinte"
+
+#~ msgid "Could not determine word type of verbs"
+#~ msgstr "Nu s-a putut determina tipul de cuvânt al verbelor "
+
+#~ msgid "\"%1\" is a noun"
+#~ msgstr "”%1” este un substantiv"
+
+#~ msgid "Could not determine word type of nouns"
+#~ msgstr "Nu s-a putut determina tipul de cuvânt al substantivelor"
+
+#~ msgid "Conjugation"
+#~ msgstr "Conjugare"
+
+#~ msgid "Turn the selected word into a verb."
+#~ msgstr "Schimbă cuvântul selectat într-un verb."
+
+#~ msgid "Turn the selected word into a noun."
+#~ msgstr "Schimbă cuvântul selectat într-un substantiv."
+
+#~ msgid "&IPA font:"
+#~ msgstr "Font &IPA:"
+
+#~ msgid "&Table font:"
+#~ msgstr "Font &Tabel"
+
+#~ msgid "Specify which font to use for editing of the main table."
+#~ msgstr ""
+#~ "Specificați care font să fie folosit la editarea tabelului principal."
+
+#~ msgid "Your answer was right on the first attempt."
+#~ msgstr "Răspunsul dumneavoastră a fost corect la prima încercare."
+
+#~ msgid "Export Options"
+#~ msgstr "Opțiuni de exportare"
+
+#~ msgid "List"
+#~ msgstr "Listă"
+
+#~ msgid "A vocabulary list."
+#~ msgstr "Listă cu cuvinte de vocabular."
+
+#~ msgid "CSV"
+#~ msgstr "CSV"
+
+#, fuzzy
+#~| msgid "Conjugation"
+#~ msgid "Conjugation Tenses"
+#~ msgstr "Conjugare"
+
+#, fuzzy
+#~| msgid "&General"
+#~ msgctxt "@label the gender of the word: neuter"
+#~ msgid "&neuter:\t"
+#~ msgstr "&General"
+
+#~ msgid "Current Maintainer"
+#~ msgstr "Responsabil actual"
+
+#, fuzzy
+#~| msgid "Parley"
+#~ msgctxt "@label the gender of the word: Masculine"
+#~ msgid "Masculine"
+#~ msgstr "Parley"
+
+#, fuzzy
+#~| msgid "&General"
+#~ msgctxt "@label the gender of the word: Neuter"
+#~ msgid "Neuter"
+#~ msgstr "&General"
+
+#, fuzzy
+#~| msgid "Parley"
+#~ msgctxt "Grammatical masculine gender"
+#~ msgid "Masculine"
+#~ msgstr "Parley"
+
+#, fuzzy
+#~| msgid "&General"
+#~ msgctxt "Grammatical neuter gender"
+#~ msgid "Neuter"
+#~ msgstr "&General"
+
+#, fuzzy
+#~| msgid "Original Author"
+#~ msgid "Original Word"
+#~ msgstr "Autor original"
+
+#~ msgid "Declension"
+#~ msgstr "Declinare"
+
+#, fuzzy
+#~| msgid "Declension"
+#~ msgid "Declensions"
+#~ msgstr "Declinare"
+
+#~ msgid "Open &Example..."
+#~ msgstr "Deschidere &exemplu..."
+
+#~ msgid "&Grammar..."
+#~ msgstr "&Gramatică..."
+
+#, fuzzy
+#~| msgid "&General"
+#~ msgctxt "@label the gender of the word: neuter"
+#~ msgid "Neuter:\t"
+#~ msgstr "&General"
+
+#~ msgid "Waldo Bastian"
+#~ msgstr "Waldo Bastian"
+
+#~ msgid "Help with port to Qt3/KDE3"
+#~ msgstr "Portare către Qt3/KDE3"
+
+#~ msgid "Eric Bischoff"
+#~ msgstr "Eric Bischoff"
+
+#~ msgid "Converting documentation to docbook format"
+#~ msgstr "Conversia documentației în format docbook"
+
+#~ msgid "Kevin Kramer"
+#~ msgstr "Kevin Kramer"
+
+#~ msgid "Andreas Neuper"
+#~ msgstr "Andreas Neuper"
+
+#~ msgid "Dennis Haney"
+#~ msgstr "Dennis Haney"

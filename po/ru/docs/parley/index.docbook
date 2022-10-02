@@ -1,0 +1,3050 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Russian "INCLUDE"
+>]>
+
+<book id="parley" lang="&language;">
+
+<bookinfo>
+<title
+>Руководство пользователя &parley;</title>
+
+<authorgroup>
+<author
+>&Frederik.Gladhorn; &Frederik.Gladhorn.mail; </author>
+
+<author
+><personname
+><firstname
+>Sabine</firstname
+><surname
+>Eller</surname
+></personname
+> <email
+>s.eller@voxhumanitatis.org</email
+> </author>
+
+<author
+><personname
+><firstname
+>Daniel</firstname
+><surname
+>Laidig</surname
+></personname
+> <email
+>d.laidig@gmx.de</email
+> </author>
+
+<author
+><personname
+><firstname
+>Amarvir</firstname
+><surname
+>Singh</surname
+></personname
+> <email
+>amarvir.ammu.93@gmail.com</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Валя</firstname
+> <surname
+>Ване Ева</surname
+> <affiliation
+><address
+> <email
+>fattie@altlinux.ru</email
+></address
+></affiliation
+> <contrib
+>Перевод на русский язык</contrib
+></othercredit
+><othercredit role="translator"
+><firstname
+>Олеся</firstname
+><surname
+>Герасименко</surname
+><affiliation
+><address
+><email
+>translation-team@basealt.ru</email
+></address
+></affiliation
+><contrib
+>Обновление перевода</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+  <year
+>2010</year>
+  <holder
+>&Frederik.Gladhorn;</holder>
+</copyright>
+<copyright>
+  <year
+>2010</year>
+  <holder
+>Sabine Eller</holder>
+</copyright>
+<copyright>
+  <year
+>2010</year>
+  <holder
+>Daniel Laidig</holder>
+</copyright>
+<copyright>
+  <year
+>2014</year>
+  <holder
+>Amarvir Singh</holder>
+</copyright>
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2 ноября 2021 г.</date>
+<releaseinfo
+>KDE Gear 21.08</releaseinfo>
+
+<!-- Abstract about this handbook -->
+<abstract>
+  <para
+>&parley; — программа, помогающая пользователю запоминать новые слова во время изучения иностранных языков. Её также можно использовать для запоминания слов из различных предметных областей.</para>
+</abstract>
+
+<keywordset>
+  <keyword
+>KDE</keyword>
+  <keyword
+>Parley</keyword>
+  <keyword
+>словарь</keyword>
+  <keyword
+>обучение</keyword>
+  <keyword
+>изучение</keyword>
+</keywordset>
+<!-- https://bugs.kde.org/show_bug.cgi?id=281586#c2 adjustable font size for practice window for better reading on highres screens -->
+</bookinfo>
+<!--userbase <timestamp
+>2010-06-25T18:39:29Z</timestamp
+>-->
+
+<!--userbase-content-->
+<chapter id="introduction"
+><title
+>Введение</title>
+
+<para
+>&parley; — это программа, помогающая запоминать новые слова во время изучения иностранных языков. Возможно создавать свои словари или загружать готовые из Интернета: <ulink url="https://userbase.kde.org/Parley#Vocabulary_Collections"
+>словари</ulink
+> (здесь находятся словари иностранных языков, словари на темы анатомии, музыки, географии, химии, а также словари, которые помогут подготовиться к экзаменам). </para>
+
+<para
+>Программа &parley; обладает гибкими возможностями и использует <ulink url="https://en.wikipedia.org/wiki/Flashcard"
+>метод обучения с помощью карточек</ulink
+>. Она автоматически учитывает прогресс обучения. Программа &parley; позволяет располагать слова в любом порядке и создавать свои собственные уроки. У программы есть преимущество перед обычными карточками: она даёт возможность использовать различные методы обучения. </para>
+
+<para
+>Карточки содержат выражение (на одной стороне) и его перевод (на другой стороне). Игра начинается со стопки карточек, их нужно просматривать одну за другой. Если перевод известен, карточку можно отложить во вторую стопку. Если же перевод не удалось вспомнить, то следует оставить карточку в исходной стопке, чтобы снова попытаться запомнить слово и затем ещё раз попробовать вспомнить перевод. </para>
+
+<para
+>Программа не предназначена специально для изучения грамматики. Тем не менее, некоторые из упражнений могут быть полезны в этом плане. </para>
+
+<para
+>Программа &parley; состоит из двух больших частей: <link linkend="practice"
+>Тренировка</link
+> и <link linkend="vocabulary-editing"
+>Редактор словаря</link
+>. </para>
+
+<para
+>В данном руководстве термин <emphasis
+>словарь</emphasis
+> относится к файлу, который содержит <emphasis
+>разделы</emphasis
+>. Каждый раздел может быть уроком или коллекцией уроков (поддерживается любой уровень вложенности). Далее в руководстве будет упоминаться разделы, а не уроки, так как разделы могут использоваться и для других задач. </para>
+
+<para
+>Доступ к обеим частям программы, <guilabel
+>Редактору</guilabel
+> и <guilabel
+>Тренировке</guilabel
+>, возможно получить с помощью пункта меню <link linkend="practice-overview"
+>Обзор тренировки</link
+>. </para>
+
+<para
+>Блок <link linkend="practice"
+>Тренировка</link
+> включает в себя три части. <link linkend="practice-overview"
+>Обзор тренировки</link
+> — первая из них, здесь можно выбрать тему для тренировки. Затем выполняется фактическая <link linkend="practice"
+>Тренировка</link
+>. После её завершения показывается <link linkend="summary-after-practice"
+>Сводка</link
+>. </para>
+
+<tip
+><para
+>Как и во многих других приложениях, в &parley; возможно просмотреть описание функциональных возможностей программы, щёлкая правой кнопкой мыши по соответствующим элементам управления: будет показано <quote
+>контекстное меню</quote
+> с перечнем возможных действий. Щёлкните правой кнопкой разделы и слова, чтобы просмотреть предлагаемые варианты действий.</para
+></tip>
+</chapter>
+
+<chapter id="dashboard"
+><title
+>Панель мониторинга</title>
+
+<para
+>При первом запуске &parley; появляется <guilabel
+>Панель мониторинга</guilabel
+>. </para>
+
+<para
+>Сначала <guilabel
+>Панель мониторинга</guilabel
+> пуста, но после открытия нескольких словарей она покажет последние использовавшиеся. </para>
+
+<screenshot>
+  <screeninfo
+>Главное окно &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="dashboard.png" format="PNG"/></imageobject>
+    <caption
+>Панель мониторинга с несколькими словарями</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Словарь — это файл, содержащий слова и их переводы на другие языки или другие пары слов и предложений, которые требуется запомнить. Слова организованы по разделам. </para>
+
+<para
+>Чтобы <emphasis
+>начать тренировку</emphasis
+>, щёлкните правой кнопкой мыши поле <guilabel
+>Повторная тренировка</guilabel
+>, выбрав в списке название нужного словаря. Откроется страница <link linkend="practice-overview"
+>обзора тренировки</link
+>. </para>
+
+<para
+>Обратите внимание на небольшой значок <inlinemediaobject
+><imageobject
+><imagedata fileref="icon-delete.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>удаления</guiicon
+>, расположенный слева под словарём. С его помощью возможно удалить словарь из списка. </para>
+
+<para
+>Если необходимо создать свой словарь, нажмите кнопку <guibutton
+>Создать новый словарь…</guibutton
+>. </para>
+
+<para
+>Также можно <link linkend="open-an-existing-collection"
+>открыть словарь</link
+>, если он уже есть на компьютере, но не представлен в списке. </para>
+
+<para
+>Последняя кнопка <guilabel
+>Панели мониторинга</guilabel
+> позволяет загрузить словари из Интернета. Созданным словарём возможно поделиться с другими пользователями: просто загрузите его в Интернет с помощью редактора. </para>
+
+<para
+>В &parley; есть предустановленные темы, которые возможно переключать в параметрах программы. Дополнительные сведения: <link linkend="configure-parley"
+>Настройка &parley;</link
+>. </para>
+</chapter>
+
+<chapter id="open-an-existing-collection"
+><title
+>Открыть существующий словарь</title>
+
+<para
+>Предположим, что словарь уже находится на жёстком диске. </para>
+
+<para
+>Так выглядит окно при первом запуске &parley;: </para>
+
+<screenshot>
+  <screeninfo
+>Главное окно &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="initial_screen.png" format="PNG"/></imageobject>
+    <caption
+>Начальное окно</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Нажмите кнопку <guibutton
+>Открыть существующий словарь…</guibutton
+>. </para>
+
+<para
+>В диалоговом окне выбора файла перейдите в папку, содержащую файл данных, и выберите его щелчком мыши. Файл откроется сразу, если система настроена соответствующим образом. В ином случае потребуется нажать кнопку <guibutton
+>Открыть</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Диалог выбора файла</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="file_select_dialog.png" format="PNG"/></imageobject>
+    <caption
+>Диалог выбора файла</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Теперь файл загружен, и программа показывает окно <guilabel
+>Обзор тренировки</guilabel
+>. Дополнительные сведения о нём находятся в следующем разделе. </para>
+</chapter>
+
+<chapter id="vocabulary-practice"
+><title
+>Тренировка</title>
+
+<para
+>Чтобы начать тренировку, в программе &parley; следует выбрать словарь. Если он уже открыт в редакторе, просто нажмите кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Начать тренировку...</guiicon
+> на панели инструментов. </para>
+
+<sect1 id="practice-overview"
+><title
+>Обзор тренировки</title>
+
+<para
+>К фактической тренировке можно перейти только со страницы <guilabel
+>Обзор тренировки</guilabel
+>. На этой странице есть три группы параметров тренировки: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Выбор языков</para
+></listitem>
+  <listitem
+><para
+>Выбор режима тренировки</para
+></listitem>
+  <listitem
+><para
+>Выбор разделов (там также показан текущий прогресс)</para
+></listitem>
+</itemizedlist>
+
+<screenshot>
+  <screeninfo
+>Настройка тренировки</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_practice.png" format="PNG"/></imageobject>
+    <caption
+>Настройка тренировки</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>В левой части окна можно выбрать сочетание языков для тренировки. Например, если выбрать перевод с английского языка на французский, то в программе будут показаны слова на английском языке и будет предложено ввести соответствующие переводы на французском языке. </para>
+
+<para
+>Под меню выбора языков находится меню <guilabel
+>Режим тренировки</guilabel
+>, которое определяет, как именно будут заданы вопросы во время тренировки. </para>
+
+<para
+>Раскрывающийся список <guilabel
+>Направление тренировки</guilabel
+> предназначен для выбора типа вопросов, которые будут заданы во время тренировки. Возможные варианты: известная фраза (<guimenuitem
+>От известных к изучаемым</guimenuitem
+>), изучаемая фраза (<guimenuitem
+>От изучаемых к известным</guimenuitem
+>) или смесь фраз (<guimenuitem
+>Смешанные направления</guimenuitem
+>). </para>
+
+<para
+>В правой части окна находятся разделы словаря. Чтобы выбрать разделы для тренировки, установите флажки перед названиями соответствующих разделов. Рядом с названием каждого раздела показано количество содержащихся в нём слов. Справа от названия раздела отображается текущий прогресс. </para>
+
+<para
+>Прогресс для каждого раздела показывается в виде процента и разноцветной шкалы. Процент выполнения рассчитывается на основе общего количества слов в разделе и уровня знания каждого слова. Шкала выполнения отражает количество слов на каждом из уровней знания (чем темнее цвет, тем выше уровень знания). Легенда находится над областью выбора разделов, в заголовке. Цвета легенды представляют соответствующие цвета шкалы выполнения: от полностью выученных слов до слов, которые ещё не отрабатывались. </para>
+</sect1>
+
+<sect1 id="advanced-practice-configuration"
+><title
+>Настройка тренировки</title>
+
+<para
+>Диалог <guilabel
+>Параметры тренировки</guilabel
+> позволяет указать расширенные параметры тренировки. </para>
+
+<para
+>Когда открыта страница <link linkend="practice-overview"
+>Обзор тренировки</link
+>, в диалог <guilabel
+>Параметры тренировки</guilabel
+> возможно перейти с помощью кнопки<inlinemediaobject
+><imageobject
+><imagedata fileref="practice-setup.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <link linkend="advanced-practice-configuration"
+><guiicon
+>Параметры тренировки...</guiicon
+></link
+> на панели инструментов. </para>
+
+<sect2 id="general-practice-settings"
+><title
+>Основные параметры тренировки</title>
+
+<para
+>На странице <guilabel
+>Основное</guilabel
+> доступны несколько общих параметров настройки тренировки. </para>
+
+<screenshot>
+  <screeninfo
+>Диалог настройки тренировки</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_general.png" format="PNG"/></imageobject>
+    <caption
+>Страница основных параметров</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Наиболее важные параметры: </para>
+
+<itemizedlist>
+  <listitem
+><para
+><guilabel
+>Игнорировать диакритические знаки</guilabel
+>: если этот параметр включён, слово, введённое с буквой <guilabel
+>e</guilabel
+> вместо <guilabel
+>é</guilabel
+>, всё равно будет засчитано как верный ответ.</para
+></listitem>
+
+  <listitem
+><para
+><guilabel
+>Игнорировать регистр букв</guilabel
+>: если этот параметр включён, буквы в словах можно вводить в любом регистре.</para
+></listitem>
+
+  <listitem
+><para
+><guilabel
+>Изображения и звук</guilabel
+>: если показ изображений и воспроизведение звука включены, изображения и звук (если они доступны) будут, соответственно, отображаться и воспроизводиться во время тренировки.</para
+></listitem>
+
+  <listitem
+><para
+><guilabel
+>Разрешить использование изображений вместо слов</guilabel
+>: если этот параметр включён, изображение можно использовать как вопрос во время тренировки (при условии, что для этого слова целевого языка не задан перевод).</para
+></listitem>
+</itemizedlist>
+<!--FIXME Enable Hints Sessions Synonyms-->
+</sect2>
+
+<sect2 id="blocking"
+><title
+>Блокировка</title>
+
+<para
+>Если планируются регулярные тренировки, рекомендуется установить флажок <emphasis
+>Блокировка</emphasis
+>, который находится на странице <guilabel
+>Блокировка</guilabel
+>. После установки этого флажка появляется возможность настройки интервала повторного показа правильно переведённых слов. </para>
+
+<para
+><emphasis
+>Блокировка</emphasis
+> означает, что вопросы не будут задаваться в течение определённого времени после последней тренировки. Этот период времени зависит от уровня знания слова, поэтому чаще будут показываться те слова, которые ещё не выучены. </para>
+
+<screenshot>
+  <screeninfo
+>Диалог настройки тренировки</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_blocking.png" format="PNG"/></imageobject>
+    <caption
+>Страница параметров блокировки</caption>
+  </mediaobject>
+</screenshot>
+<!--FIXME Expiring-->
+</sect2>
+
+<sect2 id="thresholds"
+><title
+>Ограничения</title>
+
+<para
+>Ограничения представляют собой ещё один способ сузить объём материала для тренировки. </para>
+
+<screenshot>
+  <screeninfo
+>Диалог настройки тренировки</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_thresholds.png" format="PNG"/></imageobject>
+    <caption
+>Страница параметров ограничений</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Можно тренировать только слова, знание которого выше или ниже определённого уровня. Также можно выбрать только те слова, которые уже были показаны определённое количество раз. </para>
+</sect2>
+
+<sect2 id="specific-practice-settings"
+><title
+>Особые параметры тренировки</title>
+
+<para
+>Страница <guilabel
+>Особые</guilabel
+> параметров тренировки позволяет изменить режим показа слов при тренировках с вариантами ответа. </para>
+
+<screenshot>
+  <screeninfo
+>Диалог настройки тренировки</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_specific.png" format="PNG"/></imageobject>
+    <caption
+>Страница особых параметров</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Здесь возможно указать, должны ли варианты быть одного и того же типа, а также количество вариантов. </para>
+</sect2>
+</sect1>
+
+<sect1 id="practice"
+><title
+>Тренировка</title>
+<sect2 id="flash-cards"
+><title
+>Карточки</title>
+
+<para
+>После активации режима <guilabel
+>Карточки</guilabel
+> в разделе <guilabel
+>Режим тренировки</guilabel
+> и нажатия кнопки <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Начать тренировку...</guiicon
+> на панели инструментов появится следующее окно. Режим тренировки <guilabel
+>Карточки</guilabel
+> работает точно так же, как и <quote
+>реальные</quote
+> карточки. Если требуется подсказка, воспользуйтесь кнопкой <guibutton
+>Подсказка</guibutton
+> (она открывает ответ по одной букве). </para>
+
+<para
+>Слово также можно пропустить. Если нажать кнопку <guibutton
+>Ответить позднее</guibutton
+>, через некоторое время слово будет показано повторно. </para>
+
+<screenshot>
+  <screeninfo
+>Режим тренировки с карточками</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_grey.png" format="PNG"/></imageobject>
+    <caption
+>Новое слово</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Нажатие кнопки <guibutton
+>Далее</guibutton
+> показывает правильный ответ. На этом этапе необходимо указать, был ли этот ответ известен. </para>
+
+<para
+>Если ответ не был известен, нажмите <guibutton
+>Я этого не знал</guibutton
+>. Если же ответ был известен, нажмите <guibutton
+>Я знал это</guibutton
+>. </para>
+
+<para
+>После этого будет показан следующий вопрос. </para>
+
+<para
+>В нижней левой части окна находятся семь полей, иллюстрирующих степень знания словаря. Они соответствуют уровням блокировки, заданным на странице <link linkend="blocking"
+><guilabel
+>Блокировка</guilabel
+></link
+> диалога <guilabel
+>Параметры тренировки</guilabel
+>. </para>
+
+<tip
+><para
+>Вместо нажатия кнопки <guibutton
+>Далее</guibutton
+> можно нажать клавишу <keycap
+>Пробел</keycap
+> на клавиатуре.</para
+></tip>
+
+<screenshot>
+  <screeninfo
+>Режим тренировки с карточками</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_flash_solution.png" format="PNG"/></imageobject>
+    <caption
+>Новое слово — подтверждение</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Прекратить тренировку можно в любой момент: для этого предназначена кнопка <guibutton
+>Закончить тренировку</guibutton
+>. </para>
+</sect2>
+
+<sect2 id="mixed-letters"
+><title
+>Перемешанные буквы</title>
+
+<para
+>Режим «Перемешанные буквы» — это способ тренировки, при котором сразу выводится ответ, но все буквы в нём перемешаны: </para>
+
+<screenshot>
+  <screeninfo
+>Режим тренировки с карточками</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_hint.png" format="PNG"/></imageobject>
+    <caption
+>Новое слово — перемешанные буквы</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Если нужна подсказка, нажмите кнопку <guibutton
+>Подсказка</guibutton
+> (буквы ответа будут открываться одна за другой). Конечно, можно выбрать и вариант <guibutton
+>Ответить позднее</guibutton
+>, нажав соответствующую кнопку. </para>
+
+<para
+>Чтобы дать ответ, введите его в пустом поле под перемешанными буквами и нажмите клавишу &Enter; или кнопку <guibutton
+>Далее</guibutton
+>. </para>
+
+<para
+>Если дан правильный ответ, в программе &parley; появится соответствующее подтверждение. Для перехода к следующему вопросу нажмите клавишу &Enter; или кнопку <guibutton
+>Далее</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим тренировки с карточками</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_right.png" format="PNG"/></imageobject>
+    <caption
+>Новое слово — перемешанные буквы справа</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Если же дан неправильный ответ, будет предложено <emphasis
+>попробовать снова</emphasis
+>: </para>
+
+<screenshot>
+  <screeninfo
+>Режим тренировки с карточками</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_wrong.png" format="PNG"/></imageobject>
+    <caption
+>Новое слово — неверный ответ, повтор попытки</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Если ответ неизвестен, просто снова нажмите кнопку <guibutton
+>Далее</guibutton
+>: будет показан правильный ответ. Перейдите к следующему вопросу с помощью кнопки <guibutton
+>Далее</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим тренировки с карточками</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_solution.png" format="PNG"/></imageobject>
+    <caption
+>Новое слово — неправильный ответ, показ правильного ответа</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Возможно переопределить правила зачёта ответов. Подробные сведения доступны в разделе <link linkend="practice-overview"
+>Обзор тренировки</link
+>. </para>
+</sect2>
+
+<sect2 id="multiple-choice"
+><title
+>Варианты ответов</title>
+<sect3 id="automatic-selection-of-the-possible-answers"
+><title
+>Автоматический выбор возможных ответов</title>
+
+<para
+>В режиме <guilabel
+>Варианты ответов</guilabel
+> показывается несколько возможных ответов, из которых только один является правильным. Каждое нажатие кнопки <guibutton
+>Подсказка</guibutton
+> убирает один из неправильных ответов, и вариантов остаётся всё меньше. Если остался только один вариант, будет показан (но не засчитан) правильный ответ. Конечно, также можно нажать кнопку <guibutton
+>Ответить позднее</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим тренировки с карточками</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="multiple_choice.png" format="PNG"/></imageobject>
+    <caption
+>Новое слово — режим вариантов ответов</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>На снимке показано окно программы с подтверждением правильности ответа (это подтверждение появляется после выбора правильного ответа щелчком мыши или путём ввода номера соответствующего варианта). К следующему вопросу возможно перейти с помощью кнопки <guibutton
+>Далее</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим тренировки с карточками</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="multiple_choice-right.png" format="PNG"/></imageobject>
+    <caption
+>Новое слово — варианты ответов, правильный ответ</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Если же был дан неверный ответ, то правильный ответ будет выделен зелёным цветом, а неверный — красным. К следующему вопросу также можно перейти с помощью кнопки <guibutton
+>Далее</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим тренировки с карточками</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="multiple_choice-wrong.png" format="PNG"/></imageobject>
+    <caption
+>Новое слово — варианты ответов, неправильный ответ</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Возможно переопределить правила зачёта ответов. Подробные сведения доступны в разделе <link linkend="practice-overview"
+>Обзор тренировки</link
+>. </para>
+
+<para
+>Чтобы остановить тренировку, нажмите кнопку <guibutton
+>Закончить тренировку</guibutton
+>. </para>
+</sect3>
+
+<sect3 id="with-yes-no-answers"
+><title
+>С ответами «да/нет»</title>
+
+<para
+>Обычно в режиме «Варианты ответов» программа &parley; автоматически предлагает один правильный и несколько неправильных ответов. Но в некоторых упражнениях могут быть предустановленные ответы вроде «да/нет». В таких случаях потребуется настроить тренировку, нажав кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-setup.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <link linkend="advanced-practice-configuration"
+><guiicon
+>Параметры тренировки...</guiicon
+></link
+> на панели инструментов. </para>
+
+<para
+>После выбора страницы <guilabel
+>Особые</guilabel
+> появится окно, похожее на это: </para>
+
+<screenshot>
+  <screeninfo
+>Диалог настройки тренировки</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_specific.png" format="PNG"/></imageobject>
+    <caption
+>Страница «Особые»</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Если в разделе <guilabel
+>Варианты ответов</guilabel
+> имеется всего <emphasis
+>два варианта</emphasis
+> (например, <emphasis
+>да/нет</emphasis
+>), задайте для параметра <guilabel
+>Количество вариантов</guilabel
+> значение <parameter
+>2</parameter
+>. </para>
+</sect3>
+</sect2>
+
+<sect2 id="written"
+><title
+>Письменные задания</title>
+
+<para
+>Когда выбран режим <guilabel
+>Письменные задания</guilabel
+>, ответы во время тренировки будет необходимо набирать на клавиатуре. Если нужна подсказка, нажмите кнопку <guibutton
+>Подсказка</guibutton
+> (буквы ответа будут открываться одна за другой). Конечно, можно выбрать и вариант <guibutton
+>Ответить позднее</guibutton
+>, нажав соответствующую кнопку. </para>
+
+<screenshot>
+  <screeninfo
+>Режим письменной тренировки</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_written.png" format="PNG"/></imageobject>
+    <caption
+>Новое слово — режим письменной тренировки</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>После ввода ответа нажмите кнопку <guibutton
+>Далее</guibutton
+>: в программе &parley; будет показано, был ли ответ правильным. Перейдите к следующему вопросу нажатием кнопки <guibutton
+>Далее</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим письменной тренировки</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_written_right.png" format="PNG"/></imageobject>
+    <caption
+>Новое слово — режим письменной тренировки, правильный ответ</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Если был дан неправильный ответ, возможно сделать ещё несколько попыток. Либо можно нажать кнопку <guibutton
+>Далее</guibutton
+>: будет показан правильный ответ. </para>
+
+<screenshot>
+  <screeninfo
+>Режим письменной тренировки</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_written_wrong.png" format="PNG"/></imageobject>
+    <caption
+>Новое слово — режим письменной тренировки, неправильный ответ</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Кнопка <guibutton
+>Далее</guibutton
+> позволяет продолжить тренировку, а кнопка <guibutton
+>Закончить тренировку</guibutton
+> — остановить её. </para>
+
+<para
+>Возможно переопределить правила зачёта ответов. Подробные сведения доступны в разделе <link linkend="practice-overview"
+>Обзор тренировки</link
+>. </para>
+</sect2>
+
+<sect2 id="reset-practice-to-initial-state"
+><title
+>Восстановить исходное состояние тренировки</title>
+
+<para
+>К исходному состоянию можно вернуть все оценки (удалить уровни знания). Уровни знания для отдельных разделов можно сбросить на странице <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Обзор тренировки</guiicon
+>: щёлкните по нужному разделу правой кнопкой мыши и выберите в контекстном меню пункт <guimenuitem
+>Удалить уровни знания этого раздела</guimenuitem
+> или <guimenuitem
+>Удалить уровни знания этого раздела и всех подразделов</guimenuitem
+>. </para>
+</sect2>
+</sect1>
+
+<sect1 id="summary-after-practice"
+><title
+>Сводка итогов тренировки</title>
+
+<para
+>После завершения сеанса обучения показывается сводка результатов: она находится в большой панели в верхней части окна программы. </para>
+
+<para
+>Ниже расположена таблица со всеми изученными словами и перечнем допущенных ошибок. </para>
+
+<para
+>Слова, при изучении которых было допущено больше всего ошибок, расположены выше: легко понять, какой материал ещё не удалось закрепить. </para>
+
+<para
+>Нажмите кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="document-export.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Экспорт результатов…</guiicon
+> на панели задач или выберите пункт меню <menuchoice
+><guimenu
+>Тренировка</guimenu
+> <guimenuitem
+>Экспорт результатов...</guimenuitem
+></menuchoice
+>, чтобы экспортировать результаты тренировки как файл &HTML; или текстовый файл OpenDocument (<literal role="extension"
+>.odt</literal
+>). </para>
+
+<screenshot>
+  <screeninfo
+>Сводка итогов тренировки</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_summary.png" format="PNG"/></imageobject>
+    <caption
+>Сводка итогов тренировки</caption>
+  </mediaobject>
+</screenshot>
+</sect1>
+
+<!--FIXME Example Sentences practice missing -->
+<sect1 id="grammar-practice-modes"
+><title
+>Режимы тренировки грамматики</title>
+
+<para
+>С помощью программы &parley; также можно изучать особые грамматические структуры, например, род существительных, степени сравнения прилагательных и спряжение глаголов. Далее приведено несколько примеров. </para>
+
+<sect2 id="articles-and-gender-of-nouns"
+><title
+>Артикли и род существительных</title>
+
+<para
+>Задайте режим тренировки <guilabel
+>Род существительных</guilabel
+> и нажмите кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Начать тренировку...</guiicon
+> на панели инструментов. </para>
+
+<para
+>Для примера (он показан на снимке окна) в качестве изучаемого языка взят немецкий, соответственно, при ответе необходимо выбрать один из трёх родов: мужской, женский или средний. Нажатие кнопки <guibutton
+>Подсказка</guibutton
+> убирает один из неправильных ответов. Конечно, также можно нажать кнопку <guibutton
+>Ответить позднее</guibutton
+>. </para>
+
+<para
+>Чтобы в программе показывались артикли вместо терминов грамматического рода, необходимо ввести их в редакторе. Обратите внимание, что эта функция будет работать только при условии правильной настройки рода слов. Более подробные сведения о том, как настроить род слов, доступны в разделе <link linkend="word-types"
+>Части речи</link
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим тренировки рода существительных</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="articles_and_gender.png" format="PNG"/></imageobject>
+    <caption
+>Новое слово — режим тренировки рода существительных</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Если дан правильный ответ, будет показано подтверждение. К следующему вопросу можно перейти нажатием кнопки <guibutton
+>Далее</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим тренировки рода существительных</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="articles_and_gender_right.png" format="PNG"/></imageobject>
+    <caption
+>Новое слово — режим тренировки рода существительных, правильный ответ</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Если же дан неправильный ответ, будет показано сообщение об ошибке. К следующему вопросу можно перейти нажатием кнопки <guibutton
+>Далее</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим тренировки рода существительных</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="articles_and_gender_wrong.png" format="PNG"/></imageobject>
+    <caption
+>Новое слово — режим тренировки рода существительных, неправильный ответ</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Прекратить тренировку можно в любой момент: для этого предназначена кнопка <guibutton
+>Закончить тренировку</guibutton
+>. </para>
+</sect2>
+
+<sect2 id="comparison-forms-of-adjectives-and-adverbs"
+><title
+>Степени сравнения прилагательных и наречий</title>
+
+<para
+>В разделе <guilabel
+>Режим тренировки</guilabel
+> выберите пункт <guilabel
+>Степени сравнения</guilabel
+> и затем нажмите кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Начать тренировку...</guiicon
+> на панели инструментов. </para>
+
+<para
+>Эта функция будет работать, если в словарь были добавлены соответствующие формы слова. Подробные сведения: <link linkend="entering-comparison-forms"
+>Добавление степеней сравнения</link
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Настройка тренировки</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison.png" format="PNG"/></imageobject>
+    <caption
+>Режим тренировки степеней сравнения</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Чтобы выполнить упражнение, требуется ввести степени сравнения для показанного слова. В примере показан перевод английского слова <emphasis
+>old</emphasis
+> («старый») на немецкий язык. В немецком языке существует три степени сравнения: <emphasis
+>абсолютная, сравнительная</emphasis
+> и <emphasis
+>превосходная</emphasis
+>. Чтобы продолжить выполнение упражнения, нажмите кнопку <guibutton
+>Далее</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим тренировки степеней сравнения</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison_right.png" format="PNG"/></imageobject>
+    <caption
+>Новое слово — правило сравнения</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+
+<sect2 id="conjugations"
+><title
+>Спряжения глаголов</title>
+
+<para
+>Для тренировки спряжений глаголов задайте режим <guilabel
+>Спряжения глаголов</guilabel
+> и нужные времена. </para>
+
+<para
+>Эта функция будет работать, если в словарь были добавлены формы спряжения слов. Подробные сведения: <link linkend="entering-inflection-forms"
+>Добавление форм слов</link
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Настройка тренировки</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Configure_practice_conjugation.png" format="PNG"/></imageobject>
+    <caption
+>Режим тренировки спряжения глаголов</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Нажмите кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Начать тренировку...</guiicon
+> на панели инструментов. Для выполнения упражнения потребуется ввести формы спряжения, соответствующие показанной временной форме глагола. Для перехода к следующему слову нажмите кнопку <guibutton
+>Далее</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим тренировки спряжения глаголов</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_practice_conjugation.png" format="PNG"/></imageobject>
+    <caption
+>Тренировка спряжения</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+</sect1>
+</chapter>
+
+<chapter id="vocabulary-editing"
+><title
+>Редактирование словаря</title>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="edit_main.png" format="PNG"/></imageobject>
+    <caption
+>Редактирование тренировок</caption>
+  </mediaobject>
+</screenshot>
+
+<sect1 id="setup"
+><title
+>Настройка</title>
+
+<para
+>Перед тем, как начать пользоваться словарём из программы или приступить к созданию своего словаря, рекомендуется ознакомиться с параметрами настройки &parley; и задать для них соответствующие значения. Следующие разделы руководства содержат пошаговое описание этого процесса. Параметры программы &parley; расположены в нескольких местах: </para>
+
+<itemizedlist>
+  <listitem
+><para
+><menuchoice
+><guimenu
+>Файл</guimenu
+><guimenuitem
+>Свойства…</guimenuitem
+></menuchoice
+> — здесь располагаются <guilabel
+>Общие сведения о словаре</guilabel
+>, то есть некоторая информация о словаре и его авторе.</para
+></listitem>
+
+  <listitem
+><para
+><menuchoice
+><guimenu
+>Правка</guimenu
+><guimenuitem
+>Языки словаря…</guimenuitem
+></menuchoice
+>: открывает диалог <guilabel
+>Языки</guilabel
+>, в котором доступны параметры, относящиеся к используемым языкам.</para
+></listitem>
+
+  <listitem
+><para
+><menuchoice
+><guimenu
+>Тренировка</guimenu
+><guimenuitem
+>Параметры тренировки…</guimenuitem
+></menuchoice
+> — с помощью этих параметров можно настроить, каким образом будет выполняться тренировка слов. Их можно изменять по ходу работы, подстраивая под задачу для конкретного сеанса обучения.</para
+></listitem>
+
+  <listitem
+><para
+><menuchoice
+><guimenu
+>Настройка</guimenu
+><guimenuitem
+>Настроить &parley;…</guimenuitem
+></menuchoice
+> — здесь находятся общие параметры и параметры внешнего вида программы.</para
+></listitem>
+</itemizedlist>
+
+<sect2 id="about-the-collection"
+><title
+>О словаре</title>
+
+<para
+>Если созданный словарь планируется распространять, рекомендуется ввести метаданные, в частности, название словаря и контактные данные автора. Чтобы перейти к редактированию данных, выберите пункт меню <menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Свойства...</guimenuitem
+></menuchoice
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Диалог свойств <quote
+>filename.kvtml</quote
+></screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="document_properties.png" format="PNG"/></imageobject>
+    <caption
+>Редактирование свойств</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+
+<sect2 id="vocabulary-columns"
+><title
+>Столбцы словаря</title>
+
+<para
+>В зависимости от материала, который планируется тренировать во время сеансов обучения, в область редактирования может быть полезно добавить другие столбцы. Чтобы это сделать, выберите пункт меню <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Столбцы словаря...</guimenuitem
+></menuchoice
+>. Появится диалоговое окно, в котором можно задать показ столбцов <emphasis
+>Произношение, Часть речи, Синонимы, Антонимы, Пример, Комментарий</emphasis
+> и/или <emphasis
+>Пересказ</emphasis
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Диалог «Столбцы словаря»</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="vocabulary_columns.png" format="PNG"/></imageobject>
+    <caption
+>Настройка столбцов</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+
+<sect2 id="languages-and-grammar"
+><title
+>Языки и грамматика</title>
+
+<para
+>Можно задать некоторые грамматические свойства, чтобы затем изучать соответствующий материал с помощью программы &parley;. Для этого предназначено диалоговое окно, которое открывается при выборе пункта меню <menuchoice
+><guimenu
+>Правка</guimenu
+> <guimenuitem
+>Языки словаря...</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>В английском языке всего два артикля: определённый артикль <guilabel
+>the</guilabel
+> и неопределённый артикль <guilabel
+>a</guilabel
+>. В большинстве других языков артиклей больше — их можно добавить на вкладке <guilabel
+>Артикли</guilabel
+>. </para>
+
+<para
+>Для форм спряжения необходимо заполнить личные местоимения. В большинстве языков для местоимений он/она/оно существует одна и та же форма спряжения. Если это справедливо для изучаемого языка, то <emphasis
+>не</emphasis
+> ставьте флажок <guilabel
+>Мужской и женский род имеют разные спряжения</guilabel
+>! Просто введите окончания местоимений для всех трёх лиц. </para>
+
+<table>
+  <title
+>Личные местоимения в английском языке</title>
+  <tgroup cols="3">
+  <tbody>
+  <row>
+    <entry
+></entry>
+    <entry
+>Единственное число</entry>
+    <entry
+>Множественное число</entry>
+  </row>
+  <row>
+    <entry
+>Первое лицо</entry>
+    <entry
+>I</entry>
+    <entry
+>we</entry>
+  </row>
+  <row>
+    <entry
+>Второе лицо</entry>
+    <entry
+>you</entry>
+    <entry
+>you</entry>
+  </row>
+  <row>
+    <entry
+>Третье лицо</entry>
+    <entry
+>he/she/it</entry>
+    <entry
+>they</entry>
+    </row>
+  </tbody>
+  </tgroup>
+</table>
+
+<para
+>Вкладка <guilabel
+>Времена</guilabel
+>: можно ввести соответствующие языку времена и затем потренироваться в спряжении глаголов. Например, в английском языке: Simple Present (простое настоящее), Simple Past (простое прошедшее), Future I (простое будущее) и так далее. </para>
+
+<para
+>Кнопка <guibutton
+>Добавить язык</guibutton
+> позволяет добавить в список дополнительный язык. </para>
+
+<sect3 id="lets-have-a-closer-look-at-spanish"
+><title
+>Параметры на примере испанского языка</title>
+
+<para
+>На вкладке <guilabel
+>Основное</guilabel
+> доступны базовые параметры языка: </para>
+
+<itemizedlist>
+  <listitem
+><para
+><guilabel
+>Язык:</guilabel
+> Spanish</para
+></listitem>
+  <listitem
+><para
+><guilabel
+>Имя:</guilabel
+> Spanish</para
+></listitem>
+  <listitem
+><para
+><guilabel
+>Раскладка клавиатуры:</guilabel
+> us (для английского языка)</para
+></listitem>
+</itemizedlist>
+
+<para
+>Поле <guilabel
+>Раскладка клавиатуры</guilabel
+> можно оставить пустым. В этом случае программа &parley; будет использовать установленную в системе стандартную раскладку клавиатуры. </para>
+
+<screenshot>
+  <screeninfo
+>Диалог «Языки»</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_general.png" format="PNG"/></imageobject>
+    <caption
+>Редактирование языка</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Вкладка <guilabel
+>Артикли</guilabel
+>: в испанском языке существительные бывают только мужского и женского рода, следовательно, поле <guilabel
+>Средний род</guilabel
+> остаётся пустым. </para>
+
+<screenshot>
+  <screeninfo
+>Диалог «Языки»</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_articles.png" format="PNG"/></imageobject>
+    <caption
+>Вкладка «Артикли»</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+><guilabel
+>Личные местоимения</guilabel
+> в испанском языке имеют различные формы в третьем лице единственного числа и в первом, втором и третьем лице множественного числа. Варианты следует вводить через <guilabel
+>/</guilabel
+> между двумя формами. </para>
+
+<screenshot>
+  <screeninfo
+>Диалог «Языки»</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_personal_pronouns.png" format="PNG"/></imageobject>
+    <caption
+>Вкладка «Личные местоимения»</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>На вкладке <guilabel
+>Времена</guilabel
+> расположены различные времена, в которых может находиться глагол. Чтобы добавить к уже имеющимся временам новые, нажмите кнопку <guibutton
+>Создать…</guibutton
+>, чтобы внести изменения — кнопку <guibutton
+>Изменить…</guibutton
+>. Если требуется удалить время, которого не существует в языке, выберите его в списке и нажмите кнопку <guibutton
+>Удалить</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Диалог «Языки»</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_tenses.png" format="PNG"/></imageobject>
+    <caption
+>Вкладка «Времена»</caption>
+  </mediaobject>
+</screenshot>
+</sect3>
+</sect2>
+</sect1>
+
+<sect1 id="units"
+><title
+>Разделы</title>
+
+<para
+>В левой части окна программы располагается список разделов. При создании нового словаря этот список может оказаться пустым (за исключением одного созданного по умолчанию раздела). </para>
+
+<para
+>Если список разделов не показан, попробуйте установить соответствующий флажок: <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Разделы</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>Флажки перед названием раздела показывают, какие разделы включены в тренировку. Число рядом с разделом обозначает содержащееся в нём количество слов. </para>
+
+<sect2 id="new-unit"
+><title
+>Новый раздел</title>
+
+<para
+>Выберите словарь, в который следует включить этот раздел, например, <guilabel
+>Мои уроки испанского</guilabel
+>. </para>
+
+<para
+>Пункт <guilabel
+>Новый раздел</guilabel
+> возможно выбрать любым из следующих способов: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Значок графического интерфейса: нажмите кнопку <guiicon
+>Новый раздел</guiicon
+> на панели инструментов.</para
+></listitem>
+
+  <listitem
+><para
+>Пункт меню: выберите пункт меню <menuchoice
+><guimenu
+>Раздел</guimenu
+> <guimenuitem
+>Новый раздел</guimenuitem
+></menuchoice
+>.</para
+></listitem>
+
+  <listitem
+><para
+>Контекстное меню: щёлкните по словарю правой кнопкой мыши и выберите пункт <guimenuitem
+>Новый раздел</guimenuitem
+>.</para
+></listitem>
+</itemizedlist>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="new_lesson2.png" format="PNG"/></imageobject>
+    <caption
+>Словарь: Мои уроки испанского</caption>
+  </mediaobject>
+</screenshot>
+
+<!-- Without gui icon in the toolbar: New Unit -->
+<para
+>Перед нажатием кнопки <guiicon
+>Новый раздел</guiicon
+> на панели инструментов убедитесь, что в древовидном представлении разделов выбрано правильное местоположение для нового раздела. В примере перед нажатием кнопки <guiicon
+>Новый раздел</guiicon
+> следует выбрать именно <emphasis
+>подраздел</emphasis
+> пункта <guilabel
+>Словарь: Мои уроки испанского</guilabel
+>. </para>
+</sect2>
+
+<sect2 id="moving-renaming-and-deleting-units"
+><title
+>Перемещение, переименование и удаление разделов</title>
+
+<para
+>Чтобы изменить название раздела, дважды щёлкните по нему левой кнопкой мыши или один раз правой и выберите в контекстном меню пункт <guimenuitem
+>Переименовать раздел</guimenuitem
+>. Контекстное меню также позволяет удалить раздел (но при этом будет удалено и всё его содержимое). </para>
+
+<para
+>Изменить расположение разделов можно с помощью мыши. Чтобы сделать раздел дочерним, перетащите его на другой раздел. </para>
+</sect2>
+
+<sect2 id="splitting-a-unit"
+><title
+>Разделение раздела</title>
+
+<para
+>Если раздел получается слишком большим, следует разделить его на части. Вряд ли стоит создавать разделы из более чем 20 слов. Чтобы разделить большой раздел на меньшие, наведите указатель мыши на пункт раздела, щёлкните правой кнопкой мыши и выберите соответствующий пункт контекстного меню или воспользуйтесь пунктом меню<menuchoice
+><guimenu
+>Раздел</guimenu
+><guimenuitem
+>Разбить раздел на подразделы</guimenuitem
+></menuchoice
+>. Возможно указать,следует сохранить исходный порядок слов в частях раздела или же выбрать слова случайным образом. </para>
+</sect2>
+
+<sect2 id="what-is-shown-in-the-table"
+><title
+>Что показано в таблице</title>
+
+<para
+>В программе всегда показываются слова из текущего выбранного раздела. Также можно настроить показ слов из подразделов, которые содержатся в этом разделе: установите флажок <menuchoice
+><guimenu
+>Раздел</guimenu
+> <guimenuitem
+>Показывать записи из дочерних разделов</guimenuitem
+></menuchoice
+>. После этого выберите раздел словаря в самой верхней части окна: для просмотра будут доступны все слова. </para>
+</sect2>
+</sect1>
+
+<sect1 id="word-types"
+><title
+>Части речи</title>
+
+<para
+>Программа &parley; позволяет задавать соответствие слов частям речи. Примеры частей речи: существительные, глаголы, прилагательные и наречия. </para>
+
+<para
+>Для работы с частями речи необходимо включить панель частей речи путём установки соответствующего флажка: <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Части речи</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>Части речи возможно разместить по категориям точно так же, как разделы. </para>
+
+<para
+>Для просмотра всех слов определённой части речи (например, всех существительных) просто выберите соответствующие категорию (существительные), и в таблице будут показаны только те слова, которые относятся к этой категории. </para>
+
+<para
+>Часть речи проще всего задать, перетащив слово на соответствующую часть речи. Возможно перетащить сразу несколько слов. </para>
+
+<!-- empty sect2
+<sect2 id="words-or-sentences"
+><title
+>Words or Sentences</title>
+</sect2
+-->
+<sect2 id="adding-new-vocabulary"
+><title
+>Добавление нового словаря</title>
+
+<para
+>Чтобы добавить новые слова, используйте кнопку  <inlinemediaobject
+><imageobject
+><imagedata fileref="list-add.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Добавить запись</guiicon
+> на панели инструментов. Возможно сразу же начать вводить слово на первом языке. После ввода первого слова нажмите клавишу &Tab; для перехода к следующему языку. </para>
+</sect2>
+
+<sect2 id="editing-words"
+><title
+>Редактирование слов</title>
+
+<para
+>Чтобы заменить слово, выберите соответствующую запись и начните вводить текст. Если же требуется изменить слово, сделайте двойной щелчок по записи: это позволит изменить содержимое поля без удаления старого слова. </para>
+
+<para
+>Нажмите клавишу &Tab; для перехода к следующему слову в режиме редактирования. При нажатии клавиши &Enter; производится выход из этого режима. Для перемещения возможно использовать клавиши со стрелками. </para>
+</sect2>
+</sect1>
+
+<sect1 id="synonyms"
+><title
+>Синонимы</title>
+
+<para
+>Синонимы сложно задать, и они не всегда работают хорошо. Тем не менее, их возможно задать следующем образом: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Установите флажок <menuchoice
+><guimenu
+>Вид</guimenu
+><guimenuitem
+>Синонимы</guimenuitem
+></menuchoice
+>.</para
+></listitem>
+
+  <listitem
+><para
+>Выберите первое слово (A), которое следует сделать синонимом, затем щёлкните по второму слову (B).</para
+></listitem>
+
+  <listitem
+><para
+>Текст на кнопке на панели синонимов изменится на <guibutton
+>A и B — синонимы</guibutton
+>.</para
+></listitem>
+</itemizedlist>
+
+<para
+>Связь между словами будет отображаться на панели синонимов, и они будут распознаваться  соответствующим образом (как синонимы) при тренировке. </para>
+</sect1>
+
+<sect1 id="adding-images"
+><title
+>Добавление изображений</title>
+
+<para
+>Сначала включите панель работы с изображением, установив соответствующий флажок: <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Изображение</guimenuitem
+></menuchoice
+>. После этого в правой части окна &parley; появится панель <guilabel
+>Изображение</guilabel
+>. </para>
+
+<para
+>Чтобы добавить изображение к слову, убедитесь, что это слово выделено. На панели <guilabel
+>Изображение</guilabel
+> (в правой части окна) щёлкните по значку с изображением <inlinemediaobject
+><imageobject
+><imagedata fileref="folder-black.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>папки</guiicon
+> и выберите изображение, которое следует связать со словом. После выбора изображения для пары переводов в нижних правых углах полей обеих слов появится синий флажок. При наведении указателя мыши на этот флажок будет показано имя файла изображения и путь к нему. </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="adding-images.png" format="PNG"/></imageobject>
+    <caption
+>Добавление изображения</caption>
+  </mediaobject>
+</screenshot>
+
+<!-- <para
+>The needed images can be obtained from Google search using &parley; inbuilt scripts.
+</para>
+
+<para
+>To obtain the image highlight a word in the list then choose the <menuchoice
+><guimenu
+>Scripts</guimenu
+> <guimenuitem
+>Fetch Image</guimenuitem
+></menuchoice
+> menu item.
+</para>
+
+<screenshot>
+  <screeninfo
+>Obtaining images from the Internet</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_006b.png" format="PNG"/></imageobject>
+    <caption
+>Obtaining images from the Internet</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Choose the right image using <guibutton
+>Next</guibutton
+> and <guibutton
+>Previous</guibutton
+> buttons. You can correct the search criteria for the images using the corresponding text box.
+</para>
+
+<para
+>If you prefer only free images check the corresponding check box.
+</para>
+
+<para
+>When the selection is finished just press on the <guibutton
+>OK</guibutton
+> button and the image will be saved next to the current vocabulary file in the <filename role="directory"
+><replaceable
+>name_of_vocabulary</replaceable
+>_files</filename
+> subfolder.
+</para>
+
+<warning
+><para
+>Due to the current script limitations the image files cannot be saved in the paths with Unicode symbols in the names of folders and files.
+</para
+></warning
+> -->
+</sect1>
+
+<sect1 id="adding-sound"
+><title
+>Добавление звука</title>
+
+<para
+>Сначала включите панель работы со звуком, установив соответствующий флажок: <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Звук</guimenuitem
+></menuchoice
+>. После этого в правой части окна &parley; появится панель <guilabel
+>Звук</guilabel
+>. </para>
+
+<para
+>Чтобы добавить звук к слову, убедитесь, что это слово выделено. На панели <guilabel
+>Звук</guilabel
+> (в правой части окна) щёлкните по значку с изображением <inlinemediaobject
+><imageobject
+><imagedata fileref="folder-black.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>папки</guiicon
+> и выберите звук, который следует связать со словом. После выбора звукового файла для слова в нижнем правом углу поля этого слова появится красный флажок. При наведении указателя мыши на этот флажок будет показано имя звукового файла и путь к нему. </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="adding-sound.png" format="PNG"/></imageobject>
+    <caption
+>Добавление звука</caption>
+  </mediaobject>
+</screenshot>
+
+<!-- Not found!
+<para
+>The needed sound files can be obtained from Wiktionary using &parley; inbuilt scripts.
+</para>
+
+<para
+>To obtain the sound file highlight a word in the list then choose <menuchoice
+><guimenu
+>Scripts</guimenu
+> <guimenuitem
+>Fetch Sound</guimenuitem
+></menuchoice
+> from the &parley; menu.
+</para>
+
+<para
+>The sound file will be saved next to the current vocabulary file in the <filename role="directory"
+><replaceable
+>name_of_vocabulary</replaceable
+>_files</filename
+> subfolder.
+</para
+> -->
+</sect1>
+
+<sect1 id="entering-comparison-forms"
+><title
+>Добавление степеней сравнения</title>
+
+<para
+>Перед вводом степеней сравнения следует убедиться, что включена соответствующая панель. Для её отображения устанавливается флажок <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Степени сравнения</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>Сначала выберите слово, которое является прилагательным или наречием. </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison_form.png" format="PNG"/></imageobject>
+    <caption
+>Панель степеней сравнения</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Нажмите кнопку <guibutton
+>Прилагательное</guibutton
+> или <guibutton
+>Наречие</guibutton
+> на панели степеней сравнения. </para>
+<!--
+<screenshot>
+  <screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_edit_comparison_form_2.png" format="PNG"/></imageobject>
+    <caption
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+<para
+>Введите степени сравнения. </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison_form_edit.png" format="PNG"/></imageobject>
+    <caption
+>Редактирование степеней сравнения</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Теперь можно приступить к тренировке в режиме <link linkend="comparison-forms-of-adjectives-and-adverbs"
+>Степени сравнения</link
+>. </para>
+</sect1>
+
+<sect1 id="entering-inflection-forms"
+><title
+>Добавление форм слов</title>
+
+<para
+>Перед вводом форм слов следует убедиться, что включена соответствующая панель. Для её отображения устанавливается флажок: <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Словоизменение (для глаголов, существительных, прилагательных)</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>Сначала выберите слово, которое является глаголом. </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="conjugation.png" format="PNG"/></imageobject>
+    <caption
+>Редактирование форм слов</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Нажмите кнопку <guibutton
+>Глагол</guibutton
+> на панели словоизменения. </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="conjugation_edit.png" format="PNG"/></imageobject>
+    <caption
+>Редактирование форм слов</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Выберите правильное время в раскрывающемся списке <guilabel
+>Время</guilabel
+> и введите формы спряжения. </para>
+
+<para
+>Времена можно настроить для каждого языка: <link linkend="languages-and-grammar"
+>Языки и грамматика</link
+>. </para>
+
+<para
+>Теперь можно приступить к тренировке в режиме <link linkend="conjugations"
+>Спряжения глаголов</link
+>. </para>
+
+<para
+>Воспользуйтесь кнопкой <guibutton
+>Существительное</guibutton
+> или <guibutton
+>Прилагательное</guibutton
+> для добавления склонений в словарь. </para>
+</sect1>
+
+<sect1 id="creating-new-files"
+><title
+>Создание новых файлов</title>
+
+<para
+>В этом разделе рассматривается создание файлов новых словарей, которые могут быть предназначены не только для изучения слов, но и для упражнений по грамматике, математике и так далее. </para>
+
+<sect2 id="new-collection--vocabulary-english-german"
+><title
+>Новый словарь: англо-немецкий словарь</title>
+
+<para
+>В этом разделе приводится описание процесса создания файла словаря с изображениями и звуковыми данными. На втором этапе создания в словарь будут добавлены прилагательные и глаголы. Этот пример довольно сложен и потому является достаточно длинным. Скорее всего, при создании словаря не потребуется использовать все описанные здесь элементы. </para>
+
+<para
+>Поскольку требуется добавить в словарь файлы звуковых данных и изображений, следует скопировать эти файлы в одну папку. Для удобства назовём эту папку <emphasis
+>eng-deu</emphasis
+>. Файл данных &parley; также будет сохранён в этой папке. Подобное сосредоточение данных будет полезным, если потребуется поделиться созданным словарем с другими пользователями. </para>
+
+<para
+>Вот имеющиеся файлы звуковых данных и изображений: </para>
+
+<screenshot>
+  <screeninfo
+>Папка данных в &dolphin;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Folder_with_sound_and_pictures.png" format="PNG"/></imageobject>
+    <caption
+>Папка данных в &dolphin;</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Начнём с <guilabel
+>Панели мониторинга</guilabel
+>, которая появляется при запуске &parley;: </para>
+
+<screenshot>
+  <screeninfo
+>Главное окно &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="dashboard.png" format="PNG"/></imageobject>
+    <caption
+>Панель мониторинга с несколькими словарями</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Нажмите кнопку <guibutton
+>Создать новый словарь...</guibutton
+>. </para>
+
+<para
+>Появится раздел <guilabel
+>Общие сведения о словаре</guilabel
+>, которая заполняется следующим образом (адаптируйте под свой файл): </para>
+
+<screenshot>
+  <screeninfo
+>Диалог свойств</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="general_document_properties.png" format="PNG"/></imageobject>
+    <caption
+>Диалог свойств</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Затем нажмите кнопку <guibutton
+>OK</guibutton
+>. В следующем окне будет предложено указать сведения о языке. Здесь не требуется ничего изменять, поэтому следует просто нажать кнопку <guibutton
+>OK</guibutton
+>. </para>
+
+<para
+>На первом этапе создадим словарную часть. Добавление звуковых данных и данных изображений выполним на втором этапе. Вот как выглядит раздел: </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="new_empty_collection.png" format="PNG"/></imageobject>
+    <caption
+>Новый пустой словарь</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Прежде чем сделать что-либо ещё, необходимо сохранить файл в папку с изображениями и звуковыми файлами. Выберите пункт меню <menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Сохранить</guimenuitem
+></menuchoice
+> и укажите нужную папку. В этом примере файл называется <guilabel
+>Trainer eng-deu</guilabel
+> — после ввода имени следует просто нажать кнопку <guibutton
+>Сохранить</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Диалог «Сохранение словаря в указанном формате»</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="save_new_collection.png" format="PNG"/></imageobject>
+    <caption
+>Сохранение нового словаря</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Теперь в папке с изображениями и звуковыми файлами также появился файл <filename
+>Trainer eng-deu.kvtml</filename
+>&nbsp;. </para>
+
+<para
+>Посмотрим на те слова, которые требуется добавить: <emphasis
+>apple, bird, cat, cherry, cow, orange, pear, snake, strawberry</emphasis
+>. Среди слов есть названия животных и фруктов, поэтому создадим два раздела: <guilabel
+>Animals</guilabel
+> и <guilabel
+>Fruits</guilabel
+>. </para>
+
+<para
+>Теперь переименуем <guilabel
+>Lesson 1</guilabel
+> в <guilabel
+>Animals</guilabel
+>, а затем добавим раздел <guilabel
+>Fruits</guilabel
+>. Щёлкните по заголовку <guilabel
+>Lesson 1</guilabel
+> правой кнопкой мыши и выберите в контекстном меню пункт <guimenuitem
+>Переименовать раздел</guimenuitem
+>. Теперь текст <guilabel
+>Урок 1</guilabel
+> выделен и можно заменить его, просто набрав на клавиатуре <guilabel
+>Animals</guilabel
+>. По окончании набора нажмите клавишу &Enter;. Теперь щёлкните правой кнопкой мыши по заголовку <guilabel
+>Словарь: Vocabulary trainer E…</guilabel
+> (это заголовок верхнего уровня в дереве разделов) и выберите в контекстном меню пункт <guimenuitem
+>Новый раздел</guimenuitem
+>. Введите в новом поле текст <guilabel
+>Fruits</guilabel
+> и снова нажмите клавишу &Enter;. </para>
+
+<para
+>Сначала введём названия животных. Щёлкните по разделу <guilabel
+>Animals</guilabel
+>: будет открыта таблица для заполнения. Щёлкните по первому полю правой кнопкой мыши и введите исходные термины. Затем укажите целевые термины во втором столбце. После ввода всех четырёх названий животных на английском языке и их соответствий на немецком языке таблица должна выглядеть так: </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_004.png" format="PNG"/></imageobject>
+    <caption
+>Редактирование англо-немецкого словаря</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>В этом примере нужно создать только четыре записи в разделе с названиями животных. В таблице осталось много пустых строк — их следует удалить. Чтобы это сделать, щёлкните по первому пустому полю, зажмите клавишу &Shift; и щёлкните по последнему пустому полю. Все строки, которые подлежат удалению, будут выделены. Затем нажмите клавишу &Del;. </para>
+
+<para
+>Добавим названия фруктов. Щёлкните по заголовку <guilabel
+>Fruits</guilabel
+>. Будет открыта пустая таблица. Так как названий фруктов пять, необходимо добавить пять строк: нажмите клавишу &Ins; пять раз, а затем (так же, как и в прошлый раз) добавьте названия. </para>
+
+<para
+>Не забывайте периодически сохранять результаты работы... </para>
+
+<para
+>Если щёлкнуть по заголовку <guilabel
+>Словарь: Vocabulary trainer E...</guilabel
+>, &parley; отобразит все записи, которые присутствуют в двух разделах: </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_005.png" format="PNG"/></imageobject>
+    <caption
+>Все записи, которые имеются в двух разделах</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Теперь можно добавить звук и изображения. Сначала необходимо включить панели <guilabel
+>Изображение</guilabel
+> и <guilabel
+>Звук</guilabel
+>. Установите флажки <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Изображение</guimenuitem
+></menuchoice
+> и <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Звук</guimenuitem
+></menuchoice
+>. Когда эти флажки будут установлены, в правой части окна редактирования &parley; появятся две новых области. </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_006.png" format="PNG"/></imageobject>
+    <caption
+>Разделы «Звук» и «Изображение»</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Выберите английское слово <emphasis
+>apple</emphasis
+> щелчком по нему. Оно будет выделено, поэтому уже можно добавить изображение. Щёлкните по значку <inlinemediaobject
+><imageobject
+><imagedata fileref="folder-black.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>папки</guiicon
+> в области работы с изображениями (в правой части окна) и выберите изображение, которое следует связать с этим словом. </para>
+
+<para
+>Чтобы добавить произношение английского слова «apple», повторите эти действия в области работы со звуком, выбрав соответствующий звуковой файл. </para>
+
+<para
+>Чтобы прослушать произношение, нажмите кнопку <guibutton
+>Воспроизвести</guibutton
+> на панели работы со звуком. </para>
+
+<para
+>Окно будет выглядеть так: </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_007.png" format="PNG"/></imageobject>
+    <caption
+>Воспроизведение звука</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Затем щёлкните по переводу на немецкий язык <guilabel
+>Apfel</guilabel
+>. Поле будет выделено (это означает, что слово выбрано). Как видно, изображение яблока также связано и с его названием на немецком. Выберите произношение в области работы со звуком (так, как это уже было сделано ранее). </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_008.png" format="PNG"/></imageobject>
+    <caption
+>Проверка привязки данных</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Выполните те же действия для всех остальных терминов. </para>
+
+<para
+>Теперь можно добавить к проекту прилагательные и глаголы как разделы. Выполните те же действия, которые были выполнены ранее для раздела <emphasis
+>Fruits</emphasis
+>; создайте два новых раздела: <emphasis
+>Прилагательные</emphasis
+> и <emphasis
+>Глаголы</emphasis
+>. Пусть в разделе прилагательных будут слова <emphasis
+>big, small, old, young, narrow</emphasis
+>, а в разделе глаголов — <emphasis
+>to go, to come, to buy, to drink, to eat</emphasis
+>. </para>
+
+<para
+>Далее представлен снимок окна с введёнными словами. Слова перемешаны, поэтому хотелось бы видеть, какие из них являются <emphasis
+>существительными, прилагательными</emphasis
+> или <emphasis
+>глаголами</emphasis
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_009.png" format="PNG"/></imageobject>
+    <caption
+>Показ всей введённой терминологии</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Далее следует отобразить <guilabel
+>Часть речи</guilabel
+>. Установите флажок <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Столбцы словаря</guimenuitem
+></menuchoice
+>. Необходимо включить показ элемента <guilabel
+>Часть речи</guilabel
+> для <emphasis
+>English</emphasis
+> и <emphasis
+>German</emphasis
+>, установив флажки перед соответствующими параметрами <guilabel
+>Часть речи</guilabel
+>. Затем нажмите кнопку <guibutton
+>OK</guibutton
+> для подтверждения изменений. </para>
+
+<screenshot>
+  <screeninfo
+>Диалог «Столбцы словаря»</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_010.png" format="PNG"/></imageobject>
+    <caption
+>Выбор записи части речи</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Щёлкните по полю в столбце <guilabel
+>Часть речи</guilabel
+>, чтобы указать часть речи. Для тех языков, в которых существует разделение существительных на роды, возможно также выбрать комбинацию значений <emphasis
+>Существительное / Род</emphasis
+>. Либо начните вводить название части речи, чтобы она стала доступной для выбора. Далее приведён снимок содержимого столбца <guilabel
+>Часть речи</guilabel
+> после ввода части необходимых данных. </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_011.png" format="PNG"/></imageobject>
+    <caption
+>Выбор частей речи</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Как только будут указаны все части речи, начнём работу с <emphasis
+>Прилагательными</emphasis
+>, добавив для них <guilabel
+>Степени сравнения</guilabel
+>. Поэтому перейдём в раздел <emphasis
+>Прилагательные</emphasis
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_012.png" format="PNG"/></imageobject>
+    <caption
+>Выбор степеней сравнения</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Чтобы в правой части окна появилась панель <guilabel
+>Степени сравнения</guilabel
+>, установите флажок <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Степени сравнения</guimenuitem
+></menuchoice
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_013.png" format="PNG"/></imageobject>
+    <caption
+>Показ степеней сравнения</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Добавьте <guilabel
+>Сравнительную</guilabel
+> и <guilabel
+>Превосходную</guilabel
+> <guilabel
+>Степени сравнения</guilabel
+>. Сначала щёлкните по прилагательному, для которого следует добавить эти степени сравнения (<emphasis
+>big</emphasis
+> в рассматриваемом примере), и введите <emphasis
+>bigger</emphasis
+> и <emphasis
+>biggest</emphasis
+>. Затем добавьте степени сравнения для следующего прилагательного и так далее, пока не будут указаны все степени сравнения. </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_014.png" format="PNG"/></imageobject>
+    <caption
+>Добавление степеней сравнения</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Далее укажем формы спряжения для <guilabel
+>Глаголов</guilabel
+>. Выберите раздел <guilabel
+>Глаголы</guilabel
+> и включите область работы со спряжением в правой части окна: установите флажок <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Словоизменение (для глаголов, существительных, прилагательных)</guimenuitem
+></menuchoice
+>. В качестве примера изменим форму настоящего времени (<guilabel
+>Präsens</guilabel
+>) глагола <emphasis
+>gehen</emphasis
+>. Выберите <guilabel
+>Präsens</guilabel
+> в раскрывающемся списке и затем добавьте формы глагола. </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_015.png" format="PNG"/></imageobject>
+    <caption
+>Выбор формы спряжения глагола</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Это нужно сделать для всех глаголов, во всех возможных временах. </para>
+
+<para
+>После завершения ввода данных можно начать тренировку. Для этого достаточно нажать кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <link linkend="vocabulary-practice"
+><guiicon
+>Тренировка</guiicon
+></link
+> на панели инструментов. </para>
+</sect2>
+
+<sect2 id="new-collection:-single-names-and-collective-names"
+><title
+>Новый словарь: названия отдельных предметов и собирательные названия</title>
+
+<para
+>Это упражнение было создано для 3-го класса итальянской начальной школы. Ученики должны соединить названия отдельных предметов с собирательными названиями. Например: <emphasis
+>дерево</emphasis
+> → <emphasis
+>лес</emphasis
+> </para>
+
+<para
+>После запуска &parley; отображается начальная страница. Она содержит список ранее открытых файлов (на этом снимке его нет). </para>
+
+<screenshot>
+  <screeninfo
+>Главное окно &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="initial_screen.png" format="PNG"/></imageobject>
+    <caption
+>Панель мониторинга</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Нажмите кнопку <guibutton
+>Создать новый словарь…</guibutton
+>. Появится окно с пустыми или частично заполненными полями: </para>
+
+<screenshot>
+  <screeninfo
+>Диалог свойств безымянного словаря</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names1.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Диалог свойств безымянного словаря</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Введите название (в этом примере — <guilabel
+>nomi singoli e collettivi</guilabel
+>), своё имя, адрес электронной почты. В текстовом поле <guilabel
+>Комментарий</guilabel
+> возможно указать более подробное описание. Затем выберите <guilabel
+>Категорию</guilabel
+> и <guilabel
+>Лицензию</guilabel
+>. Далее, вместо обычного указания <guilabel
+>Первого языка</guilabel
+> и <guilabel
+>Второго языка</guilabel
+>, были добавлены <emphasis
+>nome singolo</emphasis
+> (название отдельного предмета) и <emphasis
+>nome collettivo</emphasis
+> (собирательное название). Параметры <guilabel
+>Задать грамматические свойства</guilabel
+> и <guilabel
+>Загрузить грамматику</guilabel
+> не требуется включать. На снимке окна они ещё включены — отключите их, сняв соответствующие флажки. Затем нажмите кнопку <guibutton
+>OK</guibutton
+>. </para>
+
+<para
+>Выберите пункт меню <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Языки…</guimenuitem
+></menuchoice
+>: появится область <guilabel
+>Свойства nome singolo</guilabel
+>, на которой уже присутствуют все необходимые изменения: </para>
+
+<screenshot>
+  <screeninfo
+>Диалог «Языки»</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names4.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Свойства nome singolo</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>В левой части окна показана область принадлежности добавляемых данных. <emphasis
+>nome singolo</emphasis
+>. Выберите язык (в этом примере — <emphasis
+>Italian</emphasis
+> (итальянский)) и вставьте <emphasis
+>nome singolo</emphasis
+> в следующем доступном для редактирования поле. Затем нажмите кнопку <guibutton
+>OK</guibutton
+>. </para>
+
+<para
+>Будет показана область <guilabel
+>Свойства nome collettivo</guilabel
+>: </para>
+
+<screenshot>
+  <screeninfo
+>Диалог «Языки»</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names5.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Свойства nome collettivo</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Как и ранее: выберите <guilabel
+>Italian</guilabel
+> (итальянский) язык и вставьте в поле <emphasis
+>nome collettivo</emphasis
+>, затем нажмите кнопку <guibutton
+>OK</guibutton
+>. </para>
+
+<para
+>Теперь можно приступить к редактированию: </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names7.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Создание нового упражнения</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Просто укажите <emphasis
+>nome singolo</emphasis
+> (название отдельного предмета) в первом столбце и соответствующее <emphasis
+>nome collettivo</emphasis
+> (собирательное название) во втором столбце. </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names8.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Добавление новой записи</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Если доступных полей недостаточно, щёлкните правой кнопкой мыши в любом месте области редактирования и выберите в контекстном меню пункт <guimenuitem
+>Добавить запись</guimenuitem
+>. Не забывайте периодически сохранять файл. Когда будут добавлены все записи, проверьте, правильно ли работает режим тренировки. Нажмите кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Тренировка</guiicon
+> на панели инструментов (она расположена непосредственно над областью редактирования) для просмотра страницы с параметрами тренировки: </para>
+
+<screenshot>
+  <screeninfo
+>Окно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names10.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Режим тренировки с вариантами ответов</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>В этом случае подойдёт опция <guilabel
+>Варианты ответов</guilabel
+>, но также можно выбрать и <guilabel
+>Письменные задания</guilabel
+>. После указания режима тренировки просто нажмите кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Начать тренировку...</guiicon
+> на панели инструментов. </para>
+</sect2>
+</sect1>
+
+<sect1 id="getting-additional-collections"
+><title
+>Получение дополнительных словарей</title>
+
+<para
+><guilabel
+>Панель мониторинга</guilabel
+> позволяет устанавливать словари непосредственно с сервера (при наличии подключения к Интернету). Просто нажмите кнопку <guibutton
+>Загрузить новые словари…</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Главное окно &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="dashboard.png" format="PNG"/></imageobject>
+    <caption
+>Панель мониторинга с несколькими словарями</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Будет открыто окно с различными интересными словарями. Выберите один из них и нажмите кнопку <guibutton
+>Установить</guibutton
+>. Затем откройте файл, чтобы приступить к тренировке или редактированию. </para>
+
+<screenshot>
+  <screeninfo
+>Диалог загрузки новых материалов</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="get_new_stuff.png" format="PNG"/></imageobject>
+    <caption
+>Получение дополнительных словарей</caption>
+  </mediaobject>
+</screenshot>
+</sect1>
+
+<sect1 id="configure-parley"
+><title
+>Настройка &parley;</title>
+
+<para
+>Настроить внешний вид &parley; можно в окнах <guilabel
+>Панели мониторинга</guilabel
+>, <guilabel
+>Тренировки</guilabel
+> или <guilabel
+>Редактора</guilabel
+>. Выберите пункт меню <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить &parley;...</guimenuitem
+></menuchoice
+>. </para>
+
+<sect2 id="theme-tab"
+><title
+>Страница «Тема»</title>
+
+<para
+><guilabel
+>Тема</guilabel
+> — первая страница параметров настройки. Здесь можно указать, как программа &parley; должна выглядеть при запуске; к выбору доступны элегантный <guilabel
+>Серый фон</guilabel
+> или вечно занятые <guilabel
+>Пчёлки</guilabel
+>. Обратите внимание, что в установленной версии программы может не оказаться темы <guilabel
+>Fluffy Bunny</guilabel
+>: если она нужна, ознакомьтесь со следующим разделом. </para>
+
+<para
+>После выбора темы нажмите кнопку <guibutton
+>OK</guibutton
+>. </para>
+
+<para
+>Снимок окна с темой <guilabel
+>Пчёлки</guilabel
+>: </para>
+
+<screenshot>
+  <screeninfo
+>Окно тренировки</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_bees.png" format="PNG"/></imageobject>
+    <caption
+>Применённая тема «Пчёлки»</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Если этих тем недостаточно, можно нажать кнопку <guibutton
+>Загрузить новые темы…</guibutton
+> для поиска других тем. С течением времени их должно становиться всё больше. Пользователи, которые умеют работать с &SVG; (например, с помощью <ulink url="https://inkscape.org"
+><application
+>Inkscape</application
+></ulink
+>), могут создавать свои темы и делиться ими с другими. </para>
+
+<screenshot>
+  <screeninfo
+>Настройка — окно &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_theme.png" format="PNG"/></imageobject>
+    <caption
+>Страница параметров темы</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Дополнительные темы доступны на веб-сайте <ulink url="https://store.kde.org/browse/cat/357/order/latest/"
+>store.kde.org</ulink
+> </para>
+</sect2>
+
+<sect2 id="general-tab"
+><title
+>Страница «Общие»</title>
+
+<para
+>На странице <guilabel
+>Общие</guilabel
+> представлены несколько параметров для настройки поведения &parley;. </para>
+
+<sect3 id="open-save-options"
+><title
+>Раздел «Открытие и сохранение»</title>
+
+<para
+>Опция <guilabel
+>Начинать работу с последнего открытого словаря</guilabel
+> позволяет сразу же вернуться к изучаемому словарю. Рекомендуется также использовать следующую опцию <guilabel
+>Сохранять словарь автоматически при закрытии или выходе</guilabel
+>, так как гораздо удобнее не отвечать на тот же вопрос, если во время предыдущего сеанса результаты тестирования изменились. Опция <guilabel
+>Создавать резервную копию каждые ... минут</guilabel
+> позволяет не тратить силы на постоянное сохранение своей работы. </para>
+
+<para
+>Иногда возникает потребность в импорте и / или экспорте текстовых данных в формате CSV. В таком случае важно указать корректный разделитель записей для их последующей обработки или для получения возможности чтения данных, полученных из сторонних источников. В &parley; предусмотрена возможность выбора разделителя. </para>
+</sect3>
+
+<sect3 id="editing-option"
+><title
+>Раздел «Редактирование»</title>
+
+<para
+>Здесь можно определить, следует ли &parley; автоматически добавлять новые строки во время редактирования словаря пользователем. Включение этой опции полезно, если требуется добавить много записей перед их разбиением на различные разделы. С другой стороны, эту опцию желательно отключить, если планируется создавать разделы с заданным максимальным количеством записей. </para>
+
+<screenshot>
+  <screeninfo
+>Настройка — окно &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_generalconfig.png" format="PNG"/></imageobject>
+    <caption
+>Страница основных параметров</caption>
+  </mediaobject>
+</screenshot>
+</sect3>
+</sect2>
+
+<sect2 id="view-tab"
+><title
+>Страница «Вид»</title>
+
+<para
+>На странице <guilabel
+>Вид</guilabel
+> возможно изменять шрифт и размер текстовых данных произношения, а также указать наиболее подходящий <guilabel
+>Основной цвет, используемый для отображения оценок</guilabel
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Настройка — окно &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_view.png" format="PNG"/></imageobject>
+    <caption
+>Страница параметров вида</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+</sect1>
+</chapter>
+
+<!--FIXME &parley; is not available on &Windows; in 16.04
+<chapter id="parley-on-windows"
+><title
+>&parley; on &Windows;</title>
+
+<para
+>It is possible to install &parley; together with other <ulink url="https://edu.kde.org"
+>Educational software</ulink
+> on &Windows; systems. For further info please visit <ulink url="https://community.kde.org/Windows"
+>this page</ulink
+>.
+</para>
+
+<para
+>The steps to be followed in short:
+</para>
+
+<para
+>Download the installer <ulink url="https://windows.kde.org/download.php"
+>here</ulink>
+</para>
+
+<para
+>Then follow the installation procedure like for any other &Windows; software.
+</para>
+
+<para
+>When you come to the <guilabel
+>Package selection screen</guilabel
+>, select the language(s) you wish the software to be available in <emphasis
+>and</emphasis
+> the package - in this case <guilabel
+>kdeedu</guilabel
+>. If you don't select any language you will automatically get English.
+</para>
+
+<para
+>Then finish the installation process by clicking on next, following the coming screens just like you normally do with other windows software.
+</para>
+
+<para
+>Please note that the &parley; team does not deal with the &Windows; Installer and therefore we cannot easily answer your questions. Should you have difficulties, please contact the &kde;-Windows team directly. You can do so by subscribing to the mailing list <ulink url="https://mail.kde.org/mailman/listinfo/kde-windows"
+>here</ulink
+> or join them on &irc; at irc://irc.libera.chat Channel: #kde-windows.
+</para>
+</chapter>
+-->
+
+<chapter id="notes-for-advanced-users"
+><title
+>Примечания для опытных пользователей</title>
+<!--
+<sect1 id="using-parley-for-exam-preparation"
+><title
+>Using &parley; for Exam Preparation</title>
+
+<itemizedlist>
+  <listitem
+><para
+>what to bear in mind with long questions / answers?</para
+></listitem>
+  <listitem
+><para
+>how to start  with a new Exam</para
+></listitem>
+  <listitem
+><para
+>example 1 with capitals</para
+></listitem>
+  <listitem
+><para
+>example 2 with sentence</para
+></listitem>
+</itemizedlist>
+</sect1>
+-->
+<!-- TODO: menu item not found -->
+<sect1 id="upload-and-share-collections"
+><title
+>Отправка и распространение словарей</title>
+
+<para
+>Возможно предоставить другим пользователям доступ к файлам, отправив их на сервер. </para>
+
+<para
+>Выберите в <guilabel
+>Редакторе</guilabel
+> внутри &parley; пункт меню <menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Опубликовать словарь…</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>Если это не сработает, также можно посетить веб-сайт <ulink url="https://store.kde.org/"
+>store.kde.org</ulink
+>. </para>
+
+<para
+>Файлы в любом случае появятся в диалоге <guilabel
+>Загрузка новых материалов</guilabel
+> (доступен по нажатию кнопки <guibutton
+>Загрузить новые словари…</guibutton
+> на <guilabel
+>Панели мониторинга</guilabel
+>). </para>
+</sect1>
+
+<sect1 id="file-format"
+><title
+>Формат файлов</title>
+
+<para
+>Список форматов файлов, доступных &parley; для чтения и сохранения словарей: </para>
+
+<para
+><ulink url="https://userbase.kde.org/Parley/FileFormats"
+>Форматы файлов &parley; на веб-сайте userbase.kde.org</ulink>
+</para>
+</sect1>
+
+<!-- empty sect1
+<sect1 id="scripting"
+><title
+>Scripting</title>
+</sect1
+-->
+</chapter>
+
+<!--userbase-content-->
+<chapter id="credits"
+><title
+>Авторские права и лицензия</title>
+
+<sect1 id="thanks"
+><title
+>Благодарности</title>
+
+<para
+>Я также хотел бы поблагодарить следующих людей за их вклад в разработку &parley;: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Peter Hedlund — он сохранил проект &kvoctrain; и начал перенос на &kde; 4, что в итоге выросло в &parley;</para
+></listitem>
+  <listitem
+><para
+>David Capel</para
+></listitem>
+  <listitem
+><para
+>Avgoustinos Kadis</para
+></listitem>
+  <listitem
+><para
+>Daniel Laidig</para
+></listitem>
+  <listitem
+><para
+>Johannes Simon</para
+></listitem>
+</itemizedlist>
+
+<para
+>Я также хотел бы поблагодарить всех остальных, включая всю команду разработчиков &kde;, за их помощь, конструктивную критику, предложения и сообщения об ошибках. </para>
+</sect1>
+
+<sect1 id="copyright"
+><title
+>Авторские права</title>
+
+<para
+>Авторское право на программу &parley;: &Frederik.Gladhorn; &Frederik.Gladhorn.mail;, 2007-2010 </para>
+
+<para
+>Авторское право на документацию: &Frederik.Gladhorn; &Frederik.Gladhorn.mail;, Sabine Eller <email
+>s.eller@voxhumanitatis.org</email
+>, Daniel Laidig <email
+>d.laidig@gmx.de</email
+>, 2010; Amarvir Singh <email
+>amarvir.ammu.93@gmail.com</email
+>, 2014 </para>
+
+<para
+>Перевод на русский язык: Валя Ванеева <email
+>fattie@altlinux.ru</email
+></para
+><para
+>Обновление перевода: Олеся Герасименко<email
+>translation-team@basealt.ru</email
+></para
+> &underFDL; &underGPL; </sect1>
+</chapter>
+
+&documentation.index;
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->

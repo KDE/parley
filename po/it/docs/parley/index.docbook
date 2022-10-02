@@ -1,0 +1,3082 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Italian "INCLUDE"
+>]>
+
+<book id="parley" lang="&language;">
+
+<bookinfo>
+<title
+>Manuale di &parley;</title>
+
+<authorgroup>
+<author
+>&Frederik.Gladhorn; &Frederik.Gladhorn.mail; </author>
+
+<author
+><personname
+><firstname
+>Sabine</firstname
+><surname
+>Eller</surname
+></personname
+> <email
+>s.eller@voxhumanitatis.org</email
+> </author>
+
+<author
+><personname
+><firstname
+>Daniel</firstname
+><surname
+>Laidig</surname
+></personname
+> <email
+>d.laidig@gmx.de</email
+> </author>
+
+<author
+><personname
+><firstname
+>Amarvir</firstname
+><surname
+>Singh</surname
+></personname
+> <email
+>amarvir.ammu.93@gmail.com</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Pino</firstname
+><surname
+>Toscano</surname
+><affiliation
+><address
+><email
+>pino.toscano@tiscali.it</email
+></address
+></affiliation
+><contrib
+>Traduzione italiana</contrib
+></othercredit
+> <othercredit role="translator"
+><firstname
+>Nicola</firstname
+><surname
+>Ruggero</surname
+><affiliation
+><address
+><email
+>nicola@nxnt.org</email
+></address
+></affiliation
+><contrib
+>Revisione e traduzione italiana</contrib
+></othercredit
+> <othercredit role="translator"
+><firstname
+>Davide</firstname
+><surname
+>Rizzo</surname
+><affiliation
+><address
+><email
+>drizzo@daviderizzo.com</email
+></address
+></affiliation
+><contrib
+>Traduzione italiana</contrib
+></othercredit
+><othercredit role="translator"
+><firstname
+>Paolo</firstname
+><surname
+>Zamponi</surname
+><affiliation
+><address
+><email
+>zapaolo@email.it</email
+></address
+></affiliation
+><contrib
+>Aggiornamento della traduzione italiana</contrib
+></othercredit
+>  
+</authorgroup>
+
+<copyright>
+  <year
+>2010</year>
+  <holder
+>&Frederik.Gladhorn;</holder>
+</copyright>
+<copyright>
+  <year
+>2010</year>
+  <holder
+>Sabine Eller</holder>
+</copyright>
+<copyright>
+  <year
+>2010</year>
+  <holder
+>Daniel Laidig</holder>
+</copyright>
+<copyright>
+  <year
+>2014</year>
+  <holder
+>Amarvir Singh</holder>
+</copyright>
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>02/11/2021</date>
+<releaseinfo
+>KDE Gear 21.08</releaseinfo>
+
+<!-- Abstract about this handbook -->
+<abstract>
+  <para
+>&parley; è una programma che ti aiuta a migliorare il tuo vocabolario, per esempio durante l'apprendimento di una lingua straniera. &parley; non si limita all'apprendimento di lingue, ma supporta moltissimi argomenti.</para>
+</abstract>
+
+<keywordset>
+  <keyword
+>KDE</keyword>
+  <keyword
+>Parley</keyword>
+  <keyword
+>vocabolario</keyword>
+  <keyword
+>allenamento</keyword>
+  <keyword
+>apprendimento</keyword>
+</keywordset>
+<!-- https://bugs.kde.org/show_bug.cgi?id=281586#c2 adjustable font size for practice window for better reading on highres screens -->
+</bookinfo>
+<!--userbase <timestamp
+>2010-06-25T18:39:29Z</timestamp
+>-->
+
+<!--userbase-content-->
+<chapter id="introduction"
+><title
+>Introduzione</title>
+
+<para
+>&parley; è un programma per esercitazioni basate sul vocabolario. Ti aiuta a memorizzare un vocabolario, ad esempio quando stai provando ad imparare una lingua straniera. Puoi creare le tue collezioni di vocaboli con le parole di cui hai bisogno, oppure scegliere da una grande varietà di <ulink url="https://userbase.kde.org/Parley#Vocabulary_Collections"
+>collezione di vocaboli</ulink
+> disponibili. Lì puoi trovare dei file contenenti i vocabolari di lingua, ma anche di anatomia, di musica, di geografia, di chimica o per la preparazione agli esami. </para>
+
+<para
+>&parley; è flessibile, e usa <ulink url="https://it.wikipedia.org/wiki/Flashcard"
+>l'approccio con le carte mnemoniche</ulink
+>. Tiene automaticamente traccia dei tuoi progressi. Con &parley; puoi ordinare il vocabolario nel modo che preferisci, perché puoi creare le lezione come desideri. A differenza delle vere carte mnemoniche, con &parley; puoi usare diverse modalità d'apprendimento. </para>
+
+<para
+>Le carte mnemoniche contengono le espressioni sul davanti, e le rispettive traduzioni sul dietro. Inizi con una pila di carte. Se conosci la traduzione di una carta, puoi inserirla in una seconda pila di carte, se non la ricordi, lasciala nella prima per riprovare in seguito. </para>
+
+<para
+>L'obiettivo principale di &parley; non è quello di insegnarti la grammatica. Tuttavia, anche in questo caso ci sono alcune forme di esercitazione che possono aiutarti. </para>
+
+<para
+>&parley; è diviso in due grandi parti: l'<link linkend="practice"
+>esercitazione sui vocabolari</link
+> e <link linkend="vocabulary-editing"
+>un editor per le collezioni di vocaboli</link
+>. </para>
+
+<para
+>In questo manuale, il termine <emphasis
+>collezioni di vocaboli</emphasis
+> si riferisce a un file che contiene delle <emphasis
+>unità</emphasis
+>. Ciascuna di queste può essere una lezione oppure una collezione di lezioni, annidate a qualsiasi livello. Da ora in poi, nel manuale faremo riferimento alle unità piuttosto che alle lezioni, dato che le unità possono essere usate anche per altri scopi. </para>
+
+<para
+>È possibile avviare sia l'<guilabel
+>Editor</guilabel
+> che l'<guilabel
+>Esercitazione</guilabel
+> dal <link linkend="practice-overview"
+>Riepilogo dell'esercitazione</link
+>. </para>
+
+<para
+>L'<link linkend="practice"
+>Esercitazione</link
+> è composta da tre parti: la prima è il <link linkend="practice-overview"
+>Riepilogo dell'esercitazione</link
+>, in cui scegli su cosa vuoi esercitarti. Da lì puoi avviare l'<link linkend="practice"
+>Esercitazione</link
+> vera e propria. Una volta completata ti viene mostrato un <link linkend="summary-after-practice"
+>Riepilogo</link
+>. </para>
+
+<tip
+><para
+>Come in tutte le applicazioni, puoi usare il &RMB; per esplorare le funzionalità di &parley;. Fai clic col &RMB; per far comparire un <quote
+>menu contestuale</quote
+>, che mostra cosa è possibile fare in quel momento. Prova a fare clic col &RMB; sulle unità e sulle parole per trovare alcune opzioni.</para
+></tip>
+</chapter>
+
+<chapter id="dashboard"
+><title
+>Quadro degli strumenti</title>
+
+<para
+>Quando avvii &parley;, a darti il benvenuto c'è il <guilabel
+>Quadro degli strumenti</guilabel
+>. </para>
+
+<para
+>All'inizio il <guilabel
+>Quadro degli strumenti</guilabel
+> è vuoto; quando apri qualche collezioni di vocaboli, ti mostra quelle con cui hai lavorato di recente. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra principale di &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="dashboard.png" format="PNG"/></imageobject>
+    <caption
+>Il quadro degli strumenti con più collezioni</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Una collezioni di vocaboli è un file che contiene varie parole con la relative traduzioni in altre lingue, oppure altre coppie di parole e frasi che vuoi memorizzare. Le parole sono organizzate in unità. </para>
+
+<para
+>Per <emphasis
+>iniziare un'esercitazione</emphasis
+>, premi con il &RMB; nella casella <guilabel
+>Esegui comunque l'esercitazione</guilabel
+> su una delle collezioni di vocaboli nella lista. Ti viene quindi mostrato il <link linkend="practice-overview"
+>riepilogo dell'esercitazione</link
+>. </para>
+
+<para
+>Nota che nella parte in basso a sinistra della voce della collezione appare una piccola icona <inlinemediaobject
+><imageobject
+><imagedata fileref="icon-delete.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Elimina</guiicon
+>: ti permette di rimuovere la collezione dalla lista. </para>
+
+<para
+>Se vuoi creare la tua collezione di vocaboli, premi sul pulsante su <guilabel
+>Crea una nuova collezione...</guilabel
+>. </para>
+
+<para
+>Puoi anche <link linkend="open-an-existing-collection"
+>aprire una collezione</link
+> se ne hai già una nel tuo computer ma non è nella lista. </para>
+
+<para
+>L'ultimo pulsante nel <guilabel
+>Quadro degli strumenti</guilabel
+> ti permette di scaricare delle collezioni di vocaboli create da altre persone. Quando hai creato un file che vorresti condividere con gli altri, puoi farlo in modo semplice dall'editor. </para>
+
+<para
+>&parley; arriva con diversi temi, nelle impostazioni puoi cambiare lo stile grafico. Per maggiori informazioni, vedi <link linkend="configure-parley"
+>Configura &parley;</link
+>. </para>
+</chapter>
+
+<chapter id="open-an-existing-collection"
+><title
+>Aprire una collezione esistente</title>
+
+<para
+>Supponiamo che la tua collezione sia già salvata sul disco. </para>
+
+<para
+>Ecco come apparirà &parley; la prima volta che viene avviato: </para>
+
+<screenshot>
+  <screeninfo
+>Finestra principale di &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="initial_screen.png" format="PNG"/></imageobject>
+    <caption
+>Schermata iniziale</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Fai clic sul pulsante <guilabel
+>Apri una collezione esistente...</guilabel
+>. </para>
+
+<para
+>Nella finestra di scelta file, naviga fino alla cartella che contiene il file, e sceglilo facendoci clic sopra. A seconda della tua configurazione di sistema, il file viene aperto immediatamente oppure devi premere il pulsante <guibutton
+>Apri</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra di selezione dei file</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="file_select_dialog.png" format="PNG"/></imageobject>
+    <caption
+>Finestra di selezione dei file</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Adesso che il file è stato caricato, spostati nella schermata <guilabel
+>Riepilogo dell'esercitazione</guilabel
+>: per maggiori informazioni, dai un'occhiata alla sezione seguente. </para>
+</chapter>
+
+<chapter id="vocabulary-practice"
+><title
+>Esercitazione sui vocaboli</title>
+
+<para
+>Per incominciare ad esercitarti, dopo aver avviato &parley; scegli un documento. Se ce n'è uno già aperto nell'editor, premi l'icona <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Avvia esercitazione...</guiicon
+> nella barra degli strumenti. </para>
+
+<sect1 id="practice-overview"
+><title
+>Riepilogo dell'esercitazione</title>
+
+<para
+>Prima che la vera e propria esercitazione incominci, devi sempre passare dalla schermata <guilabel
+>Riepilogo dell'esercitazione</guilabel
+>. Ci sono tre aree che ti permettono di scegliere su cosa esercitarti: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>La scelta delle lingue</para
+></listitem>
+  <listitem
+><para
+>La scelta della modalità di esercitazione</para
+></listitem>
+  <listitem
+><para
+>La scelta delle unità, che mostra anche i tuoi progressi</para
+></listitem>
+</itemizedlist>
+
+<screenshot>
+  <screeninfo
+>Configurazione dell'esercitazione</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_practice.png" format="PNG"/></imageobject>
+    <caption
+>Configurazione dell'esercitazione</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Sulla sinistra puoi anche scegliere la combinazione di lingue con cui tu ti eserciterai. Se ad esempio scegli «Da inglese a francese», ti verranno mostrate delle parole inglesi e &parley; ti chiederà di inserire le traduzioni in francese. </para>
+
+<para
+>Sotto la scelta della lingua, scegli la sezione <guilabel
+>Modalità di esercitazione</guilabel
+>: questa determina come ti verranno poste la domande. </para>
+
+<para
+>La lista a comparsa <guilabel
+>Direzione dell'esercitazione</guilabel
+> può essere usata per selezionare il tipo di ricerca usata durante l'esercitazione. Le scelte possibili sono: la frase conosciuta (<guimenuitem
+>Da «conosciuta» a «da imparare»</guimenuitem
+>), la frase da imparare (<guimenuitem
+>Da «da imparare» a «conosciuta»</guimenuitem
+>) oppure la combinazione delle frasi (<guimenuitem
+>Entrambe le direzioni</guimenuitem
+>). </para>
+
+<para
+>Nella parte grande sulla destra puoi vedere le unità della collezione di vocaboli. Puoi scegliere le unità con cui esercitarti usando le caselle davanti al nome di ogni unità. Il numero di parole in ogni unità è mostrato accanto al relativo nome. Alla destra del nome puoi vedere il progresso corrente per quella unità. </para>
+
+<para
+>L'avanzamento in ciascuna unità è mostrato dalla percentuale completata dell'unità e da una barra di avanzamento. La percentuale è calcolata sul numero totale di parole in quell'unità e sul livello di fiducia di ciascuna parola. La barra di progresso mostra il numero di parole in ciascun livello di fiducia, con un'ombreggiatura più scura che indica una fiducia più alta. Puoi anche visualizzare una legenda nell'intestazione, sopra alle selezioni dell'unità: i suoi colori mostrano quelli corrispondenti nella barra di avanzamento, dalle parole apprese appieno a quelle su cui non ti sei ancora esercitato. </para>
+</sect1>
+
+<sect1 id="advanced-practice-configuration"
+><title
+>Configurazione dell'esercitazione</title>
+
+<para
+>La finestra <guilabel
+>Configura l'esercitazione</guilabel
+> ti permette di specificare delle impostazioni più avanzate che influenzano l'esercitazione. </para>
+
+<para
+>Nella schermata <link linkend="practice-overview"
+>Riepilogo dell'esercitazione</link
+> puoi raggiungere la finestra <guilabel
+>Configura l'esercitazione</guilabel
+> con l'icona <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-setup.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <link linkend="advanced-practice-configuration"
+><guiicon
+>Configura l'esercitazione...</guiicon
+></link
+> nella barra degli strumenti. </para>
+
+<sect2 id="general-practice-settings"
+><title
+>Impostazioni generali dell'esercitazione</title>
+
+<para
+>Nella pagina <guilabel
+>Generale</guilabel
+> delle impostazioni puoi trovare le opzioni generali per la configurazione dell'esercitazione. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra configura l'esercitazione</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_general.png" format="PNG"/></imageobject>
+    <caption
+>Finestra impostazioni generali</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Le opzioni più importanti sono: </para>
+
+<itemizedlist>
+  <listitem
+><para
+><guilabel
+>Ignora gli accenti</guilabel
+>: con questa opzione, se inserisci una parola con <guilabel
+>e</guilabel
+> al posto di <guilabel
+>é</guilabel
+> sarà considerata corretta.</para
+></listitem>
+
+  <listitem
+><para
+><guilabel
+>Ignora le maiuscole/minuscole</guilabel
+>: questa opzione ti permette di ignorare gli errori dovuti a maiuscole al posto di minuscole, e viceversa.</para
+></listitem>
+
+  <listitem
+><para
+><guilabel
+>Immagini e suoni</guilabel
+>: se abiliti le immagini, queste saranno mostrate durante l'esercitazione, se disponibili. Lo stesso vale per i suoni.</para
+></listitem>
+
+  <listitem
+><para
+><guilabel
+>Permetti le immagini al posto delle parole</guilabel
+>: se abiliti questa opzione, un'immagine potrà essere usata come domanda durante l'esercitazione, nel caso in cui non è impostata una traduzione per quella parola.</para
+></listitem>
+</itemizedlist>
+<!--FIXME Enable Hints Sessions Synonyms-->
+</sect2>
+
+<sect2 id="blocking"
+><title
+>Blocco</title>
+
+<para
+>Se pensi di esercitarti regolarmente con i tuoi vocaboli, dovresti assicurarti che le funzionalità di <emphasis
+>blocco</emphasis
+> siano abilitate. Attiva la casella <guilabel
+>Blocco</guilabel
+> nella pagina di blocco. Adesso puoi anche configurare l'intervallo di tempo dopo il quale saranno riproposte le domande a cui avevi risposto correttamente. </para>
+
+<para
+><emphasis
+>Blocco</emphasis
+> significa che le parole non saranno proposte per certo un tempo dopo l'ultima esercitazione. Questo periodo di tempo dipende da quanto conosci la parola, così ti verranno proposte più spesso quelle che conosci di meno. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra configura l'esercitazione</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_blocking.png" format="PNG"/></imageobject>
+    <caption
+>Pagina delle impostazioni di blocco</caption>
+  </mediaobject>
+</screenshot>
+<!--FIXME Expiring-->
+</sect2>
+
+<sect2 id="thresholds"
+><title
+>Soglie</title>
+
+<para
+>Le soglie sono un altro modo per limitare ciò su cui ti vuoi esercitare. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra configura l'esercitazione</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_thresholds.png" format="PNG"/></imageobject>
+    <caption
+>Pagina delle impostazioni di soglia</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Puoi decidere di esercitarti con parole che conosci di più o di meno di un certo livello di fiducia. Oppure puoi selezionare solo quelle con cui ti sei esercitato per un certo numero di volte. </para>
+</sect2>
+
+<sect2 id="specific-practice-settings"
+><title
+>Impostazioni specifiche di esercitazione</title>
+
+<para
+>Puoi modificare le opzioni di configurazione per l'esercitazione a scelta multipla nella pagina <guilabel
+>Specifiche</guilabel
+> delle impostazioni. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra configura l'esercitazione</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_specific.png" format="PNG"/></imageobject>
+    <caption
+>Impostazioni specifiche specifiche</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Qui puoi selezionare se le scelte dovrebbero essere tutte dello stesso tipo, e il numero delle scelte. </para>
+</sect2>
+</sect1>
+
+<sect1 id="practice"
+><title
+>Esercitazione</title>
+<sect2 id="flash-cards"
+><title
+>Carte mnemoniche</title>
+
+<para
+>Dopo aver attivato la modalità <guilabel
+>Carte mnemoniche</guilabel
+> nella sezione <guilabel
+>Modalità di esercitazione</guilabel
+>, ed aver premuto l'icona <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Avvia esercitazione...</guiicon
+> nella barra degli strumenti, appare la schermata seguente. La modalità di esercitazione <guilabel
+>Carte mnemoniche</guilabel
+> funziona proprio come se avessi delle <quote
+>vere</quote
+> carte mnemoniche. Se immagini il risultato ma vuoi un aiuto, puoi premere il pulsante <guilabel
+>Suggerimento</guilabel
+>, che inizierà a darti il risultato una lettera alla volta. </para>
+
+<para
+>Puoi anche decidere saltare una parola per il momento. Se premi <guilabel
+>Rispondi più tardi</guilabel
+>, la parola ti verrà mostrata nuovamente più tardi. </para>
+
+<screenshot>
+  <screeninfo
+>La modalità di esercitazione Carte mnemoniche</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_grey.png" format="PNG"/></imageobject>
+    <caption
+>Nuova parola</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Premendo il pulsante <guilabel
+>Continua</guilabel
+>, ti verrà rivelata la soluzione. A questo punto devi dire se conoscevi la risposta. </para>
+
+<para
+>Se non la sapevi, premi il pulsante <guibutton
+>Non lo sapevo</guibutton
+>, diversamente premi <guibutton
+>Lo sapevo </guibutton
+>. </para>
+
+<para
+>Questo ti porterà alla domanda successiva. </para>
+
+<para
+>Nella parte in basso a sinistra dello schermo ci sono sette caselle che mostrano quanto conosci il vocabolario. Queste corrispondono ai livelli di blocco impostati nella pagina <guilabel
+>Configura l'esercitazione</guilabel
+> in <link linkend="blocking"
+><guilabel
+>Blocco</guilabel
+></link
+>. </para>
+
+<tip
+><para
+>Invece di premere il pulsante <guibutton
+>Continua </guibutton
+> puoi usare anche il tasto &Space; della tastiera.</para
+></tip>
+
+<screenshot>
+  <screeninfo
+>La modalità di esercitazione Carte mnemoniche</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_flash_solution.png" format="PNG"/></imageobject>
+    <caption
+>Nuova parola - conferma</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Puoi interrompere l'esercitazione in ogni momento premendo il pulsante <guilabel
+>Interrompi l'esercitazione</guilabel
+>. </para>
+</sect2>
+
+<sect2 id="mixed-letters"
+><title
+>Lettere mescolate</title>
+
+<para
+>«Lettere mescolate» è una modalità d'apprendimento che ti fornisce un aiuto immediato: tutte le lettere che fanno parte della soluzione sono mostrate mescolate: </para>
+
+<screenshot>
+  <screeninfo
+>La modalità di esercitazione Carte mnemoniche</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_hint.png" format="PNG"/></imageobject>
+    <caption
+>Nuova parola - lettere mescolate</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Nel caso tu abbia bisogno di un po' di aiuto, puoi premere <guibutton
+>Suggerimento</guibutton
+>, che ti darà la soluzione una lettera alla volta. Ovviamente puoi anche decidere di posticipare la risposta premendo <guilabel
+>Rispondi più tardi</guilabel
+>. </para>
+
+<para
+>Per rispondere, scrivi la risposta nel campo vuoto sotto alle lettere mescolate e premi il tasto &Enter;, oppure il pulsante <guibutton
+>Continua</guibutton
+>. </para>
+
+<para
+>Se la tua risposta è corretta, &parley; te lo dirà: potrai quindi premere nuovamente il tasto &Enter;, oppure il pulsante <guibutton
+>Continua</guibutton
+>, per passare alla domanda successiva. </para>
+
+<screenshot>
+  <screeninfo
+>La modalità di esercitazione Carte mnemoniche</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_right.png" format="PNG"/></imageobject>
+    <caption
+>Nuova parola - lettere mescolate giuste</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Nel caso che tu inserisca una risposta sbagliata, ti verrà detto di <emphasis
+>riprovare</emphasis
+>: </para>
+
+<screenshot>
+  <screeninfo
+>La modalità di esercitazione Carte mnemoniche</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_wrong.png" format="PNG"/></imageobject>
+    <caption
+>Nuova parola - risposta sbagliata, riprova</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Se non conosci la risposta, premi un'altra volta <guibutton
+>Continua</guibutton
+>: ti verrà mostrata la soluzione. Puoi quindi procedere alla domanda successiva premendo <guibutton
+>Continua</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>La modalità di esercitazione Carte mnemoniche</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_solution.png" format="PNG"/></imageobject>
+    <caption
+>Nuova parola - risposta sbagliata, mostra quella giusta</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Puoi ribaltare il modo in cui una risposta viene contata. Vedi <link linkend="practice-overview"
+>Riepilogo dell'esercitazione</link
+>. </para>
+</sect2>
+
+<sect2 id="multiple-choice"
+><title
+>Scelta multipla</title>
+<sect3 id="automatic-selection-of-the-possible-answers"
+><title
+>Selezione automatica delle risposte possibili</title>
+
+<para
+>Nella modalità <guilabel
+>Scelta multipla</guilabel
+> ti vengono mostrate alcune possibili risposte, una sola delle quali è corretta. Ogni volta che premi il pulsante <guibutton
+>Suggerimento</guibutton
+>, &parley; esclude una delle risposte sbagliate: in questo modo la scelta diventa sempre più ristretta. La risposta viene rivelata quando rimane una sola opzione, ma la risposta viene contata come sbagliata. Ovviamente puoi anche scegliere di premere su <guilabel
+>Rispondi più tardi</guilabel
+>. </para>
+
+<screenshot>
+  <screeninfo
+>La modalità di esercitazione Carte mnemoniche</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="multiple_choice.png" format="PNG"/></imageobject>
+    <caption
+>Nuova parola - modalità a scelta multipla</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Una volta che hai fatto la tua scelta, facendo clic sulla risposta che credi sia corretta oppure scrivendo il numero posto davanti alla scelta, &parley; ti mostra con la schermata qui sotto se la risposta era corretta. Procedi alla domanda successiva premendo il pulsante <guibutton
+>Continua</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>La modalità di esercitazione Carte mnemoniche</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="multiple_choice-right.png" format="PNG"/></imageobject>
+    <caption
+>Nuova parola - scelta multipla, risposta giusta</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Se invece la tua risposta è sbagliata, quella corretta sarà mostrata in verde e quella sbagliata in rosso. Anche in questo caso puoi passare alla domanda successiva premendo il pulsante <guibutton
+>Continua</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>La modalità di esercitazione Carte mnemoniche</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="multiple_choice-wrong.png" format="PNG"/></imageobject>
+    <caption
+>Nuova parola - scelta multipla, risposta sbagliata</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Puoi ribaltare il modo in cui una risposta viene contata. Vedi <link linkend="practice-overview"
+>Riepilogo dell'esercitazione</link
+>. </para>
+
+<para
+>Se desideri interrompere un'esercitazione, premi semplicemente il pulsante <guibutton
+>Interrompi l'esercitazione</guibutton
+>. </para>
+</sect3>
+
+<sect3 id="with-yes-no-answers"
+><title
+>Con domande sì/no</title>
+
+<para
+>Normalmente &parley;, quando è in modalità a scelta multipla, propone automaticamente una risposta corretta e molte altre sbagliate. Per alcuni esercizi, invece, dovrai impostare risposte tipo sì/no, o simili. In questo caso dovrai configurare l'esercitazione premendo l'icona <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-setup.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <link linkend="advanced-practice-configuration"
+><guiicon
+>Configura l'esercitazione...</guiicon
+></link
+> nella barra degli strumenti. </para>
+
+<para
+>Seleziona la pagina <guilabel
+>Specifiche</guilabel
+> e vedrai qualcosa di molto simile alla schermata seguente: </para>
+
+<screenshot>
+  <screeninfo
+>Finestra configura l'esercitazione</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_specific.png" format="PNG"/></imageobject>
+    <caption
+>Pagina Specifiche</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Se hai solo <emphasis
+>due scelte</emphasis
+>, ad esempio <emphasis
+>sì/no</emphasis
+>, nella sezione <guilabel
+>Scelta multipla</guilabel
+> imposta il <guilabel
+>Numero di scelte:</guilabel
+> a <parameter
+>2</parameter
+>. </para>
+</sect3>
+</sect2>
+
+<sect2 id="written"
+><title
+>Scritta</title>
+
+<para
+>Quando scegli l'opzione <guilabel
+>Scritta</guilabel
+> per l'esercitazione, devi scrivere la soluzione. Puoi usare il pulsante <guibutton
+>Suggerimento</guibutton
+>, che ti fornirà la soluzione una lettera alla volta. Naturalmente puoi anche decidere di rispondere più tardi: in questo caso premi il pulsante <guibutton
+>Rispondi più tardi</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Modalità di esercitazione Scritta</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_written.png" format="PNG"/></imageobject>
+    <caption
+>Nuova parola - modalità di esercitazione Scritta</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Una volta che hai inserito la soluzione, premi il pulsante <guibutton
+>Continua</guibutton
+> e &parley; ti mostrerà se la risposta era corretta. Passa alla domanda successiva premendo nuovamente il pulsante <guibutton
+>Continua</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Modalità di esercitazione Scritta</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_written_right.png" format="PNG"/></imageobject>
+    <caption
+>Nuova parola - modalità di esercitazione Scritta, risposta giusta</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Nel caso tu abbia dato la risposta sbagliata, puoi riprovare molte volte per trovare quella corretta. Se non riprovi, e premi semplicemente il pulsante <guibutton
+>Continua</guibutton
+>, la soluzione verrà mostrata. </para>
+
+<screenshot>
+  <screeninfo
+>Modalità di esercitazione Scritta</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_written_wrong.png" format="PNG"/></imageobject>
+    <caption
+>Nuova parola - modalità di esercitazione Scritta, risposta sbagliata</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Vai avanti nell'esercitazione premendo il pulsante <guibutton
+>Continua</guibutton
+>, oppure interrompila con <guibutton
+>Interrompi l'esercitazione</guibutton
+>. </para>
+
+<para
+>Puoi ribaltare il modo in cui una risposta viene contata. Vedi <link linkend="practice-overview"
+>Riepilogo dell'esercitazione</link
+>. </para>
+</sect2>
+
+<sect2 id="reset-practice-to-initial-state"
+><title
+>Riporta l'esercitazione allo stato iniziale</title>
+
+<para
+>Puoi riportare tutti i punteggi di fiducia, cioè rimuovere i livelli di confidenza, allo stato iniziale. Puoi rimuovere i livelli di confidenza per le singole unità con l'icona <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Riepilogo dell'esercitazione</guiicon
+> nella barra degli strumenti, o facendo clic con il &RMB; sull'unità da ripristinare e scegliendo <guimenuitem
+>Rimuovi livelli di fiducia da questa unità</guimenuitem
+> oppure <guimenuitem
+>Rimuovi livelli di fiducia da questa unità e da tutte le sotto-unità</guimenuitem
+>. </para>
+</sect2>
+</sect1>
+
+<sect1 id="summary-after-practice"
+><title
+>Riepilogo dopo l'esercitazione</title>
+
+<para
+>Il riepilogo viene mostrato quando completi una sessione di apprendimento. La barra grande in alto mostra come sei andato. </para>
+
+<para
+>Sotto c'è una tabella con tutte le parole con cui ti sei esercitato, insieme agli errori commessi. </para>
+
+<para
+>Le parole con il maggior numero di errori sono in alto, così puoi vedere facilmente ciò che non sai ancora. </para>
+
+<para
+>Premi l'icona <inlinemediaobject
+><imageobject
+><imagedata fileref="document-export.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Esporta i risultati...</guiicon
+> nella barra degli strumenti, oppure usa la voce di menu<menuchoice
+><guimenu
+>Esercitazione</guimenu
+> <guimenuitem
+>Esporta i risultati...</guimenuitem
+></menuchoice
+>, per esportare i risultati dell'esercitazione in &HTML; oppure in un file di testo OpenDocument (<literal role="extension"
+>.odt</literal
+>). </para>
+
+<screenshot>
+  <screeninfo
+>Riepilogo dopo l'esercitazione</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_summary.png" format="PNG"/></imageobject>
+    <caption
+>Riepilogo dopo l'esercitazione</caption>
+  </mediaobject>
+</screenshot>
+</sect1>
+
+<!--FIXME Example Sentences practice missing -->
+<sect1 id="grammar-practice-modes"
+><title
+>Modalità dell'esercitazione di grammatica</title>
+
+<para
+>Con &parley; puoi imparare anche delle strutture di grammatica specifiche, ad esempio il genere dei nomi, le forme di confronto degli aggettivi e la coniugazione di verbi. Diamo un'occhiata ad alcuni esempi: </para>
+
+<sect2 id="articles-and-gender-of-nouns"
+><title
+>Articoli e genere dei nomi</title>
+
+<para
+>Una volta che viene attivata la modalità di esercitazione <guilabel
+>Genere dei nomi</guilabel
+>, premi l'icona <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Avvia esercitazione...</guiicon
+> nella barra degli strumenti. </para>
+
+<para
+>In questo caso usiamo il tedesco come lingua da imparare, quindi ci sono tre generi da cui scegliere: maschile, femminile e neutro. Premendo su <guibutton
+>Suggerimento</guibutton
+>, una delle risposte sbagliate viene esclusa. Ovviamente puoi anche premere il pulsante <guibutton
+>Rispondi più tardi</guibutton
+>. </para>
+
+<para
+>Dovresti inserire gli articoli della lingua nell'editor per vedere questi invece dei termini dei generi grammaticali. Nota anche che ciò funziona solo se i generi delle parole sono stati impostati correttamente. Per maggiori informazioni su come impostare il genere corretto per il tipo di parola, vedi <link linkend="word-types"
+>Tipi di parole</link
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Modalità di esercitazione Genere dei nomi</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="articles_and_gender.png" format="PNG"/></imageobject>
+    <caption
+>Nuova parola - modalità di esercitazione Genere dei nomi</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Quando dai la risposta giusta viene mostrata la schermata seguente, e puoi continuare l'esercitazione premendo sul pulsante <guibutton
+>Continua</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Modalità di esercitazione Genere dei nomi</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="articles_and_gender_right.png" format="PNG"/></imageobject>
+    <caption
+>Nuova parola - Genere dei nomi, risposta giusta</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Nel caso dovessi dare la risposta sbagliata viene invece mostrata la seguente schermata, e puoi continuare l'esercitazione premendo il pulsante <guibutton
+>Continua</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Modalità di esercitazione Genere dei nomi</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="articles_and_gender_wrong.png" format="PNG"/></imageobject>
+    <caption
+>Nuova parola - Genere dei nomi, risposta sbagliata</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Puoi interrompere l'esercitazione in ogni momento premendo il pulsante <guilabel
+>Interrompi l'esercitazione</guilabel
+>. </para>
+</sect2>
+
+<sect2 id="comparison-forms-of-adjectives-and-adverbs"
+><title
+>Forme di confronto di aggettivi e avverbi</title>
+
+<para
+>Nella schermata <guilabel
+>Modalità di esercitazione</guilabel
+> seleziona <guilabel
+>Forme di confronto</guilabel
+> e premi l'icona <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Avvia l'esercitazione...</guiicon
+> nella barra degli strumenti per andare avanti. </para>
+
+<para
+>Questo tipo di esercitazione può essere fatto solo se le forme di coniugazione dei verbi sono state inserite nella collezione di vocaboli. Vedi <link linkend="entering-comparison-forms"
+>Inserire le forme di confronto</link
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Configurazione dell'esercitazione</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison.png" format="PNG"/></imageobject>
+    <caption
+>Modalità di esercitazione Forme di confronto</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Questo esercizio richiede l'inserimento delle forme di confronto della parola mostrata. In questo caso, la traduzione della parola inglese <emphasis
+>old</emphasis
+> in tedesco. La lingua tedesca ha tre forme: <emphasis
+>assoluto</emphasis
+>, <emphasis
+>comparativo</emphasis
+> e <guilabel
+>superlativo</guilabel
+>. Per andare avanti con l'esercizio, premi semplicemente sul pulsante <guibutton
+>Continua</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Modalità di esercitazione Forme di confronto</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison_right.png" format="PNG"/></imageobject>
+    <caption
+>Nuova parola - confronto giusto</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+
+<sect2 id="conjugations"
+><title
+>Coniugazioni</title>
+
+<para
+>Per esercitarti con le coniugazioni, scegli la modalità <guilabel
+>Coniugazioni</guilabel
+> e i tempi con cui vuoi esercitarti. </para>
+
+<para
+>Per poter usare questa modalità di pratica, le forme di coniugazione dei verbi devono essere inserite nel documento. Vedi <link linkend="entering-inflection-forms"
+>Inserire le forme di flessione</link
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Configurazione dell'esercitazione</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Configure_practice_conjugation.png" format="PNG"/></imageobject>
+    <caption
+>Modalità di esercitazione Coniugazioni</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Premi quindi l'icona <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Avvia esercitazione...</guiicon
+> nella barra degli strumenti. Devi inserire le forme di coniugazione corrette dei tempi mostrati. Per andare avanti, premi sul pulsante <guibutton
+>Continua</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Modalità di esercitazione Coniugazioni</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_practice_conjugation.png" format="PNG"/></imageobject>
+    <caption
+>Esercitazione sulle coniugazioni</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+</sect1>
+</chapter>
+
+<chapter id="vocabulary-editing"
+><title
+>Modificare i vocaboli</title>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="edit_main.png" format="PNG"/></imageobject>
+    <caption
+>Modificare gli esercizi</caption>
+  </mediaobject>
+</screenshot>
+
+<sect1 id="setup"
+><title
+>Configurazione</title>
+
+<para
+>Prima di cominciare ad usare una collezione di vocaboli, o a crearne una, può essere utile capire i diversi elementi in &parley; e configurarli opportunamente. Le sezioni che seguono ti guideranno passo per passo in questo processo. Ci sono molti posti per le impostazioni di &parley;: </para>
+
+<itemizedlist>
+  <listitem
+><para
+><menuchoice
+><guimenu
+>File</guimenu
+><guimenuitem
+>Proprietà...</guimenuitem
+></menuchoice
+> questo è il posto delle <quote
+>Proprietà generali del documento</quote
+>, cioè delle informazioni sulla collezione di vocaboli e su di te.</para
+></listitem>
+
+  <listitem
+><para
+><menuchoice
+><guimenu
+>Modifica</guimenu
+> <guimenuitem
+>Lingue...</guimenuitem
+></menuchoice
+> qui trovi le impostazioni delle lingue che usi.</para
+></listitem>
+
+  <listitem
+><para
+><menuchoice
+><guimenu
+>Esercitazione</guimenu
+><guimenuitem
+>Configura l'esercitazione...</guimenuitem
+></menuchoice
+> qui ci sono le impostazioni su come ti eserciti con il vocabolario che, a seconda di quello che vuoi fare durante la sessione specifica di apprendimento, possono essere cambiate al volo.</para
+></listitem>
+
+  <listitem
+><para
+><menuchoice
+><guimenu
+>Impostazioni</guimenu
+><guimenuitem
+>Configura &parley;...</guimenuitem
+></menuchoice
+> per le impostazioni generali e di visualizzazione.</para
+></listitem>
+</itemizedlist>
+
+<sect2 id="about-the-collection"
+><title
+>Informazioni sulla collezione</title>
+
+<para
+>L'inserimento di metadati, come un titolo e le tue informazioni di contatto, è importante se pensi di rendere disponibile ad altre persone la tua collezione. Usa la voce di menu <menuchoice
+><guimenu
+>File</guimenu
+> <guimenuitem
+>Proprietà...</guimenuitem
+></menuchoice
+> per modificare i dati. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra Proprietà di <quote
+>filename.kvtml</quote
+></screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="document_properties.png" format="PNG"/></imageobject>
+    <caption
+>Modifica delle proprietà</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+
+<sect2 id="vocabulary-columns"
+><title
+>Colonne del vocabolario</title>
+
+<para
+>A seconda dell'argomento delle tue sessioni di apprendimento, può essere importante mostrare delle altre colonne del vocabolario nella sezione di modifica. Per selezionare queste colonne, scegli la voce di menu <menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Colonne del vocabolario...</guimenuitem
+></menuchoice
+>. Puoi quindi determinare se debbano essere mostrate le colonne <emphasis
+>Pronuncia, Tipo di parole, Sinonimi, Contrari, Esempio, Commento</emphasis
+> oppure <emphasis
+>Parafrasi</emphasis
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra Colonne del vocabolario</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="vocabulary_columns.png" format="PNG"/></imageobject>
+    <caption
+>Impostazione delle colonne</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+
+<sect2 id="languages-and-grammar"
+><title
+>Lingue e grammatica</title>
+
+<para
+>Imposta i dettagli della grammatica così che &parley; possa aiutarti. Usa la voce di menu <menuchoice
+><guimenu
+>Modifica</guimenu
+> <guimenuitem
+>Lingue...</guimenuitem
+></menuchoice
+> per aprire la grammatica. </para>
+
+<para
+>Gli articoli della lingua inglese sono semplicemente <guilabel
+>the</guilabel
+>, che è l'articolo determinativo, e <guilabel
+>a</guilabel
+>, che è quello indeterminativo. La maggior parte delle altre lingue hanno più articoli, e possono essere inseriti nella scheda <guilabel
+>Articoli</guilabel
+>. </para>
+
+<para
+>Per le coniugazioni devono essere inseriti i pronomi personali. La maggior parte delle lingue non hanno delle forme diverse di coniugazione per egli/ella; in quel caso <emphasis
+>non</emphasis
+> dovresti attivare la casella <guilabel
+>Maschile e femminile hanno coniugazioni diverse</guilabel
+>! È sufficiente inserire i pronomi per  tutte e tre le forme. </para>
+
+<table>
+  <title
+>Pronomi personali in inglese</title>
+  <tgroup cols="3">
+  <tbody>
+  <row>
+    <entry
+></entry>
+    <entry
+>Singolare</entry>
+    <entry
+>Plurale</entry>
+  </row>
+  <row>
+    <entry
+>Prima persona</entry>
+    <entry
+>I</entry>
+    <entry
+>we</entry>
+  </row>
+  <row>
+    <entry
+>Seconda persona</entry>
+    <entry
+>you</entry>
+    <entry
+>you</entry>
+  </row>
+  <row>
+    <entry
+>Terza persona</entry>
+    <entry
+>he/she/it</entry>
+    <entry
+>they</entry>
+    </row>
+  </tbody>
+  </tgroup>
+</table>
+
+<para
+>La scheda <guilabel
+>Tempi</guilabel
+>: a seconda della lingua, puoi inserire i tempi giusti che vorrai imparare a coniugare. Ad esempio: «Simple Present», «Simple Past», «Future I», &etc;. </para>
+
+<para
+>A proposito: premendo il pulsante <guibutton
+>Aggiungi lingua</guibutton
+> puoi aggiungere un'altra lingua alla collezione. </para>
+
+<sect3 id="lets-have-a-closer-look-at-spanish"
+><title
+>Diamo un'occhiata allo spagnolo</title>
+
+<para
+>Nella scheda <guilabel
+>Generale</guilabel
+> ci sono le impostazioni base della lingua, come qui: </para>
+
+<itemizedlist>
+  <listitem
+><para
+><guilabel
+>Lingua:</guilabel
+> spagnolo</para
+></listitem>
+  <listitem
+><para
+><guilabel
+>Nome:</guilabel
+> spagnolo</para
+></listitem>
+  <listitem
+><para
+><guilabel
+>Mappatura di tastiera</guilabel
+> us (per l'inglese)</para
+></listitem>
+</itemizedlist>
+
+<para
+>Puoi lasciare <guilabel
+>Mappatura di tastiera:</guilabel
+> vuoto se non sei sicuro di quella che stai usando. In questo caso &parley; userà quella in uso nel computer. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra Modifica lingua</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_general.png" format="PNG"/></imageobject>
+    <caption
+>Modificare una lingua</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Diamo un'occhiata alla scheda <guilabel
+>Articoli</guilabel
+>: nella lingua spagnola ci sono solo nomi maschili e femminili, quindi il campo <guilabel
+>Neutro:</guilabel
+> rimane vuoto. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra Modifica lingua</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_articles.png" format="PNG"/></imageobject>
+    <caption
+>Scheda Articoli</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Nella scheda <guilabel
+>Pronomi personali</guilabel
+>, quelli spagnoli hanno più di una forma per la terza persona singola singolare e per la prima, la seconda e la terza persona plurale. Per consistenza, le possibilità dovrebbero essere inserite con <guilabel
+>/</guilabel
+> tra le due forme. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra Modifica lingua</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_personal_pronouns.png" format="PNG"/></imageobject>
+    <caption
+>Scheda Pronomi personali</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Nella scheda <guilabel
+>Tempi</guilabel
+> troverai quelli disponibili per una forma verbale. Puoi aggiungere altri tempi a quelli esistenti premendo il pulsante <guibutton
+>Nuovo...</guibutton
+>, <guibutton
+>Modifica</guibutton
+>, oppure <guibutton
+>Elimina</guibutton
+> nel caso che qualcuno in realtà non esista. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra Modifica lingua</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_tenses.png" format="PNG"/></imageobject>
+    <caption
+>Scheda Tempi</caption>
+  </mediaobject>
+</screenshot>
+</sect3>
+</sect2>
+</sect1>
+
+<sect1 id="units"
+><title
+>Unità</title>
+
+<para
+>Sulla sinistra c'è una lista di unità. Se hai creato una nuova collezione questa lista potrebbe essere vuota, tranne l'unità che è stata creata automaticamente per te. </para>
+
+<para
+>Se non puoi vedere la lista delle unità, potresti dover abilitarla con la casella <menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Unità</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>Le caselle davanti ai nomi delle unità mostrano quali unità sono al momento incluse nell'esercitazione. Il numero accanto ad ogni nome indica il numero di parole incluse in quell'unità. </para>
+
+<sect2 id="new-unit"
+><title
+>Nuova unità</title>
+
+<para
+>Seleziona dove aggiungere questa unità, ad esempio nella collezione <guilabel
+>Le mie lezioni di spagnolo</guilabel
+>. </para>
+
+<para
+>Puoi selezionare la voce <guilabel
+>Nuova unità</guilabel
+> in uno dei seguenti modi: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Icona nella &GUI;: seleziona l'icona <guiicon
+>Nuova unità</guiicon
+> nella barra degli strumenti.</para
+></listitem>
+
+  <listitem
+><para
+>Voce di menu: seleziona <menuchoice
+><guimenu
+>Unità</guimenu
+> <guimenuitem
+>Nuova unità</guimenuitem
+></menuchoice
+></para
+></listitem>
+
+  <listitem
+><para
+>Menu contestuale: fai clic sulla collezione col &RMB; e seleziona la voce <guimenuitem
+>Nuova unità</guimenuitem
+>.</para
+></listitem>
+</itemizedlist>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="new_lesson2.png" format="PNG"/></imageobject>
+    <caption
+>Collezione: la mia lezione di spagnolo</caption>
+  </mediaobject>
+</screenshot>
+
+<!-- Without gui icon in the toolbar: New Unit -->
+<para
+>Assicurati di selezionare il punto giusto nella struttura ad albero delle unità prima di scegliere l'icona <guiicon
+>Nuova unità</guiicon
+> nella barra degli strumenti. Nel nostro caso, dato che vogliamo una <emphasis
+>sotto-unità</emphasis
+> di <guilabel
+>Collezione: Le mie unità di spagnolo</guilabel
+>, quest'ultima è esattamente quello che deve essere selezionato prima di scegliere <guiicon
+>Nuova unità</guiicon
+>. </para>
+</sect2>
+
+<sect2 id="moving-renaming-and-deleting-units"
+><title
+>Spostare, rinominare ed eliminare le unità</title>
+
+<para
+>Per cambiare il nome di una unità, facci sopra doppio clic, oppure clic col &RMB; sull'unità, e scegli <guimenuitem
+>Rinomina unità</guimenuitem
+>. Puoi anche eliminare un'unità in questo modo (ma così perderai anche il suo contenuto). </para>
+
+<para
+>Se non ti piace l'ordine delle unità, puoi spostarne una usando il mouse. Puoi trascinarla sopra un'altra unità, così diventerà figlia di quella. </para>
+</sect2>
+
+<sect2 id="splitting-a-unit"
+><title
+>Dividere una unità</title>
+
+<para
+>Se le tue unità diventano troppo grandi, puoi scegliere di dividerle in unità più piccole per facilitarne l'apprendimento. Una buona dimensione può essere intorno alle 20 parole per unità. Fai clic con il &RMB; su una unità, oppure usa la voce di menu <menuchoice
+><guimenu
+>Unità</guimenu
+> <guimenuitem
+>Dividi l'unità in unità più piccole</guimenuitem
+></menuchoice
+> in modo che verrà divisa in unità figlie. Puoi scegliere di mescolare in maniera casuale le parole delle unità prima di assegnarle, o di mantenerle nello stesso ordine. </para>
+</sect2>
+
+<sect2 id="what-is-shown-in-the-table"
+><title
+>Cosa c'è nella tabella</title>
+
+<para
+>&parley; mostra sempre le parole dell'unità che hai selezionato. Puoi abilitare la possibilità di vedere le parole delle sotto-unità come fossero contenute anche in questa: usa la casella <menuchoice
+><guimenu
+>Unità</guimenu
+> <guimenuitem
+>Mostra voci dalle unità figlie</guimenuitem
+></menuchoice
+>. In questo modo puoi guardare tutte le parole selezionando l'unità del documento più in alto. </para>
+</sect2>
+</sect1>
+
+<sect1 id="word-types"
+><title
+>Tipi di parole</title>
+
+<para
+>&parley; ti permette di associare i tipi di parole alle parole. I tipi di parole ad esempio sono: nomi, verbi, aggettivi ed avverbi. </para>
+
+<para
+>Per lavorare con i tipi di parola, abilita lo strumento relativo con la casella <menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Tipi di parola</guimenuitem
+></menuchoice
+> </para>
+
+<para
+>Puoi raggruppare in categorie i tipi di parole come faresti con delle unità. </para>
+
+<para
+>Se vuoi vedere tutte le parole di un certo tipo - &eg; tutti i nomi - scegline la categoria e nella tabella vedrai solo quel tipo di parole. </para>
+
+<para
+>Il modo più semplice per impostare il tipo di parola è quello di trascinare una parola sul suo tipo. Puoi anche trascinare più parole assieme. </para>
+
+<!-- empty sect2
+<sect2 id="words-or-sentences"
+><title
+>Words or Sentences</title>
+</sect2
+-->
+<sect2 id="adding-new-vocabulary"
+><title
+>Aggiungere nuovi vocaboli</title>
+
+<para
+>Usa l'icona <inlinemediaobject
+><imageobject
+><imagedata fileref="list-add.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Aggiungi nuova voce</guiicon
+> nella barra degli strumenti per aggiungere nuove parole. Puoi iniziare a scrivere subito la parola nella prima lingua. Dopo averla inserita, premi &Tab; per passare alla lingua successiva. </para>
+</sect2>
+
+<sect2 id="editing-words"
+><title
+>Modificare le parole</title>
+
+<para
+>Se vuoi sostituire una parola, seleziona la sua voce e inizia a scrivere. Invece, per modificare la parola, fai doppio clic sulla voce e potrai modificare il contenuto della cella senza perdere la vecchia parola. </para>
+
+<para
+>Premi il tasto &Tab; per passare alla parola successiva rimanendo nella modalità di modifica del testo. Con il tasto &Enter; abbandoni questa modalità. Puoi usare i tasti freccia per spostarti. </para>
+</sect2>
+</sect1>
+
+<sect1 id="synonyms"
+><title
+>Sinonimi</title>
+
+<para
+>Non è sempre semplice impostare i sinonimi, e non sempre funzionano bene. Ecco come impostarli in tutti i casi: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Usa la casella <menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Sinonimi</guimenuitem
+></menuchoice
+> per vedere lo strumento dei sinonimi.</para
+></listitem>
+
+  <listitem
+><para
+>Seleziona la prima parola (A) che vuoi fare diventare sinonimo, poi fai clic sulla seconda (B).</para
+></listitem>
+
+  <listitem
+><para
+>Il testo del pulsante nello strumento dei sinonimi cambia in <guibutton
+>«A» e «B» sono sinonimi</guibutton
+>.</para
+></listitem>
+</itemizedlist>
+
+<para
+>Le parole saranno quindi mostrate come connesse nello strumento dei sinonimi, e possono essere riconosciute come sinonimi durante un'esercitazione. </para>
+</sect1>
+
+<sect1 id="adding-images"
+><title
+>Aggiungere immagini</title>
+
+<para
+>Come prima cosa visualizza lo strumento delle immagini selezionando la casella <menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Immagine</guimenuitem
+></menuchoice
+>. Ciò mostrerà la sezione <guilabel
+>Immagine</guilabel
+> sul lato destro della finestra di &parley;. </para>
+
+<para
+>Per aggiungere un'immagine ad una parola, assicurati che la parola sia evidenziata. Premi sull'icona <inlinemediaobject
+><imageobject
+><imagedata fileref="folder-black.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Cartella</guiicon
+> sul lato destro della sezione <guilabel
+>Immagine</guilabel
+> e scegli l'immagine che vorresti associare. Dopo aver scelto un'immagine per una coppia di traduzioni, nell'angolo in basso a destra delle celle di entrambe le parole apparirà una bandierina blu. Se va bene così fai lo stesso con l'altra parola della coppia. Passando con il puntatore del mouse sopra questa bandierina saranno mostrati il nome ed il percorso dell'immagine. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="adding-images.png" format="PNG"/></imageobject>
+    <caption
+>Aggiungere un'immagine</caption>
+  </mediaobject>
+</screenshot>
+
+<!-- <para
+>The needed images can be obtained from Google search using &parley; inbuilt scripts.
+</para>
+
+<para
+>To obtain the image highlight a word in the list then choose the <menuchoice
+><guimenu
+>Scripts</guimenu
+> <guimenuitem
+>Fetch Image</guimenuitem
+></menuchoice
+> menu item.
+</para>
+
+<screenshot>
+  <screeninfo
+>Obtaining images from the Internet</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_006b.png" format="PNG"/></imageobject>
+    <caption
+>Obtaining images from the Internet</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Choose the right image using <guibutton
+>Next</guibutton
+> and <guibutton
+>Previous</guibutton
+> buttons. You can correct the search criteria for the images using the corresponding text box.
+</para>
+
+<para
+>If you prefer only free images check the corresponding check box.
+</para>
+
+<para
+>When the selection is finished just press on the <guibutton
+>OK</guibutton
+> button and the image will be saved next to the current vocabulary file in the <filename role="directory"
+><replaceable
+>name_of_vocabulary</replaceable
+>_files</filename
+> subfolder.
+</para>
+
+<warning
+><para
+>Due to the current script limitations the image files cannot be saved in the paths with Unicode symbols in the names of folders and files.
+</para
+></warning
+> -->
+</sect1>
+
+<sect1 id="adding-sound"
+><title
+>Aggiungere un suono</title>
+
+<para
+>Come prima cosa visualizza lo strumento dei suoni selezionando la casella <menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Suono</guimenuitem
+></menuchoice
+>. Ciò mostrerà la sezione <guilabel
+>Suono</guilabel
+> sul lato destro della finestra di &parley;. </para>
+
+<para
+>Per aggiungere un suono ad una parola, assicurati che la parola sia evidenziata. Premi sull'icona <inlinemediaobject
+><imageobject
+><imagedata fileref="folder-black.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Cartella</guiicon
+> sul lato destro della sezione <guilabel
+>Suono</guilabel
+> e scegli il suono che vorresti associare. Dopo aver scelto un suono per una coppia di traduzioni, nell'angolo in basso a destra delle celle di entrambe le parole apparirà una bandierina blu. Se va bene così fai lo stesso con l'altra parola della coppia. Passando con il puntatore del mouse sopra questa bandierina saranno mostrati il nome ed il percorso del suono. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="adding-sound.png" format="PNG"/></imageobject>
+    <caption
+>Aggiungere un suono</caption>
+  </mediaobject>
+</screenshot>
+
+<!-- Not found!
+<para
+>The needed sound files can be obtained from Wiktionary using &parley; inbuilt scripts.
+</para>
+
+<para
+>To obtain the sound file highlight a word in the list then choose <menuchoice
+><guimenu
+>Scripts</guimenu
+> <guimenuitem
+>Fetch Sound</guimenuitem
+></menuchoice
+> from the &parley; menu.
+</para>
+
+<para
+>The sound file will be saved next to the current vocabulary file in the <filename role="directory"
+><replaceable
+>name_of_vocabulary</replaceable
+>_files</filename
+> subfolder.
+</para
+> -->
+</sect1>
+
+<sect1 id="entering-comparison-forms"
+><title
+>Inserire le forme di confronto</title>
+
+<para
+>Per inserire le forme di confronto, abilita lo strumento apposito con la casella <menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Forme di confronto</guimenuitem
+></menuchoice
+> </para>
+
+<para
+>Prima, scegli una parola che sia un aggettivo o un avverbio. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison_form.png" format="PNG"/></imageobject>
+    <caption
+>Strumento Forme di confronto</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Premi il pulsante <guibutton
+>Aggettivo</guibutton
+> o <guibutton
+>Avverbio</guibutton
+> nello strumento delle forme di confronto. </para>
+<!--
+<screenshot>
+  <screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_edit_comparison_form_2.png" format="PNG"/></imageobject>
+    <caption
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+<para
+>Inserisci le forme di confronto. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison_form_edit.png" format="PNG"/></imageobject>
+    <caption
+>Modifica delle forme di confronto</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Ora puoi usare la modalità di <link linkend="comparison-forms-of-adjectives-and-adverbs"
+>esercitazione con forme di confronto</link
+>. </para>
+</sect1>
+
+<sect1 id="entering-inflection-forms"
+><title
+>Inserire le forme di flessione</title>
+
+<para
+>Per inserire forme di flessione, abilita lo strumento apposito con la casella <menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Flessione (verbi, aggettivi, nomi)</guimenuitem
+></menuchoice
+> </para>
+
+<para
+>Prima, scegli una parola che sia un verbo. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="conjugation.png" format="PNG"/></imageobject>
+    <caption
+>Modifica delle forme di flessione</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Premi il pulsante <guibutton
+>Verbo</guibutton
+> nello strumento di flessione. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="conjugation_edit.png" format="PNG"/></imageobject>
+    <caption
+>Modifica delle forme di flessione</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Dopo aver scelto il tempo giusto nella casella a cascata <guilabel
+>Tempi</guilabel
+>, inserisci le forme di coniugazione. </para>
+
+<para
+>I tempi possono essere configurati per ciascuna lingua: <link linkend="languages-and-grammar"
+>lingue e grammatica</link
+>. </para>
+
+<para
+>Ora puoi usare la modalità di <link linkend="conjugations"
+>esercitazione sulle coniugazioni</link
+>. </para>
+
+<para
+>Usa il pulsante <guibutton
+>Nome</guibutton
+> o <guibutton
+>Aggettivo</guibutton
+> per aggiungere delle forme di declinazione al vocabolario. </para>
+</sect1>
+
+<sect1 id="creating-new-files"
+><title
+>Creare nuovi file</title>
+
+<para
+>In questa sezione descriviamo come creare dei nuovi file, non solo per l'apprendimento di vocaboli come visto finora, ma anche per gli esercizi di grammatica, di matematica, &etc;. </para>
+
+<sect2 id="new-collection--vocabulary-english-german"
+><title
+>Nuova collezione: vocabolario inglese - tedesco</title>
+
+<para
+>In questa sezione descriviamo come creare un file d'allenamento di vocaboli che include immagini e suoni. In un secondo tempo aggiungeremo anche gli aggettivi e i verbi. Questo è un esempio completo e, quindi, piuttosto lungo. In ogni caso, non tutti i punti possono essere necessari per i tuoi progetti. </para>
+
+<para
+>Dato che vogliamo aggiungere dei suoni e delle immagini, dovremmo assicurarci che tutti questi file siano in una sola cartella, chiamata per convenienza <emphasis
+>eng-deu</emphasis
+>. I dati che creiamo con &parley; saranno salvati in questa stessa cartella. Ciò aiuta molto se decidi di condividere il tuo lavoro con altre persone. </para>
+
+<para
+>Quindi, questi sono i file sonori e le immagini che abbiamo: </para>
+
+<screenshot>
+  <screeninfo
+>Cartella dei dati in &dolphin;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Folder_with_sound_and_pictures.png" format="PNG"/></imageobject>
+    <caption
+>Cartella dei dati in &dolphin;</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Partiamo dal <guilabel
+>Quadro degli strumenti</guilabel
+> che è mostrato all'avvio di &parley;: </para>
+
+<screenshot>
+  <screeninfo
+>Finestra principale di &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="dashboard.png" format="PNG"/></imageobject>
+    <caption
+>Il quadro degli strumenti con più collezioni</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Premi il pulsante <guilabel
+>Crea una nuova collezione...</guilabel
+>. </para>
+
+<para
+>La sezione <guilabel
+>Proprietà generali del documento</guilabel
+> è riempita come segue (variando opportunamente in base al documento): </para>
+
+<screenshot>
+  <screeninfo
+>Proprietà della finestra ...</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="general_document_properties.png" format="PNG"/></imageobject>
+    <caption
+>Proprietà della finestra ...</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Premi poi il pulsante <guibutton
+>OK</guibutton
+>. La schermata seguente ti chiede di impostare i dettagli della lingua. Qui non vogliamo cambiare nulla, quindi premiamo su <guibutton
+>OK</guibutton
+>. </para>
+
+<para
+>Come primo passo, creiamo la parte dei vocaboli. Penseremo in un secondo momento ad aggiungere i file sonori e le immagini. Ecco come appare l'unità: </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="new_empty_collection.png" format="PNG"/></imageobject>
+    <caption
+>Una nuova collezione vuota</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Prima di fare altro, salviamo il file nella cartella che contiene le immagini e i suoni. Usa la voce di menu <menuchoice
+><guimenu
+>File</guimenu
+> <guimenuitem
+>Salva</guimenuitem
+></menuchoice
+> e seleziona la cartella usando la navigazione. In questo esempio chiamiamo il file <guilabel
+>Allenamento eng-deu</guilabel
+>. Una volta inserito il nome, premi il pulsante <guibutton
+>Salva</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra Salva il vocabolario come</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="save_new_collection.png" format="PNG"/></imageobject>
+    <caption
+>Salvare una nuova collezione</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Se ora controlli la cartella che contiene i suoni e le immagini, troverai anche il file <filename
+>Allenamento eng-deu.kvtml</filename
+>. </para>
+
+<para
+>Diamo un'occhiata alle parole che vogliamo aggiungere: <emphasis
+>apple, bird, cat, cherry, cow, orange, pear, snake, strawberry</emphasis
+>. Ci sono animali e frutta, quindi decidiamo di creare due unità: <guilabel
+>Animali</guilabel
+> e <guilabel
+>Frutta</guilabel
+>. </para>
+
+<para
+>Ora rinominiamo <guilabel
+>Lezione 1</guilabel
+> in <guilabel
+>Animali</guilabel
+>, e aggiungiamo un'unità chiamata <guilabel
+>Frutta</guilabel
+>. Fai clic con il &RMB; su <guilabel
+>Lezione 1</guilabel
+>, e tra le voci mostrate scegli <guimenuitem
+>Rinomina unità</guimenuitem
+>. Ora che <guilabel
+>Lezione 1</guilabel
+> è selezionata può essere sovrascritta digitandoci <guilabel
+>Animali</guilabel
+> e premendo &Enter; una volta fatto. Ora fai clic con il &RMB; su <guilabel
+>Collezione: ...</guilabel
+>, che è la radice dell'albero delle unità, e scegli <guimenuitem
+>Nuova unità</guimenuitem
+> tra le voci mostrate. Scrivi <guilabel
+>Frutta</guilabel
+> nel nuovo campo di testo, poi premi &Enter;. </para>
+
+<para
+>Per prima cosa inseriamo gli animali. Fai clic sull'unità <guilabel
+>Animali</guilabel
+> e vedrai una tabella vuota che puoi riempire. Fai clic con il &RMB; sul primo campo, e inserisci la parola in inglese. Quindi inserisci quella in tedesco nella seconda colonna. Una volta che hai inserito i quattro nomi di animali in inglese e le loro traduzioni, la finestra sarà simile alla seguente: </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_004.png" format="PNG"/></imageobject>
+    <caption
+>Modifica dell'esercitazione col vocabolario inglese - tedesco</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Nel nostro caso, vogliamo solo quattro elementi nell'unità sugli animali. Ci sono molte righe vuote che dovrebbero essere eliminate: fai clic sulla prima riga vuota e, tenendo premuto il tasto &Shift;, fai clic sull'ultima riga vuota. Tutte le righe da eliminare saranno evidenziate. Quindi premi il tasto &Del;. </para>
+
+<para
+>Aggiungiamo la terminologia relativa alla frutta. Fai clic sull'unità chiamata <guilabel
+>Frutta</guilabel
+>. Questa seconda unità è completamente vuota. Dato che abbiamo cinque termini relativi alla frutta, dobbiamo aggiungere cinque righe. Premi il tasto &Ins; per cinque volte: in questo modo possiamo aggiungere le nostre parole. </para>
+
+<para
+>Non dimenticarti di salvare ogni tanto... </para>
+
+<para
+>Un clic sulla radice del nostro albero delle unità (<guilabel
+>Collezione: ...</guilabel
+>) e &parley; ci mostrerà tutte le voci presenti nelle due unità: </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_005.png" format="PNG"/></imageobject>
+    <caption
+>Tutte le voci presenti nelle due unità</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Ora è il momento di aggiungere i suoni e le immagini. Prima di tutto dobbiamo attivare le viste <guilabel
+>Immagine</guilabel
+> e <guilabel
+>Suono</guilabel
+>. Seleziona le caselle <menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Immagine</guimenuitem
+></menuchoice
+> e <menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Suono</guimenuitem
+></menuchoice
+>. Una volta attivate queste opzioni, nella parte in basso a destra della finestra di modifica di &parley; vengono mostrate due nuove sezioni come due schede. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_006.png" format="PNG"/></imageobject>
+    <caption
+>Le sezioni Suono e Immagine</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Seleziona la parola inglese <emphasis
+>apple</emphasis
+> facendoci clic sopra. È evidenziata, quindi aggiungiamoci l'immagine. Premi l'icona <inlinemediaobject
+><imageobject
+><imagedata fileref="folder-black.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Cartella</guiicon
+> nella sezione dell'immagine sulla destra, e scegli quella che vuoi associare. </para>
+
+<para
+>Per aggiungere la pronuncia della parola inglese «apple», fai lo stesso nella sezione Suono, scegliendo il relativo file sonoro. </para>
+
+<para
+>Puoi ascoltare la pronuncia premendo il pulsante <guibutton
+>Riproduci</guibutton
+> nello strumento sonoro. </para>
+
+<para
+>La finestra sarà simile alla seguente: </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_007.png" format="PNG"/></imageobject>
+    <caption
+>Riprodurre il suono</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Fai clic sulla traduzione in tedesco <guilabel
+>Apfel</guilabel
+>. Il campo adesso è evidenziato, per indicare la selezione. Puoi notare che l'immagine della mela è associata anche al termine tedesco. Come prima, seleziona la pronuncia nella sezione del suono. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_008.png" format="PNG"/></imageobject>
+    <caption
+>Controllo del legame dei dati</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Vai avanti così per tutte le parole. </para>
+
+<para
+>È ora di aggiungere gli aggettivi e i verbi come unità al nostro progetto. Facciamo come prima con l'unità <emphasis
+>Frutta</emphasis
+>, e creiamo due nuove unità: <emphasis
+>Aggettivi</emphasis
+> e <emphasis
+>Verbi</emphasis
+>. Assumiamo di aggiungere <emphasis
+>big, small, old, young, narrow</emphasis
+> nell'unità degli aggettivi, e <emphasis
+>to go, to come, to buy, to drink, to eat</emphasis
+> in quella dei verbi. </para>
+
+<para
+>La seguente schermata mostra tutte le parole aggiunte. Ora le parole sono mischiate: sarebbe bello poter distinguere quali sono <emphasis
+>nomi e aggettivi</emphasis
+>, e quali <emphasis
+>verbi</emphasis
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_009.png" format="PNG"/></imageobject>
+    <caption
+>Mostra tutti i termini inseriti</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Come passo successivo, mostriamo il <guilabel
+>Tipo di parola</guilabel
+>. Selezioniamo la casella <menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Colonne del vocabolario</guimenuitem
+></menuchoice
+>. Attiviamo quindi le colonne <guilabel
+>Tipo di parola</guilabel
+> per <emphasis
+>Inglese</emphasis
+> e <emphasis
+>Tedesco</emphasis
+> marcandone le relative caselle. Premi quindi <guibutton
+>OK</guibutton
+> per accettare le modifiche. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra Colonne del vocabolario</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_010.png" format="PNG"/></imageobject>
+    <caption
+>Voce Selezione del tipo di parola</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Facendo clic sui campi nella colonna <guilabel
+>Tipo di parola</guilabel
+> puoi selezionare il tipo di parola e, per quelle lingue in cui i nomi hanno un genere, anche la combinazione <emphasis
+>nome/genere</emphasis
+>. In alternativa puoi iniziare a scrivere i primi caratteri di un tipo di parola per selezionarlo. Sotto puoi vedere le colonne <guilabel
+>Tipo di parola</guilabel
+> con alcune scelte già fatte. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_011.png" format="PNG"/></imageobject>
+    <caption
+>Scegliere il tipo di parola</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Una volta che abbiamo specificato tutti i tipo di parole, consideriamo prima gli <emphasis
+>aggettivi</emphasis
+>, aggiungendogli le <guilabel
+>Forme di confronto</guilabel
+>. Passiamo avanti all'unità composta solo di <emphasis
+>aggettivi</emphasis
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_012.png" format="PNG"/></imageobject>
+    <caption
+>Selezionare le forme di confronto</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Per mostrare le <guilabel
+>Forme di confronto</guilabel
+> sul lato destro dello schermo, seleziona la casella <menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Forme di confronto</guimenuitem
+></menuchoice
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_013.png" format="PNG"/></imageobject>
+    <caption
+>Mostrare le forme di confronto</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Modifica le <guilabel
+>Forme di confronto</guilabel
+> aggiungendo il <guilabel
+>Comparativo</guilabel
+> e il <guilabel
+>Superlativo</guilabel
+> agli aggettivi. Per prima cosa, fai clic sull'aggettivo al quale le vuoi aggiungere, nel nostro caso <guilabel
+>big</guilabel
+>, e aggiungi <emphasis
+>bigger</emphasis
+> e <emphasis
+>biggest</emphasis
+>. Continua quindi con l'aggettivo successivo da completare, fino a quando sono state inserite tutte le forme di confronto. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_014.png" format="PNG"/></imageobject>
+    <caption
+>Aggiunta del comparativo e del superlativo</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Infine, consideriamo la forma di coniugazione dei <guilabel
+>Verbi</guilabel
+>. Scegli l'unità <guilabel
+>Verbi</guilabel
+>, e attiva la sezione della flessione sul lato destro della finestra selezionando la casella <menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Flessione (verbi, aggettivi, nomi)</guimenuitem
+></menuchoice
+>. Ad esempio, modifichiamo le forme del tempo presente (<guilabel
+>Präsens</guilabel
+>) di <emphasis
+>gehen</emphasis
+>: seleziona <guilabel
+>Präsens</guilabel
+> dalla casella a cascata, poi aggiungi le forme verbali. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_015.png" format="PNG"/></imageobject>
+    <caption
+>Scelta della forma di coniugazione del verbo</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Deve essere fatta per tutti i verbi, e in tutti i tempi possibili. </para>
+
+<para
+>Una volta finito puoi iniziare ad esercitarti premendo l'icona <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <link linkend="vocabulary-practice"
+><guiicon
+>Esercitazione</guiicon
+></link
+> nella barra degli strumenti. </para>
+</sect2>
+
+<sect2 id="new-collection:-single-names-and-collective-names"
+><title
+>Nuova collezione: nomi singoli e nomi collettivi</title>
+
+<para
+>Questo esercizio è stato creato per la terza classe di una scuola elementare italiana. Gli studenti devono mettere in relazione i nomi singoli con i nomi collettivi, ad esempio <emphasis
+>albero</emphasis
+> → <emphasis
+>legno</emphasis
+>. </para>
+
+<para
+>Quando avvii &parley; vedi la pagina iniziale, che può anche elencare alcuni file usati di recente (che non puoi vedere qui). </para>
+
+<screenshot>
+  <screeninfo
+>Finestra principale di &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="initial_screen.png" format="PNG"/></imageobject>
+    <caption
+>Quadro degli strumenti</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Premi <guibutton
+>Crea una nuova collezione...</guibutton
+>: apparirà la seguente schermata, con dei campi vuoti o riempiti in parte: </para>
+
+<screenshot>
+  <screeninfo
+>Finestra Proprietà di Senza titolo</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names1.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Finestra Proprietà di Senza titolo</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Nella sezione <guilabel
+>Commento</guilabel
+> inserisci il titolo, in questo caso <guilabel
+>nomi singoli e collettivi</guilabel
+>, il tuo nome, il tuo indirizzo di posta elettronica e, opzionalmente una descrizione più dettagliata, scegli la <guilabel
+>Categoria:</guilabel
+> e la <guilabel
+>Licenza:</guilabel
+>. Abbiamo poi qualcosa di particolare: invece di indicare <guilabel
+>Prima lingua:</guilabel
+> e la <guilabel
+>Seconda lingua:</guilabel
+>, come faremmo normalmente, abbiamo aggiunto <emphasis
+>nome singolo</emphasis
+> e <emphasis
+>nome collettivo</emphasis
+>. In questo caso le opzioni <guilabel
+>Imposta i dettagli della grammatica</guilabel
+> e <guilabel
+>Scarica la grammatica</guilabel
+> non sono necessarie. Nella schermata sono però attive: disattivale togliendo las spunta alle due caselle. Quando hai finito, premi il pulsante<guibutton
+>OK</guibutton
+>. </para>
+
+<para
+>Seleziona la voce di menu <menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Lingue...</guimenuitem
+></menuchoice
+> e compare la sezione <guilabel
+>Proprietà di nome singolo</guilabel
+>; qui puoi vederla con le modifiche necessarie già fatte: </para>
+
+<screenshot>
+  <screeninfo
+>Finestra Modifica lingue</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names4.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Proprietà di nome singolo</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Sul lato sinistro puoi vedere in quale sezione stiamo aggiungendo dati, <emphasis
+>nome singolo</emphasis
+>. Scegli la lingua, in questo caso <emphasis
+>Italiano</emphasis
+>, e inserisci <emphasis
+>nome singolo</emphasis
+> nel campo di testo che segue. Premi quindi <guibutton
+>OK</guibutton
+> </para>
+
+<para
+>Viene ora mostrata la sezione <guilabel
+>Proprietà di nome collettivo</guilabel
+>: </para>
+
+<screenshot>
+  <screeninfo
+>Finestra Modifica lingue</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names5.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Proprietà di nome collettivo</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Come prima: scegli <guilabel
+>Italiano</guilabel
+> come lingua, inserisci <emphasis
+>nome collettivo</emphasis
+> e premi <guibutton
+>OK</guibutton
+>. </para>
+
+<para
+>Ora puoi iniziare a modificare: </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names7.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Creazioni di un nuovo esercizio sul collettivo</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Inserisci il <emphasis
+>nome singolo</emphasis
+> nella prima colonna e il corrispondente <emphasis
+>nome collettivo</emphasis
+> nella seconda. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names8.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Aggiungere una nuova voce</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Se il numero dei campi disponibili non basta, fai clic con il &RMB; in un punto qualsiasi della sezione di modifica e scegli <guimenuitem
+>Aggiungi nuova voce</guimenuitem
+>. Non ti dimenticare i salvare il file ogni tanto. Quando hai finito di aggiungere tutte le voci, puoi vedere se l'esercitazione funziona correttamente. Premi l'icona <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Esercitazione</guiicon
+> nella barra degli strumenti, appena sopra la sezione di modifica. Viene quindi mostrata la pagina della configurazione dell'esercitazione: </para>
+
+<screenshot>
+  <screeninfo
+>Finestra dell'editor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names10.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Modalità di esercitazione a scelta multipla</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>In questo caso, <guilabel
+>Scelta multipla</guilabel
+> è una buona opzione, ma anche <guilabel
+>Scritta</guilabel
+> andrà bene. Dopo aver scelto la modalità di esercitazione, premi l'icona <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Avvia esercitazione...</guiicon
+> nella barra degli strumenti e divertiti. </para>
+</sect2>
+</sect1>
+
+<sect1 id="getting-additional-collections"
+><title
+>Ottenere delle collezioni aggiuntive</title>
+
+<para
+>Quando sei nel <guilabel
+>Quadro degli strumenti</guilabel
+> puoi installare le collezioni direttamente dal server, se sei connesso. Premi il pulsante <guibutton
+>Scarica nuove collezioni...</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra principale di &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="dashboard.png" format="PNG"/></imageobject>
+    <caption
+>Il quadro degli strumenti con più collezioni</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Si apre una finestra che elenca molte collezioni interessanti. Scegli ciò che ti interessa di più, e premi <guibutton
+>Installa</guibutton
+>. Apri quindi il file, per esercitarti o per modificarlo. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra Scarica le novità</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="get_new_stuff.png" format="PNG"/></imageobject>
+    <caption
+>Ottenere nuove collezioni</caption>
+  </mediaobject>
+</screenshot>
+</sect1>
+
+<sect1 id="configure-parley"
+><title
+>Configura &parley;</title>
+
+<para
+>Puoi configurare l'aspetto di &parley; dalle schermate <guilabel
+>Quadro degli strumenti</guilabel
+>, <guilabel
+>Esercitazione</guilabel
+> o <guilabel
+>Editor</guilabel
+>. Seleziona la voce di menu <menuchoice
+><guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Configura &parley;...</guimenuitem
+></menuchoice
+>. </para>
+
+<sect2 id="theme-tab"
+><title
+>Pagina Tema</title>
+
+<para
+>La finestra di configurazione si apre con la pagina <guilabel
+>Tema</guilabel
+>. Da qui puoi configurare come &parley; ti apparirà all'avvio: con un elegante <guilabel
+>Grigio</guilabel
+>, oppure con delle <guilabel
+>Api</guilabel
+> indaffarate. Potrebbe essere che il <guilabel
+>Coniglio morbidoso</guilabel
+> non sia installato nella tua versione: se lo desideri, leggi la sezione seguente. </para>
+
+<para
+>Una volta che hai selezionato il tema preferito, premi il pulsante <guibutton
+>OK</guibutton
+>. </para>
+
+<para
+>Schermata del tema <guilabel
+>Api</guilabel
+>: </para>
+
+<screenshot>
+  <screeninfo
+>Schermata allenamento</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_bees.png" format="PNG"/></imageobject>
+    <caption
+>Il tema Api in azione</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>E se questi non bastano: premi <guibutton
+>Scarica nuovi temi...</guibutton
+> per cercarne altri. Speriamo che col tempo se ne aggiungano altri. Se sai come creare grafica &SVG; (&eg; con <ulink url="https://inkscape.org"
+><application
+>Inkscape</application
+></ulink
+>), puoi creare il tuo e condividerlo con il mondo. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra Configura &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_theme.png" format="PNG"/></imageobject>
+    <caption
+>Pagina impostazioni del Tema</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Altri temi possono essere trovati su <ulink url="https://store.kde.org/browse/cat/357/order/latest/"
+>kde-look.org</ulink
+>. </para>
+</sect2>
+
+<sect2 id="general-tab"
+><title
+>Pagina Generale</title>
+
+<para
+>La pagina <guilabel
+>Generale</guilabel
+> ti dà alcune opzioni sul comportamento di &parley;. </para>
+
+<sect3 id="open-save-options"
+><title
+>Sezione Apri/Salva</title>
+
+<para
+><guilabel
+>All'avvio, carica sempre l'ultima collezione aperta</guilabel
+> ti riporterà sempre al vocabolario che stavi imparando. Spesso userai questa opzione insieme con <guilabel
+>Alla chiusura, salva automaticamente i vocabolari</guilabel
+>, dato che è comodo non dover sempre rispondere sempre alla richiesta di salvare o meno le modifiche (tra cui anche i risultati dell'apprendimento) alla chiusura. L'opzione <guilabel
+>Crea una copia di sicurezza ogni ... minuti</guilabel
+> può essere utile per salvare periodicamente il lavoro: una cosa in meno a cui pensare. </para>
+
+<para
+>Qualche volta l'importazione o l'esportazione di file di testo (CVS) può essere molto utile. In questi casi hai bisogno di un opportuno separatore per elaborare i dati esportati, o per poterli leggere. &parley; ti permette di scegliere tra più separatori, così da essere sicuro di poter riusare i dati. </para>
+</sect3>
+
+<sect3 id="editing-option"
+><title
+>Modificare la sezione</title>
+
+<para
+>Qui puoi decidere se &parley; deve aggiungere automaticamente delle nuove righe quando modifichi le collezioni di vocaboli. Ciò può essere utile se vuoi aggiungere molte voci, prima di dividerle nelle varie unità. Tuttavia, avere questa opzione disattivata può essere utile se vuoi creare delle unità con un numero massimo di voci impostato. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra Configura &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_generalconfig.png" format="PNG"/></imageobject>
+    <caption
+>Finestra impostazioni generali</caption>
+  </mediaobject>
+</screenshot>
+</sect3>
+</sect2>
+
+<sect2 id="view-tab"
+><title
+>Pagina Visualizza</title>
+
+<para
+>La pagina <guilabel
+>Visualizza</guilabel
+> ti permette di cambiare il carattere e la dimensione dei simboli di pronuncia. Puoi inoltre scegliere il <guilabel
+>Colore di base per mostrare i gradi:</guilabel
+> che preferisci. </para>
+
+<screenshot>
+  <screeninfo
+>Finestra Configura &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_view.png" format="PNG"/></imageobject>
+    <caption
+>Pagina Impostazioni di visualizzazione</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+</sect1>
+</chapter>
+
+<!--FIXME &parley; is not available on &Windows; in 16.04
+<chapter id="parley-on-windows"
+><title
+>&parley; on &Windows;</title>
+
+<para
+>It is possible to install &parley; together with other <ulink url="https://edu.kde.org"
+>Educational software</ulink
+> on &Windows; systems. For further info please visit <ulink url="https://community.kde.org/Windows"
+>this page</ulink
+>.
+</para>
+
+<para
+>The steps to be followed in short:
+</para>
+
+<para
+>Download the installer <ulink url="https://windows.kde.org/download.php"
+>here</ulink>
+</para>
+
+<para
+>Then follow the installation procedure like for any other &Windows; software.
+</para>
+
+<para
+>When you come to the <guilabel
+>Package selection screen</guilabel
+>, select the language(s) you wish the software to be available in <emphasis
+>and</emphasis
+> the package - in this case <guilabel
+>kdeedu</guilabel
+>. If you don't select any language you will automatically get English.
+</para>
+
+<para
+>Then finish the installation process by clicking on next, following the coming screens just like you normally do with other windows software.
+</para>
+
+<para
+>Please note that the &parley; team does not deal with the &Windows; Installer and therefore we cannot easily answer your questions. Should you have difficulties, please contact the &kde;-Windows team directly. You can do so by subscribing to the mailing list <ulink url="https://mail.kde.org/mailman/listinfo/kde-windows"
+>here</ulink
+> or join them on &irc; at irc://irc.libera.chat Channel: #kde-windows.
+</para>
+</chapter>
+-->
+
+<chapter id="notes-for-advanced-users"
+><title
+>Note per gli utenti avanzati</title>
+<!--
+<sect1 id="using-parley-for-exam-preparation"
+><title
+>Using &parley; for Exam Preparation</title>
+
+<itemizedlist>
+  <listitem
+><para
+>what to bear in mind with long questions / answers?</para
+></listitem>
+  <listitem
+><para
+>how to start  with a new Exam</para
+></listitem>
+  <listitem
+><para
+>example 1 with capitals</para
+></listitem>
+  <listitem
+><para
+>example 2 with sentence</para
+></listitem>
+</itemizedlist>
+</sect1>
+-->
+<!-- TODO: menu item not found -->
+<sect1 id="upload-and-share-collections"
+><title
+>Inviare e condividere le collezioni</title>
+
+<para
+>Puoi inviare i tuoi file e condividerli con tutti. </para>
+
+<para
+>Usa la voce di menu <menuchoice
+><guimenu
+>File</guimenu
+> <guimenuitem
+>Aggiorna documento vocabolario</guimenuitem
+></menuchoice
+> nell'<guilabel
+>Editor</guilabel
+> di &parley;. </para>
+
+<para
+>Se non dovesse funzionare, visita <ulink url="https://store.kde.org/"
+>store.kde.org</ulink
+>. </para>
+
+<para
+>In entrambi i casi i file appariranno nella finestra <guilabel
+>Scarica le novità</guilabel
+>, premendo il pulsante <guilabel
+>Scarica nuove collezioni...</guilabel
+> nel <guilabel
+>Quadro degli strumenti</guilabel
+>. </para>
+</sect1>
+
+<sect1 id="file-format"
+><title
+>Formato di file</title>
+
+<para
+>Se sei interessato ai formati di file che &parley; può leggere e iscrivere le collezioni di vocaboli, visita: </para>
+
+<para
+><ulink url="https://userbase.kde.org/Parley/FileFormats"
+>Formati di file di &parley; presso userbase.kde.org</ulink>
+</para>
+</sect1>
+
+<!-- empty sect1
+<sect1 id="scripting"
+><title
+>Scripting</title>
+</sect1
+-->
+</chapter>
+
+<!--userbase-content-->
+<chapter id="credits"
+><title
+>Riconoscimenti e licenza</title>
+
+<sect1 id="thanks"
+><title
+>Ringraziamenti</title>
+
+<para
+>Vorrei ringraziare personalmente queste persone per il loro contributo a &parley;: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Peter Hedlund, che ha mantenuto &kvoctrain; e ha avviato la conversione a &kde; 4, che sarebbe poi diventata &parley;</para
+></listitem>
+  <listitem
+><para
+>David Capel</para
+></listitem>
+  <listitem
+><para
+>Avgoustinos Kadis</para
+></listitem>
+  <listitem
+><para
+>Daniel Laidig</para
+></listitem>
+  <listitem
+><para
+>Johannes Simon</para
+></listitem>
+</itemizedlist>
+
+<para
+>Vorrei anche ringraziare tutte le altre persone anonime, specialmente tutta la squadra di &kde; per l'aiuto, le critiche costruttive, i suggerimenti o le segnalazioni di bug. </para>
+</sect1>
+
+<sect1 id="copyright"
+><title
+>Copyright</title>
+
+<para
+>Copyright di &parley; 2007-2010 &Frederik.Gladhorn; &Frederik.Gladhorn.mail; </para>
+
+<para
+>Copyright della documentazione 2010 &Frederik.Gladhorn; &Frederik.Gladhorn.mail;, Sabine Eller <email
+>s.eller@voxhumanitatis.org</email
+>, Daniel Laidig <email
+>d.laidig@gmx.de</email
+>, 2014 Amarvir Singh <email
+>amarvir.ammu.93@gmail.com</email
+> </para>
+
+ <para
+>Revisione e traduzione italiana Paolo Zamponi <email
+>zapaolo@email.it</email
+></para
+><para
+>Revisione e traduzione italiana Nicola Ruggero <email
+>nicola@nxnt.org</email
+></para
+><para
+>Traduzione italiana Davide Rizzo <email
+>drizzo@daviderizzo.com</email
+></para
+> <para
+>Traduzione italiana Pino Toscano <email
+>toscano.pino@tiscali.it</email
+></para
+> &underFDL; &underGPL; </sect1>
+</chapter>
+
+&documentation.index;
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->

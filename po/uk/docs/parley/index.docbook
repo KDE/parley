@@ -1,0 +1,2970 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Ukrainian "INCLUDE"
+>]>
+
+<book id="parley" lang="&language;">
+
+<bookinfo>
+<title
+>Підручник з &parley;</title>
+
+<authorgroup>
+<author
+>&Frederik.Gladhorn; &Frederik.Gladhorn.mail; </author>
+
+<author
+><personname
+><firstname
+>Sabine</firstname
+><surname
+>Eller</surname
+></personname
+> <email
+>s.eller@voxhumanitatis.org</email
+> </author>
+
+<author
+><personname
+><firstname
+>Daniel</firstname
+><surname
+>Laidig</surname
+></personname
+> <email
+>d.laidig@gmx.de</email
+> </author>
+
+<author
+><personname
+><firstname
+>Amarvir</firstname
+><surname
+>Singh</surname
+></personname
+> <email
+>amarvir.ammu.93@gmail.com</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Юрій</firstname
+><surname
+>Чорноіван</surname
+><affiliation
+><address
+><email
+>yurchor@ukr.net</email
+></address
+></affiliation
+><contrib
+>Переклад українською</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+  <year
+>2010</year>
+  <holder
+>&Frederik.Gladhorn;</holder>
+</copyright>
+<copyright>
+  <year
+>2010</year>
+  <holder
+>Sabine Eller</holder>
+</copyright>
+<copyright>
+  <year
+>2010</year>
+  <holder
+>Daniel Laidig</holder>
+</copyright>
+<copyright>
+  <year
+>2014</year>
+  <holder
+>Amarvir Singh</holder>
+</copyright>
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2 листопада 2021 року</date>
+<releaseinfo
+>KDE Gear 21.08</releaseinfo>
+
+<!-- Abstract about this handbook -->
+<abstract>
+  <para
+>&parley; — програма для поповнення і закріплення словникового запасу. Вона допоможе закріпити у вашій пам’яті словникові статті, наприклад, якщо ви намагаєтеся вивчити іноземну мову. Можливості &parley; не обмежено одним лише вивченням мов, він придатний для багатьох цілей.</para>
+</abstract>
+
+<keywordset>
+  <keyword
+>KDE</keyword>
+  <keyword
+>Parley</keyword>
+  <keyword
+>словник</keyword>
+  <keyword
+>тренування</keyword>
+  <keyword
+>навчання</keyword>
+</keywordset>
+<!-- https://bugs.kde.org/show_bug.cgi?id=281586#c2 adjustable font size for practice window for better reading on highres screens -->
+</bookinfo>
+<!--userbase <timestamp
+>2010-06-25T18:39:29Z</timestamp
+>-->
+
+<!--userbase-content-->
+<chapter id="introduction"
+><title
+>Вступ</title>
+
+<para
+>&parley; — це програма для роботи над словниковим запасом. Вона допоможе закріпити у вашій пам’яті нові слова зі словника, наприклад, якщо ви вивчаєте іноземну мову. Ви можете створювати ваші збірки словників зі словами, які ви намагаєтеся запам’ятати, або вибрати один з великої кількості файлів <ulink url="https://userbase.kde.org/Parley#Vocabulary_Collections"
+>збірок словників</ulink
+>. Ви зможете скористатися готовими мовними словниками, а також словниками з анатомії, музики, географії, хімії та файлами для підготовки до іспитів. </para>
+
+<para
+>Програма &parley; є дуже гнучкою, вона реалізує <ulink url="https://en.wikipedia.org/wiki/Flashcard"
+>навчання за допомогою карток</ulink
+>. Серед її можливостей автоматичний запис поступу процесу вашого навчання. У Parley передбачено можливість впорядкування вашого словника у бажаній послідовності та створення власних уроків. На відміну від звичайних карток для запам’ятовування, у &parley; ви можете використовувати різні методи навчання. </para>
+
+<para
+>На передньому боці карток записано вираз, а на зворотному — його переклад. Ви починаєте процес запам’ятовування зі стосу карток. Якщо ви знаєте переклад виразу, записаного на картці, ви відкладаєте її у інший стос. Якщо не знаєте, — залишаєте її у стосі, щоб пізніше знову випробувати ваші знання. </para>
+
+<para
+>&parley; не ставить на меті навчити вас граматики. Але у ньому є декілька видів вправ, які можуть вам допомогти і у їх вивченні. </para>
+
+<para
+>Сама програма &parley; складається з двох основних частин: <link linkend="practice"
+>програми тестування</link
+> та <link linkend="vocabulary-editing"
+>редактора збірок словників</link
+>. </para>
+
+<para
+>У цьому підручнику терміном <emphasis
+>збірка словників</emphasis
+> позначається файл, що містить <emphasis
+>модулі</emphasis
+>. Кожен модуль може бути уроком або збіркою уроків довільного рівня вкладеності. У решті підручника ми обговорюватимемо модулі, а не уроки, оскільки їх можна використовувати і з іншою метою. </para>
+
+<para
+>Доступ до обох програм, редактора і програми тренування можна отримати за допомогою сторінки <link linkend="practice-overview"
+>Огляд вправ</link
+>. </para>
+
+<para
+>Робота програми <link linkend="practice"
+>тестування</link
+> складається з трьох частин: у першій, <link linkend="practice-overview"
+>огляд вправ</link
+>, ви можете вибрати предмет вправляння. Після налаштування ви можете розпочати <link linkend="practice"
+>вправу</link
+>, після завершення якої буде показано <link linkend="summary-after-practice"
+>резюме</link
+>. </para>
+
+<tip
+><para
+>Доступ до можливостей &parley;, подібно до інших програм, можна отримати за допомогою контекстного меню, яке викликається клацанням правою кнопкою миші. Варіантами обробки модулів та записів слів можна також скористатися за допомогою контекстного меню.</para
+></tip>
+</chapter>
+
+<chapter id="dashboard"
+><title
+>Панель приладів</title>
+
+<para
+>Після першого запуску &parley; ви побачите <guilabel
+>Початкову сторінку</guilabel
+>. </para>
+
+<para
+>На початку <guilabel
+>Початкова сторінка</guilabel
+> буде порожньою, але після відкриття збірок словників на ній буде показано список останніх словників, з якими ви працювали. </para>
+
+<screenshot>
+  <screeninfo
+>Головне вікно &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="dashboard.png" format="PNG"/></imageobject>
+    <caption
+>Панель приладів із декількома збірками</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Збірка словників — це файл, у якому містяться слова або вирази і їх переклади або тлумачення, які ви бажаєте запам’ятати. Ці слова впорядковано за модулями. </para>
+
+<para
+>Щоб <emphasis
+>розпочати вправу</emphasis
+>, клацніть правою кнопкою на полі <guilabel
+>Все одно вправлятися</guilabel
+> для одної зі збірок словників у списку. У відповідь буде відкрито вікно <link linkend="practice-overview"
+>огляд вправ</link
+>. </para>
+
+<para
+>Зауважте, що внизу ліворуч від запису збірки з'явиться маленька піктограма <inlinemediaobject
+><imageobject
+><imagedata fileref="icon-delete.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Вилучити</guiicon
+>. За допомогою цієї піктограми ви можете вилучити збірку зі списку. </para>
+
+<para
+>Якщо ви бажаєте створити вашу власну збірку словників, натисніть кнопку <guibutton
+>Створити нову збірку</guibutton
+>. </para>
+
+<para
+>Крім того, ви можете <link linkend="open-an-existing-collection"
+>відкрити збірку</link
+>, якщо така збірка вже зберігається на вашому комп’ютері, але її ще немає у списку. </para>
+
+<para
+>За допомогою останньої кнопки на початковій сторінці ви можете отримати збірки словників, створені іншими користувачами. Якщо ви самі створите збірку, якою варто поділитися з іншими, ви зможете вивантажити її за допомогою вікна редактора словників. </para>
+
+<para
+>У пакунку &parley; міститься декілька тем. Перемкнути тему (стиль графічних елементів вікна) можна за допомогою діалогового вікна параметрів програми. Докладніше про це ми поговоримо у розділі, присвяченому <link linkend="configure-parley"
+>налаштовуванню &parley;</link
+>. </para>
+</chapter>
+
+<chapter id="open-an-existing-collection"
+><title
+>Відкриття існуючої збірки</title>
+
+<para
+>Припустімо, вашу збірку вже збережено на жорсткому диску. </para>
+
+<para
+>Ось як виглядатиме вікно програми &parley; після першого запуску: </para>
+
+<screenshot>
+  <screeninfo
+>Головне вікно &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="initial_screen.png" format="PNG"/></imageobject>
+    <caption
+>Початкове вікно</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Натисніть кнопку <guibutton
+>Відкрити наявну збірку…</guibutton
+>. </para>
+
+<para
+>За допомогою діалогового вікна вибору файлів перейдіть до каталогу, у якому зберігаються файли даних і позначте відповідний файл наведенням на його позначку вказівника миші з наступним клацанням лівою кнопкою миші. Залежно від операційної системи, якою ви користуєтеся, файл буде негайно відкрито або відкрито після натискання кнопки <guibutton
+>Відкрити</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно вибору файла</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="file_select_dialog.png" format="PNG"/></imageobject>
+    <caption
+>Вікно вибору файла</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Після завершення завантаження файла буде відкрито вікно огляду вправ. Докладніше про це вікно ми розповімо у наступному розділі. </para>
+</chapter>
+
+<chapter id="vocabulary-practice"
+><title
+>Вправа зі словником</title>
+
+<para
+>Щоб розпочати вправу, вам слід вибрати документ після запуску &parley;. Якщо документ вже відкрито у вікні редактора, просто натисніть кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Почати вправу</guiicon
+> на панелі інструментів. </para>
+
+<sect1 id="practice-overview"
+><title
+>Огляд вправ</title>
+
+<para
+>Перш ніж буде розпочато вправу, програма відкриє сторінку огляду вправ. На цій сторінці передбачено три панелі, за допомогою яких ви можете визначити спосіб вправляння: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Вибір мов</para
+></listitem>
+  <listitem
+><para
+>Вибір режиму вправляння</para
+></listitem>
+  <listitem
+><para
+>Вибір модулів, який також визначає поточний поступ навчання</para
+></listitem>
+</itemizedlist>
+
+<screenshot>
+  <screeninfo
+>Налаштовування вправи</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_practice.png" format="PNG"/></imageobject>
+    <caption
+>Налаштовування вправи</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Ліворуч ви можете вибрати комбінацію мов, яку буде використано під час вправи. Якщо ви, наприклад, виберете переклад з англійської українською, програма показуватиме вам слова англійською, вам же слід буде вказувати їх переклади українською. </para>
+
+<para
+>Під панеллю вибору мови ви можете визначити режим вправи. <guilabel
+>Режим вправи</guilabel
+> визначає спосіб, у який програма ставитиме вам питання. </para>
+
+<para
+>За допомогою спадного списку <guilabel
+>Варіант вправляння</guilabel
+> можна визначити дані, які показуватиме програма під час вправляння. Можливими варіантами є відома вам фраза (<guimenuitem
+>З відомою, тією що вивчається</guimenuitem
+>), фраза, що вивчається (<guimenuitem
+>З тої, що вивчається, відомою</guimenuitem
+>) або суміш фраз (<guimenuitem
+>Суміш варіантів</guimenuitem
+>). </para>
+
+<para
+>На великій панелі, розташованій праворуч, ви побачите список модулів збірки словників. Щоб вибрати модуль, з яким ви будете вправлятися, поставте позначку перед його назвою клацанням лівою кнопкою миші. Поряд з назвою модуля буде показано кількість слів, які містяться у модулі. Праворуч від назви буде показано поточний поступ у вивченні модуля. </para>
+
+<para
+>Поступ вивчення кожного з модулів буде показано у відсотках та за допомогою смужок поступу. Відсоткове значення обчислюватиметься на основі загальної кількості слів у модулі та класів слів. Смужки поступу відповідатимуть за кількість слів для кожного з класів, темніший колір відповідатиме вищому класу. Крім того, буде показано панель умовних позначень у верхній частині панелі вибору модулів, у заголовку. Кольори на панелі умовних позначень відповідають кольорам на смужках поступу, від кольорів повністю вивчених слів до кольорів слів, які ще не було використано жодного разу. </para>
+</sect1>
+
+<sect1 id="advanced-practice-configuration"
+><title
+>Налаштовування параметрів вправ</title>
+
+<para
+>За допомогою сторінки <guilabel
+>Налаштування вправи</guilabel
+> ви можете виконати точніше налаштування процесу вправляння. </para>
+
+<para
+>Якщо відкрито сторінку <link linkend="practice-overview"
+>Огляд вправ</link
+> доступ до <guilabel
+>Параметрів вправляння</guilabel
+> можна отримати натисканням кнопки <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-setup.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <link linkend="advanced-practice-configuration"
+><guiicon
+>Налаштувати вправу</guiicon
+></link
+> на панелі інструментів. </para>
+
+<sect2 id="general-practice-settings"
+><title
+>Загальні параметри вправ</title>
+
+<para
+>Загальні параметри налаштування вправи можна визначити на сторінці загальних параметрів. </para>
+
+<screenshot>
+  <screeninfo
+>Діалогове вікно налаштування вправи</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_general.png" format="PNG"/></imageobject>
+    <caption
+>Сторінка загальних параметрів</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Найважливішими параметрами є: </para>
+
+<itemizedlist>
+  <listitem
+><para
+><guilabel
+>Не зважати на помилки з акцентуванням</guilabel
+>: якщо буде позначено цей пункт, у разі введенні слова з <guilabel
+>e</guilabel
+> замість <guilabel
+>é</guilabel
+> вам буде зараховано правильну відповідь.</para
+></listitem>
+
+  <listitem
+><para
+><guilabel
+>Не зважати на помилки у регістрі літер</guilabel
+>: за допомогою цього пункту ви можете наказати програмі ігнорувати регістр літер введених відповідей.</para
+></listitem>
+
+  <listitem
+><para
+><guilabel
+>Зображення і звук</guilabel
+>: якщо буде позначено цей пункт, під час вправи програма показуватиме зображення, що відповідають словам, якщо такі зображення передбачено у збірці словників. Те саме стосується і звуку.</para
+></listitem>
+
+  <listitem
+><para
+><guilabel
+>Дозволити використання зображень замість слів</guilabel
+>: якщо ви позначите цей пункт, програма зможе використовувати у запитаннях під час вправи зображення замість слів, якщо для відповідного слова мови призначення не визначено перекладу.</para
+></listitem>
+</itemizedlist>
+<!--FIXME Enable Hints Sessions Synonyms-->
+</sect2>
+
+<sect2 id="blocking"
+><title
+>Блокування</title>
+
+<para
+>Якщо ви плануєте вправлятися з вашим словником регулярно, вам варто увімкнути функціональну можливість <emphasis
+>блокування</emphasis
+>. Перейдіть на сторінку блокування і позначте пункт <guilabel
+>Блокування</guilabel
+>. Після цього ви можете вказати інтервал між повторенням слів, які ви вказали правильно. </para>
+
+<para
+><emphasis
+>Блокування</emphasis
+> означає, що між сеансами повторення певного слова буде додано певні часові проміжки. Тривалість проміжку залежатиме від рівня знання слова, отже слова, які ви пам’ятаєте погано, повторюватимуться частіше. </para>
+
+<screenshot>
+  <screeninfo
+>Діалогове вікно налаштування вправи</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_blocking.png" format="PNG"/></imageobject>
+    <caption
+>Сторінка параметрів блокування</caption>
+  </mediaobject>
+</screenshot>
+<!--FIXME Expiring-->
+</sect2>
+
+<sect2 id="thresholds"
+><title
+>Порогові значення</title>
+
+<para
+>Порогові значення є ще одним способом обмеження діапазону вправляння. </para>
+
+<screenshot>
+  <screeninfo
+>Діалогове вікно налаштування вправи</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_thresholds.png" format="PNG"/></imageobject>
+    <caption
+>Сторінка параметрів порогових значень</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Ви можете наказати програмі використовувати для вправ лише слова, які ви знаєте краще або гірше за певний рівень точності. Крім того, ви можете наказати використовувати лише питання, які було задано певну кількість разів. </para>
+</sect2>
+
+<sect2 id="specific-practice-settings"
+><title
+>Специфічні параметри вправ</title>
+
+<para
+>Налаштування вправ з декількома варіантами відповідей можна змінити за допомогою сторінки специфічних параметрів вправ. </para>
+
+<screenshot>
+  <screeninfo
+>Діалогове вікно налаштування вправи</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_specific.png" format="PNG"/></imageobject>
+    <caption
+>Сторінка специфічних параметрів</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Тут ви можете визначити, чи належатимуть варіанти відповідей до одного типу, а також кількість варіантів. </para>
+</sect2>
+</sect1>
+
+<sect1 id="practice"
+><title
+>Вправа</title>
+<sect2 id="flash-cards"
+><title
+>Навчальні картки</title>
+
+<para
+>Після вмикання режиму вправи <guilabel
+>Навчальні картки</guilabel
+> і натискання кнопки <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Почати вправу</guiicon
+> буде показано вікно, схоже на наведене нижче. У режимі навчальних карток програма працює подібно до режиму вправляння зі «звичайними» навчальними картками. Якщо ви не знаєте точної відповіді і вам потрібна допомога, ви можете натиснути кнопку <guibutton
+>Підказка</guibutton
+>: програма почне показувати вам відповідь по одній літері за натискання. </para>
+
+<para
+>Крім того, ви можете пропустити поточне слово. Якщо ви натиснете кнопку <guilabel
+>Відповісти пізніше</guilabel
+>, програма покаже вам слово пізніше. </para>
+
+<screenshot>
+  <screeninfo
+>Режим вправляння з картками</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_grey.png" format="PNG"/></imageobject>
+    <caption
+>Нове слово</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Натискання кнопки <guilabel
+>Продовжити</guilabel
+> відкриє відповідь. Після цього, ви маєте визначитися, чи знали ви цю відповідь. </para>
+
+<para
+>Якщо ви не пам’ятаєте правильної відповіді, натисніть кнопку <guibutton
+>Я цього не знав (знала)</guibutton
+>. Якщо ви пам’ятаєте відповідь, натисніть кнопку <guibutton
+>Я це знав (знала)</guibutton
+>. </para>
+
+<para
+>Після цього програма відкриє вікно наступного питання. </para>
+
+<para
+>У нижній лівій частині вікна програми буде показано 7 полів з відомостями щодо якості вашого знання словника. Ці 7 полів відповідають рівням блокування, які можна встановити за допомогою сторінки <link linkend="blocking"
+><guilabel
+>Блокування</guilabel
+></link
+> <guilabel
+>Параметрів вправляння</guilabel
+> </para>
+
+<tip
+><para
+>Замість натискання кнопки <guibutton
+>Продовжити</guibutton
+>, ви можете просто натиснути клавішу <keycap
+>Пробіл</keycap
+>.</para
+></tip>
+
+<screenshot>
+  <screeninfo
+>Режим вправляння з картками</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_flash_solution.png" format="PNG"/></imageobject>
+    <caption
+>Нове слово — підтвердження</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Ви можете у будь-який момент часу перервати вправу натисканням кнопки <guibutton
+>Припинити вправу</guibutton
+>. </para>
+</sect2>
+
+<sect2 id="mixed-letters"
+><title
+>Переставлені літери</title>
+
+<para
+><guilabel
+>Переставлені літери</guilabel
+> — спосіб вправляння, за якого програма починає вам допомагати негайно: всі літери відповіді буде показано одразу, але у випадковому порядку. </para>
+
+<screenshot>
+  <screeninfo
+>Режим вправляння з картками</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_hint.png" format="PNG"/></imageobject>
+    <caption
+>Нове слово — переставлені літери</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Якщо вам потрібна буде допомога, ви можете натиснути кнопку <guibutton
+>Підказка</guibutton
+> — програма показуватиме вам по одній літері відповіді за одне натискання. Звичайно ж, ви можете вирішити відповісти на питання пізніше, для цього достатньо натиснути кнопку <guibutton
+>Відповісти пізніше</guibutton
+>. </para>
+
+<para
+>Щоб вказати відповідь, введіть її у порожнє поле під літерами у зміненому порядку і натисніть клавішу &Enter; або кнопку <guibutton
+>Продовжити</guibutton
+>. </para>
+
+<para
+>Якщо відповідь була правильною, &parley; повідомить вам про це. Після натискання клавіші &Enter; або кнопки <guibutton
+>Продовжити</guibutton
+> ви зможете перейти до наступного питання. </para>
+
+<screenshot>
+  <screeninfo
+>Режим вправляння з картками</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_right.png" format="PNG"/></imageobject>
+    <caption
+>Нове слово — переставлені літери праворуч</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Якщо вами буде вказано помилкову відповідь, програма попросить вас <emphasis
+>повторити спробу</emphasis
+>: </para>
+
+<screenshot>
+  <screeninfo
+>Режим вправляння з картками</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_wrong.png" format="PNG"/></imageobject>
+    <caption
+>Нове слово — помилкова відповідь, повторіть спробу</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Якщо ви не знаєте відповіді, просто натисніть кнопку <guibutton
+>Продовжити</guibutton
+>. Програма покаже вам відповідь. Перейти до наступного питання можна натисканням кнопки <guibutton
+>Продовжити</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим вправляння з картками</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_solution.png" format="PNG"/></imageobject>
+    <caption
+>Нове слово — помилкова відповідь, показ правильної відповіді</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Ви можете змінити оцінку програмою вашої відповіді. Докладніше про це у розділі <link linkend="practice-overview"
+>Резюме вправи</link
+>. </para>
+</sect2>
+
+<sect2 id="multiple-choice"
+><title
+>Вибір з варіантів</title>
+<sect3 id="automatic-selection-of-the-possible-answers"
+><title
+>Автоматичний вибір можливих відповідей</title>
+
+<para
+>У режимі <guilabel
+>Вибір з варіантів</guilabel
+> програма показуватиме вам декілька потенційних відповідей, лише одна з яких є правильною. Якщо ви натиснете кнопку <guibutton
+>Підказка</guibutton
+>, &parley; виключить одну з неправильних відповідей. Відповідь буде показано, коли залишиться лише один варіант. При цьому питання буде визнано таким, відповіді на яке ви не знаєте. Звичайно ж, ви також можете скористатися варіантом <guibutton
+>Відповісти пізніше</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим вправляння з картками</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="multiple_choice.png" format="PNG"/></imageobject>
+    <caption
+>Нове слово — режим вибору з варіантів</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Після вибору правильного на ваш погляд варіанта або введення номера варіанта за допомогою клавіатури &parley; покаже вікно, подібне до наведеного на знімку нижче, якщо ваша відповідь була правильною. Перейти до наступного питання можна натисканням кнопки <guibutton
+>Продовжити</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим вправляння з картками</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="multiple_choice-right.png" format="PNG"/></imageobject>
+    <caption
+>Нове слово — декілька варіантів, правильна відповідь</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Якщо відповідь була помилковою, програма змінить колір пункту з правильною відповіддю на зелений, а кольори решти пунктів на червоний. Для переходу до наступного питання теж слід натиснути кнопку <guibutton
+>Продовжити</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим вправляння з картками</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="multiple_choice-wrong.png" format="PNG"/></imageobject>
+    <caption
+>Нове слово — декілька варіантів, помилкова відповідь</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Ви можете змінити оцінку програмою вашої відповіді. Докладніше про це у розділі <link linkend="practice-overview"
+>Резюме вправи</link
+>. </para>
+
+<para
+>Якщо ви бажаєте припинити вправу, просто натисніть кнопку <guibutton
+>Припинити вправу</guibutton
+>. </para>
+</sect3>
+
+<sect3 id="with-yes-no-answers"
+><title
+>Відповіді «Так/Ні»</title>
+
+<para
+>Зазвичай &parley; у режимі вибору з варіантів автоматично пропонує одну правильну і декілька неправильних відповідей. У деяких вправах перелік відповідей обмежується бінарною альтернативою (щось схоже на відповіді «так/ні»). Налаштувати такі вправи можна натисканням кнопки <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-setup.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <link linkend="advanced-practice-configuration"
+><guiicon
+>Налаштувати вправу…</guiicon
+></link
+> на панелі інструментів. </para>
+
+<para
+>Перейдіть на сторінку <guilabel
+>Специфічні</guilabel
+>. Програма покаже вікно, схоже на наведене на знімку нижче. </para>
+
+<screenshot>
+  <screeninfo
+>Діалогове вікно налаштування вправи</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_specific.png" format="PNG"/></imageobject>
+    <caption
+>Сторінка специфіки</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Якщо у вашій вправі буде лише <emphasis
+>два варіанти відповідей</emphasis
+>, наприклад <emphasis
+>так/ні</emphasis
+> у розділі <guilabel
+>Вибір з варіантів</guilabel
+> вкажіть для параметра <guilabel
+>Кількість варіантів</guilabel
+> значення <parameter
+>2</parameter
+>. </para>
+</sect3>
+</sect2>
+
+<sect2 id="written"
+><title
+>Письмовий</title>
+
+<para
+>Якщо ви вибрали варіант вправи <guilabel
+>Письмовий</guilabel
+>, для виконання вправи вам слід буде вводити правильну відповідь з клавіатури. Натисканням кнопки <guibutton
+>Підказка</guibutton
+> можна відкрити одну з літер відповіді. Звичайно ж, ви можете <guibutton
+>Відповісти пізніше</guibutton
+>, якщо натиснете відповідну кнопку. </para>
+
+<screenshot>
+  <screeninfo
+>Режим письмової вправи</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_written.png" format="PNG"/></imageobject>
+    <caption
+>Нове слово — режим письмової вправи</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Після введення вашої відповіді натисніть кнопку <guibutton
+>Продовжити</guibutton
+>, &parley; визначить, чи була ваша відповідь правильною. Щоб продовжити вправляння, натисніть кнопку <guibutton
+>Продовжити</guibutton
+> ще раз. </para>
+
+<screenshot>
+  <screeninfo
+>Режим письмової вправи</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_written_right.png" format="PNG"/></imageobject>
+    <caption
+>Нове слово — режим письмової вправи, правильна відповідь</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Якщо ви дасте помилкову відповідь, ви можете повторити спробу декілька разів. Якщо ви не бажаєте здійснювати повторних спроб, просто натисніть кнопку <guibutton
+>Продовжити</guibutton
+>, щоб наказати програмі показати правильну відповідь. </para>
+
+<screenshot>
+  <screeninfo
+>Режим письмової вправи</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_written_wrong.png" format="PNG"/></imageobject>
+    <caption
+>Нове слово — режим письмової вправи, помилкова відповідь</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Продовжити виконання вправи можна натисканням кнопки <guibutton
+>Продовжити</guibutton
+>. Щоб зупинити виконання, натисніть кнопку <guibutton
+>Припинити вправу</guibutton
+>. </para>
+
+<para
+>Ви можете змінити оцінку програмою вашої відповіді. Докладніше про це у розділі <link linkend="practice-overview"
+>Резюме вправи</link
+>. </para>
+</sect2>
+
+<sect2 id="reset-practice-to-initial-state"
+><title
+>Відновлення початкового стану вправи</title>
+
+<para
+>Ви можете скинути усі оцінки вправ (вилучити усі довірчі рівні) до початкового стану. Скинути довірчі рівні для окремих модулів можна за допомогою сторінки <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Огляд вправ</guiicon
+>: наведіть вказівник миші на пункт модуля, дані для якого слід скинути, клацніть правою кнопкою і виберіть пункт <guimenuitem
+>Вилучити довірчі рівні для цього модуля</guimenuitem
+> або <guimenuitem
+>Вилучити довірчі рівні для цього модуля та усіх підлеглих модулів</guimenuitem
+>. </para>
+</sect2>
+</sect1>
+
+<sect1 id="summary-after-practice"
+><title
+>Резюме вправи</title>
+
+<para
+>Після завершення сеансу вправляння буде показано резюме. На великій панелі, розташованій у верхній частині екрана буде показано результати. </para>
+
+<para
+>Нижче буде наведено таблицю зі словами, з якими ви вправлялися, де буде показано помилки, яких ви припустилися. </para>
+
+<para
+>Слова, які пов’язано з найбільшою кількістю помилок, буде показано у верхній частині списку, отже визначити слова, над якими слід ще попрацювати, буде дуже просто. </para>
+
+<para
+>Натисніть кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="document-export.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Експортувати результати</guiicon
+> або скористайтеся пунктом меню <menuchoice
+><guimenu
+>Вправа</guimenu
+><guimenuitem
+>Експортувати результати...</guimenuitem
+></menuchoice
+>, щоб експортувати результати вправляння у форматі файла &HTML; або текстового документа OpenDocument (<literal role="extension"
+>.odt</literal
+>). </para>
+
+<screenshot>
+  <screeninfo
+>Резюме вправи</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_summary.png" format="PNG"/></imageobject>
+    <caption
+>Резюме вправи</caption>
+  </mediaobject>
+</screenshot>
+</sect1>
+
+<!--FIXME Example Sentences practice missing -->
+<sect1 id="grammar-practice-modes"
+><title
+>Режими граматичних вправ</title>
+
+<para
+>За допомогою &parley; ви також можете вивчати граматику, зокрема роди іменників, ступені порівняння прикметників та дієвідміни дієслів. Давайте розглянемо декілька прикладів. </para>
+
+<sect2 id="articles-and-gender-of-nouns"
+><title
+>Артиклі і роди іменників</title>
+
+<para
+>Після вибору режиму вправляння <guilabel
+>Роди іменників</guilabel
+> натисніть кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Почати вправу</guiicon
+> на панелі інструментів. </para>
+
+<para
+>У розглянутому нижче прикладі ми вивчатимемо німецьку мову, отже слід буде вибрати один з трьох родів: чоловічий, жіночий чи середній. Якщо ви натиснете кнопку <guibutton
+>Підказка</guibutton
+>, програма прибере одну з неправильних відповідей. Звичайно ж, ви можете <guibutton
+>Відповісти пізніше</guibutton
+>, якщо натиснете відповідну кнопку. </para>
+
+<para
+>Щоб програма показувала артиклі замість граматичних назв родів, вам слід ввести артиклі для відповідної мови за допомогою вікна редагування. Крім того, слід мати на увазі, що вправи з артиклями можливі, лише якщо було належним чином вказано роди іменників. Докладніше про встановлення роду можна дізнатися з розділу, присвяченому <link linkend="word-types"
+>частинам мови</link
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим вправи на роди іменників</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="articles_and_gender.png" format="PNG"/></imageobject>
+    <caption
+>Нове слово — режим вправи на рід іменників</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Якщо відповідь була правильною, програма покаже вікно, подібне до наведеного нижче. Щоб продовжити вправляння, слід натиснути кнопку <guibutton
+>Продовжити</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим вправи на роди іменників</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="articles_and_gender_right.png" format="PNG"/></imageobject>
+    <caption
+>Нове слово — рід іменників, правильна відповідь</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Якщо відповідь була помилковою, програма покаже вікно, подібне до наведеного нижче. Щоб продовжити вправляння, слід натиснути кнопку <guibutton
+>Продовжити</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим вправи на роди іменників</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="articles_and_gender_wrong.png" format="PNG"/></imageobject>
+    <caption
+>Нове слово — рід іменників, неправильна відповідь</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Ви можете у будь-який момент часу перервати вправу натисканням кнопки <guibutton
+>Припинити вправу</guibutton
+>. </para>
+</sect2>
+
+<sect2 id="comparison-forms-of-adjectives-and-adverbs"
+><title
+>Ступені порівняння прикметників та прислівників</title>
+
+<para
+>У вікні <guilabel
+>Режим вправи</guilabel
+> виберіть варіант <guilabel
+>Ступені порівняння</guilabel
+>, а потім натисніть кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Почати вправу…</guiicon
+>, щоб розпочати вправляння. </para>
+
+<para
+>Подібний варіант вправляння можливий, лише якщо у збірці словників передбачено дані щодо ступенів порівняння. Докладніше про це у розділі <link linkend="entering-comparison-forms"
+>Введення ступенів порівняння</link
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Налаштовування вправи</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison.png" format="PNG"/></imageobject>
+    <caption
+>Режим вправи на форми порівняння</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Для виконання вправи вам слід ввести ступені порівняння вказаного слова. У нашому прикладі це ступені порівняння німецькою перекладу англійського слова <emphasis
+>old</emphasis
+>. У німецькій мові існує три форми: <emphasis
+>нормальний</emphasis
+>, <emphasis
+>вищий</emphasis
+> і <emphasis
+>найвищий</emphasis
+>. Після того, як вкажете відповідь, просто натисніть кнопку <guibutton
+>Продовжити</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим вправи на форми порівняння</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison_right.png" format="PNG"/></imageobject>
+    <caption
+>Нове слово — правило порівняння</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+
+<sect2 id="conjugations"
+><title
+>Дієвідміни</title>
+
+<para
+>Щоб розпочати вправу на дієвідміни, виберіть режим <guilabel
+>Дієвідміни</guilabel
+> і вкажіть часи, для яких виконуватиметься вправа. </para>
+
+<para
+>Для цієї вправи у словнику дієвідміни має бути введено у належному порядку. Докладніше про це у розділі <link linkend="entering-inflection-forms"
+>Введення форм словозміни</link
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Налаштовування вправи</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Configure_practice_conjugation.png" format="PNG"/></imageobject>
+    <caption
+>Режим вправи на дієвідміну</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Після вибору режиму вправляння натисніть кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Почати вправу</guiicon
+>. Щоб виконати вправу, вам слід буде ввести належні форми дієвідмін для вказаних часів. Продовжити вправляння можна натисканням кнопки <guibutton
+>Продовжити</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Режим вправи на дієвідміну</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_practice_conjugation.png" format="PNG"/></imageobject>
+    <caption
+>Вправи на дієвідміни</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+</sect1>
+</chapter>
+
+<chapter id="vocabulary-editing"
+><title
+>Редагування словника</title>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="edit_main.png" format="PNG"/></imageobject>
+    <caption
+>Редагування вправ</caption>
+  </mediaobject>
+</screenshot>
+
+<sect1 id="setup"
+><title
+>Налаштування</title>
+
+<para
+>Перш ніж розпочинати користуватися збіркою словників або створювати власну збірку, варто ознайомитися з різноманітними можливостями &parley; та способами їх належного налаштування. У наступних розділах викладено покрокові настанови. Налаштувати &parley; можна у декілька способів: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Пункт меню <menuchoice
+><guimenu
+>Файл</guimenu
+><guimenuitem
+>Властивості</guimenuitem
+></menuchoice
+>. За допомогою цього пункту ви можете вказати <guilabel
+>Загальні властивості документа</guilabel
+>, тобто дані щодо збірки словників та вас, як її автора.</para
+></listitem>
+
+  <listitem
+><para
+><menuchoice
+><guimenu
+>Зміни</guimenu
+><guimenuitem
+>Мови…</guimenuitem
+></menuchoice
+> Тут ви знайдете пункти мов, якими можете скористатися для вправ.</para
+></listitem>
+
+  <listitem
+><para
+>Пункт меню <menuchoice
+><guimenu
+>Вправа</guimenu
+><guimenuitem
+>Налаштувати вправу…</guimenuitem
+></menuchoice
+>. За допомогою цього пункту ви можете змінити параметри вправляння з вашим словником. Залежно від завдань, які ви ставите перед собою протягом певного сеансу навчання, параметри вправляння можна змінювати на льоту.</para
+></listitem>
+
+  <listitem
+><para
+><menuchoice
+><guimenu
+>Параметри</guimenu
+><guimenuitem
+>Налаштувати &parley;…</guimenuitem
+></menuchoice
+> — цей пункт призначено для налаштування загальних параметрів та параметрів показу.</para
+></listitem>
+</itemizedlist>
+
+<sect2 id="about-the-collection"
+><title
+>Про збірки</title>
+
+<para
+>Введення метаданих, зокрема назви збірки та даних про те, як з вами зв’язатися, є важливим, якщо ви маєте намір зробити вашу збірку доступною для інших користувачів. Для редагування метаданих скористайтеся пунктом меню <menuchoice
+><guimenu
+>Файл</guimenu
+><guimenuitem
+>Властивості</guimenuitem
+></menuchoice
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно властивостей <quote
+>filename.kvtml</quote
+></screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="document_properties.png" format="PNG"/></imageobject>
+    <caption
+>Редагування властивостей</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+
+<sect2 id="vocabulary-columns"
+><title
+>Стовпчики словника</title>
+
+<para
+>Залежно від мети навчальних сеансів, можна використовувати різні набори стовпчиків словника, які буде показано у вікні редагування. Вибрати відповідні стовпчики можна за допомогою пункту меню <menuchoice
+><guimenu
+>Перегляд</guimenu
+> <guimenuitem
+>Стовпчики словника</guimenuitem
+></menuchoice
+>. За допомогою цього пункту можна визначити, чи буде показано стовпчики <emphasis
+>Вимова, Частина мови, Синонім, Антонім, Приклад, Коментар</emphasis
+> і/або <emphasis
+>Переказ</emphasis
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно «Стовпчики словника»</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="vocabulary_columns.png" format="PNG"/></imageobject>
+    <caption
+>Встановлення стовпчиків</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+
+<sect2 id="languages-and-grammar"
+><title
+>Мови і граматика</title>
+
+<para
+>Щоб допомогти &parley; у роботі, налаштуйте деякі з параметрів граматики. Для відкриття відповідного діалогового вікна скористайтеся пунктом меню <menuchoice
+><guimenu
+>Зміни</guimenu
+><guimenuitem
+>Мови…</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>У англійській мові існує два артиклі: визначений артикль <guilabel
+>the</guilabel
+> і невизначений артикль <guilabel
+>a</guilabel
+>. У більшості інших мов таких артиклів значно більше. Всі ці артиклі можна вказати за допомогою вкладки артиклів. </para>
+
+<para
+>Для визначення форм дієвідмін слід вказати всі особові займенники. У деяких мовах форми дієвідмін для займенників «він», «вона» і «воно» є однаковими. Якщо ви маєте справу саме з такою мовою, вам <emphasis
+>не</emphasis
+> слід позначати пункт <guilabel
+>Чоловічий та жіночий роди мають різні відмінювання</guilabel
+>! Просто вкажіть займенники для всіх трьох форм. </para>
+
+<table>
+  <title
+>Особові займенники у англійській</title>
+  <tgroup cols="3">
+  <tbody>
+  <row>
+    <entry
+></entry>
+    <entry
+>Однина</entry>
+    <entry
+>Множина</entry>
+  </row>
+  <row>
+    <entry
+>Перша особа</entry>
+    <entry
+>I</entry>
+    <entry
+>we</entry>
+  </row>
+  <row>
+    <entry
+>Друга особа</entry>
+    <entry
+>you</entry>
+    <entry
+>you</entry>
+  </row>
+  <row>
+    <entry
+>Третя особа</entry>
+    <entry
+>he/she/it</entry>
+    <entry
+>they</entry>
+    </row>
+  </tbody>
+  </tgroup>
+</table>
+
+<para
+><guilabel
+>Часи</guilabel
+>: залежно від вибраної мови, ви можете ввести часи, з якими згодом вправлятиметеся у дієвідмінюванні. Приклад для англійської: Simple Present, Simple Past, Future I тощо. </para>
+
+<para
+>До речі, щоб додати нову мову до вашої збірки, натисніть кнопку <guibutton
+>Додати мову</guibutton
+>. </para>
+
+<sect3 id="lets-have-a-closer-look-at-spanish"
+><title
+>Трошки докладніше про іспанську</title>
+
+<para
+>На вкладці <guilabel
+>Загальне</guilabel
+> введіть загальні параметри мови, у нашому прикладі: </para>
+
+<itemizedlist>
+  <listitem
+><para
+><guilabel
+>Мова:</guilabel
+> Іспанська</para
+></listitem>
+  <listitem
+><para
+><guilabel
+>Назва:</guilabel
+> Іспанська</para
+></listitem>
+  <listitem
+><para
+><guilabel
+>Розкладка клавіатури:</guilabel
+> us (англійська)</para
+></listitem>
+</itemizedlist>
+
+<para
+>Якщо ви не впевнені щодо значення, яке слід вказати у полі <guilabel
+>Розкладка клавіатури:</guilabel
+>, не заповнюйте це поле. Якщо поле не буде заповнено, &parley; просто використає типову розкладку клавіатури для вашої системи. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редагування мови</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_general.png" format="PNG"/></imageobject>
+    <caption
+>Редагування мови</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Звернімося тепер до вкладки <guilabel
+>Артиклі</guilabel
+>. У іспанській мові іменники поділено на два роди: чоловічий і жіночий. Тому поле <guilabel
+>Середнього:</guilabel
+> роду заповнювати не потрібно. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редагування мови</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_articles.png" format="PNG"/></imageobject>
+    <caption
+>Вкладка артиклів</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>У іспанській мові <guilabel
+>Особові займенники</guilabel
+> третьої особи однини та першої, другої і третьої особи множини мають декілька форм. З міркувань однорідності всі форми слід вводити з використанням роздільника <guilabel
+>/</guilabel
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редагування мови</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_personal_pronouns.png" format="PNG"/></imageobject>
+    <caption
+>Вкладка «Особові займенники»</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>На вкладці <guilabel
+>Часи</guilabel
+> ви побачите перелік часів, для яких у мові існують різні форми дієслів. Щоб додати новий запис часу, натисніть кнопку <guibutton
+>Створити…</guibutton
+>. Щоб змінити запис, натисніть кнопку <guibutton
+>Змінити…</guibutton
+>. Вилучити запис можна натисканням кнопки <guibutton
+>Вилучити</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редагування мови</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_tenses.png" format="PNG"/></imageobject>
+    <caption
+>Вкладка часів</caption>
+  </mediaobject>
+</screenshot>
+</sect3>
+</sect2>
+</sect1>
+
+<sect1 id="units"
+><title
+>Одиниці</title>
+
+<para
+>У лівій частині вікна буде наведено список можливих модулів. Якщо ви розпочинаєте створення нової збірки, у цьому списку буде лише пункт типового модуля. </para>
+
+<para
+>Якщо список модулів не показано, вам слід увімкнути його показ за допомогою пункту меню <menuchoice
+><guimenu
+>Перегляд</guimenu
+><guimenuitem
+>Модулі</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>Позначки перед пунктами з назвами уроків відповідають модулям, які включено до вправляння. Число, показане поруч з назвою модуля — кількість слів у ньому. </para>
+
+<sect2 id="new-unit"
+><title
+>Новий модуль</title>
+
+<para
+>Позначте пункт збірки, до якої належатиме ваш модуль, наприклад <guilabel
+>Мої уроки іспанської</guilabel
+>. </para>
+
+<para
+>Ви можете вибрати пункт <guilabel
+>Новий модуль</guilabel
+> за допомогою однієї з таких дій: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Піктограма графічного інтерфейсу: натисніть кнопку із піктограмою <guiicon
+>Новий модуль</guiicon
+> на панелі інструментів.</para
+></listitem>
+
+  <listitem
+><para
+>Пункт меню: виберіть <menuchoice
+><guimenu
+>Модуль</guimenu
+><guimenuitem
+>Новий модуль</guimenuitem
+></menuchoice
+></para
+></listitem>
+
+  <listitem
+><para
+>Контекстне меню: клацніть правою кнопкою миші на збірці і виберіть у меню пункт <guimenuitem
+>Новий модуль</guimenuitem
+>.</para
+></listitem>
+</itemizedlist>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="new_lesson2.png" format="PNG"/></imageobject>
+    <caption
+>Збірка: мої уроки іспанської</caption>
+  </mediaobject>
+</screenshot>
+
+<!-- Without gui icon in the toolbar: New Unit -->
+<para
+>Не помиліться: перед використанням пункту <guiicon
+>Новий модуль</guiicon
+> виберіть належну позицію у ієрархії. У нашому прикладі нам потрібно додати <emphasis
+>підмодуль</emphasis
+> до збірки <guilabel
+>Збірка: Мої модулі іспанської</guilabel
+>. Саме цей пункт і слід позначити перед використанням пункту меню <guiicon
+>Новий модуль</guiicon
+>. </para>
+</sect2>
+
+<sect2 id="moving-renaming-and-deleting-units"
+><title
+>Пересування, перейменування та вилучення модулів</title>
+
+<para
+>Щоб змінити назву уроку, наведіть вказівник миші на пункт модуля і двічі клацніть лівою кнопкою миші або один раз правою кнопкою з наступним вибором пункту контекстного меню <guilabel
+>Перейменувати модуль</guilabel
+>. У подібний же спосіб можна вилучити запис модуля (увесь вміст модуля при цьому буде втрачено). </para>
+
+<para
+>Якщо ви хочете змінити порядок модулів, ви можете пересунути пункт модуля за допомогою вказівника миші. Щоб зробити модуль частиною іншого модуля, просто перетягніть пункт підлеглого модуля на пункт основного модуля. </para>
+</sect2>
+
+<sect2 id="splitting-a-unit"
+><title
+>Поділ модуля</title>
+
+<para
+>Якщо модуль є занадто великим, варто розділити його на менші модулі. Навряд чи варто створювати модулі з понад 20 слів. Щоб розділити великий модуль на менші, наведіть вказівник миші на пункт модуля, клацніть правою кнопкою миші і виберіть відповідний пункт меню, або скористайтеся пунктом меню <menuchoice
+><guimenu
+>Модуль</guimenu
+><guimenuitem
+>Розділити модуль на менші модулі</guimenuitem
+></menuchoice
+>. Під час розділення ви зможете вказати, чи слід зберігати порядок питань у частинах модуля. </para>
+</sect2>
+
+<sect2 id="what-is-shown-in-the-table"
+><title
+>Пункти таблиці</title>
+
+<para
+>&parley; завжди показуватиме питання з поточного позначеного модуля. Ви також можете наказати програмі показувати всі питання з підлеглих модулів. Для цього скористайтеся пунктом меню <menuchoice
+><guimenu
+>Модуль</guimenu
+><guimenuitem
+>Показати записи з модулів-нащадків</guimenuitem
+></menuchoice
+>. Таким чином, ви зможете побачити всі слова, що належать до основного позначеного модуля. </para>
+</sect2>
+</sect1>
+
+<sect1 id="word-types"
+><title
+>Частини мови</title>
+
+<para
+>У &parley; передбачено можливість прив’язки кожного зі слів до частин мови. Приклад: іменник, дієслово, прикметник або прислівник. </para>
+
+<para
+>Щоб мати змогу працювати з частинами мови, увімкніть інструмент роботи з частинами мови за допомогою пункту меню <menuchoice
+><guimenu
+>Перегляд</guimenu
+><guimenuitem
+>Частини мови</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>Впорядкування частин мови здійснюється подібно до впорядкування модулів. </para>
+
+<para
+>Якщо ви бажаєте бачити всі слова, що належать до певної частини мови, наприклад іменники, просто виберіть категорію іменників. У відповідь програма залишить у таблиці лише іменники. </para>
+
+<para
+>Найпростішим способом прив’язки слова до частини мови є перетягування зі скиданням пункту слова на відповідний пункт частини мови. У такий спосіб можна здійснювати прив’язку одразу декількох слів з таблиці. </para>
+
+<!-- empty sect2
+<sect2 id="words-or-sentences"
+><title
+>Words or Sentences</title>
+</sect2
+-->
+<sect2 id="adding-new-vocabulary"
+><title
+>Додавання нового словника</title>
+
+<para
+>Щоб додати нові слова, скористайтеся кнопкою  <inlinemediaobject
+><imageobject
+><imagedata fileref="list-add.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Додати новий запис</guiicon
+> панелі інструментів. Після натискання кнопки ви одразу можете розпочати введення слова першою з мов. Після введення слова першою мовою натисніть клавішу &Tab;, щоб перейти до слова наступною мовою. </para>
+</sect2>
+
+<sect2 id="editing-words"
+><title
+>Редагування слів</title>
+
+<para
+>Якщо ви бажаєте замінити питання, позначте його запис і почніть вводити нові дані. Якщо вам потрібно поміняти лише якесь зі слів, наведіть вказівник миші на відповідний пункт, двічі клацніть лівою кнопкою миші і внесіть зміни. Вміст решти комірок таблиці при цьому буде збережено. </para>
+
+<para
+>Натисніть клавішу &Tab;, щоб перейти до наступного слова, залишаючи у режимі редагування. Натискання клавіші &Enter; виведе програму з режиму редагування. Для пересування позначення комірками ви можете скористатися клавішами зі стрілочками. </para>
+</sect2>
+</sect1>
+
+<sect1 id="synonyms"
+><title
+>Синоніми</title>
+
+<para
+>Визначення синонімів є доволі складним завданням, отже результат може бути не зовсім таким, як ви сподівалися. Ось як можна вказати синоніми: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Скористайтеся пунктом меню <menuchoice
+><guimenu
+>Перегляд</guimenu
+><guimenuitem
+>Синоніми</guimenuitem
+></menuchoice
+>, щоб наказати програмі показати панель синонімів.</para
+></listitem>
+
+  <listitem
+><para
+>Виберіть перше слово (A), синонім якого ви бажаєте вказати, а потім наведіть вказівник на пункт другого слова-синоніма (B) і клацніть лівою кнопкою миші.</para
+></listitem>
+
+  <listitem
+><para
+>Напис на кнопці панелі синонімів зміниться на <guibutton
+>A і B є синонімами</guibutton
+>.</para
+></listitem>
+</itemizedlist>
+
+<para
+>Після натискання кнопки слова буде пов’язано, у вправах ці слова вважатимуться синонімами. </para>
+</sect1>
+
+<sect1 id="adding-images"
+><title
+>Додавання зображень</title>
+
+<para
+>Для початку накажіть програмі показати панель зображень за допомогою пункту меню <menuchoice
+><guimenu
+>Перегляд</guimenu
+> <guimenuitem
+>Зображення</guimenuitem
+></menuchoice
+>. Панель керування зображеннями буде показано у правій частині вікна &parley;. </para>
+
+<para
+>Щоб додати до питання зображення, позначте відповідний запис у таблиці. Натисніть на панелі зображень піктограму з <inlinemediaobject
+><imageobject
+><imagedata fileref="folder-black.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>зображенням теки</guiicon
+> і вкажіть програмі зображення, яке слід пов’язати з питанням. Якщо буде вибрано зображення для пари перекладів, у нижніх правих кутиках комірок обох слів буде показано блакитний прапорець. Якщо вам це потрібно, зробіть те саме для іншого слова пари слів. Якщо ви наведете вказівник миші на цей прапорець, програма покаже панель з даними щодо назви і шляху до файла зображення </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="adding-images.png" format="PNG"/></imageobject>
+    <caption
+>Додавання зображень</caption>
+  </mediaobject>
+</screenshot>
+
+<!-- <para
+>The needed images can be obtained from Google search using &parley; inbuilt scripts.
+</para>
+
+<para
+>To obtain the image highlight a word in the list then choose the <menuchoice
+><guimenu
+>Scripts</guimenu
+> <guimenuitem
+>Fetch Image</guimenuitem
+></menuchoice
+> menu item.
+</para>
+
+<screenshot>
+  <screeninfo
+>Obtaining images from the Internet</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_006b.png" format="PNG"/></imageobject>
+    <caption
+>Obtaining images from the Internet</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Choose the right image using <guibutton
+>Next</guibutton
+> and <guibutton
+>Previous</guibutton
+> buttons. You can correct the search criteria for the images using the corresponding text box.
+</para>
+
+<para
+>If you prefer only free images check the corresponding check box.
+</para>
+
+<para
+>When the selection is finished just press on the <guibutton
+>OK</guibutton
+> button and the image will be saved next to the current vocabulary file in the <filename role="directory"
+><replaceable
+>name_of_vocabulary</replaceable
+>_files</filename
+> subfolder.
+</para>
+
+<warning
+><para
+>Due to the current script limitations the image files cannot be saved in the paths with Unicode symbols in the names of folders and files.
+</para
+></warning
+> -->
+</sect1>
+
+<sect1 id="adding-sound"
+><title
+>Додавання звукових даних</title>
+
+<para
+>Для початку накажіть програмі показати панель звукових даних за допомогою пункту <guilabel
+>Звук</guilabel
+> меню <guilabel
+>Перегляд</guilabel
+>. Панель керування звуками буде показано у правій частині вікна &parley;. </para>
+
+<para
+>Щоб додати до питання звукові дані, позначте відповідний рядок у таблиці. Натисніть на панелі звуку піктограму з <inlinemediaobject
+><imageobject
+><imagedata fileref="folder-black.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>зображенням теки</guiicon
+> і вкажіть програмі файл звукових даних, який слід пов’язати з питанням. Якщо буде вибрано звуковий файл для слова, у верхньому правому куті його комірки буде показано червоний прапорець. Якщо вам це потрібно, зробіть те саме для іншого слова пари слів. Якщо ви наведете вказівник миші на цей прапорець, програма покаже панель з даними щодо назви і шляху до файла звукових даних. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="adding-sound.png" format="PNG"/></imageobject>
+    <caption
+>Додавання звукових даних</caption>
+  </mediaobject>
+</screenshot>
+
+<!-- Not found!
+<para
+>The needed sound files can be obtained from Wiktionary using &parley; inbuilt scripts.
+</para>
+
+<para
+>To obtain the sound file highlight a word in the list then choose <menuchoice
+><guimenu
+>Scripts</guimenu
+> <guimenuitem
+>Fetch Sound</guimenuitem
+></menuchoice
+> from the &parley; menu.
+</para>
+
+<para
+>The sound file will be saved next to the current vocabulary file in the <filename role="directory"
+><replaceable
+>name_of_vocabulary</replaceable
+>_files</filename
+> subfolder.
+</para
+> -->
+</sect1>
+
+<sect1 id="entering-comparison-forms"
+><title
+>Введення ступенів порівняння</title>
+
+<para
+>Щоб ввести форми ступенів порівняння, накажіть програмі показати панель ступенів порівняння. Зробити це можна за допомогою меню <menuchoice
+><guimenu
+>Перегляд</guimenu
+><guimenuitem
+>Ступені порівняння</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>Позначте у таблиці слово, яке є прикметником або прислівником. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison_form.png" format="PNG"/></imageobject>
+    <caption
+>Інструмент ступенів порівняння</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Натисніть кнопку <guibutton
+>Прикметник</guibutton
+> або <guibutton
+>Прислівник</guibutton
+> на панелі ступенів порівняння. </para>
+<!--
+<screenshot>
+  <screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_edit_comparison_form_2.png" format="PNG"/></imageobject>
+    <caption
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+<para
+>Введіть ступені порівняння. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison_form_edit.png" format="PNG"/></imageobject>
+    <caption
+>Редагування ступенів порівняння</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Після визначення ступенів порівняння ви зможете скористатися режимом <link linkend="comparison-forms-of-adjectives-and-adverbs"
+>вправляння зі ступенями порівняння</link
+>. </para>
+</sect1>
+
+<sect1 id="entering-inflection-forms"
+><title
+>Введення форм словозміни</title>
+
+<para
+>Щоб ввести форми словозміни, накажіть програмі показати панель словозміни. Зробити це можна за допомогою пункту меню <menuchoice
+><guimenu
+>Перегляд</guimenu
+><guimenuitem
+>Словозміна (дієслова, прикметники, іменники)</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>Спочатку позначте у списку дієслово. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="conjugation.png" format="PNG"/></imageobject>
+    <caption
+>Редагування форм словозміни</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Натисніть кнопку <guibutton
+>Дієслово</guibutton
+> у вікні інструмента словозмін. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="conjugation_edit.png" format="PNG"/></imageobject>
+    <caption
+>Редагування форм словозміни</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Після вибору належного часу за допомогою поля вибору часу введіть форми дієвідмін. </para>
+
+<para
+>Часи для кожної мови можна вказати окремо. Докладніше про це у розділі <link linkend="languages-and-grammar"
+>Мови і граматика</link
+>. </para>
+
+<para
+>Після визначення форм дієвідмін ви зможете скористатися режимом <link linkend="conjugations"
+>вправляння з дієвідмінами</link
+>. </para>
+
+<para
+>Натисніть кнопку <guibutton
+>Іменник</guibutton
+> або <guibutton
+>Прикметник</guibutton
+>, щоб додати форми відмінювання до вашого словника. </para>
+</sect1>
+
+<sect1 id="creating-new-files"
+><title
+>Створення файлів</title>
+
+<para
+>У цьому розділі ми обговоримо створення файлів нових словників, які може бути призначено не лише для вивчення словників, але і для вправ з граматики, математики тощо. </para>
+
+<sect2 id="new-collection--vocabulary-english-german"
+><title
+>Нова збірка: англо-німецький словник</title>
+
+<para
+>У цьому розділі буде описано створення файла словника з зображеннями і звуковими даними. На другому кроці створення ми додамо до словника прикметники та дієслова. Цей приклад є доволі повним і тому доволі довгим. Можливо, у вашому словнику не буде всіх описаних нами тут елементів. </para>
+
+<para
+>Оскільки ми маємо намір додати до словника файли звукових даних і зображень, варто скопіювати ці файли до однієї теки. Для зручності ми назвемо цю теку <emphasis
+>eng-deu</emphasis
+>. Наш файл даних &parley; також буде збережено до цієї теки. Подібне зосередження даних буде корисним, якщо ви вирішите поділитися вашим словником з іншими користувачами. </para>
+
+<para
+>Отже у нас будуть такі файли звукових даних і зображень: </para>
+
+<screenshot>
+  <screeninfo
+>Тека даних у &dolphin;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Folder_with_sound_and_pictures.png" format="PNG"/></imageobject>
+    <caption
+>Тека даних у &dolphin;</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Після першого запуску &parley; ви побачите <guilabel
+>Початкову сторінку</guilabel
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Головне вікно &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="dashboard.png" format="PNG"/></imageobject>
+    <caption
+>Панель приладів із декількома збірками</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Натисніть кнопку <guibutton
+>Створити нову збірку…</guibutton
+>. </para>
+
+<para
+>На сторінці <guilabel
+>Загальні властивості документа</guilabel
+> слід заповнити поля таким чином (звичайно ж, вам слід вказати дані вашого файла): </para>
+
+<screenshot>
+  <screeninfo
+>Діалогове вікно «Властивості...»</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="general_document_properties.png" format="PNG"/></imageobject>
+    <caption
+>Вікно властивостей</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Натисніть кнопку <guibutton
+>Гаразд</guibutton
+>. У наступному вікні програма попросить вас вказати параметри мови. Не будемо вносити змін до типових даних: просто натисніть кнопку <guibutton
+>Гаразд</guibutton
+>. </para>
+
+<para
+>На першому кроці ми створимо словникову частину. Додавання звукових даних та даних зображень виконаємо на другому кроці. Ось як має виглядати модуль: </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="new_empty_collection.png" format="PNG"/></imageobject>
+    <caption
+>Нова порожня збірка</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Перш ніж переходити до внесення змін, давайте збережемо наш файл до теки з зображеннями і файлами звукових даних. Скористайтеся пунктом меню <menuchoice
+><guimenu
+>Файл</guimenu
+><guimenuitem
+>Зберегти</guimenuitem
+></menuchoice
+> і перейдіть до потрібної теки за допомогою інструментів навігації. У нашому прикладі файл буде названо <guilabel
+>Trainer eng-deu</guilabel
+>. Після введення цієї назви просто натисніть кнопку <guibutton
+>Зберегти</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно збереження словника із новою назвою</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="save_new_collection.png" format="PNG"/></imageobject>
+    <caption
+>Збереження нової збірки</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Якщо ви тепер зазирнете до теки з вашими звуковими файлами та файлами зображень, ви побачите у ній файл <filename
+>Trainer eng-deu.kvtml</filename
+>&nbsp;. </para>
+
+<para
+>Погляньмо на список слів, які ми бажаємо додати: <emphasis
+>apple, bird, cat, cherry, cow, orange, pear, snake, strawberry</emphasis
+>. У списку назви тварин і фруктів, отже варто створити два модулі з назвами <guilabel
+>Animals</guilabel
+> (тварини) та <guilabel
+>Fruits</guilabel
+> (фрукти). </para>
+
+<para
+>Ми перейменуємо <guilabel
+>Урок 1</guilabel
+> на <guilabel
+>Animals</guilabel
+>, а потім додамо модуль із назвою <guilabel
+>Fruits</guilabel
+>. Наведіть вказівник миші на пункт <guilabel
+>Урок 1</guilabel
+>, клацніть правою кнопкою миші і виберіть у контекстному меню пункт <guilabel
+>Перейменувати модуль</guilabel
+>. Після цього програма позначить напис <guilabel
+>Урок 1</guilabel
+> і ви зможете його перезаписати введенням назви <guilabel
+>Animals</guilabel
+>. Коли завершите введення назви, натисніть клавішу &Enter;. Тепер наведіть вказівник на пункт <guilabel
+>Collection: Vocabulary trainer E...</guilabel
+>, який у нашому прикладі є основним у ієрархії модулів, клацніть правою кнопкою миші і виберіть у контекстному меню пункт <guilabel
+>Новий модуль</guilabel
+>. У новостворене поле введіть <guilabel
+>Fruits</guilabel
+> і ще раз натисніть клавішу &Enter;. </para>
+
+<para
+>Спочатку введемо назви тварин. Наведіть вказівник на пункт модуля <guilabel
+>Animals</guilabel
+> і клацніть лівою кнопкою миші. Програма відкриє порожню таблицю, яку ви зможете заповнити. Наведіть вказівник на першу комірку таблиці і клацніть правою кнопкою миші. Введіть назву основною мовою, потім введіть назву мовою перекладу. Після введення чотирьох назв тварин англійською і їх відповідників німецькою таблиця має виглядати так: </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_004.png" format="PNG"/></imageobject>
+    <caption
+>Редагування тренування англо-німецького словника</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>У нашому прикладі у модулі з назвами тварин чотири записи. У таблиці залишається багато порожніх рядків, які варто вилучити. Щоб зробити це, наведіть вказівник миші на першу порожню комірку, клацніть лівою кнопкою миші, а потім натисніть клавішу &Shift; і клацніть на останній порожній комірці. У результаті буде позначено усі рядки, які слід вилучити. Далі, натисніть клавішу <keycap
+>Del</keycap
+>. </para>
+
+<para
+>Додамо записи, пов’язані з фруктами. Наведіть вказівник миші на пункт модуля <guilabel
+>Fruits</guilabel
+> і клацніть лівою кнопкою миші. Програма відкриє порожню таблицю відповідного модуля. Оскільки у нашому списку п’ять назв фруктів, нам буде потрібно п’ять рядків. Тому натисніть кнопку <keycap
+>Ins</keycap
+> п’ять разів, а потім, як і для попереднього уроку, додайте потрібні нам записи. </para>
+
+<para
+>І не забувайте зберігати внесені зміни… </para>
+
+<para
+>Наведіть вказівник на пункт нашого основного модуля <guilabel
+>Collection: Vocabulary trainer E...</guilabel
+>, клацніть лівою кнопкою миші, і &parley; покаже вам всі записи, які було введено для двох модулів нижнього рівня: </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_005.png" format="PNG"/></imageobject>
+    <caption
+>Усі записи, які є у двох модулях</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Час додати зображення і звукові дані. Для початку слід відкрити панелі зображень і звуку. Для цього скористайтеся меню <guilabel
+>Перегляд</guilabel
+>, послідовно позначивши у ньому пункти <guilabel
+>Зображення</guilabel
+> і <guilabel
+>Звук</guilabel
+>. Після позначення цих двох пунктів у нижній правій частині вікна редагування &parley; з’являться дві нових панелі. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_006.png" format="PNG"/></imageobject>
+    <caption
+>Розділи «Звук і зображення»</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Позначте комірку англійського слова <emphasis
+>apple</emphasis
+> наведенням на неї вказівника миші з наступним клацанням лівою кнопкою миші. Додайте зображення. На панелі зображень у правій частині вікна натисніть піктограму з зображенням <inlinemediaobject
+><imageobject
+><imagedata fileref="folder-black.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>теки</guiicon
+> і виберіть зображення, яке слід використати, за допомогою інструментів навігації. </para>
+
+<para
+>Щоб додати вимову англійською слова «apple», виконайте ті самі дії у розділі звукових даних, виберіть відповідний файл звукових даних. </para>
+
+<para
+>Якщо ви натиснете кнопку <guibutton
+>Відтворити</guibutton
+>, програма відтворить вимову слова. </para>
+
+<para
+>Після цього вікно виглядатиме приблизно так: </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_007.png" format="PNG"/></imageobject>
+    <caption
+>Відтворення звуку</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Наведіть вказівник миші на комірку німецького перекладу, <guilabel
+>Apfel</guilabel
+>, і клацніть лівою кнопкою миші. Позначення комірки буде показано підсвічуванням її вмісту. Як ви можете бачити, зображення яблука було пов’язано і з німецьким перекладом. На панелі звукових даних виберіть файл даних вимови, так, як ви це робили раніше для зображення. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_008.png" format="PNG"/></imageobject>
+    <caption
+>Перевірка прив'язки даних</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Виконайте описану послідовність дій для всіх слів словника. </para>
+
+<para
+>Тепер додамо до нашого модуля прикметники та дієслова. Отже, діємо, як і при додаванні модуля <emphasis
+>Fruits</emphasis
+>. Створимо два нових модулі: <emphasis
+>Adjectives</emphasis
+> (прикметники) та <emphasis
+>Verbs</emphasis
+> (дієслова). Нехай ми хочемо додати слова <emphasis
+>big, small, old, young, narrow</emphasis
+> до модуля з прикметниками і дієслова <emphasis
+>to go, to come, to buy, to drink, to eat</emphasis
+> до модуля з дієсловами. </para>
+
+<para
+>Нижче наведено знімок вікна з введеними словами. Зараз слова не категоризовано, було б добре розподілити їх за категоріями <emphasis
+>іменник, прикметник</emphasis
+> та <emphasis
+>дієслово</emphasis
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_009.png" format="PNG"/></imageobject>
+    <caption
+>Показ усієї вставленої термінології</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>На наступному кроці нам потрібна буде панель <guilabel
+>Частина мови</guilabel
+>. Відкрийте меню <guilabel
+>Перегляд</guilabel
+> і відкрийте у ньому пункт <guilabel
+>Стовпчики словника</guilabel
+>. Увімкнемо <guilabel
+>Частина мови</guilabel
+> для <emphasis
+>англійської</emphasis
+> та <emphasis
+>німецької</emphasis
+> позначенням пункту <guilabel
+>Частина мови</guilabel
+>. Натисніть кнопку <guibutton
+>Гаразд</guibutton
+>, щоб підтвердити внесені зміни. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно «Стовпчики словника»</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_010.png" format="PNG"/></imageobject>
+    <caption
+>Вибір запису частини мови</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Вибрати частину мови та, для тих мов, у яких існує поділ іменників на роди, рід іменника (комбінація значень <emphasis
+>Іменник/Рід</emphasis
+>) можна за допомогою наведення вказівника миші на відповідну комірку у стовпчику <guilabel
+>Частина мови</guilabel
+> з наступним клацанням лівою кнопкою миші. Крім того, ви можете почати вводити перші символи слова, щоб програма позначила його у списку. Нижче наведено знімок вмісту стовпчика <guilabel
+>Частина мови</guilabel
+> після введення всіх потрібних даних. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_011.png" format="PNG"/></imageobject>
+    <caption
+>Вибір частин мови</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Після визначення частин мов ми спочатку налаштуємо <emphasis
+>Прикметники</emphasis
+> додаванням <guilabel
+>Ступенів порівняння</guilabel
+>. Отже, обмежимо список питань лише <emphasis
+>Прикметниками</emphasis
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_012.png" format="PNG"/></imageobject>
+    <caption
+>Вибір ступенів порівняння</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Щоб відкрити панель <guilabel
+>Ступені порівняння</guilabel
+> у правій частині вікна, скористайтеся пунктом <guilabel
+>Ступені порівняння</guilabel
+> меню <guilabel
+>Перегляд</guilabel
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_013.png" format="PNG"/></imageobject>
+    <caption
+>Показ ступенів порівняння</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Додайте <guilabel
+>Ступені порівняння</guilabel
+> <guilabel
+>Вищий</guilabel
+> і <guilabel
+>Найвищий</guilabel
+>. Наведіть вказівник миші на пункт прикметника, до запису якого слід додати ступені порівняння, наприклад <emphasis
+>big</emphasis
+>, і клацніть лівою кнопкою миші, а потім додайте форми <emphasis
+>bigger</emphasis
+> і <emphasis
+>biggest</emphasis
+>. Повторіть дії  для наступного прикметника, аж доки для всіх прикметників не буде введено ступенів порівняння. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_014.png" format="PNG"/></imageobject>
+    <caption
+>Додавання ступенів порівняння</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Нарешті, розглянемо форми <guilabel
+>Дієвідміни</guilabel
+> для дієслів. Позначте пункт модуля <guilabel
+>Verbs</guilabel
+> і відкрийте у правій частині вікна панель словозмін за допомогою пункту <menuchoice
+><guimenu
+>Перегляд</guimenu
+> <guimenuitem
+>Словозміна (дієслова, прикметники, іменники)</guimenuitem
+></menuchoice
+>. У нашому прикладі ми редагуватимемо теперішній час (<guilabel
+>Präsens</guilabel
+>) дієслова <emphasis
+>gehen</emphasis
+>. Позначте пункт <guilabel
+>Präsens</guilabel
+> у спадному меню і додайте відповідні форми спряження. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_015.png" format="PNG"/></imageobject>
+    <caption
+>Вибір форми дієвідміни дієслова</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Цю дію слід виконати для всіх дієслів і всіх можливих часів. </para>
+
+<para
+>Після завершення введення даних ви можете повправлятися з ними. Для цього достатньо натиснути кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <link linkend="vocabulary-practice"
+><guiicon
+>Почати вправу</guiicon
+></link
+> на панелі інструментів. </para>
+</sect2>
+
+<sect2 id="new-collection:-single-names-and-collective-names"
+><title
+>Нова збірка: конкретні і загальні назви</title>
+
+<para
+>Цю вправу було створено для третього класу італійської початкової школи. У цій вправі учням слід визначити зв’язок між конкретними і загальними поняттями, наприклад <emphasis
+>дерево</emphasis
+> → <emphasis
+>ліс</emphasis
+> </para>
+
+<para
+>Після запуску &parley; програма відкриває початкову сторінку, на якій буде показано список раніше використаних файлів. </para>
+
+<screenshot>
+  <screeninfo
+>Головне вікно &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="initial_screen.png" format="PNG"/></imageobject>
+    <caption
+>Панель приладів</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Натисніть кнопку <guibutton
+>Створити нову збірку</guibutton
+>. У відповідь програма покаже таблицю з порожніми або частково заповненими полями: </para>
+
+<screenshot>
+  <screeninfo
+>Вікно властивостей без назви</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names1.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Вікно властивостей без назви</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Вкажіть заголовок (<guilabel
+>nomi singoli e collettivi</guilabel
+>), ваше ім’я та адресу електронної пошти. У розділі <guilabel
+>Коментар</guilabel
+> ви можете викласти докладніший опис, визначити категорію збірки та ліцензійні умови користування нею. Тепер зробимо так: замість визначення першої і другої мов, як це зазвичай робиться, ми додамо <emphasis
+>nome singolo</emphasis
+> (окрема назва) і <emphasis
+>nome collettivo</emphasis
+> (загальна назва). Пункти <guilabel
+>Налаштувати тонкощі граматики</guilabel
+> та <guilabel
+>Отримати граматику</guilabel
+> пропустимо. На знімку відповідні пункти ще позначено, — зніміть з них позначення клацанням лівою кнопкою миші на полях для позначок. Після завершення введення потрібних даних натисніть кнопку <guilabel
+>Гаразд</guilabel
+>. </para>
+
+<para
+>Виберіть пункт меню <menuchoice
+><guimenu
+>Перегляд</guimenu
+><guimenuitem
+>Мови</guimenuitem
+></menuchoice
+>, щоб відкрити сторінку <guilabel
+>Властивості nome singolo</guilabel
+>. Тут ви бачите сторінку з вже внесеними необхідними змінами: </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редагування мови</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names4.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Властивості однини</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>У лівій частині вікна буде показано належність даних, які ви вводите. <emphasis
+>nome singolo</emphasis
+>. Виберіть мову (у нашому прикладі <emphasis
+>італійська</emphasis
+>) і вкажіть <emphasis
+>nome singolo</emphasis
+> у полі для введення текстових даних. Натисніть кнопку <guibutton
+>Гаразд</guibutton
+>. </para>
+
+<para
+>Тепер буде показано сторінку <guilabel
+>Властивості для nome collettivo</guilabel
+> має бути показано: </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редагування мови</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names5.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Властивості множини</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Як і у попередньому випадку, виберіть <guilabel
+>італійську</guilabel
+> мову, вкажіть <emphasis
+>nome collettivo</emphasis
+> і натисніть кнопку <guibutton
+>Гаразд</guibutton
+>. </para>
+
+<para
+>Після цього можна розпочати редагування </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names7.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Створення нової збірки вправ</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Введіть <emphasis
+>nome singolo</emphasis
+> (окрему назву) у першому стовпчику і відповідну <emphasis
+>nome collettivo</emphasis
+> (загальну назву) у другому. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names8.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Додавання нового запису</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Якщо кількості полів не вистачатиме на всі слова, просто наведіть вказівник миші на будь-яку частину поля для редагування, клацніть правою кнопкою миші і виберіть у контекстному меню пункт <guilabel
+>Додати новий запис</guilabel
+>. Не забувайте зберігати дані після кожної серії дій. Після завершення додавання всіх записів варто перевірити, чи належним чином працює режим вправляння. Натисніть кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Почати вправу</guiicon
+> над панеллю редагування. У відповідь програма покаже сторінку параметрів вправляння: </para>
+
+<screenshot>
+  <screeninfo
+>Вікно редактора</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names10.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Режим вибору з варіантів</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>У нашому прикладі варто вибрати варіант <guilabel
+>Вибір з варіантів</guilabel
+>, хоча можна скористатися і варіантом <guilabel
+>Письмовий</guilabel
+>. Після вибору режиму вправляння натисніть кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Почати вправу</guiicon
+> і перевірте себе. </para>
+</sect2>
+</sect1>
+
+<sect1 id="getting-additional-collections"
+><title
+>Отримання додаткових збірок</title>
+
+<para
+>За допомогою <guilabel
+>Початкової сторінки</guilabel
+> можна встановлювати збірки безпосередньо з сервера, якщо встановлено з’єднання з мережею Інтернет. Для цього достатньо натиснути кнопку <guibutton
+>Отримати нові збірки…</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Головне вікно &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="dashboard.png" format="PNG"/></imageobject>
+    <caption
+>Панель приладів із декількома збірками</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Буде відкрито вікно зі списком збірок. Позначте потрібні вам збірки і натисніть кнопку <guibutton
+>Встановити</guibutton
+>. Після цього відкрийте відповідний файл для вправляння або редагування. </para>
+
+<screenshot>
+  <screeninfo
+>Вікно отримання нових даних</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="get_new_stuff.png" format="PNG"/></imageobject>
+    <caption
+>Отримання додаткових збірок</caption>
+  </mediaobject>
+</screenshot>
+</sect1>
+
+<sect1 id="configure-parley"
+><title
+>Налаштовування &parley;</title>
+
+<para
+>Налаштувати вигляд &parley; можна за допомогою <guilabel
+>Початкової сторінки</guilabel
+> або вікна редагування. Відкрийте меню <guilabel
+>Параметри</guilabel
+> і виберіть у ньому пункт <guilabel
+>Налаштувати &parley;</guilabel
+>. </para>
+
+<sect2 id="theme-tab"
+><title
+>Сторінка тем</title>
+
+<para
+>Програма відкриє вікно розділу <guilabel
+>Тема</guilabel
+>. За допомогою цього вікна можна змінити вигляд вітального вікна &parley; одразу після запуску програми: елегантний варіант <guilabel
+>Grey</guilabel
+> або бджілки-трудівниці <guilabel
+>Bees</guilabel
+>. Зауважте, що у вашій версії може не бути теми <guilabel
+>Fluffy Bunny</guilabel
+>. Якщо цієї теми немає, встановіть її за допомогою настанов наведених нижче. </para>
+
+<para
+>Після вибору бажаної теми натисніть кнопку <guibutton
+>Гаразд</guibutton
+>. </para>
+
+<para
+>Знімок вікна теми <guilabel
+>Bees</guilabel
+>: </para>
+
+<screenshot>
+  <screeninfo
+>Сторінка тренування</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_bees.png" format="PNG"/></imageobject>
+    <caption
+>Тема «Bees», яку застосовано до вікон програми</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>І це ще не все: ви можете натиснути кнопку <guilabel
+>Отримати нові теми</guilabel
+> і розширити список тем. З часом, як ми сподіваємося, кількість тем неухильно зростатиме. Якщо ви маєте навички зі створення &SVG;-графіки (наприклад, за допомогою програми <ulink url="https://inkscape.org"
+><application
+>Inkscape</application
+></ulink
+>), ви можете створити власну тему і поділитися нею з іншими користувачами. </para>
+
+<screenshot>
+  <screeninfo
+>Налаштування — вікно &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_theme.png" format="PNG"/></imageobject>
+    <caption
+>Сторінка параметрів теми</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Інші теми можна знайти на сайті <ulink url="https://store.kde.org/browse/cat/357/order/latest/"
+>store.kde.org</ulink
+> </para>
+</sect2>
+
+<sect2 id="general-tab"
+><title
+>Сторінка «Загальне»</title>
+
+<para
+>На вкладці <guilabel
+>Загальне</guilabel
+> наведено пункти, що стосуються поведінки &parley;. </para>
+
+<sect3 id="open-save-options"
+><title
+>Розділ «Відкрити/Зберегти»</title>
+
+<para
+>Пункт <guilabel
+>Завжди після запуску завантажувати останню відкриту збірку</guilabel
+> призначено для автоматичного завантаження після запуску словника, над яким ви працюєте. Часто цей пункт використовують разом з наступним, <guilabel
+>Автоматично зберігати словники під час закриття і виходу</guilabel
+>, оскільки незручно відповідати на одне і те саме питання, якщо під час попереднього сеансу результати тестування змінилися. Пункт <guilabel
+>Створювати резервну копію кожні ... хвилин</guilabel
+> може бути дуже корисним, якщо ви маєте намір часто зберігати вашу роботу. </para>
+
+<para
+>Іноді виникає потреба у імпортуванні і/або експортуванні текстових даних у форматі CSV. Важливим у такому випадку є визначення належного роздільника записів для наступної обробки або для уможливлення читання даних, отриманих зі сторонніх джерел. У &parley; передбачено можливість вибору належного роздільника. </para>
+</sect3>
+
+<sect3 id="editing-option"
+><title
+>Розділ «Редагування»</title>
+
+<para
+>За допомогою цього пункту ви можете визначити, чи слід &parley; автоматично додавати нові рядки під час редагування збірок словників. Автоматичне додавання рядків може бути корисним, якщо ви плануєте додати багато записів перед поділом їх на окремі модулі. З іншого боку подібний автоматизм може зашкодити, якщо ви плануєте створити декілька модулів із заздалегідь визначеною максимальною кількістю питань. </para>
+
+<screenshot>
+  <screeninfo
+>Налаштування — вікно &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_generalconfig.png" format="PNG"/></imageobject>
+    <caption
+>Сторінка загальних параметрів</caption>
+  </mediaobject>
+</screenshot>
+</sect3>
+</sect2>
+
+<sect2 id="view-tab"
+><title
+>Сторінка «Перегляд»</title>
+
+<para
+>За допомогою сторінки <guilabel
+>Перегляд</guilabel
+> ви зможете змінити гарнітуру та розміри шрифту, використаного для показу текстових даних вимови у програмі. Крім того ви можете вибрати найкращі для вас <guilabel
+>Основний колір для показу оцінок</guilabel
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Налаштування — вікно &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_view.png" format="PNG"/></imageobject>
+    <caption
+>Сторінка параметрів перегляду</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+</sect1>
+</chapter>
+
+<!--FIXME &parley; is not available on &Windows; in 16.04
+<chapter id="parley-on-windows"
+><title
+>&parley; on &Windows;</title>
+
+<para
+>It is possible to install &parley; together with other <ulink url="https://edu.kde.org"
+>Educational software</ulink
+> on &Windows; systems. For further info please visit <ulink url="https://community.kde.org/Windows"
+>this page</ulink
+>.
+</para>
+
+<para
+>The steps to be followed in short:
+</para>
+
+<para
+>Download the installer <ulink url="https://windows.kde.org/download.php"
+>here</ulink>
+</para>
+
+<para
+>Then follow the installation procedure like for any other &Windows; software.
+</para>
+
+<para
+>When you come to the <guilabel
+>Package selection screen</guilabel
+>, select the language(s) you wish the software to be available in <emphasis
+>and</emphasis
+> the package - in this case <guilabel
+>kdeedu</guilabel
+>. If you don't select any language you will automatically get English.
+</para>
+
+<para
+>Then finish the installation process by clicking on next, following the coming screens just like you normally do with other windows software.
+</para>
+
+<para
+>Please note that the &parley; team does not deal with the &Windows; Installer and therefore we cannot easily answer your questions. Should you have difficulties, please contact the &kde;-Windows team directly. You can do so by subscribing to the mailing list <ulink url="https://mail.kde.org/mailman/listinfo/kde-windows"
+>here</ulink
+> or join them on &irc; at irc://irc.libera.chat Channel: #kde-windows.
+</para>
+</chapter>
+-->
+
+<chapter id="notes-for-advanced-users"
+><title
+>Нотатки для досвідчених користувачів</title>
+<!--
+<sect1 id="using-parley-for-exam-preparation"
+><title
+>Using &parley; for Exam Preparation</title>
+
+<itemizedlist>
+  <listitem
+><para
+>what to bear in mind with long questions / answers?</para
+></listitem>
+  <listitem
+><para
+>how to start  with a new Exam</para
+></listitem>
+  <listitem
+><para
+>example 1 with capitals</para
+></listitem>
+  <listitem
+><para
+>example 2 with sentence</para
+></listitem>
+</itemizedlist>
+</sect1>
+-->
+<!-- TODO: menu item not found -->
+<sect1 id="upload-and-share-collections"
+><title
+>Вивантаження та оприлюднення збірок</title>
+
+<para
+>Ви можете вивантажувати власні файли і ділитися ними з іншими користувачами. </para>
+
+<para
+>Скористайтеся пунктом <guimenuitem
+>Вивантажити документ словника</guimenuitem
+> у меню <guilabel
+>Файл</guilabel
+> вікна редактора Parley. </para>
+
+<para
+>Якщо ваші спроби зазнають невдачі, можете скористатися напряму <ulink url="https://store.kde.org/"
+>store.kde.org</ulink
+>. </para>
+
+<para
+>Яким би зі способів ви не скористалися, вивантажені файли буде показано у діалоговому вікні <guilabel
+>Отримати нові дані</guilabel
+> у відповідь на натискання кнопки <guibutton
+>Отримати нові збірки</guibutton
+> на <guilabel
+>Початковій сторінці</guilabel
+>. </para>
+</sect1>
+
+<sect1 id="file-format"
+><title
+>Формат файлів</title>
+
+<para
+>Якщо ви бажаєте дізнатися більше про формати файлів, які здатна читати програма &parley;, та про формат, у яких зберігаються збірки словників, відвідайте сторінку </para>
+
+<para
+><ulink url="https://userbase.kde.org/Parley/FileFormats"
+>Формат файлів &parley; на userbase.kde.org</ulink>
+</para>
+</sect1>
+
+<!-- empty sect1
+<sect1 id="scripting"
+><title
+>Scripting</title>
+</sect1
+-->
+</chapter>
+
+<!--userbase-content-->
+<chapter id="credits"
+><title
+>Подяки і ліцензія</title>
+
+<sect1 id="thanks"
+><title
+>Подяки</title>
+
+<para
+>Автор висловлює особисту подяку таким людям за їх внесок у &parley;: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Peter Hedlund, який підтримував живим &kvoctrain; і почав портування на &kde; 4 програми, яка зрештою стала &parley;</para
+></listitem>
+  <listitem
+><para
+>David Capel</para
+></listitem>
+  <listitem
+><para
+>Avgoustinos Kadis</para
+></listitem>
+  <listitem
+><para
+>Daniel Laidig</para
+></listitem>
+  <listitem
+><para
+>Johannes Simon</para
+></listitem>
+</itemizedlist>
+
+<para
+>Автор також дуже вдячний всім неназваним особам, особливо, всій Команді розробки &kde;, за їх допомогу, конструктивну критику, пропозиції або повідомлення про вади. </para>
+</sect1>
+
+<sect1 id="copyright"
+><title
+>Авторські права</title>
+
+<para
+>Авторські права на програму &parley; © 2007–2010 &Frederik.Gladhorn; &Frederik.Gladhorn.mail; </para>
+
+<para
+>Авторські права на документацію належать &Frederik.Gladhorn; &Frederik.Gladhorn.mail;, Sabine Eller <email
+>s.eller@voxhumanitatis.org</email
+>, Daniel Laidig <email
+>d.laidig@gmx.de</email
+>, 2010; Amarvir Singh <email
+>amarvir.ammu.93@gmail.com</email
+>, 2014 </para>
+
+<para
+>Юрій Чорноіван <email
+>yurchor@ukr.net</email
+></para
+> &underFDL; &underGPL; </sect1>
+</chapter>
+
+&documentation.index;
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->

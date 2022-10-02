@@ -1,0 +1,4763 @@
+# Translation of parley into Japanese.
+# This file is distributed under the same license as the kdeedu package.
+# Ewald Arnold <ewald@ewald-arnold.de>, 1999-2000.
+# Taiki Komoda <kom@kde.gr.jp>, 2002,2003.
+# Kyosuke Takayama <support@mc.neweb.ne.jp>, 2004.
+# KIMIZUKA Tomokazu <sgtom@pluto.dti.ne.jp>, 2005.
+# Yukiko Bando <ybando@k6.dion.ne.jp>, 2006, 2007, 2008, 2009.
+# Fumiaki Okushi <okushi@kde.gr.jp>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: parley\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-08-06 00:41+0000\n"
+"PO-Revision-Date: 2011-04-24 00:32-0700\n"
+"Last-Translator: Fumiaki Okushi <okushi@kde.gr.jp>\n"
+"Language-Team: Japanese <kde-jp@kde.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.10.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "KIMIZUKA Tomokazu,Kyosuke Takayama,Yukiko Bando"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "sgtom@pluto.dti.ne.jp,support@mc.neweb.ne.jp,ybando@k6.dion.ne.jp"
+
+#: src/collection/containermodel.cpp:150
+#, kde-format
+msgid "Unit"
+msgstr ""
+
+#: src/collection/containermodel.cpp:158
+#, kde-format
+msgid "Number of entries in this lesson."
+msgstr "このレッスンのエントリ数"
+
+#: src/collection/entryfilter.cpp:113
+#, kde-format
+msgid ""
+"The vocabulary document contains no entries that can be used for the chosen "
+"type of practice."
+msgstr ""
+"この語彙文書には、選択されたタイプの練習に使用できるエントリが含まれていませ"
+"ん。"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, EntryFilterDialog)
+#: src/collection/entryfilterdialog.ui:14
+#, kde-format
+msgid "Start Practice"
+msgstr "練習を開始"
+
+#. i18n: ectx: property (text), widget (QLabel, headerLabel)
+#: src/collection/entryfilterdialog.ui:20
+#, kde-format
+msgid ""
+"<p>Your selection of vocabulary for the practice is empty.</p><p>Below you "
+"can choose to ignore some of your configuration settings to start a practice "
+"anyway.</p>"
+msgstr ""
+"<p>現在の設定では練習できる語彙がありません。</p><p>下でいくつかの設定を無視"
+"して練習を開始することもできます。</p>"
+
+#. i18n: ectx: property (title), widget (QGroupBox, ignoreGroupBox)
+#: src/collection/entryfilterdialog.ui:30
+#, kde-format
+msgid "Ignore Configuration for:"
+msgstr "無視する設定:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, lessonCheckBox)
+#: src/collection/entryfilterdialog.ui:36
+#, kde-format
+msgid "Ignore Lessons"
+msgstr "レッスンを無視"
+
+#. i18n: ectx: property (text), widget (QCheckBox, wordTypeCheckBox)
+#: src/collection/entryfilterdialog.ui:56
+#, kde-format
+msgid "Ignore Word Types"
+msgstr "品詞を無視"
+
+#. i18n: ectx: property (text), widget (QCheckBox, blockedCheckBox)
+#: src/collection/entryfilterdialog.ui:76
+#, kde-format
+msgid "Ignore Blocked"
+msgstr "ブロッキングの設定を無視"
+
+#. i18n: ectx: property (text), widget (QCheckBox, timesWrongCheckBox)
+#: src/collection/entryfilterdialog.ui:96
+#, kde-format
+msgid "Ignore Times Answered Incorrectly"
+msgstr "不正解の回数を無視"
+
+#. i18n: ectx: property (text), widget (QCheckBox, timesPracticedCheckBox)
+#: src/collection/entryfilterdialog.ui:116
+#, kde-format
+msgid "Ignore Times Practiced"
+msgstr "練習回数を無視"
+
+#. i18n: ectx: property (text), widget (QCheckBox, minMaxGradeCheckBox)
+#: src/collection/entryfilterdialog.ui:136
+#, kde-format
+msgid "Ignore Minimum/Maximum Grade"
+msgstr "最低/最高レベルを無視"
+
+#. i18n: ectx: property (text), widget (QLabel, numberAffectedWordsLabel)
+#: src/collection/entryfilterdialog.ui:156
+#, fuzzy, kde-format
+#| msgid "Number of choices:"
+msgid "Number of Affected Words"
+msgstr "選択肢の数:"
+
+#. i18n: ectx: property (text), widget (QLabel, documentTotalDescriptionLabel)
+#: src/collection/entryfilterdialog.ui:171
+#, kde-format
+msgid "Total number of entries:"
+msgstr "エントリの合計数:"
+
+#. i18n: ectx: property (text), widget (QLabel, totalDescriptionLabel)
+#: src/collection/entryfilterdialog.ui:192
+#, kde-format
+msgid "Resulting number of words to practice:"
+msgstr "練習できる単語数:"
+
+#: src/collection/lessonmodel.cpp:47
+#, kde-format
+msgctxt "display of the name of the vocabulary collection"
+msgid "Collection: %1"
+msgstr "コレクション: %1"
+
+#: src/collection/readonlycontainermodel.cpp:131
+#, kde-format
+msgid "None"
+msgstr "なし"
+
+#: src/collection/vocabularymodel.cpp:185
+#, kde-format
+msgid "You can drag and drop words onto their word type."
+msgstr "品詞に単語をドラッグ＆ドロップできます。"
+
+#: src/collection/vocabularymodel.cpp:187
+#, kde-format
+msgid "Enable the synonym view to edit synonyms."
+msgstr ""
+
+#: src/collection/vocabularymodel.cpp:189
+#, kde-format
+msgid "Enable the antonym view to edit antonyms."
+msgstr ""
+
+#: src/collection/vocabularymodel.cpp:281
+#, fuzzy, kde-format
+#| msgid "Pronunciation"
+msgid "Pronunciation (%1)"
+msgstr "発音"
+
+#: src/collection/vocabularymodel.cpp:281
+#, kde-format
+msgid "Pronunciation"
+msgstr "発音"
+
+#: src/collection/vocabularymodel.cpp:283
+#, fuzzy, kde-format
+#| msgid "Word Type"
+msgid "Word Type (%1)"
+msgstr "品詞"
+
+#: src/collection/vocabularymodel.cpp:283
+#, kde-format
+msgid "Word Type"
+msgstr "品詞"
+
+#. i18n: ectx: property (text), widget (QPushButton, synonymButton)
+#: src/collection/vocabularymodel.cpp:285 src/editor/synonymwidget.ui:26
+#, kde-format
+msgid "Synonym"
+msgstr "同義語"
+
+#: src/collection/vocabularymodel.cpp:285
+#, fuzzy, kde-format
+#| msgid "Synonym: "
+msgid "Synonym (%1)"
+msgstr "同義語:"
+
+#: src/collection/vocabularymodel.cpp:287
+#, fuzzy, kde-format
+#| msgctxt "Title for a list of antonyms (opposites) for a word"
+#| msgid "Antonyms of %1:"
+msgid "Antonym (%1)"
+msgstr "%1 の対義語:"
+
+#: src/collection/vocabularymodel.cpp:287
+#, kde-format
+msgid "Antonym"
+msgstr "対義語"
+
+#: src/collection/vocabularymodel.cpp:289
+#, fuzzy, kde-format
+#| msgid "Example"
+msgid "Example (%1)"
+msgstr "例文"
+
+#: src/collection/vocabularymodel.cpp:289
+#, kde-format
+msgid "Example"
+msgstr "例文"
+
+#: src/collection/vocabularymodel.cpp:291
+#, fuzzy, kde-format
+#| msgid "Comment"
+msgid "Comment (%1)"
+msgstr "コメント"
+
+#: src/collection/vocabularymodel.cpp:291
+#, kde-format
+msgid "Comment"
+msgstr "コメント"
+
+#: src/collection/vocabularymodel.cpp:293
+#, fuzzy, kde-format
+#| msgid "Paraphrase"
+msgid "Paraphrase (%1)"
+msgstr "言い換え"
+
+#: src/collection/vocabularymodel.cpp:293
+#, kde-format
+msgid "Paraphrase"
+msgstr "言い換え"
+
+#: src/collection/vocabularymodel.cpp:312
+#, kde-format
+msgid "Please use Edit -> Languages to set up your document."
+msgstr "メニューの「編集|言語」を使って文書の設定を行ってください。"
+
+#: src/collection/vocabularymodel.cpp:312
+#, kde-format
+msgid "No Languages Defined"
+msgstr "言語が定義されていません"
+
+#: src/collection/vocabularymodel.cpp:317
+#, fuzzy, kde-format
+#| msgid "Select a lesson before adding vocabulary."
+msgid "Select a unit before adding vocabulary."
+msgstr "語彙を追加する前にレッスンを選択してください。"
+
+#: src/collection/vocabularymodel.cpp:317
+#, fuzzy, kde-format
+#| msgid "No Lesson Selected"
+msgid "No Unit Selected"
+msgstr "レッスンが選択されていません"
+
+#: src/dashboard/barwidget.cpp:120
+#, kde-format
+msgid "%1 word due"
+msgid_plural "%1 words due"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/dashboard/barwidget.cpp:122
+#, kde-format
+msgid "Fully learned"
+msgstr ""
+
+#: src/dashboard/buttondelegate.cpp:32
+#, kde-format
+msgid "Open this vocabulary collection in the editor"
+msgstr "この語彙コレクションをエディタで開く"
+
+#: src/dashboard/collectionwidget.cpp:96
+#, fuzzy, kde-format
+#| msgid "Practice Again"
+msgid "Practice Anyway"
+msgstr "再び練習する"
+
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:367
+#: src/editor/editor.cpp:368
+#, kde-format
+msgid "Practice"
+msgstr "練習"
+
+#. i18n: ectx: property (text), widget (QLabel, recentLabel)
+#: src/dashboard/dashboard.cpp:231 src/dashboard/dashboard.ui:38
+#, fuzzy, kde-format
+#| msgid "Last Opened Collections"
+msgid "Active Collections"
+msgstr "最後に開いたコレクション"
+
+#. i18n: ectx: property (text), widget (QLabel, completedLabel)
+#: src/dashboard/dashboard.cpp:236 src/dashboard/dashboard.ui:77
+#, fuzzy, kde-format
+#| msgid "Last Opened Collections"
+msgid "Completed Collections"
+msgstr "最後に開いたコレクション"
+
+#. i18n: ectx: property (text), widget (QPushButton, removeChoiceButton)
+#: src/dashboard/dashboard.cpp:284 src/editor/multiplechoicewidget.ui:28
+#, kde-format
+msgid "Remove"
+msgstr "削除"
+
+#: src/dashboard/dashboard.cpp:284
+#, fuzzy, kde-format
+#| msgid "Do you really want to delete the selected entry?"
+#| msgid_plural "Do you really want to delete the selected %1 entries?"
+msgid "Are you sure you want to remove this collection?"
+msgstr "本当に選択したエントリを削除しますか？"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, Dashboard)
+#: src/dashboard/dashboard.ui:14 src/main.cpp:37
+#, kde-format
+msgid "Parley"
+msgstr "Parley"
+
+#. i18n: ectx: property (text), widget (QPushButton, newButton)
+#: src/dashboard/dashboard.ui:120
+#, fuzzy, kde-format
+#| msgid "Create a New Collection"
+msgid "Create a New Collection..."
+msgstr "新しいコレクションを作成"
+
+#. i18n: ectx: property (text), widget (QPushButton, openButton)
+#: src/dashboard/dashboard.ui:127
+#, fuzzy, kde-format
+#| msgid "Open an Existing Collection"
+msgid "Open an Existing Collection..."
+msgstr "既存のコレクションを開く"
+
+#. i18n: ectx: property (text), widget (KNSWidgets::Button, ghnsButton)
+#: src/dashboard/dashboard.ui:134
+#, fuzzy, kde-format
+#| msgid "Download New Collections"
+msgid "Download New Collections..."
+msgstr "新しいコレクションをダウンロード"
+
+#. i18n: ectx: property (text), widget (QLabel, headingLabel)
+#: src/dashboard/dashboard.ui:141
+#, kde-format
+msgid "<h1>Parley</h1>"
+msgstr "<h1>Parley</h1>"
+
+#. i18n: ectx: property (text), widget (QPushButton, playButton)
+#. i18n: ectx: property (text), widget (Practice::AudioButton, solutionSoundButton)
+#. i18n: ectx: property (text), widget (Practice::AudioButton, questionSoundButton)
+#: src/editor/audiowidget.ui:19 src/practice/audiobutton.cpp:18
+#: src/practice/audiobutton.cpp:19 src/practice/audiobutton.cpp:63
+#: src/practice/audiobutton.cpp:64 src/practice/practice_widget_flashcard.ui:48
+#: src/practice/practice_widget_flashcard.ui:103
+#, kde-format
+msgid "Play"
+msgstr "再生"
+
+#. i18n: ectx: property (text), widget (QPushButton, recordButton)
+#: src/editor/audiowidget.ui:26
+#, kde-format
+msgid "Record"
+msgstr "録音"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, downloadButton)
+#: src/editor/audiowidget.ui:33
+#, kde-format
+msgid "Download audio file with webservice"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, downloadButton)
+#: src/editor/audiowidget.ui:36
+#, fuzzy, kde-format
+#| msgctxt "Attept to download grammar properties for the selected languages"
+#| msgid "Download Grammar"
+msgid "Download"
+msgstr "文法をダウンロード"
+
+#. i18n: ectx: property (text), widget (QPushButton, showCurrentButton)
+#: src/editor/browserwidget.ui:18
+#, kde-format
+msgid "Lookup Current"
+msgstr "現在の単語を検索"
+
+#. i18n: ectx: property (text), widget (QCheckBox, followTableCheckBox)
+#: src/editor/browserwidget.ui:33
+#, kde-format
+msgid "Follow Table"
+msgstr "テーブルで選択した単語を検索する"
+
+#: src/editor/comparisonwidget.cpp:76
+#, kde-format
+msgid "Could not determine word type of adjectives"
+msgstr ""
+
+#: src/editor/comparisonwidget.cpp:95
+#, kde-format
+msgid "Could not determine word type of adverbs"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QLabel, absoluteLabel)
+#. i18n: ectx: property (toolTip), widget (QLabel, comparativeLabel)
+#: src/editor/comparisonwidget.ui:24 src/editor/comparisonwidget.ui:56
+#, kde-format
+msgid "The comparative is used to compare nouns or verbs (faster)"
+msgstr "比較級は名詞や動詞を比較するために使います (faster)"
+
+#. i18n: ectx: property (text), widget (QLabel, absoluteLabel)
+#: src/editor/comparisonwidget.ui:27
+#, kde-format
+msgid "Absolute:"
+msgstr "原級:"
+
+#. i18n: ectx: property (text), widget (QLabel, comparativeLabel)
+#: src/editor/comparisonwidget.ui:59
+#, kde-format
+msgid "Comparative:"
+msgstr "比較級:"
+
+#. i18n: ectx: property (toolTip), widget (QLabel, superlativeLabel)
+#: src/editor/comparisonwidget.ui:88
+#, kde-format
+msgid "The superlative (fastest)"
+msgstr "形容詞/副詞の最上級 (fastest)"
+
+#. i18n: ectx: property (text), widget (QLabel, superlativeLabel)
+#: src/editor/comparisonwidget.ui:91
+#, kde-format
+msgid "Superlative:"
+msgstr "最上級:"
+
+#. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
+#: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
+#: src/editor/wordtypeview.cpp:95 src/parleydocument.cpp:477
+#, kde-format
+msgid "Adjective"
+msgstr "形容詞"
+
+#. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
+#: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:103
+#: src/parleydocument.cpp:481
+#, kde-format
+msgid "Adverb"
+msgstr "副詞"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, DocumentProperties)
+#. i18n: ectx: property (windowTitle), widget (QWidget, OptionListForm)
+#. i18n: ectx: property (windowTitle), widget (QWidget, FromToEntryPageForm)
+#. i18n: ectx: property (windowTitle), widget (QWidget, ConjugationWidget)
+#. i18n: ectx: property (windowTitle), widget (QWidget, DeclensionWidget)
+#: src/editor/conjugationwidget.ui:26 src/editor/declensionwidget.ui:26
+#: src/editor/FromToEntryPageForm.ui:20 src/settings/documentproperties.ui:20
+#: src/settings/optionlistform.ui:19
+#, kde-format
+msgid "-"
+msgstr "-"
+
+#. i18n: ectx: property (title), widget (QGroupBox, layout)
+#: src/editor/conjugationwidget.ui:32
+#, fuzzy, kde-format
+#| msgid "Conjugations"
+msgid "Conjugation Forms"
+msgstr "動詞の活用"
+
+#. i18n: ectx: property (text), widget (QLabel, singularFirstPersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, dualFirstPersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, pluralFirstPersonLabel)
+#: src/editor/conjugationwidget.ui:38 src/editor/conjugationwidget.ui:132
+#: src/editor/conjugationwidget.ui:209
+#, kde-format
+msgid "First"
+msgstr "一人称"
+
+#. i18n: ectx: property (text), widget (QLabel, singularSecondPersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, dualSecondPersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, pluralSecondPersonLabel)
+#: src/editor/conjugationwidget.ui:61 src/editor/conjugationwidget.ui:148
+#: src/editor/conjugationwidget.ui:225
+#, kde-format
+msgid "Second"
+msgstr "二人称"
+
+#. i18n: ectx: property (text), widget (QLabel, singularThirdMalePersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, dualThirdMalePersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, pluralThirdMalePersonLabel)
+#: src/editor/conjugationwidget.ui:84 src/editor/conjugationwidget.ui:164
+#: src/editor/conjugationwidget.ui:241
+#, kde-format
+msgid "Third Male"
+msgstr "三人称男性"
+
+#. i18n: ectx: property (text), widget (QLabel, singularThirdFemalePersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, dualThirdFemalePersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, pluralThirdFemalePersonLabel)
+#: src/editor/conjugationwidget.ui:100 src/editor/conjugationwidget.ui:177
+#: src/editor/conjugationwidget.ui:260
+#, kde-format
+msgid "Third Female"
+msgstr "三人称女性"
+
+#. i18n: ectx: property (text), widget (QLabel, singularThirdNeutralPersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, dualThirdNeutralPersonLabel)
+#. i18n: ectx: property (text), widget (QLabel, pluralThirdNeutralPersonLabel)
+#: src/editor/conjugationwidget.ui:116 src/editor/conjugationwidget.ui:193
+#: src/editor/conjugationwidget.ui:279
+#, kde-format
+msgid "Third Neutral"
+msgstr "三人称中性"
+
+#. i18n: ectx: property (text), widget (QPushButton, nextTenseButton)
+#: src/editor/conjugationwidget.ui:317
+#, kde-format
+msgid "Ne&xt"
+msgstr "次へ(&X)"
+
+#. i18n: ectx: property (text), widget (QLabel, tenselabel)
+#: src/editor/conjugationwidget.ui:330
+#, kde-format
+msgid "&Tense:"
+msgstr "時制(&T):"
+
+#. i18n: ectx: property (text), widget (QLabel, male_label_3)
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4_2_2)
+#. i18n: ectx: property (text), widget (QLabel, singularLabel)
+#. i18n: ectx: property (text), item, widget (QComboBox, numberSelection)
+#: src/editor/conjugationwidget.ui:349 src/editor/declensionwidget.cpp:120
+#: src/editor/declensionwidget.ui:459
+#: src/settings/languagepropertiespage.ui:378
+#: src/settings/languagepropertiespage.ui:486
+#, kde-format
+msgid "Singular"
+msgstr "単数形"
+
+#. i18n: ectx: property (text), widget (QLabel, dualLabel)
+#. i18n: ectx: property (text), item, widget (QComboBox, numberSelection)
+#: src/editor/conjugationwidget.ui:368 src/editor/declensionwidget.cpp:121
+#: src/editor/declensionwidget.ui:464
+#: src/settings/languagepropertiespage.ui:493
+#, kde-format
+msgid "Dual"
+msgstr "双数形"
+
+#. i18n: ectx: property (text), widget (QLabel, male_label_4)
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4_3)
+#. i18n: ectx: property (text), widget (QLabel, pluralLabel)
+#. i18n: ectx: property (text), item, widget (QComboBox, numberSelection)
+#: src/editor/conjugationwidget.ui:387 src/editor/declensionwidget.cpp:122
+#: src/editor/declensionwidget.ui:469
+#: src/settings/languagepropertiespage.ui:388
+#: src/settings/languagepropertiespage.ui:500
+#, kde-format
+msgid "Plural"
+msgstr "複数形"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:463
+#, kde-format
+msgid "Masculine"
+msgstr "男性"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:466
+#, kde-format
+msgid "Feminine"
+msgstr "女性"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:469
+#, kde-format
+msgid "Neuter"
+msgstr "中性"
+
+#. i18n: ectx: property (title), widget (QGroupBox, declensionGroupBox)
+#: src/editor/declensionwidget.ui:38
+#, kde-format
+msgid "Declension Forms"
+msgstr "格変化"
+
+#. i18n: ectx: property (text), widget (QLabel, nominativeLabel)
+#: src/editor/declensionwidget.ui:52
+#, fuzzy, kde-format
+#| msgctxt "one of the seven cases (grammatical)"
+#| msgid "Nominative"
+msgctxt "one of the seven cases (grammatical)"
+msgid "Nominative:"
+msgstr "主格"
+
+#. i18n: ectx: property (text), widget (QLabel, genitivLabel)
+#: src/editor/declensionwidget.ui:71
+#, fuzzy, kde-format
+#| msgctxt "one of the seven cases (grammatical)"
+#| msgid "Genitive"
+msgctxt "one of the seven cases (grammatical)"
+msgid "Genitive:"
+msgstr "属格"
+
+#. i18n: ectx: property (text), widget (QLabel, dativLabel)
+#: src/editor/declensionwidget.ui:90
+#, fuzzy, kde-format
+#| msgctxt "one of the seven cases (grammatical)"
+#| msgid "Dative"
+msgctxt "one of the seven cases (grammatical)"
+msgid "Dative:"
+msgstr "与格"
+
+#. i18n: ectx: property (text), widget (QLabel, accusativeLabel)
+#: src/editor/declensionwidget.ui:109
+#, fuzzy, kde-format
+#| msgctxt "one of the seven cases (grammatical)"
+#| msgid "Accusative"
+msgctxt "one of the seven cases (grammatical)"
+msgid "Accusative:"
+msgstr "対格"
+
+#. i18n: ectx: property (text), widget (QLabel, ablativLabel)
+#: src/editor/declensionwidget.ui:128
+#, fuzzy, kde-format
+#| msgctxt "one of the seven cases (grammatical)"
+#| msgid "Ablative"
+msgctxt "one of the seven cases (grammatical)"
+msgid "Ablative:"
+msgstr "奪格"
+
+#. i18n: ectx: property (text), widget (QLabel, locativeLabel)
+#: src/editor/declensionwidget.ui:147
+#, fuzzy, kde-format
+#| msgctxt "one of the seven cases (grammatical)"
+#| msgid "Locative"
+msgctxt "one of the seven cases (grammatical)"
+msgid "Locative:"
+msgstr "地格"
+
+#. i18n: ectx: property (text), widget (QLabel, vocativeLabel)
+#: src/editor/declensionwidget.ui:166
+#, fuzzy, kde-format
+#| msgctxt "one of the seven cases (grammatical)"
+#| msgid "Vocative"
+msgctxt "one of the seven cases (grammatical)"
+msgid "Vocative:"
+msgstr "呼格"
+
+#. i18n: ectx: property (text), widget (QLabel, numberLabel)
+#: src/editor/declensionwidget.ui:445
+#, kde-format
+msgid "Number:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, nextButton)
+#: src/editor/declensionwidget.ui:477
+#, kde-format
+msgid "Next"
+msgstr "次へ"
+
+#: src/editor/editor.cpp:134
+#, kde-format
+msgid "Units"
+msgstr ""
+
+#: src/editor/editor.cpp:145
+#, fuzzy, kde-format
+#| msgid ""
+#| "Right click to add, delete, or rename lessons. \n"
+#| "With the checkboxes you can select which lessons you want to practice. \n"
+#| "Only checked lessons [x] will be asked in the tests!"
+msgid ""
+"Right click to add, delete, or rename units. \n"
+"With the checkboxes you can select which units you want to practice. \n"
+"Only checked units [x] will be asked in the practice!"
+msgstr ""
+"右クリックしてレッスンを追加、削除、名前変更します。\n"
+"チェックボックスを使って練習するレッスンを選択できます。\n"
+"チェックしたレッスン [x] からのみ出題されます。"
+
+#: src/editor/editor.cpp:156
+#, kde-format
+msgid "Word Types"
+msgstr "品詞"
+
+#: src/editor/editor.cpp:176
+#, kde-format
+msgid "Inflection (verbs, adjectives, nouns)"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
+#: src/editor/editor.cpp:190 src/statistics/statisticsmainwindow.ui:135
+#, kde-format
+msgid "Comparison Forms"
+msgstr "比較形"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: src/editor/editor.cpp:205
+#: src/practice/configure/specificpracticeoptions.ui:17
+#, kde-format
+msgid "Multiple Choice"
+msgstr "選択問題"
+
+#. i18n: ectx: property (text), widget (QLabel, synonymLabel)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/editor/editor.cpp:219 src/editor/synonymwidget.ui:16
+#: src/practice/configure/generalpracticeoptions.ui:152
+#, kde-format
+msgid "Synonyms"
+msgstr "同義語"
+
+#: src/editor/editor.cpp:232
+#, kde-format
+msgid "Antonyms"
+msgstr "対義語"
+
+#: src/editor/editor.cpp:246
+#, kde-format
+msgid "False Friends"
+msgstr "空似言葉"
+
+#: src/editor/editor.cpp:261
+#, kde-format
+msgid "Phonetic Symbols"
+msgstr "音声記号"
+
+#: src/editor/editor.cpp:276
+#, kde-format
+msgid "Image"
+msgstr "画像"
+
+#: src/editor/editor.cpp:291
+#, kde-format
+msgid "Summary"
+msgstr "まとめ"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
+#: src/editor/editor.cpp:305
+#: src/practice/configure/generalpracticeoptions.ui:139
+#, kde-format
+msgid "Sound"
+msgstr "サウンド"
+
+#: src/editor/editor.cpp:320
+#, kde-format
+msgid "Internet"
+msgstr "インターネット"
+
+#: src/editor/editor.cpp:335
+#, kde-format
+msgid "LaTeX"
+msgstr "LaTeX"
+
+#: src/editor/editor.cpp:412
+#, kde-format
+msgid "Enter search terms here"
+msgstr "ここに検索語を入力します"
+
+#: src/editor/editor.cpp:413
+#, fuzzy, kde-format
+#| msgid "Helps you train your vocabulary"
+msgid "Search your vocabulary"
+msgstr "語彙増強のお手伝いをします"
+
+# ACCELERATOR changed by translator
+#: src/editor/editor.cpp:415
+#, kde-format
+msgid "S&earch:"
+msgstr "検索(&A):"
+
+#. i18n: ectx: Menu (file)
+#: src/editor/editorui.rc:7 src/practice/practicesummaryui.rc:7
+#: src/practice/practiceui.rc:7 src/statistics/statisticsui.rc:7
+#, kde-format
+msgid "&File"
+msgstr "ファイル(&F)"
+
+#. i18n: ectx: Menu (edit)
+#: src/editor/editorui.rc:12
+#, kde-format
+msgid "&Edit"
+msgstr "編集(&E)"
+
+#. i18n: ectx: Menu (view)
+#: src/editor/editorui.rc:25 src/practice/practiceui.rc:12
+#, kde-format
+msgid "&View"
+msgstr "表示(&V)"
+
+#. i18n: ectx: Menu (lesson)
+#: src/editor/editorui.rc:51
+#, kde-format
+msgid "&Unit"
+msgstr ""
+
+#. i18n: ectx: Menu (learning)
+#: src/editor/editorui.rc:65 src/practice/practicesummaryui.rc:12
+#: src/statistics/statisticsui.rc:12
+#, kde-format
+msgid "&Practice"
+msgstr "練習(&P)"
+
+#. i18n: ectx: ToolBar (editorToolBar)
+#: src/editor/editorui.rc:72 src/parleyui.rc:24
+#, kde-format
+msgid "Editor Toolbar"
+msgstr "エディタツールバー"
+
+#. i18n: ectx: property (title), widget (QGroupBox, direc_label)
+#: src/editor/FromToEntryPageForm.ui:26
+#, kde-format
+msgid "Properties From Original"
+msgstr "原文からのプロパティ"
+
+#. i18n: ectx: property (text), widget (QLabel, grade_label)
+#: src/editor/FromToEntryPageForm.ui:72
+#, kde-format
+msgid "&Confidence Level:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, fauxami_label)
+#: src/editor/FromToEntryPageForm.ui:95
+#, kde-format
+msgid "&False friend:"
+msgstr "空似言葉(&F):"
+
+# ACCELERATOR changed by translator
+#. i18n: ectx: property (title), widget (QGroupBox, GroupBox3)
+#: src/editor/FromToEntryPageForm.ui:110
+#, kde-format
+msgid "Practice &Counts"
+msgstr "練習回数(&K)"
+
+#. i18n: ectx: property (text), widget (QLabel, bcount_label)
+#: src/editor/FromToEntryPageForm.ui:142
+#, kde-format
+msgid "&Wrong:"
+msgstr "誤答(&W):"
+
+# ACCELERATOR changed by translator
+#. i18n: ectx: property (text), widget (QLabel, qcount_label)
+#: src/editor/FromToEntryPageForm.ui:155
+#, kde-format
+msgid "Tot&al:"
+msgstr "合計(&T):"
+
+#. i18n: ectx: property (title), widget (QGroupBox, GroupBox2)
+#: src/editor/FromToEntryPageForm.ui:171
+#, kde-format
+msgid "&Last Practiced"
+msgstr "前回練習(&L)"
+
+#. i18n: ectx: property (text), widget (QPushButton, never)
+#: src/editor/FromToEntryPageForm.ui:183
+#, kde-format
+msgid "&Never"
+msgstr "なし(&N)"
+
+# ACCELERATOR changed by translator
+#. i18n: ectx: property (text), widget (QPushButton, today)
+#: src/editor/FromToEntryPageForm.ui:190
+#, kde-format
+msgid "T&oday"
+msgstr "今日(&Y)"
+
+#. i18n: ectx: property (toolTip), widget (QDateEdit, queryDateEdit)
+#: src/editor/FromToEntryPageForm.ui:206
+#, kde-format
+msgid "The date this expression was last practiced"
+msgstr "前回この語句を練習した日"
+
+#. i18n: ectx: property (specialValueText), widget (QDateEdit, queryDateEdit)
+#: src/editor/FromToEntryPageForm.ui:209
+#, kde-format
+msgid "Not Practiced Yet"
+msgstr "未出題"
+
+#. i18n: ectx: property (displayFormat), widget (QDateEdit, queryDateEdit)
+#: src/editor/FromToEntryPageForm.ui:229
+#, kde-format
+msgid "dd.MM.yyyy"
+msgstr "yyyy.MM.dd"
+
+#. i18n: ectx: property (text), widget (QPushButton, resetGradesButton)
+#: src/editor/FromToEntryPageForm.ui:260
+#, kde-format
+msgid "&Reset Confidence Levels"
+msgstr ""
+
+#: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:111
+#: src/parleydocument.cpp:473
+#, kde-format
+msgid "Verb"
+msgstr "動詞"
+
+#: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:63
+#: src/parleydocument.cpp:459
+#, kde-format
+msgid "Noun"
+msgstr "名詞"
+
+#: src/editor/inflectionwidget.cpp:81
+#, fuzzy, kde-format
+#| msgid "\"%1\" is a verb"
+msgid "\"%1\" is a:"
+msgstr "「%1」は動詞です"
+
+#: src/editor/inflectionwidget.cpp:124
+#, kde-format
+msgctxt "@title:window"
+msgid "Please select the noun's gender"
+msgstr ""
+
+#: src/editor/latexwidget.cpp:22
+#, kde-format
+msgid "Enter LaTeX code here."
+msgstr "ここに LaTeX コードを入力します。"
+
+#. i18n: ectx: property (text), widget (QLabel, texLabel)
+#: src/editor/latexwidget.ui:17
+#, fuzzy, kde-format
+#| msgid "LaTeX code"
+msgid "LaTeX code:"
+msgstr "LaTeX コード"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/editor/latexwidget.ui:37
+#: src/settings/kgametheme/kgamethemeselector.ui:55
+#, kde-format
+msgid "Preview"
+msgstr "プレビュー"
+
+#. i18n: ectx: property (text), widget (QCheckBox, mathModeCheckBox)
+#: src/editor/latexwidget.ui:57
+#, kde-format
+msgid "Math mode"
+msgstr "数式モード"
+
+#: src/editor/lessonview.cpp:31
+#, kde-format
+msgid "New Unit"
+msgstr ""
+
+#: src/editor/lessonview.cpp:33
+#, fuzzy, kde-format
+#| msgid "Add a new lesson to your document"
+msgid "Add a new unit to your document"
+msgstr "文書に新しいレッスンを追加します"
+
+#: src/editor/lessonview.cpp:39
+#, fuzzy, kde-format
+#| msgid "Rename"
+msgid "Rename Unit"
+msgstr "名前変更"
+
+#: src/editor/lessonview.cpp:47
+#, fuzzy, kde-format
+#| msgid "&Delete Entry"
+msgid "Delete Unit"
+msgstr "エントリを削除(&D)"
+
+#: src/editor/lessonview.cpp:49
+#, fuzzy, kde-format
+#| msgid "Delete the selected lesson."
+msgid "Delete the selected unit."
+msgstr "選択したレッスンを削除します"
+
+# ACCELERATOR added by translator
+#: src/editor/lessonview.cpp:55
+#, fuzzy, kde-format
+#| msgid "Split Lesson into Smaller Lessons"
+msgid "Split Unit into Smaller Units"
+msgstr "レッスンを小さいレッスンに分割(&L)"
+
+#: src/editor/lessonview.cpp:57
+#, fuzzy, kde-format
+#| msgid "Make multiple smaller lessons out of one big lesson."
+msgid "Make multiple smaller units out of one big unit."
+msgstr "大きなレッスンから複数の小さいレッスンを作成します"
+
+#: src/editor/lessonview.cpp:63
+#, kde-format
+msgid "Move to new lesson"
+msgstr ""
+
+#: src/editor/lessonview.cpp:65
+#, fuzzy, kde-format
+#| msgid "Save the active vocabulary collection"
+msgid "Moves the selected vocabulary to a new lesson"
+msgstr "アクティブな語彙コレクションを保存します"
+
+#: src/editor/lessonview.cpp:71 src/parleyactions.cpp:151
+#, kde-format
+msgid "Remove Confidence Levels"
+msgstr ""
+
+#: src/editor/lessonview.cpp:73
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Remove confidence levels from this unit."
+msgstr "このレッスンからすべての習得レベル情報を削除します"
+
+#: src/editor/lessonview.cpp:79
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Remove Confidence Levels From This Unit And All Subunits"
+msgstr "このレッスンからすべての習得レベル情報を削除します"
+
+#: src/editor/lessonview.cpp:81
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Remove confidence levels from this unit and all subunits."
+msgstr "このレッスンからすべての習得レベル情報を削除します"
+
+#: src/editor/lessonview.cpp:87
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Expand Units and Subunits"
+msgstr "このレッスンからすべての習得レベル情報を削除します"
+
+#: src/editor/lessonview.cpp:89
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Expand all units and subunits."
+msgstr "このレッスンからすべての習得レベル情報を削除します"
+
+#: src/editor/lessonview.cpp:95
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Collapse All Units And Subunits"
+msgstr "このレッスンからすべての習得レベル情報を削除します"
+
+#: src/editor/lessonview.cpp:97
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Collapse all units and subunits."
+msgstr "このレッスンからすべての習得レベル情報を削除します"
+
+#: src/editor/lessonview.cpp:189
+#, kde-format
+msgid "The root lesson cannot be deleted."
+msgstr "ルートのレッスンは削除できません。"
+
+#: src/editor/lessonview.cpp:199
+#, fuzzy, kde-format
+#| msgid "There is %1 word left in this lesson. Do you want to delete it?"
+#| msgid_plural ""
+#| "There are %1 words left in this lesson. Do you want to delete them?"
+msgid "There is %1 word left in this unit. Do you want to delete it?"
+msgid_plural ""
+"There are %1 words left in this unit. Do you want to delete them?"
+msgstr[0] ""
+"このレッスンには単語が %1 個残っています。本当にそれを削除しますか？"
+msgstr[1] ""
+"このレッスンには単語が %1 個残っています。本当にそれらを削除しますか？"
+
+#: src/editor/lessonview.cpp:217
+#, fuzzy, kde-format
+#| msgid "Entries per Lesson"
+msgid "Entries per Unit"
+msgstr "レッスンごとのエントリ数"
+
+#: src/editor/lessonview.cpp:218
+#, fuzzy, kde-format
+#| msgid ""
+#| "The lesson will be split into smaller lessons. How many entries in each "
+#| "lesson do you want?"
+msgid ""
+"The unit will be split into smaller unit. How many entries in each unit do "
+"you want?"
+msgstr ""
+"レッスンをより小さいレッスンに分割します。各レッスンのエントリ数を指定してく"
+"ださい。"
+
+# ACCELERATOR added by translator
+#: src/editor/lessonview.cpp:241
+#, kde-format
+msgid "New Lesson"
+msgstr "新しいレッスン(&N)"
+
+#. i18n: ectx: property (text), widget (QPushButton, addChoiceButton)
+#: src/editor/multiplechoicewidget.ui:21
+#, kde-format
+msgid "Add"
+msgstr "追加"
+
+#. i18n: ectx: property (text), widget (QLabel, languageLabel)
+#: src/editor/summarywordwidget.ui:16
+#, kde-format
+msgid "Language"
+msgstr "言語"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/editor/summarywordwidget.ui:32
+#, kde-format
+msgid "Lesson"
+msgstr "レッスン"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: src/editor/summarywordwidget.ui:42
+#, fuzzy, kde-format
+#| msgid "Word type"
+msgid "Word type:"
+msgstr "品詞"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: src/editor/summarywordwidget.ui:55
+#, fuzzy, kde-format
+#| msgid "Pronunciation"
+msgid "Pronunciation:"
+msgstr "発音"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: src/editor/summarywordwidget.ui:71
+#, fuzzy, kde-format
+#| msgid "Example"
+msgid "Example:"
+msgstr "例文"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: src/editor/summarywordwidget.ui:87
+#, fuzzy, kde-format
+#| msgid "Paraphrase"
+msgid "Paraphrase:"
+msgstr "言い換え"
+
+# ACCELERATOR changed by translator
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: src/editor/summarywordwidget.ui:103
+#, fuzzy, kde-format
+#| msgid "&Comment:"
+msgid "Comment:"
+msgstr "コメント(&M):"
+
+#: src/editor/synonymwidget.cpp:59
+#, kde-format
+msgid "Select Synonyms"
+msgstr "同義語を選択"
+
+#: src/editor/synonymwidget.cpp:65
+#, kde-format
+msgid "%1 and %2 are not Synonyms"
+msgstr "%1 と %2 は同義語ではありません"
+
+#: src/editor/synonymwidget.cpp:67
+#, kde-format
+msgid "%1 and %2 are Synonyms"
+msgstr "%1 と %2 は同義語です"
+
+#: src/editor/synonymwidget.cpp:72
+#, kde-format
+msgid "%1 and %2 are not Antonyms"
+msgstr "%1 と %2 は対義語ではありません"
+
+#: src/editor/synonymwidget.cpp:74
+#, kde-format
+msgid "%1 and %2 are Antonyms"
+msgstr "%1 と %2 は対義語です"
+
+#: src/editor/synonymwidget.cpp:79
+#, kde-format
+msgid "%1 and %2 are not False Friends"
+msgstr "%1 と %2 は空似言葉ではありません"
+
+#: src/editor/synonymwidget.cpp:81
+#, kde-format
+msgid "%1 and %2 are False Friends"
+msgstr "%1 と %2 は空似言葉です"
+
+#: src/editor/synonymwidget.cpp:90
+#, kde-format
+msgctxt "Title for a list of synonyms for a word"
+msgid "Synonyms of %1:"
+msgstr "%1 の同義語:"
+
+#: src/editor/synonymwidget.cpp:93
+#, kde-format
+msgctxt "Title for a list of antonyms (opposites) for a word"
+msgid "Antonyms of %1:"
+msgstr "%1 の対義語:"
+
+#: src/editor/synonymwidget.cpp:97
+#, kde-format
+msgctxt ""
+"Title for a list of false friend (things that sound similar but have "
+"different meanings) for a word"
+msgid "False Friends of %1:"
+msgstr "%1 の空似言葉:"
+
+#: src/editor/vocabularycolumnsdialog.cpp:43
+#, fuzzy, kde-format
+#| msgid "Vocabulary Columns"
+msgctxt "@title:window"
+msgid "Vocabulary Columns"
+msgstr "語彙カラム"
+
+#: src/editor/vocabularycolumnsdialog.cpp:58
+#, kde-format
+msgid "Enable/Disable the columns for each language"
+msgstr "表示するカラムを言語ごとに設定します"
+
+#: src/editor/vocabularydelegate.cpp:145
+#, fuzzy, kde-format
+#| msgid "Currently selected row"
+msgid "Sound file selected: %1"
+msgstr "現在選択されている行"
+
+#: src/editor/vocabularydelegate.cpp:147
+#, fuzzy, kde-format
+#| msgid "Currently selected row"
+msgid "Image file selected: %1"
+msgstr "現在選択されている行"
+
+# ACCELERATOR changed by translator
+#: src/editor/vocabularyview.cpp:79
+#, kde-format
+msgid "&Add New Entry"
+msgstr "新しいエントリを追加(&N)"
+
+#: src/editor/vocabularyview.cpp:82
+#, kde-format
+msgid "Append a new row to the vocabulary"
+msgstr "新しい行を語彙に追加します"
+
+#: src/editor/vocabularyview.cpp:91
+#, kde-format
+msgid "&Delete Entry"
+msgstr "エントリを削除(&D)"
+
+#: src/editor/vocabularyview.cpp:94
+#, kde-format
+msgid "Delete the selected rows"
+msgstr "選択した行を削除します"
+
+#: src/editor/vocabularyview.cpp:105
+#, kde-format
+msgid "Copy"
+msgstr "コピー"
+
+#: src/editor/vocabularyview.cpp:112
+#, kde-format
+msgid "Cut"
+msgstr "切り取り"
+
+#: src/editor/vocabularyview.cpp:119
+#, kde-format
+msgid "Paste"
+msgstr "貼り付け"
+
+#: src/editor/vocabularyview.cpp:126
+#, kde-format
+msgid "Select all rows"
+msgstr "すべての行を選択します"
+
+#: src/editor/vocabularyview.cpp:132
+#, kde-format
+msgid "Deselect all rows"
+msgstr "すべての行の選択を解除します"
+
+#: src/editor/vocabularyview.cpp:140
+#, kde-format
+msgid "Vocabulary Columns..."
+msgstr "語彙カラム..."
+
+#: src/editor/vocabularyview.cpp:141
+#, kde-format
+msgid "Toggle display of individual vocabulary columns"
+msgstr "語彙ごとのカラムの表示/非表示を切り替えます"
+
+#: src/editor/vocabularyview.cpp:253
+#, kde-format
+msgid "Do you really want to delete the selected entry?"
+msgid_plural "Do you really want to delete the selected %1 entries?"
+msgstr[0] "本当に選択したエントリを削除しますか？"
+msgstr[1] "本当に選択した %1 個のエントリを削除しますか？"
+
+#: src/editor/vocabularyview.cpp:254
+#, kde-format
+msgid "Delete"
+msgstr "削除"
+
+#: src/editor/vocabularyview.cpp:362
+#, kde-format
+msgid "Nothing to spell check."
+msgstr "スペルチェックするものがありません。"
+
+#: src/editor/vocabularyview.cpp:387
+#, kde-format
+msgctxt "@title of a popup"
+msgid "No Spell Checker Available"
+msgstr "スペルチェッカーがありません"
+
+#: src/editor/vocabularyview.cpp:388
+#, kde-format
+msgctxt "@popupmessage"
+msgid ""
+"Either the language set up is incorrect or no spellchecker was installed for "
+"this locale: %1."
+msgstr ""
+"言語の設定に問題があるか、このロケール (%1) のスペルチェッカーがインストール"
+"されていません。"
+
+#: src/editor/wordtypeview.cpp:30
+#, kde-format
+msgid "New"
+msgstr "新規"
+
+#: src/editor/wordtypeview.cpp:32
+#, kde-format
+msgid "Add a new word type to your document"
+msgstr "文書に新しい品詞を追加します"
+
+#: src/editor/wordtypeview.cpp:38
+#, kde-format
+msgid "Rename"
+msgstr "名前変更"
+
+#: src/editor/wordtypeview.cpp:40
+#, kde-format
+msgid "Rename the selected word type"
+msgstr "選択した品詞の名前を変更します"
+
+#: src/editor/wordtypeview.cpp:46
+#, kde-format
+msgid "Delete Word Type"
+msgstr "品詞を削除"
+
+#: src/editor/wordtypeview.cpp:48
+#, kde-format
+msgid "Delete the selected word type."
+msgstr "選択した品詞を削除します"
+
+#: src/editor/wordtypeview.cpp:55
+#, kde-format
+msgctxt ""
+"Let the user select what grammatical meaning is connected to a word type "
+"(nouns have gender, verbs conjugations etc)"
+msgid "Grammar"
+msgstr "文法"
+
+#: src/editor/wordtypeview.cpp:57
+#, kde-format
+msgid "To let Parley know the grammatical meaning of a word type."
+msgstr "Parley に品詞の文法的な意味を教えます。"
+
+#: src/editor/wordtypeview.cpp:65
+#, kde-format
+msgid "This word type folder contains nouns."
+msgstr "このフォルダには名詞が入ります。"
+
+#: src/editor/wordtypeview.cpp:71
+#, kde-format
+msgid "Masculine Noun"
+msgstr "男性名詞"
+
+#: src/editor/wordtypeview.cpp:73
+#, kde-format
+msgid "This word type folder contains masculine nouns."
+msgstr "このフォルダには男性名詞が入ります。"
+
+#: src/editor/wordtypeview.cpp:79
+#, kde-format
+msgid "Feminine Noun"
+msgstr "女性名詞"
+
+#: src/editor/wordtypeview.cpp:81
+#, kde-format
+msgid "This word type folder contains feminine nouns."
+msgstr "このフォルダには女性名詞が入ります。"
+
+#: src/editor/wordtypeview.cpp:87
+#, kde-format
+msgid "Neuter Noun"
+msgstr "中性名詞"
+
+#: src/editor/wordtypeview.cpp:89
+#, kde-format
+msgid "This word type folder contains neuter nouns."
+msgstr "このフォルダには中性名詞が入ります。"
+
+#: src/editor/wordtypeview.cpp:97
+#, kde-format
+msgid "This word type folder contains adjectives."
+msgstr "このフォルダには形容詞が入ります。"
+
+#: src/editor/wordtypeview.cpp:105
+#, kde-format
+msgid "This word type folder contains adverbs."
+msgstr "このフォルダには副詞が入ります。"
+
+#: src/editor/wordtypeview.cpp:113
+#, kde-format
+msgid "This word type folder contains verbs."
+msgstr "このフォルダには動詞が入ります。"
+
+#: src/editor/wordtypeview.cpp:119 src/parleydocument.cpp:485
+#, fuzzy, kde-format
+#| msgid "Conjugation"
+msgid "Conjunction"
+msgstr "動詞の活用"
+
+#: src/editor/wordtypeview.cpp:121
+#, fuzzy, kde-format
+#| msgid "This word type folder contains nouns."
+msgid "This word type folder contains conjunctions."
+msgstr "このフォルダには名詞が入ります。"
+
+#: src/editor/wordtypeview.cpp:127
+#, kde-format
+msgid "No Special Type"
+msgstr "その他"
+
+#: src/editor/wordtypeview.cpp:130
+#, kde-format
+msgid "This word type folder contains no word type with special meaning."
+msgstr "このフォルダには品詞が設定されていない単語が入ります。"
+
+#: src/editor/wordtypeview.cpp:208
+#, kde-format
+msgid "The root word type cannot be deleted."
+msgstr "ルートの品詞は削除できません。"
+
+#: src/editor/wordtypeview.cpp:218
+#, kde-format
+msgid ""
+"There is a word left with this word type. It will lose its type. Continue?"
+msgid_plural ""
+"There are %1 words left with this word type. They will lose their word type. "
+"Continue?"
+msgstr[0] ""
+"この品詞に関連付けられた単語が 1 個残っています。その単語の品詞情報も失われま"
+"す。続けますか？"
+msgstr[1] ""
+"この品詞に関連付けられた単語が %1 個残っています。それらの単語の品詞情報も失"
+"われます。続けますか？"
+
+#: src/exportdialog.cpp:53
+#, fuzzy, kde-format
+#| msgid "Export"
+msgctxt "@title:window"
+msgid "Export"
+msgstr "エクスポート"
+
+#: src/exportdialog.cpp:79
+#, kde-format
+msgid "HTML document"
+msgstr "HTML 文書"
+
+#: src/exportdialog.cpp:102
+#, fuzzy, kde-format
+#| msgid "Could not start practice"
+msgid "Could not write to file \"%1\""
+msgstr "練習を開始することができませんでした"
+
+#: src/exportdialog.cpp:119
+#, kde-format
+msgid "Export As"
+msgstr "エクスポート"
+
+#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:136
+#, kde-format
+msgid "Untitled"
+msgstr "タイトルなし"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, ExportOptions)
+#: src/exportdialog.ui:14
+#, kde-format
+msgid "Export"
+msgstr "エクスポート"
+
+#. i18n: ectx: property (text), widget (QRadioButton, flashCardRadio)
+#: src/exportdialog.ui:20
+#, fuzzy, kde-format
+#| msgid "Front and back sides for printing learning cards."
+msgid "Flash Cards - to print learning cards (HTML)"
+msgstr "単語カードの表と裏を印刷"
+
+#. i18n: ectx: property (text), widget (QRadioButton, tableRadio)
+#: src/exportdialog.ui:30
+#, kde-format
+msgid "A vocabulary list that works in a web-browser and can be printed (HTML)"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, csvRadio)
+#: src/exportdialog.ui:40
+#, kde-format
+msgid "Comma separated values (CSV)"
+msgstr "コンマ区切りの値 (CSV)"
+
+#: src/main.cpp:38
+#, kde-format
+msgid "Vocabulary Trainer"
+msgstr "語彙のトレーナー"
+
+#: src/main.cpp:40
+#, kde-format
+msgid ""
+"© 1999-2002\tEwald Arnold\n"
+"© 2001-2002\tThe KDE team\n"
+"© 2004-2007\tPeter Hedlund\n"
+"© 2007-2010\tFrederik Gladhorn\n"
+msgstr ""
+"© 1999-2002\tEwald Arnold\n"
+"© 2001-2002\tThe KDE team\n"
+"© 2004-2007\tPeter Hedlund\n"
+"© 2007-2010\tFrederik Gladhorn\n"
+
+#: src/main.cpp:45
+#, kde-format
+msgid "Helps you train your vocabulary"
+msgstr "語彙増強のお手伝いをします"
+
+#: src/main.cpp:49
+#, kde-format
+msgid "Inge Wallin"
+msgstr ""
+
+#: src/main.cpp:49 src/main.cpp:51
+#, fuzzy, kde-format
+#| msgid "Developer and maintainer"
+msgid "Developer and Co-maintainer"
+msgstr "開発者でありメンテナ"
+
+#: src/main.cpp:51
+#, kde-format
+msgid "Amarvir Singh"
+msgstr ""
+
+#: src/main.cpp:53
+#, kde-format
+msgid "Frederik Gladhorn"
+msgstr "Frederik Gladhorn"
+
+#: src/main.cpp:53
+#, fuzzy, kde-format
+#| msgid "Developer and maintainer"
+msgid "Developer, former maintainer"
+msgstr "開発者でありメンテナ"
+
+#: src/main.cpp:55
+#, kde-format
+msgid "Daniel Laidig"
+msgstr "Daniel Laidig"
+
+#: src/main.cpp:55
+#, kde-format
+msgid "Developer"
+msgstr "開発者"
+
+#: src/main.cpp:57
+#, kde-format
+msgid "David Capel"
+msgstr "David Capel"
+
+#: src/main.cpp:57
+#, kde-format
+msgid "Practice Dialogs"
+msgstr "練習ダイアログ"
+
+#: src/main.cpp:59
+#, kde-format
+msgid "Avgoustinos Kadis"
+msgstr "Avgoustinos Kadis"
+
+#: src/main.cpp:59
+#, kde-format
+msgid "Scripting"
+msgstr "スクリプティング"
+
+#: src/main.cpp:61
+#, kde-format
+msgid "Peter Hedlund"
+msgstr "Peter Hedlund"
+
+#: src/main.cpp:62
+#, kde-format
+msgid "Countless fixes, former maintainer, port to KDE4"
+msgstr "数えきれない修正、以前のメンテナ、KDE4 への移植"
+
+#: src/main.cpp:65
+#, kde-format
+msgid "Ewald Arnold"
+msgstr "Ewald Arnold"
+
+#: src/main.cpp:66
+#, kde-format
+msgid "Original Author"
+msgstr "オリジナルの作者"
+
+#: src/main.cpp:70
+#, kde-format
+msgid "Lee Olson"
+msgstr "Lee Olson"
+
+#: src/main.cpp:70
+#, kde-format
+msgid "Artwork and Oxygen Icons"
+msgstr "アートワークと Oxygen アイコン"
+
+#: src/main.cpp:72
+#, kde-format
+msgid "Anne-Marie Mahfouf"
+msgstr "Anne-Marie Mahfouf"
+
+#: src/main.cpp:72
+#, kde-format
+msgid "Port to KConfig XT"
+msgstr "KConfig XT へ移植"
+
+#: src/main.cpp:74
+#, kde-format
+msgid "Jeremy Whiting"
+msgstr "Jeremy Whiting"
+
+#: src/main.cpp:74
+#, kde-format
+msgid "Rewriting the kvtml library for KDE4"
+msgstr "KDE4 用に kvtml を書き直し"
+
+#: src/main.cpp:76
+#, kde-format
+msgid "Markus Büchele"
+msgstr "Markus Büchele"
+
+#: src/main.cpp:76
+#, kde-format
+msgid "Bug reports and testing on the way to KDE4"
+msgstr "KDE4 バージョンのテストとバグレポート"
+
+#: src/main.cpp:78
+#, kde-format
+msgid "Ramona Knapp"
+msgstr "Ramona Knapp"
+
+#: src/main.cpp:78
+#, kde-format
+msgid "Conceived the name Parley"
+msgstr "プログラムの新しい名前 Parley を提案"
+
+#: src/main.cpp:91
+#, fuzzy, kde-format
+#| msgid "+[file]"
+msgid "[file]"
+msgstr "+[ファイル]"
+
+#: src/main.cpp:91
+#, kde-format
+msgid "Document file to open"
+msgstr "開く文書ファイル"
+
+#: src/parleyactions.cpp:72
+#, kde-format
+msgid "Creates a new vocabulary collection"
+msgstr "新しい語彙コレクションを作成します"
+
+#: src/parleyactions.cpp:77
+#, kde-format
+msgid "Opens an existing vocabulary collection"
+msgstr "既存の語彙コレクションを開きます"
+
+#: src/parleyactions.cpp:85
+#, kde-format
+msgid "Open &Downloaded Vocabularies..."
+msgstr "ダウンロードした語彙を開く(&D)..."
+
+#: src/parleyactions.cpp:86
+#, kde-format
+msgid "Open downloaded vocabulary collections"
+msgstr "ダウンロードした語彙コレクションを開きます"
+
+#: src/parleyactions.cpp:91
+#, kde-format
+msgid "Save the active vocabulary collection"
+msgstr "アクティブな語彙コレクションを保存します"
+
+#: src/parleyactions.cpp:98
+#, kde-format
+msgid "Save the active vocabulary collection with a different name"
+msgstr "アクティブな語彙コレクションを別名で保存します"
+
+#: src/parleyactions.cpp:105
+#, kde-format
+msgid "&Export..."
+msgstr "エクスポート(&E)..."
+
+#: src/parleyactions.cpp:106
+#, kde-format
+msgid "Export to HTML or CSV"
+msgstr "HTML または CSV にエクスポートします"
+
+# ACCELERATOR changed by translator
+#: src/parleyactions.cpp:114
+#, kde-format
+msgid "&Properties..."
+msgstr "プロパティ(&T)..."
+
+#: src/parleyactions.cpp:115
+#, kde-format
+msgid "Edit document properties"
+msgstr "文書のプロパティを編集します"
+
+#: src/parleyactions.cpp:123
+#, kde-format
+msgid "Dashboard"
+msgstr ""
+
+#: src/parleyactions.cpp:124
+#, fuzzy, kde-format
+#| msgid "Save the active vocabulary collection with a different name"
+msgid "Close the current vocabulary collection and show the dashboard"
+msgstr "アクティブな語彙コレクションを別名で保存します"
+
+#: src/parleyactions.cpp:130
+#, kde-format
+msgid "Quit Parley"
+msgstr "Parley を終了します"
+
+#: src/parleyactions.cpp:135
+#, kde-format
+msgid "Show the configuration dialog"
+msgstr "設定ダイアログを表示します"
+
+# ACCELERATOR changed by translator
+#: src/parleyactions.cpp:142
+#, kde-format
+msgid "&Languages..."
+msgstr "言語(&U)..."
+
+#: src/parleyactions.cpp:143
+#, kde-format
+msgid ""
+"Edit which languages are in the collection and their grammar properties."
+msgstr "コレクションの言語の選択と言語の文法プロパティの編集を行います。"
+
+#: src/parleyactions.cpp:152
+#, fuzzy, kde-format
+#| msgid "Remove all grades from the current document"
+msgid "Remove all confidence levels from the current document"
+msgstr "現在の文書からすべての習得レベル情報を削除します"
+
+# ACCELERATOR added by translator
+#: src/parleyactions.cpp:163
+#, fuzzy, kde-format
+#| msgid "Show Entries from Child Lessons"
+msgid "Show Entries from Child Units"
+msgstr "子レッスンのエントリを表示(&C)"
+
+#: src/parleyactions.cpp:164
+#, fuzzy, kde-format
+#| msgid "Enable to also see the entries of child lessons in each lesson."
+msgid "Enable to also see the entries of child units in each unit."
+msgstr "各レッスンにその子レッスンのエントリも表示します。"
+
+#: src/parleyactions.cpp:174
+#, kde-format
+msgid "Automatic Translation"
+msgstr "自動翻訳"
+
+#. i18n: ectx: label, entry (AutomaticTranslation), group (General)
+#: src/parleyactions.cpp:175 src/settings/parley.kcfg:50
+#, fuzzy, kde-format
+#| msgid "Enable automatic translation of the lesson entries."
+msgid "Enable automatic translation of the unit entries."
+msgstr "レッスンのエントリの自動翻訳を有効にします。"
+
+# ACCELERATOR added by translator
+#: src/parleyactions.cpp:185
+#, kde-format
+msgid "Start Practice..."
+msgstr "練習を開始(&T)..."
+
+#: src/parleyactions.cpp:186
+#, kde-format
+msgid "Start practicing"
+msgstr "練習を開始"
+
+# ACCELERATOR added by translator
+#: src/parleyactions.cpp:194
+#, kde-format
+msgid "Configure Practice..."
+msgstr "練習を設定(&C)..."
+
+#: src/parleyactions.cpp:195
+#, kde-format
+msgid "Change practice settings"
+msgstr "練習の設定を変更します"
+
+#: src/parleyactions.cpp:203
+#, fuzzy, kde-format
+#| msgid "&Export..."
+msgid "Export Results..."
+msgstr "エクスポート(&E)..."
+
+#: src/parleyactions.cpp:204
+#, kde-format
+msgid "Write a file with the results of the practice"
+msgstr ""
+
+#: src/parleyactions.cpp:212
+#, kde-format
+msgid "Editor"
+msgstr "エディタ"
+
+#: src/parleyactions.cpp:213
+#, kde-format
+msgid "Switch to vocabulary editor"
+msgstr "語彙エディタに切り替える"
+
+#: src/parleyactions.cpp:221
+#, kde-format
+msgid "Show Se&arch"
+msgstr "検索バーを表示(&A)"
+
+#: src/parleyactions.cpp:222
+#, kde-format
+msgid "Toggle display of the search bar"
+msgstr "検索バーの表示/非表示を切り替えます"
+
+#: src/parleydocument.cpp:121 src/parleydocument.cpp:568
+#, kde-format
+msgctxt "@title:window document properties"
+msgid "Properties for %1"
+msgstr "%1 のプロパティ"
+
+#: src/parleydocument.cpp:158
+#, fuzzy, kde-format
+#| msgid "Open Vocabulary Collection"
+msgctxt "@title:window"
+msgid "Open Vocabulary Collection"
+msgstr "語彙コレクションを開く"
+
+#: src/parleydocument.cpp:159
+#, kde-format
+msgid "Open in practice &mode"
+msgstr "練習モードで開く(&M)"
+
+#: src/parleydocument.cpp:200
+#, kde-format
+msgid ""
+"The vocabulary collection is locked by another process.  You can open the "
+"file if you take over the lock, but you will lose any changes from the other "
+"process.\n"
+"\n"
+"Do you want to take over the lock?\n"
+msgstr ""
+
+#: src/parleydocument.cpp:202
+#, kde-format
+msgid "Take Over Lock"
+msgstr ""
+
+#: src/parleydocument.cpp:231
+#, fuzzy, kde-format
+#| msgid "Writing file \"%1\" resulted in an error: %2"
+msgid "Opening collection \"%1\" resulted in an error: %2"
+msgstr "ファイル <filename>%1</filename> の書き込みエラー: %2"
+
+#: src/parleydocument.cpp:232
+#, fuzzy, kde-format
+#| msgid "Last Opened Collections"
+msgctxt "@title:window"
+msgid "Open Collection"
+msgstr "最後に開いたコレクション"
+
+#: src/parleydocument.cpp:260
+#, kde-format
+msgid ""
+"Vocabulary is modified.\n"
+"\n"
+"Save file before exit?\n"
+msgstr ""
+"語彙が変更されています。\n"
+"\n"
+"終了する前に保存しますか？\n"
+
+#: src/parleydocument.cpp:293
+#, fuzzy, kde-format
+#| msgid "Open Downloaded Vocabulary Collection"
+msgctxt "@title:window"
+msgid "Open Downloaded Vocabulary Collection"
+msgstr "ダウンロードした語彙コレクションを開く"
+
+#: src/parleydocument.cpp:331 src/parleydocument.cpp:416
+#, kde-format
+msgid ""
+"File \"%1\" is locked by another process.  You can save to the file if you "
+"take over the lock, but you will lose any changes from the other process.\n"
+"\n"
+"Do you want to take over the lock?\n"
+msgstr ""
+
+#: src/parleydocument.cpp:360 src/parleydocument.cpp:450
+#, kde-format
+msgid "Writing file \"%1\" resulted in an error: %2"
+msgstr "ファイル ‘%1’ の書き込みエラー: %2"
+
+#: src/parleydocument.cpp:361 src/parleydocument.cpp:451
+#, fuzzy, kde-format
+#| msgid "Save File"
+msgctxt "@title:window"
+msgid "Save File"
+msgstr "ファイルを保存"
+
+#: src/parleydocument.cpp:376
+#, fuzzy, kde-format
+#| msgid "Save Vocabulary As"
+msgctxt "@title:window"
+msgid "Save Vocabulary As"
+msgstr "名前を付けて語彙を保存"
+
+#: src/parleydocument.cpp:388
+#, kde-format
+msgid ""
+"<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
+msgstr "<qt>ファイル ‘%1’ は既に存在します。<br/>上書きしますか？</qt>"
+
+#: src/parleydocument.cpp:396
+#, kde-format
+msgctxt "@info:status saving a file"
+msgid "Saving %1"
+msgstr "‘%1’ を保存中"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
+#: src/parleydocument.cpp:497 src/settings/documentproperties.ui:234
+#, kde-format
+msgid "Public Domain"
+msgstr "パブリックドメイン"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
+#. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
+#: src/parleydocument.cpp:498 src/settings/documentproperties.ui:180
+#: src/settings/documentproperties.ui:250
+#: src/statistics/statisticsmainwindow.ui:23
+#, kde-format
+msgid "Languages"
+msgstr "言語"
+
+#: src/parleydocument.cpp:506
+#, kde-format
+msgid "A Second Language"
+msgstr "第二言語"
+
+#: src/parleydocument.cpp:509
+#, kde-format
+msgid "Lesson 1"
+msgstr "レッスン 1"
+
+#: src/parleydocument.cpp:551
+#, fuzzy, kde-format
+#| msgid "Downloads new vocabulary collections"
+msgid "Could not open vocabulary collection \"%1\""
+msgstr "新しい語彙コレクションをダウンロードします"
+
+#: src/parleymainwindow.cpp:133
+#, kde-format
+msgctxt ""
+"Title and a modified status indicator.  [*] is exact and will be shown only "
+"when document is modified"
+msgid "%1 [*]"
+msgstr ""
+
+#: src/parleymainwindow.cpp:173
+#, kde-format
+msgid ""
+"You cannot start to practice when the known language is the same as the "
+"language to learn."
+msgstr ""
+
+#: src/parleymainwindow.cpp:173
+#, fuzzy, kde-format
+#| msgid "&Second language:"
+msgid "Select languages"
+msgstr "第二言語(&S):"
+
+# ACCELERATOR added by translator
+#: src/parleymainwindow.cpp:211
+#, kde-format
+msgid "Download New Vocabularies..."
+msgstr "新しい語彙をダウンロード(&V)..."
+
+#: src/parleymainwindow.cpp:217
+#, kde-format
+msgid "Downloads new vocabulary collections"
+msgstr "新しい語彙コレクションをダウンロードします"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: src/parleyui.rc:21
+#, kde-format
+msgid "Main Toolbar"
+msgstr "メインツールバー"
+
+#. i18n: ectx: ToolBar (practiceToolBar)
+#: src/parleyui.rc:29 src/practice/practiceui.rc:18
+#, kde-format
+msgid "Practice Toolbar"
+msgstr "練習ツールバー"
+
+#. i18n: ectx: ToolBar (statisticsToolBar)
+#: src/parleyui.rc:33 src/statistics/statisticsui.rc:19
+#, kde-format
+msgid "Statistics Toolbar"
+msgstr "統計ツールバー"
+
+#. i18n: ectx: ToolBar (practiceSummaryToolBar)
+#: src/parleyui.rc:40 src/practice/practicesummaryui.rc:20
+#, kde-format
+msgid "Practice Summary Toolbar"
+msgstr "練習のまとめツールバー"
+
+#: src/practice/audiobutton.cpp:57 src/practice/audiobutton.cpp:58
+#, kde-format
+msgid "Stop"
+msgstr "停止"
+
+#: src/practice/comparisonbackendmode.cpp:59
+#, kde-format
+msgid "All comparison forms were right."
+msgstr "すべての比較形が正解でした。"
+
+#: src/practice/comparisonbackendmode.cpp:65
+#, kde-format
+msgctxt ""
+"the user entered the wrong absolute form when practicing comparison forms of "
+"adjectives (the base form of the adjective is wrong)"
+msgid "\"%1\" is the wrong word."
+msgstr ""
+
+#: src/practice/comparisonbackendmode.cpp:70
+#, kde-format
+msgctxt ""
+"the user entered the wrong comparison forms when practicing comparison forms "
+"of adjectives (good, better, best)"
+msgid "Both comparison forms (comparative and superlative) are wrong."
+msgstr ""
+
+#: src/practice/comparisonbackendmode.cpp:74
+#, kde-format
+msgctxt ""
+"the user entered the wrong comparison forms when practicing comparison forms "
+"of adjectives (second form wrong - better)"
+msgid "The comparative is wrong."
+msgstr "比較形が間違っています。"
+
+#: src/practice/comparisonbackendmode.cpp:78
+#, kde-format
+msgctxt ""
+"the user entered the wrong comparison forms when practicing comparison forms "
+"of adjectives (third form wrong - best)"
+msgid "The superlative is wrong."
+msgstr "最上形が間違っています。"
+
+#: src/practice/comparisonmodewidget.cpp:65
+#, kde-format
+msgid "Enter the comparison forms."
+msgstr "比較形を入力。"
+
+#: src/practice/configure/blockoptions.cpp:22
+msgid "Do not Care"
+msgstr "気にしない"
+
+#: src/practice/configure/blockoptions.cpp:24
+msgid "30 Min"
+msgstr "30 分"
+
+#: src/practice/configure/blockoptions.cpp:25
+msgid "1 Hour"
+msgstr "1 時間"
+
+#: src/practice/configure/blockoptions.cpp:26
+msgid "2 Hours"
+msgstr "2 時間"
+
+#: src/practice/configure/blockoptions.cpp:27
+msgid "4 Hours"
+msgstr "4 時間"
+
+#: src/practice/configure/blockoptions.cpp:28
+msgid "8 Hours"
+msgstr "8 時間"
+
+#: src/practice/configure/blockoptions.cpp:29
+msgid "12 Hours"
+msgstr "12 時間"
+
+#: src/practice/configure/blockoptions.cpp:30
+msgid "18 Hours"
+msgstr "18 時間"
+
+#: src/practice/configure/blockoptions.cpp:32
+msgid "1 Day"
+msgstr "1 日"
+
+#: src/practice/configure/blockoptions.cpp:33
+msgid "2 Days"
+msgstr "2 日"
+
+#: src/practice/configure/blockoptions.cpp:34
+msgid "3 Days"
+msgstr "3 日"
+
+#: src/practice/configure/blockoptions.cpp:35
+msgid "4 Days"
+msgstr "4 日"
+
+#: src/practice/configure/blockoptions.cpp:36
+msgid "5 Days"
+msgstr "5 日"
+
+#: src/practice/configure/blockoptions.cpp:37
+msgid "6 Days"
+msgstr "6 日"
+
+#: src/practice/configure/blockoptions.cpp:39
+msgid "1 Week"
+msgstr "1 週間"
+
+#: src/practice/configure/blockoptions.cpp:40
+msgid "2 Weeks"
+msgstr "2 週間"
+
+#: src/practice/configure/blockoptions.cpp:41
+msgid "3 Weeks"
+msgstr "3 週間"
+
+#: src/practice/configure/blockoptions.cpp:42
+msgid "4 Weeks"
+msgstr "4 週間"
+
+#: src/practice/configure/blockoptions.cpp:44
+msgid "1 Month"
+msgstr "1 カ月"
+
+#: src/practice/configure/blockoptions.cpp:45
+msgid "2 Months"
+msgstr "2 カ月"
+
+#: src/practice/configure/blockoptions.cpp:46
+msgid "3 Months"
+msgstr "3 カ月"
+
+#: src/practice/configure/blockoptions.cpp:47
+msgid "4 Months"
+msgstr "4 カ月"
+
+#: src/practice/configure/blockoptions.cpp:48
+msgid "5 Months"
+msgstr "5 カ月"
+
+#: src/practice/configure/blockoptions.cpp:49
+msgid "6 Months"
+msgstr "6 カ月"
+
+#: src/practice/configure/blockoptions.cpp:50
+msgid "10 Months"
+msgstr "10 カ月"
+
+#: src/practice/configure/blockoptions.cpp:51
+msgid "12 Months"
+msgstr "12 カ月"
+
+#: src/practice/configure/blockoptions.cpp:220
+#, kde-format
+msgid "Illogical blocking times.\n"
+msgstr "ブロッキングの期間が不合理です。\n"
+
+#: src/practice/configure/blockoptions.cpp:222
+#: src/practice/configure/blockoptions.cpp:235
+#, kde-format
+msgid "The time for level %1 should be lower than the time for level %2.\n"
+msgstr "レベル %1 の期間はレベル %2 の期間よりも短くなければなりません。\n"
+
+#: src/practice/configure/blockoptions.cpp:233
+#, kde-format
+msgid ""
+"\n"
+"Illogical expiration times.\n"
+msgstr ""
+"\n"
+"不合理な有効期限です。\n"
+
+#: src/practice/configure/blockoptions.cpp:247
+#, kde-format
+msgid ""
+"\n"
+"Illogical blocking vs. expiration times.\n"
+msgstr ""
+"\n"
+"ブロッキングの期間と有効期限の関係が不合理です。\n"
+
+#: src/practice/configure/blockoptions.cpp:249
+#, kde-format
+msgid ""
+"The blocking time at level %1 should be lower than the expiration time.\n"
+msgstr ""
+"レベル %1 ではブロッキングの期間は有効期限よりも短くなければなりません。\n"
+
+#: src/practice/configure/blockoptions.cpp:255
+#, kde-format
+msgid "Illogical Values"
+msgstr "不合理な値"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev2)
+#: src/practice/configure/blockoptions.ui:40
+#, kde-format
+msgid "Level &2:"
+msgstr "レベル &2:"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev5)
+#: src/practice/configure/blockoptions.ui:53
+#, kde-format
+msgid "Level &5:"
+msgstr "レベル &5:"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev6)
+#: src/practice/configure/blockoptions.ui:63
+#, kde-format
+msgid "Level &6:"
+msgstr "レベル &6:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_Expire)
+#: src/practice/configure/blockoptions.ui:79
+#, kde-format
+msgid "E&xpiring"
+msgstr "有効期限(&X)"
+
+# ACCELERATOR changed by translator
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_Block)
+#: src/practice/configure/blockoptions.ui:95
+#, kde-format
+msgid "Bl&ocking"
+msgstr "ブロッキング(&B)"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev4)
+#: src/practice/configure/blockoptions.ui:118
+#, kde-format
+msgid "Level &4:"
+msgstr "レベル &4:"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev7)
+#: src/practice/configure/blockoptions.ui:128
+#, kde-format
+msgid "Level &7:"
+msgstr "レベル &7:"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev1)
+#: src/practice/configure/blockoptions.ui:150
+#, kde-format
+msgid "Level &1:"
+msgstr "レベル &1:"
+
+#. i18n: ectx: property (text), widget (QLabel, l_lev3)
+#: src/practice/configure/blockoptions.ui:192
+#, kde-format
+msgid "Level &3:"
+msgstr "レベル &3:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/practice/configure/blockoptions.ui:218
+#, kde-format
+msgid "Do not practice vocabulary that has been asked within:"
+msgstr "この期間内に出題された語彙は練習しません:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: src/practice/configure/blockoptions.ui:228
+#, kde-format
+msgid "Vocabulary drops one grade after this much time:"
+msgstr "この期間が経過したら語彙の習得レベルを 1 段階下げます:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ComparisonIncludeAdjective)
+#: src/practice/configure/comparisonoptionswidget.ui:16
+#, kde-format
+msgid "Include Adjectives"
+msgstr "形容詞を含める"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ComparisonIncludeAdverb)
+#: src/practice/configure/comparisonoptionswidget.ui:23
+#, kde-format
+msgid "Include Adverbs"
+msgstr "副詞を含める"
+
+#: src/practice/configure/configurepracticedialog.cpp:23
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Practice"
+msgstr "練習の設定"
+
+#: src/practice/configure/configurepracticedialog.cpp:28
+#, fuzzy, kde-format
+#| msgid "General"
+msgctxt ""
+"@title:group Configure general settings for practicing vocabulary, short "
+"title in config dialog."
+msgid "General"
+msgstr "全般"
+
+#: src/practice/configure/configurepracticedialog.cpp:30
+#, fuzzy, kde-format
+#| msgctxt "Configure advanced settings for practicing vocabulary."
+#| msgid "Advanced Practice Settings"
+msgctxt "Configure general settings for practicing vocabulary."
+msgid "General Practice Settings"
+msgstr "練習の詳細設定"
+
+#: src/practice/configure/configurepracticedialog.cpp:35
+#, kde-format
+msgctxt ""
+"@title:group vocabulary can be set to be blocked for a certain amount of time"
+msgid "Blocking"
+msgstr "ブロッキング"
+
+#: src/practice/configure/configurepracticedialog.cpp:37
+#, kde-format
+msgid "Blocking Settings"
+msgstr "ブロッキングの設定"
+
+#: src/practice/configure/configurepracticedialog.cpp:42
+#, kde-format
+msgctxt ""
+"@title:group ignore vocabulary based on some properties like word type"
+msgid "Thresholds"
+msgstr "しきい値"
+
+#: src/practice/configure/configurepracticedialog.cpp:44
+#, kde-format
+msgid "Threshold Settings"
+msgstr "しきい値の設定"
+
+#: src/practice/configure/configurepracticedialog.cpp:49
+#, kde-format
+msgctxt ""
+"@title:group Configure specific settings for practicing vocabulary, short "
+"title in config dialog."
+msgid "Specific"
+msgstr ""
+
+#: src/practice/configure/configurepracticedialog.cpp:51
+#, fuzzy, kde-format
+#| msgctxt "Configure advanced settings for practicing vocabulary."
+#| msgid "Advanced Practice Settings"
+msgctxt "Configure specific settings for practicing vocabulary."
+msgid "Specific Practice Settings"
+msgstr "練習の詳細設定"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: src/practice/configure/generalpracticeoptions.ui:17
+#, kde-format
+msgid "Correction"
+msgstr "訂正"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
+#: src/practice/configure/generalpracticeoptions.ui:23
+#, kde-format
+msgid "Answers with wrong accents are still counted as correct."
+msgstr "アクセント記号の間違った回答を正解として数える。"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
+#: src/practice/configure/generalpracticeoptions.ui:26
+#, fuzzy, kde-format
+#| msgid "Ignore Accents"
+msgid "Ignore accents"
+msgstr "アクセントを無視"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
+#: src/practice/configure/generalpracticeoptions.ui:36
+#, fuzzy, kde-format
+#| msgid "Answers with wrong accents are still counted as correct."
+msgid "Any captitalization in the answer is counted as correct."
+msgstr "アクセント記号の間違った回答を正解として数える。"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
+#: src/practice/configure/generalpracticeoptions.ui:39
+#, fuzzy, kde-format
+#| msgid "Ignore Capitalization"
+msgid "Ignore capitalization"
+msgstr "大小文字の使い分けを無視する"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
+#: src/practice/configure/generalpracticeoptions.ui:49
+#, fuzzy, kde-format
+#| msgid "Answers with wrong accents are still counted as correct."
+msgid "Any punctuation mistake in the answer is counted as correct."
+msgstr "アクセント記号の間違った回答を正解として数える。"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
+#: src/practice/configure/generalpracticeoptions.ui:52
+#, fuzzy, kde-format
+#| msgid "Ignore Capitalization"
+msgid "Ignore punctuation"
+msgstr "大小文字の使い分けを無視する"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ShowHints)
+#: src/practice/configure/generalpracticeoptions.ui:62
+#, kde-format
+msgid ""
+"During the practice you can use the hint button to see parts of the solution."
+msgstr ""
+
+# ACCELERATOR added by translator
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowHints)
+#: src/practice/configure/generalpracticeoptions.ui:65
+#, fuzzy, kde-format
+#| msgid "Enable Hints"
+msgid "Enable hints"
+msgstr "ヒントを有効にする(&T)"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_4)
+#: src/practice/configure/generalpracticeoptions.ui:91
+#, fuzzy, kde-format
+#| msgid "Image for Solution"
+msgid "Images and Sound"
+msgstr "正解のための画像"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_FlashcardsFrontImage)
+#: src/practice/configure/generalpracticeoptions.ui:97
+#, kde-format
+msgid "During the practice, images are shown for the question."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsFrontImage)
+#: src/practice/configure/generalpracticeoptions.ui:100
+#, fuzzy, kde-format
+#| msgid "Image for Question"
+msgid "Image for question"
+msgstr "問題のための画像"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_FlashcardsBackImage)
+#: src/practice/configure/generalpracticeoptions.ui:110
+#, kde-format
+msgid "During the practice, images are shown for the solution."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsBackImage)
+#: src/practice/configure/generalpracticeoptions.ui:113
+#, fuzzy, kde-format
+#| msgid "Image for Solution"
+msgid "Image for solution"
+msgstr "正解のための画像"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AllowImageInsteadOfWord)
+#: src/practice/configure/generalpracticeoptions.ui:123
+#, fuzzy, kde-format
+#| msgid "Show images on the back of the flashcard."
+msgid "Allow using images instead of words in flashcards."
+msgstr "フラッシュカードの裏に画像を表示します。"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AllowImageInsteadOfWord)
+#: src/practice/configure/generalpracticeoptions.ui:126
+#, kde-format
+msgid "Allow images instead of words"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_PracticeSoundEnabled)
+#: src/practice/configure/generalpracticeoptions.ui:136
+#, kde-format
+msgid "Enable playing of pronunciation sound files during the practice."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/practice/configure/generalpracticeoptions.ui:158
+#, kde-format
+msgid ""
+"By default you are asked to enter synonyms until you enter the one that is "
+"associated directly with the current word. With this option enabled any "
+"synonym is accepted."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CountSynonymsAsCorrect)
+#: src/practice/configure/generalpracticeoptions.ui:168
+#, fuzzy, kde-format
+#| msgid "Accept any Synonym"
+msgid "Accept any synonym"
+msgstr "同義語を容認する"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: src/practice/configure/generalpracticeoptions.ui:191
+#, kde-format
+msgid "Sessions"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: src/practice/configure/generalpracticeoptions.ui:202
+#, kde-format
+msgid "Max session size:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: src/practice/configure/generalpracticeoptions.ui:251
+#, fuzzy, kde-format
+#| msgid "Total number of entries:"
+msgid "Max number of new words:"
+msgstr "エントリの合計数:"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
+#: src/practice/configure/specificpracticeoptions.ui:23
+#, kde-format
+msgid ""
+"When creating multiple choice practices, try to show answers of the same "
+"word type."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
+#: src/practice/configure/specificpracticeoptions.ui:26
+#, kde-format
+msgid "Use choices of the same word type"
+msgstr "選択肢に同じ品詞の単語を使う"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: src/practice/configure/specificpracticeoptions.ui:41
+#, kde-format
+msgid "Number of choices:"
+msgstr "選択肢の数:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_8)
+#: src/practice/configure/thresholdoptions.ui:17
+#, kde-format
+msgid "Only practice vocabulary that fulfills the following conditions:"
+msgstr "練習する語彙の条件:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: src/practice/configure/thresholdoptions.ui:26
+#, kde-format
+msgid "At least"
+msgstr "最低"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: src/practice/configure/thresholdoptions.ui:33
+#, kde-format
+msgid "At most"
+msgstr "最高"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/practice/configure/thresholdoptions.ui:43
+#, fuzzy, kde-format
+#| msgid "Grade"
+msgid "Grade:"
+msgstr "習得レベル"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: src/practice/configure/thresholdoptions.ui:53
+#, fuzzy, kde-format
+#| msgid "Times practiced"
+msgid "Times practiced:"
+msgstr "練習回数"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: src/practice/configure/thresholdoptions.ui:80
+#, fuzzy, kde-format
+#| msgid "Answered incorrectly"
+msgid "Answered incorrectly:"
+msgstr "不正解"
+
+#: src/practice/conjugationbackendmode.cpp:93
+#, kde-format
+msgid "All conjugation forms were right."
+msgstr "すべての活用形が正解でした。"
+
+#: src/practice/conjugationbackendmode.cpp:97
+#, kde-format
+msgctxt "You did not get the conjugation forms right."
+msgid "You answered %1 conjugation form correctly."
+msgid_plural "You answered %1 conjugation forms correctly."
+msgstr[0] "%1 つの活用形が正解でした。"
+msgstr[1] "%1 つの活用形が正解でした。"
+
+#: src/practice/conjugationmodewidget.cpp:111
+#, kde-format
+msgid "Enter all conjugation forms."
+msgstr "すべての活用形を入力してください。"
+
+#: src/practice/genderbackendmode.cpp:61
+#, kde-format
+msgid "Choose the right article for \"%1\""
+msgstr "「%1」の正しい冠詞を選択"
+
+#: src/practice/genderbackendmode.cpp:85
+#, kde-format
+msgctxt "@label the gender of the word: masculine"
+msgid "%1 is masculine"
+msgstr "%1 は男性"
+
+#: src/practice/genderbackendmode.cpp:90
+#, kde-format
+msgctxt "@label the gender of the word: feminine"
+msgid "%1 is feminine"
+msgstr "%1 は女性"
+
+#: src/practice/genderbackendmode.cpp:95
+#, kde-format
+msgctxt "@label the gender of the word: neuter"
+msgid "%1 is neuter"
+msgstr "%1 は中性"
+
+#: src/practice/guifrontend.cpp:123
+#, kde-format
+msgctxt "Display of the current unit during practice"
+msgid "Unit: %1"
+msgstr ""
+
+#: src/practice/guifrontend.cpp:129
+#, fuzzy, kde-format
+#| msgid "one word"
+#| msgid_plural "%1 words"
+msgid "New word"
+msgstr "単語 %1 つ"
+
+#: src/practice/guifrontend.cpp:132
+#, kde-format
+msgctxt ""
+"Display of the current confidence level during practice, 1st param is either "
+"initial or long term"
+msgid "%1, confidence %2"
+msgstr ""
+
+#: src/practice/guifrontend.cpp:133
+#, kde-format
+msgid "initial"
+msgstr ""
+
+#: src/practice/guifrontend.cpp:133
+#, kde-format
+msgid "long term"
+msgstr ""
+
+#: src/practice/guifrontend.cpp:199
+#, kde-format
+msgid ""
+"You answered correctly %2 of a total of %1 word.\n"
+"You are %3% done."
+msgid_plural ""
+"You answered correctly %2 of a total of %1 words.\n"
+"You are %3% done."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/practice/latexrenderer.cpp:46
+#, kde-format
+msgid "Rendering..."
+msgstr ""
+
+#: src/practice/latexrenderer.cpp:135
+#, kde-format
+msgid "LaTeX error."
+msgstr "LaTeX エラー。"
+
+#: src/practice/multiplechoicebackendmode.cpp:103
+#: src/practice/writtenbackendmode.cpp:145
+#, kde-format
+msgid "You revealed the answer by using too many hints."
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, answerLaterButton)
+#: src/practice/practice_mainwindow.ui:128
+#, kde-format
+msgid "Skip this word for now and ask again later"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, answerLaterButton)
+#: src/practice/practice_mainwindow.ui:131
+#, kde-format
+msgid "Answer Later"
+msgstr "後で回答"
+
+#. i18n: ectx: property (text), widget (QPushButton, hintButton)
+#: src/practice/practice_mainwindow.ui:141
+#, kde-format
+msgid "Hint"
+msgstr "ヒント"
+
+#. i18n: ectx: property (text), widget (QPushButton, continueButton)
+#: src/practice/practice_mainwindow.ui:202
+#, kde-format
+msgid "Continue"
+msgstr "次へ進む"
+
+#. i18n: ectx: property (text), widget (QPushButton, countAsWrongButton)
+#: src/practice/practice_mainwindow.ui:219
+#, fuzzy, kde-format
+#| msgid "I did not know it"
+msgid "I Did not Know it"
+msgstr "知りませんでした"
+
+#. i18n: ectx: property (text), widget (QPushButton, countAsCorrectButton)
+#: src/practice/practice_mainwindow.ui:226
+#, fuzzy, kde-format
+#| msgid "I knew it"
+msgid "I Knew it"
+msgstr "知っていました"
+
+#. i18n: ectx: property (format), widget (QProgressBar, totalProgress)
+#: src/practice/practice_mainwindow.ui:300
+#, no-c-format, kde-format
+msgid "%v/%m"
+msgstr "%v/%m"
+
+#. i18n: ectx: property (text), widget (QLabel, absoluteLabel)
+#: src/practice/practice_widget_comparison.ui:35
+#, kde-format
+msgid "absolute"
+msgstr "原級"
+
+#. i18n: ectx: property (text), widget (QLabel, comparativeLabel)
+#: src/practice/practice_widget_comparison.ui:80
+#, kde-format
+msgid "comparative"
+msgstr "比較級"
+
+#. i18n: ectx: property (text), widget (QLabel, superlativeLabel)
+#: src/practice/practice_widget_comparison.ui:125
+#, kde-format
+msgid "superlative"
+msgstr "最上級"
+
+#: src/practice/practicemainwindow.cpp:68
+#, kde-format
+msgid "Stop Practice"
+msgstr "練習を停止"
+
+#: src/practice/practicemainwindow.cpp:70
+#, kde-format
+msgid "Stop practicing"
+msgstr "練習を停止"
+
+#: src/practice/practicemainwindow.cpp:77
+#, kde-format
+msgid "Change answer to right/wrong"
+msgstr "回答の正誤を変える"
+
+#: src/practice/practicemainwindow.cpp:79
+#, kde-format
+msgid ""
+"When you answered, Parley will display that the answer was right or wrong.\n"
+"This shortcut changes how the answer is counted."
+msgstr ""
+"回答を入力すると、Parley は正誤を判定して表示します。\n"
+"このショートカットで、正解の数え方を設定します。"
+
+#: src/practice/practicesummarycomponent.cpp:62
+#, kde-format
+msgctxt "number of words, minutes, seconds"
+msgid "You practiced %1 in %2 and %3."
+msgstr ""
+
+#: src/practice/practicesummarycomponent.cpp:63
+#, kde-format
+msgid "one word"
+msgid_plural "%1 words"
+msgstr[0] "単語 %1 つ"
+msgstr[1] "単語 %1 つ"
+
+#: src/practice/practicesummarycomponent.cpp:64
+#, kde-format
+msgid "one minute"
+msgid_plural "%1 minutes"
+msgstr[0] "1 分"
+msgstr[1] "%1 分"
+
+#: src/practice/practicesummarycomponent.cpp:65
+#, kde-format
+msgid "one second"
+msgid_plural "%1 seconds"
+msgstr[0] "1 秒"
+msgstr[1] "%1 秒"
+
+# ACCELERATOR changed by translator
+#: src/practice/practicesummarycomponent.cpp:82
+#, fuzzy, kde-format
+#| msgid "Practice &Counts"
+msgid "Practice Overview"
+msgstr "練習回数(&K)"
+
+#: src/practice/practicesummarycomponent.cpp:83
+#, kde-format
+msgid "Switch to the Practice Overview page"
+msgstr ""
+
+#: src/practice/practicesummarycomponent.cpp:150
+#, kde-format
+msgid "HTML Files"
+msgstr ""
+
+#: src/practice/practicesummarycomponent.cpp:150
+#, fuzzy, kde-format
+#| msgid "General Document Properties"
+msgid "OpenDocument text files"
+msgstr "文書の全般プロパティ"
+
+# ACCELERATOR changed by translator
+#: src/practice/practicesummarycomponent.cpp:160
+#, fuzzy, kde-format
+#| msgid "Practice &Counts"
+msgid "Practice results"
+msgstr "練習回数(&K)"
+
+#: src/practice/practicesummarycomponent.cpp:165
+#, kde-format
+msgid "Answered questions: %1\n"
+msgstr ""
+
+#: src/practice/practicesummarycomponent.cpp:166
+#, kde-format
+msgid "Correct answers: %1\n"
+msgstr ""
+
+#: src/practice/practicesummarycomponent.cpp:167
+#, kde-format
+msgid "Wrong answers: %1\n"
+msgstr ""
+
+#: src/practice/practicesummarycomponent.cpp:174
+#, fuzzy, kde-format
+#| msgid "Attempts"
+msgid "<b>Attempts</b>"
+msgstr "試行回数"
+
+#: src/practice/practicesummarycomponent.cpp:175
+#, fuzzy, kde-format
+#| msgid "Question"
+msgid "<b>Question</b>"
+msgstr "質問"
+
+#: src/practice/practicesummarycomponent.cpp:176
+#, kde-format
+msgid "<b>Correct answer</b>"
+msgstr ""
+
+#: src/practice/practicesummarycomponent.cpp:177
+#, kde-format
+msgid "<b>Your errors</b>"
+msgstr ""
+
+#: src/practice/practicesummarycomponent.cpp:192
+#, fuzzy, kde-format
+#| msgid "Could not start practice"
+msgid "Could not write to %1"
+msgstr "練習を開始することができませんでした"
+
+#: src/practice/practicesummarycomponent.cpp:192
+#, fuzzy, kde-format
+#| msgid "Could not start practice"
+msgid "Could not write file"
+msgstr "練習を開始することができませんでした"
+
+#. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
+#: src/practice/practicesummarywidget.ui:28
+#, kde-format
+msgid "Attempts"
+msgstr "試行回数"
+
+#. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
+#: src/practice/practicesummarywidget.ui:33
+#, kde-format
+msgid "Question"
+msgstr "質問"
+
+#. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
+#: src/practice/practicesummarywidget.ui:38
+#, kde-format
+msgid "Solution"
+msgstr "正解"
+
+#. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
+#: src/practice/practicesummarywidget.ui:43
+#, kde-format
+msgid "Your Answer"
+msgstr "回答"
+
+#: src/practice/sessionmanagerbase.cpp:53
+#, kde-format
+msgid "The vocabulary collection contains fewer than two languages."
+msgstr "語彙コレクションには一言語しかありません。"
+
+#: src/practice/sessionmanagerbase.cpp:53
+#, kde-format
+msgid "Could not start practice"
+msgstr "練習を開始することができませんでした"
+
+#: src/practice/statustoggle.cpp:77
+#, kde-format
+msgid ""
+"This answer will be counted as correct.\n"
+"Words will only be counted as correct if they are answered correctly on the "
+"first attempt."
+msgstr ""
+"この回答を正解として数えます。\n"
+"単語は、最初の回答で正解した場合にだけ正解として数えます。"
+
+#: src/practice/statustoggle.cpp:78
+#, kde-format
+msgid "Count this answer as wrong"
+msgstr "この回答を誤答して数える"
+
+#: src/practice/statustoggle.cpp:81
+#, kde-format
+msgid ""
+"This answer will be counted as wrong.\n"
+"Words will only be counted as correct if they are answered correctly on the "
+"first attempt."
+msgstr ""
+"この回答を誤答として数えます。\n"
+"単語は、最初の回答で正解した場合にだけ正解として数えます。"
+
+#: src/practice/statustoggle.cpp:82
+#, kde-format
+msgid "Count this answer as correct"
+msgstr "この回答を正解として数える"
+
+#: src/practice/summarybarwidget.cpp:78
+#, kde-format
+msgctxt "test results"
+msgid "%1 % correct"
+msgstr "正解率 %1%"
+
+#: src/practice/summarybarwidget.cpp:80
+#, kde-format
+msgctxt "test results"
+msgid "%1 % wrong"
+msgstr "誤答率 %1%"
+
+#: src/practice/summarybarwidget.cpp:82
+#, kde-format
+msgctxt "test results"
+msgid "%1 % not answered"
+msgstr "無回答率 %1%"
+
+#: src/practice/summarybarwidget.cpp:140
+#, kde-format
+msgid "Answered correctly on the first attempt: %1 of %2 (%3 %)"
+msgstr "最初の回答で正解: %1/%2 (%3%)"
+
+#: src/practice/summarybarwidget.cpp:147
+#, kde-format
+msgid "Answered wrong on the first attempt: %1 of %2 (%3 %)"
+msgstr "最初の回答で誤答: %1/%2 (%3%)"
+
+#: src/practice/summarybarwidget.cpp:154
+#, kde-format
+msgid "Not answered during this practice: %1 of %2 (%3 %)"
+msgstr "この練習で無回答: %1/%2 (%3%)"
+
+#: src/practice/writtenbackendmode.cpp:70
+#, kde-format
+msgid "Your answer was wrong."
+msgstr "誤答です。"
+
+#: src/practice/writtenbackendmode.cpp:84
+#, kde-format
+msgid ""
+"Your answer was a synonym. Please enter another word with the same "
+"translation."
+msgstr "回答は同義語です。同じ訳を持つ別の単語を入力してください。"
+
+#: src/practice/writtenbackendmode.cpp:88
+#, kde-format
+msgid "Your answer was an already entered synonym."
+msgstr "回答は、既知の同義語です。"
+
+#: src/practice/writtenbackendmode.cpp:91
+#, fuzzy, kde-format
+#| msgid "Your answer was a synonym and your capitalization was wrong."
+msgid "Your answer was a synonym and your punctuation was wrong."
+msgstr "回答は同義語で、大小文字の使い分けが間違っています。"
+
+#: src/practice/writtenbackendmode.cpp:93
+#, kde-format
+msgid "Your answer was a synonym and your capitalization was wrong."
+msgstr "回答は同義語で、大小文字の使い分けが間違っています。"
+
+#: src/practice/writtenbackendmode.cpp:95
+#, kde-format
+msgid "Your answer was a synonym and accents were wrong."
+msgstr "回答は同義語で、アクセント記号が間違っています。"
+
+#: src/practice/writtenbackendmode.cpp:97
+#, kde-format
+msgid "Your answer was a synonym."
+msgstr "回答は同義語です。"
+
+#: src/practice/writtenbackendmode.cpp:105
+#, fuzzy, kde-format
+#| msgid ""
+#| "Your answer was wrong as capitalization mistakes are not accepted. Please "
+#| "try again."
+msgid ""
+"Your answer was wrong as punctuation mistakes are not accepted. Please try "
+"again."
+msgstr ""
+"誤答です。(大小文字の使い分けに間違いがあります。) もう一度回答してください。"
+
+#: src/practice/writtenbackendmode.cpp:107
+#, kde-format
+msgid ""
+"Your answer was wrong as capitalization mistakes are not accepted. Please "
+"try again."
+msgstr ""
+"誤答です。(大小文字の使い分けに間違いがあります。) もう一度回答してください。"
+
+#: src/practice/writtenbackendmode.cpp:109
+#, kde-format
+msgid ""
+"Your answer was wrong as accent mistakes are not accepted. Please try again."
+msgstr ""
+"誤答です。(アクセント記号に間違いがあります。) もう一度回答してください。"
+
+#: src/practice/writtenbackendmode.cpp:111
+#, kde-format
+msgid "Your answer was wrong. Please try again."
+msgstr "誤答です。もう一度回答してください。"
+
+#: src/practice/writtenbackendmode.cpp:118
+#, fuzzy, kde-format
+#| msgid "Your answer was right, but your capitalization was wrong."
+msgid "Your answer was right, but your punctuation was wrong."
+msgstr "正解ですが、大小文字の使い分けが間違っています。"
+
+#: src/practice/writtenbackendmode.cpp:120
+#, kde-format
+msgid "Your answer was right, but your capitalization was wrong."
+msgstr "正解ですが、大小文字の使い分けが間違っています。"
+
+#: src/practice/writtenbackendmode.cpp:122
+#, kde-format
+msgid "Your answer was right, but accents were wrong."
+msgstr "正解ですが、アクセント記号が間違っています。"
+
+#: src/practice/writtenbackendmode.cpp:124
+#, kde-format
+msgid "Your answer was right."
+msgstr "正解です。"
+
+#: src/practice/writtenbackendmode.cpp:128
+#, fuzzy, kde-format
+#| msgid ""
+#| "Your answer was right... but not on the first try and your capitalization "
+#| "was wrong."
+msgid ""
+"Your answer was right... but not on the first try and your punctuation was "
+"wrong."
+msgstr "正解ですが、最初の回答でではなく、大小文字の使い分けも間違っています。"
+
+#: src/practice/writtenbackendmode.cpp:130
+#, kde-format
+msgid ""
+"Your answer was right... but not on the first try and your capitalization "
+"was wrong."
+msgstr "正解ですが、最初の回答でではなく、大小文字の使い分けも間違っています。"
+
+#: src/practice/writtenbackendmode.cpp:132
+#, kde-format
+msgid ""
+"Your answer was right... but not on the first try and accents were wrong."
+msgstr "正解ですが、最初の回答でではなく、アクセント記号も間違っています。"
+
+#: src/practice/writtenbackendmode.cpp:134
+#, kde-format
+msgid "Your answer was right... but not on the first try."
+msgstr "正解ですが、最初の回答は間違っていました。"
+
+#: src/practice/writtenbackendmode.cpp:154
+#, kde-format
+msgid "The solution starts with: %1"
+msgstr "正解の先頭は %1 です。"
+
+#: src/practice/writtenpracticewidget.cpp:130
+#, kde-format
+msgid "Synonym: "
+msgstr "同義語:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, tiltle_group)
+#: src/settings/documentproperties.ui:38
+#, kde-format
+msgid "General Document Properties"
+msgstr "文書の全般プロパティ"
+
+#. i18n: ectx: property (text), widget (QLabel, label_title)
+#: src/settings/documentproperties.ui:50
+#, kde-format
+msgid "&Title:"
+msgstr "タイトル(&T):"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, titleLineEdit)
+#. i18n: ectx: property (toolTip), widget (QLineEdit, authorLineEdit)
+#: src/settings/documentproperties.ui:69 src/settings/documentproperties.ui:95
+#, kde-format
+msgid "A title for your document."
+msgstr "文書のタイトル"
+
+#. i18n: ectx: property (text), widget (QLabel, label_author)
+#: src/settings/documentproperties.ui:76
+#, kde-format
+msgid "&Author:"
+msgstr "作者(&A):"
+
+#. i18n: ectx: property (text), widget (QLabel, label_author_2)
+#: src/settings/documentproperties.ui:102
+#, fuzzy, kde-format
+#| msgid "&Email:"
+msgid "E&mail:"
+msgstr "メールアドレス(&E):"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, contactLineEdit)
+#: src/settings/documentproperties.ui:121
+#, kde-format
+msgid "A way to contact you (email or a webpage)."
+msgstr "あなたの連絡先 (メールアドレスかウェブページ)"
+
+# ACCELERATOR changed by translator
+#. i18n: ectx: property (text), widget (QLabel, label_remark)
+#: src/settings/documentproperties.ui:128
+#, kde-format
+msgid "&Comment:"
+msgstr "コメント(&M):"
+
+#. i18n: ectx: property (toolTip), widget (KTextEdit, commentTextEdit)
+#: src/settings/documentproperties.ui:147
+#, kde-format
+msgid "Any additional information."
+msgstr "補足的な情報"
+
+# ACCELERATOR changed by translator
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/settings/documentproperties.ui:160
+#, fuzzy, kde-format
+#| msgid "Cat&egory"
+msgid "Cate&gory:"
+msgstr "カテゴリ(&G)"
+
+#. i18n: ectx: property (toolTip), widget (KComboBox, categoryComboBox)
+#: src/settings/documentproperties.ui:173
+#, kde-format
+msgid "A general category into which your document belongs."
+msgstr "この文書の一般的なカテゴリ"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
+#: src/settings/documentproperties.ui:185
+#, kde-format
+msgid "Music"
+msgstr "音楽"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
+#: src/settings/documentproperties.ui:190
+#, kde-format
+msgid "Geography"
+msgstr "地理"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
+#: src/settings/documentproperties.ui:195
+#, kde-format
+msgid "Anatomy"
+msgstr "解剖学"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
+#: src/settings/documentproperties.ui:200
+#, kde-format
+msgid "History"
+msgstr "歴史"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
+#: src/settings/documentproperties.ui:205
+#, kde-format
+msgid "Test Preparation"
+msgstr "テストの準備"
+
+#. i18n: ectx: property (text), widget (QLabel, label_license)
+#: src/settings/documentproperties.ui:213
+#, kde-format
+msgid "&License:"
+msgstr "ライセンス(&L):"
+
+#. i18n: ectx: property (toolTip), widget (KComboBox, licenseComboBox)
+#: src/settings/documentproperties.ui:227
+#, kde-format
+msgid ""
+"The license under which your document will be.\n"
+"If you consider contributing your file to KDE in the future, an appropriate "
+"license is required."
+msgstr ""
+"あなたが作成した文書のライセンスを指定します。\n"
+"文書を将来 KDE に提供するつもりであれば、適切なライセンスが必要になります。"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
+#: src/settings/documentproperties.ui:239
+#, kde-format
+msgid "GPLv2+ (GNU General Public License version 2 or later)"
+msgstr "GPLv2+ (GNU General Public License version 2 or later)"
+
+#. i18n: ectx: property (text), widget (QLabel, label_language_1)
+#: src/settings/documentproperties.ui:256
+#, kde-format
+msgid "&First language:"
+msgstr "第一言語(&F):"
+
+#. i18n: ectx: property (text), widget (QLabel, label_language_2)
+#: src/settings/documentproperties.ui:282
+#, kde-format
+msgid "&Second language:"
+msgstr "第二言語(&S):"
+
+# ACCELERATOR changed by translator
+#. i18n: ectx: property (text), widget (QCheckBox, grammarCheckBox)
+#: src/settings/documentproperties.ui:311
+#, fuzzy, kde-format
+#| msgid "&Setup Grammar Details"
+msgid "&Setup grammar details"
+msgstr "文法の詳細を設定する(&D)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, downloadGrammarCheckBox)
+#: src/settings/documentproperties.ui:321
+#, fuzzy, kde-format
+#| msgctxt "Attept to download grammar properties for the selected languages"
+#| msgid "Download Grammar"
+msgctxt "Attept to download grammar properties for the selected languages"
+msgid "Download grammar"
+msgstr "文法をダウンロード"
+
+#. i18n: ectx: label, entry (ConjugationTenses), group (Document $(fileurl))
+#. i18n: ectx: whatsthis, entry (ConjugationTenses), group (Document $(fileurl))
+#. i18n: ectx: label, entry (ConjugationTenses), group (Locale $(locale))
+#. i18n: ectx: whatsthis, entry (ConjugationTenses), group (Locale $(locale))
+#: src/settings/documentsettings.kcfg:11 src/settings/documentsettings.kcfg:12
+#: src/settings/languagesettings.kcfg:23 src/settings/languagesettings.kcfg:24
+#, kde-format
+msgid "Selected tenses for conjugation practice."
+msgstr ""
+
+#. i18n: ectx: label, entry (VisibleColumns), group (Document $(fileurl))
+#. i18n: ectx: whatsthis, entry (VisibleColumns), group (Document $(fileurl))
+#. i18n: ectx: label, entry (VisibleColumns), group (Locale $(locale))
+#. i18n: ectx: whatsthis, entry (VisibleColumns), group (Locale $(locale))
+#: src/settings/documentsettings.kcfg:16 src/settings/documentsettings.kcfg:17
+#: src/settings/languagesettings.kcfg:28 src/settings/languagesettings.kcfg:29
+#, kde-format
+msgid "Visible columns in the main editor window."
+msgstr ""
+
+#. i18n: ectx: label, entry (CollapsedStatisticsViewItems), group (Document $(fileurl))
+#. i18n: ectx: whatsthis, entry (CollapsedStatisticsViewItems), group (Document $(fileurl))
+#: src/settings/documentsettings.kcfg:20 src/settings/documentsettings.kcfg:21
+#, kde-format
+msgid "Collapsed tree view items of statistics view window."
+msgstr ""
+
+#: src/settings/generaloptions.cpp:41
+#, kde-format
+msgctxt "CSV separator"
+msgid ";"
+msgstr ";"
+
+#: src/settings/generaloptions.cpp:42
+#, kde-format
+msgctxt "CSV separator"
+msgid "#"
+msgstr "#"
+
+#: src/settings/generaloptions.cpp:43
+#, kde-format
+msgctxt "CSV separator"
+msgid "!"
+msgstr "!"
+
+#: src/settings/generaloptions.cpp:44
+#, kde-format
+msgctxt "CSV separator"
+msgid "|"
+msgstr "|"
+
+#: src/settings/generaloptions.cpp:45
+#, kde-format
+msgctxt "CSV separator"
+msgid ","
+msgstr ","
+
+#: src/settings/generaloptions.cpp:46
+#, kde-format
+msgctxt "CSV separator: tabulator"
+msgid "TAB"
+msgstr "タブ"
+
+#: src/settings/generaloptions.cpp:47
+#, kde-format
+msgctxt "CSV separator"
+msgid ">= 2 SPACES"
+msgstr "2 つ以上のスペース"
+
+#: src/settings/generaloptions.cpp:48
+#, kde-format
+msgctxt "CSV separator"
+msgid " : "
+msgstr " : "
+
+#: src/settings/generaloptions.cpp:49
+#, kde-format
+msgctxt "CSV separator"
+msgid " :: "
+msgstr " :: "
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/settings/generaloptionsbase.ui:17
+#, kde-format
+msgid "Open/Save"
+msgstr "開く/保存"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AutoOpenLast)
+#: src/settings/generaloptionsbase.ui:23
+#, kde-format
+msgid "Always open the collection that was active when quitting Parley"
+msgstr "前回 Parley を終了したときに開いていたコレクションを開きます"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoOpenLast)
+#: src/settings/generaloptionsbase.ui:26
+#, kde-format
+msgid ""
+"When this option is checked, the last active collection will be loaded "
+"automatically when starting Parley instead of showing the welcome screen."
+msgstr ""
+"このオプションをチェックすると、開始ページを表示せずに、自動的に最後に開かれ"
+"ていたコレクションを読み込みます。"
+
+# ACCELERATOR added by translator
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoOpenLast)
+#: src/settings/generaloptionsbase.ui:29
+#, kde-format
+msgid "Always load the last opened collection on start"
+msgstr "起動時に前回開いていたコレクションを読み込む(&L)"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AutoSave)
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AutoBackup)
+#: src/settings/generaloptionsbase.ui:39 src/settings/generaloptionsbase.ui:60
+#, kde-format
+msgid "Allow automatic saving of your work"
+msgstr "作業を自動的に保存します"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoSave)
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoBackup)
+#: src/settings/generaloptionsbase.ui:42 src/settings/generaloptionsbase.ui:63
+#, kde-format
+msgid "Your work will be automatically saved if you check this option"
+msgstr "このオプションをチェックすると、作業が自動的に保存されます。"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoSave)
+#: src/settings/generaloptionsbase.ui:45
+#, kde-format
+msgid "&Save vocabularies automatically on close and quit"
+msgstr "終了時に語彙を自動的に保存する(&S)"
+
+# ACCELERATOR changed by translator
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoBackup)
+#: src/settings/generaloptionsbase.ui:66
+#, kde-format
+msgid "&Create a backup every"
+msgstr "バックアップを作成する間隔(&B)"
+
+#. i18n: ectx: property (text), widget (QLabel, lblBackupInterva)
+#: src/settings/generaloptionsbase.ui:89
+#, kde-format
+msgid "minutes"
+msgstr "分"
+
+# ACCELERATOR removed by translator (not working)
+#. i18n: ectx: property (text), widget (QLabel, label_sep)
+#: src/settings/generaloptionsbase.ui:100
+#, kde-format
+msgid "Sep&arator for text file import/export (CSV):"
+msgstr "テキストファイル (CSV) のインポート/エクスポート時の区切り文字:"
+
+#. i18n: ectx: property (toolTip), widget (KComboBox, kcfg_SeparatorCombo)
+#: src/settings/generaloptionsbase.ui:116
+#, kde-format
+msgid ""
+"Choose which separator you want to use to separate your data when importing "
+"and exporting text."
+msgstr ""
+"テキストをインポート/エクスポートするときにデータを区切るために使用する区切り"
+"文字を選択します。"
+
+#. i18n: ectx: property (whatsThis), widget (KComboBox, kcfg_SeparatorCombo)
+#: src/settings/generaloptionsbase.ui:119
+#, kde-format
+msgid ""
+"Choose the separator to use to divide the parts of an expression when "
+"importing or exporting data as text."
+msgstr ""
+"テキストのデータをインポートまたはエクスポートするときに語句を複数の部分に分"
+"割するために使用する区切り文字を選択します。"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: src/settings/generaloptionsbase.ui:144
+#, kde-format
+msgid "Editing"
+msgstr "編集"
+
+# ACCELERATOR changed by translator
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_SmartAppend)
+#: src/settings/generaloptionsbase.ui:162
+#, kde-format
+msgid "&Append new rows automatically when editing"
+msgstr "編集時に自動的に新しい行を追加する(&P)"
+
+#. i18n: ectx: property (text), widget (KNSWidgets::Button, getNewButton)
+#: src/settings/kgametheme/kgamethemeselector.ui:40
+#, kde-format
+msgid "&Get New Themes..."
+msgstr "新しいテーマを取得(&G)..."
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/settings/kgametheme/kgamethemeselector.ui:97
+#, kde-format
+msgid "Theme Details"
+msgstr "テーマの詳細"
+
+#. i18n: ectx: property (text), widget (QLabel, labelContact)
+#: src/settings/kgametheme/kgamethemeselector.ui:131
+#, kde-format
+msgid "Contact:"
+msgstr "連絡先:"
+
+#. i18n: ectx: property (text), widget (QLabel, labelDescription)
+#: src/settings/kgametheme/kgamethemeselector.ui:166
+#, kde-format
+msgid "Description:"
+msgstr "説明:"
+
+#. i18n: ectx: property (text), widget (QLabel, labelAuthor)
+#: src/settings/kgametheme/kgamethemeselector.ui:201
+#, kde-format
+msgid "Author:"
+msgstr "作者:"
+
+#: src/settings/languageproperties.cpp:23
+#, fuzzy, kde-format
+#| msgid "Edit Languages"
+msgctxt "@title:window"
+msgid "Edit Languages"
+msgstr "言語の編集"
+
+#: src/settings/languageproperties.cpp:27
+#, kde-format
+msgid "Add language"
+msgstr "言語を追加"
+
+#: src/settings/languageproperties.cpp:30
+#, kde-format
+msgid "Remove language"
+msgstr "言語を削除"
+
+#: src/settings/languageproperties.cpp:45
+#, kde-format
+msgid "New Language"
+msgstr "新しい言語"
+
+#: src/settings/languageproperties.cpp:58
+#, kde-format
+msgctxt "Edit language properties"
+msgid "Properties for %1"
+msgstr "%1 のプロパティ"
+
+#: src/settings/languageproperties.cpp:87
+#, kde-format
+msgid "Really delete language: %1?"
+msgstr "本当に言語 %1 を削除しますか？"
+
+#: src/settings/languageproperties.cpp:87
+#, kde-format
+msgid "Remove Language"
+msgstr "言語を削除"
+
+#: src/settings/languagepropertiespage.cpp:83
+#, kde-format
+msgid "No KDE keyboard selector found."
+msgstr ""
+
+#: src/settings/languagepropertiespage.cpp:346
+#: src/settings/languagepropertiespage.cpp:368
+#, kde-format
+msgid "Tense Name"
+msgstr "時制"
+
+#: src/settings/languagepropertiespage.cpp:346
+#: src/settings/languagepropertiespage.cpp:368
+#, kde-format
+msgid "Enter name of tense:"
+msgstr ""
+
+#: src/settings/languagepropertiespage.cpp:398
+#, kde-format
+msgid ""
+"The selected user defined tense could not be deleted\n"
+"because it is in use."
+msgstr "選択されたユーザ定義の時制は使用中のため削除できません。"
+
+#: src/settings/languagepropertiespage.cpp:399
+#, kde-format
+msgid "Deleting Tense Description"
+msgstr "時制の名前を削除"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab)
+#: src/settings/languagepropertiespage.ui:21
+#, kde-format
+msgid "General"
+msgstr "全般"
+
+#. i18n: ectx: property (text), widget (QLabel, nameLabel)
+#: src/settings/languagepropertiespage.ui:30
+#, kde-format
+msgid "Name:"
+msgstr "名前:"
+
+#. i18n: ectx: property (text), widget (QLabel, keyboardLayoutLabel)
+#: src/settings/languagepropertiespage.ui:46
+#, kde-format
+msgid "Keyboard layout:"
+msgstr "キーボード配列:"
+
+#. i18n: ectx: property (text), widget (QPushButton, downloadGrammarButton)
+#: src/settings/languagepropertiespage.ui:75
+#, fuzzy, kde-format
+#| msgid "&Download Grammar"
+msgid "&Download grammar"
+msgstr "文法をダウンロード(&D)"
+
+#. i18n: ectx: property (text), widget (QLabel, spellcheckerLabel)
+#: src/settings/languagepropertiespage.ui:88
+#, kde-format
+msgid "Spell checker:"
+msgstr "スペルチェッカー:"
+
+#. i18n: ectx: property (text), widget (QLabel, localeSelectionLabel)
+#: src/settings/languagepropertiespage.ui:101
+#, kde-format
+msgid "Language:"
+msgstr "言語:"
+
+#. i18n: ectx: property (text), widget (QLabel, fontLabel_2)
+#: src/settings/languagepropertiespage.ui:117
+#, fuzzy, kde-format
+#| msgid "Not &practiced:"
+msgid "Font (practice):"
+msgstr "未出題(&P):"
+
+#. i18n: ectx: property (text), widget (QLabel, fontLabel_3)
+#: src/settings/languagepropertiespage.ui:127
+#, fuzzy, kde-format
+#| msgid "Not &practiced:"
+msgid "Font (editor):"
+msgstr "未出題(&P):"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab_2)
+#: src/settings/languagepropertiespage.ui:141
+#, kde-format
+msgid "Articles"
+msgstr "冠詞"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel3)
+#. i18n: ectx: property (text), widget (QLabel, TextLabel3_2)
+#: src/settings/languagepropertiespage.ui:153
+#: src/settings/languagepropertiespage.ui:404
+#, kde-format
+msgid "Definite"
+msgstr "定冠詞"
+
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4)
+#. i18n: ectx: property (text), widget (QLabel, TextLabel4_2)
+#: src/settings/languagepropertiespage.ui:160
+#: src/settings/languagepropertiespage.ui:411
+#, kde-format
+msgid "Indefinite"
+msgstr "不定冠詞"
+
+#. i18n: ectx: property (text), widget (QLabel, male_label)
+#. i18n: ectx: property (text), widget (QLabel, male_label_2)
+#: src/settings/languagepropertiespage.ui:167
+#: src/settings/languagepropertiespage.ui:365
+#, kde-format
+msgid "&Male:"
+msgstr "男性(&M):"
+
+#. i18n: ectx: property (text), widget (QLabel, female_label)
+#. i18n: ectx: property (text), widget (QLabel, female_label_2)
+#: src/settings/languagepropertiespage.ui:190
+#: src/settings/languagepropertiespage.ui:352
+#, kde-format
+msgid "&Female:"
+msgstr "女性(&F):"
+
+#. i18n: ectx: property (text), widget (QLabel, natural_label)
+#. i18n: ectx: property (text), widget (QLabel, natural_label_2)
+#: src/settings/languagepropertiespage.ui:223
+#: src/settings/languagepropertiespage.ui:339
+#, kde-format
+msgid "&Neutral:"
+msgstr "中性(&N):"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab_3)
+#: src/settings/languagepropertiespage.ui:451
+#, kde-format
+msgid "Personal Pronouns"
+msgstr "人称代名詞"
+
+#. i18n: ectx: property (text), widget (QLabel, pers1_label)
+#: src/settings/languagepropertiespage.ui:507
+#, kde-format
+msgid "&1. Person:"
+msgstr "一人称(&1):"
+
+#. i18n: ectx: property (text), widget (QLabel, pers2_label)
+#: src/settings/languagepropertiespage.ui:543
+#, kde-format
+msgid "&2. Person:"
+msgstr "二人称(&2):"
+
+#. i18n: ectx: property (text), widget (QLabel, pers3_label)
+#: src/settings/languagepropertiespage.ui:579
+#, kde-format
+msgid "3. Person:"
+msgstr "三人称:"
+
+#. i18n: ectx: property (text), widget (QLabel, male_c_label)
+#: src/settings/languagepropertiespage.ui:589
+#, kde-format
+msgid "M&ale:"
+msgstr "男性(&A):"
+
+#. i18n: ectx: property (text), widget (QLabel, female_c_label)
+#: src/settings/languagepropertiespage.ui:625
+#, kde-format
+msgid "F&emale:"
+msgstr "女性(&E):"
+
+#. i18n: ectx: property (text), widget (QLabel, natural_c_label)
+#: src/settings/languagepropertiespage.ui:661
+#, kde-format
+msgid "Neu&ter:"
+msgstr "中性(&T):"
+
+#. i18n: ectx: property (text), widget (QCheckBox, dualCheckBox)
+#: src/settings/languagepropertiespage.ui:697
+#, kde-format
+msgid "Dual conjugations"
+msgstr "双数の活用形が存在する"
+
+#. i18n: ectx: property (text), widget (QCheckBox, neutralCheckBox)
+#: src/settings/languagepropertiespage.ui:704
+#, kde-format
+msgid "A neutral conjugation form exists"
+msgstr "中性の活用形が存在する"
+
+#. i18n: ectx: property (text), widget (QCheckBox, maleFemaleDifferCheckBox)
+#: src/settings/languagepropertiespage.ui:717
+#, kde-format
+msgid "Male/female have different conjugations"
+msgstr "男性と女性で活用が異なる"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab_4)
+#: src/settings/languagepropertiespage.ui:725
+#: src/statistics/conjugationoptions.cpp:24
+#, kde-format
+msgid "Tenses"
+msgstr "時制"
+
+#. i18n: ectx: property (text), widget (QPushButton, newButton)
+#: src/settings/languagepropertiespage.ui:752 src/settings/optionlistform.ui:63
+#, kde-format
+msgid "&New..."
+msgstr "新規(&N)..."
+
+#. i18n: ectx: property (text), widget (QPushButton, modifyButton)
+#: src/settings/languagepropertiespage.ui:765 src/settings/optionlistform.ui:78
+#, kde-format
+msgid "&Modify..."
+msgstr "変更(&M)..."
+
+#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
+#: src/settings/languagepropertiespage.ui:778 src/settings/optionlistform.ui:93
+#, kde-format
+msgid "&Delete"
+msgstr "削除(&D)"
+
+#. i18n: ectx: label, entry (KeyboardLayout), group (Locale $(locale))
+#. i18n: ectx: whatsthis, entry (KeyboardLayout), group (Locale $(locale))
+#: src/settings/languagesettings.kcfg:12 src/settings/languagesettings.kcfg:13
+#, kde-format
+msgid "Keyboard layout for this locale"
+msgstr "このロケールのキーボード配列"
+
+#. i18n: ectx: label, entry (SpellChecker), group (Locale $(locale))
+#. i18n: ectx: whatsthis, entry (SpellChecker), group (Locale $(locale))
+#: src/settings/languagesettings.kcfg:17 src/settings/languagesettings.kcfg:18
+#, kde-format
+msgid "Spell checker for this language"
+msgstr "この言語のスペルチェッカー"
+
+#. i18n: ectx: label, entry (PracticeFont), group (Locale $(locale))
+#: src/settings/languagesettings.kcfg:32
+#, fuzzy, kde-format
+#| msgid "The font used for phonetics"
+msgid "The font used during practice"
+msgstr "発音記号のフォント"
+
+#. i18n: ectx: label, entry (EditorFont), group (Locale $(locale))
+#: src/settings/languagesettings.kcfg:36
+#, fuzzy, kde-format
+#| msgid "The font used in the vocabulary table"
+msgid "The font used in the editor"
+msgstr "語彙テーブルのフォント"
+
+# ACCELERATOR changed by translator
+#. i18n: ectx: property (text), widget (QPushButton, cleanUpButton)
+#: src/settings/optionlistform.ui:124
+#, kde-format
+msgid "&Clean Up"
+msgstr "クリーンアップ(&U)"
+
+#. i18n: ectx: label, entry (Theme), group (General)
+#: src/settings/parley.kcfg:11
+#, kde-format
+msgid "Theme to use for practice and welcome screen"
+msgstr ""
+
+#. i18n: ectx: label, entry (NumPreSetting), group (General)
+#: src/settings/parley.kcfg:15
+#, kde-format
+msgid "Number of stored setting profiles"
+msgstr "保存されている設定プロファイルの数"
+
+#. i18n: ectx: label, entry (SmartAppend), group (General)
+#: src/settings/parley.kcfg:19
+#, kde-format
+msgid ""
+"If true, when using the entry dialog, new rows will be appended as needed"
+msgstr ""
+
+#. i18n: ectx: label, entry (Separator), group (General)
+#: src/settings/parley.kcfg:23
+#, kde-format
+msgid "This sets the separator used when copying/pasting text, default is Tab"
+msgstr ""
+
+#. i18n: ectx: label, entry (EntriesPerLesson), group (General)
+#: src/settings/parley.kcfg:27
+#, fuzzy, kde-format
+#| msgid "The number of entries per lesson"
+msgid "The number of entries per unit"
+msgstr "レッスンごとのエントリ数"
+
+#. i18n: ectx: label, entry (AutoOpenLast), group (General)
+#: src/settings/parley.kcfg:31
+#, kde-format
+msgid "If true, on each application start the last opened file will be loaded"
+msgstr ""
+
+#. i18n: ectx: label, entry (AutoSave), group (General)
+#: src/settings/parley.kcfg:35
+#, kde-format
+msgid "If true, vocabularies are automatically saved on close and exit"
+msgstr "有効な場合は、終了時に語彙が自動的に保存されます"
+
+#. i18n: ectx: label, entry (AutoBackup), group (General)
+#: src/settings/parley.kcfg:42
+#, kde-format
+msgid "If true, a backup is saved every BackupTime minutes"
+msgstr ""
+
+#. i18n: ectx: label, entry (BackupTime), group (General)
+#: src/settings/parley.kcfg:46
+#, kde-format
+msgid "Time interval between two automatic backups"
+msgstr "自動バックアップの間隔"
+
+#. i18n: ectx: label, entry (FlashcardsFrontImage), group (PracticeOptions)
+#: src/settings/parley.kcfg:57
+#, kde-format
+msgid "Show images on the front of the flashcard."
+msgstr "フラッシュカードの表に画像を表示します。"
+
+#. i18n: ectx: label, entry (FlashcardsBackImage), group (PracticeOptions)
+#: src/settings/parley.kcfg:61
+#, kde-format
+msgid "Show images on the back of the flashcard."
+msgstr "フラッシュカードの裏に画像を表示します。"
+
+#. i18n: ectx: label, entry (Block), group (PracticeOptions)
+#: src/settings/parley.kcfg:65
+#, kde-format
+msgid "In Blocking Query Tab Dialog, if checked then the Query is blocked"
+msgstr ""
+
+#. i18n: ectx: label, entry (Expire), group (PracticeOptions)
+#: src/settings/parley.kcfg:69
+#, kde-format
+msgid ""
+"In Blocking Query Tab Dialog, if checked then the Query accepts an expiring "
+"time"
+msgstr ""
+
+#. i18n: ectx: label, entry (TestOrderLesson), group (PracticeOptions)
+#: src/settings/parley.kcfg:73
+#, kde-format
+msgid ""
+"Append new vocabulary in a collection in order of their units. Note that "
+"this will not be a hard transition, but a slow mix from one unit to the next."
+msgstr ""
+
+#. i18n: ectx: label, entry (TestNumberOfEntries), group (PracticeOptions)
+#: src/settings/parley.kcfg:77
+#, kde-format
+msgid ""
+"The number of entries that are practiced at the same time. If one of these "
+"is answered correctly another entry will be appended."
+msgstr ""
+
+#. i18n: ectx: label, entry (SwapDirection), group (PracticeOptions)
+#: src/settings/parley.kcfg:81
+#, kde-format
+msgid "Swap direction randomly"
+msgstr "方向をランダムに切り替える"
+
+#. i18n: ectx: label, entry (PracticeTimeout), group (PracticeOptions)
+#: src/settings/parley.kcfg:86
+#, kde-format
+msgid "Limit the time for the user to answer in a test."
+msgstr "回答時間を制限する。"
+
+#. i18n: ectx: label, entry (PracticeTimeoutMode), group (PracticeOptions)
+#: src/settings/parley.kcfg:90
+#, kde-format
+msgid ""
+"Show - show the solution after the given time; Continue - go to the next "
+"question after the given time."
+msgstr ""
+"Show - 時間が来たら正解を表示する。Continue - 時間が来たら次の問題へ移る。"
+
+#. i18n: ectx: label, entry (PracticeTimeoutTimePerAnswer), group (PracticeOptions)
+#: src/settings/parley.kcfg:98
+#, kde-format
+msgid "Maximum time allowed to answer."
+msgstr "問題ごとの制限時間"
+
+#. i18n: ectx: label, entry (Suggestions), group (PracticeOptions)
+#: src/settings/parley.kcfg:103
+#, fuzzy, kde-format
+#| msgid "Enable Skip (I Know It) button in written practice."
+msgid "Enable suggestion lists in written practice."
+msgstr "入力練習で「知っています」ボタンを有効にします。"
+
+#. i18n: ectx: label, entry (ShowHints), group (PracticeOptions)
+#: src/settings/parley.kcfg:107
+#, kde-format
+msgid "Enable the showing of hints."
+msgstr "ヒントの表示を有効にする。"
+
+#. i18n: ectx: label, entry (IgnoreAccentMistakes), group (PracticeOptions)
+#: src/settings/parley.kcfg:111
+#, kde-format
+msgid "Count answers as right when only the accentuation is wrong."
+msgstr "アクセント記号の間違いだけの場合、正解として数える。"
+
+#. i18n: ectx: label, entry (IgnoreCapitalizationMistakes), group (PracticeOptions)
+#: src/settings/parley.kcfg:115
+#, kde-format
+msgid "Count answers as right when only the capitalization is wrong."
+msgstr "大小文字の使い分けだけの間違いの場合、正解として数える。"
+
+#. i18n: ectx: label, entry (IgnorePunctuationMistakes), group (PracticeOptions)
+#: src/settings/parley.kcfg:119
+#, fuzzy, kde-format
+#| msgid "Count answers as right when only the accentuation is wrong."
+msgid "Count answers as right when only the punctuation is wrong."
+msgstr "アクセント記号の間違いだけの場合、正解として数える。"
+
+#. i18n: ectx: label, entry (SplitTranslations), group (PracticeOptions)
+#: src/settings/parley.kcfg:124
+#, fuzzy, kde-format
+#| msgid "Enable Skip (I Know It) button in written practice."
+msgid "Split translations in written practice."
+msgstr "入力練習で「知っています」ボタンを有効にします。"
+
+#. i18n: ectx: label, entry (Periods), group (PracticeOptions)
+#: src/settings/parley.kcfg:128
+#, kde-format
+msgid "Split translations at periods."
+msgstr ""
+
+#. i18n: ectx: label, entry (Colons), group (PracticeOptions)
+#: src/settings/parley.kcfg:132
+#, kde-format
+msgid "Split translations at colons."
+msgstr ""
+
+#. i18n: ectx: label, entry (Semicolons), group (PracticeOptions)
+#: src/settings/parley.kcfg:136
+#, kde-format
+msgid "Split translations at semicolons."
+msgstr ""
+
+#. i18n: ectx: label, entry (Commas), group (PracticeOptions)
+#: src/settings/parley.kcfg:140
+#, kde-format
+msgid "Split translations at commas."
+msgstr ""
+
+#. i18n: ectx: label, entry (ShowMore), group (PracticeOptions)
+#: src/settings/parley.kcfg:146
+#, fuzzy, kde-format
+#| msgid "Enable Skip (I Know It) button in written practice."
+msgid ""
+"Enable Show More button to reveal parts of the solution in written practice."
+msgstr "入力練習で「知っています」ボタンを有効にします。"
+
+#. i18n: ectx: label, entry (SkipKnownEnabled), group (PracticeOptions)
+#: src/settings/parley.kcfg:150
+#, kde-format
+msgid "Enable Skip (I Know It) button in written practice."
+msgstr "入力練習で「知っています」ボタンを有効にします。"
+
+#. i18n: ectx: label, entry (CountSynonymsAsCorrect), group (PracticeOptions)
+#: src/settings/parley.kcfg:154
+#, kde-format
+msgid ""
+"When the synonym instead of the word was entered, does it count as correct?"
+msgstr ""
+
+#. i18n: ectx: label, entry (PracticeImagesEnabled), group (PracticeOptions)
+#: src/settings/parley.kcfg:158
+#, kde-format
+msgid "Enable image display in the practice dialogs."
+msgstr ""
+
+#. i18n: ectx: label, entry (PracticeSoundEnabled), group (PracticeOptions)
+#: src/settings/parley.kcfg:162
+#, kde-format
+msgid "Enable sound playback in the practice dialogs."
+msgstr ""
+
+#. i18n: ectx: label, entry (AllowImageInsteadOfWord), group (PracticeOptions)
+#: src/settings/parley.kcfg:166
+#, fuzzy, kde-format
+#| msgid "Show images on the back of the flashcard."
+msgid ""
+"Allow using images instead of words in flashcards. This will only be done if "
+"there is no word in the entry."
+msgstr "フラッシュカードの裏に画像を表示します。"
+
+#. i18n: ectx: label, entry (SessionMaxSize), group (PracticeOptions)
+#: src/settings/parley.kcfg:172
+#, kde-format
+msgid ""
+"The maximum number of words that will be practiced in a training session."
+msgstr ""
+
+#. i18n: ectx: label, entry (SessionMaxNewWords), group (PracticeOptions)
+#: src/settings/parley.kcfg:176
+#, kde-format
+msgid ""
+"The maximum number of new (untrained) words that will be used in a training "
+"session."
+msgstr ""
+
+#. i18n: ectx: label, entry (SessionLimitWordsInitialPhase), group (PracticeOptions)
+#: src/settings/parley.kcfg:180
+#, kde-format
+msgid "Limit the number of words in the initial phase."
+msgstr ""
+
+#. i18n: ectx: label, entry (SessionMaxWordsInitialPhase), group (PracticeOptions)
+#: src/settings/parley.kcfg:184
+#, kde-format
+msgid ""
+"The maximum number of words in the initial phase. If this limit is exceeded, "
+"no new words will be introduced."
+msgstr ""
+
+#. i18n: ectx: label, entry (MultipleChoiceWordTypeConsistancy), group (PracticeOptions)
+#: src/settings/parley.kcfg:190
+#, kde-format
+msgid ""
+"Use the same word type as the solution for the incorrect answers in a "
+"multiple choice practice."
+msgstr ""
+
+#. i18n: ectx: label, entry (NumberMultipleChoiceAnswers), group (PracticeOptions)
+#: src/settings/parley.kcfg:194
+#, kde-format
+msgid ""
+"How many answers are provided for a multiple choice question, including the "
+"correct answer."
+msgstr ""
+
+#. i18n: ectx: label, entry (ShowSearch), group (Appearance)
+#: src/settings/parley.kcfg:201
+#, kde-format
+msgid "Toggle display of the search bar."
+msgstr "検索バーの表示/非表示を切り替えます。"
+
+#. i18n: ectx: label, entry (ShowSublessonentries), group (Appearance)
+#: src/settings/parley.kcfg:206
+#, kde-format
+msgid "When enabled a unit also shows entries from its subunits."
+msgstr ""
+
+#. i18n: ectx: label, entry (TableLessonColumnVisible), group (Appearance)
+#: src/settings/parley.kcfg:211
+#, fuzzy, kde-format
+#| msgid "Show/hide the lesson column."
+msgid "Show/hide the unit column."
+msgstr "レッスンカラムの表示/非表示を切り替えます。"
+
+#. i18n: ectx: label, entry (TableActiveColumnVisible), group (Appearance)
+#: src/settings/parley.kcfg:216
+#, kde-format
+msgid "Show/hide the active column."
+msgstr "有効/無効のカラムの表示/非表示を切り替えます。"
+
+#. i18n: ectx: label, entry (LessonEditingSelection), group (Appearance)
+#: src/settings/parley.kcfg:221
+#, fuzzy, kde-format
+#| msgid "Select which lessons are displayed for editing"
+msgid "Select which units are displayed for editing"
+msgstr "編集のために表示するレッスンを選択"
+
+#. i18n: ectx: label, entry (MainWindowSplitter), group (Appearance)
+#: src/settings/parley.kcfg:231
+#, kde-format
+msgid "How the main window is divided."
+msgstr "メインウィンドウの区分けの仕方"
+
+#. i18n: ectx: label, entry (PracticeFont), group (Appearance)
+#: src/settings/parley.kcfg:235
+#, kde-format
+msgid "The font used in the vocabulary table"
+msgstr "語彙テーブルのフォント"
+
+#. i18n: ectx: label, entry (IPAFont), group (Appearance)
+#: src/settings/parley.kcfg:239
+#, kde-format
+msgid "The font used for phonetics"
+msgstr "発音記号のフォント"
+
+#. i18n: ectx: label, entry (CurrentCol), group (Appearance)
+#: src/settings/parley.kcfg:243
+#, kde-format
+msgid "Currently selected column"
+msgstr "現在選択されているカラム"
+
+#. i18n: ectx: label, entry (CurrentRow), group (Appearance)
+#: src/settings/parley.kcfg:247
+#, kde-format
+msgid "Currently selected row"
+msgstr "現在選択されている行"
+
+#. i18n: ectx: label, entry (GradeColor), group (Appearance)
+#: src/settings/parley.kcfg:251
+#, fuzzy, kde-format
+#| msgid "Color for the grade 7"
+msgid "Color used to display the confidence levels"
+msgstr "レベル 7 の色"
+
+#. i18n: ectx: label, entry (PreGradeColor), group (Appearance)
+#: src/settings/parley.kcfg:255
+#, fuzzy, kde-format
+#| msgid "Color for the grade 7"
+msgid "Color used to display the early confidence levels"
+msgstr "レベル 7 の色"
+
+#. i18n: ectx: label, entry (InvalidUnitColor), group (Appearance)
+#. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_InvalidUnitColor)
+#: src/settings/parley.kcfg:259 src/settings/viewoptionsbase.ui:190
+#, fuzzy, kde-format
+#| msgid "Color for the grade 7"
+msgid "Color used to display invalid units"
+msgstr "レベル 7 の色"
+
+#. i18n: ectx: label, entry (PracticeMinimumTimesAsked), group (Thresholds)
+#: src/settings/parley.kcfg:267
+#, kde-format
+msgid ""
+"The entry must have been asked at least this often to be included in the "
+"practice."
+msgstr ""
+
+#. i18n: ectx: label, entry (PracticeMaximumTimesAsked), group (Thresholds)
+#: src/settings/parley.kcfg:271
+#, kde-format
+msgid ""
+"The entry must have been asked at most this often to be included in the "
+"practice."
+msgstr ""
+
+#. i18n: ectx: label, entry (PracticeMinimumWrongCount), group (Thresholds)
+#: src/settings/parley.kcfg:276
+#, kde-format
+msgid ""
+"The entry must have been answered incorrectly at least this often to be "
+"included in the practice."
+msgstr ""
+
+#. i18n: ectx: label, entry (PracticeMaximumWrongCount), group (Thresholds)
+#: src/settings/parley.kcfg:280
+#, kde-format
+msgid ""
+"The entry must have been answered incorrectly at most this often to be "
+"included in the practice."
+msgstr ""
+
+#. i18n: ectx: label, entry (PracticeMinimumGrade), group (Thresholds)
+#: src/settings/parley.kcfg:285
+#, kde-format
+msgid ""
+"The entry must have at least this confidence level to be included in the "
+"practice (0..7)."
+msgstr ""
+
+#. i18n: ectx: label, entry (PracticeMaximumGrade), group (Thresholds)
+#: src/settings/parley.kcfg:289
+#, kde-format
+msgid ""
+"The entry must have at most this confidence level to be included in the "
+"practice (0..7)."
+msgstr ""
+
+#. i18n: ectx: label, entry (WordTypesInPracticeEnabled), group (Thresholds)
+#: src/settings/parley.kcfg:293
+#, kde-format
+msgid "Only selected word types will be included in practice."
+msgstr ""
+
+#. i18n: ectx: label, entry (WordTypesInPractice), group (Thresholds)
+#. i18n: ectx: whatsthis, entry (WordTypesInPractice), group (Thresholds)
+#: src/settings/parley.kcfg:297 src/settings/parley.kcfg:298
+#, kde-format
+msgid "Selected word types for practices."
+msgstr ""
+
+#. i18n: ectx: label, entry (SubWordTypesInPractice), group (Thresholds)
+#. i18n: ectx: whatsthis, entry (SubWordTypesInPractice), group (Thresholds)
+#: src/settings/parley.kcfg:301 src/settings/parley.kcfg:302
+#, fuzzy, kde-format
+#| msgid "Resulting number of words to practice:"
+msgid "Selected sub word types for practices."
+msgstr "練習できる単語数:"
+
+#. i18n: ectx: label, entry (LearningLanguage), group (PracticeManager)
+#: src/settings/parley.kcfg:309
+#, kde-format
+msgid "The language that you are learning."
+msgstr ""
+
+#. i18n: ectx: label, entry (KnownLanguage), group (PracticeManager)
+#: src/settings/parley.kcfg:313
+#, kde-format
+msgid "The language that you know already."
+msgstr ""
+
+#. i18n: ectx: label, entry (ShowSolutionAfterAnswer), group (PracticeManager)
+#: src/settings/parley.kcfg:318
+#, kde-format
+msgid "Show the solution after an answer was given."
+msgstr "回答した後に正解を表示する"
+
+#. i18n: ectx: label, entry (ShowSolutionAfterAnswerTime), group (PracticeManager)
+#: src/settings/parley.kcfg:322
+#, kde-format
+msgid "The time the solution is shown (seconds). 0 is unlimited."
+msgstr "正解を表示する時間(秒)。0 で無制限。"
+
+#. i18n: ectx: label, entry (PracticeMode), group (PracticeManager)
+#: src/settings/parley.kcfg:337
+#, fuzzy, kde-format
+#| msgid "The practice mode that is currently selected."
+msgid "The practice method that is currently selected."
+msgstr "現在選択されている練習モード。"
+
+#. i18n: ectx: label, entry (PracticeDirection), group (PracticeManager)
+#: src/settings/parley.kcfg:348
+#, kde-format
+msgid "The practice mode that is currently selected."
+msgstr "現在選択されている練習モード。"
+
+#. i18n: ectx: label, entry (BlockItem$(Grade)), group (PracticeManager)
+#: src/settings/parley.kcfg:354
+#, kde-format
+msgid "Amount of time different confidence levels should be blocked"
+msgstr ""
+
+#. i18n: ectx: label, entry (ExpireItem$(Grade)), group (PracticeManager)
+#: src/settings/parley.kcfg:365
+#, kde-format
+msgid "Amount of time after which different confidence levels should expire"
+msgstr ""
+
+#. i18n: ectx: label, entry (RememberPracticeDirection), group (PracticeManager)
+#: src/settings/parley.kcfg:375
+#, kde-format
+msgid "If true, the practice direction for each practice mode is stored."
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (RememberPracticeDirection), group (PracticeManager)
+#: src/settings/parley.kcfg:376
+#, kde-format
+msgid "Should the practice direction for each practice mode be stored?"
+msgstr ""
+
+#. i18n: ectx: label, entry (PracticeDirectionsByPracticeMode), group (PracticeManager)
+#. i18n: ectx: whatsthis, entry (PracticeDirectionsByPracticeMode), group (PracticeManager)
+#: src/settings/parley.kcfg:380 src/settings/parley.kcfg:381
+#, kde-format
+msgid "Stored values of practice direction for each practice mode."
+msgstr ""
+
+#. i18n: ectx: label, entry (ProvidersUrl), group (KNewStuff)
+#: src/settings/parley.kcfg:387
+#, kde-format
+msgid "The Providers path for Parley"
+msgstr ""
+
+#. i18n: ectx: label, entry (InstallationCommand), group (KNewStuff)
+#: src/settings/parley.kcfg:391
+#, fuzzy, kde-format
+#| msgid "The font used in the vocabulary table"
+msgid "The command used to start a downloaded vocabulary"
+msgstr "語彙テーブルのフォント"
+
+#. i18n: ectx: label, entry (InstallPath), group (KNewStuff)
+#: src/settings/parley.kcfg:395
+#, kde-format
+msgid "The folder where downloaded vocabularies are saved by default"
+msgstr "ダウンロードした語彙を保存するデフォルトのフォルダ"
+
+#: src/settings/parleyprefs.cpp:24
+#, kde-format
+msgid "Theme"
+msgstr "テーマ"
+
+#: src/settings/parleyprefs.cpp:27
+#, kde-format
+msgctxt "title:window general settings"
+msgid "General"
+msgstr "全般"
+
+#: src/settings/parleyprefs.cpp:27
+#, kde-format
+msgid "General Settings"
+msgstr "全般設定"
+
+#: src/settings/parleyprefs.cpp:30
+#, kde-format
+msgid "View"
+msgstr "表示"
+
+#: src/settings/parleyprefs.cpp:30
+#, kde-format
+msgid "View Settings"
+msgstr "表示の設定"
+
+#: src/settings/parleyprefs.cpp:33
+#, fuzzy, kde-format
+#| msgid "Automatic Translation"
+msgid "Online Translations"
+msgstr "自動翻訳"
+
+#: src/settings/parleyprefs.cpp:33
+#, kde-format
+msgid "Online Translation Services"
+msgstr ""
+
+#: src/settings/translationshelloptions.cpp:20
+#, kde-format
+msgid "translate-shell is available."
+msgstr ""
+
+#: src/settings/translationshelloptions.cpp:23
+#, kde-format
+msgid "translate-shell executable could not be found."
+msgstr ""
+
+#: src/settings/translationshelloptions.cpp:38
+#, kde-format
+msgid "Error"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBoxInstalledStatus)
+#: src/settings/translationshellpage.ui:18
+#, kde-format
+msgid "Translation Shell Integration"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/settings/translationshellpage.ui:52
+#, kde-format
+msgid "Run Interactive Functionality Test"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: src/settings/translationshellpage.ui:58
+#, kde-format
+msgid ""
+"The interaction test request translation of English word \"parley\" into "
+"German."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QToolButton, buttonRunTest)
+#: src/settings/translationshellpage.ui:68
+#, kde-format
+msgid "Start online test"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: src/settings/translationshellpage.ui:88
+#, kde-format
+msgid "Result:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, labelResultArea)
+#: src/settings/translationshellpage.ui:101
+#, fuzzy, kde-format
+#| msgid "&New..."
+msgid "..."
+msgstr "新規(&N)..."
+
+#. i18n: ectx: property (whatsThis), widget (KFontRequester, kcfg_IPAFont)
+#: src/settings/viewoptionsbase.ui:47
+#, kde-format
+msgid ""
+"Specify which font to use for displaying pronunciations using phonetic "
+"symbols."
+msgstr "表音記号による発音の表示に使用するフォントを指定します。"
+
+#. i18n: ectx: property (text), widget (QLabel, IPAFontLabel)
+#: src/settings/viewoptionsbase.ui:54
+#, fuzzy, kde-format
+#| msgid "Pronunciation"
+msgid "&Pronunciation symbols font:"
+msgstr "発音"
+
+#. i18n: ectx: property (text), widget (QLabel, gradeColorLabel)
+#: src/settings/viewoptionsbase.ui:83
+#, kde-format
+msgid "Base color for displaying grades:"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_GradeColor)
+#: src/settings/viewoptionsbase.ui:102
+#, fuzzy, kde-format
+#| msgid "Color for the grade 7"
+msgid "Color used to display the progress"
+msgstr "レベル 7 の色"
+
+#. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_GradeColor)
+#: src/settings/viewoptionsbase.ui:105
+#, fuzzy, kde-format
+#| msgid "Click here to change the color for grade 7."
+msgid "Click here to change the color used to display the progress."
+msgstr "クリックしてレベル 7 の色を変更します。"
+
+#. i18n: ectx: property (text), widget (KColorButton, kcfg_GradeColor)
+#. i18n: ectx: property (text), widget (KColorButton, kcfg_PreGradeColor)
+#. i18n: ectx: property (text), widget (KColorButton, kcfg_InvalidUnitColor)
+#: src/settings/viewoptionsbase.ui:108 src/settings/viewoptionsbase.ui:152
+#: src/settings/viewoptionsbase.ui:196
+#, kde-format
+msgid "&Base"
+msgstr ""
+
+#. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_GradeColor)
+#: src/settings/viewoptionsbase.ui:111
+#, fuzzy, kde-format
+#| msgid "Alt+7"
+msgid "Alt+0"
+msgstr "Alt+7"
+
+#. i18n: ectx: property (text), widget (QLabel, preGradeColorLabel)
+#: src/settings/viewoptionsbase.ui:127
+#, fuzzy, kde-format
+#| msgid "Color for the grade 7"
+msgid "Color for displaying early progress:"
+msgstr "レベル 7 の色"
+
+#. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_PreGradeColor)
+#: src/settings/viewoptionsbase.ui:146
+#, fuzzy, kde-format
+#| msgid "Color for the grade 7"
+msgid "Color used to display the early progress"
+msgstr "レベル 7 の色"
+
+#. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_PreGradeColor)
+#: src/settings/viewoptionsbase.ui:149
+#, fuzzy, kde-format
+#| msgid "Click here to change the color for grade 7."
+msgid "Click here to change the color used to display the early progress."
+msgstr "クリックしてレベル 7 の色を変更します。"
+
+#. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_PreGradeColor)
+#: src/settings/viewoptionsbase.ui:155
+#, kde-format
+msgid "Alt+1"
+msgstr "Alt+1"
+
+#. i18n: ectx: property (text), widget (QLabel, invalidUnitColorLabel)
+#: src/settings/viewoptionsbase.ui:171
+#, fuzzy, kde-format
+#| msgid "Color for the grade 7"
+msgid "Color used to display the grades:"
+msgstr "レベル 7 の色"
+
+#. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_InvalidUnitColor)
+#: src/settings/viewoptionsbase.ui:193
+#, fuzzy, kde-format
+#| msgid "Click here to change the color for grade 7."
+msgid "Click here to change the color used to display invalid units."
+msgstr "クリックしてレベル 7 の色を変更します。"
+
+#. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_InvalidUnitColor)
+#: src/settings/viewoptionsbase.ui:199
+#, kde-format
+msgid "Alt+2"
+msgstr "Alt+2"
+
+#: src/statistics/lessonstatisticsview.cpp:74
+#: src/statistics/lessonstatisticsview.cpp:76
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Remove confidence levels from this unit"
+msgstr "このレッスンからすべての習得レベル情報を削除します"
+
+#: src/statistics/lessonstatisticsview.cpp:84
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Remove confidence levels from this unit and all sub-units"
+msgstr "このレッスンからすべての習得レベル情報を削除します"
+
+#: src/statistics/lessonstatisticsview.cpp:86
+#, fuzzy, kde-format
+#| msgid "Remove all grades from this lesson"
+msgid "Remove confidence level from this unit and all sub-units"
+msgstr "このレッスンからすべての習得レベル情報を削除します"
+
+#: src/statistics/statisticslegendwidget.cpp:27
+#, kde-format
+msgid "Progress gradients"
+msgstr ""
+
+#: src/statistics/statisticslegendwidget.cpp:28
+#, kde-format
+msgid "Early progress"
+msgstr ""
+
+#: src/statistics/statisticslegendwidget.cpp:29
+#, fuzzy, kde-format
+#| msgid "Not &practiced:"
+msgid "Not Practiced"
+msgstr "未出題(&P):"
+
+#: src/statistics/statisticslegendwidget.cpp:30
+#, kde-format
+msgid "Invalid Entries"
+msgstr ""
+
+#: src/statistics/statisticslegendwidget.cpp:46
+#, kde-format
+msgctxt "adjective, The word has been properly and fully learned by the user"
+msgid "Fully learned"
+msgstr ""
+
+#: src/statistics/statisticslegendwidget.cpp:47
+#, fuzzy, kde-format
+#| msgid "Not &practiced:"
+msgctxt "adjective, The word has not even been practiced once by the user"
+msgid "Not practiced"
+msgstr "未出題(&P):"
+
+#: src/statistics/statisticsmainwindow.cpp:193
+#, kde-format
+msgid "Known to Learning"
+msgstr ""
+
+#: src/statistics/statisticsmainwindow.cpp:194
+#, kde-format
+msgid "Learning to Known"
+msgstr ""
+
+#: src/statistics/statisticsmainwindow.cpp:195
+#, fuzzy, kde-format
+#| msgid "Mixed Letters"
+msgid "Mixed Directions"
+msgstr "文字の並べ替え"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/statistics/statisticsmainwindow.ui:29
+#, fuzzy, kde-format
+#| msgid "Language Selection"
+msgid "Language to Learn"
+msgstr "言語の選択"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: src/statistics/statisticsmainwindow.ui:39
+#, fuzzy, kde-format
+#| msgid "New Language"
+msgid "Known Language"
+msgstr "新しい言語"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBoxPracticeMode)
+#: src/statistics/statisticsmainwindow.ui:75
+#, fuzzy, kde-format
+#| msgid "Practice Mode:"
+msgid "Practice Mode"
+msgstr "練習モード:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, flashCard)
+#: src/statistics/statisticsmainwindow.ui:81
+#, kde-format
+msgid "Flash Cards"
+msgstr "フラッシュカード"
+
+#. i18n: ectx: property (text), widget (QRadioButton, mixedLetters)
+#: src/statistics/statisticsmainwindow.ui:91
+#, fuzzy, kde-format
+#| msgid "Mixed Letters"
+msgid "Mixed &Letters"
+msgstr "文字の並べ替え"
+
+#. i18n: ectx: property (text), widget (QRadioButton, multipleChoice)
+#: src/statistics/statisticsmainwindow.ui:98
+#, fuzzy, kde-format
+#| msgid "Multiple Choice"
+msgid "M&ultiple Choice"
+msgstr "選択問題"
+
+#. i18n: ectx: property (text), widget (QRadioButton, written)
+#: src/statistics/statisticsmainwindow.ui:105
+#, fuzzy, kde-format
+#| msgid "Written"
+msgid "Wri&tten"
+msgstr "入力"
+
+#. i18n: ectx: property (text), widget (QRadioButton, exampleSentence)
+#: src/statistics/statisticsmainwindow.ui:115
+#, fuzzy, kde-format
+#| msgid "Example Sentences"
+msgid "E&xample Sentences"
+msgstr "例文"
+
+#. i18n: ectx: property (text), widget (QRadioButton, gender)
+#: src/statistics/statisticsmainwindow.ui:125
+#, fuzzy, kde-format
+#| msgid "Gender of Nouns"
+msgid "&Gender of Nouns"
+msgstr "名詞の性"
+
+#. i18n: ectx: property (text), widget (QRadioButton, conjugations)
+#: src/statistics/statisticsmainwindow.ui:145
+#, fuzzy, kde-format
+#| msgid "Conjugations"
+msgid "Co&njugations"
+msgstr "動詞の活用"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBoxPracticeDirection)
+#: src/statistics/statisticsmainwindow.ui:191
+#, fuzzy, kde-format
+#| msgid "Practice Dialogs"
+msgid "Practice Direction"
+msgstr "練習ダイアログ"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rememberPracticeDirection)
+#: src/statistics/statisticsmainwindow.ui:200
+#, kde-format
+msgid "Remember for each Practice Mode"
+msgstr ""
+
+#: src/statistics/statisticsmodel.cpp:26
+#, kde-format
+msgctxt "Confidence level in language, table header"
+msgid "Confidence (%1)"
+msgstr ""
+
+#, fuzzy
+#~| msgid "Grades from %1 to %2"
+#~ msgid "Confidence Levels from %1 to %2"
+#~ msgstr "習得レベル (%1 から %2 へ)"
+
+#~ msgid "&Help"
+#~ msgstr "ヘルプ(&H)"
+
+#, fuzzy
+#~| msgid ""
+#~| "<p>Parley enables you to edit many additional properties of the words "
+#~| "you enter.</p>\n"
+#~| "<p>Use \"Settings\" -> \"Tools\" to enable different tools that will "
+#~| "help you set additional information for your vocabulary. These include "
+#~| "images, sound, word types and many more. Choose the ones you like.</p>\n"
+#~ msgid ""
+#~ "<p>Parley enables you to edit many additional properties of the words you "
+#~ "enter.</p>\n"
+#~ "<p>Use \"View -> ...\" check boxes to enable different information that "
+#~ "will help you set additional information for your vocabulary. These "
+#~ "include Image, Sound, Word Types and many more. Choose the ones you like."
+#~ "</p>\n"
+#~ msgstr ""
+#~ "<html><p align=\"left\">Parley では、入力した単語にさまざまな情報を追加す"
+#~ "ることができます。</p>\n"
+#~ "<p align=\"left\">「表示」メニューにそのための便利なツールがあります。画"
+#~ "像、サウンド、品詞、その他にもたくさんあります。上手に利用してください。</"
+#~ "p></html>\n"
+
+#~ msgid ""
+#~ "<p>To <em>search</em> for a word, simply type it into the search bar.</"
+#~ "p>\n"
+#~ msgstr ""
+#~ "<html><p align=\"left\">単語を探すときは、検索バーに単語を入力してくださ"
+#~ "い。</p></html>\n"
+
+#, fuzzy
+#~| msgid ""
+#~| "<p>If you want to see all words of a certain word type (e.g. nouns), "
+#~| "simply select the word type in the list.</p>\n"
+#~| "<p>To show the word type list, use \"Settings\" -> \"Tools\" -> \"Word "
+#~| "Types\" in the menu.</p>\n"
+#~ msgid ""
+#~ "<p>If you want to see all words of a certain word type (e.g. nouns), "
+#~ "simply select the word type in the list.</p>\n"
+#~ "<p>To show the word type list, use \"View -> Word Types\" check box.</p>\n"
+#~ msgstr ""
+#~ "<html><p align=\"left\">特定の品詞のすべての単語を見たいときは、リストから"
+#~ "その品詞を選択してください。</p>\n"
+#~ "<p align=\"left\">登録されている品詞の一覧は、「設定」メニューの「ツール|"
+#~ "品詞」で見ることができます。</p></html>\n"
+
+#~ msgid ""
+#~ "<p>You can drag and drop your lessons to change their order or even make "
+#~ "a lesson a child of another lesson.</p>\n"
+#~ msgstr ""
+#~ "<html><p align=\"left\">ドラッグ＆ドロップでレッスンの順序を入れ替えたり、"
+#~ "レッスンを他のレッスンの子レッスンにしたりできます。</p></html>\n"
+
+#~ msgid ""
+#~ "<p>You can simply drag a word into the word types list to change its type."
+#~ "</p>\n"
+#~ "<p>You can even select multiple words at the same time.</p>\n"
+#~ msgstr ""
+#~ "<html><p align=\"left\">品詞のリストに単語をドラッグするだけで簡単に単語の"
+#~ "品詞を変更できます。</p>\n"
+#~ "<p align=\"left\">一度に複数の単語を選択することもできます。</p></html>\n"
+
+#~ msgid ""
+#~ "<p><em>Setting Images</em></p>\n"
+#~ "<p>A fast way to set an image for a word is to simply drop it onto the "
+#~ "image dock.</p>\n"
+#~ msgstr ""
+#~ "<html><p align=\"left\">単語に画像をセットするときは、画像のフィールドに画"
+#~ "像をドラッグ＆ドロップするのが簡単です。</p></html>\n"
+
+#~ msgid ""
+#~ "<p><em>Word Types</em></p>\n"
+#~ "<p>You can set a special tag to some word types to let Parley know their "
+#~ "grammatical meaning.</p>\n"
+#~ "<p>For verbs for example you can then enter conjugations.</p>\n"
+#~ msgstr ""
+#~ "<html><p align=\"left\">単語に「品詞」タグを付けることで、Parley にその単"
+#~ "語の文法的な意味を教えることができます。</p>\n"
+#~ "<p align=\"left\">例えば、品詞に「動詞」を選択すると、動詞の活用を入力でき"
+#~ "るようになります。</p></html>\n"
+
+#, fuzzy
+#~| msgid ""
+#~| "<p><em>Multiple Choice</em></p>\n"
+#~| "<p>For some vocabulary multiple choice tests work best. You can add "
+#~| "choices to a word that will always be displayed in Multiple Choice mode. "
+#~| "Otherwise random choices are generated from the other entries in the "
+#~| "document. (Use the Multiple Choice tool for that.)</p>\n"
+#~ msgid ""
+#~ "<p><em>Multiple Choice</em></p>\n"
+#~ "<p>For some vocabularies multiple choice tests work best. You can add "
+#~ "choices to a word that will always be displayed in Multiple Choice mode. "
+#~ "Otherwise random choices are generated from the other entries in the "
+#~ "document. (Use the Multiple Choice tool for that.)</p>\n"
+#~ msgstr ""
+#~ "<html><p align=\"left\">語彙によっては選択問題で学習するのが最も効果的で"
+#~ "す。Parley では、選択問題用のツールを使って選択肢として常に表示させる単語"
+#~ "を設定することができます。何も設定しなければ、選択肢は同じ文書の他のエント"
+#~ "リからランダムに生成されます。</p></html>\n"
+
+#, fuzzy
+#~| msgid ""
+#~| "<p>Want to enter pronunciation symbols quickly? <em>Double click</em> "
+#~| "the symbol you need to directly add it.</p>\n"
+#~ msgid ""
+#~ "<p>Want to enter pronunciation symbols quickly? <em>Double-click</em> the "
+#~ "symbol you need to directly add it.</p>\n"
+#~ msgstr ""
+#~ "<html><p align=\"left\">表音記号を速く入力したい場合は、記号をダブルクリッ"
+#~ "クすると直接追加できます。</p></html>\n"
+
+#, fuzzy
+#~| msgid ""
+#~| "<p>You can use the \"Download New Vocabulary\" dialog or visit the "
+#~| "website listing many vocabulary documents:\n"
+#~| "<a href=\"http://edu.kde.org/contrib/kvtml2.php\">http://edu.kde.org/"
+#~| "contrib/kvtml2.php</a>.</p>\n"
+#~ msgid ""
+#~ "<p>You can use the \"Download New Vocabulary\" dialog or visit the "
+#~ "website listing many vocabulary documents:\n"
+#~ "<a href=\"https://edu.kde.org/contrib/kvtml2.php\">https://edu.kde.org/"
+#~ "contrib/kvtml2.php</a>.</p>\n"
+#~ msgstr ""
+#~ "<html><p align=\"left\">「新しい語彙をダウンロード」を使って新しい語彙文書"
+#~ "をダウンロードできます。語彙文書は KDE のウェブサイトからも入手できま"
+#~ "す。\n"
+#~ "<a href=\"http://edu.kde.org/contrib/kvtml2.php\">http://edu.kde.org/"
+#~ "contrib/kvtml2.php</a></p></html>\n"
+
+#~ msgid "Comparison forms"
+#~ msgstr "比較形"
+
+#~ msgid ""
+#~ "<p>If you do not want to see the answer again after pressing enter when "
+#~ "practicing, you can configure Parley to directly skip to the next entry.</"
+#~ "p>\n"
+#~ "<p>You can even choose to display the answer for a fixed amount of time. "
+#~ "Use \"Configure Practice...\" -> \"Advanced\" -> \"Show solution after "
+#~ "answering\".</p>\n"
+#~ msgstr ""
+#~ "<html><p align=\"left\">問題に答えて Enter を押した後にもう一度答えを見た"
+#~ "くなければ、すぐに次の問題に進むように設定できます。また、指定した時間だけ"
+#~ "正解が表示されるようにすることもできます。</p>\n"
+#~ "<p align=\"left\">どちらの場合も「練習を設定...|詳細」の「答えた後に正解を"
+#~ "表示する」を使います。</p></html>\n"
+
+#, fuzzy
+#~| msgid "Sound"
+#~ msgid "Fetch Sound"
+#~ msgstr "サウンド"
+
+# ACCELERATOR changed by translator
+#~ msgid "&Scripts"
+#~ msgstr "スクリプト(&T)"
+
+#~ msgid "&Script Manager"
+#~ msgstr "スクリプトマネージャ(&S)"
+
+#~ msgid "The script file does not exist."
+#~ msgstr "スクリプトファイルが存在しません。"
+
+#~ msgctxt "debug information in error message"
+#~ msgid "Backtrace:"
+#~ msgstr "バックトレース:"
+
+#~ msgid "Script Dialog"
+#~ msgstr "スクリプトダイアログ"
+
+#~ msgid "Script Activation"
+#~ msgstr "スクリプトの有効化"
+
+#~ msgid "&Upload Vocabulary Document..."
+#~ msgstr "語彙文書をアップロード(&U)..."
+
+#~ msgid "Share the current vocabulary collection with other users"
+#~ msgstr "現在の語彙コレクションを他のユーザと共有する"
+
+#, fuzzy
+#~| msgid "Could not start practice"
+#~ msgid "Could not create temporary directory \"%1\""
+#~ msgstr "練習を開始することができませんでした"
+
+#, fuzzy
+#~| msgid "Downloads new vocabulary collections"
+#~ msgid "Could not save vocabulary collection \"%1\""
+#~ msgstr "新しい語彙コレクションをダウンロードします"

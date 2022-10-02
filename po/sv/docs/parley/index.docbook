@@ -1,0 +1,3046 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Swedish "INCLUDE"
+>]>
+
+<book id="parley" lang="&language;">
+
+<bookinfo>
+<title
+>Handbok &parley;</title>
+
+<authorgroup>
+<author
+>&Frederik.Gladhorn; &Frederik.Gladhorn.mail; </author>
+
+<author
+><personname
+><firstname
+>Sabine</firstname
+><surname
+>Eller</surname
+></personname
+> <email
+>s.eller@voxhumanitatis.org</email
+> </author>
+
+<author
+><personname
+><firstname
+>Daniel</firstname
+><surname
+>Laidig</surname
+></personname
+> <email
+>d.laidig@gmx.de</email
+> </author>
+
+<author
+><personname
+><firstname
+>Amarvir</firstname
+><surname
+>Singh</surname
+></personname
+> <email
+>amarvir.ammu.93@gmail.com</email
+> </author>
+<othercredit role="translator"
+> <firstname
+>Stefan</firstname
+> <surname
+>Asserhäll</surname
+> <affiliation
+><address
+><email
+>stefan.asserhall@bredband.net</email
+></address
+></affiliation
+> <contrib
+>Översättare</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+  <year
+>2010</year>
+  <holder
+>&Frederik.Gladhorn;</holder>
+</copyright>
+<copyright>
+  <year
+>2010</year>
+  <holder
+>Sabine Eller</holder>
+</copyright>
+<copyright>
+  <year
+>2010</year>
+  <holder
+>Daniel Laidig</holder>
+</copyright>
+<copyright>
+  <year
+>2014</year>
+  <holder
+>Amarvir Singh</holder>
+</copyright>
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-11-02</date>
+<releaseinfo
+>KDE Gear 21.08</releaseinfo>
+
+<!-- Abstract about this handbook -->
+<abstract>
+  <para
+>&parley; är ett är ordförrådsprogram. Det hjälper dig att memorera ditt ordförråd, till exempel när du försöker lära dig ett främmande språk. &parley; är inte begränsat till språkinlärning, utan stöder en mängd olika ämnen.</para>
+</abstract>
+
+<keywordset>
+  <keyword
+>KDE</keyword>
+  <keyword
+>Parley</keyword>
+  <keyword
+>ordförråd</keyword>
+  <keyword
+>träna</keyword>
+  <keyword
+>träna</keyword>
+</keywordset>
+<!-- https://bugs.kde.org/show_bug.cgi?id=281586#c2 adjustable font size for practice window for better reading on highres screens -->
+</bookinfo>
+<!--userbase <timestamp
+>2010-06-25T18:39:29Z</timestamp
+>-->
+
+<!--userbase-content-->
+<chapter id="introduction"
+><title
+>Inledning</title>
+
+<para
+>&parley; är ordförrådsprogram. Det hjälper dig memorera ditt ordförråd, till exempel när du försöker lära dig ett främmande språk. Du kan skapa dina egna ordförrådssamlingar med orden du behöver, eller välja från ett stort antal tillgängliga <ulink url="https://userbase.kde.org/Parley#Vocabulary_Collections"
+>ordförrådssamlingar</ulink
+>. Där hittar du samlingar som innehåller ordförråd för språk, och dessutom för anatomi, musik, geografi, kemi eller tentamensförberedelse. </para>
+
+<para
+>&parley; är mycket flexibelt och använder ett inlärningssätt med <ulink url="https://en.wikipedia.org/wiki/Flashcard"
+>snabbkort</ulink
+>. Det håller automatiskt reda på hur långt du har kommit. Med &parley; kan du sortera ordförrådet som du vill, och du kan skapa egna lektioner efter behov. I motsats till riktiga snabbkort kan du använda olika inlärningssätt med &parley;. </para>
+
+<para
+>Snabbkort innehåller uttryck på framsidan och deras översättning på baksidan. Man börjar med en korthög. Om man kan översättningen, lägger man kortet i en annan korthög. Om man inte kommer ihåg den, behåller man kortet i den första högen för att försöka igen senare. </para>
+
+<para
+>&parley;s huvudfokus är inte att lära dig grammatik. Det finns dock några övningsformer som skulle kunna vara till hjälp med detta. </para>
+
+<para
+>&parley; består av två stora delar: <link linkend="practice"
+>Ordförrådsövning</link
+> och <link linkend="vocabulary-editing"
+>en editor för ordförrådssamlingar</link
+>. </para>
+
+<para
+>I den här handboken refererar termen <emphasis
+>ordförrådssamling</emphasis
+> till en fil som innehåller <emphasis
+>enheter</emphasis
+>. Varje enhet kan vara en lektion eller en lektionssamling med godtyckligt djup. I återstoden av handboken refererar vi till enheter istället för lektioner, eftersom de också kan användas för andra syften. </para>
+
+<para
+>Både <guilabel
+>Editor</guilabel
+> och <guilabel
+>Övning</guilabel
+> kan nås från <link linkend="practice-overview"
+>Övningsöversikt</link
+>. </para>
+
+<para
+><link linkend="practice"
+>Övning</link
+> består av tre delar: först <link linkend="practice-overview"
+>Övningsöversikt</link
+> där man väljer vad som ska övas. Därefter startas själva <link linkend="practice"
+>övningen</link
+> och när den är klar, får man en <link linkend="summary-after-practice"
+>sammanfattning</link
+>. </para>
+
+<tip
+><para
+>Som i alla program, försök använda högerklick om du utforskar funktioner i &parley;. Att klicka med höger musknapp visar en <quote
+>sammanhangsberoende meny</quote
+> som visar vad man kan göra i den aktuella situationen. Försök att högerklicka på enheter och ord för att hitta en del alternativ.</para
+></tip>
+</chapter>
+
+<chapter id="dashboard"
+><title
+>Instrumentpanel</title>
+
+<para
+>När &parley; först startas, välkomnas man av <guilabel
+>instrumentpanelen</guilabel
+>. </para>
+
+<para
+>Från början är <guilabel
+>Instrumentpanelen</guilabel
+> tom. När man väl har öppnat några ordförrådssamlingar visar den de man senast arbetat med. </para>
+
+<screenshot>
+  <screeninfo
+>Huvudfönstret i &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="dashboard.png" format="PNG"/></imageobject>
+    <caption
+>Instrumentpanel med flera samlingar</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>En ordförrådsamling är filen som innehåller ord och deras översättning till andra språk, eller andra par av ord och meningar som du vill memorera. Orden är organiserade i enheter. </para>
+
+<para
+>För att <emphasis
+>börja öva</emphasis
+>, klicka med höger musknapp på rutan <guilabel
+>Öva ändå</guilabel
+> på ett av namnen på ordförrådssamlingar i listan. Då kommer man till <link linkend="practice-overview"
+>övningsöversikt</link
+>. </para>
+
+<para
+>Observera att en liten <inlinemediaobject
+><imageobject
+><imagedata fileref="icon-delete.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Ta bort</guiicon
+>-ikon dyker upp längst ner till vänster om samlingsobjektet. Den låter dig ta bort samlingen från listan. </para>
+
+<para
+>Om du vill starta en egen ordförrådssamling, klicka på knappen <guibutton
+>Skapa en ny samling...</guibutton
+>. </para>
+
+<para
+>Du kan också <link linkend="open-an-existing-collection"
+>öppna en samling</link
+>, om den redan finns på datorn men inte är i listan. </para>
+
+<para
+>Den sista knappen på <guilabel
+>Instrumentpanelen</guilabel
+> erbjuder dig att ladda ner ordförrådssamlingar skapade av andra. När du har skapat en fil du skulle vilja dela med andra, kan du enkelt ladda upp den från editorn. </para>
+
+<para
+>&parley; levereras med olika teman. Du kan byta till en annan grafisk stil med inställningarna. För ytterligare information, se <link linkend="configure-parley"
+>Anpassa &parley;</link
+>. </para>
+</chapter>
+
+<chapter id="open-an-existing-collection"
+><title
+>Öppna en befintlig samling</title>
+
+<para
+>Låt oss anta att samlingen redan finns på hårddisken. </para>
+
+<para
+>Så här kommer skärmen att se ut första gången &parley; startas. </para>
+
+<screenshot>
+  <screeninfo
+>Huvudfönstret i &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="initial_screen.png" format="PNG"/></imageobject>
+    <caption
+>Inledande skärm</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Tryck på knappen <guibutton
+>Öppna en befintlig samling...</guibutton
+>. </para>
+
+<para
+>Gå till katalogen som innehåller datafilen i filvalsdialogrutan och markera den genom att klicka på den. Beroende på systemet öppnas filen antingen omedelbart, eller så måste du trycka på knappen <guibutton
+>Ok</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Filvalsdialogruta</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="file_select_dialog.png" format="PNG"/></imageobject>
+    <caption
+>Filvalsdialogruta</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Nu har filen lästs in, och du kommer till skärmen <guilabel
+>Övningsöversikt</guilabel
+>: se följande avsnitt för ytterligare detaljinformation. </para>
+</chapter>
+
+<chapter id="vocabulary-practice"
+><title
+>Ordförrådsövning</title>
+
+<para
+>För att börja öva väljer du ett dokument efter att ha startat &parley;. Om du redan har det öppet i editorn, tryck bara på ikonen <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Öva</guiicon
+> i verktygsraden. </para>
+
+<sect1 id="practice-overview"
+><title
+>Övningsöversikt</title>
+
+<para
+>Innan själva övningen börjar, kommer du alltid till sidan <guilabel
+>Övningsöversikt</guilabel
+>. Det finns tre områden som låter dig välja vad som ska övas: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Val av språk</para
+></listitem>
+  <listitem
+><para
+>Val av övningsmetod</para
+></listitem>
+  <listitem
+><para
+>Valet av enheterna, som också visar aktuella framsteg</para
+></listitem>
+</itemizedlist>
+
+<screenshot>
+  <screeninfo
+>Anpassa övningen</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_practice.png" format="PNG"/></imageobject>
+    <caption
+>Anpassa övningen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Till vänster kan du välja språkkombinationen du ska öva. Om du till exempel väljer engelska till franska, visas engelska ord, och &parley; ber dig att ange de franska översättningarna. </para>
+
+<para
+>Under språkvalet väljer du övningsmetoden. Sidan <guilabel
+>Övningsmetod</guilabel
+> bestämmer hur övningen ställer frågor till dig. </para>
+
+<para
+>Kombinationsrutan <guilabel
+>Övningsriktning</guilabel
+> kan användas för att välja frågan som kommer att visas under övningen. De möjliga valen är den kända frasen (<guimenuitem
+>Känt till övat</guimenuitem
+>), frasen som ska läras in (<guimenuitem
+>Övat till känt</guimenuitem
+>) eller en blandning av fraserna (<guimenuitem
+>Blandade riktningar</guimenuitem
+>). </para>
+
+<para
+>I den stora delen till höger syns ordförrådsamlingens enheter. Du kan välja vilka enheter du vill öva med kryssrutan framför enhetsnamnet. Antal ord som varje enhet innehåller visas intill namnet. Till höger om namnet ser du nuvarande framsteg i enheten. </para>
+
+<para
+>Varje enhets förlopp visas som procent av enheten som är färdig samt förloppsraderna med flera skuggningar. Procentvärdet beräknas baserat på totalt antal ord i enheten och betygen för varje ord. Förloppsraderna avbildar antal ord med varje betyg, där en mörkare skuggning avbildar ett högre betyg. En förklaring visas också längst upp i enhetsvalet i rubriken. Färgerna i förklaringen återger motsvarande färger i förloppsraderna, från ord som är helt inlärda till ord som ännu inte har övats. </para>
+</sect1>
+
+<sect1 id="advanced-practice-configuration"
+><title
+>Övningsinställning</title>
+
+<para
+>Dialogrutan <guilabel
+>Övningsinställning</guilabel
+> låter dig ange mer avancerade inställningar som påverkar övningen. </para>
+
+<para
+>På skärmen <link linkend="practice-overview"
+>Övningsöversikt</link
+> når du dialogrutan <guilabel
+>Övningsinställning</guilabel
+> med ikonen <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-setup.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <link linkend="advanced-practice-configuration"
+> <guiicon
+>Anpassa övning...</guiicon
+></link
+> i verktygsraden. </para>
+
+<sect2 id="general-practice-settings"
+><title
+>Allmänna övningsinställningar</title>
+
+<para
+>Det finns ett flera andra allmänna inställningsalternativ av övningen på sidan <guilabel
+>Allmänt</guilabel
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Dialogruta för att anpassa övning</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_general.png" format="PNG"/></imageobject>
+    <caption
+>Sida för allmänna inställningar</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>De viktigaste alternativen är: </para>
+
+<itemizedlist>
+  <listitem
+><para
+><guilabel
+>Ignorera accenter</guilabel
+>: Om du skriver in ett ord med <guilabel
+>e</guilabel
+> istället för <guilabel
+>é</guilabel
+> räknas det ändå som rätt med det här alternativet.</para
+></listitem>
+
+  <listitem
+><para
+><guilabel
+>Ignorera stora bokstäver</guilabel
+>: Alternativet låter dig ignorera stora bokstäver när ord matas in,</para
+></listitem>
+
+  <listitem
+><para
+>Sidan <guilabel
+>Bilder och ljud</guilabel
+>: Om du aktiverar bilder, visas de under övningen om de är tillgängliga. Detsamma gäller för ljud.</para
+></listitem>
+
+  <listitem
+><para
+><guilabel
+>Tillåt bilder istället för ord</guilabel
+>: Om alternativet aktivera, tillåts att en bild används som fråga i övningen, under förutsättning att en översättning inte har angivits för det ordets målspråk.</para
+></listitem>
+</itemizedlist>
+<!--FIXME Enable Hints Sessions Synonyms-->
+</sect2>
+
+<sect2 id="blocking"
+><title
+>Blockering</title>
+
+<para
+>Om du planerar att öva regelbundet på ordförrådet, bör du försäkra dig om att funktionen <emphasis
+>Blockering</emphasis
+> är aktiverad. Gå till sidan <guilabel
+>Blockering</guilabel
+> och klicka i kryssrutan som heter <guilabel
+>Blockering</guilabel
+>. Nu kan du till och med ställa in intervallet innan ord du besvarat rätt kommer att upprepas. </para>
+
+<para
+><emphasis
+>Blockering</emphasis
+> betyder att ord inte kommer att frågas efter under en viss tidsperiod efter den senaste övningen. Tidsperioden beror på hur bra du kan ordet, så ord du inte ännu kan frågas oftare efter. </para>
+
+<screenshot>
+  <screeninfo
+>Dialogruta för att anpassa övning</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_blocking.png" format="PNG"/></imageobject>
+    <caption
+>Sidan för blockeringsinställningar</caption>
+  </mediaobject>
+</screenshot>
+<!--FIXME Expiring-->
+</sect2>
+
+<sect2 id="thresholds"
+><title
+>Trösklar</title>
+
+<para
+>Trösklar är ett annat sätt att begränsa vad du vill öva. </para>
+
+<screenshot>
+  <screeninfo
+>Dialogruta för att anpassa övning</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_thresholds.png" format="PNG"/></imageobject>
+    <caption
+>Sidan för tröskelinställningar</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Du kan bestämma att bara öva på ord som du kan bättre eller mindre bra än en viss konfidensnivå, eller du kan välja bara ord som du har övat på ett visst antal gånger. </para>
+</sect2>
+
+<sect2 id="specific-practice-settings"
+><title
+>Specifika övningsinställningar</title>
+
+<para
+>Inställningsalternativ för övningen med flerval kan ändras på inställningssidan <guilabel
+>Specifikt</guilabel
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Dialogruta för att anpassa övning</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_specific.png" format="PNG"/></imageobject>
+    <caption
+>Inställningssidan Specifikt</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Här kan du välja om valen ska vara av samma typ samt antalet val. </para>
+</sect2>
+</sect1>
+
+<sect1 id="practice"
+><title
+>Övning</title>
+<sect2 id="flash-cards"
+><title
+>Snabbkort</title>
+
+<para
+>Efter att ha aktiverat <guilabel
+>Snabbkort</guilabel
+> i rutan <guilabel
+>Övningsmetod</guilabel
+> och tryckt på ikonen <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Starta övning...</guiicon
+> i verktygsraden så visas följande skärm. Övningsmetoden <guilabel
+>Snabbkort</guilabel
+> fungerar precis som om du skulle ha gjort det med <quote
+>riktiga</quote
+> snabbkort. Du tänker ut resultatet och skulle du behöva hjälp kan du klicka på knappen <guibutton
+>Tips</guibutton
+>, som börjar ge dig resultatet en bokstav i taget. </para>
+
+<para
+>Du kan också bestämma dig för att hoppa över ett ord för tillfället. När du trycker på knappen <guilabel
+>Besvara senare</guilabel
+> visas ordet igen vid ett senare tillfälle. </para>
+
+<screenshot>
+  <screeninfo
+>Övningsmetoden Snabbkort</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_grey.png" format="PNG"/></imageobject>
+    <caption
+>Nytt ord</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Att klicka på knappen <guibutton
+>Fortsätt</guibutton
+> avslöjar lösningen. Vid detta tillfälle måste du då tala om om du visste svaret. </para>
+
+<para
+>Om du inte kan det, tryck på knappen <guibutton
+>Jag kan det inte</guibutton
+>. Om du kom ihåg svaret, tryck på knappen <guibutton
+>Jag kan det</guibutton
+>. </para>
+
+<para
+>Det går till nästa fråga. </para>
+
+<para
+>Till vänster längst ner på skärmen finns sju rutor som visar hur bra du kan ordförrådet. Dessa sju rutor motsvarar blockeringsnivåerna inställda på sidan <link linkend="blocking"
+><guilabel
+>Blockering</guilabel
+></link
+> i dialogrutan <guilabel
+>Anpassa övning</guilabel
+>. </para>
+
+<tip
+><para
+>Istället för att trycka på knappen <guilabel
+>Fortsätt</guilabel
+> kan du också använda tangenten <keycap
+>mellanslag</keycap
+>.</para
+></tip>
+
+<screenshot>
+  <screeninfo
+>Övningsmetoden Snabbkort</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_flash_solution.png" format="PNG"/></imageobject>
+    <caption
+>Nytt ord - bekräftelse</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Du kan stoppa övningen när som helst genom att trycka på <guibutton
+>Stoppa övning</guibutton
+>. </para>
+</sect2>
+
+<sect2 id="mixed-letters"
+><title
+>Blandade bokstäver</title>
+
+<para
+>Blandade bokstäver är en övningsmetod som omedelbart tillhandahåller hjälp där alla bokstäver som ingår i lösningen visas blandade: </para>
+
+<screenshot>
+  <screeninfo
+>Övningsmetoden Snabbkort</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_hint.png" format="PNG"/></imageobject>
+    <caption
+>Nytt ord - blandade bokstäver</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Om du skulle behöva någon hjälp, kan du trycka på knappen <guibutton
+>Tips</guibutton
+>, som ger dig lösningen en bokstav i taget. Du kan naturligtvis också bestämma dig att <guibutton
+>Svara senare</guibutton
+>, genom att klicka på den knappen. </para>
+
+<para
+>För att ange svaret, skriv in det i det tomma fältet under de blandade bokstäverna och tryck på returtangenten eller knappen <guibutton
+>Fortsätt</guibutton
+>. </para>
+
+<para
+>Om ditt svar är riktigt, talar &parley; om det för dig, och du kan trycka på returtangenten igen eller trycka på knappen <guibutton
+>Fortsätt</guibutton
+> för att gå vidare med nästa fråga. </para>
+
+<screenshot>
+  <screeninfo
+>Övningsmetoden Snabbkort</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_right.png" format="PNG"/></imageobject>
+    <caption
+>Nytt ord - blandade bokstäver rätt</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Om du skulle skriva in ett felaktigt svar, blir du ombedd att <emphasis
+>försöka igen</emphasis
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Övningsmetoden Snabbkort</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_wrong.png" format="PNG"/></imageobject>
+    <caption
+>Nytt ord - fel svar, försök igen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Om du inte vet svaret, tryck bara på knappen <guibutton
+>Fortsätt</guibutton
+> en andra gång. Då dyker följande upp, och svaret visas. Gå vidare med <guibutton
+>Fortsätt</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Övningsmetoden Snabbkort</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_solution.png" format="PNG"/></imageobject>
+    <caption
+>Nytt ord - fel svar, visa det rätta svaret</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Du kan överskrida hur svaret räknas. Se <link linkend="practice-overview"
+>Övningsöversikt</link
+>. </para>
+</sect2>
+
+<sect2 id="multiple-choice"
+><title
+>Flerval</title>
+<sect3 id="automatic-selection-of-the-possible-answers"
+><title
+>Automatiskt val av möjliga svar</title>
+
+<para
+>I <guilabel
+>Flerval</guilabel
+> visas ett antal möjliga svar, där bara ett är riktigt. Genom att trycka på knappen <guibutton
+>Tips</guibutton
+> undantar &parley; ett av de felaktiga svaren så att valet blir mer och mer begränsat med varje ytterligare tryck på <guibutton
+>Tips</guibutton
+>. Svaret visas när bara ett alternativ återstår, och frågan räknas som fel. Du kan naturligtvis också välja knappen <guibutton
+>Svara senare</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Övningsmetoden Snabbkort</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="multiple_choice.png" format="PNG"/></imageobject>
+    <caption
+>Nytt ord - flerval</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>När du väl har gjort ditt val genom att klicka på vad du anser är riktigt eller skrivit in numret framför alternativet, visar &parley; skärmen nedan om svaret är rätt. Gå vidare med nästa fråga genom att trycka på <guibutton
+>Fortsätt</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Övningsmetoden Snabbkort</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="multiple_choice-right.png" format="PNG"/></imageobject>
+    <caption
+>Nytt ord - flerval, rätt svar</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Om ditt svar istället är fel, visas rätt svar med grönt och det felaktiga med rött. Också här går du vidare genom att trycka på knappen <guibutton
+>Fortsätt</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Övningsmetoden Snabbkort</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="multiple_choice-wrong.png" format="PNG"/></imageobject>
+    <caption
+>Nytt ord - flerval, fel svar</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Du kan överskrida hur svaret räknas. Se <link linkend="practice-overview"
+>Övningsöversikt</link
+>. </para>
+
+<para
+>Om du vill sluta öva, tryck bara på knappen <guibutton
+>Stoppa övning</guibutton
+>. </para>
+</sect3>
+
+<sect3 id="with-yes-no-answers"
+><title
+>Med ja- eller nej-svar</title>
+
+<para
+>Normalt föreslår &parley; automatiskt ett riktigt och flera felaktiga svar i flervalsläge. För vissa övningar måste man istället ha förinställda svar som ja/nej eller liknande, och för dessa måste man anpassa övningen genom att välja på ikonen <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-setup.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <link linkend="advanced-practice-configuration"
+><guiicon
+>Anpassa övning...</guiicon
+></link
+> i verktygsraden. </para>
+
+<para
+>Välj sidan <guilabel
+>Specifikt</guilabel
+> så får du någonting som liknar följande skärmbild: </para>
+
+<screenshot>
+  <screeninfo
+>Dialogruta för att anpassa övning</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_specific.png" format="PNG"/></imageobject>
+    <caption
+>Specifik sida</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Om du bara har <emphasis
+>två val</emphasis
+> som <emphasis
+>ja/nej</emphasis
+> under <guilabel
+>Flerval</guilabel
+>, ställ in <guilabel
+>Antal val:</guilabel
+> till <parameter
+>2</parameter
+>. </para>
+</sect3>
+</sect2>
+
+<sect2 id="written"
+><title
+>Skrivet</title>
+
+<para
+>När du väljer alternativet <guilabel
+>Skrivet</guilabel
+> för att öva, är det meningen att du ska skriva in lösningen. Du kan använda knappen <guibutton
+>Tips</guibutton
+>, som börjar ge dig lösningen en bokstav åt gången. Du kan naturligtvis också bestämma dig för att <guibutton
+>Svara senare</guibutton
+>, genom att trycka på den knappen. </para>
+
+<screenshot>
+  <screeninfo
+>Övningsmetod Skrivet</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_written.png" format="PNG"/></imageobject>
+    <caption
+>Nytt ord - övningsmetod skrivet</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>När du väl har skrivit in en lösning, trycka på knappen <guibutton
+>Fortsätt</guibutton
+> så visar &parley; om ditt svar är rätt. Gå vidare genom att trycka på <guibutton
+>Fortsätt</guibutton
+> igen. </para>
+
+<screenshot>
+  <screeninfo
+>Övningsmetod Skrivet</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_written_right.png" format="PNG"/></imageobject>
+    <caption
+>Nytt ord - övningsmetod skrivet, rätt svar</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Om du skulle skriva in ett felaktigt svar, kan du försöka att hitta rätt svar igen flera gånger. Om du inte försöker igen, och bara trycker på <guibutton
+>Fortsätt</guibutton
+>, visas lösningen. </para>
+
+<screenshot>
+  <screeninfo
+>Övningsmetod Skrivet</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_written_wrong.png" format="PNG"/></imageobject>
+    <caption
+>Nytt ord - övningsmetod skrivet, fel svar</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Gå vidare med övningen genom att trycka på <guibutton
+>Fortsätt</guibutton
+> eller stoppa genom att trycka på knappen <guibutton
+>Stoppa övning</guibutton
+>. </para>
+
+<para
+>Du kan överskrida hur svaret räknas. Se <link linkend="practice-overview"
+>Övningsöversikt</link
+>. </para>
+</sect2>
+
+<sect2 id="reset-practice-to-initial-state"
+><title
+>Återställ övning till ursprungligt tillstånd</title>
+
+<para
+>Du kan nollställa alla övningsresultat till ursprungligt tillstånd (ta bort konfidensnivåerna). Du kan nollställa konfidensnivåerna för enskilda enheter inne i <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Övningsöversikt</guiicon
+> genom att högerklicka på enheten att nollställa och välja <guimenuitem
+>Ta bort konfidensnivåer från enheten</guimenuitem
+>, eller genom att välja <guimenuitem
+>Ta bort konfidensnivåer från enheten och alla delenheter</guimenuitem
+>. </para>
+</sect2>
+</sect1>
+
+<sect1 id="summary-after-practice"
+><title
+>Sammanfattning efter övningen</title>
+
+<para
+>Sammanfattningen visas när en övningssession slutförs. I den stora stapeln längst upp visar den hur bra du klarade övningen. </para>
+
+<para
+>Därunder finns en tabell med alla ord du övade, tillsammans med misstagen du gjorde. </para>
+
+<para
+>Orden med flest misstag är längst upp, så du kan enkelt se vad du inte ännu kan. </para>
+
+<para
+>Tryck på ikonen <inlinemediaobject
+><imageobject
+><imagedata fileref="document-export.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Exportera resultat...</guiicon
+> i verktygsraden eller använd menyalternativet <menuchoice
+><guimenu
+>Övning</guimenu
+> <guimenuitem
+>Exportera resultat...</guimenuitem
+></menuchoice
+> för att exportera övningsresultat som &HTML; eller en OpenDocument textfil (<literal role="extension"
+>.odt</literal
+>). </para>
+
+<screenshot>
+  <screeninfo
+>Sammanfattning efter övningen</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_summary.png" format="PNG"/></imageobject>
+    <caption
+>Sammanfattning efter övningen</caption>
+  </mediaobject>
+</screenshot>
+</sect1>
+
+<!--FIXME Example Sentences practice missing -->
+<sect1 id="grammar-practice-modes"
+><title
+>Övningsmetoder för grammatik</title>
+
+<para
+>Du kan också lära dig specifika grammatiska strukturer med &parley;, såsom genus för substantiv, komparativformer för adjektiv och böjning av verb. Låt oss ta en titt på några exempel: </para>
+
+<sect2 id="articles-and-gender-of-nouns"
+><title
+>Substantivens artiklar och genus</title>
+
+<para
+>När väl övningsmetoden <guilabel
+>Substantivens genus</guilabel
+> är aktiverat, tryck på ikonen <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Starta övning...</guiicon
+> i verktygsraden. </para>
+
+<para
+>I fallet nedan använder vi tyska språket för inlärning, och du har alltså tre genus att välja mellan: maskulinum, femininum och neutrum. Genom att trycka på <guibutton
+>Tips</guibutton
+> utesluts ett av de felaktiga svaren. Du kan naturligtvis också bestämma dig för att <guibutton
+>Svara senare</guibutton
+> genom att klicka på den knappen. </para>
+
+<para
+>Du bör skriva in språkets artiklar i editorn för att se dem istället för de grammatiska begreppen för genus. Observera att det bara fungerar om ordens genus har ställts in riktigt. Se <link linkend="word-types"
+>Ordklasser</link
+> för mer information om hur ordklassen ändras till rätt genus. </para>
+
+<screenshot>
+  <screeninfo
+>Övningsmetod Substantivens genus</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="articles_and_gender.png" format="PNG"/></imageobject>
+    <caption
+>Nytt ord - övningsmetod substantivens genus</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>När du anger rätt svar, visas följande och du går vidare med övningen genom att trycka på knappen <guibutton
+>Fortsätt</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Övningsmetod Substantivens genus</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="articles_and_gender_right.png" format="PNG"/></imageobject>
+    <caption
+>Nytt ord - substantivens genus, rätt svar</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Om du skulle ge ett felaktigt svar, visas följande och du går vidare med övningen genom att klicka på knappen <guibutton
+>Fortsätt</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Övningsmetod Substantivens genus</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="articles_and_gender_wrong.png" format="PNG"/></imageobject>
+    <caption
+>Nytt ord - substantivens genus, fel svar</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Du kan stoppa övningen när som helst genom att trycka på <guibutton
+>Stoppa övning</guibutton
+>. </para>
+</sect2>
+
+<sect2 id="comparison-forms-of-adjectives-and-adverbs"
+><title
+>Komparationsformer för adjektiv och adverb</title>
+
+<para
+>I rutan <guilabel
+>Övningsmetod</guilabel
+>, välj <guilabel
+>Komparationsformer</guilabel
+> och tryck sedan på ikonen <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Starta övning...</guiicon
+> i verktygsraden för att gå vidare. </para>
+
+<para
+>Det fungerar bara när ordens komparationsformer har matats in i ordförrådssamlingen. Se <link linkend="entering-comparison-forms"
+>Mata in komparationsformer</link
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Anpassa övningen</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison.png" format="PNG"/></imageobject>
+    <caption
+>Övningsmetoden Komparationsformer</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Övningen kräver att du skriver in komparationsformerna för termen som visas. I detta fall översättningen av det engelska ordet <emphasis
+>old</emphasis
+> till tyska. Det tyska språket har tre former: <emphasis
+>positiv</emphasis
+>, <emphasis
+>komparativ</emphasis
+> och <emphasis
+>superlativ</emphasis
+>. För att gå vidare med övningen, tryck bara på knappen <guibutton
+>Fortsätt</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Övningsmetoden Komparationsformer</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison_right.png" format="PNG"/></imageobject>
+    <caption
+>Nytt ord - komparation rätt</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+
+<sect2 id="conjugations"
+><title
+>Böjningsformer</title>
+
+<para
+>Välj läget <guilabel
+>Böjningsformer</guilabel
+>, och de tempus du vill använda, för att öva på böjningsformer. </para>
+
+<para
+>Ordens böjningsformer måste matas in i dokumentet för att låta övningsmetoden fungera. Se <link linkend="entering-inflection-forms"
+>Mata in böjningsformer</link
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Anpassa övningen</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Configure_practice_conjugation.png" format="PNG"/></imageobject>
+    <caption
+>Övningsmetoden Böjningsformer</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Tryck därefter på ikonen <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Starta övning...</guiicon
+>. Du måste mata in rätt böjningsformer enligt de tempus som visas. För att gå vidare, tryck på knappen <guibutton
+>Fortsätt</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Övningsmetoden Böjningsformer</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_practice_conjugation.png" format="PNG"/></imageobject>
+    <caption
+>Övningar med böjningsformer</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+</sect1>
+</chapter>
+
+<chapter id="vocabulary-editing"
+><title
+>Redigering av ordförråd</title>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="edit_main.png" format="PNG"/></imageobject>
+    <caption
+>Redigera övningarna</caption>
+  </mediaobject>
+</screenshot>
+
+<sect1 id="setup"
+><title
+>Inställning</title>
+
+<para
+>Innan du börjar använda en ordförrådssamling eller skapa en egen, är det nyttigt att förstå de olika elementen i &parley; och anpassa dem i enlighet med det. Följande avsnitt leder dig igenom processen steg för steg. Det finns flera platser i &parley; med inställningar: </para>
+
+<itemizedlist>
+  <listitem
+><para
+><menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Egenskaper...</guimenuitem
+></menuchoice
+> Detta är platsen för <guilabel
+>Allmänna dokumentegenskaper</guilabel
+>, vilket betyder viss information om ordförrådssamlingen och dig själv.</para
+></listitem>
+
+  <listitem
+><para
+><menuchoice
+><guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Språk...</guimenuitem
+></menuchoice
+> Visar dialogrutan <guilabel
+>Redigera språk</guilabel
+>, där inställningarna rörande språken som du använder finns.</para
+></listitem>
+
+  <listitem
+><para
+><menuchoice
+><guimenu
+>Övning</guimenu
+><guimenuitem
+>Anpassa övning...</guimenuitem
+></menuchoice
+> Här finns inställningar om hur man övar på ordförrådet. Beroende på vad man vill göra vid ett specifikt inlärningstillfälle, ändras de i farten.</para
+></listitem>
+
+  <listitem
+><para
+><menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa &parley;...</guimenuitem
+></menuchoice
+> För mer allmänna inställningar och skärminställningar.</para
+></listitem>
+</itemizedlist>
+
+<sect2 id="about-the-collection"
+><title
+>Om samlingen</title>
+
+<para
+>Att skriva in metadata som titel och kontaktinformation är relevant om du tänker dig att göra samlingen tillgänglig för andra. Använd menyalternativet <menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Egenskaper...</guimenuitem
+></menuchoice
+> för att redigera informationen. </para>
+
+<screenshot>
+  <screeninfo
+>Egenskaper för dialogrutan <quote
+>filnamn.kvtml</quote
+></screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="document_properties.png" format="PNG"/></imageobject>
+    <caption
+>Redigera egenskaperna</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+
+<sect2 id="vocabulary-columns"
+><title
+>Ordförrådskolumner</title>
+
+<para
+>Beroende på vad inlärningssessionen ska handla om, kand det vara relevant att visa ytterligare ordförrådskolumner visas i redigeringssessionen. För att välja kolumnerna, använd menyalternativet <menuchoice
+><guimenu
+>Visa</guimenu
+><guimenuitem
+>Ordförrådskolumner...</guimenuitem
+></menuchoice
+>. Där kan du bestämma om kolumnerna för <emphasis
+>uttal, ordklass, synonym, motsats, exempel, kommentar</emphasis
+> och/eller <emphasis
+>omskrivning</emphasis
+> ska visas. </para>
+
+<screenshot>
+  <screeninfo
+>Dialogrutan Ordförrådskolumner</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="vocabulary_columns.png" format="PNG"/></imageobject>
+    <caption
+>Ställa in kolumnerna</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+
+<sect2 id="languages-and-grammar"
+><title
+>Språk och grammatik</title>
+
+<para
+>Ställ in viss information om grammatik för att &parley; ska kunna hjälpa dig. Använd menyalternativet <menuchoice
+><guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Språk...</guimenuitem
+></menuchoice
+> för att visa en grammatik. </para>
+
+<para
+>Artiklar på engelska är helt enkelt <guilabel
+>the</guilabel
+>, som är den bestämda artikeln och <guilabel
+>a</guilabel
+> som är den obestämda. De flesta andra språk har flera artiklar, som kan fyllas i under fliken <guilabel
+>Artiklar</guilabel
+>. </para>
+
+<para
+>För böjningsformer bör personliga pronomen fyllas i. De flesta språk har inte olika böjningsformer för han/hon/den/det, och i detta fall ska du <emphasis
+>inte</emphasis
+> markera <guilabel
+>Maskulinum och femininum har olika böjningsformer</guilabel
+>. Skriv helt enkelt in pronomen för alla former. </para>
+
+<table>
+  <title
+>Personliga pronomen på engelska</title>
+  <tgroup cols="3">
+  <tbody>
+  <row>
+    <entry
+></entry>
+    <entry
+>Singularis</entry>
+    <entry
+>Pluralis</entry>
+  </row>
+  <row>
+    <entry
+>Första person</entry>
+    <entry
+>jag</entry>
+    <entry
+>vi</entry>
+  </row>
+  <row>
+    <entry
+>Andra person</entry>
+    <entry
+>du</entry>
+    <entry
+>du</entry>
+  </row>
+  <row>
+    <entry
+>Tredje person</entry>
+    <entry
+>han/hon/den/det</entry>
+    <entry
+>de</entry>
+    </row>
+  </tbody>
+  </tgroup>
+</table>
+
+<para
+>Fliken <guilabel
+>Tempus</guilabel
+>: Beroende på språk kan man mata in rätt tempus, som man senare vill lära sig böja. Exempel är: presens, imperfekt, futurum, etc. </para>
+
+<para
+>Du kan förresten lägga till ytterligare ett språk i samlingen genom att trycka på knappen <guibutton
+>Lägg till språk</guibutton
+>. </para>
+
+<sect3 id="lets-have-a-closer-look-at-spanish"
+><title
+>Låt oss ta en närmare titt på spanska</title>
+
+<para
+>Under fliken <guilabel
+>Allmänt</guilabel
+> de grundläggande språkinställningarna, liksom dessa: </para>
+
+<itemizedlist>
+  <listitem
+><para
+><guilabel
+>Språk:</guilabel
+> spanska</para
+></listitem>
+  <listitem
+><para
+><guilabel
+>Namn:</guilabel
+> spanska</para
+></listitem>
+  <listitem
+><para
+><guilabel
+>Tangentbordslayout:</guilabel
+> us (för engelska)</para
+></listitem>
+</itemizedlist>
+
+<para
+>Du kan lämna <guilabel
+>Tangentbordslayout:</guilabel
+> tomt om du inte är säker på vilken du använder. &parley; kommer då helt enkelt ta standardlayouten på datorn. </para>
+
+<screenshot>
+  <screeninfo
+>Dialogrutan för redigera språk</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_general.png" format="PNG"/></imageobject>
+    <caption
+>Redigera ett språk</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Låt oss ta en titt på fliken <guilabel
+>Artiklar</guilabel
+>: Spanska har bara substantiv i maskulinum och femininum, och därför förblir fältet <guilabel
+>Neutrum:</guilabel
+> tomt. </para>
+
+<screenshot>
+  <screeninfo
+>Dialogrutan för redigera språk</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_articles.png" format="PNG"/></imageobject>
+    <caption
+>Artikelflik</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Fliken med Spanska <guilabel
+>Personliga pronomen</guilabel
+> har flera former för tredje person singularis samt första, andra och tredje person pluralis. För att förbli konsekventa, ska möjligheterna skrivas in med <guilabel
+>/</guilabel
+> mellan de två formerna. </para>
+
+<screenshot>
+  <screeninfo
+>Dialogrutan för redigera språk</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_personal_pronouns.png" format="PNG"/></imageobject>
+    <caption
+>Fliken Personliga pronomen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Under fliken <guilabel
+>Tempus</guilabel
+> hittar du de olika tempus som är tillgängliga för en verbform. Du kan lägga till fler tempus än de som redan är där genom att trycka på knapparna <guibutton
+>Ny...</guibutton
+>, <guibutton
+>Ändra...</guibutton
+>, eller om något faktiskt inte finns, helt enkelt <guibutton
+>Ta bort</guibutton
+> ett tempus efter det har markerats. </para>
+
+<screenshot>
+  <screeninfo
+>Dialogrutan för redigera språk</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_tenses.png" format="PNG"/></imageobject>
+    <caption
+>Tempusflik</caption>
+  </mediaobject>
+</screenshot>
+</sect3>
+</sect2>
+</sect1>
+
+<sect1 id="units"
+><title
+>Enheter</title>
+
+<para
+>Till vänster finns en lista med enheter. Om du påbörjat en ny samling, kanske listan är tom förutom en enhet som normalt skapades åt dig. </para>
+
+<para
+>Om du inte kan se listan med enheter, kanske den måste aktiveras med kryssrutan <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Enheter</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>Kryssrutorna framför enhetsnamnen visar vilka enheter som för närvarande ingår i övningen. Talet intill det är antalet ord i enheten. </para>
+
+<sect2 id="new-unit"
+><title
+>Ny enhet</title>
+
+<para
+>Välj vad enheten hör till, exempelvis samlingen <guilabel
+>Mina spanskalektioner</guilabel
+>. </para>
+
+<para
+>Du kan välja alternativet <guilabel
+>Ny enhet</guilabel
+> på ett av följande sätt: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Ikon i det grafiska användargränssnittet: använd ikonen <guiicon
+>Ny enhet</guiicon
+> i verktygsraden.</para
+></listitem>
+
+  <listitem
+><para
+>Menyalternativ: använd <menuchoice
+><guimenu
+>Enhet</guimenu
+> <guimenuitem
+>Ny enhet</guimenuitem
+></menuchoice
+></para
+></listitem>
+
+  <listitem
+><para
+>Sammanhangsberoende meny: klicka med höger musknapp på samlingen och använd alternativet <guimenuitem
+>Ny enhet</guimenuitem
+>.</para
+></listitem>
+</itemizedlist>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="new_lesson2.png" format="PNG"/></imageobject>
+    <caption
+>Samling: Mina spanskalektioner</caption>
+  </mediaobject>
+</screenshot>
+
+<!-- Without gui icon in the toolbar: New Unit -->
+<para
+>Försäkra dig om att markera rätt ställe i trädstrukturen med enheter innan du använder ikonen <guiicon
+>Ny enhet</guiicon
+> i verktygsraden. I vårt fall ville vi ha en <emphasis
+>Delenhet</emphasis
+> i <guilabel
+>Samling: Mina spanskalektioner</guilabel
+>, så det är just den som måste markeras innan man fortsätter med <guiicon
+>Ny enhet</guiicon
+>. </para>
+</sect2>
+
+<sect2 id="moving-renaming-and-deleting-units"
+><title
+>Flytta, byta namn på och ta bort enheter</title>
+
+<para
+>Dubbelklicka, eller klicka med höger musknapp och välj <guimenuitem
+>Byt namn på enhet</guimenuitem
+>, för att byta namn på en enhet. Du kan också ta bort den på detta sätt (men då går dess innehåll också förlorat). </para>
+
+<para
+>Om du inte gillar hur enheterna är arrangerade, kan du flytta en enhet med musen. Du kan dra den till en annan enhet, och då blir den en delenhet till den enheten. </para>
+</sect2>
+
+<sect2 id="splitting-a-unit"
+><title
+>Dela en enhet</title>
+
+<para
+>Om enheterna växer sig för stora, kan du välja att dela upp dem i mindre enheter för att underlätta inlärningen. Tjugo ord i en enhet är troligtvis en bra storlek. Klicka med höger musknapp på en enhet, eller använd menyalternativet <menuchoice
+><guimenu
+>Enhet</guimenu
+> <guimenuitem
+>Dela enhet i mindre enheter</guimenuitem
+></menuchoice
+>, så delas enheten i delenheter. Du kan välja att fördela orden som ska placeras i de nya enheterna slumpmässigt innan de tilldelas, eller behålla dem i ordning. </para>
+</sect2>
+
+<sect2 id="what-is-shown-in-the-table"
+><title
+>Vad som visas i tabellen</title>
+
+<para
+>&parley; visar alltid orden i enheten som du för närvarande har markerat. Du kan aktivera att också visa ord i delenheter som ingår i enheten. Använd kryssrutan <menuchoice
+><guimenu
+>Enhet</guimenu
+> <guimenuitem
+>Visa poster från underliggande enheter</guimenuitem
+></menuchoice
+> för att aktivera det. På så sätt kan du bläddra i alla ord genom att välja dokumentenheten längst upp. </para>
+</sect2>
+</sect1>
+
+<sect1 id="word-types"
+><title
+>Ordklasser</title>
+
+<para
+>&parley; låter dig koppla ordklasser till orden. Ordklasser är till exempel substantiv, verb, adjektiv och adverb. </para>
+
+<para
+>För att arbeta med ordklasser, aktivera ordklassverktyget med kryssrutan: <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Ordklasser</guimenuitem
+></menuchoice
+> </para>
+
+<para
+>Du kan kategorisera ordklasserna precis som enheter. </para>
+
+<para
+>Om du vill se alla ord i en viss ordklass, t.ex. alla substantiv, välj helt enkelt kategorin substantiv, so ser du bara substantiv i tabellen. </para>
+
+<para
+>Det enklaste sättet att ange ordklassen är att dra och släppa ett ord på dess ordklass. Du kan till och med göra det med flera ord samtidigt. </para>
+
+<!-- empty sect2
+<sect2 id="words-or-sentences"
+><title
+>Words or Sentences</title>
+</sect2
+-->
+<sect2 id="adding-new-vocabulary"
+><title
+>Lägga till nytt ordförråd</title>
+
+<para
+>Använd ikonen <inlinemediaobject
+><imageobject
+><imagedata fileref="list-add.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Lägg till ny post</guiicon
+> i verktygsraden för att lägga till nya ord. Du kan börja skriva in ordet i det första språket direkt. Efter att ha skrivit in det första ordet, tryck på tangenten tabulator för att gå till nästa språk. </para>
+</sect2>
+
+<sect2 id="editing-words"
+><title
+>Redigera ord</title>
+
+<para
+>Om du vill ersätta ett ord, markera dess post och börja skriva. För att ändra ordet istället, dubbelklicka på posten så kan du ändra innehållet i cellen utan att det gamla ordet går förlorat. </para>
+
+<para
+>Tryck på tangenten tabulator för att gå till nästa ord och vara kvar i redigeringsläget. Returtangenten lämnar läget. Du kan använda piltangenterna för att flytta omkring. </para>
+</sect2>
+</sect1>
+
+<sect1 id="synonyms"
+><title
+>Synonymer</title>
+
+<para
+>Synonymer är svåra att ställa in, och fungerar inte alltid särskilt bra. Här beskrivs i alla fall hur du ställer in dem: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Använd kryssrutan <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Synonymer</guimenuitem
+></menuchoice
+> för att visa synonymverktyget.</para
+></listitem>
+
+  <listitem
+><para
+>Markera första ordet (A) som du vill göra till en synonym, och klicka därefter på det andra ordet (B).</para
+></listitem>
+
+  <listitem
+><para
+>Knappen i synonymverktyget ändrar sin text till <guibutton
+>A och B är synonymer</guibutton
+>.</para
+></listitem>
+</itemizedlist>
+
+<para
+>Orden visas nu som kopplade i synonymverktyget och kan kännas igen som synonymer under övningar. </para>
+</sect1>
+
+<sect1 id="adding-images"
+><title
+>Lägga till bilder</title>
+
+<para
+>Visa först bildverktyget genom att välja kryssrutan <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Bild</guimenuitem
+></menuchoice
+>. Det dyker upp i rutan <guilabel
+>Bild</guilabel
+> på höger sida av &parley;s skärm. </para>
+
+<para
+>Försäkra dig om att ordet är markerat för att lägga till en bild för ett ord. I rutan <guilabel
+>Bild</guilabel
+> på höger sida tryck på ikonen <inlinemediaobject
+><imageobject
+><imagedata fileref="folder-black.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Katalog</guiicon
+> och välj bilden du vill associera med ordet. När en bild väljes för ett par översättningar, ska nedre högra hörnet i båda ordens celler markeras med en blå flagga. Om du vill använda det här sättet, gör samma sak med det andra ordet i paret. Hålls muspekaren över flaggan visas bildfilens namn och sökväg. </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="adding-images.png" format="PNG"/></imageobject>
+    <caption
+>Lägga till en bild</caption>
+  </mediaobject>
+</screenshot>
+
+<!-- <para
+>The needed images can be obtained from Google search using &parley; inbuilt scripts.
+</para>
+
+<para
+>To obtain the image highlight a word in the list then choose the <menuchoice
+><guimenu
+>Scripts</guimenu
+> <guimenuitem
+>Fetch Image</guimenuitem
+></menuchoice
+> menu item.
+</para>
+
+<screenshot>
+  <screeninfo
+>Obtaining images from the Internet</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_006b.png" format="PNG"/></imageobject>
+    <caption
+>Obtaining images from the Internet</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Choose the right image using <guibutton
+>Next</guibutton
+> and <guibutton
+>Previous</guibutton
+> buttons. You can correct the search criteria for the images using the corresponding text box.
+</para>
+
+<para
+>If you prefer only free images check the corresponding check box.
+</para>
+
+<para
+>When the selection is finished just press on the <guibutton
+>OK</guibutton
+> button and the image will be saved next to the current vocabulary file in the <filename role="directory"
+><replaceable
+>name_of_vocabulary</replaceable
+>_files</filename
+> subfolder.
+</para>
+
+<warning
+><para
+>Due to the current script limitations the image files cannot be saved in the paths with Unicode symbols in the names of folders and files.
+</para
+></warning
+> -->
+</sect1>
+
+<sect1 id="adding-sound"
+><title
+>Lägga till ljud</title>
+
+<para
+>Visa först ljudverktyget genom att välja kryssrutan <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Ljud</guimenuitem
+></menuchoice
+>. Det dyker upp i rutan <guilabel
+>Ljud</guilabel
+> på höger sida av &parley;s skärm. </para>
+
+<para
+>Försäkra dig om att ordet är markerat för att lägga till ett ljud för ett ord. I rutan <guilabel
+>Ljud</guilabel
+> på höger sida tryck på ikonen <inlinemediaobject
+><imageobject
+><imagedata fileref="folder-black.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Katalog</guiicon
+> och välj ljudet du vill associera med ordet. När en ljudfil väljes för ett ord, ska övre högra hörnet i ordets cell markeras med en röd flagga. Om du vill använda det här sättet, gör samma sak med det andra ordet i paret. Hålls muspekaren över flaggan visas ljudfilens namn och sökväg. </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="adding-sound.png" format="PNG"/></imageobject>
+    <caption
+>Lägga till ett ljud</caption>
+  </mediaobject>
+</screenshot>
+
+<!-- Not found!
+<para
+>The needed sound files can be obtained from Wiktionary using &parley; inbuilt scripts.
+</para>
+
+<para
+>To obtain the sound file highlight a word in the list then choose <menuchoice
+><guimenu
+>Scripts</guimenu
+> <guimenuitem
+>Fetch Sound</guimenuitem
+></menuchoice
+> from the &parley; menu.
+</para>
+
+<para
+>The sound file will be saved next to the current vocabulary file in the <filename role="directory"
+><replaceable
+>name_of_vocabulary</replaceable
+>_files</filename
+> subfolder.
+</para
+> -->
+</sect1>
+
+<sect1 id="entering-comparison-forms"
+><title
+>Mata in komparationsformer</title>
+
+<para
+>Försäkra dig om att verktyget för komparationsformer är aktiverat, för att mata in komparationsformer. Det visas med kryssrutan: <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Komparationsformer</guimenuitem
+></menuchoice
+> </para>
+
+<para
+>Markera först ett ord som är ett adjektiv eller adverb. </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison_form.png" format="PNG"/></imageobject>
+    <caption
+>Komparationsformverktyg</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Tryck på knappen <guibutton
+>Adjektiv</guibutton
+> eller <guibutton
+>Adverb</guibutton
+> i verktyget för komparationsformer. </para>
+<!--
+<screenshot>
+  <screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_edit_comparison_form_2.png" format="PNG"/></imageobject>
+    <caption
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+<para
+>Ange komparationsformerna. </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison_form_edit.png" format="PNG"/></imageobject>
+    <caption
+>Redigera komparationsformerna.</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Nu kan du använda <link linkend="comparison-forms-of-adjectives-and-adverbs"
+>övningsmetoden Komparationsformer</link
+>. </para>
+</sect1>
+
+<sect1 id="entering-inflection-forms"
+><title
+>Mata in böjningsformer</title>
+
+<para
+>Försäkra dig om att verktyget för böjningsformer är aktiverat, för att mata in böjningsformer. Det visas med kryssrutan: <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Böjning (verb, adjektiv, substantiv)</guimenuitem
+></menuchoice
+> </para>
+
+<para
+>Markera först ett ord som är ett verb. </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="conjugation.png" format="PNG"/></imageobject>
+    <caption
+>Redigera böjningsformerna</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Klicka på knappen <guibutton
+>Verb</guibutton
+> i böjningsverktyget. </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="conjugation_edit.png" format="PNG"/></imageobject>
+    <caption
+>Redigera böjningsformerna</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Ange böjningsformerna, efter att ha valt rätt tempus i kombinationsrutan <guilabel
+>Tempus:</guilabel
+>. </para>
+
+<para
+>Tempus kan ställas in för varje språk: <link linkend="languages-and-grammar"
+>Språk och grammatik</link
+>. </para>
+
+<para
+>Nu kan du använda metoden <link linkend="conjugations"
+>Böjningsformer</link
+>. </para>
+
+<para
+>Använd knappen <guibutton
+>Substantiv</guibutton
+> eller <guibutton
+>Adjektiv</guibutton
+> för att lägga till böjningsformer i ordförrådet. </para>
+</sect1>
+
+<sect1 id="creating-new-files"
+><title
+>Skapa nya filer</title>
+
+<para
+>I det här avsnittet beskriver vi hur man skapar nya filer, och inte bara för den vanliga ordförrådsinlärningsdelen, utan också för grammatiska övningar, matematik, etc. </para>
+
+<sect2 id="new-collection--vocabulary-english-german"
+><title
+>Ny samling: Ordförråd engelska - tyska</title>
+
+<para
+>I det här avsnittet beskriver vi hur man kan skapa en ordförrådsträningsfil, inklusive bilder och ljud. I ett andra steg kommer vi också att lägga till adjektiv och verb. Det här är ett mycket fullständigt exempel, och därför ganska långt. I slutändan kommer du nog inte behöva alla punkter i ett eget projekt. </para>
+
+<para
+>Eftersom vi vill lägga till ljudfiler och bilder, bör vi försäkra oss om att de alla finns i en katalog, vilken för bekvämlighets skull kallas <emphasis
+>eng-deu</emphasis
+>. Vår datafil som skapas med &parley; kommer att sparas i samma katalog. Det hjälper en hel del när man bestämmer sig för att dela arbetet med andra. </para>
+
+<para
+>Det här är alltså vad vi har i form av ljudfiler och bilder: </para>
+
+<screenshot>
+  <screeninfo
+>Datakatalog i &dolphin;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Folder_with_sound_and_pictures.png" format="PNG"/></imageobject>
+    <caption
+>Datakatalog i &dolphin;</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Låt oss börja på <guilabel
+>Instrumentpanelen</guilabel
+>, som visas när &parley; väl har startats: </para>
+
+<screenshot>
+  <screeninfo
+>Huvudfönstret i &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="dashboard.png" format="PNG"/></imageobject>
+    <caption
+>Instrumentpanel med flera samlingar</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Klicka på knappen <guibutton
+>Skapa en ny samling...</guibutton
+> </para>
+
+<para
+>Sidan <guilabel
+>Allmänna dokumentegenskaper</guilabel
+> visas, som fylls i enligt följande (anpassa det bara till vad din fil handlar om): </para>
+
+<screenshot>
+  <screeninfo
+>Egenskaper för ... dialogruta</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="general_document_properties.png" format="PNG"/></imageobject>
+    <caption
+>Egenskaper för ... dialogruta</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Tryck därefter på knappen <guibutton
+>Ok</guibutton
+>. Följande skärm ber dig ställa in språkets detaljinformation. Här behöver vi inte ändra någonting, och trycker därför bara på <guibutton
+>Ok</guibutton
+>. </para>
+
+<para
+>Som första steg, låt oss skapa ordförrådsdelen. Vi funderar på att lägga till ljudfiler och bilder i ett andra steg. Så här ser enheten ut: </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="new_empty_collection.png" format="PNG"/></imageobject>
+    <caption
+>En ny tom samling</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Innan vi gör någonting mer, låt oss spara filen i katalogen med bilder och ljudfiler. Använd menyalternativet <menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Spara</guimenuitem
+></menuchoice
+> och välj katalogen genom att navigera till den. I det här exemplet kallar vi filen <guilabel
+>Trainer eng-deu</guilabel
+>. När namnet väl har skrivits in, tryck på knappen <guibutton
+>Spara</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Dialogrutan Spara ordförråd som</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="save_new_collection.png" format="PNG"/></imageobject>
+    <caption
+>Spara en ny samling</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Om man nu tittar i katalogen där ljudfilerna och bilderna finns, hittar man också filen <filename
+>Trainer eng-deu.kvtml</filename
+>. </para>
+
+<para
+>Låt oss ta en kort titt på orden som vi vill lägga till: <emphasis
+>apple, bird, cat, cherry, cow, orange, pear, snake, strawberry</emphasis
+>. Vi har djur och frukter, och därför bestämmer vi oss för att skapa två enheter som heter <guilabel
+>Animals</guilabel
+> och <guilabel
+>Fruits</guilabel
+>. </para>
+
+<para
+>Nu byter vi namn på <guilabel
+>Lektion 1</guilabel
+> till <guilabel
+>Animals</guilabel
+> och därefter lägger vi till en enhet som heter <guilabel
+>Fruits</guilabel
+>. Klicka med höger musknapp på <guilabel
+>Lektion 1</guilabel
+> och välj <guimenuitem
+>Byt namn på enhet</guimenuitem
+> från de visade alternativen. Nu markeras <guilabel
+>Lektion 1</guilabel
+> och du kan helt enkelt skriva över det genom att skriva in <guilabel
+>Animals</guilabel
+>. När du är klar, tryck på returtangenten. Klicka nu med höger musknapp på <guilabel
+>Samling: Ordförrådsträning E...</guilabel
+>, som är enhetsträdets rot och välj <guimenuitem
+>Ny enhet</guimenuitem
+> från de visade alternativen. Skriv <guilabel
+>Fruits</guilabel
+> i det nya fältet och tryck på returtangenten igen. </para>
+
+<para
+>Låt oss först mata in djuren. Klicka på enheten <guilabel
+>Animals</guilabel
+> så dyker en tom tabell upp, som kan fyllas i. Klicka med höger musknapp på det första fältet, och mata in ursprungstermerna. Infoga därefter resultattermerna i den andra kolumnen. När alla fyra engelska djurnamn är inmatade med deras översättning till tyska, ser skärmen ut så här: </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_004.png" format="PNG"/></imageobject>
+    <caption
+>Redigera ordförrådsövningen Engelska-Tyska</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>I vårt fall vill vi bara ha fyra poster i djurenheten. Det finns många tomma rader som bör tas bort. Klicka på det första tomma fältet, och håll nere skifttangenten medan det sista tomma fältet klickas, för att göra det. Alla rader som ska tas bort markeras. Tryck därefter på tangenten <keycap
+>Delete</keycap
+>. </para>
+
+<para
+>Låt oss lägga till fruktterminologin. Klicka bara på enheten som heter <guilabel
+>Fruits</guilabel
+>. Den andra enheten är helt tom. Eftersom vi har fem frukttermer, behöver vi lägga till fem rader. Tryck därför på tangenten <keycap
+>Insert</keycap
+> fem gånger, och lägg därefter till terminologin precis som förut. </para>
+
+<para
+>Glöm inte bort att spara då och då ... </para>
+
+<para
+>Efter ett klicka på enhetsträdets rot <guilabel
+>Samling: Ordförrådsträning E...</guilabel
+> så visar &parley; oss alla poster som finns i de båda enheterna. </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_005.png" format="PNG"/></imageobject>
+    <caption
+>Alla poster närvarande i två enheter</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Dags att lägga till ljud och bilder. För det första måste vi aktivera vyerna <guilabel
+>Bild</guilabel
+> och <guilabel
+>Ljud</guilabel
+>. Använd kryssrutorna <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Bild</guimenuitem
+></menuchoice
+> och <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Ljud</guimenuitem
+></menuchoice
+>. När alternativen väl är aktiverade, visas två nya rutor som två nya flikar längst ner på höger sida av &parley;s redigeringsskärm. </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_006.png" format="PNG"/></imageobject>
+    <caption
+>Rutorna Ljud och Bild</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Markera det engelska ordet <emphasis
+>apple</emphasis
+> genom att klicka på det. Det markeras, så låt oss lägga till bilden. I bildrutan på höger sida tryck på ikonen <inlinemediaobject
+><imageobject
+><imagedata fileref="folder-black.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Katalog</guiicon
+> och välj bilden du vill associera med ordet. </para>
+
+<para
+>För att lägga till uttalet för det engelska apple, gör samma sak i ljuddelen, och välj den relevanta ljudfilen. </para>
+
+<para
+>Genom att trycka på knappen <guibutton
+>Spela</guibutton
+> i ljudverktyget, kan man lyssna på uttalet. </para>
+
+<para
+>Skärmen ser då ut så här: </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_007.png" format="PNG"/></imageobject>
+    <caption
+>Spela ljudet</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Klicka därefter på den tyska översättningen <guilabel
+>Apfel</guilabel
+>. Fältet färgläggs nu för att ange markeringen. Det syns att bilden med äpplet också hör ihop med den tyska termen. Välj uttalet i ljuddelen, precis som förut. </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_008.png" format="PNG"/></imageobject>
+    <caption
+>Kontrollerar databindningen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Fortsätt bara så här för alla termer. </para>
+
+<para
+>Dags att lägga till adjektiv och verb som enheter i vårt projekt. Gör precis som tidigare med enheten <emphasis
+>Fruits</emphasis
+> och skapa två nya lektioner: <emphasis
+>Adjectives</emphasis
+> och <emphasis
+>Verbs</emphasis
+>. Låt oss anta att vi kommer att lägga till <emphasis
+>big, small, old, young, narrow</emphasis
+> i adjektivenheten och <emphasis
+>to go, to come, to buy, to drink, to eat</emphasis
+> i verbenheten. </para>
+
+<para
+>Följande visar en skärmbild med all terminologi inmatad. Nu är ord blandade, och det skulle vara trevligt att se vad som är ett <emphasis
+>substantiv</emphasis
+>, <emphasis
+>adjektiv</emphasis
+> eller <emphasis
+>verb</emphasis
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_009.png" format="PNG"/></imageobject>
+    <caption
+>Visar all infoga terminologi</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Som nästa steg kommer vi att visa <guilabel
+>Ordklass</guilabel
+>. Använd kryssrutan <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Ordförrådskolumner</guimenuitem
+></menuchoice
+>. Vi aktiverar <guilabel
+>Ordklass</guilabel
+> för <emphasis
+>Engelska</emphasis
+> och <emphasis
+>Tyska</emphasis
+> genom att klicka på kryssrutan framför <guilabel
+>Ordklass</guilabel
+>. Klicka därefter på knappen <guibutton
+>Ok</guibutton
+> för att acceptera ändringarna. </para>
+
+<screenshot>
+  <screeninfo
+>Dialogrutan Ordförrådskolumner</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_010.png" format="PNG"/></imageobject>
+    <caption
+>Välja ordklassobjekt</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Genom att klicka på fälten i kolumnen <guilabel
+>Ordklass</guilabel
+> kan man välja ordklass och för de språk där substantiv har ett genus, kan man också välja kombinationen <emphasis
+>Substantiv/genus</emphasis
+>.  Som alternativ, börja skriva in de första tecknen i en ordklass för att välja den. Nedan kolumnen <guilabel
+>Ordklass</guilabel
+> med en del av valen redan gjorda. </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_011.png" format="PNG"/></imageobject>
+    <caption
+>Välja ordklasserna</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>När vi väl har angivit alla ordklasser, betraktar vi först <emphasis
+>adjektiv</emphasis
+>, och lägger till <guilabel
+>Komparationsformer</guilabel
+> till dem. Låt oss gå till bara enheten <emphasis
+>Adjectives</emphasis
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_012.png" format="PNG"/></imageobject>
+    <caption
+>Välja komparationsformerna</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>För att visa <guilabel
+>Komparationsformer</guilabel
+> på höger sida av skärmen, använd kryssrutan <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Komparationsformer</guimenuitem
+></menuchoice
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_013.png" format="PNG"/></imageobject>
+    <caption
+>Visar komparationsformerna</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Redigera <guilabel
+>Komparationsformer</guilabel
+> genom att lägga till <guilabel
+>Komparativ</guilabel
+>och <guilabel
+>Superlativ</guilabel
+> för de enskilda adjektiven. Klicka först på adjektivet där komparationsformerna ska läggas till, i vårt fall <emphasis
+>big</emphasis
+>, och lägg till <emphasis
+>bigger</emphasis
+> och <emphasis
+>biggest</emphasis
+>. Fortsätt därefter med nästa adjektiv att fylla i, till alla komparationsformer har matats in.  </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_014.png" format="PNG"/></imageobject>
+    <caption
+>Lägga till komparativ och superlativ</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Låt oss till sist betrakta <guilabel
+>Böjningsformer</guilabel
+>  för <guilabel
+>Verb</guilabel
+>. Välj enheten <guilabel
+>Verbs</guilabel
+> och aktivera därefter böjningsformer på höger sida genom att använda kryssrutan <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Böjningsformer</guimenuitem
+></menuchoice
+>. Som exempel redigerar vi presens (<guilabel
+>Präsens</guilabel
+>) av <emphasis
+>gehen</emphasis
+>. Välj först <guilabel
+>Präsens</guilabel
+> i kombinationsrutan och lägg därefter till verbformerna. </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_015.png" format="PNG"/></imageobject>
+    <caption
+>Välj verbets böjningsform</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Detta måste göras för alla verb, och i alla möjliga tempus. </para>
+
+<para
+>När du väl är klar, kan du börja öva genom att trycka på ikonen <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <link linkend="vocabulary-practice"
+><guiicon
+>Öva</guiicon
+></link
+> i verktygsraden. </para>
+</sect2>
+
+<sect2 id="new-collection:-single-names-and-collective-names"
+><title
+>Ny samling: Konkreta och kollektiva substantiv</title>
+
+<para
+>Övningen skapades för tredje klass i en italiensk grundskola. Eleverna förväntas koppla ihop konkreta och kollektiva substantiv, såsom <emphasis
+>träd</emphasis
+> → <emphasis
+>skog</emphasis
+>. </para>
+
+<para
+>När &parley; startas visas startsidan, som eventuellt också listar några tidigare använda filer (vilket inte syns här). </para>
+
+<screenshot>
+  <screeninfo
+>Huvudfönstret i &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="initial_screen.png" format="PNG"/></imageobject>
+    <caption
+>Instrumentpanel</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Trycka på knappen <guibutton
+>Skapa en ny samling...</guibutton
+> så dyker följande skärm upp med tomma eller delvis ifyllda fält: </para>
+
+<screenshot>
+  <screeninfo
+>Egenskaper för namnlös dialogruta</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names1.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Egenskaper för namnlös dialogruta</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Fyll i titeln, här <guilabel
+>nomi singoli e collettivi</guilabel
+>, namn och e-postadress. I textrutan <guilabel
+>Kommentar</guilabel
+> kan du skriva in en mer detaljerad beskrivning. Välj <guilabel
+>Kategori</guilabel
+> och <guilabel
+>Licens</guilabel
+>. Därefter har vi något speciellt: istället för att ange det <guilabel
+>Första språket:</guilabel
+> och <guilabel
+>Andra språket:</guilabel
+>, som normalt skulle ske, lägger vi till <emphasis
+>nome singolo</emphasis
+> (konkreta substantiv) and <emphasis
+>nome collettivo</emphasis
+> (kollektiva substantiv). <guilabel
+>Ställ in grammatikinformation</guilabel
+> och <guilabel
+>Ladda ner grammatik</guilabel
+> behövs inte här. På skärmbilden är de fortfarande aktiverade. Inaktivera dem genom att helt enkelt klicka på kryssrutorna. När du är klar, klicka på knappen <guilabel
+>Ok</guilabel
+>. </para>
+
+<para
+>Använd menyalternativet <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Språk...</guimenuitem
+></menuchoice
+> så dyker rutan <guilabel
+>Egenskaper för nome singolo</guilabel
+> upp, som här visas med nödvändiga ändringar redan gjorda: </para>
+
+<screenshot>
+  <screeninfo
+>Dialogrutan Redigera språk</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names4.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Egenskaper för nome singolo</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>På vänster sida ser du var data du matar in hör till, <emphasis
+>nome singolo</emphasis
+>. Välj språket, här <emphasis
+>Italienska</emphasis
+> och mata in <emphasis
+>nome singolo</emphasis
+> i det följande redigerbara fältet. Tryck därefter på knappen <guibutton
+>Ok</guibutton
+>. </para>
+
+<para
+>Nu visas rutan <guilabel
+>Egenskaper för nome collettivo</guilabel
+>: </para>
+
+<screenshot>
+  <screeninfo
+>Dialogrutan Redigera språk</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names5.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Egenskaper för nome collettivo</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Liksom tidigare, välj <guilabel
+>Italienska</guilabel
+> som språk, mata in  <emphasis
+>nome collettivo</emphasis
+> och tryck på knappen <guibutton
+>Ok</guibutton
+>. </para>
+
+<para
+>Och nu kan du börja redigera: </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names7.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Skapa ett nytt övningskollektiv</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Mata bara in <emphasis
+>nome singolo</emphasis
+> (konkret substantiv) i den första kolumnen och motsvarande <emphasis
+>nome collettivo</emphasis
+> (kollektivt substantiv) i den andra kolumnen. </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names8.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Lägga till en ny post</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Om antal tillgängliga fält inte är tillräckligt, högerklicka bara var som helst i redigeringsrutan och välj <guimenuitem
+>Lägg till ny post</guimenuitem
+>. Glöm inte att spara filen då och då. När du är klar med att lägga till alla poster, vill du kontrollera om övningsmetoden fungerar bra. Klicka då bara på ikonen <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Öva</guiicon
+> i verktygsraden precis ovanför redigeringsrutan, så visas sidan med övningsinställningarna: </para>
+
+<screenshot>
+  <screeninfo
+>Redigeringsfönster</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names10.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Övningsmetoden Flerval</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>I detta fall är <guilabel
+>Flerval</guilabel
+> ett bra alternativ, men <guilabel
+>Skrivet</guilabel
+> fungerar också bra. Efter att ha valt övningsmetod, tryck bara på ikonen <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+><guiicon
+>Starta övning...</guiicon
+> i verktygsraden och ha det så kul. </para>
+</sect2>
+</sect1>
+
+<sect1 id="getting-additional-collections"
+><title
+>Hämta ytterligare samlingar</title>
+
+<para
+>När du är på <guilabel
+>Instrumentpanelen</guilabel
+> har du möjlighet att direkt installera samlingar från servern, under förutsättning att du är uppkopplad. Tryck bara på knappen <guibutton
+>Ladda ner nya samlingar...</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Huvudfönstret i &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="dashboard.png" format="PNG"/></imageobject>
+    <caption
+>Instrumentpanel med flera samlingar</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Ett fönster med många intressanta samlingar visas. Välj bara vad du tycker är intressantast, och tryck på knappen <guibutton
+>Installera</guibutton
+>. Öppna därefter filen för att öva eller redigera. </para>
+
+<screenshot>
+  <screeninfo
+>Dialogrutan Ladda ner nyheter</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="get_new_stuff.png" format="PNG"/></imageobject>
+    <caption
+>Hämta nya samlingar</caption>
+  </mediaobject>
+</screenshot>
+</sect1>
+
+<sect1 id="configure-parley"
+><title
+>Anpassa &parley;</title>
+
+<para
+>Du kan ställa in &parley;s utseende på skärmarna <guilabel
+>Instrumentpanel</guilabel
+>, <guilabel
+>Övning</guilabel
+> eller <guilabel
+>Editor</guilabel
+>. Använd menyalternativet <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa &parley;...</guimenuitem
+></menuchoice
+>. </para>
+
+<sect2 id="theme-tab"
+><title
+>Temasidan</title>
+
+<para
+>Inställningen visas med sidan <guilabel
+>Tema</guilabel
+>. Det är stället du kan välja hur &parley; ska välkomna dig när det startas: en elegant <guilabel
+>Grå</guilabel
+> version eller alltid upptagna <guilabel
+>Bin</guilabel
+>. Observera att det är mycket möjligt att <guilabel
+>Fluffy Bunny</guilabel
+> inte finns i din version: Om du vill ha det, läs följande avsnitt. </para>
+
+<para
+>När du väl har valt det önskade temat, klicka på knappen <guibutton
+>Ok</guibutton
+>. </para>
+
+<para
+>Skärmbild av temat <guilabel
+>Bin</guilabel
+>: </para>
+
+<screenshot>
+  <screeninfo
+>Övningsskärm</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_bees.png" format="PNG"/></imageobject>
+    <caption
+>Temat Bin under arbete</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Och om de inte är nog, kan du trycka på <guibutton
+>Hämta nya teman...</guibutton
+> för att hitta fler teman. Allteftersom tiden går hoppas vi att fler och fler teman kommer fram. Om du vet hur man skapar &SVG;-grafik (till exempel med <ulink url="https://inkscape.org"
+><application
+>Inkscape</application
+></ulink
+>), kan du skapa ett eget tema och dela det med resten av världen. </para>
+
+<screenshot>
+  <screeninfo
+>Dialogrutan Anpassa - &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_theme.png" format="PNG"/></imageobject>
+    <caption
+>Temainställningssida</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Ytterligare teman finns på <ulink url="https://store.kde.org/browse/cat/357/order/latest/"
+>store.kde.org</ulink
+> </para>
+</sect2>
+
+<sect2 id="general-tab"
+><title
+>Sidan Allmänt</title>
+
+<para
+>Sidan <guilabel
+>Allmänt</guilabel
+> ger dig några alternativ avseende &parley;s beteende. </para>
+
+<sect3 id="open-save-options"
+><title
+>Rutan Öppna/spara</title>
+
+<para
+><guilabel
+>Ladda alltid den senast öppnade samlingen vid start</guilabel
+> tar dig omedelbart tillbaka till ordförrådet du höll på att lära dig. Ofta används det tillsammans med det andra alternativet <guilabel
+>Spara ordförråd automatiskt vid stängning och avslutning</guilabel
+> eftersom det är bekvämt att inte alltid behöva svara på samma frågor om ändringar (inklusive resultat av inlärning) ska sparas eller inte. Alternativet <guilabel
+>Skapa säkerhetskopia var ... minuter</guilabel
+> kan vara mycket praktiskt för att hjälpa till att spara ditt arbete ofta. En sak mindre att tänka på. </para>
+
+<para
+>Ibland kan import och/eller export av textfiler (CSV) vara mycket praktiskt och då behövs den riktiga avskiljaren för att senare genomarbeta data, eller för att kunna läsa data som du fått någon annanstans. &parley; låter dig välja mellan olika avskiljare för att försäkra att data kan återanvändas. </para>
+</sect3>
+
+<sect3 id="editing-option"
+><title
+>Redigeringsrutan</title>
+
+<para
+>Här kan du bestämma om &parley; automatiskt lägger till nya rader medan ordförrådssamlingen redigeras. Det kan vara användbart om du vill lägga till många poster, innan de delas upp i diverse enheter. Å andra sidan kan det vara bra att lämna alternativet avstängt om du vill arbeta med att skapa enheter som har ett inställt maximalt antal poster. </para>
+
+<screenshot>
+  <screeninfo
+>Dialogrutan Anpassa - &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_generalconfig.png" format="PNG"/></imageobject>
+    <caption
+>Sida för allmänna inställningar</caption>
+  </mediaobject>
+</screenshot>
+</sect3>
+</sect2>
+
+<sect2 id="view-tab"
+><title
+>Sidan Visa</title>
+
+<para
+>Sidan <guilabel
+>Visa</guilabel
+> låter dig ändra teckensnitt och storlek på uttalssymbolerna, och du kan välja den <guilabel
+>Grundfärg för att visa betyg:</guilabel
+> du tycker bäst om. </para>
+
+<screenshot>
+  <screeninfo
+>Dialogrutan Anpassa - &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_view.png" format="PNG"/></imageobject>
+    <caption
+>Visningsinställningssida</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+</sect1>
+</chapter>
+
+<!--FIXME &parley; is not available on &Windows; in 16.04
+<chapter id="parley-on-windows"
+><title
+>&parley; on &Windows;</title>
+
+<para
+>It is possible to install &parley; together with other <ulink url="https://edu.kde.org"
+>Educational software</ulink
+> on &Windows; systems. For further info please visit <ulink url="https://community.kde.org/Windows"
+>this page</ulink
+>.
+</para>
+
+<para
+>The steps to be followed in short:
+</para>
+
+<para
+>Download the installer <ulink url="https://windows.kde.org/download.php"
+>here</ulink>
+</para>
+
+<para
+>Then follow the installation procedure like for any other &Windows; software.
+</para>
+
+<para
+>When you come to the <guilabel
+>Package selection screen</guilabel
+>, select the language(s) you wish the software to be available in <emphasis
+>and</emphasis
+> the package - in this case <guilabel
+>kdeedu</guilabel
+>. If you don't select any language you will automatically get English.
+</para>
+
+<para
+>Then finish the installation process by clicking on next, following the coming screens just like you normally do with other windows software.
+</para>
+
+<para
+>Please note that the &parley; team does not deal with the &Windows; Installer and therefore we cannot easily answer your questions. Should you have difficulties, please contact the &kde;-Windows team directly. You can do so by subscribing to the mailing list <ulink url="https://mail.kde.org/mailman/listinfo/kde-windows"
+>here</ulink
+> or join them on &irc; at irc://irc.libera.chat Channel: #kde-windows.
+</para>
+</chapter>
+-->
+
+<chapter id="notes-for-advanced-users"
+><title
+>Anmärkningar för avancerade användare</title>
+<!--
+<sect1 id="using-parley-for-exam-preparation"
+><title
+>Using &parley; for Exam Preparation</title>
+
+<itemizedlist>
+  <listitem
+><para
+>what to bear in mind with long questions / answers?</para
+></listitem>
+  <listitem
+><para
+>how to start  with a new Exam</para
+></listitem>
+  <listitem
+><para
+>example 1 with capitals</para
+></listitem>
+  <listitem
+><para
+>example 2 with sentence</para
+></listitem>
+</itemizedlist>
+</sect1>
+-->
+<!-- TODO: menu item not found -->
+<sect1 id="upload-and-share-collections"
+><title
+>Ladda upp och dela samlingar</title>
+
+<para
+>Du kan ladda upp dina filer och dela dem med andra. </para>
+
+<para
+>Använd menyalternativet <menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Ladda upp ordförrådsdokument</guimenuitem
+></menuchoice
+> i <guilabel
+>Editor</guilabel
+> inne i &parley;. </para>
+
+<para
+>Om det inte fungerar, kan du också besöka <ulink url="https://store.kde.org/"
+>store.kde.org</ulink
+>. </para>
+
+<para
+>I båda fallen dyker filerna upp i dialogrutan <guilabel
+>Ladda ner nya saker</guilabel
+> genom att trycka på knappen <guibutton
+>Ladda ner nya samlingar...</guibutton
+> på <guilabel
+>Instrumentpanelen</guilabel
+>. </para>
+</sect1>
+
+<sect1 id="file-format"
+><title
+>Filformat</title>
+
+<para
+>Om du är intresserad av filformaten som &parley; kan läsa, och lagrar sina ordförrådssamlingar med, besök: </para>
+
+<para
+><ulink url="https://userbase.kde.org/Parley/FileFormats"
+>&parley; filformat på userbase.kde.org</ulink>
+</para>
+</sect1>
+
+<!-- empty sect1
+<sect1 id="scripting"
+><title
+>Scripting</title>
+</sect1
+-->
+</chapter>
+
+<!--userbase-content-->
+<chapter id="credits"
+><title
+>Tack till och licens</title>
+
+<sect1 id="thanks"
+><title
+>Tack</title>
+
+<para
+>Jag skulle vilja tacka följande personer personligen för deras bidrag till &parley;: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Peter Hedlund som höll &kvoctrain; levande och påbörjade anpassningen till &kde; 4 som till sist blev &parley;</para
+></listitem>
+  <listitem
+><para
+>David Capel</para
+></listitem>
+  <listitem
+><para
+>Avgoustinos Kadis</para
+></listitem>
+  <listitem
+><para
+>Daniel Laidig</para
+></listitem>
+  <listitem
+><para
+>Johannes Simon</para
+></listitem>
+</itemizedlist>
+
+<para
+>Jag vill också tacka alla andra som inte nämns, särskilt hela &kde;-gruppen, för hjälp, konstruktiv kritik, förslag eller felrapporter. </para>
+</sect1>
+
+<sect1 id="copyright"
+><title
+>Copyright</title>
+
+<para
+>&parley; copyright 2007-2010 &Frederik.Gladhorn; &Frederik.Gladhorn.mail; </para>
+
+<para
+>Dokumentation copyright 2010 &Frederik.Gladhorn; &Frederik.Gladhorn.mail;, Sabine Eller <email
+>s.eller@voxhumanitatis.org</email
+>, Daniel Laidig <email
+>d.laidig@gmx.de</email
+> och 2014 Amarvir Singh <email
+>amarvir.ammu.93@gmail.com</email
+> </para>
+
+<para
+>Översättning Stefan Asserhäll <email
+>stefan.asserhall@bredband.net</email
+></para
+> &underFDL; &underGPL; </sect1>
+</chapter>
+
+&documentation.index;
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->

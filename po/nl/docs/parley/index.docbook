@@ -1,0 +1,3011 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Dutch "INCLUDE"
+>]>
+
+<book id="parley" lang="&language;">
+
+<bookinfo>
+<title
+>Handboek van &parley;</title>
+
+<authorgroup>
+<author
+>&Frederik.Gladhorn; &Frederik.Gladhorn.mail; </author>
+
+<author
+><personname
+><firstname
+>Sabine</firstname
+><surname
+>Eller</surname
+></personname
+> <email
+>s.eller@voxhumanitatis.org</email
+> </author>
+
+<author
+><personname
+><firstname
+>Daniel</firstname
+><surname
+>Laidig</surname
+></personname
+> <email
+>d.laidig@gmx.de</email
+> </author>
+
+<author
+><personname
+><firstname
+>Amarvir</firstname
+><surname
+>Singh</surname
+></personname
+> <email
+>amarvir.ammu.93@gmail.com</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Marc</firstname
+><surname
+>Heyvaert</surname
+><affiliation
+><address
+><email
+>marc_heyvaert@yahoo.com</email
+></address
+></affiliation
+><contrib
+></contrib
+></othercredit
+> &Freek.de.Kruijf;&Jaap.Woldringh; 
+</authorgroup>
+
+<copyright>
+  <year
+>2010</year>
+  <holder
+>&Frederik.Gladhorn;</holder>
+</copyright>
+<copyright>
+  <year
+>2010</year>
+  <holder
+>Sabine Eller</holder>
+</copyright>
+<copyright>
+  <year
+>2010</year>
+  <holder
+>Daniel Laidig</holder>
+</copyright>
+<copyright>
+  <year
+>2014</year>
+  <holder
+>Amarvir Singh</holder>
+</copyright>
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-11-02</date>
+<releaseinfo
+>KDE Gear 21.08</releaseinfo>
+
+<!-- Abstract about this handbook -->
+<abstract>
+  <para
+>&parley; helpt u bij het leren van woordjes, bijvoorbeeld van een vreemde taal. &parley; is niet beperkt tot het leren van een taal, maar ondersteunt veel andere onderwerpen</para>
+</abstract>
+
+<keywordset>
+  <keyword
+>KDE</keyword>
+  <keyword
+>Parley</keyword>
+  <keyword
+>woordenlijst</keyword>
+  <keyword
+>oefenen</keyword>
+  <keyword
+>leren</keyword>
+</keywordset>
+<!-- https://bugs.kde.org/show_bug.cgi?id=281586#c2 adjustable font size for practice window for better reading on highres screens -->
+</bookinfo>
+<!--userbase <timestamp
+>2010-06-25T18:39:29Z</timestamp
+>-->
+
+<!--userbase-content-->
+<chapter id="introduction"
+><title
+>Inleiding</title>
+
+<para
+>&parley; is een oefenprogramma voor het leren van woordjes. Het helpt u bij het onthouden van woorden, bijvoorbeeld wanneer u een vreemde taal leert. U kunt uw eigen woordenlijsten aanmaken, of uit een groot  aantal beschikbare <ulink url="https://userbase.kde.org/Parley#Vocabulary_Collections"
+>Woordenlijstenverzamelingen</ulink
+> kiezen. U kunt hier allerlei woordenlijstverzamelingen vinden, maar ook verzamelingen voor anatomie, muziek, geografie, scheikunde, of voor de voorbereiding voor een examen. </para>
+
+<para
+>&parley; is erg flexibel en gebruikt deze <ulink url="http://en.wikipedia.org/wiki/Flashcard"
+> leermethode</ulink
+>, met behulp van oefenkaartjes. De voortgang van het leerproces wordt hierin automatisch bijgehouden. Met &parley; kunt u uw woordenlijsten naar eigen inzicht organiseren, u kunt hierin zelf de nodige lessen maken. Maar anders dan met echte oefenkaartjes kunt u in &parley; verschillende leermethoden gebruiken. </para>
+
+<para
+>Op de oefenkaartjes staan op de voorkant uitdrukkingen, en de vertalingdaarvan op de achterkant. U start met een stapel kaarten. Als u de vertaling weet van wat op een kaartje staat, dan legt u dit op een tweede stapel kaartjes. En anders houdt u dit kaartje op de eerste stapel, om het later nog eens te proberen. </para>
+
+<para
+>&parley; is niet geschikt voor het leren van de grammatica van een vreemde taal. Er zijn echter wel oefeningen die u op dit gebied kunnen helpen. </para>
+
+<para
+>&parley; bestaat uit twee grote onderdelen: <link linkend="practice"
+>Woordjes  oefenen</link
+> en <link linkend="vocabulary-editing"
+>een bewerker voor woordenlijstverzamelingen</link
+>. </para>
+
+<para
+>In deze handleiding is een <emphasis
+>Woordenlijstverzameling</emphasis
+> een bestand dat <emphasis
+>Eenheden</emphasis
+> bevat. Elk hiervan kan een les zijn, of een verzameling lessen, tot op een willekeurige diepte georganiseerd. In de rest van deze handleiding zullen we spreken over eenheden in plaats van over lessen, omdat zij ook op een andere manier kunnen worden gebruikt. </para>
+
+<para
+>De <guilabel
+>Bewerker</guilabel
+> en het <guilabel
+>Oefenprogramma</guilabel
+> zijn beide bereikbaar op de <link linkend="practice-overview"
+>Oefenprogrammaoverzicht</link
+>. </para>
+
+<para
+>Het <link linkend="practice"
+>Oefenen</link
+> bestaat uit drie delen: eerst het <link linkend="practice-overview"
+>Oefeningenoverzicht</link
+> waarin u kunt kiezen wat u wilt oefenen. Hierin start u de <link linkend="practice"
+>Oefening</link
+> en wanneer u klaar bent, ziet u hiervan een <link linkend="summary-after-practice"
+>Samenvatting</link
+>. </para>
+
+<tip
+><para
+>Zoals in alle toepassingen (programma's) kunt u met rechts klikken de eigenschappen en mogelijkheden van &parley; uitproberen. Door met de &RMB; te klikken komt er een <quote
+>contextmenu</quote
+>, waarin staat wat u in de gegeven situatie kunt doen. Probeer dit uit in eenheden en in woordjes.</para
+></tip>
+</chapter>
+
+<chapter id="dashboard"
+><title
+>Dashboard</title>
+
+<para
+>U wordt met het <guilabel
+>Dashboard</guilabel
+> verwelkomd bij het voor de eerste keer starten van &parley;. </para>
+
+<para
+>Aanvankelijk is het <guilabel
+>Dashboard</guilabel
+> leeg, maar na het openen van enkele woordenlijstenverzamelingen, ziet u hier de meest recent gebruikte. </para>
+
+<screenshot>
+  <screeninfo
+>Hoofdvenster van &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="dashboard.png" format="PNG"/></imageobject>
+    <caption
+>Dashboard met meerdere verzamelingen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Een woordenlijst is een bestand dat woorden bevat, met de vertalingen in andere talen, of andere paren van woorden of zinnen die u wilt leren. Deze woorden worden in eenheden geordend. </para>
+
+<para
+><emphasis
+>Begin met oefenen </emphasis
+>, en klik met de &RMB; in het vakje <guilabel
+>Oefenen maar</guilabel
+> op een van de namen van woordenlijsten in de lijst. U komt dan in het <link linkend="practice-overview"
+>oefeningen-overzicht</link
+>. </para>
+
+<para
+>Merk het kleine pictogram  <inlinemediaobject
+><imageobject
+><imagedata fileref="icon-delete.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Wissen</guiicon
+> op dat verschijnt linksonder de verzameling. Hiermee kunt u de verzameling uit de lijst verwijderen. </para>
+
+<para
+>Indien u zelf een woordenlijstverzameling wilt aanmaken, klikt u op de knop <guilabel
+>Een nieuwe verzameling aanmaken</guilabel
+>. </para>
+
+<para
+>U kunt ook een <link linkend="open-an-existing-collection"
+> verzameling openen</link
+> indien die al op uw computer aanwezig is, maar niet in de lijst voorkomt. </para>
+
+<para
+>Met de laatste knop op het <guilabel
+>Dashboard</guilabel
+> kunt u woordenlijsten  ophalen, die door anderen zijn gemaakt. Omgekeerd: u kunt door u gemaakte bestanden, die u met anderen wilt delen, eenvoudig vanuit de bewerker uploaden (via het internet opsturen). </para>
+
+<para
+>&parley; wordt geleverd met enkele thema's, waaruit u met behulp van de instellingen kunt kiezen. Hiermee kunt u het uiterlijk van &parley; aanpassen. Voor meer informatie zie <link linkend="configure-parley"
+>&parley; instellen</link
+>. </para>
+</chapter>
+
+<chapter id="open-an-existing-collection"
+><title
+>Een bestaande verzameling openen</title>
+
+<para
+>Laten we aannemen dat de verzameling al op de harde schijf aanwezig is. </para>
+
+<para
+>Zo ziet het scherm eruit na de eerste keer dat &parley; wordt gestart: </para>
+
+<screenshot>
+  <screeninfo
+>Hoofdvenster van &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="initial_screen.png" format="PNG"/></imageobject>
+    <caption
+>Beginscherm</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Klik op de knop <guilabel
+>Een bestaande verzameling openen</guilabel
+>. </para>
+
+<para
+>In de dialoog voor het kiezen van een bestand, gaat u naar de map die het gegevensbestand bevat, en kiest u dat door erop te klikken. Afhankelijk van uw systeem wordt dit bestand daarna meteen geopend, of moet u eerst nog op de knop <guilabel
+>Openen</guilabel
+> klikken. </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog voor kiezen bestand</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="file_select_dialog.png" format="PNG"/></imageobject>
+    <caption
+>Dialoog bestand kiezen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Nu wordt het bestand ingelezen, en gaat u naar het scherm <guilabel
+>Oefeningenoverzicht</guilabel
+>: verdere details vindt u in de volgende sectie. </para>
+</chapter>
+
+<chapter id="vocabulary-practice"
+><title
+>Woordjes oefenen</title>
+
+<para
+>U kunt met oefenen beginnen als u een document selecteert, na het starten van &parley;. Indien dit al in de bewerker is geopend, kunt u in de werkbalk op het pictogram in de taakbalk  <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Oefening beginnen....</guiicon
+> klikken. </para>
+
+<sect1 id="practice-overview"
+><title
+>Oefeningenoverzicht</title>
+
+<para
+>Voor het begin van de oefening moet u altijd eerst naar het scherm <guilabel
+>Oefeningenoverzicht</guilabel
+> gaan. Hierin zijn drie gebieden waarin u kunt kiezen wat u wilt oefenen: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Het kiezen van de talen</para
+></listitem>
+  <listitem
+><para
+>Het kiezen van de oefenmodus</para
+></listitem>
+  <listitem
+><para
+>Het kiezen van de eenheden, waarin ook uw huidige vorderingen worden getoond</para
+></listitem>
+</itemizedlist>
+
+<screenshot>
+  <screeninfo
+>Oefening instellen</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_practice.png" format="PNG"/></imageobject>
+    <caption
+>Oefening instellen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Links kunt u de talencombinatie kiezen voor uw oefeningen. Als u bijvoorbeeld Nederlands naar Engels kiest, krijgt u Nederlandse woordjes te zien, waarvan de Engelse vertaling wordt gevraagd. </para>
+
+<para
+>Beneden de taalselectie kunt u de <guilabel
+>Oefenmodus</guilabel
+> kiezen. Hiermee bepaalt u hoe in deze oefening vragen worden gesteld. </para>
+
+<para
+>In de keuzelijst <guilabel
+>Oefenrichting</guilabel
+> kunt u de tijdens de oefening gebruikte oefenrichting selecteren. De mogelijke keuzes zijn Actief (<guimenuitem
+>Bekend naar te leren</guimenuitem
+>), Passief (<guimenuitem
+>Te leren naar bekend</guimenuitem
+>), of Beide (<guimenuitem
+>Beide richtingen</guimenuitem
+>). </para>
+
+<para
+>In het grote vak rechts ziet u de eenheden in de woordenlijstverzameling. U kunt met de keuzevakjes links van de namen kiezen welke eenheden u wilt oefenen. Rechts van de naam van een eenheid ziet u het aantal woordjes en uw vorderingen. </para>
+
+<para
+>De vorderingen worden voor elke eenheid getoond als een percentage van de eenheid dat is voltooid, en met behulp van de progressiebalken in verschillende kleuren. Het percentage wordt berekend uit het totale aantal woorden in de eenheid, en het beheersniveau voor elk woord. De progressiebalken tonen het aantal woorden bij elke beheersing, hoe donkerder de kleur is, hoe hoger de beheersing. In de kop, bovenaan het eenheidgedeelte, ziet u ook een legenda, met hierin de beschrijving van de betekenis van de kleuren in de progressiebalken, voor woorden die volledig zijn geleerd, tot de woorden die nog helemaal niet zijn geoefend. </para>
+</sect1>
+
+<sect1 id="advanced-practice-configuration"
+><title
+>Instellingen van het oefenen</title>
+
+<para
+>In de dialoog <guilabel
+>Oefeninstellingen</guilabel
+> kunt u gevorderde instellingen doen voor de oefening. </para>
+
+<para
+>In het scherm <link linkend="practice-overview"
+>Oefenoverzicht</link
+>kunt u de dialoog  <guilabel
+>Oefening instellen</guilabel
+>  vinden met het pictogram <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-setup.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <link linkend="advanced-practice-configuration"
+><guiicon
+>Oefening instellen...</guiicon
+></link
+> in de taakbalk. </para>
+
+<sect2 id="general-practice-settings"
+><title
+>Algemene oefeninstellingen</title>
+
+<para
+>In de pagina <guilabel
+>Algemeen</guilabel
+> vind u een aantal algemene configuratie-opties voor de oefening. </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog Oefening instellen</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_general.png" format="PNG"/></imageobject>
+    <caption
+>Pagina voor algemene instellingen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>De belangrijkste opties zijn: </para>
+
+<itemizedlist>
+  <listitem
+><para
+><guilabel
+>Accenten negeren</guilabel
+>: Hiermee wordt een woord met een <guilabel
+>e</guilabel
+> erin in plaats van een <guilabel
+>é</guilabel
+> toch goedgekeurd.</para
+></listitem>
+
+  <listitem
+><para
+><guilabel
+>Hoofdletters negeren</guilabel
+>: Hiermee is er geen verschil tussen hoofd- en kleine letters, bij het invoeren van woorden. </para
+></listitem>
+
+  <listitem
+><para
+>Sectie <guilabel
+>Afbeeldingen en geluid</guilabel
+>: Indien u afbeeldingen activeert worden die, indien aanwezig, tijdens de oefening getoond. Iets dergelijks geldt ook voor geluid.</para
+></listitem>
+
+  <listitem
+><para
+><guilabel
+>Afbeeldingen toestaan in plaats van woorden</guilabel
+>: als u deze optie aanzet, kunt u een afbeelding in een vraag gebruiken in de oefening, als er tenminste geen vertaling aanwezig is voor dat woord in de doeltaal.</para
+></listitem>
+</itemizedlist>
+<!--FIXME Enable Hints Sessions Synonyms-->
+</sect2>
+
+<sect2 id="blocking"
+><title
+>Vergrendeling</title>
+
+<para
+>Indien u uw woordenschat regelmatig wilt oefenen, moet u ervoor zorgen datde eigenschap <emphasis
+>Vergrendelen</emphasis
+> aan staat. Ga naar de pagina <guilabel
+>Vergrendelen</guilabel
+> en kies hierin  <guilabel
+>Vergrendelen</guilabel
+>. U kunt nu zelfs het interval instellen waarin woorden die u goed heeft beantwoord, worden herhaald. </para>
+
+<para
+><guilabel
+>Vergrendelen</guilabel
+> wil zeggen dat woorden pas na enige tijd na de laatste keer opnieuw worden gesteld. Dit hangt af van hoe goed u dit woord kent, zodat woorden die u minder goed kent vaker worden gevraagd. </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog Oefening instellen</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_blocking.png" format="PNG"/></imageobject>
+    <caption
+>Pagina instellen vergrendelen</caption>
+  </mediaobject>
+</screenshot>
+<!--FIXME Expiring-->
+</sect2>
+
+<sect2 id="thresholds"
+><title
+>Drempels</title>
+
+<para
+>Drempels zijn een andere manier om wat u wilt oefenen te begrenzen. </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog Oefening instellen</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_thresholds.png" format="PNG"/></imageobject>
+    <caption
+>Pagina instellen drempelwaarden</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>U kunt bepalen dat u alleen woordjes wilt oefenen die u beter of minder goed kent dan een beheersniveau. Of u kunt alleen woordjes selecteren die een bepaald aantal keren zijn geoefend. </para>
+</sect2>
+
+<sect2 id="specific-practice-settings"
+><title
+>Specifieke oefeninstellingen</title>
+
+<para
+>Optie-instellingen voor het oefenen met meerkeuzevragen kunnen worden gewijzigdin de pagina  voor<guilabel
+>Specifieke</guilabel
+> instellingen. </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog Oefening instellen</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_specific.png" format="PNG"/></imageobject>
+    <caption
+>Specifieke instellingen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>U kunt hier selecteren of de keuzevragen van het zelfde type zijn, en het aantal keuzevragen. </para>
+</sect2>
+</sect1>
+
+<sect1 id="practice"
+><title
+>Oefening</title>
+<sect2 id="flash-cards"
+><title
+>Oefenkaarten</title>
+
+<para
+>Na het activeren van de  <guilabel
+>Oefenkaarten</guilabel
+> in de sectie van de <guilabel
+>Oefenmodus</guilabel
+> en het klikken op het pictogram<inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Oefening starten...</guiicon
+> in de taakbalk, ziet u het volgende scherm. Het oefenen met  <guilabel
+>Oefenkaarten</guilabel
+> gaat precies zo als met <quote
+>echte</quote
+> oefenkaarten. U bedenkt het antwoord, en mocht u wat hulpkunnen gebruiken, dan klikt u op de knop <guibutton
+>Hint</guibutton
+>, waarna u letter voor letter het antwoord krijgt. </para>
+
+<para
+>U kunt ook een woord voorlopig overslaan. Als u klikt op <guilabel
+>Later  beantwoorden</guilabel
+>, wordt het woord later opnieuw gevraagd. </para>
+
+<screenshot>
+  <screeninfo
+>Modus voor oefenen met oefenkaarten </screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_grey.png" format="PNG"/></imageobject>
+    <caption
+>Nieuw woord</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Door te klikken op <guilabel
+>Doorgaan</guilabel
+> ziet u het goede antwoord. Op dit punt moet u aangeven of u het antwoord wist of niet. </para>
+
+<para
+>Indien u het antwoord niet wist, klikt u op de knop <guilabel
+>Ik wist het niet</guilabel
+>, en anders klikt u op de knop <guilabel
+>Ik wist het</guilabel
+>. </para>
+
+<para
+>Hierna krijgt u de volgende vraag die u moet beantwoorden. </para>
+
+<para
+>Links onder in het scherm ziet u 7 vakjes waarmee u kunt zien hoe goed u de woordenlijst kent. Deze 7 vakjes komen overeen met de vergrendelingsinstellingen in <link linkend="blocking"
+><guilabel
+>Vergrendeling</guilabel
+></link
+> in <guilabel
+>Instellingen voor oefeningen</guilabel
+>  </para>
+
+<tip
+><para
+>In plaats van op de knop<guilabel
+>Doorgaan</guilabel
+> te klikken, kunt u ook de &Space; op uw toetsenbord gebruiken.</para
+></tip>
+
+<screenshot>
+  <screeninfo
+>Modus voor oefenen met oefenkaarten </screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_flash_solution.png" format="PNG"/></imageobject>
+    <caption
+>Nieuw woord - bevestiging</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>U kunt op elk moment stoppen met de oefening, door op de knop<guilabel
+>Oefening stoppen</guilabel
+> te klikken. </para>
+</sect2>
+
+<sect2 id="mixed-letters"
+><title
+>Gehutselde letters</title>
+
+<para
+>Gehutselde letters is een oefenmethode, waarin u meteen hulp krijgt in de vorm van het antwoord, waarin de letters door elkaar zijn gehutseld: </para>
+
+<screenshot>
+  <screeninfo
+>Modus voor oefenen met oefenkaarten </screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_hint.png" format="PNG"/></imageobject>
+    <caption
+>Nieuw woord - gehutselde letters</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Indien u hulp wenst, dan kunt u op de knop <guilabel
+>Aanwijzing</guilabel
+> klikken, waarna u de oplossing letter voor letter krijgt. Natuurlijk kunt u er ook voor kiezen dat de vraag wordt uitgesteld, door op de knop <guilabel
+>Later beantwoorden</guilabel
+> te klikken. </para>
+
+<para
+>Het antwoord geeft u in het lege veld onder de gehutselde letters, waarna u op de &Enter;-toets drukt, of op de knop <guilabel
+>Doorgaan</guilabel
+>. </para>
+
+<para
+>&parley; vertelt het u als het antwoord goed is, waarna u opnieuw op &Enter; kunt drukken, of op <guilabel
+>Doorgaan</guilabel
+>, zodat u verder kunt gaan met de volgende vraag. </para>
+
+<screenshot>
+  <screeninfo
+>Modus voor oefenen met oefenkaarten </screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_right.png" format="PNG"/></imageobject>
+    <caption
+>Nieuw woord - letters in juiste volgorde</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Geeft u een fout antwoord, dan wordt u gevraagd het <emphasis
+>opnieuw te proberen</emphasis
+>: </para>
+
+<screenshot>
+  <screeninfo
+>Modus voor oefenen met oefenkaarten </screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_wrong.png" format="PNG"/></imageobject>
+    <caption
+>Nieuw woord - fout antwoord, probeer opnieuw</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Als u het antwoord niet weet, dan klikt u nog een keer op <guilabel
+>Doorgaan</guilabel
+>.  U ziet dan het goede antwoord. U kunt nu verder gaan door nog een keer op <guilabel
+>Doorgaan</guilabel
+> te klikken. </para>
+
+<screenshot>
+  <screeninfo
+>Modus voor oefenen met oefenkaarten </screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_solution.png" format="PNG"/></imageobject>
+    <caption
+>Nieuw woord - fout antwoord, toon juist antwoord</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>U kunt het goed- of afkeuren van het antwoord wijzigen . Zie <link linkend="practice-overview"
+>Oefenoverzicht</link
+>. </para>
+</sect2>
+
+<sect2 id="multiple-choice"
+><title
+>Meerkeuze</title>
+<sect3 id="automatic-selection-of-the-possible-answers"
+><title
+>Automatische selectie van de mogelijke antwoorden</title>
+
+<para
+>In de modus <guilabel
+>Meerkeuze</guilabel
+> ziet u een aantal mogelijke antwoorden, waarvan er slechts één goed is. Drukken op de knop  <guibutton
+>Aanwijzing</guibutton
+> maakt dat &parley; een fout antwoord weglaat, zodat de mogelijke antwoorden bij elke <guibutton
+>Aanwijzing</guibutton
+> steeds verder wordt ingeperkt. Als er slechts een optie overblijft ziet u het juiste antwoord, en wordt de vraag fout gerekend.Natuurlijk mag u ook  op de knop <guibutton
+>Later beantwoorden</guibutton
+> drukken. </para>
+
+<screenshot>
+  <screeninfo
+>Modus voor oefenen met oefenkaarten </screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="multiple_choice.png" format="PNG"/></imageobject>
+    <caption
+>Nieuw woord - modus voor Meerkeuze</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Als u op het antwoord klikt waarvan u denkt dat dat het goede antwoord is, of het nummer intypt van die keuze,  laat &parley; het onderstaande scherm zien als dit antwoord goed is. Ga nu naar de volgende vraag door op de knop <guilabel
+>Doorgaan</guilabel
+> te klikken. </para>
+
+<screenshot>
+  <screeninfo
+>Modus voor oefenen met oefenkaarten </screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="multiple_choice-right.png" format="PNG"/></imageobject>
+    <caption
+>Nieuw woord - Meerkeuze, juist antwoord</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Indien het antwoord echter fout is, ziet u het goede antwoord in groen, en het foute antwoord in rood. Ook nu kunt u verdergaan door op <guilabel
+>Doorgaan</guilabel
+> te klikken. </para>
+
+<screenshot>
+  <screeninfo
+>Modus voor oefenen met oefenkaarten </screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="multiple_choice-wrong.png" format="PNG"/></imageobject>
+    <caption
+>Nieuw woord- Meerkeuze, fout antwoord</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>U kunt het goed- of afkeuren van het antwoord wijzigen . Zie <link linkend="practice-overview"
+>Oefenoverzicht</link
+>. </para>
+
+<para
+>Als u wilt stoppen met de oefening, dan klikt u op de knop <guilabel
+>Oefening stoppen</guilabel
+>. </para>
+</sect3>
+
+<sect3 id="with-yes-no-answers"
+><title
+>Met antwoorden ja/nee</title>
+
+<para
+>Gewoonlijk toont &parley; bij Meerkeuzevragen één goed en een aantal foute antwoorden. In plaats daarvan zijn er in sommige oefeningen vooraf ingestelde antwoorden zoals ja/nee of dergelijke.En hiervoor moet u de oefening instellen door te klikken op het pictogram   <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-set.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <link linkend="advanced-practice-configuration"
+><guiicon
+>Oefening instellen...</guiicon
+></link
+> in de taakbalk.  </para>
+
+<para
+>Selecteren van de pagina <guilabel
+>Specifiek</guilabel
+> leidt u naar iets dat erg veel lijkt op het volgende schermbeeld: </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog Oefening instellen</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_specific.png" format="PNG"/></imageobject>
+    <caption
+>Specifieke pagina</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Als er slechts <emphasis
+>twee antwoorden</emphasis
+> mogelijk zijn zoals <emphasis
+>ja/nee</emphasis
+> dan stelt u in de sectie <guilabel
+>Meerkeuze</guilabel
+> het <guilabel
+>Aantal keuzes</guilabel
+> in op <guilabel
+>2</guilabel
+>. </para>
+</sect3>
+</sect2>
+
+<sect2 id="written"
+><title
+>Geschreven</title>
+
+<para
+>Wanneer u de optie <guilabel
+>Geschreven</guilabel
+> kiest voor uw oefening, dan moet u het antwoord intypen. U kunt met behulp van de knop <guilabel
+>Aanwijzing</guilabel
+> het antwoord letter voor letter te zien krijgen. Natuurlijk kunt u ook op de knop <guilabel
+>Later beantwoorden</guilabel
+> klikken om het antwoord op deze vraag uit te stellen. </para>
+
+<screenshot>
+  <screeninfo
+>Modus Geschreven oefening</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_written.png" format="PNG"/></imageobject>
+    <caption
+>Nieuw woord - modus geschreven oefening</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Na het intypen van het antwoord, klikt u op de knop <guilabel
+>Doorgaan</guilabel
+>, &parley;geeft dan aan of het antwoord goed is. U kunt nu verder gaan door weer op <guilabel
+>Doorgaan</guilabel
+> te klikken. </para>
+
+<screenshot>
+  <screeninfo
+>Modus Geschreven oefening</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_written_right.png" format="PNG"/></imageobject>
+    <caption
+>Nieuw woord - modus geschreven oefening, goede antwoord</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Is het antwoord echter fout, dan kunt u nog een aantal keren proberen het goede antwoord te geven. Indien u dit niet verder wilt proberen, en alleen op op de knop <guilabel
+>Doorgaan</guilabel
+> klikt, wordt het goede antwoord getoond. </para>
+
+<screenshot>
+  <screeninfo
+>Modus Geschreven oefening</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_written_wrong.png" format="PNG"/></imageobject>
+    <caption
+>Nieuw woord - modus geschreven oefening, fout antwoord</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Ga door met oefenen door op <guilabel
+>Doorgaan</guilabel
+> te klikken, of stop door op de knop <guilabel
+>Oefening stoppen</guilabel
+> te klikken. </para>
+
+<para
+>U kunt het goed- of afkeuren van het antwoord wijzigen . Zie <link linkend="practice-overview"
+>Oefenoverzicht</link
+>. </para>
+</sect2>
+
+<sect2 id="reset-practice-to-initial-state"
+><title
+>De oefening weer naar de beginstand terugzetten</title>
+
+<para
+>U kunt alle oefenresultaten (alle beheersniveaus) terugzetten naar de begintoestand. Voor afzonderlijke eenheden kunt u de beheersniveaus terugzetten met het pictogram  <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Oefenoverzicht</guiicon
+> in de taakbalk en door met  &RMB; te klikken op de terug te zetten eenheid en  <guimenuitem
+>Beheersniveaus van deze eenheid wissen</guimenuitem
+> te kiezen of <guimenuitem
+>Beheersniveaus van deze eenheid en alle onderliggende eenheden</guimenuitem
+> te kiezen. </para>
+</sect2>
+</sect1>
+
+<sect1 id="summary-after-practice"
+><title
+>Samenvatting na de oefening</title>
+
+<para
+>De samenvatting wordt getoond na het beëindigen van een oefening. In de grote balk bovenaan kunt u het resultaat zien van de oefening. </para>
+
+<para
+>Daaronder ziet u een tabel met alle geoefende woorden, plus de door u gemaakte fouten. </para>
+
+<para
+>De woorden waarin de meeste fouten zijn gemaakt, staan bovenaan, zodat u gemakkelijk kunt zien welke dat zijn. </para>
+
+<para
+>Klik op het pictogram <inlinemediaobject
+><imageobject
+><imagedata fileref="document-export.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Resultaten exporteren...</guiicon
+> in de takenbalk of gebruik het menu<menuchoice
+><guimenu
+>Oefening</guimenu
+> <guimenuitem
+>Resultaten exporteren...</guimenuitem
+></menuchoice
+> voor het exporteren van de resultaten als &HTML; of als OpenDocument tekstbestand (<literal role="extension"
+>.odt</literal
+>). </para>
+
+<screenshot>
+  <screeninfo
+>Samenvatting na de oefening</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_summary.png" format="PNG"/></imageobject>
+    <caption
+>Samenvatting na de oefening</caption>
+  </mediaobject>
+</screenshot>
+</sect1>
+
+<!--FIXME Example Sentences practice missing -->
+<sect1 id="grammar-practice-modes"
+><title
+>Oefeningen in grammatica.</title>
+
+<para
+>In &parley; kunt u bepaalde grammaticastructuren oefenen, zoals het geslacht van zelfstandige naamwoorden, de trappen van vergelijking van bijvoeglijke naamwoorden, en de vervoegingen van werkwoorden. Laat ons naar een paar voorbeelden kijken. </para>
+
+<sect2 id="articles-and-gender-of-nouns"
+><title
+>Lidwoorden en geslacht van zelfstandige naamwoorden</title>
+
+<para
+>Indien de oefenmodus <guilabel
+>Geslacht zelfstandige naamwoorden</guilabel
+> actief is, druk op het pictogram <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Start oefening...</guiicon
+> in de taakbalk. </para>
+
+<para
+>In het voorbeeld hieronder gebruiken we Duits als de te leren taal, zodat u uit drie geslachten kunt kiezen: mannelijk, vrouwelijk en onzijdig. Door op <guilabel
+>Aanwijzing</guilabel
+> te klikken wordt een van de foute antwoorden verwijderd. U kunt natuurlijk altijd het antwoord op een vraag uitstellen, door op de knop <guilabel
+>Later beantwoorden</guilabel
+> te klikken. </para>
+
+<para
+>U moet de lidwoorden in de betreffende taal in de Bewerker invoeren, als u lidwoorden wilt zien in plaats van de grammaticale namen voor het geslacht.Let erop dat dit alleen maar goed gaat als het geslacht van de woorden goed is ingevoerd. Zie <link linkend="word-types"
+>Woordsoorten</link
+> voor verdere informatie hoe u bij een woordsoort het juiste geslacht kunt invoeren. </para>
+
+<screenshot>
+  <screeninfo
+>Modus Oefen geslacht zelfstandige naamwoorden.</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="articles_and_gender.png" format="PNG"/></imageobject>
+    <caption
+>Nieuw woord - Modus geslacht van zelfstandige naamwoorden oefenen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Als u het goede antwoord geeft ziet u het volgende, u kunt daarna verdergaan door op de knop <guilabel
+>Doorgaan</guilabel
+> te klikken. </para>
+
+<screenshot>
+  <screeninfo
+>Modus Oefen geslacht zelfstandige naamwoorden.</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="articles_and_gender_right.png" format="PNG"/></imageobject>
+    <caption
+>Nieuw woord - geslacht zelfstandige naamwoorden, goed antwoord</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Is het antwoord fout, dan ziet u het volgende, u kunt daarna verdergaan door op <guilabel
+>Doorgaan</guilabel
+> te klikken. </para>
+
+<screenshot>
+  <screeninfo
+>Modus Oefen geslacht zelfstandige naamwoorden.</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="articles_and_gender_wrong.png" format="PNG"/></imageobject>
+    <caption
+>Nieuw woord - geslacht zelfstandige naamwoorden, fout antwoord</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>U kunt op elk moment stoppen met de oefening, door op de knop<guilabel
+>Oefening stoppen</guilabel
+> te klikken. </para>
+</sect2>
+
+<sect2 id="comparison-forms-of-adjectives-and-adverbs"
+><title
+>Trappen van vergelijking van bijvoeglijke naamwoorden en bijwoorden</title>
+
+<para
+>In de sectie<guilabel
+>OefenmodusMode</guilabel
+>, selecteer <guilabel
+>Trappen van vergelijking</guilabel
+> en druk dan op het pictogram<inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Oefening starten... </guiicon
+>  in de taakbalk om verder te gaan. </para>
+
+<para
+>Dit werkt alleen indien de trappen van vergelijking van het woord zijn ingevoerd in de woordenlijst. Zie <link linkend="entering-comparison-forms"
+>Trappen van vergelijking invoeren</link
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Oefening instellen</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison.png" format="PNG"/></imageobject>
+    <caption
+>Oefenmodus vergelijkende trappen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>In deze oefening moet u de trappen van vergelijking invoeren van het getoonde woord. In dit geval van de vertaling van het Nederlandse woord <emphasis
+>oud</emphasis
+> in het Duits. In de Duitse taal zijn er drie trappen van vergelijking: <emphasis
+>stellende trap, vergrotende trap</emphasis
+> en <emphasis
+>overtreffende trap</emphasis
+>. U kunt verder gaan door op de knop  <guibutton
+>Verder</guibutton
+>  te klikken. </para>
+
+<screenshot>
+  <screeninfo
+>Modus trappen van vergelijking oefenen</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison_right.png" format="PNG"/></imageobject>
+    <caption
+>Nieuw woord - vergelijkende trap goed</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+
+<sect2 id="conjugations"
+><title
+>Vervoegingen</title>
+
+<para
+>U kunt vervoegingen oefenen als u de modus voor  <guilabel
+>Vervoegingen</guilabel
+> kiest, plus de (grammaticale) tijdvormen die u wilt oefenen. </para>
+
+<para
+>Deze oefening kan alleen worden gedaan als in het document de vervoegingen zijn ingevoerd. Zie <link linkend="entering-inflection-forms"
+>Verbuigingsvormen invoeren</link
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Oefening instellen</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Configure_practice_conjugation.png" format="PNG"/></imageobject>
+    <caption
+>Oefenmodus Vervoegen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Druk daarna op het pictogram <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Oefening starten...</guiicon
+> in de taakbalk. U moet nu de  juiste vervoegingen invoeren in de getoonde tijden. U kunt dan verder gaan  door op de knop  <guibutton
+>Verder</guibutton
+> te klikken. </para>
+
+<screenshot>
+  <screeninfo
+>Modus vervoegen oefenen</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_practice_conjugation.png" format="PNG"/></imageobject>
+    <caption
+>Vervoegen oefenen</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+</sect1>
+</chapter>
+
+<chapter id="vocabulary-editing"
+><title
+>Bewerken van de woordenlijst</title>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="edit_main.png" format="PNG"/></imageobject>
+    <caption
+>De oefeningen bewerken</caption>
+  </mediaobject>
+</screenshot>
+
+<sect1 id="setup"
+><title
+>Instellingen</title>
+
+<para
+>Voordat u een verzameling van woordenlijsten gaat gebruiken of er zelf een aanmaakt, is het nuttig als u de diverse onderdelen van &parley; begrijpt, en goed instelt. In de volgende secties begeleiden we u stap voor stap hierbij. U kunt &parley; op een aantal plaatsen instellen:   </para>
+
+<itemizedlist>
+  <listitem
+><para
+><menuchoice
+><guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Eigenschappen...</guimenuitem
+></menuchoice
+> Hier is de juiste plek voor<guilabel
+>Algemene documenteigenschappen </guilabel
+>, dus enige informatie over uw woordenverzameling, en u zelf.</para
+></listitem>
+
+  <listitem
+><para
+><menuchoice
+><guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Talen...</guimenuitem
+></menuchoice
+> opent de dialoog <guilabel
+>Talen bewerken</guilabel
+>, waarin de instellingen te vinden zijn voor de door u gebruikte talen.</para
+></listitem>
+
+  <listitem
+><para
+><menuchoice
+><guimenu
+>Oefening</guimenu
+><guimenuitem
+>Oefening instellen</guimenuitem
+></menuchoice
+> Hier zijn instellingen voor het oefenen met uw woordenlijst. Afhankelijk van hoe u tijdens een sessie wilt oefenen kunt u die al doende wijzigen.</para
+></listitem>
+
+  <listitem
+><para
+><menuchoice
+><guimenu
+>Instellingen</guimenu
+><guimenuitem
+>&parley; instellen</guimenuitem
+></menuchoice
+>. Voor meer algemene instellingen en die van het tonen.</para
+></listitem>
+</itemizedlist>
+
+<sect2 id="about-the-collection"
+><title
+>Over de verzameling</title>
+
+<para
+>Het invoeren van zogenaamde metagegevens zoals naam en uw contactinformatie  is van belang wanneer u uw verzameling voor anderen beschikbaar wilt maken. U kunt deze gegevens bewerken in <menuchoice
+><guimenu
+>Bestand</guimenu
+><guimenuitem
+>Eigenschappen</guimenuitem
+></menuchoice
+> </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog eigenschappen <quote
+>filename.kvtml</quote
+>.</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="document_properties.png" format="PNG"/></imageobject>
+    <caption
+>De eigenschappen bewerken</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+
+<sect2 id="vocabulary-columns"
+><title
+>Kolommen in woordenlijst</title>
+
+<para
+>Afhankelijk van het onderwerp van de leersessies kan het zin hebben dat tijdens het bewerken van de woordenlijst kolommen worden getoond. U kunt de kolommen selecteren met <menuchoice
+><guimenu
+>Menu</guimenu
+> <guimenuitem
+>Kolommen woordenlijst...</guimenuitem
+></menuchoice
+>. Hierin kunt u de te tonen kolommen bepalen voor <emphasis
+>Uitspraak, Woordtype,  Synoniem, Antoniem, Voorbeeld, Commentaar</emphasis
+> en/of<emphasis
+>Omschrijving</emphasis
+> are to be. </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog Kolommen in woordenlijst</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="vocabulary_columns.png" format="PNG"/></imageobject>
+    <caption
+>De kolommen instellen</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+
+<sect2 id="languages-and-grammar"
+><title
+>Talen en grammatica</title>
+
+<para
+>Stel hier enkele bijzonderheden in van de grammatica, zodat &parley; u hiermee kan helpen. U krijgt de dialoog hiervoor met <menuchoice
+> <guimenu
+>Bewerken</guimenu
+><guimenuitem
+>Talen</guimenuitem
+> </menuchoice
+>. </para>
+
+<para
+>In het Engels is het bepaalde lidwoord heel eenvoudig <guilabel
+>the</guilabel
+>, en het onbepaalde lidwoord is <guilabel
+>a</guilabel
+>. In de meeste andere talen zijn er meer lidwoorden, die u in het tabblad kunt invullen voor lidwoorden. </para>
+
+<para
+>Voor vervoegingen moeten de persoonlijke voornaamwoorden worden ingevuld. In de meeste talen zijn er geen verschillende vervoegingen voor hij/zij/het, in dat geval moet u dus <emphasis
+>niet</emphasis
+><guilabel
+>Mannelijk/vrouwelijk hebben verschillende vervoegingen</guilabel
+> aanvinken. </para>
+
+<table>
+  <title
+>Persoonlijke voornaamwoorden in het Nederlands</title>
+  <tgroup cols="3">
+  <tbody>
+  <row>
+    <entry
+></entry>
+    <entry
+>Enkelvoud</entry>
+    <entry
+>Meervoud</entry>
+  </row>
+  <row>
+    <entry
+>1e persoon</entry>
+    <entry
+>ik</entry>
+    <entry
+>we/wij</entry>
+  </row>
+  <row>
+    <entry
+>2e persoon</entry>
+    <entry
+>u/je</entry>
+    <entry
+>u/je</entry>
+  </row>
+  <row>
+    <entry
+>3e persoon</entry>
+    <entry
+>hij/zij/het</entry>
+    <entry
+>zij</entry>
+    </row>
+  </tbody>
+  </tgroup>
+</table>
+
+<para
+>Tijdvormen: Afhankelijk van de taal, kunt u de juiste tijdvormen invoeren, die u later wilt gaan leren. Voorbeelden zijn: tegenwoordige tijd, verleden tijd, toekomende tijd, enzovoorts. </para>
+
+<para
+>En ook: door op de knop <guilabel
+>Taal toevoegen</guilabel
+> te klikken kunt u een nieuwe taal aan uw verzameling toevoegen. </para>
+
+<sect3 id="lets-have-a-closer-look-at-spanish"
+><title
+>Laten we eens naar het Spaans kijken</title>
+
+<para
+>In het tabblad <guilabel
+>Algemeen</guilabel
+> de basis instellingen voor de taal, zoals hier </para>
+
+<itemizedlist>
+  <listitem
+><para
+><guilabel
+>Taal:</guilabel
+> Spaans</para
+></listitem>
+  <listitem
+><para
+><guilabel
+>Naam:</guilabel
+>  Spaans</para
+></listitem>
+  <listitem
+><para
+><guilabel
+>Toetsenbordindeling:</guilabel
+> us (voor Engels)</para
+></listitem>
+</itemizedlist>
+
+<para
+>U hoeft <guilabel
+>Toetsenbordindeling</guilabel
+> niet in te vullen, als u niet zeker weet welke indeling op uw computer wordt gebruikt. &parley; gebruikt dan gewoon de standaard indeling die op uw computer in gebruik is (in Nederland is dit meestal de internationale Amerikaanse indeling, al of niet met dode toetsen, en NIET nl). </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog Taal bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_general.png" format="PNG"/></imageobject>
+    <caption
+>Een taal bewerken</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Bekijken we nu het tabblad <guilabel
+>Lidwoorden</guilabel
+>: in het Spaans zijn er alleen mannelijke en vrouwelijke zelfstandige naamwoorden, het veld voor <guilabel
+>Onzijdig</guilabel
+> blijft dus leeg. </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog Taal bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_articles.png" format="PNG"/></imageobject>
+    <caption
+>Het tabblad Lidwoorden</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Bij Spaanse <guilabel
+>Persoonlijke voornaamwoorden</guilabel
+> zijn er meerdere mogelijkheden voor de 3e persoon enkelvoud, en de 1e, 2e en 3e persoon meervoud. Voor de consistentie moeten die worden ingevoerd met een <guilabel
+>/</guilabel
+> tussen de verschillende vormen. </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog Taal bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_personal_pronouns.png" format="PNG"/></imageobject>
+    <caption
+>Het tabblad Persoonlijke voornaamwoorden</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Onder <guilabel
+>Tijdvormen</guilabel
+> vindt u de diverse tijden die er voor een werkwoord aanwezig zijn. U kunt hieraan tijdvormen toevoegen door op <guilabel
+>Nieuw</guilabel
+> te klikken, tijdvormen wijzigen met <guilabel
+>Wijzigen</guilabel
+> en in geval dit nodig is, wissen door te klikken op <guilabel
+>Wissen</guilabel
+>, na het selecteren van de tijdvorm. </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog Taal bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_tenses.png" format="PNG"/></imageobject>
+    <caption
+>Tablblad tijden</caption>
+  </mediaobject>
+</screenshot>
+</sect3>
+</sect2>
+</sect1>
+
+<sect1 id="units"
+><title
+>Eenheden</title>
+
+<para
+>Links vindt u een lijst met eenheden. Als u een nieuwe verzameling begint, kan deze lijst leeg zijn, op de ene eenheid na die standaard al voor u is aangemaakt. </para>
+
+<para
+>Indien u geen lijst ziet met eenheden, moet u dit wellicht mogelijk maken in het weergavemenu - <menuchoice
+><guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Eenheden</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>De keuzevakjes voor de namen van de eenheden geven weer welke eenheden er op dit moment voor uw oefening worden gebruikt. Het getal er naast is het aantal woorden in de eenheid. </para>
+
+<sect2 id="new-unit"
+><title
+>Nieuwe eenheid</title>
+
+<para
+>Selecteer waar deze eenheid toe behoort, bijvoorbeeld de verzameling <guilabel
+>Mijn Spaanse lessen</guilabel
+>. </para>
+
+<para
+>Op een van de volgende manieren kunt u <guilabel
+>Nieuwe eenheid</guilabel
+> kiezen: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>&GUI; pictogram: selecteer het pictogram <guiicon
+>Nieuwe eenheid</guiicon
+> in de taakbalk.</para
+></listitem>
+
+  <listitem
+><para
+>Menukeuze: selecteer <menuchoice
+><guimenu
+>Eenheid</guimenu
+> <guimenuitem
+>Nieuwe eenheid</guimenuitem
+></menuchoice
+></para
+></listitem>
+
+  <listitem
+><para
+>Context menu: klik met de &RMB; op de verzameling en selecteer <guimenuitem
+>Nieuwe eenheid</guimenuitem
+>.</para
+></listitem>
+</itemizedlist>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="new_lesson2.png" format="PNG"/></imageobject>
+    <caption
+>Verzameling: Mijn Spaanse lessen</caption>
+  </mediaobject>
+</screenshot>
+
+<!-- Without gui icon in the toolbar: New Unit -->
+<para
+>U moet er zeker van zijn dat u <guilabel
+>Nieuwe Eenheid</guilabel
+> op de juiste plaats selecteert in de menustructuur. In ons geval, nu we een nieuwe<emphasis
+>Subeenheid</emphasis
+> van de <guilabel
+>verzameling: Mijn Spaanse lessen</guilabel
+> willen maken, is dit precies wat we moeten selecteren, voordat we verdergaan met <guilabel
+>Nieuwe eenheid</guilabel
+>. </para>
+</sect2>
+
+<sect2 id="moving-renaming-and-deleting-units"
+><title
+>Verplaatsen, hernoemen en wissen van eenheden</title>
+
+<para
+>U kunt de naam van een eenheid wijzigen door erop te dubbelklikken, of er met de &RMB; op te klikken, en <guilabel
+>Eenheid hernoemen</guilabel
+> te selecteren. U kunt zo de eenheid ook wissen (maar u bent dan ook de inhoud kwijt). </para>
+
+<para
+>Als de volgorde van de eenheden niet naar uw zin is, kunt u met behulp van de muis een eenheid verplaatsen. U kunt de eenheid op een andere eenheid slepen en neerzetten, het wordt daar dan een onderdeel van (subeenheid). </para>
+</sect2>
+
+<sect2 id="splitting-a-unit"
+><title
+>Een eenheid opdelen in kleinere eenheden</title>
+
+<para
+>Als de eenheden te groot worden, kunt u ze opdelen in makkelijker te leren kleinere eenheden. 20 woorden in een eenheid is waarschijnlijk een geschikt aantal. Klik met de &RMB; op een eenheid, of kies <menuchoice
+><guimenu
+>Eenheid</guimenu
+><guimenuitem
+>Lessen in kleinere eenheden opdelen</guimenuitem
+></menuchoice
+>. De eenheid wordt dan in een aantal kleinere subeenheden gesplitst. U kunt kiezen of de woorden voor de opdeling eerst in een willekeurige volgorde moeten worden geplaatst, of dat u de bestaande volgorde wilt aanhouden. </para>
+</sect2>
+
+<sect2 id="what-is-shown-in-the-table"
+><title
+>Wat u in de tabel kunt zien</title>
+
+<para
+>&parley; toont altijd de woorden in de geselecteerde eenheid. U kunt het mogelijk maken dat de woorden in de subeenheden ook worden getoond, met <menuchoice
+> <guimenu
+>Les</guimenu
+><guimenuitem
+>Regels in subeenheden tonen</guimenuitem
+></menuchoice
+>. Op die manier kunt u door alle woorden bladeren als u het bovenste document selecteert. </para>
+</sect2>
+</sect1>
+
+<sect1 id="word-types"
+><title
+>Woordsoorten</title>
+
+<para
+>&parley; laat u een woordsoort verbinden aan de woorden. Woordsoorten zijn bijvoorbeeld: zelfstandige naamwoorden, werkwoorden, bijvoeglijke naamwoorden en bijwoorden. </para>
+
+<para
+>U kunt met woordsoorten werken als u het hulpmiddel hiervoor activeert met  <menuchoice
+><guimenu
+>Beeld</guimenu
+><guimenuitem
+>Woordtypen</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>U kunt de woordsoorten net als de eenheden in categorieën indelen. </para>
+
+<para
+>Als u alle woorden wit zien van een bepaalde soort - &eg; alle zelfstandige naamwoorden, dan selecteert u de categorie voor zelfstandige naamwoorden, u ziet dan in de tabel alleen de zelfstandige naamwoorden. </para>
+
+<para
+>U kunt de woordsoort het gemakkelijkste instellen met het slepen en neerzetten van een woord op de woordsoort. U kunt dit zelfs met meerdere woorden tegelijk doen. </para>
+
+<!-- empty sect2
+<sect2 id="words-or-sentences"
+><title
+>Words or Sentences</title>
+</sect2
+-->
+<sect2 id="adding-new-vocabulary"
+><title
+>Nieuwe woorden toevoegen</title>
+
+<para
+>Met <inlinemediaobject
+><imageobject
+><imagedata fileref="list-add.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Nieuwe invoer</guiicon
+> in de werkbalk kunt u nieuwe woorden toevoegen. U kunt meteen beginnen met het intypen van het woord in de eerste taal. Na het invoeren van het eerste woord drukt u op &Tab; om naar de volgende taal te gaan. </para>
+</sect2>
+
+<sect2 id="editing-words"
+><title
+>Woorden bewerken</title>
+
+<para
+>Als u een woord wilt vervangen, selecteert u dat en begint u met typen. Als u in plaats daarvan het wilt wijzigen, dubbelklikt u erop, en kunt u de inhoud van de cel veranderen, zonder dat het oude woord hiermee verloren gaat. </para>
+
+<para
+>Druk op &Tab; om naar het volgende woord te gaan, maar in de modus bewerken te blijven. Met &Enter; verlaat u deze modus. Met de pijltoetsen kunt naar een andere plaats op de pagina gaan. </para>
+</sect2>
+</sect1>
+
+<sect1 id="synonyms"
+><title
+>Synoniemen</title>
+
+<para
+>Synoniemen zijn moeilijk in te stellen, en het werkt niet altijd zoals zou moeten. U kunt ze in elk geval op deze manier instellen: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Met het keuzevakje in <menuchoice
+><guimenu
+>Beeld</guimenu
+><guimenuitem
+>Synoniemen</guimenuitem
+></menuchoice
+> komt u in het hulpmiddel voor synoniemen.</para
+></listitem>
+
+  <listitem
+><para
+>Selecteer eerst woord (A) waarvoor u synoniemen wilt instellen, en klik dan op het tweede woord (B)</para
+></listitem>
+
+  <listitem
+><para
+>De tekst op de knop in het hulpmiddel voor synoniemen verandert in <guilabel
+>A en B zijn synoniemen</guilabel
+></para
+></listitem>
+</itemizedlist>
+
+<para
+>In het hulpmiddel voor synoniemen worden de woorden getoond als met elkaar verbonden, en worden in de oefening als synoniemen beschouwd. </para>
+</sect1>
+
+<sect1 id="adding-images"
+><title
+>Afbeeldingen toevoegen</title>
+
+<para
+>Ga eerst naar het hulpmiddel voor geluid door, in het menu <guilabel
+>Beeld</guilabel
+> in de menubalk, op <guilabel
+>Geluid</guilabel
+> te klikken. U ziet dan de sectie voor geluid rechts in het scherm van &parley;. </para>
+
+<para
+>U kunt een afbeelding toevoegen aan een woord door het te markeren.  In de sectie rechts drukt u dan op het pictogram   <inlinemediaobject
+><imageobject
+><imagedata fileref="folder-black.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Map</guiicon
+> in de taakbalk en kiest u de gewenste afbeelding. Bij het kiezen van een geluid bij een paar woorden die vertalingen zijn van elkaar, moeten de cellen waarin die woorden staan, rechtsboven gemerkt zijn met een blauw vlaggetje. Door de muisaanwijzer hier boven te houden ziet u de naam en het pad van het geluidsbestand.. </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="adding-images.png" format="PNG"/></imageobject>
+    <caption
+>Een afbeelding toevoegen</caption>
+  </mediaobject>
+</screenshot>
+
+<!-- <para
+>The needed images can be obtained from Google search using &parley; inbuilt scripts.
+</para>
+
+<para
+>To obtain the image highlight a word in the list then choose the <menuchoice
+><guimenu
+>Scripts</guimenu
+> <guimenuitem
+>Fetch Image</guimenuitem
+></menuchoice
+> menu item.
+</para>
+
+<screenshot>
+  <screeninfo
+>Obtaining images from the Internet</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_006b.png" format="PNG"/></imageobject>
+    <caption
+>Obtaining images from the Internet</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Choose the right image using <guibutton
+>Next</guibutton
+> and <guibutton
+>Previous</guibutton
+> buttons. You can correct the search criteria for the images using the corresponding text box.
+</para>
+
+<para
+>If you prefer only free images check the corresponding check box.
+</para>
+
+<para
+>When the selection is finished just press on the <guibutton
+>OK</guibutton
+> button and the image will be saved next to the current vocabulary file in the <filename role="directory"
+><replaceable
+>name_of_vocabulary</replaceable
+>_files</filename
+> subfolder.
+</para>
+
+<warning
+><para
+>Due to the current script limitations the image files cannot be saved in the paths with Unicode symbols in the names of folders and files.
+</para
+></warning
+> -->
+</sect1>
+
+<sect1 id="adding-sound"
+><title
+>Geluid toevoegen</title>
+
+<para
+>Ga eerst naar het hulpmiddel voor geluid door in het menu <guilabel
+>Beeld</guilabel
+> in de menubalk, op <guilabel
+>Geluid</guilabel
+> te klikken. U ziet dan de sectie voor <guilabel
+>Geluid</guilabel
+> rechts in het scherm van &parley;. </para>
+
+<para
+>Als u een geluid wilt toevoegen aan een woord, moet u het woord selecteren. In het geluidengedeelte rechts klikt u op het pictogram <inlinemediaobject
+><imageobject
+><imagedata fileref="folder-black.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Map</guiicon
+>, in de taakbalk en kiest u het gewenste geluid. Bij het kiezen van een geluid bij een paar woorden die vertalingen zijn van elkaar, moeten de cellen waarin die woorden staan, rechtsboven gemerkt zijn met een rood vlaggetje. Door de muisaanwijzer hier boven te houden ziet u de naam en het pad van het geluidsbestand. </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="adding-sound.png" format="PNG"/></imageobject>
+    <caption
+>Een Geluid toevoegen</caption>
+  </mediaobject>
+</screenshot>
+
+<!-- Not found!
+<para
+>The needed sound files can be obtained from Wiktionary using &parley; inbuilt scripts.
+</para>
+
+<para
+>To obtain the sound file highlight a word in the list then choose <menuchoice
+><guimenu
+>Scripts</guimenu
+> <guimenuitem
+>Fetch Sound</guimenuitem
+></menuchoice
+> from the &parley; menu.
+</para>
+
+<para
+>The sound file will be saved next to the current vocabulary file in the <filename role="directory"
+><replaceable
+>name_of_vocabulary</replaceable
+>_files</filename
+> subfolder.
+</para
+> -->
+</sect1>
+
+<sect1 id="entering-comparison-forms"
+><title
+>Trappen van vergelijking invoeren</title>
+
+<para
+>Voordat u trappen van vergelijking kunt invoeren, moet eerst het hulpmiddel hiervoor geactiveerd worden. Dit doet u in het menu  <menuchoice
+><guimenu
+>Beeld</guimenu
+><guimenuitem
+>Trappen van vergelijking</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>Selecteer eerst een bijvoeglijk naamwoord of een bijwoord. </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison_form.png" format="PNG"/></imageobject>
+    <caption
+>Hulpmiddel voor Trappen van vergelijking</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Druk op de knop <guilabel
+>Bijvoeglijk naamwoord</guilabel
+> of <guilabel
+>Bijwoord</guilabel
+> in het hulpmiddel voor trappen van vergelijking. </para>
+<!--
+<screenshot>
+  <screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_edit_comparison_form_2.png" format="PNG"/></imageobject>
+    <caption
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+<para
+>Voer de trappen van vergelijking in. </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison_form_edit.png" format="PNG"/></imageobject>
+    <caption
+>De trappen van vergelijking bewerken</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Nu kunt u gebruik maken van de modus <link linkend="comparison-forms-of-adjectives-and-adverbs"
+>Oefening met trappen van vergelijking</link
+>. </para>
+</sect1>
+
+<sect1 id="entering-inflection-forms"
+><title
+>Verbuigingsvormen invoeren</title>
+
+<para
+>Voordat u verbuigingsvormen kunt invoeren, moet eerst het hulpmiddel hiervoor geactiveerd worden. Dit doet u in het menu <menuchoice
+><guimenu
+>Beeld</guimenu
+><guimenuitem
+>Verbuigingen (werkwoorden, bijvoeglijke naamwoorden, zelfstandige naamwoorden)</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>Selecteer eerst een werkwoord. </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="conjugation.png" format="PNG"/></imageobject>
+    <caption
+>Verbuigingsvormen bewerken</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Klik op de knop <guilabel
+>Werkwoord</guilabel
+> in het hulpmiddel voor verbuigingen. </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="conjugation_edit.png" format="PNG"/></imageobject>
+    <caption
+>Verbuigingsvormen bewerken</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Na het kiezen van de juiste tijdvorm in het neerklapmenu <guilabel
+>Tijd:</guilabel
+> vult u de juiste vervoegingen in: </para>
+
+<para
+>De tijdvormen kunnen voor beide talen worden ingesteld, zie <link linkend="languages-and-grammar"
+>Talen en grammatica</link
+>.  </para>
+
+<para
+>Nu kunt u gebruik maken van de modus van <link linkend="conjugations"
+>Oefening met vervoegen</link
+>. </para>
+
+<para
+>Gebruik de knop <guibutton
+>Zelfstandig naamwoord</guibutton
+> of de knop <guibutton
+>Bijvoeglijk naamwoord</guibutton
+> om verbuigingsvormen toe te voegen aan uw woordenschat. </para>
+</sect1>
+
+<sect1 id="creating-new-files"
+><title
+>Nieuwe bestanden aanmaken</title>
+
+<para
+>In deze sectie beschrijven we het aanmaken van nieuwe bestanden, niet alleen voor de gebruikelijke woordenlijsten, maar ook voor oefeningen met grammatica, rekenen/wiskunde, &etc; </para>
+
+<sect2 id="new-collection--vocabulary-english-german"
+><title
+>Nieuwe verzameling: Woordenlijst Engels-Duits</title>
+
+<para
+>In deze sectie beschrijven we het aanmaken van een oefenbestand voor woordjes, inclusief plaatjes en geluid. In een volgende stap zullen we ook bijvoeglijke naamwoorden en werkwoorden hieraan toevoegen. Dit is een erg compleet voorbeeld, en daarom ook nogal lang. Het is mogelijk dat niet elk onderdeel ervan voor uw project nodig is. </para>
+
+<para
+>Omdat we straks geluiden en afbeeldingen willen toevoegen, is het belangrijk dat die voor het gemak aanwezig zijn in een map met de naam <emphasis
+>ned-deu</emphasis
+>. Ons gegevensbestand, dat we aanmaken met &parley;, zal in dezelfde map worden opgeslagen. Dit maakt het eenvoudig, wanneer u besluit uw werk met anderen te delen. </para>
+
+<para
+>Dus dit hebben we op het gebied van geluidsbestanden en afbeeldingen: </para>
+
+<screenshot>
+  <screeninfo
+>Gegevensmap in &dolphin;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Folder_with_sound_and_pictures.png" format="PNG"/></imageobject>
+    <caption
+>Gegevensmap in &dolphin;</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Laat ons beginnen op het <guilabel
+>Dashboard</guilabel
+> dat we krijgen na het starten van &parley;: </para>
+
+<screenshot>
+  <screeninfo
+>Hoofdvenster van &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="dashboard.png" format="PNG"/></imageobject>
+    <caption
+>Dashboard met meerdere verzamelingen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Klik op de knop <guilabel
+>Een nieuwe verzameling aanmaken...</guilabel
+>. </para>
+
+<para
+>U ziet nu de pagina met <guilabel
+>Algemene documenteigenschappen</guilabel
+>, die als volgt wordt ingevuld (aanpassen aan uw eigen bestand): </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog Eigenschappen van...</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="general_document_properties.png" format="PNG"/></imageobject>
+    <caption
+>Dialoog Eigenschappen van...</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Klik daarna op <guilabel
+>OK</guilabel
+>. In het volgende scherm wordt u gevraagd de details voor de talen in te stellen. We veranderen hier niets, en klikken dus gewoon op <guilabel
+>OK</guilabel
+>. </para>
+
+<para
+>Als eerste zullen we de woordenlijst(en) gaan aanmaken. Pas in een latere fase zullen we de geluids- en afbeeldingsbestanden toevoegen. Zo ziet de eenheid er nu uit: </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="new_empty_collection.png" format="PNG"/></imageobject>
+    <caption
+>Een nieuwe lege verzameling</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Voordat we iets anders gaan doen, slaan we het bestand op in dezelfde map als de afbeeldingen en de geluidsbestanden. Gebruik <menuchoice
+><guimenu
+>Bestand</guimenu
+><guimenuitem
+>Opslaan</guimenuitem
+></menuchoice
+> en selecteer de map door er naar toe te navigeren. In dit geval noemen we het bestand <guilabel
+>Oefenen ned-deu</guilabel
+> - sla na het invoeren van de naam het bestand op. </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog voor Woordenlijst opslaan als</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="save_new_collection.png" format="PNG"/></imageobject>
+    <caption
+>Een nieuwe verzameling opslaan</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Als u nu de map controleert waarin de geluids-en afbeeldingsbestanden zijn, vindt u hierin ook het bestand <guilabel
+>Oefenen ned-deu.kvtml</guilabel
+> </para>
+
+<para
+>Kijken we nu kort naar de woorden die we willen toevoegen: <emphasis
+>apple, bird, cat, cherry, cow, orange, pear, snake, strawberry</emphasis
+> (appel, vogel, kat, kers, koe, sinaasappel, peer, slang, aardbei). Hierin komen dieren voor en fruit, we besluiten dus om twee eenheden aan te maken: <guilabel
+>Animals</guilabel
+> (dieren) en <guilabel
+>Fruits</guilabel
+>. </para>
+
+<para
+><guilabel
+>Les 1</guilabel
+> hernoemen we nu naar <guilabel
+>Dieren</guilabel
+> en daarna voegen we een eenheid toe met de naam <guilabel
+>Vruchten</guilabel
+>. Klik met de &RMB; op <guilabel
+>Les 1</guilabel
+> en kies <guilabel
+>Les hernoemen</guilabel
+> in de getoonde opties. Nu wordt <guilabel
+>Les 1</guilabel
+> gemarkeerd, en kunt u de naam eenvoudig overschrijven met <guilabel
+>Dieren</guilabel
+>. Wanneer dit klaar is, drukt u op de toets &Enter;. Klik met de &RMB; op <guilabel
+>Verzameling:  woordjes oefenen N...</guilabel
+> aan het begin van de boomstructuur van de eenheden, en kies <guilabel
+>Nieuwe eenheid</guilabel
+> in de getoonde opties. In het nieuwe veld schrijft u <guilabel
+>Vruchten</guilabel
+> en drukt u weer op &Enter;. </para>
+
+<para
+>We beginnen eerst met het invoegen van de dieren. Klik op de eenheid <guilabel
+>Animals</guilabel
+> en u krijgt een lege tabel die u kunt gaan invullen. Klik met de &RMB; in het eerste veld, en voeg hier de (Engelse) vraag in. Daarna vult u het (Duitse) antwoord in in de tweede kolom. Als alle 4 de Engelse dierennamen zijn ingevuld, en hun Duitse vertalingen, ziet het scherm er als volgt uit: </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_004.png" format="PNG"/></imageobject>
+    <caption
+>Woordenlijst oefening Nederlands-Duits bewerken</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>In ons geval zijn er maar 4 dieren in de eenheid voor dieren. Er zijn veel lege regels, en die moeten worden gewist. Doe dit door eerst op het eerste veld te klikken, en ook op het laatste veld terwijl u de &Shift;-toets ingedrukt houdt. Alle te wissen regels worden nu door oplichten (kleurverandering) gemarkeerd. Druk daarna op de toets &Del;.
+>-toets. </para>
+
+<para
+>We gaan nu de vragen over fruit  toevoegen. Klik nu op de eenheid met de naam <guilabel
+>Vruchten</guilabel
+>. Deze tweede eenheid is geheel leeg. Omdat er vijf vragen zijn over fruit, hebben we vijf regels nodig. Daarom drukken we vijf keer op de <keycap
+>Ins</keycap
+>-toets, en daarna vullen we zoals hiervoor onze woorden in. </para>
+
+<para
+>Vergeet niet om zo af en toe uw werk op te slaan... </para>
+
+<para
+>Na een klik op het begin van de boomstructuur <guilabel
+>Verzameling: Woordenlijst  Oefenen N...</guilabel
+>, toont &parley; ons alle invoer in de twee eenheden:  </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_005.png" format="PNG"/></imageobject>
+    <caption
+>Alle aanwezige invoeren in twee eenheden</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Tijd voor het toevoegen van plaatjes en geluid.  Eerst moeten we de beelden activeren voor afbeeldingen en geluiden.Selecteer de keuzevakjes in het menu<menuchoice
+><guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Afbeelding</guimenuitem
+></menuchoice
+> en <menuchoice
+><guimenu
+>View</guimenu
+> <guimenuitem
+>Geluid</guimenuitem
+></menuchoice
+>. Als deze opties actief zijn, verschijnen twee nieuwe secties rechts in het bewerkingsscherm van  &parley;. </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_006.png" format="PNG"/></imageobject>
+    <caption
+>Secties Geluid en Afbeelding</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Selecteer het Nederlandse woord <emphasis
+>appel</emphasis
+>, door er op te klikken. Het is nu gemarkeerd, dus laten we er een afbeelding aan toevoegen. In het afbeeldingengedeelte rechts, klikt u op het pictogram <inlinemediaobject
+><imageobject
+><imagedata fileref="folder-black.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Map</guiicon
+>, en kiest u het gewenste plaatje. </para>
+
+<para
+>U kunt hieraan de uitspraak toevoegen voor het Engelse apple, door in de sectie voor geluid op dezelfde manier te werk te gaan, en het juiste geluidsbestand te selecteren. </para>
+
+<para
+>U kunt de uitspraak nu horen door in het hulpmiddel voor geluid op de knop <guilabel
+>Afspelen</guilabel
+> te drukken. </para>
+
+<para
+>Het scherm ziet er nu als volgt uit: </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_007.png" format="PNG"/></imageobject>
+    <caption
+>Het geluid afspelen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Nu klikt u op de Duitse vertaling <guilabel
+>Apfel</guilabel
+>. Het veld is nu gemarkeerd als geselecteerd. U zult opmerken dat de afbeelding van de appel nu met de Duitse term is verbonden. In het geluidsgedeelte selecteert u nu de juiste uitspraak, zoals hiervoor. </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_008.png" format="PNG"/></imageobject>
+    <caption
+>Controle verband tussen gegevens</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Ga nu voor alle regels op dezelfde manier verder. </para>
+
+<para
+>Het is nu tijd voor het toevoegen van bijvoeglijke naamwoorden en werkwoorden aan het project. Doe dus precies zo als we eerder met de eenheid <emphasis
+>Fruits</emphasis
+> hebben gedaan, en maak twee nieuwe eenheden aan: <emphasis
+>Bijvoeglijke naamwoorden</emphasis
+> en <emphasis
+>Werkwoorden</emphasis
+>. Laten we even aannemen dat we <emphasis
+>big, small, old, young, narrow</emphasis
+> (groot, klein, oud, jong, smal) aan de eenheid voor bijvoeglijke naamwoorden willen toevoegen, en <emphasis
+>to go, to come, to buy, to drink, to eat</emphasis
+> (gaan, komen, kopen, drinken, eten) aan de eenheid voor werkwoorden. </para>
+
+<para
+>Hier volgt nu een schermbeeld met alle ingevoegde regels. Op dit moment  zijn de woorden nog door elkaar gerangschikt, en het zou leuk zijn als we konden zien welke  daarvan een <emphasis
+>zelfstandig naamwoord, bijvoeglijk naamwoord</emphasis
+> of een <emphasis
+>werkwoord</emphasis
+> is. </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_009.png" format="PNG"/></imageobject>
+    <caption
+>Toont alle ingevoegde terminologie</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>In de volgende stap gaan we het <guilabel
+>Woordtype</guilabel
+> tonen. Selecteer  het keuzevakje <menuchoice
+><guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Kolommen  woordenlijs</guimenuitem
+></menuchoice
+>. We activeren <guilabel
+>Woord type</guilabel
+> voor  <emphasis
+>Nederlands</emphasis
+> en <emphasis
+>Duits</emphasis
+> door op het keuzevakje te klikken voor <guilabel
+>Woordtype</guilabel
+>. Druk daarna op de knop <guibutton
+>OK</guibutton
+> button waarmee u de wijzigingen accepteert. </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog Kolommen in woordenlijst</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_010.png" format="PNG"/></imageobject>
+    <caption
+>Selecteren van woordtype</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Door in de velden in de kolom <guilabel
+>Woordsoort</guilabel
+> te klikken  kunt u de woordsoort selecteren, en voor talen waarin zelfstandige naamwoorden een geslacht hebben kunt u ook de combinatie van <emphasis
+>Zelfstandig naamwoord/geslacht</emphasis
+> selecteren. U kunt beginnen met het invoeren van de eerste tekens van een woord om het te selecteren. Hieronder zijn de kolommen voor <guilabel
+>Woordsoort</guilabel
+> en delen van de selecties al gedeeltelijk klaar. </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_011.png" format="PNG"/></imageobject>
+    <caption
+>De woordtypen kiezen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Als we alle woordtypen hebben opgegeven, beschouwen we eerst de <emphasis
+>Bijvoeglijke naamwoorden</emphasis
+>, en voegen we daaraan <guilabel
+>Trappen van vergelijking</guilabel
+> toe. We gaan nu dus alleen naar de eenheid voor <guilabel
+>Bijvoeglijke naamwoorden</guilabel
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_012.png" format="PNG"/></imageobject>
+    <caption
+>Selecteren van  de trappen van vergelijking</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>U krijgt de <guilabel
+>Trappen van vergelijking</guilabel
+> rechts in het scherm, door <guilabel
+>Beeld</guilabel
+> te selecteren in de menubalk, en  het keuzevakje voor <guilabel
+>Trappen van vergelijking</guilabel
+> te selecteren. </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_013.png" format="PNG"/></imageobject>
+    <caption
+>Toont de trappen van vergelijking</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Bewerk de <guilabel
+>Trappen van vergelijking</guilabel
+> door de <guilabel
+>Vergrotende</guilabel
+> en <guilabel
+>Overtreffende</guilabel
+> trap aan de  bijvoeglijke naamwoorden toe te voegen. Eerst,  klik op het bijvoeglijke naamwoord, waaraan de trappen van vergelijking zullen worden toegevoegd, in ons voorbeeld <emphasis
+>big</emphasis
+> (groot), en voeg hier aan   <emphasis
+>bigger</emphasis
+> en <emphasis
+>biggest</emphasis
+> (groter, grootst) toe. Ga op deze manier verder met het volgende bijvoeglijke naamwoord, tot alles klaar is. </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_014.png" format="PNG"/></imageobject>
+    <caption
+>Toevoegen vergrotende en overtreffende trap</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Tenslotte bekijken we de vervoeging van <guilabel
+>Werkwoorden</guilabel
+>. Selecteer de eenheid <guilabel
+>Werkwoorden</guilabel
+> en activeer desectie voor verbuigen aan de rechterkant door  <menuchoice
+><guimenu
+>Beeld</guimenu
+> <guimenuitem
+>verbuiging (werkwoorden, bijvoeglijke naamwoorden, zelfstandige naamwoorden)</guimenuitem
+></menuchoice
+> te selecteren. Bijvoorbeeld bewerken we de tegenwoordige tijd  (<guilabel
+>Präsens</guilabel
+>) van <emphasis
+>gehen</emphasis
+>. Selecteer eerst<guilabel
+>Präsens</guilabel
+> in het neerklapmenu en voeg daarna de werkwoordsvormen toe.. </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_015.png" format="PNG"/></imageobject>
+    <caption
+>De vervoeging van het werkwoord kiezen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Dit moet nog voor alle werkwoorden gebeuren, in alle mogelijke tijdvormen. </para>
+
+<para
+>Als dit klaar is kunt u beginnen met oefenen door te drukken op het pictogram<inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <link linkend="vocabulary-practice"
+><guiicon
+>Oefenen</guiicon
+></link
+> in de taakbalk. </para>
+</sect2>
+
+<sect2 id="new-collection:-single-names-and-collective-names"
+><title
+>Nieuwe verzameling: Enkelvoudige en verzamelwoorden</title>
+
+<para
+>Deze oefening werd gemaakt voor de 3e klas (groep 5) van een Italiaanse basisschool. De leerlingen moeten enkelvoudige woorden koppelen aan verzamelwoorden zoals <emphasis
+>boom</emphasis
+> → <emphasis
+>bos</emphasis
+> </para>
+
+<para
+>Als u &parley; start, krijgt u de startpagina, eventueel met een lijst van enkele eerder gebruikte bestanden (hier niet te zien). </para>
+
+<screenshot>
+  <screeninfo
+>Hoofdvenster van &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="initial_screen.png" format="PNG"/></imageobject>
+    <caption
+>Dashboard</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Klik op <guilabel
+>Een nieuwe verzameling aanmaken</guilabel
+>, u ziet dan het volgende lege of gedeeltelijk ingevulde scherm: </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog Eigenschappen van Naamloos</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names1.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Dialoog Eigenschappen Naamloos</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Vul de naam in, hier <guilabel
+>nomi singoli e collettivi</guilabel
+>, uw naam en  e-mailadres, in het tekstvak <guilabel
+>Commentaar:</guilabel
+> kunt u een uitvoeriger beschrijving geven, selecteer  <guilabel
+>Categorie:</guilabel
+> en <guilabel
+>Licentie:</guilabel
+>. Nu komt er iets bijzonders: in plaats van het opgeven van de <guilabel
+>Eerste taal:</guilabel
+> en<guilabel
+>Tweede taal:</guilabel
+>, zoals we zouden verwachten, hebben we  <emphasis
+>nome singolo</emphasis
+> (enkele naam) en <emphasis
+>nome collettivo</emphasis
+> (collectieve naam) opgegeven. De opties <guilabel
+>Grammatica  details</guilabel
+> en <guilabel
+>Download grammatica</guilabel
+> zijn hier niet nodig.In de schermafbeelding zijn ze nog actief, maak ze alstublieft inactief door te klikken op de keuzevakjes. Als dit is gedaan kunt up klikken op de knop <guibutton
+>OK</guibutton
+>.  </para>
+
+<para
+>Selecteer in het menu <menuchoice
+><guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Talen...</guimenuitem
+></menuchoice
+>, daarna verschijnt de sectie <guilabel
+>Eigenschappen voor nome singolo</guilabel
+>, met de nodige wijzigingen: </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog Bewerken taal</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names4.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Eigenschappen nome singolo</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Links kunt u zien waar de door u ingevoerde gegevens toe behoren: <emphasis
+>nome singolo</emphasis
+>. Kies de taal, hier <emphasis
+>Italiaans</emphasis
+> en vul <emphasis
+>nome singolo</emphasis
+> in in het volgende invoerveld. Klik daarna op <guilabel
+>OK</guilabel
+>. </para>
+
+<para
+>Nu wordt de sectie <guilabel
+>Eigenschappen van nome collettivo</guilabel
+> getoond: </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog Bewerken taal</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names5.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Eigenschappen nome collettivo</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Zoals hiervoor: kies <guilabel
+>Italiaans</guilabel
+> als taal en vul <emphasis
+>nome collettivo</emphasis
+> in en klik op <guilabel
+>OK</guilabel
+>. </para>
+
+<para
+>En nu kunt u met het bewerken beginnen: </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names7.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Het aanmaken van een nieuwe oefenverzameling</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Vul de <emphasis
+>nome singolo</emphasis
+> (enkelvoudig woord) in in de eerste kolom en de bijbehorende <emphasis
+>nome collettivo</emphasis
+> (verzamelwoord) in de tweede kolom. </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names8.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Nieuwe woorden toevoegen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Indien er niet voldoende regels zijn, klikt u met de &RMB; ergens in het bewerkingsgebied, en kiest u <guilabel
+>Nieuwe regel toevoegen</guilabel
+>. Vergeet niet zo nu en dan uw bestand op te slaan. Als alle regels zijn ingevoerd, wilt u proberen of het oefenen goed gaat. Klik op het pictogram <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Oefenen</guiicon
+> in de taakbalk direct boven het bewerkingsgebied, waarna u de pagina krijgt met de instellingen voor de oefening: </para>
+
+<screenshot>
+  <screeninfo
+>Het venster Bewerken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names10.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>Modus voor oefenen met Meerkeuzevragen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>In dit geval is <guilabel
+>Meerkeuze</guilabel
+> een goede optie, maar ook  <guilabel
+>Geschreven</guilabel
+> zal goed voldoen. Druk na het kiezen van de oefenmodus op het pictogram <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Oefening starten..</guiicon
+> in de taakbalk en geniet van uw werk. </para>
+</sect2>
+</sect1>
+
+<sect1 id="getting-additional-collections"
+><title
+>Het verkrijgen van verzamelingen</title>
+
+<para
+>In het <guilabel
+>Dashboard</guilabel
+> bestaat de mogelijkheid verzamelingen direct te installeren vanaf de server, mits u online bent. Druk daarvoor op de knop <guibutton
+>Nieuwe verzamelingen downloaden</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>Hoofdvenster van &parley;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="dashboard.png" format="PNG"/></imageobject>
+    <caption
+>Dashboard met meerdere verzamelingen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>U krijgt dan een venster met daarin veel interessante verzamelingen. Kies hieruit wat u interessant vindt, en klik op <guilabel
+>Installeren</guilabel
+>. Open daarna het bestand, om ermee te oefenen, of om het te bewerken. </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog Downloaden nieuwe zaken</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="get_new_stuff.png" format="PNG"/></imageobject>
+    <caption
+>Nieuwe verzamelingen ophalen</caption>
+  </mediaobject>
+</screenshot>
+</sect1>
+
+<sect1 id="configure-parley"
+><title
+>&parley; instellen</title>
+
+<para
+>U kunt het uiterlijk van  &parley; instellen in de schermen van het <guilabel
+>Dashboard</guilabel
+>, <guilabel
+>Oefenen</guilabel
+>, of <guilabel
+>Bewerken</guilabel
+>. Selecteer in het menu <menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>&parley; instellen...</guimenuitem
+></menuchoice
+>. </para>
+
+<sect2 id="theme-tab"
+><title
+>Pagina Thema</title>
+
+<para
+>De instellingen beginnen met de pagina <guilabel
+>Thema</guilabel
+>. Hierin kunt u instellen hoe &parley; u begroet bij het opstarten: een elegant <guilabel
+>Gray</guilabel
+> of de altijd drukke  <guilabel
+>Bees</guilabel
+>. Merk op dat <guilabel
+>Fluffy Bunny</guilabel
+> mogelijk in uw installatie niet aanwezig is: wilt u het hebben, lees dan het volgende: </para>
+
+<para
+>Na het kiezen van het gewenste thema klikt u op <guilabel
+>OK</guilabel
+>. </para>
+
+<para
+>Schermbeeld van het thema <guilabel
+>Bees</guilabel
+>: </para>
+
+<screenshot>
+  <screeninfo
+>Oefenscherm</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_bees.png" format="PNG"/></imageobject>
+    <caption
+>Het thema Bees in actie</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>En alsof dit niet genoeg is: u kunt klikken op <guilabel
+>Nieuwe thema's ophalen</guilabel
+> om nog meer thema's verkrijgen. We hopen in de loop van de  tijd meer thema's te kunnen aanbieden. Als u zelf, (met bijvoorbeeld <ulink url="http://inkscape.org"
+><application
+>Inkscape</application
+></ulink
+>), een SVG-thema maakt, kunt u dat misschien ook met iedereen ("de wereld")  delen. </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog &parley; instellen</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_theme.png" format="PNG"/></imageobject>
+    <caption
+>Pgina Themainstellingen</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Meer thema's worden gevonden op <ulink url="http://kde-look.org/index.php?xcontentmode=85"
+>kde-look.org </ulink
+> </para>
+</sect2>
+
+<sect2 id="general-tab"
+><title
+>Algemene pagina</title>
+
+<para
+>In de pagina <guilabel
+>Algemeen</guilabel
+> kunt u wat instellingen doen met betrekking tot het gedrag van &parley;. </para>
+
+<sect3 id="open-save-options"
+><title
+>Sectie voor Openen/Opslaan</title>
+
+<para
+>Met <guilabel
+>Bij starten altijd laatst geopende verzameling inlezen</guilabel
+> keert  u direct terug in de woordenlijst die u aan het leren bent. Deze optie wordt vaak samen gebruikt met <guilabel
+>Woordenlijsten automatisch opslaan bij afsluiten en beëindigen</guilabel
+> omdat het gewoon handig is niet altijd dezelfde vragen te moeten beantwoorden of  wijzigingen (inclusief leerresultaten) moeten worden veranderd, ja dan nee. De optie <guilabel
+>Reservekopie maken elke ... minuten</guilabel
+> kan erg nuttig zijn om uw werk regelmatig op te slaan. Weer iets minder om aan te moeten denken. </para>
+
+<para
+>Soms is het handig (CSV)-tekstbestanden (Comma Separated Values: waarden gescheiden door komma's) te importeren of te exporteren, en hierin is het juiste scheidingsteken nodig om later met de gegevens te kunnen werken, of om de gegevens te kunnen lezen die u ergens vandaan haalt. In &parley; kunt u uit verschillende scheidingstekens kiezen, om er zeker van te zijn dat u de gegevens kunt gebruiken. </para>
+</sect3>
+
+<sect3 id="editing-option"
+><title
+>Sectie voor bewerken</title>
+
+<para
+>Hiermee bepaalt u of &parley; nieuwe rijen automatisch achteraan toevoegt bij het bewerken van de woordenlijst. Dit kan nuttig zijn bij het toevoegen van veel rijen, voordat u de woordenlijst in een aantal aparte eenheden verdeelt. Maar als u eenheden maakt met een vast ingesteld aantal regels, dan kunt u deze optie misschien beter uitzetten. </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog &parley; instellen</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_generalconfig.png" format="PNG"/></imageobject>
+    <caption
+>Pagina voor algemene instellingen</caption>
+  </mediaobject>
+</screenshot>
+</sect3>
+</sect2>
+
+<sect2 id="view-tab"
+><title
+>Pagina voor weergeven</title>
+
+<para
+>Met de <guilabel
+>Weergave-instellingen</guilabel
+> kunt u lettertype en -grootte voor de uitspraaksymbolen instellen en kunt u de <guilabel
+>Basiskleuren voor de beheersniveaus</guilabel
+> instellen naar wens. </para>
+
+<screenshot>
+  <screeninfo
+>Dialoog &parley; instellen</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_view.png" format="PNG"/></imageobject>
+    <caption
+>Pagina Beeldinstellingen</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+</sect1>
+</chapter>
+
+<!--FIXME &parley; is not available on &Windows; in 16.04
+<chapter id="parley-on-windows"
+><title
+>&parley; on &Windows;</title>
+
+<para
+>It is possible to install &parley; together with other <ulink url="https://edu.kde.org"
+>Educational software</ulink
+> on &Windows; systems. For further info please visit <ulink url="https://community.kde.org/Windows"
+>this page</ulink
+>.
+</para>
+
+<para
+>The steps to be followed in short:
+</para>
+
+<para
+>Download the installer <ulink url="https://windows.kde.org/download.php"
+>here</ulink>
+</para>
+
+<para
+>Then follow the installation procedure like for any other &Windows; software.
+</para>
+
+<para
+>When you come to the <guilabel
+>Package selection screen</guilabel
+>, select the language(s) you wish the software to be available in <emphasis
+>and</emphasis
+> the package - in this case <guilabel
+>kdeedu</guilabel
+>. If you don't select any language you will automatically get English.
+</para>
+
+<para
+>Then finish the installation process by clicking on next, following the coming screens just like you normally do with other windows software.
+</para>
+
+<para
+>Please note that the &parley; team does not deal with the &Windows; Installer and therefore we cannot easily answer your questions. Should you have difficulties, please contact the &kde;-Windows team directly. You can do so by subscribing to the mailing list <ulink url="https://mail.kde.org/mailman/listinfo/kde-windows"
+>here</ulink
+> or join them on &irc; at irc://irc.libera.chat Channel: #kde-windows.
+</para>
+</chapter>
+-->
+
+<chapter id="notes-for-advanced-users"
+><title
+>Opmerkingen voor gevorderde gebruikers</title>
+<!--
+<sect1 id="using-parley-for-exam-preparation"
+><title
+>Using &parley; for Exam Preparation</title>
+
+<itemizedlist>
+  <listitem
+><para
+>what to bear in mind with long questions / answers?</para
+></listitem>
+  <listitem
+><para
+>how to start  with a new Exam</para
+></listitem>
+  <listitem
+><para
+>example 1 with capitals</para
+></listitem>
+  <listitem
+><para
+>example 2 with sentence</para
+></listitem>
+</itemizedlist>
+</sect1>
+-->
+<!-- TODO: menu item not found -->
+<sect1 id="upload-and-share-collections"
+><title
+>Verzamelingen uploaden (opsturen) en delen</title>
+
+<para
+>U kunt uw bestanden uploaden en met anderen delen. </para>
+
+<para
+>Gebruik in het menu <menuchoice
+><guimenu
+>Bestand</guimenu
+> <guimenuitem
+> Vocabulary Document uploaden</guimenuitem
+></menuchoice
+> in de <guilabel
+>Bewerker</guilabel
+> van &parley;. </para>
+
+<para
+>Als dat niet gaat kunt u ook een bezoekje brengen aan <ulink url="https://store.kde.org/"
+>store.kde.org</ulink
+>. </para>
+
+<para
+>In elk geval ziet u de dialoog voor<guilabel
+>Nieuwe zaken ophalen</guilabel
+> verschijnen door op de knop <guibutton
+>nieuwe verzamelingen downloadem...</guibutton
+> te drukken in het <guilabel
+>Dashboard</guilabel
+>. </para>
+</sect1>
+
+<sect1 id="file-format"
+><title
+>Bestandsformaat</title>
+
+<para
+>Als u geïnteresseerd bent in welke bestandsformaten &parley; woordenlijsverzamelingen kan lezen en opslaan, bezoek dan: </para>
+
+<para
+><ulink url="https://userbase.kde.org/Parley/FileFormats"
+>&parley; bestandsformaten op userbase.kde.org</ulink>
+</para>
+</sect1>
+
+<!-- empty sect1
+<sect1 id="scripting"
+><title
+>Scripting</title>
+</sect1
+-->
+</chapter>
+
+<!--userbase-content-->
+<chapter id="credits"
+><title
+>Dankbetuigingen en licentie</title>
+
+<sect1 id="thanks"
+><title
+>Dank aan</title>
+
+<para
+>Ik zou graag de volgende personen persoonlijk bedanken voor hun bijdrage aan &parley;: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Peter Hedlund, die &kvoctrain; gaande hield en begon met het overzetten naar &kde;4, en wat uiteindelijk &parley; werd</para
+></listitem>
+  <listitem
+><para
+>David Capel</para
+></listitem>
+  <listitem
+><para
+>Avgoustinos Kadis</para
+></listitem>
+  <listitem
+><para
+>Daniel Laidig</para
+></listitem>
+  <listitem
+><para
+>Johannes Simon</para
+></listitem>
+</itemizedlist>
+
+<para
+>Ik wil ook alle andere niet genoemde personen danken, speciaal het gehele &kde;-team, voor hun hulp, constructieve kritiek, suggesties of foutmeldingen. </para>
+</sect1>
+
+<sect1 id="copyright"
+><title
+>Copyright</title>
+
+<para
+>&parley; copyright 2007-2010 &Frederik.Gladhorn; &Frederik.Gladhorn.mail; </para>
+
+<para
+>Documentatie-copyright 2010 &Frederik.Gladhorn; &Frederik.Gladhorn.mail;, Sabine Eller <email
+>s.eller@voxhumanitatis.org</email
+>, Daniel Laidig <email
+>d.laidig@gmx.de</email
+>; 2014 Amarvir Singh <email
+>amarvir.ammu.93@gmail.com</email
+> </para>
+
+&meld.fouten;&vertaling.freek;&vertaling.jaap; &underFDL; &underGPL; </sect1>
+</chapter>
+
+&documentation.index;
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->
