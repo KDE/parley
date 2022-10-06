@@ -731,7 +731,7 @@ msgstr "Bu&sca:"
 #: src/practice/practiceui.rc:7 src/statistics/statisticsui.rc:7
 #, kde-format
 msgid "&File"
-msgstr "&Fitxer"
+msgstr "Fi&txer"
 
 #. i18n: ectx: Menu (edit)
 #: src/editor/editorui.rc:12
@@ -743,7 +743,7 @@ msgstr "&Edita"
 #: src/editor/editorui.rc:25 src/practice/practiceui.rc:12
 #, kde-format
 msgid "&View"
-msgstr "&Visualitza"
+msgstr "Vi&sualitza"
 
 #. i18n: ectx: Menu (lesson)
 #: src/editor/editorui.rc:51
@@ -816,7 +816,7 @@ msgstr "&Mai"
 #: src/editor/FromToEntryPageForm.ui:190
 #, kde-format
 msgid "T&oday"
-msgstr "&Hui"
+msgstr "H&ui"
 
 #. i18n: ectx: property (toolTip), widget (QDateEdit, queryDateEdit)
 #: src/editor/FromToEntryPageForm.ui:206
@@ -1134,7 +1134,7 @@ msgstr "Fitxer d'imatge seleccionat: %1"
 #: src/editor/vocabularyview.cpp:79
 #, kde-format
 msgid "&Add New Entry"
-msgstr "&Afig una entrada nova"
+msgstr "Afi&g una entrada nova"
 
 #: src/editor/vocabularyview.cpp:82
 #, kde-format
@@ -3096,7 +3096,7 @@ msgstr "&Segon idioma:"
 #: src/settings/documentproperties.ui:311
 #, kde-format
 msgid "&Setup grammar details"
-msgstr "&Establix els detalls gramaticals"
+msgstr "E&stablix els detalls gramaticals"
 
 #. i18n: ectx: property (text), widget (QCheckBox, downloadGrammarCheckBox)
 #: src/settings/documentproperties.ui:321
@@ -3284,7 +3284,7 @@ msgstr "En editar"
 #: src/settings/generaloptionsbase.ui:162
 #, kde-format
 msgid "&Append new rows automatically when editing"
-msgstr "&Afig automàticament files noves en editar"
+msgstr "Afi&g automàticament files noves en editar"
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, getNewButton)
 #: src/settings/kgametheme/kgamethemeselector.ui:40
