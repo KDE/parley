@@ -714,7 +714,7 @@ msgstr "LaTeX"
 #: src/editor/editor.cpp:412
 #, kde-format
 msgid "Enter search terms here"
-msgstr "Introduïu ací els termes a buscar"
+msgstr "Introduïu ací els termes que s'han de buscar"
 
 #: src/editor/editor.cpp:413
 #, kde-format
@@ -1559,7 +1559,7 @@ msgstr "[fitxer]"
 #: src/main.cpp:91
 #, kde-format
 msgid "Document file to open"
-msgstr "Fitxer de document que s'obrirà"
+msgstr "Fitxer de document que s'ha d'obrir"
 
 #: src/parleyactions.cpp:72
 #, kde-format
@@ -3599,7 +3599,7 @@ msgstr "&Neteja"
 #: src/settings/parley.kcfg:11
 #, kde-format
 msgid "Theme to use for practice and welcome screen"
-msgstr "Tema a emprar per a l'exercici i la pantalla de benvinguda"
+msgstr "Tema que s'ha d'utilitzar per a l'exercici i la pantalla de benvinguda"
 
 #. i18n: ectx: label, entry (NumPreSetting), group (General)
 #: src/settings/parley.kcfg:15
