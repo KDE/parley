@@ -129,7 +129,7 @@ msgstr "Nombre total d'entrades:"
 #: src/collection/entryfilterdialog.ui:192
 #, kde-format
 msgid "Resulting number of words to practice:"
-msgstr "Nombre resultant de paraules a exercitar:"
+msgstr "Nombre resultant de paraules que s'han d'exercitar:"
 
 #: src/collection/lessonmodel.cpp:47
 #, kde-format
@@ -4409,7 +4409,7 @@ msgstr "Direccions barrejades"
 #: src/statistics/statisticsmainwindow.ui:29
 #, kde-format
 msgid "Language to Learn"
-msgstr "Idioma a aprendre"
+msgstr "Idioma que s'ha d'aprendre"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/statistics/statisticsmainwindow.ui:39
