@@ -903,7 +903,7 @@ msgstr "Afig una unitat nova al vostre document"
 #: src/editor/lessonview.cpp:39
 #, kde-format
 msgid "Rename Unit"
-msgstr "Canvia el nom la unitat"
+msgstr "Canvia el nom de la unitat"
 
 #: src/editor/lessonview.cpp:47
 #, kde-format
@@ -1237,7 +1237,7 @@ msgstr "Canvia el nom"
 #: src/editor/wordtypeview.cpp:40
 #, kde-format
 msgid "Rename the selected word type"
-msgstr "Canvia el nom el tipus de paraula seleccionat"
+msgstr "Canvia el nom del tipus de paraula seleccionat"
 
 #: src/editor/wordtypeview.cpp:46
 #, kde-format
