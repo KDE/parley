@@ -92,6 +92,9 @@ QVariant StatisticsModel::data(const QModelIndex &index, int role) const
 
 int StatisticsModel::averageGradeForPracticeMode(KEduVocContainer *container, int translation) const
 {
+    if (m_documentSettings.size() <= translation) {
+        return 0;
+    }
     WordCount wordCount;
     wordCount.fillFromContainerForPracticeMode(*container, translation, m_documentSettings.at(translation)->conjugationTenses());
     return wordCount.percentageCompleted();
@@ -99,6 +102,9 @@ int StatisticsModel::averageGradeForPracticeMode(KEduVocContainer *container, in
 
 int StatisticsModel::entryCountForPracticeMode(KEduVocContainer *container, int translation) const
 {
+    if (m_documentSettings.size() <= translation) {
+        return 0;
+    }
     WordCount wordCount;
     wordCount.fillFromContainerForPracticeMode(*container, translation, m_documentSettings.at(translation)->conjugationTenses());
     return wordCount.totalWords - wordCount.invalid;
@@ -106,6 +112,9 @@ int StatisticsModel::entryCountForPracticeMode(KEduVocContainer *container, int 
 
 int StatisticsModel::expressionsOfGradeForPracticeMode(KEduVocContainer *container, int translation, grade_t grade) const
 {
+    if (m_documentSettings.size() <= translation) {
+        return 0;
+    }
     WordCount wordCount;
     wordCount.fillFromContainerForPracticeMode(*container, translation, m_documentSettings.at(translation)->conjugationTenses());
     return wordCount.grades[grade];
