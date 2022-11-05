@@ -4,7 +4,7 @@
 # Copyright (C) 2002,2003, 2004, 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
 #
 # Miguel Revilla Rodríguez <yo@miguelrevilla.com>, 2002,2003.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2004, 2005, 2007, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021.
+# Eloy Cuadra <ecuadra@eloihr.net>, 2004, 2005, 2007, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022.
 # Rafael Beccar <traduccioneskde@rafabeccar.com.ar>, 2004.
 # Rafael Beccar <kdemail@rafabeccar.com.ar>, 2004.
 # Rafael Beccar <rafael.beccar@kdemail.net>, 2004, 2005.
@@ -19,14 +19,14 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:41+0000\n"
-"PO-Revision-Date: 2021-11-01 10:50+0100\n"
+"PO-Revision-Date: 2022-11-04 17:07+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.08.2\n"
+"X-Generator: Lokalize 22.08.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -1402,7 +1402,7 @@ msgstr "Exportar"
 #: src/exportdialog.ui:20
 #, kde-format
 msgid "Flash Cards - to print learning cards (HTML)"
-msgstr "Tarjetas: para imprimir tarjetas de aprendizaje (HTML)"
+msgstr "Tarjetas de aprendizaje: para imprimir tarjetas de aprendizaje (HTML)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, tableRadio)
 #: src/exportdialog.ui:30
@@ -2352,7 +2352,8 @@ msgstr "Imagen para la solución"
 #: src/practice/configure/generalpracticeoptions.ui:123
 #, kde-format
 msgid "Allow using images instead of words in flashcards."
-msgstr "Permitir mostrar las imágenes en lugar de palabras en las tarjetas."
+msgstr ""
+"Permitir el uso imágenes en lugar de palabras en las tarjetas de aprendizaje."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AllowImageInsteadOfWord)
 #: src/practice/configure/generalpracticeoptions.ui:126
@@ -3674,13 +3675,13 @@ msgstr "Intervalo de tiempo entre dos copias de respaldo automáticas"
 #: src/settings/parley.kcfg:57
 #, kde-format
 msgid "Show images on the front of the flashcard."
-msgstr "Mostrar las imágenes en el anverso de la tarjeta."
+msgstr "Mostrar las imágenes en el anverso de la tarjeta de aprendizaje."
 
 #. i18n: ectx: label, entry (FlashcardsBackImage), group (PracticeOptions)
 #: src/settings/parley.kcfg:61
 #, kde-format
 msgid "Show images on the back of the flashcard."
-msgstr "Mostrar las imágenes en el reverso de la tarjeta."
+msgstr "Mostrar las imágenes en el reverso de la tarjeta de aprendizaje."
 
 #. i18n: ectx: label, entry (Block), group (PracticeOptions)
 #: src/settings/parley.kcfg:65
@@ -3856,8 +3857,9 @@ msgid ""
 "Allow using images instead of words in flashcards. This will only be done if "
 "there is no word in the entry."
 msgstr ""
-"Permitir utilizar imágenes en lugar de palabras en las tarjetas. Esto se "
-"hará solamente en el caso de que en la entrada no haya una palabra."
+"Permitir usar imágenes en lugar de palabras en las tarjetas de aprendizaje. "
+"Esto se hará solamente en el caso de que en la entrada no haya ninguna "
+"palabra."
 
 #. i18n: ectx: label, entry (SessionMaxSize), group (PracticeOptions)
 #: src/settings/parley.kcfg:172
@@ -4443,7 +4445,7 @@ msgstr "Modo de prácticas"
 #: src/statistics/statisticsmainwindow.ui:81
 #, kde-format
 msgid "Flash Cards"
-msgstr "Tarjetas"
+msgstr "Tarjetas de aprendizaje"
 
 #. i18n: ectx: property (text), widget (QRadioButton, mixedLetters)
 #: src/statistics/statisticsmainwindow.ui:91
