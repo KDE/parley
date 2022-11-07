@@ -3844,7 +3844,7 @@ msgid ""
 "there is no word in the entry."
 msgstr ""
 "Permet utilitzar imatges en lloc de paraules a les fitxes. Açò només es farà "
-"si no hi ha cap paraula a l'entrada."
+"si no hi ha cap paraula en l'entrada."
 
 #. i18n: ectx: label, entry (SessionMaxSize), group (PracticeOptions)
 #: src/settings/parley.kcfg:172
@@ -4045,7 +4045,7 @@ msgstr ""
 #: src/settings/parley.kcfg:293
 #, kde-format
 msgid "Only selected word types will be included in practice."
-msgstr "Només s'inclouran a l'exercici els tipus de paraula seleccionats."
+msgstr "Només s'inclouran en l'exercici els tipus de paraula seleccionats."
 
 #. i18n: ectx: label, entry (WordTypesInPractice), group (Thresholds)
 #. i18n: ectx: whatsthis, entry (WordTypesInPractice), group (Thresholds)
