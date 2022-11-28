@@ -12,7 +12,7 @@ Dependencies:
     'frameworks/ki18n': '@stable'
     'frameworks/kio': '@stable'
     'frameworks/knewstuff': '@stable'
-    'frameworks/ksonnet': '@stable'
+    'frameworks/sonnet': '@stable'
     'frameworks/ktextwidgets': '@stable'
     'frameworks/kxmlgui': '@stable'
     'frameworks/knotifications': '@stable'
