@@ -145,7 +145,7 @@ msgstr "Cap"
 #: src/collection/vocabularymodel.cpp:185
 #, kde-format
 msgid "You can drag and drop words onto their word type."
-msgstr "Podeu arrossegar i amollar paraules damunt del seu tipus."
+msgstr "Podeu arrossegar i deixar paraules damunt del seu tipus."
 
 #: src/collection/vocabularymodel.cpp:187
 #, kde-format
@@ -3843,8 +3843,8 @@ msgid ""
 "Allow using images instead of words in flashcards. This will only be done if "
 "there is no word in the entry."
 msgstr ""
-"Permet utilitzar imatges en lloc de paraules a les fitxes. Açò només es farà "
-"si no hi ha cap paraula en l'entrada."
+"Permet utilitzar imatges en lloc de paraules en les fitxes. Açò només es "
+"farà si no hi ha cap paraula en l'entrada."
 
 #. i18n: ectx: label, entry (SessionMaxSize), group (PracticeOptions)
 #: src/settings/parley.kcfg:172
