@@ -2192,7 +2192,7 @@ msgstr "Inclou els adverbis"
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Practice"
-msgstr "Configuració de l'exercici"
+msgstr "Configureu l'exercici"
 
 #: src/practice/configure/configurepracticedialog.cpp:28
 #, kde-format
@@ -3320,7 +3320,7 @@ msgstr "Autoria:"
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Languages"
-msgstr "Edició dels idiomes"
+msgstr "Editeu els idiomes"
 
 #: src/settings/languageproperties.cpp:27
 #, kde-format
