@@ -22,6 +22,7 @@ include(ECMEnableSanitizers)
 include(FeatureSummary)
 include(KDEClangFormat)
 include(KDEGitCommitHooks)
+include(ECMDeprecationSettings)
 
 #Allows QString concatenation to use a single memory allocation per source line.
 add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
@@ -50,6 +51,10 @@ find_package(KF5 ${KF5_MIN_VERSION} MODULE REQUIRED COMPONENTS
   XmlGui
   Notifications
 )
+ecm_set_disabled_deprecation_versions(QT 5.15.2
+    KF 5.99.0
+)
+
 
 find_package(LibKEduVocDocument)
 set_package_properties(LibKEduVocDocument PROPERTIES
