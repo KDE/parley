@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:41+0000\n"
-"PO-Revision-Date: 2023-01-17 00:47+0100\n"
+"PO-Revision-Date: 2023-01-23 08:54+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -112,7 +112,7 @@ msgstr ""
 #: src/collection/entryfilterdialog.ui:171
 #, kde-format
 msgid "Total number of entries:"
-msgstr ""
+msgstr "ჩანაწერების ჯამური რაოდენობა:"
 
 #. i18n: ectx: property (text), widget (QLabel, totalDescriptionLabel)
 #: src/collection/entryfilterdialog.ui:192
@@ -534,7 +534,7 @@ msgstr ""
 #: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:466
 #, kde-format
 msgid "Feminine"
-msgstr ""
+msgstr "ქალური"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
@@ -1332,7 +1332,7 @@ msgstr[1] ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Export"
-msgstr ""
+msgstr "გატანა"
 
 #: src/exportdialog.cpp:79
 #, kde-format
@@ -1682,12 +1682,12 @@ msgstr ""
 #: src/parleyactions.cpp:221
 #, kde-format
 msgid "Show Se&arch"
-msgstr ""
+msgstr "&ძებნის ჩვენება"
 
 #: src/parleyactions.cpp:222
 #, kde-format
 msgid "Toggle display of the search bar"
-msgstr ""
+msgstr "ძებნის ზოლის ჩვენების გადართვა"
 
 #: src/parleydocument.cpp:121 src/parleydocument.cpp:568
 #, kde-format
@@ -1838,7 +1838,7 @@ msgstr ""
 #: src/parleymainwindow.cpp:211
 #, kde-format
 msgid "Download New Vocabularies..."
-msgstr ""
+msgstr "ახალი ლექსიკონების გადმოწერა..."
 
 #: src/parleymainwindow.cpp:217
 #, kde-format
@@ -3759,7 +3759,7 @@ msgstr ""
 #: src/settings/parley.kcfg:201
 #, kde-format
 msgid "Toggle display of the search bar."
-msgstr ""
+msgstr "ძებნის ზოლის ჩვენების გადართვა."
 
 #. i18n: ectx: label, entry (ShowSublessonentries), group (Appearance)
 #: src/settings/parley.kcfg:206
@@ -3979,7 +3979,7 @@ msgstr ""
 #: src/settings/parley.kcfg:391
 #, kde-format
 msgid "The command used to start a downloaded vocabulary"
-msgstr ""
+msgstr "ბრძანება გადმოწერილი ლექსიკონის გასაშვებად"
 
 #. i18n: ectx: label, entry (InstallPath), group (KNewStuff)
 #: src/settings/parley.kcfg:395
