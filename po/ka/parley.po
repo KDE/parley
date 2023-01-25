@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:41+0000\n"
-"PO-Revision-Date: 2022-09-12 20:29+0200\n"
+"PO-Revision-Date: 2023-01-24 09:04+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -112,7 +112,7 @@ msgstr ""
 #: src/collection/entryfilterdialog.ui:171
 #, kde-format
 msgid "Total number of entries:"
-msgstr ""
+msgstr "ჩანაწერების ჯამური რაოდენობა:"
 
 #. i18n: ectx: property (text), widget (QLabel, totalDescriptionLabel)
 #: src/collection/entryfilterdialog.ui:192
@@ -534,7 +534,7 @@ msgstr ""
 #: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:466
 #, kde-format
 msgid "Feminine"
-msgstr ""
+msgstr "ქალური"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
@@ -813,7 +813,7 @@ msgstr ""
 #: src/editor/FromToEntryPageForm.ui:209
 #, kde-format
 msgid "Not Practiced Yet"
-msgstr ""
+msgstr "ჯერ არ გივარჯიშიათ"
 
 #. i18n: ectx: property (displayFormat), widget (QDateEdit, queryDateEdit)
 #: src/editor/FromToEntryPageForm.ui:229
@@ -1127,7 +1127,7 @@ msgstr ""
 #: src/editor/vocabularyview.cpp:91
 #, kde-format
 msgid "&Delete Entry"
-msgstr ""
+msgstr "&ჩანაწერის წაშლა"
 
 #: src/editor/vocabularyview.cpp:94
 #, kde-format
@@ -1184,7 +1184,7 @@ msgstr "წაშლა"
 #: src/editor/vocabularyview.cpp:362
 #, kde-format
 msgid "Nothing to spell check."
-msgstr ""
+msgstr "შესამოწმებელი არაფერია."
 
 #: src/editor/vocabularyview.cpp:387
 #, kde-format
@@ -1236,7 +1236,7 @@ msgctxt ""
 "Let the user select what grammatical meaning is connected to a word type "
 "(nouns have gender, verbs conjugations etc)"
 msgid "Grammar"
-msgstr ""
+msgstr "გრამატიკა"
 
 #: src/editor/wordtypeview.cpp:57
 #, kde-format
@@ -1682,12 +1682,12 @@ msgstr ""
 #: src/parleyactions.cpp:221
 #, kde-format
 msgid "Show Se&arch"
-msgstr ""
+msgstr "&ძებნის ჩვენება"
 
 #: src/parleyactions.cpp:222
 #, kde-format
 msgid "Toggle display of the search bar"
-msgstr ""
+msgstr "ძებნის ზოლის ჩვენების გადართვა"
 
 #: src/parleydocument.cpp:121 src/parleydocument.cpp:568
 #, kde-format
@@ -1730,7 +1730,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Collection"
-msgstr ""
+msgstr "კოლექციის გახსნა"
 
 #: src/parleydocument.cpp:260
 #, kde-format
@@ -1803,7 +1803,7 @@ msgstr "ენები"
 #: src/parleydocument.cpp:506
 #, kde-format
 msgid "A Second Language"
-msgstr ""
+msgstr "მეორე ენა"
 
 #: src/parleydocument.cpp:509
 #, kde-format
@@ -1838,7 +1838,7 @@ msgstr ""
 #: src/parleymainwindow.cpp:211
 #, kde-format
 msgid "Download New Vocabularies..."
-msgstr ""
+msgstr "ახალი ლექსიკონების გადმოწერა..."
 
 #: src/parleymainwindow.cpp:217
 #, kde-format
@@ -2358,19 +2358,19 @@ msgstr ""
 #: src/practice/configure/thresholdoptions.ui:26
 #, kde-format
 msgid "At least"
-msgstr ""
+msgstr "მინიმუმ"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/practice/configure/thresholdoptions.ui:33
 #, kde-format
 msgid "At most"
-msgstr ""
+msgstr "მაქსიმუმ"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/practice/configure/thresholdoptions.ui:43
 #, kde-format
 msgid "Grade:"
-msgstr ""
+msgstr "დონე:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/thresholdoptions.ui:53
@@ -2893,7 +2893,7 @@ msgstr ""
 #: src/settings/documentproperties.ui:76
 #, kde-format
 msgid "&Author:"
-msgstr ""
+msgstr "&ავტორი:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_author_2)
 #: src/settings/documentproperties.ui:102
@@ -2923,7 +2923,7 @@ msgstr ""
 #: src/settings/documentproperties.ui:160
 #, kde-format
 msgid "Cate&gory:"
-msgstr ""
+msgstr "&კატეგორია:"
 
 #. i18n: ectx: property (toolTip), widget (KComboBox, categoryComboBox)
 #: src/settings/documentproperties.ui:173
@@ -3068,13 +3068,13 @@ msgstr ""
 #, kde-format
 msgctxt "CSV separator: tabulator"
 msgid "TAB"
-msgstr ""
+msgstr "ტაბი"
 
 #: src/settings/generaloptions.cpp:47
 #, kde-format
 msgctxt "CSV separator"
 msgid ">= 2 SPACES"
-msgstr ""
+msgstr ">= 2 გამოტოვება"
 
 #: src/settings/generaloptions.cpp:48
 #, kde-format
@@ -3092,7 +3092,7 @@ msgstr ""
 #: src/settings/generaloptionsbase.ui:17
 #, kde-format
 msgid "Open/Save"
-msgstr ""
+msgstr "გახსნა/შენახვა"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AutoOpenLast)
 #: src/settings/generaloptionsbase.ui:23
@@ -3184,13 +3184,13 @@ msgstr ""
 #: src/settings/kgametheme/kgamethemeselector.ui:40
 #, kde-format
 msgid "&Get New Themes..."
-msgstr ""
+msgstr "ახალი თემების &მიღება..."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/settings/kgametheme/kgamethemeselector.ui:97
 #, kde-format
 msgid "Theme Details"
-msgstr ""
+msgstr "თემის დეტალები"
 
 #. i18n: ectx: property (text), widget (QLabel, labelContact)
 #: src/settings/kgametheme/kgamethemeselector.ui:131
@@ -3214,22 +3214,22 @@ msgstr "ავტორი:"
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Languages"
-msgstr ""
+msgstr "ენების ჩასწორება"
 
 #: src/settings/languageproperties.cpp:27
 #, kde-format
 msgid "Add language"
-msgstr ""
+msgstr "ენის დამატება"
 
 #: src/settings/languageproperties.cpp:30
 #, kde-format
 msgid "Remove language"
-msgstr ""
+msgstr "ენის წაშლა"
 
 #: src/settings/languageproperties.cpp:45
 #, kde-format
 msgid "New Language"
-msgstr ""
+msgstr "ახალი ენა"
 
 #: src/settings/languageproperties.cpp:58
 #, kde-format
@@ -3245,7 +3245,7 @@ msgstr ""
 #: src/settings/languageproperties.cpp:87
 #, kde-format
 msgid "Remove Language"
-msgstr ""
+msgstr "ენის წაშლა"
 
 #: src/settings/languagepropertiespage.cpp:83
 #, kde-format
@@ -3292,13 +3292,13 @@ msgstr ""
 #: src/settings/languagepropertiespage.ui:46
 #, kde-format
 msgid "Keyboard layout:"
-msgstr ""
+msgstr "კლავიატურის განლაგება:"
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadGrammarButton)
 #: src/settings/languagepropertiespage.ui:75
 #, kde-format
 msgid "&Download grammar"
-msgstr ""
+msgstr "გრამატიკის გადმოწერა"
 
 #. i18n: ectx: property (text), widget (QLabel, spellcheckerLabel)
 #: src/settings/languagepropertiespage.ui:88
@@ -3336,7 +3336,7 @@ msgstr "სტატიები"
 #: src/settings/languagepropertiespage.ui:404
 #, kde-format
 msgid "Definite"
-msgstr ""
+msgstr "განსაზღვრული"
 
 #. i18n: ectx: property (text), widget (QLabel, TextLabel4)
 #. i18n: ectx: property (text), widget (QLabel, TextLabel4_2)
@@ -3485,7 +3485,7 @@ msgstr ""
 #: src/settings/optionlistform.ui:124
 #, kde-format
 msgid "&Clean Up"
-msgstr ""
+msgstr "&გასუფთავება"
 
 #. i18n: ectx: label, entry (Theme), group (General)
 #: src/settings/parley.kcfg:11
@@ -3759,7 +3759,7 @@ msgstr ""
 #: src/settings/parley.kcfg:201
 #, kde-format
 msgid "Toggle display of the search bar."
-msgstr ""
+msgstr "ძებნის ზოლის ჩვენების გადართვა."
 
 #. i18n: ectx: label, entry (ShowSublessonentries), group (Appearance)
 #: src/settings/parley.kcfg:206
@@ -3789,7 +3789,7 @@ msgstr ""
 #: src/settings/parley.kcfg:231
 #, kde-format
 msgid "How the main window is divided."
-msgstr ""
+msgstr "როგორ იყოფა მთავარი ფანჯარა."
 
 #. i18n: ectx: label, entry (PracticeFont), group (Appearance)
 #: src/settings/parley.kcfg:235
@@ -3979,7 +3979,7 @@ msgstr ""
 #: src/settings/parley.kcfg:391
 #, kde-format
 msgid "The command used to start a downloaded vocabulary"
-msgstr ""
+msgstr "ბრძანება გადმოწერილი ლექსიკონის გასაშვებად"
 
 #. i18n: ectx: label, entry (InstallPath), group (KNewStuff)
 #: src/settings/parley.kcfg:395
@@ -4011,7 +4011,7 @@ msgstr "ნახვა"
 #: src/settings/parleyprefs.cpp:30
 #, kde-format
 msgid "View Settings"
-msgstr ""
+msgstr "ხედის მორგება"
 
 #: src/settings/parleyprefs.cpp:33
 #, kde-format
