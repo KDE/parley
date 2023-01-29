@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:41+0000\n"
-"PO-Revision-Date: 2023-01-13 21:22+0100\n"
+"PO-Revision-Date: 2023-01-27 19:03+0100\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
@@ -1455,7 +1455,7 @@ msgstr "Inge Wallin"
 #: src/main.cpp:49 src/main.cpp:51
 #, kde-format
 msgid "Developer and Co-maintainer"
-msgstr "Développeur et co-mainteneur"
+msgstr "Développeur et mainteneur"
 
 #: src/main.cpp:51
 #, kde-format
