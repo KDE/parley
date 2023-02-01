@@ -2693,7 +2693,7 @@
 >. </para>
 
 <para
->Schermbeeld van het thema <guilabel
+>Schermafdruk van het thema <guilabel
 >Bees</guilabel
 >: </para>
 
@@ -2724,7 +2724,7 @@
     <imageobject
 ><imagedata fileref="configure_theme.png" format="PNG"/></imageobject>
     <caption
->Pgina Themainstellingen</caption>
+>Pagina Thema-instellingen</caption>
   </mediaobject>
 </screenshot>
 
