@@ -2,22 +2,22 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Vít Pelčák <vit@pelcak.org>, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019.
 # Tomáš Chvátal <tomas.chvatal@gmail.com>, 2012, 2013.
-# Vit Pelcak <vit@pelcak.org>, 2021, 2022.
+# Vit Pelcak <vit@pelcak.org>, 2021, 2022, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:41+0000\n"
-"PO-Revision-Date: 2022-03-04 10:53+0100\n"
-"Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
+"PO-Revision-Date: 2023-02-08 15:09+0100\n"
+"Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 21.12.2\n"
+"X-Generator: Lokalize 22.12.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -305,19 +305,19 @@ msgstr "Parley"
 #: src/dashboard/dashboard.ui:120
 #, kde-format
 msgid "Create a New Collection..."
-msgstr ""
+msgstr "Vytvořit novou sbírku..."
 
 #. i18n: ectx: property (text), widget (QPushButton, openButton)
 #: src/dashboard/dashboard.ui:127
 #, kde-format
 msgid "Open an Existing Collection..."
-msgstr ""
+msgstr "Otevřít existující sbírku..."
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, ghnsButton)
 #: src/dashboard/dashboard.ui:134
 #, kde-format
 msgid "Download New Collections..."
-msgstr ""
+msgstr "Stáhnout nové sbírky..."
 
 #. i18n: ectx: property (text), widget (QLabel, headingLabel)
 #: src/dashboard/dashboard.ui:141
@@ -563,49 +563,49 @@ msgstr "Tvary při skloňování"
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Nominative:"
-msgstr ""
+msgstr "Slovo v prvním pádě  (nominativ):"
 
 #. i18n: ectx: property (text), widget (QLabel, genitivLabel)
 #: src/editor/declensionwidget.ui:71
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Genitive:"
-msgstr ""
+msgstr "Slovo v druhém pádě (genitiv):"
 
 #. i18n: ectx: property (text), widget (QLabel, dativLabel)
 #: src/editor/declensionwidget.ui:90
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Dative:"
-msgstr ""
+msgstr "Slovo ve třetím pádě (dativ):"
 
 #. i18n: ectx: property (text), widget (QLabel, accusativeLabel)
 #: src/editor/declensionwidget.ui:109
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Accusative:"
-msgstr ""
+msgstr "Slovo ve čtvrtém pádě (akuzativ):"
 
 #. i18n: ectx: property (text), widget (QLabel, ablativLabel)
 #: src/editor/declensionwidget.ui:128
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Ablative:"
-msgstr ""
+msgstr "Slovo v šestém pádě (ablativ):"
 
 #. i18n: ectx: property (text), widget (QLabel, locativeLabel)
 #: src/editor/declensionwidget.ui:147
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Locative:"
-msgstr ""
+msgstr "Slovo v šestém pádě (lokál, lokativ):"
 
 #. i18n: ectx: property (text), widget (QLabel, vocativeLabel)
 #: src/editor/declensionwidget.ui:166
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Vocative:"
-msgstr ""
+msgstr "Slovo v pátém pádě (vokativ):"
 
 #. i18n: ectx: property (text), widget (QLabel, numberLabel)
 #: src/editor/declensionwidget.ui:445
@@ -873,7 +873,7 @@ msgstr ""
 #: src/editor/latexwidget.ui:17
 #, kde-format
 msgid "LaTeX code:"
-msgstr ""
+msgstr "Kód LaTeX"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -1029,7 +1029,7 @@ msgstr "Lekce"
 #: src/editor/summarywordwidget.ui:42
 #, kde-format
 msgid "Word type:"
-msgstr ""
+msgstr "Slovní druh:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/summarywordwidget.ui:55
@@ -1047,7 +1047,7 @@ msgstr "Příklad:"
 #: src/editor/summarywordwidget.ui:87
 #, kde-format
 msgid "Paraphrase:"
-msgstr ""
+msgstr "Volné převyprávění:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/editor/summarywordwidget.ui:103
@@ -1114,7 +1114,7 @@ msgstr "Mylná podobnost od %1:"
 #, kde-format
 msgctxt "@title:window"
 msgid "Vocabulary Columns"
-msgstr ""
+msgstr "Sloupce se slovní zásobou"
 
 #: src/editor/vocabularycolumnsdialog.cpp:58
 #, kde-format
@@ -1695,7 +1695,7 @@ msgstr "Změnit nastavení možností procvičování"
 #: src/parleyactions.cpp:203
 #, kde-format
 msgid "Export Results..."
-msgstr ""
+msgstr "Exportovat výsledky..."
 
 #: src/parleyactions.cpp:204
 #, kde-format
@@ -1732,7 +1732,7 @@ msgstr "Vlastnosti pro %1"
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
-msgstr ""
+msgstr "Otevřít sbírku se slovní zásobou"
 
 #: src/parleydocument.cpp:159
 #, kde-format
@@ -1780,7 +1780,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
-msgstr ""
+msgstr "Otevřít staženou sbírku se slovní zásobou"
 
 #: src/parleydocument.cpp:331 src/parleydocument.cpp:416
 #, kde-format
@@ -1806,7 +1806,7 @@ msgstr "Uložit soubor"
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
-msgstr ""
+msgstr "Uložit slovní zásobu jako"
 
 #: src/parleydocument.cpp:388
 #, kde-format
@@ -2260,7 +2260,7 @@ msgstr ""
 #: src/practice/configure/generalpracticeoptions.ui:39
 #, kde-format
 msgid "Ignore capitalization"
-msgstr ""
+msgstr "Nevšímat si chyb v psaní velkých písmen"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:49
@@ -2272,7 +2272,7 @@ msgstr ""
 #: src/practice/configure/generalpracticeoptions.ui:52
 #, kde-format
 msgid "Ignore punctuation"
-msgstr ""
+msgstr "Ignorovat interpunkci"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ShowHints)
 #: src/practice/configure/generalpracticeoptions.ui:62
@@ -2285,7 +2285,7 @@ msgstr ""
 #: src/practice/configure/generalpracticeoptions.ui:65
 #, kde-format
 msgid "Enable hints"
-msgstr ""
+msgstr "Povolit rady"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_4)
 #: src/practice/configure/generalpracticeoptions.ui:91
@@ -2348,7 +2348,7 @@ msgstr ""
 #: src/practice/configure/generalpracticeoptions.ui:168
 #, kde-format
 msgid "Accept any synonym"
-msgstr ""
+msgstr "Přijímat synonyma jako správná"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: src/practice/configure/generalpracticeoptions.ui:191
@@ -2360,13 +2360,13 @@ msgstr "Sezení"
 #: src/practice/configure/generalpracticeoptions.ui:202
 #, kde-format
 msgid "Max session size:"
-msgstr ""
+msgstr "Maximální velikost sezení:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/practice/configure/generalpracticeoptions.ui:251
 #, kde-format
 msgid "Max number of new words:"
-msgstr ""
+msgstr "Maximální počet nových slov:"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
 #: src/practice/configure/specificpracticeoptions.ui:23
@@ -2422,7 +2422,7 @@ msgstr ""
 #: src/practice/configure/thresholdoptions.ui:80
 #, kde-format
 msgid "Answered incorrectly:"
-msgstr ""
+msgstr "Zodpovězeno nesprávně:"
 
 #: src/practice/conjugationbackendmode.cpp:93
 #, kde-format
@@ -3048,14 +3048,14 @@ msgstr "&Druhý jazyk:"
 #: src/settings/documentproperties.ui:311
 #, kde-format
 msgid "&Setup grammar details"
-msgstr ""
+msgstr "&Nastavit podrobnosti mluvnice"
 
 #. i18n: ectx: property (text), widget (QCheckBox, downloadGrammarCheckBox)
 #: src/settings/documentproperties.ui:321
 #, kde-format
 msgctxt "Attept to download grammar properties for the selected languages"
 msgid "Download grammar"
-msgstr ""
+msgstr "Stáhnout mluvnici"
 
 #. i18n: ectx: label, entry (ConjugationTenses), group (Document $(fileurl))
 #. i18n: ectx: whatsthis, entry (ConjugationTenses), group (Document $(fileurl))
@@ -3270,7 +3270,7 @@ msgstr "Autor:"
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Languages"
-msgstr ""
+msgstr "Upravit jazyky"
 
 #: src/settings/languageproperties.cpp:27
 #, kde-format
@@ -3356,7 +3356,7 @@ msgstr "Rozložení klávesnice:"
 #: src/settings/languagepropertiespage.ui:75
 #, kde-format
 msgid "&Download grammar"
-msgstr ""
+msgstr "S&táhnout mluvnici"
 
 #. i18n: ectx: property (text), widget (QLabel, spellcheckerLabel)
 #: src/settings/languagepropertiespage.ui:88
@@ -4121,7 +4121,7 @@ msgstr ""
 #: src/settings/parleyprefs.cpp:33
 #, kde-format
 msgid "Online Translation Services"
-msgstr ""
+msgstr "Služba pro překlady"
 
 #: src/settings/translationshelloptions.cpp:20
 #, kde-format
