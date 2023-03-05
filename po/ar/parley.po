@@ -1411,7 +1411,7 @@ msgid ""
 "© 2001-2002\tThe KDE team\n"
 "© 2004-2007\tPeter Hedlund\n"
 "© 2007-2010\tFrederik Gladhorn\n"
-msgstr "أرنولد n كدي n n n"
+msgstr "أرنولد n كِيدِي n n n"
 
 #: src/main.cpp:45
 #, fuzzy, kde-format
@@ -3016,7 +3016,7 @@ msgid ""
 "The license under which your document will be.\n"
 "If you consider contributing your file to KDE in the future, an appropriate "
 "license is required."
-msgstr "الـ ترخيص مستند ملفّ إلى كدي بوصة ترخيص هو مطلوب."
+msgstr "الـ ترخيص مستند ملفّ إلى كِيدِي بوصة ترخيص هو مطلوب."
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
 #: src/settings/documentproperties.ui:239
@@ -5450,7 +5450,7 @@ msgstr "ثقة"
 
 #, fuzzy
 #~ msgid "KDE Team"
-#~ msgstr "كدي فريق"
+#~ msgstr "كِيدِي فريق"
 
 #, fuzzy
 #~ msgid "Many small enhancements"
