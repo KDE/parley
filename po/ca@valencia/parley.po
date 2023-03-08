@@ -1599,7 +1599,7 @@ msgstr "&Exporta..."
 #: src/parleyactions.cpp:106
 #, kde-format
 msgid "Export to HTML or CSV"
-msgstr "Exporta a HTML o CSV"
+msgstr "Exporta cap a HTML o CSV"
 
 #: src/parleyactions.cpp:114
 #, kde-format
