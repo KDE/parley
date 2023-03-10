@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:41+0000\n"
-"PO-Revision-Date: 2023-02-04 20:27+0300\n"
+"PO-Revision-Date: 2023-03-09 13:51+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.12.2\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -57,8 +57,8 @@ msgid ""
 "The vocabulary document contains no entries that can be used for the chosen "
 "type of practice."
 msgstr ""
-"Sözcük dağarcığı belgesinde, seçilen pratik türü için kullanılabilecek girdi "
-"mevcut değildir."
+"Söz dağarcığı belgesinde, seçilen pratik türü için kullanılabilecek girdi "
+"yok."
 
 #. i18n: ectx: property (windowTitle), widget (QDialog, EntryFilterDialog)
 #: src/collection/entryfilterdialog.ui:14
@@ -74,9 +74,9 @@ msgid ""
 "can choose to ignore some of your configuration settings to start a practice "
 "anyway.</p>"
 msgstr ""
-"<p>Alıştırma için sözcük dağarcığı seçiminiz boştur.</p><p>Aşağıda, yine de "
-"bir alıştırmaya başlamak için ihmal edebileceğiniz bazı ayarları "
-"seçebilirsiniz.</p>"
+"<p>Alıştırma için söz dağarcığı seçiminiz boş</p><p>Aşağıda, yine de bir "
+"alıştırmaya başlamak için ihmal edebileceğiniz bazı ayarları seçebilirsiniz."
+"</p>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, ignoreGroupBox)
 #: src/collection/entryfilterdialog.ui:30
@@ -251,7 +251,7 @@ msgstr "Hiç Dil Tanımlanmamış"
 #: src/collection/vocabularymodel.cpp:317
 #, kde-format
 msgid "Select a unit before adding vocabulary."
-msgstr "Sözcük dağarcığı eklemeden önce bir birim seçin."
+msgstr "Söz dağarcığı eklemeden önce bir birim seçin."
 
 #: src/collection/vocabularymodel.cpp:317
 #, kde-format
@@ -273,7 +273,7 @@ msgstr "Tamamen öğrenildi"
 #: src/dashboard/buttondelegate.cpp:32
 #, kde-format
 msgid "Open this vocabulary collection in the editor"
-msgstr "Bu sözcük dağarcığı koleksiyonu düzenleyicide aç"
+msgstr "Bu söz dağarcığı koleksiyonu düzenleyicide aç"
 
 #: src/dashboard/collectionwidget.cpp:96
 #, kde-format
@@ -726,12 +726,12 @@ msgstr "LaTeX"
 #: src/editor/editor.cpp:412
 #, kde-format
 msgid "Enter search terms here"
-msgstr "Aranacak terimleri buraya girin"
+msgstr "Aranacak terimleri buraya gir"
 
 #: src/editor/editor.cpp:413
 #, kde-format
 msgid "Search your vocabulary"
-msgstr "Sözcük dağarcığınızda arayın"
+msgstr "Söz dağarcığında ara"
 
 #: src/editor/editor.cpp:415
 #, kde-format
@@ -945,7 +945,7 @@ msgstr "Yeni derse taşı"
 #: src/editor/lessonview.cpp:65
 #, kde-format
 msgid "Moves the selected vocabulary to a new lesson"
-msgstr "Seçili sözcük dağarcığını yeni bir derse taşır"
+msgstr "Seçili söz dağarcığını yeni bir derse taşır"
 
 #: src/editor/lessonview.cpp:71 src/parleyactions.cpp:151
 #, kde-format
@@ -1126,7 +1126,7 @@ msgstr "%1 Ögesinin Yanlış Arkadaşları:"
 #, kde-format
 msgctxt "@title:window"
 msgid "Vocabulary Columns"
-msgstr "Sözcük Dağarcığı Sütunları"
+msgstr "Söz Dağarcığı Sütunları"
 
 #: src/editor/vocabularycolumnsdialog.cpp:58
 #, kde-format
@@ -1151,7 +1151,7 @@ msgstr "Yeni Girdi &Ekle"
 #: src/editor/vocabularyview.cpp:82
 #, kde-format
 msgid "Append a new row to the vocabulary"
-msgstr "Sözcük dağarcığınıa yeni bir satır ekle"
+msgstr "Söz dağarcığına yeni bir satır iliştir"
 
 #: src/editor/vocabularyview.cpp:91
 #, kde-format
@@ -1191,12 +1191,12 @@ msgstr "Bütün satırların seçimini kaldır"
 #: src/editor/vocabularyview.cpp:140
 #, kde-format
 msgid "Vocabulary Columns..."
-msgstr "Sözcük Dağarcığı Sütunları..."
+msgstr "Söz Dağarcığı Sütunları..."
 
 #: src/editor/vocabularyview.cpp:141
 #, kde-format
 msgid "Toggle display of individual vocabulary columns"
-msgstr "Bireysel sözcük dağarcığı sütunlarının gösterilmesini aç/kapat"
+msgstr "Bireysel söz dağarcığı sütunlarının gösterilmesini aç/kapat"
 
 #: src/editor/vocabularyview.cpp:253
 #, kde-format
@@ -1418,7 +1418,7 @@ msgstr "Virgülle ayrılmış değerler (CSV)"
 #: src/main.cpp:38
 #, kde-format
 msgid "Vocabulary Trainer"
-msgstr "Sözcük Dağarcığı Çalıştırıcısı"
+msgstr "Söz Dağarcığı Çalıştırıcısı"
 
 #: src/main.cpp:40
 #, kde-format
@@ -1436,7 +1436,7 @@ msgstr ""
 #: src/main.cpp:45
 #, kde-format
 msgid "Helps you train your vocabulary"
-msgstr "Sözcük dağarcığı çalışmanıza yardım eder"
+msgstr "Söz dağarcığınızı çalışmanıza yardım eder"
 
 #: src/main.cpp:49
 #, kde-format
@@ -1576,27 +1576,27 @@ msgstr "Açılacak dosya"
 #: src/parleyactions.cpp:72
 #, kde-format
 msgid "Creates a new vocabulary collection"
-msgstr "Yeni bir sözcük dağarcığı belgesi oluşturur"
+msgstr "Yeni bir söz dağarcığı belgesi oluşturur"
 
 #: src/parleyactions.cpp:77
 #, kde-format
 msgid "Opens an existing vocabulary collection"
-msgstr "Varolan bir sözcük dağarcığı belgesini açar"
+msgstr "Var olan bir söz dağarcığı belgesini açar"
 
 #: src/parleyactions.cpp:85
 #, kde-format
 msgid "Open &Downloaded Vocabularies..."
-msgstr "İn&dirilen Sözcük Hazinelerini Aç..."
+msgstr "İn&dirilen Söz Dağarcıklarını Aç..."
 
 #: src/parleyactions.cpp:86
 #, kde-format
 msgid "Open downloaded vocabulary collections"
-msgstr "İndirilen sözcük dağarcığını aç"
+msgstr "İndirilen söz dağarcığını aç"
 
 #: src/parleyactions.cpp:91
 #, kde-format
 msgid "Save the active vocabulary collection"
-msgstr "Etkin sözcük dağarcığı koleksiyonunu kaydet"
+msgstr "Etkin söz dağarcığı koleksiyonunu kaydet"
 
 #: src/parleyactions.cpp:98
 #, kde-format
@@ -1719,7 +1719,7 @@ msgstr "Düzenleyici"
 #: src/parleyactions.cpp:213
 #, kde-format
 msgid "Switch to vocabulary editor"
-msgstr "Sözcük dağarcığı düzenleyiciyi aç"
+msgstr "Söz dağarcığı düzenleyicisini aç"
 
 #: src/parleyactions.cpp:221
 #, kde-format
@@ -1741,7 +1741,7 @@ msgstr "%1 özellikleri"
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
-msgstr "Sözcük Dağarcığı Koleksiyonunu Aç"
+msgstr "Söz Dağarcığı Koleksiyonu Aç"
 
 #: src/parleydocument.cpp:159
 #, kde-format
@@ -1757,7 +1757,7 @@ msgid ""
 "\n"
 "Do you want to take over the lock?\n"
 msgstr ""
-"Sözcük dağarcığı koleksiyonu başka bir süreç tarafından kilitlenmiş. Kilidi "
+"Söz dağarcığı koleksiyonu başka bir süreç tarafından kilitlenmiş. Kilidi "
 "kaldırırsanız dosyayı açabilirsiniz; ancak diğer sürecin değişikliklerini "
 "kaybedersiniz.\n"
 "\n"
@@ -1786,7 +1786,7 @@ msgid ""
 "\n"
 "Save file before exit?\n"
 msgstr ""
-"Sözcük dağarcığı değiştirildi.\n"
+"Söz dağarcığı değiştirildi.\n"
 "\n"
 "Çıkmadan önce kaydedilsin mi?\n"
 
@@ -1794,7 +1794,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
-msgstr "İndirilen Sözcük Dağarcığını Aç"
+msgstr "İndirilen Söz Dağarcığını Aç"
 
 #: src/parleydocument.cpp:331 src/parleydocument.cpp:416
 #, kde-format
@@ -1824,7 +1824,7 @@ msgstr "Dosyayı Kaydet"
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
-msgstr "Sözcük Dağarcığını Farklı Kaydet"
+msgstr "Söz Dağarcığını Farklı Kaydet"
 
 #: src/parleydocument.cpp:388
 #, kde-format
@@ -1867,7 +1867,7 @@ msgstr "Ders 1"
 #: src/parleydocument.cpp:551
 #, kde-format
 msgid "Could not open vocabulary collection \"%1\""
-msgstr "\"%1\" sözcük dağarcığı koleksiyonu açılamadı"
+msgstr "\"%1\" söz dağarcığı koleksiyonu açılamadı"
 
 #: src/parleymainwindow.cpp:133
 #, kde-format
@@ -1894,12 +1894,12 @@ msgstr "Dilleri seçin"
 #: src/parleymainwindow.cpp:211
 #, kde-format
 msgid "Download New Vocabularies..."
-msgstr "Yeni Sözcük Hazineleri İndir..."
+msgstr "Yeni Söz Dağarcıkları İndir..."
 
 #: src/parleymainwindow.cpp:217
 #, kde-format
 msgid "Downloads new vocabulary collections"
-msgstr "Yeni sözcük dağarcığı koleksiyonlarını indirir"
+msgstr "Yeni söz dağarcığı koleksiyonlarını indirir"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/parleyui.rc:21
@@ -2178,14 +2178,14 @@ msgstr "Düzey &3:"
 #, kde-format
 msgid "Do not practice vocabulary that has been asked within:"
 msgstr ""
-"Aşağıdaki içinde sorulmuş bulunan sözcük dağarcıklarıyla ilgili alıştırma "
+"Aşağıdaki içinde sorulmuş bulunan söz dağarcıklarıyla ilgili alıştırma "
 "yapmayın:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/practice/configure/blockoptions.ui:228
 #, kde-format
 msgid "Vocabulary drops one grade after this much time:"
-msgstr "Sözcük dağarcığı bu kadar zaman sonra bir not düşecektir:"
+msgstr "Söz dağarcığı bu kadar zaman sonra bir not düşecektir:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ComparisonIncludeAdjective)
 #: src/practice/configure/comparisonoptionswidget.ui:16
@@ -2425,8 +2425,8 @@ msgstr "Seçenek sayısı:"
 #, kde-format
 msgid "Only practice vocabulary that fulfills the following conditions:"
 msgstr ""
-"Yalnızca aşağıdaki koşulları sağlayan sözcük dağarcıklarıyla ilgili "
-"alıştırma yapın:"
+"Yalnızca aşağıdaki koşulları sağlayan söz dağarcıklarıyla ilgili alıştırma "
+"yapın:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/practice/configure/thresholdoptions.ui:26
@@ -2767,7 +2767,7 @@ msgstr "Yanıtınız"
 #: src/practice/sessionmanagerbase.cpp:53
 #, kde-format
 msgid "The vocabulary collection contains fewer than two languages."
-msgstr "Sözcük dağarcığı koleksiyonu en az iki dil içermelidir."
+msgstr "Söz dağarcığı koleksiyonu en az iki dil içermelidir."
 
 #: src/practice/sessionmanagerbase.cpp:53
 #, kde-format
@@ -3070,7 +3070,7 @@ msgid ""
 msgstr ""
 "Belgenizin altında olması gereken lisans.\n"
 "Gelecekte dosyanızı KDE'ye destek olarak vermeyi düşünürseniz uygun bir "
-"lisansa ihtiyacınız olacaktır."
+"lisansa gereksiniminiz olacaktır."
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
 #: src/settings/documentproperties.ui:239
@@ -3230,7 +3230,7 @@ msgstr "Bu seçeneği seçerseniz çalışmanız otomatik olarak kaydedilcek"
 #: src/settings/generaloptionsbase.ui:45
 #, kde-format
 msgid "&Save vocabularies automatically on close and quit"
-msgstr "Sözlükleri çıkışta otomatik kaydet, &sonra çık"
+msgstr "&Sözlükleri çıkışta otomatik olarak kaydedip çık"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoBackup)
 #: src/settings/generaloptionsbase.ui:66
@@ -3280,7 +3280,7 @@ msgstr "Düzenleme"
 #: src/settings/generaloptionsbase.ui:162
 #, kde-format
 msgid "&Append new rows automatically when editing"
-msgstr "Düzenlerken yeni satırları otomatik olarak &ekle"
+msgstr "Düzenlerken yeni satırları otomatik olarak &iliştir"
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, getNewButton)
 #: src/settings/kgametheme/kgamethemeselector.ui:40
@@ -3610,7 +3610,7 @@ msgid ""
 "If true, when using the entry dialog, new rows will be appended as needed"
 msgstr ""
 "Doğru ise giriş iletişim kutusunu kullanırken gerektiğinde yeni satırlar "
-"eklenecektir"
+"iliştirilecektir"
 
 #. i18n: ectx: label, entry (Separator), group (General)
 #: src/settings/parley.kcfg:23
@@ -3687,7 +3687,7 @@ msgid ""
 "Append new vocabulary in a collection in order of their units. Note that "
 "this will not be a hard transition, but a slow mix from one unit to the next."
 msgstr ""
-"Birim sırasına göre bir koleksiyona yeni sözcük dağarcığı ekle. Dikkat: Bu "
+"Birim sırasına göre bir koleksiyona yeni söz dağarcığı iliştir. Dikkat: Bu "
 "zor bir geçiş olmayacaktır; ancak bir birimden diğerine yavaş bir karışım "
 "olacaktır."
 
@@ -3699,7 +3699,7 @@ msgid ""
 "is answered correctly another entry will be appended."
 msgstr ""
 "Aynı anda alıştırması yapılacak girdi sayısı. Bunlardan biri doğru "
-"yanıtlanırsa başka bir girdi eklenecektir."
+"yanıtlanırsa başka bir girdi iliştirilecektir."
 
 #. i18n: ectx: label, entry (SwapDirection), group (PracticeOptions)
 #: src/settings/parley.kcfg:81
@@ -3926,7 +3926,7 @@ msgstr "Ana pencerenin nasıl bölündüğü."
 #: src/settings/parley.kcfg:235
 #, kde-format
 msgid "The font used in the vocabulary table"
-msgstr "Sözcük dağarcığı tablosunda kullanılan yazıtipi"
+msgstr "Söz dağarcığı tablosunda kullanılan yazıtipi"
 
 #. i18n: ectx: label, entry (IPAFont), group (Appearance)
 #: src/settings/parley.kcfg:239
@@ -4115,13 +4115,13 @@ msgstr "Parley için sağlayıcı yolu"
 #: src/settings/parley.kcfg:391
 #, kde-format
 msgid "The command used to start a downloaded vocabulary"
-msgstr "İndirilen sözcük dağarcığını başlatmak için kullanılan komut"
+msgstr "İndirilen söz dağarcığını başlatmak için kullanılan komut"
 
 #. i18n: ectx: label, entry (InstallPath), group (KNewStuff)
 #: src/settings/parley.kcfg:395
 #, kde-format
 msgid "The folder where downloaded vocabularies are saved by default"
-msgstr "İndirilen sözcük dağarcıklarının öntanımlı olarak kaydedileceği dizin"
+msgstr "İndirilen söz dağarcıklarının öntanımlı olarak kaydedileceği dizin"
 
 #: src/settings/parleyprefs.cpp:24
 #, kde-format
