@@ -13,7 +13,6 @@
   <name xml:lang="de">Parley</name>
   <name xml:lang="el">Parley</name>
   <name xml:lang="en-GB">Parley</name>
-  <name xml:lang="eo">Parley</name>
   <name xml:lang="es">Parley</name>
   <name xml:lang="et">Parley</name>
   <name xml:lang="eu">Parley</name>
@@ -50,7 +49,6 @@
   <summary xml:lang="de">Vokabeltrainer</summary>
   <summary xml:lang="el">Εκπαιδευτής λεξιλογίου</summary>
   <summary xml:lang="en-GB">Vocabulary Trainer</summary>
-  <summary xml:lang="eo">Trejnisto de Vortprovizo</summary>
   <summary xml:lang="es">Entrenador de vocabulario</summary>
   <summary xml:lang="et">Sõnavara treening</summary>
   <summary xml:lang="eu">Hiztegi entrenatzailea</summary>
@@ -60,6 +58,7 @@
   <summary xml:lang="ia">Instructor de vocabulario</summary>
   <summary xml:lang="id">Pelatih Kosakata</summary>
   <summary xml:lang="it">Apprendimento di vocaboli</summary>
+  <summary xml:lang="ka">ლექსიკონის სწავლა</summary>
   <summary xml:lang="ko">어휘 연습 도구</summary>
   <summary xml:lang="lt">Žodyno treniruoklis</summary>
   <summary xml:lang="nds">Vokaveln lehren</summary>
@@ -86,7 +85,6 @@
     <p xml:lang="de">Parley ist ein Vokabelprogramm. Es hilft Ihnen, Ihre Vokabelkenntnisse zu verbessern, wenn Sie eine neue Sprache lernen. Es werden viele Sprachspezifische Funktionen unterstützt, es kann aber auch für andere Lernaufgaben verwendet werden. Es verwendet die Methode des wiederholten Lernens mit zeitlichem Abstand für einen optimalen Lernfortschritt.  Vokabelsammlungen können mit „Neue Erweiterungen“  heruntergeladen oder mit dem eingebauten Editor erstellt werden.</p>
     <p xml:lang="el">Το Parley είναι ένα πρόγραμμα εξάσκησης λεξιλογίου. Σας βοηθά να απομνημονεύσετε το λεξιλόγιό σας, π.χ. όταν προσπαθείτε να μάθετε μια ξένη γλώσσα. Υποστηρίζει πολλά ιδιαίτερα γλωσσικά χαρακτηριστικά, αλλά μπορεί να χρησιμοποιηθεί και για άλλους εκπαιδευτικούς σκοπούς. Χρησιμοποιεί τη μέθοδο της τμηματικής επανάληψης, η οποία βελτιστοποιεί την εκμάθηση. Συλλογές λεξιλογίου μπορείτε να κατεβάσετε μέσω της "Λήψης νέου χρήσιμου υλικού" ή να δημιουργήσετε στον ενσωματωμένο επεξεργαστή.</p>
     <p xml:lang="en-GB">Parley is a vocabulary trainer. It helps you to memorise your vocabulary, for example when you are trying to learn a foreign language. It supports many language specific features, but can be used for other learning tasks as well. It uses the spaced repetition learning method, which makes learning optimal. Vocabulary collections can be downloaded by "Get Hot New Stuff" or created with the built-in editor.</p>
-    <p xml:lang="eo">Parley estas trejnisto de vortprovizo. Ĝi helpas vin enmemorigi vian vortprovizon, ekzemple kiam vi provas lerni fremdan lingvon. Ĝi subtenas multajn lingvajn specifajn funkciojn, sed povas esti uzata ankaŭ por aliaj lernotaskoj. Ĝi uzas la spacan ripetan lernmetodon, kiu faras lernadon optimuma. Vortarkolektoj povas esti elŝutitaj per "Get Hot New Stuff" aŭ kreitaj per la enkonstruita redaktilo.</p>
     <p xml:lang="es">Parley es un entrenador de vocabulario. Ayuda a memorizar vocabulario, por ejemplo, cuando se está intentando aprender un idioma extranjero. Cuenta con muchas funcionalidades específicas para los idiomas, pero también se puede utilizar para otras tareas de aprendizaje. Utiliza el método de repetición espaciada, que proporciona un aprendizaje óptimo. Las colecciones de vocabulario se pueden descargar mediante la opción «Obtener nuevo material» o crear mediante el editor incorporado.</p>
     <p xml:lang="et">Parley on sõnavara harjutamise rakendus. See aitab sõnu meelde jätta, millest on kasu, kui õpid näiteks võõrkeelt. Toetatud on paljud keelespetsiifilised võimalused, kuid rakendust saab kasutada ka muudeks õppimisülesanneteks. Siin kasutatakse ajas hajutatud kordamise meetodit, mis muudab omandamise optimaalseks. Sõnavarakogusid saab alla laadida internetist või luua neid ise kaasasoleva redaktoriga.</p>
     <p xml:lang="eu">Parley hiztegi trebatzaile bat da. Zure hiztegia buruz ikasten laguntzen dizu, atzerriko hizkuntza bat ikasten ari zarenean adibidez. Hizkuntzen berariazko ezaugarri asko ditu, baina ikasteko beste zeregin batzuetarako ere erabil daiteke. Ikastea optimizatzen duen errepikapen tartekatu metodoa erabiltzen du. Hiztegi bildumak zama-jaitsi daitezke «Berrikuntzak eskuratu» erabiliz edo sortu barnean duen editorearekin.</p>
@@ -117,7 +115,6 @@
     <p xml:lang="de">Übungsmodi:</p>
     <p xml:lang="el">Λειτουργίες εκμάθησης:</p>
     <p xml:lang="en-GB">Training Modes:</p>
-    <p xml:lang="eo">Trejnaj Reĝimoj:</p>
     <p xml:lang="es">Modos de entrenamiento:</p>
     <p xml:lang="et">Harjutamisviisid:</p>
     <p xml:lang="eu">Trebatzeko moduak:</p>
@@ -154,7 +151,6 @@
       <li xml:lang="de">Karteikarten</li>
       <li xml:lang="el">Κάρτες εκμάθησης</li>
       <li xml:lang="en-GB">Flash Cards</li>
-      <li xml:lang="eo">Flash Cards</li>
       <li xml:lang="es">Tarjetas de aprendizaje</li>
       <li xml:lang="et">Sähvikud</li>
       <li xml:lang="eu">Txartel azkarrak</li>
@@ -188,7 +184,6 @@
       <li xml:lang="de">Gemischte Buchstaben (Buchstaben in der richtigen Reihenfolge anordnen)</li>
       <li xml:lang="el">Ανάμειξη γραμμάτων (ταξινομήστε τα γράμματα μιας λέξης)</li>
       <li xml:lang="en-GB">Mixed Letters (order the letters of a word)</li>
-      <li xml:lang="eo">Miksitaj Literoj (ordigu la literojn de vorto)</li>
       <li xml:lang="es">Mezcla de letras (ordenar las letras de una palabra)</li>
       <li xml:lang="et">Segatud tähed (tähtede järjestamine nagu anagrammis)</li>
       <li xml:lang="eu">Letrak nahasita (hitz bateko letrak ordenatu)</li>
@@ -220,7 +215,6 @@
       <li xml:lang="de">Mehrfachauswahl</li>
       <li xml:lang="el">Πολλαπλής επιλογής</li>
       <li xml:lang="en-GB">Multiple Choice</li>
-      <li xml:lang="eo">Multobla Elekto</li>
       <li xml:lang="es">Varias opciones</li>
       <li xml:lang="et">Mitmene valik</li>
       <li xml:lang="eu">Aukera anizkoitza</li>
@@ -256,7 +250,6 @@
       <li xml:lang="de">Schriftlich</li>
       <li xml:lang="el">Γραπτά</li>
       <li xml:lang="en-GB">Written</li>
-      <li xml:lang="eo">Skribita</li>
       <li xml:lang="es">Escrito</li>
       <li xml:lang="et">Kirjalik</li>
       <li xml:lang="eu">Idatzita</li>
@@ -291,7 +284,6 @@
       <li xml:lang="de">Sprachspezifische Übungen: Artikel, Vergleichsformen, Konjugationen, Synonyme, Antonyme, Umschreibungen</li>
       <li xml:lang="el">Εξειδικευμένες γλωσσικές εξασκήσεις: άρθρα, συγκρίσεις, κλίσεις, συνώνυμα/αντίθετα/παραφράσεις</li>
       <li xml:lang="en-GB">Language specific trainings: article, comparison forms, conjugations, synonymes/antonyms/paraphrases</li>
-      <li xml:lang="eo">Lingvaj specifaj trejnadoj: artikolo, komparformoj, konjugacioj, sinonimoj/antonimoj/parafrazoj</li>
       <li xml:lang="es">Entrenamiento específico para idiomas: artículo, formas comparativas, conjugaciones, sinónimos, antónimos y paráfrasis.</li>
       <li xml:lang="et">Keelespetsiifilised harjutused: artiklid, võrdlusvormid, käänamine, pööramine, sünonüümid, antonüümid, parafraasid</li>
       <li xml:lang="eu">Hizkuntza berariazko trebakuntzak: artikulua, konparazio-inprimakiak, aditz-jokoak, sinonimoak/antonimoak/parafrasiak</li>
@@ -330,7 +322,6 @@
       <caption xml:lang="de">Auswahl einer Sammlung zur Übung in Parley</caption>
       <caption xml:lang="el">Επιλογή συλλογής για εξάσκηση στο Parley</caption>
       <caption xml:lang="en-GB">Choosing a collection for training in Parley</caption>
-      <caption xml:lang="eo">Elektante kolekton por trejnado en Parley</caption>
       <caption xml:lang="es">Escogiendo una colección para entrenarse en Parley</caption>
       <caption xml:lang="et">Kogu valimine harjutamiseks Parleys</caption>
       <caption xml:lang="eu">Aukeratu Parley-rekin trebatzeko bilduma bat</caption>
