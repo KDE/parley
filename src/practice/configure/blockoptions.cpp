@@ -156,7 +156,7 @@ void BlockOptions::fillComboBox(KComboBox *cb)
     ListRef *ref = date_itemlist;
 
     cb->clear();
-    while (!KLocalizedString(ref->text).toString().isEmpty()) {
+    while (!ref->text.isEmpty()) {
         cb->addItem(KLocalizedString(ref->text).toString());
         ref++;
     }
@@ -166,7 +166,7 @@ void BlockOptions::updateComboBox(int value, KComboBox *cb)
 {
     ListRef *ref = date_itemlist;
     int index = 0;
-    while (!KLocalizedString(ref->text).toString().isEmpty()) {
+    while (!ref->text.isEmpty()) {
         if (value == ref->num)
             index = ref - date_itemlist;
         ref++;
