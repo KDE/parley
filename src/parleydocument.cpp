@@ -401,7 +401,7 @@ void ParleyDocument::saveAs(QUrl url)
     m_doc->setCsvDelimiter(Prefs::separator());
 
     if (!url.toLocalFile().contains('.')) {
-        url.fromLocalFile(url.toLocalFile() + QLatin1String(".kvtml"));
+        url = QUrl::fromLocalFile(url.toLocalFile() + QLatin1String(".kvtml"));
     }
 
     bool isSuccess = false, isError = false;
