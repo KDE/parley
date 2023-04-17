@@ -4,7 +4,7 @@
 # Stephan Johach <hunsum@gmx.de>, 2005, 2006.
 # Thomas Reitelbach <tr@erdfunkstelle.de>, 2005, 2006, 2007, 2008.
 # Burkhard Lück <lueck@hube-lueck.de>, 2006, 2008, 2009, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2020, 2021.
-# Frederik Schwarzer <schwarzer@kde.org>, 2008, 2010, 2011, 2012, 2014, 2016, 2022.
+# Frederik Schwarzer <schwarzer@kde.org>, 2008, 2010, 2011, 2012, 2014, 2016, 2022, 2023.
 # Johannes Obermayr <johannesobermayr@gmx.de>, 2009.
 # Panagiotis Papadopoulos <pano_90@gmx.net>, 2010.
 # Peter Rüthemann <peter.ruethemann@gmail.com>, 2010.
@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:41+0000\n"
-"PO-Revision-Date: 2022-07-02 12:46+0200\n"
+"PO-Revision-Date: 2023-04-16 13:51+0200\n"
 "Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.04.1\n"
+"X-Generator: Lokalize 22.07.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -4192,12 +4192,12 @@ msgstr "Online-Übersetzungsdienste"
 #: src/settings/translationshelloptions.cpp:20
 #, kde-format
 msgid "translate-shell is available."
-msgstr ""
+msgstr "„translate-shell“ ist verfügbar."
 
 #: src/settings/translationshelloptions.cpp:23
 #, kde-format
 msgid "translate-shell executable could not be found."
-msgstr ""
+msgstr "„translate-shell“-Programmdatei kann nicht gefunden werden."
 
 #: src/settings/translationshelloptions.cpp:38
 #, kde-format
@@ -4208,13 +4208,13 @@ msgstr "Fehler"
 #: src/settings/translationshellpage.ui:18
 #, kde-format
 msgid "Translation Shell Integration"
-msgstr ""
+msgstr "Integration von „Translation Shell“"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/settings/translationshellpage.ui:52
 #, kde-format
 msgid "Run Interactive Functionality Test"
-msgstr ""
+msgstr "Interaktive Funktionstests ausführen"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/settings/translationshellpage.ui:58
@@ -4223,13 +4223,14 @@ msgid ""
 "The interaction test request translation of English word \"parley\" into "
 "German."
 msgstr ""
+"Der Interaktionstest erbittet eine Übersetzung des Englischen Worts „Parley“ "
+"ins Deutsche."
 
 #. i18n: ectx: property (text), widget (QToolButton, buttonRunTest)
 #: src/settings/translationshellpage.ui:68
-#, fuzzy, kde-format
-#| msgid "Start a test"
+#, kde-format
 msgid "Start online test"
-msgstr "Einen Test starten"
+msgstr "Online-Test starten"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/settings/translationshellpage.ui:88
