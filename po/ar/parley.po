@@ -1829,7 +1829,7 @@ msgstr "A الثّانية اللغة"
 #: src/parleydocument.cpp:509
 #, kde-format
 msgid "Lesson 1"
-msgstr "درس ١"
+msgstr "درس 1"
 
 #: src/parleydocument.cpp:551
 #, fuzzy, kde-format
@@ -1944,7 +1944,7 @@ msgstr "تنفيذ ليس العناية"
 
 #: src/practice/configure/blockoptions.cpp:24
 msgid "30 Min"
-msgstr "٣٠ دق"
+msgstr "30 دق"
 
 #: src/practice/configure/blockoptions.cpp:25
 msgid "1 Hour"
@@ -1956,19 +1956,19 @@ msgstr "ساعتين"
 
 #: src/practice/configure/blockoptions.cpp:27
 msgid "4 Hours"
-msgstr "٤ ساعات"
+msgstr "4 ساعات"
 
 #: src/practice/configure/blockoptions.cpp:28
 msgid "8 Hours"
-msgstr "٨ ساعات"
+msgstr "8 ساعات"
 
 #: src/practice/configure/blockoptions.cpp:29
 msgid "12 Hours"
-msgstr "١٢ ساعة"
+msgstr "12 ساعة"
 
 #: src/practice/configure/blockoptions.cpp:30
 msgid "18 Hours"
-msgstr "١٨ ساعة"
+msgstr "18 ساعة"
 
 #: src/practice/configure/blockoptions.cpp:32
 msgid "1 Day"
@@ -1980,19 +1980,19 @@ msgstr "يومين"
 
 #: src/practice/configure/blockoptions.cpp:34
 msgid "3 Days"
-msgstr "٣ أيام"
+msgstr "3 أيام"
 
 #: src/practice/configure/blockoptions.cpp:35
 msgid "4 Days"
-msgstr "٤ أيام"
+msgstr "4 أيام"
 
 #: src/practice/configure/blockoptions.cpp:36
 msgid "5 Days"
-msgstr "٥ أيام"
+msgstr "5 أيام"
 
 #: src/practice/configure/blockoptions.cpp:37
 msgid "6 Days"
-msgstr "٦ أيام"
+msgstr "6 أيام"
 
 #: src/practice/configure/blockoptions.cpp:39
 msgid "1 Week"
@@ -2004,11 +2004,11 @@ msgstr "أسبوعين"
 
 #: src/practice/configure/blockoptions.cpp:41
 msgid "3 Weeks"
-msgstr "٣ أسابيع"
+msgstr "3 أسابيع"
 
 #: src/practice/configure/blockoptions.cpp:42
 msgid "4 Weeks"
-msgstr "٤ أسابيع"
+msgstr "4 أسابيع"
 
 #: src/practice/configure/blockoptions.cpp:44
 msgid "1 Month"
@@ -2020,27 +2020,27 @@ msgstr "شهرين"
 
 #: src/practice/configure/blockoptions.cpp:46
 msgid "3 Months"
-msgstr "٣ أشهر"
+msgstr "3 أشهر"
 
 #: src/practice/configure/blockoptions.cpp:47
 msgid "4 Months"
-msgstr "٤ أشهر"
+msgstr "4 أشهر"
 
 #: src/practice/configure/blockoptions.cpp:48
 msgid "5 Months"
-msgstr "٥ أشهر"
+msgstr "5 أشهر"
 
 #: src/practice/configure/blockoptions.cpp:49
 msgid "6 Months"
-msgstr "٦ أشهر"
+msgstr "6 أشهر"
 
 #: src/practice/configure/blockoptions.cpp:50
 msgid "10 Months"
-msgstr "١٠ أشهر"
+msgstr "10 أشهر"
 
 #: src/practice/configure/blockoptions.cpp:51
 msgid "12 Months"
-msgstr "١٢ شهراً"
+msgstr "12 شهراً"
 
 #: src/practice/configure/blockoptions.cpp:220
 #, fuzzy, kde-format
