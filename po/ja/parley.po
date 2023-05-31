@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.10.2\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
@@ -262,7 +262,6 @@ msgstr "レッスンが選択されていません"
 msgid "%1 word due"
 msgid_plural "%1 words due"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/dashboard/barwidget.cpp:122
 #, kde-format
@@ -1048,8 +1047,6 @@ msgid "There is %1 word left in this unit. Do you want to delete it?"
 msgid_plural ""
 "There are %1 words left in this unit. Do you want to delete them?"
 msgstr[0] ""
-"このレッスンには単語が %1 個残っています。本当にそれを削除しますか？"
-msgstr[1] ""
 "このレッスンには単語が %1 個残っています。本当にそれらを削除しますか？"
 
 #: src/editor/lessonview.cpp:217
@@ -1269,8 +1266,7 @@ msgstr "語彙ごとのカラムの表示/非表示を切り替えます"
 #, kde-format
 msgid "Do you really want to delete the selected entry?"
 msgid_plural "Do you really want to delete the selected %1 entries?"
-msgstr[0] "本当に選択したエントリを削除しますか？"
-msgstr[1] "本当に選択した %1 個のエントリを削除しますか？"
+msgstr[0] "本当に選択した %1 個のエントリを削除しますか？"
 
 #: src/editor/vocabularyview.cpp:254
 #, kde-format
@@ -1426,9 +1422,6 @@ msgid_plural ""
 "There are %1 words left with this word type. They will lose their word type. "
 "Continue?"
 msgstr[0] ""
-"この品詞に関連付けられた単語が 1 個残っています。その単語の品詞情報も失われま"
-"す。続けますか？"
-msgstr[1] ""
 "この品詞に関連付けられた単語が %1 個残っています。それらの単語の品詞情報も失"
 "われます。続けますか？"
 
@@ -2559,7 +2552,6 @@ msgctxt "You did not get the conjugation forms right."
 msgid "You answered %1 conjugation form correctly."
 msgid_plural "You answered %1 conjugation forms correctly."
 msgstr[0] "%1 つの活用形が正解でした。"
-msgstr[1] "%1 つの活用形が正解でした。"
 
 #: src/practice/conjugationmodewidget.cpp:111
 #, kde-format
@@ -2629,7 +2621,6 @@ msgid_plural ""
 "You answered correctly %2 of a total of %1 words.\n"
 "You are %3% done."
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/practice/latexrenderer.cpp:46
 #, kde-format
@@ -2744,21 +2735,18 @@ msgstr ""
 msgid "one word"
 msgid_plural "%1 words"
 msgstr[0] "単語 %1 つ"
-msgstr[1] "単語 %1 つ"
 
 #: src/practice/practicesummarycomponent.cpp:64
 #, kde-format
 msgid "one minute"
 msgid_plural "%1 minutes"
-msgstr[0] "1 分"
-msgstr[1] "%1 分"
+msgstr[0] "%1 分"
 
 #: src/practice/practicesummarycomponent.cpp:65
 #, kde-format
 msgid "one second"
 msgid_plural "%1 seconds"
-msgstr[0] "1 秒"
-msgstr[1] "%1 秒"
+msgstr[0] "%1 秒"
 
 # ACCELERATOR changed by translator
 #: src/practice/practicesummarycomponent.cpp:82
