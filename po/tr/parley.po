@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:41+0000\n"
-"PO-Revision-Date: 2023-05-29 12:44+0300\n"
+"PO-Revision-Date: 2023-06-04 01:57+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.04.1\n"
+"X-Generator: Lokalize 23.07.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -4261,7 +4261,7 @@ msgstr "&Taban"
 #: src/settings/viewoptionsbase.ui:111
 #, kde-format
 msgid "Alt+0"
-msgstr "Alt+0"
+msgstr "Seçenek+0"
 
 #. i18n: ectx: property (text), widget (QLabel, preGradeColorLabel)
 #: src/settings/viewoptionsbase.ui:127
@@ -4286,7 +4286,7 @@ msgstr ""
 #: src/settings/viewoptionsbase.ui:155
 #, kde-format
 msgid "Alt+1"
-msgstr "Alt+1"
+msgstr "Seçenek+1"
 
 #. i18n: ectx: property (text), widget (QLabel, invalidUnitColorLabel)
 #: src/settings/viewoptionsbase.ui:171
@@ -4306,7 +4306,7 @@ msgstr ""
 #: src/settings/viewoptionsbase.ui:199
 #, kde-format
 msgid "Alt+2"
-msgstr "Alt+2"
+msgstr "Seçenek+2"
 
 #: src/statistics/lessonstatisticsview.cpp:74
 #: src/statistics/lessonstatisticsview.cpp:76
