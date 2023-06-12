@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:41+0000\n"
-"PO-Revision-Date: 2023-02-19 17:27+0100\n"
+"PO-Revision-Date: 2023-06-11 19:10+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -247,8 +247,8 @@ msgstr "Neniu Unuo Elektita"
 #, kde-format
 msgid "%1 word due"
 msgid_plural "%1 words due"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 vorto postulenda"
+msgstr[1] "%1 vortoj postulendaj"
 
 #: src/dashboard/barwidget.cpp:122
 #, kde-format
@@ -980,8 +980,8 @@ msgstr "La radika leciono ne povas esti forigita."
 msgid "There is %1 word left in this unit. Do you want to delete it?"
 msgid_plural ""
 "There are %1 words left in this unit. Do you want to delete them?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Estas %1 vorto restanta en ĉi unuo. Ĉu vi volas forigi ĝin?"
+msgstr[1] "Estas %1 vortoj restantaj en ĉi unuo. Ĉu vi volas forigi ilin?"
 
 #: src/editor/lessonview.cpp:217
 #, kde-format
@@ -1187,8 +1187,8 @@ msgstr "Ŝalti montradon de individuaj vortprovizokolumnoj"
 #, kde-format
 msgid "Do you really want to delete the selected entry?"
 msgid_plural "Do you really want to delete the selected %1 entries?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ĉu vi vere volas forigi la elektitan eniron?"
+msgstr[1] "Ĉu vi vere volas forigi la elektitajn %1 enirojn?"
 
 #: src/editor/vocabularyview.cpp:254
 #, kde-format
@@ -1343,7 +1343,9 @@ msgid_plural ""
 "There are %1 words left with this word type. They will lose their word type. "
 "Continue?"
 msgstr[0] ""
+"Estas vorto restanta kun ĉi tiu vorttipo. Ĝi perdos sian tipon. Ĉu daŭrigi?"
 msgstr[1] ""
+"Estas %1 vortoj restantaj kun ĉi vorttipo. Ili perdos sian tipon. Ĉu daŭrigi?"
 
 #: src/exportdialog.cpp:53
 #, kde-format
@@ -2447,8 +2449,8 @@ msgstr "Ĉiuj konjugaciaj formoj estis ĝustaj."
 msgctxt "You did not get the conjugation forms right."
 msgid "You answered %1 conjugation form correctly."
 msgid_plural "You answered %1 conjugation forms correctly."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vi respondis %1 konjugacian formon ĝuste."
+msgstr[1] "Vi respondis %1 konjugaciajn formojn ĝuste."
 
 #: src/practice/conjugationmodewidget.cpp:111
 #, kde-format
@@ -2516,7 +2518,11 @@ msgid_plural ""
 "You answered correctly %2 of a total of %1 words.\n"
 "You are %3% done."
 msgstr[0] ""
+"Vi respondis ĝuste %2 el totalo de %1 vorto.\n"
+"Vi estas %3% fininta."
 msgstr[1] ""
+"Vi respondis ĝuste %2 el totalo de %1 vortoj.\n"
+"Vi estas %3% fininta."
 
 #: src/practice/latexrenderer.cpp:46
 #, kde-format
@@ -2628,22 +2634,22 @@ msgstr "Vi ekzercis %1 en %2 kaj %3."
 #, kde-format
 msgid "one word"
 msgid_plural "%1 words"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "unu vorto"
+msgstr[1] "%1 vortoj"
 
 #: src/practice/practicesummarycomponent.cpp:64
 #, kde-format
 msgid "one minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "unu minuto"
+msgstr[1] "%1 minutoj"
 
 #: src/practice/practicesummarycomponent.cpp:65
 #, kde-format
 msgid "one second"
 msgid_plural "%1 seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "unu sekundo"
+msgstr[1] "%1 sekundoj"
 
 #: src/practice/practicesummarycomponent.cpp:82
 #, kde-format

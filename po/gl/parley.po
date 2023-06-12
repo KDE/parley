@@ -10,13 +10,13 @@
 # Marce Villarino <mvillarino@gmail.com>, 2009.
 # Marce Villarino <mvillarino@kde-espana.es>, 2012, 2013, 2014.
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2015, 2016, 2017.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2020.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2020, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:41+0000\n"
-"PO-Revision-Date: 2020-01-11 11:24+0100\n"
+"PO-Revision-Date: 2023-06-11 09:07+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.08.3\n"
+"X-Generator: Lokalize 23.04.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -311,24 +311,21 @@ msgstr "Parley"
 
 #. i18n: ectx: property (text), widget (QPushButton, newButton)
 #: src/dashboard/dashboard.ui:120
-#, fuzzy, kde-format
-#| msgid "Create a New Collection"
+#, kde-format
 msgid "Create a New Collection..."
-msgstr "Crear unha colección nova"
+msgstr "Crear unha nova colección…"
 
 #. i18n: ectx: property (text), widget (QPushButton, openButton)
 #: src/dashboard/dashboard.ui:127
-#, fuzzy, kde-format
-#| msgid "Open an Existing Collection"
+#, kde-format
 msgid "Open an Existing Collection..."
-msgstr "Abrir unha colección existente"
+msgstr "Abrir unha colección existente…"
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, ghnsButton)
 #: src/dashboard/dashboard.ui:134
-#, fuzzy, kde-format
-#| msgid "Download New Collections"
+#, kde-format
 msgid "Download New Collections..."
-msgstr "Descargar coleccións novas"
+msgstr "Descargar novas coleccións…"
 
 #. i18n: ectx: property (text), widget (QLabel, headingLabel)
 #: src/dashboard/dashboard.ui:141
@@ -357,15 +354,13 @@ msgstr "Gravar"
 #: src/editor/audiowidget.ui:33
 #, kde-format
 msgid "Download audio file with webservice"
-msgstr ""
+msgstr "Descargar o ficheiro de son cun servizo web."
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadButton)
 #: src/editor/audiowidget.ui:36
-#, fuzzy, kde-format
-#| msgctxt "Attept to download grammar properties for the selected languages"
-#| msgid "Download Grammar"
+#, kde-format
 msgid "Download"
-msgstr "Descargar unha gramática"
+msgstr "Descargar"
 
 #. i18n: ectx: property (text), widget (QPushButton, showCurrentButton)
 #: src/editor/browserwidget.ui:18
@@ -571,66 +566,52 @@ msgstr "Formas declinadas"
 
 #. i18n: ectx: property (text), widget (QLabel, nominativeLabel)
 #: src/editor/declensionwidget.ui:52
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Nominative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Nominative:"
-msgstr "Nominativo"
+msgstr "Nominativo:"
 
 #. i18n: ectx: property (text), widget (QLabel, genitivLabel)
 #: src/editor/declensionwidget.ui:71
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Genitive"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Genitive:"
-msgstr "Xenitivo"
+msgstr "Xenitivo:"
 
 #. i18n: ectx: property (text), widget (QLabel, dativLabel)
 #: src/editor/declensionwidget.ui:90
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Dative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Dative:"
-msgstr "Dativo"
+msgstr "Dativo:"
 
 #. i18n: ectx: property (text), widget (QLabel, accusativeLabel)
 #: src/editor/declensionwidget.ui:109
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Accusative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Accusative:"
-msgstr "Acusativo"
+msgstr "Acusativo:"
 
 #. i18n: ectx: property (text), widget (QLabel, ablativLabel)
 #: src/editor/declensionwidget.ui:128
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Ablative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Ablative:"
-msgstr "Ablativo"
+msgstr "Ablativo:"
 
 #. i18n: ectx: property (text), widget (QLabel, locativeLabel)
 #: src/editor/declensionwidget.ui:147
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Locative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Locative:"
-msgstr "Locativo"
+msgstr "Locativo:"
 
 #. i18n: ectx: property (text), widget (QLabel, vocativeLabel)
 #: src/editor/declensionwidget.ui:166
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Vocative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Vocative:"
-msgstr "Vocativo"
+msgstr "Vocativo:"
 
 #. i18n: ectx: property (text), widget (QLabel, numberLabel)
 #: src/editor/declensionwidget.ui:445
@@ -852,6 +833,7 @@ msgstr "A data na que esta expresión se practicou por última vez"
 msgid "Not Practiced Yet"
 msgstr "Aínda non se practicou"
 
+# well-spelled: aaaa
 #. i18n: ectx: property (displayFormat), widget (QDateEdit, queryDateEdit)
 #: src/editor/FromToEntryPageForm.ui:229
 #, kde-format
@@ -882,8 +864,7 @@ msgid "\"%1\" is a:"
 msgstr "«%1» é un:"
 
 #: src/editor/inflectionwidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Please select the noun's gender"
+#, kde-format
 msgctxt "@title:window"
 msgid "Please select the noun's gender"
 msgstr "Escolla o xénero do substantivo"
@@ -895,10 +876,9 @@ msgstr "Insire código en LaTeX aquí."
 
 #. i18n: ectx: property (text), widget (QLabel, texLabel)
 #: src/editor/latexwidget.ui:17
-#, fuzzy, kde-format
-#| msgid "LaTeX code"
+#, kde-format
 msgid "LaTeX code:"
-msgstr "Código LaTeX"
+msgstr "Código LaTeX:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -1051,38 +1031,33 @@ msgstr "Lección"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/editor/summarywordwidget.ui:42
-#, fuzzy, kde-format
-#| msgid "Word type"
+#, kde-format
 msgid "Word type:"
-msgstr "Tipo de palabra"
+msgstr "Tipo de palabra:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/summarywordwidget.ui:55
-#, fuzzy, kde-format
-#| msgid "Pronunciation"
+#, kde-format
 msgid "Pronunciation:"
-msgstr "Pronuncia"
+msgstr "Pronuncia:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/summarywordwidget.ui:71
-#, fuzzy, kde-format
-#| msgid "Example"
+#, kde-format
 msgid "Example:"
-msgstr "Exemplo"
+msgstr "Exemplo:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/summarywordwidget.ui:87
-#, fuzzy, kde-format
-#| msgid "Paraphrase"
+#, kde-format
 msgid "Paraphrase:"
-msgstr "Paráfrase"
+msgstr "Paráfrase:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/editor/summarywordwidget.ui:103
-#, fuzzy, kde-format
-#| msgid "&Comment:"
+#, kde-format
 msgid "Comment:"
-msgstr "&Comentario:"
+msgstr "Comentario:"
 
 #: src/editor/synonymwidget.cpp:59
 #, kde-format
@@ -1140,8 +1115,7 @@ msgid "False Friends of %1:"
 msgstr "Falsos amigos de %1:"
 
 #: src/editor/vocabularycolumnsdialog.cpp:43
-#, fuzzy, kde-format
-#| msgid "Vocabulary Columns"
+#, kde-format
 msgctxt "@title:window"
 msgid "Vocabulary Columns"
 msgstr "Columnas do vocabulario"
@@ -1385,8 +1359,7 @@ msgstr[1] ""
 "Desexas continuar?"
 
 #: src/exportdialog.cpp:53
-#, fuzzy, kde-format
-#| msgid "Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export"
 msgstr "Exportar"
@@ -1724,8 +1697,7 @@ msgid "Change practice settings"
 msgstr "Cambiar a configuración da proba"
 
 #: src/parleyactions.cpp:203
-#, fuzzy, kde-format
-#| msgid "Export results..."
+#, kde-format
 msgid "Export Results..."
 msgstr "Exportar os resultados…"
 
@@ -1761,8 +1733,7 @@ msgid "Properties for %1"
 msgstr "Propiedades de %1"
 
 #: src/parleydocument.cpp:158
-#, fuzzy, kde-format
-#| msgid "Open Vocabulary Collection"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
 msgstr "Abrir unha colección de vocabulario"
@@ -1815,8 +1786,7 @@ msgstr ""
 "Queres gardar o ficheiro antes de saír?\n"
 
 #: src/parleydocument.cpp:293
-#, fuzzy, kde-format
-#| msgid "Open Downloaded Vocabulary Collection"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "Abrir unha colección vocabulario descargada"
@@ -1847,8 +1817,7 @@ msgid "Save File"
 msgstr "Gardar o ficheiro"
 
 #: src/parleydocument.cpp:376
-#, fuzzy, kde-format
-#| msgid "Save Vocabulary As"
+#, kde-format
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "Gardar o vocabulario como"
@@ -2297,8 +2266,7 @@ msgstr "As respostas mal acentuadas cóntase como correctas mesmo así."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:26
-#, fuzzy, kde-format
-#| msgid "Ignore Accents"
+#, kde-format
 msgid "Ignore accents"
 msgstr "Ignorar os erros de acentuación."
 
@@ -2310,8 +2278,7 @@ msgstr "Na resposta cóntase como correcta calquera maiúscula."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:39
-#, fuzzy, kde-format
-#| msgid "Ignore Capitalization"
+#, kde-format
 msgid "Ignore capitalization"
 msgstr "Ignorar os erros de maiúsculas."
 
@@ -2323,8 +2290,7 @@ msgstr "Na resposta cóntase como correcto calquera erro de puntuación."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:52
-#, fuzzy, kde-format
-#| msgid "Ignore Punctuation"
+#, kde-format
 msgid "Ignore punctuation"
 msgstr "Ignorar os erros de puntuación."
 
@@ -2339,10 +2305,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowHints)
 #: src/practice/configure/generalpracticeoptions.ui:65
-#, fuzzy, kde-format
-#| msgid "Enable Hints"
+#, kde-format
 msgid "Enable hints"
-msgstr "Activar as axudas"
+msgstr "Activar as axudas."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_4)
 #: src/practice/configure/generalpracticeoptions.ui:91
@@ -2358,10 +2323,9 @@ msgstr "Durante a práctica móstranse as imaxes para a pregunta."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsFrontImage)
 #: src/practice/configure/generalpracticeoptions.ui:100
-#, fuzzy, kde-format
-#| msgid "Image for Question"
+#, kde-format
 msgid "Image for question"
-msgstr "Imaxe para a pregunta"
+msgstr "Imaxe para a pregunta."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_FlashcardsBackImage)
 #: src/practice/configure/generalpracticeoptions.ui:110
@@ -2371,10 +2335,9 @@ msgstr "Durante a práctica móstranse as imaxes para a solución."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsBackImage)
 #: src/practice/configure/generalpracticeoptions.ui:113
-#, fuzzy, kde-format
-#| msgid "Image for Solution"
+#, kde-format
 msgid "Image for solution"
-msgstr "Imaxe para a solución"
+msgstr "Imaxe para a solución."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AllowImageInsteadOfWord)
 #: src/practice/configure/generalpracticeoptions.ui:123
@@ -2409,10 +2372,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CountSynonymsAsCorrect)
 #: src/practice/configure/generalpracticeoptions.ui:168
-#, fuzzy, kde-format
-#| msgid "Accept any Synonym"
+#, kde-format
 msgid "Accept any synonym"
-msgstr "Aceptar calquera sinónimo"
+msgstr "Aceptar calquera sinónimo."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: src/practice/configure/generalpracticeoptions.ui:191
@@ -2422,15 +2384,13 @@ msgstr "Sesións"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/generalpracticeoptions.ui:202
-#, fuzzy, kde-format
-#| msgid "Max session size"
+#, kde-format
 msgid "Max session size:"
 msgstr "Tamaño máximo das sesións."
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/practice/configure/generalpracticeoptions.ui:251
-#, fuzzy, kde-format
-#| msgid "Max number of new words"
+#, kde-format
 msgid "Max number of new words:"
 msgstr "Número máximo de palabras novas."
 
@@ -2476,24 +2436,21 @@ msgstr "Como moito"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/practice/configure/thresholdoptions.ui:43
-#, fuzzy, kde-format
-#| msgid "&Grade:"
+#, kde-format
 msgid "Grade:"
-msgstr "&Nota:"
+msgstr "Nota:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/thresholdoptions.ui:53
-#, fuzzy, kde-format
-#| msgid "Times practiced"
+#, kde-format
 msgid "Times practiced:"
-msgstr "Veces que se practicou"
+msgstr "Veces que se practicou:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/practice/configure/thresholdoptions.ui:80
-#, fuzzy, kde-format
-#| msgid "Answered incorrectly"
+#, kde-format
 msgid "Answered incorrectly:"
-msgstr "Contestadas incorrectamente"
+msgstr "Contestadas incorrectamente:"
 
 #: src/practice/conjugationbackendmode.cpp:93
 #, kde-format
@@ -2622,15 +2579,13 @@ msgstr "Continuar"
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsWrongButton)
 #: src/practice/practice_mainwindow.ui:219
-#, fuzzy, kde-format
-#| msgid "I did not know it"
+#, kde-format
 msgid "I Did not Know it"
 msgstr "Non o sabía"
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsCorrectButton)
 #: src/practice/practice_mainwindow.ui:226
-#, fuzzy, kde-format
-#| msgid "I knew it"
+#, kde-format
 msgid "I Knew it"
 msgstr "Sabíao"
 
@@ -3059,10 +3014,9 @@ msgstr "Calquera información adicional."
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/settings/documentproperties.ui:160
-#, fuzzy, kde-format
-#| msgid "Cate&gory"
+#, kde-format
 msgid "Cate&gory:"
-msgstr "Cate&goría"
+msgstr "&Categoría:"
 
 #. i18n: ectx: property (toolTip), widget (KComboBox, categoryComboBox)
 #: src/settings/documentproperties.ui:173
@@ -3139,19 +3093,16 @@ msgstr "&Segundo idioma:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, grammarCheckBox)
 #: src/settings/documentproperties.ui:311
-#, fuzzy, kde-format
-#| msgid "&Setup Grammar Details"
+#, kde-format
 msgid "&Setup grammar details"
-msgstr "Configurar os detalles da &gramática"
+msgstr "Configurar os detalles da &gramática."
 
 #. i18n: ectx: property (text), widget (QCheckBox, downloadGrammarCheckBox)
 #: src/settings/documentproperties.ui:321
-#, fuzzy, kde-format
-#| msgctxt "Attept to download grammar properties for the selected languages"
-#| msgid "Download Grammar"
+#, kde-format
 msgctxt "Attept to download grammar properties for the selected languages"
 msgid "Download grammar"
-msgstr "Descargar unha gramática"
+msgstr "Descargar unha gramática."
 
 #. i18n: ectx: label, entry (ConjugationTenses), group (Document $(fileurl))
 #. i18n: ectx: whatsthis, entry (ConjugationTenses), group (Document $(fileurl))
@@ -3364,8 +3315,7 @@ msgid "Author:"
 msgstr "Autor:"
 
 #: src/settings/languageproperties.cpp:23
-#, fuzzy, kde-format
-#| msgid "Edit Languages"
+#, kde-format
 msgctxt "@title:window"
 msgid "Edit Languages"
 msgstr "Editar os idiomas"
@@ -3452,8 +3402,7 @@ msgstr "Disposición do teclado:"
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadGrammarButton)
 #: src/settings/languagepropertiespage.ui:75
-#, fuzzy, kde-format
-#| msgid "&Download Grammar"
+#, kde-format
 msgid "&Download grammar"
 msgstr "&Descargar unha gramática"
 
@@ -4228,43 +4177,41 @@ msgid "View Settings"
 msgstr "Configuración da vista"
 
 #: src/settings/parleyprefs.cpp:33
-#, fuzzy, kde-format
-#| msgid "Automatic Translation"
+#, kde-format
 msgid "Online Translations"
-msgstr "Tradución automática"
+msgstr "Traducións automáticas"
 
 #: src/settings/parleyprefs.cpp:33
-#, fuzzy, kde-format
-#| msgid "Split translations at periods."
+#, kde-format
 msgid "Online Translation Services"
-msgstr "Dividir as traducións nos puntos."
+msgstr "Servizos de tradución automática"
 
 #: src/settings/translationshelloptions.cpp:20
 #, kde-format
 msgid "translate-shell is available."
-msgstr ""
+msgstr "translate-shell está dispoñíbel."
 
 #: src/settings/translationshelloptions.cpp:23
 #, kde-format
 msgid "translate-shell executable could not be found."
-msgstr ""
+msgstr "Non se puido atopar o executábel de translate-shell."
 
 #: src/settings/translationshelloptions.cpp:38
 #, kde-format
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxInstalledStatus)
 #: src/settings/translationshellpage.ui:18
 #, kde-format
 msgid "Translation Shell Integration"
-msgstr ""
+msgstr "Integración con Translate Shell"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/settings/translationshellpage.ui:52
 #, kde-format
 msgid "Run Interactive Functionality Test"
-msgstr ""
+msgstr "Executar a proba de funcionalidades interactivas"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/settings/translationshellpage.ui:58
@@ -4273,25 +4220,26 @@ msgid ""
 "The interaction test request translation of English word \"parley\" into "
 "German."
 msgstr ""
+"A proba de interacción solicita a tradución da palabra inglesa «parley» ao "
+"alemán."
 
 #. i18n: ectx: property (text), widget (QToolButton, buttonRunTest)
 #: src/settings/translationshellpage.ui:68
 #, kde-format
 msgid "Start online test"
-msgstr ""
+msgstr "Iniciar a proba por Internet"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/settings/translationshellpage.ui:88
 #, kde-format
 msgid "Result:"
-msgstr ""
+msgstr "Resultado:"
 
 #. i18n: ectx: property (text), widget (QLabel, labelResultArea)
 #: src/settings/translationshellpage.ui:101
-#, fuzzy, kde-format
-#| msgid "&New..."
+#, kde-format
 msgid "..."
-msgstr "&Novo…"
+msgstr "…"
 
 #. i18n: ectx: property (whatsThis), widget (KFontRequester, kcfg_IPAFont)
 #: src/settings/viewoptionsbase.ui:47
