@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:41+0000\n"
-"PO-Revision-Date: 2023-06-04 01:57+0300\n"
+"PO-Revision-Date: 2023-06-18 21:33+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -2479,7 +2479,7 @@ msgstr "Tüm eylem çekimlerini girin."
 #: src/practice/genderbackendmode.cpp:61
 #, kde-format
 msgid "Choose the right article for \"%1\""
-msgstr "\"%1\" için doğru makaleyi seçin"
+msgstr "\"%1\" için doğru ilgeci seç"
 
 #: src/practice/genderbackendmode.cpp:85
 #, kde-format
@@ -3432,7 +3432,7 @@ msgstr "Yazıtipi (düzenleyici):"
 #: src/settings/languagepropertiespage.ui:141
 #, kde-format
 msgid "Articles"
-msgstr "Yazılar"
+msgstr "İlgeçler"
 
 #. i18n: ectx: property (text), widget (QLabel, TextLabel3)
 #. i18n: ectx: property (text), widget (QLabel, TextLabel3_2)
