@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -250,6 +250,7 @@ msgstr "عکسی برگزیده نشده است"
 msgid "%1 word due"
 msgid_plural "%1 words due"
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/dashboard/barwidget.cpp:122
 #, kde-format
@@ -1017,6 +1018,7 @@ msgid_plural ""
 msgstr[0] ""
 "واژگانی در این درس باقی می‌ماند. می‌خواهید آنها را حذف کنید؟ مدخلهایتان را از "
 "دست می‌دهید! به شما اخطار داده شد!"
+msgstr[1] ""
 
 #: src/editor/lessonview.cpp:217
 #, fuzzy, kde-format
@@ -1232,6 +1234,7 @@ msgstr "زدن ضامن نمایش میله ابزارها"
 msgid "Do you really want to delete the selected entry?"
 msgid_plural "Do you really want to delete the selected %1 entries?"
 msgstr[0] "واقعاً می‌‌‌خواهید مدخل برگزیده را حذف کنید؟"
+msgstr[1] ""
 
 #: src/editor/vocabularyview.cpp:254
 #, fuzzy, kde-format
@@ -1386,6 +1389,7 @@ msgid_plural ""
 msgstr[0] ""
 "واژگانی در این درس باقی می‌ماند. می‌خواهید آنها را حذف کنید؟ مدخلهایتان را از "
 "دست می‌دهید! به شما اخطار داده شد!"
+msgstr[1] ""
 
 #: src/exportdialog.cpp:53
 #, fuzzy, kde-format
@@ -2488,6 +2492,7 @@ msgctxt "You did not get the conjugation forms right."
 msgid "You answered %1 conjugation form correctly."
 msgid_plural "You answered %1 conjugation forms correctly."
 msgstr[0] "وارد کردن شکلهای درست صرف."
+msgstr[1] ""
 
 #: src/practice/conjugationmodewidget.cpp:111
 #, fuzzy, kde-format
@@ -2561,6 +2566,7 @@ msgid_plural ""
 "You answered correctly %2 of a total of %1 words.\n"
 "You are %3% done."
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/practice/latexrenderer.cpp:46
 #, fuzzy, kde-format
@@ -2675,6 +2681,7 @@ msgstr ""
 msgid "one word"
 msgid_plural "%1 words"
 msgstr[0] "وارد کردن واژه:"
+msgstr[1] ""
 
 #: src/practice/practicesummarycomponent.cpp:64
 #, fuzzy, kde-format
@@ -2682,12 +2689,14 @@ msgstr[0] "وارد کردن واژه:"
 msgid "one minute"
 msgid_plural "%1 minutes"
 msgstr[0] "دقیقه"
+msgstr[1] ""
 
 #: src/practice/practicesummarycomponent.cpp:65
 #, fuzzy, kde-format
 msgid "one second"
 msgid_plural "%1 seconds"
 msgstr[0] "دسته دوم: "
+msgstr[1] ""
 
 #: src/practice/practicesummarycomponent.cpp:82
 #, fuzzy, kde-format
