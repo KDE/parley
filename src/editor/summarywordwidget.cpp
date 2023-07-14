@@ -78,7 +78,7 @@ void SummaryWordWidget::slotDocumentChanged(const std::shared_ptr<KEduVocDocumen
     if (!m_doc) {
         qDebug() << "Set invalid document";
         delete m_wordTypeModel;
-        m_wordTypeModel = 0;
+        m_wordTypeModel = nullptr;
     } else {
         delete m_wordTypeView;
         if (!m_wordTypeModel) {

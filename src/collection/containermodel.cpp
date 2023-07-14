@@ -243,7 +243,7 @@ bool ContainerModel::dropMimeData(const QMimeData *data, Qt::DropAction action, 
 
             if (action == Qt::MoveAction || action == Qt::CopyAction) {
                 qDebug() << "Move container: " << container->name();
-                KEduVocContainer *parentContainer = 0;
+                KEduVocContainer *parentContainer = nullptr;
 
                 if (parent.isValid()) {
                     parentContainer = static_cast<KEduVocContainer *>(parent.internalPointer());
@@ -254,7 +254,7 @@ bool ContainerModel::dropMimeData(const QMimeData *data, Qt::DropAction action, 
                 } else {
                     // make sure a container cannot be dropped into one of its child containers!
                     KEduVocContainer *childTest = parentContainer;
-                    while (childTest != 0) {
+                    while (childTest != nullptr) {
                         if (childTest == container) {
                             qDebug() << "Cannot drop a container into one of its child containers!";
                             return false;

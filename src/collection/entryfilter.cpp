@@ -116,7 +116,7 @@ QList<TestEntry *> EntryFilter::entries(bool showDialog)
     // qDebug() << "Document contains " << m_entries[0].count() + m_entries[1].count() << " valid entries.";
     if (m_entries[0].count() + m_entries[1].count() == 0) {
         if (showDialog) {
-            KMessageBox::error(0, noEntriesError);
+            KMessageBox::error(nullptr, noEntriesError);
         }
         return QList<TestEntry *>();
     }
@@ -139,7 +139,7 @@ QList<TestEntry *> EntryFilter::entries(bool showDialog)
     if (Prefs::practiceMode() == Prefs::EnumPracticeMode::ConjugationPractice) {
         QList<TestEntry *> ret = conjugationTestEntries(ignoreBlocked);
         if ((ret.count() == 0) && showDialog) {
-            KMessageBox::error(0, noEntriesError);
+            KMessageBox::error(nullptr, noEntriesError);
         }
         return ret;
     } else {

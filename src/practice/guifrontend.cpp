@@ -78,7 +78,7 @@ QWidget *GuiFrontend::widget()
 void GuiFrontend::setMode(Mode mode)
 {
     qDebug() << "setCentralWidget" << mode;
-    AbstractModeWidget *newWidget = 0;
+    AbstractModeWidget *newWidget = nullptr;
     switch (mode) {
     case Written:
         if (/*m_modeWidget->metaObject()->className() == QLatin1String("WrittenPracticeWidget")*/ false) {
@@ -106,7 +106,7 @@ void GuiFrontend::setMode(Mode mode)
         newWidget = new WrittenPracticeWidget(this, m_widget, true);
         break;
     default:
-        Q_ASSERT("Practice Mode Invalid" == 0);
+        Q_ASSERT("Practice Mode Invalid" == nullptr);
     }
     if (newWidget) {
         m_ui->centralPracticeWidget->layout()->addWidget(newWidget);

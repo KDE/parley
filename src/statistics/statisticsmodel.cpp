@@ -145,7 +145,7 @@ Qt::DropActions StatisticsModel::supportedDragActions() const
 KEduVocContainer *StatisticsModel::rootContainer() const
 {
     if (!m_doc) {
-        return 0;
+        return nullptr;
     }
     return m_doc->lesson();
 }

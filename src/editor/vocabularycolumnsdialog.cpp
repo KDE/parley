@@ -80,8 +80,8 @@ void VocabularyColumnsDialog::createLanguagesLayout()
     for (int i = 0; i < m_doc->identifierCount(); i++) {
         m_models[i] = new QStandardItemModel(this);
 
-        QGroupBox *box = new QGroupBox(m_doc->identifier(i).name(), 0);
-        QVBoxLayout *box_layout = new QVBoxLayout(0);
+        QGroupBox *box = new QGroupBox(m_doc->identifier(i).name(), nullptr);
+        QVBoxLayout *box_layout = new QVBoxLayout(nullptr);
 
         m_box->addWidget(box, row, column);
 

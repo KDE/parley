@@ -115,7 +115,7 @@ void DeclensionWidget::setupLineEdits()
 {
     m_DeclensionLineEdits.clear();
 
-    if (m_entry == 0 || !m_entry->translation(m_identifier) || !m_entry->translation(m_identifier)->wordType()
+    if (m_entry == nullptr || !m_entry->translation(m_identifier) || !m_entry->translation(m_identifier)->wordType()
         || m_entry->translation(m_identifier)->wordType()->wordType() & KEduVocWordFlag::Noun) {
         label_3->setText(i18n("Singular"));
         label_4->setText(i18n("Dual"));

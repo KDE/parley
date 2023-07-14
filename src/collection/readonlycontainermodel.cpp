@@ -47,12 +47,12 @@ QModelIndex ReadonlyContainerModel::index(int row, int column, const QModelIndex
     KEduVocContainer *parentContainer;
 
     if (!parent.isValid()) {
-        parentContainer = 0;
+        parentContainer = nullptr;
     } else {
         parentContainer = static_cast<KEduVocContainer *>(parent.internalPointer());
     }
 
-    KEduVocContainer *childContainer = 0;
+    KEduVocContainer *childContainer = nullptr;
     if (!parentContainer) {
         childContainer = rootContainer();
         if (!childContainer) {

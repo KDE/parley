@@ -69,7 +69,7 @@ public:
      */
     static int columnType(int column);
 
-    QModelIndex appendEntry(KEduVocExpression *expression = 0);
+    QModelIndex appendEntry(KEduVocExpression *expression = nullptr);
 
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
 

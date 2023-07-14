@@ -55,7 +55,7 @@ PracticeMainWindow::~PracticeMainWindow()
 {
     // m_floatingToolBar is a child of m_mainWindow will be deleted with its children
     // before or after this.  So don't access it in toggleFullScreenMode.
-    m_floatingToolBar = 0;
+    m_floatingToolBar = nullptr;
     toggleFullScreenMode(false);
 
     KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
@@ -134,7 +134,7 @@ void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)
     KToggleFullScreenAction::setFullScreen(m_mainWindow, fullScreen);
     m_mainWindow->toolBar(QStringLiteral("practiceToolBar"))->setVisible(!fullScreen);
     m_mainWindow->menuBar()->setVisible(!fullScreen);
-    if (m_floatingToolBar != 0) {
+    if (m_floatingToolBar != nullptr) {
         m_floatingToolBar->setVisible(fullScreen);
     }
     m_mainWindow->setSettingsDirty();

@@ -31,7 +31,7 @@ public:
         ActiveConjugationTenses
     };
 
-    explicit StatisticsModel(QObject *parent = 0);
+    explicit StatisticsModel(QObject *parent = nullptr);
 
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
     QVariant data(const QModelIndex &index, int role) const override;

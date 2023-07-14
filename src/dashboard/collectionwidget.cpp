@@ -39,7 +39,7 @@ int COLLHEIGHT2 = 125; // Height in pixels of a collection widget fully learned
 class RemoveButton : public QPushButton
 {
 public:
-    RemoveButton(QWidget *parent = 0);
+    RemoveButton(QWidget *parent = nullptr);
 
 protected:
     void paintEvent(QPaintEvent *) override;

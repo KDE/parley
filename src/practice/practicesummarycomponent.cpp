@@ -150,7 +150,7 @@ void PracticeSummaryComponent::exportResults()
     QString filter = i18n("HTML Files") + " (*.html);;" + i18n("OpenDocument text files") + " (*.odt)";
     QString caption;
     QString startingdir(QStringLiteral("kfiledialog:///practice_export"));
-    QString fileName = QFileDialog::getSaveFileName(0, caption, startingdir, filter);
+    QString fileName = QFileDialog::getSaveFileName(nullptr, caption, startingdir, filter);
 
     if (fileName.isEmpty()) {
         return;

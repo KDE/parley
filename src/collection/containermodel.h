@@ -26,7 +26,7 @@ class ContainerModel : public ReadonlyContainerModel
 public:
     enum ColumnType { ContainerNameColumn = 0, TotalCountColumn, FirstDataColumn };
 
-    explicit ContainerModel(KEduVocContainer::EnumContainerType type, QObject *parent = 0);
+    explicit ContainerModel(KEduVocContainer::EnumContainerType type, QObject *parent = nullptr);
 
     QVariant data(const QModelIndex &index, int role) const override;
     Qt::ItemFlags flags(const QModelIndex &index) const override;

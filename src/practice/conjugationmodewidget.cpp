@@ -21,7 +21,7 @@ struct PersonConjugationSolutionWidgets {
     QLineEdit *input;
     QLabel *solution;
 
-    PersonConjugationSolutionWidgets(QGridLayout *layout, QWidget *parent = 0)
+    PersonConjugationSolutionWidgets(QGridLayout *layout, QWidget *parent = nullptr)
     {
         person = new QLabel(parent);
         person->setAlignment(Qt::AlignRight);

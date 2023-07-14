@@ -16,7 +16,7 @@ WordClassModel::WordClassModel(QObject *parent)
 KEduVocContainer *WordClassModel::rootContainer() const
 {
     if (!m_doc) {
-        return 0;
+        return nullptr;
     }
     return m_doc->wordTypeContainer();
 }

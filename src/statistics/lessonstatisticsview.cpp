@@ -39,7 +39,7 @@ public:
 
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override
     {
-        QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, 0);
+        QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, nullptr);
 
         // empty lesson? If so, paint nothing.
         if (!index.data(StatisticsModel::TotalCount).toInt()) {

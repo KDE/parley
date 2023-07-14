@@ -22,7 +22,7 @@ using namespace Practice;
 
 MultiplechoiceModeWidget::MultiplechoiceModeWidget(GuiFrontend *frontend, QWidget *parent)
     : AbstractModeWidget(frontend, parent)
-    , m_latexRenderer(0)
+    , m_latexRenderer(nullptr)
 {
     m_ui = new Ui::MultiplechoicePracticeWidget();
     m_ui->setupUi(this);

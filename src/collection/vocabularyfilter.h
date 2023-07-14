@@ -17,11 +17,11 @@ class VocabularyFilter : public QSortFilterProxyModel
 {
     Q_OBJECT
 public:
-    explicit VocabularyFilter(QObject *parent = 0);
+    explicit VocabularyFilter(QObject *parent = nullptr);
 
     void setSourceModel(VocabularyModel *model);
 
-    QModelIndex appendEntry(KEduVocExpression *expression = 0);
+    QModelIndex appendEntry(KEduVocExpression *expression = nullptr);
     KEduVocLesson *lesson();
 
 public Q_SLOTS:

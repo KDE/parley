@@ -156,7 +156,7 @@ void LessonView::setTranslation(KEduVocExpression *entry, int translation)
 {
     Q_UNUSED(translation)
 
-    if (entry == 0) {
+    if (entry == nullptr) {
         selectionModel()->clearSelection();
         return;
     }

@@ -11,7 +11,7 @@ using namespace Practice;
 
 AudioButton::AudioButton(QWidget *parent)
     : QToolButton(parent)
-    , m_player(0)
+    , m_player(nullptr)
 {
     setEnabled(false);
     setIcon(QIcon::fromTheme(QStringLiteral("media-playback-start")));

@@ -80,7 +80,7 @@ bool WrittenPracticeValidator::spellcheckerAvailable()
 
 void WrittenPracticeValidator::validateAnswer(const QString &answer)
 {
-    if (m_entry == 0) {
+    if (m_entry == nullptr) {
         qCritical() << "No entry set, cannot verify answer.";
         return;
     }

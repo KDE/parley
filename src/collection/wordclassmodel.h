@@ -16,7 +16,7 @@ class WordClassModel : public ContainerModel
     Q_OBJECT
 
 public:
-    explicit WordClassModel(QObject *parent = 0);
+    explicit WordClassModel(QObject *parent = nullptr);
 
     QModelIndex appendWordClass(const QModelIndex &parent, const QString &wordTypeName = QString());
 

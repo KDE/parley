@@ -23,7 +23,7 @@ class Collection : public QObject
     Q_OBJECT
 
 public:
-    explicit Collection(QUrl *url, QObject *parent = 0);
+    explicit Collection(QUrl *url, QObject *parent = nullptr);
     ~Collection() override;
 
     KEduVocDocument *eduVocDocument();

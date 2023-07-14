@@ -22,7 +22,7 @@ public:
         Random /**< Randomized */
     };
 
-    explicit LessonModel(QObject *parent = 0);
+    explicit LessonModel(QObject *parent = nullptr);
 
     Qt::ItemFlags flags(const QModelIndex &index) const override;
     QVariant data(const QModelIndex &index, int role) const override;

@@ -54,7 +54,7 @@ void MultipleChoiceWidget::setTranslation(KEduVocExpression *entry, int translat
     if (entry) {
         m_translation = entry->translation(translation);
     } else {
-        m_translation = 0;
+        m_translation = nullptr;
     }
 
     if (m_translation) {
@@ -99,7 +99,7 @@ bool MultipleChoiceWidget::eventFilter(QObject *obj, QEvent *event)
         if (event->type() == QEvent::DragEnter) {
             QDragEnterEvent *dragEnterEvent = static_cast<QDragEnterEvent *>(event);
             // qDebug() << "DragEnter mime format: " << dragEnterEvent->format();
-            if ((dragEnterEvent->mimeData() != NULL) && dragEnterEvent->mimeData()->hasText()) {
+            if ((dragEnterEvent->mimeData() != nullptr) && dragEnterEvent->mimeData()->hasText()) {
                 event->accept();
             }
             return true;
@@ -113,7 +113,7 @@ bool MultipleChoiceWidget::eventFilter(QObject *obj, QEvent *event)
         if (event->type() == QEvent::Drop) {
             QDropEvent *dropEvent = static_cast<QDropEvent *>(event);
             // qDebug() << "You dropped onto me: " << dropEvent->mimeData()->text();
-            if ((dropEvent->mimeData() != NULL) && dropEvent->mimeData()->hasText()) {
+            if ((dropEvent->mimeData() != nullptr) && dropEvent->mimeData()->hasText()) {
                 QStringList choices = dropEvent->mimeData()->text().split('\n');
                 for (const QString &choice : qAsConst(choices)) {
                     m_choicesModel->insertRow(multipleChoiceListView->model()->rowCount());

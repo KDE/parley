@@ -101,7 +101,7 @@ QColor ThemedBackgroundRenderer::fontColor(const QString &context, const QColor 
 {
     QString text = m_theme->property("X-Parley-Font-Color-" + context).toLower();
     if (text.length() == 6 && text.contains(QRegExp(QStringLiteral("[0-9a-f]{6}")))) {
-        return QColor(text.midRef(0, 2).toInt(0, 16), text.midRef(2, 2).toInt(0, 16), text.midRef(4, 2).toInt(0, 16));
+        return QColor(text.midRef(0, 2).toInt(nullptr, 16), text.midRef(2, 2).toInt(nullptr, 16), text.midRef(4, 2).toInt(nullptr, 16));
     }
 
     return fallback;

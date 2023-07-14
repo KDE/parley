@@ -84,7 +84,7 @@ void ExportDialog::accept()
 
     qDebug() << "XSLT starting";
 
-    xsltStylesheetPtr cur = NULL;
+    xsltStylesheetPtr cur = nullptr;
     xmlDocPtr doc, res;
 
     xmlSubstituteEntitiesDefault(1);
@@ -93,9 +93,9 @@ void ExportDialog::accept()
 
     doc = xmlParseDoc((const xmlChar *)m_doc->document()->toByteArray(m_doc->document()->generator()).constData());
 
-    res = xsltApplyStylesheet(cur, doc, 0);
+    res = xsltApplyStylesheet(cur, doc, nullptr);
     FILE *result = fopen(QFile::encodeName(filename.toLocalFile()).constData(), "w");
-    if (result != NULL) {
+    if (result != nullptr) {
         xsltSaveResultToFile(result, res, cur);
         fclose(result);
     } else {

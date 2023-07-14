@@ -27,7 +27,7 @@ class ReadonlyContainerModel : public QAbstractItemModel
     Q_OBJECT
 
 public:
-    explicit ReadonlyContainerModel(KEduVocContainer::EnumContainerType type, QObject *parent = 0);
+    explicit ReadonlyContainerModel(KEduVocContainer::EnumContainerType type, QObject *parent = nullptr);
 
     QVariant data(const QModelIndex &index, int role) const override;
     Qt::ItemFlags flags(const QModelIndex &index) const override;

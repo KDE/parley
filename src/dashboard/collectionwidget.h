@@ -28,7 +28,7 @@ class CollectionWidget : public QWidget
     Q_OBJECT
 
 public:
-    CollectionWidget(Collection *collection, WordCount *dueWords, QWidget *parent = 0);
+    CollectionWidget(Collection *collection, WordCount *dueWords, QWidget *parent = nullptr);
     ~CollectionWidget() override;
 
     Collection *collection() const;

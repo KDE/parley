@@ -36,7 +36,7 @@ void ComparisonWidget::setTranslation(KEduVocExpression *entry, int translation)
     if (entry) {
         m_translation = entry->translation(translation);
     } else {
-        m_translation = 0;
+        m_translation = nullptr;
     }
 
     if (m_translation) {

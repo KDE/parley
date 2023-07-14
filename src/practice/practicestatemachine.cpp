@@ -82,7 +82,7 @@ void PracticeStateMachine::createPracticeMode()
         break;
 
     default:
-        Q_ASSERT("Implement selected practice mode" == 0);
+        Q_ASSERT("Implement selected practice mode" == nullptr);
     }
 }
 
@@ -101,7 +101,7 @@ void PracticeStateMachine::nextEntry()
     // qDebug() << "GETTING ENTRY - " << m_current;
 
     // after going through all words, or at the start of practice
-    if (m_current == 0) {
+    if (m_current == nullptr) {
         slotPracticeFinished();
         return;
     }

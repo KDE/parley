@@ -9,7 +9,7 @@
 
 VocabularyFilter::VocabularyFilter(QObject *parent)
     : QSortFilterProxyModel(parent)
-    , m_model(0)
+    , m_model(nullptr)
 {
     // do not use capitalization for searches
     setSortCaseSensitivity(Qt::CaseInsensitive);
@@ -64,7 +64,7 @@ KEduVocLesson *VocabularyFilter::lesson()
     if (m_model) {
         return m_model->lesson();
     }
-    return 0;
+    return nullptr;
 }
 
 #include "moc_vocabularyfilter.cpp"

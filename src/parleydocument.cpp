@@ -384,7 +384,7 @@ void ParleyDocument::saveAs(QUrl url)
 
     QFileInfo fileinfo(url.toLocalFile());
     if (fileinfo.exists()) {
-        if (KMessageBox::warningContinueCancel(0,
+        if (KMessageBox::warningContinueCancel(nullptr,
                                                i18n("<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>", url.toLocalFile()),
                                                QString(),
                                                KStandardGuiItem::overwrite())

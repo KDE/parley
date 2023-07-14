@@ -42,8 +42,8 @@ void SynonymWidget::setTranslation(KEduVocExpression *entry, int translation)
         updateList();
     } else {
         // better play save, the entry most likely has been deleted.
-        m_lastTranslation = 0;
-        m_currentTranslation = 0;
+        m_lastTranslation = nullptr;
+        m_currentTranslation = nullptr;
         updateList();
     }
 }

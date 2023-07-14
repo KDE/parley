@@ -23,7 +23,7 @@ static const char *separator_id[] = {";", // 0
                                      "  ", // 6
                                      ":", // 7
                                      "::", // 8
-                                     0};
+                                     nullptr};
 
 GeneralOptions::GeneralOptions(QWidget *parent)
     : QWidget(parent)

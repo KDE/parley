@@ -45,7 +45,7 @@ ButtonDelegate::~ButtonDelegate()
 
 void ButtonDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, 0);
+    QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, nullptr);
     if (option.state & QStyle::State_MouseOver) {
         m_editButton->show();
         m_editButton->move(QPoint(option.rect.right() - margin - m_editButton->sizeHint().width(),

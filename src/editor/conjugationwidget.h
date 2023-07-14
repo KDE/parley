@@ -20,7 +20,7 @@ class ConjugationWidget : public QWidget, public Ui::ConjugationWidget
     Q_OBJECT
 
 public:
-    explicit ConjugationWidget(QWidget *parent = 0);
+    explicit ConjugationWidget(QWidget *parent = nullptr);
 
 public Q_SLOTS:
     void setDocument(KEduVocDocument *doc);

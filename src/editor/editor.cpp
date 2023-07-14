@@ -260,7 +260,7 @@ void EditorWindow::initDockWidgets()
     // Pronunciation symbols - Use KCharSelect
     QDockWidget *charSelectDock = new QDockWidget(i18n("Phonetic Symbols"), this);
     charSelectDock->setObjectName(QStringLiteral("IPADock"));
-    KCharSelect *charSelectWidget = new KCharSelect(this, 0, KCharSelect::SearchLine | KCharSelect::BlockCombos | KCharSelect::CharacterTable);
+    KCharSelect *charSelectWidget = new KCharSelect(this, nullptr, KCharSelect::SearchLine | KCharSelect::BlockCombos | KCharSelect::CharacterTable);
     charSelectWidget->setCurrentChar(0x0250);
     QScrollArea *charSelectScrollArea = new QScrollArea(this);
     charSelectScrollArea->setWidgetResizable(true);
@@ -358,7 +358,7 @@ void EditorWindow::initDockWidgets()
 void EditorWindow::initActions()
 {
     ParleyActions::create(ParleyActions::RemoveGrades, this, SLOT(removeGrades()), actionCollection());
-    m_spellCheckMenu = ParleyActions::create(ParleyActions::CheckSpelling, 0, "", actionCollection());
+    m_spellCheckMenu = ParleyActions::create(ParleyActions::CheckSpelling, nullptr, "", actionCollection());
     m_spellCheckMenu->setMenu(new QMenu(this));
 
     ParleyActions::create(ParleyActions::ToggleShowSublessons, m_vocabularyModel, SLOT(showEntriesOfSubcontainers(bool)), actionCollection());

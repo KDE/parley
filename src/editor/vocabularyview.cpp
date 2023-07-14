@@ -159,7 +159,7 @@ void VocabularyView::setFilter(VocabularyFilter *model)
 void VocabularyView::slotCurrentChanged(const QModelIndex &current, const QModelIndex &previous)
 {
     Q_UNUSED(previous);
-    KEduVocExpression *entry = 0;
+    KEduVocExpression *entry = nullptr;
     if (current.isValid()) {
         entry = model()->data(current, VocabularyModel::EntryRole).value<KEduVocExpression *>();
     }
@@ -169,7 +169,7 @@ void VocabularyView::slotCurrentChanged(const QModelIndex &current, const QModel
 void VocabularyView::reset()
 {
     QTableView::reset();
-    Q_EMIT translationChanged(0, 0);
+    Q_EMIT translationChanged(nullptr, 0);
 
     QList<int> visibleColumns;
     if (m_doc) {
@@ -256,7 +256,7 @@ void VocabularyView::deleteSelectedEntries(bool askConfirmation)
     }
 
     if (del) {
-        Q_EMIT translationChanged(0, 0);
+        Q_EMIT translationChanged(nullptr, 0);
         while (!selectionModel()->selectedIndexes().isEmpty()) {
             m_model->removeRows(selectionModel()->selectedIndexes()[0].row(), 1, QModelIndex());
         }

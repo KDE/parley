@@ -21,8 +21,8 @@
 
 VocabularyModel::VocabularyModel(QObject *parent)
     : QAbstractTableModel(parent)
-    , m_container(0)
-    , m_document(0)
+    , m_container(nullptr)
+    , m_document(nullptr)
 {
     m_recursive = Prefs::showSublessonentries() ? KEduVocContainer::Recursive : KEduVocContainer::NotRecursive;
 
@@ -38,13 +38,13 @@ void VocabularyModel::setDocument(KEduVocDocument *doc)
     beginResetModel();
 
     m_document = doc;
-    m_container = 0;
-    m_lesson = 0;
+    m_container = nullptr;
+    m_lesson = nullptr;
 
     if (m_document) {
         showContainer(m_document->lesson());
     } else {
-        showContainer(0);
+        showContainer(nullptr);
     }
 
     endResetModel();
@@ -55,7 +55,7 @@ void VocabularyModel::showContainer(KEduVocContainer *container)
     // use remove and insert rows. using reset resets all table headers too.
     if (rowCount(QModelIndex()) > 0) {
         beginRemoveRows(QModelIndex(), 0, rowCount(QModelIndex()) - 1);
-        m_container = 0;
+        m_container = nullptr;
         endRemoveRows();
     }
     if (container) {
@@ -309,12 +309,12 @@ int VocabularyModel::columnType(int column)
 QModelIndex VocabularyModel::appendEntry(KEduVocExpression *expression)
 {
     if (m_document->identifierCount() == 0) {
-        KMessageBox::information(0, i18n("Please use Edit -> Languages to set up your document."), i18n("No Languages Defined"));
+        KMessageBox::information(nullptr, i18n("Please use Edit -> Languages to set up your document."), i18n("No Languages Defined"));
         return QModelIndex();
     }
 
     if (!m_lesson || !m_lesson->parent()) {
-        KMessageBox::information(0, i18n("Select a unit before adding vocabulary."), i18n("No Unit Selected"));
+        KMessageBox::information(nullptr, i18n("Select a unit before adding vocabulary."), i18n("No Unit Selected"));
         delete expression;
         return QModelIndex();
     }

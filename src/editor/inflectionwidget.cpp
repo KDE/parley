@@ -100,7 +100,7 @@ void InflectionWidget::setWordType()
         return;
     }
 
-    KEduVocWordType *container = 0;
+    KEduVocWordType *container = nullptr;
 
     if (sender()->objectName() == QLatin1String("toVerb")) {
         container = m_doc->wordTypeContainer()->childOfType(KEduVocWordFlag::Verb);

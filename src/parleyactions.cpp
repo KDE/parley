@@ -64,7 +64,7 @@ QAction *createCustomAction(const QObject *recvr,
 
 QAction *ParleyActions::create(ParleyAction id, const QObject *recvr, const char *slot, KActionCollection *parent)
 {
-    QAction *pAction = 0;
+    QAction *pAction = nullptr;
 
     switch (id) {
     case FileNew:

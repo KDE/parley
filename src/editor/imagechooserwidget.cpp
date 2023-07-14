@@ -89,7 +89,7 @@ bool ImageChooserWidget::eventFilter(QObject *obj, QEvent *event)
                 return true;
             }
             QDropEvent *dropEvent = dynamic_cast<QDropEvent *>(event);
-            if ((dropEvent != NULL) && (dropEvent->mimeData() != NULL)) {
+            if ((dropEvent != nullptr) && (dropEvent->mimeData() != nullptr)) {
                 const QMimeData *mimeData(dropEvent->mimeData());
                 if (mimeData->hasUrls() && mimeData->hasUrls() && (mimeData->urls().size() == 1)) {
                     switch (event->type()) {
