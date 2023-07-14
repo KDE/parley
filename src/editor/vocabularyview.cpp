@@ -450,3 +450,5 @@ QModelIndexList VocabularyView::getSelectedIndexes() const
 {
     return selectionModel()->selectedIndexes();
 }
+
+#include "moc_vocabularyview.cpp"

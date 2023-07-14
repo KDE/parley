@@ -328,3 +328,5 @@ void ImageWidget::animationFinished()
 {
     m_animationPixmap = QPixmap();
 }
+
+#include "moc_imagewidget.cpp"

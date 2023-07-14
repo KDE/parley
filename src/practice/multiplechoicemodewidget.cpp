@@ -286,3 +286,5 @@ void MultiplechoiceModeWidget::resetButtonStyleSheet()
         }
     }
 }
+
+#include "moc_multiplechoicemodewidget.cpp"

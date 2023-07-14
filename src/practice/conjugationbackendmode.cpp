@@ -151,3 +151,5 @@ void ConjugationBackendMode::hintAction()
 {
     // FIXME
 }
+
+#include "moc_conjugationbackendmode.cpp"

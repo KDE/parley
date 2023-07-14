@@ -103,3 +103,5 @@ QMap<QString, QString> DocumentProperties::localeLangsMap()
     }
     return languageCodeMap;
 }
+
+#include "moc_documentproperties.cpp"

@@ -465,3 +465,5 @@ void EditorWindow::slotLanguagesChanged()
 {
     m_vocabularyModel->resetLanguages();
 }
+
+#include "moc_editor.cpp"

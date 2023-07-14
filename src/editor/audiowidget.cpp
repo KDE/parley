@@ -152,3 +152,5 @@ void AudioWidget::handleDownloadWebserviceFinished()
         audioUrlRequester->setUrl(m_entry->translation(m_currentTranslation)->soundUrl());
     }
 }
+
+#include "moc_audiowidget.cpp"

@@ -243,3 +243,5 @@ void TranslateShellTest::translateShellProcessInteractionTest()
 }
 
 QTEST_GUILESS_MAIN(TranslateShellTest);
+
+#include "moc_translateshelltest.cpp"

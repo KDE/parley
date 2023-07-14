@@ -174,3 +174,5 @@ void WrittenPracticeWidget::setQuestionPronunciation(const QString &pronunciatio
     m_ui->questionPronunciationLabel->setText('[' + pronunciationText + ']');
     m_ui->questionPronunciationLabel->setEnabled(!pronunciationText.isNull());
 }
+
+#include "moc_writtenpracticewidget.cpp"

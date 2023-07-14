@@ -17,3 +17,5 @@ SpecificPracticeOptions::SpecificPracticeOptions(QWidget *parent)
 
     // connect(kcfg_ShowSolutionAfterAnswer, SIGNAL(toggled(bool)), kcfg_ShowSolutionAfterAnswerTime, SLOT(setEnabled(bool)));
 }
+
+#include "moc_specificpracticeoptions.cpp"

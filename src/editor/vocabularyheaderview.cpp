@@ -38,3 +38,5 @@ void VocabularyHeaderView::updateSorting(int index)
     m_sortSection = -1;
     model()->sort(-1);
 }
+
+#include "moc_vocabularyheaderview.cpp"

@@ -165,3 +165,5 @@ void PracticeMainWindow::practiceFinished()
     delete m_stateMachine;
     Q_EMIT stopPractice();
 }
+
+#include "moc_practicemainwindow.cpp"

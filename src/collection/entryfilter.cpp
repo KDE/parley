@@ -602,3 +602,5 @@ void EntryFilter::randomizedInsert(QList<TestEntry *> &list, TestEntry *entry)
 {
     list.insert(QRandomGenerator::global()->bounded(list.size() + 1), entry);
 }
+
+#include "moc_entryfilter.cpp"

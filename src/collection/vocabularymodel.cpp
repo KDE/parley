@@ -394,3 +394,5 @@ void VocabularyModel::automaticTranslation(bool enabled)
 {
     Prefs::setAutomaticTranslation(enabled);
 }
+
+#include "moc_vocabularymodel.cpp"

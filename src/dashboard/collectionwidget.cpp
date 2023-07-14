@@ -172,3 +172,5 @@ void CollectionWidget::fillWidget()
 
     updateDue();
 }
+
+#include "moc_collectionwidget.cpp"

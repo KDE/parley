@@ -322,3 +322,5 @@ void StatisticsMainWindow::updateModelSettings()
     m_statisticsModel->updateDocumentSettings();
     m_ui->lessonStatistics->restoreExpandedStatus();
 }
+
+#include "moc_statisticsmainwindow.cpp"

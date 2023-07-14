@@ -418,3 +418,5 @@ void GuiFrontend::setTheme()
     m_ui->boxesWidget->setRenderer(m_themedBackgroundRenderer);
     m_ui->statusToggle->setRenderer(m_themedBackgroundRenderer);
 }
+
+#include "moc_guifrontend.cpp"

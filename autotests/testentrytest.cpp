@@ -274,3 +274,5 @@ void TestEntryTest::test_practiceModeDependentMaxPreGrade_comparsion()
 }
 
 QTEST_GUILESS_MAIN(TestEntryTests::TestEntryTest)
+
+#include "moc_testentrytest.cpp"

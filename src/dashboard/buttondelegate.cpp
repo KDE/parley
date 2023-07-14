@@ -93,3 +93,5 @@ QModelIndex ButtonDelegate::hoveredIndex() const
     const QPoint pos = m_itemView->viewport()->mapFromGlobal(QCursor::pos());
     return m_itemView->indexAt(pos);
 }
+
+#include "moc_buttondelegate.cpp"

@@ -141,3 +141,5 @@ void ComparisonModeWidget::setQuestionSound(const QUrl & /*soundUrl*/)
 void ComparisonModeWidget::setSolutionSound(const QUrl & /*soundUrl*/)
 {
 }
+
+#include "moc_comparisonmodewidget.cpp"

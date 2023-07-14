@@ -137,3 +137,5 @@ grade_t GenderBackendMode::currentGradeForEntry() const
     }
     return KV_NORM_GRADE;
 }
+
+#include "moc_genderbackendmode.cpp"

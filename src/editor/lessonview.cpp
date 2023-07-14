@@ -288,3 +288,5 @@ void LessonView::collapseAllLesson()
 {
     collapseAll();
 }
+
+#include "moc_lessonview.cpp"

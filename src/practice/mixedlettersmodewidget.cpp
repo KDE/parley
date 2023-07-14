@@ -85,3 +85,5 @@ void MixedLettersModeWidget::setSolution(const QVariant &solution)
         m_positions.append(QRandomGenerator::global()->bounded(8));
     }
 }
+
+#include "moc_mixedlettersmodewidget.cpp"

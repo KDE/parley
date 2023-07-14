@@ -159,3 +159,5 @@ void SynonymWidget::togglePair()
 
     updateList();
 }
+
+#include "moc_synonymwidget.cpp"

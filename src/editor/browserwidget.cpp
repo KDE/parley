@@ -126,3 +126,5 @@ void BrowserWidget::providerChanged(int provider)
     m_currentProvider = provider;
     showCurrentTranslation();
 }
+
+#include "moc_browserwidget.cpp"

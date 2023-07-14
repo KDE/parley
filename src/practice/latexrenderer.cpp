@@ -146,3 +146,5 @@ void LatexRenderer::latexRendered()
         f.remove();
     }
 }
+
+#include "moc_latexrenderer.cpp"

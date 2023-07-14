@@ -14,3 +14,5 @@ QList<KEduVocContainer *> ContainerMimeData::containerList() const
 {
     return m_containers;
 }
+
+#include "moc_containermimedata.cpp"

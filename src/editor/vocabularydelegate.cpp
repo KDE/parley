@@ -339,3 +339,5 @@ KEduVocContainer *VocabularyDelegate::WordTypeBasicModel::rootContainer() const
     }
     return m_doc->wordTypeContainer();
 }
+
+#include "moc_vocabularydelegate.cpp"

@@ -142,3 +142,5 @@ void InflectionWidget::setWordType()
         setTranslation(m_entry, m_translation);
     }
 }
+
+#include "moc_inflectionwidget.cpp"

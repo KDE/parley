@@ -156,3 +156,5 @@ void WrittenBackendMode::hintAction()
 
     m_lastAnswer = m_frontend->userInput().toString();
 }
+
+#include "moc_writtenbackendmode.cpp"

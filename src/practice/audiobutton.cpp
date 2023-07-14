@@ -65,3 +65,5 @@ void AudioButton::playerStateChanged(QMediaPlayer::State newState)
         break;
     }
 }
+
+#include "moc_audiobutton.cpp"

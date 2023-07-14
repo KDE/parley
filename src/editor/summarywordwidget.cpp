@@ -203,3 +203,5 @@ void SummaryWordWidget::wordTypeSelected(const QString &wordTypeName)
         }
     }
 }
+
+#include "moc_summarywordwidget.cpp"

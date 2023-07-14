@@ -120,3 +120,5 @@ QUrl ExportDialog::getFileName(const QString &filter)
                                      (m_doc->document()->url().fileName() == i18n("Untitled")) ? QLatin1String("") : m_doc->document()->url().toLocalFile(),
                                      filter));
 }
+
+#include "moc_exportdialog.cpp"

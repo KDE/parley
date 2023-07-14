@@ -167,3 +167,5 @@ QPixmap SummaryBarWidget::captionPixmap(QColor color)
     painter.drawPath(path);
     return QPixmap::fromImage(image);
 }
+
+#include "moc_summarybarwidget.cpp"

@@ -177,3 +177,5 @@ KEduVocDocument *ReadonlyContainerModel::document() const
 {
     return m_doc.get();
 }
+
+#include "moc_readonlycontainermodel.cpp"

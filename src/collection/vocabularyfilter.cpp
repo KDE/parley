@@ -66,3 +66,5 @@ KEduVocLesson *VocabularyFilter::lesson()
     }
     return 0;
 }
+
+#include "moc_vocabularyfilter.cpp"

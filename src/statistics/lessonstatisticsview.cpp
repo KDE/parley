@@ -226,3 +226,5 @@ void LessonStatisticsView::setCollapsedItems(const QStringList &collapsedItems, 
         }
     }
 }
+
+#include "moc_lessonstatisticsview.cpp"

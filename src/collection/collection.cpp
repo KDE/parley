@@ -61,3 +61,5 @@ void Collection::numDueWords(WordCount &wc)
     wc.totalWords = m_allTestEntries.count();
     // kDebug() << m_doc->title() << wc.totalWords << "entries";
 }
+
+#include "moc_collection.cpp"

@@ -181,3 +181,5 @@ std::shared_ptr<KEduVocDocument> StatisticsModel::document() const
 {
     return m_doc;
 }
+
+#include "moc_statisticsmodel.cpp"

@@ -243,3 +243,5 @@ void PracticeStateMachine::gradeEntryAndContinue()
     }
     nextEntry();
 }
+
+#include "moc_practicestatemachine.cpp"

@@ -38,3 +38,5 @@ void TranslationShellOptions::runTranslateShellTest()
         labelResultArea->setText(i18n("Error"));
     }
 }
+
+#include "moc_translationshelloptions.cpp"

@@ -395,3 +395,5 @@ ParleyMainWindow::Component ParleyMainWindow::currentComponent()
 {
     return m_currentComponent;
 }
+
+#include "moc_parleymainwindow.cpp"

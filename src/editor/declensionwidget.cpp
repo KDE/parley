@@ -184,3 +184,5 @@ void DeclensionWidget::setupLineEdits()
         m_DeclensionLineEdits[KEduVocWordFlag::Neuter | KEduVocWordFlag::Vocative] = neuter_7;
     }
 }
+
+#include "moc_declensionwidget.cpp"

@@ -317,3 +317,5 @@ bool BlockOptions::hasChanged()
         || date_itemlist[expire2->currentIndex()].num != Prefs::expireItem(KV_LEV2_GRADE)
         || date_itemlist[expire1->currentIndex()].num != Prefs::expireItem(KV_LEV1_GRADE);
 }
+
+#include "moc_blockoptions.cpp"

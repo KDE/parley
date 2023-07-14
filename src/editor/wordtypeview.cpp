@@ -318,3 +318,5 @@ void WordTypeView::setWordTypeConjunction()
     KEduVocWordType *wordType = static_cast<KEduVocWordType *>(selectionModel()->currentIndex().internalPointer());
     wordType->setWordType(KEduVocWordFlag::Conjunction);
 }
+
+#include "moc_wordtypeview.cpp"

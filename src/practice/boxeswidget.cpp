@@ -109,3 +109,5 @@ void BoxesWidget::drawElement(QPainter *p, const QString &id)
 
     p->drawPixmap(pos, m_renderer->getPixmapForId(id, rect.size()));
 }
+
+#include "moc_boxeswidget.cpp"

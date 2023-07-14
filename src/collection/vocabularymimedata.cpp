@@ -84,3 +84,5 @@ QList<VocabularyMimeData::MimeExpression> VocabularyMimeData::expressionList() c
 {
     return m_expressions;
 }
+
+#include "moc_vocabularymimedata.cpp"

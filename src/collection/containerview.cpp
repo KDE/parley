@@ -42,3 +42,5 @@ void ContainerView::slotRename()
 {
     edit(selectionModel()->currentIndex());
 }
+
+#include "moc_containerview.cpp"

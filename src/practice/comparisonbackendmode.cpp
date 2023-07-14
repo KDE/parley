@@ -139,3 +139,5 @@ grade_t ComparisonBackendMode::currentGradeForEntry() const
     }
     return KV_NORM_GRADE;
 }
+
+#include "moc_comparisonbackendmode.cpp"

@@ -416,3 +416,5 @@ void LanguagePropertiesPage::slotDeleteTense()
     modifyButton->setEnabled(tenseList->count() > 0);
     deleteButton->setEnabled(tenseList->count() > 0);
 }
+
+#include "moc_languagepropertiespage.cpp"

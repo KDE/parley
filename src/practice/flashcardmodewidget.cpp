@@ -141,3 +141,5 @@ void FlashCardModeWidget::setQuestionPronunciation(const QString &pronunciationT
     m_ui->questionPronunciationLabel->setText('[' + pronunciationText + ']');
     m_ui->questionPronunciationLabel->setEnabled(!pronunciationText.isNull());
 }
+
+#include "moc_flashcardmodewidget.cpp"

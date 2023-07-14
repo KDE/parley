@@ -133,3 +133,5 @@ void LatexDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, con
         }
     }
 }
+
+#include "moc_latexwidget.cpp"

@@ -119,3 +119,5 @@ void StatusToggle::updateToggle()
         m_toggle->setPixmaps(QPixmap(), QPixmap(), QPixmap());
     }
 }
+
+#include "moc_statustoggle.cpp"

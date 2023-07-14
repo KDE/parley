@@ -530,3 +530,5 @@ QRect ThemedBackgroundRenderer::alignRect(QRect itemRect, const QRect &baseRect,
     // qDebug() << "unhandled alignment option";
     return itemRect;
 }
+
+#include "moc_themedbackgroundrenderer.cpp"

@@ -193,3 +193,5 @@ void PracticeSummaryComponent::exportResults()
         return;
     }
 }
+
+#include "moc_practicesummarycomponent.cpp"

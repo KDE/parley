@@ -347,3 +347,5 @@ void Dashboard::updateBackground()
     }
     m_themedBackgroundRenderer->updateBackground();
 }
+
+#include "moc_dashboard.cpp"

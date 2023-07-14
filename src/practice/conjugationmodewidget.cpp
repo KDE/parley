@@ -187,3 +187,5 @@ void ConjugationModeWidget::setQuestionSound(const QUrl & /*soundUrl*/)
 void ConjugationModeWidget::setSolutionSound(const QUrl & /*soundUrl*/)
 {
 }
+
+#include "moc_conjugationmodewidget.cpp"

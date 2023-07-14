@@ -79,3 +79,5 @@ void StatisticsLegendWidget::paintEvent(QPaintEvent *)
     painter.drawText(leftRect, Qt::AlignRight | Qt::AlignVCenter, leftString);
     painter.drawText(rightRect, Qt::AlignLeft | Qt::AlignVCenter, rightString);
 }
+
+#include "moc_statisticslegendwidget.cpp"

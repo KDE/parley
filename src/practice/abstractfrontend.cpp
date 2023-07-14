@@ -11,3 +11,5 @@ AbstractFrontend::AbstractFrontend(QObject *parent)
     : QObject(parent)
 {
 }
+
+#include "moc_abstractfrontend.cpp"

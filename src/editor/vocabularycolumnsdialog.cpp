@@ -138,3 +138,5 @@ void VocabularyColumnsDialog::saveVisibleColumns()
     m_settings->setVisibleColumns(columns);
     m_settings->save();
 }
+
+#include "moc_vocabularycolumnsdialog.cpp"

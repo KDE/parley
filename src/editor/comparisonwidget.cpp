@@ -110,3 +110,5 @@ void ComparisonWidget::slotSuperlativeChanged()
 {
     m_translation->setSuperlativeForm(superlativeLineEdit->text());
 }
+
+#include "moc_comparisonwidget.cpp"

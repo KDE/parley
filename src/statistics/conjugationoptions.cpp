@@ -100,3 +100,5 @@ void ConjugationOptions::processCheckBoxChanged(QTreeWidgetItem *item, int colum
         Q_EMIT checkBoxChanged();
     }
 }
+
+#include "moc_conjugationoptions.cpp"

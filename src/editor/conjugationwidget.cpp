@@ -213,3 +213,5 @@ void ConjugationWidget::tenseEditingFinished()
         tenseComboBox->completionObject()->addItem(tenseComboBox->currentText());
     }
 }
+
+#include "moc_conjugationwidget.cpp"

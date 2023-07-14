@@ -226,3 +226,5 @@ void SessionManagerFixedTest::test_maximumNumberOfNewWordsPerSession_comparsion(
 }
 
 QTEST_MAIN(SessionManagerFixedTests::SessionManagerFixedTest)
+
+#include "moc_sessionmanagerfixedtest.cpp"

@@ -112,3 +112,5 @@ void MultipleChoiceBackendMode::hintAction()
     m_hints.append(hint);
     m_frontend->setHint(QVariant(hint));
 }
+
+#include "moc_multiplechoicebackendmode.cpp"

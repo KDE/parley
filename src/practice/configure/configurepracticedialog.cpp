@@ -92,3 +92,5 @@ void ConfigurePracticeDialog::updateWidgetsDefault()
     updateWidgets();
     m_config->useDefaults(false);
 }
+
+#include "moc_configurepracticedialog.cpp"

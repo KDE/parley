@@ -361,3 +361,5 @@ to remove the containers. If both are active, containers get deleted without war
 }
 
 */
+
+#include "moc_containermodel.cpp"

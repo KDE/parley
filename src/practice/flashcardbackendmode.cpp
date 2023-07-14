@@ -41,3 +41,5 @@ void FlashCardBackendMode::hintAction()
         m_frontend->setHint(m_currentHint);
     }
 }
+
+#include "moc_flashcardbackendmode.cpp"

@@ -111,3 +111,5 @@ void EntryFilterDialog::setupConnections()
     connect(m_ui->timesPracticedCheckBox, &QAbstractButton::toggled, this, &EntryFilterDialog::updateTotal);
     connect(m_ui->minMaxGradeCheckBox, &QAbstractButton::toggled, this, &EntryFilterDialog::updateTotal);
 }
+
+#include "moc_entryfilterdialog.cpp"

@@ -635,3 +635,5 @@ void ParleyDocument::enableAutoBackup(bool enable)
         m_backupTimer->start(Prefs::backupTime() * 60 * 1000);
     }
 }
+
+#include "moc_parleydocument.cpp"

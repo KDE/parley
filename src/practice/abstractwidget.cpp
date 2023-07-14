@@ -18,3 +18,5 @@ void AbstractModeWidget::setResultPalettes(const QPalette &correctPalette, const
     m_correctPalette = correctPalette;
     m_wrongPalette = wrongPalette;
 }
+
+#include "moc_abstractwidget.cpp"

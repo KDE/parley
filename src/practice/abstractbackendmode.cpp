@@ -100,3 +100,5 @@ void Practice::AbstractBackendMode::updateGrade(KEduVocText &text, bool isCorrec
 
     // qDebug() << "new pregrade, grade: " << text.preGrade() << text.grade();
 }
+
+#include "moc_abstractbackendmode.cpp"

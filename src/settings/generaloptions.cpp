@@ -80,3 +80,5 @@ void GeneralOptions::updateSettings()
         return;
     Prefs::setSeparator((separator_id[kcfg_SeparatorCombo->currentIndex()]));
 }
+
+#include "moc_generaloptions.cpp"

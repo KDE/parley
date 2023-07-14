@@ -31,3 +31,5 @@ bool ExampleSentenceBackendMode::setTestEntry(TestEntry *current)
     m_frontend->setQuestion(sentence);
     return true;
 }
+
+#include "moc_examplesentencebackendmode.cpp"
