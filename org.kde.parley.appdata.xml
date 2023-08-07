@@ -56,7 +56,7 @@
   <summary xml:lang="eu">Hiztegi entrenatzailea</summary>
   <summary xml:lang="fi">Sanaston harjoitusohjelma</summary>
   <summary xml:lang="fr">Exercices de vocabulaire</summary>
-  <summary xml:lang="gl">Adestrador de vocabulario</summary>
+  <summary xml:lang="gl">Adestrador de vocabulario.</summary>
   <summary xml:lang="ia">Instructor de vocabulario</summary>
   <summary xml:lang="id">Pelatih Kosakata</summary>
   <summary xml:lang="it">Apprendimento di vocaboli</summary>
@@ -336,7 +336,7 @@
       <caption xml:lang="eu">Aukeratu Parley-rekin trebatzeko bilduma bat</caption>
       <caption xml:lang="fi">Kokoelman valitseminen Parleyssa harjoittelua varten</caption>
       <caption xml:lang="fr">Choix d'une collection pour un exercice sur Parley</caption>
-      <caption xml:lang="gl">Escollendo unha colección para adestrar en Parley</caption>
+      <caption xml:lang="gl">Escollendo unha colección para adestrar en Parley.</caption>
       <caption xml:lang="id">Memilih koleksi untuk pelatihan di Parley</caption>
       <caption xml:lang="it">Scegliere una collezione per l'apprendimento in Parley</caption>
       <caption xml:lang="nl">Een verzameling kiezen voor oefenen in Parley</caption>
