@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:41+0000\n"
-"PO-Revision-Date: 2023-06-11 09:07+0200\n"
+"PO-Revision-Date: 2023-08-06 05:31+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.04.2\n"
+"X-Generator: Lokalize 23.04.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -85,37 +85,37 @@ msgstr "Ignorar a configuración de:"
 #: src/collection/entryfilterdialog.ui:36
 #, kde-format
 msgid "Ignore Lessons"
-msgstr "Ignorar as leccións"
+msgstr "Ignorar as leccións."
 
 #. i18n: ectx: property (text), widget (QCheckBox, wordTypeCheckBox)
 #: src/collection/entryfilterdialog.ui:56
 #, kde-format
 msgid "Ignore Word Types"
-msgstr "Ignorar os tipos de palabra"
+msgstr "Ignorar os tipos de palabra."
 
 #. i18n: ectx: property (text), widget (QCheckBox, blockedCheckBox)
 #: src/collection/entryfilterdialog.ui:76
 #, kde-format
 msgid "Ignore Blocked"
-msgstr "Ignorar os bloqueados"
+msgstr "Ignorar os bloqueados."
 
 #. i18n: ectx: property (text), widget (QCheckBox, timesWrongCheckBox)
 #: src/collection/entryfilterdialog.ui:96
 #, kde-format
 msgid "Ignore Times Answered Incorrectly"
-msgstr "Ignorar o número de veces que se respondeu incorrectamente"
+msgstr "Ignorar o número de veces que se respondeu incorrectamente."
 
 #. i18n: ectx: property (text), widget (QCheckBox, timesPracticedCheckBox)
 #: src/collection/entryfilterdialog.ui:116
 #, kde-format
 msgid "Ignore Times Practiced"
-msgstr "Ignorar as veces que se practicou"
+msgstr "Ignorar as veces que se practicou."
 
 #. i18n: ectx: property (text), widget (QCheckBox, minMaxGradeCheckBox)
 #: src/collection/entryfilterdialog.ui:136
 #, kde-format
 msgid "Ignore Minimum/Maximum Grade"
-msgstr "Ignorar a nota máxima/mínima"
+msgstr "Ignorar a nota máxima/mínima."
 
 #. i18n: ectx: property (text), widget (QLabel, numberAffectedWordsLabel)
 #: src/collection/entryfilterdialog.ui:156
@@ -372,7 +372,7 @@ msgstr "Buscar no actual"
 #: src/editor/browserwidget.ui:33
 #, kde-format
 msgid "Follow Table"
-msgstr "Seguir a táboa"
+msgstr "Seguir a táboa."
 
 #: src/editor/comparisonwidget.cpp:76
 #, kde-format
@@ -389,7 +389,7 @@ msgstr "Non se puido determinar o tipo de palabra dos adverbios"
 #: src/editor/comparisonwidget.ui:24 src/editor/comparisonwidget.ui:56
 #, kde-format
 msgid "The comparative is used to compare nouns or verbs (faster)"
-msgstr "O comparativo úsase para comparar nomes ou verbos (máis rápido)"
+msgstr "O comparativo úsase para comparar nomes ou verbos (máis rápido)."
 
 #. i18n: ectx: property (text), widget (QLabel, absoluteLabel)
 #: src/editor/comparisonwidget.ui:27
@@ -407,7 +407,7 @@ msgstr "Comparativo:"
 #: src/editor/comparisonwidget.ui:88
 #, kde-format
 msgid "The superlative (fastest)"
-msgstr "O superlativo (o máis rápido)"
+msgstr "O superlativo (o máis rápido)."
 
 #. i18n: ectx: property (text), widget (QLabel, superlativeLabel)
 #: src/editor/comparisonwidget.ui:91
@@ -702,7 +702,7 @@ msgstr "Resumo"
 #: src/practice/configure/generalpracticeoptions.ui:139
 #, kde-format
 msgid "Sound"
-msgstr "Son"
+msgstr "Son."
 
 #: src/editor/editor.cpp:320
 #, kde-format
@@ -825,7 +825,7 @@ msgstr "H&oxe"
 #: src/editor/FromToEntryPageForm.ui:206
 #, kde-format
 msgid "The date this expression was last practiced"
-msgstr "A data na que esta expresión se practicou por última vez"
+msgstr "A data na que esta expresión se practicou por última vez."
 
 #. i18n: ectx: property (specialValueText), widget (QDateEdit, queryDateEdit)
 #: src/editor/FromToEntryPageForm.ui:209
@@ -892,7 +892,7 @@ msgstr "Previsualizar"
 #: src/editor/latexwidget.ui:57
 #, kde-format
 msgid "Math mode"
-msgstr "Modo Matemáticas"
+msgstr "Modo Matemáticas."
 
 #: src/editor/lessonview.cpp:31
 #, kde-format
@@ -2138,13 +2138,13 @@ msgstr "Nivel &6:"
 #: src/practice/configure/blockoptions.ui:79
 #, kde-format
 msgid "E&xpiring"
-msgstr "&Caducidade"
+msgstr "&Caducidade."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_Block)
 #: src/practice/configure/blockoptions.ui:95
 #, kde-format
 msgid "Bl&ocking"
-msgstr "Bl&oqueo"
+msgstr "Bl&oqueo."
 
 #. i18n: ectx: property (text), widget (QLabel, l_lev4)
 #: src/practice/configure/blockoptions.ui:118
@@ -2186,13 +2186,13 @@ msgstr "O vocabulario baixa de nivel tras este tempo:"
 #: src/practice/configure/comparisonoptionswidget.ui:16
 #, kde-format
 msgid "Include Adjectives"
-msgstr "Incluír os adxectivos"
+msgstr "Incluír os adxectivos."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ComparisonIncludeAdverb)
 #: src/practice/configure/comparisonoptionswidget.ui:23
 #, kde-format
 msgid "Include Adverbs"
-msgstr "Incluír os adverbios"
+msgstr "Incluír os adverbios."
 
 #: src/practice/configure/configurepracticedialog.cpp:23
 #, kde-format
@@ -2407,7 +2407,7 @@ msgstr ""
 #: src/practice/configure/specificpracticeoptions.ui:26
 #, kde-format
 msgid "Use choices of the same word type"
-msgstr "Usar opcións do mesmo tipo de palabra"
+msgstr "Usar opcións do mesmo tipo de palabra."
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/specificpracticeoptions.ui:41
@@ -2556,7 +2556,7 @@ msgstr "Revelaches a resposta ao utilizares demasiadas pistas."
 #: src/practice/practice_mainwindow.ui:128
 #, kde-format
 msgid "Skip this word for now and ask again later"
-msgstr "Saltar esta palabra polo de agora e preguntala máis tarde"
+msgstr "Saltar esta palabra polo de agora e preguntala máis tarde."
 
 #. i18n: ectx: property (text), widget (QPushButton, answerLaterButton)
 #: src/practice/practice_mainwindow.ui:131
@@ -3195,7 +3195,7 @@ msgstr "Abrir/Gardar"
 #: src/settings/generaloptionsbase.ui:23
 #, kde-format
 msgid "Always open the collection that was active when quitting Parley"
-msgstr "Abrir sempre a colección que estaba activa cando se saíu de Parley"
+msgstr "Abrir sempre a colección que estaba activa cando se saíu de Parley."
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoOpenLast)
 #: src/settings/generaloptionsbase.ui:26
@@ -3211,33 +3211,33 @@ msgstr ""
 #: src/settings/generaloptionsbase.ui:29
 #, kde-format
 msgid "Always load the last opened collection on start"
-msgstr "Cargar sempre ao arrancar a última colección aberta"
+msgstr "Cargar sempre ao arrancar a última colección aberta."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AutoSave)
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AutoBackup)
 #: src/settings/generaloptionsbase.ui:39 src/settings/generaloptionsbase.ui:60
 #, kde-format
 msgid "Allow automatic saving of your work"
-msgstr "Permitir a garda automática do traballo"
+msgstr "Permitir a garda automática do traballo."
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoSave)
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoBackup)
 #: src/settings/generaloptionsbase.ui:42 src/settings/generaloptionsbase.ui:63
 #, kde-format
 msgid "Your work will be automatically saved if you check this option"
-msgstr "O traballo ha gardarse automaticamente se se marcar esta opción"
+msgstr "O traballo ha gardarse automaticamente se se marcar esta opción."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoSave)
 #: src/settings/generaloptionsbase.ui:45
 #, kde-format
 msgid "&Save vocabularies automatically on close and quit"
-msgstr "Gardar os vocabulario&s automaticamente ao pechar e saír"
+msgstr "Gardar os vocabulario&s automaticamente ao pechar e saír."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoBackup)
 #: src/settings/generaloptionsbase.ui:66
 #, kde-format
 msgid "&Create a backup every"
-msgstr "&Crear unha copia de seguridade de cada"
+msgstr "&Crear unha copia de seguridade de cada."
 
 #. i18n: ectx: property (text), widget (QLabel, lblBackupInterva)
 #: src/settings/generaloptionsbase.ui:89
@@ -3281,7 +3281,7 @@ msgstr "Edición"
 #: src/settings/generaloptionsbase.ui:162
 #, kde-format
 msgid "&Append new rows automatically when editing"
-msgstr "&Engadir filas novas automaticamente ao editar"
+msgstr "&Engadir filas novas automaticamente ao editar."
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, getNewButton)
 #: src/settings/kgametheme/kgamethemeselector.ui:40
@@ -3521,19 +3521,19 @@ msgstr "Neu&tro:"
 #: src/settings/languagepropertiespage.ui:697
 #, kde-format
 msgid "Dual conjugations"
-msgstr "Conxugacións duais"
+msgstr "Conxugacións duais."
 
 #. i18n: ectx: property (text), widget (QCheckBox, neutralCheckBox)
 #: src/settings/languagepropertiespage.ui:704
 #, kde-format
 msgid "A neutral conjugation form exists"
-msgstr "Existe unha forma de conxugación para o neutro"
+msgstr "Existe unha forma de conxugación para o neutro."
 
 #. i18n: ectx: property (text), widget (QCheckBox, maleFemaleDifferCheckBox)
 #: src/settings/languagepropertiespage.ui:717
 #, kde-format
 msgid "Male/female have different conjugations"
-msgstr "O masculino e o feminino teñen conxugacións distintas"
+msgstr "O masculino e o feminino teñen conxugacións distintas."
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab_4)
 #: src/settings/languagepropertiespage.ui:725
@@ -3975,7 +3975,7 @@ msgstr "As cores empregadas para amosar os primeiros niveis de seguridade"
 #: src/settings/parley.kcfg:259 src/settings/viewoptionsbase.ui:190
 #, kde-format
 msgid "Color used to display invalid units"
-msgstr "As cores empregadas para amosar as unidades incorrectas"
+msgstr "As cores empregadas para amosar as unidades incorrectas."
 
 #. i18n: ectx: label, entry (PracticeMinimumTimesAsked), group (Thresholds)
 #: src/settings/parley.kcfg:267
@@ -4266,7 +4266,7 @@ msgstr "Cor de base para amosar notas:"
 #: src/settings/viewoptionsbase.ui:102
 #, kde-format
 msgid "Color used to display the progress"
-msgstr "A cor empregada para amosar o progreso"
+msgstr "A cor empregada para amosar o progreso."
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_GradeColor)
 #: src/settings/viewoptionsbase.ui:105
