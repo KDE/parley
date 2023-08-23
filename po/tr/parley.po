@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:41+0000\n"
-"PO-Revision-Date: 2023-06-18 21:33+0300\n"
+"PO-Revision-Date: 2023-08-22 15:52+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.07.70\n"
+"X-Generator: Lokalize 23.11.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1400,7 +1400,7 @@ msgstr "Dışa Aktar"
 #: src/exportdialog.ui:20
 #, kde-format
 msgid "Flash Cards - to print learning cards (HTML)"
-msgstr "Bellek Kartları - öğrenme kartını yazdırmak için (HTML)"
+msgstr "Bilgi Kartları - öğrenme kartlarını yazdırmak için (HTML)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, tableRadio)
 #: src/exportdialog.ui:30
@@ -2348,7 +2348,7 @@ msgstr "Çözüm görseli"
 #: src/practice/configure/generalpracticeoptions.ui:123
 #, kde-format
 msgid "Allow using images instead of words in flashcards."
-msgstr "Bellek kartında sözcük yerine görsel kullanımına izin ver."
+msgstr "Bilgi kartında sözcük yerine görsel kullanımına izin ver."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AllowImageInsteadOfWord)
 #: src/practice/configure/generalpracticeoptions.ui:126
@@ -3654,13 +3654,13 @@ msgstr "İki otomatik yedekleme arasındaki zaman aralığı"
 #: src/settings/parley.kcfg:57
 #, kde-format
 msgid "Show images on the front of the flashcard."
-msgstr "Bellek kartının ön yüzünde görseller göster."
+msgstr "Bilgi kartının ön yüzünde görseller göster."
 
 #. i18n: ectx: label, entry (FlashcardsBackImage), group (PracticeOptions)
 #: src/settings/parley.kcfg:61
 #, kde-format
 msgid "Show images on the back of the flashcard."
-msgstr "Bellek kartının arka yüzünde görseller göster."
+msgstr "Bilgi kartının arka yüzünde görseller göster."
 
 #. i18n: ectx: label, entry (Block), group (PracticeOptions)
 #: src/settings/parley.kcfg:65
@@ -3830,7 +3830,7 @@ msgid ""
 "Allow using images instead of words in flashcards. This will only be done if "
 "there is no word in the entry."
 msgstr ""
-"Bellek kartında sözcük yerine görsel kullanımına izin ver. Bu, yalnızca "
+"Bilgi kartında sözcük yerine görsel kullanımına izin ver. Bu, yalnızca "
 "girdide hiç sözcük olmadığında yapılır."
 
 #. i18n: ectx: label, entry (SessionMaxSize), group (PracticeOptions)
@@ -4393,7 +4393,7 @@ msgstr "Alıştırma Kipi"
 #: src/statistics/statisticsmainwindow.ui:81
 #, kde-format
 msgid "Flash Cards"
-msgstr "Bellek Kartları"
+msgstr "Bilgi Kartları"
 
 #. i18n: ectx: property (text), widget (QRadioButton, mixedLetters)
 #: src/statistics/statisticsmainwindow.ui:91
